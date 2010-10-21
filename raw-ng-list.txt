@@ -71,7 +71,7 @@ mozilla.dev.tech.mathml                 For discussions about the <a href="../..
 mozilla.dev.tech.network                For discussions about the Mozilla Networking Library, a.k.a. <a href="../../projects/netlib/">netlib</a>.
 mozilla.dev.tech.nspr                   For discussions about the <a href="../../projects/nspr/">portable runtime</a> code used by Mozilla.
 mozilla.dev.tech.plugins                For discussions about <a href="../../projects/plugins/">plug-ins</a>. Developers may also check out the <a href="#dev-tech-java">Java</a> and <a href="#dev-tech-nspr" title="Netscape Portable Runtime">NSPR</a> forums.
-mozilla.dev.tech.rdf                    For discussions about the Resource Description Framework (<a href="http://www.w3.org/RDF/FAQ">RDF</a>) including the <a href=" http://home.netscape.com/comprod/products/communicator/future/aurora.html">Aurora</a> module.
+mozilla.dev.tech.rdf                    For discussions about the Resource Description Framework (<a href="http://www.w3.org/RDF/FAQ">RDF</a>).
 mozilla.dev.tech.sql                    For discussions about using SQL in Mozilla.
 mozilla.dev.tech.svg                    This is the project forum for implementing Scalable Vector Graphics (<a href="../../projects/svg/">SVG</a>) in Mozilla.
 mozilla.dev.tech.xbl                    For discussion about the XML Bindings Language (XBL).
