@@ -5,7 +5,7 @@ mozilla.support.thunderbird             Support for Thunderbird.
 mozilla.support.seamonkey               Support for SeaMonkey, the community-driven continuation of the Mozilla suite.
 mozilla.support.bugzilla                Support for the Bugzilla web-based bug-tracking tool.
 mozilla.support.calendar                Support for the Calendar and Lightning projects.
-mozilla.support.webtools                Support for webtools other than Bugzilla (e.g. Bonsai, Tinderbox, LXR, Doctor, Hendrix)
+mozilla.support.webtools                Support for webtools other than Bugzilla (e.g. Bonsai, Tinderbox, MXR)
 mozilla.support.accessibility           Support for using Mozilla with the keyboard, screen readers, screen magnifiers and voice dictation products.   
 mozilla.support.other                   Support for other products or projects without a specific group.
 mozilla.support.planning                For discussions about improving Firefox Support.
@@ -20,12 +20,12 @@ mozilla.evangelism                      The Mozilla Tech-Evangelism project - pe
 mozilla.events                          For discussions about Mozilla events.
 mozilla.general                         For everything with no forum of its own: discussion about any and all aspects of all the things that we're doing here at mozilla.org.
 mozilla.governance                      Governance of the Mozilla Project.
-mozilla.governance.mpl-update           Updating the Mozilla Public License.
+mozilla.governance.mpl-update           Updating the Mozilla Public License to version 2.
 mozilla.jobs                            For use by those interested in hiring folks to work on Mozilla-related projects as well as by those seeking such work.
 mozilla.legal                           For discussions about the <a href="../../MPL/">licensing terms</a> of the Mozilla source code and other legal issues.
 mozilla.marketing                       Our plans for world domination.
 mozilla.tools                           Discussion of the software development tools the Mozilla project uses (Hg, buildbot, bugzilla.mozilla.org, Tinderbox, bonsai...)
-mozilla.wishlist                        For discussions of future ideas, ranging from the practical to the far out. Read the <a href="../../wishlist-faq.html">wishlist FAQ</a> to see if your wish has already been discussed.
+mozilla.wishlist                        For discussions of future ideas, ranging from the practical to the far out.
 
 :General Development
 
@@ -34,7 +34,6 @@ mozilla.dev.amo                         For <a href="https://addons.mozilla.org/
 mozilla.dev.builds                      For discussions about compiling the source code or improving the build system.
 mozilla.dev.documentation               For discussions about <a href="../../docs/mdp/">documentation</a>: how it should be written, distributed, maintained, and so on. This is not the place to ask where help files are.
 mozilla.dev.embedding                   For <a href="../../projects/embedding/">embedding</a> Mozilla components such as Gecko, ender, and JavaScript into software.
-mozilla.dev.extensions                  For extension developers.
 mozilla.dev.i18n                        For discussions about <a href="../../projects/intl/">internationalization</a> (I18N) issues. I18N is the infrastructure that allows software to be <a href="#dev-l10n">localized</a>.
 mozilla.dev.l10n                        For <a href="../../projects/l10n/mlp.html">localization</a> (L10N) issues. L10N is the process of adapting software to a specific language and culture (see also <a href="#mozilla-i18n">internationalization</a>).
 mozilla.dev.mdc                         <a href="http://developer.mozilla.org/">Mozilla Developer Center</a> discussion
@@ -64,6 +63,7 @@ mozilla.dev.tech.gfx                    For people working on Mozilla's graphics
 html?
 mozilla.dev.tech.java                   For discussions about Java: both embedding <acronym title="Java Runtime Environment">JRE</acronym>s in Mozilla and extending Mozilla itself using Java code. Also check out the <a href="#dev-tech-plugins">plug-in forum</a>.
 mozilla.dev.tech.js-engine              For <a href="../../js/">JavaScript engines</a>, including <a href="../../js/spidermonkey/">Spidermonkey</a> (JavaScript in C) and <a href="../../rhino/">Rhino</a> (JavaScript in Java). For scripting support, see the <a href="../../js/scripting/">scripting resources</a>.
+mozilla.dev.tech.js-engine.internals    The internals of SpiderMonkey, the Mozilla JavaScript engine in C
 mozilla.dev.tech.js-engine.rhino        For discussions about <a href="../../rhino/">Rhino</a>. Implementation of JavaScript written entirely in Java.
 mozilla.dev.tech.layout                 For discussions about document layout in Mozilla, including <a href="../../newlayout/">Gecko</a>. Also check out the <a href="#dev-tech-style">style</a> and <a href="#dev-tech-svg">SVG</a> forums.
 mozilla.dev.tech.ldap                   For discussions about the C SDK, Java SDK, and PerLDAP, which are toolkits for developing <a href="../../directory/">LDAP</a> applications.
@@ -93,11 +93,19 @@ mozilla.dev.apps.js-debugger            For discussions about the JavaScript Deb
 mozilla.dev.apps.seamonkey              This forum is for developers working on <a href="../../projects/seamonkey/">Seamonkey</a>, the community continuation of the Mozilla software suite.
 mozilla.dev.apps.thunderbird            For development of Thunderbird, an email client built on the Mozilla platform.
 mozilla.dev.apps.webtools               mozilla.org has developed several Web-based tools for code management, including <a href="../../bonsai.html">Bonsai</a> (CVS queries), and <a href="../../tinderbox.html">Tinderbox</a> (continuous automated builds). This forum is for discussion of their development. (For the Bugzilla bug-tracking system, see <a href="#dev-apps-bugzilla">above</a>.)
+mozilla.tools.pulse                     The Pulse tool for event-driven notifications
+
+:Extension Development
+mozilla.dev.extensions                  For extension developers.
+mozilla.dev.extensions.br               Extension development discussion in Brazilian Portuguese
+mozilla.dev.extensions.cn               Extension development discussion in Chinese
+mozilla.dev.extensions.fr               Extension development discussion in French
+mozilla.dev.extensions.jp               Extension development discussion in Japanese
+mozilla.dev.extensions.uk               Extension development discussion in Ukranian
 
 :Ports To Other OSes
 
 mozilla.dev.ports.os2                   For discussions about <a href="../../ports/os2/">porting Mozilla to OS/2</a>.
-mozilla.dev.platforms.linux             For coordinating more involvement from the Linux distros and community.
 mozilla.dev.platforms.mobile            For discussions about the <a href="http://wiki.mozilla.org/Mobile">Mozilla platform on mobile devices</a>.
 
 :Mozilla Drumbeat
@@ -105,31 +113,35 @@ mozilla.dev.platforms.mobile            For discussions about the <a href="http:
 mozilla.community.drumbeat              Main Drumbeat newsgroup
 mozilla.drumbeat.website                For people working on <a href="http://www.drumbeat.org/">www.drumbeat.org</a>
 mozilla.drumbeat.p2pu                   Drumbeat project: Open Web Track at Peer-to-Peer University
+mozilla.drumbeat.barcelona              Drumbeat community in Barcelona
+mozilla.drumbeat.festival               Organization of the yearly Drumbeat Festival
 
 :Regional
 
+mozilla.community.armyofawesome         The Mozilla Army of Awesome twitter helpers.
+mozilla.community.artzilla              The Mozilla Artzilla community of artists.
+mozilla.community.balkans               The Mozilla community in the Balkans.
+mozilla.community.belgium               The Mozilla community in Belgium.
+mozilla.community.bulgaria              The Mozilla community in Bulgaria.
 mozilla.community.india                 The Mozilla community in India.
+mozilla.community.kenya                 The Mozilla community in Kenya.
+mozilla.community.mexico                The Mozilla community in Mexico.
 mozilla.community.philippines           The Mozilla community in the Philippines.
-mozilla.dev.l10n.cs                     For discussion of the Czech localization of Mozilla products.
-mozilla.dev.l10n.de                     For discussions of the German localization of Mozilla projects.
-mozilla.dev.l10n.fa                     For discussions of the Persian localization of Mozilla projects.
-mozilla.dev.l10n.in                     For discussions of the Indian localization of Mozilla projects.
-mozilla.dev.l10n.pl                     For discussions of the Polish localization of Mozilla projects.
-mozilla.dev.l10n.sk                     For discussion of the Slovak localization of Mozilla projects.
-mozilla.dev.l10n.sr                     For discussion of the Serbian localization of Mozilla projects.
+mozilla.community.tunisia               The Mozilla community in Tunisia.
+mozilla.community.uk                    The Mozilla community in the United Kingdom.
+
+mozilla.dev.l10n.cs                     Czech localization discussions.
+mozilla.dev.l10n.de                     German localization discussions.
+mozilla.dev.l10n.fa                     Persian localization discussions.
+mozilla.dev.l10n.in                     Indian localization discussions.
+mozilla.dev.l10n.pl                     Polish localization discussions.
+mozilla.dev.l10n.sk                     Slovak localization discussions.
+mozilla.dev.l10n.sr                     Serbian localization discussions.
 mozilla.dev.l10n.web                    For Mozilla website localization co-ordination.
+mozilla.dev.l10n.uk                     Ukranian localization discussions.
 mozilla.dev.mdc.es                      For discussion about Spanish content on <a href="http://developer.mozilla.org/es/">Mozilla Developer Center</a>.
 mozilla.dev.mdc.ja                      For discussion about Japanese content on <a href="http://developer.mozilla.org/ja/">Mozilla Developer Center</a>.
 mozilla.dev.mdc.pt                      For discussion about Portuguese content on <a href="http://developer.mozilla.org/pt/">Mozilla Developer Center</a>.
-
-:Feedback
-
-mozilla.feedback.firefox                Output of Firefox feedback from <a href="http://feedback.mozilla.org/">Hendrix</a>.
-mozilla.feedback.firefox.prerelease     Output of Firefox pre-release feedback from <a href="http://feedback.mozilla.org/">Hendrix</a>.
-mozilla.feedback.thunderbird            Output of Thunderbird feedback from <a href="http://feedback.mozilla.org/">Hendrix</a>.
-mozilla.feedback.thunderbird.prerelease Output of Thunderbird pre-release feedback from <a href="http://feedback.mozilla.org/">Hendrix</a>.
-mozilla.feedback.companion.ebay         Output of <a href="http://www.mozilla.com/add-ons/ebay/feedback/">Ebay Companion feedback</a>.
-mozilla.feedback                        Output of general feedback from <a href="http://feedback.mozilla.org/">Hendrix</a>.
 
 :Testing
 
