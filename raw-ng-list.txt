@@ -61,7 +61,7 @@ mozilla.dev.tech.dom                    For discussions about the <a href="http:
 mozilla.dev.tech.editor                 For discussions about HTML and text editing controls, including the <a href="../../editor/">Composer</a> component, <a href="../../editor/midas-spec.html">rich text editing</a> and text widgets.
 mozilla.dev.tech.gfx                    For people working on Mozilla's graphics subsystem, including the port to Cairo.
 html?
-mozilla.dev.tech.java                   For discussions about Java: both embedding <acronym title="Java Runtime Environment">JRE</acronym>s in Mozilla and extending Mozilla itself using Java code. Also check out the <a href="#dev-tech-plugins">plug-in forum</a>.
+mozilla.dev.tech.java                   For discussions about Java: both embedding <abbr title="Java Runtime Environment">JRE</abbr>s in Mozilla and extending Mozilla itself using Java code. Also check out the <a href="#dev-tech-plugins">plug-in forum</a>.
 mozilla.dev.tech.js-engine              For <a href="../../js/">JavaScript engines</a>, including <a href="../../js/spidermonkey/">Spidermonkey</a> (JavaScript in C) and <a href="../../rhino/">Rhino</a> (JavaScript in Java). For scripting support, see the <a href="../../js/scripting/">scripting resources</a>.
 mozilla.dev.tech.js-engine.internals    The internals of SpiderMonkey, the Mozilla JavaScript engine in C
 mozilla.dev.tech.js-engine.rhino        For discussions about <a href="../../rhino/">Rhino</a>. Implementation of JavaScript written entirely in Java.
