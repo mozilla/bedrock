@@ -12,19 +12,19 @@ mozilla.support.planning                For discussions about improving Firefox 
 
 :Projectwide Forums
 
-mozilla.announce                        New releases will be announced here. This is a low-volume, moderated group, for announcements only (not discussions).
-mozilla.announce.prerelease             Announcements of Mozilla product pre-releases.
-mozilla.announce.labs                   Announcements from Mozilla Labs.
+mozilla.announce                        New releases will be announced here. This is a low-volume group, for announcements only (not discussions). (Moderated.)
+mozilla.announce.prerelease             Announcements of Mozilla product pre-releases. (Moderated.)
+mozilla.announce.labs                   Announcements from Mozilla Labs. (Moderated.)
 mozilla.education                       For discussions about Mozilla's involvement in <a href="https://wiki.mozilla.org/Education">educational programs</a>.
 mozilla.evangelism                      The Mozilla Tech-Evangelism project - persuading websites to use web standards.
 mozilla.events                          For discussions about Mozilla events.
 mozilla.general                         For everything with no forum of its own: discussion about any and all aspects of all the things that we're doing here at mozilla.org.
 mozilla.governance                      Governance of the Mozilla Project.
-mozilla.governance.mpl-update           Updating the Mozilla Public License to version 2.
+mozilla.governance.mpl-update           Updating the Mozilla Public License to version 2. (Moderated.)
 mozilla.jobs                            For use by those interested in hiring folks to work on Mozilla-related projects as well as by those seeking such work.
 mozilla.legal                           For discussions about the <a href="../../MPL/">licensing terms</a> of the Mozilla source code and other legal issues.
 mozilla.marketing                       Our plans for world domination.
-mozilla.tools                           Discussion of the software development tools the Mozilla project uses (Hg, buildbot, bugzilla.mozilla.org, Tinderbox, bonsai...)
+mozilla.tools                           Discussion of the software development tools the Mozilla project uses (Hg, buildbot, bugzilla.mozilla.org, Tinderbox, bonsai...) (Moderated.)
 mozilla.wishlist                        For discussions of future ideas, ranging from the practical to the far out.
 
 :General Development
@@ -43,10 +43,10 @@ mozilla.dev.performance                 Implementation of performance improvemen
 mozilla.dev.planning                    For project planning, meeting minutes, roadmap discussions.
 mozilla.dev.platform                    For people working on Mozilla-the-platform.
 mozilla.dev.quality                     For <a href="../../quality/">QA</a> discussion, including using Bugzilla, Mozilla testing, and bug triaging. Do not report bugs here.
-mozilla.dev.security                    <a href="../../projects/security/">Security</a> issues such as specific security problems or ideas for making the code as a whole more secure can be discussed here. <a href="#dev-tech-crypto">Cryptography</a>, however, is not within this group's charter.
-mozilla.dev.security.policy             Discussion of security-related policies, governance, and related topics; and responsibility for the Mozilla CA certificate policy.
+mozilla.dev.security                    <a href="../../projects/security/">Security</a> issues such as specific security problems or ideas for making the code as a whole more secure can be discussed here. <a href="#dev-tech-crypto">Cryptography</a>, however, is not within this group's charter. (Moderated.)
+mozilla.dev.security.policy             Discussion of security-related policies, governance, and related topics; and responsibility for the Mozilla CA certificate policy. (Moderated.)
 mozilla.dev.static-analysis             For discussion about Pork, Dehydra, rewriting and static analysis projects.
-mozilla.dev.super-review                This forum is a mirror of the <a href="../../hacking/reviewers.html">super-review</a> mailing list. Requests for patch review and change of review status in Bugzilla are automatically posted here.
+mozilla.dev.super-review                This forum is a mirror of the <a href="../../hacking/reviewers.html">super-review</a> mailing list. Requests for patch review and change of review status in Bugzilla are automatically posted here. (Moderated.)
 mozilla.dev.themes                      For theme developers.
 mozilla.dev.tree-management             For discussion about general development tree health and practices for managing it.
 mozilla.dev.usability                   For discussions on <a href="../../projects/ui/">user interface</a> and usability issues, including future directions, cross-platform consistency, and so on.
@@ -54,8 +54,8 @@ mozilla.community.web-standards         The community of Mozilla people involved
 
 :Mozilla Technologies
 
-mozilla.dev.tech.crypto                 For discussions about cryptography, and cryptographic issues surrounding the Mozilla source code. See the <a href="../../projects/security/pki/">PKI</a> project for more info.
-mozilla.dev.tech.crypto.checkins        Join this list if you'd like to be automatically notified of all check-ins to Mozilla's crypto code.
+mozilla.dev.tech.crypto                 For discussions about cryptography, and cryptographic issues surrounding the Mozilla source code. See the <a href="../../projects/security/pki/">PKI</a> project for more info. (Moderated.)
+mozilla.dev.tech.crypto.checkins        Join this list if you'd like to be automatically notified of all check-ins to Mozilla's crypto code. (Moderated.)
 css?
 mozilla.dev.tech.dom                    For discussions about the <a href="http://www.w3.org/DOM/">Document Object Model</a> (DOM) in Mozilla. For scripting discussions, see the <a href="../../js/scripting/">scripting resources</a> page.
 mozilla.dev.tech.editor                 For discussions about HTML and text editing controls, including the <a href="../../editor/">Composer</a> component, <a href="../../editor/midas-spec.html">rich text editing</a> and text widgets.
@@ -126,7 +126,7 @@ mozilla.community.bulgaria              The Mozilla community in Bulgaria.
 mozilla.community.india                 The Mozilla community in India.
 mozilla.community.kenya                 The Mozilla community in Kenya.
 mozilla.community.mexico                The Mozilla community in Mexico.
-mozilla.community.philippines           The Mozilla community in the Philippines.
+mozilla.community.philippines           The Mozilla community in the Philippines. (Moderated.)
 mozilla.community.tunisia               The Mozilla community in Tunisia.
 mozilla.community.uk                    The Mozilla community in the United Kingdom.
 
@@ -146,5 +146,5 @@ mozilla.dev.mdc.pt                      For discussion about Portuguese content 
 :Testing
 
 mozilla.test                            For test messages.
-mozilla.test.multimedia                 For binary test messages.
+mozilla.test.multimedia                 For binary test messages. (Moderated.)
 
