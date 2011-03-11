@@ -22,8 +22,12 @@ mozilla.general                         For everything with no forum of its own:
 mozilla.governance                      Governance of the Mozilla Project.
 mozilla.governance.mpl-update           Updating the Mozilla Public License to version 2. (Moderated.)
 mozilla.jobs                            For use by those interested in hiring folks to work on Mozilla-related projects as well as by those seeking such work.
+mozilla.join                            The Join Mozilla public engagement initiative
 mozilla.legal                           For discussions about the <a href="../../MPL/">licensing terms</a> of the Mozilla source code and other legal issues.
 mozilla.marketing                       Our plans for world domination.
+mozilla.mozillians                      The Mozilla community directory - 'Mozillians'
+mozilla.reps.general                    The Mozilla Reps program
+mozilla.reps.webdev                     Development of websites to support the Mozilla Reps program
 mozilla.tools                           Discussion of the software development tools the Mozilla project uses (Hg, buildbot, bugzilla.mozilla.org, Tinderbox, bonsai...) (Moderated.)
 mozilla.wishlist                        For discussions of future ideas, ranging from the practical to the far out.
 
@@ -34,9 +38,11 @@ mozilla.dev.amo                         For <a href="https://addons.mozilla.org/
 mozilla.dev.builds                      For discussions about compiling the source code or improving the build system.
 mozilla.dev.documentation               For discussions about <a href="../../docs/mdp/">documentation</a>: how it should be written, distributed, maintained, and so on. This is not the place to ask where help files are.
 mozilla.dev.embedding                   For <a href="../../projects/embedding/">embedding</a> Mozilla components such as Gecko, ender, and JavaScript into software.
+mozilla.dev.identity                    Identity in the browser
 mozilla.dev.i18n                        For discussions about <a href="../../projects/intl/">internationalization</a> (I18N) issues. I18N is the infrastructure that allows software to be <a href="#dev-l10n">localized</a>.
 mozilla.dev.l10n                        For <a href="../../projects/l10n/mlp.html">localization</a> (L10N) issues. L10N is the process of adapting software to a specific language and culture (see also <a href="#mozilla-i18n">internationalization</a>).
-mozilla.dev.mdc                         <a href="http://developer.mozilla.org/">Mozilla Developer Center</a> discussion
+mozilla.dev.mdc                         <a href="http://developer.mozilla.org/">Mozilla Developer Network</a> discussion and content production
+mozilla.dev.mdn                         Mozilla Developer Network website development and developer engagement
 mozilla.dev.mdc.feedback                Developer Center feedback; includes output from <a href="http://feedback.developer.mozilla.org/">MDC Hendrix</a>.
 mozilla.dev.mozilla-org                 For people working on the mozilla.org website.
 mozilla.dev.performance                 Implementation of performance improvements to the Mozilla codebase.
@@ -49,6 +55,7 @@ mozilla.dev.static-analysis             For discussion about Pork, Dehydra, rewr
 mozilla.dev.super-review                This forum is a mirror of the <a href="../../hacking/reviewers.html">super-review</a> mailing list. Requests for patch review and change of review status in Bugzilla are automatically posted here. (Moderated.)
 mozilla.dev.themes                      For theme developers.
 mozilla.dev.tree-management             For discussion about general development tree health and practices for managing it.
+mozilla.dev.tree-management.tracemonkey For management of the separate tracemonkey tree
 mozilla.dev.usability                   For discussions on <a href="../../projects/ui/">user interface</a> and usability issues, including future directions, cross-platform consistency, and so on.
 mozilla.community.web-standards         The community of Mozilla people involved in web standards efforts.
 
@@ -94,6 +101,7 @@ mozilla.dev.apps.seamonkey              This forum is for developers working on 
 mozilla.dev.apps.thunderbird            For development of Thunderbird, an email client built on the Mozilla platform.
 mozilla.dev.apps.webtools               mozilla.org has developed several Web-based tools for code management, including <a href="../../bonsai.html">Bonsai</a> (CVS queries), and <a href="../../tinderbox.html">Tinderbox</a> (continuous automated builds). This forum is for discussion of their development. (For the Bugzilla bug-tracking system, see <a href="#dev-apps-bugzilla">above</a>.)
 mozilla.tools.pulse                     The Pulse tool for event-driven notifications
+mozilla.tools.socorro                   The Socorro crash-reporting system
 
 :Extension Development
 mozilla.dev.extensions                  For extension developers.
@@ -115,14 +123,17 @@ mozilla.drumbeat.website                For people working on <a href="http://ww
 mozilla.drumbeat.p2pu                   Drumbeat project: Open Web Track at Peer-to-Peer University
 mozilla.drumbeat.barcelona              Drumbeat community in Barcelona
 mozilla.drumbeat.festival               Organization of the yearly Drumbeat Festival
+mozilla.community.mojo                  The Knight-Mozilla News Technology Initiative - Mozilla and Journalism, or MoJo.
 
 :Regional
 
+mozilla.community.arab-world            The Mozilla community in the Arab world.
 mozilla.community.armyofawesome         The Mozilla Army of Awesome twitter helpers.
 mozilla.community.artzilla              The Mozilla Artzilla community of artists.
 mozilla.community.balkans               The Mozilla community in the Balkans.
 mozilla.community.belgium               The Mozilla community in Belgium.
 mozilla.community.bulgaria              The Mozilla community in Bulgaria.
+mozilla.community.ghana                 The Mozilla community in Ghana.
 mozilla.community.india                 The Mozilla community in India.
 mozilla.community.kenya                 The Mozilla community in Kenya.
 mozilla.community.mexico                The Mozilla community in Mexico.
