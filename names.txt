@@ -1674,3 +1674,4 @@ Gianopoulos,Bill
 Abe,Hiroki
 Ikezoe,Hiroyuki
 Takagi,Yuka
+Inomata,Shuichiro
