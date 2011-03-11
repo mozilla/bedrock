@@ -1651,3 +1651,4 @@ Stamm,Sid
 Jacob,Benoit
 Protzenko,Jonathan
 Gamonal,Eduard
+Ricaud,Anthony
