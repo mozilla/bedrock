@@ -1673,3 +1673,4 @@ Wein,Frank
 Gianopoulos,Bill
 Abe,Hiroki
 Ikezoe,Hiroyuki
+Takagi,Yuka
