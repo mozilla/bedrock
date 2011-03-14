@@ -1677,4 +1677,5 @@ Inomata,Shuichiro
 Brubeck,Matt
 Quiviger,William
 Yamaguchi,Satoko Takita
-Mooij,Jan de
+de Mooij,Jan
+Kéménczy,Kálmán
