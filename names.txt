@@ -1646,7 +1646,6 @@ Pettersen,Jan-Espen
 Strømsnæs,Pascual
 Gómez,Fernando García
 Ferreira,Tiago
-Ferreira,Tiago
 Stamm,Sid
 Jacob,Benoit
 Protzenko,Jonathan
@@ -1676,3 +1675,4 @@ Ikezoe,Hiroyuki
 Takagi,Yuka
 Inomata,Shuichiro
 Brubeck,Matt
+Quiviger,William
