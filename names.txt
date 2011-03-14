@@ -257,7 +257,6 @@ Connor,Mike
 Converse,Alex
 Cooper,Chris
 Cooper,Eric
-Corazza,Cedric
 Corre,Catherine
 Corso,Michele Dal
 Costales,Marcos
@@ -775,7 +774,6 @@ Lenz,Mike
 Lepik,Sander
 Leppikangas,Tomi
 LeSage,Garrett
-Leseul,Benoit
 Leue,Ian
 Leventhal,Michael
 Leventhal,Aaron
@@ -1691,3 +1689,4 @@ Fadayian,Sahar
 Mohammadi,Reza
 Halberstadt,Andrew
 Cazenave,Fabien
+Akatsuka,Daisuke
