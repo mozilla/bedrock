@@ -1712,3 +1712,4 @@ Ceballos,Julián
 Stipkovic,Clauber
 Wang,Frédéric
 Picolini,Francisco
+Medina,Vinícius
