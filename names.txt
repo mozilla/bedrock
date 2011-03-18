@@ -1713,3 +1713,4 @@ Stipkovic,Clauber
 Wang,Frédéric
 Picolini,Francisco
 Medina,Vinícius
+Balle,Andrea
