@@ -1407,7 +1407,7 @@ Tyrrel,Amié
 Unruh,John
 Utterstron,Jonas
 Valeski,Judson
-van den Broek,Tim Maks
+Broek,Tim Maks van den
 Van der Beken,Peter
 VanderMeulen,Ryan
 van der Woude,Peter
@@ -1620,7 +1620,7 @@ Krišjānis,Pēteris
 Shagdar,Natsagdorj
 Alam,Amanpreet Singh
 Sijens,Hindrik
-van der Beek,Gert-Paul
+Beek,Gert-Paul van der
 Holst,Laurens
 Kensen,Ton
 van Kesteren,Anne
@@ -1707,3 +1707,4 @@ Pasche,Sylvain
 Caban,Jacek
 Silveira,Fernando Pereira
 Combee,Ben
+Stawarz,Katarzyna
