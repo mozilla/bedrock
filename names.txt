@@ -1458,7 +1458,7 @@ Weaver,Nate
 Weber,Dieter
 Weerasinghe,Harshana
 Weilbacher,Peter
-Weinberg,Zack
+Weinberg,Zachary
 Weinstein,Dan
 Weinstein,Jeff
 Weinstein,Tom
@@ -1710,3 +1710,4 @@ Combee,Ben
 Stawarz,Katarzyna
 Ceballos,Julián
 Stipkovic,Clauber
+Wang,Frédéric
