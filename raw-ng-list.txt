@@ -7,7 +7,7 @@ mozilla.support.bugzilla                Support for the Bugzilla web-based bug-t
 mozilla.support.calendar                Support for the Calendar and Lightning projects.
 mozilla.support.webtools                Support for webtools other than Bugzilla (e.g. Bonsai, Tinderbox, MXR)
 mozilla.support.accessibility           Support for using Mozilla with the keyboard, screen readers, screen magnifiers and voice dictation products.   
-mozilla.support.other                   Support for other products or projects without a specific group.
+mozilla.support.other                   Support for other products or projects without a specific group. (Moderated.)
 mozilla.support.planning                For discussions about improving Firefox Support.
 
 :Projectwide Forums
@@ -19,11 +19,11 @@ mozilla.education                       For discussions about Mozilla's involvem
 mozilla.evangelism                      The Mozilla Tech-Evangelism project - persuading websites to use web standards.
 mozilla.events                          For discussions about Mozilla events.
 mozilla.general                         For everything with no forum of its own: discussion about any and all aspects of all the things that we're doing here at mozilla.org.
-mozilla.governance                      Governance of the Mozilla Project.
+mozilla.governance                      Governance of the Mozilla Project.  (Moderated.)
 mozilla.governance.mpl-update           Updating the Mozilla Public License to version 2. (Moderated.)
-mozilla.jobs                            For use by those interested in hiring folks to work on Mozilla-related projects as well as by those seeking such work.
+mozilla.jobs                            For use by those interested in hiring folks to work on Mozilla-related projects as well as by those seeking such work. (Moderated.)
 mozilla.join                            The Join Mozilla public engagement initiative
-mozilla.legal                           For discussions about the <a href="../../MPL/">licensing terms</a> of the Mozilla source code and other legal issues.
+mozilla.legal                           For discussions about the <a href="../../MPL/">licensing terms</a> of the Mozilla source code and other legal issues. (Moderated.)
 mozilla.marketing                       Our plans for world domination.
 mozilla.mozillians                      The Mozilla community directory - 'Mozillians'
 mozilla.reps.general                    The Mozilla Reps program
@@ -139,7 +139,7 @@ mozilla.community.kenya                 The Mozilla community in Kenya.
 mozilla.community.mexico                The Mozilla community in Mexico.
 mozilla.community.philippines           The Mozilla community in the Philippines. (Moderated.)
 mozilla.community.tunisia               The Mozilla community in Tunisia.
-mozilla.community.uk                    The Mozilla community in the United Kingdom.
+mozilla.community.uk                    The Mozilla community in the United Kingdom. (Moderated.)
 
 mozilla.dev.l10n.cs                     Czech localization discussions.
 mozilla.dev.l10n.de                     German localization discussions.
