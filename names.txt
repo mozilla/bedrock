@@ -1746,3 +1746,4 @@ Colmeiro,Hernan Rodriguez
 Cheng,Alan
 Lai,Wei-Chen
 Wu,Ru-Kang
+Chan,David M.
