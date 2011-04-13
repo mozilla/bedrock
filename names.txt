@@ -1541,7 +1541,7 @@ Zhou,Kevin
 Ziegler,Sam
 Zizzinga,Alex
 Znamenacek,Jiri
-uAraújo,Artur
+Araújo,Artur
 Duarte,Bruno
 Rodrigues,Carlos
 Esperança,Cláudio
@@ -1744,3 +1744,4 @@ Mitchell,Dustin
 Taylor,Mike
 Kero,Ben
 Novak,Chelsea
+Colmeiro,Hernan Rodriguez
