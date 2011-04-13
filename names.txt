@@ -219,7 +219,6 @@ Chee,Philip
 Chek,Paul
 Chen,Emily
 Chen,Ginn
-Chen,Peter
 Chen,Ray
 Cheng,Tao
 Chernyak,Alexey
@@ -228,7 +227,6 @@ Chevrel,Pascal
 Chia,Jose Maria
 Chiang,Lisa
 Chick,Hankin
-Chien,Tim
 Chilyashev,Mihail
 Chitwood,Sean
 Chou,Joe
@@ -1605,8 +1603,8 @@ Wijaya,Dody Suria
 Irhamni,Milda
 Lin,Hung-Te
 Sun,Wei-Lun
-Chien,Tim Guan-Tin
-Chen,Peter Pin-Guang
+Chien,Guan-Tin
+Chen,Pin-Guang
 Reinhardt,Aleks
 Srebotnjak,Martin
 Jiyan,Amed Çeko
@@ -1739,9 +1737,12 @@ Sunil,Kinshuk
 Ivanić,Oskar
 Molnár,Tamás
 Thaçi,Gent
-Chiang,Ernest Deng-Wei
+Chiang,Deng-Wei
 Mitchell,Dustin
 Taylor,Mike
 Kero,Ben
 Novak,Chelsea
 Colmeiro,Hernan Rodriguez
+Cheng,Alan
+Lai,Wei-Chen
+Wu,Ru-Kang
