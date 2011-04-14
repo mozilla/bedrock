@@ -1758,3 +1758,4 @@ Basoah,Derrick Frimpong
 Kpeli-Semabia,Delalorm
 Patel,Cyrus
 Topper,Craig
+Hirata,Naoki
