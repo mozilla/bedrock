@@ -1760,3 +1760,4 @@ Patel,Cyrus
 Topper,Craig
 Hirata,Naoki
 Vranešič,Nino
+Cormier,Tim
