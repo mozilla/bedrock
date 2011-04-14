@@ -526,7 +526,6 @@ Hencke,Robert
 Henderson,Christopher
 Henderson,Richard
 Hendriks,Patrick
-Henriksen,Håvar Ingmund
 Henry,Andrew
 Herak,Muris
 Herland,Bjarne
@@ -1245,7 +1244,6 @@ Shah,Ayan
 Shahian,Tara
 Shahbaz,Dimi
 Shands,Berkley
-ShaoHua,Wen
 Shapiro,Melissa
 Sharma,Bindu
 Sharp,Gavin
@@ -1357,7 +1355,6 @@ Taylor,Owen
 Taylor,Tim
 Tayyeb,Arshad
 Tei,Takayuki
-Tekovic,Sasa
 Tenneti,Raman
 Tenser,David
 Termwuttipreecha,Wichai
@@ -1637,9 +1634,6 @@ Røw,Tom Ottar
 Svanes,Kristian
 Skjæveland,Åsmund
 Klepsvik,Erik
-Henriksen,Håvar
-Pettersen,Jan-Espen
-Strømsnæs,Pascual
 Gómez,Fernando García
 Ferreira,Tiago
 Stamm,Sid
@@ -1763,3 +1757,4 @@ Bosch,Jeremias
 Basoah,Derrick Frimpong
 Kpeli-Semabia,Delalorm
 Patel,Cyrus
+Topper,Craig
