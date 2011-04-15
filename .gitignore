@@ -3,7 +3,6 @@ settings_local.py
 *.sw[po]
 .coverage
 pip-log.txt
-docs/_gh-pages
 build.py
 .DS_Store
 *-min.css
