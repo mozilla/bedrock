@@ -137,12 +137,12 @@ def JINJA_CONFIG():
 # and js files that can be bundled together by the minify app.
 MINIFY_BUNDLES = {
     'css': {
-        'example_css': (
-            'css/examples/main.css',
+        'common': (
+            '',
         ),
     },
     'js': {
-        'example_js': (
+        'common': (
             'js/libs/jquery-1.4.4.min.js',
         ),
     }
@@ -170,7 +170,7 @@ INSTALLED_APPS = (
     'jingo_minify',
     'tower',  # for ./manage.py extract (L10n)
 
-    'examples',  # Example code. Can (and should) be removed for actual projects.
+    # Local apps.
 
     # We need this so the jsi18n view will pick up our locale directory.
     ROOT_PACKAGE,
@@ -195,7 +195,6 @@ INSTALLED_APPS = (
 
     # L10n
     'product_details',
-
 )
 
 # Tells the extract script what files to look for L10n in and what function
