@@ -1,23 +1,25 @@
-playdoh
+bedrock
 =======
 
-Mozilla's Playdoh is a web application template based on [Django][django].
+*bedrock* is the code name of the new mozilla.org. It is bound to be as shiny,
+awesome, and open sourcy as always. Perhaps even a little more.
+
+Stay tuned.
+
+
+Contributing
+------------
 
 Patches are welcome! Feel free to fork and contribute to this project on
-[github][gh-playdoh].
+[github][gh-bedrock].
 
-Full [documentation][docs] is available as well.
-
-
-[django]: http://www.djangoproject.com/
-[gh-playdoh]: https://github.com/mozilla/playdoh
-[docs]: http://mozilla.github.com/playdoh/
+[gh-bedrock]: https://github.com/mozilla/bedrock
 
 
 License
 -------
-This software is licensed under the [New BSD License][BSD]. For more
+This software is licensed under the [MPL/GPL/LGPL tri-license][MPL]. For more
 information, read the file ``LICENSE``.
 
-[BSD]: http://creativecommons.org/licenses/BSD/
+[MPL]: http://www.mozilla.org/MPL/
 

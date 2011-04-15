@@ -1,4 +1,4 @@
-# Django settings file for a project based on the playdoh template.
+# Django settings file for bedrock.
 
 import os
 
