@@ -70,7 +70,7 @@ PROD_DETAILS_DIR = path('lib/product_details_json')
 LANGUAGES = lazy(LazyLangs, dict)()
 
 # Paths that don't require a locale code in the URL.
-SUPPORTED_NONLOCALES = []
+SUPPORTED_NONLOCALES = ['media']
 
 
 ## Media and templates.
@@ -138,7 +138,7 @@ def JINJA_CONFIG():
 MINIFY_BUNDLES = {
     'css': {
         'common': (
-            '',
+            'css/careers.css',
         ),
     },
     'js': {
@@ -167,10 +167,7 @@ ROOT_URLCONF = '%s.urls' % ROOT_PACKAGE
 INSTALLED_APPS = (
     # Local apps
     'commons',  # Content common to most playdoh-based apps.
-    'jingo_minify',
-    'tower',  # for ./manage.py extract (L10n)
-
-    # Local apps.
+    'careers',
 
     # We need this so the jsi18n view will pick up our locale directory.
     ROOT_PACKAGE,
@@ -179,6 +176,8 @@ INSTALLED_APPS = (
     'commonware.response.cookies',
     'djcelery',
     'django_nose',
+    'jingo_minify',
+    'tower',  # for ./manage.py extract (L10n)
 
     # Django contrib apps
     'django.contrib.auth',
