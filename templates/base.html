@@ -4,16 +4,50 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
     <title>{% block page_title %}mozilla.org{% endblock %}</title>
 
+    <style>
+    {# TODO put this into CSS file. #}
+    {# MetaWebPro font family licensed from fontshop.com. WOFF-FTW! #}
+    @font-face {
+        font-family: 'MetaBlack';
+        src: url('http://mozcom-cdn.mozilla.net/img/fonts/MetaWebPro-Black.eot');
+        src: local('☺'), url('http://mozcom-cdn.mozilla.net/img/fonts/MetaWebPro-Black.woff') format('woff');
+        font-weight: bold;
+    }
+    </style>
+
     {% block site_css %}
       {{ css('common') }}
     {% endblock %}
+
+    <link rel="shortcut icon" type="image/png" href="{{ MEDIA_URL }}img/favicon.png"/>
   </head>
-  <body>
-    {% block content %}{% endblock %}
+
+  <body id="{% block body_id %}{% endblock %}" class="html-{{ DIR }}">
+    <div id="wrapper">
+      <div id="doc">
+        <div id="nav-access">
+          <a href="#nav-main">{{ _('skip to navigation') }}</a>
+          <a href="#lang_form">{{ _('switch language') }}</a>
+        </div>
+
+        {% block site_header %}
+          {% include "includes/header.html" %}
+        {% endblock %}
+
+        {% block content %}{% endblock %}
+
+      </div>{# /#doc #}
+    </div>{# /#wrapper #}
+
+    {% block site_footer %}
+      {% include "includes/footer.html" %}
+    {% endblock %}
 
     {% block site_js %}
       {{ js('common') }}
     {% endblock %}
+    {% block js %}{% endblock %}
+
+    {# {% include "includes/webtrends.html" %} #}
   </body>
 </html>
-
