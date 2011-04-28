@@ -42,3 +42,7 @@ def position(request, job_id=None):
     return jingo.render(request, 'careers/home.html', {
         'position': position,
     })
+
+
+def benefits(request):
+    return jingo.render(request, 'careers/benefits.html')
