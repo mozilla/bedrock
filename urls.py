@@ -1,12 +1,16 @@
 from django.conf import settings
 from django.conf.urls.defaults import *
 
+
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
 
 urlpatterns = patterns('',
     (r'', include('careers.urls')),
+
+    # L10n example.
+    (r'^l10n_example/', include('l10n_example.urls')),
 
 
     # Uncomment the admin/doc line below to enable admin documentation:

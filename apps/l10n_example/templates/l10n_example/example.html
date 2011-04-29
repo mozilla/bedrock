@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Hello world!</h1>
+
+  {% l10n foo %}
+  <p>Localizable, unversioned.</p>
+  {% endl10n %}
+
+  {% l10n bar, 3 %}
+  <p>Localizable, versioned.</p>
+  {% endl10n %}
+
+  <p>unlocalizable.</p>
+{% endblock %}

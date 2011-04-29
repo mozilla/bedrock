@@ -50,7 +50,7 @@ TEXT_DOMAIN = 'messages'
 LANGUAGE_CODE = 'en-US'
 
 # Accepted locales
-KNOWN_LANGUAGES = ('en-US',)
+KNOWN_LANGUAGES = ('de', 'en-US', 'es', 'fr',)
 
 # List of RTL locales known to this project. Subset of LANGUAGES.
 RTL_LANGUAGES = ()  # ('ar', 'fa', 'fa-IR', 'he')
@@ -120,7 +120,8 @@ def JINJA_CONFIG():
     from django.conf import settings
 #    from caching.base import cache
     config = {'extensions': ['tower.template.i18n', 'jinja2.ext.do',
-                             'jinja2.ext.with_', 'jinja2.ext.loopcontrols'],
+                             'jinja2.ext.with_', 'jinja2.ext.loopcontrols',
+                             'l10n_utils.template.l10n_blocks'],
               'finalize': lambda x: x if x is not None else ''}
 #    if 'memcached' in cache.scheme and not settings.DEBUG:
         # We're passing the _cache object directly to jinja because
@@ -172,6 +173,7 @@ INSTALLED_APPS = (
     # Local apps
     'commons',  # Content common to most playdoh-based apps.
     'careers',
+    'l10n_example',  # DELETEME
 
     # We need this so the jsi18n view will pick up our locale directory.
     ROOT_PACKAGE,
@@ -198,6 +200,7 @@ INSTALLED_APPS = (
 
     # L10n
     'product_details',
+    'l10n_utils',
 )
 
 # Tells the extract script what files to look for L10n in and what function
