@@ -201,6 +201,9 @@ INSTALLED_APPS = (
     # L10n
     'product_details',
     'l10n_utils',
+
+    # Jobvite
+    'django_jobvite',
 )
 
 # Tells the extract script what files to look for L10n in and what function
@@ -248,3 +251,6 @@ BROKER_VHOST = 'playdoh'
 BROKER_CONNECTION_TIMEOUT = 0.1
 CELERY_RESULT_BACKEND = 'amqp'
 CELERY_IGNORE_RESULT = True
+
+# Jobvite XML URI
+JOBVITE_URI = '' # http://www.jobvite.com/CompanyJobs/Xml.aspx?c=...

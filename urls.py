@@ -8,6 +8,7 @@ from django.conf.urls.defaults import *
 
 urlpatterns = patterns('',
     (r'', include('careers.urls')),
+    (r'^jobvite/', include('django_jobvite.urls')),
 
     # L10n example.
     (r'^l10n_example/', include('l10n_example.urls')),
