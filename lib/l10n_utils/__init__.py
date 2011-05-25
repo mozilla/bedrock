@@ -19,7 +19,7 @@ def render(request, template, context=None, **kwargs):
     """
     # Look for localized template if not default lang.
     if request.locale != settings.LANGUAGE_CODE:
-        localized_tmpl = 'l10n/%s/%s' % (request.locale, template)
+        localized_tmpl = '%s/templates/%s' % (request.locale, template)
         try:
             return jingo.render(request, localized_tmpl, context, **kwargs)
         except TemplateNotFound:

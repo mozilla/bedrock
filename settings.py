@@ -113,6 +113,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 TEMPLATE_DIRS = (
     path('templates'),
+    path('locale')
 )
 
 def JINJA_CONFIG():

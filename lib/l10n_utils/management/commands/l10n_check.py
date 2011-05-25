@@ -1,45 +1,66 @@
 import itertools
 import os
 from os import path
+from optparse import make_option
+import codecs
 
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
 
 from jingo import get_env
-from jinja2 import Environment
+from jinja2 import Environment, TemplateNotFound
 from jinja2.parser import Parser
 
 
 class Command(BaseCommand):
     args = ''
     help = 'Checks which content needs to be localized.'
+    
+    option_list = BaseCommand.option_list + (
+        make_option('-t',
+                    action='store_true',
+                    dest='templates',
+                    default=False,
+                    help='Show non-existant templates for locales'),
+        )
 
     def handle(self, *args, **options):
-        l10n_dir = False
+        # Look through languages passed in, or all of them
+        if args:
+            langs = args
+        else:
+            langs = os.listdir(self.l10n_file())
 
-        # Find the directory with localized templates
-        for tmpl_dir in settings.TEMPLATE_DIRS:
-            d = path.join(tmpl_dir, 'l10n')
-            if path.exists(d):
-                l10n_dir = d
-                break
+        if options['templates']:
+            self.check_templates(langs)
+        else:
+            self.check_blocks(langs)
 
-        if not l10n_dir:
-            print "No l10n template directory found."
-            return
+    def l10n_file(self, *args):
+        return path.join(settings.ROOT, 'locale', *args)
 
-        # Check all the l10n blocks in all the main templates against
-        # the localized ones and print any that are out of date
+    def check_templates(self, langs):
         for tmpl in self.list_templates():
-            for lang in os.listdir(l10n_dir):
-                localized_tmpl = path.join('l10n', lang, tmpl)
-                localized_path = path.join(l10n_dir, lang, tmpl)
+            for lang in langs:
+                fullpath = self.l10n_file(lang, 'templates', tmpl)
+                if not path.exists(fullpath):
+                    print fullpath
+                
 
-                if path.exists(localized_path):
+    def check_blocks(self, langs):
+        # Check all the l10n blocks in all the main templates against
+        # the blocks in the localized templates
+
+        for tmpl in self.list_templates():
+            for lang in langs:
+                fullpath = self.l10n_file(lang, 'templates', tmpl)
+
+                if path.exists(fullpath):
                     blocks = self.parse_template(tmpl)
-                    l10n_blocks = self.parse_template(localized_tmpl)
+                    l10n_blocks = self.parse_template(fullpath)
                     
                     self.compare_versions(tmpl, lang, blocks, l10n_blocks)
+
 
     def compare_versions(self, tmpl, lang, latest, localized):
         for name, version in latest.iteritems():
@@ -72,7 +93,11 @@ class Command(BaseCommand):
                             
     def parse_template(self, tmpl):
         env = get_env()
-        src = env.loader.get_source(env, tmpl)
+
+        try:
+            src = env.loader.get_source(env, tmpl)
+        except TemplateNotFound:
+            src = codecs.open(tmpl, encoding='utf-8').read()
 
         self.tokens = env.lex(src)
         blocks = {}
