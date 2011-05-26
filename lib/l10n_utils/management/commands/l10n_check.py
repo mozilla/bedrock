@@ -40,16 +40,17 @@ class Command(BaseCommand):
         return path.join(settings.ROOT, 'locale', *args)
 
     def check_templates(self, langs):
+        """List templates that don't exist in the localized folders"""
+
         for tmpl in self.list_templates():
             for lang in langs:
                 fullpath = self.l10n_file(lang, 'templates', tmpl)
                 if not path.exists(fullpath):
-                    print fullpath
+                    print "[%s] %s" % (lang, tmpl)
                 
 
     def check_blocks(self, langs):
-        # Check all the l10n blocks in all the main templates against
-        # the blocks in the localized templates
+        """List templates with outdated/incorrect l10n blocks"""
 
         for tmpl in self.list_templates():
             for lang in langs:
@@ -63,6 +64,8 @@ class Command(BaseCommand):
 
 
     def compare_versions(self, tmpl, lang, latest, localized):
+        """Detect outdated/incorrect l10n block and notify"""
+
         for name, version in latest.iteritems():
             if version:
                 if not name in localized:
@@ -75,6 +78,8 @@ class Command(BaseCommand):
                            % (tmpl, lang, name, localized[name], version))
         
     def list_templates(self):
+        """List all the templates in all the installed apps"""
+
         for app in settings.INSTALLED_APPS:
             tmpl_dir = path.join(settings.ROOT, 'apps', app, 'templates')
 
@@ -92,6 +97,8 @@ class Command(BaseCommand):
                             yield full_path.replace(tmpl_dir, '').lstrip('/')
                             
     def parse_template(self, tmpl):
+        """Analyze a template and get the l10n block information"""
+
         env = get_env()
 
         try:
