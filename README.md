@@ -16,7 +16,7 @@ for general technical documentation. In addition, there are project-specific
 
 [playdoh]: https://github.com/mozilla/playdoh
 [pd-docs]: http://mozilla.github.com/playdoh/
-[br-docs]: https://mozilla.github.com/bedrock
+[br-docs]: http://mozilla.github.com/bedrock/
 
 Contributing
 ------------
