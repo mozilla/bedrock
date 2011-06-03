@@ -34,3 +34,8 @@ ul#positions {
 ul#positions li {
     padding: 3px 0px;
 }
+
+div#position h1, h2, h3 {
+    padding: 0px;
+    margin: 0px 0px 10px 0px;
+}

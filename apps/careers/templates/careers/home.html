@@ -20,6 +20,8 @@
   {% if position %}
     <div id="position">
       <h1>{{ position.title }}</h1>
+      <h3>
+        {% for category in position.category.all() %}<a href="{{ url('careers.views.department', slug=category.slug) }}">{{ category.name }}</a>{% endfor %},  {{ position.location }}</h3>
       <p>{{ position.description|safe }}</p>
       <a href="{{ position.apply_url }}">Apply</a>
     </div>
