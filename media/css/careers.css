@@ -1,0 +1,36 @@
+#title {
+    text-align: center;
+    border-bottom: 2px solid #ccc;
+}
+
+#title h1 {
+    font-family: verdana, sans-serif;
+    font-weight: bold;
+    font-style: normal;
+}
+
+ul#categories {
+    list-style-type: none;
+}
+
+ul#categories li {
+    padding: 2px 0px;
+}
+
+ul#categories li.selected a {
+    font-weight: bold;
+    font-size: 120%;
+    color: #000;
+}
+
+ul#categories a {
+    color: #8b8878;
+}
+
+ul#positions {
+    list-style-type: none;
+}
+
+ul#positions li {
+    padding: 3px 0px;
+}

@@ -1,1 +1,42 @@
 {% extends "base.html" %}
+
+{% block page_title %}{{ _('Open Positions | Mozilla') }}{% endblock %}
+
+{% block content %}
+<div id="title">
+  <h1>{{ _('Open Positions') }}</h1>
+</div>
+
+<div id="container">
+
+  <ul id="categories">
+    {% for category in categories %}
+      <li{% if selected == category %} class="selected"{% endif %}>
+        <a href="{{ url('careers.views.department', slug=category.slug) }}">{{ category.name }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+
+  {% if position %}
+    <div id="position">
+      <h1>{{ position.title }}</h1>
+      <p>{{ position.description|safe }}</p>
+      <a href="{{ position.apply_url }}">Apply</a>
+    </div>
+  {% endif %}
+  {% if selected %}
+    <div id="department">
+      <h2>{{ selected.name }}</h2>
+      {% if selected.description %}
+        <p>{{ selected.description }}</p>
+      {% endif %}
+      <ul id="positions">
+        {% for position in positions %}
+          <li><a href="{{ url('careers.views.position', job_id=position.job_id) }}">{{ position.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+</div>
+{% endblock %}
