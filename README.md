@@ -7,6 +7,17 @@ awesome, and open sourcy as always. Perhaps even a little more.
 Stay tuned.
 
 
+Docs
+----
+
+bedrock is a [playdoh project][playdoh]. Check out the [playdoh docs][pd-docs]
+for general technical documentation. In addition, there are project-specific
+[bedrock docs][br-docs].
+
+[playdoh]: https://github.com/mozilla/playdoh
+[pd-docs]: http://mozilla.github.com/playdoh/
+[br-docs]: https://github.com/mozilla/bedrock
+
 Contributing
 ------------
 
