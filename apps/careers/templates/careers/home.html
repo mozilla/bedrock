@@ -2,28 +2,9 @@
 
 {% block page_title %}{{ _('Open Positions | Mozilla') }}{% endblock %}
 
-{% block js %}
-<script>
-$('ul#locations a').click(function(e) {
-    e.preventDefault();
-    var city = $(this).text().toLowerCase();
-    $.getJSON('/jobvite/positions/?location=' + city, function(data) {
-        console.log(data);
-    });
-});
-</script>
-{% endblock %}
-
 {% block content %}
 <div id="title">
   <h1>{{ _('Open Positions') }}</h1>
-  <ul id="locations">
-    <!-- todo: make these degrade gracefully, i.e. link to something real -->
-    <li><a href="#">All Locations</a></li>
-    <li><a href="#">Mountain View</a></li>
-    <li><a href="#">Toronto</a></li>
-    <li><a href="#">Remote</a></li>
-  </ul>
 </div>
 
 <div id="container">
