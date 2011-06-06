@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block page_title %}{{ _('Open Positions | Mozilla') }}{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+
+var handleResponse = function(data) {
+    var job_ids = [];
+    $.each(data, function(k, v) {
+        job_ids.push(k);
+    });
+    $('ul.positions').children().filter(function(i) {
+        var job_id = $(this).attr('job_id');
+        return $.inArray(job_id, job_ids) < 0;
+    }).addClass('faded');
+};
+
+$('ul#locations li a').click(function(e) {
+    e.preventDefault();
+    $('ul.positions').children().removeClass('faded');
+    var city = $(this).text().toLowerCase();
+    if (city == 'all locations') {
+        return;
+    }
+    $.ajax({
+        url: '/jobvite/positions/', 
+        dataType: 'json',
+        data: { location: city },
+        success: handleResponse,
+        error: function() {
+            $('ul.positions').children().addClass('faded');
+        }
+    });
+
+});
+
+</script>
+{% endblock %}
+
+{% block content %}
+<h1>{{ _('Open Positions') }}</h1>
+<ul id="locations">
+  <!-- todo: make these degrade gracefully, i.e. link to something real -->
+  <li><a href="#">All Locations</a></li>
+  <li><a href="#">Mountain View</a></li>
+  <li><a href="#">Toronto</a></li>
+  <li><a href="#">Beijing</a></li>
+  <li><a href="#">Aukland</a></li>
+  <li><a href="#">Remote</a></li>
+</ul>
+
+{% for category, positions in categorized|dictsort(true) %}
+  <h3>{{ category }}</h3>
+  <ul class="positions">
+  {% for position in positions %}
+    <li job_id="{{ position.job_id }}"><a href="{{ url('careers.views.position', job_id=position.job_id) }}">{{ position.title }}</a></li>
+  {% endfor %}
+  </ul>
+{% endfor %}
+
+{% endblock %}

@@ -12,6 +12,20 @@ def careers(request, slug=None):
     })
 
 
+def careers_two(request):
+    positions = Position.objects.all()
+    categorized = {}
+    categories = Category.objects.all()
+    for category in categories:
+        categorized[category.name] = [p for p in positions
+                                      if category in p.category.all()]
+    return jingo.render(request, 'careers/all.html', {
+        'positions': positions,
+        'categories': categories,
+        'categorized': categorized,
+    })
+
+
 def department(request, slug):
     selected = get_object_or_404(Category, slug=slug)
     categories = Category.objects.all()
