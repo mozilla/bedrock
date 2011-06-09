@@ -14,11 +14,22 @@ var handleResponse = function(data) {
         var job_id = $(this).attr('job_id');
         return $.inArray(job_id, job_ids) < 0;
     }).addClass('faded');
+
+    $('ul.positions').prev().map(function(e) {
+        var list = $(this).next();
+        var enabled = list.children().filter(function(i) {
+            return !$(this).hasClass('faded');
+        });
+        if (enabled.length === 0) {
+            $(this).addClass('faded');
+        }
+    });
 };
 
 $('ul#locations li a').click(function(e) {
     e.preventDefault();
     $('ul.positions').children().removeClass('faded');
+    $('ul.positions').prev().removeClass('faded');
     var city = $(this).text().toLowerCase();
     if (city == 'all locations') {
         return;
