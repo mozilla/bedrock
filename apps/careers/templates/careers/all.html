@@ -62,7 +62,6 @@ $('ul#locations li a').click(function(e) {
 
 {% for column in categorized|columnize(3) %}
 <div id="column_{{ loop.index }}" class="column">
-  <h1>Column {{ loop.index }}</h1>
     {% for category, positions in column|dictsort(true) %}
     <h3>{{ category }}</h3>
     <ul class="positions">
