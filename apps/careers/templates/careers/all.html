@@ -60,13 +60,18 @@ $('ul#locations li a').click(function(e) {
   <li><a href="#">Remote</a></li>
 </ul>
 
-{% for category, positions in categorized|dictsort(true) %}
-  <h3>{{ category }}</h3>
-  <ul class="positions">
-  {% for position in positions %}
-    <li job_id="{{ position.job_id }}"><a href="{{ url('careers.views.position', job_id=position.job_id) }}">{{ position.title }}</a></li>
-  {% endfor %}
-  </ul>
+{% for column in categorized|columnize(3) %}
+<div id="column_{{ loop.index }}" class="column">
+  <h1>Column {{ loop.index }}</h1>
+    {% for category, positions in column|dictsort(true) %}
+    <h3>{{ category }}</h3>
+    <ul class="positions">
+      {% for position in positions %}
+        <li job_id="{{ position.job_id }}"><a href="{{ url('careers.views.position', job_id=position.job_id) }}">{{ position.title }}</a></li>
+      {% endfor %}
+    </ul>
+    {% endfor %}
+</div>
 {% endfor %}
 
 {% endblock %}
