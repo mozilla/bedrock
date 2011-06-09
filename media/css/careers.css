@@ -43,3 +43,20 @@ div#position h1, h2, h3 {
 .faded, .faded a {
     color: #ccc;
 }
+
+#column_1 {
+    float: left; 
+    width: 34%;
+    margin-left: 33%;
+}
+
+#column_2 {
+    float: left;
+    width: 33%;
+    margin-left: -67%;
+}
+
+#column_3 {
+    float: left;
+    width: 33%;
+}
