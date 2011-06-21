@@ -1589,7 +1589,7 @@ Cantieni,Martin
 Hermann,Sara
 Kumar,R Veera
 Strømsnæs,Pascual
-Henriksen,Håvar
+Henriksen,Håvar Ingmund
 Djupvik,Reidar
 Pettersen,Jan-Espen
 Marøen,Lasse
@@ -1763,3 +1763,4 @@ Vranešič,Nino
 Cormier,Tim
 Kim,Jaeyoon
 Imbeah,Jojoo
+Küchler,Jan
