@@ -32,11 +32,20 @@
           <a class="share-email" href="#" title="{{ _('Share this by email') }}">{{ _('Email') }}</a>
         </div>
 
-        {# todo - job details #}
-        <div id="job-details">
+        <dl id="job-details">
           <dt>{{ _('Team:') }}</dt>
-          
-        </div>
+          <dd>
+            <ul>
+              {% for category in position.category.all() -%}
+                <li><a class="job-team" href="{{ url('careers.views.department', slug=category.slug) }}">{{ category.name }}</a></li>
+              {% endfor -%}
+            </ul>
+          </dd>
+          <dt>{{ _('Locations:') }}</dt>
+          <dd>{{ position.location }}</dd>
+          <dt>{{ _('Posted:') }}</dt>
+          <dd>{{ position.date }}</dd>
+        </dl>
 
       </div> <!-- /.float -->
     </div> <!-- /#job-meta -->
