@@ -13,6 +13,8 @@ urlpatterns = patterns('',
     # L10n example.
     (r'^l10n_example/', include('l10n_example.urls')),
 
+    # Main pages
+    (r'^mozorg/', include('mozorg.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),

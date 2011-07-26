@@ -175,6 +175,7 @@ INSTALLED_APPS = (
     'commons',  # Content common to most playdoh-based apps.
     'careers',
     'l10n_example',  # DELETEME
+    'mozorg',
 
     # We need this so the jsi18n view will pick up our locale directory.
     ROOT_PACKAGE,
