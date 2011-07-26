@@ -1,0 +1,9 @@
+Localization
+------------
+
+The site is fully localizable. Localization files are not shipped with the code
+distribution, but are available on SVN::
+
+    git svn clone https://svn.mozilla.org/projects/mozilla.org-l10n/trunk/ locale
+    # or
+    svn checkout https://svn.mozilla.org/projects/mozilla.org-l10n/trunk/ locale

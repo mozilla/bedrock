@@ -5,7 +5,7 @@
 -r prod.txt
 
 # Documentation
-Sphinx==1.0.6
+Sphinx==1.0.7
 
 # Testing
 nose==1.0.0

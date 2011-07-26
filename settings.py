@@ -144,12 +144,18 @@ MINIFY_BUNDLES = {
             'css/covehead/content.css',
             'css/careers.css',
         ),
+        'benefits': (
+            'css/benefits.css',
+        ),
     },
     'js': {
         'common': (
             'js/libs/jquery-1.4.4.min.js',
             'js/util.js',
             'js/nav-main.js',
+        ),
+        'benefits': (
+            'js/benefits.js',
         ),
     }
 }
