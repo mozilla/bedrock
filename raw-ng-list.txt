@@ -15,6 +15,7 @@ mozilla.support.planning                For discussions about improving Firefox 
 mozilla.announce                        New releases will be announced here. This is a low-volume group, for announcements only (not discussions). (Moderated.)
 mozilla.announce.prerelease             Announcements of Mozilla product pre-releases. (Moderated.)
 mozilla.announce.labs                   Announcements from Mozilla Labs. (Moderated.)
+mozilla.announce.compatibility          Add-on compatibility announcements. (Moderated.)
 mozilla.education                       For discussions about Mozilla's involvement in <a href="https://wiki.mozilla.org/Education">educational programs</a>.
 mozilla.evangelism                      The Mozilla Tech-Evangelism project - persuading websites to use web standards.
 mozilla.events                          For discussions about Mozilla events.
@@ -34,6 +35,7 @@ mozilla.wishlist                        For discussions of future ideas, ranging
 :General Development
 
 mozilla.dev.accessibility               For the <a href="../../projects/ui/accessibility/">accessibility</a> development effort.         
+mozilla.dev.automation                  For development discussion about test automation. (Moderated.)
 mozilla.dev.amo                         For <a href="https://addons.mozilla.org/">addons.mozilla.org</a> development discussion.
 mozilla.dev.builds                      For discussions about compiling the source code or improving the build system.
 mozilla.dev.documentation               For discussions about <a href="../../docs/mdp/">documentation</a>: how it should be written, distributed, maintained, and so on. This is not the place to ask where help files are.
@@ -46,6 +48,7 @@ mozilla.dev.mdn                         Mozilla Developer Network website develo
 mozilla.dev.mdc.feedback                Developer Center feedback; includes output from <a href="http://feedback.developer.mozilla.org/">MDC Hendrix</a>.
 mozilla.dev.mozilla-org                 For people working on the mozilla.org website.
 mozilla.dev.performance                 Implementation of performance improvements to the Mozilla codebase.
+mozilla.dev.pdf-js                      pdf.js, the PDF renderer written in JS. (Moderated.)
 mozilla.dev.planning                    For project planning, meeting minutes, roadmap discussions.
 mozilla.dev.platform                    For people working on Mozilla-the-platform.
 mozilla.dev.quality                     For <a href="../../quality/">QA</a> discussion, including using Bugzilla, Mozilla testing, and bug triaging. Do not report bugs here.
@@ -57,6 +60,7 @@ mozilla.dev.themes                      For theme developers.
 mozilla.dev.tree-management             For discussion about general development tree health and practices for managing it.
 mozilla.dev.tree-management.tracemonkey For management of the separate tracemonkey tree
 mozilla.dev.usability                   For discussions on <a href="../../projects/ui/">user interface</a> and usability issues, including future directions, cross-platform consistency, and so on.
+mozilla.dev.webapi                      For development of new Web APIs to enhance the web platform. (Moderated.)
 mozilla.community.web-standards         The community of Mozilla people involved in web standards efforts.
 
 :Mozilla Technologies
@@ -100,16 +104,13 @@ mozilla.dev.apps.js-debugger            For discussions about the JavaScript Deb
 mozilla.dev.apps.seamonkey              This forum is for developers working on <a href="../../projects/seamonkey/">Seamonkey</a>, the community continuation of the Mozilla software suite.
 mozilla.dev.apps.thunderbird            For development of Thunderbird, an email client built on the Mozilla platform.
 mozilla.dev.apps.webtools               mozilla.org has developed several Web-based tools for code management, including <a href="../../bonsai.html">Bonsai</a> (CVS queries), and <a href="../../tinderbox.html">Tinderbox</a> (continuous automated builds). This forum is for discussion of their development. (For the Bugzilla bug-tracking system, see <a href="#dev-apps-bugzilla">above</a>.)
-mozilla.tools.pulse                     The Pulse tool for event-driven notifications
-mozilla.tools.socorro                   The Socorro crash-reporting system
+mozilla.tools.elmo                      Development of web apps for localization (l10n). (Moderated.)
+mozilla.tools.pulse                     The Pulse tool for event-driven notifications.
+mozilla.tools.socorro                   The Socorro crash-reporting system.
 
 :Extension Development
 mozilla.dev.extensions                  For extension developers.
 mozilla.dev.extensions.br               Extension development discussion in Brazilian Portuguese
-mozilla.dev.extensions.cn               Extension development discussion in Chinese
-mozilla.dev.extensions.fr               Extension development discussion in French
-mozilla.dev.extensions.jp               Extension development discussion in Japanese
-mozilla.dev.extensions.uk               Extension development discussion in Ukranian
 
 :Ports To Other OSes
 
@@ -121,40 +122,55 @@ mozilla.dev.platforms.mobile            For discussions about the <a href="http:
 mozilla.community.drumbeat              Main Drumbeat newsgroup
 mozilla.drumbeat.website                For people working on <a href="http://www.drumbeat.org/">www.drumbeat.org</a>
 mozilla.drumbeat.p2pu                   Drumbeat project: Open Web Track at Peer-to-Peer University
+mozilla.drumbeat.privacy-icons          Drumbeat project: Privacy Icons
 mozilla.drumbeat.barcelona              Drumbeat community in Barcelona
 mozilla.drumbeat.festival               Organization of the yearly Drumbeat Festival
 mozilla.community.mojo                  The Knight-Mozilla News Technology Initiative - Mozilla and Journalism, or MoJo.
 
 :Regional
 
+mozilla.community.algeria               The Mozilla community in Algeria. (Moderated.)
 mozilla.community.arab-world            The Mozilla community in the Arab world.
 mozilla.community.armyofawesome         The Mozilla Army of Awesome twitter helpers.
 mozilla.community.artzilla              The Mozilla Artzilla community of artists.
+mozilla.community.australia             The Mozilla community in Australia.
 mozilla.community.balkans               The Mozilla community in the Balkans.
 mozilla.community.belgium               The Mozilla community in Belgium.
+mozilla.community.brasil                The Mozilla community in Brazil. (Moderated.)
 mozilla.community.bulgaria              The Mozilla community in Bulgaria.
 mozilla.community.ghana                 The Mozilla community in Ghana.
 mozilla.community.india                 The Mozilla community in India.
 mozilla.community.kenya                 The Mozilla community in Kenya.
+mozilla.community.malaysia              The Mozilla community in Malaysia. (Moderated.)
 mozilla.community.mexico                The Mozilla community in Mexico.
+mozilla.community.new-zealand           The Mozilla community in New Zealand.
 mozilla.community.philippines           The Mozilla community in the Philippines. (Moderated.)
+mozilla.community.senegal               The Mozilla community in Senegal.
+mozilla.community.turkey                The Mozilla community in Turkey. (Moderated.)
 mozilla.community.tunisia               The Mozilla community in Tunisia.
 mozilla.community.uk                    The Mozilla community in the United Kingdom. (Moderated.)
 
 mozilla.dev.l10n.announce               Announcements about new localization projects and important updates to the existing ones.  If you want to subscribe to only one localization-related newsgroup, make it this one (low volume, high signal-to-noise ratio).
-mozilla.dev.l10n.new-locales            For people willing to start a new localization team (a new locale). Connect with other speakers of your language and get help from other community members.
+mozilla.dev.l10n.new-locales            For people willing to start a new localization team (a new locale). Connect with other speakers of your language and get help from other community members. (Moderated.)
 mozilla.dev.l10n.cs                     Czech localization discussions.
 mozilla.dev.l10n.de                     German localization discussions.
 mozilla.dev.l10n.fa                     Persian localization discussions.
 mozilla.dev.l10n.in                     Indian localization discussions.
+mozilla.dev.l10n.km                     Khmer localization discussions. (Moderated.)
+mozilla.dev.l10n.lo                     Lao localization discussions. (Moderated.)
+mozilla.dev.l10n.my                     Burmese localization discussions. (Moderated.)
 mozilla.dev.l10n.pl                     Polish localization discussions.
+mozilla.dev.l10n.pt-br                  Brazilian Portuguese localization discussions. (Moderated.)
 mozilla.dev.l10n.sk                     Slovak localization discussions.
 mozilla.dev.l10n.sr                     Serbian localization discussions.
 mozilla.dev.l10n.web                    For Mozilla website localization co-ordination.
 mozilla.dev.l10n.uk                     Ukranian localization discussions.
+mozilla.dev.l10n.vi                     Vietnamese localization discussions. (Moderated.)
 mozilla.dev.mdc.es                      For discussion about Spanish content on <a href="http://developer.mozilla.org/es/">Mozilla Developer Center</a>.
 mozilla.dev.mdc.ja                      For discussion about Japanese content on <a href="http://developer.mozilla.org/ja/">Mozilla Developer Center</a>.
 mozilla.dev.mdc.pt                      For discussion about Portuguese content on <a href="http://developer.mozilla.org/pt/">Mozilla Developer Center</a>.
+
+mozilla.reps.council                    The organizing group for <a href="https://wiki.mozilla.org/ReMo">ReMo</a> - the Mozilla Reps project.
 
 :Testing
 
