@@ -3,16 +3,18 @@
 {% block content %}
   <h1>Hello world!</h1>
 
-  {% l10n foo, 1 %}
+  {% l10n foo, 20110630 %}
   <p>Localizable, unversioned.</p>
   {% endl10n %}
 
-  {% l10n bar, 3 %}
+  {% l10n bar, 20110715 %}
   <p>Localizable, versioned.</p>
+  {% else %}
+  <p>This should always be shown.</p>
   {% endl10n %}
 
   {#
-  {% l10n baz, 7 %}
+  {% l10n baz, 20110703 %}
   <p>Commented out localized block.</p>
   {% endl10n %}
   #}
