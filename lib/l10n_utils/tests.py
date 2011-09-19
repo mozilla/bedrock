@@ -1,5 +1,6 @@
 import unittest
-from management.commands.l10n_check import list_templates, L10nParser
+
+from l10n_utils.management.commands.l10n_check import list_templates, L10nParser
 
 class TestL10nCheck(unittest.TestCase):
 

@@ -22,7 +22,7 @@ def l10n_tmpl(tmpl, lang):
 
 
 def app_tmpl(tmpl):
-    app = tmpl[0:tmpl.index('/')]
+    app = tmpl[:tmpl.index('/')]
     return path.join(settings.ROOT, 'apps', app, 'templates', tmpl)
 
 
@@ -240,14 +240,6 @@ class L10nParser():
 class Command(BaseCommand):
     args = ''
     help = 'Checks which content needs to be localized.'
-    
-    option_list = BaseCommand.option_list + (
-        make_option('-t',
-                    action='store_true',
-                    dest='templates',
-                    default=False,
-                    help='Show non-existant templates for locales'),
-        )
 
     def handle(self, *args, **options):
         # Look through languages passed in, or all of them

@@ -23,7 +23,7 @@ for error and avoids unnecessary code duplication across various locales.
 
 .. figure:: images/l10n-blocks.jpg
    :alt: L10n blocks example
-n
+
    This is an example of what parts of a page would be expressed as localizable
    blocks.
 
@@ -126,7 +126,7 @@ the German version of this page.
 Generating the locale files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-./manage.py l10n_check
+    ./manage.py l10n_check
 
 This command will check which blocks need to be translated and update
 the locale templates with needed translations. It will copy the
@@ -139,18 +139,18 @@ YYYYMMDD) if you want it to be re-localized.
 New blocks will simply appear in english in the locale files. For
 example, in the German template, it will look like:
 
-{% l10n foo %}
-<h1>This is an English string that needs translating.</h1>
-{% endl10n %}
+    {% l10n foo %}
+    <h1>This is an English string that needs translating.</h1>
+    {% endl10n %}
 
 If there was a previous translation, it will be kept in the file so
 the the page will still display it:
 
-{% l10n foo %}
-<h1>This is an English string that needs translating.</h1>
-{% else %}
-<h1>Dies ist ein English string wurde nicht.</h1>
-{% endl10n %}
+    {% l10n foo %}
+    <h1>This is an English string that needs translating.</h1>
+    {% else %}
+    <h1>Dies ist ein English string wurde nicht.</h1>
+    {% endl10n %}
 
 The localizer needs to translate the English string and remove the
 else block and previous translation.
