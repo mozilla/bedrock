@@ -215,7 +215,7 @@ a.download-link:visited {
 	border-radius: 6px;
 	color: #fff;
 	overflow: visible;
-	background: #84C63C; /* old browsers */
+	background: #58a100; /* old browsers */
 	background: -moz-linear-gradient(top, #84C63C 0%, #489615 100%); /* firefox */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#84C63C), color-stop(100%,#489615)); /* webkit */
 	background: linear-gradient(top, #84C63C 0%, #489615 100%);
@@ -223,15 +223,7 @@ a.download-link:visited {
 	-moz-transition:   box-shadow 0.2s ease-in-out;
 	-webit-transition: box-shadow 0.2s ease-in-out;
 	transition:        box-shadow 0.2s ease-in-out;
-}
-
-.beta-download a.download-link,
-.beta-download a.download-link:link,
-.beta-download a.download-link:visited {
-    background: #F9CB89; /* old browsers */
-    background: -moz-linear-gradient(top, #F9CB89 0%, #f79200 100%); /* firefox */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#F9CB89), color-stop(100%,#f79200)); /* webkit */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#F9CB89', endColorstr='#f79200',GradientType=0 ); /* ie */
+    zoom: 1;
 }
 
 a.download-link:hover,
@@ -257,13 +249,30 @@ a.download-link span.download-content {
 	line-height: 18px;
 	padding: 10px 10px 0 112px;
 }
- 
+
+* html a.download-link,
+* html a.download-link:link,
+* html a.download-link:active,
+* html a.download-link:hover,
+* html a.download-link:active {
+    background: none;
+    box-shadow: none;
+}
+
+* html a.download-link span.download-content {
+    background: url(/media/img/home/download-ie6.jpg) 0 0 no-repeat;
+}
+
 a.download-link span.download-title {
     display: block;
     font-style: normal;
     font-size: 28px;
     line-height: 28px;
     letter-spacing: -0.02em;
+}
+
+.home-download a.download-link span.download-title {
+    font-size: 26px;
 }
 
 a.download-link:hover,
@@ -273,7 +282,11 @@ a.download-link:active {
 	cursor: pointer;
 }
 
-* html ul.home-download li a.download-link { overflow: hidden; }
+* html ul.home-download li a.download-link {
+    overflow: hidden;
+    height: 105px;
+    filter: none;
+}
 
 ul.home-download li a.download-link span.download-info {
 	display: block;
@@ -351,6 +364,11 @@ ul.home-download li a.download-link span.download-info em {
     margin-bottom: 3px;
 }
 
+* html #download a.download-link {
+    height: 48px;
+    background: #58a100;
+}
+
 #download a.download-link span.download-content {
     margin-left: -25px;
     padding-left: 55px;
@@ -368,7 +386,7 @@ ul.home-download li a.download-link span.download-info em {
     padding-bottom: 3px;
     margin-right: 5px;
     vertical-align: middle;
-    background: url(/media/img/firefox/download-arrow.png) 100% 50% no-repeat; 
+    background: url(/media/img/firefox/download-arrow.png) 100% 50% no-repeat;
 }
 
 #download .download-other {
@@ -381,7 +399,7 @@ ul.home-download li a.download-link span.download-info em {
 #download .download-noscript {
     width: 275px;
     background: url(/media/img/download-logo-sub.png) 0 0 no-repeat;
-    padding-left: 55px; 
+    padding-left: 55px;
     margin-left: 25px;
 }
 
@@ -411,8 +429,8 @@ ul.home-download li a.download-link span.download-info em {
 /* }}} */
 /* {{{ Mobile Download Links */
 
-#download.mobile {
-	width: 275px;
+* html #download.mobile {
+    width: 250px;
 }
 
 #download.mobile .dl,
@@ -442,7 +460,7 @@ ul.home-download li a.download-link span.download-info em {
 #download.mobile .dl span {
 	display: block;
 	background: url(/media/img/firefox/download-arrow.png) 10px 14px no-repeat;
-	padding: 8px 8px 8px 30px;
+	padding: 8px 20px 8px 30px;
 }
 
 #download.mobile .dl:hover,
@@ -478,9 +496,14 @@ li.os_linux,
 li.os_windows,
 li.os_osx { display: none; }
 
-ul.os_linux li.os_linux { display: block; }
-ul.os_windows li.os_windows { display: block; }
-ul.os_osx li.os_osx { display: block; }
+ul.os_linux li.os_linux,
+ul.os_windows li.os_windows,
+ul.os_osx li.os_osx,
+noscript li.os_linux,
+noscript li.os_windows,
+noscript li.os_osx{
+	display: block;
+}
 
 /* }}} */
 /* {{{ Main Features */
