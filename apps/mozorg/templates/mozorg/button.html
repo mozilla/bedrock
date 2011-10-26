@@ -6,27 +6,8 @@
 
 {{ download_button(LANG) }}
 
-<div id="download">
-  <ul class="home-download os_osx">
-    <li class="os_windows">
-      <a href="/products/download.html?product=firefox-7.0.1&amp;os=win&amp;lang=en-US" onclick="init_download('http://download.mozilla.org/?product=firefox-7.0.1&amp;os=win&amp;lang=en-US');" class="download-link download-firefox"><span class="download-content">
-          <span class="download-title">Firefox</span>
-          Free Download
-      </span></a>
-    </li>
-    <li class="os_linux">
-      <a href="/products/download.html?product=firefox-7.0.1&amp;os=linux&amp;lang=en-US" onclick="init_download('http://download.mozilla.org/?product=firefox-7.0.1&amp;os=linux&amp;lang=en-US');" class="download-link download-firefox"><span class="download-content">
-          <span class="download-title">Firefox</span>
-          Free Download
-      </span></a>
-    </li>
-    <li class="os_osx">
-      <a href="http://mozilla.com/products/download.html?product=firefox-7.0.1&amp;os=osx&amp;lang=en-US" onclick="init_download('http://download.mozilla.org/?product=firefox-7.0.1&amp;os=osx&amp;lang=en-US');" class="download-link download-firefox"><span class="download-content">
-          <span class="download-title">Firefox</span>
-          Free Download
-      </span></a>
-    </li>
-  </ul>
-</div>
-
+<script src="/media/js/download.js"></script>
+<script type="text/javascript">
+    offerBestDownloadLink('download');
+</script>
 {% endblock %}

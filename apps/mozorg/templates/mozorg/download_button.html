@@ -11,5 +11,17 @@
     </div>
   </noscript>
 
-  {{ test() }}
+  <ul class="home-download">
+    {% for build in builds %}
+    <li class="{{ build.platform }}">
+      <a class="download-link download-{{ product }}"
+         href="{{ build.download_link }}">
+        <span class="download-content">
+          <span class="download-title">Firefox</span>
+          Free Download
+        </span>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
 </div>

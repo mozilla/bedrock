@@ -1,10 +1,29 @@
+"""
+Download buttons. Let's get some terminology straight. Here is a list
+of terms and example values for them:
+
+* product: 'firefox' or 'thunderbird'
+* version: 7.0, 8.0b3, 9.0a2
+* build: 'beta', 'aurora', or None (for latest)
+* platform: 'os_windows', 'os_linux', or 'os_osx'
+* locale: a string in the form of 'en-US'
+"""
+
 import jinja2
 import jingo
-from django.template.loader import render_to_string
+from django import shortcuts
 
 from jingo import register
 from product_details import product_details
 
+download_urls = {
+    'transition': '/products/download.html',
+    'direct': 'http://download.mozilla.org/',
+    'aurora': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla-aurora',
+    'aurora-l10n': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla-aurora-l10n'
+}
+
+locales_using_transition = []
 
 def latest_aurora_version(locale):
     builds = product_details.firefox_primary_builds
@@ -47,24 +66,46 @@ def latest_version(locale):
     return (_check_builds(product_details.firefox_primary_builds) or
             _check_builds(product_details.firefox_beta_builds))
 
+def make_aurora_link(product, version, platform, locale):
+    # download links are different for localized versions
+    src = 'aurora-l10n'
+    if locale == 'en-US':
+        src = 'aurora'
+        
+    filename = {
+        'os_windows': 'win32.installer.exe',
+        'os_linux': 'linux-i686.tar.bz2',
+        'os_osx': 'mac.dmg'
+    }[platform]
+
+    return ('%s/%s-%s.%s.%s' %
+            (download_urls[src], product, version, locale, filename))
+
+def make_download_link(product, build, version, platform, locale):
+    # aurora has a special download link format
+    if build == 'aurora':
+        return make_aurora_link(product, version, platform, locale)
+
+    # the downloaders expect the platform in a certain format
+    platform = {
+        'os_windows': 'win',
+        'os_linux': 'linux',
+        'os_osx': 'osx'
+    }[platform]
+
+    # figure out the base url. certain locales have a transitional
+    # thankyou-style page (most do)
+    src = 'direct'
+    if locale in locales_using_transition:
+         src = 'transition'
+
+    return ('%s?product=%s-%s&os=%s&lang=%s' % 
+            (download_urls[src], product, version, platform, locale))
 
 @register.function
 @jinja2.contextfunction
 def download_button(ctx, locale, build=None):
-
-    def download_html(version, locale, platform):
-        return """
-<li class="%s">
-  <a class="download-link download-%s" href="">
-    <span class="download-content">
-      <span class="download-title"></span>
-      
-    </span>
-  </a>
-</li>
-"""
-    
-    def _version(locale):
+    def latest(locale):
         if build == 'aurora':
             return latest_aurora_version(locale)
         elif build == 'beta':
@@ -72,23 +113,45 @@ def download_button(ctx, locale, build=None):
         else:
             return latest_version(locale)
 
-    (version, platforms) = _version(locale) or _version('en-US')
+    # get the latest version for this build, falling back to en-US if
+    # it isn't available for this locale
+    (version, platforms) = latest(locale) or latest('en-US')
 
-    html = """
-"""
-
-    jshtml = []
-
+    # gather data about the build for each platform
+    builds = []
     for platform in ['Windows', 'Linux', 'OS X']:
-        if platform in platforms:
-            jshtml.append(download_html(version, locale, platform))
-        else:
-            jshtml.append(download_html(version, 'en-US', platform))
-    
+        # fallback to en-US if this platform/version isn't available
+        # for the current locale
+        _locale = locale
+        if not platform in platforms:
+            _locale = 'en-US'
+
+        # normalize the platform name
+        platform = 'os_%s' % platform.lower().replace(' ', '')
+
+        # and generate all the info
+        download_link = make_download_link('firefox', build, version,
+                                           platform, locale)
+        builds.append({'platform': platform,
+                       'download_link': download_link})
+
+    # get the native name for current locale
     langs = product_details.languages
-    locale_name = langs[locale]['native'] if locale in langs else ''
-    
-    html = render_to_string('mozorg/download_button.html',
-                            {'locale_name': locale_name,
-                             'test': lambda x: 5})
-    return jinja2.Markup(html)
+    locale_name = langs[locale]['native'] if locale in langs else locale
+
+    data = {
+        'locale_name': locale_name,
+        'version': version,
+        'product': 'firefox',
+        'builds': builds
+    }
+
+    # use the django render function and grab the string from the
+    # response object using the 'content' attr. this way we don't care
+    # about the template engine. if there's a engine-agnostic way to
+    # do render_to_string, that would be better.
+    return jinja2.Markup(
+        shortcuts.render(ctx['request'],
+                         'mozorg/download_button.html',
+                         data).content
+    )
