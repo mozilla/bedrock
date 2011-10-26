@@ -1,3 +1,7 @@
+import jinja2
+import jingo
+from django.template.loader import render_to_string
+
 from jingo import register
 from product_details import product_details
 
@@ -45,8 +49,20 @@ def latest_version(locale):
 
 
 @register.function
-def download_button(locale, build=None):
-    platforms = ['Windows', 'Linux', 'OS X']
+@jinja2.contextfunction
+def download_button(ctx, locale, build=None):
+
+    def download_html(version, locale, platform):
+        return """
+<li class="%s">
+  <a class="download-link download-%s" href="">
+    <span class="download-content">
+      <span class="download-title"></span>
+      
+    </span>
+  </a>
+</li>
+"""
     
     def _version(locale):
         if build == 'aurora':
@@ -58,4 +74,21 @@ def download_button(locale, build=None):
 
     (version, platforms) = _version(locale) or _version('en-US')
 
-    return version
+    html = """
+"""
+
+    jshtml = []
+
+    for platform in ['Windows', 'Linux', 'OS X']:
+        if platform in platforms:
+            jshtml.append(download_html(version, locale, platform))
+        else:
+            jshtml.append(download_html(version, 'en-US', platform))
+    
+    langs = product_details.languages
+    locale_name = langs[locale]['native'] if locale in langs else ''
+    
+    html = render_to_string('mozorg/download_button.html',
+                            {'locale_name': locale_name,
+                             'test': lambda x: 5})
+    return jinja2.Markup(html)
