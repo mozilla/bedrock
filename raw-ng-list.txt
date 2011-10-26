@@ -1,7 +1,7 @@
 :End-User Support
 
-mozilla.support.firefox                 Support for Firefox.
-mozilla.support.thunderbird             Support for Thunderbird.
+mozilla.support.firefox                 Support for Firefox. But the best place to start is our <a href="https://support.mozilla.com/kb/ask">support website</a>.
+mozilla.support.thunderbird             Support for Thunderbird. But the best place to start is our <a href="https://support.mozillamessaging.com/kb/ask">support website</a>.
 mozilla.support.seamonkey               Support for SeaMonkey, the community-driven continuation of the Mozilla suite.
 mozilla.support.bugzilla                Support for the Bugzilla web-based bug-tracking tool.
 mozilla.support.calendar                Support for the Calendar and Lightning projects.
