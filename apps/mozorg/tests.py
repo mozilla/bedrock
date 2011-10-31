@@ -1,16 +1,25 @@
-"""
-This file demonstrates writing tests using the unittest module. These will pass
-when you run "manage.py test".
+import unittest
+import jingo
+from nose.tools import eq_
+from mock import Mock
+from pyquery import PyQuery as pq
+from product_details import product_details
 
-Replace this with more appropriate tests for your application.
-"""
+def render(s, context={}):
+    t = jingo.env.from_string(s)
+    return t.render(**context)
 
-from django.test import TestCase
+class TestDownloadButtons(unittest.TestCase):
 
+    def test_db(self):
+        latest = product_details.firefox_versions['LATEST_FIREFOX_VERSION']
 
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
-        """
-        Tests that 1 + 1 always equals 2.
-        """
-        self.assertEqual(1 + 1, 2)
+        doc = pq(render('{{ download_button(LANG) }}',
+                        {'request': Mock()}))
+
+        li = doc('noscript li')
+        eq_(li.length, 3);
+
+        for a in li.find('a'):
+            assert pq(a).attr('href').find('firefox-%s' % latest) != -1
+        
