@@ -13,7 +13,6 @@ import jinja2
 import jingo
 from django import shortcuts
 
-from jingo import register
 from product_details import product_details
 
 download_urls = {
@@ -29,49 +28,40 @@ def latest_aurora_version(locale):
     builds = product_details.firefox_primary_builds
     vers = product_details.firefox_versions['FIREFOX_AURORA']
 
-    if locale in builds:
-        if vers in builds[locale]:
-            return (vers, builds[locale])
-
-    return None
+    if locale in builds and vers in builds[locale]:
+        return vers, builds[locale]
 
 
 def latest_beta_version(locale):
     builds = product_details.firefox_primary_builds
     vers = product_details.firefox_versions['LATEST_FIREFOX_DEVEL_VERSION']
 
-    if locale in builds:
-        if vers in builds[locale]:
-            return (vers, builds[locale])
-
-    return None
+    if locale in builds and vers in builds[locale]:
+        return vers, builds[locale]
 
 
 def latest_version(locale):
     beta_vers = product_details.firefox_versions['FIREFOX_AURORA']
     aurora_vers = product_details.firefox_versions['LATEST_FIREFOX_DEVEL_VERSION']
-
+    
     def _check_builds(builds):
         if locale in builds and isinstance(builds[locale], dict):
-            lst = builds[locale].items()
-            lst.reverse()
-
-            for version, info in lst:
+            # The json should be already ordered in increasing
+            # order. The previous PHP code assumed this, so it should
+            # work.
+            for version, info in reversed(builds[locale].items()):
                 if version == beta_vers or version == aurora_vers:
                     continue
                 if info:
-                    return (version, info)
-        return None
+                    return version, info
 
     return (_check_builds(product_details.firefox_primary_builds) or
             _check_builds(product_details.firefox_beta_builds))
 
 def make_aurora_link(product, version, platform, locale):
-    # download links are different for localized versions
-    src = 'aurora-l10n'
-    if locale == 'en-US':
-        src = 'aurora'
-        
+    # Download links are different for localized versions
+    src = 'aurora' if locale.lower() == 'en-us' else 'aurora-l10n'
+
     filename = {
         'os_windows': 'win32.installer.exe',
         'os_linux': 'linux-i686.tar.bz2',
@@ -82,27 +72,27 @@ def make_aurora_link(product, version, platform, locale):
             (download_urls[src], product, version, locale, filename))
 
 def make_download_link(product, build, version, platform, locale):
-    # aurora has a special download link format
+    # Aurora has a special download link format
     if build == 'aurora':
         return make_aurora_link(product, version, platform, locale)
 
-    # the downloaders expect the platform in a certain format
+    # The downloaders expect the platform in a certain format
     platform = {
         'os_windows': 'win',
         'os_linux': 'linux',
         'os_osx': 'osx'
     }[platform]
 
-    # figure out the base url. certain locales have a transitional
+    # Figure out the base url. certain locales have a transitional
     # thankyou-style page (most do)
     src = 'direct'
     if locale in locales_using_transition:
          src = 'transition'
 
-    return ('%s?product=%s-%s&os=%s&lang=%s' % 
+    return ('%s?product=%s-%s&os=%s&lang=%s' %
             (download_urls[src], product, version, platform, locale))
 
-@register.function
+@jingo.register.function
 @jinja2.contextfunction
 def download_button(ctx, locale, build=None):
     def latest(locale):
@@ -113,29 +103,29 @@ def download_button(ctx, locale, build=None):
         else:
             return latest_version(locale)
 
-    # get the latest version for this build, falling back to en-US if
+    # Get the latest version for this build, falling back to en-US if
     # it isn't available for this locale
-    (version, platforms) = latest(locale) or latest('en-US')
+    version, platforms = latest(locale) or latest('en-US')
 
-    # gather data about the build for each platform
+    # Gather data about the build for each platform
     builds = []
     for platform in ['Windows', 'Linux', 'OS X']:
-        # fallback to en-US if this platform/version isn't available
+        # Fallback to en-US if this platform/version isn't available
         # for the current locale
         _locale = locale
-        if not platform in platforms:
+        if platform not in platforms:
             _locale = 'en-US'
 
-        # normalize the platform name
+        # Normalize the platform name
         platform = 'os_%s' % platform.lower().replace(' ', '')
 
-        # and generate all the info
+        # And generate all the info
         download_link = make_download_link('firefox', build, version,
                                            platform, locale)
         builds.append({'platform': platform,
                        'download_link': download_link})
 
-    # get the native name for current locale
+    # Get the native name for current locale
     langs = product_details.languages
     locale_name = langs[locale]['native'] if locale in langs else locale
 
@@ -146,7 +136,7 @@ def download_button(ctx, locale, build=None):
         'builds': builds
     }
 
-    # use the django render function and grab the string from the
+    # Use the django render function and grab the string from the
     # response object using the 'content' attr. this way we don't care
     # about the template engine. if there's a engine-agnostic way to
     # do render_to_string, that would be better.
