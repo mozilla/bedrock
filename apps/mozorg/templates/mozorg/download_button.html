@@ -4,9 +4,9 @@
       <h3>Download Now - Free <span>({{ locale_name }} | <a href="all.html">Other Systems and Languages</a>)</span></h3>
 
       <ul>
-        <li><a href="download.html">Windows</a></li>
-        <li><a href="download.html">Linux</a></li>
-        <li><a href="download.html">OS X</a></li>
+        {% for build in builds %}
+        <li><a href="{{ build.download_link_direct }}">{{ build.platform }}</a></li>
+        {% endfor %}
       </ul>
     </div>
   </noscript>

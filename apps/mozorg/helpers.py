@@ -71,7 +71,8 @@ def make_aurora_link(product, version, platform, locale):
     return ('%s/%s-%s.%s.%s' %
             (download_urls[src], product, version, locale, filename))
 
-def make_download_link(product, build, version, platform, locale):
+def make_download_link(product, build, version, platform, locale, 
+                       force_direct=False):
     # Aurora has a special download link format
     if build == 'aurora':
         return make_aurora_link(product, version, platform, locale)
@@ -86,7 +87,7 @@ def make_download_link(product, build, version, platform, locale):
     # Figure out the base url. certain locales have a transitional
     # thankyou-style page (most do)
     src = 'direct'
-    if locale in locales_using_transition:
+    if locale in locales_using_transition and not force_direct:
          src = 'transition'
 
     return ('%s?product=%s-%s&os=%s&lang=%s' %
@@ -103,8 +104,6 @@ def download_button(ctx, locale, build=None):
         else:
             return latest_version(locale)
 
-    # Get the latest version for this build, falling back to en-US if
-    # it isn't available for this locale
     version, platforms = latest(locale) or latest('en-US')
 
     # Gather data about the build for each platform
@@ -122,8 +121,11 @@ def download_button(ctx, locale, build=None):
         # And generate all the info
         download_link = make_download_link('firefox', build, version,
                                            platform, locale)
+        download_link_direct = make_download_link('firefox', build, version,
+                                                  platform, locale, True)
         builds.append({'platform': platform,
-                       'download_link': download_link})
+                       'download_link': download_link,
+                       'download_link_direct': download_link_direct})
 
     # Get the native name for current locale
     langs = product_details.languages
@@ -136,12 +138,7 @@ def download_button(ctx, locale, build=None):
         'builds': builds
     }
 
-    # Use the django render function and grab the string from the
-    # response object using the 'content' attr. this way we don't care
-    # about the template engine. if there's a engine-agnostic way to
-    # do render_to_string, that would be better.
-    return jinja2.Markup(
-        shortcuts.render(ctx['request'],
-                         'mozorg/download_button.html',
-                         data).content
-    )
+    html = jingo.render_to_string(ctx['request'],
+                                  'mozorg/download_button.html',
+                                  data)
+    return jinja2.Markup(html)
