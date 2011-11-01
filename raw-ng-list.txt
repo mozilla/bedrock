@@ -8,12 +8,10 @@ mozilla.support.calendar                Support for the Calendar and Lightning p
 mozilla.support.webtools                Support for webtools other than Bugzilla (e.g. Bonsai, Tinderbox, MXR)
 mozilla.support.accessibility           Support for using Mozilla with the keyboard, screen readers, screen magnifiers and voice dictation products.   
 mozilla.support.other                   Support for other products or projects without a specific group. (Moderated.)
-mozilla.support.planning                For discussions about improving Firefox Support.
 
 :Projectwide Forums
 
 mozilla.announce                        New releases will be announced here. This is a low-volume group, for announcements only (not discussions). (Moderated.)
-mozilla.announce.prerelease             Announcements of Mozilla product pre-releases. (Moderated.)
 mozilla.announce.labs                   Announcements from Mozilla Labs. (Moderated.)
 mozilla.announce.compatibility          Add-on compatibility announcements. (Moderated.)
 mozilla.education                       For discussions about Mozilla's involvement in <a href="https://wiki.mozilla.org/Education">educational programs</a>.
