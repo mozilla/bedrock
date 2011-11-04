@@ -1,0 +1,12 @@
+<div class="download download-dumb">
+  <h3>Download Now - Free <span>({{ locale_name }} | <a href="all.html">Other Systems and Languages</a>)</span></h3>
+
+  <ul>
+    {% for build in builds %}
+    <li><a href="{{ build.download_link_direct }}">{{ build.platform_pretty }}</a></li>
+    {% endfor %}
+    <li>
+      <a href="/{{ LANG }}/firefox/{{ version }}/releasenotes/#contributedbuilds">Other</a>
+    </li>
+  </ul>
+</div>

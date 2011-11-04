@@ -5,3 +5,6 @@ def channel(request):
 
 def button(request):
     return l10n_utils.render(request, "mozorg/button.html")
+
+def new(request):
+    return l10n_utils.render(request, "mozorg/new.html")

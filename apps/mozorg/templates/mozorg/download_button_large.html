@@ -1,0 +1,38 @@
+<div id="{{ id }}">
+  <noscript>
+    {% include "mozorg/download_button_dumb.html" %}
+  </noscript>
+
+  <ul class="unsupported-download">
+    {% include "mozorg/download_button_dumb.html" %}    
+  </ul>
+
+  <ul class="home-download">
+    {% for build in builds %}
+    <li class="{{ build.platform }}">
+      <a class="download-link download-{{ product }}"
+         href="{{ build.download_link }}">
+        <span class="download-content">
+          <span class="download-title">
+            Firefox
+            <img class="download-arrow" alt="" src="/media/img/home/download-arrow.png">
+          </span>
+          Free Download
+          <span class="download-info">
+            <span class="download-version">
+              {{ version }} for {{ build.platform_pretty }}
+            </span>
+            <em class="download-lang">{{ locale_name }}</em>
+          </span>
+        </span>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+
+  <div class="download-other">
+    <a href="/{{ LANG }}/firefox/all.html">All Systems &amp; Languages</a> | 
+    <a href="/{{ LANG }}/legal/privacy/firefox.html">Privacy Policy</a>
+  </div>
+
+</div>

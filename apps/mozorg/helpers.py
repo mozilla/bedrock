@@ -15,6 +15,7 @@ from django import shortcuts
 
 from product_details import product_details
 
+
 download_urls = {
     'transition': '/products/download.html',
     'direct': 'http://download.mozilla.org/',
@@ -95,7 +96,9 @@ def make_download_link(product, build, version, platform, locale,
 
 @jingo.register.function
 @jinja2.contextfunction
-def download_button(ctx, locale, build=None):
+def download_button(ctx, id, format='large', build=None):
+    locale = ctx['request'].locale
+
     def latest(locale):
         if build == 'aurora':
             return latest_aurora_version(locale)
@@ -117,6 +120,11 @@ def download_button(ctx, locale, build=None):
 
         # Normalize the platform name
         platform = 'os_%s' % platform.lower().replace(' ', '')
+        platform_pretty = {
+            'os_osx': 'Max OS X',
+            'os_windows': 'Windows',
+            'os_linux': 'Linux'
+        }[platform]
 
         # And generate all the info
         download_link = make_download_link('firefox', build, version,
@@ -124,6 +132,7 @@ def download_button(ctx, locale, build=None):
         download_link_direct = make_download_link('firefox', build, version,
                                                   platform, locale, True)
         builds.append({'platform': platform,
+                       'platform_pretty': platform_pretty,
                        'download_link': download_link,
                        'download_link_direct': download_link_direct})
 
@@ -135,10 +144,35 @@ def download_button(ctx, locale, build=None):
         'locale_name': locale_name,
         'version': version,
         'product': 'firefox',
-        'builds': builds
+        'builds': builds,
+        'id': id
     }
 
     html = jingo.render_to_string(ctx['request'],
-                                  'mozorg/download_button.html',
+                                  'mozorg/download_button_%s.html' % format,
                                   data)
+    return jinja2.Markup(html)
+
+@jingo.register.function
+@jinja2.contextfunction
+def mobile_download_button(ctx, id, platform, build=None):
+    locale = ctx['request'].locale
+    url = ''
+
+    if platform == 'android':
+        if build == 'beta':
+            url = 'market://details?id=org.mozilla.firefox_beta'
+        else:
+            url = 'market://details?id=org.mozilla.firefox'
+    elif platform == 'desktop' and build == 'beta':
+        # this part is temporary for now until we figure out how to
+        # manage all this for mobile
+        url = 'https://market.android.com/details?id=org.mozilla.firefox_beta'
+    else:
+        raise 'Unsupported platform for mobile download button'
+
+    html = jingo.render_to_string(ctx['request'],
+                                  'mozorg/download_button_mobile.html',
+                                  {'id': id,
+                                   'download_link': url})
     return jinja2.Markup(html)

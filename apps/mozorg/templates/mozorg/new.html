@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+
+{% block body_id %}home{% endblock %}
+
+{% block site_css %}
+  {{ css('home') }}
+{% endblock %}
+
+{% block site_header %}
+<div id="header">
+  <div>
+    <a href="http://www.mozilla.org/" class="mozilla">{{ _('Mozilla') }}</a>
+  </div>
+</div>
+{% endblock %}
+
+{% block site_footer %}
+{% endblock %}
+
+{% block content %}
+
+<script src="/media/js/download.js"></script>
+
+<script>// <![CDATA[
+    // Add a class to the body tag to alternate background features
+    var feature_class_options    = new Array( "facebook", "cupcake", "treasure" );
+    var feature_platform_options = new Array( "", "mac", "linux" );
+
+    var feature_platform = '';
+    if (gPlatform == PLATFORM_MACOSX) {
+        feature_platform = '-mac';
+    } else if (gPlatform == PLATFORM_LINUX) {
+        feature_platform = '-linux';
+    }
+
+    if (Math.random) {
+        var choice = Math.floor(Math.random() * (feature_class_options.length));
+
+        // Just in case javascript gets carried away...
+        choice = ( (choice < feature_class_options.length)  && choice >= 0) ? choice : 0;
+    }
+// ]]></script>
+
+<span id="feature-extra"></span>
+
+<div id="main-feature">
+    <h2>Made to make the Web a better place.</h2>
+    <ul id="benefits">
+        <li class="first">a new <span>look</span></li>
+        <li>super <span>speed</span></li>
+        <li>even more <span>awesomeness</span></li>
+    </ul>
+    <span id="hero">
+        <noscript><img src="/media/img/covehead/firefox/main-feature-facebook.png" alt="Firefox screenshot" class="screenshot"></noscript>
+    </span>
+
+    <script>
+        var image = document.createElement('img');
+        image.src = '/media/img/covehead/firefox/main-feature-' + feature_class_options[choice] + feature_platform + '.png';
+        image.alt = 'Firefox screenshot';
+        image.className  = 'screenshot';
+        document.getElementById('hero').appendChild(image);
+    </script>
+
+    {{ download_button('home-download') }}
+
+    <script type="text/javascript">
+      offerBestDownloadLink('home-download');
+    </script>
+
+    <script>
+    if(/(PPC|Mac OS X 10.[0-4])/.test(navigator.userAgent)) {
+        var div = document.getElementById('home-download');
+        div.innerHTML = 'Unfortunately the latest version of Firefox isn\'t compatible with your computer\'s operating system. <a href="/firefox/4.0/system-requirements/">Learn more</a>.';
+        div.style.width = '400px';
+        div.style.marginBottom = '50px';
+    }
+    </script>
+
+    <p id="mobile-promo">
+      <a href="/{{ LANG }}/mobile/?WT.mc_id=hp_1&amp;WT.mc_ev=click"
+         onclick="dcsMultiTrack('DCS.dcssip', 'www.mozilla.org',
+                                'DCS.dcsuri', '/{{ LANG }}/mobile/',
+                                'WT.ti', 'Link: Get Firefox for mobile!',
+                                'WT.dl', 99,
+                                'WT.nv', 'Content',
+                                'WT.ac', 'Mobile');">Get Firefox for mobile!</a>
+    </p>
+
+</div>
+
+<hr class="hide" />
+
+<!-- Please do not ever remove this comment. -->
+
+<script>
+// <![CDATA[
+
+// Includes jquery and then nav-main.js after onload
+(function () {
+    var head = document.head || document.getElementsByTagName("head")[0];
+
+    function init_video()
+    {
+        Mozilla.VideoPlayer.width = 640;
+        Mozilla.VideoPlayer.height = 360;
+        var player = new Mozilla.VideoPlayer(
+            'video-link',
+            [
+                {
+                    url:   'http://videos-cdn.mozilla.net/serv/marketing/firefox4/FF4_Jess3Features_VO_1.webm',
+                    type:  'video/webm; codecs=&quot;vp8, vorbis&quot;',
+                    title: 'WebM format'
+                },
+                {
+                    url:   'http://videos-cdn.mozilla.net/serv/marketing/firefox4/FF4_Jess3Features_VO_1.theora.ogv',
+                    type:  'video/ogg; codecs=&quot;theora, vorbis&quot;',
+                    title: 'Ogg&nbsp;Theora format'
+                },
+                {
+                    url:   'http://videos-cdn.mozilla.net/serv/marketing/firefox4/FF4_Jess3Features_VO_1.mp4',
+                    type:  'video/mp4',
+                    title: 'MPEG-4 format'
+                }
+            ],
+            'serv/marketing/firefox4/FF4_Jess3Features_VO_1.mp4',
+            true
+        );
+    }
+
+    function load_video()
+    {
+        var scriptElem = document.createElement("script");
+        var scriptDone = false;
+        scriptElem.onload = scriptElem.onreadystatechange = function () {
+            if ((scriptElem.readyState && scriptElem.readyState !== "complete" && scriptElem.readyState !== "loaded") || scriptDone) {
+                return false;
+            }
+            scriptElem.onload = scriptElem.onreadystatechange = null;
+            scriptDone = true;
+            init_video();
+        };
+        scriptElem.src = "/media/js/mozilla-video-tools.js";
+        head.insertBefore(scriptElem, head.firstChild);
+    }
+
+    function load_nav_main()
+    {
+        var scriptElem = document.createElement("script");
+        scriptElem.src = "/media/js/nav-main.js";
+        head.insertBefore(scriptElem, head.firstChild);
+    }
+
+    function load_jquery ()
+    {
+        var scriptElem = document.createElement("script");
+        var scriptDone = false;
+        scriptElem.onload = scriptElem.onreadystatechange = function () {
+            if ((scriptElem.readyState && scriptElem.readyState !== "complete" && scriptElem.readyState !== "loaded") || scriptDone) {
+                return false;
+            }
+            scriptElem.onload = scriptElem.onreadystatechange = null;
+            scriptDone = true;
+            load_nav_main();
+            load_video();
+        };
+        scriptElem.src = "/media/js/jquery/jquery.min.js";
+        head.insertBefore(scriptElem, head.firstChild);
+    }
+
+    var old_onload = window.onload;
+    if (old_onload) {
+        window.onload = function() { old_onload(); load_jquery(); };
+    } else {
+        window.onload = load_jquery;
+    }
+
+})();
+// ]]>
+</script>
+
+
+{% endblock %}

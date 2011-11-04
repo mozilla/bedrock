@@ -1,15 +1,11 @@
-<div id="download">
+<div id="{{ id }}">
   <noscript>
-    <div class="download download-noscript">
-      <h3>Download Now - Free <span>({{ locale_name }} | <a href="all.html">Other Systems and Languages</a>)</span></h3>
-
-      <ul>
-        {% for build in builds %}
-        <li><a href="{{ build.download_link_direct }}">{{ build.platform }}</a></li>
-        {% endfor %}
-      </ul>
-    </div>
+   {% include "mozorg/download_button_dumb.html" %}
   </noscript>
+
+  <ul class="unsupported-download">
+    {% include "mozorg/download_button_dumb.html" %}    
+  </ul>
 
   <ul class="home-download">
     {% for build in builds %}
@@ -24,4 +20,9 @@
     </li>
     {% endfor %}
   </ul>
+
+  <p class="download-other">
+    <a href="/{{ LANG }}/legal/privacy/firefox.html" class="ancillaryLink">Privacy Policy</a> |
+    <a href="/{{ LANG }}/firefox/all.html" class="ancillaryLink">Other Systems and Languages</a>
+  </p>
 </div>
