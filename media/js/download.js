@@ -30,6 +30,8 @@ else if (navigator.platform.indexOf("Mac") != -1)
 else
   gPlatform = PLATFORM_OTHER;
 
+
+
 /**
  * Gets whether or not the client is an officially unsupported platform
  *
@@ -65,20 +67,19 @@ function offerBestDownloadLink(tagId) {
 
     var parent = document.getElementById(tagId);
 
-    if (parent && gPlatform) {
+    if (parent) {
         switch (gPlatform) {
-
             case PLATFORM_WINDOWS:
-                setDownloadListClass(parent, 'os_windows');
+                setDownloadListClass(parent, 'home-download', 'os_windows');
                 break;
             case PLATFORM_LINUX:
-                setDownloadListClass(parent, 'os_linux');
+                setDownloadListClass(parent, 'home-download', 'os_linux');
                 break;
             case PLATFORM_MACOSX:
-                setDownloadListClass(parent, 'os_osx');
+                setDownloadListClass(parent, 'home-download', 'os_osx');
                 break;
             default:
-                // Leave all the links present and let the user choose
+                setDownloadListClass(parent, 'unsupported-download', 'show');
                 break;
         }
     }
@@ -91,19 +92,22 @@ function offerBestDownloadLink(tagId) {
  * @param object the parent class for the download's <ul>
  * @param string class to add
  */
-function setDownloadListClass(parent, cssClass) {
+function setDownloadListClass(parent, matchClass, cssClass) {
+    function apply_class(el, attr) {
+        var cls = el.getAttribute(attr);
+
+        if(cls && cls.indexOf(matchClass) != -1) {
+            el.setAttribute(attr, cls + " " + cssClass);
+        }
+    }
 
     if (parent) {
         var lists = parent.getElementsByTagName('ul');
         for (var i=0; i < lists.length; i++) {
-            if (lists[i].getAttribute('class') && lists[i].getAttribute('class').indexOf('home-download') != -1) {
-                lists[i].setAttribute('class', lists[i].getAttribute('class') + " " + cssClass);
-            }
+            apply_class(lists[i], 'class');
 
-            // For IE
-            if (lists[i].getAttribute('className') && lists[i].getAttribute('className').indexOf('home-download') != -1) {
-                lists[i].setAttribute('className', lists[i].getAttribute('className') + " " + cssClass);
-            }
+            // for ie
+            apply_class(lists[i], 'className');
         }
     }
 }

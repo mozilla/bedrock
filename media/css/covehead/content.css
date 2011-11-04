@@ -313,10 +313,10 @@ ul.home-download li a.download-link span.download-info em {
 	font-style: normal;
 }
 
-.download-noscript { margin-left: 35px; width: 400px; }
-.download-noscript h3 { font-size: 120%; margin-bottom: 0; }
-.download-noscript h3 span { display: block; font-size: 75%; color: #898378; }
-.download-noscript ul { margin-top: 0.5em; }
+.download-dumb { margin-left: 35px; width: 400px; }
+.download-dumb h3 { font-size: 120%; margin-bottom: 0; }
+.download-dumb h3 span { display: block; font-size: 75%; color: #898378; }
+.download-dumb ul { margin-top: 0.5em; }
 
 .download-other {
 	font-family: "Trebuchet MS", sans-serif;
@@ -327,9 +327,9 @@ ul.home-download li a.download-link span.download-info em {
 	margin: 0;
 }
 
-#download .download-noscript h3 span a,
-#download .download-noscript h3 span a:link,
-#download .download-noscript h3 span a:visited,
+#download .download-dumb h3 span a,
+#download .download-dumb h3 span a:link,
+#download .download-dumb h3 span a:visited,
 .download-other a,
 .download-other a:link,
 .download-other a:visited {
@@ -338,8 +338,15 @@ ul.home-download li a.download-link span.download-info em {
 }
 
 .home-download abbr,
-.download-noscript abbr { border-bottom: 0; }
+.download-dumb abbr { border-bottom: 0; }
 
+.unsupported-download {
+    display: none;
+}
+
+.unsupported-download.show {
+    display: block;
+}
 
 /* }}} */
 /* {{{ Sidebar Download Buttons */
@@ -396,30 +403,30 @@ ul.home-download li a.download-link span.download-info em {
     margin-left: 80px;
 }
 
-#download .download-noscript {
+#download .download-dumb {
     width: 275px;
     background: url(/media/img/download-logo-sub.png) 0 0 no-repeat;
     padding-left: 55px;
     margin-left: 25px;
 }
 
-#download .download-noscript h3 {
+#download .download-dumb h3 {
     margin: 0;
 }
 
-#download .download-noscript h3 span {
+#download .download-dumb h3 span {
 	font-family: "Trebuchet MS", sans-serif;
 	font-size: 11px;
     font-weight: normal;
     text-transform: none;
 }
 
-#download .download-noscript ul {
+#download .download-dumb ul {
     list-style-type: none;
     margin: 0;
 }
 
-#download .download-noscript ul li {
+#download .download-dumb ul li {
     display: inline;
     margin-right: 10px;
 	font-family: "Trebuchet MS", sans-serif;
