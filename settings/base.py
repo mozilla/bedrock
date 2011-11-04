@@ -45,6 +45,16 @@ MINIFY_BUNDLES = {
             'css/covehead/content.css',
             'css/careers.css',
         ),
+        'channel': (
+            'css/covehead/template.css',
+            'css/covehead/content.css',
+            'css/covehead/channel.css',
+        ),
+        'home': (
+            'css/covehead/template.css',
+            'css/covehead/content.css',
+            'css/covehead/home.css',
+        ),
         'benefits': (
             'css/benefits.css',
         ),
