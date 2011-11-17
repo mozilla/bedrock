@@ -41,8 +41,8 @@ mozilla.dev.embedding                   For <a href="../../projects/embedding/">
 mozilla.dev.identity                    Identity in the browser
 mozilla.dev.i18n                        For discussions about <a href="../../projects/intl/">internationalization</a> (I18N) issues. I18N is the infrastructure that allows software to be <a href="#dev-l10n">localized</a>.
 mozilla.dev.l10n                        For <a href="../../projects/l10n/mlp.html">localization</a> (L10N) issues. L10N is the process of adapting software to a specific language and culture (see also <a href="#mozilla-i18n">internationalization</a>).
-mozilla.dev.mdc                         <a href="http://developer.mozilla.org/">Mozilla Developer Network</a> discussion and content production
-mozilla.dev.mdn                         Mozilla Developer Network website development and developer engagement
+mozilla.dev.mdc                         Discussion about developer documentation on <a href="http://developer.mozilla.org/">MDN Developer Center</a> (MDC)
+mozilla.dev.mdn                         Code development for the Mozilla Developer Network website and platform
 mozilla.dev.mdc.feedback                Developer Center feedback; includes output from <a href="http://feedback.developer.mozilla.org/">MDC Hendrix</a>.
 mozilla.dev.mozilla-org                 For people working on the mozilla.org website.
 mozilla.dev.performance                 Implementation of performance improvements to the Mozilla codebase.
