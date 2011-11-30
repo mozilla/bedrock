@@ -14,6 +14,8 @@ path = lambda *a: os.path.join(ROOT, *a)
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-US'
 
+SESSION_COOKIE_SECURE = True
+
 # Accepted locales
 PROD_LANGUAGES = ('de', 'en-US', 'es', 'fr',)
 
