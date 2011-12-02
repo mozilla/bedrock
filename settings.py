@@ -41,10 +41,6 @@ MINIFY_BUNDLES = {
         'common': (
             'css/covehead/template.css',
             'css/covehead/content.css',
-            'css/careers.css',
-        ),
-        'benefits': (
-            'css/benefits.css',
         ),
     },
     'js': {
@@ -53,23 +49,16 @@ MINIFY_BUNDLES = {
             'js/util.js',
             'js/nav-main.js',
         ),
-        'benefits': (
-            'js/benefits.js',
-        ),
     }
 }
 
 INSTALLED_APPS = list(INSTALLED_APPS) + [
     # Local apps
-    'careers',
     'l10n_example',  # DELETEME
     'mozorg',
 
     # libs
     'l10n_utils',
-
-    # Jobvite
-    'django_jobvite',
 ]
 
 ## Auth
@@ -77,6 +66,3 @@ PWD_ALGORITHM = 'bcrypt'
 HMAC_KEYS = {
     #'2011-01-01': 'cheesecake',
 }
-
-# Jobvite XML URI
-JOBVITE_URI = '' # http://www.jobvite.com/CompanyJobs/Xml.aspx?c=...

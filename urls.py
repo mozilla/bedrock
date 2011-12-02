@@ -7,14 +7,11 @@ from django.conf.urls.defaults import *
 # admin.autodiscover()
 
 urlpatterns = patterns('',
-    (r'', include('careers.urls')),
-    (r'^jobvite/', include('django_jobvite.urls')),
+    # Main pages
+    (r'', include('mozorg.urls')),
 
     # L10n example.
     (r'^l10n_example/', include('l10n_example.urls')),
-
-    # Main pages
-    (r'^mozorg/', include('mozorg.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
