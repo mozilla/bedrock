@@ -71,6 +71,10 @@ MINIFY_BUNDLES = {
     }
 }
 
+# Override this because we've moved settings into a directory
+PROD_DETAILS_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)),
+                                'lib/product_details_json')
+
 INSTALLED_APPS = list(INSTALLED_APPS) + [
     # Local apps
     'careers',
