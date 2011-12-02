@@ -43,7 +43,6 @@ MINIFY_BUNDLES = {
         'common': (
             'css/covehead/template.css',
             'css/covehead/content.css',
-            'css/careers.css',
         ),
         'channel': (
             'css/covehead/template.css',
@@ -55,18 +54,12 @@ MINIFY_BUNDLES = {
             'css/covehead/content.css',
             'css/covehead/home.css',
         ),
-        'benefits': (
-            'css/benefits.css',
-        ),
     },
     'js': {
         'common': (
             'js/libs/jquery-1.4.4.min.js',
             'js/util.js',
             'js/nav-main.js',
-        ),
-        'benefits': (
-            'js/benefits.js',
         ),
     }
 }
@@ -77,15 +70,11 @@ PROD_DETAILS_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)),
 
 INSTALLED_APPS = list(INSTALLED_APPS) + [
     # Local apps
-    'careers',
     'l10n_example',  # DELETEME
     'mozorg',
 
     # libs
     'l10n_utils',
-
-    # Jobvite
-    'django_jobvite',
 ]
 
 ## Auth
@@ -93,6 +82,3 @@ PWD_ALGORITHM = 'bcrypt'
 HMAC_KEYS = {
     #'2011-01-01': 'cheesecake',
 }
-
-# Jobvite XML URI
-JOBVITE_URI = '' # http://www.jobvite.com/CompanyJobs/Xml.aspx?c=...
