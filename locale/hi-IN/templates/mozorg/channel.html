@@ -1,0 +1,74 @@
+{# Version: 20111205 #}
+
+{% extends "mozorg/channel.html" %}
+
+{% block site_css %}
+  {{ css('common') }}
+{% endblock %}
+
+{% block content %}
+
+    <link rel="stylesheet" href="/media/css/l10n/channel.css" media="screen" />
+
+<div id="main-feature">
+    <h2>स्वागत है <span>फ़ायरफ़ॉक्स के भविष्य</span> में</h2>
+    <p>बिल्ड को डाउनलोड कर जाँचें जो आपके लिए है और लूप में बने रहने के लिए चैनल न्यूजलेटर के लिए साइनअप करें.</p>
+</div>
+
+<div id="main-content">
+
+    <div id="download_firefox" class="channel">
+
+        <h3><span>अंतिम <span>रिलीज</span></span></h3>
+
+        <ul class="channel-list">
+            <li>दुनिया भर के करोड़ों लोगों के द्वारा प्रयोग किए गए आजमाए और जाँचे गए अंतिम रिलीज का आनंद लें</li>
+            <li>द्रुत गति, आसान मनपसंदीकरण और नवीनतम वेब प्रौद्योगिकी से अपने ऑनलाइन अनुभव का नियंत्रण बनाए रखें</li>
+        </ul>
+
+        {{ download_button('download') }}
+    </div>
+
+    <div id="download_beta" class="channel">
+
+        <h3><span>बीटा</span></h3>
+
+        <ul class="channel-list">
+            <li>अधिक स्थायित्व से कटिंग एज विशेषताओं का अनुभव लें</li>
+            <li>अंतिम रिलीज में क्या होगा उसे परिष्कृत करने के लिए फीडबैक दें</li>
+        </ul>
+
+        {{ download_button('download-button', build='beta') }}
+    </div>
+
+    <div id="download_aurora" class="channel">
+
+        <h3><span>ऑरोरा</span></h3>
+
+        <ul class="channel-list">
+            <li>एक अस्थिर वातावरण में नवीनतम नवाचारों का आनंद लें जो कमजोर हृदय वाले के लिए नहीं है</li>
+            <li>फीचर और कार्यकुशलता पर फीडबैक दें जो अंतिम रिलीज को निर्धारित करने में मदद करें</li>
+        </ul>
+
+        {{ download_button('download_aurora_button', build='aurora') }}
+    </div>
+
+    <div id="mobile-beta" class="channel">
+      <p class="download-soon">
+        <a href="https://market.android.com/details?id=org.mozilla.firefox_beta">
+          <span>Firefox Beta for mobile</span>
+          <img src="/media/img/mobile/beta/beta-install-inset.png">
+          <span>Download</span>
+        </a>
+      </p>
+    </div>
+</div>
+
+<script src="/media/js/download.js"></script>
+<script type="text/javascript">
+  offerBestDownloadLink('download_aurora_button');
+  offerBestDownloadLink('download-button');
+  offerBestDownloadLink('download');
+</script>
+
+{% endblock %}

@@ -1,0 +1,75 @@
+{# Version: 20111205 #}
+
+{% extends "mozorg/channel.html" %}
+
+{% block site_css %}
+  {{ css('common') }}
+{% endblock %}
+
+{% block content %}
+
+    <link rel="stylesheet" href="/media/css/l10n/channel.css" media="screen" />
+
+<div id="main-feature">
+    <h2>مرحبًا بك في<span>مستقبل فَيَرفُكس</span></h2>
+    <p>نزّل الحزمة التي تناسبك واختبرها، واشترك بالقائمة الإخبارية الخاصة بالقناة التي تهمك لكي تبقى في الحدث.</p>
+</div>
+
+<div id="main-content">
+
+    <div id="download_firefox" class="channel">
+
+        <h3><span><span>الإصدارة</span> النهائية</span></h3>
+
+        <ul class="channel-list">
+            <li>استمتع بالإصدارة النهائية الممحصة والتي يستخدمها مئات الملايين في أرجاء العالم</li>
+            <li>تحكّم بتجربتك مع الوب من خلال سرعة خارقة وتخصيص سهل وآخر تقنيات الوب</li>
+        </ul>
+
+        {{ download_button('download') }}
+    </div>
+
+    <div id="download_beta" class="channel">
+
+        <h3><span>بيتا</span></h3>
+
+        <ul class="channel-list">
+            <li>استمتع باستخدام أحدث المزايا مع ثبات أكثر</li>
+            <li>أخبرنا برأيك لمساعدتنا على صقل وتحسين ما سيظهر في الإصدارة النهائية</li>
+        </ul>
+
+        {{ download_button('download-button', build='beta') }}
+    </div>
+
+    <div id="download_aurora" class="channel">
+
+        <h3><span>أورورا</span></h3>
+
+        <ul class="channel-list">
+            <li>جرّب آخر التجديدات والاختراعات في إصدارة غير مستقرة لا تناسب ضعاف القلوب</li>
+            <li>أخبرنا بتعليقاتك عن المزايا الجديدة والأداء لنقرّر مضمون الإصدارة النهائية</li>
+        </ul>
+
+        {{ download_button('download_aurora_button', build='aurora') }}
+    </div>
+
+    <div id="mobile-beta" class="channel">
+      <p class="download-soon">
+        <a href="https://market.android.com/details?id=org.mozilla.firefox_beta">
+          <span>Firefox Beta for mobile</span>
+          <img src="/media/img/mobile/beta/beta-install-inset.png">
+          <span>Download</span>
+        </a>
+      </p>
+    </div>
+</div>
+
+
+<script src="/media/js/download.js"></script>
+<script type="text/javascript">
+  offerBestDownloadLink('download_aurora_button');
+  offerBestDownloadLink('download-button');
+  offerBestDownloadLink('download');
+</script>
+
+{% endblock %}

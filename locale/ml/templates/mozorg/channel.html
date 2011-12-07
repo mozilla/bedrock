@@ -1,0 +1,74 @@
+{# Version: 20111205 #}
+
+{% extends "mozorg/channel.html" %}
+
+{% block site_css %}
+  {{ css('common') }}
+{% endblock %}
+
+{% block content %}
+
+    <link rel="stylesheet" href="/media/css/l10n/channel.css" media="screen" />
+
+<div id="main-feature">
+    <h2><span>ഭാവിയിലുള്ള ഫയര്‍ഫോക്സിലേക്കു്</span> സ്വാഗതം </h2>
+    <p>നിങ്ങള്‍ക്കുചിതമായൊരു ബിള്‍ഡ് ഡൌണ്‍ലോഡ് ചെയ്തു്, അതു് പരീക്ഷിച്ചു് നോക്കൂ. കൂടാതെ, ഇതു് സംബന്ധിച്ചുള്ള വാര്‍ത്തകള്‍ക്കായി വാര്‍ത്താക്കുറിപ്പിന്റെ ഒരു ചാനലില്‍ പങ്കു ചേരൂ.</p>
+</div>
+
+<div id="main-content">
+
+    <div id="download_firefox" class="channel">
+
+        <h3><span>അവസാന <span>ലക്കം</span></span></h3>
+
+        <ul class="channel-list">
+            <li>ലോകമെമ്പാടുമുള്ള അനേകം കോടി ജനങ്ങള്‍ പരീക്ഷിച്ചു് ഉപയോഗിച്ചു് തുടങ്ങിയ അവസാന ലക്കം ഉപയോഗിച്ചു്  ആസ്വദിയ്ക്കൂ</li>
+            <li>ഏറ്റവും വേഗതയേറിയതും നിങ്ങള്‍ക്കു് ഇഷ്ടാനുസൃതം ലഭ്യമാക്കുവാനും സാധ്യമായ ഏറ്റവും പുതിയ വെബ് സാങ്കേതികളുമായി നിങ്ങളുടെ ഓണ്‍ലൈന്‍ ഉപയോഗം ആസ്വാദകരമാക്കൂ</li>
+        </ul>
+
+        {{ download_button('download') }}
+    </div>
+
+    <div id="download_beta" class="channel">
+
+        <h3><span>ബീറ്റാ</span></h3>
+
+        <ul class="channel-list">
+            <li>സ്ഥിരതയുള്ള കൂടുതല്‍ വിശേഷതകള്‍ ലഭ്യമാക്കൂ</li>
+            <li>അവസാന ലക്കം ഏറ്റവും നല്ലതാക്കുന്നതിനായി ദയവായി അഭിപ്രായങ്ങളും നിര്‍ദ്ദേശങ്ങളും അറിയിയ്ക്കൂ</li>
+        </ul>
+
+        {{ download_button('download-button', build='beta') }}
+    </div>
+
+    <div id="download_aurora" class="channel">
+
+        <h3><span>ഒറോറാ</span></h3>
+
+        <ul class="channel-list">
+            <li>അസ്ഥിരമായ സാഹചര്യങ്ങളിലുള്ള പുതുപുത്തന്‍ കണ്ടുപിടുത്തങ്ങള്‍ കണ്ടു നോക്കൂ</li>
+            <li>അവസാന ലക്കം മെച്ചപ്പെടുത്തുന്നതിനായി വിശേഷതകളും പ്രവര്‍ത്തനങ്ങളേയും പറ്റി അഭിപ്രായങ്ങളും നിര്‍ദ്ദേശങ്ങളും അറിയിയ്ക്കൂ</li>
+        </ul>
+
+        {{ download_button('download_aurora_button', build='aurora') }}
+    </div>
+
+    <div id="mobile-beta" class="channel">
+      <p class="download-soon">
+        <a href="https://market.android.com/details?id=org.mozilla.firefox_beta">
+          <span>Firefox Beta for mobile</span>
+          <img src="/media/img/mobile/beta/beta-install-inset.png">
+          <span>Download</span>
+        </a>
+      </p>
+    </div>
+</div>
+
+<script src="/media/js/download.js"></script>
+<script type="text/javascript">
+  offerBestDownloadLink('download_aurora_button');
+  offerBestDownloadLink('download-button');
+  offerBestDownloadLink('download');
+</script>
+
+{% endblock %}

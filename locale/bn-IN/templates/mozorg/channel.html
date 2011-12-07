@@ -1,0 +1,74 @@
+{# Version: 20111205 #}
+
+{% extends "mozorg/channel.html" %}
+
+{% block site_css %}
+  {{ css('common') }}
+{% endblock %}
+
+{% block content %}
+
+    <link rel="stylesheet" href="/media/css/l10n/channel.css" media="screen" />
+
+<div id="main-feature">
+    <h2><span>Firefox-র পরবর্তী যুগে</span> আপনাকে স্বাগতম</h2>
+    <p>প্রযোজ্য বিল্ড ডাউনলোড করে পরীক্ষা করুন, ও খবরাখবর জানার জন্য চ্যানেলের নিউজলেটারের গ্রাহক হন।</p>
+</div>
+
+<div id="main-content">
+
+    <div id="download_firefox" class="channel">
+
+        <h3><span>চুড়ান্ত <span>রিলিজ</span></span></h3>
+
+        <ul class="channel-list">
+            <li>বিশ্বের বিভিন্ন কোণে উপস্থিত হাজার হাজার ব্যবহারকারীদের দ্বারা ব্যবহৃত ও পরীক্ষিত চুড়ান্ত রিলিজ সংস্করণ ব্যবহার করুন</li>
+            <li>দ্রুত গতি, সহজে করণীয় পরিবর্তন ও আধুনিক ওয়েব প্রযুক্তির সাহায্যে অন-লাইন অবস্থায় নিজের ব্যবহারক্ষমতা নিয়ন্ত্রণ করুন</li>
+        </ul>
+
+        {{ download_button('download') }}
+    </div>
+
+    <div id="download_beta" class="channel">
+
+        <h3><span>বিটা সংস্করণ</span></h3>
+
+        <ul class="channel-list">
+            <li>আধুনিক বৈশিষ্ট্যগুলিকে অনেক বেশি স্থায়ী পরিবেশে উপভোগ করুন</li>
+            <li>চুড়ান্ত রিলিজ সংস্করণকে উন্নত করার জন্য আপনার মতামত জানান</li>
+        </ul>
+
+        {{ download_button('download-button', build='beta') }}
+    </div>
+
+    <div id="download_aurora" class="channel">
+
+        <h3><span>Aurora</span></h3>
+
+        <ul class="channel-list">
+            <li>অস্থায়ী পরিবেশের অধীন আধুনিক প্রযুক্তিগুলি ব্যবহার করুন</li>
+            <li>চুড়ান্ত রিলিজ সংস্করণকে উন্নত করার জন্য বিভিন্ন বৈশিষ্ট্য ও বর্তমান কর্মক্ষমতা সম্পর্কে আপনার মতামত জানান</li>
+        </ul>
+
+        {{ download_button('download_aurora_button', build='aurora') }}
+    </div>
+
+    <div id="mobile-beta" class="channel">
+      <p class="download-soon">
+        <a href="https://market.android.com/details?id=org.mozilla.firefox_beta">
+          <span>Firefox Beta for mobile</span>
+          <img src="/media/img/mobile/beta/beta-install-inset.png">
+          <span>Download</span>
+        </a>
+      </p>
+    </div>
+</div>
+
+<script src="/media/js/download.js"></script>
+<script type="text/javascript">
+  offerBestDownloadLink('download_aurora_button');
+  offerBestDownloadLink('download-button');
+  offerBestDownloadLink('download');
+</script>
+
+{% endblock %}

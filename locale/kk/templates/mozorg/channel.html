@@ -1,0 +1,74 @@
+{# Version: 20111205 #}
+
+{% extends "mozorg/channel.html" %}
+
+{% block site_css %}
+  {{ css('common') }}
+{% endblock %}
+
+{% block content %}
+
+    <link rel="stylesheet" href="/media/css/l10n/channel.css" media="screen" />
+
+<div id="main-feature">
+    <h2><span>Firefox-тың болашағына</span> қош келдіңіз</h2>
+    <p>Өзіңізге лайықты нұсқасын жүктеп алып, сынаңыз, және жаңалықтардан қалмау үшін ол нұсқаның жаңалықтар арнасына жазылыңыз.</p>
+</div>
+
+<div id="main-content">
+
+    <div id="download_firefox" class="channel">
+
+        <h3><span>Финалды <span>шығарылым</span></span></h3>
+
+        <ul class="channel-list">
+            <li>Дүние жүзі бойынша миллиондаған адамдар қолданатын, сыналған әрі тексерілген финалды шығарылымды алыңыз</li>
+            <li>Интернеттегі жұмысыңызды супер жылдамдық, жеңіл баптаулар мен вебтің соңғы технологияларды қолдауымен жақсартыңыз</li>
+        </ul>
+
+        {{ download_button('download') }}
+    </div>
+
+    <div id="download_beta" class="channel">
+
+        <h3><span>Beta</span></h3>
+
+        <ul class="channel-list">
+            <li>Соңғы мүмкіндіктері бар, бірақ сонда да тұрақты нұсқасы</li>
+            <li>Финалды шығарылымда болатын мүмкіндіктерді сынау мен жақсартуға көмектесу үшін кері байланысты қолданудан жалықпаңыз</li>
+        </ul>
+
+        {{ download_button('download-button', build='beta') }}
+    </div>
+
+    <div id="download_aurora" class="channel">
+
+        <h3><span>Aurora</span></h3>
+
+        <ul class="channel-list">
+            <li>Ең соңғы мүмкіндіктері бар, сондықтан тұрақсыздау бола алатын нұсқасы</li>
+            <li>Финалды шығарылымда не болатынын анықтауға көмектесу үшін мүмкіндіктер мен өнімділігі жөнінде кері байланыс арқылы хабарлаңыз</li>
+        </ul>
+
+        {{ download_button('download_aurora_button', build='aurora') }}
+    </div>
+
+    <div id="mobile-beta" class="channel">
+      <p class="download-soon">
+        <a href="https://market.android.com/details?id=org.mozilla.firefox_beta">
+          <span>Firefox Beta for mobile</span>
+          <img src="/media/img/mobile/beta/beta-install-inset.png">
+          <span>Download</span>
+        </a>
+      </p>
+    </div>
+</div>
+
+<script src="/media/js/download.js"></script>
+<script type="text/javascript">
+  offerBestDownloadLink('download_aurora_button');
+  offerBestDownloadLink('download-button');
+  offerBestDownloadLink('download');
+</script>
+
+{% endblock %}

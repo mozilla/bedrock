@@ -1,0 +1,74 @@
+{# Version: 20111205 #}
+
+{% extends "mozorg/channel.html" %}
+
+{% block site_css %}
+  {{ css('common') }}
+{% endblock %}
+
+{% block content %}
+
+    <link rel="stylesheet" href="/media/css/l10n/channel.css" media="screen" />
+
+<div id="main-feature">
+    <h2>Fáilte romhat! Seo é <span>Todhchaí Firefox</span></h2>
+    <p>Íosluchtaigh agus bain triail as an leagan is fearr leat, agus cláraigh le nuachtlitir chun an scéal is déanaí a fháil.</p>
+</div>
+
+<div id="main-content">
+
+    <div id="download_firefox" class="channel">
+
+        <h3><span>Cobhsaí</span></h3>
+
+        <ul class="channel-list">
+            <li>Bain sult as an leagan cobhsaí atá in úsáid ag na céadta milliún duine timpeall an domhain</li>
+            <li>Bí i gceannas ar do shaol ar líne le han-luas, le saincheapadh éasca, agus leis na teicneolaíochtaí Gréasáin is déanaí</li>
+        </ul>
+
+        {{ download_button('download') }}
+    </div>
+
+    <div id="download_beta" class="channel">
+
+        <h3><span>Béite</span></h3>
+
+        <ul class="channel-list">
+            <li>Bain sult as na gnéithe úrnua, ach le tuilleadh cobhsaíochta</li>
+            <li>Tabhair aiseolas dúinn chun feabhas a chur ar leaganacha amach anseo</li>
+        </ul>
+
+        {{ download_button('download-button', build='beta') }}
+    </div>
+
+    <div id="download_aurora" class="channel">
+
+        <h3><span>Aurora</span></h3>
+
+        <ul class="channel-list">
+            <li>Bain triail as na nuálaíochtaí úrnua i dtimpeallacht neamhchobhsaí - níl sé don chroí meata!</li>
+            <li>Tabhair aiseolas dúinn faoi ghnéithe agus cabhraigh linn cinneadh a dhéanamh ar na rudaí a bheidh sa leagan deiridh</li>
+        </ul>
+
+        {{ download_button('download_aurora_button', build='aurora') }}
+    </div>
+
+    <div id="mobile-beta" class="channel">
+      <p class="download-soon">
+        <a href="https://market.android.com/details?id=org.mozilla.firefox_beta">
+          <span>Firefox Beta for mobile</span>
+          <img src="/media/img/mobile/beta/beta-install-inset.png">
+          <span>Download</span>
+        </a>
+      </p>
+    </div>
+</div>
+
+<script src="/media/js/download.js"></script>
+<script type="text/javascript">
+  offerBestDownloadLink('download_aurora_button');
+  offerBestDownloadLink('download-button');
+  offerBestDownloadLink('download');
+</script>
+
+{% endblock %}

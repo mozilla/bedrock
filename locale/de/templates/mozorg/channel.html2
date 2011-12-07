@@ -1,0 +1,41 @@
+{# Version: 20111202 #}
+
+{% extends "mozorg/channel.html" %}
+
+{% l10n l10ncontent %}
+
+<link rel="stylesheet" type="text/css" href="/media/css/l10n-channel.css" />
+
+<div id="main-feature">
+    <h2>Willkommen in der <span>Zukunft von Firefox</span></h2>
+    <p>Laden Sie die Version herunter, die für Sie passt, und testen Sie sie.</p>
+</div>
+
+<div id="main-content">
+
+    <div id="download_beta" class="channel">
+
+        <h3><span>Beta</span></h3>
+
+        <ul class="channel-list">
+            <li>Erleben Sie die allerneuesten Funktionen, aber mit mehr Stabilität</li>
+            <li>Sagen Sie uns Ihre Meinung, um Firefox für die fertige Version zu verbessern und aufzupolieren</li>
+        </ul>
+
+      {{ download_button('download_beta_button', build='beta') }}
+    </div>
+
+    <div id="download_aurora" class="channel">
+
+        <h3><span>Aurora</span></h3>
+
+        <ul class="channel-list">
+            <li>Erleben Sie die neuesten Innovationen in einer instabilen Umgebung, die nichts für schwache Nerven ist</li>
+            <li>Sagen Sie uns Ihre Meinung zu Funktionen und Leistung, damit wir festlegen können, was in die fertige Version kommt</li>
+        </ul>
+
+        {{ download_button('download_aurora_button', build='aurora') }}
+    </div>
+
+</div>
+{% endl10n %}

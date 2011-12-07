@@ -1,0 +1,74 @@
+{# Version: 20111205 #}
+
+{% extends "mozorg/channel.html" %}
+
+{% block site_css %}
+  {{ css('common') }}
+{% endblock %}
+
+{% block content %}
+
+    <link rel="stylesheet" href="/media/css/l10n/channel.css" media="screen" />
+
+<div id="main-feature">
+    <h2>환영합니다! <span>Firefox 개발 채널</span></h2>
+    <p>향후 출시될 Firefox의 개발 버전을 미리 사용해 보고, 다양한 소식을 제공해 드립니다.</p>
+</div>
+
+<div id="main-content">
+
+    <div id="download_firefox" class="channel">
+
+        <h3><span>정식 <span>버전</span></span></h3>
+
+        <ul class="channel-list">
+            <li>전 세계 수억명이 함께 쓰는 정식 출시 버전</li>
+            <li>더 빠르고, 안정적인 새로운 웹기술을 탑재한 맞춤 웹 브라우저</li>
+        </ul>
+
+        {{ download_button('download') }}
+    </div>
+
+    <div id="download_beta" class="channel">
+
+        <h3><span>베타</span></h3>
+
+        <ul class="channel-list">
+            <li>최신 탑재 기능을 사용해 볼 수 있는 보다 안정된 버전</li>
+            <li>정식 버전을 위해 사용자들의 의견을 듣고 바꾸는 웹 브라우저</li>
+        </ul>
+
+        {{ download_button('download-button', build='beta') }}
+    </div>
+
+    <div id="download_aurora" class="channel">
+
+        <h3><span>오로라</span></h3>
+
+        <ul class="channel-list">
+            <li>가장 최신의 혁신적인 아이디어를 약간 불안정상태이지만 구현해 나가는 버전</li>
+            <li>향후 베타 버전을 위해 기능 및 성능에 대한 의견을 듣고 바꾸는 웹 브라우저</li>
+        </ul>
+
+        {{ download_button('download_aurora_button', build='aurora') }}
+    </div>
+
+    <div id="mobile-beta" class="channel">
+      <p class="download-soon">
+        <a href="https://market.android.com/details?id=org.mozilla.firefox_beta">
+          <span>Firefox Beta for mobile</span>
+          <img src="/media/img/mobile/beta/beta-install-inset.png">
+          <span>Download</span>
+        </a>
+      </p>
+    </div>
+</div>
+
+<script src="/media/js/download.js"></script>
+<script type="text/javascript">
+  offerBestDownloadLink('download_aurora_button');
+  offerBestDownloadLink('download-button');
+  offerBestDownloadLink('download');
+</script>
+
+{% endblock %}

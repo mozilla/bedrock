@@ -4,9 +4,9 @@ import re
 import os, errno
 from os import path
 from optparse import make_option
-from contextlib import closing
 import codecs
-from cStringIO import StringIO
+from contextlib import closing
+from StringIO import StringIO
 
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
@@ -149,7 +149,7 @@ def update_template(tmpl, lang):
                 write_block(block, buffer, force_else=True)
 
         # Write out the result to the l10n template
-        with closing(codecs.open(dest_tmpl, 'w', 'utf-8')) as dest:
+        with codecs.open(dest_tmpl, 'w', 'utf-8') as dest:
             dest.write(buffer.getvalue())
 
     print '%s: %s' % (lang, tmpl)
@@ -176,11 +176,15 @@ def copy_template(tmpl, lang):
     ensure_dir_exists(os.path.dirname(dest_file))
 
     if blocks:
-        with closing(open(dest_file, 'w')) as dest:
+        with codecs.open(dest_file, 'w', 'utf-8') as dest:
             dest.write('{# Version: %s #}\n\n' % get_todays_version())
             dest.write('{%% extends "%s" %%}\n\n' % tmpl)
             
             for block in blocks:
+                # The current content should be in the else block
+                block['else'] = block['main']
+                block['main'] = ''
+
                 write_block(block, dest, True)
 
             

@@ -1,0 +1,74 @@
+{# Version: 20111205 #}
+
+{% extends "mozorg/channel.html" %}
+
+{% block site_css %}
+  {{ css('common') }}
+{% endblock %}
+
+{% block content %}
+
+    <link rel="stylesheet" href="/media/css/l10n/channel.css" media="screen" />
+
+<div id="main-feature">
+    <h2><span>Firefox ৰ ভৱিষ্যতলৈ</span> স্বাগতম</h2>
+    <p>আপোনাৰ বাবে সুবিধাজনক বিকাশ মুক্তিক ডাউন্লোড আৰু পৰীক্ষা কৰক, আৰু অন্য তথ্য জানিবলৈ এটা চেনেল বাতৰি পত্ৰিকাৰ গ্ৰাহক হওক ।</p>
+</div>
+
+<div id="main-content">
+
+    <div id="download_firefox" class="channel">
+
+        <h3><span>সৰ্বশেষ <span>মুক্তি</span></span></h3>
+
+        <ul class="channel-list">
+            <li>সমস্ত পৃথিৱীৰ সহস্ৰলোকে ব্যৱহাৰ আৰু পৰীক্ষা কৰা স্ৰবশেষ মুক্তিৰ সুবিধা লওক</li>
+            <li>দ্ৰুত গতি, সহজ ভাবে কৰিব পৰা পছন্দৰ নিৰ্ব্বাচন আৰু শেহতীয়া ৱেব প্ৰযুক্তিবিদ্যাৰে আপোনাৰ অন-লাইন অভিগ্যতাৰ নিয়ন্ত্ৰণত থাকক</li>
+        </ul>
+
+        {{ download_button('download') }}
+    </div>
+
+    <div id="download_beta" class="channel">
+
+        <h3><span>Beta</span></h3>
+
+        <ul class="channel-list">
+            <li>অধিক স্থিৰতাৰ সৈতে শেহতীয়া গুণসমূহক উপভোগ কৰক</li>
+            <li>সৰ্বশেষ মুক্তিত যি থাকিব তাক উন্নয়নৰ কাৰণে নিজৰ মতামত দিয়ক</li>
+        </ul>
+
+        {{ download_button('download-button', build='beta') }}
+    </div>
+
+    <div id="download_aurora" class="channel">
+
+        <h3><span>Aurora</span></h3>
+
+        <ul class="channel-list">
+            <li>এটা অস্থিৰ পৰিবেশত থকা নতুন আৱিষ্কাৰসমূহ চাওক যি সকলোৰে বাবে নহয়</li>
+            <li>সৰ্বশেষ মুক্তি পাব লগা উৎপাদনৰ কাৰণে গুণ আৰু কাৰ্য্যক্ষমতাৰ বিষয়ে মতামত দিয়ক</li>
+        </ul>
+
+        {{ download_button('download_aurora_button', build='aurora') }}
+    </div>
+
+    <div id="mobile-beta" class="channel">
+      <p class="download-soon">
+        <a href="https://market.android.com/details?id=org.mozilla.firefox_beta">
+          <span>Firefox Beta for mobile</span>
+          <img src="/media/img/mobile/beta/beta-install-inset.png">
+          <span>Download</span>
+        </a>
+      </p>
+    </div>
+</div>
+
+<script src="/media/js/download.js"></script>
+<script type="text/javascript">
+  offerBestDownloadLink('download_aurora_button');
+  offerBestDownloadLink('download-button');
+  offerBestDownloadLink('download');
+</script>
+
+{% endblock %}
