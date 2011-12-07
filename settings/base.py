@@ -18,6 +18,7 @@ SESSION_COOKIE_SECURE = True
 
 # Accepted locales
 PROD_LANGUAGES = ('de', 'en-US', 'es', 'fr',)
+DEV_LANGUAGES = DEV_LANGUAGES + ['en-US']
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '1iz#v0m55@h26^m6hxk3a7at*h$qj_2a$juu1#nv50548j(x1v'
