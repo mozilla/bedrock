@@ -2,12 +2,14 @@ import unittest
 
 from l10n_utils.management.commands.l10n_check import list_templates, L10nParser
 
-def get_block(blocks, name):
-    for block in blocks:
-        if block['name'] == name:
-            return block
 
 class TestL10nCheck(unittest.TestCase):
+    def _get_block(blocks, name):
+        """Out of all blocks, grab the one with the specified name."""
+        try:
+            return filter(lambda b: b['name'] == name, blocks)[0]
+        except IndexError:
+            return None
 
     def test_list_templates(self):
         tmpls = filter(lambda tmpl: 'mozorg/channel.html' in tmpl,
@@ -27,8 +29,8 @@ class TestL10nCheck(unittest.TestCase):
                               '{% endl10n %}'
                               'qux',
                               only_blocks=True)
-        
-        baz = get_block(blocks, 'baz')
+
+        baz = self._get_block(blocks, 'baz')
 
         self.assertEqual(baz['main'], 'mumble')
         self.assertEqual(baz['else'], 'elsed')
@@ -41,7 +43,7 @@ class TestL10nCheck(unittest.TestCase):
                               'qux',
                               only_blocks=True)
 
-        baz = get_block(blocks, 'baz')
+        baz = self._get_block(blocks, 'baz')
         self.assertEqual(baz['main'], 'mumble')
 
     def test_content_halt(self):
