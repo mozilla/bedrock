@@ -169,13 +169,13 @@ def copy_template(tmpl, lang):
     """Create a new l10n template by copying the l10n blocks"""
 
     parser = L10nParser()
-    blocks = parser.parse_template(app_tmpl(tmpl), only_blocks=True)
+    blocks = list(parser.parse_template(app_tmpl(tmpl), only_blocks=True))
     dest_file = l10n_tmpl(tmpl, lang)
 
-    # Make sure the templates directory for this locale and app exists
-    ensure_dir_exists(os.path.dirname(dest_file))
-
     if blocks:
+        # Make sure the templates directory for this locale and app exists
+        ensure_dir_exists(os.path.dirname(dest_file))
+
         with codecs.open(dest_file, 'w', 'utf-8') as dest:
             dest.write('{# Version: %s #}\n\n' % get_todays_version())
             dest.write('{%% extends "%s" %%}\n\n' % tmpl)
