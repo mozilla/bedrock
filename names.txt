@@ -1800,3 +1800,4 @@ Piers,Sonny
 Thompson,Patrick
 Leto,Jonathan
 Karahalis,John
+Wein,Jared
