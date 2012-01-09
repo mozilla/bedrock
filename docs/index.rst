@@ -24,6 +24,21 @@ Contents
    l10n
    php
 
+Localization
+------------
+
+Looking for help on how l10n works on bedrock? :ref:`Look here <l10n>`
+for more details.
+
+PHP
+---
+
+Interested in how PHP integrates with mozilla.org? The previous
+version was written in PHP and still serves any page that hasn't been
+migrated yet. :ref:`Look here <php>` for more information.
+
+
+
 Indices and tables
 ------------------
 

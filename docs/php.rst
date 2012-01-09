@@ -66,12 +66,25 @@ considerations. The merge is meant to be temporary as the site is
 moving to Python, so it's not worth the effort to literally merge all
 the PHP code together.
 
-The code of each site also dictated possible solutions. There's a lot
-of edge cases in each site so need to make sure we don't break anything.
+It's also important to still allow the mofo and moco codebases to be
+run individually. We don't want to suddenly break it for people who
+have it locally checked out (short-term wise). Finally, the code of
+each site also dictated possible solutions. There's a lot of edge
+cases in each site so need to make sure we don't break anything.
 
 Here's how the merge magic was implemented:
 
-* Checkout the mofo codebase under moco as the subdirectory **org**.
+**Short version:**
+
+* Checkout the mofo codebase under moco as the subdirectory *org*.
+* Redirect all mofo URLs to a PHP handler which loads those pages, do
+  the same for thunderbird
+* Fix loading of images, css, and js by setting prefix config values and more rewrites
+* Merge .htaccess files into the moco codebase
+
+**Long version:**
+
+* Checkout the mofo codebase under moco as the subdirectory *org*.
  * Thunderbird is a folder under org, at /org/thunderbird
 * Generate a list of top-level folders in the org site and use Apache
   rewrites to `redirect all those URLs to a special php handler <https://github.com/jlongster/mozilla.com/blob/813aa578d7850f79d9f6b5274051f0f2175dd957/.htaccess#L805>`_
@@ -107,7 +120,8 @@ Here's how the merge magic was implemented:
    or org-handler.php hacks to fix any breakage
 * Check file extensions for any leftover static types and `rewrite them <https://github.com/jlongster/mozilla.com/blob/master/.htaccess#L582>`_ to be served by Apache
 
-
+The final result is the moco codebase which dispatches a lot of URLs
+to the mofo and thunderbird codebases. 
 
 
 
