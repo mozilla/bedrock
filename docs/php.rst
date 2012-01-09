@@ -1,6 +1,8 @@
-========
-PHP Site
-========
+.. _php:
+
+==========================================
+Installing and Learning About the PHP Site
+==========================================
 
 The previous version of mozilla.org was written in PHP. The PHP
 codebase still serves some of the mozilla.org pages because we haven't
@@ -29,6 +31,87 @@ mozilla.org, a few different PHP codebases coexist beside each other,
 and a combination of Apache and PHP magic bind them all together (one
 site to rule them all, or something like that).
 
+Installing
+----------
+
+.. _mozilla-com:
+mozilla.com
+~~~~~~~~~~~
+
+If you want to just work on the mozilla.com codebase (currently served
+at mozilla.org/firefox), install it with these commands:
+
+::
+
+  svn co https://svn.mozilla.org/projects/mozilla.com/trunk mozilla.com
+  cd mozilla.com/includes
+  cp config.inc.php-dist config.inc.php
+
+You need to set the 'server_name' and 'file_root' variables in config.inc.php.
+
+Now configure Apache to allow the site to run with a Directory and VirtualHost directive:
+
+::
+
+  <Directory /path/to/mozilla.com>
+          Options Includes FollowSymLinks MultiViews Indexes
+          AllowOverride All
+          Order Deny,Allow
+          Allow from all
+  </Directory>
+
+  <VirtualHost *:80>
+      ServerName mozilla.local
+      VirtualDocumentRoot "/path/to/mozilla.com"
+  </VirtualHost>
+
+Change ServerName and /path/to/ to the correct values. Additionally,
+you *might* need to set the DocumentRoot to the site if you can't load
+any CSS files. We are looking to fix this.
+
+::
+
+  DocumentRoot "/path/to/mozilla/mozilla.com"
+
+If you go to http://mozilla.local/ you should see a page for downloading Firefox.
+
+.. _mozilla-org:
+mozilla.org
+~~~~~~~~~~~
+
+If you need to work on mozilla.org, you need to install it as well.
+The installation process is identical to mozilla.com, with a few
+tweaks. First, make sure you install it as a subdirectory underneath
+mozilla.com named *org*.
+
+::
+
+  cd mozilla.com
+  svn co https://svn.mozilla.org/projects/mozilla.org/trunk org
+  cd org/includes
+  cp config.inc.php-dist config.inc.php
+
+Set the 'server_name' and 'file_root' variables in config.inc.php like
+you did for mozilla.com. In addition, set the 'js_prefix',
+'img_prefix', 'style_prefix' config values to '/org'. **That is necessary**.
+
+If you need the archive redirects to work, you need to add the
+RewriteMap directives to your Apache config for the site. Inside the
+VirtualHost section that you made while installing mozilla.com, add this::
+
+    RewriteMap org-urls-410 txt:/path/to/mozilla.com/org-urls-410.txt
+    RewriteMap org-urls-301 txt:/path/to/mozilla.com/org-urls-301.txt
+
+That should be it. If you go to http://mozilla.local/ (or whatever
+local server you set it to) you should see the org home page.
+
+Thunderbird
+~~~~~~~~~~~
+
+The thunderbird site has been completely merged in with mozilla.org,
+so you can install it by `installing mozilla.org <mozilla-org>`. It
+will be served at /thunderbird.
+
 How a Request is Handled
 ------------------------
 
@@ -56,6 +139,11 @@ The merge magic is installed into moco's htaccess and PHP files. We
 let moco become the primary codebase because if there's any error in
 the merge code, we can't afford to break the main Firefox product
 pages. There's also more developer attention on moco.
+
+**Special Note**: Only mozilla.com's .htaccess files are processed by
+Apache. All the others have been merged in so you shouldn't add
+anything to them. Please add all htaccess rules inthe mozilla.com
+codebase.
 
 Merge Magic
 ~~~~~~~~~~~
