@@ -105,7 +105,7 @@ Here's how the merge magic was implemented:
    from mofo, mostly archive redirects, using RewriteMap
  * Test to make sure everything's working, implement special rewrites
    or org-handler.php hacks to fix any breakage
-
+* Check file extensions for any leftover static types and `rewrite them <https://github.com/jlongster/mozilla.com/blob/master/.htaccess#L582>`_ to be served by Apache
 
 
 
