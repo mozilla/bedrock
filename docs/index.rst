@@ -22,7 +22,7 @@ Contents
    :maxdepth: 1
 
    l10n
-
+   php
 
 Indices and tables
 ------------------
