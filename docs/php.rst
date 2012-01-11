@@ -57,7 +57,7 @@ several codebases run the site, see :ref:`How a Request is Handled <merge>`.
   cp config.inc.php-dist config.inc.php
 
 2. Open /includes/config.inc.php and set the `server_name` to "mozilla.local" (or whatever you will use) and `file_root` to the site's path on the filesystem.
-3. Setup `mozilla.local` to resolve to localhost. This is different for each OS, but a quick way on Linux/OS X is to add an entry to /etc/hosts.
+3. Set up `mozilla.local` to resolve to localhost. This is different for each OS, but a quick way on Linux/OS X is to add an entry to /etc/hosts.
 4. Configure Apache to allow the site to run with a Directory and VirtualHost directive:
 
 ::
@@ -74,15 +74,15 @@ several codebases run the site, see :ref:`How a Request is Handled <merge>`.
       VirtualDocumentRoot "/path/to/mozilla.com"
   </VirtualHost>
 
-Change ServerName and /path/to/ to the correct values. Additionally,
-you *might* need to set the DocumentRoot to the site if you can't load
-any CSS files. We are looking to fix this.
+Make sure to replace ServerName and /path/to/ to the correct values.
+
+5. You *might* need to set the DocumentRoot to the site if you can't load any CSS files. We are looking to fix this.
 
 ::
 
   DocumentRoot "/path/to/mozilla/mozilla.com"
 
-Restart Apache
+6. Restart Apache
 
 If you go to http://mozilla.local/ you should see a page for downloading Firefox.
 
@@ -142,7 +142,7 @@ will be served at /thunderbird.
 Dev, Staging, and Production
 ============================
 
-All dev, staging, and production sites are setup the same way with the
+All dev, staging, and production sites are set up the same way with the
 codebases installed as described above.
 
 **Dev**
@@ -173,7 +173,7 @@ If you are working on a bug, please follow these steps:
 3. Add the keyword "qawanted" when finished
 4. When all the work is done and has been QAed, mark as resolved.
 
-We releases a batch of resolved bugs every Tuesday. Other bugs can go
+We release a batch of resolved bugs every Tuesday. Other bugs can go
 out between releases, but by default resolved bugs tagged with the
 current milestone will go out the next Tuesday.
 
@@ -181,6 +181,67 @@ Stage isn't used for much, but it's useful for times when we are very
 careful about rolling out something. You typically don't need to worry
 about it. When bugs are pushed live, they are pushed to stage and
 production at the same time.
+
+Rolling out code
+----------------
+
+So you want to rollout a bug into production? If you look at our
+workflow, there should be some SVN revisions logged into the
+whiteboard of the bug. If not, you need to track down which revisions
+to push from the comments.
+
+Once you have this list, you need to merge them to the branches
+`tags/stage` and `tags/production`. If the revisions are already
+pushed to stage, only do the latter. These are the commands:
+
+::
+
+  cd tags/stage
+  svn merge --ignore-ancestry -c<revs> ../../trunk
+  svn commit -m 'merged <rev> from trunk for bug <id>'
+
+`<revs>` is a single rev or comma-delimited like "10000,10001,10002".
+
+Do the same for tags/production. Always format the log message like
+the above. You must use `--ignore-ancestry` also to avoid bad things.
+
+We wrote a script to automate this if you are doing this a lot. You
+can find it it on trunk in `/bin/rollout
+<https://github.com/jlongster/mozilla.com/blob/master/bin/rollout>`_.
+The usage looks like this:
+
+::
+
+  Usage: rollout <bug-id> <revs> <branch>
+           <revs> and <branch> are optional
+
+  $ cd mozilla.com  # must have trunk, tags/stage, and tags/production checked out here
+  $ rollout 654321
+  
+  Merging into tags/stage...
+  --- Merging r654321 into '.':
+  <svn output>
+
+  Continue? y/n [n]y
+
+  Committing tags/stage...
+
+  Merging into tags/production...
+  --- Merging r654321 into '.':
+  <svn output>
+
+  Continue? y/n [n]y
+  Committing tags/production...
+
+The script parses the revisions and branch from the whiteboard data in
+bugzilla, and merges it from trunk to stage and production. If the
+branch is already stage (b=stage in the whiteboard) it just merges it
+to production.
+
+After it does the merges, it asks you if you want to continue. If you
+saw conflicts, you shouldn't continue and you should fix the conflicts
+and either finish the rollout by hand or update the bugzilla
+whiteboard and run the command again.
 
 How a Request is Handled
 ========================
@@ -234,7 +295,7 @@ Here's how the merge magic was implemented:
 
 **Short version:**
 
-* Checkout the mofo codebase under moco as the subdirectory *org*.
+* Check out the mofo codebase under moco as the subdirectory *org*.
 * Redirect all mofo URLs to a PHP handler which loads those pages, do
   the same for thunderbird
 * Fix loading of images, css, and js by setting prefix config values and more rewrites
@@ -242,7 +303,7 @@ Here's how the merge magic was implemented:
 
 **Long version:**
 
-* Checkout the mofo codebase under moco as the subdirectory *org*.
+* Check out the mofo codebase under moco as the subdirectory *org*.
  * Thunderbird is a folder under org, at /org/thunderbird
 * Generate a list of top-level folders in the org site and use Apache
   rewrites to `redirect all those URLs to a special php handler <https://github.com/jlongster/mozilla.com/blob/813aa578d7850f79d9f6b5274051f0f2175dd957/.htaccess#L805>`_
