@@ -1,8 +1,8 @@
 .. _php:
 
-==========================================
-Installing and Learning About the PHP Site
-==========================================
+============================================
+ Installing and Learning About the PHP Site
+============================================
 
 The previous version of mozilla.org was written in PHP. The PHP
 codebase still serves some of the mozilla.org pages because we haven't
@@ -16,7 +16,7 @@ migrated everything over. A request runs through the following stack:
           site still serves everything, so ignore the above.
 
 History
--------
+=======
 
 The PHP site has a long history and as a result, is a little quirky.
 If you are looking to work on the site and/or set it up locally, this
@@ -32,14 +32,23 @@ and a combination of Apache and PHP magic bind them all together (one
 site to rule them all, or something like that).
 
 Installing
-----------
+==========
 
 .. _mozilla-com:
+
 mozilla.com
-~~~~~~~~~~~
+-----------
 
 If you want to just work on the mozilla.com codebase (currently served
-at mozilla.org/firefox), install it with these commands:
+at mozilla.org/firefox), follow these steps. You will only get the
+product pages. See :ref:`mozilla.org <mozilla-org>` for instructions
+on installing the org side of the site. For more details on why
+several codebases run the site, see :ref:`How a Request is Handled <merge>`.
+
+.. note:: This assumes you are using Apache. Windows might have
+          different steps, please contact us if you need help.
+
+1. Install it with these commands:
 
 ::
 
@@ -47,9 +56,9 @@ at mozilla.org/firefox), install it with these commands:
   cd mozilla.com/includes
   cp config.inc.php-dist config.inc.php
 
-You need to set the 'server_name' and 'file_root' variables in config.inc.php.
-
-Now configure Apache to allow the site to run with a Directory and VirtualHost directive:
+2. Open /includes/config.inc.php and set the `server_name` to "mozilla.local" (or whatever you will use) and `file_root` to the site's path on the filesystem.
+3. Setup `mozilla.local` to resolve to localhost. This is different for each OS, but a quick way on Linux/OS X is to add an entry to /etc/hosts.
+4. Configure Apache to allow the site to run with a Directory and VirtualHost directive:
 
 ::
 
@@ -73,16 +82,25 @@ any CSS files. We are looking to fix this.
 
   DocumentRoot "/path/to/mozilla/mozilla.com"
 
+Restart Apache
+
 If you go to http://mozilla.local/ you should see a page for downloading Firefox.
 
 .. _mozilla-org:
+
 mozilla.org
-~~~~~~~~~~~
+-----------
 
 If you need to work on mozilla.org, you need to install it as well.
 The installation process is identical to mozilla.com, with a few
-tweaks. First, make sure you install it as a subdirectory underneath
-mozilla.com named *org*.
+tweaks.
+
+.. note:: htaccess files do not work on mozilla.org. If you need to
+          add anything to htaccess files, you must commit them to the
+          mozilla.com codebase. See the section below about the merge
+          for more info.
+
+1. Make sure you install it as a subdirectory underneath mozilla.com named *org*.
 
 ::
 
@@ -91,29 +109,81 @@ mozilla.com named *org*.
   cd org/includes
   cp config.inc.php-dist config.inc.php
 
-Set the 'server_name' and 'file_root' variables in config.inc.php like
-you did for mozilla.com. In addition, set the 'js_prefix',
-'img_prefix', 'style_prefix' config values to '/org'. **That is necessary**.
+2. Open /org/includes/config.inc.php and set the `server_name` to "mozilla.local" (or whatever you will use) and `file_root` to the site's path on the filesystem (including the org subdirectory).
+3. In addition, set the 'js_prefix', 'img_prefix', 'style_prefix' config values to '/org'. **That is necessary**.
+4. If you need the archive redirects to work, you need to add the RewriteMap directives to your Apache config for the site. Inside the VirtualHost section that you made while installing mozilla.com, add this:
 
-If you need the archive redirects to work, you need to add the
-RewriteMap directives to your Apache config for the site. Inside the
-VirtualHost section that you made while installing mozilla.com, add this::
+::
 
-    RewriteMap org-urls-410 txt:/path/to/mozilla.com/org-urls-410.txt
-    RewriteMap org-urls-301 txt:/path/to/mozilla.com/org-urls-301.txt
+  RewriteMap org-urls-410 txt:/path/to/mozilla.com/org-urls-410.txt
+  RewriteMap org-urls-301 txt:/path/to/mozilla.com/org-urls-301.txt
+
+5. Depending on your system settings, you might see warnings about relying on the system's timezone settings. If you get this, add the following to the config.inc.php for mozilla.org:
+
+::
+
+  date_default_timezone_set('America/New_York');
+
+You can look up the correct timezone `here
+<http://www.php.net/manual/en/timezones.php>`_.
 
 That should be it. If you go to http://mozilla.local/ (or whatever
 local server you set it to) you should see the org home page.
 
 Thunderbird
-~~~~~~~~~~~
+-----------
 
 The thunderbird site has been completely merged in with mozilla.org,
-so you can install it by `installing mozilla.org <mozilla-org>`. It
+so you can install it by :ref:`installing mozilla.org <mozilla-org>`. It
 will be served at /thunderbird.
 
+.. _merge:
+
+Dev, Staging, and Production
+============================
+
+All dev, staging, and production sites are setup the same way with the
+codebases installed as described above.
+
+**Dev**
+
+* URL: http://www-dev.allizom.org/
+* SVN branch: trunk
+* Updated every: 2 minutes
+
+**Stage**
+
+* URL: http://www.allizom.org/
+* SVN branch: tags/stage
+* Updated every: 10 minutes
+
+**Production**
+
+* URL: http://www.mozilla.org/
+* SVN branch: tags/production
+* Updated every: 15 minutes
+
+Workflow
+========
+
+If you are working on a bug, please follow these steps:
+
+1. Commit your work to trunk
+2. Comment on the bug and add the revision in the whiteboard field in the form "r=10000". Multiple revisions should be comma-delimited, like "r=10000,10001". You can add the revision in the comment too if you want people to have a link to the changes.
+3. Add the keyword "qawanted" when finished
+4. When all the work is done and has been QAed, mark as resolved.
+
+We releases a batch of resolved bugs every Tuesday. Other bugs can go
+out between releases, but by default resolved bugs tagged with the
+current milestone will go out the next Tuesday.
+
+Stage isn't used for much, but it's useful for times when we are very
+careful about rolling out something. You typically don't need to worry
+about it. When bugs are pushed live, they are pushed to stage and
+production at the same time.
+
 How a Request is Handled
-------------------------
+========================
 
 Magic should always be documented, so let's look at exactly how all
 the PHP sites work together to handle a mozilla.org request.
@@ -146,7 +216,7 @@ anything to them. Please add all htaccess rules inthe mozilla.com
 codebase.
 
 Merge Magic
-~~~~~~~~~~~
+-----------
 
 How we implement the merge is really important. Performance, site
 breakage, and amount of work to move things around are all serious
@@ -210,26 +280,3 @@ Here's how the merge magic was implemented:
 
 The final result is the moco codebase which dispatches a lot of URLs
 to the mofo and thunderbird codebases. 
-
-
-
-.. ::
-
-
-
-
-..    +-----------------------------------+          +------------------------+
-..    |  Page exist in Bedrock (Python)?  |--------->|  Serve from Bedrock    |
-..    +-----------------------------------+   Yes    +------------------------+
-..                    |
-..                    | No 
-..                    v   
-..    +-----------------------------------+          +------------------------+
-..    |  Page exist in PHP site?          |--------> |  Serve from PHP        |
-..    +-----------------------------------+   Yes    +------------------------+
-..                    |   
-..                    | No
-..                    v
-..    +----------------------------------+
-..    |  Serve 404 page                  |
-..    +----------------------------------+
