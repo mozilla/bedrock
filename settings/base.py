@@ -20,6 +20,9 @@ SESSION_COOKIE_SECURE = True
 PROD_LANGUAGES = ('de', 'en-US', 'es', 'fr',)
 DEV_LANGUAGES = DEV_LANGUAGES + ['en-US']
 
+DOTLANG_FILES = ('main.lang',)
+DOTLANG_CACHE = 60
+
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '1iz#v0m55@h26^m6hxk3a7at*h$qj_2a$juu1#nv50548j(x1v'
 
@@ -76,6 +79,7 @@ INSTALLED_APPS = list(INSTALLED_APPS) + [
 
     # libs
     'l10n_utils',
+    'dotlang',
 ]
 
 ## Auth
