@@ -1,3 +1,6 @@
 [submodule "vendor"]
     path = vendor
     url = git://github.com/mozilla/playdoh-lib.git
+[submodule "vendor-local/src/tower"]
+	path = vendor-local/src/tower
+	url = https://github.com/clouserw/tower.git
