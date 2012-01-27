@@ -1,13 +1,16 @@
 """This library parses dotlang files migrated over from the old PHP
-system. It caches them using the django caching library, but it could
+system.
+
+It caches them using the django caching library, but it could
 potentially just use thread-local variables. Caching seems safer at
 the expense of another caching layer."""
 
 import codecs
 import os
 
-from django.core.cache import cache
 from django.conf import settings
+from django.core.cache import cache
+
 
 def parse(path):
     """Parse a dotlang file and return a dict of translations."""

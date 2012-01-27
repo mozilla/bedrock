@@ -1,9 +1,10 @@
 import jingo
 import jinja2
-import dotlang
+from translate import translate
+
 
 @jingo.register.function
 @jinja2.contextfunction
 def ___(ctx, text):
     locale = ctx['request'].locale
-    return jinja2.Markup(dotlang.translate(locale, text))
+    return jinja2.Markup(translate(locale, text))

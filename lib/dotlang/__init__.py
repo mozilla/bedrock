@@ -1,1 +1,1 @@
-from dotlang import *
+from translate import *
