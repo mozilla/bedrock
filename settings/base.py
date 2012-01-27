@@ -58,6 +58,13 @@ MINIFY_BUNDLES = {
             'css/covehead/content.css',
             'css/covehead/home.css',
         ),
+        'geolocation': (
+            'css/covehead/template.css',
+            'css/covehead/content.css',
+            'css/covehead/mozilla-expanders.css',
+            'css/covehead/geolocation.css',
+            'css/jquery/nyroModal.css'
+        )
     },
     'js': {
         'common': (
@@ -65,6 +72,12 @@ MINIFY_BUNDLES = {
             'js/util.js',
             'js/nav-main.js',
         ),
+        'geolocation': (
+            'js/libs/jquery-1.4.4.min.js',
+            'js/libs/jquery.nyroModal.pack.js',
+            'js/mozilla-expanders.js',
+            'js/geolocation-demo.js'
+        )
     }
 }
 
@@ -87,3 +100,5 @@ PWD_ALGORITHM = 'bcrypt'
 HMAC_KEYS = {
     #'2011-01-01': 'cheesecake',
 }
+
+GMAP_API_KEY = ''
