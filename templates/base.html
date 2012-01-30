@@ -22,7 +22,7 @@
     <link rel="shortcut icon" type="image/png" href="{{ MEDIA_URL }}img/favicon.png"/>
   </head>
 
-  <body id="{% block body_id %}{% endblock %}" class="html-{{ DIR }}">
+  <body id="{% block body_id %}{% endblock %}" class="html-{{ DIR }} {% block body_class %}{% endblock %}">
     <div id="wrapper">
       <div id="doc">
         <div id="nav-access">
