@@ -85,6 +85,20 @@ MINIFY_BUNDLES = {
 PROD_DETAILS_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)),
                                 'lib/product_details_json')
 
+MIDDLEWARE_CLASSES = (
+    'funfactory.middleware.LocaleURLMiddleware',
+    'multidb.middleware.PinningRouterMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    #'session_csrf.CsrfMiddleware',  # Must be after auth middleware.
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'commonware.middleware.FrameOptionsHeader',
+    #'mobility.middleware.DetectMobileMiddleware',
+    #'mobility.middleware.XMobileMiddleware',
+    'mozorg.middleware.CacheMiddleware'
+)
+
 INSTALLED_APPS = list(INSTALLED_APPS) + [
     # Local apps
     'l10n_example',  # DELETEME
