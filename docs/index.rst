@@ -38,6 +38,7 @@ works like django.::
 
     git clone --recursive git://github.com/mozilla/bedrock.git
     cd bedrock
+    cp settings/local.py-dist settings/local.py
     ./manage.py runserver
 
 This section will be expounded soon.
