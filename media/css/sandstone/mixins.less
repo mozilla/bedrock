@@ -1,0 +1,58 @@
+// Le grid system
+// -------------------------
+/*
+ * Based on bootstrap, Copyright 2012 Twitter, Inc
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ */
+#gridSystem {
+  // Setup the mixins to be used
+  .columns(@gridGutterWidth, @gridColumnWidth, @gridRowWidth, @columns) {
+    width: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1));
+  } 
+  .offset(@gridColumnWidth, @gridGutterWidth, @columns) {
+    margin-left: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1)) + (@gridGutterWidth * 2);
+  }
+  .gridColumn(@gridGutterWidth) {
+    float: left;
+    margin-left: @gridGutterWidth;
+  }
+  // Take these values and mixins, and make 'em do their thang
+  .generate(@gridColumns, @gridColumnWidth, @gridGutterWidth) {
+    // Row surrounds the columns
+    .row {
+      margin-left: @gridGutterWidth * -1;
+      .clearfix();
+    }
+    // Find all .span# classes within .row and give them the necessary properties for grid columns (supported by all browsers back to IE7, thanks @dhg)
+    [class*="span"] {
+      #gridSystem > .gridColumn(@gridGutterWidth);
+    }
+    // Default columns
+    .span1     { #gridSystem > .columns(@gridGutterWidth, @gridColumnWidth, @gridRowWidth, 1); }
+    .span2     { #gridSystem > .columns(@gridGutterWidth, @gridColumnWidth, @gridRowWidth, 2); }
+    .span3     { #gridSystem > .columns(@gridGutterWidth, @gridColumnWidth, @gridRowWidth, 3); }
+    .span4     { #gridSystem > .columns(@gridGutterWidth, @gridColumnWidth, @gridRowWidth, 4); }
+    .span5     { #gridSystem > .columns(@gridGutterWidth, @gridColumnWidth, @gridRowWidth, 5); }
+    .span6     { #gridSystem > .columns(@gridGutterWidth, @gridColumnWidth, @gridRowWidth, 6); }
+    .span7     { #gridSystem > .columns(@gridGutterWidth, @gridColumnWidth, @gridRowWidth, 7); }
+    .span8     { #gridSystem > .columns(@gridGutterWidth, @gridColumnWidth, @gridRowWidth, 8); }
+    .span9     { #gridSystem > .columns(@gridGutterWidth, @gridColumnWidth, @gridRowWidth, 9); }
+    .span10    { #gridSystem > .columns(@gridGutterWidth, @gridColumnWidth, @gridRowWidth, 10); }
+    .span11    { #gridSystem > .columns(@gridGutterWidth, @gridColumnWidth, @gridRowWidth, 11); }
+    .span12,
+    .container { #gridSystem > .columns(@gridGutterWidth, @gridColumnWidth, @gridRowWidth, 12); }
+    // Offset column options
+    .offset1   { #gridSystem > .offset(@gridColumnWidth, @gridGutterWidth, 1); }
+    .offset2   { #gridSystem > .offset(@gridColumnWidth, @gridGutterWidth, 2); }
+    .offset3   { #gridSystem > .offset(@gridColumnWidth, @gridGutterWidth, 3); }
+    .offset4   { #gridSystem > .offset(@gridColumnWidth, @gridGutterWidth, 4); }
+    .offset5   { #gridSystem > .offset(@gridColumnWidth, @gridGutterWidth, 5); }
+    .offset6   { #gridSystem > .offset(@gridColumnWidth, @gridGutterWidth, 6); }
+    .offset7   { #gridSystem > .offset(@gridColumnWidth, @gridGutterWidth, 7); }
+    .offset8   { #gridSystem > .offset(@gridColumnWidth, @gridGutterWidth, 8); }
+    .offset9   { #gridSystem > .offset(@gridColumnWidth, @gridGutterWidth, 9); }
+    .offset10  { #gridSystem > .offset(@gridColumnWidth, @gridGutterWidth, 10); }
+    .offset11  { #gridSystem > .offset(@gridColumnWidth, @gridGutterWidth, 11); }
+  }
+}

@@ -9,6 +9,7 @@ from django.conf.urls.defaults import *
 urlpatterns = patterns('',
     # Main pages
     (r'', include('mozorg.urls')),
+    (r'', include('research.urls')),
 
     # L10n example.
     (r'^l10n_example/', include('l10n_example.urls')),

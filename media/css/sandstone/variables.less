@@ -1,0 +1,32 @@
+@text-color-primary:   #333;
+@text-color-secondary: #484848;
+@text-color-light:     #bbb;
+
+@link-blue:    #67a7d0;
+
+@baseFontSize:      16px;
+@baseFontFamily:    Georgia, serif;
+@baseLineHeight:    24px;
+
+// Less Framework grid
+@gridColumns:             10;
+@gridColumnWidth:         68px;
+@gridGutterWidth:         24px;
+@gridRowWidth:            (@gridColumns * @gridColumnWidth) + (@gridGutterWidth * (@gridColumns - 1));
+
+
+.open-sans {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.clearfix {
+    zoom: 1;
+    &:after {
+        display: block;
+        visibility: hidden;
+        height: 0;
+        clear: both;
+        content: ".";
+    }
+}
+

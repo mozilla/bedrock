@@ -1,0 +1,275 @@
+@import "variables.less";
+@import "mixins.less";
+@import "reset.less";
+@import "fonts.less";
+
+/* }}} */
+/* {{{ Basic Colors, Text, Links */
+
+body {
+    font-size: @baseFontSize;
+    line-height: @baseLineHeight;
+    font-family: @baseFontFamily;
+    color: @text-color-primary;
+    background: #fff;
+}
+
+#wrapper {
+    background: #f2f0ee url(/media/img/sandstone/bg.png) 0 0 repeat-x;
+}
+
+a {
+    color: @link-blue;
+    text-decoration: none;
+}
+
+a:hover,
+a:active {
+    text-decoration: underline;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    .open-sans;
+    font-weight: 300;
+    margin: 24px 0 12px 0;
+}
+
+h1 { font-size: 48px; }
+h2 { font-size: 32px; }
+h3 { font-size: 24px; }
+h4 { font-size: 18px; }
+h5 { font-size: 16px; }
+h6 { font-size: 14px; }
+
+p,
+ul,
+ol,
+dl {
+    margin: 0 0 24px 0;
+}
+
+li {
+    margin-left: 24px;
+}
+
+/* }}} */
+/* {{{ Layout */
+
+#gridSystem > .generate(@gridColumns, @gridColumnWidth, @gridGutterWidth);
+
+#outer-wrapper {
+    border-top: 2px solid #fff;
+}
+
+#main-content {
+    padding-bottom: 48px;
+}
+
+
+/* }}} */
+/* {{{ Less Framework Grid */
+
+/*      Default Layout: 992px. 
+        Gutters: 24px.
+        Outer margins: 48px.
+        Leftover space for scrollbars @1024px: 32px.
+-------------------------------------------------------------------------------
+cols    1     2      3      4      5      6      7      8      9      10
+px      68    160    252    344    436    528    620    712    804    896    */
+
+#masthead,
+#colophon,
+#main-feature,
+#main-content {
+    margin: 0 auto;
+    padding-left: 48px;
+    padding-right: 48px;
+    position: relative;
+    width: 896px;
+    .clearfix
+}
+
+
+/*      Tablet Layout: 768px.
+        Gutters: 24px.
+        Outer margins: 28px.
+        Inherits styles from: Default Layout.
+-----------------------------------------------------------------
+cols    1     2      3      4      5      6      7      8
+px      68    160    252    344    436    528    620    712    */
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    
+    #masthead,
+    #colophon,
+    #main-feature,
+    #main-content {
+        width: 712px;
+        padding: 0 28px;
+    }
+}
+
+
+
+/*      Mobile Layout: 320px.
+        Gutters: 24px.
+        Outer margins: 34px.
+        Inherits styles from: Default Layout.
+---------------------------------------------
+cols    1     2      3
+px      68    160    252    */
+
+@media only screen and (max-width: 767px) {
+    
+    #masthead,
+    #colophon,
+    #main-feature,
+    #main-content {
+        width: 252px;
+        padding: 0 34px;
+    }
+}
+
+
+
+/*      Wide Mobile Layout: 480px.
+        Gutters: 24px.
+        Outer margins: 22px.
+        Inherits styles from: Default Layout, Mobile Layout.
+------------------------------------------------------------
+cols    1     2      3      4      5
+px      68    160    252    344    436    */
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    
+    #masthead,
+    #colophon,
+    #main-feature,
+    #main-content {
+        width: 480px;
+        padding: 0 22px;
+    }
+    
+}
+
+/* }}} */
+/* {{{ Header Nav */
+
+#masthead {
+
+    h1 {
+        padding: 48px 0 24px 0;
+        margin: 0;
+    }
+
+    nav {
+        float: right;
+        margin-right: 16px;
+        text-transform: uppercase;
+        font-size: 13px;
+        .open-sans;
+
+        ul li {
+            list-style-type: none;
+            display: inline;
+
+            a,
+            span {
+                display: inline-block;
+                padding: 12px;
+            }
+
+            a,
+            a:link,
+            a:visited {
+                color: @text-color-secondary;
+            }
+
+        }
+
+    }
+
+}
+
+
+/* }}} */
+/* {{{ Header Breadcrumbs */
+
+#masthead {
+
+    nav.breadcrumbs {
+        float: none;
+        padding: 24px 0;
+
+        a,
+        span {
+            margin-right: 1em;
+            margin-left: 1em;
+        }
+
+        a:first-child,
+        span:first-child {
+            margin-left: 0;
+        }
+
+    }
+
+}
+
+/* }}} */
+/* {{{ Sidebar */
+
+#sidebar {
+
+    nav {
+        .open-sans;
+        font-size: 16px;
+        font-weight: 300;
+        color: @text-color-secondary;
+
+        li {
+            list-style-type: none;
+            border-bottom: 1px dotted #ccc;
+
+            a,
+            b {
+                display: block;
+                padding: 8px 0;
+            }
+
+            li b {
+                font-weight: 600;
+            }
+
+        }
+
+        li:first-child {
+            font-size: 24px;
+        }
+
+    }
+
+}
+
+/* }}} */
+/* {{{ Footer */
+
+#colophon {
+    color: @text-color-light;
+    padding: 48px 0;
+    font-size: 14px;
+    line-height: 18px;
+
+    nav {
+        .open-sans;
+
+        ul li {
+            list-style-type: none;
+            margin-left: 0;
+        }
+
+    }
+
+}
+
+/* }}} */

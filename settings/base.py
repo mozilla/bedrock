@@ -40,13 +40,14 @@ def JINJA_CONFIG():
               'finalize': lambda x: x if x is not None else ''}
     return config
 
+LESS_PREPROCESS = True
+
 # Bundles is a dictionary of two dictionaries, css and js, which list css files
 # and js files that can be bundled together by the minify app.
 MINIFY_BUNDLES = {
     'css': {
         'common': (
-            'css/covehead/template.css',
-            'css/covehead/content.css',
+            'css/sandstone/sandstone.less',
         ),
         'channel': (
             'css/covehead/template.css',
@@ -69,8 +70,6 @@ MINIFY_BUNDLES = {
     'js': {
         'common': (
             'js/libs/jquery-1.4.4.min.js',
-            'js/util.js',
-            'js/nav-main.js',
         ),
         'geolocation': (
             'js/libs/jquery-1.4.4.min.js',
@@ -103,6 +102,7 @@ INSTALLED_APPS = list(INSTALLED_APPS) + [
     # Local apps
     'l10n_example',  # DELETEME
     'mozorg',
+    'research',
 
     # libs
     'l10n_utils',
