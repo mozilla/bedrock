@@ -26,7 +26,27 @@
     <div id="wrapper">
 
         {% block site_header %}
-          {% include "includes/header.html" %}
+          {# start #header #}
+          <header id="masthead">
+            <a href="http://www.mozilla.org/" id="tabzilla">{{ _('Mozilla') }}</a>
+
+            {# start menu #nav-main #}
+            <nav id="nav-main" role="navigation">
+            <ul>
+                <li><a href="#">Mission</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">Get Involved</a></li>
+            </ul>
+            </nav>
+            {# end menu #nav-main #}
+
+            <h1><img src="/media/img/sandstone/header-mozilla.png" alt="mozilla"></h1>
+
+            {% block breadcrumbs %}{% endblock %}
+
+          </header>
+          {# end #header #}
         {% endblock %}
 
         {% block content %}{% endblock %}

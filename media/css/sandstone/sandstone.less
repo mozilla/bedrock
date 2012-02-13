@@ -3,7 +3,6 @@
 @import "reset.less";
 @import "fonts.less";
 
-/* }}} */
 /* {{{ Basic Colors, Text, Links */
 
 body {
@@ -12,6 +11,10 @@ body {
     font-family: @baseFontFamily;
     color: @text-color-primary;
     background: #fff;
+}
+
+#outer-wrapper {
+    border-top: 2px solid #fff;
 }
 
 #wrapper {
@@ -31,20 +34,28 @@ a:active {
 h1, h2, h3, h4, h5, h6 {
     .open-sans;
     font-weight: 300;
-    margin: 24px 0 12px 0;
+    margin: 0 0 12px 0;
+    line-height: 100%;
 }
 
 h1 { font-size: 48px; }
 h2 { font-size: 32px; }
-h3 { font-size: 24px; }
-h4 { font-size: 18px; }
+h3 { font-size: 28px; }
+h4 { font-size: 24px; }
 h5 { font-size: 16px; }
 h6 { font-size: 14px; }
+
+hgroup {
+    h1, h2, h3, h4, h5, h6 {
+        margin-bottom: 0;
+    }
+}
 
 p,
 ul,
 ol,
-dl {
+dl,
+hgroup {
     margin: 0 0 24px 0;
 }
 
@@ -57,11 +68,11 @@ li {
 
 #gridSystem > .generate(@gridColumns, @gridColumnWidth, @gridGutterWidth);
 
-#outer-wrapper {
-    border-top: 2px solid #fff;
+#main-content {
+    padding-bottom: 48px;
 }
 
-#main-content {
+#main-feature {
     padding-bottom: 48px;
 }
 
@@ -199,7 +210,7 @@ px      68    160    252    344    436    */
 
     nav.breadcrumbs {
         float: none;
-        padding: 24px 0;
+        padding: 24px 0 12px 0;
 
         a,
         span {
