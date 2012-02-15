@@ -87,6 +87,11 @@ MINIFY_BUNDLES = {
     }
 }
 
+# Dynamically process LESS server-side? (usually true to local
+# development)
+LESS_PREPROCESS = False
+LESS_BIN = 'lessc'
+
 # Override this because we've moved settings into a directory
 PROD_DETAILS_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)),
                                 'lib/product_details_json')
