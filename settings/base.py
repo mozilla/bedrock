@@ -51,7 +51,7 @@ MINIFY_BUNDLES = {
         'channel': (
             'css/covehead/template.css',
             'css/covehead/content.css',
-            'css/covehead/channel.less',
+            'css/covehead/channel.css',
         ),
         'home': (
             'css/covehead/template.css',
