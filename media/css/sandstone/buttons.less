@@ -1,0 +1,30 @@
+.button {
+    .border-radius;
+    .inline-block;
+    .box-shadow(@buttonShadow);
+    background-color: @buttonGreen;
+    #gradient > .vertical(@buttonGreen, #659C28);
+    color: @buttonTextColor;
+    text-align: center;
+    font-size: 14px;
+    padding: 0 @baseLine;
+    height: @baseLine * 2;
+    line-height: @baseLine * 2;
+    text-decoration: none;
+    .open-sans;
+    .transition();
+
+    &:hover {
+        .box-shadow(@buttonShadowHover);
+        color: @buttonTextColor;
+        text-decoration: none;
+        .transition();
+    }
+    
+    &:active {
+        .box-shadow(@buttonShadowActive);
+        color: @buttonTextColor;
+        text-decoration: none;
+        .transition();
+    }
+}

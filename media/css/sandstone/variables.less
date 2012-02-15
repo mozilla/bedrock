@@ -1,12 +1,20 @@
-@text-color-primary:   #333;
-@text-color-secondary: #484848;
-@text-color-light:     #bbb;
+@textColorPrimary:   #333;
+@textColorSecondary: #484848;
+@textColorLight:     #bbb;
 
-@link-blue:    #67a7d0;
+@linkRed:  rgb(175,50,50);
+@linkBlue: rgb(103,167,208);
+
+@buttonGreen: #81bc2e;
+@buttonSecondary: darken(@buttonGreen, 35%);
+@buttonTextColor: #fff;
+@buttonShadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.1), inset 0px -2px 0px 0px rgba(0, 0, 0, 0.2);
+@buttonShadowHover: 0px 2px 0px 0px rgba(0, 0, 0, 0.1), inset 0px -2px 0px 0px rgba(0, 0, 0, 0.2), inset 0px 12px 24px 2px saturate(@buttonGreen, 10%);
+@buttonShadowActive: inset 0px 2px 0px 0px rgba(0, 0, 0, 0.2), inset 0px 12px 24px 6px rgba(0,0,0,0.2), inset 0px 0px 2px 2px rgba(0,0,0,0.2);
 
 @baseFontSize:      16px;
 @baseFontFamily:    Georgia, serif;
-@baseLineHeight:    24px;
+@baseLine:          24px;
 
 // Less Framework grid
 @gridColumns:             10;

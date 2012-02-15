@@ -49,6 +49,9 @@ MINIFY_BUNDLES = {
         'common': (
             'css/sandstone/sandstone.less',
         ),
+        'contribute': (
+            'css/contribute.less',
+        ),
         'channel': (
             'css/covehead/template.css',
             'css/covehead/content.css',

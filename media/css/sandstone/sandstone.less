@@ -2,14 +2,15 @@
 @import "mixins.less";
 @import "reset.less";
 @import "fonts.less";
+@import "buttons.less";
 
 /* {{{ Basic Colors, Text, Links */
 
 body {
     font-size: @baseFontSize;
-    line-height: @baseLineHeight;
+    line-height: @baseLine;
     font-family: @baseFontFamily;
-    color: @text-color-primary;
+    color: @textColorPrimary;
     background: #fff;
 }
 
@@ -18,32 +19,67 @@ body {
 }
 
 #wrapper {
-    background: #f2f0ee url(/media/img/sandstone/bg.png) 0 0 repeat-x;
+    background: #f5f1e8 url(/media/img/sandstone/background-gradient.png) 0 0 repeat-x;
 }
 
 a {
-    color: @link-blue;
+    color: @linkRed;
     text-decoration: none;
+    &:hover,
+    &:active {
+        color: darken(@linkRed, 10%);
+        text-decoration: underline;
+    }
 }
 
-a:hover,
-a:active {
-    text-decoration: underline;
-}
-
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, .huge, .large {
     .open-sans;
     font-weight: 300;
     margin: 0 0 12px 0;
     line-height: 100%;
+    text-shadow: 0px 1px 0px rgba(255,255,255,0.75);
 }
 
-h1 { font-size: 48px; }
-h2 { font-size: 32px; }
-h3 { font-size: 28px; }
-h4 { font-size: 24px; }
-h5 { font-size: 16px; }
-h6 { font-size: 14px; }
+.huge {
+    font-size: 108px;
+    letter-spacing: -4px;
+    line-height: 100%;
+}
+
+.large {
+    font-size: 72px;
+    letter-spacing: -3px;
+    line-height: 100%;
+}
+
+h1 {
+    font-size: 48px;
+    letter-spacing: -2px;
+}
+h2 {
+    font-size: 32px;
+    letter-spacing: -1px;
+}
+h3 {
+    font-size: 28px;
+    letter-spacing: -0.5px;
+}
+h4 {
+    font-size: 24px;
+    letter-spacing: -0.25px;
+}
+h5 {
+    font-size: 16px;
+}
+h6 {
+    font-size: 14px;
+}
+
+.small,
+small {
+    font-size: 12px;
+    line-height: 100%;
+}
 
 hgroup {
     h1, h2, h3, h4, h5, h6 {
@@ -183,6 +219,7 @@ px      68    160    252    344    436    */
         ul li {
             list-style-type: none;
             display: inline;
+            margin: 0;
 
             a,
             span {
@@ -193,7 +230,7 @@ px      68    160    252    344    436    */
             a,
             a:link,
             a:visited {
-                color: @text-color-secondary;
+                color: @textColorSecondary;
             }
 
         }
@@ -236,7 +273,7 @@ px      68    160    252    344    436    */
         .open-sans;
         font-size: 16px;
         font-weight: 300;
-        color: @text-color-secondary;
+        color: @textColorSecondary;
 
         li {
             list-style-type: none;
@@ -266,10 +303,22 @@ px      68    160    252    344    436    */
 /* {{{ Footer */
 
 #colophon {
-    color: @text-color-light;
+    color: @textColorLight;
     padding: 48px 0;
     font-size: 14px;
     line-height: 18px;
+
+    a,
+    a:link,
+    a:visited {
+        color: @linkBlue;
+    }
+
+    a:hover,
+    a:active {
+        color: darken(@linkBlue, 10%);
+    }
+
 
     nav {
         .open-sans;
