@@ -4,3 +4,6 @@
 [submodule "vendor-local/src/tower"]
 	path = vendor-local/src/tower
 	url = https://github.com/clouserw/tower.git
+[submodule "vendor-local/src/jingo-minify"]
+	path = vendor-local/src/jingo-minify
+	url = https://github.com/jsocol/jingo-minify.git
