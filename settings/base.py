@@ -68,7 +68,11 @@ MINIFY_BUNDLES = {
             'css/covehead/mozilla-expanders.css',
             'css/covehead/geolocation.css',
             'css/jquery/nyroModal.css'
-        )
+        ),
+        'styleguide': (
+            'css/sandstone/sandstone.less',
+            'css/sandstone/styleguide.less',
+        ),
     },
     'js': {
         'common': (
