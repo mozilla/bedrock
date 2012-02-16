@@ -50,6 +50,7 @@ MINIFY_BUNDLES = {
             'css/sandstone/sandstone.less',
         ),
         'contribute': (
+            'css/sandstone/sandstone.less',
             'css/contribute.less',
         ),
         'channel': (
