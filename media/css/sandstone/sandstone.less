@@ -114,92 +114,6 @@ li {
 
 
 /* }}} */
-/* {{{ Less Framework Grid */
-
-/*      Default Layout: 992px. 
-        Gutters: 24px.
-        Outer margins: 48px.
-        Leftover space for scrollbars @1024px: 32px.
--------------------------------------------------------------------------------
-cols    1     2      3      4      5      6      7      8      9      10
-px      68    160    252    344    436    528    620    712    804    896    */
-
-#masthead,
-#colophon,
-#main-feature,
-#main-content {
-    margin: 0 auto;
-    padding-left: 48px;
-    padding-right: 48px;
-    position: relative;
-    width: 896px;
-    .clearfix
-}
-
-
-/*      Tablet Layout: 768px.
-        Gutters: 24px.
-        Outer margins: 28px.
-        Inherits styles from: Default Layout.
------------------------------------------------------------------
-cols    1     2      3      4      5      6      7      8
-px      68    160    252    344    436    528    620    712    */
-
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-    
-    #masthead,
-    #colophon,
-    #main-feature,
-    #main-content {
-        width: 712px;
-        padding: 0 28px;
-    }
-}
-
-
-
-/*      Mobile Layout: 320px.
-        Gutters: 24px.
-        Outer margins: 34px.
-        Inherits styles from: Default Layout.
----------------------------------------------
-cols    1     2      3
-px      68    160    252    */
-
-@media only screen and (max-width: 767px) {
-    
-    #masthead,
-    #colophon,
-    #main-feature,
-    #main-content {
-        width: 252px;
-        padding: 0 34px;
-    }
-}
-
-
-
-/*      Wide Mobile Layout: 480px.
-        Gutters: 24px.
-        Outer margins: 22px.
-        Inherits styles from: Default Layout, Mobile Layout.
-------------------------------------------------------------
-cols    1     2      3      4      5
-px      68    160    252    344    436    */
-
-@media only screen and (min-width: 480px) and (max-width: 767px) {
-    
-    #masthead,
-    #colophon,
-    #main-feature,
-    #main-content {
-        width: 480px;
-        padding: 0 22px;
-    }
-    
-}
-
-/* }}} */
 /* {{{ Header Nav */
 
 #masthead {
@@ -328,6 +242,107 @@ px      68    160    252    344    436    */
             margin: 0 0 2px 0;
         }
 
+    }
+
+}
+
+/* }}} */
+/* {{{ Less Framework Grid */
+
+/*      Default Layout: 992px. 
+        Gutters: 24px.
+        Outer margins: 48px.
+        Leftover space for scrollbars @1024px: 32px.
+-------------------------------------------------------------------------------
+cols    1     2      3      4      5      6      7      8      9      10
+px      68    160    252    344    436    528    620    712    804    896    */
+
+#masthead,
+#colophon,
+#main-feature,
+#main-content {
+    margin: 0 auto;
+    padding-left: 48px;
+    padding-right: 48px;
+    position: relative;
+    width: 896px;
+    .clearfix
+}
+
+
+/*      Tablet Layout: 768px.
+        Gutters: 24px.
+        Outer margins: 28px.
+        Inherits styles from: Default Layout.
+-----------------------------------------------------------------
+cols    1     2      3      4      5      6      7      8
+px      68    160    252    344    436    528    620    712    */
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    
+    #masthead,
+    #colophon,
+    #main-feature,
+    #main-content {
+        width: 712px;
+        padding-left: 28px;
+        padding-right: 28px;
+    }
+}
+
+
+
+/*      Mobile Layout: 320px.
+        Gutters: 24px.
+        Outer margins: 34px.
+        Inherits styles from: Default Layout.
+---------------------------------------------
+cols    1     2      3
+px      68    160    252    */
+
+@media only screen and (max-width: 767px) {
+    
+    #masthead,
+    #colophon,
+    #main-feature,
+    #main-content {
+        width: 252px;
+        padding-left: 34px;
+        padding-right: 34px;
+    }
+}
+
+
+
+/*      Wide Mobile Layout: 480px.
+        Gutters: 24px.
+        Outer margins: 22px.
+        Inherits styles from: Default Layout, Mobile Layout.
+------------------------------------------------------------
+cols    1     2      3      4      5
+px      68    160    252    344    436    */
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+
+    #masthead,
+    #colophon,
+    #main-feature,
+    #main-content {
+        width: 480px;
+        padding-left: 22px;
+        padding-right: 22px;
+    }
+
+    #masthead {
+        nav {
+            ul li {
+                a,
+                span {
+                    padding-left: 6px;
+                    padding-right: 6px;
+                }
+            }
+        }
     }
 
 }
