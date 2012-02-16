@@ -50,7 +50,6 @@ MINIFY_BUNDLES = {
             'css/sandstone/sandstone.less',
         ),
         'contribute': (
-            'css/sandstone/sandstone.less',
             'css/contribute.less',
         ),
         'channel': (
@@ -74,17 +73,26 @@ MINIFY_BUNDLES = {
             'css/sandstone/sandstone.less',
             'css/sandstone/styleguide.less',
         ),
+        'video': (
+            'css/sandstone/video.less',
+        ),
     },
     'js': {
         'common': (
-            'js/libs/jquery-1.4.4.min.js',
+            'js/libs/jquery-1.7.1.min.js',
         ),
         'geolocation': (
             'js/libs/jquery-1.4.4.min.js',
             'js/libs/jquery.nyroModal.pack.js',
             'js/mozilla-expanders.js',
             'js/geolocation-demo.js'
-        )
+        ),
+        'pager': (
+            'js/mozilla-pager.js',
+        ),
+        'video': (
+            'js/mozilla-video-tools.js',
+        ),
     }
 }
 

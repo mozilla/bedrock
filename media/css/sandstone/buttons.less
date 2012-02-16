@@ -3,7 +3,7 @@
     .inline-block;
     .box-shadow(@buttonShadow);
     background-color: @buttonGreen;
-    #gradient > .vertical(@buttonGreen, #659C28);
+    #gradient > .vertical(@buttonGreen, @buttonGreenDark);
     color: @buttonTextColor;
     text-align: center;
     font-size: 14px;
@@ -11,6 +11,7 @@
     height: @baseLine * 2;
     line-height: @baseLine * 2;
     text-decoration: none;
+    border: 0;
     .open-sans;
     .transition();
 
@@ -26,5 +27,15 @@
         color: @buttonTextColor;
         text-decoration: none;
         .transition();
+    }
+}
+
+.button-blue {
+    .button;
+    background-color: @buttonBlue;
+    #gradient > .vertical(@buttonBlue, @buttonBlueDark);
+
+    &:hover {
+        .box-shadow(@buttonBlueShadowHover);
     }
 }

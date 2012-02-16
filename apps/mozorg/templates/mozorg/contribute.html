@@ -1,13 +1,107 @@
 {% extends "base.html" %}
 
+{% block page_title %}Get Involved: Volunteer Opportunities at Mozilla{% endblock %}
 {% block body_id %}contribute{% endblock %}
 
-{% block site_css %}
+{% block extrahead %}
+  {{ css('video') }}
   {{ css('contribute') }}
+{% endblock %}
+
+{% block js %}
+  {{ js('video') }}
+  {{ js('pager') }}
 {% endblock %}
 
 {% block content %}
 
-xyz
+<div id="main-content">
+
+  <h1 class="large">Get involved with Mozilla</h1>
+
+  <nav class="menu-bar">
+    <ul>
+      <li><a href="/contribute/areas.html">Area of Interest</a></li>
+      <li><a href="/contribute/local/">Location</a></li>
+      <li><a href="/contribute/timeavailable.html">Time Available</a></li>
+    </ul>
+  </nav>
+
+  <section id="welcome">
+    <div id="welcome-video" class="mozilla-video-control">
+      <video
+        width="640"
+        height="360"
+        poster="/media/img/contribute/poster-brand.jpg"
+        controls="controls">
+        <source src="//videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.webm" type="video/webm" />
+        <source src="//videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.theora.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;" />
+        <source src="//http://videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.mp4" type="video/mp4" />
+        <object type="application/x-shockwave-flash"
+          style="width: 640px; height: 388px;"
+          data="/media/flash/playerWithControls.swf?flv=brand/Mozilla_Firefox_Manifesto_v0.2_640.mp4&amp;autoplay=false&amp;msg=Play%20Video">
+          <param name="movie" value="/media/flash/playerWithControls.swf?flv=brand/Mozilla_Firefox_Manifesto_v0.2_640.mp4&amp;autoplay=false&amp;msg=Play%20Video" />
+          <param name="wmode" value="transparent" />
+
+          <div class="video-player-no-flash">
+          This video requires a browser with support for open video
+          or the <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player</a>.
+          </div>
+        </object>
+      </video>
+    </div>
+    <p>
+      You don’t have to be a C++ guru (or even know what that means!) to get involved.
+      <b>You just have to love the Web.</b>
+    </p>
+  </section>
+
+  <form action="#" id="help-form" class="row">
+    <div class="span3">
+      <h3>Want to help?</h3>
+    </div>
+    <div class="span2">
+      <input type="email" placeholder="YOUR EMAIL ADDRESSS">
+    </div>
+    <div class="span2">
+      <select>
+        <option disabled="disabled" selected="selected" value="">Area of interest?</option>
+      </select>
+    </div>
+    <div class="span2">
+      <input type="submit" class="button-blue" value="Sign me up »">
+    </div>
+  </form>
+
+  <section id="opportunities">
+
+    <h1>Find an opportunity</h1>
+
+    <div class="pager pager-with-tabs">
+      <ul>
+        <li><a href="#location">Location</a></li>
+        <li><a href="#interest">Interest</a></li>
+        <li><a href="#all">all</a></li>
+      </ul>
+      <div class="pager-content">
+        <div class="location-content default-page" id="location">
+          <script>// <![CDATA[
+          document.getElementById('bio-baker').id = 'page-bio-baker';
+          // ]]></script>
+          <p>Location content!</p>
+        </div>
+        <div class="interest-content default-page" id="interest">
+          <script>// <![CDATA[
+          document.getElementById('bio-baker').id = 'page-bio-baker';
+          // ]]></script>
+          <p>Interest content!</p>
+        </div>
+      </div>
+    </div>
+
+
+  </section>
+
+</div>
 
 {% endblock %}

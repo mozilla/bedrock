@@ -179,6 +179,33 @@ li {
 }
 
 /* }}} */
+/* {{{ Menu Bars */
+
+.menu-bar {
+    background: #fff;
+    line-height: @baseLine * 3;
+    text-align: center;
+    .box-shadow(0 1px rgba(0,0,0,0.1);
+    .open-sans;
+    font-weight: 300;
+
+    ul {
+        margin: 0 0 @baseLine * 2 0;
+        li {
+            .inline-block;
+            margin: 0;
+            a {
+                border-left: 1px solid @borderColor;
+                padding: @baseLine / 3 @baseLine;
+            }
+            &:first-child a {
+                border-left: 0;
+            }
+        }
+    } 
+}
+
+/* }}} */
 /* {{{ Sidebar */
 
 #sidebar {
