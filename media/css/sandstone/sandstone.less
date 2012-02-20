@@ -104,10 +104,7 @@ li {
 
 #gridSystem > .generate(@gridColumns, @gridColumnWidth, @gridGutterWidth);
 
-#main-content {
-    padding-bottom: 48px;
-}
-
+#main-content,
 #main-feature {
     padding-bottom: 48px;
 }
@@ -284,10 +281,13 @@ li {
 cols    1     2      3      4      5      6      7      8      9      10
 px      68    160    252    344    436    528    620    712    804    896    */
 
+
 #masthead,
-#colophon,
 #main-feature,
-#main-content {
+#main-content,
+#colophon,
+.container {
+    display: block;
     margin: 0 auto;
     padding-left: 48px;
     padding-right: 48px;
@@ -308,9 +308,10 @@ px      68    160    252    344    436    528    620    712    */
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     
     #masthead,
-    #colophon,
     #main-feature,
-    #main-content {
+    #main-content,
+    #colophon,
+    .container {
         width: 712px;
         padding-left: 28px;
         padding-right: 28px;
@@ -328,11 +329,12 @@ cols    1     2      3
 px      68    160    252    */
 
 @media only screen and (max-width: 767px) {
-    
+
     #masthead,
-    #colophon,
     #main-feature,
-    #main-content {
+    #main-content,
+    #colophon,
+    .container {
         width: 252px;
         padding-left: 34px;
         padding-right: 34px;
@@ -352,9 +354,10 @@ px      68    160    252    344    436    */
 @media only screen and (min-width: 480px) and (max-width: 767px) {
 
     #masthead,
-    #colophon,
     #main-feature,
-    #main-content {
+    #main-content,
+    #colophon,
+    .container {
         width: 480px;
         padding-left: 22px;
         padding-right: 22px;

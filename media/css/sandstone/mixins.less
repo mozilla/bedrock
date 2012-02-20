@@ -68,6 +68,12 @@
     background-image: -webkit-linear-gradient(@startColor, color-stop(@colorStop, @midColor), @endColor);
     background-image: -moz-linear-gradient(@startColor, color-stop(@midColor, @colorStop), @endColor);
   }
+  .radial(@posX:center, @posY:center, @shape:circle, @size:closest-side, @startColor:white, @endColor:black){
+    background-image: -moz-radial-gradient(@posX @posY, @shape @size, @startColor, @endColor);
+    background-image: -webkit-radial-gradient(@posX @posY, @shape @size, @startColor, @endColor);
+    background-image: -o-radial-gradient(@posX @posY, @shape @size, @startColor, @endColor);
+    background-image: radial-gradient(@posX @posY, @shape @size, @startColor, @endColor);
+}
 }
 
 

@@ -7,6 +7,9 @@ def index(request):
 def contribute(request):
     return l10n_utils.render(request, "mozorg/contribute.html")
 
+def persona(request):
+    return l10n_utils.render(request, "mozorg/persona.html")
+
 def channel(request):
     data = {}
 

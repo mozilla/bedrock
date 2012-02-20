@@ -30,6 +30,7 @@
           <header id="masthead">
             <a href="http://www.mozilla.org/" id="tabzilla">{{ _('Mozilla') }}</a>
 
+            {% block site_header_nav %}
             {# start menu #nav-main #}
             <nav id="nav-main" role="navigation">
             <ul>
@@ -40,8 +41,11 @@
             </ul>
             </nav>
             {# end menu #nav-main #}
+            {% endblock %}
 
+            {% block site_header_logo %}
             <h1><img src="/media/img/sandstone/header-mozilla.png" alt="mozilla"></h1>
+            {% endblock %}
 
             {% block breadcrumbs %}{% endblock %}
 
