@@ -1,43 +1,55 @@
-<!DOCTYPE html>
-<html LANG="{{ LANG }}" dir="{{ DIR }}">
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="{{ LANG }}" dir="{{ DIR }}"> <!--<![endif]-->
   <head>
-    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <meta charset="utf-8">
+
     <title>{% block page_title %}mozilla.org{% endblock %}</title>
 
-    <style>
-    {# TODO put this into CSS file. #}
-    {# MetaWebPro font family licensed from fontshop.com. WOFF-FTW! #}
-    @font-face {
-        font-family: 'MetaBlack';
-        src: url('http://mozcom-cdn.mozilla.net/img/fonts/MetaWebPro-Black.eot');
-        src: local('☺'), url('http://mozcom-cdn.mozilla.net/img/fonts/MetaWebPro-Black.woff') format('woff');
-        font-weight: bold;
-    }
-    </style>
+    <link href="//www.mozilla.org/tabzilla/media/css/tabzilla.css" rel="stylesheet">
+
+    <script src="/media/js/libs/modernizr-2.5.0.min.js"></script>
 
     {% block site_css %}
       {{ css('common') }}
     {% endblock %}
 
-    <link rel="shortcut icon" type="image/png" href="{{ MEDIA_URL }}img/favicon.png"/>
+    {% block extrahead %}{% endblock %}
+
+    <link rel="shortcut icon" type="image/png" href="{{ MEDIA_URL }}img/favicon.png">
   </head>
 
   <body id="{% block body_id %}{% endblock %}" class="html-{{ DIR }} {% block body_class %}{% endblock %}">
+    <div id="outer-wrapper">
     <div id="wrapper">
-      <div id="doc">
-        <div id="nav-access">
-          <a href="#nav-main">{{ _('skip to navigation') }}</a>
-          <a href="#lang_form">{{ _('switch language') }}</a>
-        </div>
 
         {% block site_header %}
-          {% include "includes/header.html" %}
+          {# start #header #}
+          <header id="masthead">
+            <a href="http://www.mozilla.org/" id="tabzilla">{{ _('Mozilla') }}</a>
+
+            {# start menu #nav-main #}
+            <nav id="nav-main" role="navigation">
+            <ul>
+                <li><a href="#">Mission</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">Get Involved</a></li>
+            </ul>
+            </nav>
+            {# end menu #nav-main #}
+
+            <h1><img src="/media/img/sandstone/header-mozilla.png" alt="mozilla"></h1>
+
+            {% block breadcrumbs %}{% endblock %}
+
+          </header>
+          {# end #header #}
         {% endblock %}
 
         {% block content %}{% endblock %}
-
-      </div>{# /#doc #}
-    </div>{# /#wrapper #}
 
     {% block site_footer %}
       {% include "includes/footer.html" %}

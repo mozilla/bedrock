@@ -1,0 +1,377 @@
+@import "variables.less";
+@import "mixins.less";
+@import "reset.less";
+@import "fonts.less";
+@import "buttons.less";
+
+/* {{{ Basic Colors, Text, Links */
+
+body {
+    font-size: @baseFontSize;
+    line-height: @baseLine;
+    font-family: @baseFontFamily;
+    color: @textColorPrimary;
+    background: #fff;
+}
+
+#outer-wrapper {
+    border-top: 2px solid #fff;
+}
+
+#wrapper {
+    background: #f5f1e8 url(/media/img/sandstone/background-gradient.png) 0 0 repeat-x;
+}
+
+a {
+    color: @linkRed;
+    text-decoration: none;
+    &:hover,
+    &:active {
+        color: darken(@linkRed, 10%);
+        text-decoration: underline;
+    }
+}
+
+h1, h2, h3, h4, h5, h6, .huge, .large {
+    .open-sans;
+    font-weight: 300;
+    margin: 0 0 12px 0;
+    line-height: 100%;
+    text-shadow: 0px 1px 0px rgba(255,255,255,0.75);
+}
+
+.huge {
+    font-size: 108px;
+    letter-spacing: -4px;
+    line-height: 100%;
+}
+
+.large {
+    font-size: 72px;
+    letter-spacing: -3px;
+    line-height: 100%;
+}
+
+h1 {
+    font-size: 48px;
+    letter-spacing: -2px;
+}
+h2 {
+    font-size: 32px;
+    letter-spacing: -1px;
+}
+h3 {
+    font-size: 28px;
+    letter-spacing: -0.5px;
+}
+h4 {
+    font-size: 24px;
+    letter-spacing: -0.25px;
+}
+h5 {
+    font-size: 16px;
+}
+h6 {
+    font-size: 14px;
+}
+
+.small,
+small {
+    font-size: 12px;
+    line-height: 100%;
+}
+
+hgroup {
+    h1, h2, h3, h4, h5, h6 {
+        margin-bottom: 0;
+    }
+}
+
+p,
+ul,
+ol,
+dl,
+hgroup {
+    margin: 0 0 24px 0;
+}
+
+li {
+    margin-left: 24px;
+}
+
+/* }}} */
+/* {{{ Layout */
+
+#gridSystem > .generate(@gridColumns, @gridColumnWidth, @gridGutterWidth);
+
+#main-content {
+    padding-bottom: 48px;
+}
+
+#main-feature {
+    padding-bottom: 48px;
+}
+
+
+/* }}} */
+/* {{{ Header Nav */
+
+#masthead {
+
+    h1 {
+        padding: 48px 0 24px 0;
+        margin: 0;
+    }
+
+    nav {
+        float: right;
+        margin-right: 16px;
+        text-transform: uppercase;
+        font-size: 13px;
+        .open-sans;
+
+        ul li {
+            list-style-type: none;
+            display: inline;
+            margin: 0;
+
+            a,
+            span {
+                display: inline-block;
+                padding: 12px;
+            }
+
+            a,
+            a:link,
+            a:visited {
+                color: @textColorSecondary;
+            }
+
+        }
+
+    }
+
+}
+
+
+/* }}} */
+/* {{{ Header Breadcrumbs */
+
+#masthead {
+
+    nav.breadcrumbs {
+        float: none;
+        padding: 24px 0 12px 0;
+
+        a,
+        span {
+            margin-right: 1em;
+            margin-left: 1em;
+        }
+
+        a:first-child,
+        span:first-child {
+            margin-left: 0;
+        }
+
+    }
+
+}
+
+/* }}} */
+/* {{{ Menu Bars */
+
+.menu-bar {
+    background: #fff;
+    line-height: @baseLine * 3;
+    text-align: center;
+    .box-shadow(0 1px rgba(0,0,0,0.1);
+    .open-sans;
+    font-weight: 300;
+
+    ul {
+        margin: 0 0 @baseLine * 2 0;
+        li {
+            .inline-block;
+            margin: 0;
+            a {
+                border-left: 1px dotted @borderColor;
+                padding: @baseLine / 3 @baseLine;
+            }
+            &:first-child a {
+                border-left: 0;
+            }
+        }
+    } 
+}
+
+/* }}} */
+/* {{{ Sidebar */
+
+#sidebar {
+
+    nav {
+        .open-sans;
+        font-size: 16px;
+        font-weight: 300;
+        color: @textColorSecondary;
+
+        li {
+            list-style-type: none;
+            border-bottom: 1px dotted #ccc;
+
+            a,
+            b {
+                display: block;
+                padding: 8px 0;
+            }
+
+            li b {
+                font-weight: 600;
+            }
+
+        }
+
+        li:first-child {
+            font-size: 24px;
+        }
+
+    }
+
+}
+
+/* }}} */
+/* {{{ Footer */
+
+#colophon {
+    color: @textColorLight;
+    padding: 48px 0;
+    font-size: 14px;
+    line-height: 18px;
+
+    a,
+    a:link,
+    a:visited {
+        color: @linkBlue;
+    }
+
+    a:hover,
+    a:active {
+        color: darken(@linkBlue, 10%);
+    }
+
+
+    nav {
+        .open-sans;
+
+        ul li {
+            list-style-type: none;
+            margin: 0 0 2px 0;
+        }
+
+    }
+
+}
+
+/* }}} */
+/* {{{ Less Framework Grid */
+
+/*      Default Layout: 992px. 
+        Gutters: 24px.
+        Outer margins: 48px.
+        Leftover space for scrollbars @1024px: 32px.
+-------------------------------------------------------------------------------
+cols    1     2      3      4      5      6      7      8      9      10
+px      68    160    252    344    436    528    620    712    804    896    */
+
+#masthead,
+#colophon,
+#main-feature,
+#main-content {
+    margin: 0 auto;
+    padding-left: 48px;
+    padding-right: 48px;
+    position: relative;
+    width: 896px;
+    .clearfix
+}
+
+
+/*      Tablet Layout: 768px.
+        Gutters: 24px.
+        Outer margins: 28px.
+        Inherits styles from: Default Layout.
+-----------------------------------------------------------------
+cols    1     2      3      4      5      6      7      8
+px      68    160    252    344    436    528    620    712    */
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    
+    #masthead,
+    #colophon,
+    #main-feature,
+    #main-content {
+        width: 712px;
+        padding-left: 28px;
+        padding-right: 28px;
+    }
+}
+
+
+
+/*      Mobile Layout: 320px.
+        Gutters: 24px.
+        Outer margins: 34px.
+        Inherits styles from: Default Layout.
+---------------------------------------------
+cols    1     2      3
+px      68    160    252    */
+
+@media only screen and (max-width: 767px) {
+    
+    #masthead,
+    #colophon,
+    #main-feature,
+    #main-content {
+        width: 252px;
+        padding-left: 34px;
+        padding-right: 34px;
+    }
+}
+
+
+
+/*      Wide Mobile Layout: 480px.
+        Gutters: 24px.
+        Outer margins: 22px.
+        Inherits styles from: Default Layout, Mobile Layout.
+------------------------------------------------------------
+cols    1     2      3      4      5
+px      68    160    252    344    436    */
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+
+    #masthead,
+    #colophon,
+    #main-feature,
+    #main-content {
+        width: 480px;
+        padding-left: 22px;
+        padding-right: 22px;
+    }
+
+    #masthead {
+        nav {
+            ul li {
+                a,
+                span {
+                    padding-left: 6px;
+                    padding-right: 6px;
+                }
+            }
+        }
+    }
+
+}
+
+/* }}} */
