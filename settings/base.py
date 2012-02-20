@@ -69,6 +69,9 @@ MINIFY_BUNDLES = {
             'css/covehead/geolocation.css',
             'css/jquery/nyroModal.css'
         ),
+        'persona': (
+            'css/persona.less',
+        ),
         'styleguide': (
             'css/sandstone/sandstone.less',
             'css/sandstone/styleguide.less',
