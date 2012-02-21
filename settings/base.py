@@ -44,6 +44,9 @@ def JINJA_CONFIG():
 # and js files that can be bundled together by the minify app.
 MINIFY_BUNDLES = {
     'css': {
+        'b2g': (
+            'css/b2g.less',
+        ),
         'common': (
             'css/sandstone/sandstone.less',
         ),
@@ -123,6 +126,7 @@ MIDDLEWARE_CLASSES = (
 INSTALLED_APPS = list(INSTALLED_APPS) + [
     # Local apps
     'l10n_example',  # DELETEME
+    'b2g',
     'mozorg',
     'persona',
     'research',
