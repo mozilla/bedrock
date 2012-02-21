@@ -126,6 +126,7 @@ INSTALLED_APPS = list(INSTALLED_APPS) + [
     # Local apps
     'l10n_example',  # DELETEME
     'mozorg',
+    'persona',
     'research',
 
     # libs

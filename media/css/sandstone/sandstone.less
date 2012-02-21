@@ -101,6 +101,19 @@ li {
     margin-left: 24px;
 }
 
+dl dt {
+    .open-sans;
+    font-weight: 300;
+    font-size: 32px;
+    line-height: 100%;
+    letter-spacing: -1px;
+    margin-bottom: @baseLine / 2;
+}
+
+dl dd {
+    margin-bottom: @baseLine * 2;
+}
+
 /* }}} */
 /* {{{ Layout */
 
@@ -135,10 +148,19 @@ li {
             margin: 0;
 
             a,
-            span {
+            b {
                 display: inline-block;
                 padding: 12px;
+                font-weight: normal;
             }
+
+            b,
+            .current {
+                background-position: 50% 0;
+                background-repeat: no-repeat;
+                background-image: url(/media/img/sandstone/menu-current.png);
+            }
+
 
             a,
             a:link,
@@ -369,7 +391,8 @@ px      68    160    252    344    436    */
         nav {
             ul li {
                 a,
-                span {
+                b,
+                span, {
                     padding-left: 6px;
                     padding-right: 6px;
                 }
