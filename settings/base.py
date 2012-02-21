@@ -48,6 +48,7 @@ MINIFY_BUNDLES = {
     'css': {
         'common': (
             'css/sandstone/sandstone.less',
+            'css/persona.less',
         ),
         'contribute': (
             'css/contribute.less',
