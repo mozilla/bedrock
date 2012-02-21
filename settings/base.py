@@ -40,8 +40,6 @@ def JINJA_CONFIG():
               'finalize': lambda x: x if x is not None else ''}
     return config
 
-LESS_PREPROCESS = True
-
 # Bundles is a dictionary of two dictionaries, css and js, which list css files
 # and js files that can be bundled together by the minify app.
 MINIFY_BUNDLES = {
