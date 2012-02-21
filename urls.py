@@ -9,6 +9,7 @@ from django.conf.urls.defaults import *
 urlpatterns = patterns('',
     # Main pages
     (r'', include('b2g.urls')),
+    (r'', include('marketplace.urls')),
     (r'', include('mozorg.urls')),
     (r'', include('persona.urls')),
     (r'', include('research.urls')),

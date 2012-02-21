@@ -70,6 +70,9 @@ MINIFY_BUNDLES = {
             'css/covehead/geolocation.css',
             'css/jquery/nyroModal.css'
         ),
+        'marketplace': (
+            'css/marketplace.less',
+        ),
         'persona': (
             'css/persona.less',
         ),
@@ -127,6 +130,7 @@ INSTALLED_APPS = list(INSTALLED_APPS) + [
     # Local apps
     'l10n_example',  # DELETEME
     'b2g',
+    'marketplace',
     'mozorg',
     'persona',
     'research',

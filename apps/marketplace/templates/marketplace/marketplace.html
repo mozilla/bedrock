@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block page_title %}Mozilla Marketplace{% endblock %}
+{% block body_id %}marketplace{% endblock %}
+
+{% block site_header_logo %}
+  <h1><img src="/media/img/marketplace/title.png" height="70" width="256" alt="Mozilla Marketplace"></h1>
+{% endblock %}
+
+{% block site_header_nav %}
+{% endblock %}
+
+{% block extrahead %}
+  {{ css('marketplace') }}
+{% endblock %}
+
+{% block content %}
+
+<hgroup id="main-feature">
+  <h1>Coming Soon: Mozilla Marketplace</h1>
+  <h2>Lorem ipsum dolor</h2>
+</hgroup>
+
+<article id="main-content">
+<div class="row">
+
+  <div class="span6">
+    <p>Mozilla is unlocking the power of the Web as the world’s largest marketplace, creating an open ecosystem of developers and content owners with limitless possibilities for consumer interaction.</p>
+    <p>With open Web standards like HTML5, CSS and JavaScript — together with Mozilla-designed APIs — app experiences can be delivered anywhere, to any device, on any operating system. The Mozilla Marketplace will roll out to millions of Firefox users later this year.</p>
+  </div>
+
+  <aside id="app-developer" class="span3 offset1">
+    <h3>App developer?</h3>
+    <p>You can already submit your app to the Mozilla Marketplace.</p>
+    <p><a href="https://developer.mozilla.org/en/Apps/Submitting_an_app">Find out how »</a></p>
+  </aside>
+
+  </div>
+</article>
+
+<form class="container" id="apps-email-form">
+  <h3>Email signup</h3>
+  <div class="row">
+
+  <p class="span2">Sign up for more news about the Mozilla Marketplace.</p>
+
+  <div class="span6">
+    <input id="apps-email" type="email" value="" placeholder="YOUR EMAIL ADDRESS">
+    <select id="apps-interest">
+      <option disabled="disabled">AREA OF INTEREST</option>
+      <option>developing apps</option>
+      <option>hosting or selling apps</option>
+      <option>discovering and buying apps</option>
+      <option>partnership opportunities</option>
+    </select>
+
+    <div class="privacy-field">
+      <label for="inline-privacy-check" class="privacy-check-label">
+      <input type="checkbox" class="privacy-check" id="inline-privacy-check" name="privacy">
+      <span class="title">I agree to the <a href="/en-US/privacy-policy">Privacy Policy</a></span>
+      </label>
+    </div>
+  </div>
+
+  <div class="span2">
+    <input type="submit" value="Sign up »" class="button-blue">
+  </div>
+
+  </div>
+</form>
+
+&nbsp;
+
+{% endblock %}
