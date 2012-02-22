@@ -31,13 +31,17 @@ hgroup {
     background: #fff;
     .clearfix;
 
-    label {
-        .inline-block;
-        margin: @baseLine / 3  auto;
+    label.privacy-check-label {
+        display: block;
+        margin: 6px auto 6px;
     }
 
     .privacy-check-label {
         margin-right: @baseLine;
+    }
+
+    input[type=email] {
+        margin-bottom: 8px;
     }
 
     .button-blue {
