@@ -130,7 +130,17 @@ input[type=text] {
     @shadow: 0 2px 1px rgba(0,0,0,0.1) inset;
     padding: 0  @baseLine / 3;
     .border-radius(6px);
-    .box-shadow(@shadow)
+    .box-shadow(@shadow);
+    .transition(all linear .1s);
+}
+
+input[type=email]:focus,
+input[type=password]:focus,
+input[type=text]:focus {
+    border-color: #bbb;
+    @shadow: 0 2px 1px rgba(0,0,0,0.1) inset, 0 0 8px 0 rgba(103,167,208,0.6);
+    .box-shadow(@shadow);
+    .transition(all linear .1s);
 }
 
 .form-errors {
