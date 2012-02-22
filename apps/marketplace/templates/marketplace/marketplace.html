@@ -40,6 +40,18 @@
 
 {% if not submitted %}
 <form class="container" id="apps-email-form" action="#apps-email-form" method="post">
+
+{% if error %}
+  <ul class="form-errors">
+    {% if error == 'email' %}
+    <li>Please enter a valid email address.</li>
+    {% elif error == 'privacy' %}
+    <li>Please read the Mozilla Privacy Policy and agree by checking
+    the box.</li>
+    {% endif %}
+  </ul>
+{% endif %}
+
   <h3>Email signup</h3>
   <div class="row">
 

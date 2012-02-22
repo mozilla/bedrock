@@ -6,22 +6,25 @@ import basket
 
 def marketplace(request):
     submitted = False
-    form_error = False
+    error = False
     email = ''
 
     if request.method == 'POST':
         email = request.POST['email']
         newsletter = 'app-dev'
 
-        if email_re.match(email):
+        if not email_re.match(email):
+            error = 'email'
+
+        if not request.POST.get('privacy', None):
+            error = 'privacy'
+
+        if not error:
             basket.subscribe(email, newsletter)
             submitted = True
-        else:
-            form_error = True
             
-
     return l10n_utils.render(request,
                              "marketplace/marketplace.html",
                              {'submitted': submitted,
-                              'form_error': form_error,
+                              'error': error,
                               'email': email})
