@@ -21,6 +21,7 @@ hgroup {
     padding-bottom: @baseLine;
 }
 
+.thank,
 #apps-email-form {
     padding-top: @baseLine * 2;
     padding-bottom: @baseLine * 2;
@@ -28,7 +29,20 @@ hgroup {
     @shadow: 0 1px 1px rgba(0,0,0,0.1), 0 0 0 1px #fff;
     .box-shadow(@shadow);
     background: #fff;
-    #gradient > .radial(center, 45px, ellipse, farthest-corner, #f5f1e8 0%, #ffffff 100%);
     .clearfix;
-}
 
+    label {
+        .inline-block;
+        margin: @baseLine / 3  auto;
+    }
+
+    .privacy-check-label {
+        margin-right: @baseLine;
+    }
+
+    .button-blue {
+        width: @gridColumnWidth * 2 + @gridGutterWidth;
+        padding: 0;
+    }
+
+}
