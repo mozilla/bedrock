@@ -5,7 +5,10 @@ from time import mktime
 class CacheMiddleware(object):
 
     def process_response(self, request, response):
-        if response.status_code != 404 and 'Cache-Control' not in response:
+        cache = (request.method != 'POST' and 
+                 response.status_code != 404 and
+                 'Cache-Control' not in response)
+        if cache:
             d = datetime.datetime.now() + datetime.timedelta(minutes=10)
             stamp = mktime(d.timetuple())
 
