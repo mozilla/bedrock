@@ -1,0 +1,23 @@
+Metadata-Version: 1.0
+Name: certifi
+Version: 0.0.8
+Summary: Mozilla's SSL Certs.
+Home-page: http://python-requests.org
+Author: Kenneth Reitz
+Author-email: me@kennethreitz.com
+License: ISC
+Description: Certifi: Python SSL Certificates
+        ================================
+        
+        This package may or may not become a dependency of Requests. Mozilla's
+        CA bundle for SSL is MPL / GPL licensed. This will allow for that.
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.5
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.0
+Classifier: Programming Language :: Python :: 3.1

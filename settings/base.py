@@ -147,3 +147,5 @@ HMAC_KEYS = {
 }
 
 GMAP_API_KEY = ''
+
+BASKET_URL = 'http://basket.mozilla.com'
