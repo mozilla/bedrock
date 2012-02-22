@@ -49,6 +49,7 @@ mozilla.dev.l10n                        For <a href="../../projects/l10n/mlp.htm
 mozilla.dev.marketplace                 For development of the Mozilla Marketplace and addons.mozilla.org. (Moderated)
 mozilla.dev.mdc                         Discussion about developer documentation on <a href="http://developer.mozilla.org/">MDN Documentation Center</a> (MDC)
 mozilla.dev.mdn                         Code development for the Mozilla Developer Network (MDN) website and platform
+mozilla.dev.media                       Development of Mozilla's media support (audio and video). (Moderated)
 mozilla.dev.mozilla-org                 For people working on the mozilla.org website.
 mozilla.dev.pdf-js                      pdf.js, the PDF renderer written in JS. (Moderated)
 mozilla.dev.planning                    For project planning, meeting minutes, roadmap discussions.
@@ -121,7 +122,7 @@ mozilla.dev.extensions.br               Extension development discussion in Braz
 mozilla.dev.ports.os2                   For discussions about <a href="../../ports/os2/">porting Mozilla to OS/2</a>.
 mozilla.dev.platforms.mobile            For discussions about the <a href="http://wiki.mozilla.org/Mobile">Mozilla platform on mobile devices</a>.
 
-:Mozilla Drumbeat
+:Mozilla Foundation
 
 mozilla.community.drumbeat              Main Drumbeat newsgroup
 mozilla.drumbeat.website                For people working on <a href="http://www.drumbeat.org/">www.drumbeat.org</a>
@@ -129,6 +130,7 @@ mozilla.drumbeat.p2pu                   Drumbeat project: Open Web Track at Peer
 mozilla.drumbeat.privacy-icons          Drumbeat project: Privacy Icons
 mozilla.drumbeat.barcelona              Drumbeat community in Barcelona
 mozilla.drumbeat.festival               Organization of the yearly Drumbeat Festival
+mozilla.community.ignite                Mozilla's involvement in the <a href="https://mozillaignite.org/">US Ignite</a> project. (Moderated)
 mozilla.community.mojo                  The Knight-Mozilla News Technology Initiative - Mozilla and Journalism, or MoJo.
 mozilla.education.hackasaurus           The Hackasaurus project to get kids hacking the open web. (Moderated)
 
@@ -136,14 +138,14 @@ mozilla.education.hackasaurus           The Hackasaurus project to get kids hack
 
 mozilla.community.algeria               The Mozilla community in Algeria. (Moderated)
 mozilla.community.arab-world            The Mozilla community in the Arab world.
-mozilla.community.armyofawesome         The Mozilla Army of Awesome twitter helpers.
-mozilla.community.artzilla              The Mozilla Artzilla community of artists.
 mozilla.community.australia             The Mozilla community in Australia.
 mozilla.community.balkans               The Mozilla community in the Balkans.
 mozilla.community.bangladesh            The Mozilla community in Bangladesh. (Moderated)
 mozilla.community.belgium               The Mozilla community in Belgium.
 mozilla.community.brasil                The Mozilla community in Brazil. (Moderated)
 mozilla.community.bulgaria              The Mozilla community in Bulgaria.
+mozilla.community.canada                The Mozilla community in Canada. (Moderated)
+mozilla.community.croatia               The Mozilla community in Croatia. (Moderated)
 mozilla.community.europe                The Mozilla community in Europe. (Moderated)
 mozilla.community.ghana                 The Mozilla community in Ghana.
 mozilla.community.greece                The Mozilla community in Greece. (Moderated)
@@ -187,6 +189,14 @@ mozilla.dev.general.zh                  Mozilla project development discussion i
 
 mozilla.reps.council                    The organizing group for <a href="https://wiki.mozilla.org/ReMo">ReMo</a> - the Mozilla Reps project.
 mozilla.reps.mentors                    ReMo mentors group. (Moderated)
+mozilla.reps.students                   ReMo students group. (Moderated)
+
+:Other Community Groups
+
+mozilla.accessibility                   Discussion of all things related to accessibility. (Moderated)
+mozilla.community.armyofawesome         The Mozilla Army of Awesome twitter helpers.
+mozilla.community.artzilla              The Mozilla Artzilla community of artists.
+mozilla.community.digital-freedom       Discussion of, and resistance to, laws which work against Mozilla's mission. (Moderated)
 
 :Testing
 
