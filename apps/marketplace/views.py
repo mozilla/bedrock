@@ -11,6 +11,7 @@ def marketplace(request):
 
     if request.method == 'POST':
         email = request.POST['email']
+        format_ = 'T' if request.POST.get('format') == 'text' else 'H'
         newsletter = 'app-dev'
 
         if not email_re.match(email):
@@ -20,7 +21,7 @@ def marketplace(request):
             error = 'privacy'
 
         if not error:
-            basket.subscribe(email, newsletter)
+            basket.subscribe(email, newsletter, format=format_)
             submitted = True
             
     return l10n_utils.render(request,
