@@ -137,3 +137,13 @@
     .offset11  { #gridSystem > .offset(@gridColumnWidth, @gridGutterWidth, 11); }
   }
 }
+
+.span(@columns) {
+    float: left;
+    margin-left: @gridGutterWidth;
+    width: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1));
+}
+
+.offset(@columns) {
+    margin-left: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1)) + (@gridGutterWidth * 2);
+}

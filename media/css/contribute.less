@@ -8,6 +8,10 @@
         margin: @baseLine * 2 auto;
     }
 
+    #main-feature {
+        padding-bottom: 0;
+    }
+
     #welcome-video {
         max-width: 640px;
         margin: 0 auto;
@@ -38,9 +42,7 @@
     }
 
     #help-form {
-        background: #fff;
         padding: @baseLine /2   @gridGutterWidth * 2;
-        .box-shadow(0 1px rgba(0,0,0,0.1);
         margin-bottom: @baseLine * 2;
 
         h3,
@@ -60,15 +62,12 @@
 
     #opportunities {
 
-        h1 {
-            margin-left: @gridGutterWidth * 2;
-        }
-
         nav {
             background: #f0ece3;
             border: 1px solid rgba(0,0,0,0.03);
-            margin: @baseLine 0;
-            padding: 10px 0;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            margin: @baseLine auto;
             @shadow: 0 1px rgba(255,255,255,0.5), 0 0 0 2px rgba(0,0,0,0.01) inset;
             .box-shadow(@shadow);
             text-transform: uppercase;
@@ -78,10 +77,6 @@
                 display: inline;
                 margin: 0;
                 font-size: @baseFontSize * 0.75;
-            }
-
-            h5 {
-                margin-left: @gridGutterWidth * 2;
             }
 
             li {
@@ -104,7 +99,6 @@
         section {
             li {
                 list-style-type: none;
-                margin: 0;
                 border-top: 1px dotted @borderColor;
                 .clearfix;
                 &:first-child {
@@ -115,24 +109,24 @@
             img {
                 background: #fff;
                 width: 50px;
-                padding: @baseLine / 2;
+                padding: (@gridColumnWidth - 52) / 2;
                 border: 1px solid @borderColor; 
                 .border-radius;
                 .box-shadow(0 2px 4px rgba(0,0,0,0.1));
                 float: left;
-                margin: @baseLine @baseLine @baseLine  @gridGutterWidth * 2;
+                margin: @baseLine 0 @baseLine @gridGutterWidth;
             }
 
             h3 {
                 float: left;
-                margin: @baseLine * 1.25  @gridGutterWidth @baseLine 0;
-                width: @gridColumnWidth * 3;
+                margin: @baseLine * 1.25  @gridGutterWidth @baseLine @gridGutterWidth;
+                width: (@gridColumnWidth * 3) + (@gridGutterWidth * 2);
             }
 
             .content {
                 float: left;
-                margin: @baseLine @gridGutterWidth 0 0;
-                width: @gridColumnWidth * 6;
+                margin: @baseLine 0 0 0;
+                width: (@gridColumnWidth * 6) + (@gridGutterWidth * 5);
             }
         }
 
@@ -143,13 +137,12 @@
             }
 
             img {
-                width: auto;
-                margin: @baseLine;
+                width: 142px;
             }
 
             h3 {
-                width: @gridColumnWidth * 3;
-                margin: @baseLine * 2  10px  @baseLine 0;
+                width: (@gridColumnWidth * 3) + (@gridGutterWidth * 2);
+                margin: @baseLine * 2   0 0 @gridGutterWidth;
             }
         }
 

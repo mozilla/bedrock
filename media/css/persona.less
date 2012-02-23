@@ -1,26 +1,17 @@
-@import "sandstone/variables.less";
-@import "sandstone/mixins.less";
+@import "sandstone/sandstone.less";
 
-
-
-hgroup {
+#main-feature {
     text-align: center;
-    padding-top: @baseLine * 2;
     padding-bottom: @baseLine * 2;
-
-    h2 {
-        font-size: 48px;
-    }
 }
 
 #primary {
-    padding-top: @baseLine * 2;
-    padding-bottom: @baseLine * 2;
-    @shadow: 0 1px 1px rgba(0,0,0,0.1), 0 0 0 1px #fff;
-    .box-shadow(@shadow);
-    background: #fff;
     #gradient > .radial(center, 45px, ellipse, farthest-corner, #f5f1e8 0%, #ffffff 100%);
-    .clearfix;
+}
+
+#signin,
+#text-column {
+    .span(5);
 }
 
 #signin-example figcaption {
@@ -48,13 +39,11 @@ hgroup {
     text-align: center;
     margin-top: @baseLine;
     margin-bottom: @baseLine;
-    @shadow: 0 1px 1px rgba(0,0,0,0.1), 0 0 0 1px #fff;
-    .box-shadow(@shadow);
-    background: #fff;
+    padding-top: @baseLine;
+    padding-bottom: @baseLine;
 
     h3 {
         margin: 0;
-        padding: @baseLine;
     }
 }
 

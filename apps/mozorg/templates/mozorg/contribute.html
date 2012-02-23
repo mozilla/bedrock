@@ -49,63 +49,61 @@
 
 {% block content %}
 
-<div id="main-content">
+<h1 id="main-feature" class="large">Get involved with Mozilla</h1>
 
-  <h1 class="large">Get involved with Mozilla</h1>
+<nav class="menu-bar billboard">
+  <ul>
+    <li><a href="#interest" id="interest-header">Area of Interest</a></li>
+    <li><a href="#location" id="location-header">Location</a></li>
+    <li><a href="#time" id="time-header">Time Available</a></li>
+  </ul>
+</nav>
 
-  <nav class="menu-bar">
-    <ul>
-      <li><a href="#interest" id="interest-header">Area of Interest</a></li>
-      <li><a href="#location" id="location-header">Location</a></li>
-      <li><a href="#time" id="time-header">Time Available</a></li>
-    </ul>
-  </nav>
+<section id="welcome" class="container">
+  <div id="welcome-video" class="mozilla-video-control">
+    <video
+      width="640"
+      height="360"
+      poster="/media/img/contribute/poster-brand.jpg"
+      controls="controls">
+      <source src="//videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.webm" type="video/webm" />
+      <source src="//videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.theora.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;" />
+      <source src="//http://videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.mp4" type="video/mp4" />
+      <object type="application/x-shockwave-flash"
+        style="width: 640px; height: 388px;"
+        data="/media/flash/playerWithControls.swf?flv=brand/Mozilla_Firefox_Manifesto_v0.2_640.mp4&amp;autoplay=false&amp;msg=Play%20Video">
+        <param name="movie" value="/media/flash/playerWithControls.swf?flv=brand/Mozilla_Firefox_Manifesto_v0.2_640.mp4&amp;autoplay=false&amp;msg=Play%20Video" />
+        <param name="wmode" value="transparent" />
 
-  <section id="welcome">
-    <div id="welcome-video" class="mozilla-video-control">
-      <video
-        width="640"
-        height="360"
-        poster="/media/img/contribute/poster-brand.jpg"
-        controls="controls">
-        <source src="//videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.webm" type="video/webm" />
-        <source src="//videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.theora.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;" />
-        <source src="//http://videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.mp4" type="video/mp4" />
-        <object type="application/x-shockwave-flash"
-          style="width: 640px; height: 388px;"
-          data="/media/flash/playerWithControls.swf?flv=brand/Mozilla_Firefox_Manifesto_v0.2_640.mp4&amp;autoplay=false&amp;msg=Play%20Video">
-          <param name="movie" value="/media/flash/playerWithControls.swf?flv=brand/Mozilla_Firefox_Manifesto_v0.2_640.mp4&amp;autoplay=false&amp;msg=Play%20Video" />
-          <param name="wmode" value="transparent" />
+        <div class="video-player-no-flash">
+        This video requires a browser with support for open video
+        or the <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player</a>.
+        </div>
+      </object>
+    </video>
+  </div>
+  <p>
+    You don’t have to be a C++ guru (or even know what that means!) to get involved.
+    <b>You just have to love the Web.</b>
+  </p>
+</section>
 
-          <div class="video-player-no-flash">
-          This video requires a browser with support for open video
-          or the <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player</a>.
-          </div>
-        </object>
-      </video>
-    </div>
-    <p>
-      You don’t have to be a C++ guru (or even know what that means!) to get involved.
-      <b>You just have to love the Web.</b>
-    </p>
-  </section>
-
-  <form action="#" id="help-form">
-    <h3>Want to help?</h3>
-    <input type="email" placeholder="YOUR EMAIL ADDRESSS">
-    <select>
-      <option disabled="disabled" selected="selected" value="">Area of interest?</option>
-    </select>
-    <input type="submit" class="button-blue" value="Sign me up »">
-  </form>
+<form action="#" id="help-form" class="billboard">
+  <h3>Want to help?</h3>
+  <input type="email" placeholder="YOUR EMAIL ADDRESSS">
+  <select>
+    <option disabled="disabled" selected="selected" value="">Area of interest?</option>
+  </select>
+  <input type="submit" class="button-blue" value="Sign me up »">
+</form>
 
   <section id="opportunities">
 
-    <h1>Find an opportunity</h1>
+    <h1 class="container">Find an opportunity</h1>
 
     <div class="pager pager-with-tabs">
 
-      <nav>
+      <nav class="container">
         <h5>Sort By:</h5>
         <ul class="pager-tabs">
           <li><a href="#interest" class="button-white">Interest</a></li>
@@ -114,7 +112,7 @@
         </ul>
       </nav>
 
-      <div class="pager-content">
+      <div class="pager-content container">
 
         <div class="interest-content default-page" id="interest">
           <script>// <![CDATA[
@@ -123,84 +121,84 @@
           <section>
 
             <ul class="contribute-options">
-              <li>
+              <li class="row">
                 <img src="/media/img/contribute/sumo.png" alt="" />
                 <h3 id="support">Helping Users</h3>
                 <div class="content">
                   <p>Interested in helping others get the most out of using Firefox and other Mozilla projects?  Our support process relies on enthusiastic contributors like you.  Find out more about <a href="https://support.mozilla.com/kb/superheroes-wanted">supporting Firefox</a>, <a href="http://support.mozillamessaging.com/en-US/kb/superheroes-wanted">Thunderbird</a> and <a href="http://www.mozilla.org/support/">other Mozilla projects</a>.  You can also join our <a href="https://support.mozilla.com/army-of-awesome">Army of Awesome</a> by helping users on Twitter.</p>
                 </div>
               </li>
-              <li>
+              <li class="row">
                 <img src="/media/img/contribute/localization.png" alt="" />
                 <h3 id="l10n">Localization</h3>
                 <div class="content">
                   <p>Get involved with Mozilla by making Firefox, Thunderbird and other projects <a href="https://wiki.mozilla.org/L10n">available in your language</a>. Also help us tell the world about how Mozilla is building a better Internet by <a href="https://wiki.mozilla.org/L10n:Web_parts">translating content</a> on our web sites.</p>
                 </div>
               </li>
-              <li>
+              <li class="row">
                 <img src="/media/img/contribute/qmo.png" alt="" />
                 <h3 id="qa">Testing and Quality Assurance</h3>
                 <div class="content">
                   <p>QA is one of the easiest ways to get started with Mozilla and is a great way to get familiar with our code and tools.  Help us <a href="http://quality.mozilla.org/teams/desktop-firefox/">hunt down bugs</a> in Firefox, <a href="http://quality.mozilla.org/teams/web-qa/">test Mozilla web sites</a> or learn more about <a href="http://quality.mozilla.org/">other testing opportunities</a>.</p>
                 </div>
               </li>
-              <li>
+              <li class="row">
                 <img src="/media/img/contribute/dinohead.png" alt="" />
                 <h3 id="coding">Coding</h3>
                 <div class="content">
                   <p><a href="https://developer.mozilla.org/en/Introduction">Developers can help</a> Mozilla by adding new features, making our technology smaller and faster and making development easier for others.  You can find many developers on <a href="http://irc.mozilla.org">IRC</a> so stop by and ask questions to learn more.  Our web sites are <a href="http://blog.mozilla.com/webdev/get-involved/">open for web ninjas</a> to hack on too.</p>
                 </div>
               </li>
-              <li>
+              <li class="row">
                 <img src="/media/img/contribute/addons.png" alt="" />
                 <h3 id="addons">Add-ons</h3>
                 <div class="content">
                   <p>Firefox and other Mozilla-based applications have a powerful extension system that allow you to make small tweaks or make major additions to your programs.  If you're new to this technology, learn how to <a href="https://addons.mozilla.org/en-US/developers/docs/getting-started">build an add-on</a>.  For experienced developers, find out how to <a href="https://wiki.mozilla.org/AMO:Editors/Applying">become an AMO editor</a>.</p>
                 </div>
               </li>
-              <li>
+              <li class="row">
                 <img src="/media/img/contribute/firefox.png" alt="" />
                 <h3 id="marketing">Marketing and Evangelism</h3>
                 <div class="content">
                   <p>Help us spread the word about how Firefox and other Mozilla projects are building a better Internet.  Share Firefox with the world by <a href="https://affiliates.mozilla.org">becoming an Affiliate</a> and then check out our <a href="https://wiki.mozilla.org/MarketingGuide">Marketing Guide</a> for more ways to get involved.</p>
                 </div>
               </li>
-              <li>
+              <li class="row">
                 <img src="/media/img/contribute/mdn.png" alt="" />
                 <h3 id="docs">Developer Documentation</h3>
                 <div class="content">
                   <p>The Mozilla Developer Network is the hub for information about Mozilla technologies. Help <a href="https://developer.mozilla.org/Project:en/How_to_Help">make our documentation better</a> by writing new content, correcting existing material or translating content into new languages.</p>
                 </div>
               </li>
-              <li>
+              <li class="row">
                 <img src="/media/img/contribute/mirrors.png" alt="" />
                 <h3 id="sysadmin">Systems Administration</h3>
                 <div class="content">
                   <p>Do you see yourself as someone who looks at the world a little different? Are ones and zeros constantly flying through your head? What we do as systems admins is we get to sit behind the scenes of the biggest entity in the world and keep the lights on.  Join our <a href="http://www.mozilla.org/community/mirrors.html">mirror network</a> or find out other ways to get involved.</p>
                 </div>
               </li>
-              <li>
+              <li class="row">
                 <img src="/media/img/contribute/dinohead.png" alt="" />
                 <h3 id="automation">Build and Test Automation</h3>
                 <div class="content">
                   <p>Join the teams responsible for all of Mozilla's software source code, automated test infrastructure and build and deployment processes. Help <a href="https://wiki.mozilla.org/ReleaseEngineering:Contribute">develop and maintain tools that build, deploy, automate and streamline code management</a> or work on <a href="https://wiki.mozilla.org/Auto-tools#Want_to_Help.3F">test infrastructure and tools to simplify the lives of others at Mozilla</a>.</p>
                 </div>
               </li>
-              <li>
+              <li class="row">
                 <img src="/media/img/contribute/testpilot.png" alt="" />
                 <h3 id="research">User Research</h3>
                 <div class="content">
                   <p>Be part of the research team&mdash;whether you want to be a <a href="http://www.surveygizmo.com/s3/575418/General-Recruiting-Screener">participant in an upcoming study</a>, <a href="mailto:diane+contribute@mozilla.com">conduct usability tests</a> on your own or <a href="https://testpilot.mozillalabs.com/testcases/submit ">analyze Test Pilot data</a>&mdash;we'd love to have you join us!</p>
                 </div>
               </li>
-              <li>
+              <li class="row">
                 <img src="/media/img/contribute/creativecollective.png" alt="" />
                 <h3 id="design">Visual Design</h3>
                 <div class="content">
                   <p>We believe in the power of well-made and widely distributed art, and want to make it possible for artists to cover the web and people with designs inspired by Mozilla.  Take part in a <a href="http://creative.mozilla.org/challenges">Creative Collective challenge</a> or <a href="http://www.zazzle.com/mozilla/gifts?cg=196666516716132423">add a t-shirt design</a> to our Community Store.</p>
                 </div>
               </li>
-              <li>
+              <li class="row">
                 <img src="/media/img/contribute/drumbeat.png" alt="" />
                 <h3 id="drumbeat">Drumbeat</h3>
                 <div class="content">
@@ -218,37 +216,37 @@
           // ]]></script>
           <section>
             <ul>
-              <li>
+              <li class="row">
                 <a href="/contribute/local/northamerica.html">
                   <img src="/media/img/contribute/local/map-th-northamerica.png" alt="map">
                   <h3>US and Canada</h3>
                 </a>
               </li>
-              <li>
+              <li class="row">
                 <a href="/contribute/local/europe.html">
                   <img src="/media/img/contribute/local/map-th-europe.png" alt="map">
                   <h3>Europe</h3>
                 </a>
               </li>
-              <li>
+              <li class="row">
                 <a href="/contribute/local/latinamerica.html">
                   <img src="/media/img/contribute/local/map-th-latinamerica.png" alt="map">
                   <h3>Latin America</h3>
                 </a>
               </li>
-              <li>
+              <li class="row">
                 <a href="/contribute/local/africamideast.html">
                   <img src="/media/img/contribute/local/map-th-africamideast.png" alt="map">
                   <h3>Africa and the Middle East</h3>
                 </a>
               </li>
-              <li>
+              <li class="row">
                 <a href="/contribute/local/asia.html">
                   <img src="/media/img/contribute/local/map-th-asia.png" alt="map">
                   <h3>Asia and the South Pacific</h3>
                 </a>
               </li>
-              <li>
+              <li class="row">
                 <a href="/contribute/local/southpole.html">
                   <img src="/media/img/contribute/local/map-th-southpole.png" alt="map">
                   <h3>Antarctica</h3>
@@ -265,7 +263,7 @@
           // ]]></script>
           <section>
           <ul class="contribute-options">
-            <li>
+            <li class="row">
               <img src="/media/img/contribute/minutes.png" alt="" />
               <h3>A Few Minutes</h3>
               <div class="content">
@@ -275,7 +273,7 @@
                 <p>Make a <a href="/foundation/donate.html">donation to the Mozilla Foundation</a> and help us build a better Internet.</p>
               </div>
             </li>
-            <li>
+            <li class="row">
               <img src="/media/img/contribute/hours.png" alt="" />
               <h3>A Few Hours</h3>
               <div class="content">
@@ -284,7 +282,7 @@
                 <p>Pick a topic from the <a href="https://developer.mozilla.org/Project:en/Documentation_Wishlist">documentation wishlist</a> and make the Mozilla Developer Network even better.</p>
               </div>
             </li>
-            <li>
+            <li class="row">
               <img src="/media/img/contribute/weeks.png" alt="" />
               <h3>A Few Weeks Or More</h3>
               <div class="content">
