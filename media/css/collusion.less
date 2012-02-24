@@ -1,0 +1,105 @@
+@import "sandstone/variables.less";
+@import "sandstone/mixins.less";
+
+
+hgroup {
+    text-align: center;
+    padding-top: @baseLine * 2;
+    padding-bottom: @baseLine * 2;
+
+    h2 {
+        font-size: 32px;
+    }
+}
+
+#primary {
+    padding-top: @baseLine * 2;
+    padding-bottom: @baseLine * 2;
+    @shadow: 0 1px 1px rgba(0,0,0,0.1), 0 0 0 1px #fff;
+    .box-shadow(@shadow);
+    background: #fff;
+    #gradient > .radial(center, 45px, ellipse, farthest-corner, #f5f1e8 0%, #ffffff 100%);
+    .clearfix;
+    height: 13em;
+    margin-bottom: @baseLine * 3;
+
+    img {
+        float: right;
+        margin-top: -@baseLine * 3;
+        max-width: 50%;
+        position: relative;
+        right: -15px;
+    }
+
+    p {
+        margin-right: 40%;
+    }
+
+    .button,
+    .button-blue {
+        height: auto;
+        line-height: @baseLine;
+        font-size: 18px;
+        padding: @baseLine / 2  @gridGutterWidth;
+        width: @gridColumnWidth * 3;
+        margin-right: @gridGutterWidth;
+        margin-bottom: @baseLine / 2;
+        float: left;
+
+        small {
+            display: block;
+        }
+    }
+
+    }
+
+    #secondary {
+        padding-bottom: @baseLine * 3;
+    }
+
+
+#updates {
+    margin-bottom: @baseLine * 2;
+    p { margin: 0; }
+    .field {
+        .clearfix;
+        padding: @baseLine / 4  0;
+
+        input[type=email] {
+            width: (@gridColumnWidth * 3) + (@gridGutterWidth * 2) - 18px;
+        }
+
+        .title {
+            font-size: 14px;
+        }
+
+        small {
+            color: @textColorTertiary;
+        }
+    }
+}
+
+line.bold {
+  stroke: #000;
+}
+
+marker {
+  fill: #000;
+}
+
+g.node.unrelated-domain circle.visited {
+  stroke: #a0a0e0;
+}
+
+g.node.unrelated-domain circle.site {
+  stroke: #b0b0b0;
+}
+
+g.node.unrelated-domain circle.tracker {
+  stroke: #d6a0a0;
+}
+
+g.node.unrelated-domain circle.round-border {
+  fill: #e0e0e0;
+}
+
