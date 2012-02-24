@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block page_title %}About Mozilla Persona{% endblock %}
+{% block body_id %}persona-about{% endblock %}
+
+{% block site_header_logo %}
+  <h1><a href="/persona/"><img src="/media/img/persona/title.png" height="66" width="180" alt="mozilla Persona"></a></h1>
+{% endblock %}
+
+{% block site_header_nav %}
+  <nav id="nav-main" role="navigation">
+  <ul>
+      <li><a href="/persona/">Home</a></li>
+      <li><b>About</b></li>
+      <li><a href="/persona/developer-faq/">Developer FAQ</a></li>
+  </ul>
+  </nav>
+{% endblock %}
+
+{% block extrahead %}
+  {{ css('persona') }}
+{% endblock %}
+
+{% block breadcrumbs %}
+  <nav class="breadcrumbs">
+    <a href="/">Home</a> >
+    <a href="/persona/">Mozilla Persona</a> >
+    <span>About</span>
+  </nav>
+{% endblock %}
+
+
+{% block content %}
+
+<div id="main-content">
+<div class="row">
+
+<article class="span6">
+
+  <h1>A Better Way to Manage Identity on the Web</h1>
+  <p>Mozilla Persona is the first in an eventual suite of Mozilla Persona tools designed to help users and developers manage identity information on the Web.</p>
+
+  <h3>Technology</h3>
+  <p>Mozilla Persona is built on our original BrowserID protocol, a decentralized authentication technology based on verified email addresses. For more details on the technical aspects, <a href="http://lloyd.io/how-browserid-works">read this blog</a>.</p>
+
+  <h3>Open Accessible Standards</h3>
+  <p>As with all Mozilla projects, the source code is open and accessible. We are proposing Mozilla Persona as a new standard for identity systems and are working with existing identity providers to implement the protocol as their primary authentication tool.</p>
+
+  <h3>Developers</h3>
+  <p>Build user trust and confidence by providing an alternate login that protects their privacy and does not exploit profit from stored data.</p>
+  <p>Developers don’t need to manage their own sign-in program and implement a separate email verification process — and they don’t need to ask users to remember another password. In a single step, you can turn visitors into trusted users and get an email address for them.</p>
+  <p>Show your users that you respect their privacy and that you will give them a choice about sharing their data.</p>
+  <p>Check out <a href="https://developer.mozilla.org/en/browserid">our developer site</a> to get the code and get started!</p>
+
+</article>
+
+<div id="sidebar" class="span2 offset2">
+
+  <nav>
+    <ul>
+      <li><a href="/persona/">Persona</a></li>
+      <li><b>About</b></li>
+      <li><a href="/persona/developer-faq/">Developer FAQ</a></li>
+      <li><a href="/persona/privacy-policy/">Privacy</a></li>
+      <li><a href="/persona/terms-of-service/">Terms of Service</a></li>
+    </ul>
+  </nav>
+
+  {% include "/persona/sidebar-contents.html" %}
+
+</div>
+
+</div>
+</div>
+
+
+
+{% endblock %}

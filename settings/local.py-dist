@@ -22,6 +22,13 @@ DATABASES = {
     },
 }
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'translations'
+    }
+}
+
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
 )

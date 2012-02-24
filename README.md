@@ -15,8 +15,8 @@ for general technical documentation. In addition, there are project-specific
 [bedrock docs][br-docs].
 
 [playdoh]: https://github.com/mozilla/playdoh
-[pd-docs]: http://mozilla.github.com/playdoh/
-[br-docs]: http://mozilla.github.com/bedrock/
+[pd-docs]: http://playdoh.readthedocs.org/
+[br-docs]: http://bedrock.readthedocs.org/
 
 Contributing
 ------------
@@ -33,4 +33,5 @@ This software is licensed under the [MPL/GPL/LGPL tri-license][MPL]. For more
 information, read the file ``LICENSE``.
 
 [MPL]: http://www.mozilla.org/MPL/
+
 

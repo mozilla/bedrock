@@ -8,7 +8,12 @@ from django.conf.urls.defaults import *
 
 urlpatterns = patterns('',
     # Main pages
+    (r'^b2g/', include('b2g.urls')),
+    (r'^collusion/', include('collusion.urls')),
+    (r'^apps/', include('marketplace.urls')),
+    (r'^persona/', include('persona.urls')),
     (r'', include('mozorg.urls')),
+    (r'', include('research.urls')),
 
     # L10n example.
     (r'^l10n_example/', include('l10n_example.urls')),

@@ -1,0 +1,6 @@
+certifi/__init__.py
+certifi/core.py
+pip-egg-info/certifi.egg-info/PKG-INFO
+pip-egg-info/certifi.egg-info/SOURCES.txt
+pip-egg-info/certifi.egg-info/dependency_links.txt
+pip-egg-info/certifi.egg-info/top_level.txt

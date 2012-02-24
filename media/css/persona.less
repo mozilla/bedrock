@@ -1,0 +1,81 @@
+@import "sandstone/variables.less";
+@import "sandstone/mixins.less";
+
+
+
+hgroup {
+    text-align: center;
+    padding-top: @baseLine * 2;
+    padding-bottom: @baseLine * 2;
+
+    h2 {
+        font-size: 48px;
+    }
+}
+
+#primary {
+    padding-top: @baseLine * 2;
+    padding-bottom: @baseLine * 2;
+    @shadow: 0 1px 1px rgba(0,0,0,0.1), 0 0 0 1px #fff;
+    .box-shadow(@shadow);
+    background: #fff;
+    #gradient > .radial(center, 45px, ellipse, farthest-corner, #f5f1e8 0%, #ffffff 100%);
+    .clearfix;
+}
+
+#signin-example figcaption {
+    text-align: center;
+    font-style: italic;
+    color: @textColorTertiary;
+    margin: auto @gridGutterWidth  @baseLine * 2  @gridGutterWidth;
+}
+
+#openphoto {
+    text-align: center;
+    padding: @baseLine;
+    margin: @baseLine * 2  @gridColumnWidth + @gridGutterWidth;
+    border-top: 1px dotted @borderColor;
+    border-bottom: 1px dotted @borderColor;
+
+    p {
+        margin: 0;
+        .open-sans;
+        font-weight: 300;
+    }
+}
+
+#persona-themes {
+    text-align: center;
+    margin-top: @baseLine;
+    margin-bottom: @baseLine;
+    @shadow: 0 1px 1px rgba(0,0,0,0.1), 0 0 0 1px #fff;
+    .box-shadow(@shadow);
+    background: #fff;
+
+    h3 {
+        margin: 0;
+        padding: @baseLine;
+    }
+}
+
+#small-print {
+    text-align: center;
+    padding-bottom: @baseLine * 2;
+}
+
+#references {
+    margin: @baseLine * 2  auto;
+
+    ul li {
+        list-style-type: none;
+        margin: 0;
+        padding: @baseLine 0;
+        border-bottom: 1px dotted @borderColor;
+        font-size: @smallFontSize;
+        line-height: @baseLine * .75;
+    }
+
+    p {
+        margin: 0;
+    }
+}

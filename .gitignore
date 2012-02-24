@@ -16,3 +16,4 @@ vendor
 tmp/*
 *~
 .#*
+*.less.css

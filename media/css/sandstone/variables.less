@@ -1,0 +1,48 @@
+@textColorPrimary:   #333;
+@textColorSecondary: #484848;
+@textColorTertiary: #666;
+@textColorLight:     #bbb;
+
+@linkRed:  rgb(175,50,50);
+@linkBlue: rgb(103,167,208);
+
+@buttonGreen: #81bc2e;
+@buttonGreenDark: darken(@buttonGreen, 10%);
+@buttonTextColor: #fff;
+@buttonBlue: #3c88cc;
+@buttonBlueDark: darken(@buttonBlue, 15%);
+
+@buttonShadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.1), inset 0px -2px 0px 0px rgba(0, 0, 0, 0.2);
+@buttonShadowHover: 0px 2px 0px 0px rgba(0, 0, 0, 0.1), inset 0px -2px 0px 0px rgba(0, 0, 0, 0.2), inset 0px 12px 24px 2px saturate(@buttonGreen, 10%);
+@buttonBlueShadowHover: 0px 2px 0px 0px rgba(0, 0, 0, 0.1), inset 0px -2px 0px 0px rgba(0, 0, 0, 0.2), inset 0px 12px 24px 2px saturate(@buttonBlue, 10%);
+@buttonShadowActive: inset 0px 2px 0px 0px rgba(0, 0, 0, 0.2), inset 0px 12px 24px 6px rgba(0,0,0,0.2), inset 0px 0px 2px 2px rgba(0,0,0,0.2);
+
+@borderColor: #d6d6d6;
+
+@baseFontSize:      16px;
+@baseFontFamily:    Georgia, serif;
+@baseLine:          24px;
+@smallFontSize:     14px;
+
+// Less Framework grid
+@gridColumns:             10;
+@gridColumnWidth:         68px;
+@gridGutterWidth:         24px;
+@gridRowWidth:            (@gridColumns * @gridColumnWidth) + (@gridGutterWidth * (@gridColumns - 1));
+
+
+.open-sans {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.clearfix {
+    zoom: 1;
+    &:after {
+        display: block;
+        visibility: hidden;
+        height: 0;
+        clear: both;
+        content: ".";
+    }
+}
+

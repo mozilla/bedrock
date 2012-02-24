@@ -9,6 +9,8 @@ of terms and example values for them:
 * locale: a string in the form of 'en-US'
 """
 
+from os import path
+
 import jinja2
 import jingo
 from django import shortcuts
@@ -176,3 +178,14 @@ def mobile_download_button(ctx, id, platform, build=None):
                                   {'id': id,
                                    'download_link': url})
     return jinja2.Markup(html)
+
+@jingo.register.function
+@jinja2.contextfunction
+def full_url(ctx, url):
+    """Process an absolute URL and prefix the locale to it."""
+    locale = getattr(ctx['request'], 'locale', None)
+
+    # Do this only if we have a locale and the URL is absolute
+    if locale and url[0] == '/':
+        return path.join('/', locale, url.lstrip('/'))
+    return url

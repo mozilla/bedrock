@@ -1,0 +1,52 @@
+@import "sandstone/variables.less";
+@import "sandstone/mixins.less";
+
+hgroup {
+    text-align: center;
+    padding-top: @baseLine * 2;
+    padding-bottom: @baseLine * 2;
+
+    h1 {
+        font-size: 62px;
+        margin-bottom: @baseLine / 3; 
+    }
+
+    h2 {
+        font-size: 48px;
+    }
+}
+
+#app-developer {
+    border-bottom: 1px dotted @borderColor;
+    padding-bottom: @baseLine;
+}
+
+.thank,
+#apps-email-form {
+    padding-top: @baseLine * 2;
+    padding-bottom: @baseLine * 2;
+    margin-bottom: @baseLine * 3;
+    @shadow: 0 1px 1px rgba(0,0,0,0.1), 0 0 0 1px #fff;
+    .box-shadow(@shadow);
+    background: #fff;
+    .clearfix;
+
+    label.privacy-check-label {
+        display: block;
+        margin: 6px auto 6px;
+    }
+
+    .privacy-check-label {
+        margin-right: @baseLine;
+    }
+
+    input[type=email] {
+        margin-bottom: 8px;
+    }
+
+    .button-blue {
+        width: @gridColumnWidth * 2 + @gridGutterWidth;
+        padding: 0;
+    }
+
+}
