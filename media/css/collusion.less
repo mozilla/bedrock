@@ -35,28 +35,57 @@ hgroup {
         margin-right: 40%;
     }
 
-    .button,
-    .button-blue {
-        height: auto;
-        line-height: @baseLine;
-        font-size: 18px;
-        padding: @baseLine / 2  @gridGutterWidth;
-        width: @gridColumnWidth * 3;
-        margin-right: @gridGutterWidth;
-        margin-bottom: @baseLine / 2;
-        float: left;
+}
 
-        small {
-            display: block;
-        }
+
+#sidebar .button,
+#primary .button,
+#primary .button-blue {
+    height: auto;
+    line-height: @baseLine;
+    font-size: 18px;
+    padding: @baseLine / 2  @gridGutterWidth;
+    width: @gridColumnWidth * 3;
+    margin-right: @gridGutterWidth;
+    margin-bottom: @baseLine / 2;
+    float: left;
+
+    small {
+        display: block;
     }
+}
 
+
+#secondary {
+    padding-bottom: @baseLine * 3;
+}
+
+#sidebar {
+    padding-top: @baseLine;
+    position: absolute;
+}
+
+#page {
+    min-height: 650px;
+}
+
+#chart {
+    margin-left: 250px; 
+    font-size: 11px;
+    font-family: sans-serif;
+    color: #666;
+}
+
+.exposition {
+    blockquote {
+        color: @textColorTertiary;
+        font-style: italic;
     }
-
-    #secondary {
-        padding-bottom: @baseLine * 3;
+    .attribution {
+        display: block;
+        margin-bottom: @baseLine;
     }
-
+}
 
 #updates {
     margin-bottom: @baseLine * 2;
@@ -78,6 +107,96 @@ hgroup {
         }
     }
 }
+
+g.node.unrelated-domain image {
+  display: none;
+}
+
+g.node.unrelated-domain circle.glow {
+  display: none;
+}
+
+g.node.unrelated-domain circle.visited {
+  stroke: #102050;
+}
+
+g.node.unrelated-domain circle.site {
+  stroke: #202020;
+}
+
+g.node.unrelated-domain circle.tracker {
+  stroke: #400000;
+}
+
+g.node.unrelated-domain circle.round-border {
+  fill: #151515;
+}
+
+.round-border {
+  fill: #fff;
+  stroke-width: 2px;
+}
+
+marker {
+  stroke: none;
+  fill: #fff;
+  fill-opacity: 1;  
+}
+
+line.link {
+  stroke: #999;
+  stroke-opacity: .6;
+}
+
+line.bold {
+  stroke: #fff;
+  stroke-opacity: 1;
+}
+
+.hidden {
+  display: none;
+}
+
+
+h2.domain img.favicon {
+  width: 16px;
+  height: 16px;
+  padding-right: 4px;
+}
+
+h2.domain img.tracker {
+  height: 30px;
+}
+
+.attribution {
+  margin-left: 20px;
+}
+
+.tracker {
+  stroke: @linkRed;
+}
+
+.site {
+  stroke: #7f7f7f;
+}
+
+.visited {
+  stroke: #67A7D0;
+}
+
+.demo span.next {
+  cursor: pointer;
+  font-weight: bold;
+  color: @linkRed;
+}
+
+.demo span.next:hover {
+    text-decoration: underline;
+}
+
+
+/* On demo.html, the graph is shown against light background instead of dark 
+   so make the bold arrows black instead of white. */
 
 line.bold {
   stroke: #000;

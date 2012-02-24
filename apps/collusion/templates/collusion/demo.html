@@ -48,8 +48,8 @@ $(window).ready(function() {
   // get list of known trackers from trackers.json file hosted on website:
   jQuery.getJSON("/media/js/collusion/trackers.json", function(trackers) {
     var runner = GraphRunner.Runner({
-      width: addon.isInstalled() || graphUrl ? $(window).width() : 640,
-      height: addon.isInstalled() || graphUrl ? $(window).height() : 480,
+      width: 640,
+      height: 480,
       trackers: trackers,
       hideFavicons: false 
     });
@@ -106,8 +106,8 @@ $(window).ready(function() {
 <h1 class="container">Collusion Demo</h1>
 <section class="container">
 
-<div id="page">
-<div id="sidebar" class="box">
+<div id="page" class="row">
+<div id="sidebar" class="box span3">
   <div class="byline"></a></div>
 
   <div id="sidebar-content">
@@ -170,7 +170,7 @@ $(window).ready(function() {
     </div>
   </div> <!-- End of .demo -->
 
-  <a href="https://addons.mozilla.org/en-US/firefox/addon/collusion/" class="button download">Download the Collusion add-on for Firefox</a>
+  <a href="https://addons.mozilla.org/en-US/firefox/addon/collusion/" class="button download">Download <small>the Collusion add-on for Firefox</small></a>
 
   <div id="domain-infos">Mouse over any circle to see how that site is involved in tracking.</div> <!-- Templates are copied into here -->
   </div> <!-- End of #sidebar-content -->
