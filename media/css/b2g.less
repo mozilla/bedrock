@@ -20,6 +20,8 @@ h1#main-feature {
         float: right;
         margin-top: -@baseLine * 3;
         max-width: 50%;
+        position: relative;
+        right: -15px;
     }
 
     p {
@@ -32,6 +34,14 @@ h1#main-feature {
 
     img {
         margin-bottom: @baseLine;
+        float: left;
+        margin-left: @gridGutterWidth;
+    }
+
+    figure {
+        display: block;
+        margin-left: -@gridGutterWidth;
+        .clearfix;
     }
 
 }
