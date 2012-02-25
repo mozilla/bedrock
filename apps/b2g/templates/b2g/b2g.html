@@ -7,8 +7,8 @@
   <nav id="nav-main" role="navigation">
   <ul>
       <li><b>Home</b></li>
-      <li><a href="/b2g/about/">About</a></li>
-      <li><a href="/b2g/faq/">FAQ</a></li>
+      <li><a href="{{ url('b2g.about') }}">About</a></li>
+      <li><a href="{{ url('b2g.faq') }}">FAQ</a></li>
   </ul>
   </nav>
 {% endblock %}
@@ -23,7 +23,7 @@
 
 <section id="primary" class="container">
 
-  <img src="/media/img/b2g/hero.png" alt="" />
+<img src="{{ MEDIA_URL }}img/b2g/hero.png" alt="" />
   <h1>Welcome to a new, open and powerful mobile world!</h1>
   <p>We launched the Boot to Gecko project to enable the Open Web as a platform for mobile devices. We’re making innovation possible by driving the development of new Web standards.</p>
 
@@ -35,8 +35,8 @@
   <div class="span5">
 
     <figure>
-      <img src="/media/img/b2g/example-messages.jpg" alt="" />
-      <img src="/media/img/b2g/example-contacts.jpg" alt="" />
+      <img src="{{ MEDIA_URL }}img/b2g/example-messages.jpg" alt="" />
+      <img src="{{ MEDIA_URL }}img/b2g/example-contacts.jpg" alt="" />
     </figure>
 
     <h3>Opportunities for Developers</h3>
@@ -59,8 +59,8 @@
     <p>Operators and developers write apps and services for one platform and then rewrite them for others. Users who want to buy phones, e-readers and game consoles from different manufacturers often need to re-purchase apps for each device.</p>
 
     <figure>
-      <img src="/media/img/b2g/example-incoming.jpg" alt="" />
-      <img src="/media/img/b2g/example-camera.jpg" alt="" />
+      <img src="{{ MEDIA_URL }}img/b2g/example-incoming.jpg" alt="" />
+      <img src="{{ MEDIA_URL }}img/b2g/example-camera.jpg" alt="" />
     </figure>
   </div>
 
@@ -71,8 +71,8 @@
 <aside class="container" id="more-info">
   <h3>More Information</h3>
   <ul>
-    <li><a href="http://www-dev.allizom.org/b/en-US/b2g/about/">About the project</a></li>
-    <li><a href="http://www-dev.allizom.org/b/en-US/b2g/faq/">FAQ</a></li>
+    <li><a href="{{ url('b2g.about') }}">About the project</a></li>
+    <li><a href="{{ url('b2g.faq') }}">FAQ</a></li>
     <li><a href="http://brendaneich.com/2012/02/mobile-web-api-evolution/">Brendan Eich on the Mobile Web API Evolution</a></li>
   </ul>
 </aside>

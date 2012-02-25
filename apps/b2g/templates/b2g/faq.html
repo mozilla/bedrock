@@ -6,9 +6,9 @@
 {% block site_header_nav %}
   <nav id="nav-main" role="navigation">
   <ul>
-      <li><a href="/b2g/">Home</a></li>
-      <li><a href="/b2g/about/">About</a></li>
-      <li><b>FAQ</b></li>
+    <li><a href="{{ url('b2g') }}">Home</a></li>
+    <li><a href="{{ url('b2g.about') }}">About</a></li>
+    <li><b>FAQ</b></li>
   </ul>
   </nav>
 {% endblock %}
@@ -20,7 +20,7 @@
 {% block breadcrumbs %}
   <nav class="breadcrumbs">
     <a href="/">Home</a> >
-    <a href="/b2g/">Boot to Gecko Project</a> >
+    <a href="{{ url('b2g') }}">Boot to Gecko Project</a> >
     <span>FAQ</span>
   </nav>
 {% endblock %}
@@ -123,8 +123,8 @@
 
   <nav>
     <ul>
-      <li><a href="/b2g/">Boot to Gecko Project</a></li>
-      <li><a href="/b2g/about/">About</a></li>
+      <li><a href="{{ url('b2g') }}">Boot to Gecko Project</a></li>
+      <li><a href="{{ url('b2g.about') }}">About</a></li>
       <li><b>FAQ</b></li>
     </ul>
   </nav>
