@@ -5,7 +5,7 @@ def secure_required(view_func):
     """Decorator makes sure URL is accessed over https."""
     def _wrapped_view_func(request, *args, **kwargs):
         if not request.is_secure():
-            if not getattr(settings, 'DEV', True):
+            if not getattr(settings, 'DEBUG', True):
                 request_url = request.build_absolute_uri(request.get_full_path())
                 secure_url = request_url.replace('http://', 'https://')
                 return HttpResponseRedirect(secure_url)
