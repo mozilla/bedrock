@@ -14,7 +14,8 @@ from os import path
 import jinja2
 import jingo
 from django import shortcuts
-
+from django.conf import settings
+from funfactory.urlresolvers import reverse
 from product_details import product_details
 
 
@@ -181,11 +182,25 @@ def mobile_download_button(ctx, id, platform, build=None):
 
 @jingo.register.function
 @jinja2.contextfunction
-def full_url(ctx, url):
-    """Process an absolute URL and prefix the locale to it."""
+def php_url(ctx, url):
+    """Process a URL on the PHP site and prefix the locale to it."""
     locale = getattr(ctx['request'], 'locale', None)
 
     # Do this only if we have a locale and the URL is absolute
     if locale and url[0] == '/':
         return path.join('/', locale, url.lstrip('/'))
     return url
+
+@jingo.register.function
+def url(viewname, *args, **kwargs):
+    """Helper for Django's ``reverse`` in templates."""
+    url = reverse(viewname, args=args, kwargs=kwargs)
+    # If this instance is a mix of Python and PHP, it can be set to
+    # force the /b/ URL so that linking across pages work
+    if getattr(settings, 'FORCE_SLASH_B', False):
+        return path.join('/b/', url.lstrip('/'))
+    return url
+
+@jingo.register.function
+def media(url):
+    return path.join(settings.MEDIA_URL, url.lstrip('/'))

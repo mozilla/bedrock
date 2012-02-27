@@ -2,6 +2,6 @@ from django.conf.urls.defaults import *
 from views import collusion, demo
 
 urlpatterns = patterns('',
-    (r'^demo/$', demo),
-    (r'^$', collusion),
+    url(r'^demo/$', demo, name='collusion.demo'),
+    url(r'^$', collusion, name='collusion'),
 )
