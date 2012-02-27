@@ -21,8 +21,8 @@ def button(request):
 def new(request):
     return l10n_utils.render(request, "mozorg/new.html")
 
-def styleguide(request):
-    return l10n_utils.render(request, "mozorg/styleguide.html")
+def sandstone(request):
+    return l10n_utils.render(request, "mozorg/sandstone.html")
 
 def geolocation(request):
     return l10n_utils.render(request, "mozorg/geolocation.html", 

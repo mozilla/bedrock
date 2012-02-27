@@ -79,9 +79,8 @@ MINIFY_BUNDLES = {
         'persona': (
             'css/persona.less',
         ),
-        'styleguide': (
-            'css/sandstone/sandstone.less',
-            'css/sandstone/styleguide.less',
+        'sandstone-guide': (
+            'css/sandstone-guide.less',
         ),
         'video': (
             'css/sandstone/video.less',

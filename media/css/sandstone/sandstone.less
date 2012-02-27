@@ -35,16 +35,16 @@ a {
 }
 
 h1, h2, h3, h4, h5, h6, .huge, .large {
-    .open-sans;
+    .open-sans-light;
     display: block;
-    font-weight: 300;
     margin: 0 0 12px 0;
     line-height: 100%;
     text-shadow: 0px 1px 0px rgba(255,255,255,0.75);
     color: @textColorSecondary;
 }
 
-.huge {
+.huge,
+.huge h1 {
     font-size: 108px;
     letter-spacing: -4px;
     line-height: 100%;
@@ -111,8 +111,7 @@ li {
 }
 
 dl dt {
-    .open-sans;
-    font-weight: 300;
+    .open-sans-light;
     font-size: 32px;
     line-height: 100%;
     letter-spacing: -1px;
@@ -121,6 +120,10 @@ dl dt {
 
 dl dd {
     margin-bottom: @baseLine * 2;
+}
+
+.center {
+    text-align: center;
 }
 
 /* }}} */
@@ -271,10 +274,10 @@ input[type=text]:focus {
 nav.menu-bar {
     line-height: @baseLine * 3;
     text-align: center;
-    .open-sans;
-    font-weight: 300;
+    .open-sans-light;
     margin-bottom: @baseLine * 2;
-    padding: 0;
+    padding-top: 0;
+    padding-bottom: 0;
 
     ul {
         margin: 0;
@@ -289,7 +292,7 @@ nav.menu-bar {
                 border-left: 0;
             }
         }
-    } 
+    }
 }
 
 /* }}} */
@@ -298,9 +301,8 @@ nav.menu-bar {
 .sidebar {
 
     nav {
-        .open-sans;
+        .open-sans-light;
         font-size: 16px;
-        font-weight: 300;
         color: @textColorSecondary;
 
         li {

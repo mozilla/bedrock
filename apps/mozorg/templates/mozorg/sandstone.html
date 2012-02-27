@@ -1,0 +1,230 @@
+{% extends "base.html" %}
+
+{% block page_title %}Sandstone - Bedrock’s Layer of CSS Love{% endblock %}
+
+{% block site_css %}
+  {{ css('sandstone-guide') }}
+{% endblock %}
+
+{% block content %}
+
+<hgroup id="main-feature" class="huge center">
+  <h1>Sandstone</h1>
+  <h2>Visual style for the Mozilla web universe</h2>
+</hgroup>
+
+<nav class="menu-bar billboard">
+  <ul>
+    <li><a href="#grid">Less framework</a></li>
+    <li><a href="#tabzilla-demo">Tabzilla</a></li>
+    <li><a href="#buttons">Buttons</a></li>
+  </ul>
+</nav>
+
+<section id="grid" class="container">
+<div class="row">
+
+  <div class="span3">
+
+    <hgroup>
+      <h2 class="mozilla-red">Less Framework</h2>
+      <h4 class="mozilla-red">Responsive Grid</h4>
+    </hgroup>
+
+      <p>Pages are built on a responsive gride, with 10, 6, or 3 columns, depending on the viewer. Columns are 68px wide with a 24px gutter. CSS classes for grids (<code>.row</code>, <code>.span1</code>, <code>.span2</code> etc.) are provided, or you can roll-your-own. If you’re using <a href="http://lesscss.org/">LESS</a> (the dynamic style sheet language, not to be confused with the <a href="http://lessframework.com/">Less Framework</a>, mixins are provided for columns (<code>.span(1)</code>, <code>.span(2)</code>, etc.).</p>
+<a class="top" href="#top">back to top</a>
+
+  </div>
+
+  <div class="span2 css-code small">
+    <h4>Grid Information</h4>
+    <p><a href="http://www.lessframework.com">Less framework website</a></p>
+    <p><a href="javascript:(function(){window.javascriptgrid={columns:{'default':{columns:10},a:{minWidth:768,maxWidth:991,columns:8},b:{minWidth:480,maxWidth:767,columns:5},c:{minWidth:1,maxWidth:479,columns:3}},columnWidth:68,gapWidth:24};var%20script=document.createElement('script');script.src='http://jsg.javascriptgrid.org/jsg.js';document.getElementsByTagName('HEAD')[0].appendChild(script);})();">Less Grid Overlay</a> (drag this link to your bookmarks bar and click it!)</p>
+  </div>
+
+  <div class="span5">
+
+    <h4>Grid Notes</h4>
+
+    <ul>
+        <li>CSS Media queries based layout for Smartphone, Landscape Smartphone, Tablet, Desktop</li>
+        <li>Max width on smartphone is 252px (3 grid columns)</li>
+        <li>Ideal main body copy width on Tablet and Desktop is 528px (6 columns)</li>
+        <li>.Org style uses vertical spacing gutters of multiples of 24px to separate sections</li>
+        <li>View CSS source on this site for example of grid usage</li>
+    </ul>
+
+    <ul id="template-downloads">
+      <li><a class="button" href="">Download page template PSD</a></li>
+      <li><a class="button" href="">Download subpage template PSD</a></li>
+    </ul>
+
+    <img src="grid-example-1.jpg" alt="">
+    <img src="grid-example-2.jpg" alt="">
+
+  </div>
+
+</div>
+</section>
+
+<section id="tabzilla-demo" class="container">
+<div class="row">
+
+  <div class="span3">
+
+    <hgroup>
+      <h2 class="mozilla-red">Tabzilla</h2>
+      <h4 class="mozilla-red">Universal Tab</h4>
+    </hgroup>
+
+      <p>Tabzilla is the universal tab that appears on all Mozilla websites. A simple set of HTML/CSS/JS is provided for easy integration.</p>
+
+  </div>
+
+  <div class="span2 css-code small">
+    <h4>Tabzilla Live</h4>
+    <p>View tabzilla live at <a href="">www.mozilla.org</a> or at the top of this page.</p>
+  </div>
+
+  <div class="span5">
+    <h4>Tabzilla Code</h4>
+    <p>
+      Find the <a href="https://github.com/mozilla/tabzilla">Tabzilla Documentation and code on GitHub</a>.
+    </p>
+
+  </div>
+
+</div>
+</section>
+
+<section id="typefaces" class="typefaces container">
+<div class="row">
+  <div class="span3">
+
+    <hgroup>
+      <h2 class="mozilla-red">Typefaces</h2>
+      <h4>Open Sans + Georgia</h4>
+    </hgroup>
+
+    <p>Body copy is set in 16px Georgia with a 24px baseline. Headlines are set in Open Sans Light. The Open Sans font family is avaiable as a hosted web font from mozilla.org. The Sandstone CSS provides headings styled with Open Sans and you can add the LESS mixin <code>.open-sans</code> or <code>.open-sans-light</code> to any element.</p>
+
+    <a class="top" href="#top">back to top</a>
+
+  </div>
+
+  <div class="span2 css-code small">
+    <h4>LESS mixins</h4>
+
+    <p><code>
+      .open-sans;<br>
+      .open-sans-light;
+    </code></p>
+  </div>
+
+  <div class="span5">
+
+    <h4>Type Examples</h4>
+
+    <h1 class="huge">huge</p>
+    <h1 class="large">large</p>
+    <h1>headline 1</h1>
+    <h2>headline 2</h2>
+    <h3>headline 3</h3>
+    <h4>headline 4</h4>
+
+    <p>body text</p>
+    <p class="small">small</p>
+
+  </div>
+
+</div>
+</section>
+
+<section id="backgrounds" class="background container">
+<div class="row">
+
+  <div class="span3">
+
+    <h2 class="mozilla-red">Backgrounds</h2>
+
+    <p>Stumptown marfa bicycle rights cray. Occupy synth seitan magna, banh mi ut pour-over exercitation tofu keytar officia artisan VHS tempor qui. Accusamus excepteur banksy, dreamcatcher occupy stumptown eu before they sold out artisan small batch raw denim. Viral nulla four loko, nisi ad 3 wolf moon dolor seitan leggings PBR beard thundercats. Polaroid pitchfork brunch labore, aliqua mollit duis. </p><a class="top" href="#top">back to top</a>
+
+  </div>
+
+  <div class="span2 css-code bg small">
+    <h4 class="pad">Background CSS</h4>
+    <p class="pad"><code>
+      background: rgb(245,241,232) url('background-gradient.png') repeat-x top center;
+    </code></p>
+  </div>
+
+  <div class="span5">
+    <h4>Background Example</h4>
+    <p>
+
+      <a class="button" href="">Download the default backgrounds</a>
+      <a class="button" href="">Download the background PSD</a>
+
+    </p>
+
+  </div>
+
+</div>
+</section>
+
+<section id="buttons" class="container">
+<div class="row">
+
+  <div class="span3">
+
+    <hgroup>
+      <h2 class="mozilla-red">Buttons</h2>
+      <h4 class="mozilla-red">Gumdrop Style</h4>
+    </hgroup>
+
+    <p>Button styles with hover/active states and CSS transitions are provided. Green buttons should be used for download actions, blue for other primary functions.</p>
+
+    <a class="top" href="#top">back to top</a>
+
+  </div>
+
+  <div class="span2 css-code small">
+    <h4>Button CSS</h4>
+    <p><code>
+      .button<br>
+      .button-blue
+    </code></p>
+    <p><code>
+      .button-white
+    </code></p>
+    <p><code>
+      &lt;a class="button"&gt;<br>
+        Primary<br>
+        &lt;small&gt;<br>
+          Optional<br>
+        &lt;/small&gt;<br>
+      &lt;/a&gt;
+    </code></p>
+  </div>
+
+  <div class="span5">
+    <h4>Button Examples</h4>
+    <p>
+      <a class="button" href="">Primary Button</a>
+      <a class="button-blue" href="">Primary Button</a>
+    </p>
+    <p>
+      <a class="button" href="">Button <small>With secondary text</small></a>
+    </p>
+    <p>
+      <a class="button-white" href="">Secondary Button</a>
+    </p>
+  </div>
+
+</div>
+</section>
+
+</div>
+
+
+{% endblock %}
