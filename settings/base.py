@@ -47,6 +47,9 @@ MINIFY_BUNDLES = {
         'b2g': (
             'css/b2g.less',
         ),
+        'collusion': (
+            'css/collusion.less',
+        ),
         'common': (
             'css/sandstone/sandstone.less',
         ),
@@ -85,6 +88,13 @@ MINIFY_BUNDLES = {
         ),
     },
     'js': {
+        'collusion': (
+            'js/collusion/d3.layout.js',
+            'js/collusion/d3.geom.js',
+            'js/collusion/collusion-addon.js',
+            'js/collusion/demo.js',
+            'js/collusion/graphrunner.js',
+        ),
         'common': (
             'js/libs/jquery-1.7.1.min.js',
         ),
@@ -130,6 +140,7 @@ INSTALLED_APPS = list(INSTALLED_APPS) + [
     # Local apps
     'l10n_example',  # DELETEME
     'b2g',
+    'collusion',
     'marketplace',
     'mozorg',
     'persona',

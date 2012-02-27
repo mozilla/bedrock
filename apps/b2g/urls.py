@@ -1,8 +1,10 @@
 from django.conf.urls.defaults import *
-from views import b2g, about, faq
+
+import views
+
 
 urlpatterns = patterns('',
-    (r'^faq/$', faq),
-    (r'^about/$', about),
-    (r'^$', b2g),
+    url(r'^$', views.b2g, name='b2g'),
+    url(r'^faq/$', views.faq, name='b2g.faq'),
+    url(r'^about/$', views.about, name='b2g.about'),
 )

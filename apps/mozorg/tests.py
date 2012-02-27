@@ -1,14 +1,17 @@
 import unittest
+
 import jingo
-from nose.tools import eq_
 from mock import Mock
-from pyquery import PyQuery as pq
+from nose.tools import eq_
 from product_details import product_details
+from pyquery import PyQuery as pq
+
 
 # Where should this function go?
 def render(s, context={}):
     t = jingo.env.from_string(s)
     return t.render(**context)
+
 
 class TestDownloadButtons(unittest.TestCase):
 
@@ -53,5 +56,4 @@ class TestDownloadButtons(unittest.TestCase):
 
     def test_small_button(self):
         self.test_button('small')
-        
-        
+

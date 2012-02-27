@@ -6,9 +6,9 @@
 {% block site_header_nav %}
   <nav id="nav-main" role="navigation">
   <ul>
-      <li><a href="/b2g/">Home</a></li>
-      <li><b>About</b></li>
-      <li><a href="/b2g/faq/">FAQ</a></li>
+    <li><a href="{{ url('b2g') }}">Home</a></li>
+    <li><b>About</b></li>
+    <li><a href="{{ url('b2g.faq') }}">FAQ</a></li>
   </ul>
   </nav>
 {% endblock %}
@@ -20,7 +20,7 @@
 {% block breadcrumbs %}
   <nav class="breadcrumbs">
     <a href="/">Home</a> >
-    <a href="/b2g/">Boot to Gecko Project</a> >
+    <a href="{{ url('b2g') }}">Boot to Gecko Project</a> >
     <span>About</span>
   </nav>
 {% endblock %}
@@ -33,14 +33,14 @@
 
 <article class="span6">
 
-  <h1>About Boot to Gecko</h1>
-  <p>Boot to Gecko (B2G) is our open source, Web-based operating system for mobile devices. It is the framework for the Open Web device platform introduced at Mobile World Congress in February 2012.</p>
+  <h1>About the project</h1>
+  <p>Launched in 2011, the Boot to Gecko project will fully enable the Web as the platform for mobile devices.  At Mobile World Congress in February 2012 we announced our initial development partners, and provided a demo of a prototype.</p>
 
   <h2>Technology</h2>
-  <p>The B2G architecture eliminates the need for apps to be built on platform-specific native APIs. Using HTML5, developers everywhere can write directly to the Web; they can create amazing user experiences and apps unencumbered by the rules and restrictions of closely controlled platforms.</p>
+  <p>The project’s proposed architecture eliminates the need for apps to be built on platform-specific native APIs. Using HTML5, developers everywhere can write directly to the Web; they can create amazing user experiences and apps unencumbered by the rules and restrictions of closely controlled platforms.</p>
 
   <h2>Open Accessible Standards</h2>
-  <p>As with all Mozilla projects, B2G is based entirely on open standards and the source code is open and accessible to all. Where open standards are missing (including telephony, SMS, camera, bluetooth, USB and NFC), we're working with standards bodies and other vendors to create them.</p>
+  <p>As with all Mozilla projects, the Boot to Gecko project is based entirely on open standards and the source code is open and accessible to all. Where open standards are missing (including telephony, SMS, camera, bluetooth, USB and NFC), we're working with standards bodies and other vendors to create them.</p>
 
 </article>
 
@@ -48,9 +48,9 @@
 
   <nav>
     <ul>
-      <li><a href="/b2g/">B2G Project</a></li>
+      <li><a href="{{ url('b2g') }}">Boot to Gecko Project</a></li>
       <li><b>About</b></li>
-      <li><a href="/b2g/faq/">FAQ</a></li>
+      <li><a href="{{ url('b2g.faq') }}">FAQ</a></li>
     </ul>
   </nav>
 

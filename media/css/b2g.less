@@ -20,6 +20,8 @@ h1#main-feature {
         float: right;
         margin-top: -@baseLine * 3;
         max-width: 50%;
+        position: relative;
+        right: -15px;
     }
 
     p {
@@ -28,10 +30,18 @@ h1#main-feature {
 }
 
 #secondary {
-    padding-bottom: @baseLine * 2;
+    padding-bottom: @baseLine;
 
     img {
         margin-bottom: @baseLine;
+        float: left;
+        margin-left: @gridGutterWidth;
+    }
+
+    figure {
+        display: block;
+        margin-left: -@gridGutterWidth;
+        .clearfix;
     }
 
 }
@@ -52,3 +62,19 @@ h1#main-feature {
         margin: 0;
     }
 }
+
+#more-info {
+    margin-top: @baseLine;
+    margin-bottom: @baseLine;
+    @shadow: 0 1px 1px rgba(0,0,0,0.1), 0 0 0 1px #fff;
+    .box-shadow(@shadow);
+    background: #fff;
+    padding-top: @baseLine;
+    padding-bottom: @baseLine;
+    ul {
+        margin: 0;
+    }
+
+}
+
+
