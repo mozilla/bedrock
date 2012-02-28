@@ -89,7 +89,7 @@ h6 {
 .small,
 small {
     font-size: 12px;
-    line-height: 100%;
+    line-height: 16px;
 }
 
 hgroup {
@@ -120,6 +120,11 @@ dl dt {
 
 dl dd {
     margin-bottom: @baseLine * 2;
+}
+
+code {
+    color: @textColorTertiary;
+    font-size: 14px;
 }
 
 .center {
@@ -190,7 +195,7 @@ input[type=text]:focus {
 #masthead {
 
     h1 {
-        padding: @baseLine * 3  0  @baseLine * 1.5  0;
+        padding: (@baseLine * 2)  0  (@baseLine * 1.5)  0;
         margin: 0;
     }
 
@@ -245,8 +250,8 @@ input[type=text]:focus {
 
         a,
         span {
-            margin-right: 1em;
-            margin-left: 1em;
+            margin-right: .5em;
+            margin-left: .5em;
         }
 
         a:first-child,
@@ -497,11 +502,8 @@ px      68    160    252    */
 
     }
 
-    .huge {
-        font-size: 108px;
-        letter-spacing: -4px;
-    }
-
+    .huge,
+    .huge h1,
     .large,
     .large h1 {
         font-size: 48px;
@@ -530,6 +532,30 @@ px      68    160    252    */
 
     h5 {
         font-size: 14px;
+    }
+
+
+    nav.menu-bar {
+        text-align: inherit;
+        line-height: 100%;
+
+        ul {
+            padding-top: @baseLine / 2;
+            padding-bottom: @baseLine / 2;
+            li {
+                display: block;
+                a {
+                    padding: @baseLine / 2;
+                    border: 0;
+                    display: block;
+                    border-top: 1px dotted @borderColor;
+                    border-left: 0;
+                }
+                &:first-child a {
+                    border-top: 0;
+                }
+            }
+        }
     }
 
 }
