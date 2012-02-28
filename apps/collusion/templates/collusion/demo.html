@@ -6,7 +6,7 @@
 {% block site_header_nav %}
   <nav id="nav-main" role="navigation">
   <ul>
-      <li><a href="/collusion/">Home</a></li>
+      <li><a href="{{ url('collusion') }}">Home</a></li>
       <li><b>Demo</b></li>
   </ul>
   </nav>
@@ -14,7 +14,7 @@
 
 {% block extrahead %}
   {{ css('collusion') }}
-  <script src="/media/js/collusion/d3.js"></script>
+  <script src="{{ media('js/collusion/d3.js') }}"></script>
 {% endblock %}
 
 {% block js  %}
@@ -163,7 +163,7 @@ $(window).ready(function() {
 
     </div>
     <div class="step 5">
-      <p>Thanks for trying out this demo. If you'd like to see this graph change in real time based on the sites you visit in your own browser, feel free to try the <a href="https://secure.toolness.com/xpi/collusion.html" class="xpi-download">Collusion Firefox add-on</a>. Even visiting the sites mentioned in the demo will probably give you different visualizations, because some services you may be logged into&mdash;like Facebook&mdash;can also track you across sites.</p>
+      <p>Thanks for trying out this demo. If you'd like to see this graph change in real time based on the sites you visit in your own browser, feel free to try the <a href="https://addons.mozilla.org/en-US/firefox/addon/collusion/" class="xpi-download">Collusion Firefox add-on</a>. Even visiting the sites mentioned in the demo will probably give you different visualizations, because some services you may be logged into&mdash;like Facebook&mdash;can also track you across sites.</p>
       <p>If you want to block companies from tracking you on the internet, you can install <a href="http://www.privacychoice.org/trackerblock/firefox">TrackerBlock</a> for Firefox and Internet Explorer.</p>
 
       <p>Collusion was created as a prototype by Atul Varma. For more information about the making of this demo, check out the <a href="http://www.toolness.com/wp/2011/07/collusion/">blog post</a> and <a href="https://github.com/toolness/collusion">code repository</a>.</p>

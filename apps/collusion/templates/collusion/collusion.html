@@ -7,7 +7,7 @@
   <nav id="nav-main" role="navigation">
   <ul>
       <li><b>Home</b></li>
-      <li><a href="/collusion/demo/">Demo</a></li>
+      <li><a href="{{ url('collusion.demo') }}">Demo</a></li>
   </ul>
   </nav>
 {% endblock %}
@@ -25,11 +25,16 @@
 
 <section id="primary" class="container">
 
-  <img src="/media/img/collusion/nodes.png" alt="">
+  <img src="{{ media('img/collusion/nodes.png') }}" alt="">
 
-  <p>Collusion is an experimental add-on for Firefox and allows you, to see all the third parties that are tracking your movements across the Web. It will show, in real time, how that data creates a spider-web of interaction between companies and other trackers.</p>
+  <p>
+    Collusion is an experimental add-on for Firefox and allows you to
+    see all the third parties that are tracking your movements across
+    the Web. It will show, in real time, how that data creates a
+    spider-web of interaction between companies and other trackers.
+  </p>
 
-  <a class="button-blue" href="demo/">
+  <a class="button-blue" href="{{ url('collusion.demo') }}">
     View Our Demo
     <small>see how you’re being tracked</small>
   </a>
@@ -48,21 +53,46 @@
   <div class="span6">
 
     <h3>Take control of your data</h3>
-    <p>We recognize the importance of transparency and our mission is all about empowering users — both with tools and with information. The Ford Foundation and Mozilla have teamed up to develop Collusion into a fully functioning feature for Firefox - that will enable users to not only see who is tracking them across the Web, but also to turn that tracking off when they want to.</p>
+    <p>
+      We recognize the importance of transparency and our mission is
+      all about empowering users — both with tools and with
+      information. The Ford Foundation is supporting Mozilla to
+      develop the Collusion add-on so it will enable users to not only
+      see who is tracking them across the Web, but also to turn that
+      tracking off when they want to.
+    </p>
 
     <h3>Telling the global tracking story</h3>
-    <p>Your data can be part of the larger story.  When we launch the full version of Collusion, it will allow you to opt-in to sharing your anonymous data in a global database of web tracker data. We’ll combine all that information and make it available to help researchers, journalists, and others analyze and explain how data is tracked on the web.</p>
+    <p>
+      Your data can be part of the larger story. When we launch the
+      full version of Collusion, it will allow you to opt-in to
+      sharing your anonymous data in a global database of web tracker
+      data. We’ll combine all that information and make it available
+      to help researchers, journalists, and others analyze and explain
+      how data is tracked on the web.
+    </p>
 
     <h3>Building user awareness</h3>
-    <p>Through our work with the Ford Foundation, we’ll be building outreach campaigns to help people understand online data tracking — both the benefits and the issues — so they can make their own choices about how they want to be tracked (or choose not to be tracked at all).</p>
+    <p>
+      Through our work with the Ford Foundation, we’ll be building
+      outreach campaigns to help people understand online data
+      tracking — both the benefits and the issues — so they can make
+      their own choices about how they want to be tracked (or choose
+      not to be tracked at all).
+    </p>
 
     <h3>Collusion is about choice</h3>
-    <p>Not all tracking is bad. Many services rely on user data to provide relevant content and enhance your online experience. But most tracking happens without user’s consent and without their knowledge. That’s not okay. It should be you who decides when, how and if you want to be tracked. Collusion will be a powerful tool to help you do that.</p>
-
+    <p>
+      Not all tracking is bad. Many services rely on user data to
+      provide relevant content and enhance your online experience. But
+      most tracking happens without users' consent and without their
+      knowledge. That’s not okay. It should be you who decides when,
+      how and if you want to be tracked. Collusion will be a powerful
+      tool to help you do that.
+    </p>
   </div>
 
   <div class="span3 offset1">
-
     <form action="https://donate.mozilla.org/page/s/collusion" method="post" class="box" id="updates">
       <h3>Want to hear more?</h3>
       <p class="intro">Get Mozilla updates:</p>
@@ -378,7 +408,11 @@
           <label for="privacy-check" id="privacy-check-label" class="">
             <span class="input"><input type="checkbox" name="custom-824" id="privacy-check" value="1" required></span>
 
-            <span class="title">I agree to the <a href="http://www.mozilla.org/about/policies/privacy-policy.html">Privacy Policy</a></span>
+            <span class="title">
+              I'm okay with you handling this info as your explain in
+              your <a href="{{ php_url('/privacy-policy.html') }}">Privacy
+              Policy</a>
+            </span>
           </label>
         </div>
 
@@ -390,7 +424,7 @@
       </form>
 
       <h3>Supported by</h3>
-      <img src="/media/img/collusion/ford-foundation.png" alt="Ford Foundation" />
+      <img src="{{ media('img/collusion/ford-foundation.png') }}" alt="Ford Foundation" />
 
     </div>
 
