@@ -1,0 +1,60 @@
+@import "../sandstone/sandstone.less";
+
+#wrapper {
+    background-color: #eee;
+    background-image: url(/media/img/sandstone/bg-slate.png);
+}
+
+section.container {
+    border-bottom: 1px dotted @borderColor;
+    padding-bottom: @baseLine * 2;
+    margin-bottom: @baseLine * 2;
+}
+
+section.container:last-child {
+    border-bottom: 0;
+}
+
+a,
+a:link,
+a:visited {
+    color: @linkBlue;
+}
+
+a:hover,
+a:active {
+    color: darken(@linkBlue, 10%);
+}
+
+.section-list {
+    margin: 0;
+    li {
+        list-style-type: none;
+        margin: 0;
+    }
+    p {
+        .small;
+    }
+    h4 {
+        margin: 0;
+    }
+}
+
+.section-image img {
+    position: relative;
+    top: -8px;
+}
+
+#main-feature {
+    position: relative;
+    .button {
+        position: absolute;
+        top: 0;
+        right: @baseLine * 2;
+    }
+}
+
+#mission img {
+    margin: @baseLine auto;
+    display: block;
+}

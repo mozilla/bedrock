@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import *
-from views import contribute, channel, button, new, sandstone, geolocation
+from views import contribute, channel, firefoxSecurity, button, new, sandstone, geolocation
 
 urlpatterns = patterns('',
     (r'^button/', button),
@@ -8,5 +8,6 @@ urlpatterns = patterns('',
     (r'^new/', new),
     (r'^sandstone/', sandstone),
 
-    (r'^firefox/geolocation/', geolocation)
+    (r'^firefox/geolocation/', geolocation),
+    (r'^firefox/security/', firefoxSecurity),
 )
