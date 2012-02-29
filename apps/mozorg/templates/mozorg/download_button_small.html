@@ -1,13 +1,10 @@
-<div id="{{ id }}">
-  <noscript>
-   {% include "mozorg/download_button_dumb.html" %}
-  </noscript>
+{% extends "/mozorg/download_button_base.html" %}
 
-  <ul class="unsupported-download">
-    {% include "mozorg/download_button_dumb.html" %}    
-  </ul>
+{% block class %}download-button-small{% endblock %}">
 
-  <ul class="home-download">
+{% block contents %}
+  
+  <ul class="download-list">
     {% for build in builds %}
     <li class="{{ build.platform }}">
       <a class="download-link download-{{ product }}"
@@ -21,8 +18,4 @@
     {% endfor %}
   </ul>
 
-  <p class="download-other">
-    <a href="/{{ LANG }}/legal/privacy/firefox.html" class="ancillaryLink">Privacy Policy</a> |
-    <a href="/{{ LANG }}/firefox/all.html" class="ancillaryLink">Other Systems and Languages</a>
-  </p>
-</div>
+{% endblock %}

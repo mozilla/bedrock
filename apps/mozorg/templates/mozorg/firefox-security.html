@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base-firefox.html" %}
 
 {% block page_title %}Mozilla Firefox Web Browser — Safe Web Browsing{% endblock %}
 {% block body_id %}firefox-security{% endblock %}
@@ -7,15 +7,18 @@
   {{ css('firefox-security') }}
 {% endblock %}
 
-{% block site_header_logo %}
-<h1><img src="/media/img/sandstone/header-mozilla-slate.png" alt="mozilla"></h1>
-{% endblock %}
-
 {% block content %}
+
 
 <div id="main-feature">
   <h1 class="center">Firefox Helps You <span class="huge">Stay Safe</span></h1>
-  <a href="#" class="button top-right">Download Firefox</a>
+  {{ download_button('download', 'small') }}
+
+  <script src="/media/js/download.js"></script>
+  <script type="text/javascript">
+    offerBestDownloadLink('download');
+    offerBestDownloadLink('download2');
+  </script>
 </div>
 
 <nav class="menu-bar billboard">

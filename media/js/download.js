@@ -70,13 +70,13 @@ function offerBestDownloadLink(tagId) {
     if (parent) {
         switch (gPlatform) {
             case PLATFORM_WINDOWS:
-                setDownloadListClass(parent, 'home-download', 'os_windows');
+                setDownloadListClass(parent, 'download-list', 'os_windows');
                 break;
             case PLATFORM_LINUX:
-                setDownloadListClass(parent, 'home-download', 'os_linux');
+                setDownloadListClass(parent, 'download-list', 'os_linux');
                 break;
             case PLATFORM_MACOSX:
-                setDownloadListClass(parent, 'home-download', 'os_osx');
+                setDownloadListClass(parent, 'download-list', 'os_osx');
                 break;
             default:
                 setDownloadListClass(parent, 'unsupported-download', 'show');

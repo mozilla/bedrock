@@ -1,18 +1,20 @@
-@import "../sandstone/sandstone.less";
-
-#wrapper {
-    background-color: #eee;
-    background-image: url(/media/img/sandstone/bg-slate.png);
-}
+@import "template.less";
 
 section.container {
-    border-bottom: 1px dotted @borderColor;
+    border-top: 1px dotted @borderColor;
+    padding-top: @baseLine * 2;
     padding-bottom: @baseLine * 2;
-    margin-bottom: @baseLine * 2;
 }
 
-section.container:last-child {
-    border-bottom: 0;
+section.container#privacy {
+    border-top: 0;
+    padding-top: 0;
+}
+
+#download {
+    position: absolute;
+    top: -@baseLine * 2;
+    right: 0;
 }
 
 a,

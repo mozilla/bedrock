@@ -1,0 +1,44 @@
+<aside id="{{ id }}" class="download-button {% block class %}download-button-large{% endblock %}">
+  {% block noscript %}
+  <noscript>
+    {% include "mozorg/download_button_dumb.html" %}
+  </noscript>
+  {% endblock %}
+
+  {% block unsupported %}
+  <ul class="unsupported-download">
+    {% include "mozorg/download_button_dumb.html" %}    
+  </ul>
+  {% endblock %}
+
+  {% block contents %}
+  <ul class="download-list">
+    {% for build in builds %}
+    <li class="{{ build.platform }}">
+      <a class="download-link download-{{ product }}"
+         href="{{ build.download_link }}">
+        <span class="download-content">
+          <span class="download-title">Firefox</span>
+          Free Download
+          <span class="download-info">
+            <span class="download-version">
+              {{ version }} for {{ build.platform_pretty }}
+            </span>  
+            <span class="download-lang">{{ locale_name }}</span>
+          </span>
+        </span>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endblock %}
+
+  {% block small_print %}
+  <small class="download-other">
+    <a href="{{ php_url('/firefox/all.html') }}">{{ ___('Systems & Languages') }}</a> | 
+    <a href="">{{ ___('What’s New') }}</a> | 
+    <a href="{{ php_url('/legal/privacy/firefox.html') }}">{{ ___('Privacy') }}</a>
+  </small>
+  {% endblock %}
+
+</aside>
