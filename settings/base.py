@@ -143,6 +143,7 @@ INSTALLED_APPS = list(INSTALLED_APPS) + [
     'marketplace',
     'mozorg',
     'persona',
+    'landing',
     'research',
 
     # libs

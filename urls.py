@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     (r'^collusion/', include('collusion.urls')),
     (r'^apps/', include('marketplace.urls')),
     (r'^persona/', include('persona.urls')),
+    (r'', include('landing.urls')),
     (r'', include('mozorg.urls')),
     (r'', include('research.urls')),
 
