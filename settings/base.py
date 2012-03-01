@@ -100,6 +100,9 @@ MINIFY_BUNDLES = {
         'common': (
             'js/libs/jquery-1.7.1.min.js',
         ),
+        'firefox-menu': (
+            'js/nav-main.js',
+        ),
         'geolocation': (
             'js/libs/jquery-1.4.4.min.js',
             'js/libs/jquery.nyroModal.pack.js',

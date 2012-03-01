@@ -1,0 +1,183 @@
+/* Top Level Menu Items */
+
+
+#nav-main li {
+    position: relative;
+    z-index: 100;
+}
+
+#nav-main ul li a,
+#nav-main ul li a:link,
+#nav-main ul li a:visited,
+#nav-main ul li span {
+    z-index: 100;
+    position: relative;
+}
+
+#nav-main ul li.hover a,
+#nav-main ul li.hover a:link,
+#nav-main ul li.hover a:visited {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAHAQMAAADpvlVZAAAAAXNSR0IArs4c6QAAAAZQTFRFAAAA////pdmf3QAAAAF0Uk5TAEDm2GYAAAABYktHRACIBR1IAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3AMBEjcKOURVdQAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAAAdSURBVAjXY2BiYGBnYOBvYJA/wGD/gKH+A8P/HwAiJAX9mUp9sAAAAABJRU5ErkJggg==);
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    outline: 0;
+}
+
+#nav-main ul ul li.hover a,
+#nav-main ul ul li.hover a:link,
+#nav-main ul ul li.hover a:visited {
+    background-image: none;
+}
+
+#nav-main ul li.last a,
+#nav-main ul li.last span {
+    border-right-color: transparent;
+}
+
+#nav-main ul li.last a:hover,
+#nav-main ul li.last a:focus,
+#nav-main ul li.last a:active,
+.js #nav-main ul li.last a:focus,
+#nav-main ul li.hover a {
+    border-right-color: #98b2c9;
+}
+
+/* Second-level Menu Items */
+
+#nav-main ul li.last a:hover,
+#nav-main ul li.last a:focus,
+#nav-main ul li.last a:active,
+.js #nav-main ul li.last a:focus,
+#nav-main ul li.hover a {
+    border-right-color: #98b2c9;
+}
+
+/* Second-level Menu Items */
+
+.js #nav-main li.hover ul {
+    left: 0;
+    opacity: 1;
+    -moz-transition: opacity 0.2s ease-in-out;
+    -webkit-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
+}
+
+#nav-main ul ul,
+#nav-main ul ul li {
+    height: auto;
+    border: 0;
+    float: none;
+}
+
+#nav-main ul ul {
+    position: absolute;
+    left: -999em;
+    opacity: 0;
+    z-index: 99;
+    width: 190px;
+    text-shadow: 1px 1px 0 #fff, 0 0 5px #fff;
+    background: #fff;
+    padding: 1px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+#nav-main ul ul li {
+    background-image: none;
+}
+
+#nav-main ul ul li a,
+#nav-main ul ul li a:link,
+#nav-main ul ul li a:visited,
+#nav-main ul ul li span {
+    overflow: hidden;
+    padding: 7px 10px;
+    margin: 0;
+    height: auto;
+    float: none;
+    display: block;
+    font-size: 11px;
+    border: 0;
+    background: none;
+    position: relative;
+    -moz-transition: background 0.1s ease-in;
+    -webkit-transition: background 0.1s ease-in;
+    transition: background 0.1s ease-in;
+}
+
+#nav-main ul ul li a:hover,
+#nav-main ul ul li a:focus,
+#nav-main ul ul li a:active,
+.js #nav-main ul ul li a:focus,
+#nav-main ul li.current ul li a:hover,
+#nav-main ul li.current ul li a:focus,
+#nav-main ul li.current ul li a:active,
+.js #nav-main ul li.current ul li a:focus {
+    background: rgb(227,235,244);
+    background: rgba(152,178,201,0.2);
+    -moz-transition: background 0.1s ease-out;
+    -webkit-transition: background 0.1s ease-out;
+    transition: background 0.1s ease-out;
+}
+
+#nav-main ul li:hover ul li a,
+#nav-main ul li.hover ul li a:link,
+#nav-main ul li.hover ul li a:visited {
+    padding-bottom: 8px;
+}
+
+/* Currently active menu items */
+
+#nav-main ul li.current span,
+#nav-main ul li.current a,
+#nav-main ul li.current a:link,
+#nav-main ul li.current a:visited {
+    background: #fbfdff;
+    padding-right: 30px;
+    padding-bottom: 15px;
+}
+
+#nav-main ul li.current:hover a,
+#nav-main ul li.current.hover a,
+#nav-main ul li.current a:hover,
+#nav-main ul li.current a:focus,
+#nav-main ul li.current a:active,
+.js #nav-main ul li.current a:focus {
+    border-bottom: 0;
+}
+
+#nav-main ul li.current ul span,
+#nav-main ul li.current ul a,
+#nav-main ul li.current ul a:link,
+#nav-main ul li.current ul a:visited {
+    background: none;
+    height: auto;
+    padding: 8px 10px;
+}
+
+/* }}} */
+/* {{{ Dark Background Header */
+
+.darkbg #nav-main ul li a,
+.darkbg #nav-main ul li a:link,
+.darkbg #nav-main ul li a:visited,
+.darkbg #nav-main ul li span {
+    color: #fff;
+    border-color: #555;
+}
+
+.darkbg #nav-main ul li li a,
+.darkbg #nav-main ul li li a:link,
+.darkbg #nav-main ul li li a:visited,
+.darkbg #nav-main ul li li span {
+    color: #484848;
+}
+
+.darkbg #nav-main ul li a:hover,
+.darkbg #nav-main ul li:hover a,
+.darkbg #nav-main ul li.hover a,
+.darkbg #nav-main ul li.hover a:link,
+.darkbg #nav-main ul li.hover a:visited {
+    background: #ccc;
+    color: #484848;
+}
+

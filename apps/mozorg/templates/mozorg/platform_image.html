@@ -1,0 +1,9 @@
+<script>
+
+{% for platform in platforms_safe %}
+  if (gPlatform == PLATFORM_CONDITIONAL {
+    document.write('<img src="{{ filename }}-{{ platform }}.ext" alt="{{ alt }}">');
+  }
+{% endfor %}
+
+</script>
