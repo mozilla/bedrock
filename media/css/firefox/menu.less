@@ -1,5 +1,9 @@
 /* Top Level Menu Items */
 
+#nav-main ul {
+    .inline-block;
+    margin: 0;
+}
 
 #nav-main li {
     position: relative;
@@ -67,13 +71,15 @@
     height: auto;
     border: 0;
     float: none;
+    display: block;
 }
 
 #nav-main ul ul {
     position: absolute;
     left: -999em;
+    top: 48px;
     opacity: 0;
-    z-index: 99;
+    z-index: 999;
     width: 190px;
     text-shadow: 1px 1px 0 #fff, 0 0 5px #fff;
     background: #fff;
