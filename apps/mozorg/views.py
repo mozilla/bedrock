@@ -10,6 +10,9 @@ def contribute(request):
 def firefoxSecurity(request):
     return l10n_utils.render(request, "mozorg/firefox/security.html")
 
+def firefoxPerformance(request):
+    return l10n_utils.render(request, "mozorg/firefox/performance.html")
+
 def channel(request):
     data = {}
 
