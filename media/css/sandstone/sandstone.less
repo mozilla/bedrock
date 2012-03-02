@@ -189,15 +189,16 @@ input[type=text]:focus {
     .offset(2);
 }
 
+.divider.container,
 .divider {
-    border-top: 1px dotted @borderColor;
-    padding-top: @baseLine * 2;
+    border-bottom: 1px dotted @borderColor;
     padding-bottom: @baseLine * 2;
+    margin-bottom: @baseLine *2;
 }
 
-.divider-first {
-    border-top: 0;
-    padding-top: @baseLine * 2;
+.divider-last.container,
+.divider-last {
+    border-bottom: 0;
     padding-bottom: @baseLine * 2;
 }
 

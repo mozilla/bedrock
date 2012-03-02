@@ -7,10 +7,10 @@ def index(request):
 def contribute(request):
     return l10n_utils.render(request, "mozorg/contribute.html")
 
-def firefoxSecurity(request):
+def firefox_security(request):
     return l10n_utils.render(request, "mozorg/firefox/security.html")
 
-def firefoxPerformance(request):
+def firefox_performance(request):
     return l10n_utils.render(request, "mozorg/firefox/performance.html")
 
 def channel(request):

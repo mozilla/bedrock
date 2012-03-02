@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block extrahead %}
-<meta name="og:image" content="/media/img/firefox/firefox-100.jpg">
+<meta name="og:image" content="{{ media('img/firefox/firefox-100.jpg') }}">
 {% endblock %}
 
 {% block site_header_nav %}
@@ -17,7 +17,7 @@
         <li><a href="/en-US/firefox/customize/" tabindex="-1">Customize</a></li>
         <li><a href="/en-US/firefox/performance/" tabindex="-1">Performance</a></li>
         <li><a href="/en-US/firefox/technology/" tabindex="-1">Technology</a></li>
-        <li class="last"><a href="/en-US/firefox/security/" tabindex="-1">Privacy &amp; Security</a></li>
+        <li class="last"><a href="{{ url('mozorg.firefox_security') }}" tabindex="-1">Privacy &amp; Security</a></li>
       </ul>
     </li>
     <li id="nav-main-mobile"><a href="/en-US/mobile/" tabindex="0" aria-owns="nav-main-mobile-submenu" aria-haspopup="true">Mobile</a>
@@ -68,7 +68,7 @@
 {% endblock %}
 
 {% block site_header_logo %}
-<h1><img src="{{ MEDIA_URL }}img/firefox/template/header-logo.png" alt="Mozilla Firefox" height="95" width="250"></h1>
+<h1><img src="{{ media('img/firefox/template/header-logo.png') }}" alt="Mozilla Firefox" height="95" width="250"></h1>
 {% endblock %}
 
 {% block site_js %}

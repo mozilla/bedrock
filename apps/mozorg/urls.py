@@ -1,5 +1,6 @@
 from django.conf.urls.defaults import *
-from views import contribute, channel, firefoxPerformance, firefoxSecurity, button, new, sandstone, geolocation
+from views import contribute, channel, firefox_performance, firefox_security, button, new, sandstone, geolocation
+
 
 urlpatterns = patterns('',
     (r'^button/', button),
@@ -9,6 +10,6 @@ urlpatterns = patterns('',
     (r'^sandstone/', sandstone),
 
     (r'^firefox/geolocation/', geolocation),
-    (r'^firefox/security/', firefoxSecurity),
-    (r'^firefox/performance/', firefoxPerformance),
+    url(r'^firefox/security/', firefox_security, name='mozorg.firefox_security'),
+    url(r'^firefox/performance/', firefox_performance, name='mozorg.firefox_performance'),
 )
