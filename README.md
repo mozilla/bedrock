@@ -6,6 +6,51 @@ awesome, and open sourcy as always. Perhaps even a little more.
 
 Stay tuned.
 
+Install
+-------
+
+To install bedrock, fire a commandline and type the following:
+
+    $ virtualenv venv
+    $ source venv/bin/activate
+    $ pip install -r requirements/dev.txt
+
+Once you've done that, you'll need to configure the application to run
+locally. Create a `settings/local.py` file, containing the following:
+
+        # This is an example settings_local.py file.
+    # Copy it and add your local settings here.
+
+    from settings import *
+
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'db.sql',
+        },
+    }
+
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+            'LOCATION': 'translations'
+        }
+    }
+
+    DEBUG = TEMPLATE_DEBUG = True
+    LESS_PREPROCESS = True
+
+You will need to have a less compiler. You can get one on debian/ubuntu by
+installing the "libjs-less" package.
+
+Make it run
+-----------
+
+To make the server run, run the server with your local settings:
+
+    python manage.py runserver --settings settings.local
+
 
 Docs
 ----
