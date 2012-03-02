@@ -61,6 +61,9 @@ MINIFY_BUNDLES = {
             'css/covehead/content.css',
             'css/covehead/channel.css',
         ),
+        'firefox': (
+            'css/firefox/template.less',
+        ),
         'firefox-security': (
             'css/firefox/security.less',
         ),
@@ -100,7 +103,8 @@ MINIFY_BUNDLES = {
         'common': (
             'js/libs/jquery-1.7.1.min.js',
         ),
-        'firefox-menu': (
+        'firefox': (
+            'js/libs/jquery-1.7.1.min.js',
             'js/nav-main.js',
         ),
         'geolocation': (

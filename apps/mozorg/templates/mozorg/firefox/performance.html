@@ -3,9 +3,9 @@
 {% block page_title %}Mozilla Firefox Web Browser — Blazing Fast Performance{% endblock %}
 {% block body_id %}firefox-security{% endblock %}
 
-{% block site_css %}
+{% block extrahead %}
   {{ css('video') }}
-  {{ css('firefox-security') }}
+  {{ super() }}
 {% endblock %}
 
 {% block js %}
@@ -13,7 +13,6 @@
 {% endblock %}
 
 {% block content %}
-
 
 <div id="main-feature">
   <h1>Blazing <span class="huge">Performance</span></h1>
@@ -32,7 +31,7 @@
   </ul>
 </nav>
 
-<section id="web" class="container">
+<section id="web" class="container divider-first">
 <div class="row">
   <div class="span3">
     <h2>Making the Web <span>Faster</span></h2>
@@ -81,7 +80,7 @@
 </div>
 </section>
 
-<section id="hardware" class="container">
+<section id="hardware" class="container divider">
 <div class="row">
   <div class="span3">
     <h2>Hardware Acceleration</h2>
