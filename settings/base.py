@@ -71,6 +71,9 @@ MINIFY_BUNDLES = {
         'firefox-security': (
             'css/firefox/security.less',
         ),
+        'firefox-technology': (
+            'css/firefox/technology.less',
+        ),
         'home': (
             'css/covehead/template.css',
             'css/covehead/content.css',
