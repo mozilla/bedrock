@@ -47,10 +47,14 @@ installing the "libjs-less" package.
 Make it run
 -----------
 
-To make the server run, run the server with your local settings:
+To make the server run, make sure you are inside a virtualenv, and then
+run the server with your local settings:
 
     python manage.py runserver --settings settings.local
 
+If you are not inside a virtualenv, you can activate it by doing
+
+    source venv/bin/activate
 
 Docs
 ----
