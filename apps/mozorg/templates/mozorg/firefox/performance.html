@@ -44,11 +44,10 @@
         id="video"
         width="640"
         height="360"
-        poster="/media/img/firefox/performance/poster-runfield.jpg"
+        poster="{{ media('img/firefox/performance/poster-runfield.jpg') }}"
         controls="controls">
 
         <source src="http://videos-cdn.mozilla.net/serv/mozhacks/demos/screencasts/runfield/screencast.webm" type="video/webm" />
-
         <source src="http://videos-cdn.mozilla.net/serv/mozhacks/demos/screencasts/runfield/screencast.theora.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;" />
         <source src="http://videos-cdn.mozilla.net/serv/mozhacks/demos/screencasts/runfield/screencast.mp4" type="video/mp4" />
 
@@ -60,16 +59,8 @@
           <param name="wmode" value="transparent" />
 
           <div class="video-player-no-flash">
-          This video requires a browser with support for open video:
-         /
- <ul>
-
-          <li><a href="http://www.mozilla.org/firefox/">Firefox</a> 3.5 or greater</li>
-          <li><a href="http://www.apple.com/safari/">Safari</a> 3.1 or greater</li>
-          </ul>
-
-          or the <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player</a>.
-          Alternatively, you may use the video download links to the right.
+            This video requires a browser with support for open video
+            or the <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player</a>.
           </div>
 
         </object>

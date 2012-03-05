@@ -7,6 +7,9 @@ def index(request):
 def contribute(request):
     return l10n_utils.render(request, "mozorg/contribute.html")
 
+def firefox_customize(request):
+    return l10n_utils.render(request, "mozorg/firefox/customize.html")
+
 def firefox_security(request):
     return l10n_utils.render(request, "mozorg/firefox/security.html")
 
