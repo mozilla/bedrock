@@ -6,7 +6,6 @@ awesome, and open sourcy as always. Perhaps even a little more.
 
 Stay tuned.
 
-
 Docs
 ----
 

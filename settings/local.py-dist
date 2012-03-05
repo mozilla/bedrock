@@ -6,19 +6,8 @@ from settings import *
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': '',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
-        'OPTIONS': {
-            'init_command': 'SET storage_engine=InnoDB',
-            'charset' : 'utf8',
-            'use_unicode' : True,
-        },
-        'TEST_CHARSET': 'utf8',
-        'TEST_COLLATION': 'utf8_general_ci',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'db.sql',
     },
 }
 
@@ -29,11 +18,5 @@ CACHES = {
     }
 }
 
-ADMINS = (
-    # ('Your Name', 'your_email@domain.com'),
-)
-
-MANAGERS = ADMINS
-
-
 DEBUG = TEMPLATE_DEBUG = True
+LESS_PREPROCESS = True
