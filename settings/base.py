@@ -73,6 +73,7 @@ MINIFY_BUNDLES = {
         ),
         'firefox-technology': (
             'css/firefox/technology.less',
+            'css/firefox/technology-demos.css',
         ),
         'home': (
             'css/covehead/template.css',
