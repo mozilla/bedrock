@@ -292,7 +292,6 @@ input[type=text]:focus {
 }
 
 nav.menu-bar {
-    line-height: @baseLine * 3;
     text-align: center;
     .open-sans-light;
     margin-bottom: @baseLine * 2;
@@ -304,10 +303,17 @@ nav.menu-bar {
         li {
             .inline-block;
             margin: 0;
+        padding-top: (@baseLine / 2);
+        padding-bottom: (@baseLine / 2);
             a {
                 .inline-block;
                 border-left: 1px dotted @borderColor;
                 padding: @baseLine / 3 @baseLine;
+                span {
+                    display: block;
+                    font-size: 24px;
+                    line-height: 100%;
+                }
             }
             &:first-child a {
                 border-left: 0;
