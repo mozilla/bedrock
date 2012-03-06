@@ -69,18 +69,16 @@
     </div>
 </section>
 
-{% if not submitted %}
+{% if not success %}
 <form class="container" id="apps-email-form" action="#apps-email-form" method="post">
+{{ csrf() }}
 
-{% if error %}
-  <ul class="form-errors">
-    {% if error == 'email' %}
-    <li>Please enter a valid email address.</li>
-    {% elif error == 'privacy' %}
-    <li>Please read the Mozilla Privacy Policy and agree by checking
-    the box.</li>
-    {% endif %}
-  </ul>
+{% if form.errors %}
+  {{ form.non_field_errors() }}
+
+  {% for field in form %}
+    {{ field.errors }}
+  {% endfor %}
 {% endif %}
 
   <h3>Email signup</h3>
@@ -89,17 +87,10 @@
   <p class="span3">Sign up for more news about the Mozilla Marketplace.</p>
 
   <div class="span5">
-
-    {% if form_error %}
-      <ul class="form-errors">
-        <li>Please enter a valid email address.</li>
-      </ul>
-    {% endif %}
-
-    <div>
-      <input name="email" id="apps-email" type="email"
-        value="{{ email }}" placeholder="YOUR EMAIL ADDRESS" size="40" required>
+    <div class="{% if form.email.errors %}field-error{% endif %}">
+      {{ field_with_attrs(form.email, placeholder='YOUR EMAIL HERE') }}
     </div>
+
     <!-- <select name="interest" id="apps-interest"> -->
     <!--   <option disabled="disabled">AREA OF INTEREST</option> -->
     <!--   <option>developing apps</option> -->
@@ -108,20 +99,13 @@
     <!--   <option>partnership opportunities</option> -->
     <!-- </select> -->
 
-    <label for="html-format">
-      <input type="radio" name="format" id="html-format" class="html-format" value="html" checked="checked">
-      HTML
-    </label>
-    <label for="text-format">
-      <input type="radio" name="format" id="text-format" class="text-format" value="text" >
-      Text
-    </label>
+    <div>
+      {{ form.fmt }}
+    </div>
 
-    <label for="inline-privacy-check" class="privacy-check-label">
-      <input type="checkbox" class="privacy-check" id="inline-privacy-check" name="privacy" required>
-      <span class="title">I agree to the <a href="/en-US/privacy-policy">Privacy Policy</a></span>
-    </label>
-
+    <div class="{% if form.privacy.errors%}field-error{% endif %}">
+      {{ form.privacy }}
+    </div>
   </div>
 
 
