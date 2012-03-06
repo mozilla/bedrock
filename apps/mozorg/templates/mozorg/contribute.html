@@ -49,18 +49,10 @@
 
 {% block content %}
 
-<h1 id="main-feature" class="large">Get involved with Mozilla</h1>
-
-<nav class="menu-bar billboard">
-  <ul>
-    <li><a href="#interest" id="interest-header">Area of Interest</a></li>
-    <li><a href="#location" id="location-header">Location</a></li>
-    <li><a href="#time" id="time-header">Time Available</a></li>
-  </ul>
-</nav>
+<h1 id="main-feature" class="large">Get Involved</h1>
 
 <section id="welcome" class="container">
-  <div id="welcome-video" class="mozilla-video-control">
+  <div id="welcome-video" class="mozilla-video-control mozilla-video-shadow">
     <video
       width="640"
       height="360"
@@ -90,11 +82,27 @@
 
 <form action="#" id="help-form" class="billboard">
   <h3>Want to help?</h3>
+  <p>Send us a note and we can get you started right away.</p>
   <input type="email" placeholder="YOUR EMAIL ADDRESSS">
   <select>
-    <option disabled="disabled" selected="selected" value="">Area of interest?</option>
+    <option disabled="disabled" selected="selected" value="">Area of interest</option>
+    <option>Helping Users</option>
+    <option>Localization</option>
+    <option>Testing and QA</option>
+    <option>Coding</option>
+    <option>Add-ons</option>
+    <option>Marketing</option>
+    <option>Student Reps</option>
+    <option>Web Development</option>
+    <option>Developer Documentation</option>
+    <option>Systems Administration</option>
+    <option>User Research</option>
+    <option>Thunderbird</option>
+    <option>Accessibility</option>
+    <option>Firefox Suggestions</option>
+    <option>Other</option>
   </select>
-  <input type="submit" class="button-blue" value="Sign me up »">
+  <input type="submit" class="button-blue" value="Submit">
 </form>
 
   <section id="opportunities">
@@ -108,7 +116,7 @@
         <ul class="pager-tabs">
           <li><a href="#interest" class="button-white">Interest</a></li>
           <li><a href="#location" class="button-white">Location</a></li>
-          <li><a href="#time" class="button-white">Time Available</a></li>
+          <li><a href="#newsletter" class="button-white">Newsletter</a></li>
         </ul>
       </nav>
 
@@ -257,42 +265,14 @@
         </div>
 
 
-        <div class="time-content" id="time">
+        <div class="newsletter-content" id="newsletter">
           <script>// <![CDATA[
-          document.getElementById('time').id = 'page-time';
+          document.getElementById('newsletter').id = 'page-newsletter';
           // ]]></script>
           <section>
-          <ul class="contribute-options">
-            <li class="row">
-              <img src="/media/img/contribute/minutes.png" alt="" />
-              <h3>A Few Minutes</h3>
-              <div class="content">
-                <p>Spend five minutes a day in the <a href="http://support.mozilla.com/en-US/kb/Providing+Forum+Support">Firefox support forum</a> or as part of the <a href="https://support.mozilla.com/army-of-awesome">Army of Awesome</a> on Twitter by picking a question you know the answer to and making that user's day.</p>
-                <p>Spread the word about Firefox, Thunderbird and Mozilla by <a href="http://www.spreadfirefox.com/affiliates">adding a button</a> to your blog, Facebook page or web site.</p>
-                <p>Help make our projects better by <a href="https://developer.mozilla.org/en/Crash_reporting">submitting a crash report</a> if an application unexpectedly quits.</p>
-                <p>Make a <a href="/foundation/donate.html">donation to the Mozilla Foundation</a> and help us build a better Internet.</p>
-              </div>
-            </li>
-            <li class="row">
-              <img src="/media/img/contribute/hours.png" alt="" />
-              <h3>A Few Hours</h3>
-              <div class="content">
-                <p>Read through our <a href="https://wiki.mozilla.org/L10n">localization pages</a> to find out how to start a new localization or join an existing team.</p>
-                <p>Stop by an <a href="https://quality.mozilla.org/category/events/month">upcoming test day</a> to find, reproduce and resolve bugs.</p>
-                <p>Pick a topic from the <a href="https://developer.mozilla.org/Project:en/Documentation_Wishlist">documentation wishlist</a> and make the Mozilla Developer Network even better.</p>
-              </div>
-            </li>
-            <li class="row">
-              <img src="/media/img/contribute/weeks.png" alt="" />
-              <h3>A Few Weeks Or More</h3>
-              <div class="content">
-                <p>Spend a semester learning about open source collaboration and contributing to the community as part of <a href="https://wiki.mozilla.org/Education/">Mozilla Education</a>.</p>
-                <p><a href="https://addons.mozilla.org/en-US/developers/docs/getting-started">Create an add-on</a> to add a cool new feature to Firefox, Thunderbird or other Mozilla application.</p>
-                <p>Take part in a Mozilla Labs <a href="http://design-challenge.mozillalabs.com/">Design Challenge</a> and inspire future directions for Firefox, the Mozilla project and the Web as a whole.</p>
-                <p>Get <a href="/hacking/committer/">access to our code repositories</a> by contributing patches and becoming familiar with our review process.</p>
-              </div>
-            </li>
-          </ul>
+
+          TODO: Newsletter form
+
           </section>
         </div>
 
