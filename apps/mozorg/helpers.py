@@ -204,3 +204,10 @@ def url(viewname, *args, **kwargs):
 @jingo.register.function
 def media(url):
     return path.join(settings.MEDIA_URL, url.lstrip('/'))
+
+@jingo.register.function
+def field_with_attrs(bfield, **kwargs):
+    """Allows templates to dynamically add html attributes to bound
+    fields from django forms"""
+    bfield.field.widget.attrs.update(kwargs)
+    return bfield
