@@ -20,11 +20,12 @@ class PrivacyWidget(widgets.CheckboxInput):
     def render(self, name, value, attrs=None):
         attrs['required'] = 'true'
         input_txt = super(PrivacyWidget, self).render(name, value, attrs)
-        return ('<label for="privacy-check" class="privacy-check-label">'
-                '%s '
-                '<span class="title">I agree to the '
-                '<a href="/en-US/privacy-policy">Privacy Policy</a>'
-                '</span></label>') % input_txt
+        return mark_safe(
+            '<label for="privacy-check" class="privacy-check-label">'
+            '%s '
+            '<span class="title">I agree to the '
+            '<a href="/en-US/privacy-policy">Privacy Policy</a>'
+            '</span></label>') % input_txt
 
 class EmailInput(widgets.TextInput):
     input_type = 'email'
