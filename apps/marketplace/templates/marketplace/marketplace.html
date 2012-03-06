@@ -88,7 +88,7 @@
 
   <div class="span5">
     <div class="{% if form.email.errors %}field-error{% endif %}">
-      {{ form.email }}
+      {{ field_with_attrs(form.email, placeholder='YOUR EMAIL HERE') }}
     </div>
 
     <!-- <select name="interest" id="apps-interest"> -->
