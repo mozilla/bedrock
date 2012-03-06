@@ -133,7 +133,7 @@ code {
 }
 
 /* }}} */
-/* {{{ forms */
+/* {{{ Forms */
 
 input[type=email],
 input[type=password],
@@ -159,7 +159,7 @@ input[type=text]:focus {
     .transition(all linear .1s);
 }
 
-.form-errors {
+.errorlist {
     margin: 0;
 
     li {
@@ -170,6 +170,15 @@ input[type=text]:focus {
     }
 }
 
+.field-error {
+    input[type=email],
+    input[type=password],
+    input[type=text] {
+        border-color: rgb(175,50,50);
+        @shadow: 0 2px 1px rgba(0,0,0,0.1) inset, 0 0 8px 0 rgba(175,50,50,.6);
+        .box-shadow(@shadow);
+    }
+}
 
 /* }}} */
 /* {{{ Layout */
