@@ -35,7 +35,9 @@
     }
 }
 
-.button-blue {
+.button-blue,
+.button-blue:link,
+.button-blue:visited {
     .button;
     background-color: @buttonBlue;
     #gradient > .vertical(@buttonBlue, @buttonBlueDark);
@@ -45,7 +47,9 @@
     }
 }
 
-.button-white {
+.button-white,
+.button-white:link,
+.button-white:visited {
     .button;
     border: 1px solid #d0d0d0;
     background: #fff;
@@ -64,6 +68,14 @@
         color: @textColorSecondary;
         .box-shadow(@shadow);
     }
+}
+
+.button-white.selected {
+    background: #d7d5d5;
+    border-color: #bcb9b9;
+    text-shadow: 0 1px #fff;
+    @shadow: 0 1px 1px rgba(255,255,255,0.75), 0 1px 3px rgba(0,0,0,0.1) inset;
+    .box-shadow(@shadow);
 }
 
 .button,

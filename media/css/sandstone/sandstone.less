@@ -21,17 +21,47 @@ body {
 }
 
 #wrapper {
-    background: #f5f1e8 url(/media/img/sandstone/background-gradient.png) 0 0 repeat-x;
+    background: #f9f9f9 url(/media/img/sandstone/bg-stone.png) 0 0 repeat-x;
 }
 
 a {
-    color: @linkRed;
+    color: @linkBlue;
     text-decoration: none;
     &:hover,
     &:active {
-        color: darken(@linkRed, 10%);
+        color: darken(@linkBlue, 10%);
         text-decoration: underline;
     }
+}
+
+.sand {
+    #wrapper {
+        background-color: #f5f1e8;
+        background-image: url(/media/img/sandstone/bg-sand.png);
+    }
+    a {
+        color: @linkRed;
+        &:hover,
+        &:active {
+            color: darken(@linkRed, 10%);
+        }
+    }
+}
+
+.sky {
+    #wrapper {
+        background-color: #eee;
+        background-image: url(/media/img/sandstone/bg-sky.png);
+    }
+
+    a {
+        color: @linkSkyBlue;
+        &:hover,
+        &:active {
+            color: darken(@linkSkyBlue, 10%);
+        }
+    }
+
 }
 
 h1, h2, h3, h4, h5, h6, .huge, .large {

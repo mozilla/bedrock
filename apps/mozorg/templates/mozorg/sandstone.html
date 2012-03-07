@@ -2,6 +2,8 @@
 
 {% block page_title %}Sandstone - Bedrock’s Layer of CSS Love{% endblock %}
 
+{% block body_class %}stone {{ super() }}{% endblock %}
+
 {% block site_css %}
   {{ css('sandstone-guide') }}
 {% endblock %}
@@ -15,12 +17,54 @@
 
 <nav class="menu-bar billboard">
   <ul>
+    <li><a href="#flavors">Flavors</a></li>
     <li><a href="#grid">Less framework</a></li>
     <li><a href="#tabzilla-demo">Tabzilla</a></li>
     <li><a href="#typefaces">Typefaces</a></li>
     <li><a href="#buttons">Buttons</a></li>
   </ul>
 </nav>
+
+<section id="flavors" class="container divider">
+<div class="row">
+
+  <div class="span3">
+
+    <hgroup>
+      <h2 class="mozilla-red">Flavors</h2>
+      <h4 class="mozilla-red">Sand, Stone, &amp; Sky</h4>
+    </hgroup>
+
+    <p>The sandstone visual style offers a light set of guidelines for page designs, but is not a set of absolute rules. A neutral flavor is provided by default, along with more distinct flavors for Mozilla pages and Firefox pages. Other sites and pages can be modified with their own distinct flavor.</p>
+    <a class="top" href="#top">back to top</a>
+
+  </div>
+
+  <div class="span2 css-code small">
+    <h4>Try them out:</h4>
+    <ul id="theme-switcher">
+      <li id="theme-stone"><a href="#" class="button-white"><span></span>Default <b>“stone”</b></a></li>
+      <li id="theme-sand"><a href="#" class="button-white"><span></span>Mozilla <b>“sand”</b></a></li>
+      <li id="theme-sky"><a href="#" class="button-white"><span></span>Firefox <b>“sky”</b></a></li>
+    </ul>
+  </div>
+
+  <div class="span5">
+
+    <h4>On the Menu</h4>
+
+    <ul>
+      <li>“Stone” flavor is a neutral grey.</li>
+      <li>“Sand” flavor has a warm and distinctive look, intended for core mozilla.org pages.</li>
+      <li>“Sky” flavor is a bright blue for Firefox pages.</li>
+      <li>Other sites can cook up their own flavor where appropriate.</li>
+    </ul>
+
+
+  </div>
+
+</div>
+</section>
 
 <section id="grid" class="container divider">
 <div class="row">
@@ -185,4 +229,35 @@
 </div>
 
 
+{% endblock %}
+
+{% block js %}
+<script>
+  $(document).ready(function() {
+
+    $("#theme-stone").click(function() {
+      $("body").addClass('stone');
+      $("body").removeClass('sand');
+      $("body").removeClass('sky');
+      $("#masthead > h1 > img").attr('src','/media/img/sandstone/header-mozilla-stone.png');
+      return false;
+    });
+
+    $("#theme-sand").click(function() {
+      $("body").addClass('sand');
+      $("body").removeClass('stone');
+      $("body").removeClass('sky');
+      $("#masthead > h1 > img").attr('src','/media/img/sandstone/header-mozilla-sand.png');
+      return false;
+    });
+
+    $("#theme-sky").click(function() {
+      $("body").addClass('sky');
+      $("body").removeClass('stone');
+      $("body").removeClass('sand');
+      $("#masthead > h1 > img").attr('src','/media/img/sandstone/header-mozilla-stone.png');
+      return false;
+    });
+  });
+</script>
 {% endblock %}
