@@ -23,7 +23,9 @@
     <link rel="shortcut icon" type="image/png" href="{{ MEDIA_URL }}img/favicon.png">
   </head>
 
-  <body id="{% block body_id %}{% endblock %}" class="html-{{ DIR }} {% block body_class %}{% endblock %}">
+  <!-- Note the "win" class, without javascript platform-specific
+       assets default to windows -->
+  <body id="{% block body_id %}{% endblock %}" class="html-{{ DIR }} win {% block body_class %}{% endblock %}">
     <div id="outer-wrapper">
     <div id="wrapper">
 

@@ -109,9 +109,11 @@ MINIFY_BUNDLES = {
         ),
         'common': (
             'js/libs/jquery-1.7.1.min.js',
+            'js/site.js',
         ),
         'firefox': (
             'js/libs/jquery-1.7.1.min.js',
+            'js/site.js',
             'js/nav-main.js',
         ),
         'firefox-customize': (
