@@ -68,6 +68,10 @@ MINIFY_BUNDLES = {
             'css/sandstone/video.less',
             'css/firefox/customize.less',
         ),
+        'firefox-features': (
+            'css/sandstone/video.less',
+            'css/firefox/features.less',
+        ),
         'firefox-security': (
             'css/firefox/security.less',
         ),
@@ -120,6 +124,10 @@ MINIFY_BUNDLES = {
         'firefox-customize': (
             'js/mozilla-video-tools.js',
             'js/firefox/customize.js',
+        ),
+        'firefox-features': (
+            'js/mozilla-video-tools.js',
+            'js/firefox/features.js',
         ),
         'geolocation': (
             'js/libs/jquery-1.4.4.min.js',
