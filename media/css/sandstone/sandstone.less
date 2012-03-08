@@ -22,6 +22,7 @@ body {
 
 #wrapper {
     background: #f9f9f9 url(/media/img/sandstone/bg-stone.png) 0 0 repeat-x;
+    padding-bottom: @baseLine * 2;
 }
 
 a {
@@ -243,6 +244,33 @@ input[type=text]:focus {
 }
 
 /* }}} */
+/* {{{ Less Framework Grid */
+
+/*      Default Layout: 992px. 
+        Gutters: 24px.
+        Outer margins: 48px.
+        Leftover space for scrollbars @1024px: 32px.
+-------------------------------------------------------------------------------
+cols    1     2      3      4      5      6      7      8      9      10
+px      68    160    252    344    436    528    620    712    804    896    */
+
+
+#masthead,
+#main-feature,
+#main-content,
+#colophon,
+.billboard,
+.container {
+    display: block;
+    margin: 0 auto;
+    padding-left: 48px;
+    padding-right: 48px;
+    position: relative;
+    width: 896px;
+    .clearfix
+}
+
+/* }}} */
 /* {{{ Header Nav */
 
 #masthead {
@@ -322,7 +350,7 @@ input[type=text]:focus {
 .billboard {
     padding-top: @baseLine * 2;
     padding-bottom: @baseLine * 2;
-    margin-bottom: @baseLine * 3;
+    margin-bottom: @baseLine * 2;
     @shadow: 0 0 0 1px #fff inset;
     .box-shadow(@shadow);
     background: #fff;
@@ -430,32 +458,7 @@ nav.menu-bar {
 }
 
 /* }}} */
-/* {{{ Less Framework Grid */
-
-/*      Default Layout: 992px. 
-        Gutters: 24px.
-        Outer margins: 48px.
-        Leftover space for scrollbars @1024px: 32px.
--------------------------------------------------------------------------------
-cols    1     2      3      4      5      6      7      8      9      10
-px      68    160    252    344    436    528    620    712    804    896    */
-
-
-#masthead,
-#main-feature,
-#main-content,
-#colophon,
-.billboard,
-.container {
-    display: block;
-    margin: 0 auto;
-    padding-left: 48px;
-    padding-right: 48px;
-    position: relative;
-    width: 896px;
-    .clearfix
-}
-
+/* {{{ Less Framework Grid (Responsive) */
 
 /*      Tablet Layout: 768px.
         Gutters: 24px.
