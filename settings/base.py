@@ -78,6 +78,9 @@ MINIFY_BUNDLES = {
         'firefox_security': (
             'css/firefox/security.less',
         ),
+        'firefox_speed': (
+            'css/firefox/speed.less',
+        ),
         'firefox_technology': (
             'css/firefox/technology.less',
             'css/firefox/technology-demos.css',
@@ -133,6 +136,12 @@ MINIFY_BUNDLES = {
             'js/firefox/features.js',
         ),
         'firefox_happy': (
+            'js/libs/jquery-1.4.4.min.js',
+            'js/libs/jquery-css-transform.js',
+            'js/libs/jquery-animate-css-rotate-scale.js',
+        ),
+        'firefox_speed': (
+            'js/libs/jquery-1.4.4.min.js',
             'js/libs/jquery-css-transform.js',
             'js/libs/jquery-animate-css-rotate-scale.js',
         ),

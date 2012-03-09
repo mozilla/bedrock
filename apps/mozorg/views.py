@@ -1,5 +1,6 @@
 import l10n_utils
 from django.conf import settings
+from product_details import product_details
 
 def index(request):
     return l10n_utils.render(request, "mozorg/index.html")
@@ -21,6 +22,9 @@ def firefox_technology(request):
 
 def firefox_security(request):
     return l10n_utils.render(request, "mozorg/firefox/security.html")
+
+def firefox_speed(request):
+    return l10n_utils.render(request, "mozorg/firefox/speed.html", {'latest_version': product_details.firefox_versions['LATEST_FIREFOX_DEVEL_VERSION']})
 
 def firefox_performance(request):
     return l10n_utils.render(request, "mozorg/firefox/performance.html")
