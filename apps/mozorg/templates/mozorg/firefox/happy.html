@@ -1,0 +1,115 @@
+{% extends "/mozorg/firefox/base.html" %}
+
+{% block page_title %}Fewer Crashes, More Happiness{% endblock %}
+{% block body_id %}firefox-happy{% endblock %}
+
+{% block site_header_nav %}
+{% endblock %}
+
+{% block site_css %}
+  {{ css('firefox_happy') }}
+{% endblock %}
+
+{% block content %}
+
+
+<div id="main-feature">
+<div class="row">
+  <h1 class="stacked span8 offset1">Fewer Crashes  <span class="large">More Happiness</span></h1>
+  <h4 class="span4 offset1">Upgrade now and see how much happier browsing can be with the newest and fastest Firefox.</h4>
+
+  {{ download_button('download', 'upgrade') }}
+
+  <script src="/media/js/download.js"></script>
+  <script type="text/javascript">
+    offerBestDownloadLink('download');
+  </script>
+</div>
+</div>
+
+
+<div id="main-content">
+ <div id="fx">
+    <ul id="bars">
+      <li id="old-fx"><b>Old Firefox</b> <span><img src="{{ media('img/firefox/happy/face-sad.png') }}"></span></li>
+      <li id="new-fx"><b>New Firefox</b> <span><img src="{{ media('img/firefox/happy/face-happy.png') }}"></span></li>
+    </ul>
+  </div>
+  <div id="non-fx">
+    <p id="detected">Hey, looks like you’re using %BROWSER%. Why not grab Firefox and get up to speed.</p>
+    <p id="notdetected">Hey, looks like you’re not using Firefox as your browser. Why not grab Firefox and get up to speed.</p>
+  </div>
+  <p id="followup">
+    <em>New Firefox is faster, free (as always), crashes less and protects your privacy more.</em>
+    <a href="/en-US/firefox/">Upgrading</a> takes less than a minute and you won’t lose your history or bookmarks. Hooray!
+  </p>
+</div>
+
+
+{% endblock %}
+
+
+{% block js %}
+
+{{ js('firefox_happy') }}
+
+<script>
+
+$(document).ready(function() {
+    var isFirefox = (/\sFirefox/.test(window.navigator.userAgent));
+    var moving = true;
+
+    function grow() {
+      moving = true;
+      $('#old-fx img').animate({'margin-left': '100px'}, 2000);
+      $('#new-fx img').animate({'margin-left': '430px'}, 2000, 'swing',
+                                 function(){ moving = false; });
+    }
+
+    function reset() {
+      $('#bars img').css('margin-left', 0);
+    }
+
+    if (isFirefox) {
+      grow();
+      $('#fx').click(function(){
+        if (!moving) {
+          reset();
+          grow();
+        }
+      });
+    } else {
+        $('#fx').hide();
+
+        var $nonfx       = $('#non-fx');
+        var $detected    = $('#detected');
+        var $notdetected = $('#notdetected');
+
+        var isSafari = /Safari/.test(window.navigator.userAgent);
+        var isChrome = /Chrome/.test(window.navigator.userAgent);
+        var isIE     = /MSIE/.test(window.navigator.userAgent);
+
+        if (isChrome) {
+            $detected.text(
+                $detected.text().replace(/%BROWSER%/, 'Google Chrome')
+            );
+            $notdetected.hide();
+        } else if (isSafari) {
+            $detected.text(
+                $detected.text().replace(/%BROWSER%/, 'Safari')
+            );
+            $notdetected.hide();
+        } else if (isIE) {
+            $detected.text(
+                $detected.text().replace(/%BROWSER%/, 'Internet Explorer')
+            );
+            $notdetected.hide();
+        } else {
+            $detected.hide();
+        }
+
+        $nonfx.show();
+    }
+});
+    </script>
+{% endblock %}

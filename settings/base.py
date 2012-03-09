@@ -72,6 +72,9 @@ MINIFY_BUNDLES = {
             'css/sandstone/video.less',
             'css/firefox/features.less',
         ),
+        'firefox_happy': (
+            'css/firefox/happy.less',
+        ),
         'firefox-security': (
             'css/firefox/security.less',
         ),
@@ -128,6 +131,10 @@ MINIFY_BUNDLES = {
         'firefox-features': (
             'js/mozilla-video-tools.js',
             'js/firefox/features.js',
+        ),
+        'firefox_happy': (
+            'js/libs/jquery-css-transform.js',
+            'js/libs/jquery-animate-css-rotate-scale.js',
         ),
         'geolocation': (
             'js/libs/jquery-1.4.4.min.js',
