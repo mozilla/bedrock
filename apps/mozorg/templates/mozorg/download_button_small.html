@@ -10,8 +10,8 @@
       <a class="download-link download-{{ product }}"
          href="{{ build.download_link }}">
         <span class="download-content">
-          <span class="download-title">Firefox</span>
-          Free Download
+          <span class="download-title">{% block title %}Firefox{% endblock %}</span>
+          {% block subtitle %}Free Download{% endblock%}
         </span>
       </a>
     </li>

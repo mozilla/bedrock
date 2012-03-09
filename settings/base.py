@@ -64,18 +64,21 @@ MINIFY_BUNDLES = {
         'firefox': (
             'css/firefox/template.less',
         ),
-        'firefox-customize': (
+        'firefox_customize': (
             'css/sandstone/video.less',
             'css/firefox/customize.less',
         ),
-        'firefox-features': (
+        'firefox_features': (
             'css/sandstone/video.less',
             'css/firefox/features.less',
         ),
-        'firefox-security': (
+        'firefox_happy': (
+            'css/firefox/happy.less',
+        ),
+        'firefox_security': (
             'css/firefox/security.less',
         ),
-        'firefox-technology': (
+        'firefox_technology': (
             'css/firefox/technology.less',
             'css/firefox/technology-demos.css',
         ),
@@ -97,7 +100,7 @@ MINIFY_BUNDLES = {
         'persona': (
             'css/persona.less',
         ),
-        'sandstone-guide': (
+        'sandstone_guide': (
             'css/sandstone-guide.less',
         ),
         'video': (
@@ -121,13 +124,17 @@ MINIFY_BUNDLES = {
             'js/site.js',
             'js/nav-main.js',
         ),
-        'firefox-customize': (
+        'firefox_customize': (
             'js/mozilla-video-tools.js',
             'js/firefox/customize.js',
         ),
-        'firefox-features': (
+        'firefox_features': (
             'js/mozilla-video-tools.js',
             'js/firefox/features.js',
+        ),
+        'firefox_happy': (
+            'js/libs/jquery-css-transform.js',
+            'js/libs/jquery-animate-css-rotate-scale.js',
         ),
         'geolocation': (
             'js/libs/jquery-1.4.4.min.js',

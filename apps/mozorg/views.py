@@ -13,6 +13,9 @@ def firefox_customize(request):
 def firefox_features(request):
     return l10n_utils.render(request, "mozorg/firefox/features.html")
 
+def firefox_happy(request):
+    return l10n_utils.render(request, "mozorg/firefox/happy.html")
+
 def firefox_technology(request):
     return l10n_utils.render(request, "mozorg/firefox/technology.html")
 
