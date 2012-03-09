@@ -5,13 +5,20 @@
 }
 
 #main-feature h4 {
-    width: 350px;
 }
 
 #main-feature .download-button-small {
     float: right;
-    margin-right: @gridColumnWidth + @gridGutterWidth;
     position: static;
+}
+
+#firefox-happy #main-feature #download_area {
+    .span(4);
+    p {
+        margin-top: @baseLine;
+        text-align: right;
+        clear: right;
+    }
 }
 
 

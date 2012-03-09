@@ -14,17 +14,18 @@
 
 
 <div id="main-feature">
-<div class="row">
-  <h1 class="stacked span8 offset1">Fewer Crashes  <span class="large">More Happiness</span></h1>
-  <h4 class="span4 offset1">Upgrade now and see how much happier browsing can be with the newest and fastest Firefox.</h4>
-
-  {{ download_button('download', 'upgrade') }}
-
-  <script src="/media/js/download.js"></script>
-  <script type="text/javascript">
-    offerBestDownloadLink('download');
-  </script>
-</div>
+  <h1 class="stacked">Fewer Crashes  <span class="large">More Happiness</span></h1>
+  <div class="row">
+    <h4 class="span6">Upgrade now and see how much happier browsing can be with the newest and fastest Firefox.</h4>
+    <div id="download_area">
+      {{ download_button('download', 'upgrade') }}
+      <script src="/media/js/download.js"></script>
+      <script type="text/javascript">
+        offerBestDownloadLink('download');
+      </script>
+      <p><a href="/firefox/central/">Learn more »</a></p>
+    </div>
+  </div>
 </div>
 
 
