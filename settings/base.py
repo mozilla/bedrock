@@ -86,9 +86,7 @@ MINIFY_BUNDLES = {
             'css/firefox/technology-demos.css',
         ),
         'home': (
-            'css/covehead/template.css',
-            'css/covehead/content.css',
-            'css/covehead/home.css',
+            'css/home.less',
         ),
         'geolocation': (
             'css/covehead/template.css',

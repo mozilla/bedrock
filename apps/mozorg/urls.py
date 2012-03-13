@@ -1,8 +1,10 @@
 from django.conf.urls.defaults import *
-from views import contribute, channel, firefox_performance, firefox_features, firefox_customize, firefox_happy, firefox_security, firefox_speed, firefox_technology, button, new, sandstone, geolocation
+from views import home, contribute, channel, firefox_performance, firefox_features, firefox_customize, firefox_happy, firefox_security, firefox_speed, firefox_technology, button, new, sandstone, geolocation
 
 
 urlpatterns = patterns('',
+    url(r'^home/', home, name='mozorg.home'),
+
     (r'^button/', button),
     (r'^channel/', channel),
     (r'^contribute/', contribute),

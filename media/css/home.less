@@ -1,0 +1,195 @@
+@import "sandstone/sandstone.less";
+
+#main-feature {
+    text-align: center;
+    h1 {
+        img {
+            vertical-align: baseline;
+            position: relative;
+            top: 5px;
+        }
+    }
+    h2 {
+    }
+}
+
+#firefox-promo {
+    padding-top: @baseLine;
+    padding-bottom: 0;
+    h3 {
+        .span(3);
+        margin: 0;
+    }
+    ul.features {
+        .span(3);
+        width: (@gridColumnWidth * 3) + (@gridGutterWidth * 3);
+        margin: 0 0 0 (@gridColumnWidth + (@gridGutterWidth * 1.5));
+        li {
+            float: left;
+            list-style-type: none;
+            margin: 0;
+            width: @gridColumnWidth + (@gridGutterWidth);
+            padding: 0;
+            text-align: center;
+            .small;
+            span {
+                display: block;
+                padding: 0 4px;
+                border-left: 1px dotted @borderColor;
+            }
+            &:first-child span {
+                border: 0;
+            }
+        }
+    }
+    #promo-logo {
+        position: absolute;
+        top: -10px;
+        left: 294px;
+    }
+    .download-button {
+        .span(3);
+        margin-left: (@gridGutterWidth / 2);
+        margin-top: -6px;
+        padding-bottom: 6px;
+        small.download-other {
+            text-align: center;
+        }
+    }
+    .download-button-small .download-link {
+        margin-left: 0;
+        .download-content {
+            background-image: none;
+            margin-left: 0;
+            padding-left: @baseLine;
+        }
+    }
+}
+#main-content {
+    li {
+        margin: @baseLine 0 0 0;
+        list-style-type: none;
+        border-bottom: 1px dotted @borderColor;
+        padding: 0 0 (@baseLine / 2) 0;
+        p {
+            margin: 0;
+        }
+        h4 {
+            margin: 0 0 (@baseLine / 4) 0;
+        }
+        h4 a:after,
+        a h4:after {
+            content: " »";
+        }
+    }
+}
+
+#home-news {
+    .span(3);
+    margin-left: 0;
+    #all-news {
+        .open-sans;
+    }
+}
+
+#home-promos {
+    .span(3);
+}
+
+#home-about {
+    .span(4);
+    ul {
+        margin-top: @baseLine;
+    }
+    li {
+        border: 0;
+        margin-top: @baseLine / 2;
+    }
+    a {
+        display: block;
+        padding-left: @gridColumnWidth + @gridGutterWidth;
+        background: url(/media/img/home/about-icons.png) 0 0 no-repeat;
+        h4 {
+            color: @linkRed;
+        }
+        p {
+            color: @textColorSecondary;
+            font-size: @smallFontSize;
+            line-height: 18px;
+        }
+        &:hover {
+            text-decoration: none;
+            h4 {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+#about-volunteer {
+    a { background-position: 0 0; }
+    a:hover {
+        background-position: -400px 0;
+    }
+}
+
+#about-work {
+    a { background-position: 0 -150px; }
+    a:hover {
+        background-position: -400px -150px;
+        h4 { color: #f79100; }
+    }
+}
+
+#about-find {
+    a { background-position: 0 -300px; }
+    a:hover {
+        background-position: -400px -300px;
+        h4 { color: #1b66af; }
+    }
+}
+
+#about-join {
+    a { background-position: 0 -450px; }
+    a:hover {
+        background-position: -400px -450px;
+        h4 { color: #d65106; }
+    }
+}
+
+#about-learn {
+    a { background-position: 0 -600px; }
+    a:hover {
+        background-position: -400px -600px;
+        h4 { color: #669d28; }
+    }
+}
+
+.thank,
+#home-updates {
+    padding-top: @baseLine;
+    padding-bottom: @baseLine;
+    margin-bottom: 0;
+    margin-top: 0;
+
+    label.privacy-check-label {
+        display: block;
+        margin: 6px auto 6px;
+    }
+
+    .privacy-check-label {
+        margin-right: @baseLine;
+    }
+
+    input[type=email] {
+        margin: 8px 0;
+        width: (@gridColumnWidth * 3) + (@gridGutterWidth * 2) - 18px;
+    }
+
+    .button-blue {
+        width: (@gridColumnWidth * 3) + (@gridGutterWidth *2);
+        padding: 0;
+        font-size: 18px;
+    }
+
+}
