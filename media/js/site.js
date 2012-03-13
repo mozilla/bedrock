@@ -27,7 +27,7 @@
     function init() {
         var b = $(document.body);
         // Remove the default platform
-        b.removeClass('win');
+        b.removeClass('windows');
         b.addClass(site.platform);
     }
 

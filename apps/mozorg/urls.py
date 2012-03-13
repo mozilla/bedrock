@@ -7,9 +7,9 @@ urlpatterns = patterns('',
 
     (r'^button/', button),
     (r'^channel/', channel),
-    (r'^contribute/', contribute),
     (r'^new/', new),
     (r'^sandstone/', sandstone),
+    url(r'^contribute/', contribute, name='mozorg.contribute'),
 
     (r'^firefox/geolocation/', geolocation),
     url(r'^firefox/customize/', firefox_customize, name='mozorg.firefox_customize'),

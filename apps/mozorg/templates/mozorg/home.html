@@ -7,6 +7,10 @@
   {{ css('home') }}
 {% endblock %}
 
+{% block js %}
+  {{ js('pager') }}
+{% endblock %}
+
 {% block site_header_logo %}{% endblock %}
 {% block content %}
 
@@ -16,8 +20,8 @@
 </hgroup>
 
 <section id="firefox-promo" class="billboard">
-  <h3>Different by Design.</h3>
   <img src="{{ media('img/home/firefox.png')}}" id="promo-logo">
+  <h3>Different by Design.</h3>
   <ul class="features">
     <li><span>Proudly non-profit</span></li>
     <li><span>Innovating for you</span></li>
@@ -27,8 +31,56 @@
   {{ download_button('download','small') }}
 </section>
 
-<section id="home-promo" class="container">
+<section id="home-promo" class="pager pager-with-tabs">
 
+  <div class="pager-content">
+
+    <div class="default-page pager-page" id="promo-mdn">
+      <script>// <![CDATA[
+      document.getElementById('promo-mdn').id = 'page-promo-mdn';
+      // ]]></script>
+      <a href="https://developer.mozilla.org/" class="container">
+        <img src="{{ media('img/home/promo-mdn.jpg') }}" alt="Mozilla Developer Network artwork">
+        <div>
+          <h3>Together we can drive innovation on the Web.</h3>
+          <p>Mozilla Developer Network »</p>
+        </div>
+      </a>
+    </div>
+
+    <div id="promo-collusion" class="pager-page">
+      <script>// <![CDATA[
+      document.getElementById('promo-collusion').id = 'page-promo-collusion';
+      // ]]></script>
+      <a href="http://www.mozilla.org/collusion/" class="container">
+        <img src="{{ media('img/home/promo-collusion.jpg') }}" alt="Collusion graph image">
+        <div>
+          <h3>See who’s tracking your movements online.</h3>
+          <p>Add Collusion to Firefox »</p>
+        </div>
+      </a>
+    </div>
+
+    <div id="promo-contribute" class="pager-page">
+      <script>// <![CDATA[
+      document.getElementById('promo-contribute').id = 'page-promo-contribute';
+      // ]]></script>
+      <a href="{{ url('mozorg.contribute') }}" class="container">
+        <img src="{{ media('img/home/promo-contribute.jpg') }}" alt="Mozilla community collage">
+        <div>
+          <h3>Help us build a brighter future for the Web.</h3>
+          <p>Get involved »</p>
+        </div>
+      </a>
+    </div>
+
+    <ul class="pager-tabs">
+      <li id="tab-mdn"><a href="#p1">⚫</a></li>
+      <li id="tab-collusion"><a href="#p2">⚫</a></li>
+      <li id="tab-contribute"><a href="#p3">⚫</a></li>
+    </ul>
+
+  </div>
 </section>
 
 <div id="main-content">
