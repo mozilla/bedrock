@@ -10,6 +10,7 @@ of terms and example values for them:
 """
 
 from os import path
+import re
 
 import jinja2
 import jingo
@@ -211,3 +212,23 @@ def field_with_attrs(bfield, **kwargs):
     fields from django forms"""
     bfield.field.widget.attrs.update(kwargs)
     return bfield
+
+@jingo.register.function
+def platform_img(url, **kwargs):
+    attrs = ' '.join(('%s="%s"' % (attr, val)
+                      for attr, val in kwargs.items()))
+    url = path.join(settings.MEDIA_URL, url.lstrip('/'))
+    (root, ext) = path.splitext(url)
+
+    def url(plat):
+        return '%s%s%s' % (root,
+                           {'win': '',
+                            'osx': '-mac',
+                            'linux': '-linux'}[plat],
+                           ext)
+
+    imgs = ('<img class="platform-img %s" src="%s" %s>'
+            % (plat, url(plat), attrs)
+            for plat in ('win', 'osx', 'linux'))
+
+    return jinja2.Markup(''.join(imgs))

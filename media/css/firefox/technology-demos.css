@@ -21,12 +21,10 @@
 }
 
 #wall #html5 {
-    background: url(/img/covehead/divider-notch-main.jpg) 50% 0 no-repeat;
     padding-top: 55px;
 }
 
 #wall article.article {
-    background: url(/img/covehead/divider-notch.jpg) 50% 0 no-repeat;
     padding: 40px 0;
     clear: both;
     overflow: auto;

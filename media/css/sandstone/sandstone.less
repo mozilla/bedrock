@@ -21,17 +21,48 @@ body {
 }
 
 #wrapper {
-    background: #f5f1e8 url(/media/img/sandstone/background-gradient.png) 0 0 repeat-x;
+    background: #f9f9f9 url(/media/img/sandstone/bg-stone.png) 0 0 repeat-x;
+    padding-bottom: @baseLine * 2;
 }
 
 a {
-    color: @linkRed;
+    color: @linkBlue;
     text-decoration: none;
     &:hover,
     &:active {
-        color: darken(@linkRed, 10%);
+        color: darken(@linkBlue, 10%);
         text-decoration: underline;
     }
+}
+
+.sand {
+    #wrapper {
+        background-color: #f5f1e8;
+        background-image: url(/media/img/sandstone/bg-sand.png);
+    }
+    a {
+        color: @linkRed;
+        &:hover,
+        &:active {
+            color: darken(@linkRed, 10%);
+        }
+    }
+}
+
+.sky {
+    #wrapper {
+        background-color: #eee;
+        background-image: url(/media/img/sandstone/bg-sky.png);
+    }
+
+    a {
+        color: @linkSkyBlue;
+        &:hover,
+        &:active {
+            color: darken(@linkSkyBlue, 10%);
+        }
+    }
+
 }
 
 h1, h2, h3, h4, h5, h6, .huge, .large {
@@ -58,6 +89,7 @@ h1, h2, h3, h4, h5, h6, .huge, .large {
 }
 
 h1,
+.huge h2,
 .large h2,
 .billboard h2 {
     font-size: 48px;
@@ -159,6 +191,10 @@ input[type=text]:focus {
     .transition(all linear .1s);
 }
 
+.form-field {
+    margin-bottom: @baseLine / 3;
+}
+
 .errorlist {
     margin: 0;
 
@@ -210,6 +246,33 @@ input[type=text]:focus {
 .divider-last {
     border-bottom: 0;
     padding-bottom: @baseLine * 2;
+}
+
+/* }}} */
+/* {{{ Less Framework Grid */
+
+/*      Default Layout: 992px. 
+        Gutters: 24px.
+        Outer margins: 48px.
+        Leftover space for scrollbars @1024px: 32px.
+-------------------------------------------------------------------------------
+cols    1     2      3      4      5      6      7      8      9      10
+px      68    160    252    344    436    528    620    712    804    896    */
+
+
+#masthead,
+#main-feature,
+#main-content,
+#colophon,
+.billboard,
+.container {
+    display: block;
+    margin: 0 auto;
+    padding-left: 48px;
+    padding-right: 48px;
+    position: relative;
+    width: 896px;
+    .clearfix
 }
 
 /* }}} */
@@ -292,7 +355,7 @@ input[type=text]:focus {
 .billboard {
     padding-top: @baseLine * 2;
     padding-bottom: @baseLine * 2;
-    margin-bottom: @baseLine * 3;
+    margin-bottom: @baseLine * 2;
     @shadow: 0 0 0 1px #fff inset;
     .box-shadow(@shadow);
     background: #fff;
@@ -353,7 +416,7 @@ nav.menu-bar {
             }
 
             li b {
-                font-weight: 600;
+                font-weight: bold;
             }
 
         }
@@ -400,32 +463,7 @@ nav.menu-bar {
 }
 
 /* }}} */
-/* {{{ Less Framework Grid */
-
-/*      Default Layout: 992px. 
-        Gutters: 24px.
-        Outer margins: 48px.
-        Leftover space for scrollbars @1024px: 32px.
--------------------------------------------------------------------------------
-cols    1     2      3      4      5      6      7      8      9      10
-px      68    160    252    344    436    528    620    712    804    896    */
-
-
-#masthead,
-#main-feature,
-#main-content,
-#colophon,
-.billboard,
-.container {
-    display: block;
-    margin: 0 auto;
-    padding-left: 48px;
-    padding-right: 48px;
-    position: relative;
-    width: 896px;
-    .clearfix
-}
-
+/* {{{ Less Framework Grid (Responsive) */
 
 /*      Tablet Layout: 768px.
         Gutters: 24px.
@@ -508,7 +546,7 @@ px      68    160    252    */
             padding-top: @baseLine / 2;
 
             ul li {
-
+                display: block;
                 a,
                 b {
                     display: block;
@@ -624,6 +662,24 @@ px      68    160    252    344    436    */
         padding-left: 0;
         padding-right: 0;
     }
+}
+
+/* }}} */
+
+
+
+/* {{{ Firefox site functionality 
+       This can be put into its own CSS file if needed. */
+
+.platform-img {
+    display: none;
+}
+
+.osx img.osx,
+.mac img.osx,
+.linux img.linux,
+.windows img.win {
+    display: inline;
 }
 
 /* }}} */

@@ -1,0 +1,192 @@
+{% extends "sand.html" %}
+
+{% block page_title %}Home of the Mozilla Project{% endblock %}
+{% block body_id %}home{% endblock %}
+
+{% block extrahead %}
+  {{ css('home') }}
+{% endblock %}
+
+{% block js %}
+  {{ js('pager') }}
+{% endblock %}
+
+{% block site_header_logo %}{% endblock %}
+{% block content %}
+
+<hgroup id="main-feature" class="huge">
+  <h1>We are <img src="{{ media('img/home/title-wordmark.png') }}" alt="mozilla" height="92" width="348"></h1>
+  <h2>Non-profit, for the good of the Web.</h2>
+</hgroup>
+
+<section id="firefox-promo" class="billboard">
+  <img src="{{ media('img/home/firefox.png')}}" id="promo-logo">
+  <h3>Different by Design.</h3>
+  <ul class="features">
+    <li><span>Proudly<br>non-profit</span></li>
+    <li><span>Innovating<br>for you</span></li>
+    <li><span>Fast, flexible,<br>secure</span></li>
+  </ul>
+
+  {{ download_button('download','small') }}
+</section>
+
+<section id="home-promo" class="pager pager-with-tabs">
+
+  <div class="pager-content">
+
+    <div class="default-page pager-page" id="promo-mdn">
+      <script>// <![CDATA[
+      document.getElementById('promo-mdn').id = 'page-promo-mdn';
+      // ]]></script>
+      <a href="https://developer.mozilla.org/" class="container">
+        <img src="{{ media('img/home/promo-mdn.jpg') }}" alt="Mozilla Developer Network artwork">
+        <div>
+          <h3>Together we can drive innovation on the Web.</h3>
+          <p>Mozilla Developer Network »</p>
+        </div>
+      </a>
+    </div>
+
+    <div id="promo-collusion" class="pager-page">
+      <script>// <![CDATA[
+      document.getElementById('promo-collusion').id = 'page-promo-collusion';
+      // ]]></script>
+      <a href="http://www.mozilla.org/collusion/" class="container">
+        <img src="{{ media('img/home/promo-collusion.jpg') }}" alt="Collusion graph image">
+        <div>
+          <h3>See who’s tracking your movements online.</h3>
+          <p>Add Collusion to Firefox »</p>
+        </div>
+      </a>
+    </div>
+
+    <div id="promo-contribute" class="pager-page">
+      <script>// <![CDATA[
+      document.getElementById('promo-contribute').id = 'page-promo-contribute';
+      // ]]></script>
+      <a href="{{ url('mozorg.contribute') }}" class="container">
+        <img src="{{ media('img/home/promo-contribute.jpg') }}" alt="Mozilla community collage">
+        <div>
+          <h3>Help us build a brighter future for the Web.</h3>
+          <p>Get involved »</p>
+        </div>
+      </a>
+    </div>
+
+    <ul class="pager-tabs">
+      <li id="tab-mdn"><a href="#p1">●</a></li>
+      <li id="tab-collusion"><a href="#p2">●</a></li>
+      <li id="tab-contribute"><a href="#p3">●</a></li>
+    </ul>
+
+  </div>
+</section>
+
+<div id="main-content">
+
+  <section id="home-news">
+    <h3>In the news</h3>
+    <ul>
+      <li>
+        <h4><a href="#">Lorem Ipsum Dolor Amet</a></h4>
+        <p>Ad populo principes vel. Oratio consul eos ei, vel ea ullum causae. Duo consetetur accommodare ut.</p>
+      </li>
+      <li>
+        <h4><a href="#">Lorem Ipsum Dolor Amet</a></h4>
+      </li>
+      <li>
+        <h4><a href="#">Lorem Ipsum Dolor Amet</a></h4>
+      </li>
+    </ul>
+    <a href="#" id="all-news">See all news »</a>
+  </section>
+
+  <section id="home-promos">
+    <h3>In the know</h3>
+     <ul>
+      <li>
+        <h4><a href="https://affiliates.mozilla.org/">Affiliates Program</a></h4>
+        <p>Become a Firefox Affiliate and get everything you need to share Firefox with the world!</p>
+      </li>
+      <li>
+        <h4><a href="https://addons.mozilla.org/en-US/firefox/addon/test-pilot/">Mobile test Pilot</a></h4>
+        <p>Download Test Pilot and help us improve Firefox on Android smartphones and tablets.</p>
+      </li>
+      <li>
+        <h4><a href="https://webfwd.org/">Apply to WebFWD</a></h4>
+        <p>Build innovating products on the open Web with the support of WebFWD.</p>
+      </li>
+    </ul>
+  </section>
+
+  <section id="home-about">
+    <h3>All about us</h3>
+    <ul>
+      <li id="about-volunteer"><a href="#">
+        <h4>Volunteer with us</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur elit.</p>
+      </a></li>
+      <li id="about-work"><a href="#">
+        <h4>Work with us</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur elit.</p>
+      </a></li>
+      <li id="about-find"><a href="#">
+        <h4>Find us</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur elit.</p>
+      </a></li>
+      <li id="about-join"><a href="#">
+        <h4>Join us</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur elit.</p>
+      </a></li>
+      <li id="about-learn"><a href="#">
+        <h4>Learn more</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur elit.</p>
+      </a></li>
+    </ul>
+  </section>
+
+</div>
+
+{% if not success %}
+<form class="billboard" id="home-updates" action="#home-updates" method="post">
+{{ csrf() }}
+
+{% if form.errors %}
+  {{ form.non_field_errors() }}
+
+  {% for field in form %}
+    {{ field.errors }}
+  {% endfor %}
+{% endif %}
+
+  <div class="row">
+  <h3 class="span4">Get mozilla updates</h3>
+
+  <div class="span3">
+    <div class="field field-email {% if form.email.errors %}field-error{% endif %}">
+      {{ field_with_attrs(form.email, placeholder='YOUR EMAIL HERE') }}
+    </div>
+
+    <div class="field field-format">
+      {{ form.fmt }}
+    </div>
+
+    <div class="field field-privacy {% if form.privacy.errors%}field-error{% endif %}">
+      {{ form.privacy }}
+    </div>
+  </div>
+
+  <div class="span3">
+    <input type="submit" value="Sign me up »" class="button-blue">
+  </div>
+
+  </div>
+</form>
+{% else %}
+<div class="container thank" id="home-updates">
+  <h3>Thank you for signing up!</h3>
+</div>
+{% endif %}
+
+{% endblock %}
