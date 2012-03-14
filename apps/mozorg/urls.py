@@ -3,7 +3,7 @@ from views import home, contribute, channel, firefox_performance, firefox_featur
 
 
 urlpatterns = patterns('',
-    url(r'^home/', home, name='mozorg.home'),
+    url(r'^$', home, name='mozorg.home'),
 
     (r'^button/', button),
     (r'^channel/', channel),
