@@ -75,6 +75,9 @@ MINIFY_BUNDLES = {
         'firefox_happy': (
             'css/firefox/happy.less',
         ),
+        'firefox_organizations': (
+            'css/firefox/organizations.less',
+        ),
         'firefox_security': (
             'css/firefox/security.less',
         ),
