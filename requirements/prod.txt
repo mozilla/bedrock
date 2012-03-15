@@ -17,6 +17,9 @@ GitPython==0.1.7
 celery
 django-celery
 
+# bcrypt
+django-bcrypt
+
 # L10n
 Babel>=0.9.4
 -e git://github.com/clouserw/tower.git#egg=tower

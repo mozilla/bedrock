@@ -6,4 +6,4 @@ hmac==20101005
 hashlib==20081119
 py-bcrypt==0.2
 
-lxml==3.2.1
+lxml==2.3.3

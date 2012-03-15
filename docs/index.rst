@@ -41,7 +41,31 @@ works like django.::
     cp settings/local.py-dist settings/local.py
     ./manage.py runserver
 
-This section will be expounded soon.
+To install bedrock, fire a commandline and type the following::
+
+    $ virtualenv venv
+    $ source venv/bin/activate
+    $ pip install -r requirements/dev.txt
+
+Once you've done that, you'll need to configure the application to run
+locally. Copy the `local.py-dist` file to `settings/local.py` file::
+
+    $ cp settings/local.py-dist settings/local.py
+
+You will need to have a less compiler. You can get one on debian/ubuntu by
+installing the "libjs-less" package.
+
+Make it run
+-----------
+
+To make the server run, make sure you are inside a virtualenv, and then
+run the server with your local settings::
+
+    $ python manage.py runserver --settings settings.local
+
+If you are not inside a virtualenv, you can activate it by doing::
+
+    $ source venv/bin/activate
 
 PHP
 ---
