@@ -1,33 +1,18 @@
-@import "../sandstone/sandstone.less";
-
-#wrapper {
-    background-color: #eee;
-    background-image: url(/media/img/sandstone/bg-slate.png);
-}
+@import "template.less";
 
 section.container {
-    border-bottom: 1px dotted @borderColor;
+    border-top: 1px dotted @borderColor;
+    padding-top: @baseLine * 2;
     padding-bottom: @baseLine * 2;
-    margin-bottom: @baseLine * 2;
 }
 
-section.container:last-child {
-    border-bottom: 0;
-}
-
-a,
-a:link,
-a:visited {
-    color: @linkBlue;
-}
-
-a:hover,
-a:active {
-    color: darken(@linkBlue, 10%);
+section.container#privacy {
+    border-top: 0;
+    padding-top: 0;
 }
 
 .section-list {
-    margin: 0;
+    margin-bottom: 0;
     li {
         list-style-type: none;
         margin: 0;
@@ -36,7 +21,6 @@ a:active {
         .small;
     }
     h4 {
-        margin: 0;
     }
 }
 
@@ -47,11 +31,16 @@ a:active {
 
 #main-feature {
     position: relative;
+    padding-bottom: @baseLine;
     .button {
         position: absolute;
         top: 0;
         right: @baseLine * 2;
     }
+}
+
+nav.menu-bar {
+    margin-bottom: @baseLine;
 }
 
 #mission img {

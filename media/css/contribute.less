@@ -5,7 +5,7 @@
 
     h1.large {
         text-align: center;
-        margin: @baseLine * 2 auto;
+        margin: 0 auto @baseLine auto;
     }
 
     #main-feature {
@@ -15,11 +15,6 @@
     #welcome-video {
         max-width: 640px;
         margin: 0 auto;
-        background-image: url(/media/img/sandstone/video/shadow.png);
-        background-repeat: no-repeat;
-        background-position: 50% 100%;
-        background-size: 100% 15px;
-        padding-bottom: 15px;
         video {
             max-width: 640px;
             width: 100%;
@@ -35,7 +30,7 @@
         margin: @baseLine;
         text-align: center;
         b {
-            font-weight: 400;
+            font-weight: bold;
         }
     }
 
@@ -59,7 +54,7 @@
     }
 
     #opportunities {
-
+        padding-bottom: @baseLine * 2;
         nav {
             background: #f0ece3;
             border: 1px solid rgba(0,0,0,0.03);

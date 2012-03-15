@@ -61,28 +61,52 @@ MINIFY_BUNDLES = {
             'css/covehead/content.css',
             'css/covehead/channel.css',
         ),
-        'firefox-security': (
+        'firefox': (
+            'css/firefox/template.less',
+        ),
+        'firefox_customize': (
+            'css/sandstone/video.less',
+            'css/firefox/customize.less',
+        ),
+        'firefox_features': (
+            'css/sandstone/video.less',
+            'css/firefox/features.less',
+        ),
+        'firefox_geolocation': (
+            'css/mozilla-expanders.less',
+            'css/firefox/geolocation.less',
+            'css/jquery/nyroModal.css'
+        ),
+        'firefox_happy': (
+            'css/firefox/happy.less',
+        ),
+        'firefox_organizations': (
+            'css/firefox/organizations.less',
+        ),
+        'firefox_security': (
             'css/firefox/security.less',
         ),
-        'home': (
-            'css/covehead/template.css',
-            'css/covehead/content.css',
-            'css/covehead/home.css',
+        'firefox_speed': (
+            'css/firefox/speed.less',
         ),
-        'geolocation': (
-            'css/covehead/template.css',
-            'css/covehead/content.css',
-            'css/covehead/mozilla-expanders.css',
-            'css/covehead/geolocation.css',
-            'css/jquery/nyroModal.css'
+        'firefox_technology': (
+            'css/firefox/technology.less',
+            'css/firefox/technology-demos.css',
+        ),
+        'home': (
+            'css/home.less',
         ),
         'marketplace': (
             'css/marketplace.less',
         ),
+        'mission': (
+            'css/sandstone/video.less',
+            'css/mission.less',
+        ),
         'persona': (
             'css/persona.less',
         ),
-        'sandstone-guide': (
+        'sandstone_guide': (
             'css/sandstone-guide.less',
         ),
         'video': (
@@ -99,6 +123,30 @@ MINIFY_BUNDLES = {
         ),
         'common': (
             'js/libs/jquery-1.7.1.min.js',
+            'js/site.js',
+        ),
+        'firefox': (
+            'js/libs/jquery-1.7.1.min.js',
+            'js/site.js',
+            'js/nav-main.js',
+        ),
+        'firefox_customize': (
+            'js/mozilla-video-tools.js',
+            'js/firefox/customize.js',
+        ),
+        'firefox_features': (
+            'js/mozilla-video-tools.js',
+            'js/firefox/features.js',
+        ),
+        'firefox_happy': (
+            'js/libs/jquery-1.4.4.min.js',
+            'js/libs/jquery-css-transform.js',
+            'js/libs/jquery-animate-css-rotate-scale.js',
+        ),
+        'firefox_speed': (
+            'js/libs/jquery-1.4.4.min.js',
+            'js/libs/jquery-css-transform.js',
+            'js/libs/jquery-animate-css-rotate-scale.js',
         ),
         'geolocation': (
             'js/libs/jquery-1.4.4.min.js',
@@ -130,7 +178,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    #'session_csrf.CsrfMiddleware',  # Must be after auth middleware.
+    'session_csrf.CsrfMiddleware',  # Must be after auth middleware.
     'django.contrib.messages.middleware.MessageMiddleware',
     'commonware.middleware.FrameOptionsHeader',
     #'mobility.middleware.DetectMobileMiddleware',
@@ -146,6 +194,7 @@ INSTALLED_APPS = list(INSTALLED_APPS) + [
     'marketplace',
     'mozorg',
     'persona',
+    'landing',
     'research',
 
     # libs

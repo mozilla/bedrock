@@ -1,0 +1,41 @@
+{% extends "sand.html" %}
+
+{% block content %}
+
+<div id="main-content">
+<div class="row">
+
+<article class="main-column">
+{% block article %}{% endblock %}
+</article>
+
+<aside class="sidebar">
+
+  <nav>
+    <ul>
+      <li><a href="#">About</a></li>
+      <li><a href="{{ url('mozorg.mission') }}">Our Mission</a></li>
+      <li><a href="/about/forums/">Forums</a></li>
+      <li><a href="/about/governance.html">Governance</a></li>
+      <li><a href="/about/history.html">History</a></li>
+    </ul>
+  </nav>
+
+  <div class="reference">
+    <h4>Our Projects</h4>
+    <p>Software and other innovations designed to advance our mission.</p>
+    <a href="#" class="more">Learn More »</a>
+  </div>
+
+  <div class="reference">
+    <h4>Get Involved</h4>
+    <p>Become a volunteer contributor in a number of different areas.</p>
+    <a class="more" href="{{ media('mozorg.contribute') }}">Learn More »</a>
+  </div>
+
+</aside>
+
+</div>
+</div>
+
+{% endblock %}

@@ -1,21 +1,24 @@
-{% extends "base.html" %}
+{% extends "/mozorg/firefox/base.html" %}
 
-{% block page_title %}Mozilla Firefox Web Browser — Safe Web Browsing{% endblock %}
+{% block page_title %}Safe Web Browsing{% endblock %}
 {% block body_id %}firefox-security{% endblock %}
 
 {% block site_css %}
-  {{ css('firefox-security') }}
-{% endblock %}
-
-{% block site_header_logo %}
-<h1><img src="/media/img/sandstone/header-mozilla-slate.png" alt="mozilla"></h1>
+  {{ css('firefox_security') }}
 {% endblock %}
 
 {% block content %}
 
-<div id="main-feature">
-  <h1 class="center">Firefox Helps You <span class="huge">Stay Safe</span></h1>
-  <a href="#" class="button top-right">Download Firefox</a>
+
+<div id="main-feature" class="stacked">
+  <h1>Firefox Helps You <span class="large">Stay Safe</span></h1>
+  {{ download_button('download', 'small') }}
+
+  <script src="/media/js/download.js"></script>
+  <script type="text/javascript">
+    offerBestDownloadLink('download');
+    offerBestDownloadLink('download2');
+  </script>
 </div>
 
 <nav class="menu-bar billboard">
@@ -27,7 +30,7 @@
   </ul>
 </nav>
 
-<section id="privacy" class="container">
+<section id="privacy" class="billboard">
 <div class="row">
   <div class="span3">
     <h2>Protect Your Privacy</h2>
@@ -35,7 +38,7 @@
     <p class="top-link"><a href="#main-feature">Return to Top</a></p>
   </div>
   <div class="section-image span4">
-    <img src="/media/img/firefox/security/private-browsing.png" alt="Private Browsing screenshot" />
+     {{ platform_img('img/firefox/security/screenshot-privacy.jpg', alt='Private Browsing screenshot') }}
   </div>
   <ul class="section-list span3">
     <li>
@@ -62,7 +65,7 @@
 </div>
 </section>
 
-<section id="secure" class="container">
+<section id="secure" class="billboard">
 <div class="row">
   <div class="span3">
     <h3>Browse With Security</h3>
@@ -70,7 +73,7 @@
     <p class="top-link"><a href="#main-feature">Return to Top</a></p>
   </div>
   <div class="section-image span4">
-    <img src="/media/img/firefox/security/security.png" alt="Anti-Malware screenshot" />
+     {{ platform_img('img/firefox/security/screenshot-anti-malware.jpg', alt='Anti-Malware screenshot') }}
   </div>
   <ul class="section-list span3">
     <li>
@@ -93,7 +96,7 @@
 </div>
 </section>
 
-<section id="control" class="container">
+<section id="control" class="billboard">
 <div class="row">
   <div class="span3">
     <h3>Stay In <span>Control</span></h3>
@@ -101,7 +104,7 @@
     <p class="top-link"><a href="#main-feature">Return to Top</a></p>
   </div>
   <div class="section-image span4">
-    <img src="/media/img/firefox/security/control.png" alt="Plugins screenshot" />
+     {{ platform_img('img/firefox/security/screenshot-plugins.jpg', alt='Plugins screenshot') }}
   </div>
   <ul class="section-list span3">
     <li>
@@ -120,7 +123,7 @@
 </div>
 </section>
 
-<section id="mission" class="container">
+<section id="mission" class="billboard">
 <div class="row">
   <div class="span3">
     <h3>It’s Part of Our <span>Mission</span></h3>
@@ -128,7 +131,7 @@
     <p class="top-link"><a href="#main-feature">Return to Top</a></p>
   </div>
   <div class="section-image span4">
-    <img alt="Communtity icon" src="/media/img/firefox/security/community.png">
+    <img alt="Communtity icon" src="{{ media('img/firefox/security/community.png') }}">
   </div>
   <ul class="section-list span3">
     <li>

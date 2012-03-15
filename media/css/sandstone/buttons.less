@@ -1,3 +1,5 @@
+// General buttons
+
 .button,
 .button:link,
 .button:visited {
@@ -24,7 +26,7 @@
         text-decoration: none;
         .transition();
     }
-    
+
     &:active {
         .box-shadow(@buttonShadowActive);
         color: @buttonTextColor;
@@ -33,7 +35,9 @@
     }
 }
 
-.button-blue {
+.button-blue,
+.button-blue:link,
+.button-blue:visited {
     .button;
     background-color: @buttonBlue;
     #gradient > .vertical(@buttonBlue, @buttonBlueDark);
@@ -43,7 +47,9 @@
     }
 }
 
-.button-white {
+.button-white,
+.button-white:link,
+.button-white:visited {
     .button;
     border: 1px solid #d0d0d0;
     background: #fff;
@@ -64,6 +70,14 @@
     }
 }
 
+.button-white.selected {
+    background: #d7d5d5;
+    border-color: #bcb9b9;
+    text-shadow: 0 1px #fff;
+    @shadow: 0 1px 1px rgba(255,255,255,0.75), 0 1px 3px rgba(0,0,0,0.1) inset;
+    .box-shadow(@shadow);
+}
+
 .button,
 .button-blue,
 .button-white {
@@ -72,4 +86,119 @@
         display: block;
     }
 
+}
+
+
+// Product download buttons
+
+.download-button .unsupported-download {
+    display: none;
+}
+
+.download-button {
+    .inline-block;
+    ul {
+        margin: 0 0 4px 0;
+        li {
+            list-style-type: none;
+            margin: 0;
+        }
+    }
+}
+
+.download-button .download-link {
+    .button;
+    cursor: pointer;
+    padding: 0;
+    height: 95px;
+    margin-left: 50px;
+    text-align: inherit;
+    .download-content {
+        display: block;
+        position: relative;
+        margin-left: -50px;
+        padding-left: 65px;
+        padding-right: 24px;
+        background: url(/media/img/sandstone/buttons/firefox-large.png) 0 0 no-repeat;
+        height: 95px;
+        padding: 12px 12px 0 112px;
+    }
+    .download-title {
+        display: block;
+        font-family: georgia, "Bitstream Charter", serif;
+        font-size: 26px;
+        letter-spacing: -0.02em;
+        padding-right: 32px;
+        background: url(/media/img/sandstone/buttons/arrow-large.png) no-repeat 100% 0;
+    }
+    .download-info {
+        display: block;
+        color: #346012;
+        padding-right: 32px;
+        padding-top: 2px;
+        font-size: 12px;
+        line-height: 100%;
+        text-shadow: none;
+    }
+}
+
+.download-button-large .download-link {
+    line-height: @baseLine;
+    font-size: 16px;
+    .border-radius(6px);
+}
+
+.download-button-small .download-link {
+    white-space: nowrap;
+    height: 48px;
+    .download-title {
+        .inline-block;
+        vertical-align: middle;
+        font-size: 24px;
+        background: url(/media/img/sandstone/buttons/arrow-small.png) no-repeat 100% 50%;
+        padding-right: 20px;
+        padding-bottom: 4px;
+        margin-right: 5px;
+    }
+    .download-content {
+        margin-left: -25px;
+        background-image: url(/media/img/sandstone/buttons/firefox-small.png);
+        height: 52px;
+        padding: 0 24px 0 65px;
+    }
+}
+
+
+// OS detection
+
+li.os_linux,
+li.os_windows,
+li.os_osx,
+li.os_android { display: none; }
+
+.linux li.os_linux,
+.windows li.os_windows,
+.osx li.os_osx,
+.android li.os_android,
+noscript li.os_linux,
+noscript li.os_windows,
+noscript li.os_osx,
+noscript li.os_android{
+    display: block;
+}
+
+
+// Small print
+
+.download-button small.download-other {
+    .open-sans;
+    display: block;
+    font-size: 11px;
+    text-align: right;
+    color: @textColorLight;
+
+    a:link,
+    a:visited {
+        color: #999;
+    }
 }

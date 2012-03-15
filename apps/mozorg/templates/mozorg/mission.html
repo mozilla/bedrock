@@ -1,0 +1,53 @@
+{% extends "mozorg/about-base.html" %}
+
+{% block page_title %}The Mozilla Difference{% endblock %}
+{% block body_id %}mission{% endblock %}
+
+{% block extrahead %}
+  {{ css('mission') }}
+{% endblock %}
+
+{% block js %}
+  {{ js('video') }}
+{% endblock %}
+
+{% block breadcrumbs %}
+  <nav class="breadcrumbs">
+    <a href="{{ url('mozorg.home') }}">Home</a> >
+    <span>About</span>
+  </nav>
+{% endblock %}
+
+{% block article %}
+
+<h1>The Mozilla Difference</h1>
+
+<div id="welcome-video" class="mozilla-video-control mozilla-video-shadow">
+  <video
+    width="640"
+    height="360"
+    poster="{{ media('img/mission/poster-mission.jpg') }}"
+    controls="controls">
+    <source src="//videos-cdn.mozilla.net/brand/Mozilla_2011_Story.webm" type="video/webm" />
+    <source src="//videos-cdn.mozilla.net/brand/Mozilla_2011_Story.theora.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;" />
+    <source src="//http://videos-cdn.mozilla.net/brand/Mozilla_2011_Story.mp4" type="video/mp4" />
+    <object type="application/x-shockwave-flash"
+      style="width: 640px; height: 388px;"
+      data="/media/flash/playerWithControls.swf?flv=brand/Mozilla_2011_Story.mp4&amp;autoplay=false&amp;msg=Play%20Video">
+      <param name="movie" value="/media/flash/playerWithControls.swf?flv=brand/Mozilla_2011_Story.mp4&amp;autoplay=false&amp;msg=Play%20Video" />
+      <param name="wmode" value="transparent" />
+
+      <div class="video-player-no-flash">
+      This video requires a browser with support for open video
+      or the <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player</a>.
+      </div>
+    </object>
+  </video>
+</div>
+
+<p>Mozilla is a proudly non-profit organization dedicated to keeping the power of the Web in people's hands. We're a global community of users, contributors and developers working to innovate on your behalf. When you use Firefox, you become a part of that community, helping us build a brighter future for the Web.</p>
+
+<p>To find out more about who we are, where we came from and where we want to take the Web, please watch the video above.</p>
+
+
+{% endblock %}

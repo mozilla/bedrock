@@ -1,6 +1,6 @@
-{% extends "base.html" %}
+{% extends "sand.html" %}
 
-{% block page_title %}The Boot to Gecko Project{% endblock %}
+{% block page_title %}Boot to Gecko Project{% endblock %}
 {% block body_id %}b2g{% endblock %}
 
 {% block site_header_nav %}
@@ -21,10 +21,10 @@
 
 <h1 id="main-feature">Bringing the Open Web to <span class="large">Mobile Devices</span></h1>
 
-<section id="primary" class="container">
+<section id="primary" class="billboard">
 
   <img src="{{ MEDIA_URL }}img/b2g/hero.png" alt="" />
-  <h1>Welcome to a new, open and powerful mobile world!</h1>
+  <h2>Welcome to a new, open and powerful mobile world!</h2>
   <p>We launched the Boot to Gecko project to enable the Open Web as a platform for mobile devices. We’re making innovation possible by driving the development of new Web standards.</p>
 
 </section>
@@ -79,7 +79,5 @@
     <li><a href="http://joshcarpenter.ca/Boot-to-Gecko">Gaia UX Concept for Boot to Gecko</a></li>
   </ul>
 </aside>
-
-&nbsp;
 
 {% endblock %}
