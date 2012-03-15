@@ -99,6 +99,10 @@ MINIFY_BUNDLES = {
         'marketplace': (
             'css/marketplace.less',
         ),
+        'mission': (
+            'css/sandstone/video.less',
+            'css/mission.less',
+        ),
         'persona': (
             'css/persona.less',
         ),

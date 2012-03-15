@@ -71,6 +71,9 @@ def channel(request):
 def button(request):
     return l10n_utils.render(request, "mozorg/button.html")
 
+def mission(request):
+    return l10n_utils.render(request, "mozorg/mission.html")
+
 def new(request):
     return l10n_utils.render(request, "mozorg/new.html")
 

@@ -331,8 +331,9 @@ px      68    160    252    344    436    528    620    712    804    896    */
 #masthead {
 
     nav.breadcrumbs {
+        padding: @baseLine / 2  0;
         float: none;
-        padding: 24px 0 12px 0;
+        padding: 12px 0;
 
         a,
         span {
@@ -427,6 +428,20 @@ nav.menu-bar {
 
     }
 
+    .reference {
+        margin: @baseLine * 2  auto;
+
+        .more {
+            display: block;
+            padding: (@baseLine / 2) 0;
+            border-bottom: 1px dotted @borderColor;
+            .open-sans-light;
+        }
+
+        p {
+            margin: 0;
+        }
+    }
 }
 
 /* }}} */
@@ -561,7 +576,6 @@ px      68    160    252    */
         }
 
         nav.breadcrumbs {
-            padding: @baseLine / 2  0;
             a,
             span {
                 margin-right: .3em;
