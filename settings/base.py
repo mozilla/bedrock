@@ -93,6 +93,10 @@ MINIFY_BUNDLES = {
             'css/firefox/technology.less',
             'css/firefox/technology-demos.css',
         ),
+        'firefox_updates': (
+            'css/mozilla-expanders.less',
+            'css/firefox/update.less',
+        ),
         'home': (
             'css/home.less',
         ),
@@ -102,6 +106,9 @@ MINIFY_BUNDLES = {
         'mission': (
             'css/sandstone/video.less',
             'css/mission.less',
+        ),
+        'mozilla_expanders': (
+            'css/mozilla-expanders.less',
         ),
         'persona': (
             'css/persona.less',
@@ -124,6 +131,9 @@ MINIFY_BUNDLES = {
         'common': (
             'js/libs/jquery-1.7.1.min.js',
             'js/site.js',
+        ),
+        'expanders': (
+            'js/mozilla-expanders.js',
         ),
         'firefox': (
             'js/libs/jquery-1.7.1.min.js',

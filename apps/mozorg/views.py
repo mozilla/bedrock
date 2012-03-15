@@ -60,6 +60,9 @@ def firefox_speed(request):
 def firefox_technology(request):
     return l10n_utils.render(request, "mozorg/firefox/technology.html")
 
+def firefox_update(request):
+    return l10n_utils.render(request, "mozorg/firefox/update.html")
+
 def channel(request):
     data = {}
 

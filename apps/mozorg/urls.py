@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import *
-from views import home, contribute, channel, firefox_performance, firefox_features, firefox_customize, firefox_happy, firefox_organizations, firefox_organizations_faq, firefox_security, firefox_speed, firefox_technology, button, new, sandstone, firefox_geolocation, mission
+from views import home, contribute, channel, firefox_performance, firefox_features, firefox_customize, firefox_happy, firefox_organizations, firefox_organizations_faq, firefox_security, firefox_speed, firefox_technology, button, new, sandstone, firefox_geolocation, firefox_update, mission
 
 
 urlpatterns = patterns('',
@@ -22,4 +22,5 @@ urlpatterns = patterns('',
     url(r'^firefox/security/', firefox_security, name='mozorg.firefox_security'),
     url(r'^firefox/speed/', firefox_speed, name='mozorg.firefox_speed'),
     url(r'^firefox/technology/', firefox_technology, name='mozorg.firefox_technology'),
+    url(r'^firefox/update/', firefox_update, name='mozorg.firefox_update'),
 )
