@@ -198,6 +198,8 @@ def url(viewname, *args, **kwargs):
     url = reverse(viewname, args=args, kwargs=kwargs)
     # If this instance is a mix of Python and PHP, it can be set to
     # force the /b/ URL so that linking across pages work
+    # TURNED OFF FOR NOW. The dev site seems to be doing this already
+    # somehow. Looking into it. Issue #22
     if getattr(settings, 'FORCE_SLASH_B', False) and False:
         return path.join('/b/', url.lstrip('/'))
     return url
