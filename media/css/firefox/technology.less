@@ -1,15 +1,24 @@
 @import "template.less";
 
-#main-feature hgroup {
-    .span(6);
+#main-feature {
+    padding-bottom: @baseLine;
+    hgroup {
+        .span(6);
+    }
 }
 
 #main-feature #more-info {
     .span(3);
     .offset(1);
     margin-top: @baseLine * 4;
-    border-bottom: 1px dotted @borderColor;
     p {
         .small;
     }
+    ul {
+        margin: 0;
+    }
+}
+
+nav.menu-bar {
+    margin-bottom: @baseLine;
 }
