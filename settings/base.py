@@ -72,6 +72,11 @@ MINIFY_BUNDLES = {
             'css/sandstone/video.less',
             'css/firefox/features.less',
         ),
+        'firefox_geolocation': (
+            'css/mozilla-expanders.less',
+            'css/firefox/geolocation.less',
+            'css/jquery/nyroModal.css'
+        ),
         'firefox_happy': (
             'css/firefox/happy.less',
         ),
@@ -90,13 +95,6 @@ MINIFY_BUNDLES = {
         ),
         'home': (
             'css/home.less',
-        ),
-        'geolocation': (
-            'css/covehead/template.css',
-            'css/covehead/content.css',
-            'css/covehead/mozilla-expanders.css',
-            'css/covehead/geolocation.css',
-            'css/jquery/nyroModal.css'
         ),
         'marketplace': (
             'css/marketplace.less',

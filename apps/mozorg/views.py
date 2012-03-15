@@ -36,11 +36,11 @@ def firefox_customize(request):
 def firefox_features(request):
     return l10n_utils.render(request, "mozorg/firefox/features.html")
 
+def firefox_geolocation(request):
+    return l10n_utils.render(request, "mozorg/firefox/geolocation.html", 
+                             {'gmap_api_key': settings.GMAP_API_KEY})
 def firefox_happy(request):
     return l10n_utils.render(request, "mozorg/firefox/happy.html")
-
-def firefox_technology(request):
-    return l10n_utils.render(request, "mozorg/firefox/technology.html")
 
 def firefox_organizations(request):
     return l10n_utils.render(request, "mozorg/firefox/organizations/organizations.html")
@@ -56,6 +56,9 @@ def firefox_security(request):
 
 def firefox_speed(request):
     return l10n_utils.render(request, "mozorg/firefox/speed.html", {'latest_version': product_details.firefox_versions['LATEST_FIREFOX_DEVEL_VERSION']})
+
+def firefox_technology(request):
+    return l10n_utils.render(request, "mozorg/firefox/technology.html")
 
 def channel(request):
     data = {}
@@ -74,6 +77,3 @@ def new(request):
 def sandstone(request):
     return l10n_utils.render(request, "mozorg/sandstone.html")
 
-def geolocation(request):
-    return l10n_utils.render(request, "mozorg/geolocation.html", 
-                             {'gmap_api_key': settings.GMAP_API_KEY})

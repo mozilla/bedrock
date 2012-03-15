@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import *
-from views import home, contribute, channel, firefox_performance, firefox_features, firefox_customize, firefox_happy, firefox_organizations, firefox_organizations_faq, firefox_security, firefox_speed, firefox_technology, button, new, sandstone, geolocation
+from views import home, contribute, channel, firefox_performance, firefox_features, firefox_customize, firefox_happy, firefox_organizations, firefox_organizations_faq, firefox_security, firefox_speed, firefox_technology, button, new, sandstone, firefox_geolocation
 
 
 urlpatterns = patterns('',
@@ -11,9 +11,9 @@ urlpatterns = patterns('',
     (r'^sandstone/', sandstone),
     url(r'^contribute/', contribute, name='mozorg.contribute'),
 
-    (r'^firefox/geolocation/', geolocation),
     url(r'^firefox/customize/', firefox_customize, name='mozorg.firefox_customize'),
     url(r'^firefox/features/', firefox_features, name='mozorg.firefox_features'),
+    url(r'^firefox/geolocation/', firefox_geolocation, name='mozorg.firefox_geolocation'),
     url(r'^firefox/happy/', firefox_happy, name='mozorg.firefox_happy'),
     url(r'^firefox/organizations/faq/', firefox_organizations_faq, name='mozorg.firefox_organizations_faq'),
     url(r'^firefox/organizations/', firefox_organizations, name='mozorg.firefox_organizations'),
