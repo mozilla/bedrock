@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> devices
 (function() {
     var site = {
         platform: 'windows'
