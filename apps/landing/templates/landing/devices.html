@@ -236,20 +236,22 @@
             $('#slider').cycle(sidx);
         }
         // Track which slides get viewed
-        if (document.location.hash == '#speed') {
+        switch (location.hash) {
+          case '#speed':
             dcsMultiTrack('WT.z_panel','Desktops & Laptops','WT.dl',98);
-        }
-        if (document.location.hash == '#smartphones') {
+            break;
+          case '#smartphones':
             dcsMultiTrack('WT.z_panel','Smartphones','WT.dl',98);
-        }
-        if (document.location.hash == '#tablets') {
+            break;
+          case '#tablets':
             dcsMultiTrack('WT.z_panel','Tablets','WT.dl',98);
-        }
-        if (document.location.hash == '#addons') {
+            break;
+          case '#addons':
             dcsMultiTrack('WT.z_panel', 'Favorite Add-ons', 'WT.dl', 98);
-        }
-        if (document.location.hash == '#sync') {
+            break;
+          case '#sync':
             dcsMultiTrack('WT.z_panel','Sync Your Gadgets','WT.dl',98);
+            break;
         }
     });
     $(window).hashchange();
