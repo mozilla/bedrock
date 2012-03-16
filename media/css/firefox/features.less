@@ -1,7 +1,10 @@
 @import "template.less";
 
-#main-feature hgroup {
-    .span(7);
+#main-feature {
+    padding-bottom: @baseLine;
+    hgroup {
+        .span(7);
+    }
 }
 
 #main-feature #top-features {
@@ -13,12 +16,11 @@
     }
 }
 
-nav.menu-bar ul li a span {
-    font-size: 14px;
-}
-
-nav.menu-bar ul li a span {
-    font-size: 18px;
+nav.menu-bar {
+    margin-bottom: @baseLine;
+    ul li a span {
+        font-size: 18px;
+    }
 }
 
 /* {{{ Top Features */
@@ -27,6 +29,7 @@ nav.menu-bar ul li a span {
     font-size: 18px;
     margin: 0;
     line-height: 1;
+    text-shadow: none;
 }
 
 #main-feature #top-features p {
