@@ -80,6 +80,9 @@ MINIFY_BUNDLES = {
         'firefox_happy': (
             'css/firefox/happy.less',
         ),
+        'firefox_new': (
+            'css/firefox/new.less',
+        ),
         'firefox_organizations': (
             'css/firefox/organizations.less',
         ),

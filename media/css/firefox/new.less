@@ -1,0 +1,125 @@
+@import "template.less";
+
+#wrapper,
+.sky #wrapper {
+    background: #e04113 url(/media/img/firefox/new/bg.jpg) 50% 0 no-repeat;
+}
+
+#main-content {
+    padding-bottom: 0;
+    h1 {
+        color: #fff;
+        text-shadow: none;
+        font-size: 60px;
+        margin: (@baseLine * 5) 0 6px 0;
+        letter-spacing: -3px;
+    }
+}
+
+.download-button {
+    width: 300px;
+}
+
+ul#benefits {
+    padding: 4px 0 24px 12px;
+    margin: 0;
+    .clearfix;
+}
+
+ul#benefits li {
+    float: left;
+    display: inline;
+    list-style-type: none;
+    text-align: center;
+    margin: 0;
+    padding: 6px 24px 8px 24px;
+    line-height: 19px;
+    color: #fff;
+    border-left: 2px dotted #ffa800;
+    font-size: 18px;
+    font-style: italic;
+}
+
+ul#benefits li.first {
+    padding-left: 5px;
+    border-left: 0;
+}
+
+ul#benefits li span {
+    display: block;
+}
+
+
+.download-button small.download-other {
+    color: #ffcf72;
+    a:link,
+    a:visited {
+        color: #ffcf72;
+    }
+}
+
+#beta-promo {
+    padding: 12px 0 0 60px;
+    width: 240px;
+    margin: 0;
+    font-size: 13px;
+    text-align: right;
+    color: #6D7581;
+}
+
+#beta-promo a {
+    color: #fff;
+    background: rgb(240,78,40);
+    background: rgba(255,255,255,0.05);
+    border: 1px solid #dd3611;
+    -webkit-box-shadow: 0 0 0 1px rgba(255,255,255,0.1) inset;
+    -moz-box-shadow: 0 0 0 1px rgba(255,255,255,0.1) inset;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.1) inset;
+    display: inline-block;
+    padding: 6px 40px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+#beta-promo a:hover,
+#beta-promo a:active {
+    background: rgb(224,67,31);
+    background: rgba(255,255,255,0.1);
+}
+
+#colophon {
+    padding-top: @baseLine;
+    text-align: center;
+    nav {
+        ul {
+            margin-bottom: @baseLine / 2;
+        }
+        li {
+            display: inline;
+            a,
+            a:link,
+            a:visited {
+                .inline-block;
+                padding: 2px 12px;
+                border-left: 1px dotted @borderColor;
+                color: @textColorPrimary;
+            }
+            &:first-child a {
+                border: 0;
+            }
+        }
+        .primary {
+            font-family: @baseFontFamily;
+            font-size: @baseFontSize;
+        }
+        .secondary {
+            font-size: 11px;
+            a,
+            a:link,
+            a:visited {
+                color: @textColorLight;
+            }
+        }
+    }
+}
