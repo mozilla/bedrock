@@ -24,11 +24,11 @@
 
 <nav class="menu-bar billboard slider-menu slider-pager">
   <ul>
-    <li><a href="#speed" onclick="dcsMultiTrack('WT.z_panel','Desktops & Laptops','WT.dl',98);">{{ _('Desktops &amp; Laptops') }}</a></li>
-    <li><a href="#smartphones" onclick="dcsMultiTrack('WT.z_panel','Smartphones','WT.dl',98);">{{ _('Smartphones') }}</a></li>
-    <li><a href="#tablets"onclick="dcsMultiTrack('WT.z_panel','Tablets','WT.dl',98);">{{ _('Tablets') }}</a></li>
-    <li><a href="#addons" onclick="dcsMultiTrack('WT.z_panel', 'Favorite Add-ons', 'WT.dl', 98);">{{ _('Favorite Add-ons') }}</a></li>
-    <li><a href="#sync" onclick="dcsMultiTrack('WT.z_panel','Sync Your Gadgets','WT.dl',98);">{{ _('Sync Your Gadgets') }}</a></li>
+    <li><a href="#speed">{{ _('Desktops &amp; Laptops') }}</a></li>
+    <li><a href="#smartphones">{{ _('Smartphones') }}</a></li>
+    <li><a href="#tablets">{{ _('Tablets') }}</a></li>
+    <li><a href="#addons">{{ _('Favorite Add-ons') }}</a></li>
+    <li><a href="#sync">{{ _('Sync Your Gadgets') }}</a></li>
   </ul>
 </nav>
 
@@ -184,11 +184,11 @@
 
     <nav class="slider-dots slider-pager">
       <ul>
-        <li>&bull;</li>
-        <li>&bull;</li>
-        <li>&bull;</li>
-        <li>&bull;</li>
-        <li>&bull;</li>
+        <li><a href="#speed">{{ _('Desktops &amp; Laptops') }}</a></li>
+        <li><a href="#smartphones">{{ _('Smartphones') }}</a></li>
+        <li><a href="#tablets">{{ _('Tablets') }}</a></li>
+        <li><a href="#addons">{{ _('Favorite Add-ons') }}</a></li>
+        <li><a href="#sync">{{ _('Sync Your Gadgets') }}</a></li>
       </ul>
     </nav>
 
@@ -201,49 +201,58 @@
     $('#fx-features').hide();
   
     /* Set up the slider */
+    
     var $slides = $('section.slide'),
-        anchor = document.location.hash,
-        getSlideIndex = function(id){
-            var idx = $slides.index($(id + '-slide'));
-            return idx == -1 ? 0 : idx;
-        },
-        onSlideChange = function(){
-            var currhash = document.location.hash,
-                el = arguments[arguments.length - 1];
-            if (currhash !== '#' + el.id) {
-                document.location.hash = el.id.replace('-slide', '');
-            }
-            /* Track which slides get viewed */
-            if (document.location.hash == '#speed') {
-                dcsMultiTrack('WT.z_panel','Desktops & Laptops','WT.dl',98);
-            }
-            if (document.location.hash == '#smartphones') {
-                dcsMultiTrack('WT.z_panel','Smartphones','WT.dl',98);
-            }
-            if (document.location.hash == '#tablets') {
-                dcsMultiTrack('WT.z_panel','Tablets','WT.dl',98);
-            }
-            if (document.location.hash == '#addons') {
-                dcsMultiTrack('WT.z_panel', 'Favorite Add-ons', 'WT.dl', 98);
-            }
-            if (document.location.hash == '#sync') {
-                dcsMultiTrack('WT.z_panel','Sync Your Gadgets','WT.dl',98);
-            }
-        },
-        $slider = $('#slider').cycle({
-            fx: 'scrollHorz',
-            pager: '.slider-pager ul',
-            pagerAnchorBuilder: function(idx, el){
-                return '.slider-pager ul li:eq(' + idx + ') a';
-            },
-            activePagerClass: 'current',
-            timeout: 0,
-            prev: '.slider-arrows li.prev a',
-            next: '.slider-arrows li.next a',
-            startingSlide: getSlideIndex(anchor),
-            onPrevNextEvent: onSlideChange,
-            onPagerEvent: onSlideChange
+        isPrevNext = false;
+    var getSlideIndex = function(id){
+        var idx = $slides.index($(id + '-slide'));
+        return idx == -1 ? 0 : idx;
+    };
+ 
+    // http://jquery.malsup.com/cycle/options.html
+    // full list of options
+    $('#slider').cycle({
+        fx: 'scrollHorz',
+        timeout: 0,
+        speed: 700, // milliseconds
+        nowrap: false,
+        prev: '.slider-arrows li.prev a',
+        next: '.slider-arrows li.next a',
+        onPrevNextEvent: function(isNext, idx, el){
+            isPrevNext = true;
+            location.hash = el.id.replace('-slide', '');
+        }
+    });
+    $(window).hashchange(function(){
+        var sidx = getSlideIndex(location.hash);
+        $('.slider-pager').each(function(){
+            $(this).find('li.current').removeClass('current').end()
+                   .find('li:eq(' + sidx + ')').addClass('current');
         });
+        if (isPrevNext) {
+            isPrevNext = false;
+        }
+        else {
+            $('#slider').cycle(sidx);
+        }
+        // Track which slides get viewed
+        if (document.location.hash == '#speed') {
+            dcsMultiTrack('WT.z_panel','Desktops & Laptops','WT.dl',98);
+        }
+        if (document.location.hash == '#smartphones') {
+            dcsMultiTrack('WT.z_panel','Smartphones','WT.dl',98);
+        }
+        if (document.location.hash == '#tablets') {
+            dcsMultiTrack('WT.z_panel','Tablets','WT.dl',98);
+        }
+        if (document.location.hash == '#addons') {
+            dcsMultiTrack('WT.z_panel', 'Favorite Add-ons', 'WT.dl', 98);
+        }
+        if (document.location.hash == '#sync') {
+            dcsMultiTrack('WT.z_panel','Sync Your Gadgets','WT.dl',98);
+        }
+    });
+    $(window).hashchange();
  
     /* Override clicks on the arrows */
     $(".slider-arrows a").click(function(e){

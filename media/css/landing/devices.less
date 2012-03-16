@@ -161,21 +161,45 @@
     cursor: default; 
 }
 
-.slider-dots {
+nav.slider-dots {
   text-align: center;
   margin: 24px auto;
+  position: relative;
+  z-index: 100;
+
   ul {
     margin: -12px 0 0;
     list-style: none;
     li {
       display: inline-block;
-      margin: 0 2px;
-      font-size: 30px;
-      color: #bbb;
-      .transition(color ease-in-out .2s);
+      margin: 0;
     }
-    li.current {
+    a {
+      display: block;
+      margin: 0;
+      width: 25px;
+      height: 25px;
+      text-indent: -999em;
+      overflow: hidden;
+      position: relative;
+      color: #bbb;
+      opacity: .5;
+      text-decoration: none;
+      .transition(opacity ease-in-out .2s);
+    }
+    a:after {
+      content: "\25CF";
+      font-size: 25px;
+      width: 25px;
+      height: 25px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      text-indent: 0;
+    }
+    a:hover, a:focus, a:active, li.current a {
       color: #444;
+      text-decoration: none;
       .transition(color ease-in-out .2s);
     }
   }
