@@ -1,5 +1,10 @@
-  $(document).ready(function() {
-  
+$(document).ready(function() {
+
+    // Get the latest version of firefox that is attached as a data
+    // attribute
+    var latestVersion = $('#gauge').data('latest-version');
+    latestVersion = parseInt(latestVersion.split('.')[0], 10);
+
     $('#fx-features').hide();
   
     /* Set up the slider */
