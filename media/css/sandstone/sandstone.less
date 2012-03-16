@@ -21,17 +21,48 @@ body {
 }
 
 #wrapper {
-    background: #f5f1e8 url(/media/img/sandstone/background-gradient.png) 0 0 repeat-x;
+    background: #f9f9f9 url(/media/img/sandstone/bg-stone.png) 0 0 repeat-x;
+    padding-bottom: @baseLine * 2;
 }
 
 a {
-    color: @linkRed;
+    color: @linkBlue;
     text-decoration: none;
     &:hover,
     &:active {
-        color: darken(@linkRed, 10%);
+        color: darken(@linkBlue, 10%);
         text-decoration: underline;
     }
+}
+
+.sand {
+    #wrapper {
+        background-color: #f5f1e8;
+        background-image: url(/media/img/sandstone/bg-sand.png);
+    }
+    a {
+        color: @linkRed;
+        &:hover,
+        &:active {
+            color: darken(@linkRed, 10%);
+        }
+    }
+}
+
+.sky {
+    #wrapper {
+        background-color: #eee;
+        background-image: url(/media/img/sandstone/bg-sky.png);
+    }
+
+    a {
+        color: @linkSkyBlue;
+        &:hover,
+        &:active {
+            color: darken(@linkSkyBlue, 10%);
+        }
+    }
+
 }
 
 h1, h2, h3, h4, h5, h6, .huge, .large {
@@ -58,7 +89,9 @@ h1, h2, h3, h4, h5, h6, .huge, .large {
 }
 
 h1,
-.large h2 {
+.huge h2,
+.large h2,
+.billboard h2 {
     font-size: 48px;
     letter-spacing: -2px;
 }
@@ -132,7 +165,7 @@ code {
 }
 
 /* }}} */
-/* {{{ forms */
+/* {{{ Forms */
 
 input[type=email],
 input[type=password],
@@ -158,7 +191,11 @@ input[type=text]:focus {
     .transition(all linear .1s);
 }
 
-.form-errors {
+.form-field {
+    margin-bottom: @baseLine / 3;
+}
+
+.errorlist {
     margin: 0;
 
     li {
@@ -169,6 +206,15 @@ input[type=text]:focus {
     }
 }
 
+.field-error {
+    input[type=email],
+    input[type=password],
+    input[type=text] {
+        border-color: rgb(175,50,50);
+        @shadow: 0 2px 1px rgba(0,0,0,0.1) inset, 0 0 8px 0 rgba(175,50,50,.6);
+        .box-shadow(@shadow);
+    }
+}
 
 /* }}} */
 /* {{{ Layout */
@@ -189,6 +235,46 @@ input[type=text]:focus {
     .offset(2);
 }
 
+.divider.container,
+.divider {
+    border-bottom: 1px dotted @borderColor;
+    padding-bottom: @baseLine * 2;
+    margin-bottom: @baseLine *2;
+}
+
+.divider-last.container,
+.divider-last {
+    border-bottom: 0;
+    padding-bottom: @baseLine * 2;
+}
+
+/* }}} */
+/* {{{ Less Framework Grid */
+
+/*      Default Layout: 992px. 
+        Gutters: 24px.
+        Outer margins: 48px.
+        Leftover space for scrollbars @1024px: 32px.
+-------------------------------------------------------------------------------
+cols    1     2      3      4      5      6      7      8      9      10
+px      68    160    252    344    436    528    620    712    804    896    */
+
+
+#masthead,
+#main-feature,
+#main-content,
+#colophon,
+.billboard,
+.container {
+    display: block;
+    margin: 0 auto;
+    padding-left: 48px;
+    padding-right: 48px;
+    position: relative;
+    width: 896px;
+    .clearfix
+}
+
 /* }}} */
 /* {{{ Header Nav */
 
@@ -207,8 +293,8 @@ input[type=text]:focus {
         .open-sans;
 
         ul li {
+            .inline-block;
             list-style-type: none;
-            display: inline;
             margin: 0;
 
             a,
@@ -245,8 +331,9 @@ input[type=text]:focus {
 #masthead {
 
     nav.breadcrumbs {
+        padding: @baseLine / 2  0;
         float: none;
-        padding: 24px 0 12px 0;
+        padding: 12px 0;
 
         a,
         span {
@@ -269,15 +356,15 @@ input[type=text]:focus {
 .billboard {
     padding-top: @baseLine * 2;
     padding-bottom: @baseLine * 2;
-    margin-bottom: @baseLine * 3;
-    @shadow: 0 1px 1px rgba(0,0,0,0.1), 0 0 0 1px #fff;
+    margin-bottom: @baseLine * 2;
+    @shadow: 0 0 0 1px #fff inset;
     .box-shadow(@shadow);
     background: #fff;
+    border-bottom: 1px solid #ddd;
     .clearfix;
 }
 
 nav.menu-bar {
-    line-height: @baseLine * 3;
     text-align: center;
     .open-sans-light;
     margin-bottom: @baseLine * 2;
@@ -289,9 +376,17 @@ nav.menu-bar {
         li {
             .inline-block;
             margin: 0;
+        padding-top: (@baseLine / 2);
+        padding-bottom: (@baseLine / 2);
             a {
+                .inline-block;
                 border-left: 1px dotted @borderColor;
                 padding: @baseLine / 3 @baseLine;
+                span {
+                    display: block;
+                    font-size: 24px;
+                    line-height: 100%;
+                }
             }
             &:first-child a {
                 border-left: 0;
@@ -322,7 +417,7 @@ nav.menu-bar {
             }
 
             li b {
-                font-weight: 600;
+                font-weight: bold;
             }
 
         }
@@ -333,6 +428,20 @@ nav.menu-bar {
 
     }
 
+    .reference {
+        margin: @baseLine * 2  auto;
+
+        .more {
+            display: block;
+            padding: (@baseLine / 2) 0;
+            border-bottom: 1px dotted @borderColor;
+            .open-sans-light;
+        }
+
+        p {
+            margin: 0;
+        }
+    }
 }
 
 /* }}} */
@@ -369,32 +478,7 @@ nav.menu-bar {
 }
 
 /* }}} */
-/* {{{ Less Framework Grid */
-
-/*      Default Layout: 992px. 
-        Gutters: 24px.
-        Outer margins: 48px.
-        Leftover space for scrollbars @1024px: 32px.
--------------------------------------------------------------------------------
-cols    1     2      3      4      5      6      7      8      9      10
-px      68    160    252    344    436    528    620    712    804    896    */
-
-
-#masthead,
-#main-feature,
-#main-content,
-#colophon,
-.billboard,
-.container {
-    display: block;
-    margin: 0 auto;
-    padding-left: 48px;
-    padding-right: 48px;
-    position: relative;
-    width: 896px;
-    .clearfix
-}
-
+/* {{{ Less Framework Grid (Responsive) */
 
 /*      Tablet Layout: 768px.
         Gutters: 24px.
@@ -477,7 +561,7 @@ px      68    160    252    */
             padding-top: @baseLine / 2;
 
             ul li {
-
+                display: block;
                 a,
                 b {
                     display: block;
@@ -492,7 +576,6 @@ px      68    160    252    */
         }
 
         nav.breadcrumbs {
-            padding: @baseLine / 2  0;
             a,
             span {
                 margin-right: .3em;
@@ -516,7 +599,8 @@ px      68    160    252    */
         letter-spacing: -1px;
     }
 
-    h2 {
+    h2,
+    .billboard h2 {
         font-size: 28px;
         letter-spacing: -0.5px;
     }
@@ -592,6 +676,24 @@ px      68    160    252    344    436    */
         padding-left: 0;
         padding-right: 0;
     }
+}
+
+/* }}} */
+
+
+
+/* {{{ Firefox site functionality 
+       This can be put into its own CSS file if needed. */
+
+.platform-img {
+    display: none;
+}
+
+.osx img.osx,
+.mac img.osx,
+.linux img.linux,
+.windows img.win {
+    display: inline;
 }
 
 /* }}} */

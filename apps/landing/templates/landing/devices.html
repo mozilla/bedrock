@@ -1,10 +1,356 @@
-{% extends "base.html" %}
+{% extends "/landing/base-firefox.html" %}
 
-{% block page_title %}Devices{% endblock %}
+{% block page_title %}{{ _('Firefox is Made for Your Devices') }}{% endblock %}
+
 {% block body_id %}devices{% endblock %}
 
+{% block site_css %}
+  {{ css('landing_devices') }}
+{% endblock %}
+
+{% block site_js %}
+  {{ js('landing_devices') }}
+{% endblock %}
+
 {% block content %}
-<div id="main-content">
-  hello
+
+<hgroup id="main-feature" class="center">
+  <h1>{{ _('Firefox is Made for Your Devices') }}</h1>
+</hgroup>
+
+<nav class="menu-bar billboard slider-menu slider-pager">
+  <ul>
+    <li><a href="#speed">{{ _('Desktops &amp; Laptops') }}</a></li>
+    <li><a href="#smartphones">{{ _('Smartphones') }}</a></li>
+    <li><a href="#tablets">{{ _('Tablets') }}</a></li>
+    <li><a href="#addons">{{ _('Favorite Add-ons') }}</a></li>
+    <li><a href="#sync">{{ _('Sync Your Gadgets') }}</a></li>
+  </ul>
+</nav>
+
+<div id="feature">
+    <nav class="slider-arrows">
+      <ul role="navigation">
+        <li class="prev"><a href="#slider">{{ _('Previous') }}</a></li>
+        <li class="next"><a href="#slider">{{ _('Next') }}</a></li>
+      </ul>
+    </nav>
+
+    <div id="slider">
+
+      <section class="slide" id="speed-slide">
+        <div class="slide-content">
+          <div class="content">
+            <h2>{{ _('New Firefox is up to 7 times faster.') }}</h2>
+            <p id="fx-upgrade"><a href="{{ php_url('/firefox') }}" class="button">{{ _('Upgrade your Firefox') }} &raquo;</a></p>
+            <p id="fx-features"><a href="{{ php_url('/firefox/features') }}" class="button">{{ _('More Firefox Features') }} &raquo;</a></p>
+            <p id="fx-download"><a href="{{ php_url('/firefox') }}" class="button">{{ _('Download Firefox') }} &raquo;</a></p>
+          </div>
+          
+          <div id="gauge">
+            <img src="{{ media('img/landing/devices/needle.png') }}" alt="" id="needle">
+            <p id="gauge-slow">{{ _('Old Firefox = Sadface') }}</p>
+            <p id="gauge-fast">{{ _('New Firefox = Yay!') }}</p>
+            <div class="note" id="gauge-slow-note">
+            {% trans %}
+              <p><strong>Seriously?</strong> That just isn’t going to cut it. Stop browsing in the past and <a href="/en-US/firefox/">upgrade now!</a></p>
+            {% endtrans %}
+            </div>
+            <div class="note" id="gauge-fast-note">
+            {% trans %}
+              <p><strong>Now we’re talking!</strong> Feels better, doesn’t it? Welcome to the future of the Web. It’s nice here.</p>
+            {% endtrans %}
+            </div>
+          </div>
+  
+          <div id="non-fx">
+          {% trans %}
+            <p id="detected">Hey, looks like you’re using %BROWSER%. Why not grab Firefox and get up to speed?</p>
+            <p id="notdetected">Hey, looks like you’re not using Firefox as your browser. Why not grab Firefox and get up to speed?</p>
+          {% endtrans %}
+          </div>
+        </div>
+      </section>
+      
+      <section class="slide" id="smartphones-slide">
+        <div class="slide-content">
+          <div class="content">
+            <h2>{{ _('Type less, browse more, and get to the Web quickly and easily.') }}</h2>
+            <aside class="download-button">
+              <p>
+                <a href="https://market.android.com/details?id=org.mozilla.firefox" class="button download-android">
+                 <span class="download-content">
+                {% trans %}
+                  <span class="download-title">Get Firefox <span class="sub">for Android</span></span>
+                  <span class="locale">English (US)</span>
+                {% endtrans %}
+                 </span>
+                </a>
+              </p>
+              <small class="download-other">
+                <a href="/legal/privacy/firefox.html">{{ _('Privacy Policy') }}</a> | 
+                <a href="/mobile/platforms">{{ _('Supported Devices') }}</a> | 
+                <a href="/mobile/{{latest_version}}/releasenotes">{{ _('Release Notes') }}</a>
+              </small>
+            </aside>
+          </div>
+          {% trans iphone_url="http://support.mozilla.org/en-US/kb/will-firefox-work-my-mobile-device?s=firefox+on+iphone&r=1&e=sph&as=s#w_firefox-home-for-iphone" %}
+          <p class="footnote">iPhone user? <a href="{{ iphone_url }}">Click here.</a></p>
+          {% endtrans %}
+        </div>
+      </section>
+      
+      <section class="slide" id="tablets-slide">
+        <div class="slide-content">
+          <div class="content">
+            <h2>Optimized for the size, shape, and the way you browse on tablets.</h2>
+            <aside class="download-button">
+              <p>
+                <a href="https://market.android.com/details?id=org.mozilla.firefox" class="button download-android">
+                 <span class="download-content">
+                  <span class="download-title">Get Firefox <span class="sub">for Android</span></span>
+                  <span class="locale">English (US)</span>
+                 </span>
+                </a>
+              </p>
+              <small class="download-other">
+                <a href="/legal/privacy/firefox.html">{{ _('Privacy Policy') }}</a> | 
+                <a href="/mobile/platforms">{{ _('Supported Devices') }}</a> | 
+                <a href="/mobile/{{latest_version}}/releasenotes">{{ _('Release Notes') }}</a>
+              </small>
+            </aside>
+          </div>
+          {% trans ipad_url="http://support.mozilla.org/en-US/kb/will-firefox-work-my-mobile-device?s=firefox+on+iphone&r=1&e=sph&as=s#w_firefox-home-for-iphone" %}
+          <p class="footnote">iPad user? <a href="{{ ipad_url }}">Click here.</a></p>
+          {% endtrans %}
+        </div>
+      </section>
+      
+      <section class="slide" id="addons-slide">
+        <div class="slide-content">
+          <div class="content">
+            <h2>{{ _('Customize your browsing on both desktop and mobile.') }}</h2>
+            <p><a href="https://addons.mozilla.org" class="button">{{ _('Browse Add-ons') }} &raquo;</a></p>
+          </div>
+          <ul id="addons-list">
+            <li class="addon">
+              <h3><a href="https://addons.mozilla.org/en-US/mobile/addon/adblock-plus/?src=fx-devices" rel="external"><img src="//static-ssl-cdn.addons.mozilla.net/img/uploads/addon_icons/1/1865-48.png" alt=""> {{ _('AdBlock Plus') }}</a></h3> 
+              <p class="desc">{{ _('Regain control and change the way that you view the Web.') }}</p>
+              <ul class="add-to">
+                <li><a href="https://addons.mozilla.org/firefox/downloads/latest/1865/addon-1865-latest.xpi?src=fx-devices">{{ _('Add to Desktop') }}</a></li>
+                <li><a href="https://addons.mozilla.org/mobile/downloads/latest/1865/type:attachment/addon-1865-latest.xpi?src=fx-devices">{{ _('Add to Mobile') }}</a></li>
+              </ul>
+            </li>
+            <li class="addon">
+              <h3><a href="https://addons.mozilla.org/en-US/mobile/addon/noscript/?src=fx-devices" rel="external"><img src="//static-ssl-cdn.addons.mozilla.net/img/uploads/addon_icons/0/722-48.png" alt=""> {{ _('No Script') }}</a></h3>
+              <p class="desc">{{ _('Allow active content to run only from sites you trust.') }}</p>
+              <ul class="add-to">
+                <li><a href="https://addons.mozilla.org/firefox/downloads/latest/722/addon-722-latest.xpi?src=fx-devices">{{ _('Add to Desktop') }}</a></li>
+                <li><a href="https://addons.mozilla.org/mobile/downloads/latest/722/type:attachment/addon-722-latest.xpi?src=fx-devices">{{ _('Add to Mobile') }}</a></li>
+              </ul>
+            </li>
+            <li class="addon">
+              <h3><a href="https://addons.mozilla.org/en-US/mobile/addon/speed-dial/?src=fx-devices" rel="external"><img src="//static-ssl-cdn.addons.mozilla.net/img/uploads/addon_icons/4/4810-48.png" alt=""> {{ _('Speed Dial') }}</a></h3>
+              <p class="desc">{{ _('Direct access to your most visited websites.') }}</p>
+              <ul class="add-to">
+                <li><a href="https://addons.mozilla.org/firefox/downloads/latest/4810/addon-4810-latest.xpi?src=fx-devices">{{ _('Add to Desktop') }}</a></li>
+                <li><a href="https://addons.mozilla.org/mobile/downloads/latest/4810/type:attachment/addon-4810-latest.xpi?src=fx-devices">{{ _('Add to Mobile') }}</a></li>
+              </ul>  
+            </li>
+          </ul>
+          {% trans amo_url="https://addons.mozilla.org" %}
+          <p class="footnote">These are just three of our favorites, but there are <a href="{{ amo_url }}">thousands more</a>.</p>
+          {% endtrans %}
+        </div>
+      </section>
+      
+      <section class="slide" id="sync-slide">
+        <div class="slide-content">
+          <div class="content">
+            <h2>{{ _('Your Web, <br>anywhere you go.')|safe }}</h2>
+            <p><a href="http://www.mozilla.org/en-US/mobile/sync/" class="button">{{ _('Get in Sync') }} &raquo;</a></p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
 </div>
+
+    <nav class="slider-dots slider-pager">
+      <ul>
+        <li>&bull;</li>
+        <li>&bull;</li>
+        <li>&bull;</li>
+        <li>&bull;</li>
+        <li>&bull;</li>
+      </ul>
+    </nav>
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+  $(document).ready(function() {
+  
+    $('#fx-features').hide();
+  
+    /* Set up the slider */
+    var $slides = $('section.slide'),
+        anchor = document.location.hash,
+        getSlideIndex = function(id){
+            var idx = $slides.index($(id + '-slide'));
+            return idx == -1 ? 0 : idx;
+        },
+        onSlideChange = function(){
+            var currhash = document.location.hash,
+                el = arguments[arguments.length - 1];
+            if (currhash !== '#' + el.id) {
+                document.location.hash = el.id.replace('-slide', '');
+            }
+        },
+        $slider = $('#slider').cycle({
+            fx: 'scrollHorz',
+            pager: '.slider-pager ul',
+            pagerAnchorBuilder: function(idx, el){
+                return '.slider-pager ul li:eq(' + idx + ') a';
+            },
+            activePagerClass: 'current',
+            timeout: 0,
+            prev: '.slider-arrows li.prev a',
+            next: '.slider-arrows li.next a',
+            startingSlide: getSlideIndex(anchor),
+            onPrevNextEvent: onSlideChange,
+            onPagerEvent: onSlideChange
+        });
+
+
+ 
+    /* Override clicks on the arrows */
+    $(".slider-arrows a").click(function(e){
+      $(this).blur();
+      e.preventDefault();
+    });
+
+    /* Animate the gauge */
+    var needle = $('#needle');
+    var gauge = $('#gauge');
+    var angle = 0;
+    var latestVersion = parseInt('{{latest_version}}'.split('.')[0], 10);
+    var isFirefox = (/\sFirefox/.test(window.navigator.userAgent));
+
+    $.easing.easeInOutSine = function (x, t, b, c, d) {
+        return -c/2 * (Math.cos(Math.PI*t/d) - 1) + b;
+    };
+
+    $.easing.easeInOutExpo = function (x, t, b, c, d) {
+        if (t==0) return b;
+        if (t==d) return b+c;
+        if ((t/=d/2) < 1) return c/2 * Math.pow(2, 10 * (t - 1)) + b;
+        return c/2 * (-Math.pow(2, -10 * --t) + 2) + b;
+    };
+
+    function getFirefoxVersion()
+    {
+        var version = 0;
+
+        var matches = /Firefox\/([0-9]+).[0-9]+(?:.[0-9]+)?/.exec(
+            navigator.userAgent
+        );
+
+        if (matches !== null && matches.length > 0) {
+            version = parseInt(matches[1], 10);
+        }
+
+        return version;
+    };
+
+    function rotate(delta, duration, complete, easing)
+    {
+        if (!easing) {
+            easing = 'swing';
+        }
+        angle -= delta;
+        needle.animate({ 'rotate': angle }, duration, easing, complete);
+    };
+
+    waver = null;
+    waverDelta = 1;
+
+    function startWaver()
+    {
+        if (waver === null) {
+            rotate(-waverDelta / 2.0, 280, null, 'easeInOutSine');
+            waver = setInterval(function() {
+                rotate(waverDelta, 280, null, 'easeInOutSine');
+                waverDelta *= -1;
+            }, 300);
+        }
+    };
+
+    function stopWaver()
+    {
+        if (waver) {
+            rotate(waverDelta / 2, 1, null, 'linear');
+            clearInterval(waver);
+            waver = null;
+        }
+    };
+
+    if (isFirefox) {
+        // initial position
+        rotate(-1.5, 10, startWaver, 'linear');
+
+        if (latestVersion > getFirefoxVersion()) {
+            // slow
+            setTimeout(function() {
+                stopWaver();
+                rotate(-29.5, 1000, startWaver, 'easeInOutExpo');
+            }, 1500);
+            $('#gauge-slow-note').delay(3000).fadeIn('slow', function(){ $('#fx-upgrade').fadeIn('slow'); });
+        } else {
+            // fast
+            setTimeout(function() {
+                stopWaver();
+                rotate(-168, 1500, startWaver, 'easeInOutExpo');
+            }, 1500);
+            $('#gauge-fast-note').delay(3000).fadeIn('slow', function(){ $('#fx-features').fadeIn('slow'); });
+        }
+    } else {
+        gauge.hide();
+
+        var $nonfx       = $('#non-fx');
+        var $nonfxbtn   = $('#fx-download');
+        var $detected    = $('#detected');
+        var $notdetected = $('#notdetected');
+
+        var isSafari = /Safari/.test(window.navigator.userAgent);
+        var isChrome = /Chrome/.test(window.navigator.userAgent);
+        var isIE     = /MSIE/.test(window.navigator.userAgent);
+
+        if (isChrome) {
+            $detected.text(
+                $detected.text().replace(/%BROWSER%/, 'Google Chrome')
+            );
+            $notdetected.hide();
+        } else if (isSafari) {
+            $detected.text(
+                $detected.text().replace(/%BROWSER%/, 'Safari')
+            );
+            $notdetected.hide();
+        } else if (isIE) {
+            $detected.text(
+                $detected.text().replace(/%BROWSER%/, 'Internet Explorer')
+            );
+            $notdetected.hide();
+        } else {
+            $detected.hide();
+        }
+
+        $nonfx.show();
+        $nonfxbtn.show();
+    }
+    
+  });
+</script>
 {% endblock %}
