@@ -37,18 +37,18 @@
             {% block site_header_nav %}
             {# start menu #nav-main #}
             <nav id="nav-main" role="navigation">
-            <ul>
+            <ol>
                 <li><a href="#">Mission</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Products</a></li>
                 <li><a href="#">Get Involved</a></li>
-            </ul>
+            </ol>
             </nav>
             {# end menu #nav-main #}
             {% endblock %}
 
             {% block site_header_logo %}
-            <h1><a href="{{ url('mozorg.home') }}"><img src="/media/img/sandstone/header-mozilla-stone.png" alt="mozilla"></a></h1>
+            <h2><a href="{{ url('mozorg.home') }}"><img src="/media/img/sandstone/header-mozilla-stone.png" alt="mozilla"></a></h2>
             {% endblock %}
 
             {% block breadcrumbs %}{% endblock %}
