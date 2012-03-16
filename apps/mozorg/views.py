@@ -39,8 +39,12 @@ def firefox_features(request):
 def firefox_geolocation(request):
     return l10n_utils.render(request, "mozorg/firefox/geolocation.html", 
                              {'gmap_api_key': settings.GMAP_API_KEY})
+
 def firefox_happy(request):
     return l10n_utils.render(request, "mozorg/firefox/happy.html")
+
+def firefox_new(request):
+    return l10n_utils.render(request, "mozorg/firefox/new.html")
 
 def firefox_organizations(request):
     return l10n_utils.render(request, "mozorg/firefox/organizations/organizations.html")
