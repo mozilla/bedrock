@@ -120,7 +120,8 @@ MINIFY_BUNDLES = {
             'js/site.js',
             'js/nav-main.js',
             'js/libs/jquery.cycle.all.js',
-            'js/libs/jquery.ba-hashchange.min.js'
+            'js/libs/jquery.ba-hashchange.min.js',
+            'js/landing/devices.js'
         ),
     }
 }
