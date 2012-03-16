@@ -57,6 +57,11 @@
   font-size: 18px;
 }
 
+.go:after {
+  content: "\00A0\000BB";
+  font-family: Georgia, serif;
+}
+
 .slide .footnote {
   .open-sans;
   font-size: 11px;
@@ -87,12 +92,18 @@
   height: 100%; 
 }
 
-.slider-arrows a { 
-  opacity: .8; 
+.slider-arrows a {
   position: absolute; 
   display: block; 
   z-index: 30; 
   top: 0; 
+  width: 48px; 
+  height: 100%;
+}
+
+.slider-arrows span { 
+  opacity: .8; 
+  display: block; 
   width: 48px; 
   height: 100%; 
   text-indent: -999em; 
@@ -100,40 +111,46 @@
   background: url("/media/img/landing/devices/slide-arrows.png") no-repeat; 
 }
 
+.slider-arrows .prev {
+  left: 0;
+}
+
 .slider-arrows .next {
   right: 0;
+}
+
+.slider-arrows .next a {
   background-image: -moz-linear-gradient(left, rgba(255,255,255,0), #fff);
   background-image: -webkit-linear-gradient(left, rgba(255,255,255,0), #fff);
   background-image: -o-linear-gradient(left, rgba(255,255,255,0), #fff);
   background-image: linear-gradient(left, rgba(255,255,255,0), #fff);
 }
 
-.slider-arrows .next a { 
+.slider-arrows .next span { 
   background-position: -175px 50%;
   .transition; 
 }
 
-.slider-arrows .next a:hover, 
-.slider-arrows .next a:focus, 
-.slider-arrows .next a :active { 
+.slider-arrows .next a:hover span, 
+.slider-arrows .next a:focus span, 
+.slider-arrows .next a :active span { 
   background-position: -170px 50%; 
   opacity: 1; 
   .transition; 
 }
 
-.slider-arrows .prev {
-  left: 0;
+.slider-arrows .prev a {
   #gradient > .horizontal(#fff, rgba(255,255,255,0)); 
 }
 
-.slider-arrows .prev a { 
+.slider-arrows .prev span { 
   background-position: 25px 50%;
   .transition; 
 }
 
-.slider-arrows .prev a:hover, 
-.slider-arrows .prev a:focus, 
-.slider-arrows .prev a:active { 
+.slider-arrows .prev a:hover span, 
+.slider-arrows .prev a:focus span, 
+.slider-arrows .prev a:active span { 
   background-position: 20px 50%; 
   opacity: 1; 
   .transition; 
@@ -205,7 +222,7 @@
 .download-android .locale {
   display: block;
   padding-left: 44px;
-  font: 11px Georgia, serif;
+  font: normal 11px Georgia, serif;
   color: #32640d;
   text-shadow: 0 1px 0 rgba(255,255,255,.2);
 }
@@ -221,10 +238,14 @@
   display: none;
 }
 
+#fx-download .go {
+  display: inline-block;
+  margin: .25em 0;
+}
+
 #speed-slide #followup {
-  margin: 30px 100px;
   text-align: center;
-  font-size: 16px;
+  font-size: 14px;
   font-style: normal;
 }
 
@@ -449,11 +470,6 @@
 #addons-list .add-to li {
   padding: 0;
   margin: 0;
-}
-
-#addons-list .add-to a:after {
-  content: "\00A0\000BB"; 
-  font-size: 1.3em;
 }
 
 /* }}} */

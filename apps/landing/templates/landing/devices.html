@@ -12,6 +12,10 @@
   {{ js('landing_devices') }}
 {% endblock %}
 
+{% block extrahead %}
+<meta name="WT.z_pdp" content="firefox;firefox_android;">
+{% endblock %}
+
 {% block content %}
 
 <hgroup id="main-feature" class="center">
@@ -20,19 +24,19 @@
 
 <nav class="menu-bar billboard slider-menu slider-pager">
   <ul>
-    <li><a href="#speed">{{ _('Desktops &amp; Laptops') }}</a></li>
-    <li><a href="#smartphones">{{ _('Smartphones') }}</a></li>
-    <li><a href="#tablets">{{ _('Tablets') }}</a></li>
-    <li><a href="#addons">{{ _('Favorite Add-ons') }}</a></li>
-    <li><a href="#sync">{{ _('Sync Your Gadgets') }}</a></li>
+    <li><a href="#speed" onclick="dcsMultiTrack('WT.z_panel','Desktops & Laptops','WT.dl',98);">{{ _('Desktops &amp; Laptops') }}</a></li>
+    <li><a href="#smartphones" onclick="dcsMultiTrack('WT.z_panel','Smartphones','WT.dl',98);">{{ _('Smartphones') }}</a></li>
+    <li><a href="#tablets"onclick="dcsMultiTrack('WT.z_panel','Tablets','WT.dl',98);">{{ _('Tablets') }}</a></li>
+    <li><a href="#addons" onclick="dcsMultiTrack('WT.z_panel', 'Favorite Add-ons', 'WT.dl', 98);">{{ _('Favorite Add-ons') }}</a></li>
+    <li><a href="#sync" onclick="dcsMultiTrack('WT.z_panel','Sync Your Gadgets','WT.dl',98);">{{ _('Sync Your Gadgets') }}</a></li>
   </ul>
 </nav>
 
 <div id="feature">
     <nav class="slider-arrows">
       <ul role="navigation">
-        <li class="prev"><a href="#slider">{{ _('Previous') }}</a></li>
-        <li class="next"><a href="#slider">{{ _('Next') }}</a></li>
+        <li class="prev"><a href="#slider"><span>{{ _('Previous') }}</span></a></li>
+        <li class="next"><a href="#slider"><span>{{ _('Next') }}</span></a></li>
       </ul>
     </nav>
 
@@ -42,9 +46,9 @@
         <div class="slide-content">
           <div class="content">
             <h2>{{ _('New Firefox is up to 7 times faster.') }}</h2>
-            <p id="fx-upgrade"><a href="{{ php_url('/firefox') }}" class="button">{{ _('Upgrade your Firefox') }} &raquo;</a></p>
-            <p id="fx-features"><a href="{{ php_url('/firefox/features') }}" class="button">{{ _('More Firefox Features') }} &raquo;</a></p>
-            <p id="fx-download"><a href="{{ php_url('/firefox') }}" class="button">{{ _('Download Firefox') }} &raquo;</a></p>
+            <p id="fx-upgrade"><a href="{{ php_url('/firefox/') }}" class="button go" onclick="dcsMultiTrack('WT.z_panel','Desktops & Laptops','WT.z_cta','upgrade firefox','WT.z_convert','downloadfirefox','WT.dl',99);">{{ _('Upgrade your Firefox') }}</a></p>
+            <p id="fx-features"><a href="{{ php_url('/firefox/features/') }}" class="button go">{{ _('More Firefox Features') }}</a></p>
+            <p id="fx-download"><a href="{{ php_url('/firefox/') }}" class="button go" onclick="dcsMultiTrack('WT.z_panel','Desktops & Laptops','WT.z_cta','download firefox','WT.z_convert','downloadfirefox','WT.dl',99);">{{ _('Download Firefox') }}</a> <br> <a href="/firefox/central/" class="go">Learn more</a></p>
           </div>
           
           <div id="gauge">
@@ -53,7 +57,7 @@
             <p id="gauge-fast">{{ _('New Firefox = Yay!') }}</p>
             <div class="note" id="gauge-slow-note">
             {% trans %}
-              <p><strong>Seriously?</strong> That just isn’t going to cut it. Stop browsing in the past and <a href="/en-US/firefox/">upgrade now!</a></p>
+              <p><strong>Seriously?</strong> That just isn’t going to cut it. Stop browsing in the past and <a href="/firefox/"onclick="dcsMultiTrack('WT.z_panel','Desktops & Laptops','WT.z_cta','upgrade firefox','WT.z_convert','downloadfirefox','WT.dl',99);">upgrade now!</a></p>
             {% endtrans %}
             </div>
             <div class="note" id="gauge-fast-note">
@@ -67,6 +71,7 @@
           {% trans %}
             <p id="detected">Hey, looks like you’re using %BROWSER%. Why not grab Firefox and get up to speed?</p>
             <p id="notdetected">Hey, looks like you’re not using Firefox as your browser. Why not grab Firefox and get up to speed?</p>
+            <p id="followup">New Firefox is faster, free (as always), crashes less and protects your privacy more. <a href="/firefox/" onclick="dcsMultiTrack('WT.z_panel','Desktops & Laptops','WT.z_cta','download firefox','WT.z_convert','downloadfirefox','WT.dl',99);">Upgrading</a> takes less than a minute and you won’t lose your history or bookmarks. Hooray!</p>
           {% endtrans %}
           </div>
         </div>
@@ -78,11 +83,11 @@
             <h2>{{ _('Type less, browse more, and get to the Web quickly and easily.') }}</h2>
             <aside class="download-button">
               <p>
-                <a href="https://market.android.com/details?id=org.mozilla.firefox" class="button download-android">
+                <a href="https://market.android.com/details?id=org.mozilla.firefox" class="button download-android" onclick="dcsMultiTrack('WT.z_panel','Smartphones','WT.z_cta','Get Firefox for Android','WT.z_convert','Get Firefox for Android','WT.dl',99);">
                  <span class="download-content">
                 {% trans %}
                   <span class="download-title">Get Firefox <span class="sub">for Android</span></span>
-                  <span class="locale">English (US)</span>
+                  <em class="download-lang">{{ locale_name }}</em>
                 {% endtrans %}
                  </span>
                 </a>
@@ -106,10 +111,10 @@
             <h2>Optimized for the size, shape, and the way you browse on tablets.</h2>
             <aside class="download-button">
               <p>
-                <a href="https://market.android.com/details?id=org.mozilla.firefox" class="button download-android">
+                <a href="https://market.android.com/details?id=org.mozilla.firefox" class="button download-android" onclick="dcsMultiTrack('WT.z_panel','Tablets','WT.z_cta','Get Firefox for Android','WT.z_convert','Get Firefox for Android','WT.dl',99);">
                  <span class="download-content">
                   <span class="download-title">Get Firefox <span class="sub">for Android</span></span>
-                  <span class="locale">English (US)</span>
+                  <em class="download-lang">{{ locale_name }}</em>
                  </span>
                 </a>
               </p>
@@ -130,31 +135,31 @@
         <div class="slide-content">
           <div class="content">
             <h2>{{ _('Customize your browsing on both desktop and mobile.') }}</h2>
-            <p><a href="https://addons.mozilla.org" class="button">{{ _('Browse Add-ons') }} &raquo;</a></p>
+            <p><a href="https://addons.mozilla.org" class="button go" onclick="dcsMultiTrack('WT.z_panel','Favorite Add-ons','WT.z_cta','Browse Add-ons','WT.dl',99);">{{ _('Browse Add-ons') }}</a></p>
           </div>
           <ul id="addons-list">
             <li class="addon">
               <h3><a href="https://addons.mozilla.org/en-US/mobile/addon/adblock-plus/?src=fx-devices" rel="external"><img src="//static-ssl-cdn.addons.mozilla.net/img/uploads/addon_icons/1/1865-48.png" alt=""> {{ _('AdBlock Plus') }}</a></h3> 
               <p class="desc">{{ _('Regain control and change the way that you view the Web.') }}</p>
               <ul class="add-to">
-                <li><a href="https://addons.mozilla.org/firefox/downloads/latest/1865/addon-1865-latest.xpi?src=fx-devices">{{ _('Add to Desktop') }}</a></li>
-                <li><a href="https://addons.mozilla.org/mobile/downloads/latest/1865/type:attachment/addon-1865-latest.xpi?src=fx-devices">{{ _('Add to Mobile') }}</a></li>
+                <li><a href="https://addons.mozilla.org/firefox/downloads/latest/1865/addon-1865-latest.xpi?src=fx-devices" onclick="dcsMultiTrack('WT.z_panel','Favorite Add-ons','WT.z_cta','Adblock Plus Desktop','WT.dl',99);">{{ _('Add to Desktop') }}</a></li>
+                <li><a href="https://addons.mozilla.org/mobile/downloads/latest/1865/type:attachment/addon-1865-latest.xpi?src=fx-devices" onclick="dcsMultiTrack('WT.z_panel','Favorite Add-ons','WT.z_cta','Adblock Plus Mobile','WT.dl',99);">{{ _('Add to Mobile') }}</a></li>
               </ul>
             </li>
             <li class="addon">
               <h3><a href="https://addons.mozilla.org/en-US/mobile/addon/noscript/?src=fx-devices" rel="external"><img src="//static-ssl-cdn.addons.mozilla.net/img/uploads/addon_icons/0/722-48.png" alt=""> {{ _('No Script') }}</a></h3>
               <p class="desc">{{ _('Allow active content to run only from sites you trust.') }}</p>
               <ul class="add-to">
-                <li><a href="https://addons.mozilla.org/firefox/downloads/latest/722/addon-722-latest.xpi?src=fx-devices">{{ _('Add to Desktop') }}</a></li>
-                <li><a href="https://addons.mozilla.org/mobile/downloads/latest/722/type:attachment/addon-722-latest.xpi?src=fx-devices">{{ _('Add to Mobile') }}</a></li>
+                <li><a href="https://addons.mozilla.org/firefox/downloads/latest/722/addon-722-latest.xpi?src=fx-devices" onclick="dcsMultiTrack('WT.z_panel','Favorite Add-ons','WT.z_cta','No Script Desktop','WT.dl',99);">{{ _('Add to Desktop') }}</a></li>
+                <li><a href="https://addons.mozilla.org/mobile/downloads/latest/722/type:attachment/addon-722-latest.xpi?src=fx-devices" onclick="dcsMultiTrack('WT.z_panel','Favorite Add-ons','WT.z_cta','No Script Mobile','WT.dl',99);">{{ _('Add to Mobile') }}</a></li>
               </ul>
             </li>
             <li class="addon">
               <h3><a href="https://addons.mozilla.org/en-US/mobile/addon/speed-dial/?src=fx-devices" rel="external"><img src="//static-ssl-cdn.addons.mozilla.net/img/uploads/addon_icons/4/4810-48.png" alt=""> {{ _('Speed Dial') }}</a></h3>
               <p class="desc">{{ _('Direct access to your most visited websites.') }}</p>
               <ul class="add-to">
-                <li><a href="https://addons.mozilla.org/firefox/downloads/latest/4810/addon-4810-latest.xpi?src=fx-devices">{{ _('Add to Desktop') }}</a></li>
-                <li><a href="https://addons.mozilla.org/mobile/downloads/latest/4810/type:attachment/addon-4810-latest.xpi?src=fx-devices">{{ _('Add to Mobile') }}</a></li>
+                <li><a href="https://addons.mozilla.org/firefox/downloads/latest/4810/addon-4810-latest.xpi?src=fx-devices" onclick="dcsMultiTrack('WT.z_panel','Favorite Add-ons','WT.z_cta','Speed Dial Desktop','WT.dl',99);">{{ _('Add to Desktop') }}</a></li>
+                <li><a href="https://addons.mozilla.org/mobile/downloads/latest/4810/type:attachment/addon-4810-latest.xpi?src=fx-devices" onclick="dcsMultiTrack('WT.z_panel','Favorite Add-ons','WT.z_cta','Speed Dial Mobile','WT.dl',99);">{{ _('Add to Mobile') }}</a></li>
               </ul>  
             </li>
           </ul>
@@ -168,7 +173,7 @@
         <div class="slide-content">
           <div class="content">
             <h2>{{ _('Your Web, <br>anywhere you go.')|safe }}</h2>
-            <p><a href="http://www.mozilla.org/en-US/mobile/sync/" class="button">{{ _('Get in Sync') }} &raquo;</a></p>
+            <p><a href="http://www.mozilla.org/en-US/mobile/sync/" class="button go" onclick="dcsMultiTrack('WT.z_panel','Sync Your Gadgets','WT.z_cta','Sync Your Gadgets','WT.dl', 99);">{{ _('Get in Sync') }}</a></p>
           </div>
         </div>
       </section>
@@ -208,6 +213,22 @@
             if (currhash !== '#' + el.id) {
                 document.location.hash = el.id.replace('-slide', '');
             }
+            /* Track which slides get viewed */
+            if (document.location.hash == '#speed') {
+                dcsMultiTrack('WT.z_panel','Desktops & Laptops','WT.dl',98);
+            }
+            if (document.location.hash == '#smartphones') {
+                dcsMultiTrack('WT.z_panel','Smartphones','WT.dl',98);
+            }
+            if (document.location.hash == '#tablets') {
+                dcsMultiTrack('WT.z_panel','Tablets','WT.dl',98);
+            }
+            if (document.location.hash == '#addons') {
+                dcsMultiTrack('WT.z_panel', 'Favorite Add-ons', 'WT.dl', 98);
+            }
+            if (document.location.hash == '#sync') {
+                dcsMultiTrack('WT.z_panel','Sync Your Gadgets','WT.dl',98);
+            }
         },
         $slider = $('#slider').cycle({
             fx: 'scrollHorz',
@@ -223,8 +244,6 @@
             onPrevNextEvent: onSlideChange,
             onPagerEvent: onSlideChange
         });
-
-
  
     /* Override clicks on the arrows */
     $(".slider-arrows a").click(function(e){
@@ -236,7 +255,7 @@
     var needle = $('#needle');
     var gauge = $('#gauge');
     var angle = 0;
-    var latestVersion = parseInt('{{latest_version}}'.split('.')[0], 10);
+    var latestVersion = parseInt('{{ latest_version }}'.split('.')[0], 10);
     var isFirefox = (/\sFirefox/.test(window.navigator.userAgent));
 
     $.easing.easeInOutSine = function (x, t, b, c, d) {
@@ -253,15 +272,12 @@
     function getFirefoxVersion()
     {
         var version = 0;
-
         var matches = /Firefox\/([0-9]+).[0-9]+(?:.[0-9]+)?/.exec(
             navigator.userAgent
         );
-
         if (matches !== null && matches.length > 0) {
             version = parseInt(matches[1], 10);
         }
-
         return version;
     };
 
@@ -320,13 +336,14 @@
         gauge.hide();
 
         var $nonfx       = $('#non-fx');
-        var $nonfxbtn   = $('#fx-download');
+        var $nonfxbtn    = $('#fx-download');
         var $detected    = $('#detected');
         var $notdetected = $('#notdetected');
 
         var isSafari = /Safari/.test(window.navigator.userAgent);
         var isChrome = /Chrome/.test(window.navigator.userAgent);
         var isIE     = /MSIE/.test(window.navigator.userAgent);
+        var isOpera  = /Opera/.test(window.navigator.userAgent);
 
         if (isChrome) {
             $detected.text(
@@ -341,6 +358,11 @@
         } else if (isIE) {
             $detected.text(
                 $detected.text().replace(/%BROWSER%/, 'Internet Explorer')
+            );
+            $notdetected.hide();
+        } else if (isOpera) {
+            $detected.text(
+                $detected.text().replace(/%BROWSER%/, 'Opera')
             );
             $notdetected.hide();
         } else {
