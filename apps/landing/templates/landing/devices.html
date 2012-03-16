@@ -56,23 +56,17 @@
             <p id="gauge-slow">{{ _('Old Firefox = Sadface') }}</p>
             <p id="gauge-fast">{{ _('New Firefox = Yay!') }}</p>
             <div class="note" id="gauge-slow-note">
-            {% trans %}
               <p><strong>Seriously?</strong> That just isn’t going to cut it. Stop browsing in the past and <a href="/firefox/"onclick="dcsMultiTrack('WT.z_panel','Desktops & Laptops','WT.z_cta','upgrade firefox','WT.z_convert','downloadfirefox','WT.dl',99);">upgrade now!</a></p>
-            {% endtrans %}
             </div>
             <div class="note" id="gauge-fast-note">
-            {% trans %}
               <p><strong>Now we’re talking!</strong> Feels better, doesn’t it? Welcome to the future of the Web. It’s nice here.</p>
-            {% endtrans %}
             </div>
           </div>
   
           <div id="non-fx">
-          {% trans %}
             <p id="detected">Hey, looks like you’re using %BROWSER%. Why not grab Firefox and get up to speed?</p>
             <p id="notdetected">Hey, looks like you’re not using Firefox as your browser. Why not grab Firefox and get up to speed?</p>
             <p id="followup">New Firefox is faster, free (as always), crashes less and protects your privacy more. <a href="/firefox/" onclick="dcsMultiTrack('WT.z_panel','Desktops & Laptops','WT.z_cta','download firefox','WT.z_convert','downloadfirefox','WT.dl',99);">Upgrading</a> takes less than a minute and you won’t lose your history or bookmarks. Hooray!</p>
-          {% endtrans %}
           </div>
         </div>
       </section>
@@ -85,10 +79,7 @@
               <p>
                 <a href="https://market.android.com/details?id=org.mozilla.firefox" class="button download-android" onclick="dcsMultiTrack('WT.z_panel','Smartphones','WT.z_cta','Get Firefox for Android','WT.z_convert','Get Firefox for Android','WT.dl',99);">
                  <span class="download-content">
-                {% trans %}
                   <span class="download-title">Get Firefox <span class="sub">for Android</span></span>
-                  <em class="download-lang">{{ locale_name }}</em>
-                {% endtrans %}
                  </span>
                 </a>
               </p>
@@ -99,9 +90,7 @@
               </small>
             </aside>
           </div>
-          {% trans iphone_url="http://support.mozilla.org/en-US/kb/will-firefox-work-my-mobile-device?s=firefox+on+iphone&r=1&e=sph&as=s#w_firefox-home-for-iphone" %}
-          <p class="footnote">iPhone user? <a href="{{ iphone_url }}">Click here.</a></p>
-          {% endtrans %}
+          <p class="footnote">iPhone user? <a href="http://support.mozilla.org/en-US/kb/will-firefox-work-my-mobile-device?s=firefox+on+iphone&r=1&e=sph&as=s#w_firefox-home-for-iphone">Click here.</a></p>
         </div>
       </section>
       
@@ -114,7 +103,6 @@
                 <a href="https://market.android.com/details?id=org.mozilla.firefox" class="button download-android" onclick="dcsMultiTrack('WT.z_panel','Tablets','WT.z_cta','Get Firefox for Android','WT.z_convert','Get Firefox for Android','WT.dl',99);">
                  <span class="download-content">
                   <span class="download-title">Get Firefox <span class="sub">for Android</span></span>
-                  <em class="download-lang">{{ locale_name }}</em>
                  </span>
                 </a>
               </p>
@@ -125,9 +113,7 @@
               </small>
             </aside>
           </div>
-          {% trans ipad_url="http://support.mozilla.org/en-US/kb/will-firefox-work-my-mobile-device?s=firefox+on+iphone&r=1&e=sph&as=s#w_firefox-home-for-iphone" %}
-          <p class="footnote">iPad user? <a href="{{ ipad_url }}">Click here.</a></p>
-          {% endtrans %}
+          <p class="footnote">iPad user? <a href="http://support.mozilla.org/en-US/kb/will-firefox-work-my-mobile-device?s=firefox+on+iphone&r=1&e=sph&as=s#w_firefox-home-for-iphone">Click here.</a></p>
         </div>
       </section>
       
@@ -163,9 +149,7 @@
               </ul>  
             </li>
           </ul>
-          {% trans amo_url="https://addons.mozilla.org" %}
-          <p class="footnote">These are just three of our favorites, but there are <a href="{{ amo_url }}">thousands more</a>.</p>
-          {% endtrans %}
+          <p class="footnote">These are just three of our favorites, but there are <a href="https://addons.mozilla.org">thousands more</a>.</p>
         </div>
       </section>
       
