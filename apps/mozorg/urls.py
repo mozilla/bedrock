@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import *
-from views import home, contribute, channel, firefox_performance, firefox_features, firefox_customize, firefox_happy, firefox_new, firefox_organizations, firefox_organizations_faq, firefox_security, firefox_speed, firefox_technology, button, new, sandstone, firefox_geolocation, firefox_update, mission
+from views import home, contribute, channel, button, sandstone, mission
 
 
 urlpatterns = patterns('',
@@ -7,21 +7,7 @@ urlpatterns = patterns('',
 
     url(r'^button/$', button),
     url(r'^channel/$', channel),
-    url(r'^new/$', new),
     url(r'^sandstone/', sandstone),
     url(r'^contribute/$', contribute, name='mozorg.contribute'),
     url(r'^mission/$', mission, name='mozorg.mission'),
-
-    url(r'^firefox/customize/$', firefox_customize, name='mozorg.firefox_customize'),
-    url(r'^firefox/features/$', firefox_features, name='mozorg.firefox_features'),
-    url(r'^firefox/geolocation/$', firefox_geolocation, name='mozorg.firefox_geolocation'),
-    url(r'^firefox/happy/$', firefox_happy, name='mozorg.firefox_happy'),
-    url(r'^firefox/new/$', firefox_new, name='mozorg.firefox_new'),
-    url(r'^firefox/organizations/faq/$', firefox_organizations_faq, name='mozorg.firefox_organizations_faq'),
-    url(r'^firefox/organizations/$', firefox_organizations, name='mozorg.firefox_organizations'),
-    url(r'^firefox/performance/$', firefox_performance, name='mozorg.firefox_performance'),
-    url(r'^firefox/security/$', firefox_security, name='mozorg.firefox_security'),
-    url(r'^firefox/speed/$', firefox_speed, name='mozorg.firefox_speed'),
-    url(r'^firefox/technology/$', firefox_technology, name='mozorg.firefox_technology'),
-    url(r'^firefox/update/$', firefox_update, name='mozorg.firefox_update'),
 )
