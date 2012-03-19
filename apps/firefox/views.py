@@ -45,6 +45,3 @@ def technology(request):
 
 def update(request):
     return l10n_utils.render(request, "firefox/update.html")
-
-def new(request):
-    return l10n_utils.render(request, "new.html")
