@@ -8,8 +8,10 @@ $(document).ready(function() {
 
     $('#fx-features').hide();
   
-    /* Set up the slider */
     
+if ($(window).width() > 750) { // Only do the slider in wide windows
+
+    /* Set up the slider */
     var $slides = $('section.slide'),
         isPrevNext = false;
     var getSlideIndex = function(id){
@@ -190,5 +192,7 @@ $(document).ready(function() {
         $nonfx.show();
         $nonfxbtn.show();
     }
+    
+}
     
   });
