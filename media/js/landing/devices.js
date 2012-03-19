@@ -1,8 +1,9 @@
 $(document).ready(function() {
 
     // Get the latest version of firefox that is attached as a data
-    // attribute
-    var latestVersion = $('#gauge').data('latest-version');
+    // attribute. Force a string because jquery sometimes converts it
+    // to an integer.
+    var latestVersion = ('' + $('#gauge').data('latest-version'));
     latestVersion = parseInt(latestVersion.split('.')[0], 10);
 
     $('#fx-features').hide();
