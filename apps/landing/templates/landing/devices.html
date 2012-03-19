@@ -47,11 +47,11 @@
           <div class="content">
             <h2>{{ _('New Firefox is up to 7 times faster.') }}</h2>
             <p id="fx-upgrade"><a href="{{ php_url('/firefox/') }}" class="button go" onclick="dcsMultiTrack('WT.z_panel','Desktops & Laptops','WT.z_cta','upgrade firefox','WT.z_convert','downloadfirefox','WT.dl',99);">{{ _('Upgrade your Firefox') }}</a></p>
-            <p id="fx-features"><a href="{{ php_url('/firefox/features/') }}" class="button go">{{ _('More Firefox Features') }}</a></p>
+            <p id="fx-features"><a href="{{ php_url('/firefox/features/') }}" class="button go">{{ _('More Features') }}</a></p>
             <p id="fx-download"><a href="{{ php_url('/firefox/') }}" class="button go" onclick="dcsMultiTrack('WT.z_panel','Desktops & Laptops','WT.z_cta','download firefox','WT.z_convert','downloadfirefox','WT.dl',99);">{{ _('Download Firefox') }}</a> <br> <a href="/firefox/central/" class="go">Learn more</a></p>
           </div>
           
-          <div id="gauge">
+          <div id="gauge" data-latest-version="{{ latest_version }}">
             <img src="{{ media('img/landing/devices/needle.png') }}" alt="" id="needle">
             <p id="gauge-slow">{{ _('Old Firefox = Sadface') }}</p>
             <p id="gauge-fast">{{ _('New Firefox = Yay!') }}</p>
@@ -128,24 +128,24 @@
               <h3><a href="https://addons.mozilla.org/en-US/mobile/addon/adblock-plus/?src=fx-devices" rel="external"><img src="//static-ssl-cdn.addons.mozilla.net/img/uploads/addon_icons/1/1865-48.png" alt=""> {{ _('AdBlock Plus') }}</a></h3> 
               <p class="desc">{{ _('Regain control and change the way that you view the Web.') }}</p>
               <ul class="add-to">
-                <li><a href="https://addons.mozilla.org/firefox/downloads/latest/1865/addon-1865-latest.xpi?src=fx-devices" onclick="dcsMultiTrack('WT.z_panel','Favorite Add-ons','WT.z_cta','Adblock Plus Desktop','WT.dl',99);">{{ _('Add to Desktop') }}</a></li>
-                <li><a href="https://addons.mozilla.org/mobile/downloads/latest/1865/type:attachment/addon-1865-latest.xpi?src=fx-devices" onclick="dcsMultiTrack('WT.z_panel','Favorite Add-ons','WT.z_cta','Adblock Plus Mobile','WT.dl',99);">{{ _('Add to Mobile') }}</a></li>
+                <li><a href="https://addons.mozilla.org/en-US/firefox/addon/adblock-plus/?src=fx-devices" onclick="dcsMultiTrack('WT.z_panel','Favorite Add-ons','WT.z_cta','Adblock Plus Desktop','WT.dl',99);">{{ _('Add to Desktop') }}</a></li>
+                <li><a href="https://addons.mozilla.org/en-US/mobile/addon/adblock-plus/?src=fx-devices" onclick="dcsMultiTrack('WT.z_panel','Favorite Add-ons','WT.z_cta','Adblock Plus Mobile','WT.dl',99);">{{ _('Add to Mobile') }}</a></li>
               </ul>
             </li>
             <li class="addon">
               <h3><a href="https://addons.mozilla.org/en-US/mobile/addon/noscript/?src=fx-devices" rel="external"><img src="//static-ssl-cdn.addons.mozilla.net/img/uploads/addon_icons/0/722-48.png" alt=""> {{ _('No Script') }}</a></h3>
               <p class="desc">{{ _('Allow active content to run only from sites you trust.') }}</p>
               <ul class="add-to">
-                <li><a href="https://addons.mozilla.org/firefox/downloads/latest/722/addon-722-latest.xpi?src=fx-devices" onclick="dcsMultiTrack('WT.z_panel','Favorite Add-ons','WT.z_cta','No Script Desktop','WT.dl',99);">{{ _('Add to Desktop') }}</a></li>
-                <li><a href="https://addons.mozilla.org/mobile/downloads/latest/722/type:attachment/addon-722-latest.xpi?src=fx-devices" onclick="dcsMultiTrack('WT.z_panel','Favorite Add-ons','WT.z_cta','No Script Mobile','WT.dl',99);">{{ _('Add to Mobile') }}</a></li>
+                <li><a href="https://addons.mozilla.org/en-US/firefox/addon/noscript/?src=fx-devices" onclick="dcsMultiTrack('WT.z_panel','Favorite Add-ons','WT.z_cta','No Script Desktop','WT.dl',99);">{{ _('Add to Desktop') }}</a></li>
+                <li><a href="https://addons.mozilla.org/en-US/mobile/addon/noscript/?src=fx-devices" onclick="dcsMultiTrack('WT.z_panel','Favorite Add-ons','WT.z_cta','No Script Mobile','WT.dl',99);">{{ _('Add to Mobile') }}</a></li>
               </ul>
             </li>
             <li class="addon">
               <h3><a href="https://addons.mozilla.org/en-US/mobile/addon/speed-dial/?src=fx-devices" rel="external"><img src="//static-ssl-cdn.addons.mozilla.net/img/uploads/addon_icons/4/4810-48.png" alt=""> {{ _('Speed Dial') }}</a></h3>
               <p class="desc">{{ _('Direct access to your most visited websites.') }}</p>
               <ul class="add-to">
-                <li><a href="https://addons.mozilla.org/firefox/downloads/latest/4810/addon-4810-latest.xpi?src=fx-devices" onclick="dcsMultiTrack('WT.z_panel','Favorite Add-ons','WT.z_cta','Speed Dial Desktop','WT.dl',99);">{{ _('Add to Desktop') }}</a></li>
-                <li><a href="https://addons.mozilla.org/mobile/downloads/latest/4810/type:attachment/addon-4810-latest.xpi?src=fx-devices" onclick="dcsMultiTrack('WT.z_panel','Favorite Add-ons','WT.z_cta','Speed Dial Mobile','WT.dl',99);">{{ _('Add to Mobile') }}</a></li>
+                <li><a href="https://addons.mozilla.org/en-US/firefox/addon/speed-dial/?src=fx-devices" onclick="dcsMultiTrack('WT.z_panel','Favorite Add-ons','WT.z_cta','Speed Dial Desktop','WT.dl',99);">{{ _('Add to Desktop') }}</a></li>
+                <li><a href="https://addons.mozilla.org/en-US/mobile/addon/speed-dial/?src=fx-devices" onclick="dcsMultiTrack('WT.z_panel','Favorite Add-ons','WT.z_cta','Speed Dial Mobile','WT.dl',99);">{{ _('Add to Mobile') }}</a></li>
               </ul>  
             </li>
           </ul>
@@ -178,6 +178,4 @@
 
 {% endblock %}
 
-{% block js %}
-<script>var latestVersion = parseInt('{{ latest_version }}'.split('.')[0], 10);</script>
-{% endblock %}
+

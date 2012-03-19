@@ -1,9 +1,17 @@
-  $(document).ready(function() {
-  
+$(document).ready(function() {
+
+    // Get the latest version of firefox that is attached as a data
+    // attribute. Force a string because jquery sometimes converts it
+    // to an integer.
+    var latestVersion = ('' + $('#gauge').data('latest-version'));
+    latestVersion = parseInt(latestVersion.split('.')[0], 10);
+
     $('#fx-features').hide();
   
-    /* Set up the slider */
     
+if ($(window).width() > 750) { // Only do the slider in wide windows
+
+    /* Set up the slider */
     var $slides = $('section.slide'),
         isPrevNext = false;
     var getSlideIndex = function(id){
@@ -184,5 +192,7 @@
         $nonfx.show();
         $nonfxbtn.show();
     }
+    
+}
     
   });
