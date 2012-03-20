@@ -1,5 +1,22 @@
 @import "template.less";
 
+.sky {
+    #wrapper {
+        background-color: #eee;
+        background-image: url(/media/img/sandstone/bg-sky.png);
+        padding-bottom: 48px;
+    }
+ 
+    a {
+        color: @linkSkyBlue;
+        &:hover,
+        &:active {
+            color: darken(@linkSkyBlue, 10%);
+        }
+    }
+ 
+}
+
 #main-feature h1 {
   font-size: 60px;
 }
@@ -52,9 +69,12 @@
   float: left;
 }
 
-.content .button {
+.content .button, 
+.content .button:link,
+.content .button:visited {
   min-width: 180px;
   font-size: 18px;
+  color: #fff;
 }
 
 .go:after {
@@ -222,6 +242,7 @@ nav.slider-dots {
   min-width: 260px;
   text-align: left;
   padding: 0;
+  color: #fff;
 }
 
 .download-android .download-content {
@@ -529,6 +550,7 @@ nav.slider-dots {
     font-size: 24px;
   }
   
+  .content .button,
   .content .button:link, 
   .content .button:visited {
     min-width: 100px;
