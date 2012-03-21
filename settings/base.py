@@ -218,6 +218,7 @@ INSTALLED_APPS = list(INSTALLED_APPS) + [
     'l10n_example',  # DELETEME
     'b2g',
     'collusion',
+    'firefox',
     'marketplace',
     'mozorg',
     'persona',
