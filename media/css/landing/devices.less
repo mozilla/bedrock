@@ -10,11 +10,11 @@
   margin: -24px auto 24px;
   position: relative;
   overflow: visible;
-  -webkit-box-shadow: 0 0 0 1px #ffffff inset;
-  -moz-box-shadow: 0 0 0 1px #ffffff inset;
-  -o-box-shadow: 0 0 0 1px #ffffff inset;
-  -ms-box-shadow: 0 0 0 1px #ffffff inset;
-  box-shadow: 0 0 0 1px #ffffff inset;
+  -webkit-box-shadow: 0 0 0 1px #fff inset;
+  -moz-box-shadow: 0 0 0 1px #fff inset;
+  -o-box-shadow: 0 0 0 1px #fff inset;
+  -ms-box-shadow: 0 0 0 1px #fff inset;
+  box-shadow: 0 0 0 1px #fff inset;
   border-bottom: 1px solid #ddd;
   #gradient > .radial(center, 45px, ellipse, farthest-corner, rgba(255,255,255,0) 0%, #fff 100%);
 }
@@ -52,7 +52,7 @@
   float: left;
 }
 
-.slide .content .button {
+.content .button {
   min-width: 180px;
   font-size: 18px;
 }
@@ -504,3 +504,242 @@ nav.slider-dots {
 }
 
 /* }}} */
+
+/* @Tablet Layout: 768px.    */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+  #main-feature h1 {
+    font-size: 35px;
+  }
+
+  #feature {
+    width: 760px;
+  }
+  
+  .slide-content {
+    width: 624px;
+  }
+  
+  .slide .content {
+    width: 340px;
+    float: left;
+  }
+
+  .content h2 {
+    font-size: 24px;
+  }
+  
+  .content .button:link, 
+  .content .button:visited {
+    min-width: 100px;
+    height: 36px;
+    line-height: 36px;
+  }
+  
+  .button.download-android,
+  .button.download-android:link,
+  .button.download-android:visited {
+    height: auto;
+    min-width: 240px;
+  }
+
+  #speed-slide .content {
+    width: 200px;
+  }
+  #gauge {
+    width: 400px;
+    margin-top: 10px;
+  }
+  .note {
+    width: 400px;
+  }
+  #non-fx {
+    width: 380px;
+  }
+  
+  #gauge-fast,
+  #gauge-slow {
+    width: 150px;
+    font-size: 13px;
+  }
+  
+  #gauge-slow {
+    left: 40px;
+  }
+  
+  #gauge-fast {
+    right: 40px;
+  }
+  
+  #needle {
+    left: 55px;
+  }
+
+  #gauge-slow-note,
+  #gauge-fast-note {
+    background-image: none;
+  }
+  
+  #gauge-slow-note p, 
+  #gauge-fast-note p {
+    width: 100%;
+    top: -10px;
+    text-align: center;
+  }
+  
+  #smartphones-slide h2 {
+    width: 340px;
+    margin-right: -70px;
+  }
+  
+  #smartphones-slide {
+    background-position: 325px 15px;
+  }
+  
+  #smartphones-slide .footnote {
+    right: 430px;
+  }
+
+  #tablets-slide {
+    background-position: 390px 80px;
+    background-size: 320px auto;
+  }
+  
+  #tablets-slide .footnote {
+    left: 270px;
+  }
+  
+  #addons-slide .content {
+    width: 270px;
+  }
+  
+  #addons-slide .footnote {
+    width: 400px;
+    float: right;
+    margin: .5em -24px 0 0;
+    text-align: center;
+  }
+  
+  #addons-list {
+    width: 400px;
+  }
+  
+  #addons-list .addon {
+    width: 90px;
+    padding: 12px;
+    margin-right: 12px;
+  }
+
+  #sync-slide {
+    background-position: 150px 10px;
+  }
+
+}
+
+/* Mobile Layout: 320px. */
+@media only screen and (max-width: 767px) {
+
+  #main-feature h1 {
+    font-size: 35px;
+  }
+  
+  .slider-arrows,
+  .slider-dots {
+    display: none;
+  }
+
+  .js #feature {
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    background: transparent none;
+    border: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    -o-box-shadow: none;
+    -ms-box-shadow: none;
+    box-shadow: none;
+    .clearfix;
+  }
+    
+  .js #slider {
+    height: auto;
+    padding: 0;
+    overflow: visible;
+  }
+  
+  .js #slider .slide {
+    display: block;
+    min-height: 0;
+    background: #fff none;
+  }
+  
+  .slide-content {
+    width: auto;
+    min-height: 0;
+    padding: 24px;
+  }
+  
+  #slider .slide .content {
+    width: auto;
+    float: none;
+  }
+
+  #slider .content h2 {
+    width: auto;
+    font-size: 24px;
+    margin: 0 0 .5em;
+  }
+  
+  .content .button:link, 
+  .content .button:visited {
+    min-width: 100px;
+    height: 36px;
+    line-height: 36px;
+  }
+  
+  .button.download-android,
+  .button.download-android:link,
+  .button.download-android:visited {
+    height: auto;
+    min-width: 240px;
+  }
+
+  #speed-slide .content, 
+  #addons-slide .content {
+    width: auto;
+  }
+
+  #gauge {
+    display: none;
+  }
+  
+  #smartphones-slide .footnote, 
+  #tablets-slide .footnote, 
+  #addons-slide .footnote {
+    width: auto;
+    position: static;
+    text-align: left;
+    float: none;
+    margin: 1em 0;
+  }
+
+  #addons-list {
+    width: 100%;
+    float: none;
+    margin: 0 0 1em;
+    .clearfix;
+  }
+  
+  #addons-list .addon {
+    width: 26%;
+    padding: 12px 2.5%;
+    margin-right: 2%;
+  }
+  
+  #addons-list .addon:last-child {
+    margin-right: 0;
+  }
+
+}
