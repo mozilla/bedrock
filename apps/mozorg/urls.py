@@ -1,13 +1,12 @@
 from django.conf.urls.defaults import *
-from views import home, contribute, channel, button, sandstone, mission
-
+import views
 
 urlpatterns = patterns('',
-    url(r'^$', home, name='mozorg.home'),
+    url(r'^$', views.home, name='mozorg.home'),
 
-    url(r'^button/$', button),
-    url(r'^channel/$', channel),
-    url(r'^sandstone/', sandstone),
-    url(r'^contribute/$', contribute, name='mozorg.contribute'),
-    url(r'^mission/$', mission, name='mozorg.mission'),
+    url(r'^button/$', views.button),
+    url(r'^channel/$', views.channel),
+    url(r'^sandstone/', views.sandstone),
+    url(r'^contribute/$', views.contribute, name='mozorg.contribute'),
+    url(r'^mission/$', views.mission, name='mozorg.mission'),
 )
