@@ -64,6 +64,10 @@ MINIFY_BUNDLES = {
         'firefox': (
             'css/firefox/template.less',
         ),
+        'firefox_central': (
+            'css/sandstone/video.less',
+            'css/firefox/central.less',
+        ),
         'firefox_customize': (
             'css/sandstone/video.less',
             'css/firefox/customize.less',
@@ -146,6 +150,10 @@ MINIFY_BUNDLES = {
             'js/libs/jquery-1.7.1.min.js',
             'js/site.js',
             'js/nav-main.js',
+        ),
+        'firefox_central': (
+            'js/mozilla-video-tools.js',
+            'js/firefox/central.js',
         ),
         'firefox_customize': (
             'js/mozilla-video-tools.js',

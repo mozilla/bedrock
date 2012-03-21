@@ -9,6 +9,9 @@ from mozorg.forms import NewsletterForm
 
 @anonymous_csrf
 
+def central(request):
+    return l10n_utils.render(request, "firefox/central.html")
+
 def customize(request):
     return l10n_utils.render(request, "firefox/customize.html")
 

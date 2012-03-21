@@ -2,6 +2,7 @@ from django.conf.urls.defaults import *
 import views
 
 urlpatterns = patterns('',
+    url(r'^firefox/central/$', views.central, name='firefox.central'),
     url(r'^firefox/customize/$', views.customize, name='firefox.customize'),
     url(r'^firefox/features/$', views.features, name='firefox.features'),
     url(r'^firefox/geolocation/$', views.geolocation, name='firefox.geolocation'),
