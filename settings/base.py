@@ -64,6 +64,10 @@ MINIFY_BUNDLES = {
         'firefox': (
             'css/firefox/template.less',
         ),
+        'firefox_central': (
+            'css/sandstone/video.less',
+            'css/firefox/central.less',
+        ),
         'firefox_customize': (
             'css/sandstone/video.less',
             'css/firefox/customize.less',
@@ -150,6 +154,10 @@ MINIFY_BUNDLES = {
             'js/download.js',
             'js/nav-main.js',
         ),
+        'firefox_central': (
+            'js/mozilla-video-tools.js',
+            'js/firefox/central.js',
+        ),
         'firefox_customize': (
             'js/mozilla-video-tools.js',
             'js/firefox/customize.js',
@@ -221,6 +229,7 @@ INSTALLED_APPS = list(INSTALLED_APPS) + [
     'l10n_example',  # DELETEME
     'b2g',
     'collusion',
+    'firefox',
     'marketplace',
     'mozorg',
     'persona',

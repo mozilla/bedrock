@@ -1,4 +1,4 @@
-{% extends "/mozorg/firefox/base.html" %}
+{% extends "/firefox/base.html" %}
 
 {% block page_title %}Customize Your Browser{% endblock %}
 {% block body_id %}firefox-customize{% endblock %}
@@ -28,10 +28,6 @@
 
   {{ download_button('download', 'small') }}
 
-  <script src="/media/js/download.js"></script>
-  <script type="text/javascript">
-    offerBestDownloadLink('download');
-  </script>
   </div>
 </div>
 
