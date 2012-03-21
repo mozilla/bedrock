@@ -91,8 +91,8 @@ def update_template(tmpl, lang):
             if l10n_block['version'] < ref_block['version']:
                 # Move the main content to the else content only if it
                 # doesn't already exist, and then update the main content
-                if not l10n_block['else']:
-                    l10n_block['else'] = l10n_block['main']
+                if not l10n_block['was']:
+                    l10n_block['was'] = l10n_block['main']
                 l10n_block['main'] = ref_block['main']
 
         return l10n_block
@@ -146,7 +146,7 @@ def update_template(tmpl, lang):
         for block in blocks:
             if block['name'] not in written_blocks:
                 buffer.write('\n\n')
-                write_block(block, buffer, force_else=True)
+                write_block(block, buffer)
 
         # Write out the result to the l10n template
         with codecs.open(dest_tmpl, 'w', 'utf-8') as dest:
@@ -154,14 +154,14 @@ def update_template(tmpl, lang):
 
     print '%s: %s' % (lang, tmpl)
 
-def write_block(block, dest, force_else=False):
+def write_block(block, dest, force_was=False):
     """Write out a block to an l10n template"""
 
     dest.write('{%% l10n %s %%}\n' % block['name'])
     dest.write(block['main'])
-    if block['else'] or force_else:
-        dest.write('\n{% else %}')
-        dest.write('\n%s' % block['else'] if block['else'] else '')
+    if block['was'] or force_was:
+        dest.write('\n{% was %}')
+        dest.write('\n%s' % block['was'] if block['was'] else '')
     dest.write('\n{% endl10n %}')
 
 
@@ -181,11 +181,8 @@ def copy_template(tmpl, lang):
             dest.write('{%% extends "%s" %%}\n\n' % tmpl)
             
             for block in blocks:
-                # The current content should be in the else block
-                block['else'] = block['main']
-                block['main'] = ''
-
-                write_block(block, dest, True)
+                write_block(block, dest)
+                dest.write('\n\n')
 
             
 class L10nParser():
@@ -343,18 +340,18 @@ class L10nParser():
                             "missing date for block '%s' in %s"
                             % (block_name, self.tmpl))
 
-        (main, else_) = self.block_content()
+        (main, was_) = self.block_content()
         yield ('block', {'name': block_name,
                          'version': block_version,
                          'main': main,
-                         'else': else_})
+                         'was': was_})
 
     def block_content(self):
         """Parse the content from an l10n block"""
 
-        in_else = False
+        in_was = False
         main_content = []
-        else_content = []
+        was_content = []
 
         for token in self.tokens:
             if token[1] == 'block_begin':
@@ -364,16 +361,16 @@ class L10nParser():
                 if name == 'endl10n':
                     self.scan_until('block_end')
                     break
-                elif name == 'else':
-                    in_else = True
+                elif name == 'was':
+                    in_was = True
                     self.scan_until('block_end')
                     continue
 
-            buffer = else_content if in_else else main_content
+            buffer = was_content if in_was else main_content
             buffer.append(token[2])
 
         return [''.join(x).replace('\\n', '\n').strip() 
-                for x in [main_content, else_content]]
+                for x in [main_content, was_content]]
 
     def scan_until(self, name):
         for token in self.tokens:
