@@ -23,13 +23,15 @@
         site.platform = 'other';
     }
 
+    site.platform = 'other';
+
     function init() {
-        var b = $(document.body);
-        // Remove the default platform
-        b.removeClass('windows');
-        b.addClass(site.platform);
+        // Add the platform as a class name immediately to avoid lots
+        // of flickering
+        var b = document.body;
+        b.className = b.className.replace("windows", site.platform);        
     }
 
-    $(document).ready(init);
+    init();
     window.site = site;
 })();

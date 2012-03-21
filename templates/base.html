@@ -26,6 +26,7 @@
   <!-- Note the "windows" class, without javascript platform-specific
        assets default to windows -->
   <body id="{% block body_id %}{% endblock %}" class="html-{{ DIR }} windows {% block body_class %}{% endblock %}">
+    {{ js('site') }}
     <div id="outer-wrapper">
     <div id="wrapper">
 

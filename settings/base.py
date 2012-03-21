@@ -128,6 +128,9 @@ MINIFY_BUNDLES = {
         ),
     },
     'js': {
+        'site': (
+            'js/site.js', # this is automatically included on every page
+        ),
         'collusion': (
             'js/collusion/d3.layout.js',
             'js/collusion/d3.geom.js',
@@ -138,7 +141,6 @@ MINIFY_BUNDLES = {
         'common': (
             'js/libs/jquery-1.7.1.min.js',
             'js/download.js',
-            'js/site.js',
         ),
         'expanders': (
             'js/mozilla-expanders.js',
@@ -146,7 +148,6 @@ MINIFY_BUNDLES = {
         'firefox': (
             'js/libs/jquery-1.7.1.min.js',
             'js/download.js',
-            'js/site.js',
             'js/nav-main.js',
         ),
         'firefox_customize': (
@@ -183,7 +184,7 @@ MINIFY_BUNDLES = {
             'js/libs/jquery-1.4.4.min.js',
             'js/libs/jquery-css-transform.js',
             'js/libs/jquery-animate-css-rotate-scale.js',
-            'js/site.js',
+            'js/download.js',
             'js/nav-main.js',
             'js/libs/jquery.cycle.all.js',
             'js/libs/jquery.ba-hashchange.min.js',
