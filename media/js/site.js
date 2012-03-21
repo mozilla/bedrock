@@ -23,8 +23,6 @@
         site.platform = 'other';
     }
 
-    site.platform = 'other';
-
     function init() {
         // Add the platform as a class name immediately to avoid lots
         // of flickering
