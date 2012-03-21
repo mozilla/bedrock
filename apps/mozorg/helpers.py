@@ -27,8 +27,6 @@ download_urls = {
     'aurora-l10n': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla-aurora-l10n'
 }
 
-locales_using_transition = []
-
 def latest_aurora_version(locale):
     builds = product_details.firefox_primary_builds
     vers = product_details.firefox_versions['FIREFOX_AURORA']
@@ -92,7 +90,7 @@ def make_download_link(product, build, version, platform, locale,
     # Figure out the base url. certain locales have a transitional
     # thankyou-style page (most do)
     src = 'direct'
-    if locale in locales_using_transition and not force_direct:
+    if locale in settings.LOCALES_WITH_TRANSITION and not force_direct:
          src = 'transition'
 
     return ('%s?product=%s-%s&os=%s&lang=%s' %
