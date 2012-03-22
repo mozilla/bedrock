@@ -20,7 +20,7 @@
 
     {% block extrahead %}{% endblock %}
 
-    <link rel="shortcut icon" type="image/png" href="{{ MEDIA_URL }}img/favicon.png">
+    {% block favicon %}<link rel="shortcut icon" type="image/png" href="{{ MEDIA_URL }}img/favicon.png">{% endblock %}
   </head>
 
   <!-- Note the "windows" class, without javascript platform-specific
