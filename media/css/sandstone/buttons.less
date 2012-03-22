@@ -98,7 +98,7 @@
 .download-button {
     .inline-block;
     ul {
-        margin: 0 0 4px 0;
+        margin: 0;
         li {
             list-style-type: none;
             margin: 0;
@@ -187,9 +187,6 @@ noscript li.os_android{
     display: block;
 }
 
-.other .download-button .unsupported-download {
-    display: block;
-}
 
 // Small print
 
@@ -198,10 +195,34 @@ noscript li.os_android{
     display: block;
     font-size: 11px;
     text-align: right;
+    margin-top: 4px;
     color: @textColorLight;
 
     a:link,
     a:visited {
         color: #999;
     }
+}
+
+.other .download-button .unsupported-download {
+    display: block;
+}
+
+.download-button noscript,
+.download-button .unsupported-download {
+    text-align: right;
+    h4 {
+        text-shadow: none;
+        margin: 0 0 6px 0;
+        font-size: 18px;
+    }
+    ul li {
+        display: inline;
+    }
+
+    small {
+        font-size: 11px;
+        letter-spacing: normal;
+    }
+
 }
