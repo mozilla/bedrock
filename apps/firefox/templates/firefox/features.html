@@ -62,13 +62,7 @@
       </li>
     </ul>
   </aside>
-
   {{ download_button('download', 'small') }}
-
-  <script src="/media/js/download.js"></script>
-  <script type="text/javascript">
-    offerBestDownloadLink('download');
-  </script>
   </div>
 </div>
 
@@ -99,7 +93,7 @@
 
     <div id="improvedinterface" class="feature">
       <h4>Improved Interface</h4>
-      <p>We’re always looking for ways to make your browsing easier and more efficient.<br />Read on for our latest improvements (or <a href="/<?=$lang?>/firefox/video/?video=fx4-ui">watch the video</a>):</p>
+      <p>We’re always looking for ways to make your browsing easier and more efficient.<br />Read on for our latest improvements (or <a href="{{ php_url('/firefox/video/?video=fx4-ui') }}">watch the video</a>):</p>
 
       <div class="column1">
         <div class="sub-feature">
@@ -190,7 +184,7 @@
           {{ platform_img('img/firefox/features/screen-sync.png', alt='Sync screenshot') }}
       <h4>Stay in Sync</h4>
       <p>Sync seamlessly connects your desktop and mobile Firefoxes, so you can access your browsing history, passwords, bookmarks and even open tabs no matter which device you use. Access years of desktop browsing the first day you fire up your mobile, and use saved passwords from your desktop to fill out forms on your phone.</p>
-      <p>Now you can surf the Web on your desktop, get up in the middle of browsing and have your open tabs ready and waiting on your mobile, just as you left them. Your browsing will never be the same! <a href="/<?=$lang?>/mobile/sync/">Learn more about Sync</a> or <a href="/<?=$lang?>/mobile/">get Firefox on your phone</a>.</p>
+      <p>Now you can surf the Web on your desktop, get up in the middle of browsing and have your open tabs ready and waiting on your mobile, just as you left them. Your browsing will never be the same! <a href="{{ php_url('/mobile/sync/') }}">Learn more about Sync</a> or <a href="{{ php_url('/mobile/') }}">get Firefox on your phone</a>.</p>
     </div>
 
     <div class="column1">
@@ -342,7 +336,7 @@
 
       <div class="feature">
         <h4>Firefox Support</h4>
-        <p>Need help? Our <a href="http://support.mozilla.org/<?=$lang?>/kb/">support site</a> has a searchable knowledge base of articles, plus forums and tutorials full of solutions and tips for a better experience.</p>
+        <p>Need help? Our <a href="http://support.mozilla.org/">support site</a> has a searchable knowledge base of articles, plus forums and tutorials full of solutions and tips for a better experience.</p>
       </div>
     </div>
 
@@ -401,8 +395,8 @@
       </div>
       <div class="feature">
         <h4>Crash Protection</h4>
-        <p>Firefox provides uninterrupted browsing when there is a crash in the plugins for Adobe Flash, Apple QuickTime or Microsoft Silverlight. If  one of these commonly-used plugins crashes or freezes, it won't affect the rest of the browser. You can simply reload the page to restart the plugin and try again. <a href="/<?=$lang?>/plugincheck/#what-plugin">Learn more about plugins.</a></p>
-        <p><a href="/<?=$lang?>/firefox/performance/">Learn more about Firefox’s performance.</a></p>
+        <p>Firefox provides uninterrupted browsing when there is a crash in the plugins for Adobe Flash, Apple QuickTime or Microsoft Silverlight. If  one of these commonly-used plugins crashes or freezes, it won't affect the rest of the browser. You can simply reload the page to restart the plugin and try again. <a href="{{ php_url('/plugincheck/#what-plugin') }}">Learn more about plugins.</a></p>
+        <p><a href="{{ url('firefox.performance') }}">Learn more about Firefox’s performance.</a></p>
       </div>
     </div>
 
@@ -540,12 +534,12 @@
       <div class="feature">
         <h4>Automated Updates</h4>
         <p>Firefox will automatically let you know when there’s a new version available, so you can make sure your browser is always up-to-date with the latest and greatest security fixes.</p>
-        <p><a href="/<?=$lang?>/firefox/security/">Learn more about Firefox’s security features.</a></p>
+        <p><a href="{{ url('firefox.security') }}">Learn more about Firefox’s security features.</a></p>
       </div>
 
       <div class="feature">
         <h4>Outdated Plugin Detection</h4>
-        <p>Plugins are small bits of third-party software built by companies like Adobe Systems or Apple to power videos, animation and games. They can be major security risks when they get out of date, so we’ve built an easy tool to help you stay current. <a href="/<?=$lang?>/plugincheck/">Check your plugins.</a></p>
+        <p>Plugins are small bits of third-party software built by companies like Adobe Systems or Apple to power videos, animation and games. They can be major security risks when they get out of date, so we’ve built an easy tool to help you stay current. <a href="{{ php_url('plugincheck/') }}">Check your plugins.</a></p>
       </div>
     </div>
   </div>
@@ -575,7 +569,7 @@
       <div class="feature">
         <h4>Customizable Interface</h4>
         <p>Everyone likes to browse their own way, so we’ve made it easy to adjust the Firefox interface to be exactly the way you like it: re-arrange, organize, add or remove buttons or fields to change your browsing experience however you want. Just right click on the navigation toolbar and select the Customize option to get started.</p>
-        <p><a href="/<?=$lang?>/firefox/customize/">Learn more about Firefox’s personalization features.</a></p>
+        <p><a href="{{ url('firefox.customize') }}">Learn more about Firefox’s personalization features.</a></p>
       </div>
 
       <div class="feature">
@@ -701,7 +695,7 @@
         <h4>Web Console</h4>
         <p>Want to know what makes cutting-edge sites tick? Firefox allows you to peek under the hood of dynamic web pages with this experimental analysis tool.</p>
       </div>
-      <p><a href="/<?=$lang?>/firefox/technology/">Learn more about Firefox’s technology features.</a></p>
+      <p><a href="{{ url('firefox.technology') }}">Learn more about Firefox’s technology features.</a></p>
     </div>
   </div>
 </section>
@@ -721,7 +715,7 @@
     <div class="column2">
       <div class="feature">
         <h4>The Language of Firefox</h4>
-        <p>Firefox speaks your language like no other browser on earth. Because the Web is a public resource shared by everyone, we’ve made our browser available in as  many languages as possible. We have over 85 different translations, from French and Chinese to Finnish and Czech. <a href="/<?=$lang?>/firefox/all.html">Find your language.</a></p>
+        <p>Firefox speaks your language like no other browser on earth. Because the Web is a public resource shared by everyone, we’ve made our browser available in as  many languages as possible. We have over 85 different translations, from French and Chinese to Finnish and Czech. <a href="{{ php_url('firefox/all.html') }}">Find your language.</a></p>
       </div>
 
       <div class="feature">
