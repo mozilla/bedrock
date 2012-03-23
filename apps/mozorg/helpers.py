@@ -46,6 +46,7 @@ def latest_beta_version(locale):
 def latest_version(locale):
     beta_vers = product_details.firefox_versions['FIREFOX_AURORA']
     aurora_vers = product_details.firefox_versions['LATEST_FIREFOX_DEVEL_VERSION']
+    esr_vers = product_details.firefox_versions['FIREFOX_ESR']
     
     def _check_builds(builds):
         if locale in builds and isinstance(builds[locale], dict):
@@ -53,9 +54,11 @@ def latest_version(locale):
             # order. The previous PHP code assumed this, so it should
             # work.
             for version, info in reversed(builds[locale].items()):
-                if version == beta_vers or version == aurora_vers:
-                    continue
-                if info:
+                match = (version != beta_vers and
+                         version != aurora_vers and
+                         version != esr_vers and
+                         info)
+                if match:
                     return version, info
 
     return (_check_builds(product_details.firefox_primary_builds) or
