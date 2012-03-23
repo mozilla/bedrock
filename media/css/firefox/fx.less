@@ -1,0 +1,51 @@
+@import "template.less";
+
+#main-feature {
+    background: url(/media/img/firefox/fx/feature-devices.jpg) 0 0 no-repeat;
+    padding-top: @baseLine;
+    padding-bottom: @baseLine;
+    margin-bottom: @baseLine;
+    height: 240px;
+    h2 {
+        font-size: 32px;
+        letter-spacing: -1px;
+    }
+    h1,
+    h2 {
+        .span(5);
+    }
+    h1 {
+        font-size: 52px;
+        span {
+            display: block;
+        }
+        margin-bottom: @baseLine;
+    }
+    .button-blue {
+        padding-right: 0;
+        padding-left: 0;
+        .span(3);
+        clear: left;
+        font-size: 18px;
+    }
+
+}
+
+#main-content {
+    .sub-section {
+        .span(3);
+        text-align: center;
+        padding-top: @baseLine;
+        padding-bottom: @baseLine;
+    }
+    #get-firefox {
+        .span(4);
+        .inset;
+        margin-left: 0;
+        h3,
+        p,
+        aside {
+            padding: 0 @baseLine;
+        }
+    }
+}
