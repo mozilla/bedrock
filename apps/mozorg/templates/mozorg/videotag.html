@@ -1,0 +1,11 @@
+<video tabindex="0" id="htmlPlayer" controls="controls" {{ 'autoplay' if autoplay }}
+  width="{{ w or 640 }}" height="{{ h or 360 }}">
+  {% for ft in filetypes %}
+    {% if ft in videos %}
+        <source src="{{ videos[ft] }}" type="{{ mime[ft] }}">
+    {% endif %}
+  {% endfor %}
+  <div class="video-player-no-flash">
+    This video requires a browser with support for open video.
+  </div>
+</video>
