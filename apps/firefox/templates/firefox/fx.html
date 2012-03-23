@@ -1,0 +1,43 @@
+{% extends "/firefox/base.html" %}
+
+{% block page_title %}Get More From Your Firefox — Mobile, Add-ons & Other Stuff{% endblock %}
+{% block body_id %}firefox-fx{% endblock %}
+
+{% block site_css %}
+  {{ css('firefox_fx') }}
+{% endblock %}
+
+{% block content %}
+
+<section id="main-feature" class="billboard">
+  <h2>Your Firefox is up to date.</h2>
+  <h1>Now get it on <span>all your devices.</span></h1>
+  <a class="button-blue" href="{{ url('landing.devices')}}">Find Out How »</a>
+</section>
+
+<section id="main-content">
+
+  <div id="get-firefox" class="sub-section inset">
+    <h3>Get Firefox</h3>
+    <p>If you need a fresh new copy
+of Firefox, you can get it here:</p>
+    {{ download_button('download', 'small') }}
+  </div>
+
+  <div id="promo-beta" class="sub-section">
+    <h3>Try Firefox Beta</h3>
+    <p>Test features and share feedback. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    <a href="{{ php_url('/firefox/beta/?WT.mc_id=buildbetafxpage') }}">Download Now »</a>
+  </div>
+
+  <div id="promo-newsletter" class="sub-section">
+    <h3>More Firefox</h3>
+    <p>Get the latest Firefox tips and tricks every month in our 
+Firefox & You newsletter.</p>
+    <a href="{{ php_url('/newsletter/') }}">Sign up today! »</a>
+  </div>
+
+</section>
+
+{% endblock %}
+

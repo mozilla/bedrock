@@ -76,6 +76,9 @@ MINIFY_BUNDLES = {
             'css/sandstone/video.less',
             'css/firefox/features.less',
         ),
+        'firefox_fx': (
+            'css/firefox/fx.less',
+        ),
         'firefox_geolocation': (
             'css/mozilla-expanders.less',
             'css/firefox/geolocation.less',

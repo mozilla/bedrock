@@ -18,6 +18,9 @@ def customize(request):
 def features(request):
     return l10n_utils.render(request, "firefox/features.html")
 
+def fx(request):
+    return l10n_utils.render(request, "firefox/fx.html")
+
 def geolocation(request):
     return l10n_utils.render(request, "firefox/geolocation.html", 
                              {'gmap_api_key': settings.GMAP_API_KEY})
