@@ -74,7 +74,7 @@
                 Commons license</a>.
               </p>
           </div>
-          <nav class="span3">
+          <nav class="span2">
               <ul>
                   <li><a href="{{ php_url('/about/contact.html#map-mountain_view') }}">Contact Us</a></li>
                   <li><a href="{{ php_url('/privacy-policy.html') }}">Privacy Policy</a></li>
@@ -82,6 +82,16 @@
                   <li><a href="{{ php_url('/legal/fraud-report/index.html') }}">Report Trademark Abuse</a></li>
               </ul>
           </nav>
+
+          {% block social %}
+          <nav class="span2">
+            <ul>
+              <li><a href="http://twitter.com/firefox">Twitter</a></li>
+              <li><a href="http://facebook.com/Firefox">Facebook</a></li>
+              <li><a href="https://affiliates.mozilla.org/">Firefox Affiliates</a></li>
+            </ul>
+          </nav>
+          {% endblock %}
 
       </div>
       </footer>
