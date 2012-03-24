@@ -1,11 +1,21 @@
 <video tabindex="0" id="htmlPlayer" controls="controls" {{ 'autoplay' if autoplay }}
-  width="{{ w or 640 }}" height="{{ h or 360 }}">
+  width="{{ w }}" height="{{ h }}">
   {% for ft in filetypes %}
     {% if ft in videos %}
         <source src="{{ videos[ft] }}" type="{{ mime[ft] }}">
     {% endif %}
   {% endfor %}
-  <div class="video-player-no-flash">
-    This video requires a browser with support for open video.
-  </div>
+  {% if flash_fallback %}
+    {% with swf = '{0}?flv={1}&autoplay={2}&msg=Play%20Video'|f(
+      media('flash/playerWithControls.swf'), flash_fallback, 'true' if autoplay else 'false') %}
+      <object type="application/x-shockwave-flash" style="width: {{ w }}px; height: {{ h }}px;" data="{{ swf }}">
+        <param name="movie" value="{{ swf }}" />
+        <param name="wmode" value="transparent" />
+        <div class="video-player-no-flash">
+          This video requires a browser with support for open video or the
+          <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player</a>.
+        </div>
+      </object>
+    {% endwith %}
+  {% endif %}
 </video>

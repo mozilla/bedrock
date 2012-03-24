@@ -249,8 +249,7 @@ def platform_img(url, **kwargs):
 
 
 @jingo.register.function
-@jinja2.contextfunction
-def video(ctx, *args, **kwargs):
+def video(*args, **kwargs):
     """
     HTML5 Video tag helper.
 
@@ -276,7 +275,7 @@ def video(ctx, *args, **kwargs):
     videos = {}
     for v in args:
         try:
-            ext = v.split('.', 1)[1].lower()
+            ext = v.rsplit('.', 1)[1].lower()
         except IndexError:
             # TODO: Perhaps we don't want to swallow this quietly in the future.
             continue
@@ -294,9 +293,16 @@ def video(ctx, *args, **kwargs):
         'h': 360,
         'autoplay': False,
     }
+
+    # Flash fallback, if mp4 file on Mozilla Videos CDN.
+    data['flash_fallback'] = False
+    if 'mp4' in videos:
+        mp4_url = urlparse.urlparse(videos['mp4'])
+        if mp4_url.netloc.lower() in ('videos.mozilla.org', 'videos-cdn.mozilla.net'):
+            data['flash_fallback'] = mp4_url.path
+
     data.update(**kwargs)
     data.update(filetypes=filetypes, mime=mime, videos=videos)
 
-    html = jingo.render_to_string(
-        ctx['request'], 'mozorg/videotag.html', data)
-    return jinja2.Markup(html)
+    return jinja2.Markup(jingo.env.get_template(
+        'mozorg/videotag.html').render(**data))
