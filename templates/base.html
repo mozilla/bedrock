@@ -37,10 +37,10 @@
         {% block site_header_nav %}
         <nav id="nav-main" role="navigation">
         <ol>
-            <li><a href="#">Mission</a></li>
-            <li><a href="#">About</a></li>
+            <li><a href="{{ url('mozorg.mission') }}">Mission</a></li>
+            <li><a href="{{ url('mozorg.about') }}">About</a></li>
             <li><a href="#">Products</a></li>
-            <li><a href="#">Get Involved</a></li>
+            <li><a href="{{ url('mozorg.contribute') }}">Get Involved</a></li>
         </ol>
         </nav>
         {% endblock %}
