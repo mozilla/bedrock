@@ -1,17 +1,18 @@
 @import "sandstone/variables.less";
 @import "sandstone/mixins.less";
 
-#welcome {
-    .span(8);
-    margin-left: 0;
-    padding: @baseLine 0;
+.main-column {
+    .span(7);
+}
+
+.sidebar {
+    .offset(1);
 }
 
 #welcome-video {
-    width: 640px;
     margin: @baseLine auto;
+    width: 640px;
     video {
-        max-width: 640px;
         width: 100%;
         height: auto;
         background: #fff;

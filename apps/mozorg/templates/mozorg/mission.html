@@ -1,6 +1,6 @@
 {% extends "mozorg/about-base.html" %}
 
-{% block page_title %}The Mozilla Difference{% endblock %}
+{% block page_title %}We’re building a better Internet{% endblock %}
 {% block body_id %}mission{% endblock %}
 
 {% block extrahead %}
@@ -20,7 +20,9 @@
 
 {% block article %}
 
-<h1>The Mozilla Difference</h1>
+<h1>We’re building a better Internet.</h1>
+
+<p id="intro">Our mission is to promote openness, innovation and opportunity on the Internet. To learn more about who we are, where we came from and how we're making the Web better for you, please watch the video below.</p>
 
 <div id="welcome-video" class="mozilla-video-control mozilla-video-shadow">
   <video
@@ -45,10 +47,8 @@
   </video>
 </div>
 
-<p>Mozilla is a proudly non-profit organization dedicated to keeping the power of the Web in people's hands. We're a global community of users, contributors and developers working to innovate on your behalf. When you use Firefox or any <a href="/projects/">Mozilla products</a>, you become a part of that community, helping us build a brighter future for the Web.</p>
+<p>Mozilla is a proudly non-profit organization dedicated to keeping the power of the Web in people’s hands. We’re a global community of users, contributors and developers working to innovate on your behalf. When you use <a href="{{ php_url('/firefox/') }}">Firefox</a>, or any <a href="/product/">Mozilla product</a>, you become a part of that community, helping us build a brighter future for the Web.</p>
 
-<p>To find out more about who we are, where we came from and where we want to take the Web, please watch the video above.</p>
-
-<p>Read the <a href="/about/manifesto.html">Mozilla Manifesto</a> to learn more about the values and principles that guide the pursuit of our mission.</p>
+<p>Read the <a href="/about/manifesto.html">Mozilla Manifesto</a> to learn even more about the values and principles that guide the pursuit of our mission.</p>
 
 {% endblock %}
