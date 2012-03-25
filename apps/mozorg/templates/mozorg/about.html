@@ -1,0 +1,57 @@
+{% extends "sand.html" %}
+
+{% block page_title %}Get to Know Mozilla{% endblock %}
+{% block body_id %}about{% endblock %}
+
+{% block extrahead %}
+  {{ css('about') }}
+{% endblock %}
+
+{% block content %}
+
+<article id="main-content">
+
+<h1 class="large center">Get to Know Mozilla</h1>
+
+<p class="intro">Whether you want to learn more about who we are, how to be a part of Mozilla or just where to find us, you've come to the right place. To find out what drives us and makes us different, please visit our <a href="{{ url('mozorg.mission') }}">mission</a> page.</p>
+
+<ul class="links">
+  <li>
+    <h4><a href="http://careers.mozilla.org/">Career center »</a></h4>
+    <p>Want to work on Firefox? Apply today!</p>
+  </li>
+  <li>
+    <h4><a href="{{ php_url('/press/') }}">Press center »</a></h4>
+    <p>Press info and other useful stuff</p>
+  </li>
+  <li>
+    <h4><a href="http://blog.mozilla.com/">Mozilla blog »</a></h4>
+    <p>News, notes and ramblings from the Mozilla project</p>
+  </li>
+  <li>
+    <h4><a href="{{ php_url('/privacy/') }}">Privacy center »</a></h4>
+    <p>Policies used to run the Mozilla community</p>
+  </li>
+</ul>
+
+<ul class="links">
+  <li>
+    <h4><a href="{{ php_url('/firefox/brand/') }}">Firefox brand toolkit »</a></h4>
+    <p>Logos, copy rules, visual assets and more</p>
+  </li>
+  <li>
+    <h4><a href="{{ php_url('about/partnerships') }}">Mozilla partnerships »</a></h4>
+    <p>Details about partnering with us</p>
+  </li>
+  <li>
+    <h4><a href="{{ php_url('about/contact') }}">Locations & contacts »</a></h4>
+    <p>Addresses, emails, support and feedback forms</p>
+  </li>
+  <li>
+    <h4><a href="{{ url('mozorg.contribute') }}">Get involved »</a></h4>
+    <p>Become a volunteer contributor in a number of different areas.</p>
+  </li>
+</ul>
+
+</article>
+{% endblock %}
