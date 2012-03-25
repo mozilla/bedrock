@@ -44,6 +44,9 @@ def JINJA_CONFIG():
 # and js files that can be bundled together by the minify app.
 MINIFY_BUNDLES = {
     'css': {
+        'about': (
+            'css/about.less',
+        ),
         'b2g': (
             'css/b2g.less',
         ),

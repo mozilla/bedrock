@@ -1,0 +1,33 @@
+@import "sandstone/variables.less";
+@import "sandstone/mixins.less";
+
+#main-content {
+
+    h1 {
+        margin-bottom: @baseLine;
+    }
+
+    .intro {
+        .span(4);
+        margin-left: 0;
+        padding-top: @baseLine;
+    }
+
+    ul.links {
+        .span(3);
+        li {
+            list-style-type: none;
+            margin-left: 0;
+            padding-top: @baseLine;
+            border-bottom: 1px dotted @borderColor;
+            min-height: @baseLine * 4;
+        }
+        h4 {
+            margin-bottom: @baseLine / 6;
+        }
+        p {
+            margin-bottom: @baseLine / 2;
+        }
+    }
+
+}

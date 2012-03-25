@@ -27,6 +27,9 @@ def home(request):
                              {'form': form,
                               'success': success})
 
+def about(request):
+    return l10n_utils.render(request, "mozorg/about.html")
+
 def contribute(request):
     return l10n_utils.render(request, "mozorg/contribute.html")
 
