@@ -87,6 +87,9 @@ def mission(request):
 def new(request):
     return l10n_utils.render(request, "mozorg/new.html")
 
+def projects(request):
+    return l10n_utils.render(request, "mozorg/projects.html")
+
 def sandstone(request):
     return l10n_utils.render(request, "mozorg/sandstone.html")
 

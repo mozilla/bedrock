@@ -10,4 +10,5 @@ urlpatterns = patterns('',
     url(r'^sandstone/', views.sandstone),
     url(r'^contribute/$', views.contribute, name='mozorg.contribute'),
     url(r'^mission/$', views.mission, name='mozorg.mission'),
+    url(r'^projects/$', views.projects, name='mozorg.projects'),
 )
