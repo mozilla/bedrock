@@ -175,16 +175,13 @@
 li.os_linux,
 li.os_windows,
 li.os_osx,
-li.os_android { display: none; }
+li.os_android,
+.no-js .windows li.os_windows { display: none; }
 
 .linux li.os_linux,
 .windows li.os_windows,
 .osx li.os_osx,
-.android li.os_android,
-noscript li.os_linux,
-noscript li.os_windows,
-noscript li.os_osx,
-noscript li.os_android{
+.android li.os_android {
     display: block;
 }
 
