@@ -9,6 +9,7 @@ GitPython==0.1.7
 # Various tidbits
 -e git://github.com/jsocol/commonware.git#egg=commonware
 -e git://github.com/mozilla/nuggets.git#egg=nuggets
+-e git://github.com/kurtmckee/feedparser#egg=feedparser
 
 # Security
 -e git://github.com/fwenzel/django-sha2.git#egg=django-sha2

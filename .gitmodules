@@ -10,3 +10,6 @@
 [submodule "vendor-local/src/basket-client"]
 	path = vendor-local/src/basket-client
 	url = https://github.com/mozilla/basket-client.git
+[submodule "vendor-local/src/feedparser"]
+	path = vendor-local/src/feedparser
+	url = https://github.com/kurtmckee/feedparser.git

@@ -1,6 +1,7 @@
 src/tower
 src/jingo-minify
 src/basket-client
+src/feedparser/feedparser
 packages/requests
 packages/certifi
 packages/chardet
