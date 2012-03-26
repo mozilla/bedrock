@@ -11,6 +11,7 @@ of terms and example values for them:
 
 from os import path
 import re
+import urlparse
 
 import jinja2
 import jingo
@@ -26,6 +27,7 @@ download_urls = {
     'aurora': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla-aurora',
     'aurora-l10n': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla-aurora-l10n'
 }
+
 
 def latest_aurora_version(locale):
     builds = product_details.firefox_primary_builds
@@ -47,7 +49,7 @@ def latest_version(locale):
     beta_vers = product_details.firefox_versions['FIREFOX_AURORA']
     aurora_vers = product_details.firefox_versions['LATEST_FIREFOX_DEVEL_VERSION']
     esr_vers = product_details.firefox_versions['FIREFOX_ESR']
-    
+
     def _check_builds(builds):
         if locale in builds and isinstance(builds[locale], dict):
             # The json should be already ordered in increasing
@@ -64,6 +66,7 @@ def latest_version(locale):
     return (_check_builds(product_details.firefox_primary_builds) or
             _check_builds(product_details.firefox_beta_builds))
 
+
 def make_aurora_link(product, version, platform, locale):
     # Download links are different for localized versions
     src = 'aurora' if locale.lower() == 'en-us' else 'aurora-l10n'
@@ -77,7 +80,8 @@ def make_aurora_link(product, version, platform, locale):
     return ('%s/%s-%s.%s.%s' %
             (download_urls[src], product, version, locale, filename))
 
-def make_download_link(product, build, version, platform, locale, 
+
+def make_download_link(product, build, version, platform, locale,
                        force_direct=False):
     # Aurora has a special download link format
     if build == 'aurora':
@@ -98,6 +102,7 @@ def make_download_link(product, build, version, platform, locale,
 
     return ('%s?product=%s-%s&os=%s&lang=%s' %
             (download_urls[src], product, version, platform, locale))
+
 
 @jingo.register.function
 @jinja2.contextfunction
@@ -158,6 +163,7 @@ def download_button(ctx, id, format='large', build=None):
                                   data)
     return jinja2.Markup(html)
 
+
 @jingo.register.function
 @jinja2.contextfunction
 def mobile_download_button(ctx, id, platform, build=None):
@@ -182,6 +188,7 @@ def mobile_download_button(ctx, id, platform, build=None):
                                    'download_link': url})
     return jinja2.Markup(html)
 
+
 @jingo.register.function
 @jinja2.contextfunction
 def php_url(ctx, url):
@@ -192,6 +199,7 @@ def php_url(ctx, url):
     if locale and url[0] == '/':
         return path.join('/', locale, url.lstrip('/'))
     return url
+
 
 @jingo.register.function
 def url(viewname, *args, **kwargs):
@@ -205,9 +213,11 @@ def url(viewname, *args, **kwargs):
         return path.join('/b/', url.lstrip('/'))
     return url
 
+
 @jingo.register.function
 def media(url):
     return path.join(settings.MEDIA_URL, url.lstrip('/'))
+
 
 @jingo.register.function
 def field_with_attrs(bfield, **kwargs):
@@ -215,6 +225,7 @@ def field_with_attrs(bfield, **kwargs):
     fields from django forms"""
     bfield.field.widget.attrs.update(kwargs)
     return bfield
+
 
 @jingo.register.function
 def platform_img(url, **kwargs):
@@ -235,3 +246,63 @@ def platform_img(url, **kwargs):
             for plat in ('win', 'osx', 'linux'))
 
     return jinja2.Markup(''.join(imgs))
+
+
+@jingo.register.function
+def video(*args, **kwargs):
+    """
+    HTML5 Video tag helper.
+
+    Accepted kwargs:
+    prefix, w, h, autoplay
+
+    Use like this:
+    {{ video('http://example.com/myvid.mp4', http://example.com/myvid.webm',
+             w=640, h=360) }}
+
+    You can also use a prefix like:
+    {{ video('myvid.mp4', 'myvid.webm', prefix='http://example.com') }}
+
+    Finally, MIME type detection happens by file extension. Supported: webm,
+    mp4, ogv. If you want anything else, patches welcome.
+    """
+
+    filetypes = ('webm', 'ogv', 'mp4')
+    mime = {'webm': 'video/webm',
+            'ogv': 'video/ogg; codecs="theora, vorbis"',
+            'mp4': 'video/mp4'}
+
+    videos = {}
+    for v in args:
+        try:
+            ext = v.rsplit('.', 1)[1].lower()
+        except IndexError:
+            # TODO: Perhaps we don't want to swallow this quietly in the future.
+            continue
+        if ext not in filetypes:
+            continue
+        videos[ext] = (v if not 'prefix' in kwargs else
+                       urlparse.urljoin(kwargs['prefix'], v))
+
+    if not videos:
+        return ''
+
+    # defaults
+    data = {
+        'w': 640,
+        'h': 360,
+        'autoplay': False,
+    }
+
+    # Flash fallback, if mp4 file on Mozilla Videos CDN.
+    data['flash_fallback'] = False
+    if 'mp4' in videos:
+        mp4_url = urlparse.urlparse(videos['mp4'])
+        if mp4_url.netloc.lower() in ('videos.mozilla.org', 'videos-cdn.mozilla.net'):
+            data['flash_fallback'] = mp4_url.path
+
+    data.update(**kwargs)
+    data.update(filetypes=filetypes, mime=mime, videos=videos)
+
+    return jinja2.Markup(jingo.env.get_template(
+        'mozorg/videotag.html').render(**data))
