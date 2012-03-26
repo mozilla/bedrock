@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import *
-from generics.views import page
+from util import page
 
 urlpatterns = patterns('',
     page("", "mozorg/home.html"),

@@ -57,14 +57,15 @@
     {% block content %}{% endblock %}
 
     {% block email_form %}
-      {% if not success %}
+      {% if not email_success %}
       <form class="billboard" id="footer-email-form" action="#footer-email-form" method="post">
+        <input type="hidden" name="newsletter-footer" value="Y" />
         {{ csrf() }}
 
-        {% if form.errors %}
-        {{ form.non_field_errors() }}
+        {% if email_form.errors %}
+        {{ email-form.non_field_errors() }}
 
-        {% for field in form %}
+        {% for field in email_form %}
         {{ field.errors }}
         {% endfor %}
         {% endif %}
@@ -73,16 +74,16 @@
           <h3 class="span4">Get mozilla updates</h3>
 
           <div class="span3">
-            <div class="field field-email {% if form.email.errors %}field-error{% endif %}">
-              {{ field_with_attrs(form.email, placeholder='YOUR EMAIL HERE') }}
+            <div class="field field-email {% if email_form.email.errors %}field-error{% endif %}">
+              {{ field_with_attrs(email_form.email, placeholder='YOUR EMAIL HERE') }}
             </div>
 
             <div class="field field-format">
-              {{ form.fmt }}
+              {{ email_form.fmt }}
             </div>
 
-            <div class="field field-privacy {% if form.privacy.errors%}field-error{% endif %}">
-              {{ form.privacy }}
+            <div class="field field-privacy {% if email_form.privacy.errors%}field-error{% endif %}">
+              {{ email_form.privacy }}
             </div>
           </div>
 
