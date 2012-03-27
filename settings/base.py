@@ -139,6 +139,9 @@ MINIFY_BUNDLES = {
             'css/landing/devices.less',
             'css/firefox/template.less'
         ),
+        '404': (
+            'css/404.less'
+        ),
     },
     'js': {
         'site': (
