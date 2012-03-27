@@ -56,6 +56,50 @@
 
     {% block content %}{% endblock %}
 
+    {% block email_form %}
+      {% if not email_success %}
+      <form class="billboard" id="footer-email-form" action="#footer-email-form" method="post">
+        <input type="hidden" name="newsletter-footer" value="Y" />
+        {{ csrf() }}
+
+        {% if email_form.errors %}
+        {{ email-form.non_field_errors() }}
+
+        {% for field in email_form %}
+        {{ field.errors }}
+        {% endfor %}
+        {% endif %}
+
+        <div class="row">
+          <h3 class="span4">Get mozilla updates</h3>
+
+          <div class="span3">
+            <div class="field field-email {% if email_form.email.errors %}field-error{% endif %}">
+              {{ field_with_attrs(email_form.email, placeholder='YOUR EMAIL HERE') }}
+            </div>
+
+            <div class="field field-format">
+              {{ email_form.fmt }}
+            </div>
+
+            <div class="field field-privacy {% if email_form.privacy.errors%}field-error{% endif %}">
+              {{ email_form.privacy }}
+            </div>
+          </div>
+
+          <div class="span3">
+            <input type="submit" value="Sign me up »" class="button-blue">
+          </div>
+
+        </div>
+      </form>
+      {% else %}
+      <div id="footer-email-form" class="thank">
+        <h3>Thank you for signing up!</h3>
+      </div>
+      {% endif %}
+    {% endblock %}
+
       </div><!-- close #wrapper -->
 
     {% block site_footer %}

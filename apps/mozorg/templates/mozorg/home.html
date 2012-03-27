@@ -147,45 +147,4 @@
 
 </div>
 
-{% if not success %}
-<form class="billboard" id="home-updates" action="#home-updates" method="post">
-{{ csrf() }}
-
-{% if form.errors %}
-  {{ form.non_field_errors() }}
-
-  {% for field in form %}
-    {{ field.errors }}
-  {% endfor %}
-{% endif %}
-
-  <div class="row">
-  <h3 class="span4">Get Mozilla updates</h3>
-
-  <div class="span3">
-    <div class="field field-email {% if form.email.errors %}field-error{% endif %}">
-      {{ field_with_attrs(form.email, placeholder='YOUR EMAIL HERE') }}
-    </div>
-
-    <div class="field field-format">
-      {{ form.fmt }}
-    </div>
-
-    <div class="field field-privacy {% if form.privacy.errors%}field-error{% endif %}">
-      {{ form.privacy }}
-    </div>
-  </div>
-
-  <div class="span3">
-    <input type="submit" value="Sign me up »" class="button-blue">
-  </div>
-
-  </div>
-</form>
-{% else %}
-<div class="container thank" id="home-updates">
-  <h3>Thank you for signing up!</h3>
-</div>
-{% endif %}
-
 {% endblock %}

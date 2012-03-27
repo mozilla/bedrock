@@ -1,14 +1,13 @@
 from django.conf.urls.defaults import *
-import views
+from util import page
 
 urlpatterns = patterns('',
-    url(r'^$', views.home, name='mozorg.home'),
+    page("", "mozorg/home.html"),
 
-    url(r'^about/$', views.about, name='mozorg.about'),
-    url(r'^button/$', views.button),
-    url(r'^channel/$', views.channel),
-    url(r'^sandstone/', views.sandstone),
-    url(r'^contribute/$', views.contribute, name='mozorg.contribute'),
-    url(r'^mission/$', views.mission, name='mozorg.mission'),
-    url(r'^projects/$', views.projects, name='mozorg.projects'),
+    page('about', 'mozorg/about.html'),
+    page('projects', 'mozorg/projects.html'),
+    page('button', 'mozorg/button.html'),
+    page('sandstone', 'mozorg/sandstone.html'),
+    page('contribute', 'mozorg/contribute.html'),
+    page('mission', 'mozorg/mission.html'),
 )
