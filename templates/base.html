@@ -64,10 +64,10 @@
           {{ csrf() }}
 
           {% if email_form.errors %}
-          {{ email-form.non_field_errors() }}
+          {{ email_form.non_field_errors()|safe }}
 
           {% for field in email_form %}
-          {{ field.errors }}
+          {{ field.errors|safe }}
           {% endfor %}
           {% endif %}
 
@@ -76,15 +76,15 @@
 
             <div class="span3">
               <div class="field field-email {% if email_form.email.errors %}field-error{% endif %}">
-                {{ field_with_attrs(email_form.email, placeholder='YOUR EMAIL HERE') }}
+                {{ field_with_attrs(email_form.email, placeholder='YOUR EMAIL HERE')|safe }}
               </div>
 
               <div class="field field-format">
-                {{ email_form.fmt }}
+                {{ email_form.fmt|safe }}
               </div>
 
               <div class="field field-privacy {% if email_form.privacy.errors%}field-error{% endif %}">
-                {{ email_form.privacy }}
+                {{ email_form.privacy|safe }}
               </div>
             </div>
 
