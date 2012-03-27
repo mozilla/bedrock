@@ -3,6 +3,10 @@
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}404: Page Not Found{% endblock %}
 
+{% block site_css %}
+  {{ css('404') }}
+{% endblock %}
+
 {% block content %}
 <div id="main-feature">
   {{ download_button('download', 'small') }}
