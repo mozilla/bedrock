@@ -1,14 +1,14 @@
 
-#wall section article #click-star {
+#wall section article .click-star {
     height: 160px;
     width: 162px;
     background: url(/media/img/firefox/technology/click-star.png);
     position: absolute;
-    top: 50px;
+    top: 10px;
     right: 150px;
 }
 
-#wall section article #click-star span {
+#wall section article .click-star span {
     font-family: MetaBlack,"Trebuchet MS",sans-serif;
     font-weight: bold;
     font-size: 18px;
@@ -25,7 +25,7 @@
 }
 
 #wall article.article {
-    padding: 40px 0;
+    padding: 0 0 40px 0;
     clear: both;
     overflow: auto;
     zoom: 1;
