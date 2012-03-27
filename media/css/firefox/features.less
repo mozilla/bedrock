@@ -2,88 +2,14 @@
 
 #main-feature {
     padding-bottom: @baseLine;
+    h1 {
+        .large;
+    }
     hgroup {
         .span(7);
     }
 }
 
-#main-feature #top-features {
-    .span(2);
-    .offset(1);
-    margin-top: @baseLine * 4;
-    p {
-        .small;
-    }
-}
-
-nav.menu-bar {
-    margin-bottom: @baseLine;
-    ul li a span {
-        font-size: 18px;
-    }
-}
-
-/* {{{ Top Features */
-
-#top-features h3 {
-    font-size: 18px;
-    margin: 0;
-    line-height: 1;
-    text-shadow: none;
-}
-
-#main-feature #top-features p {
-    font-size: 12px;
-    margin: 0;
-}
-
-#top-features ul {
-    margin: 5px 0 0 0;
-    zoom: 1;
-}
-
-#top-features ul li {
-    position: relative;
-    list-style: none;
-    margin: 0;
-    zoom: 1;
-}
-
-#top-features ul li a {
-    display: inline;
-    zoom: 1;
-}
-
-/* IE whitespace hack */
-#top-features ul li a {
-    display: ~"inline-block\9"
-}
-
-#top-features .top-feature-hover {
-    display: none;
-    position: absolute;
-    bottom: -23px;
-    left: -224px;
-    padding: 20px 30px 28px 35px;
-    width: 154px;
-    height: 84px;
-    border-radius: 15px;
-    -moz-border-radius: 15px;
-    background: url(/media/img/firefox/features/bubble.png);
-    background: ~"url(/media/img/firefox/features/bubble-256.png)\9"; /* IE8 and below */
-}
-
-#top-features .top-feature-hover p {
-    font-size: 11px;
-    color: #fff;
-}
-
-#top-features .top-feature-hover h3 {
-    margin: 0 0 6px 0;
-    color: #fff;
-}
-
-/* }}} */
 /* {{{ General Features */
 
 #content {
