@@ -1,3 +1,5 @@
+import os
+
 from django.conf.urls.defaults import url
 from session_csrf import anonymous_csrf
 from functools import wraps
@@ -36,7 +38,8 @@ def page(name, tmpl, **kwargs):
     pattern = r'^%s/$' % name if name else r'^$'
 
     # Set the name of the view to the template path replaced with dots
-    name = tmpl.rstrip(".html").replace('/', '.')
+    (base, ext) = os.path.splitext(tmpl)
+    name = base.replace('/', '.')
 
     return url(pattern,
                lambda request: page_view(request, tmpl, **kwargs),
