@@ -1,19 +1,25 @@
 from django.conf.urls.defaults import *
+from django.conf import settings
+from product_details import product_details
+
+from mozorg.util import page
 import views
 
 urlpatterns = patterns('',
-    url(r'^firefox/central/$', views.central, name='firefox.central'),
-    url(r'^firefox/customize/$', views.customize, name='firefox.customize'),
-    url(r'^firefox/features/$', views.features, name='firefox.features'),
-    url(r'^firefox/fx/$', views.fx, name='firefox.fx'),
-    url(r'^firefox/geolocation/$', views.geolocation, name='firefox.geolocation'),
-    url(r'^firefox/happy/$', views.happy, name='firefox.happy'),
-    url(r'^firefox/new/$', views.new, name='firefox.new'),
-    url(r'^firefox/organizations/faq/$', views.organizations_faq, name='firefox.organizations_faq'),
-    url(r'^firefox/organizations/$', views.organizations, name='firefox.organizations'),
-    url(r'^firefox/performance/$', views.performance, name='firefox.performance'),
-    url(r'^firefox/security/$', views.security, name='firefox.security'),
-    url(r'^firefox/speed/$', views.speed, name='firefox.speed'),
-    url(r'^firefox/technology/$', views.technology, name='firefox.technology'),
-    url(r'^firefox/update/$', views.update, name='firefox.update'),
+    page('firefox/central', 'firefox/central.html'),
+    page('firefox/customize', 'firefox/customize'),
+    page('firefox/features', 'firefox/features.html'),
+    page('firefox/fx', 'firefox/fx.html'),
+    page('firefox/geolocation', 'firefox/geolocation.html',
+         gmap_api_key=settings.GMAP_API_KEY),
+    page('firefox/happy', 'firefox/happy.html'),
+    page('firefox/new', 'firefox/new.html'),
+    page('firefox/organizations/faq', 'firefox/organizations/faq.html'),
+    page('firefox/organizations', 'firefox/organizations.html'),
+    page('firefox/performance', 'firefox/performance.html'),
+    page('firefox/security', 'firefox/security.html'),
+    page('firefox/speed', 'firefox/speed.html',
+         latest_version=product_details.versions['LATEST_FIREFOX_DEVEL_VERSION']),
+    page('firefox/technology', 'firefox/technology.html'),
+    page('firefox/update', 'firefox/update.html'),
 )
