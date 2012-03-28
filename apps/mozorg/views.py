@@ -17,7 +17,7 @@ def contribute(request):
         contribute_send(data)
         contribute_autorespond(request, data)
     
-        if data['optin']:
+        if data['newsletter']:
             # TODO: replace "something" with the actual name of the
             # newsletter
             basket.subscribe(data['email'], 'something')
@@ -76,14 +76,14 @@ def contribute_autorespond(request, data):
     }
 
     msgs = {
-        'Support': 'emails/support.html',
-        'QA': 'emails/qa.html',
-        'Add-ons': 'emails/addons.html',
-        'Marketing': 'emails/marketing.html',
-        'Students': 'emails/students.html',
-        'Documentation': 'emails/documentation.html',
-        'Firefox Suggestions': 'emails/suggestions.html',
-        ' ': 'emails/other.html'
+        'Support': 'emails/support.txt',
+        'QA': 'emails/qa.txt',
+        'Add-ons': 'emails/addons.txt',
+        'Marketing': 'emails/marketing.txt',
+        'Students': 'emails/students.txt',
+        'Documentation': 'emails/documentation.txt',
+        'Firefox Suggestions': 'emails/suggestions.txt',
+        ' ': 'emails/other.txt'
         }
 
     subject = 'Inquiry about Mozilla %s' % data['interest']

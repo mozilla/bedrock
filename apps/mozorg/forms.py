@@ -59,5 +59,5 @@ INTEREST_CHOICES = (('', 'Interest'),
 class ContributeForm(forms.Form):
     email = forms.EmailField(widget=EmailInput(attrs={'required':'true'}))
     privacy = forms.BooleanField(widget=PrivacyWidget)
-    optin = forms.BooleanField(required=False)
+    newsletter = forms.BooleanField(required=False)
     interest = forms.ChoiceField(choices=INTEREST_CHOICES)
