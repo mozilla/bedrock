@@ -1,19 +1,16 @@
-Hi there,
+Hello,
 
-Thank you for your inquiry about getting involved with the Mozilla Student Reps program. To learn more about the program and how to start representing Mozilla at your school, click here:
-
-https://wiki.mozilla.org/ReMo/Student_Reps
-
-Before you can get started, please complete the Student Reps registration form:
+Thank you for your inquiry about getting involved with the Mozilla Student Reps program. To learn how to start representing Mozilla at your college or university, please sign-up here:
 
 http://www.mozilla.org/en-US/newsletter/studentreps
 
-Once you submit the form, you are considered an official Student Rep and are able to start promoting Firefox and Mozilla products at your college or university. You will receive a newsletter twice monthly with important program updates and campaigns so make sure to look out for that.
+On the registration form, please opt-in to the newsletter which includes important program news and campaign updates.
 
-We look forward to keeping in touch through the channels listed on the Student Reps program wiki.
+Once you complete the registration form, you are considered an official Student Rep. You should receive a confirmation email with instructions to join the next Student Reps 101 online training.
 
-Good luck -- and thank you for representing Mozilla at your school!
+We look forward to keeping in touch with you through the Student Reps channels listed on the website: http://studentreps.mozilla.org
 
-Jason Haas
-Mozilla | Community Manager (Students)
+Good luck -- and thank you for promoting Mozilla and Firefox at your school.
+
+Mozilla Student Reps
 studentreps@mozilla.com

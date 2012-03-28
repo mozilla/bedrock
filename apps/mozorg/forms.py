@@ -59,5 +59,4 @@ class ContributeForm(forms.Form):
     privacy = forms.BooleanField(widget=PrivacyWidget)
     newsletter = forms.BooleanField(required=False)
     interest = forms.ChoiceField(choices=INTEREST_CHOICES)
-    comments = forms.CharField(widget=forms.widgets.Textarea(attrs={'rows':'', 'cols':''}),
-                               required=False)
+    comments = forms.CharField(widget=forms.widgets.Textarea(attrs={'rows':'', 'cols':''}))

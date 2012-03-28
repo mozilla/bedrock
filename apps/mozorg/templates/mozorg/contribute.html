@@ -51,15 +51,19 @@
 
   <ul class="errorlist container" id="help-email-errors">
     {% if form.email.errors %}
-    <li>Please enter a valid email address</li>
+    <li>Please enter a valid email address.</li>
     {% endif %}
 
     {% if form.privacy.errors %}
-    <li>You must agree to the privacy policy</li>
+    <li>You must agree to the privacy policy.</li>
     {% endif %}
 
     {% if form.interest.errors %}
-    <li>Please select an interest</li>
+    <li>Please select an area of interest.</li>
+    {% endif %}
+
+    {% if form.comments.errors %}
+    <li>Please tell us more about your interests.</li>
     {% endif %}
   </ul>
 {% endif %}

@@ -1,0 +1,14 @@
+Thanks for offering to help us build Mozilla's websites.
+
+Start by joining us in #webdev on IRC. http://mzl.la/irc_getting_started will help you get connected, and http://mzl.la/webdev_irc lists some WebDev channels.
+
+Next register an account on Bugzilla. Bugzilla can be daunting, so check out http://mzl.la/bugzilla_for_humans (15m video HIGHLY recommended).
+
+Now look for a WebDev mentored bug in http://mzl.la/webdev_mentored_bugs and contact the mentor - over IRC, email, or comment on the bug.
+
+Finally, with your mentor, fork the github repository for the bug's website and you're ready to start coding.
+
+This is a lot of information, so let me know if you have any questions as you get started.
+
+Regards,
+Luke

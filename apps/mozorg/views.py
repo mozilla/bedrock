@@ -35,6 +35,11 @@ def contribute_send(data):
         'Thunderbird': 'tb-kb@mozilla.com',
         'Students': 'studentreps@mozilla.com',
         'Research': 'diane+contribute@mozilla.com',
+        'Design': 'creative@mozilla.com',
+        'Security': 'security@mozilla.com',
+        'Docs': 'eshepherd@mozilla.com',
+        'Drumbeat': 'drumbeat@mozilla.com',
+        'Browser Choice': 'isandu@mozilla.com',
         'IT': 'cshields@mozilla.com',
         'Marketing': 'cnovak@mozilla.com',
         'Add-ons': 'atsay@mozilla.com'
@@ -72,6 +77,7 @@ def contribute_autorespond(request, data):
         'Thunderbird': 'jzickerman@mozilla.com',
         'Accessibility': 'jay@jaygarcia.com',
         'Firefox Suggestions': 'jay@jaygarcia.com',
+        'Webdev': 'lcrouch@mozilla.com',
         ' ': 'dboswell@mozilla.com'
     }
 
@@ -83,6 +89,7 @@ def contribute_autorespond(request, data):
         'Students': 'emails/students.txt',
         'Documentation': 'emails/documentation.txt',
         'Firefox Suggestions': 'emails/suggestions.txt',
+        'Webdev': 'emails/webdev.txt',
         ' ': 'emails/other.txt'
         }
 
