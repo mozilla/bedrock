@@ -506,8 +506,15 @@ nav.menu-bar {
     }
 }
 .js {
-    #form-details { display: none; }
-    .has-errors #form-details { display: block; }
+    #form-details,
+    .form-details { display: none; }
+    .has-errors #form-details,
+    .has-errors .form-details { display: block; }
+    p.form-details {
+        margin-top: 8px;
+        line-height: 100%;
+        color: @textColorSecondary;
+    }
 }
 
 #footer-email-errors {
