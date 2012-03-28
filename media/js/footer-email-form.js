@@ -1,10 +1,6 @@
 $(document).ready(function() {
 
-    $('#id_email').focus(function () {
-        $('#form-details').slideDown();
-    });
-
-    $('#footer_email_submit').focus(function () {
+    $('#id_email,#footer_email_submit,#id_interest').focus(function () {
         $('#form-details').slideDown();
     });
 
