@@ -232,20 +232,15 @@ def platform_img(url, **kwargs):
     attrs = ' '.join(('%s="%s"' % (attr, val)
                       for attr, val in kwargs.items()))
     url = path.join(settings.MEDIA_URL, url.lstrip('/'))
-    (root, ext) = path.splitext(url)
 
-    def url(plat):
-        return '%s%s%s' % (root,
-                           {'win': '',
-                            'osx': '-mac',
-                            'linux': '-linux'}[plat],
-                           ext)
+    # Don't download any image until the javascript sets it based on
+    # data-src so we can to platform detection. If no js, show the
+    # windows version.
+    markup = ('<img class="platform-img js" src="" data-src="%s" %s>'
+              '<noscript><img class="platform-img win" src="%s" %s></noscript>'
+              % (url, attrs, url, attrs))
 
-    imgs = ('<img class="platform-img %s" src="%s" %s>'
-            % (plat, url(plat), attrs)
-            for plat in ('win', 'osx', 'linux'))
-
-    return jinja2.Markup(''.join(imgs))
+    return jinja2.Markup(markup)
 
 
 @jingo.register.function

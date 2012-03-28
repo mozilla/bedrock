@@ -156,14 +156,14 @@ MINIFY_BUNDLES = {
         ),
         'common': (
             'js/libs/jquery-1.7.1.min.js',
-            'js/download.js',
+            'js/global.js',
         ),
         'expanders': (
             'js/mozilla-expanders.js',
         ),
         'firefox': (
             'js/libs/jquery-1.7.1.min.js',
-            'js/download.js',
+            'js/global.js',
             'js/nav-main.js',
         ),
         'firefox_central': (
@@ -204,7 +204,7 @@ MINIFY_BUNDLES = {
             'js/libs/jquery-1.4.4.min.js',
             'js/libs/jquery-css-transform.js',
             'js/libs/jquery-animate-css-rotate-scale.js',
-            'js/download.js',
+            'js/global.js',
             'js/nav-main.js',
             'js/libs/jquery.cycle.all.js',
             'js/libs/jquery.ba-hashchange.min.js',

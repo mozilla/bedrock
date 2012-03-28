@@ -31,5 +31,5 @@
     }
 
     init();
-    window.site = site;
+    window.site = site;    
 })();
