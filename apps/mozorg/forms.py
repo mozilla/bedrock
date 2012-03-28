@@ -21,7 +21,7 @@ class PrivacyWidget(widgets.CheckboxInput):
         attrs['required'] = 'true'
         input_txt = super(PrivacyWidget, self).render(name, value, attrs)
         return mark_safe(
-            '<label for="privacy-check" class="privacy-check-label">'
+            '<label for="id_privacy" class="privacy-check-label">'
             '%s '
             '<span class="title">I agree to the '
             '<a href="/en-US/privacy-policy">Privacy Policy</a>'
@@ -37,7 +37,7 @@ class NewsletterForm(forms.Form):
                             initial='H')
     privacy = forms.BooleanField(widget=PrivacyWidget)
 
-INTEREST_CHOICES = (('', 'Interest'),
+INTEREST_CHOICES = (('', 'Area of Interest'),
                     ('Support', 'Helping Users'),
                     ('Localization', 'Localization'),
                     ('QA', 'Testing and QA'),

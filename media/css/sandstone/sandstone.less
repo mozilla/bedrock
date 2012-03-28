@@ -167,6 +167,7 @@ code {
 /* }}} */
 /* {{{ Forms */
 
+textarea,
 input[type=email],
 input[type=password],
 input[type=text] {
@@ -182,6 +183,9 @@ input[type=text] {
     .transition(all linear .1s);
 }
 
+textarea { height: auto; }
+
+textarea:focus,
 input[type=email]:focus,
 input[type=password]:focus,
 input[type=text]:focus {
