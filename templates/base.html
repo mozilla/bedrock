@@ -66,9 +66,15 @@
           {% if email_form.errors %}
           {{ email_form.non_field_errors()|safe }}
 
-          {% for field in email_form %}
-          {{ field.errors|safe }}
-          {% endfor %}
+          <ul class="errorlist">
+            {% if email_form.email.errors %}
+            <li>Please enter a valid email address</li>
+            {% endif %}
+
+            {% if email_form.privacy.errors %}
+            <li>You must agree to the privacy policy</li>
+            {% endif %}
+          </ul>
           {% endif %}
 
           <div class="row">

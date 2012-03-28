@@ -17,7 +17,7 @@ def handle_newsletter(request):
     if is_footer_form:
         if form.is_valid():
             data = form.cleaned_data
-            basket.subscribe(data['email'], 'app-dev', format=data['fmt'])
+            basket.subscribe(data['email'], 'mozilla-and-you', format=data['fmt'])
             success = True
 
     return {'email_form': form,

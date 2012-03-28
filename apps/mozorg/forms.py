@@ -31,23 +31,31 @@ class EmailInput(widgets.TextInput):
     input_type = 'email'
 
 class NewsletterForm(forms.Form):
-    email = forms.EmailField(label='hello', required=False, 
-                             widget=EmailInput(attrs={'required':'true'}))
+    email = forms.EmailField(widget=EmailInput(attrs={'required':'true'}))
     fmt = forms.ChoiceField(widget=forms.RadioSelect(renderer=SideRadios),
                             choices=FORMATS,
                             initial='H')
-    privacy = forms.BooleanField(widget=PrivacyWidget, required=False)
+    privacy = forms.BooleanField(widget=PrivacyWidget)
 
-    def ensure(self, name):
-        data = self.cleaned_data.get(name) or None
-        if data in EMPTY_VALUES:
-            raise forms.ValidationError("%s is required" % name.title())
-    
-    def clean_email(self):
-        self.ensure('email')
-        return self.cleaned_data['email']
+INTEREST_CHOICES = (('', 'Interest'),
+                    ('Support', 'Helping Users'),
+                    ('Localization', 'Localization'),
+                    ('QA', 'Testing and QA'),
+                    ('Coding', 'Coding'),
+                    ('Add-ons', 'Add-ons'),
+                    ('Marketing', 'Marketing'),
+                    ('Students', 'Student Reps'),
+                    ('Webdev', 'Web Development'),
+                    ('Documentation', 'Developer Documentation'),
+                    ('IT', 'Systems Administration'),
+                    ('Research', 'User Research'),
+                    ('Thunderbird', 'Thunderbird'),
+                    ('Accessibility', 'Accessibility'),
+                    ('Firefox Suggestions', 'Firefox Suggestions'),
+                    (' ', 'Other'))
 
-    def clean_privacy(self):
-        self.ensure('privacy')
-        return self.cleaned_data['privacy']
-
+class ContributeForm(forms.Form):
+    email = forms.EmailField(widget=EmailInput(attrs={'required':'true'}))
+    privacy = forms.BooleanField(widget=PrivacyWidget)
+    newsletter = forms.BooleanField(required=False)
+    interest = forms.ChoiceField(choices=INTEREST_CHOICES)
