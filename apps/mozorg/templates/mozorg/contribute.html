@@ -80,30 +80,66 @@
   </p>
 </section>
 
-<form action="#" id="help-form" class="billboard">
-  <h3>Want to help?</h3>
-  <p>Send us a note and we can get you started right away.</p>
-  <input type="email" placeholder="YOUR EMAIL ADDRESSS">
-  <select>
-    <option disabled="disabled" selected="selected" value="">Area of interest</option>
-    <option>Helping Users</option>
-    <option>Localization</option>
-    <option>Testing and QA</option>
-    <option>Coding</option>
-    <option>Add-ons</option>
-    <option>Marketing</option>
-    <option>Student Reps</option>
-    <option>Web Development</option>
-    <option>Developer Documentation</option>
-    <option>Systems Administration</option>
-    <option>User Research</option>
-    <option>Thunderbird</option>
-    <option>Accessibility</option>
-    <option>Firefox Suggestions</option>
-    <option>Other</option>
-  </select>
-  <input type="submit" class="button-blue" value="Submit">
-</form>
+<div class="billboard">
+  {% if not success %}
+  <form action="#help-form" id="help-form" method="post">
+    {% if form.errors %}
+      {{ form.non_field_errors()|safe }}
+
+      <ul class="errorlist">
+        {% if form.email.errors %}
+        <li>Please enter a valid email address</li>
+        {% endif %}
+
+        {% if form.privacy.errors %}
+        <li>You must agree to the privacy policy</li>
+        {% endif %}
+
+        {% if form.interest.errors %}
+        <li>Please select an interest</li>
+        {% endif %}
+      </ul>
+    {% endif %}
+
+    {{ csrf() }}
+    <h3>Want to help?</h3>
+    <p>Send us a note and we can get you started right away.</p>
+    {{ field_with_attrs(form.email, placeholder='YOUR EMAIL HERE')|safe }}
+    {{ form.interest }}
+    <!-- <select name="interest"> -->
+    <!--   <option disabled="disabled" selected="selected" value="">Area of interest</option> -->
+    <!--   <option>Helping Users</option> -->
+    <!--   <option>Localization</option> -->
+    <!--   <option>Testing and QA</option> -->
+    <!--   <option>Coding</option> -->
+    <!--   <option>Add-ons</option> -->
+    <!--   <option>Marketing</option> -->
+    <!--   <option>Student Reps</option> -->
+    <!--   <option>Web Development</option> -->
+    <!--   <option>Developer Documentation</option> -->
+    <!--   <option>Systems Administration</option> -->
+    <!--   <option>User Research</option> -->
+    <!--   <option>Thunderbird</option> -->
+    <!--   <option>Accessibility</option> -->
+    <!--   <option>Firefox Suggestions</option> -->
+    <!--   <option>Other</option> -->
+    <!-- </select> -->
+    <input type="submit" class="button-blue" value="Submit">
+    <div>
+      {{ form.optin }} I want to optin
+    </div>
+
+    <div class="field field-privacy {% if form.privacy.errors%}field-error{% endif %}">
+      {{ form.privacy|safe }}
+    </div>
+
+  </form>
+  {% else %}
+    <div id="help-form" class="thank">
+    <h3>Thank you for your submission!</h3>
+    </div>
+  {% endif %}
+</div>
 
   <section id="opportunities">
 
