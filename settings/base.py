@@ -172,6 +172,7 @@ MINIFY_BUNDLES = {
             'js/libs/jquery-1.7.1.min.js',
             'js/download.js',
             'js/nav-main.js',
+            'js/footer-email-form.js',
         ),
         'firefox_central': (
             'js/mozilla-video-tools.js',

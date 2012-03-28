@@ -76,9 +76,11 @@
         <form class="billboard{% if email_form.errors %} has-errors{% endif%}"
           id="footer-email-form" action="#footer-email-form" method="post">
           <input type="hidden" name="newsletter-footer" value="Y" />
+          <input type="hidden" name="newsletter"
+            value="{% block email_form_newsletter %}about-mozilla{% endblock %}" />
           {{ csrf() }}
 
-          <h3>Get mozilla updates</h3>
+          <h3>{% block email_form_title %}Get Mozilla updates{% endblock %}</h3>
 
           <div class="form-contents">
             <div class="field field-email {% if email_form.email.errors %}field-error{% endif %}">
