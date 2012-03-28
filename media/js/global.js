@@ -39,8 +39,7 @@ function init_platform_imgs() {
         var el = $(this);
         var parts = el.data('src').split('.');
         var base = parts.slice(0, parts.length-1);
-        var final_ = base + suffix + '.' + parts[parts.length-1];
-        this.src = final_;
+        this.src = base + suffix + '.' + parts[parts.length-1];
         el.addClass(site.platform);
     });
 }
