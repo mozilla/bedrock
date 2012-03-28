@@ -78,7 +78,7 @@
     </div>
     <div class="form-column-3">
       <div class="field field-interest">
-        {{ form.interest }}
+        {{ form.interest|safe }}
       </div>
     </div>
     <div class="form-submit">
@@ -91,7 +91,7 @@
     </div>
     <div class="form-column-2">
       <div class="field field-comments form-details">
-        <textarea placeholder="SHARE YOUR THOUGHTS, OR ASK US A QUESTION"></textarea>
+        {{ field_with_attrs(form.comments, placeholder='SHARE YOUR THOUGHTS, OR ASK US A QUESTION')|safe }}
       </div>
     </div>
     <div class="form-column-3">
