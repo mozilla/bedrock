@@ -97,6 +97,8 @@ def contribute_autorespond(request, data):
     else:
         return False
 
+    msg = msg.replace('\n', '\r\n')
+
     if data['interest'] in replies:
         headers = {'Reply-To': replies[data['interest']]}
 
