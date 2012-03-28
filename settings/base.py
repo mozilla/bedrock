@@ -159,6 +159,12 @@ MINIFY_BUNDLES = {
             'js/global.js',
             'js/footer-email-form.js',
         ),
+        'contribute': (
+            'js/contribute-page.js',
+            'js/mozilla-input-placeholder.js',
+            'js/mozilla-pager.js',
+            'js/mozilla-video-tools.js',
+        ),
         'expanders': (
             'js/mozilla-expanders.js',
         ),
