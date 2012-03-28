@@ -706,15 +706,10 @@ px      68    160    252    344    436    */
 /* {{{ Firefox site functionality 
        This can be put into its own CSS file if needed. */
 
-.platform-img {
+// Don't display the dynamic platform images when js is disabled
+// because the ones in the noscript tag will be shown
+.no-js .platform-img.js {
     display: none;
-}
-
-.osx img.osx,
-.mac img.osx,
-.linux img.linux,
-.windows img.win {
-    display: inline;
 }
 
 /* }}} */
