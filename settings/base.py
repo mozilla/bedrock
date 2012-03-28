@@ -157,6 +157,7 @@ MINIFY_BUNDLES = {
         'common': (
             'js/libs/jquery-1.7.1.min.js',
             'js/download.js',
+            'js/footer-email-form.js',
         ),
         'expanders': (
             'js/mozilla-expanders.js',
