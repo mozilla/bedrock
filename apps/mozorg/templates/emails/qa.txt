@@ -1,0 +1,19 @@
+Thanks for your interest in helping with testing.
+
+To get started, download a development build of Firefox and then
+join us for the next Test Day.
+
+You can download development builds at
+
+https://www.mozilla.com/firefox/channel/
+
+We hold Test Days every Friday online from 9am to 5pm PDT.  You
+can join by clicking on this link.
+
+http://chat.mibbit.com/?server=irc.mozilla.org&channel=#testday
+
+We look forward to talking with you more soon.
+
+Juan Becerra
+Mozilla QA
+http://quality.mozilla.org/

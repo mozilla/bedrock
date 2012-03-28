@@ -1,0 +1,34 @@
+Hello,
+
+Thank you for your interest in Mozilla.
+
+For more information about add-on development, we recommend taking a look at the Add-on Developer Hub. This site contains documentation, tools and information on how to get in touch with other developers.
+
+https://addons.mozilla.org/developers/
+
+To get started developing add-ons, check out one of the following tutorials:
+
+Builder & SDK: The quickest and easiest way to get started
+https://addons.mozilla.org/en-US/developers/builder
+
+XUL School: A comprehensive tutorial for more advanced developers
+https://developer.mozilla.org/en/XUL_School
+
+You can post questions and connect with other add-ons developers in the Add-ons Forum:
+
+https://forums.mozilla.org/addons/
+
+If you are interested in testing add-ons, you can join the quality team:
+
+http://quality.mozilla.org/
+
+It's also helpful to install the Add-ons Compatibility Reporter and use it to let us know when an add-on is not working properly:
+
+https://addons.mozilla.org/firefox/addon/add-on-compatibility-reporter
+
+If you have any additional questions, please feel free to email us.
+
+Regards,
+
+Amy Tsay
+Add-ons Community Manager

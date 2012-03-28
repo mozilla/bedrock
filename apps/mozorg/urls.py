@@ -1,5 +1,6 @@
 from django.conf.urls.defaults import *
 from util import page
+import views
 
 urlpatterns = patterns('',
     page("", "mozorg/home.html"),
@@ -8,6 +9,7 @@ urlpatterns = patterns('',
     page('projects', 'mozorg/projects.html'),
     page('button', 'mozorg/button.html'),
     page('sandstone', 'mozorg/sandstone.html'),
-    page('contribute', 'mozorg/contribute.html'),
     page('mission', 'mozorg/mission.html'),
+
+    url('^contribute/$', views.contribute, name='mozorg.contribute'),
 )
