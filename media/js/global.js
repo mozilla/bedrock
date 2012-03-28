@@ -20,7 +20,18 @@ function init_download_links() {
     $('.download-link').each(function() {
         var el = $(this);
         var link = el.data('direct-link');
-        el.click(function() { trigger_ie_download(link); });
+        el.click(function() {
+            dcsMultiTrack('DCS.dcssip',
+                          'www.mozilla.org',
+                          'DCS.dcsuri',
+                          window.location.pathname,
+                          'WT.ti', 'Link: Get Firefox',
+                          'WT.dl', 99,
+                          'WT.nv', 'Content',
+                          'WT.ac', 'Download Firefox');
+
+            trigger_ie_download(link);
+        });
     });
 }
 
