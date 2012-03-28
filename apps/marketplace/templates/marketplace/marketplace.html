@@ -88,7 +88,7 @@
 
   <div class="span5">
     <div class="{% if form.email.errors %}field-error{% endif %}">
-      {{ field_with_attrs(form.email, placeholder='YOUR EMAIL HERE') }}
+      {{ field_with_attrs(form.email, placeholder='YOUR EMAIL HERE')|safe }}
     </div>
 
     <!-- <select name="interest" id="apps-interest"> -->
@@ -100,11 +100,11 @@
     <!-- </select> -->
 
     <div>
-      {{ form.fmt }}
+      {{ form.fmt|safe }}
     </div>
 
     <div class="{% if form.privacy.errors%}field-error{% endif %}">
-      {{ form.privacy }}
+      {{ form.privacy|safe }}
     </div>
   </div>
 
