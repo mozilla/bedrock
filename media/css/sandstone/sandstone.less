@@ -176,7 +176,7 @@ input[type=text] {
     border-style: solid;
     border-width: 1px;
     @shadow: 0 2px 1px rgba(0,0,0,0.1) inset;
-    padding: 0  @baseLine / 3;
+    padding: (@baseLine / 6)  (@baseLine / 3);
     .border-radius(6px);
     .box-shadow(@shadow);
     .transition(all linear .1s);
@@ -197,12 +197,12 @@ input[type=text]:focus {
 
 .errorlist {
     margin: 0;
+    .open-sans;
+    color: #c00;
 
     li {
         list-style-type: none;
-        .open-sans;
         margin: 0;
-        color: #c00;
     }
 }
 
@@ -459,10 +459,61 @@ nav.menu-bar {
 /* {{{ Footer Email Form */
 
 #footer-email-form {
-    .billboard;
     padding-top: @baseLine;
     padding-bottom: @baseLine;
+    margin-bottom: 0;
+
+    h3 {
+        .span(3);
+        margin-left: 0;
+        padding-top: 4px;
+    }
+
+    .form-contents {
+        .span(4);
+    }
+
+    .form-submit {
+        .span(3);
+    }
+
+    .field {
+        padding: 4px 0;
+    }
+
+    input[type=email] {
+        width: (@gridColumnWidth * 3) + (@gridGutterWidth * 2) - 20px;
+        margin-top: 2px;
+    }
+
+    input[type=submit] {
+        width: (@gridColumnWidth * 3) + (@gridGutterWidth * 2);
+        font-size: 18px;
+    }
+
 }
+
+#footer-email-form.thank {
+    h3 {
+        width: auto;
+        margin: auto;
+        padding: 0;
+        float: none;
+    }
+}
+.js {
+    #form-details { display: none; }
+    .has-errors #form-details { display: block; }
+}
+
+#footer-email-errors {
+    .container;
+    background: #AF3232;
+    color: #fff;
+    padding-top: @baseLine / 2;
+    padding-bottom: @baseLine / 2;
+}
+
 
 /* }}} */
 /* {{{ Footer */

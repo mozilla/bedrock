@@ -1,4 +1,5 @@
-@import "sandstone/sandstone.less";
+@import "sandstone/variables.less";
+@import "sandstone/mixins.less";
 
 /* {{{ Main Feature */
 
@@ -38,13 +39,12 @@
             width: @gridColumnWidth + (@gridGutterWidth);
             padding: 0;
             text-align: center;
-            .small;
-            span {
+            small {
                 display: block;
                 padding: 0 6px;
                 border-left: 1px dotted @borderColor;
             }
-            &:first-child span {
+            &:first-child small {
                 border: 0;
             }
         }
@@ -186,38 +186,6 @@
         background-position: -400px -600px;
         h4 { color: #669d28; }
     }
-}
-
-/* }}} */
-/* {{{ Email Form */
-
-.thank,
-#home-updates {
-    padding-top: @baseLine;
-    padding-bottom: @baseLine;
-    margin-bottom: 0;
-    margin-top: 0;
-
-    label.privacy-check-label {
-        display: block;
-        margin: 6px auto 6px;
-    }
-
-    .privacy-check-label {
-        margin-right: @baseLine;
-    }
-
-    input[type=email] {
-        margin: 8px 0;
-        width: (@gridColumnWidth * 3) + (@gridGutterWidth * 2) - 18px;
-    }
-
-    .button-blue {
-        width: (@gridColumnWidth * 3) + (@gridGutterWidth *2);
-        padding: 0;
-        font-size: 18px;
-    }
-
 }
 
 /* }}} */

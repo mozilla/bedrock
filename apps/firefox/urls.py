@@ -7,7 +7,7 @@ import views
 
 urlpatterns = patterns('',
     page('firefox/central', 'firefox/central.html'),
-    page('firefox/customize', 'firefox/customize'),
+    page('firefox/customize', 'firefox/customize.html'),
     page('firefox/features', 'firefox/features.html'),
     page('firefox/fx', 'firefox/fx.html'),
     page('firefox/geolocation', 'firefox/geolocation.html',

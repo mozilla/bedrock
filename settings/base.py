@@ -139,8 +139,8 @@ MINIFY_BUNDLES = {
             'css/landing/devices.less',
             'css/firefox/template.less'
         ),
-        '404': (
-            'css/404.less'
+        'page_not_found': (
+            'css/page-not-found.less',
         ),
     },
     'js': {
@@ -157,6 +157,7 @@ MINIFY_BUNDLES = {
         'common': (
             'js/libs/jquery-1.7.1.min.js',
             'js/global.js',
+            'js/footer-email-form.js',
         ),
         'expanders': (
             'js/mozilla-expanders.js',
