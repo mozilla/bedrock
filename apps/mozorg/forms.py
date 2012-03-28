@@ -31,8 +31,6 @@ class EmailInput(widgets.TextInput):
     input_type = 'email'
 
 class NewsletterForm(forms.Form):
-    # Email and privacy are required but enforced in our custom clean
-    # methods
     email = forms.EmailField(widget=EmailInput(attrs={'required':'true'}))
     fmt = forms.ChoiceField(widget=forms.RadioSelect(renderer=SideRadios),
                             choices=FORMATS,
