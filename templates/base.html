@@ -78,7 +78,6 @@
           <input type="hidden" name="newsletter-footer" value="Y" />
           <input type="hidden" name="newsletter"
             value="{% block email_form_newsletter %}about-mozilla{% endblock %}" />
-          {{ csrf() }}
 
           <h3>{% block email_form_title %}Get Mozilla updates{% endblock %}</h3>
 

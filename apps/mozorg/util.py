@@ -1,7 +1,7 @@
 import os
 
 from django.conf.urls.defaults import url
-from session_csrf import anonymous_csrf
+from django.views.decorators.csrf import csrf_exempt
 from functools import wraps
 
 import basket
@@ -23,8 +23,6 @@ def handle_newsletter(request):
     return {'email_form': form,
             'email_success': success}
 
-
-@anonymous_csrf
 def page_view(request, tmpl, **kwargs):
     ctx = kwargs
     ctx.update(handle_newsletter(request))
@@ -41,6 +39,10 @@ def page(name, tmpl, **kwargs):
     (base, ext) = os.path.splitext(tmpl)
     name = base.replace('/', '.')
 
-    return url(pattern,
-               lambda request: page_view(request, tmpl, **kwargs),
-               name=name)
+    # we don't have a caching backend yet, so no csrf (it's just a
+    # newsletter form anyway)
+    @csrf_exempt
+    def _view(request):
+        return page_view(request, tmpl, **kwargs)
+
+    return url(pattern, _view, name=name)

@@ -1,13 +1,13 @@
 import l10n_utils
 from django.conf import settings
 from django.core.validators import email_re
-from session_csrf import anonymous_csrf
+from django.views.decorators.csrf import csrf_exempt
 
 import basket
 
 from mozorg.forms import NewsletterForm
 
-@anonymous_csrf
+@csrf_exempt
 def marketplace(request):
     success = False
     form = NewsletterForm(request.POST or None)

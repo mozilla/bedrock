@@ -1,5 +1,5 @@
 from django.core.mail import EmailMessage
-from session_csrf import anonymous_csrf
+from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 
 import basket
@@ -7,7 +7,7 @@ import l10n_utils
 import jingo
 from forms import ContributeForm
 
-@anonymous_csrf
+@csrf_exempt
 def contribute(request):
     success = False
     form = ContributeForm(request.POST or None)
