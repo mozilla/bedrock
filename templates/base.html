@@ -60,17 +60,19 @@
       {% if email_form %}
         {% if not email_success %}
           {% if email_form.errors %}
-          {{ email_form.non_field_errors()|safe }}
+          <div id="footer-email-errors">
+            {{ email_form.non_field_errors()|safe }}
 
-          <ul class="errorlist" id="footer-email-errors">
-            {% if email_form.email.errors %}
-            <li>Please enter a valid email address</li>
-            {% endif %}
+            <ul class="errorlist">
+              {% if email_form.email.errors %}
+              <li>Please enter a valid email address</li>
+              {% endif %}
 
-            {% if email_form.privacy.errors %}
-            <li>You must agree to the privacy policy</li>
-            {% endif %}
-          </ul>
+              {% if email_form.privacy.errors %}
+              <li>You must agree to the privacy policy</li>
+              {% endif %}
+            </ul>
+          </div>
           {% endif %}
 
         <form class="billboard{% if email_form.errors %} has-errors{% endif%}"

@@ -18,9 +18,9 @@ def contribute(request):
         contribute_autorespond(request, data)
     
         if data['newsletter']:
-            # TODO: replace "something" with the actual name of the
-            # newsletter
-            basket.subscribe(data['email'], 'something')
+            try:
+                basket.subscribe(data['email'], 'about-mozilla')
+            except basket.BasketException, e: pass
 
         success = True
 
@@ -42,8 +42,8 @@ def contribute_send(data):
 
     from_ = 'contribute-form@mozilla.org'
     subject = 'Inquiry about Mozilla %s' % data['interest']
-    msg = ("Email: %s\r\nArea of Interest: %s\r\n"
-           % (data['email'], data['interest']))
+    msg = ("Email: %s\r\nArea of Interest: %s\r\nComment: %s\r\n"
+           % (data['email'], data['interest'], data['comments']))
     headers = {'Reply-To': data['email']}
 
     to = ['contribute@mozilla.org']

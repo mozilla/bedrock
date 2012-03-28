@@ -16,9 +16,16 @@ def handle_newsletter(request):
                       'newsletter-footer' in request.POST)
     if is_footer_form:
         if form.is_valid():
+            newsletter = request.POST['newsletter']
             data = form.cleaned_data
-            basket.subscribe(data['email'], 'mozilla-and-you', format=data['fmt'])
-            success = True
+
+            try:
+                basket.subscribe(data['email'], newsletter, format=data['fmt'])
+                success = True
+            except basket.BasketException, e:
+                msg = ("We are sorry, but there was a problem with our system. "
+                       "Please try again later!")
+                form.errors['__all__'] = form.error_class([msg])
 
     return {'email_form': form,
             'email_success': success}
