@@ -96,7 +96,7 @@
     </div>
     <div class="form-column-2">
       <div class="field field-comments form-details">
-        {{ field_with_attrs(form.comments, placeholder='SHARE YOUR THOUGHTS, OR ASK US A QUESTION')|safe }}
+        {{ field_with_attrs(form.comments, placeholder='Hi, I’m interested in…')|safe }}
       </div>
     </div>
     <div class="form-column-3">
@@ -233,9 +233,9 @@
           // ]]></script>
           <section>
             {% if not newsletter_success %}
-              <form action="#newsletter" method="post">
+              <form action="#newsletter" method="post" id="newsletter-form">
                 <input type="hidden" name="newsletter-form" value="Y" />
-
+                <p>Sign up for a weekly newsletter that is full of community news and contribution opportunities.</p>
                 {% if newsletter_form.errors %}
                   {{ newsletter_form.non_field_errors()|safe }}
 
@@ -250,12 +250,12 @@
                   </ul>
                 {% endif %}
 
-                <div>Email: {{ field_with_attrs(newsletter_form.email, placeholder='YOUR EMAIL HERE')|safe }}</div>
-                <div>Country: {{ newsletter_form.country }}</div>
-                <div>Format: {{ newsletter_form.fmt }}</div>
-                <div>{{ newsletter_form.privacy }}</div>
-                <input name="test-submit" type="submit" value="Subscribe" />
-                We will only send you Mozilla-related information.
+                <div class="field field-email">{{ field_with_attrs(newsletter_form.email, placeholder='YOUR EMAIL HERE')|safe }}</div>
+                <div class="field field-country">{{ newsletter_form.country|safe }}</div>
+                <div class="field field-format">{{ newsletter_form.fmt|safe }}</div>
+                <div class="field field-privacy">{{ newsletter_form.privacy|safe }}</div>
+                <div class="field field-submit"><input name="test-submit" type="submit" value="Subscribe" class="button-blue" /></div>
+                <small>We will only send you Mozilla-related information.</small>
               </form>
             {% else %}
             <h4>Thank you!</h4>
