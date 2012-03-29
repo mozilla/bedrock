@@ -55,7 +55,6 @@ def contribute(request):
             data = newsletter_form.cleaned_data
 
             try:
-                raise basket.BasketException("UHOH")
                 basket.subscribe(data['email'],
                                  'about-mozilla',
                                  format=data['fmt'],
