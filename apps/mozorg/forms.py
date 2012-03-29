@@ -4,6 +4,8 @@ from django.forms import widgets
 from django.utils.safestring import mark_safe
 from django.core.validators import EMPTY_VALUES
 
+from product_details import product_details
+
 FORMATS = (('H', 'HTML'), ('T', 'Text'))
 
 class SideRadios(widgets.RadioFieldRenderer):
@@ -22,11 +24,13 @@ class PrivacyWidget(widgets.CheckboxInput):
         attrs['required'] = 'true'
         input_txt = super(PrivacyWidget, self).render(name, value, attrs)
         return mark_safe(
-            '<label for="id_privacy" class="privacy-check-label">'
+            '<label for="%s" class="privacy-check-label">'
             '%s '
             '<span class="title">I agree to the '
             '<a href="/en-US/privacy-policy">Privacy Policy</a>'
-            '</span></label>') % input_txt
+            '</span></label>' 
+            % (attrs['id'], input_txt)
+         )
 
 class EmailInput(widgets.TextInput):
     input_type = 'email'
@@ -37,6 +41,19 @@ class NewsletterForm(forms.Form):
                             choices=FORMATS,
                             initial='H')
     privacy = forms.BooleanField(widget=PrivacyWidget)
+
+class NewsletterCountryForm(NewsletterForm):
+    def __init__(self, locale, *args, **kwargs):
+        regions = product_details.get_regions(locale)
+        regions = sorted(regions.iteritems(), key=lambda x: x[1])
+        locale = locale.lower()
+
+        if locale.find('-') != -1:
+            locale = locale.split('-')[1]
+
+        super(NewsletterCountryForm, self).__init__(*args, **kwargs)
+        self.fields['country'] = forms.ChoiceField(choices=regions,
+                                                   initial=locale)
 
 INTEREST_CHOICES = (('', 'Hi, I’m interested in…'),
                     ('Support', 'Helping Users'),

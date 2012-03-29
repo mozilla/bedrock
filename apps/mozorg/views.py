@@ -1,33 +1,81 @@
 from django.core.mail import EmailMessage
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
+import jingo
+from product_details import product_details
 
 import basket
 import l10n_utils
-import jingo
-from forms import ContributeForm
+from forms import ContributeForm, NewsletterCountryForm
 
 @csrf_exempt
 def contribute(request):
+    def has_contribute_form():
+        return (request.method == 'POST' and
+                'contribute-form' in request.POST)
+
+    def has_newsletter_form():
+        return (request.method == 'POST' and
+                'newsletter-form' in request.POST)
+
+
+    locale = getattr(request, 'locale', 'en-US')
+
     success = False
-    form = ContributeForm(request.POST or None)
+    newsletter_success = False
 
-    if form.is_valid():
-        data = form.cleaned_data
-        contribute_send(data)
-        contribute_autorespond(request, data)
-    
-        if data['newsletter']:
+    print request.POST
+
+    # This is ugly, but we need to handle two forms. I would love if
+    # these forms could post to separate pages and get redirected
+    # back, but we're forced to keep the error/success workflow on the
+    # same page. Please change this.
+    if has_contribute_form():
+        form = ContributeForm(request.POST)
+
+        if form.is_valid():
+            data = form.cleaned_data
+            contribute_send(data)
+            contribute_autorespond(request, data)
+
+            if data['newsletter']:
+                try:
+                    basket.subscribe(data['email'], 'about-mozilla')
+                except basket.BasketException, e: pass
+
+            success = True
+    else:
+        form = ContributeForm()
+
+    if has_newsletter_form():
+        newsletter_form = NewsletterCountryForm(locale,
+                                                request.POST,
+                                                prefix='newsletter')
+        if newsletter_form.is_valid():
+            data = newsletter_form.cleaned_data
+
             try:
-                basket.subscribe(data['email'], 'about-mozilla')
-            except basket.BasketException, e: pass
-
-        success = True
-
+                raise basket.BasketException("UHOH")
+                basket.subscribe(data['email'],
+                                 'about-mozilla',
+                                 format=data['fmt'],
+                                 country=data['country'])
+                newsletter_success = True
+            except basket.BasketException, e:
+                msg = newsletter_form.error_class(
+                    ['We apologize, but an error occurred in our system.'
+                     'Please try again later.']
+                )
+                newsletter_form.errors['__all__'] = msg
+    else:
+        newsletter_form = NewsletterCountryForm(locale, prefix='newsletter')
+                
     return l10n_utils.render(request, 
                              'mozorg/contribute.html',
                              {'form': form,
-                              'success': success})
+                              'success': success,
+                              'newsletter_form': newsletter_form,
+                              'newsletter_success': newsletter_success})
 
 def contribute_send(data):
     ccs = {

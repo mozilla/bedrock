@@ -48,6 +48,8 @@
 {% if not success %}
 <form class="billboard{% if form.errors %} has-errors{% endif%}"
   action="#help-form" id="help-form" method="post">
+  <input type="hidden" name="contribute-form" value="Y" />
+
   {% if form.errors %}
     {{ form.non_field_errors()|safe }}
 
@@ -230,9 +232,34 @@
           document.getElementById('newsletter').id = 'page-newsletter';
           // ]]></script>
           <section>
+            {% if not newsletter_success %}
+              <form action="#newsletter" method="post">
+                <input type="hidden" name="newsletter-form" value="Y" />
 
-          TODO: Newsletter form
+                {% if newsletter_form.errors %}
+                  {{ newsletter_form.non_field_errors()|safe }}
 
+                  <ul class="errorlist">
+                    {% if newsletter_form.email.errors %}
+                    <li>Please enter a valid email address.</li>
+                    {% endif %}
+
+                    {% if newsletter_form.privacy.errors %}
+                    <li>You must agree to the privacy policy.</li>
+                    {% endif %}
+                  </ul>
+                {% endif %}
+
+                <div>Email: {{ field_with_attrs(newsletter_form.email, placeholder='YOUR EMAIL HERE')|safe }}</div>
+                <div>Country: {{ newsletter_form.country }}</div>
+                <div>Format: {{ newsletter_form.fmt }}</div>
+                <div>{{ newsletter_form.privacy }}</div>
+                <input name="test-submit" type="submit" value="Subscribe" />
+                We will only send you Mozilla-related information.
+              </form>
+            {% else %}
+            <h4>Thank you!</h4>
+            {% endif %}
           </section>
         </div>
 
