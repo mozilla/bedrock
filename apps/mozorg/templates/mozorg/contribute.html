@@ -251,9 +251,9 @@
                 {% endif %}
 
                 <div class="field field-email">{{ field_with_attrs(newsletter_form.email, placeholder='YOUR EMAIL HERE')|safe }}</div>
-                <div class="field field-country">{{ newsletter_form.country }}</div>
-                <div class="field field-format">{{ newsletter_form.fmt }}</div>
-                <div class="field field-privacy">{{ newsletter_form.privacy }}</div>
+                <div class="field field-country">{{ newsletter_form.country|safe }}</div>
+                <div class="field field-format">{{ newsletter_form.fmt|safe }}</div>
+                <div class="field field-privacy">{{ newsletter_form.privacy|safe }}</div>
                 <div class="field field-submit"><input name="test-submit" type="submit" value="Subscribe" class="button-blue" /></div>
                 <small>We will only send you Mozilla-related information.</small>
               </form>
