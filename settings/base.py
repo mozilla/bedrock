@@ -200,7 +200,8 @@ MINIFY_BUNDLES = {
             'js/libs/jquery-1.4.4.min.js',
             'js/libs/jquery.nyroModal.pack.js',
             'js/mozilla-expanders.js',
-            'js/geolocation-demo.js'
+            'js/geolocation-demo.js',
+            'js/footer-email-form.js',
         ),
         'pager': (
             'js/mozilla-pager.js',
