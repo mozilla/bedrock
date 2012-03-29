@@ -1,4 +1,3 @@
-# coding: utf-8
 from django import forms
 from django.forms import widgets
 from django.utils.safestring import mark_safe
@@ -55,7 +54,7 @@ class NewsletterCountryForm(NewsletterForm):
         self.fields['country'] = forms.ChoiceField(choices=regions,
                                                    initial=locale)
 
-INTEREST_CHOICES = (('', 'Hi, I’m interested in…'),
+INTEREST_CHOICES = (('', 'Area of interest?'),
                     ('Support', 'Helping Users'),
                     ('Localization', 'Localization'),
                     ('QA', 'Testing and QA'),
