@@ -1,3 +1,4 @@
+# coding: utf-8
 from django import forms
 from django.forms import widgets
 from django.utils.safestring import mark_safe
@@ -37,7 +38,7 @@ class NewsletterForm(forms.Form):
                             initial='H')
     privacy = forms.BooleanField(widget=PrivacyWidget)
 
-INTEREST_CHOICES = (('', 'Area of Interest'),
+INTEREST_CHOICES = (('', 'Hi, I’m interested in…'),
                     ('Support', 'Helping Users'),
                     ('Localization', 'Localization'),
                     ('QA', 'Testing and QA'),
