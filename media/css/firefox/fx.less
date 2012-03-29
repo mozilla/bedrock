@@ -13,6 +13,8 @@
     h1,
     h2 {
         .span(5);
+        clear: left;
+        margin-left: 0;
     }
     h1 {
         font-size: 52px;
@@ -22,9 +24,10 @@
         margin-bottom: @baseLine;
     }
     .button-blue {
+        .span(3);
+        margin-left: 0;
         padding-right: 0;
         padding-left: 0;
-        .span(3);
         clear: left;
         font-size: 18px;
     }
@@ -34,33 +37,30 @@
 #main-content {
     .sub-section {
         .span(3);
-        text-align: center;
         padding-top: @baseLine;
         padding-bottom: @baseLine;
+        h3 {
+            margin-bottom: 16px;
+        }
     }
     #get-firefox {
         .span(4);
-        .inset;
         margin-left: 0;
         h3,
         p,
         aside {
-            padding: 0 @baseLine;
+            margin-right: @baseLine * 3;
         }
-        p {
-            padding: 0 (@baseLine * 2);
+        h3 {
+            font-size: 32px;
         }
-    }
-    #promo-beta h3,
-    #promo-newsletter h3 {
-        font-size: 24px;
-        letter-spacing: -1px;
     }
 
     #promo-beta p {
-        padding: 0 @baseLine;
+        padding-right: @baseLine;
     }
-    #promo-newsletter p {
-        padding: 0 (@baseLine / 2);
+
+    #promo-contribute p {
+        padding-right: @baseLine;
     }
 }

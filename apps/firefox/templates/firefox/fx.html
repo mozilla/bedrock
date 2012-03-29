@@ -17,22 +17,22 @@
 
 <section id="main-content">
 
-  <div id="get-firefox" class="sub-section inset">
+  <div id="get-firefox" class="sub-section">
     <h3>Get Firefox</h3>
-    <p>If you need a fresh new copy, you can get it here:</p>
+    <p>If you need a fresh new copy, you can get it here:</p>
     {{ download_button('download', 'small') }}
   </div>
 
   <div id="promo-beta" class="sub-section">
     <h3>Try Firefox Beta</h3>
-    <p>Help refine and polish the newest features almost ready for prime time.</p>
+    <p>Help refine and polish the newest features almost ready for prime time.</p>
     <a href="{{ php_url('/firefox/beta/?WT.mc_id=buildbetafxpage') }}">Download now »</a>
   </div>
 
-  <div id="promo-newsletter" class="sub-section">
-    <h3>More features, more info</h3>
-    <p>Get the latest Firefox tips and tricks every month in our <i>Firefox & You</i> newsletter.</p>
-    <a href="{{ php_url('/newsletter/') }}">Sign up today »</a>
+  <div id="promo-contribute" class="sub-section">
+    <h3>Join the team</h3>
+    <p>Volunteer with Firefox and help us build a brighter future for the Web.</p>
+    <a href="{{ url('mozorg.contribute') }}">Get involved »</a>
   </div>
 
 </section>
