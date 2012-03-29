@@ -93,7 +93,7 @@ def contribute_send(data):
     }
 
     from_ = 'contribute-form@mozilla.org'
-    subject = '[Contribute] Inquiry about Mozilla %s' % data['interest']
+    subject = 'Inquiry about Mozilla %s' % data['interest']
     msg = ("Email: %s\r\nArea of Interest: %s\r\nComment: %s\r\n"
            % (data['email'], data['interest'], data['comments']))
     headers = {'Reply-To': data['email']}
