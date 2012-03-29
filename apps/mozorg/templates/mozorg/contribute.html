@@ -235,7 +235,7 @@
             {% if not newsletter_success %}
               <form action="#newsletter" method="post" id="newsletter-form">
                 <input type="hidden" name="newsletter-form" value="Y" />
-
+                <p>Sign up for a weekly newsletter that is full of community news and contribution opportunities.</p>
                 {% if newsletter_form.errors %}
                   {{ newsletter_form.non_field_errors()|safe }}
 
