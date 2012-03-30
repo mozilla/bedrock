@@ -24,8 +24,6 @@ def contribute(request):
     success = False
     newsletter_success = False
 
-    print request.POST
-
     # This is ugly, but we need to handle two forms. I would love if
     # these forms could post to separate pages and get redirected
     # back, but we're forced to keep the error/success workflow on the
@@ -89,7 +87,7 @@ def contribute_send(data):
         'Browser Choice': 'isandu@mozilla.com',
         'IT': 'cshields@mozilla.com',
         'Marketing': 'cnovak@mozilla.com',
-        'Add-ons': 'atsay@mozilla.com'
+        'Add-ons': 'atsay@mozilla.com',
     }
 
     from_ = 'contribute-form@mozilla.org'
@@ -104,9 +102,7 @@ def contribute_send(data):
 
     cc = None
     if data['interest'] in ccs:
-        cc = [data['interest']]
-        if settings.DEV:
-            cc = [data['email']]
+        cc = [ccs[data['interest']]]
 
     email = EmailMessage(subject, msg, from_, to, cc=cc, headers=headers)
     email.send()
