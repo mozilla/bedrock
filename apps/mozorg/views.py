@@ -118,7 +118,7 @@ def contribute_autorespond(request, data):
         'QA': 'qa-contribute@mozilla.com',
         'Add-ons': 'atsay@mozilla.com',
         'Marketing': 'cnovak@mozilla.com',
-        'Students': 'jhaas@mozilla.com',
+        'Students': 'william@mozilla.com',
         'Documentation': 'jay@jaygarcia.com',
         'Research': 'jay@jaygarcia.com',
         'Thunderbird': 'jzickerman@mozilla.com',
