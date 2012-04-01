@@ -235,7 +235,7 @@ MIDDLEWARE_CLASSES = (
     'funfactory.middleware.LocaleURLMiddleware',
     'multidb.middleware.PinningRouterMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
+    'mozorg.middleware.NoVarySessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'session_csrf.CsrfMiddleware',  # Must be after auth middleware.
     'django.contrib.messages.middleware.MessageMiddleware',
