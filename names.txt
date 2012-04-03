@@ -1820,3 +1820,4 @@ Ratcliffe,Mike
 Kewisch,Philipp
 Mery,Wayne
 Capella,Mark
+Gastaldi,Alessio
