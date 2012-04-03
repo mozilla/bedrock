@@ -1814,8 +1814,9 @@ Delendik,Yury
 Pakhotin,Alex
 Luna,Michelle
 Khokhlov,Oleg
-Castelliccio,Marco
+Castelluccio,Marco
 Gimeno,Santiago
 Ratcliffe,Mike
 Kewisch,Philipp
 Mery,Wayne
+Capella,Mark
