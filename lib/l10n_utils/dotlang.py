@@ -55,5 +55,3 @@ def translate(lang, text):
         trans = load(lang)
 
     return trans.get(text, text)
-
-    
