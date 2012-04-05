@@ -263,7 +263,6 @@ INSTALLED_APPS = list(INSTALLED_APPS) + [
 
     # libs
     'l10n_utils',
-    'dotlang',
 ]
 
 ## Auth
