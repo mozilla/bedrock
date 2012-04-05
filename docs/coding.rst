@@ -39,9 +39,9 @@ in the footer (most do), make sure to handle this in your view.
 Bedrock comes with a function for doing this automatically::
 
     from mozorg.util import handle_newsletter
-    from session_csrf import anonymous_csrf
+    from django.views.decorators.csrf import csrf_exempt
     
-    @anonymous_csrf
+    @csrf_exempt
     def view(request):
         ctx = handle_newsletter(request)
         return l10n_utils.render(request, 'app/template.html', ctx)
@@ -49,7 +49,7 @@ Bedrock comes with a function for doing this automatically::
 You'll notice a few other things in there. You should use the
 `l10n_utils.render` function to render templates because it handles
 special l10n work for us. Since we're handling the newsletter form
-post, you also need the `anonymous_csrf` decorator.
+post, you also need the `csrf_exempt` decorator.
 
 Make sure to namespace your templates by putting them in a directory
 named after your app, so instead of templates/template.html they would

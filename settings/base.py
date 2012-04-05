@@ -126,6 +126,9 @@ MINIFY_BUNDLES = {
         'persona': (
             'css/persona.less',
         ),
+        'privacy': (
+            'css/privacy.less',
+        ),
         'projects': (
             'css/projects.less',
         ),
@@ -256,10 +259,10 @@ INSTALLED_APPS = list(INSTALLED_APPS) + [
     'persona',
     'landing',
     'research',
+    'privacy',
 
     # libs
     'l10n_utils',
-    'dotlang',
 ]
 
 ## Auth
