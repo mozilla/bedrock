@@ -53,7 +53,7 @@ def extract_lang(output_file):
     
     if os.path.exists(output_file):
         res = False
-        while res != 'y' and res != 'n':
+        while res not in ('y', 'n'):
             res = raw_input('Output file exists, overwite? [y/n]')
         if res == 'n':
             return
