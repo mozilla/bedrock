@@ -1,6 +1,6 @@
 import jingo
 import jinja2
-from translate import translate
+from dotlang import translate
 
 
 @jingo.register.function
