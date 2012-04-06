@@ -85,15 +85,15 @@
 
           <div class="form-contents">
             <div class="field field-email {% if email_form.email.errors %}field-error{% endif %}">
-              {{ field_with_attrs(email_form.email, placeholder='YOUR EMAIL HERE')|safe }}
+              {{ field_with_attrs(email_form.email, placeholder='YOUR EMAIL HERE') }}
             </div>
 
             <div id="form-details">
               <div class="field field-format">
-                {{ email_form.fmt|safe }}
+                {{ email_form.fmt }}
               </div>
               <div class="field field-privacy {% if email_form.privacy.errors%}field-error{% endif %}">
-                {{ email_form.privacy|safe }}
+                {{ email_form.privacy }}
               </div>
             </div>
           </div>
