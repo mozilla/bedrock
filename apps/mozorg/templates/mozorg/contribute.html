@@ -69,6 +69,10 @@
       {% if form.comments.errors %}
       <li>Please tell us more about your interests.</li>
       {% endif %}
+
+      {% if form.captcha.errors %}
+      <li>Your CAPTCHA response did not match. Please try again.</li>
+      {% endif %}
     </ul>
   {% endif %}
 
@@ -108,6 +112,9 @@
           {{ form.newsletter|safe }}
           I’d like to receive regular contribution news by email
         </label>
+      </div>
+      <div class="field field-captcha form-details">
+        {{ form.captcha }}
       </div>
     </div>
   </div>

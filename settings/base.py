@@ -260,6 +260,7 @@ INSTALLED_APPS = list(INSTALLED_APPS) + [
     # libs
     'l10n_utils',
     'dotlang',
+    'captcha',
 ]
 
 ## Auth
@@ -289,3 +290,7 @@ LOCALES_WITH_TRANSITION = ['en-US', 'af', 'ar', 'ast', 'be', 'bg',
                            'rm', 'ro', 'ru', 'si', 'sk', 'sl', 'sq',
                            'sr', 'sv-SE', 'ta', 'ta-LK', 'te', 'th',
                            'tr', 'uk', 'vi', 'zh-CN', 'zh-TW'];
+
+# reCAPTCHA keys
+RECAPTCHA_PUBLIC_KEY = ''
+RECAPTCHA_PRIVATE_KEY = ''
