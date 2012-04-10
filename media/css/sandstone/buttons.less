@@ -91,10 +91,6 @@
 
 // Product download buttons
 
-.download-button .unsupported-download {
-    display: none;
-}
-
 .download-button {
     .inline-block;
     ul {
@@ -205,11 +201,17 @@ li.os_android,
     }
 }
 
-.other .download-button .unsupported-download {
-    display: block;
+.download-button .unsupported-download {
+    display: none;
 }
 
-.download-button noscript,
+.no-js,
+.other {
+    .download-button .unsupported-download {
+        display: block;
+    }
+}
+
 .download-button .unsupported-download {
     text-align: right;
     h4 {
