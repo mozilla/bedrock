@@ -1,6 +1,4 @@
-"""
-A Jinja extension adding support for localizable template blocks.
-"""
+import uuid
 
 from jinja2.ext import Environment, Extension, nodes
 
@@ -50,5 +48,36 @@ class L10nBlockExtension(Extension):
 
         return node
 
+
+class LoadLangExtension(Extension):
+    """ Create a special syntax for specifying additional lang files.
+    It looks like this: {% lang_files "foo" "bar" %}. We convert it
+    into a call to a helper method because it needs to context to load
+    in the correct locale. As a result, this must be within a block. """
+
+    tags = set(['lang_files'])
+
+    def parse(self, parser):
+        # Skip over the block name
+        lineno = parser.stream.next().lineno
+
+        # Grab all the args
+        args = [parser.stream.expect('string').value]
+        while parser.stream.current.type == 'string':
+            args.append(parser.stream.current.value)
+            parser.stream.next()
+
+        # Since we are a block, we must emit a block too, so make a
+        # random one that contains a call to the load function
+        node = nodes.Block().set_lineno(lineno)
+        node.name = '__loadlangs_%s__' % str(uuid.uuid4()).replace('-', '_')
+        node.scoped = False
+        node.body = [nodes.Output([nodes.Call(nodes.Name('lang_files', 'load'),
+                                              [nodes.Const(x) for x in args], [],
+                                              None, None).set_lineno(lineno)])]
+        return node
+
+
 # Makes for a prettier import in settings.py
 l10n_blocks = L10nBlockExtension
+lang_blocks = LoadLangExtension
