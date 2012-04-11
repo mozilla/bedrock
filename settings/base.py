@@ -20,7 +20,6 @@ SESSION_COOKIE_SECURE = True
 PROD_LANGUAGES = ('de', 'en-US', 'es', 'fr',)
 DEV_LANGUAGES = DEV_LANGUAGES + ['en-US']
 
-DOTLANG_FILES = ('main.lang',)
 DOTLANG_CACHE = 60
 
 # Make this unique, and don't share it with anybody.
@@ -31,12 +30,17 @@ TEMPLATE_DIRS = (
     path('locale')
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = list(TEMPLATE_CONTEXT_PROCESSORS) + [
+    'l10n_utils.context_processors.trans'
+]
+
 def JINJA_CONFIG():
     import jinja2
     from django.conf import settings
     config = {'extensions': ['tower.template.i18n', 'jinja2.ext.do',
                              'jinja2.ext.with_', 'jinja2.ext.loopcontrols',
-                             'l10n_utils.template.l10n_blocks'],
+                             'l10n_utils.template.l10n_blocks',
+                             'l10n_utils.template.lang_blocks'],
               'finalize': lambda x: x if x is not None else ''}
     return config
 
@@ -245,7 +249,36 @@ MIDDLEWARE_CLASSES = (
     'mozorg.middleware.CacheMiddleware'
 )
 
-INSTALLED_APPS = list(INSTALLED_APPS) + [
+INSTALLED_APPS = (
+    # Local apps
+    'funfactory',  # Content common to most playdoh-based apps.
+    'jingo_minify',
+    'tower',  # for ./manage.py extract (L10n)
+
+    # We need this so the jsi18n view will pick up our locale directory.
+    ROOT_PACKAGE,
+
+    # Django contrib apps
+    'django.contrib.auth',
+    'django_sha2',  # Load after auth to monkey-patch it.
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    # 'django.contrib.sites',
+    # 'django.contrib.messages',
+    # Uncomment the next line to enable the admin:
+    # 'django.contrib.admin',
+    # Uncomment the next line to enable admin documentation:
+    # 'django.contrib.admindocs',
+
+    # Third-party apps, patches, fixes
+    'commonware.response.cookies',
+    'djcelery',
+    'django_nose',
+    'session_csrf',
+
+    # L10n
+    'product_details',
+
     # Local apps
     'l10n_example',  # DELETEME
     'b2g',
@@ -259,7 +292,7 @@ INSTALLED_APPS = list(INSTALLED_APPS) + [
 
     # libs
     'l10n_utils',
-]
+)
 
 ## Auth
 PWD_ALGORITHM = 'bcrypt'
