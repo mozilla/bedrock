@@ -18,7 +18,7 @@ SESSION_COOKIE_SECURE = True
 
 # Accepted locales
 PROD_LANGUAGES = ('de', 'en-US', 'es', 'fr',)
-DEV_LANGUAGES = DEV_LANGUAGES + ['en-US']
+DEV_LANGUAGES = list(DEV_LANGUAGES) + ['en-US']
 
 DOTLANG_CACHE = 60
 
@@ -296,7 +296,8 @@ INSTALLED_APPS = (
 
     # libs
     'l10n_utils',
-)
+    'dotlang',
+    'captcha')
 
 ## Auth
 PWD_ALGORITHM = 'bcrypt'
@@ -325,3 +326,7 @@ LOCALES_WITH_TRANSITION = ['en-US', 'af', 'ar', 'ast', 'be', 'bg',
                            'rm', 'ro', 'ru', 'si', 'sk', 'sl', 'sq',
                            'sr', 'sv-SE', 'ta', 'ta-LK', 'te', 'th',
                            'tr', 'uk', 'vi', 'zh-CN', 'zh-TW'];
+
+# reCAPTCHA keys
+RECAPTCHA_PUBLIC_KEY = ''
+RECAPTCHA_PRIVATE_KEY = ''
