@@ -37,5 +37,8 @@ def lang_files(ctx, *files):
 
     locale = ctx['request'].locale
     trans = init_context_trans(ctx, locale)
+    # Filter out empty files
+    files = filter(lambda x: x, files)
+
     if trans:
         trans.add(files, locale)

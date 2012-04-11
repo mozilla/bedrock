@@ -55,11 +55,12 @@ class LoadLangExtension(Extension):
     into a call to a helper method because it needs to context to load
     in the correct locale. As a result, this must be within a block. """
 
-    tags = set(['lang_files'])
+    tags = set(['set_lang_files', 'add_lang_files'])
 
     def parse(self, parser):
         # Skip over the block name
-        lineno = parser.stream.next().lineno
+        name = parser.stream.next()
+        lineno = name.lineno
 
         # Grab all the args
         args = [parser.stream.expect('string').value]
@@ -67,14 +68,25 @@ class LoadLangExtension(Extension):
             args.append(parser.stream.current.value)
             parser.stream.next()
 
+        # Make a node that calls the lang_files helper
+        content_nodes = [nodes.Call(nodes.Name('lang_files', 'load'),
+                                    [nodes.Const(x) for x in args], [],
+                                    None, None)]
+
+        if name == 'add_lang_files':
+            # If we are adding files, we need to keep the parent
+            # template's list of lang files as well
+            content_nodes.insert(0, [nodes.Call(nodes.Name('super', 'load'),
+                                                [], [], None, None)])
+
+
         # Since we are a block, we must emit a block too, so make a
         # random one that contains a call to the load function
         node = nodes.Block().set_lineno(lineno)
-        node.name = '__loadlangs_%s__' % str(uuid.uuid4()).replace('-', '_')
+        node.name = '__langfiles__'
         node.scoped = False
-        node.body = [nodes.Output([nodes.Call(nodes.Name('lang_files', 'load'),
-                                              [nodes.Const(x) for x in args], [],
-                                              None, None).set_lineno(lineno)])]
+        node.body = [nodes.Output(content_nodes)]
+        node.set_lineno(lineno)
         return node
 
 

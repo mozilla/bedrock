@@ -51,12 +51,6 @@ def page(name, tmpl, **kwargs):
     # newsletter form anyway)
     @csrf_exempt
     def _view(request):
-        # Each page automatically gets a lang file base off of the
-        # template name, so generate it and pass it in
-        path = get_lang_path(tmpl)
-        (base, ext) = os.path.splitext(path)
-        kwargs['langfile'] = base
-
         return page_view(request, tmpl, **kwargs)
 
     return url(pattern, _view, name=name)

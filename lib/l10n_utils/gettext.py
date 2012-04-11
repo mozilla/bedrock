@@ -8,6 +8,7 @@ import shutil
 import sys
 
 from django.conf import settings
+from jinja2 import Environment
 
 from dotlang import parse as parse_lang, get_lang_path
 
@@ -42,7 +43,7 @@ def parse_po(path):
             else:
                 msgid = None
                 msgpath = None
-                
+
     return msgs
 
 
@@ -70,6 +71,42 @@ def lang_file(name, lang):
     return join(settings.ROOT, 'locale', lang, name)
 
 
+def is_template(path):
+    (base, ext) = os.path.splitext(path)
+    return ext == '.html'
+
+
+def parse_template(path):
+    """Look through a template for the lang_files tag and extract the
+    given lang files"""
+
+    src = codecs.open(path, encoding='utf-8').read()
+    tokens = Environment().lex(src)
+    lang_files = []
+
+    def ignore_whitespace(tokens):
+        token = tokens.next()
+        if token[1] == 'whitespace':
+            return ignore_whitespace(tokens)
+        return token
+
+    for token in tokens:
+        if token[1] == 'block_begin':
+            block = ignore_whitespace(tokens)
+
+            if block[1] == 'name' and block[2] in ('set_lang_files',
+                                                   'add_lang_files'):
+                arg = ignore_whitespace(tokens)
+
+                # Extract all the arguments
+                while arg[1] != 'block_end':
+                    lang_files.append(arg[2].strip('"'))
+                    arg = ignore_whitespace(tokens)
+
+                return lang_files                
+    return []
+
+
 def extract_lang_files(langs):
     all_msgs = po_msgs()
 
@@ -78,16 +115,29 @@ def extract_lang_files(langs):
         main_msgs = parse_lang(lang_file('main.lang', lang))
 
         for path, msgs in all_msgs.items():
-            file_ = lang_file(get_lang_path(path), lang)
+            target = None
+            lang_files = None
 
-            if os.path.exists(file_):
-                curr = parse_lang(file_)
-            else:
-                curr = {}
-                dir_ = os.path.dirname(file_)
-                mkdirs(dir_)
+            if is_template(path):
+                lang_files = [lang_file('%s.lang' % f, lang)
+                              for f in parse_template(join(settings.ROOT, path))]
 
-            with codecs.open(file_, 'a', 'utf-8') as out:
+            if not lang_files:
+                lang_files = [lang_file(get_lang_path(path), lang)]
+
+            # Get the current translations
+            curr = {}
+            for f in lang_files:
+                if os.path.exists(f):
+                    curr.update(parse_lang(f))
+
+            # Add translations to the first lang file
+            target = lang_files[0]
+
+            if not os.path.exists(target):
+                mkdirs(os.path.dirname(target))
+
+            with codecs.open(target, 'a', 'utf-8') as out:
                 for msg in msgs:
                     if msg not in curr and msg not in main_msgs:
                         out.write(';%s\n%s\n\n\n' % (msg, msg))
