@@ -296,7 +296,6 @@ INSTALLED_APPS = (
 
     # libs
     'l10n_utils',
-    'dotlang',
     'captcha')
 
 ## Auth
