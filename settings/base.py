@@ -18,7 +18,7 @@ SESSION_COOKIE_SECURE = True
 
 # Accepted locales
 PROD_LANGUAGES = ('de', 'en-US', 'es', 'fr',)
-DEV_LANGUAGES = DEV_LANGUAGES + ['en-US']
+DEV_LANGUAGES = list(DEV_LANGUAGES) + ['en-US']
 
 DOTLANG_FILES = ('main.lang',)
 DOTLANG_CACHE = 60
