@@ -13,7 +13,7 @@ class Command(BaseCommand):
     args = ''
     help = 'Extracts a .lang file with new translations'
 
-    def handle(self, *args, **options):        
+    def handle(self, *args, **options):
         if args:
             langs = args
         else:

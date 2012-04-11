@@ -23,10 +23,10 @@ def parse_po(path):
     with codecs.open(path, 'r', 'utf-8') as lines:
         def extract_content(s):
             # strip the first word and quotes
-            return s[s.find(' ')+1:].strip('"')
+            return s.split(' ', 1)[1].strip('"')
 
         msgid = None
-        mshpath = None
+        msgpath = None
 
         for line in lines:
             line = line.strip()
@@ -53,18 +53,9 @@ def po_msgs():
 
 
 def translated_strings(file_):
-    path = join(settings.ROOT, 'locale/templates', file_)
+    path = join(settings.ROOT, 'locale', 'templates', file_)
     trans = parse_lang(path).keys()
     return trans
-
-
-def mkdirs(path):
-    try:
-        os.makedirs(path)
-    except OSError as exc:
-        if exc.errno == errno.EEXIST:
-            pass
-        else: raise
 
 
 def lang_file(name, lang):
@@ -135,9 +126,12 @@ def extract_lang_files(langs):
             target = lang_files[0]
 
             if not os.path.exists(target):
-                mkdirs(os.path.dirname(target))
+                d = os.path.dirname(target)
+                if not os.path.exists(d):
+                    os.makedirs(d)
 
             with codecs.open(target, 'a', 'utf-8') as out:
                 for msg in msgs:
-                    if msg not in curr and msg not in main_msgs:
+                    msg_ = msg.lower()
+                    if msg_ not in curr and msg_ not in main_msgs:
                         out.write(';%s\n%s\n\n\n' % (msg, msg))

@@ -28,7 +28,7 @@ def parse(path):
                 if line[0] == ';':
                     source = line
                 elif source:
-                    trans[source[1:]] = line
+                    trans[source[1:].lower()] = line
 
     return trans
 
@@ -40,15 +40,14 @@ def load(files, lang):
     final = {}
 
     for file_ in files:
-        key = "trans-%s-%s" % (lang, file_)
+        key = "dotlang-%s-%s" % (lang, file_)
 
         trans = cache.get(key)
         if not trans:
             path = os.path.join(settings.ROOT, 'locale', lang,
                                 '%s.lang' % file_)
             trans = parse(path)
-
-        cache.set(key, trans, settings.DOTLANG_CACHE)
+            cache.set(key, trans, settings.DOTLANG_CACHE)
         final.update(trans)
 
     return final
@@ -71,13 +70,12 @@ def get_lang_path(path):
 
     p = path.split('/')
 
-    if p[0] == 'apps':
-        if p[2] == 'templates':
-            p = p[3:]
-        else:
+    try:
+        i = p.index('templates')
+        p = p[i+1:]
+    except ValueError:
+        if p[0] == 'apps':
             p = p[1:]
-    elif p[0] == 'templates':
-        p = p[1:]
 
     path =  '/'.join(p)
     (base, ext) = os.path.splitext(path)
@@ -99,4 +97,4 @@ class Translations(object):
         return self.trans[key]
 
     def get(self, key, default=None):
-        return self.trans.get(key, default)
+        return self.trans.get(key.lower(), default)

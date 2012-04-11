@@ -17,7 +17,7 @@ def init_context_trans(ctx, locale, files=None):
 
 @jingo.register.function
 @jinja2.contextfunction
-def _(ctx, text):
+def _(ctx, text, *args):
     """Translate a string, loading the translations for the locale if
     necessary."""
 
@@ -25,7 +25,8 @@ def _(ctx, text):
     trans = init_context_trans(ctx, locale)
 
     if trans:
-        return jinja2.Markup(trans.get(text,text))
+        msg = trans.get(text, text)
+        return jinja2.Markup(msg % args)
     else:
         return jinja2.Markup(text)
 
