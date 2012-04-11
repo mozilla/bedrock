@@ -13,17 +13,16 @@
     <div id="wrapper">
       <div id="details-header">
         <h1>{{ _('URGENT!') }}</h1>
-        <p>{{ _('Your version of Firefox is no longer protected against online attacks.') }}</p>
+        <p>{{ _('Firefox no longer supports your operating system version and will be vulnerable to online attacks.') }}</p>
       </div>
 
       <div id="details-content">
-        <p>{{ _('<a %s>Get the upgrade</a> — it’s fast & free!', 'href="http://www.mozilla.or/firefox/" class="upgrade" target="_blank"') }}</p>
+        <p>{{ _('We recommend:') }}</p>
         <ul>
-          <li>{{ _('Stay safe online') }}</li>
-          <li>{{ _('Experience faster performance') }}</li>
-          <li>{{ _('Enjoy new features') }}</li>
+          <li>{{ _('Installing a free upgrade to your <a %s>operating system</a>', 'href="http://support.microsoft.com/kb/322389"') }}</li>
+          <li>{{ _('Downloading a compatible browser') }}</li>
         </ul>
-        <p>{{ _('You will be prompted once more before being automatically updated.') }}</p>
+        <p><a href="#">{{ _('Learn more') }}</a></p>
       </div>
     </div>
   </body>
