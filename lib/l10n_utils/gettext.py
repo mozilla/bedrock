@@ -1,15 +1,21 @@
-import sys
+import codecs
+import errno
 import os
 from os.path import join
-import codecs
+from tempfile import mkstemp
+import re
+import shutil
+import sys
 
 from django.conf import settings
+from jinja2 import Environment
 
-from dotlang import parse as parse_lang
+from dotlang import parse as parse_lang, get_lang_path
 
+REGEX_URL = re.compile(r'.* (\S+/\S+\.[^:]+).*')
 
 def parse_po(path):
-    msgs = []
+    msgs = {}
 
     if not os.path.exists(path):
         return msgs
@@ -17,19 +23,27 @@ def parse_po(path):
     with codecs.open(path, 'r', 'utf-8') as lines:
         def extract_content(s):
             # strip the first word and quotes
-            return s[s.find(' ')+1:].strip('"')
+            return s.split(' ', 1)[1].strip('"')
 
         msgid = None
+        msgpath = None
 
         for line in lines:
             line = line.strip()
-            if line.startswith('msgid'):
+            if line.startswith('#'):
+                matches = REGEX_URL.match(line)
+                if matches:
+                    msgpath = matches.group(1)
+            elif line.startswith('msgid'):
                 msgid = extract_content(line)
-            elif line.startswith('msgstr') and msgid:
-                msgs.append(msgid)
+            elif line.startswith('msgstr') and msgid and msgpath:
+                if msgpath not in msgs:
+                    msgs[msgpath] = []
+                msgs[msgpath].append(msgid)
             else:
                 msgid = None
-                
+                msgpath = None
+
     return msgs
 
 
@@ -38,27 +52,86 @@ def po_msgs():
                          'locale/templates/LC_MESSAGES/messages.pot'))
 
 
-def lang_translations():
-    trans = []
-
-    for f in settings.DOTLANG_FILES:
-        path = join(settings.ROOT, 'locale/templates', f)
-        trans.extend(parse_lang(path).keys())
-
+def translated_strings(file_):
+    path = join(settings.ROOT, 'locale', 'templates', file_)
+    trans = parse_lang(path).keys()
     return trans
 
 
-def extract_lang(output_file):
-    lang_trans = lang_translations()
-    
-    if os.path.exists(output_file):
-        res = False
-        while res not in ('y', 'n'):
-            res = raw_input('Output file exists, overwite? [y/n]')
-        if res == 'n':
-            return
-    
-    with codecs.open(output_file, 'w', 'utf-8') as out:
-        for msg in po_msgs():
-            if msg not in lang_trans:
-                out.write(";%s\n%s\n\n\n" % (msg, msg))
+def lang_file(name, lang):
+    return join(settings.ROOT, 'locale', lang, name)
+
+
+def is_template(path):
+    (base, ext) = os.path.splitext(path)
+    return ext == '.html'
+
+
+def parse_template(path):
+    """Look through a template for the lang_files tag and extract the
+    given lang files"""
+
+    src = codecs.open(path, encoding='utf-8').read()
+    tokens = Environment().lex(src)
+    lang_files = []
+
+    def ignore_whitespace(tokens):
+        token = tokens.next()
+        if token[1] == 'whitespace':
+            return ignore_whitespace(tokens)
+        return token
+
+    for token in tokens:
+        if token[1] == 'block_begin':
+            block = ignore_whitespace(tokens)
+
+            if block[1] == 'name' and block[2] in ('set_lang_files',
+                                                   'add_lang_files'):
+                arg = ignore_whitespace(tokens)
+
+                # Extract all the arguments
+                while arg[1] != 'block_end':
+                    lang_files.append(arg[2].strip('"'))
+                    arg = ignore_whitespace(tokens)
+
+                return lang_files                
+    return []
+
+
+def extract_lang_files(langs):
+    all_msgs = po_msgs()
+
+    for lang in langs:
+        print 'Merging into %s...' % lang
+        main_msgs = parse_lang(lang_file('main.lang', lang))
+
+        for path, msgs in all_msgs.items():
+            target = None
+            lang_files = None
+
+            if is_template(path):
+                lang_files = [lang_file('%s.lang' % f, lang)
+                              for f in parse_template(join(settings.ROOT, path))]
+
+            if not lang_files:
+                lang_files = [lang_file(get_lang_path(path), lang)]
+
+            # Get the current translations
+            curr = {}
+            for f in lang_files:
+                if os.path.exists(f):
+                    curr.update(parse_lang(f))
+
+            # Add translations to the first lang file
+            target = lang_files[0]
+
+            if not os.path.exists(target):
+                d = os.path.dirname(target)
+                if not os.path.exists(d):
+                    os.makedirs(d)
+
+            with codecs.open(target, 'a', 'utf-8') as out:
+                for msg in msgs:
+                    msg_ = msg.lower()
+                    if msg_ not in curr and msg_ not in main_msgs:
+                        out.write(';%s\n%s\n\n\n' % (msg, msg))

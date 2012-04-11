@@ -1,10 +1,13 @@
+import os
+
 from django.conf import settings
 
+from dotlang import get_lang_path
 import jingo
 from jinja2.exceptions import TemplateNotFound
 
 
-def render(request, template, context=None, **kwargs):
+def render(request, template, context={}, **kwargs):
     """
     Same as jingo's render() shortcut, but with l10n template support.
     If used like this::
@@ -25,5 +28,11 @@ def render(request, template, context=None, **kwargs):
         except TemplateNotFound:
             # If not found, just go on and try rendering the parent template.
             pass
+
+    # Every template gets its own .lang file, so figure out what it is
+    # and pass it in the context
+    path = get_lang_path(template)
+    (base, ext) = os.path.splitext(path)
+    context['langfile'] = base
 
     return jingo.render(request, template, context, **kwargs)

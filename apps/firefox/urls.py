@@ -22,4 +22,9 @@ urlpatterns = patterns('',
          latest_version=product_details.versions['LATEST_FIREFOX_DEVEL_VERSION']),
     page('firefox/technology', 'firefox/technology.html'),
     page('firefox/update', 'firefox/update.html'),
+
+    page('firefox/unsupported/warning', 'firefox/unsupported-warning.html'),
+    page('firefox/unsupported/EOL', 'firefox/unsupported-EOL.html'),
+    page('firefox/unsupported/win2k', 'firefox/unsupported-win2k.html'),
+    page('firefox/unsupported/winxp', 'firefox/unsupported-winxp.html'),
 )

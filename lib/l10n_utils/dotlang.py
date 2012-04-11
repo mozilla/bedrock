@@ -28,30 +28,73 @@ def parse(path):
                 if line[0] == ';':
                     source = line
                 elif source:
-                    trans[source[1:]] = line
+                    trans[source[1:].lower()] = line
 
     return trans
 
-def load(lang):
+
+def load(files, lang):
     """Load the dotlang files for the specific lang and cache them in
-    django."""
-    trans = {}
+    django. Return a single dict with all the translations."""
 
-    for f in settings.DOTLANG_FILES:
-        path = os.path.join(settings.ROOT, 'locale', lang, f)
-        trans.update(parse(path))
+    final = {}
 
-    cache.set('trans-%s' % lang, trans, settings.DOTLANG_CACHE)
-    return trans
+    for file_ in files:
+        key = "dotlang-%s-%s" % (lang, file_)
 
-def translate(lang, text):
+        trans = cache.get(key)
+        if not trans:
+            path = os.path.join(settings.ROOT, 'locale', lang,
+                                '%s.lang' % file_)
+            trans = parse(path)
+            cache.set(key, trans, settings.DOTLANG_CACHE)
+        final.update(trans)
+
+    return final
+
+
+def translate(files, lang, text):
     """Translate a piece of text, loading the language's dotlang files
     if they aren't cached"""
 
-    key = 'trans-%s' % lang
-    trans = cache.get(key)
-
-    if not trans:
-        trans = load(lang)
-
+    trans = load(files, lang)
     return trans.get(text, text)
+
+
+def get_lang_path(path):    
+    """Generate the path to a lang file from a django path. 
+    /apps/foo/templates/foo/bar.html -> /foo/bar.lang
+    /apps/foo/bar.py -> /foo/bar.lang
+    /templates/foo.html -> /foo.lang
+    /foo/bar.html -> /foo/bar.lang"""
+
+    p = path.split('/')
+
+    try:
+        i = p.index('templates')
+        p = p[i+1:]
+    except ValueError:
+        if p[0] == 'apps':
+            p = p[1:]
+
+    path =  '/'.join(p)
+    (base, ext) = os.path.splitext(path)
+    return '%s.lang' % base
+
+class Translations(object):
+    """A helper class to load and maintain translations"""
+
+    def __init__(self):
+        self.trans = {}
+        self.loaded = False
+
+    def add(self, files, locale):
+        files = [files] if isinstance(files, basestring) else files
+        self.trans.update(load(files, locale))
+        self.loaded = True
+        
+    def __getitem__(self, key):
+        return self.trans[key]
+
+    def get(self, key, default=None):
+        return self.trans.get(key.lower(), default)
