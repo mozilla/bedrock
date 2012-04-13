@@ -1,45 +1,56 @@
 import jingo
 import jinja2
 
-def init_context_trans(ctx, locale, files=None):
-    # If we have a translation object, we can load translations and
-    # use them. This "box" is set with a context processor (see
-    # /apps/mozorg/context_processors.py).
-    trans = ctx.get('__trans')
+from django.conf import settings
 
-    if trans and not trans.loaded:
-        files = ['main']
+from dotlang import translate
+
+def install_lang_files(ctx):
+    """Install the initial set of .lang files"""
+    req = ctx['request']
+
+    if not hasattr(req, 'langfiles'):
+        files = settings.DOTLANG_FILES
         if ctx.get('langfile'):
             files.append(ctx.get('langfile'))
-        trans.add(files, locale)        
-    return trans
-    
+        setattr(req, 'langfiles', files)
+
+
+def add_lang_files(ctx, files):
+    """Install additional .lang files"""
+    req = ctx['request']
+
+    if hasattr(req, 'langfiles'):
+        req.langfiles += files
+
 
 @jingo.register.function
 @jinja2.contextfunction
 def _(ctx, text, *args):
     """Translate a string, loading the translations for the locale if
     necessary."""
+    args = args or {}
+    install_lang_files(ctx)
 
-    locale = ctx['request'].locale
-    trans = init_context_trans(ctx, locale)
+    trans = translate(text, ctx['request'].langfiles)
+    if args:
+        trans = trans % args
+    return jinja2.Markup(trans)
 
-    if trans:
-        msg = trans.get(text, text)
-        return jinja2.Markup(msg % args)
-    else:
-        return jinja2.Markup(text)
+
+@jingo.register.function
+@jinja2.contextfunction
+def gettext(ctx, text):
+    """Override the gettext call to pass through our system. This is
+    hacky, but lets us use the trans blocks and other nice integration
+    features of gettext. """
+    return _(ctx, text)
 
 
 @jingo.register.function
 @jinja2.contextfunction
 def lang_files(ctx, *files):
     """Add more lang files to the translation object"""
-
-    locale = ctx['request'].locale
-    trans = init_context_trans(ctx, locale)
     # Filter out empty files
-    files = filter(lambda x: x, files)
-
-    if trans:
-        trans.add(files, locale)
+    install_lang_files(ctx)
+    add_lang_files(ctx, filter(lambda x: x, files))
