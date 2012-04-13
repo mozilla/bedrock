@@ -9,29 +9,14 @@
 
 {% block content %}
 
-<div id="main-feature">
-<h1>Meet Mozilla Firefox</h1>
+<h1 class="container large center">Meet Mozilla Firefox</h1>
 
-{{ download_button('download', 'small') }}
-<p class="roll-over">Roll over the markers below for feature info</p>
-
-<div id="figure">
+<div id="main-feature" class="billboard">
+    <h2>Tour the User Interface</h2>
+    <p class="roll-over inset">Roll over the markers below for feature info</p>
+    <div id="figure">
     {{ platform_img('img/firefox/central/screen.png', alt='Screenshot') }}
     <div id="svg-path"></div>
-    <div id="features">
-        <p>Become a Firefox Expert in <span>8</span> Easy Steps:</p>
-        <ul>
-            <li><a href="#" id="get-started">Get started</a></li>
-            <li><a href="#" id="meet-your-browser">Meet Your Browser</a></li>
-            <li><a href="#" id="experience-super-speed">Experience Super Speed</a></li>
-            <li><a href="#" id="stay-in-sync">Stay in Sync</a></li>
-        </ul>
-        <ul>
-            <li><a href="#" id="customize">Customize</a></li>
-            <li><a href="#" id="secure-your-personal-info">Secure Your Personal Info</a></li>
-            <li><a href="#" id="explore-the-cutting-edge">Explore the Cutting Edge</a></li>
-            <li><a href="#" id="firefox-on-your-phone">Get Firefox on Your Phone</a></li>
-        </ul>
     </div>
 </div>
 <article id="sync" class="tip">
@@ -105,7 +90,7 @@
             <source src="http://videos-cdn.mozilla.net/serv/marketing/firefox4/Browsing-Basics-640.webm" type='video/webm; codecs="vp8, vorbis"' />
             <source src="http://videos-cdn.mozilla.net/serv/marketing/firefox4/Browsing-Basics-640.theora.ogv" type='video/ogg; codecs="theora, vorbis"' />
             <object type="application/x-shockwave-flash" style="width: 480px; height: 270px;" data=""{{ media('flash/playerWithControls.swf?flv=serv/marketing/firefox4/Browsing-Basics-640.mp4&amp;autoplay=false') }}">
-                <param name="movie" value=""{{ media('flash/playerWithControls.swf?flv=serv/marketing/firefox4/Browsing-Basics-640.mp4&amp;autoplay=false') }}" />
+                <param name="movie" value="{{ media('flash/playerWithControls.swf?flv=serv/marketing/firefox4/Browsing-Basics-640.mp4&amp;autoplay=false') }}" />
                 <param name="wmode" value="transparent" />
                 <div class="video-player-no-flash">This video requires a browser with support for open video or Flash.</div>
             </object>
@@ -156,7 +141,7 @@
             <source src="http://videos-cdn.mozilla.net/serv/marketing/firefox4/Sync-Instructions-640.webm" type='video/webm; codecs="vp8, vorbis"' />
             <source src="http://videos-cdn.mozilla.net/serv/marketing/firefox4/Sync-Instructions-640.theora.ogv" type='video/ogg; codecs="theora, vorbis"' />
             <object type="application/x-shockwave-flash" style="width: 480px; height: 270px;" data=""{{ media('flash/playerWithControls.swf?flv=serv/marketing/firefox4/Sync-Instructions-640.mp4&amp;autoplay=false') }}">
-                <param name="movie" value=""{{ media('flash/playerWithControls.swf?flv=serv/marketing/firefox4/Sync-Instructions-640.mp4&amp;autoplay=false') }}" />
+                <param name="movie" value="{{ media('flash/playerWithControls.swf?flv=serv/marketing/firefox4/Sync-Instructions-640.mp4&amp;autoplay=false') }}" />
                 <param name="wmode" value="transparent" />
                 <div class="video-player-no-flash">This video requires a browser with support for open video or Flash.</div>
             </object>
@@ -183,7 +168,7 @@
                 <source src="http://videos-cdn.mozilla.net/firefox/3.6/getpersonas.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
                 <source src="http://videos-cdn.mozilla.net/firefox/3.6/getpersonas.ogv" type='video/ogg; codecs="theora, vorbis"' />
                 <object type="application/x-shockwave-flash" style="width: 480px; height: 270px;" data=""{{ media('flash/playerWithControls.swf?flv=firefox/3.6/getpersonas.mp4&amp;autoplay=false') }}">
-                    <param name="movie" value=""{{ media('flash/playerWithControls.swf?flv=firefox/3.6/getpersonas.mp4&amp;autoplay=false') }}" />
+                    <param name="movie" value="{{ media('flash/playerWithControls.swf?flv=firefox/3.6/getpersonas.mp4&amp;autoplay=false') }}" />
                     <param name="wmode" value="transparent" />
                     <div class="video-player-no-flash">This video requires a browser with support for open video or Flash.</div>
                 </object>
@@ -213,7 +198,7 @@
             <source src="http://videos-cdn.mozilla.net/serv/marketing/firefox4/privatebrowsing640.webm" type='video/webm; codecs="vp8, vorbis"' />
             <source src="http://videos-cdn.mozilla.net/serv/marketing/firefox4/privatebrowsing640.theora.ogv" type='video/ogg; codecs="theora, vorbis"' />
             <object type="application/x-shockwave-flash" style="width: 480px; height: 270px;" data=""{{ media('flash/playerWithControls.swf?flv=serv/marketing/firefox4/privatebrowsing640.mp4&amp;autoplay=false') }}">
-                <param name="movie" value=""{{ media('flash/playerWithControls.swf?flv=serv/marketing/firefox4/privatebrowsing640.mp4&amp;autoplay=false') }}" />
+                <param name="movie" value="{{ media('flash/playerWithControls.swf?flv=serv/marketing/firefox4/privatebrowsing640.mp4&amp;autoplay=false') }}" />
                 <param name="wmode" value="transparent" />
                 <div class="video-player-no-flash">This video requires a browser with support for open video or Flash.</div>
             </object>
@@ -241,7 +226,7 @@
             <source src="http://videos-cdn.mozilla.net/serv/marketing/firefox4/Cutting-Edge-640.webm" type='video/webm; codecs="vp8, vorbis"' />
             <source src="http://videos-cdn.mozilla.net/serv/marketing/firefox4/Cutting-Edge-640.theora.ogv" type='video/ogg; codecs="theora, vorbis"' />
             <object type="application/x-shockwave-flash" style="width: 480px; height: 270px;" data="{{ media('flash/playerWithControls.swf?flv=serv/marketing/firefox4/Cutting-Edge-640.mp4&amp;autoplay=false') }}">
-                <param name="movie" value=""{{ media('flash/playerWithControls.swf?flv=serv/marketing/firefox4/Cutting-Edge-640.mp4&amp;autoplay=false') }}" />
+                <param name="movie" value="{{ media('flash/playerWithControls.swf?flv=serv/marketing/firefox4/Cutting-Edge-640.mp4&amp;autoplay=false') }}" />
                 <param name="wmode" value="transparent" />
                 <div class="video-player-no-flash">This video requires a browser with support for open video or Flash.</div>
             </object>
@@ -273,7 +258,7 @@
             <source src="http://videos-cdn.mozilla.net/serv/marketing/firefox4/Mobile-launch-greatday640.webm" type='video/webm; codecs="vp8, vorbis"' />
             <source src="http://videos-cdn.mozilla.net/serv/marketing/firefox4/Mobile-launch-greatday640.theora.ogv" type='video/ogg; codecs="theora, vorbis"' />
             <object type="application/x-shockwave-flash" style="width: 480px; height: 270px;" data=""{{ media('flash/playerWithControls.swf?flv=serv/marketing/firefox4/Mobile-launch-greatday640.mp4&amp;autoplay=false') }}">
-                <param name="movie" value=""{{ media('flash/playerWithControls.swf?flv=serv/marketing/firefox4/Mobile-launch-greatday640.mp4&amp;autoplay=false') }}" />
+                <param name="movie" value="{{ media('flash/playerWithControls.swf?flv=serv/marketing/firefox4/Mobile-launch-greatday640.mp4&amp;autoplay=false') }}" />
                 <param name="wmode" value="transparent" />
                 <div class="video-player-no-flash">This video requires a browser with support for open video or Flash.</div>
             </object>
@@ -291,6 +276,21 @@
 </svg>
 </div>
 
+  <div id="features">
+      <p>Become a Firefox Expert in <span>8</span> Easy Steps:</p>
+      <ul>
+          <li><a href="#" id="get-started">Get started</a></li>
+          <li><a href="#" id="meet-your-browser">Meet Your Browser</a></li>
+          <li><a href="#" id="experience-super-speed">Experience Super Speed</a></li>
+          <li><a href="#" id="stay-in-sync">Stay in Sync</a></li>
+      </ul>
+      <ul>
+          <li><a href="#" id="customize">Customize</a></li>
+          <li><a href="#" id="secure-your-personal-info">Secure Your Personal Info</a></li>
+          <li><a href="#" id="explore-the-cutting-edge">Explore the Cutting Edge</a></li>
+          <li><a href="#" id="firefox-on-your-phone">Get Firefox on Your Phone</a></li>
+      </ul>
+  </div>
 {% endblock %}
 
 {% block js %}
