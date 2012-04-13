@@ -68,8 +68,9 @@ INTEREST_CHOICES = (('', 'Area of interest?'),
                     ('Research', 'User Research'),
                     ('Thunderbird', 'Thunderbird'),
                     ('Accessibility', 'Accessibility'),
-                    ('Firefox Suggestions', 'Firefox Suggestions'),
-                    (' ', 'Other'))
+                    (' ', 'Other')),
+                    ('Firefox Suggestions', 'I have a suggestion for Firefox'),
+                    ('Firefox Issue', 'I need help with a Firefox issue')
 
 class ContributeForm(forms.Form):
     email = forms.EmailField(widget=EmailInput(attrs={'required':'true'}))
