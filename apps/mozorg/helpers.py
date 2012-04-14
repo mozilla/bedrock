@@ -131,7 +131,7 @@ def download_button(ctx, id, format='large', build=None):
         # Normalize the platform name
         platform = 'os_%s' % platform.lower().replace(' ', '')
         platform_pretty = {
-            'os_osx': 'Max OS X',
+            'os_osx': 'Mac OS X',
             'os_windows': 'Windows',
             'os_linux': 'Linux'
         }[platform]
