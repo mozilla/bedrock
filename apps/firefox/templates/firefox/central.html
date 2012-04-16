@@ -15,8 +15,8 @@
     <h2>Tour the User Interface</h2>
     <p class="roll-over inset">Roll over the markers below for feature info</p>
     <div id="figure">
-    {{ platform_img('img/firefox/central/screen.png', alt='Screenshot') }}
-    <div id="svg-path"></div>
+      {{ platform_img('img/firefox/central/screen.png', alt='Screenshot') }}
+      <div id="svg-path"></div>
     </div>
 </div>
 <article id="sync" class="tip">
@@ -73,23 +73,31 @@
     <p>Change the look of your Firefox in a single click with Personas, easy-to-install themes created by users from around the world (or that you make yourself!).</p>
 </article>
 
-<article id="overlay-get-started" class="overlay-box">
-    <div class="info">
-        <h1>Get Started</h1>
-        <p>Ready to begin? Good! Getting started with Firefox is actually quite simple – here are a few handy shortcuts to help you get going:</p>
-        <ul>
-            <li><a href="https://support.mozilla.org/kb/Browsing%20basics">Browsing Basics</a></li>
-            <li><a href="https://support.mozilla.org/kb/Importing%20favorites%20and%20other%20data%20from%20Internet%20Explorer">Import bookmarks from another browser</a></li>
-            <li><a href="https://support.mozilla.org/kb/How%20to%20set%20the%20home%20page">Set your home page</a></li>
-        </ul>
-    </div>
+<div id="features" class="pager pager-with-tabs container">
+
+  <h1>Become a Firefox Expert in <span>8</span> Easy Steps:</h1>
+
+  <ul class="pager-tabs">
+    <li><a id="#get-started">Get Started</a></li>
+    <li><a id="#speed">Experience Super Speed</a></li>
+    <li><a id="#stay-in-sync">Stay in Sync</a></li>
+    <li><a id="#customize">Customize Your Firefox</a></li>
+    <li><a id="#personal">Secure Your Personal Info</a></li>
+    <li><a id="#android">Get Firefox for Android</a></li>
+  </ul>
+
+  <div class="pager-content">
+
+    <div class="get-started-content default-page" id="get-started">
+      <h2>Get Started</h2>
+      <p>Ready to begin? Good! Getting started with Firefox is actually quite simple – here are a few handy shortcuts to help you get going:</p>
     <figure class="figure">
         <div class="mozilla-video-control">
-        <video width="480" height="270" controls="controls" poster="{{ media('img/firefox/central/poster-browsing-basics.png') }}">
+        <video width="436" height="245" controls="controls" poster="{{ media('img/firefox/central/poster-browsing-basics.png') }}">
             <source src="http://videos-cdn.mozilla.net/serv/marketing/firefox4/Browsing-Basics-640.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
             <source src="http://videos-cdn.mozilla.net/serv/marketing/firefox4/Browsing-Basics-640.webm" type='video/webm; codecs="vp8, vorbis"' />
             <source src="http://videos-cdn.mozilla.net/serv/marketing/firefox4/Browsing-Basics-640.theora.ogv" type='video/ogg; codecs="theora, vorbis"' />
-            <object type="application/x-shockwave-flash" style="width: 480px; height: 270px;" data=""{{ media('flash/playerWithControls.swf?flv=serv/marketing/firefox4/Browsing-Basics-640.mp4&amp;autoplay=false') }}">
+            <object type="application/x-shockwave-flash" style="width: 436px; height: 245px;" data=""{{ media('flash/playerWithControls.swf?flv=serv/marketing/firefox4/Browsing-Basics-640.mp4&amp;autoplay=false') }}">
                 <param name="movie" value="{{ media('flash/playerWithControls.swf?flv=serv/marketing/firefox4/Browsing-Basics-640.mp4&amp;autoplay=false') }}" />
                 <param name="wmode" value="transparent" />
                 <div class="video-player-no-flash">This video requires a browser with support for open video or Flash.</div>
@@ -97,50 +105,35 @@
         </video>
         </div>
         <figcaption class="figcaption">Learn more about Firefox’s features</figcaption>
-    </figure>
-    <a href="#" class="close">close</a>
-</article>
-
-<article id="overlay-meet-your-browser" class="overlay-box">
-    <div class="info">
-        <h1>Meet Your Browser</h1>
-        <p>The Firefox interface has been designed by a team of experts and tested by a community of millions of users around the world to make sure your browsing is as easy and intuitive as possible. Try these links to learn more:</p>
-        <ul>
-            <li><a href="https://support.mozilla.org/kb/what-are-app-tabs">Create an app tab</a></li>
-            <li><a href="http://support.mozilla.org/kb/how-do-i-customize-toolbars">Customize your toolbar</a></li>
-            <li><a href="https://support.mozilla.org/kb/how-do-i-use-bookmarks">Organize your bookmarks</a></li>
-            <li><a href="http://support.mozilla.org/kb/what-are-tab-groups">Manage your tabs with Panorama</a></li>
-        </ul>
+      </figure>
+      <ul>
+          <li><a href="https://support.mozilla.org/kb/Browsing%20basics">Browsing Basics</a></li>
+          <li><a href="https://support.mozilla.org/kb/Importing%20favorites%20and%20other%20data%20from%20Internet%20Explorer">Import bookmarks from another browser</a></li>
+          <li><a href="https://support.mozilla.org/kb/How%20to%20set%20the%20home%20page">Set your home page</a></li>
+      </ul>
     </div>
-    <a href="#" class="close">close</a>
-</article>
 
-<article id="overlay-experience-super-speed" class="overlay-box">
-    <div class="info">
-        <h1>Experience Super Speed</h1>
-        <p>We’ve optimized Firefox’s performance to support the way you browse, and with faster start-up times, rapid graphics rendering and improved page load, Firefox is fast in ways you’ll notice instantly.</p>
-        <ul>
-            <li><a href="/firefox/performance/">Go under the hood to find out more</a></li>
-        </ul>
+    <div class="experience-super-speed-content default-page" id="experience-super-speed">
+      <h2>Experience Super Speed</h2>
+      <p>We’ve optimized Firefox’s performance to support the way you browse, and with faster start-up times, rapid graphics rendering and improved page load, Firefox is fast in ways you’ll notice instantly.</p>
+      <ul>
+        <li><a href="/firefox/performance/">Go under the hood to find out more</a></li>
+      </ul>
     </div>
-    <a href="#" class="close">close</a>
-</article>
 
-<article id="overlay-stay-in-sync" class="overlay-box">
-    <div class="info">
-        <h1>Stay in Sync</h1>
-        <p>Life on the go means always browsing with a single device isn’t very feasible. So, we created Sync to give you constant access to your browsing data, including history, passwords, bookmarks and open tabs, no matter what computer or phone you’re using.</p>
-        <ul>
-            <li><a href="https://support.mozilla.org/kb/sync-firefox-between-desktop-and-mobile">Create your Sync account</a></li>
-        </ul>
-    </div>
-    <figure class="figure">
+    <div class="stay-in-sync-content default-page" id="stay-in-sync">
+      <h2>Stay in Sync</h2>
+      <p>Life on the go means always browsing with a single device isn’t very feasible. So, we created Sync to give you constant access to your browsing data, including history, passwords, bookmarks and open tabs, no matter what computer or phone you’re using.</p>
+      <ul>
+          <li><a href="https://support.mozilla.org/kb/sync-firefox-between-desktop-and-mobile">Create your Sync account</a></li>
+      </ul>
+      <figure class="figure">
         <div class="mozilla-video-control">
-        <video width="480" height="270" controls="controls" poster="{{ media('img/firefox/central/poster-sync-instructions.png') }}">
+        <video width="436" height="245" controls="controls" poster="{{ media('img/firefox/central/poster-sync-instructions.png') }}">
             <source src="http://videos-cdn.mozilla.net/serv/marketing/firefox4/Sync-Instructions-640.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
             <source src="http://videos-cdn.mozilla.net/serv/marketing/firefox4/Sync-Instructions-640.webm" type='video/webm; codecs="vp8, vorbis"' />
             <source src="http://videos-cdn.mozilla.net/serv/marketing/firefox4/Sync-Instructions-640.theora.ogv" type='video/ogg; codecs="theora, vorbis"' />
-            <object type="application/x-shockwave-flash" style="width: 480px; height: 270px;" data=""{{ media('flash/playerWithControls.swf?flv=serv/marketing/firefox4/Sync-Instructions-640.mp4&amp;autoplay=false') }}">
+            <object type="application/x-shockwave-flash" style="width: 436px; height: 245px;" data=""{{ media('flash/playerWithControls.swf?flv=serv/marketing/firefox4/Sync-Instructions-640.mp4&amp;autoplay=false') }}">
                 <param name="movie" value="{{ media('flash/playerWithControls.swf?flv=serv/marketing/firefox4/Sync-Instructions-640.mp4&amp;autoplay=false') }}" />
                 <param name="wmode" value="transparent" />
                 <div class="video-player-no-flash">This video requires a browser with support for open video or Flash.</div>
@@ -148,26 +141,23 @@
         </video>
         </div>
         <figcaption class="figcaption">Learn more about Sync</figcaption>
-    </figure>
-    <a href="#" class="close">close</a>
-</article>
-
-<article id="overlay-customize" class="overlay-box">
-    <div class="info">
-        <h1>Customize</h1>
-        <p>When it comes to browsing, one size definitely doesn’t fit all. That’s why we’ve made sure you can customize Firefox to your exact needs in pretty much any possible way. Enhance functionality with extensions, add style with Personas or even change the toolbar icons to be just the way you like.</p>
-        <ul>
-            <li><a href="https://support.mozilla.org/kb/Customizing%20Firefox%20with%20add-ons">Ways to personalize your Firefox</a></li>
-            <li><a href="https://support.mozilla.org/kb/Customizing%20Firefox%20with%20add-ons">How to install an add-on</a></li>
-            <li><a href="http://support.mozilla.org/kb/how-do-i-customize-toolbars">Customize your toolbars</a></li>
-        </ul>
+      </figure>
     </div>
-    <figure class="figure">
+
+    <div class="customize-content default-page" id="customize">
+      <h2>Customize</h2>
+      <p>When it comes to browsing, one size definitely doesn’t fit all. That’s why we’ve made sure you can customize Firefox to your exact needs in pretty much any possible way. Enhance functionality with extensions, add style with Personas or even change the toolbar icons to be just the way you like.</p>
+      <ul>
+          <li><a href="https://support.mozilla.org/kb/Customizing%20Firefox%20with%20add-ons">Ways to personalize your Firefox</a></li>
+          <li><a href="https://support.mozilla.org/kb/Customizing%20Firefox%20with%20add-ons">How to install an add-on</a></li>
+          <li><a href="http://support.mozilla.org/kb/how-do-i-customize-toolbars">Customize your toolbars</a></li>
+      </ul>
+      <figure class="figure">
         <div class="mozilla-video-control">
-        <video width="480" height="270" controls="controls" poster="{{ media('img/firefox/central/poster-getpersonas.jpg') }}">
+        <video width="436" height="245" controls="controls" poster="{{ media('img/firefox/central/poster-getpersonas.jpg') }}">
                 <source src="http://videos-cdn.mozilla.net/firefox/3.6/getpersonas.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
                 <source src="http://videos-cdn.mozilla.net/firefox/3.6/getpersonas.ogv" type='video/ogg; codecs="theora, vorbis"' />
-                <object type="application/x-shockwave-flash" style="width: 480px; height: 270px;" data=""{{ media('flash/playerWithControls.swf?flv=firefox/3.6/getpersonas.mp4&amp;autoplay=false') }}">
+                <object type="application/x-shockwave-flash" style="width: 436px; height: 245px;" data=""{{ media('flash/playerWithControls.swf?flv=firefox/3.6/getpersonas.mp4&amp;autoplay=false') }}">
                     <param name="movie" value="{{ media('flash/playerWithControls.swf?flv=firefox/3.6/getpersonas.mp4&amp;autoplay=false') }}" />
                     <param name="wmode" value="transparent" />
                     <div class="video-player-no-flash">This video requires a browser with support for open video or Flash.</div>
@@ -175,29 +165,26 @@
         </video>
         </div>
         <figcaption class="figcaption">Learn more about Personas</figcaption>
-    </figure>
-    <a href="#" class="close">close</a>
-</article>
-
-<article id="overlay-secure-your-personal-info" class="overlay-box">
-    <div class="info">
-        <h1>Secure Your Personal Info</h1>
-        <p>We’ve packed Firefox with highly advanced security features to keep you safe while you browse. And, as a non-profit organization, protecting your privacy by keeping you in control over your personal information is a key part of our mission.</p>
-        <ul>
-            <li><a href="http://support.mozilla.org/kb/Site+Identity+Button">Instant Web ID</a></li>
-            <li><a href="http://support.mozilla.org/kb/how-do-i-stop-websites-tracking-me">Do not Track</a></li>
-            <li><a href="http://support.mozilla.org/kb/Private%20Browsing">Private Browsing</a></li>
-            <li><a href="http://support.mozilla.org/kb/Clear%20Recent%20History">Clear Recent History</a></li>
-            <li><a href="http://support.mozilla.org/kb/Options%20window%20-%20Security%20panel">Customized Security Setting</a></li>
-        </ul>
+     </figure>
     </div>
-    <figure class="figure">
+
+    <div class="personal-content default-page" id="personal">
+      <h2>Secure Your Personal Info</h2>
+      <p>We’ve packed Firefox with highly advanced security features to keep you safe while you browse. And, as a non-profit organization, protecting your privacy by keeping you in control over your personal information is a key part of our mission.</p>
+      <ul>
+          <li><a href="http://support.mozilla.org/kb/Site+Identity+Button">Instant Web ID</a></li>
+          <li><a href="http://support.mozilla.org/kb/how-do-i-stop-websites-tracking-me">Do not Track</a></li>
+          <li><a href="http://support.mozilla.org/kb/Private%20Browsing">Private Browsing</a></li>
+          <li><a href="http://support.mozilla.org/kb/Clear%20Recent%20History">Clear Recent History</a></li>
+          <li><a href="http://support.mozilla.org/kb/Options%20window%20-%20Security%20panel">Customized Security Setting</a></li>
+      </ul>
+      <figure class="figure">
         <div class="mozilla-video-control">
-        <video width="480" height="270" controls="controls" poster="{{ media('img/firefox/central/poster-privatebrowsing.png') }}">
+        <video width="436" height="245" controls="controls" poster="{{ media('img/firefox/central/poster-privatebrowsing.png') }}">
             <source src="http://videos-cdn.mozilla.net/serv/marketing/firefox4/privatebrowsing640.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
             <source src="http://videos-cdn.mozilla.net/serv/marketing/firefox4/privatebrowsing640.webm" type='video/webm; codecs="vp8, vorbis"' />
             <source src="http://videos-cdn.mozilla.net/serv/marketing/firefox4/privatebrowsing640.theora.ogv" type='video/ogg; codecs="theora, vorbis"' />
-            <object type="application/x-shockwave-flash" style="width: 480px; height: 270px;" data=""{{ media('flash/playerWithControls.swf?flv=serv/marketing/firefox4/privatebrowsing640.mp4&amp;autoplay=false') }}">
+            <object type="application/x-shockwave-flash" style="width: 436px; height: 245px;" data=""{{ media('flash/playerWithControls.swf?flv=serv/marketing/firefox4/privatebrowsing640.mp4&amp;autoplay=false') }}">
                 <param name="movie" value="{{ media('flash/playerWithControls.swf?flv=serv/marketing/firefox4/privatebrowsing640.mp4&amp;autoplay=false') }}" />
                 <param name="wmode" value="transparent" />
                 <div class="video-player-no-flash">This video requires a browser with support for open video or Flash.</div>
@@ -205,59 +192,28 @@
         </video>
         </div>
         <figcaption class="figcaption">Learn more about Firefox’s security features</figcaption>
-    </figure>
-    <a href="#" class="close">close</a>
-</article>
-
-<article id="overlay-explore-the-cutting-edge" class="overlay-box">
-    <div class="info">
-        <h1>Explore The Cutting Edge</h1>
-        <p>As part of our mission to make the Web better, Firefox supports the latest and greatest technology like HTML5 to make sure you can enjoy the most innovative and advanced sites out there. Be sure to check out our demo gallery for some examples of what the modern Web can do.</p>
-        <ul>
-            <li><a href="https://developer.mozilla.org/en-US/demos/">Mozilla Demo Studio</a></li>
-            <li><a href="/firefox/technology">More about Firefox technology</a></li>
-            <li><a href="https://developer.mozilla.org">Mozilla Developer Network</a></li>
-        </ul>
+      </figure>
     </div>
-    <figure class="figure">
-        <div class="mozilla-video-control">
-        <video width="480" height="270" controls="controls" poster="{{ media('/img/firefox/central/poster-cutting-edge.png') }}">
-            <source src=" http://videos-cdn.mozilla.net/serv/marketing/firefox4/Cutting-Edge-640.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
-            <source src="http://videos-cdn.mozilla.net/serv/marketing/firefox4/Cutting-Edge-640.webm" type='video/webm; codecs="vp8, vorbis"' />
-            <source src="http://videos-cdn.mozilla.net/serv/marketing/firefox4/Cutting-Edge-640.theora.ogv" type='video/ogg; codecs="theora, vorbis"' />
-            <object type="application/x-shockwave-flash" style="width: 480px; height: 270px;" data="{{ media('flash/playerWithControls.swf?flv=serv/marketing/firefox4/Cutting-Edge-640.mp4&amp;autoplay=false') }}">
-                <param name="movie" value="{{ media('flash/playerWithControls.swf?flv=serv/marketing/firefox4/Cutting-Edge-640.mp4&amp;autoplay=false') }}" />
-                <param name="wmode" value="transparent" />
-                <div class="video-player-no-flash">This video requires a browser with support for open video or Flash.</div>
-            </object>
-        </video>
-        </div>
-        <figcaption class="figcaption">Learn more about Firefox’s technology</figcaption>
-    </figure>
-    <a href="#" class="close">close</a>
-</article>
 
-<article id="overlay-firefox-on-your-phone" class="overlay-box">
-    <div class="info">
-        <h1>Get Firefox on Your Phone</h1>
-        <p>Fast, easy to use and completely customizable, Firefox for mobile puts the
-        modern Web experience of Firefox in your pocket and at your fingertips. It’s
-        built on the same great platform as our desktop version, so you never have to
-        compromise, even on the go.</p>
-        <ul>
-            <li><a href="/mobile/features/">Features</a></li>
-            <li><a href="https://addons.mozilla.org/mobile/?browse=featured">Ways to customize</a></li>
-            <li><a href="/firefox/video/?video=fx4-mobile-addons">Mobile add-ons showcase</a></li>
-            <li><a href="/mobile/platforms">Supported platforms and devices</a></li>
-        </ul>
-    </div>
-    <figure class="figure">
+    <div class="android-content default-page" id="android">
+      <h2>Get Firefox on Your Phone</h2>
+      <p>Fast, easy to use and completely customizable, Firefox for mobile puts the
+      modern Web experience of Firefox in your pocket and at your fingertips. It’s
+      built on the same great platform as our desktop version, so you never have to
+      compromise, even on the go.</p>
+      <ul>
+          <li><a href="/mobile/features/">Features</a></li>
+          <li><a href="https://addons.mozilla.org/mobile/?browse=featured">Ways to customize</a></li>
+          <li><a href="/firefox/video/?video=fx4-mobile-addons">Mobile add-ons showcase</a></li>
+          <li><a href="/mobile/platforms">Supported platforms and devices</a></li>
+      </ul>
+      <figure class="figure">
         <div class="mozilla-video-control">
-        <video width="480" height="270" controls="controls">
+        <video width="436" height="245" controls="controls">
             <source src="http://videos-cdn.mozilla.net/serv/marketing/firefox4/Mobile-launch-greatday640.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
             <source src="http://videos-cdn.mozilla.net/serv/marketing/firefox4/Mobile-launch-greatday640.webm" type='video/webm; codecs="vp8, vorbis"' />
             <source src="http://videos-cdn.mozilla.net/serv/marketing/firefox4/Mobile-launch-greatday640.theora.ogv" type='video/ogg; codecs="theora, vorbis"' />
-            <object type="application/x-shockwave-flash" style="width: 480px; height: 270px;" data=""{{ media('flash/playerWithControls.swf?flv=serv/marketing/firefox4/Mobile-launch-greatday640.mp4&amp;autoplay=false') }}">
+            <object type="application/x-shockwave-flash" style="width: 436px; height: 245px;" data=""{{ media('flash/playerWithControls.swf?flv=serv/marketing/firefox4/Mobile-launch-greatday640.mp4&amp;autoplay=false') }}">
                 <param name="movie" value="{{ media('flash/playerWithControls.swf?flv=serv/marketing/firefox4/Mobile-launch-greatday640.mp4&amp;autoplay=false') }}" />
                 <param name="wmode" value="transparent" />
                 <div class="video-player-no-flash">This video requires a browser with support for open video or Flash.</div>
@@ -265,32 +221,15 @@
         </video>
         </div>
         <figcaption class="figcaption">Learn more about Firefox for mobile</figcaption>
-    </figure>
-    <a href="#" class="close">close</a>
-</article>
+      </figure>
+    </div>
 
-<svg style="height: 0">
-    <defs>
-    <filter id="blur"><feGaussianBlur stdDeviation="3"/></filter>
-    </defs>
-</svg>
+    <div class="-content default-page" id="">
+    </div>
+
+  </div>
 </div>
 
-  <div id="features">
-      <p>Become a Firefox Expert in <span>8</span> Easy Steps:</p>
-      <ul>
-          <li><a href="#" id="get-started">Get started</a></li>
-          <li><a href="#" id="meet-your-browser">Meet Your Browser</a></li>
-          <li><a href="#" id="experience-super-speed">Experience Super Speed</a></li>
-          <li><a href="#" id="stay-in-sync">Stay in Sync</a></li>
-      </ul>
-      <ul>
-          <li><a href="#" id="customize">Customize</a></li>
-          <li><a href="#" id="secure-your-personal-info">Secure Your Personal Info</a></li>
-          <li><a href="#" id="explore-the-cutting-edge">Explore the Cutting Edge</a></li>
-          <li><a href="#" id="firefox-on-your-phone">Get Firefox on Your Phone</a></li>
-      </ul>
-  </div>
 {% endblock %}
 
 {% block js %}

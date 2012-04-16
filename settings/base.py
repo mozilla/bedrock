@@ -177,6 +177,7 @@ MINIFY_BUNDLES = {
         'firefox_central': (
             'js/mozilla-video-tools.js',
             'js/firefox/central.js',
+            'js/mozilla-pager.js',
         ),
         'firefox_customize': (
             'js/mozilla-video-tools.js',

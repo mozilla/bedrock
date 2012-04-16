@@ -27,42 +27,6 @@ var gPlatformVista = navigator.userAgent.indexOf('Windows NT 6.0') !=-1
 
     $('<div id="overlay" />').appendTo('body');
 
-    $('#features li a')
-        .click(function(e) {
-            e.preventDefault();
-            $('#overlay')
-                .css('display', 'block')
-                .css('height', $(document).height() + 'px');
-
-            var width = $('#overlay-' + this.id).outerWidth();
-            var height = $('#overlay-' + this.id).outerHeight();
-            var docWidth = $(document).width();
-            var viewHeight = $(window).height();
-            
-
-            var $overlay = $('#overlay-' + this.id);
-            var top = ((viewHeight - height) / 2);
-            if ($overlay.css('position') == 'absolute') {
-              top += $(window).scrollTop();
-            }
-            $overlay.appendTo('body')
-                .css('display', 'block')
-                .css('top', top + 'px')
-                .css('left', ((docWidth - width) / 2) + 'px')
-        });
-
-    $('#overlay,.overlay-box .close').click(function(e) {
-        e.preventDefault();
-        $('.overlay-box').each(function() {
-            $(this).css('display', 'none');
-        });
-        $('#overlay').css('display', 'none');
-        $('video').each(function() {
-            if (typeof this.pause != 'undefined') {
-                this.pause();
-            }
-        });
-    });
   var tips = {}
   tips[PLATFORM_WINDOWS] = [
       {'left': 77, 'top': 73, 'id': 'firefox-menu-button'},
