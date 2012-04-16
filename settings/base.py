@@ -263,9 +263,6 @@ INSTALLED_APPS = (
     'jingo_minify',
     'tower',  # for ./manage.py extract (L10n)
 
-    # We need this so the jsi18n view will pick up our locale directory.
-    ROOT_PACKAGE,
-
     # Django contrib apps
     'django.contrib.auth',
     'django_sha2',  # Load after auth to monkey-patch it.
