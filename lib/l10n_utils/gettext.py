@@ -21,9 +21,12 @@ def parse_po(path):
         return msgs
 
     with codecs.open(path, 'r', 'utf-8') as lines:
+        def parse_string(s):
+            return s.strip('"').replace('\\"', '"')
+
         def extract_content(s):
             # strip the first word and quotes
-            return s.split(' ', 1)[1].strip('"')
+            return parse_string(s.split(' ', 1)[1])
 
         msgid = None
         msgpath = None
@@ -40,9 +43,10 @@ def parse_po(path):
                 if msgpath not in msgs:
                     msgs[msgpath] = []
                 msgs[msgpath].append(msgid)
-            else:
                 msgid = None
                 msgpath = None
+            elif msgid is not None:
+                msgid += parse_string(line)
 
     return msgs
 
@@ -94,27 +98,39 @@ def parse_template(path):
                     lang_files.append(arg[2].strip('"'))
                     arg = ignore_whitespace(tokens)
 
-                return lang_files                
+                lang_files = filter(lambda x: x, lang_files)
+                if lang_files:
+                    return lang_files                
     return []
 
 
-def extract_lang_files(langs):
+def merge_lang_files(langs):
     all_msgs = po_msgs()
 
     for lang in langs:
         print 'Merging into %s...' % lang
+
+        # Start off with some global lang files so that strings don't
+        # get duplicated everywhere
         main_msgs = parse_lang(lang_file('main.lang', lang))
+        main_msgs.update(parse_lang(lang_file('base.lang', lang)))
+        main_msgs.update(parse_lang(lang_file('newsletter.lang', lang)))
 
         for path, msgs in all_msgs.items():
             target = None
             lang_files = None
 
             if is_template(path):
+                # If the template explicitly specifies lang files, use those
                 lang_files = [lang_file('%s.lang' % f, lang)
                               for f in parse_template(join(settings.ROOT, path))]
-
-            if not lang_files:
-                lang_files = [lang_file(get_lang_path(path), lang)]
+                # Otherwise, normalize the path name to a lang file
+                if not lang_files:
+                    lang_files = [lang_file(get_lang_path(path), lang)]
+            else:
+                # All other sources use the first main file
+                lang_files = [lang_file('%s.lang' % settings.DOTLANG_FILES[0],
+                                        lang)]
 
             # Get the current translations
             curr = {}

@@ -1,3 +1,4 @@
+import re
 import uuid
 
 from jinja2.ext import Environment, Extension, nodes
@@ -50,10 +51,10 @@ class L10nBlockExtension(Extension):
 
 
 class LoadLangExtension(Extension):
-    """ Create a special syntax for specifying additional lang files.
+    """Create a special syntax for specifying additional lang files.
     It looks like this: {% lang_files "foo" "bar" %}. We convert it
     into a call to a helper method because it needs to context to load
-    in the correct locale. As a result, this must be within a block. """
+    in the correct locale. As a result, this must be within a block."""
 
     tags = set(['set_lang_files', 'add_lang_files'])
 

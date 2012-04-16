@@ -32,6 +32,7 @@ PROD_LANGUAGES = ('ab-CD', 'ach', 'af', 'ak', 'ar', 'as', 'ast', 'be', 'bg',
 DEV_LANGUAGES = list(DEV_LANGUAGES) + ['en-US']
 
 DOTLANG_CACHE = 60
+DOTLANG_FILES = ['main', 'base', 'newsletter']
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '1iz#v0m55@h26^m6hxk3a7at*h$qj_2a$juu1#nv50548j(x1v'
@@ -40,10 +41,6 @@ TEMPLATE_DIRS = (
     path('templates'),
     path('locale')
 )
-
-TEMPLATE_CONTEXT_PROCESSORS = list(TEMPLATE_CONTEXT_PROCESSORS) + [
-    'l10n_utils.context_processors.trans'
-]
 
 def JINJA_CONFIG():
     import jinja2

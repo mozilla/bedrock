@@ -7,7 +7,6 @@ from functools import wraps
 import basket
 import l10n_utils
 from mozorg.forms import NewsletterForm
-from l10n_utils.dotlang import get_lang_path
 
 def handle_newsletter(request):
     success = False
