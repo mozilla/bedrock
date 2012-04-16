@@ -26,7 +26,7 @@ def parse(path):
             line = line.strip()
             if line != '':
                 if line[0] == ';':
-                    source = line[1:].lower()
+                    source = line[1:]
                 elif source:
                     for tag in ('{ok}', '{l10n-extra}'):
                         if line.endswith(tag):
@@ -39,7 +39,6 @@ def parse(path):
 def translate(text, files):
     """Search a list of .lang files for a translation"""
     lang = translation.get_language()
-    textl = text.lower()
 
     for file_ in files:
         key = "dotlang-%s-%s" % (lang, file_)
@@ -51,8 +50,8 @@ def translate(text, files):
             trans = parse(path)
             cache.set(key, trans, settings.DOTLANG_CACHE)
 
-        if textl in trans:
-            return trans[textl]
+        if text in trans:
+            return trans[text]
     return text
 
 

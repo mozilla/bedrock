@@ -148,6 +148,5 @@ def merge_lang_files(langs):
 
             with codecs.open(target, 'a', 'utf-8') as out:
                 for msg in msgs:
-                    msg_ = msg.lower()
-                    if msg_ not in curr and msg_ not in main_msgs:
+                    if msg not in curr and msg not in main_msgs:
                         out.write(';%s\n%s\n\n\n' % (msg, msg))
