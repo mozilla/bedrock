@@ -25,6 +25,5 @@ urlpatterns = patterns('',
 
     page('firefox/unsupported/warning', 'firefox/unsupported-warning.html'),
     page('firefox/unsupported/EOL', 'firefox/unsupported-EOL.html'),
-    page('firefox/unsupported/win2k', 'firefox/unsupported-win2k.html'),
-    page('firefox/unsupported/winxp', 'firefox/unsupported-winxp.html'),
+    url(r'firefox/unsupported/win2k', views.windows_billboards),
 )
