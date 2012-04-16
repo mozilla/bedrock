@@ -26,9 +26,12 @@ def parse(path):
             line = line.strip()
             if line != '':
                 if line[0] == ';':
-                    source = line
+                    source = line[1:].lower()
                 elif source:
-                    trans[source[1:].lower()] = line
+                    for tag in ('{ok}', '{l10n-extra}'):
+                        if line.endswith(tag):
+                            line = line[:-len(tag)]
+                    trans[source] = line.strip()
 
     return trans
 
