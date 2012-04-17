@@ -8,6 +8,9 @@ h1.large {
 #main-feature {
     #gradient > .radial(center, 45px, ellipse, farthest-corner, #eee 0%, #ffffff 100%);
     margin-bottom: @baseLine * 2;
+    h2 {
+        margin-bottom: @baseLine * 2;
+    }
 }
 
 .roll-over {
@@ -30,15 +33,13 @@ h1.large {
 
 #figure {
     position: relative;
-    margin: 10px 0 0 0;
-    margin-left: -23px;
+    margin: 0;
+    margin-left: -48px;
     margin-bottom: -48px;
-    padding-top: 70px;
 }
 
 #figure img {
     display: block;
-    margin-left: -25px;
     height: 208px;
     width: 992px;
 }
@@ -140,7 +141,8 @@ h1.large {
 
 #features .figure {
     display: block;
-    width: (@gridColumnWidth * 5) + (@gridGutterWidth * 4)
+    width: (@gridColumnWidth * 5) + (@gridGutterWidth * 4);
+    margin-bottom: @baseLine;
 }
 
 #features .figcaption {
@@ -161,17 +163,25 @@ h1.large {
     li {
         list-style-type: none;
         margin: 0 0 @baseLine 0;
+        a.selected {
+            color: @textColorSecondary;
+            content: "";
+        }
     }
+
     a:after {
         content: " »";
-    }
-    .selected a {
-        color: @textColorPrimary;
-        content: "";
     }
 }
 
 #features .pager-content {
-    .span(6);
+    .span(5);
     margin-bottom: @baseLine * 2;
+    li {
+        margin-left: 0;
+        list-style-type: none;
+        a:after {
+            content: " »";
+        }
+    }
 }
