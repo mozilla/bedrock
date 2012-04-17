@@ -53,6 +53,10 @@ a:active {
     padding: 0 20px;
 }
 
+#details-content ul li:first-letter {
+    text-transform: uppercase;
+}
+
 #details-content p {
     margin: 8px 0;
 }
