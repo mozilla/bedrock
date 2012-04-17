@@ -36,9 +36,18 @@ def parse(path):
     return trans
 
 
+def fix_case(locale):
+    """Convert lowercase locales to uppercase: en-us -> en-US"""
+    parts = locale.split('-')
+    if len(parts) == 1:
+        return locale
+    else:
+        return '%s-%s' % (parts[0], parts[1].upper())
+
+
 def translate(text, files):
     """Search a list of .lang files for a translation"""
-    lang = translation.get_language()
+    lang = fix_case(translation.get_language())
 
     for file_ in files:
         key = "dotlang-%s-%s" % (lang, file_)
