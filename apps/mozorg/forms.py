@@ -2,6 +2,7 @@ from django import forms
 from django.forms import widgets
 from django.utils.safestring import mark_safe
 from django.core.validators import EMPTY_VALUES
+from captcha.fields import ReCaptchaField
 
 from product_details import product_details
 
@@ -68,8 +69,9 @@ INTEREST_CHOICES = (('', 'Area of interest?'),
                     ('Research', 'User Research'),
                     ('Thunderbird', 'Thunderbird'),
                     ('Accessibility', 'Accessibility'),
-                    ('Firefox Suggestions', 'Firefox Suggestions'),
-                    (' ', 'Other'))
+                    (' ', 'Other'),
+                    ('Firefox Suggestions', 'I have a suggestion for Firefox'),
+                    ('Firefox Issue', 'I need help with a Firefox issue'))
 
 class ContributeForm(forms.Form):
     email = forms.EmailField(widget=EmailInput(attrs={'required':'true'}))
@@ -77,3 +79,4 @@ class ContributeForm(forms.Form):
     newsletter = forms.BooleanField(required=False)
     interest = forms.ChoiceField(choices=INTEREST_CHOICES)
     comments = forms.CharField(widget=forms.widgets.Textarea(attrs={'required':'true', 'rows':'', 'cols':''}))
+    captcha = ReCaptchaField(attrs={'theme':'clean'})

@@ -120,6 +120,7 @@ def contribute_autorespond(request, data):
         'Thunderbird': 'jzickerman@mozilla.com',
         'Accessibility': 'jay@jaygarcia.com',
         'Firefox Suggestions': 'jay@jaygarcia.com',
+        'Firefox Issue': 'dboswell@mozilla.com',
         'Webdev': 'lcrouch@mozilla.com',
         ' ': 'dboswell@mozilla.com'
     }
@@ -132,6 +133,7 @@ def contribute_autorespond(request, data):
         'Students': 'emails/students.txt',
         'Documentation': 'emails/documentation.txt',
         'Firefox Suggestions': 'emails/suggestions.txt',
+        'Firefox Issue': 'emails/issue.txt',
         'Webdev': 'emails/webdev.txt',
         ' ': 'emails/other.txt'
         }

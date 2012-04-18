@@ -1,0 +1,90 @@
+Index: captcha.py
+===================================================================
+--- captcha.py	(revision 151)
++++ captcha.py	(working copy)
+@@ -1,8 +1,8 @@
+ import urllib2, urllib
+ 
+-API_SSL_SERVER="https://www.google.com/recaptcha/api"
+-API_SERVER="http://www.google.com/recaptcha/api"
+-VERIFY_SERVER="www.google.com"
++API_SSL_SERVER = "https://www.google.com/recaptcha/api"
++API_SERVER = "http://www.google.com/recaptcha/api"
++VERIFY_SERVER = "www.google.com"
+ 
+ class RecaptchaResponse(object):
+     def __init__(self, is_valid, error_code=None):
+@@ -10,8 +10,9 @@
+         self.error_code = error_code
+ 
+ def displayhtml (public_key,
+-                 use_ssl = False,
+-                 error = None):
++                 attrs,
++                 use_ssl=False,
++                 error=None):
+     """Gets the HTML to display for reCAPTCHA
+ 
+     public_key -- The public api key
+@@ -27,7 +28,16 @@
+     else:
+         server = API_SERVER
+ 
+-    return """<script type="text/javascript" src="%(ApiServer)s/challenge?k=%(PublicKey)s%(ErrorParam)s"></script>
++    options_js = ''
++    if attrs:
++        options_js = '<script type="text/javascript">var RecaptchaOptions = {\n'
++        for k, v in attrs.get('options').items():
++            options_js += "\t%s : '%s',\n" % (k, v)
++        options_js += '};\n</script>'
++
++    return """
++    %(options_js)s
++    <script type="text/javascript" src="%(ApiServer)s/challenge?k=%(PublicKey)s%(ErrorParam)s"></script>
+ 
+ <noscript>
+   <iframe src="%(ApiServer)s/noscript?k=%(PublicKey)s%(ErrorParam)s" height="300" width="500" frameborder="0"></iframe><br />
+@@ -38,6 +48,7 @@
+         'ApiServer' : server,
+         'PublicKey' : public_key,
+         'ErrorParam' : error_param,
++        'options_js' : options_js
+         }
+ 
+ 
+@@ -57,8 +68,8 @@
+ 
+     if not (recaptcha_response_field and recaptcha_challenge_field and
+             len (recaptcha_response_field) and len (recaptcha_challenge_field)):
+-        return RecaptchaResponse (is_valid = False, error_code = 'incorrect-captcha-sol')
+-    
++        return RecaptchaResponse (is_valid=False, error_code='incorrect-captcha-sol')
++
+ 
+     def encode_if_necessary(s):
+         if isinstance(s, unicode):
+@@ -73,14 +84,14 @@
+             })
+ 
+     request = urllib2.Request (
+-        url = "http://%s/recaptcha/api/verify" % VERIFY_SERVER,
+-        data = params,
+-        headers = {
++        url="http://%s/recaptcha/api/verify" % VERIFY_SERVER,
++        data=params,
++        headers={
+             "Content-type": "application/x-www-form-urlencoded",
+             "User-agent": "reCAPTCHA Python"
+             }
+         )
+-    
++
+     httpresp = urllib2.urlopen (request)
+ 
+     return_values = httpresp.read ().splitlines ();
+@@ -91,4 +102,4 @@
+     if (return_code == "true"):
+         return RecaptchaResponse (is_valid=True)
+     else:
+-        return RecaptchaResponse (is_valid=False, error_code = return_values [1])
++        return RecaptchaResponse (is_valid=False, error_code=return_values [1])

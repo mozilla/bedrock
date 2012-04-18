@@ -17,11 +17,22 @@ LANGUAGE_CODE = 'en-US'
 SESSION_COOKIE_SECURE = True
 
 # Accepted locales
-PROD_LANGUAGES = ('de', 'en-US', 'es', 'fr',)
-DEV_LANGUAGES = DEV_LANGUAGES + ['en-US']
+PROD_LANGUAGES = ('ab-CD', 'ach', 'af', 'ak', 'ar', 'as', 'ast', 'be', 'bg',
+                  'bin', 'bn-BD', 'bn-IN', 'br', 'bs', 'ca', 'cs', 'csb', 'cy',
+                  'da', 'de', 'el', 'en-GB', 'en-US', 'en-ZA', 'eo', 'es-AR',
+                  'es-CL', 'es-ES', 'es-MX', 'et', 'eu', 'fa', 'ff', 'fi', 'fr',
+                  'fy-NL', 'ga-IE', 'gd', 'gl', 'gu-IN', 'he', 'hi-IN', 'hr',
+                  'hu', 'hy-AM', 'id', 'is', 'it', 'ja', 'ja-JP-mac', 'js',
+                  'ka', 'kk', 'km', 'kn', 'ko', 'ku', 'lg', 'lij', 'lt', 'lv',
+                  'mai', 'mk', 'ml', 'mn', 'mr', 'ms', 'my', 'nb-NO', 'nl',
+                  'nn-NO', 'nso', 'oc', 'or', 'pa-IN', 'pl', 'pt-BR', 'pt-PT',
+                  'rm', 'ro', 'ru', 'si', 'sk', 'sl', 'son', 'sq', 'sr',
+                  'sv-SE', 'sw', 'ta', 'ta-LK', 'te', 'th', 'tr', 'uk',
+                  'vi', 'wo', 'zh-CN', 'zh-TW', 'zu')
+DEV_LANGUAGES = list(DEV_LANGUAGES) + ['en-US']
 
-DOTLANG_FILES = ('main.lang',)
 DOTLANG_CACHE = 60
+DOTLANG_FILES = ['main', 'base', 'newsletter']
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '1iz#v0m55@h26^m6hxk3a7at*h$qj_2a$juu1#nv50548j(x1v'
@@ -36,7 +47,8 @@ def JINJA_CONFIG():
     from django.conf import settings
     config = {'extensions': ['tower.template.i18n', 'jinja2.ext.do',
                              'jinja2.ext.with_', 'jinja2.ext.loopcontrols',
-                             'l10n_utils.template.l10n_blocks'],
+                             'l10n_utils.template.l10n_blocks',
+                             'l10n_utils.template.lang_blocks'],
               'finalize': lambda x: x if x is not None else ''}
     return config
 
@@ -245,7 +257,33 @@ MIDDLEWARE_CLASSES = (
     'mozorg.middleware.CacheMiddleware'
 )
 
-INSTALLED_APPS = list(INSTALLED_APPS) + [
+INSTALLED_APPS = (
+    # Local apps
+    'funfactory',  # Content common to most playdoh-based apps.
+    'jingo_minify',
+    'tower',  # for ./manage.py extract (L10n)
+
+    # Django contrib apps
+    'django.contrib.auth',
+    'django_sha2',  # Load after auth to monkey-patch it.
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    # 'django.contrib.sites',
+    # 'django.contrib.messages',
+    # Uncomment the next line to enable the admin:
+    # 'django.contrib.admin',
+    # Uncomment the next line to enable admin documentation:
+    # 'django.contrib.admindocs',
+
+    # Third-party apps, patches, fixes
+    'commonware.response.cookies',
+    'djcelery',
+    'django_nose',
+    'session_csrf',
+
+    # L10n
+    'product_details',
+
     # Local apps
     'l10n_example',  # DELETEME
     'b2g',
@@ -259,8 +297,9 @@ INSTALLED_APPS = list(INSTALLED_APPS) + [
 
     # libs
     'l10n_utils',
-    'dotlang',
-]
+    'captcha'
+)
+
 
 ## Auth
 PWD_ALGORITHM = 'bcrypt'
@@ -289,3 +328,7 @@ LOCALES_WITH_TRANSITION = ['en-US', 'af', 'ar', 'ast', 'be', 'bg',
                            'rm', 'ro', 'ru', 'si', 'sk', 'sl', 'sq',
                            'sr', 'sv-SE', 'ta', 'ta-LK', 'te', 'th',
                            'tr', 'uk', 'vi', 'zh-CN', 'zh-TW'];
+
+# reCAPTCHA keys
+RECAPTCHA_PUBLIC_KEY = ''
+RECAPTCHA_PRIVATE_KEY = ''
