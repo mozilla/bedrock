@@ -2,6 +2,7 @@
 
 {% block page_title %}Sandstone - Bedrock’s Layer of CSS Love{% endblock %}
 
+{% block body_id %}sandstone{% endblock %}
 {% block body_class %}stone {{ super() }}{% endblock %}
 
 {% block site_css %}
@@ -77,7 +78,7 @@
       <h4 class="mozilla-red">Responsive Grid</h4>
     </hgroup>
 
-      <p>Pages are built on a responsive gride, with 10, 6, or 3 columns, depending on the viewer. Columns are 68px wide with a 24px gutter. CSS classes for grids (<code>.row</code>, <code>.span1</code>, <code>.span2</code> etc.) are provided, or you can roll-your-own. If you’re using <a href="http://lesscss.org/">LESS</a> (the dynamic style sheet language, not to be confused with the <a href="http://lessframework.com/">Less Framework</a>, mixins are provided for columns (<code>.span(1)</code>, <code>.span(2)</code>, etc.).</p>
+      <p>Pages are built on a responsive grid, with 10, 6, or 3 columns, depending on the viewer. Columns are 68px wide with a 24px gutter. CSS classes for grids (<code>.row</code>, <code>.span1</code>, <code>.span2</code> etc.) are provided, or you can roll-your-own. If you’re using <a href="http://lesscss.org/">LESS</a> (the dynamic style sheet language, not to be confused with the <a href="http://lessframework.com/">Less Framework</a>, mixins are provided for columns (<code>.span(1)</code>, <code>.span(2)</code>, etc.).</p>
 <a class="top" href="#top">back to top</a>
 
   </div>
@@ -152,7 +153,7 @@
       <h4>Open Sans + Georgia</h4>
     </hgroup>
 
-    <p>Body copy is set in 16px Georgia with a 24px baseline. Headlines are set in Open Sans Light. The Open Sans font family is avaiable as a hosted web font from mozilla.org. The Sandstone CSS provides headings styled with Open Sans and you can add the LESS mixin <code>.open-sans</code> or <code>.open-sans-light</code> to any element.</p>
+    <p>Body copy is set in 16px Georgia with a 24px baseline. Headlines are set in Open Sans Light. The Open Sans font family is available as a hosted web font from mozilla.org. The Sandstone CSS provides headings styled with Open Sans and you can add the LESS mixin <code>.open-sans</code> or <code>.open-sans-light</code> to any element.</p>
 
     <a class="top" href="#top">back to top</a>
 
@@ -171,8 +172,8 @@
 
     <h4>Type Examples</h4>
 
-    <h1 class="huge">huge</p>
-    <h1 class="large">large</p>
+    <h1 class="huge">huge</h1>
+    <h1 class="large">large</h1>
     <h1>headline 1</h1>
     <h2>headline 2</h2>
     <h3>headline 3</h3>
@@ -226,9 +227,6 @@
 
 </div>
 </section>
-
-</div>
-
 
 {% endblock %}
 
