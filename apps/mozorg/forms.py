@@ -2,6 +2,7 @@ from django import forms
 from django.forms import widgets
 from django.utils.safestring import mark_safe
 from django.core.validators import EMPTY_VALUES
+from captcha.fields import ReCaptchaField
 
 from product_details import product_details
 
@@ -78,3 +79,4 @@ class ContributeForm(forms.Form):
     newsletter = forms.BooleanField(required=False)
     interest = forms.ChoiceField(choices=INTEREST_CHOICES)
     comments = forms.CharField(widget=forms.widgets.Textarea(attrs={'required':'true', 'rows':'', 'cols':''}))
+    captcha = ReCaptchaField(attrs={'theme':'clean'})
