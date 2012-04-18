@@ -10,7 +10,7 @@ import os
 
 from django.conf import settings
 from django.core.cache import cache
-
+from django.utils import translation
 
 def parse(path):
     """Parse a dotlang file and return a dict of translations."""
@@ -26,32 +26,65 @@ def parse(path):
             line = line.strip()
             if line != '':
                 if line[0] == ';':
-                    source = line
+                    source = line[1:]
                 elif source:
-                    trans[source[1:]] = line
+                    for tag in ('{ok}', '{l10n-extra}'):
+                        if line.endswith(tag):
+                            line = line[:-len(tag)]
+                    trans[source] = line.strip()
 
     return trans
 
-def load(lang):
-    """Load the dotlang files for the specific lang and cache them in
-    django."""
-    trans = {}
 
-    for f in settings.DOTLANG_FILES:
-        path = os.path.join(settings.ROOT, 'locale', lang, f)
-        trans.update(parse(path))
+def fix_case(locale):
+    """Convert lowercase locales to uppercase: en-us -> en-US"""
+    parts = locale.split('-')
+    if len(parts) == 1:
+        return locale
+    else:
+        return '%s-%s' % (parts[0], parts[1].upper())
 
-    cache.set('trans-%s' % lang, trans, settings.DOTLANG_CACHE)
-    return trans
 
-def translate(lang, text):
-    """Translate a piece of text, loading the language's dotlang files
-    if they aren't cached"""
+def translate(text, files):
+    """Search a list of .lang files for a translation"""
+    lang = fix_case(translation.get_language())
 
-    key = 'trans-%s' % lang
-    trans = cache.get(key)
+    for file_ in files:
+        key = "dotlang-%s-%s" % (lang, file_)
 
-    if not trans:
-        trans = load(lang)
+        trans = cache.get(key)
+        if not trans:
+            path = os.path.join(settings.ROOT, 'locale', lang,
+                                '%s.lang' % file_)
+            trans = parse(path)
+            cache.set(key, trans, settings.DOTLANG_CACHE)
 
-    return trans.get(text, text)
+        if text in trans:
+            return trans[text]
+    return text
+
+
+def _(text, *args):
+    """Translate a piece of text from the global files"""
+    text = translate(text, settings.DOTLANG_FILES)
+    if args:
+        text = text % args
+    return text
+
+
+def get_lang_path(path):    
+    """Generate the path to a lang file from a django path. 
+    /apps/foo/templates/foo/bar.html -> /foo/bar.lang
+    /templates/foo.html -> /foo.lang
+    /foo/bar.html -> /foo/bar.lang"""
+
+    p = path.split('/')
+
+    try:
+        i = p.index('templates')
+        p = p[i+1:]
+    except ValueError: pass
+
+    path =  '/'.join(p)
+    (base, ext) = os.path.splitext(path)
+    return '%s.lang' % base

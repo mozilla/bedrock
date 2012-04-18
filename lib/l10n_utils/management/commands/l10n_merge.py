@@ -1,15 +1,13 @@
 import os
 
-from django.core.management import call_command
 from django.core.management.base import BaseCommand
 from django.conf import settings
 
-def gettext_extract():
-    call_command('extract', create=True)
+from l10n_utils.gettext import merge_lang_files
 
 class Command(BaseCommand):
     args = ''
-    help = 'Extracts a .lang file with new translations'
+    help = 'Merges gettext strings into .lang files'
 
     def handle(self, *args, **options):
         if args:
@@ -17,9 +15,6 @@ class Command(BaseCommand):
         else:
             langs = os.listdir(os.path.join(settings.ROOT, 'locale'))
             langs = filter(lambda x: x != 'templates', langs)
+            langs = filter(lambda x: x[0] != '.' , langs)
 
-        # This is basically a wrapper around the gettext extract
-        # command, we might want to do some things around this in the
-        # future
-        gettext_extract()
-
+        merge_lang_files(langs)
