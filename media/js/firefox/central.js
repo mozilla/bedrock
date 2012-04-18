@@ -27,84 +27,42 @@ var gPlatformVista = navigator.userAgent.indexOf('Windows NT 6.0') !=-1
 
     $('<div id="overlay" />').appendTo('body');
 
-    $('#features li a')
-        .click(function(e) {
-            e.preventDefault();
-            $('#overlay')
-                .css('display', 'block')
-                .css('height', $(document).height() + 'px');
-
-            var width = $('#overlay-' + this.id).outerWidth();
-            var height = $('#overlay-' + this.id).outerHeight();
-            var docWidth = $(document).width();
-            var viewHeight = $(window).height();
-            
-
-            var $overlay = $('#overlay-' + this.id);
-            var top = ((viewHeight - height) / 2);
-            if ($overlay.css('position') == 'absolute') {
-              top += $(window).scrollTop();
-            }
-            $overlay.appendTo('body')
-                .css('display', 'block')
-                .css('top', top + 'px')
-                .css('left', ((docWidth - width) / 2) + 'px')
-        });
-
-    $('#overlay,.overlay-box .close').click(function(e) {
-        e.preventDefault();
-        $('.overlay-box').each(function() {
-            $(this).css('display', 'none');
-        });
-        $('#overlay').css('display', 'none');
-        $('video').each(function() {
-            if (typeof this.pause != 'undefined') {
-                this.pause();
-            }
-        });
-    });
   var tips = {}
   tips[PLATFORM_WINDOWS] = [
-      {'left': 77, 'top': 73, 'id': 'firefox-menu-button'},
-      {'left': 28, 'top': 105, 'id': 'app-tab'},
-      {'left': 37, 'top': 137, 'id': 'private-browsing', 'direction': 'up'},
-      {'left': 88, 'top': 137, 'id': 'instant-website-id', 'direction': 'up'},
-      {'left': 155, 'top': 105, 'id': 'tabs-on-top'},
-      {'left': 345, 'top': 137, 'id': 'awesome-bar', 'direction': 'up'},
-      {'left': 355, 'top': 105, 'id': 'addons-manager'},
-      {'left': 510, 'top': 137, 'id': 'switch-to-tab', 'direction': 'up'},
-      {'left': 575, 'top': 105, 'id': 'password-manager'},
-      {'left': 695, 'top': 105, 'id': 'customize-toolbar'},
-      {'left': 805, 'top': 105, 'id': 'personas'},
-      {'left': 920, 'top': 137, 'id': 'bookmark-button', 'direction': 'up'},
-      {'left': 928, 'top': 105, 'id': 'sync'}
+      {'left': 113, 'top': 34,  'id': 'firefox-menu-button'},
+      {'left': 42,  'top': 70,  'id': 'app-tab', 'direction': 'up'},
+      {'left': 89,  'top': 102, 'id': 'instant-website-id', 'direction': 'up'},
+      {'left': 245, 'top': 62,  'id': 'tabs-on-top'},
+      {'left': 325, 'top': 97,  'id': 'awesome-bar', 'direction': 'up'},
+      {'left': 349, 'top': 56,  'id': 'addons-manager'},
+      {'left': 530, 'top': 65,  'id': 'switch-to-tab', 'direction': 'up'},
+      {'left': 676, 'top': 82,  'id': 'customize-toolbar'},
+      {'left': 755, 'top': 41,  'id': 'themes'},
+      {'left': 933, 'top': 87,  'id': 'bookmark-button'},
+      {'left': 894, 'top': 107, 'id': 'home-button', 'direction': 'up'},
   ];
   tips[PLATFORM_MACOSX] = [
-      {'left': 18, 'top': 105, 'id': 'app-tab'},
-      {'left': 37, 'top': 137, 'id': 'private-browsing', 'direction': 'up'},
-      {'left': 80, 'top': 137, 'id': 'instant-website-id', 'direction': 'up'},
-      {'left': 155, 'top': 105, 'id': 'tabs-on-top'},
-      {'left': 345, 'top': 137, 'id': 'awesome-bar', 'direction': 'up'},
-      {'left': 355, 'top': 105, 'id': 'addons-manager'},
-      {'left': 510, 'top': 137, 'id': 'switch-to-tab', 'direction': 'up'},
-      {'left': 575, 'top': 105, 'id': 'password-manager'},
-      {'left': 695, 'top': 105, 'id': 'customize-toolbar'},
-      {'left': 805, 'top': 105, 'id': 'personas'},
-      {'left': 920, 'top': 137, 'id': 'bookmark-button', 'direction': 'up'},
-      {'left': 928, 'top': 105, 'id': 'sync'}
+      {'left': 38,  'top': 57,  'id': 'app-tab'},
+      {'left': 76,  'top': 101, 'id': 'instant-website-id', 'direction': 'up'},
+      {'left': 245, 'top': 57,  'id': 'tabs-on-top'},
+      {'left': 345, 'top': 97,  'id': 'awesome-bar', 'direction': 'up'},
+      {'left': 355, 'top': 61,  'id': 'addons-manager'},
+      {'left': 510, 'top': 62,  'id': 'switch-to-tab', 'direction': 'up'},
+      {'left': 660, 'top': 88,  'id': 'customize-toolbar'},
+      {'left': 750, 'top': 41,  'id': 'themes'},
+      {'left': 940, 'top': 87,  'id': 'bookmark-button'},
+      {'left': 899, 'top': 101, 'id': 'home-button', 'direction': 'up'},
   ];
   tips[PLATFORM_LINUX] = [
-      {'left': 18, 'top': 130, 'id': 'app-tab'},
-      {'left': 37, 'top': 170, 'id': 'private-browsing', 'direction': 'up'},
-      {'left': 91, 'top': 170, 'id': 'instant-website-id', 'direction': 'up'},
-      {'left': 155, 'top': 130, 'id': 'tabs-on-top'},
-      {'left': 345, 'top': 170, 'id': 'awesome-bar', 'direction': 'up'},
-      {'left': 355, 'top': 130, 'id': 'addons-manager'},
-      {'left': 510, 'top': 170, 'id': 'switch-to-tab', 'direction': 'up'},
-      {'left': 575, 'top': 130, 'id': 'password-manager'},
-      {'left': 695, 'top': 130, 'id': 'customize-toolbar'},
-      {'left': 805, 'top': 130, 'id': 'personas'},
-      {'left': 928, 'top': 130, 'id': 'sync'}
+      {'left': 42,  'top': 94,  'id': 'app-tab'},
+      {'left': 80,  'top': 142, 'id': 'instant-website-id', 'direction': 'up'},
+      {'left': 155, 'top': 95,  'id': 'tabs-on-top'},
+      {'left': 445, 'top': 134, 'id': 'awesome-bar', 'direction': 'up'},
+      {'left': 415, 'top': 98,  'id': 'addons-manager'},
+      {'left': 510, 'top': 110, 'id': 'switch-to-tab', 'direction': 'up'},
+      {'left': 699, 'top': 127, 'id': 'customize-toolbar'},
+      {'left': 785, 'top': 50, 'id': 'themes'},
+      {'left': 945, 'top': 123, 'id': 'home-button'},
   ];
 
 

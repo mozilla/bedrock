@@ -4,6 +4,10 @@
 
 {% block page_title %}Privacy Policy{% endblock %}
 
+{% block extrahead %}
+  {{ css('privacy') }}
+{% endblock %}
+
 {% block content %}
 
 <div id="main-content">
@@ -140,7 +144,7 @@
         </ol>
         <h3>Current Third Party Service Providers</h3>
         <h4>Third Party Service Providers for Websites and Email</h4>
-        <table>
+        <table class="data-table">
           <thead>
             <tr>
               <th>Service Provider</th>
@@ -182,7 +186,7 @@
           </tbody>
         </table>
         <h4>Third Party Service Providers for Firefox</h4>
-        <table>
+        <table class="data-table">
           <thead>
             <tr>
               <th>Service Provider</th>
