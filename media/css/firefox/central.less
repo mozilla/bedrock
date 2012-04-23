@@ -1,41 +1,54 @@
 @import "template.less";
 
-#main-feature h1 {
+h1.large {
     margin-bottom: 48px;
+
 }
+
+#main-feature {
+    #gradient > .radial(center, 45px, ellipse, farthest-corner, #eee 0%, #ffffff 100%);
+    margin-bottom: @baseLine * 2;
+    h2 {
+        margin-bottom: @baseLine * 2;
+    }
+}
+
 .roll-over {
     position: absolute;
-    width: 160px;
-    padding: 12px 12px 12px 60px;
-    margin-top: -38px;
-    .small;
-    color: #404040;
+    top: 20px;
+    right: 20px;
+    width: 88px;
+    padding: 12px 12px 12px 68px;
+    font-size: @smallFontSize;
+    line-height: 100%;
+    color: @textColorSecondary;
     background-image: url(/media/img/firefox/central/callout-down.png);
     background-repeat: no-repeat;
     background-position: 18px 50%;
-    background-color: rgba(0,0,0,0.02);
+    background-color: rgba(0,0,0,0.05);
     background-size: 30px;
     box-shadow: 0 0 3px rgba(0,0,0,0.1) inset;
     border-bottom: 1px solid rgba(255,255,255,0.8);
 }
 
 #figure {
-    width: 940px;
     position: relative;
-    margin: 10px 0 50px -20px;
+    margin: 0;
+    margin-left: -48px;
+    margin-bottom: -48px;
 }
 
-#figure .platform-img {
-    position: relative;
-    top: 45px;
-    margin-left: -20px;
+#figure img {
+    display: block;
+    height: 208px;
+    width: 992px;
 }
 
 #figure #svg-path {
     position: absolute;
     left: 0;
-    top: 0;
-    width: 100%;
+    bottom: -57px;
+    width: 952px;
     height: 300px;
     background: url(/media/img/firefox/central/path.svg) left top no-repeat;
     background-size: 100% 100%;
@@ -122,128 +135,53 @@
 }
 
 
-#features {
-    position: absolute;
-    top: 270px;
-    left: 50px;
-    width: 853px;
-    height: 136px;
+#features h1 {
+    margin-bottom: @baseLine * 2;
 }
 
-#features p,
-#features ul {
-    float: left;
-    margin: 0 5px;
-}
-
-#features p {
-    width: 230px;
-    margin-right: 30px;
-    font-size: 32px;
-    .open-sans-light;
-    line-height: 110%;
-}
-
-#features li {
+#features .figure {
     display: block;
-    margin-bottom: 24px;
-    margin-left: 12px;
-}
-#features li a {
-    display: block;
-    .open-sans-light;
-    font-size: 22px;
-    letter-spacing: -1px;
-}
-#features li a:after {
-    content: " »";
-}
-#overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: black;
-    opacity: .2;
-    filter: alpha(opacity=20);
-    width: 100%;
-    display: none;
-    z-index: 9999;
+    width: (@gridColumnWidth * 5) + (@gridGutterWidth * 4);
+    margin-bottom: @baseLine;
 }
 
-.overlay-box {
-    position: fixed;
-    _position: absolute;
-    top: 0;
-    left: 0;
-    display: none;
-    width: 910px;
-    background: white;
-    background: -moz-linear-gradient(top, white, white 50%, #f4f9ff);
-    background: -o-linear-gradient(top, white, white 50%, #f4f9ff);
-    background: -webkit-linear-gradient(top, white, white 50%, #f4f9ff);
-    background: -webkit-gradient(linear, left top, left bottom, from(white), color-stop(0.5, white), to(#f4f9ff));
-    border: 1px solid #b0c1d2;
-    box-shadow: 0 3px rgba(0,0,0, .1), inset 0 -2px #e0ecf9, inset 0 0 12px rgba(223, 236, 249, .2);
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    padding: 35px;
-    clear: both;
-    z-index: 10000;
-    color: #484848;
-    text-align: left;
-}
-
-.overlay-box .close {
-    position: absolute;
-    top: 25px;
-    right: 25px;
-    display: block;
-    .button-white;
-}
-
-.overlay-box .info {
-    float: left;
-    width: 360px;
-}
-
-.overlay-box .info p {
-    border-bottom: 1px dotted @borderColor;
-    padding-bottom: 12px;
-}
-.overlay-box h1 {
-    font-size: 32px;
-    letter-spacing: -1px;
-}
-.overlay-box div p {
-    font-size: 16px;
-}
-.overlay-box ul {
-    margin: 0;
-}
-.overlay-box li {
-    display: block;
-    font-size: 18px;
-    line-height: 100%;
-    margin: 0 0 12px 0;
-    .open-sans-light;
-}
-.overlay-box li a::after {
-    content: " »";
-}
-.overlay-box .figure {
-    float: left;
-    display: block;
-    width: 480px;
-    margin: 70px 0 0 30px ;
-}
-.overlay-box .figure img, .overlay-box .figure video {
-    box-shadow: 0 1px 2px rgba(0,0,0,.75);
-}
-.overlay-box .figcaption {
+#features .figcaption {
     text-align: center;
     display: block;
-    padding-top: 6px;
-    font-size: 18px;
+    padding-top: @baseLine / 2;
+    padding-bottom: @baseLine / 2;
+    color: @textColorSecondary;
     .open-sans-light;
+    border-bottom: 1px dotted @borderColor;
+}
+
+#features .pager-tabs {
+    .span(4);
+    margin-left: 0;
+    .open-sans-light;
+    font-size: 22px;
+    li {
+        list-style-type: none;
+        margin: 0 0 @baseLine 0;
+        a.selected {
+            color: @textColorSecondary;
+            content: "";
+        }
+    }
+
+    a:after {
+        content: " »";
+    }
+}
+
+#features .pager-content {
+    .span(5);
+    margin-bottom: @baseLine * 2;
+    li {
+        margin-left: 0;
+        list-style-type: none;
+        a:after {
+            content: " »";
+        }
+    }
 }
