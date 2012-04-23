@@ -72,3 +72,72 @@ hgroup {
 #id_email {
     width: 60%;
 }
+
+#marketplace-partners {
+    #main-feature {
+        padding-top: @baseLine;
+        h2 {
+            font-size: 28px;
+            letter-spacing: -0.5px;
+            width: 75%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    .menu-bar {
+        .button-blue {
+            padding-left: 60px;
+            position: relative;
+            .icon {
+                position: absolute;
+                top: 0;
+                left: 20px;
+                height: 48px;
+                width: 48px;
+                display: block;
+
+                background-image: url(/media/img/marketplace/list-icons.png);
+                background-position: 0 100%;
+                background-repeat: no-repeat;
+            }
+        }
+    }
+
+    #platform {
+        .mozilla-video-control {
+            .span(6);
+        }
+    }
+
+    #mdn-link {
+        margin-bottom: 0;
+        a {
+            .open-sans-light;
+            .inline-block;
+            padding: 0 0 0 48px;
+            background: url(/media/img/marketplace/html5.png) 0 50% no-repeat;
+        }    
+    }    
+
+    #marketplace {
+        ul li {
+            padding: @baseLine @baseLine @baseLine (@gridColumnWidth + @gridGutterWidth);
+            background: url(/media/img/marketplace/list-icons.png) 0 0 no-repeat;
+            border-top: 1px dotted @borderColor;
+            margin: 0;
+            list-style-type: none;
+            .open-sans-light;
+            &:first-child {
+                border-top: 0;
+            }
+            &#build {
+                background-position: 0 -100px;
+            }
+            &#target {
+                background-position: 0 -200px;
+            }
+        }
+    }
+
+}

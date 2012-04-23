@@ -2,7 +2,7 @@
 
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}Mozilla Marketplace Partners{% endblock %}
-{% block body_id %}marketplace-parners{% endblock %}
+{% block body_id %}marketplace-partners{% endblock %}
 
 {% block site_header_logo %}
   <h2><a href="{{ url('b2g') }}"><img src="/media/img/marketplace/title.png" height="70" width="256" alt="Mozilla Marketplace"></a></h2>
@@ -27,47 +27,71 @@
   <h2>Mozilla is bringing its core values — openness, freedom, user choice — to the world of apps.</h2>
 </hgroup>
 
-<article id="main-content">
+<nav class="billboard menu-bar">
+  <ul>
+    <li><a href="#platform">The Mozilla apps platform</a></li>
+    <li><a href="#marketplace">Mozilla Marketplace</a></li>
+    <li><a href="#" class="button-blue">Submit your app »<span class="icon"></span></a></li>
+  </ul>
+</nav>
+
+<section id="platform" class="container divider">
 <div class="row">
 
-  <div class="span6">
-    <p>Mozilla is unlocking the power of the Web as the world’s largest marketplace, creating an open ecosystem of developers and content owners with limitless possibilities for consumer interaction.</p>
-    <p>With open Web standards like HTML5, CSS and JavaScript — together with Mozilla-designed APIs — app experiences can be delivered anywhere, to any device, on any operating system. The Mozilla Marketplace will roll out to millions of Firefox users later this year.</p>
+  <div class="span4">
+    <h2>The Mozilla apps platform</h2>
+    <p>Building apps for the Web provides developers with full control over content, functionality and how apps are distributed, including access to hundreds of millions of Firefox users through the Mozilla Marketplace.</p>
+    <p>Using open Web standards and Mozilla-designed APIs, great app experiences can be delivered across multiple platforms, devices and operating systems — closing the gap between Web and native apps for the first time.</p>
+    <p id="mdn-link"><a href="https://developer.mozilla.org/en-US/apps">Learn all about creating HTML5 apps at the Mozilla Developer Network »</a></p>
   </div>
 
-  <aside id="app-developer" class="span3 offset1">
-    <h3>App developer?</h3>
-    <p>You can already submit your app to the Mozilla Marketplace.</p>
-    <p><a href="https://marketplace.mozilla.org/">Find out how »</a></p>
-  </aside>
+  <div id="intro-video" class="mozilla-video-control">
+    <video
+      width="640"
+      height="360"
+      poster="/media/img/marketplace/poster-intro.jpg"
+      controls="controls">
+      <source src="//videos-cdn.mozilla.net/serv/flux/apps/marketplace.webm" type="video/webm" />
+      <source src="//videos-cdn.mozilla.net/serv/flux/apps/marketplace.theora.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;" />
+      <source src="//videos-cdn.mozilla.net/serv/flux/apps/marketplace.mp4" type="video/mp4" />
+      <object type="application/x-shockwave-flash"
+        style="width: 640px; height: 388px;"
+        data="/media/flash/playerWithControls.swf?flv=serv/flux/apps/marketplace.mp4&amp;autoplay=false&amp;msg=Play%20Video">
+        <param name="movie" value="/media/flash/playerWithControls.swf?flv=serv/flux/apps/marketplace.mp4&amp;autoplay=false&amp;msg=Play%20Video" />
+        <param name="wmode" value="transparent" />
+
+        <div class="video-player-no-flash">
+        This video requires a browser with support for open video
+        or the <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player</a>.
+        </div>
+      </object>
+    </video>
+  </div>
 
   </div>
-</article>
-
-<section class="container">
-    <div id="intro-video" class="mozilla-video-control">
-      <video
-        width="640"
-        height="360"
-        poster="/media/img/marketplace/poster-intro.jpg"
-        controls="controls">
-        <source src="//videos-cdn.mozilla.net/serv/flux/apps/marketplace.webm" type="video/webm" />
-        <source src="//videos-cdn.mozilla.net/serv/flux/apps/marketplace.theora.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;" />
-        <source src="//videos-cdn.mozilla.net/serv/flux/apps/marketplace.mp4" type="video/mp4" />
-        <object type="application/x-shockwave-flash"
-          style="width: 640px; height: 388px;"
-          data="/media/flash/playerWithControls.swf?flv=serv/flux/apps/marketplace.mp4&amp;autoplay=false&amp;msg=Play%20Video">
-          <param name="movie" value="/media/flash/playerWithControls.swf?flv=serv/flux/apps/marketplace.mp4&amp;autoplay=false&amp;msg=Play%20Video" />
-          <param name="wmode" value="transparent" />
-
-          <div class="video-player-no-flash">
-          This video requires a browser with support for open video
-          or the <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player</a>.
-          </div>
-        </object>
-      </video>
-    </div>
 </section>
+
+<section id="marketplace" class="container">
+<div class="row">
+
+  <img src="{{ media('/img/marketplace/opening-soon.png') }}" alt="Opening Soon" class="span4" />
+
+  <div class="span6">
+
+      <h2>Mozilla Marketplace — <em>Opening Soon</em></h2>
+      <p>Before the public launch later this year, Mozilla will be opening the Marketplace for user testing. Take advantage of this by being one of the first app developers to build a user base. Submit your app to:</p>
+      <ul>
+        <li id="test">Test your app with a committed group of early adopters.</li>
+        <li id="build">Build an early fan base and gain popularity.</li>
+        <li id="target">Target tech savvy consumers with your app.</li>
+      </ul>
+
+  </div>
+
+</div>
+</section>
+
+
 
 {% if not success %}
 <form class="container" id="apps-email-form" action="#apps-email-form" method="post">
