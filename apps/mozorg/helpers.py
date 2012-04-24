@@ -12,6 +12,7 @@ of terms and example values for them:
 from os import path
 import re
 import urlparse
+from distutils.version import StrictVersion
 
 import jinja2
 import jingo
@@ -52,16 +53,22 @@ def latest_version(locale):
 
     def _check_builds(builds):
         if locale in builds and isinstance(builds[locale], dict):
-            # The json should be already ordered in increasing
-            # order. The previous PHP code assumed this, so it should
-            # work.
-            for version, info in reversed(builds[locale].items()):
+            greatest = None
+
+            for version, info in builds[locale].items():
                 match = (version != beta_vers and
                          version != aurora_vers and
                          version != esr_vers and
                          info)
                 if match:
-                    return version, info
+                    if not greatest:
+                        greatest = version
+                    elif StrictVersion(version) > StrictVersion(greatest):
+                            greatest = version
+
+            if greatest:
+                return greatest, builds[locale][greatest]
+            return None
 
     return (_check_builds(product_details.firefox_primary_builds) or
             _check_builds(product_details.firefox_beta_builds))
