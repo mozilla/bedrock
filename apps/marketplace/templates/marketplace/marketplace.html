@@ -71,7 +71,6 @@
 
 {% if not success %}
 <form class="container" id="apps-email-form" action="#apps-email-form" method="post">
-{{ csrf() }}
 
 {% if form.errors %}
   {{ form.non_field_errors() }}

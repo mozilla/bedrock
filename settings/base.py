@@ -302,7 +302,8 @@ INSTALLED_APPS = (
 
     # libs
     'l10n_utils',
-    'captcha')
+    'captcha'
+)
 
 ## Auth
 PWD_ALGORITHM = 'bcrypt'
