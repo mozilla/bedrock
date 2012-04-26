@@ -2,6 +2,7 @@ import l10n_utils
 from django.conf import settings
 from django.core.validators import email_re
 from django.views.decorators.csrf import csrf_exempt
+from bedrock_util import secure_required
 
 import basket
 
@@ -22,7 +23,8 @@ def marketplace(request):
                              "marketplace/marketplace.html",
                              {'form': form,
                               'success': success})
-
+@csrf_exempt
+@secure_required
 def partners(request):
     success = False
     form = NewsletterForm(request.POST or None)

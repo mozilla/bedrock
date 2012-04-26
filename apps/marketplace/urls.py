@@ -4,5 +4,5 @@ from bedrock_util import secure_required
 
 urlpatterns = patterns('',
     (r'^$', secure_required(marketplace)),
-    (r'^partners/$', secure_required(partners)),
+    (r'^partners/$', partners),
 )
