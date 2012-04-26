@@ -219,6 +219,10 @@ MINIFY_BUNDLES = {
             'js/geolocation-demo.js',
             'js/footer-email-form.js',
         ),
+        'marketplace': (
+            'js/mozilla-pager.js',
+            'js/mozilla-video-tools.js',
+        ),
         'pager': (
             'js/mozilla-pager.js',
         ),

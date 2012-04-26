@@ -5,7 +5,7 @@
 {% block body_id %}marketplace{% endblock %}
 
 {% block site_header_logo %}
-  <h2><img src="/media/img/marketplace/title.png" height="70" width="256" alt="Mozilla Marketplace"></h2>
+  <h2><img src="{{ media('/img/marketplace/title.png') }}" height="70" width="256" alt="Mozilla Marketplace"></h2>
 {% endblock %}
 
 {% block site_header_nav %}
@@ -68,7 +68,9 @@
       </video>
     </div>
 </section>
+{% endblock %}
 
+{% block email_form %}
 {% if not success %}
 <form class="container" id="apps-email-form" action="#apps-email-form" method="post">
 
@@ -80,12 +82,11 @@
   {% endfor %}
 {% endif %}
 
-  <h3>Email signup</h3>
   <div class="row">
 
-  <p class="span3">Sign up for more news about the Mozilla Marketplace.</p>
+  <h4 class="span4">Sign up for more news about the Mozilla Marketplace.</h4>
 
-  <div class="span5">
+  <div class="span4">
     <div class="{% if form.email.errors %}field-error{% endif %}">
       {{ field_with_attrs(form.email, placeholder='YOUR EMAIL HERE')|safe }}
     </div>
@@ -115,9 +116,9 @@
   </div>
 </form>
 {% else %}
-<div class="container thank">
+<div class="container thank" id="apps-email-form">
   <h3>Thank you for signing up!</h3>
 </div>
 {% endif %}
-
 {% endblock %}
+
