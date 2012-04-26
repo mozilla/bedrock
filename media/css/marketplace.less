@@ -1,6 +1,17 @@
 @import "sandstone/variables.less";
 @import "sandstone/mixins.less";
 
+@font-face {
+    font-family: 'Lobster';
+    src: url('/media/fonts/Lobster_1.3-webfont.eot');
+    src: url('/media/fonts/Lobster_1.3-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/media/fonts/Lobster_1.3-webfont.woff') format('woff'),
+         url('/media/fonts/Lobster_1.3-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 hgroup {
     text-align: center;
     padding-top: @baseLine * 2;
@@ -105,8 +116,30 @@ hgroup {
     }
 
     #platform {
-        .mozilla-video-control {
+        .pager {
             .span(6);
+        }
+        .pager-tabs {
+          @videoNavColCount: 6;
+          @videoNavThumbCount: 4;
+          @videoNavWidth: (@gridColumnWidth * @videoNavColCount) + (@gridGutterWidth * (@videoNavColCount - 1));
+          @videoNavTabWidth: (@videoNavWidth - (@gridGutterWidth * 3)) / @videoNavThumbCount;
+            li {
+                list-style-type: none;
+                float: left;
+                width: @videoNavTabWidth;
+                margin-left: @gridGutterWidth;
+                &:first-child {
+                    margin-left: 0;
+                }
+                img {
+                    padding: 6px;
+                    background: #fff;
+                    border: 1px solid #ccc;
+                    border-radius: 6px;
+                    width: @videoNavTabWidth - 14px;
+                }
+            }
         }
     }
 
@@ -117,10 +150,18 @@ hgroup {
             .inline-block;
             padding: 0 0 0 48px;
             background: url(/media/img/marketplace/html5.png) 0 50% no-repeat;
-        }    
-    }    
+        }
+    }
 
     #marketplace {
+        h2 em {
+            font-family: Lobster;
+            font-weight: normal;
+            font-style: normal;
+            color: #c83108;
+            letter-spacing: 0;
+            font-size: 24px;
+        }
         ul li {
             padding: @baseLine @baseLine @baseLine (@gridColumnWidth + @gridGutterWidth);
             background: url(/media/img/marketplace/list-icons.png) 0 0 no-repeat;
