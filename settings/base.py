@@ -235,6 +235,19 @@ MINIFY_BUNDLES = {
     }
 }
 
+# Tells the extract script what files to look for L10n in and what function
+# handles the extraction. The Tower library expects this.
+DOMAIN_METHODS = {
+    'messages': [
+        ('apps/**.py',
+            'tower.management.commands.extract.extract_tower_python'),
+        ('apps/**/templates/**.html',
+            'tower.management.commands.extract.extract_tower_template'),
+        ('templates/**.html',
+            'tower.management.commands.extract.extract_tower_template'),
+    ],
+}
+
 # Dynamically process LESS server-side? (usually true to local
 # development)
 LESS_PREPROCESS = False
