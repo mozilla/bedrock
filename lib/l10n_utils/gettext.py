@@ -104,49 +104,92 @@ def parse_template(path):
     return []
 
 
-def merge_lang_files(langs):
-    all_msgs = po_msgs()
+def pot_to_langfiles():
+    """Update the lang files in /locale/templates with extracted
+    strings."""
 
+    all_msgs = po_msgs()
+    root = 'templates'
+
+    # Start off with some global lang files so that strings don't
+    # get duplicated everywhere
+    main_msgs = parse_lang(lang_file('main.lang', root))
+    main_msgs.update(parse_lang(lang_file('base.lang', root)))
+    main_msgs.update(parse_lang(lang_file('newsletter.lang', root)))
+
+    # Walk through the msgs and put them in the appropriate place. The
+    # complex part about this is that templates can specify a list of
+    # lang files to pull from, so we need to check all of them for the
+    # strings and add it to the first lang file specified if not
+    # found.
+    for path, msgs in all_msgs.items():
+        target = None
+        lang_files = None
+
+        if is_template(path):
+            # If the template explicitly specifies lang files, use those
+            lang_files = [lang_file('%s.lang' % f, root)
+                          for f in parse_template(join(settings.ROOT, path))]
+            # Otherwise, normalize the path name to a lang file
+            if not lang_files:
+                lang_files = [lang_file(get_lang_path(path), root)]
+        else:
+            # All other sources use the first main file
+            lang_files = [lang_file('%s.lang' % settings.DOTLANG_FILES[0],
+                                    root)]
+
+        # Get the current translations
+        curr = {}
+        for f in lang_files:
+            if os.path.exists(f):
+                curr.update(parse_lang(f))
+
+        # Add translations to the first lang file
+        target = lang_files[0]
+
+        if not os.path.exists(target):
+            d = os.path.dirname(target)
+            if not os.path.exists(d):
+                os.makedirs(d)
+
+        with codecs.open(target, 'a', 'utf-8') as out:
+            for msg in msgs:
+                if msg not in curr and msg not in main_msgs:
+                    out.write(';%s\n%s\n\n\n' % (msg, msg))
+
+
+def find_lang_files(lang):
+    for root, dirs, files in os.walk(lang_file(lang, '')):
+        parts = root.split('locale/%s/' % lang)
+        if len(parts) > 1:
+            base = parts[1]
+        else:
+            base = ''
+
+        for filename in files:
+            name, ext = os.path.splitext(filename)
+            
+            if ext == '.lang':
+                yield os.path.join(base, filename)
+
+
+def merge_lang_files(langs):
     for lang in langs:
         print 'Merging into %s...' % lang
 
-        # Start off with some global lang files so that strings don't
-        # get duplicated everywhere
-        main_msgs = parse_lang(lang_file('main.lang', lang))
-        main_msgs.update(parse_lang(lang_file('base.lang', lang)))
-        main_msgs.update(parse_lang(lang_file('newsletter.lang', lang)))
-
-        for path, msgs in all_msgs.items():
-            target = None
-            lang_files = None
-
-            if is_template(path):
-                # If the template explicitly specifies lang files, use those
-                lang_files = [lang_file('%s.lang' % f, lang)
-                              for f in parse_template(join(settings.ROOT, path))]
-                # Otherwise, normalize the path name to a lang file
-                if not lang_files:
-                    lang_files = [lang_file(get_lang_path(path), lang)]
-            else:
-                # All other sources use the first main file
-                lang_files = [lang_file('%s.lang' % settings.DOTLANG_FILES[0],
-                                        lang)]
-
-            # Get the current translations
-            curr = {}
-            for f in lang_files:
-                if os.path.exists(f):
-                    curr.update(parse_lang(f))
-
-            # Add translations to the first lang file
-            target = lang_files[0]
-
-            if not os.path.exists(target):
-                d = os.path.dirname(target)
+        for f in find_lang_files('templates'):
+            # Make sure the directory exists (might be a subdirectory)
+            d = os.path.dirname(f)
+            if d:
+                d = lang_file(d, lang)
                 if not os.path.exists(d):
                     os.makedirs(d)
 
-            with codecs.open(target, 'a', 'utf-8') as out:
-                for msg in msgs:
-                    if msg not in curr and msg not in main_msgs:
-                        out.write(';%s\n%s\n\n\n' % (msg, msg))
+            dest = lang_file(f, lang)
+            src_msgs = parse_lang(lang_file(f, 'templates'))
+            dest_msgs = parse_lang(dest)
+
+            with codecs.open(dest, 'a', 'utf-8') as out:
+                for msg in src_msgs:
+                    if msg not in dest_msgs:
+                        out.write('\n\n;%s\n%s\n' % (msg, msg))
