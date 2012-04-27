@@ -216,8 +216,12 @@ MINIFY_BUNDLES = {
             'js/footer-email-form.js',
         ),
         'marketplace': (
+            'js/mozilla-video-tools.js',
+        ),
+        'marketplace-partners': (
             'js/mozilla-pager.js',
             'js/mozilla-video-tools.js',
+            'js/marketplace/partners.js',
         ),
         'pager': (
             'js/mozilla-pager.js',
