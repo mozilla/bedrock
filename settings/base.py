@@ -135,6 +135,9 @@ MINIFY_BUNDLES = {
         'mozilla_expanders': (
             'css/mozilla-expanders.less',
         ),
+        'partnerships': (
+            'css/partnerships.less',
+        ),
         'persona': (
             'css/persona.less',
         ),
@@ -173,6 +176,7 @@ MINIFY_BUNDLES = {
             'js/libs/jquery-1.7.1.min.js',
             'js/global.js',
             'js/footer-email-form.js',
+            'js/mozilla-input-placeholder.js',
         ),
         'contribute': (
             'js/contribute-page.js',
@@ -220,11 +224,19 @@ MINIFY_BUNDLES = {
             'js/footer-email-form.js',
         ),
         'marketplace': (
+            'js/mozilla-video-tools.js',
+        ),
+        'marketplace-partners': (
             'js/mozilla-pager.js',
             'js/mozilla-video-tools.js',
+            'js/marketplace/partners.js',
         ),
         'pager': (
             'js/mozilla-pager.js',
+        ),
+        'partnerships': (
+            'js/libs/jquery.validate.js',
+            'js/partnerships.js',
         ),
         'video': (
             'js/mozilla-video-tools.js',
