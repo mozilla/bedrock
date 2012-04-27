@@ -7,13 +7,124 @@ Localization
 The site is fully localizable. Localization files are not shipped with the code
 distribution, but are available on SVN::
 
-    git svn clone https://svn.mozilla.org/projects/mozilla.org-l10n/trunk/ locale
+    git svn clone https://svn.mozilla.org/projects/mozilla.com/trunk/locales/ locale
     # or
-    svn checkout https://svn.mozilla.org/projects/mozilla.org-l10n/trunk/ locale
+    svn checkout https://svn.mozilla.org/projects/mozilla.com/trunk/locales/ locale
 
+.lang files
+-----------
+
+Bedrock supports a workflow similar to gettext. You extract all the
+strings from the codebase, then merge them into each locale to get
+them translated.
+
+The files containing the strings are called ".lang files" and end with
+a ``.lang`` extension.
+
+To extract all the strings from the codebase, run:
+
+::
+
+    $ ./manage.py l10n_extract
+
+That will use gettext to get all the needed localizations from python
+and html files, and will convert the result into a bunch of .lang
+files inside ``locale/templates``. This directory represents the
+"reference" set of strings to be translated, and you are free to
+modify or split up .lang files here as needed (just make sure they are
+being reference correctly, from the code, see 
+:ref:`Which .lang file should it use? <which-lang>`).
+
+To merge new strings into locale directories, run:
+
+::
+
+    $ ./manage.py l10n_merge
+
+If you want to merge only specific locales, you can pass any number of
+them as arguments:
+
+::
+
+    $ ./manage.py l10n_merge fr de
+
+
+.. _using-lang:
+
+Translating with .lang files
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To translate a string from a .lang file, simply use the gettext interface.
+
+In a jinja2 template:
+
+::
+
+    <div>{{ _('Hello, how are you?') }}<div>
+
+    <div>{{ _('<a href="%s">Click here</a>')|format('http://mozilla.org/') }}</div>
+
+    <div>{{ _('<a href="%(url)s">Click here</a>')|format(url='http://mozilla.org/') }}</div>
+
+Note the usage of variable substitution in the latter examples. It is
+important not to hardcode URLs or other parameters in the string.
+jinja's `format` filter lets us apply variables outsite of the string.
+
+There's another way to translate content within jinja2 templates. If
+you need a big chunk of content translated, you can put it all inside
+a `trans` block.
+
+:: 
+
+    {% trans %}
+      <div>Hello, how are you</div>
+    {% endtrans %}
+
+    {% trans url='http://mozilla.org' %}
+      <div><a href="{{ url }}">Click here</a></div>
+    {% endtrans %}
+
+Note that it also allows variable substitution by passing variables
+into the block and using template variables to apply them.
+
+.. _which-lang:
+
+Which .lang file should it use?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Translated strings are split across several .lang files to make it
+easier to manage separate projects and pages. So how does the system
+know which one to use when translating a particular string?
+
+* All translations from Python files are put into main.lang. This
+  should be a very limited set of strings and most likely should be
+  available to all pages.
+* Templates always load in `main.lang`, `base.lang`, and `newsletter.lang`
+* Additionally, each template has its own .lang file, so a template at
+  `mozorg/firefox.html` would use the .lang file at
+  `<locale>/mozorg/firefox.lang`.
+* Templates can override which lang files are loaded. The above 3
+  global ones are always loaded, but instead of loading
+  `<locale>/mozorg/firefox.lang`, the template can specify a list of
+  additional lang files to load with a template block:
+
+::
+
+    {% add_lang_files "foo.lang" "bar.lang" %}
+
+That will make the page load `foo.lang` and `bar.lang` in addition to
+`main.lang`, `base.lang`, and `newsletter.lang`.
+
+When strings are extracted from a template, that are added to the
+template-specific .lang file. If the template explicitly specifies
+.lang files like above, it will add the strings to the first .lang
+file specified, so extracted strings from the above template would go
+into `foo.lang`.
 
 Jinja2 L10n blocks
 ------------------
+
+TODO: Needs updating and cleanup
 
 Bedrock uses a block-based translation system that divides templates (i.e., HTML
 pages in English (US)) into *localizable* and *unlocalizable* parts and ensures that
@@ -40,7 +151,7 @@ Let's look at how we would translate an example file from **English** to
 **German**.
 
 The English source template, created by a developer, lives under
-``apps/appname/templates/appname/example.html`` and looks like this:
+`apps/appname/templates/appname/example.html` and looks like this:
 
 .. code-block:: html
 
