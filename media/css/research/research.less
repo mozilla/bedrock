@@ -1,0 +1,36 @@
+@import "../sandstone/variables.less";
+@import "../sandstone/mixins.less";
+
+#projects {
+    .span(6);
+    margin-left: 0;
+}
+
+#people {
+    .span(3);
+    .offset(1);
+
+    dt {
+        font-size: 24px;
+        letter-spacing: -0.25px;
+        em {
+            display: block;
+            font-style: normal;
+            font-size: 18px;
+        }
+        img {
+            float: left;
+            width: @gridColumnWidth; 
+            margin: 0 @gridGutterWidth (@baseLine / 2) 0;
+        }
+    }
+
+    dd {
+        clear: left;
+        font-size: @smallFontSize;
+        line-height: @baseLine *.75;
+        color: @textColorSecondary;
+    }
+
+}
+
