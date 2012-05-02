@@ -7,8 +7,10 @@ from bedrock_util import secure_required
 import basket
 
 from mozorg.forms import NewsletterForm
+from bedrock_util import secure_required
 
 @csrf_exempt
+@secure_required
 def marketplace(request):
     success = False
     form = NewsletterForm(request.POST or None)
