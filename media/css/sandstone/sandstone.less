@@ -65,6 +65,41 @@ a {
 
 }
 
+.space {
+    color: #fff;
+
+    #wrapper {
+        background-color: #04020b;
+        background-image: url(/media/img/sandstone/bg-space.png);
+    }
+
+    a {
+        color: @linkSpaceBlue;
+        &:hover,
+        &:active {
+            color: lighten(@linkSpaceBlue, 10%);
+        }
+    }
+
+    h1, h2, h3, h4, h5, h6, .huge, .large {
+        color: #fff;
+        text-shadow: none;
+    }
+
+    #masthead {
+        nav {
+            li {
+                a,
+                a:link,
+                a:visited {
+                    color: @linkSpacePurple;
+                }
+            }
+        }
+    }
+
+}
+
 h1, h2, h3, h4, h5, h6, .huge, .large {
     .open-sans-light;
     display: block;
@@ -285,7 +320,7 @@ px      68    160    252    344    436    528    620    712    804    896    */
 #masthead {
 
     h2 {
-        padding: (@baseLine * 2)  0  (@baseLine * 1.5)  0;
+        padding: (@baseLine * 1.5)  0;
         margin: 0;
     }
 
@@ -296,8 +331,7 @@ px      68    160    252    344    436    528    620    712    804    896    */
         font-size: 13px;
         .open-sans;
 
-        ol li,
-        ul li {
+        li {
             .inline-block;
             list-style-type: none;
             margin: 0;
@@ -367,6 +401,9 @@ px      68    160    252    344    436    528    620    712    804    896    */
     background: #fff;
     border-bottom: 1px solid #ddd;
     .clearfix;
+    h1, h2, h3, h4, h5, h6, .huge, .large {
+        color: @textColorSecondary;
+    }
 }
 
 nav.menu-bar {
@@ -768,9 +805,6 @@ px      68    160    252    344    436    */
 /* }}} */
 
 
-
-/* {{{ Firefox site functionality 
-       This can be put into its own CSS file if needed. */
 
 // Don't display the dynamic platform images when js is disabled
 // because the ones in the noscript tag will be shown
