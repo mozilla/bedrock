@@ -1,59 +1,8 @@
 @import "template.less";
 /* {{{ Main Feature */
 
-#channel #main-feature {
-    padding-top: 60px;
-    position: relative;
-    height: 190px;
-    text-align: center;
-    -webkit-transition: all 0.6s ease-in-out;
-    -moz-transition: all 0.6s ease-in-out;
-}
-
-#channel #main-feature h2 {
-    line-height: 0.9;
-    font-size: 68px;
-    -webkit-transition: all 0.6s ease-in-out;
-    -moz-transition: all 0.6s ease-in-out;
-    font-family: 'open sans', sans-serif;
-    letter-spacing: -0.02em;
-    font-weight: bold;
-    font-style: normal;
-    text-transform: uppercase;
-}
-
-.darkbg  #main-feature p,
-.darkbg  #main-feature h2 {
-    color: #fff;
-}
-
-#channel #main-feature h2 span {
-}
-
-#channel #main-feature p {
-    font-style: italic;
-    color: #6b6b6b;
-    font-size: 24px;
-    margin-bottom: 30px;
-    -webkit-transition: all 0.6s ease-in-out;
-    -moz-transition: all 0.6s ease-in-out;
-}
-
-.darkbg#channel #main-feature p {
-    color: #ffbb38;
-}
-
-
-#channel #footer {
-    margin-top: 50px;
-}
-
-#channel #sub-footer {
-    display: none;
-}
-
 #toggler-container {
-    margin: 0 auto;
+    margin: 120px auto 40px auto;
     padding: 0;
     width: 900px;
     position: relative;
@@ -95,13 +44,25 @@
 
 /* Default styles */
 
-.pager-tabs #beta-link { left: 335px; z-index: 3; top: 0; }
-.pager-tabs #aurora-link    { left: 110px; z-index: 1; }
-.pager-tabs #firefox-link  { left: 635px; z-index: 2; }
+.pager-tabs {
+    #beta-link { left: 335px; z-index: 3; top: 0; }
+    #aurora-link    { left: 110px; z-index: 1; }
+    #firefox-link  { left: 635px; z-index: 2; }
 
-.pager-tabs #beta-link img {
-    height: 225px;
-    width: 225px;
+    #beta-link img {
+        height: 225px;
+        width: 225px;
+    }
+}
+
+.pager-page {
+    position: relative;
+    text-align: center;
+    .channel-title {
+        position: absolute;
+        top: -380px;
+        width: 100%;
+    }
 }
 
 /* Selected styles */
@@ -153,7 +114,7 @@
 #carousel-right {
     position: absolute;
     display: block;
-    left: 0;
+    left: 48px;
     top: 70px;
     height: 80px;
     width: 78px;
@@ -162,22 +123,44 @@
 
 #carousel-right {
     left: auto;
-    right: 0;
+    right: 48px;
     background-position: 0 -100px;
 }
 
-body.darkbg,
-body.darkbg #outer-wrapper {
-    background-color: #000;
-    background-image: url(/img/covehead/channel/bg-dark.jpg);
-    background-repeat: repeat-x;
-    color: #d3d3d3;
+#main-content {
+    background: url(/media/img/firefox/channel/carousel-bg.png) 50% 70px no-repeat;
 }
 
-
-body.darkbg#channel #wrapper {
-    background-image: url(/img/covehead/channel/bg-carousel-dark.jpg);
+.download-box {
+    .inline-block;
+    margin: 0 (@gridGutterWidth / 2);
+    text-align: left;
+    .download-button .download-link .download-content {
+        background: url(/media/img/sandstone/buttons/arrow-large.png) no-repeat 12px 12px;
+        margin-left: 0;
+    }
+    .download-button .download-link .download-title {
+        background: none;
+        padding: 0;
+    }
 }
 
+p.more {
+    margin-top: @baseLine;
+    .open-sans;
+}
+
+.space {
+    #main-content {
+    background-image: url(/media/img/firefox/channel/carousel-bg-space.png);
+    }
+    .pager-page h3 {
+        color: @textColorSpaceYellow;
+    }
+}
+
+.pager-page h3 {
+    margin-bottom: @baseLine;
+}
 
 /* }}} */

@@ -11,72 +11,54 @@
 
 <div id="main-content" class="pager pager-with-tabs pager-cleartype-fix">
 
-    <ul id="toggler-container" class="pager-tabs">
-        <li id="beta-link"><a href="{{ php_url('/firefox/beta/') }}"><img src="{{ media('/img/firefox/channel/toggler-beta.png') }}" id="toggler-logo-beta" /></a></li>
-        <li id="firefox-link"><a href="{{ php_url('/firefox/') }}"><img src="{{ media('/img/firefox/channel/toggler-firefox.png') }}" id="toggler-logo-firefox" /></a></li>
-        <li id="aurora-link"><a href="{{ php_url('/firefox/aurora/') }}"><img src="{{ media('/img/firefox/channel/toggler-aurora.png') }}" id="toggler-logo-aurora" /></a></li>
-    </ul>
+  <ul id="toggler-container" class="pager-tabs">
+    <li id="beta-link"><a href="{{ php_url('/firefox/beta/') }}"><img src="{{ media('/img/firefox/channel/toggler-beta.png') }}" id="toggler-logo-beta" /></a></li>
+    <li id="firefox-link"><a href="{{ php_url('/firefox/') }}"><img src="{{ media('/img/firefox/channel/toggler-firefox.png') }}" id="toggler-logo-firefox" /></a></li>
+    <li id="aurora-link"><a href="{{ php_url('/firefox/aurora/') }}"><img src="{{ media('/img/firefox/channel/toggler-aurora.png') }}" id="toggler-logo-aurora" /></a></li>
+  </ul>
 
-    <a href="#" id="carousel-left"></a>
-    <a href="#" id="carousel-right"></a>
+  <a href="#" id="carousel-left"></a>
+  <a href="#" id="carousel-right"></a>
 
-    <div class="pager-content">
+  <div class="pager-content">
 
-        <div id="beta">
-            <script>
-                document.getElementById('beta').id = 'page-beta';
-            </script>
-            <h3 class="channel-title channel-title-beta">Firefox Beta</h3>
-            <div class="pager pager-with-tabs pager-cleartype-fix">
-                <h2>The latest features in a more stable environment</h2>
-                <div id="contents-beta" class="pager-content">
-                    <div class="desktop" id="beta-desktop">
-                        <p class="more"><a href="/<?=$lang?>/firefox/beta/">Learn More <span>»</span></a></p>
-                    </div>
-                    <div class="mobile" id="beta-mobile">
-                        <p class="more"><a href="/<?=$lang?>/mobile/beta/">Learn More <span>»</span></a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="firefox">
-            <script>
-                document.getElementById('firefox').id = 'page-firefox';
-            </script>
-            <h3 class="channel-title channel-title-firefox">Firefox</h3>
-            <div class="pager pager-with-tabs pager-cleartype-fix">
-                <h2>Tried, tested and used by millions around the world</h2>
-                <div id="contents-firefox" class="pager-content">
-                    <div class="desktop" id="firefox-desktop">
-                        <p class="more"><a href="/<?=$lang?>/firefox/">Learn More <span>»</span></a></p>
-                    </div>
-                    <div class="mobile" id="firefox-mobile">
-                        <p class="more"><a href="/<?=$lang?>/mobile/">Learn More <span>»</span></a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="aurora">
-            <script>
-                document.getElementById('aurora').id = 'page-aurora';
-            </script>
-            <h3 class="channel-title channel-title-aurora">Aurora</h3>
-            <div class="pager pager-with-tabs pager-cleartype-fix">
-                <h2>The newest innovations in an experimental environment</h2>
-                <div id="contents-aurora" class="pager-content">
-                    <div class="desktop" id="aurora-desktop">
-                        <p class="more"><a href="/<?=$lang?>/firefox/aurora/">Learn More <span>»</span></a></p>
-                   </div>
-                    <div class="mobile" id="aurora-mobile">
-                        <p class="more"><a href="/<?=$lang?>/mobile/aurora/">Learn More <span>»</span></a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+    <div id="beta" class="pager-page">
+      <h2 class="channel-title channel-title-beta"><img src="{{ media('/img/firefox/channel/title-beta.png') }}" alt="Firefox Beta" /></h2>
+      <h3>The latest features in a more stable environment</h3>
+      <div class="download-box" id="beta-desktop">
+        {{ download_button('beta-download', build='beta') }}
+      </div>
+      <div class="download-box" id="beta-mobile">
+        {{ download_button('beta-download', build='beta') }}
+      </div>
+      <p class="more"><a href="/<?=$lang?>/firefox/beta/">Learn More about Firefox Beta<span> »</span></a></p>
     </div>
+
+    <div id="firefox" class="pager-page">
+      <h2 class="channel-title channel-title-firefox"><img src="{{ media('/img/firefox/channel/title-firefox.png') }}" alt="Firefox" /></h2>
+      <h3>Tried, tested and used by millions around the world</h3>
+      <div class="desktop" id="firefox-desktop">
+        {{ download_button('download') }}
+      </div>
+      <div class="mobile" id="firefox-mobile">
+        <p class="more"><a href="/<?=$lang?>/mobile/">Learn More <span>»</span></a></p>
+      </div>
+        <p class="more"><a href="/<?=$lang?>/firefox/">Learn More <span>»</span></a></p>
+    </div>
+
+    <div id="aurora" class="pager-page">
+      <h2 class="channel-title channel-title-aurora"><img src="{{ media('/img/firefox/channel/title-aurora.png') }}" alt="Firefox Aurora" /></h2>
+      <h3>The newest innovations in an experimental environment</h3>
+      <div class="desktop" id="aurora-desktop">
+        {{ download_button('download', build='aurora') }}
+       </div>
+      <div class="mobile" id="aurora-mobile">
+        <p class="more"><a href="/<?=$lang?>/mobile/aurora/">Learn More <span>»</span></a></p>
+      </div>
+      <p class="more"><a href="/<?=$lang?>/firefox/aurora/">Learn More <span>»</span></a></p>
+    </div>
+
+  </div>
 
 </div><!-- end #main-content div -->
 
