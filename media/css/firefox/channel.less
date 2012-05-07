@@ -1,5 +1,4 @@
 @import "template.less";
-/* {{{ Main Feature */
 
 #toggler-container {
     margin: 120px auto 40px auto;
@@ -9,38 +8,38 @@
     height: 225px;
     list-style-type: none;
     display: block;
-}
 
-#toggler-container li {
-    list-style-type: none;
-    display: block;
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    top: 25px;
-    -webkit-transition: all 0.6s ease-in-out;
-    -moz-transition: all 0.6s ease-in-out;
-}
+    li {
+        list-style-type: none;
+        display: block;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        top: 25px;
+        -webkit-transition: all 0.6s ease-in-out;
+        -moz-transition: all 0.6s ease-in-out;
 
-#toggler-container li a {
-    display: block;
-    position: relative;
-    top: 0;
-    -webkit-transition: all 0.1s ease-in-out;
-    -moz-transition: all 0.1s ease-in-out;
-}
+        a {
+            display: block;
+            position: relative;
+            top: 0;
+            -webkit-transition: all 0.1s ease-in-out;
+            -moz-transition: all 0.1s ease-in-out;
+        }
 
-#toggler-container li img {
-    height: 150px;
-    width: 150px;
-    -webkit-transition: all 0.6s ease-in-out;
-    -moz-transition: all 0.6s ease-in-out;
-}
+        img {
+            height: 150px;
+            width: 150px;
+            -webkit-transition: all 0.6s ease-in-out;
+            -moz-transition: all 0.6s ease-in-out;
+            -ms-interpolation-mode: bicubic;
+        }
 
-#toggler-container li a:hover {
-    top: -5px;
+        a:hover {
+            top: -5px;
+        }
+    }
 }
-
 
 /* Default styles */
 
@@ -61,6 +60,7 @@
     .channel-title {
         position: absolute;
         top: -380px;
+        left: 0;
         width: 100%;
     }
 }
@@ -135,13 +135,31 @@
     .inline-block;
     margin: 0 (@gridGutterWidth / 2);
     text-align: left;
-    .download-button .download-link .download-content {
-        background: url(/media/img/sandstone/buttons/arrow-large.png) no-repeat 12px 12px;
+    .download-button .download-link {
+        display: block;
         margin-left: 0;
-    }
-    .download-button .download-link .download-title {
-        background: none;
-        padding: 0;
+        height: auto;
+        line-height: @baseLine * 0.75;
+       .download-content {
+            background: url(/media/img/sandstone/buttons/arrow-large.png) no-repeat 12px 50%;
+            margin-left: 0;
+            height: auto;
+        }
+        .download-title {
+            background: none;
+            padding: 8px 0 2px 0;
+            height: auto;
+            .open-sans;
+            font-size: 18px;
+            text-shadow: 0 -1px rgba(0,0,0,0.2);
+        }
+        .download-subtitle {
+            color: #b8e779;
+            height: auto;
+            text-shadow: 0 -1px rgba(0,0,0,0.2);
+            display: block;
+            padding-bottom: 8px;
+        }
     }
 }
 
@@ -163,4 +181,3 @@ p.more {
     margin-bottom: @baseLine;
 }
 
-/* }}} */
