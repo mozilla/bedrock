@@ -1,0 +1,70 @@
+#help-form {
+    padding-top: @baseLine;
+    padding-bottom: @baseLine;
+    margin-bottom: @baseLine * 2;
+
+    .form-column-1  {
+        .span(2);
+        h3 {
+            padding-top: 4px;
+            letter-spacing: -1px;
+        }
+    }
+
+    .form-column-2 {
+        .span(3);
+    }
+
+    .form-column-3 {
+        .span(3);
+    }
+
+    .form-submit {
+        .span(2);
+    }
+
+    .field-interest {
+        min-height: 36px;
+        select {
+            margin-top: 4px;
+            width: 100%;
+        }
+    }
+
+    .field {
+        padding: @baseLine / 4 0;
+    }
+
+    textarea,
+    input[type=email] {
+        width: (@gridColumnWidth * 3) + (@gridGutterWidth * 2) - 20px;
+    }
+
+    input[type=submit] {
+        width: (@gridColumnWidth * 2) + (@gridGutterWidth);
+    }
+
+    .field-newsletter label,
+    .field-privacy label {
+        position: relative;
+        padding-left: 24px;
+        display: block;
+        font-size: @smallFontSize;
+        line-height: 18px;
+        input {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    }
+
+    .errorlist {
+        padding-bottom: @baseLine / 2;
+    }
+
+}
+
+#help-form.has-errors {
+    border-top: 10px solid #AF3232;
+}
+
