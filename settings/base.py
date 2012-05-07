@@ -275,12 +275,12 @@ PROD_DETAILS_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)),
 
 MIDDLEWARE_CLASSES = (
     'funfactory.middleware.LocaleURLMiddleware',
-    'multidb.middleware.PinningRouterMiddleware',
+    #'multidb.middleware.PinningRouterMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'mozorg.middleware.NoVarySessionMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'session_csrf.CsrfMiddleware',  # Must be after auth middleware.
-    'django.contrib.messages.middleware.MessageMiddleware',
+    #'mozorg.middleware.NoVarySessionMiddleware',
+    #'django.contrib.auth.middleware.AuthenticationMiddleware',
+    #'session_csrf.CsrfMiddleware',  # Must be after auth middleware.
+    #'django.contrib.messages.middleware.MessageMiddleware',
     'commonware.middleware.FrameOptionsHeader',
     #'mobility.middleware.DetectMobileMiddleware',
     #'mobility.middleware.XMobileMiddleware',
@@ -297,7 +297,7 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django_sha2',  # Load after auth to monkey-patch it.
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
+    #'django.contrib.sessions',
     # 'django.contrib.sites',
     # 'django.contrib.messages',
     # Uncomment the next line to enable the admin:
@@ -309,13 +309,12 @@ INSTALLED_APPS = (
     'commonware.response.cookies',
     'djcelery',
     'django_nose',
-    'session_csrf',
+    #'session_csrf',
 
     # L10n
     'product_details',
 
     # Local apps
-    'l10n_example',  # DELETEME
     'b2g',
     'collusion',
     'firefox',

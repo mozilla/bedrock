@@ -17,6 +17,8 @@ Start by getting the source::
     $ git clone --recursive git://github.com/mozilla/bedrock.git
     $ cd bedrock
 
+**(Make sure you use --recursive)**
+
 You need to create a virtual environment for Python libraries. Skip the first instruction if you already have virtualenv installed::
 
     $ pip install virtualenv                     # installs virtualenv, skip if already have it
