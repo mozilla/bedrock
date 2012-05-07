@@ -14,5 +14,5 @@ urlpatterns = patterns('',
     page('mission', 'mozorg/mission.html'),
 
     url('^contribute/$', views.contribute, name='mozorg.contribute'),
-    page('contribute/page', 'mozorg/contribute-page.html'),
+    url('^contribute/page/$', views.contribute_page, name='mozorg.contribute_page'),
 )
