@@ -27,7 +27,7 @@ mozilla.jobs                            For use by those interested in hiring fo
 mozilla.join                            The Join Mozilla public engagement initiative
 mozilla.legal                           For discussions about the <a href="../../MPL/">licensing terms</a> of the Mozilla source code and other legal issues. (Moderated)
 mozilla.marketing                       Our plans for world domination.
-mozilla.mozillians                      The Mozilla community directory - 'Mozillians'
+mozilla.mozillians                      For discussions about how to <a href="http://wiki.mozilla.org/Grow">grow Mozilla</a> and bring in new contributors.
 mozilla.privacy                         Forum for discussion of privacy issues and Mozilla's response. (Moderated)
 mozilla.privacy.friends                 The "Privacy Friends" initiative. (Moderated)
 mozilla.reps.general                    The Mozilla Reps program
