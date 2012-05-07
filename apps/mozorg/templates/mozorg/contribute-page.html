@@ -1,13 +1,19 @@
 {% extends "sand.html" %}
 
 {% block page_title %}Contribute to our sites{% endblock %}
+{% block body_id %}contribute-page{% endblock %}
+
+{% block extrahead %}
+  {{ css('contribute-page') }}
+{% endblock %}
+
+{% block js %}
+  {{ js('contribute-form') }}
+{% endblock %}
 
 {% block content %}
 
-<hgroup id="main-feature">
-  <h1>Contribute to our sites</h1>
-  <h2>Mozilla websites are run as open projects that you can help us build and edit.</h2>
-</hgroup>
+<h1 id="main-feature">Contribute to our sites</h1>
 
 <section id="main-content">
 
@@ -21,3 +27,4 @@
 
 {% endblock %}
 {% block email_form %}{% endblock %}
+
