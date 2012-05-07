@@ -1,10 +1,19 @@
-Thank you for your interest in getting involved with Mozilla.
+Thanks for your interest in getting involved with Mozilla.
 
-To learn more about design projects you can work on and to find out where to join the discussion about design at Mozilla, take a look at this page:
+Visual design is handled by our Creative team and we work on projects ranging from logos to marketing campaigns to websites to... well, just about anything and everything visual around here. If that sounds like something you’d like to be a part of, here are some next steps you can take:
 
-http://wiki.mozilla.org/Design
+* Sign up for our Design mailing list: http://mail.mozilla.org/listinfo/design
 
-If you have any questions about any of this, feel free to write us back.
+We’ll post projects and briefs here for you to work on, so please be sure to sign up, as this will be our main point of communication. To get started, introduce yourself and include a link to your portfolio, if you have one.
 
-Thanks,
-Lee and Matej
+* Follow us on Twitter: @mozcreative 
+
+We might post design work here as well, but we mostly use this as an information channel for topics related to Mozilla and design in general, including things we like and that inspire us.
+
+* Learn more on the wiki: http://wiki.mozilla.org/Design 
+
+Find out about the kinds of projects you can contribute to as well as links to other resources. We’ll update it periodically, so please check back often.
+
+If you have questions or comment about any of this, please feel free to write back.
+
+— The Creative Team
