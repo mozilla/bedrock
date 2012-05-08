@@ -1,19 +1,14 @@
-Thanks for your interest in helping with testing.
+Thanks for your interest in the Mozilla QA. A QA team member will followup with you personally to help get you started with Mozilla QA. Below is some information to get you started with Mozilla QA.
 
-To get started, download a development build of Firefox and then
-join us for the next Test Day.
+Are you interested in testing desktop firefox? Then, take a look at our team wiki here - https://wiki.mozilla.org/QA/Desktop_Firefox to find out what we do. Looking to help us out right now? Then, take a look at our getting involved page here - https://wiki.mozilla.org/QA/Desktop_Firefox/GetInvolved to find something you would like to do and reply to this email telling us what you are interested in.
 
-You can download development builds at
+<Insert information for Mobile QA here>
 
-https://www.mozilla.com/firefox/channel/
+<Insert information for Server QA here>
 
-We hold Test Days every Friday online from 9am to 5pm PDT.  You
-can join by clicking on this link.
+<Insert information for Web QA here>
 
-http://chat.mibbit.com/?server=irc.mozilla.org&channel=#testday
+<Insert information for Automation Development here>
 
-We look forward to talking with you more soon.
-
-Juan Becerra
-Mozilla QA
-http://quality.mozilla.org/
+<Insert information for QA Community here>
+Looking to join in on some of our community events? Then, come join us on every Friday for our Test Days from 1am to 5pm PDT. To get started, join the #testday IRC channel here - http://chat.mibbit.com/?server=irc.mozilla.org&channel=#testday and let us know that you would like to help.
