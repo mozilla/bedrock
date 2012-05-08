@@ -9,18 +9,17 @@ of terms and example values for them:
 * locale: a string in the form of 'en-US'
 """
 
-from distutils.version import StrictVersion
 import re
 import urlparse
+from distutils.version import StrictVersion
 from os import path
 
-from django import shortcuts
-from django.conf import settings
-from django.core.cache import cache
 import feedparser
-from funfactory.urlresolvers import reverse
 import jingo
 import jinja2
+from django import shortcuts
+from django.conf import settings
+from funfactory.urlresolvers import reverse
 from product_details import product_details
 
 
@@ -313,12 +312,10 @@ def video(*args, **kwargs):
 
 
 @jingo.register.function
-def feed(url):
-    key = 'feeds-%s' % url
+def feed(name):
+    """Pulls in a blog feed and returns a list of entries, caching the
+    result for a time specified in the settings."""
+    key = 'feeds-%s' % name
 
     feed_info = cache.get(key)
-    if not feed_info:
-        feed_info = feedparser.parse(url)
-        cache.set(key, feed_info, settings.FEED_CACHE)
-
     return feed_info.entries
