@@ -52,21 +52,21 @@
       <p>Send us a note and we can get you started right away.</p>
     </div>
     <div class="form-column-2">
-      <div class="field field-comments form-details">
+      <div class="field field-comments">
         {{ field_with_attrs(form.comments, placeholder='Hi, I’m interested in…')|safe }}
       </div>
     </div>
     <div class="form-column-3">
-      <div class="field field-privacy form-details {% if form.privacy.errors%}field-error{% endif %}">
+      <div class="field field-privacy {% if form.privacy.errors%}field-error{% endif %}">
         {{ form.privacy|safe }}
       </div>
-      <div class="field field-newsletter form-details">
+      <div class="field field-newsletter">
         <label for="id_newsletter">
           {{ form.newsletter|safe }}
           I’d like to receive regular contribution news by email
         </label>
       </div>
-      <div class="field field-captcha form-details">
+      <div class="field field-captcha">
         {{ form.captcha }}
       </div>
     </div>
