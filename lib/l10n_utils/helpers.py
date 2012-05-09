@@ -26,15 +26,12 @@ def add_lang_files(ctx, files):
 
 @jingo.register.function
 @jinja2.contextfunction
-def _(ctx, text, *args):
+def _(ctx, text):
     """Translate a string, loading the translations for the locale if
     necessary."""
-    args = args or {}
     install_lang_files(ctx)
 
     trans = translate(text, ctx['request'].langfiles)
-    if args:
-        trans = trans % args
     return jinja2.Markup(trans)
 
 
