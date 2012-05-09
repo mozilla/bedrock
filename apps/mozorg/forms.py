@@ -3,7 +3,7 @@ from django.forms import widgets
 from django.utils.safestring import mark_safe
 from django.core.validators import EMPTY_VALUES
 from captcha.fields import ReCaptchaField
-
+from l10n_utils.dotlang import _
 from product_details import product_details
 
 FORMATS = (('H', 'HTML'), ('T', 'Text'))
@@ -23,13 +23,14 @@ class PrivacyWidget(widgets.CheckboxInput):
     def render(self, name, value, attrs=None):
         attrs['required'] = 'true'
         input_txt = super(PrivacyWidget, self).render(name, value, attrs)
+
+        policy_txt = _('I agree to the <a href="%s">Privacy Policy</a>')
         return mark_safe(
             '<label for="%s" class="privacy-check-label">'
             '%s '
-            '<span class="title">I agree to the '
-            '<a href="/en-US/privacy-policy">Privacy Policy</a>'
-            '</span></label>' 
-            % (attrs['id'], input_txt)
+            '<span class="title">%s</span></label>' 
+            % (attrs['id'], input_txt,
+               policy_txt.format('/en-US/privacy-policy'))
          )
 
 class EmailInput(widgets.TextInput):
