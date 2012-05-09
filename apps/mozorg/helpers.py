@@ -153,6 +153,19 @@ def download_button(ctx, id, format='large', build=None):
                        'download_link': download_link,
                        'download_link_direct': download_link_direct})
 
+
+    if build == 'beta':
+        android_link = ('https://market.android.com/details?'
+                        'id=org.mozilla.firefox_beta')
+    else:
+        android_link = ('https://market.android.com/details?'
+                        'id=org.mozilla.firefox')
+
+    builds.append({'platform': 'os_android',
+                   'platform_pretty': 'Android',
+                   'download_link': android_link,
+                   'download_link_direct': android_link})
+
     # Get the native name for current locale
     langs = product_details.languages
     locale_name = langs[locale]['native'] if locale in langs else locale

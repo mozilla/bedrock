@@ -7,6 +7,9 @@
        navigator.platform.indexOf("Win64") != -1) {
         site.platform = 'windows';
     }
+    else if (navigator.platform.indexOf("armv7l") != -1) {
+        site.platform = 'android';
+    }
     else if(navigator.platform.indexOf("Linux") != -1) {
         site.platform = 'linux';
     }
