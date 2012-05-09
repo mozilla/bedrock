@@ -19,6 +19,7 @@ import jingo
 import jinja2
 from django import shortcuts
 from django.conf import settings
+from django.core.cache import cache
 from funfactory.urlresolvers import reverse
 from product_details import product_details
 
@@ -318,4 +319,9 @@ def feed(name):
     key = 'feeds-%s' % name
 
     feed_info = cache.get(key)
-    return feed_info.entries
+    entries = []
+
+    if feed_info:
+        entries = feed_info.entries
+
+    return entries
