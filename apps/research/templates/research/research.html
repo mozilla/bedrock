@@ -1,10 +1,8 @@
-{% extends "base.html" %}
+{% extends "research/base.html" %}
+{% set body_id = "research" %}
 
+{% block page_title_prefix %}{% endblock %}
 {% block page_title %}Mozilla Research{% endblock %}
-
-{% block extrahead %}
- {{ css('research') }}
-{% endblock %}
 
 {% block breadcrumbs %}
   <nav class="breadcrumbs">
@@ -13,9 +11,7 @@
   </nav>
 {% endblock %}
 
-{% block content %}
-
-<article role="main" id="main-content">
+{% block article %}
 
 <hgroup>
   <h1>Mozilla Research</h1>
@@ -24,80 +20,24 @@
 
 <section id="projects">
 
-  <dl>
-
-    <dt>Emscripten</dt>
-    <dd>
-      <p>Emscripten is an open source optimizing compiler for LLVM applications that generates pure JavaScript to run directly on the web. Emscripten makes it possible to take C and C++ programs and convert them automatically to open web applications with no plugins or extensions.</p>
-      <p>Emscripten demonstrates that the web is capable of supporting the responsive, real-time user experiences of interactive desktop software, including games, simulations, and even live video decoding. Many applications run within an order of magnitude of their native binary performance. At the same time, Emscripten serves to diagnose and address performance bottlenecks in the web platform, to keep pushing the boundaries of tomorrow’s web.</p>
-    </dd>
-
-    <dt>Rust</dt>
-    <dd>
-      <p>Rust is a new programming language for developing reliable and efficient systems. Rust is designed to support concurrency and parallelism, for building platforms that take full advantage of modern hardware. Its static type system is safe and expressive, and provides strong guarantees about isolation, concurrency execution, and memory safety.</p>
-      <p>Rust combines powerful and flexible modern programming constructs with a clear performance model to make program efficiency predictable and manageable. One important way it achieves this is by allowing fine-grained control over memory allocation through contiguous records and stack allocation. This control is balanced with the absolute requirement of safety: Rust’s type system and runtime guarantee the absence of buffer overflow, stack overflow, or access to uninitialized or deallocated memory.</p>
-    </dd>
-
-    <dt>Servo</dt>
-    <dd>
-      <p>Servo is an experimental project to build a web browser engine designed for a new generation of hardware: mobile devices, multi-core processors, and high-performance GPU’s. With Servo we are rethinking the browser at every level of the technology stack--from input parsing to page layout and graphics rendering--to optimize for power efficiency and maximum parallelism.</p>
-      <p>Servo builds on top of Rust to provide a secure and reliable foundation. Memory safety at the core of the platform ensures a high degree of assurance in the browser’s trusted computing base. Rust’s lightweight task mechanism also promises to allow fine-grained isolation between browser components such as tabs and extensions without the need for expensive runtime protection schemes like operating system process isolation.</p>
-    </dd>
-
-    <dt>Shumway</dt>
-    <dd>
-      <p>Following on the success of <a href="https://addons.mozilla.org/en-US/firefox/addon/pdfjs/">pdf.js</a>, a high-fidelity PDF renderer written in pure HTML and JavaScript, the Shumway project aims to implement an emulator for the Flash™ multimedia platform. Shumway combines rendering techniques pioneered by the open source <a href="https://github.com/tobeytailor/gordon">Gordon</a> emulator with a just-in-time (JIT) compiler for the Actionscript Virtual Machine that generates optimized JavaScript.</p>
-      <p>Shumway’s primary goals are to demonstrate the power and expressiveness of the HTML5 platform, as well as to discover and remedy gaps in the web platform.</p>
-    </dd>
-
-  </dl>
+<ul>
+  <li id="emscripten">
+    <h4><a href="{{ url('research.emscripten') }}">Emscripten</a></h4>
+    <p>Emscripten is an optimizing compiler that ports desktop applications written in C or C++ to web applications using pure HTML and JavaScript. Emscripten generates extremely efficient code and is enabling new kinds of web applications.</p>
+  </li>
+  <li id="rust">
+    <h4><a href="{{ url('research.rust') }}#">Rust</a></h4>
+    <p>Rust is a new systems programming language for building high-performance, concurrent software. Rust is a foundational component of the Servo project to rethink the architecture of a web browser.</p>
+  </li>
+  <li class="project" id="servo">
+    <h4><a href="{{ url('research.servo') }}">Servo</a></h4>
+    <p>The Servo project aims to build a web browser engine designed for parallelism and power efficiency. Servo builds on top of Rust for better security, robustness, and concurrency.</p>
+  </li>
+  <li id="shumway">
+    <h4><a href="{{ url('research.shumway') }}">Shumway</a></h4>
+    <p>Shumway is an implementation of the Flash™ virtual machine in pure HTML and JavaScript. Shumway combines a compatibility library using HTML5 API's and a just-in-time compiler for ActionScript bytecode to generate optimized JavaScript source to run apps directly on the web without a plugin.</p>
+  </li>
+</ul>
 
 </section>
-
-<section id="people">
-
-
-  <dl>
-
-    <dt>
-      <img src="{{ media('/img/research/photo-andreas-gal.jpg') }}" alt="Photo" />
-      Andreas Gal <em>Director of Research</em>
-    </dt>
-    <dd>
-      <p>Andreas is proud to lead an amazing team of researchers and engineers working on various areas of the web stack. Previously, Andreas worked as a project scientist with the <a href="http://www.ssllab.org/">Secure Systems and Languages Laboratory</a> at the <a href="http://www.uci.edu/">University of California, Irvine</a>. Andreas's background is in secure systems, type-safe languages, dynamic compilation, and virtual machines.</p>
-    </dd>
-
-    <dt>Michael Bebenita <em>Researcher</em></dt>
-    <dd>
-      <p>Michael received his PhD from the <a href="http://www.uci.edu/">University of California, Irvine</a> in 2011 on trace-based, just-in-time compilation. Michael's primary research interests are in high-performance systems, software architecture, compilers, and virtual machines. Michael has contributed to the Rust programming language and leads the Shumway project.</p>
-    </dd>
-
-    <dt>
-      <img src="{{ media('/img/research/photo-dave-herman.jpg') }}" alt="Photo" />
-      Dave Herman <em>Senior Researcher</em>
-    </dt>
-    <dd>
-      <p>Dave received his PhD from <a href="http://www.ccs.neu.edu/">Northeastern University</a> in 2010 in formal semantics of programming languages. Dave's research interests include programming language design, specification, and analysis. Dave coordinates several research programs at Mozilla, including Rust and Servo, and leads the research internship program. Dave participates actively in open standards and has contributed significantly to the JavaScript standard since 2006.</p>
-    </dd>
-
-    <dt>
-      <img src="{{ media('/img/research/photo-chris-jones.jpg') }}" alt="Photo" />
-      Chris Jones <em>Senior Engineer</em>
-      </dt>
-    <dd>
-      <p>Chris serves as Technical Lead to the Boot to Gecko project, building a full-featured mobile operating system with open web technology. Chris's research interests lie in high-performance systems, architecture, and parallel algorithms.</p>
-    </dd>
-
-    <dt>
-      <img src="{{ media('/img/research/photo-allen-wirfs-brock.jpg') }}" alt="Photo" />
-      Allen Wirfs-Brock <em>Research Fellow</em>
-    </dt>
-    <dd>
-      <p>Allen is an expert in all aspects of dynamic, object-oriented languages and their implementation. As a software architect and entrepeneur, Allen has made numerous contributions to the industrialization and commercialization of object-oriented technology, serving as a strategic technologist, software architect, product developer, and manager. Allen has founded two successful companies and made major contributions to both the Smalltalk and JavaScript language standards. In 2009, Allen was recognized as an <a href="http://www.acm.org/press-room/news-releases/distinguished-09">ACM Distinguished Engineer</a>.</p>
-    </dd>
-  </dl>
-
-</section>
-
-</article>
 {% endblock %}
