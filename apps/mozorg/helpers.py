@@ -323,5 +323,4 @@ def feed(name):
 
     if feed_info:
         entries = feed_info.entries
-
     return entries
