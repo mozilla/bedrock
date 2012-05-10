@@ -1,0 +1,18 @@
+{% extends "research/base.html" %}
+{% set body_id = "rust" %}
+
+{% block page_title %}Rust{% endblock %}
+
+{% block article %}
+
+<h1>Rust</h1>
+
+<p>Rust is a new programming language for developing reliable and efficient systems. Rust is designed to support concurrency and parallelism, for building platforms that take full advantage of modern hardware. Its static type system is safe and expressive, and provides strong guarantees about isolation, concurrency execution, and memory safety.</p>
+<p>Rust combines powerful and flexible modern programming constructs with a clear performance model to make program efficiency predictable and manageable. One important way it achieves this is by allowing fine-grained control over memory allocation through contiguous records and stack allocation. This control is balanced with the absolute requirement of safety: Rust’s type system and runtime guarantee the absence of buffer overflow, stack overflow, or access to uninitialized or deallocated memory.</p>
+
+<ul class="project-links">
+  <li><a href="http://www.rust-lang.org">Rust website</a></li>
+  <li><a href="https://github.com/mozilla/rust">Rust on GitHub</a></li>
+</ul>
+
+{% endblock %}
