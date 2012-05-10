@@ -71,6 +71,9 @@ MINIFY_BUNDLES = {
         'contribute': (
             'css/contribute.less',
         ),
+        'contribute-page': (
+            'css/contribute-page.less',
+        ),
         'channel': (
             'css/covehead/template.css',
             'css/covehead/content.css',
@@ -177,9 +180,12 @@ MINIFY_BUNDLES = {
         ),
         'contribute': (
             'js/contribute-page.js',
-            'js/mozilla-input-placeholder.js',
             'js/mozilla-pager.js',
             'js/mozilla-video-tools.js',
+        ),
+        'contribute-form': (
+            'js/contribute-form.js',
+            'js/mozilla-input-placeholder.js',
         ),
         'expanders': (
             'js/mozilla-expanders.js',

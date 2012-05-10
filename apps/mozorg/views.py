@@ -8,6 +8,31 @@ import basket
 import l10n_utils
 from forms import ContributeForm, NewsletterCountryForm
 
+
+def handle_contribute_form(request, form):
+    if form.is_valid():
+        data = form.cleaned_data
+        contribute_send(data)
+        contribute_autorespond(request, data)
+
+        if data['newsletter']:
+            try:
+                basket.subscribe(data['email'], 'about-mozilla')
+            except basket.BasketException, e: pass
+
+        return True
+    return False
+
+
+@csrf_exempt
+def contribute_page(request):
+    form = ContributeForm(request.POST or None)
+    success = handle_contribute_form(request, form)
+    return l10n_utils.render(request, 
+                             'mozorg/contribute-page.html',
+                             {'form': form,
+                              'success': success})
+
 @csrf_exempt
 def contribute(request):
     def has_contribute_form():
@@ -30,18 +55,7 @@ def contribute(request):
     # same page. Please change this.
     if has_contribute_form():
         form = ContributeForm(request.POST)
-
-        if form.is_valid():
-            data = form.cleaned_data
-            contribute_send(data)
-            contribute_autorespond(request, data)
-
-            if data['newsletter']:
-                try:
-                    basket.subscribe(data['email'], 'about-mozilla')
-                except basket.BasketException, e: pass
-
-            success = True
+        success = handle_contribute_form(request, form)
     else:
         form = ContributeForm()
 
