@@ -64,6 +64,9 @@ MINIFY_BUNDLES = {
         'b2g': (
             'css/b2g.less',
         ),
+        'webmaker': (
+            'css/webmaker.less',
+        ),
         'collusion': (
             'css/collusion.less',
         ),
@@ -171,7 +174,10 @@ MINIFY_BUNDLES = {
     },
     'js': {
         'site': (
-            'js/site.js', # this is automatically included on every page
+            'js/site.js',  # this is automatically included on every page
+        ),
+        'webmaker': (
+            'js/webmaker/feeds.js',
         ),
         'collusion': (
             'js/collusion/d3.layout.js',
@@ -331,6 +337,7 @@ INSTALLED_APPS = (
 
     # Local apps
     'b2g',
+    'webmaker',
     'collusion',
     'firefox',
     'marketplace',
