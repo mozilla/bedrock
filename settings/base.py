@@ -152,6 +152,9 @@ MINIFY_BUNDLES = {
         'projects': (
             'css/projects.less',
         ),
+        'research': (
+            'css/research/research.less',
+        ),
         'sandstone_guide': (
             'css/sandstone-guide.less',
         ),

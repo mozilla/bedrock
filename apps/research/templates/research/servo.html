@@ -1,0 +1,17 @@
+{% extends "research/base.html" %}
+{% set body_id = "servo" %}
+
+{% block page_title %}Servo{% endblock %}
+
+{% block article %}
+
+<h1>Servo</h1>
+
+<p>Servo is an experimental project to build a web browser engine designed for a new generation of hardware: mobile devices, multi-core processors, and high-performance GPU’s. With Servo we are rethinking the browser at every level of the technology stack--from input parsing to page layout and graphics rendering--to optimize for power efficiency and maximum parallelism.</p>
+<p>Servo builds on top of Rust to provide a secure and reliable foundation. Memory safety at the core of the platform ensures a high degree of assurance in the browser’s trusted computing base. Rust’s lightweight task mechanism also promises to allow fine-grained isolation between browser components such as tabs and extensions without the need for expensive runtime protection schemes like operating system process isolation.</p>
+
+<ul class="project-links">
+  <li><a href="https://github.com/mozilla/servo">Servo on GitHub</a></li>
+</ul>
+
+{% endblock %}
