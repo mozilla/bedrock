@@ -1,0 +1,50 @@
+{% extends "research/base.html" %}
+{% set body_id = "people" %}
+
+{% block page_title %}People{% endblock %}
+
+{% block article %}
+
+<hgroup>
+  <h1>People at Mozilla Research</h1>
+</hgroup>
+
+<section id="people">
+
+  <ul>
+
+    <li>
+      <img src="{{ media('/img/research/photo-andreas-gal.jpg') }}" alt="Photo" />
+      <h3>Andreas Gal <em>Director of Research</em></h3>
+      <p>Andreas is proud to lead an amazing team of researchers and engineers working on various areas of the web stack. Previously, Andreas worked as a project scientist with the <a href="http://www.ssllab.org/">Secure Systems and Languages Laboratory</a> at the <a href="http://www.uci.edu/">University of California, Irvine</a>. Andreas's background is in secure systems, type-safe languages, dynamic compilation, and virtual machines.</p>
+    </li>
+
+    <li>
+      <img src="{{ media('/img/research/photo-michael-bebenita.jpg') }}" alt="Photo" />
+      <h3>Michael Bebenita <em>Researcher</em></h3>
+      <p>Michael received his PhD from the <a href="http://www.uci.edu/">University of California, Irvine</a> in 2011 on trace-based, just-in-time compilation. Michael's primary research interests are in high-performance systems, software architecture, compilers, and virtual machines. Michael has contributed to the Rust programming language and leads the Shumway project.</p>
+    </li>
+
+    <li>
+      <img src="{{ media('/img/research/photo-dave-herman.jpg') }}" alt="Photo" />
+      <h3>Dave Herman <em>Senior Researcher</em></h3>
+      <p>Dave received his PhD from <a href="http://www.ccs.neu.edu/">Northeastern University</a> in 2010 in formal semantics of programming languages. Dave's research interests include programming language design, specification, and analysis. Dave coordinates several research programs at Mozilla, including Rust and Servo, and leads the research internship program. Dave participates actively in open standards and has contributed significantly to the JavaScript standard since 2006.</p>
+    </li>
+
+    <li>
+      <img src="{{ media('/img/research/photo-chris-jones.jpg') }}" alt="Photo" />
+      <h3>Chris Jones <em>Senior Engineer</em></h3>
+      <p>Chris serves as Technical Lead to the Boot to Gecko project, building a full-featured mobile operating system with open web technology. Chris's research interests lie in high-performance systems, architecture, and parallel algorithms.</p>
+    </li>
+
+    <li>
+      <img src="{{ media('/img/research/photo-allen-wirfs-brock.jpg') }}" alt="Photo" />
+      <h3>Allen Wirfs-Brock <em>Research Fellow</em></h3>
+      <p>Allen is an expert in all aspects of dynamic, object-oriented languages and their implementation. As a software architect and entrepeneur, Allen has made numerous contributions to the industrialization and commercialization of object-oriented technology, serving as a strategic technologist, software architect, product developer, and manager. Allen has founded two successful companies and made major contributions to both the Smalltalk and JavaScript language standards. In 2009, Allen was recognized as an <a href="http://www.acm.org/press-room/news-releases/distinguished-09">ACM Distinguished Engineer</a>.</p>
+    </li>
+
+  </ul>
+
+</section>
+
+{% endblock %}
