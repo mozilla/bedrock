@@ -74,6 +74,9 @@ MINIFY_BUNDLES = {
         'contribute': (
             'css/contribute.less',
         ),
+        'contribute-page': (
+            'css/contribute-page.less',
+        ),
         'channel': (
             'css/covehead/template.css',
             'css/covehead/content.css',
@@ -144,6 +147,9 @@ MINIFY_BUNDLES = {
         'persona': (
             'css/persona.less',
         ),
+        'privacy': (
+            'css/privacy.less',
+        ),
         'projects': (
             'css/projects.less',
         ),
@@ -183,9 +189,12 @@ MINIFY_BUNDLES = {
         ),
         'contribute': (
             'js/contribute-page.js',
-            'js/mozilla-input-placeholder.js',
             'js/mozilla-pager.js',
             'js/mozilla-video-tools.js',
+        ),
+        'contribute-form': (
+            'js/contribute-form.js',
+            'js/mozilla-input-placeholder.js',
         ),
         'expanders': (
             'js/mozilla-expanders.js',
@@ -330,12 +339,12 @@ INSTALLED_APPS = (
     'persona',
     'landing',
     'research',
+    'privacy',
 
     # libs
     'l10n_utils',
     'captcha'
 )
-
 
 ## Auth
 PWD_ALGORITHM = 'bcrypt'
