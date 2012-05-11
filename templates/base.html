@@ -6,7 +6,7 @@
 
     <title>{% block page_title_prefix %}Mozilla — {% endblock %}{% block page_title %}{% endblock %}{% block page_title_suffix %} — mozilla.org{% endblock %}</title>
 
-    <link href="//www.mozilla.org/tabzilla/media/css/tabzilla.css" rel="stylesheet">
+    <link href="/tabzilla/media/css/tabzilla.css" rel="stylesheet">
 
     <script src="/media/js/libs/modernizr-2.5.0.min.js"></script>
 
@@ -132,7 +132,7 @@
           <nav class="span2">
               <ul>
                   <li><a href="{{ php_url('/about/contact.html#map-mountain_view') }}">Contact Us</a></li>
-                  <li><a href="{{ php_url('/privacy-policy.html') }}">Privacy Policy</a></li>
+                  <li><a href="{{ url('privacy.index') }}">Privacy Policy</a></li>
                   <li><a href="{{ php_url('/about/legal.html') }}">Legal Notices</a></li>
                   <li><a href="{{ php_url('/legal/fraud-report/index.html') }}">Report Trademark Abuse</a></li>
               </ul>
@@ -152,7 +152,7 @@
       </footer>
     {% endblock %}
 
-    <script src="//www.mozilla.org/tabzilla/media/js/tabzilla.js"></script>
+    <script src="/tabzilla/media/js/tabzilla.js"></script>
     </div><!-- close #outer-wrapper -->
 
     {% block site_js %}
