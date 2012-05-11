@@ -87,6 +87,9 @@ MINIFY_BUNDLES = {
         'firefox': (
             'css/firefox/template.less',
         ),
+        'firefox_channel': (
+            'css/firefox/channel.less',
+        ),
         'firefox_central': (
             'css/sandstone/video.less',
             'css/firefox/central.less',
@@ -214,6 +217,10 @@ MINIFY_BUNDLES = {
             'js/mozilla-video-tools.js',
             'js/firefox/central.js',
             'js/mozilla-pager.js',
+        ),
+        'firefox_channel': (
+            'js/mozilla-pager.js',
+            'js/firefox/channel.js',
         ),
         'firefox_customize': (
             'js/mozilla-video-tools.js',

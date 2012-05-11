@@ -28,7 +28,9 @@ download_urls = {
     'transition': '/products/download.html',
     'direct': 'http://download.mozilla.org/',
     'aurora': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla-aurora',
-    'aurora-l10n': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla-aurora-l10n'
+    'aurora-l10n': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla-aurora-l10n',
+    'aurora-mobile': ('https://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mozilla-aurora-android/en-US/fennec-%s.en-US.android-arm.apk'
+                      % product_details.mobile_details['alpha_version'])
 }
 
 
@@ -115,6 +117,39 @@ def make_download_link(product, build, version, platform, locale,
 
 @jingo.register.function
 @jinja2.contextfunction
+def mobile_download_button(ctx, id, format='large', build=None):
+    if build == 'aurora':
+        android_link = download_urls['aurora-mobile']
+        version = product_details.mobile_details['alpha_version']
+    elif build == 'beta':
+        android_link = ('https://market.android.com/details?'
+                        'id=org.mozilla.firefox_beta')
+        version = product_details.mobile_details['beta_version']
+    else:
+        android_link = ('https://market.android.com/details?'
+                        'id=org.mozilla.firefox')
+        version = product_details.mobile_details['version']
+
+    builds = [{'platform': '',
+               'platform_pretty': 'Android',
+               'download_link': android_link,
+               'download_link_direct': android_link}]
+
+    data = {
+        'locale_name': 'en-US',
+        'version': version,
+        'product': 'firefox-mobile',
+        'builds': builds,
+        'id': id
+    }
+
+    html = jingo.render_to_string(ctx['request'],
+                                  'mozorg/download_button_%s.html' % format,
+                                  data)
+    return jinja2.Markup(html)
+
+@jingo.register.function
+@jinja2.contextfunction
 def download_button(ctx, id, format='large', build=None):
     locale = ctx['request'].locale
 
@@ -155,8 +190,9 @@ def download_button(ctx, id, format='large', build=None):
                        'download_link': download_link,
                        'download_link_direct': download_link_direct})
 
-
-    if build == 'beta':
+    if build == 'aurora':
+        android_link = download_urls['aurora-mobile']
+    elif build == 'beta':
         android_link = ('https://market.android.com/details?'
                         'id=org.mozilla.firefox_beta')
     else:
@@ -183,31 +219,6 @@ def download_button(ctx, id, format='large', build=None):
     html = jingo.render_to_string(ctx['request'],
                                   'mozorg/download_button_%s.html' % format,
                                   data)
-    return jinja2.Markup(html)
-
-
-@jingo.register.function
-@jinja2.contextfunction
-def mobile_download_button(ctx, id, platform, build=None):
-    locale = ctx['request'].locale
-    url = ''
-
-    if platform == 'android':
-        if build == 'beta':
-            url = 'market://details?id=org.mozilla.firefox_beta'
-        else:
-            url = 'market://details?id=org.mozilla.firefox'
-    elif platform == 'desktop' and build == 'beta':
-        # this part is temporary for now until we figure out how to
-        # manage all this for mobile
-        url = 'https://market.android.com/details?id=org.mozilla.firefox_beta'
-    else:
-        raise 'Unsupported platform for mobile download button'
-
-    html = jingo.render_to_string(ctx['request'],
-                                  'mozorg/download_button_mobile.html',
-                                  {'id': id,
-                                   'download_link': url})
     return jinja2.Markup(html)
 
 
