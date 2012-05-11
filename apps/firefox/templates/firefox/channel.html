@@ -28,8 +28,8 @@
       <div class="download-box" id="beta-desktop">
         {{ download_button('beta-download', 'channel', build='beta') }}
       </div>
-      <div class="download-box" id="beta-mobile">
-        {{ download_button('beta-download', 'channel', build='beta') }}
+      <div class="download-box mobile" id="beta-mobile">
+        {{ mobile_download_button('beta-download-mobile', 'channel', build='beta') }}
       </div>
       <p class="more"><a href="{{ php_url('/firefox/beta/') }}">Learn more about Firefox Beta<span> »</span></a></p>
     </div>
@@ -40,8 +40,8 @@
       <div class="download-box" id="firefox-desktop">
         {{ download_button('primary-download', 'channel') }}
       </div>
-      <div class="download-box" id="firefox-mobile">
-        {{ download_button('primary-download', 'channel') }}
+      <div class="download-box mobile" id="firefox-mobile">
+        {{ mobile_download_button('primary-download-mobile', 'channel') }}
       </div>
       <p class="more"><a href="{{ php_url('/firefox/') }}">Learn more about Firefox<span> »</span></a></p>
     </div>
@@ -52,8 +52,8 @@
       <div class="download-box" id="aurora-desktop">
         {{ download_button('download', 'channel', build='aurora') }}
       </div>
-      <div class="download-box" id="aurora-mobile">
-        {{ download_button('download', 'channel', build='aurora') }}
+      <div class="download-box mobile" id="aurora-mobile">
+        {{ mobile_download_button('beta-download-mobile', 'channel', build='aurora') }}
       </div>
       <p class="more"><a href="/<?=$lang?>/mobile/aurora/">Learn more about Firefox Aurora<span> »</span></a></p>
     </div>
