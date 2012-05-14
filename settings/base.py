@@ -82,6 +82,9 @@ MINIFY_BUNDLES = {
         'firefox': (
             'css/firefox/template.less',
         ),
+        'firefox_channel': (
+            'css/firefox/channel.less',
+        ),
         'firefox_central': (
             'css/sandstone/video.less',
             'css/firefox/central.less',
@@ -144,6 +147,9 @@ MINIFY_BUNDLES = {
         'persona': (
             'css/persona.less',
         ),
+        'privacy': (
+            'css/privacy.less',
+        ),
         'projects': (
             'css/projects.less',
         ),
@@ -200,6 +206,10 @@ MINIFY_BUNDLES = {
             'js/mozilla-video-tools.js',
             'js/firefox/central.js',
             'js/mozilla-pager.js',
+        ),
+        'firefox_channel': (
+            'js/mozilla-pager.js',
+            'js/firefox/channel.js',
         ),
         'firefox_customize': (
             'js/mozilla-video-tools.js',
@@ -329,12 +339,12 @@ INSTALLED_APPS = (
     'persona',
     'landing',
     'research',
+    'privacy',
 
     # libs
     'l10n_utils',
     'captcha'
 )
-
 
 ## Auth
 PWD_ALGORITHM = 'bcrypt'
