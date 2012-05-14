@@ -4,8 +4,6 @@ Are you interested in testing desktop firefox? Then, take a look at our team wik
 
 <Insert information for Mobile QA here>
 
-<Insert information for Server QA here>
-
 Are you more Web-centric?  Want to learn, or already know Selenium, and other Web-testing frameworks and automation?  Find our more about what we do, and please reach out to us via your preferred method from https://quality.mozilla.org/teams/web-qa/, and say Hi!
 
 <Insert information for Automation Development here>
