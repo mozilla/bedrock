@@ -71,6 +71,9 @@ MINIFY_BUNDLES = {
         'contribute': (
             'css/contribute.less',
         ),
+        'contribute-page': (
+            'css/contribute-page.less',
+        ),
         'channel': (
             'css/covehead/template.css',
             'css/covehead/content.css',
@@ -78,6 +81,9 @@ MINIFY_BUNDLES = {
         ),
         'firefox': (
             'css/firefox/template.less',
+        ),
+        'firefox_channel': (
+            'css/firefox/channel.less',
         ),
         'firefox_central': (
             'css/sandstone/video.less',
@@ -141,6 +147,9 @@ MINIFY_BUNDLES = {
         'persona': (
             'css/persona.less',
         ),
+        'privacy': (
+            'css/privacy.less',
+        ),
         'projects': (
             'css/projects.less',
         ),
@@ -177,9 +186,12 @@ MINIFY_BUNDLES = {
         ),
         'contribute': (
             'js/contribute-page.js',
-            'js/mozilla-input-placeholder.js',
             'js/mozilla-pager.js',
             'js/mozilla-video-tools.js',
+        ),
+        'contribute-form': (
+            'js/contribute-form.js',
+            'js/mozilla-input-placeholder.js',
         ),
         'expanders': (
             'js/mozilla-expanders.js',
@@ -194,6 +206,10 @@ MINIFY_BUNDLES = {
             'js/mozilla-video-tools.js',
             'js/firefox/central.js',
             'js/mozilla-pager.js',
+        ),
+        'firefox_channel': (
+            'js/mozilla-pager.js',
+            'js/firefox/channel.js',
         ),
         'firefox_customize': (
             'js/mozilla-video-tools.js',
@@ -323,12 +339,12 @@ INSTALLED_APPS = (
     'persona',
     'landing',
     'research',
+    'privacy',
 
     # libs
     'l10n_utils',
     'captcha'
 )
-
 
 ## Auth
 PWD_ALGORITHM = 'bcrypt'
