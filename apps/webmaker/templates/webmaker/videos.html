@@ -1,4 +1,4 @@
-{% extends "sand.html" %}
+{% extends "webmaker/base.html" %}
 
 {% block page_title %}Webmaker Videos{% endblock %}
 {% block body_id %}webmaker-videos{% endblock %}
@@ -13,7 +13,7 @@
 {% endblock %}
 
 {% block extrahead %}
-  {{ css('webmaker') }}
+  {{ super() }}
   {{ css('video') }}
 {% endblock %}
 
@@ -60,19 +60,6 @@
   </div>
 
 </section>
-{% endblock %}
-
-{% block email_form %}&nbsp;{% endblock %}
-
-{% block social %}
-  <nav class="span2">
-    <ul>
-      <li><a href="{{ url('mozorg.mission') }}">Learn about Mozilla's mission</a></li>
-      <li><a href="https://donate.mozilla.org/join/">Join Mozilla</a></li>
-      <li><a href="http://www.facebook.com/mozilla/">Like us on Facebook</a></li>
-      <li><a href="http://www.twitter.com/mozilla/">Follow us on Twitter</a></li>
-    </ul>
-  </nav>
 {% endblock %}
 
 {% block js %}
