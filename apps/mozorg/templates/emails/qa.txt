@@ -8,5 +8,7 @@ Are you more Web-centric?  Want to learn, or already know Selenium, and other We
 
 <Insert information for Automation Development here>
 
-<Insert information for QA Community here>
-Looking to join in on some of our community events? Then, come join us on every Friday for our Test Days from 1am to 5pm PDT. To get started, join the #testday IRC channel here - http://chat.mibbit.com/?server=irc.mozilla.org&channel=#testday and let us know that you would like to help.
+
+Looking to join some of our community testing events? Join us every Friday for Test Days which run from 1am to 5pm PDT. Please reference https://quality.mozilla.org/category/events/ which lists all of the upcoming events. If you check the test etherpad before the event, you can familiarize yourself with the test topic and do any necessary setup so you are ready to test when the event occurs.
+
+To get started, join the #testday IRC channel here - http://chat.mibbit.com/?server=irc.mozilla.org&channel=#testday and let us know that you would like to help. We have moderators in the IRC channel who are more than happy to help and answer any questions you may have. We look forward to your participation and contributions!
