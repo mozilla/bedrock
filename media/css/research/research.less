@@ -9,47 +9,52 @@
     .offset(1);
 }
 
+#project-list {
+    width: auto;
+    margin-top: @baseLine;
+}
+
 #projects {
-    .span(7);
-    margin-left: 0;
-    margin-bottom: @baseLine;
-    h2 {
-        .span(2);
-        margin-left: 0;
-        margin-bottom: @baseLine;
-    }
-    .intro {
-        .span(5);
-    }
-    ul {
-        .clearfix;
-        clear: left;
-    }
-    li {
-        list-style-type: none;
-        margin: 0 0 @baseLine 0;
-        border-top: 1px dotted @borderColor;
-        padding-top: @baseLine;
-        .clearfix;
-    }
-    li.more {
-        border: 0;
-        padding-top: 0;
-    }
-    h4 {
-        .span(2);
-        margin-left: 0;
-        clear: left;
-    }
-    p {
-        .span(5);
-    }
-    p.more {
-        margin-left: 0;
-        width: auto;
+    section {
+        border-bottom: 1px dotted @borderColor;
+        margin-bottom: @baseLine * 2;
+        padding-bottom: @baseLine;
     }
 }
 
+#main-content {
+    .intro {
+        .span(4);
+        margin-left: 0;
+        padding-top: @baseLine;
+    }
+
+    ul.links {
+        .span(6);
+        li {
+            .span(3);
+            list-style-type: none;
+            padding-top: @baseLine;
+            border-bottom: 1px dotted @borderColor;
+            min-height: @baseLine * 4;
+            &.odd {
+                margin-left: 0;
+                clear: left;
+            }
+        }
+        h4 {
+            margin-bottom: @baseLine / 6;
+            a:after {
+                content: " »";
+                font-family: 'Open Sans Light',sans-serif;
+                font-weight: 300;
+            }
+        }
+        p {
+            margin-bottom: @baseLine / 2;
+        }
+    }
+}
 
 #people {
     .span(7);
@@ -95,3 +100,20 @@
     }
 }
 
+#rust-promo {
+    background: #fff url(/media/img/research/promo-rust.jpg) top right no-repeat;
+    padding: 0;
+    width: 896px + 48px + 48px;
+    a {
+        display: block;
+        padding: @baseLine (@baseLine * 2);
+        color: @textColorSecondary;
+        &:hover,
+        &:active {
+            text-decoration: none;
+        }
+    }
+    p {
+        margin-bottom: 0;
+    }
+}

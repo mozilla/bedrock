@@ -1,38 +1,55 @@
-{% extends "research/base.html" %}
+{% extends "sand.html" %}
 {% set body_id = "research" %}
 
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}Mozilla Research{% endblock %}
 
+{% block extrahead %}
+ {{ css('research') }}
+{% endblock %}
+
 {% block breadcrumbs %}{% endblock %}
 
-{% block article %}
+{% block content %}
 
-<hgroup>
+<hgroup id="main-feature" class="large center">
   <h1>Mozilla Research</h1>
   <h2>Pushing the boundaries of the Open Web</h2>
 </hgroup>
 
-<section id="projects">
+<div id="rust-promo" class="billboard">
+  <a href="{{ url('research.projects') }}#rust">
+    <h2>Rust</h2>
+    <p>A safe, concurrent, practical language.</p>
+  </a>
+</div>
 
-<ul>
-  <li id="emscripten">
-    <h4><a href="{{ url('research.emscripten') }}">Emscripten</a></h4>
-    <p>Emscripten is an optimizing compiler that ports desktop applications written in C or C++ to web applications using pure HTML and JavaScript. Emscripten generates extremely efficient code and is enabling new kinds of web applications.</p>
+<div id="main-content">
+
+<p class="intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ultrices sodales interdum. In hac habitasse platea dictumst. Cras vel tortor eu purus ultrices venenatis eget a nunc.</p>
+
+<ul class="links">
+  <li id="projects" class="odd">
+    <h4><a href="{{ url('research.projects') }}">Projects</a></h4>
+    <p>Lorem ipsum dolor sit amet, consectetur.</p>
   </li>
-  <li id="rust">
-    <h4><a href="{{ url('research.rust') }}#">Rust</a></h4>
-    <p>Rust is a new systems programming language for building high-performance, concurrent software. Rust is a foundational component of the Servo project to rethink the architecture of a web browser.</p>
+  <li id="researchers">
+    <h4><a href="{{ url('research.researchers') }}#">Researchers</a></h4>
+    <p>Lorem ipsum dolor sit amet, consectetur.</p>
   </li>
-  <li class="project" id="servo">
-    <h4><a href="{{ url('research.servo') }}">Servo</a></h4>
-    <p>The Servo project aims to build a web browser engine designed for parallelism and power efficiency. Servo builds on top of Rust for better security, robustness, and concurrency.</p>
+  <li id="publications" class="odd">
+    <h4><a href="{{ url('research.publications') }}">Publications</a></h4>
+    <p>Lorem ipsum dolor sit amet, consectetur.</p>
   </li>
-  <li id="shumway">
-    <h4><a href="{{ url('research.shumway') }}">Shumway</a></h4>
-    <p>Shumway is an implementation of the Flash™ virtual machine in pure HTML and JavaScript. Shumway combines a compatibility library using HTML5 API's and a just-in-time compiler for ActionScript bytecode to generate optimized JavaScript source to run apps directly on the web without a plugin.</p>
+  <li id="collaborations">
+    <h4><a href="{{ url('research.collaborations') }}">Collaborations</a></h4>
+    <p>Lorem ipsum dolor sit amet, consectetur.</p>
+  </li>
+  <li id="blog" class="odd">
+    <h4><a href="http://blog.mozilla.org/research/">Blog</a></h4>
+    <p>Lorem ipsum dolor sit amet, consectetur.</p>
   </li>
 </ul>
 
-</section>
+</div>
 {% endblock %}
