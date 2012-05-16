@@ -9,6 +9,7 @@
 
 {% block js %}
   {{ js('pager') }}
+  <script type="text/javascript">Mozilla.Pager.AUTO_ROTATE_INTERVAL = 5000;</script>
 {% endblock %}
 
 {% block site_header_logo %}{% endblock %}
@@ -41,7 +42,7 @@
 
     <div class="default-page pager-page" id="promo-mdn">
       <script>// <![CDATA[
-      document.getElementById('promo-mdn').id = 'page-promo-mdn';
+      //document.getElementById('promo-mdn').id = 'page-promo-mdn';
       // ]]></script>
       <a href="https://developer.mozilla.org/" class="container">
         <img src="{{ media('img/home/promo-mdn.jpg') }}" alt="Mozilla Developer Network artwork">
@@ -54,7 +55,7 @@
 
     <div id="promo-collusion" class="pager-page">
       <script>// <![CDATA[
-      document.getElementById('promo-collusion').id = 'page-promo-collusion';
+      //document.getElementById('promo-collusion').id = 'page-promo-collusion';
       // ]]></script>
       <a href="http://www.mozilla.org/collusion/" class="container">
         <img src="{{ media('img/home/promo-collusion.jpg') }}" alt="Collusion graph image">
@@ -67,7 +68,7 @@
 
     <div id="promo-contribute" class="pager-page">
       <script>// <![CDATA[
-      document.getElementById('promo-contribute').id = 'page-promo-contribute';
+      //document.getElementById('promo-contribute').id = 'page-promo-contribute';
       // ]]></script>
       <a href="{{ url('mozorg.contribute') }}" class="container">
         <img src="{{ media('img/home/promo-contribute.jpg') }}" alt="Mozilla community collage">
