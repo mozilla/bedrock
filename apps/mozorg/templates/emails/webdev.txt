@@ -4,7 +4,7 @@ Start by joining us in #webdev on IRC. http://mzl.la/irc_getting_started will he
 
 Next register an account on Bugzilla. Bugzilla can be daunting, so check out http://mzl.la/bugzilla_for_humans (15m video HIGHLY recommended).
 
-Now look for a WebDev mentored bug in http://mzl.la/webdev_mentored_bugs and contact the mentor - over IRC, email, or comment on the bug.
+Now look for a WebDev mentored bug in https://wiki.mozilla.org/Webdev/GetInvolved and contact the mentor - over IRC, email, or comment on the bug.
 
 Finally, with your mentor, fork the github repository for the bug's website and you're ready to start coding.
 
