@@ -73,7 +73,6 @@ var gPlatformVista = navigator.userAgent.indexOf('Windows NT 6.0') !=-1
     var sceneWidth = 950;
 
     $(tips[gPlatform]).each(function (index, tip) {
-        console.log(tip);
         drawTip(tip);
     })
     addHandlers();
