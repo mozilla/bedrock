@@ -40,49 +40,49 @@
 
   <div class="pager-content">
 
-    <div class="default-page pager-page" id="promo-mdn">
+    <div class="default-page pager-page" id="promo-beta">
       <script>// <![CDATA[
-      document.getElementById('promo-mdn').id = 'page-promo-mdn';
+      document.getElementById('promo-beta').id = 'page-promo-beta';
       // ]]></script>
-      <a href="https://developer.mozilla.org/" class="container">
-        <img src="{{ media('img/home/promo-mdn.jpg') }}" alt="Mozilla Developer Network artwork">
+      <a href="{{ php_url('/firefox/beta/') }}?WT.mc_id=mofxbeta&WT.mc_ev=click" class="container">
+        <img src="{{ media('img/home/promo-beta.jpg') }}" alt="Firefox Beta blueprint artwork">
         <div>
-          <h3>Together we can drive innovation on the Web.</h3>
-          <p>Mozilla Developer Network »</p>
+          <h3>Get a sneak peek at the Firefox of tomorrow.</h3>
+          <p>Download Firefox Beta today »</p>
         </div>
       </a>
     </div>
 
-    <div id="promo-collusion" class="pager-page">
+    <div class="pager-page" id="promo-flicks">
       <script>// <![CDATA[
-      document.getElementById('promo-collusion').id = 'page-promo-collusion';
+      document.getElementById('promo-flicks').id = 'page-promo-flicks';
       // ]]></script>
-      <a href="http://www.mozilla.org/collusion/" class="container">
-        <img src="{{ media('img/home/promo-collusion.jpg') }}" alt="Collusion graph image">
+      <a href="https://firefoxflicks.mozilla.org/?WT.mc_id=mofxflicks&WT.mc_ev=click" class="container">
+        <img src="{{ media('img/home/promo-flicks.jpg') }}" alt="Firefox Flicks artwork">
         <div>
-          <h3>See who’s tracking your movements online.</h3>
-          <p>Add Collusion to Firefox »</p>
+          <h3>Congratulations to all the winners of Firefox Flicks!</h3>
+          <p>Watch the winning videos »</p>
         </div>
       </a>
     </div>
 
-    <div id="promo-contribute" class="pager-page">
+    <div class="pager-page" id="promo-affiliates">
       <script>// <![CDATA[
-      document.getElementById('promo-contribute').id = 'page-promo-contribute';
+      document.getElementById('promo-affiliates').id = 'page-promo-affiliates';
       // ]]></script>
-      <a href="{{ url('mozorg.contribute') }}" class="container">
-        <img src="{{ media('img/home/promo-contribute.jpg') }}" alt="Mozilla community collage">
+      <a href="https://affiliates.mozilla.org/?WT.mc_id=moaff&WT.mc_ev=click" class="container">
+        <img src="{{ media('img/home/promo-affiliates.jpg') }}" alt="Firefox Affiliates banners and buttons">
         <div>
-          <h3>Help us build a brighter future for the Web.</h3>
-          <p>Get involved »</p>
+          <h3>Help share Firefox with the world.</h3>
+          <p>Become an Affiliate today »</p>
         </div>
       </a>
     </div>
 
     <ul class="pager-tabs">
-      <li id="tab-mdn"><a href="#p1">●</a></li>
-      <li id="tab-collusion"><a href="#p2">●</a></li>
-      <li id="tab-contribute"><a href="#p3">●</a></li>
+      <li id="tab-beta"><a href="#p1">●</a></li>
+      <li id="tab-flicks"><a href="#p2">●</a></li>
+      <li id="tab-affiliates"><a href="#p3">●</a></li>
     </ul>
 
   </div>
@@ -93,15 +93,9 @@
   <section id="home-news">
     <h3>In the news</h3>
     <ul>
-      <li>
-        <h4><a href="http://blog.mozilla.org/blog/2012/04/10/mozilla-open-badges-beta/">Mozilla Open Badges ships Beta release</a></h4>
-      </li>
-      <li>
-        <h4><a href="http://blog.mozilla.com/blog/2012/03/22/new-adventures-for-dolly-bernadette-and-winston/">New Adventures for Dolly, Bernadette, and Winston</a></h4>
-      </li>
-      <li>
-        <h4><a href="http://blog.mozilla.com/blog/2012/03/19/video-user-experience-and-our-mission/">Video, user experience and our mission</a></h4>
-      </li>
+      {% for f in feed('mozilla')[:3] %}
+        <li><h4><a href="{{ f.link }}">{{ f.title }}</a></h4></li>
+      {% endfor %}
     </ul>
     <a href="http://blog.mozilla.com/" id="all-news">See all news »</a>
   </section>

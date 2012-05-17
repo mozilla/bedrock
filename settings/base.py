@@ -31,7 +31,9 @@ PROD_LANGUAGES = ('ab-CD', 'ach', 'af', 'ak', 'ar', 'as', 'ast', 'be', 'bg',
                   'vi', 'wo', 'zh-CN', 'zh-TW', 'zu')
 DEV_LANGUAGES = list(DEV_LANGUAGES) + ['en-US']
 
+FEED_CACHE = 60
 DOTLANG_CACHE = 60
+
 DOTLANG_FILES = ['main', 'base', 'newsletter']
 
 # Make this unique, and don't share it with anybody.
@@ -61,6 +63,9 @@ MINIFY_BUNDLES = {
         ),
         'b2g': (
             'css/b2g.less',
+        ),
+        'webmaker': (
+            'css/webmaker.less',
         ),
         'collusion': (
             'css/collusion.less',
@@ -153,6 +158,9 @@ MINIFY_BUNDLES = {
         'projects': (
             'css/projects.less',
         ),
+        'research': (
+            'css/research/research.less',
+        ),
         'sandstone_guide': (
             'css/sandstone-guide.less',
         ),
@@ -169,7 +177,10 @@ MINIFY_BUNDLES = {
     },
     'js': {
         'site': (
-            'js/site.js', # this is automatically included on every page
+            'js/site.js',  # this is automatically included on every page
+        ),
+        'webmaker': (
+            'js/webmaker/feeds.js',
         ),
         'collusion': (
             'js/collusion/d3.layout.js',
@@ -325,6 +336,7 @@ INSTALLED_APPS = (
     'commonware.response.cookies',
     'djcelery',
     'django_nose',
+    'cronjobs',
     #'session_csrf',
 
     # L10n
@@ -332,6 +344,7 @@ INSTALLED_APPS = (
 
     # Local apps
     'b2g',
+    'webmaker',
     'collusion',
     'firefox',
     'marketplace',
@@ -350,6 +363,10 @@ INSTALLED_APPS = (
 PWD_ALGORITHM = 'bcrypt'
 HMAC_KEYS = {
     #'2011-01-01': 'cheesecake',
+}
+
+FEEDS = {
+    'mozilla': 'http://blog.mozilla.org/feed/'
 }
 
 GMAP_API_KEY = ''

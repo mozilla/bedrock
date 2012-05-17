@@ -1,0 +1,56 @@
+{% extends "sand.html" %}
+
+{% set navigation_bar = [
+    (url('research.research'), 'research', 'Mozilla Research'),
+    (url('research.people'), 'people', 'People'),
+    (url('research.emscripten'), 'emscripten', 'Emscripten'),
+    (url('research.rust'), 'rust', 'Rust'),
+    (url('research.servo'), 'servo', 'Servo'),
+    (url('research.shumway'), 'shumway', 'Shumway'),
+] -%}
+{% set active_page = active_page|default('index') -%}
+
+{% block extrahead %}
+ {{ css('research') }}
+{% endblock %}
+
+{% block page_title_prefix %}Mozilla Research — {% endblock %}
+{% block page_title %}{% endblock %}
+{% block page_title_suffix %} — mozilla.org{% endblock %}
+{% block breadcrumbs %}
+  <nav class="breadcrumbs">
+    <a href="{{ url('mozorg.home') }}">Home</a> >
+    <a href="{{ url('research.research') }}">Mozilla Research</a> >
+  </nav>
+{% endblock %}
+
+{% block content %}
+
+<div id="main-content">
+<div class="row">
+
+<article class="main-column">
+{% block article %}{% endblock %}
+</article>
+
+<aside class="sidebar">
+  <nav>
+    <ul>
+    {% for href, id, caption in navigation_bar %}
+      <li>
+      {% if id == body_id %}
+        <b>{{ caption|e }}</b>
+      {% else %}
+        <a href="{{ href|e }}">{{ caption|e }}</a>
+      {% endif %}
+      </li>
+    {% endfor %}
+    </ul>
+  </nav>
+
+</aside>
+
+</div>
+</div>
+
+{% endblock %}

@@ -1,81 +1,38 @@
-{% extends "base.html" %}
+{% extends "research/base.html" %}
+{% set body_id = "research" %}
 
+{% block page_title_prefix %}{% endblock %}
 {% block page_title %}Mozilla Research{% endblock %}
 
-{% block breadcrumbs %}
-  <nav class="breadcrumbs">
-    <a href="#">Home</a> >
-    <span>Mozilla Research</span>
-  </nav>
-{% endblock %}
+{% block breadcrumbs %}{% endblock %}
 
-{% block content %}
-
-<div id="main-content">
-<div class="row">
-<article class="span7" role="main">
+{% block article %}
 
 <hgroup>
   <h1>Mozilla Research</h1>
   <h2>Pushing the boundaries of the Open Web</h2>
 </hgroup>
 
-<p><strong>Pellentesque habitant morbi tristique</strong> senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. <em>Aenean ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, <code>commodo vitae</code>, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. <a href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p>
-
-<h2>Header Level 2</h2>
-
-<ol>
-   <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-   <li>Aliquam tincidunt mauris eu risus.</li>
-</ol>
-
-<blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis, tellus est malesuada tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.</p></blockquote>
-
-<h3>Header Level 3</h3>
+<section id="projects">
 
 <ul>
-   <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-   <li>Aliquam tincidunt mauris eu risus.</li>
+  <li id="emscripten">
+    <h4><a href="{{ url('research.emscripten') }}">Emscripten</a></h4>
+    <p>Emscripten is an optimizing compiler that ports desktop applications written in C or C++ to web applications using pure HTML and JavaScript. Emscripten generates extremely efficient code and is enabling new kinds of web applications.</p>
+  </li>
+  <li id="rust">
+    <h4><a href="{{ url('research.rust') }}#">Rust</a></h4>
+    <p>Rust is a new systems programming language for building high-performance, concurrent software. Rust is a foundational component of the Servo project to rethink the architecture of a web browser.</p>
+  </li>
+  <li class="project" id="servo">
+    <h4><a href="{{ url('research.servo') }}">Servo</a></h4>
+    <p>The Servo project aims to build a web browser engine designed for parallelism and power efficiency. Servo builds on top of Rust for better security, robustness, and concurrency.</p>
+  </li>
+  <li id="shumway">
+    <h4><a href="{{ url('research.shumway') }}">Shumway</a></h4>
+    <p>Shumway is an implementation of the Flash™ virtual machine in pure HTML and JavaScript. Shumway combines a compatibility library using HTML5 API's and a just-in-time compiler for ActionScript bytecode to generate optimized JavaScript source to run apps directly on the web without a plugin.</p>
+  </li>
 </ul>
 
-<h4>Header Level 4</h4>
-
-<dl>
-    <dt>Lorem ipsum</dt>
-    <dd>dolor sit amet, consectetuer adipiscing elit.</dd>
-    <dt>Aliquam tincidunt mauris eu risus.</dt>
-    <dd>dolor sit amet, consectetuer adipiscing elit.</dd>
-</dl>
-
-<h5>Header Level 4</h5>
-
-<p>Tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. <em>Aenean ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, <code>commodo vitae</code>, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. <a href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p>
-
-<h6>Header Level 6</h6>
-
-<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. <em>Aenean ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, <code>commodo vitae</code>, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. <a href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p>
-
-
-</article>
-
-<div id="sidebar" class="span3">
-
-<nav>
-    <ul>
-        <li>Projects</li>
-        <li><a href="#">Emscripten</a></li>
-        <li><a href="#">Rust</a></li>
-        <li><a href="#">Servo</a></li>
-        <li><a href="#">Static Analysis for JavaScript</a></li>
-        <li><a href="#">Web Security</a></li>
-        <li><a href="#">Static Analysis for C++</a></li>
-        <li><a href="#">Advanced Language Design</a></li>
-        <li><a href="#">Advances Systems/Platform Architecture</a></li>
-        <li><a href="#">Security Analysis & Tooling</a></li>
-        <li><a href="#">Just-in-time Compilation Technologies</a></li>
-    </ul>
-</nav>
-
-</div>
-
+</section>
 {% endblock %}

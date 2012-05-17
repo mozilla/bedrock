@@ -1,11 +1,12 @@
 {% extends "marketplace/marketplace.html" %}
+{% add_lang_files "marketplace.lang" %}
 
 {% block page_title_prefix %}{% endblock %}
-{% block page_title %}Mozilla Marketplace Partners{% endblock %}
+{% block page_title %}{{_('Mozilla Marketplace Partners')}}{% endblock %}
 {% block body_id %}marketplace-partners{% endblock %}
 
 {% block site_header_logo %}
-  <h2><a href="{{ url('b2g') }}"><img src="{{ media('/img/marketplace/title.png') }}" height="70" width="256" alt="Mozilla Marketplace"></a></h2>
+  <h2><a href="{{ url('b2g') }}"><img src="{{ media('/img/marketplace/title.png') }}" height="70" width="256" alt="{{_('Mozilla Marketplace')}}"></a></h2>
 {% endblock %}
 
 {% block site_header_nav %}
@@ -18,20 +19,21 @@
 
 {% block js %}
   {{ js('marketplace-partners') }}
+  <script type="text/javascript" src="http://s3.www.universalsubtitles.org/js/unisubs-widgetizer.js"></script>
 {% endblock %}
 
 {% block content %}
 
 <hgroup id="main-feature">
-  <h1>Launch your app on the Web</h1>
-  <h2>Mozilla is bringing its core values — openness, freedom, user choice — to the world of apps.</h2>
+  <h1>{{_('Launch your app on the Web')}}</h1>
+  <h2>{{_('Mozilla is bringing its core values — openness, freedom, user choice — to the world of apps.')}}</h2>
 </hgroup>
 
 <nav class="billboard menu-bar">
   <ul>
-    <li><a href="#platform">The Mozilla apps platform</a></li>
-    <li><a href="#marketplace">Mozilla Marketplace</a></li>
-    <li><a href="https://marketplace.mozilla.org/ecosystem/" class="button-blue">Submit your app »<span class="icon"></span></a></li>
+    <li><a href="#platform">{{_('The Mozilla apps platform')}}</a></li>
+    <li><a href="#marketplace">{{_('Mozilla Marketplace')}}</a></li>
+    <li><a href="https://marketplace.mozilla.org/ecosystem/" class="button-blue">{{_('Submit your app »')}}<span class="icon"></span></a></li>
   </ul>
 </nav>
 
@@ -39,10 +41,10 @@
 <div class="row">
 
   <div class="span4">
-    <h2>The Mozilla apps platform</h2>
-    <p>Building apps for the Web provides developers with full control over content, functionality and how apps are distributed, including access to hundreds of millions of Firefox users through the Mozilla Marketplace.</p>
-    <p>Using open Web standards and Mozilla-designed APIs, great app experiences can be delivered across multiple platforms, devices and operating systems — closing the gap between Web and native apps for the first time.</p>
-    <p id="mdn-link"><a href="https://developer.mozilla.org/en-US/apps">Learn all about creating HTML5 apps at the Mozilla Developer Network »</a></p>
+    <h2>{{_('The Mozilla apps platform')}}</h2>
+    <p>{{_('Building apps for the Web provides developers with full control over content, functionality and how apps are distributed, including access to hundreds of millions of Firefox users through the Mozilla Marketplace.')}}</p>
+    <p>{{_('Using open Web standards and Mozilla-designed APIs, great app experiences can be delivered across multiple platforms, devices and operating systems — closing the gap between Web and native apps for the first time.')}}</p>
+    <p id="mdn-link"><a href="https://developer.mozilla.org/en-US/apps">{{_('Learn all about creating HTML5 apps at the Mozilla Developer Network »')}}</a></p>
   </div>
 
   <div class="pager pager-with-tabs">
@@ -65,8 +67,7 @@
               <param name="movie" value="/media/flash/playerWithControls.swf?flv=serv/drafts/Moz_Market_Audiovroom-360p-mp4.mp4&amp;autoplay=false&amp;msg=Play%20Video" />
               <param name="wmode" value="transparent" />
               <div class="video-player-no-flash">
-              This video requires a browser with support for open video
-              or the <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player</a>.
+              {{_('This video requires a browser with support for open video or the <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player</a>.')}}
               </div>
             </object>
           </video>
@@ -89,8 +90,7 @@
               <param name="movie" value="/media/flash/playerWithControls.swf?flv=serv/drafts/Moz_Market_Mixmatchmusic-360p-mp4.mp4&amp;autoplay=false&amp;msg=Play%20Video" />
               <param name="wmode" value="transparent" />
               <div class="video-player-no-flash">
-              This video requires a browser with support for open video
-              or the <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player</a>.
+              {{_('This video requires a browser with support for open video or the <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player</a>.')}}
               </div>
             </object>
           </video>
@@ -113,8 +113,7 @@
               <param name="movie" value="/media/flash/playerWithControls.swf?flv=serv/drafts/Moz_Market_Teambox-360p-mp4.mp4&amp;autoplay=false&amp;msg=Play%20Video" />
               <param name="wmode" value="transparent" />
               <div class="video-player-no-flash">
-              This video requires a browser with support for open video
-              or the <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player</a>.
+              {{_('This video requires a browser with support for open video or the <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player</a>.')}}
               </div>
             </object>
           </video>
@@ -137,8 +136,7 @@
               <param name="movie" value="/media/flash/playerWithControls.swf?flv=serv/drafts/Moz_Market_kicksend-360p-mp4.mp4&amp;autoplay=false&amp;msg=Play%20Video" />
               <param name="wmode" value="transparent" />
               <div class="video-player-no-flash">
-              This video requires a browser with support for open video
-              or the <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player</a>.
+              {{_('This video requires a browser with support for open video or the <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player</a>.')}}
               </div>
             </object>
           </video>
@@ -178,16 +176,16 @@
 
 <section id="marketplace" class="container">
 
-  <img src="{{ media('/img/marketplace/opening-soon.png') }}" alt="Opening Soon" id="soon" />
+  <img src="{{ media('/img/marketplace/opening-soon.png') }}" alt="{{_('Opening Soon')}}" id="soon" />
 
   <div class="span6">
 
-      <h2>Mozilla Marketplace — <em>Opening Soon</em></h2>
-      <p>Before the public launch later this year, Mozilla will be opening the Marketplace for user testing. Take advantage of this by being one of the first app developers to build a user base. Submit your app to:</p>
+      <h2>{{_('Mozilla Marketplace — <em>Opening Soon</em>')}}</h2>
+      <p>{{_('Before the public launch later this year, Mozilla will be opening the Marketplace for user testing. Take advantage of this by being one of the first app developers to build a user base. Submit your app to:')}}</p>
       <ul>
-        <li id="test">Test your app with a committed group of early adopters.</li>
-        <li id="build">Build an early fan base and gain popularity.</li>
-        <li id="target">Target tech savvy consumers with your app.</li>
+        <li id="test">{{_('Test your app with a committed group of early adopters.')}}</li>
+        <li id="build">{{_('Build an early fan base and gain popularity.')}}</li>
+        <li id="target">{{_('Target tech savvy consumers with your app.')}}</li>
       </ul>
 
   </div>

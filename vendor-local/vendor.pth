@@ -6,3 +6,4 @@ src/django-recaptcha
 packages/requests
 packages/certifi
 packages/chardet
+packages/python-memcached

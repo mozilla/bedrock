@@ -1,0 +1,18 @@
+{% extends "research/base.html" %}
+{% set body_id = "emscripten" %}
+
+
+{% block page_title %}Emscripten{% endblock %}
+
+{% block article %}
+
+<h1>Emscripten</h1>
+
+<p>Emscripten is an open source optimizing compiler for LLVM applications that generates pure JavaScript to run directly on the web. Emscripten makes it possible to take C and C++ programs and convert them automatically to open web applications with no plugins or extensions.</p>
+<p>Emscripten demonstrates that the web is capable of supporting the responsive, real-time user experiences of interactive desktop software, including games, simulations, and even live video decoding. Many applications run within an order of magnitude of their native binary performance. At the same time, Emscripten serves to diagnose and address performance bottlenecks in the web platform, to keep pushing the boundaries of tomorrow’s web.</p>
+
+<ul class="project-links">
+  <li><a href="https://github.com/kripken/emscripten">Emscripten on GitHub</a></li>
+</ul>
+
+{% endblock %}
