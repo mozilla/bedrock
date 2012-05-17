@@ -18,7 +18,6 @@
 
 {% block js %}
   {{ js('marketplace-partners') }}
-  <script type="text/javascript" src="http://s3.www.universalsubtitles.org/js/unisubs-widgetizer.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -179,9 +178,7 @@
 
 <section id="marketplace" class="container">
 
-  <img src="{{ media('/img/marketplace/opening-soon.png') }}" alt="Opening Soon" id="soon" />
-
-  <div class="span6">
+  <div class="span6 offset4">
 
       <h2>Mozilla Marketplace — <em>Opening Soon</em></h2>
       <p>Before the public launch later this year, Mozilla will be opening the Marketplace for user testing. Take advantage of this by being one of the first app developers to build a user base. Submit your app to:</p>
@@ -192,6 +189,10 @@
       </ul>
 
   </div>
+
+  <aside id="sign">
+    <p>Opening Soon</p>
+  </aside>
 
 </section>
 {% endblock %}
