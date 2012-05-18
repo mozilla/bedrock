@@ -4,7 +4,7 @@ from l10n_utils.management.commands.l10n_check import list_templates, L10nParser
 
 
 class TestL10nCheck(unittest.TestCase):
-    def _get_block(blocks, name):
+    def _get_block(self, blocks, name):
         """Out of all blocks, grab the one with the specified name."""
         try:
             return filter(lambda b: b['name'] == name, blocks)[0]
