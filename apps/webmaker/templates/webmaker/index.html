@@ -1,0 +1,113 @@
+{% extends "webmaker/base.html" %}
+
+{% block page_title %}Webmaker{% endblock %}
+{% block body_id %}webmaker{% endblock %}
+
+{% block site_header_nav %}
+  <nav id="nav-main" role="navigation">
+  <ul>
+      <li><b>Home</b></li>
+      <li><a href="{{ url('webmaker.videos') }}">Videos</a></li>
+  </ul>
+  </nav>
+{% endblock %}
+
+{% block content %}
+
+<hgroup class="container">
+  <h1 class="large">Introducing <strong>Mozilla Webmaker</strong></h1>
+  <h2>make. learn. hack.</h2>
+</hgroup>
+
+<section id="home-promo" class="pager pager-with-tabs pager-auto-rotate pager-no-history">
+
+  <div class="pager-content">
+
+    <div class="default-page pager-page" id="promo-maker-video">
+      <script>// <![CDATA[
+      document.getElementById('promo-maker-video').id = 'page-promo-maker-video';
+      // ]]></script>
+      <a href="{{ url('webmaker.videos') }}" class="container">
+        <img src="{{ media('img/webmaker/carousel/instructors.jpg') }}" alt="">
+        <div>
+          <h3>Meet the Webmakers</h3>
+          <p><strong>Let's teach the world the web.</strong> Meet some of the global community making it happen.</p>
+        </div>
+      </a>
+    </div>
+
+    <div id="promo-code-party" class="pager-page">
+      <script>// <![CDATA[
+      document.getElementById('promo-code-party').id = 'page-promo-code-party';
+      // ]]></script>
+      <a href="https://webmaker.mozillalabs.com/events/" class="container">
+        <img src="{{ media('img/webmaker/carousel/codeparty.jpg') }}" alt="">
+        <div>
+          <h3>Summer Code Party</h3>
+          <p>Meet, make, and share your creations with friends to learn some code this summer. »</p>
+        </div>
+      </a>
+    </div>
+
+    <div id="promo-popcorn" class="pager-page">
+      <script>// <![CDATA[
+      document.getElementById('promo-popcorn').id = 'page-promo-popcorn';
+      // ]]></script>
+      <a href="http://www.mozillapopcorn.org" class="container">
+        <img src="{{ media('img/webmaker/carousel/popcorn.png') }}" alt="">
+        <div>
+          <h3>Make video pop with Popcorn</h3>
+          <p>Popcorn is revolutionizing video on the web. It's free, open, and easy to use. Try it today. »</p>
+        </div>
+      </a>
+    </div>
+
+    <ul class="pager-tabs">
+      <li id="tab-maker-video"><a href="#p1">●</a></li>
+      <li id="tab-code-party"><a href="#p2">●</a></li>
+      <li id="tab-popcorn"><a href="#p3">●</a></li>
+    </ul>
+
+  </div>
+</section>
+
+<section id="secondary" class="container">
+
+  <div class="row">
+
+    <div class="span6">
+
+      <h3>Building a generation of webmakers</h3>
+
+      <p><strong>Mozilla Webmaker wants to help you make something amazing on the web.</strong> With <strong>TOOLS</strong>, <strong>PROJECTS</strong> and <strong>EVENTS</strong> that help you create, learn and connect. <strong>Our goal:</strong> move millions of people from using the web to actively making the web. Creating a new generation of webmakers, and a more web literate world.</p>
+
+      <h3>Join the Summer Code Party</h3>
+
+      <img src="{{ media('img/webmaker/mozparty.png') }}" alt="" title="" class="code-party">
+
+      <p>This summer, we're inviting everyone to join us to meet up, make something cool, and learn how the code behind the web works. It's called the Summer Code Party, and it starts June 23.</p>
+    
+      <p>Mozilla is joining with dozens of other organizations to make this happen. Want to make a prettier template for your blog? Or level up your latest YouTube video? Or just learn a bit of HTML? We'll have tools, tutorials, and activites to help.</p>
+
+      <h3>Get involved</h3>
+
+      <ul>
+        <li><a href="https://webmaker.mozillalabs.com/events/">Find a Summer Code Party event near you.</a> <a href="https://donate.mozilla.org/page/event/create/">Or start your own.</a></li>
+        <li><a href="https://wiki.mozilla.org/Webmaker">Learn more about Mozilla Webmaker</a></li>  
+        <li><a href="https://donate.mozilla.org/join">Make a donation to support our work</a></li>
+      </ul>
+    </div>
+
+    <div class="span3 offset1">
+      {% include "webmaker/_sidebar.html" %}
+    </div>
+
+  </div>
+
+</section>
+
+{% endblock %}
+
+{% block js %}
+{{ js('pager') }}
+{% endblock %}
