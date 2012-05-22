@@ -30,7 +30,7 @@ class PrivacyWidget(widgets.CheckboxInput):
             '%s '
             '<span class="title">%s</span></label>' 
             % (attrs['id'], input_txt,
-               policy_txt.format('/en-US/privacy-policy'))
+               policy_txt % '/en-US/privacy-policy')
          )
 
 class EmailInput(widgets.TextInput):
