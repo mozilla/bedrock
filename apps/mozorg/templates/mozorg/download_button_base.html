@@ -25,7 +25,10 @@
             <span class="download-version">
               {{ version }} for {{ build.platform_pretty }}
             </span>  
+
+            {% if build.platform != 'os_android' %}
             <span class="download-lang">{{ locale_name }}</span>
+            {% endif %}
           </span>
         </span>
       </a>

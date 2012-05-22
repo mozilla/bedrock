@@ -47,6 +47,7 @@
       <li id="theme-stone"><a href="#" class="button-white"><span></span>Default <b>“stone”</b></a></li>
       <li id="theme-sand"><a href="#" class="button-white"><span></span>Mozilla <b>“sand”</b></a></li>
       <li id="theme-sky"><a href="#" class="button-white"><span></span>Firefox <b>“sky”</b></a></li>
+      <li id="theme-space"><a href="#" class="button-white"><span></span>Aurora <b>“space”</b></a></li>
     </ul>
   </div>
 
@@ -238,6 +239,7 @@
       $("body").addClass('stone');
       $("body").removeClass('sand');
       $("body").removeClass('sky');
+      $("body").removeClass('space');
       return false;
     });
 
@@ -245,6 +247,7 @@
       $("body").addClass('sand');
       $("body").removeClass('stone');
       $("body").removeClass('sky');
+      $("body").removeClass('space');
       return false;
     });
 
@@ -252,6 +255,15 @@
       $("body").addClass('sky');
       $("body").removeClass('stone');
       $("body").removeClass('sand');
+      $("body").removeClass('space');
+      return false;
+    });
+
+    $("#theme-space").click(function() {
+      $("body").addClass('space');
+      $("body").removeClass('stone');
+      $("body").removeClass('sand');
+      $("body").removeClass('sky');
       return false;
     });
   });
