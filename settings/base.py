@@ -172,7 +172,7 @@ MINIFY_BUNDLES = {
     },
     'js': {
         'site': (
-            'js/site.js', # this is automatically included on every page
+            'js/site.js',  # this is automatically included on every page
         ),
         'collusion': (
             'js/collusion/d3.layout.js',
