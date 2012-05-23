@@ -1,6 +1,6 @@
 {% extends "mozorg/base.html" %}
 
-{% block page_title %}Get Involved: Volunteer Opportunities at Mozilla{% endblock %}
+{% block page_title %}{{_('Get Involved: Volunteer Opportunities at Mozilla')}}{% endblock %}
 {% block body_id %}contribute{% endblock %}
 
 {% block extrahead %}
@@ -14,7 +14,7 @@
 
 {% block content %}
 
-<h1 id="main-feature" class="large">Get Involved</h1>
+<h1 id="main-feature" class="large">{{_('Get Involved')}}</h1>
 
 <section id="welcome" class="container">
   <div id="welcome-video" class="mozilla-video-control mozilla-video-shadow">
@@ -33,15 +33,13 @@
         <param name="wmode" value="transparent" />
 
         <div class="video-player-no-flash">
-        This video requires a browser with support for open video
-        or the <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player</a>.
+        {{_('This video requires a browser with support for open video or the <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player</a>.')}}
         </div>
       </object>
     </video>
   </div>
   <p>
-    You don’t have to be a C++ guru (or even know what that means!) to get involved.<br>
-    <b>You just have to love the Web.</b>
+    {{_('You don’t have to be a C++ guru (or even know what that means!) to get involved.<br><b>You just have to love the Web.</b>')}}
   </p>
 </section>
 
@@ -55,34 +53,34 @@
 
     <ul class="errorlist">
       {% if form.email.errors %}
-      <li>Please enter a valid email address.</li>
+      <li>{{_('Please enter a valid email address.')}}</li>
       {% endif %}
 
       {% if form.privacy.errors %}
-      <li>You must agree to the privacy policy.</li>
+      <li>{{_('You must agree to the privacy policy.')}}</li>
       {% endif %}
 
       {% if form.interest.errors %}
-      <li>Please select an area of interest.</li>
+      <li>{{_('Please select an area of interest.')}}</li>
       {% endif %}
 
       {% if form.comments.errors %}
-      <li>Please tell us more about your interests.</li>
+      <li>{{_('Please tell us more about your interests.')}}</li>
       {% endif %}
 
       {% if form.captcha.errors %}
-      <li>Your CAPTCHA response did not match. Please try again.</li>
+      <li>{{_('Your CAPTCHA response did not match. Please try again.')}}</li>
       {% endif %}
     </ul>
   {% endif %}
 
   <div class="row">
     <div class="form-column-1">
-      <h3>Want to help?</h3>
+      <h3>{{_('Want to help?')}}</h3>
     </div>
     <div class="form-column-2">
       <div class="field field-email">
-        {{ field_with_attrs(form.email, placeholder='YOUR EMAIL HERE')|safe }}
+        {{ field_with_attrs(form.email, placeholder=_('YOUR EMAIL HERE'))|safe }}
       </div>
     </div>
     <div class="form-column-3">
@@ -91,16 +89,16 @@
       </div>
     </div>
     <div class="form-submit">
-      <input type="submit" class="button-blue" id="form-submit" value="Submit »">
+      <input type="submit" class="button-blue" id="form-submit" value="{{_('Sign up&nbsp;»')}}">
     </div>
   </div>
   <div class="row" id="form-details">
     <div class="form-column-1">
-      <p>Send us a note and we can get you started right away.</p>
+      <p>{{_('Send us a note and we can get you started right away.')}}</p>
     </div>
     <div class="form-column-2">
       <div class="field field-comments form-details">
-        {{ field_with_attrs(form.comments, placeholder='Hi, I’m interested in…')|safe }}
+        {{ field_with_attrs(form.comments, placeholder=_('Hi, I’m interested in…'))|safe }}
       </div>
     </div>
     <div class="form-column-3">
@@ -110,7 +108,7 @@
       <div class="field field-newsletter form-details">
         <label for="id_newsletter">
           {{ form.newsletter|safe }}
-          I’d like to receive regular contribution news by email
+          {{_('I’d like to receive regular contribution news by email')}}
         </label>
       </div>
       <div class="field field-captcha form-details">
@@ -121,27 +119,24 @@
 </form>
 {% else %}
   <div id="help-form" class="billboard thank">
-  <h4>Thank you for getting in touch.</h4>
-  <p>
-    Someone from Mozilla will get back to you soon with information
-    about how to get involved. While you’re waiting, browse through
-    some of the volunteer opportunities available below.
+  <h4>{{_('Thank you for getting in touch.')}}</h4>
+  <p>{{_('Someone from Mozilla will get back to you soon with information about how to get involved. While you’re waiting, browse through some of the volunteer opportunities available below.')}}
   </p>
   </div>
 {% endif %}
 
   <section id="opportunities">
 
-    <h1 class="container">Find an opportunity</h1>
+    <h1 class="container">{{_('Find an opportunity')}}</h1>
 
     <div class="pager pager-with-tabs">
 
       <nav class="container">
-        <h5>Sort By:</h5>
+        <h5>{{_('Sort By:')}}</h5>
         <ul class="pager-tabs">
-          <li><a href="#interest" class="button-white">Interest</a></li>
-          <li><a href="#location" class="button-white">Location</a></li>
-          <li><a href="#newsletter" class="button-white">Newsletter</a></li>
+          <li><a href="#interest" class="button-white">{{_('Interest')}}</a></li>
+          <li><a href="#location" class="button-white">{{_('Location')}}</a></li>
+          <li><a href="#newsletter" class="button-white">{{_('Newsletter')}}</a></li>
         </ul>
       </nav>
 
@@ -156,34 +151,39 @@
             <ul class="contribute-options">
               <li class="row">
                 <img src="/media/img/contribute/sumo.png" alt="" />
-                <h3 id="support">Helping Users</h3>
+                <h3 id="support">{{_('Helping Users')}}</h3>
                 <div class="content">
-                  <p>Interested in helping others get the most out of using Firefox and other Mozilla projects?  Our support process relies on enthusiastic contributors like you.  Find out more about <a href="https://support.mozilla.com/kb/superheroes-wanted">supporting Firefox</a>, <a href="http://support.mozillamessaging.com/en-US/kb/superheroes-wanted">Thunderbird</a> and <a href="http://www.mozilla.org/support/">other Mozilla projects</a>.  You can also join our <a href="https://support.mozilla.com/army-of-awesome">Army of Awesome</a> by helping users on Twitter.</p>
+                  <p>{{_('Interested in helping others get the most out of using Firefox and other Mozilla projects?  Our support process relies on enthusiastic contributors like you.')}}
+                  {{_('Find out more about <a href="https://support.mozilla.com/kb/superheroes-wanted">supporting Firefox</a>, <a href="http://support.mozillamessaging.com/en-US/kb/superheroes-wanted">Thunderbird</a> and <a href="http://www.mozilla.org/support/">other Mozilla projects</a>.')}}
+                  {{_('You can also join our <a href="https://support.mozilla.com/army-of-awesome">Army of Awesome</a> by helping users on Twitter.')}}</p>
                 </div>
               </li>
               <li class="row">
                 <img src="/media/img/contribute/qmo.png" alt="" />
-                <h3 id="qa">Quality Assurance</h3>
+                <h3 id="qa">{{_('Quality Assurance')}}</h3>
                 <div class="content">
-                  <p>Quality assurance testing is one of the easiest ways to get started with Mozilla and is a great way to get familiar with our code and tools.  Help us <a href="http://quality.mozilla.org/teams/desktop-firefox/">hunt down bugs</a> in Firefox, <a href="http://quality.mozilla.org/teams/web-qa/">test Mozilla web sites</a> or learn more about <a href="http://quality.mozilla.org/">other testing opportunities</a>.</p>
+                  <p>
+                    {{_('Quality assurance testing is one of the easiest ways to get started with Mozilla and is a great way to get familiar with our code and tools.')}}
+                    {{_('Help us <a href="http://quality.mozilla.org/teams/desktop-firefox/">hunt down bugs</a> in Firefox, <a href="http://quality.mozilla.org/teams/web-qa/">test Mozilla web sites</a> or learn more about <a href="http://quality.mozilla.org/">other testing opportunities</a>.')}}</p>
                 </div>
               </li>
               <li class="row">
                 <img src="/media/img/contribute/dinohead.png" alt="" />
-                <h3 id="coding">Coding</h3>
+                <h3 id="coding">{{_('Coding')}}</h3>
                 <div class="content">
-                  <p><a href="https://developer.mozilla.org/en/Introduction">Developers can help</a> Mozilla by adding new features, making our technology smaller and faster and making development easier for others.  You can find many developers on <a href="http://irc.mozilla.org">IRC</a> so stop by and ask questions to learn more.  Our web sites are <a href="http://blog.mozilla.com/webdev/get-involved/">open for web ninjas</a> to hack on too.</p>
+                  <p>{{_('<a href="https://developer.mozilla.org/en/Introduction">Developers can help</a> Mozilla by adding new features, making our technology smaller and faster and making development easier for others.')}}
+                  {{_('You can find many developers on <a href="http://irc.mozilla.org">IRC</a> so stop by and ask questions to learn more.  Our web sites are <a href="http://blog.mozilla.com/webdev/get-involved/">open for web ninjas</a> to hack on too.')}}</p>
                 </div>
               </li>
               <li class="row">
                 <img src="/media/img/contribute/firefox.png" alt="" />
-                <h3 id="marketing">Spread the Word</h3>
+                <h3 id="marketing">{{_('Spread the Word')}}</h3>
                 <div class="content">
-                  <p>Help us spread the word about how Firefox and other Mozilla projects are building a better Internet.  Share Firefox with the world by <a href="https://affiliates.mozilla.org">becoming an Affiliate</a> and then check out our <a href="https://wiki.mozilla.org/MarketingGuide">Marketing Guide</a> for more ways to get involved.</p>
+                  <p>{{_('Help us spread the word about how Firefox and other Mozilla projects are building a better Internet.  Share Firefox with the world by <a href="https://affiliates.mozilla.org">becoming an Affiliate</a> and then check out our <a href="https://wiki.mozilla.org/MarketingGuide">Marketing Guide</a> for more ways to get involved.')}}</p>
                 </div>
               </li>
             </ul>
-            <p>Find out about <a href="/contribute/areas.html">more areas of interest…</a></p>
+            <p>{{_('Find out about <a href="/contribute/areas.html">more areas of interest…</a>')}}</p>
           </section>
         </div>
 
@@ -195,38 +195,38 @@
             <ul>
               <li class="row">
                 <a href="/contribute/local/northamerica.html">
-                  <img src="/media/img/contribute/local/map-th-northamerica.png" alt="map">
-                  <h3>US and Canada</h3>
+                  <img src="/media/img/contribute/local/map-th-northamerica.png" alt="{{_('map')}}">
+                  <h3>{{_('US and Canada')}}</h3>
                 </a>
               </li>
               <li class="row">
                 <a href="/contribute/local/europe.html">
-                  <img src="/media/img/contribute/local/map-th-europe.png" alt="map">
-                  <h3>Europe</h3>
+                  <img src="/media/img/contribute/local/map-th-europe.png" alt="{{_('map')}}">
+                  <h3>{{_('Europe')}}</h3>
                 </a>
               </li>
               <li class="row">
                 <a href="/contribute/local/latinamerica.html">
-                  <img src="/media/img/contribute/local/map-th-latinamerica.png" alt="map">
-                  <h3>Latin America</h3>
+                  <img src="/media/img/contribute/local/map-th-latinamerica.png" alt="{{_('map')}}">
+                  <h3>{{_('Latin America')}}</h3>
                 </a>
               </li>
               <li class="row">
                 <a href="/contribute/local/africamideast.html">
-                  <img src="/media/img/contribute/local/map-th-africamideast.png" alt="map">
-                  <h3>Africa and the Middle East</h3>
+                  <img src="/media/img/contribute/local/map-th-africamideast.png" alt="{{_('map')}}">
+                  <h3>{{_('Africa and the Middle East')}}</h3>
                 </a>
               </li>
               <li class="row">
                 <a href="/contribute/local/asia.html">
-                  <img src="/media/img/contribute/local/map-th-asia.png" alt="map">
-                  <h3>Asia and the South Pacific</h3>
+                  <img src="/media/img/contribute/local/map-th-asia.png" alt="{{_('map')}}">
+                  <h3>{{_('Asia and the South Pacific')}}</h3>
                 </a>
               </li>
               <li class="row">
                 <a href="/contribute/local/southpole.html">
-                  <img src="/media/img/contribute/local/map-th-southpole.png" alt="map">
-                  <h3>Antarctica</h3>
+                  <img src="/media/img/contribute/local/map-th-southpole.png" alt="{{_('map')}}">
+                  <h3>{{_('Antarctica')}}</h3>
                 </a>
               </li>
             </ul>
@@ -242,30 +242,30 @@
             {% if not newsletter_success %}
               <form action="#newsletter" method="post" id="newsletter-form">
                 <input type="hidden" name="newsletter-form" value="Y" />
-                <p>Sign up for a weekly newsletter that is full of community news and contribution opportunities.</p>
+                <p>{{_('Sign up for a weekly newsletter that is full of community news and contribution opportunities.')}}</p>
                 {% if newsletter_form.errors %}
                   {{ newsletter_form.non_field_errors()|safe }}
 
                   <ul class="errorlist">
                     {% if newsletter_form.email.errors %}
-                    <li>Please enter a valid email address.</li>
+                    <li>{{_('Please enter a valid email address.')}}</li>
                     {% endif %}
 
                     {% if newsletter_form.privacy.errors %}
-                    <li>You must agree to the privacy policy.</li>
+                    <li>{{_('You must agree to the privacy policy.')}}</li>
                     {% endif %}
                   </ul>
                 {% endif %}
 
-                <div class="field field-email">{{ field_with_attrs(newsletter_form.email, placeholder='YOUR EMAIL HERE')|safe }}</div>
+                <div class="field field-email">{{ field_with_attrs(newsletter_form.email, placeholder=_('YOUR EMAIL HERE'))|safe }}</div>
                 <div class="field field-country">{{ newsletter_form.country|safe }}</div>
                 <div class="field field-format">{{ newsletter_form.fmt|safe }}</div>
                 <div class="field field-privacy">{{ newsletter_form.privacy|safe }}</div>
-                <div class="field field-submit"><input name="test-submit" type="submit" value="Subscribe" class="button-blue" /></div>
-                <small>We will only send you Mozilla-related information.</small>
+                <div class="field field-submit"><input name="test-submit" type="submit" value="{{_('Subscribe')}}" class="button-blue" /></div>
+                <small>{{_('We will only send you Mozilla-related information.')}}</small>
               </form>
             {% else %}
-            <h4>Thank you!</h4>
+            <h4>{{_('Thank you!')}}</h4>
             {% endif %}
           </section>
         </div>
