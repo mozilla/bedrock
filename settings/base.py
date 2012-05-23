@@ -307,7 +307,8 @@ MIDDLEWARE_CLASSES = (
     'commonware.middleware.FrameOptionsHeader',
     #'mobility.middleware.DetectMobileMiddleware',
     #'mobility.middleware.XMobileMiddleware',
-    'mozorg.middleware.CacheMiddleware'
+    'mozorg.middleware.CacheMiddleware',
+    'dnt.middleware.DoNotTrackMiddleware'
 )
 
 INSTALLED_APPS = (
