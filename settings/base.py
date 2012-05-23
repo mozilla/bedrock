@@ -82,6 +82,10 @@ MINIFY_BUNDLES = {
             'css/covehead/content.css',
             'css/covehead/channel.css',
         ),
+        'dnt': (
+            'css/mozilla-expanders.less',
+            'css/firefox/dnt.less',
+        ),
         'firefox': (
             'css/firefox/template.less',
         ),
