@@ -179,9 +179,6 @@ MINIFY_BUNDLES = {
         'site': (
             'js/site.js',  # this is automatically included on every page
         ),
-        'webmaker': (
-            'js/webmaker/feeds.js',
-        ),
         'collusion': (
             'js/collusion/d3.layout.js',
             'js/collusion/d3.geom.js',
