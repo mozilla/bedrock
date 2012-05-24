@@ -3,6 +3,7 @@ src/jingo-minify
 src/basket-client
 src/feedparser/feedparser
 src/django-recaptcha
+src/django-dnt
 packages/requests
 packages/certifi
 packages/chardet
