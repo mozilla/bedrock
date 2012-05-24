@@ -1,6 +1,11 @@
 from django.conf.urls.defaults import *
-from views import research
+from mozorg.util import page
+import views
 
 urlpatterns = patterns('',
-    (r'^research/', research)
+    page('research', 'research/research.html'),
+    page('research/researchers', 'research/researchers.html'),
+    page('research/projects', 'research/projects.html'),
+    page('research/collaborations', 'research/collaborations.html'),
+    page('research/publications', 'research/publications.html'),
 )
