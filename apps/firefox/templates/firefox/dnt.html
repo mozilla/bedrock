@@ -3,9 +3,6 @@
 {% block page_title %}Do Not Track{% endblock %}
 {% block body_id %}dnt{% endblock %}
 
-{% block site_header_nav %}
-{% endblock %}
-
 {% block site_css %}
   {{ css('dnt') }}
 {% endblock %}
@@ -136,25 +133,28 @@ want to opt-out of tracking for purposes like behavioral advertising.</p>
   <div id="dnt-status">
     <h4>Do Not Track</h3>
     <h4>Your Status:</h3>
+    {% if request.DNT %}
     <h5 class="dnt-on">Do Not Track is ON</h4>
+    {% else %}
+    <h5 class="dnt-off">Do Not Track is OFF</h4>
+    {% endif %}
   </div>
 
   <div class="inset">
 
-    <h3>Enable Do Not Track in <span style="text-transform: capitalize">Firefox</span></h3>
-    <p style="text-align:center;">
+    <h4>Enable Do Not Track in Firefox</h4>
+    <p>
       <a href="https://support.mozilla.com/en-US/kb/how-do-i-stop-websites-tracking-me">
         <img alt="Options window - Advanced panel - Do Not Track"
-           class="frameless"
-           src="images/fx5-dnt.png"
+           src="{{ media('/img/firefox/dnt/screenshot.png') }}"
            title="Enabling Do Not Track">
         <br/>
-        Click for Instructions
+        Click for Instructions »
       </a>
     </p>
 
     <div class="sidebar-box">
-      <h3>Enable Do Not Track in <span style="text-transform: capitalize">Internet Explorer 9</span></h3>
+      <h4>Enable Do Not Track in Internet Explorer 9</h4>
       <p>To enable Do Not Track in IE 9, you need to enable IE 9's <a href="http://ie.microsoft.com/testdrive/Browser/TrackingProtectionLists/faq.html">Tracking Protection</a> feature. The easiest way to do that is to install <a href="./dnt-enabler.tpl">Mozilla's Simple Tracking Protection List</a>. If you view this page in IE 9, there will be instructions right here.</p>
     </div>
 
@@ -169,3 +169,5 @@ want to opt-out of tracking for purposes like behavioral advertising.</p>
 {% block js %}
 {{ js('expanders') }}
 {% endblock %}
+
+{% block email_form %}{% endblock %}
