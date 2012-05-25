@@ -19,6 +19,7 @@ class Command(BaseCommand):
         else:
             langs = os.listdir(os.path.join(settings.ROOT, 'locale'))
             langs = filter(lambda x: x != 'templates', langs)
+            langs = filter(lambda x: x[0] != '.' , langs)
 
         # This is basically a wrapper around the gettext extract
         # command, we might want to do some things around this in the

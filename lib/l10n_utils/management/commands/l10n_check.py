@@ -49,11 +49,19 @@ def update_templates(langs):
     """List templates with outdated/incorrect l10n blocks"""
 
     for tmpl in list_templates():
+        print "%s..." % tmpl
+
+        # Parse the reference template that will provide new content
+        # and only get the blocks from it
+        parser = L10nParser()
+        blocks = list(parser.parse_template(app_tmpl(tmpl),
+                                            only_blocks=True))
+
         for lang in langs:
             if path.exists(l10n_tmpl(tmpl, lang)):
-                update_template(tmpl, lang)
+                update_template(tmpl, blocks, lang)
             else:
-                copy_template(tmpl, lang)
+                copy_template(tmpl, blocks, lang)
 
 
 def get_todays_version():
@@ -73,7 +81,7 @@ def ensure_dir_exists(path):
         else: raise
 
 
-def update_template(tmpl, lang):
+def update_template(tmpl, blocks, lang):
     """Detect outdated l10n blocks and update the template"""
 
     def get_ref_block(name):
@@ -105,10 +113,6 @@ def update_template(tmpl, lang):
 
     # Make sure the templates directory for this locale and app exists
     ensure_dir_exists(os.path.dirname(dest_tmpl))
-
-    # Parse the reference template that will provide new content and
-    # only get the blocks from it
-    blocks = list(parser.parse_template(app_tmpl(tmpl), only_blocks=True))
 
     # Parse the l10n template, run through it and update it where
     # appropriate into a new template file
@@ -165,11 +169,9 @@ def write_block(block, dest, force_was=False):
     dest.write('\n{% endl10n %}')
 
 
-def copy_template(tmpl, lang):
+def copy_template(tmpl, blocks, lang):
     """Create a new l10n template by copying the l10n blocks"""
 
-    parser = L10nParser()
-    blocks = list(parser.parse_template(app_tmpl(tmpl), only_blocks=True))
     dest_file = l10n_tmpl(tmpl, lang)
 
     if blocks:
@@ -269,7 +271,7 @@ class L10nParser():
                 
                 if block[1] == 'name':
                     type = block[2]
-                    
+
                     # Start queue of tokens to yield, because we need
                     # to control when they are yielded
                     token_queue = []
@@ -354,9 +356,11 @@ class L10nParser():
         was_content = []
 
         for token in self.tokens:
+            buffer = was_content if in_was else main_content
+
             if token[1] == 'block_begin':
-                self.scan_ignore('whitespace')
-                name = self.scan_next('name')
+                space = self.tokens.next()[2]
+                name = self.tokens.next()[2]
 
                 if name == 'endl10n':
                     self.scan_until('block_end')
@@ -365,9 +369,13 @@ class L10nParser():
                     in_was = True
                     self.scan_until('block_end')
                     continue
-
-            buffer = was_content if in_was else main_content
-            buffer.append(token[2])
+                else:
+                    buffer.append(token[2])
+                    buffer.append(space)
+                    buffer.append(name)
+                    continue
+            else:
+                buffer.append(token[2])
 
         return [''.join(x).replace('\\n', '\n').strip() 
                 for x in [main_content, was_content]]
@@ -403,5 +411,6 @@ class Command(BaseCommand):
             langs = args
         else:
             langs = os.listdir(l10n_file())
+            langs = filter(lambda x: x[0] != '.' , langs)
 
         update_templates(langs)
