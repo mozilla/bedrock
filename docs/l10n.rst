@@ -121,30 +121,17 @@ template-specific .lang file. If the template explicitly specifies
 file specified, so extracted strings from the above template would go
 into `foo.lang`.
 
-Jinja2 L10n blocks
+l10n blocks
 ------------------
 
-TODO: Needs updating and cleanup
+Bedrock also has a block-based translation system that works like the
+``{% block %}`` template tag, and marks large sections of translatable
+content. This should not be used very often; lang files are the
+preferred way to translate content. However, there may be times when
+you want to control a large section of a page and customize it
+without caring very much about future updates to the English page.
 
-Bedrock uses a block-based translation system that divides templates (i.e., HTML
-pages in English (US)) into *localizable* and *unlocalizable* parts and ensures that
-only localizable content makes its way into the translatable files shown to
-localizers.
-
-This greatly reduces the complexity of localizer-facing files, reduces the room
-for error and avoids unnecessary code duplication across various locales.
-
-.. figure:: images/l10n-blocks.jpg
-   :alt: L10n blocks example
-
-   This is an example of what parts of a page would be expressed as localizable
-   blocks.
-
-.. _Jinja2: http://jinja.pocoo.org/
-.. _template inheritance: http://jinja.pocoo.org/docs/templates/#template-inheritance
-
-
-A Localizers' guide to L10n blocks
+A Localizers' guide to l10n blocks
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Let's look at how we would translate an example file from **English** to
@@ -171,27 +158,25 @@ The English source template, created by a developer, lives under
       {% endl10n %}
     {% endblock %}
 
-Notes:
+The ``l10n`` blocks mark content that should be localized.
+Realistically, the content in these blocks would be much larger. For a
+short string like above, please use lang files. We'll use this trivial
+code for our example though.
 
-#. ``extends`` and ``block`` are common `Jinja2`_ `template inheritance`_ idioms.
-   They mean there is a "base" template called ``base.html``. This example
-   template contains everything that ``base.html`` contains, however, the block
-   named *content* is overwritten by the content shown here.
-#. The *content* block contains an image and an ``hr`` tag, as well as two
-   ``l10n`` blocks. The l10n blocks mean, these parts are localizable.
-#. Every l10n block has a name that's unique to this file (here: "foo" and "bar")
-#. After the l10n block's name, the developer puts a *version number* (more
-   about that in the developer docs). By convention, this number is an ISO
-   date, in this case the 1st of August, 2011.
+The ``l10n`` blocks are named and tagged with a date (in ISO format).
+The date indicates the time that this content was updated and needs to
+be translated. If you are changing trivial things, you shouldn't
+update it. The point of l10n blocks is that localizers completely
+customize the content, so they don't care about small updates.
+However, you may add something important that needs to be added in the
+localized blocks; hence, you should update the date in that case.
 
-The developer now runs a script to **extract** the localizable parts of this template
-and put them into the localizers' **template folders**.
+When the command ``./manage.py l10n_extract`` is run, it generates
+the corresponding files in the ``locale`` folder (see below for more
+info on this command).
 
-The newly created file lives under ``locale/de/templates/appname/example.html``.
-Note that *de* is the German locale code, and *appname* and *example* match
-exactly the location of the English source file shown above.
-
-Now what does the **German localizer** see?
+The german version of this template is created at
+``locale/de/templates/appname/example.html``. The contents of it are:
 
 .. code-block:: html
 
@@ -205,36 +190,35 @@ Now what does the **German localizer** see?
     <p>This is an example!</p>
     {% endl10n %}
 
-Notes:
+This file is an actual template for the site. It extends the main
+template and contains a list of l10n blocks which override the content
+on the page.
 
-#. This template *extends* the en-US source version of the template. Once again,
-   this means all content is inherited from the "parent" file, except for the
-   blocks overwritten here.
-#. The file only contains the ``l10n`` blocks from the parent file -- the
-   unlocalizable parts are not copied to the German file.
-#. The names of the l10n blocks are the same as in the source file, but for
-   simplicity's sake, there are no version numbers next to each block name.
-#. The order of l10n blocks is the exact same as in the source file, as to
-   preserve context.
+The localizer just needs to translate the content in the l10n blocks.
 
-The localizer now edits the file and replaces the content of the l10n blocks
-with their own translation.
+When the reference template is updated with new content and the date
+is updated on an l10n block, the generated l10n file will simply add
+the new content. It will look like this:
 
 .. code-block:: html
 
     {% extends "appname/example.html" %}
 
     {% l10n foo %}
-    <h1>Hallo Welt!</h1>
+    <h1>This is an English string that needs translating.</h1>
+    {% was %}
+    <h1>Dies ist ein English string wurde nicht.</h1>
     {% endl10n %}
 
     {% l10n bar %}
-    <p>Dies ist ein Beispiel!</p>
+    <p>This is an example!</p>
     {% endl10n %}
 
-Done! The template engine will automatically use these translated blocks and
-put them into the source template in the appropriate places when rendering
-the German version of this page.
+Note the ``was`` block in ``foo``. The old translated content is in
+there, and the new content is above it. The ``was`` content is always
+shown on the site, so the old translation still shows up. The
+localizer needs to update the translated content and remove the ``was`
+block.
 
 Generating the locale files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -245,25 +229,7 @@ This command will check which blocks need to be translated and update
 the locale templates with needed translations. It will copy the
 English blocks into the locale files if a translation is needed.
 
-It uses the version of a block to determine if a translation is
-needed. You need to update this version (which is a date in the format
-YYYYMMDD) if you want it to be re-localized.
+You can specify a list of locales to update:
 
-New blocks will simply appear in english in the locale files. For
-example, in the German template, it will look like:
-
-    {% l10n foo %}
-    <h1>This is an English string that needs translating.</h1>
-    {% endl10n %}
-
-If there was a previous translation, it will be kept in the file so
-the the page will still display it:
-
-    {% l10n foo %}
-    <h1>This is an English string that needs translating.</h1>
-    {% else %}
-    <h1>Dies ist ein English string wurde nicht.</h1>
-    {% endl10n %}
-
-The localizer needs to translate the English string and remove the
-else block and previous translation.
+    ./mange.py l10n_check fr
+    ./mange.py l10n_check fr de es

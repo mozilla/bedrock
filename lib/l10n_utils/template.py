@@ -28,13 +28,13 @@ class L10nBlockExtension(Extension):
             version = 0  # Default version for unversioned block.
 
         # Parse content.
-        body = parser.parse_statements(['name:else', 'name:endl10n'],
+        body = parser.parse_statements(['name:was', 'name:endl10n'],
                                        drop_needle=False)
 
-        # Translation fallback: If this is followed by an "else" tag, render
+        # Translation fallback: If this is followed by an "was" tag, render
         # that block instead.
-        end_tag = parser.stream.expect('name')  # Either else or endl10n.
-        if end_tag.value == 'else':
+        end_tag = parser.stream.expect('name')  # Either was or endl10n.
+        if end_tag.value == 'was':
             body = parser.parse_statements(['name:endl10n'], drop_needle=True)
 
         # Build regular block node with special node name and remember version.
