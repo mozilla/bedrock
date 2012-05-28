@@ -232,6 +232,9 @@ MINIFY_BUNDLES = {
             'js/libs/jquery-css-transform.js',
             'js/libs/jquery-animate-css-rotate-scale.js',
         ),
+        'firefox_tech': (
+            'js/firefox/technology/tech.less',
+        ),
         'geolocation': (
             'js/libs/jquery-1.4.4.min.js',
             'js/libs/jquery.nyroModal.pack.js',
