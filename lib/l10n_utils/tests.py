@@ -24,8 +24,8 @@ class TestL10nCheck(unittest.TestCase):
         blocks = parser.parse('foo bar bizzle what? '
                               '{% l10n baz, 20110914 %}'
                               'mumble'
-                              '{% else %}'
-                              'elsed'
+                              '{% was %}'
+                              'wased'
                               '{% endl10n %}'
                               'qux',
                               only_blocks=True)
@@ -33,7 +33,7 @@ class TestL10nCheck(unittest.TestCase):
         baz = self._get_block(blocks, 'baz')
 
         self.assertEqual(baz['main'], 'mumble')
-        self.assertEqual(baz['else'], 'elsed')
+        self.assertEqual(baz['was'], 'wased')
         self.assertEqual(baz['version'], 20110914)
 
         blocks = parser.parse('foo bar bizzle what? '
