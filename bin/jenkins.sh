@@ -1,0 +1,46 @@
+#!/bin/sh
+# This script makes sure that Jenkins can properly run your tests against your
+# codebase.
+set -e
+
+cd $WORKSPACE
+VENV=$WORKSPACE/venv
+
+echo "Starting build on executor $EXECUTOR_NUMBER..."
+
+# Make sure there's no old pyc files around.
+find . -name '*.pyc' -exec rm {} \;
+
+if [ ! -d "$VENV/bin" ]; then
+  echo "No virtualenv found.  Making one..."
+  virtualenv $VENV --no-site-packages
+  source $VENV/bin/activate
+  pip install --upgrade pip
+  pip install coverage
+fi
+
+git submodule update --init --recursive
+
+if [ ! -d "$WORKSPACE/vendor" ]; then
+    echo "No /vendor... crap."
+    exit 1
+fi
+
+source $VENV/bin/activate
+pip install -q -r requirements/compiled.txt
+pip install -q -r requirements/dev.txt
+
+cat > settings/local.py <<SETTINGS
+from settings.base import *
+
+ROOT_URLCONF = 'workspace.urls'
+LOG_LEVEL = logging.ERROR
+
+SETTINGS
+
+echo "Starting tests..."
+export FORCE_DB=1
+coverage run manage.py test --noinput --with-xunit
+coverage xml $(find apps lib -name '*.py')
+
+echo "FIN"
