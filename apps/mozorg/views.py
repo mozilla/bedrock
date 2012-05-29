@@ -1,6 +1,10 @@
-from django.core.mail import EmailMessage
-from django.views.decorators.csrf import csrf_exempt
+from os.path import join as pathjoin
+
 from django.conf import settings
+from django.core.mail import EmailMessage
+from django.template.loader import select_template
+from django.views.decorators.csrf import csrf_exempt
+
 import jingo
 from product_details import product_details
 
@@ -8,12 +12,15 @@ import basket
 import l10n_utils
 from forms import ContributeForm, NewsletterCountryForm
 
+EMAIL_TEMPLATE_PATH = 'emails/'
+
 
 def handle_contribute_form(request, form):
     if form.is_valid():
         data = form.cleaned_data
-        contribute_send(data)
-        contribute_autorespond(request, data)
+        locale = getattr(request, 'locale', 'en-US')
+        contribute_send(data, locale)
+        contribute_autorespond(request, data, locale)
 
         if data['newsletter']:
             try:
@@ -28,7 +35,7 @@ def handle_contribute_form(request, form):
 def contribute_page(request):
     form = ContributeForm(request.POST or None)
     success = handle_contribute_form(request, form)
-    return l10n_utils.render(request, 
+    return l10n_utils.render(request,
                              'mozorg/contribute-page.html',
                              {'form': form,
                               'success': success})
@@ -80,28 +87,38 @@ def contribute(request):
                 newsletter_form.errors['__all__'] = msg
     else:
         newsletter_form = NewsletterCountryForm(locale, prefix='newsletter')
-                
-    return l10n_utils.render(request, 
+
+    return l10n_utils.render(request,
                              'mozorg/contribute.html',
                              {'form': form,
                               'success': success,
                               'newsletter_form': newsletter_form,
                               'newsletter_success': newsletter_success})
 
-def contribute_send(data):
+def contribute_send(data, locale='en-US'):
+    """Forward contributor's email to our contacts.
+
+    For localized contacts, add the local contact's email to the
+    dictionary as in the following example
+    e.g
+    ccs = { 'QA': {'all': 'all@example.com', 'el': 'el@example.com'} }
+
+    Now all emails for QA get send to 'all@example.com' except
+    the greek ones which get send to 'el@example.com'.
+    """
     ccs = {
-        'QA': 'qanoreply@mozilla.com',
-        'Thunderbird': 'tb-kb@mozilla.com',
-        'Students': 'studentreps@mozilla.com',
-        'Research': 'diane+contribute@mozilla.com',
-        'Design': 'creative@mozilla.com',
-        'Security': 'security@mozilla.com',
-        'Docs': 'eshepherd@mozilla.com',
-        'Drumbeat': 'drumbeat@mozilla.com',
-        'Browser Choice': 'isandu@mozilla.com',
-        'IT': 'cshields@mozilla.com',
-        'Marketing': 'cnovak@mozilla.com',
-        'Add-ons': 'atsay@mozilla.com',
+        'QA': {'all': 'qanoreply@mozilla.com'},
+        'Thunderbird': {'all': 'tb-kb@mozilla.com'},
+        'Students': {'all': 'studentreps@mozilla.com'},
+        'Research': {'all': 'diane+contribute@mozilla.com'},
+        'Design': {'all': 'creative@mozilla.com'},
+        'Security': {'all': 'security@mozilla.com'},
+        'Docs': {'all': 'eshepherd@mozilla.com'},
+        'Drumbeat': {'all': 'drumbeat@mozilla.com'},
+        'Browser Choice': {'all': 'isandu@mozilla.com'},
+        'IT': {'all': 'cshields@mozilla.com'},
+        'Marketing': {'all': 'cnovak@mozilla.com'},
+        'Add-ons': {'all': 'atsay@mozilla.com'},
     }
 
     from_ = 'contribute-form@mozilla.org'
@@ -116,42 +133,57 @@ def contribute_send(data):
 
     cc = None
     if data['interest'] in ccs:
-        cc = [ccs[data['interest']]]
+        email_list = ccs[data['interest']]
+        cc = [email_list.get(locale, email_list['all'])]
 
     email = EmailMessage(subject, msg, from_, to, cc=cc, headers=headers)
     email.send()
 
-def contribute_autorespond(request, data):
+def contribute_autorespond(request, data, locale='en-US'):
+    """Send an auto-respond email based on chosen field of interest and locale.
+
+    You can add localized responses by creating email messages in
+    template/<locale>/<category.txt>
+    e.g. template/el/qa.txt for a QA response in greek.
+
+    To add localized Reply-To header, add the local contributor's email to the
+    dictionary as in the following example
+    e.g
+    replies = { 'Support': {'all': 'all@example.com', 'el': 'el@example.com'} }
+    Now all emails for Support get send with 'Reply-To: all@example.com' except
+    the greek ones which get send with 'Reply-To: el@example.com'.
+    """
+
     replies = {
-        'Support': 'jay@jaygarcia.com',
-        'Localization': 'fiotakis@otenet.gr',
-        'QA': 'qa-contribute@mozilla.com',
-        'Add-ons': 'atsay@mozilla.com',
-        'Marketing': 'cnovak@mozilla.com',
-        'Design': 'creative@mozilla.com',
-        'Students': 'william@mozilla.com',
-        'Documentation': 'jay@jaygarcia.com',
-        'Research': 'jay@jaygarcia.com',
-        'Thunderbird': 'jzickerman@mozilla.com',
-        'Accessibility': 'jay@jaygarcia.com',
-        'Firefox Suggestions': 'jay@jaygarcia.com',
-        'Firefox Issue': 'dboswell@mozilla.com',
-        'Webdev': 'lcrouch@mozilla.com',
-        ' ': 'dboswell@mozilla.com'
-    }
+        'Support': {'all': 'jay@jaygarcia.com'},
+        'Localization': {'all': 'fiotakis@otenet.gr'},
+        'QA': {'all': 'qa-contribute@mozilla.com'},
+        'Add-ons': {'all': 'atsay@mozilla.com'},
+        'Marketing': {'all': 'cnovak@mozilla.com'},
+        'Design': {'all': 'creative@mozilla.com'},
+        'Students': {'all': 'william@mozilla.com'},
+        'Documentation': {'all': 'jay@jaygarcia.com'},
+        'Research': {'all': 'jay@jaygarcia.com'},
+        'Thunderbird': {'all': 'jzickerman@mozilla.com'},
+        'Accessibility': {'all': 'jay@jaygarcia.com'},
+        'Firefox Suggestions': {'all': 'jay@jaygarcia.com'},
+        'Firefox Issue': {'all': 'dboswell@mozilla.com'},
+        'Webdev': {'all': 'lcrouch@mozilla.com'},
+        ' ': {'all': 'dboswell@mozilla.com'}
+        }
 
     msgs = {
-        'Support': 'emails/support.txt',
-        'QA': 'emails/qa.txt',
-        'Add-ons': 'emails/addons.txt',
-        'Marketing': 'emails/marketing.txt',
-        'Design': 'emails/design.txt',
-        'Students': 'emails/students.txt',
-        'Documentation': 'emails/documentation.txt',
-        'Firefox Suggestions': 'emails/suggestions.txt',
-        'Firefox Issue': 'emails/issue.txt',
-        'Webdev': 'emails/webdev.txt',
-        ' ': 'emails/other.txt'
+        'Support': 'support.txt',
+        'QA': 'qa.txt',
+        'Add-ons': 'addons.txt',
+        'Marketing': 'marketing.txt',
+        'Design': 'design.txt',
+        'Students': 'students.txt',
+        'Documentation': 'documentation.txt',
+        'Firefox Suggestions': 'suggestions.txt',
+        'Firefox Issue': 'issue.txt',
+        'Webdev': 'webdev.txt',
+        ' ': 'other.txt'
         }
 
     subject = 'Inquiry about Mozilla %s' % data['interest']
@@ -161,14 +193,20 @@ def contribute_autorespond(request, data):
     msg = ''
 
     if data['interest'] in msgs:
-        msg = jingo.render_to_string(request, msgs[data['interest']], data)
+        template_name = pathjoin(EMAIL_TEMPLATE_PATH, msgs[data['interest']])
+        local_template_name = pathjoin(EMAIL_TEMPLATE_PATH, locale,
+                                       msgs[data['interest']])
+        template = select_template([local_template_name, template_name])
+
+        msg = jingo.render_to_string(request, template, data)
     else:
         return False
 
     msg = msg.replace('\n', '\r\n')
 
     if data['interest'] in replies:
-        headers = {'Reply-To': replies[data['interest']]}
+        email_list = replies[data['interest']]
+        headers = {'Reply-To': email_list.get(locale, email_list['all'])}
 
     email = EmailMessage(subject, msg, from_, to, headers=headers)
     email.send()
