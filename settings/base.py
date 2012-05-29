@@ -241,6 +241,9 @@ MINIFY_BUNDLES = {
             'js/libs/jquery-css-transform.js',
             'js/libs/jquery-animate-css-rotate-scale.js',
         ),
+        'firefox_tech': (
+            'js/firefox/technology/tech.js',
+        ),
         'geolocation': (
             'js/libs/jquery-1.4.4.min.js',
             'js/libs/jquery.nyroModal.pack.js',
@@ -396,3 +399,5 @@ LOCALES_WITH_TRANSITION = ['en-US', 'af', 'ar', 'ast', 'be', 'bg',
 # reCAPTCHA keys
 RECAPTCHA_PUBLIC_KEY = ''
 RECAPTCHA_PRIVATE_KEY = ''
+
+TEST_RUNNER = 'test_utils.runner.NoDBTestSuiterunner'
