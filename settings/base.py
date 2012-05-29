@@ -233,7 +233,7 @@ MINIFY_BUNDLES = {
             'js/libs/jquery-animate-css-rotate-scale.js',
         ),
         'firefox_tech': (
-            'js/firefox/technology/tech.less',
+            'js/firefox/technology/tech.js',
         ),
         'geolocation': (
             'js/libs/jquery-1.4.4.min.js',
