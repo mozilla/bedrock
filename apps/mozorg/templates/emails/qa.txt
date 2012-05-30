@@ -6,8 +6,7 @@ Are you interested in testing desktop firefox? Then, take a look at our team wik
 
 Are you more Web-centric?  Want to learn, or already know Selenium, and other Web-testing frameworks and automation?  Find our more about what we do, and please reach out to us via your preferred method from https://quality.mozilla.org/teams/web-qa/, and say Hi!
 
-<Insert information for Automation Development here>
-
+Are you interested in writing test automation? Want to learn about how we test desktop firefox in an automated fashion? Then check out our automation development wiki here - https://wiki.mozilla.org/QA/Automation_Services for more information about what our automation development team does and the projects we are involved in.
 
 Looking to join some of our community testing events? Join us every Friday for Test Days which run from 1am to 5pm PDT. Please reference https://quality.mozilla.org/category/events/ which lists all of the upcoming events. If you check the test etherpad before the event, you can familiarize yourself with the test topic and do any necessary setup so you are ready to test when the event occurs.
 
