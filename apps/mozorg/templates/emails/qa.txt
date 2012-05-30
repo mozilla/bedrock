@@ -1,4 +1,4 @@
-Thanks for your interest in the Mozilla QA. A QA team member will followup with you personally to help get you started with Mozilla QA. Below is some information to get you started with Mozilla QA.
+Thanks for your interest in the Mozilla QA. Please respond to this email indicating what areas of QA you would like to help out with. A QA team member will followup with you personally to help get you started with Mozilla QA. Below is some information to get you started with Mozilla QA.
 
 Are you interested in testing desktop firefox? Then, take a look at our team wiki here - https://wiki.mozilla.org/QA/Desktop_Firefox to find out what we do. Looking to help us out right now? Then, take a look at our getting involved page here - https://wiki.mozilla.org/QA/Desktop_Firefox/GetInvolved to find something you would like to do and reply to this email telling us what you are interested in.
 
