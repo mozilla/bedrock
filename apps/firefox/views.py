@@ -10,3 +10,8 @@ def windows_billboards(req):
         if major_version == 5 and minor_version == 1:
             return l10n_utils.render(req, 'firefox/unsupported-winxp.html')
     return l10n_utils.render(req, 'firefox/unsupported-win2k.html')
+
+def dnt(request):
+    response = l10n_utils.render(request, 'firefox/dnt.html')
+    response['Vary'] = 'DNT'
+    return response
