@@ -33,10 +33,10 @@
         {% block site_header_nav %}
         <nav id="nav-main" role="navigation">
         <ol>
-            <li><a href="{{ url('mozorg.mission') }}">Mission</a></li>
-            <li><a href="{{ url('mozorg.about') }}">About</a></li>
-            <li><a href="{{ url('mozorg.projects') }}">Projects</a></li>
-            <li><a href="{{ url('mozorg.contribute') }}">Get Involved</a></li>
+            <li><a href="{{ url('mozorg.mission') }}">{{_('Mission')}}</a></li>
+            <li><a href="{{ url('mozorg.about') }}">{{_('About')}}</a></li>
+            <li><a href="{{ url('mozorg.projects') }}">{{_('Projects')}}</a></li>
+            <li><a href="{{ url('mozorg.contribute') }}">{{_('Get Involved')}}</a></li>
         </ol>
         </nav>
         {% endblock %}
@@ -61,11 +61,11 @@
 
             <ul class="errorlist">
               {% if email_form.email.errors %}
-              <li>Please enter a valid email address</li>
+              <li>{{_('Please enter a valid email address')}}</li>
               {% endif %}
 
               {% if email_form.privacy.errors %}
-              <li>You must agree to the privacy policy</li>
+              <li>{{_('You must agree to the privacy policy')}}</li>
               {% endif %}
             </ul>
           </div>
@@ -77,11 +77,11 @@
           <input type="hidden" name="newsletter"
             value="{% block email_form_newsletter %}mozilla-and-you{% endblock %}" />
 
-          <h3>{% block email_form_title %}Get Firefox updates{% endblock %}</h3>
+          <h3>{% block email_form_title %}{{_('Get Firefox updates')}}{% endblock %}</h3>
 
           <div class="form-contents">
             <div class="field field-email {% if email_form.email.errors %}field-error{% endif %}">
-              {{ field_with_attrs(email_form.email, placeholder='YOUR EMAIL HERE')|safe }}
+              {{ field_with_attrs(email_form.email, placeholder=_('YOUR EMAIL HERE'))|safe }}
             </div>
 
             <div id="form-details">
@@ -96,13 +96,13 @@
 
           <div class="form-submit">
             <input type="submit" id="footer_email_submit" value="Sign me up »" class="button-blue">
-            <p class="form-details"><small>We will only send you Mozilla-related information.</small></p>
+            <p class="form-details"><small>{{_('We will only send you Mozilla-related information.')}}</small></p>
           </div>
 
         </form>
         {% else %}
         <div id="footer-email-form" class="thank billboard">
-          <h3>Thank you for signing up!</h3>
+          <h3>{{_('Thank you for signing up!')}}</h3>
         </div>
         {% endif %}
       {% endif %}
@@ -126,24 +126,24 @@
                 Commons license</a>.
               </p>
               <p>
-                <a href="{{ url('mozorg.contribute_page') }}">Contribute to this page</a>
+                <a href="{{ url('mozorg.contribute_page') }}">{{_('Contribute to this page')}}</a>
               </p>
           </div>
           <nav class="span2">
               <ul>
-                  <li><a href="{{ php_url('/about/contact.html#map-mountain_view') }}">Contact Us</a></li>
-                  <li><a href="{{ url('privacy.index') }}">Privacy Policy</a></li>
-                  <li><a href="{{ php_url('/about/legal.html') }}">Legal Notices</a></li>
-                  <li><a href="{{ php_url('/legal/fraud-report/index.html') }}">Report Trademark Abuse</a></li>
+                  <li><a href="{{ php_url('/about/contact.html#map-mountain_view') }}">{{_('Contact Us')}}</a></li>
+                  <li><a href="{{ php_url('/privacy-policy.html') }}">{{_('Privacy Policy')}}</a></li>
+                  <li><a href="{{ php_url('/about/legal.html') }}">{{_('Legal Notices')}}</a></li>
+                  <li><a href="{{ php_url('/legal/fraud-report/index.html') }}">{{_('Report Trademark Abuse')}}</a></li>
               </ul>
           </nav>
 
           {% block social %}
           <nav class="span2">
             <ul>
-              <li><a href="http://twitter.com/firefox">Twitter</a></li>
-              <li><a href="http://facebook.com/Firefox">Facebook</a></li>
-              <li><a href="https://affiliates.mozilla.org/">Firefox Affiliates</a></li>
+              <li><a href="http://twitter.com/firefox">{{_('Twitter')}}</a></li>
+              <li><a href="http://facebook.com/Firefox">{{_('Facebook')}}</a></li>
+              <li><a href="https://affiliates.mozilla.org/">{{_('Firefox Affiliates')}}</a></li>
             </ul>
           </nav>
           {% endblock %}

@@ -172,7 +172,7 @@ MINIFY_BUNDLES = {
     },
     'js': {
         'site': (
-            'js/site.js', # this is automatically included on every page
+            'js/site.js',  # this is automatically included on every page
         ),
         'collusion': (
             'js/collusion/d3.layout.js',
@@ -381,3 +381,5 @@ LOCALES_WITH_TRANSITION = ['en-US', 'af', 'ar', 'ast', 'be', 'bg',
 # reCAPTCHA keys
 RECAPTCHA_PUBLIC_KEY = ''
 RECAPTCHA_PRIVATE_KEY = ''
+
+TEST_RUNNER = 'test_utils.runner.NoDBTestSuiterunner'

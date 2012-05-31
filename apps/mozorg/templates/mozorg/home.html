@@ -9,7 +9,7 @@
 
 {% block js %}
   {{ js('pager') }}
-  <script type="text/javascript">Mozilla.Pager.AUTO_ROTATE_INTERVAL = 5000;</script>
+  <script>Mozilla.Pager.AUTO_ROTATE_INTERVAL = 5000;</script>
 {% endblock %}
 
 {% block site_header_logo %}{% endblock %}
@@ -44,7 +44,7 @@
       <script>// <![CDATA[
       document.getElementById('promo-beta').id = 'page-promo-beta';
       // ]]></script>
-      <a href="{{ php_url('/firefox/beta/') }}?WT.mc_id=mofxbeta&WT.mc_ev=click" class="container">
+      <a href="{{ php_url('/firefox/beta/') }}?WT.mc_id=mofxbeta&amp;WT.mc_ev=click" class="container">
         <img src="{{ media('img/home/promo-beta.jpg') }}" alt="Firefox Beta blueprint artwork">
         <div>
           <h3>Get a sneak peek at the Firefox of tomorrow.</h3>
@@ -57,7 +57,7 @@
       <script>// <![CDATA[
       document.getElementById('promo-flicks').id = 'page-promo-flicks';
       // ]]></script>
-      <a href="https://firefoxflicks.mozilla.org/?WT.mc_id=mofxflicks&WT.mc_ev=click" class="container">
+      <a href="https://firefoxflicks.mozilla.org/?WT.mc_id=mofxflicks&amp;WT.mc_ev=click" class="container">
         <img src="{{ media('img/home/promo-flicks.jpg') }}" alt="Firefox Flicks artwork">
         <div>
           <h3>Congratulations to all the winners of Firefox Flicks!</h3>
@@ -70,7 +70,7 @@
       <script>// <![CDATA[
       document.getElementById('promo-affiliates').id = 'page-promo-affiliates';
       // ]]></script>
-      <a href="https://affiliates.mozilla.org/?WT.mc_id=moaff&WT.mc_ev=click" class="container">
+      <a href="https://affiliates.mozilla.org/?WT.mc_id=moaff&amp;WT.mc_ev=click" class="container">
         <img src="{{ media('img/home/promo-affiliates.jpg') }}" alt="Firefox Affiliates banners and buttons">
         <div>
           <h3>Help share Firefox with the world.</h3>
@@ -90,21 +90,23 @@
 
 <div id="main-content">
 
+  {% l10n home, 20130515 %}
   <section id="home-news">
     <h3>In the news</h3>
     <ul>
       <li>
-        <h4><a href="http://blog.mozilla.org/blog/2012/04/10/mozilla-open-badges-beta/">Mozilla Open Badges ships Beta release</a></h4>
+        <h4><a href="http://blog.mozilla.org/blog/2012/05/22/introducing-mozilla-webmaker/">Introducing “Mozilla Webmaker:” helping the world make the web</a></h4>
       </li>
       <li>
-        <h4><a href="http://blog.mozilla.com/blog/2012/03/22/new-adventures-for-dolly-bernadette-and-winston/">New Adventures for Dolly, Bernadette, and Winston</a></h4>
+        <h4><a href="http://blog.mozilla.org/blog/2012/05/17/congratulations-2012-firefox-flicks-winners/">Congratulations 2012 Firefox Flicks Winners!</a></h4>
       </li>
       <li>
-        <h4><a href="http://blog.mozilla.com/blog/2012/03/19/video-user-experience-and-our-mission/">Video, user experience and our mission</a></h4>
+        <h4><a href="http://blog.mozilla.org/blog/2012/05/17/do-not-track-gains-more-support-around-the-web/">Do Not Track Gains More Support around the Web</a></h4>
       </li>
     </ul>
     <a href="http://blog.mozilla.com/" id="all-news">See all news »</a>
   </section>
+  {% endl10n %}
 
   <section id="home-promos">
     <h3>In the know</h3>
