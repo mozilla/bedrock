@@ -9,7 +9,6 @@ urlpatterns = patterns('',
     page('firefox/central', 'firefox/central.html'),
     page('firefox/channel', 'firefox/channel.html'),
     page('firefox/customize', 'firefox/customize.html'),
-    url('^dnt/$', views.dnt, name='firefox.dnt'),
     page('firefox/features', 'firefox/features.html'),
     page('firefox/fx', 'firefox/fx.html'),
     page('firefox/geolocation', 'firefox/geolocation.html',
@@ -27,5 +26,7 @@ urlpatterns = patterns('',
 
     page('firefox/unsupported/warning', 'firefox/unsupported-warning.html'),
     page('firefox/unsupported/EOL', 'firefox/unsupported-EOL.html'),
+
     url(r'^firefox/unsupported/win$', views.windows_billboards),
+    url('^dnt/$', views.dnt, name='firefox.dnt'),
 )
