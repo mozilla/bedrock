@@ -7,4 +7,6 @@ from django.core.cache import cache
 def update_feeds():
     for name, url in settings.FEEDS.items():
         feed_info = feedparser.parse(url)
-        cache.set('feeds-%s' % name, feed_info)
+        # Cache for a year (it will be set by the cron job no matter
+        # what on a set interval)
+        cache.set('feeds-%s' % name, feed_info, 60*60*24*365)
