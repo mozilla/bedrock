@@ -7,6 +7,11 @@
   {{ css('firefox_fx') }}
 {% endblock %}
 
+{% block extrahead %}
+  <meta name="description" content="Mozilla Firefox, free web browser, is created by a global non-profit dedicated to putting individuals in control &amp; shaping the future of the web for the public good.">
+  {{ super() }}
+{% endblock extrahead %}
+
 {% block content %}
 
 <section id="main-feature" class="billboard">
