@@ -6,6 +6,8 @@
  *
  */
 
+/* MIT license - see https://github.com/corbanbrook/dsp.js/ */
+
 // Setup arrays for platforms which do not support byte arrays
 Float32Array = (typeof Float32Array === 'undefined') ? Array : Float32Array;
 Float64Array = (typeof Float64Array === 'undefined') ? Array : Float64Array;

@@ -1,4 +1,7 @@
 (function(){d3.geom = {};
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 /**
  * Computes a contour for a given input grid function using the <a
  * href="http://en.wikipedia.org/wiki/Marching_squares">marching
