@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #
 # playdoh documentation build configuration file, created by
 # sphinx-quickstart on Tue Jan  4 15:11:09 2011.
