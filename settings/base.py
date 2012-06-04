@@ -82,6 +82,10 @@ MINIFY_BUNDLES = {
             'css/covehead/content.css',
             'css/covehead/channel.css',
         ),
+        'dnt': (
+            'css/mozilla-expanders.less',
+            'css/firefox/dnt.less',
+        ),
         'firefox': (
             'css/firefox/template.less',
         ),
@@ -303,7 +307,8 @@ MIDDLEWARE_CLASSES = (
     'commonware.middleware.FrameOptionsHeader',
     #'mobility.middleware.DetectMobileMiddleware',
     #'mobility.middleware.XMobileMiddleware',
-    'mozorg.middleware.CacheMiddleware'
+    'mozorg.middleware.CacheMiddleware',
+    'dnt.middleware.DoNotTrackMiddleware'
 )
 
 INSTALLED_APPS = (
