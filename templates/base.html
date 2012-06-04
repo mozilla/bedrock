@@ -72,7 +72,9 @@
           {% endif %}
 
         <form class="billboard{% if email_form.errors %} has-errors{% endif%}"
-          id="footer-email-form" action="#footer-email-form" method="post">
+          id="footer-email-form" action="#footer-email-form" method="post"
+          onsubmit="dcsMultiTrack('DCS.dcsuri','/signmeup.button','WT.ti','Sign%20Me%20Up','WT.dl','26');">
+          
           <input type="hidden" name="newsletter-footer" value="Y" />
           <input type="hidden" name="newsletter"
             value="{% block email_form_newsletter %}mozilla-and-you{% endblock %}" />
