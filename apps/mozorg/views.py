@@ -143,8 +143,8 @@ def contribute_autorespond(request, data, locale='en-US'):
     """Send an auto-respond email based on chosen field of interest and locale.
 
     You can add localized responses by creating email messages in
-    template/<locale>/<category.txt>
-    e.g. template/el/qa.txt for a QA response in greek.
+    <EMAIL_TEMPLATE_PATH>/<locale>/<category.txt>
+    e.g. emails/el/qa.txt for a QA response in greek.
 
     To add localized Reply-To header, add the local contributor's email to the
     dictionary as in the following example
