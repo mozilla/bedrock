@@ -26,5 +26,7 @@ urlpatterns = patterns('',
 
     page('firefox/unsupported/warning', 'firefox/unsupported-warning.html'),
     page('firefox/unsupported/EOL', 'firefox/unsupported-EOL.html'),
+
     url(r'^firefox/unsupported/win$', views.windows_billboards),
+    url('^dnt/$', views.dnt, name='firefox.dnt'),
 )
