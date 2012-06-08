@@ -10,7 +10,7 @@ $(document).ready(function() {
     new_li = $(this);
     if (!prev_li || prev_li.attr('id') !== new_li.attr('id')) {
       // Open the menu
-      new_li.addClass('hover').find('[role="menu"]').attr('aria-expanded', 'true');
+      new_li.addClass('hover').find('[aria-expanded="false"]').attr('aria-expanded', 'true');
       if (prev_li) {
         // Close the last selected menu 
         prev_li.dequeue();
@@ -24,7 +24,7 @@ $(document).ready(function() {
       if (prev_li) {
         prev_li.clearQueue();
         // Close the menu
-        prev_li.removeClass('hover').find('[role="menu"]').attr('aria-expanded', 'false');
+        prev_li.removeClass('hover').find('[aria-expanded="true"]').attr('aria-expanded', 'false');
         prev_li = null;
         if (focused_item) {
           focused_item.get(0).blur();
