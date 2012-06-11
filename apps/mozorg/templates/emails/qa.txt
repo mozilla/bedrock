@@ -1,42 +1,14 @@
-Thank you for your interest in helping Mozilla QA. I've highlighted a few areas that we need help. Please email the person assigned to your area of interest and they will help you get started.
+Hi,
+Could you let me know where you would like to help out? There's many different areas where you can get involved, depending on what you are interested in. Would you like to help test Desktop Firefox? Firefox on Android? Websites and Web Applications? Servers? Other upcoming projects? Let me know what you like to do and our QA team will work with you to help get you started.
+Also, what are your areas of interest in QA? There's many areas you could help out with, including manual testing, writing test automation, and more.
+For more information on how you can get involved, check out these links below:
 
-Desktop Firefox QA
+  * https://wiki.mozilla.org/QA/Desktop_Firefox/GetInvolved
+	* https://wiki.mozilla.org/QA/Fennec/NativeUI#Get_involved.21
+	* https://quality.mozilla.org/teams/web-qa/
+	* https://quality.mozilla.org/category/events/
 
-Lead: Juan Becerra
-Email: jbecerra@mozilla.com
-Team Wiki: https://wiki.mozilla.org/QA/Desktop_Firefox
-Interest Areas: https://wiki.mozilla.org/QA/Desktop_Firefox/GetInvolved
+We hope to hear back from you on what you would like to do!
 
-Firefox for Android QA
-
-Lead: Tony Chung
-Email: tchung@mozilla.com
-Team Wiki: https://wiki.mozilla.org/QA/Fennec
-Interest Areas: https://wiki.mozilla.org/QA/Fennec/NativeUI#Get_involved.21
-
-Web QA
-
-Lead: Stephen Donner
-Email: sdonner@mozilla.com
-Team Wiki: https://wiki.mozilla.org/QA/Execution/Web_Testing
-Interest Areas: https://quality.mozilla.org/teams/web-qa/
-
-Automation Development
-
-Lead: Henrik Skupin
-Email: hskupin@mozilla.com
-Team Wiki: https://wiki.mozilla.org/QA/Automation_Services
-Interest Areas: https://wiki.mozilla.org/Auto-tools/Automation_Development/Projects/Documentation/Open_Positions
-
-Community & Events
-
-Lead: Marcia Knous
-Email: marcia@mozilla.org
-Events: https://quality.mozilla.org/category/events/
-
-Are you still unsure about how you can help? Please join our IRC channel 
-(http://widget.mibbit.com/?server=irc.mozilla.org&channel=#qa). Say 
-'hi', introduce yourself, and ask for help getting involved.
-
-Thank you again for your interest in helping Mozilla QA. I hope to hear 
-from you soon.
+Sincerely,
+The Mozilla QA Team
