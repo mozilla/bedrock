@@ -34,16 +34,15 @@
 
 
 <div id="main-content">
-
 <ul id="platforms-list">
-  {% for platform in platforms() %}
+  {% for platform in devices %}
   <li class="platforms-platform"><h3>{{ platform }}</h3>
     <ul class="platforms-manufacturer">
-    {% for manufacturer in manufacturers(platform) %}
+    {% for manufacturer in devices[platform] %}
       <li class="expander expander-{{ loop.cycle('even', 'odd') }}">
         <h4 class="expander-header">{{ manufacturer }}</h4>
         <ul class="platforms-device expander-content">
-        {% for device in devices(platform, manufacturer) %}
+        {% for device in devices[platform][manufacturer] %}
           <li>{{ device }}</li>
         {% endfor %}
         </ul>

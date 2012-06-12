@@ -4,8 +4,6 @@ from operator import itemgetter
 
 from django.core.files import File
 from django.core.cache import cache
-import jinja2
-import jingo
 
 from django.conf import settings
 
@@ -20,32 +18,20 @@ def windows_billboards(req):
             return l10n_utils.render(req, 'firefox/unsupported-winxp.html')
     return l10n_utils.render(req, 'firefox/unsupported-win2k.html')
 
-@jingo.register.function
-@jinja2.contextfunction
-def platforms(self):
-    #list of supported platforms. Change this if the csv should define the
-    #platforms
-    return ['Phone', 'Tablet']
+def platforms(request):
+    return l10n_utils.render(request, 'firefox/mobile/platforms.html', {'devices': load_devices(request)} )
 
-@jingo.register.function
-@jinja2.contextfunction
-def manufacturers(self, platform):
-    supported_devices = load_devices(self, platform)
-    return sorted(supported_devices, key=itemgetter(0))
-
-@jingo.register.function
-@jinja2.contextfunction
-def devices(self, platform, manufacturer):
-    supported_devices = load_devices(self, platform)
-    if manufacturer in supported_devices:
-        return supported_devices[manufacturer]
-    else:
-        return ['No Supported Devices']
-
-def load_devices(self, platform):
+def load_devices(self):
     devices = cache.get('devices')
     if devices is None:
+        #List of supported platforms. Any row in the csv that doesn't match one
+        #of these platforms will be ignored. Change this if the csv should
+        #define the platforms.
+        platforms = ['Phone', 'Tablet']
         devices = dict()
+        for platform in platforms:
+            devices[platform] = dict()
+
         with open(settings.MEDIA_ROOT + '/devices.csv', 'rb') as file:
             reader = csv.DictReader(
                 file,
@@ -59,20 +45,23 @@ def load_devices(self, platform):
 
             try:
                 for row in reader:
-                    if row['platform'].lower() == platform.lower():
+                    platform = row['platform'].strip()
+                    if platform in devices:
                         #strip leading and trailing whitespace
                         manufacturer = row['manufacturer'].strip()
                         device = row['device'].strip()
-                        if manufacturer in devices:
-                            devices[manufacturer].append(device)
+                        if manufacturer in devices[platform]:
+                            devices[platform][manufacturer].append(device)
                         else:
-                            devices[manufacturer] = [device]
+                            devices[platform][manufacturer] = [device]
             except csv.Error, e:
                 sys.exit('file %s, line %d: %s' % (filename, reader.line_num, e))
 
-        for manufacturer in devices:
-            devices[manufacturer].sort()
+        for platform in devices:
+            #TODO -how to get manufacturers returned as the correct order
+            #manufacturers = sorted(devices[platform], key=itemgetter(0))
+            for manufacturer in devices[platform]:
+                devices[platform][manufacturer].sort()
 
         cache.set('devices', devices, 600)
-
     return devices
