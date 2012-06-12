@@ -5,6 +5,7 @@
     <meta charset="utf-8">
 
     <title>{% block page_title_prefix %}Mozilla — {% endblock %}{% block page_title %}{% endblock %}{% block page_title_suffix %} — mozilla.org{% endblock %}</title>
+    <meta name="description" content="{% block description %}{% endblock %}">
 
     <link href="/tabzilla/media/css/tabzilla.css" rel="stylesheet">
 
@@ -32,12 +33,12 @@
 
         {% block site_header_nav %}
         <nav id="nav-main" role="navigation">
-        <ol>
-            <li><a href="{{ url('mozorg.mission') }}">{{_('Mission')}}</a></li>
-            <li><a href="{{ url('mozorg.about') }}">{{_('About')}}</a></li>
-            <li><a href="{{ url('mozorg.projects') }}">{{_('Projects')}}</a></li>
-            <li><a href="{{ url('mozorg.contribute') }}">{{_('Get Involved')}}</a></li>
-        </ol>
+            <ul>
+                <li><a href="{{ url('mozorg.mission') }}">{{_('Mission')}}</a></li>
+                <li><a href="{{ url('mozorg.about') }}">{{_('About')}}</a></li>
+                <li><a href="{{ url('mozorg.projects') }}">{{_('Projects')}}</a></li>
+                <li><a href="{{ url('mozorg.contribute') }}">{{_('Get Involved')}}</a></li>
+            </ul>
         </nav>
         {% endblock %}
 
@@ -77,7 +78,7 @@
           <input type="hidden" name="newsletter"
             value="{% block email_form_newsletter %}mozilla-and-you{% endblock %}" />
 
-          <h3>{% block email_form_title %}{{_('Get Firefox updates')}}{% endblock %}</h3>
+          <h3>{% block email_form_title %}{{_('Get Firefox news')}}{% endblock %}</h3>
 
           <div class="form-contents">
             <div class="field field-email {% if email_form.email.errors %}field-error{% endif %}">

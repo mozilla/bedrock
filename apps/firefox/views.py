@@ -65,3 +65,8 @@ def load_devices(self):
 
         cache.set('devices', devices, 600)
     return devices
+
+def dnt(request):
+    response = l10n_utils.render(request, 'firefox/dnt.html')
+    response['Vary'] = 'DNT'
+    return response

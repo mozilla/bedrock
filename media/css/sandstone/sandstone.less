@@ -323,7 +323,7 @@ px      68    160    252    344    436    528    620    712    804    896    */
 #masthead {
 
     h2 {
-        padding: (@baseLine * 1.5)  0;
+        padding: (@baseLine * 1.5) 0 @baseLine 0;
         margin: 0;
     }
 
@@ -373,9 +373,8 @@ px      68    160    252    344    436    528    620    712    804    896    */
 #masthead {
 
     nav.breadcrumbs {
-        padding: @baseLine / 2  0;
+        padding: 0 0 (@baseLine / 2)  0;
         float: none;
-        padding: 12px 0;
 
         a,
         span {
@@ -416,7 +415,6 @@ nav.menu-bar {
     padding-top: 0;
     padding-bottom: 0;
 
-    ol,
     ul {
         margin: 0;
         li {
@@ -593,7 +591,6 @@ nav.menu-bar {
     nav {
         .open-sans;
 
-        ol li,
         ul li {
             list-style-type: none;
             margin: 0 0 2px 0;

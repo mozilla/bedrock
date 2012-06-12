@@ -4,7 +4,7 @@ from l10n_utils.management.commands.l10n_check import list_templates, L10nParser
 
 
 class TestL10nCheck(unittest.TestCase):
-    def _get_block(blocks, name):
+    def _get_block(self, blocks, name):
         """Out of all blocks, grab the one with the specified name."""
         try:
             return filter(lambda b: b['name'] == name, blocks)[0]
@@ -24,8 +24,8 @@ class TestL10nCheck(unittest.TestCase):
         blocks = parser.parse('foo bar bizzle what? '
                               '{% l10n baz, 20110914 %}'
                               'mumble'
-                              '{% else %}'
-                              'elsed'
+                              '{% was %}'
+                              'wased'
                               '{% endl10n %}'
                               'qux',
                               only_blocks=True)
@@ -33,7 +33,7 @@ class TestL10nCheck(unittest.TestCase):
         baz = self._get_block(blocks, 'baz')
 
         self.assertEqual(baz['main'], 'mumble')
-        self.assertEqual(baz['else'], 'elsed')
+        self.assertEqual(baz['was'], 'wased')
         self.assertEqual(baz['version'], 20110914)
 
         blocks = parser.parse('foo bar bizzle what? '
