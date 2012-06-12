@@ -19,10 +19,15 @@ def windows_billboards(req):
     return l10n_utils.render(req, 'firefox/unsupported-win2k.html')
 
 def platforms(request):
-    return l10n_utils.render(request, 'firefox/mobile/platforms.html', {'devices': load_devices(request)} )
+    return l10n_utils.render(
+        request,
+        'firefox/mobile/platforms.html',
+        {'devices': load_devices(request)}
+    )
 
 def load_devices(self):
     devices = cache.get('devices')
+
     if devices is None:
         #List of supported platforms. Any row in the csv that doesn't match one
         #of these platforms will be ignored. Change this if the csv should
@@ -35,12 +40,12 @@ def load_devices(self):
         with open(settings.MEDIA_ROOT + '/devices.csv', 'rb') as file:
             reader = csv.DictReader(
                 file,
-                fieldnames = ('manufacturer','device', 'platform'),
+                fieldnames = ('manufacturer', 'device', 'platform'),
                 delimiter = ',',
                 skipinitialspace = True
             )
 
-            # skip header row
+            #skip header row
             next(reader)
 
             try:
@@ -50,6 +55,17 @@ def load_devices(self):
                         #strip leading and trailing whitespace
                         manufacturer = row['manufacturer'].strip()
                         device = row['device'].strip()
+
+                        #store the manufacturers in a list so they can easily be
+                        #access after being sorted
+                        if 'manufacturers' not in devices[platform]:
+                            devices[platform]['manufacturers'] = []
+
+                        if manufacturer not in devices[platform]['manufacturers']:
+                            devices[platform]['manufacturers'].append(manufacturer)
+
+                        #store device names in a nested dict by platform and
+                        #manufacturer
                         if manufacturer in devices[platform]:
                             devices[platform][manufacturer].append(device)
                         else:
@@ -57,9 +73,9 @@ def load_devices(self):
             except csv.Error, e:
                 sys.exit('file %s, line %d: %s' % (filename, reader.line_num, e))
 
+        #sort manufacturers lists and device lists
         for platform in devices:
-            #TODO -how to get manufacturers returned as the correct order
-            #manufacturers = sorted(devices[platform], key=itemgetter(0))
+            devices[platform]['manufacturers'].sort()
             for manufacturer in devices[platform]:
                 devices[platform][manufacturer].sort()
 

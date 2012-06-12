@@ -38,7 +38,7 @@
   {% for platform in devices %}
   <li class="platforms-platform"><h3>{{ platform }}</h3>
     <ul class="platforms-manufacturer">
-    {% for manufacturer in devices[platform] %}
+    {% for manufacturer in devices[platform]['manufacturers'] %}
       <li class="expander expander-{{ loop.cycle('even', 'odd') }}">
         <h4 class="expander-header">{{ manufacturer }}</h4>
         <ul class="platforms-device expander-content">
