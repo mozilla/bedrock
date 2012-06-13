@@ -1,5 +1,5 @@
-@import "sandstone/variables.less";
-@import "sandstone/mixins.less";
+@import "sandstone/variables-resp.less";
+@import "sandstone/mixins-resp.less";
 
 #main-content {
 
@@ -9,17 +9,16 @@
 
     .intro {
         .span(4);
-        margin-left: 0;
         padding-top: @baseLine;
     }
 
     ul.links {
-        .span(3);
+        .span(4);
         li {
             list-style-type: none;
-            margin-left: 0;
             padding-top: @baseLine;
             border-bottom: 1px dotted @borderColor;
+            margin-left: 0;
             min-height: @baseLine * 4;
         }
         h4 {

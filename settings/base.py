@@ -71,6 +71,9 @@ MINIFY_BUNDLES = {
         'common': (
             'css/sandstone/sandstone.less',
         ),
+        'responsive': (
+            'css/sandstone/sandstone-resp.less',
+        ),
         'contribute': (
             'css/contribute.less',
         ),
