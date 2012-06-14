@@ -1,5 +1,4 @@
 manufacturer, device, platform
-"Acer","Iconia Tab A500","Tablet"
 "Advent","Vega (P10AN01)","Tablet"
 "Amazon","Kindle Fire","Tablet"
 "Archos","101 Internet Tablet","Tablet"
@@ -36,7 +35,7 @@ manufacturer, device, platform
 "Motorola","Bravo","Phone"
 "Motorola","Cliq 2","Phone"
 "Motorola","Defy","Phone"
-"Motorola",""Droid 2, Droid 2 Global","Phone"
+"Motorola","Droid 2, Droid 2 Global","Phone"
 "Motorola","Droid 3","Phone"
 "Motorola","Droid Bionic","Phone"
 "Motorola","Droid Pro","Phone"
@@ -53,7 +52,7 @@ manufacturer, device, platform
 "Samsung","Galaxy Nexus","Phone"
 "Samsung","Galaxy Note","Tablet"
 "Samsung","Galaxy S2","Phone"
-"Samsung",""Galaxy S (i9000, Captivate, Fascinate, Vibrant, Epic 4G)","Phone"
+"Samsung","Galaxy S (i9000, Captivate, Fascinate, Vibrant, Epic 4G)","Phone"
 "Samsung","Galaxy Tab 10.1","Tablet"
 "Samsung","Galaxy Tab","Tablet"
 "Samsung","Infuse 4G","Phone"
@@ -65,4 +64,3 @@ manufacturer, device, platform
 "Sony Ericsson","Xperia PLAY R800 / R800i (SE Zeus)","Phone"
 "T-Mobile","SGH-T839 (Sidekick 4G)","Phone"
 "Viewsonic ","gTablet","Tablet"
-
