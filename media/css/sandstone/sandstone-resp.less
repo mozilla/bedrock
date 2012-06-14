@@ -308,7 +308,7 @@ input[type=text]:focus {
     padding-left: @gridGutterWidth;
     padding-right: @gridGutterWidth;
     position: relative;
-    width: @gridRowWidth + (@gridGutterWidth * 2);
+    width: @gridRowWidth + @gridGutterWidth;
     .clearfix;
 }
 /* }}} */
@@ -638,14 +638,28 @@ nav.menu-bar {
     .billboard,
     .container {
         width: 720px;
-        padding-left: @gridGutterWidth / 2;
-        padding-right: @gridGutterWidth / 2;
+        padding-left: @gridGutterWidth;
+        padding-right: @gridGutterWidth;
     }
 
     .sidebar {
         .offset(0);
     }
-    
+
+    #footer-email-form {
+        h3 {
+            .span_tablet(4);
+        }
+
+        .form-contents {
+            .span_tablet(5);
+        }
+
+        .form-submit {
+            .span_tablet(3);
+        }
+    }
+
     #colophon {
         .row {
             width: @gridRowWidthTablet;

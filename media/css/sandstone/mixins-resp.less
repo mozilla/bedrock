@@ -93,7 +93,7 @@
 }
 
 .offset(@columns) {
-    margin-left: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1)) + (@gridGutterWidth * 2);
+    margin-left: ((@gridColumnWidth + @gridGutterWidth) * @columns) + (@gridGutterWidth * 0.5);
 }
 
 // Tablets have narrower columns

@@ -1,5 +1,5 @@
-@import "sandstone/variables.less";
-@import "sandstone/mixins.less";
+@import "sandstone/variables-resp.less";
+@import "sandstone/mixins-resp.less";
 
 /* {{{ Main Feature */
 
@@ -24,7 +24,8 @@
     padding-bottom: 32px;
     h3 {
         .span(3);
-        margin: 0;
+        margin-top: 0;
+        margin-bottom: 0;
         padding-bottom: 0.2em;
         letter-spacing: -1px;
     }
@@ -107,8 +108,7 @@
 }
 
 #home-news {
-    .span(3);
-    margin-left: 0;
+    .span(4);
     margin-bottom: @baseLine;
     #all-news {
         .open-sans;
@@ -116,12 +116,11 @@
 }
 
 #home-promo {
-    width: 992px;
     margin: 0 auto;
 }
 
 #home-promos {
-    .span(3);
+    .span(4);
     margin-bottom: @baseLine;
 }
 
@@ -138,7 +137,7 @@
     }
     a {
         display: block;
-        padding-left: @gridColumnWidth + @gridGutterWidth;
+        padding-left: 80px;
         padding-bottom: @baseLine / 2;
         background: url(/media/img/home/about-icons.png) 0 0 no-repeat;
         h4 {
@@ -161,14 +160,14 @@
 #about-volunteer {
     a { background-position: 0 0; }
     a:hover {
-        background-position: -400px 0;
+        background-position: -800px 0;
     }
 }
 
 #about-work {
     a { background-position: 0 -150px; }
     a:hover {
-        background-position: -400px -150px;
+        background-position: -800px -150px;
         h4 { color: #f79100; }
     }
 }
@@ -176,7 +175,7 @@
 #about-find {
     a { background-position: 0 -300px; }
     a:hover {
-        background-position: -400px -300px;
+        background-position: -800px -300px;
         h4 { color: #1b66af; }
     }
 }
@@ -184,7 +183,7 @@
 #about-join {
     a { background-position: 0 -450px; }
     a:hover {
-        background-position: -400px -450px;
+        background-position: -800px -450px;
         h4 { color: #d65106; }
     }
 }
@@ -192,7 +191,7 @@
 #about-learn {
     a { background-position: 0 -600px; }
     a:hover {
-        background-position: -400px -600px;
+        background-position: -800px -600px;
         h4 { color: #669d28; }
     }
 }
@@ -302,12 +301,6 @@
     }
 
 
-    #home-news,
-    #home-promos {
-        .span(2);
-    }
-    #home-news { margin-left: 0; }
-
     .pager-page {
         a {
             width: 712px + 24px + 24px;
@@ -318,6 +311,12 @@
             letter-spacing: -1px;
             padding-top: @baseLine;
         }
+    }
+
+    #home-news,
+    #home-promos,
+    #home-about {
+        .span_tablet(4);
     }
 
 }
@@ -380,8 +379,7 @@
     #home-news,
     #home-promos,
     #home-about {
-        width: auto;
-        margin-left: 0;
+        width: 100%;
     }
 
     .pager-page {

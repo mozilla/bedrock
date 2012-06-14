@@ -1,7 +1,8 @@
-{% extends "mozorg/base.html" %}
+{% extends "base-resp.html" %}
 
 {% block page_title %}Home of the Mozilla Project{% endblock %}
 {% block body_id %}home{% endblock %}
+{% block body_class %}sand{% endblock %}
 
 {% block extrahead %}
   {{ css('home') }}
@@ -21,12 +22,12 @@
 </hgroup>
 
 <section id="firefox-promo" class="billboard">
+  <h3>Different by Design</h3>
   <!-- We intentionally don't use php_url() here because all locals
   are seeing this English page and we want them to hit their locale for firefox pages -->
   <a href="/firefox/" id="firefox-promo-link">
   <img src="{{ media('img/home/firefox.png')}}" id="promo-logo" alt="Firefox">
   </a>
-  <h3>Different by Design</h3>
   <ul class="features">
     <li><small>Proudly <br>non-profit</small></li>
     <li><small>Innovating <br>for you</small></li>
