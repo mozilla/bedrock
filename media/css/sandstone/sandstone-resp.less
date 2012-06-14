@@ -23,7 +23,7 @@ body {
 
 #wrapper {
     padding-bottom: @baseLine * 2;
-    max-width: @maxWidth;
+    width: @gridRowWidth + (@gridGutterWidth * 3);
     margin: 0 auto;
 }
 
@@ -308,10 +308,8 @@ input[type=text]:focus {
     padding-left: @gridGutterWidth;
     padding-right: @gridGutterWidth;
     position: relative;
-    width: 100%;
+    width: @gridRowWidth + (@gridGutterWidth * 2);
     .clearfix;
-    .border-box;
-    .transition(padding .2s ease-in-out);
 }
 /* }}} */
 
@@ -504,7 +502,6 @@ nav.menu-bar {
 
     h3 {
         .span(4);
-        margin-left: 0;
         padding-top: 4px;
     }
 
@@ -573,17 +570,16 @@ nav.menu-bar {
     margin: 1em 0 0;
     
     .row {
-        max-width: @maxWidth;
+        width: @gridRowWidth;
         margin: 0 auto;
         padding: 0 @gridGutterWidth;
-        .border-box; 
+        .clearfix;
     }
     
     .footer-logo,
     .footer-license,
     .footer-nav {
-        padding: 0 (@gridGutterWidth / 2);
-        .border-box;
+        margin: 0 (@gridGutterWidth / 2);
     }
     
     .footer-logo {
@@ -630,17 +626,49 @@ nav.menu-bar {
 /* {{{ Responsive Grid */
 
 /* Tablet Layout: 760px */
-@media only screen and (min-width: 760px) and (max-width: 989px) {
+@media only screen and (min-width: @widthTablet) and (max-width: @widthDesktop) {
+
+    #wrapper {
+      width: 760px;
+    }
+
+    #masthead,
+    #main-feature,
+    #main-content,
+    .billboard,
+    .container {
+        width: 720px;
+        padding-left: @gridGutterWidth / 2;
+        padding-right: @gridGutterWidth / 2;
+    }
 
     .sidebar {
         .offset(0);
+    }
+    
+    #colophon {
+        .row {
+            width: @gridRowWidthTablet;
+            padding-left: @gridGutterWidth / 2;
+            padding-right: @gridGutterWidth / 2;
+        }
+        .footer-logo {
+            .span_tablet(4);
+        }        
+        .footer-license {
+            .span_tablet(3);
+        }
+        .footer-nav {
+            .span_tablet(2);
+        }
+
     }
 
 }
 
 
 /* Mobile Layout */
-@media only screen and (max-width: 759px) {
+@media only screen and (max-width: @widthTablet) {
 
     #masthead,
     #main-feature,
@@ -652,7 +680,6 @@ nav.menu-bar {
     .sidebar {
         padding-left: @gridGutterWidth / 2;
         padding-right: @gridGutterWidth / 2;
-        .transition(padding .2s ease-in-out);
     }
 
     .main-column,
@@ -789,7 +816,7 @@ nav.menu-bar {
 }
 
 /* Wide Mobile Layout: 480px */
-@media only screen and (min-width: 480px) and (max-width: 759px) {
+@media only screen and (min-width: @widthMobileLandscape) and (max-width: @widthTablet) {
 
     .main-column,
     .sidebar {

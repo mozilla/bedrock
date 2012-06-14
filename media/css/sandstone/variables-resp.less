@@ -29,22 +29,31 @@
 @baseLine:          24px;
 @smallFontSize:     14px;
 
-// Grid: 12 columns at 8.333% each (100% / 12)
+// Default grid: 12 columns at 60px
 @gridColumns:             12;
-@gridColumnWidth:         8.333%;
-@gridRowWidth:            (@gridColumns * @gridColumnWidth);
+@gridColumnWidth:         60px;
+@gridRowWidth:            (@gridColumns * @gridColumnWidth) + (@gridGutterWidth * (@gridColumns - 1));
 
-// Mobile grid: 5 columns at 20% each (100% / 5)
+// Tablet grid: 12 columns at 40px
+@gridColumnWidthTablet:   40px;
+@gridRowWidthTablet:      (@gridColumns * @gridColumnWidthTablet) + (@gridGutterWidth * (@gridColumns - 1));
+
+// Mobile grid: 5 columns at 60px
 @gridColumnsMobile:       5;
-@gridColumnWidthMobile:   20%;
-@gridRowWidthMobile:      (@gridColumnsMobile * @gridColumnWidthMobile);
+@gridRowWidthMobile:      (@gridColumnsMobile * @gridColumnWidth) + (@gridGutterWidth * (@gridColumnsMobile - 1));
 
-// Fixed gutters can work with fluid containers if we use padding and border-box
+// Gutter width remains the same for all grids
 @gridGutterWidth:         20px;
 
-// Different max widths for different viewports
-@maxWidth:              1000px;
-@maxWidthMobile:        280px;
+@maxWidth:                1000px;
+@maxWidthTablet:          760px;
+@maxWidthMobile:          280px;
+
+// Common breakpoints for media queries
+@widthDesktop:            990px;
+@widthTablet:             760px;
+@widthMobile:             320px;
+@widthMobileLandscape:    480px;
 
 .open-sans {
     font-family: 'Open Sans', sans-serif;
