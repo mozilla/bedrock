@@ -8,31 +8,84 @@
   {{ css('privacy') }}
 {% endblock %}
 
+{% block js %}
+  {{ js('pager') }}
+  <script>Mozilla.Pager.AUTO_ROTATE_INTERVAL = 5000;</script>
+{% endblock %}
+
 {% block content %}
+
+<hgroup id="main-feature" class="huge center">
+  <h1>Your Privacy</h1>
+  <h2>Putting users in control of their private information</h2>
+</hgroup>
+
+<section id="privacy-promo" class="pager pager-with-tabs pager-auto-rotate pager-no-history">
+  <div class="pager-content">
+
+    <div class="default-page pager-page" id="promo-beta">
+      <script>
+        document.getElementById('promo-beta').id = 'page-promo-beta';
+      </script>
+      <a href="{{ php_url('/firefox/beta/') }}?WT.mc_id=mofxbeta&amp;WT.mc_ev=click" class="container">
+        <img src="{{ media('img/home/promo-beta.jpg') }}" alt="Firefox Beta blueprint artwork">
+        <div>
+          <h3>Get a sneak peek at the Firefox of tomorrow.</h3>
+          <p>Download Firefox Beta today »</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="pager-page" id="promo-flicks">
+      <script>
+        document.getElementById('promo-flicks').id = 'page-promo-flicks';
+      </script>
+      <a href="https://firefoxflicks.mozilla.org/?WT.mc_id=mofxflicks&amp;WT.mc_ev=click" class="container">
+        <img src="{{ media('img/home/promo-flicks.jpg') }}" alt="Firefox Flicks artwork">
+        <div>
+          <h3>Congratulations to all the winners of Firefox Flicks!</h3>
+          <p>Watch the winning videos »</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="pager-page" id="promo-affiliates">
+      <script>
+        document.getElementById('promo-affiliates').id = 'page-promo-affiliates';
+      </script>
+      <a href="https://affiliates.mozilla.org/?WT.mc_id=moaff&amp;WT.mc_ev=click" class="container">
+        <img src="{{ media('img/home/promo-affiliates.jpg') }}" alt="Firefox Affiliates banners and buttons">
+        <div>
+          <h3>Help share Firefox with the world.</h3>
+          <p>Become an Affiliate today »</p>
+        </div>
+      </a>
+    </div>
+
+    <ul class="pager-tabs">
+      <li id="tab-beta"><a href="#p1">●</a></li>
+      <li id="tab-flicks"><a href="#p2">●</a></li>
+      <li id="tab-affiliates"><a href="#p3">●</a></li>
+    </ul>
+
+  </div>
+</section>
+
+<nav id="top" class="menu-bar billboard">
+  <ul>
+    <li><a href="#principles">Our Principles</a></li>
+    <li><a href="#your-information">Your Information</a></li>
+    <li><a href="#choices">Your Choices</a></li>
+    <li><a href="#third-parties">Third Parties</a></li>
+    <li><a href="#footer-email-form">Get Updates</a></li>
+  </ul>
+</nav>
 
 <div id="main-content">
   <div class="row">
-    <article id="top" class="span10" role="main">
-
-      <hgroup id="main-feature" class="huge center">
-        <h1>Your Privacy</h1>
-        <h2>Putting users in control of their private information</h2>
-      </hgroup>
-
-      <nav class="menu-bar billboard">
-        <ul>
-          <li><a href="{{ url('privacy.firefox') }}">Firefox</a></li>
-          <li><a href="{{ url('privacy.thunderbird') }}">Thunderbird</a></li>
-          <li><a href="{{ url('privacy.websites') }}">Websites</a></li>
-          <li><a href="{{ url('privacy.marketplace') }}">Marketplace</a></li>
-          <li><a href="{{ url('privacy.persona') }}">Persona</a></li>
-          <li><a href="{{ url('privacy.sync') }}">Sync</a></li>
-          <li><a href="{{ url('privacy.test-pilot') }}">Test Pilot</a></li>
-        </ul>
-      </nav>
-
-      <section class="container">
-        <h2>Our Principles</h2>
+    <article class="main-column">
+      <section id="principles" class="section-content">
+        <h1>Our Principles</h1>
         <p>Six core privacy principles guide our data practices and operations at Mozilla. These principles stem from the Mozilla Manifesto. 
           In short, we're a non-profit dedicated to putting the user in control and shaping the future of the Web for the public good. These 
           principles remind us that our users’ interests come first and encourage us to build a consistent approach to privacy and security:</p>
@@ -64,12 +117,13 @@
         </ol>
         <p><a href="#top" class="top">back to top</a></p>
       </section>
-      <section class="container">
-        <h2>Your Information</h2>
+      
+      <section id="your-information" class="section-content">
+        <h1>Your Information</h1>
         <p>We know how much you value your privacy, so we try to collect as little information about you as possible.</p>
         <p>Our privacy policies explain in detail exactly what our different products will and won't do with your information. If you want 
           to know exactly what gets collected when and for what reason, then be sure to check the relevant policy.</p>
-        <h3>Types of Information</h3>
+        <h3 class="sub-section-header">Types of Information</h3>
         <h4>Aggregate Data</h4>
         <p>Information recorded about people and collected into groups so it no longer references an individually identifiable person.</p>
         <h4>Non-Personal Information</h4>
@@ -78,10 +132,8 @@
         <p>Aggregate or non-personal information that could be used in conjunction with other information to personally identify a person.</p>
         <h4>Personal Information</h4>
         <p>Information that a person provides to us that personally identifies him or her.</p>
-        <p><a href="#top" class="top">back to top</a></p>
-      </section>
-      <section class="container">
-        <h2>Overview of Information Uses</h2>
+        
+        <h3 class="sub-section-header">Overview of Information Uses</h3>
         <ul>
         <li>We collect non–personally identifying information, like your browser type, and potentially personal information, like your IP 
           address, to understand how our sites are being used and how to improve them. You can learn more about modifying your settings with 
@@ -102,47 +154,50 @@
         </ul>
         <p><a href="#top" class="top">back to top</a></p>
       </section>
-      <section class="container">
-        <h2>Your Choices</h2>
-        <h3>Analytics</h3>
+
+      <section id="choices" class="section-content">
+        <h1>Your Choices</h1>
+        <h2>Analytics</h2>
         <p>We use web analytics software to keep track of how many visitors we have, which links are most popular, and other information 
           about how people use Mozilla websites. We use this information to help make our sites more useful and usable. If you don't want
            your session visit information on our websites to be collected and analyzed by Mozilla (or its third-party analytics providers), 
            you can use the <a href="http://www.mozilla.org/opt-out.html">opt-out mechanisms.</a></p>
         <p><em><a href="https://ondemand.webtrends.com/support/optout.asp?action=out">You may opt-out of Webtrends analytics</a> across all 
           sites including Mozilla sites.</em></p>
-        <h3>Advertising</h3>
+        <h3 class="sub-section-header">Advertising</h3>
         <p>We think that we make great stuff, and we think that folks can get a lot out of using it, so we sometimes advertize on other 
           sites. If you have enabled Do Not Track in your browser, our ads on other websites will honor your request not to be tracked. For 
           those who are using a browser without DNT, like older versions of Firefox or browsers produced by other vendors, we provide an 
           opt-out cookie that you can install by <a href="http://media.mozilla.com/optout.html">visiting this page</a>.</p>
-        <p>You have not opted out.<br /> <input type="submit" id="opt_out_advertising" value="Opt-out of advertising tracking now »" class="button-blue"></p>
-        <h3>Email</h3>
+        <p>You have not opted out.</p>
+        <p><input type="submit" id="opt_out_advertising" value="Opt-out of advertising tracking now »" class="button-blue"></p>
+        <h3 class="sub-section-header">Email</h3>
         <p>If you signed up to receive a newsletter or other email communication from Mozilla, but no longer wish to do so, you can opt out 
           from receiving them by following the “unsubscribe” instructions in the next email you receive.</p>
-        <h3>Do Not Track</h3>
+        <h3 class="sub-section-header">Do Not Track</h3>
         <p>Do Not Track is a feature in Firefox (and some other sweet browsers) which lets you tell websites that you'd rather that they 
           don't keep track of you thankyouverymuch. You can <a href="http://dnt.mozilla.org">read more about Do Not Track</a> and how to 
           turn it on in Firefox.</p>
-        <p><a class="button" href="http://dnt.mozilla.org/">Do Not Track Is On</a></p>
-        <h3>Other Stuff</h3>
+        <p><a class="button" href="http://dnt.mozilla.org/">Do Not Track Is On »</a></p>
+        <h3 class="sub-section-header">Other Stuff</h3>
         <p>In all the stuff we make, there are a bunch of privacy and security settings and a whole load of functionality. There are also 
           plenty of add-ons which you can use to get even more control over your online experience, interactions and information: 
           <a href="https://addons.mozilla.org/en-US/firefox/extensions/privacy-security/">https://addons.mozilla.org/en-US/firefox/extensions/privacy-security/</a></p>
         <p><a href="#top" class="top">back to top</a></p>
       </section>
-      <section class="container">
-        <h2>Third Parties</h2>
+
+      <section id="third-parties" class="section-content">
+        <h1>Third Parties</h1>
         <p>It takes a lot of work to bring you our many websites, products and services, but Mozilla can’t take all the credit. We work with 
           a number of third party service providers who we expect will respect your privacy and security.</p>
         <p>Each of our third-party providers is under a licensing agreement with Mozilla. This agreement does three things:</p>
         <ol>
-        <li>It prohibits the release of personal or potentially personal information to the public.</li>
-        <li>It allows each provider to use this information only in conjunction with the service or services it’s providing.</li>
-        <li>It prohibits the correlation of any user data with any information collected through that provider's other products, services or 
-          Web properties.</li>
+          <li>It prohibits the release of personal or potentially personal information to the public.</li>
+          <li>It allows each provider to use this information only in conjunction with the service or services it’s providing.</li>
+          <li>It prohibits the correlation of any user data with any information collected through that provider's other products, services or 
+            Web properties.</li>
         </ol>
-        <h3>Current Third Party Service Providers</h3>
+        <h3 class="sub-section-header">Current Third Party Service Providers</h3>
         <h4>Third Party Service Providers for Websites and Email</h4>
         <table class="data-table">
           <thead>
@@ -156,32 +211,32 @@
             <tr>
               <td>Webtrends</td>
               <td>Website analytics</td>
-              <td>Webtrends Privacy Policy <a href="http://www.webtrends.com/AboutWebtrends/PrivacyPolicy.aspx">http://www.webtrends.com/AboutWebtrends/PrivacyPolicy.aspx</a></td>
+              <td>Webtrends Privacy Policy <br /><a href="http://www.webtrends.com/AboutWebtrends/PrivacyPolicy.aspx">http://www.webtrends.com/AboutWebtrends/PrivacyPolicy.aspx</a></td>
             </tr>
             <tr>
               <td>Responsys</td>
               <td>Email</td>
-              <td>Your Online Privacy Rights <a href="http://www.responsys.com/legal/privacy.php">http://www.responsys.com/legal/privacy.php</a></td>
+              <td>Your Online Privacy Rights <br /><a href="http://www.responsys.com/legal/privacy.php">http://www.responsys.com/legal/privacy.php</a></td>
             </tr>
             <tr>
               <td>Jobvite</td>
               <td>Job applications</td>
-              <td>Jobvite Privacy Policy <a href="http://recruiting.jobvite.com/privacy-policy.php">http://recruiting.jobvite.com/privacy-policy.php</a></td>
+              <td>Jobvite Privacy Policy <br /><a href="http://recruiting.jobvite.com/privacy-policy.php">http://recruiting.jobvite.com/privacy-policy.php</a></td>
             </tr>
             <tr>
               <td>SurveyGizmo</td>
               <td>Website polls and surveys</td>
-              <td>The Fine Print <a href="http://www.surveygizmo.com/the-fine-print/">http://www.surveygizmo.com/the-fine-print/</a></td>
+              <td>The Fine Print <br /><a href="http://www.surveygizmo.com/the-fine-print/">http://www.surveygizmo.com/the-fine-print/</a></td>
             </tr>
             <tr>
               <td>Zazzle</td>
               <td>Online store</td>
-              <td>Zazzle Privacy Policy <a href="http://www.zazzle.com/mk/policy/privacy_policy">http://www.zazzle.com/mk/policy/privacy_policy</a></td>
+              <td>Zazzle Privacy Policy <br /><a href="http://www.zazzle.com/mk/policy/privacy_policy">http://www.zazzle.com/mk/policy/privacy_policy</a></td>
             </tr>
             <tr>
               <td>Merchandise Mania</td>
               <td>Online store</td>
-              <td>Terms and Conditions and General Trading Information <a href="http://www.merchandisemania.co.uk/content/terms.html">http://www.merchandisemania.co.uk/content/terms.html</a></td>
+              <td>Terms and Conditions and General Trading Information <br /><a href="http://www.merchandisemania.co.uk/content/terms.html">http://www.merchandisemania.co.uk/content/terms.html</a></td>
             </tr>
           </tbody>
         </table>
@@ -198,27 +253,27 @@
             <tr>
               <td>Google Geolocation</td>
               <td>Location-aware feature</td>
-              <td>Google Geolocation Privacy Policy <a href="http://www.google.com/privacy/lsf.html">http://www.google.com/privacy/lsf.html</a></td>
+              <td>Google Geolocation Privacy Policy<br /> <a href="http://www.google.com/privacy/lsf.html">http://www.google.com/privacy/lsf.html</a></td>
             </tr>
             <tr>
               <td>Google Safe Browsing</td>
               <td>Protection against suspected forgery and attack sites feature</td>
-              <td>Google Safe Browsing in Mozilla Firefox Version 3 to current versions <a href="http://code.google.com/apis/safebrowsing/firefox3_privacy.html">http://code.google.com/apis/safebrowsing/firefox3_privacy.html</a></td>
+              <td>Google Safe Browsing in Mozilla Firefox Version 3+<br /> <a href="http://code.google.com/apis/safebrowsing/firefox3_privacy.html">http://code.google.com/apis/safebrowsing/firefox3_privacy.html</a></td>
             </tr>
             <tr>
               <td>Google</td>
               <td>Search feature</td>
-              <td>Google Privacy Center <a href="http://www.google.com/intl/en/privacy.html">http://www.google.com/intl/en/privacy.html</a></td>
+              <td>Google Privacy Center<br /> <a href="http://www.google.com/intl/en/privacy.html">http://www.google.com/intl/en/privacy.html</a></td>
             </tr>
             <tr>
               <td>Microsoft Bing</td>
               <td>Search feature</td>
-              <td>Microsoft Bing Privacy Policy <a href="http://privacy.microsoft.com/en-us/bing.mspx">http://privacy.microsoft.com/en-us/bing.mspx</a></td>
+              <td>Microsoft Bing Privacy Policy<br /> <a href="http://privacy.microsoft.com/en-us/bing.mspx">http://privacy.microsoft.com/en-us/bing.mspx</a></td>
             </tr>
             <tr>
               <td>Yahoo!</td>
               <td>Search feature</td>
-              <td>Yahoo! Privacy Center <a href="http://info.yahoo.com/privacy/us/yahoo/details.html">http://info.yahoo.com/privacy/us/yahoo/details.html</a></td>
+              <td>Yahoo! Privacy Center<br /> <a href="http://info.yahoo.com/privacy/us/yahoo/details.html">http://info.yahoo.com/privacy/us/yahoo/details.html</a></td>
             </tr>
             <tr>
               <td>Amazon.com</td>
@@ -228,12 +283,12 @@
             <tr>
               <td>eBay</td>
               <td>Search feature</td>
-              <td>eBay Privacy Policy <a href="http://pages.ebay.com/help/policies/privacy-policy.html">http://pages.ebay.com/help/policies/privacy-policy.html</a></td>
+              <td>eBay Privacy Policy<br /> <a href="http://pages.ebay.com/help/policies/privacy-policy.html">http://pages.ebay.com/help/policies/privacy-policy.html</a></td>
             </tr>
             <tr>
               <td>Wikipedia</td>
               <td>Search feature</td>
-              <td>Wikipedia Privacy Policy <a href="http://wikimediafoundation.org/wiki/Privacy_policy">http://wikimediafoundation.org/wiki/Privacy_policy</a></td>
+              <td>Wikipedia Privacy Policy<br /> <a href="http://wikimediafoundation.org/wiki/Privacy_policy">http://wikimediafoundation.org/wiki/Privacy_policy</a></td>
             </tr>
           </tbody>
         </table>
@@ -241,7 +296,19 @@
         <p><a href="#top" class="top">back to top</a></p>
       </section>
     </article>
+    <aside class="sidebar reference">
+      <h4>Our Privacy Policies</h4>
+      <p>Mozilla's specific privacy policies for our many websites, products and services:</p>
+      <ul class="policy-nav">
+        <li><a href="{{ url('privacy.websites') }}" class="policy-moz-websites">Mozilla Websites</a></li>
+        <li><a href="{{ url('privacy.firefox') }}" class="policy-firefox">Firefox</a></li>
+        <li><a href="{{ url('privacy.thunderbird') }}" class="policy-thunderbird">Thunderbird</a></li>
+        <li><a href="{{ url('privacy.marketplace') }}" class="policy-marketplace">Marketplace</a></li>
+        <li><a href="{{ url('privacy.persona') }}" class="policy-persona">Persona</a></li>
+        <li><a href="{{ url('privacy.sync') }}" class="policy-sync">Sync</a></li>
+        <li><a href="{{ url('privacy.test-pilot') }}" class="policy-test-pilot">Test Pilot</a></li>
+      </ul>
+    </aside>
   </div>
 </div>
-
 {% endblock %}
