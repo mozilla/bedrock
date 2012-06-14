@@ -121,14 +121,15 @@ hgroup {
         }
         .pager-tabs {
           @videoNavColCount: 6;
-          @videoNavThumbCount: 4;
+          @videoNavThumbCount: 5;
+          @videoGutterWidth: 10px;
           @videoNavWidth: (@gridColumnWidth * @videoNavColCount) + (@gridGutterWidth * (@videoNavColCount - 1));
-          @videoNavTabWidth: (@videoNavWidth - (@gridGutterWidth * 3)) / @videoNavThumbCount;
+          @videoNavTabWidth: (@videoNavWidth - (@videoGutterWidth * 4)) / @videoNavThumbCount;
             li {
                 list-style-type: none;
                 float: left;
                 width: @videoNavTabWidth;
-                margin-left: @gridGutterWidth;
+                margin-left: @videoGutterWidth;
                 &:first-child {
                     margin-left: 0;
                 }
