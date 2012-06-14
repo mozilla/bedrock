@@ -35,3 +35,41 @@
     }
 
 }
+
+@media only screen and (max-width: 759px) {
+
+    #main-content {
+        .intro {
+            .span_mobile(5);
+        }
+    
+        ul.links {
+            .span_mobile(5);
+            margin-bottom: 0;
+            li {
+              min-height: 0;
+            }
+        }
+    
+    }
+ 
+}
+
+@media only screen and (min-width: 480px) and (max-width: 759px) {
+
+    #main-content {
+        .intro {
+            .span(4);
+            margin-top: 21px;
+        }
+    
+        ul.links {
+            .span(8);
+            float: right;
+            clear: right;
+        }
+    
+    }
+
+
+}

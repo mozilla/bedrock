@@ -29,12 +29,22 @@
 @baseLine:          24px;
 @smallFontSize:     14px;
 
-// Grid
+// Grid: 12 columns at 8.333% each (100% / 12)
 @gridColumns:             12;
 @gridColumnWidth:         8.333%;
-@gridGutterWidth:         20px;
 @gridRowWidth:            (@gridColumns * @gridColumnWidth);
 
+// Mobile grid: 5 columns at 20% each (100% / 5)
+@gridColumnsMobile:       5;
+@gridColumnWidthMobile:   20%;
+@gridRowWidthMobile:      (@gridColumnsMobile * @gridColumnWidthMobile);
+
+// Fixed gutters can work with fluid containers if we use padding and border-box
+@gridGutterWidth:         20px;
+
+// Different max widths for different viewports
+@maxWidth:              940px;
+@maxWidthMobile:        280px;
 
 .open-sans {
     font-family: 'Open Sans', sans-serif;

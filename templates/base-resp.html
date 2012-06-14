@@ -116,11 +116,11 @@
       <footer id="colophon">
       <div class="row">
 
-          <div class="span4">
-              <a href="{{ php_url('/') }}" class="footer-logo"><img src="{{ media('img/sandstone/footer-mozilla.png') }}" alt="mozilla"></a>
+          <div class="footer-logo">
+              <a href="{{ php_url('/') }}"><img src="{{ media('img/sandstone/footer-mozilla.png') }}" alt="mozilla"></a>
           </div>
 
-          <div class="span3">
+          <div class="footer-license">
               <p>
                 Portions of this content are ©1998–2012 by individual
                 mozilla.org contributors. Content available under
@@ -131,7 +131,7 @@
                 <a href="{{ url('mozorg.contribute_page') }}">{{_('Contribute to this page')}}</a>
               </p>
           </div>
-          <nav class="span2">
+          <nav class="footer-nav">
               <ul>
                   <li><a href="{{ php_url('/about/contact.html#map-mountain_view') }}">{{_('Contact Us')}}</a></li>
                   <li><a href="{{ php_url('/privacy-policy.html') }}">{{_('Privacy Policy')}}</a></li>
@@ -141,7 +141,7 @@
           </nav>
 
           {% block social %}
-          <nav class="span2">
+          <nav class="footer-nav">
             <ul>
               <li><a href="http://twitter.com/firefox">{{_('Twitter')}}</a></li>
               <li><a href="http://facebook.com/Firefox">{{_('Facebook')}}</a></li>
