@@ -296,17 +296,7 @@ input[type=text]:focus {
 }
 
 /* }}} */
-/* {{{ Less Framework Grid */
-
-/*      Default Layout: 992px. 
-        Gutters: 24px.
-        Outer margins: 48px.
-        Leftover space for scrollbars @1024px: 32px.
--------------------------------------------------------------------------------
-cols    1     2      3      4      5      6      7      8      9      10
-px      68    160    252    344    436    528    620    712    804    896    */
-
-
+/* {{{ Grid containers */
 #masthead,
 #main-feature,
 #main-content,
@@ -321,11 +311,11 @@ px      68    160    252    344    436    528    620    712    804    896    */
     width: 100%;
     .clearfix;
     .border-box;
+    .transition(padding .2s ease-in-out);
 }
-
 /* }}} */
-/* {{{ Header Nav */
 
+/* {{{ Header Nav */
 #masthead {
 
     h2 {
