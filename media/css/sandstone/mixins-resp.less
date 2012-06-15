@@ -96,26 +96,13 @@
     margin-left: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1)) + (@gridGutterWidth * 2);
 }
 
-// Tablets have narrower columns
-.span_tablet(@columns) {
+// Smaller sizes switch to a 40px column so we need some different variables
+.span_narrow(@columns) {
     float: left;
-    width: (@gridColumnWidthTablet * @columns) + (@gridGutterWidth * (@columns - 1));
+    width: (@gridColumnWidthNarrow * @columns) + (@gridGutterWidth * (@columns - 1));
     margin: 0 (@gridGutterWidth / 2);
 }
 
-.offset_tablet(@columns) {
-    margin-left: (@gridColumnWidthTablet * @columns) + (@gridGutterWidth * (@columns - 1)) + (@gridGutterWidth * 2);
+.offset_narrow(@columns) {
+    margin-left: (@gridColumnWidthNarrow * @columns) + (@gridGutterWidth * (@columns - 1)) + (@gridGutterWidth * 2);
 }
-
-
-// Small sizes switch to a 5 column grid so we need different variables
-.span_mobile(@columns) {
-    float: left;
-    width: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1));
-    margin: 0 (@gridGutterWidth / 2);
-}
-
-.offset_mobile(@columns) {
-    margin-left: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1)) + (@gridGutterWidth * 2);
-}
-

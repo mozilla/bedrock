@@ -29,31 +29,30 @@
 @baseLine:          24px;
 @smallFontSize:     14px;
 
+// Gutter width remains the same for all grids
+@gridGutterWidth:         20px;
+
 // Default grid: 12 columns at 60px
 @gridColumns:             12;
 @gridColumnWidth:         60px;
 @gridRowWidth:            (@gridColumns * @gridColumnWidth) + (@gridGutterWidth * (@gridColumns - 1));
 
 // Tablet grid: 12 columns at 40px
-@gridColumnWidthTablet:   40px;
-@gridRowWidthTablet:      (@gridColumns * @gridColumnWidthTablet) + (@gridGutterWidth * (@gridColumns - 1));
+@gridColumnWidthNarrow:   40px;
+@gridRowWidthTablet:      (@gridColumns * @gridColumnWidthNarrow) + (@gridGutterWidth * (@gridColumns - 1));
 
-// Mobile grid: 5 columns at 60px
+// Mobile grid: 5 columns at 40px
 @gridColumnsMobile:       5;
-@gridRowWidthMobile:      (@gridColumnsMobile * @gridColumnWidth) + (@gridGutterWidth * (@gridColumnsMobile - 1));
+@gridRowWidthMobile:      (@gridColumnsMobile * @gridColumnWidthNarrow) + (@gridGutterWidth * (@gridColumnsMobile - 1));
 
-// Gutter width remains the same for all grids
-@gridGutterWidth:         20px;
+@gridRowWidthMobileWide:  (@gridColumnsMobile * @gridColumnWidth) + (@gridGutterWidth * (@gridColumnsMobile - 1));
 
-@maxWidth:                1000px;
-@maxWidthTablet:          760px;
-@maxWidthMobile:          280px;
 
-// Common breakpoints for media queries
-@widthDesktop:            990px;
+@widthDesktop:            1000px;
 @widthTablet:             760px;
-@widthMobile:             320px;
 @widthMobileLandscape:    480px;
+@widthMobile:             320px;
+
 
 .open-sans {
     font-family: 'Open Sans', sans-serif;
