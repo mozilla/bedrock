@@ -31,6 +31,7 @@
         // of flickering
         var b = document.body;
         b.className = b.className.replace("windows", site.platform);
+        b.className += " js";
     }
 
     init();
