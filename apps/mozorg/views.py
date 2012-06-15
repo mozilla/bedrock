@@ -109,7 +109,6 @@ def contribute_send(data, locale='en-US'):
     ccs = {
         'QA': {'all': 'qanoreply@mozilla.com'},
         'Thunderbird': {'all': 'tb-kb@mozilla.com'},
-        'Students': {'all': 'studentreps@mozilla.com'},
         'Research': {'all': 'diane+contribute@mozilla.com'},
         'Design': {'all': 'creative@mozilla.com'},
         'Security': {'all': 'security@mozilla.com'},
@@ -161,7 +160,6 @@ def contribute_autorespond(request, data, locale='en-US'):
         'Add-ons': {'all': 'atsay@mozilla.com'},
         'Marketing': {'all': 'cnovak@mozilla.com'},
         'Design': {'all': 'creative@mozilla.com'},
-        'Students': {'all': 'william@mozilla.com'},
         'Documentation': {'all': 'jay@jaygarcia.com'},
         'Research': {'all': 'jay@jaygarcia.com'},
         'Thunderbird': {'all': 'jzickerman@mozilla.com'},
