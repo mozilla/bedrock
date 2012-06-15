@@ -648,15 +648,16 @@ nav.menu-bar {
 
     #footer-email-form {
         h3 {
-            .span_tablet(4);
+            .span_narrow(4);
+            padding-top: 4px;
         }
 
         .form-contents {
-            .span_tablet(5);
+            .span_narrow(5);
         }
 
         .form-submit {
-            .span_tablet(3);
+            .span_narrow(3);
         }
     }
 
@@ -688,6 +689,10 @@ nav.menu-bar {
       width: @widthMobile;
     }
 
+    #wrapper {
+      width: @widthMobile - (@gridGutterWidth * 2);
+    }
+
     #masthead,
     #main-feature,
     #main-content,
@@ -699,6 +704,7 @@ nav.menu-bar {
         width: auto;
         padding-left: @gridGutterWidth / 2;
         padding-right: @gridGutterWidth / 2;
+        padding-bottom: @gridGutterWidth;
     }
 
     .main-column,
@@ -853,6 +859,23 @@ nav.menu-bar {
     .sidebar {
         width: @widthMobileLandscape - (@gridGutterWidth * 2);
         padding: 0 @gridGutterWidth;
+    }
+
+    #wrapper {
+        width: @widthMobileLandscape - (@gridGutterWidth * 2);
+    }
+    
+    #masthead,
+    #main-feature,
+    #main-content,
+    .billboard,
+    .container,
+    .main-column,
+    .sidebar {
+        width: @widthMobileLandscape - (@gridGutterWidth * 4);
+        padding-left: @gridGutterWidth;
+        padding-right: @gridGutterWidth;
+        padding-bottom: @gridGutterWidth;
     }
 
     .main-column,

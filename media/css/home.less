@@ -21,23 +21,25 @@
 
 #firefox-promo {
     padding-top: @baseLine;
-    padding-bottom: 32px;
+    padding-bottom: 0;
     h3 {
         .span(3);
+        position: relative;
         margin-top: 0;
         margin-bottom: 0;
         padding-bottom: 0.2em;
         letter-spacing: -1px;
+        white-space: nowrap;
     }
     ul.features {
-        .span(3);
-        width: (@gridColumnWidth * 3) + (@gridGutterWidth * 3);
-        margin: 0 0 0 (@gridColumnWidth + (@gridGutterWidth * 1.5));
+        .span(4);
+        width: 260px;
+        margin: 0 0 0 160px;
         li {
             float: left;
             list-style-type: none;
             margin: 0;
-            width: @gridColumnWidth + (@gridGutterWidth);
+            width: 86px;
             padding: 0;
             text-align: center;
             small {
@@ -53,15 +55,19 @@
     #promo-logo {
         position: absolute;
         top: -10px;
-        left: 294px;
+        left: 280px;
     }
     .download-button {
-        .span(3);
-        position: absolute;
-        top: 16px;
-        right: 48px;
+        .span(4);
+        width: 260px;
+        float: right;
+        margin-top: -6px;
         margin-left: (@gridGutterWidth / 2);
         padding-bottom: 6px;
+        .download-link {
+            display: block;
+            text-align: center;
+        }
         ul {
             margin: 0;
         }
@@ -197,7 +203,7 @@
 }
 
 /* }}} */
-/* {{{ Main Promos */ 
+/* {{{ Main Promos */
 
 .pager-page {
     background-position: 0 0;
@@ -216,7 +222,7 @@
         }
     }
     div {
-        .span(3);
+        .span(4);
         margin-left: 0;
         padding: 0 0 @baseLine 48px;
         position: relative;
@@ -272,19 +278,17 @@
 
 /* }}} */
 /* {{{ Tablet  Layout: 768px */
-@media only screen and (min-width: 768px) and (max-width: 991px) {
+@media only screen and (min-width: @widthTablet) and (max-width: @widthDesktop) {
 
     #firefox-promo {
         padding-bottom: 12px;
         h3 {
-            float: none;
-            width: auto;
-            margin: auto;
+            .span_narrow(7);
+            white-space: normal;
         }
         ul.features {
-            float: none;
-            margin: (@baseLine / 2) auto;
-            width: auto;
+            .span_narrow(7);
+            margin-bottom: 10px;
             li {
                 float: none;
                 width: auto;
@@ -298,16 +302,24 @@
                 }
             }
         }
+        .download-button {
+            position: absolute;
+            top:   @gridGutterWidth / 2;
+            right: @gridGutterWidth / 2;
+            margin-top: @gridGutterWidth / 2;
+        }
     }
 
 
     .pager-page {
         a {
-            width: 712px + 24px + 24px;
-            height: 203px;
+            height: 198px;
+        }
+        div {
+            .span_narrow(4);
         }
         h3 {
-            font-size: 28px;
+            font-size: 26px;
             letter-spacing: -1px;
             padding-top: @baseLine;
         }
@@ -316,59 +328,62 @@
     #home-news,
     #home-promos,
     #home-about {
-        .span_tablet(4);
+        .span_narrow(4);
     }
 
 }
 
 /* }}} */
 /* {{{ Wide Mobile Layout: 480px */
+@media only screen and (max-width: @widthTablet) {
 
-@media only screen and (max-width: 767px) {
+    #main-feature h1 {
+        text-align: left;
+        width: 174px;
+        margin-left: auto;
+        margin-right: auto;
+        img {
+            height: auto;
+            width: 100%;
+            top: -7px;
+            display: block;
+        }
+    }
 
-    #main-feature h1 img {
-        height: 46px;
-        width: auto;
-        top: 3px;
+    .huge h1 {
+        font-size: 32px;
     }
 
     .huge h2 {
-        font-size: 28px;
-        letter-spacing: -0.5px;
+        font-size: 22px;
+        letter-spacing: normal;
+        width: 190px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     #firefox-promo {
         h3 {
             float: none;
             width: auto;
-            margin: auto;
+            font-size: 28px;
+            margin: 10px auto auto 90px;
+            min-height: 60px;
+            white-space: normal;
         }
         ul.features {
-            float: none;
-            margin: (@baseLine / 2) auto;
-            width: auto;
-            li {
-                float: none;
-                width: auto;
-                margin: auto auto auto @baseLine;
-                list-style-type: disc;
-                small {
-                    text-align: left;
-                    border: 0;
-                    padding: 0;
-                    br { display: none; }
-                }
-            }
+            display: none;
         }
         #promo-logo {
-            float: right;
-            position: static;
+            left: @gridGutterWidth / 2;
+            top: @gridGutterWidth / 2;
+            width: 80px;
+            height: auto;
         }
         .download-button {
             position: static;
-            width: 100%;
             margin: 12px 0 0 0;
-            float: none;
+            width: 100%;
             .download-link {
                 text-align: center;
                 display: block;
@@ -391,12 +406,14 @@
             }
         }
         h3 {
-            font-size: 28px;
-            letter-spacing: -1px;
+            font-size: 24px;
+            letter-spacing: -0.5px;
             padding-top: @baseLine;
         }
         div {
-            padding-left: 24px;
+            padding-left: @gridGutterWidth;
+            padding-right: @gridGutterWidth;
+            margin: 0;
             background: #fff;
             width: auto;
             float: none;
