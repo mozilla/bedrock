@@ -93,7 +93,7 @@
 }
 
 .offset(@columns) {
-    margin-left: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1)) + (@gridGutterWidth * 2);
+    margin-left: ((@gridColumnWidth + @gridGutterWidth) * @columns) + (@gridGutterWidth * 0.5);
 }
 
 // Column spans for narrow column widths
@@ -104,5 +104,5 @@
 }
 
 .offset_narrow(@columns) {
-    margin-left: (@gridColumnWidthNarrow * @columns) + (@gridGutterWidth * (@columns - 1)) + (@gridGutterWidth * 2);
+    margin-left: ((@gridColumnWidthNarrow + @gridGutterWidth) * @columns) + (@gridGutterWidth * 0.5);
 }
