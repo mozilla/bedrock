@@ -23,7 +23,7 @@ body {
 
 #wrapper {
     padding-bottom: @baseLine * 2;
-    width: @gridRowWidth + (@gridGutterWidth * 3);
+    width: @widthDesktop;
     margin: 0 auto;
 }
 
@@ -308,7 +308,6 @@ input[type=text]:focus {
     padding-left: @gridGutterWidth;
     padding-right: @gridGutterWidth;
     position: relative;
-    width: @gridRowWidth + (@gridGutterWidth * 2);
     .clearfix;
 }
 /* }}} */
@@ -573,6 +572,7 @@ nav.menu-bar {
         width: @gridRowWidth;
         margin: 0 auto;
         padding: 0 @gridGutterWidth;
+        background: pink;
         .clearfix;
     }
     
@@ -626,10 +626,10 @@ nav.menu-bar {
 /* {{{ Responsive Grid */
 
 /* Tablet Layout: 760px */
-@media only screen and (min-width: @widthTablet) and (max-width: @widthDesktop) {
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
 
     #wrapper {
-      width: @widthTablet - @gridGutterWidth;
+      width: @widthTablet;
     }
 
     #masthead,
@@ -637,7 +637,7 @@ nav.menu-bar {
     #main-content,
     .billboard,
     .container {
-        width: @widthTablet - (@gridGutterWidth *2);
+        width: @widthTablet - (@gridGutterWidth * 2);
         padding-left: @gridGutterWidth / 2;
         padding-right: @gridGutterWidth / 2;
     }
@@ -683,10 +683,10 @@ nav.menu-bar {
 
 
 /* Mobile Layout: 320px */
-@media only screen and (max-width: @widthTablet) {
+@media only screen and (max-width: @breakTablet) {
 
     #wrapper {
-      width: @widthMobile - (@gridGutterWidth * 2);
+      width: @widthMobile;
     }
 
     #masthead,
@@ -821,7 +821,7 @@ nav.menu-bar {
     
     #colophon {
         .row {
-            width: @widthMobile - (@gridGutterWidth * 3);
+            width: @widthMobile;
             padding: 0;
         }
         .footer-logo,
@@ -839,10 +839,10 @@ nav.menu-bar {
 }
 
 /* Wide Mobile Layout: 480px */
-@media only screen and (min-width: @widthMobileLandscape) and (max-width: @widthTablet) {
+@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
 
     #wrapper {
-        width: @widthMobileLandscape - (@gridGutterWidth * 2);
+        width: @widthMobileLandscape;
     }
     
     #masthead,
@@ -852,7 +852,7 @@ nav.menu-bar {
     .container,
     .main-column,
     .sidebar {
-        width: @widthMobileLandscape - (@gridGutterWidth * 4);
+        width: @widthMobileLandscape - (@gridGutterWidth * 2);
         padding: 0 @gridGutterWidth;
     }
 
@@ -864,7 +864,7 @@ nav.menu-bar {
     
     #colophon {
         .row {
-            width: @widthMobileLandscape - (@gridGutterWidth * 4);
+            width: @widthMobileLandscape - (@gridGutterWidth * 2);
             padding: 0;
         }
     }

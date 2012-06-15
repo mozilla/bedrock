@@ -85,7 +85,7 @@
 }
 
 
-
+// Column spans for standard column widths
 .span(@columns) {
     float: left;
     width: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1));
@@ -96,7 +96,7 @@
     margin-left: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1)) + (@gridGutterWidth * 2);
 }
 
-// Smaller sizes switch to a 40px column so we need some different variables
+// Column spans for narrow column widths
 .span_narrow(@columns) {
     float: left;
     width: (@gridColumnWidthNarrow * @columns) + (@gridGutterWidth * (@columns - 1));
