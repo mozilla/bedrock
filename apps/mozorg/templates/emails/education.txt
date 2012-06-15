@@ -1,0 +1,21 @@
+Thank you for your interest in contributing to our efforts to build a generation of webmakers.
+
+We know that people learn best when they're making something together. So we're inviting people everywhere to meet up, make something cool, learn how the code behind the Web works -- and have a blast while doing it.
+
+We've got all the tools and tips you need to get started at:
+
+https://webmaker.org
+
+These events are quick, easy, and fun -- in as little as 30 minutes, you can have a handful of friends around your kitchen table, easily hack a webpage or make something new with our tools, and have something awesome to brag about.
+
+If you don't want to host an event and would rather contribute your time building our tools, here are some links to issue trackers -- please dive right in!
+
+Thimble: https://github.com/mozilla/webpagemaker/issues
+
+Popcorn Maker & Popcorn.js: https://webmademovies.lighthouseapp.com/dashboard
+
+Open Badges: https://github.com/mozilla/openbadges/issues
+
+X-Ray Goggles: https://github.com/toolness/webxray/issues
+
+Thanks so much for getting involved. If you have any questions, feel free to write us at joinmozilla@mozilla.org

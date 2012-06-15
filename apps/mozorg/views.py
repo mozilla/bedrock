@@ -102,6 +102,7 @@ def contribute_send(data):
         'IT': 'cshields@mozilla.com',
         'Marketing': 'cnovak@mozilla.com',
         'Add-ons': 'atsay@mozilla.com',
+	'Education': 'joinmozilla@mozilla.org',
     }
 
     from_ = 'contribute-form@mozilla.org'
@@ -137,6 +138,7 @@ def contribute_autorespond(request, data):
         'Firefox Suggestions': 'jay@jaygarcia.com',
         'Firefox Issue': 'dboswell@mozilla.com',
         'Webdev': 'lcrouch@mozilla.com',
+	'Education': 'joinmozilla@mozilla.org',
         ' ': 'dboswell@mozilla.com'
     }
 
@@ -151,6 +153,7 @@ def contribute_autorespond(request, data):
         'Firefox Suggestions': 'emails/suggestions.txt',
         'Firefox Issue': 'emails/issue.txt',
         'Webdev': 'emails/webdev.txt',
+	'Education': 'emails/education.txt',
         ' ': 'emails/other.txt'
         }
 
