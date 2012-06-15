@@ -1,5 +1,5 @@
-@import "variables.less";
-@import "mixins.less";
+@import "variables-resp.less";
+@import "mixins-resp.less";
 @import "reset.less";
 @import "fonts.less";
 @import "buttons.less";
@@ -10,7 +10,7 @@ html { background: #fff; }
 
 body {
     font-size: @baseFontSize;
-    line-height: @baseLine;
+    line-height: 1.5;
     font-family: @baseFontFamily;
     color: @textColorPrimary;
     background: #fff;
@@ -18,11 +18,13 @@ body {
 
 #outer-wrapper {
     border-top: 2px solid #fff;
+    background: #f9f9f9 url(/media/img/sandstone/bg-stone.png) 0 0 repeat-x;
 }
 
 #wrapper {
-    background: #f9f9f9 url(/media/img/sandstone/bg-stone.png) 0 0 repeat-x;
     padding-bottom: @baseLine * 2;
+    width: @widthDesktop;
+    margin: 0 auto;
 }
 
 a {
@@ -36,7 +38,7 @@ a {
 }
 
 .sand {
-    #wrapper {
+    #outer-wrapper {
         background-color: #f5f1e8;
         background-image: url(/media/img/sandstone/bg-sand.png);
     }
@@ -50,7 +52,7 @@ a {
 }
 
 .sky {
-    #wrapper {
+    #outer-wrapper {
         background-color: #eee;
         background-image: url(/media/img/sandstone/bg-sky.png);
     }
@@ -68,7 +70,7 @@ a {
 .space {
     color: #fff;
 
-    #wrapper {
+    #outer-wrapper {
         background-color: #04020b;
         background-image: url(/media/img/sandstone/bg-space.png);
     }
@@ -202,6 +204,11 @@ code {
     text-align: center;
 }
 
+img {
+    max-width: 100%;
+    -ms-interpolation-mode: bicubic;
+}
+
 /* }}} */
 /* {{{ Forms */
 
@@ -261,8 +268,6 @@ input[type=text]:focus {
 /* }}} */
 /* {{{ Layout */
 
-#gridSystem > .generate(@gridColumns, @gridColumnWidth, @gridGutterWidth);
-
 #main-content,
 #main-feature {
     padding-bottom: 48px;
@@ -291,17 +296,7 @@ input[type=text]:focus {
 }
 
 /* }}} */
-/* {{{ Less Framework Grid */
-
-/*      Default Layout: 992px. 
-        Gutters: 24px.
-        Outer margins: 48px.
-        Leftover space for scrollbars @1024px: 32px.
--------------------------------------------------------------------------------
-cols    1     2      3      4      5      6      7      8      9      10
-px      68    160    252    344    436    528    620    712    804    896    */
-
-
+/* {{{ Grid containers */
 #masthead,
 #main-feature,
 #main-content,
@@ -310,21 +305,19 @@ px      68    160    252    344    436    528    620    712    804    896    */
 .container {
     display: block;
     margin: 0 auto;
-    padding-left: 48px;
-    padding-right: 48px;
+    padding-left: @gridGutterWidth;
+    padding-right: @gridGutterWidth;
     position: relative;
-    width: 896px;
-    .clearfix
+    .clearfix;
 }
-
 /* }}} */
-/* {{{ Header Nav */
 
+/* {{{ Header Nav */
 #masthead {
 
     h2 {
-        padding: (@baseLine * 1.5) 0 @baseLine 0;
-        margin: 0;
+        padding: (@baseLine * 1.5) 0 @baseLine;
+        margin: 0 (@gridGutterWidth / 2);
     }
 
     nav {
@@ -373,7 +366,7 @@ px      68    160    252    344    436    528    620    712    804    896    */
 #masthead {
 
     nav.breadcrumbs {
-        padding: 0 0 (@baseLine / 2)  0;
+        padding: 0 10px (@baseLine / 2) 10px;
         float: none;
 
         a,
@@ -415,6 +408,7 @@ nav.menu-bar {
     padding-top: 0;
     padding-bottom: 0;
 
+    ol,
     ul {
         margin: 0;
         li {
@@ -469,9 +463,8 @@ nav.menu-bar {
                 padding: 8px 0;
             }
 
-            b {
-                .open-sans;
-                font-weight: normal;
+            li b {
+                font-weight: bold;
             }
 
         }
@@ -507,8 +500,7 @@ nav.menu-bar {
     margin-bottom: 0;
 
     h3 {
-        .span(3);
-        margin-left: 0;
+        .span(4);
         padding-top: 4px;
     }
 
@@ -525,12 +517,11 @@ nav.menu-bar {
     }
 
     input[type=email] {
-        width: (@gridColumnWidth * 3) + (@gridGutterWidth * 2) - 20px;
+        width: 80%;
         margin-top: 2px;
     }
 
     input[type=submit] {
-        width: (@gridColumnWidth * 3) + (@gridGutterWidth * 2);
         font-size: 18px;
     }
 
@@ -551,7 +542,7 @@ nav.menu-bar {
     .has-errors .form-details { display: block; }
     p.form-details {
         margin-top: 8px;
-        line-height: 100%;
+        line-height: 1;
         color: @textColorSecondary;
     }
 }
@@ -570,9 +561,37 @@ nav.menu-bar {
 
 #colophon {
     color: @textColorTertiary;
-    padding: 48px 0;
-    font-size: 14px;
-    line-height: 18px;
+    padding: (@baseLine * 2) 0;
+    font-size: .875em;
+    line-height: 1.285;
+    background: #fff;
+    width: 100%;
+    margin: 1em 0 0;
+
+    .row {
+        width: @gridRowWidth;
+        margin: 0 auto;
+        padding: 0 @gridGutterWidth;
+        .clearfix;
+    }
+
+    .footer-logo,
+    .footer-license,
+    .footer-nav {
+        margin: 0 (@gridGutterWidth / 2);
+    }
+    
+    .footer-logo {
+        .span(4);
+    }
+    
+    .footer-license {
+        .span(3);
+    }
+    
+    .footer-nav {
+        .span(2);
+    }
 
     a,
     a:link,
@@ -592,6 +611,7 @@ nav.menu-bar {
     nav {
         .open-sans;
 
+        ol li,
         ul li {
             list-style-type: none;
             margin: 0 0 2px 0;
@@ -602,6 +622,274 @@ nav.menu-bar {
 }
 
 /* }}} */
+/* {{{ Responsive Grid */
+
+/* Tablet Layout: 760px */
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+
+    #wrapper {
+      width: @widthTablet;
+    }
+
+    #masthead,
+    #main-feature,
+    #main-content,
+    .billboard,
+    .container {
+        width: @widthTablet - (@gridGutterWidth * 2);
+        padding-left: @gridGutterWidth / 2;
+        padding-right: @gridGutterWidth / 2;
+    }
+
+    .sidebar {
+        .offset(0);
+    }
+
+    #footer-email-form {
+        h3 {
+            .span_narrow(4);
+            padding-top: 4px;
+        }
+
+        .form-contents {
+            .span_narrow(5);
+        }
+
+        .form-submit {
+            .span_narrow(3);
+        }
+    }
+
+    #colophon {
+        .row {
+            width: @gridRowWidthTablet;
+            padding-left: @gridGutterWidth / 2;
+            padding-right: @gridGutterWidth / 2;
+        }
+        .footer-logo {
+            .span_narrow(4);
+        }
+        .footer-license {
+            .span_narrow(3);
+        }
+        .footer-nav {
+            .span_narrow(2);
+        }
+
+    }
+
+}
+
+
+/* Mobile Layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+
+    #wrapper {
+      width: @widthMobile;
+    }
+
+    #masthead,
+    #main-feature,
+    #main-content,
+    #colophon,
+    .billboard,
+    .container,
+    .main-column,
+    .sidebar {
+        width: auto;
+        padding-left: @gridGutterWidth / 2;
+        padding-right: @gridGutterWidth / 2;
+        padding-bottom: @gridGutterWidth;
+    }
+
+    .main-column,
+    .sidebar {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .row {
+        margin-left: auto;
+    }
+
+
+    #masthead {
+
+        h2 {
+            padding-top: @baseLine / 2;
+            padding-bottom: @baseLine / 2;
+        }
+
+        nav {
+            float: none;
+            padding-top: @baseLine / 2;
+
+            ul li {
+                display: block;
+                a,
+                b {
+                    display: block;
+                    padding: 0;
+                }
+
+                b,
+                .current {
+                    background-image: none;
+                }
+            }
+        }
+
+        nav.breadcrumbs {
+            a,
+            span {
+                margin-right: .3em;
+                margin-left: .3em;
+            }
+        }
+
+    }
+
+    .huge,
+    .huge h1,
+    .large,
+    .large h1 {
+        font-size: 48px;
+        letter-spacing: -2px;
+    }
+
+    h1,
+    .large h2 {
+        font-size: 32px;
+        letter-spacing: -1px;
+    }
+
+    h2,
+    .billboard h2 {
+        font-size: 28px;
+        letter-spacing: -0.5px;
+    }
+
+    h3 {
+        font-size: 24px;
+        letter-spacing: -0.25px;
+    }
+
+    h4 {
+        font-size: 16px;
+    }
+
+    h5 {
+        font-size: 14px;
+    }
+
+
+    nav.menu-bar {
+        text-align: inherit;
+        line-height: 100%;
+
+        ul {
+            padding-top: @baseLine / 2;
+            padding-bottom: @baseLine / 2;
+            li {
+                display: block;
+                a {
+                    padding: @baseLine / 2;
+                    border: 0;
+                    display: block;
+                    border-top: 1px dotted @borderColor;
+                    border-left: 0;
+                }
+                &:first-child a {
+                    border-top: 0;
+                }
+            }
+        }
+    }
+    
+    #footer-email-form {    
+        h3,
+        .form-contents,
+        .form-submit {
+            width: auto;
+            float: none;
+        }
+    
+        .form-submit {
+            margin-top: @baseLine / 2;
+        }
+    }
+    
+    #colophon {
+        .row {
+            width: @widthMobile;
+            padding: 0;
+        }
+        .footer-logo,
+        .footer-license,
+        .footer-nav {
+            width: auto;
+            float: none;
+        }
+        .footer-logo,
+        .footer-license {
+            margin-bottom: @baseLine;
+        }
+    }
+
+}
+
+/* Wide Mobile Layout: 480px */
+@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+
+    #wrapper {
+        width: @widthMobileLandscape;
+    }
+    
+    #masthead,
+    #main-feature,
+    #main-content,
+    .billboard,
+    .container,
+    .main-column,
+    .sidebar {
+        width: @widthMobileLandscape - (@gridGutterWidth * 2);
+        padding: 0 @gridGutterWidth;
+    }
+
+    #wrapper {
+        width: @widthMobileLandscape - (@gridGutterWidth * 2);
+    }
+    
+    #masthead,
+    #main-feature,
+    #main-content,
+    .billboard,
+    .container,
+    .main-column,
+    .sidebar {
+        width: @widthMobileLandscape - (@gridGutterWidth * 4);
+        padding-left: @gridGutterWidth;
+        padding-right: @gridGutterWidth;
+        padding-bottom: @gridGutterWidth;
+    }
+
+    .main-column,
+    .sidebar {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    
+    #colophon {
+        .row {
+            width: @widthMobileLandscape - (@gridGutterWidth * 2);
+            padding: 0;
+        }
+    }
+
+}
+/* }}} */
+
+
 
 // Don't display the dynamic platform images when js is disabled
 // because the ones in the noscript tag will be shown

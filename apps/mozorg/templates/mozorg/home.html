@@ -1,7 +1,8 @@
-{% extends "mozorg/base.html" %}
+{% extends "base-resp.html" %}
 
 {% block page_title %}Home of the Mozilla Project{% endblock %}
 {% block body_id %}home{% endblock %}
+{% block body_class %}sand{% endblock %}
 
 {% block extrahead %}
   {{ css('home') }}
@@ -17,20 +18,20 @@
 
 <hgroup id="main-feature" class="huge">
   <h1>We are <img src="{{ media('img/home/title-wordmark.png') }}" alt="mozilla" height="92" width="348"></h1>
-  <h2>Non-profit, for the good of the Web</h2>
+  <h2>Doing good is part of our code</h2>
 </hgroup>
 
 <section id="firefox-promo" class="billboard">
+  <h3>Different by&nbsp;Design</h3>
   <!-- We intentionally don't use php_url() here because all locals
   are seeing this English page and we want them to hit their locale for firefox pages -->
   <a href="/firefox/" id="firefox-promo-link">
   <img src="{{ media('img/home/firefox.png')}}" id="promo-logo" alt="Firefox">
   </a>
-  <h3>Different by Design</h3>
   <ul class="features">
-    <li><small>Proudly <br>non-profit</small></li>
-    <li><small>Innovating <br>for you</small></li>
-    <li><small>Fast, flexible, <br>secure</small></li>
+    <li><small>Proudly<br>non-profit</small></li>
+    <li><small>Innovating<br>for&nbsp;you</small></li>
+    <li><small>Fast,&nbsp;flexible,<br>secure</small></li>
   </ul>
 
   {{ download_button('download','small') }}
@@ -106,16 +107,16 @@
     <h3>In the know</h3>
      <ul>
       <li>
+        <h4><a href="{{ url('b2g') }}">Boot to Gecko</a></h4>
+        <p>See what's next for the mobile Web.</p>
+      </li>
+      <li>
         <h4><a href="https://affiliates.mozilla.org/">Become an Affiliate</a></h4>
         <p>Help us share Firefox with the world!</p>
       </li>
       <li>
-        <h4><a href="https://webfwd.org/">Apply to WebFWD</a></h4>
-        <p>Build innovative products on the Open Web.</p>
-      </li>
-      <li>
-        <h4><a href="{{ url('b2g') }}">Go mobile</a></h4>
-        <p>Learn more about the Boot to Gecko project.</p>
+        <h4><a href="{{ url('marketplace') }}">Mozilla Marketplace</a></h4>
+        <p>Launch your app on the web</p>
       </li>
     </ul>
   </section>
