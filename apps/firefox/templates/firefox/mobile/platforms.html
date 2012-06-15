@@ -1,0 +1,77 @@
+{% extends "/firefox/base.html" %}
+
+{% block page_title %}Supported Devices and System Requirements{% endblock %}
+{% block body_id %}mobile-platforms{% endblock %}
+
+{% block site_css %}
+  {{ css('firefox_platforms') }}
+{% endblock %}
+
+{% block content %}
+
+<div id="main-feature">
+  {{ mobile_download_button('download-mobile', 'mobile_small') }}
+  <h1>Supported Devices and <span>System Requirements</span></h1>
+
+<div id="intro">
+  <p>Firefox is available for Android phones (2.1 and above). Below is a list
+  of tested devices compatible with Firefox.</p>
+<ul>
+    <li>Firefox is compatible with Android 2.1 and above devices.</li>
+    <li>Installation requires about 17 MB internal or SD card storage and 512
+      MB of RAM</li>
+</ul>
+</div>
+
+<div id="survey" class="inset"> <p>Your feedback in this <a
+  href="http://www.surveygizmo.com/s3/534238/Mobile-Firefox-Compatibility-on-Untested-Android-Devices">
+  short survey</a> will help Mozilla determine and widen our coverage and
+  support of Firefox on a variety of Android based mobile devices.</p>
+</div>
+
+
+</div>
+
+<div id="main-content">
+<ul id="platforms-list">
+  {% for platform in devices %}
+  <li class="platforms-platform"><h3>{{ platform }}</h3>
+    <ul class="platforms-manufacturer">
+    {% for manufacturer in devices[platform]['manufacturers'] %}
+      <li class="expander expander-{{ loop.cycle('even', 'odd') }}">
+        <h4 class="expander-header">{{ manufacturer }}</h4>
+        <ul class="platforms-device expander-content">
+        {% for device in devices[platform][manufacturer] %}
+          <li>{{ device }}</li>
+        {% endfor %}
+        </ul>
+      </li>
+    {% endfor %}
+    </ul>
+  </li>
+{% endfor %}
+</ul>
+
+<div id="other">
+<p>See a full list of supported and unsupported devices by visiting our <a
+href="https://wiki.mozilla.org/Mobile/Platforms/Android#System_Requirements">System
+Requirements wiki</a>.</p>
+
+<h4>Give Feedback or Get Help</h4>
+
+<p>Although your device may support Firefox, we have not tested Firefox on
+every Android device. Tell us about your experience using Firefox on your
+device. Ask questions or give feedback on the <a
+href="http://support.mozilla.org/kb/Mobile+Help+and+Tutorials">Firefox Mobile
+Support Forum</a>.</p>
+
+</div>
+
+</div>
+
+{% endblock %}
+
+{% block js %}
+  {{ js('firefox_platforms') }}
+  <script>
+{% endblock %}
