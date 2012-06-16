@@ -844,22 +844,7 @@ nav.menu-bar {
     #wrapper {
         width: @widthMobileLandscape;
     }
-    
-    #masthead,
-    #main-feature,
-    #main-content,
-    .billboard,
-    .container,
-    .main-column,
-    .sidebar {
-        width: @widthMobileLandscape - (@gridGutterWidth * 2);
-        padding: 0 @gridGutterWidth;
-    }
 
-    #wrapper {
-        width: @widthMobileLandscape - (@gridGutterWidth * 2);
-    }
-    
     #masthead,
     #main-feature,
     #main-content,
@@ -867,10 +852,7 @@ nav.menu-bar {
     .container,
     .main-column,
     .sidebar {
-        width: @widthMobileLandscape - (@gridGutterWidth * 4);
-        padding-left: @gridGutterWidth;
-        padding-right: @gridGutterWidth;
-        padding-bottom: @gridGutterWidth;
+        width: @widthMobileLandscape - @gridGutterWidth;
     }
 
     .main-column,
@@ -878,10 +860,10 @@ nav.menu-bar {
         padding-left: 0;
         padding-right: 0;
     }
-    
+
     #colophon {
         .row {
-            width: @widthMobileLandscape - (@gridGutterWidth * 2);
+            width: @widthMobileLandscape - @gridGutterWidth;
             padding: 0;
         }
     }
