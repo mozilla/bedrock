@@ -1,6 +1,6 @@
 Hi,
 
-Could you let me know where you would like to help out? We need help in on many different QA projects such as Desktop Firefox, Firefox for Android, Websites, Firefox Sync, Mozilla Persona, and more. What project would you be interested in helping out with? Let me know what projects you would like to help out with and our QA team will work with you to help get you started.
+Could you let me know where you would like to help out? We need help in many different QA projects such as Desktop Firefox, Firefox for Android, Websites, Firefox Sync, Mozilla Persona, and more. What project would you be interested in helping out with? Let me know what projects you would like to help out with and our QA team will work with you to help get you started.
 Also, what tasks would you like to help with in QA? We need help in many different styles of tasks in QA, including manual testing, writing test automation, and more.
 For more information on how you can get involved, check out these links below:
 
