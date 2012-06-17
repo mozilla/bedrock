@@ -567,15 +567,14 @@ nav.menu-bar {
     background: #fff;
     width: 100%;
     margin: 1em 0 0;
-    
+
     .row {
         width: @gridRowWidth;
         margin: 0 auto;
         padding: 0 @gridGutterWidth;
-        background: pink;
         .clearfix;
     }
-    
+
     .footer-logo,
     .footer-license,
     .footer-nav {
@@ -638,29 +637,27 @@ nav.menu-bar {
     .billboard,
     .container {
         width: @widthTablet - (@gridGutterWidth * 2);
-        padding-left: @gridGutterWidth / 2;
-        padding-right: @gridGutterWidth / 2;
     }
 
     .sidebar {
         .offset(0);
     }
-    
+
     #footer-email-form {
         h3 {
             .span_narrow(4);
             padding-top: 4px;
         }
-    
+
         .form-contents {
-            .span_narrow(4);
+            .span_narrow(5);
         }
-    
+
         .form-submit {
             .span_narrow(3);
         }
     }
-    
+
     #colophon {
         .row {
             width: @gridRowWidthTablet;
@@ -669,7 +666,7 @@ nav.menu-bar {
         }
         .footer-logo {
             .span_narrow(4);
-        }        
+        }
         .footer-license {
             .span_narrow(3);
         }
@@ -700,6 +697,7 @@ nav.menu-bar {
         width: auto;
         padding-left: @gridGutterWidth / 2;
         padding-right: @gridGutterWidth / 2;
+        padding-bottom: @gridGutterWidth;
     }
 
     .main-column,
@@ -844,7 +842,7 @@ nav.menu-bar {
     #wrapper {
         width: @widthMobileLandscape;
     }
-    
+
     #masthead,
     #main-feature,
     #main-content,
@@ -852,8 +850,7 @@ nav.menu-bar {
     .container,
     .main-column,
     .sidebar {
-        width: @widthMobileLandscape - (@gridGutterWidth * 2);
-        padding: 0 @gridGutterWidth;
+        width: @widthMobileLandscape - @gridGutterWidth;
     }
 
     .main-column,
@@ -861,10 +858,10 @@ nav.menu-bar {
         padding-left: 0;
         padding-right: 0;
     }
-    
+
     #colophon {
         .row {
-            width: @widthMobileLandscape - (@gridGutterWidth * 2);
+            width: @widthMobileLandscape - @gridGutterWidth;
             padding: 0;
         }
     }
