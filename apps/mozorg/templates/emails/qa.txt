@@ -12,4 +12,8 @@ For more information on how you can get involved, check out these links below:
 We hope to hear back from you on what you would like to do!
 
 Sincerely,
-The Mozilla QA Team
+Marcia Knous
+
+QA Community Lead
+Mozilla Corporation
+https://quality.mozilla.org/
