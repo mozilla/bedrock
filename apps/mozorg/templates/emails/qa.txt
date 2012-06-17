@@ -9,7 +9,7 @@ For more information on how you can get involved, check out these links below:
   * https://quality.mozilla.org/teams/web-qa/
   * https://quality.mozilla.org/category/events/
 
-We hope to hear back from you on what you would like to help out with!
+We hope to hear back from you on how you can help us make Mozilla products better!
 
 Sincerely,
 Marcia Knous
