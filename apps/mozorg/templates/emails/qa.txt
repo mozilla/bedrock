@@ -6,6 +6,7 @@ For more information on how you can get involved, check out these links below:
 
   * https://wiki.mozilla.org/QA/Desktop_Firefox/GetInvolved
   * https://wiki.mozilla.org/QA/Fennec/NativeUI#Get_involved.21
+  * https://wiki.mozilla.org/B2G/QA
   * https://quality.mozilla.org/teams/web-qa/
   * https://quality.mozilla.org/category/events/
 
