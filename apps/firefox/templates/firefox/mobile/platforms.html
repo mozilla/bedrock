@@ -1,17 +1,28 @@
 {% extends "/firefox/base.html" %}
 
-{% block page_title %}Supported Devices and System Requirements{% endblock %}
+{% block page_title %}Firefox on your mobile device{% endblock %}
 {% block body_id %}mobile-platforms{% endblock %}
 
 {% block site_css %}
   {{ css('firefox_platforms') }}
 {% endblock %}
 
+{% block breadcrumbs %}
+  <nav class="breadcrumbs">
+    <a href="{{ url('mozorg.home') }}">Home</a> >
+    <a href="{{ php_url('/mobile') }}">Mobile</a> >
+    <span>Requirements</span>
+  </nav>
+{% endblock %}
+
 {% block content %}
 
 <div id="main-feature">
   {{ mobile_download_button('download-mobile', 'mobile_small') }}
-  <h1>Supported Devices and <span>System Requirements</span></h1>
+  <hgroup>
+    <h1 class="large">Firefox on your mobile device</h1>
+    <h2>To find out if Firefox works on your phone, choose your manufacturer from the list below.</h2>
+  </hgroup>
 
 <div id="intro">
   <p>Firefox is available for Android phones (2.1 and above). Below is a list
