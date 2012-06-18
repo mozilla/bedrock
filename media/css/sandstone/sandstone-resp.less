@@ -853,6 +853,23 @@ nav.menu-bar {
         width: @widthMobileLandscape - @gridGutterWidth;
     }
 
+    #wrapper {
+        width: @widthMobileLandscape - (@gridGutterWidth * 2);
+    }
+    
+    #masthead,
+    #main-feature,
+    #main-content,
+    .billboard,
+    .container,
+    .main-column,
+    .sidebar {
+        width: @widthMobileLandscape - (@gridGutterWidth * 4);
+        padding-left: @gridGutterWidth;
+        padding-right: @gridGutterWidth;
+        padding-bottom: @gridGutterWidth;
+    }
+
     .main-column,
     .sidebar {
         padding-left: 0;
