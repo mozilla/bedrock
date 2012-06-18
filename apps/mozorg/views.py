@@ -76,7 +76,7 @@ def contribute(request):
 
 def contribute_send(data):
     ccs = {
-        'QA': 'qa-contribute@mozilla.com',
+        'QA': 'qa-contribute@mozilla.org',
         'Thunderbird': 'tb-kb@mozilla.com',
         'Students': 'studentreps@mozilla.com',
         'Research': 'diane+contribute@mozilla.com',
@@ -112,7 +112,7 @@ def contribute_autorespond(request, data):
     replies = {
         'Support': 'jay@jaygarcia.com',
         'Localization': 'fiotakis@otenet.gr',
-        'QA': 'qa-contribute@mozilla.com',
+        'QA': 'qa-contribute@mozilla.org',
         'Add-ons': 'atsay@mozilla.com',
         'Marketing': 'cnovak@mozilla.com',
         'Design': 'creative@mozilla.com',
