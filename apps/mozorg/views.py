@@ -76,7 +76,7 @@ def contribute(request):
 
 def contribute_send(data):
     ccs = {
-        'QA': 'qanoreply@mozilla.com',
+        'QA': 'qa-contribute@mozilla.com',
         'Thunderbird': 'tb-kb@mozilla.com',
         'Students': 'studentreps@mozilla.com',
         'Research': 'diane+contribute@mozilla.com',
