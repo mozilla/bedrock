@@ -367,7 +367,7 @@
             float: none;
             width: auto;
             font-size: 28px;
-            margin: 10px auto auto 90px;
+            margin: 0 auto auto 100px;
             min-height: 60px;
             white-space: normal;
         }
@@ -375,26 +375,21 @@
             display: none;
         }
         #promo-logo {
-            left: @gridGutterWidth / 2;
+            left: @gridGutterWidth;
             top: @gridGutterWidth / 2;
             width: 80px;
             height: auto;
         }
         .download-button {
             position: static;
-            margin: 12px 0 0 0;
-            width: 100%;
+            margin: 12px 10px 0 10px;
+            width: @widthMobile - (@gridGutterWidth * 2);
             .download-link {
                 text-align: center;
                 display: block;
                 margin-bottom: 6px;
             }
         }
-    }
-    #home-news,
-    #home-promos,
-    #home-about {
-        width: 100%;
     }
 
     .pager-page {
@@ -432,15 +427,32 @@
         font-size: 28px;
     }
 
+    #home-news,
+    #home-promos,
+    #home-about {
+        width: @widthMobile - (@gridGutterWidth * 2);
+    }
+
 }
 
-@media only screen and (max-width: @breakMobileLandscape) {
+/* Wide Mobile Layout: 480px */
+@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
 
     #firefox-promo {
         padding-top: 10px;
         h3 {
-            min-height: 65px;
+            margin-top: 25px;
+            min-height: 55px;
         }
+        .download-button {
+            width: @widthMobileLandscape - (@gridGutterWidth * 2);
+        }
+    }
+
+    #home-news,
+    #home-promos,
+    #home-about {
+        width: @widthMobileLandscape - (@gridGutterWidth * 2);
     }
 
 }
