@@ -232,6 +232,9 @@ MINIFY_BUNDLES = {
             'js/mozilla-video-tools.js',
             'js/firefox/features.js',
         ),
+        'firefox_fx': (
+            'js/mozilla-pager.js',
+        ),
         'firefox_happy': (
             'js/libs/jquery-1.4.4.min.js',
             'js/libs/jquery-css-transform.js',

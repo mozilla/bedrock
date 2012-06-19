@@ -1,4 +1,4 @@
-{% extends "/firefox/base.html" %}
+{% extends "/firefox/base-resp.html" %}
 
 {% block page_title %}Get More From Your Firefox — Mobile, Add-ons & Other Stuff{% endblock %}
 {% block body_id %}firefox-fx{% endblock %}
@@ -7,35 +7,53 @@
   {{ css('firefox_fx') }}
 {% endblock %}
 
+{% block js %}
+  {{ js('firefox_fx') }}
+{% endblock %}
+
 {% block content %}
 
-<section id="main-feature" class="billboard">
-  <h2>Your Firefox is up to date.</h2>
-  <h1>Now get it on <span>all your devices.</span></h1>
-  <a class="button-blue" href="{{ url('landing.devices')}}">Find out how »</a>
-</section>
+<div id="main-pager" class="pager pager-with-tabs">
 
-<section id="main-content">
+  <nav class="container">
+    <ul class="pager-tabs">
+      <li><a href="#mobile">Mobile</a></li>
+      <li><a href="#desktop">Desktop</a></li>
+    </ul>
+  </nav>
 
-  <div id="get-firefox" class="sub-section">
-    <h3>Get Firefox</h3>
-    <p>If you need a fresh new copy, you can get it here:</p>
-    {{ download_button('download', 'small') }}
+  <div class="billboard">
+  <div class="pager-content">
+
+    <div class="pager-page mobile-content default-page" id="mobile">
+      <script>// <![CDATA[
+      document.getElementById('mobile').id = 'page-mobile';
+      // ]]></script>
+      <section>
+        <p>Mobile!</p>
+      </section>
+    </div>
+
+    <div class="pager-page desktop-content" id="desktop">
+      <script>// <![CDATA[
+      document.getElementById('desktop').id = 'page-desktop';
+      // ]]></script>
+      <section>
+        <hgroup>
+          <h1>Different by Design</h1>
+          <h2>Get the latest version of Firefox. It’s fast, flexible and secure.</h2>
+        </hgroup>
+        {{ download_button('download') }}
+        <figure id="firefox-screenshot">
+          {{ platform_img('img/firefox/fx/existing-screen.jpg', alt='Firefox screenshot') }}
+        </figure>
+      </section>
+    </div>
+
+  </div>
   </div>
 
-  <div id="promo-beta" class="sub-section">
-    <h3>Try Firefox Beta</h3>
-    <p>Help refine and polish the newest features almost ready for prime time.</p>
-    <a href="{{ php_url('/firefox/beta/?WT.mc_id=buildbetafxpage') }}">Download now »</a>
-  </div>
-
-  <div id="promo-contribute" class="sub-section">
-    <h3>Join the team</h3>
-    <p>Volunteer with Firefox and help us build a brighter future for the Web.</p>
-    <a href="{{ url('mozorg.contribute') }}">Get involved »</a>
-  </div>
-
-</section>
+</div>
 
 {% endblock %}
 
