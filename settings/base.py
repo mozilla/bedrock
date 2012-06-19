@@ -92,6 +92,9 @@ MINIFY_BUNDLES = {
         'firefox': (
             'css/firefox/template.less',
         ),
+        'firefox-resp': (
+            'css/firefox/template-resp.less',
+        ),
         'firefox_channel': (
             'css/firefox/channel.less',
         ),
