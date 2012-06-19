@@ -4,11 +4,11 @@ Could you let me know where you would like to help out? We need help in many dif
 Also, what tasks would you like to help with in QA? We need help in many different styles of tasks in QA, including manual testing, writing test automation, and more.
 For more information on how you can get involved, check out these links below:
 
-  * https://wiki.mozilla.org/QA/Desktop_Firefox/GetInvolved
-  * https://wiki.mozilla.org/QA/Fennec/NativeUI#Get_involved.21
-  * https://wiki.mozilla.org/B2G/QA
-  * https://quality.mozilla.org/teams/web-qa/
-  * https://quality.mozilla.org/category/events/
+  * Desktop Firefox: https://wiki.mozilla.org/QA/Desktop_Firefox/GetInvolved
+  * Firefox for Android: https://wiki.mozilla.org/QA/Fennec/NativeUI#Get_involved.21
+  * Boot to Gecko: https://wiki.mozilla.org/B2G/QA
+  * Web QA: https://quality.mozilla.org/teams/web-qa/
+  * QA Events: https://quality.mozilla.org/category/events/
 
 We hope to hear back from you on how you can help us make Mozilla products better!
 
