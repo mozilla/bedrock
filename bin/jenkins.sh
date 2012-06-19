@@ -38,6 +38,9 @@ LOG_LEVEL = logging.ERROR
 
 SETTINGS
 
+echo "Update product_details"
+./manage.py update_product_details
+
 echo "Starting tests..."
 export FORCE_DB=1
 coverage run manage.py test --noinput --with-xunit
