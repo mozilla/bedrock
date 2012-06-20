@@ -105,7 +105,7 @@ $(document).ready(function() {
     }
     
     
-//    $("#nav-main-menu .submenu:visible").hide();
+    $("#nav-main-menu .submenu:visible").hide();
     if ( $(this).next(".submenu").is(":visible") ) {
       $(this).next(".submenu").slideUp(100).attr("aria-expanded", "false");
     }
