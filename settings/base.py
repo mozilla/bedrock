@@ -129,6 +129,11 @@ MINIFY_BUNDLES = {
         'firefox_organizations': (
             'css/firefox/organizations.less',
         ),
+        'firefox_platforms': (
+            'css/firefox/template-resp.less',
+            'css/mozilla-expanders.less',
+            'css/firefox/platforms.less',
+        ),
         'firefox_security': (
             'css/firefox/security.less',
         ),
@@ -241,6 +246,9 @@ MINIFY_BUNDLES = {
             'js/libs/jquery-1.4.4.min.js',
             'js/libs/jquery-css-transform.js',
             'js/libs/jquery-animate-css-rotate-scale.js',
+        ),
+        'firefox_platforms': (
+            'js/mozilla-expanders.js',
         ),
         'firefox_speed': (
             'js/libs/jquery-1.4.4.min.js',
