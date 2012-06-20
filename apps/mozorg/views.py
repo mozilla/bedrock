@@ -25,17 +25,7 @@ def handle_contribute_form(request, form):
 
 
 @csrf_exempt
-def contribute_page(request):
-    form = ContributeForm(request.POST or None)
-    success = handle_contribute_form(request, form)
-    return l10n_utils.render(request,
-                             'mozorg/contribute-page.html',
-                             {'form': form,
-                              'success': success})
-
-
-@csrf_exempt
-def contribute(request):
+def contribute(request, template='mozorg/contribute.html'):
     def has_contribute_form():
         return (request.method == 'POST' and
                 'contribute-form' in request.POST)
@@ -83,7 +73,7 @@ def contribute(request):
         newsletter_form = NewsletterCountryForm(locale, prefix='newsletter')
 
     return l10n_utils.render(request,
-                             'mozorg/contribute.html',
+                             template,
                              {'form': form,
                               'success': success,
                               'newsletter_form': newsletter_form,
@@ -131,8 +121,8 @@ def contribute_send(data, locale='en-US'):
 
     cc = None
     if not settings.DEV and data['interest'] in CCS:
-	email_list = CCS[data['interest']]
-	cc = [email_list.get(locale, email_list['all'])]
+        email_list = CCS[data['interest']]
+        cc = [email_list.get(locale, email_list['all'])]
 
     email = EmailMessage(subject, msg, from_, to, cc=cc, headers=headers)
     email.send()
