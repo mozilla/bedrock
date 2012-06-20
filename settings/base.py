@@ -112,6 +112,10 @@ MINIFY_BUNDLES = {
             'css/sandstone/video.less',
             'css/firefox/features.less',
         ),
+        'mobile_features': (
+            'css/firefox/template-resp.less',
+            'css/firefox/mobile-features.less',
+        ),
         'firefox_fx': (
             'css/firefox/fx.less',
         ),
@@ -236,6 +240,9 @@ MINIFY_BUNDLES = {
         'firefox_features': (
             'js/mozilla-video-tools.js',
             'js/firefox/features.js',
+        ),
+        'mobile_features': (
+            'js/firefox/mobile-features.js',
         ),
         'firefox_happy': (
             'js/libs/jquery-1.4.4.min.js',
