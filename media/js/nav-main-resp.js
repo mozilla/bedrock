@@ -12,7 +12,7 @@ $(document).ready(function() {
       // Open the menu
       new_li.addClass('hover').find('[aria-expanded="false"]').attr('aria-expanded', 'true');
       if (prev_li) {
-        // Close the last selected menu 
+        // Close the last selected menu
         prev_li.dequeue();
       }
     } else {
@@ -77,9 +77,9 @@ $(document).ready(function() {
       });
     });
   });
-  
-  
-  // Set up nav dropdowns  
+
+
+  // Set up nav dropdowns
   $("#nav-main .toggle").click(function() {
     if ( $("#nav-main-menu, #nav-main-menu .submenu").is(":visible") ) {
       $("#nav-main-menu, #nav-main-menu .submenu").slideUp(100).attr("aria-hidden", "true");
@@ -90,21 +90,20 @@ $(document).ready(function() {
     }
     return false;
   });
-  
+
   $("#nav-main-menu a[aria-haspopup='true']").click(function() {
     new_foo = $(this);
     if (!prev_foo || prev_foo.attr('id') !== new_foo.attr('id')) {
       // Open the menu
       new_foo.addClass('hover').find('[aria-expanded="false"]').attr('aria-expanded', 'true');
       if (prev_foo) {
-        // Close the last selected menu 
+        // Close the last selected menu
         prev_foo.dequeue();
       }
     } else {
       prev_foo.clearQueue();
     }
-    
-    
+
     $("#nav-main-menu .submenu:visible").hide();
     if ( $(this).next(".submenu").is(":visible") ) {
       $(this).next(".submenu").slideUp(100).attr("aria-expanded", "false");
@@ -122,7 +121,7 @@ $(document).ready(function() {
       $("#nav-main-menu, #nav-main-menu .submenu").hide().attr("aria-hidden", "true");
       $("#nav-main .toggle").removeClass("open");
   });
-  
+
   // or gets focus
   $("a, input, textarea, button, :focus").bind('focus', function(e) {
     var $focused = $(e.target);
