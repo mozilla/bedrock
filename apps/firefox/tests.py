@@ -1,7 +1,8 @@
 import unittest
 
-from nose.tools import eq_, ok_, assert_not_equal
+from nose.plugins.skip import SkipTest
 from platforms import load_devices
+
 
 class TestLoadDevices(unittest.TestCase):
 
@@ -10,6 +11,7 @@ class TestLoadDevices(unittest.TestCase):
         return 'TODO'
 
     def test_load_devices(self):
-        devices = load_devices(self, self.file(), cacheDevices = False)
+        raise SkipTest
+        devices = load_devices(self, self.file(), cacheDevices=False)
 
         #todo
