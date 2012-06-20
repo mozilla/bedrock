@@ -234,7 +234,6 @@ MINIFY_BUNDLES = {
         ),
         'contribute-form': (
             'js/contribute-form.js',
-            'js/mozilla-input-placeholder.js',
         ),
         'expanders': (
             'js/mozilla-expanders.js',
