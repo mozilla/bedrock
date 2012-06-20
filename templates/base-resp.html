@@ -38,13 +38,14 @@
         <a href="http://www.mozilla.org/" id="tabzilla">{{ _('Mozilla') }}</a>
 
         {% block site_header_nav %}
-        <nav id="nav-main" role="navigation">
-        <ol>
-            <li><a href="{{ url('mozorg.mission') }}">{{_('Mission')}}</a></li>
-            <li><a href="{{ url('mozorg.about') }}">{{_('About')}}</a></li>
-            <li><a href="{{ url('mozorg.projects') }}">{{_('Projects')}}</a></li>
-            <li><a href="{{ url('mozorg.contribute') }}">{{_('Get Involved')}}</a></li>
-        </ol>
+        <nav id="nav-main" role="menubar">
+          <a class="toggle" href="#nav-main-menu">{{_('Menu')}}</a>
+          <ul role="menu" id="nav-main-menu">
+            <li role="menuitem" class="first"><a href="{{ url('mozorg.mission') }}">{{_('Mission')}}</a></li>
+            <li role="menuitem"><a href="{{ url('mozorg.about') }}">{{_('About')}}</a></li>
+            <li role="menuitem"><a href="{{ url('mozorg.projects') }}">{{_('Projects')}}</a></li>
+            <li role="menuitem" class="last"><a href="{{ url('mozorg.contribute') }}">{{_('Get Involved')}}</a></li>
+          </ul>
         </nav>
         {% endblock %}
 
@@ -159,7 +160,7 @@
       </footer>
     {% endblock %}
 
-    <script src="//mozilla.org/tabzilla/media/js/tabzilla.js"></script>
+    <script src="/tabzilla/media/js/tabzilla.js"></script>
     </div><!-- close #outer-wrapper -->
 
     {% block site_js %}
@@ -170,5 +171,50 @@
     {% block webtrends %}
      {% include "includes/webtrends.html" %}
     {% endblock %}
+    
+<script>
+  // mobile dropdown menu
+  $("#nav-main .toggle").click(function() {
+    if ( $("#nav-main-menu").is(":visible") ) {
+      $("#nav-main-menu:visible").slideUp(100).attr("aria-expanded", "false");
+      $("#nav-main .toggle.open").removeClass("open");
+    }
+    else {
+      $("#nav-main-menu").slideToggle(150).attr("aria-expanded", "true");
+      $(this).toggleClass("open");
+    }
+    return false;
+  });
+
+/*
+  // Hide menu when anything else is clicked
+  $(document).bind('click', function(e) {
+    var $clicked = $(e.target);
+    if (! $clicked.parents("#nav-main"))
+      $("#nav-main-menu").hide().attr("aria-expanded", "false");
+      $("#nav-main .toggle").removeClass("open");
+  });
+  
+  // or gets focus
+  $("a, input, textarea, button, :focus").bind('focus', function(e) {
+    var $focused = $(e.target);
+    if (! $focused.parents("#nav-main")) {
+      $("#nav-main-menu").hide().attr("aria-expanded", "false");
+      $("#nav-main .toggle").removeClass("open");
+    }
+  });
+*/
+
+  // reset the menu for wider windows   
+  $(window).resize(function() {
+    if ( $(window).width() >= 761 ) {
+      $("#nav-main-menu").removeAttr("style").attr("aria-expanded", "true");
+    }
+    else if ( $(window).width() <= 760 ) {
+      $("#nav-main-menu").removeAttr("style").attr("aria-expanded", "false");
+    }
+  });
+  </script>
+    
   </body>
 </html>
