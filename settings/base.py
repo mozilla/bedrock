@@ -241,9 +241,6 @@ MINIFY_BUNDLES = {
             'js/mozilla-video-tools.js',
             'js/firefox/features.js',
         ),
-        'mobile_features': (
-            'js/firefox/mobile-features.js',
-        ),
         'firefox_happy': (
             'js/libs/jquery-1.4.4.min.js',
             'js/libs/jquery-css-transform.js',

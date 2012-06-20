@@ -20,45 +20,40 @@
 <div id="main-feature">
   {{ mobile_download_button('download-mobile', 'mobile_small') }}
   <hgroup>
-    <h1 class="large">Mobile Features</h1>
-    <h2>All the awesomeness of Firefox, packed into a mobile device.</h2>
+    <h1 class="large">{{_('Mobile Features')}}</h1>
+    <h2>{{_('All the awesomeness of Firefox, packed into a mobile device.')}}</h2>
   </hgroup>
 </div>
 
 <div id="main-content">
   <div class="col1">
-    <section>
-      <h2>Fast</h2>
-      <p>Get to the Web quickly with speedy start up and page load times.</p>
-      <p>The <a href="#">Awesome Screen</a> gets to know you as you browse so you can search easier and get to your destination faster.</p>
+    <section id="fast">
+      <h2>{{_('Fast')}}</h2>
+      <p>{{_('Get to the Web quickly with speedy start up and page load times.')}}</p>
+      <p>{{_('The <a href="http://support.mozilla.org/kb/how-do-i-use-awesome-screen">Awesome Screen</a> gets to know you as you browse so you can search easier and get to your destination faster.')}}</p>
     </section>
     
-    <section>
-      <h2>Safe</h2>
-      <p>Control your privacy and how much data you share on the Web with features like Do Not Track. <a class="more" href="#">Learn more</a></p>
-      <p>Enjoy the latest in security preferences to easily customize the settings for your passwords, private data, cookies, images and add-ons.</p>
+    <section id="safe">
+      <h2>{{_('Safe')}}</h2>
+      <p class="icon privacy">{{_('Control your privacy and how much data you share on the Web with features like Do Not Track. <a class="more" href="http://support.mozilla.org/kb/configure-mobile-privacy-and-security-settings">Learn more</a>')}}</p>
+      <p>{{_('Enjoy the latest in security preferences to easily customize the settings for your passwords, private data, cookies, images and add-ons.')}}</p>
     </section>
   </div>
   
   <div class="col2">
-    <section>
-      <h2>Smart</h2>
-      <p>Experience the unlimited possibilities of the mobile Web with full support for HTML5 and Web APIs. <a class="more" href="#">Learn more</a></p>
-      <p><a href="#">Sync</a> your desktop history, bookmarks and passwords to all your devices for a painless browsing experience on mobile.</p>
-      <p>Personalize features and functionality with add-ons. <a class="more" href="#">Get add-ons</a></p>
-      <p>Effortlessly switch between <a href="#">tabs</a> with live thumbnail images that show you updated snapshots of your sites.</p>
+    <section id="smart">
+      <h2>{{_('Smart')}}</h2>
+      <p class="icon html5">{{_('Experience the unlimited possibilities of the mobile Web with full support for HTML5 and Web APIs. <a class="more" href="https://developer.mozilla.org/mobile">Learn more</a>')}}</p>
+      <p class="icon sync">{{_('<a href="/mobile/sync/">Sync</a> your desktop history, bookmarks and passwords to all your devices for a painless browsing experience on mobile.')}}</p>
+      <p class="icon addons">{{_('Personalize features and functionality with add-ons. <a class="more" href="http://addons.mozilla.org/mobile/">Get add-ons</a>')}}</p>
+      <p>{{_('Effortlessly switch between <a href="http://support.mozilla.org/kb/how-do-i-use-tabs-mobile">tabs</a> with live thumbnail images that show you updated snapshots of your sites.')}}</p>
     </section>
 
-    <section class="get">
-      <p><a href="#">Get Firefox for Android free from the Google Play Store</a></p>
+    <section id="get">
+      <p><a href="#">{{_('Get Firefox for Android free from the Google Play Store')}}</a></p>
     </section>
   </div>
 
 </div>
 
-{% endblock %}
-
-{% block js %}
-  {{ js('mobile_features') }}
-  <script>
 {% endblock %}

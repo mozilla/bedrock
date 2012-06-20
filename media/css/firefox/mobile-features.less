@@ -22,7 +22,7 @@
 }
 
 #main-content {
-    background: #fff url(/media/img/firefox/features/smartphone-large.png) 50% 80px no-repeat;
+    background: #fff url(/media/img/firefox/mobile/smartphone-large.png) 50% 80px no-repeat;
     padding: (@baseLine * 2) @gridGutterWidth;
     margin-bottom: @baseLine;
     @shadow: 0 1px 1px 0 rgba(0,0,0,.1);
@@ -36,6 +36,51 @@
       .span(4);
       float: right;
     }
+    
+    h2 {
+      font-size: 46px;
+    }
+    
+    .icon {
+        padding-left: @gridColumnWidth;
+        background-repeat: no-repeat;
+        min-height: 50px;
+    }
+    
+}
+
+#fast,
+#smart {
+    border-bottom: 1px dotted @borderColor;
+    margin-bottom: @baseLine;
+}
+
+#safe .privacy {
+    background-image: url(/media/img/firefox/mobile/icn-privacy.png);
+}
+
+#smart .html5 {
+    background-image: url(/media/img/firefox/mobile/icn-html5.png);  
+}
+
+#smart .sync {
+    background-image: url(/media/img/firefox/mobile/icn-sync.png);  
+}
+
+#smart .addons {
+    background-image: url(/media/img/firefox/mobile/icn-addons.png);  
+}
+
+#get a {
+    display: block;
+    padding-left: 48px;
+    background: url(/media/img/firefox/mobile/android-tiny.png) no-repeat;
+    font-size: .875em;
+}
+
+a.more:after,
+#get a:after {
+    content: "\00A0\00BB"; /* nbsp raquo */
 }
 
 
@@ -56,13 +101,14 @@
     
     #main-content {
         .col1 {
-          .span_narrow(4);
+            .span_narrow(4);
         }
         
         .col2 {
-          .span_narrow(4);
-          float: right;
+            .span_narrow(4);
+            float: right;
         }
+        
     }
 
 }
@@ -84,7 +130,6 @@
             font-size: 48px;
         }
         h2 {
-            .offset(0);
             width: auto;
             float: none;
         }
@@ -93,11 +138,20 @@
     #main-content {
         background-image: none;
         padding: @baseLine (@gridGutterWidth / 2);
+        
         .col1,
         .col2 {
-          width: auto;
-          float: none;
+            width: auto;
+            float: none;
         }
+        h2 {
+            font-size: 32px;
+        }
+    }
+    
+    #safe {
+        border-bottom: 1px dotted @borderColor;
+        margin-bottom: @baseLine;
     }
 
 }
