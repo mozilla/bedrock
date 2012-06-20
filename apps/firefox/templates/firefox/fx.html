@@ -30,7 +30,27 @@
       document.getElementById('mobile').id = 'page-mobile';
       // ]]></script>
       <section>
-        <p>Mobile!</p>
+        <hgroup>
+          <h1>Firefox for Android</h1>
+          <h2>Fast. Smart. Safe.</h2>
+        </hgroup>
+        <div id="download_column">
+          {{ mobile_download_button('primary-download-mobile') }}
+        </div>
+        <div id="photo_column">
+          <img src="{{ media('/img/firefox/fx/mobile-phone.jpg') }}" alt="Firefox on Android" />
+        </div>
+        <ul id="mobile-sub-features">
+          <li id="supported">
+            <a href="/mobile/platforms">{{ _('Find out if your device is supported&nbsp;»') }}</a>
+          </li>
+          <li id="firefox-mobile">
+            <a href="/mobile">{{ _('Learn more about Firefox for Android&nbsp;»') }}</a>
+          </li>
+          <li id="playstore-mobile">
+            <a href="https://market.android.com/details?id=org.mozilla.firefox">{{ _('Get Firefox for Android free from the Google Play Store&nbsp;»') }}</a>
+          </li>
+        </ul>
       </section>
     </div>
 
@@ -38,7 +58,7 @@
       <script>// <![CDATA[
       document.getElementById('desktop').id = 'page-desktop';
       // ]]></script>
-      <section>
+      <section id="out-of-date">
         <hgroup>
           <h1>Different by Design</h1>
           <h2>Get the latest version of Firefox. It’s fast, flexible and secure.</h2>
@@ -47,6 +67,20 @@
         <figure id="firefox-screenshot">
           {{ platform_img('img/firefox/fx/existing-screen.jpg', alt='Firefox screenshot') }}
         </figure>
+        <ul id="sub-features">
+          <li id="features">
+            <a href="{{ url('firefox.features') }}">{{ _('Learn more about the latest Firefox features&nbsp;»') }}</a>
+          </li>
+          <li id="customize">
+            <a href="{{ url('firefox.customize') }}">{{ _('Customize your Firefox with add-ons&nbsp;»') }}</a>
+          </li>
+          <li id="playstore">
+            <a href="https://market.android.com/details?id=org.mozilla.firefox">{{ _('Get Firefox for Android free from the Google Play Store&nbsp;»') }}</a>
+          </li>
+        </ul>
+      </section>
+
+      <section id="up-to-date">
       </section>
     </div>
 

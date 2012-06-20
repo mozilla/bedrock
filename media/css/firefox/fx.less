@@ -3,7 +3,7 @@
 
 #main-pager {
 
-     .pager-tabs {
+    .pager-tabs {
         margin: 0;
         text-align: center;
         .open-sans;
@@ -11,16 +11,17 @@
         text-transform: uppercase;
         li {
             .inline-block;
+            margin: 0;
             a {
                 .inline-block;
                 background: url(/media/img/firefox/pager-tabs.png) 0 0 no-repeat;
                 height: 40px;
                 width: 218px;
                 line-height: 40px;
-                color: @textColorSecondary;
+                color: @linkSkyBlue;
                 &.selected {
                     background-position: 100% 0;
-                    color: @linkSkyBlue;
+                    color: @textColorSecondary;
                 }
             }
         }
@@ -41,16 +42,112 @@
                 letter-spacing: -0.5px;
             }
         }
-        #download {
-            text-align: left;
-            margin: @baseLine / 2;
+        #out-of-date {
+            #download {
+                text-align: left;
+                margin: @baseLine / 2;
 
-        }
-        #firefox-screenshot {
-            margin: (@baseLine / 2) 0;
-            img {
-                display: block;
+            }
+            #firefox-screenshot {
+                margin: (@baseLine / 2) 0;
+                img {
+                    display: block;
+                    height: 218px;
+                    width: 960px;
+                }
+            }
+            #sub-features {
+                .inset;
+                .clearfix;
+                margin-bottom: 0;
+                li {
+                    .span(4);
+                    list-style-type: none;
+                    text-align: left;
+                    padding: (@baseLine) 0;
+                    a {
+                        display: block;
+                        padding: 0 20px 0 80px;
+                        .open-sans-light;
+                        letter-spacing: -0.02em;
+                        min-height: 50px;
+                        color: @textColorTertiary;
+                        background: url(/media/img/firefox/fx/sub-feature-icons.png) 0 0 no-repeat;
+                        border-left: 1px dotted @borderColor;
+                    }
+                    &:first-child a {
+                        border-left: 0;
+                    }
+                }
+                li#customize a { background-position: 0 -100px; }
+                li#playstore a { background-position: 0 -200px; }
             }
         }
     }
+
+    .mobile-content {
+        hgroup {
+            text-align: center;
+            h1 {
+                .large;
+            }
+            h2 {
+                font-size: 28px;
+                letter-spacing: -0.5px;
+            }
+        }
+        #download_column {
+            .span(4);
+            padding-top: 45px;
+            position: relative;
+            z-index: 10;
+            text-align: right;
+            aside {
+                text-align: left;
+            }
+        }
+        #photo_column {
+            .span(4);
+            img {
+                position: relative;
+                right: 33px;
+                z-index: 5;
+                height: 422px;
+                width: 281px;
+            }
+        }
+        #mobile-sub-features {
+            .span(4);
+        }
+        #mobile-sub-features {
+            .inset;
+            .clearfix;
+            margin-bottom: 0;
+            margin-top: 45px;
+            li {
+                list-style-type: none;
+                text-align: left;
+                padding: 0 20px;
+                margin: 0;
+                a {
+                    display: block;
+                    padding: 20px 20px 20px 55px;
+                    .open-sans-light;
+                    font-size: 15px;
+                    letter-spacing: -0.02em;
+                    min-height: 50px;
+                    color: @textColorTertiary;
+                    background: url(/media/img/firefox/fx/sub-feature-icons.png) -25px -280px no-repeat;
+                    border-top: 1px dotted @borderColor;
+                }
+                &:first-child a {
+                    border-top: 0;
+                }
+            }
+            li#firefox-mobile a { background-position: -25px -180px; }
+            li#playstore-mobile a { background-position: -25px -380px; }
+        }
+    }
+
+
 }
