@@ -11,22 +11,194 @@
         text-transform: uppercase;
         li {
             .inline-block;
+            position: relative;
+            right: 8px;
             margin: 0;
+            width: 218px;
             a {
-                .inline-block;
+                display: block;
+                position: relative;
+                z-index: 10;
                 background: url(/media/img/firefox/pager-tabs.png) 0 0 no-repeat;
                 height: 40px;
-                width: 218px;
                 line-height: 40px;
                 color: @linkSkyBlue;
                 &.selected {
                     background-position: 100% 0;
                     color: @textColorSecondary;
+                    z-index: 20;
                 }
             }
         }
-        li.current {
+        li:first-child {
+            left: 8px;
+        }
+    }
+    hgroup {
+        h1 {
+            .large;
+        }
+        h2 {
+            font-size: 28px;
+            letter-spacing: -0.5px;
+        }
+    }
+}
+
+.desktop-content {
+    text-align: center;
+    #out-of-date {
+        #download {
+            text-align: left;
+            margin: @baseLine / 2;
+
+        }
+        #firefox-screenshot {
+            margin: (@baseLine / 2) 0;
+            img {
+                display: block;
+                height: auto;
+                width: 100%;
+            }
+        }
+    }
+}
+
+.mobile-content {
+    text-align: center;
+    #download-column {
+        .span(4);
+        margin-top: 45px;
+        position: relative;
+        z-index: 10;
+        text-align: right;
+        aside {
+            text-align: left;
+        }
+    }
+    #photo-column {
+        .span(4);
+        img {
+            position: relative;
+            right: 33px;
+            z-index: 5;
+            height: 422px;
+            width: 281px;
+        }
+    }
+    .sub-features {
+        .span(4);
+        margin-bottom: 0;
+        margin-top: 45px;
+        li {
+            float: none;
+            width: auto;
+            padding: 0;
+            right: 0;
             a {
+                border-left: 0;
+                border-top: 1px dotted @borderColor;
+            }
+            &:first-child a {
+                border-top: 0;
+            }
+        }
+    }
+}
+
+.sub-features {
+    .inset;
+    .clearfix;
+    margin-bottom: 0;
+    padding-top: @baseLine / 2;
+    padding-bottom: @baseLine / 2;
+    li {
+        .span(4);
+        list-style-type: none;
+        text-align: left;
+        padding: 0;
+        position: relative;
+        right: 10px;
+        a {
+            display: block;
+            padding: @baseLine / 2;
+            padding-left: 70px;
+            margin: 0 (@baseLine / 2);
+            .open-sans-light;
+            letter-spacing: -0.02em;
+            min-height: 50px;
+            color: @textColorTertiary;
+            background: url(/media/img/firefox/fx/sub-feature-icons.png) 0 0 no-repeat;
+            border-left: 1px dotted @borderColor;
+        }
+        &:first-child a {
+            border-left: 0;
+        }
+    }
+    li#customize      a { background-position: 0 -200px; }
+    li#playstore      a { background-position: 0 -400px; }
+    li#supported      a { background-position: 0 -400px; }
+    li#firefox-mobile a { background-position: 0 -600px; }
+}
+
+/* Tablet Layout: 760px */
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+
+    .sub-features li {
+        .span_narrow(4);
+        font-size: 14px;
+        a {
+            margin: 0;
+        }
+    }
+
+    .mobile-content {
+        #download-column,
+        #photo-column,
+        .sub-features {
+            .span_narrow(4);
+        }
+    }
+
+    .mobile-content {
+        #photo-column {
+            img {
+                height: auto;
+            }
+        }
+        #download-column,
+        .sub-features {
+            margin-top: 20px;
+            .download-button small.download-other {
+                text-align: left;
+            }
+        }
+    }
+}
+
+/* Mobile layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+
+    #main-pager {
+        .pager-tabs {
+            margin: 0;
+            li {
+                width: 145px;
+                a {
+                    background-position: 0 100%;
+                    &.selected {
+                        background-position: 100% 100%;
+                    }
+                }
+            }
+        }
+        hgroup {
+            h1 {
+                font-size: 36px;
+                letter-spacing: -1px;
+            }
+            h2 {
+                font-size: 18px;
             }
         }
     }
@@ -43,111 +215,48 @@
             }
         }
         #out-of-date {
-            #download {
-                text-align: left;
-                margin: @baseLine / 2;
-
-            }
             #firefox-screenshot {
-                margin: (@baseLine / 2) 0;
                 img {
-                    display: block;
-                    height: 218px;
-                    width: 960px;
+                    height: auto;
+                    width: 100%;
                 }
             }
-            #sub-features {
-                .inset;
-                .clearfix;
-                margin-bottom: 0;
-                li {
-                    .span(4);
-                    list-style-type: none;
-                    text-align: left;
-                    padding: (@baseLine) 0;
-                    a {
-                        display: block;
-                        padding: 0 20px 0 80px;
-                        .open-sans-light;
-                        letter-spacing: -0.02em;
-                        min-height: 50px;
-                        color: @textColorTertiary;
-                        background: url(/media/img/firefox/fx/sub-feature-icons.png) 0 0 no-repeat;
-                        border-left: 1px dotted @borderColor;
-                    }
-                    &:first-child a {
-                        border-left: 0;
-                    }
-                }
-                li#customize a { background-position: 0 -100px; }
-                li#playstore a { background-position: 0 -200px; }
-            }
+        }
+        .download-button-large .download-link {
+            min-width: 0;
         }
     }
 
     .mobile-content {
-        hgroup {
-            text-align: center;
-            h1 {
-                .large;
-            }
-            h2 {
-                font-size: 28px;
-                letter-spacing: -0.5px;
-            }
-        }
-        #download_column {
-            .span(4);
-            padding-top: 45px;
-            position: relative;
-            z-index: 10;
-            text-align: right;
-            aside {
+        #download-column {
+            padding-top: 0;
+            width: auto;
+            .download-button small.download-other {
                 text-align: left;
             }
         }
-        #photo_column {
-            .span(4);
-            img {
-                position: relative;
-                right: 33px;
-                z-index: 5;
-                height: 422px;
-                width: 281px;
-            }
-        }
-        #mobile-sub-features {
-            .span(4);
-        }
-        #mobile-sub-features {
-            .inset;
-            .clearfix;
-            margin-bottom: 0;
-            margin-top: 45px;
-            li {
-                list-style-type: none;
-                text-align: left;
-                padding: 0 20px;
+        #photo-column { display: none; }
+    }
+
+    .sub-features,
+    .mobile-content .sub-features {
+        width: auto;
+        li {
+            float: none;
+            width: auto;
+            padding: 0;
+            right: 0;
+            a {
+                border-left: 0;
+                border-top: 1px dotted @borderColor;
                 margin: 0;
-                a {
-                    display: block;
-                    padding: 20px 20px 20px 55px;
-                    .open-sans-light;
-                    font-size: 15px;
-                    letter-spacing: -0.02em;
-                    min-height: 50px;
-                    color: @textColorTertiary;
-                    background: url(/media/img/firefox/fx/sub-feature-icons.png) -25px -280px no-repeat;
-                    border-top: 1px dotted @borderColor;
-                }
-                &:first-child a {
-                    border-top: 0;
-                }
             }
-            li#firefox-mobile a { background-position: -25px -180px; }
-            li#playstore-mobile a { background-position: -25px -380px; }
+            &:first-child a {
+                border-top: 0;
+            }
         }
     }
 
-
 }
+
+

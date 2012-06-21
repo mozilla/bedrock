@@ -15,12 +15,10 @@
 
 <div id="main-pager" class="pager pager-with-tabs">
 
-  <nav class="container">
-    <ul class="pager-tabs">
-      <li><a href="#mobile">Mobile</a></li>
-      <li><a href="#desktop">Desktop</a></li>
-    </ul>
-  </nav>
+  <ul class="pager-tabs">
+    <li><a href="#mobile">Mobile</a></li>
+    <li><a href="#desktop">Desktop</a></li>
+  </ul>
 
   <div class="billboard">
   <div class="pager-content">
@@ -34,13 +32,13 @@
           <h1>Firefox for Android</h1>
           <h2>Fast. Smart. Safe.</h2>
         </hgroup>
-        <div id="download_column">
+        <div id="download-column">
           {{ mobile_download_button('primary-download-mobile') }}
         </div>
-        <div id="photo_column">
+        <div id="photo-column">
           <img src="{{ media('/img/firefox/fx/mobile-phone.jpg') }}" alt="Firefox on Android" />
         </div>
-        <ul id="mobile-sub-features">
+        <ul class="sub-features">
           <li id="supported">
             <a href="/mobile/platforms">{{ _('Find out if your device is supported&nbsp;»') }}</a>
           </li>
@@ -67,7 +65,7 @@
         <figure id="firefox-screenshot">
           {{ platform_img('img/firefox/fx/existing-screen.jpg', alt='Firefox screenshot') }}
         </figure>
-        <ul id="sub-features">
+        <ul class="sub-features">
           <li id="features">
             <a href="{{ url('firefox.features') }}">{{ _('Learn more about the latest Firefox features&nbsp;»') }}</a>
           </li>
