@@ -112,6 +112,7 @@ MINIFY_BUNDLES = {
         ),
         'firefox_fx': (
             'css/firefox/fx.less',
+            'css/sandstone/video.less',
         ),
         'firefox_geolocation': (
             'css/mozilla-expanders.less',
@@ -234,6 +235,7 @@ MINIFY_BUNDLES = {
         ),
         'firefox_fx': (
             'js/mozilla-pager.js',
+            'js/mozilla-video-tools.js',
         ),
         'firefox_happy': (
             'js/libs/jquery-1.4.4.min.js',

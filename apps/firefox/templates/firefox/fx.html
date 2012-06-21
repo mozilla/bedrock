@@ -7,10 +7,6 @@
   {{ css('firefox_fx') }}
 {% endblock %}
 
-{% block js %}
-  {{ js('firefox_fx') }}
-{% endblock %}
-
 {% block content %}
 
 <div id="main-pager" class="pager pager-with-tabs">
@@ -40,13 +36,13 @@
         </div>
         <ul class="sub-features">
           <li id="supported">
-            <a href="/mobile/platforms">{{ _('Find out if your device is supported&nbsp;»') }}</a>
+            <a class="link" href="/mobile/platforms">{{ _('Find out if your device is supported&nbsp;»') }}</a>
           </li>
           <li id="firefox-mobile">
-            <a href="/mobile">{{ _('Learn more about Firefox for Android&nbsp;»') }}</a>
+            <a class="link" href="/mobile">{{ _('Learn more about Firefox for Android&nbsp;»') }}</a>
           </li>
           <li id="playstore-mobile">
-            <a href="https://market.android.com/details?id=org.mozilla.firefox">{{ _('Get Firefox for Android free from the Google Play Store&nbsp;»') }}</a>
+            <a class="link" href="https://market.android.com/details?id=org.mozilla.firefox">{{ _('Get Firefox for Android free from the Google Play Store&nbsp;»') }}</a>
           </li>
         </ul>
       </section>
@@ -56,6 +52,38 @@
       <script>// <![CDATA[
       document.getElementById('desktop').id = 'page-desktop';
       // ]]></script>
+      <section id="up-to-date">
+        <hgroup>
+          <h1>Hooray! Your Firefox is up to date.</h1>
+          <h2>See how the new features in Firefox help you browse faster and more efficiently.</h2>
+        </hgroup>
+        <div id="video-player" class="mozilla-video-control mozilla-video-shadow">
+          <video
+            controls="controls"
+            poster="{{ media('/img/firefox/video/poster-newtab.jpg') }}"
+            height="360"
+            width="640">
+            <source src="http://videos.mozilla.org/serv/marketing/Firefox/Firefox%20Tabs_1.webm">
+          </video>
+        </div>
+        <ul class="sub-features">
+          <li id="new-copy"><div class="wrap">
+            <h4>{{ _('Need a fresh copy?') }}</h4>
+            <p>{{ _('You’ve come to the right place!') }}</p>
+            {{ download_button('download', 'small') }}
+          </div></li>
+          <li id="beta-promo"><div class="wrap">
+            <h4>{{ _('Try Firefox Beta') }}</h4>
+            <p>Get a sneak peek at the latest features and innovations coming soon to Firefox.
+            <a href="{{ php_url('/firefox/beta/') }}">{{ _('Download now&nbsp;»') }}</a></p>
+          </div></li>
+          <li id="android-promo"><div class="wrap">
+            <h4>Get Firefox for Android</h4><span class="icon"></span>
+            <p>{{ _('Get the mobile browser that’s got your back free from the ') }}
+            <a href="https://market.android.com/details?id=org.mozilla.firefox">{{ _('Google Play Store&nbsp;»') }}</a></p>
+          </div></li>
+        </ul>
+      </section>
       <section id="out-of-date">
         <hgroup>
           <h1>Different by Design</h1>
@@ -67,13 +95,13 @@
         </figure>
         <ul class="sub-features">
           <li id="features">
-            <a href="{{ url('firefox.features') }}">{{ _('Learn more about the latest Firefox features&nbsp;»') }}</a>
+            <a class="link" href="{{ url('firefox.features') }}">{{ _('Learn more about the latest Firefox features&nbsp;»') }}</a>
           </li>
           <li id="customize">
-            <a href="{{ url('firefox.customize') }}">{{ _('Customize your Firefox with add-ons&nbsp;»') }}</a>
+            <a class="link" href="{{ url('firefox.customize') }}">{{ _('Customize your Firefox with add-ons&nbsp;»') }}</a>
           </li>
           <li id="playstore">
-            <a href="https://market.android.com/details?id=org.mozilla.firefox">{{ _('Get Firefox for Android free from the Google Play Store&nbsp;»') }}</a>
+            <a class="link" href="https://market.android.com/details?id=org.mozilla.firefox">{{ _('Get Firefox for Android free from the Google Play Store&nbsp;»') }}</a>
           </li>
         </ul>
       </section>
@@ -88,4 +116,41 @@
 </div>
 
 {% endblock %}
+
+{% block js %}
+  {{ js('firefox_fx') }}
+
+<script>
+$(document).ready(function() {
+  var latestVersion = parseInt('{{latest_version}}'.split('.')[0], 10);
+  var isFirefox = (/\sFirefox/.test(window.navigator.userAgent));
+  var isMobile = (/\sMobile/.test(window.navigator.userAgent));
+
+
+  function getFirefoxVersion()
+  {
+      var version = 0;
+
+      var matches = /Firefox\/([0-9]+).[0-9]+(?:.[0-9]+)?/.exec(
+          navigator.userAgent
+      );
+
+      if (matches !== null && matches.length > 0) {
+          version = parseInt(matches[1], 10);
+      }
+
+      return version;
+  };
+
+  // If Firefox is the latest version and not mobile,
+  // hide the out-of-date messaging and show up-to-date
+  if(isFirefox && !isMobile) {
+    if (latestVersion <= getFirefoxVersion()) {
+      $('#out-of-date').hide();
+      $('#up-to-date').show();
+    }
+  }
+});
+</script>
+{% endblock  %}
 

@@ -35,6 +35,10 @@
         }
     }
     hgroup {
+        float: none;
+        margin-left: @baseLine / 2;
+        margin-right: @baseLine / 2;
+        margin-bottom: @baseLine;
         h1 {
             .large;
         }
@@ -59,6 +63,57 @@
                 display: block;
                 height: auto;
                 width: 100%;
+            }
+        }
+    }
+    #up-to-date {
+        display: none;
+        hgroup {
+            h1 {
+                font-size: 36px;
+            }
+            h2 {
+                font-size: 18px;
+            }
+        }
+        #video-player {
+            max-width: 640px;
+            margin: (@baseLine / 2) auto @baseLine auto;
+            video {
+                width: 100%;
+                height: auto;
+            }
+        }
+        .sub-features {
+            p {
+                margin: 0;
+            }
+        }
+        #new-copy {
+            .download-list li {
+                width: auto;
+                position: static;
+            }
+            .download-button-small .download-link {
+                margin-left: 0;
+                .download-content {
+                    background-image: none;
+                    margin-left: 0;
+                    padding-left: 20px;
+                }
+            }
+            .download-button small.download-other {
+                text-align: left;
+            }
+        }
+        #android-promo {
+            .icon {
+                display: block;
+                float: right;
+                height: 50px;
+                width: 40px;
+                margin-top: 10px;
+                background: url(/media/img/firefox/fx/sub-feature-icons.png) -20px -410px no-repeat;
             }
         }
     }
@@ -95,11 +150,11 @@
             width: auto;
             padding: 0;
             right: 0;
-            a {
+            a.link {
                 border-left: 0;
                 border-top: 1px dotted @borderColor;
             }
-            &:first-child a {
+            &:first-child a.link {
                 border-top: 0;
             }
         }
@@ -119,7 +174,7 @@
         padding: 0;
         position: relative;
         right: 10px;
-        a {
+        a.link {
             display: block;
             padding: @baseLine / 2;
             padding-left: 70px;
@@ -131,9 +186,14 @@
             background: url(/media/img/firefox/fx/sub-feature-icons.png) 0 0 no-repeat;
             border-left: 1px dotted @borderColor;
         }
-        &:first-child a {
-            border-left: 0;
+        .wrap {
+            border-left: 1px dotted @borderColor;
+            padding: (@baseLine / 2) (@baseLine);
         }
+    }
+    li:first-child a.link,
+    li:first-child .wrap {
+        border-left: 0;
     }
     li#customize      a { background-position: 0 -200px; }
     li#playstore      a { background-position: 0 -400px; }
@@ -147,7 +207,7 @@
     .sub-features li {
         .span_narrow(4);
         font-size: 14px;
-        a {
+        a.link {
             margin: 0;
         }
     }
@@ -225,6 +285,13 @@
         .download-button-large .download-link {
             min-width: 0;
         }
+        #up-to-date {
+            hgroup {
+                h1 {
+                    font-size: 36px;
+                }
+            }
+        }
     }
 
     .mobile-content {
@@ -248,14 +315,16 @@
             width: auto;
             padding: 0;
             right: 0;
-            a {
+            .wrap,
+            a.link {
                 border-left: 0;
                 border-top: 1px dotted @borderColor;
                 margin: 0;
             }
-            &:first-child a {
+        }
+        li:first-child a.link,
+        li:first-child .wrap {
                 border-top: 0;
-            }
         }
     }
 
