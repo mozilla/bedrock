@@ -21,7 +21,7 @@ urlpatterns = patterns('',
     page('firefox/performance', 'firefox/performance.html'),
     page('firefox/security', 'firefox/security.html'),
     page('firefox/speed', 'firefox/speed.html',
-         latest_version=product_details.versions['LATEST_FIREFOX_DEVEL_VERSION']),
+         latest_version=product_details.firefox_versions['LATEST_FIREFOX_VERSION']),
     page('firefox/technology', 'firefox/technology.html'),
     page('firefox/update', 'firefox/update.html'),
 
