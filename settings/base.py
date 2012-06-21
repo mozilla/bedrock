@@ -116,6 +116,10 @@ MINIFY_BUNDLES = {
             'css/firefox/template-resp.less',
             'css/firefox/mobile-features.less',
         ),
+        'firefox_faq': (
+            'css/firefox/template-resp.less',
+            'css/mozilla-expanders.less',
+        ),
         'firefox_fx': (
             'css/firefox/fx.less',
         ),
@@ -252,6 +256,9 @@ MINIFY_BUNDLES = {
             'js/libs/jquery-animate-css-rotate-scale.js',
         ),
         'firefox_platforms': (
+            'js/mozilla-expanders.js',
+        ),
+        'firefox_faq': (
             'js/mozilla-expanders.js',
         ),
         'firefox_speed': (
