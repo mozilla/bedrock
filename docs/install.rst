@@ -37,7 +37,7 @@ Now configure the application to run locally by creating your local settings fil
 
 You shouldn't need customize anything in there yet.
 
-Check out the latest product-details:
+Check out the latest product-details::
 
     $ ./manage.py update_product_details
 
