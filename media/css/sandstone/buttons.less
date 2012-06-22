@@ -154,18 +154,20 @@
     min-width: 250px;
 }
 
-.download-button-small .download-link {
+.download-button-small .download-link,
+.download-button-mobile-small .download-link {
     white-space: nowrap;
     height: 48px;
     margin-left: 25px;
     .download-title {
         .inline-block;
+        height: 48px;
         vertical-align: middle;
         font-size: 24px;
         background: url(/media/img/sandstone/buttons/arrow-small.png) no-repeat 100% 50%;
         padding-right: 20px;
-        padding-bottom: 4px;
         margin-right: 5px;
+        .border-radius(6px);
     }
     .download-content {
         .inline-block;
@@ -175,9 +177,24 @@
         height: 52px;
         padding: 0 20px 0 65px;
         overflow: visible;
+        .border-radius(6px);
     }
 }
 
+.download-button-mobile-small .download-link {
+    .download-title {
+        display: block;
+        background: url(/media/img/sandstone/buttons/android-corner.png) no-repeat 100% 100%;
+        padding-right: 40px;
+        margin-right: 0;
+        .open-sans;
+        font-size: 18px;
+        text-shadow: 0 -1px rgba(0, 0, 0, 0.2);
+    }
+    .download-content {
+        padding-right: 0;
+    }
+}
 
 // OS detection
 

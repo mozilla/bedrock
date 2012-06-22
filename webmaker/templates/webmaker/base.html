@@ -1,0 +1,22 @@
+{% extends "sand.html" %}
+
+{% block extrahead %}
+  {{ css('webmaker') }}
+{% endblock %}
+
+{% block site_header_logo %}
+<h2><a href="{{ url('webmaker.index') }}"><img src="{{ media('img/webmaker/header.png') }}" alt="mozilla Webmaker"></a></h2>
+{% endblock %}
+
+{% block email_form %}&nbsp;{% endblock %}
+
+{% block social %}
+  <nav class="span2">
+    <ul>
+      <li><a href="{{ url('mozorg.mission') }}">Learn about Mozilla's mission</a></li>
+      <li><a href="https://donate.mozilla.org/join/">Join Mozilla</a></li>
+      <li><a href="http://www.facebook.com/mozilla/">Like us on Facebook</a></li>
+      <li><a href="http://www.twitter.com/mozilla/">Follow us on Twitter</a></li>
+    </ul>
+  </nav>
+{% endblock %}

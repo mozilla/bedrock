@@ -84,11 +84,11 @@
 
   <div class="row">
 
-  <h4 class="span4">Sign up for more news about the Mozilla Marketplace.</h4>
+  <h4 class="span4">{{_('Sign up for more news about the Mozilla Marketplace.')}}</h4>
 
   <div class="span4">
     <div class="{% if form.email.errors %}field-error{% endif %}">
-      {{ field_with_attrs(form.email, placeholder='YOUR EMAIL HERE')|safe }}
+      {{ field_with_attrs(form.email, placeholder=_('YOUR EMAIL HERE'))|safe }}
     </div>
 
     <!-- <select name="interest" id="apps-interest"> -->
@@ -110,14 +110,14 @@
 
 
   <div class="span2">
-    <input type="submit" value="Sign up »" class="button-blue">
+    <input type="submit" value="{{_('Sign up »')}}" class="button-blue">
   </div>
 
   </div>
 </form>
 {% else %}
 <div class="container thank" id="apps-email-form">
-  <h3>Thank you for signing up!</h3>
+  <h3>{{_('Thank you for signing up!')}}</h3>
 </div>
 {% endif %}
 {% endblock %}

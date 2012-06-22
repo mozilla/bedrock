@@ -7,3 +7,4 @@ src/django-dnt
 packages/requests
 packages/certifi
 packages/chardet
+packages/python-memcached

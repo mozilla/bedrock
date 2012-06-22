@@ -149,3 +149,8 @@
 .offset(@columns) {
     margin-left: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1)) + (@gridGutterWidth * 2);
 }
+
+.row {
+  margin-left: @gridGutterWidth * -1;
+  .clearfix();
+}
