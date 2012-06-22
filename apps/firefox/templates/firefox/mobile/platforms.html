@@ -1,0 +1,82 @@
+{% extends "/firefox/base-resp.html" %}
+
+{% block page_title %}Firefox on your mobile device{% endblock %}
+{% block body_id %}mobile-platforms{% endblock %}
+
+{% block site_css %}
+  {{ css('firefox_platforms') }}
+{% endblock %}
+
+{% block breadcrumbs %}
+  <nav class="breadcrumbs">
+    <a href="{{ url('mozorg.home') }}">Home</a> >
+    <a href="{{ php_url('/mobile') }}">Mobile</a> >
+    <span>Requirements</span>
+  </nav>
+{% endblock %}
+
+{% block content %}
+
+<div id="main-feature">
+  {{ mobile_download_button('download-mobile', 'mobile_small') }}
+  <hgroup>
+    <h1 class="large">Firefox on your mobile device</h1>
+    <h2>To find out if Firefox works on your phone, choose your manufacturer from the list below.</h2>
+  </hgroup>
+
+
+</div>
+
+<div id="main-content">
+<ul id="platforms-list">
+  {% for platform in devices %}
+  <li class="platforms-platform">
+    <ul class="platforms-manufacturer">
+    {% for manufacturer in devices[platform]['manufacturers'] %}
+      <li class="expander expander-{{ loop.cycle('even', 'odd') }}">
+        <h4 class="expander-header">{{ manufacturer }}</h4>
+        <ul class="platforms-device expander-content">
+        {% for device in devices[platform][manufacturer] %}
+          <li>{{ device }}</li>
+        {% endfor %}
+        </ul>
+      </li>
+    {% endfor %}
+    </ul>
+  </li>
+{% endfor %}
+</ul>
+
+<div class="sidebar">
+
+<div class="reference">
+  <h4>Android</h4>
+  <p>Firefox is compatible with Android 2.2 and above devices.</p>
+  <p>Installation requires about 16 MB internal storage and 512 MB of RAM</p>
+</div>
+
+<h4>Give Feedback or Get Help</h4>
+
+<p>Although your device may support Firefox, we have not tested Firefox on
+every Android device. Tell us about your experience using Firefox on your
+device. Ask questions or give feedback on the <a
+href="http://support.mozilla.org/kb/Mobile+Help+and+Tutorials">Firefox Mobile
+Support Forum</a>.</p>
+</div>
+
+<div id="other">
+
+<p>See a full list of supported and unsupported devices by visiting our <a
+href="https://wiki.mozilla.org/Mobile/Platforms/Android#System_Requirements">System
+Requirements wiki</a>.</p>
+
+</div>
+
+</div>
+
+{% endblock %}
+
+{% block js %}
+  {{ js('firefox_platforms') }}
+  <script>
+{% endblock %}

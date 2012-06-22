@@ -1,7 +1,8 @@
 from django.conf.urls.defaults import *
-from views import marketplace, partners
+
+import views
 
 urlpatterns = patterns('',
-    (r'^$', marketplace),
-    (r'^partners/$', partners),
+    url(r'^$', views.marketplace, name='marketplace'),
+    url(r'^partners/$', views.partners, name='partners')
 )

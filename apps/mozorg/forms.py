@@ -28,7 +28,7 @@ class PrivacyWidget(widgets.CheckboxInput):
         return mark_safe(
             '<label for="%s" class="privacy-check-label">'
             '%s '
-            '<span class="title">%s</span></label>' 
+            '<span class="title">%s</span></label>'
             % (attrs['id'], input_txt,
                policy_txt % '/en-US/privacy-policy')
          )
@@ -56,24 +56,23 @@ class NewsletterCountryForm(NewsletterForm):
         self.fields['country'] = forms.ChoiceField(choices=regions,
                                                    initial=locale)
 
-INTEREST_CHOICES = (('', 'Area of interest?'),
-                    ('Support', 'Helping Users'),
-                    ('QA', 'Testing and QA'),
-                    ('Coding', 'Coding'),
-                    ('Marketing', 'Marketing'),
-                    ('Localization', 'Localization'),
-                    ('Webdev', 'Web Development'),
-                    ('Add-ons', 'Add-ons'),
-                    ('Design', 'Visual Design'),
-                    ('Students', 'Student Reps'),
-                    ('Documentation', 'Developer Documentation'),
-                    ('Accessibility', 'Accessibility'),
-                    ('IT', 'Systems Administration'),
-                    ('Research', 'User Research'),
-                    ('Thunderbird', 'Thunderbird'),
-                    (' ', 'Other'),
-                    ('Firefox Suggestions', 'I have a suggestion for Firefox'),
-                    ('Firefox Issue', 'I need help with a Firefox issue'))
+INTEREST_CHOICES = (('', _('Area of interest?')),
+                    ('Support', _('Helping Users')),
+                    ('QA', _('Testing and QA')),
+                    ('Coding', _('Coding')),
+                    ('Marketing', _('Marketing')),
+                    ('Localization', _('Localization')),
+                    ('Webdev', _('Web Development')),
+                    ('Add-ons', _('Add-ons')),
+                    ('Design', _('Visual Design')),
+                    ('Documentation', _('Developer Documentation')),
+                    ('Accessibility', _('Accessibility')),
+                    ('IT', _('Systems Administration')),
+                    ('Research', _('User Research')),
+                    ('Thunderbird', _('Thunderbird')),
+                    (' ', _('Other')),
+                    ('Firefox Suggestions', _('I have a suggestion for Firefox')),
+                    ('Firefox Issue', _('I need help with a Firefox issue')))
 
 class ContributeForm(forms.Form):
     email = forms.EmailField(widget=EmailInput(attrs={'required':'true'}))
