@@ -41,7 +41,20 @@
 
   <div class="pager-content">
 
-    <div class="default-page pager-page" id="promo-collusion">
+    <div class="pager-page default-page" id="promo-android">
+      <script>// <![CDATA[
+      document.getElementById('promo-android').id = 'page-promo-android';
+      // ]]></script>
+      <a href="{{ php_url('/mobile/') }}?WT.mc_id=moandroid&amp;WT.mc_ev=click" class="container">
+        <img src="{{ media('img/home/promo-android.jpg') }}" alt="Firefox for Android artwork">
+        <div>
+          <h3>Get the mobile browser that’s got your back.</h3>
+          <p>Get Firefox for Android&nbsp;»</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="pager-page" id="promo-collusion">
       <script>// <![CDATA[
       document.getElementById('promo-collusion').id = 'page-promo-collusion';
       // ]]></script>
@@ -67,25 +80,11 @@
       </a>
     </div>
 
-    <div class="pager-page" id="promo-android">
-      <script>// <![CDATA[
-      document.getElementById('promo-android').id = 'page-promo-android';
-      // ]]></script>
-      <a href="{{ php_url('/mobile/') }}?WT.mc_id=moandroid&amp;WT.mc_ev=click" class="container">
-        <img src="{{ media('img/home/promo-android.jpg') }}" alt="Firefox for Android artwork">
-        <div>
-          <h3>Get the mobile browser that’s got your back.</h3>
-          <p>Get Firefox for Android&nbsp;»</p>
-        </div>
-      </a>
-    </div>
-  </div>
-
-  <ul class="pager-tabs">
-    <li id="tab-beta"><a href="#p1">●</a></li>
-    <li id="tab-flicks"><a href="#p2">●</a></li>
-    <li id="tab-affiliates"><a href="#p3">●</a></li>
-  </ul>
+    <ul class="pager-tabs">
+      <li><a href="#p1">●</a></li>
+      <li><a href="#p2">●</a></li>
+      <li><a href="#p3">●</a></li>
+    </ul>
 
 </section>
 
