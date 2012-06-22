@@ -94,6 +94,9 @@ MINIFY_BUNDLES = {
         'firefox': (
             'css/firefox/template.less',
         ),
+        'firefox-resp': (
+            'css/firefox/template-resp.less',
+        ),
         'firefox_channel': (
             'css/firefox/channel.less',
         ),
@@ -109,8 +112,17 @@ MINIFY_BUNDLES = {
             'css/sandstone/video.less',
             'css/firefox/features.less',
         ),
+        'mobile_features': (
+            'css/firefox/template-resp.less',
+            'css/firefox/mobile-features.less',
+        ),
+        'firefox_faq': (
+            'css/firefox/template-resp.less',
+            'css/mozilla-expanders.less',
+        ),
         'firefox_fx': (
             'css/firefox/fx.less',
+            'css/sandstone/video.less',
         ),
         'firefox_geolocation': (
             'css/mozilla-expanders.less',
@@ -127,7 +139,7 @@ MINIFY_BUNDLES = {
             'css/firefox/organizations.less',
         ),
         'firefox_platforms': (
-            'css/firefox/template.less',
+            'css/firefox/template-resp.less',
             'css/mozilla-expanders.less',
             'css/firefox/platforms.less',
         ),
@@ -239,12 +251,19 @@ MINIFY_BUNDLES = {
             'js/mozilla-video-tools.js',
             'js/firefox/features.js',
         ),
+        'firefox_fx': (
+            'js/mozilla-pager.js',
+            'js/mozilla-video-tools.js',
+        ),
         'firefox_happy': (
             'js/libs/jquery-1.4.4.min.js',
             'js/libs/jquery-css-transform.js',
             'js/libs/jquery-animate-css-rotate-scale.js',
         ),
         'firefox_platforms': (
+            'js/mozilla-expanders.js',
+        ),
+        'firefox_faq': (
             'js/mozilla-expanders.js',
         ),
         'firefox_speed': (

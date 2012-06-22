@@ -1,43 +1,49 @@
-@import "../sandstone/variables.less";
-@import "../sandstone/mixins.less";
+@import "../sandstone/variables-resp.less";
+@import "../sandstone/mixins-resp.less";
 
 #main-feature {
-    padding-bottom: @baseLine;
+    hgroup {
+        margin-top: @baseLine / 2;
+    }
     h1 {
         .span(6);
-        margin-left: 0;
+        clear: left;
+        margin-bottom: @baseLine / 3;
+        font-size: 64px;
+    }
+    h2 {
+        font-size: 24px;
+        line-height: 1.2;
+        .span(6);
+        clear: left;
     }
     p {
         clear: left;
     }
 }
 
-#intro {
-    .span(6);
-    margin-left: 0;
-    padding-top: @baseLine;
-    p {
-        margin-bottom: 10px;
+.sidebar {
+    .span(3);
+    .offset(1);
+    h4 {
+        font-size: 24px;
+    }
+    font-size: 14px;
+    .reference {
+        margin-top: 0;
+        margin-bottom: @baseLine;
+        border-bottom: 1px dotted @borderColor;
+        padding-bottom: @baseLine / 2;
+        p {
+            margin-bottom: 10px;
+        }
     }
 }
 
 #other {
     .span(8);
-    margin-left: 0;
-    clear: left;
-    padding-top: @baseLine * 2;
-}
-
-#survey {
-    .span(3);
-    .offset(1);
-    p {
-        padding: @baseLine;
-        margin: 0;
-        font-size: @smallFontSize;
-        color: @textColorTertiary;
-        line-height: 1.4;
-    }
+    font-style: italic;
+    font-size: 14px;
 }
 
 #main-content {
@@ -45,15 +51,16 @@
 }
 
 #platforms-list {
-    margin-left: @gridGutterWidth * -1;
     color: @textColorSecondary;
+    .span(8);
+    padding-bottom: @baseLine;
     ul {
         margin-bottom: 0;
     }
 }
 
 #platforms-list > li {
-    .span(4);
+    margin: 0;
 }
 
 #platforms-list > li > ul > li {
@@ -83,3 +90,46 @@
         display: none;
     }
 }
+
+/* Tablet Layout: 760px */
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+   
+    #main-feature {
+        h1 {
+            .span_narrow(6);
+            font-size: 48px;
+        }
+    }
+
+    #platforms-list {
+        .span_narrow(8);
+    }
+
+    .sidebar {
+        .span_narrow(4);
+        .offset(0);
+    }
+
+} 
+
+
+/* Mobile layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+
+    #main-feature {
+        h1 {
+            width: auto;
+            font-size: 48px;
+        }
+    }
+
+    #main-feature h2,
+    #platforms-list,
+    .sidebar,
+    #other {
+        .offset(0);
+        width: auto;
+        float: none;
+    }
+}
+

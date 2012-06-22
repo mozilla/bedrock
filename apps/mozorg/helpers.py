@@ -117,7 +117,7 @@ def make_download_link(product, build, version, platform, locale,
 
 @jingo.register.function
 @jinja2.contextfunction
-def mobile_download_button(ctx, id, format='large', build=None):
+def mobile_download_button(ctx, id, format='large_mobile', build=None):
     if build == 'aurora':
         android_link = download_urls['aurora-mobile']
         version = product_details.mobile_details['alpha_version']

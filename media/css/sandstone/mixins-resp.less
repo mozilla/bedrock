@@ -104,5 +104,5 @@
 }
 
 .offset_narrow(@columns) {
-    margin-left: (@gridColumnWidthNarrow * @columns) + (@gridGutterWidth * (@columns - 1)) + (@gridGutterWidth * 2);
+    margin-left: ((@gridColumnWidthNarrow + @gridGutterWidth) * @columns) + (@gridGutterWidth * 0.5);
 }
