@@ -28,10 +28,11 @@ def handle_contribute_form(request, form):
 def contribute_page(request):
     form = ContributeForm(request.POST or None)
     success = handle_contribute_form(request, form)
-    return l10n_utils.render(request, 
+    return l10n_utils.render(request,
                              'mozorg/contribute-page.html',
                              {'form': form,
                               'success': success})
+
 
 @csrf_exempt
 def contribute(request):
@@ -80,28 +81,39 @@ def contribute(request):
                 newsletter_form.errors['__all__'] = msg
     else:
         newsletter_form = NewsletterCountryForm(locale, prefix='newsletter')
-                
-    return l10n_utils.render(request, 
+
+    return l10n_utils.render(request,
                              'mozorg/contribute.html',
                              {'form': form,
                               'success': success,
                               'newsletter_form': newsletter_form,
                               'newsletter_success': newsletter_success})
 
-def contribute_send(data):
-    ccs = {
-        'QA': 'qanoreply@mozilla.com',
-        'Thunderbird': 'tb-kb@mozilla.com',
+
+def contribute_send(data, locale='en-US'):
+    """Forward contributor's email to our contacts.
+
+    For localized contacts, add the local contact's email to the
+    dictionary as in the following example
+    e.g
+    CCS = { 'QA': {'all': 'all@example.com', 'el': 'el@example.com'} }
+
+    Now all emails for QA get send to 'all@example.com' except
+    the greek ones which get send to 'el@example.com'.
+    """
+    CCS = {
+	'QA': {'all': 'qanoreply@mozilla.com'},
         'Students': 'studentreps@mozilla.com',
-        'Research': 'diane+contribute@mozilla.com',
-        'Design': 'creative@mozilla.com',
-        'Security': 'security@mozilla.com',
-        'Docs': 'eshepherd@mozilla.com',
-        'Drumbeat': 'drumbeat@mozilla.com',
-        'Browser Choice': 'isandu@mozilla.com',
-        'IT': 'cshields@mozilla.com',
-        'Marketing': 'cnovak@mozilla.com',
-        'Add-ons': 'atsay@mozilla.com',
+	'Thunderbird': {'all': 'tb-kb@mozilla.com'},
+	'Research': {'all': 'diane+contribute@mozilla.com'},
+	'Design': {'all': 'creative@mozilla.com'},
+	'Security': {'all': 'security@mozilla.com'},
+	'Docs': {'all': 'eshepherd@mozilla.com'},
+	'Drumbeat': {'all': 'drumbeat@mozilla.com'},
+	'Browser Choice': {'all': 'isandu@mozilla.com'},
+	'IT': {'all': 'cshields@mozilla.com'},
+	'Marketing': {'all': 'cnovak@mozilla.com'},
+	'Add-ons': {'all': 'atsay@mozilla.com'},
     }
 
     from_ = 'contribute-form@mozilla.org'
@@ -110,18 +122,37 @@ def contribute_send(data):
            % (data['email'], data['interest'], data['comments']))
     headers = {'Reply-To': data['email']}
 
+    # Send email To: contribute@mozilla.org and Cc: a team from the
+    # CCS list, if applicable. When in DEV mode copy From: to To: and
+    # don't add Cc:
     to = ['contribute@mozilla.org']
     if settings.DEV:
         to = [data['email']]
 
     cc = None
-    if data['interest'] in ccs:
-        cc = [ccs[data['interest']]]
+    if not settings.DEV and data['interest'] in CCS:
+	email_list = CCS[data['interest']]
+	cc = [email_list.get(locale, email_list['all'])]
 
     email = EmailMessage(subject, msg, from_, to, cc=cc, headers=headers)
     email.send()
 
-def contribute_autorespond(request, data):
+
+def contribute_autorespond(request, data, locale='en-US'):
+    """Send an auto-respond email based on chosen field of interest and locale.
+
+    You can add localized responses by creating email messages in
+    <EMAIL_TEMPLATE_PATH>/<locale>/<category.txt>
+    e.g. emails/el/qa.txt for a QA response in greek.
+
+    To add localized Reply-To header, add the local contributor's email to the
+    dictionary as in the following example
+    e.g
+    replies = { 'Support': {'all': 'all@example.com', 'el': 'el@example.com'} }
+    Now all emails for Support get send with 'Reply-To: all@example.com' except
+    the greek ones which get send with 'Reply-To: el@example.com'.
+    """
+
     replies = {
         'Support': 'jay@jaygarcia.com',
         'Localization': 'fiotakis@otenet.gr',
