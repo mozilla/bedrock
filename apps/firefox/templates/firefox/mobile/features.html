@@ -10,7 +10,7 @@
 {% block breadcrumbs %}
   <nav class="breadcrumbs">
     <a href="{{ url('mozorg.home') }}">{{_('Home')}}</a> >
-    <a href="{{ php_url('/mobile') }}">{{_('Mobile')}}</a> >
+    <a href="{{ url('firefox.fx') }}#mobile">{{_('Mobile')}}</a> >
     <span>{{_('Features')}}</span>
   </nav>
 {% endblock %}
@@ -20,7 +20,7 @@
 <div id="main-feature">
   {{ mobile_download_button('download-mobile', 'mobile_small') }}
   <hgroup>
-    <h1 class="large">{{_('Mobile Features')}}</h1>
+    <h1 class="large">{{_('Mobile features')}}</h1>
     <h2>{{_('All the awesomeness of Firefox, packed into a mobile device.')}}</h2>
   </hgroup>
 </div>
@@ -30,12 +30,12 @@
     <section id="fast">
       <h2>{{_('Fast')}}</h2>
       <p>{{_('Get to the Web quickly with speedy start up and page load times.')}}</p>
-      <p>{{_('The <a href="http://support.mozilla.org/kb/how-do-i-use-awesome-screen">Awesome Screen</a> gets to know you as you browse so you can search easier and get to your destination faster.')}}</p>
+      <p>{{_('The <a href="http://support.mozilla.org/kb/use-awesome-screen-search-firefox-android">Awesome Screen</a> gets to know you as you browse so you can search easier and get to your destination faster.')}}</p>
     </section>
     
     <section id="safe">
       <h2>{{_('Safe')}}</h2>
-      <p class="icon privacy">{{_('Control your privacy and how much data you share on the Web with features like Do Not Track. <a class="more" href="http://support.mozilla.org/kb/configure-mobile-privacy-and-security-settings">Learn more</a>')}}</p>
+      <p class="icon privacy"><span class="img"></span>{{_('Control your privacy and how much data you share on the Web with features like Do Not Track. <a class="more" href="http://support.mozilla.org/kb/configure-mobile-privacy-and-security-settings">Learn more</a>')}}</p>
       <p>{{_('Enjoy the latest in security preferences to easily customize the settings for your passwords, private data, cookies, images and add-ons.')}}</p>
     </section>
   </div>
@@ -43,14 +43,14 @@
   <div class="col2">
     <section id="smart">
       <h2>{{_('Smart')}}</h2>
-      <p class="icon html5">{{_('Experience the unlimited possibilities of the mobile Web with full support for HTML5 and Web APIs. <a class="more" href="https://developer.mozilla.org/mobile">Learn more</a>')}}</p>
-      <p class="icon sync">{{_('<a href="/mobile/sync/">Sync</a> your desktop history, bookmarks and passwords to all your devices for a painless browsing experience on mobile.')}}</p>
-      <p class="icon addons">{{_('Personalize features and functionality with add-ons. <a class="more" href="http://addons.mozilla.org/mobile/">Get add-ons</a>')}}</p>
-      <p>{{_('Effortlessly switch between <a href="http://support.mozilla.org/kb/how-do-i-use-tabs-mobile">tabs</a> with live thumbnail images that show you updated snapshots of your sites.')}}</p>
+      <p class="icon html5"><span class="img"></span>{{_('Experience the unlimited possibilities of the mobile Web with full support for HTML5 and Web APIs. <a class="more" href="https://developer.mozilla.org/en/Mobile">Learn more</a>')}}</p>
+      <p class="icon sync"><span class="img"></span>{{_('<a href="http://support.mozilla.org/kb/how-do-i-set-up-firefox-sync">Sync</a> your desktop history, bookmarks and passwords to all your devices for a painless browsing experience on mobile.')}}</p>
+      <p class="icon addons"><span class="img"></span>{{_('Personalize features and functionality with add-ons. <a class="more" href="http://addons.mozilla.org/mobile/">Get add-ons</a>')}}</p>
+      <p>{{_('Effortlessly switch between <a href="http://support.mozilla.org/kb/tabs-quickly-switch-websites-firefox-mobile">tabs</a> with live thumbnail images that show you updated snapshots of your sites.')}}</p>
     </section>
 
     <section id="get">
-      <p><a href="#">{{_('Get Firefox for Android free from the Google Play Store')}}</a></p>
+      <p><a href="https://market.android.com/details?id=org.mozilla.firefox">{{_('Get Firefox for Android free from the Google Play Store')}}</a></p>
     </section>
   </div>
 
