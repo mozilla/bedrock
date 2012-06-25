@@ -9,9 +9,9 @@
 
 {% block breadcrumbs %}
   <nav class="breadcrumbs">
-    <a href="{{ url('mozorg.home') }}">Home</a> >
-    <a href="{{ php_url('/mobile') }}">Mobile</a> >
-    <span>Requirements</span>
+    <a href="{{ url('mozorg.home') }}">{{_('Home')}}</a> >
+    <a href="{{ url('firefox.fx') }}#mobile">{{_('Mobile')}}</a> >
+    <span>{{_('Requirements')}}</span>
   </nav>
 {% endblock %}
 
@@ -20,8 +20,8 @@
 <div id="main-feature">
   {{ mobile_download_button('download-mobile', 'mobile_small') }}
   <hgroup>
-    <h1 class="large">Firefox on your mobile device</h1>
-    <h2>To find out if Firefox works on your phone, choose your manufacturer from the list below.</h2>
+    <h1 class="large">{{_('Firefox on your mobile device')}}</h1>
+    <h2>{{_('To find out if Firefox works on your phone, choose your manufacturer from the list below.')}}</h2>
   </hgroup>
 
 
@@ -50,25 +50,27 @@
 <div class="sidebar">
 
 <div class="reference">
-  <h4>Android</h4>
-  <p>Firefox is compatible with Android 2.2 and above devices.</p>
-  <p>Installation requires about 16 MB internal storage and 512 MB of RAM</p>
+  <h4>{{_('Android')}}</h4>
+  <p>{{_('Firefox is compatible with Android 2.2 and above devices.')}}</p>
+  <p>{{_('Installation requires about 16 MB internal storage and 512 MB of RAM')}}</p>
 </div>
 
-<h4>Give Feedback or Get Help</h4>
+<h4>{{_('Give Feedback or Get Help')}}</h4>
 
+{% trans %}
 <p>Although your device may support Firefox, we have not tested Firefox on
 every Android device. Tell us about your experience using Firefox on your
 device. Ask questions or give feedback on the <a
 href="http://support.mozilla.org/kb/Mobile+Help+and+Tutorials">Firefox Mobile
 Support Forum</a>.</p>
+{% endtrans %}
 </div>
 
 <div id="other">
 
-<p>See a full list of supported and unsupported devices by visiting our <a
+<p>{{_('See a full list of supported and unsupported devices by visiting our <a
 href="https://wiki.mozilla.org/Mobile/Platforms/Android#System_Requirements">System
-Requirements wiki</a>.</p>
+Requirements wiki</a>.')}}</p>
 
 </div>
 

@@ -61,6 +61,9 @@ MINIFY_BUNDLES = {
         'about': (
             'css/about.less',
         ),
+        'mobile_overview': (
+            'css/mobile.less',
+        ),
         'b2g': (
             'css/b2g.less',
         ),

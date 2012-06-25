@@ -12,8 +12,8 @@
 <div id="main-pager" class="pager pager-with-tabs">
 
   <ul class="pager-tabs">
-    <li><a href="#mobile">Mobile</a></li>
-    <li><a href="#desktop">Desktop</a></li>
+    <li><a href="#mobile">{{_('Mobile')}}</a></li>
+    <li><a href="#desktop">{{_('Desktop')}}</a></li>
   </ul>
 
   <div class="billboard">
@@ -25,14 +25,14 @@
       // ]]></script>
       <section>
         <hgroup>
-          <h1>Firefox for Android</h1>
-          <h2>Fast. Smart. Safe.</h2>
+          <h1>{{_('Firefox for Android')}}</h1>
+          <h2>{{_('Fast. Smart. Safe.')}}</h2>
         </hgroup>
         <div id="download-column">
           {{ mobile_download_button('primary-download-mobile') }}
         </div>
         <div id="photo-column">
-          <img src="{{ media('/img/firefox/fx/mobile-phone.jpg') }}" alt="Firefox on Android" />
+          <img src="{{ media('/img/firefox/fx/mobile-phone.jpg') }}" alt="{{_('Firefox on Android')}}" />
         </div>
         <ul class="sub-features">
           <li id="supported">
@@ -54,8 +54,8 @@
       // ]]></script>
       <section id="up-to-date">
         <hgroup>
-          <h1>Hooray! Your Firefox is up to date.</h1>
-          <h2>See how the new features in Firefox help you browse faster and more efficiently.</h2>
+          <h1>{{ _('Hooray! Your Firefox is up to date.')}}</h1>
+          <h2>{{ _('See how the new features in Firefox help you browse faster and more efficiently.')}}</h2>
         </hgroup>
         <div id="video-player" class="mozilla-video-control mozilla-video-shadow">
           <video
@@ -74,11 +74,11 @@
           </div></li>
           <li id="beta-promo"><div class="wrap">
             <h4>{{ _('Try Firefox Beta') }}</h4>
-            <p>Get a sneak peek at the latest features and innovations coming soon to Firefox.
+            <p>{{_('Get a sneak peek at the latest features and innovations coming soon to Firefox.')}}
             <a href="{{ php_url('/firefox/beta/') }}">{{ _('Download now&nbsp;»') }}</a></p>
           </div></li>
           <li id="android-promo"><div class="wrap">
-            <h4>Get Firefox for Android</h4><span class="icon"></span>
+            <h4>{{ _('Get Firefox for Android')}}</h4><span class="icon"></span>
             <p>{{ _('Get the mobile browser that’s got your back free from the ') }}
             <a href="https://market.android.com/details?id=org.mozilla.firefox">{{ _('Google Play Store&nbsp;»') }}</a></p>
           </div></li>
@@ -86,8 +86,8 @@
       </section>
       <section id="out-of-date">
         <hgroup>
-          <h1>Different by Design</h1>
-          <h2>Get the latest version of Firefox. It’s fast, flexible and secure.</h2>
+          <h1>{{ _('Different by Design')}}</h1>
+          <h2>{{ _('Get the latest version of Firefox. It’s fast, flexible and secure.')}}</h2>
         </hgroup>
         {{ download_button('download') }}
         <figure id="firefox-screenshot">

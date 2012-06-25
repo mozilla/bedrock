@@ -10,7 +10,7 @@
 {% block breadcrumbs %}
   <nav class="breadcrumbs">
     <a href="{{ url('mozorg.home') }}">{{_('Home')}}</a> >
-    <a href="{{ php_url('/mobile') }}">{{_('Mobile')}}</a> >
+    <a href="{{ url('firefox.fx') }}#mobile">{{_('Mobile')}}</a> >
     <span>{{_('FAQ')}}</span>
   </nav>
 {% endblock %}
@@ -28,7 +28,7 @@
 
   <ul class="expander-list">
     <li class="expander">
-      <h2 class="expander-header">About Firefox for Android</h2>
+      <h2 class="expander-header">{{_('About Firefox for Android')}}</h2>
       <div class="expander-content">
         <dl class="faq">
         
@@ -70,7 +70,7 @@
         
         {% trans %}
           <dt>Does Firefox for Android support Flash content?</dt>
-          <dd>Yes, Firefox for Android supports Flash on phones with Android version 2.3 and above.</dd>
+          <dd>Yes, Firefox for Android supports Flash on phones with Android version 2.2 and above.</dd>
         {% endtrans %}
           
         </dl>
