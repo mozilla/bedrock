@@ -1,20 +1,11 @@
 /* Top Level Menu Items */
 
-#nav-main ul {
+#nav-main-menu {
     .inline-block;
     margin: 0;
 
     li {
         position: relative;
-        z-index: 100;
-
-        a,
-        a:link,
-        a:visited,
-        span {
-           z-index: 100;
-           position: relative;
-        }
 
         &.hover a {
             background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAHAQMAAADpvlVZAAAAAXNSR0IArs4c6QAAAAZQTFRFAAAA////pdmf3QAAAAF0Uk5TAEDm2GYAAAABYktHRACIBR1IAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3AMBEjcKOURVdQAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAAAdSURBVAjXY2BiYGBnYOBvYJA/wGD/gKH+A8P/HwAiJAX9mUp9sAAAAABJRU5ErkJggg==);
@@ -28,7 +19,7 @@
 
 /* Second-level Menu Items */
 
-.js #nav-main li.hover ul {
+.js #nav-main li.hover .submenu {
     left: 0;
     opacity: 1;
     -moz-transition: opacity 0.2s ease-in-out;
@@ -36,20 +27,20 @@
     transition: opacity 0.2s ease-in-out;
 }
 
-#nav-main li ul,
-#nav-main li ul li {
+#nav-main .submenu,
+#nav-main .submenu li {
     height: auto;
     border: 0;
     float: none;
     display: block;
 }
 
-#nav-main li ul {
+#nav-main .submenu {
     position: absolute;
+    z-index: 100;
     left: -999em;
-    top: 48px;
+    top: 43px;
     opacity: 0;
-    z-index: 999;
     width: 190px;
     text-shadow: 1px 1px 0 #fff, 0 0 5px #fff;
     background: #fff;
@@ -115,7 +106,6 @@
     }
 }
 
-/* }}} */
 /* {{{ Dark Background Header */
 
 .darkbg #nav-main ul li {
@@ -145,3 +135,44 @@
     }
 
 }
+
+/* }}} */
+
+/* Mobile Layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+
+    #nav-main-menu {
+        margin: 15px 0 0 -10px;
+
+        li.hover a {
+            background-image: none;
+        }
+
+    }
+
+    #nav-main-menu .submenu,
+    .js #nav-main li.hover .submenu {
+        left: -999em;
+        margin-top: -8px;
+        background: #fff;
+        .border-radius(10px);
+        .box-shadow(0 2px 3px rgba(0,0,0,.35));
+        opacity: 1;
+        padding: 0;
+    }
+
+    .js #nav-main li .submenu {
+        xleft: 80px;
+        xtop: 0px;
+    }
+
+    #nav-main-menu .submenu a,
+    #nav-main-menu .submenu a:link,
+    #nav-main-menu .submenu a:visited {
+        -moz-transition: none 0s;
+        -webkit-transition: none 0s;
+        transition: none 0s;
+    }
+
+}
+

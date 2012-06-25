@@ -61,6 +61,9 @@ MINIFY_BUNDLES = {
         'about': (
             'css/about.less',
         ),
+        'mobile_overview': (
+            'css/mobile.less',
+        ),
         'b2g': (
             'css/b2g.less',
         ),
@@ -232,6 +235,12 @@ MINIFY_BUNDLES = {
             'js/libs/jquery-1.7.1.min.js',
             'js/global.js',
             'js/nav-main.js',
+            'js/footer-email-form.js',
+        ),
+        'firefox-resp': (
+            'js/libs/jquery-1.7.1.min.js',
+            'js/global.js',
+            'js/nav-main-resp.js',
             'js/footer-email-form.js',
         ),
         'firefox_central': (

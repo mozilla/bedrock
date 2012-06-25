@@ -1,0 +1,84 @@
+{% extends "base-resp.html" %}
+
+{% block page_title %}Mobile{% endblock %}
+{% block body_id %}mobile-overview{% endblock %}
+{% block body_class %}sand{% endblock %}
+
+{% block site_css %}
+  {{ css('mobile_overview') }}
+{% endblock %}
+
+{% block content %}
+
+<h1 id="main-feature" class="large center">{{_('Big ideals. Small screen.')}}</h1>
+
+<article id="main-content">
+  <section id="promo">
+    <h2>Get the mobile browser that's got your back.</h2>
+    {{ mobile_download_button('download-mobile', 'mobile_small') }}
+  </section>
+
+  <section class="main-column">
+
+    <section id="b2g">
+      <h3>The Boot to Gecko Project</h3>
+      <img src="{{ media('img/mobile/illo-b2gphone.png') }}" alt="">
+      <p>We launched the Boot to Gecko project to build the Web as 
+      the platform for mobile devices. That includes implementing 
+      new Web standards that aren't restricted by the rules of 
+      existing proprietary platforms. As with all Mozilla projects, 
+      Boot to Gecko is based entirely on open standards and the 
+      source code is accessible to all.</p>
+      
+      <p><a class="go" href="{{ url('b2g') }}">Learn more about Boot to Gecko</a></p>
+    </section>
+    
+    <section id="android">
+      <h3>Firefox for Android</h3>
+      <img src="{{ media('img/mobile/illo-fxandroidphone.png') }}" alt="">
+      <p>Based on the same principles and technologies as our desktop 
+      browser, Firefox for Android is fast, smart, safe and full 
+      of innovations that let you type less, browse more and get 
+      to the Web quickly and easily. Our latest version includes 
+      improved performance, the latest privacy and security features 
+      and a redesigned look and feel.</p>
+      
+      <p><a class="go" href="/en-US/firefox/mobile/features">Learn more about Firefox for Android</a>
+      <br><a class="go" href="https://market.android.com/details?id=org.mozilla.firefox">Get Firefox for Android at the Google Play Store</a></p>
+    </section>
+    
+    <section id="marketplace">
+      <h3>Apps on the Web</h3>
+      <img src="{{ media('img/mobile/illo-marketplace.png') }}" alt="">
+      <p>We're bringing our core values &ndash; openness, freedom, user 
+      choice &ndash; to the world of apps and giving developers with 
+      full control over content, functionality and how apps are 
+      distributed, including access to hundreds of millions of Firefox 
+      users through the Mozilla Marketplace.</p>
+      
+      <p><a class="go" href="https://marketplace.mozilla.org">Learn more about apps and the Mozilla Marketplace</a></p>
+    </section>
+  </section>
+  
+  <aside class="sidebar">
+    <section>
+      <h3>Mozilla is Mobile</h3>
+      <ul>
+        <li><a class="go" href="http://blog.mozilla.com/blog/2012/02/27/mozilla-in-mobile-the-web-is-the-platform/">The Web is the Platform</a></li>
+        <li><a class="go" href="https://developer.mozilla.org/en/Mobile">Developer Info</a></li>
+        <li><a class="go" href="http://blog.mozilla.org/privacy/2012/02/28/do-not-track-goes-mobile-mozilla-demos-preference-at-mobile-world-congress/">Privacy &amp; Do Not Track</a></li>
+      </ul>
+    </section>
+    
+    <section>
+      <h3>In the News</h3>
+      <ul>
+        <li><a class="go" href="http://pressoffice.telefonica.com/jsp/base.jsp?contenido=/jsp/notasdeprensa/notadetalle.jsp&id=0&idm=eng&pais=1&elem=17874">Telefónica and Mozilla pioneer first open Web devices</a></li>
+        <li><a class="go" href="http://www.youtube.com/watch?v=d9E4GsvvJoc">Mozilla CEO Gary Kovacs at CTIA</a></li>
+        <li><a class="go" href="http://www.ted.com/talks/gary_kovacs_tracking_the_trackers.html">Mozilla CEO Gary Kovacs at TED</a></li>
+      </ul>
+    </section>
+  </aside>
+</article>
+
+{% endblock %}

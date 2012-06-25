@@ -4,7 +4,7 @@
 #main-feature {
     hgroup {
         margin-top: @baseLine / 2;
-        .span(6);
+        .span(8);
     }
     h1 {
         clear: left;
@@ -43,8 +43,15 @@
     
     .icon {
         padding-left: @gridColumnWidth;
+    }
+    
+    .icon .img {
+        width: @gridColumnWidth;
+        height: 60px;
+        float: left;
+        margin-left: 0 - @gridColumnWidth;
+        background-image: url(/media/img/firefox/mobile/feature-icons.png);
         background-repeat: no-repeat;
-        min-height: 50px;
     }
     
 }
@@ -55,20 +62,20 @@
     margin-bottom: @baseLine;
 }
 
-#safe .privacy {
-    background-image: url(/media/img/firefox/mobile/icn-privacy.png);
+#safe .privacy .img {
+    background-position: 0 0;
 }
 
-#smart .html5 {
-    background-image: url(/media/img/firefox/mobile/icn-html5.png);  
+#smart .html5 .img {
+    background-position: 0 -60px;
 }
 
-#smart .sync {
-    background-image: url(/media/img/firefox/mobile/icn-sync.png);  
+#smart .sync .img {
+    background-position: 0 -120px;  
 }
 
-#smart .addons {
-    background-image: url(/media/img/firefox/mobile/icn-addons.png);  
+#smart .addons .img {
+    background-position: 0 -180px;  
 }
 
 #get a {
