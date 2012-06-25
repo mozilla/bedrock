@@ -5,89 +5,6 @@ $(document).ready(function() {
         return;
     }
 
-    var main_menuitems = $('#nav-main ul [tabindex="0"]');
-    var prev_li, new_li, focused_item;
-
-    $('#nav-main [role="menubar"] > li').bind('mouseover focusin', function(event) {
-        new_li = $(this);
-
-        if (prev_li) {
-            if (prev_li.attr('id') !== new_li.attr('id')) {
-                // Close the last selected menu
-                prev_li.dequeue();
-            } else {
-                prev_li.clearQueue();
-            }
-        }
-
-        // Open the menu
-        new_li.addClass('hover').find('[aria-expanded="false"]').attr('aria-expanded', 'true');
-    }).bind('mouseout focusout', function(event) {
-
-        prev_li = $(this);
-        prev_li.delay(100).queue(function() {
-            if (prev_li) {
-                prev_li.clearQueue();
-                // Close the menu
-                prev_li.removeClass('hover').find('[aria-expanded="true"]').attr('aria-expanded', 'false');
-                prev_li = null;
-                if (focused_item) {
-                    focused_item.get(0).blur();
-                }
-            }
-        });
-
-    }).each(function(menu_idx) {
-        var menu = $(this).find('[role="menu"]');
-        var menuitems = $(this).find('a');
-
-        menuitems.mouseover(function(event) {
-            this.focus(); // Sometimes $(this).focus() doesn't work
-        }).focus(function() {
-            focused_item = $(this);
-        }).each(function(item_idx) {
-            $(this).keydown(function(event) {
-                var target;
-                switch (event.keyCode) {
-                    case 33: // Page Up
-                    case 36: // Home
-                        target = menuitems.first();
-                        break;
-
-                    case 34: // Page Down
-                    case 35: // End
-                        target = menuitems.last();
-                        break;
-
-                    case 38: // Up
-                        target = (item_idx > 0) ? menuitems.eq(item_idx - 1)
-                                                                        : menuitems.last();
-                        break;
-
-                    case 40: // Down
-                        target = (item_idx < menuitems.length - 1) ? menuitems.eq(item_idx + 1)
-                                                                                                             : menuitems.first();
-                        break;
-
-                    case 37: // Left
-                        target = (menu_idx > 0) ? main_menuitems.eq(menu_idx - 1)
-                                                                        : main_menuitems.last();
-                        break;
-
-                    case 39: // Right
-                        target = (menu_idx < main_menuitems.length - 1) ? main_menuitems.eq(menu_idx + 1)
-                                                                                                                        : main_menuitems.first();
-                        break;
-                }
-                if (target) {
-                    target.get(0).focus(); // Sometimes target.focus() doesn't work
-                    return false;
-                }
-                return true;
-            });
-        });
-    });
-
     var NavMain = {};
 
     /**
@@ -122,6 +39,20 @@ $(document).ready(function() {
      * @var jQuery
      */
     NavMain.currentSmallSubmenu = null;
+
+    /**
+     * Jquery object representing the previously focused main menu item
+     *
+     * @var jQuery
+     */
+    NavMain.previousMenuItem = null;
+
+    /**
+     * Jquery object representing the currently focused sub-menu item
+     *
+     * @var jQuery
+     */
+    NavMain.currentSubmenuItem = null;
 
     /**
      * Main menu items in the menubar
@@ -173,6 +104,11 @@ $(document).ready(function() {
         NavMain.mainMenuItems = $('#nav-main [role="menubar"] > li');
         NavMain.mainMenuLinks = $('#nav-main [role="menubar"] > li > [tabindex="0"]');
 
+        NavMain.mainMenuItems
+            .bind('mouseover focusin', NavMain.handleFocusIn)
+            .bind('mouseout focusout', NavMain.handleFocusOut)
+            .each(NavMain.initSubmenu);
+
         if (NavMain.hasMediaQueryWidths) {
             $(window).resize(NavMain.handleResize);
             NavMain.handleResize();
@@ -203,6 +139,112 @@ $(document).ready(function() {
         // With JavaScript enabled, we can provide a full navigation with
         // #nav-main. Now "hide" the duplicated #footer-menu from AT.
         $('#footer-menu').attr('role', 'presentation');
+    };
+
+    NavMain.handleFocusIn = function(e)
+    {
+        var item = $(this);
+
+        if (NavMain.previousMenuItem) {
+            if (NavMain.previousMenuItem.attr('id') !== item.attr('id')) {
+                // Close the last selected menu
+                NavMain.previousMenuItem.dequeue();
+            } else {
+                NavMain.previousMenuItem.clearQueue();
+            }
+        }
+
+        // Open the menu
+        item
+            .addClass('hover')
+            .find('[aria-expanded="false"]')
+            .attr('aria-expanded', 'true');
+    };
+
+    NavMain.initSubmenu = function(menu_idx)
+    {
+        var menu = $(this).find('[role="menu"]');
+        var menuItems = $(this).find('a');
+
+        menuItems.mouseover(function(e) {
+            this.focus(); // Sometimes $(this).focus() doesn't work
+        }).focus(function() {
+            NavMain.currentSubmenuItem = $(this);
+        }).each(function(item_idx) {
+            $(this).keydown(function(e) {
+                var target;
+                switch (e.keyCode) {
+                    case 33: // Page Up
+                    case 36: // Home
+                        target = menuItems.first();
+                        break;
+
+                    case 34: // Page Down
+                    case 35: // End
+                        target = menuItems.last();
+                        break;
+
+                    case 38: // Up
+                        target = (item_idx > 0)
+                            ? menuItems.eq(item_idx - 1)
+                            : menuItems.last();
+
+                        break;
+
+                    case 40: // Down
+                        target = (item_idx < menuItems.length - 1)
+                            ? menuItems.eq(item_idx + 1)
+                            : menuItems.first();
+
+                        break;
+
+                    case 37: // Left
+                    console.log(menu_idx);
+                        target = (menu_idx > 0)
+                            ? NavMain.mainMenuLinks.eq(menu_idx - 1)
+                            : NavMain.mainMenuLinks.last();
+                            console.log(target);
+
+                        break;
+
+                    case 39: // Right
+                        target = (menu_idx < NavMain.mainMenuLinks.length - 1)
+                            ? NavMain.mainMenuLinks.eq(menu_idx + 1)
+                            : NavMain.mainMenuLinks.first();
+
+                        break;
+                }
+                if (target) {
+                    target.get(0).focus(); // Sometimes target.focus() doesn't work
+                    return false;
+                }
+                return true;
+            });
+        });
+    };
+
+    NavMain.handleFocusOut = function(e)
+    {
+        NavMain.previousMenuItem = $(this);
+        NavMain.previousMenuItem
+            .delay(100)
+            .queue(function() {
+                if (NavMain.previousMenuItem) {
+                    // Close the menu
+                    NavMain.previousMenuItem
+                        .clearQueue()
+                        .removeClass('hover')
+                        .find('[aria-expanded="true"]')
+                        .attr('aria-expanded', 'false');
+
+                    NavMain.previousMenuItem = null;
+
+                    // If there was a focused sub-menu item, blur it
+                    if (NavMain.currentSubmenuItem) {
+                        NavMain.currentSubmenuItem.get(0).blur();
+                    }
+                }
+            });
     };
 
     NavMain.toggleSmallMenu = function()
