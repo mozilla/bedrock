@@ -1,0 +1,32 @@
+@import "../sandstone/sandstone-resp.less";
+@import "menu-resp.less";
+
+#masthead h1 {
+    padding: @baseLine 0;
+}
+
+#main-feature .download-button-small,
+#main-feature .download-button-mobile-small {
+    position: absolute;
+    top: 0;
+    right: 30px;
+}
+
+.stacked h1 {
+    font-size: 32px;
+    letter-spacing: -1px;
+}
+
+.stacked h1 span {
+    display: block;
+}
+
+/* Mobile layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+
+#main-feature .download-button-small,
+#main-feature .download-button-mobile-small {
+    position: static;
+}
+
+}
