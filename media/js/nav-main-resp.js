@@ -68,37 +68,6 @@ $(document).ready(function() {
      */
     NavMain.mainMenuLinks = null;
 
-    /**
-     * Removes the href attribute from menu items with submenus
-     *
-     * This prevents load bar from appearing on iOS when you press
-     * an item.
-     */
-    NavMain.unlinkMainMenuItems = function()
-    {
-        NavMain.mainMenuLinks.each(function(i, n) {
-            var node = $(n);
-            if (node.siblings('.submenu')) {
-                node.attr('data-old-href', node.attr('href'));
-                node.removeAttr('href');
-            }
-        });
-    };
-
-    /**
-     * Returns the href attribute back to main menu links
-     */
-    NavMain.relinkMainMenuLinks = function()
-    {
-        NavMain.mainMenuLinks.each(function(i, n) {
-            var node = $(n);
-            if (node.attr('data-old-href')) {
-                node.attr('href', node.attr('data-old-href'));
-                node.removeAttr('data-old-href');
-            }
-        });
-    };
-
     NavMain.init = function()
     {
         NavMain.mainMenuItems = $('#nav-main [role="menubar"] > li');
@@ -161,6 +130,30 @@ $(document).ready(function() {
             .attr('aria-expanded', 'true');
     };
 
+    NavMain.handleFocusOut = function(e)
+    {
+        NavMain.previousMenuItem = $(this);
+        NavMain.previousMenuItem
+            .delay(100)
+            .queue(function() {
+                if (NavMain.previousMenuItem) {
+                    // Close the menu
+                    NavMain.previousMenuItem
+                        .clearQueue()
+                        .removeClass('hover')
+                        .find('[aria-expanded="true"]')
+                        .attr('aria-expanded', 'false');
+
+                    NavMain.previousMenuItem = null;
+
+                    // If there was a focused sub-menu item, blur it
+                    if (NavMain.currentSubmenuItem) {
+                        NavMain.currentSubmenuItem.get(0).blur();
+                    }
+                }
+            });
+    };
+
     NavMain.initSubmenu = function(menu_idx)
     {
         var menu = $(this).find('[role="menu"]');
@@ -199,11 +192,9 @@ $(document).ready(function() {
                         break;
 
                     case 37: // Left
-                    console.log(menu_idx);
                         target = (menu_idx > 0)
                             ? NavMain.mainMenuLinks.eq(menu_idx - 1)
                             : NavMain.mainMenuLinks.last();
-                            console.log(target);
 
                         break;
 
@@ -221,39 +212,6 @@ $(document).ready(function() {
                 return true;
             });
         });
-    };
-
-    NavMain.handleFocusOut = function(e)
-    {
-        NavMain.previousMenuItem = $(this);
-        NavMain.previousMenuItem
-            .delay(100)
-            .queue(function() {
-                if (NavMain.previousMenuItem) {
-                    // Close the menu
-                    NavMain.previousMenuItem
-                        .clearQueue()
-                        .removeClass('hover')
-                        .find('[aria-expanded="true"]')
-                        .attr('aria-expanded', 'false');
-
-                    NavMain.previousMenuItem = null;
-
-                    // If there was a focused sub-menu item, blur it
-                    if (NavMain.currentSubmenuItem) {
-                        NavMain.currentSubmenuItem.get(0).blur();
-                    }
-                }
-            });
-    };
-
-    NavMain.toggleSmallMenu = function()
-    {
-        if (NavMain.smallMenuOpen) {
-            NavMain.closeSmallMenu();
-        } else {
-            NavMain.openSmallMenu();
-        }
     };
 
     NavMain.handleResize = function()
@@ -296,6 +254,37 @@ $(document).ready(function() {
         NavMain.smallMenuOpen = false;
     };
 
+    /**
+     * Removes the href attribute from menu items with submenus
+     *
+     * This prevents load bar from appearing on iOS when you press
+     * an item.
+     */
+    NavMain.unlinkMainMenuItems = function()
+    {
+        NavMain.mainMenuLinks.each(function(i, n) {
+            var node = $(n);
+            if (node.siblings('.submenu')) {
+                node.attr('data-old-href', node.attr('href'));
+                node.removeAttr('href');
+            }
+        });
+    };
+
+    /**
+     * Returns the href attribute back to main menu links
+     */
+    NavMain.relinkMainMenuLinks = function()
+    {
+        NavMain.mainMenuLinks.each(function(i, n) {
+            var node = $(n);
+            if (node.attr('data-old-href')) {
+                node.attr('href', node.attr('data-old-href'));
+                node.removeAttr('data-old-href');
+            }
+        });
+    };
+
     NavMain.handleDocumentClick = function(e)
     {
         if (NavMain.smallMode) {
@@ -311,6 +300,22 @@ $(document).ready(function() {
         var $focused = $(e.target);
         if (!$focused.parents().is('#nav-main')) {
             NavMain.closeSmallMenu();
+        }
+    };
+
+    NavMain.handleToggleKeypress = function(e)
+    {
+        if (e.keyCode == 13) {
+            NavMain.toggleSmallMenu();
+        }
+    };
+
+    NavMain.toggleSmallMenu = function()
+    {
+        if (NavMain.smallMenuOpen) {
+            NavMain.closeSmallMenu();
+        } else {
+            NavMain.openSmallMenu();
         }
     };
 
@@ -337,20 +342,6 @@ $(document).ready(function() {
         NavMain.smallMenuOpen = true;
     };
 
-    NavMain.handleSubmenuClick = function(e)
-    {
-        e.preventDefault();
-        var menu = $(this).siblings('.submenu');
-        NavMain.openSmallSubmenu(menu);
-    };
-
-    NavMain.handleToggleKeypress = function(e)
-    {
-        if (e.keyCode == 13) {
-            NavMain.toggleSmallMenu();
-        }
-    };
-
     NavMain.closeSmallMenu = function()
     {
         if (!NavMain.smallMenuOpen) {
@@ -374,6 +365,13 @@ $(document).ready(function() {
         NavMain.currentSmallSubmenu = null;
 
         NavMain.smallMenuOpen = false;
+    };
+
+    NavMain.handleSubmenuClick = function(e)
+    {
+        e.preventDefault();
+        var menu = $(this).siblings('.submenu');
+        NavMain.openSmallSubmenu(menu);
     };
 
     NavMain.openSmallSubmenu = function(menu)
