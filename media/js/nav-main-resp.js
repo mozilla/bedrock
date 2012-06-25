@@ -395,7 +395,7 @@ NavMain.openSmallSubmenu = function(menu)
         .css(
             {
                 'left'         : '80px',
-                'top'          : '0',
+                'top'          : 'auto',
                 'display'      : 'none',
                 'opacity'      : '1',
                 'height'       : 'auto',
