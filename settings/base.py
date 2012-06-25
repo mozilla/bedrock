@@ -225,6 +225,12 @@ MINIFY_BUNDLES = {
             'js/nav-main.js',
             'js/footer-email-form.js',
         ),
+        'firefox-resp': (
+            'js/libs/jquery-1.7.1.min.js',
+            'js/global.js',
+            'js/nav-main-resp.js',
+            'js/footer-email-form.js',
+        ),
         'firefox_central': (
             'js/mozilla-video-tools.js',
             'js/firefox/central.js',
