@@ -33,6 +33,7 @@ def contribute_page(request):
                              {'form': form,
                               'success': success})
 
+
 @csrf_exempt
 def contribute(request):
     def has_contribute_form():
@@ -88,8 +89,19 @@ def contribute(request):
                               'newsletter_form': newsletter_form,
                               'newsletter_success': newsletter_success})
 
-def contribute_send(data):
-    ccs = {
+
+def contribute_send(data, locale='en-US'):
+    """Forward contributor's email to our contacts.
+
+    For localized contacts, add the local contact's email to the
+    dictionary as in the following example
+    e.g
+    CCS = { 'QA': {'all': 'all@example.com', 'el': 'el@example.com'} }
+
+    Now all emails for QA get send to 'all@example.com' except
+    the greek ones which get send to 'el@example.com'.
+    """
+    CCS = {
         'QA': 'qa-contribute@mozilla.org',
         'Thunderbird': 'tb-kb@mozilla.com',
         'Research': 'diane+contribute@mozilla.com',
@@ -110,18 +122,37 @@ def contribute_send(data):
            % (data['email'], data['interest'], data['comments']))
     headers = {'Reply-To': data['email']}
 
+    # Send email To: contribute@mozilla.org and Cc: a team from the
+    # CCS list, if applicable. When in DEV mode copy From: to To: and
+    # don't add Cc:
     to = ['contribute@mozilla.org']
     if settings.DEV:
         to = [data['email']]
 
     cc = None
-    if data['interest'] in ccs:
-        cc = [ccs[data['interest']]]
+    if not settings.DEV and data['interest'] in CCS:
+        email_list = CCS[data['interest']]
+        cc = [email_list.get(locale, email_list['all'])]
 
     email = EmailMessage(subject, msg, from_, to, cc=cc, headers=headers)
     email.send()
 
-def contribute_autorespond(request, data):
+
+def contribute_autorespond(request, data, locale='en-US'):
+    """Send an auto-respond email based on chosen field of interest and locale.
+
+    You can add localized responses by creating email messages in
+    <EMAIL_TEMPLATE_PATH>/<locale>/<category.txt>
+    e.g. emails/el/qa.txt for a QA response in greek.
+
+    To add localized Reply-To header, add the local contributor's email to the
+    dictionary as in the following example
+    e.g
+    replies = { 'Support': {'all': 'all@example.com', 'el': 'el@example.com'} }
+    Now all emails for Support get send with 'Reply-To: all@example.com' except
+    the greek ones which get send with 'Reply-To: el@example.com'.
+    """
+
     replies = {
         'Support': 'jay@jaygarcia.com',
         'Localization': 'fiotakis@otenet.gr',
