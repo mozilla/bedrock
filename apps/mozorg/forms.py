@@ -92,6 +92,11 @@ class ContributeForm(forms.Form):
     email = forms.EmailField(widget=EmailInput(attrs={'required':'true'}))
     privacy = forms.BooleanField(widget=PrivacyWidget)
     newsletter = forms.BooleanField(required=False)
-    interest = forms.ChoiceField(choices=INTEREST_CHOICES)
-    comments = forms.CharField(widget=forms.widgets.Textarea(attrs={'required':'true', 'rows':'', 'cols':''}))
+    interest = forms.ChoiceField(
+        choices=INTEREST_CHOICES,
+        widget=forms.Select(attrs={'required':'true'}))
+    comments = forms.CharField(
+        widget=forms.widgets.Textarea(attrs={'required':'true',
+                                             'rows':'',
+                                             'cols':''}))
     captcha = ReCaptchaField(attrs={'theme':'clean'})
