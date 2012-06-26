@@ -31,6 +31,7 @@ var gPlatformVista = navigator.userAgent.indexOf('Windows NT 6.0') !=-1
   tips[PLATFORM_WINDOWS] = [
       {'left': 113, 'top': 34,  'id': 'firefox-menu-button'},
       {'left': 42,  'top': 70,  'id': 'app-tab', 'direction': 'up'},
+      {'left': 587, 'top': 55,  'id': 'new-tab'},
       {'left': 89,  'top': 102, 'id': 'instant-website-id', 'direction': 'up'},
       {'left': 245, 'top': 62,  'id': 'tabs-on-top'},
       {'left': 325, 'top': 97,  'id': 'awesome-bar', 'direction': 'up'},
@@ -39,10 +40,11 @@ var gPlatformVista = navigator.userAgent.indexOf('Windows NT 6.0') !=-1
       {'left': 676, 'top': 82,  'id': 'customize-toolbar'},
       {'left': 755, 'top': 41,  'id': 'themes'},
       {'left': 933, 'top': 87,  'id': 'bookmark-button'},
-      {'left': 894, 'top': 107, 'id': 'home-button', 'direction': 'up'},
+      {'left': 894, 'top': 107, 'id': 'home-button', 'direction': 'up'}
   ];
   tips[PLATFORM_MACOSX] = [
       {'left': 38,  'top': 57,  'id': 'app-tab'},
+      {'left': 582, 'top': 57,  'id': 'new-tab'},
       {'left': 76,  'top': 101, 'id': 'instant-website-id', 'direction': 'up'},
       {'left': 245, 'top': 57,  'id': 'tabs-on-top'},
       {'left': 345, 'top': 97,  'id': 'awesome-bar', 'direction': 'up'},
@@ -51,10 +53,11 @@ var gPlatformVista = navigator.userAgent.indexOf('Windows NT 6.0') !=-1
       {'left': 660, 'top': 88,  'id': 'customize-toolbar'},
       {'left': 750, 'top': 41,  'id': 'themes'},
       {'left': 940, 'top': 87,  'id': 'bookmark-button'},
-      {'left': 899, 'top': 101, 'id': 'home-button', 'direction': 'up'},
+      {'left': 899, 'top': 101, 'id': 'home-button', 'direction': 'up'}
   ];
   tips[PLATFORM_LINUX] = [
       {'left': 42,  'top': 94,  'id': 'app-tab'},
+      {'left': 578, 'top': 100, 'id': 'new-tab'},
       {'left': 80,  'top': 142, 'id': 'instant-website-id', 'direction': 'up'},
       {'left': 155, 'top': 95,  'id': 'tabs-on-top'},
       {'left': 445, 'top': 134, 'id': 'awesome-bar', 'direction': 'up'},
@@ -62,7 +65,7 @@ var gPlatformVista = navigator.userAgent.indexOf('Windows NT 6.0') !=-1
       {'left': 510, 'top': 110, 'id': 'switch-to-tab', 'direction': 'up'},
       {'left': 699, 'top': 127, 'id': 'customize-toolbar'},
       {'left': 785, 'top': 50, 'id': 'themes'},
-      {'left': 945, 'top': 123, 'id': 'home-button'},
+      {'left': 945, 'top': 123, 'id': 'home-button'}
   ];
 
 

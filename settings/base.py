@@ -31,7 +31,9 @@ PROD_LANGUAGES = ('ab-CD', 'ach', 'af', 'ak', 'ar', 'as', 'ast', 'be', 'bg',
                   'vi', 'wo', 'zh-CN', 'zh-TW', 'zu')
 DEV_LANGUAGES = list(DEV_LANGUAGES) + ['en-US']
 
+FEED_CACHE = 3900
 DOTLANG_CACHE = 60
+
 DOTLANG_FILES = ['main', 'base', 'newsletter']
 
 # Make this unique, and don't share it with anybody.
@@ -59,6 +61,9 @@ MINIFY_BUNDLES = {
         'about': (
             'css/about.less',
         ),
+        'mobile_overview': (
+            'css/mobile.less',
+        ),
         'b2g': (
             'css/b2g.less',
         ),
@@ -70,6 +75,9 @@ MINIFY_BUNDLES = {
         ),
         'common': (
             'css/sandstone/sandstone.less',
+        ),
+        'responsive': (
+            'css/sandstone/sandstone-resp.less',
         ),
         'contribute': (
             'css/contribute.less',
@@ -89,6 +97,9 @@ MINIFY_BUNDLES = {
         'firefox': (
             'css/firefox/template.less',
         ),
+        'firefox-resp': (
+            'css/firefox/template-resp.less',
+        ),
         'firefox_channel': (
             'css/firefox/channel.less',
         ),
@@ -104,8 +115,17 @@ MINIFY_BUNDLES = {
             'css/sandstone/video.less',
             'css/firefox/features.less',
         ),
+        'mobile_features': (
+            'css/firefox/template-resp.less',
+            'css/firefox/mobile-features.less',
+        ),
+        'firefox_faq': (
+            'css/firefox/template-resp.less',
+            'css/mozilla-expanders.less',
+        ),
         'firefox_fx': (
             'css/firefox/fx.less',
+            'css/sandstone/video.less',
         ),
         'firefox_geolocation': (
             'css/mozilla-expanders.less',
@@ -120,6 +140,11 @@ MINIFY_BUNDLES = {
         ),
         'firefox_organizations': (
             'css/firefox/organizations.less',
+        ),
+        'firefox_platforms': (
+            'css/firefox/template-resp.less',
+            'css/mozilla-expanders.less',
+            'css/firefox/platforms.less',
         ),
         'firefox_security': (
             'css/firefox/security.less',
@@ -159,6 +184,9 @@ MINIFY_BUNDLES = {
         ),
         'projects': (
             'css/projects.less',
+        ),
+        'research': (
+            'css/research/research.less',
         ),
         'sandstone_guide': (
             'css/sandstone-guide.less',
@@ -209,6 +237,12 @@ MINIFY_BUNDLES = {
             'js/nav-main.js',
             'js/footer-email-form.js',
         ),
+        'firefox-resp': (
+            'js/libs/jquery-1.7.1.min.js',
+            'js/global.js',
+            'js/nav-main-resp.js',
+            'js/footer-email-form.js',
+        ),
         'firefox_central': (
             'js/mozilla-video-tools.js',
             'js/firefox/central.js',
@@ -226,10 +260,20 @@ MINIFY_BUNDLES = {
             'js/mozilla-video-tools.js',
             'js/firefox/features.js',
         ),
+        'firefox_fx': (
+            'js/mozilla-pager.js',
+            'js/mozilla-video-tools.js',
+        ),
         'firefox_happy': (
             'js/libs/jquery-1.4.4.min.js',
             'js/libs/jquery-css-transform.js',
             'js/libs/jquery-animate-css-rotate-scale.js',
+        ),
+        'firefox_platforms': (
+            'js/mozilla-expanders.js',
+        ),
+        'firefox_faq': (
+            'js/mozilla-expanders.js',
         ),
         'firefox_speed': (
             'js/libs/jquery-1.4.4.min.js',
@@ -336,6 +380,7 @@ INSTALLED_APPS = (
     'commonware.response.cookies',
     'djcelery',
     'django_nose',
+    'cronjobs',
     #'session_csrf',
 
     # L10n
@@ -362,6 +407,10 @@ INSTALLED_APPS = (
 PWD_ALGORITHM = 'bcrypt'
 HMAC_KEYS = {
     #'2011-01-01': 'cheesecake',
+}
+
+FEEDS = {
+    'mozilla': 'http://blog.mozilla.org/feed/'
 }
 
 GMAP_API_KEY = ''

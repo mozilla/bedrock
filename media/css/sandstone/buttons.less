@@ -88,7 +88,7 @@
 .button,
 .button-blue,
 .button-white {
-
+    cursor: pointer;
     small {
         display: block;
     }
@@ -120,9 +120,11 @@
     height: 95px;
     margin-left: 50px;
     text-align: inherit;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
     .download-content {
         display: block;
         position: relative;
+        color: #b5e786;
         margin-left: -50px;
         padding-left: 65px;
         padding-right: 24px;
@@ -132,6 +134,7 @@
     }
     .download-title {
         display: block;
+        color: #fff;
         font-family: georgia, "Bitstream Charter", serif;
         font-size: 26px;
         letter-spacing: -0.02em;
@@ -144,7 +147,7 @@
         padding-top: 2px;
         font-size: 12px;
         line-height: 100%;
-        text-shadow: none;
+        text-shadow: 0 1px rgba(255,255,255,0.2);
     }
 }
 
@@ -155,18 +158,20 @@
     min-width: 250px;
 }
 
-.download-button-small .download-link {
+.download-button-small .download-link,
+.download-button-mobile-small .download-link {
     white-space: nowrap;
     height: 48px;
     margin-left: 25px;
     .download-title {
         .inline-block;
+        height: 48px;
         vertical-align: middle;
         font-size: 24px;
         background: url(/media/img/sandstone/buttons/arrow-small.png) no-repeat 100% 50%;
         padding-right: 20px;
-        padding-bottom: 4px;
         margin-right: 5px;
+        .border-radius(6px);
     }
     .download-content {
         .inline-block;
@@ -176,9 +181,24 @@
         height: 52px;
         padding: 0 20px 0 65px;
         overflow: visible;
+        .border-radius(6px);
     }
 }
 
+.download-button-mobile-small .download-link {
+    .download-title {
+        display: block;
+        background: url(/media/img/sandstone/buttons/android-corner.png) no-repeat 100% 100%;
+        padding-right: 40px;
+        margin-right: 0;
+        .open-sans;
+        font-size: 18px;
+        text-shadow: 0 -1px rgba(0, 0, 0, 0.2);
+    }
+    .download-content {
+        padding-right: 0;
+    }
+}
 
 // OS detection
 
@@ -237,4 +257,42 @@ li.os_android,
         padding-right: 6px;
     }
 
+}
+
+// Mobile download buttons
+
+.download-button-mobile-large {
+    .download-link {
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+        line-height: 1.2;
+        height: auto;
+        margin-left: auto;
+        .download-content-wrapper {
+            display: block;
+            background-image: url(/media/img/sandstone/buttons/arrow-large.png);
+            background-position: 12px 50%;
+            background-repeat: no-repeat;
+        }
+        .download-content {
+            color: #b5e786;
+            margin-left: auto;
+            height: auto;
+            padding-left: 54px;
+            padding-bottom: 18px;
+            background-image: url(/media/img/sandstone/buttons/android-corner.png);
+            background-position: 100% 100%;
+            .border-radius(4px);
+            .download-title {
+                .open-sans;
+                color: #fff;
+                background: none;
+                padding-right: 0;
+            }
+            .download-info {
+                padding-top: 6px;
+                padding-right: 30px;
+                text-shadow: 0 1px rgba(255,255,255,0.2);
+            }
+        }
+    }
 }

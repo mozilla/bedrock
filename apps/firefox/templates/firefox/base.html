@@ -19,56 +19,55 @@
 {% block site_header_nav %}
 <nav role="navigation" id="nav-main">
   <ul role="menubar">
-    <li class="first" id="nav-main-features"><a href="/en-US/firefox/features/" tabindex="0" aria-owns="nav-main-features-submenu" aria-haspopup="true">Desktop</a>
+    <li class="first" id="nav-main-features"><a href="{{ url('firefox.fx') }}#desktop" tabindex="0" aria-owns="nav-main-features-submenu" aria-haspopup="true">{{ _('Desktop') }}</a>
       <ul aria-expanded="false" id="nav-main-features-submenu">
-        <li class="first"><a href="{{ url('firefox.features') }}" tabindex="-1">Features</a></li>
-        <li><a href="{{ url('firefox.customize') }}" tabindex="-1">Customize</a></li>
-        <li><a href="{{ url('firefox.performance') }}" tabindex="-1">Performance</a></li>
-        <li><a href="{{ url('firefox.technology') }}" tabindex="-1">Technology</a></li>
-        <li class="last"><a href="{{ url('firefox.security') }}" tabindex="-1">Privacy &amp; Security</a></li>
+        <li class="first"><a href="{{ url('firefox.features') }}" tabindex="-1">{{ _('Features') }}</a></li>
+        <li><a href="{{ url('firefox.customize') }}" tabindex="-1">{{ _('Customize') }}</a></li>
+        <li><a href="{{ url('firefox.performance') }}" tabindex="-1">{{ _('Performance') }}</a></li>
+        <li><a href="{{ url('firefox.technology') }}" tabindex="-1">{{ _('Technology') }}</a></li>
+        <li class="last"><a href="{{ url('firefox.security') }}" tabindex="-1">{{ _('Privacy &amp; Security') }}</a></li>
       </ul>
     </li>
-    <li id="nav-main-mobile"><a href="/en-US/mobile/" tabindex="0" aria-owns="nav-main-mobile-submenu" aria-haspopup="true">Mobile</a>
-      <ul aria-expanded="false" id="nav-main-mobile-submenu">
-        <li class="first"><a href="/en-US/mobile/" tabindex="-1">Download</a></li>
-        <li><a href="/en-US/mobile/features/" tabindex="-1">Features</a></li>
+    <li id="nav-main-mobile"><a href="{{ url('firefox.fx') }}" tabindex="0" aria-owns="nav-main-mobile-submenu" aria-haspopup="true">Mobile</a>
+      <ul aria-expanded="false" id="nav-main-mobile-submenu" class="submenu">
+        <li class="first"><a href="{{ url('firefox.mobile.features') }}" tabindex="-1">Features</a></li>
         <li><a href="https://addons.mozilla.org/en-US/mobile/?browse=featured" tabindex="-1">Customize</a></li>
-        <li class="last"><a href="/en-US/mobile/faq/" tabindex="-1">FAQ</a></li>
+        <li class="last"><a href="{{ url('firefox.mobile.faq') }}" tabindex="-1">FAQ</a></li>
       </ul>
     </li>
-    <li id="nav-main-releases" class=""><a href="/en-US/firefox/channel/" tabindex="0" aria-owns="nav-main-releases-submenu" aria-haspopup="true">Releases</a>
+    <li id="nav-main-releases" class=""><a href="{{ url('firefox.channel') }}" tabindex="0" aria-owns="nav-main-releases-submenu" aria-haspopup="true">{{ _('Releases') }}</a>
       <ul aria-expanded="false" id="nav-main-releases-submenu">
-        <li class="first"><a href="/en-US/firefox/channel/" tabindex="-1">Overview</a></li>
-        <li><a href="/en-US/firefox/aurora/" tabindex="-1">Firefox Aurora</a></li>
-        <li><a href="/beta/" tabindex="-1">Firefox Beta</a></li>
-        <li><a href="/en-US/firefox/" tabindex="-1">Firefox</a></li>
-        <li class="last"><a href="/en-US/firefox/organizations/" tabindex="-1">Firefox for Organizations</a></li>
+        <li class="first"><a href="{{ url('firefox.channel') }}" tabindex="-1">{{ _('Overview') }}</a></li>
+        <li><a href="/en-US/firefox/aurora/" tabindex="-1">{{ _('Firefox Aurora') }}</a></li>
+        <li><a href="/beta/" tabindex="-1">{{ _('Firefox Beta') }}</a></li>
+        <li><a href="/en-US/firefox/" tabindex="-1">{{ _('Firefox') }}</a></li>
+        <li class="last"><a href="{{ url('firefox.organizations.organizations') }}" tabindex="-1">{{ _('Firefox for Organizations') }}</a></li>
       </ul>
     </li>
-    <li id="nav-main-addons"><a href="https://addons.mozilla.org/" tabindex="0" aria-owns="nav-main-addons-submenu" aria-haspopup="true">Add-ons</a>
+    <li id="nav-main-addons"><a href="https://addons.mozilla.org/" tabindex="0" aria-owns="nav-main-addons-submenu" aria-haspopup="true">{{ _('Add-ons') }}</a>
       <ul aria-expanded="false" id="nav-main-addons-submenu">
-        <li class="first"><a href="https://addons.mozilla.org/firefox/" tabindex="-1">Desktop Add-ons</a></li>
-        <li><a href="https://addons.mozilla.org/mobile/" tabindex="-1">Mobile Add-ons</a></li>
-        <li class="last"><a href="http://www.getpersonas.com/" tabindex="-1">Personas</a></li>
+        <li class="first"><a href="https://addons.mozilla.org/firefox/" tabindex="-1">{{ _('Desktop Add-ons') }}</a></li>
+        <li><a href="https://addons.mozilla.org/mobile/" tabindex="-1">{{ _('Mobile Add-ons') }}</a></li>
+        <li class="last"><a href="http://www.getpersonas.com/" tabindex="-1">{{ _('Personas') }}</a></li>
       </ul>
       </li>
-      <li id="nav-main-support"><a href="http://support.mozilla.org/" tabindex="0" aria-owns="nav-main-support-submenu" aria-haspopup="true">Support</a>
+      <li id="nav-main-support"><a href="http://support.mozilla.org/" tabindex="0" aria-owns="nav-main-support-submenu" aria-haspopup="true">{{ _('Support') }}</a>
       <ul aria-expanded="false" id="nav-main-support-submenu">
-        <li class="first"><a href="http://support.mozilla.org/en-US/kb/" tabindex="-1">Desktop Support</a></li>
-        <li class="last"><a href="http://support.mozilla.org/mobile" tabindex="-1">Mobile Support</a></li>
+        <li class="first"><a href="http://support.mozilla.org/en-US/kb/" tabindex="-1">{{ _('Desktop Support') }}</a></li>
+        <li class="last"><a href="http://support.mozilla.org/mobile" tabindex="-1">{{ _('Mobile Support') }}</a></li>
       </ul>
     </li>
-    <li class="last" id="nav-main-about"><a href="/en-US/firefox/about/" tabindex="0" aria-owns="nav-main-about-submenu" aria-haspopup="true">About</a>
+    <li class="last" id="nav-main-about"><a href="/en-US/firefox/about/" tabindex="0" aria-owns="nav-main-about-submenu" aria-haspopup="true">{{ _('About') }}</a>
       <ul aria-expanded="false" id="nav-main-about-submenu">
-        <li class="first"><a href="http://blog.mozilla.com/" tabindex="-1">Blog</a></li>
-        <li><a href="/en-US/firefox/about/" tabindex="-1">About Firefox</a></li>
-        <li><a href="http://www.mozilla.org/join" tabindex="-1">Join Mozilla</a></li>
-        <li><a href="/en-US/about/participate/" tabindex="-1">Participate</a></li>
-        <li><a href="http://blog.mozilla.org/press/" tabindex="-1">Press Center</a></li>
-        <li><a href="/en-US/firefox/brand/" tabindex="-1">Brand Toolkit</a></li>
-        <li><a href="/en-US/about/careers.html" tabindex="-1">Careers</a></li>
-        <li><a href="/en-US/about/partnerships.html" tabindex="-1">Partnerships</a></li>
-        <li class="last"><a href="/en-US/about/contact.html" tabindex="-1">Contact Us</a></li>
+        <li class="first"><a href="http://blog.mozilla.org/" tabindex="-1">{{ _('Blog') }}</a></li>
+        <li><a href="/en-US/firefox/about/" tabindex="-1">{{ _('About Firefox') }}</a></li>
+        <li><a href="http://www.mozilla.org/join" tabindex="-1">{{ _('Join Mozilla') }}</a></li>
+        <li><a href="/en-US/about/participate/" tabindex="-1">{{ _('Participate') }}</a></li>
+        <li><a href="http://blog.mozilla.org/press/" tabindex="-1">{{ _('Press Center') }}</a></li>
+        <li><a href="/en-US/firefox/brand/" tabindex="-1">{{ _('Brand Toolkit') }}</a></li>
+        <li><a href="/en-US/about/careers.html" tabindex="-1">{{ _('Careers') }}</a></li>
+        <li><a href="/en-US/about/partnerships.html" tabindex="-1">{{ _('Partnerships') }}</a></li>
+        <li class="last"><a href="/en-US/about/contact.html" tabindex="-1">{{ _('Contact Us') }}</a></li>
       </ul>
     </li>
   </ul>

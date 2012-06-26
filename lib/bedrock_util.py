@@ -1,6 +1,9 @@
 from django.conf import settings
 from django.http import HttpResponseRedirect
 
+import l10n_utils
+
+
 def secure_required(view_func):
     """Decorator makes sure URL is accessed over https."""
     def _wrapped_view_func(request, *args, **kwargs):
@@ -11,3 +14,8 @@ def secure_required(view_func):
                 return HttpResponseRedirect(secure_url)
         return view_func(request, *args, **kwargs)
     return _wrapped_view_func
+
+
+def server_error_view(request, template_name='500.html'):
+    """500 error handler that runs context processors."""
+    return l10n_utils.render(request, template_name)

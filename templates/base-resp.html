@@ -1,0 +1,220 @@
+{% set_lang_files "" %}
+<!doctype html>
+<html class="no-js" lang="{{ LANG }}" dir="{{ DIR }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block page_title_prefix %}Mozilla — {% endblock %}{% block page_title %}{% endblock %}{% block page_title_suffix %} — mozilla.org{% endblock %}</title>
+
+    <link href="/tabzilla/media/css/tabzilla.css" rel="stylesheet">
+
+    <!--[if lte IE 8]>
+    <script src="{{ MEDIA_URL }}js/libs/html5shiv.js"></script>
+    <![endif]-->
+
+    {% block site_css %}
+      {{ css('responsive') }}
+    {% endblock %}
+
+    {% block extrahead %}{% endblock %}
+
+    {% block favicon %}<link rel="shortcut icon" type="image/png" href="{{ MEDIA_URL }}img/favicon.png">{% endblock %}
+
+    <script>
+      (function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)
+    </script>
+  </head>
+
+  <!-- Note the "windows" class, without javascript platform-specific
+       assets default to windows -->
+  <body id="{% block body_id %}{% endblock %}" class="html-{{ DIR }} windows {% block body_class %}{% endblock %}">
+    {{ js('site') }}
+    <div id="outer-wrapper">
+    <div id="wrapper">
+
+    {% block site_header %}
+      <header id="masthead">
+        <a href="http://www.mozilla.org/" id="tabzilla">{{ _('Mozilla') }}</a>
+
+        {% block site_header_nav %}
+        <nav id="nav-main" role="menubar">
+          <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
+          <ul role="menu" id="nav-main-menu">
+            <li role="menuitem" class="first"><a href="{{ url('mozorg.mission') }}">{{_('Mission')}}</a></li>
+            <li role="menuitem"><a href="{{ url('mozorg.about') }}">{{_('About')}}</a></li>
+            <li role="menuitem"><a href="{{ url('mozorg.projects') }}">{{_('Projects')}}</a></li>
+            <li role="menuitem" class="last"><a href="{{ url('mozorg.contribute') }}">{{_('Get Involved')}}</a></li>
+          </ul>
+        </nav>
+        {% endblock %}
+
+        {% block site_header_logo %}
+        <h2><a href="{{ url('mozorg.home') }}"><img src="/media/img/sandstone/header-mozilla-stone.png" alt="mozilla"></a></h2>
+        {% endblock %}
+
+        {% block breadcrumbs %}{% endblock %}
+
+      </header>
+    {% endblock %}
+
+    {% block content %}{% endblock %}
+
+    {% block email_form %}
+      {% if email_form %}
+        {% if not email_success %}
+          {% if email_form.errors %}
+          <div id="footer-email-errors">
+            {{ email_form.non_field_errors()|safe }}
+
+            <ul class="errorlist">
+              {% if email_form.email.errors %}
+              <li>{{_('Please enter a valid email address')}}</li>
+              {% endif %}
+
+              {% if email_form.privacy.errors %}
+              <li>{{_('You must agree to the privacy policy')}}</li>
+              {% endif %}
+            </ul>
+          </div>
+          {% endif %}
+
+        <form class="billboard{% if email_form.errors %} has-errors{% endif%}"
+          id="footer-email-form" action="#footer-email-form" method="post">
+          <input type="hidden" name="newsletter-footer" value="Y" />
+          <input type="hidden" name="newsletter"
+            value="{% block email_form_newsletter %}mozilla-and-you{% endblock %}" />
+
+          <h3>{% block email_form_title %}{{_('Get Firefox news')}}{% endblock %}</h3>
+
+          <div class="form-contents">
+            <div class="field field-email {% if email_form.email.errors %}field-error{% endif %}">
+              {{ field_with_attrs(email_form.email, placeholder=_('YOUR EMAIL HERE'))|safe }}
+            </div>
+
+            <div id="form-details">
+              <div class="field field-format">
+                {{ email_form.fmt|safe }}
+              </div>
+              <div class="field field-privacy {% if email_form.privacy.errors%}field-error{% endif %}">
+                {{ email_form.privacy|safe }}
+              </div>
+            </div>
+          </div>
+
+          <div class="form-submit">
+            <input type="submit" id="footer_email_submit" value="Sign me up »" class="button-blue">
+            <p class="form-details"><small>{{_('We will only send you Mozilla-related information.')}}</small></p>
+          </div>
+
+        </form>
+        {% else %}
+        <div id="footer-email-form" class="thank billboard">
+          <h3>{{_('Thank you for signing up!')}}</h3>
+        </div>
+        {% endif %}
+      {% endif %}
+    {% endblock %}
+
+      </div><!-- close #wrapper -->
+
+    {% block site_footer %}
+      <footer id="colophon">
+      <div class="row">
+
+          <div class="footer-logo">
+              <a href="{{ php_url('/') }}"><img src="{{ media('img/sandstone/footer-mozilla.png') }}" alt="mozilla"></a>
+          </div>
+
+          <div class="footer-license">
+              <p>
+                Portions of this content are ©1998–2012 by individual
+                mozilla.org contributors. Content available under
+                a <a href="/foundation/licensing/website-content.html">Creative
+                Commons license</a>.
+              </p>
+              <p>
+                <a href="{{ url('mozorg.contribute_page') }}">{{_('Contribute to this page')}}</a>
+              </p>
+          </div>
+          <nav class="footer-nav">
+              <ul>
+                  <li><a href="{{ php_url('/about/contact.html#map-mountain_view') }}">{{_('Contact Us')}}</a></li>
+                  <li><a href="{{ php_url('/privacy-policy.html') }}">{{_('Privacy Policy')}}</a></li>
+                  <li><a href="{{ php_url('/about/legal.html') }}">{{_('Legal Notices')}}</a></li>
+                  <li><a href="{{ php_url('/legal/fraud-report/index.html') }}">{{_('Report Trademark Abuse')}}</a></li>
+              </ul>
+          </nav>
+
+          {% block social %}
+          <nav class="footer-nav">
+            <ul>
+              <li><a href="http://twitter.com/firefox">{{_('Twitter')}}</a></li>
+              <li><a href="http://facebook.com/Firefox">{{_('Facebook')}}</a></li>
+              <li><a href="https://affiliates.mozilla.org/">{{_('Firefox Affiliates')}}</a></li>
+            </ul>
+          </nav>
+          {% endblock %}
+
+      </div>
+      </footer>
+    {% endblock %}
+
+    <script src="/tabzilla/media/js/tabzilla.js"></script>
+    </div><!-- close #outer-wrapper -->
+
+    {% block site_js %}
+      {{ js('common') }}
+    {% endblock %}
+    {% block js %}{% endblock %}
+
+    {% block webtrends %}
+     {% include "includes/webtrends.html" %}
+    {% endblock %}
+    
+<script>
+  // mobile dropdown menu
+  $("#nav-main .toggle").click(function() {
+    if ( $("#nav-main-menu").is(":visible") ) {
+      $("#nav-main-menu:visible").slideUp(100).attr("aria-expanded", "false");
+      $("#nav-main .toggle.open").removeClass("open");
+    }
+    else {
+      $("#nav-main-menu").slideToggle(150).attr("aria-expanded", "true");
+      $(this).toggleClass("open");
+    }
+    return false;
+  });
+
+/*
+  // Hide menu when anything else is clicked
+  $(document).bind('click', function(e) {
+    var $clicked = $(e.target);
+    if (! $clicked.parents("#nav-main"))
+      $("#nav-main-menu").hide().attr("aria-expanded", "false");
+      $("#nav-main .toggle").removeClass("open");
+  });
+  
+  // or gets focus
+  $("a, input, textarea, button, :focus").bind('focus', function(e) {
+    var $focused = $(e.target);
+    if (! $focused.parents("#nav-main")) {
+      $("#nav-main-menu").hide().attr("aria-expanded", "false");
+      $("#nav-main .toggle").removeClass("open");
+    }
+  });
+*/
+
+  // reset the menu for wider windows   
+  $(window).resize(function() {
+    if ( $(window).width() >= 761 ) {
+      $("#nav-main-menu").removeAttr("style").attr("aria-expanded", "true");
+    }
+    else if ( $(window).width() <= 760 ) {
+      $("#nav-main-menu").removeAttr("style").attr("aria-expanded", "false");
+    }
+  });
+  </script>
+    
+  </body>
+</html>

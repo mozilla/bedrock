@@ -9,7 +9,9 @@
 
     <link href="/tabzilla/media/css/tabzilla.css" rel="stylesheet">
 
-    <script src="/media/js/libs/modernizr-2.5.0.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="/media/js/libs/html5shiv.js"></script>
+    <![endif]-->
 
     {% block site_css %}
       {{ css('common') }}
@@ -18,6 +20,10 @@
     {% block extrahead %}{% endblock %}
 
     {% block favicon %}<link rel="shortcut icon" type="image/png" href="{{ MEDIA_URL }}img/favicon.png">{% endblock %}
+
+    <script>
+        (function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)	
+    </script>
   </head>
 
   <!-- Note the "windows" class, without javascript platform-specific
@@ -73,7 +79,9 @@
           {% endif %}
 
         <form class="billboard{% if email_form.errors %} has-errors{% endif%}"
-          id="footer-email-form" action="#footer-email-form" method="post">
+          id="footer-email-form" action="#footer-email-form" method="post"
+          onsubmit="dcsMultiTrack('DCS.dcsuri','/signmeup.button','WT.ti','Sign%20Me%20Up','WT.dl','26');">
+          
           <input type="hidden" name="newsletter-footer" value="Y" />
           <input type="hidden" name="newsletter"
             value="{% block email_form_newsletter %}mozilla-and-you{% endblock %}" />
