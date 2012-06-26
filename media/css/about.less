@@ -1,5 +1,5 @@
-@import "sandstone/variables-resp.less";
-@import "sandstone/mixins-resp.less";
+@import "sandstone/variables.less";
+@import "sandstone/mixins.less";
 
 #main-content {
 
@@ -9,16 +9,17 @@
 
     .intro {
         .span(4);
+        margin-left: 0;
         padding-top: @baseLine;
     }
 
     ul.links {
-        .span(4);
+        .span(3);
         li {
             list-style-type: none;
+            margin-left: 0;
             padding-top: @baseLine;
             border-bottom: 1px dotted @borderColor;
-            margin-left: 0;
             min-height: @baseLine * 4;
         }
         h4 {
@@ -33,64 +34,5 @@
             margin-bottom: @baseLine / 2;
         }
     }
-
-}
-
-/* Tablet Layout: 760px */
-@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
-    
-    #main-content {
-        .intro {
-            .span_narrow(4);
-        }
-    
-        ul.links {
-            .span_narrow(4);
-            h4 {
-                font-size: 20px;
-            }
-        }
-    
-    }
-    
-}
-
-/* Mobile layout: 320px */
-@media only screen and (max-width: @breakTablet) {
-
-    #main-content {
-        margin-bottom: @baseLine;
-        .intro {
-            width: auto;
-        }
-    
-        ul.links {
-            width: auto;
-            margin-bottom: 0;
-            li {
-              min-height: 0;
-            }
-        }
-    
-    }
- 
-}
-
-/* Wide mobile layout: 480px; */
-@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
-
-    #main-content {
-        .intro {
-            .span(2);
-        }
-    
-        ul.links {
-            .span(3);
-            float: right;
-            clear: right;
-        }
-    
-    }
-
 
 }
