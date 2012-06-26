@@ -45,7 +45,7 @@
       <script>// <![CDATA[
       document.getElementById('promo-android').id = 'page-promo-android';
       // ]]></script>
-      <a href="{{ php_url('/mobile/') }}?WT.mc_id=moandroid&amp;WT.mc_ev=click" class="container">
+      <a href="{{ url('firefox.fx') }}#mobile?WT.mc_id=moandroid&amp;WT.mc_ev=click" class="container">
         <img src="{{ media('img/home/promo-android.jpg') }}" alt="Firefox for Android artwork">
         <div>
           <h3>Fast. Smart. Safe.</h3>
@@ -95,9 +95,15 @@
   <section id="home-news">
     <h3>In the news</h3>
     <ul>
-      {% for f in feed('mozilla')[:3] %}
-        <li><h4><a href="{{ f.link }}">{{ f.title }}</a></h4></li>
-      {% endfor %}
+      <li>
+        <h4><a href="http://blog.mozilla.org/blog/2012/06/26/mozilla-launches-a-speedy-and-powerful-upgrade-to-mobile-browsing-with-firefox-for-android">Mozilla Launches Upgrade to Mobile Browsing with Firefox for Android</a></h4>
+      </li>
+      <li>
+        <h4><a href="http://blog.mozilla.org/blog/2012/05/22/introducing-mozilla-webmaker/">Introducing “Mozilla Webmaker:” helping the world make the web</a></h4>
+      </li>
+      <li>
+        <h4><a href="http://blog.mozilla.org/blog/2012/05/17/congratulations-2012-firefox-flicks-winners/">Congratulations 2012 Firefox Flicks Winners!</a></h4>
+      </li>
     </ul>
     <a href="http://blog.mozilla.com/" id="all-news">See all news »</a>
   </section>
