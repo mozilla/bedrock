@@ -31,7 +31,10 @@
         // of flickering
         var b = document.body;
         b.className = b.className.replace("windows", site.platform);
-        b.className += " js";
+
+        // Add class to reflect javascript availability for CSS
+        var h = document.documentElement;
+        h.className = h.className.replace(/\bno-js\b/,'js');
     }
 
     init();
