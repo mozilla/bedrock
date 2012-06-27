@@ -11,7 +11,7 @@ from pyquery import PyQuery as pq
 # Where should this function go?
 def render(s, context={}):
     t = jingo.env.from_string(s)
-    return t.render(**context)
+    return t.render(context=context)
 
 
 class TestDownloadButtons(unittest.TestCase):
