@@ -146,6 +146,7 @@ def mobile_download_button(ctx, id, format='large_mobile', build=None):
     html = jingo.render_to_string(ctx['request'],
                                   'mozorg/download_button_%s.html' % format,
                                   data)
+
     return jinja2.Markup(html)
 
 @jingo.register.function
@@ -333,7 +334,7 @@ def video(*args, **kwargs):
     data.update(filetypes=filetypes, mime=mime, videos=videos)
 
     return jinja2.Markup(jingo.env.get_template(
-        'mozorg/videotag.html').render(**data))
+        'mozorg/videotag.html').render(context=data))
 
 
 @jingo.register.function
