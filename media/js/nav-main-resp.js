@@ -231,11 +231,21 @@ NavMain.enterSmallMode = function()
 {
     NavMain.unlinkMainMenuItems();
 
-    $('#nav-main-menu').attr('aria-hidden', 'true');
+    $('#nav-main-menu')
+	.css('display', 'none')
+	.attr('aria-hidden');
 
     $(document).click(NavMain.handleDocumentClick);
     $('a, input, textarea, button, :focus')
         .focus(NavMain.handleDocumentFocus);
+
+    $('#nav-main-menu, #nav-main-menu .submenu')
+	.attr('aria-hidden', 'true');
+
+    // remove submenu click handler and CSS class
+    NavMain.mainMenuLinks
+	.addClass('submenu-item')
+	.unbind('click', NavMain.handleSubmenuClick);
 
     NavMain.smallMode = true;
 };
@@ -244,12 +254,33 @@ NavMain.leaveSmallMode = function()
 {
     NavMain.relinkMainMenuLinks();
 
-    $('#nav-main-menu').removeAttr('aria-hidden');
+    $('#nav-main-menu')
+	.css('display', '')
+	.removeAttr('aria-hidden');
 
     $(document).unbind('click', NavMain.handleDocumentClick);
     $('a, input, textarea, button, :focus')
         .unbind('focus', NavMain.handleDocumentFocus);
 
+    $('#nav-main .toggle').removeClass('open');
+
+    // reset submenus
+    $('#nav-main-menu > li > .submenu')
+	.stop(true)
+	.css(
+	    {
+		'left'         : '',
+		'top'          : '',
+		'display'      : '',
+		'opacity'      : '',
+		'height'       : '',
+		'marginTop'    : '',
+		'marginBottom' : ''
+	    }
+	)
+	.attr('aria-expanded', 'false');
+
+    NavMain.currentSmallSubmenu = null;
     NavMain.smallMode = false;
     NavMain.smallMenuOpen = false;
 };
@@ -418,8 +449,17 @@ NavMain.closeSmallSubmenu = function(menu)
         .stop(true)
         .fadeOut(100, function() {
         menu
-            .css('left', '-999em')
-            .css('top', '0')
+	    .css(
+		{
+		    'left'         : '',
+		    'top'          : '',
+		    'display'      : '',
+		    'opacity'      : '',
+		    'height'       : '',
+		    'marginTop'    : '',
+		    'marginBottom' : ''
+		}
+	    )
             .attr('aria-expanded', 'false');
     });
 };
