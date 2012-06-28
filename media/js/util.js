@@ -105,3 +105,31 @@ function vary_body_class(options) {
     var choice = Math.floor(Math.random() * (options.length));
     document.body.className += ' '+options[choice];
 }
+
+// Detects whether do not track is enabled and takes one of two possible actions:
+// 1. If an element with the id #dnt-enabled exists it will
+// 1.1 if positive, set the element text to the positive message text below
+// 1.2 if negative, set the element text to the negative message text and, change
+//     the class of the element to button-blue instead of the default of button
+// 2. If an element with the id #dnt-enabled does not exist, the function will simply
+//    either return true or false.
+function isDoNotTrackEnabled() {
+    var enabled = window.navigator.doNotTrack === "yes",
+    dntEnabledButton = document.querySelector("#dnt-enabled"),
+    msgText = enabled ? document.createTextNode("Do Not Track Is On »") : document.createTextNode("Do Not Track Is Off »");
+
+    if(enabled) {
+        if(dntEnabledButton) {
+            dntEnabledButton.appendChild(msgText);
+        } else {
+            return true;
+        }
+    } else {
+        if(dntEnabledButton) {
+            dntEnabledButton.appendChild(msgText);
+            dntEnabledButton.setAttribute("class", "button-blue");
+        } else {
+            return false;
+        }
+    }
+}
