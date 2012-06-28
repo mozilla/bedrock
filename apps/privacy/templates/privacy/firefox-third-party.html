@@ -1,0 +1,40 @@
+{% extends "sand.html" %}
+
+{% block body_id %}privacy{% endblock %}
+
+{% block page_title %}Firefox Privacy Policy{% endblock %}
+
+{% block extrahead %}
+  {{ css('privacy') }}
+{% endblock %}
+
+{% block content %}
+
+<hgroup class="center">
+    <h1>Firefox Privacy Policy</h1>
+    <h2>Last Updated: June 19, 2012</h2>
+</hgroup>
+
+<div id="main-content">
+  <div class="row">
+    <article  class="main-column" role="main">
+      
+    </article>
+
+    <aside class="sidebar reference">
+      <h4>Our Privacy Policies</h4>
+      <p>Mozilla's specific privacy policies for our many websites, products and services:</p>
+      <ul class="policy-nav">
+        <li><a href="{{ url('privacy.websites') }}" class="policy-moz-websites">Mozilla Websites</a></li>
+        <li><a href="{{ url('privacy.firefox') }}" class="policy-firefox">Firefox</a></li>
+        <li><a href="{{ url('privacy.thunderbird') }}" class="policy-thunderbird">Thunderbird</a></li>
+        <li><a href="{{ url('privacy.marketplace') }}" class="policy-marketplace">Marketplace</a></li>
+        <li><a href="{{ url('privacy.persona') }}" class="policy-persona">Persona</a></li>
+        <li><a href="{{ url('privacy.sync') }}" class="policy-sync">Sync</a></li>
+        <li><a href="{{ url('privacy.test-pilot') }}" class="policy-test-pilot">Test Pilot</a></li>
+      </ul>
+    </aside>
+  </div>
+</div>
+
+{% endblock %}

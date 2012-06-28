@@ -5,6 +5,7 @@ from mozorg.util import page
 urlpatterns = patterns('',
     page('privacy', 'privacy/index.html'),
     page('privacy/policies/firefox', 'privacy/firefox.html'),
+    page('privacy/policies/firefox-third-party', 'privacy/firefox-third-party.html'),
     page('privacy/policies/websites', 'privacy/websites.html'),
     page('privacy/policies/thunderbird', 'privacy/thunderbird.html'),
     page('privacy/policies/marketplace', 'privacy/marketplace.html'),
