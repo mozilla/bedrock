@@ -29,6 +29,39 @@
   margin-left: 16px;
   width: 192px;
 }
+#privacy .billboard {
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 972px;
+}
+nav.privacy-menu-bar {
+    .open-sans-light;
+    margin-bottom: @baseLine * 2;
+    padding-top: 0;
+    padding-bottom: 0;
+
+    ol,
+    ul {
+        margin: 0;
+        li {
+            .inline-block;
+            margin: 0;
+        padding-top: (@baseLine / 2);
+        padding-bottom: (@baseLine / 2);
+            a {
+                .inline-block;
+                border-left: 1px dotted @borderColor;
+                padding: @baseLine / 4;
+                span {
+                    display: block;
+                }
+            }
+            &:first-child a {
+                border-left: 0;
+            }
+        }
+    }
+}
 nav.menu-bar {
   margin-bottom: 24px;
 }
@@ -36,8 +69,12 @@ nav.menu-bar {
   width: 635px;
 }
 #contact_privacy legend {
-  margin-bottom: 8px;
-  font-size: 28px;
+  margin: 0 0 12px;
+  font-size: 48px;
+  font-family: 'Open Sans Light',sans-serif;
+  line-height: 100%;
+  letter-spacing: -2px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.75);
 }
 #contact_privacy label {
    font-family: 'Open Sans Light', sans-serif;
