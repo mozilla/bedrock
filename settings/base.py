@@ -266,6 +266,11 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.validate.js',
             'js/partnerships.js',
         ),
+        'privacy': (
+            'js/util.js',
+            'js/mozilla-pager.js',
+            'js/privacy.js'
+        ),
         'video': (
             'js/mozilla-video-tools.js',
         ),
