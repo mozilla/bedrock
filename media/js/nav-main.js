@@ -78,7 +78,68 @@ $(document).ready(function() {
     });
   });
 
+if ( $(window).width() <= 760 ) {
+  
+  // mobile dropdown menu
+  $("#nav-main .toggle").click(function() {
+    if ( $("#nav-main-menu").is(":visible") ) {
+      $("#nav-main-menu:visible").slideUp(100).attr("aria-expanded", "false");
+      $("#nav-main .toggle.open").removeClass("open");
+    }
+    else {
+      $("#nav-main-menu").slideToggle(150).attr("aria-expanded", "true");
+      $(this).toggleClass("open");
+    }
+    return false;
+  });
+  
+  $("#nav-main-menu a[aria-haspopup='true']").click(function(){
+    if ( $(this).next(".submenu").is(":visible") ) {
+      $(this).next(".submenu").slideUp(100).attr("aria-expanded", "false");
+    }
+    else {
+      $(this).next(".submenu").slideDown(150).attr("aria-expanded", "true");
+    }
+    return false;
+  });
+
+/*
+  // Hide menu when anything else is clicked
+  $(document).bind('click', function(e) {
+    var $clicked = $(e.target);
+    if (! $clicked.parents("#nav-main"))
+      $("#nav-main-menu, #nav-main-menu .submenu").hide().attr("aria-expanded", "false");
+      $("#nav-main .toggle").removeClass("open");
+  });
+ 
+  // or gets focus
+  $("a, input, textarea, button, :focus").bind('focus', function(e) {
+    var $focused = $(e.target);
+    if (! $focused.parents("#nav-main")) {
+      $("#nav-main-menu, #nav-main-menu .submenu").hide().attr("aria-expanded", "false");
+      $("#nav-main .toggle").removeClass("open");
+    }
+  });
+*/
+
+  
+} // endif
+  
+    // reset the menu for wider windows   
+  $(window).resize(function() {
+    if ( $(window).width() >= 761 ) {
+      $("#nav-main-menu").removeAttr("style").removeAttr("aria-hidden");
+    }
+    else if ( $(window).width() <= 760 ) {
+      $("#nav-main-menu").removeAttr("style").attr("aria-hidden", "true");
+    }
+  });
+  
+
+
   // With JavaScript enabled, we can provide a full navigation with #nav-main.
   // Now "hide" the duplicated #footer-menu from AT.
   $('#footer-menu').attr('role', 'presentation');
+
+  
 });

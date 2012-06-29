@@ -5,6 +5,7 @@
     <meta charset="utf-8">
 
     <title>{% block page_title_prefix %}Mozilla — {% endblock %}{% block page_title %}{% endblock %}{% block page_title_suffix %} — mozilla.org{% endblock %}</title>
+    <meta name="description" content="{% block description %}{% endblock %}">
 
     <link href="/tabzilla/media/css/tabzilla.css" rel="stylesheet">
 
@@ -19,10 +20,6 @@
     {% block extrahead %}{% endblock %}
 
     {% block favicon %}<link rel="shortcut icon" type="image/png" href="{{ MEDIA_URL }}img/favicon.png">{% endblock %}
-
-    <script>
-        (function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)	
-    </script>
   </head>
 
   <!-- Note the "windows" class, without javascript platform-specific

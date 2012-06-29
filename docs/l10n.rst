@@ -110,7 +110,7 @@ know which one to use when translating a particular string?
 
 ::
 
-    {% add_lang_files "foo.lang" "bar.lang" %}
+    {% add_lang_files "foo" "bar" %}
 
 That will make the page load `foo.lang` and `bar.lang` in addition to
 `main.lang`, `base.lang`, and `newsletter.lang`.
