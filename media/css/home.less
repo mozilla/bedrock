@@ -31,6 +31,11 @@
         letter-spacing: -1px;
         white-space: nowrap;
     }
+    #firefox-promo-link {
+        position: absolute;
+        top: -10px;
+        left: 280px;
+    }
     ul.features {
         .span(4);
         width: 260px;
@@ -51,11 +56,6 @@
                 border: 0;
             }
         }
-    }
-    #promo-logo {
-        position: absolute;
-        top: -10px;
-        left: 280px;
     }
     .download-button {
         .span(4);
@@ -406,14 +406,14 @@
             min-height: 60px;
             white-space: normal;
         }
-        ul.features {
-            display: none;
-        }
-        #promo-logo {
+        #firefox-promo-link {
             left: @gridGutterWidth;
             top: @gridGutterWidth / 2;
             width: 80px;
             height: auto;
+        }
+        ul.features {
+            display: none;
         }
         .download-button {
             position: static;
