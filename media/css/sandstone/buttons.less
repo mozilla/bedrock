@@ -28,6 +28,10 @@
         .transition();
     }
 
+    &:focus {
+        outline-color: @textColorSecondary;
+    }
+
     &:active {
         .box-shadow(@buttonShadowActive);
         color: @buttonTextColor;
