@@ -13,7 +13,7 @@
     text-shadow: none;
     margin: 0 0 -15px 0;
     padding: 40px 0 40px 150px;
-    min-height: 40px;
+    min-height: 50px;
     background: url(/media/img/firefox/whatsnew/logo.png) 0 0 no-repeat;
     position: relative;
     z-index: 10;
@@ -48,6 +48,11 @@
     height: auto;
     max-width: 100%;
     margin: (@baseLine) auto;
+    video {
+	width: 640px;
+	height: auto;
+	max-width: 100%;
+    }
 }
 
 #android-download {
@@ -143,11 +148,29 @@
     #main-content,
     #colophon {
 	width: @widthTablet - (@gridGutterWidth * 2);
+	padding-left: @gridGutterWidth;
+	padding-right: @gridGutterWidth;
+    }
+
+    #whatsnew-header {
+	font-size: 42px;
     }
 
     #main-content {
-	h1 {
-	    font-size: 48px;
+	h2 {
+	    font-size: 52px;
+	}
+	p {
+	    font-size: 16px;
+	}
+    }
+
+    #footer-email-form {
+	width: auto;
+	h3 {
+	    .span_narrow(3);
+	    font-size: 22px;
+	    padding-top: 8px;
 	}
     }
 
@@ -160,13 +183,30 @@
     #main-content,
     #colophon {
 	width: @widthMobile - (@gridGutterWidth * 2);
+	padding-left: @gridGutterWidth;
+	padding-right: @gridGutterWidth;
 	margin: 0 auto;
     }
 
+    #whatsnew-header {
+	font-size: 24px;
+	padding-top: 25px;
+	background-size: 62px auto;
+	padding: 10px 20px 30px 80px;
+    }
+
     #main-content {
-	h1 {
-	    margin-top: @baseLine;
+	h2 {
 	    font-size: 32px;
+	}
+	p {
+	    font-size: 16px;
+	}
+    }
+
+    #email-form-wrapper {
+	#footer-email-form {
+	    width: auto;
 	}
     }
 
@@ -191,6 +231,9 @@
 	       }
 	    }
 	}
+	.attribution {
+	    width: 80%;
+	}
     }
 }
 
@@ -201,6 +244,12 @@
     #main-content,
     #colophon {
 	width: @widthMobileLandscape - (@gridGutterWidth * 2);
+    }
+
+    #email-form-wrapper {
+	#footer-email-form {
+	    width: auto;
+	}
     }
 
 }
