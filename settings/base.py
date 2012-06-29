@@ -403,6 +403,10 @@ INSTALLED_APPS = (
     'captcha'
 )
 
+TEMPLATE_CONTEXT_PROCESSORS += (
+    'mozorg.context_processors.current_year',
+)
+
 ## Auth
 PWD_ALGORITHM = 'bcrypt'
 HMAC_KEYS = {
