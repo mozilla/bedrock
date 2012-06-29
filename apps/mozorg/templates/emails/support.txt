@@ -1,4 +1,4 @@
-Thanks for your interest in helping people with support questions and welcome to the Mozilla community.
+{% trans %}Thanks for your interest in helping people with support questions and welcome to the Mozilla community.
 
 A great way to get started with helping users is to use our Army of Awesome page to quickly respond to questions people have about Firefox. You can find it at:
 
@@ -10,4 +10,4 @@ https://support.mozilla.com/kb/superheroes-wanted
 
 If you have any questions about this, feel free to write me back.
 
-Jay
+Jay{% endtrans %}

@@ -1,4 +1,4 @@
-Hello,
+{% trans %}Hello,
 
 Thank you for your inquiry about getting involved with the Mozilla Student Reps program. To learn how to start representing Mozilla at your college or university, please sign-up here:
 
@@ -13,4 +13,4 @@ We look forward to keeping in touch with you through the Student Reps channels l
 Good luck -- and thank you for promoting Mozilla and Firefox at your school.
 
 Mozilla Student Reps
-studentreps@mozilla.com
+studentreps@mozilla.com{% endtrans %}
