@@ -1,84 +1,24 @@
-@import "sandstone/variables.less";
-@import "sandstone/mixins.less";
+@import "sandstone/variables-resp.less";
+@import "sandstone/mixins-resp.less";
 
-nav.menu-bar {
-    letter-spacing: -0.5px;
-}
-
-nav.menu-bar ol li a,
-nav.menu-bar ul li a {
-    padding-left: 16px;
-    padding-right: 16px;
-}
-
-.projects-block {
-    .span(7);
-    margin-left: 0;
-    margin-bottom: @baseLine;
-    h2 {
-        .span(3);
-        margin-left: 0;
-        margin-bottom: @baseLine;
-    }
-    .intro {
-        .span(4);
+.projects {
+    padding-top: @baseLine;
+    padding-bottom: @baseLine;
+    h1 {
+        margin: 0;
+        font-size: 34px;
     }
     ul {
-        .clearfix;
-        clear: left;
+        padding: 0;
+        margin: 0;
     }
     li {
-        list-style-type: none;
-        margin: 0 0 @baseLine 0;
-        border-top: 1px dotted @borderColor;
-        padding-top: @baseLine;
-        .clearfix;
-    }
-    li.more {
-        border: 0;
-        padding-top: 0;
-    }
-    h3 {
-        .span(3);
-        margin-left: 0;
-        padding-top: 18px;
-        clear: left;
-        font-size: 24px;
-        span {
-            display: block;
-            font-size: 18px;
-            letter-spacing: normal;
-        }
-        img {
-            background: #fff;
-            width: 50px;
-            height: 50px;
-            padding: (@gridColumnWidth - 52) / 2;
-            border: 1px solid @borderColor; 
-            .border-radius;
-            .box-shadow(0 2px 4px rgba(0,0,0,0.1));
-            float: left;
-            margin: -18px @gridGutterWidth @baseLine  0;
-        }
-    }
-    p {
-        .span(4);
-    }
-    p.more {
-        margin-left: 0;
-        width: auto;
-    }
-}
-
-
-#projects-column {
-    .span(7);
-    margin-left: 0;
-}
-
-.sidebar {
-    .offset(1);
-    .reference {
-        margin-top: 0;
+       .span(4);
+        background-image: url(http://www.mozilla.org/media/img/home/promo-flicks.jpg);
+        background-position: 0 0;
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+        @projectShadow: 0 0 16px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.5);
+        .box-shadow(@projectShadow);
     }
 }
