@@ -1,0 +1,23 @@
+{% extends "/mozorg/download_button_mobile_base.html" %}
+
+{% block class %}download-button-mobile-large{% endblock %}
+
+  {% block contents %}
+  <ul class="download-list">
+    {% for build in builds %}
+    <li class="{{ build.platform }}">
+      <a class="download-link download-{{ product }}"
+         href="{{ build.download_link }}"
+         data-direct-link="{{ build.download_link_direct }}">
+        <span class="download-content-wrapper"><span class="download-content">
+          <span class="download-title">{% block title %}{{ _('Get Firefox') }}{% endblock %}</span>
+          {% block subtitle %}{{ _('for Android') }}{% endblock%}
+          <span class="download-info">
+            {{ _('Free from the Google Play Store') }}
+          </span>
+        </span></span>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endblock %}

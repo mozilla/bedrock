@@ -20,37 +20,37 @@ class TestDownloadButtons(unittest.TestCase):
         return product_details.firefox_versions['LATEST_FIREFOX_VERSION']
 
     def check_desktop_links(self, links):
-	"""Desktop links should have the correct firefox version"""
+        """Desktop links should have the correct firefox version"""
         key = 'firefox-%s' % self.latest_version()
 
         for link in links:
-	    assert_not_equal(pq(link).attr('href').find(key), -1)
+            assert_not_equal(pq(link).attr('href').find(key), -1)
 
     def check_dumb_button(self, doc):
-	# Make sure 4 links are present
+        # Make sure 4 links are present
         links = doc('li a')
-	eq_(links.length, 4)
+        eq_(links.length, 4)
 
-	self.check_desktop_links(links[:3])
+        self.check_desktop_links(links[:3])
 
-	# Check that last link is Android
-	eq_(pq(links[3]).attr('href'),
-	    'https://market.android.com/details?id=org.mozilla.firefox')
+        # Check that last link is Android
+        eq_(pq(links[3]).attr('href'),
+            'https://market.android.com/details?id=org.mozilla.firefox')
 
     def test_button(self, format='large'):
-	rf = RequestFactory()
-	get_request = rf.get('/fake')
-	get_request.locale = 'fr'
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'fr'
         doc = pq(render("{{ download_button('button', '%s') }}" % format,
-			{'request': get_request}))
+                        {'request': get_request}))
 
         eq_(doc.attr('id'), 'button')
 
         self.check_dumb_button(doc('noscript'))
-	self.check_dumb_button(doc('.unsupported-download'))
-	self.check_dumb_button(doc('.download-list'))
+        self.check_dumb_button(doc('.unsupported-download'))
+        self.check_dumb_button(doc('.download-list'))
 
-	eq_(doc('.download-other a').length, 3)
+        eq_(doc('.download-other a').length, 3)
 
     def test_small_button(self):
         self.test_button('small')

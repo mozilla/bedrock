@@ -1,10 +1,6 @@
-from os.path import join as pathjoin
-
-from django.conf import settings
 from django.core.mail import EmailMessage
-from django.template.loader import select_template
 from django.views.decorators.csrf import csrf_exempt
-
+from django.conf import settings
 import jingo
 from product_details import product_details
 
@@ -12,15 +8,12 @@ import basket
 import l10n_utils
 from forms import ContributeForm, NewsletterCountryForm
 
-EMAIL_TEMPLATE_PATH = 'emails/'
-
 
 def handle_contribute_form(request, form):
     if form.is_valid():
         data = form.cleaned_data
-        locale = getattr(request, 'locale', 'en-US')
-        contribute_send(data, locale)
-        contribute_autorespond(request, data, locale)
+        contribute_send(data)
+        contribute_autorespond(request, data)
 
         if data['newsletter']:
             try:
@@ -39,6 +32,7 @@ def contribute_page(request):
                              'mozorg/contribute-page.html',
                              {'form': form,
                               'success': success})
+
 
 @csrf_exempt
 def contribute(request):
@@ -95,30 +89,31 @@ def contribute(request):
                               'newsletter_form': newsletter_form,
                               'newsletter_success': newsletter_success})
 
+
 def contribute_send(data, locale='en-US'):
     """Forward contributor's email to our contacts.
 
     For localized contacts, add the local contact's email to the
     dictionary as in the following example
     e.g
-    ccs = { 'QA': {'all': 'all@example.com', 'el': 'el@example.com'} }
+    CCS = { 'QA': {'all': 'all@example.com', 'el': 'el@example.com'} }
 
     Now all emails for QA get send to 'all@example.com' except
     the greek ones which get send to 'el@example.com'.
     """
-    ccs = {
-        'QA': {'all': 'qanoreply@mozilla.com'},
-        'Thunderbird': {'all': 'tb-kb@mozilla.com'},
-        'Students': {'all': 'studentreps@mozilla.com'},
-        'Research': {'all': 'diane+contribute@mozilla.com'},
-        'Design': {'all': 'creative@mozilla.com'},
-        'Security': {'all': 'security@mozilla.com'},
-        'Docs': {'all': 'eshepherd@mozilla.com'},
-        'Drumbeat': {'all': 'drumbeat@mozilla.com'},
-        'Browser Choice': {'all': 'isandu@mozilla.com'},
-        'IT': {'all': 'cshields@mozilla.com'},
-        'Marketing': {'all': 'cnovak@mozilla.com'},
-        'Add-ons': {'all': 'atsay@mozilla.com'},
+    CCS = {
+	'QA': {'all': 'qanoreply@mozilla.com'},
+        'Students': 'studentreps@mozilla.com',
+	'Thunderbird': {'all': 'tb-kb@mozilla.com'},
+	'Research': {'all': 'diane+contribute@mozilla.com'},
+	'Design': {'all': 'creative@mozilla.com'},
+	'Security': {'all': 'security@mozilla.com'},
+	'Docs': {'all': 'eshepherd@mozilla.com'},
+	'Drumbeat': {'all': 'drumbeat@mozilla.com'},
+	'Browser Choice': {'all': 'isandu@mozilla.com'},
+	'IT': {'all': 'cshields@mozilla.com'},
+	'Marketing': {'all': 'cnovak@mozilla.com'},
+	'Add-ons': {'all': 'atsay@mozilla.com'},
     }
 
     from_ = 'contribute-form@mozilla.org'
@@ -127,17 +122,21 @@ def contribute_send(data, locale='en-US'):
            % (data['email'], data['interest'], data['comments']))
     headers = {'Reply-To': data['email']}
 
+    # Send email To: contribute@mozilla.org and Cc: a team from the
+    # CCS list, if applicable. When in DEV mode copy From: to To: and
+    # don't add Cc:
     to = ['contribute@mozilla.org']
     if settings.DEV:
         to = [data['email']]
 
     cc = None
-    if data['interest'] in ccs:
-        email_list = ccs[data['interest']]
-        cc = [email_list.get(locale, email_list['all'])]
+    if not settings.DEV and data['interest'] in CCS:
+	email_list = CCS[data['interest']]
+	cc = [email_list.get(locale, email_list['all'])]
 
     email = EmailMessage(subject, msg, from_, to, cc=cc, headers=headers)
     email.send()
+
 
 def contribute_autorespond(request, data, locale='en-US'):
     """Send an auto-respond email based on chosen field of interest and locale.
@@ -155,35 +154,35 @@ def contribute_autorespond(request, data, locale='en-US'):
     """
 
     replies = {
-        'Support': {'all': 'jay@jaygarcia.com'},
-        'Localization': {'all': 'fiotakis@otenet.gr'},
-        'QA': {'all': 'qa-contribute@mozilla.com'},
-        'Add-ons': {'all': 'atsay@mozilla.com'},
-        'Marketing': {'all': 'cnovak@mozilla.com'},
-        'Design': {'all': 'creative@mozilla.com'},
-        'Students': {'all': 'william@mozilla.com'},
-        'Documentation': {'all': 'jay@jaygarcia.com'},
-        'Research': {'all': 'jay@jaygarcia.com'},
-        'Thunderbird': {'all': 'jzickerman@mozilla.com'},
-        'Accessibility': {'all': 'jay@jaygarcia.com'},
-        'Firefox Suggestions': {'all': 'jay@jaygarcia.com'},
-        'Firefox Issue': {'all': 'dboswell@mozilla.com'},
-        'Webdev': {'all': 'lcrouch@mozilla.com'},
-        ' ': {'all': 'dboswell@mozilla.com'}
-        }
+        'Support': 'jay@jaygarcia.com',
+        'Localization': 'fiotakis@otenet.gr',
+        'QA': 'qa-contribute@mozilla.com',
+        'Add-ons': 'atsay@mozilla.com',
+        'Marketing': 'cnovak@mozilla.com',
+        'Design': 'creative@mozilla.com',
+        'Students': 'william@mozilla.com',
+        'Documentation': 'jay@jaygarcia.com',
+        'Research': 'jay@jaygarcia.com',
+        'Thunderbird': 'jzickerman@mozilla.com',
+        'Accessibility': 'jay@jaygarcia.com',
+        'Firefox Suggestions': 'jay@jaygarcia.com',
+        'Firefox Issue': 'dboswell@mozilla.com',
+        'Webdev': 'lcrouch@mozilla.com',
+        ' ': 'dboswell@mozilla.com'
+    }
 
     msgs = {
-        'Support': 'support.txt',
-        'QA': 'qa.txt',
-        'Add-ons': 'addons.txt',
-        'Marketing': 'marketing.txt',
-        'Design': 'design.txt',
-        'Students': 'students.txt',
-        'Documentation': 'documentation.txt',
-        'Firefox Suggestions': 'suggestions.txt',
-        'Firefox Issue': 'issue.txt',
-        'Webdev': 'webdev.txt',
-        ' ': 'other.txt'
+        'Support': 'emails/support.txt',
+        'QA': 'emails/qa.txt',
+        'Add-ons': 'emails/addons.txt',
+        'Marketing': 'emails/marketing.txt',
+        'Design': 'emails/design.txt',
+        'Students': 'emails/students.txt',
+        'Documentation': 'emails/documentation.txt',
+        'Firefox Suggestions': 'emails/suggestions.txt',
+        'Firefox Issue': 'emails/issue.txt',
+        'Webdev': 'emails/webdev.txt',
+        ' ': 'emails/other.txt'
         }
 
     subject = 'Inquiry about Mozilla %s' % data['interest']
@@ -193,20 +192,14 @@ def contribute_autorespond(request, data, locale='en-US'):
     msg = ''
 
     if data['interest'] in msgs:
-        template_name = pathjoin(EMAIL_TEMPLATE_PATH, msgs[data['interest']])
-        local_template_name = pathjoin(EMAIL_TEMPLATE_PATH, locale,
-                                       msgs[data['interest']])
-        template = select_template([local_template_name, template_name])
-
-        msg = jingo.render_to_string(request, template, data)
+        msg = jingo.render_to_string(request, msgs[data['interest']], data)
     else:
         return False
 
     msg = msg.replace('\n', '\r\n')
 
     if data['interest'] in replies:
-        email_list = replies[data['interest']]
-        headers = {'Reply-To': email_list.get(locale, email_list['all'])}
+        headers = {'Reply-To': replies[data['interest']]}
 
     email = EmailMessage(subject, msg, from_, to, headers=headers)
     email.send()

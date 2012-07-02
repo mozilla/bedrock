@@ -8,6 +8,10 @@ patch()
 # from django.contrib import admin
 # admin.autodiscover()
 
+# The default django 500 handler doesn't run the ContextProcessors, which breaks
+# the base template page. So we replace it with one that does!
+handler500 = 'bedrock_util.server_error_view'
+
 urlpatterns = patterns('',
     # Main pages
     (r'^b2g/', include('b2g.urls')),

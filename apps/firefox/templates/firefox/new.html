@@ -1,7 +1,7 @@
-{% extends "/firefox/base.html" %}
+{% extends "/firefox/base-resp.html" %}
 
 {% block page_title %}Free Download{% endblock %}
-{% block body_id %}firefox-mew{% endblock %}
+{% block body_id %}firefox-new{% endblock %}
 
 {% block site_header_nav %}{% endblock %}
 {% block site_header_logo %}{% endblock %}
@@ -11,19 +11,18 @@
 {% endblock %}
 
 {% block content %}
-
 <article id="main-content">
 
-  <h1>Different by Design</h1>
+  <h1>{{_('Different by Design')}}</h1>
   <ul id="benefits">
-      <li class="first">Proudly <span>non-profit</span></li>
-      <li>Innovating <span>for you</span></li>
-      <li>Fast, flexible, <span>secure</span></li>
+      <li class="first">{{_('Proudly <span>non-profit</span>')}}</li>
+      <li>{{_('Innovating <span>for you</span>')}}</li>
+      <li>{{_('Fast, flexible, <span>secure</span>')}}</li>
   </ul>
 
   {{ download_button('download') }}
-  <p id="beta-promo">
-    <a href="{{ php_url('/firefox/beta/?WT.mc_id=bbetahomepage') }}">Try Firefox Beta</a>
+  <p id="android-promo">
+    <a href="{{ php_url('/mobile/?WT.mc_id=androidhomepage') }}">{{_('Get Firefox for Android free!')}}</a>
   </p>
 </article>
 
@@ -36,16 +35,16 @@
 
     <nav class="primary">
       <ul class="primary">
-        <li><a href="{{ php_url('/firefox/central/') }}">Tour</a></li>
-        <li><a href="{{ php_url('/firefox/features/') }}">Desktop</a></li>
-        <li><a href="{{ php_url('/mobile/') }}">Mobile</a></li>
-        <li><a href="{{ php_url('https://addons.mozilla.org/') }}">Add-ons</a></li>
-        <li><a href="{{ php_url('http://support.mozilla.org/') }}">Support</a></li>
-        <li><a href="{{ php_url('/about/') }}">About</a></li>
+        <li><a href="{{ php_url('/firefox/central/') }}">{{_('Tour')}}</a></li>
+        <li><a href="{{ php_url('/firefox/features/') }}">{{_('Desktop')}}</a></li>
+        <li><a href="{{ php_url('/mobile/') }}">{{_('Mobile')}}</a></li>
+        <li><a href="{{ php_url('https://addons.mozilla.org/') }}">{{_('Add-ons')}}</a></li>
+        <li><a href="{{ php_url('http://support.mozilla.org/') }}">{{_('Support')}}</a></li>
+        <li><a href="{{ php_url('/about/') }}">{{_('About')}}</a></li>
       </ul>
       <ul class="secondary">
-        <li><a href="{{ php_url('/privacy-policy.html') }}">Privacy Policy</a></li>
-        <li><a href="{{ php_url('/about/legal.html') }}">Legal Notices</a></li>
+        <li><a href="{{ php_url('/privacy-policy.html') }}">{{_('Privacy Policy')}}</a></li>
+        <li><a href="{{ php_url('/about/legal.html') }}">{{_('Legal Notices')}}</a></li>
       </ul>
     </nav>
 
