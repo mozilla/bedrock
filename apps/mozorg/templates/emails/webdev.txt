@@ -1,4 +1,4 @@
-Thanks for offering to help us build Mozilla's websites.
+{% trans %}Thanks for offering to help us build Mozilla's websites.
 
 Start by joining us in #webdev on IRC. http://mzl.la/irc_getting_started will help you get connected, and http://mzl.la/webdev_irc lists some WebDev channels.
 
@@ -11,4 +11,4 @@ Finally, with your mentor, fork the github repository for the bug's website and 
 This is a lot of information, so let me know if you have any questions as you get started.
 
 Regards,
-Luke
+Luke{% endtrans %}

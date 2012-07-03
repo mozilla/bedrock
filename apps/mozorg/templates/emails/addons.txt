@@ -1,4 +1,4 @@
-Thank you for your interest in Firefox Add-ons. It's easy to start contributing--whether by leaving a review of your favorite add-on, designing a theme, or creating an add-on, your efforts matter!
+{% trans %}Thank you for your interest in Firefox Add-ons. It's easy to start contributing--whether by leaving a review of your favorite add-on, designing a theme, or creating an add-on, your efforts matter!
 
 If you are new to Firefox Add-ons, here are some things you can do at https://addons.mozilla.org:
 
@@ -60,4 +60,4 @@ If you have any additional questions, please feel free to email us!
 
 Regards,
 Amy Tsay
-Add-ons Community Manager
+Add-ons Community Manager{% endtrans %}

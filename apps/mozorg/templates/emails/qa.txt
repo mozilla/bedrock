@@ -1,4 +1,4 @@
-Thanks for your interest in helping with testing.
+{% trans %}Thanks for your interest in helping with testing.
 
 To get started, download a development build of Firefox and then
 join us for the next Test Day.
@@ -16,4 +16,4 @@ We look forward to talking with you more soon.
 
 Juan Becerra
 Mozilla QA
-http://quality.mozilla.org/
+http://quality.mozilla.org/{% endtrans %}

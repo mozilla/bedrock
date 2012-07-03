@@ -1,4 +1,4 @@
-Hello! Thanks for your interest in helping with Mozilla's documentation. There are several ways you can help:
+{% trans %}Hello! Thanks for your interest in helping with Mozilla's documentation. There are several ways you can help:
 
 Write Firefox Knowledge Base articles
 http://support.mozilla.com/en-US/kb/improve-knowledge-base
@@ -11,4 +11,4 @@ http://developer.mozilla.org/Project:en/How_to_Help
 
 Thanks again for your interest, and welcome to the Mozilla Contributor Community.
 
-Jay
+Jay{% endtrans %}

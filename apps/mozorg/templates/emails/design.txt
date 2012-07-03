@@ -1,4 +1,4 @@
-Thanks for your interest in getting involved with Mozilla.
+{% trans %}Thanks for your interest in getting involved with Mozilla.
 
 Visual design is handled by our Creative team and we work on projects ranging
 from logos to marketing campaigns to websites to... well, just about anything
@@ -22,4 +22,4 @@ We’ll update it periodically, so please check back often.
 If you have questions or comments about any of this, please feel free to write
 back.
 
-— The Creative Team
+— The Creative Team{% endtrans %}
