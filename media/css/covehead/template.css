@@ -14,12 +14,6 @@ body {
     top: 0;
 }
 
-#nav-access a:focus {
-    left: 726px;
-    top: 10px;
-    background: rgba(255,255,255, .7);
-    padding: 3px;
-}
 
 #doc {
 	width: 980px;
