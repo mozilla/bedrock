@@ -134,23 +134,19 @@
                 <a href="{{ url('mozorg.contribute_page') }}">{{_('Contribute to this page')}}</a>
               </p>
           </div>
-          <nav class="footer-nav">
-              <ul>
-                  <li><a href="{{ php_url('/about/contact.html#map-mountain_view') }}">{{_('Contact Us')}}</a></li>
-                  <li><a href="{{ php_url('/privacy-policy.html') }}">{{_('Privacy Policy')}}</a></li>
-                  <li><a href="{{ php_url('/about/legal.html') }}">{{_('Legal Notices')}}</a></li>
-                  <li><a href="{{ php_url('/legal/fraud-report/index.html') }}">{{_('Report Trademark Abuse')}}</a></li>
-              </ul>
-          </nav>
+          <ul class="footer-nav">
+            <li><a href="{{ php_url('/about/contact.html#map-mountain_view') }}">{{_('Contact Us')}}</a></li>
+            <li><a href="{{ php_url('/privacy-policy.html') }}">{{_('Privacy Policy')}}</a></li>
+            <li><a href="{{ php_url('/about/legal.html') }}">{{_('Legal Notices')}}</a></li>
+            <li><a href="{{ php_url('/legal/fraud-report/index.html') }}">{{_('Report Trademark Abuse')}}</a></li>
+          </ul>
 
           {% block social %}
-          <nav class="footer-nav">
-            <ul>
-              <li><a href="http://twitter.com/firefox">{{_('Twitter')}}</a></li>
-              <li><a href="http://facebook.com/Firefox">{{_('Facebook')}}</a></li>
-              <li><a href="https://affiliates.mozilla.org/">{{_('Firefox Affiliates')}}</a></li>
-            </ul>
-          </nav>
+          <ul class="footer-nav">
+            <li><a href="http://twitter.com/firefox">{{_('Twitter')}}</a></li>
+            <li><a href="http://facebook.com/Firefox">{{_('Facebook')}}</a></li>
+            <li><a href="https://affiliates.mozilla.org/">{{_('Firefox Affiliates')}}</a></li>
+          </ul>
           {% endblock %}
 
       </div>
