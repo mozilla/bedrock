@@ -8,7 +8,18 @@ body {
 	min-width: 990px;
 }
 
-#nav-access { display: none; }
+#nav-access a {
+    position: absolute;
+    left: -999em;
+    top: 0;
+}
+
+#nav-access a:focus {
+    left: 726px;
+    top: 10px;
+    background: rgba(255,255,255, .7);
+    padding: 3px;
+}
 
 #doc {
 	width: 980px;
