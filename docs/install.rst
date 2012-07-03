@@ -37,6 +37,10 @@ Now configure the application to run locally by creating your local settings fil
 
 You shouldn't need customize anything in there yet.
 
+Check out the latest product-details::
+
+    $ ./manage.py update_product_details
+
 Lastly, you need to install `node` and the `less` package. Soon you won't need this for local development but currently it compiles the LESS CSS code on the server-side::
 
     $ npm -g install less
@@ -58,6 +62,8 @@ run the server::
 If you are not inside a virtualenv, you can activate it by doing::
 
     $ source venv/bin/activate
+
+If you get the error "NoneType is not iterable", you didn't check out the latest product-details. See the above section for that.
 
 Localization
 ------------
