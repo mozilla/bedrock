@@ -77,25 +77,29 @@ var gPlatformVista = navigator.userAgent.indexOf('Windows NT 6.0') !=-1
     })
     addHandlers();
 
-    function addHandlers() {
-        // Fix for keyboard accessibility
-        $('.tip-container').bind('mouseenter', function (e) {
+	function addHandlers() {
+        $('.tip-container').bind('mouseenter focusin', function (e) {
             var $this = $(this);
-            $this.children('.arrow, .tip')
-                .css({'display': 'block'})
+			var $tip = $this.find('.tip');
+			var left = parseInt($tip.attr("data-left"), 10);
+			var top = parseInt($tip.attr("data-top"), 10);
+            $tip.css({'left': left, 'top': top})
+                .animate({'opacity': 1}, 300);
+			$this.children('.arrow')
                 .animate({'opacity': 1}, 300);
             $this.children('.callout')
                 .animate({'opacity': 0}, 300);
-        }).bind('mouseleave', function (e) {
+        }).bind('mouseleave focusout', function (e) {
             var $this = $(this);
+            var $tip = $this.find('.tip');
             $this.children('.arrow, .tip')
                 .animate({'opacity': 0}, 300, function () {
-                    $(this).css({'display': 'none'});
+					$tip.css({'left': -999, 'top': 0})
                 });
             $this.children('.callout')
                 .animate({'opacity': 1}, 300);
         });
-        
+
     }
 
     function drawTip(tip) {
@@ -106,8 +110,7 @@ var gPlatformVista = navigator.userAgent.indexOf('Windows NT 6.0') !=-1
         }
 
         var $callout = $(document.createElement('span'));
-        $callout.addClass('callout')
-        $callout.attr('tabindex', 0);
+        $callout.addClass('callout').attr({'tabindex': '0'});
         $callout.css({'left': tip.left, 'top': tip.top});
         $container.append($callout);
 
@@ -116,12 +119,13 @@ var gPlatformVista = navigator.userAgent.indexOf('Windows NT 6.0') !=-1
         if (left + tipWidth > sceneWidth) {
             left = sceneWidth - tipWidth;
         }
-        $tip.css({'left': left, 'top': tip.top, 'opacity': 0, 'display': 'none'});
+        $tip.attr({"data-left":left, "data-top":tip.top});
+        $tip.css({'left': -999, 'top': 0, 'opacity': 0});
         $container.append($tip);
 
         var $arrow = $(document.createElement('span'));
         $arrow.addClass('arrow');
-        $arrow.css({'left': tip.left, 'top': tip.top, 'opacity': 0, 'display': 'none'});
+        $arrow.css({'left': tip.left, 'top': tip.top, 'opacity': 0});
         $container.append($arrow);
 
         $tip.removeAttr('id');
