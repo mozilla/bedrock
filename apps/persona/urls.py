@@ -1,10 +1,10 @@
 from django.conf.urls.defaults import *
-from views import persona, about, developerfaq, termsofservice, privacypolicy
+from mozorg.util import page
 
 urlpatterns = patterns('',
-    (r'^developer-faq/$', developerfaq),
-    (r'^terms-of-service/$', termsofservice),
-    (r'^privacy-policy/$', privacypolicy),
-    (r'^about/$', about),
-    (r'^$', persona),
+    page('', 'persona/persona.html'),
+    page('about', 'persona/about.html'),
+    page('privacy-policy', 'persona/privacy-policy.html'),
+    page('terms-of-service', 'persona/terms-of-service.html'),
+    page('developer-faq', 'persona/developer-faq.html')
 )
