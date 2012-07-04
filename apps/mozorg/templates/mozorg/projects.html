@@ -143,9 +143,11 @@
         <p>{{ _('An environment for XUL-based applications.') }}</p>
       </a>
     </li>
+    {% if request.locale == 'en-US' %}
     <li id="reserved">
-      <img src="{{ media('/img/projects/badge-reserved.jpg') }}" alt="{{ _('Reserved for future awesomeness') }}" />
+      <img src="{{ media('/img/projects/badge-reserved.jpg') }}" alt="Reserved for future awesomeness" />
     </li>
+    {% endif %}
   </ul>
 </section>
 
