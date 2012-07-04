@@ -1,6 +1,8 @@
 {% set_lang_files "main" %}
 <!doctype html>
-<html class="no-js" lang="{{ LANG }}" dir="{{ DIR }}">
+{# Note the "windows" class, without javascript platform-specific
+     assets default to windows #}
+<html class="windows no-js" lang="{{ LANG }}" dir="{{ DIR }}">
   <head>
     <meta charset="utf-8">
 
@@ -20,12 +22,11 @@
     {% block extrahead %}{% endblock %}
 
     {% block favicon %}<link rel="shortcut icon" type="image/png" href="{{ MEDIA_URL }}img/favicon.png">{% endblock %}
+
+    {{ js('site') }}
   </head>
 
-  <!-- Note the "windows" class, without javascript platform-specific
-       assets default to windows -->
-  <body id="{% block body_id %}{% endblock %}" class="html-{{ DIR }} windows {% block body_class %}{% endblock %}">
-    {{ js('site') }}
+  <body id="{% block body_id %}{% endblock %}" class="html-{{ DIR }} {% block body_class %}{% endblock %}">
     <div id="outer-wrapper">
     <div id="wrapper">
 
