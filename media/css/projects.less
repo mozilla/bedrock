@@ -1,6 +1,16 @@
 @import "sandstone/variables-resp.less";
 @import "sandstone/mixins-resp.less";
 
+#main-feature {
+    text-align: center;
+    h2 {
+        font-size: 28px;
+        width: 75%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
 .projects {
     padding-top: @baseLine;
     padding-bottom: @baseLine;
@@ -38,6 +48,7 @@
         }
         p {
             color: @textColorTertiary;
+            min-height: 3em;
         }
     }
     img {
@@ -48,10 +59,19 @@
         max-width: 300px;
         height: auto;
     }
+    #reserved img {
+        .box-shadow(none);
+    }
 }
 
 /* Tablet Layout: 760px */
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+
+#main-feature {
+    h2 {
+        width: auto;
+    }
+}
 
 .projects {
     li {
@@ -65,6 +85,16 @@
 /* Mobile layout: 320px */
 @media only screen and (max-width: @breakTablet) {
 
+#main-feature {
+    h1 {
+        font-size: 38px;
+    }
+    h2 {
+        font-size: 16px;
+        width: auto;
+        letter-spacing: normal;
+    }
+}
 nav#projects-nav.menu-bar ul li {
     padding: 0;
 }
