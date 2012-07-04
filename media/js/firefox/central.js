@@ -79,25 +79,25 @@ var gPlatformVista = navigator.userAgent.indexOf('Windows NT 6.0') !=-1
 
 	function addHandlers() {
 	$('.tip-container').bind('mouseenter focusin', function (e) {
-            var $this = $(this);
-			var $tip = $this.find('.tip');
-			var left = parseInt($tip.attr("data-left"), 10);
-			var top = parseInt($tip.attr("data-top"), 10);
+	    var $this = $(this);
+	    var $tip = $this.find('.tip');
+	    var left = parseInt($tip.data("left"), 10);
+	    var top = parseInt($tip.data("top"), 10);
 	    $tip.css({'left': left, 'top': top})
 		.animate({'opacity': 1}, 300);
-			$this.children('.arrow')
-                .animate({'opacity': 1}, 300);
-            $this.children('.callout')
-                .animate({'opacity': 0}, 300);
+	    $this.children('.arrow')
+		.animate({'opacity': 1}, 300);
+	    $this.children('.callout')
+		.animate({'opacity': 0}, 300);
 	}).bind('mouseleave focusout', function (e) {
             var $this = $(this);
 	    var $tip = $this.find('.tip');
-            $this.children('.arrow, .tip')
-                .animate({'opacity': 0}, 300, function () {
-					$tip.css({'left': -999, 'top': 0})
-                });
-            $this.children('.callout')
-                .animate({'opacity': 1}, 300);
+	    $this.children('.arrow, .tip')
+		.animate({'opacity': 0}, 300, function () {
+		    $tip.css({'left': -999, 'top': 0});
+		});
+	    $this.children('.callout')
+		.animate({'opacity': 1}, 300);
         });
 
     }
@@ -116,12 +116,12 @@ var gPlatformVista = navigator.userAgent.indexOf('Windows NT 6.0') !=-1
 
         var $tip = $('#' + tip.id);        
         var left = Math.max(tip.left - (tipWidth/2), 0);
-        if (left + tipWidth > sceneWidth) {
-            left = sceneWidth - tipWidth;
-        }
-	$tip.attr({"data-left":left, "data-top":tip.top});
+	if (left + tipWidth > sceneWidth) {
+	    left = sceneWidth - tipWidth;
+	}
+	$tip.data({"left":left, "top":tip.top});
 	$tip.css({'left': -999, 'top': 0, 'opacity': 0});
-        $container.append($tip);
+	$container.append($tip);
 
         var $arrow = $(document.createElement('span'));
         $arrow.addClass('arrow');
