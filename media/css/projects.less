@@ -59,8 +59,23 @@
         max-width: 300px;
         height: auto;
     }
-    #reserved img {
-        .box-shadow(none);
+    #reserved {
+        position: relative;
+        img {
+           .box-shadow(none);
+        }
+        p {
+            .open-sans;
+            font-size: @baseFontSize;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            position: absolute;
+            top: 0;
+            padding: 60px 50px;
+            text-align: center;
+            color: #ababab;
+            text-shadow: 0 1px #fff;
+        }
     }
 }
 
@@ -76,6 +91,12 @@
 .projects {
     li {
        .span_narrow(4);
+    }
+    #reserved p {
+        font-size: @smallFontSize;
+        padding-top: 44px;
+        line-height: 1.2;
+        letter-spacing: normal;
     }
 }
 
@@ -95,6 +116,7 @@
         letter-spacing: normal;
     }
 }
+
 nav#projects-nav.menu-bar ul li {
     padding: 0;
 }
@@ -121,6 +143,8 @@ nav#projects-nav.menu-bar ul li {
         .span_narrow(3);
     }
 }
+
+#reserved { display: none; }
 
 }
 
