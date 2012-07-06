@@ -3,8 +3,10 @@
     padding-bottom: @baseLine;
     margin-bottom: @baseLine * 2;
     
-    .row {
-        margin-left: 0;
+    fieldset,
+    .form-row {
+        width: (@gridColumnWidth * 10) + (@gridGutterWidth * 10);
+        float: left;
     }
 
     .form-column-1  {
@@ -25,6 +27,7 @@
 
     .form-submit {
         .span(2);
+        float: right;
     }
 
     .field-interest {
@@ -79,6 +82,11 @@
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
     
     #help-form {
+        fieldset,
+        .form-row {
+            width: (@gridColumnWidthNarrow * 10) + (@gridGutterWidth * 10);
+            float: left;
+        }
         .form-column-1,
         .form-submit  {
             .span_narrow(2);
@@ -97,13 +105,20 @@
 @media only screen and (max-width: @breakTablet) {
 
     #help-form {
+        padding-left: @gridGutterWidth;
+        padding-right: @gridGutterWidth;
+        fieldset,
+        .form-row {
+            width: auto;
+            float: none;
+        }
         .form-column-1,
         .form-column-2,
-        .form-column-3
+        .form-column-3,
         .form-submit {
             width: auto;
             float: none;
-            margin: 0 10px .5em;
+            margin: 0 0 .5em;
         }
 
     }
