@@ -41,6 +41,10 @@
 
     #opportunities {
         padding-bottom: @baseLine * 2;
+        .container {
+            padding-left: @gridGutterWidth * 1.5;
+            padding-right: @gridGutterWidth * 1.5;
+        }
         nav {
             background: #f0ece3;
             border: 1px solid rgba(0,0,0,0.03);
@@ -93,7 +97,7 @@
                 .border-radius;
                 .box-shadow(0 2px 4px rgba(0,0,0,0.1));
                 float: left;
-                margin: @baseLine (@gridGutterWidth / 2);
+                margin: @baseLine 10px @baseLine 0;
             }
 
             h3 {
@@ -110,16 +114,17 @@
         .location-content {
             li.row {
                 float: left;
+                margin-right: @gridGutterWidth;
                 border: 0;
             }
 
             img {
-                width: 142px;
+                width: 130px;
             }
 
             h3 {
                 width: (@gridColumnWidth * 3) + (@gridGutterWidth * 2);
-                margin: @baseLine * 2   0 0 @gridGutterWidth;
+                margin: (@baseLine * 2) 0 0 (@gridGutterWidth / 2);
             }
         }
     }
@@ -180,6 +185,10 @@
 
     #contribute {
         #opportunities {
+            .container {
+                padding-left: @gridGutterWidth;
+                padding-right: @gridGutterWidth;
+            }
             section {
                 img {
                     float: left;

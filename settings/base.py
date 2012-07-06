@@ -167,7 +167,7 @@ MINIFY_BUNDLES = {
             'css/marketplace.less',
         ),
         'mission': (
-            'css/sandstone/video.less',
+            'css/sandstone/video-resp.less',
             'css/mission.less',
         ),
         'mozilla_expanders': (
