@@ -102,18 +102,18 @@ def contribute_send(data, locale='en-US'):
     the greek ones which get send to 'el@example.com'.
     """
     CCS = {
-	'QA': {'all': 'qanoreply@mozilla.com'},
-        'Students': 'studentreps@mozilla.com',
-	'Thunderbird': {'all': 'tb-kb@mozilla.com'},
-	'Research': {'all': 'diane+contribute@mozilla.com'},
-	'Design': {'all': 'creative@mozilla.com'},
-	'Security': {'all': 'security@mozilla.com'},
-	'Docs': {'all': 'eshepherd@mozilla.com'},
-	'Drumbeat': {'all': 'drumbeat@mozilla.com'},
-	'Browser Choice': {'all': 'isandu@mozilla.com'},
-	'IT': {'all': 'cshields@mozilla.com'},
-	'Marketing': {'all': 'cnovak@mozilla.com'},
-	'Add-ons': {'all': 'atsay@mozilla.com'},
+        'QA': 'qa-contribute@mozilla.org',
+        'Thunderbird': 'tb-kb@mozilla.com',
+        'Research': 'diane+contribute@mozilla.com',
+        'Design': 'creative@mozilla.com',
+        'Security': 'security@mozilla.com',
+        'Docs': 'eshepherd@mozilla.com',
+        'Drumbeat': 'drumbeat@mozilla.com',
+        'Browser Choice': 'isandu@mozilla.com',
+        'IT': 'cshields@mozilla.com',
+        'Marketing': 'cnovak@mozilla.com',
+        'Add-ons': 'atsay@mozilla.com',
+        'Education': 'joinmozilla@mozilla.org',
     }
 
     from_ = 'contribute-form@mozilla.org'
@@ -156,11 +156,10 @@ def contribute_autorespond(request, data, locale='en-US'):
     replies = {
         'Support': 'jay@jaygarcia.com',
         'Localization': 'fiotakis@otenet.gr',
-        'QA': 'qa-contribute@mozilla.com',
+        'QA': 'qa-contribute@mozilla.org',
         'Add-ons': 'atsay@mozilla.com',
         'Marketing': 'cnovak@mozilla.com',
         'Design': 'creative@mozilla.com',
-        'Students': 'william@mozilla.com',
         'Documentation': 'jay@jaygarcia.com',
         'Research': 'jay@jaygarcia.com',
         'Thunderbird': 'jzickerman@mozilla.com',
@@ -168,6 +167,7 @@ def contribute_autorespond(request, data, locale='en-US'):
         'Firefox Suggestions': 'jay@jaygarcia.com',
         'Firefox Issue': 'dboswell@mozilla.com',
         'Webdev': 'lcrouch@mozilla.com',
+        'Education': 'joinmozilla@mozilla.org',
         ' ': 'dboswell@mozilla.com'
     }
 
@@ -177,11 +177,11 @@ def contribute_autorespond(request, data, locale='en-US'):
         'Add-ons': 'emails/addons.txt',
         'Marketing': 'emails/marketing.txt',
         'Design': 'emails/design.txt',
-        'Students': 'emails/students.txt',
         'Documentation': 'emails/documentation.txt',
         'Firefox Suggestions': 'emails/suggestions.txt',
         'Firefox Issue': 'emails/issue.txt',
         'Webdev': 'emails/webdev.txt',
+        'Education': 'emails/education.txt',
         ' ': 'emails/other.txt'
         }
 
