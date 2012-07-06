@@ -185,6 +185,9 @@ MINIFY_BUNDLES = {
         'projects': (
             'css/projects.less',
         ),
+        'projects_mozilla_based': (
+            'css/projects/mozilla-based.less',
+        ),
         'research': (
             'css/research/research.less',
         ),

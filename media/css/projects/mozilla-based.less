@@ -1,0 +1,63 @@
+@import "../sandstone/variables-resp.less";
+@import "../sandstone/mixins-resp.less";
+
+.productlist {
+    .clearfix;
+    .span(7);
+    margin-left: 0;
+    margin-bottom: @baseLine;
+    h2 {
+        .span(3);
+        margin-left: 0;
+        margin-bottom: @baseLine;
+    }
+    .intro {
+        .span(4);
+    }
+    ul {
+        .clearfix;
+        clear: left;
+    }
+    li {
+        list-style-type: none;
+        margin: 0 0 @baseLine 0;
+        border-top: 1px dotted @borderColor;
+        padding-top: @baseLine;
+        .clearfix;
+    }
+    li.more {
+        border: 0;
+        padding-top: 0;
+    }
+    h3 {
+        .span(3);
+        margin-left: 0;
+        padding-top: 18px;
+        clear: left;
+        font-size: 24px;
+        span {
+            display: block;
+            font-size: 18px;
+            letter-spacing: normal;
+        }
+        img {
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            padding: (@gridColumnWidth - 52) / 2;
+            border: 1px solid @borderColor; 
+            .border-radius;
+            .box-shadow(0 2px 4px rgba(0,0,0,0.1));
+            float: left;
+            margin: -18px @gridGutterWidth @baseLine  0;
+        }
+    }
+    p {
+        .span(4);
+    }
+    p.more {
+        margin-left: 0;
+        width: auto;
+    }
+}
+
