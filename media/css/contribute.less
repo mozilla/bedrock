@@ -1,5 +1,5 @@
-@import "sandstone/variables.less";
-@import "sandstone/mixins.less";
+@import "sandstone/variables-resp.less";
+@import "sandstone/mixins-resp.less";
 @import "contribute-form.less";
 
 #contribute {
@@ -33,6 +33,10 @@
         b {
             font-weight: bold;
         }
+    }
+    
+    li.row {
+        margin-left: 0;
     }
 
     #opportunities {
@@ -89,24 +93,22 @@
                 .border-radius;
                 .box-shadow(0 2px 4px rgba(0,0,0,0.1));
                 float: left;
-                margin: @baseLine 0 @baseLine @gridGutterWidth;
+                margin: @baseLine (@gridGutterWidth / 2);
             }
 
             h3 {
-                float: left;
-                margin: @baseLine * 1.25  @gridGutterWidth @baseLine @gridGutterWidth;
-                width: (@gridColumnWidth * 3) + (@gridGutterWidth * 2);
+                .span(3);
+                margin-top: @baseLine * 1.25;
             }
 
             .content {
-                float: left;
-                margin: @baseLine 0 0 0;
-                width: (@gridColumnWidth * 6) + (@gridGutterWidth * 5);
+                .span(8);
+                margin-top: @baseLine;
             }
         }
 
-        .location-content section {
-            li {
+        .location-content {
+            li.row {
                 float: left;
                 border: 0;
             }
@@ -141,3 +143,111 @@
 
 .js #form-details { display: none; }
 
+/* Tablet Layout: 760px */
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+
+
+    #contribute {
+        #opportunities {
+            section {
+                h3 {
+                    .span_narrow(3);
+                    margin-top: @baseLine * 1.25;
+                }
+    
+                .content {
+                    .span_narrow(7);
+                    margin-top: @baseLine;
+                }
+            }
+            
+            .location-content {
+
+                h3 {
+                    font-size: 1.5em;
+                    width: (@gridColumnWidthNarrow * 3) + (@gridGutterWidth * 2);
+                    margin: (@baseLine * 1.5) 0 0 10px;
+                }
+            }
+
+        }
+    }
+
+}
+
+/* Mobile Layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+
+    #contribute {
+        #opportunities {
+            section {
+                img {
+                    float: left;
+                    margin: 10px;
+                }
+                h3 {
+                    width: auto;
+                }
+                .content {
+                    width: auto;
+                    margin: 0 10px;
+                }
+            }
+        
+            .location-content {
+                li.row {
+                    margin: 0 0 (@baseLine * 1.5);
+                    width: 100%;
+                    float: none;
+                }
+                img {
+                    display: block;
+                    float: none;
+                    margin: 0 auto .5em;
+                }
+                h3 {
+                    margin: 0;
+                    width: auto;
+                    float: none;
+                    text-align: center;
+                }
+            }
+            
+            nav {
+                h5,
+                ul {
+                    display: block;
+                    margin: 0 0 .5em;
+                }
+                li {
+                    display: inline;
+                    margin: 0 3px .25em 0;
+                }
+            }
+        }
+    }
+
+}
+
+/* Wide Mobile Layout: 480px */
+@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+
+    #contribute {
+        #opportunities .location-content {
+            li.row {
+                margin: 0;
+            }
+            img {
+                float: left;
+                margin: @baseLine (@gridGutterWidth / 2);
+            }
+            h3 {
+                width: (@gridColumnWidthNarrow * 4) + (@gridGutterWidth * 3);
+                float: left;
+                text-align: left;
+                margin: (@baseLine * 1.5) 0 0 10px;
+            }
+        }
+    }
+    
+}

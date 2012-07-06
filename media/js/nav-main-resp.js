@@ -231,7 +231,7 @@ NavMain.enterSmallMode = function()
 {
     NavMain.unlinkMainMenuItems();
 
-    $('#nav-main-menu').attr('aria-hidden', 'true');
+    $('#nav-main-menu, #nav-main-menu .submenu').removeAttr('style').attr('aria-hidden', 'true');
 
     $(document).click(NavMain.handleDocumentClick);
     $('a, input, textarea, button, :focus')
@@ -245,6 +245,7 @@ NavMain.leaveSmallMode = function()
     NavMain.relinkMainMenuLinks();
 
     $('#nav-main-menu').removeAttr('aria-hidden');
+    $('#nav-main-menu .submenu').removeAttr('style').attr('aria-hidden', 'true');
 
     $(document).unbind('click', NavMain.handleDocumentClick);
     $('a, input, textarea, button, :focus')
@@ -326,7 +327,7 @@ NavMain.openSmallMenu = function()
     }
 
     $('#nav-main-menu')
-        .slideToggle(150)
+        .slideDown(150)
         .removeAttr('aria-hidden');
 
     $('#nav-main .toggle').addClass('open');
