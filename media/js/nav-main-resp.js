@@ -326,7 +326,7 @@ NavMain.openSmallMenu = function()
     }
 
     $('#nav-main-menu')
-        .slideToggle(150)
+        .slideDown(150)
         .removeAttr('aria-hidden');
 
     $('#nav-main .toggle').addClass('open');
