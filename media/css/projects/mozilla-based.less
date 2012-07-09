@@ -9,6 +9,26 @@
     }
 }
 
+#featured {
+    li {
+        list-style-type: none;
+        .span(4);
+        img {
+            float: left;
+        }
+        h3 span {
+            display: block;
+            padding-top: 8px;
+            padding-left: 60px;
+        }
+        p {
+            padding-left: 60px;
+            font-size: @smallFontSize;
+            margin-bottom: 0;
+        }
+    }
+}
+
 .productlist {
     .span(8);
     margin-bottom: @baseLine;
@@ -96,6 +116,27 @@
 .sidebar {
     .span_narrow(4);
     .offset_narrow(1);
+}
+
+}
+
+@media only screen and (max-width: @breakDesktop) {
+
+#featured {
+    li {
+        float: none;
+        width: auto;
+        h3 span {
+            display: block;
+            padding-left: 60px;
+            padding-top: 0;
+        }
+        p {
+            padding-left: 60px;
+            font-size: @smallFontSize;
+            margin-bottom: @baseLine / 2;
+        }
+    }
 }
 
 }
