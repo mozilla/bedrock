@@ -28,7 +28,7 @@ def handle_contribute_form(request, form):
 def contribute_page(request):
     form = ContributeForm(request.POST or None)
     success = handle_contribute_form(request, form)
-    return l10n_utils.render(request, 
+    return l10n_utils.render(request,
                              'mozorg/contribute-page.html',
                              {'form': form,
                               'success': success})
@@ -80,8 +80,8 @@ def contribute(request):
                 newsletter_form.errors['__all__'] = msg
     else:
         newsletter_form = NewsletterCountryForm(locale, prefix='newsletter')
-                
-    return l10n_utils.render(request, 
+
+    return l10n_utils.render(request,
                              'mozorg/contribute.html',
                              {'form': form,
                               'success': success,
@@ -90,9 +90,8 @@ def contribute(request):
 
 def contribute_send(data):
     ccs = {
-        'QA': 'qanoreply@mozilla.com',
+        'QA': 'qa-contribute@mozilla.org',
         'Thunderbird': 'tb-kb@mozilla.com',
-        'Students': 'studentreps@mozilla.com',
         'Research': 'diane+contribute@mozilla.com',
         'Design': 'creative@mozilla.com',
         'Security': 'security@mozilla.com',
@@ -102,6 +101,7 @@ def contribute_send(data):
         'IT': 'cshields@mozilla.com',
         'Marketing': 'cnovak@mozilla.com',
         'Add-ons': 'atsay@mozilla.com',
+        'Education': 'joinmozilla@mozilla.org',
     }
 
     from_ = 'contribute-form@mozilla.org'
@@ -125,11 +125,10 @@ def contribute_autorespond(request, data):
     replies = {
         'Support': 'jay@jaygarcia.com',
         'Localization': 'fiotakis@otenet.gr',
-        'QA': 'qa-contribute@mozilla.com',
+        'QA': 'qa-contribute@mozilla.org',
         'Add-ons': 'atsay@mozilla.com',
         'Marketing': 'cnovak@mozilla.com',
         'Design': 'creative@mozilla.com',
-        'Students': 'william@mozilla.com',
         'Documentation': 'jay@jaygarcia.com',
         'Research': 'jay@jaygarcia.com',
         'Thunderbird': 'jzickerman@mozilla.com',
@@ -137,6 +136,7 @@ def contribute_autorespond(request, data):
         'Firefox Suggestions': 'jay@jaygarcia.com',
         'Firefox Issue': 'dboswell@mozilla.com',
         'Webdev': 'lcrouch@mozilla.com',
+        'Education': 'joinmozilla@mozilla.org',
         ' ': 'dboswell@mozilla.com'
     }
 
@@ -146,11 +146,11 @@ def contribute_autorespond(request, data):
         'Add-ons': 'emails/addons.txt',
         'Marketing': 'emails/marketing.txt',
         'Design': 'emails/design.txt',
-        'Students': 'emails/students.txt',
         'Documentation': 'emails/documentation.txt',
         'Firefox Suggestions': 'emails/suggestions.txt',
         'Firefox Issue': 'emails/issue.txt',
         'Webdev': 'emails/webdev.txt',
+        'Education': 'emails/education.txt',
         ' ': 'emails/other.txt'
         }
 
