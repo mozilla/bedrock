@@ -83,6 +83,67 @@
 }
 
 
+#promo-android {
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    text-align: left;
+    margin-top: @baseLine;
+    margin-bottom: @baseLine;
+    a {
+        display: block;
+        height: 253px;
+        padding: 0;
+        position: relative;
+        width: 100%;
+        border-bottom: 1px solid #ddd;
+        &:hover,
+        &:active {
+            text-decoration: none;
+        }
+    }
+    div {
+        .span(7);
+        margin-left: 0;
+        padding: 0 0 @baseLine 48px;
+        position: relative;
+    }
+    h3 {
+        padding-top: @baseLine * 2;
+        margin-bottom: @baseLine / 2;
+        font-size: 48px;
+        letter-spacing: -1px;
+        color: #fff;
+        text-shadow: none;
+    }
+    h4 {
+        .span(5);
+        margin-left: 0;
+        margin-bottom: @baseLine;
+        clear: left;
+        color: #fff;
+        text-shadow: none;
+    }
+    p {
+        clear: left;
+        color: #fff;
+        text-shadow: none;
+        margin: 0;
+    }
+    img {
+        display: block;
+        background: @textColorPrimary;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+
+#ru-search {
+    margin: @baseLine auto;
+    width: 80%;
+}
+
 #colophon {
     width: @widthDesktop;
     margin: 0 auto;
@@ -174,6 +235,25 @@
         }
     }
 
+    #promo-android {
+        a {
+            height: 191px;
+        }
+        div {
+            .span_narrow(7);
+        }
+        h3 {
+            font-size: 36px;
+            letter-spacing: -1px;
+            padding-top: @baseLine;
+        }
+        h4 {
+            .span_narrow(5);
+            margin-left: 0;
+            margin-bottom: @baseLine;
+        }
+    }
+
 }
 
 /* Mobile layout: 320px */
@@ -233,6 +313,36 @@
         }
         .attribution {
             width: 80%;
+        }
+    }
+
+
+    #promo-android {
+        div,
+        h3,
+        h4,
+        p {
+            float: none;
+            width: auto;
+            margin-left: 0;
+            padding: 0;
+            color: @textColorSecondary;
+            text-align: center;
+        }
+        h3 {
+            font-size: 24px;
+        }
+        h4 {
+            margin-bottom: @baseLine / 3;
+        }
+        a {
+            border: 0;
+            width: auto;
+            height: auto;
+            img {
+                position: static;
+                margin-bottom: @baseLine / 2;
+            }
         }
     }
 }
