@@ -298,6 +298,11 @@ MINIFY_BUNDLES = {
             'js/mozilla-video-tools.js',
             'js/marketplace/partners.js',
         ),
+        'mozorg-resp': (
+            'js/libs/jquery-1.7.1.min.js',
+            'js/nav-main-resp.js',
+            'js/footer-email-form.js',
+        ),
         'pager': (
             'js/mozilla-pager.js',
         ),
