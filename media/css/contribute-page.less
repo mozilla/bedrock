@@ -1,15 +1,56 @@
-@import "sandstone/variables.less";
-@import "sandstone/mixins.less";
+@import "sandstone/variables-resp.less";
+@import "sandstone/mixins-resp.less";
 @import "contribute-form.less";
 
 #contribute-page {
     #main-feature {
-        padding-top: @baseLine;
-        padding-bottom: @baseLine;
+        padding: @baseLine (@gridGutterWidth * 1.5);
     }
     #main-content p {
-        .span(7);
-        margin-left: 0;
+        .span(8);
         clear: left;
+        margin: 0 (@gridGutterWidth / 2) @baseLine; 
     }
+}
+
+/* Tablet Layout: 760px */
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+
+    #contribute-page {
+        #main-content p {
+            .span_narrow(10);
+            margin: 0 (@gridGutterWidth / 2) @baseLine;
+        }
+    }
+
+}
+
+/* Mobile layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+
+    #contribute-page {
+        #main-feature {
+            padding: @baseLine @gridGutterWidth;
+        }
+        #main-content p {
+            width: auto;
+            margin: 0 (@gridGutterWidth / 2) @baseLine;
+        }
+    }
+
+}
+
+/* Wide Mobile Layout: 480px */
+@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+
+    #contribute-page {
+        #main-feature {
+            padding: @baseLine 0;
+        }
+        #main-content p {
+            width: auto;
+            margin: 0 0 @baseLine;
+        }
+    }
+
 }

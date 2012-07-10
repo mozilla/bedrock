@@ -45,7 +45,9 @@
 @gridColumnsMobile:       5;
 @gridRowWidthMobile:      (@gridColumnsMobile * @gridColumnWidthNarrow) + (@gridGutterWidth * (@gridColumnsMobile - 1));
 
-@gridRowWidthMobileWide:  (@gridColumnsMobile * @gridColumnWidth) + (@gridGutterWidth * (@gridColumnsMobile - 1));
+// Mobile landscape grid: 7 columns at 40px
+@gridColumnsMobileWide:   7;
+@gridRowWidthMobileWide:  (@gridColumnsMobileWide * @gridColumnWidthNarrow) + (@gridGutterWidth * (@gridColumnsMobileWide - 1));
 
 // Breakpoints for common devices
 @breakDesktop:            1000px;
