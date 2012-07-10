@@ -163,9 +163,10 @@ MINIFY_BUNDLES = {
 	'firefox_whatsnew': (
 	    'css/sandstone/video.less',
 	    'css/firefox/whatsnew.less',
+	    'css/firefox/whatsnew-android.less',
 	),
-        'home': (
-            'css/home.less',
+	'home': (
+	    'css/home.less',
         ),
         'marketplace': (
             'css/marketplace.less',
