@@ -16,6 +16,7 @@
 
 <h1 id="whatsnew-header">{{ _('Hooray! Your Firefox is up to date.') }}</h1>
 
+{% l10n whatsnew_feature, 20120710 %}
 <article id="main-content" class="billboard">
 
   <h2>{{ _('Now get the mobile browser that’s got your back') }}</h2>
@@ -34,8 +35,8 @@
 
 {{ mobile_download_button('android-download') }}
 
-
 </article>
+{% endl10n %}
 {% endblock %}
 
 {% block email_form %}
