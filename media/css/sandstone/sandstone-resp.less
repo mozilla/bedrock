@@ -582,9 +582,8 @@ nav.menu-bar {
     margin: 1em 0 0;
 
     .row {
-        width: @gridRowWidth;
+        width: @gridRowWidth + @gridGutterWidth;
         margin: 0 auto;
-        padding: 0 @gridGutterWidth;
         .clearfix;
     }
 
@@ -650,6 +649,10 @@ nav.menu-bar {
     .container {
         width: @widthTablet - (@gridGutterWidth * 2);
     }
+    
+    nav.menu-bar {
+        font-size: .9375em;
+    }
 
     .sidebar {
         .offset(0);
@@ -672,9 +675,7 @@ nav.menu-bar {
 
     #colophon {
         .row {
-            width: @gridRowWidthTablet;
-            padding-left: @gridGutterWidth / 2;
-            padding-right: @gridGutterWidth / 2;
+            width: @gridRowWidthTablet + @gridGutterWidth;
         }
         .footer-logo {
             .span_narrow(4);
@@ -750,6 +751,7 @@ nav.menu-bar {
         }
 
         nav.breadcrumbs {
+            margin-left: 0;
             a,
             span {
                 margin-right: .3em;
@@ -802,6 +804,7 @@ nav.menu-bar {
             padding-bottom: @baseLine / 2;
             li {
                 display: block;
+                padding: 0;
                 a {
                     padding: @baseLine / 2;
                     border: 0;
@@ -831,7 +834,7 @@ nav.menu-bar {
     
     #colophon {
         .row {
-            width: auto;
+            width: @gridRowWidthMobile + @gridGutterWidth;
             padding: 0;
         }
         .footer-logo,
@@ -972,7 +975,7 @@ nav.menu-bar {
     .container,
     .main-column,
     .sidebar {
-        width: @widthMobileLandscape - @gridGutterWidth;
+        width: auto;
     }
 
     .main-column,
@@ -983,7 +986,7 @@ nav.menu-bar {
 
     #colophon {
         .row {
-            width: auto;
+            width: @widthMobileLandscape - @gridGutterWidth;
             padding: 0;
         }
     }

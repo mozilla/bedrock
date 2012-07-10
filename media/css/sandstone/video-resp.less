@@ -1,0 +1,131 @@
+@import "variables-resp.less";
+@import "mixins-resp.less";
+
+/* {{{ Video Control */
+
+.mozilla-video-control {
+    position: relative;
+}
+
+a.mozilla-video-control-overlay {
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.25;
+    display: none;
+    text-align: center;
+    background: transparent url(/media/img/sandstone/video/play.png) center center no-repeat;
+}
+
+.mozilla-video-shadow {
+    background-image: url(/media/img/sandstone/video/shadow.png);
+    background-repeat: no-repeat;
+    background-position: 50% 100%;
+    background-size: 100% 15px;
+    padding-bottom: 15px;
+}
+
+/* }}} */
+/* {{{ Video Launcher */
+
+.mozilla-video-player-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #444;
+    background: -webkit-gradient(radial,center center,0,center center,100%,from(#fff), to(#000));
+    background: -webkit-radial-gradient(center center, rgba(255,255,255,1) 0, rgba(0,0,0,0.9) 100%);
+    background: -moz-radial-gradient(center center, rgba(255,255,255,1) 0, rgba(0,0,0,0.9) 100%);
+    background: radial-gradient(center center, rgba(255,255,255,1) 0, rgba(0,0,0,0.9) 100%);
+    z-index: 500;
+    outline: 0;
+    cursor: default;
+}
+
+.mozilla-video-player-window {
+    position: fixed;
+    left: 50%; /* for centering */
+    margin-left: -320px; /* for centering */
+    top: 0;
+    width: 640px;
+    z-index: 1000;
+    background: #333;
+    background: rgba(0,0,0,0.8);
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.8); /* ye-olde WebKit */
+    -webkit-box-shadow: 0 3px 70px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0 3px 70px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0,0,0,0.5);
+    box-shadow: 0 3px 70px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0,0,0,0.5);
+}
+
+.mozilla-video-player-content {
+    overflow: hidden;
+}
+
+* html .mozilla-video-player-window {
+}
+
+.mozilla-video-player-content video {
+    display: block;
+}
+
+.mozilla-video-player-no-flash {
+    width: 600px;
+    height: 260px;
+    margin: auto;
+    padding: 100px 20px 0 20px;
+    text-align: left;
+}
+
+.mozilla-video-player-link,
+.mozilla-video-player-close {
+    text-align: right;
+}
+
+.mozilla-video-player-link a,
+.mozilla-video-player-close a {
+    display: block;
+    height: 32px;
+    width: 32px;
+    margin: 0 0 0 auto;
+    overflow: hidden;
+    line-height: 200px;
+    background: url(/media/img/sandstone/video/clothes-lol.png) no-repeat 50% 50%;
+}
+
+.mozilla-video-player-link a {
+    padding-right: 10px;
+    background: none;
+}
+
+.mozilla-video-player-content .video-download-links {
+    text-align: center;
+    font-family: "Trebuchet MS",sans-serif;
+    font-size: 11px;
+}
+
+.mozilla-video-player-content .video-download-links ul {
+    margin: 0;
+    padding: 1em;
+}
+
+.mozilla-video-player-content .video-download-links ul li {
+    background: none;
+    display: inline;
+    margin: 0 0.5em;
+}
+
+.mozilla-video-player-content .video-download-links a,
+.mozilla-video-player-content .video-download-links a:link,
+.mozilla-video-player-content .video-download-links a:hover {
+    color: #888;
+}
+
+/* }}} */
+

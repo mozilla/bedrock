@@ -1,20 +1,50 @@
-@import "sandstone/variables.less";
-@import "sandstone/mixins.less";
+@import "sandstone/variables-resp.less";
+@import "sandstone/mixins-resp.less";
 
 .main-column {
-    .span(7);
+    .span(8);
 }
 
 .sidebar {
+    .span(3);
     .offset(1);
 }
 
 #welcome-video {
     margin: @baseLine auto;
     width: 640px;
+    max-width: 100%;
     video {
         width: 100%;
         height: auto;
     }
 }
 
+/* Tablet Layout: 760px */
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+
+    .main-column {
+        .span_narrow(9);
+    }
+    
+    .sidebar {
+        .span_narrow(3);
+        .offset(0);
+    }
+
+}
+
+/* Mobile layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+
+    .main-column,
+    .sidebar {
+        width: auto;
+        .offset(0);
+    }
+    
+    #welcome-video {
+        width: 100%;
+    }
+    
+}
