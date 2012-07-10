@@ -90,18 +90,18 @@ def contribute(request):
 
 def contribute_send(data):
     ccs = {
-        'QA': 'qa-contribute@mozilla.org',
-        'Thunderbird': 'tb-kb@mozilla.com',
-        'Research': 'diane+contribute@mozilla.com',
-        'Design': 'creative@mozilla.com',
-        'Security': 'security@mozilla.com',
-        'Docs': 'eshepherd@mozilla.com',
-        'Drumbeat': 'drumbeat@mozilla.com',
-        'Browser Choice': 'isandu@mozilla.com',
-        'IT': 'cshields@mozilla.com',
-        'Marketing': 'cnovak@mozilla.com',
-        'Add-ons': 'atsay@mozilla.com',
-        'Education': 'joinmozilla@mozilla.org',
+        'QA': _('qa-contribute@mozilla.org'),
+        'Thunderbird': _('tb-kb@mozilla.com'),
+        'Research': _('diane+contribute@mozilla.com'),
+        'Design': _('creative@mozilla.com'),
+        'Security': _('security@mozilla.com'),
+        'Docs': _('eshepherd@mozilla.com'),
+        'Drumbeat': _('drumbeat@mozilla.com'),
+        'Browser Choice': _('isandu@mozilla.com'),
+        'IT': _('cshields@mozilla.com'),
+        'Marketing': _('cnovak@mozilla.com'),
+        'Add-ons': _('atsay@mozilla.com'),
+        'Education': _('joinmozilla@mozilla.org'),
     }
 
     from_ = 'contribute-form@mozilla.org'
@@ -123,21 +123,21 @@ def contribute_send(data):
 
 def contribute_autorespond(request, data):
     replies = {
-        'Support': 'jay@jaygarcia.com',
-        'Localization': 'fiotakis@otenet.gr',
-        'QA': 'qa-contribute@mozilla.org',
-        'Add-ons': 'atsay@mozilla.com',
-        'Marketing': 'cnovak@mozilla.com',
-        'Design': 'creative@mozilla.com',
-        'Documentation': 'jay@jaygarcia.com',
-        'Research': 'jay@jaygarcia.com',
-        'Thunderbird': 'jzickerman@mozilla.com',
-        'Accessibility': 'jay@jaygarcia.com',
-        'Firefox Suggestions': 'jay@jaygarcia.com',
-        'Firefox Issue': 'dboswell@mozilla.com',
-        'Webdev': 'lcrouch@mozilla.com',
-        'Education': 'joinmozilla@mozilla.org',
-        ' ': 'dboswell@mozilla.com'
+        'Support': _('jay@jaygarcia.com'),
+        'Localization': _('fiotakis@otenet.gr'),
+        'QA': _('qa-contribute@mozilla.org'),
+        'Add-ons': _('atsay@mozilla.com'),
+        'Marketing': _('cnovak@mozilla.com'),
+        'Design': _('creative@mozilla.com'),
+        'Documentation': _('jay@jaygarcia.com'),
+        'Research': _('jay@jaygarcia.com'),
+        'Thunderbird': _('jzickerman@mozilla.com'),
+        'Accessibility': _('jay@jaygarcia.com'),
+        'Firefox Suggestions': _('jay@jaygarcia.com'),
+        'Firefox Issue': _('dboswell@mozilla.com'),
+        'Webdev': _('lcrouch@mozilla.com'),
+        'Education': _('joinmozilla@mozilla.org'),
+        ' ': _('dboswell@mozilla.com')
     }
 
     msgs = {
