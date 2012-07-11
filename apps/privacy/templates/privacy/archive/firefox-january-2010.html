@@ -8,6 +8,13 @@
   {{ css('privacy') }}
 {% endblock %}
 
+{% block breadcrumbs %}
+  <nav class="breadcrumbs">
+    <a href="{{ url('privacy.index') }}">Privacy Home</a> &gt;
+    <span>Firefox Privacy Policy, January 20, 2010</span>
+  </nav>
+{% endblock %}
+
 {% block content %}
 
 <div id="main-content">
