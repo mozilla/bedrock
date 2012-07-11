@@ -1,0 +1,98 @@
+{% extends "/firefox/base-resp.html" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{ _('Welcome to Firefox') }}{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+{% block body_id %}firefox-whatsnew{% endblock %}
+
+{% block site_header_nav %}{% endblock %}
+{% block site_header_logo %}{% endblock %}
+
+{% block site_css %}
+  {{ css('firefox_whatsnew') }}
+{% endblock %}
+
+{% block content %}
+
+<h1 id="whatsnew-header">{{ _('Hooray! Your Firefox is up to date.') }}</h1>
+
+{% l10n whatsnew_feature, 20120710 %}
+<article id="main-content" class="billboard">
+
+  <h2>{{ _('Now get the mobile browser that’s got your back') }}</h2>
+
+  <p>{{ _('<a href="%s">Get Firefox for Android</a> and put the power of the Web in your hands. It’s fast, smart and safe!')|format(url('firefox.fx') + '#mobile') }}</p>
+
+<div id="video-wrapper">
+
+<div id="android">
+
+  <div class="droid-antenna left droid-part"></div>
+  <div class="droid-antenna right droid-part"></div>
+
+  <div class="droid-head-container droid-part">
+
+    <div class="droid-eye left droid-part"></div>
+    <div class="droid-eye right droid-part"></div>
+
+    <div class="droid-head droid-part"></div>
+
+  </div>
+
+  <div class="droid-antenna-border left droid-part"></div>
+  <div class="droid-antenna-border right droid-part"></div>
+
+  <div class="droid-body droid-part"></div>
+
+  <div class="droid-arm left droid-part"></div>
+  <div class="droid-arm right droid-part"></div>
+
+  <div class="droid-leg left droid-part"></div>
+  <div class="droid-leg right droid-part"></div>
+
+  <div class="droid-leg-border left droid-part"></div>
+  <div class="droid-leg-border right droid-part"></div>
+
+</div>
+
+<div id="video-player" class="mozilla-video-control mozilla-video-shadow">
+  <video
+    controls="controls"
+    poster="{{ media('/img/firefox/video/poster-newtab.jpg') }}"
+    height="360"
+    width="640">
+    <source src="http://videos.mozilla.org/serv/marketing/Firefox/Firefox%20Tabs_1.webm">
+  </video>
+</div>
+</div>
+
+{{ mobile_download_button('android-download') }}
+
+</article>
+{% endl10n %}
+{% endblock %}
+
+{% block email_form %}
+  <div id="email-form-wrapper" class="billboard">
+  {{ super() }}
+  </div>
+{% endblock%}
+
+{% block site_footer %}
+<section id="colophon" class="billboard">
+  <nav>
+    <ul class="primary">
+      <li> <a href="{{ php_url('/firefox/notes') }}">{{ _('Release Notes') }}</a></li>
+      <li><a href="{{ url('firefox.features') }}">{{ _('Firefox Features') }}</a></li>
+      <li><a href="http://support.mozilla.com/home">{{ _('Firefox Help') }}</a></li>
+    </ul>
+    <ul class="secondary">
+      <li><a href="{{ php_url('/privacy-policy.html') }}">{{ _('Privacy Policy') }}</a></li>
+      <li><a href="{{ php_url('/about/legal.html') }}">{{ _('Legal Notices') }}</a></li>
+    </ul>
+  </nav>
+  <p class="attribution"><small>
+    {{ _('The Android Robot was reproduced from work created and <a href="%(google)s">shared by Google</a> and used according to terms described in the <a href="%(cc)s">Creative Commons 3.0 Attribution License</a>.')|format(google='http://code.google.com/policies.html', cc='http://creativecommons.org/licenses/by/3.0/') }}
+</small></p>
+</section>
+{% endblock %}

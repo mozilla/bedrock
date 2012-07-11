@@ -160,6 +160,11 @@ MINIFY_BUNDLES = {
             'css/mozilla-expanders.less',
             'css/firefox/update.less',
         ),
+        'firefox_whatsnew': (
+            'css/sandstone/video.less',
+            'css/firefox/whatsnew.less',
+            'css/firefox/whatsnew-android.less',
+        ),
         'home': (
             'css/home.less',
         ),
