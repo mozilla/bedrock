@@ -1,3 +1,4 @@
+{% l10n emails_qa, 20120710 %}
 Hi,
 
 Would you let me know what projects and tasks you would like to help out with? We need help with many different QA projects such as Desktop Firefox, Firefox for Android, Boot to Gecko, Thunderbird, Websites, and more. In these projects, we need help on many different tasks such as running manual tests, writing test automation, and more.
@@ -21,3 +22,4 @@ Marcia Knous
 QA Community Lead
 Mozilla Corporation
 https://quality.mozilla.org/
+{% endl10n %}

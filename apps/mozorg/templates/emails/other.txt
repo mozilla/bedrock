@@ -1,3 +1,4 @@
+{% l10n emails_other, 20120710 %}
 Thank you for your interest in getting involved with Mozilla.
 
 A great way to get started is to spread the word about Firefox. Grab a button and put it on your site, blog, Facebook or wherever.
@@ -11,3 +12,4 @@ http://www.mozilla.org/contribute/areas.html
 If there's a type of activity you're interested in, please feel free to write me back and I'll be happy to help you get started on a project.
 
 David
+{% endl10n %}

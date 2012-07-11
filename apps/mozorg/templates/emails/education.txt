@@ -1,3 +1,4 @@
+{% l10n emails_education, 20120710 %}
 Thank you for your interest in contributing to our efforts to build a generation of webmakers.
 
 We know that people learn best when they're making something together. So we're inviting people everywhere to meet up, make something cool, learn how the code behind the Web works -- and have a blast while doing it.
@@ -19,3 +20,4 @@ Open Badges: https://github.com/mozilla/openbadges/issues
 X-Ray Goggles: https://github.com/toolness/webxray/issues
 
 Thanks so much for getting involved. If you have any questions, feel free to write us at joinmozilla@mozilla.org
+{% endl10n %}
