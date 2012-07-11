@@ -6,6 +6,7 @@ from product_details import product_details
 
 import basket
 import l10n_utils
+from l10n_utils.dotlang import _
 from forms import ContributeForm, NewsletterCountryForm
 
 
