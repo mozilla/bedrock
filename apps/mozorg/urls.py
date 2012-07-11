@@ -17,5 +17,5 @@ urlpatterns = patterns('',
 
     url('^contribute/$', views.contribute, name='mozorg.contribute'),
     url('^contribute/page/$', views.contribute_page, name='mozorg.contribute_page'),
-    redirect(r'^projects$', 'mozorg.products'),
+    redirect(r'^projects/$', 'mozorg.products'),
 )
