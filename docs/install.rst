@@ -68,17 +68,17 @@ If you get the error "NoneType is not iterable", you didn't check out the latest
 Localization
 ------------
 
-If you want to install localizations, just check out the ``locale`` directory:
+If you want to install localizations, just check out the ``locale`` directory::
 
     git svn clone https://svn.mozilla.org/projects/mozilla.com/trunk/locales/ locale
     # or
     svn checkout https://svn.mozilla.org/projects/mozilla.com/trunk/locales/ locale
 
-You can use git or svn to checkout the repo. Make sure that it is named ``locale``. If you already have it checked out as ``locales``, just do:
+You can use git or svn to checkout the repo. Make sure that it is named ``locale``. If you already have it checked out as ``locales``, just do::
 
     ln -s locales locale
 
-You can read more details about how to localize content :ref:`here<l10ns>`.
+You can read more details about how to localize content :ref:`here<l10n>`.
 
 Notes
 -----

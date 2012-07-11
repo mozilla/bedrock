@@ -140,7 +140,7 @@ Let's look at how we would translate an example file from **English** to
 The English source template, created by a developer, lives under
 `apps/appname/templates/appname/example.html` and looks like this:
 
-.. code-block:: html
+.. code-block:: jinja
 
     {% extends "base.html" %}
 
@@ -178,7 +178,7 @@ info on this command).
 The german version of this template is created at
 ``locale/de/templates/appname/example.html``. The contents of it are:
 
-.. code-block:: html
+.. code-block:: jinja
 
     {% extends "appname/example.html" %}
 
@@ -200,7 +200,7 @@ When the reference template is updated with new content and the date
 is updated on an l10n block, the generated l10n file will simply add
 the new content. It will look like this:
 
-.. code-block:: html
+.. code-block:: jinja
 
     {% extends "appname/example.html" %}
 
@@ -222,6 +222,7 @@ block.
 
 Generating the locale files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+::
 
     ./manage.py l10n_check
 
@@ -229,7 +230,7 @@ This command will check which blocks need to be translated and update
 the locale templates with needed translations. It will copy the
 English blocks into the locale files if a translation is needed.
 
-You can specify a list of locales to update:
+You can specify a list of locales to update::
 
     ./mange.py l10n_check fr
     ./mange.py l10n_check fr de es

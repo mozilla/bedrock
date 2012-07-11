@@ -25,7 +25,7 @@ def handle_newsletter(request):
             try:
                 basket.subscribe(data['email'], newsletter, format=data['fmt'])
                 success = True
-	    except basket.BasketException:
+            except basket.BasketException:
                 msg = ("We are sorry, but there was a problem with our system. "
                        "Please try again later!")
                 form.errors['__all__'] = form.error_class([msg])
@@ -72,14 +72,14 @@ def redirect(pattern, viewname, permanent=True, anchor=None):
     )
     """
     if permanent:
-	redirect_class = HttpResponsePermanentRedirect
+        redirect_class = HttpResponsePermanentRedirect
     else:
-	redirect_class = HttpResponseRedirect
+        redirect_class = HttpResponseRedirect
 
     def _view(request):
-	url = reverse(viewname)
-	if anchor:
-	    url = '#'.join([url, anchor])
-	return redirect_class(url)
+        url = reverse(viewname)
+        if anchor:
+            url = '#'.join([url, anchor])
+        return redirect_class(url)
 
     return (pattern, _view)
