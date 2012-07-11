@@ -2,16 +2,23 @@
 
 {% block body_id %}privacy{% endblock %}
 
-{% block page_title %}Firefox Privacy Policy{% endblock %}
+{% block page_title %}Firefox Third Party Privacy Policy{% endblock %}
 
 {% block extrahead %}
   {{ css('privacy') }}
 {% endblock %}
 
+{% block breadcrumbs %}
+  <nav class="breadcrumbs">
+    <a href="{{ url('privacy.index') }}">Privacy Home</a> &gt;
+    <span>Firefox Third Party Privacy Policy</span>
+  </nav>
+{% endblock %}
+
 {% block content %}
 
 <hgroup class="center">
-    <h1>Firefox Privacy Policy</h1>
+    <h1>Firefox Third Party Privacy Policy</h1>
     <h2>Last Updated: June 19, 2012</h2>
 </hgroup>
 
