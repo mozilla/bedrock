@@ -1,3 +1,4 @@
+{% l10n emails_webdev, 20120710 %}
 Thanks for offering to help us build Mozilla's websites.
 
 Start by joining us in #webdev on IRC. http://mzl.la/irc_getting_started will help you get connected, and http://mzl.la/webdev_irc lists some WebDev channels.
@@ -12,3 +13,4 @@ This is a lot of information, so let me know if you have any questions as you ge
 
 Regards,
 Luke
+{% endl10n %}

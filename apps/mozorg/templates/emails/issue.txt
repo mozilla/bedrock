@@ -1,3 +1,4 @@
+{% l10n emails_issue, 20120710 %}
 I'm sorry to hear you're running into an issue with Firefox.
 
 I would encourage you to ask about this on our Firefox Support site at
@@ -10,3 +11,4 @@ If you've tried that and haven't found a solution, you can write me back and I'l
 
 Thanks,
 David
+{% endl10n %}
