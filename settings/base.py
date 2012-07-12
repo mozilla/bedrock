@@ -165,9 +165,6 @@ MINIFY_BUNDLES = {
             'css/firefox/whatsnew.less',
             'css/firefox/whatsnew-android.less',
         ),
-        'firefox_whatsnew_l10n': (
-            'css/firefox/whatsnew-l10n.less',
-        ),
         'home': (
         'css/home.less',
         ),
