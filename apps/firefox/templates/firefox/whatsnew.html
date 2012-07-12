@@ -10,6 +10,9 @@
 
 {% block site_css %}
   {{ css('firefox_whatsnew') }}
+  {% if request.locale == 'ru' %}
+    {{ css('firefox_whatsnew_l10n') }}
+  {% endif %}
 {% endblock %}
 
 {% block content %}
