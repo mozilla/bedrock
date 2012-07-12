@@ -12,6 +12,17 @@
 
 {% block site_css %}
   {{ css('firefox_whatsnew') }}
+  {% if request.locale == 'ru' %}
+    <style>
+      /* Full character set font for Cyrillic */
+      @font-face {
+          font-family: 'Open Sans Light';
+          src: url('/media/fonts/OpenSans-Light-webfont-intl.woff') format('woff');
+          font-weight: normal;
+          font-style: normal;
+      }
+    </style>
+  {% endif %}
 {% endblock %}
 
 {% block content %}
