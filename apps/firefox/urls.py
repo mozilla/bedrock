@@ -2,8 +2,11 @@ from django.conf.urls.defaults import *
 from django.conf import settings
 from product_details import product_details
 
+from firefox import version_re
 from mozorg.util import page
 import views
+
+whatsnew_re = r'^firefox(?:/(%s))?/whatsnew/$' % version_re
 
 urlpatterns = patterns('',
     page('firefox/central', 'firefox/central.html'),
@@ -13,7 +16,7 @@ urlpatterns = patterns('',
     page('firefox/fx', 'firefox/fx.html',
          latest_version=product_details.firefox_versions['LATEST_FIREFOX_VERSION']),
     page('firefox/geolocation', 'firefox/geolocation.html',
-	    gmap_api_key=settings.GMAP_API_KEY),
+         gmap_api_key=settings.GMAP_API_KEY),
     page('firefox/happy', 'firefox/happy.html'),
     url('^firefox/mobile/platforms/$', views.platforms, name='firefox.mobile.platforms'),
     page('firefox/mobile/features', 'firefox/mobile/features.html'),
@@ -30,9 +33,8 @@ urlpatterns = patterns('',
 
     page('firefox/unsupported/warning', 'firefox/unsupported-warning.html'),
     page('firefox/unsupported/EOL', 'firefox/unsupported-EOL.html'),
-    page('firefox/whatsnew', 'firefox/whatsnew.html',
-	 latest_version=product_details.firefox_versions['LATEST_FIREFOX_VERSION']),
 
     url(r'^firefox/unsupported/win/$', views.windows_billboards),
     url('^dnt/$', views.dnt, name='firefox.dnt'),
+    url(whatsnew_re, views.whatsnew_redirect, name='firefox.whatsnew'),
 )
