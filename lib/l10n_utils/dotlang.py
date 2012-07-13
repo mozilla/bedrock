@@ -12,6 +12,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.utils import translation
 
+
 def parse(path):
     """Parse a dotlang file and return a dict of translations."""
     trans = {}
@@ -24,14 +25,16 @@ def parse(path):
 
         for line in lines:
             line = line.strip()
-            if line != '':
-                if line[0] == ';':
-                    source = line[1:]
-                elif source:
-                    for tag in ('{ok}', '{l10n-extra}'):
-                        if line.endswith(tag):
-                            line = line[:-len(tag)]
-                    trans[source] = line.strip()
+            if line == '' or line[0] == '#':
+                continue
+
+            if line[0] == ';':
+                source = line[1:]
+            elif source:
+                for tag in ('{ok}', '{l10n-extra}'):
+                    if line.endswith(tag):
+                        line = line[:-len(tag)]
+                trans[source] = line.strip()
 
     return trans
 
@@ -72,8 +75,8 @@ def _(text, *args):
     return text
 
 
-def get_lang_path(path):    
-    """Generate the path to a lang file from a django path. 
+def get_lang_path(path):
+    """Generate the path to a lang file from a django path.
     /apps/foo/templates/foo/bar.html -> /foo/bar.lang
     /templates/foo.html -> /foo.lang
     /foo/bar.html -> /foo/bar.lang"""
@@ -82,9 +85,10 @@ def get_lang_path(path):
 
     try:
         i = p.index('templates')
-        p = p[i+1:]
-    except ValueError: pass
+        p = p[i + 1:]
+    except ValueError:
+        pass
 
-    path =  '/'.join(p)
+    path = '/'.join(p)
     (base, ext) = os.path.splitext(path)
     return '%s.lang' % base
