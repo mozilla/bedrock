@@ -31,11 +31,16 @@
 
 <article id="main-content" class="billboard">
   <h2>{{ _('Now get the mobile browser that’s got your back') }}</h2>
+
+  {% if request.locale in ['en-US', 'en-GB', 'en-ZA'] %}
   <p>{{ _('<a href="%s">Get Firefox for Android</a> and put the power of the Web in your hands. It’s fast, smart and safe!')|format(url('firefox.fx') + '#mobile') }}</p>
+  {% else %}
+  <p>{{ _('<a href="%s">Get Firefox for Android</a> and put the power of the Web in your hands. It’s fast, smart and safe!')|format(php_url('/mobile/')) }}</p>
+  {% endif %}
 
 {% if request.locale == 'ru' %}
   <div id="promo-android">
-    <a href="{{ url('firefox.fx') }}?WT.mc_id=moandroid&amp;WT.mc_ev=click#mobile" class="container">
+    <a href="{{ php_url('/mobile/') }}?WT.mc_id=moandroid&amp;WT.mc_ev=click#mobile" class="container">
       <img src="{{ media('img/home/promo-android.jpg') }}" alt="{{ _('Firefox for Android artwork') }}">
       <div>
         <h3>{{ _('Fast. Smart. Safe.') }}</h3>
