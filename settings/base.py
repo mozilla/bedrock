@@ -182,8 +182,11 @@ MINIFY_BUNDLES = {
         'privacy': (
             'css/privacy.less',
         ),
-        'projects': (
-            'css/projects.less',
+        'products': (
+            'css/products.less',
+        ),
+        'projects_mozilla_based': (
+            'css/projects/mozilla-based.less',
         ),
         'research': (
             'css/research/research.less',
