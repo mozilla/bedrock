@@ -53,7 +53,7 @@ def translate(text, files):
         key = "dotlang-%s-%s" % (lang, file_)
 
         trans = cache.get(key)
-        if not trans:
+        if trans is None:
             path = os.path.join(settings.ROOT, 'locale', lang,
                                 '%s.lang' % file_)
             trans = parse(path)
