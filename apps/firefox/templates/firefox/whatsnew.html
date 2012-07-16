@@ -47,63 +47,63 @@
 
   {{ mobile_download_button('android-download') }}
 
-{% l10n whatsnew_feature, 20120712 %}
+  {% l10n whatsnew_feature, 20120712 %}
   <p id="ru-search">
     Also new in this release: Google is now your default search engine. To change the active search engine, click the down arrow next to the search engine's icon, and select a new search engine.
     <a href="http://support.mozilla.org/ru/kb/stroka-poiska?e=es&redirectlocale=en-US&as=s&s=manage+search&r=3&redirectslug=Search+bar#w_managing-search-engines">Learn more.</a>
   </p>
-{% endl10n %}
+  {% endl10n %}
 
 {% else %}
 
-<div id="video-wrapper">
+  <div id="video-wrapper">
 
-<div id="android">
+  <div id="android">
 
-  <div class="droid-antenna left droid-part"></div>
-  <div class="droid-antenna right droid-part"></div>
+    <div class="droid-antenna left droid-part"></div>
+    <div class="droid-antenna right droid-part"></div>
 
-  <div class="droid-head-container droid-part">
+    <div class="droid-head-container droid-part">
 
-    <div class="droid-eye left droid-part"></div>
-    <div class="droid-eye right droid-part"></div>
+      <div class="droid-eye left droid-part"></div>
+      <div class="droid-eye right droid-part"></div>
 
-    <div class="droid-head droid-part"></div>
+      <div class="droid-head droid-part"></div>
+
+    </div>
+
+    <div class="droid-antenna-border left droid-part"></div>
+    <div class="droid-antenna-border right droid-part"></div>
+
+    <div class="droid-body droid-part"></div>
+
+    <div class="droid-arm left droid-part"></div>
+    <div class="droid-arm right droid-part"></div>
+
+    <div class="droid-leg left droid-part"></div>
+    <div class="droid-leg right droid-part"></div>
+
+    <div class="droid-leg-border left droid-part"></div>
+    <div class="droid-leg-border right droid-part"></div>
 
   </div>
 
-  <div class="droid-antenna-border left droid-part"></div>
-  <div class="droid-antenna-border right droid-part"></div>
+  <div id="video-player" class="mozilla-video-control mozilla-video-shadow">
+    <video
+      controls="controls"
+      poster="{{ media('/img/firefox/video/poster-newtab.jpg') }}"
+      height="360"
+      width="640">
+      <source src="http://videos.mozilla.org/serv/marketing/Firefox/Firefox%20Tabs_1.webm">
+    </video>
+  </div>
+  </div>
 
-  <div class="droid-body droid-part"></div>
-
-  <div class="droid-arm left droid-part"></div>
-  <div class="droid-arm right droid-part"></div>
-
-  <div class="droid-leg left droid-part"></div>
-  <div class="droid-leg right droid-part"></div>
-
-  <div class="droid-leg-border left droid-part"></div>
-  <div class="droid-leg-border right droid-part"></div>
-
-</div>
-
-<div id="video-player" class="mozilla-video-control mozilla-video-shadow">
-  <video
-    controls="controls"
-    poster="{{ media('/img/firefox/video/poster-newtab.jpg') }}"
-    height="360"
-    width="640">
-    <source src="http://videos.mozilla.org/serv/marketing/Firefox/Firefox%20Tabs_1.webm">
-  </video>
-</div>
-</div>
-
-{{ mobile_download_button('android-download') }}
+  {{ mobile_download_button('android-download') }}
 
 {% endif %}
-{% endblock %}
 </article>
+{% endblock %}
 
 {% block email_form %}
   {% if request.locale == 'en-US' %}
