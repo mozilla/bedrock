@@ -39,7 +39,7 @@
   <h2>{{ _('Now get the mobile browser that’s got your back') }}</h2>
   <p>{{ _('<a href="%s">Get Firefox for Android</a> and put the power of the Web in your hands. It’s fast, smart and safe!')|format(mobile_link) }}</p>
 
-{% if request.locale in ['ru', 'ko'] %}
+{% if request.locale in ['ru', 'ko', 'fr'] %}
   <div id="promo-android">
     <a href="{{ mobile_link }}" class="container">
       <img src="{{ media('img/home/promo-android.jpg') }}" alt="{{ _('Firefox for Android artwork') }}">
