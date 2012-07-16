@@ -5,11 +5,11 @@
 {% block body_id %}devices{% endblock %}
 
 {% block site_css %}
-  {{ css('landing_devices') }}
+  {{ css('firefox_devices') }}
 {% endblock %}
 
 {% block site_js %}
-  {{ js('landing_devices') }}
+  {{ js('firefox_devices') }}
 {% endblock %}
 
 {% block extrahead %}
@@ -52,7 +52,7 @@
           </div>
           
           <div id="gauge" data-latest-version="{{ latest_version }}">
-            <img src="{{ media('img/landing/devices/needle.png') }}" alt="" id="needle">
+            <img src="{{ media('img/firefox/devices/needle.png') }}" alt="" id="needle">
             <p id="gauge-slow">{{ _('Old Firefox = Sadface') }}</p>
             <p id="gauge-fast">{{ _('New Firefox = Yay!') }}</p>
             <div class="note" id="gauge-slow-note">
