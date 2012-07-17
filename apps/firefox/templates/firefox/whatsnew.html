@@ -70,7 +70,7 @@
   <h2>{{ _('Now get the mobile browser that’s got your back') }}</h2>
   <p>{{ _('<a href="%s">Get Firefox for Android</a> and put the power of the Web in your hands. It’s fast, smart and safe!')|format(mobile_link) }}</p>
 
-{% if request.locale in ['ru', 'ko', 'fr'] %}
+{% if request.locale not in locales_with_video.keys() %}
   <div id="promo-android">
     <a href="{{ mobile_link }}" class="container">
       <img src="{{ media('img/home/promo-android.jpg') }}" alt="{{ _('Firefox for Android artwork') }}">
@@ -121,10 +121,10 @@
   <div id="video-player" class="mozilla-video-control mozilla-video-shadow">
     <video
       controls="controls"
-      poster="{{ media('/img/firefox/video/poster-newtab.jpg') }}"
+      poster="{{ media('/img/firefox/whatsnew/video-poster.jpg') }}"
       height="360"
       width="640">
-      <source src="http://videos.mozilla.org/serv/marketing/Firefox/Firefox%20Tabs_1.webm">
+      <source src="http://videos-cdn.mozilla.net/serv/marketing/fxforandroid/10-07-12_firefox_for_android_{{ locales_with_video[request.locale] }}-640x360 Video Sharing.webm">
     </video>
   </div>
   </div>
