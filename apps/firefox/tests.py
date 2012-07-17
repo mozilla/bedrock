@@ -32,7 +32,8 @@ class TestWhatsnewRedirect(TestCase):
     def test_non_firefox(self):
         user_agent = 'random'
         response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
-        eq_(response.status_code, 302)
+        eq_(response.status_code, 301)
+        eq_(response['Vary'], 'User-Agent')
         eq_(response['Location'],
             'http://testserver%s' % reverse('firefox.new'))
 
@@ -40,7 +41,8 @@ class TestWhatsnewRedirect(TestCase):
         user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:13.0) '
                       'Gecko/20100101 Firefox/13.0')
         response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
-        eq_(response.status_code, 302)
+        eq_(response.status_code, 301)
+        eq_(response['Vary'], 'User-Agent')
         eq_(response['Location'],
             'http://testserver%s' % reverse('firefox.update'))
 
@@ -50,6 +52,7 @@ class TestWhatsnewRedirect(TestCase):
                       'Gecko/20100101 Firefox/%s' % (current, current))
         response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
         eq_(response.status_code, 200)
+        eq_(response['Vary'], 'User-Agent')
 
     def test_future_firefox(self):
         future = product_details.firefox_versions['FIREFOX_AURORA']
@@ -57,3 +60,4 @@ class TestWhatsnewRedirect(TestCase):
                       'Gecko/20100101 Firefox/%s' % (future, future))
         response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
         eq_(response.status_code, 200)
+        eq_(response['Vary'], 'User-Agent')

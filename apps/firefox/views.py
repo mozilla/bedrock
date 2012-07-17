@@ -7,7 +7,8 @@ from product_details.version_compare import Version
 from funfactory.urlresolvers import reverse
 
 from django.conf import settings
-from django.http import HttpResponseRedirect
+from django.views.decorators.vary import vary_on_headers
+from django.http import HttpResponsePermanentRedirect
 from platforms import load_devices
 
 
@@ -35,6 +36,7 @@ def dnt(request):
     return response
 
 
+@vary_on_headers('User-Agent')
 def whatsnew_redirect(request, fake_version):
     """
     Redirect visitors based on their user-agent.
@@ -46,7 +48,7 @@ def whatsnew_redirect(request, fake_version):
     user_agent = request.META.get('HTTP_USER_AGENT', '')
     if not 'Firefox' in user_agent:
         url = reverse('firefox.new')
-        return HttpResponseRedirect(url)  # TODO : Where to redirect bug 757206
+        return HttpResponsePermanentRedirect(url)  # TODO : Where to redirect bug 757206
 
     user_version = "0"
     ua_regexp = r"Firefox/(%s)" % version_re
@@ -57,6 +59,18 @@ def whatsnew_redirect(request, fake_version):
     current_version = product_details.firefox_versions['LATEST_FIREFOX_VERSION']
     if Version(user_version) < Version(current_version):
         url = reverse('firefox.update')
-        return HttpResponseRedirect(url)
-    else:
-        return l10n_utils.render(request, 'firefox/whatsnew.html')
+        return HttpResponsePermanentRedirect(url)
+
+    locales_with_video = {
+        'en-US': 'american',
+        'en-GB': 'british',
+        'de': 'german_final',
+        'it': 'italian_final',
+        'ja': 'japanese_final',
+        'es-AR': 'spanish_final',
+        'es-CL': 'spanish_final',
+        'es-ES': 'spanish_final',
+        'es-MX': 'spanish_final',
+    }
+    return l10n_utils.render(request, 'firefox/whatsnew.html',
+                             {'locales_with_video': locales_with_video})
