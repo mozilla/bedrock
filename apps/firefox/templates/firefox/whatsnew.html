@@ -21,6 +21,26 @@
         font-weight: normal;
         font-style: normal;
       }
+
+      /*  Styles below are for the Switch to Google Search customizations in Russian */
+      #whatsnew-header,
+      #main-content h2 {
+          font-size:45px;
+      }
+
+      #ru-search {
+          text-align:left;
+          min-height:332px;
+      }
+
+      #ru-search img {
+          float:right;
+          margin-top:-30px;
+      }
+
+      #promo-android h3 {
+          font-size:37px;
+      }
     </style>
   {% endif %}
 {% endblock %}
@@ -36,6 +56,17 @@
 <h1 id="whatsnew-header">{{ _('Hooray! Your Firefox is up to date.') }}</h1>
 
 <article id="main-content" class="billboard">
+
+  {% if request.locale == 'ru' %}
+  {% l10n whatsnew_feature, 20120712 %}
+  <p id="ru-search">
+    <img src="/media/img/firefox/whatsnew/ru-search.png">
+    Also new in this release: Google is now your default search engine. To change the active search engine, click the down arrow next to the search engine's icon, and select a new search engine.
+    <a href="http://support.mozilla.org/ru/kb/stroka-poiska?e=es&redirectlocale=en-US&as=s&s=manage+search&r=3&redirectslug=Search+bar#w_managing-search-engines">Learn more.</a>
+  </p>
+  {% endl10n %}
+  {% endif %}
+
   <h2>{{ _('Now get the mobile browser that’s got your back') }}</h2>
   <p>{{ _('<a href="%s">Get Firefox for Android</a> and put the power of the Web in your hands. It’s fast, smart and safe!')|format(mobile_link) }}</p>
 
@@ -52,15 +83,6 @@
   </div>
 
   {{ mobile_download_button('android-download') }}
-
-  {% if request.locale == 'ru' %}
-  {% l10n whatsnew_feature, 20120712 %}
-  <p id="ru-search">
-    Also new in this release: Google is now your default search engine. To change the active search engine, click the down arrow next to the search engine's icon, and select a new search engine.
-    <a href="http://support.mozilla.org/ru/kb/stroka-poiska?e=es&redirectlocale=en-US&as=s&s=manage+search&r=3&redirectslug=Search+bar#w_managing-search-engines">Learn more.</a>
-  </p>
-  {% endl10n %}
-  {% endif %}
 
 {% else %}
 
