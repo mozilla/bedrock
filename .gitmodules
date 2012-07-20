@@ -16,3 +16,9 @@
 [submodule "vendor-local/src/django-dnt"]
 	path = vendor-local/src/django-dnt
 	url = https://github.com/mozilla/django-dnt.git
+[submodule "vendor-local/src/django-statsd"]
+	path = vendor-local/src/django-statsd
+	url = git://github.com/andymckay/django-statsd.git
+[submodule "vendor-local/src/pystatsd"]
+	path = vendor-local/src/pystatsd
+	url = git://github.com/jsocol/pystatsd.git

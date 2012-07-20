@@ -26,3 +26,8 @@ EMAIL_HOST_PASSWORD = ''
 EMAIL_HOST = ''
 EMAIL_PORT = 25
 EMAIL_USE_TLS = False
+
+STATSD_HOST = ''
+STATSD_PORT = 8125
+STATSD_PREFIX = 'bedrock'
+STATSD_CLIENT = 'django_statsd.clients.normal'
