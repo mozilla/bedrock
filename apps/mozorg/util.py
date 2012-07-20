@@ -56,6 +56,9 @@ def page(name, tmpl, **kwargs):
     def _view(request):
         return page_view(request, tmpl, **kwargs)
 
+    # This is for graphite so that we can differentiate pages
+    _view.page_name = name
+
     return url(pattern, _view, name=name)
 
 
