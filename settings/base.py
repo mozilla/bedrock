@@ -352,6 +352,8 @@ PROD_DETAILS_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)),
                                 'lib/product_details_json')
 
 MIDDLEWARE_CLASSES = (
+    'django_statsd.middleware.GraphiteRequestTimingMiddleware',
+    'django_statsd.middleware.GraphiteMiddleware',
     'funfactory.middleware.LocaleURLMiddleware',
     #'multidb.middleware.PinningRouterMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -371,6 +373,7 @@ INSTALLED_APPS = (
     'funfactory',  # Content common to most playdoh-based apps.
     'jingo_minify',
     'tower',  # for ./manage.py extract (L10n)
+    'django_statsd',
 
     # Django contrib apps
     'django.contrib.auth',
