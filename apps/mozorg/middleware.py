@@ -1,10 +1,11 @@
 import datetime
 from email.utils import formatdate
-from time import mktime
+import time
 
 from django.conf import settings
 from django.contrib.sessions.middleware import SessionMiddleware
 
+from django_statsd.middleware import GraphiteRequestTimingMiddleware
 
 class CacheMiddleware(object):
 
@@ -14,7 +15,7 @@ class CacheMiddleware(object):
                  'Cache-Control' not in response)
         if cache:
             d = datetime.datetime.now() + datetime.timedelta(minutes=10)
-            stamp = mktime(d.timetuple())
+            stamp = time.mktime(d.timetuple())
 
             response['Cache-Control'] = 'max-age=600'
             response['Expires'] = formatdate(timeval=stamp, localtime=False, usegmt=True)
@@ -43,3 +44,13 @@ class NoVarySessionMiddleware(SessionMiddleware):
             del new_response['Vary']
         return new_response
 
+class MozorgRequestTimingMiddleware(GraphiteRequestTimingMiddleware):
+
+    def process_view(self, request, view, view_args, view_kwargs):
+        if hasattr(view, 'page_name'):
+            request._view_module = 'page'
+            request._view_name = view.page_name.replace('/', '.')
+            request._start_time = time.time()
+        else:
+            f = super(MozorgRequestTimingMiddleware, self)
+            f.process_view(request, view, view_args, view_kwargs)

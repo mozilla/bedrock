@@ -352,7 +352,7 @@ PROD_DETAILS_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)),
                                 'lib/product_details_json')
 
 MIDDLEWARE_CLASSES = (
-    'django_statsd.middleware.GraphiteRequestTimingMiddleware',
+    'mozorg.middleware.MozorgRequestTimingMiddleware',
     'django_statsd.middleware.GraphiteMiddleware',
     'funfactory.middleware.LocaleURLMiddleware',
     #'multidb.middleware.PinningRouterMiddleware',
