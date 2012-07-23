@@ -1,14 +1,17 @@
 import re
-
-from firefox import version_re
-import l10n_utils
-from product_details import product_details
-from product_details.version_compare import Version
-from funfactory.urlresolvers import reverse
+from time import time
 
 from django.conf import settings
 from django.views.decorators.vary import vary_on_headers
 from django.http import HttpResponsePermanentRedirect
+
+from django_statsd.clients import statsd
+from funfactory.urlresolvers import reverse
+from product_details import product_details
+from product_details.version_compare import Version
+
+from firefox import version_re
+import l10n_utils
 from platforms import load_devices
 
 
@@ -45,10 +48,14 @@ def whatsnew_redirect(request, fake_version):
     - Other Firefox users go to the update page.
     - Non Firefox users go to the new page.
     """
+    start = time()
     user_agent = request.META.get('HTTP_USER_AGENT', '')
     if not 'Firefox' in user_agent:
         url = reverse('firefox.new')
-        return HttpResponsePermanentRedirect(url)  # TODO : Where to redirect bug 757206
+        response = HttpResponsePermanentRedirect(url)
+        dt = int((time() - start) * 1000)
+        statsd.timing('whatsnew.not_firefox', dt)
+        return response
 
     user_version = "0"
     ua_regexp = r"Firefox/(%s)" % version_re
@@ -59,7 +66,10 @@ def whatsnew_redirect(request, fake_version):
     current_version = product_details.firefox_versions['LATEST_FIREFOX_VERSION']
     if Version(user_version) < Version(current_version):
         url = reverse('firefox.update')
-        return HttpResponsePermanentRedirect(url)
+        response = HttpResponsePermanentRedirect(url)
+        dt = int((time() - start) * 1000)
+        statsd.timing('whatsnew.old_firefox', dt)
+        return response
 
     locales_with_video = {
         'en-US': 'american',
@@ -72,5 +82,8 @@ def whatsnew_redirect(request, fake_version):
         'es-ES': 'spanish_final',
         'es-MX': 'spanish_final',
     }
-    return l10n_utils.render(request, 'firefox/whatsnew.html',
-                             {'locales_with_video': locales_with_video})
+    response = l10n_utils.render(request, 'firefox/whatsnew.html',
+                                 {'locales_with_video': locales_with_video})
+    dt = int((time() - start) * 1000)
+    statsd.timing('whatsnew.uptodate_firefox', dt)
+    return response
