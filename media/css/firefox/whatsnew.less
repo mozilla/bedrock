@@ -97,6 +97,7 @@
 #promo-android {
     background-position: 0 0;
     background-repeat: no-repeat;
+    background-color: #82bbd6;
     text-align: left;
     margin-top: @baseLine;
     margin-bottom: @baseLine;
@@ -153,6 +154,28 @@
 #ru-search {
     margin: @baseLine auto;
     width: 80%;
+}
+
+html[lang=ru] {
+    /*  Styles below are for the Switch to Google Search customizations in Russian */
+    #whatsnew-header,
+    #main-content h2 {
+        font-size: 45px;
+    }
+
+    #ru-search {
+        text-align: left;
+        min-height: 332px;
+    }
+
+    #ru-search img {
+        float: right;
+        margin-top: -30px;
+    }
+
+    #promo-android h3 {
+        font-size: 37px;
+    }
 }
 
 #colophon {
@@ -254,7 +277,7 @@
         .span_narrow(7);
     }
     h3 {
-        font-size: 36px;
+        font-size: 34px;
         letter-spacing: -1px;
         padding-top: @baseLine;
     }
@@ -263,6 +286,17 @@
         margin-left: 0;
         margin-bottom: @baseLine;
     }
+    }
+
+    html[lang=ru] {
+        #promo-android {
+            h3 {
+                font-size: 28px;
+            }
+            h4 {
+                font-size: 18px;
+            }
+        }
     }
 
     #android { display: none; }
@@ -294,6 +328,10 @@
     p {
         font-size: 16px;
     }
+    }
+
+    #promo-android {
+        background-color: transparent;
     }
 
     #email-form-wrapper {
