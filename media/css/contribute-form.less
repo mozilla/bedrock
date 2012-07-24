@@ -2,6 +2,12 @@
     padding-top: @baseLine;
     padding-bottom: @baseLine;
     margin-bottom: @baseLine * 2;
+    
+    fieldset,
+    .form-row {
+        width: (@gridColumnWidth * 10) + (@gridGutterWidth * 10);
+        float: left;
+    }
 
     .form-column-1  {
         .span(2);
@@ -12,22 +18,23 @@
     }
 
     .form-column-2 {
-        .span(3);
+        .span(4);
     }
 
     .form-column-3 {
-        .span(3);
+        .span(4);
     }
 
     .form-submit {
         .span(2);
+        float: right;
     }
 
     .field-interest {
         min-height: 36px;
         select {
             margin-top: 4px;
-            width: 100%;
+            width: 90%;
         }
     }
 
@@ -37,11 +44,12 @@
 
     textarea,
     input[type=email] {
-        width: (@gridColumnWidth * 3) + (@gridGutterWidth * 2) - 20px;
+        width: 90%;
     }
 
     input[type=submit] {
         width: (@gridColumnWidth * 2) + (@gridGutterWidth);
+        max-width: 100%;
     }
 
     .field-newsletter label,
@@ -69,3 +77,50 @@
 }
 
 .js #form-details { display: none; }
+
+/* Tablet Layout: 760px */
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+    
+    #help-form {
+        fieldset,
+        .form-row {
+            width: (@gridColumnWidthNarrow * 10) + (@gridGutterWidth * 10);
+            float: left;
+        }
+        .form-column-1,
+        .form-submit  {
+            .span_narrow(2);
+        }
+        .form-column-2,
+        .form-column-3 {
+            .span_narrow(4);
+        }
+        
+    }
+
+}
+
+
+/* Mobile Layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+
+    #help-form {
+        padding-left: @gridGutterWidth;
+        padding-right: @gridGutterWidth;
+        fieldset,
+        .form-row {
+            width: auto;
+            float: none;
+        }
+        .form-column-1,
+        .form-column-2,
+        .form-column-3,
+        .form-submit {
+            width: auto;
+            float: none;
+            margin: 0 0 .5em;
+        }
+
+    }
+
+}

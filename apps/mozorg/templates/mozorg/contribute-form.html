@@ -29,7 +29,9 @@
     </ul>
   {% endif %}
 
-  <div class="row">
+<fieldset>
+
+  <div class="form-row">
     <div class="form-column-1">
       <h3>{{_('Want to help?')}}</h3>
     </div>
@@ -43,11 +45,9 @@
         {{ form.interest|safe }}
       </div>
     </div>
-    <div class="form-submit">
-      <input type="submit" class="button-blue" id="form-submit" value="{{_('Submit&nbsp;»')}}">
-    </div>
   </div>
-  <div class="row" id="form-details">
+  
+  <div class="form-row" id="form-details">
     <div class="form-column-1">
       <p>{{_('Send us a note and we can get you started right away.')}}</p>
     </div>
@@ -70,7 +70,13 @@
         {{ form.captcha }}
       </div>
     </div>
-  </div>
+
+</fieldset>
+
+    <div class="form-submit">
+      <input type="submit" class="button-blue" id="form-submit" value="{{_('Submit&nbsp;»')}}">
+    </div>
+
 </form>
 {% else %}
   <div id="help-form" class="billboard thank">
