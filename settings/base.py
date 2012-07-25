@@ -360,17 +360,11 @@ MIDDLEWARE_CLASSES = (
     'mozorg.middleware.MozorgRequestTimingMiddleware',
     'django_statsd.middleware.GraphiteMiddleware',
     'funfactory.middleware.LocaleURLMiddleware',
-    #'multidb.middleware.PinningRouterMiddleware',
     'django.middleware.common.CommonMiddleware',
-    #'mozorg.middleware.NoVarySessionMiddleware',
-    #'django.contrib.auth.middleware.AuthenticationMiddleware',
-    #'session_csrf.CsrfMiddleware',  # Must be after auth middleware.
-    #'django.contrib.messages.middleware.MessageMiddleware',
     'commonware.middleware.FrameOptionsHeader',
-    #'mobility.middleware.DetectMobileMiddleware',
-    #'mobility.middleware.XMobileMiddleware',
     'mozorg.middleware.CacheMiddleware',
-    'dnt.middleware.DoNotTrackMiddleware'
+    'mozorg.middleware.NewsletterMiddleware',
+    'dnt.middleware.DoNotTrackMiddleware',
 )
 
 INSTALLED_APPS = (
