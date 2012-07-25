@@ -1,3 +1,5 @@
+# coding: utf-8
+
 from django import forms
 from django.forms import widgets
 from django.utils.safestring import mark_safe
@@ -24,7 +26,7 @@ class PrivacyWidget(widgets.CheckboxInput):
         attrs['required'] = 'true'
         input_txt = super(PrivacyWidget, self).render(name, value, attrs)
 
-        policy_txt = _('I agree to the <a href="%s">Privacy Policy</a>')
+        policy_txt = _('I’m okay with you handling this info as you explain in your <a href="%s">Privacy Policy</a>')
         return mark_safe(
             '<label for="%s" class="privacy-check-label">'
             '%s '
