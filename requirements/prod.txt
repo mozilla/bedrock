@@ -27,3 +27,5 @@ Babel>=0.9.4
 -e git://github.com/fwenzel/django-mozilla-product-details#egg=django-mozilla-product-details
 
 python-memcached==1.45
+
+django-statsd-mozilla==0.3.5

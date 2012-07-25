@@ -111,6 +111,10 @@ MINIFY_BUNDLES = {
             'css/sandstone/video.less',
             'css/firefox/customize.less',
         ),
+        'firefox_devices': (
+            'css/firefox/devices.less',
+            'css/firefox/template.less'
+        ),
         'firefox_features': (
             'css/sandstone/video.less',
             'css/firefox/features.less',
@@ -201,10 +205,6 @@ MINIFY_BUNDLES = {
         ),
         'video': (
             'css/sandstone/video.less',
-        ),
-        'landing_devices': (
-            'css/landing/devices.less',
-            'css/firefox/template.less'
         ),
         'page_not_found': (
             'css/page-not-found.less',
@@ -326,7 +326,7 @@ MINIFY_BUNDLES = {
         'video': (
             'js/mozilla-video-tools.js',
         ),
-        'landing_devices': (
+        'firefox_devices': (
             'js/libs/jquery-1.4.4.min.js',
             'js/libs/jquery-css-transform.js',
             'js/libs/jquery-animate-css-rotate-scale.js',
@@ -334,7 +334,7 @@ MINIFY_BUNDLES = {
             'js/nav-main.js',
             'js/libs/jquery.cycle.all.js',
             'js/libs/jquery.ba-hashchange.min.js',
-            'js/landing/devices.js'
+            'js/firefox/devices.js'
         ),
     }
 }
@@ -362,6 +362,8 @@ PROD_DETAILS_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)),
                                 'lib/product_details_json')
 
 MIDDLEWARE_CLASSES = (
+    'mozorg.middleware.MozorgRequestTimingMiddleware',
+    'django_statsd.middleware.GraphiteMiddleware',
     'funfactory.middleware.LocaleURLMiddleware',
     #'multidb.middleware.PinningRouterMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -381,6 +383,7 @@ INSTALLED_APPS = (
     'funfactory',  # Content common to most playdoh-based apps.
     'jingo_minify',
     'tower',  # for ./manage.py extract (L10n)
+    'django_statsd',
 
     # Django contrib apps
     'django.contrib.auth',
@@ -412,7 +415,6 @@ INSTALLED_APPS = (
     'marketplace',
     'mozorg',
     'persona',
-    'landing',
     'research',
     'privacy',
 
