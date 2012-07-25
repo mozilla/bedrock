@@ -400,6 +400,7 @@ INSTALLED_APPS = (
     # Local apps
     'b2g',
     'webmaker',
+    'grants',
     'collusion',
     'firefox',
     'marketplace',
