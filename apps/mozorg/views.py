@@ -26,17 +26,7 @@ def handle_contribute_form(request, form):
 
 
 @csrf_exempt
-def contribute_page(request):
-    form = ContributeForm(request.POST or None)
-    success = handle_contribute_form(request, form)
-    return l10n_utils.render(request,
-                             'mozorg/contribute-page.html',
-                             {'form': form,
-                              'success': success})
-
-
-@csrf_exempt
-def contribute(request):
+def contribute(request, template, return_to_form):
     def has_contribute_form():
         return (request.method == 'POST' and
                 'contribute-form' in request.POST)
@@ -58,6 +48,10 @@ def contribute(request):
     if has_contribute_form():
         form = ContributeForm(request.POST)
         success = handle_contribute_form(request, form)
+        if success:
+            # If form was submitted successfully, return a new, empty
+            # one.
+            form = ContributeForm()
     else:
         form = ContributeForm()
 
@@ -84,11 +78,13 @@ def contribute(request):
         newsletter_form = NewsletterCountryForm(locale, prefix='newsletter')
 
     return l10n_utils.render(request,
-                             'mozorg/contribute.html',
+                             template,
                              {'form': form,
                               'success': success,
                               'newsletter_form': newsletter_form,
-                              'newsletter_success': newsletter_success})
+                              'newsletter_success': newsletter_success,
+                              'return_to_form': return_to_form})
+
 
 
 def contribute_send(data, locale='en-US'):
