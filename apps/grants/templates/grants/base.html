@@ -1,0 +1,29 @@
+{% extends "sand.html" %}
+
+{% block extrahead %}
+  {{ css('grants') }}
+{% endblock %}
+
+{% block content %}
+<div id="main-content">
+	<div class="row">
+
+		<article class="main-column">
+			{% block article %}{% endblock %}
+		</article>
+
+		<aside class="sidebar">
+			{% block sidebar %}
+			<h3>Help us build a better Web</h3>
+
+			<p>We're a non-profit organization working to build a Web that is open, accessible, safe and — most of all — a force for good.</p>
+			<p>Mozilla builds communities and gives people tools to control their online experience. We are about enriching people's lives instead of  benefiting shareholders. We believe a better Web means a happier future for all of us — and we depend on your collaboration and financial support to build it.</p>
+			<p>So please consider making a donation today: <a href="https://donate.mozilla.org/page/contribute/join-mozilla">Join us here</a>.</p>
+			{% endblock %}
+		</aside>
+
+	</div>
+</div>
+{% endblock %}
+
+{% block email_form %}&nbsp;{% endblock %}
