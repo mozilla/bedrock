@@ -70,6 +70,9 @@ MINIFY_BUNDLES = {
         'webmaker': (
             'css/webmaker.less',
         ),
+        'grants': (
+            'css/grants.less',
+        ),
         'collusion': (
             'css/collusion.less',
         ),
