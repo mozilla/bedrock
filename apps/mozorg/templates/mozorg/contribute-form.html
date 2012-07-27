@@ -60,12 +60,14 @@
       <div class="field field-privacy {% if form.privacy.errors%}field-error{% endif %}">
         {{ form.privacy|safe }}
       </div>
-      <div class="field field-newsletter">
-        <label for="id_newsletter">
-          {{ form.newsletter|safe }}
-          {{_('I’d like to receive regular contribution news by email')}}
-        </label>
-      </div>
+      {% if LANG == 'en-US' %}
+        <div class="field field-newsletter">
+          <label for="id_newsletter">
+            {{ form.newsletter|safe }}
+            {{_('I’d like to receive regular contribution news by email')}}
+          </label>
+        </div>
+      {% endif %}
       <div class="field field-captcha">
         {{ form.captcha }}
       </div>
