@@ -3,7 +3,7 @@ from django.conf import settings
 from product_details import product_details
 
 from firefox import version_re
-from mozorg.util import page
+from mozorg.util import page, redirect
 import views
 
 whatsnew_re = r'^firefox(?:/(%s))?/whatsnew/$' % version_re
@@ -11,6 +11,7 @@ whatsnew_re = r'^firefox(?:/(%s))?/whatsnew/$' % version_re
 urlpatterns = patterns('',
     page('firefox/central', 'firefox/central.html'),
     page('firefox/channel', 'firefox/channel.html'),
+    redirect('^firefox/channel/android/$', 'firefox.channel'),
     page('firefox/customize', 'firefox/customize.html'),
     page('firefox/features', 'firefox/features.html'),
     page('firefox/fx', 'firefox/fx.html',
