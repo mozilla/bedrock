@@ -83,6 +83,7 @@ var gPlatformVista = navigator.userAgent.indexOf('Windows NT 6.0') !=-1
 	    var $tip = $this.find('.tip');
 	    var left = parseInt($tip.data("left"), 10);
 	    var top = parseInt($tip.data("top"), 10);
+	    $this.children('.arrow, .tip, .callout').stop();
 	    $tip.css({'left': left, 'top': top})
 		.animate({'opacity': 1}, 300);
 	    $this.children('.arrow')
@@ -92,6 +93,7 @@ var gPlatformVista = navigator.userAgent.indexOf('Windows NT 6.0') !=-1
 	}).bind('mouseleave focusout', function (e) {
             var $this = $(this);
 	    var $tip = $this.find('.tip');
+	    $this.children('.arrow, .tip, .callout').stop();
 	    $this.children('.arrow, .tip')
 		.animate({'opacity': 0}, 300, function () {
 		    $tip.css({'left': -999, 'top': 0});
