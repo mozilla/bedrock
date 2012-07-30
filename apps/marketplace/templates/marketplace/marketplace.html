@@ -103,7 +103,7 @@
       {{ form.fmt|safe }}
     </div>
 
-    <div class="{% if form.privacy.errors%}field-error{% endif %}">
+    <div class="field-privacy{% if form.privacy.errors%} field-error{% endif %}">
       {{ form.privacy|safe }}
     </div>
   </div>
