@@ -29,6 +29,7 @@ var gPlatformVista = navigator.userAgent.indexOf('Windows NT 6.0') !=-1
 
   var tips = {}
   tips[PLATFORM_WINDOWS] = [
+      {'left': 832, 'top': -48,  'id': 'not-this-marker'},
       {'left': 113, 'top': 34,  'id': 'firefox-menu-button'},
       {'left': 42,  'top': 70,  'id': 'app-tab', 'direction': 'up'},
       {'left': 587, 'top': 55,  'id': 'new-tab'},
@@ -43,6 +44,7 @@ var gPlatformVista = navigator.userAgent.indexOf('Windows NT 6.0') !=-1
       {'left': 894, 'top': 107, 'id': 'home-button', 'direction': 'up'}
   ];
   tips[PLATFORM_MACOSX] = [
+      {'left': 832, 'top': -48,  'id': 'not-this-marker'},
       {'left': 38,  'top': 57,  'id': 'app-tab'},
       {'left': 582, 'top': 57,  'id': 'new-tab'},
       {'left': 76,  'top': 101, 'id': 'instant-website-id', 'direction': 'up'},
@@ -56,6 +58,7 @@ var gPlatformVista = navigator.userAgent.indexOf('Windows NT 6.0') !=-1
       {'left': 899, 'top': 101, 'id': 'home-button', 'direction': 'up'}
   ];
   tips[PLATFORM_LINUX] = [
+      {'left': 832, 'top': -48,  'id': 'not-this-marker'},
       {'left': 42,  'top': 94,  'id': 'app-tab'},
       {'left': 578, 'top': 100, 'id': 'new-tab'},
       {'left': 80,  'top': 142, 'id': 'instant-website-id', 'direction': 'up'},
@@ -69,7 +72,7 @@ var gPlatformVista = navigator.userAgent.indexOf('Windows NT 6.0') !=-1
   ];
 
 
-    var tipWidth = 500;
+    var tipWidth = 450;
     var sceneWidth = 950;
 
     $(tips[gPlatform]).each(function (index, tip) {
@@ -83,6 +86,7 @@ var gPlatformVista = navigator.userAgent.indexOf('Windows NT 6.0') !=-1
 	    var $tip = $this.find('.tip');
 	    var left = parseInt($tip.data("left"), 10);
 	    var top = parseInt($tip.data("top"), 10);
+	    $this.children('.arrow, .tip, .callout').stop();
 	    $tip.css({'left': left, 'top': top})
 		.animate({'opacity': 1}, 300);
 	    $this.children('.arrow')
@@ -92,6 +96,7 @@ var gPlatformVista = navigator.userAgent.indexOf('Windows NT 6.0') !=-1
 	}).bind('mouseleave focusout', function (e) {
             var $this = $(this);
 	    var $tip = $this.find('.tip');
+	    $this.children('.arrow, .tip, .callout').stop();
 	    $this.children('.arrow, .tip')
 		.animate({'opacity': 0}, 300, function () {
 		    $tip.css({'left': -999, 'top': 0});
