@@ -40,7 +40,7 @@ def list_templates():
                 for filename in files:
                     name, ext = os.path.splitext(filename)
 
-                    if ext == '.html':
+                    if ext in ['.txt', '.html']:
                         full_path = os.path.join(root, filename)
                         yield full_path.replace(tmpl_dir, '').lstrip('/')
 
@@ -123,7 +123,7 @@ def update_template(tmpl, blocks, lang):
                 # If False is returned, that means a content block
                 # exists so we don't do anything to the template since
                 # it's customized
-                return 
+                return
             elif token[0] == 'content':
                 buffer.write(token[1])
             elif token[0] == 'version':
@@ -181,12 +181,12 @@ def copy_template(tmpl, blocks, lang):
         with codecs.open(dest_file, 'w', 'utf-8') as dest:
             dest.write('{# Version: %s #}\n\n' % get_todays_version())
             dest.write('{%% extends "%s" %%}\n\n' % tmpl)
-            
+
             for block in blocks:
                 write_block(block, dest)
                 dest.write('\n\n')
 
-            
+
 class L10nParser():
 
     file_version_re = re.compile('\W*Version: (\d+)\W*')
@@ -217,7 +217,7 @@ class L10nParser():
         """Analyze a template and get the l10n block information"""
 
         self.tokens = Environment().lex(src)
-        
+
         for token in self._parse(strict, halt_on_content):
             # Only return the block structure if requesting blocks,
             # otherwise return the full token
@@ -253,7 +253,7 @@ class L10nParser():
                     # ignore the rest of the comment
 
                     version = self.parse_version(matches.group(1))
-                    
+
                     if not version:
                         raise Exception('Invalid version metadata in '
                                         'template: %s '% self.tmpl)
@@ -268,7 +268,7 @@ class L10nParser():
             elif name == 'block_begin':
                 space = self.tokens.next()
                 block = self.tokens.next()
-                
+
                 if block[1] == 'name':
                     type = block[2]
 
@@ -282,7 +282,7 @@ class L10nParser():
                         for x in self.parse_block(strict):
                             yield x
                     else:
-                        token_queue = [token, space, block]                        
+                        token_queue = [token, space, block]
 
                     if type == 'block' and halt_on_content:
                         # If it's a block, check if the name is
@@ -301,7 +301,7 @@ class L10nParser():
                             # Otherwise, queue up the seen tokens for
                             # yielding
                             token_queue.extend([ident_space, ident])
-                            
+
                     for x in token_queue:
                         yield ('content', x[2])
                 else:
@@ -318,7 +318,7 @@ class L10nParser():
             return int(version_str)
         except ValueError:
             return None
-        
+
     def parse_block(self, strict=True):
         """Parse out the l10n block metadata and content"""
 
@@ -377,7 +377,7 @@ class L10nParser():
             else:
                 buffer.append(token[2])
 
-        return [''.join(x).replace('\\n', '\n').strip() 
+        return [''.join(x).replace('\\n', '\n').strip()
                 for x in [main_content, was_content]]
 
     def scan_until(self, name):

@@ -13,9 +13,12 @@ class TestL10nCheck(unittest.TestCase):
             return None
 
     def test_list_templates(self):
-        tmpls = filter(lambda tmpl: 'mozorg/home.html' in tmpl,
+        """Make sure we capture both html and txt templates."""
+        TEMPLATES = ['mozorg/home.html',
+                     'mozorg/emails/other.txt',]
+        tmpls = filter(lambda tmpl: tmpl in TEMPLATES,
                        list_templates())
-        assert tmpls
+        assert len(tmpls) == len(TEMPLATES)
 
     def test_parse_templates(self):
         """Make sure the parser grabs the l10n block content
