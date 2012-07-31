@@ -17,7 +17,8 @@
 {% block content %}
 
 <hgroup id="main-feature" class="huge">
-  <h1>{{_('We are')}} <img src="{{ media('img/home/title-wordmark.png') }}" alt="mozilla" height="92" width="348"></h1>
+  {# L10n: The Mozilla wordmark appears inline as part of this headline, so it reads as "We are Mozilla". The alt text should not be translated. #}
+  <h1>{{ _('We are <img src="%(img)s" alt="Mozilla" height="92" width="348">') | format(img=media('img/home/title-wordmark.png')) }}</h1>
   <h2>{{_('Doing good is part of our code')}}</h2>
 </hgroup>
 
@@ -49,7 +50,7 @@
       document.getElementById('promo-android').id = 'page-promo-android';
       // ]]></script>
       <a href="{{ url('firefox.fx') }}?WT.mc_id=moandroid&amp;WT.mc_ev=click#mobile" class="container">
-        <img src="{{ media('img/home/promo-android.jpg') }}" alt="" role="presentation">
+        <img src="{{ media('img/home/promo-android.jpg') }}" alt="">
         <div>
           {# L10n: Firefox for Android tagline. #}
           <h3>{{_('Fast. Smart. Safe.')}}</h3>
@@ -64,7 +65,7 @@
       document.getElementById('promo-july2012').id = 'page-promo-july2012';
       // ]]></script>
       <a href="https://addons.mozilla.org/firefox/collections/mozilla/flags/" class="container">
-        <img src="{{ media('img/home/promo-july2012.jpg') }}" alt="" role="presentation">
+        <img src="{{ media('img/home/promo-july2012.jpg') }}" alt="">
         <div>
           <h3>{{_('Customize Firefox <br>with your nation’s flag.')}}</h3>
           <h4>{{_('Join us in celebrating the global spirit of community.')}}</h4>
@@ -78,7 +79,7 @@
         document.getElementById('promo-flicks').id = 'page-promo-flicks';
       </script>
       <a href="https://firefoxflicks.mozilla.org/?WT.mc_id=mofxflicks&amp;WT.mc_ev=click" class="container">
-        <img src="{{ media('img/home/promo-flicks.jpg') }}" alt="" role="presentation">
+        <img src="{{ media('img/home/promo-flicks.jpg') }}" alt="">
         <div>
           <h3>{{_('Congratulations to all the winners of Firefox Flicks!')}}</h3>
           <p class="go">{{_('Watch the winning videos')}}</p>
