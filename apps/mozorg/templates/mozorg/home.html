@@ -28,13 +28,14 @@
   <a href="/firefox/" id="firefox-promo-link">
   <img src="{{ media('img/home/firefox.png')}}" id="promo-logo" alt="Firefox">
   </a>
-  {% trans %}
   <ul class="features">
-    <li><small>Proudly<br>non-profit</small></li>
-    <li><small>Innovating<br>for&nbsp;you</small></li>
-    <li><small>Fast,&nbsp;flexible,<br>secure</small></li>
+    {# L10n: Small piece of text that appears to the side of the download button on the homepage. #}
+    <li><small>{{_('Proudly<br>non-profit')}}</small></li>
+    {# L10n: Small piece of text that appears to the side of the download button on the homepage. #}
+    <li><small>{{_('Innovating<br>for&nbsp;you')}}</small></li>
+    {# L10n: Small piece of text that appears to the side of the download button on the homepage. #}
+    <li><small>{{_('Fast,&nbsp;flexible,<br>secure')}}</small></li>
   </ul>
-  {% endtrans %}
 
   {{ download_button('download','small') }}
 </section>
@@ -50,9 +51,10 @@
       <a href="{{ url('firefox.fx') }}?WT.mc_id=moandroid&amp;WT.mc_ev=click#mobile" class="container">
         <img src="{{ media('img/home/promo-android.jpg') }}" alt="" role="presentation">
         <div>
+          {# L10n: Firefox for Android tagline. #}
           <h3>{{_('Fast. Smart. Safe.')}}</h3>
           <h4>{{_('Get the mobile browser that’s got your back.')}}</h4>
-          <p>{{_('Get Firefox for Android')}}&nbsp;»</p>
+          <p class="go">{{_('Get Firefox for Android')}}</p>
         </div>
       </a>
     </div>
@@ -66,7 +68,7 @@
         <div>
           <h3>{{_('Customize Firefox <br>with your nation’s flag.')}}</h3>
           <h4>{{_('Join us in celebrating the global spirit of community.')}}</h4>
-          <p>{{_('Show your support')}}&nbsp;»</p>
+          <p class="go">{{_('Show your support')}}</p>
         </div>
       </a>
     </div>
@@ -79,7 +81,7 @@
         <img src="{{ media('img/home/promo-flicks.jpg') }}" alt="" role="presentation">
         <div>
           <h3>{{_('Congratulations to all the winners of Firefox Flicks!')}}</h3>
-          <p>{{_('Watch the winning videos')}}&nbsp;»</p>
+          <p class="go">{{_('Watch the winning videos')}}</p>
         </div>
       </a>
     </div>
