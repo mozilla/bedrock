@@ -12,9 +12,6 @@ migrated everything over. A request runs through the following stack:
 * If the page exists in the PHP site, serve from PHP
 * Else, serve a 404 page
 
-.. note:: As of right now, Bedrock isn't actually live yet, so the PHP
-          site still serves everything, so ignore the above.
-
 History
 =======
 
