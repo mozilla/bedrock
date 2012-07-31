@@ -1,8 +1,9 @@
 from django.conf.urls.defaults import *
+from mozorg.util import page
 
 import views
 
 urlpatterns = patterns('',
-    url(r'^$', views.marketplace, name='marketplace'),
-    url(r'^partners/$', views.partners, name='partners')
+    page('', 'marketplace/marketplace.html'),
+    page('partners', 'marketplace/partners.html')
 )
