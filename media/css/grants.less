@@ -2,6 +2,70 @@
 	margin-top: 3em;
 }
 
+.filters {
+    h4 {
+        font-size: 13px;
+        text-transform: uppercase;
+    }
+    ul {
+        overflow: hidden;
+        list-style-type: none;
+        font-size: 13px;
+    }
+    li {
+        float: left;
+        margin-left: 0;
+        margin-right: 10px;
+        text-transform: uppercase;
+    }
+}
+
+#grants_table {
+    font-size: 13px;
+    margin-bottom: 24px;
+    th,
+    td {
+        padding: 10px 20px;
+    }
+    thead {
+        background: #F0ECE3;
+        th {
+            color: #484848;
+            text-transform: uppercase;
+        }
+    }
+    tbody {
+        th {
+            font-weight: normal;
+            text-align: left;
+        }
+        th,
+        td {
+            border-bottom: 1px solid #F0ECE3;
+        }
+    }
+}
+
+.grant_info {
+    li {
+        list-style-type: none;
+        display: block;
+        margin-left: 0;
+        color: #484848;
+    }
+    h2 {
+        text-transform: uppercase;
+        display: inline-block;
+        font-size: 16px;
+        margin-bottom: 0;
+        color: #333;
+        margin-right: 5px;
+    }
+    h2:after {
+        content: ":"
+    }
+}
+
 #grants .sidebar {
 	margin: 60px 0 0 100px;
 	width: 268px;

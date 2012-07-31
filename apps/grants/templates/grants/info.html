@@ -1,0 +1,24 @@
+{% extends "grants/base.html" %}
+
+{% block page_title %}Grants{% endblock %}
+{% block body_id %}grants{% endblock %}
+
+{% block article %}
+
+<header>
+    <h1>{{ grant['title'] }}</h1>
+    <p>{{ grant['summary'] }}</p>
+</header>
+
+<ul class="grant_info">
+    <li><h2>Grantee</h2> {{ grant['grantee'] }}</li>
+    <li><h2>Amount</h2> {{ grant['amount'] }}</li>
+    <li><h2>Year</h2> {{ grant['year'] }}</li>
+    <li><h2>Focus Area</h2> {{ grant_labels[grant['type']] }}</li>
+</ul>
+
+{{ grant['description']|safe }}
+
+<a href="{{ url('grants') }}">Back to all grants</a>
+
+{% endblock %}
