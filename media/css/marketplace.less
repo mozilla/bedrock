@@ -32,52 +32,23 @@ hgroup {
     padding-bottom: @baseLine;
 }
 
-.thank,
-#apps-email-form {
-    padding-top: @baseLine * 2;
-    padding-bottom: @baseLine * 2;
-    margin-bottom: @baseLine * 2;
-    margin-top: @baseLine * 2;
-    @shadow: 0 1px 1px rgba(0,0,0,0.1), 0 0 0 1px #fff;
-    .box-shadow(@shadow);
-    background: #fff;
-    .clearfix;
+#footer-email-form {
 
-    label.privacy-check-label {
-        display: block;
-        margin: 6px auto 6px;
+    h3 {
+        .span(4);
+        margin-left: 0;
+        font-size: 24px;
     }
 
-    .privacy-check-label {
-        margin-right: @baseLine;
-    }
-
-    .field-privacy {
-        font-size: @smallFontSize;
-        input {
-            float: left;
-        }
-        .title {
-            display: block;
-            padding-left: 25px;
-        }
-    }
-
-    input[type=email] {
-        margin-bottom: 8px;
-    }
-
-    .button-blue {
-        width: @gridColumnWidth * 2 + @gridGutterWidth;
-        padding: 0;
+    .form-contents {
+        .span(3);
     }
 
 }
 
-
 #intro-video {
     max-width: 640px;
-    margin: 0 auto;
+    margin: 0 auto (@baseLine * 2) auto;
     background-image: url(/media/img/sandstone/video/shadow.png);
     background-repeat: no-repeat;
     background-position: 50% 100%;
