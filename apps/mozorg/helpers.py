@@ -186,7 +186,8 @@ def download_button(ctx, id, format='large', build=None):
                                                     platform, locale)
         else:
             download_link_direct = make_download_link('firefox', build, version,
-                                                       platform, locale, True)
+                                                       platform, locale,
+                                                       force_direct=True)
         builds.append({'platform': platform,
                        'platform_pretty': platform_pretty,
                        'download_link': download_link,
