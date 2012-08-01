@@ -68,6 +68,10 @@
               <li>{{_('Please enter a valid email address')}}</li>
               {% endif %}
 
+              {% if request.newsletter_form.newsletter.errors %}
+              <li>{{ request.newsletter_form.newsletter.errors }}</li>
+              {% endif %}
+
               {% if request.newsletter_form.privacy.errors %}
               <li>{{_('You must agree to the privacy policy')}}</li>
               {% endif %}

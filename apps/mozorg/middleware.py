@@ -2,12 +2,10 @@ import datetime
 from email.utils import formatdate
 import time
 
-from django.conf import settings
-from django.contrib.sessions.middleware import SessionMiddleware
-
 import basket
 from django_statsd.middleware import GraphiteRequestTimingMiddleware
 
+from l10n_utils.dotlang import _lazy
 from mozorg.forms import NewsletterForm
 
 
@@ -49,16 +47,14 @@ class NewsletterMiddleware(object):
                           'newsletter-footer' in request.POST)
         if is_footer_form:
             if form.is_valid():
-                newsletter = request.POST['newsletter']
                 data = form.cleaned_data
-
                 try:
-                    basket.subscribe(data['email'], newsletter,
+                    basket.subscribe(data['email'], data['newsletter'],
                                      format=data['fmt'])
                     success = True
                 except basket.BasketException:
-                    msg = ("We are sorry, but there was a problem with our system. "
-                           "Please try again later!")
+                    msg = _lazy("We are sorry, but there was a problem with our system. "
+                            "Please try again later!")
                     form.errors['__all__'] = form.error_class([msg])
 
         request.newsletter_form = form
