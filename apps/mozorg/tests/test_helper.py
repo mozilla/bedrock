@@ -1,9 +1,13 @@
 import unittest
 
+from django.conf import settings
+from django.test.client import Client
 from test_utils import RequestFactory
 
+import basket
 import jingo
-from nose.tools import eq_, ok_, assert_not_equal
+from mock import Mock, patch
+from nose.tools import assert_false, assert_not_equal, eq_, ok_
 from product_details import product_details
 from pyquery import PyQuery as pq
 
@@ -120,3 +124,35 @@ class TestVideoTag(unittest.TestCase):
         doc = pq(render("{{ video%s }}" % str(tuple(videos))))
 
         eq_(doc('video object').length, 0)
+
+
+@patch.object(settings, 'ROOT_URLCONF', 'mozorg.tests.urls')
+class TestNewsletterFunction(unittest.TestCase):
+    def setUp(self):
+        self.client = Client()
+
+    def test_get_form(self):
+        response = self.client.get('/en-US/base/')
+        doc = pq(response.content)
+        assert_false(doc('#footer-email-errors'))
+        ok_(doc('form#footer-email-form'))
+
+    @patch.object(basket, 'subscribe', Mock())
+    def test_post_correct_form(self):
+        data = {
+            'newsletter-footer': 'Y',
+            'newsletter': 'mozilla-and-you',
+            'email': 'foo@bar.com',
+            'fmt': 'H',
+            'privacy': 'Y',
+        }
+        response = self.client.post('/en-US/base/', data)
+        doc = pq(response.content)
+        assert_false(doc('form#footer-email-form'))
+        ok_(doc('div#footer-email-form.thank'))
+
+    def test_post_wrong_form(self):
+        response = self.client.post('/en-US/base/', {'newsletter-footer': 'Y'})
+        doc = pq(response.content)
+        ok_(doc('#footer-email-errors'))
+        ok_(doc('#footer-email-form.has-errors'))

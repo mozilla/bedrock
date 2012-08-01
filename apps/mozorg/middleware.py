@@ -2,10 +2,12 @@ import datetime
 from email.utils import formatdate
 import time
 
-from django.conf import settings
-from django.contrib.sessions.middleware import SessionMiddleware
-
+import basket
 from django_statsd.middleware import GraphiteRequestTimingMiddleware
+
+from l10n_utils.dotlang import _lazy
+from mozorg.forms import NewsletterForm
+
 
 class CacheMiddleware(object):
 
@@ -18,31 +20,10 @@ class CacheMiddleware(object):
             stamp = time.mktime(d.timetuple())
 
             response['Cache-Control'] = 'max-age=600'
-            response['Expires'] = formatdate(timeval=stamp, localtime=False, usegmt=True)
+            response['Expires'] = formatdate(timeval=stamp, localtime=False,
+                                             usegmt=True)
         return response
 
-
-class NoVarySessionMiddleware(SessionMiddleware):
-    """
-    SessionMiddleware sets Vary: Cookie anytime request.session is accessed.
-    request.session is accessed indirectly anytime request.user is touched.
-    We always touch request.user to see if the user is authenticated, so every
-    request would be sending vary, so we'd get no caching.
-    """
-
-    def process_response(self, request, response):
-        if getattr(settings, 'READ_ONLY', False):
-            return response
-        # Let SessionMiddleware do its processing but prevent it from changing
-        # the Vary header.
-        vary = response.get('Vary', None)
-        new_response = (super(NoVarySessionMiddleware, self)
-                        .process_response(request, response))
-        if vary:
-            new_response['Vary'] = vary
-        else:
-            del new_response['Vary']
-        return new_response
 
 class MozorgRequestTimingMiddleware(GraphiteRequestTimingMiddleware):
 
@@ -54,3 +35,27 @@ class MozorgRequestTimingMiddleware(GraphiteRequestTimingMiddleware):
         else:
             f = super(MozorgRequestTimingMiddleware, self)
             f.process_view(request, view, view_args, view_kwargs)
+
+
+class NewsletterMiddleware(object):
+    """Processes newsletter subscriptions"""
+    def process_request(self, request):
+        success = False
+        form = NewsletterForm(request.POST or None)
+
+        is_footer_form = (request.method == 'POST' and
+                          'newsletter-footer' in request.POST)
+        if is_footer_form:
+            if form.is_valid():
+                data = form.cleaned_data
+                try:
+                    basket.subscribe(data['email'], data['newsletter'],
+                                     format=data['fmt'])
+                    success = True
+                except basket.BasketException:
+                    msg = _lazy("We are sorry, but there was a problem with our system. "
+                            "Please try again later!")
+                    form.errors['__all__'] = form.error_class([msg])
+
+        request.newsletter_form = form
+        request.newsletter_success = success

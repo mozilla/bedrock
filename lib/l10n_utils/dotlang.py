@@ -11,6 +11,7 @@ import os
 from django.conf import settings
 from django.core.cache import cache
 from django.utils import translation
+from django.utils.functional import lazy
 
 
 def parse(path):
@@ -74,6 +75,7 @@ def _(text, *args):
         text = text % args
     return text
 
+_lazy = lazy(_, unicode)
 
 def get_lang_path(path):
     """Generate the path to a lang file from a django path.

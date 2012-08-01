@@ -58,25 +58,28 @@
     {% block content %}{% endblock %}
 
     {% block email_form %}
-      {% if email_form %}
-        {% if not email_success %}
-          {% if email_form.errors %}
+        {% if not request.newsletter_success %}
+          {% if request.newsletter_form.errors %}
           <div id="footer-email-errors">
-            {{ email_form.non_field_errors()|safe }}
+            {{ request.newsletter_form.non_field_errors()|safe }}
 
             <ul class="errorlist">
-              {% if email_form.email.errors %}
+              {% if request.newsletter_form.email.errors %}
               <li>{{_('Please enter a valid email address')}}</li>
               {% endif %}
 
-              {% if email_form.privacy.errors %}
+              {% if request.newsletter_form.newsletter.errors %}
+              <li>{{ request.newsletter_form.newsletter.errors }}</li>
+              {% endif %}
+
+              {% if request.newsletter_form.privacy.errors %}
               <li>{{_('You must agree to the privacy policy')}}</li>
               {% endif %}
             </ul>
           </div>
           {% endif %}
 
-        <form class="billboard{% if email_form.errors %} has-errors{% endif%}"
+        <form class="billboard{% if request.newsletter_form.errors %} has-errors{% endif%}"
           id="footer-email-form" action="#footer-email-form" method="post">
           <input type="hidden" name="newsletter-footer" value="Y" />
           <input type="hidden" name="newsletter"
@@ -85,16 +88,16 @@
           <h3>{% block email_form_title %}{{_('Get Firefox news')}}{% endblock %}</h3>
 
           <div class="form-contents">
-            <div class="field field-email {% if email_form.email.errors %}field-error{% endif %}">
-              {{ field_with_attrs(email_form.email, placeholder=_('YOUR EMAIL HERE'))|safe }}
+            <div class="field field-email {% if request.newsletter_form.email.errors %}field-error{% endif %}">
+              {{ field_with_attrs(request.newsletter_form.email, placeholder=_('YOUR EMAIL HERE'))|safe }}
             </div>
 
             <div id="form-details">
               <div class="field field-format">
-                {{ email_form.fmt|safe }}
+                {{ request.newsletter_form.fmt|safe }}
               </div>
-              <div class="field field-privacy {% if email_form.privacy.errors%}field-error{% endif %}">
-                {{ email_form.privacy|safe }}
+              <div class="field field-privacy {% if request.newsletter_form.privacy.errors%}field-error{% endif %}">
+                {{ request.newsletter_form.privacy|safe }}
               </div>
             </div>
           </div>
@@ -110,7 +113,6 @@
           <h3>{{_('Thank you for signing up!')}}</h3>
         </div>
         {% endif %}
-      {% endif %}
     {% endblock %}
 
       </div><!-- close #wrapper -->
@@ -125,11 +127,11 @@
 
           <div class="footer-license">
               <p>
-		{% trans url='/foundation/licensing/website-content.html' %}
-		Portions of this content are ©1998–{{ current_year }} by individual
+                {% trans url='/foundation/licensing/website-content.html' %}
+                Portions of this content are ©1998–{{ current_year }} by individual
                 mozilla.org contributors. Content available under
-		a <a href="{{ url }}">Creative Commons license</a>.
-		{% endtrans %}
+                a <a href="{{ url }}">Creative Commons license</a>.
+                {% endtrans %}
               </p>
               <p>
                 <a href="{{ url('mozorg.contribute_page') }}">{{_('Contribute to this page')}}</a>

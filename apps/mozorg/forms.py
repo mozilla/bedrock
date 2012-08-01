@@ -10,6 +10,7 @@ from product_details import product_details
 
 FORMATS = (('H', 'HTML'), ('T', 'Text'))
 
+
 class SideRadios(widgets.RadioFieldRenderer):
     """Render radio buttons as labels"""
 
@@ -17,6 +18,7 @@ class SideRadios(widgets.RadioFieldRenderer):
         radios = [unicode(w) for idx, w in enumerate(self)]
 
         return mark_safe(''.join(radios))
+
 
 class PrivacyWidget(widgets.CheckboxInput):
     """Render a checkbox with privacy text. Lots of pages need this so
@@ -35,15 +37,23 @@ class PrivacyWidget(widgets.CheckboxInput):
                policy_txt % '/en-US/privacy-policy')
          )
 
+
 class EmailInput(widgets.TextInput):
     input_type = 'email'
 
+NEWSLETTER_CHOICES = (('app-dev',) * 2,
+                      ('mozilla-and-you',) * 2)
+
+
 class NewsletterForm(forms.Form):
-    email = forms.EmailField(widget=EmailInput(attrs={'required':'true'}))
+    newsletter = forms.ChoiceField(choices=NEWSLETTER_CHOICES,
+                                   widget=forms.HiddenInput)
+    email = forms.EmailField(widget=EmailInput(attrs={'required': 'true'}))
     fmt = forms.ChoiceField(widget=forms.RadioSelect(renderer=SideRadios),
                             choices=FORMATS,
                             initial='H')
     privacy = forms.BooleanField(widget=PrivacyWidget)
+
 
 class NewsletterCountryForm(NewsletterForm):
     def __init__(self, locale, *args, **kwargs):
@@ -76,6 +86,7 @@ INTEREST_CHOICES = (('', _('Area of interest?')),
                     (' ', _('Other')),
                     ('Firefox Suggestions', _('I have a suggestion for Firefox')),
                     ('Firefox Issue', _('I need help with a Firefox issue')))
+
 
 class ContributeForm(forms.Form):
     email = forms.EmailField(widget=EmailInput(attrs={'required':'true'}))
