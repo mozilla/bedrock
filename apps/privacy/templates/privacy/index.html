@@ -15,57 +15,6 @@
   <h2>Putting users in control of their private information</h2>
 </hgroup>
 
-<section id="privacy-promo" class="pager pager-with-tabs pager-auto-rotate pager-no-history">
-  <div class="pager-content">
-
-    <div class="default-page pager-page" id="promo-beta">
-      <script>
-        document.getElementById('promo-beta').id = 'page-promo-beta';
-      </script>
-      <a href="{{ php_url('/firefox/beta/') }}?WT.mc_id=mofxbeta&amp;WT.mc_ev=click" class="container">
-        <img src="{{ media('img/home/promo-beta.jpg') }}" alt="Firefox Beta blueprint artwork">
-        <div>
-          <h3>Get a sneak peek at the Firefox of tomorrow.</h3>
-          <p>Download Firefox Beta today »</p>
-        </div>
-      </a>
-    </div>
-
-    <div class="pager-page" id="promo-flicks">
-      <script>
-        document.getElementById('promo-flicks').id = 'page-promo-flicks';
-      </script>
-      <a href="https://firefoxflicks.mozilla.org/?WT.mc_id=mofxflicks&amp;WT.mc_ev=click" class="container">
-        <img src="{{ media('img/home/promo-flicks.jpg') }}" alt="Firefox Flicks artwork">
-        <div>
-          <h3>Congratulations to all the winners of Firefox Flicks!</h3>
-          <p>Watch the winning videos »</p>
-        </div>
-      </a>
-    </div>
-
-    <div class="pager-page" id="promo-affiliates">
-      <script>
-        document.getElementById('promo-affiliates').id = 'page-promo-affiliates';
-      </script>
-      <a href="https://affiliates.mozilla.org/?WT.mc_id=moaff&amp;WT.mc_ev=click" class="container">
-        <img src="{{ media('img/home/promo-affiliates.jpg') }}" alt="Firefox Affiliates banners and buttons">
-        <div>
-          <h3>Help share Firefox with the world.</h3>
-          <p>Become an Affiliate today »</p>
-        </div>
-      </a>
-    </div>
-
-    <ul class="pager-tabs">
-      <li id="tab-beta"><a href="#p1">●</a></li>
-      <li id="tab-flicks"><a href="#p2">●</a></li>
-      <li id="tab-affiliates"><a href="#p3">●</a></li>
-    </ul>
-
-  </div>
-</section>
-
 <nav id="top" class="menu-bar billboard">
   <ul>
     <li><a href="#principles">Our Principles</a></li>
@@ -187,6 +136,8 @@
   </div>
 </div>
 {% endblock %}
+
+{% block email_form %}{% endblock %}
 
 {% block js %}
   {{ js('privacy') }}
