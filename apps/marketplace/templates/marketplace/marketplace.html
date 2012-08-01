@@ -70,55 +70,6 @@
 </section>
 {% endblock %}
 
-{% block email_form %}
-{% if not success %}
-<form class="container" id="apps-email-form" action="#apps-email-form" method="post">
 
-{% if form.errors %}
-  {{ form.non_field_errors() }}
-
-  {% for field in form %}
-    {{ field.errors }}
-  {% endfor %}
-{% endif %}
-
-  <div class="row">
-
-  <h4 class="span4">{{_('Sign up for more news about the Mozilla Marketplace.')}}</h4>
-
-  <div class="span4">
-    <div class="{% if form.email.errors %}field-error{% endif %}">
-      {{ field_with_attrs(form.email, placeholder=_('YOUR EMAIL HERE'))|safe }}
-    </div>
-
-    <!-- <select name="interest" id="apps-interest"> -->
-    <!--   <option disabled="disabled">AREA OF INTEREST</option> -->
-    <!--   <option>developing apps</option> -->
-    <!--   <option>hosting or selling apps</option> -->
-    <!--   <option>discovering and buying apps</option> -->
-    <!--   <option>partnership opportunities</option> -->
-    <!-- </select> -->
-
-    <div>
-      {{ form.fmt|safe }}
-    </div>
-
-    <div class="{% if form.privacy.errors%}field-error{% endif %}">
-      {{ form.privacy|safe }}
-    </div>
-  </div>
-
-
-  <div class="span2">
-    <input type="submit" value="{{_('Sign up&nbsp;»')}}" class="button-blue">
-  </div>
-
-  </div>
-</form>
-{% else %}
-<div class="container thank" id="apps-email-form">
-  <h3>{{_('Thank you for signing up!')}}</h3>
-</div>
-{% endif %}
-{% endblock %}
-
+{% block email_form_title %}{{_('Sign up for more news about the Mozilla Marketplace.')}}{% endblock %}
+{% block email_form_newsletter %}app-dev{% endblock %}
