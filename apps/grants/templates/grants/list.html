@@ -1,0 +1,25 @@
+{% extends "grants/base.html" %}
+
+{% import "grants/_utils.html" as utils %}
+
+{% block page_title %}Grants{% endblock %}
+{% block body_id %}grant-list{% endblock %}
+
+{% block breadcrumbs %}
+<nav class="breadcrumbs">
+	<a href="{{ url('grants.index') }}">Grants</a> &gt;
+	<span>List</span>
+</nav>
+{% endblock %}
+
+{% block article %}
+
+<h1>Mozilla Grants</h1>
+
+{% if grants %}
+	{{ utils.table(grants, fields) }}
+{% endif %}
+
+{% endblock %}
+
+{% block sidebar %}{% endblock %}
