@@ -1,0 +1,30 @@
+{% extends "grants/base.html" %}
+
+{% block page_title %}Grants: {{ grant.title }}{% endblock %}
+{% block body_id %}grant-single{% endblock %}
+
+{% block breadcrumbs %}
+<nav class="breadcrumbs">
+	<a href="{{ url('grants.index') }}">Grants</a> &gt;
+	<a href="{{ url('grants.list') }}">List</a> &gt;
+	<span>{{ grant.title }}</span>
+</nav>
+{% endblock %}
+
+{% block article %}
+	<h1>{{ grant.title }}</h1>
+
+	<p class="summary">{{ grant.summary }}</p>
+
+	<dl class="grant-meta">
+		{% for field in fields %}
+			{% if grant._meta.pk.name != field.name %}
+				<dt>{{ field.label }}</dt>
+				<dd>{{ grant[field.name] }}</dd>
+			{% endif %}
+		{% endfor %}
+	</dl>
+	{% include('grants/descriptions/'+grant.slug+'.html') ignore missing %}
+{% endblock %}
+
+{% block js %}{% endblock %}
