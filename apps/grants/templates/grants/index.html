@@ -1,5 +1,7 @@
 {% extends "grants/base.html" %}
 
+{% import "grants/_utils.html" as utils %}
+
 {% block page_title %}Grants{% endblock %}
 {% block body_id %}grants{% endblock %}
 
@@ -21,6 +23,9 @@
 	<li><strong>Free Culture &amp; Community:</strong> Support to the broad community of individuals, organizations and projects that aid in the creation of technologies and projects that increase the health of the open Web ecosystem.</li>
 </ul>
 
+{% if grants %}
+	{{ utils.table(grants, fields) }}
+{% endif %}
 
 <h3>How to Get Support</h3>
 
