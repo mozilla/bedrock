@@ -1,8 +1,88 @@
-#grants #main-content {
-	margin-top: 3em;
+@background: #f5f1e8;
+
+#grants, #grant-list, #grant-single {
+	#main-content {
+		margin-top: 3em;
+	}
+
+	.sidebar {
+		margin: 60px 0 0 100px;
+		width: 268px;
+	}
 }
 
-#grants .sidebar {
-	margin: 60px 0 0 100px;
-	width: 268px;
+.grants-wrapper {
+	margin: 0 -368px 24px 0;
+
+	table {
+		margin-top: 24px;
+		width: 100%;
+		border-collapse: collapse;
+
+		th {
+			text-align: left;
+			border-bottom: solid 1px #666;
+			padding: 10px;
+		}
+
+		td {
+			padding: 10px;
+
+			&.extra {
+				width: 1px;
+
+				a {
+					width: 0.5em;
+					text-align: center
+				}
+			}
+
+			&.summary {
+				padding: 3px 10px 10px;
+				font-style: italic;
+			}
+		}
+
+		tbody {
+			border-top: solid 1px darken(@background, 10%);
+
+			&.odd {
+				background: darken(@background, 2%);
+			}
+
+			&.last td.summary {
+				border-bottom: none;
+			}
+
+			&.collapsed .summary {
+				display: none;
+			}
+		}
+	}
+}
+
+.grant-meta {
+	background: darken(@background, 5%);
+	border: solid darken(@background, 10%);
+	border-width: 1px 0;
+	overflow: hidden;
+	padding: 12px 24px 0;
+
+	dt {
+		line-height: inherit;
+		font-size: inherit;
+		font-weight: bold;
+		float: left;
+		clear: both;
+		width: 7em;
+		margin: 0 0 12px;
+
+		&::after {
+			content: ":";
+		}
+	}
+
+	dd {
+		margin: 0 0 12px 8em;
+	}
 }

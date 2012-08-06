@@ -301,6 +301,9 @@ MINIFY_BUNDLES = {
             'js/geolocation-demo.js',
             'js/footer-email-form.js',
         ),
+        'grants': (
+            'js/grants.js',
+        ),
         'marketplace': (
             'js/mozilla-video-tools.js',
         ),

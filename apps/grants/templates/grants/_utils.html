@@ -1,0 +1,27 @@
+{% macro table(grants, fields) -%}
+<div class="grants-wrapper">
+	<table class="grants">
+		<thead>
+			{% for field in fields %}
+				<th scope="col" class="{{ field.name }}">{{ field.label }}</th>
+			{% endfor %}
+		</thead>
+		{% for grant in grants %}
+			<tbody class="{{ loop.cycle('odd', 'even') }}{% if loop.last %} last{% endif %}">
+				<tr>
+					{% for field in fields %}
+						<td class="{{ field.name }}">{% if grant._meta.pk.name == field.name -%}
+							<a href="{{ grant.get_absolute_url() }}">{% endif -%}
+								{{ grant[field.name] }}
+							{%- if grant._meta.pk.name == field.name %}</a>{% endif -%}
+						</td>
+					{% endfor %}
+				</tr>
+				<tr>
+					<td class="summary" colspan="{{ fields|count }}">{{ grant.summary }}</td>
+				</tr>
+			</tbody>
+		{% endfor %}
+	</table>
+</div>
+{%- endmacro %}
