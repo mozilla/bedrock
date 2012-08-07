@@ -43,6 +43,13 @@ $(document).ready(function() {
       // Enable keyboard navigation
       $(this).keydown(function(event) {
         var target;
+        var keycode;
+        if(event.altKey === true) {
+      	  // If modifier key Alt is pressed, ignore the key event
+      	  keycode = 0;
+      	} else {
+      	  keycode = event.keyCode
+      	}
         switch (event.keyCode) {
           case 33: // Page Up
           case 36: // Home
