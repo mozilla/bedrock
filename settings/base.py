@@ -52,9 +52,7 @@ JINJA_CONFIG = {
     ],
     # Make None in templates render as ''
     'finalize': lambda x: x if x is not None else '',
-    # Bug 775288 - Disable in-memory template cache so that l10n block
-    # templates will update without having to restart the server.
-    'cache_size': 0,
+    'auto_reload': True,
 }
 
 # Bundles is a dictionary of two dictionaries, css and js, which list css files
