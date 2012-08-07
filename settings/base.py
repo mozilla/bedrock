@@ -204,6 +204,9 @@ MINIFY_BUNDLES = {
         'sandstone_guide': (
             'css/sandstone-guide.less',
         ),
+        'styleguide': (
+            'css/styleguide/styleguide.less',
+        ),
         'video': (
             'css/sandstone/video.less',
         ),
@@ -403,6 +406,7 @@ INSTALLED_APPS = (
     'mozorg',
     'persona',
     'research',
+    'styleguide',
     'privacy',
 
     # libs
