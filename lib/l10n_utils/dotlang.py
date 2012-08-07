@@ -1,3 +1,5 @@
+# coding=utf-8
+
 """This library parses dotlang files migrated over from the old PHP
 system.
 
@@ -21,10 +23,13 @@ def parse(path):
     if not os.path.exists(path):
         return trans
 
-    with codecs.open(path, 'r', 'utf-8') as lines:
+    with codecs.open(path, 'r', 'utf-8', errors='replace') as lines:
         source = None
 
         for line in lines:
+            if u'�' in line:
+                mail_error(line, path)
+
             line = line.strip()
             if line == '' or line[0] == '#':
                 continue
@@ -38,6 +43,14 @@ def parse(path):
                 trans[source] = line.strip()
 
     return trans
+
+
+def mail_error(line, path):
+    """Email admins when a decoding error happened"""
+    from django.core import mail
+    subject = '%s is corrupted' % path
+    message = line
+    mail.mail_admins(subject, message)
 
 
 def fix_case(locale):
