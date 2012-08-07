@@ -44,15 +44,19 @@ TEMPLATE_DIRS = (
     path('locale')
 )
 
-def JINJA_CONFIG():
-    import jinja2
-    from django.conf import settings
-    config = {'extensions': ['tower.template.i18n', 'jinja2.ext.do',
-                             'jinja2.ext.with_', 'jinja2.ext.loopcontrols',
-                             'l10n_utils.template.l10n_blocks',
-                             'l10n_utils.template.lang_blocks'],
-              'finalize': lambda x: x if x is not None else ''}
-    return config
+JINJA_CONFIG = {
+    'extensions': [
+        'tower.template.i18n', 'jinja2.ext.do', 'jinja2.ext.with_',
+        'jinja2.ext.loopcontrols', 'l10n_utils.template.l10n_blocks',
+        'l10n_utils.template.lang_blocks'
+    ],
+    # make None in templates render as ''
+    'finalize': lambda x: x if x is not None else '',
+    # disable in-memory template cache so that l10n block templates will
+    # update without having to restart the server.
+    # https://bugzilla.mozilla.org/show_bug.cgi?id=775288
+    'cache_size': 0,
+}
 
 # Bundles is a dictionary of two dictionaries, css and js, which list css files
 # and js files that can be bundled together by the minify app.
