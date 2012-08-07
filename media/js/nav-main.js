@@ -50,7 +50,7 @@ $(document).ready(function() {
       	} else {
       	  keycode = event.keyCode
       	}
-        switch (event.keyCode) {
+        switch (keycode) {
           case 33: // Page Up
           case 36: // Home
             target = menuitems.first();
