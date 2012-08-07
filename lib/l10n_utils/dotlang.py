@@ -9,11 +9,16 @@ the expense of another caching layer."""
 
 import codecs
 import os
+import re
 
 from django.conf import settings
 from django.core.cache import cache
 from django.utils import translation
 from django.utils.functional import lazy
+
+FORMAT_IDENTIFIER_RE = re.compile(r"""(%
+                                      (?:\((\w+)\))? # Mapping key
+                                      s)""", re.VERBOSE)
 
 
 def parse(path):
@@ -28,7 +33,7 @@ def parse(path):
 
         for line in lines:
             if u'�' in line:
-                mail_error(line, path)
+                mail_error(path, line)
 
             line = line.strip()
             if line == '' or line[0] == '#':
@@ -45,12 +50,11 @@ def parse(path):
     return trans
 
 
-def mail_error(line, path):
-    """Email admins when a decoding error happened"""
+def mail_error(path, message):
+    """Email managers when an error is detected"""
     from django.core import mail
     subject = '%s is corrupted' % path
-    message = line
-    mail.mail_admins(subject, message)
+    mail.mail_managers(subject, message)
 
 
 def fix_case(locale):
@@ -77,6 +81,12 @@ def translate(text, files):
             cache.set(key, trans, settings.DOTLANG_CACHE)
 
         if text in trans:
+            original = FORMAT_IDENTIFIER_RE.findall(text)
+            translated = FORMAT_IDENTIFIER_RE.findall(trans[text])
+            if original != translated:
+                message = '%s\n%s' % (text, trans[text])
+                mail_error(file_, message)
+                return text
             return trans[text]
     return text
 
