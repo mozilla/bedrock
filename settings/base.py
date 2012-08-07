@@ -51,7 +51,8 @@ def JINJA_CONFIG():
                              'jinja2.ext.with_', 'jinja2.ext.loopcontrols',
                              'l10n_utils.template.l10n_blocks',
                              'l10n_utils.template.lang_blocks'],
-              'finalize': lambda x: x if x is not None else ''}
+              'finalize': lambda x: x if x is not None else '',
+              'cache_size': 0}
     return config
 
 # Bundles is a dictionary of two dictionaries, css and js, which list css files
