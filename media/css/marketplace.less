@@ -1,5 +1,5 @@
-@import "sandstone/variables.less";
-@import "sandstone/mixins.less";
+@import "sandstone/variables-resp.less";
+@import "sandstone/mixins-resp.less";
 
 @font-face {
     font-family: 'Lobster';
@@ -12,18 +12,70 @@
 }
 
 
-hgroup {
-    text-align: center;
-    padding-top: @baseLine * 2;
-    padding-bottom: @baseLine * 2;
+#main-feature {
+    min-height: 550px;
+    hgroup {
+        .span(7);
+        padding-top: @baseLine * 3;
+        padding-bottom: @baseLine;
 
-    h1 {
-        font-size: 62px;
-        margin-bottom: @baseLine / 3;
+        h1 {
+            font-size: 68px;
+            margin-bottom: @baseLine * 2;
+            
+            span {
+                display: block;
+                font-size: 52px;
+            }
+            span.beta {
+                display: inline-block;
+                font-family: Lobster;
+                font-size: 20px;
+                font-weight: normal;
+                letter-spacing: normal;
+                color: #fff;
+                height: 55px;
+                width: 55px;
+                line-height: 55px;
+                text-align: center;
+                border-radius: 27px;
+                background: url(/media/img/marketplace/beta-tag.png) 50% 50% no-repeat;
+                -moz-transform: rotate(-20deg);
+                -webkit-transform: rotate(-20deg);
+                transform: rotate(-20deg);
+                text-shadow: 0 -1px rgba(0,0,0,0.2);
+                vertical-align: middle;
+            }
+        }
+
+        h2 {
+            font-size: 34px;
+        }
     }
+    p {
+        .span(7);
+        clear: left;
+    }
+}
 
-    h2 {
-        font-size: 48px;
+#apps-bag {
+    position: absolute;
+    top: -100px;
+    right: 0; 
+}
+
+#apps-list {
+    li {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        .span(4);
+        padding-left: 80px;
+        padding-right: 20px;
+        list-style-type: none;
+        .open-sans-light;
+        font-size: 20px;
+        line-height: @baseLine;
     }
 }
 

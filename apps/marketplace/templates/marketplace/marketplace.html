@@ -1,73 +1,45 @@
-{% extends "sand.html" %}
+{% extends "base-resp.html" %}:
 
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}Mozilla Marketplace{% endblock %}
 {% block body_id %}marketplace{% endblock %}
-
-{% block site_header_logo %}
-  <h2><img src="{{ media('/img/marketplace/title.png') }}" height="70" width="256" alt="Mozilla Marketplace"></h2>
-{% endblock %}
-
-{% block site_header_nav %}
-{% endblock %}
+{% block body_class %}sand{% endblock %}
 
 {% block extrahead %}
   {{ css('marketplace') }}
-  {{ css('video') }}
-{% endblock %}
-
-{% block js %}
-  {{ js('video') }}
 {% endblock %}
 
 {% block content %}
 
-<hgroup id="main-feature">
-  <h1>Coming Soon: Mozilla Marketplace</h1>
-  <h2>Your apps on all your devices</h2>
+<section id="main-feature">
+
+<hgroup>
+  <h1><span>Introducing</span> Apps &amp; the Mozilla Marketplace <span class="beta">Beta</span></h1>
+  <h2>The best of the Web on any platform, any device, any operating system.</h2>
 </hgroup>
 
-<article id="main-content">
-<div class="row">
+<p>Mozilla is bringing its core values — openness, freedom, user choice — to the world of apps. We’re creating an open environment that benefits developers, content owners and consumers. And with HTML5-based apps that work virtually anywhere, we’re helping to close the gap between Web and native apps for the first time.</p>
 
-  <div class="span6">
-    <p>Mozilla is unlocking the power of the Web as the world’s largest marketplace, creating an open ecosystem of developers and content owners with limitless possibilities for consumer interaction.</p>
-    <p>With open Web standards like HTML5, CSS and JavaScript — together with Mozilla-designed APIs — app experiences can be delivered anywhere, to any device, on any operating system. The Mozilla Marketplace will roll out to millions of Firefox users later this year.</p>
-  </div>
+<aside id="apps-bag">
+  <img src="{{ media('/img/marketplace/apps-bag-full.png') }}" alt="" id="bag-empty" />
+</aside>
 
-  <aside id="app-developer" class="span3 offset1">
-    <h3>App developer?</h3>
-    <p>You can already submit your app to the Mozilla Marketplace.</p>
-    <p><a href="https://marketplace.mozilla.org/">Find out how »</a></p>
-  </aside>
-
-  </div>
-</article>
-
-<section class="container">
-    <div id="intro-video" class="mozilla-video-control">
-      <video
-        width="640"
-        height="360"
-        poster="/media/img/marketplace/poster-intro.jpg"
-        controls="controls">
-        <source src="//videos-cdn.mozilla.net/serv/flux/apps/marketplace.webm" type="video/webm" />
-        <source src="//videos-cdn.mozilla.net/serv/flux/apps/marketplace.theora.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;" />
-        <source src="//videos-cdn.mozilla.net/serv/flux/apps/marketplace.mp4" type="video/mp4" />
-        <object type="application/x-shockwave-flash"
-          style="width: 640px; height: 388px;"
-          data="/media/flash/playerWithControls.swf?flv=serv/flux/apps/marketplace.mp4&amp;autoplay=false&amp;msg=Play%20Video">
-          <param name="movie" value="/media/flash/playerWithControls.swf?flv=serv/flux/apps/marketplace.mp4&amp;autoplay=false&amp;msg=Play%20Video" />
-          <param name="wmode" value="transparent" />
-
-          <div class="video-player-no-flash">
-          This video requires a browser with support for open video
-          or the <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player</a>.
-          </div>
-        </object>
-      </video>
-    </div>
 </section>
+
+<ul id="apps-list" class="container">
+  <li>Find &amp; discover amazing apps easily</li>
+  <li>Take apps with you wherever you go</li>
+  <li>Enjoy the same rich experience as native apps</li>
+</ul>
+
+<a href="#" class="button-blue">Visit the Mozilla Marketplace</a>
+<section id="open">
+  <h3>Mozilla Marketplace: Always open</h3>
+  <p>Visit the Marketplace and discover the best the Web has to offer. Download apps that you can use on your Mac or Windows machine (Android coming soon). Here are a few of our favorites to get you started, but there are many more to enjoy and explore: Visit the Mozilla Marketplace and discover the best the Web has to offer.</p>
+
+</section>
+
+
 {% endblock %}
 
 {% block email_form_title %}{{_('Sign up for more news about the Mozilla Marketplace.')}}{% endblock %}
