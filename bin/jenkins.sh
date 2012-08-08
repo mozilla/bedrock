@@ -36,6 +36,9 @@ from settings.base import *
 ROOT_URLCONF = 'workspace.urls'
 LOG_LEVEL = logging.ERROR
 
+ADMINS = ('foo@bar.com',)
+MANAGERS = ADMINS
+
 SETTINGS
 
 echo "Update product_details"
