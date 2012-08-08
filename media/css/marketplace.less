@@ -25,7 +25,7 @@
             
             span {
                 display: block;
-                font-size: 52px;
+                font-size: 48px;
             }
             span.beta {
                 display: inline-block;
@@ -71,17 +71,93 @@
         box-sizing: border-box;
         .span(4);
         padding-left: 80px;
-        padding-right: 20px;
+        padding-right: 60px;
+        min-height: 60px;
         list-style-type: none;
         .open-sans-light;
-        font-size: 20px;
+        font-size: 22px;
         line-height: @baseLine;
+        background: url(/media/img/marketplace/apps-list-icons.png) no-repeat 0 0;
     }
+    li#list-html5  { background-position: 0 -200px; }
+    li#list-native { background-position: 0 -400px; }
 }
 
 #app-developer {
     border-bottom: 1px dotted @borderColor;
     padding-bottom: @baseLine;
+}
+
+#marketplace-link {
+    padding-top: @baseLine;
+    padding-bottom: @baseLine;
+    margin: (@baseLine * 2) auto;
+    text-align: center;
+    a {
+        height: auto;
+        position: relative;
+        text-align: left;
+        padding: (@baseLine / 2) (@baseLine * 2) (@baseLine / 2) (@baseLine * 3);
+        line-height: @baseLine;
+        font-size: 18px;
+        &:before {
+            content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAvCAYAAAAb1BGUAAACQElEQVR42u3YP2hTQRzA8YtiWxQrZBH/kRYKsUGsQhfRxSbqqhQrIlIHQTcH3aTah+1WVHBQcCyKYBHBoYI4uTmqoLEOUguCSRBq/9gW+/NbuMBxvKN5L++aJcMn8LJ8j3fvHu9OqZ4LcWzDHbzHVWwWERVVnHAK9yDaAq5tVHwIYlnFGd/xU1iGhCgh6yu+A0UIXF4g5SM+AqnBQNLxLGZrjH/E9iTjjyARDCYVz6AUMf4BbUnEhxyBKdzCL8fS6683vhVfIJZZHIHCRfyDWF7WG++HhAig1oiI0ktMLAvoqif+FGL5gbQVP4pFiOVm3PhOzEAso1BmXA/gFcTyFlvixE9CQtzGDQQYRqCvxyGWP+iKEx+DJGAgTvxdQvH7UeMnMJdQ/DtytcbzqEAS9A0H1ov3oQzxoIhuV7yACsSjr+YU1HSrfU2B41Z7V0RuLf4M0gCBfn83Lv6kQfHhZrwZb8ZtvyO8fqcxl1S8jGM4iE9YcviLN+jAOazUG68gD6W1Yz9yOKwd0tdZtBgflINYihuvoABlaEMGe6yTir3YhU3VOKobiuWo8TL6oCxXMF/9JIbCPvxECXkdtgew4opPuG51iIcQjBv/teAzBJfN8DpTMKr46USvodMRNrdFE9Z+bgaCwIjaA+i2OrsdEafnxtLrgMJZrEIw4vNA6K51/nIcUxDtks/4eYjBfJDm0eMznsY0JMRrpLzFteuOk4jCRpxAtmLSij9AyntcS2MSi3iMVt9nr7YMTqM9clj7D3Z6vqRP5F2TAAAAAElFTkSuQmCC);
+            vertical-align: middle;
+            display: inline-block;
+            position: absolute;
+            top: 14px;
+            left: 24px;
+        }
+        strong {
+            display: block;
+            font-weight: normal;
+        }
+    }
+}
+
+#open {
+    position: relative;
+    .clearfix;
+    #sign {
+        .span(5);
+        position: relative;
+        height: 310px;
+        background: url(/media/img/marketplace/sign.png) 0 0 no-repeat;
+        p {
+            position: absolute;
+            left: 40px;
+            top: 125px;
+            width: 240px;
+            margin: 0;
+            font-family: Lobster;
+            font-weight: normal;
+            font-style: normal;
+            color: #fff;
+            font-size: 64px;
+            line-height: 90%;
+            text-align: center;
+            text-shadow: 0 1px rgba(0,0,0,0.4);
+            -moz-transform: rotate(-10deg);
+            -webkit-transform: rotate(-10deg);
+            -ms-transform: rotate(-10deg);
+            -o-transform: rotate(-10deg);
+            transform: rotate(-10deg);
+        }
+    }
+    h3 {
+        .span(7);
+        font-size: 48px;
+        margin-bottom: @baseLine;
+        strong {
+            font-size: 68px;
+            display: block;
+            font-weight: normal;
+            line-height: @baseLine * 2;
+        }
+    }
+    p {
+        .span(7);
+    }
 }
 
 #footer-email-form {
