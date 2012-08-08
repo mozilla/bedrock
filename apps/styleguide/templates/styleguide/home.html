@@ -1,67 +1,7 @@
-{% extends "sand.html" %}
-
-{% block page_title_prefix %}{% endblock %}
-{% block page_title %}Mozilla Style Guide{% endblock %}
-{% block body_id %}styleguide{% endblock %}
-
-{% block site_header_logo %}
-  <h2><a href="/persona/"><img src="/media/img/persona/title.png" height="66" width="180" alt="mozilla Persona"></a></h2>
-{% endblock %}
-
-{% block site_header_nav %}{% endblock %}
-
-{% block extrahead %}
-  {{ css('styleguide') }}
-{% endblock %}
-
-{% block content %}
-
-<hgroup id="main-feature" class="large">
-  <h1>Introducing Mozilla Persona</h1>
-  <h2>An Identity System for the Web</h2>
-</hgroup>
-
-<section id="primary" class="billboard">
-
-  <div class="row">
-
-    <div id="text-column">
-      <h3>A better way to sign in</h3>
-      <p>At Mozilla, we believe that your online identity should belong exclusively to you. With that in mind, we created Persona to improve the way you sign in to websites.</p>
-      <p>Persona allows you to sign in to sites using an email address you choose. So, instead of having to manage multiple usernames and passwords across your favorite sites and devices, you’ll have more time to do the important stuff. We’ll manage the details!</p>
-
-      <h3>Own your data</h3>
-      <p>Many sign-in systems carry your profile data with them; some even share that info with other sites and social networks. We believe you should control how your personal information is shared. Persona lets you get started with just your email address; you can add your profile data later, when and where <em>you</em> think it’s appropriate.</p>
-
-      <h3>Easy for publishers</h3>
-      <p>Persona makes things easy for site owners, too. Enabling Browser ID, the underlying Persona technology, on your site only takes a few lines of code and helps build good relationships by providing users with a trusted sign-in option. It’s a win-win!</p>
-    </div>
-
-    <aside id="signin">
-
-      <figure id="signin-example">
-        <img src="/media/img/persona/signin.png" alt="Persona sign-in example" />
-        <figcaption>It’s simple: just click the sign in button, enter your preferred email and you’re ready to go.</figcaption>
-      </figure>
-
-      <div id="openphoto">
-        <h3>Try it Yourself</h3>
-        <p>Go to <a href="http://current.openphoto.me/">OpenPhoto</a> and sign in.</p>
-      </div>
-
-    </aside>
-
-  </div>
-
-</section>
-
-<section id="persona-themes" class="billboard">
-  <h3>Looking for Personas themes in Firefox?  <a href="https://addons.mozilla.org/en-US/firefox/personas/">Click here.</a></h3>
-</section>
-
-<small id="small-print" class="container">
-  <a href="/persona/privacy-policy/">Privacy Policy</a>         <a href="/persona/terms-of-service/">Terms of Service</a>
-</small>
+{% extends "styleguide/base.html" %}
 
 
+{% block content_title %}Title Home{% endblock%}
+{% block content_area %}
+<p>Aenean auctor rhoncus nibh, in tempus est congue vitae. Aliquam nec sem vel augue rhoncus consequat. Ut luctus hendrerit libero, nec auctor tellus placerat ac. Ut quis molestie nisi. Morbi at lectus turpis, ac iaculis magna. Aliquam quis turpis nunc. Pellentesque gravida, nulla in euismod aliquet, enim diam interdum nibh, eget vulputate urna dui eget neque. Maecenas consectetur, enim quis tristique sollicitudin, justo urna sollicitudin quam, ut elementum nunc massa in arcu. Suspendisse vehicula faucibus eros, at feugiat enim dapibus eu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam condimentum euismod purus, sed tempor metus pulvinar id. Maecenas vehicula elementum sodales. Etiam auctor ipsum a urna condimentum condimentum quis non erat.</p>
 {% endblock %}

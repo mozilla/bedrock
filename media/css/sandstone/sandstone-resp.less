@@ -41,14 +41,9 @@ a {
 .sand {
     #outer-wrapper {
         background-color: #f5f1e8;
-        background-image: url(/media/img/sandstone/bg-sand.png);
-    }
-    a {
-        color: @linkRed;
-        &:hover,
-        &:active {
-            color: darken(@linkRed, 10%);
-        }
+        background-image: url(/media/img/sandstone/bg-gradient-sand.png),
+                          url(/media/img/sandstone/bg-sand.png);
+        background-repeat: repeat-x, repeat;
     }
 }
 

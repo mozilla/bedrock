@@ -1,0 +1,111 @@
+{% extends "base-resp.html" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}Mozilla Style Guide{% endblock %}
+{% block body_id %}styleguide{% endblock %}
+{% block body_class %}sand{% endblock %}
+
+{% block site_header %}
+{% endblock %}
+
+{% block site_header_logo %}{% endblock %}
+{% block site_header_nav %}{% endblock %}
+{% block email_form %}{% endblock %}
+
+{% block extrahead %}
+  {{ css('styleguide') }}
+{% endblock %}
+
+{% block content %}
+
+{% block sidebar %}
+  <div id="sidebar">
+  <h2><a href="#">
+    <img src="{{ media('/img/styleguide/mozilla.png') }}" height="28" width="107" alt="mozilla">
+    Style guide
+  </a></h2>
+  <nav>
+    <ul>
+      <li class="current"><a href="#">Home</a></li>
+      <li>
+        <a href="#">Identity</a>
+        <ul>
+          <li>
+            <a href="#">Mozilla</a>
+            <ul>
+              <li><a href="#">Brand</a></li>
+              <li><a href="#">Color</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Firefox</a>
+            <ul>
+              <li><a href="#">Brand</a></li>
+              <li><a href="#">Color</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Firefox OS</a>
+            <ul>
+              <li><a href="#">Brand</a></li>
+              <li><a href="#">Color</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Marketplace</a>
+            <ul>
+              <li><a href="#">Brand</a></li>
+              <li><a href="#">Color</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Persona</a>
+            <ul>
+              <li><a href="#">Brand</a></li>
+              <li><a href="#">Color</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Thunderbird</a>
+            <ul>
+              <li><a href="#">Brand</a></li>
+              <li><a href="#">Color</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Innovations</a>
+            <ul>
+              <li><a href="#">Brand</a></li>
+              <li><a href="#">Color</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">Communications</a>
+        <ul>
+          <li><a href="#">Presentations</a></li>
+          <li><a href="#">Video</a></li>
+          <li><a href="#">Signage</a></li>
+          <li><a href="#">Mascot</a></li>
+      </li>
+      <li>
+        <a href="#">Websites</a>
+        <ul>
+          <li><a href="#">Grid System</a></li>
+          <li><a href="#">Tabzilla</a></li>
+          <li><a href="#">Buttons &amp; Icons</a></li>
+          <li><a href="#">Forms</a></li>
+      </li>
+    </ul>
+  </nav>
+  </div>
+{% endblock %}
+
+<div id="content_area">
+
+<h1>{% block content_title %}{% endblock%}</h1>
+{% block content_area %}{% endblock %}
+</div>
+
+{% endblock %}
