@@ -1,0 +1,103 @@
+@import "../sandstone/variables-resp.less";
+@import "../sandstone/mixins-resp.less";
+
+/* {{{ Grid setup */
+
+// Desktop:
+//           (16cols ✕ 60px) =  960
+// +     (15 gutters ✕ 20px) =  300
+// + (2 page gutters ✕ 20px) =   40
+// --------------------------------
+//                           = 1300px
+
+@widthDesktop:            1300px;
+
+// Gutter width remains the same for all grids
+@gridGutterWidth:         20px;
+
+// Default grid: 12 columns at 60px
+@gridColumns:             16;
+@gridColumnWidth:         60px;
+@gridRowWidth:            (@gridColumns * @gridColumnWidth) + (@gridGutterWidth * (@gridColumns - 1));
+
+// Column spans for style guide column widths
+.span_guide(@columns) {
+    float: left;
+    width: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1));
+    margin: 0 (@gridGutterWidth / 2);
+}
+
+.offset_guide(@columns) {
+    margin-left: ((@gridColumnWidth + @gridGutterWidth) * @columns) + (@gridGutterWidth * 0.5);
+}
+
+
+#wrapper {
+    width: @widthDesktop;
+    .clearfix;
+}
+
+#sidebar {
+    .span_guide(2);
+    margin-left: @gridGutterWidth;
+}
+
+#content_area {
+    .span_guide(12);
+    .offset_guide(1);
+}
+
+/* }}} */
+/* {{{ Sidebar */
+
+#sidebar {
+    margin-top: @baseLine * 1.5;
+    margin-bottom: @baseLine;
+    h2 {
+        text-align: center;
+        font-size: 24px;
+        img {
+            display: block;
+            margin: 0 auto 5px auto;
+        }
+        a {
+            opacity: 0.5;
+            color: @textColorSecondary;
+            &:hover,
+            &:active {
+                opacity: 1;
+                text-decoration: none;
+            }
+        }
+    }
+    nav {
+        text-transform: uppercase;
+        .open-sans-light;
+        font-size: 13px;
+        margin: @baseLine auto;
+        ul {
+            li {
+                list-style-type: none;
+                margin: 0;
+                &.current {
+                    background: rgba(255,255,255,0.5);
+                }
+            }
+        }
+        a {
+            display: block;
+            padding: (@baseLine / 3) (@baseLine * .75);
+            color: @textColorSecondary;
+        }
+    }
+}
+
+/* }}} */
+/* {{{ Main Content area  */
+
+#content_area {
+    margin-top: @baseLine * 1.5;
+    margin-bottom: @baseLine;
+}
+
+/* }}} */
