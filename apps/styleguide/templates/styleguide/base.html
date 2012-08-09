@@ -16,6 +16,10 @@
   {{ css('styleguide') }}
 {% endblock %}
 
+{% block js %}
+  {{ js('styleguide') }}
+{% endblock %}
+
 {% block content %}
 
 {% block sidebar %}
@@ -105,6 +109,21 @@
 <div id="content_area">
 
 <h1>{% block content_title %}{% endblock%}</h1>
+
+<div id="subnav">
+  {% block next_prev %}
+  <div id="nextprev">
+    <a href="#" class="prev">Prev</a>
+    <a href="#" class="next">Next</a>
+  </div>
+  {% endblock %}
+  {% block breadcrumbs %}
+  <div id="breadcrumbs">
+    <a href="#">Home</a> <a href="#">Etc.</a>
+  </div>
+  {% endblock %}
+</div>
+
 {% block content_area %}{% endblock %}
 </div>
 

@@ -321,6 +321,9 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.validate.js',
             'js/partnerships.js',
         ),
+        'styleguide': (
+            'js/styleguide.js',
+        ),
         'video': (
             'js/mozilla-video-tools.js',
         ),
