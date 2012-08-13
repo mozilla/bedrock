@@ -13,7 +13,6 @@ jQuery(document).ready(function ()
     });
 
     var worldScale = 30;
-    var pi = 
 
     function fromPixel(pos) {return parseInt(pos, 10) / worldScale}
     function fromPixel(pos) {return parseInt(pos, 10) / worldScale}
