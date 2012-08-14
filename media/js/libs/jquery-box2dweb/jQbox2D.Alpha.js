@@ -536,7 +536,9 @@
 									top: posY + 'px',
 									'-webkit-transform': 'rotate(' + body.GetAngle() + 'rad)',
 									'-moz-transform': 'rotate(' + body.GetAngle() + 'rad)',
-									'transform': 'rotate(' + body.GetAngle() + 'rad)'
+									'transform': 'rotate(' + body.GetAngle() + 'rad)',
+									msTransform : 'rotate(' + body.GetAngle() + 'rad)',
+									OTransform : 'rotate(' + body.GetAngle() + 'rad)'
 								});
 							}
 						} else {
