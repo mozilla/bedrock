@@ -58,26 +58,52 @@
     }
 }
 
-#apps-bag {
-    position: absolute;
-    top: -100px;
-    right: 0;
-    width: 344px;
-    height: 658px;
-    background: url(/media/img/marketplace/apps-bag.png) 0 0 no-repeat;
+#nav-main {
+    z-index: 20;
+    position: relative;
 }
 
-#apps-bag img {
+#apps-bag {
     position: absolute;
+    top: -300px;
+    right: 0;
+    width: 344px;
+    height: 858px;
+}
+
+#apps-bag-background {
+    position: absolute;
+    width: 344px;
+    height: 108px;
+    bottom: 216px;
+    left: 0;
+    background: url(/media/img/marketplace/apps-bag.png) 0 100% no-repeat;
+}
+
+#apps-bag-handle {
+    position: absolute;
+    width: 202px;
+    height: 60px;
+    bottom: 216px;
+    left: 71px;
+    z-index: 10;
+    background: url(/media/img/marketplace/apps-bag.png) -71px 0 no-repeat;
+}
+
+#apps-bag-foreground {
+    position: absolute;
+    width: 344px;
+    height: 216px;
     bottom: 0;
     left: 0;
     z-index: 10;
+    background: url(/media/img/marketplace/apps-bag.png) 0 -61px no-repeat;
 }
 
 #apps-container {
     position: absolute;
     width: 300px;
-    height: 458px;
+    height: 658px;
     bottom: 200px;
     left: 22px;
 }
@@ -85,7 +111,7 @@
 #apps-physics {
     position: relative;
     width: 300px;
-    height: 458px;
+    height: 658px;
 }
 
 #apps-container .apps-icon {
@@ -95,6 +121,7 @@
     height: 96px;
     display: none;
     background: url(/media/img/marketplace/apps-icons.png) no-repeat;
+    background-position: -96px -192px;
 }
 
 #apps-container .apps-icon {
