@@ -1,4 +1,5 @@
 ///DOC READY FUNCTIONS
+/*
 $(document).ready(function() {
 
 if ($('#sidebar nav ul')[0]){
@@ -20,3 +21,4 @@ if ($('#sidebar nav ul')[0]){
 }
 
 });
+*/
