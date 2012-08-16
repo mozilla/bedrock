@@ -58,6 +58,7 @@
     {% block content %}{% endblock %}
 
     {% block email_form %}
+      {% if LANG.startswith('en') %}
         {% if not request.newsletter_success %}
           {% if request.newsletter_form.errors %}
           <div id="footer-email-errors">
@@ -113,9 +114,10 @@
           <h3>{{_('Thank you for signing up!')}}</h3>
         </div>
         {% endif %}
+      {% endif %}
     {% endblock %}
 
-      </div><!-- close #wrapper -->
+    </div><!-- close #wrapper -->
 
     {% block site_footer %}
       <footer id="colophon">
@@ -167,6 +169,6 @@
     {% block webtrends %}
      {% include "includes/webtrends.html" %}
     {% endblock %}
-    
+
   </body>
 </html>
