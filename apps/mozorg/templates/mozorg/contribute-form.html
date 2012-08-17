@@ -1,9 +1,9 @@
-{% if not success or return_to_form %}
+{% if not contribute_success or return_to_form %}
 <form class="billboard{% if form.errors %} has-errors{% endif %}"
       action="#help-form" id="help-form" method="post">
   <input type="hidden" name="contribute-form" value="Y" />
 
-  {% if success and return_to_form %}
+  {% if contribute_success and return_to_form %}
   <h4 id="thank-you">
     {{ _('Thank you for getting in touch! You will hear from us soon.') }}
   </h4>
@@ -35,7 +35,7 @@
   </ul>
   {% endif %}
   <div id="form-content"
-       {% if success and return_to_form %} style="display:none"{% endif %}>
+       {% if contribute_success and return_to_form %} style="display:none"{% endif %}>
     <fieldset>
       <div class="row">
         <div class="form-column-1">
@@ -66,12 +66,14 @@
           <div class="field field-privacy {% if form.privacy.errors%}field-error{% endif %}">
             {{ form.privacy|safe }}
           </div>
-          <div class="field field-newsletter">
-            <label for="id_newsletter">
-              {{ form.newsletter|safe }}
-              {{_('I’d like to receive regular contribution news by email')}}
-            </label>
-          </div>
+          {% if LANG.startswith('en') %}
+            <div class="field field-newsletter">
+              <label for="id_newsletter">
+                {{ form.newsletter|safe }}
+                {{_('I’d like to receive regular contribution news by email')}}
+              </label>
+            </div>
+          {% endif %}
           <div class="field field-captcha">
             {{ form.captcha }}
           </div>
