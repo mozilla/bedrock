@@ -15,6 +15,7 @@ handler500 = 'bedrock_util.server_error_view'
 urlpatterns = patterns('',
     # Main pages
     (r'^b2g/', include('b2g.urls')),
+    (r'^grants/', include('grants.urls')),
     (r'^webmaker/', include('webmaker.urls')),
     (r'^collusion/', include('collusion.urls')),
     (r'^apps/', include('marketplace.urls')),
