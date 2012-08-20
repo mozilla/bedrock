@@ -21,6 +21,7 @@
 	<li><strong>Free Culture &amp; Community:</strong> Support to the broad community of individuals, organizations and projects that aid in the creation of technologies and projects that increase the health of the open Web ecosystem.</li>
 </ul>
 
+{% if grants %}
 <div id="grants-data" tabindex="-1">
 <h3>Our Grants</h3>
 <div class="filters">
@@ -32,7 +33,6 @@
         <li class="current"><a href="?type=user-sovereignty#grants-data">User Sovereignty</a></li>
         <li class="current"><a href="?type=free-culture-community#grants-data">Free Culture & Community</a></li>
 </div>
-{% if grants %}
 <div class="peep-hole">
     <table id="grants_table">
         <thead>
@@ -57,10 +57,8 @@
         </tbody>
     </table>
 </div>
-{% else %}
-<p>We don't have any grants for the focus area <b>{{ type_filter }}</b> - please use the filters above to browse all our grants.</p>
-{% endif %}
 </div>
+{% endif %}
 
 <h3>How to Get Support</h3>
 

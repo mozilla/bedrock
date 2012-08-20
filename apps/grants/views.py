@@ -30,6 +30,9 @@ def grants(request):
 
     type_filter = bleach.clean(request.GET.get('type', ''))
 
+    if type_filter != '' and type_filter not in GRANT_LABELS:
+            raise Http404
+
     if type_filter:
         grants = filter(lambda x: x[1]['type'] == type_filter, GRANTS)
     else:
