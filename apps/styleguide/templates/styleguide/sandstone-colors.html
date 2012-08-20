@@ -1,0 +1,34 @@
+{% extends "styleguide/base.html" %}
+
+{% block body_class %}
+  {{ super() }}
+  sandstone-colors
+{% endblock %}
+
+{% block content_title %}Sandstone backgrounds &amp color{% endblock%}
+{% block content_area %}
+
+<section id="backgrounds">
+  <div class="intro">
+    <h2>Backgrounds</h2>
+    <div>
+      <p>These are the default colors and gradients for Mozilla and Firefox sites, along with a few alternates. They are guidelines only, not absolute rules. You can create different color variations within Sandstone as your project or site warrants.</p>
+      <p>The gradients shown are layered behind a default grain texture, which you can <a href="#">download here</a>.</p>
+    </div>
+  </div>
+  <div class="examples">
+    <h3>Default</h3>
+    <div class="swatch-card" id="swatch-mozilla">
+      <div class="swatch"></div>
+      <h4>Mozilla</h4>
+      <p><b>#D7D3C8</b> to <b>#F6F4EC</b></p>
+    </div>
+    <div class="swatch-card" id="swatch-firefox">
+      <div class="swatch"></div>
+      <h4>Firefox</h4>
+      <p><b>#CAE1F4</b> to <b>#EEEEEE</b></p>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
