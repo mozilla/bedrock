@@ -1,0 +1,80 @@
+{% extends "styleguide/base.html" %}
+
+{% block body_class %}
+  {{ super() }}
+  sandstone-grids
+{% endblock %}
+
+{% block content_title %}Sandstone grid system{% endblock%}
+{% block content_area %}
+<section id="intro">
+<div>
+  <h3>Tables</h3>
+  <p>Sandstone tables are simple in design, using horizontal rules to separate
+  the rows. The column titles are <code>.open-sans-light</code> and the
+  content is <code>.open-sans</code></p>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Screen format</th>
+      <th>Width</th>
+      <th>Column</th>
+      <th>Gutter</th>
+      <th># of col.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Smartphone (vert.)</td>
+      <td>320px</td>
+      <td>40px</td>
+      <td>20px</td>
+      <td>5 col</td>
+    </tr>
+    <tr>
+      <td>Smartphone (horiz.)</td>
+      <td>480px</td>
+      <td colspan="3">fluid expansion of smartphone</td>
+    </tr>
+    <tr>
+      <td>Tablet</td>
+      <td>768px</td>
+      <td>40px</td>
+      <td>20px</td>
+      <td>12 col</td>
+    </tr>
+    <tr>
+      <td>Desktop</td>
+      <td>990px</td>
+      <td>60px</td>
+      <td>20px</td>
+      <td>12 col</td>
+    </tr>
+  </tbody>
+</table>
+<div id="grid-downloads">
+  <h4>Download PSDs</h4>
+  <ul class="button-list">
+    <li><a href="#" class="button-sand">Desktop</a>
+    </li><li><a href="#" class="button-sand">Tablet</a>
+    </li><li><a href="#" class="button-sand">Phone</a></li>
+  </ul>
+  <h4>Download HTML/CSS</h4>
+  <a href="#" class="button-sand">Desktop/Tablet/Phone</a>
+</div>
+</section>
+
+<section id="grid-phone">
+  <h3>Smartphone</h3>
+  <img src="{{ media('/img/styleguide/sandstone/grid/phone.png') }}" alt="Smartphone grid" />
+</section>
+<section id="grid-tablet">
+  <h3>Tablet</h3>
+  <img src="{{ media('/img/styleguide/sandstone/grid/tablet.png') }}" alt="Tablet grid" />
+</section>
+<section id="grid-desktop">
+  <h3>Desktop</h3>
+  <img src="{{ media('/img/styleguide/sandstone/grid/desktop.png') }}" alt="Desktop grid" />
+</section>
+{% endblock %}
