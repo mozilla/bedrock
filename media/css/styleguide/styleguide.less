@@ -31,6 +31,10 @@
     margin-left: ((@gridColumnWidth + @gridGutterWidth) * @columns) + (@gridGutterWidth * 0.5);
 }
 
+body {
+    .open-sans;
+    font-size: 14px;
+}
 
 #wrapper {
     width: @widthDesktop;
@@ -44,7 +48,8 @@
 
 #content_area {
     .span_guide(12);
-    .offset_guide(1);
+    width: (@gridColumnWidth * 12) + (@gridGutterWidth * 12);
+    margin-left: @gridColumnWidth + @gridGutterWidth;
 }
 
 /* }}} */
@@ -74,7 +79,7 @@
     nav {
         text-transform: uppercase;
         .open-sans-light;
-        font-size: 13px;
+        font-size: 11px;
         margin: @baseLine auto;
         ul {
             margin: 0;
@@ -88,7 +93,7 @@
         }
         a {
             display: block;
-            padding: (@baseLine / 3) (@baseLine * .75);
+            padding: (@baseLine / 4) (@baseLine * .75);
             color: @textColorSecondary;
         }
         li li a {
@@ -101,13 +106,18 @@
 }
 
 /* }}} */
-/* {{{ Breadcrumbs and Next/Prev  */
+/* {{{ Header / Breadcrumbs and Next/Prev  */
+
+h1 {
+    .span(12);
+    margin-bottom: @baseLine / 3;
+}
 
 #subnav {
-    .clearfix;
+    .span(12);
     text-transform: uppercase;
     .open-sans-light;
-    font-size: 13px;
+    font-size: 11px;
     a {
         display: inline-block;
         min-height: 20px;
@@ -150,3 +160,57 @@
 }
 
 /* }}} */
+/* {{{ Sandstone - Intro  */
+
+.sandstone-intro {
+    #intro {
+        h3 {
+            .span_guide(3);
+        }
+        p {
+            .span_guide(8);
+        }
+        #overview {
+            margin-left: 10px;
+        }
+    }
+}
+
+/* }}} */
+/* {{{ Sandstone - Grids  */
+
+.sandstone-grids {
+    #intro {
+        div {
+            .span_guide(3);
+        }
+        table {
+            .span_guide(6);
+        }
+        #grid-downloads {
+            .span_guide(3);
+            .button-list .button-sand {
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+        }
+    }
+    #grid-phone,
+    #grid-tablet,
+    #grid-desktop {
+        padding-top: @baseLine;
+        padding-bottom: @baseLine;
+    }
+    #grid-phone {
+        .span_guide(4);
+    }
+    #grid-tablet {
+        .span_guide(8);
+    }
+    #grid-desktop {
+        .span_guide(12);
+    }
+}
+
+/* }}} */
+

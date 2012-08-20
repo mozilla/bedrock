@@ -1,0 +1,59 @@
+{% extends "styleguide/base.html" %}
+
+{% block body_class %}
+  {{ super() }}
+  sandstone-grids
+{% endblock %}
+
+{% block content_title %}Sandstone grid system{% endblock%}
+{% block content_area %}
+<section id="intro">
+<div>
+  <h3>Tables</h3>
+  <p>Sandstone tables are simple in design, using horizontal rules to separate
+  the rows. The column titles are <code>.open-sans-light</code> and the
+  content is <code>.open-sans</code></p>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Screen format</th>
+      <th>Width</th>
+      <th>Column</th>
+      <th>Gutter</th>
+      <th># of col.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Smartphone (vert.)</td>
+      <td>320px</td>
+      <td>40px</td>
+      <td>20px</td>
+      <td>5 col</td>
+    </tr>
+    <tr>
+      <td>Smartphone (horiz.)</td>
+      <td>480px</td>
+      <td colspan="3">fluid expansion of smartphone</td>
+    </tr>
+    <tr>
+      <td>Tablet</td>
+      <td>768px</td>
+      <td>40px</td>
+      <td>20px</td>
+      <td>12 col</td>
+    </tr>
+    <tr>
+      <td>Desktop</td>
+      <td>990px</td>
+      <td>60px</td>
+      <td>20px</td>
+      <td>12 col</td>
+    </tr>
+  </tbody>
+</table>
+<p>Sandstone is our defined style and form for Web properties. Combining set visual styles, UX elements, and a responsive grid system, it creates a cohesive brand experience across all our websites. This section details the key features of the system and how to make it your own!</p>
+<img src="{{ media('/img/styleguide/sandstone/intro/sandstone.png') }}" alt="Sandstone overview" id="overview" />
+</section>
+{% endblock %}

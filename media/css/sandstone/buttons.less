@@ -95,6 +95,67 @@
 
 }
 
+.button-sand,
+.button-sand:link,
+.button-sand:visited {
+    .button;
+    #gradient > .vertical(rgba(255,255,255,0.1), rgba(0,0,0,0.1));
+    background-color: transparent;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.4) rgba(0,0,0,0.1);
+    @shadow:  0    1px 0 0 rgba(255,255,255,0.5) inset,
+              1px  0   0 0 rgba(255,255,255,0.5) inset,
+             -1px  0   0 0 rgba(255,255,255,0.5) inset,
+              0   -2px 0 0 rgba(0,0,0,0.1)       inset;
+    .box-shadow(@shadow);
+    .border-radius(8px);
+    color: @linkBlue;
+    text-shadow: none;
+    &:hover,
+    &:focus {
+        .box-shadow(@buttonBlueShadowHover);
+    }
+}
+
+.button-list {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
+    li {
+        margin: 0;
+        padding: 0;
+        list-style-style: none;
+        .inline-block;
+        .button-sand {
+            border-radius: 0;
+            border-left-width: 0;
+            @shadow:  0    1px 0 0 rgba(255,255,255,0.5) inset,
+                     -1px  0   0 0 rgba(255,255,255,0.5) inset,
+                      0   -2px 0 0 rgba(0,0,0,0.1)       inset;
+            .box-shadow(@shadow);
+        }
+        &:first-child {
+            .button-sand {
+                border-top-left-radius: 8px;
+                border-bottom-left-radius: 8px;
+                border-left-width: 1px;
+                @shadow:  0    1px 0 0 rgba(255,255,255,0.5) inset,
+                          1px  0   0 0 rgba(255,255,255,0.5) inset,
+                         -1px  0   0 0 rgba(255,255,255,0.5) inset,
+                          0   -2px 0 0 rgba(0,0,0,0.1)       inset;
+                .box-shadow(@shadow);
+            }
+        }
+        &:last-child {
+            .button-sand {
+                border-top-right-radius: 8px;
+                border-bottom-right-radius: 8px;
+            }
+        }
+    }
+}
+
 
 // Product download buttons
 

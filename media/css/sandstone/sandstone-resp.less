@@ -451,6 +451,29 @@ nav.menu-bar {
 }
 
 /* }}} */
+/* {{{ Tables */
+
+.table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    th,
+    td {
+        border-top: 1px solid rgba(0,0,0,0.2);
+        padding: 10px @gridGutterWidth 10px 0;
+        text-align: left;
+    }
+    thead {
+        th,
+        td {
+            border-top: 0;
+            padding-top: 0;
+            font-size: 16px;
+            .open-sans-light;
+        }
+    }
+}
+
+/* }}} */
 /* {{{ Sidebar */
 
 .sidebar {
