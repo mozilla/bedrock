@@ -1,92 +1,92 @@
 GRANTS = [
     ("foo", {
-        "grantee": "Ford Foundation",
-        "title": "Collusion",
+        "grantee": "Test 1",
+        "title": "Test 1",
         "type": "learning-webmaking",
         "amount": "$100'000",
         "year": "2012",
-        "summary": "Lorem ipsum, I like lorem ipsum",
-        "description": "<p>I like candy</p>"
+        "summary": "Lorem ipsum, lorem ipsum",
+        "description": "<p>Lorem ipsum, lorem ipsum</p>"
     }),
     ("bar", {
-        "grantee": "I like cheese",
-        "title": "US Ignite",
+        "grantee": "Sample data 1",
+        "title": "Sample data 1",
         "type": "open-source-technology",
         "amount": "$200'000",
         "year": "2012",
-        "summary": "Lorem ipsum, I like lorem ipsum",
-        "description": "<p>I like candy</p>"
+        "summary": "Sample data 1",
+        "description": "<p>Sample data 1</p>"
     }),
     ("foobar", {
-        "grantee": "I like raisin",
-        "title": "Lady Gaga and friends",
+        "grantee": "Sample data 2",
+        "title": "Sample data 2",
         "type": "free-culture-community",
         "amount": "$500'000",
         "year": "2012",
-        "summary": "Lorem ipsum, I like lorem ipsum",
-        "description": "<p>I like candy</p>"
+        "summary": "Sample data 2",
+        "description": "<p>Sample data 2</p>"
     }),
     ("bahbah", {
-        "grantee": "I like cake",
-        "title": "Asperation Tech",
+        "grantee": "Sample data 3",
+        "title": "Sample data 3",
         "type": "user-sovereignty",
         "amount": "$150'000",
         "year": "2012",
-        "summary": "Lorem ipsum, I like lorem ipsum",
-        "description": "<p>I like candy</p>"
+        "summary": "Sample data 3",
+        "description": "<p>Sample data 3</p>"
     }),
     ("sheeps", {
-        "grantee": "OpenNews fund",
-        "title": "The Guardian",
+        "grantee": "Sample data 4",
+        "title": "Sample data 4",
         "type": "open-source-technology",
         "amount": "$500'000",
         "year": "2011",
-        "summary": "Lorem ipsum, I like lorem ipsum",
-        "description": "<p>I like candy</p>"
+        "summary": "Sample data 4",
+        "description": "<p>Sample data 4</p>"
     }),
     ("feebar", {
-        "grantee": "Web Maker Community fund",
-        "title": "OpenBadges",
+        "grantee": "Sample data 5",
+        "title": "Sample data 5",
         "type": "learning-webmaking",
         "amount": "$300'000",
         "year": "2011",
-        "summary": "Lorem ipsum, I like lorem ipsum",
-        "description": "<p>I like candy</p>"
+        "summary": "Sample data 5",
+        "description": "<p>Sample data 5</p>"
     }),
     ("cheese", {
-        "grantee": "I like badgers",
-        "title": "Firefox",
+        "grantee": "Sample data 6",
+        "title": "Sample data 6",
         "type": "open-source-technology",
         "amount": "$200'000",
         "year": "2011",
-        "summary": "Lorem ipsum, I like lorem ipsum",
-        "description": "<p>I like candy</p>"
+        "summary": "Sample data 6",
+        "description": "<p>Sample data 6</p>"
     }),
     ("hoorah", {
-        "grantee": "I like candy",
-        "title": "Snoop Dogg and friends",
+        "grantee": "Sample data 7",
+        "title": "Sample data 7",
         "type": "open-source-technology",
         "amount": "$500'000",
         "year": "2011",
-        "summary": "Lorem ipsum, I like lorem ipsum",
-        "description": "<p>I like candy</p>"
+        "summary": "Sample data 7",
+        "description": "<p>Sample data 7</p>"
     }),
     ("feeble", {
-        "grantee": "I like cake",
-        "title": "Asperation Tech",
+        "grantee": "Sample data 8",
+        "title": "Sample data 8",
         "type": "user-sovereignty",
         "amount": "$150'000",
         "year": "2011",
-        "summary": "Lorem ipsum, I like lorem ipsum",
-        "description": "<p>I like candy</p>"
+        "summary": "Sample data 8",
+        "description": "<p>Sample data 8</p>"
     }),
     ("java", {
-        "grantee": "OpenBadger fund",
-        "title": "Spiegel",
+        "grantee": "Sample data 9",
+        "title": "Sample data 9",
         "type": "open-source-technology",
         "amount": "$450'000",
         "year": "2010",
-        "summary": "Lorem ipsum, I like lorem ipsum",
-        "description": "<p>I like candy</p>"
+        "summary": "Sample data 9",
+        "description": "<p>Sample data 9</p>"
     })
 ]
