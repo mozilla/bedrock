@@ -1,3 +1,5 @@
+@background: #f5f1e8;
+
 #grants #main-content {
 	margin-top: 3em;
 }
@@ -20,29 +22,41 @@
     }
 }
 
+.peep-hole {
+    max-height: 350px;
+    overflow-y: scroll;
+    margin-right: -15px;
+    margin-bottom: 24px;
+}
+
 #grants_table {
     font-size: 13px;
-    margin-bottom: 24px;
+    border-collapse: collapse;
     th,
     td {
-        padding: 10px 20px;
+        padding: 10px;
     }
     thead {
-        background: #F0ECE3;
         th {
-            color: #484848;
-            text-transform: uppercase;
+            border-bottom: 1px solid #666666;
+            text-align: left;
         }
     }
     tbody {
+        tr {
+            &.odd {
+                background: darken(@background, 2%);
+            }
+        }
         th {
             font-weight: normal;
             text-align: left;
         }
         th,
         td {
-            border-bottom: 1px solid #F0ECE3;
+            border-top: solid 1px darken(@background, 10%);
         }
+        
     }
 }
 
