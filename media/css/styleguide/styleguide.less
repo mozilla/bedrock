@@ -1,6 +1,12 @@
 @import "../sandstone/variables-resp.less";
 @import "../sandstone/mixins-resp.less";
 
+.divider {
+    padding-bottom: @baseLine * 3;
+    margin-bottom: @baseLine * 2;
+    background: url(/media/img/styleguide/divider.png) 50% 100% no-repeat;
+}
+
 /* {{{ Grid setup */
 
 // Desktop:
@@ -164,7 +170,7 @@ h1 {
 
 .sandstone-intro {
     #intro {
-        h3 {
+        h2 {
             .span_guide(3);
         }
         p {
@@ -209,6 +215,160 @@ h1 {
     }
     #grid-desktop {
         .span_guide(12);
+    }
+}
+
+/* }}} */
+/* {{{ Sandstone - Tabzilla  */
+
+.sandstone-tabzilla {
+    #intro {
+        float: left;
+        width: 100%;
+        .divider;
+        h2 {
+            .span_guide(3);
+        }
+        p {
+            .span_guide(6);
+        }
+        #tabzilla-downloads {
+            .span_guide(3);
+            .button-sand {
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+        }
+    }
+    #examples {
+        .divider;
+        float: left;
+        width: 100%;
+        h2 {
+            .span_guide(3);
+        }
+        p {
+            .span_guide(9);
+        }
+    }
+    #tabzilla-phone,
+    #tabzilla-tablet,
+    #tabzilla-desktop {
+        padding-top: @baseLine;
+        padding-bottom: @baseLine;
+    }
+    #tabzilla-phone {
+        .span_guide(3);
+    }
+    #tabzilla-tablet {
+        .span_guide(9);
+    }
+    #tabzilla-desktop {
+        .span_guide(12);
+    }
+    .big-list {
+        counter-reset: li; /* Initiate a counter */
+        margin: 0;
+        padding-left: 0;
+        li {
+            position: relative;
+            list-style-type: none;
+            padding: 20px 20px 20px 60px;
+            &:before {
+                content: counter(li); /* Use the counter as content */
+                counter-increment: li; /* Increment the counter by 1 */
+                position: absolute;
+                top: 0;
+                left: 0;
+                font-size: 48px;
+                .open-sans-light;
+            }
+        }
+    }
+    #requirements,
+    #installation,
+    #testing {
+        .span_guide(12);
+    }
+    #requirements,
+    #installation {
+        .divider;
+    }
+}
+
+/* }}} */
+/* {{{ Sandstone - Typefaces  */
+
+.sandstone-typefaces {
+    #intro {
+        float: left;
+        width: 100%;
+        .divider;
+        h2 {
+            .span_guide(3);
+        }
+        p {
+            .span_guide(9);
+        }
+    }
+    #bodytext,
+    #headings {
+        float: left;
+        width: 100%;
+        margin-bottom: @baseLine * 2;
+        h2 {
+            .span_guide(3);
+        }
+        .example {
+            .span_guide(4);
+            background: #fff;
+            .large, h1, h2, h3, h4, small {
+                width: 100%;
+                margin: 0;
+                padding: 10px 20px;
+                display: block;
+            }
+            p {
+                padding: 20px;
+                margin: 0;
+            }
+        }
+        .code {
+            .span_guide(4);
+        }
+    }
+}
+
+/* }}} */
+/* {{{ Sandstone - Backgrounds & Colors */
+
+.sandstone-colors {
+    .intro {
+        .span_guide(3);
+    }
+    #backgrounds {
+        .divider;
+        float: left;
+        width: 100%;
+    }
+    .examples {
+        .span_guide(9);
+        .swatch-card {
+            .span_guide(4);
+            margin-left: 0;
+            margin-right: 20px;
+            padding-bottom: @baseLine;
+            .swatch {
+                border: 10px solid #fff;
+                width: 120px;
+                height: 120px;
+                float: left;
+                margin-right: 20px;
+            }
+            h5 {
+                font-size: 28px;
+            }
+        }
     }
 }
 
