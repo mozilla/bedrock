@@ -56,7 +56,7 @@
             {% for slug, data in grants %}
             <tr {% if loop.index is not even %}class="odd"{% endif %}>
                 <th scope="row">{{ data['grantee'] }}</th>
-                <td><a href="info/{{ slug }}/">{{ data['title'] }}</a></td>
+                <td><a href="{{ url('grant_info', slug) }}">{{ data['title'] }}</a></td>
                 <td>{{ data['amount'] }}</td>
                 <td>{{ data['year'] }}</td>
                 <td>{{ grant_labels[data['type']] }}</td>
