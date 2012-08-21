@@ -14,13 +14,13 @@ grant_labels = {
 
 
 def grant_info(request, slug):
-    grant_data = filter(lambda x: x[0] == slug, GRANTS)
+    grant_data = GRANTS[slug]
 
     if not grant_data:
         raise Http404
 
     return l10n_utils.render(request, "grants/info.html", {
-        'grant': grant_data[0][1],  # Using named tuple so need to deep dive
+        'grant': grant_data,  # Using named tuple so need to deep dive
         'grant_labels': grant_labels
     })
 
@@ -32,7 +32,7 @@ def grants(request):
         raise Http404
 
     if type_filter:
-        grants = filter(lambda x: x[1]['type'] == type_filter, GRANTS)
+        grants = dict((k, v) for k, v in GRANTS.items() if type_filter in v['type'])
     else:
         grants = GRANTS
 

@@ -1,5 +1,5 @@
-GRANTS = [
-    ("foo", {
+GRANTS = {
+    "foo": {
         "grantee": "Test 1",
         "title": "Test 1",
         "type": "learning-webmaking",
@@ -7,8 +7,8 @@ GRANTS = [
         "year": "2012",
         "summary": "Lorem ipsum, lorem ipsum",
         "description": "<p>Lorem ipsum, lorem ipsum</p>"
-    }),
-    ("bar", {
+    },
+    "bar": {
         "grantee": "Sample data 1",
         "title": "Sample data 1",
         "type": "open-source-technology",
@@ -16,8 +16,8 @@ GRANTS = [
         "year": "2012",
         "summary": "Sample data 1",
         "description": "<p>Sample data 1</p>"
-    }),
-    ("foobar", {
+    },
+    "foobar": {
         "grantee": "Sample data 2",
         "title": "Sample data 2",
         "type": "free-culture-community",
@@ -25,8 +25,8 @@ GRANTS = [
         "year": "2012",
         "summary": "Sample data 2",
         "description": "<p>Sample data 2</p>"
-    }),
-    ("bahbah", {
+    },
+    "bahbah": {
         "grantee": "Sample data 3",
         "title": "Sample data 3",
         "type": "user-sovereignty",
@@ -34,8 +34,8 @@ GRANTS = [
         "year": "2012",
         "summary": "Sample data 3",
         "description": "<p>Sample data 3</p>"
-    }),
-    ("sheeps", {
+    },
+    "sheeps": {
         "grantee": "Sample data 4",
         "title": "Sample data 4",
         "type": "open-source-technology",
@@ -43,8 +43,8 @@ GRANTS = [
         "year": "2011",
         "summary": "Sample data 4",
         "description": "<p>Sample data 4</p>"
-    }),
-    ("feebar", {
+    },
+    "feebar": {
         "grantee": "Sample data 5",
         "title": "Sample data 5",
         "type": "learning-webmaking",
@@ -52,8 +52,8 @@ GRANTS = [
         "year": "2011",
         "summary": "Sample data 5",
         "description": "<p>Sample data 5</p>"
-    }),
-    ("cheese", {
+    },
+    "cheese": {
         "grantee": "Sample data 6",
         "title": "Sample data 6",
         "type": "open-source-technology",
@@ -61,8 +61,8 @@ GRANTS = [
         "year": "2011",
         "summary": "Sample data 6",
         "description": "<p>Sample data 6</p>"
-    }),
-    ("hoorah", {
+    },
+    "hoorah": {
         "grantee": "Sample data 7",
         "title": "Sample data 7",
         "type": "open-source-technology",
@@ -70,8 +70,8 @@ GRANTS = [
         "year": "2011",
         "summary": "Sample data 7",
         "description": "<p>Sample data 7</p>"
-    }),
-    ("feeble", {
+    },
+    "feeble": {
         "grantee": "Sample data 8",
         "title": "Sample data 8",
         "type": "user-sovereignty",
@@ -79,8 +79,8 @@ GRANTS = [
         "year": "2011",
         "summary": "Sample data 8",
         "description": "<p>Sample data 8</p>"
-    }),
-    ("java", {
+    },
+    "java": {
         "grantee": "Sample data 9",
         "title": "Sample data 9",
         "type": "open-source-technology",
@@ -88,5 +88,5 @@ GRANTS = [
         "year": "2010",
         "summary": "Sample data 9",
         "description": "<p>Sample data 9</p>"
-    })
-]
+    }
+}
