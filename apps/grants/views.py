@@ -6,6 +6,7 @@ import bleach
 from grants_db import GRANTS
 
 grant_labels = {
+    '': 'All',
     'open-source-technology': 'Open Source Technology',
     'learning-webmaking': 'Learning & Webmaking',
     'user-sovereignty': 'User Sovereignty',

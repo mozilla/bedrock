@@ -27,11 +27,6 @@
 <div class="filters">
     <h4>Filter by</h4>
     <ul>   
-        {% if filter != '' %}
-            <li><a href="{{ url('grants') }}#grants-data">All</a></li>
-        {% else %}
-            <li>All</li>
-        {% endif %}
         {% for key, label in grant_labels.iteritems() %}
             {% if key == filter %}
                 <li>{{ label }}</li>
