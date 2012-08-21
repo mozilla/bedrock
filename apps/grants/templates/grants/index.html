@@ -22,7 +22,7 @@
 </ul>
 
 {% if grants %}
-<div id="grants-data" tabindex="-1">
+<div id="grants-data">
 <h3>Our Grants</h3>
 <div class="filters">
     <h4>Filter by</h4>
@@ -53,7 +53,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for slug, data in grants %}
+            {% for slug, data in grants.items() %}
             <tr {% if loop.index is not even %}class="odd"{% endif %}>
                 <th scope="row">{{ data['grantee'] }}</th>
                 <td><a href="{{ url('grant_info', slug) }}">{{ data['title'] }}</a></td>
