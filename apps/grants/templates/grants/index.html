@@ -26,12 +26,19 @@
 <h3>Our Grants</h3>
 <div class="filters">
     <h4>Filter by</h4>
-    <ul>
-        <li class="current"><a href="{{ url('grants') }}#grants-data">All</a></li>
-        <li class="current"><a href="?type=open-source-technology#grants-data">Open Source Technology</a></li>
-        <li class="current"><a href="?type=learning-webmaking#grants-data">Learning & Webmaking</a></li>
-        <li class="current"><a href="?type=user-sovereignty#grants-data">User Sovereignty</a></li>
-        <li class="current"><a href="?type=free-culture-community#grants-data">Free Culture & Community</a></li>
+    <ul>   
+        {% if filter != '' %}
+            <li><a href="{{ url('grants') }}#grants-data">All</a></li>
+        {% else %}
+            <li>All</li>
+        {% endif %}
+        {% for key, label in grant_labels.iteritems() %}
+            {% if key == filter %}
+                <li>{{ label }}</li>
+            {% else %}
+                <li><a href="{{ url('grants') }}?type={{ key }}#grants-data">{{ label }}</a></li>
+            {% endif %}
+        {% endfor %}
 </div>
 <div class="peep-hole">
     <table id="grants_table">
