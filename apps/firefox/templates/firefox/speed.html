@@ -14,9 +14,13 @@
 
 
 <div id="main-feature">
+{% block heading_primary %}
   <h1 class="">How fast is your Firefox?</h1>
+{% endblock %}
   <div class="row">
+{% block heading_secondary %}
     <h4 class="">New Firefox is up to 7 times faster. (That’s a lot!) Check the speedometer to see if yours can keep up.</h4>
+{% endblock %}
     <div id="download_area">
       {{ download_button('download', 'upgrade') }}
       <p><a href="/firefox/central/">Learn more »</a></p>
