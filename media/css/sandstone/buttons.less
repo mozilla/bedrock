@@ -6,8 +6,8 @@
     .inline-block;
     .border-radius;
     .box-shadow(@buttonShadow);
-    background-color: @buttonGreen;
-    #gradient > .vertical(@buttonGreen, @buttonGreenDark);
+    background-color: @buttonBlue;
+    #gradient > .vertical(@buttonBlue, @buttonBlueDark);
     color: @buttonTextColor;
     text-align: center;
     font-size: 14px;
@@ -15,41 +15,67 @@
     height: @baseLine * 2;
     line-height: @baseLine * 2;
     text-decoration: none;
+    min-width: 100px;
     border: 0;
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
     .open-sans;
     .transition();
 
     &:hover,
-    &:focus {
+    &.hover,
+    &:focus,
+    &.focus {
         .box-shadow(@buttonShadowHover);
         color: @buttonTextColor;
         text-decoration: none;
         .transition();
     }
 
-    &:focus {
+    &:focus,
+    &.focus {
         outline-color: @textColorSecondary;
     }
 
-    &:active {
+    &:active,
+    &.active {
         .box-shadow(@buttonShadowActive);
         color: @buttonTextColor;
         text-decoration: none;
         .transition();
     }
+
+    &.insensitive,
+    &.insensitive:hover,
+    &.insensitive:focus {
+        background-color: #9ca3aa;
+        #gradient > .vertical(#bfc7cd, #9ca3aa);
+        .box-shadow(@buttonShadow);
+        color: #eee;
+    }
 }
 
-.button-blue,
-.button-blue:link,
-.button-blue:visited {
+.button-green,
+.button-green:link,
+.button-green:visited {
     .button;
-    background-color: @buttonBlue;
-    #gradient > .vertical(@buttonBlue, @buttonBlueDark);
+    background-color: @buttonGreen;
+    #gradient > .vertical(@buttonGreen, @buttonGreenDark);
 
     &:hover,
     &:focus {
-        .box-shadow(@buttonBlueShadowHover);
+        .box-shadow(@buttonGreenShadowHover);
+    }
+}
+
+.button-negative,
+.button-negative:link,
+.button-negative:visited {
+    .button;
+    background-color: #a91300;
+    #gradient > .vertical(#da5132, #a91300);
+
+    &:hover,
+    &:focus {
     }
 }
 
@@ -112,10 +138,6 @@
     .border-radius(8px);
     color: @linkBlue;
     text-shadow: none;
-    &:hover,
-    &:focus {
-        .box-shadow(@buttonBlueShadowHover);
-    }
 }
 
 .button-list {
@@ -175,7 +197,7 @@
 }
 
 .download-button .download-link {
-    .button;
+    .button-green;
     cursor: pointer;
     padding: 0;
     height: 95px;
