@@ -172,11 +172,27 @@ ul,
 ol,
 dl,
 hgroup {
-    margin: 0 0 24px 0;
+    margin: 0 0 @baseLine 0;
+}
+
+ul.unstyled,
+ol.unstyled {
+    li {
+        list-style-type: none;
+        margin-left: 0;
+    }
+    li li {
+        list-style-type: disc;
+        margin-left: 20px;
+    }
+}
+
+li > ul {
+    margin-bottom: 0;
 }
 
 li {
-    margin-left: 24px;
+    margin-left: 20px;
 }
 
 dl dt {

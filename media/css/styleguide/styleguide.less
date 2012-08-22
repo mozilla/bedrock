@@ -209,6 +209,7 @@ h1 {
     }
     #grid-phone {
         .span_guide(4);
+        clear: left;
     }
     #grid-tablet {
         .span_guide(8);
@@ -368,7 +369,62 @@ h1 {
             h5 {
                 font-size: 28px;
             }
+            p {
+                margin-bottom: @baseLine / 2;
+            }
+            td,tr {
+                font-size: 12px;
+            }
+            td {
+                padding-right: 20px;
+            }
         }
+    }
+    #swatch-mozilla .swatch {
+        #gradient > .vertical(#D7D3C8, #F6F4EC);
+    }
+    #swatch-firefox .swatch {
+        #gradient > .vertical(#CAE1F4, #EEEEEE);
+    }
+    #swatch-darkgrey .swatch {
+        #gradient > .vertical(#424F5A, #6A7B86);
+    }
+    #swatch-lightgrey .swatch {
+        #gradient > .vertical(#D4DDE4, #EAEFF2);
+    }
+    #swatch-aurora .swatch {
+        #gradient > .vertical(#331E54, #000000);
+    }
+    #swatch-nightly .swatch {
+        #gradient > .vertical(#002147, #000000);
+    }
+    #swatch-default-link .swatch {
+        background: #0095DD;
+    }
+    #swatch-hover-link .swatch {
+        background: #00539F;
+    }
+}
+
+/* }}} */
+/* {{{ Sandstone - Tables & Lists */
+
+.sandstone-tables {
+    .intro {
+        .span_guide(3);
+    }
+    .table {
+        .span_guide(6);
+    }
+    #tables {
+        float: left;
+        width: 100%;
+        .divider;
+    }
+    #list-unordered,
+    #list-unstyled,
+    #list-ordered {
+        .span_guide(3);
     }
 }
 

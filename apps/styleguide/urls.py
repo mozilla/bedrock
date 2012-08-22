@@ -8,4 +8,6 @@ urlpatterns = patterns('',
     page('sandstone/tabzilla', 'styleguide/sandstone-tabzilla.html'),
     page('sandstone/typefaces', 'styleguide/sandstone-typefaces.html'),
     page('sandstone/colors', 'styleguide/sandstone-colors.html'),
+    page('sandstone/buttons', 'styleguide/sandstone-buttons.html'),
+    page('sandstone/tables', 'styleguide/sandstone-tables.html'),
 )
