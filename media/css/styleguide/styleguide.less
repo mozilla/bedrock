@@ -1,6 +1,17 @@
 @import "../sandstone/variables-resp.less";
 @import "../sandstone/mixins-resp.less";
 
+@font-face {
+    font-family: 'Open Sans Light';
+    src: url('/media/fonts/OpenSans-LightItalic-webfont.eot');
+    src: url('/media/fonts/OpenSans-LightItalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/media/fonts/OpenSans-LightItalic-webfont.woff') format('woff'),
+         url('/media/fonts/OpenSans-LightItalic-webfont.ttf') format('truetype'),
+         url('/media/fonts/OpenSans-LightItalic-webfont.svg#OpenSansLightItalic') format('svg');
+    font-weight: normal;
+    font-style: italic;
+}
+
 .divider {
     padding-bottom: @baseLine * 3;
     margin-bottom: @baseLine * 2;
@@ -35,11 +46,6 @@
 
 .offset_guide(@columns) {
     margin-left: ((@gridColumnWidth + @gridGutterWidth) * @columns) + (@gridGutterWidth * 0.5);
-}
-
-body {
-    .open-sans;
-    font-size: 14px;
 }
 
 #wrapper {
@@ -403,6 +409,43 @@ h1 {
     }
     #swatch-hover-link .swatch {
         background: #00539F;
+    }
+}
+
+/* }}} */
+/* {{{ Sandstone - Buttons & Icons */
+
+.sandstone-buttons {
+
+    #buttons {
+        .clearfix;
+        .divider;
+        .examples {
+            .span_guide(4);
+            h3 {
+                font-style: italic;
+            }
+        }
+        #examples-standard {
+            .offset_guide(3);            
+        }
+    }
+
+    .intro {
+        .span_guide(3);
+    }
+    .examples {
+        .span_guide(9);
+        .example {
+            margin-bottom: @baseLine;
+        }
+    }
+    #buttons,
+    #icons {
+        .button-sand {
+            padding-left: 12px;
+            padding-right: 12px;
+        }
     }
 }
 

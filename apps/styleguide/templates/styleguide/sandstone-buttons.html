@@ -17,7 +17,27 @@
     </div>
   </div>
   <div class="examples">
-   
+    <h3>Standard download</h3>
+    <div class="example">{{ download_button('example-download') }}</div>
+    <div class="example">{{ download_button('example-download-small','small') }}</div>
+  </div>
+  <div class="examples">
+    <h3>Mobile download</h3>
+    <div class="example">{{ mobile_download_button('example-download-mobile') }}</div>
+    <div class="example">{{ mobile_download_button('example-download-mobile-small', 'small') }}</div>
+  </div>
+  <div class="examples" id="examples-standard">
+    <h3>Standard</h3>
+    <p><a href="#" class="button">default</a></p>
+    <p><a href="#" class="button hover">hover</a></p>
+    <p><a href="#" class="button active">active</a></p>
+    <p><a href="#" class="button insensitive">insensitive</a></p>
+  </div>
+  <div class="examples">
+    <h3>User Flow</h3>
+    <p><a href="#" class="button button-next">next</a></p>
+    <p><a href="#" class="button button-negative">no</a></p>
+    <p><a href="#" class="button button-context">context</a></p>
   </div>
 </section>
 
