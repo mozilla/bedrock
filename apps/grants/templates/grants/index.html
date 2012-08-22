@@ -21,6 +21,47 @@
 	<li><strong>Free Culture &amp; Community:</strong> Support to the broad community of individuals, organizations and projects that aid in the creation of technologies and projects that increase the health of the open Web ecosystem.</li>
 </ul>
 
+{% if grants %}
+<div id="grants-data">
+<h3>Our Grants</h3>
+<div class="filters">
+    <h4>Filter by</h4>
+    <ul>   
+        {% for key, label in grant_labels.iteritems() %}
+            {% if key == filter %}
+                <li>{{ label }}</li>
+            {% else %}
+                <li><a href="{{ url('grants') }}?type={{ key }}#grants-data">{{ label }}</a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</div>
+<div class="peep-hole">
+    <table id="grants_table">
+        <thead>
+            <tr>
+                <th scope="col">Grantee</th>
+                <th scope="col">Project Title</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Year</th>
+                <th scope="col">Focus Area</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for grant in grants %}
+            <tr {% if loop.index is not even %}class="odd"{% endif %}>
+                <th scope="row">{{ grant.grantee }}</th>
+                <td><a href="{{ url('grant_info', grant.url) }}">{{ grant.title }}</a></td>
+                <td>{{ grant.amount }}</td>
+                <td>{{ grant.year }}</td>
+                <td>{{ grant_labels[grant.type] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</div>
+{% endif %}
 
 <h3>How to Get Support</h3>
 
