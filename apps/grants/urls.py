@@ -1,6 +1,9 @@
 from django.conf.urls.defaults import *
-from mozorg.util import page
+
+import views
+
 
 urlpatterns = patterns('',
-    page('', 'grants/index.html'),
+    url(r'^$', views.grants, name='grants'),
+    url(r'^info/(?P<slug>[\w-]+)/$', views.grant_info, name='grant_info')
 )
