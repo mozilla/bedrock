@@ -26,6 +26,12 @@
   transition: @transition;
 }
 
+.border-box {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 // Gradients
 #gradient {
   .horizontal (@startColor: #555, @endColor: #333) {
@@ -153,4 +159,11 @@
 .row {
   margin-left: @gridGutterWidth * -1;
   .clearfix();
+}
+
+.button-hover-box-shadow(@color: #ffffff) {
+    @shadow:  @shadowPartBottom,
+              @shadowPartBottomInset,
+              inset 0px 12px 24px 2px saturate(@color, 10%);
+    .box-shadow(@shadow);
 }

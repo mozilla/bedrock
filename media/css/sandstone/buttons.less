@@ -1,11 +1,12 @@
 // General buttons
 
+
 .button,
 .button:link,
 .button:visited {
     .inline-block;
     .border-radius;
-    .box-shadow(@buttonShadow);
+    box-shadow: @buttonShadow;
     background-color: @buttonBlue;
     #gradient > .vertical(@buttonBlue, @buttonBlueDark);
     color: @buttonTextColor;
@@ -63,7 +64,7 @@
 
     &:hover,
     &:focus {
-        .box-shadow(@buttonGreenShadowHover);
+        .button-hover-box-shadow(@buttonGreen);
     }
 }
 
@@ -76,6 +77,7 @@
 
     &:hover,
     &:focus {
+        .button-hover-box-shadow(#da5132);
     }
 }
 
@@ -138,6 +140,11 @@
     .border-radius(8px);
     color: @linkBlue;
     text-shadow: none;
+    &:hover,
+    &:focus {
+        .button-hover-box-shadow();
+        color: @linkBlueHover;
+    }
 }
 
 .button-list {
