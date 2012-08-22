@@ -48,13 +48,13 @@
             </tr>
         </thead>
         <tbody>
-            {% for slug, data in grants.items() %}
+            {% for grant in grants %}
             <tr {% if loop.index is not even %}class="odd"{% endif %}>
-                <th scope="row">{{ data['grantee'] }}</th>
-                <td><a href="{{ url('grant_info', slug) }}">{{ data['title'] }}</a></td>
-                <td>{{ data['amount'] }}</td>
-                <td>{{ data['year'] }}</td>
-                <td>{{ grant_labels[data['type']] }}</td>
+                <th scope="row">{{ grant.grantee }}</th>
+                <td><a href="{{ url('grant_info', grant.url) }}">{{ grant.title }}</a></td>
+                <td>{{ grant.amount }}</td>
+                <td>{{ grant.year }}</td>
+                <td>{{ grant_labels[grant.type] }}</td>
             </tr>
             {% endfor %}
         </tbody>

@@ -1,92 +1,106 @@
-GRANTS = {
-    "foo": {
-        "grantee": "Test 1",
-        "title": "Test 1",
-        "type": "learning-webmaking",
-        "amount": "$100'000",
-        "year": "2012",
-        "summary": "Lorem ipsum, lorem ipsum",
-        "description": "<p>Lorem ipsum, lorem ipsum</p>"
-    },
-    "bar": {
-        "grantee": "Sample data 1",
-        "title": "Sample data 1",
-        "type": "open-source-technology",
-        "amount": "$200'000",
-        "year": "2012",
-        "summary": "Sample data 1",
-        "description": "<p>Sample data 1</p>"
-    },
-    "foobar": {
-        "grantee": "Sample data 2",
-        "title": "Sample data 2",
-        "type": "free-culture-community",
-        "amount": "$500'000",
-        "year": "2012",
-        "summary": "Sample data 2",
-        "description": "<p>Sample data 2</p>"
-    },
-    "bahbah": {
-        "grantee": "Sample data 3",
-        "title": "Sample data 3",
-        "type": "user-sovereignty",
-        "amount": "$150'000",
-        "year": "2012",
-        "summary": "Sample data 3",
-        "description": "<p>Sample data 3</p>"
-    },
-    "sheeps": {
-        "grantee": "Sample data 4",
-        "title": "Sample data 4",
-        "type": "open-source-technology",
-        "amount": "$500'000",
-        "year": "2011",
-        "summary": "Sample data 4",
-        "description": "<p>Sample data 4</p>"
-    },
-    "feebar": {
-        "grantee": "Sample data 5",
-        "title": "Sample data 5",
-        "type": "learning-webmaking",
-        "amount": "$300'000",
-        "year": "2011",
-        "summary": "Sample data 5",
-        "description": "<p>Sample data 5</p>"
-    },
-    "cheese": {
-        "grantee": "Sample data 6",
-        "title": "Sample data 6",
-        "type": "open-source-technology",
-        "amount": "$200'000",
-        "year": "2011",
-        "summary": "Sample data 6",
-        "description": "<p>Sample data 6</p>"
-    },
-    "hoorah": {
-        "grantee": "Sample data 7",
-        "title": "Sample data 7",
-        "type": "open-source-technology",
-        "amount": "$500'000",
-        "year": "2011",
-        "summary": "Sample data 7",
-        "description": "<p>Sample data 7</p>"
-    },
-    "feeble": {
-        "grantee": "Sample data 8",
-        "title": "Sample data 8",
-        "type": "user-sovereignty",
-        "amount": "$150'000",
-        "year": "2011",
-        "summary": "Sample data 8",
-        "description": "<p>Sample data 8</p>"
-    },
-    "java": {
-        "grantee": "Sample data 9",
-        "title": "Sample data 9",
-        "type": "open-source-technology",
-        "amount": "$450'000",
-        "year": "2010",
-        "summary": "Sample data 9",
-        "description": "<p>Sample data 9</p>"
-    }
-}
+from collections import namedtuple
+
+Grant = namedtuple('Grant', 'url, grantee, title, type, amount, year, summary, description')
+
+GRANTS = [
+    Grant(
+        "foo",
+        "Test 1",
+        "Test 1",
+        "learning-webmaking",
+        "$100'000",
+        2012,
+        "Lorem ipsum, lorem ipsum",
+        "<p>Lorem ipsum, lorem ipsum</p>"
+    ),
+    Grant(
+        "bar",
+        "Sample data 1",
+        "Sample data 1",
+        "open-source-technology",
+        "$200'000",
+        2012,
+        "Sample data 1",
+        "<p>Sample data 1</p>"
+    ),
+    Grant(
+        "foobar",
+        "Sample data 2",
+        "Sample data 2",
+        "free-culture-community",
+        "$500'000",
+        2012,
+        "Sample data 2",
+        "<p>Sample data 2</p>"
+    ),
+    Grant(
+        "bahbah",
+        "Sample data 3",
+        "Sample data 3",
+        "user-sovereignty",
+        "$150'000",
+        2012,
+        "Sample data 3",
+        "<p>Sample data 3</p>"
+    ),
+    Grant(
+        "sheeps",
+        "Sample data 4",
+        "Sample data 4",
+        "open-source-technology",
+        "$500'000",
+        2011,
+        "Sample data 4",
+        "<p>Sample data 4</p>"
+    ),
+    Grant(
+        "feebar",
+        "Sample data 5",
+        "Sample data 5",
+        "learning-webmaking",
+        "$300'000",
+        2011,
+        "Sample data 5",
+        "<p>Sample data 5</p>"
+    ),
+    Grant(
+        "cheese",
+        "Sample data 6",
+        "Sample data 6",
+        "open-source-technology",
+        "$200'000",
+        2011,
+        "Sample data 6",
+        "<p>Sample data 6</p>"
+    ),
+    Grant(
+        "hoorah",
+        "Sample data 7",
+        "Sample data 7",
+        "open-source-technology",
+        "$500'000",
+        2011,
+        "Sample data 7",
+        "<p>Sample data 7</p>"
+    ),
+    Grant(
+        "feeble",
+        "Sample data 8",
+        "Sample data 8",
+        "user-sovereignty",
+        "$150'000",
+        2011,
+        "Sample data 8",
+        "<p>Sample data 8</p>"
+    ),
+    Grant(
+        "java",
+        "Sample data 9",
+        "Sample data 9",
+        "open-source-technology",
+        "$450'000",
+        2010,
+        "Sample data 9",
+        "<p>Sample data 9</p>"
+    )
+]

@@ -1,3 +1,4 @@
+from operator import attrgetter
 from django.http import Http404
 
 import l10n_utils
@@ -15,13 +16,13 @@ grant_labels = {
 
 
 def grant_info(request, slug):
-    grant_data = GRANTS[slug]
+    grant_data = filter(lambda k: k.url == slug, GRANTS)
 
     if not grant_data:
         raise Http404
 
     return l10n_utils.render(request, "grants/info.html", {
-        'grant': grant_data,  # Using named tuple so need to deep dive
+        'grant': grant_data[0],
         'grant_labels': grant_labels
     })
 
@@ -33,12 +34,14 @@ def grants(request):
         raise Http404
 
     if type_filter:
-        grants = dict((k, v) for k, v in GRANTS.items() if type_filter in v['type'])
+        grants = filter(lambda k: k.type == type_filter, GRANTS)
     else:
         grants = GRANTS
 
+    sorted_grants = sorted(grants, key=attrgetter('year'), reverse=True)
+
     return l10n_utils.render(request, "grants/index.html", {
             'filter': type_filter,
-            'grants': grants,
+            'grants': sorted_grants,
             'grant_labels': grant_labels
     })
