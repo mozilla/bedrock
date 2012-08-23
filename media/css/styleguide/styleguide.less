@@ -103,16 +103,22 @@
                 }
             }
         }
-        a {
+        a,b {
             display: block;
             padding: (@baseLine / 4) (@baseLine * .75);
             color: @textColorSecondary;
         }
-        li li a {
+        li li a,
+        li li b {
             padding-left: (@baseLine);
         }
-        li li li a {
+        li li li a,
+        li li li b {
             padding-left: (@baseLine * 1.25);
+        }
+        b {
+            font-weight: normal;
+            color: #000;
         }
     }
 }
