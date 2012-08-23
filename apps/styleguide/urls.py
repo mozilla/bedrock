@@ -10,4 +10,5 @@ urlpatterns = patterns('',
     page('sandstone/colors', 'styleguide/sandstone-colors.html'),
     page('sandstone/buttons', 'styleguide/sandstone-buttons.html'),
     page('sandstone/tables', 'styleguide/sandstone-tables.html'),
+    page('identity/firefox/branding', 'styleguide/identity/firefox-branding.html'),
 )
