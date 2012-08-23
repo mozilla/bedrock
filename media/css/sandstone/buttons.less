@@ -163,6 +163,7 @@
                      -1px  0   0 0 rgba(255,255,255,0.5) inset,
                       0   -2px 0 0 rgba(0,0,0,0.1)       inset;
             .box-shadow(@shadow);
+            min-width: 0;
         }
         &:first-child {
             .button-sand {
@@ -174,6 +175,11 @@
                          -1px  0   0 0 rgba(255,255,255,0.5) inset,
                           0   -2px 0 0 rgba(0,0,0,0.1)       inset;
                 .box-shadow(@shadow);
+                &:hover,
+                &:focus {
+                    .button-hover-box-shadow();
+                    color: @linkBlueHover;
+                }
             }
         }
         &:last-child {
