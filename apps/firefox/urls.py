@@ -32,6 +32,8 @@ urlpatterns = patterns('',
     page('firefox/speed', 'firefox/speed.html',
          latest_version=product_details.firefox_versions['LATEST_FIREFOX_VERSION']),
     page('firefox/technology', 'firefox/technology.html'),
+    page('firefox/toolkit/download-to-your-devices', 'firefox/devices.html',
+         latest_version=product_details.firefox_versions['LATEST_FIREFOX_VERSION']),
     page('firefox/update', 'firefox/update.html'),
 
     page('firefox/unsupported/warning', 'firefox/unsupported-warning.html'),
