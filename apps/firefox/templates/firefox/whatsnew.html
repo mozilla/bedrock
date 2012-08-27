@@ -113,7 +113,7 @@
 {% endblock %}
 
 {% block email_form %}
-  {% if request.locale == 'en-US' %}
+  {% if LANG.startswith('en') %}
     <div id="email-form-wrapper" class="billboard">
       {{ super() }}
     </div>

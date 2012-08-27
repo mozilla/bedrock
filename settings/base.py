@@ -44,15 +44,16 @@ TEMPLATE_DIRS = (
     path('locale')
 )
 
-def JINJA_CONFIG():
-    import jinja2
-    from django.conf import settings
-    config = {'extensions': ['tower.template.i18n', 'jinja2.ext.do',
-                             'jinja2.ext.with_', 'jinja2.ext.loopcontrols',
-                             'l10n_utils.template.l10n_blocks',
-                             'l10n_utils.template.lang_blocks'],
-              'finalize': lambda x: x if x is not None else ''}
-    return config
+JINJA_CONFIG = {
+    'extensions': [
+        'tower.template.i18n', 'jinja2.ext.do', 'jinja2.ext.with_',
+        'jinja2.ext.loopcontrols', 'l10n_utils.template.l10n_blocks',
+        'l10n_utils.template.lang_blocks'
+    ],
+    # Make None in templates render as ''
+    'finalize': lambda x: x if x is not None else '',
+    'auto_reload': True,
+}
 
 # Bundles is a dictionary of two dictionaries, css and js, which list css files
 # and js files that can be bundled together by the minify app.
@@ -311,6 +312,7 @@ MINIFY_BUNDLES = {
         ),
         'mozorg-resp': (
             'js/libs/jquery-1.7.1.min.js',
+            'js/global.js',
             'js/nav-main-resp.js',
             'js/footer-email-form.js',
         ),
@@ -368,17 +370,11 @@ MIDDLEWARE_CLASSES = (
     'mozorg.middleware.MozorgRequestTimingMiddleware',
     'django_statsd.middleware.GraphiteMiddleware',
     'funfactory.middleware.LocaleURLMiddleware',
-    #'multidb.middleware.PinningRouterMiddleware',
     'django.middleware.common.CommonMiddleware',
-    #'mozorg.middleware.NoVarySessionMiddleware',
-    #'django.contrib.auth.middleware.AuthenticationMiddleware',
-    #'session_csrf.CsrfMiddleware',  # Must be after auth middleware.
-    #'django.contrib.messages.middleware.MessageMiddleware',
     'commonware.middleware.FrameOptionsHeader',
-    #'mobility.middleware.DetectMobileMiddleware',
-    #'mobility.middleware.XMobileMiddleware',
     'mozorg.middleware.CacheMiddleware',
-    'dnt.middleware.DoNotTrackMiddleware'
+    'mozorg.middleware.NewsletterMiddleware',
+    'dnt.middleware.DoNotTrackMiddleware',
 )
 
 INSTALLED_APPS = (

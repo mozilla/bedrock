@@ -9,17 +9,15 @@ of terms and example values for them:
 * locale: a string in the form of 'en-US'
 """
 
-import re
 import urlparse
 from distutils.version import StrictVersion
 from os import path
 
-import feedparser
 import jingo
 import jinja2
-from django import shortcuts
 from django.conf import settings
 from django.core.cache import cache
+
 from funfactory.urlresolvers import reverse
 from product_details import product_details
 

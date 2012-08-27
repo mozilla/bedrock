@@ -43,6 +43,9 @@ $(document).ready(function() {
       // Enable keyboard navigation
       $(this).keydown(function(event) {
         var target;
+        if(event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) {
+          return true;
+        }
         switch (event.keyCode) {
           case 33: // Page Up
           case 36: // Home
