@@ -534,6 +534,17 @@ nav.menu-bar {
         font-size: 18px;
     }
 
+    .field-privacy {
+        font-size: @smallFontSize;
+        input {
+            float: left;
+        }
+        .title {
+            display: block;
+            padding-left: 25px;
+        }
+    }
+
 }
 
 #footer-email-form.thank {
@@ -588,8 +599,14 @@ nav.menu-bar {
     p {
         margin-bottom: @baseLine / 2;
     }
+    
+    .footer-logo,
+    .footer-license {
+        .span(3);
+    }
 
     .footer-nav {
+        .span(2);
         .open-sans;
 
         li {

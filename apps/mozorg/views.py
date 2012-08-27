@@ -26,17 +26,7 @@ def handle_contribute_form(request, form):
 
 
 @csrf_exempt
-def contribute_page(request):
-    form = ContributeForm(request.POST or None)
-    success = handle_contribute_form(request, form)
-    return l10n_utils.render(request,
-                             'mozorg/contribute-page.html',
-                             {'form': form,
-                              'success': success})
-
-
-@csrf_exempt
-def contribute(request):
+def contribute(request, template, return_to_form):
     def has_contribute_form():
         return (request.method == 'POST' and
                 'contribute-form' in request.POST)
@@ -58,6 +48,10 @@ def contribute(request):
     if has_contribute_form():
         form = ContributeForm(request.POST)
         success = handle_contribute_form(request, form)
+        if success:
+            # If form was submitted successfully, return a new, empty
+            # one.
+            form = ContributeForm()
     else:
         form = ContributeForm()
 
@@ -88,7 +82,9 @@ def contribute(request):
                              {'form': form,
                               'success': success,
                               'newsletter_form': newsletter_form,
-                              'newsletter_success': newsletter_success})
+                              'newsletter_success': newsletter_success,
+                              'return_to_form': return_to_form})
+
 
 
 def contribute_send(data, locale='en-US'):
@@ -143,15 +139,8 @@ def contribute_autorespond(request, data, locale='en-US'):
     """Send an auto-respond email based on chosen field of interest and locale.
 
     You can add localized responses by creating email messages in
-    <EMAIL_TEMPLATE_PATH>/<locale>/<category.txt>
-    e.g. emails/el/qa.txt for a QA response in greek.
+    mozorg/emails/<category.txt>
 
-    To add localized Reply-To header, add the local contributor's email to the
-    dictionary as in the following example
-    e.g
-    replies = { 'Support': {'all': 'all@example.com', 'el': 'el@example.com'} }
-    Now all emails for Support get send with 'Reply-To: all@example.com' except
-    the greek ones which get send with 'Reply-To: el@example.com'.
     """
 
     replies = {
@@ -173,17 +162,17 @@ def contribute_autorespond(request, data, locale='en-US'):
     }
 
     msgs = {
-        'Support': 'emails/support.txt',
-        'QA': 'emails/qa.txt',
-        'Add-ons': 'emails/addons.txt',
-        'Marketing': 'emails/marketing.txt',
-        'Design': 'emails/design.txt',
-        'Documentation': 'emails/documentation.txt',
-        'Firefox Suggestions': 'emails/suggestions.txt',
-        'Firefox Issue': 'emails/issue.txt',
-        'Webdev': 'emails/webdev.txt',
-        'Education': 'emails/education.txt',
-        ' ': 'emails/other.txt'
+        'Support': 'mozorg/emails/support.txt',
+        'QA': 'mozorg/emails/qa.txt',
+        'Add-ons': 'mozorg/emails/addons.txt',
+        'Marketing': 'mozorg/emails/marketing.txt',
+        'Design': 'mozorg/emails/design.txt',
+        'Documentation': 'mozorg/emails/documentation.txt',
+        'Firefox Suggestions': 'mozorg/emails/suggestions.txt',
+        'Firefox Issue': 'mozorg/emails/issue.txt',
+        'Webdev': 'mozorg/emails/webdev.txt',
+        'Education': 'mozorg/emails/education.txt',
+        ' ': 'mozorg/emails/other.txt'
         }
 
     subject = 'Inquiry about Mozilla %s' % data['interest']

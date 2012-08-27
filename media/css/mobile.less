@@ -109,9 +109,11 @@ a.go:after {
 @media only screen and (max-width: @breakTablet) {
 
     #promo {
-        padding: @baseLine @gridColumnWidthNarrow;
+        padding: @baseLine (@gridColumnWidthNarrow / 2);
         background-image: none;
         text-align: center;
+        margin-left: -10px;
+        margin-right: -10px;
     }
     
     .main-column {

@@ -4,6 +4,8 @@ src/basket-client
 src/feedparser/feedparser
 src/django-recaptcha
 src/django-dnt
+src/django-statsd
+src/pystatsd
 packages/requests
 packages/certifi
 packages/chardet
