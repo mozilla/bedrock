@@ -238,13 +238,13 @@ input[type=email],
 input[type=password],
 input[type=text] {
     height: @baseLine;
-    background: #fafafa;
-    border-color: #dbdbdb;
+    background: #fff;
+    border-color: #b2b2b2;
     border-style: solid;
     border-width: 1px;
-    @shadow: 0 2px 1px rgba(0,0,0,0.1) inset;
+    @shadow: 0 1px rgba(255,255,255,0.5);
     padding: (@baseLine / 6)  (@baseLine / 3);
-    .border-radius(6px);
+    .border-radius(3px);
     .box-shadow(@shadow);
     .transition(all linear .1s);
 }
@@ -254,9 +254,10 @@ textarea { height: auto; }
 textarea:focus,
 input[type=email]:focus,
 input[type=password]:focus,
-input[type=text]:focus {
-    border-color: #bbb;
-    @shadow: 0 2px 1px rgba(0,0,0,0.1) inset, 0 0 8px 0 rgba(103,167,208,0.6);
+input[type=text]:focus,
+input.focus {
+    border-color: #42a4e0;
+    @shadow: 0 0 0 2px rgba(73,173,227,0.4);
     .box-shadow(@shadow);
     .transition(all linear .1s);
 }
@@ -283,6 +284,36 @@ input[type=text]:focus {
         border-color: rgb(175,50,50);
         @shadow: 0 2px 1px rgba(0,0,0,0.1) inset, 0 0 8px 0 rgba(175,50,50,.6);
         .box-shadow(@shadow);
+    }
+}
+
+.tooltip {
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 0 1px #333;
+    text-align: center;
+    line-height: 16px;
+    background-color: #aa1401;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(218, 81, 50, 0.9)), to(rgba(169, 19, 0, 1)));
+    background-image: -webkit-linear-gradient(top, rgba(218, 81, 50, 0.9), rgba(169, 19, 0, 1));
+    background-image:    -moz-linear-gradient(top, rgba(218, 81, 50, 0.9), rgba(169, 19, 0, 1));
+    background-image:     -ms-linear-gradient(top, rgba(218, 81, 50, 0.9), rgba(169, 19, 0, 1));
+    background-image:      -o-linear-gradient(top, rgba(218, 81, 50, 0.9), rgba(169, 19, 0, 1));
+    background-image:         linear-gradient(top, rgba(218, 81, 50, 0.9), rgba(169, 19, 0, 1));
+    border-radius: 4px;
+    padding: 10px 15px;
+    box-shadow: 0 1px #666;
+    max-width: 275px;
+    position: relative;
+    &:after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 15px;
+        border-top: 10px solid blue;
+        border-top-color: #a91300;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
     }
 }
 
