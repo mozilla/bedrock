@@ -28,19 +28,6 @@
   websites, products, or services.</p>
 </header>
 
-<nav id="top" class="privacy-menu-bar billboard">
-  <ul>
-    <li><a href="#your-information">Your Information</a></li>
-    <li><a href="#product-features">Product Features</a></li>
-    <li><a href="#security">Security</a></li>
-    <li><a href="#misc">Miscellaneous</a></li>
-    <li><a href="#policy-changes">Policy Changes</a></li>
-    <li><a href="#more-information">Contact Details</a></li>
-    <li><a href="#appendix">Appendix</a></li>
-    <li><a href="#past-policies">Prior Policies</a></li>
-  </ul>
-</nav>
-
 <div id="main-content">
   <div class="row">
     <article  class="main-column" role="main">
@@ -485,6 +472,24 @@
   </div>
 </div>
 
+<section class="privacy-toc">
+  <h4>Overview</h4>
+  <ul>
+    <li><a href="#your-information">Your Information</a></li>
+    <li><a href="#product-features">Product Features</a></li>
+    <li><a href="#security">Security</a></li>
+    <li><a href="#misc">Miscellaneous</a></li>
+    <li><a href="#policy-changes">Policy Changes</a></li>
+    <li><a href="#more-information">Contact Details</a></li>
+    <li><a href="#appendix">Appendix</a></li>
+    <li><a href="#past-policies">Prior Policies</a></li>
+  </ul>
+</section>
+
 {% endblock %}
 
 {% block email_form %}{% endblock %}
+
+{% block js %}
+  {{ js('privacy') }}
+{% endblock %}
