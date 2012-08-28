@@ -71,6 +71,9 @@ MINIFY_BUNDLES = {
         'webmaker': (
             'css/webmaker.less',
         ),
+        'grants': (
+            'css/grants.less',
+        ),
         'collusion': (
             'css/collusion.less',
         ),
@@ -314,6 +317,7 @@ MINIFY_BUNDLES = {
         ),
         'mozorg-resp': (
             'js/libs/jquery-1.7.1.min.js',
+            'js/global.js',
             'js/nav-main-resp.js',
             'js/footer-email-form.js',
         ),
@@ -323,6 +327,11 @@ MINIFY_BUNDLES = {
         'partnerships': (
             'js/libs/jquery.validate.js',
             'js/partnerships.js',
+        ),
+        'privacy': (
+            'js/util.js',
+            'js/mozilla-pager.js',
+            'js/privacy.js',
         ),
         'styleguide': (
             'js/styleguide.js',
@@ -408,6 +417,7 @@ INSTALLED_APPS = (
     # Local apps
     'b2g',
     'webmaker',
+    'grants',
     'collusion',
     'firefox',
     'marketplace',
@@ -463,3 +473,11 @@ RECAPTCHA_PUBLIC_KEY = ''
 RECAPTCHA_PRIVATE_KEY = ''
 
 TEST_RUNNER = 'test_utils.runner.NoDBTestSuiterunner'
+
+
+def lazy_email_backend():
+    from django.conf import settings
+    return ('django.core.mail.backends.console.EmailBackend' if settings.DEV
+            else 'django.core.mail.backends.smtp.EmailBackend')
+
+EMAIL_BACKEND = lazy(lazy_email_backend, str)()
