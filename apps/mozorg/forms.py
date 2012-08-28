@@ -3,11 +3,12 @@
 from django import forms
 from django.forms import widgets
 from django.utils.safestring import mark_safe
-from django.core.validators import EMPTY_VALUES
+
 from captcha.fields import ReCaptchaField
 from l10n_utils.dotlang import _
 from product_details import product_details
 
+from .email_contribute import INTEREST_CHOICES
 FORMATS = (('H', 'HTML'), ('T', 'Text'))
 
 
@@ -68,36 +69,16 @@ class NewsletterCountryForm(NewsletterForm):
         self.fields['country'] = forms.ChoiceField(choices=regions,
                                                    initial=locale)
 
-INTEREST_CHOICES = (('', _('Area of interest?')),
-                    ('Support', _('Helping Users')),
-                    ('QA', _('Testing and QA')),
-                    ('Coding', _('Coding')),
-                    ('Marketing', _('Marketing')),
-                    ('Localization', _('Localization and Translation')),
-                    ('Webdev', _('Web Development')),
-                    ('Add-ons', _('Add-ons')),
-                    ('Design', _('Visual Design')),
-                    ('Students', _('Student Reps')),
-                    ('Documentation', _('Developer Documentation')),
-                    ('Accessibility', _('Accessibility')),
-                    ('IT', _('Systems Administration')),
-                    ('Research', _('User Research')),
-                    ('Education', 'Education'),
-                    ('Thunderbird', _('Thunderbird')),
-                    (' ', _('Other')),
-                    ('Firefox Suggestions', _('I have a suggestion for Firefox')),
-                    ('Firefox Issue', _('I need help with a Firefox issue')))
-
 
 class ContributeForm(forms.Form):
-    email = forms.EmailField(widget=EmailInput(attrs={'required':'true'}))
+    email = forms.EmailField(widget=EmailInput(attrs={'required': 'true'}))
     privacy = forms.BooleanField(widget=PrivacyWidget)
     newsletter = forms.BooleanField(required=False)
     interest = forms.ChoiceField(
         choices=INTEREST_CHOICES,
-        widget=forms.Select(attrs={'required':'true'}))
+        widget=forms.Select(attrs={'required': 'true'}))
     comments = forms.CharField(
-        widget=forms.widgets.Textarea(attrs={'required':'true',
-                                             'rows':'',
-                                             'cols':''}))
-    captcha = ReCaptchaField(attrs={'theme':'clean'})
+        widget=forms.widgets.Textarea(attrs={'required': 'true',
+                                             'rows': '',
+                                             'cols': ''}))
+    captcha = ReCaptchaField(attrs={'theme': 'clean'})
