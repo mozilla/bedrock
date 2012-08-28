@@ -106,3 +106,10 @@
 .offset_narrow(@columns) {
     margin-left: ((@gridColumnWidthNarrow + @gridGutterWidth) * @columns) + (@gridGutterWidth * 0.5);
 }
+
+.button-hover-box-shadow(@color: #ffffff) {
+    @shadow:  @shadowPartBottom,
+              @shadowPartBottomInset,
+              inset 0px 12px 24px 2px saturate(@color, 10%);
+    .box-shadow(@shadow);
+}

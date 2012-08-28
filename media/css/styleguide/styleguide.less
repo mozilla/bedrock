@@ -1,0 +1,180 @@
+@import "../sandstone/variables-resp.less";
+@import "../sandstone/mixins-resp.less";
+
+@font-face {
+    font-family: 'Open Sans Light';
+    src: url('/media/fonts/OpenSans-LightItalic-webfont.eot');
+    src: url('/media/fonts/OpenSans-LightItalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/media/fonts/OpenSans-LightItalic-webfont.woff') format('woff'),
+         url('/media/fonts/OpenSans-LightItalic-webfont.ttf') format('truetype'),
+         url('/media/fonts/OpenSans-LightItalic-webfont.svg#OpenSansLightItalic') format('svg');
+    font-weight: normal;
+    font-style: italic;
+}
+
+.divider {
+    padding-bottom: @baseLine * 3;
+    margin-bottom: @baseLine * 2;
+    background: url(/media/img/styleguide/divider.png) 50% 100% no-repeat;
+}
+
+/* {{{ Grid setup */
+
+// Desktop:
+//           (16cols ✕ 60px) =  960
+// +     (15 gutters ✕ 20px) =  300
+// + (2 page gutters ✕ 20px) =   40
+// --------------------------------
+//                           = 1300px
+
+@widthDesktop:            1300px;
+
+// Gutter width remains the same for all grids
+@gridGutterWidth:         20px;
+
+// Default grid: 12 columns at 60px
+@gridColumns:             16;
+@gridColumnWidth:         60px;
+@gridRowWidth:            (@gridColumns * @gridColumnWidth) + (@gridGutterWidth * (@gridColumns - 1));
+
+// Column spans for style guide column widths
+.span_guide(@columns) {
+    float: left;
+    width: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1));
+    margin: 0 (@gridGutterWidth / 2);
+}
+
+.offset_guide(@columns) {
+    margin-left: ((@gridColumnWidth + @gridGutterWidth) * @columns) + (@gridGutterWidth * 0.5);
+}
+
+#wrapper {
+    width: @widthDesktop;
+    .clearfix;
+}
+
+#sidebar {
+    .span_guide(2);
+    margin-left: @gridGutterWidth;
+}
+
+#content_area {
+    .span_guide(12);
+    width: (@gridColumnWidth * 12) + (@gridGutterWidth * 12);
+    margin-left: @gridColumnWidth + @gridGutterWidth;
+}
+
+/* }}} */
+/* {{{ Sidebar */
+
+#sidebar {
+    margin-top: @baseLine * 1.5;
+    margin-bottom: @baseLine;
+    h2 {
+        text-align: center;
+        font-size: 24px;
+        img {
+            display: block;
+            margin: 0 auto 5px auto;
+        }
+        a {
+            opacity: 0.5;
+            color: @textColorSecondary;
+            &:hover,
+            &:active,
+            &:focus {
+                opacity: 1;
+                text-decoration: none;
+            }
+        }
+    }
+    nav {
+        text-transform: uppercase;
+        .open-sans-light;
+        font-size: 11px;
+        margin: @baseLine auto;
+        ul {
+            margin: 0;
+            li {
+                list-style-type: none;
+                margin: 0;
+                &.current {
+                    background: rgba(255,255,255,0.5);
+                }
+            }
+        }
+        a,b {
+            display: block;
+            padding: (@baseLine / 4) (@baseLine * .75);
+            color: @textColorSecondary;
+        }
+        li li a,
+        li li b {
+            padding-left: (@baseLine);
+        }
+        li li li a,
+        li li li b {
+            padding-left: (@baseLine * 1.25);
+        }
+        b {
+            font-weight: normal;
+            color: #000;
+        }
+    }
+}
+
+/* }}} */
+/* {{{ Header / Breadcrumbs and Next/Prev  */
+
+h1 {
+    .span(12);
+    margin-bottom: @baseLine / 3;
+}
+
+#subnav {
+    .span(12);
+    text-transform: uppercase;
+    .open-sans-light;
+    font-size: 11px;
+    a {
+        display: inline-block;
+        min-height: 20px;
+        padding: 4px 22px 4px 0;
+        position: relative;
+    }
+    #nextprev {
+        float: right;
+        text-align: right;
+        margin-bottom: @baseLine;
+        a {
+            padding: 4px 10px 4px 18px;
+            background-repeat: no-repeat;
+            background-position: 0 50%;
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAOCAYAAAASVl2WAAABKklEQVR42m2QvWuDUBTF061QCMWW0FIav+gghdAhg246ODm4CBqJiENEHZxcsnUNBFoohf4tTk7ZHJwCNg1VabFCSpqhdBH7XiHF1gznHbi/cy+P06qqqqFut4uRJPkF/HwXPKNpeiMIwjtFUZ9/IIqiJwzDbIbDYSGK4ioMw9s6PAabH5qm5ZIkFbPZ7A7MkR+IYRgCNte6rr/IspwHQXAP5h3IIGz3+/31aDTKTNPMfN9/AOB0e7nleV6H47hiPB4vQCBxHEeo/ws++0mSTAaDQea67hPP828EQVzVA1AHaZpOFEVJLctasiwLQ5fbwG8ojuOpqqrPtm0/glCO4/jF/6La8/l8CnpYGoax6PV6q11VH0ZRdAMuvNaKaggpy/Ia+FED1rQH/RtK4g7tU4Qk4QAAAABJRU5ErkJggg==);
+        }
+        a.next {
+            padding: 4px 18px 4px 10px;
+            background-position: 100% 50%;
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAOCAYAAAD9lDaoAAABL0lEQVR42m3QvUrDUBQH8DopqFGkQ6WQpJkkkwmS4JpAliwZgoV+LO0QMgQyZXMRBH0AdRCfIUvGkDxFoaBtGirmwyK4uIV4zqDobYf/PZx7f4Sc06jrukHT9Emn0/mE2saeDIIDnue/dF3/kCTpHfoWifDYiaLo3jCMVb/fLwGWAJskwrTCMHwwTbMEmAPMGYY5IhGmHQTBY7fbzYbD4ZssywgpEmFo3/efLMtajsfjpSiKGcuy+2uTALiALDzPm6mqmruu2/wHOI471zQtdxxn3uv10qIoruB++y84UxSlgK8gWKRpeo2T49sPOAWQ2bb9DNPNkyRBsPs7HWyaEgRhNRqNXgaDwWw6nd7Aw97aMuM4voOffJ1MJrfQU5s2jjmuquoS6iEJyD1tYd2Ub5JPMvKekz3aAAAAAElFTkSuQmCC);
+        }
+    }
+    #breadcrumbs {
+        margin-bottom: @baseLine;
+        a {
+            margin-right: 10px;
+            background-position: 100% 50%;
+            background-repeat: no-repeat;
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAUCAYAAABWMrcvAAAAr0lEQVR42q3TPwrCMBSA8VSrtSYIglBHcXFysJ7AA4geQFfFA/V4niV+b4rUhCehw6/DCx+U/DHe+wJl055nKGA0EokR5gxWGP8biRJLhltM9CiYYs3CAZXMYmLDChuiE+poZLr3DxZq7IiusP11+aRCiz3RHU6PQujQEj2x6EVqeCR6SZiI9DAryvs9BmlhIx4SpA43CFt+g9NuxPfhXmCHuEZZF1Z5GkM+wqzn/gGPpd1ige/9lgAAAABJRU5ErkJggg==);
+        }
+    }
+}
+
+/* }}} */
+/* {{{ Main Content area  */
+
+#content_area {
+    margin-top: @baseLine * 1.5;
+    margin-bottom: @baseLine;
+}
+
+/* }}} */

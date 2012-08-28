@@ -1,0 +1,89 @@
+{% extends "base-resp.html" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}Mozilla Style Guide{% endblock %}
+{% block body_id %}styleguide{% endblock %}
+{% block body_class %}sand{% endblock %}
+
+{% block site_header %}
+{% endblock %}
+
+{% block site_header_logo %}{% endblock %}
+{% block site_header_nav %}{% endblock %}
+{% block email_form %}{% endblock %}
+
+{% block extrahead %}
+  {{ css('styleguide') }}
+{% endblock %}
+
+{% block js %}
+  {{ js('styleguide') }}
+{% endblock %}
+
+{% block content %}
+
+{% block sidebar %}
+  <div id="sidebar">
+  <h2><a href="#">
+    <img src="{{ media('/img/styleguide/mozilla.png') }}" height="28" width="107" alt="mozilla">
+    Style guide
+  </a></h2>
+  <nav>
+    <ul>
+      <li class="current"><a href="#">Home</a></li>
+      <li>
+        <b>Websites</b>
+          <ul>
+            <li><b>Sandstone</b>
+            <ul>
+              <li><a href="{{ url('styleguide.sandstone-intro') }}">Overview</a></li>
+              <li><a href="{{ url('styleguide.sandstone-grids') }}">Responsive Grid</a></li>
+              <li><a href="{{ url('styleguide.sandstone-tabzilla') }}">Tabzilla</a></li>
+              <li><a href="{{ url('styleguide.sandstone-typefaces') }}">Typefaces</a></li>
+              <li><a href="{{ url('styleguide.sandstone-colors') }}">Backgrounds &amp; Color</a></li>
+              <li><a href="{{ url('styleguide.sandstone-buttons') }}">Buttons &amp; Icons</a></li>
+              <li><a href="{{ url('styleguide.sandstone-forms') }}">Forms & Modules</a></li>
+              <li><a href="{{ url('styleguide.sandstone-tables') }}">Tables & Lists</a></li>
+              <li><a href="{{ url('styleguide.sandstone-examples') }}">Examples</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <b>Identity</b>
+        <ul>
+          <li>
+            <b>Firefox</b>
+            <ul>
+              <li><a href="{{ url('styleguide.identity.firefox-branding') }}">Branding</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  </div>
+{% endblock %}
+
+<div id="content_area">
+
+<h1>{% block content_title %}{% endblock%}</h1>
+
+<div id="subnav">
+  {% block next_prev %}
+  <div id="nextprev">
+    <a href="#" class="prev">Prev</a>
+    <a href="#" class="next">Next</a>
+  </div>
+  {% endblock %}
+  {% block breadcrumbs %}
+  <div id="breadcrumbs">
+    <a href="#">Home</a> <a href="#">Etc.</a>
+  </div>
+  {% endblock %}
+</div>
+
+{% block content_area %}{% endblock %}
+</div>
+
+{% endblock %}

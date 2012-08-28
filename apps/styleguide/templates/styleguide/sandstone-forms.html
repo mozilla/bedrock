@@ -1,0 +1,36 @@
+{% extends "styleguide/base.html" %}
+
+{% block body_class %}
+  {{ super() }}
+  sandstone-forms
+{% endblock %}
+
+{% block content_title %}Sandstone forms &amp; modules{% endblock%}
+{% block content_area %}
+<section id="forms">
+  <div class="intro">
+    <h2>Forms</h2>
+    <p></p>
+  </div>
+  <div class="examples">
+    <h3>Standard forms</h3>
+    <p><input type="email" id="input-email" value="user@mozilla.org" /></p>
+    <p><input type="password" id="input-password" class="focus" value="12345678" /></p>
+    <div class="tooltip">
+      This account cannot be logged in with this username and password
+    </div>
+  </div>
+</section>
+
+<section id="modules">
+  <div class="intro">
+    <h2>Call to action modules</h2>
+    <p></p>
+  </div>
+  <div class="examples">
+    <img src="{{ media('/img/styleguide/websites/sandstone/modules.png') }}" alt="Call to action modules examples" id="module-examples" />
+  </div>
+</section>
+
+
+{% endblock %}
