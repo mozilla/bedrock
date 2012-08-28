@@ -317,6 +317,7 @@ MINIFY_BUNDLES = {
         'partnerships': (
             'js/libs/jquery.validate.js',
             'js/partnerships.js',
+            'js/mozilla-input-placeholder.js',
         ),
         'video': (
             'js/mozilla-video-tools.js',
