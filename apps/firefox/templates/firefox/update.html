@@ -128,7 +128,7 @@
 
 
 $(document).ready(function() {
-    var latestVersion = parseInt('3'.split('.')[0], 10);
+    var latestVersion = parseInt('{{ latest_version }} '.split('.')[0], 10);
     var isFirefox = (/\sFirefox/.test(window.navigator.userAgent));
     var headline = $('#main-feature > h1');
     var subheadline = $('#main-feature > h3');
