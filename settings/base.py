@@ -275,8 +275,7 @@ MINIFY_BUNDLES = {
         ),
         'firefox_happy': (
             'js/libs/jquery-1.4.4.min.js',
-            'js/libs/jquery-css-transform.js',
-            'js/libs/jquery-animate-css-rotate-scale.js',
+            'js/firefox/happy.js',
         ),
         'firefox_platforms': (
             'js/mozilla-expanders.js',
@@ -286,8 +285,7 @@ MINIFY_BUNDLES = {
         ),
         'firefox_speed': (
             'js/libs/jquery-1.4.4.min.js',
-            'js/libs/jquery-css-transform.js',
-            'js/libs/jquery-animate-css-rotate-scale.js',
+            'js/firefox/speed.js',
         ),
         'firefox_tech': (
             'js/firefox/technology/tech.js',
@@ -325,8 +323,6 @@ MINIFY_BUNDLES = {
         ),
         'firefox_devices': (
             'js/libs/jquery-1.4.4.min.js',
-            'js/libs/jquery-css-transform.js',
-            'js/libs/jquery-animate-css-rotate-scale.js',
             'js/global.js',
             'js/nav-main.js',
             'js/libs/jquery.cycle.all.js',
