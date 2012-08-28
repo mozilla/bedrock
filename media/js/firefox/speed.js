@@ -58,7 +58,7 @@ $(document).ready(function() {
                             '-webkit-transform' : 'rotate(' + now + 'deg)',
                             '-moz-transform' : 'rotate(' + now + 'deg)',
                             '-o-transform' : 'rotate(' + now + 'deg)',
-                            'MSTransform' : 'rotate(' + now + 'deg)',
+                            'msTransform' : 'rotate(' + now + 'deg)',
                             'transform' : 'rotate(' + now + 'deg)'
                         }
                     );
