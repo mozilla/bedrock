@@ -48,6 +48,10 @@
     margin-left: ((@gridColumnWidth + @gridGutterWidth) * @columns) + (@gridGutterWidth * 0.5);
 }
 
+#outer-wrapper {
+    min-width: @widthDesktop;
+}
+
 #wrapper {
     width: @widthDesktop;
     .clearfix;
@@ -136,6 +140,7 @@ h1 {
     text-transform: uppercase;
     .open-sans-light;
     font-size: 11px;
+    line-height: 20px;
     a {
         display: inline-block;
         min-height: 20px;
@@ -175,6 +180,35 @@ h1 {
 #content_area {
     margin-top: @baseLine * 1.5;
     margin-bottom: @baseLine;
+}
+
+/* }}} */
+/* {{{ Color swatches */
+
+.swatch-card {
+    .span_guide(4);
+    margin-left: 0;
+    margin-right: 20px;
+    padding-bottom: @baseLine;
+    .swatch {
+        border: 10px solid #fff;
+        width: 120px;
+        height: 120px;
+        float: left;
+        margin-right: 20px;
+    }
+    h5 {
+        font-size: 28px;
+    }
+    p {
+        margin-bottom: @baseLine / 2;
+    }
+    td,tr {
+        font-size: 12px;
+    }
+    td {
+        padding-right: 20px;
+    }
 }
 
 /* }}} */
