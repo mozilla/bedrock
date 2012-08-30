@@ -26,7 +26,7 @@
     {{ js('site') }}
   </head>
 
-  <body id="{% block body_id %}{% endblock %}" class="html-{{ DIR }} {% block body_class %}{% endblock %}">
+  <body id="{% block body_id %}{% endblock %}" class="html-{{ DIR }} {% block body_class %}{% endblock %}"{% block body_attrs %}{% endblock %}>
     <div id="outer-wrapper">
     <div id="wrapper">
 

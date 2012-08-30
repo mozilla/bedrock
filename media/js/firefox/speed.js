@@ -9,7 +9,8 @@ $(document).ready(function() {
     var needle = $('#needle');
     var gauge = $('#gauge');
     var angle = 0;
-    var latestVersion = parseInt('{{latest_version}}'.split('.')[0], 10);
+    var latestVersion = $('body').attr('data-latest-firefox');
+    latestVersion = parseInt(latestVersion.split('.')[0], 10);
     var isFirefox = (/\sFirefox/.test(window.navigator.userAgent));
 
     $.easing.easeInOutSine = function (x, t, b, c, d) {
