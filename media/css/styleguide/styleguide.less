@@ -212,3 +212,26 @@ h1 {
 }
 
 /* }}} */
+/* {{{ Big List style */
+
+.big-list {
+    counter-reset: li; /* Initiate a counter */
+    margin: 0 0 20px 0;
+    padding-left: 0;
+    li {
+        position: relative;
+        list-style-type: none;
+        padding: 20px 20px 20px 60px;
+        &:before {
+            content: counter(li); /* Use the counter as content */
+            counter-increment: li; /* Increment the counter by 1 */
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 48px;
+            .open-sans-light;
+        }
+    }
+}
+
+/* }}} */
