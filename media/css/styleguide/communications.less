@@ -58,3 +58,67 @@
 }
 
 /* }}} */
+/* {{{ Communications - Video */
+
+.communications-video {
+    section {
+        .clearfix;
+    }
+    .intro {
+        .span_guide(3);
+    }
+
+    .examples {
+        float: left;
+        .span_guide(9);
+    }
+
+    #intro {
+        .divider;
+        img {
+            .span_guide(9);
+            margin: 0 0 20px 0;
+        }
+        .thumbnails {
+            img {
+                .span_guide(3);
+                margin-bottom: 20px;
+                &:first-child {
+                    margin-left: 0;
+                }
+                &:nth-child(3n+3) {
+                    margin-right: 0;
+                }
+                &:last-child {
+                    .offset_guide(3);
+                    position: relative;
+                    left: -10px;
+                }
+            }
+        }
+    }
+
+    #captioning {
+        .divider;
+        #example-dark,
+        #example-light {
+            width: auto;
+            background: #fff;
+            margin-bottom: 30px;
+            h3 {
+                color: #000;
+                margin: 0;
+                padding: 100px 30px 30px 30px;
+            }
+        }
+        #example-dark {
+            background: #000;
+            h3 {
+                color: #fff;
+            }
+        }
+    }
+
+}
+
+/* }}} */

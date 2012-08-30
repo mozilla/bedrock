@@ -22,4 +22,5 @@ urlpatterns = patterns('',
     page('websites/domains/overview', 'styleguide/websites/domains-overview.html'),
 
     page('communications/presentations', 'styleguide/communications/presentations.html'),
+    page('communications/video', 'styleguide/communications/video.html'),
 )
