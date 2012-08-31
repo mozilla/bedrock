@@ -17,7 +17,7 @@
     {% endif %}
     {% if grant.break_down %}
         <li>
-            <h2>Grant break-down</h2>
+            <h2>Support break-down</h2>
         <ol class='detailed_info'>
         {% for year in grant.break_down %}
             <li class="year">
@@ -30,10 +30,10 @@
             </li>
         {% endfor %}
         </ol>
-        <h3>Total amount:</h3> {{ grant.amount }}
+        <h3>Total support:</h3> {{ grant.amount }}
         </li>
     {% else %}
-        <li><h2>Amount</h2> {{ grant.amount }}</li>
+        <li><h2>Total support</h2> {{ grant.amount }}</li>
         <li><h2>Year</h2> {{ grant.year }}</li>
     {% endif %}
     <li><h2>Focus Area</h2> {{ grant_labels[grant.type] }}</li>
