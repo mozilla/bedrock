@@ -34,96 +34,18 @@
   </a></h2>
   <nav>
     <ul>
-      <li><a href="{{ url('styleguide.home') }}">Home</a></li>
-      <li>
-        <b>Identity</b>
-        <ul>
-          <li>
-            <b>Mozilla</b>
-            <ul>
-              <li><a href="{{ url('styleguide.identity.mozilla-branding') }}">Branding</a></li>
-              <li><a href="{{ url('styleguide.identity.mozilla-color') }}">Color</a></li>
-              <li><a href="{{ url('styleguide.identity.mozilla-innovations') }}">Innovations</a></li>
-            </ul>
-          </li>
-          <li>
-            <b>Firefox Browser</b>
-            <ul>
-              <li><a href="{{ url('styleguide.identity.firefox-branding') }}">Branding</a></li>
-              <li><a href="{{ url('styleguide.identity.firefox-channels') }}">Channels</a></li>
-              <li><a href="{{ url('styleguide.identity.firefox-wordmarks') }}">Wordmarks</a></li>
-              <li><a href="{{ url('styleguide.identity.firefox-color') }}">Color</a></li>
-            </ul>
-          </li>
-          <li>
-            <b>Firefox Family</b>
-            <ul>
-              <li><a href="{{ url('styleguide.identity.firefox-family-overview') }}">Overview</a></li>
-              <li><a href="{{ url('styleguide.identity.firefox-family-platform') }}">Platform</a></li>
-            </ul>
-          </li>
-          <li>
-            <b>Firefox OS</b>
-            <ul>
-              <li><a href="{{ url('styleguide.identity.firefoxos-branding') }}">Branding</a></li>
-            </ul>
-          </li>
-          <li>
-            <b>Marketplace</b>
-            <ul>
-              <li><a href="{{ url('styleguide.identity.marketplace-branding') }}">Branding</a></li>
-              <li><a href="{{ url('styleguide.identity.marketplace-color') }}">Color</a></li>
-            </ul>
-          </li>
-          <li>
-            <b>Webmaker</b>
-            <ul>
-              <li><a href="{{ url('styleguide.identity.webmaker-branding') }}">Branding</a></li>
-              <li><a href="{{ url('styleguide.identity.webmaker-color') }}">Color</a></li>
-            </ul>
-          </li>
-          <li>
-            <b>Thunderbird</b>
-            <ul>
-              <li><a href="{{ url('styleguide.identity.thunderbird-logo') }}">Logo</a></li>
-              <li><a href="{{ url('styleguide.identity.thunderbird-channels') }}">Channels</a></li>
-              <li><a href="{{ url('styleguide.identity.thunderbird-wordmarks') }}">Wordmarks</a></li>
-              <li><a href="{{ url('styleguide.identity.thunderbird-color') }}">Color</a></li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <b>Communications</b>
-        <ul>
-          <li><a href="{{ url('styleguide.communications.presentations') }}">Presentations</a></li>
-          <li><a href="{{ url('styleguide.communications.video') }}">Video</a></li>
-          <li><a href="{{ url('styleguide.communications.typefaces') }}">Typefaces</a></li>
-          <li><a href="{{ url('styleguide.communications.copy-tone') }}">Copy tone</a></li>
-          <li><a href="{{ url('styleguide.communications.copy-rules') }}">Copy rules</a></li>
-          <li><a href="{{ url('styleguide.communications.translation') }}">Translation</a></li>
-        </ul>
-      </li>
-      <li>
-        <b>Websites</b>
-        <ul>
-          <li><b>Sandstone</b>
-            <ul>
-              <li><a href="{{ url('styleguide.websites.sandstone-intro') }}">Overview</a></li>
-              <li><a href="{{ url('styleguide.websites.sandstone-grids') }}">Responsive grid</a></li>
-              <li><a href="{{ url('styleguide.websites.sandstone-tabzilla') }}">Tabzilla</a></li>
-              <li><a href="{{ url('styleguide.websites.sandstone-typefaces') }}">Typefaces</a></li>
-              <li><a href="{{ url('styleguide.websites.sandstone-colors') }}">Backgrounds &amp; color</a></li>
-              <li><a href="{{ url('styleguide.websites.sandstone-buttons') }}">Buttons &amp; icons</a></li>
-              <li><a href="{{ url('styleguide.websites.sandstone-forms') }}">Forms & modules</a></li>
-              <li><a href="{{ url('styleguide.websites.sandstone-tables') }}">Tables & lists</a></li>
-              <li><a href="{{ url('styleguide.websites.sandstone-examples') }}">Examples</a></li>
-            </ul>
-          </li>
-          <li><a href="{{ url('styleguide.websites.community-overview') }}">Community sites</a></li>
-          <li><a href="{{ url('styleguide.websites.domains-overview') }}">Domain strategy</a></li>
-        </ul>
-      </li>
+    {% for item in hierarchy.children recursive %}
+        <li class="
+        {% if item in node.breadcrumbs %} active{% endif %}
+        {% if item.children %} has-children{% endif %}
+        ">
+        {% if item.url %}<a href="{{ item.url }}">{% endif %}
+          {{ item.display_name }}
+        {% if item.url %}</a>{% endif %}
+        {% if item.children %}
+            <ul>{{ loop(item.children) }}</ul>
+        {% endif %}</li>
+    {% endfor %}
     </ul>
   </nav>
   </div>
@@ -132,6 +54,33 @@
 <div id="content_area">
 
 <h1>{% block content_title %}{% endblock%}</h1>
+
+{% block subnav %}
+<div id="subnav">
+  {% block next_prev %}
+  <div id="nextprev">
+    {% set previous = node.previous_sibling() %}
+    {% if previous %}<a href="{{ previous.url }}" class="prev">{% endif %}
+     Prev
+    {% if previous %}</a>{% endif %}
+
+    {% set next = node.next_sibling() %}
+    {% if next %}<a href="{{ next.url }}" class="next">{% endif %}
+    Next
+    {% if next %}</a>{% endif %}
+  </div>
+  {% endblock %}
+  {% block breadcrumbs %}
+  <div id="breadcrumbs">
+    {% for breadcrumb in node.breadcrumbs %}
+      {% if breadcrumb.url %}<a href="{{ breadcrumb.url }}">{% endif %}
+        {{ breadcrumb.display_name }}
+      {% if breadcrumb.url %}</a>{% endif %}
+    {% endfor %}
+  </div>
+  {% endblock %}
+</div>
+{% endblock %}
 
 {% block content_area %}{% endblock %}
 </div>
