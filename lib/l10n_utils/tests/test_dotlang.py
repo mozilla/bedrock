@@ -3,11 +3,13 @@
 import os
 import unittest
 
-from mock import patch
-from nose.tools import eq_
-
 from django.conf import settings
 from django.core import mail
+
+from mock import patch
+from nose.tools import eq_
+from tower.management.commands.extract import extract_tower_python
+
 from l10n_utils.dotlang import FORMAT_IDENTIFIER_RE, parse, translate
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -54,3 +56,26 @@ class TestDotlang(unittest.TestCase):
         eq_(len(mail.outbox), 1)
         eq_(mail.outbox[0].subject, '[Django] %s is corrupted' % path)
         mail.outbox = []
+
+    @patch.object(settings, 'ROOT', ROOT)
+    def test_extract_message_tweaks_do_not_break(self):
+        """
+        Extraction and translation matching should tweak msgids the same.
+        """
+        clean_string = u'Stuff about many things.'
+        dirty_string = u'Stuff\xa0about\r\nmany\t   things.'
+        trans_string = u'This is the translation.'
+
+        # extraction
+        with open(os.path.join(ROOT, 'test_py_extract.py.txt')) as pyfile:
+            vals = extract_tower_python(pyfile, {'_', None}, [], {}).next()
+        eq_(vals[2], clean_string)
+
+        # translation
+        # path won't exist for en-US as there isn't a dir for that
+        # in locale.
+        result = translate(dirty_string, ['does_not_exist'])
+        eq_(result, dirty_string)
+
+        result = translate(dirty_string, ['tweaked_message_translation'])
+        eq_(result, trans_string)
