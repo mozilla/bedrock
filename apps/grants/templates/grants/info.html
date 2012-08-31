@@ -12,12 +12,43 @@
 
 <ul class="grant_info">
     <li><h2>Grantee</h2> {{ grant.grantee }}</li>
-    <li><h2>Amount</h2> {{ grant.amount }}</li>
-    <li><h2>Year</h2> {{ grant.year }}</li>
+    {% if grant.location %}
+        <li><h2>Location</h2> {{ grant.location }}</li>
+    {% endif %}
+    {% if grant.break_down %}
+        <li>
+            <h2>Grant break-down</h2>
+        <ol class='detailed_info'>
+        {% for year in grant.break_down %}
+            <li class="year">
+                {{ year[0] }}
+                <ol>
+                {% for phase in year[1] %}
+                    <li>{{ phase }}</li>
+                {% endfor %}
+                </ol>
+            </li>
+        {% endfor %}
+        </ol>
+        <h3>Total amount:</h3> {{ grant.amount }}
+        </li>
+    {% else %}
+        <li><h2>Amount</h2> {{ grant.amount }}</li>
+        <li><h2>Year</h2> {{ grant.year }}</li>
+    {% endif %}
     <li><h2>Focus Area</h2> {{ grant_labels[grant.type] }}</li>
 </ul>
 
 {{ grant.description|safe }}
+
+{% if grant.urls %}
+    <h2>Read more at:</h2>
+    <ul>
+        {% for url in grant.urls %}
+            <li><a href="{{ url }}">{{ url }}</a></li>
+        {% endfor %}
+    </ul>
+{% endif %}
 
 <a href="{{ url('grants') }}#grants-data">Back to all grants</a>
 

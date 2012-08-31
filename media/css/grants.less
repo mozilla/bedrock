@@ -76,15 +76,35 @@
         margin-left: 0;
         color: #484848;
     }
-    h2 {
+    h2, h3 {
         display: inline-block;
         font-size: 16px;
         margin-bottom: 0;
         margin-right: 5px;
         font-weight: normal;
     }
-    h2:after {
+    h2:after, h3:after {
         content: ":"
+    }
+    .detailed_info {
+        padding-bottom: 12px;
+        margin-bottom: 12px;
+        border-bottom: 1px solid darken(@background, 10%);
+        overflow: hidden;
+        ol {
+            margin-left: 24px;
+            margin-bottom: 0;
+            li {
+                color: #484848;
+            }
+        }
+        .year {
+            width: 50%;
+            float: left;
+            &:nth-child(odd) {
+            clear: left;
+            }
+        }
     }
 }
 
