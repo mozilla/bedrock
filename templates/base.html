@@ -57,6 +57,7 @@
     {% block content %}{% endblock %}
 
     {% block email_form %}
+      {% if LANG.startswith('en') %}
         {% if not request.newsletter_success %}
           {% if request.newsletter_form.errors %}
           <div id="footer-email-errors">
@@ -75,7 +76,8 @@
           {% endif %}
 
         <form class="billboard{% if request.newsletter_form.errors %} has-errors{% endif%}"
-          id="footer-email-form" action="#footer-email-form" method="post">
+          id="footer-email-form" action="#footer-email-form" method="post"
+          onsubmit="dcsMultiTrack('DCS.dcsuri','/signmeup.button','WT.ti','Sign%20Me%20Up','WT.dl','26');">
           <input type="hidden" name="newsletter-footer" value="Y" />
           <input type="hidden" name="newsletter"
             value="{% block email_form_newsletter %}mozilla-and-you{% endblock %}" />
@@ -108,9 +110,9 @@
           <h3>{{_('Thank you for signing up!')}}</h3>
         </div>
         {% endif %}
+      {% endif %}
     {% endblock %}
-
-      </div><!-- close #wrapper -->
+    </div><!-- close #wrapper -->
 
     {% block site_footer %}
       <footer id="colophon">
@@ -122,11 +124,11 @@
 
           <div class="footer-license">
               <p>
-		{% trans url='/foundation/licensing/website-content.html' %}
-		Portions of this content are ©1998–{{ current_year }} by individual
+                {% trans url='/foundation/licensing/website-content.html' %}
+                Portions of this content are ©1998–{{ current_year }} by individual
                 mozilla.org contributors. Content available under
-		a <a href="{{ url }}">Creative Commons license</a>.
-		{% endtrans %}
+                a <a href="{{ url }}">Creative Commons license</a>.
+                {% endtrans %}
               </p>
               <p>
                 <a href="{{ url('mozorg.contribute_page') }}">{{_('Contribute to this page')}}</a>

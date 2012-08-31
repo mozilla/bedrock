@@ -19,7 +19,7 @@
       <div id="details-content">
         <p>{{ _('We recommend:') }}</p>
         <ul>
-          <li>{{ _('Upgrading your <a %s>operating system</a>')|format('href="http://windows.microsoft.com"') }}</li>
+          <li>{{ _('Upgrading your <a %s>operating system</a>')|format('href="http://windows.microsoft.com"'|safe) }}</li>
           <li>{{ _('Downloading a compatible browser') }}</li>
         </ul>
         <p><a href="http://support.mozilla.org/kb/firefox-no-longer-works-windows-2000">{{ _('Learn More') }}</a></p>
