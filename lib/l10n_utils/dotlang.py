@@ -16,6 +16,9 @@ from django.core.cache import cache
 from django.utils import translation
 from django.utils.functional import lazy
 
+from tower.management.commands.extract import tweak_message
+
+
 FORMAT_IDENTIFIER_RE = re.compile(r"""(%
                                       (?:\((\w+)\))? # Mapping key
                                       s)""", re.VERBOSE)
@@ -70,6 +73,8 @@ def translate(text, files):
     """Search a list of .lang files for a translation"""
     lang = fix_case(translation.get_language())
 
+    tweaked_text = tweak_message(text)
+
     for file_ in files:
         key = "dotlang-%s-%s" % (lang, file_)
 
@@ -80,14 +85,14 @@ def translate(text, files):
             trans = parse(path)
             cache.set(key, trans, settings.DOTLANG_CACHE)
 
-        if text in trans:
+        if tweaked_text in trans:
             original = FORMAT_IDENTIFIER_RE.findall(text)
-            translated = FORMAT_IDENTIFIER_RE.findall(trans[text])
+            translated = FORMAT_IDENTIFIER_RE.findall(trans[tweaked_text])
             if original != translated:
-                message = '%s\n%s' % (text, trans[text])
+                message = '%s\n%s' % (text, trans[tweaked_text])
                 mail_error(file_, message)
                 return text
-            return trans[text]
+            return trans[tweaked_text]
     return text
 
 
@@ -98,7 +103,9 @@ def _(text, *args):
         text = text % args
     return text
 
+
 _lazy = lazy(_, unicode)
+
 
 def get_lang_path(path):
     """Generate the path to a lang file from a django path.
