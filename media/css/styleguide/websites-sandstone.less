@@ -100,25 +100,6 @@
     #tabzilla-desktop {
         .span_guide(12);
     }
-    .big-list {
-        counter-reset: li; /* Initiate a counter */
-        margin: 0;
-        padding-left: 0;
-        li {
-            position: relative;
-            list-style-type: none;
-            padding: 20px 20px 20px 60px;
-            &:before {
-                content: counter(li); /* Use the counter as content */
-                counter-increment: li; /* Increment the counter by 1 */
-                position: absolute;
-                top: 0;
-                left: 0;
-                font-size: 48px;
-                .open-sans-light;
-            }
-        }
-    }
     #requirements,
     #installation,
     #testing {
@@ -187,31 +168,6 @@
     }
     .examples {
         .span_guide(9);
-        .swatch-card {
-            .span_guide(4);
-            margin-left: 0;
-            margin-right: 20px;
-            padding-bottom: @baseLine;
-            .swatch {
-                border: 10px solid #fff;
-                width: 120px;
-                height: 120px;
-                float: left;
-                margin-right: 20px;
-            }
-            h5 {
-                font-size: 28px;
-            }
-            p {
-                margin-bottom: @baseLine / 2;
-            }
-            td,tr {
-                font-size: 12px;
-            }
-            td {
-                padding-right: 20px;
-            }
-        }
     }
     #swatch-mozilla .swatch {
         #gradient > .vertical(#D7D3C8, #F6F4EC);
@@ -347,6 +303,41 @@
         }
         p {
             .span_guide(6);
+        }
+    }
+    #examples {
+        float: left;
+        width: 100%;
+        h3 {
+            font-style: italic;
+            .span_guide(12);
+            margin-top: 40px;
+        }
+        a {
+            display: block;
+            .span_guide(6);
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+    }
+}
+
+/* }}} */
+/* {{{ Community sites  */
+
+.community-overview {
+    #intro {
+        float: left;
+        width: 100%;
+        h2 {
+            .span_guide(3);
+        }
+        div {
+            .span_guide(9);
+        }
+        img {
+            position: relative;
+            left: -36px;
         }
     }
     #examples {
