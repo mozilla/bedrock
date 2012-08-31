@@ -180,7 +180,7 @@ GRANTS = [
         "open-source-technology",
         "$38'000",
         2010,
-        '<p>Mozilla offered this grant in support of <a href="http://projects.gnome.org/outreach/a11y/">GNOME\'s Outreach Program for Accessibility</a>. The <a href="http://www.gnome.org/">GNOME Foundation</a> sponsors the GNOME project to provide a free desktop environment for Linux systems. Mozilla and GNOME have been longtime collaborators on open source and accessibility issues.</p>',
+        '<p>Mozilla offered this grant in support of <a href="http://projects.gnome.org/outreach/a11y/">GNOME\'s Outreach Program for Accessibility</a>. The <a href="http://www.gnome.org/">GNOME Foundation</a> sponsors the GNOME project to provide a free desktop environment for Linux systems. Mozilla and GNOME have been longtime collaborators on open source and accessibility issues.</p><p>See the <a href="reports/gnome-haeger-report/">grant final report</a> for more details.</p>',
         [
             (2008, ('Orca rich document browsing extension: $8,000',)),
             (2009, ('GNOME Outreach Program: Accessibility: $10,000', 'CSUN Accessibility Conference: $10,000')),
@@ -344,7 +344,7 @@ GRANTS = [
         "free-culture-community",
         "$10'00",
         2010,
-        '<p>In a crisis environment, maintaining lines of communication is critically important. <a href="http://www.ushahidi.com/">Ushahidi</a> developed an open source platform that enables citizen reporting in crisis situations. A deadly earthquake struck Chile on February 27, 2010, cutting off many vulnerable people from traditional sources of information. Mozilla awarded a grant to enable Ushahidi volunteers to train Chilean civilians and government officials to utilize the Ushahidi platform during the relief effort.</p>',
+        '<p>In a crisis environment, maintaining lines of communication is critically important. <a href="http://www.ushahidi.com/">Ushahidi</a> developed an open source platform that enables citizen reporting in crisis situations. A deadly earthquake struck Chile on February 27, 2010, cutting off many vulnerable people from traditional sources of information. Mozilla awarded a grant to enable Ushahidi volunteers to train Chilean civilians and government officials to utilize the Ushahidi platform during the relief effort.</p><p>See the <a href="reports/ushahidi-chile-report/">grant final report</a> for more details.</p>',
         "",
         [
             'http://blog.ushahidi.com/index.php/2010/03/15/mozilla-foundation-supports-ushahidi-chile/',
