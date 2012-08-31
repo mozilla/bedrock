@@ -14,6 +14,7 @@
         }
     }
     #guidelines {
+        float: left;
         .divider;
         #guidelines-intro {
             .span_guide(3);
@@ -44,4 +45,154 @@
     }
 }
 
+/* }}} */
+/* {{{ Thunderbird - Channels  */
+
+.thunderbird-channels {
+    #intro {
+        float: left;
+        .divider;
+        h2 {
+            .span_guide(3);
+        }
+        p {
+            .span_guide(8);
+        }
+    }
+    #thunderbird,
+    #thunderbird-beta,
+    #thunderbird-earlybird {
+        .divider;
+    }
+    #thunderbird,
+    #thunderbird-beta,
+    #thunderbird-earlybird,
+    #thunderbird-daily {
+        float: left;
+        h2 {
+            .span_guide(2);
+            font-size: 26px;
+        }
+        .channel {
+            .span_guide(3);
+        }
+        .logo {
+            .span_guide(4);
+            img {
+                background-color: #fff;
+                padding: 10px;
+            }
+        }
+        .download {
+            .span_guide(3);
+            span {
+                display: block;
+                font-size: 18px;
+            }
+            p {
+                font-size: @smallFontSize;
+                font-style: italic;
+            }
+        }
+        .button-sand, .button-sand:link, .button-sand:visited {
+            padding: 0 12px;
+        }
+    }
+}
+
+/* }}} */
+/* {{{ Thunderbird - Wordmarks  */
+
+.thunderbird-wordmarks {
+    #intro {
+        float: left;
+        .divider;
+        h2 {
+            .span_guide(3);
+        }
+        p {
+            .span_guide(8);
+        }
+    }
+    #thunderbird,
+    #thunderbird-beta,
+    #thunderbird-earlybird {
+       .divider;
+    }
+    #thunderbird,
+    #thunderbird-beta,
+    #thunderbird-earlybird,
+    #thunderbird-daily {
+        float: left;
+        .build {
+            .span_guide(3);
+        }
+        .logo {
+            .span_guide(6);
+            position: relative;
+            img {
+                background-color: #fff;
+                margin-bottom: 10px;
+                padding: 10px;
+            }
+            img.box-arrow {
+                background: none;
+                position: absolute;
+                top: 0;
+                left: -20px;
+            }
+        }
+        .download {
+            .span_guide(3);
+            span {
+                display: block;
+                font-size: 18px;
+            }
+            p {
+                margin-bottom: 0;
+            }
+        }
+        .button-sand, .button-sand:link, .button-sand:visited {
+            padding: 0 12px;
+        }
+    }
+}
+
+/* }}} */
+/* {{{ Thunderbird - Colors  */
+
+.thunderbird-color {
+    #intro {
+        float: left;
+        .divider;
+        h2 {
+            .span_guide(3);
+        }
+        p {
+            .span_guide(8);
+        }
+    }
+    .swatch-card {
+        .span_guide(6);
+        position: relative;
+        margin: 0 0 20px 0;
+        .button-sand {
+            position: absolute;
+            top: 0;
+            right: 75px;
+            background: url(/media/img/styleguide/download-arrow.png) center right no-repeat;
+            padding-right: 40px
+        }
+    }
+    .clear {
+        clear: left;
+    }
+    #swatch-blue .swatch { background-color: #00539f; }
+    #swatch-light-blue .swatch { background-color: #0095dd; }
+    #swatch-beige .swatch { background-color: #00539f; }
+    #swatch-light-beige .swatch { background-color: #f5efe6; }
+    #swatch-thunderbird .swatch { #gradient > .vertical(#0095dd, #00539f); }
+    #swatch-blue-grey .swatch { #gradient > .vertical(#eaeff2, #d4dde4); }
+    #swatch-dark-blue .swatch { #gradient > .vertical(#6a7b86, #424f5a); }
+}
 /* }}} */
