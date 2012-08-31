@@ -32,4 +32,8 @@ urlpatterns = patterns('',
 
     page('communications/presentations', 'styleguide/communications/presentations.html'),
     page('communications/video', 'styleguide/communications/video.html'),
+    page('communications/typefaces', 'styleguide/communications/typefaces.html'),
+    page('communications/copy-tone', 'styleguide/communications/copy-tone.html'),
+    page('communications/copy-rules', 'styleguide/communications/copy-rules.html'),
+    page('communications/translation', 'styleguide/communications/translation.html'),
 )
