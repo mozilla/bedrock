@@ -1,0 +1,88 @@
+@import "../sandstone/variables-resp.less";
+@import "../sandstone/mixins-resp.less";
+@import "../sandstone/buttons.less";
+
+#mobile-sms #main-content {
+  background: #fff;
+  padding: 0 @gridColumnWidth;
+  margin: -25px auto 1em;
+  @shadow: 0 0 1px rgba(0,0,0,.05);
+  .box-shadow(@shadow);
+  border-bottom: 1px solid #ddd;
+  overflow: visible;
+}
+
+#sms-send {
+  background: url(/media/img/firefox/mobile/smartphone-android.png) right top no-repeat;
+  padding: 60px 340px 20px 0;
+  margin-bottom: -25px;
+  min-height: 420px;
+  position: relative;
+  top: -25px;
+}
+
+#sms-send .submit {
+  float: left;
+}
+
+#sms-send .button-blue {
+  .open-sans-light;
+  font-size: 18px;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+#sms-send .input {
+  width: 215px;
+  float: left;
+  padding: .5em 25px 0 0;
+  margin-right: 20px;
+  background: url(/media/img/sandstone/icn-secure.png) right center no-repeat;
+}
+
+#sms-send .input label {
+  position: absolute;
+  left: -999em;
+}
+
+#sms-send .input input {
+    height: @baseLine;
+    width: 205px;
+    background: #fff;
+    border-color: #b2b2b2;
+    border-style: solid;
+    border-width: 1px;
+    @shadow: 0 1px rgba(255,255,255,0.5);
+    padding: (@baseLine / 6) (@baseLine / 3);
+    .border-radius(3px);
+    .box-shadow(@shadow);
+    .transition(all linear .1s);
+}
+
+#sms-send .input input:focus {
+    border-color: #42a4e0;
+    @shadow: 0 0 0 2px rgba(73,173,227,0.4);
+    .box-shadow(@shadow);
+    .transition(all linear .1s);
+}
+
+#sms-send .subscribe {
+  clear: both;
+}
+
+/* Tablet Layout: 760px */
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+
+
+}
+
+/* Mobile layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+
+
+}
+
+/* Wide mobile layout: 480px; */
+@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+
+
+}
