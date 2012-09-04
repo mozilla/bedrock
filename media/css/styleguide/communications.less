@@ -1,0 +1,276 @@
+@import "../styleguide/styleguide.less";
+/* {{{ Communications - Presentations */
+
+.communications-presentations {
+    #intro {
+        .span_guide(12);
+    }
+
+    h3 {
+        .span_guide(12);
+        margin-bottom: 20px;
+    }
+
+    .preview {
+        .span_guide(4);
+        text-align: center;
+    }
+
+    .examples {
+        h4 {
+            .span_guide(8);
+            font-style: italic;
+            margin-bottom: @baseLine;
+        }
+        .swatch-card {
+            float: left;
+            width: auto;
+             .span_guide(2);
+            .swatch {
+                margin: 0;
+            }
+        }
+        .swatches {
+            margin-bottom: @baseLine;
+            .swatch-card:last-child {
+                margin-right: 0;
+            }
+        }
+        #swatch-sand .swatch {
+            #gradient > .vertical(#f6f4ec, #d7d3c8);
+        }
+        #swatch-blue .swatch {
+            #gradient > .vertical(#0096db, #00539f);
+        }
+        #swatch-red .swatch {
+            #gradient > .vertical(#ea3b28, #c13832);
+        }
+        #swatch-grey .swatch {
+            #gradient > .vertical(#6a7b86, #424f5a);
+        }
+        ul {
+            .span_guide(3);
+            &:last-child {
+                .span_guide(2);
+            }
+        }
+    }
+}
+
+/* }}} */
+/* {{{ Communications - Video */
+
+.communications-video {
+    section {
+        .clearfix;
+    }
+    .intro {
+        .span_guide(3);
+    }
+
+    .examples {
+        float: left;
+        .span_guide(9);
+    }
+
+    #intro {
+        .divider;
+        img {
+            .span_guide(9);
+            margin: 0 0 20px 0;
+        }
+        .thumbnails {
+            img {
+                .span_guide(3);
+                margin-bottom: 20px;
+                &:first-child {
+                    margin-left: 0;
+                }
+                &:nth-child(3n+3) {
+                    margin-right: 0;
+                }
+                &:last-child {
+                    .offset_guide(3);
+                    position: relative;
+                    left: -10px;
+                }
+            }
+        }
+    }
+
+    #captioning {
+        .divider;
+        #example-dark,
+        #example-light {
+            width: auto;
+            background: #fff;
+            margin-bottom: 30px;
+            h3 {
+                color: #000;
+                margin: 0;
+                padding: 100px 30px 30px 30px;
+            }
+        }
+        #example-dark {
+            background: #000;
+            h3 {
+                color: #fff;
+            }
+        }
+    }
+
+}
+
+/* }}} */
+/* {{{ Communications - Typefaces */
+
+.communications-typefaces {
+
+    section {
+        .intro {
+            margin-bottom: @baseLine * 3;
+            .clearfix;
+            p {
+                .span_guide(9);
+            }
+        }
+        h2 {
+            .span_guide(3);
+        }
+        section {
+            .divider;
+            .clearfix;
+            &:last-child {
+                background: none;
+            }
+            .intro {
+                .span_guide(3);
+                p {
+                    width: auto;
+                    margin: auto auto @baseLine auto;
+                }
+            }
+            h3 {
+                font-size: 32px;
+            }
+            .chars {
+                .span_guide(3);
+                font-size: 200px;
+                line-height: 160px;
+                letter-spacing: -10px;
+            }
+            .sample {
+                .span_guide(6);
+                margin-top: 80px;
+                font-size: 18px;
+            }
+        }
+        #book300 .examples {
+            .open-sans-light;
+        }
+        #book500 .examples {
+            .open-sans;
+        }
+        #book700 .examples {
+            .open-sans;
+            font-weight: bold;
+        }
+    }
+
+    #wordmarks {
+        .examples {
+            .span_guide(9);
+            img {
+                display: block;
+                margin: 40px auto;
+            }
+        }
+    }
+}
+
+/* }}} */
+/* {{{ Communications - Copy Tone */
+
+.communications-copy-tone {
+
+    .intro {
+        .span_guide(3);
+        img {
+            max-width: none;
+            display: block;
+            margin: 20px auto;
+    small {
+        font-style: italic;
+    }
+        }
+    }
+
+    .copy {
+        .span_guide(9);
+    }
+
+    .over {
+        margin-left: 100px;
+    }
+
+
+}
+
+/* }}} */
+/* {{{ Communications - Copy Rules */
+
+.communications-copy-rules {
+
+    #az {
+        .divider;
+        .clearfix;
+    }
+
+    .intro {
+        .span_guide(3);
+    }
+
+    dl {
+        .span_guide(9);
+        dt {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+    }
+
+}
+
+/* }}} */
+/* {{{ Communications - Translation */
+
+.communications-translation {
+
+   #locales {
+        .divider;
+        .clearfix;
+        h2 {
+            .span_guide(3);
+        }
+        .content {
+            .span_guide(9);
+            h3 {
+                margin-bottom: 5px;
+            }
+            .big-list {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    #branding {
+        h2 {
+            .span_guide(3);
+        }
+        p {
+            .span_guide(9);
+        }
+    }
+
+}
+
+/* }}} */
