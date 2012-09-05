@@ -51,8 +51,10 @@ $(document).ready(function() {
     });
 
     $('#help-form').submit(function(e) {
-        // Validate that the callback points to one of the allowed domains.
+        // Unbind Submit button to prevent double posting.
+        $('#help-form').unbind('submit');
 
+        // Validate that the callback points to one of the allowed domains.
         callback_url = getUrlVars()['callbackurl'];
 
         trusted_domains = ['^https://reps.mozilla.org/',
@@ -61,7 +63,24 @@ $(document).ready(function() {
                            '^http://127.0.0.1:8000/'];
 
         if (callback_url && validate_domain(callback_url, trusted_domains)) {
-            $.post(callback_url);
+            // We are synchronously POSTing to callback_url, so that
+            // we complete the request before proceeding with POSTing
+            // the form. If we do it async a race condition between
+            // the two posts takes place, which may result in aborting
+            // this POST.
+            //
+            // Because the POSTing to callback_url can take a second
+            // or two, we display the 'submit-wait' div in the place
+            // of 'form-content' to let the user know that we are
+            // working in the background.
+            $('#form-content').hide();
+            $('#submit-wait').show();
+            $.ajax({
+                url: callback_url,
+                type: 'POST',
+                cache: false,
+                async: false
+            });
         }
     });
 
