@@ -244,6 +244,23 @@ table.data-table tbody tr td:first-child {
 .privacy-toc {
   position: absolute;
   top: 910px;
-  left: 970px;
+  left: 960px;
   padding-top: 15px;
+  width: 192px;
+}
+.privacy-toc ol {
+  margin: 0;
+  padding: 0;
+  counter-reset: item;
+}
+.privacy-toc li {
+  margin-left: 0;
+  list-style: none;
+}
+.privacy-toc li:before {
+  content: counters(item, ".") ". ";
+  counter-increment: item;
+}
+.privacy-toc li ol {
+  margin-left: 12px;
 }
