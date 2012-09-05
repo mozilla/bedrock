@@ -124,9 +124,9 @@ MINIFY_BUNDLES = {
             'css/firefox/template-resp.less',
             'css/firefox/mobile-features.less',
         ),
-        'mobile_sms': (
+        'firefox_sms': (
             'css/firefox/template-resp.less',
-            'css/sandstone/video.less',
+            'css/sandstone/video-resp.less',
             'css/firefox/mobile-sms.less',
         ),
         'firefox_faq': (
@@ -296,10 +296,7 @@ MINIFY_BUNDLES = {
             'js/firefox/technology/tech.js',
         ),
         'firefox_sms': {
-            'js/libs/jquery-1.7.1.min.js',
-            'js/global.js',
-            'js/footer-email-form.js',
-            'js/mozilla-input-placeholder.js',
+            'js/mozilla-video-tools.js',
             'js/firefox/sms.js',
             '/js/libs/socialshare.min.js',
         },
