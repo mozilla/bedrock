@@ -126,6 +126,7 @@ MINIFY_BUNDLES = {
         ),
         'mobile_sms': (
             'css/firefox/template-resp.less',
+            'css/sandstone/video.less',
             'css/firefox/mobile-sms.less',
         ),
         'firefox_faq': (
@@ -300,6 +301,7 @@ MINIFY_BUNDLES = {
             'js/footer-email-form.js',
             'js/mozilla-input-placeholder.js',
             'js/firefox/sms.js',
+            '/js/libs/socialshare.min.js',
         },
         'geolocation': (
             'js/libs/jquery-1.4.4.min.js',

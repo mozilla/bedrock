@@ -1,6 +1,7 @@
 @import "../sandstone/variables-resp.less";
 @import "../sandstone/mixins-resp.less";
 @import "../sandstone/buttons.less";
+@import "../sandstone/socialshare.less";
 
 #mobile-sms #main-feature {
   text-align: center;
@@ -16,7 +17,8 @@
   overflow: visible;
 }
 
-#sms-send {
+#sms-send,
+#sms-sent {
   background: url(/media/img/firefox/mobile/smartphone-android.png) right top no-repeat;
   padding: 60px 340px 20px 0;
   margin-bottom: -25px;
@@ -26,7 +28,8 @@
   .open-sans;
 }
 
-#sms-send h2 {
+#sms-send h2,
+#sms-sent h2 {
   font-size: 28px;
   line-height: 1.2;
 }
@@ -60,7 +63,8 @@
   left: -999em;
 }
 
-#sms-send .input input {
+#sms-send .input input,
+#footer-email-form .field-email input {
     height: @baseLine;
     width: 205px;
     background: #fff;
@@ -74,7 +78,8 @@
     .transition(all linear .1s);
 }
 
-#sms-send .input input:focus {
+#sms-send .input input:focus,
+#footer-email-form .field-email input:focus {
     border-color: #42a4e0;
     @shadow: 0 0 0 2px rgba(73,173,227,0.4);
     .box-shadow(@shadow);
@@ -99,21 +104,22 @@
   margin: 1em 0 2em;
 }
 
-#sms-send .also {
+#sms-send .also,
+#sms-sent .also {
   .open-sans-light;
   clear: both;
   font-size: 1em;
   font-style: italic;
-  padding-top: 20px;
+  padding: 20px 140px 0 0;
   border-top: 1px dotted #ccc;
 }
 
-#sms-send a:link,
-#sms-send a:visited {
+.also a:link,
+.also a:visited {
   color: #666;
 }
 
-#sms-send a:after {
+.also a:after {
   content: "\00A0\00BB"; /* nbsp raquo */
   font-size: 1.2em;
 }
@@ -139,6 +145,34 @@
   color: #666;
 }
 
+.mozilla-video-control {
+  margin: 0 0 20px; 
+}
+
+#mobile-sms video {
+  max-width: 100%;
+  height: auto;
+}
+
+#footer-email-form {
+  background: #fafafa;
+  overflow: hidden;
+  clear: both;
+  margin: 0 -31px 25px;
+  padding: 20px;
+  border: 1px solid #efefef;
+  box-shadow: inset 0 0 6px rgba(0,0,0,.05);
+}
+
+#mobile-sms #share-options {
+  background: #f8fafb;
+}
+
+.socialshare {
+  float: right;
+  margin: -3.15em -10px 0 0;
+}
+
 /* Tablet Layout: 760px */
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
 
@@ -148,11 +182,41 @@
 /* Mobile layout: 320px */
 @media only screen and (max-width: @breakTablet) {
 
+  #mobile-sms #main-content {
+    padding: 20px 25px;
+    margin: 0 auto 1em;
+  }
 
-}
+  #sms-send,
+  #sms-sent {
+    background-image: none;
+    padding: 0;
+    width: auto;
+    margin-bottom: 0;
+    min-height: auto;
+    top: auto;
+  }
+  
+  #sms-send h2,
+  #sms-sent h2 {
+    font-size: 20px;
+    line-height: 1.2;
+  }
 
-/* Wide mobile layout: 480px; */
-@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+  #mobile-sms .more p {
+    display: block;
+    padding-top: .75em;
+    border-left: 0;
+    border-top: 1px dotted #ccc;
+  }
 
+  #mobile-sms .more p:first-child {
+    padding-top: 0;
+  }
+  
+  #footer-email-form {
+    margin: 0 -10px;
+    padding: 15px;
+  }
 
 }
