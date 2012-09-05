@@ -2,6 +2,10 @@
 @import "../sandstone/mixins-resp.less";
 @import "../sandstone/buttons.less";
 
+#mobile-sms #main-feature {
+  text-align: center;
+}
+
 #mobile-sms #main-content {
   background: #fff;
   padding: 0 @gridColumnWidth;
@@ -16,9 +20,21 @@
   background: url(/media/img/firefox/mobile/smartphone-android.png) right top no-repeat;
   padding: 60px 340px 20px 0;
   margin-bottom: -25px;
-  min-height: 420px;
+  min-height: 340px;
   position: relative;
   top: -25px;
+  .open-sans;
+}
+
+#sms-send h2 {
+  font-size: 28px;
+  line-height: 1.2;
+}
+
+#sms-send .note {
+  font-size: .75em;
+  margin-top: -.5em;
+  color: #666;
 }
 
 #sms-send .submit {
@@ -36,7 +52,7 @@
   float: left;
   padding: .5em 25px 0 0;
   margin-right: 20px;
-  background: url(/media/img/sandstone/icn-secure.png) right center no-repeat;
+  background: url(/media/img/sandstone/icn-secure.png) right 60% no-repeat;
 }
 
 #sms-send .input label {
@@ -67,6 +83,39 @@
 
 #sms-send .subscribe {
   clear: both;
+  font-size: .875em;
+  padding: 0 20px;
+}
+
+#sms-send .subscribe input {
+  float: left;
+  margin-left: -20px;
+}
+
+#sms-send .footnote {
+  font-size: .786em;
+  font-style: italic;
+  color: #666;
+  margin: 1em 0 2em;
+}
+
+#sms-send .also {
+  .open-sans-light;
+  clear: both;
+  font-size: 1em;
+  font-style: italic;
+  padding-top: 20px;
+  border-top: 1px dotted #ccc;
+}
+
+#sms-send a:link,
+#sms-send a:visited {
+  color: #666;
+}
+
+#sms-send a:after {
+  content: "\00A0\00BB"; /* nbsp raquo */
+  font-size: 1.2em;
 }
 
 /* Tablet Layout: 760px */

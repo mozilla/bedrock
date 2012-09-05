@@ -294,6 +294,13 @@ MINIFY_BUNDLES = {
         'firefox_tech': (
             'js/firefox/technology/tech.js',
         ),
+        'firefox_sms': {
+            'js/libs/jquery-1.7.1.min.js',
+            'js/global.js',
+            'js/footer-email-form.js',
+            'js/mozilla-input-placeholder.js',
+            'js/firefox/sms.js',
+        },
         'geolocation': (
             'js/libs/jquery-1.4.4.min.js',
             'js/libs/jquery.nyroModal.pack.js',
