@@ -1,7 +1,14 @@
 {% extends "styleguide/base.html" %}
 
+{% block body_class %}
+  {{ super() }}
+  styleguide-home
+{% endblock %}
 
-{% block content_title %}Title Home{% endblock%}
 {% block content_area %}
-<p>Aenean auctor rhoncus nibh, in tempus est congue vitae. Aliquam nec sem vel augue rhoncus consequat. Ut luctus hendrerit libero, nec auctor tellus placerat ac. Ut quis molestie nisi. Morbi at lectus turpis, ac iaculis magna. Aliquam quis turpis nunc. Pellentesque gravida, nulla in euismod aliquet, enim diam interdum nibh, eget vulputate urna dui eget neque. Maecenas consectetur, enim quis tristique sollicitudin, justo urna sollicitudin quam, ut elementum nunc massa in arcu. Suspendisse vehicula faucibus eros, at feugiat enim dapibus eu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam condimentum euismod purus, sed tempor metus pulvinar id. Maecenas vehicula elementum sodales. Etiam auctor ipsum a urna condimentum condimentum quis non erat.</p>
+<div id="intro">
+<h2 class="large">Welcome!</h2>
+<p>Our mission — to promote openness, innovation and opportunity on the Internet — extends through everything we do. This guide serves as a resource to bring together all our brands and to help define their visual and stylistic elements. It exists to provide you with the tools and assets you need to further our mission through communications, websites, products and more.</p>
+<p>Use the links on the left to find what you’re looking for or just start exploring.</p>
+</div>
 {% endblock %}
