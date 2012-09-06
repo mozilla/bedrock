@@ -24,10 +24,10 @@ GRANTS = [
         "$50'000",
         2009,
         '<p>Mozilla provided funding over two years to <a href="http://www.benetech.org/">Benetech</a>, a corporation dedicated to leveraging technology innovation and business expertise to solve unmet social needs. This funding supports the development of an open source, browser-based DAISY reader that enables people with print disabilities to read accessible text using Firefox.</p>',
-        [
-            (2008, ('Amount: $25,000',)),
-            (2009, ('Amount: $25,000',))
-        ],
+        {
+            '2008': ['Amount: $25,000'],
+            '2009': ['Amount: $25,000']
+        },
         ""
     ),
     Grant(
@@ -39,11 +39,11 @@ GRANTS = [
         "$135'000",
         2010,
         '<p>Mozilla made grants to <a href="http://www.nvaccess.org/">NV Access</a> from 2007 to 2010 to support the development of <a href="http://www.nvda-project.org/">NonVisual Desktop Access (NVDA)</a>, a free and open source screen reader for the Microsoft Windows operating system. Providing feedback via synthetic speech and Braille, it enables blind or vision impaired people to access computers running Windows for no more cost than a sighted person.</p>',
-        [
-            (2007, ('Initial Support: $10,000', 'Support for full time work of James Teh: $80,000')),
-            (2009, ('Expanding work: $25,000',)),
-            (2010, ('Growing influence: $20,000',))
-        ],
+        {
+            '2007': ['Initial Support: $10,000', 'Support for full time work of James Teh: $80,000'],
+            '2009': ['Expanding work: $25,000'],
+            '2010': ['Growing influence: $20,000']
+        },
         [
             'http://www.nvda-project.org/blog/Mozilla_Foundation_grant_allows_for_employment_of_NVDA_full-time_developer',
             'http://www.nvda-project.org/blog/First_Work_on_Web_Access_Grant',
@@ -60,10 +60,10 @@ GRANTS = [
         "$120'009",
         2010,
         '<p>This grant provided funds to the <a href="http://illinois.edu/">University of Illinois Urbana-Champaign</a> and <a href="http://www.paciellogroup.com/">The Paciello Group</a> in 2009 and 2010 for their joint work on Firebug accessibility. The goal was to mainstream accessibility for web applications by building accessibility testing functions and associated test cases into <a href="http://getfirebug.com/">Firebug</a>, a popular tool used by many web developers.</p>',
-        [
-            (2009, ('Phase One: $25,000', 'Phase Two: $25,000', 'Phase Three: $25,000')),
-            (2010, ('Phase Four: $25,000', 'Phase Five: $20,009'))
-        ],
+        {
+            '2009': ['Phase One: $25,000', 'Phase Two: $25,000', 'Phase Three: $25,000'],
+            '2010': ['Phase Four: $25,000', 'Phase Five: $20,009']
+        },
         ""
     ),
     Grant(
@@ -75,11 +75,11 @@ GRANTS = [
         "$75'000",
         2010,
         '<p>In the spring of 2008 Mozilla became concerned about the lack of support for deaf and blind Firefox users. Mozilla identified <a href="http://www.gingertech.net/">Dr. Silvia Pfeiffer</a> and her company Vquence as the best resource for creating a plan for open video accessibility. By providing grants in 2008, 2009 and 2010, Mozilla supported the technology that implemented Firefox video accessibility features, such as text subtitles for the hearing-impaired and audio descriptions for blind users.</p>',
-        [
-            (2008, ('Amount: $25,000',)),
-            (2009, ('Amount: $25,000',)),
-            (2010, ('Amount: $25,000',))
-        ],
+        {
+            '2008': ['Amount: $25,000'],
+            '2009': ['Amount: $25,000'],
+            '2010': ['Amount: $25,000']
+        },
         [
             'http://frankhecker.com/2009/06/30/new-mozilla-accessibility-projects/',
         ]
@@ -93,12 +93,12 @@ GRANTS = [
         "$4'000",
         2010,
         '<p>Mozilla has sponsored the <a href="http://www.w4a.info/">Web4All Conference</a> for several years, and has also sponsored several speakers to be able to attend. The Web4All Conference is an annual cross-disciplinary gathering focused on Scientific Enquiry, Research, Development and Engineering. Views bridge academia, commerce and industry, and arguments encompassing a range of beliefs across the design-accessibility spectrum are presented.</p>',
-        [
-            (2007, ('Amount: $1,000',)),
-            (2008, ('Amount: $1,000',)),
-            (2009, ('Amount: $1,000',)),
-            (2010, ('Amount: $1,000',)),
-        ],
+        {
+            '2007': ['Amount: $1,000'],
+            '2008': ['Amount: $1,000'],
+            '2009': ['Amount: $1,000'],
+            '2010': ['Amount: $1,000'],
+        },
         ""
     ),
     Grant(
@@ -110,13 +110,13 @@ GRANTS = [
         "$500'000",
         2012,
         '<p>In December 2007, Mozilla decided to participate in <a href="http://creativecommons.org/">Creative Commons</a> "5x5 Challenge." Beginning in 2008, Mozilla pledged $100,000 per year for five years to support open licensing on the web, developing hybrid organizations, and maturing the concept of the web as an ecology of shared ideas.</p>',
-        [
-            (2008, ('Amount: $100,000',)),
-            (2009, ('Amount: $100,000',)),
-            (2010, ('Amount: $100,000',)),
-            (2011, ('Amount: $100,000',)),
-            (2012, ('Amount: $100,000',))
-        ],
+        {
+            '2008': ['Amount: $100,000'],
+            '2009': ['Amount: $100,000'],
+            '2010': ['Amount: $100,000'],
+            '2011': ['Amount: $100,000'],
+            '2012': ['Amount: $100,000']
+        },
         [
             'http://frankhecker.com/2009/06/30/new-mozilla-accessibility-projects/',
         ]
@@ -130,10 +130,10 @@ GRANTS = [
         "$10'000",
         2009,
         '<p>This grant provided sponsorship for the 2008 and 2009 <a href="http://www.foms-workshop.org">Foundations of the Open Media Software (FOMS)</a> workshop in Hobart, Australia. The bulk of these funds were used to cover the travel expenses of key participants who otherwise would have been unable to attend. This meeting hosts important discussions on open codecs, HTML specifications, browsers and hands-on work towards specifications for video in browsers.</p>',
-        [
-            (2008, ('Amount: $5,000',)),
-            (2009, ('Amount: $5,000',)),
-        ],
+        {
+            '2008': ['Amount: $5,000'],
+            '2009': ['Amount: $5,000'],
+        },
         ""
     ),
     Grant(
@@ -181,11 +181,11 @@ GRANTS = [
         "$38'000",
         2010,
         '<p>Mozilla offered this grant in support of <a href="http://projects.gnome.org/outreach/a11y/">GNOME\'s Outreach Program for Accessibility</a>. The <a href="http://www.gnome.org/">GNOME Foundation</a> sponsors the GNOME project to provide a free desktop environment for Linux systems. Mozilla and GNOME have been longtime collaborators on open source and accessibility issues.</p><p>See the <a href="reports/gnome-haeger-report/">grant final report</a> for more details.</p>',
-        [
-            (2008, ('Orca rich document browsing extension: $8,000',)),
-            (2009, ('GNOME Outreach Program: Accessibility: $10,000', 'CSUN Accessibility Conference: $10,000')),
-            (2010, ('General Accessibility Support: $10,000',))
-        ],
+        {
+            '2008': ['Orca rich document browsing extension: $8,000'],
+            '2009': ['GNOME Outreach Program: Accessibility: $10,000', 'CSUN Accessibility Conference: $10,000'],
+            '2010': ['General Accessibility Support: $10,000']
+        },
         [
             'https://blog.mozilla.org/blog/2010/02/04/mozilla-gnome-accessibility/',
         ]
@@ -211,11 +211,11 @@ GRANTS = [
         "$90'000",
         2008,
         '<p>Mozilla supported the <a href="http://www.mozdev.org/about.html">MozDev Community Organization</a> by providing general funds to support MozDev\'s operations. MozDev is a software development community dedicated to making quality applications and extensions freely available to all computer users. Its goal is to help establish Mozilla as a viable application development platform. Since 2006, Mozilla grants have funded the majority of MozDev\'s budget. This support gives back to the community that contributes so much to establishing Mozilla as a viable application development platform and the community that builds quality applications and extensions.</p>',
-        [
-            (2006, ('Amount: $30,000',)),
-            (2007, ('Amount: $30,000',)),
-            (2008, ('Amount: $30,000',))
-        ],
+        {
+            '2006': ['Amount: $30,000'],
+            '2007': ['Amount: $30,000'],
+            '2008': ['Amount: $30,000']
+        },
         ""
     ),
     Grant(
@@ -275,10 +275,10 @@ GRANTS = [
         "$15'000",
         2009,
         '<p>For two years Mozilla sponsored the <a href="http://personaldemocracy.com/pdf-conference/personal-democracy-forum-conference">Personal Democracy Forum</a>, a forum for discussion on how politics and technology intersect. Each year top opinion-makers, political practitioners, technologists and journalists come together to network, exchange ideas and explore how technology and the internet are changing politics, democracy and society.</p>',
-        [
-            (2008, ('Amount: $10,000',)),
-            (2009, ('Amount: $5,000',)),
-        ],
+        {
+            '2008': ['Amount: $10,000'],
+            '2009': ['Amount: $5,000'],
+        },
         ""
     ),
     Grant(
@@ -290,10 +290,10 @@ GRANTS = [
         "$20'000",
         2009,
         '<p>This grant provided funding to help the <a href="http://conservancy.softwarefreedom.org/">Software Freedom Conservancy</a> serve additional open source projects and work more closely with peer projects. During the grant period, Mozilla\'s funding helped the Conservancy to provide administrative, financial management, coordination and logistical services to twenty FLOSS (Free, Libre and Open Source Software) projects including Foresight Linux, Sugar Labs, jQuery, Amarok, Darcs, OpenInkpot, and K-3D.</p>',
-        [
-            (2008, ('Amount: $10,000',)),
-            (2009, ('Amount: $10,000',)),
-        ],
+        {
+            '2008': ['Amount: $10,000'],
+            '2009': ['Amount: $10,000'],
+        },
         ""
     ),
     Grant(
@@ -305,11 +305,11 @@ GRANTS = [
         "$230'910",
         2009,
         '<p>Since 2005, <a href="http://www.senecac.on.ca/">Seneca College</a> in Toronto has worked closely with the Mozilla community to create a set of Mozilla-specific courses, engage hundreds of students directly in Mozilla development projects, and host and record dozens of Mozilla events and talks. Seneca\'s faculty and students are key contributors to the Mozilla project, and have gained significant experience bootstrapping new contributors into the Mozilla technology and culture. Seneca College of Applied Arts and Technology is a community college for applied arts and technology in Toronto, Ontario. </p>',
-        [
-            (2006, ('Amount: $50,000',)),
-            (2007, ('Amount: $100,000',)),
-            (2009, ('Amount: $80,910',))
-        ],
+        {
+            '2006': ['Amount: $50,000'],
+            '2007': ['Amount: $100,000'],
+            '2009': ['Amount: $80,910']
+        },
         ""
     ),
     Grant(
@@ -395,10 +395,10 @@ GRANTS = [
         "$25'000",
         2007,
         '<p><a href="www.oatsoft.org/Software/jambu">Jambu</a> is a pointer and switch project that improves accessibility for people with physical disabilities. This grant supported the improvement of switch access to Firefox on Windows, with the greater goal of providing transparent alternative input access to computers. Users served by this project may include adults who have experienced a debilitating accident or stroke, people with congential physical disabilities, children with multiple disabilities, and those with learning difficulties or limited education who often need to learn to use a switch through specialist educational programs.</p>',
-        [
-            (2006, ('Phase 1: $15,000',)),
-            (2007, ('Phase 2: $10,000',)),
-        ],
+        {
+            '2006': ['Phase 1: $15,000'],
+            '2007': ['Phase 2: $10,000'],
+        },
         ""
     ),
     Grant(
@@ -410,10 +410,10 @@ GRANTS = [
         "$283'085",
         2010,
         '<p>Since 2009 Mozilla has supported the graduate-level work of PhD students at <a href="http://www.ccs.neu.edu/">Northeastern University</a>, developing new tools for the standardization, streamlining, and testing of JavaScript. In 2009 Mozilla contributed $99,115 to the research efforts of <a href="http://www.ccs.neu.edu/home/samth/">Sam Tobin-Hochstadt</a>. In 2010 Mozilla made two gifts: one of $107,596 to further support Mr. Tobin-Hochstadt\'s research and another gift of $76,374 to <a href="http://www.ccs.neu.edu/home/dimvar/">Demetrios Vardoulakis</a>.</p>',
-        [
-            (2009, ('PhD Research of Sam Tobin-Hochstadt: $99,115',)),
-            (2010, ('PhD research of Sam Tobin-Hochstadt and Demetrios Vardoulakis: $107,596 and $76,374',))
-        ],
+        {
+            '2009': ['PhD Research of Sam Tobin-Hochstadt: $99,115'],
+            '2010': ['PhD research of Sam Tobin-Hochstadt and Demetrios Vardoulakis: $107,596 and $76,374']
+        },
         ""
     ),
     Grant(

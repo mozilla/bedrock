@@ -19,11 +19,11 @@
         <li>
             <h2>Support break-down</h2>
         <ol class='detailed_info'>
-        {% for year in grant.break_down %}
+        {% for year, phases in grant.break_down.items()|sort %}
             <li class="year">
-                {{ year[0] }}
+                {{ year }}
                 <ol>
-                {% for phase in year[1] %}
+                {% for phase in phases %}
                     <li>{{ phase }}</li>
                 {% endfor %}
                 </ol>
