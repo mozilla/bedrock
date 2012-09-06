@@ -30,10 +30,10 @@
             </li>
         {% endfor %}
         </ol>
-        <h3>Total support:</h3> {{ grant.amount }}
+        <h3>Total support:</h3> {{ grant.total_support }}
         </li>
     {% else %}
-        <li><h2>Total support</h2> {{ grant.amount }}</li>
+        <li><h2>Total support</h2> {{ grant.total_support }}</li>
         <li><h2>Year</h2> {{ grant.year }}</li>
     {% endif %}
     <li><h2>Focus Area</h2> {{ grant_labels[grant.type] }}</li>
