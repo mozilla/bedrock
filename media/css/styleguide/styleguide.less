@@ -76,13 +76,17 @@ a[href="#TODO"] { color: #f00 !important; }
     .span_guide(12);
     width: (@gridColumnWidth * 12) + (@gridGutterWidth * 12);
     margin-left: @gridColumnWidth + @gridGutterWidth;
+    margin-bottom: @baseLine;
+}
+
+#styleguide #masthead {
+    min-height: 45px;
 }
 
 /* }}} */
 /* {{{ Sidebar */
 
 #sidebar {
-    margin-top: @baseLine * 1.5;
     margin-bottom: @baseLine;
     h2 {
         text-align: center;
@@ -188,14 +192,6 @@ h1 {
             background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAUCAYAAABWMrcvAAAAr0lEQVR42q3TPwrCMBSA8VSrtSYIglBHcXFysJ7AA4geQFfFA/V4niV+b4rUhCehw6/DCx+U/DHe+wJl055nKGA0EokR5gxWGP8biRJLhltM9CiYYs3CAZXMYmLDChuiE+poZLr3DxZq7IiusP11+aRCiz3RHU6PQujQEj2x6EVqeCR6SZiI9DAryvs9BmlhIx4SpA43CFt+g9NuxPfhXmCHuEZZF1Z5GkM+wqzn/gGPpd1ige/9lgAAAABJRU5ErkJggg==);
         }
     }
-}
-
-/* }}} */
-/* {{{ Main Content area  */
-
-#content_area {
-    margin-top: @baseLine * 1.5;
-    margin-bottom: @baseLine;
 }
 
 /* }}} */
