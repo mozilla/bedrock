@@ -55,7 +55,15 @@ a[href="#TODO"] { color: #f00 !important; }
 }
 
 #wrapper {
+    width: auto;
+    z-index: 10;
+}
+
+#content {
     width: @widthDesktop;
+    position: relative;
+    margin: 0 auto;
+    z-index: 9;
     .clearfix;
 }
 
@@ -246,10 +254,19 @@ h1 {
 /* {{{ Home page */
 
 .styleguide-home {
+    #content_area h1 {
+        .span_guide(4);
+        font-size: 72px;
+        letter-spacing: -3px;
+        line-height: 100%;
+        margin-top: 60px;
+        margin-bottom: 20px;
+    }
     #intro {
         .span_guide(4);
+        clear: left;
     }
-    #outer-wrapper:before {
+    #wrapper:before {
         background: url(/media/img/styleguide/home.png) 50% 90px no-repeat;
         content:"";
         height: 800px;
