@@ -68,7 +68,7 @@ class TestDotlang(unittest.TestCase):
 
         # extraction
         with open(os.path.join(ROOT, 'test_py_extract.py.txt')) as pyfile:
-            vals = extract_tower_python(pyfile, {'_', None}, [], {}).next()
+            vals = extract_tower_python(pyfile, ['_'], [], {}).next()
         eq_(vals[2], clean_string)
 
         # translation
