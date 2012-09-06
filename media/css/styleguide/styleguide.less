@@ -18,6 +18,8 @@
     background: url(/media/img/styleguide/divider.png) 50% 100% no-repeat;
 }
 
+a[href="#TODO"] { color: #f00 !important; }
+
 /* {{{ Grid setup */
 
 // Desktop:
@@ -104,14 +106,9 @@
                 list-style-type: none;
                 margin: 0;
                 border-bottom: 1px dotted rgba(0,0,0,0.1);
-                &.active,
-                &.active li {
+                li {
                     background: rgba(255,255,255,0.5);
                     display: block;
-                }
-                li {
-                    display: none;
-                    border-bottom: 0;
                 }
             }
         }
