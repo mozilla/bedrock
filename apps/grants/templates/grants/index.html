@@ -52,7 +52,7 @@
             <tr {% if loop.index is not even %}class="odd"{% endif %}>
                 <th scope="row">{{ grant.grantee }}</th>
                 <td><a href="{{ url('grant_info', grant.url) }}">{{ grant.title }}</a></td>
-                <td>{{ grant.amount }}</td>
+                <td>{{ grant.total_support }}</td>
                 <td>{{ grant.year }}</td>
                 <td>{{ grant_labels[grant.type] }}</td>
             </tr>

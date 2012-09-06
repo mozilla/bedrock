@@ -1,6 +1,6 @@
 from collections import namedtuple
 
-Grant = namedtuple('Grant', 'url, grantee, location, title, type, amount, year, description, break_down, urls')
+Grant = namedtuple('Grant', 'url, grantee, location, title, type, total_support, year, description, break_down, urls')
 
 GRANTS = [
     Grant(
