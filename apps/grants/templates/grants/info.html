@@ -18,19 +18,19 @@
     {% if grant.break_down %}
         <li>
             <h2>Support break-down</h2>
-        <ol class='detailed_info'>
-        {% for year, phases in grant.break_down.items()|sort %}
-            <li class="year">
-                {{ year }}
-                <ol>
-                {% for phase in phases %}
-                    <li>{{ phase }}</li>
-                {% endfor %}
-                </ol>
-            </li>
-        {% endfor %}
-        </ol>
-        <h3>Total support:</h3> {{ grant.total_support }}
+            <ol class='detailed_info'>
+            {% for year, phases in grant.break_down.items()|sort %}
+                <li class="year">
+                    {{ year }}
+                    <ol>
+                    {% for phase in phases %}
+                        <li>{{ phase }}</li>
+                    {% endfor %}
+                    </ol>
+                </li>
+            {% endfor %}
+            </ol>
+            <h3>Total support:</h3> {{ grant.total_support }}
         </li>
     {% else %}
         <li><h2>Total support</h2> {{ grant.total_support }}</li>
