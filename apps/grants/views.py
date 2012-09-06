@@ -39,9 +39,9 @@ def grants(request):
         grants = GRANTS
 
     # first sort by title (alphabetically)
-    sorted_titles = sorted(grants, key=attrgetter('title'))
+    sorted_grantees = sorted(grants, key=attrgetter('grantee'))
     # now sort by year (reverse numeric)
-    sorted_grants = sorted(sorted_titles, key=attrgetter('year'), reverse=True)
+    sorted_grants = sorted(sorted_grantees, key=attrgetter('year'), reverse=True)
 
     return l10n_utils.render(request, "grants/index.html", {
             'filter': type_filter,
