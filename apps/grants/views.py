@@ -38,10 +38,11 @@ def grants(request):
     else:
         grants = GRANTS
 
-    sorted_grants = sorted(grants, key=attrgetter('year'), reverse=True)
+    grants.sort(key=attrgetter('grantee'))
+    grants.sort(key=attrgetter('year'), reverse=True)
 
     return l10n_utils.render(request, "grants/index.html", {
             'filter': type_filter,
-            'grants': sorted_grants,
+            'grants': grants,
             'grant_labels': grant_labels
     })
