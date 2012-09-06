@@ -21,6 +21,8 @@
 {% endblock %}
 
 {% block content %}
+<div id="content">
+  <a href="http://www.mozilla.org/" id="tabzilla">{{ _('Mozilla') }}</a>
 
 {% block sidebar %}
   <div id="sidebar">
@@ -101,6 +103,7 @@
 
 <h1>{% block content_title %}{% endblock%}</h1>
 
+{% block subnav %}
 <div id="subnav">
   {% block next_prev %}
   <div id="nextprev">
@@ -114,8 +117,10 @@
   </div>
   {% endblock %}
 </div>
+{% endblock %}
 
 {% block content_area %}{% endblock %}
 </div>
 
+</div>
 {% endblock %}
