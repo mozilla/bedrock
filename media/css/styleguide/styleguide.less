@@ -18,6 +18,8 @@
     background: url(/media/img/styleguide/divider.png) 50% 100% no-repeat;
 }
 
+a[href="#TODO"] { color: #f00 !important; }
+
 /* {{{ Grid setup */
 
 // Desktop:
@@ -97,28 +99,34 @@
         .open-sans-light;
         font-size: 11px;
         margin: @baseLine auto;
+        width: 160px;
         ul {
             margin: 0;
             li {
                 list-style-type: none;
                 margin: 0;
-                &.current {
+                border-bottom: 1px dotted rgba(0,0,0,0.1);
+                li {
                     background: rgba(255,255,255,0.5);
+                    display: block;
                 }
             }
         }
         a,b {
             display: block;
-            padding: (@baseLine / 4) (@baseLine * .75);
+            padding: 15px 25px 15px 15px;
             color: @textColorSecondary;
+            background-position: 100% 50%;
+            background-repeat: no-repeat;
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACMAAAALCAYAAAD1JjQCAAABZklEQVR42r2SPWuDUBSG01b6sQSjdSoUAha6FSq1H1LaNKmkRFpTB4lSlQ6CQ8ApLlliHLLkTwT/QfI3/AsZM7k4ioO9BwyEhtLQaoaX+3Hel/tw7imlabqRcBzHkA7/IGzTNzaGYRimTFHUZ7VaNWia/vhN4EN+A3J5w4AOZrNZg+O4d1mW64ZhPP4kqINvOp3WIZc7DEEQsJYnk0lTEISm4zi3g8Hg+rt6vd5dq9V68X2/CX7I5Q5TqVRKJEnC/hg9+ipJUqPf7994nscuBed2u/08Ho8F8IEfcnnDwACvAp12u11R07TacDhkR6PRleu6rKqqNdu2RVQ/yUAgV0xnQNB2NJilKIrOFUURLcu6h66Ypvmg67oYx/EZ1MGXZYqDAWVzsLtYLC7Rd711Op0nNLRiGIYX6H4nAykYZh0IC4KA43lens/nLDrvZSBbhVmdn6MkSRi07mcgW4ZZB1p+zb9gvgAoAjsVVK16YwAAAABJRU5ErkJggg==);
         }
         li li a,
         li li b {
-            padding-left: (@baseLine);
+            padding-left: 20px;
         }
         li li li a,
         li li li b {
-            padding-left: (@baseLine * 1.25);
+            padding-left: 25px;
         }
         b {
             font-weight: normal;
@@ -231,6 +239,25 @@ h1 {
             font-size: 48px;
             .open-sans-light;
         }
+    }
+}
+
+/* }}} */
+/* {{{ Home page */
+
+.styleguide-home {
+    #intro {
+        .span_guide(4);
+    }
+    #outer-wrapper:before {
+        background: url(/media/img/styleguide/home.png) 50% 90px no-repeat;
+        content:"";
+        height: 800px;
+        width: 100%;
+        min-width: 1300px;
+        position: absolute;
+        top: 0;
+        left: 0;
     }
 }
 
