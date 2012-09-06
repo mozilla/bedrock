@@ -479,3 +479,11 @@ RECAPTCHA_PUBLIC_KEY = ''
 RECAPTCHA_PRIVATE_KEY = ''
 
 TEST_RUNNER = 'test_utils.runner.NoDBTestSuiterunner'
+
+
+def lazy_email_backend():
+    from django.conf import settings
+    return ('django.core.mail.backends.console.EmailBackend' if settings.DEBUG
+            else 'django.core.mail.backends.smtp.EmailBackend')
+
+EMAIL_BACKEND = lazy(lazy_email_backend, str)()
