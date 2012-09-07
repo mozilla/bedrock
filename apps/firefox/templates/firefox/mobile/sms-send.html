@@ -28,7 +28,7 @@
 </div>
 
 <div id="main-content">
-  <form id="sms-send" method="post" action="/path/to/handler">
+  <form id="sms-send" method="post">
     <h2>
     {# L10N: The line break in this headline is for visual formatting only #}
     {% trans %}
@@ -39,16 +39,23 @@
 
     <p class="input">
       <label for="number">{{ _('Enter your 10-digit phone number') }}</label>
-      <input type="tel" id="number" name="number" placeholder="{{ _('Enter your 10-digit phone number') }}">
+      <input type="tel"
+             pattern="[\d- ()]+"
+             maxlength="14"
+             x-moz-errormessage="{{ _('Please only enter numbers and dashes') }}"
+             id="number"
+             name="number"
+             placeholder="{{ _('Enter your 10-digit phone number') }}"
+             required>
     </p>
     <p class="submit">
       <button type="submit" class="button-blue arrow"><span>{{ _('Send me the link') }}</span></button>
     </p>
-  
+
     <div class="subscribe">
       <label for="sms-sub">
-        <input type="checkbox" id="sms-sub" name="subscribe" value="yes">
-        {{ _('I\'d like to receive SMS updates about Firefox for Android and other Mozilla products.') }}**
+        <input type="checkbox" id="sms-sub" name="optin" value="yes">
+        {{ _("I'd like to receive SMS updates about Firefox for Android and other Mozilla products.") }}**
       </label>
       <p class="footnote">** {{ _('Message and data rates may apply. Text STOP to 21534 to stop (a confirmation message will be sent).') }}</p>
     </div>

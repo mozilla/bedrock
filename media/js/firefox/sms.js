@@ -1,5 +1,7 @@
-$("#sms-send .subscribe").hide();
+$(function(){
+    $("#sms-send .subscribe").hide();
 
-$("#number").focus(function(){
-  $("#sms-send .subscribe").slideDown('fast');
+    $("#number").one('focus', function(){
+        $("#sms-send .subscribe").slideDown('fast');
+    });
 });
