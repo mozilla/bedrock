@@ -32,7 +32,7 @@
   </a></h2>
   <nav>
     <ul>
-      <li class="current"><a href="#">Home</a></li>
+      <li class="current"><a href="{{ url('styleguide.home') }}">Home</a></li>
       <li>
         <b>Websites</b>
         <ul>
@@ -102,22 +102,6 @@
 <div id="content_area">
 
 <h1>{% block content_title %}{% endblock%}</h1>
-
-{% block subnav %}
-<div id="subnav">
-  {% block next_prev %}
-  <div id="nextprev">
-    <a href="#" class="prev">Prev</a>
-    <a href="#" class="next">Next</a>
-  </div>
-  {% endblock %}
-  {% block breadcrumbs %}
-  <div id="breadcrumbs">
-    <a href="#">Home</a> <a href="#">Etc.</a>
-  </div>
-  {% endblock %}
-</div>
-{% endblock %}
 
 {% block content_area %}{% endblock %}
 </div>
