@@ -20,6 +20,7 @@
 }
 
 #main-content {
+  .open-sans;
   display: block;
   margin: 0 auto @baseLine;
   padding-left: @gridGutterWidth;
@@ -96,7 +97,6 @@
     
     p {
       font-size: .857em;
-      .open-sans;
       margin-bottom: @baseLine / 2;
     }
   }
@@ -138,36 +138,40 @@
     width: @widthMobile - (@gridGutterWidth * 2);
   }
 
-    #main-content {
-        margin-bottom: @baseLine;
-
-  .title-banner {
-    .open-sans-light;
-    width: auto;
-    font-size: 28px;
-    letter-spacing: -.5px;
-    margin: -25px 0 @baseLine;
-  }
-  
-  .title-banner:after {
-    display: none;
+  .billboard {
+    padding-left: @gridGutterWidth;
+    padding-right: @gridGutterWidth;
   }
 
-        .intro {
-          width: auto;
-          font-size: 1em;
-          margin-bottom: @baseLine;
-        }
-    
-        ul.links {
-            width: auto;
-            margin-bottom: 0;
-            li {
-              min-height: 0;
-            }
-        }
-    
+  #main-content {
+    margin-bottom: @baseLine;
+
+    .title-banner {
+      width: auto;
+      font-size: 28px;
+      letter-spacing: -.5px;
+      margin: -25px 0 @baseLine;
     }
+  
+    .title-banner:after {
+      display: none;
+    }
+
+    .intro {
+      width: auto;
+      font-size: 1em;
+      margin-bottom: @baseLine;
+    }
+    
+    ul.links {
+      width: auto;
+      margin-bottom: 0;
+      li {
+        min-height: 0;
+      }
+    }
+    
+  }
  
 }
 
@@ -181,29 +185,25 @@
   }
 
   #main-content {
+    .title-banner {
+      width: 340px;
+      margin: -25px 10px 40px;
+    }
   
-
-  .title-banner {
-    width: 340px;
-    margin: -25px 10px 40px;
-  }
-  
-  .title-banner:after {
-    display: block;
-  }
-
+    .title-banner:after {
+      display: block;
+    }
   
     .intro {
-      .span(2);
+      .span_narrow(2);
     }
   
     ul.links {
-      .span(3);
+      .span_narrow(3);
       float: right;
       clear: right;
     }
   
   }
-
 
 }
