@@ -329,6 +329,11 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.ba-hashchange.min.js',
             'js/firefox/devices.js'
         ),
+        'mosaic': (
+            'js/libs/modernizr.custom.26887.js',
+            'js/libs/jquery.transit.min.js',
+            'js/libs/jquery.gridrotator.js',
+        ),
     }
 }
 
