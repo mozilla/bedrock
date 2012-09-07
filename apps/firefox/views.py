@@ -1,15 +1,44 @@
 import re
 
-from firefox import version_re
-import l10n_utils
+from django.conf import settings
+from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.vary import vary_on_headers
+
+import basket
 from product_details import product_details
 from product_details.version_compare import Version
 from funfactory.urlresolvers import reverse
 
-from django.conf import settings
-from django.views.decorators.vary import vary_on_headers
-from django.http import HttpResponsePermanentRedirect
-from platforms import load_devices
+import l10n_utils
+from firefox import version_re
+from firefox.forms import SMSSendForm
+from firefox.platforms import load_devices
+from l10n_utils.dotlang import _
+
+
+@csrf_exempt
+def sms_send(request):
+    if request.method == 'POST':
+        form = SMSSendForm(request.POST)
+        if form.is_valid():
+            try:
+                basket.send_sms(form.cleaned_data['number'],
+                                'SMS_Android',
+                                form.cleaned_data['optin'])
+            except basket.BasketException:
+                msg = form.error_class(
+                    [_('An error occurred in our system. '
+                       'Please try again later.')]
+                )
+                form.errors['__all__'] = msg
+            else:
+                return HttpResponseRedirect(
+                    reverse('firefox.mobile.sms-thankyou'))
+    else:
+        form = SMSSendForm()
+    return l10n_utils.render(request, 'firefox/mobile/sms-send.html',
+                             {'sms_form': form})
 
 
 def windows_billboards(req):

@@ -44,16 +44,18 @@ TEMPLATE_DIRS = (
     path('locale')
 )
 
-JINJA_CONFIG = {
-    'extensions': [
-        'tower.template.i18n', 'jinja2.ext.do', 'jinja2.ext.with_',
-        'jinja2.ext.loopcontrols', 'l10n_utils.template.l10n_blocks',
-        'l10n_utils.template.lang_blocks'
-    ],
-    # Make None in templates render as ''
-    'finalize': lambda x: x if x is not None else '',
-    'auto_reload': True,
-}
+# has to stay a callable because tower expects that.
+def JINJA_CONFIG():
+    return {
+        'extensions': [
+            'tower.template.i18n', 'jinja2.ext.do', 'jinja2.ext.with_',
+            'jinja2.ext.loopcontrols', 'l10n_utils.template.l10n_blocks',
+            'l10n_utils.template.lang_blocks'
+        ],
+        # Make None in templates render as ''
+        'finalize': lambda x: x if x is not None else '',
+        'auto_reload': True,
+    }
 
 # Bundles is a dictionary of two dictionaries, css and js, which list css files
 # and js files that can be bundled together by the minify app.
@@ -126,6 +128,11 @@ MINIFY_BUNDLES = {
         'mobile_features': (
             'css/firefox/template-resp.less',
             'css/firefox/mobile-features.less',
+        ),
+        'firefox_sms': (
+            'css/firefox/template-resp.less',
+            'css/sandstone/video-resp.less',
+            'css/firefox/mobile-sms.less',
         ),
         'firefox_faq': (
             'css/firefox/template-resp.less',
@@ -301,6 +308,11 @@ MINIFY_BUNDLES = {
         'firefox_tech': (
             'js/firefox/technology/tech.js',
         ),
+        'firefox_sms': {
+            'js/mozilla-video-tools.js',
+            'js/firefox/sms.js',
+            '/js/libs/socialshare.min.js',
+        },
         'geolocation': (
             'js/libs/jquery-1.4.4.min.js',
             'js/libs/jquery.nyroModal.pack.js',
@@ -428,7 +440,7 @@ INSTALLED_APPS = (
 
     # libs
     'l10n_utils',
-    'captcha'
+    'captcha',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS += (
