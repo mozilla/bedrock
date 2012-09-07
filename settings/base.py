@@ -44,16 +44,18 @@ TEMPLATE_DIRS = (
     path('locale')
 )
 
-JINJA_CONFIG = {
-    'extensions': [
-        'tower.template.i18n', 'jinja2.ext.do', 'jinja2.ext.with_',
-        'jinja2.ext.loopcontrols', 'l10n_utils.template.l10n_blocks',
-        'l10n_utils.template.lang_blocks'
-    ],
-    # Make None in templates render as ''
-    'finalize': lambda x: x if x is not None else '',
-    'auto_reload': True,
-}
+# has to stay a callable because tower expects that.
+def JINJA_CONFIG():
+    return {
+        'extensions': [
+            'tower.template.i18n', 'jinja2.ext.do', 'jinja2.ext.with_',
+            'jinja2.ext.loopcontrols', 'l10n_utils.template.l10n_blocks',
+            'l10n_utils.template.lang_blocks'
+        ],
+        # Make None in templates render as ''
+        'finalize': lambda x: x if x is not None else '',
+        'auto_reload': True,
+    }
 
 # Bundles is a dictionary of two dictionaries, css and js, which list css files
 # and js files that can be bundled together by the minify app.
@@ -412,7 +414,7 @@ INSTALLED_APPS = (
 
     # libs
     'l10n_utils',
-    'captcha'
+    'captcha',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS += (
