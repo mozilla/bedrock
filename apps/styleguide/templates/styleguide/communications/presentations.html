@@ -1,0 +1,65 @@
+{% extends "styleguide/base.html" %}
+
+{% block body_class %}
+  {{ super() }}
+  communications-presentations
+{% endblock %}
+
+{% block content_title %}Presentations{% endblock%}
+{% block content_area %}
+
+<section id="intro">
+  <p>Based on our Sandstone website style, our presentation templates are clean, minimalist and light. You can mix and match colors from various templates to make your presentations more dynamic. Title screens can be all text, logo only or a mix of both. Please note that all text throughout your presentations should be set in Open Sans (included in download).</p>
+</section>
+
+<section id="standard">
+
+  <h3>Standard - Mozilla / Firefox / Product</h3>
+  <div class="preview">
+    <img src="{{ media('/img/styleguide/communications/presentation-standard.png') }}" alt="Standard presentation preview" />
+    <ul class="button-list">
+      <li><a href="https://assets.mozillalabs.com/Communications/Presentations/Keynote/" class="button-sand">Keynote</a></li><li>
+      <a href="https://assets.mozillalabs.com/Communications/Presentations/PPT/" class="button-sand">PPT</a></li><li>
+      <a href="https://assets.mozillalabs.com/Communications/Presentations/html5/" class="button-sand">HTML</a></li>
+    </ul>
+  </div>
+
+  <div class="examples">
+    <h4>Color options included:</h4>
+    <div class="swatches">
+      <div class="swatch-card" id="swatch-sand">
+        <div class="swatch"></div>
+      </div>
+      <div class="swatch-card" id="swatch-blue">
+        <div class="swatch"></div>
+      </div>
+      <div class="swatch-card" id="swatch-red">
+        <div class="swatch"></div>
+      </div>
+      <div class="swatch-card" id="swatch-grey">
+        <div class="swatch"></div>
+      </div>
+    </div>
+    <h4>Layouts included:</h4>
+    <ul>
+      <li>mozilla wordmark only</li>
+      <li>product logo only</li>
+      <li>title only</li>
+      <li>title &amp; subtitle</li>
+    </ul>
+    <ul>
+      <li>blank</li>
+      <li>top title only</li>
+      <li>top title &amp; bullets</li>
+      <li>video</li>
+    </ul>
+    <ul>
+      <li>quotes</li>
+      <li>code examples</li>
+      <li>photo examples</li>
+      <li>thank you / conclusion</li>
+    </ul>
+  </div>
+</section>
+
+{% endblock %}

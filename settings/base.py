@@ -206,6 +206,14 @@ MINIFY_BUNDLES = {
         'sandstone_guide': (
             'css/sandstone-guide.less',
         ),
+        'styleguide': (
+            'css/styleguide/styleguide.less',
+            'css/styleguide/websites-sandstone.less',
+            'css/styleguide/identity-mozilla.less',
+            'css/styleguide/identity-firefox.less',
+            'css/styleguide/identity-thunderbird.less',
+            'css/styleguide/communications.less',
+        ),
         'video': (
             'css/sandstone/video.less',
         ),
@@ -320,6 +328,9 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.validate.js',
             'js/partnerships.js',
         ),
+        'styleguide': (
+            'js/styleguide.js',
+        ),
         'video': (
             'js/mozilla-video-tools.js',
         ),
@@ -405,6 +416,7 @@ INSTALLED_APPS = (
     'mozorg',
     'persona',
     'research',
+    'styleguide',
     'privacy',
 
     # libs
