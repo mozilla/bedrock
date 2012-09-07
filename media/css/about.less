@@ -147,7 +147,7 @@
     margin-bottom: @baseLine;
 
     .title-banner {
-      width: auto;
+      width: 240px;
       font-size: 28px;
       letter-spacing: -.5px;
       margin: -25px 0 @baseLine;
@@ -181,13 +181,13 @@
   #masthead,
   #main-content,
   .billboard {
-    width: @widthMobileLandscape - (@gridGutterWidth * 2);
+    width: @widthMobileLandscape - @gridGutterWidth;
   }
 
   #main-content {
     .title-banner {
-      width: 340px;
-      margin: -25px 10px 40px;
+      width: 380px;
+      margin: -25px 0 40px;
     }
   
     .title-banner:after {
@@ -195,11 +195,11 @@
     }
   
     .intro {
-      .span_narrow(2);
+      .span_narrow(3);
     }
   
     ul.links {
-      .span_narrow(3);
+      .span_narrow(4);
       float: right;
       clear: right;
     }
