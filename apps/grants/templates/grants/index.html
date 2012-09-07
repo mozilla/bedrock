@@ -43,7 +43,7 @@
                 <th scope="col">Grantee</th>
                 <th scope="col">Project Title</th>
                 <th scope="col">Total Support</th>
-                <th scope="col">Year</th>
+                <th scope="col">Year(s)</th>
                 <th scope="col">Focus Area</th>
             </tr>
         </thead>
@@ -53,7 +53,13 @@
                 <th scope="row">{{ grant.grantee }}</th>
                 <td><a href="{{ url('grant_info', grant.url) }}">{{ grant.title }}</a></td>
                 <td>{{ grant.total_support }}</td>
-                <td>{{ grant.year }}</td>
+                <td>
+                    {% if grant.break_down %}
+                        {{ grant.year }} through {{ grant.break_down.keys()[0] }}
+                    {% else %}
+                        {{ grant.year }}
+                    {% endif %}
+                </td>
                 <td>{{ grant_labels[grant.type] }}</td>
             </tr>
             {% endfor %}
