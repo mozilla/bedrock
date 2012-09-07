@@ -126,6 +126,11 @@ MINIFY_BUNDLES = {
             'css/firefox/template-resp.less',
             'css/firefox/mobile-features.less',
         ),
+        'firefox_sms': (
+            'css/firefox/template-resp.less',
+            'css/sandstone/video-resp.less',
+            'css/firefox/mobile-sms.less',
+        ),
         'firefox_faq': (
             'css/firefox/template-resp.less',
             'css/mozilla-expanders.less',
@@ -292,6 +297,11 @@ MINIFY_BUNDLES = {
         'firefox_tech': (
             'js/firefox/technology/tech.js',
         ),
+        'firefox_sms': {
+            'js/mozilla-video-tools.js',
+            'js/firefox/sms.js',
+            '/js/libs/socialshare.min.js',
+        },
         'geolocation': (
             'js/libs/jquery-1.4.4.min.js',
             'js/libs/jquery.nyroModal.pack.js',
