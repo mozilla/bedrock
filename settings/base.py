@@ -297,11 +297,11 @@ MINIFY_BUNDLES = {
         'firefox_tech': (
             'js/firefox/technology/tech.js',
         ),
-        'firefox_sms': {
+        'firefox_sms': (
             'js/mozilla-video-tools.js',
             'js/firefox/sms.js',
             '/js/libs/socialshare.min.js',
-        },
+        ),
         'geolocation': (
             'js/libs/jquery-1.4.4.min.js',
             'js/libs/jquery.nyroModal.pack.js',
