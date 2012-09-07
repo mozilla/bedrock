@@ -7,7 +7,7 @@ from l10n_utils.dotlang import _
 
 class SMSSendForm(forms.Form):
     number = forms.CharField(max_length=14)
-    optin = forms.BooleanField()
+    optin = forms.BooleanField(required=False)
 
     def clean_number(self):
         mobile = self.cleaned_data['number']

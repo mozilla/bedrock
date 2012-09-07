@@ -2,6 +2,7 @@ import re
 
 from django.conf import settings
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
+from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.vary import vary_on_headers
 
 import basket
@@ -16,6 +17,7 @@ from firefox.platforms import load_devices
 from l10n_utils.dotlang import _
 
 
+@csrf_exempt
 def sms_send(request):
     if request.method == 'POST':
         form = SMSSendForm(request.POST)
@@ -26,12 +28,13 @@ def sms_send(request):
                                 form.cleaned_data['optin'])
             except basket.BasketException:
                 msg = form.error_class(
-                    [_('We apologize, but an error occurred in our system.'
+                    [_('An error occurred in our system. '
                        'Please try again later.')]
                 )
                 form.errors['__all__'] = msg
             else:
-                return HttpResponseRedirect(reverse('firefox.sms-sent'))
+                return HttpResponseRedirect(
+                    reverse('firefox.mobile.sms-thankyou'))
     else:
         form = SMSSendForm()
     return l10n_utils.render(request, 'firefox/mobile/sms-send.html',
