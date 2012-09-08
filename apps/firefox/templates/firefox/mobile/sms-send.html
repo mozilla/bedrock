@@ -39,13 +39,11 @@
 
     <p class="input{% if sms_form.is_bound and not sms_form.is_valid() %} error{% endif %}">
       {% if sms_form.is_bound and not sms_form.is_valid() %}
-        <strong class="tooltip error">{{ sms_form.number.errors[0] }}{{ sms_form.non_field_errors()[0] }}</strong>
+        <strong class="tooltip error">{{ sms_form.number.errors[0]|safe }}{{ sms_form.non_field_errors()[0] }}</strong>
       {% endif %}
       <label for="number">{{ _('Enter your 10-digit phone number') }}</label>
       <input type="tel"
-             pattern="[\d- ()]+"
              maxlength="14"
-             x-moz-errormessage="{{ _('Please only enter numbers and dashes') }}"
              id="number"
              name="number"
              placeholder="{{ _('Enter your 10-digit phone number') }}"
