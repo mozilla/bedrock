@@ -19,24 +19,21 @@ from l10n_utils.dotlang import _
 
 @csrf_exempt
 def sms_send(request):
-    if request.method == 'POST':
-        form = SMSSendForm(request.POST)
-        if form.is_valid():
-            try:
-                basket.send_sms(form.cleaned_data['number'],
-                                'SMS_Android',
-                                form.cleaned_data['optin'])
-            except basket.BasketException:
-                msg = form.error_class(
-                    [_('An error occurred in our system. '
-                       'Please try again later.')]
-                )
-                form.errors['__all__'] = msg
-            else:
-                return HttpResponseRedirect(
-                    reverse('firefox.mobile.sms-thankyou'))
-    else:
-        form = SMSSendForm()
+    form = SMSSendForm(request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+        try:
+            basket.send_sms(form.cleaned_data['number'],
+                            'SMS_Android',
+                            form.cleaned_data['optin'])
+        except basket.BasketException:
+            msg = form.error_class(
+                [_('An error occurred in our system. '
+                   'Please try again later.')]
+            )
+            form.errors['__all__'] = msg
+        else:
+            return HttpResponseRedirect(
+                reverse('firefox.mobile.sms-thankyou'))
     return l10n_utils.render(request, 'firefox/mobile/sms-send.html',
                              {'sms_form': form})
 

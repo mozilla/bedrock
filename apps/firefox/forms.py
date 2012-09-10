@@ -17,7 +17,7 @@ class SMSSendForm(forms.Form):
         elif len(mobile) != 11 or mobile[0] != '1':
             raise forms.ValidationError(_(
                 'Sorry. This number isn\'t valid. Please enter a U.S. phone '
-                'number or <a href="http://mzl.la/OgZo6k">download directly '
+                'number or <a href="%s">download directly '
                 'from Google Play.</a>'
-            ))
+            ) % 'http://mzl.la/OgZo6k')
         return mobile
