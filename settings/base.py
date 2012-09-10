@@ -306,9 +306,8 @@ MINIFY_BUNDLES = {
             'js/firefox/technology/tech.js',
         ),
         'firefox_sms': (
-            'js/mozilla-video-tools.js',
             'js/firefox/sms.js',
-            '/js/libs/socialshare.min.js',
+            'js/libs/socialshare.min.js',
         ),
         'geolocation': (
             'js/libs/jquery-1.4.4.min.js',
