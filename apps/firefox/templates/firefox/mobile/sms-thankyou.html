@@ -29,7 +29,7 @@
 
 <div id="main-content">
   <div id="sms-sent">
-  
+
     <div id="video-player" class="mozilla-video-control mozilla-video-shadow">
       <video
         controls="controls"
@@ -39,13 +39,13 @@
         <source src="http://videos-cdn.mozilla.net/serv/marketing/fxforandroid/10-07-12_firefox_for_android_american-640x360 Video Sharing.webm">
       </video>
     </div>
-  
+
     <p class="also"><a href="https://market.android.com/details?id=org.mozilla.firefox" rel="external">{{ _('Also available as a free download from Google Play') }}</a></p>
-    
+
     <div class="socialshare" data-type="small-bubbles"></div>
-    
+
   </div>
-  
+
   {% if LANG.startswith('en') %}
     {% if not request.newsletter_success %}
       {% if request.newsletter_form.errors %}
@@ -93,7 +93,7 @@
       </div>
 
       <div class="form-submit">
-        <input type="submit" id="footer_email_submit" value="Sign me up »" class="button-blue">
+        <input type="submit" id="footer_email_submit" value="Sign me up »" class="button">
         <p class="form-details"><small>{{_('We will only send you Mozilla-related information.')}}</small></p>
       </div>
 
