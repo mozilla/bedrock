@@ -1,0 +1,56 @@
+{% extends "styleguide/base.html" %}
+
+{% block body_class %}
+  {{ super() }}
+  sandstone-buttons
+{% endblock %}
+
+{% block content_title %}Sandstone buttons &amp icons{% endblock%}
+{% block content_area %}
+
+<section id="buttons">
+  <div class="intro">
+    <h2>Buttons</h2>
+    <div>
+      <p>Button styles with hover/active states and CSS transitions are provided. Green buttons should be used for download actions, blue for other primary functions.</p>
+    </div>
+  </div>
+  <div class="examples">
+    <h3>Standard download</h3>
+    <div class="example">{{ download_button('example-download') }}</div>
+    <div class="example">{{ download_button('example-download-small','small') }}</div>
+  </div>
+  <div class="examples">
+    <h3>Mobile download</h3>
+    <div class="example">{{ mobile_download_button('example-download-mobile') }}</div>
+    <div class="example">{{ mobile_download_button('example-download-mobile-small', 'small') }}</div>
+  </div>
+  <div class="examples" id="examples-standard">
+    <h3>Standard</h3>
+    <p><a href="#" class="button">default</a></p>
+    <p><a href="#" class="button hover">hover</a></p>
+    <p><a href="#" class="button active">active</a></p>
+    <p><a href="#" class="button insensitive">insensitive</a></p>
+  </div>
+  <div class="examples">
+    <h3>User Flow</h3>
+    <p><a href="#" class="button button-next">next</a></p>
+    <p><a href="#" class="button button-negative">no</a></p>
+    <p><a href="#" class="button button-context">context</a></p>
+  </div>
+</section>
+
+<section id="icons">
+  <div class="intro">
+    <h2>Icon style</h2>
+    <div>
+      <p>Our icons use simple shapes with a distinct embossed effect. Their alternate state features a bold color with subtle gradient. You can download these examples below, along with the layer styles, which you can apply to your own icon designs.</p>
+      <a href="https://assets.mozillalabs.com/Websites/Sandstone/Default%20Icons/marketplace-icons-singles.psd" class="button-sand">Download default PSD styles</a>
+    </div>
+  </div>
+  <div class="examples">
+    <img src="{{ media('/img/styleguide/websites/sandstone/icons.png') }}" alt="Sandstone icons" id="icons" />
+  </div>
+</section>
+
+{% endblock %}

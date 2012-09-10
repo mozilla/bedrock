@@ -1,0 +1,272 @@
+@import "../sandstone/variables-resp.less";
+@import "../sandstone/mixins-resp.less";
+
+@font-face {
+    font-family: 'Open Sans Light';
+    src: url('/media/fonts/OpenSans-LightItalic-webfont.eot');
+    src: url('/media/fonts/OpenSans-LightItalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/media/fonts/OpenSans-LightItalic-webfont.woff') format('woff'),
+         url('/media/fonts/OpenSans-LightItalic-webfont.ttf') format('truetype'),
+         url('/media/fonts/OpenSans-LightItalic-webfont.svg#OpenSansLightItalic') format('svg');
+    font-weight: normal;
+    font-style: italic;
+}
+
+.divider {
+    padding-bottom: @baseLine * 3;
+    margin-bottom: @baseLine * 2;
+    background: url(/media/img/styleguide/divider.png) 50% 100% no-repeat;
+}
+
+a[href="#TODO"] { color: #f00 !important; }
+
+/* {{{ Grid setup */
+
+// Desktop:
+//           (16cols ✕ 60px) =  960
+// +     (15 gutters ✕ 20px) =  300
+// + (2 page gutters ✕ 20px) =   40
+// --------------------------------
+//                           = 1300px
+
+@widthDesktop:            1300px;
+
+// Gutter width remains the same for all grids
+@gridGutterWidth:         20px;
+
+// Default grid: 12 columns at 60px
+@gridColumns:             16;
+@gridColumnWidth:         60px;
+@gridRowWidth:            (@gridColumns * @gridColumnWidth) + (@gridGutterWidth * (@gridColumns - 1));
+
+// Column spans for style guide column widths
+.span_guide(@columns) {
+    float: left;
+    width: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1));
+    margin: 0 (@gridGutterWidth / 2);
+}
+
+.offset_guide(@columns) {
+    margin-left: ((@gridColumnWidth + @gridGutterWidth) * @columns) + (@gridGutterWidth * 0.5);
+}
+
+#outer-wrapper {
+    min-width: @widthDesktop;
+}
+
+#wrapper {
+    width: auto;
+    z-index: 10;
+}
+
+#content {
+    width: @widthDesktop;
+    position: relative;
+    margin: 0 auto;
+    z-index: 9;
+    .clearfix;
+}
+
+#sidebar {
+    .span_guide(2);
+    margin-left: @gridGutterWidth;
+}
+
+#content_area {
+    .span_guide(12);
+    width: (@gridColumnWidth * 12) + (@gridGutterWidth * 12);
+    margin-left: @gridColumnWidth + @gridGutterWidth;
+    margin-bottom: @baseLine;
+}
+
+#styleguide #masthead {
+    min-height: 45px;
+}
+
+/* }}} */
+/* {{{ Sidebar */
+
+#sidebar {
+    margin-bottom: @baseLine;
+    h2 {
+        text-align: center;
+        font-size: 24px;
+        img {
+            display: block;
+            margin: 0 auto 5px auto;
+        }
+        a {
+            opacity: 0.5;
+            color: @textColorTertiary;
+            &:hover,
+            &:active,
+            &:focus {
+                opacity: 1;
+                text-decoration: none;
+            }
+        }
+    }
+    nav {
+        text-transform: uppercase;
+        .open-sans-light;
+        font-size: 11px;
+        margin: @baseLine auto;
+        width: 160px;
+        ul {
+            margin: 0;
+            li {
+                list-style-type: none;
+                margin: 0;
+                background: rgba(255,255,255,0.25);
+                display: block;
+            }
+        }
+        a,b {
+            display: block;
+            padding: 6px 25px 6px 15px;
+            color: @textColorPrimary;
+            border-bottom: 1px dotted rgba(0,0,0,0.1);
+        }
+        li li a,
+        li li b {
+            padding-left: 25px;
+        }
+        li li li a,
+        li li li b {
+            padding-left: 35px;
+        }
+        b {
+            font-weight: normal;
+            color: @textColorSecondary;
+        }
+    }
+}
+
+/* }}} */
+/* {{{ Header / Breadcrumbs and Next/Prev  */
+
+h1 {
+    .span(12);
+    margin-bottom: @baseLine * 2;
+}
+
+#subnav {
+    .span(12);
+    text-transform: uppercase;
+    .open-sans-light;
+    font-size: 11px;
+    line-height: 20px;
+    a {
+        display: inline-block;
+        min-height: 20px;
+        padding: 4px 22px 4px 0;
+        position: relative;
+    }
+    #nextprev {
+        float: right;
+        text-align: right;
+        margin-bottom: @baseLine;
+        a {
+            padding: 4px 10px 4px 18px;
+            background-repeat: no-repeat;
+            background-position: 0 50%;
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAOCAYAAAASVl2WAAABKklEQVR42m2QvWuDUBTF061QCMWW0FIav+gghdAhg246ODm4CBqJiENEHZxcsnUNBFoohf4tTk7ZHJwCNg1VabFCSpqhdBH7XiHF1gznHbi/cy+P06qqqqFut4uRJPkF/HwXPKNpeiMIwjtFUZ9/IIqiJwzDbIbDYSGK4ioMw9s6PAabH5qm5ZIkFbPZ7A7MkR+IYRgCNte6rr/IspwHQXAP5h3IIGz3+/31aDTKTNPMfN9/AOB0e7nleV6H47hiPB4vQCBxHEeo/ws++0mSTAaDQea67hPP828EQVzVA1AHaZpOFEVJLctasiwLQ5fbwG8ojuOpqqrPtm0/glCO4/jF/6La8/l8CnpYGoax6PV6q11VH0ZRdAMuvNaKaggpy/Ia+FED1rQH/RtK4g7tU4Qk4QAAAABJRU5ErkJggg==);
+        }
+        a.next {
+            padding: 4px 18px 4px 10px;
+            background-position: 100% 50%;
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAOCAYAAAD9lDaoAAABL0lEQVR42m3QvUrDUBQH8DopqFGkQ6WQpJkkkwmS4JpAliwZgoV+LO0QMgQyZXMRBH0AdRCfIUvGkDxFoaBtGirmwyK4uIV4zqDobYf/PZx7f4Sc06jrukHT9Emn0/mE2saeDIIDnue/dF3/kCTpHfoWifDYiaLo3jCMVb/fLwGWAJskwrTCMHwwTbMEmAPMGYY5IhGmHQTBY7fbzYbD4ZssywgpEmFo3/efLMtajsfjpSiKGcuy+2uTALiALDzPm6mqmruu2/wHOI471zQtdxxn3uv10qIoruB++y84UxSlgK8gWKRpeo2T49sPOAWQ2bb9DNPNkyRBsPs7HWyaEgRhNRqNXgaDwWw6nd7Aw97aMuM4voOffJ1MJrfQU5s2jjmuquoS6iEJyD1tYd2Ub5JPMvKekz3aAAAAAElFTkSuQmCC);
+        }
+    }
+    #breadcrumbs {
+        margin-bottom: @baseLine;
+        a {
+            margin-right: 10px;
+            background-position: 100% 50%;
+            background-repeat: no-repeat;
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAUCAYAAABWMrcvAAAAr0lEQVR42q3TPwrCMBSA8VSrtSYIglBHcXFysJ7AA4geQFfFA/V4niV+b4rUhCehw6/DCx+U/DHe+wJl055nKGA0EokR5gxWGP8biRJLhltM9CiYYs3CAZXMYmLDChuiE+poZLr3DxZq7IiusP11+aRCiz3RHU6PQujQEj2x6EVqeCR6SZiI9DAryvs9BmlhIx4SpA43CFt+g9NuxPfhXmCHuEZZF1Z5GkM+wqzn/gGPpd1ige/9lgAAAABJRU5ErkJggg==);
+        }
+    }
+}
+
+/* }}} */
+/* {{{ Color swatches */
+
+.swatch-card {
+    .span_guide(4);
+    margin-left: 0;
+    margin-right: 20px;
+    padding-bottom: @baseLine;
+    .swatch {
+        border: 10px solid #fff;
+        width: 120px;
+        height: 120px;
+        float: left;
+        margin-right: 20px;
+    }
+    h5 {
+        font-size: 28px;
+    }
+    p {
+        margin-bottom: @baseLine / 2;
+    }
+    td,tr {
+        font-size: 12px;
+    }
+    td {
+        padding-right: 20px;
+    }
+}
+
+/* }}} */
+/* {{{ Big List style */
+
+.big-list {
+    counter-reset: li; /* Initiate a counter */
+    margin: 0 0 20px 0;
+    padding-left: 0;
+    li {
+        position: relative;
+        list-style-type: none;
+        padding: 20px 20px 20px 60px;
+        &:before {
+            content: counter(li); /* Use the counter as content */
+            counter-increment: li; /* Increment the counter by 1 */
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 48px;
+            .open-sans-light;
+        }
+    }
+}
+
+/* }}} */
+/* {{{ Home page */
+
+.styleguide-home {
+    #content_area h1 {
+        .span_guide(4);
+        font-size: 72px;
+        letter-spacing: -3px;
+        line-height: 100%;
+        margin-top: 60px;
+        margin-bottom: 20px;
+    }
+    #intro {
+        .span_guide(4);
+        clear: left;
+    }
+    #wrapper:before {
+        background: url(/media/img/styleguide/home.png) 50% 90px no-repeat;
+        content:"";
+        height: 800px;
+        width: 100%;
+        min-width: 1300px;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+
+/* }}} */

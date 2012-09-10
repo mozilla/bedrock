@@ -1,0 +1,112 @@
+{% extends "base-resp.html" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}Mozilla Style Guide{% endblock %}
+{% block body_id %}styleguide{% endblock %}
+{% block body_class %}sand{% endblock %}
+
+{% block site_header %}
+{% endblock %}
+
+{% block site_header_logo %}{% endblock %}
+{% block site_header_nav %}{% endblock %}
+{% block email_form %}{% endblock %}
+
+{% block extrahead %}
+  {{ css('styleguide') }}
+{% endblock %}
+
+{% block js %}
+  {{ js('styleguide') }}
+{% endblock %}
+
+{% block content %}
+<div id="content">
+  <header id="masthead">
+  <a href="http://www.mozilla.org/" id="tabzilla">{{ _('Mozilla') }}</a>
+  </header>
+
+{% block sidebar %}
+  <div id="sidebar">
+  <h2><a href="#">
+    <img src="{{ media('/img/styleguide/mozilla.png') }}" height="28" width="107" alt="mozilla">
+    Style guide
+  </a></h2>
+  <nav>
+    <ul>
+      <li><a href="{{ url('styleguide.home') }}">Home</a></li>
+      <li>
+        <b>Identity</b>
+        <ul>
+          <li>
+            <b>Mozilla</b>
+            <ul>
+              <li><a href="{{ url('styleguide.identity.mozilla-branding') }}">Branding</a></li>
+              <li><a href="{{ url('styleguide.identity.mozilla-color') }}">Color</a></li>
+            </ul>
+          </li>
+          <li>
+            <b>Firefox Browser</b>
+            <ul>
+              <li><a href="{{ url('styleguide.identity.firefox-branding') }}">Branding</a></li>
+              <li><a href="{{ url('styleguide.identity.firefox-channels') }}">Channels</a></li>
+              <li><a href="{{ url('styleguide.identity.firefox-wordmarks') }}">Wordmarks</a></li>
+              <li><a href="{{ url('styleguide.identity.firefox-color') }}">Color</a></li>
+            </ul>
+          </li>
+          <li>
+            <b>Thunderbird</b>
+            <ul>
+              <li><a href="{{ url('styleguide.identity.thunderbird-logo') }}">Logo</a></li>
+              <li><a href="{{ url('styleguide.identity.thunderbird-channels') }}">Channels</a></li>
+              <li><a href="{{ url('styleguide.identity.thunderbird-wordmarks') }}">Wordmarks</a></li>
+              <li><a href="{{ url('styleguide.identity.thunderbird-color') }}">Color</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <b>Communications</b>
+        <ul>
+          <li><a href="{{ url('styleguide.communications.presentations') }}">Presentations</a></li>
+          <li><a href="{{ url('styleguide.communications.video') }}">Video</a></li>
+          <li><a href="{{ url('styleguide.communications.typefaces') }}">Typefaces</a></li>
+          <li><a href="{{ url('styleguide.communications.copy-tone') }}">Copy tone</a></li>
+          <li><a href="{{ url('styleguide.communications.copy-rules') }}">Copy rules</a></li>
+          <li><a href="{{ url('styleguide.communications.translation') }}">Translation</a></li>
+        </ul>
+      </li>
+      <li>
+        <b>Websites</b>
+        <ul>
+          <li><b>Sandstone</b>
+            <ul>
+              <li><a href="{{ url('styleguide.websites.sandstone-intro') }}">Overview</a></li>
+              <li><a href="{{ url('styleguide.websites.sandstone-grids') }}">Responsive grid</a></li>
+              <li><a href="{{ url('styleguide.websites.sandstone-tabzilla') }}">Tabzilla</a></li>
+              <li><a href="{{ url('styleguide.websites.sandstone-typefaces') }}">Typefaces</a></li>
+              <li><a href="{{ url('styleguide.websites.sandstone-colors') }}">Backgrounds &amp; color</a></li>
+              <li><a href="{{ url('styleguide.websites.sandstone-buttons') }}">Buttons &amp; icons</a></li>
+              <li><a href="{{ url('styleguide.websites.sandstone-forms') }}">Forms & modules</a></li>
+              <li><a href="{{ url('styleguide.websites.sandstone-tables') }}">Tables & lists</a></li>
+              <li><a href="{{ url('styleguide.websites.sandstone-examples') }}">Examples</a></li>
+            </ul>
+          </li>
+          <li><a href="{{ url('styleguide.websites.community-overview') }}">Community sites</a></li>
+          <li><a href="{{ url('styleguide.websites.domains-overview') }}">Domain strategy</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  </div>
+{% endblock %}
+
+<div id="content_area">
+
+<h1>{% block content_title %}{% endblock%}</h1>
+
+{% block content_area %}{% endblock %}
+</div>
+
+</div>
+{% endblock %}
