@@ -9,17 +9,15 @@ of terms and example values for them:
 * locale: a string in the form of 'en-US'
 """
 
-import re
 import urlparse
 from distutils.version import StrictVersion
 from os import path
 
-import feedparser
 import jingo
 import jinja2
-from django import shortcuts
 from django.conf import settings
 from django.core.cache import cache
+
 from funfactory.urlresolvers import reverse
 from product_details import product_details
 
@@ -94,9 +92,6 @@ def make_aurora_link(product, version, platform, locale):
 
 def make_download_link(product, build, version, platform, locale,
                        force_direct=False):
-    # Aurora has a special download link format
-    if build == 'aurora':
-        return make_aurora_link(product, version, platform, locale)
 
     # The downloaders expect the platform in a certain format
     platform = {
@@ -111,8 +106,8 @@ def make_download_link(product, build, version, platform, locale,
     if locale in settings.LOCALES_WITH_TRANSITION and not force_direct:
          src = 'transition'
 
-    return ('%s?product=%s-%s&os=%s&lang=%s' %
-            (download_urls[src], product, version, platform, locale))
+    return ('%s?product=%s-%s&os=%s&lang=%s&channel=%s' %
+            (download_urls[src], product, version, platform, locale, build))
 
 
 @jingo.register.function
@@ -183,8 +178,14 @@ def download_button(ctx, id, format='large', build=None):
         # And generate all the info
         download_link = make_download_link('firefox', build, version,
                                            platform, locale)
-        download_link_direct = make_download_link('firefox', build, version,
-                                                  platform, locale, True)
+        # Aurora has a special download link format
+        if build == 'aurora':
+            download_link_direct = make_aurora_link('firefox', version,
+                                                    platform, locale)
+        else:
+            download_link_direct = make_download_link('firefox', build, version,
+                                                       platform, locale,
+                                                       force_direct=True)
         builds.append({'platform': platform,
                        'platform_pretty': platform_pretty,
                        'download_link': download_link,

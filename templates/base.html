@@ -26,7 +26,7 @@
     {{ js('site') }}
   </head>
 
-  <body id="{% block body_id %}{% endblock %}" class="html-{{ DIR }} {% block body_class %}{% endblock %}">
+  <body id="{% block body_id %}{% endblock %}" class="html-{{ DIR }} {% block body_class %}{% endblock %}"{% block body_attrs %}{% endblock %}>
     <div id="outer-wrapper">
     <div id="wrapper">
 
@@ -57,28 +57,27 @@
     {% block content %}{% endblock %}
 
     {% block email_form %}
-      {% if email_form %}
-        {% if not email_success %}
-          {% if email_form.errors %}
+      {% if LANG.startswith('en') %}
+        {% if not request.newsletter_success %}
+          {% if request.newsletter_form.errors %}
           <div id="footer-email-errors">
-            {{ email_form.non_field_errors()|safe }}
+            {{ request.newsletter_form.non_field_errors()|safe }}
 
             <ul class="errorlist">
-              {% if email_form.email.errors %}
+              {% if request.newsletter_form.email.errors %}
               <li>{{_('Please enter a valid email address')}}</li>
               {% endif %}
 
-              {% if email_form.privacy.errors %}
+              {% if request.newsletter_form.privacy.errors %}
               <li>{{_('You must agree to the privacy policy')}}</li>
               {% endif %}
             </ul>
           </div>
           {% endif %}
 
-        <form class="billboard{% if email_form.errors %} has-errors{% endif%}"
+        <form class="billboard{% if request.newsletter_form.errors %} has-errors{% endif%}"
           id="footer-email-form" action="#footer-email-form" method="post"
           onsubmit="dcsMultiTrack('DCS.dcsuri','/signmeup.button','WT.ti','Sign%20Me%20Up','WT.dl','26');">
-          
           <input type="hidden" name="newsletter-footer" value="Y" />
           <input type="hidden" name="newsletter"
             value="{% block email_form_newsletter %}mozilla-and-you{% endblock %}" />
@@ -86,22 +85,22 @@
           <h3>{% block email_form_title %}{{_('Get Firefox news')}}{% endblock %}</h3>
 
           <div class="form-contents">
-            <div class="field field-email {% if email_form.email.errors %}field-error{% endif %}">
-              {{ field_with_attrs(email_form.email, placeholder=_('YOUR EMAIL HERE'))|safe }}
+            <div class="field field-email {% if request.newsletter_form.email.errors %}field-error{% endif %}">
+              {{ field_with_attrs(request.newsletter_form.email, placeholder=_('YOUR EMAIL HERE'))|safe }}
             </div>
 
             <div id="form-details">
               <div class="field field-format">
-                {{ email_form.fmt|safe }}
+                {{ request.newsletter_form.fmt|safe }}
               </div>
-              <div class="field field-privacy {% if email_form.privacy.errors%}field-error{% endif %}">
-                {{ email_form.privacy|safe }}
+              <div class="field field-privacy {% if request.newsletter_form.privacy.errors%}field-error{% endif %}">
+                {{ request.newsletter_form.privacy|safe }}
               </div>
             </div>
           </div>
 
           <div class="form-submit">
-            <input type="submit" id="footer_email_submit" value="Sign me up »" class="button-blue">
+            <input type="submit" id="footer_email_submit" value="Sign me up »" class="button">
             <p class="form-details"><small>{{_('We will only send you Mozilla-related information.')}}</small></p>
           </div>
 
@@ -113,46 +112,41 @@
         {% endif %}
       {% endif %}
     {% endblock %}
-
-      </div><!-- close #wrapper -->
+    </div><!-- close #wrapper -->
 
     {% block site_footer %}
       <footer id="colophon">
       <div class="row">
 
-          <div class="span3">
-              <a href="{{ php_url('/') }}" class="footer-logo"><img src="{{ media('img/sandstone/footer-mozilla.png') }}" alt="mozilla"></a>
+          <div class="footer-logo">
+              <a href="{{ php_url('/') }}"><img src="{{ media('img/sandstone/footer-mozilla.png') }}" alt="mozilla"></a>
           </div>
 
-          <div class="span3">
+          <div class="footer-license">
               <p>
-		{% trans url='/foundation/licensing/website-content.html' %}
-		Portions of this content are ©1998–{{ current_year }} by individual
+                {% trans url='/foundation/licensing/website-content.html' %}
+                Portions of this content are ©1998–{{ current_year }} by individual
                 mozilla.org contributors. Content available under
-		a <a href="{{ url }}">Creative Commons license</a>.
-		{% endtrans %}
+                a <a href="{{ url }}">Creative Commons license</a>.
+                {% endtrans %}
               </p>
               <p>
                 <a href="{{ url('mozorg.contribute_page') }}">{{_('Contribute to this page')}}</a>
               </p>
           </div>
-          <nav class="span2">
-              <ul>
-                  <li><a href="{{ php_url('/about/contact.html#map-mountain_view') }}">{{_('Contact Us')}}</a></li>
-                  <li><a href="{{ php_url('/privacy-policy.html') }}">{{_('Privacy Policy')}}</a></li>
-                  <li><a href="{{ php_url('/about/legal.html') }}">{{_('Legal Notices')}}</a></li>
-                  <li><a href="{{ php_url('/legal/fraud-report/index.html') }}">{{_('Report Trademark Abuse')}}</a></li>
-              </ul>
-          </nav>
+          <ul class="footer-nav">
+            <li><a href="{{ php_url('/about/contact.html#map-mountain_view') }}">{{_('Contact Us')}}</a></li>
+            <li><a href="{{ php_url('/privacy-policy.html') }}">{{_('Privacy Policy')}}</a></li>
+            <li><a href="{{ php_url('/about/legal.html') }}">{{_('Legal Notices')}}</a></li>
+            <li><a href="{{ php_url('/legal/fraud-report/index.html') }}">{{_('Report Trademark Abuse')}}</a></li>
+          </ul>
 
           {% block social %}
-          <nav class="span2">
-            <ul>
-              <li><a href="http://twitter.com/firefox">{{_('Twitter')}}</a></li>
-              <li><a href="http://facebook.com/Firefox">{{_('Facebook')}}</a></li>
-              <li><a href="https://affiliates.mozilla.org/">{{_('Firefox Affiliates')}}</a></li>
-            </ul>
-          </nav>
+          <ul class="footer-nav">
+            <li><a href="http://twitter.com/firefox">{{_('Twitter')}}</a></li>
+            <li><a href="http://facebook.com/Firefox">{{_('Facebook')}}</a></li>
+            <li><a href="https://affiliates.mozilla.org/">{{_('Firefox Affiliates')}}</a></li>
+          </ul>
           {% endblock %}
 
       </div>

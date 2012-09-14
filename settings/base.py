@@ -44,15 +44,18 @@ TEMPLATE_DIRS = (
     path('locale')
 )
 
+# has to stay a callable because tower expects that.
 def JINJA_CONFIG():
-    import jinja2
-    from django.conf import settings
-    config = {'extensions': ['tower.template.i18n', 'jinja2.ext.do',
-                             'jinja2.ext.with_', 'jinja2.ext.loopcontrols',
-                             'l10n_utils.template.l10n_blocks',
-                             'l10n_utils.template.lang_blocks'],
-              'finalize': lambda x: x if x is not None else ''}
-    return config
+    return {
+        'extensions': [
+            'tower.template.i18n', 'jinja2.ext.do', 'jinja2.ext.with_',
+            'jinja2.ext.loopcontrols', 'l10n_utils.template.l10n_blocks',
+            'l10n_utils.template.lang_blocks'
+        ],
+        # Make None in templates render as ''
+        'finalize': lambda x: x if x is not None else '',
+        'auto_reload': True,
+    }
 
 # Bundles is a dictionary of two dictionaries, css and js, which list css files
 # and js files that can be bundled together by the minify app.
@@ -125,6 +128,11 @@ MINIFY_BUNDLES = {
         'mobile_features': (
             'css/firefox/template-resp.less',
             'css/firefox/mobile-features.less',
+        ),
+        'firefox_sms': (
+            'css/firefox/template-resp.less',
+            'css/sandstone/video-resp.less',
+            'css/firefox/mobile-sms.less',
         ),
         'firefox_faq': (
             'css/firefox/template-resp.less',
@@ -206,6 +214,14 @@ MINIFY_BUNDLES = {
         'sandstone_guide': (
             'css/sandstone-guide.less',
         ),
+        'styleguide': (
+            'css/styleguide/styleguide.less',
+            'css/styleguide/websites-sandstone.less',
+            'css/styleguide/identity-mozilla.less',
+            'css/styleguide/identity-firefox.less',
+            'css/styleguide/identity-thunderbird.less',
+            'css/styleguide/communications.less',
+        ),
         'video': (
             'css/sandstone/video.less',
         ),
@@ -277,8 +293,7 @@ MINIFY_BUNDLES = {
         ),
         'firefox_happy': (
             'js/libs/jquery-1.4.4.min.js',
-            'js/libs/jquery-css-transform.js',
-            'js/libs/jquery-animate-css-rotate-scale.js',
+            'js/firefox/happy.js',
         ),
         'firefox_platforms': (
             'js/mozilla-expanders.js',
@@ -288,11 +303,15 @@ MINIFY_BUNDLES = {
         ),
         'firefox_speed': (
             'js/libs/jquery-1.4.4.min.js',
-            'js/libs/jquery-css-transform.js',
-            'js/libs/jquery-animate-css-rotate-scale.js',
+            'js/firefox/speed.js',
         ),
         'firefox_tech': (
             'js/firefox/technology/tech.js',
+        ),
+        'firefox_sms': (
+            'js/mozilla-video-tools.js',
+            'js/firefox/sms.js',
+            '/js/libs/socialshare.min.js',
         ),
         'geolocation': (
             'js/libs/jquery-1.4.4.min.js',
@@ -311,6 +330,7 @@ MINIFY_BUNDLES = {
         ),
         'mozorg-resp': (
             'js/libs/jquery-1.7.1.min.js',
+            'js/global.js',
             'js/nav-main-resp.js',
             'js/footer-email-form.js',
         ),
@@ -324,15 +344,16 @@ MINIFY_BUNDLES = {
         'privacy': (
             'js/util.js',
             'js/mozilla-pager.js',
-            'js/privacy.js'
+            'js/privacy.js',
+        ),
+        'styleguide': (
+            'js/styleguide.js',
         ),
         'video': (
             'js/mozilla-video-tools.js',
         ),
         'firefox_devices': (
             'js/libs/jquery-1.4.4.min.js',
-            'js/libs/jquery-css-transform.js',
-            'js/libs/jquery-animate-css-rotate-scale.js',
             'js/global.js',
             'js/nav-main.js',
             'js/libs/jquery.cycle.all.js',
@@ -368,17 +389,11 @@ MIDDLEWARE_CLASSES = (
     'mozorg.middleware.MozorgRequestTimingMiddleware',
     'django_statsd.middleware.GraphiteMiddleware',
     'funfactory.middleware.LocaleURLMiddleware',
-    #'multidb.middleware.PinningRouterMiddleware',
     'django.middleware.common.CommonMiddleware',
-    #'mozorg.middleware.NoVarySessionMiddleware',
-    #'django.contrib.auth.middleware.AuthenticationMiddleware',
-    #'session_csrf.CsrfMiddleware',  # Must be after auth middleware.
-    #'django.contrib.messages.middleware.MessageMiddleware',
     'commonware.middleware.FrameOptionsHeader',
-    #'mobility.middleware.DetectMobileMiddleware',
-    #'mobility.middleware.XMobileMiddleware',
     'mozorg.middleware.CacheMiddleware',
-    'dnt.middleware.DoNotTrackMiddleware'
+    'mozorg.middleware.NewsletterMiddleware',
+    'dnt.middleware.DoNotTrackMiddleware',
 )
 
 INSTALLED_APPS = (
@@ -420,11 +435,12 @@ INSTALLED_APPS = (
     'mozorg',
     'persona',
     'research',
+    'styleguide',
     'privacy',
 
     # libs
     'l10n_utils',
-    'captcha'
+    'captcha',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS += (
@@ -468,3 +484,11 @@ RECAPTCHA_PUBLIC_KEY = ''
 RECAPTCHA_PRIVATE_KEY = ''
 
 TEST_RUNNER = 'test_utils.runner.NoDBTestSuiterunner'
+
+
+def lazy_email_backend():
+    from django.conf import settings
+    return ('django.core.mail.backends.console.EmailBackend' if settings.DEBUG
+            else 'django.core.mail.backends.smtp.EmailBackend')
+
+EMAIL_BACKEND = lazy(lazy_email_backend, str)()

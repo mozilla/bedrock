@@ -1,8 +1,10 @@
 from django.conf.urls.defaults import *
 
-import views
+from mozorg.util import page
 
 urlpatterns = patterns('',
-    url(r'^$', views.marketplace, name='marketplace'),
-    url(r'^partners/$', views.partners, name='partners')
+    # /apps is temporarily redirected to /apps/partners as per
+    # https://bugzilla.mozilla.org/show_bug.cgi?id=751903
+    page('', 'marketplace/marketplace.html'),
+    page('partners', 'marketplace/partners.html')
 )

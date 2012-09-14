@@ -56,9 +56,7 @@
         <ul class="pager-tabs">
           <li><a href="#interest" class="button-white">{{_('Interest')}}</a></li>
           <li><a href="#location" class="button-white">{{_('Location')}}</a></li>
-          {% if LANG == 'en-US' %}
-            <li><a href="#newsletter" class="button-white">{{_('Newsletter')}}</a></li>
-          {% endif %}
+          {% if LANG.startswith('en') %}<li><a href="#newsletter" class="button-white">{{_('Newsletter')}}</a></li>{% endif %}
         </ul>
       </nav>
 
@@ -157,7 +155,7 @@
           </section>
         </div>
 
-        {% if LANG == 'en-US' %}
+        {% if LANG.startswith('en') %}
           <div class="newsletter-content" id="newsletter">
             <script>// <![CDATA[
             document.getElementById('newsletter').id = 'page-newsletter';
@@ -181,16 +179,16 @@
                     </ul>
                   {% endif %}
 
-                  <div class="field field-email">{{ field_with_attrs(newsletter_form.email, placeholder=_('YOUR EMAIL HERE'))|safe }}</div>
-                  <div class="field field-country">{{ newsletter_form.country|safe }}</div>
-                  <div class="field field-format">{{ newsletter_form.fmt|safe }}</div>
-                  <div class="field field-privacy">{{ newsletter_form.privacy|safe }}</div>
-                  <div class="field field-submit"><input name="test-submit" type="submit" value="{{_('Subscribe')}}" class="button-blue" /></div>
-                  <small>{{_('We will only send you Mozilla-related information.')}}</small>
-                </form>
-              {% else %}
-              <h4>{{_('Thank you!')}}</h4>
-              {% endif %}
+                <div class="field field-email">{{ field_with_attrs(newsletter_form.email, placeholder=_('YOUR EMAIL HERE'))|safe }}</div>
+                <div class="field field-country">{{ newsletter_form.country|safe }}</div>
+                <div class="field field-format">{{ newsletter_form.fmt|safe }}</div>
+                <div class="field field-privacy">{{ newsletter_form.privacy|safe }}</div>
+                <div class="field field-submit"><input name="test-submit" type="submit" value="{{_('Subscribe')}}" class="button-blue" /></div>
+                <small>{{_('We will only send you Mozilla-related information.')}}</small>
+              </form>
+            {% else %}
+            <h4>{{_('Thank you!')}}</h4>
+            {% endif %}
             </section>
           </div>
         {% endif %}

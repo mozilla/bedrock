@@ -6,7 +6,8 @@
 @textColorSpaceYellow: #ffbb38;
 
 @linkRed:            rgb(175,50,50);
-@linkBlue:           rgb(41,131,200);
+@linkBlue:           rgb(0,150,221);
+@linkBlueHover:      rgb(0,83,159);
 @linkSkyBlue:        rgb(103,167,208);
 @linkSpaceBlue:      rgb(47,138,202);
 @linkSpacePurple:    rgb(147,111,188);
@@ -17,17 +18,26 @@
 @buttonBlue: #3c88cc;
 @buttonBlueDark: darken(@buttonBlue, 15%);
 
-@buttonShadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.1), inset 0px -2px 0px 0px rgba(0, 0, 0, 0.2);
-@buttonShadowHover: 0px 2px 0px 0px rgba(0, 0, 0, 0.1), inset 0px -2px 0px 0px rgba(0, 0, 0, 0.2), inset 0px 12px 24px 2px saturate(@buttonGreen, 10%);
-@buttonBlueShadowHover: 0px 2px 0px 0px rgba(0, 0, 0, 0.1), inset 0px -2px 0px 0px rgba(0, 0, 0, 0.2), inset 0px 12px 24px 2px saturate(@buttonBlue, 10%);
-@buttonShadowActive: inset 0px 2px 0px 0px rgba(0, 0, 0, 0.2), inset 0px 12px 24px 6px rgba(0,0,0,0.2), inset 0px 0px 2px 2px rgba(0,0,0,0.2);
+
+// Button shadows
+
+@shadowPartBottom:      0px 2px 0px 0px rgba(0, 0, 0, 0.1);
+@shadowPartBottomInset: inset 0px -2px 0px 0px rgba(0, 0, 0, 0.2);
+@shadowPartHover:       inset 0px 12px 24px 2px saturate(@buttonBlue, 10%);
+
+@buttonShadow:          @shadowPartBottom, @shadowPartBottomInset;
+@buttonShadowHover:     @shadowPartBottom, @shadowPartBottomInset, @shadowPartHover;
+
+@buttonShadowActive:     inset 0px 2px 0px 0px rgba(0, 0, 0, 0.2),
+                         inset 0px 12px 24px 6px rgba(0,0,0,0.2),
+                         inset 0px 0px 2px 2px rgba(0,0,0,0.2);
 
 @borderColor: #d6d6d6;
 
-@baseFontSize:      16px;
-@baseFontFamily:    Georgia, serif;
-@baseLine:          24px;
-@smallFontSize:     14px;
+@baseFontSize:      14px;
+@baseFontFamily:    'Open Sans', sans-serif;
+@baseLine:          20px;
+@smallFontSize:     12px;
 
 // Less Framework grid
 @gridColumns:             10;

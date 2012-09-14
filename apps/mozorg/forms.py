@@ -3,12 +3,14 @@
 from django import forms
 from django.forms import widgets
 from django.utils.safestring import mark_safe
-from django.core.validators import EMPTY_VALUES
+
 from captcha.fields import ReCaptchaField
 from l10n_utils.dotlang import _
 from product_details import product_details
 
+from .email_contribute import INTEREST_CHOICES
 FORMATS = (('H', 'HTML'), ('T', 'Text'))
+
 
 class SideRadios(widgets.RadioFieldRenderer):
     """Render radio buttons as labels"""
@@ -17,6 +19,7 @@ class SideRadios(widgets.RadioFieldRenderer):
         radios = [unicode(w) for idx, w in enumerate(self)]
 
         return mark_safe(''.join(radios))
+
 
 class PrivacyWidget(widgets.CheckboxInput):
     """Render a checkbox with privacy text. Lots of pages need this so
@@ -35,15 +38,23 @@ class PrivacyWidget(widgets.CheckboxInput):
                policy_txt % '/en-US/privacy-policy')
          )
 
+
 class EmailInput(widgets.TextInput):
     input_type = 'email'
 
+NEWSLETTER_CHOICES = (('app-dev',) * 2,
+                      ('mozilla-and-you',) * 2)
+
+
 class NewsletterForm(forms.Form):
-    email = forms.EmailField(widget=EmailInput(attrs={'required':'true'}))
+    newsletter = forms.ChoiceField(choices=NEWSLETTER_CHOICES,
+                                   widget=forms.HiddenInput)
+    email = forms.EmailField(widget=EmailInput(attrs={'required': 'true'}))
     fmt = forms.ChoiceField(widget=forms.RadioSelect(renderer=SideRadios),
                             choices=FORMATS,
                             initial='H')
     privacy = forms.BooleanField(widget=PrivacyWidget)
+
 
 class NewsletterCountryForm(NewsletterForm):
     def __init__(self, locale, *args, **kwargs):
@@ -58,27 +69,9 @@ class NewsletterCountryForm(NewsletterForm):
         self.fields['country'] = forms.ChoiceField(choices=regions,
                                                    initial=locale)
 
-INTEREST_CHOICES = (('', _('Area of interest?')),
-                    ('Support', _('Helping Users')),
-                    ('QA', _('Testing and QA')),
-                    ('Coding', _('Coding')),
-                    ('Marketing', _('Marketing')),
-                    ('Localization', _('Localization and Translation')),
-                    ('Webdev', _('Web Development')),
-                    ('Add-ons', _('Add-ons')),
-                    ('Design', _('Visual Design')),
-                    ('Documentation', _('Developer Documentation')),
-                    ('Accessibility', _('Accessibility')),
-                    ('IT', _('Systems Administration')),
-                    ('Research', _('User Research')),
-                    ('Education', 'Education'),
-                    ('Thunderbird', _('Thunderbird')),
-                    (' ', _('Other')),
-                    ('Firefox Suggestions', _('I have a suggestion for Firefox')),
-                    ('Firefox Issue', _('I need help with a Firefox issue')))
 
 class ContributeForm(forms.Form):
-    email = forms.EmailField(widget=EmailInput(attrs={'required':'true'}))
+    email = forms.EmailField(widget=EmailInput(attrs={'required': 'true'}))
     privacy = forms.BooleanField(widget=PrivacyWidget)
     newsletter = forms.BooleanField(required=False)
     interest = forms.ChoiceField(

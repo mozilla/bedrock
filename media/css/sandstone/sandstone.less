@@ -18,10 +18,10 @@ body {
 
 #outer-wrapper {
     border-top: 2px solid #fff;
+    background: #f9f9f9 url(/media/img/sandstone/bg-stone.png) 0 0 repeat-x;
 }
 
 #wrapper {
-    background: #f9f9f9 url(/media/img/sandstone/bg-stone.png) 0 0 repeat-x;
     padding-bottom: @baseLine * 2;
 }
 
@@ -36,16 +36,11 @@ a {
 }
 
 .sand {
-    #wrapper {
+    #outer-wrapper {
         background-color: #f5f1e8;
-        background-image: url(/media/img/sandstone/bg-sand.png);
-    }
-    a {
-        color: @linkRed;
-        &:hover,
-        &:active {
-            color: darken(@linkRed, 10%);
-        }
+        background-image: url(/media/img/sandstone/bg-gradient-sand.png),
+                          url(/media/img/sandstone/bg-sand.png);
+        background-repeat: repeat-x, repeat;
     }
 }
 
@@ -599,8 +594,14 @@ nav.menu-bar {
     p {
         margin-bottom: @baseLine / 2;
     }
+    
+    .footer-logo,
+    .footer-license {
+        .span(3);
+    }
 
     .footer-nav {
+        .span(2);
         .open-sans;
 
         li {

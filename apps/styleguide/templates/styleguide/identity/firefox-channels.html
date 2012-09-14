@@ -1,0 +1,104 @@
+{% extends "styleguide/base.html" %}
+
+{% block body_class %}
+  {{ super() }}
+  firefox-channels
+{% endblock %}
+
+{% block content_title %}Firefox Browser channels{% endblock%}
+{% block content_area %}
+<section id="intro">
+  <h2>Release cycle</h2>
+  <p>The Firefox Browser goes through several development stages before it’s ready for everyday, mainstream users. We call them channels (you’ll call them delicious).</p>
+</section>
+<section id="firefox">
+  <h2>Firefox</h2>
+  <div class="channel">
+    <h4>Channel</h4>
+    <p>Final Release</p>
+    <h4>Audience</h4>
+    <p>Mainstream Web users (100,000,000s)</p>
+    <h4>Tone</h4>
+    <p>Friendly, accessible, trusted</p>
+    <h4>Visual direction</h4>
+    <p>Crip, clean, light blue/grey grain as background</p>
+  </div>
+  <div class="logo"><img src="{{ media('/img/styleguide/identity/firefox/channels-firefox.png') }}" alt="Logo" /></div>
+  <div class="download">
+    <h4>Download</h4>
+    <ul class="button-list">
+      <li><a href="#" class="button-sand">EPS</a>
+      </li><li><a href="#" class="button-sand">JPG (300dpi)</a>
+      </li><li><a href="#" class="button-sand">PNG</a></li>
+    </ul>
+  </div>
+</section>
+<section id="firefox-beta">
+  <h2>Firefox Beta</h2>
+  <div class="channel">
+    <h4>Channel</h4>
+    <p>Beta</p>
+    <h4>Audience</h4>
+    <p>Non-technical early adopters (10,000,000s)</p>
+    <h4>Tone</h4>
+    <p>Friendly, accessible, mix of cutting edge and stable</p>
+    <h4>Visual direction</h4>
+    <p>Crip, clean, light blue/grey grain as background*</p>
+  </div>
+  <div class="logo"><img src="{{ media('/img/styleguide/identity/firefox/channels-firefox-beta.png') }}" alt="Logo" /></div>
+  <div class="download">
+    <h4>Download <span>(with beta sash)</span></h4>
+    <ul class="button-list">
+      <li><a href="#" class="button-sand">EPS</a>
+      </li><li><a href="#" class="button-sand">JPG (300dpi)</a>
+      </li><li><a href="#" class="button-sand">PNG</a></li>
+    </ul>
+      <p>* In contexts where two Firefox logos can be displayed next to each other (ex. mobile desktops), the version with the Beta sash should be used for added clarity.</p>
+  </div>
+</section>
+<section id="firefox-aurora">
+  <h2>Firefox Aurora</h2>
+  <div class="channel">
+    <h4>Channel</h4>
+    <p>Aurora</p>
+    <h4>Audience</h4>
+    <p>Technical early adopters (1,000,000s)</p>
+    <h4>Tone</h4>
+    <p>Exciting, edgier, more attitude</p>
+    <h4>Visual direction</h4>
+    <p>Branding works best on dark backgrounds, purple as primary Web color</p>
+  </div>
+  <div class="logo"><img src="{{ media('/img/styleguide/identity/firefox/channels-firefox-aurora.png') }}" alt="Logo" /></div>
+  <div class="download">
+    <h4>Download</h4>
+    <ul class="button-list">
+      <li><a href="#" class="button-sand">EPS</a>
+      </li><li><a href="#" class="button-sand">JPG (300dpi)</a>
+      </li><li><a href="#" class="button-sand">PNG</a></li>
+    </ul>
+  </div>
+</section>
+<section id="firefox-nightly">
+  <h2>Firefox Nightly</h2>
+  <div class="channel">
+    <h4>Channel</h4>
+    <p>Nighly</p>
+    <h4>Audience</h4>
+    <p>Extremely technical early adopters (100,000s)</p>
+    <h4>Tone</h4>
+    <p>Developer-focused, not too inviting</p>
+    <h4>Visual direction</h4>
+    <p>Branding works best on dark backgrounds, dark blue as primary Web color</p>
+  </div>
+  <div class="logo"><img src="{{ media('/img/styleguide/identity/firefox/channels-firefox-nightly.png') }}" alt="Logo" /></div>
+  <div class="download">
+    <h4>Download</h4>
+    <ul class="button-list">
+      <li><a href="#" class="button-sand">EPS</a>
+      </li><li><a href="#" class="button-sand">JPG (300dpi)</a>
+      </li><li><a href="#" class="button-sand">PNG</a></li>
+    </ul>
+  </div>
+</section>
+
+{% endblock %}

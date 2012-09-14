@@ -4,41 +4,8 @@ from django.conf.urls.defaults import url
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 
-
-import basket
 from funfactory.urlresolvers import reverse
 import l10n_utils
-from mozorg.forms import NewsletterForm
-
-
-def handle_newsletter(request):
-    success = False
-    form = NewsletterForm(request.POST or None)
-
-    is_footer_form = (request.method == 'POST' and
-                      'newsletter-footer' in request.POST)
-    if is_footer_form:
-        if form.is_valid():
-            newsletter = request.POST['newsletter']
-            data = form.cleaned_data
-
-            try:
-                basket.subscribe(data['email'], newsletter, format=data['fmt'])
-                success = True
-            except basket.BasketException:
-                msg = ("We are sorry, but there was a problem with our system. "
-                       "Please try again later!")
-                form.errors['__all__'] = form.error_class([msg])
-
-    return {'email_form': form,
-            'email_success': success}
-
-
-def page_view(request, tmpl, **kwargs):
-    ctx = kwargs
-    ctx.update(handle_newsletter(request))
-
-    return l10n_utils.render(request, tmpl, ctx)
 
 
 def page(name, tmpl, **kwargs):
@@ -54,7 +21,7 @@ def page(name, tmpl, **kwargs):
     # newsletter form anyway)
     @csrf_exempt
     def _view(request):
-        return page_view(request, tmpl, **kwargs)
+        return l10n_utils.render(request, tmpl, kwargs)
 
     # This is for graphite so that we can differentiate pages
     _view.page_name = name
