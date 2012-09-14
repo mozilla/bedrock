@@ -4,6 +4,189 @@ Grant = namedtuple('Grant', 'url, grantee, location, title, type, total_support,
 
 GRANTS = [
     Grant(
+        "peoples-production-house",
+        "People's Production House",
+        'United States',
+        "TBC",
+        "learning-webmaking",
+        "$7,250",
+        2012,
+        "",
+        "",
+        ""
+    ),
+    Grant(
+        "participatory-culture-foundation",
+        "Participatory Culture Foundation",
+        'United States',
+        "TBC",
+        "free-culture-community",
+        "$170,579",
+        2012,
+        "",
+        "",
+        ""
+    ),
+    Grant(
+        "global-kids-inc",
+        "Global Kids Inc.",
+        'United States',
+        "TBC",
+        "learning-webmaking",
+        "$7,500",
+        2012,
+        "",
+        "",
+        ""
+    ),
+    Grant(
+        "public_knowledge",
+        "Public Knowledge",
+        'United States',
+        "TBC",
+        "learning-webmaking",
+        "$5,000",
+        2012,
+        "",
+        "",
+        ""
+    ),
+    Grant(
+        "institute_of_play",
+        "Institute of Play",
+        'United States',
+        "TBC",
+        "learning-webmaking",
+        "$12,604",
+        2012,
+        "",
+        "",
+        ""
+    ),
+    Grant(
+        "comunity-funds-inc",
+        "Community Funds Inc.",
+        'United States',
+        "Hive Digital Media Learning Fund",
+        "learning-webmaking",
+        "$25,000",
+        2011,
+        "",
+        "",
+        ""
+    ),
+    Grant(
+        "cbc",
+        "CBC Radio Canada",
+        'Canada',
+        "Marshall McLuhan Project",
+        "free-culture-community",
+        "$10,000",
+        2011,
+        "",
+        "",
+        ""
+    ),
+    Grant(
+        "emily-carr-university",
+        "Emily Carr University of Art and Design",
+        'Canada',
+        "Learning, Freedom and the Web",
+        "free-culture-community",
+        "$10,882",
+        2011,
+        "",
+        "",
+        ""
+    ),
+    Grant(
+        "mit",
+        "Massachusetts Institute of Technology",
+        'United States',
+        "Massachusetts Institute of Technology",
+        "learning-webmaking",
+        "$7,900",
+        2011,
+        "",
+        "",
+        ""
+    ),
+    Grant(
+        "big-blue-button",
+        "Blindside Networks",
+        'Canada',
+        "BigBlueButton",
+        "open-source-technology",
+        "$11,000",
+        2011,
+        '<p>Blindside Networks is a company dedicated to helping universities, colleges, and commercial companies deliver a high-quality learning experience to remote students.</p>',
+        "",
+        ""
+    ),
+    Grant(
+        "depaul-university",
+        "DePaul University",
+        'United States',
+        "Digital Youth Mentor",
+        "learning-webmaking",
+        "$25,000",
+        2011,
+        '<p>This grant was made to DePaul University to support the employment of a Digital Youth Mentor.</p>',
+        "",
+        ""
+    ),
+    Grant(
+        "new-youth-city",
+        "New Youth City Learning Network",
+        'United States',
+        "Hackasaurus",
+        "learning-webmaking",
+        "$25,000",
+        2011,
+        '<p>This grant to the New Youth City Learning Network at the Social Science Research Centre supported the development of Hackasaurus. Hackasaurus is a set of tools that are under development to help teenagers closely review, remix and redesign the Web. Hackasaurus was prototyped with youth over the course of several workshops and jam days in New York and Chicago.</p>',
+        "",
+        ""
+    ),
+    Grant(
+        "henrik-moltke",
+        "Henrik Moltke",
+        'Germany',
+        "Hyperaudio",
+        "free-culture-community",
+        "$10,000",
+        2011,
+        '<p>This grant supported the development of a compelling concept and implementation plan for the Hyperaudio project.</p>',
+        "",
+        ""
+    ),
+    Grant(
+        "bay-area-video-coalition",
+        "Bay Area Video Coalition",
+        'United States',
+        "Zero Divide/Mozilla Youth Media Project",
+        "open-source-technology",
+        "$91,500",
+        2012,
+        '<p>The Bay Area Video Coalition (BAVC) is an implementation partner in the Mozilla Foundation/Zero Divide youth media project. They worked together to test software prototypes for Butter, a user interface for WebMadeMovies; to instruct and lead youth participants to create 3-4 web-native productions with these tools; and to create a modular, openly-licensed curriculum to make it easier for people to create HTML5/open video projects of their own.</p>',
+        {
+            '2011': ['Amount: $73,500'],
+            '2012': ['Amount: $18,000']
+        },
+        ""
+    ),
+    Grant(
+        "universal-subtitles",
+        "Universal Subtitles",
+        'United States',
+        "Universal Subtitles",
+        "open-source-technology",
+        "$100,000",
+        2011,
+        '<p>In 2011, Mozilla provided a grant to support the development of <a href="http://www.universalsubtitles.org">Universal Subtitles</a> (now known as Amara). Amara gives individuals, communities, and larger organizations the power to overcome accessibility and language barriers for online video. The tools are free and open source and make the work of subtitling and translating video simpler, more appealing, and, most of all, more collaborative.</p>',
+        "",
+        ""
+    ),
+    Grant(
         "adaptive-technology-resource-centre",
         "Adaptive Technology Resource Centre",
         'Canada',
@@ -107,15 +290,13 @@ GRANTS = [
         "United States",
         "Creative Commons Pledge",
         "free-culture-community",
-        "$500,000",
-        2012,
+        "$300,000",
+        2010,
         '<p>In December 2007, Mozilla decided to participate in <a href="http://creativecommons.org/">Creative Commons</a> "5x5 Challenge." Beginning in 2008, Mozilla pledged $100,000 per year for five years to support open licensing on the web, developing hybrid organizations, and maturing the concept of the web as an ecology of shared ideas.</p>',
         {
             '2008': ['Amount: $100,000'],
             '2009': ['Amount: $100,000'],
             '2010': ['Amount: $100,000'],
-            '2011': ['Amount: $100,000'],
-            '2012': ['Amount: $100,000']
         },
         [
             'http://frankhecker.com/2009/06/30/new-mozilla-accessibility-projects/',
@@ -166,10 +347,13 @@ GRANTS = [
         "United States",
         "LinuxBIOS Support",
         "free-culture-community",
-        "$500,000",
-        2007,
+        "$15,000",
+        2012,
         '<p>In 2007, Mozilla provided $10,000 to support the LinuxBIOS-related activities of the <a href="http://www.fsf.org/">Free Software Foundation</a>. This grant went toward software development, infrastructure and communications. The Free Software Foundation ported coreboot to the alix.2c3 board, a board useful in building routers, firewalls, and wifi access points.</p>',
-        "",
+        {
+            '2007': ['Amount: $10,000'],
+            '2012': ['Amount: $5,000']
+        },
         ""
     ),
     Grant(
@@ -196,7 +380,7 @@ GRANTS = [
         "Europe",
         "IFOSSLR Launch",
         "user-sovereignty",
-        "$38,000",
+        "$10,000",
         2009,
         '<p>This grant funded the launch of the <a href="http://www.ifosslr.org/">International Free and Open Source Software Law Review (IFOSSLR)</a>, a collaborative legal publication aiming to increase knowledge and understanding among lawyers about Free and Open Source Software issues. Topics included copyright, licence implementation, licence interpretation, software patents, open standards, case law and statutory changes.</p>',
         "",
@@ -272,12 +456,13 @@ GRANTS = [
         "United States",
         "Personal Democracy Forum",
         "user-sovereignty",
-        "$15,000",
+        "$30,000",
         2009,
         '<p>For two years Mozilla sponsored the <a href="http://personaldemocracy.com/pdf-conference/personal-democracy-forum-conference">Personal Democracy Forum</a>, a forum for discussion on how politics and technology intersect. Each year top opinion-makers, political practitioners, technologists and journalists come together to network, exchange ideas and explore how technology and the internet are changing politics, democracy and society.</p>',
         {
             '2008': ['Amount: $10,000'],
             '2009': ['Amount: $5,000'],
+            '2012': ['Amount: $15,000']
         },
         ""
     ),
@@ -293,6 +478,7 @@ GRANTS = [
         {
             '2008': ['Amount: $10,000'],
             '2009': ['Amount: $10,000'],
+            '2012': ['Amount: $10,000']
         },
         ""
     ),
@@ -302,13 +488,14 @@ GRANTS = [
         "Canada",
         "Seneca College",
         "learning-webmaking",
-        "$230,910",
+        "$327,860",
         2009,
         '<p>Since 2005, <a href="http://www.senecac.on.ca/">Seneca College</a> in Toronto has worked closely with the Mozilla community to create a set of Mozilla-specific courses, engage hundreds of students directly in Mozilla development projects, and host and record dozens of Mozilla events and talks. Seneca\'s faculty and students are key contributors to the Mozilla project, and have gained significant experience bootstrapping new contributors into the Mozilla technology and culture. Seneca College of Applied Arts and Technology is a community college for applied arts and technology in Toronto, Ontario. </p>',
         {
             '2006': ['Amount: $50,000'],
             '2007': ['Amount: $100,000'],
-            '2009': ['Amount: $80,910']
+            '2009': ['Amount: $80,910'],
+            '2011': ['Amount: $96,950']
         },
         ""
     ),
@@ -344,7 +531,7 @@ GRANTS = [
         "free-culture-community",
         "$10,000",
         2010,
-        '<p>In a crisis environment, maintaining lines of communication is critically important. <a href="http://www.ushahidi.com/">Ushahidi</a> developed an open source platform that enables citizen reporting in crisis situations. A deadly earthquake struck Chile on February 27, 2010, cutting off many vulnerable people from traditional sources of information. Mozilla awarded a grant to enable Ushahidi volunteers to train Chilean civilians and government officials to utilize the Ushahidi platform during the relief effort.</p><p>See the <a href="reports/ushahidi-chile-report/">grant final report</a> for more details.</p>',
+        '<p>In a crisis environment, maintaining lines of communication is critically important. <a href="http://www.ushahidi.com/">Ushahidi</a> developed an open source platform that enables citizen reporting in crisis situations. A deadly earthquake struck Chile on February 27, 2010, cutting off many vulnerable people from traditional sources of information. Mozilla awarded a grant to enable Ushahidi volunteers to train Chilean civilians and government officials to utilize the Ushahidi platform during the relief effort.</p><p>See the <a href="reports/ushahidi-chile-report/">final grant report</a> for more details.</p>',
         "",
         [
             'http://blog.ushahidi.com/index.php/2010/03/15/mozilla-foundation-supports-ushahidi-chile/',
