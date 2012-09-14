@@ -77,7 +77,7 @@ def contribute(request, template, return_to_form):
         newsletter_form = NewsletterCountryForm(locale, prefix='newsletter')
 
     return l10n_utils.render(request,
-                             'mozorg/contribute.html',
+                             template,
                              {'form': form,
                               'success': success,
                               'newsletter_form': newsletter_form,
