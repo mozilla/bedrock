@@ -55,7 +55,7 @@
                 <td>{{ grant.total_support }}</td>
                 <td>
                     {% if grant.break_down %}
-                        {{ grant.year }} through {{ grant.break_down.keys()[0] }}
+                        {{ grant.break_down.keys()|sort|first }} &mdash; {{ grant.year }}<hr>
                     {% else %}
                         {{ grant.year }}
                     {% endif %}

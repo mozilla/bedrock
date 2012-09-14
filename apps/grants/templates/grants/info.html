@@ -42,7 +42,7 @@
 {{ grant.description|safe }}
 
 {% if grant.urls %}
-    <h2>Read more at:</h2>
+    <h2 class="meta">Read more at:</h2>
     <ul>
         {% for url in grant.urls %}
             <li><a href="{{ url }}">{{ url }}</a></li>
