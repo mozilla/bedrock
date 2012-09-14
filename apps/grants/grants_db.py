@@ -4,6 +4,18 @@ Grant = namedtuple('Grant', 'url, grantee, location, title, type, total_support,
 
 GRANTS = [
     Grant(
+        "universal-subtitles",
+        "Universal Subtitles",
+        'United States',
+        "Universal Subtitles",
+        "open-source-technology",
+        "$100,000",
+        2011,
+        '<p>In 2011, Mozilla provided a grant to the Participatory Culture Foundation to support the development of Universal Subtitles (now known as Amara). Amara gives individuals, communities, and larger organizations the power to overcome accessibility and language barriers for online video. The tools are free and open source and make the work of subtitling and translating video simpler, more appealing, and, most of all, more collaborative.</p>',
+        "",
+        ""
+    ),
+    Grant(
         "adaptive-technology-resource-centre",
         "Adaptive Technology Resource Centre",
         'Canada',
