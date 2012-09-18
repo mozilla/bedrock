@@ -1579,7 +1579,6 @@ Szasz,Alexandru
 Laane,Marek
 Vagula,Ain
 Smolin,Ivar
-Basciano-Le Gall,Philippe
 Leseul,Benoît
 Béron,Vincent
 Corazza,Cédric
@@ -1826,3 +1825,5 @@ Deep,Krishna Kumar
 Keybl,Alex
 Sumar,Lazar
 Miranda,Mauricio Navarro
+Gall,Philippe Basciano-Le
+Vyas,Tanvi
