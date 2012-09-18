@@ -1838,3 +1838,5 @@ Kasaki,Nagato
 Ramasubramanian,Sriram
 Aziz,Faisal
 Headen,Quentin
+Goodwin,Mark
+Djeric,Vladan
