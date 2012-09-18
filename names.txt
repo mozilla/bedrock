@@ -915,7 +915,7 @@ Miller,Dave
 Miller,Nathan
 Mills,Dan
 Minasandram,Malini
-Minh,Nguyễn Xuân
+Nguyễn, Xuân Minh
 Misevičius,Rimas
 Mishra,Rakesh
 Mitchell,Bill
@@ -1293,7 +1293,7 @@ Snyder,Window
 So,Hoi-Sheung Wilson
 Sobotka,Henry
 Socol,James
-Sơn,Trần Nguyễn
+Nguyễn, Sơn Trần
 Soref,Josh
 Sorensen,Jes
 Sossonko,Nochum
@@ -1833,3 +1833,4 @@ Mandel,Lawrence
 Nakov,Novica
 Peterson,Benjamin
 Miller,Tristan
+Chiorean,Ioana
