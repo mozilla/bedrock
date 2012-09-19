@@ -201,7 +201,7 @@ GRANTS = [
         'United States',
         "Zero Divide/Mozilla Youth Media Project",
         "open-source-technology",
-        "$91,500",
+        "$88,500",
         2012,
         '<p>The <a href="http://www.bavc.org/">Bay Area Video Coalition (BAVC)</a> was an implementation partner in the Mozilla Foundation/Zero Divide youth media project in 2011. They worked together to test software prototypes for Butter, a user interface for WebMadeMovies; to instruct and lead youth participants to create 3-4 web-native productions with these tools; and to create a modular, openly-licensed curriculum to make it easier for people to create HTML5/open video projects of their own.</p> </p>In 2012, Mozilla provided a grant to BAVC to support their general activities.</p>',
         {
@@ -384,12 +384,10 @@ GRANTS = [
         "United States",
         "LinuxBIOS Support",
         "free-culture-community",
-        "$15,000",
-        2012,
+        "$10,000",
+        2007,
         '<p>In 2007, Mozilla provided $10,000 to support the LinuxBIOS-related activities of the <a href="http://www.fsf.org/">Free Software Foundation</a>. This grant went toward software development, infrastructure and communications. The Free Software Foundation ported coreboot to the alix.2c3 board, a board useful in building routers, firewalls, and wifi access points.</p>',
-        {
-            '2007': ['Amount: $10,000'],
-        },
+        "",
         ""
     ),
     Grant(
