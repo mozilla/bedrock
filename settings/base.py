@@ -216,7 +216,10 @@ MINIFY_BUNDLES = {
             'css/styleguide/websites-sandstone.less',
             'css/styleguide/identity-mozilla.less',
             'css/styleguide/identity-firefox.less',
+            'css/styleguide/identity-firefox-family.less',
+            'css/styleguide/identity-marketplace.less',
             'css/styleguide/identity-thunderbird.less',
+            'css/styleguide/identity-webmaker.less',
             'css/styleguide/communications.less',
         ),
         'video': (
