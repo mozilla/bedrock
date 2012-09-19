@@ -1,0 +1,74 @@
+{% extends "styleguide/base.html" %}
+
+{% block body_class %}
+  {{ super() }}
+  webmaker-branding
+{% endblock %}
+
+{% block content_title %}Webmaker branding{% endblock%}
+{% block content_area %}
+<section id="intro">
+  <h2>Introduction</h2>
+  <p>We’ve taken our core values — openness, freedom, user choice — and brought them to the world of apps. Here’s everything you need related to our apps offering and its distribution channel, the Firefox Marketplace.</p>
+</section>
+<section id="guidelines">
+  <div class="guidelines">
+    <h2>Guidelines</h2>
+    <p>For all permitted uses of our trademarks, you may not:</p>
+  </div>
+  <ul class="guidelines-list">
+    <li>alter our logos in any way</li>
+    <li>place a logo in such close proximity to other content that it is indistinguishable</li>
+    <li>make our logo the most distinctive or prominent feature on your website, printed material or other content</li>
+    <li>use our logos in a way that suggests any type of association or partnership with Mozilla or approval, sponsorship or endorsement by  Mozilla (unless allowed via a license from us)</li>
+    <li>use our logos in a way that is harmful, deceptive, obscene or otherwise objectionable to the average person</li>
+    <li>use our logos on websites or other places containing content associated with hate speech, pornography, gambling or illegal activities</li>
+    <li>use our logos to, or in connection with, content that disparages us or sullies our reputation</li>
+  </ul>
+  <div class="guidelines-logo">
+    <img src="{{ media('/img/styleguide/identity/webmaker/logo.png') }}" alt="Logo" />
+    <h3>Download</h3>
+    <ul class="button-list">
+      <li><a href="https://assets.mozillalabs.com/Brands-Logos/Webmaker/mozilla-webmaker_logo-only_CS4.eps" class="button-sand">EPS</a>
+      </li><li><a href="https://assets.mozillalabs.com/Brands-Logos/Webmaker/mozilla-webmaker_logo-only_RGB.jpg" class="button-sand">JPG (300dpi)</a>
+      </li><li><a href="https://assets.mozillalabs.com/Brands-Logos/Webmaker/mozilla-webmaker_logo-only_RGB.png" class="button-sand">PNG</a></li>
+    </ul>
+  </div>
+</section>
+<section id="usage">
+  <h2>Usage</h2>
+  <div><img src="{{ media('/img/styleguide/identity/webmaker/usage-logo-wordmark.png') }}" alt="Usage Wordmark" /></div>
+  <p>Our standard lockup for representing Webmaker. In most cases, use this.</p>
+  <div><img src="{{ media('/img/styleguide/identity/webmaker/usage-logo.png') }}" alt="Usage Logo" /></div>
+  <p>The logo on its own. You can safely use this if Mozilla and Webmaker are clearly visible or well established elsewhere on the page or in the design.</p>
+  <div class="clear"><img src="{{ media('/img/styleguide/identity/webmaker/usage-logo-bw.png') }}" alt="Usage Logo" /></div>
+  <p>The one-color glyph can be used to represent Webmaker when a full color logo is not an option.</p>
+</section>
+<section id="wordmark">
+  <div class="build">
+    <h2>Wordmark</h2>
+    <p>The Marketplace wordmark follows our <a href="{{ url('styleguide.communications.typefaces') }}#wordmarks">tiered font system</a>.</p>
+  </div>
+  <div class="logo">
+    <img src="{{ media('/img/styleguide/box-arrow-left.png') }}" alt="" class="box-arrow" />
+    <img src="{{ media('/img/styleguide/identity/webmaker/wordmark-logo.png') }}" alt="Logo" />
+    <img src="{{ media('/img/styleguide/identity/webmaker/wordmark.png') }}" alt="Logo" />
+  </div>
+  <div class="download">
+    <h4>Download</h4>
+    <p>Wordmark + Logo</p>
+    <ul class="button-list">
+      <li><a href="https://assets.mozillalabs.com/Brands-Logos/Webmaker/mozilla-webmaker_logo-wordmark_CS4.eps" class="button-sand">EPS</a>
+      </li><li><a href="https://assets.mozillalabs.com/Brands-Logos/Webmaker/mozilla-webmaker_logo-wordmark_RGB.jpg" class="button-sand">JPG (300dpi)</a>
+      </li><li><a href="https://assets.mozillalabs.com/Brands-Logos/Webmaker/mozilla-webmaker_logo-wordmark_RGB.png" class="button-sand">PNG</a></li>
+    </ul>
+    <p>Wordmark only</p>
+    <ul class="button-list">
+      <li><a href="https://assets.mozillalabs.com/Brands-Logos/Webmaker/mozilla-webmaker_wordmark-only_CS4.eps" class="button-sand">EPS</a>
+      </li><li><a href="https://assets.mozillalabs.com/Brands-Logos/Webmaker/mozilla-webmaker_wordmark-only_RGB.jpg" class="button-sand">JPG (300dpi)</a>
+      </li><li><a href="https://assets.mozillalabs.com/Brands-Logos/Webmaker/mozilla-webmaker_wordmark-only_RGB.png" class="button-sand">PNG</a></li>
+    </ul>
+  </div>
+</section>
+
+{% endblock %}
