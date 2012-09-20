@@ -73,6 +73,9 @@ MINIFY_BUNDLES = {
         'webmaker': (
             'css/webmaker.less',
         ),
+        'grants': (
+            'css/grants.less',
+        ),
         'collusion': (
             'css/collusion.less',
         ),
@@ -428,6 +431,7 @@ INSTALLED_APPS = (
     # Local apps
     'b2g',
     'webmaker',
+    'grants',
     'collusion',
     'firefox',
     'marketplace',
