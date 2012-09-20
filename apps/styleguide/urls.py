@@ -6,11 +6,23 @@ urlpatterns = patterns('',
 
     page('identity/mozilla/branding', 'styleguide/identity/mozilla-branding.html'),
     page('identity/mozilla/color', 'styleguide/identity/mozilla-color.html'),
+    page('identity/mozilla/innovations', 'styleguide/identity/mozilla-innovations.html'),
 
     page('identity/firefox/branding', 'styleguide/identity/firefox-branding.html'),
     page('identity/firefox/channels', 'styleguide/identity/firefox-channels.html'),
     page('identity/firefox/wordmarks', 'styleguide/identity/firefox-wordmarks.html'),
     page('identity/firefox/color', 'styleguide/identity/firefox-color.html'),
+
+    page('identity/firefoxos/branding', 'styleguide/identity/firefoxos-branding.html'),
+
+    page('identity/firefox-family/overview', 'styleguide/identity/firefox-family-overview.html'),
+    page('identity/firefox-family/platform', 'styleguide/identity/firefox-family-platform.html'),
+
+    page('identity/marketplace/branding', 'styleguide/identity/marketplace-branding.html'),
+    page('identity/marketplace/color', 'styleguide/identity/marketplace-color.html'),
+
+    page('identity/webmaker/branding', 'styleguide/identity/webmaker-branding.html'),
+    page('identity/webmaker/color', 'styleguide/identity/webmaker-color.html'),
 
     page('identity/thunderbird/logo', 'styleguide/identity/thunderbird-logo.html'),
     page('identity/thunderbird/channels', 'styleguide/identity/thunderbird-channels.html'),
