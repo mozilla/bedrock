@@ -76,6 +76,11 @@ MINIFY_BUNDLES = {
         'grants': (
             'css/grants.less',
         ),
+        'calendar': (
+            'css/calendar.less',
+            'css/calendar-lightning.less',
+            'css/calendar-foundation.less'
+        ),
         'collusion': (
             'css/collusion.less',
         ),
