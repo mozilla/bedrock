@@ -8,14 +8,14 @@ if ($('#nav-main').length === 0) {
 var NavMain = {};
 
 /**
- * Whether or not min/max width media queries are supported in CSS
+ * Whether or not MS Internet Explorer version 4, 5, 6, 7 or 8 is used
  *
- * If not supported, the small mode is never triggered.
+ * If true, the small mode is never triggered.
  *
  * @var Boolean
  */
-NavMain.hasMediaQueryWidths = (function() {
-    return !(/MSIE\ (4|5|6|7|8)/.test(navigator.userAgent));
+NavMain.isMSIEpre9 = (function() {
+    return (/MSIE\ (4|5|6|7|8)/.test(navigator.userAgent));
 })();
 
 /**
@@ -78,7 +78,7 @@ NavMain.init = function()
         .bind('mouseout focusout', NavMain.handleFocusOut)
         .each(NavMain.initSubmenu);
 
-    if (NavMain.hasMediaQueryWidths) {
+    if (!NavMain.isMSIEpre9) {
         $(window).resize(NavMain.handleResize);
         NavMain.handleResize();
     }
