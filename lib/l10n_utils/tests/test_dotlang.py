@@ -1,7 +1,6 @@
 # coding=utf-8
 
 import os
-import unittest
 
 from django.conf import settings
 from django.core import mail
@@ -11,11 +10,12 @@ from nose.tools import eq_
 from tower.management.commands.extract import extract_tower_python
 
 from l10n_utils.dotlang import FORMAT_IDENTIFIER_RE, parse, translate
+from mozorg.tests import TestCase
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
 
-class TestDotlang(unittest.TestCase):
+class TestDotlang(TestCase):
     def test_parse(self):
         path = os.path.join(ROOT, 'test.lang')
         parsed = parse(path)
@@ -51,7 +51,8 @@ class TestDotlang(unittest.TestCase):
     def test_format_identifier_mismatch(self):
         path = 'format_identifier_mismatch'
         expected = '%(foo)s is the new %s'
-        result = translate(expected, [path])
+        with self.activate('en-US'):
+            result = translate(expected, [path])
         eq_(expected, result)
         eq_(len(mail.outbox), 1)
         eq_(mail.outbox[0].subject, '[Django] %s is corrupted' % path)

@@ -56,7 +56,7 @@
         <ul class="pager-tabs">
           <li><a href="#interest" class="button-white">{{_('Interest')}}</a></li>
           <li><a href="#location" class="button-white">{{_('Location')}}</a></li>
-          <li><a href="#newsletter" class="button-white">{{_('Newsletter')}}</a></li>
+          {% if LANG.startswith('en') %}<li><a href="#newsletter" class="button-white">{{_('Newsletter')}}</a></li>{% endif %}
         </ul>
       </nav>
 
@@ -156,41 +156,44 @@
         </div>
 
 
-        <div class="newsletter-content" id="newsletter">
-          <script>// <![CDATA[
-          document.getElementById('newsletter').id = 'page-newsletter';
-          // ]]></script>
-          <section>
-            {% if not newsletter_success %}
-              <form action="#newsletter" method="post" id="newsletter-form">
-                <input type="hidden" name="newsletter-form" value="Y" />
-                <p>{{_('Sign up for a weekly newsletter that is full of community news and contribution opportunities.')}}</p>
-                {% if newsletter_form.errors %}
-                  {{ newsletter_form.non_field_errors()|safe }}
 
-                  <ul class="errorlist">
-                    {% if newsletter_form.email.errors %}
-                    <li>{{_('Please enter a valid email address.')}}</li>
-                    {% endif %}
+        {% if LANG.startswith('en') %}
+          <div class="newsletter-content" id="newsletter">
+            <script>// <![CDATA[
+            document.getElementById('newsletter').id = 'page-newsletter';
+            // ]]></script>
+            <section>
+              {% if not newsletter_success %}
+                <form action="#newsletter" method="post" id="newsletter-form">
+                  <input type="hidden" name="newsletter-form" value="Y" />
+                  <p>{{_('Sign up for a weekly newsletter that is full of community news and contribution opportunities.')}}</p>
+                  {% if newsletter_form.errors %}
+                    {{ newsletter_form.non_field_errors()|safe }}
 
-                    {% if newsletter_form.privacy.errors %}
-                    <li>{{_('You must agree to the privacy policy.')}}</li>
-                    {% endif %}
-                  </ul>
-                {% endif %}
+                    <ul class="errorlist">
+                      {% if newsletter_form.email.errors %}
+                      <li>{{_('Please enter a valid email address.')}}</li>
+                      {% endif %}
 
-                <div class="field field-email">{{ field_with_attrs(newsletter_form.email, placeholder=_('YOUR EMAIL HERE'))|safe }}</div>
-                <div class="field field-country">{{ newsletter_form.country|safe }}</div>
-                <div class="field field-format">{{ newsletter_form.fmt|safe }}</div>
-                <div class="field field-privacy">{{ newsletter_form.privacy|safe }}</div>
-                <div class="field field-submit"><input name="test-submit" type="submit" value="{{_('Subscribe')}}" class="button" /></div>
-                <small>{{_('We will only send you Mozilla-related information.')}}</small>
-              </form>
-            {% else %}
-            <h4>{{_('Thank you!')}}</h4>
-            {% endif %}
-          </section>
-        </div>
+                      {% if newsletter_form.privacy.errors %}
+                      <li>{{_('You must agree to the privacy policy.')}}</li>
+                      {% endif %}
+                    </ul>
+                  {% endif %}
+
+                  <div class="field field-email">{{ field_with_attrs(newsletter_form.email, placeholder=_('YOUR EMAIL HERE'))|safe }}</div>
+                  <div class="field field-country">{{ newsletter_form.country|safe }}</div>
+                  <div class="field field-format">{{ newsletter_form.fmt|safe }}</div>
+                  <div class="field field-privacy">{{ newsletter_form.privacy|safe }}</div>
+                  <div class="field field-submit"><input name="test-submit" type="submit" value="{{_('Subscribe')}}" class="button-blue" /></div>
+                  <small>{{_('We will only send you Mozilla-related information.')}}</small>
+                </form>
+              {% else %}
+              <h4>{{_('Thank you!')}}</h4>
+              {% endif %}
+            </section>
+          </div>
+        {% endif %}
 
       </div>
 
