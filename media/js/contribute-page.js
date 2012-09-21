@@ -51,7 +51,15 @@ $(document).ready(function() {
     });
 
     $('#help-form').submit(function(e) {
-        // Validate that the callback points to one of the allowed domains.
+        // This function submits the 'help-form' and -if applicable-
+        // pings using POST the callbackurl.
+        //
+        // We send requests serialy and make sure the POSTing to
+        // callbackurl completes before we POST the form.
+
+        $(this).unbind('submit');
+
+        e.preventDefault();
 
         callback_url = getUrlVars()['callbackurl'];
 
@@ -61,7 +69,15 @@ $(document).ready(function() {
                            '^http://127.0.0.1:8000/'];
 
         if (callback_url && validate_domain(callback_url, trusted_domains)) {
-            $.post(callback_url);
+            $('#form-content').hide();
+            $('#submit-wait').show();
+
+            $.post(callback_url).complete(function() {
+                $('#help-form').submit();
+            });
+        }
+        else {
+            $(this).submit();
         }
     });
 
