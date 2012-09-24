@@ -33,7 +33,7 @@ FUNCTIONAL_AREAS = (
     ),
     fa('webdev',
         _('Web Development'),
-        ['luke.crouch@gmail.com'],
+        ['lcrouch@mozilla.com'],
     ),
     fa('addons',
         _('Add-ons'),
