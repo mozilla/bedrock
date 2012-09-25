@@ -104,7 +104,7 @@ FUNCTIONAL_AREAS_DICT = dict((area.id, area) for area in FUNCTIONAL_AREAS)
 
 LOCALE_CONTACTS = {
     'bn-BD': ['mahayalamkhan@gmail.com'],
-    'es-ES': ['nukeador@mozilla-hispano.org'],
+    'es-ES': ['participa@mozilla-hispano.org'],
     'pt-BR': ['marcelo.araldi@yahoo.com.br'],
 }
 
