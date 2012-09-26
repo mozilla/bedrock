@@ -1,0 +1,29 @@
+{% extends "/firefox/base-resp.html" %}
+
+{% block page_title %}Your download was interrupted{% endblock %}
+{% block body_id %}installer-help{% endblock %}
+
+{% block site_css %}
+  {{ css('installer_help') }}
+{% endblock %}
+
+{% block content %}
+
+<div id="main-content">
+  <hgroup>
+    <h1>Your download was interrupted</h1>
+    <h2>Please click the download button to continue.</h2>
+  </hgroup>
+  
+  <aside class="download-button">
+  [ Download Button Here ]
+  </aside>
+  
+  <aside class="help">
+    <h3>Need help installing?</h3>
+    <p><a href="https://support.mozilla.org/kb/install-firefox-windows">Visit support.mozilla.org</a></p>
+  </aside>
+  
+</div>
+
+{% endblock %}
