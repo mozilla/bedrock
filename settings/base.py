@@ -180,6 +180,10 @@ MINIFY_BUNDLES = {
             'css/firefox/whatsnew.less',
             'css/firefox/whatsnew-android.less',
         ),
+        'installer_help': (
+            'css/firefox/template-resp.less',
+            'css/firefox/installer-help.less',
+        ),
         'home': (
             'css/home.less',
         ),
