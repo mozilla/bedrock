@@ -138,6 +138,7 @@
     }
     #photo-column {
         .span(4);
+        position: relative;
         img {
             position: relative;
             right: 45px;
@@ -206,6 +207,64 @@
     li#firefox-mobile   a { background-position: 0 -600px; }
     li#playstore-mobile a { background-position: 0 -800px; }
 }
+
+#phone-screen {
+    position: absolute;
+    top: 45px;
+    left: 71px;
+    height: 264px;
+    width: 160px;
+    background: url(/media/img/firefox/fx/android-animation-screens.jpg) 0 0 repeat-y;
+    display: block;
+    z-index: 6;
+    &:after {
+        content: "";
+        height: 264px;
+        width: 160px;
+        display: block;
+        background: url(/media/img/firefox/fx/android-animation-sheen.png) 0 0 no-repeat;
+        position: relative;
+        z-index: 7;
+    }
+
+    -moz-animation: screenslide 20s ease infinite alternate;
+    -webkit-animation: screenslide 20s ease infinite alternate;
+    animation: screenslide 20s ease infinite alternate;
+}
+
+@keyframes screenslide {
+      0% { background-position: 0 0; }
+     20% { background-position: 0 0; }
+     22% { background-position: 0 -264px; }
+     42% { background-position: 0 -264px; }
+     44% { background-position: 0 -528px; }
+     64% { background-position: 0 -528px; }
+     66% { background-position: 0 -792px; }
+    100% { background-position: 0 -792px; }
+}
+
+@-moz-keyframes screenslide {
+      0% { background-position: 0 0; }
+     20% { background-position: 0 0; }
+     22% { background-position: 0 -264px; }
+     42% { background-position: 0 -264px; }
+     44% { background-position: 0 -528px; }
+     64% { background-position: 0 -528px; }
+     66% { background-position: 0 -792px; }
+    100% { background-position: 0 -792px; }
+}
+
+@-webkit-keyframes screenslide {
+      0% { background-position: 0 0; }
+     20% { background-position: 0 0; }
+     22% { background-position: 0 -264px; }
+     42% { background-position: 0 -264px; }
+     44% { background-position: 0 -528px; }
+     64% { background-position: 0 -528px; }
+     66% { background-position: 0 -792px; }
+    100% { background-position: 0 -792px; }
+}
+
 
 /* Tablet Layout: 760px */
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
