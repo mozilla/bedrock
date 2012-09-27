@@ -1,98 +1,98 @@
+from functools import wraps
+
 from django.conf.urls.defaults import patterns
+
 from funfactory.urlresolvers import reverse
 
 from mozorg.util import page
-# TODO : Write tests
-# TODO : Where should breadcrumbs with no view link to?
-# TODO : Should prev and next link outside of their hierarchy?
 
 
-def node(display_name, *args):
-    """A simple node in the hierarchy"""
-    _node = Node(display_name)
-    for child in args:
-        _node.append(child)
-    return _node
+def requires_parent(f):
+    @wraps(f)
+    def wrapped(self, *args, **kwargs):
+        if self.parent is None:
+            return None
+        else:
+            return f(self, *args, **kwargs)
+    return wrapped
 
 
-def nodeview(display_name, name, template, *args):
-    """A node that also has a view associated"""
-    _node = Node(display_name, name, template)
-    for child in args:
-        _node.append(child)
-    return _node
-
-
-class Node:
-    def __init__(self, display_name, name=None, template=None):
+class PageNode(object):
+    def __init__(self, display_name, path=None, template=None, children=None):
         self.display_name = display_name
-        # TODO : Check that name and template are both None or both not None
-        self.name = name
+
+        self.path = path
         self.template = template
-        self.children = []
         self.parent = None
-        self.page = None
-        self._breadcrumbs = None
-        self._url = None
 
-    def append(self, child):
-        self.children.append(child)
-        child.parent = self
+        self.children = children or ()
+        for child in self.children:
+            child.parent = self
 
-    def previous_sibling(self):
-        if not self.parent:
-            return None
-        children = self.parent.children
-        index = children.index(self)
-        if index == 0:
-            return None
-        return children[index - 1]
+    @property
+    def full_path(self):
+        return '/'.join([node.path for node in self.breadcrumbs
+                         if node.path is not None])
 
-    def next_sibling(self):
-        if not self.parent:
+    @property
+    def page(self):
+        if self.template:
+            return page(self.full_path, self.template, node_root=self.root,
+                        node=self)
+        else:
             return None
-        children = self.parent.children
-        index = children.index(self)
-        if index + 1 == len(children):
-            return None
-        return children[index + 1]
+
+    @property
+    def path_to_root(self):
+        node = self
+        while node:
+            yield node
+            node = node.parent
 
     @property
     def breadcrumbs(self):
-        if self._breadcrumbs:
-            return self._breadcrumbs
+        path = list(self.path_to_root)
+        path.reverse()
+        return path
 
-        self._breadcrumbs = []
-        _node = self
-        while _node:
-            self._breadcrumbs.append(_node)
-            _node = _node.parent
-        self._breadcrumbs.reverse()
-        return self._breadcrumbs
+    @property
+    def root(self):
+        return list(self.path_to_root)[-1]
 
-    def nodes_with_view(self, foo):
-        """Recursively appends all nodes with a view to foo"""
-        if self.template:
-            foo.append(self)
-        for node in self.children:
-            node.nodes_with_view(foo)
+    @property
+    @requires_parent
+    def previous(self):
+        children = self.parent.children
+        index = children.index(self)
+        if index == 0:
+            return self.parent.previous
+        return children[index - 1]
+
+    @property
+    @requires_parent
+    def next(self):
+        children = self.parent.children
+        index = children.index(self)
+        if index + 1 == len(children):
+            return self.parent.next
+        return children[index + 1]
 
     @property
     def url(self):
-        if not self.page:
+        if self.page:
+            return reverse(self.page.name)
+        elif self.children:
+            return self.children[0].url
+        else:
             return None
-        if not self._url:
-            self._url = reverse(self.page.name)
-        return self._url
 
     def as_urlpattern(self):
-        """Creates a flat list of patterns for the Django URLs"""
-        nodes_with_view = []
-        urlpatterns = []
-        self.nodes_with_view(nodes_with_view)
-        for node_with_view in nodes_with_view:
-            node_with_view.page = page(node_with_view.name,
-                                       node_with_view.template,
-                                       hierarchy=self, node=node_with_view)
-            urlpatterns.append(node_with_view.page)
-        return patterns('', *urlpatterns)
+        """Return a urlconf for this PageTree and its children."""
+        pages = []
+        nodes = [self]
+        while nodes:
+            node = nodes.pop()
+            if node.template:
+                pages.append(node.page)
+            nodes += node.children
+        return patterns('', *pages)

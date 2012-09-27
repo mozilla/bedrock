@@ -34,14 +34,14 @@
   </a></h2>
   <nav>
     <ul>
-    {% for item in hierarchy.children recursive %}
+    {% for item in node_root.children recursive %}
         <li class="
         {% if item in node.breadcrumbs %} active{% endif %}
         {% if item.children %} has-children{% endif %}
         ">
         {% if item.url %}<a href="{{ item.url }}">{% endif %}
           {{ item.display_name }}
-        {% if item.url %}</a>{% endif %}
+          {% if item.url %}</a>{% endif %}
         {% if item.children %}
             <ul>{{ loop(item.children) }}</ul>
         {% endif %}</li>
@@ -59,12 +59,12 @@
 <div id="subnav">
   {% block next_prev %}
   <div id="nextprev">
-    {% set previous = node.previous_sibling() %}
+    {% set previous = node.previous %}
     {% if previous %}<a href="{{ previous.url }}" class="prev">{% endif %}
      Prev
     {% if previous %}</a>{% endif %}
 
-    {% set next = node.next_sibling() %}
+    {% set next = node.next %}
     {% if next %}<a href="{{ next.url }}" class="next">{% endif %}
     Next
     {% if next %}</a>{% endif %}
