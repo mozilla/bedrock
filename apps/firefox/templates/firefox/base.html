@@ -18,7 +18,7 @@
 
 {% block site_header_nav %}
 <nav role="navigation" id="nav-main">
-  <ul>
+  <ul class="has-submenus">
     <li class="first" id="nav-main-features"><a href="{{ url('firefox.fx') }}#desktop" tabindex="0" aria-owns="nav-main-features-submenu" aria-haspopup="true">{{ _('Desktop') }}</a>
       <ul aria-expanded="false" id="nav-main-features-submenu">
         <li class="first"><a href="{{ url('firefox.features') }}" tabindex="-1">{{ _('Features') }}</a></li>
