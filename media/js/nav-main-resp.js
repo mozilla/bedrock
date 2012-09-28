@@ -70,8 +70,8 @@ NavMain.mainMenuLinks = null;
 
 NavMain.init = function()
 {
-    NavMain.mainMenuItems = $('#nav-main [role="menubar"] > li');
-    NavMain.mainMenuLinks = $('#nav-main [role="menubar"] > li > [tabindex="0"]');
+    NavMain.mainMenuItems = $('#nav-main .has-submenus > li');
+    NavMain.mainMenuLinks = $('#nav-main ul > li > [tabindex="0"]');
 
     NavMain.mainMenuItems
         .bind('mouseover focusin', NavMain.handleFocusIn)
@@ -157,7 +157,6 @@ NavMain.handleFocusOut = function(e)
 
 NavMain.initSubmenu = function(menu_idx)
 {
-    var menu = $(this).find('[role="menu"]');
     var menuItems = $(this).find('a');
 
     menuItems.mouseover(function(e) {
