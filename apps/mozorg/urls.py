@@ -1,5 +1,6 @@
 from django.conf.urls.defaults import *
-from util import page, redirect
+from redirects.util import redirect
+from util import page
 import views
 
 urlpatterns = patterns('',
