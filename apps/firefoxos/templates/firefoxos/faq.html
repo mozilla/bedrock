@@ -1,108 +1,82 @@
-{% extends "sand.html" %}
+{% extends "firefoxos/firefoxos-base.html" %}
 
-{% block page_title %}Boot to Gecko Project FAQ{% endblock %}
-{% block body_id %}b2g-developer-faq{% endblock %}
-
-{% block site_header_nav %}
-  <nav id="nav-main" role="navigation">
-  <ul>
-    <li><a href="{{ url('b2g') }}">Home</a></li>
-    <li><a href="{{ url('b2g.about') }}">About</a></li>
-    <li><b>FAQ</b></li>
-  </ul>
-  </nav>
-{% endblock %}
-
-{% block extrahead %}
-  {{ css('b2g') }}
-{% endblock %}
-
-{% block breadcrumbs %}
-  <nav class="breadcrumbs">
-    <a href="/">Home</a> >
-    <a href="{{ url('b2g') }}">Boot to Gecko Project</a> >
-    <span>FAQ</span>
-  </nav>
-{% endblock %}
-
+{% block page_title %}Firefox OS FAQ{% endblock %}
+{% block body_id %}firefoxos-faq{% endblock %}
 
 {% block content %}
 
-<div id="main-content">
-<div class="row">
+<article id="faq">
 
-<article class="span6">
-
-  <h1>Boot to Gecko FAQ</h1>
+  <h1>Firefox OS FAQ</h1>
 
   <dl>
-    <dt>What is Boot to Gecko?</dt>
+    <dt>What is Firefox OS?</dt>
     <dd>
       <p>The project is an implementation of new Web standards that bring the power of the Open Web to mobile devices, unencumbered by the rules and restrictions of existing proprietary platforms.</p>
-</dd>
+    </dd>
 
     <dt>What is the overall aim of the project? What problems are you solving?</dt>
     <dd>
       <p>We believe that the next frontier for Web applications is full device integration, so that web developers have the same capabilities as those building for OS-specific stacks. Boot to Gecko is intended to identify those missing device capabilities and other application needs, and design standardized solutions for app developers to use.</p>
-</dd>
+    </dd>
 
     <dt>What is the size of the team working on this project?</dt>
     <dd>
       <p>More than 20 engineers were working full-time on specific parts of the system (telephony, messaging, system-level phone integration).  In addition, Mozilla contributors and engineers from operators partners are working jointly with us on the project.</p>
       <p>We are also leaning heavily on the existing Gecko and Firefox mobile work and the team of hundreds of engineers building those products. 95% of the code in the Boot to Gecko project is shared with Firefox.</p>
-</dd>
+    </dd>
 
     <dt>What does the project mean for your relationships with Apple, Google and Microsoft?</dt>
     <dd>
       <p>We don’t expect that it will affect our relationships with other organizations.</p>
-</dd>
+    </dd>
 
     <dt>Does this replace work that’s already being done on Web APIs for desktop and mobile?</dt>
     <dd>
       <p>We are already pushing hard on new Web APIs and will continue to implement and standardize new APIs for Web content while the project ramps up.</p>
-</dd>
+    </dd>
 
     <dt>How is this different than the Webian Shell project?</dt>
     <dd>
       <p>The Webian Shell project is an impressive project even in its early stages. Where Webian is focused on a Web-centric desktop experience, we’re focused on extending the Web to include more of what is traditionally the domain of OS-specific code. We think we can work together on a bunch of things, and we’re looking forward to it.</p>
-</dd>
+    </dd>
 
     <dt>How is this different from Chrome OS?</dt>
     <dd>
       <p>We’re aiming at mobile/tablet devices rather than a notebook form factor. This is an early-stage project to expose all device capabilities such that infrastructure like phone dialers can be built with Web APIs, and not only “high level” apps like word processors and presentation software.</p>
       <p>We will of course be happy to work with the Chrome OS team on standards activities, and indeed to share source code  where appropriate.</p>
-</dd>
+    </dd>
 
     <dt>Do you see this project as competing with other mobile operating systems?</dt>
     <dd>
       <p>We believe the Web is the platform. Ideally, the technology pioneered or refined in the Boot to Gecko project will make its way into all mobile browsers, so that enhanced Web applications can be great regardless of operating system or device. We look forward to working with other OS and browser developers on standards activities and even implementations.</p>
-</dd>
+    </dd>
 
     <dt>Are OEMs interested in the project?</dt>
     <dd>
       <p>
         Currently B2G is still a project without a firm product schedule. We are working on Qualcomm chipset based hardware platform for our development and discussing with OEMs /carriers on B2G deployment plans. We will announce a product schedule and launch partners once we reach that stage.
       </p>
-</dd>
+    </dd>
 
     <dt>Whose hardware will you support?</dt>
     <dd>
       <p>
         We are currently using off-the shelf developer hardware (Samsung Galaxy S 2), because the device is commercially available to Mozilla employees and community members. We are working on Qualcomm chipset based hardware platform right now and optimizing B2G to this reference platform. As we mentioned above, we are in process of finalization of lead OEM partners for shipping commercial B2G devices. That reference platform will likely be very different than the Samsung Galaxy S 2. 
       </p>
-</dd>
+    </dd>
 
     <dt>Is this going to be yet another platform for developers to code for?</dt>
     <dd>
       <p>No: the project is extending what developers can do with the Web, especially in the context of mobile devices, and to do so in a way that leads to interoperable standards.</p>
       <p>Just as with HTML5, ES5, CSS3 and other Web technology it will reach different browsers and operating systems at different times, but the pace of Web platform development gives us confidence that good Web technology can reach a lot of people pretty quickly.</p>
       <p>We don’t want this work to lead to applications that only run atop one platform, or only run in Firefox. That’s an important difference between what we’re doing and proprietary mobile stacks today: we don’t seek a competitive advantage for Mozilla, we seek a competitive advantage for the Web.</p>
-</dd>
+    </dd>
 
     <dt>How do you think you’ll get the mobile manufacturers and operators on board with this?</dt>
     <dd>
       <p>The Boot to Gecko project is designed to build on the success of the Web, and given the early stage of the project it could reach users in many forms. We’re working with ODMs, OEMs, operators and others who share our vision of even greater success for Web-based applications.</p>
-</dd>
+    </dd>
 
     <dt>What does the Boot to Gecko project offer mobile users that HTML5 doesn’t?</dt>
     <dd>
@@ -112,32 +86,15 @@
     <dt>Will this mean a Firefox Phone?</dt>
     <dd>
       <p>We don’t have any plans to build or distribute a custom device.</p>
-</dd>
+    </dd>
 
     <dt>I am a web developer. How will I deploy my web application to this platform?</dt>
     <dd>
       <p>You don’t. By default, your web app will be accessible from the phone just like any other website. If you want to make it installable to the homescreen, you may consider adding an open web app manifest to your app. However, the install API is not complete yet as of February 2012.</p>
-</dd>
+    </dd>
 
 </dl>
 
 </article>
-
-<div class="sidebar span2 offset2">
-
-  <nav>
-    <ul>
-      <li><a href="{{ url('b2g') }}">Boot to Gecko Project</a></li>
-      <li><a href="{{ url('b2g.about') }}">About</a></li>
-      <li><b>FAQ</b></li>
-    </ul>
-  </nav>
-
-  {% include "/b2g/sidebar-contents.html" %}
-
-</div>
-
-</div>
-</div>
 
 {% endblock %}

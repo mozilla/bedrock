@@ -1,0 +1,65 @@
+{% extends "firefoxos/firefoxos-base.html" %}
+
+{% block page_title %}Firefox OS{% endblock %}
+{% block body_id %}firefoxos{% endblock %}
+
+{% block content %}
+
+<hgroup id="main-feature">
+  <h1><img src="{{ MEDIA_URL }}img/firefoxos/wordmark-firefoxos.png" alt="Firefox OS"></h1>
+  <h2>Bringing the Open Web to mobile devices</h2>
+</hgroup>
+
+<section id="primary" class="billboard">
+  <h2>Welcome to a new, open and powerful mobile world!</h2>
+  <p>Firefox OS enables the Open Web as a platform for mobile devices. We’re making innovation possible by driving the development of new Web standards.</p>
+  <img src="{{ MEDIA_URL }}img/firefoxos/firefox-phone.png" alt="">
+</section>
+
+<section id="secondary">
+
+  <div class="section left">
+    <div class="figure">
+      <img src="{{ MEDIA_URL }}img/firefoxos/example-apps.jpg" alt="">
+    </div>
+    <h3>New Web standards</h3>
+    <p>Firefox OS will produce an implementation of these new Web standards to free mobile platforms from the encumbrances of the rules and restrictions of existing proprietary platforms.</p>
+   
+    <h3>Freedom from proprietary mobile platforms</h3>
+    <p>We're collaborating with OEMs and carriers directly, giving them more influence to meet the specific needs of their users and market. Users and developers aren't locked in to one platform, so they can access their info and use apps across multiple devices.</p>
+  </div>
+  
+  <div class="section right">
+    <div class="figure">
+      <img src="{{ MEDIA_URL }}img/firefoxos/example-radio.jpg" alt="">
+      <img src="{{ MEDIA_URL }}img/firefoxos/example-music.jpg" alt="">
+    </div>
+    <h3>Customization for OEMs and operators</h3>
+    <p>OEMs and operators will be able to provide content and services across their entire device portfolio, regardless of OS. And they will be able to customize user experiences, manage app distribution and retain customer attention, loyalty and billing relationships.</p>
+  </div>
+  
+  <div class="section left">
+    <div class="figure">
+      <img src="{{ MEDIA_URL }}img/firefoxos/example-browser.jpg" alt="">
+    </div>
+    <h3>Opportunities for developers</h3>
+    <p>Using HTML5 and the new Mozilla-proposed standard APIs, developers everywhere will be able to create amazing experiences and apps. Developers will no longer need to learn and develop against platform-specific native APIs.</p>
+  </div>
+  
+  <div class="section right">
+    <div class="figure">
+      <img src="{{ MEDIA_URL }}img/firefoxos/example-videos.jpg" alt="">
+      <img src="{{ MEDIA_URL }}img/firefoxos/example-gallery.jpg" alt="">
+    </div>
+    <h3>Consumer freedom</h3>
+    <p>Consumers who use devices powered by Firefox OS won't be locked into one specific platform giving them more choice, flexibility and freedom. With Firefox OS, the Web is the platform.</p>
+  </div>
+
+</section>
+
+
+{% endblock %}
+
+{% block site_js %}
+  {{ js('mozorg-resp') }}
+{% endblock %}
