@@ -21,8 +21,8 @@
       {# Without a FAQ page we only have a single FXOS page so the Home link isn't useful. Hide it for now.     
         <li role="menuitem" class="first"><a href="{{ url('firefoxos') }}">{{_('Home')}}</a></li> 
       #}
-        <li role="menuitem"><a href="{{ url('marketplace.marketplace') }}">{{_('Marketplace')}}</a></li>
-        <li role="menuitem"><a href="https://developer.mozilla.org/apps">{{_('Developers')}}</a></li>
+        <li role="menuitem" class="first"><a href="{{ url('marketplace.marketplace') }}">{{_('Marketplace')}}</a></li>
+        <li role="menuitem" class="last"><a href="https://developer.mozilla.org/apps">{{_('Developers')}}</a></li>
       {# Hide this link until we get FAQs updated  
         <li role="menuitem" class="last"><a href="{{ url('firefoxos.faq') }}">{{_('FAQ')}}</a></li> 
       #}
