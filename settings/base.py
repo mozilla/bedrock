@@ -67,8 +67,8 @@ MINIFY_BUNDLES = {
         'mobile_overview': (
             'css/mobile.less',
         ),
-        'b2g': (
-            'css/b2g.less',
+        'firefoxos': (
+            'css/firefoxos.less',
         ),
         'webmaker': (
             'css/webmaker.less',
@@ -431,7 +431,7 @@ INSTALLED_APPS = (
     'product_details',
 
     # Local apps
-    'b2g',
+    'firefoxos',
     'webmaker',
     'grants',
     'collusion',
