@@ -5,6 +5,7 @@ import views
 
 urlpatterns = patterns('',
     url(r'^$', views.b2g, name='firefoxos'),
+    url(r'^$', views.firefoxos, name='firefoxos'),
     url(r'^faq/$', views.faq, name='firefoxos.faq'),
-    url(r'^about/$', views.about, name='firefoxos.about'),
+    url(r'^about/$', views.about, name='firefoxos'),
 )
