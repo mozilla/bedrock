@@ -4,7 +4,8 @@ from django.http import HttpResponse
 
 from funfactory.manage import ROOT
 
-from mozorg.util import page, redirect
+from redirects.util import redirect
+from mozorg.util import page
 
 
 def mock_view(request):

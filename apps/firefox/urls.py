@@ -3,7 +3,8 @@ from django.conf import settings
 from product_details import product_details
 
 from firefox import version_re
-from mozorg.util import page, redirect
+from redirects.util import redirect
+from mozorg.util import page
 import views
 
 whatsnew_re = r'^firefox(?:/(%s))?/whatsnew/$' % version_re
