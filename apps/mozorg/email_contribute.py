@@ -8,75 +8,92 @@ from jinja2.exceptions import TemplateNotFound
 
 from l10n_utils.dotlang import _lazy as _
 
-fa = namedtuple('FunctionalArea', ['id', 'name', 'contacts'])
+fa = namedtuple('FunctionalArea', ['id', 'name', 'subject', 'contacts'])
 
 FUNCTIONAL_AREAS = (
     fa('support',
         _('Helping Users'),
+        'Support',
         ['jay@jaygarcia.com', 'rardila@mozilla.com', 'madasan@gmail.com'],
     ),
     fa('qa',
         _('Testing and QA'),
+        'QA',
         ['qa-contribute@mozilla.org'],
     ),
     fa('coding',
         _('Coding'),
+        'Coding',
         ['josh@joshmatthews.net'],
     ),
     fa('marketing',
         _('Marketing'),
+        'Marketing',
         ['cnovak@mozilla.com'],
     ),
     fa('localization',
         _('Localization and Translation'),
+        'Localization',
         ['rardila@mozilla.com', 'jbeatty@mozilla.com', 'arky@mozilla.com'],
     ),
     fa('webdev',
         _('Web Development'),
+        'Webdev',
         ['lcrouch@mozilla.com'],
     ),
     fa('addons',
         _('Add-ons'),
+        'Add-ons',
         ['atsay@mozilla.com'],
     ),
     fa('design',
         _('Visual Design'),
+        'Design',
         ['mnovak@mozilla.com'],
     ),
     fa('documentation',
         _('Developer Documentation'),
+        'Documentation',
         ['jswisher@mozilla.com'],
     ),
     fa('accessibility',
         _('Accessibility'),
+        'Accessibility',
         ['jay@jaygarcia.com'],
     ),
     fa('it',
         _('Systems Administration'),
+        'IT',
         ['cshields@mozilla.com'],
     ),
     fa('research',
         _('User Research'),
+        'Research',
         ['jay@jaygarcia.com'],
     ),
     fa('education',
         _('Education'),
+        'Education',
         ['bsimon@mozillafoundation.org'],
     ),
     fa('thunderbird',
+        'Thunderbird',
         'Thunderbird',
         ['jzickerman@mozilla.com', 'rtanglao@mozilla.com'],
     ),
     fa('other',
         _('Other'),
+        '',
         ['dboswell@mozilla.com'],
     ),
     fa('suggestions',
         _('I have a suggestion for Firefox'),
+        'Firefox Suggestions',
         ['jay@jaygarcia.com'],
     ),
     fa('issues',
         _('I need help with a Firefox issue'),
+        'Firefox issue',
         ['jay@jaygarcia.com'],
     ),
 )
@@ -116,9 +133,10 @@ def send(request, data):
     For locales with points of contact, it is also sent to them.
     For locales without, it is also sent to functional area contacts.
     """
+    functional_area = FUNCTIONAL_AREAS_DICT[data['interest']]
 
     from_ = 'contribute-form@mozilla.org'
-    subject = 'Inquiry about Mozilla %s' % data['interest']
+    subject = 'Inquiry about Mozilla %s' % functional_area.subject
     msg = jingo.render_to_string(request, 'mozorg/emails/infos.txt', data)
     headers = {'Reply-To': data['email']}
 
@@ -128,7 +146,7 @@ def send(request, data):
     if request.locale in LOCALE_CONTACTS:
         cc = LOCALE_CONTACTS[request.locale]
     else:
-        cc = FUNCTIONAL_AREAS_DICT[data['interest']].contacts
+        cc = functional_area.contacts
 
     email = EmailMessage(subject, msg, from_, to, cc=cc, headers=headers)
     email.send()
@@ -142,7 +160,7 @@ def autorespond(request, data):
     """
     functional_area = FUNCTIONAL_AREAS_DICT[data['interest']]
 
-    subject = 'Inquiry about Mozilla %s' % data['interest']
+    subject = 'Inquiry about Mozilla %s' % functional_area.subject
     to = [data['email']]
     from_ = 'contribute-form@mozilla.org'
     headers = {}
