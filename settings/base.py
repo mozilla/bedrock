@@ -442,6 +442,7 @@ INSTALLED_APPS = (
     'research',
     'styleguide',
     'privacy',
+    'redirects',
 
     # libs
     'l10n_utils',
