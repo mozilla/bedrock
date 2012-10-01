@@ -1,0 +1,74 @@
+@import "../sandstone/variables-resp.less";
+@import "../sandstone/mixins-resp.less";
+@import "../sandstone/buttons.less";
+
+#main-content {
+  background: #fff;
+  padding: 40px (@gridColumnWidth * 6) 40px 40px;
+  margin: 0 auto @baseLine;
+  @shadow: 0 0 1px rgba(0,0,0,.05);
+  .box-shadow(@shadow);
+  border-bottom: 1px solid #ddd;
+  hgroup {
+    margin: 0 0 (@baseLine * 2);
+    h1 {
+      font-size: 32px;
+      letter-spacing: -1px;
+      margin: 0 0 .25em;
+    }
+    h2 {
+      font-size: 24px;
+      letter-spacing: -0.25px;
+      margin: 0 0 .25em;
+    }
+  }
+  
+  .download-button {
+    position: absolute;
+    right: 40px;
+    top: 40px;
+  }
+  
+  .help {
+    .span(4);
+    margin: 0;
+    padding: 20px 20px 0;
+    background: #fafafa;
+    border: 1px solid #efefef;
+    box-shadow: inset 0 0 6px rgba(0,0,0,.05);
+
+    h3 {
+      font-size: 20px;
+    }
+  }
+   
+}
+
+
+/* Tablet Layout: 760px */
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+
+  #main-content {
+    width: auto;
+    padding: 40px 50% 40px 40px;
+  }
+
+}
+
+/* Mobile layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+
+  #main-content {
+    padding: 20px 25px;
+    .download-button {
+      position: static;
+      margin: 0 auto (@baseLine * 2);
+    }
+    .help {
+      width: auto;
+      float: none;
+      margin: 0;
+    }
+  }
+
+}
