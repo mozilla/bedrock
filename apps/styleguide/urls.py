@@ -62,4 +62,4 @@ hierarchy = PageNode('Styleguide', children=(
     )),
 ))
 
-urlpatterns = hierarchy.as_urlpattern()
+urlpatterns = hierarchy.as_urlpatterns()
