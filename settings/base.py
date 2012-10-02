@@ -76,6 +76,9 @@ MINIFY_BUNDLES = {
         'grants': (
             'css/grants.less',
         ),
+        'gameon': (
+            'css/gameon.less',
+        ),
         'collusion': (
             'css/collusion.less',
         ),
@@ -429,6 +432,8 @@ INSTALLED_APPS = (
     # Local apps
     'b2g',
     'webmaker',
+    'foundation',
+    'gameon',
     'grants',
     'collusion',
     'firefox',
