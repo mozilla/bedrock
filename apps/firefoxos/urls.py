@@ -1,8 +1,7 @@
 from django.conf.urls.defaults import *
-
-import views
+from mozorg.util import page
 
 
 urlpatterns = patterns('',
-    url(r'^$', views.firefoxos, name='firefoxos'),
+    page('', 'firefoxos/firefoxos.html'),
 )
