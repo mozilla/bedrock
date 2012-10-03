@@ -1,20 +1,10 @@
-from functools import wraps
+from collections import deque
 
 from django.conf.urls.defaults import patterns
 
 from funfactory.urlresolvers import reverse
 
 from mozorg.util import page
-
-
-def requires_parent(f):
-    @wraps(f)
-    def wrapped(self, *args, **kwargs):
-        if self.parent is None:
-            return None
-        else:
-            return f(self, *args, **kwargs)
-    return wrapped
 
 
 class PageNode(object):
@@ -104,33 +94,22 @@ class PageNode(object):
     @property
     def root(self):
         """The root of the tree that this node is in."""
-        return list(self.path_to_root)[-1]
+        root = list(self.path_to_root)[-1]
+        if not isinstance(root, PageRoot):
+            raise ValueError('Root node is not a PageRoot object.')
+        return root
 
     @property
-    @requires_parent
     def previous(self):
         """
-        The previous sibling node of the current node, or None if it is the
-        first in its parent's list.
+        The previous node with a page in a pre-order traversal of the tree.
         """
-        children = self.parent.children
-        index = children.index(self)
-        if index == 0:
-            return self.parent.previous
-        return children[index - 1]
+        return self.root.get_previous_node(self)
 
     @property
-    @requires_parent
     def next(self):
-        """
-        The next sibling node of the current node, or None if it is the last in
-        its parent's list.
-        """
-        children = self.parent.children
-        index = children.index(self)
-        if index + 1 == len(children):
-            return self.parent.next
-        return children[index + 1]
+        """The next node with a page in a pre-order traversal of the tree."""
+        return self.root.get_next_node(self)
 
     @property
     def url(self):
@@ -147,13 +126,40 @@ class PageNode(object):
         else:
             return None
 
-    def as_urlpatterns(self):
-        """Return a urlconf for this PageTree and its children."""
-        pages = []
+
+class PageRoot(PageNode):
+    """
+    Root of a PageNode tree.
+
+    The root node of a PageNode tree MUST be a PageRoot. If it is not, any
+    reference to the root of the tree with throw a ValueError.
+    """
+    def __init__(self, *args, **kwargs):
+        super(PageRoot, self).__init__(*args, **kwargs)
+
+        # Buid a pre-order traversal of this tree's nodes.
+        self.preordered_nodes = [self]
         nodes = [self]
         while nodes:
             node = nodes.pop()
+            self.preordered_nodes.append(node)
+            nodes.extend(reversed(node.children))
+
+    def get_previous_node(self, current_node):
+        end = self.preordered_nodes.index(current_node)
+        for node in reversed(self.preordered_nodes[0:end]):
             if node.template:
-                pages.append(node.page)
-            nodes += node.children
-        return patterns('', *pages)
+                return node
+        return None
+
+    def get_next_node(self, current_node):
+        start = self.preordered_nodes.index(current_node) + 1
+        for node in self.preordered_nodes[start:]:
+            if node.template:
+                return node
+        return None
+
+    def as_urlpatterns(self):
+        """Return a urlconf for this PageRoot and its children."""
+        return patterns('', *[node.page for node in self.preordered_nodes if
+                              node.template])
