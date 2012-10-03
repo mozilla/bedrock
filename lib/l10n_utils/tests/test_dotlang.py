@@ -9,10 +9,12 @@ from mock import patch
 from nose.tools import eq_
 from tower.management.commands.extract import extract_tower_python
 
-from l10n_utils.dotlang import FORMAT_IDENTIFIER_RE, parse, translate
+from l10n_utils.dotlang import _, FORMAT_IDENTIFIER_RE, parse, translate
 from mozorg.tests import TestCase
 
+
 ROOT = os.path.dirname(os.path.abspath(__file__))
+LANG_FILES = 'test_file'
 
 
 class TestDotlang(TestCase):
@@ -68,7 +70,7 @@ class TestDotlang(TestCase):
         trans_string = u'This is the translation.'
 
         # extraction
-        with open(os.path.join(ROOT, 'test_py_extract.py.txt')) as pyfile:
+        with open(os.path.join(ROOT, 'extract_me.py')) as pyfile:
             vals = extract_tower_python(pyfile, ['_'], [], {}).next()
         eq_(vals[2], clean_string)
 
@@ -80,3 +82,24 @@ class TestDotlang(TestCase):
 
         result = translate(dirty_string, ['tweaked_message_translation'])
         eq_(result, trans_string)
+
+    @patch('l10n_utils.dotlang.translate')
+    def test_gettext_searches_specified_lang_files(self, trans_patch):
+        global LANG_FILES
+        old_lang_files = LANG_FILES
+        trans_str = 'Translate me'
+        _(trans_str)
+        call_lang_files = [LANG_FILES] + settings.DOTLANG_FILES
+        trans_patch.assert_called_with(trans_str, call_lang_files)
+
+        LANG_FILES = ['dude', 'donnie', 'walter']
+        _(trans_str)
+        call_lang_files = LANG_FILES + settings.DOTLANG_FILES
+        trans_patch.assert_called_with(trans_str, call_lang_files)
+        LANG_FILES = old_lang_files
+
+    @patch('l10n_utils.dotlang.translate')
+    def test_gettext_works_without_extra_lang_files(self, trans_patch):
+        import extract_me
+        dirty_string = u'Stuff\xa0about\r\nmany\t   things.'
+        trans_patch.assert_called_with(dirty_string, settings.DOTLANG_FILES)

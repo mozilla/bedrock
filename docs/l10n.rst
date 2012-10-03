@@ -32,7 +32,7 @@ and html files, and will convert the result into a bunch of .lang
 files inside ``locale/templates``. This directory represents the
 "reference" set of strings to be translated, and you are free to
 modify or split up .lang files here as needed (just make sure they are
-being reference correctly, from the code, see 
+being reference correctly, from the code, see
 :ref:`Which .lang file should it use? <which-lang>`).
 
 To merge new strings into locale directories, run:
@@ -74,7 +74,7 @@ There's another way to translate content within jinja2 templates. If
 you need a big chunk of content translated, you can put it all inside
 a `trans` block.
 
-:: 
+::
 
     {% trans %}
       <div>Hello, how are you</div>
@@ -120,6 +120,25 @@ template-specific .lang file. If the template explicitly specifies
 .lang files like above, it will add the strings to the first .lang
 file specified, so extracted strings from the above template would go
 into `foo.lang`.
+
+You can similarly specify extra lang files in your Python source as well.
+Simply add a module-level constant in the file named `LANG_FILES`. The
+value should be either a string, or a list of strings, similar to the
+`add_lang_files` tag above.
+
+::
+
+    # forms.py
+
+    from l10n_utils.dotlang import _
+
+    LANG_FILES = ['foo', 'bar']
+
+    sometext = _('Foo about bar.')
+
+This file's strings would be extracted to `foo.lang`, and the lang files
+foo, bar, main, bae, and newsletter would be searched for matches in that
+order.
 
 l10n blocks
 ------------------

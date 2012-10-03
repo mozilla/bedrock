@@ -1,18 +1,19 @@
+from __future__ import with_statement
+
 import codecs
-import errno
 import os
-from os.path import join
-from tempfile import mkstemp
 import re
-import shutil
-import sys
+from os.path import join
+from tokenize import generate_tokens, NAME, NEWLINE, OP, untokenize
 
 from django.conf import settings
 from jinja2 import Environment
 
 from dotlang import parse as parse_lang, get_lang_path
 
+
 REGEX_URL = re.compile(r'.* (\S+/\S+\.[^:]+).*')
+
 
 def parse_po(path):
     msgs = {}
@@ -71,6 +72,50 @@ def is_template(path):
     return ext == '.html'
 
 
+def is_python(path):
+    (base, ext) = os.path.splitext(path)
+    return ext == '.py'
+
+
+def parse_python(path):
+    """
+    Look though a python file and extract the specified `LANG_FILES` constant
+    value and return it.
+
+    `LANG_FILES` must be defined at the module level, and can be a string or
+    list of strings.
+    """
+    result = []
+    in_lang = False
+    in_lang_val = False
+    with codecs.open(path, encoding='utf-8') as src_f:
+        tokens = generate_tokens(src_f.readline)
+        for token in tokens:
+            t_type, t_val, (t_row, t_col) = token[:3]
+            # find the start of the constant declaration
+            if t_type == NAME and t_col == 0 and t_val == 'LANG_FILES':
+                in_lang = True
+                continue
+            if in_lang:
+                # we only want the value, so start recording after the = OP
+                if t_type == OP and t_val == '=':
+                    in_lang_val = True
+                    continue
+                # stop when there's a newline. continuation newlines are a
+                # different type so multiline list literals work fine
+                if t_type == NEWLINE:
+                    break
+                if in_lang_val:
+                    result.append((t_type, t_val))
+
+    if result:
+        new_lang_files = eval(untokenize(result))
+        if isinstance(new_lang_files, basestring):
+            new_lang_files = [new_lang_files]
+        return new_lang_files
+    return []
+
+
 def parse_template(path):
     """Look through a template for the lang_files tag and extract the
     given lang files"""
@@ -100,8 +145,35 @@ def parse_template(path):
 
                 lang_files = filter(lambda x: x, lang_files)
                 if lang_files:
-                    return lang_files                
+                    return lang_files
     return []
+
+
+def langfiles_for_path(path):
+    """
+    Find and return any extra lang files specified in templates or python
+    source files, or the first entry in the DOTLANG_FILES setting if none.
+
+    :param path: path to a file containing strings to translate
+    :return: list of langfile names.
+    """
+    lang_files = None
+
+    if is_template(path):
+        # If the template explicitly specifies lang files, use those
+        lang_files = parse_template(join(settings.ROOT, path))
+        # Otherwise, normalize the path name to a lang file
+        if not lang_files:
+            lang_files = [get_lang_path(path)]
+    elif is_python(path):
+        # If the python file explicitly specifies lang files, use those
+        lang_files = parse_python(join(settings.ROOT, path))
+
+    if not lang_files:
+        # All other sources use the first main file
+        lang_files = settings.DOTLANG_FILES[:1]
+
+    return lang_files
 
 
 def pot_to_langfiles():
@@ -118,25 +190,14 @@ def pot_to_langfiles():
     main_msgs.update(parse_lang(lang_file('newsletter.lang', root)))
 
     # Walk through the msgs and put them in the appropriate place. The
-    # complex part about this is that templates can specify a list of
-    # lang files to pull from, so we need to check all of them for the
-    # strings and add it to the first lang file specified if not
-    # found.
+    # complex part about this is that templates and python files can
+    # specify a list of lang files to pull from, so we need to check
+    # all of them for the strings and add it to the first lang file
+    # specified if not found.
     for path, msgs in all_msgs.items():
         target = None
-        lang_files = None
-
-        if is_template(path):
-            # If the template explicitly specifies lang files, use those
-            lang_files = [lang_file('%s.lang' % f, root)
-                          for f in parse_template(join(settings.ROOT, path))]
-            # Otherwise, normalize the path name to a lang file
-            if not lang_files:
-                lang_files = [lang_file(get_lang_path(path), root)]
-        else:
-            # All other sources use the first main file
-            lang_files = [lang_file('%s.lang' % settings.DOTLANG_FILES[0],
-                                    root)]
+        lang_files = [lang_file('%s.lang' % f, root)
+                      for f in langfiles_for_path(path)]
 
         # Get the current translations
         curr = {}
@@ -168,7 +229,7 @@ def find_lang_files(lang):
 
         for filename in files:
             name, ext = os.path.splitext(filename)
-            
+
             if ext == '.lang':
                 yield os.path.join(base, filename)
 

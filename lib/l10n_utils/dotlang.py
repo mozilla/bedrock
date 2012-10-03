@@ -8,6 +8,7 @@ potentially just use thread-local variables. Caching seems safer at
 the expense of another caching layer."""
 
 import codecs
+import inspect
 import os
 import re
 
@@ -97,8 +98,25 @@ def translate(text, files):
 
 
 def _(text, *args):
-    """Translate a piece of text from the global files"""
-    text = translate(text, settings.DOTLANG_FILES)
+    """
+    Translate a piece of text from the global files. If `LANG_FILES` is defined
+    in the module from which this function is called, those files (or file)
+    will be searched first for the translation, followed by the default files.
+
+    :param text: string to translate
+    :param args: items for interpolation into `text`
+    :return: translated string
+    """
+    lang_files = settings.DOTLANG_FILES
+    frame = inspect.currentframe().f_back  # get caller frame
+    # gets value of LANG_FILE constant in calling module if specified
+    new_lang_files = frame.f_globals.get('LANG_FILES')
+    if new_lang_files:
+        if isinstance(new_lang_files, basestring):
+            new_lang_files = [new_lang_files]
+        lang_files = new_lang_files + lang_files
+
+    text = translate(text, lang_files)
     if args:
         text = text % args
     return text
