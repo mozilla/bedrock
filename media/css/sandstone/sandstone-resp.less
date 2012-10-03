@@ -40,10 +40,10 @@ a {
 
 .sand {
     #outer-wrapper {
-        background-color: #f5f1e8;
-        background-image: url(/media/img/sandstone/bg-gradient-sand.png),
-                          url(/media/img/sandstone/bg-sand.png);
-        background-repeat: repeat-x, repeat;
+        background: #f5f1e8 url(/media/img/sandstone/bg-sand.png) repeat;
+        background: url(/media/img/sandstone/bg-gradient-sand.png) repeat-x 0 0,
+                    url(/media/img/sandstone/bg-sand.png) repeat 0 0,
+                    #f5f1e8;
     }
 }
 
