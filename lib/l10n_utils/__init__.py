@@ -1,5 +1,3 @@
-import os
-
 from django.conf import settings
 
 from dotlang import get_lang_path
@@ -31,8 +29,6 @@ def render(request, template, context={}, **kwargs):
 
     # Every template gets its own .lang file, so figure out what it is
     # and pass it in the context
-    path = get_lang_path(template)
-    (base, ext) = os.path.splitext(path)
-    context['langfile'] = base
+    context['langfile'] = get_lang_path(template)
 
     return jingo.render(request, template, context, **kwargs)
