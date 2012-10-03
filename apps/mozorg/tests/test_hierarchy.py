@@ -111,6 +111,34 @@ class TestPageNode(TestCase):
         eq_(child2.previous, child1)
         eq_(child1.previous, None)
 
+    def test_previous_cross(self):
+        """
+        If a node has no siblings, attempt to cross over to the children of the
+        parent's sibling.
+        """
+        # Diagram of the final tree:
+        #       O
+        #      / \
+        #     O   O
+        #    /   / \
+        #   O   O   O
+        #  /   /   / \
+        # c1  c2  c3  O
+        child1 = PageNode('')
+        child2 = PageNode('')
+        child3 = PageNode('')
+        PageNode('', children=[
+            PageNode('', children=[
+                PageNode('', children=[child1])
+            ]),
+            PageNode('', children=[
+                PageNode('', children=[child2]),
+                PageNode('', children=[child3, PageNode('')])
+            ])
+        ])
+        eq_(child2.previous, child1)
+        eq_(child3.previous, child2)
+
     def test_next(self):
         """
         Next should return the next sibling node, or None if one doesn't exist.
@@ -120,6 +148,34 @@ class TestPageNode(TestCase):
         PageNode('', children=[child1, child2])
         eq_(child1.next, child2)
         eq_(child2.next, None)
+
+    def test_next_cross(self):
+        """
+        If a node has no siblings, attempt to cross over to the children of the
+        parent's sibling.
+        """
+        # Diagram of the final tree:
+        #       O
+        #      / \
+        #     O   O
+        #    /   / \
+        #   O   O   O
+        #  /   /   / \
+        # c1  c2  c3  O
+        child1 = PageNode('')
+        child2 = PageNode('')
+        child3 = PageNode('')
+        PageNode('', children=[
+            PageNode('', children=[
+                PageNode('', children=[child1])
+            ]),
+            PageNode('', children=[
+                PageNode('', children=[child2]),
+                PageNode('', children=[child3, PageNode('')])
+            ])
+        ])
+        eq_(child1.next, child2)
+        eq_(child2.next, child3)
 
     @patch('mozorg.hierarchy.reverse')
     def test_url(self, reverse):
@@ -169,7 +225,6 @@ class TestPageNode(TestCase):
 
         args = patterns.call_args[0]
         eq_(args[0], '')
-        print args
         ok_('child1' in args)
         ok_('child2' in args)
         ok_('root' in args)

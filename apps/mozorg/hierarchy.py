@@ -110,27 +110,41 @@ class PageNode(object):
     @requires_parent
     def previous(self):
         """
-        The previous sibling node of the current node, or None if it is the
-        first in its parent's list.
+        The previous sibling node of the current node.
+
+        If this node has no previous siblings, return the last child of our
+        parent's previous sibling. If that fails, return None.
         """
         children = self.parent.children
         index = children.index(self)
         if index == 0:
-            return self.parent.previous
-        return children[index - 1]
+            parent_previous = self.parent.previous
+            if parent_previous is None or not parent_previous.children:
+                return None
+            else:
+                return parent_previous.children[-1]
+        else:
+            return children[index - 1]
 
     @property
     @requires_parent
     def next(self):
         """
-        The next sibling node of the current node, or None if it is the last in
-        its parent's list.
+        The next sibling node of the current node.
+
+        If this node has no following siblings, return the first child of our
+        parent's next sibling. If that fails, return None.
         """
         children = self.parent.children
         index = children.index(self)
         if index + 1 == len(children):
-            return self.parent.next
-        return children[index + 1]
+            parent_next = self.parent.next
+            if parent_next is None or not parent_next.children:
+                return None
+            else:
+                return parent_next.children[0]
+        else:
+            return children[index + 1]
 
     @property
     def url(self):
