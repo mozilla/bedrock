@@ -3,8 +3,8 @@ from util import redirect
 
 urlpatterns = patterns('',
 
-    redirect(r'^b2g', 'firefoxos'),
-    redirect(r'^b2g/faq', 'firefoxos'),
-    redirect(r'^b2g/about', 'firefoxos'),
-    
+    redirect(r'^b2g', 'firefoxos.firefoxos'),
+    redirect(r'^b2g/faq', 'firefoxos.firefoxos'),
+    redirect(r'^b2g/about', 'firefoxos.firefoxos'),
+
     )
