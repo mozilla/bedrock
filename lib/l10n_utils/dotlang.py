@@ -108,9 +108,12 @@ def _(text, *args):
     :return: translated string
     """
     lang_files = settings.DOTLANG_FILES
-    frame = inspect.currentframe().f_back  # get caller frame
-    # gets value of LANG_FILE constant in calling module if specified
-    new_lang_files = frame.f_globals.get('LANG_FILES')
+    frame = inspect.currentframe()
+    try:
+        # gets value of LANG_FILE constant in calling module if specified
+        new_lang_files = frame.f_back.f_globals.get('LANG_FILES')
+    finally:
+        del frame
     if new_lang_files:
         if isinstance(new_lang_files, basestring):
             new_lang_files = [new_lang_files]
@@ -140,5 +143,5 @@ def get_lang_path(path):
         pass
 
     path = '/'.join(p)
-    (base, ext) = os.path.splitext(path)
-    return '%s.lang' % base
+    base, ext = os.path.splitext(path)
+    return base

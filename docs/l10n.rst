@@ -32,7 +32,7 @@ and html files, and will convert the result into a bunch of .lang
 files inside ``locale/templates``. This directory represents the
 "reference" set of strings to be translated, and you are free to
 modify or split up .lang files here as needed (just make sure they are
-being reference correctly, from the code, see
+being referenced correctly, from the code, see
 :ref:`Which .lang file should it use? <which-lang>`).
 
 To merge new strings into locale directories, run:
@@ -137,8 +137,8 @@ value should be either a string, or a list of strings, similar to the
     sometext = _('Foo about bar.')
 
 This file's strings would be extracted to `foo.lang`, and the lang files
-foo, bar, main, bae, and newsletter would be searched for matches in that
-order.
+`foo.lang`, `bar.lang`, `main.lang`, `base.lang`, and `newsletter.lang`
+ would be searched for matches in that order.
 
 l10n blocks
 ------------------

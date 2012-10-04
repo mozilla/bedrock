@@ -5,6 +5,7 @@ from django.conf import settings
 
 from dotlang import translate
 
+
 def install_lang_files(ctx):
     """Install the initial set of .lang files"""
     req = ctx['request']
@@ -21,7 +22,7 @@ def add_lang_files(ctx, files):
     req = ctx['request']
 
     if hasattr(req, 'langfiles'):
-        req.langfiles += files
+        req.langfiles = files + req.langfiles
 
 
 @jingo.register.function
@@ -50,4 +51,4 @@ def lang_files(ctx, *files):
     """Add more lang files to the translation object"""
     # Filter out empty files
     install_lang_files(ctx)
-    add_lang_files(ctx, filter(lambda x: x, files))
+    add_lang_files(ctx, [f for f in files if f])
