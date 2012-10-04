@@ -67,11 +67,6 @@ a[href="#TODO"] { color: #f00 !important; }
     .clearfix;
 }
 
-#sidebar {
-    .span_guide(2);
-    margin-left: @gridGutterWidth;
-}
-
 #content_area {
     .span_guide(12);
     width: (@gridColumnWidth * 12) + (@gridGutterWidth * 12);
@@ -87,7 +82,10 @@ a[href="#TODO"] { color: #f00 !important; }
 /* {{{ Sidebar */
 
 #sidebar {
+    .span_guide(2);
+    margin-left: @gridGutterWidth;
     margin-bottom: @baseLine;
+    min-height: 700px;
     h2 {
         text-align: center;
         font-size: 24px;
