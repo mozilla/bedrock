@@ -109,15 +109,22 @@ def _(text, *args):
     """
     lang_files = settings.DOTLANG_FILES
     frame = inspect.currentframe()
-    try:
-        # gets value of LANG_FILE constant in calling module if specified
-        new_lang_files = frame.f_back.f_globals.get('LANG_FILES')
-    finally:
-        del frame
-    if new_lang_files:
-        if isinstance(new_lang_files, basestring):
-            new_lang_files = [new_lang_files]
-        lang_files = new_lang_files + lang_files
+    if frame is None:
+        if settings.DEBUG:
+            import warnings
+            warnings.warn('Your Python runtime does not support the frame '
+                          'stack. Extra LANG_FILES specified in Python '
+                          'source files will not work.', RuntimeWarning)
+    else:
+        try:
+            # gets value of LANG_FILE constant in calling module if specified
+            new_lang_files = frame.f_back.f_globals.get('LANG_FILES')
+        finally:
+            del frame
+        if new_lang_files:
+            if isinstance(new_lang_files, basestring):
+                new_lang_files = [new_lang_files]
+            lang_files = new_lang_files + lang_files
 
     text = translate(text, lang_files)
     if args:
@@ -130,9 +137,9 @@ _lazy = lazy(_, unicode)
 
 def get_lang_path(path):
     """Generate the path to a lang file from a django path.
-    /apps/foo/templates/foo/bar.html -> /foo/bar.lang
-    /templates/foo.html -> /foo.lang
-    /foo/bar.html -> /foo/bar.lang"""
+    /apps/foo/templates/foo/bar.html -> foo/bar
+    /templates/foo.html -> foo
+    /foo/bar.html -> foo/bar"""
 
     p = path.split('/')
 
