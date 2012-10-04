@@ -156,8 +156,9 @@ h1 {
     .open-sans-light;
     font-size: 11px;
     line-height: 20px;
-    a {
+    a,b {
         display: inline-block;
+        font-weight: normal;
         min-height: 20px;
         padding: 4px 22px 4px 0;
         position: relative;
@@ -180,11 +181,15 @@ h1 {
     }
     #breadcrumbs {
         margin-bottom: @baseLine;
-        a {
+        a,b {
             margin-right: 10px;
             background-position: 100% 50%;
             background-repeat: no-repeat;
             background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAUCAYAAABWMrcvAAAAr0lEQVR42q3TPwrCMBSA8VSrtSYIglBHcXFysJ7AA4geQFfFA/V4niV+b4rUhCehw6/DCx+U/DHe+wJl055nKGA0EokR5gxWGP8biRJLhltM9CiYYs3CAZXMYmLDChuiE+poZLr3DxZq7IiusP11+aRCiz3RHU6PQujQEj2x6EVqeCR6SZiI9DAryvs9BmlhIx4SpA43CFt+g9NuxPfhXmCHuEZZF1Z5GkM+wqzn/gGPpd1ige/9lgAAAABJRU5ErkJggg==);
+
+        }
+        a:last-child,b:last-child {
+            background: none;
         }
     }
 }

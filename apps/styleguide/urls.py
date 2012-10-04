@@ -1,51 +1,65 @@
 from django.conf.urls.defaults import *
-from mozorg.util import page
+from mozorg.hierarchy import PageNode, PageRoot
 
-urlpatterns = patterns('',
-    page('', 'styleguide/home.html'),
+hierarchy = PageRoot('Styleguide', children=(
+    PageNode('Home', template='styleguide/home.html'),
+    PageNode('Identity', path='identity', children=(
+        PageNode('Mozilla', path='mozilla', children=(
+            PageNode('Branding', path='branding', template='styleguide/identity/mozilla-branding.html'),
+            PageNode('Color', path='color', template='styleguide/identity/mozilla-color.html'),
+            PageNode('Innovations', path='innovations', template='styleguide/identity/mozilla-innovations.html'),
+        )),
+        PageNode('Firefox Browser', path='firefox', children=(
+            PageNode('Branding', path='branding', template='styleguide/identity/firefox-branding.html'),
+            PageNode('Channels', path='channels', template='styleguide/identity/firefox-channels.html'),
+            PageNode('Wordmarks', path='wordmarks', template='styleguide/identity/firefox-wordmarks.html'),
+            PageNode('Color', path='color', template='styleguide/identity/firefox-color.html'),
+        )),
+        PageNode('Firefox OS', path='firefoxos', children=(
+            PageNode('Branding', path='branding', template='styleguide/identity/firefoxos-branding.html'),
+        )),
+        PageNode('Firefox Family', path='firefox-family', children=(
+            PageNode('Overview', path='overview', template='styleguide/identity/firefox-family-overview.html'),
+            PageNode('Platform', path='platform', template='styleguide/identity/firefox-family-platform.html'),
+        )),
+        PageNode('Marketplace', path='marketplace', children=(
+            PageNode('Branding', path='branding', template='styleguide/identity/marketplace-branding.html'),
+            PageNode('Color', path='color', template='styleguide/identity/marketplace-color.html'),
+        )),
+        PageNode('Webmaker', path='webmaker', children=(
+            PageNode('Branding', path='branding', template='styleguide/identity/webmaker-branding.html'),
+            PageNode('Color', path='color', template='styleguide/identity/webmaker-color.html'),
+        )),
+        PageNode('Thunderbird', path='thunderbird', children=(
+            PageNode('Logo', path='logo', template='styleguide/identity/thunderbird-logo.html'),
+            PageNode('Channels', path='channels', template='styleguide/identity/thunderbird-channels.html'),
+            PageNode('Wordmarks', path='wordmarks', template='styleguide/identity/thunderbird-wordmarks.html'),
+            PageNode('Color', path='color', template='styleguide/identity/thunderbird-color.html'),
+        )),
+    )),
+    PageNode('Websites', path='websites', children=(
+        PageNode('Sandstone', path='sandstone', children=(
+            PageNode('Overview', template='styleguide/websites/sandstone-intro.html'),
+            PageNode('Buttons', path='buttons', template='styleguide/websites/sandstone-buttons.html'),
+            PageNode('Colors', path='colors', template='styleguide/websites/sandstone-colors.html'),
+            PageNode('Forms', path='forms', template='styleguide/websites/sandstone-forms.html'),
+            PageNode('Grids', path='grids', template='styleguide/websites/sandstone-grids.html'),
+            PageNode('Tables', path='tables', template='styleguide/websites/sandstone-tables.html'),
+            PageNode('Tabzilla', path='tabzilla', template='styleguide/websites/sandstone-tabzilla.html'),
+            PageNode('Typefaces', path='typefaces', template='styleguide/websites/sandstone-typefaces.html'),
+            PageNode('Examples', path='examples', template='styleguide/websites/sandstone-examples.html'),
+        )),
+        PageNode('Community sites', path='community/overview', template='styleguide/websites/community-overview.html'),
+        PageNode('Domain strategy', path='domains/overview', template='styleguide/websites/domains-overview.html'),
+    )),
+    PageNode('Communications', path='communications', children=(
+        PageNode('Presentations', path='presentations', template='styleguide/communications/presentations.html'),
+        PageNode('Video', path='video', template='styleguide/communications/video.html'),
+        PageNode('Typefaces', path='typefaces', template='styleguide/communications/typefaces.html'),
+        PageNode('Copy tone', path='copy-tone', template='styleguide/communications/copy-tone.html'),
+        PageNode('Copy rules', path='copy-rules', template='styleguide/communications/copy-rules.html'),
+        PageNode('Translation', path='translation', template='styleguide/communications/translation.html'),
+    )),
+))
 
-    page('identity/mozilla/branding', 'styleguide/identity/mozilla-branding.html'),
-    page('identity/mozilla/color', 'styleguide/identity/mozilla-color.html'),
-    page('identity/mozilla/innovations', 'styleguide/identity/mozilla-innovations.html'),
-
-    page('identity/firefox/branding', 'styleguide/identity/firefox-branding.html'),
-    page('identity/firefox/channels', 'styleguide/identity/firefox-channels.html'),
-    page('identity/firefox/wordmarks', 'styleguide/identity/firefox-wordmarks.html'),
-    page('identity/firefox/color', 'styleguide/identity/firefox-color.html'),
-
-    page('identity/firefoxos/branding', 'styleguide/identity/firefoxos-branding.html'),
-
-    page('identity/firefox-family/overview', 'styleguide/identity/firefox-family-overview.html'),
-    page('identity/firefox-family/platform', 'styleguide/identity/firefox-family-platform.html'),
-
-    page('identity/marketplace/branding', 'styleguide/identity/marketplace-branding.html'),
-    page('identity/marketplace/color', 'styleguide/identity/marketplace-color.html'),
-
-    page('identity/webmaker/branding', 'styleguide/identity/webmaker-branding.html'),
-    page('identity/webmaker/color', 'styleguide/identity/webmaker-color.html'),
-
-    page('identity/thunderbird/logo', 'styleguide/identity/thunderbird-logo.html'),
-    page('identity/thunderbird/channels', 'styleguide/identity/thunderbird-channels.html'),
-    page('identity/thunderbird/wordmarks', 'styleguide/identity/thunderbird-wordmarks.html'),
-    page('identity/thunderbird/color', 'styleguide/identity/thunderbird-color.html'),
-
-    page('websites/sandstone', 'styleguide/websites/sandstone-intro.html'),
-    page('websites/sandstone/buttons', 'styleguide/websites/sandstone-buttons.html'),
-    page('websites/sandstone/colors', 'styleguide/websites/sandstone-colors.html'),
-    page('websites/sandstone/forms', 'styleguide/websites/sandstone-forms.html'),
-    page('websites/sandstone/grids', 'styleguide/websites/sandstone-grids.html'),
-    page('websites/sandstone/tables', 'styleguide/websites/sandstone-tables.html'),
-    page('websites/sandstone/tabzilla', 'styleguide/websites/sandstone-tabzilla.html'),
-    page('websites/sandstone/typefaces', 'styleguide/websites/sandstone-typefaces.html'),
-    page('websites/sandstone/examples', 'styleguide/websites/sandstone-examples.html'),
-
-    page('websites/community/overview', 'styleguide/websites/community-overview.html'),
-    page('websites/domains/overview', 'styleguide/websites/domains-overview.html'),
-
-    page('communications/presentations', 'styleguide/communications/presentations.html'),
-    page('communications/video', 'styleguide/communications/video.html'),
-    page('communications/typefaces', 'styleguide/communications/typefaces.html'),
-    page('communications/copy-tone', 'styleguide/communications/copy-tone.html'),
-    page('communications/copy-rules', 'styleguide/communications/copy-rules.html'),
-    page('communications/translation', 'styleguide/communications/translation.html'),
-)
+urlpatterns = hierarchy.as_urlpatterns()
