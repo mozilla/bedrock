@@ -1,5 +1,3 @@
-from collections import deque
-
 from django.conf.urls.defaults import patterns
 
 from funfactory.urlresolvers import reverse
@@ -18,7 +16,7 @@ class PageNode(object):
 
     Example:
 
-        hierarchy = PageNode('Root', path='root', children=[
+        hierarchy = PageRoot('Root', path='root', children=[
             PageNode('Child1', path='child1', template='child1.html'),
             PageNode('Child2', path='child2', template='child2.html')
         ])
@@ -126,6 +124,11 @@ class PageNode(object):
         else:
             return None
 
+    def __repr__(self):
+        return u'{0}(display_name="{1}", path="{2}", template="{3})"'.format(
+            self.__class__.__name__, self.display_name, self.full_path,
+            self.template)
+
 
 class PageRoot(PageNode):
     """
@@ -138,7 +141,7 @@ class PageRoot(PageNode):
         super(PageRoot, self).__init__(*args, **kwargs)
 
         # Buid a pre-order traversal of this tree's nodes.
-        self.preordered_nodes = [self]
+        self.preordered_nodes = []
         nodes = [self]
         while nodes:
             node = nodes.pop()

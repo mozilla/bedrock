@@ -104,28 +104,30 @@ class TestPageNode(TestCase):
         """
         # Diagram of the final tree:
         #      root
-        #      / \
-        #     O   O
-        #    /   / \
-        #   O   O   O
-        #  /   /   / \
-        # c1  c2  c3  O
+        #      /  \
+        #     O    O--
+        #    /    /   \
+        #   O    O     O
+        #  /    / \   / \
+        # c1   c2 c3 c4  O
         child1 = PageNode('', template='test1.html')
         child2 = PageNode('', template='test2.html')
         child3 = PageNode('', template='test3.html')
+        child4 = PageNode('', template='test4.html')
         root = PageRoot('', template='root.html', children=[
             PageNode('', children=[
                 PageNode('', children=[child1])
             ]),
             PageNode('', children=[
-                PageNode('', children=[child2]),
-                PageNode('', children=[child3, PageNode('')])
+                PageNode('', children=[child2, child3]),
+                PageNode('', children=[child4, PageNode('')])
             ])
         ])
         eq_(root.previous, None)
         eq_(child1.previous, root)
         eq_(child2.previous, child1)
         eq_(child3.previous, child2)
+        eq_(child4.previous, child3)
 
     def test_next(self):
         """
@@ -144,28 +146,30 @@ class TestPageNode(TestCase):
         """
         # Diagram of the final tree:
         #      root
-        #      / \
-        #     O   O
-        #    /   / \
-        #   O   O   O
-        #  /   /   / \
-        # c1  c2  c3  O
+        #      /  \
+        #     O    O--
+        #    /    /   \
+        #   O    O     O
+        #  /    / \   / \
+        # c1   c2 c3 c4  O
         child1 = PageNode('', template='test1.html')
         child2 = PageNode('', template='test2.html')
         child3 = PageNode('', template='test3.html')
-        root = PageRoot('', children=[
+        child4 = PageNode('', template='test4.html')
+        root = PageRoot('', template='root.html', children=[
             PageNode('', children=[
                 PageNode('', children=[child1])
             ]),
             PageNode('', children=[
-                PageNode('', children=[child2]),
-                PageNode('', children=[child3, PageNode('')])
+                PageNode('', children=[child2, child3]),
+                PageNode('', children=[child4, PageNode('')])
             ])
         ])
         eq_(root.next, child1)
         eq_(child1.next, child2)
         eq_(child2.next, child3)
-        eq_(child3.next, None)
+        eq_(child3.next, child4)
+        eq_(child4.next, None)
 
     @patch('mozorg.hierarchy.reverse')
     def test_url(self, reverse):
