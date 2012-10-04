@@ -49,12 +49,6 @@ class TestParseTemplate(TempFileMixin, TestCase):
 
 
 class TestParsePython(TempFileMixin, TestCase):
-    def tempfile(self, data):
-        tempf = TemporaryFile()
-        tempf.write(dedent(data))
-        tempf.seek(0)
-        return tempf
-
     @patch('l10n_utils.gettext.codecs')
     def test_new_lang_file_defined_list(self, codecs_mock):
         """
