@@ -1,24 +1,38 @@
-///DOC READY FUNCTIONS
-/*
 $(document).ready(function() {
 
-if ($('#sidebar nav ul')[0]){
+    $('#sidebar nav ul li.has-children > a').click(function(e) {
+        e.preventDefault();
 
-  $('#sidebar nav ul').find('a').click(function(e){ //Click function to toggle extending lists
-    e.preventDefault();
-    $(this).next().slideToggle('fast').css('zoom', '1'); //Find the next element after the clicked element
-    $(this).parent('li').toggleClass('collapse'); //Add a class for styling
-  });
+        var $li = $(this).parent('li');
 
-  $('#sidebar nav ul > li').each(function(){ //Function initially hide lists with the override class of "extended"
-    if (!$(this).hasClass('extended')){
-     $(this).find('ul').slideUp('fast').css('zoom', '1'); //hide all lists without a parent of "extended"
-     $(this).toggleClass('collapse'); //Add a class for styling
-    }
+        if ($li.hasClass('active')) {
+            // close ul
+            $(this).next()
+                .slideUp('fast', function() {
+                    $li.removeClass('active');
+                })
+        } else {
+            $li.addClass('active');
 
-  });
+            // open ul
+            $(this).next('ul')
+                .css('display', 'none')
+                .slideDown('fast');
 
-}
+            // close siblings
+            $li
+                .siblings('li.has-children')
+                .find('ul')
+                .slideUp(
+                    'fast',
+                    function() {
+                        $(this)
+                            .parent('li')
+                            .removeClass('active');
+                    }
+                );
+        }
+
+    });
 
 });
-*/

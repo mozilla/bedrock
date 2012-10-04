@@ -1,13 +1,17 @@
 from django.conf.urls.defaults import *
 from mozorg.hierarchy import PageNode, PageRoot
 
-hierarchy = PageRoot('Styleguide', children=(
+hierarchy = PageRoot('Home', children=(
     PageNode('Home', template='styleguide/home.html'),
     PageNode('Identity', path='identity', children=(
         PageNode('Mozilla', path='mozilla', children=(
             PageNode('Branding', path='branding', template='styleguide/identity/mozilla-branding.html'),
             PageNode('Color', path='color', template='styleguide/identity/mozilla-color.html'),
             PageNode('Innovations', path='innovations', template='styleguide/identity/mozilla-innovations.html'),
+        )),
+        PageNode('Firefox Family', path='firefox-family', children=(
+            PageNode('Overview', path='overview', template='styleguide/identity/firefox-family-overview.html'),
+            PageNode('Platform', path='platform', template='styleguide/identity/firefox-family-platform.html'),
         )),
         PageNode('Firefox Browser', path='firefox', children=(
             PageNode('Branding', path='branding', template='styleguide/identity/firefox-branding.html'),
@@ -17,10 +21,6 @@ hierarchy = PageRoot('Styleguide', children=(
         )),
         PageNode('Firefox OS', path='firefoxos', children=(
             PageNode('Branding', path='branding', template='styleguide/identity/firefoxos-branding.html'),
-        )),
-        PageNode('Firefox Family', path='firefox-family', children=(
-            PageNode('Overview', path='overview', template='styleguide/identity/firefox-family-overview.html'),
-            PageNode('Platform', path='platform', template='styleguide/identity/firefox-family-platform.html'),
         )),
         PageNode('Marketplace', path='marketplace', children=(
             PageNode('Branding', path='branding', template='styleguide/identity/marketplace-branding.html'),
