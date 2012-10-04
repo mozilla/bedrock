@@ -11,14 +11,12 @@ $(document).ready(function() {
                 .slideUp('fast', function() {
                     $li.removeClass('active');
                 })
-                .css('zoom', '1');
         } else {
             $li.addClass('active');
 
             // open ul
             $(this).next('ul')
                 .css('display', 'none')
-                .css('zoom', '1')
                 .slideDown('fast');
 
             // close siblings
