@@ -20,21 +20,20 @@
       <p><a href="https://support.mozilla.org/kb/install-firefox-windows">Visit support.mozilla.org</a></p>
     </aside>
   </div>
-  
+
   <div class="channels">
     <div class="download-box" id="firefox-desktop">
-      {{ download_button('download', 'large') }}
+      {{ download_button('download', 'large', force_direct=true) }}
     </div>
-    
+
     <div class="download-box" id="beta-desktop">
-      {{ download_button('beta-download', 'beta_small', build='beta') }}
+      {{ download_button('beta-download', 'beta_small', build='beta', force_direct=true) }}
     </div>
-    
+
     <div class="download-box" id="aurora-desktop">
-      {{ download_button('aurora-download', 'aurora_small', build='aurora') }}
+      {{ download_button('aurora-download', 'aurora_small', build='aurora', force_direct=true) }}
     </div>
   </div>
- 
-</div>
+ </div>
 
 {% endblock %}
