@@ -10,18 +10,31 @@
 {% block content %}
 
 <div id="main-content">
-  <hgroup>
-    <h1>Your download was interrupted</h1>
-    <h2>Please click the download button to continue.</h2>
-  </hgroup>
+  <div class="main">
+    <hgroup>
+      <h1>Your download was interrupted</h1>
+      <h2>Please choose a download to continue.</h2>
+    </hgroup>
+    <aside class="help">
+      <h3>Need help installing?</h3>
+      <p><a href="https://support.mozilla.org/kb/install-firefox-windows">Visit support.mozilla.org</a></p>
+    </aside>
+  </div>
   
-  {{ download_button('download') }}
-  
-  <aside class="help">
-    <h3>Need help installing?</h3>
-    <p><a href="https://support.mozilla.org/kb/install-firefox-windows">Visit support.mozilla.org</a></p>
-  </aside>
-  
+  <div class="channels">
+    <div class="download-box" id="firefox-desktop">
+      {{ download_button('download', 'large') }}
+    </div>
+    
+    <div class="download-box" id="beta-desktop">
+      {{ download_button('beta-download', 'beta_small', build='beta') }}
+    </div>
+    
+    <div class="download-box" id="aurora-desktop">
+      {{ download_button('aurora-download', 'aurora_small', build='aurora') }}
+    </div>
+  </div>
+ 
 </div>
 
 {% endblock %}

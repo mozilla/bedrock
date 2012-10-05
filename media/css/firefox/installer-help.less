@@ -1,15 +1,16 @@
 @import "../sandstone/variables-resp.less";
 @import "../sandstone/mixins-resp.less";
+@import "../sandstone/buttons.less";
 
 #main-content {
   background: #fff;
-  padding: 40px (@gridColumnWidth * 6) 40px 40px;
+  padding: 40px 30px;
   margin: 0 auto @baseLine;
   @shadow: 0 0 1px rgba(0,0,0,.05);
   .box-shadow(@shadow);
   border-bottom: 1px solid #ddd;
-  hgroup {
-    margin: 0 0 (@baseLine * 2);
+  .main {
+    .span(6);
     h1 {
       font-size: 32px;
       letter-spacing: -1px;
@@ -22,16 +23,19 @@
     }
   }
   
-  .download-button {
-    width: @gridColumnWidth * 5;
-    position: absolute;
-    right: 40px;
-    top: 40px;
+  .channels {
+    .span(5);
+    float: right;
+    .download-box {
+      float: right;
+      clear: both;
+      margin: 0 0 20px;
+    }
   }
   
   .help {
     .span(4);
-    margin: 0;
+    margin: 20px 0;
     padding: 20px 20px 0;
     background: #fafafa;
     border: 1px solid #efefef;
@@ -50,7 +54,15 @@
 
   #main-content {
     width: auto;
-    padding: 40px 50% 40px 40px;
+    .main {
+      .span_narrow(6);
+    }
+    
+    .channels {
+      .span_narrow(5);
+      float: right;
+    }
+    
   }
 
 }
@@ -60,14 +72,23 @@
 
   #main-content {
     padding: 20px 25px;
-    .download-button {
-      position: static;
-      margin: 0 auto (@baseLine * 2);
+    .main {
+      width: auto;
+      float: none;
+    }
+    .channels {
+      width: auto;
+      float: none;
+      .download-box {
+        float: left;
+      }
+      #firefox-desktop {
+        margin-left: -25px;
+      }
     }
     .help {
       width: auto;
       float: none;
-      margin: 0;
     }
   }
 
