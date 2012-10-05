@@ -32,7 +32,7 @@
     <img src="{{ media('/img/styleguide/mozilla.png') }}" height="28" width="107" alt="mozilla">
     Style guide
   </a></h2>
-  <nav>
+  <nav role="navigation">
     <ul>
     {% for item in node_root.children recursive %}
         <li class="
@@ -51,7 +51,7 @@
   </div>
 {% endblock %}
 
-<div id="content_area">
+<div id="content_area" role="main">
 
 <h1>{% block content_title %}{% endblock%}</h1>
 
@@ -71,13 +71,13 @@
   </div>
   {% endblock %}
   {% block breadcrumbs %}
-  <div id="breadcrumbs">
+  <nav id="breadcrumbs" role="navigation">
     {% for breadcrumb in node.breadcrumbs %}
       {% if breadcrumb.url %}<a href="{{ breadcrumb.url }}">{% endif %}
         {{ breadcrumb.display_name }}
       {% if breadcrumb.url %}</a>{% endif %}
     {% endfor %}
-  </div>
+  </nav>
   {% endblock %}
 </div>
 {% endblock %}
