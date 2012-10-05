@@ -40,17 +40,14 @@
     display: block;
     outline: none;
     padding: 15px;
-    background-position: 20px center;
-    background-repeat: no-repeat;
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAQAAADY4iz3AAAAAXNSR0IArs4c6QAAAAJiS0dEAP+Hj8y/AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3AMOEzgS9BGrjQAAACVJREFUGNNj/M8AA57/GRgYGLYzwvhMDDgB1aUYPf5T2cDB4S8Am0sHXT7pTPgAAAAASUVORK5CYII=);
     color: #4b4742;
     padding-left: 45px;
     zoom: 1; /* Fix for full-clickable area in IE6 */
 }
 
-.expander-open .expander-header .expander-anchor {
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAQAAADY4iz3AAAAAXNSR0IArs4c6QAAAAJiS0dEAP+Hj8y/AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3AMOEzghS8HKmwAAACBJREFUGNNj/M+ACzAx0E+KhYHBE6tLtjOSZyDj4PAXAI/UBBkHf6eNAAAAAElFTkSuQmCC);
-}
+.expander-closed .expander-header .expander-anchor:before { content: "+"; float: left; margin: -.035em 0 0 -30px; font-size: 1.5em; }
+.expander-open .expander-header .expander-anchor:before { content: "–"; float: left; margin: -.15em 0 0 -30px; font-size: 1.5em; }
+
 
 .expander-open .expander-header a.expander-anchor:hover,
 .expander-closed .expander-header a.expander-anchor:hover {
