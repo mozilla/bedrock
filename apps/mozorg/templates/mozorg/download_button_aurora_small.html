@@ -1,0 +1,22 @@
+{% extends "/mozorg/download_button_base.html" %}
+
+{% block class %}download-button-small aurora{% endblock %}">
+
+{% block contents %}
+  
+  <ul class="download-list">
+    {% for build in builds %}
+    <li class="{{ build.platform }}">
+      <a class="download-link download-{{ product }}"
+         href="{{ build.download_link }}"
+         data-direct-link="{{ build.download_link_direct }}">
+        <span class="download-content">
+          <span class="download-title">{% block title %}Firefox Aurora{% endblock %}</span>
+        </span>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% block small_print %}{% endblock %}
+
+{% endblock %}
