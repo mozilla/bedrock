@@ -20,6 +20,7 @@ function init_download_links() {
     $('.download-link').each(function() {
         var el = $(this);
         var link = el.data('direct-link');
+        var force_direct = parseInt(el.parents('.download-button').data('force-direct'), 10);
         el.click(function() {
             dcsMultiTrack('DCS.dcssip',
                           'www.mozilla.org',
@@ -30,7 +31,10 @@ function init_download_links() {
                           'WT.nv', 'Content',
                           'WT.ac', 'Download Firefox');
 
-            trigger_ie_download(link);
+            // No need to trigger the IE download if the download link is direct.
+            if (!force_direct) {
+              trigger_ie_download(link);
+            }
         });
     });
 }
@@ -46,7 +50,7 @@ function init_platform_imgs() {
         else if(site.platform == 'linux') {
             suffix = '-linux';
         }
-        
+
         var el = $(this);
         var parts = el.data('src').split('.');
         var base = parts.slice(0, parts.length-1);

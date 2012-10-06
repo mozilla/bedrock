@@ -1,4 +1,5 @@
-<aside id="{{ id }}" class="download-button {% block class %}download-button-large{% endblock %}">
+<aside id="{{ id }}" class="download-button {% block class %}download-button-large{% endblock %}"
+       data-force-direct="{% if force_direct %}1{% else %}0{% endif %}">
   {% block noscript %}
   <noscript>
     {% include "mozorg/download_button_dumb.html" %}
@@ -39,8 +40,8 @@
 
   {% block small_print %}
   <small class="download-other">
-    <a href="{{ php_url('/firefox/all.html') }}">{{ _('Systems & Languages') }}</a> | 
-    <a href="{{ php_url('/firefox/notes') }}">{{ _('What’s New') }}</a> | 
+    <a href="{{ php_url('/firefox/all.html') }}">{{ _('Systems & Languages') }}</a> |
+    <a href="{{ php_url('/firefox/notes') }}">{{ _('What’s New') }}</a> |
     <a href="{{ php_url('/legal/privacy/firefox.html') }}">{{ _('Privacy') }}</a>
   </small>
   {% endblock %}
