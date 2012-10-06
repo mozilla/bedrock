@@ -148,7 +148,7 @@ def mobile_download_button(ctx, id, format='large_mobile', build=None):
 
 @jingo.register.function
 @jinja2.contextfunction
-def download_button(ctx, id, format='large', build=None):
+def download_button(ctx, id, format='large', build=None, force_direct=False):
     locale = ctx['request'].locale
 
     def latest(locale):
@@ -180,7 +180,7 @@ def download_button(ctx, id, format='large', build=None):
 
         # And generate all the info
         download_link = make_download_link('firefox', build, version,
-                                           platform, locale)
+                                           platform, locale, force_direct)
         download_link_direct = make_download_link('firefox', build, version,
                                                   platform, locale, True)
         builds.append({'platform': platform,
