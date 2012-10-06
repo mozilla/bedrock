@@ -211,7 +211,8 @@ def download_button(ctx, id, format='large', build=None, force_direct=False):
         'version': version,
         'product': 'firefox',
         'builds': builds,
-        'id': id
+        'id': id,
+        'force_direct': force_direct
     }
 
     html = jingo.render_to_string(ctx['request'],
