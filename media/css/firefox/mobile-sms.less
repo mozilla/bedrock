@@ -89,9 +89,10 @@
 .tooltip {
     display: block;
     color: #fff;
+    font-size: 14px;
     font-weight: bold;
     text-shadow: 0 1px #333;
-    line-height: 16px;
+    line-height: 1.2;
     background-color: #aa1401;
     background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(218, 81, 50, 0.9)), to(rgba(169, 19, 0, 1)));
     background-image: -webkit-linear-gradient(top, rgba(218, 81, 50, 0.9), rgba(169, 19, 0, 1));
@@ -102,7 +103,7 @@
     border-radius: 4px;
     padding: 10px 15px;
     box-shadow: 0 1px #666;
-    max-width: 275px;
+    width: 375px;
     position: relative;
     &:after {
         content: "";
@@ -118,6 +119,17 @@
 
 .error {
   position: relative;
+}
+
+.error a:link,
+.error a:visited {
+  color: #b8e9ff;
+}
+
+.error a:hover,
+.error a:focus,
+.error a:active {
+  color: darken(#b8e9ff, 15%);
 }
 
 #sms-send .input.error input {
