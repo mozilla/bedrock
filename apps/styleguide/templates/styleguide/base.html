@@ -36,7 +36,7 @@
     <ul>
     {% for item in node_root.children recursive %}
         <li class="
-        {% if item in node.breadcrumbs %} active{% endif %}
+        {% if item in node.breadcrumbs %} active path{% endif %}
         {% if item.children %} has-children{% endif %}
         ">
         {% if item.url %}<a href="{{ item.url }}">{% endif %}
@@ -68,15 +68,6 @@
     {% if next %}<a href="{{ next.url }}" class="next">{% endif %}
     Next
     {% if next %}</a>{% endif %}
-  </div>
-  {% endblock %}
-  {% block breadcrumbs %}
-  <div id="breadcrumbs">
-    {% for breadcrumb in node.breadcrumbs %}
-      {% if breadcrumb.url %}<a href="{{ breadcrumb.url }}">{% endif %}
-        {{ breadcrumb.display_name }}
-      {% if breadcrumb.url %}</a>{% endif %}
-    {% endfor %}
   </div>
   {% endblock %}
 </div>

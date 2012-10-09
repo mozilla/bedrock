@@ -12,6 +12,16 @@
     font-style: italic;
 }
 
+@font-face {
+    font-family: 'Open Sans';
+    src: url('/media/fonts/OpenSans-Bold-webfont.eot');
+    src: url('/media/fonts/OpenSans-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/media/fonts/OpenSans-Bold-webfont.woff') format('woff'),
+         url('/media/fonts/OpenSans-Bold-webfont.ttf') format('truetype'),
+         url('/media/fonts/OpenSans-Bold-webfont.svg#OpenSansBold') format('svg');
+    font-weight: 600;
+}
+
 .divider {
     padding-bottom: @baseLine * 3;
     margin-bottom: @baseLine * 2;
@@ -72,6 +82,7 @@ a[href="#TODO"] { color: #f00 !important; }
     width: (@gridColumnWidth * 12) + (@gridGutterWidth * 12);
     margin-left: @gridColumnWidth + @gridGutterWidth;
     margin-bottom: @baseLine;
+    position: relative;
 }
 
 #styleguide #masthead {
@@ -107,7 +118,7 @@ a[href="#TODO"] { color: #f00 !important; }
     nav {
         text-transform: uppercase;
         .open-sans-light;
-        font-size: 11px;
+        font-size: 12px;
         margin: @baseLine auto;
         width: 160px;
         ul {
@@ -115,12 +126,18 @@ a[href="#TODO"] { color: #f00 !important; }
             li {
                 list-style-type: none;
                 margin: 0;
-                background: rgba(255,255,255,0.25);
                 li {
                     display: none;
                 }
                 &.active {
                     display: block;
+                    background: rgba(255,255,255,0.4);
+                }
+                &.path > a {
+                    .open-sans;
+                    font-weight: 600;
+                    letter-spacing: -0.02em;
+                    color: @textColorTertiary;
                 }
                 &.active > ul > li {
                     display: block;
@@ -154,6 +171,9 @@ a[href="#TODO"] { color: #f00 !important; }
             color: @textColorSecondary;
         }
     }
+    nav > ul > li.active:first-child {
+        background-color: transparent;
+    }
 }
 
 /* }}} */
@@ -161,11 +181,13 @@ a[href="#TODO"] { color: #f00 !important; }
 
 h1 {
     .span(12);
-    margin-bottom: @baseLine;
+    margin-bottom: @baseLine * 2;
 }
 
 #subnav {
-    .span(12);
+    position: absolute;
+    top: 10px;
+    right: 0;
     text-transform: uppercase;
     .open-sans-light;
     font-size: 11px;
@@ -178,7 +200,6 @@ h1 {
         position: relative;
     }
     #nextprev {
-        float: right;
         text-align: right;
         margin-bottom: @baseLine;
         a {
