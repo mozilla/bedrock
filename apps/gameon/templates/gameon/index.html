@@ -1,0 +1,91 @@
+{% extends "base-resp.html" %}
+
+{% block page_title %}Game on II{% endblock %}
+
+{% block body_id %}gameon{% endblock %}
+{% block body_class %}sand{% endblock %}
+
+{% block extrahead %}
+  {{ css('gameon') }}
+{% endblock %}
+
+{% block content %}
+<hgroup class="container">
+  <h1 class="large">Game on II</h1>
+  <h2>Build the next generation of browser based games</h2>
+  <img src="{{ media('img/gameon/banner.png') }}" alt="" width="992" height="265" />
+</hgroup>
+<div id="main-content">
+    <div class="row">
+
+        <article class="main-column">
+            <ul>
+                <li>Re-imagine the web as a new game platform.</li>
+                <li>Make browser based 2D games, 3D games, mobile games, hackable games, open source games and games for learning.</li>
+                <li>Invent novel game mechanics, create new storylines, engage diverse audiences, introduce visually challenging content.</li>
+                <li>Win a trip to <a href="http://www.gdconf.com/">Game Developers Conference</a> to meet industry pioneers.</li>
+                <li>And feature your game at Mozilla's Marketplace.</li>
+            </ul>
+            <h3>Submit a Game</h3>
+            <p>Mozilla invites you to imagine how next-generation web technologies can revolutionize the way we make and play games. It's your opportunity to invent new game mechanics, create new storylines, engage diverse  audiences, introduce aesthetically challenging content and re-imagine the web as the new game platform.</p>
+            <p><strong>Submissions open on the 3rd of December 2012 and close on the 20th of February 2013.</strong></p> 
+            <h3>Come to a Game Jam</h3>
+            <p>We are hosting some game jams and you should come! If you have a game for the competition and need help testing and finishing it up, a technology you want to showcase or teach others how to use, ideas for new games or just want to come play with great new  technologies and meet people who love making and  hacking games as much as you do, join us at one of the following:</p>
+            <table id="events_table">
+                <thead>
+                    <tr>
+                        <th scope="col">What?</th>
+                        <th scope="col">When?</th>
+                        <th scope="col">Where?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="odd">
+                        <th scope="row">Gamercamp</th>
+                        <td>3rd &amp; 4th of November</td>
+                        <td>Toronto, Canada</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Mozilla Festival's Game Arcade</th>
+                        <td>10th &amp; 11th of November</td>
+                        <td>London, United Kingdom</td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+
+        <aside class="sidebar">
+            {% block sidebar %}
+            <form action="https://donate.mozilla.org/page/signup/gameon-2012" method="post" class="box" id="updates">
+  <h3>Get Game on II updates:</h3>
+
+  <div class="field" id="email-field">
+    <span id="email-wrapper"><label class="hide-me" for="email">your email:</label><input name="email" type="email" id="email" value="" placeholder="Your Email Address" required aria-required="true"></span>
+  </div>
+
+  <div class="field" id="country-field">
+    {% include "foundation/_country_select.html" %}
+  </div>
+
+  <div class="field" id="privacy-field">
+    <label for="privacy-check" id="privacy-check-label">
+      <span class="input"><input type="checkbox" name="custom-1700" id="privacy-check" value="1" required aria-required="true"></span>
+      <span class="title">I'm okay with you handling this info as you explain in your <a href="{{ php_url('/privacy-policy.html') }}">Privacy Policy</a></span>
+    </label>
+  </div>
+
+  <div class="field" id="submit-field">
+    <button type="submit" class="submit button">Sign me up</button>
+  </div>
+
+  <p><small>We will only send you Mozilla-related information.</small></p>
+  <input type="hidden" name="submit" value="submit">
+</form>
+            {% endblock %}
+        </aside>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block email_form %}{% endblock %}
