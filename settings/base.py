@@ -207,6 +207,9 @@ MINIFY_BUNDLES = {
         'privacy': (
             'css/privacy.less',
         ),
+        'fb_privacy': (
+            'css/fb-privacy.less',
+        ),
         'products': (
             'css/products.less',
         ),

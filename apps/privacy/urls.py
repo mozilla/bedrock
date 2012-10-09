@@ -17,4 +17,5 @@ urlpatterns = patterns('',
     page('privacy/policies/archive/firefox-mobile-september-2009', 'privacy/archive/firefox-mobile-september-2009.html'),
     page('privacy/policies/archive/firefox-january-2010', 'privacy/archive/firefox-january-2010.html'),
     page('privacy/policies/archive/firefox-december-2010', 'privacy/archive/firefox-december-2010.html'),
+    page('privacy/policies/facebook', 'privacy/facebook.html'),
 )
