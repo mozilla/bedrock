@@ -1,5 +1,9 @@
 $(document).ready(function() {
 
+    $('#sidebar')
+        .focusin(function(e) { $('#sidebar').toggleClass('child-focus'); })
+        .focusout(function(e) { $('#sidebar').toggleClass('child-focus'); });
+
     $('#sidebar nav ul li.has-children > a').click(function(e) {
         e.preventDefault();
 
