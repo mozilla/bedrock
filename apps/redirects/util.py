@@ -27,3 +27,25 @@ def redirect(pattern, viewname, permanent=True, anchor=None):
         return redirect_class(url)
 
     return (pattern, _view)
+
+
+def redirect_external(pattern, url, permanent=True):
+    """
+    Return a tuple suited for urlpatterns.
+
+    This will redirect the pattern to an external URL
+
+    Usage:
+    urlpatterns = patterns('',
+    redirect(r'^projects/$', 'http://webmaker.org/projects/'),
+    )
+    """
+    if permanent:
+        redirect_class = HttpResponsePermanentRedirect
+    else:
+        redirect_class = HttpResponseRedirect
+
+    def _view(request):
+        return redirect_class(url)
+
+    return (pattern, _view)

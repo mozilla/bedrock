@@ -1,7 +1,7 @@
 from django.conf.urls.defaults import *
-from mozorg.util import page
+from redirects.util import redirect_external
 
 urlpatterns = patterns('',
-    page('', 'webmaker/index.html'),
-    page('videos', 'webmaker/videos.html'),
+    redirect_external('videos', 'https://webmaker.org/videos/'),
+    redirect_external('', 'https://webmaker.org'),
 )
