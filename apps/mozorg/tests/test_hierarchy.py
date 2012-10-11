@@ -83,8 +83,7 @@ class TestPageNode(TestCase):
         child1 = PageNode('test')
         child2 = PageNode('test', children=[child1])
         PageNode('test', children=[child2, PageNode('test')])
-        with self.assertRaises(ValueError):
-            child1.root
+        self.assertRaises(ValueError, lambda: child1.root)
 
     def test_previous(self):
         """
