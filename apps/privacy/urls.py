@@ -1,6 +1,7 @@
 from django.conf.urls.defaults import *
 
 from mozorg.util import page
+from privacy import views
 
 urlpatterns = patterns('',
     page('privacy', 'privacy/index.html'),
@@ -17,4 +18,5 @@ urlpatterns = patterns('',
     page('privacy/policies/archive/firefox-mobile-september-2009', 'privacy/archive/firefox-mobile-september-2009.html'),
     page('privacy/policies/archive/firefox-january-2010', 'privacy/archive/firefox-january-2010.html'),
     page('privacy/policies/archive/firefox-december-2010', 'privacy/archive/firefox-december-2010.html'),
+    url(r'^privacy/policies/facebook/$', views.facebook, name='privacy/facebook'),
 )

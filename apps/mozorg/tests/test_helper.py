@@ -59,6 +59,23 @@ class TestDownloadButtons(unittest.TestCase):
     def test_small_button(self):
         self.test_button('small')
 
+    def test_button_force_direct(self):
+        """
+        If the force_direct parameter is True, all download links must be
+        directly to https://download.mozilla.org.
+        """
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'fr'
+        doc = pq(render("{{ download_button('button', force_direct=true) }}",
+                        {'request': get_request}))
+
+        # Check that the first 3 links are direct.
+        links = doc('li a')[:3]
+        for link in links:
+            ok_(pq(link).attr('href')
+                .startswith('https://download.mozilla.org'))
+
 
 class TestVideoTag(unittest.TestCase):
     # Video stubs
