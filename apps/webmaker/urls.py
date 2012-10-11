@@ -1,7 +1,7 @@
 from django.conf.urls.defaults import *
-from mozorg.util import page
+from django.http import HttpResponsePermanentRedirect
 
 urlpatterns = patterns('',
-    page('', 'webmaker/index.html'),
-    page('videos', 'webmaker/videos.html'),
+    url('videos', lambda request: HttpResponsePermanentRedirect('https://webmaker.org/videos/')),
+    url('', lambda request: HttpResponsePermanentRedirect('https://webmaker.org')),
 )
