@@ -25,8 +25,8 @@ from product_details import product_details
 download_urls = {
     'transition': '/products/download.html',
     'direct': 'https://download.mozilla.org/',
-    'aurora': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla-aurora',
-    'aurora-l10n': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla-aurora-l10n',
+    'aurora': 'https://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla-aurora',
+    'aurora-l10n': 'https://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla-aurora-l10n',
     'aurora-mobile': ('https://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mozilla-aurora-android/en-US/fennec-%s.en-US.android-arm.apk'
                       % product_details.mobile_details['alpha_version'])
 }
