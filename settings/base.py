@@ -511,3 +511,5 @@ def lazy_email_backend():
             else 'django.core.mail.backends.smtp.EmailBackend')
 
 EMAIL_BACKEND = lazy(lazy_email_backend, str)()
+
+AURORA_STUB_INSTALLER = False
