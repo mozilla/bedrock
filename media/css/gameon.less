@@ -1,0 +1,103 @@
+@import "sandstone/variables-resp.less";
+@import "sandstone/mixins-resp.less";
+
+@background: #f5f1e8;
+
+hgroup {
+    text-align: center;
+    padding-bottom: @baseLine * 2;
+    img {
+        width: 100%;
+        height: auto;
+        padding-top: @baseLine * 2;
+    }
+}
+
+.hide-me {
+    position: absolute;
+    left: -9999em;
+    height: 1px;
+    overflow: hidden;
+}
+
+#events_table {
+    font-size: 13px;
+    border-collapse: collapse;
+    th,
+    td {
+        padding: 10px;
+    }
+    thead {
+        th {
+            border-bottom: 1px solid #666666;
+            text-align: left;
+        }
+    }
+    tbody {
+        tr {
+            &.odd {
+                background: darken(@background, 2%);
+            }
+        }
+        th {
+            font-weight: normal;
+            text-align: left;
+        }
+        th,
+        td {
+            border-top: solid 1px darken(@background, 10%);
+        }
+        
+    }
+}
+
+#updates {
+    margin-bottom: @baseLine * 2;
+    p { margin: 0; }
+    .field {
+        .clearfix;
+        padding: @baseLine / 4  0;
+
+        input[type=email] {
+            width: 90%;
+        }
+
+        .title {
+            font-size: 14px;
+        }
+
+        small {
+            color: @textColorTertiary;
+        }
+        select {
+            width: 90%;
+        }
+    }
+}
+#gameon .main-column {
+    width: (@gridColumnWidth * 9) + (@gridGutterWidth * 8);
+}
+#gameon .sidebar {
+    width: (@gridColumnWidth * 3) + (@gridGutterWidth * 2);
+    margin-left: @gridGutterWidth / 2;
+}
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+    #gameon .main-column {
+        width: (@gridColumnWidthNarrow * 9) + (@gridGutterWidth * 8);
+}   
+    #gameon .sidebar {
+        width: (@gridColumnWidthNarrow * 3) + (@gridGutterWidth * 2);
+    }
+}
+@media only screen and (max-width: @breakTablet) {
+    #gameon .main-column {
+        width: auto;
+        margin: 0;
+    }
+    #gameon .sidebar {
+        width: auto;
+        margin: @gridGutterWidth 0 0 0;
+        border-top: 1px solid @borderColor;
+        padding-top: @gridGutterWidth;
+    }
+}
