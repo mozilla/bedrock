@@ -76,6 +76,83 @@ class TestDownloadButtons(unittest.TestCase):
             ok_(pq(link).attr('href')
                 .startswith('https://download.mozilla.org'))
 
+    @patch.object(settings, 'AURORA_STUB_INSTALLER', True)
+    def test_stub_aurora_installer_enabled_en_us(self):
+        """Check that only the windows link goes to stub with en-US"""
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'en-US'
+        doc = pq(render("{{ download_button('button', build='aurora') }}",
+                        {'request': get_request}))
+
+        links = doc('li a')[:3]
+        ok_('stub' in pq(links[0]).attr('href'))
+        for link in links[1:]:
+            ok_('stub' not in pq(link).attr('href'))
+
+    @patch.object(settings, 'AURORA_STUB_INSTALLER', True)
+    def test_stub_aurora_installer_enabled_locales(self):
+        """Check that the stub is not served to locales"""
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'fr'
+        doc = pq(render("{{ download_button('button', build='aurora') }}",
+                        {'request': get_request}))
+
+        links = doc('li a')
+        for link in links:
+            ok_('stub' not in pq(link).attr('href'))
+
+    @patch.object(settings, 'AURORA_STUB_INSTALLER', False)
+    def test_stub_aurora_installer_disabled_en_us(self):
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'en-US'
+        doc = pq(render("{{ download_button('button', build='aurora') }}",
+                        {'request': get_request}))
+
+        links = doc('li a')[:3]
+        for link in links:
+            ok_('stub' not in pq(link).attr('href'))
+
+    @patch.object(settings, 'AURORA_STUB_INSTALLER', False)
+    def test_stub_aurora_installer_disabled_locale(self):
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'fr'
+        doc = pq(render("{{ download_button('button', build='aurora') }}",
+                        {'request': get_request}))
+
+        links = doc('li a')[:3]
+        for link in links:
+            ok_('stub' not in pq(link).attr('href'))
+
+    @patch.object(settings, 'AURORA_STUB_INSTALLER', True)
+    def test_stub_aurora_installer_override_en_us(self):
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'en-US'
+        doc = pq(render("{{ download_button('button', build='aurora', \
+                            force_full_installer=True) }}",
+                        {'request': get_request}))
+
+        links = doc('li a')[:3]
+        for link in links:
+            ok_('stub' not in pq(link).attr('href'))
+
+    @patch.object(settings, 'AURORA_STUB_INSTALLER', True)
+    def test_stub_aurora_installer_override_locale(self):
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'fr'
+        doc = pq(render("{{ download_button('button', build='aurora', \
+                            force_full_installer=True) }}",
+                        {'request': get_request}))
+
+        links = doc('li a')[:3]
+        for link in links:
+            ok_('stub' not in pq(link).attr('href'))
+
 
 class TestVideoTag(unittest.TestCase):
     # Video stubs
