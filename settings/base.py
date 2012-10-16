@@ -73,6 +73,9 @@ MINIFY_BUNDLES = {
         'webmaker': (
             'css/webmaker.less',
         ),
+        'gameon': (
+            'css/gameon.less',
+        ),
         'grants': (
             'css/grants.less',
         ),
@@ -440,6 +443,8 @@ INSTALLED_APPS = (
     # Local apps
     'firefoxos',
     'webmaker',
+    'foundation',
+    'gameon',
     'grants',
     'collusion',
     'firefox',
@@ -506,3 +511,5 @@ def lazy_email_backend():
             else 'django.core.mail.backends.smtp.EmailBackend')
 
 EMAIL_BACKEND = lazy(lazy_email_backend, str)()
+
+AURORA_STUB_INSTALLER = False

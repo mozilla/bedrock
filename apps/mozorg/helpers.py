@@ -25,8 +25,8 @@ from product_details import product_details
 download_urls = {
     'transition': '/products/download.html',
     'direct': 'https://download.mozilla.org/',
-    'aurora': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla-aurora',
-    'aurora-l10n': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla-aurora-l10n',
+    'aurora': 'https://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla-aurora',
+    'aurora-l10n': 'https://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla-aurora-l10n',
     'aurora-mobile': ('https://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mozilla-aurora-android/en-US/fennec-%s.en-US.android-arm.apk'
                       % product_details.mobile_details['alpha_version'])
 }
@@ -76,25 +76,31 @@ def latest_version(locale):
             _check_builds(product_details.firefox_beta_builds))
 
 
-def make_aurora_link(product, version, platform, locale):
+def make_aurora_link(product, version, platform, locale,
+                     force_full_installer=False):
     # Download links are different for localized versions
     src = 'aurora' if locale.lower() == 'en-us' else 'aurora-l10n'
 
-    filename = {
+    filenames = {
         'os_windows': 'win32.installer.exe',
         'os_linux': 'linux-i686.tar.bz2',
         'os_osx': 'mac.dmg'
-    }[platform]
+    }
+    if not force_full_installer and settings.AURORA_STUB_INSTALLER \
+       and locale.lower() == 'en-us':
+        filenames['os_windows'] = 'win32.installer-stub.exe'
+    filename = filenames[platform]
 
     return ('%s/%s-%s.%s.%s' %
             (download_urls[src], product, version, locale, filename))
 
 
 def make_download_link(product, build, version, platform, locale,
-                       force_direct=False):
+                       force_direct=False, force_full_installer=False):
     # Aurora has a special download link format
     if build == 'aurora':
-        return make_aurora_link(product, version, platform, locale)
+        return make_aurora_link(product, version, platform, locale,
+                                force_full_installer=force_full_installer)
 
     # The downloaders expect the platform in a certain format
     platform = {
@@ -148,7 +154,8 @@ def mobile_download_button(ctx, id, format='large_mobile', build=None):
 
 @jingo.register.function
 @jinja2.contextfunction
-def download_button(ctx, id, format='large', build=None, force_direct=False):
+def download_button(ctx, id, format='large', build=None, force_direct=False,
+                    force_full_installer=False):
     locale = ctx['request'].locale
 
     def latest(locale):
@@ -180,9 +187,11 @@ def download_button(ctx, id, format='large', build=None, force_direct=False):
 
         # And generate all the info
         download_link = make_download_link('firefox', build, version,
-                                           platform, locale, force_direct)
+                                           platform, locale, force_direct,
+                                           force_full_installer)
         download_link_direct = make_download_link('firefox', build, version,
-                                                  platform, locale, True)
+                                                  platform, locale, True,
+                                                  force_full_installer)
         builds.append({'platform': platform,
                        'platform_pretty': platform_pretty,
                        'download_link': download_link,
