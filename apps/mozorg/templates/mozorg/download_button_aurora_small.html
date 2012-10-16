@@ -3,13 +3,13 @@
 {% block class %}download-button-small aurora{% endblock %}">
 
 {% block contents %}
-  
+
   <ul class="download-list">
     {% for build in builds %}
     <li class="{{ build.platform }}">
       <a class="download-link download-{{ product }}"
-         href="{{ build.download_link }}"
-         data-direct-link="{{ build.download_link_direct }}">
+         href="{{ build.download_link }}"{% if build.download_link_direct %}
+         data-direct-link="{{ build.download_link_direct }}"{% endif %}>
         <span class="download-content">
           <span class="download-title">{% block title %}Firefox Aurora{% endblock %}</span>
         </span>

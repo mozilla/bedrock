@@ -8,8 +8,8 @@
                 'WT.dl', 99,
                 'WT.z_convert', 'Firefox Beta for Mobile',
                 'WT.si_n', 'Firefox Beta for Mobile',
-                'WT.si_x', '2');"
-         data-direct-link="{{ build.download_link_direct }}">
+                'WT.si_x', '2');"{% if build.download_link_direct %}
+         data-direct-link="{{ build.download_link_direct }}"{% endif %}>
       <span class="download-content">
         <span class="download-title">Download</span>
         Firefox Beta for Mobile
@@ -17,7 +17,7 @@
       <img src="/media/img/covehead/channel/icon-mobile.png" alt="" />
     </a>
     <small class="download-other">
-      <a href="/{{ LANG }}/mobile/platforms/">Supported devices</a>  | 
+      <a href="/{{ LANG }}/mobile/platforms/">Supported devices</a>  |
       <a href="/{{ LANG }}/legal/privacy/firefox.html">Privacy Policy</a>
     </small>
   </div>

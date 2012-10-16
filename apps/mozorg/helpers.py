@@ -126,18 +126,17 @@ def mobile_download_button(ctx, id, format='large_mobile', build=None):
         android_link = download_urls['aurora-mobile']
         version = product_details.mobile_details['alpha_version']
     elif build == 'beta':
-        android_link = ('https://market.android.com/details?'
+        android_link = ('https://play.google.com/store/apps/details?'
                         'id=org.mozilla.firefox_beta')
         version = product_details.mobile_details['beta_version']
     else:
-        android_link = ('https://market.android.com/details?'
+        android_link = ('https://play.google.com/store/apps/details?'
                         'id=org.mozilla.firefox')
         version = product_details.mobile_details['version']
 
     builds = [{'platform': '',
                'platform_pretty': 'Android',
-               'download_link': android_link,
-               'download_link_direct': android_link}]
+               'download_link': android_link}]
 
     data = {
         'locale_name': 'en-US',
@@ -189,9 +188,15 @@ def download_button(ctx, id, format='large', build=None, force_direct=False,
         download_link = make_download_link('firefox', build, version,
                                            platform, locale, force_direct,
                                            force_full_installer)
-        download_link_direct = make_download_link('firefox', build, version,
-                                                  platform, locale, True,
-                                                  force_full_installer)
+        if force_direct:
+            download_link_direct = False
+        else:
+            download_link_direct = make_download_link('firefox', build, version,
+                                                      platform, locale, True,
+                                                      force_full_installer)
+            if download_link_direct == download_link:
+                download_link_direct = False
+
         builds.append({'platform': platform,
                        'platform_pretty': platform_pretty,
                        'download_link': download_link,
@@ -208,8 +213,7 @@ def download_button(ctx, id, format='large', build=None, force_direct=False,
 
     builds.append({'platform': 'os_android',
                    'platform_pretty': 'Android',
-                   'download_link': android_link,
-                   'download_link_direct': android_link})
+                   'download_link': android_link})
 
     # Get the native name for current locale
     langs = product_details.languages
@@ -221,7 +225,6 @@ def download_button(ctx, id, format='large', build=None, force_direct=False,
         'product': 'firefox',
         'builds': builds,
         'id': id,
-        'force_direct': force_direct
     }
 
     html = jingo.render_to_string(ctx['request'],
