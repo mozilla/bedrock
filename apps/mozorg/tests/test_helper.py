@@ -71,7 +71,7 @@ class TestDownloadButtons(unittest.TestCase):
                         {'request': get_request}))
 
         # Check that the first 3 links are direct.
-        links = doc('ul.download-list li a')
+        links = doc('.download-list a')
         for link in links[:3]:
             link = pq(link)
             ok_(link.attr('href')
@@ -91,7 +91,7 @@ class TestDownloadButtons(unittest.TestCase):
                         {'request': get_request}))
 
         # The first 3 links should be for desktop.
-        links = doc('ul.download-list li a')
+        links = doc('.download-list a')
         for link in links[:3]:
             ok_(pq(link).attr('data-direct-link')
                 .startswith('https://download.mozilla.org'))
@@ -107,7 +107,7 @@ class TestDownloadButtons(unittest.TestCase):
         doc = pq(render("{{ download_button('button', build='aurora') }}",
                         {'request': get_request}))
 
-        links = doc('ul.download-list li a')[:3]
+        links = doc('.download-list a')[:3]
         ok_('stub' in pq(links[0]).attr('href'))
         for link in links[1:]:
             ok_('stub' not in pq(link).attr('href'))
@@ -121,7 +121,7 @@ class TestDownloadButtons(unittest.TestCase):
         doc = pq(render("{{ download_button('button', build='aurora') }}",
                         {'request': get_request}))
 
-        links = doc('ul.download-list li a')
+        links = doc('.download-list a')
         for link in links:
             ok_('stub' not in pq(link).attr('href'))
 
@@ -145,7 +145,7 @@ class TestDownloadButtons(unittest.TestCase):
         doc = pq(render("{{ download_button('button', build='aurora') }}",
                         {'request': get_request}))
 
-        links = doc('ul.download-list li a')[:3]
+        links = doc('.download-list a')[:3]
         for link in links:
             ok_('stub' not in pq(link).attr('href'))
 
@@ -158,7 +158,7 @@ class TestDownloadButtons(unittest.TestCase):
                             force_full_installer=True) }}",
                         {'request': get_request}))
 
-        links = doc('ul.download-list li a')[:3]
+        links = doc('.download-list a')[:3]
         for link in links:
             ok_('stub' not in pq(link).attr('href'))
 
@@ -171,7 +171,7 @@ class TestDownloadButtons(unittest.TestCase):
                             force_full_installer=True) }}",
                         {'request': get_request}))
 
-        links = doc('ul.download-list li a')[:3]
+        links = doc('.download-list a')[:3]
         for link in links:
             ok_('stub' not in pq(link).attr('href'))
 
