@@ -1,22 +1,11 @@
-{% extends "/mozorg/download_button_base.html" %}
+{% extends "mozorg/download_button_base.html" %}
 
 {% block class %}download-button-small{% endblock %}">
 
-{% block contents %}
+{% block title %}Download{% endblock %}
 
-  <ul class="download-list">
-    {% for build in builds %}
-    <li class="{{ build.platform }}">
-      <a class="download-link download-{{ product }}"
-         href="{{ build.download_link }}"{% if build.download_link_direct %}
-         data-direct-link="{{ build.download_link_direct }}"{% endif %}>
-        <span class="download-content">
-          <span class="download-title">{% block title %}Download{% endblock %}</span>
-          <span class="download-subtitle">for {{ build.platform_pretty }}</span>
-        </span>
-      </a>
-    </li>
-    {% endfor %}
-  </ul>
-
+{% block subtitle %}
+  <span class="download-subtitle">for {{ build.platform_pretty }}</span>
 {% endblock %}
+
+{% block download_info %}{% endblock %}
