@@ -90,7 +90,7 @@ jQuery(document).ready(function ()
         );
 
         body.CreateFixture(data[2]);
-        objects.worldBodies.push(data[0]);
+//        objects.worldBodies.push(data[0]);
     };
 
 });

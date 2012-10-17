@@ -56,11 +56,12 @@
         margin-bottom: @baseLine;
         clear: left;
     }
-    #marketplace-button {
+    #marketplace-launcher {
         .span(7);
         margin-bottom: @baseLine;
         clear: left;
-        .button {
+        position: relative;
+        #marketplace-button {
             font-size: 22px;
             padding: 15px 15px 15px 80px;
             min-width: 200px;
@@ -73,6 +74,45 @@
                 position: absolute;
                 top: 12px;
                 left: 30px;
+            }
+        }
+        #marketplace-panel {
+            display: none;
+            position: absolute;
+            top: 76px;
+            border-radius: 8px;
+            background: #fff url(/media/img/marketplace/panel-bg.png) 375px -12px no-repeat;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+            width: @widthDesktop - (@gridGutterWidth * 2);
+            padding: 0 @gridGutterWidth;
+            left: -30px;
+            z-index: 100;
+            &:after {
+                content: " ";
+                background: url(/media/img/marketplace/panel-bg.png) 0 0 no-repeat;
+                height: 12px;
+                width: 28px;
+                position: absolute;
+                top: -12px;
+                left: 180px;
+            }
+            #panel-download {
+                .span(4);
+                padding: 30px 0;
+                p {
+                    float: none;
+                    margin: 0 0 @baseLine 0;
+                    width: auto;
+                }
+            }
+            #panel-info {
+                .span(8);
+                padding: 30px 0;
+                p {
+                    .span(4);
+                    .offset(4);
+                    margin-top: @baseLine * 3;
+                }
             }
         }
     }
@@ -302,6 +342,45 @@
             left: 8px;
         }
     }
+
+    .pager-page {
+        ul { margin: 0; }
+        li {
+            list-style-type: none;
+            position: relative;
+            overflow: hidden;
+            .span(4);
+            img {
+                width: 100%;
+                height: auto;
+                display: block;
+                    .transition(all ease-out 0.25s);
+            }
+            img.qr-code {
+                width: 50%;
+                margin: 0 auto;
+                position: absolute;
+                top: -100%;
+                left: 15px;
+                box-shadow: 0 0 5px #000;
+            }
+            h4 {
+                font-size: 18px;
+                margin: 5px 0;
+            }
+            &:hover,
+            &:focus {
+                img {
+                    top: 15px;
+                .transition(all ease-in 0.5s);
+                }
+                img.qr-code {
+                    opacity: 1;
+                    display: block;
+                }
+            }
+        }
+    }
 }
 
 
@@ -483,3 +562,46 @@
     }
 
 }
+
+/* Tablet Layout: 760px */
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+
+    #main-feature {
+        p {
+            .span_narrow(6);
+        }
+        #marketplace-launcher {
+            .span_narrow(6);
+            margin-bottom: @baseLine;
+        }
+    } 
+
+    #apps-list {
+        li {
+            .span_narrow(4);
+        }
+    }
+
+    #open {
+        #sign {
+            .span_narrow(6);
+        }
+        h3 {
+            .span_narrow(6);
+            margin-top: @baseLine;
+            margin-bottom: @baseLine;
+        }
+        p {
+            .span_narrow(6);
+        }
+    }
+
+    #apps-preview {
+        .pager-page {
+            li {
+                .span_narrow(4);
+            }
+        }
+    }
+}
+

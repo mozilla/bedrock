@@ -18,8 +18,17 @@
   <h2>Discover the best of the Web</h2>
 </hgroup>
 
-<div id="marketplace-button">
-  <a href="#" class="button">Visit the Marketplace »</a>
+<div id="marketplace-launcher">
+  <a href="#" class="button" id="marketplace-button">Visit the Marketplace »</a>
+  <div id="marketplace-panel">
+    <div id="panel-download">
+      <p>To test out the Firefox Marketplace Aurora release for your Android device, you first need to download Firefox Aurora for Android.</p>
+      {{ mobile_download_button('primary-download-mobile', format = 'large_mobile', build = 'aurora') }}
+    </div>
+    <div id="panel-info">
+      <p>Once you have downloaded and installed Firefox Aurora for Android, you can access the Firefox Marketplace from the “Apps” menu option within Firefox Aurora.</p>
+    </div>
+  </div>
 </div>
 
 <p>Mozilla is bringing its core values — openness, freedom, user choice — to the world of apps. We’re creating an open environment that benefits developers, content owners and consumers. And with HTML5-based apps that work virtually anywhere, we’re helping to close the gap between Web and native apps for the first time.</p>
@@ -78,42 +87,21 @@
       // ]]></script>
       <section>
         <ul>
-          <li><a href="#">
-              <img src="{{ media('/img/marketplace/app-thumb-jauntly.png') }}" alt="App thumbnail" />
-              <h4>Jauntly</h4>
-          </a></li>
-          <li><a href="#">
-              <img src="{{ media('/img/marketplace/app-thumb-minimalist.png') }}" alt="App thumbnail" />
-              <h4>Minimalist</h4>
-          </a></li>
-          <li><a href="#">
-              <img src="{{ media('/img/marketplace/app-thumb-pomodoro.png') }}" alt="App thumbnail" />
-              <h4>Pomodoro</h4>
-          </a></li>
-          <li><a href="#">
+          <li tabindex="0">
               <img src="{{ media('/img/marketplace/app-thumb-solitaire.png') }}" alt="App thumbnail" />
+              <img src="{{ media('/img/marketplace/qr-solitaire.png') }}" alt="qr code" class="qr-code" />
               <h4>Solitaire</h4>
-          </a></li>
-          <li><a href="#">
-              <img src="{{ media('/img/marketplace/app-thumb-soundcloud.png') }}" alt="App thumbnail" />
-              <h4>SoundCloud</h4>
-          </a></li>
-          <li><a href="#">
-              <img src="{{ media('/img/marketplace/app-thumb-towerjelly.png') }}" alt="App thumbnail" />
+          </li>
+          <li tabindex="0">
+              <img src="{{ media('/img/marketplace/app-thumb-blank.png') }}" alt="App thumbnail" />
+              <img src="{{ media('/img/marketplace/qr-solitaire.png') }}" alt="qr code" class="qr-code" />
               <h4>Tower Jelly</h4>
-          </a></li>
-          <li><a href="#">
-              <img src="{{ media('/img/marketplace/app-thumb-twitter.png') }}" alt="App thumbnail" />
-              <h4>Twitter</h4>
-          </a></li>
-          <li><a href="#">
-              <img src="{{ media('/img/marketplace/app-thumb-wired.png') }}" alt="App thumbnail" />
-              <h4>Wired</h4>
-          </a></li>
-          <li><a href="#">
+          </li>
+          <li tabindex="0">
               <img src="{{ media('/img/marketplace/app-thumb-wordwars.png') }}" alt="App thumbnail" />
+              <img src="{{ media('/img/marketplace/qr-wordwars.png') }}" alt="qr code" class="qr-code" />
               <h4>Word Wars</h4>
-          </a></li>
+          </li>
         </ul>
       </section>
     </div>
@@ -123,7 +111,23 @@
       document.getElementById('news').id = 'page-news';
       // ]]></script>
       <section>
-      news...
+        <ul>
+          <li tabindex="0">
+              <img src="{{ media('/img/marketplace/app-thumb-soundcloud.png') }}" alt="App thumbnail" />
+              <img src="{{ media('/img/marketplace/qr-soundcloud.png') }}" alt="qr code" class="qr-code" />
+              <h4>SoundCloud</h4>
+          </li>
+          <li tabindex="0">
+              <img src="{{ media('/img/marketplace/app-thumb-twitter.png') }}" alt="App thumbnail" />
+              <img src="{{ media('/img/marketplace/qr-twitter.png') }}" alt="qr code" class="qr-code" />
+              <h4>Twitter</h4>
+          </li>
+          <li tabindex="0">
+              <img src="{{ media('/img/marketplace/app-thumb-blank.png') }}" alt="App thumbnail" />
+              <img src="{{ media('/img/marketplace/qr-wired.png') }}" alt="qr code" class="qr-code" />
+              <h4>Wired</h4>
+          </li>
+        </ul>
       </section>
     </div>
 
@@ -132,7 +136,23 @@
       document.getElementById('productivity').id = 'page-productivity';
       // ]]></script>
       <section>
-      productivity...
+        <ul>
+          <li tabindex="0">
+              <img src="{{ media('/img/marketplace/app-thumb-jauntly.png') }}" alt="App thumbnail" />
+              <img src="{{ media('/img/marketplace/qr-jauntly.png') }}" alt="qr code" class="qr-code" />
+              <h4>Jauntly</h4>
+          </li>
+          <li tabindex="0">
+              <img src="{{ media('/img/marketplace/app-thumb-minimalist.png') }}" alt="App thumbnail" />
+              <img src="{{ media('/img/marketplace/qr-minimalist.png') }}" alt="qr code" class="qr-code" />
+              <h4>Minimalist</h4>
+          </li>
+          <li tabindex="0">
+              <img src="{{ media('/img/marketplace/app-thumb-pomodoro.png') }}" alt="App thumbnail" />
+              <img src="{{ media('/img/marketplace/qr-pomodoro.png') }}" alt="qr code" class="qr-code" />
+              <h4>Pomodoro</h4>
+          </li>
+        </ul>
       </section>
     </div>
 
