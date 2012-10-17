@@ -258,34 +258,13 @@
     position: relative;
     .clearfix;
     margin-bottom: @baseLine * 2;
-    #sign {
-        .span(5);
-        position: relative;
-        height: 310px;
-        background: url(/media/img/marketplace/sign.png) 0 0 no-repeat;
-        p {
-            position: absolute;
-            left: 40px;
-            top: 125px;
-            width: 240px;
-            margin: 0;
-            font-family: Lobster;
-            font-weight: normal;
-            font-style: normal;
-            color: #fff;
-            font-size: 64px;
-            line-height: 90%;
-            text-align: center;
-            text-shadow: 0 1px rgba(0,0,0,0.4);
-            -moz-transform: rotate(-10deg);
-            -webkit-transform: rotate(-10deg);
-            -ms-transform: rotate(-10deg);
-            -o-transform: rotate(-10deg);
-            transform: rotate(-10deg);
-        }
+    h3,
+    p {
+        .span(12);
+        width: auto;
+        float: none;
     }
     h3 {
-        .span(7);
         font-size: 48px;
         margin-top: @baseLine;
         margin-bottom: @baseLine;
@@ -295,9 +274,6 @@
             font-weight: normal;
             line-height: @baseLine * 2;
         }
-    }
-    p {
-        .span(7);
     }
 }
 
@@ -582,20 +558,6 @@
         }
     }
 
-    #open {
-        #sign {
-            .span_narrow(6);
-        }
-        h3 {
-            .span_narrow(6);
-            margin-top: @baseLine;
-            margin-bottom: @baseLine;
-        }
-        p {
-            .span_narrow(6);
-        }
-    }
-
     #apps-preview {
         .pager-page {
             li {
@@ -640,14 +602,6 @@
     }
 
     #open {
-        #sign {
-            display: none;
-        }
-        h3,
-        p {
-            width: auto;
-            float: none;
-        }
         h3 { font-size: 32px; }
     }
 
