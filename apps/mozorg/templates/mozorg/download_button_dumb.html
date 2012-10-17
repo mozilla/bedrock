@@ -2,7 +2,7 @@
   <h4>Download Firefox — {{ locale_name }}</h4>
   <ul>
     {% for build in builds %}
-    <li><a href="{{ build.download_link_direct }}" class="button-white">{{ build.platform_pretty }}</a></li>
+      <li><a href="{{ build.download_link_direct or build.download_link }}" class="button-white">{{ build.platform_pretty }}</a></li>
     {% endfor %}
   </ul>
 </div>
