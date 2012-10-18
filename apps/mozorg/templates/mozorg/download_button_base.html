@@ -1,5 +1,4 @@
-<aside id="{{ id }}" class="download-button {% block class %}download-button-large{% endblock %}"
-       data-force-direct="{% if force_direct %}1{% else %}0{% endif %}">
+<aside id="{{ id }}" class="download-button {% block class %}download-button-large{% endblock %}">
   {% block noscript %}
   <noscript>
     {% include "mozorg/download_button_dumb.html" %}
@@ -17,21 +16,28 @@
     {% for build in builds %}
     <li class="{{ build.platform }}">
       <a class="download-link download-{{ product }}"
-         href="{{ build.download_link }}"
-         data-direct-link="{{ build.download_link_direct }}">
-        <span class="download-content">
-          <span class="download-title">{% block title %}Firefox{% endblock %}</span>
-          {% block subtitle %}Free Download{% endblock%}
-          <span class="download-info">
-            <span class="download-version">
-              {{ version }} for {{ build.platform_pretty }}
-            </span>  
-
-            {% if build.platform != 'os_android' %}
-            <span class="download-lang">{{ locale_name }}</span>
-            {% endif %}
+         href="{{ build.download_link }}"{% if build.download_link_direct %}
+         data-direct-link="{{ build.download_link_direct }}"{% endif %}>
+        {% block download_content scoped %}
+          <span class="download-content">
+            <span class="download-title">{% block title scoped %}Firefox{% endblock %}</span>
+            {% block subtitle scoped %}Free Download{% endblock %}
+            {% block download_info scoped %}
+              <span class="download-info">
+                {% block download_version scoped %}
+                  <span class="download-version">
+                    {{ version }} for {{ build.platform_pretty }}
+                  </span>
+                {% endblock %}
+                {% block download_lang scoped %}
+                  {% if build.platform != 'os_android' %}
+                    <span class="download-lang">{{ locale_name }}</span>
+                  {% endif %}
+                {% endblock %}
+              </span>
+            {% endblock %}
           </span>
-        </span>
+        {% endblock %}
       </a>
     </li>
     {% endfor %}

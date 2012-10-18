@@ -71,10 +71,32 @@ class TestDownloadButtons(unittest.TestCase):
                         {'request': get_request}))
 
         # Check that the first 3 links are direct.
-        links = doc('li a')[:3]
-        for link in links:
-            ok_(pq(link).attr('href')
+        links = doc('.download-list a')
+        for link in links[:3]:
+            link = pq(link)
+            ok_(link.attr('href')
                 .startswith('https://download.mozilla.org'))
+            # direct links should not have the data attr.
+            ok_(link.attr('data-direct-link') is None)
+
+    def test_button_has_data_attr_if_not_direct(self):
+        """
+        If the button points to the thank you page, it should have a
+        `data-direct-link` attribute that contains the direct url.
+        """
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'fr'
+        doc = pq(render("{{ download_button('button') }}",
+                        {'request': get_request}))
+
+        # The first 3 links should be for desktop.
+        links = doc('.download-list a')
+        for link in links[:3]:
+            ok_(pq(link).attr('data-direct-link')
+                .startswith('https://download.mozilla.org'))
+        # The fourth link is mobile and should not have the attr
+        ok_(pq(links[3]).attr('data-direct-link') is None)
 
     @patch.object(settings, 'AURORA_STUB_INSTALLER', True)
     def test_stub_aurora_installer_enabled_en_us(self):
@@ -85,7 +107,7 @@ class TestDownloadButtons(unittest.TestCase):
         doc = pq(render("{{ download_button('button', build='aurora') }}",
                         {'request': get_request}))
 
-        links = doc('li a')[:3]
+        links = doc('.download-list a')[:3]
         ok_('stub' in pq(links[0]).attr('href'))
         for link in links[1:]:
             ok_('stub' not in pq(link).attr('href'))
@@ -99,7 +121,7 @@ class TestDownloadButtons(unittest.TestCase):
         doc = pq(render("{{ download_button('button', build='aurora') }}",
                         {'request': get_request}))
 
-        links = doc('li a')
+        links = doc('.download-list a')
         for link in links:
             ok_('stub' not in pq(link).attr('href'))
 
@@ -123,7 +145,7 @@ class TestDownloadButtons(unittest.TestCase):
         doc = pq(render("{{ download_button('button', build='aurora') }}",
                         {'request': get_request}))
 
-        links = doc('li a')[:3]
+        links = doc('.download-list a')[:3]
         for link in links:
             ok_('stub' not in pq(link).attr('href'))
 
@@ -136,7 +158,7 @@ class TestDownloadButtons(unittest.TestCase):
                             force_full_installer=True) }}",
                         {'request': get_request}))
 
-        links = doc('li a')[:3]
+        links = doc('.download-list a')[:3]
         for link in links:
             ok_('stub' not in pq(link).attr('href'))
 
@@ -149,7 +171,7 @@ class TestDownloadButtons(unittest.TestCase):
                             force_full_installer=True) }}",
                         {'request': get_request}))
 
-        links = doc('li a')[:3]
+        links = doc('.download-list a')[:3]
         for link in links:
             ok_('stub' not in pq(link).attr('href'))
 
@@ -190,7 +212,8 @@ class TestVideoTag(unittest.TestCase):
 
     def test_fileformats(self):
         # URLs ending in strange extensions are ignored.
-        videos = [self.nomoz_video % ext for ext in ('ogv', 'exe', 'webm', 'txt')]
+        videos = [self.nomoz_video % ext for ext in
+                  ('ogv', 'exe', 'webm', 'txt')]
         videos.append('http://example.net/noextension')
         doc = pq(render("{{ video%s }}" % (str(tuple(videos)))))
 

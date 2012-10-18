@@ -26,4 +26,6 @@ urlpatterns = patterns('',
     redirect(r'^firefox/brand/copy/rules/$', 'styleguide.communications.copy-rules'),
     redirect(r'^firefox/brand/downloads/$', 'styleguide.home'),
 
-    )
+    # Bug 800467 /apps/partners -> marketplace.m.o/developers
+    redirect(r'apps/partners/$', 'https://marketplace.mozilla.org/developers/'),
+)

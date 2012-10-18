@@ -1,18 +1,23 @@
+from django.core.urlresolvers import NoReverseMatch
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 
 from funfactory.urlresolvers import reverse
 
 
-def redirect(pattern, viewname, permanent=True, anchor=None):
+def redirect(pattern, to, permanent=True, anchor=None):
     """
     Return a tuple suited for urlpatterns.
 
     This will redirect the pattern to the viewname by applying funfactory's
     locale-aware reverse to the given string.
 
+    If a url is given instead of a viewname, the redirect will go directly to
+    the specified url.
+
     Usage:
     urlpatterns = patterns('',
-    redirect(r'^projects/$', 'mozorg.product'),
+        redirect(r'^projects/$', 'mozorg.product'),
+        redirect(r'^apps/$', url='https://marketplace.mozilla.org'),
     )
     """
     if permanent:
@@ -21,9 +26,14 @@ def redirect(pattern, viewname, permanent=True, anchor=None):
         redirect_class = HttpResponseRedirect
 
     def _view(request):
-        url = reverse(viewname)
+        try:
+            redirect_url = reverse(to)
+        except NoReverseMatch:
+            # Assume it's a URL
+            redirect_url = to
+
         if anchor:
-            url = '#'.join([url, anchor])
-        return redirect_class(url)
+            redirect_url = '#'.join([redirect_url, anchor])
+        return redirect_class(redirect_url)
 
     return (pattern, _view)
