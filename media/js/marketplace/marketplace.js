@@ -128,6 +128,11 @@ jQuery(document).ready(function ()
                 return;
             }
 
+            // skip if relatively positioned (mobile layout)
+            if ($panel.css('position') == 'relative') {
+                return;
+            }
+
             // close the panel
             if ($panel.css('display') == 'block') {
                 $panel.fadeOut();
