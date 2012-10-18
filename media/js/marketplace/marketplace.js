@@ -9,7 +9,7 @@ jQuery(document).ready(function ()
         bounds: true,
         controls: false,
         paused: false,
-        fps: 60,
+        fps: 60
     });
 
     var worldScale = 30;
