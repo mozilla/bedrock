@@ -335,6 +335,7 @@ MINIFY_BUNDLES = {
             'js/footer-email-form.js',
         ),
         'marketplace': (
+            'js/nav-main-resp.js',
             'js/mozilla-pager.js',
             'js/libs/jquery-box2dweb/Box2dWeb-2.1.a.3.js',
             'js/libs/jquery-box2dweb/jQbox2D.Alpha.js',
