@@ -93,4 +93,17 @@ jQuery(document).ready(function ()
         objects.worldBodies.push(data[0]);
     };
 
+    var isFirefoxAurora = false;
+
+    if (isFirefoxAurora) {
+
+        // Hide default text in "Showcased" section, show Fx-specific version
+        $('#showcased-nonfx').hide();
+        $('#showcased-fx').show();
+
+        // Remove the qr-codes from app previews
+        $('.qr-code').remove();
+
+    }
+
 });

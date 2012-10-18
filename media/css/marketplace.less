@@ -347,15 +347,20 @@
                 font-size: 18px;
                 margin: 5px 0 10px 0;
             }
-            &:hover,
-            &:focus {
-                img {
-                    top: 15px;
-                    .transition(all ease-in 0.5s);
-                }
-                img.qr-code {
-                    opacity: 1;
-                    display: block;
+            a {
+                display: block;
+                &:hover,
+                &:focus,
+                &:active {
+                    text-decoration: none;
+                    img {
+                        top: 15px;
+                        .transition(all ease-in 0.5s);
+                    }
+                    img.qr-code {
+                        opacity: 1;
+                        display: block;
+                    }
                 }
             }
         }
