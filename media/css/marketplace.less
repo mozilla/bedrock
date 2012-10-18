@@ -162,35 +162,35 @@
 
 #apps-container {
     position: absolute;
-    width: 280px;
+    width: 260px;
     height: 658px;
     bottom: 150px;
-    left: 32px;
+    left: 37px;
 }
 
 #apps-physics {
     position: relative;
-    width: 280px;
+    width: 260px;
     height: 658px;
 }
 
 #apps-container .apps-icon {
     margin: 0;
     padding: 0;
-    width: 64px;
-    height: 64px;
+    width: 96px;
+    height: 96px;
     display: none;
     background: url(/media/img/marketplace/apps-icons.png) no-repeat;
     background-position: 0 0;
     &#app-jauntly      { background-position:    0      0; }
-    &#app-minimalist   { background-position:  -64px    0; }
-    &#app-pomodoro     { background-position: -128px    0; }
-    &#app-solitaire    { background-position:    0    -64px; }
-    &#app-soundcloud   { background-position:  -64px  -64px; }
-    &#app-towerjelly   { background-position: -128px  -64px; }
-    &#app-twitter      { background-position:    0   -128px; }
-    &#app-wired        { background-position:  -64px -128px; }
-    &#app-wordwars     { background-position: -128px -128px; }
+    &#app-minimalist   { background-position:  -96px    0; }
+    &#app-pomodoro     { background-position: -192px    0; }
+    &#app-solitaire    { background-position:    0    -96px; }
+    &#app-soundcloud   { background-position:  -96px  -96px; }
+    &#app-towerjelly   { background-position: -192px  -96px; }
+    &#app-twitter      { background-position:    0   -192px; }
+    &#app-wired        { background-position:  -96px -192px; }
+    &#app-wordwars     { background-position: -192px -192px; }
 }
 
 
@@ -254,7 +254,7 @@
     }
 }
 
-#open {
+#showcased {
     position: relative;
     .clearfix;
     margin-bottom: @baseLine * 2;
@@ -274,6 +274,9 @@
             font-weight: normal;
             line-height: @baseLine * 2;
         }
+    }
+    #showcased-fx {
+        display: none;
     }
 }
 
@@ -549,8 +552,25 @@
         #marketplace-launcher {
             .span_narrow(6);
             margin-bottom: @baseLine;
+            #marketplace-panel {
+                width: @widthTablet - (@gridGutterWidth * 2);
+                background-position: 350px -12px;
+                #panel-download {
+                    .span_narrow(5);
+                }
+                #panel-info {
+                    .span_narrow(7);
+                    padding: 30px 0;
+                    p {
+                        .span_narrow(2);
+                        .offset_narrow(5);
+                        margin-top: 0;
+                        font-size: @smallFontSize;
+                    }
+                }
+            }
         }
-    } 
+    }
 
     #apps-list {
         li {
@@ -598,10 +618,38 @@
                 min-width: 0;
                 padding-left: 70px;
             }
+            margin-bottom: @baseLine;
+            #marketplace-panel {
+                width: 100%;
+                background: #fff;
+                position: relative;
+                top: 8px;
+                left: -20px;
+                float: none;
+                background-position: 350px -12px;
+                #panel-download {
+                    width: auto;
+                    float: none;
+                    margin: 0;
+                }
+                #panel-info {
+                    background: #fff url(/media/img/marketplace/panel-bg.png) -41px -40px no-repeat;
+                    width: auto;
+                    float: none;
+                    margin: 0;
+                    padding-top: 0;
+                    p {
+                        width: auto;
+                        margin: 0;
+                        float: none;
+                        padding-top: 215px;
+                    }
+                }
+            }
         }
     }
 
-    #open {
+    #showcased {
         h3 { font-size: 32px; }
     }
 
