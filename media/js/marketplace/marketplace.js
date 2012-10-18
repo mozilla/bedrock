@@ -93,9 +93,15 @@ jQuery(document).ready(function ()
         objects.worldBodies.push(data[0]);
     };
 
-    var isFirefoxAurora = false;
+    var $button = $('#marketplace-button');
 
-    if (isFirefoxAurora) {
+    var isFirefox18Android = (function() {
+        var ua = navigator.userAgent;
+        var matches = ua.match(/Android;.*(?:Firefox|Aurora)\/(\d+)\./);
+        return (matches && matches[1] >= 18);
+    })();
+
+    if (isFirefox18Android) {
 
         // Hide default text in "Showcased" section, show Fx-specific version
         $('#showcased-nonfx').hide();
@@ -103,6 +109,23 @@ jQuery(document).ready(function ()
 
         // Remove the qr-codes from app previews
         $('.qr-code').remove();
+
+        // swap marketplace button title
+        $button.text($button.attr('data-mobile-title'));
+
+    } else {
+
+        // prevent linking to apps, just let QR codes appear
+        $('#apps-preview .pager-page a').click(function(e) {
+            e.preventDefault();
+        });
+
+        // make clicking the button open the panel
+        $panel = $('#marketplace-panel');
+        $button.click(function(e) {
+            e.preventDefault(e);
+            $panel.fadeToggle();
+        });
 
     }
 
