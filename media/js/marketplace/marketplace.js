@@ -115,6 +115,25 @@ jQuery(document).ready(function ()
 
     } else {
 
+        var documentClickHandler = function(e)
+        {
+            var $target = $(e.target);
+
+            // skip if we clicked on the panel
+            if (   $target.is($panel)
+                || $target.parents('#marketplace-panel').length > 0
+                || $target.is($button)
+                || $target.parents('#marketplace-button').length > 0
+            ) {
+                return;
+            }
+
+            // close the panel
+            if ($panel.css('display') == 'block') {
+                $panel.fadeOut();
+            }
+        }
+
         // prevent linking to apps, just let QR codes appear
         $('#apps-preview .pager-page a').click(function(e) {
             e.preventDefault();
@@ -124,6 +143,14 @@ jQuery(document).ready(function ()
         $panel = $('#marketplace-panel');
         $button.click(function(e) {
             e.preventDefault(e);
+
+            // add document click-to-close handler
+            if ($panel.css('display') == 'block') {
+                $(document).unbind('click', documentClickHandler);
+            } else {
+                $(document).click(documentClickHandler);
+            }
+
             $panel.fadeToggle();
         });
 
