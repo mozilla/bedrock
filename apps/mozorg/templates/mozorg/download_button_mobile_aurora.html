@@ -1,0 +1,11 @@
+{% extends "mozorg/download_button_mobile_base.html" %}
+
+{% block class %}download-button-mobile-large aurora{% endblock %}
+
+{% block title %}{{ _('Get Firefox Aurora for Android') }}{% endblock %}
+
+{% block download_content %}
+  <span class="download-content-wrapper">{{ super() }}</span>
+{% endblock %}
+
+{% block download_info %}{% endblock %}

@@ -335,7 +335,11 @@ MINIFY_BUNDLES = {
             'js/footer-email-form.js',
         ),
         'marketplace': (
-            'js/mozilla-video-tools.js',
+            'js/nav-main-resp.js',
+            'js/mozilla-pager.js',
+            'js/libs/jquery-box2dweb/Box2dWeb-2.1.a.3.js',
+            'js/libs/jquery-box2dweb/jQbox2D.Alpha.js',
+            'js/marketplace/marketplace.js',
         ),
         'mozorg-resp': (
             'js/libs/jquery-1.7.1.min.js',
