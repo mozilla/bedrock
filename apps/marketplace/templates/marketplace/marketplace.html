@@ -9,6 +9,14 @@
   {{ css('marketplace') }}
 {% endblock %}
 
+{% block extrafoot %}
+  <!--[if gte IE 9]><!-->
+    <script src="{{ media('js/libs/jquery-box2dweb/Box2dWeb-2.1.a.3.min.js')}}"></script>
+    <script src="{{ media('js/libs/jquery-box2dweb/jQbox2D.Alpha.js')}}"></script>
+  <!--<![endif]-->
+{% endblock %}
+
+
 {% block content %}
 
 <section id="main-feature">
