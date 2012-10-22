@@ -28,4 +28,8 @@ urlpatterns = patterns('',
 
     # Bug 800467 /apps/partners -> marketplace.m.o/developers
     redirect(r'apps/partners/$', 'https://marketplace.mozilla.org/developers/'),
+
+    # Bug 800298 /webmaker/ -> wm.o and /webmaker/videos/ -> wm.o/videos/
+    redirect(r'webmaker/$', 'https://webmaker.org'),
+    redirect(r'webmaker/videos/$', 'https://webmaker.org/videos/'),
 )
