@@ -70,9 +70,6 @@ MINIFY_BUNDLES = {
         'firefoxos': (
             'css/firefoxos.less',
         ),
-        'webmaker': (
-            'css/webmaker.less',
-        ),
         'gameon': (
             'css/gameon.less',
         ),
@@ -441,7 +438,6 @@ INSTALLED_APPS = (
 
     # Local apps
     'firefoxos',
-    'webmaker',
     'foundation',
     'gameon',
     'grants',
