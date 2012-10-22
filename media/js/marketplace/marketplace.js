@@ -15,7 +15,6 @@ jQuery(document).ready(function ()
     var worldScale = 30;
 
     function fromPixel(pos) {return parseInt(pos, 10) / worldScale}
-    function fromPixel(pos) {return parseInt(pos, 10) / worldScale}
 
     var availableApps = [];
     var appSize = 96;
@@ -114,13 +113,20 @@ jQuery(document).ready(function ()
         $button.text($button.attr('data-mobile-title'));
 
     } else {
+        
+        // add accessible attributes
+        $button.attr({
+            'role': 'button',
+            'aria-haspopup': true,
+            'aria-expanded': false
+        });
 
         var documentClickHandler = function(e)
         {
             var $target = $(e.target);
 
             // skip if we clicked on the panel
-            if (   $target.is($panel)
+            if ($target.is($panel)
                 || $target.parents('#marketplace-panel').length > 0
                 || $target.is($button)
                 || $target.parents('#marketplace-button').length > 0
@@ -136,6 +142,16 @@ jQuery(document).ready(function ()
             // close the panel
             if ($panel.css('display') == 'block') {
                 $panel.fadeOut();
+                $button.focus();
+            }
+        }
+        
+        var documentKeydownHandler = function(event){
+            if(event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) {
+                return true;
+            }
+            if(event.keyCode === 27){
+                $button.trigger('click');
             }
         }
 
@@ -148,12 +164,21 @@ jQuery(document).ready(function ()
         $panel = $('#marketplace-panel');
         $button.click(function(e) {
             e.preventDefault(e);
+            
+            // change the state of aria-expanded
+            $button.attr('aria-expanded', $panel.css('display') !== 'block');
 
             // add document click-to-close handler
             if ($panel.css('display') == 'block') {
-                $(document).unbind('click', documentClickHandler);
+                $(document)
+                    .unbind('click', documentClickHandler)
+                    .unbind('keydown', documentKeydownHandler);
+                // when closed set focus to button
+                $button.focus();
             } else {
-                $(document).click(documentClickHandler);
+                $(document)
+                    .click(documentClickHandler)
+                    .keydown(documentKeydownHandler);
             }
 
             $panel.fadeToggle();
