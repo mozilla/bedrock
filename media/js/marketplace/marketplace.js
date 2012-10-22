@@ -120,7 +120,7 @@ jQuery(document).ready(function ()
             var $target = $(e.target);
 
             // skip if we clicked on the panel
-            if (   $target.is($panel)
+            if ($target.is($panel)
                 || $target.parents('#marketplace-panel').length > 0
                 || $target.is($button)
                 || $target.parents('#marketplace-button').length > 0
