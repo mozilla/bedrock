@@ -1,0 +1,80 @@
+{% extends "base-resp.html" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}Mozilla Style Guide{% endblock %}
+{% block body_id %}styleguide{% endblock %}
+{% block body_class %}sand{% endblock %}
+
+{% block site_header %}
+{% endblock %}
+
+{% block site_header_logo %}{% endblock %}
+{% block site_header_nav %}{% endblock %}
+{% block email_form %}{% endblock %}
+
+{% block extrahead %}
+  {{ css('styleguide') }}
+{% endblock %}
+
+{% block js %}
+  {{ js('styleguide') }}
+{% endblock %}
+
+{% block content %}
+<div id="content">
+  <header id="masthead">
+  <a href="http://www.mozilla.org/" id="tabzilla">{{ _('Mozilla') }}</a>
+  </header>
+
+{% block sidebar %}
+  <div id="sidebar">
+  <h2><a href="{{ url('styleguide.home') }}">
+    <img src="{{ media('/img/styleguide/mozilla.png') }}" height="28" width="107" alt="mozilla">
+    Style guide
+  </a></h2>
+  <nav>
+    <ul>
+    {% for item in node_root.children recursive %}
+        <li class="
+        {% if item in node.breadcrumbs %} active path{% endif %}
+        {% if item.children %} has-children{% endif %}
+        ">
+        {% if item.url %}<a href="{{ item.url }}">{% endif %}
+          {{ item.display_name }}
+          {% if item.url %}</a>{% endif %}
+        {% if item.children %}
+            <ul>{{ loop(item.children) }}</ul>
+        {% endif %}</li>
+    {% endfor %}
+    </ul>
+  </nav>
+  </div>
+{% endblock %}
+
+<div id="content_area" role="main">
+
+<h1>{% block content_title %}{% endblock%}</h1>
+
+{% block subnav %}
+<div id="subnav">
+  {% block next_prev %}
+  <div id="nextprev">
+    {% set previous = node.previous %}
+    {% if previous %}<a href="{{ previous.url }}" class="prev">{% endif %}
+     Prev
+    {% if previous %}</a>{% endif %}
+
+    {% set next = node.next %}
+    {% if next %}<a href="{{ next.url }}" class="next">{% endif %}
+    Next
+    {% if next %}</a>{% endif %}
+  </div>
+  {% endblock %}
+</div>
+{% endblock %}
+
+{% block content_area %}{% endblock %}
+</div>
+
+</div>
+{% endblock %}

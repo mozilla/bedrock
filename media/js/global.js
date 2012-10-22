@@ -8,10 +8,11 @@
  * @param string direct link to download URL
  */
 function trigger_ie_download(link) {
-  if (navigator.appVersion.indexOf('MSIE') != -1) {
-    window.open(link, 'download_window', 'toolbar=0,location=no,directories=0,status=0,scrollbars=0,resizeable=0,width=1,height=1,top=0,left=0');
-    window.focus();
-  }
+    // Only open if we got a link and this is IE.
+    if (link && navigator.appVersion.indexOf('MSIE') != -1) {
+        window.open(link, 'download_window', 'toolbar=0,location=no,directories=0,status=0,scrollbars=0,resizeable=0,width=1,height=1,top=0,left=0');
+        window.focus();
+    }
 }
 
 // attach an event to all the download buttons to trigger the special
@@ -19,7 +20,6 @@ function trigger_ie_download(link) {
 function init_download_links() {
     $('.download-link').each(function() {
         var el = $(this);
-        var link = el.data('direct-link');
         el.click(function() {
             dcsMultiTrack('DCS.dcssip',
                           'www.mozilla.org',
@@ -30,7 +30,7 @@ function init_download_links() {
                           'WT.nv', 'Content',
                           'WT.ac', 'Download Firefox');
 
-            trigger_ie_download(link);
+            trigger_ie_download(el.data('direct-link'));
         });
     });
 }
@@ -46,7 +46,7 @@ function init_platform_imgs() {
         else if(site.platform == 'linux') {
             suffix = '-linux';
         }
-        
+
         var el = $(this);
         var parts = el.data('src').split('.');
         var base = parts.slice(0, parts.length-1);

@@ -100,7 +100,7 @@
 <aside class="sidebar" class="span3">
   <div class="reference">
   <h3>Need Help?</h3>
-  <a href="http://support.mozilla.org/en-US/kb/" class="more">Visit support.mozilla.org</a>
+  <a href="https://support.mozilla.org/products/firefox" class="more">Visit support.mozilla.org</a>
   </div>
 </aside>
 
@@ -128,7 +128,7 @@
 
 
 $(document).ready(function() {
-    var latestVersion = parseInt('3'.split('.')[0], 10);
+    var latestVersion = parseInt('{{ latest_version }}'.split('.')[0], 10);
     var isFirefox = (/\sFirefox/.test(window.navigator.userAgent));
     var headline = $('#main-feature > h1');
     var subheadline = $('#main-feature > h3');

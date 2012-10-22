@@ -1,13 +1,14 @@
 // General buttons
 
+
 .button,
 .button:link,
 .button:visited {
     .inline-block;
     .border-radius;
-    .box-shadow(@buttonShadow);
-    background-color: @buttonGreen;
-    #gradient > .vertical(@buttonGreen, @buttonGreenDark);
+    box-shadow: @buttonShadow;
+    background-color: @buttonBlue;
+    #gradient > .vertical(@buttonBlue, @buttonBlueDark);
     color: @buttonTextColor;
     text-align: center;
     font-size: 14px;
@@ -15,41 +16,68 @@
     height: @baseLine * 2;
     line-height: @baseLine * 2;
     text-decoration: none;
+    min-width: 100px;
     border: 0;
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
     .open-sans;
     .transition();
 
     &:hover,
-    &:focus {
+    &.hover,
+    &:focus,
+    &.focus {
         .box-shadow(@buttonShadowHover);
         color: @buttonTextColor;
         text-decoration: none;
         .transition();
     }
 
-    &:focus {
+    &:focus,
+    &.focus {
         outline-color: @textColorSecondary;
     }
 
-    &:active {
+    &:active,
+    &.active {
         .box-shadow(@buttonShadowActive);
         color: @buttonTextColor;
         text-decoration: none;
         .transition();
     }
+
+    &.insensitive,
+    &.insensitive:hover,
+    &.insensitive:focus {
+        background-color: #9ca3aa;
+        #gradient > .vertical(#bfc7cd, #9ca3aa);
+        .box-shadow(@buttonShadow);
+        color: #eee;
+    }
 }
 
-.button-blue,
-.button-blue:link,
-.button-blue:visited {
+.button-green,
+.button-green:link,
+.button-green:visited {
     .button;
-    background-color: @buttonBlue;
-    #gradient > .vertical(@buttonBlue, @buttonBlueDark);
+    background-color: @buttonGreen;
+    #gradient > .vertical(@buttonGreen, @buttonGreenDark);
 
     &:hover,
     &:focus {
-        .box-shadow(@buttonBlueShadowHover);
+        .button-hover-box-shadow(@buttonGreen);
+    }
+}
+
+.button-negative,
+.button-negative:link,
+.button-negative:visited {
+    .button;
+    background-color: #a91300;
+    #gradient > .vertical(#da5132, #a91300);
+
+    &:hover,
+    &:focus {
+        .button-hover-box-shadow(#da5132);
     }
 }
 
@@ -86,13 +114,89 @@
 }
 
 .button,
-.button-blue,
 .button-white {
     cursor: pointer;
     small {
         display: block;
     }
 
+}
+
+.button.arrow span,
+.button-blue.arrow span,
+.button-white.arrow span {
+  display: block;
+  margin-right: -12px;
+  padding: 0 30px 0 0;
+  background: url(/media/img/sandstone/buttons/arrow-go-r.png) right center no-repeat;
+}
+
+.button-sand,
+.button-sand:link,
+.button-sand:visited {
+    .button;
+    #gradient > .vertical(rgba(255,255,255,0.1), rgba(0,0,0,0.1));
+    background-color: transparent;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.4) rgba(0,0,0,0.1);
+    @shadow:  0    1px 0 0 rgba(255,255,255,0.5) inset,
+              1px  0   0 0 rgba(255,255,255,0.5) inset,
+             -1px  0   0 0 rgba(255,255,255,0.5) inset,
+              0   -2px 0 0 rgba(0,0,0,0.1)       inset;
+    .box-shadow(@shadow);
+    .border-radius(8px);
+    color: @linkBlue;
+    text-shadow: none;
+    &:hover,
+    &:focus {
+        .button-hover-box-shadow();
+        color: @linkBlueHover;
+    }
+}
+
+.button-list {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
+    li {
+        margin: 0;
+        padding: 0;
+        list-style-style: none;
+        .inline-block;
+        .button-sand {
+            border-radius: 0;
+            border-left-width: 0;
+            @shadow:  0    1px 0 0 rgba(255,255,255,0.5) inset,
+                     -1px  0   0 0 rgba(255,255,255,0.5) inset,
+                      0   -2px 0 0 rgba(0,0,0,0.1)       inset;
+            .box-shadow(@shadow);
+            min-width: 0;
+        }
+        &:first-child {
+            .button-sand {
+                border-top-left-radius: 8px;
+                border-bottom-left-radius: 8px;
+                border-left-width: 1px;
+                @shadow:  0    1px 0 0 rgba(255,255,255,0.5) inset,
+                          1px  0   0 0 rgba(255,255,255,0.5) inset,
+                         -1px  0   0 0 rgba(255,255,255,0.5) inset,
+                          0   -2px 0 0 rgba(0,0,0,0.1)       inset;
+                .box-shadow(@shadow);
+                &:hover,
+                &:focus {
+                    .button-hover-box-shadow();
+                    color: @linkBlueHover;
+                }
+            }
+        }
+        &:last-child {
+            .button-sand {
+                border-top-right-radius: 8px;
+                border-bottom-right-radius: 8px;
+            }
+        }
+    }
 }
 
 
@@ -114,7 +218,7 @@
 }
 
 .download-button .download-link {
-    .button;
+    .button-green;
     cursor: pointer;
     padding: 0;
     height: 95px;
@@ -140,6 +244,8 @@
         letter-spacing: -0.02em;
         padding-right: 32px;
         background: url(/media/img/sandstone/buttons/arrow-large.png) no-repeat 100% 0;
+        min-height: 28px;
+        margin-bottom: -2px;
     }
     .download-info {
         display: block;
@@ -149,6 +255,26 @@
         line-height: 100%;
         text-shadow: 0 1px rgba(255,255,255,0.2);
     }
+}
+
+#beta-download .download-link .download-content {
+  background-image: url(/media/img/sandstone/buttons/beta-large.png);
+}
+
+#beta-download.download-button-small .download-link .download-content {
+  background-image: url(/media/img/sandstone/buttons/beta-small.png);
+}
+
+#aurora-download .download-link .download-content {
+  background-image: url(/media/img/sandstone/buttons/aurora-large.png);
+}
+
+#aurora-download.download-button-small .download-link .download-content {
+  background-image: url(/media/img/sandstone/buttons/aurora-small.png);
+}
+
+.download-button-small .download-content .download-title {
+  display: block;
 }
 
 .download-button-large .download-link {

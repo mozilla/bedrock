@@ -50,10 +50,10 @@
       <h2 class="channel-title channel-title-aurora"><img src="{{ media('/img/firefox/channel/title-aurora.png') }}" alt="Firefox Aurora" /></h2>
       <h3>The newest innovations in an experimental environment</h3>
       <div class="download-box" id="aurora-desktop">
-        {{ download_button('download', 'channel', build='aurora') }}
+        {{ download_button('aurora-download', 'channel', build='aurora') }}
       </div>
       <div class="download-box mobile" id="aurora-mobile">
-        {{ mobile_download_button('beta-download-mobile', 'channel', build='aurora') }}
+        {{ mobile_download_button('aurora-download-mobile', 'channel', build='aurora') }}
       </div>
       <p class="more"><a href="{{ php_url('//mobile/aurora/') }}">Learn more about Firefox Aurora<span> »</span></a></p>
     </div>

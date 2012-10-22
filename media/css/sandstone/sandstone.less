@@ -17,11 +17,12 @@ body {
 }
 
 #outer-wrapper {
+    position: relative;
     border-top: 2px solid #fff;
+    background: #f9f9f9 url(/media/img/sandstone/bg-stone.png) 0 0 repeat-x;
 }
 
 #wrapper {
-    background: #f9f9f9 url(/media/img/sandstone/bg-stone.png) 0 0 repeat-x;
     padding-bottom: @baseLine * 2;
 }
 
@@ -36,23 +37,19 @@ a {
 }
 
 .sand {
-    #wrapper {
-        background-color: #f5f1e8;
-        background-image: url(/media/img/sandstone/bg-sand.png);
-    }
-    a {
-        color: @linkRed;
-        &:hover,
-        &:active {
-            color: darken(@linkRed, 10%);
-        }
+    #outer-wrapper {
+        background: #f5f1e8 url(/media/img/sandstone/bg-sand.png) repeat;
+        background: url(/media/img/sandstone/bg-gradient-sand.png) repeat-x 0 0,
+                    url(/media/img/sandstone/bg-sand.png) repeat 0 0,
+                    #f5f1e8;
     }
 }
 
 .sky {
-    #wrapper {
+    #outer-wrapper {
         background-color: #eee;
         background-image: url(/media/img/sandstone/bg-sky.png);
+        background-repeat: repeat-x;
     }
 
     a {
@@ -71,6 +68,7 @@ a {
     #wrapper {
         background-color: #04020b;
         background-image: url(/media/img/sandstone/bg-space.png);
+        background-repeat: repeat-x;
     }
 
     a {

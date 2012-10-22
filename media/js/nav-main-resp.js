@@ -8,14 +8,14 @@ if ($('#nav-main').length === 0) {
 var NavMain = {};
 
 /**
- * Whether or not min/max width media queries are supported in CSS
+ * Whether or not MS Internet Explorer version 4, 5, 6, 7 or 8 is used
  *
- * If not supported, the small mode is never triggered.
+ * If true, the small mode is never triggered.
  *
  * @var Boolean
  */
-NavMain.hasMediaQueryWidths = (function() {
-    return !(/MSIE\ (4|5|6|7|8)/.test(navigator.userAgent));
+NavMain.isMSIEpre9 = (function() {
+    return (/MSIE\ (4|5|6|7|8)/.test(navigator.userAgent));
 })();
 
 /**
@@ -70,15 +70,15 @@ NavMain.mainMenuLinks = null;
 
 NavMain.init = function()
 {
-    NavMain.mainMenuItems = $('#nav-main [role="menubar"] > li');
-    NavMain.mainMenuLinks = $('#nav-main [role="menubar"] > li > [tabindex="0"]');
+    NavMain.mainMenuItems = $('#nav-main .has-submenus > li');
+    NavMain.mainMenuLinks = $('#nav-main ul > li > [tabindex="0"]');
 
     NavMain.mainMenuItems
         .bind('mouseover focusin', NavMain.handleFocusIn)
         .bind('mouseout focusout', NavMain.handleFocusOut)
         .each(NavMain.initSubmenu);
 
-    if (NavMain.hasMediaQueryWidths) {
+    if (!NavMain.isMSIEpre9) {
         $(window).resize(NavMain.handleResize);
         NavMain.handleResize();
     }
@@ -91,6 +91,7 @@ NavMain.init = function()
         })
         .keydown(function(e) {
             if (e.keyCode == 13) {
+                e.preventDefault();
                 NavMain.toggleSmallMenu();
             }
         });
@@ -156,7 +157,6 @@ NavMain.handleFocusOut = function(e)
 
 NavMain.initSubmenu = function(menu_idx)
 {
-    var menu = $(this).find('[role="menu"]');
     var menuItems = $(this).find('a');
 
     menuItems.mouseover(function(e) {

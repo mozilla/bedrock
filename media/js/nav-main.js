@@ -6,7 +6,7 @@ $(document).ready(function() {
   var main_menuitems = $('#nav-main [tabindex="0"]');
   var prev_li, new_li, focused_item;
 
-  $('#nav-main [role="menubar"] > li').bind('mouseover focusin', function(event) {
+  $('#nav-main > .has-submenus > li').bind('mouseover focusin', function(event) {
     new_li = $(this);
     if (!prev_li || prev_li.attr('id') !== new_li.attr('id')) {
       // Open the menu
@@ -32,7 +32,6 @@ $(document).ready(function() {
       }
     });
   }).each(function(menu_idx) {
-    var menu = $(this).find('[role="menu"]');
     var menuitems = $(this).find('a');
 
     menuitems.mouseover(function(event) {
@@ -43,6 +42,9 @@ $(document).ready(function() {
       // Enable keyboard navigation
       $(this).keydown(function(event) {
         var target;
+        if(event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) {
+          return true;
+        }
         switch (event.keyCode) {
           case 33: // Page Up
           case 36: // Home

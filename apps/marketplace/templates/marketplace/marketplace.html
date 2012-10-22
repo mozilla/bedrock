@@ -1,74 +1,178 @@
-{% extends "sand.html" %}
+{% extends "base-resp.html" %}:
 
 {% block page_title_prefix %}{% endblock %}
-{% block page_title %}Mozilla Marketplace{% endblock %}
+{% block page_title %}Firefox Marketplace{% endblock %}
 {% block body_id %}marketplace{% endblock %}
-
-{% block site_header_logo %}
-  <h2><img src="{{ media('/img/marketplace/title.png') }}" height="70" width="256" alt="Mozilla Marketplace"></h2>
-{% endblock %}
-
-{% block site_header_nav %}
-{% endblock %}
+{% block body_class %}sand{% endblock %}
 
 {% block extrahead %}
   {{ css('marketplace') }}
-  {{ css('video') }}
-{% endblock %}
-
-{% block js %}
-  {{ js('video') }}
 {% endblock %}
 
 {% block content %}
 
-<hgroup id="main-feature">
-  <h1>Coming Soon: Mozilla Marketplace</h1>
-  <h2>Your apps on all your devices</h2>
+<section id="main-feature">
+
+<hgroup>
+  <h1>Firefox Marketplace <span class="aurora">Aurora</span></h1>
+  <h2>Open for business</h2>
 </hgroup>
 
-<article id="main-content">
-<div class="row">
-
-  <div class="span6">
-    <p>Mozilla is unlocking the power of the Web as the world’s largest marketplace, creating an open ecosystem of developers and content owners with limitless possibilities for consumer interaction.</p>
-    <p>With open Web standards like HTML5, CSS and JavaScript — together with Mozilla-designed APIs — app experiences can be delivered anywhere, to any device, on any operating system. The Mozilla Marketplace will roll out to millions of Firefox users later this year.</p>
-  </div>
-
-  <aside id="app-developer" class="span3 offset1">
-    <h3>App developer?</h3>
-    <p>You can already submit your app to the Mozilla Marketplace.</p>
-    <p><a href="https://marketplace.mozilla.org/">Find out how »</a></p>
-  </aside>
-
-  </div>
-</article>
-
-<section class="container">
-    <div id="intro-video" class="mozilla-video-control">
-      <video
-        width="640"
-        height="360"
-        poster="/media/img/marketplace/poster-intro.jpg"
-        controls="controls">
-        <source src="//videos-cdn.mozilla.net/serv/flux/apps/marketplace.webm" type="video/webm" />
-        <source src="//videos-cdn.mozilla.net/serv/flux/apps/marketplace.theora.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;" />
-        <source src="//videos-cdn.mozilla.net/serv/flux/apps/marketplace.mp4" type="video/mp4" />
-        <object type="application/x-shockwave-flash"
-          style="width: 640px; height: 388px;"
-          data="/media/flash/playerWithControls.swf?flv=serv/flux/apps/marketplace.mp4&amp;autoplay=false&amp;msg=Play%20Video">
-          <param name="movie" value="/media/flash/playerWithControls.swf?flv=serv/flux/apps/marketplace.mp4&amp;autoplay=false&amp;msg=Play%20Video" />
-          <param name="wmode" value="transparent" />
-
-          <div class="video-player-no-flash">
-          This video requires a browser with support for open video
-          or the <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player</a>.
-          </div>
-        </object>
-      </video>
+<div id="marketplace-launcher">
+  <a class="button" id="marketplace-button" href="https://marketplace.mozilla.org/" data-mobile-title="Visit the Marketplace »">Try the Marketplace »</a>
+  <div id="marketplace-panel">
+    <div id="panel-download">
+      <p>To test out the Aurora release of Firefox Marketplace, you first need to download Firefox Aurora on your Android phone.</p>
+      {{ mobile_download_button('primary-download-mobile', 'mobile_aurora', build='aurora') }}
     </div>
+    <div id="panel-info">
+      <p>Once you have downloaded and installed Firefox Aurora for Android, you can access the Firefox Marketplace from the “Apps” menu option within Firefox Aurora.</p>
+    </div>
+  </div>
+</div>
+
+<p>Mozilla is bringing its core values — openness, freedom, user choice — to the world of apps. We’re creating an open environment that benefits developers, content owners and consumers. And with apps based on open Web technologies like HTML5, JavaScript and CSS, developers can build rich and immersive experiences.</p>
+
+<p>The first Aurora release of Firefox Marketplace is available on Firefox Aurora for Android, giving developers a means to get feedback on their apps as the Marketplace grows and progresses.</p>
+
+<aside id="apps-bag">
+  <div id="apps-bag-background"></div>
+  <div id="apps-container">
+    <div id="apps-physics">
+      <div class="apps-icon" id="app-jauntly"></div>
+      <div class="apps-icon" id="app-minimalist"></div>
+      <div class="apps-icon" id="app-pomodoro"></div>
+      <div class="apps-icon" id="app-solitaire"></div>
+      <div class="apps-icon" id="app-soundcloud"></div>
+      <div class="apps-icon" id="app-distantorbit"></div>
+      <div class="apps-icon" id="app-twitter"></div>
+      <div class="apps-icon" id="app-wired"></div>
+      <div class="apps-icon" id="app-wordwars"></div>
+    </div>
+  </div>
+  <div id="apps-bag-handle"></div>
+  <div id="apps-bag-foreground"></div>
+</aside>
+
 </section>
+
+<ul id="apps-list" class="container">
+  <li id="list-discover"><span>Find &amp; discover amazing apps easily</span></li>
+  <li id="list-feedback"><span>Give us your feedback</span></li>
+  <li id="list-native"><span>Enjoy rich, immersive experiences</span></li>
+</ul>
+
+<section id="showcased" class="container">
+  <h3>Showcased apps</h3>
+  <p id="showcased-nonfx">Below are a few of our favorite apps to get you started, but there are more to enjoy and explore. Once you've downloaded <a href="{{ php_url('/mobile/aurora/') }}">Firefox for Android Aurora</a>, you can tap on any of these apps to reveal a QR code that you can scan to download it. You can also search for apps directly on the Marketplace.</p>
+  <p id="showcased-fx">Below are a few of our favorite apps to get you started. There are also more to enjoy and explore directly on the Marketplace.</p>
+</section>
+
+<div id="apps-preview" class="pager pager-with-tabs">
+
+  <ul class="pager-tabs">
+    <li><a href="#games">{{_('Games')}}</a></li>
+    <li><a href="#media">{{_('News &amp; Media')}}</a></li>
+    <li><a href="#productivity">{{_('Productivity')}}</a></li>
+  </ul>
+
+  <div class="billboard">
+  <div class="pager-content">
+
+    <div class="pager-page games-content default-page" id="games">
+      <script>// <![CDATA[
+      document.getElementById('games').id = 'page-games';
+      // ]]></script>
+      <section>
+        <ul>
+          <li><a href="https://marketplace.mozilla.org/app/pasjanssolitaire/">
+              <img src="{{ media('/img/marketplace/app-thumb-solitaire.png') }}" alt="App thumbnail" />
+              <img src="{{ media('/img/marketplace/qr-solitaire.png') }}" alt="qr code" class="qr-code" />
+              <h4>Solitaire</h4>
+          </a></li>
+          <li><a href="https://marketplace.mozilla.org/app/distant-orbit/">
+              <img src="{{ media('/img/marketplace/app-thumb-distantorbit.png') }}" alt="App thumbnail" />
+              <img src="{{ media('/img/marketplace/qr-distantorbit.png') }}" alt="qr code" class="qr-code" />
+              <h4>Distant Orbit</h4>
+          </a></li>
+          <li><a href="https://marketplace.mozilla.org/app/word-wars/">
+              <img src="{{ media('/img/marketplace/app-thumb-wordwars.png') }}" alt="App thumbnail" />
+              <img src="{{ media('/img/marketplace/qr-wordwars.png') }}" alt="qr code" class="qr-code" />
+              <h4>Word Wars</h4>
+          </a></li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="pager-page news-content" id="news">
+      <script>// <![CDATA[
+      document.getElementById('news').id = 'page-news';
+      // ]]></script>
+      <section>
+        <ul>
+          <li><a href="https://marketplace.mozilla.org/app/soundcloud/">
+              <img src="{{ media('/img/marketplace/app-thumb-soundcloud.png') }}" alt="App thumbnail" />
+              <img src="{{ media('/img/marketplace/qr-soundcloud.png') }}" alt="qr code" class="qr-code" />
+              <h4>SoundCloud</h4>
+          </a></li>
+          <li><a href="https://marketplace.mozilla.org/app/twitter/">
+              <img src="{{ media('/img/marketplace/app-thumb-twitter.png') }}" alt="App thumbnail" />
+              <img src="{{ media('/img/marketplace/qr-twitter.png') }}" alt="qr code" class="qr-code" />
+              <h4>Twitter</h4>
+          </a></li>
+          <li><a href="https://marketplace.mozilla.org/app/wiredcom/">
+              <img src="{{ media('/img/marketplace/app-thumb-wiredcom.png') }}" alt="App thumbnail" />
+              <img src="{{ media('/img/marketplace/qr-wiredcom.png') }}" alt="qr code" class="qr-code" />
+              <h4>Wired</h4>
+          </a></li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="pager-page productivity-content" id="productivity">
+      <script>// <![CDATA[
+      document.getElementById('productivity').id = 'page-productivity';
+      // ]]></script>
+      <section>
+        <ul>
+          <li><a href="https://marketplace.mozilla.org/app/jauntly/">
+              <img src="{{ media('/img/marketplace/app-thumb-jauntly.png') }}" alt="App thumbnail" />
+              <img src="{{ media('/img/marketplace/qr-jauntly.png') }}" alt="qr code" class="qr-code" />
+              <h4>Jauntly</h4>
+          </a></li>
+          <li><a href="https://marketplace.mozilla.org/app/minimalist/">
+              <img src="{{ media('/img/marketplace/app-thumb-minimalist.png') }}" alt="App thumbnail" />
+              <img src="{{ media('/img/marketplace/qr-minimalist.png') }}" alt="qr code" class="qr-code" />
+              <h4>Minimalist</h4>
+          </a></li>
+          <li><a href="https://marketplace.mozilla.org/app/the-pomodoro-technique-time/">
+              <img src="{{ media('/img/marketplace/app-thumb-pomodoro.png') }}" alt="App thumbnail" />
+              <img src="{{ media('/img/marketplace/qr-pomodoro.png') }}" alt="qr code" class="qr-code" />
+              <h4>Pomodoro</h4>
+          </a></li>
+        </ul>
+      </section>
+    </div>
+
+  </div>
+  </div>
+</div>
+
+<section id="build" class="container">
+  <h3>Want to build an app?</h3>
+  <p>Find out how to create and upload apps to the Firefox Marketplace:</p>
+  <ul class="unstyled">
+    <li><a href="https://marketplace.mozilla.org/developers/">Develop HTML5 Web apps for the Firefox Marketplace »</a></li>
+    <li><a href="https://marketplace.mozilla.org/developers/partners">Partner with Mozilla »</a></li>
+  </ul>
+</section>
+
+
 {% endblock %}
 
-{% block email_form_title %}{{_('Sign up for more news about the Mozilla Marketplace.')}}{% endblock %}
+{% block email_form_title %}{{_('Sign up for more news about the Firefox Marketplace.')}}{% endblock %}
 {% block email_form_newsletter %}app-dev{% endblock %}
+
+{% block js %}
+  {{ js('marketplace') }}
+{% endblock %}

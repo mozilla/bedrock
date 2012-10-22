@@ -21,12 +21,12 @@
 
     {% block extrahead %}{% endblock %}
 
-    {% block favicon %}<link rel="shortcut icon" type="image/png" href="{{ MEDIA_URL }}img/favicon.png">{% endblock %}
+    {% block favicon %}<link rel="shortcut icon" href="{{ MEDIA_URL }}img/favicon.ico">{% endblock %}
 
     {{ js('site') }}
   </head>
 
-  <body id="{% block body_id %}{% endblock %}" class="html-{{ DIR }} {% block body_class %}{% endblock %}">
+  <body id="{% block body_id %}{% endblock %}" class="html-{{ DIR }} {% block body_class %}{% endblock %}"{% block body_attrs %}{% endblock %}>
     <div id="outer-wrapper">
     <div id="wrapper">
 
@@ -35,13 +35,13 @@
         <a href="http://www.mozilla.org/" id="tabzilla">{{ _('Mozilla') }}</a>
 
         {% block site_header_nav %}
-        <nav id="nav-main" role="menubar">
+        <nav id="nav-main" role="navigation">
           <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
-          <ul role="menu" id="nav-main-menu">
-            <li role="menuitem" class="first"><a href="{{ url('mozorg.mission') }}">{{_('Mission')}}</a></li>
-            <li role="menuitem"><a href="{{ url('mozorg.about') }}">{{_('About')}}</a></li>
-            <li role="menuitem"><a href="{{ url('mozorg.products') }}">{{_('Products')}}</a></li>
-            <li role="menuitem" class="last"><a href="{{ url('mozorg.contribute') }}">{{_('Get Involved')}}</a></li>
+          <ul id="nav-main-menu">
+            <li class="first"><a href="{{ url('mozorg.mission') }}">{{_('Mission')}}</a></li>
+            <li><a href="{{ url('mozorg.about') }}">{{_('About')}}</a></li>
+            <li><a href="{{ url('mozorg.products') }}">{{_('Products')}}</a></li>
+            <li class="last"><a href="{{ url('mozorg.contribute') }}">{{_('Get Involved')}}</a></li>
           </ul>
         </nav>
         {% endblock %}
@@ -55,9 +55,12 @@
       </header>
     {% endblock %}
 
+    {% block mosaic %}{% endblock %}
+
     {% block content %}{% endblock %}
 
     {% block email_form %}
+      {% if LANG.startswith('en') %}
         {% if not request.newsletter_success %}
           {% if request.newsletter_form.errors %}
           <div id="footer-email-errors">
@@ -80,7 +83,8 @@
           {% endif %}
 
         <form class="billboard{% if request.newsletter_form.errors %} has-errors{% endif%}"
-          id="footer-email-form" action="#footer-email-form" method="post">
+          id="footer-email-form" action="#footer-email-form" method="post"
+          onsubmit="dcsMultiTrack('DCS.dcsuri','/signmeup.button','WT.ti','Sign%20Me%20Up','WT.dl','26');">
           <input type="hidden" name="newsletter-footer" value="Y" />
           <input type="hidden" name="newsletter"
             value="{% block email_form_newsletter %}mozilla-and-you{% endblock %}" />
@@ -103,7 +107,7 @@
           </div>
 
           <div class="form-submit">
-            <input type="submit" id="footer_email_submit" value="Sign me up »" class="button-blue">
+            <input type="submit" id="footer_email_submit" value="Sign me up »" class="button">
             <p class="form-details"><small>{{_('We will only send you Mozilla-related information.')}}</small></p>
           </div>
 
@@ -113,9 +117,10 @@
           <h3>{{_('Thank you for signing up!')}}</h3>
         </div>
         {% endif %}
+      {% endif %}
     {% endblock %}
 
-      </div><!-- close #wrapper -->
+    </div><!-- close #wrapper -->
 
     {% block site_footer %}
       <footer id="colophon">
@@ -168,5 +173,6 @@
      {% include "includes/webtrends.html" %}
     {% endblock %}
     
+
   </body>
 </html>

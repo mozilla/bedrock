@@ -1,11 +1,13 @@
 from django.conf.urls.defaults import *
-from util import page, redirect
+from redirects.util import redirect
+from util import page
 import views
 
 urlpatterns = patterns('',
     page("", "mozorg/home.html"),
 
     page('about', 'mozorg/about.html'),
+    page('book', 'mozorg/book.html'),
     page('about/partnerships', 'mozorg/partnerships.html'),
     page('about/partnerships/distribution', 'mozorg/partnerships-distribution.html'),
     page('products', 'mozorg/products.html'),
@@ -26,5 +28,5 @@ urlpatterns = patterns('',
         kwargs={'template': 'mozorg/contribute-page.html',
                 'return_to_form': False},
         name='mozorg.contribute_page'),
-    redirect(r'^projects/$', 'mozorg.products'),
+
 )

@@ -12,6 +12,13 @@ hgroup {
     }
 }
 
+.hide-me {
+    position: absolute;
+    left: -9999em;
+    height: 1px;
+    overflow: hidden;
+}
+
 #primary {
     padding-top: @baseLine * 2;
     padding-bottom: @baseLine * 2;
@@ -39,8 +46,7 @@ hgroup {
 
 
 #sidebar .button,
-#primary .button,
-#primary .button-blue {
+#primary .button {
     height: auto;
     line-height: @baseLine;
     font-size: 18px;

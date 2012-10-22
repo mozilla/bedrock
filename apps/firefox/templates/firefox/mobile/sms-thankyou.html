@@ -1,0 +1,93 @@
+{% extends "firefox/mobile/sms-base.html" %}
+
+{% block content %}
+
+<div id="main-feature">
+  <hgroup>
+    <h1 class="large">{{_('Your link has been sent!')}}</h1>
+    <h2>{{_('Check your phone to start downloading.')}}</h2>
+  </hgroup>
+</div>
+
+<div id="main-content">
+  <div id="sms-sent">
+
+    <div id="video-player" class="mozilla-video-control mozilla-video-shadow">
+      <video
+        controls="controls"
+        poster="{{ media('/img/firefox/mobile/poster-fxandroid.jpg') }}"
+        height="304"
+        width="540">
+        <source src="http://videos-cdn.mozilla.net/serv/marketing/fxforandroid/10-07-12_firefox_for_android_american-640x360 Video Sharing.webm">
+      </video>
+    </div>
+
+    <div class="share">
+      <div class="socialshare" data-type="small-bubbles"></div>
+    </div>
+
+  </div>
+
+  {% if LANG.startswith('en') %}
+    {% if not request.newsletter_success %}
+      {% if request.newsletter_form.errors %}
+      <div id="footer-email-errors">
+        {{ request.newsletter_form.non_field_errors()|safe }}
+
+        <ul class="errorlist">
+          {% if request.newsletter_form.email.errors %}
+          <li>{{_('Please enter a valid email address')}}</li>
+          {% endif %}
+
+          {% if request.newsletter_form.newsletter.errors %}
+          <li>{{ request.newsletter_form.newsletter.errors }}</li>
+          {% endif %}
+
+          {% if request.newsletter_form.privacy.errors %}
+          <li>{{_('You must agree to the privacy policy')}}</li>
+          {% endif %}
+        </ul>
+      </div>
+      {% endif %}
+
+    <form class="{% if request.newsletter_form.errors %} has-errors{% endif%}"
+      id="footer-email-form" action="#footer-email-form" method="post"
+      onsubmit="dcsMultiTrack('DCS.dcsuri','/signmeup.button','WT.ti','Sign%20Me%20Up','WT.dl','26');">
+      <input type="hidden" name="newsletter-footer" value="Y" />
+      <input type="hidden" name="newsletter"
+        value="{% block email_form_newsletter %}mozilla-and-you{% endblock %}" />
+
+      <h3>{% block email_form_title %}{{_('Get Firefox news')}}{% endblock %}</h3>
+
+      <div class="form-contents">
+        <div class="field field-email {% if request.newsletter_form.email.errors %}field-error{% endif %}">
+          {{ field_with_attrs(request.newsletter_form.email, placeholder=_('YOUR EMAIL HERE'))|safe }}
+        </div>
+
+        <div id="form-details">
+          <div class="field field-format">
+            {{ request.newsletter_form.fmt|safe }}
+          </div>
+          <div class="field field-privacy {% if request.newsletter_form.privacy.errors%}field-error{% endif %}">
+            {{ request.newsletter_form.privacy|safe }}
+          </div>
+        </div>
+      </div>
+
+      <div class="form-submit">
+        <input type="submit" id="footer_email_submit" value="Sign me up »" class="button">
+        <p class="form-details"><small>{{_('We will only send you Mozilla-related information.')}}</small></p>
+      </div>
+
+    </form>
+    {% else %}
+    <div id="footer-email-form" class="thank billboard">
+      <h3>{{_('Thank you for signing up!')}}</h3>
+    </div>
+    {% endif %}
+  {% endif %}
+</div>
+
+{{ super() }}
+
+{% endblock %}

@@ -4,7 +4,7 @@
 
 {% block description %}Mozilla Firefox, free web browser, is created by a global non-profit dedicated to putting individuals in control &amp; shaping the future of the web for the public good.{% endblock %}
 
-{% block favicon %}<link rel="shortcut icon" type="image/png" href="{{ MEDIA_URL }}img/firefox/favicon.png">{% endblock %}
+{% block favicon %}<link rel="shortcut icon" href="{{ MEDIA_URL }}img/firefox/favicon.ico">{% endblock %}
 
 {% block page_title_prefix %}Mozilla Firefox Web Browser — {% endblock %}
 
@@ -18,7 +18,7 @@
 
 {% block site_header_nav %}
 <nav role="navigation" id="nav-main">
-  <ul role="menubar">
+  <ul class="has-submenus">
     <li class="first" id="nav-main-features"><a href="{{ url('firefox.fx') }}#desktop" tabindex="0" aria-owns="nav-main-features-submenu" aria-haspopup="true">{{ _('Desktop') }}</a>
       <ul aria-expanded="false" id="nav-main-features-submenu">
         <li class="first"><a href="{{ url('firefox.features') }}" tabindex="-1">{{ _('Features') }}</a></li>
@@ -51,10 +51,10 @@
         <li class="last"><a href="http://www.getpersonas.com/" tabindex="-1">{{ _('Personas') }}</a></li>
       </ul>
       </li>
-      <li id="nav-main-support"><a href="http://support.mozilla.org/" tabindex="0" aria-owns="nav-main-support-submenu" aria-haspopup="true">{{ _('Support') }}</a>
+      <li id="nav-main-support"><a href="https://support.mozilla.org/" tabindex="0" aria-owns="nav-main-support-submenu" aria-haspopup="true">{{ _('Support') }}</a>
       <ul aria-expanded="false" id="nav-main-support-submenu">
-        <li class="first"><a href="http://support.mozilla.org/en-US/kb/" tabindex="-1">{{ _('Desktop Support') }}</a></li>
-        <li class="last"><a href="http://support.mozilla.org/mobile" tabindex="-1">{{ _('Mobile Support') }}</a></li>
+        <li class="first"><a href="https://support.mozilla.org/products/firefox" tabindex="-1">{{ _('Desktop Support') }}</a></li>
+        <li class="last"><a href="https://support.mozilla.org/products/mobile" tabindex="-1">{{ _('Mobile Support') }}</a></li>
       </ul>
     </li>
     <li class="last" id="nav-main-about"><a href="/en-US/firefox/about/" tabindex="0" aria-owns="nav-main-about-submenu" aria-haspopup="true">{{ _('About') }}</a>

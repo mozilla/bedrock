@@ -31,11 +31,11 @@
   </a>
   <ul class="features">
     {# L10n: Small piece of text that appears to the side of the download button on the homepage. #}
-    <li><small>{{_('Proudly<br>non-profit')}}</small></li>
+    <li><small>{{_('Proudly <br> non-profit')}}</small></li>
     {# L10n: Small piece of text that appears to the side of the download button on the homepage. #}
-    <li><small>{{_('Innovating<br>for&nbsp;you')}}</small></li>
+    <li><small>{{_('Innovating <br> for&nbsp;you')}}</small></li>
     {# L10n: Small piece of text that appears to the side of the download button on the homepage. #}
-    <li><small>{{_('Fast,&nbsp;flexible,<br>secure')}}</small></li>
+    <li><small>{{_('Fast,&nbsp;flexible, <br> secure')}}</small></li>
   </ul>
 
   {{ download_button('download','small') }}
@@ -60,29 +60,30 @@
       </a>
     </div>
 
-    <div class="pager-page" id="promo-july2012">
+    <div class="pager-page" id="promo-firefoxos">
       <script>// <![CDATA[
-      document.getElementById('promo-july2012').id = 'page-promo-july2012';
+      document.getElementById('promo-firefoxos').id = 'page-promo-firefoxos';
       // ]]></script>
-      <a href="https://addons.mozilla.org/firefox/collections/mozilla/flags/" class="container">
-        <img src="{{ media('img/home/promo-july2012.jpg') }}" alt="">
+      <a href="https://blog.mozilla.org/blog/2012/07/02/firefox-mobile-os/" class="container">
+        <img src="{{ media('img/home/promo-firefoxos.jpg') }}" alt="">
         <div>
-          <h3>{{_('Customize Firefox <br>with your nation’s flag.')}}</h3>
-          <h4>{{_('Join us in celebrating the global spirit of community.')}}</h4>
-          <p class="go">{{_('Show your support')}}</p>
+          <h3>{{_('Firefox OS is coming')}}</h3>
+          <h4>{{_('We’re bringing the Open Web to mobile devices.')}}</h4>
+          <p class="go">{{_('Learn More')}}</p>
         </div>
       </a>
     </div>
 
-    <div class="pager-page" id="promo-flicks">
+    <div class="pager-page" id="promo-flicksbest">
       <script>
-        document.getElementById('promo-flicks').id = 'page-promo-flicks';
+        document.getElementById('promo-flicksbest').id = 'page-promo-flicksbest';
       </script>
       <a href="https://firefoxflicks.mozilla.org/?WT.mc_id=mofxflicks&amp;WT.mc_ev=click" class="container">
-        <img src="{{ media('img/home/promo-flicks.jpg') }}" alt="">
+        <img src="{{ media('img/home/promo-flicksbest.jpg') }}" alt="">
         <div>
-          <h3>{{_('Congratulations to all the winners of Firefox Flicks!')}}</h3>
-          <p class="go">{{_('Watch the winning videos')}}</p>
+          <h3>{{_('The best of Firefox Flicks')}}</h3>
+          <h4>{{_('See the amazing videos created by our amazing community.')}}</h4>
+          <p class="go">{{_('Watch them now')}}</p>
         </div>
       </a>
     </div>
@@ -104,13 +105,13 @@
     <h3>In the news</h3>
     <ul>
       <li>
-        <h4><a href="http://blog.mozilla.org/blog/2012/07/02/firefox-mobile-os/">Mozilla Gains Global Support For a Firefox Mobile OS</a></h4>
+        <h4><a href="https://blog.mozilla.org/theden/2012/08/14/3-tips-for-using-email-securely/">3 Tips for Using Email Securely</a></h4>
       </li>
       <li>
-        <h4><a href="http://blog.mozilla.org/blog/2012/06/26/mozilla-launches-a-speedy-and-powerful-upgrade-to-mobile-browsing-with-firefox-for-android">Mozilla Launches Upgrade to Mobile Browsing with Firefox for Android</a></h4>
+        <h4><a href="https://blog.mozilla.org/blog/2012/10/09/firefox-debuts-new-developer-toolbar/">Firefox Debuts New Developer Toolbar</a></h4>
       </li>
       <li>
-        <h4><a href="http://blog.mozilla.org/blog/2012/05/22/introducing-mozilla-webmaker/">Introducing “Mozilla Webmaker:” helping the world make the web</a></h4>
+        <h4><a href="https://blog.mozilla.org/blog/2012/09/26/ignite/">Mozilla and National Science Foundation seek developers to build “apps from the future”</a></h4>
       </li>
     </ul>
     <a href="http://blog.mozilla.com/" id="all-news">See all news »</a>
@@ -121,7 +122,7 @@
     <h3>In the know</h3>
      <ul>
       <li>
-        <h4><a href="{{ url('b2g') }}">{{_('Boot to Gecko')}}</a></h4>
+        <h4><a href="{{ url('firefoxos.firefoxos') }}">{{_('Firefox OS')}}</a></h4>
         <p>{{_('See what’s next for the mobile Web.')}}</p>
       </li>
       <li>

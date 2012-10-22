@@ -147,7 +147,7 @@
         padding-bottom: @baseLine / 2;
         background: url(/media/img/home/about-icons.png) 0 0 no-repeat;
         h4 {
-            color: @linkRed;
+            color: @linkBlue;
         }
         p {
             color: @textColorSecondary;
@@ -168,6 +168,7 @@
     a:hover,
     a:focus {
         background-position: -800px 0;
+        h4 { color: #linkRed; }
     }
 }
 
@@ -293,42 +294,41 @@
     }
 }
 
-#promo-android,
-#page-promo-android {
-    h3  {
-        font-size: 64px;
-        margin-bottom: @baseLine / 2;
+#home-promo {
+    .pager-page {
+        h3  {
+            font-size: 64px;
+            margin-bottom: @baseLine / 2;
+        }
+        h4 {
+            text-decoration: none;
+            text-shadow: none;
+            font-size: 28px;
+            float: none;
+            width: 50%;
+            margin-bottom: @baseLine;
+        }
+        div  {
+            width: 60%;
+            padding-left: 30px;
+        }
     }
-    h4 {
-        text-decoration: none;
-        text-shadow: none;
-        font-size: 28px;
-        float: none;
-        width: 50%;
-        margin-bottom: @baseLine;
-    }
-    div  {
-        width: 60%;
-    }
-}
 
-#promo-july2012,
-#page-promo-july2012 {
-    h3  {
-        color: @textColorSecondary;
-        font-size: 42px;
-        margin-bottom: @baseLine / 2;
+    #promo-firefoxos,
+    #page-promo-firefoxos {
+        h4 {
+            width: 70%;
+        }
     }
-    h4 {
-        color: @textColorSecondary;
-        font-size: 24px;
-        margin-bottom: @baseLine;
-    }
-    div  {
-        width: 60%;
-    }
-    p {
-        color: @linkSkyBlue;
+
+    #promo-flicksbest,
+    #page-promo-flicksbest {
+        h3 {
+            font-size: 46px
+        }
+        h4 {
+            width: 70%;
+        }
     }
 }
 
@@ -367,44 +367,37 @@
     }
 
 
-    .pager-page {
-        a {
-            height: 198px;
+    #home-promo {
+        .pager-page {
+            a {
+                height: 198px;
+            }
+            div {
+                width: 60%;
+            }
+            h3 {
+                font-size: 38px;
+                letter-spacing: -1px;
+                padding-top: @baseLine;
+                width: auto;
+            }
+            h4 {
+                font-size: 20px;
+            }
         }
-        div {
-            .span_narrow(4);
-        }
-        h3 {
-            font-size: 26px;
-            letter-spacing: -1px;
-            padding-top: @baseLine;
-        }
-    }
 
-    #promo-android,
-    #page-promo-android {
-        h3  {
-            font-size: 38px;
-            margin-bottom: @baseLine / 2;
-        }
-        h4 {
-            font-size: 20px;
-            
-        }
-    }
-    
-    #promo-july2012,
-    #page-promo-july2012 {
-        h3  {
-            font-size: 38px;
-            margin-bottom: @baseLine / 2;
-        }
-        h4 {
-            font-size: 20px;
-            margin-bottom: @baseLine / 2;
-        }
-        div {
-            width: 70%;
+        #promo-flicksbest,
+        #page-promo-flicksbest {
+            h3  {
+                font-size: 32px;
+            }
+            h4 {
+                font-size: 20px;
+                margin-bottom: @baseLine / 2;
+            }
+            div {
+                width: 70%;
+            }
         }
     }
 
@@ -475,75 +468,63 @@
         }
     }
 
-    .pager-page {
-        a {
-            width: auto;
-            height: auto;
-            img {
-                position: static;
+    #home-promo {
+        .pager-page {
+            a {
+                width: auto;
+                height: auto;
+                img {
+                    position: static;
+                }
+            }
+            h3 {
+                font-size: 32px;
+                letter-spacing: -0.5px;
+                padding-top: @baseLine;
+            }
+            h4 {
+                font-size: 20px;
+                width: auto;
+                margin-bottom: @baseLine / 2;
+            }
+            div {
+                padding-left: @gridGutterWidth;
+                padding-right: @gridGutterWidth;
+                margin: 0;
+                background: #fff;
+                width: auto;
+                float: none;
+            }
+            h4,
+            h3 {
+                margin-bottom: @baseLine / 3;
+                color: @textColorPrimary;
+            }
+            p {
+                color: @textColorPrimary;
             }
         }
-        h3 {
-            font-size: 24px;
-            letter-spacing: -0.5px;
-            padding-top: @baseLine;
-        }
-        div {
-            padding-left: @gridGutterWidth;
-            padding-right: @gridGutterWidth;
-            margin: 0;
-            background: #fff;
-            width: auto;
-            float: none;
-        }
-        h4,
-        h3 {
-            margin-bottom: @baseLine / 3;
-            color: @textColorPrimary;
-        }
-        p {
-            color: @textColorPrimary;
-        }
-    }
 
-    .pager-tabs li a {
-        padding: 12px;
-        font-size: 28px;
-    }
-
-    #promo-android,
-    #page-promo-android {
-        h3  {
-            font-size: 36px;
+        .pager-tabs li a {
+            padding: 12px;
+            font-size: 28px;
         }
-        h4 {
-            font-size: 20px;
-            width: auto;
-            margin-bottom: @baseLine / 2;
+        
+        #promo-firefoxos,
+        #page-promo-firefoxos {
+            h4 {
+                width: auto;
+            }
         }
-        div {
-            width: auto;
-        }
-    }
-    
-    #promo-july2012,
-    #page-promo-july2012 {
-        h3  {
-            font-size: 24px;
-            letter-spacing: -0.5px;
-            padding-top: @baseLine;
-            color: @textColorPrimary;
-        }
-        h4 {
-            font-size: 20px;
-            margin-bottom: @baseLine / 2;
-            color: @textColorPrimary;
-        }
-        p {
-            color: @textColorPrimary;
-        }
-        div {
-            width: auto;
+        #promo-flicksbest,
+        #page-promo-flicksbest {
+            h3  {
+                font-size: 24px;
+            }
+            h4 {
+                font-size: 20px;
+                width: auto;
+            }
         }
     }
 
@@ -570,6 +551,68 @@
             width: @widthMobileLandscape - (@gridGutterWidth * 2);
         }
     }
+
+    #home-promo {
+        .pager-page {
+            a {
+                width: auto;
+                height: auto;
+                img {
+                    position: static;
+                }
+            }
+            h3 {
+                font-size: 36px;
+                letter-spacing: -0.5px;
+                padding-top: @baseLine;
+            }
+            h4 {
+                font-size: 20px;
+                width: auto;
+                margin-bottom: @baseLine / 2;
+            }
+            div {
+                padding-left: @gridGutterWidth;
+                padding-right: @gridGutterWidth;
+                margin: 0;
+                background: #fff;
+                width: auto;
+                float: none;
+            }
+            h4,
+            h3 {
+                margin-bottom: @baseLine / 3;
+                color: @textColorPrimary;
+            }
+            p {
+                color: @textColorPrimary;
+            }
+        }
+
+        .pager-tabs li a {
+            padding: 12px;
+            font-size: 28px;
+        }
+        
+        #promo-firefoxos,
+        #page-promo-firefoxos {
+            h4 {
+                width: auto;
+            }
+        }
+        #promo-flicksbest,
+        #page-promo-flicksbest {
+            h3  {
+                font-size: 32px;
+            }
+            h4 {
+                font-size: 20px;
+                width: auto;
+            }
+        }
+    }
+
+
 
     #home-news,
     #home-promos,

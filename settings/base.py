@@ -44,16 +44,18 @@ TEMPLATE_DIRS = (
     path('locale')
 )
 
-JINJA_CONFIG = {
-    'extensions': [
-        'tower.template.i18n', 'jinja2.ext.do', 'jinja2.ext.with_',
-        'jinja2.ext.loopcontrols', 'l10n_utils.template.l10n_blocks',
-        'l10n_utils.template.lang_blocks'
-    ],
-    # Make None in templates render as ''
-    'finalize': lambda x: x if x is not None else '',
-    'auto_reload': True,
-}
+# has to stay a callable because tower expects that.
+def JINJA_CONFIG():
+    return {
+        'extensions': [
+            'tower.template.i18n', 'jinja2.ext.do', 'jinja2.ext.with_',
+            'jinja2.ext.loopcontrols', 'l10n_utils.template.l10n_blocks',
+            'l10n_utils.template.lang_blocks'
+        ],
+        # Make None in templates render as ''
+        'finalize': lambda x: x if x is not None else '',
+        'auto_reload': True,
+    }
 
 # Bundles is a dictionary of two dictionaries, css and js, which list css files
 # and js files that can be bundled together by the minify app.
@@ -65,11 +67,17 @@ MINIFY_BUNDLES = {
         'mobile_overview': (
             'css/mobile.less',
         ),
-        'b2g': (
-            'css/b2g.less',
+        'firefoxos': (
+            'css/firefoxos.less',
         ),
         'webmaker': (
             'css/webmaker.less',
+        ),
+        'gameon': (
+            'css/gameon.less',
+        ),
+        'grants': (
+            'css/grants.less',
         ),
         'collusion': (
             'css/collusion.less',
@@ -82,6 +90,7 @@ MINIFY_BUNDLES = {
         ),
         'contribute': (
             'css/contribute.less',
+            'css/sandstone/video-resp.less',
         ),
         'contribute-page': (
             'css/contribute-page.less',
@@ -123,6 +132,11 @@ MINIFY_BUNDLES = {
         'mobile_features': (
             'css/firefox/template-resp.less',
             'css/firefox/mobile-features.less',
+        ),
+        'firefox_sms': (
+            'css/firefox/template-resp.less',
+            'css/sandstone/video-resp.less',
+            'css/firefox/mobile-sms.less',
         ),
         'firefox_faq': (
             'css/firefox/template-resp.less',
@@ -170,6 +184,10 @@ MINIFY_BUNDLES = {
             'css/firefox/whatsnew.less',
             'css/firefox/whatsnew-android.less',
         ),
+        'installer_help': (
+            'css/firefox/template-resp.less',
+            'css/firefox/installer-help.less',
+        ),
         'home': (
             'css/home.less',
         ),
@@ -192,6 +210,9 @@ MINIFY_BUNDLES = {
         'privacy': (
             'css/privacy.less',
         ),
+        'fb_privacy': (
+            'css/fb-privacy.less',
+        ),
         'products': (
             'css/products.less',
         ),
@@ -203,6 +224,18 @@ MINIFY_BUNDLES = {
         ),
         'sandstone_guide': (
             'css/sandstone-guide.less',
+        ),
+        'styleguide': (
+            'css/styleguide/styleguide.less',
+            'css/styleguide/websites-sandstone.less',
+            'css/styleguide/identity-mozilla.less',
+            'css/styleguide/identity-firefox.less',
+            'css/styleguide/identity-firefox-family.less',
+            'css/styleguide/identity-firefoxos.less',
+            'css/styleguide/identity-marketplace.less',
+            'css/styleguide/identity-thunderbird.less',
+            'css/styleguide/identity-webmaker.less',
+            'css/styleguide/communications.less',
         ),
         'video': (
             'css/sandstone/video.less',
@@ -275,8 +308,7 @@ MINIFY_BUNDLES = {
         ),
         'firefox_happy': (
             'js/libs/jquery-1.4.4.min.js',
-            'js/libs/jquery-css-transform.js',
-            'js/libs/jquery-animate-css-rotate-scale.js',
+            'js/firefox/happy.js',
         ),
         'firefox_platforms': (
             'js/mozilla-expanders.js',
@@ -286,11 +318,14 @@ MINIFY_BUNDLES = {
         ),
         'firefox_speed': (
             'js/libs/jquery-1.4.4.min.js',
-            'js/libs/jquery-css-transform.js',
-            'js/libs/jquery-animate-css-rotate-scale.js',
+            'js/firefox/speed.js',
         ),
         'firefox_tech': (
             'js/firefox/technology/tech.js',
+        ),
+        'firefox_sms': (
+            'js/firefox/sms.js',
+            'js/libs/socialshare.min.js',
         ),
         'geolocation': (
             'js/libs/jquery-1.4.4.min.js',
@@ -300,15 +335,15 @@ MINIFY_BUNDLES = {
             'js/footer-email-form.js',
         ),
         'marketplace': (
-            'js/mozilla-video-tools.js',
-        ),
-        'marketplace-partners': (
+            'js/nav-main-resp.js',
             'js/mozilla-pager.js',
-            'js/mozilla-video-tools.js',
-            'js/marketplace/partners.js',
+            'js/libs/jquery-box2dweb/Box2dWeb-2.1.a.3.js',
+            'js/libs/jquery-box2dweb/jQbox2D.Alpha.js',
+            'js/marketplace/marketplace.js',
         ),
         'mozorg-resp': (
             'js/libs/jquery-1.7.1.min.js',
+            'js/global.js',
             'js/nav-main-resp.js',
             'js/footer-email-form.js',
         ),
@@ -318,19 +353,26 @@ MINIFY_BUNDLES = {
         'partnerships': (
             'js/libs/jquery.validate.js',
             'js/partnerships.js',
+            'js/mozilla-input-placeholder.js',
+        ),
+        'styleguide': (
+            'js/styleguide.js',
         ),
         'video': (
             'js/mozilla-video-tools.js',
         ),
         'firefox_devices': (
             'js/libs/jquery-1.4.4.min.js',
-            'js/libs/jquery-css-transform.js',
-            'js/libs/jquery-animate-css-rotate-scale.js',
             'js/global.js',
             'js/nav-main.js',
             'js/libs/jquery.cycle.all.js',
             'js/libs/jquery.ba-hashchange.min.js',
             'js/firefox/devices.js'
+        ),
+        'mosaic': (
+            'js/libs/modernizr.custom.26887.js',
+            'js/libs/jquery.transit.min.js',
+            'js/libs/jquery.gridrotator.js',
         ),
     }
 }
@@ -398,19 +440,24 @@ INSTALLED_APPS = (
     'product_details',
 
     # Local apps
-    'b2g',
+    'firefoxos',
     'webmaker',
+    'foundation',
+    'gameon',
+    'grants',
     'collusion',
     'firefox',
     'marketplace',
     'mozorg',
     'persona',
     'research',
+    'styleguide',
     'privacy',
+    'redirects',
 
     # libs
     'l10n_utils',
-    'captcha'
+    'captcha',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS += (
@@ -452,13 +499,16 @@ LOCALES_WITH_TRANSITION = ['en-US', 'af', 'ar', 'ast', 'be', 'bg',
 # reCAPTCHA keys
 RECAPTCHA_PUBLIC_KEY = ''
 RECAPTCHA_PRIVATE_KEY = ''
+RECAPTCHA_USE_SSL = True
 
 TEST_RUNNER = 'test_utils.runner.NoDBTestSuiterunner'
 
 
 def lazy_email_backend():
     from django.conf import settings
-    return ('django.core.mail.backends.console.EmailBackend' if settings.DEV
+    return ('django.core.mail.backends.console.EmailBackend' if settings.DEBUG
             else 'django.core.mail.backends.smtp.EmailBackend')
 
 EMAIL_BACKEND = lazy(lazy_email_backend, str)()
+
+AURORA_STUB_INSTALLER = False

@@ -1,0 +1,39 @@
+{% extends "base-resp.html" %}
+
+{% block body_class %}sand{% endblock %}
+
+{% block extrahead %}
+  {{ css('firefoxos') }}
+{% endblock %}
+
+{% block site_js %}
+  {{ js('mozorg-resp') }}
+{% endblock %}
+
+{% block site_header %}
+  <header id="masthead">
+    <a href="http://www.mozilla.org/" id="tabzilla">{{ _('Mozilla') }}</a>
+
+    {% block site_header_nav %}
+    <nav id="nav-main" role="menubar">
+      <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
+      <ul role="menu" id="nav-main-menu">
+      {# Without a FAQ page we only have a single FXOS page so the Home link isn't useful. Hide it for now.     
+        <li role="menuitem" class="first"><a href="{{ url('firefoxos') }}">{{_('Home')}}</a></li> 
+      #}
+        <li role="menuitem" class="first"><a href="{{ url('marketplace.marketplace') }}">{{_('Marketplace')}}</a></li>
+        <li role="menuitem" class="last"><a href="https://developer.mozilla.org/apps">{{_('Developers')}}</a></li>
+      {# Hide this link until we get FAQs updated  
+        <li role="menuitem" class="last"><a href="{{ url('firefoxos.faq') }}">{{_('FAQ')}}</a></li> 
+      #}
+      </ul>
+    </nav>
+    {% endblock %}
+  
+  </header>
+{% endblock %}
+
+
+{% block content %}{% endblock %}
+
+{% block email_form %}{% endblock %}
