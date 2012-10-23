@@ -339,6 +339,10 @@ MINIFY_BUNDLES = {
             'js/mozilla-pager.js',
             'js/marketplace/marketplace.js',
         ),
+        'box2d': (
+            'js/libs/jquery-box2dweb/Box2dWeb-2.1.a.3.js',
+            'js/libs/jquery-box2dweb/jQbox2D.Alpha.js',
+        ),
         'mozorg-resp': (
             'js/libs/jquery-1.7.1.min.js',
             'js/global.js',
