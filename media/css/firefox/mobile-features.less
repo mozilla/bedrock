@@ -1,5 +1,4 @@
-@import "../sandstone/variables-resp.less";
-@import "../sandstone/mixins-resp.less";
+@import "../sandstone/lib.less";
 
 #main-feature {
     hgroup {
@@ -27,24 +26,24 @@
     margin-bottom: @baseLine;
     @shadow: 0 1px 1px 0 rgba(0,0,0,.1);
     .box-shadow(@shadow);
-    
+
     .col1 {
       .span(4);
     }
-    
+
     .col2 {
       .span(4);
       float: right;
     }
-    
+
     h2 {
       font-size: 46px;
     }
-    
+
     .icon {
         padding-left: @gridColumnWidth;
     }
-    
+
     .icon .img {
         width: @gridColumnWidth;
         height: 60px;
@@ -53,7 +52,7 @@
         background-image: url(/media/img/firefox/mobile/feature-icons.png);
         background-repeat: no-repeat;
     }
-    
+
 }
 
 #fast,
@@ -71,11 +70,11 @@
 }
 
 #smart .sync .img {
-    background-position: 0 -120px;  
+    background-position: 0 -120px;
 }
 
 #smart .addons .img {
-    background-position: 0 -180px;  
+    background-position: 0 -180px;
 }
 
 #get a {
@@ -105,17 +104,17 @@ a.more:after,
             }
         }
     }
-    
+
     #main-content {
         .col1 {
             .span_narrow(4);
         }
-        
+
         .col2 {
             .span_narrow(4);
             float: right;
         }
-        
+
     }
 
 }
@@ -141,11 +140,11 @@ a.more:after,
             float: none;
         }
     }
-    
+
     #main-content {
         background-image: none;
         padding: @baseLine (@gridGutterWidth / 2);
-        
+
         .col1,
         .col2 {
             width: auto;
@@ -155,7 +154,7 @@ a.more:after,
             font-size: 32px;
         }
     }
-    
+
     #safe {
         border-bottom: 1px dotted @borderColor;
         margin-bottom: @baseLine;
