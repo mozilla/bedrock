@@ -1,8 +1,7 @@
 jQuery(document).ready(function ()
 {
 
-    if (!$.browser.msie || $.browser.version >= 9) {
-        // don't run the box2d animation in IE6,7,8
+    if ($.fn.jQb2) {
 
         var $world = jQuery('#apps-physics').jQb2({
             gravity: [0, 16],
