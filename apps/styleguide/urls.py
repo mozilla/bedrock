@@ -44,7 +44,7 @@ hierarchy = PageRoot('Home', children=(
             PageNode('Colors', path='colors', template='styleguide/websites/sandstone-colors.html'),
             PageNode('Forms', path='forms', template='styleguide/websites/sandstone-forms.html'),
             PageNode('Grids', path='grids', template='styleguide/websites/sandstone-grids.html'),
-            PageNode('Tables', path='tables', template='styleguide/websites/sandstone-tables.html'),
+            PageNode('Tables & Lists', path='tables', template='styleguide/websites/sandstone-tables.html'),
             PageNode('Tabzilla', path='tabzilla', template='styleguide/websites/sandstone-tabzilla.html'),
             PageNode('Typefaces', path='typefaces', template='styleguide/websites/sandstone-typefaces.html'),
             PageNode('Examples', path='examples', template='styleguide/websites/sandstone-examples.html'),
