@@ -1,3 +1,4 @@
+{% from "macros.html" import email_newsletter_form with context %}
 {% set_lang_files "main" %}
 <!doctype html>
 {# Note the "windows" class, without javascript platform-specific
@@ -56,62 +57,7 @@
 
     {% block content %}{% endblock %}
 
-    {% block email_form %}
-      {% if LANG.startswith('en') %}
-        {% if not request.newsletter_success %}
-          {% if request.newsletter_form.errors %}
-          <div id="footer-email-errors">
-            {{ request.newsletter_form.non_field_errors()|safe }}
-
-            <ul class="errorlist">
-              {% if request.newsletter_form.email.errors %}
-              <li>{{_('Please enter a valid email address')}}</li>
-              {% endif %}
-
-              {% if request.newsletter_form.privacy.errors %}
-              <li>{{_('You must agree to the privacy policy')}}</li>
-              {% endif %}
-            </ul>
-          </div>
-          {% endif %}
-
-        <form class="billboard{% if request.newsletter_form.errors %} has-errors{% endif%}"
-          id="footer-email-form" action="#footer-email-form" method="post"
-          onsubmit="dcsMultiTrack('DCS.dcsuri','/signmeup.button','WT.ti','Sign%20Me%20Up','WT.dl','26');">
-          <input type="hidden" name="newsletter-footer" value="Y" />
-          <input type="hidden" name="newsletter"
-            value="{% block email_form_newsletter %}mozilla-and-you{% endblock %}" />
-
-          <h3>{% block email_form_title %}{{_('Get Firefox news')}}{% endblock %}</h3>
-
-          <div class="form-contents">
-            <div class="field field-email {% if request.newsletter_form.email.errors %}field-error{% endif %}">
-              {{ field_with_attrs(request.newsletter_form.email, placeholder=_('YOUR EMAIL HERE'))|safe }}
-            </div>
-
-            <div id="form-details">
-              <div class="field field-format">
-                {{ request.newsletter_form.fmt|safe }}
-              </div>
-              <div class="field field-privacy {% if request.newsletter_form.privacy.errors%}field-error{% endif %}">
-                {{ request.newsletter_form.privacy|safe }}
-              </div>
-            </div>
-          </div>
-
-          <div class="form-submit">
-            <input type="submit" id="footer_email_submit" value="Sign me up »" class="button">
-            <p class="form-details"><small>{{_('We will only send you Mozilla-related information.')}}</small></p>
-          </div>
-
-        </form>
-        {% else %}
-        <div id="footer-email-form" class="thank billboard">
-          <h3>{{_('Thank you for signing up!')}}</h3>
-        </div>
-        {% endif %}
-      {% endif %}
-    {% endblock %}
+    {% block email_form %}{{ email_newsletter_form() }}{% endblock %}
     </div><!-- close #wrapper -->
 
     {% block site_footer %}

@@ -4,7 +4,7 @@ import basket
 import l10n_utils
 
 from mozorg import email_contribute
-from mozorg.forms import ContributeForm, NewsletterCountryForm
+from mozorg.forms import ContributeForm, NewsletterForm
 
 
 @csrf_exempt
@@ -35,9 +35,9 @@ def contribute(request, template, return_to_form):
         form = ContributeForm()
 
     if has_newsletter_form:
-        newsletter_form = NewsletterCountryForm(locale,
-                                                request.POST,
-                                                prefix='newsletter')
+        newsletter_form = NewsletterForm(locale,
+                                         request.POST,
+                                         prefix='newsletter')
         if newsletter_form.is_valid():
             data = newsletter_form.cleaned_data
 
@@ -54,7 +54,7 @@ def contribute(request, template, return_to_form):
                 )
                 newsletter_form.errors['__all__'] = msg
     else:
-        newsletter_form = NewsletterCountryForm(locale, prefix='newsletter')
+        newsletter_form = NewsletterForm(locale, prefix='newsletter')
 
     return l10n_utils.render(request,
                              template,
