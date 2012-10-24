@@ -174,5 +174,9 @@
 {% block email_form_newsletter %}app-dev{% endblock %}
 
 {% block js %}
+  <!--[if gte IE 9]><!-->
+  {{ js('box2d') }}
+  <!--<![endif]-->
+
   {{ js('marketplace') }}
 {% endblock %}
