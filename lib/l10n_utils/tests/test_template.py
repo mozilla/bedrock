@@ -1,9 +1,9 @@
 import os
-from unittest import skip
 
 from jingo import env
 from jinja2 import FileSystemLoader
 from mock import patch
+from nose.plugins.skip import SkipTest
 from nose.tools import eq_
 
 from mozorg.tests import TestCase
@@ -26,13 +26,13 @@ class TestTemplateLangFiles(TestCase):
         eq_(request.langfiles, ['dude', 'walter',
                                 'main', 'base', 'newsletter'])
 
-    @skip
     @patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
     def test_added_lang_files_inheritance(self):
         """
         Lang files specified in the template should be added to the defaults
         and any specified in parent templates.
         """
+        raise SkipTest
         # TODO fix this. it is broken. hence the skip.
         #      does not pick up the files from the parent.
         #      captured in bug 797984.
