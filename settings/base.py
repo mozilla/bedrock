@@ -233,6 +233,7 @@ MINIFY_BUNDLES = {
             'css/styleguide/identity-thunderbird.less',
             'css/styleguide/identity-webmaker.less',
             'css/styleguide/communications.less',
+            'css/styleguide/products-firefox-os.less',
         ),
         'video': (
             'css/sandstone/video.less',
