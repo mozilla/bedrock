@@ -73,8 +73,8 @@
                 <h3 id="support">{{_('Helping Users')}}</h3>
                 <div class="content">
                   <p>
-{% trans fx_support_url='https://support.mozilla.org/kb/superheroes-wanted', tb_support_url='http://support.mozillamessaging.com/kb/superheroes-wanted', army_url='https://support.mozilla.org/army-of-awesome' %}
-Interested in helping others get the most out of using Firefox and other Mozilla projects? Our support process relies on enthusiastic contributors like you. Find out more about <a href="{{ fx_support_url }}">supporting Firefox</a> and <a href="{{ tb_support_url }}">Thunderbird</a> users. You can also join our <a href="{{ army_url }}">Army of Awesome</a> by helping users on Twitter.
+{% trans fx_support_url='https://support.mozilla.org/kb/superheroes-wanted', tb_support_url='http://support.mozillamessaging.com/kb/superheroes-wanted' %}
+Our support process relies on enthusiastic contributors like you to help others get the most out of Mozilla products. Find out more about <a href="{{ fx_support_url }}">how to help Firefox users</a> and <a href="{{ tb_support_url }}">how to help Thunderbird users</a>.
 {% endtrans %}
                   </p>
                 </div>
@@ -95,8 +95,8 @@ Quality assurance testing is one of the easiest ways to get started with Mozilla
                 <h3 id="coding">{{_('Coding')}}</h3>
                 <div class="content">
                   <p>
-{% trans dev_intro_url='https://developer.mozilla.org/en/Introduction', irc_url='http://irc.mozilla.org', webdev_blog='http://blog.mozilla.com/webdev/get-involved/' %}
-<a href="{{ dev_intro_url }}">Developers can help</a> Mozilla by adding new features, making our technology smaller and faster and making development easier for others. You can find many developers on <a href="{{ irc_url }}">IRC</a> so stop by and ask questions to learn more.  Our web sites are <a href="{{ webdev_blog }}">open for web ninjas</a> to hack on too.
+{% trans dev_intro_url='https://developer.mozilla.org/en/Introduction', what_url='http://www.whatcanidoformozilla.org/' %}
+<a href="{{ dev_intro_url }}">Developers can help</a> Mozilla by adding new features, making our technology smaller and faster and making development easier for others.  Tell us <a href="{{ what_url }}">your favorite programming language</a> and we'll find the project for you.
 {% endtrans %}
                   </p>
                 </div>
@@ -124,12 +124,23 @@ Get involved with Mozilla by making Firefox, Thunderbird and other projects <a h
                 </div>
               </li>
               <li class="row">
+                <img src="{{ media('/img/contribute/web.jpg') }}" alt="" />
+                <h3 id="l10n">{{_('Web Development') }}</h3>
+                <div class="content">
+                  <p>
+{% trans webdev_url='https://wiki.mozilla.org/Webdev/GetInvolved', gaia_url='https://wiki.mozilla.org/Gaia/Hacking' %}
+Our web sites are open for web developers to hack on.  <a href="{{ webdev_url }}">Find a web site project</a> to get started on.  Your web skills can also be used to <a href="{{ gaia_url }}">help us build our new Firefox OS</a>.
+{% endtrans %}
+                  </p>
+                </div>
+              </li>
+              <li class="row">
                 <img src="{{ media('/img/contribute/addons.png') }}" alt="" />
                 <h3 id="addons">{{_('Add-ons') }}</h3>
                 <div class="content">
                   <p>
 {% trans addons_url='https://addons.mozilla.org/developers/docs/getting-started', addons_wiki='https://wiki.mozilla.org/AMO:Editors/Applying' %}
-Firefox and other Mozilla-based applications have a powerful extension system that allow you to make small tweaks or make major additions to your programs.  If you’re new to this technology, learn how to <a href="{{ addons_url }}">build an add-on</a>.  For experienced developers, find out how to <a href="{{ addons_wiki }}">become an AMO editor</a>.
+Mozilla products have a powerful extension system that allows you to make small tweaks or major additions.  Learn more about how to <a href="{{ addons_url }}">build an add-on</a>.  For experienced developers, find out how to <a href="{{ addons_wiki }}">become an AMO editor</a>.
 {% endtrans %}
                   </p>
                 </div>
@@ -139,15 +150,15 @@ Firefox and other Mozilla-based applications have a powerful extension system th
                 <h3 id="design">{{_('Visual Design') }}</h3>
                 <div class="content">
                   <p>
-{% trans creative_url='http://creative.mozilla.org/', zazzle_url='http://www.zazzle.com/mozilla/gifts?cg=196666516716132423' %}
-We believe in the power of well-made and widely distributed art, and want to make it possible for artists to cover the web and people with designs inspired by Mozilla.  Take part in a <a href="{{ creative_url }}">Creative Collective challenge</a> or <a href="{{ zazzle_url }}">add a t-shirt design</a> to our Community Store.
+{% trans creative_url='https://blog.mozilla.org/creative/' %}
+We want to make it possible for artists to cover the web and people with designs inspired by Mozilla.   Check out the <a href="{{ creative_url }}">Creative team blog</a> for more information about how to take part.
 {% endtrans %}
                   </p>
                 </div>
               </li>
               <li class="row">
                 <img src="{{ media('/img/contribute/mdn.png') }}" alt="" />
-                <h3 id="docs">{{_('Developer Documentation') }}</h3>
+                <h3 id="docs">{{_('Documentation and Writing') }}</h3>
                 <div class="content">
                   <p>
 {% trans dev_url='https://developer.mozilla.org/docs/Project:How_to_Help' %}
@@ -157,34 +168,12 @@ The Mozilla Developer Network is the hub for information about Mozilla technolog
                 </div>
               </li>
               <li class="row">
-                <img src="{{ media('/img/contribute/accessibility.png') }}" alt="" />
-                <h3 id="access">{{_('Accessibility') }}</h3>
-                <div class="content">
-                  <p>
-{% trans access_url='http://accessfirefox.org/', access_wiki='https://wiki.mozilla.org/Accessibility/Contribute' %}
-                  Accessibility is about making things work for everyone.  Help <a href="{{ access_url }}">create tools and resources for Firefox end users with disabilities</a> and help <a href="{{ access_wiki }}">make web content available to non visual agents</a> such as screen readers.
-{% endtrans %}
-                  </p>
-                </div>
-              </li>
-              <li class="row">
-                <img src="{{ media('/img/contribute/testpilot.png') }}" alt="" />
-                <h3 id="research">{{_('User Research') }}</h3>
-                <div class="content">
-                  <p>
-{% trans survey_url='http://www.surveygizmo.com/s3/575418/General-Recruiting-Screener', test_email='mailto:diane+contribute@mozilla.com', test_pilot='https://testpilot.mozillalabs.com/testcases/submit' %}
-Be part of the research team&mdash;whether you want to be a <a href="{{ survey_url }}">participant in an upcoming study</a>, <a href="{{ test_email }}">conduct usability tests</a> on your own or <a href="{{ test_pilot }}">analyze Test Pilot data</a>&mdash;we’d love to have you join us!
-{% endtrans %}
-                  </p>
-                </div>
-              </li>
-              <li class="row">
                 <img src="{{ media('/img/contribute/webmaker.png') }}" alt="" />
                 <h3 id="education">{{_('Education') }}</h3>
                 <div class="content">
                   <p>
-{% trans moz_webmaker='https://webmaker.org/', webmaker='https://webmaker.org/events/' %}
-Help build a generation of webmakers&mdash;moving people from using the web making the web&mdash;by teaching others how to code and how the web works. <a href="{{ moz_webmaker }} ">Explore what the Mozilla Webmaker project is all about</a> or get started teaching others by <a href="{{ webmaker }}">setting up an event in your community today</a>.
+{% trans moz_webmaker=url('webmaker.index'), webmaker='http://webmaker.org' %}
+Help build a generation of webmakers by teaching others how the web works. <a href="{{ moz_webmaker }} ">Explore what the Mozilla Webmaker project is all about</a> or get started teaching others by <a href="{{ webmaker }}">setting up an event in your community today</a>.
 {% endtrans %}
                   </p>
                 </div>
