@@ -5,7 +5,10 @@
   community-overview
 {% endblock %}
 
-{% block content_title %}Community sites{% endblock%}
+{% set page_title = 'Community sites' %}
+{% block page_title_prefix %}{{ page_title}} — {% endblock %}
+{% block content_title %}{{ page_title}}{% endblock%}
+
 {% block content_area %}
 <section id="intro">
 <h2>Overview</h2>

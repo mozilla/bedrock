@@ -5,7 +5,10 @@
   sandstone-typefaces
 {% endblock %}
 
-{% block content_title %}Sandstone typefaces{% endblock%}
+{% set page_title = 'Sandstone typefaces' %}
+{% block page_title_prefix %}{{ page_title}} — {% endblock %}
+{% block content_title %}{{ page_title}}{% endblock%}
+
 {% block content_area %}
 <section id="intro">
   <h2>Open Sans @font-face</h2>

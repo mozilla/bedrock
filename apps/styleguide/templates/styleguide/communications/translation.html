@@ -5,7 +5,10 @@
   communications-translation
 {% endblock %}
 
-{% block content_title %}Translation{% endblock%}
+{% set page_title = 'Translation' %}
+{% block page_title_prefix %}{{ page_title}} — {% endblock %}
+{% block content_title %}{{ page_title}}{% endblock%}
+
 {% block content_area %}
 
 <section id="locales">

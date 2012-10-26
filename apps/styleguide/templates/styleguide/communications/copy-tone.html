@@ -5,7 +5,10 @@
   communications-copy-tone
 {% endblock %}
 
-{% block content_title %}Copy tone{% endblock%}
+{% set page_title = 'Copy tone' %}
+{% block page_title_prefix %}{{ page_title}} — {% endblock %}
+{% block content_title %}{{ page_title}}{% endblock%}
+
 {% block content_area %}
 
 <div class="intro">

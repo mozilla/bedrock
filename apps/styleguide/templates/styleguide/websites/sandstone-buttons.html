@@ -5,7 +5,10 @@
   sandstone-buttons
 {% endblock %}
 
-{% block content_title %}Sandstone buttons &amp icons{% endblock%}
+{% set page_title = 'Sandstone buttons & icons' %}
+{% block page_title_prefix %}{{ page_title}} — {% endblock %}
+{% block content_title %}{{ page_title}}{% endblock%}
+
 {% block content_area %}
 
 <section id="buttons">

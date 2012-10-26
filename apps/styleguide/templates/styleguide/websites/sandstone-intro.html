@@ -5,7 +5,10 @@
   sandstone-intro
 {% endblock %}
 
-{% block content_title %}Sandstone introduction{% endblock%}
+{% set page_title = 'Sandstone introduction' %}
+{% block page_title_prefix %}{{ page_title}} — {% endblock %}
+{% block content_title %}{{ page_title}}{% endblock%}
+
 {% block content_area %}
 <section id="intro">
 <h2>What is Sandstone?</h2>

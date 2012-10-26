@@ -5,7 +5,10 @@
   communications-copy-rules
 {% endblock %}
 
-{% block content_title %}Copy rules{% endblock%}
+{% set page_title = 'Copy rules' %}
+{% block page_title_prefix %}{{ page_title}} — {% endblock %}
+{% block content_title %}{{ page_title}}{% endblock%}
+
 {% block content_area %}
 
 <section id="az">

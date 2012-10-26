@@ -5,7 +5,10 @@
   sandstone-colors
 {% endblock %}
 
-{% block content_title %}Sandstone backgrounds &amp color{% endblock%}
+{% set page_title = 'Sandstone backgrounds & color' %}
+{% block page_title_prefix %}{{ page_title}} — {% endblock %}
+{% block content_title %}{{ page_title}}{% endblock%}
+
 {% block content_area %}
 
 <section id="backgrounds">

@@ -5,7 +5,10 @@
   communications-video
 {% endblock %}
 
-{% block content_title %}Video{% endblock%}
+{% set page_title = 'Video' %}
+{% block page_title_prefix %}{{ page_title}} — {% endblock %}
+{% block content_title %}{{ page_title}}{% endblock%}
+
 {% block content_area %}
 
 <section id="intro">
