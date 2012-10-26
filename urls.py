@@ -26,6 +26,7 @@ urlpatterns = patterns('',
     (r'', include('mozorg.urls')),
     (r'', include('privacy.urls')),
     (r'', include('research.urls')),
+    (r'', include('foundation.urls')),
 
     # L10n example.
     (r'^l10n_example/', include('l10n_example.urls')),

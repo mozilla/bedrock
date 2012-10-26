@@ -1,0 +1,689 @@
+@import "../sandstone/lib.less";
+
+@mozred:    #ba2725;
+@blue:      #2293d1;
+@orange:    #e56125;
+@red:       #e93d28;
+
+
+html, body {
+  height: 100%;
+}
+
+#wrapper {
+  width: 820px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-style: italic;
+}
+
+dl.faq dt {
+  color: @red;
+  .open-sans;
+  font-weight: bold;
+}
+
+#masthead {
+  width: auto;
+  padding: 45px 20px 20px;
+  position: relative;
+  h1 {
+    font-style: normal;
+    font-size: 72px;
+    letter-spacing: -2px;
+    margin: (@baseLine / 2) 0;
+  }
+  #tabzilla {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+/* Navigation ***/
+#page-nav {
+  background: @mozred;
+  margin: 0 0 30px;
+  text-transform: uppercase;
+  text-shadow: 0 1px 0 rgba(0,0,0,.3);
+  box-shadow: 0 1px 3px rgba(0,0,0,.2);
+  .clearfix;
+  ul {
+    list-style: none;
+    margin: 0;
+  }
+  li {
+    float: left;
+    margin: 0;
+  }
+  a {
+    display: block;
+    color: #fff;
+    background: #ba2725;
+    padding: 3px 10px;
+    margin: 0;
+  }
+  .current a {
+    background: #fff;
+    text-shadow: none;
+  }
+}
+
+#page-nav.fixed {
+  width: 820px;
+  position: fixed;
+  top: 0;
+  z-index: 80;
+}
+
+#page-nav.welcome { background: @mozred; }
+#nav-welcome.current a { color: @mozred; }
+
+#page-nav.mobilizied { background: @blue; }
+#nav-mobilized.current a,
+#mobilized h2,
+#mobilized h3 { color: @blue; }
+
+#page-nav.action { background: #000; }
+#nav-action.current a,
+#action h2,
+#action h3 { color: #000; }
+
+#page-nav.community { background: @orange; }
+#nav-community.current a,
+#community h2,
+#community h3 { color: @orange; }
+
+#page-nav.sustainability { background: @red; }
+#nav-sustainability.current a { color: @red; }
+
+/* Full-window overlays *********/
+body.noscroll {
+  overflow: hidden;
+}
+
+#fill {
+  background: #444 url(/media/img/foundation/annualreport/2011/grain.png);
+  background: rgba(0,0,0,.9) url(/media/img/foundation/annualreport/2011/grain.png);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
+  overflow: auto;
+  #inner {
+    width: 80%;
+    margin: 60px auto;
+    color: #f3f3f3;
+    text-shadow: 0 1px 1px rgba(0,0,0,.95);
+    h1, h2, h3, h4, h5, h6 {
+      color: #fefefe;
+      text-shadow: 0 1px 1px rgba(0,0,0,.95);
+    }
+    .overlay {
+      background: transparent none;
+      color: #cecece;
+      padding: 0;
+      position: static;
+    }
+    a:link,
+    a:visited {
+      color: #cff;
+    }
+    a:hover,
+    a:focus,
+    a:active {
+      color: #fff;
+    }
+    video {
+      width: 640px;
+      max-width: 90%;
+      height: auto;
+      display: block;
+      margin: 90px auto;
+    }
+    video:focus {
+      outline: 1px solid #ccc;
+    }
+  }
+}
+
+#fill #done {
+  display: inline;
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  background: #000;
+  border: 1px solid #ccc;
+  color: #ccc;
+  .open-sans;
+  font-size: 1em;
+  text-transform: uppercase;
+  padding: .2em 10px;
+  cursor: pointer;
+  &:hover,
+  &:focus {
+    background: #333;
+    color: #eee;
+    border-color: #eee;
+  }
+}
+
+/* Hide buttons when we don't need them */
+.read,
+#inner .read,
+#done {
+  display: none;
+}
+
+
+/* Text block overlays *********/
+.section {
+  .clearfix;
+}
+
+.block {
+  margin: 0 0 20px;
+  .clearfix;
+}
+
+.overlay-wrap {
+  position: relative;
+  z-index: auto;
+}
+
+.js .overlay-wrap .overlay {
+  .hidden;
+  padding: 40px;
+  position: absolute;
+  z-index: 8;
+  top: 0;
+  color: #f7f4ec;
+  a:link,
+  a:visited {
+    color: #aaf0ff;
+  }
+  a:hover,
+  a:focus,
+  a:active {
+    color: #fff;
+  }
+}
+
+.js .overlay p:last-child {
+  margin-bottom: 0;
+}
+
+.overlay-wrap .read {
+  display: inline;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 0;
+  padding: .2em 20px;
+  .open-sans;
+  font-size: 1em;
+  text-transform: uppercase;
+  background: #ccc;
+  background: rgba(255,255,255,.65);
+  cursor: pointer;
+  &:hover,
+  &:focus {
+    background: #ddd;
+    background: rgba(255,255,255,.75);
+  }
+}
+.read:after {
+  content: " »";
+  font-size: 1.2em;
+  line-height: 1;
+}
+.hover .read {
+  z-index: 10;
+}
+
+/* @Welcome *********/
+#welcome .video {
+  float: right;
+  width: 380px;
+  margin: 0 0 20px 20px;
+}
+
+
+/* Mobilized *********/
+#mobilized .section-title {
+  .hidden;
+}
+
+/* Intro ***/
+.js .mob-intro .overlay {
+  background: rgb(51,30,83);
+  background: rgba(51,30,83,.95);
+}
+
+.mob-topics {
+  .open-sans-light;
+  background: #000;
+  color: #fff;
+  font-size: 24px;
+  padding: 40px 20px;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  clear: both;
+  li {
+    display: inline-block;
+    width: 28%;
+    margin: 0 1%;
+    padding-top: 160px;
+    img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  
+  #topic-firefox img {
+    margin-top: -146px;    
+  }
+  
+  #topic-firefoxos img {
+    margin-top: -160px;    
+  }
+  
+  #topic-webmaker img {
+    margin-top: -150px;    
+  }
+}
+
+#fill .mob-intro {
+  padding-right: 420px;
+  .mob-topics {
+    float: right;
+    width: 330px;
+    margin-right: -420px;
+    font-size: 16px;
+    box-shadow: 0 0 4px rgba(255,255,255,.1);
+  }
+}
+
+/* Firefox OS ***/
+.mob-firefoxos {
+  .pull {
+    .open-sans-light;
+    background: #004980 url(/media/img/foundation/annualreport/2011/mob-firefoxos.jpg) center center no-repeat;
+    background-size: cover;
+    padding: 100px 90px;
+    font-size: 38px;
+    font-style: italic;
+    text-align: center;
+    color: #f7f4ec;
+  }
+}
+
+.js .mob-firefoxos .overlay {
+    background: rgb(4,30,90);
+    background: rgba(4,30,90,.95);
+}
+
+#fill .mob-firefoxos {
+  padding-right: 420px;
+  .pull {
+    float: right;
+    width: 330px;
+    padding: 40px 20px;
+    margin-right: -420px;
+    font-size: 20px;
+    box-shadow: 0 0 2px rgba(255,255,255,.1);
+    background-size: cover;
+    box-shadow: 0 0 2px rgba(255,255,255,.1);
+  }
+}
+
+/* Firefox for Android ***/
+.mob-fxandroid img {
+  float: left;
+}
+
+.mob-fxandroid .overlay-wrap {
+  width: 380px;
+  min-height: 320px;
+  float: right;
+  background: #85c0da url(/media/img/foundation/annualreport/2011/mob-fxandroid.jpg) no-repeat;
+  h4 {
+    margin: 85px 20px 0 215px;
+    font-size: 42px;
+    font-style: normal;
+    color: #f7f4ec;
+    text-shadow: none;
+  } 
+}
+
+.js .mob-fxandroid .overlay {
+  background: rgb(0,84,159);
+  background: rgba(0,84,159,.95);
+}
+
+#fill .mob-fxandroid {
+  padding-right: 420px;
+  .overlay-wrap {
+    background: transparent none;
+    width: auto;
+  }
+  img {
+    float: right;
+    margin-right: -420px;
+    margin-top: -60px;
+  }
+  h4 {
+    display: none;
+  }
+}
+
+/* Firefox Desktop ***/
+.mob-fxdesktop .overlay-wrap {
+  background: #424d52 url(/media/img/foundation/annualreport/2011/mob-fxdesktop.jpg) center center no-repeat;
+  min-height: 300px;
+  .pull {
+    padding: 120px 100px;
+    text-align: center;
+    .open-sans-light;
+    font-size: 42px;
+    font-style: italic;
+    color: #f7f4ec;
+    text-shadow: none;
+  }
+}
+
+.js .mob-fxdesktop .overlay {
+  background: rgb(37,52,55);
+  background: rgba(37,52,55,.95);
+}
+
+#fill .mob-fxdesktop {
+  padding-right: 420px;
+  .pull {
+    width: 280px;
+    padding: 60px;
+    float: right;
+    margin-right: -420px;
+    font-size: 24px;
+    background: #424d52 url(/media/img/foundation/annualreport/2011/mob-fxdesktop.jpg) center center no-repeat;
+    background-size: cover;
+    box-shadow: 0 0 2px rgba(255,255,255,.1);
+  }
+  .overlay-wrap {
+    background: transparent none;
+  }
+}
+
+/* Webmaker ***/
+.mob-webmaker .overlay-wrap {
+  background: #71150d url(/media/img/foundation/annualreport/2011/mob-webmaker.jpg) center center no-repeat;
+  min-height: 260px;
+  .pull {
+    padding: 100px 120px;
+    text-align: center;
+    .open-sans-light;
+    font-size: 42px;
+    font-style: italic;
+    color: #f7f4ec;
+    text-shadow: none;
+  }
+}
+
+.js .mob-webmaker .overlay {
+  background: rgb(113,21,13);
+  background: rgba(113,21,13,.95);
+}
+
+#fill .mob-webmaker {
+  padding-right: 420px;
+  .pull {
+    width: 280px;
+    padding: 60px;
+    float: right;
+    margin-right: -420px;
+    font-size: 24px;
+    background: #71150d url(/media/img/foundation/annualreport/2011/mob-webmaker.jpg) center center no-repeat;
+    background-size: cover;
+    box-shadow: 0 0 2px rgba(255,255,255,.1);
+  }
+  .overlay-wrap {
+    background: transparent none;
+  }
+}
+
+.mob-webmakervideo {
+  width: 380px;
+  float: left;
+}
+
+.mob-standards {
+  width: 380px;
+  float: right;
+  .overlay-wrap {
+    background: #a63700 url(/media/img/foundation/annualreport/2011/mob-standards.jpg) center center no-repeat;
+    min-height: 214px;
+  }
+  .pull {
+    padding: 30px 40px;
+    text-align: center;
+    .open-sans-light;
+    font-size: 32px;
+    font-style: italic;
+    color: #f7f4ec;
+    text-shadow: none;
+  }
+}
+
+.js .mob-standards .overlay {
+  background: rgb(135,45,0);
+  background: rgba(135,45,0,.95);
+}
+
+#fill .mob-standards {
+  width: auto;
+  padding-right: 420px;
+  .pull {
+    width: 280px;
+    padding: 60px;
+    float: right;
+    margin-right: -420px;
+    font-size: 24px;
+    background: #a63700 url(/media/img/foundation/annualreport/2011/mob-standards.jpg) center center no-repeat;
+    background-size: cover;
+    box-shadow: 0 0 2px rgba(255,255,255,.1);
+  }
+  .overlay-wrap {
+    background: transparent none;
+  }
+}
+
+/* Action *********/
+#action .section-title {
+  .hidden;
+}
+
+.act-intro {
+  width: 380px;
+  float: left;
+  margin-top: 2.92em;
+  .overlay-wrap {
+    background: #242e39 url(/media/img/foundation/annualreport/2011/act-intro.jpg) center top no-repeat;
+    min-height: 500px;
+  }
+  .pull {
+    padding: 130px 40px 0;
+    text-align: center;
+    .open-sans-light;
+    font-size: 38px;
+    font-style: italic;
+    color: #f7f4ec;
+    text-shadow: none;
+  }
+}
+
+.js .act-intro .overlay {
+  background: rgb(36,46,57);
+  background: rgba(36,46,57,.95);
+}
+
+#fill .act-intro {
+  width: auto;
+  float: none;
+  padding-right: 420px;
+  .pull {
+    width: 280px;
+    padding: 60px;
+    float: right;
+    margin-right: -420px;
+    font-size: 38px;
+    background: #242e39 url(/media/img/foundation/annualreport/2011/act-intro.jpg) center top no-repeat;
+    background-size: cover;
+    box-shadow: 0 0 2px rgba(255,255,255,.1);
+  }
+  .overlay-wrap {
+    background: transparent none;
+  }
+}
+
+/* Do Not Track ***/
+.act-donottrack {
+  width: 380px;
+  float: right;
+  .overlay-wrap {
+    background: #fff url(/media/img/foundation/annualreport/2011/act-donottrack.jpg) center top no-repeat;
+    height: 360px;
+    padding: 140px 0 0;
+  }
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.js .act-donottrack .overlay {
+  background: rgb(207,60,53);
+  background: rgba(207,60,53,.95);
+}
+
+#fill .act-donottrack {
+  width: auto;
+  float: none;
+  img {
+    float: right;
+    margin: 0 0 30px 30px;
+  }
+  .overlay-wrap {
+    padding: 0;
+    background: transparent none;
+  }
+}
+
+/* SOPA/PIPA ***/
+.act-sopa {
+  width: 380px;
+  float: left;
+}
+
+.js .act-sopa .overlay {
+  background: rgb(0,0,0);
+  background: rgba(0,0,0,.95);
+}
+
+#action .act-sopa .overlay h4 {
+  color: #f7f4ec;
+  text-shadow: none;
+}
+
+#fill .act-sopa,
+#fill .act-collusion {
+  width: auto;
+  float: none;
+  img {
+    float: right;
+    margin: 0 0 30px 30px;
+  }
+}
+
+.act-collusion {
+  width: 380px;
+  float: right;
+}
+
+.js .act-collusion .overlay {
+  background: rgb(105,61,32);
+  background: rgba(105,61,32,.95);
+}
+
+.act-sopa img,
+.act-collusion img {
+  border: 1px solid #ccc;
+  margin: -1px 0 0 -1px;
+}
+
+/* Flicks ***/
+.act-flicks {
+  width: 380px;
+  float: left;
+  margin-top: 3px;
+  .overlay-wrap {
+    background: rgb(80,13,20) url(/media/img/foundation/annualreport/2011/bg-curtains.jpg) center top repeat-x;
+    height: 214px;
+    img {
+      display: block;
+      padding-top: 30px;
+      margin: 0 auto;
+    }
+  }
+}
+
+.js .act-flicks .overlay {
+  background: rgb(80,13,20);
+  background: rgba(80,13,20,.95);
+}
+
+#fill .act-flicks {
+  width: auto;
+  float: none;
+  img {
+    float: right;
+    margin: -30px 0 20px 20px;
+  }
+  .overlay-wrap {
+    background: transparent none;
+    padding: 0;
+  }
+}
+
+/* TED talk ***/
+.act-garyted {
+  width: 380px;
+  float: right;
+  margin-top: 3em;
+}
+
+/* Tablet  Layout: 768px */
+@media only screen and (min-width: @widthTablet) and (max-width: @widthDesktop) {
+
+
+}
+
+
+/* Mobile layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+
+
+}
+
+
+/* Wide mobile layout: 480px; */
+@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+
+
+}
