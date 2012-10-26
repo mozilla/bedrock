@@ -5,7 +5,10 @@
   firefox-family-platform
 {% endblock %}
 
-{% block content_title %}Firefox platform{% endblock%}
+{% set page_title = 'Firefox platform' %}
+{% block page_title_prefix %}{{ page_title}} — {% endblock %}
+{% block content_title %}{{ page_title}}{% endblock%}
+
 {% block content_area %}
 <section id="intro">
   <div class="intro">

@@ -5,7 +5,10 @@
   mozilla-branding
 {% endblock %}
 
-{% block content_title %}Mozilla branding{% endblock%}
+{% set page_title = 'Mozilla branding' %}
+{% block page_title_prefix %}{{ page_title}} — {% endblock %}
+{% block content_title %}{{ page_title}}{% endblock%}
+
 {% block content_area %}
 <section id="intro">
   <div id="guidelines">

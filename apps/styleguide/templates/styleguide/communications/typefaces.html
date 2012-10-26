@@ -5,7 +5,10 @@
   communications-typefaces
 {% endblock %}
 
-{% block content_title %}Typefaces{% endblock%}
+{% set page_title = 'Typefaces' %}
+{% block page_title_prefix %}{{ page_title}} — {% endblock %}
+{% block content_title %}{{ page_title}}{% endblock%}
+
 {% block content_area %}
 
 <section id="opensans">

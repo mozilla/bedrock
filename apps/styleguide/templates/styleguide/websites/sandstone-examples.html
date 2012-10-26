@@ -5,7 +5,10 @@
   sandstone-examples
 {% endblock %}
 
-{% block content_title %}Sandstone examples{% endblock%}
+{% set page_title = 'Sandstone examples' %}
+{% block page_title_prefix %}{{ page_title}} — {% endblock %}
+{% block content_title %}{{ page_title}}{% endblock%}
+
 {% block content_area %}
 <section id="intro">
   <h2>Websites</h2>

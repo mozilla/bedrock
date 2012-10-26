@@ -5,7 +5,10 @@
   firefoxos-branding
 {% endblock %}
 
-{% block content_title %}Firefox OS branding{% endblock%}
+{% set page_title = 'Firefox OS branding' %}
+{% block page_title_prefix %}{{ page_title}} — {% endblock %}
+{% block content_title %}{{ page_title}}{% endblock%}
+
 {% block content_area %}
 <section id="intro">
   <h2>Coming soon</h2>

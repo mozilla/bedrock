@@ -5,7 +5,10 @@
   webmaker-color
 {% endblock %}
 
-{% block content_title %}Webmaker color{% endblock%}
+{% set page_title = 'Webmaker color' %}
+{% block page_title_prefix %}{{ page_title}} — {% endblock %}
+{% block content_title %}{{ page_title}}{% endblock%}
+
 {% block content_area %}
 <section id="intro">
   <h2>Usage</h2>

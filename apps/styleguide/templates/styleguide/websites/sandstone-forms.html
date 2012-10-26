@@ -5,7 +5,10 @@
   sandstone-forms
 {% endblock %}
 
-{% block content_title %}Sandstone forms &amp; modules{% endblock%}
+{% set page_title = 'Sandstone forms & modules' %}
+{% block page_title_prefix %}{{ page_title}} — {% endblock %}
+{% block content_title %}{{ page_title}}{% endblock%}
+
 {% block content_area %}
 <section id="forms">
   <div class="intro">

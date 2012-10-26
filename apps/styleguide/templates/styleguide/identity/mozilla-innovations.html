@@ -5,7 +5,10 @@
   mozilla-innovations
 {% endblock %}
 
-{% block content_title %}Mozilla innovations{% endblock%}
+{% set page_title = 'Mozilla innovations' %}
+{% block page_title_prefix %}{{ page_title}} — {% endblock %}
+{% block content_title %}{{ page_title}}{% endblock%}
+
 {% block content_area %}
 <section id="intro">
     <h2>Introduction</h2>

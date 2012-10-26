@@ -5,7 +5,10 @@
   thunderbird-channels
 {% endblock %}
 
-{% block content_title %}Thunderbird channels{% endblock%}
+{% set page_title = 'Thunderbird channels' %}
+{% block page_title_prefix %}{{ page_title}} — {% endblock %}
+{% block content_title %}{{ page_title}}{% endblock%}
+
 {% block content_area %}
 <section id="intro">
   <h2>Release cycle</h2>
