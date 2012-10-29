@@ -1,6 +1,6 @@
 {% extends "base-resp.html" %}
 
-{% block page_title_prefix %}{% endblock %}
+{% block page_title_prefix %}{{ page_title }} — {% endblock %}
 {% block page_title %}Mozilla Style Guide{% endblock %}
 {% block body_id %}styleguide{% endblock %}
 {% block body_class %}sand{% endblock %}
@@ -53,7 +53,7 @@
 
 <div id="content_area" role="main">
 
-<h1>{% block content_title %}{% endblock%}</h1>
+<h1>{% block content_title %}{{ page_title }}{% endblock %}</h1>
 
 {% block subnav %}
 <div id="subnav">
