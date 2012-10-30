@@ -26,6 +26,11 @@ urlpatterns = patterns('',
     redirect(r'^firefox/brand/copy/rules/$', 'styleguide.communications.copy-rules'),
     redirect(r'^firefox/brand/downloads/$', 'styleguide.home'),
 
+    # Bug 804810 Identity Guidelines -> Style Guide
+    redirect(r'^foundation/identity-guidelines/index.html', 'styleguide.home'),
+    redirect(r'^foundation/identity-guidelines/mozilla-foundation.html', 'styleguide.identity.mozilla-branding'),
+    redirect(r'^foundation/identity-guidelines/thunderbird.html', 'styleguide.identity.thunderbird-logo'),
+
     # Bug 800467 /apps/partners -> marketplace.m.o/developers
     redirect(r'apps/partners/$', 'https://marketplace.mozilla.org/developers/'),
 
