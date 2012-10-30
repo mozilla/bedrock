@@ -1,64 +1,41 @@
 $(function(){
 
-
-  // Reveal text overlays when hovering over a block 
+  // Reveal text overlays when hovering over a block
   // @Uses hoverIntent plugin: http://cherne.net/brian/resources/jquery.hoverIntent.html
   $(".overlay-wrap").hoverIntent(
     function() {
       var overlayheight = $(this).height() - 80;
-      $(this).find(".overlay").stop().hide().css({ 
-        'left' : 'auto', 
-        'minHeight' : overlayheight 
+      $(this).find(".overlay").stop().hide().css({
+        'left' : 'auto',
+        'minHeight' : overlayheight
       }).fadeIn(200);
-      $(this).addClass("hover");
     },
     function() {
-      $(this).find(".overlay").stop().delay(300).fadeOut(600, function(){ 
+      $(this).find(".overlay").stop().delay(300).fadeOut(600, function(){
         $(this).removeAttr('style');
-        $(this).parents(".overlay-wrap").removeClass("hover");
       });
     }
   );
-  
+
   // Add the read buttons
-  $("button.read").clone().appendTo(".overlay-wrap");
-  
-  // Reveal overlays when buttons get focus (for keyboard navigation)  
+  $("button.read").clone().prependTo(".overlay-wrap");
+
+  // Reveal overlays when buttons get focus (for keyboard navigation)
   $(".overlay-wrap .read").focus(function() {
-    var overlayheight = $(this).height() - 80;
-    $(this).parents(".overlay-wrap").find(".overlay").hide().css({ 
-      'left' : 'auto', 
-      'minHeight' : overlayheight 
+    $(".overlay[style]").stop().delay(300).fadeOut(600, function(){   // First hide any visible overlays
+      $(this).removeAttr('style');                                    // Then reset them to normal (hidden offscreen by CSS)
+    });
+    var overlayheight = $(this).parents(".overlay-wrap").height() - 80;;
+    $(this).parents(".overlay-wrap").find(".overlay").hide().css({
+      'left' : 'auto',
+      'minHeight' : overlayheight
     }).fadeIn(200);
-  });
-  
-  // Hide overlays when button loses focus
-  $(".overlay-wrap .read").blur(function() {
-    $(this).parents(".overlay-wrap").find(".overlay").delay(300).fadeOut(600, function(){ 
-      $(this).parents(".overlay-wrap").find(".overlay").removeAttr('style'); 
-    });
-  });
-  
-  // Load entire block into a full-page overlay, prevent scrolling on the body
-  $(".has-overlay .read").click(function() {
-    var content = $(this).parents(".has-overlay").clone();
-    $(this).parents(".has-overlay").find(".overlay").hide( function(){ 
-      $(this).removeAttr('style'); 
-    } );
-    $('body').addClass("noscroll").append('<div id="fill"><div id="inner"></div></div>');
-    content.removeClass("has-overlay").appendTo("#inner");
-    content.find(".overlay").removeAttr("style");
-    $("#inner").focus();
-    $("#done").clone().appendTo("#inner");
-    
-    // Remove the full-page overlay  
-    $("#fill #done").click(function() {
-      $("#fill").remove();
-      $("body").removeClass("noscroll");
-    });
+    $('html, body').animate({
+      scrollTop: $(this).parents(".overlay-wrap").offset().top -40
+    }, 300);
   });
 
-  
+
   // Scroll the window
   var $window = $(window);
   var $nav = $('#page-nav');
@@ -68,7 +45,14 @@ $(function(){
   var didScroll = false;
 
   $window.scroll(function() {
+    didScroll = true;
+  });
+
+  $(document).ready(function() {
+    var scrollTop = $window.scrollTop();
+    if ( scrollTop >= navTop.top ) {
       didScroll = true;
+    }
   });
 
   function adjustScrollbar() {
@@ -92,8 +76,9 @@ $(function(){
     }
   };
 
-  // Check for an adjusted scrollbar every 250ms.
-  setInterval(adjustScrollbar, 250);
+
+  // Check for an adjusted scrollbar every 100ms.
+  setInterval(adjustScrollbar, 100);
 
   // Bind scrolling to linked element.
   $window.on('click', '#page-nav a[href^="#"]', function(e) {
@@ -105,24 +90,45 @@ $(function(){
     }, 1000);
   });
 
-/*
-  // Load videos in a full-screen modal
-  $window.on('click', 'a.video-play', function(e) {
+  // Load links in new tab/window
+  $("a[rel='external']").click( function(e) {
     e.preventDefault();
-    
-    var video = $(this).attr("href");
+    window.open(this.href);
+  });
+
+  // Load videos in a full-page modal
+  $("a.video-play").click( function(e) {
+    e.preventDefault();
+    var video = $(this).attr("data-video-source");
     var poster = $(this).children("img").attr("src");
-    $('body').addClass("noscroll").append('<div id="fill"><div id="inner"><video id="video" poster="'+poster+'" src="'+video+'" controls></div></div>');
-    $("#video")[0].play();
+    $('body').addClass("noscroll").append('<div id="fill"><div id="inner"><video id="video" poster="'+poster+'" controls autoplay></video></div></div>');
+    $("#video").append(
+      '<source src="'+video+'.webm" type="video/webm">'
+     +'<source src="'+video+'.mp4" type="video/mp4">'
+    );
     $("#done").clone().appendTo("#inner");
-    
-    // Remove the full-page overlay  
+
+    // Remove the full-page overlay
     $("#fill #done").click(function() {
       $("#video")[0].pause();
       $("#fill").remove();
       $("body").removeClass("noscroll");
     });
   });
-*/
+
+  // Load the YouTube video in a full-page modal
+  $("a#vid-kovacsted").click( function(e) {
+    e.preventDefault();
+    $('body').addClass("noscroll").append('<div id="fill"><div id="inner"><iframe width="640" height="360" src="http://www.youtube-nocookie.com/embed/f_f5wNw-2c0?rel=0" frameborder="0" allowfullscreen></iframe></div></div>');
+    $("#done").clone().appendTo("#inner");
+
+    // Remove the full-page overlay
+    $("#fill #done").click(function() {
+      $("#fill").remove();
+      $("body").removeClass("noscroll");
+    });
+  });
 
 });
+
+

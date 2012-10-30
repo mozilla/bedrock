@@ -19,9 +19,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 dl.faq dt {
-  color: @red;
+  color: @mozred;
   .open-sans;
   font-weight: bold;
+  margin: 1em 0 .25em;
 }
 
 #masthead {
@@ -45,6 +46,7 @@ dl.faq dt {
 #page-nav {
   background: @mozred;
   margin: 0 0 30px;
+  padding: 0 12px;
   text-transform: uppercase;
   text-shadow: 0 1px 0 rgba(0,0,0,.3);
   box-shadow: 0 1px 3px rgba(0,0,0,.2);
@@ -77,8 +79,8 @@ dl.faq dt {
   z-index: 80;
 }
 
-#page-nav.welcome { background: @mozred; }
-#nav-welcome.current a { color: @mozred; }
+#page-nav.welcome, #page-nav.faq { background: @mozred; }
+#nav-welcome.current a, #nav-faq.current a { color: @mozred; }
 
 #page-nav.mobilizied { background: @blue; }
 #nav-mobilized.current a,
@@ -97,6 +99,8 @@ dl.faq dt {
 
 #page-nav.sustainability { background: @red; }
 #nav-sustainability.current a { color: @red; }
+
+
 
 /* Full-window overlays *********/
 body.noscroll {
@@ -120,25 +124,6 @@ body.noscroll {
     margin: 60px auto;
     color: #f3f3f3;
     text-shadow: 0 1px 1px rgba(0,0,0,.95);
-    h1, h2, h3, h4, h5, h6 {
-      color: #fefefe;
-      text-shadow: 0 1px 1px rgba(0,0,0,.95);
-    }
-    .overlay {
-      background: transparent none;
-      color: #cecece;
-      padding: 0;
-      position: static;
-    }
-    a:link,
-    a:visited {
-      color: #cff;
-    }
-    a:hover,
-    a:focus,
-    a:active {
-      color: #fff;
-    }
     video {
       width: 640px;
       max-width: 90%;
@@ -148,6 +133,11 @@ body.noscroll {
     }
     video:focus {
       outline: 1px solid #ccc;
+    }
+    iframe {
+      max-width: 90%;
+      display: block;
+      margin: 90px auto;
     }
   }
 }
@@ -175,20 +165,20 @@ body.noscroll {
 
 /* Hide buttons when we don't need them */
 .read,
-#inner .read,
 #done {
   display: none;
 }
 
 
 /* Text block overlays *********/
-.section {
+.section,
+.block,
+.row {
   .clearfix;
 }
 
-.block {
+.row {
   margin: 0 0 20px;
-  .clearfix;
 }
 
 .overlay-wrap {
@@ -196,9 +186,16 @@ body.noscroll {
   z-index: auto;
 }
 
-.js .overlay-wrap .overlay {
+.overlay {
+  margin: 20px 0 0;
+}
+
+.js .overlay {
   .hidden;
   padding: 40px;
+  margin: 0;
+  float: none;
+  width: auto;
   position: absolute;
   z-index: 8;
   top: 0;
@@ -222,7 +219,8 @@ body.noscroll {
   display: inline;
   position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
+  z-index: 2;
   border: 0;
   padding: .2em 20px;
   .open-sans;
@@ -230,8 +228,6 @@ body.noscroll {
   text-transform: uppercase;
   background: #ccc;
   background: rgba(255,255,255,.65);
-  cursor: pointer;
-  &:hover,
   &:focus {
     background: #ddd;
     background: rgba(255,255,255,.75);
@@ -241,9 +237,6 @@ body.noscroll {
   content: " »";
   font-size: 1.2em;
   line-height: 1;
-}
-.hover .read {
-  z-index: 10;
 }
 
 /* @Welcome *********/
@@ -260,20 +253,17 @@ body.noscroll {
 }
 
 /* Intro ***/
-.js .mob-intro .overlay {
-  background: rgb(51,30,83);
-  background: rgba(51,30,83,.95);
-}
-
 .mob-topics {
   .open-sans-light;
   background: #000;
   color: #fff;
   font-size: 24px;
   padding: 40px 20px;
+  margin: 0;
   text-align: center;
   overflow: hidden;
   position: relative;
+  z-index: 1;
   clear: both;
   li {
     display: inline-block;
@@ -286,36 +276,30 @@ body.noscroll {
       margin-right: auto;
     }
   }
-  
+
   #topic-firefox img {
-    margin-top: -146px;    
+    margin-top: -146px;
   }
-  
+
   #topic-firefoxos img {
-    margin-top: -160px;    
+    margin-top: -160px;
   }
-  
+
   #topic-webmaker img {
-    margin-top: -150px;    
+    margin-top: -150px;
   }
 }
 
-#fill .mob-intro {
-  padding-right: 420px;
-  .mob-topics {
-    float: right;
-    width: 330px;
-    margin-right: -420px;
-    font-size: 16px;
-    box-shadow: 0 0 4px rgba(255,255,255,.1);
-  }
+.js .mob-intro .overlay {
+  background: rgb(51,30,83);
+  background: rgba(51,30,83,.95);
 }
 
 /* Firefox OS ***/
 .mob-firefoxos {
   .pull {
     .open-sans-light;
-    background: #004980 url(/media/img/foundation/annualreport/2011/mob-firefoxos.jpg) center center no-repeat;
+    background: #004980 url(/media/img/foundation/annualreport/2011/mob-firefoxos.jpg) center top no-repeat;
     background-size: cover;
     padding: 100px 90px;
     font-size: 38px;
@@ -330,66 +314,51 @@ body.noscroll {
     background: rgba(4,30,90,.95);
 }
 
-#fill .mob-firefoxos {
-  padding-right: 420px;
-  .pull {
-    float: right;
-    width: 330px;
-    padding: 40px 20px;
-    margin-right: -420px;
-    font-size: 20px;
-    box-shadow: 0 0 2px rgba(255,255,255,.1);
-    background-size: cover;
-    box-shadow: 0 0 2px rgba(255,255,255,.1);
-  }
-}
 
 /* Firefox for Android ***/
 .mob-fxandroid img {
   float: left;
 }
 
+.mob-fxandroid {
+  position: relative;
+}
+
 .mob-fxandroid .overlay-wrap {
   width: 380px;
   min-height: 320px;
   float: right;
-  background: #85c0da url(/media/img/foundation/annualreport/2011/mob-fxandroid.jpg) no-repeat;
   h4 {
-    margin: 85px 20px 0 215px;
+    padding: 85px 20px 0 215px;
+    min-height: 235px;
     font-size: 42px;
     font-style: normal;
     color: #f7f4ec;
     text-shadow: none;
-  } 
+    background: #85c0da url(/media/img/foundation/annualreport/2011/mob-fxandroid.jpg) no-repeat;
+  }
+  .overlay {
+    width: 780px;
+    float: left;
+    margin-left: -400px;
+    clear: both;
+    margin-top: 20px;
+  }
 }
 
 .js .mob-fxandroid .overlay {
+  margin: 0;
+  width: auto;
   background: rgb(0,84,159);
   background: rgba(0,84,159,.95);
 }
 
-#fill .mob-fxandroid {
-  padding-right: 420px;
-  .overlay-wrap {
-    background: transparent none;
-    width: auto;
-  }
-  img {
-    float: right;
-    margin-right: -420px;
-    margin-top: -60px;
-  }
-  h4 {
-    display: none;
-  }
-}
-
 /* Firefox Desktop ***/
 .mob-fxdesktop .overlay-wrap {
-  background: #424d52 url(/media/img/foundation/annualreport/2011/mob-fxdesktop.jpg) center center no-repeat;
-  min-height: 300px;
   .pull {
-    padding: 120px 100px;
+    background: #424d52 url(/media/img/foundation/annualreport/2011/mob-fxdesktop.jpg) center top no-repeat;
+    min-height: 300px;
+    padding: 120px 100px 0;
     text-align: center;
     .open-sans-light;
     font-size: 42px;
@@ -400,33 +369,16 @@ body.noscroll {
 }
 
 .js .mob-fxdesktop .overlay {
-  background: rgb(37,52,55);
-  background: rgba(37,52,55,.95);
-}
-
-#fill .mob-fxdesktop {
-  padding-right: 420px;
-  .pull {
-    width: 280px;
-    padding: 60px;
-    float: right;
-    margin-right: -420px;
-    font-size: 24px;
-    background: #424d52 url(/media/img/foundation/annualreport/2011/mob-fxdesktop.jpg) center center no-repeat;
-    background-size: cover;
-    box-shadow: 0 0 2px rgba(255,255,255,.1);
-  }
-  .overlay-wrap {
-    background: transparent none;
-  }
+  background: rgb(24,61,75);
+  background: rgba(24,61,75,.95);
 }
 
 /* Webmaker ***/
-.mob-webmaker .overlay-wrap {
-  background: #71150d url(/media/img/foundation/annualreport/2011/mob-webmaker.jpg) center center no-repeat;
-  min-height: 260px;
+.mob-webmaker {
   .pull {
-    padding: 100px 120px;
+    background: #71150d url(/media/img/foundation/annualreport/2011/mob-webmaker.jpg) center center no-repeat;
+    min-height: 260px;
+    padding: 100px 120px 0;
     text-align: center;
     .open-sans-light;
     font-size: 42px;
@@ -441,37 +393,24 @@ body.noscroll {
   background: rgba(113,21,13,.95);
 }
 
-#fill .mob-webmaker {
-  padding-right: 420px;
-  .pull {
-    width: 280px;
-    padding: 60px;
-    float: right;
-    margin-right: -420px;
-    font-size: 24px;
-    background: #71150d url(/media/img/foundation/annualreport/2011/mob-webmaker.jpg) center center no-repeat;
-    background-size: cover;
-    box-shadow: 0 0 2px rgba(255,255,255,.1);
-  }
-  .overlay-wrap {
-    background: transparent none;
-  }
-}
-
 .mob-webmakervideo {
   width: 380px;
   float: left;
+  p {
+    margin: 0;
+  }
 }
 
 .mob-standards {
   width: 380px;
   float: right;
   .overlay-wrap {
-    background: #a63700 url(/media/img/foundation/annualreport/2011/mob-standards.jpg) center center no-repeat;
-    min-height: 214px;
+
   }
   .pull {
-    padding: 30px 40px;
+    background: #a63700 url(/media/img/foundation/annualreport/2011/mob-standards.jpg) center top no-repeat;
+    min-height: 184px;
+    padding: 30px 40px 0;
     text-align: center;
     .open-sans-light;
     font-size: 32px;
@@ -486,24 +425,6 @@ body.noscroll {
   background: rgba(135,45,0,.95);
 }
 
-#fill .mob-standards {
-  width: auto;
-  padding-right: 420px;
-  .pull {
-    width: 280px;
-    padding: 60px;
-    float: right;
-    margin-right: -420px;
-    font-size: 24px;
-    background: #a63700 url(/media/img/foundation/annualreport/2011/mob-standards.jpg) center center no-repeat;
-    background-size: cover;
-    box-shadow: 0 0 2px rgba(255,255,255,.1);
-  }
-  .overlay-wrap {
-    background: transparent none;
-  }
-}
-
 /* Action *********/
 #action .section-title {
   .hidden;
@@ -513,11 +434,9 @@ body.noscroll {
   width: 380px;
   float: left;
   margin-top: 2.92em;
-  .overlay-wrap {
-    background: #242e39 url(/media/img/foundation/annualreport/2011/act-intro.jpg) center top no-repeat;
-    min-height: 500px;
-  }
   .pull {
+    background: #242e39 url(/media/img/foundation/annualreport/2011/act-intro.jpg) center top no-repeat;
+    min-height: 360px;
     padding: 130px 40px 0;
     text-align: center;
     .open-sans-light;
@@ -533,56 +452,20 @@ body.noscroll {
   background: rgba(36,46,57,.95);
 }
 
-#fill .act-intro {
-  width: auto;
-  float: none;
-  padding-right: 420px;
-  .pull {
-    width: 280px;
-    padding: 60px;
-    float: right;
-    margin-right: -420px;
-    font-size: 38px;
-    background: #242e39 url(/media/img/foundation/annualreport/2011/act-intro.jpg) center top no-repeat;
-    background-size: cover;
-    box-shadow: 0 0 2px rgba(255,255,255,.1);
-  }
-  .overlay-wrap {
-    background: transparent none;
-  }
-}
-
 /* Do Not Track ***/
 .act-donottrack {
   width: 380px;
   float: right;
-  .overlay-wrap {
-    background: #fff url(/media/img/foundation/annualreport/2011/act-donottrack.jpg) center top no-repeat;
-    height: 360px;
-    padding: 140px 0 0;
-  }
   img {
+    background: #fff url(/media/img/foundation/annualreport/2011/act-donottrack.jpg) center top no-repeat;
     display: block;
-    margin: 0 auto;
+    padding: 130px 58px 96px;
   }
 }
 
 .js .act-donottrack .overlay {
   background: rgb(207,60,53);
   background: rgba(207,60,53,.95);
-}
-
-#fill .act-donottrack {
-  width: auto;
-  float: none;
-  img {
-    float: right;
-    margin: 0 0 30px 30px;
-  }
-  .overlay-wrap {
-    padding: 0;
-    background: transparent none;
-  }
 }
 
 /* SOPA/PIPA ***/
@@ -599,16 +482,6 @@ body.noscroll {
 #action .act-sopa .overlay h4 {
   color: #f7f4ec;
   text-shadow: none;
-}
-
-#fill .act-sopa,
-#fill .act-collusion {
-  width: auto;
-  float: none;
-  img {
-    float: right;
-    margin: 0 0 30px 30px;
-  }
 }
 
 .act-collusion {
@@ -632,14 +505,10 @@ body.noscroll {
   width: 380px;
   float: left;
   margin-top: 3px;
-  .overlay-wrap {
+  img {
+    display: block;
+    padding: 30px 90px 13px;
     background: rgb(80,13,20) url(/media/img/foundation/annualreport/2011/bg-curtains.jpg) center top repeat-x;
-    height: 214px;
-    img {
-      display: block;
-      padding-top: 30px;
-      margin: 0 auto;
-    }
   }
 }
 
@@ -648,24 +517,123 @@ body.noscroll {
   background: rgba(80,13,20,.95);
 }
 
-#fill .act-flicks {
-  width: auto;
-  float: none;
-  img {
-    float: right;
-    margin: -30px 0 20px 20px;
-  }
-  .overlay-wrap {
-    background: transparent none;
-    padding: 0;
-  }
-}
-
 /* TED talk ***/
-.act-garyted {
+.act-kovacsted {
   width: 380px;
   float: right;
   margin-top: 3em;
+}
+
+/* Community *********/
+#community .section-title {
+  .hidden;
+}
+.com-intro .pull {
+  height: 390px;
+  width: 100%;
+  margin: 20px 0;
+  position: relative;
+  display: table;
+  h3 {
+    position: relative;
+    display: table-cell;
+    padding: 95px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 46px;
+    text-shadow: 0 0 3px rgba(255,255,255,.25), 0 1px 1px rgba(0,0,0,.5);
+  }
+  img {
+    position: absolute;
+    left: 0;
+  }
+}
+
+#community .com-intro h3 {
+  color: #f7f4ec;
+}
+
+/* Reps ***/
+.com-reps {
+  .overlay-wrap {
+    width: 380px;
+    float: left;
+  }
+  .overlay {
+    width: 780px;
+    float: left;
+    clear: both;
+    margin-top: 20px;
+  }
+}
+
+.js .com-reps .overlay {
+  width: auto;
+  margin: 0;
+  float: none;
+  background: rgb(74,52,39);
+  background: rgba(74,52,39,.95);
+}
+
+.com-reps .rep {
+  float: right;
+  margin-top: -3em;
+}
+
+/* Mozcamps ***/
+.com-mozcamps {
+  .overlay-wrap {
+    width: 380px;
+    float: right;
+  }
+  .video {
+    width: 380px;
+    float: left;
+    img {
+      display: block;
+      margin: 20px auto;
+    }
+  }
+  .overlay {
+    width: 780px;
+    float: left;
+    margin-left: -400px;
+    margin-top: 20px;
+    clear: both;
+  }
+}
+
+.js .com-mozcamps .overlay {
+  width: auto;
+  margin: 0;
+  float: none;
+  background: rgb(27,89,115);
+  background: rgba(27,89,115,.95);
+}
+
+/* Emerging communities ***/
+.com-emerging {
+  .overlay-wrap {
+    width: 380px;
+    float: left;
+  }
+  .meet {
+    float: right;
+  }
+  .overlay {
+    width: 780px;
+    float: left;
+    clear: both;
+    margin-top: 20px;
+  }
+}
+
+.js .com-emerging .overlay {
+  width: auto;
+  float: none;
+  margin: 0;
+  background: rgb(170,35,11);
+  background: rgba(170,35,11,.95);
 }
 
 /* Tablet  Layout: 768px */
