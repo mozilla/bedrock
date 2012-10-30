@@ -35,7 +35,7 @@
       <li id="nav-community"><a href="#community">{{ _('Community') }}</a></li>
       <li id="nav-sustainability"><a href="#sustainability">{{ _('Sustainability') }}</a></li>
       {# L10N: 'FAQ' is an acronym for 'Frequently Asked Questions'. #}
-      <li id="nav-faq"><a href="/foundation/annualreport/2011/faq"><abbr title="{{ _('Frequently Asked Questions') }}">{{ _('FAQ') }}</abbr></a></li>
+      <li id="nav-faq"><a href="{{ url('foundation.annualreport.2011faq') }}"><abbr title="{{ _('Frequently Asked Questions') }}">{{ _('FAQ') }}</abbr></a></li>
     </ul>
   </nav>
 
@@ -222,7 +222,7 @@
         </div>
       </section>
     </div>
-    
+
       <section class="block has-overlay mob-fxdesktop">
         <h3>{{ _('Firefox for Windows, Mac and Linux') }}</h3>
 
@@ -312,7 +312,7 @@
           </div>
         </div>
       </section>
-      
+
     <div class="block">
       <aside class="video mob-webmakervideo">
         <h3>{{ _('Webmaker: Video') }}</h3>
@@ -371,7 +371,7 @@
 
     <section id="action" class="section">
       <h2 class="section-title">{{ _('Action') }}</h2>
-      
+
     <div class="block">
       <section class="block has-overlay act-intro">
         <div class="overlay-wrap">
@@ -380,7 +380,7 @@
               Fighting for you: Standing up for your security, privacy and freedom
             {% endtrans %}
           </em></p>
-        
+
           <div class="overlay">
             <p>
             {% trans %}
@@ -401,10 +401,10 @@
 
       <section class="has-overlay act-donottrack">
         <h3>{{ _('Do Not Track') }}</h3>
-        
+
         <div class="overlay-wrap">
           <img src="{{ MEDIA_URL }}img/foundation/annualreport/2011/logo-donottrack.png" alt="">
-          
+
           <div class="overlay">
             <p>
             {% trans %}
@@ -415,7 +415,7 @@
               for individuals and for society.
             {% endtrans %}
             </p>
-  
+
             <p>
             {% trans
                 dnt_url='https://www.mozilla.org/dnt/',
@@ -430,7 +430,7 @@
               respects their choice.
             {% endtrans %}
             </p>
-    
+
             <p>
             {% trans %}
               Do Not Track is important because it gives users a voice online
@@ -443,17 +443,17 @@
         </div>
       </section>
     </div>
-    
+
     <div class="block">
       <section class="act-sopa has-overlay">
         <h3>SOPA / PIPA & ACTA</h3>
-        
+
         <div class="overlay-wrap">
           <img src="{{ MEDIA_URL }}img/foundation/annualreport/2011/act-sopa.jpg" alt="">
-          
+
           <div class="overlay">
             <h4>SOPA/PIPA</h4>
-    
+
             <p>
             {% trans %}
               Mozilla was instrumental in the movement to motivate the Web
@@ -464,7 +464,7 @@
               and discourage innovation and investment worldwide.
             {% endtrans %}
             </p>
-    
+
             <p>
             {% trans %}
               Mozilla was one of many organizations that blacked out its websites
@@ -475,8 +475,8 @@
               to engage the electorate and mobilize citizens for change.
             {% endtrans %}
             </p>
-  
-            <h4>ACTA</h4>    
+
+            <h4>ACTA</h4>
 
             <p>
             {% trans
@@ -495,10 +495,10 @@
           </div>
         </div>
       </section>
-    
+
       <section class="act-collusion has-overlay">
         <h3>{{ _('Collusion') }}</h3>
-        
+
         <div class="overlay-wrap">
           <img src="{{ MEDIA_URL }}img/foundation/annualreport/2011/act-collusion.jpg" alt="">
           <div class="overlay">
@@ -518,12 +518,12 @@
           </div>
         </div>
       </section>
-    
+
     </div>
 
       <section class="has-overlay act-flicks">
         <h3>{{ _('Firefox Flicks') }}</h3>
-        
+
         <div class="overlay-wrap">
           <img src="{{ MEDIA_URL }}img/foundation/annualreport/2011/logo-firefoxflicks.png" alt="">
           <div class="overlay">
