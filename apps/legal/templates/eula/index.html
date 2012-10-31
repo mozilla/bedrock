@@ -1,9 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-    i am a test
-</body>
-</html>
+{% extends "base-resp.html" %}
+
+{% block page_title %}{{_('Mozilla Foundation End-User Licensing Agreements')}}{% endblock %}
+{% block body_id %}legal_eula_index-page{% endblock %}
+{% block body_class %}sand{% endblock %}
+
+{% block content %}
+
+    <h1 id="main-feature">{{_('Mozilla Foundation End-User Licensing Agreements')}}</h1>
+
+    <section id="main-content">
+        <p>
+            Text should go here!
+        </p>
+    </section>
+
+{% endblock %}
