@@ -6,7 +6,7 @@ from django.conf import settings
 from django.core import mail
 
 from mock import patch
-from nose.tools import eq_
+from nose.tools import assert_not_equal, eq_
 from tower.management.commands.extract import extract_tower_python
 
 from l10n_utils.dotlang import _, FORMAT_IDENTIFIER_RE, parse, translate
@@ -59,6 +59,19 @@ class TestDotlang(TestCase):
         eq_(len(mail.outbox), 1)
         eq_(mail.outbox[0].subject, '[Django] %s is corrupted' % path)
         mail.outbox = []
+
+    @patch.object(settings, 'ROOT', ROOT)
+    def test_format_identifier_order(self):
+        """
+        Test that the order in which the format identifier appears doesn't
+        matter
+        """
+        path = 'format_identifier_mismatch'
+        expected = '%(foo)s is the new %(bar)s'
+        with self.activate('en-US'):
+            result = translate(expected, [path])
+        assert_not_equal(expected, result)
+        eq_(len(mail.outbox), 0)
 
     @patch.object(settings, 'ROOT', ROOT)
     def test_extract_message_tweaks_do_not_break(self):
