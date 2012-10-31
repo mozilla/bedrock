@@ -379,6 +379,8 @@ MINIFY_BUNDLES = {
         'annual_2011': (
             'js/libs/jquery-1.7.1.min.js',
             'js/libs/jquery.hoverIntent.minified.js',
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.jcarousel.min.js',
             'js/annual2011.js',
         ),
     }
