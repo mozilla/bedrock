@@ -1,7 +1,16 @@
-import re
-import uuid
+from jinja2.ext import Extension, InternationalizationExtension, nodes
+from tower import strip_whitespace
 
-from jinja2.ext import Environment, Extension, nodes
+
+class I18nExtension(InternationalizationExtension):
+    """
+    Use this instead of `tower.template.i18n` because the override of `_`
+    global was throwing errors.
+    """
+    def _parse_block(self, parser, allow_pluralize):
+        ref, buffer = super(I18nExtension, self)._parse_block(parser,
+                                                              allow_pluralize)
+        return ref, strip_whitespace(buffer)
 
 
 class L10nBlockExtension(Extension):
@@ -80,7 +89,6 @@ class LoadLangExtension(Extension):
             content_nodes.insert(0, [nodes.Call(nodes.Name('super', 'load'),
                                                 [], [], None, None)])
 
-
         # Since we are a block, we must emit a block too, so make a
         # random one that contains a call to the load function
         node = nodes.Block().set_lineno(lineno)
@@ -94,3 +102,4 @@ class LoadLangExtension(Extension):
 # Makes for a prettier import in settings.py
 l10n_blocks = L10nBlockExtension
 lang_blocks = LoadLangExtension
+i18n = I18nExtension
