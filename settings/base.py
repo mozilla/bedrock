@@ -48,7 +48,7 @@ TEMPLATE_DIRS = (
 def JINJA_CONFIG():
     return {
         'extensions': [
-            'tower.template.i18n', 'jinja2.ext.do', 'jinja2.ext.with_',
+            'l10n_utils.template.i18n', 'jinja2.ext.do', 'jinja2.ext.with_',
             'jinja2.ext.loopcontrols', 'l10n_utils.template.l10n_blocks',
             'l10n_utils.template.lang_blocks'
         ],
@@ -417,6 +417,7 @@ MIDDLEWARE_CLASSES = (
     'mozorg.middleware.CacheMiddleware',
     'mozorg.middleware.NewsletterMiddleware',
     'dnt.middleware.DoNotTrackMiddleware',
+    'l10n_utils.middleware.FixLangFileTranslationsMiddleware',
 )
 
 INSTALLED_APPS = (

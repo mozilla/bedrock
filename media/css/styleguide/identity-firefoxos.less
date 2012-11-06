@@ -4,15 +4,47 @@
 
 .firefoxos-branding {
     #intro {
-        clear: both;
-        .clearfix;
-        min-height: 300px;
-        background: url(/media/img/styleguide/identity/firefoxos/firefoxos-placeholder.png) 100% 0 no-repeat;
+        float: left;
+        .divider;
         h2 {
             .span_guide(3);
         }
         p {
-            .span_guide(5);
+            .span_guide(9);
+        }
+    }
+    #wordmark {
+        float: left;
+        .build {
+            .span_guide(3);
+        }
+        .logo {
+            .span_guide(6);
+            position: relative;
+            img {
+                background-color: #fff;
+                margin-bottom: 10px;
+                padding: 10px;
+            }
+            img.box-arrow {
+                background: none;
+                position: absolute;
+                top: 0;
+                left: -20px;
+            }
+        }
+        .download {
+            .span_guide(3);
+            span {
+                display: block;
+                font-size: 18px;
+            }
+            p {
+                margin-bottom: 0;
+            }
+        }
+        .button-sand, .button-sand:link, .button-sand:visited {
+            padding: 0 12px;
         }
     }
 }
