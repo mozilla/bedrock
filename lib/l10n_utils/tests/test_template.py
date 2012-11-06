@@ -1,16 +1,48 @@
 import os
 
+from django.conf import settings
+from django.core.urlresolvers import clear_url_caches
+from django.test.client import Client
+
 from jingo import env
 from jinja2 import FileSystemLoader
 from mock import patch
 from nose.plugins.skip import SkipTest
-from nose.tools import eq_
+from nose.tools import eq_, ok_
+from pyquery import PyQuery as pq
 
 from mozorg.tests import TestCase
 
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test_files')
 TEMPLATE_DIRS = (os.path.join(ROOT, 'templates'),)
+
+
+class TestTransBlocks(TestCase):
+    def setUp(self):
+        clear_url_caches()
+        self.client = Client()
+
+    @patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
+    @patch.object(settings, 'ROOT_URLCONF', 'l10n_utils.tests.test_files.urls')
+    @patch.object(settings, 'ROOT', ROOT)
+    def test_trans_block_works(self):
+        """ Sanity check to make sure translations work at all. """
+        response = self.client.get('/de/trans-block-reload-test/')
+        doc = pq(response.content)
+        gettext_call = doc('h1')
+        trans_block = doc('p')
+        eq_(gettext_call.text(), 'Die Lage von Mozilla')
+        ok_(trans_block.text().startswith('Mozillas Vision des Internets ist'))
+
+    def test_trans_block_works_reload(self):
+        """
+        Translation should work after a reload.
+
+        bug 808580
+        """
+        self.test_trans_block_works()
+        self.test_trans_block_works()
 
 
 class TestTemplateLangFiles(TestCase):
