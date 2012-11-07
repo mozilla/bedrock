@@ -1,9 +1,10 @@
 {% extends "base-resp.html" %}
 
-{% block page_title %}The State of Mozilla: 2011 Annual Report{% endblock %}
+{% add_lang_files "foundation/annualreport/2011" "foundation/annualreport/2011faq" %}
+
+{% block page_title %}{{ _('The State of Mozilla: 2011 Annual Report') }}{% endblock %}
 {% block body_id %}annual-2011{% endblock %}
 {% block body_class %}sand{% endblock %}
-{% add_lang_files "foundation/annualreport/2011" %}
 
 {% block extrahead %}
   {{ css('annual_2011') }}
