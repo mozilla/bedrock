@@ -102,6 +102,7 @@ def update_template(tmpl, blocks, lang):
                 if not l10n_block['was']:
                     l10n_block['was'] = l10n_block['main']
                 l10n_block['main'] = ref_block['main']
+            l10n_block['locales'] = ref_block['locales']
 
         return l10n_block
 
@@ -144,13 +145,17 @@ def update_template(tmpl, blocks, lang):
                 # Update the block and write it out
                 l10n_block = transfer_content(l10n_block,
                                               get_ref_block(name))
-                write_block(l10n_block, buffer)
+                locales = l10n_block['locales']
+                if not locales or lang in locales:
+                    write_block(l10n_block, buffer)
 
         # Check for any missing blocks
         for block in blocks:
             if block['name'] not in written_blocks:
-                buffer.write('\n\n')
-                write_block(block, buffer)
+                locales = block['locales']
+                if not locales or lang in locales:
+                    buffer.write('\n\n')
+                    write_block(block, buffer)
 
         # Write out the result to the l10n template
         with codecs.open(dest_tmpl, 'w', 'utf-8') as dest:
@@ -174,6 +179,12 @@ def copy_template(tmpl, blocks, lang):
 
     dest_file = l10n_tmpl(tmpl, lang)
 
+    #If there is only one block and not for current lang
+    # no need to create the file.
+    if len(blocks) == 1:
+        if not lang in blocks[0]['locales']:
+            return
+
     if blocks:
         # Make sure the templates directory for this locale and app exists
         ensure_dir_exists(os.path.dirname(dest_file))
@@ -183,8 +194,11 @@ def copy_template(tmpl, blocks, lang):
             dest.write('{%% extends "%s" %%}\n\n' % tmpl)
 
             for block in blocks:
-                write_block(block, dest)
-                dest.write('\n\n')
+                #Copy only for the allowed locales
+                locales = block['locales']
+                if not locales or lang in locales:
+                    write_block(block, dest)
+                    dest.write('\n\n')
 
 
 class L10nParser():
@@ -319,34 +333,71 @@ class L10nParser():
         except ValueError:
             return None
 
+    def get_block_version(self, version_str):
+        block_version = self.parse_version(version_str)
+        if not block_version:
+            raise Exception("Invalid l10n block declaration: "
+                            "bad version '%s' in %s"
+                            % (block_name, self.tmpl))
+        return block_version
+
     def parse_block(self, strict=True):
         """Parse out the l10n block metadata and content"""
 
         block_name = self.scan_next('name')
         block_version = None
+        locales = []
 
         self.scan_ignore('whitespace')
-        if self.scan_next('operator') == ',':
+
+        operator = self.scan_next('operator')
+        if  operator == ',' or operator == ';':
             self.scan_ignore('whitespace')
             version_str = self.scan_next('integer')
-            block_version = self.parse_version(version_str)
+            if version_str:
+                block_version = self.get_block_version(version_str)
+            else: #We have new template
+                self.scan_ignore('whitespace')
+                locale_flag = self.scan_next('name')
+                if self.scan_next('operator') == '=':
+                    past_token = None
+                    while True:
+                        token = self.scan_next('name')
+                        operator = self.scan_next('operator')
+                        if operator == ',':
+                            if past_token:
+                                token = '%s-%s' % (past_token, token)
+                                past_token = None
+                            locales.append(token)
+                            continue
+                        elif operator == '-':
+                            past_token = token
+                            continue
+                        elif not operator:
+                            if past_token:
+                                token = '%s-%s' % (past_token, token)
+                                past_token = None
+                            locales.append(token)
+                            break
+                self.scan_ignore('whitespace')
+                self.scan_next('operator')
+                self.scan_ignore('whitespace')
 
-            if not block_version:
-                raise Exception("Invalid l10n block declaration: "
-                                "bad version '%s' in %s"
-                                % (block_name, self.tmpl))
+                version_str = self.scan_next('integer')
+                block_version = self.get_block_version(version_str)
 
-            self.scan_until('block_end')
         elif strict:
             raise Exception("Invalid l10n block declaration: "
                             "missing date for block '%s' in %s"
                             % (block_name, self.tmpl))
 
+        self.scan_until('block_end')
         (main, was_) = self.block_content()
         yield ('block', {'name': block_name,
                          'version': block_version,
                          'main': main,
-                         'was': was_})
+                         'was': was_,
+                         'locales': locales})
 
     def block_content(self):
         """Parse the content from an l10n block"""
@@ -398,6 +449,8 @@ class L10nParser():
         token = self.tokens.next()
         if token and token[1] == name:
             return token[2]
+        # Put it back on the list
+        self.tokens = itertools.chain([token], self.tokens)
         return False
 
 
