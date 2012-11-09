@@ -47,7 +47,7 @@
 
     <section id="welcome" class="section">
 
-      <figure class="video">
+      <figure class="right video">
         <a class="video-play" href="https://videos-cdn.mozilla.net/brand/Mozilla_2011_Story.webm" data-video-source="https://videos-cdn.mozilla.net/brand/Mozilla_2011_Story" title="{{ _('Click to play this video') }}">
           <img src="{{ MEDIA_URL }}img/foundation/annualreport/2011/vid-welcome.jpg" alt="" width="380">
         </a>
@@ -95,7 +95,7 @@
     <section id="mobilized" class="section">
       <h2 class="section-title">{{ _('Mozilla Mobilized') }}</h2>
 
-      <section class="row block has-overlay mob-intro">
+      <section class="row has-overlay mob-intro">
         <div class="overlay-wrap">
           <ul class="mob-topics">
             <li id="topic-firefox"><img src="{{ MEDIA_URL }}img/foundation/annualreport/2011/logo-firefox.png" alt="">Firefox</li>
@@ -130,7 +130,7 @@
         </div>
       </section>
 
-      <section class="row block mob-firefoxos has-overlay">
+      <section class="row mob-firefoxos has-overlay">
         <h3>{{ _('Firefox OS') }}</h3>
 
         <div class="overlay-wrap">
@@ -186,12 +186,12 @@
         </div>
       </section>
 
-      <section class="row block has-overlay mob-fxandroid">
+      <section class="row has-overlay mob-fxandroid">
         <h3>{{ _('Firefox for Android') }}</h3>
 
-        <img src="{{ MEDIA_URL }}img/foundation/annualreport/2011/fxandroid-phone.png" alt="">
+        <img class="left" src="{{ MEDIA_URL }}img/foundation/annualreport/2011/fxandroid-phone.png" alt="">
 
-        <div class="overlay-wrap">
+        <div class="right overlay-wrap">
           {# L10N: "Fast. Smart. Safe." is a slogan for Firefox for Android. It appears here as three separate strings for styling and layout purposes. #}
           <h4>
             {{ _('Fast.') }}<br>
@@ -221,7 +221,7 @@
         </div>
       </section>
 
-      <section class="row block has-overlay mob-fxdesktop">
+      <section class="row has-overlay mob-fxdesktop">
         <h3>{{ _('Firefox for Windows, Mac and Linux') }}</h3>
 
         <div class="overlay-wrap">
@@ -269,7 +269,7 @@
         </div>
       </section>
 
-      <section class="row block has-overlay mob-webmaker">
+      <section class="row has-overlay mob-webmaker">
         <h3>{{ _('Webmaker: Teaching the world the Web') }}</h3>
 
         <div class="overlay-wrap">
@@ -313,7 +313,7 @@
 
     <div class="row">
 
-      <aside class="block video mob-webmakervideo">
+      <aside class="left video mob-webmakervideo">
         <h3>{{ _('Webmaker: Video') }}</h3>
         <figure class="video">
           <a class="video-play" href="https://webmaker.org/videos/" data-video-source="https://videos-cdn.mozilla.net/serv/webmademovies/webmakers-instructors" title="{{ _('Click to view this video') }}">
@@ -322,7 +322,7 @@
         </figure>
       </aside>
 
-      <section class="block has-overlay mob-standards">
+      <section class="right has-overlay mob-standards">
         <h3>{{ _('Advocating for Web standards') }}</h3>
 
         <div class="overlay-wrap">
@@ -373,7 +373,7 @@
 
     <div class="row">
 
-      <section class="block has-overlay act-intro">
+      <section class="left has-overlay act-intro">
         <div class="overlay-wrap">
           <p class="pull"><em>
             {% trans %}
@@ -399,7 +399,7 @@
         </div>
       </section>
 
-      <section class="block has-overlay act-donottrack">
+      <section class="right has-overlay act-donottrack">
         <h3>{{ _('Do Not Track') }}</h3>
 
         <div class="overlay-wrap">
@@ -446,7 +446,7 @@
 
     <div class="row">
 
-      <section class="block act-sopa has-overlay">
+      <section class="left act-sopa has-overlay">
         <h3>SOPA / PIPA & ACTA</h3>
 
         <div class="overlay-wrap">
@@ -497,34 +497,7 @@
         </div>
       </section>
 
-      <section class="block act-collusion has-overlay">
-        <h3>{{ _('Collusion') }}</h3>
-
-        <div class="overlay-wrap">
-          <img src="{{ MEDIA_URL }}img/foundation/annualreport/2011/act-collusion.jpg" alt="">
-          <div class="overlay">
-            <p>
-            {% trans
-                collusion_url='https://www.mozilla.org/collusion/' %}
-              <a href="{{ collusion_url }}" rel="external">Mozilla Collusion</a>
-              gives consumers a powerful tool to protect their privacy, arming
-              them with transparency, facts and the power to make their own
-              decisions about how their personal data is shared and used. Made
-              possible with the support of the Ford Foundation, Collusion allows
-              users to see who is tracking them across the Web. It shows, in real
-              time, how that data creates a spider-web of interaction between
-              companies and other trackers.
-            {% endtrans %}
-            </p>
-          </div>
-        </div>
-      </section>
-
-    </div>
-
-    <div class="row">
-
-      <section class="block has-overlay act-flicks">
+      <section class="right has-overlay act-flicks">
         <h3>{{ _('Firefox Flicks') }}</h3>
 
         <div class="overlay-wrap">
@@ -548,13 +521,40 @@
         </div>
       </section>
 
-      <section class="block act-kovacsted">
-        <figure class="video">
+    </div>
+
+    <div class="row">
+
+      <section class="act-collusion has-overlay">
+        <h3>{{ _('Collusion') }}</h3>
+
+        <div class="left overlay-wrap">
+          <img src="{{ MEDIA_URL }}img/foundation/annualreport/2011/act-collusion.jpg" alt="">
+          <div class="overlay">
+            <p>
+            {% trans
+                collusion_url='https://www.mozilla.org/collusion/' %}
+              <a href="{{ collusion_url }}" rel="external">Mozilla Collusion</a>
+              gives consumers a powerful tool to protect their privacy, arming
+              them with transparency, facts and the power to make their own
+              decisions about how their personal data is shared and used. Made
+              possible with the support of the Ford Foundation, Collusion allows
+              users to see who is tracking them across the Web. It shows, in real
+              time, how that data creates a spider-web of interaction between
+              companies and other trackers.
+            {% endtrans %}
+            </p>
+          </div>
+        </div>
+
+        <figure class="right video act-kovacsted">
           <a class="vid-youtube" href="https://www.youtube.com/watch?v=f_f5wNw-2c0" title="{{ _('Click to view this video') }}">
             <img src="{{ MEDIA_URL }}img/foundation/annualreport/2011/vid-kovacsted.jpg" alt="">
           </a>
         </figure>
+
       </section>
+
     </div>
 
     </section>
@@ -582,10 +582,10 @@
         </p>
       </section>
 
-      <section class="row block has-overlay com-reps">
+      <section class="row has-overlay com-reps">
         <h3>{{ _('Mozilla Reps') }}</h3>
 
-        <div class="overlay-wrap">
+        <div class="overlay-wrap left">
           <img src="{{ MEDIA_URL }}img/foundation/annualreport/2011/com-reps.jpg" alt="">
 
           <div class="overlay">
@@ -606,20 +606,20 @@
           </div>
         </div>
 
-        <img class="rep" src="{{ MEDIA_URL }}img/foundation/annualreport/2011/mozilla-rep.png" alt="">
+        <img class="rep right" src="{{ MEDIA_URL }}img/foundation/annualreport/2011/mozilla-rep.png" alt="">
       </section>
 
       <section class="row haz-overlay com-mozcamps">
         <h3>{{ _('MozCamps') }}</h3>
 
-        <aside class="video">
+        <aside class="video left">
           <img src="{{ MEDIA_URL }}img/foundation/annualreport/2011/logo-mozcamp.png" alt="">
           <a class="video-play" href="http://videos-cdn.mozilla.net/serv/drafts/MozCamp-Latam.webm" data-video-source="http://videos-cdn.mozilla.net/serv/drafts/MozCamp-Latam" title="{{ _('Click to play this video') }}">
             <img src="{{ MEDIA_URL }}img/foundation/annualreport/2011/vid-mozcamp.jpg" alt="">
           </a>
         </aside>
 
-        <div class="overlay-wrap">
+        <div class="overlay-wrap right">
           <img src="{{ MEDIA_URL }}img/foundation/annualreport/2011/com-mozcamp.jpg" alt="">
           <div class="overlay">
             <p>
@@ -652,10 +652,10 @@
         </div>
       </section>
 
-      <section class="row block has-overlay com-emerging">
+      <section class="row has-overlay com-emerging">
         <h3>{{ _('Emerging Communities') }}</h3>
 
-        <div class="overlay-wrap">
+        <div class="overlay-wrap left">
           <img src="{{ MEDIA_URL }}img/foundation/annualreport/2011/com-emerging.jpg" alt="">
           <div class="overlay">
             <p>
@@ -680,7 +680,7 @@
             </p>
           </div>
         </div>
-        <img class="meet" src="{{ MEDIA_URL }}img/foundation/annualreport/2011/community-meet.png" alt="">
+        <img class="meet right" src="{{ MEDIA_URL }}img/foundation/annualreport/2011/community-meet.png" alt="">
       </section>
 
       <section class="row com-stories">
@@ -918,7 +918,18 @@
 {# L10N: This is a label for a button that controls a slider control, advancing to reveal the next item. #}
 <button type="button" class="btn-next">{{ _('Next') }}</button>
 
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36116321-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
 {% endblock %}
 
 {% block email_form %}{% endblock %}
-
+{% block webtrends %}{% endblock %}

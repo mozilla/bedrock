@@ -127,8 +127,8 @@
         <p>
         {#L10N: These variables will be numerals that won't require translation #}
         {% trans
-            revenue='X',
-            increase='Y' %}
+            revenue='$163',
+            increase='33' %}
           Mozilla’s consolidated reported revenue (Mozilla Foundation and all
           subsidiaries) for 2011 was {{ revenue }} million, up approximately
           {{ increase }} percent from 2010.
@@ -379,7 +379,18 @@
 
   </article>
 
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36116321-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
 {% endblock %}
 
 {% block email_form %}{% endblock %}
-
+{% block webtrends %}{% endblock %}

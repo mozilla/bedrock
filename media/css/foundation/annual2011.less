@@ -20,7 +20,14 @@ h1, h2, h3, h4, h5, h6 {
 #mobilized h2, #mobilized h3 { color: @blue; }
 #action h2, #action h3 { color: #000; }
 #community h2, #community h3 { color: @orange; }
-.section-title { .hidden; }
+#sustainability h2, #sustainability h3 { color: @red; }
+
+.section-title {
+  font-size: 38px;
+  margin: 0 -20px .35em;
+  padding: .5em 20px 0;
+  border-top: 2px solid;
+}
 
 dl.faq dt {
   color: @mozred;
@@ -148,7 +155,7 @@ body.noscroll {
       max-width: 90%;
       height: auto;
       display: block;
-      margin: 90px auto;
+      margin: 90px auto 20px;
     }
     video:focus {
       outline: 1px solid #ccc;
@@ -157,6 +164,10 @@ body.noscroll {
       max-width: 90%;
       display: block;
       margin: 90px auto;
+    }
+    .desc {
+      max-width: 85%;
+      margin: 0 auto;
     }
   }
 }
@@ -192,13 +203,22 @@ body.noscroll {
 
 /* Text block overlays *********/
 .section,
-.block,
 .row {
   .clearfix;
 }
 
 .row {
   margin: 0 0 20px;
+}
+
+.left {
+  width: 380px;
+  float: left;
+}
+
+.right {
+  width: 380px;
+  float: right;
 }
 
 .overlay-wrap {
@@ -261,8 +281,6 @@ body.noscroll {
 
 /* @Welcome *********/
 #welcome .video {
-  float: right;
-  width: 380px;
   margin: 0 0 20px 20px;
 }
 
@@ -332,18 +350,11 @@ body.noscroll {
 }
 
 /* Firefox for Android ***/
-.mob-fxandroid img {
-  float: left;
-}
-
 .mob-fxandroid {
   position: relative;
 }
 
-.mob-fxandroid .overlay-wrap {
-  width: 380px;
-  min-height: 320px;
-  float: right;
+.mob-fxandroid {
   h4 {
     padding: 85px 20px 0 215px;
     min-height: 235px;
@@ -370,18 +381,16 @@ body.noscroll {
 }
 
 /* Firefox Desktop ***/
-.mob-fxdesktop .overlay-wrap {
-  .pull {
-    background: #424d52 url(/media/img/foundation/annualreport/2011/mob-fxdesktop.jpg) center top no-repeat;
-    min-height: 300px;
-    padding: 120px 100px 0;
-    text-align: center;
-    .open-sans-light;
-    font-size: 42px;
-    font-style: italic;
-    color: #f7f4ec;
-    text-shadow: none;
-  }
+.mob-fxdesktop .pull {
+  background: #424d52 url(/media/img/foundation/annualreport/2011/mob-fxdesktop.jpg) center top no-repeat;
+  min-height: 300px;
+  padding: 120px 100px 0;
+  text-align: center;
+  .open-sans-light;
+  font-size: 42px;
+  font-style: italic;
+  color: #f7f4ec;
+  text-shadow: none;
 }
 
 .js .mob-fxdesktop .overlay {
@@ -390,18 +399,16 @@ body.noscroll {
 }
 
 /* Webmaker ***/
-.mob-webmaker {
-  .pull {
-    background: #71150d url(/media/img/foundation/annualreport/2011/mob-webmaker.jpg) center center no-repeat;
-    min-height: 260px;
-    padding: 100px 120px 0;
-    text-align: center;
-    .open-sans-light;
-    font-size: 42px;
-    font-style: italic;
-    color: #f7f4ec;
-    text-shadow: none;
-  }
+.mob-webmaker .pull {
+  background: #71150d url(/media/img/foundation/annualreport/2011/mob-webmaker.jpg) center center no-repeat;
+  min-height: 260px;
+  padding: 100px 120px 0;
+  text-align: center;
+  .open-sans-light;
+  font-size: 42px;
+  font-style: italic;
+  color: #f7f4ec;
+  text-shadow: none;
 }
 
 .js .mob-webmaker .overlay {
@@ -409,31 +416,21 @@ body.noscroll {
   background: rgba(113,21,13,.95);
 }
 
-.mob-webmakervideo {
-  width: 380px;
-  float: left;
-  p {
-    margin: 0;
-  }
+.mob-webmakervideo p {
+  margin: 0;
 }
 
-.mob-standards {
-  width: 380px;
-  float: right;
-  .overlay-wrap {
-
-  }
-  .pull {
-    background: #a63700 url(/media/img/foundation/annualreport/2011/mob-standards.jpg) center top no-repeat;
-    min-height: 184px;
-    padding: 30px 40px 0;
-    text-align: center;
-    .open-sans-light;
-    font-size: 32px;
-    font-style: italic;
-    color: #f7f4ec;
-    text-shadow: none;
-  }
+.mob-standards .pull {
+  background: #a63700 url(/media/img/foundation/annualreport/2011/mob-standards.jpg) center top no-repeat;
+  min-height: 184px;
+  padding: 30px 40px 0;
+  margin: 0;
+  text-align: center;
+  .open-sans-light;
+  font-size: 32px;
+  font-style: italic;
+  color: #f7f4ec;
+  text-shadow: none;
 }
 
 .js .mob-standards .overlay {
@@ -442,21 +439,16 @@ body.noscroll {
 }
 
 /* Action *********/
-.act-intro {
-  width: 380px;
-  float: left;
-  margin-top: 2.92em;
-  .pull {
-    background: #242e39 url(/media/img/foundation/annualreport/2011/act-intro.jpg) center top no-repeat;
-    min-height: 360px;
-    padding: 130px 40px 0;
-    text-align: center;
-    .open-sans-light;
-    font-size: 38px;
-    font-style: italic;
-    color: #f7f4ec;
-    text-shadow: none;
-  }
+.act-intro .pull {
+  background: #242e39 url(/media/img/foundation/annualreport/2011/act-intro.jpg) center top no-repeat;
+  min-height: 360px;
+  padding: 130px 40px 0;
+  text-align: center;
+  .open-sans-light;
+  font-size: 38px;
+  font-style: italic;
+  color: #f7f4ec;
+  text-shadow: none;
 }
 
 .js .act-intro .overlay {
@@ -466,8 +458,7 @@ body.noscroll {
 
 /* Do Not Track ***/
 .act-donottrack {
-  width: 380px;
-  float: right;
+  margin-top: -3em;
   img {
     background: #fff url(/media/img/foundation/annualreport/2011/act-donottrack.jpg) center top no-repeat;
     display: block;
@@ -481,11 +472,6 @@ body.noscroll {
 }
 
 /* SOPA/PIPA ***/
-.act-sopa {
-  width: 380px;
-  float: left;
-}
-
 .js .act-sopa .overlay {
   background: rgb(0,0,0);
   background: rgba(0,0,0,.95);
@@ -494,11 +480,6 @@ body.noscroll {
 #action .act-sopa .overlay h4 {
   color: #f7f4ec;
   text-shadow: none;
-}
-
-.act-collusion {
-  width: 380px;
-  float: right;
 }
 
 .js .act-collusion .overlay {
@@ -513,15 +494,10 @@ body.noscroll {
 }
 
 /* Flicks ***/
-.act-flicks {
-  width: 380px;
-  float: left;
-  margin-top: 3px;
-  img {
-    display: block;
-    padding: 30px 90px 13px;
-    background: rgb(80,13,20) url(/media/img/foundation/annualreport/2011/bg-curtains.jpg) center top repeat-x;
-  }
+.act-flicks img {
+  display: block;
+  padding: 50px 90px 36px;
+  background: rgb(80,13,20) url(/media/img/foundation/annualreport/2011/bg-curtains.jpg) center top repeat-x;
 }
 
 .js .act-flicks .overlay {
@@ -529,17 +505,7 @@ body.noscroll {
   background: rgba(80,13,20,.95);
 }
 
-/* TED talk ***/
-.act-kovacsted {
-  width: 380px;
-  float: right;
-  margin-top: 3em;
-}
-
 /* Community *********/
-#community .section-title {
-  .hidden;
-}
 .com-intro .pull {
   height: 390px;
   width: 100%;
@@ -566,17 +532,11 @@ body.noscroll {
 }
 
 /* Reps ***/
-.com-reps {
-  .overlay-wrap {
-    width: 380px;
-    float: left;
-  }
-  .overlay {
-    width: 780px;
-    float: left;
-    clear: both;
-    margin-top: 20px;
-  }
+.com-reps .overlay {
+  width: 780px;
+  float: left;
+  clear: both;
+  margin-top: 20px;
 }
 
 .js .com-reps .overlay {
@@ -594,13 +554,7 @@ body.noscroll {
 
 /* Mozcamps ***/
 .com-mozcamps {
-  .overlay-wrap {
-    width: 380px;
-    float: right;
-  }
   .video {
-    width: 380px;
-    float: left;
     img {
       display: block;
       margin: 20px auto;
@@ -625,13 +579,6 @@ body.noscroll {
 
 /* Emerging communities ***/
 .com-emerging {
-  .overlay-wrap {
-    width: 380px;
-    float: left;
-  }
-  .meet {
-    float: right;
-  }
   .overlay {
     width: 780px;
     float: left;
@@ -688,7 +635,8 @@ body.noscroll {
   overflow: hidden;
 }
 
-#story-slider {
+#story-slider,
+#story-slider-clone {
   position: relative;
   overflow: hidden;
   .vcard {
@@ -845,12 +793,251 @@ body.noscroll {
 /* Tablet  Layout: 768px */
 @media only screen and (min-width: @widthTablet) and (max-width: @widthDesktop) {
 
+  #wrapper,
+  #page-nav.fixed {
+    width: 740px;
+  }
+  
+  #main-content {
+    width: 700px;
+  }
+  
+  .left,
+  .right {
+    width: 340px;
+  }
+  
+  .mob-fxandroid {
+    h4 {
+      font-size: 32px;
+      min-height: 200px;
+      background-position: 0 -15px;
+    }
+    .overlay {
+      width: 700px;
+      margin-left: -360px;
+    }
+  }
+  .js .mob-fxandroid .overlay {
+    margin: 0;
+    width: auto;
+  }
+  
+  .mob-standards .pull {
+    font-size: 26px;
+    min-height: 160px;
+  }
+  
+  .act-donottrack img {
+    padding: 130px 37.5px 96px;
+  }
+  
+  .act-flicks img {
+    padding: 40px 70px 19px;
+  }
+  
+  .com-intro .pull {
+    height: 340px;
+    h3 {
+      font-size: 38px;
+    }
+  }
+  
+  .com-mozcamps {
+    .left img {
+      width: 233px;
+    } 
+    .left .video-play img {
+      width: 340px;
+    }
+  }
+  
+  .jcarousel-clip {
+    width: 660px;
+  }
+  
+  #story-slider {
+    .vcard {
+      font-size: .857em;
+      min-height: 86px;
+    }
+  }
 
 }
 
 
 /* Mobile layout: 320px */
 @media only screen and (max-width: @breakTablet) {
+
+  #wrapper,
+  #page-nav.fixed {
+    width: 320px;
+  }
+  
+  #main-content {
+    width: 280px;
+  }
+  
+  #masthead h1 {
+    font-size: 32px;
+    letter-spacing: -1px;
+  }
+  
+  .left,
+  .right {
+    float: none;
+    width: 280px;
+  }
+  
+  .overlay-wrap .read {
+    display: none;
+  }
+  
+  .js .overlay {
+    position: static;
+    left: auto;
+    padding: 0;
+    margin: 20px 0;
+    background: transparent none !important;
+    color: inherit;
+    a:link,
+    a:visited {
+      color: @linkBlue;
+    }
+    a:hover,
+    a:focus,
+    a:active {
+      color: @linkBlueHover;
+    }
+  }
+  
+  #welcome .video {
+    margin-left: 0;
+  }
+
+  .mob-topics {
+    padding: 0 20px;
+    margin: 0 0 20px;
+    font-size: 12px;
+    li {
+      padding-top: 100px;
+    }
+    #topic-firefox img {
+      margin-top: -86px;
+    }
+  
+    #topic-firefoxos img {
+      margin-top: -100px;
+    }
+  
+    #topic-webmaker img {
+      margin-top: -90px;
+    }
+  }
+  
+  .mob-fxandroid h4 {
+    display: none;
+  }
+  
+  .mob-firefoxos .pull,
+  .mob-fxdesktop .pull,
+  .mob-webmaker .pull,
+  .mob-standards .pull,
+  .act-intro .pull {
+    font-size: 18px;
+    padding: 20px;
+    min-height: auto;
+    background-size: cover;
+    p, h2, h3, h4 {
+      margin-bottom: 0;
+    }
+  }
+
+  .act-donottrack {
+    margin-top: 0;
+    img {
+      padding: 0;
+      margin: 0 auto;
+      background: transparent none;
+    }
+  }
+  
+  #action .act-sopa .overlay h4 {
+    color: inherit;
+  }
+  
+  .act-flicks img {
+    padding: 20px 40px;
+  }
+  
+  .com-intro .pull {
+    height: auto;
+    width: auto;
+    display: block;
+    padding: 20px;
+    margin: 0 0 20px;
+    background: darken(@orange, 20%);
+    h3 {
+      display: block;
+      font-size: 32px;
+      padding: 0;
+    }
+    img {
+      display: none;
+    }
+  }
+  
+  .js .com-reps .overlay {
+    margin-top: 20px;
+  }
+  
+  .com-reps .rep {
+    float: none;
+    margin: 20px 0;
+  }
+
+  .sus-links ul {
+    width: auto;
+    margin: 2em auto;
+    li {
+      float: none;
+      width: auto;
+      margin: 0 0 .5em;
+    }
+    a {
+      padding: 6px 20px;
+      height: auto;
+    }
+    small {
+      display: inline;
+      margin: 0 0 0 .5em;
+    }
+    a.sus-faq {
+      text-align: left;
+      font-size: 1.285em;
+      padding: 6px 20px;
+      height: auto;
+      background: #e5e5e5 none;
+    }
+    a.sus-fin:before,
+    a.sus-990:before {
+      display: none; 
+    }
+  }
+  
+  #video-stage {
+    display: none;
+  }
+  
+  #story-slider {
+    margin-top: 20px; 
+    .vcard {
+      width: 280px;
+      min-height: 158px;
+      display: block;
+      margin: 0 auto 20px;
+    }
+  }
 
 
 }
