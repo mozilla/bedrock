@@ -258,7 +258,7 @@
   // Set up the contributor stories carousel
   function setupCarousel() {
     $sliderPrime.clone().attr("id", "story-slider-clone").insertAfter($("#video-stage"));
-    if ($("#story-vid")[0].paused == false) {
+    if ( ($("#story-vid").length > 0) && ($("#story-vid")[0].paused == false) ) {
       $("#story-vid")[0].pause();
     }
     $sliderPrime.hide();
@@ -280,15 +280,16 @@
     var video   = $("#story-slider-clone").find("a.contributor:first").attr("href");
     var poster  = $("#story-slider-clone").find("a.contributor:first").attr("data-poster");
     var desc    = $("#story-slider-clone").find(".vcard:first .note").html();
-    $("#story-vid").attr('poster', poster).attr('src', video);
-
-    if ($("#video-stage figcaption").length != 0) {
+    if ( $("#story-vid").length > 0) {
+      $("#story-vid").attr('poster', poster).attr('src', video);
+    }
+    if ($("#video-stage figcaption").length > 0) {
       $("#video-stage figcaption").remove();
     }
     $("#video-stage").append('<figcaption>'+desc+'</figcaption>');
 
     // Add a play button overlay
-    if ($("span.btn-play").length != 0) {
+    if ($("span.btn-play").length > 0) {
       $("span.btn-play").remove();
     }
     $("#video-stage .player").append('<span class="btn-play"></span>');
@@ -358,7 +359,7 @@
           $("#story-vid").focus();
         });
       } else {
-        if ($("#fill").length != 0) {
+        if ($("#fill").length > 0) {
           $("#video")[0].pause();
           $("#fill").remove();
         }
