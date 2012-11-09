@@ -10,6 +10,7 @@ import views
 whatsnew_re = r'^firefox(?:/(%s))?/whatsnew/$' % version_re
 
 urlpatterns = patterns('',
+    page('firefox/all', 'firefox/all.html'),
     page('firefox/central', 'firefox/central.html'),
     page('firefox/channel', 'firefox/channel.html'),
     redirect('^firefox/channel/android/$', 'firefox.channel'),

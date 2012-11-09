@@ -1,0 +1,152 @@
+{% extends "/firefox/base-resp.html" %}
+
+{% block page_title %}Download Firefox in your language{% endblock %}
+{% block body_id %}firefox-all{% endblock %}
+
+{% block site_css %}
+  {{ css('firefox_all') }}
+{% endblock %}
+
+{% block breadcrumbs %}
+  <nav class="breadcrumbs">
+    <a href="{{ url('mozorg.home') }}">{{_('Home')}}</a> >
+    <a href="/firefox/">{{_('Firefox')}}</a> >
+    <span>{{_('Languages')}}</span>
+  </nav>
+{% endblock %}
+
+{% block content %}
+
+<hgroup id="main-feature">
+  <h1>{{_('Download Firefox in your language')}}</h1>
+  <h2>{{ _('Firefox is available in more than %s languages thanks to the contributions of Mozilla community members from around the world.')|format('70') }}</h2>
+</hgroup>
+
+<form id="language-search">
+  <div class="search-column">
+    <input type="search" placeholder="{{ _('Search languages') }}">
+    <button class="button arrow"><span>{{ _('Search') }}</span></button>
+  </div>
+  <div class="other-column">
+    <h4>{{ _('Other Firefox downloads') }}</h4>
+    <a href="#">{{ _('New languages still in beta') }}</a>
+  </div>
+</form>
+
+<div id="main-content">
+
+  <div id="localized">
+
+    <h3>{{ _('Fully localized versions') }}</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th colspan="2">{{ _('Language') }}</th>
+          <th>{{ _('Windows') }}</th>
+          <th>{{ _('Mac OS X') }}</th>
+          <th>{{ _('Linux') }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Language</td>
+          <td>Local Language</td>
+          <td class="download win"><a href="#" title="{{ _('Download for Windows')}}">{{ _('Download') }}</a></td>
+          <td class="download mac"><a href="#" title="{{ _('Download for Mac OS X')}}">{{ _('Download') }}</a></td>
+          <td class="download linux"><a href="#" title="{{ _('Download for Linux')}}">{{ _('Download') }}</a></td>
+        </tr>
+        <tr>
+          <td>Language</td>
+          <td>Local Language</td>
+          <td class="download win"><a href="#" title="{{ _('Download for Windows')}}">{{ _('Download') }}</a></td>
+          <td class="download mac"><a href="#" title="{{ _('Download for Mac OS X')}}">{{ _('Download') }}</a></td>
+          <td class="download linux"><a href="#" title="{{ _('Download for Linux')}}">{{ _('Download') }}</a></td>
+        </tr>
+        <tr>
+          <td>Language</td>
+          <td>Local Language</td>
+          <td class="download win"><a href="#" title="{{ _('Download for Windows')}}">{{ _('Download') }}</a></td>
+          <td class="download mac"><a href="#" title="{{ _('Download for Mac OS X')}}">{{ _('Download') }}</a></td>
+          <td class="download linux"><a href="#" title="{{ _('Download for Linux')}}">{{ _('Download') }}</a></td>
+        </tr>
+        <tr>
+          <td>Language</td>
+          <td>Local Language</td>
+          <td class="download win"><a href="#" title="{{ _('Download for Windows')}}">{{ _('Download') }}</a></td>
+          <td class="download mac"><a href="#" title="{{ _('Download for Mac OS X')}}">{{ _('Download') }}</a></td>
+          <td class="download linux"><a href="#" title="{{ _('Download for Linux')}}">{{ _('Download') }}</a></td>
+        </tr>
+        <tr>
+          <td>Language</td>
+          <td>Local Language</td>
+          <td class="download win"><a href="#" title="{{ _('Download for Windows')}}">{{ _('Download') }}</a></td>
+          <td class="download mac"><a href="#" title="{{ _('Download for Mac OS X')}}">{{ _('Download') }}</a></td>
+          <td class="download linux"><a href="#" title="{{ _('Download for Linux')}}">{{ _('Download') }}</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+  <div id="localized-testing">
+
+    <h3>{{ _('Localized versions in testing') }}</h3>
+    <p>{{ _('These localizations aren’t final. We’re waiting for more feedback from the community to perfect them.') }}</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th colspan="2">{{ _('Language') }}</th>
+          <th>{{ _('Windows') }}</th>
+          <th>{{ _('Mac OS X') }}</th>
+          <th>{{ _('Linux') }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Language</td>
+          <td>Local Language</td>
+          <td class="download win"><a href="#" title="{{ _('Download for Windows')}}">{{ _('Download') }}</a></td>
+          <td class="download mac"><a href="#" title="{{ _('Download for Mac OS X')}}">{{ _('Download') }}</a></td>
+          <td class="download linux"><a href="#" title="{{ _('Download for Linux')}}">{{ _('Download') }}</a></td>
+        </tr>
+        <tr>
+          <td>Language</td>
+          <td>Local Language</td>
+          <td class="download win"><a href="#" title="{{ _('Download for Windows')}}">{{ _('Download') }}</a></td>
+          <td class="download mac"><a href="#" title="{{ _('Download for Mac OS X')}}">{{ _('Download') }}</a></td>
+          <td class="download linux"><a href="#" title="{{ _('Download for Linux')}}">{{ _('Download') }}</a></td>
+        </tr>
+        <tr>
+          <td>Language</td>
+          <td>Local Language</td>
+          <td class="download win"><a href="#" title="{{ _('Download for Windows')}}">{{ _('Download') }}</a></td>
+          <td class="download mac"><a href="#" title="{{ _('Download for Mac OS X')}}">{{ _('Download') }}</a></td>
+          <td class="download linux"><a href="#" title="{{ _('Download for Linux')}}">{{ _('Download') }}</a></td>
+        </tr>
+        <tr>
+          <td>Language</td>
+          <td>Local Language</td>
+          <td class="download win"><a href="#" title="{{ _('Download for Windows')}}">{{ _('Download') }}</a></td>
+          <td class="download mac"><a href="#" title="{{ _('Download for Mac OS X')}}">{{ _('Download') }}</a></td>
+          <td class="download linux"><a href="#" title="{{ _('Download for Linux')}}">{{ _('Download') }}</a></td>
+        </tr>
+        <tr>
+          <td>Language</td>
+          <td>Local Language</td>
+          <td class="download win"><a href="#" title="{{ _('Download for Windows')}}">{{ _('Download') }}</a></td>
+          <td class="download mac"><a href="#" title="{{ _('Download for Mac OS X')}}">{{ _('Download') }}</a></td>
+          <td class="download linux"><a href="#" title="{{ _('Download for Linux')}}">{{ _('Download') }}</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+{% endblock %}
+
+{% block js %}
+  {{ js('firefox_platforms') }}
+{% endblock %}
