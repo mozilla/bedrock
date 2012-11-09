@@ -181,9 +181,8 @@ def copy_template(tmpl, blocks, lang):
 
     #If there is only one block and not for current lang
     # no need to create the file.
-    if len(blocks) == 1:
-        if not lang in blocks[0]['locales']:
-            return
+    if len(blocks) == 1 and not lang in blocks[0]['locales']:
+        return
 
     if blocks:
         # Make sure the templates directory for this locale and app exists
