@@ -3,9 +3,9 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from contextlib import contextmanager
-import unittest
 
 from django.utils.translation import get_language
+from django.utils import unittest
 
 import test_utils
 from tower import activate
