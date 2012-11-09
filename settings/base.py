@@ -463,7 +463,7 @@ INSTALLED_APPS = (
     'styleguide',
     'privacy',
     'redirects',
-    'foundation',
+    'legal',
 
     # libs
     'l10n_utils',

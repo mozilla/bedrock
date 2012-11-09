@@ -1,12 +1,18 @@
-$(function() {
+(function() {
 
   var $window       = $(window);
   var $sliderPrime  = $("#story-slider");
-  var wide          = false;
+  var wideMode      = false;
 
-  if ($window.width() >= 745) {
-    wide = true;
+  setupThumbnails();
+
+  if ($window.width() >= 768) {
+    wideMode = true;
     setupCarousel();
+    setStage();
+    $("#video-stage").show();
+  } else {
+    $("#video-stage").hide();
   }
 
   $window.resize(function() {
@@ -15,20 +21,23 @@ $(function() {
   });
 
   function doneResizing() {
-    if ($window.width() >= 745) {
-      wide = true;
+    $("title").text(wideMode);
+    if ($window.width() >= 768) {
+      wideMode = true;
       if ( $("#story-slider-clone").length === 0 ) {
         setupCarousel();
+        $("#video-stage").show();
       }
     }
-    else if ($window.width() < 745) {
-      wide = false;
+    else if ($window.width() < 768) {
+      wideMode = false;
       if ( $("#story-slider-clone").length >= 1 ) {
         removeCarousel();
+        $("#video-stage").hide();
       }
     }
   };
-
+  
   // Add the read buttons
   $("button.read").clone().prependTo(".overlay-wrap");
 
@@ -36,7 +45,7 @@ $(function() {
   // @Uses hoverIntent plugin: http://cherne.net/brian/resources/jquery.hoverIntent.html
   $(".overlay-wrap").hoverIntent(
     function() {
-      if (wide) {
+      if (wideMode) {
         var overlayheight = $(this).height() - 80;
         $(this).find(".overlay").stop().hide().css({
           'left' : 'auto',
@@ -45,7 +54,7 @@ $(function() {
       }
     },
     function() {
-      if (wide) {
+      if (wideMode) {
         $(this).find(".overlay").stop().delay(300).fadeOut(600, function(){
           $(this).removeAttr('style');
         });
@@ -55,7 +64,7 @@ $(function() {
 
   // Reveal overlays when buttons get focus (for keyboard navigation)
   $(".overlay-wrap .read").focus(function() {
-    if (wide) {
+    if (wideMode) {
       $(".overlay[style]").stop().delay(300).fadeOut(600, function(){   // First hide any visible overlays
         $(this).removeAttr('style');                                    // Then reset them to normal (hidden offscreen by CSS)
       });
@@ -111,7 +120,8 @@ $(function() {
       }
     }
   };
-
+  
+  // Set up waypoints for scrolling; update nav for each section
   $('#welcome').waypoint(function(event, direction) {
     if(fixed) {
       $nav.attr('class', 'fixed welcome');
@@ -190,7 +200,6 @@ $(function() {
     offset: 60
   });
 
-
   // Check for an adjusted scrollbar every 100ms.
   setInterval(adjustScrollbar, 100);
 
@@ -223,7 +232,6 @@ $(function() {
       '<source src="'+video+'.webm" type="video/webm">'
      +'<source src="'+video+'.mp4" type="video/mp4">'
     ).focus();
-    $("#done").clone().appendTo("#inner");
     closeModal();
   });
 
@@ -233,28 +241,8 @@ $(function() {
     var origin = $(this);
     $('body').addClass("noscroll").append('<div id="fill"><div id="inner"><iframe width="640" height="360" src="http://www.youtube-nocookie.com/embed/f_f5wNw-2c0?rel=0" frameborder="0" allowfullscreen></iframe></div></div>');
     $("#inner iframe").focus();
-    $("#done").clone().appendTo("#inner");
     closeModal();
   });
-
-  function closeModal() {
-    // Remove the full-page modal
-    $("#fill #done").click(function() {
-      $("#video")[0].pause();
-      $("#fill").remove();
-      $("body").removeClass("noscroll");
-    });
-    
-    // Esc key removes the modal, too
-    $("#fill").keyup(function(e) {
-      if (e.keyCode == 27) { // esc
-        $("#fill").remove();
-        $("body").removeClass("noscroll");
-        origin.focus();
-      }
-    });
-  };
-
 
   // Set up the contributor stories carousel
   function setupCarousel() {
@@ -262,8 +250,7 @@ $(function() {
     if ($("#story-vid")[0].paused == false) {
       $("#story-vid")[0].pause();
     }
-    $sliderPrime.hide();      
-
+    $sliderPrime.hide();
     $("#story-slider-clone").jcarousel({
       scroll: 1,
       visible: 4,
@@ -273,49 +260,20 @@ $(function() {
       itemLastInCallback: { onAfterAnimation: disableButtons },
       initCallback: controlButtons
     });
+    setStage();
+    setupThumbnails();
+  };
     
-    function controlButtons(carousel) {
-      storyPlay();
-      // Add the control buttons
-      $(".btn-prev, .btn-next").clone().prependTo(".jcarousel-container");
-      // Make the buttons work
-      $('.btn-next').bind('click', function() {
-        carousel.next();
-      });
-      $('.btn-prev').bind('click', function() {
-        carousel.prev();
-      });
-    };
-
-    // Disable the buttons at the end of the carousel
-    function disableButtons(carousel){
-      if (carousel.first == 1) {
-        $('.btn-prev').attr('disabled','disabled').addClass('disabled');
-      } else {
-        $('.btn-prev').removeAttr('disabled').removeClass('disabled');
-      }
-      if (carousel.last == carousel.size()) {
-        $('.btn-next').attr('disabled','disabled').addClass('disabled');
-      } else {
-        $('.btn-next').removeAttr('disabled').removeClass('disabled');
-      }
-    }
-  };
-
-  function removeCarousel() {
-    $("#story-slider-clone").parents(".jcarousel-container").remove();
-    if ($("#story-vid")[0].paused == false) {
-      $("#story-vid")[0].pause();
-    }
-    $sliderPrime.show();
-  };
-
-  // Set up contributor video
-  if ($("#story-slider-clone").length > 0) {
+    // Set up video stage
+  function setStage() {
     var video   = $("#story-slider-clone").find("a.contributor:first").attr("href");
     var poster  = $("#story-slider-clone").find("a.contributor:first").attr("data-poster");
     var desc    = $("#story-slider-clone").find(".vcard:first .note").html();
     $("#story-vid").attr('poster', poster).attr('src', video);
+    
+    if ($("#video-stage figcaption").length != 0) {
+      $("#video-stage figcaption").remove();
+    }
     $("#video-stage").append('<figcaption>'+desc+'</figcaption>');
 
     // Add a play button overlay
@@ -324,17 +282,54 @@ $(function() {
       $("#story-vid").attr('controls','controls')[0].play();
       $(this).fadeOut('fast', function(){ $(this).remove(); });
     });
+    
+  };
+  
+  function controlButtons(carousel) {
+    // Add the left and right control buttons
+    $(".btn-prev, .btn-next").clone().prependTo(".jcarousel-container");
+    // Make the buttons work
+    $('.btn-next').bind('click', function() {
+      carousel.next();
+    });
+    $('.btn-prev').bind('click', function() {
+      carousel.prev();
+    });
   };
 
-  // Play contributor stories
-  function storyPlay() {  
-    $("a.contributor").click( function(e) {
+  // Disable the buttons at the end of the carousel
+  function disableButtons(carousel) {
+    if (carousel.first == 1) {
+      $('.btn-prev').attr('disabled','disabled').addClass('disabled');
+    } else {
+      $('.btn-prev').removeAttr('disabled').removeClass('disabled');
+    }
+    if (carousel.last == carousel.size()) {
+      $('.btn-next').attr('disabled','disabled').addClass('disabled');
+    } else {
+      $('.btn-next').removeAttr('disabled').removeClass('disabled');
+    }
+  }
+
+  function removeCarousel() {
+    $("#story-slider-clone").parents(".jcarousel-container").remove();
+    if ($("#story-vid")[0].paused == false) {
+      $("#story-vid")[0].pause();
+    }
+    setupThumbnails();
+    $sliderPrime.show();
+  };
+
+
+  // Contributor story thumbnails play the corresponding video
+  function setupThumbnails() { 
+    $("a.contributor").click(function(e) {
       e.preventDefault();
       var video   = $(this).attr("href");
       var poster  = $(this).attr("data-poster");
       var desc    = $(this).find(".note").html();
       
-      if ( $("#video-stage").is(":visible") ) { // If the stage exists, play videos on stage
+      if (wideMode) {
         if ($("#story-vid")[0].paused == false) {
           $("#story-vid")[0].pause();
         }
@@ -348,17 +343,38 @@ $(function() {
         }, 200, function() {
           $("#story-vid").focus();
         });
-      } else { // Else play in a modal
+      } else {
+        if ($("#fill").length != 0) {
+          $("#video")[0].pause();
+          $("#fill").remove();
+        }
         $('body').addClass("noscroll").append('<div id="fill"><div id="inner"><video id="video" poster="'+poster+'" controls autoplay></video></div></div>');
         $("#video").append(
           '<source src="'+video+'" type="video/webm">'
         ).focus();
         $("#inner").append('<p class="desc">'+desc+'</p>');
-        $("#done").clone().appendTo("#inner");
-        closeModal();
-      };
+        closeModal();    
+      }
     });
   };
 
-});
 
+  // Remove the full-page modal
+  function closeModal() {
+    $("#done").clone().appendTo("#inner");
+    $("#fill #done").bind('click', function() {
+      $("#video")[0].pause();
+      $("#fill").remove();
+      $("body").removeClass("noscroll");
+    });
+    
+    $("#fill").bind('keyup', function(e) {
+      if (e.keyCode == 27) { // esc
+        $("#fill").remove();
+        $("body").removeClass("noscroll");
+        origin.focus();
+      }
+    });
+  };
+
+})();
