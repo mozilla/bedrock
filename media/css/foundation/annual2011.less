@@ -69,10 +69,13 @@ a.vid-youtube:focus {
   }
 }
 
+#main-content {
+  margin-top: 30px;
+}
+
 /* Navigation ***/
 #page-nav {
   background: @mozred;
-  margin: 0 0 30px;
   text-transform: uppercase;
   text-shadow: 0 1px 0 rgba(0,0,0,.3);
   box-shadow: 0 1px 3px rgba(0,0,0,.2);
@@ -125,8 +128,6 @@ a.vid-youtube:focus {
 
 #page-nav.sustainability, #page-nav.sustainability a { background: @red; }
 #nav-sustainability.current a { background: #fff; color: @red; }
-
-
 
 /* Full-window overlays *********/
 body.noscroll {
@@ -856,10 +857,11 @@ body.noscroll {
     width: 660px;
   }
   
-  #story-slider {
+  #story-slider,
+  #story-slider-clone {
     .vcard {
-      font-size: .857em;
-      min-height: 86px;
+      font-size: 12px;
+      min-height: 77px;
     }
   }
 
@@ -869,8 +871,7 @@ body.noscroll {
 /* Mobile layout: 320px */
 @media only screen and (max-width: @breakTablet) {
 
-  #wrapper,
-  #page-nav.fixed {
+  #wrapper {
     width: 320px;
   }
   
@@ -882,6 +883,41 @@ body.noscroll {
     font-size: 32px;
     letter-spacing: -1px;
   }
+  
+  #page-nav {
+    padding: 20px 12px 25px 0;
+    li {
+      float: none;
+    }
+  }
+  
+  #page-nav.fixed {
+    width: 308px;
+    top: -13em;
+    overflow: visible;
+    li {
+      float: none;
+    }
+  }
+  
+  #page-nav.fixed ul:after {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    border: solid transparent; 
+    content: " "; 
+    height: 0; 
+    width: 0;
+    border-top-color: @mozred; 
+    border-width: 10px;
+    margin-left: -10px;
+  }
+  
+  #page-nav.fixed.welcome ul:after { border-top-color: @mozred; }
+  #page-nav.fixed.mobilized ul:after { border-top-color: @blue; }
+  #page-nav.fixed.action ul:after { border-top-color: #000; }
+  #page-nav.fixed.community ul:after { border-top-color: @orange; }
+  #page-nav.fixed.sustainability ul:after { border-top-color: @red; }
   
   .left,
   .right {
@@ -946,7 +982,7 @@ body.noscroll {
   .act-intro .pull {
     font-size: 18px;
     padding: 20px;
-    min-height: auto;
+    min-height: 0;
     background-size: cover;
     p, h2, h3, h4 {
       margin-bottom: 0;
@@ -1035,15 +1071,13 @@ body.noscroll {
     }
   }
 
-
 }
 
 
 /* Wide mobile layout: 480px; */
 @media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
 
-  #wrapper,
-  #page-nav.fixed {
+  #wrapper {
     width: 420px;
   }
   
@@ -1056,6 +1090,10 @@ body.noscroll {
     float: none;
     width: 380px;
     margin: 0 0 20px;
+  }
+
+  #page-nav.fixed {
+    width: 408px;
   }
 
   .mob-topics {

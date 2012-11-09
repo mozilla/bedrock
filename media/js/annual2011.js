@@ -21,7 +21,6 @@
   });
 
   function doneResizing() {
-    $("title").text(wideMode);
     if ($window.width() >= 768) {
       wideMode = true;
       if ( $("#story-slider-clone").length === 0 ) {
@@ -37,7 +36,7 @@
       }
     }
   };
-  
+
   // Add the read buttons
   $("button.read").clone().prependTo(".overlay-wrap");
 
@@ -84,6 +83,7 @@
   var $nav      = $('#page-nav');
   var $head     = $('#masthead');
   var navTop    = $nav.offset();
+  var navHeight = $nav.height() + 30;
   var fixed     = false;
   var didScroll = false;
 
@@ -107,7 +107,7 @@
         if(!fixed) {
           fixed = true;
           $nav.addClass("fixed");
-          $head.css({ "margin-bottom" : "60px" });
+          $head.css({ "margin-bottom" : navHeight });
         }
       } else {
         if(fixed) {
@@ -120,8 +120,19 @@
       }
     }
   };
-  
+
+  if (!wideMode) {
+    $nav.click(function(){
+      $(this).animate({ top: "0" }, 'fast');
+      $(this).mouseleave(function(){ $(this).removeAttr("style"); });
+      $("body").bind('click', function(){
+        $nav.removeAttr("style");
+      });
+    });
+  };
+
   // Set up waypoints for scrolling; update nav for each section
+  // Uses jQuery Waypoints http://imakewebthings.com/jquery-waypoints/
   $('#welcome').waypoint(function(event, direction) {
     if(fixed) {
       $nav.attr('class', 'fixed welcome');
@@ -129,7 +140,7 @@
       $("#nav-welcome").addClass("current");
     }
   },{
-    offset: 60
+    offset: navHeight
   });
 
   $('#mobilized').waypoint(function(event, direction) {
@@ -146,7 +157,7 @@
       }
     }
   },{
-    offset: 60
+    offset: navHeight
   });
 
   $('#action').waypoint(function(event, direction) {
@@ -163,7 +174,7 @@
       }
     }
   },{
-    offset: 60
+    offset: navHeight
   });
 
   $('#community').waypoint(function(event, direction) {
@@ -180,7 +191,7 @@
       }
     }
   },{
-    offset: 60
+    offset: navHeight
   });
 
   $('#sustainability').waypoint(function(event, direction) {
@@ -197,7 +208,7 @@
       }
     }
   },{
-    offset: 60
+    offset: navHeight
   });
 
   // Check for an adjusted scrollbar every 100ms.
@@ -263,28 +274,31 @@
     setStage();
     setupThumbnails();
   };
-    
+
     // Set up video stage
   function setStage() {
     var video   = $("#story-slider-clone").find("a.contributor:first").attr("href");
     var poster  = $("#story-slider-clone").find("a.contributor:first").attr("data-poster");
     var desc    = $("#story-slider-clone").find(".vcard:first .note").html();
     $("#story-vid").attr('poster', poster).attr('src', video);
-    
+
     if ($("#video-stage figcaption").length != 0) {
       $("#video-stage figcaption").remove();
     }
     $("#video-stage").append('<figcaption>'+desc+'</figcaption>');
 
     // Add a play button overlay
+    if ($("span.btn-play").length != 0) {
+      $("span.btn-play").remove();
+    }
     $("#video-stage .player").append('<span class="btn-play"></span>');
     $("span.btn-play").click(function(){
       $("#story-vid").attr('controls','controls')[0].play();
       $(this).fadeOut('fast', function(){ $(this).remove(); });
     });
-    
+
   };
-  
+
   function controlButtons(carousel) {
     // Add the left and right control buttons
     $(".btn-prev, .btn-next").clone().prependTo(".jcarousel-container");
@@ -322,13 +336,13 @@
 
 
   // Contributor story thumbnails play the corresponding video
-  function setupThumbnails() { 
+  function setupThumbnails() {
     $("a.contributor").click(function(e) {
       e.preventDefault();
       var video   = $(this).attr("href");
       var poster  = $(this).attr("data-poster");
       var desc    = $(this).find(".note").html();
-      
+
       if (wideMode) {
         if ($("#story-vid")[0].paused == false) {
           $("#story-vid")[0].pause();
@@ -353,7 +367,7 @@
           '<source src="'+video+'" type="video/webm">'
         ).focus();
         $("#inner").append('<p class="desc">'+desc+'</p>');
-        closeModal();    
+        closeModal();
       }
     });
   };
@@ -367,7 +381,7 @@
       $("#fill").remove();
       $("body").removeClass("noscroll");
     });
-    
+
     $("#fill").bind('keyup', function(e) {
       if (e.keyCode == 27) { // esc
         $("#fill").remove();
