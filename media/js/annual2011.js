@@ -3,6 +3,10 @@
   var $window       = $(window);
   var $sliderPrime  = $("#story-slider");
   var wideMode      = false;
+  var $nav          = $('#page-nav');
+  var $head         = $('#masthead');
+  var navTop        = $nav.offset();
+  var navHeight     = $nav.height() + 30;
 
   setupThumbnails();
 
@@ -21,6 +25,7 @@
   });
 
   function doneResizing() {
+    navHeight = $nav.height() + 30;
     if ($window.width() >= 768) {
       wideMode = true;
       if ( $("#story-slider-clone").length === 0 ) {
@@ -80,10 +85,6 @@
 
 
   // Sticky navigation
-  var $nav      = $('#page-nav');
-  var $head     = $('#masthead');
-  var navTop    = $nav.offset();
-  var navHeight = $nav.height() + 30;
   var fixed     = false;
   var didScroll = false;
 
@@ -223,6 +224,7 @@
       scrollTop: $(elem).offset().top - 35
     }, 1000, function() {
       $(elem).attr('tabindex','100').focus().removeAttr('tabindex');
+      if (!wideMode) { $nav.removeAttr("style"); }
     });
   });
 
@@ -358,15 +360,16 @@
         }, 200, function() {
           $("#story-vid").focus();
         });
-      } else {
+      } else if (!wideMode) {
+        e.preventDefault();
         if ($("#fill").length > 0) {
           $("#video")[0].pause();
           $("#fill").remove();
         }
-        $('body').addClass("noscroll").append('<div id="fill"><div id="inner"><video id="video" poster="'+poster+'" controls autoplay></video></div></div>');
+        $('body').addClass("noscroll").append('<div id="fill"><div id="inner"><video id="video" poster="'+poster+'" controls></video></div></div>');
         $("#video").append(
           '<source src="'+video+'" type="video/webm">'
-        ).focus();
+        ).focus()[0].play();
         $("#inner").append('<p class="desc">'+desc+'</p>');
         closeModal();
       }
