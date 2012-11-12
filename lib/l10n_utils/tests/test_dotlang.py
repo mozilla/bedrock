@@ -4,17 +4,74 @@ import os
 
 from django.conf import settings
 from django.core import mail
+from django.core.urlresolvers import clear_url_caches
+from django.test.client import Client
 
+from jingo import env
+from jinja2 import FileSystemLoader
 from mock import patch
-from nose.tools import assert_not_equal, eq_
+from nose.tools import assert_not_equal, eq_, ok_
+from pyquery import PyQuery as pq
 from tower.management.commands.extract import extract_tower_python
 
-from l10n_utils.dotlang import _, FORMAT_IDENTIFIER_RE, parse, translate
+from l10n_utils.dotlang import (_, FORMAT_IDENTIFIER_RE, lang_file_is_active,
+                                parse, translate)
 from mozorg.tests import TestCase
 
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test_files')
 LANG_FILES = 'test_file'
+TEMPLATE_DIRS = (os.path.join(ROOT, 'templates'),)
+
+
+@patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
+@patch.object(settings, 'ROOT_URLCONF', 'l10n_utils.tests.test_files.urls')
+@patch.object(settings, 'ROOT', ROOT)
+class TestLangFilesActivation(TestCase):
+    def setUp(self):
+        clear_url_caches()
+        self.client = Client()
+
+    @patch.object(settings, 'DEV', False)
+    def test_lang_file_is_active(self):
+        """
+        `lang_file_is_active` should return true if lang file has the
+        comment, and false otherwise.
+        """
+        ok_(lang_file_is_active('active_de_lang_file', 'de'))
+        ok_(not lang_file_is_active('active_de_lang_file', 'es'))
+        ok_(not lang_file_is_active('inactive_de_lang_file', 'de'))
+        ok_(not lang_file_is_active('does_not_exist', 'de'))
+
+    @patch.object(settings, 'DEV', False)
+    def test_active_locale_not_redirected(self):
+        """ Active lang file should render correctly. """
+        response = self.client.get('/de/active-de-lang-file/')
+        eq_(response.status_code, 200)
+        doc = pq(response.content)
+        eq_(doc('h1').text(), 'Die Lage von Mozilla')
+
+    @patch.object(settings, 'DEV', False)
+    @patch.object(settings, 'LANGUAGE_CODE', 'en-US')
+    def test_inactive_locale_redirected(self):
+        """ Inactive locale should redirect to en-US. """
+        response = self.client.get('/de/inactive-de-lang-file/')
+        eq_(response.status_code, 302)
+        eq_(response['location'],
+            'http://testserver/en-US/inactive-de-lang-file/')
+        response = self.client.get('/de/inactive-de-lang-file/', follow=True)
+        doc = pq(response.content)
+        eq_(doc('h1').text(), 'The State of Mozilla')
+
+    @patch.object(settings, 'DEV', True)
+    def test_inactive_locale_not_redirected_dev_true(self):
+        """
+        Inactive lang file should not redirect in DEV mode.
+        """
+        response = self.client.get('/de/inactive-de-lang-file/')
+        eq_(response.status_code, 200)
+        doc = pq(response.content)
+        eq_(doc('h1').text(), 'Die Lage von Mozilla')
 
 
 class TestDotlang(TestCase):
