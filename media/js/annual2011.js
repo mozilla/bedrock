@@ -29,14 +29,13 @@
         navHeight = $nav.height() + 30;
         if ($window.width() >= 768) {
             wideMode = true;
-            if ( $("#story-slider-clone").length === 0 ) {
+            if ($("#story-slider-clone").length === 0) {
                 setupCarousel();
                 $("#video-stage").show();
             }
-        }
-        else {
+        } else {
             wideMode = false;
-            if ( $("#story-slider-clone").length >= 1 ) {
+            if ($("#story-slider-clone").length > 0) {
                 removeCarousel();
                 $("#video-stage").hide();
             }
