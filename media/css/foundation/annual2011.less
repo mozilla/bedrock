@@ -1126,3 +1126,51 @@ body.noscroll {
 
 }
 
+
+/* Various Fixes for locales */
+
+html[lang='fr'] #masthead h1 {
+  font-size:68px;
+}
+
+html[lang='cs'] .mob-fxandroid h4,
+html[lang='csb'] .mob-fxandroid h4,
+html[lang='de'] .mob-fxandroid h4,
+html[lang='el'] .mob-fxandroid h4,
+html[lang='es-ES'] .mob-fxandroid h4,
+html[lang='it'] .mob-fxandroid h4,
+html[lang='sq'] .mob-fxandroid h4 {
+  font-size: 37px;
+  padding-left: 200px;
+}
+
+html[lang='csb'] .mob-fxandroid h4 {
+  font-size: 33px;
+  line-height: 45px;
+}
+
+html[lang='el'] .sus-links ul a.sus-faq,
+html[lang='lij'] .sus-links ul a.sus-faq,
+html[lang='pt-BR'] .sus-links ul a.sus-faq {
+  font-size: 20px;
+}
+
+html[lang='el'] .sus-links ul a.sus-faq {
+  font-size: 20px !important;
+}
+
+/* No Italic in Chinese */
+html[lang='zh-CN'] body h2,
+html[lang='zh-CN'] body h3,
+html[lang='zh-CN'] body aside.pull,
+html[lang='zh-CN'] body p.pull,
+html[lang='zh-CN'] body .sus-links ul small,
+html[lang='zh-CN'] body p em,
+html[lang='zh-TW'] body h2,
+html[lang='zh-TW'] body h3,
+html[lang='zh-TW'] body aside.pull,
+html[lang='zh-TW'] body p.pull,
+html[lang='zh-TW'] body .sus-links ul small,
+html[lang='zh-TW'] body p em {
+  font-style: normal ;
+}
