@@ -30,6 +30,7 @@ PROD_LANGUAGES = ('ab-CD', 'ach', 'af', 'ak', 'ar', 'as', 'ast', 'be', 'bg',
                   'sv-SE', 'sw', 'ta', 'ta-LK', 'te', 'th', 'tr', 'uk',
                   'vi', 'wo', 'zh-CN', 'zh-TW', 'zu')
 DEV_LANGUAGES = list(DEV_LANGUAGES) + ['en-US']
+NEWSLETTER_LANGUAGES = ['de', 'en-US', 'es', 'fr', 'id', 'pt-BR', 'ru']
 
 FEED_CACHE = 3900
 DOTLANG_CACHE = 60
@@ -44,6 +45,7 @@ TEMPLATE_DIRS = (
     path('locale')
 )
 
+
 # has to stay a callable because tower expects that.
 def JINJA_CONFIG():
     return {
@@ -56,6 +58,7 @@ def JINJA_CONFIG():
         'finalize': lambda x: x if x is not None else '',
         'auto_reload': True,
     }
+
 
 # Bundles is a dictionary of two dictionaries, css and js, which list css files
 # and js files that can be bundled together by the minify app.
@@ -494,7 +497,7 @@ LOCALES_WITH_TRANSITION = ['en-US', 'af', 'ar', 'ast', 'be', 'bg',
                            'nl', 'or', 'pa-IN', 'pl', 'pt-BR', 'pt-PT',
                            'rm', 'ro', 'ru', 'si', 'sk', 'sl', 'sq',
                            'sr', 'sv-SE', 'ta', 'ta-LK', 'te', 'th',
-                           'tr', 'uk', 'vi', 'zh-CN', 'zh-TW'];
+                           'tr', 'uk', 'vi', 'zh-CN', 'zh-TW']
 
 # reCAPTCHA keys
 RECAPTCHA_PUBLIC_KEY = ''

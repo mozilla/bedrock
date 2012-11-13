@@ -102,11 +102,9 @@
 {% endblock %}
 
 {% block email_form %}
-  {% if LANG.startswith('en') %}
-    <div id="email-form-wrapper" class="billboard">
-      {{ super() }}
-    </div>
-  {% endif %}
+  <div id="email-form-wrapper" class="billboard">
+    {{ super() }}
+  </div>
 {% endblock%}
 
 
