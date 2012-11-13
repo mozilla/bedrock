@@ -7,7 +7,10 @@ from redirects.util import redirect
 from mozorg.util import page
 import views
 
-whatsnew_re = r'^firefox(?:/(%s))?/whatsnew/$' % version_re
+
+latest_re = r'^firefox(?:/(%s))?/%s/$'
+whatsnew_re = latest_re % (version_re, 'whatsnew')
+firstrun_re = latest_re % (version_re, 'firstrun')
 
 urlpatterns = patterns('',
     page('firefox/central', 'firefox/central.html'),
@@ -22,7 +25,8 @@ urlpatterns = patterns('',
     page('firefox/happy', 'firefox/happy.html'),
     page('firefox/memory', 'firefox/memory.html',
          latest_version=product_details.firefox_versions['LATEST_FIREFOX_VERSION']),
-    url('^firefox/mobile/platforms/$', views.platforms, name='firefox.mobile.platforms'),
+    url('^firefox/mobile/platforms/$', views.platforms,
+        name='firefox.mobile.platforms'),
     page('firefox/mobile/features', 'firefox/mobile/features.html'),
     page('firefox/mobile/faq', 'firefox/mobile/faq.html'),
     url('^firefox/sms/$', views.sms_send, name='firefox.sms'),
@@ -47,5 +51,8 @@ urlpatterns = patterns('',
 
     url(r'^firefox/unsupported/win/$', views.windows_billboards),
     url('^dnt/$', views.dnt, name='firefox.dnt'),
-    url(whatsnew_re, views.whatsnew_redirect, name='firefox.whatsnew'),
+    url(whatsnew_re, views.latest_fx_redirect, name='firefox.whatsnew',
+        kwargs={'template_name': 'firefox/whatsnew.html'}),
+    url(firstrun_re, views.latest_fx_redirect, name='firefox.firstrun',
+        kwargs={'template_name': 'firefox/firstrun.html'}),
 )
