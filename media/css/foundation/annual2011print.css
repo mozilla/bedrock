@@ -1,0 +1,218 @@
+/* Print styles for the 2011 State of Mozilla annual report */
+
+/* Fonts */
+@font-face {
+    font-family: 'Open Sans Light';
+    src: url('/media/fonts/OpenSans-Light-webfont.eot');
+    src: url('/media/fonts/OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/media/fonts/OpenSans-Light-webfont.woff') format('woff'),
+         url('/media/fonts/OpenSans-Light-webfont.ttf') format('truetype'),
+         url('/media/fonts/OpenSans-Light-webfont.svg#OpenSansLight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Open Sans Light';
+    src: url('/media/fonts/OpenSans-LightItalic-webfont.eot');
+    src: url('/media/fonts/OpenSans-LightItalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/media/fonts/OpenSans-LightItalic-webfont.woff') format('woff'),
+         url('/media/fonts/OpenSans-LightItalic-webfont.ttf') format('truetype'),
+         url('/media/fonts/OpenSans-LightItalic-webfont.svg#OpenSansRegular') format('svg');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('/media/fonts/OpenSans-Regular-webfont.eot');
+    src: url('/media/fonts/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/media/fonts/OpenSans-Regular-webfont.woff') format('woff'),
+         url('/media/fonts/OpenSans-Regular-webfont.ttf') format('truetype'),
+         url('/media/fonts/OpenSans-Regular-webfont.svg#OpenSansRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('/media/fonts/OpenSans-Semibold-webfont.eot');
+    src: url('/media/fonts/OpenSans-Semibold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/media/fonts/OpenSans-Semibold-webfont.woff') format('woff'),
+         url('/media/fonts/OpenSans-Semibold-webfont.ttf') format('truetype'),
+         url('/media/fonts/OpenSans-Semibold-webfont.svg#OpenSansSemibold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+
+
+/* Hidden elements */
+#page-nav,
+#tabzilla,
+.read,
+#done,
+.btn-prev,
+.btn-next,
+.mob-fxandroid h4,
+.mob-webmakervideo,
+.act-kovacsted,
+#video-stage,
+.video-play,
+.com-reps .rep,
+.com-mozcamps .overlay-wrap img,
+.com-emerging .meet,
+.sus-links,
+#colophon .footer-nav,
+#colophon .footer-license p+p {
+  display: none;
+}
+
+
+/* General styles */
+body {
+  font: 10pt/1.4 'Open Sans', sans-serif;
+}
+
+figure, aside, blockquote {
+  margin: 0 0 1.5em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a:link, a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-style: italic;
+  font-family: 'Open Sans Light', sans-serif;
+  margin: 0 0 .25em;
+  text-shadow: none;
+}
+
+.section-title {
+  font-size: 20pt;
+  padding: .5em 0 0;
+  border-top: 2px solid;
+}
+
+.section,
+.row {
+  clear: both;
+}
+
+.section:after,
+.row:after {
+  content: "";
+  display: block;
+  clear: both;
+  height: 0;
+  visibility: hidden;
+}
+
+.pull {
+  width: 22%;
+  float: right;
+  clear: right;
+  margin: 0 0 20px 20px;
+  padding: 20px;
+  border: 3px double #ccc;
+  color: #666;
+  background: #eee;
+  font-size: 13pt;
+  font-style: italic;
+  font-family: 'Open Sans Light', sans-serif;
+  text-align: center;
+}
+
+/* Masthead */
+#masthead {
+  padding-bottom: 20px;
+  border-bottom: 1px solid;
+  margin: 0 !important;
+}
+
+#masthead h1 {
+  font-size: 24pt;
+  font-style: normal;
+}
+
+/* Mobilized topics */
+.mob-topics {
+  width: 30%;
+  float: right;
+  margin: 0 0 20px 20px;
+  padding: 20px 10px;
+  border: 3px double #ccc;
+  background: #eee;
+}
+
+.mob-topics li {
+  font-size: 1em;
+  display: inline-block;
+  width: 28%;
+  margin: 0 1%;
+  text-align: center;
+}
+
+.mob-topics li img {
+  display: block;
+  margin: 0 auto 10px;
+}
+
+.mob-fxandroid .overlay {
+  float: left;
+  width: 65%;
+}
+
+.mob-fxandroid img.left {
+  float: right;
+  width: 30%;
+  margin: 0 0 20px 0;
+}
+
+.act-donottrack img,
+.act-sopa img,
+.act-collusion img,
+.act-flicks img,
+.com-reps img,
+.com-mozcamps .video img,
+.com-emerging img {
+  max-width: 25%;
+  float: right;
+  clear: right;
+  margin: 0 0 20px 20px;
+}
+
+.jcarousel-list {
+  margin-top: 1em;
+  width: 100% !important;
+  overflow: visible !important;
+}
+
+#story-slider .vcard,
+#story-slider-clone .vcard {
+  width: 280px !important;
+  float: left;
+  display: block;
+  margin: 0 20px 20px;
+}
+
+#story-slider .vcard:nth-child(odd),
+#story-slider-clone .vcard:nth-child(odd) {
+  clear: left;
+}
+
+#colophon {
+  border-top: 1px solid;
+  padding-top: 30px;
+}
+
+#colophon .footer-logo {
+  float: left;
+  margin: 0 20px 10px 0;
+}

@@ -243,6 +243,9 @@ MINIFY_BUNDLES = {
         'page_not_found': (
             'css/page-not-found.less',
         ),
+        'annual_2011': (
+            'css/foundation/annual2011.less',
+        ),
     },
     'js': {
         'site': (
@@ -379,6 +382,13 @@ MINIFY_BUNDLES = {
             'js/libs/modernizr.custom.26887.js',
             'js/libs/jquery.transit.min.js',
             'js/libs/jquery.gridrotator.js',
+        ),
+        'annual_2011': (
+            'js/libs/jquery-1.7.1.min.js',
+            'js/libs/jquery.hoverIntent.minified.js',
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.jcarousel.min.js',
+            'js/annual2011.js',
         ),
     }
 }
