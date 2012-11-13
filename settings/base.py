@@ -165,6 +165,9 @@ MINIFY_BUNDLES = {
         'firefox_security': (
             'css/firefox/security.less',
         ),
+        'firefox_facebookmessenger': (
+            'css/firefox/facebookmessenger.less',
+        ),
         'firefox_speed': (
             'css/firefox/speed.less',
         ),
