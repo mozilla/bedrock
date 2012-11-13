@@ -25,7 +25,7 @@ urlpatterns = patterns('',
     (r'', include('redirects.urls')),
     (r'', include('firefox.urls')),
     (r'', include('mozorg.urls')),
-    (r'', include('privacy.urls')),
+    (r'^privacy', include('privacy.urls')),
     (r'', include('research.urls')),
 
     # L10n example.

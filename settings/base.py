@@ -357,6 +357,10 @@ MINIFY_BUNDLES = {
             'js/partnerships.js',
             'js/mozilla-input-placeholder.js',
         ),
+        'privacy': (
+            'js/mozilla-pager.js',
+            'js/privacy.js',
+        ),
         'styleguide': (
             'js/styleguide.js',
         ),
