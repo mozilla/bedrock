@@ -52,7 +52,7 @@
         function() {
             if (wideMode) {
                 var overlayheight = $(this).height() - 80;
-                $(this).find(".overlay").stop().hide().css({
+                $(this).find(".overlay").hide().css({
                     'left' : 'auto',
                     'minHeight' : overlayheight
                 }).fadeIn(200);
@@ -60,7 +60,7 @@
         },
         function() {
             if (wideMode) {
-                $(this).find(".overlay").stop().delay(300).fadeOut(600, function(){
+                $(this).find(".overlay").delay(300).fadeOut(600, function(){
                     $(this).removeAttr('style');
                 });
             }
@@ -125,27 +125,16 @@
     // Check for an adjusted scrollbar every 100ms.
     setInterval(adjustScrollbar, 100);
 
+    // Show/hide the navigation in small viewports
     if (!wideMode) {
         $nav.click(function(){
-            $(this).animate({ top: "0" }, 'fast');
+            $(this).animate({ top: "0" }, 'fast'); // Slide down
             $(this).mouseleave(function(){ $(this).removeAttr("style"); });
             $("body").bind('click', function(){
                 $nav.removeAttr("style");
             });
         });
     }
-
-    // Set up waypoints for scrolling; update nav for each section
-    // Uses jQuery Waypoints http://imakewebthings.com/jquery-waypoints/
-    $('#welcome').waypoint(function(event, direction) {
-        if(fixed) {
-            $nav.attr('class', 'fixed welcome');
-            $nav.find("li").removeClass();
-            $("#nav-welcome").addClass("current");
-        }
-    },{
-        offset: navHeight
-    });
 
     // Change the navbar color and current item to match the section waypoint
     function waypointCallback(current, previous) {
@@ -162,10 +151,11 @@
                     $("#nav-" + previous).addClass("current");
                 }
             }
-        }
+        };
     }
 
     // Fire the waypoints for each section, passing classes for the current and previous sections
+    // Uses jQuery Waypoints http://imakewebthings.com/jquery-waypoints/
     $('#welcome').waypoint(waypointCallback('welcome', null), { offset: navHeight });
     $('#mobilized').waypoint(waypointCallback('mobilized', 'welcome'), { offset: navHeight });
     $('#action').waypoint(waypointCallback('action', 'mobilized'), { offset: navHeight });
@@ -199,11 +189,11 @@
         var video = $origin.data("videoSource");
         var poster = $(this).children("img").attr("src");
         var content =
-            '<video id="video" poster="'+poster+'" controls autoplay>'
-         +' <source src="'+video+'.webm" type="video/webm">'
-         +' <source src="'+video+'.mp4" type="video/mp4">'
-         +'</video>';
-        videoModal($origin, content);
+          '<video id="video" poster="'+poster+'" controls>'+
+          ' <source src="'+video+'.mp4" type="video/mp4">'+
+          ' <source src="'+video+'.webm" type="video/webm">'+
+          '</video>';
+        createModal($origin, content);
     });
 
     // Load the YouTube video in a full-page modal
@@ -211,13 +201,13 @@
         e.preventDefault();
         var $origin = $(this);
         var content = '<iframe width="640" height="360" src="http://www.youtube-nocookie.com/embed/f_f5wNw-2c0?rel=0" frameborder="0" allowfullscreen></iframe>';
-        videoModal($origin, content);
+        createModal($origin, content);
     });
 
     // Set up the contributor stories carousel
     function setupCarousel() {
         $sliderPrime.clone().attr("id", "story-slider-clone").insertAfter($("#video-stage"));
-        if ( ($("#story-vid").length > 0) && ($("#story-vid")[0].paused == false) ) {
+        if ( $("#story-vid").length > 0 ) {
             $("#story-vid")[0].pause();
         }
         $sliderPrime.hide();
@@ -236,9 +226,9 @@
 
     // Set up video stage
     function setStage() {
-        var video       = $("#story-slider-clone").find("a.contributor:first").attr("href");
-        var poster  = $("#story-slider-clone").find("a.contributor:first").attr("data-poster");
-        var desc        = $("#story-slider-clone").find(".vcard:first .note").html();
+        var video = $("#story-slider-clone a.contributor:first").attr("href");
+        var poster = $("#story-slider-clone a.contributor:first").data("poster");
+        var desc = $("#story-slider-clone .vcard:first .note").html();
         if ( $("#story-vid").length > 0) {
             $("#story-vid").attr('poster', poster).attr('src', video);
         }
@@ -251,13 +241,12 @@
         if ($("span.btn-play").length > 0) {
             $("span.btn-play").remove();
         }
-        $("#video-stage .player").append('<span class="btn-play"></span>');
-        $("span.btn-play").click(function(){
+        $('<span class="btn-play"></span>').appendTo('#video-stage .player').click(function() {
             $("#story-vid").attr('controls','controls')[0].play();
             $(this).fadeOut('fast', function(){ $(this).remove(); });
         });
     }
-    
+
     // Add the left and right control buttons
     function controlButtons(carousel) {
         $(".btn-prev, .btn-next").clone().prependTo(".jcarousel-container");
@@ -271,99 +260,86 @@
 
     // Disable the buttons at the end of the carousel
     function disableButtons(carousel) {
-        if (carousel.first == 1) {
+        if (carousel.first === 1) {
             $('.btn-prev').attr('disabled','disabled').addClass('disabled');
         } else {
             $('.btn-prev').removeAttr('disabled').removeClass('disabled');
         }
-        if (carousel.last == carousel.size()) {
+        if (carousel.last === carousel.size()) {
             $('.btn-next').attr('disabled','disabled').addClass('disabled');
         } else {
             $('.btn-next').removeAttr('disabled').removeClass('disabled');
         }
     }
-    
+
     // Remove the carousel when we don't need it, redo the thumbnails and show the original
     // This is for smaller viewports that don't get the slider
     function removeCarousel() {
         $("#story-slider-clone").parents(".jcarousel-container").remove();
-        if ($("#story-vid")[0].paused == false) {
-            $("#story-vid")[0].pause();
-        }
+        $("#story-vid")[0].pause();
         setupThumbnails();
         $sliderPrime.show();
     }
-
 
     // Contributor story thumbnails play the corresponding video
     function setupThumbnails() {
         $("a.contributor").click(function(e) {
             e.preventDefault();
-            var video       = $(this).attr("href");
-            var poster  = $(this).attr("data-poster");
-            var desc        = $(this).find(".note").html();
+            var video = $(this).attr("href");
+            var poster = $(this).attr("data-poster");
+            var desc = $(this).find(".note").html();
 
             if (wideMode) {
-                if ($("#story-vid")[0].paused == false) {
-                    $("#story-vid")[0].pause();
-                }
-                if ( $("span.btn-play") ) {
+                $("#story-vid")[0].pause();
+                if ( $("span.btn-play").length > 0 ) {
                     $("span.btn-play").remove();
                 }
                 $("#video-stage figcaption").fadeOut('fast', function(){ $(this).html(desc).fadeIn('fast'); });
-                $("#story-vid").attr('poster', poster).attr('controls','controls').attr('src', video)[0].play();
+                $("#story-vid").attr('controls','controls').attr('src', video)[0].play();
                 $('html, body').animate({
                     scrollTop: $("#video-stage").offset().top - 80
                 }, 200, function() {
                     $("#story-vid").focus();
                 });
             } else {
-                e.preventDefault();
                 var $origin = $(this);
                 var content =
-                    '<video id="video" poster="'+poster+'" src="'+video+'" controls autoplay type="video/webm">'
-                 +'<p class="desc">'+desc+'</p>';
-                videoModal($origin, content);
+                  '<video id="video" poster="'+poster+'" src="'+video+'" controls autoplay type="video/webm">'+
+                  '<p class="desc">'+desc+'</p>';
+                createModal($origin, content);
             }
         });
     }
 
-    function videoModal(origin, content) {
+    // Create a full-page overlay and append the content
+    function createModal(origin, content) {
         if ($("#fill").length > 0) {
             $("#video")[0].pause();
             $("#fill").remove();
         }
         $('body').addClass("noscroll").append('<div id="fill"><div id="inner"></div></div>');
         $("#inner").append(content);
-        $("#video").focus()[0].play();
 
+        if ($("#inner #video").length > 0) {
+            $("#video").focus()[0].play();
+        }
+
+        // Add the close button
         $("#done").clone().appendTo("#inner");
         $("#fill #done").bind('click', function() {
-            $("#video")[0].pause();
-            $("#fill").remove();
-            $("body").removeClass("noscroll");
-        });
-
-        $("#fill").bind('keyup', function(e) {
-            if (e.keyCode == 27) { // esc
-                $("#fill").remove();
-                $("body").removeClass("noscroll");
-                origin.focus();
+            if ($("#inner #video").length > 0) {
+                $("#video")[0].pause();
             }
-        });
-    }
-
-    // Remove the full-page modal
-    function closeModal(origin) {
-        $("#done").clone().appendTo("#inner");
-        $("#fill #done").bind('click', function() {
-            $("#video")[0].pause();
             $("#fill").remove();
             $("body").removeClass("noscroll");
         });
 
+        // Close on escape
         $("#fill").bind('keyup', function(e) {
-            if (e.keyCode == 27) { // esc
+            if (e.keyCode === 27) { // esc
+                if ($("#inner #video").length > 0) {
+                    $("#video")[0].pause();
+                }
                 $("#fill").remove();
                 $("body").removeClass("noscroll");
                 origin.focus();
