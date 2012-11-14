@@ -233,7 +233,7 @@ body.noscroll {
 }
 
 .js .overlay {
-  .hidden;
+  display: none;
   padding: 40px;
   margin: 0;
   float: none;
@@ -271,8 +271,7 @@ body.noscroll {
   background: #ccc;
   background: rgba(255,255,255,.65);
   &:focus {
-    background: #ddd;
-    background: rgba(255,255,255,.75);
+    background: #fff;
   }
 }
 .read:after {
@@ -931,8 +930,8 @@ body.noscroll {
   }
 
   .js .overlay {
+    display: block;
     position: static;
-    left: auto;
     padding: 0;
     margin: 20px 0 0;
     background: transparent none !important;

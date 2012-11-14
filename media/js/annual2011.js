@@ -51,8 +51,7 @@
         function() {
             if (wideMode) {
                 var overlayheight = $(this).height() - 80;
-                $(this).find(".overlay").hide().css({
-                    'left' : 'auto',
+                $(this).find(".overlay").css({
                     'minHeight' : overlayheight
                 }).fadeIn(200);
             }
@@ -66,15 +65,14 @@
         }
     );
 
-    // Reveal overlays when buttons are clicked or get focus (for keyboard navigation)
-    $(".overlay-wrap .read").bind("focus click", function() {
+    // Reveal overlays when buttons are activated (for keyboard, touch, and screen readers)
+    $(".overlay-wrap .read").bind("click", function() {
         if (wideMode) {
             $(".overlay[style]").stop().delay(300).fadeOut(600, function(){ // First hide any visible overlays
-                $(this).removeAttr('style'); // Then reset them to normal (hidden offscreen by CSS)
+                $(this).removeAttr('style'); // Then reset them to normal (hidden in the style sheet)
             });
             var overlayheight = $(this).parents(".overlay-wrap").height() - 80;
-            $(this).parents(".overlay-wrap").find(".overlay").hide().css({
-                'left' : 'auto',
+            $(this).parents(".overlay-wrap").find(".overlay").css({
                 'minHeight' : overlayheight
             }).fadeIn(200);
             $('html, body').animate({
@@ -113,8 +111,6 @@
                 if(fixed) {
                     fixed = false;
                     $nav.removeAttr("class");
-                    $nav.find("li").removeClass();
-                    $("#nav-welcome").addClass("current");
                     $head.css({ "margin-bottom" : "0" });
                 }
             }
@@ -155,7 +151,7 @@
 
     // Fire the waypoints for each section, passing classes for the current and previous sections
     // Uses jQuery Waypoints http://imakewebthings.com/jquery-waypoints/
-    $('#welcome').waypoint(waypointCallback('welcome', null), { offset: navHeight });
+    $('#welcome').waypoint(waypointCallback('welcome', 'welcome'), { offset: navHeight });
     $('#mobilized').waypoint(waypointCallback('mobilized', 'welcome'), { offset: navHeight });
     $('#action').waypoint(waypointCallback('action', 'mobilized'), { offset: navHeight });
     $('#community').waypoint(waypointCallback('community', 'action'), { offset: navHeight });
