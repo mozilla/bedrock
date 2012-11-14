@@ -99,5 +99,5 @@ def latest_fx_redirect(request, fake_version, template_name):
         'es-ES': 'spanish_final',
         'es-MX': 'spanish_final',
     }
-    return l10n_utils.render(request, 'firefox/whatsnew.html',
+    return l10n_utils.render(request, template_name,
                              {'locales_with_video': locales_with_video})

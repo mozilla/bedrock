@@ -9,8 +9,8 @@ import views
 
 
 latest_re = r'^firefox(?:/(%s))?/%s/$'
-whatsnew_re = latest_re % (version_re, 'whatsnew')
 firstrun_re = latest_re % (version_re, 'firstrun')
+whatsnew_re = latest_re % (version_re, 'whatsnew')
 
 urlpatterns = patterns('',
     page('firefox/central', 'firefox/central.html'),
@@ -51,8 +51,8 @@ urlpatterns = patterns('',
 
     url(r'^firefox/unsupported/win/$', views.windows_billboards),
     url('^dnt/$', views.dnt, name='firefox.dnt'),
-    url(whatsnew_re, views.latest_fx_redirect, name='firefox.whatsnew',
-        kwargs={'template_name': 'firefox/whatsnew.html'}),
     url(firstrun_re, views.latest_fx_redirect, name='firefox.firstrun',
         kwargs={'template_name': 'firefox/firstrun.html'}),
+    url(whatsnew_re, views.latest_fx_redirect, name='firefox.whatsnew',
+        kwargs={'template_name': 'firefox/whatsnew.html'}),
 )
