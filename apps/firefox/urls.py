@@ -45,6 +45,8 @@ urlpatterns = patterns('',
     page('firefox/unsupported/EOL', 'firefox/unsupported-EOL.html'),
     page('firefox/unsupported/mac', 'firefox/unsupported-mac.html'),
 
+    page('facebookmessengertab', 'firefox/facebookmessengertab.html'),
+
     url(r'^firefox/unsupported/win/$', views.windows_billboards),
     url('^dnt/$', views.dnt, name='firefox.dnt'),
     url(whatsnew_re, views.whatsnew_redirect, name='firefox.whatsnew'),

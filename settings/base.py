@@ -181,6 +181,9 @@ MINIFY_BUNDLES = {
             'css/firefox/whatsnew.less',
             'css/firefox/whatsnew-android.less',
         ),
+        'firefox_facebookmessengertab': (
+            'css/firefox/facebookmessengertab.less',
+        ),
         'installer_help': (
             'css/firefox/template-resp.less',
             'css/firefox/installer-help.less',
@@ -323,6 +326,9 @@ MINIFY_BUNDLES = {
         'firefox_sms': (
             'js/firefox/sms.js',
             'js/libs/socialshare.min.js',
+        ),
+        'firefox_facebookmessengertab': (
+            'js/firefox/facebookmessengertab.js',
         ),
         'geolocation': (
             'js/libs/jquery-1.4.4.min.js',
