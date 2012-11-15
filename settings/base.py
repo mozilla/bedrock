@@ -384,7 +384,6 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.gridrotator.js',
         ),
         'annual_2011': (
-            'js/libs/jquery-1.7.1.min.js',
             'js/libs/jquery.hoverIntent.minified.js',
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.jcarousel.min.js',
