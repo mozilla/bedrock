@@ -5,10 +5,29 @@
   firefoxos-branding
 {% endblock %}
 
-{% block content_title %}Firefox OS branding{% endblock%}
+{% set page_title = 'Firefox OS branding' %}
+
 {% block content_area %}
 <section id="intro">
-  <h2>Coming soon</h2>
-  <p>This is the future home of our evolving Firefox OS brand (formerly Boot to Gecko) for mobile devices. Check back soon for complete usage examples and rules.</p>
+  <h2>Introduction</h2>
+  <p>Welcome to home of our evolving Firefox OS brand (formerly Boot to Gecko) for mobile devices. Check back soon for complete usage examples and rules.</p>
+</section>
+<section id="wordmark">
+  <div class="build">
+    <h2>Wordmark</h2>
+    <p>The Firefox OS wordmark follows our <a href="{{ url('styleguide.communications.typefaces') }}#wordmarks">tiered font system</a>.</p>
+  </div>
+  <div class="logo">
+    <img src="{{ media('/img/styleguide/box-arrow-left.png') }}" alt="" class="box-arrow" />
+    <img src="{{ media('/img/styleguide/identity/firefoxos/wordmark.png') }}" alt="Logo" />
+  </div>
+  <div class="download">
+    <h4>Download</h4>
+    <ul class="button-list">
+      <li><a href="https://assets.mozillalabs.com/Brands-Logos/Firefox%20OS/wordmark-only/firefox-os_wordmark-only_CMYK.eps" class="button-sand">EPS</a>
+      </li><li><a href="https://assets.mozillalabs.com/Brands-Logos/Firefox%20OS/wordmark-only/firefox-os_wordmark-only_RGB-300dpi.jpg" class="button-sand">JPG (300dpi)</a>
+      </li><li><a href="https://assets.mozillalabs.com/Brands-Logos/Firefox%20OS/wordmark-only/firefox-os_wordmark-only_RGB.png" class="button-sand">PNG</a></li>
+    </ul>
+  </div>
 </section>
 {% endblock %}

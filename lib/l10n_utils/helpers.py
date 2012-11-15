@@ -25,9 +25,10 @@ def add_lang_files(ctx, files):
         req.langfiles = files + req.langfiles
 
 
-@jingo.register.function
+# TODO: make an ngettext compatible function. The pluaralize clause of a
+#       trans block won't work untill we do.
 @jinja2.contextfunction
-def _(ctx, text):
+def gettext(ctx, text):
     """Translate a string, loading the translations for the locale if
     necessary."""
     install_lang_files(ctx)
@@ -38,17 +39,17 @@ def _(ctx, text):
 
 @jingo.register.function
 @jinja2.contextfunction
-def gettext(ctx, text):
-    """Override the gettext call to pass through our system. This is
-    hacky, but lets us use the trans blocks and other nice integration
-    features of gettext. """
-    return _(ctx, text)
-
-
-@jingo.register.function
-@jinja2.contextfunction
 def lang_files(ctx, *files):
     """Add more lang files to the translation object"""
     # Filter out empty files
     install_lang_files(ctx)
     add_lang_files(ctx, [f for f in files if f])
+
+
+# backward compatible for imports
+_ = gettext
+
+
+# Once tower is fixed and we only need to install the above `gettext` function
+# into Jinja2 once, we should do it here. The call is simply:
+# jingo.env.install_gettext_callables(gettext, gettext)

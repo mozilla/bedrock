@@ -1,4 +1,5 @@
-{% extends "base-resp.html" %}:
+{% extends "base-resp.html" %}
+{% from "macros.html" import email_newsletter_form with context %}
 
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}Firefox Marketplace{% endblock %}
@@ -170,8 +171,11 @@
 
 {% endblock %}
 
-{% block email_form_title %}{{_('Sign up for more news about the Firefox Marketplace.')}}{% endblock %}
-{% block email_form_newsletter %}app-dev{% endblock %}
+{% block email_form %}
+  {{ email_newsletter_form('app-dev',
+                           _('Sign up for more news about the Firefox Marketplace.'),
+                           include_language=False) }}
+{% endblock %}
 
 {% block js %}
   <!--[if gte IE 9]><!-->

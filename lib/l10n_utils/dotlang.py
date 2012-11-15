@@ -89,8 +89,11 @@ def translate(text, files):
         if tweaked_text in trans:
             original = FORMAT_IDENTIFIER_RE.findall(text)
             translated = FORMAT_IDENTIFIER_RE.findall(trans[tweaked_text])
-            if original != translated:
-                message = '%s\n%s' % (text, trans[tweaked_text])
+            if set(original) != set(translated):
+                explanation = ('The translation has a different set of '
+                               'replaced text (aka %s)')
+                message = '%s\n\n%s\n%s' % (explanation, text,
+                                            trans[tweaked_text])
                 mail_error(file_, message)
                 return text
             return trans[tweaked_text]

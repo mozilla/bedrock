@@ -588,6 +588,10 @@ nav.menu-bar {
         padding: 4px 0;
     }
 
+    select {
+        max-width: 80%;
+    }
+
     input[type=email] {
         width: 80%;
         margin-top: 2px;
@@ -662,15 +666,15 @@ nav.menu-bar {
     .footer-nav {
         margin: 0 (@gridGutterWidth / 2);
     }
-    
+
     .footer-logo {
         .span(4);
     }
-    
+
     .footer-license {
         .span(3);
     }
-    
+
     .footer-nav {
         .span(2);
     }
@@ -719,7 +723,7 @@ nav.menu-bar {
     .container {
         width: @widthTablet - (@gridGutterWidth * 2);
     }
-    
+
     nav.menu-bar {
         font-size: .9375em;
     }
@@ -888,20 +892,20 @@ nav.menu-bar {
             }
         }
     }
-    
-    #footer-email-form {    
+
+    #footer-email-form {
         h3,
         .form-contents,
         .form-submit {
             width: auto;
             float: none;
         }
-    
+
         .form-submit {
             margin-top: @baseLine / 2;
         }
     }
-    
+
     #colophon {
         .row {
             width: @widthMobile - @gridGutterWidth;
@@ -917,14 +921,14 @@ nav.menu-bar {
             margin-bottom: @baseLine;
         }
     }
-    
+
     #nav-main {
-        .toggle { 
+        .toggle {
             display: block;
             width: 32px;
             height: 32px;
             margin: -3px 0 0 -3px;
-            background: no-repeat center top url(/media/img/sandstone/icn-menu.png); 
+            background: no-repeat center top url(/media/img/sandstone/icn-menu.png);
             text-indent: -999em;
             overflow: hidden;
             cursor: pointer;
@@ -932,18 +936,18 @@ nav.menu-bar {
         .toggle.open {
             background-position: center -100px;
         }
-    
+
         #nav-main-menu li {
             display: block;
             float: none;
             margin: 0 10px;
             border-bottom: 1px solid #f2f2f2;
         }
-        
+
         #nav-main-menu li:last-child {
             border: 0;
         }
-        
+
         #nav-main-menu a {
             cursor: pointer;
             display: block;
@@ -955,7 +959,7 @@ nav.menu-bar {
         #nav-main-menu a.submenu-item {
             background: 94% 50% no-repeat url(/media/img/sandstone/arrow-go.png);
         }
-        
+
         #nav-main-menu a:hover,
         #nav-main-menu a:focus,
         #nav-main-menu a:active {
@@ -972,7 +976,7 @@ nav.menu-bar {
             background-image: -webkit-linear-gradient(#43a6e2, #247ac1);
             background-image: linear-gradient(#43a6e2, #247ac1);
         }
-        
+
         #nav-main-menu a.submenu-item:hover,
         #nav-main-menu a.submenu-item:focus,
         #nav-main-menu a.submenu-item:active {
@@ -983,16 +987,16 @@ nav.menu-bar {
             background-image: url(/media/img/sandstone/arrow-go.png), -webkit-linear-gradient(#43a6e2, #247ac1);
             background-image: url(/media/img/sandstone/arrow-go.png), linear-gradient(#43a6e2, #247ac1);
         }
-        
+
         #nav-main-menu li.first > a {
             border-radius: 10px 10px 0 0;
         }
 
         #nav-main-menu li.last > a {
             border-radius: 0 0 10px 10px;
-        }        
+        }
     }
-    
+
     #nav-main-menu {
         background: #fff;
         position: absolute;
@@ -1005,17 +1009,17 @@ nav.menu-bar {
         .border-radius(10px);
         .box-shadow(0 1px 3px 0 rgba(0,0,0,.5));
     }
-        
+
     #nav-main:hover #nav-main-menu,
-    #nav-main-menu:target { 
-        left: auto; 
+    #nav-main-menu:target {
+        left: auto;
     }
-    
-    .js #nav-main-menu { 
-        left: auto; 
+
+    .js #nav-main-menu {
+        left: auto;
         display: none;
     }
-        
+
     #nav-main-menu:before {
         content: "";
         display: block;
@@ -1026,7 +1030,7 @@ nav.menu-bar {
         left: 12px;
         top: -10px;
     }
-    
+
 }
 
 

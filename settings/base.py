@@ -30,6 +30,7 @@ PROD_LANGUAGES = ('ab-CD', 'ach', 'af', 'ak', 'ar', 'as', 'ast', 'be', 'bg',
                   'sv-SE', 'sw', 'ta', 'ta-LK', 'te', 'th', 'tr', 'uk',
                   'vi', 'wo', 'zh-CN', 'zh-TW', 'zu')
 DEV_LANGUAGES = list(DEV_LANGUAGES) + ['en-US']
+NEWSLETTER_LANGUAGES = ['de', 'en', 'es', 'fr', 'id', 'pt', 'ru']
 
 FEED_CACHE = 3900
 DOTLANG_CACHE = 60
@@ -44,11 +45,12 @@ TEMPLATE_DIRS = (
     path('locale')
 )
 
+
 # has to stay a callable because tower expects that.
 def JINJA_CONFIG():
     return {
         'extensions': [
-            'tower.template.i18n', 'jinja2.ext.do', 'jinja2.ext.with_',
+            'l10n_utils.template.i18n', 'jinja2.ext.do', 'jinja2.ext.with_',
             'jinja2.ext.loopcontrols', 'l10n_utils.template.l10n_blocks',
             'l10n_utils.template.lang_blocks'
         ],
@@ -56,6 +58,7 @@ def JINJA_CONFIG():
         'finalize': lambda x: x if x is not None else '',
         'auto_reload': True,
     }
+
 
 # Bundles is a dictionary of two dictionaries, css and js, which list css files
 # and js files that can be bundled together by the minify app.
@@ -240,6 +243,9 @@ MINIFY_BUNDLES = {
         'page_not_found': (
             'css/page-not-found.less',
         ),
+        'annual_2011': (
+            'css/foundation/annual2011.less',
+        ),
     },
     'js': {
         'site': (
@@ -354,6 +360,10 @@ MINIFY_BUNDLES = {
             'js/partnerships.js',
             'js/mozilla-input-placeholder.js',
         ),
+        'privacy': (
+            'js/mozilla-pager.js',
+            'js/privacy.js',
+        ),
         'styleguide': (
             'js/styleguide.js',
         ),
@@ -372,6 +382,12 @@ MINIFY_BUNDLES = {
             'js/libs/modernizr.custom.26887.js',
             'js/libs/jquery.transit.min.js',
             'js/libs/jquery.gridrotator.js',
+        ),
+        'annual_2011': (
+            'js/libs/jquery.hoverIntent.minified.js',
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.jcarousel.min.js',
+            'js/annual2011.js',
         ),
     }
 }
@@ -407,6 +423,7 @@ MIDDLEWARE_CLASSES = (
     'mozorg.middleware.CacheMiddleware',
     'mozorg.middleware.NewsletterMiddleware',
     'dnt.middleware.DoNotTrackMiddleware',
+    'l10n_utils.middleware.FixLangFileTranslationsMiddleware',
 )
 
 INSTALLED_APPS = (
@@ -452,6 +469,7 @@ INSTALLED_APPS = (
     'styleguide',
     'privacy',
     'redirects',
+    'legal',
 
     # libs
     'l10n_utils',
@@ -492,7 +510,7 @@ LOCALES_WITH_TRANSITION = ['en-US', 'af', 'ar', 'ast', 'be', 'bg',
                            'nl', 'or', 'pa-IN', 'pl', 'pt-BR', 'pt-PT',
                            'rm', 'ro', 'ru', 'si', 'sk', 'sl', 'sq',
                            'sr', 'sv-SE', 'ta', 'ta-LK', 'te', 'th',
-                           'tr', 'uk', 'vi', 'zh-CN', 'zh-TW'];
+                           'tr', 'uk', 'vi', 'zh-CN', 'zh-TW']
 
 # reCAPTCHA keys
 RECAPTCHA_PUBLIC_KEY = ''
