@@ -83,8 +83,7 @@ def latest_fx_redirect(request, fake_version, template_name):
     if match:
         user_version = match.group(1)
 
-    current_version = product_details.firefox_versions['LATEST_FIREFOX_VERSION']
-    if Version(user_version) < Version(current_version):
+    if not is_current_or_newer(user_version):
         url = reverse('firefox.update')
         return HttpResponsePermanentRedirect(url)
 
@@ -101,3 +100,17 @@ def latest_fx_redirect(request, fake_version, template_name):
     }
     return l10n_utils.render(request, template_name,
                              {'locales_with_video': locales_with_video})
+
+
+def is_current_or_newer(user_version):
+    """
+    Return true if the version (X.Y only) is for the latest Firefox or newer.
+    """
+    latest = Version(product_details.firefox_versions['LATEST_FIREFOX_VERSION'])
+    user = Version(user_version)
+
+    # similar to the way comparison is done in the Version class,
+    # but only using the major and minor versions.
+    latest_int = int('%d%02d' % (latest.major, latest.minor1))
+    user_int = int('%d%02d' % (user.major, user.minor1))
+    return user_int >= latest_int
