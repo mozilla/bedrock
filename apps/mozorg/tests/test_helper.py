@@ -261,7 +261,7 @@ class TestNewsletterFunction(unittest.TestCase):
             'newsletter': 'mozilla-and-you',
             'email': 'foo@bar.com',
             'country': 'us',
-            'lang': 'en-US',
+            'lang': 'en',
             'fmt': 'H',
             'privacy': 'Y',
             'source_url': 'http://allizom.com/en-US/base/',
@@ -271,7 +271,7 @@ class TestNewsletterFunction(unittest.TestCase):
         assert_false(doc('form#footer-email-form'))
         ok_(doc('div#footer-email-form.thank'))
         sub_mock.assert_called_with('foo@bar.com', 'mozilla-and-you',
-                                    format='H', country='us', lang='en-US',
+                                    format='H', country='us', lang='en',
                                     source_url='http://allizom.com/en-US/base/')
 
     @patch.object(basket, 'subscribe')
