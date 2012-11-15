@@ -142,6 +142,10 @@ MINIFY_BUNDLES = {
             'css/firefox/template-resp.less',
             'css/mozilla-expanders.less',
         ),
+        'firefox_firstrun': (
+            'css/sandstone/video.less',
+            'css/firefox/firstrun.less',
+        ),
         'firefox_fx': (
             'css/firefox/fx.less',
             'css/sandstone/video.less',
