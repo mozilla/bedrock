@@ -1,0 +1,255 @@
+@import "template-resp.less";
+
+.sky #outer-wrapper {
+    background: #fff;
+}
+
+#wrapper,
+.sky #wrapper {
+    background: url(/media/img/firefox/facebookmessenger/bg.jpg) 50% 0 no-repeat;
+    background: url(/media/img/firefox/facebookmessenger/bg.jpg) 50% 0 no-repeat,
+                url(/media/img/firefox/facebookmessenger/bg-repeat.jpg) 0 0 repeat-x;
+    background-color: #09559c;
+    width: 100%;
+    min-height: 500px;
+}
+
+
+#masthead,
+#main-content,
+#colophon {
+    width: @widthDesktop - (@gridGutterWidth * 2.5);
+    margin: 0 auto;
+}
+
+#main-content {
+    padding-bottom: 0;
+    h1 {
+        color: #fff;
+        font-size: 50px;
+        text-align: center;
+        margin: 50px 0 6px 0;
+        letter-spacing: -1px;
+        text-shadow: 0 -1px 1px #254c97;
+    }
+}
+
+#main-promo {
+    .span(6);
+    margin-left: 0;
+}
+
+.download-button {
+    width: 300px;
+    margin: 0 auto;
+    display: block;
+}
+
+ul#benefits {
+    padding: 15px 0 30px 0;
+    margin: 0;
+    .clearfix;
+}
+
+ul#benefits li {
+    float: left;
+    display: inline;
+    list-style-type: none;
+    text-align: center;
+    margin: 0;
+    padding: 6px 0 8px 0;
+    line-height: 19px;
+    color: #fff;
+    border-right: 1px dotted rgba(200,200,200,0.5);
+    padding-right: 20px;
+    margin-right: 20px;
+    font-size: 16px;
+    font-style: italic;
+    width: 119px;
+}
+
+ul#benefits li.last {
+    margin-right: 0;
+    border-right: 0;
+}
+
+
+ul#benefits li span {
+    display: block;
+}
+
+#social-step {
+    padding: 30px 0 0 0;
+    margin: 0;
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+}
+
+
+#colophon {
+    padding-top: @baseLine;
+    text-align: center;
+    nav {
+        ul {
+            margin-bottom: @baseLine / 2;
+        }
+        li {
+            display: inline;
+            a,
+            a:link,
+            a:visited {
+                .inline-block;
+                .open-sans-light;
+                padding: 2px 12px;
+                color: @textColorPrimary;
+            }
+            &:first-child a {
+                border: 0;
+            }
+        }
+        .primary {
+            font-family: @baseFontFamily;
+            font-size: @baseFontSize;
+            a:after {
+                content: " »";
+                color: #2983c8;
+            }
+        }
+        .secondary {
+            font-size: 11px;
+            a,
+            a:link,
+            a:visited {
+                color: @textColorLight;
+            }
+        }
+    }
+}
+
+/* Tablet Layout: 760px */
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+
+    #masthead,
+    #main-content,
+    #colophon {
+        width: @widthTablet - (@gridGutterWidth * 2);
+    }
+
+    #main-promo {
+        .span_narrow(6);
+        margin-left: 0;
+    }
+
+    #main-content {
+        h1 {
+            font-size: 36px;
+        }
+    }
+
+    ul#benefits li {
+        font-size: 13px;
+        width: 96px;
+        padding-right: 10px;
+        margin-right: 10px;
+    }
+
+    ul#benefits li.last {
+        margin-right: 0;
+        border-right: 0;
+    }
+
+}
+
+/* Mobile layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+
+    #wrapper,
+    .sky #wrapper {
+        background: url(/media/img/firefox/facebookmessenger/bg-repeat.jpg) 0 0 repeat-x;
+    }
+
+    #main-promo {
+        .span_narrow(5);
+        margin-left: 0;
+    }
+
+    #masthead,
+    #main-content,
+    #colophon {
+        width: @widthMobile - (@gridGutterWidth * 2);
+        margin: 0 auto;
+    }
+
+    #main-content {
+        h1 {
+            margin-top: @baseLine;
+            font-size: 32px;
+        }
+    }
+
+    .download-button {
+        width: 100%;
+    }
+
+    .download-button-large .download-link {
+        display: block;
+        min-width: 200px;
+    }
+
+    ul#benefits {
+        padding-left: 0;
+        li,
+        li.first {
+            display: block;
+            float: none;
+            border: 0;
+            text-align: inherit;
+            padding: 0;
+            margin: 5px 0;
+            width: auto;
+            text-align: center;
+            span {
+                display: inline;
+            }
+        }
+    }
+
+    #android-promo {
+        display: none;
+    }
+
+    #colophon {
+        padding-top: @baseLine / 2;
+        nav ul.primary li {
+            display: block;
+            a,
+            a:link,
+            a:visited {
+                display: block;
+                text-align: left;
+                border-left: 0;
+                border-top: 1px dotted @borderColor;
+                padding: @baseLine / 2;
+            }
+            &:first-child {
+                a,
+                a:link,
+                a:visited {
+                    border: 0;
+               }
+            }
+        }
+    }
+}
+
+/* Wide mobile layout: 480px; */
+@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+
+    #masthead,
+    #main-content,
+    #colophon {
+        width: @widthMobileLandscape - (@gridGutterWidth * 2);
+    }
+
+}

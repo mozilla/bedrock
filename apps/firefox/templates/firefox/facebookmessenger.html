@@ -1,0 +1,50 @@
+{% extends "/firefox/base-resp.html" %}
+
+{% block page_title %}Free Download{% endblock %}
+{% block body_id %}firefox-social{% endblock %}
+
+{% block site_header_nav %}{% endblock %}
+{% block site_header_logo %}{% endblock %}
+
+{% block site_css %}
+  {{ css('firefox_facebookmessenger') }}
+{% endblock %}
+
+{% block content %}
+<article id="main-content">
+  <div id="main-promo">
+    <h1>{{_('Firefox, now with Facebook Messenger')}}</h1>
+    <ul id="benefits">
+      <li class="first">{{_('Chat while you <span>browse</span>')}}</li>
+      <li>{{_('See new updates <span>instantly</span>')}}</li>
+      <li class="last">{{_('Make browsing <span>more social</span>')}}</li>
+    </ul>
+    {{ download_button('download') }}
+    <p id="social-step">{{  _('Then go to Facebook to turn on Messenger for Firefox') }}</p>
+  </div>
+</article>
+
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{% block site_footer %}
+  <footer id="colophon">
+
+    <nav class="primary">
+      <ul class="primary">
+        <li><a href="{{ url('firefox.central') }}">{{_('Tour')}}</a></li>
+        <li><a href="{{ url('firefox.features') }}">{{_('Desktop')}}</a></li>
+        <li><a href="{{ url('firefox.fx') }}">{{_('Mobile')}}</a></li>
+        <li><a href="https://addons.mozilla.org">{{_('Add-ons')}}</a></li>
+        <li><a href="http://support.mozilla.org">{{_('Support')}}</a></li>
+        <li><a href="{{ url('mozorg.about') }}">{{_('About')}}</a></li>
+      </ul>
+      <ul class="secondary">
+        <li><a href="{{ php_url('/privacy-policy.html') }}">{{_('Privacy Policy')}}</a></li>
+        <li><a href="{{ php_url('/about/legal.html') }}">{{_('Legal Notices')}}</a></li>
+      </ul>
+    </nav>
+
+  </footer>
+{% endblock %}
