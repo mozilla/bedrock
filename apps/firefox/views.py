@@ -63,7 +63,7 @@ def dnt(request):
 
 
 @vary_on_headers('User-Agent')
-def whatsnew_redirect(request, fake_version):
+def latest_fx_redirect(request, fake_version, template_name):
     """
     Redirect visitors based on their user-agent.
 
@@ -74,7 +74,8 @@ def whatsnew_redirect(request, fake_version):
     user_agent = request.META.get('HTTP_USER_AGENT', '')
     if not 'Firefox' in user_agent:
         url = reverse('firefox.new')
-        return HttpResponsePermanentRedirect(url)  # TODO : Where to redirect bug 757206
+        # TODO : Where to redirect bug 757206
+        return HttpResponsePermanentRedirect(url)
 
     user_version = "0"
     ua_regexp = r"Firefox/(%s)" % version_re
@@ -98,5 +99,5 @@ def whatsnew_redirect(request, fake_version):
         'es-ES': 'spanish_final',
         'es-MX': 'spanish_final',
     }
-    return l10n_utils.render(request, 'firefox/whatsnew.html',
+    return l10n_utils.render(request, template_name,
                              {'locales_with_video': locales_with_video})
