@@ -8,6 +8,8 @@
     var $head = $('#masthead');
     var navTop = $nav.offset();
     var navHeight = $nav.height() + 30;
+    var ARIASHOW = "Click to show more information on this topic";
+    var ARIAHIDE = "Click to hide more information on this topic";
 
     setupThumbnails();
 
@@ -43,7 +45,7 @@
     }
 
     // Add the read buttons
-    $("button.read").clone().prependTo(".overlay-wrap");
+    $("button.read").clone().insertBefore(".overlay").attr({'aria-pressed':"false",'aria-label':ARIASHOW});
 
     // Reveal text overlays when hovering over a block
     // @Uses hoverIntent plugin: http://cherne.net/brian/resources/jquery.hoverIntent.html
@@ -54,12 +56,14 @@
                 $(this).find(".overlay").css({
                     'minHeight' : overlayheight
                 }).fadeIn(200);
+                $(this).find('button.read').attr({'aria-pressed':"true"});
             }
         },
         function() {
             if (wideMode) {
                 $(this).find(".overlay").delay(300).fadeOut(600, function(){
                     $(this).removeAttr('style');
+                    $(this).prev('button.read').attr({'aria-pressed':"false"});
                 });
             }
         }
@@ -70,14 +74,20 @@
         if (wideMode) {
             $(".overlay[style]").stop().delay(300).fadeOut(600, function(){ // First hide any visible overlays
                 $(this).removeAttr('style'); // Then reset them to normal (hidden in the style sheet)
+                $(this).prev('button.read').attr({'aria-pressed':"false"});
             });
-            var overlayheight = $(this).parents(".overlay-wrap").height() - 80;
-            $(this).parents(".overlay-wrap").find(".overlay").css({
-                'minHeight' : overlayheight
-            }).fadeIn(200);
-            $('html, body').animate({
-                scrollTop: $(this).parents(".overlay-wrap").offset().top -40
-            }, 300);
+            if($(this).attr('aria-pressed') === "false"){
+                $(this).attr({'aria-pressed':"true",'aria-label':ARIAHIDE});
+                var overlayheight = $(this).parents(".overlay-wrap").height() - 80;
+                $(this).parents(".overlay-wrap").find(".overlay").css({
+                    'minHeight' : overlayheight
+                }).fadeIn(200);
+                $('html, body').animate({
+                    scrollTop: $(this).parents(".overlay-wrap").offset().top -40
+                }, 300);
+            } else {
+                $(this).attr({'aria-pressed':"false",'aria-label':ARIASHOW});
+            }
         }
     });
 
