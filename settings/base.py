@@ -30,7 +30,7 @@ PROD_LANGUAGES = ('ab-CD', 'ach', 'af', 'ak', 'ar', 'as', 'ast', 'be', 'bg',
                   'sv-SE', 'sw', 'ta', 'ta-LK', 'te', 'th', 'tr', 'uk',
                   'vi', 'wo', 'zh-CN', 'zh-TW', 'zu')
 DEV_LANGUAGES = list(DEV_LANGUAGES) + ['en-US']
-NEWSLETTER_LANGUAGES = ['de', 'en-US', 'es', 'fr', 'id', 'pt-BR', 'ru']
+NEWSLETTER_LANGUAGES = ['de', 'en', 'es', 'fr', 'id', 'pt', 'ru']
 
 FEED_CACHE = 3900
 DOTLANG_CACHE = 60
@@ -246,6 +246,9 @@ MINIFY_BUNDLES = {
         'page_not_found': (
             'css/page-not-found.less',
         ),
+        'annual_2011': (
+            'css/foundation/annual2011.less',
+        ),
     },
     'js': {
         'site': (
@@ -382,6 +385,12 @@ MINIFY_BUNDLES = {
             'js/libs/modernizr.custom.26887.js',
             'js/libs/jquery.transit.min.js',
             'js/libs/jquery.gridrotator.js',
+        ),
+        'annual_2011': (
+            'js/libs/jquery.hoverIntent.minified.js',
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.jcarousel.min.js',
+            'js/annual2011.js',
         ),
     }
 }
