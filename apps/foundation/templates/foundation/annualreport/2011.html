@@ -901,7 +901,7 @@
   </article>
 
 {# L10N: This is a button inciting the user to read the following section of content in an overlay. #}
-<button type="button" class="read">{{ _('Read') }}</button>
+<button type="button" data-aria-show="{{ _('Click to show more information on this topic') }}" data-aria-hide="{{ _('Click to hide more information on this topic') }}" class="read">{{ _('Read') }}</button>
 
 {# L10N: This is a label for a button that closes an overlay; this is "done" meaning "completed" #}
 <button type="button" id="done">{{ _('Done') }}</button>

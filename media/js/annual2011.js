@@ -8,8 +8,8 @@
     var $head = $('#masthead');
     var navTop = $nav.offset();
     var navHeight = $nav.height() + 30;
-    var ARIASHOW = "Click to show more information on this topic";
-    var ARIAHIDE = "Click to hide more information on this topic";
+    var ARIASHOW = $('button.read').data('aria-show');
+    var ARIAHIDE = $('button.read').data('aria-hide');
 
     setupThumbnails();
 
