@@ -4,14 +4,18 @@
     background: #fff;
 }
 
-#wrapper,
-.sky #wrapper {
+#wrapper {
     background: url(/media/img/firefox/facebookmessenger/bg.jpg) 50% 0 no-repeat;
     background: url(/media/img/firefox/facebookmessenger/bg.jpg) 50% 0 no-repeat,
                 url(/media/img/firefox/facebookmessenger/bg-repeat.jpg) 0 0 repeat-x;
     background-color: #09559c;
     width: 100%;
     min-height: 500px;
+}
+
+.osx #wrapper {
+    background: url(/media/img/firefox/facebookmessenger/bg-mac.jpg) 50% 0 no-repeat,
+                url(/media/img/firefox/facebookmessenger/bg-repeat.jpg) 0 0 repeat-x;
 }
 
 
@@ -164,8 +168,7 @@ ul#benefits li span {
 /* Mobile layout: 320px */
 @media only screen and (max-width: @breakTablet) {
 
-    #wrapper,
-    .sky #wrapper {
+    #wrapper {
         background: url(/media/img/firefox/facebookmessenger/bg-repeat.jpg) 0 0 repeat-x;
     }
 
