@@ -15,35 +15,22 @@
 {% endblock %}
 
 {% block content %}
-{% set webtrends = '?WT.mc_id=moandroid&amp;WT.mc_ev=click' %}
-{% if request.locale.startswith('en') %}
-  {% set mobile_link = url('firefox.fx') + webtrends + '#mobile' %}
-{% else %}
-  {% set mobile_link = php_url('/mobile/') + webtrends %}
-{% endif %}
 
 <h1 id="whatsnew-header">{{ _('Hooray! Your Firefox is up to date.') }}</h1>
 
 <article id="main-content" class="billboard facebook">
-
-  {% if request.locale == 'ru' %}
-  {% l10n whatsnew_feature, 20120712 %}
-  <p id="ru-search">
-    <img src="/media/img/firefox/whatsnew/ru-search.png">
-    Also new in this release: Google is now your default search engine. To change the active search engine, click the down arrow next to the search engine's icon, and select a new search engine.
-    <a href="http://support.mozilla.org/ru/kb/stroka-poiska?e=es&redirectlocale=en-US&as=s&s=manage+search&r=3&redirectslug=Search+bar#w_managing-search-engines">Learn more.</a>
-  </p>
-  {% endl10n %}
-  {% endif %}
-
   <hgroup class="fb-head">
     <h2>{{ _('Facebook Messenger for Firefox') }}</h2>
     <h3>{{ _('Now you can keep up with friends wherever you go on the Web.') }}</h3>
   </hgroup>
 
-  <p class="fb-button"><a href="https://www.facebook.com/about/messenger-for-firefox?src=whats_new" class="button">{{ _('Visit Facebook to turn it on') }}</a></p>
+  <p class="fb-button">
+    <a class="button" href="https://www.facebook.com/about/messenger-for-firefox?src=whats_new" onclick="dcsMultiTrack('DCS.dcssip','mozilla.org','DCS.dcsuri','whats_new/facebook_messenger.button','WT.ti','Facebook Messenger','WT.dl','26','WT.conv','1');">
+      {{ _('Visit Facebook to turn it on') }}
+    </a>
+  </p>
 
-  <img class="fb-hero" src="{{ media('/img/firefox/whatsnew/facebook-hero-win.png') }}" alt="">
+  {{ platform_img('img/firefox/whatsnew/facebook-messenger.png', alt='') }}
 
   <div class="fb-points">
     <section class="left">
