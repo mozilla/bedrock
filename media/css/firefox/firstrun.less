@@ -23,26 +23,32 @@
 
 #facebook-messenger {
     margin-bottom: @baseLine;
-    background: url(/media/img/firefox/firstrun/facebook-messenger.jpg) 0 20px no-repeat #fff;
+    background: url(/media/img/firefox/firstrun/facebook-messenger.jpg) 0 10px no-repeat #fff;
     div {
         .span(6);
         .offset(6);
         text-align: center;
+        margin-top: @baseLine;
+        margin-bottom: @baseLine * 2;
         h2 {
-            font-size: 68px;
+            font-size: 76px;
         }
         .button {
             font-size: 18px;
             line-height: @baseLine * 3;
             height: @baseLine * 3;
             padding:  0 (@baseLine * 2);
-            margin: @baseLine auto;
+            margin: (@baseLine * 2) auto;
             &:after {
                 content: " »";
             }
         }
 
     }
+}
+
+.osx #facebook-messenger {
+    background-image: url(/media/img/firefox/firstrun/facebook-messenger-mac.jpg);
 }
 
 #main-content {
@@ -141,6 +147,9 @@
             h2 {
                 font-size: 52px;
             }
+            .button {
+                margin-bottom: 0;
+            }
         }
     }
 
@@ -195,6 +204,10 @@
                 margin: (@baseLine / 2) auto;
             }
         }
+    }
+
+    .osx #facebook-messenger {
+        background-image: none;
     }
 
     #main-content {
