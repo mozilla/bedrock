@@ -78,11 +78,11 @@ def translate(text, files):
 
     for file_ in files:
         key = "dotlang-%s-%s" % (lang, file_)
+        rel_path = os.path.join('locale', lang, '%s.lang' % file_)
 
         trans = cache.get(key)
         if trans is None:
-            path = os.path.join(settings.ROOT, 'locale', lang,
-                                '%s.lang' % file_)
+            path = os.path.join(settings.ROOT, rel_path)
             trans = parse(path)
             cache.set(key, trans, settings.DOTLANG_CACHE)
 
@@ -94,7 +94,7 @@ def translate(text, files):
                                'replaced text (aka %s)')
                 message = '%s\n\n%s\n%s' % (explanation, text,
                                             trans[tweaked_text])
-                mail_error(file_, message)
+                mail_error(rel_path, message)
                 return text
             return trans[tweaked_text]
     return text
