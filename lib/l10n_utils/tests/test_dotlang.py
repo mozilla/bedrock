@@ -57,7 +57,8 @@ class TestDotlang(TestCase):
             result = translate(expected, [path])
         eq_(expected, result)
         eq_(len(mail.outbox), 1)
-        eq_(mail.outbox[0].subject, '[Django] %s is corrupted' % path)
+        eq_(mail.outbox[0].subject,
+            '[Django] locale/en-US/%s.lang is corrupted' % path)
         mail.outbox = []
 
     @patch.object(settings, 'ROOT', ROOT)
