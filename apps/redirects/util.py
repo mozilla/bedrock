@@ -1,6 +1,7 @@
 from django.core.urlresolvers import NoReverseMatch
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 
+from django_statsd.clients import statsd
 from funfactory.urlresolvers import reverse
 
 
@@ -27,6 +28,13 @@ def redirect(pattern, to, permanent=True, anchor=None):
 
     def _view(request):
         try:
+            url_parts = ['redirect'] + request.path_info.split('/')
+            statsd.incr('.'.join(url_parts))
+        except Exception:
+            # never blow up due to stats
+            pass
+
+        try:
             redirect_url = reverse(to)
         except NoReverseMatch:
             # Assume it's a URL
@@ -36,4 +44,4 @@ def redirect(pattern, to, permanent=True, anchor=None):
             redirect_url = '#'.join([redirect_url, anchor])
         return redirect_class(redirect_url)
 
-    return (pattern, _view)
+    return pattern, _view
