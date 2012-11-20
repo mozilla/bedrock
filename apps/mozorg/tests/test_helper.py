@@ -51,7 +51,7 @@ class TestDownloadButtons(unittest.TestCase):
         eq_(doc.attr('id'), 'button')
 
         self.check_dumb_button(doc('noscript'))
-        self.check_dumb_button(doc('.unsupported-download'))
+        self.check_dumb_button(doc('.unrecognized-download'))
         self.check_dumb_button(doc('.download-list'))
 
         eq_(doc('.download-other a').length, 3)
