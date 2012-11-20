@@ -340,11 +340,11 @@ ul.home-download li a.download-link span.download-info em {
 .home-download abbr,
 .download-dumb abbr { border-bottom: 0; }
 
-.unsupported-download {
+.unrecognized-download {
     display: none;
 }
 
-.unsupported-download.show {
+.unrecognized-download.show {
     display: block;
 }
 

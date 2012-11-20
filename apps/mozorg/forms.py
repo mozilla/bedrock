@@ -29,17 +29,20 @@ def strip_parenthetical(lang_name):
 
 def get_lang_choices():
     """
-     Return a list of choices for language localized for the given locale.
+     Return a localized list of choices for language.
     """
     lang_choices = []
     for lang in LANGS:
-        try:
+        if lang in product_details.languages:
             lang_name = product_details.languages[lang]['native']
-        except KeyError:
-            continue
-        if lang in LANGS_TO_STRIP:
-            lang_name = strip_parenthetical(lang_name)
-        lang_choices.append([lang, lang_name])
+        else:
+            try:
+                locale = [loc for loc in product_details.languages.keys()
+                          if loc.startswith(lang)][0]
+            except IndexError:
+                continue
+            lang_name = product_details.languages[locale]['native']
+        lang_choices.append([lang, strip_parenthetical(lang_name)])
     return sorted(lang_choices, key=itemgetter(1))
 
 
@@ -88,23 +91,24 @@ class NewsletterForm(forms.Form):
     privacy = forms.BooleanField(widget=PrivacyWidget)
     source_url = forms.URLField(verify_exists=False, required=False)
 
+    LANG_CHOICES = get_lang_choices()
+
     def __init__(self, locale, *args, **kwargs):
         regions = product_details.get_regions(locale)
         regions = sorted(regions.iteritems(), key=lambda x: x[1])
-        lang_choices = get_lang_choices()
-        lang_initial = locale if locale in LANGS else 'en-US'
 
-        ccode = locale.lower()
-        if '-' in ccode:
-            ccode = ccode.split('-')[1]
+        lang = country = locale.lower()
+        if '-' in lang:
+            lang, country = lang.split('-', 1)
+        lang = lang if lang in LANGS else 'en'
 
         super(NewsletterForm, self).__init__(*args, **kwargs)
         self.fields['country'] = forms.ChoiceField(choices=regions,
-                                                   initial=ccode,
+                                                   initial=country,
                                                    required=False)
-        self.fields['lang'] = forms.ChoiceField(choices=lang_choices,
-                                                    initial=lang_initial,
-                                                    required=False)
+        self.fields['lang'] = forms.ChoiceField(choices=self.LANG_CHOICES,
+                                                initial=lang,
+                                                required=False)
 
 
 class ContributeForm(forms.Form):
