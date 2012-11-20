@@ -5,8 +5,8 @@
   </noscript>
   {% endblock %}
 
-  {% block unsupported %}
-  <div class="unsupported-download">
+  {% block unrecognized %}
+  <div class="unrecognized-download">
     {% include "mozorg/download_button_dumb.html" %}
   </div>
   {% endblock %}
@@ -42,6 +42,13 @@
     </li>
     {% endfor %}
   </ul>
+  {% endblock %}
+
+  {% block unsupported %}
+    {% set requirements_url = php_url('/firefox/' ~ version ~ '/requirements') %}
+    <p class="unsupported-download">
+      {{ _('Your system doesn\'t meet the <a href="%(url)s">requirements</a> to run Firefox.')|format(url=requirements_url) }}
+    </p>
   {% endblock %}
 
   {% block small_print %}

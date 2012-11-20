@@ -13,24 +13,30 @@
     else if(navigator.platform.indexOf("Linux") != -1) {
         site.platform = 'linux';
     }
+    else if(navigator.platform.indexOf("MacPPC") != -1) {
+        site.platform = 'oldmac';
+    }
+    else if (/Mac OS X 10.[0-5]/.test(navigator.userAgent)) {
+        site.platform = 'oldmac';
+    }
     else if (navigator.userAgent.indexOf("Mac OS X") != -1) {
         site.platform = 'osx';
     }
     else if (navigator.userAgent.indexOf("MSIE 5.2") != -1) {
-        site.platform = 'osx';
+        site.platform = 'oldmac';
     }
     else if (navigator.platform.indexOf("Mac") != -1) {
-        site.platform = 'mac';
+        site.platform = 'oldmac';
     }
     else {
         site.platform = 'other';
     }
 
     function init() {
-	// Add the platform as a classname on the html-element immediately to avoid lots
+        // Add the platform as a classname on the html-element immediately to avoid lots
         // of flickering
-	var h = document.documentElement;
-	h.className = h.className.replace("windows", site.platform);
+        var h = document.documentElement;
+        h.className = h.className.replace("windows", site.platform);
 
         // Add class to reflect javascript availability for CSS
         h.className = h.className.replace(/\bno-js\b/,'js');
