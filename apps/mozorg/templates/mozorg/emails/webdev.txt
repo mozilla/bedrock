@@ -1,12 +1,16 @@
 Thanks for offering to help us build Mozilla's websites.
 
-Start by joining us in #webdev on IRC. http://mzl.la/irc_getting_started will help you get connected, and http://mzl.la/webdev_irc lists some WebDev channels.
+If you're interested in learning more about web development and how the web works, you may be interested in our Webmaker project:
 
-Next register an account on Bugzilla. Bugzilla can be daunting, so check out http://mzl.la/bugzilla_for_humans (15m video HIGHLY recommended).
+https://webmaker.org/
 
-Now look for a WebDev mentored bug in https://wiki.mozilla.org/Webdev/GetInvolved and contact the mentor - over IRC, email, or comment on the bug.
+If you're ready to find a web development project to get started on, take a look at our page at:
 
-Finally, with your mentor, fork the github repository for the bug's website and you're ready to start coding.
+https://wiki.mozilla.org/Webdev/GetInvolved
+
+If you are interested in HTML, CSS, and JavaScript, we could also use your help building our new Firefox OS.  Find out more about how to help with that:
+
+https://wiki.mozilla.org/Gaia/Hacking
 
 This is a lot of information, so let me know if you have any questions as you get started.
 
