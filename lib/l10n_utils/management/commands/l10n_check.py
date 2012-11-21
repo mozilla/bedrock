@@ -1,29 +1,32 @@
+""" Check the l10n strings."""
 import datetime
 import itertools
 import re
 import os, errno
 from os import path
-from optparse import make_option
 import codecs
 from contextlib import closing
 from StringIO import StringIO
-
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from django.conf import settings
+from jinja2 import Environment
 
-from jinja2 import Environment, TemplateNotFound
-from jinja2.parser import Parser
 
 
 def l10n_file(*args):
+    """ just append locale to the root with the file passed, 
+    where the strings are found """
     return path.join(settings.ROOT, 'locale', *args)
 
 
 def l10n_tmpl(tmpl, lang):
+    """ just append tmpl  to the root with the file passed, 
+    where the templates are found """
     return l10n_file(lang, 'templates', tmpl)
 
 
 def app_tmpl(tmpl):
+    """ returns /root/apps/app/templates/tmpl """
     app = tmpl[:tmpl.index('/')]
     return path.join(settings.ROOT, 'apps', app, 'templates', tmpl)
 
@@ -33,12 +36,12 @@ def list_templates():
 
     for app in settings.INSTALLED_APPS:
         tmpl_dir = path.join(settings.ROOT, 'apps', app, 'templates')
-
+        nothing = 0
         if path.exists(tmpl_dir):
             # Find all the .html files
-            for root, dirs, files in os.walk(tmpl_dir):
+            for root, nothing, files in os.walk(tmpl_dir):
                 for filename in files:
-                    name, ext = os.path.splitext(filename)
+                    nothing, ext = os.path.splitext(filename)
 
                     if ext in ['.txt', '.html']:
                         full_path = os.path.join(root, filename)
@@ -70,11 +73,11 @@ def get_todays_version():
     return datetime.date.today().strftime('%Y%m%d')
 
 
-def ensure_dir_exists(path):
-    """Create directories for this path, like mkdir -p"""
+def ensure_dir_exists(thepath):
+    """Create directories for this thepath, like mkdir -p"""
 
     try:
-        os.makedirs(path)
+        os.makedirs(thepath)
     except OSError as exc:
         if exc.errno == errno.EEXIST:
             pass
@@ -82,7 +85,7 @@ def ensure_dir_exists(path):
 
 
 def update_template(tmpl, blocks, lang):
-    """Detect outdated l10n blocks and update the template"""
+    """Detect outdated l10n blocks and update the template, warning too many branches"""
 
     def get_ref_block(name):
         """Return the reference block"""
@@ -108,7 +111,6 @@ def update_template(tmpl, blocks, lang):
     parser = L10nParser()
     file_version = None
     dest_tmpl = l10n_tmpl(tmpl, lang)
-    halted = False
     written_blocks = []
 
     # Make sure the templates directory for this locale and app exists
@@ -116,7 +118,7 @@ def update_template(tmpl, blocks, lang):
 
     # Parse the l10n template, run through it and update it where
     # appropriate into a new template file
-    with closing(StringIO()) as buffer:
+    with closing(StringIO()) as thebuffer:
         for token in parser.parse_template(dest_tmpl, strict=False,
                                            halt_on_content=True):
             if not token:
@@ -125,9 +127,9 @@ def update_template(tmpl, blocks, lang):
                 # it's customized
                 return
             elif token[0] == 'content':
-                buffer.write(token[1])
+                thebuffer.write(token[1])
             elif token[0] == 'version':
-                buffer.write('{# Version: %s #}' % get_todays_version())
+                thebuffer.write('{# Version: %s #}' % get_todays_version())
                 file_version = token[1]
             elif token[0] == 'block':
                 if not file_version:
@@ -144,17 +146,17 @@ def update_template(tmpl, blocks, lang):
                 # Update the block and write it out
                 l10n_block = transfer_content(l10n_block,
                                               get_ref_block(name))
-                write_block(l10n_block, buffer)
+                write_block(l10n_block, thebuffer)
 
         # Check for any missing blocks
         for block in blocks:
             if block['name'] not in written_blocks:
-                buffer.write('\n\n')
-                write_block(block, buffer)
+                thebuffer.write('\n\n')
+                write_block(block, thebuffer)
 
         # Write out the result to the l10n template
         with codecs.open(dest_tmpl, 'w', 'utf-8') as dest:
-            dest.write(buffer.getvalue())
+            dest.write(thebuffer.getvalue())
 
     print '%s: %s' % (lang, tmpl)
 
@@ -186,15 +188,26 @@ def copy_template(tmpl, blocks, lang):
                 write_block(block, dest)
                 dest.write('\n\n')
 
+def parse_version(version_str):
+    """ parse the version string, does not need to be a method  """
+        # Version must be in the date format YYYYMMDD
+    if len(version_str) != 8:
+        return None
+    try:
+        return int(version_str)
+    except ValueError:
+        return None
 
 class L10nParser():
-
+    """ The L10n parser class """
     file_version_re = re.compile('\W*Version: (\d+)\W*')
 
     def __init__(self):
         self.tmpl = None
+        self.tokens = None
 
     def parse_tmpl_version(self, tmpl):
+        """ parse the template version from passed tmpl  """
         line = codecs.open(tmpl, encoding='utf-8').readline().strip()
         matches = self.file_version_re.match(line)
         if matches:
@@ -238,6 +251,7 @@ class L10nParser():
 
         The full template is effectively emitted as a stream of the
         above tokens.
+        Warning : too many branches
         """
 
         for token in self.tokens:
@@ -252,7 +266,7 @@ class L10nParser():
                     # Found the file version. call the callback and
                     # ignore the rest of the comment
 
-                    version = self.parse_version(matches.group(1))
+                    version = parse_version(matches.group(1))
 
                     if not version:
                         raise Exception('Invalid version metadata in '
@@ -270,21 +284,21 @@ class L10nParser():
                 block = self.tokens.next()
 
                 if block[1] == 'name':
-                    type = block[2]
+                    thetype = block[2]
 
                     # Start queue of tokens to yield, because we need
                     # to control when they are yielded
                     token_queue = []
 
-                    if type == 'l10n':
+                    if thetype == 'l10n':
                         # Parse l10n block into a useful structure
                         self.scan_ignore('whitespace')
-                        for x in self.parse_block(strict):
-                            yield x
+                        for block in self.parse_block(strict):
+                            yield block
                     else:
                         token_queue = [token, space, block]
 
-                    if type == 'block' and halt_on_content:
+                    if thetype == 'block' and halt_on_content:
                         # If it's a block, check if the name is
                         # "content" and stop parsing if it is because
                         # that means the template has been customized
@@ -302,22 +316,13 @@ class L10nParser():
                             # yielding
                             token_queue.extend([ident_space, ident])
 
-                    for x in token_queue:
-                        yield ('content', x[2])
+                    for token in token_queue:
+                        yield ('content', token[2])
                 else:
                     raise Exception("Invalid block syntax: %s", self.tmpl)
             else:
                 yield ('content', token[2])
 
-    def parse_version(self, version_str):
-        # Version must be in the date format YYYYMMDD
-        if len(version_str) != 8:
-            return None
-
-        try:
-            return int(version_str)
-        except ValueError:
-            return None
 
     def parse_block(self, strict=True):
         """Parse out the l10n block metadata and content"""
@@ -329,7 +334,7 @@ class L10nParser():
         if self.scan_next('operator') == ',':
             self.scan_ignore('whitespace')
             version_str = self.scan_next('integer')
-            block_version = self.parse_version(version_str)
+            block_version = parse_version(version_str)
 
             if not block_version:
                 raise Exception("Invalid l10n block declaration: "
@@ -356,7 +361,7 @@ class L10nParser():
         was_content = []
 
         for token in self.tokens:
-            buffer = was_content if in_was else main_content
+            thebuffer = was_content if in_was else main_content
 
             if token[1] == 'block_begin':
                 space = self.tokens.next()[2]
@@ -370,24 +375,25 @@ class L10nParser():
                     self.scan_until('block_end')
                     continue
                 else:
-                    buffer.append(token[2])
-                    buffer.append(space)
-                    buffer.append(name)
+                    thebuffer.append(token[2])
+                    thebuffer.append(space)
+                    thebuffer.append(name)
                     continue
             else:
-                buffer.append(token[2])
+                thebuffer.append(token[2])
 
         return [''.join(x).replace('\\n', '\n').strip()
                 for x in [main_content, was_content]]
 
     def scan_until(self, name):
+        """ scan until named token is found and return true else false  """
         for token in self.tokens:
-
             if token[1] == name:
                 return True
         return False
 
     def scan_ignore(self, name):
+        """ scan the tokens and ignore this one text, filters them out """
         for token in self.tokens:
             if token[1] != name:
                 # Put it back on the list
@@ -395,6 +401,7 @@ class L10nParser():
                 break
 
     def scan_next(self, name):
+        """ scan the next token """
         token = self.tokens.next()
         if token and token[1] == name:
             return token[2]
@@ -402,6 +409,7 @@ class L10nParser():
 
 
 class Command(BaseCommand):
+    """ Base class for the command """
     args = ''
     help = 'Checks which content needs to be localized.'
 
