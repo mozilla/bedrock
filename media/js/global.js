@@ -61,3 +61,19 @@ $(document).ready(function() {
     init_download_links();
     init_platform_imgs();
 });
+
+//get Master firefox version
+function getFirefoxMasterVersion()
+{
+    var version = 0;
+    
+    var matches = /Firefox\/([0-9]+).[0-9]+(?:.[0-9]+)?/.exec(
+        navigator.userAgent
+    );
+    
+    if (matches !== null && matches.length > 0) {
+        version = parseInt(matches[1], 10);
+    }
+    
+    return version;
+}

@@ -127,26 +127,10 @@ $(document).ready(function() {
   var isFirefox = (/\sFirefox/.test(window.navigator.userAgent));
   var isMobile = (/\sMobile/.test(window.navigator.userAgent));
 
-
-  function getFirefoxVersion()
-  {
-      var version = 0;
-
-      var matches = /Firefox\/([0-9]+).[0-9]+(?:.[0-9]+)?/.exec(
-          navigator.userAgent
-      );
-
-      if (matches !== null && matches.length > 0) {
-          version = parseInt(matches[1], 10);
-      }
-
-      return version;
-  };
-
   // If Firefox is the latest version and not mobile,
   // hide the out-of-date messaging and show up-to-date
   if(isFirefox && !isMobile) {
-    if (latestVersion <= getFirefoxVersion()) {
+    if (latestVersion <= getFirefoxMasterVersion()) {
       $('#out-of-date').hide();
       $('#up-to-date').show();
     }
