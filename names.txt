@@ -839,7 +839,7 @@ Malmer,Daniel
 Małolepszy,Staś
 Malorny,Klaus
 Mandelin,David
-Mạnh Hùng,Nguyễn
+Nguyễn,Mạnh Hùng
 Mani,Shyam
 Manske,Charles
 Mansour,Steve
@@ -1328,7 +1328,7 @@ Sucan,Mihai
 Suleiman,Hani
 Sullivan,Jay
 Sulmicki,Adam
-Sumlu,Selim
+Şumlu,Selim
 Sun,John
 Sun,Vicky
 Sunagawa,Keiki
@@ -1851,3 +1851,4 @@ Tetsuharu,Ohzeki
 Mecca,Matthew
 Marti,Richard
 Hernández Monge, Andrés
+Hengst,Sebastian
