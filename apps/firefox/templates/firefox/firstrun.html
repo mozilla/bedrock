@@ -1,0 +1,65 @@
+{% extends "/firefox/base-resp.html" %}
+
+{% add_lang_files "firstrun" "mobile" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{ _('Welcome to Firefox') }}{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+{% block body_id %}firefox-firstrun{% endblock %}
+
+{% block site_header_nav %}{% endblock %}
+{% block site_header_logo %}{% endblock %}
+
+{% block site_css %}
+  {{ css('firefox_firstrun') }}
+{% endblock %}
+
+{% block content %}
+<h1 id="firstrun-header">{{ _('Welcome to Firefox!') }}</h1>
+
+<section id="facebook-messenger" class="billboard">
+  <div>
+    <h2>{{ _('Facebook Messenger for&nbsp;Firefox') }}</h2>
+    <h3>{{ _('Now you can keep up with your friends wherever you go on the Web.') }}</h3>
+    <a href="http://www.facebook.com/fxmessenger" class="button" onclick="dcsMultiTrack('DCS.dcssip','mozilla.org','DCS.dcsuri','first_run/facebook_messenger.button','WT.ti','Facebook Messenger','WT.dl','26','WT.conv','1')">{{ _('Visit Facebook to turn it on') }}</a>
+  </div>
+</section>
+
+<article id="main-content" class="billboard">
+
+  <h3>{{ _('See how Firefox keeps the power of the web in your hands:') }}</h3>
+
+  <div id="video-player" class="mozilla-video-control mozilla-video-shadow">
+    <video
+      controls="controls"
+      poster="{{ media('/img/firefox/firstrun/video-poster.jpg') }}"
+      height="360"
+      width="640">
+      <source src="http://videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.webm">
+    </video>
+  </div>
+
+</article>
+{% endblock %}
+
+{% block email_form %}
+  <div id="email-form-wrapper" class="billboard">
+    {{ super() }}
+  </div>
+{% endblock%}
+
+{% block site_footer %}
+<section id="colophon" class="billboard">
+  <nav>
+    <ul class="primary">
+      <li> <a href="{{ php_url('/firefox/notes') }}">{{ _('Release Notes') }}</a></li>
+      <li><a href="{{ url('firefox.features') }}">{{ _('Firefox Features') }}</a></li>
+      <li><a href="http://support.mozilla.com/home">{{ _('Firefox Help') }}</a></li>
+    </ul>
+    <ul class="secondary">
+      <li><a href="{{ php_url('/privacy-policy.html') }}">{{ _('Privacy Policy') }}</a></li>
+      <li><a href="{{ php_url('/about/legal.html') }}">{{ _('Legal Notices') }}</a></li>
+    </ul>
+  </nav>
+</section>
+{% endblock %}

@@ -95,18 +95,6 @@ $(document).ready(function() {
             return c/2 * (-Math.pow(2, -10 * --t) + 2) + b;
         };
 
-        function getFirefoxVersion()
-        {
-            var version = 0;
-            var matches = /Firefox\/([0-9]+).[0-9]+(?:.[0-9]+)?/.exec(
-                navigator.userAgent
-            );
-            if (matches !== null && matches.length > 0) {
-                version = parseInt(matches[1], 10);
-            }
-            return version;
-        };
-
         function rotate(delta, duration, complete, easing)
         {
             if (!easing) {
@@ -163,7 +151,7 @@ $(document).ready(function() {
             // initial position
             rotate(-1.5, 10, startWaver, 'linear');
 
-            if (latestVersion > getFirefoxVersion()) { // latestVersion is defined inline on the page, fetched from product_details
+            if (latestVersion > getFirefoxMasterVersion()) { // latestVersion is defined inline on the page, fetched from product_details
                 // slow
                 setTimeout(function() {
                     stopWaver();
