@@ -1,0 +1,94 @@
+{% extends "/base-resp.html" %}
+
+{% block page_title %}Facebook Messenger{% endblock %}
+{% block body_id %}{% endblock %}
+
+{% block site_css %}
+  {{ css('responsive') }}
+  {{ css('firefox_facebookmessengertab') }}
+{% endblock %}
+
+{# no header! #}
+{% block site_header %}{% endblock %}
+
+{% block content %}
+  <section id="hero">
+    <hgroup>
+      <h1 class="large center">{{_('Facebook Messenger for Firefox')}}</h1>
+      <h2>{{_('Keep up with friends wherever you go on the Web')}}</h2>
+    </hgroup>
+
+    <div id="cta-firefox" class="cta">
+      <p>
+        {{_('Get the latest version of Firefox to start using Facebook Messenger')}}
+      </p>
+      <aside id="download-firefox" class="download-button download-button-small">
+        <a class="download-link download-firefox" href="http://www.mozilla.org/firefox/new/" onclick="dcsMultiTrack('DCS.dcssip','mozilla.org','DCS.dcsuri','facebook_tab/facebook_messenger.button','WT.ti','Facebook Messenger','WT.dl','26','WT.conv','1');">
+          <span class="download-content">
+            <span class="download-title">Firefox</span>
+            <span class="download-tagline">{{_('Get it free from mozilla.org')}}</span>
+          </span>
+        </a>
+      </aside>
+    </div>
+
+    <div id="cta-messenger" class="cta">
+        <a href="https://www.facebook.com/about/messenger-for-firefox" class="button" onclick="dcsMultiTrack('DCS.dcssip','mozilla.org','DCS.dcsuri','facebook_tab/facebook_messenger.button','WT.ti','Facebook Messenger','WT.dl','26','WT.conv','1');">
+            {{_('Get started with Facebook Messenger')}}
+        </a>
+    </div>
+  </section>
+  <section id="main">
+    <article class="content" id="features">
+      <div class="column-feature" id="feature-notifications">
+        <h3>{{_('Get notified right away')}}</h3>
+        <img src="{{ MEDIA_URL }}img/firefox/facebookmessengertab/notifications.png" width="288" height="188" alt="" />
+        <p>
+          {{_('See new comments, photo tags &amp; other Facebook updates instantly.')}}
+        </p>
+      </div>
+      <div class="column-feature" id="feature-chat">
+        <h3>{{_('Chat while you browse')}}</h3>
+        <img src="{{ MEDIA_URL }}img/firefox/facebookmessengertab/chat.png" width="288" height="188" alt="" />
+        <p>
+          {{_('Stay connected to your Facebook friends without having to click away.')}}
+        </p>
+      </div>
+    </article>
+
+    <div class="separator"></div>
+
+    <article class="content">
+      <h2>{{_('Want to hide Messenger for Firefox?')}}</h2>
+
+      <div id="columns-hide">
+        <img src="{{ MEDIA_URL }}img/firefox/facebookmessengertab/hide-sidebar.png" width="308" height="192" alt="" id="hide-img" />
+
+        <ol id="hide-steps">
+          <li class="step" id="step1">{{_('Click the Facebook icon in the upper right of the browser')}}</li>
+          <li class="step" id="step2">{{_('Select "Show sidebar" to toggle it on or off')}}</li>
+        </ol>
+      </div>
+    </article>
+
+    <div class="separator"></div>
+
+    <article class="content">
+      <h2>Want to learn more? See how it works.</h2>
+
+      <div id="video">
+        <iframe width="637" height="358" src="http://www.youtube.com/embed/pSGoS8VkOFE" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </article>
+  </section>
+{% endblock %}
+
+{# no email form! #}
+{% block email_form %}{% endblock %}
+
+{# no footer! #}
+{% block site_footer %}{% endblock %}
+
+{% block js %}
+  {{ js('firefox_facebookmessengertab') }}
+{% endblock  %}

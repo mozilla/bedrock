@@ -142,6 +142,10 @@ MINIFY_BUNDLES = {
             'css/firefox/template-resp.less',
             'css/mozilla-expanders.less',
         ),
+        'firefox_firstrun': (
+            'css/sandstone/video.less',
+            'css/firefox/firstrun.less',
+        ),
         'firefox_fx': (
             'css/firefox/fx.less',
             'css/sandstone/video.less',
@@ -183,6 +187,9 @@ MINIFY_BUNDLES = {
             'css/sandstone/video.less',
             'css/firefox/whatsnew.less',
             'css/firefox/whatsnew-android.less',
+        ),
+        'firefox_facebookmessengertab': (
+            'css/firefox/facebookmessengertab.less',
         ),
         'installer_help': (
             'css/firefox/template-resp.less',
@@ -329,6 +336,9 @@ MINIFY_BUNDLES = {
         'firefox_sms': (
             'js/firefox/sms.js',
             'js/libs/socialshare.min.js',
+        ),
+        'firefox_facebookmessengertab': (
+            'js/firefox/facebookmessengertab.js',
         ),
         'geolocation': (
             'js/libs/jquery-1.4.4.min.js',

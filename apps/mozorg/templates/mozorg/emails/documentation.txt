@@ -1,4 +1,4 @@
-Hello! Thanks for your interest in helping with Mozilla's documentation. There are several ways you can help:
+Thanks for your interest in helping with Mozilla's documentation and other writing activities. There are several ways you can help:
 
 Write Firefox Knowledge Base articles
 http://support.mozilla.com/en-US/kb/improve-knowledge-base
@@ -9,6 +9,9 @@ http://support.mozillamessaging.com/en-US/kb/improve-knowledge-base
 Help with Mozilla Developer Network docs
 http://developer.mozilla.org/Project:en/How_to_Help 
 
-Thanks again for your interest, and welcome to the Mozilla Contributor Community.
+Write about Mozilla-related topics on Wikipedia
+https://en.wikipedia.org/wiki/Wikipedia:WikiProject_Mozilla
 
-Jay
+Thanks again for your interest and let me know if you have any questions about how to get started.
+
+Janet
