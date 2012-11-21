@@ -63,7 +63,7 @@ def dnt(request):
 
 
 @vary_on_headers('User-Agent')
-def whatsnew_redirect(request, fake_version):
+def latest_fx_redirect(request, fake_version, template_name):
     """
     Redirect visitors based on their user-agent.
 
@@ -74,7 +74,8 @@ def whatsnew_redirect(request, fake_version):
     user_agent = request.META.get('HTTP_USER_AGENT', '')
     if not 'Firefox' in user_agent:
         url = reverse('firefox.new')
-        return HttpResponsePermanentRedirect(url)  # TODO : Where to redirect bug 757206
+        # TODO : Where to redirect bug 757206
+        return HttpResponsePermanentRedirect(url)
 
     user_version = "0"
     ua_regexp = r"Firefox/(%s)" % version_re
@@ -82,8 +83,7 @@ def whatsnew_redirect(request, fake_version):
     if match:
         user_version = match.group(1)
 
-    current_version = product_details.firefox_versions['LATEST_FIREFOX_VERSION']
-    if Version(user_version) < Version(current_version):
+    if not is_current_or_newer(user_version):
         url = reverse('firefox.update')
         return HttpResponsePermanentRedirect(url)
 
@@ -98,5 +98,19 @@ def whatsnew_redirect(request, fake_version):
         'es-ES': 'spanish_final',
         'es-MX': 'spanish_final',
     }
-    return l10n_utils.render(request, 'firefox/whatsnew.html',
+    return l10n_utils.render(request, template_name,
                              {'locales_with_video': locales_with_video})
+
+
+def is_current_or_newer(user_version):
+    """
+    Return true if the version (X.Y only) is for the latest Firefox or newer.
+    """
+    latest = Version(product_details.firefox_versions['LATEST_FIREFOX_VERSION'])
+    user = Version(user_version)
+
+    # similar to the way comparison is done in the Version class,
+    # but only using the major and minor versions.
+    latest_int = int('%d%02d' % (latest.major, latest.minor1))
+    user_int = int('%d%02d' % (user.major, user.minor1))
+    return user_int >= latest_int

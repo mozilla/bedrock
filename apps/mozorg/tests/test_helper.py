@@ -6,7 +6,7 @@ from test_utils import RequestFactory
 
 import basket
 import jingo
-from mock import Mock, patch
+from mock import patch
 from nose.tools import assert_false, assert_not_equal, eq_, ok_
 from product_details import product_details
 from pyquery import PyQuery as pq
@@ -51,7 +51,7 @@ class TestDownloadButtons(unittest.TestCase):
         eq_(doc.attr('id'), 'button')
 
         self.check_dumb_button(doc('noscript'))
-        self.check_dumb_button(doc('.unsupported-download'))
+        self.check_dumb_button(doc('.unrecognized-download'))
         self.check_dumb_button(doc('.download-list'))
 
         eq_(doc('.download-other a').length, 3)
@@ -254,8 +254,31 @@ class TestNewsletterFunction(unittest.TestCase):
         assert_false(doc('#footer-email-errors'))
         ok_(doc('form#footer-email-form'))
 
-    @patch.object(basket, 'subscribe', Mock())
-    def test_post_correct_form(self):
+    @patch.object(basket, 'subscribe')
+    def test_post_correct_form(self, sub_mock):
+        data = {
+            'newsletter-footer': 'Y',
+            'newsletter': 'mozilla-and-you',
+            'email': 'foo@bar.com',
+            'country': 'us',
+            'lang': 'en',
+            'fmt': 'H',
+            'privacy': 'Y',
+            'source_url': 'http://allizom.com/en-US/base/',
+        }
+        response = self.client.post('/en-US/base/', data)
+        doc = pq(response.content)
+        assert_false(doc('form#footer-email-form'))
+        ok_(doc('div#footer-email-form.thank'))
+        sub_mock.assert_called_with('foo@bar.com', 'mozilla-and-you',
+                                    format='H', country='us', lang='en',
+                                    source_url='http://allizom.com/en-US/base/')
+
+    @patch.object(basket, 'subscribe')
+    def test_post_form_country_lang_not_required(self, sub_mock):
+        """
+        Form should successfully post without country, lang, or src url.
+        """
         data = {
             'newsletter-footer': 'Y',
             'newsletter': 'mozilla-and-you',
@@ -267,6 +290,8 @@ class TestNewsletterFunction(unittest.TestCase):
         doc = pq(response.content)
         assert_false(doc('form#footer-email-form'))
         ok_(doc('div#footer-email-form.thank'))
+        sub_mock.assert_called_with('foo@bar.com', 'mozilla-and-you',
+                                    format='H')
 
     def test_post_wrong_form(self):
         response = self.client.post('/en-US/base/', {'newsletter-footer': 'Y'})
