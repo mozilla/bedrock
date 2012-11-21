@@ -915,7 +915,7 @@ Miller,Dave
 Miller,Nathan
 Mills,Dan
 Minasandram,Malini
-Nguyễn, Xuân Minh
+Nguyễn,Xuân Minh
 Misevičius,Rimas
 Mishra,Rakesh
 Mitchell,Bill
@@ -1293,7 +1293,7 @@ Snyder,Window
 So,Hoi-Sheung Wilson
 Sobotka,Henry
 Socol,James
-Nguyễn, Sơn Trần
+Nguyễn,Sơn Trần
 Soref,Josh
 Sorensen,Jes
 Sossonko,Nochum
@@ -1785,7 +1785,7 @@ Brown,Geoff
 Hage,Jonathan
 Breuil,Landry
 McArdle,Leo
-MacPherson, Matthew Riley
+MacPherson,Matthew Riley
 Khachatryan,Misak
 Chanial,Pierre
 Choudhary,Pranay
@@ -1850,7 +1850,7 @@ Coutts,Owen
 Tetsuharu,Ohzeki
 Mecca,Matthew
 Marti,Richard
-Hernández Monge, Andrés
+Hernández Monge,Andrés
 Hengst,Sebastian
 Wagner,Andreas
 Grude,Axel
@@ -1870,3 +1870,4 @@ Garrett,Sam
 Babu,Nigel
 Bengtsson,Peter
 Domanog,Kemuel Joseph
+Silaghi,Cristian
