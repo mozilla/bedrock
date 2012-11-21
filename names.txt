@@ -906,7 +906,7 @@ Mesander,Ben
 Meyer,Eric A.
 Meza,Ricardo
 Miata,Felix
-Michael,O'Reilly
+O'Reilly,Michael
 Michaud,Steven
 Middleton,Matthew
 Mielczarek,Ted
@@ -1865,3 +1865,4 @@ Sablonniere,Hubert
 Ventura,Kevin John
 Mishra,Anup Kumar
 Aanestad,Rut Kristin
+Jangra,Atul
