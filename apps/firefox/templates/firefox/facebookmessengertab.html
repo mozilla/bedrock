@@ -13,8 +13,10 @@
 
 {% block content %}
   <section id="hero">
-    <h1 class="large center">{{_('Facebook Messenger for Firefox')}}</h1>
-    <h3>{{_('Keep up with friends wherever you go on the Web')}}</h3>
+    <hgroup>
+      <h1 class="large center">{{_('Facebook Messenger for Firefox')}}</h1>
+      <h2>{{_('Keep up with friends wherever you go on the Web')}}</h2>
+    </hgroup>
 
     <div id="cta-firefox" class="cta">
       <p>
@@ -32,7 +34,7 @@
 
     <div id="cta-messenger" class="cta">
         <a href="https://www.facebook.com/about/messenger-for-firefox" class="button" onclick="dcsMultiTrack('DCS.dcssip','mozilla.org','DCS.dcsuri','facebook_tab/facebook_messenger.button','WT.ti','Facebook Messenger','WT.dl','26','WT.conv','1');">
-            {{_('Get started with Facebook Messenger')}} <span>&raquo;</span>
+            {{_('Get started with Facebook Messenger')}}
         </a>
     </div>
   </section>
@@ -40,14 +42,14 @@
     <article class="content" id="features">
       <div class="column-feature" id="feature-notifications">
         <h3>{{_('Get notified right away')}}</h3>
-        <img src="{{ MEDIA_URL }}img/firefox/facebookmessengertab/notifications.png" width="288" height="188" alt="{{_('Get notified right away')}}" />
+        <img src="{{ MEDIA_URL }}img/firefox/facebookmessengertab/notifications.png" width="288" height="188" alt="" />
         <p>
           {{_('See new comments, photo tags &amp; other Facebook updates instantly.')}}
         </p>
       </div>
       <div class="column-feature" id="feature-chat">
         <h3>{{_('Chat while you browse')}}</h3>
-        <img src="{{ MEDIA_URL }}img/firefox/facebookmessengertab/chat.png" width="288" height="188" alt="{{_('Chat while you browse')}}" />
+        <img src="{{ MEDIA_URL }}img/firefox/facebookmessengertab/chat.png" width="288" height="188" alt="" />
         <p>
           {{_('Stay connected to your Facebook friends without having to click away.')}}
         </p>
@@ -60,7 +62,7 @@
       <h2>{{_('Want to hide Messenger for Firefox?')}}</h2>
 
       <div id="columns-hide">
-        <img src="{{ MEDIA_URL }}img/firefox/facebookmessengertab/hide-sidebar.png" width="308" height="192" alt="{{_('Want to hide Messenger for Firefox?')}}" id="hide-img" />
+        <img src="{{ MEDIA_URL }}img/firefox/facebookmessengertab/hide-sidebar.png" width="308" height="192" alt="" id="hide-img" />
 
         <ol id="hide-steps">
           <li class="step" id="step1">{{_('Click the Facebook icon in the upper right of the browser')}}</li>
@@ -86,11 +88,6 @@
 
 {# no footer! #}
 {% block site_footer %}{% endblock %}
-
-{# no common js? jquery should be all we need here. #}
-{% block site_js %}
-  <script type="text/javascript" src="{{ MEDIA_URL }}js/libs/jquery-1.7.1.min.js"></script>
-{% endblock %}
 
 {% block js %}
   {{ js('firefox_facebookmessengertab') }}

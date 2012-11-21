@@ -49,7 +49,7 @@ urlpatterns = patterns('',
     page('firefox/unsupported/EOL', 'firefox/unsupported-EOL.html'),
     page('firefox/unsupported/mac', 'firefox/unsupported-mac.html'),
 
-    page('facebookmessengertab', 'firefox/facebookmessengertab.html'),
+    page('firefox/facebookmessengertab', 'firefox/facebookmessengertab.html'),
 
     url(r'^firefox/unsupported/win/$', views.windows_billboards),
     url('^dnt/$', views.dnt, name='firefox.dnt'),
