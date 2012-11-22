@@ -37,4 +37,8 @@ urlpatterns = patterns('',
     # Bug 800298 /webmaker/ -> wm.o and /webmaker/videos/ -> wm.o/videos/
     redirect(r'webmaker/$', 'https://webmaker.org'),
     redirect(r'webmaker/videos/$', 'https://webmaker.org/videos/'),
+
+    # Bug 811037 /facebookmessenger -> https://www.facebook.com/about/messenger-for-firefox
+    redirect(r'facebookmessenger', 'https://www.facebook.com/about/messenger-for-firefox'),
+
 )
