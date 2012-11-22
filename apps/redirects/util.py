@@ -5,7 +5,7 @@ from django_statsd.clients import statsd
 from funfactory.urlresolvers import reverse
 
 
-def redirect(pattern, to, permanent=True, anchor=None):
+def redirect(pattern, to, permanent=True, anchor=None, query_string=False):
     """
     Return a tuple suited for urlpatterns.
 
@@ -14,6 +14,9 @@ def redirect(pattern, to, permanent=True, anchor=None):
 
     If a url is given instead of a viewname, the redirect will go directly to
     the specified url.
+
+    If `query_string` is True, it will preserve the query string from the
+    request.
 
     Usage:
     urlpatterns = patterns('',
@@ -40,8 +43,14 @@ def redirect(pattern, to, permanent=True, anchor=None):
             # Assume it's a URL
             redirect_url = to
 
+        if query_string:
+            qs = request.META.get('QUERY_STRING')
+            if qs:
+                redirect_url = '?'.join([redirect_url, qs])
+
         if anchor:
             redirect_url = '#'.join([redirect_url, anchor])
+
         return redirect_class(redirect_url)
 
     return pattern, _view
