@@ -26,3 +26,18 @@ class TestUrlPatterns(unittest.TestCase):
         response = self.client.get('/en-US/gloubi-boulga/ext/')
         eq_(response.status_code, 301)
         eq_(response['Location'], 'https://marketplace.mozilla.org')
+
+    def test_query_string_retention(self):
+        """
+        The `query_string` parameter should cause it to retain the request
+        query string if True.
+        """
+        # query_string = True
+        response = self.client.get('/en-US/gloubi-boulga/qs/?foo=bar')
+        eq_(response.status_code, 301)
+        eq_(response['Location'], 'http://testserver/en-US/mock/view/?foo=bar')
+
+        # query_string = False
+        response = self.client.get('/en-US/gloubi-boulga/?foo=bar')
+        eq_(response.status_code, 301)
+        eq_(response['Location'], 'http://testserver/en-US/mock/view/')

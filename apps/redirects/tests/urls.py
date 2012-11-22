@@ -12,5 +12,6 @@ urlpatterns = patterns('',
     url(r'^mock/view/$', mock_view, name='mock_view'),
     redirect(r'^gloubi-boulga/$', 'mock_view'),
     redirect(r'^gloubi-boulga/tmp/$', 'mock_view', permanent=False),
+    redirect(r'^gloubi-boulga/qs/$', 'mock_view', query_string=True),
     redirect(r'^gloubi-boulga/ext/$', 'https://marketplace.mozilla.org'),
 )
