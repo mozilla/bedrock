@@ -15,12 +15,12 @@
     #gradient > .vertical(@buttonBlue, @buttonBlueDark);
     color: @buttonTextColor;
     text-align: center;
-    font-size: 14px;
-    padding: 0 @baseLine;
-    height: @baseLine * 2;
-    line-height: @baseLine * 2;
+    font-size: @baseFontSize;
+    font-weight: bold;
+    padding: (@baseLine / 4) (@baseLine / 2);
+    line-height: 1.1;
     text-decoration: none;
-    min-width: 100px;
+    min-width: 80px;
     border: 0;
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
     .open-sans;
@@ -91,11 +91,10 @@
     .button;
     border: 1px solid #d0d0d0;
     background: #fff;
-    padding: 0 @baseFontSize * 0.75;
+    padding: (@baseLine / 5) @baseFontSize * 0.75;
     color: @textColorSecondary;
     font-size: @baseFontSize * 0.75;
-    height: @baseLine;
-    line-height: @baseLine;
+    font-weight: normal;
     text-shadow: none;
     @shadow: 0 0 12px rgba(230,230,230,0.2) inset, 0 -2px #e8e8e8 inset;
     .box-shadow(@shadow);
@@ -271,13 +270,12 @@
     margin-left: 50px;
     text-align: inherit;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    font-weight: normal;
     .download-content {
         display: block;
         position: relative;
         color: #b5e786;
         margin-left: -50px;
-        padding-left: 65px;
-        padding-right: 24px;
         background: url(/media/img/sandstone/buttons/firefox-large.png) 0 0 no-repeat;
         height: 93px;
         padding: 12px 12px 0 112px;
@@ -285,7 +283,6 @@
     .download-title {
         display: block;
         color: #fff;
-        font-family: georgia, "Bitstream Charter", serif;
         font-size: 26px;
         letter-spacing: -0.02em;
         padding-right: 32px;
@@ -317,7 +314,6 @@
     margin-left: 25px;
     .download-title {
         .inline-block;
-        height: 48px;
         vertical-align: middle;
         font-size: 24px;
         background: url(/media/img/sandstone/buttons/arrow-small.png) no-repeat 100% 50%;
@@ -330,8 +326,8 @@
         margin-left: -25px;
         _margin-left:0;
         background-image: url(/media/img/sandstone/buttons/firefox-small.png);
-        height: 52px;
-        padding: 0 20px 0 65px;
+        height: 42px;
+        padding: 10px 20px 0 65px;
         overflow: visible;
         .border-radius(6px);
     }
