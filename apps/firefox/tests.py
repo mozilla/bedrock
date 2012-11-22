@@ -33,6 +33,14 @@ class FxVersionRedirectsMixin(object):
         eq_(response['Location'],
             'http://testserver%s' % reverse('firefox.new'))
 
+    def test_bad_firefox(self):
+        user_agent = 'Mozilla/5.0 (SaferSurf) Firefox 1.5'
+        response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
+        eq_(response.status_code, 301)
+        eq_(response['Vary'], 'User-Agent')
+        eq_(response['Location'],
+            'http://testserver%s' % reverse('firefox.update'))
+
     @patch.dict(product_details.firefox_versions,
                 LATEST_FIREFOX_VERSION='14.0')
     def test_old_firefox(self):
