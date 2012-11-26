@@ -136,30 +136,6 @@ will be served at /thunderbird.
 
 .. _merge:
 
-Dev, Staging, and Production
-============================
-
-All dev, staging, and production sites are set up the same way with the
-codebases installed as described above.
-
-**Dev**
-
-* URL: http://www-dev.allizom.org/
-* SVN branch: trunk
-* Updated every: 2 minutes
-
-**Stage**
-
-* URL: http://www.allizom.org/
-* SVN branch: tags/stage
-* Updated every: 10 minutes
-
-**Production**
-
-* URL: http://www.mozilla.org/
-* SVN branch: tags/production
-* Updated every: 15 minutes
-
 Workflow
 ========
 

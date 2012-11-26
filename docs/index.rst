@@ -23,3 +23,4 @@ Contents
    php
    l10n
    coding
+   contribute
