@@ -1,3 +1,7 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
 var GraphRunner = (function(jQuery, d3) {
   /* Keep track of whether we're dragging or not, so we can
    * ignore mousover/mouseout events when a drag is in progress:*/
