@@ -4,6 +4,7 @@ from captcha.fields import ReCaptchaField
 from django.core import mail
 from django.test.client import Client
 
+import l10n_utils
 from mozorg.tests import TestCase
 from funfactory.urlresolvers import reverse
 from nose.tools import assert_false, eq_, ok_
@@ -11,6 +12,7 @@ from nose.plugins.skip import SkipTest
 from pyquery import PyQuery as pq
 
 
+@patch.object(l10n_utils, 'lang_file_is_active', lambda *x: True)
 class TestContribute(TestCase):
     def setUp(self):
         self.client = Client()

@@ -1,12 +1,15 @@
-from mozorg.tests import TestCase
+from mock import patch
 
 from django.test.client import Client
 
+import l10n_utils
 from funfactory.urlresolvers import reverse
+from mozorg.tests import TestCase
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 
+@patch.object(l10n_utils, 'lang_file_is_active', lambda *x: True)
 class TestNewsletter(TestCase):
     def setUp(self):
         self.view_name = 'firefox.fx'
