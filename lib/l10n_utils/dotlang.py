@@ -155,3 +155,30 @@ def get_lang_path(path):
     path = '/'.join(p)
     base, ext = os.path.splitext(path)
     return base
+
+
+def lang_file_is_active(path, lang):
+    """
+    If the lang file for a locale exists and has the correct comment returns
+    True, and False otherwise.
+    :param path: the relative lang file name
+    :param lang: the language code
+    :return: bool
+    """
+    rel_path = os.path.join('locale', lang, '%s.lang' % path)
+    cache_key = 'active:%s' % rel_path
+    is_active = cache.get(cache_key)
+    if is_active is None:
+        is_active = False
+        fpath = os.path.join(settings.ROOT, rel_path)
+        try:
+            with codecs.open(fpath, 'r', 'utf-8', errors='replace') as lines:
+                firstline = lines.readline()
+                if firstline.startswith('## active ##'):
+                    is_active = True
+        except IOError:
+            pass
+
+        cache.set(cache_key, is_active, settings.DOTLANG_CACHE)
+
+    return is_active
