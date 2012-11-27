@@ -10,6 +10,7 @@ from django.test.client import Client
 from jingo import env
 from jinja2 import FileSystemLoader
 from mock import patch
+from nose.plugins.skip import SkipTest
 from nose.tools import assert_not_equal, eq_, ok_
 from pyquery import PyQuery as pq
 from tower.management.commands.extract import extract_tower_python
@@ -68,6 +69,8 @@ class TestLangFilesActivation(TestCase):
         """
         Inactive lang file should not redirect in DEV mode.
         """
+        # Disabled because of bug 815573
+        raise SkipTest
         response = self.client.get('/de/inactive-de-lang-file/')
         eq_(response.status_code, 200)
         doc = pq(response.content)
