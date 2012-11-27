@@ -16,137 +16,64 @@
 {% endblock %}
 
 {% block content %}
+  <hgroup id="main-feature">
+    <h1>{{_('Download Firefox in your language')}}</h1>
+    <h2>{{ _('Firefox is available in more than %s languages thanks to the contributions of Mozilla community members from around the world.')|format('70') }}</h2>
+  </hgroup>
 
-<hgroup id="main-feature">
-  <h1>{{_('Download Firefox in your language')}}</h1>
-  <h2>{{ _('Firefox is available in more than %s languages thanks to the contributions of Mozilla community members from around the world.')|format('70') }}</h2>
-</hgroup>
+  <form id="language-search">
+    <div class="search-column">
+      <input type="search" placeholder="{{ _('Search languages') }}">
+      <button class="button arrow"><span>{{ _('Search') }}</span></button>
+    </div>
+    <div class="other-column">
+      <h4>{{ _('Other Firefox downloads') }}</h4>
+      <a href="#">{{ _('New languages still in beta') }}</a>
+    </div>
+  </form>
 
-<form id="language-search">
-  <div class="search-column">
-    <input type="search" placeholder="{{ _('Search languages') }}">
-    <button class="button arrow"><span>{{ _('Search') }}</span></button>
+  <div id="main-content">
+    <div id="localized">
+      <h3>{{ _('Fully localized versions') }}</h3>
+      {{ build_table(full_builds) }}
+    </div>
+
+    <div id="localized-testing">
+      <h3>{{ _('Localized versions in testing') }}</h3>
+      <p>{{ _('These localizations aren’t final. We’re waiting for more feedback from the community to perfect them.') }}</p>
+      {{ build_table(test_builds) }}
+    </div>
   </div>
-  <div class="other-column">
-    <h4>{{ _('Other Firefox downloads') }}</h4>
-    <a href="#">{{ _('New languages still in beta') }}</a>
-  </div>
-</form>
-
-<div id="main-content">
-
-  <div id="localized">
-
-    <h3>{{ _('Fully localized versions') }}</h3>
-
-    <table>
-      <thead>
-        <tr>
-          <th colspan="2">{{ _('Language') }}</th>
-          <th>{{ _('Windows') }}</th>
-          <th>{{ _('Mac OS X') }}</th>
-          <th>{{ _('Linux') }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Language</td>
-          <td>Local Language</td>
-          <td class="download win"><a href="#" title="{{ _('Download for Windows')}}">{{ _('Download') }}</a></td>
-          <td class="download mac"><a href="#" title="{{ _('Download for Mac OS X')}}">{{ _('Download') }}</a></td>
-          <td class="download linux"><a href="#" title="{{ _('Download for Linux')}}">{{ _('Download') }}</a></td>
-        </tr>
-        <tr>
-          <td>Language</td>
-          <td>Local Language</td>
-          <td class="download win"><a href="#" title="{{ _('Download for Windows')}}">{{ _('Download') }}</a></td>
-          <td class="download mac"><a href="#" title="{{ _('Download for Mac OS X')}}">{{ _('Download') }}</a></td>
-          <td class="download linux"><a href="#" title="{{ _('Download for Linux')}}">{{ _('Download') }}</a></td>
-        </tr>
-        <tr>
-          <td>Language</td>
-          <td>Local Language</td>
-          <td class="download win"><a href="#" title="{{ _('Download for Windows')}}">{{ _('Download') }}</a></td>
-          <td class="download mac"><a href="#" title="{{ _('Download for Mac OS X')}}">{{ _('Download') }}</a></td>
-          <td class="download linux"><a href="#" title="{{ _('Download for Linux')}}">{{ _('Download') }}</a></td>
-        </tr>
-        <tr>
-          <td>Language</td>
-          <td>Local Language</td>
-          <td class="download win"><a href="#" title="{{ _('Download for Windows')}}">{{ _('Download') }}</a></td>
-          <td class="download mac"><a href="#" title="{{ _('Download for Mac OS X')}}">{{ _('Download') }}</a></td>
-          <td class="download linux"><a href="#" title="{{ _('Download for Linux')}}">{{ _('Download') }}</a></td>
-        </tr>
-        <tr>
-          <td>Language</td>
-          <td>Local Language</td>
-          <td class="download win"><a href="#" title="{{ _('Download for Windows')}}">{{ _('Download') }}</a></td>
-          <td class="download mac"><a href="#" title="{{ _('Download for Mac OS X')}}">{{ _('Download') }}</a></td>
-          <td class="download linux"><a href="#" title="{{ _('Download for Linux')}}">{{ _('Download') }}</a></td>
-        </tr>
-      </tbody>
-    </table>
-
-  </div>
-
-  <div id="localized-testing">
-
-    <h3>{{ _('Localized versions in testing') }}</h3>
-    <p>{{ _('These localizations aren’t final. We’re waiting for more feedback from the community to perfect them.') }}</p>
-
-    <table>
-      <thead>
-        <tr>
-          <th colspan="2">{{ _('Language') }}</th>
-          <th>{{ _('Windows') }}</th>
-          <th>{{ _('Mac OS X') }}</th>
-          <th>{{ _('Linux') }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Language</td>
-          <td>Local Language</td>
-          <td class="download win"><a href="#" title="{{ _('Download for Windows')}}">{{ _('Download') }}</a></td>
-          <td class="download mac"><a href="#" title="{{ _('Download for Mac OS X')}}">{{ _('Download') }}</a></td>
-          <td class="download linux"><a href="#" title="{{ _('Download for Linux')}}">{{ _('Download') }}</a></td>
-        </tr>
-        <tr>
-          <td>Language</td>
-          <td>Local Language</td>
-          <td class="download win"><a href="#" title="{{ _('Download for Windows')}}">{{ _('Download') }}</a></td>
-          <td class="download mac"><a href="#" title="{{ _('Download for Mac OS X')}}">{{ _('Download') }}</a></td>
-          <td class="download linux"><a href="#" title="{{ _('Download for Linux')}}">{{ _('Download') }}</a></td>
-        </tr>
-        <tr>
-          <td>Language</td>
-          <td>Local Language</td>
-          <td class="download win"><a href="#" title="{{ _('Download for Windows')}}">{{ _('Download') }}</a></td>
-          <td class="download mac"><a href="#" title="{{ _('Download for Mac OS X')}}">{{ _('Download') }}</a></td>
-          <td class="download linux"><a href="#" title="{{ _('Download for Linux')}}">{{ _('Download') }}</a></td>
-        </tr>
-        <tr>
-          <td>Language</td>
-          <td>Local Language</td>
-          <td class="download win"><a href="#" title="{{ _('Download for Windows')}}">{{ _('Download') }}</a></td>
-          <td class="download mac"><a href="#" title="{{ _('Download for Mac OS X')}}">{{ _('Download') }}</a></td>
-          <td class="download linux"><a href="#" title="{{ _('Download for Linux')}}">{{ _('Download') }}</a></td>
-        </tr>
-        <tr>
-          <td>Language</td>
-          <td>Local Language</td>
-          <td class="download win"><a href="#" title="{{ _('Download for Windows')}}">{{ _('Download') }}</a></td>
-          <td class="download mac"><a href="#" title="{{ _('Download for Mac OS X')}}">{{ _('Download') }}</a></td>
-          <td class="download linux"><a href="#" title="{{ _('Download for Linux')}}">{{ _('Download') }}</a></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-</div>
-
 {% endblock %}
 
 {% block js %}
   {{ js('firefox_platforms') }}
 {% endblock %}
+
+{% macro build_table(builds) %}
+  <table>
+    <thead>
+      <tr>
+        <th colspan="2">{{ _('Language') }}</th>
+        <th>{{ _('Windows') }}</th>
+        <th>{{ _('Mac OS X') }}</th>
+        <th>{{ _('Linux') }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for build in builds %}
+        {{ build_row(build) }}
+      {% endfor %}
+    </tbody>
+  </table>
+{% endmacro %}
+
+{% macro build_row(build) %}
+  <tr>
+    <td>{{ build.name_en }}</td>
+    <td>{{ build.name_native }}</td>
+    <td class="download win"><a href="{{ build.platforms['Windows'].download_url }}" title="{{ _('Download for Windows')}}">{{ _('Download') }}</a></td>
+    <td class="download mac"><a href="{{ build.platforms['OS X'].download_url }}" title="{{ _('Download for Mac OS X')}}">{{ _('Download') }}</a></td>
+    <td class="download linux"><a href="{{ build.platforms['Linux'].download_url }}" title="{{ _('Download for Linux')}}">{{ _('Download') }}</a></td>
+  </tr>
+{% endmacro %}

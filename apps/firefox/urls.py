@@ -13,7 +13,7 @@ firstrun_re = latest_re % (version_re, 'firstrun')
 whatsnew_re = latest_re % (version_re, 'whatsnew')
 
 urlpatterns = patterns('',
-    page('firefox/all', 'firefox/all.html'),
+    url(r'^firefox/all/$', views.all_downloads, name='firefox.all'),
     page('firefox/central', 'firefox/central.html'),
     page('firefox/channel', 'firefox/channel.html'),
     redirect('^firefox/channel/android/$', 'firefox.channel'),

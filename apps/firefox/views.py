@@ -14,6 +14,7 @@ import l10n_utils
 from firefox import version_re
 from firefox.forms import SMSSendForm
 from firefox.platforms import load_devices
+from firefox.firefox_details import firefox_details
 from l10n_utils.dotlang import _
 
 
@@ -114,3 +115,11 @@ def is_current_or_newer(user_version):
     latest_int = int('%d%02d' % (latest.major, latest.minor1))
     user_int = int('%d%02d' % (user.major or 0, user.minor1 or 0))
     return user_int >= latest_int
+
+
+def all_downloads(request):
+    version = firefox_details.latest_versions['release']
+    return l10n_utils.render(request, 'firefox/all.html', {
+        'full_builds': firefox_details.get_filtered_full_builds(version),
+        'test_builds': firefox_details.get_filtered_test_builds(version),
+    })
