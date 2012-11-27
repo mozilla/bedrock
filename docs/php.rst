@@ -136,30 +136,6 @@ will be served at /thunderbird.
 
 .. _merge:
 
-Dev, Staging, and Production
-============================
-
-All dev, staging, and production sites are set up the same way with the
-codebases installed as described above.
-
-**Dev**
-
-* URL: http://www-dev.allizom.org/
-* SVN branch: trunk
-* Updated every: 2 minutes
-
-**Stage**
-
-* URL: http://www.allizom.org/
-* SVN branch: tags/stage
-* Updated every: 10 minutes
-
-**Production**
-
-* URL: http://www.mozilla.org/
-* SVN branch: tags/production
-* Updated every: 15 minutes
-
 Workflow
 ========
 
@@ -301,7 +277,9 @@ Here's how the merge magic was implemented:
 **Long version:**
 
 * Check out the mofo codebase under moco as the subdirectory *org*.
- * Thunderbird is a folder under org, at /org/thunderbird
+
+  * Thunderbird is a folder under org, at /org/thunderbird
+
 * Generate a list of top-level folders in the org site and use Apache
   rewrites to `redirect all those URLs to a special php handler <https://github.com/jlongster/mozilla.com/blob/813aa578d7850f79d9f6b5274051f0f2175dd957/.htaccess#L805>`_
 * Write the `special php handler
@@ -311,29 +289,33 @@ Here's how the merge magic was implemented:
   <https://github.com/jlongster/mozilla.com/blob/813aa578d7850f79d9f6b5274051f0f2175dd957/includes/thunderbird-handler.php>`_
   for the thunderbird pages and `redirect all /thunderbird URLs to it <https://github.com/jlongster/mozilla.com/blob/813aa578d7850f79d9f6b5274051f0f2175dd957/.htaccess#L616>`_
 * Fix loading of assets
- * `Set config values
-   <https://github.com/jlongster/mozilla.org/blob/master/includes/config.inc.php-dist#L96>`_
-   to load assets with the "/org" prefix
- * For bad code that doesn't use the config, use `apache rewrites
-   <https://github.com/jlongster/mozilla.com/blob/813aa578d7850f79d9f6b5274051f0f2175dd957/.htaccess#L579>`_
-   to redirect `images` and `script` to the respective folder in
-   "/org". These two folders don't conflict with the moco codebase.
-   The `style` directory conflicts, so make sure all code uses the
-   config prefix value.
- * `Redirect any other asset directory
-   <https://github.com/jlongster/mozilla.com/blob/813aa578d7850f79d9f6b5274051f0f2175dd957/.htaccess#L590>`_
-   to use the "/org" prefix (/thunderbird/img/, etc)
+
+  * `Set config values
+    <https://github.com/jlongster/mozilla.org/blob/master/includes/config.inc.php-dist#L96>`_
+    to load assets with the "/org" prefix
+  * For bad code that doesn't use the config, use `apache rewrites
+    <https://github.com/jlongster/mozilla.com/blob/813aa578d7850f79d9f6b5274051f0f2175dd957/.htaccess#L579>`_
+    to redirect `images` and `script` to the respective folder in
+    "/org". These two folders don't conflict with the moco codebase.
+    The `style` directory conflicts, so make sure all code uses the
+    config prefix value.
+  * `Redirect any other asset directory
+    <https://github.com/jlongster/mozilla.com/blob/813aa578d7850f79d9f6b5274051f0f2175dd957/.htaccess#L590>`_
+    to use the "/org" prefix (/thunderbird/img/, etc)
+
 * Merge .htacess files
- * The biggest side effect of this is that only moco htaccess files
-   are processed, but we should consolidate things anyway
- * `Move the redirects
-   <https://github.com/jlongster/mozilla.com/blob/813aa578d7850f79d9f6b5274051f0f2175dd957/.htaccess#L619>`_
-   and other appropriate rules from mofo's htaccess to moco's
- * `Optimize the crazy amount of 301 and 410 redirects
-   <https://github.com/jlongster/mozilla.com/blob/813aa578d7850f79d9f6b5274051f0f2175dd957/.htaccess#L602>`_
-   from mofo, mostly archive redirects, using RewriteMap
- * Test to make sure everything's working, implement special rewrites
-   or org-handler.php hacks to fix any breakage
+
+  * The biggest side effect of this is that only moco htaccess files
+    are processed, but we should consolidate things anyway
+  * `Move the redirects
+    <https://github.com/jlongster/mozilla.com/blob/813aa578d7850f79d9f6b5274051f0f2175dd957/.htaccess#L619>`_
+    and other appropriate rules from mofo's htaccess to moco's
+  * `Optimize the crazy amount of 301 and 410 redirects
+    <https://github.com/jlongster/mozilla.com/blob/813aa578d7850f79d9f6b5274051f0f2175dd957/.htaccess#L602>`_
+    from mofo, mostly archive redirects, using RewriteMap
+  * Test to make sure everything's working, implement special rewrites
+    or org-handler.php hacks to fix any breakage
+
 * Check file extensions for any leftover static types and `rewrite them <https://github.com/jlongster/mozilla.com/blob/master/.htaccess#L582>`_ to be served by Apache
 
 The final result is the moco codebase which dispatches a lot of URLs
