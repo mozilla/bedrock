@@ -1,13 +1,13 @@
 <aside id="{{ id }}" class="download-button {% block class %}download-button-large{% endblock %}">
   {% block noscript %}
   <noscript>
-    {% include "mozorg/download_button_dumb.html" %}
+    {% include "mozorg/download_buttons/dumb.html" %}
   </noscript>
   {% endblock %}
 
   {% block unrecognized %}
   <div class="unrecognized-download">
-    {% include "mozorg/download_button_dumb.html" %}
+    {% include "mozorg/download_buttons/dumb.html" %}
   </div>
   {% endblock %}
 
