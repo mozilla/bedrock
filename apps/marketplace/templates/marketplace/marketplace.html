@@ -1,8 +1,12 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
 {% extends "base-resp.html" %}
 {% from "macros.html" import email_newsletter_form with context %}
 
 {% block page_title_prefix %}{% endblock %}
-{% block page_title %}Firefox Marketplace{% endblock %}
+{% block page_title %}{{_('Firefox Marketplace')}}{% endblock %}
 {% block body_id %}marketplace{% endblock %}
 {% block body_class %}sand{% endblock %}
 
@@ -15,26 +19,26 @@
 <section id="main-feature">
 
 <hgroup>
-  <h1>Firefox Marketplace <span class="aurora">Aurora</span></h1>
-  <h2>Open for business</h2>
+  <h1>{{_('Firefox Marketplace <span class="aurora">Aurora</span>')}}</h1>
+  <h2>{{_('Open for business')}}</h2>
 </hgroup>
 
 <div id="marketplace-launcher">
-  <a class="button" id="marketplace-button" href="https://marketplace.firefox.com/" data-mobile-title="Visit the Marketplace »">Try the Marketplace »</a>
+  <a class="button" id="marketplace-button" href="https://marketplace.firefox.com/" data-mobile-title="{{_('Visit the Marketplace »')}}">{{_('Try the Marketplace&nbsp;»')}}</a>
   <div id="marketplace-panel">
     <div id="panel-download">
-      <p>To test out the Aurora release of Firefox Marketplace, you first need to download Firefox Aurora on your Android phone.</p>
+      <p>{{_('To test out the Aurora release of Firefox Marketplace, you first need to download Firefox Aurora on your Android phone.')}}</p>
       {{ mobile_download_button('primary-download-mobile', 'mobile_aurora', build='aurora') }}
     </div>
     <div id="panel-info">
-      <p>Once you have downloaded and installed Firefox Aurora for Android, you can access the Firefox Marketplace from the “Apps” menu option within Firefox Aurora.</p>
+      <p>{{_('Once you have downloaded and installed Firefox Aurora for Android, you can access the Firefox Marketplace from the “Apps” menu option within Firefox Aurora.')}}</p>
     </div>
   </div>
 </div>
 
-<p>Mozilla is bringing its core values — openness, freedom, user choice — to the world of apps. We’re creating an open environment that benefits developers, content owners and consumers. And with apps based on open Web technologies like HTML5, JavaScript and CSS, developers can build rich and immersive experiences.</p>
+<p>{{_('Mozilla is bringing its core values — openness, freedom, user choice — to the world of apps. We’re creating an open environment that benefits developers, content owners and consumers. And with apps based on open Web technologies like HTML5, JavaScript and CSS, developers can build rich and immersive experiences.')}}</p>
 
-<p>The first Aurora release of Firefox Marketplace is available on Firefox Aurora for Android, giving developers a means to get feedback on their apps as the Marketplace grows and progresses.</p>
+<p>{{_('The first Aurora release of Firefox Marketplace is available on Firefox Aurora for Android, giving developers a means to get feedback on their apps as the Marketplace grows and progresses.')}}</p>
 
 <aside id="apps-bag">
   <div id="apps-bag-background"></div>
@@ -57,15 +61,19 @@
 </section>
 
 <ul id="apps-list" class="container">
-  <li id="list-discover"><span>Find &amp; discover amazing apps easily</span></li>
-  <li id="list-feedback"><span>Give us your feedback</span></li>
-  <li id="list-native"><span>Enjoy rich, immersive experiences</span></li>
+  <li id="list-discover"><span>{{_('Find &amp; discover amazing apps easily')}}</span></li>
+  <li id="list-feedback"><span>{{_('Give us your feedback')}}</span></li>
+  <li id="list-native"><span>{{_('Enjoy rich, immersive experiences')}}</span></li>
 </ul>
 
 <section id="showcased" class="container">
-  <h3>Showcased apps</h3>
-  <p id="showcased-nonfx">Below are a few of our favorite apps to get you started, but there are more to enjoy and explore. Once you've downloaded <a href="{{ php_url('/mobile/aurora/') }}">Firefox for Android Aurora</a>, you can tap on any of these apps to reveal a QR code that you can scan to download it. You can also search for apps directly on the Marketplace.</p>
-  <p id="showcased-fx">Below are a few of our favorite apps to get you started. There are also more to enjoy and explore directly on the Marketplace.</p>
+  <h3>{{_('Showcased apps')}}</h3>
+  <p id="showcased-nonfx">
+  {% trans mobile_aurora_url=php_url('/mobile/aurora/')  %}
+    Below are a few of our favorite apps to get you started, but there are more to enjoy and explore. Once you've downloaded <a href="{{mobile_aurora_url}}">Firefox for Android Aurora</a>, you can tap on any of these apps to reveal a QR code that you can scan to download it. You can also search for apps directly on the Marketplace.
+  {% endtrans %}
+  </p>
+  <p id="showcased-fx">{{_('Below are a few of our favorite apps to get you started. There are also more to enjoy and explore directly on the Marketplace.')}}</p>
 </section>
 
 <div id="apps-preview" class="pager pager-with-tabs">
@@ -86,18 +94,18 @@
       <section>
         <ul>
           <li><a href="https://marketplace.firefox.com/app/pasjanssolitaire/">
-              <img src="{{ media('/img/marketplace/app-thumb-solitaire.png') }}" alt="App thumbnail" />
-              <img src="{{ media('/img/marketplace/qr-solitaire.png') }}" alt="qr code" class="qr-code" />
+              <img src="{{ media('/img/marketplace/app-thumb-solitaire.png') }}" alt="" />
+              <img src="{{ media('/img/marketplace/qr-solitaire.png') }}" alt="" class="qr-code" />
               <h4>Solitaire</h4>
           </a></li>
           <li><a href="https://marketplace.firefox.com/app/distant-orbit/">
-              <img src="{{ media('/img/marketplace/app-thumb-distantorbit.png') }}" alt="App thumbnail" />
-              <img src="{{ media('/img/marketplace/qr-distantorbit.png') }}" alt="qr code" class="qr-code" />
+              <img src="{{ media('/img/marketplace/app-thumb-distantorbit.png') }}" alt="" />
+              <img src="{{ media('/img/marketplace/qr-distantorbit.png') }}" alt="" class="qr-code" />
               <h4>Distant Orbit</h4>
           </a></li>
           <li><a href="https://marketplace.firefox.com/app/word-wars/">
-              <img src="{{ media('/img/marketplace/app-thumb-wordwars.png') }}" alt="App thumbnail" />
-              <img src="{{ media('/img/marketplace/qr-wordwars.png') }}" alt="qr code" class="qr-code" />
+              <img src="{{ media('/img/marketplace/app-thumb-wordwars.png') }}" alt="" />
+              <img src="{{ media('/img/marketplace/qr-wordwars.png') }}" alt="" class="qr-code" />
               <h4>Word Wars</h4>
           </a></li>
         </ul>
@@ -111,18 +119,18 @@
       <section>
         <ul>
           <li><a href="https://marketplace.firefox.com/app/soundcloud/">
-              <img src="{{ media('/img/marketplace/app-thumb-soundcloud.png') }}" alt="App thumbnail" />
-              <img src="{{ media('/img/marketplace/qr-soundcloud.png') }}" alt="qr code" class="qr-code" />
+              <img src="{{ media('/img/marketplace/app-thumb-soundcloud.png') }}" alt="" />
+              <img src="{{ media('/img/marketplace/qr-soundcloud.png') }}" alt="" class="qr-code" />
               <h4>SoundCloud</h4>
           </a></li>
           <li><a href="https://marketplace.firefox.com/app/twitter/">
-              <img src="{{ media('/img/marketplace/app-thumb-twitter.png') }}" alt="App thumbnail" />
-              <img src="{{ media('/img/marketplace/qr-twitter.png') }}" alt="qr code" class="qr-code" />
+              <img src="{{ media('/img/marketplace/app-thumb-twitter.png') }}" alt="" />
+              <img src="{{ media('/img/marketplace/qr-twitter.png') }}" alt="" class="qr-code" />
               <h4>Twitter</h4>
           </a></li>
           <li><a href="https://marketplace.firefox.com/app/wiredcom/">
-              <img src="{{ media('/img/marketplace/app-thumb-wiredcom.png') }}" alt="App thumbnail" />
-              <img src="{{ media('/img/marketplace/qr-wiredcom.png') }}" alt="qr code" class="qr-code" />
+              <img src="{{ media('/img/marketplace/app-thumb-wiredcom.png') }}" alt="" />
+              <img src="{{ media('/img/marketplace/qr-wiredcom.png') }}" alt="" class="qr-code" />
               <h4>Wired</h4>
           </a></li>
         </ul>
@@ -136,13 +144,13 @@
       <section>
         <ul>
           <li><a href="https://marketplace.firefox.com/app/jauntly/">
-              <img src="{{ media('/img/marketplace/app-thumb-jauntly.png') }}" alt="App thumbnail" />
-              <img src="{{ media('/img/marketplace/qr-jauntly.png') }}" alt="qr code" class="qr-code" />
+              <img src="{{ media('/img/marketplace/app-thumb-jauntly.png') }}" alt="" />
+              <img src="{{ media('/img/marketplace/qr-jauntly.png') }}" alt="" class="qr-code" />
               <h4>Jauntly</h4>
           </a></li>
           <li><a href="https://marketplace.firefox.com/app/minimalist/">
-              <img src="{{ media('/img/marketplace/app-thumb-minimalist.png') }}" alt="App thumbnail" />
-              <img src="{{ media('/img/marketplace/qr-minimalist.png') }}" alt="qr code" class="qr-code" />
+              <img src="{{ media('/img/marketplace/app-thumb-minimalist.png') }}" alt="" />
+              <img src="{{ media('/img/marketplace/qr-minimalist.png') }}" alt="" class="qr-code" />
               <h4>Minimalist</h4>
           </a></li>
         </ul>
@@ -154,11 +162,11 @@
 </div>
 
 <section id="build" class="container">
-  <h3>Want to build an app?</h3>
-  <p>Find out how to create and upload apps to the Firefox Marketplace:</p>
+  <h3>{{_('Want to build an app?')}}</h3>
+  <p>{{_('Find out how to create and upload apps to the Firefox Marketplace:')}}</p>
   <ul class="unstyled">
-    <li><a href="https://marketplace.firefox.com/developers/">Develop HTML5 Web apps for the Firefox Marketplace »</a></li>
-    <li><a href="https://marketplace.firefox.com/developers/partners">Partner with Mozilla »</a></li>
+    <li><a href="https://marketplace.firefox.com/developers/">{{_('Develop HTML5 Web apps for the Firefox Marketplace »')}}</a></li>
+    <li><a href="https://marketplace.firefox.com/developers/partners">{{_('Partner with Mozilla »')}}</a></li>
   </ul>
 </section>
 

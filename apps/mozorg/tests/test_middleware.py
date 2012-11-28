@@ -1,12 +1,19 @@
-from mozorg.tests import TestCase
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+from mock import patch
 
 from django.test.client import Client
 
+import l10n_utils
 from funfactory.urlresolvers import reverse
+from mozorg.tests import TestCase
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 
+@patch.object(l10n_utils, 'lang_file_is_active', lambda *x: True)
 class TestNewsletter(TestCase):
     def setUp(self):
         self.view_name = 'firefox.fx'

@@ -1,4 +1,8 @@
-.. _coding::
+.. This Source Code Form is subject to the terms of the Mozilla Public
+.. License, v. 2.0. If a copy of the MPL was not distributed with this
+.. file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+.. _coding:
 
 =====================
 Developing on Bedrock
@@ -24,9 +28,10 @@ You don't even need to create a view. It will serve up the specified
 template at the given URL (the first parameter). You can also pass
 template data as keyword arguments:
 
-    page('channel', 'mozorg/channel.html', latest_firefox=product_details.LATEST_FIREFOX)
+    page('channel', 'mozorg/channel.html',
+         latest_version=product_details.firefox_versions['LATEST_FIREFOX_VERSION'])
 
-The variable `latest_firefox` will be available in the template.
+The variable `latest_version` will be available in the template.
 
 Writing Views
 -------------

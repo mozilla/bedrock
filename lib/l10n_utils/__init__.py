@@ -1,13 +1,20 @@
-from django.conf import settings
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from dotlang import get_lang_path
-import jingo
+from django.conf import settings
+from django.http import HttpResponseRedirect
+from django.shortcuts import render as django_render
+
+from funfactory.urlresolvers import split_path
 from jinja2.exceptions import TemplateNotFound
+
+from dotlang import get_lang_path, lang_file_is_active
 
 
 def render(request, template, context={}, **kwargs):
     """
-    Same as jingo's render() shortcut, but with l10n template support.
+    Same as django's render() shortcut, but with l10n template support.
     If used like this::
 
         return l10n_utils.render(request, 'myapp/mytemplate.html')
@@ -18,17 +25,26 @@ def render(request, template, context={}, **kwargs):
 
     if present, otherwise, it'll render the specified (en-US) template.
     """
-    # Look for localized template if not default lang.
-    if request.locale != settings.LANGUAGE_CODE:
-        localized_tmpl = '%s/templates/%s' % (request.locale, template)
-        try:
-            return jingo.render(request, localized_tmpl, context, **kwargs)
-        except TemplateNotFound:
-            # If not found, just go on and try rendering the parent template.
-            pass
-
     # Every template gets its own .lang file, so figure out what it is
     # and pass it in the context
     context['langfile'] = get_lang_path(template)
 
-    return jingo.render(request, template, context, **kwargs)
+    # Look for localized template if not default lang.
+    if request.locale != settings.LANGUAGE_CODE:
+
+        # redirect to default lang if locale not active
+        if not (settings.DEV or
+                lang_file_is_active(context['langfile'], request.locale)):
+            return HttpResponseRedirect('/' + '/'.join([
+                settings.LANGUAGE_CODE,
+                split_path(request.get_full_path())[1]
+            ]))
+
+        localized_tmpl = '%s/templates/%s' % (request.locale, template)
+        try:
+            return django_render(request, localized_tmpl, context, **kwargs)
+        except TemplateNotFound:
+            # If not found, just go on and try rendering the parent template.
+            pass
+
+    return django_render(request, template, context, **kwargs)

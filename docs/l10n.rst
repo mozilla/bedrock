@@ -1,3 +1,7 @@
+.. This Source Code Form is subject to the terms of the Mozilla Public
+.. License, v. 2.0. If a copy of the MPL was not distributed with this
+.. file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
 .. _l10n:
 
 ============
@@ -138,7 +142,7 @@ value should be either a string, or a list of strings, similar to the
 
 This file's strings would be extracted to `foo.lang`, and the lang files
 `foo.lang`, `bar.lang`, `main.lang`, `base.lang`, and `newsletter.lang`
- would be searched for matches in that order.
+would be searched for matches in that order.
 
 l10n blocks
 ------------------
@@ -236,7 +240,7 @@ the new content. It will look like this:
 Note the ``was`` block in ``foo``. The old translated content is in
 there, and the new content is above it. The ``was`` content is always
 shown on the site, so the old translation still shows up. The
-localizer needs to update the translated content and remove the ``was`
+localizer needs to update the translated content and remove the ``was``
 block.
 
 Generating the locale files
