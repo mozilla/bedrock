@@ -1,4 +1,4 @@
-bedrock
+LEEEEEROOOOOYYYYY bedrock
 =======
 
 *bedrock* is the code name of the new mozilla.org. It is bound to be as shiny,
