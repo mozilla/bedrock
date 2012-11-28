@@ -32,6 +32,11 @@ class FirefoxDetails(ProductDetails):
             'release': self.firefox_versions['LATEST_FIREFOX_VERSION'],
         }
 
+    def _matches_query(self, info, query):
+        query = query.lower()
+        return (query in info['name_en'].lower() or
+                query in info['name_native'].lower())
+
     def _get_filtered_builds(self, builds, version, query=None):
         """
         Get a list of builds, sorted by english locale name, for a specific
@@ -55,8 +60,7 @@ class FirefoxDetails(ProductDetails):
                 continue
 
             # only include builds that match a search query
-            if query is not None and (query not in build_info['name_en'] or
-                                      query not in build_info['name_native']):
+            if query is not None and not self._matches_query(build_info, query):
                 continue
 
             for plat in platforms.keys():

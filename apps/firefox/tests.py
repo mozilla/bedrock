@@ -1,4 +1,5 @@
 import unittest
+from urlparse import parse_qs, urlparse
 
 from django.test.client import Client
 
@@ -7,8 +8,19 @@ from mock import patch
 from mozorg.tests import TestCase
 from nose.plugins.skip import SkipTest
 from nose.tools import eq_
-from product_details import product_details
 from platforms import load_devices
+
+from firefox.firefox_details import firefox_details
+from firefox.views import product_details
+
+
+class TestFirefoxDetails(TestCase):
+    def test_get_download_url(self):
+        url = firefox_details.get_download_url('OS X', 'pt-BR', '17.0')
+        self.assertDictEqual(parse_qs(urlparse(url).query),
+                             {'lang': ['pt-BR'],
+                              'os': ['osx'],
+                              'product': ['firefox-17.0']})
 
 
 class TestLoadDevices(unittest.TestCase):
