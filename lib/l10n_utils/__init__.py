@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.http import HttpResponseRedirect
+from django.shortcuts import render as django_render
 
-import jingo
 from funfactory.urlresolvers import split_path
 from jinja2.exceptions import TemplateNotFound
 
@@ -10,7 +10,7 @@ from dotlang import get_lang_path, lang_file_is_active
 
 def render(request, template, context={}, **kwargs):
     """
-    Same as jingo's render() shortcut, but with l10n template support.
+    Same as django's render() shortcut, but with l10n template support.
     If used like this::
 
         return l10n_utils.render(request, 'myapp/mytemplate.html')
@@ -38,9 +38,9 @@ def render(request, template, context={}, **kwargs):
 
         localized_tmpl = '%s/templates/%s' % (request.locale, template)
         try:
-            return jingo.render(request, localized_tmpl, context, **kwargs)
+            return django_render(request, localized_tmpl, context, **kwargs)
         except TemplateNotFound:
             # If not found, just go on and try rendering the parent template.
             pass
 
-    return jingo.render(request, template, context, **kwargs)
+    return django_render(request, template, context, **kwargs)
