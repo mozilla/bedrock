@@ -26,6 +26,7 @@ class TestLoadDevices(unittest.TestCase):
 
 class FxVersionRedirectsMixin(object):
     def test_non_firefox(self):
+        assert False, 'STUFF BE BROKE YO!'
         user_agent = 'random'
         response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
         eq_(response.status_code, 301)
