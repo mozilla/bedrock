@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     page('sandstone', 'mozorg/sandstone.html'),
     page('mission', 'mozorg/mission.html'),
     page('mobile', 'mozorg/mobile.html'),
+    page('ITU', 'mozorg/itu.html'),
 
     url('^contribute/$', views.contribute, name='mozorg.contribute',
         kwargs={'template': 'mozorg/contribute.html',
