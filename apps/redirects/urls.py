@@ -44,4 +44,7 @@ urlpatterns = patterns('',
 
     # Bug 819317 /gameon/ -> gameon.m.o
     redirect(r'gameon/$', 'https://gameon.mozilla.org'),
+
+    redirect(r'tabzilla/media/js/tabzilla\.js$', '/tabzilla/tabzilla.js'),
+    redirect(r'tabzilla/media/css/tabzilla\.css$', '/media/css/tabzilla-min.css'),
 )

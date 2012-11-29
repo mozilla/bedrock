@@ -57,3 +57,8 @@ _ = gettext
 # Once tower is fixed and we only need to install the above `gettext` function
 # into Jinja2 once, we should do it here. The call is simply:
 # jingo.env.install_gettext_callables(gettext, gettext)
+
+@jingo.register.filter
+def js_escape(string):
+    import json
+    return json.dumps(string)[1:-1]

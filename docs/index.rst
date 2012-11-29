@@ -28,3 +28,4 @@ Contents
    l10n
    coding
    contribute
+   tabzilla
