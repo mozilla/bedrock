@@ -86,6 +86,9 @@ MINIFY_BUNDLES = {
         'collusion': (
             'css/collusion.less',
         ),
+        'itu': (
+            'css/itu.less',
+        ),
         'common': (
             'css/sandstone/sandstone.less',
         ),
