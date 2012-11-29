@@ -21,9 +21,12 @@
     <h2>{{ _('Firefox is available in more than %s languages thanks to the contributions of Mozilla community members from around the world.')|format('70') }}</h2>
   </hgroup>
 
-  <form id="language-search">
+  <form id="language-search" method="get">
     <div class="search-column">
-      <input type="search" placeholder="{{ _('Search languages') }}">
+      <input type="search"
+             placeholder="{{ _('Search languages') }}"
+             name="q"
+             {% if query %}value="{{ query }}"{% endif %}>
       <button class="button arrow"><span>{{ _('Search') }}</span></button>
     </div>
     <div class="other-column">
@@ -51,21 +54,25 @@
 {% endblock %}
 
 {% macro build_table(builds) %}
-  <table>
-    <thead>
-      <tr>
-        <th colspan="2">{{ _('Language') }}</th>
-        <th>{{ _('Windows') }}</th>
-        <th>{{ _('Mac OS X') }}</th>
-        <th>{{ _('Linux') }}</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for build in builds %}
-        {{ build_row(build) }}
-      {% endfor %}
-    </tbody>
-  </table>
+  {% if builds %}
+    <table>
+      <thead>
+        <tr>
+          <th colspan="2">{{ _('Language') }}</th>
+          <th>{{ _('Windows') }}</th>
+          <th>{{ _('Mac OS X') }}</th>
+          <th>{{ _('Linux') }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for build in builds %}
+          {{ build_row(build) }}
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <h4>{{ _('No downloads match your search.') }}</h4>
+  {% endif %}
 {% endmacro %}
 
 {% macro build_row(build) %}
