@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import unittest
 from urlparse import parse_qs, urlparse
 
@@ -21,6 +23,23 @@ class TestFirefoxDetails(TestCase):
                              {'lang': ['pt-BR'],
                               'os': ['osx'],
                               'product': ['firefox-17.0']})
+
+    def test_filter_builds_by_locale_name(self):
+        # search english
+        builds = firefox_details.get_filtered_full_builds(
+            firefox_details.latest_versions['release'],
+            'ujara'
+        )
+        eq_(len(builds), 1)
+        eq_(builds[0]['name_en'], 'Gujarati')
+
+        # search native
+        builds = firefox_details.get_filtered_full_builds(
+            firefox_details.latest_versions['release'],
+            u'જરા'
+        )
+        eq_(len(builds), 1)
+        eq_(builds[0]['name_en'], 'Gujarati')
 
 
 class TestLoadDevices(unittest.TestCase):
