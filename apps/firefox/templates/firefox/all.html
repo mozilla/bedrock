@@ -1,4 +1,4 @@
-{% extends "/firefox/base-resp.html" %}
+{% extends "firefox/base-resp.html" %}
 
 {% block page_title %}Download Firefox in your language{% endblock %}
 {% block body_id %}firefox-all{% endblock %}
@@ -26,6 +26,7 @@
       <input type="search"
              placeholder="{{ _('Search languages') }}"
              name="q"
+             id="language-search-q"
              {% if query %}value="{{ query }}"{% endif %}>
       <button class="button arrow"><span>{{ _('Search') }}</span></button>
     </div>
@@ -51,32 +52,37 @@
 
 {% block js %}
   {{ js('firefox_platforms') }}
+  {# searching with js only makes sense if we're displaying all #}
+  {% if not query %}
+    {{ js('firefox_all') }}
+  {% endif %}
 {% endblock %}
 
 {% macro build_table(builds) %}
-  {% if builds %}
-    <table>
-      <thead>
-        <tr>
-          <th colspan="2">{{ _('Language') }}</th>
-          <th>{{ _('Windows') }}</th>
-          <th>{{ _('Mac OS X') }}</th>
-          <th>{{ _('Linux') }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for build in builds %}
-          {{ build_row(build) }}
-        {% endfor %}
-      </tbody>
-    </table>
-  {% else %}
-    <h4>{{ _('No downloads match your search.') }}</h4>
-  {% endif %}
+  <div class="build-table-container">
+    {% if builds %}
+      <table class="build-table">
+        <thead>
+          <tr>
+            <th colspan="2">{{ _('Language') }}</th>
+            <th>{{ _('Windows') }}</th>
+            <th>{{ _('Mac OS X') }}</th>
+            <th>{{ _('Linux') }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for build in builds %}
+            {{ build_row(build) }}
+          {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+    <h4 class="not-found{% if builds %} hide{% endif %}">{{ _('No matching languages found.') }}</h4>
+  </div>
 {% endmacro %}
 
 {% macro build_row(build) %}
-  <tr>
+  <tr data-search="{{ build.name_en|lower }} {{ build.name_native|lower }}">
     <td>{{ build.name_en }}</td>
     <td>{{ build.name_native }}</td>
     <td class="download win"><a href="{{ build.platforms['Windows'].download_url }}" title="{{ _('Download for Windows')}}">{{ _('Download') }}</a></td>

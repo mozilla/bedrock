@@ -9,8 +9,9 @@ from funfactory.urlresolvers import reverse
 from mock import patch
 from mozorg.tests import TestCase
 from nose.plugins.skip import SkipTest
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 from platforms import load_devices
+from pyquery import PyQuery as pq
 
 from firefox.firefox_details import firefox_details
 from firefox.views import product_details
@@ -40,6 +41,37 @@ class TestFirefoxDetails(TestCase):
         )
         eq_(len(builds), 1)
         eq_(builds[0]['name_en'], 'Gujarati')
+
+
+class TestFirefoxAll(TestCase):
+    def setUp(self):
+        self.client = Client()
+        with self.activate('en-US'):
+            self.url = reverse('firefox.all')
+
+    def test_no_search_results(self):
+        """
+        Tables should be gone and not-found message should be shown when there
+        are no search results.
+        """
+        resp = self.client.get(self.url + '?q=DOES_NOT_EXIST')
+        doc = pq(resp.content)
+        ok_(not doc('table.build-table'))
+        ok_(not doc('.not-found.hide'))
+
+    def test_no_search_query(self):
+        """
+        When not searching all builds should show.
+        """
+        resp = self.client.get(self.url)
+        doc = pq(resp.content)
+        eq_(len(doc('.build-table')), 2)
+        eq_(len(doc('.not-found.hide')), 2)
+
+        release = firefox_details.latest_versions['release']
+        num_builds = len(firefox_details.get_filtered_full_builds(release))
+        num_builds += len(firefox_details.get_filtered_test_builds(release))
+        eq_(len(doc('tr[data-search]')), num_builds)
 
 
 class TestLoadDevices(unittest.TestCase):
