@@ -174,9 +174,11 @@
 {% endblock %}
 
 {% block email_form %}
-  {{ email_newsletter_form('app-dev',
-                           _('Sign up for more news about the Firefox Marketplace.'),
-                           include_language=False) }}
+  {% if LANG.startswith('en') %}
+      {{ email_newsletter_form('app-dev',
+                              _('Sign up for more news about the Firefox Marketplace.'),
+                              include_language=False) }}
+  {% endif %}
 {% endblock %}
 
 {% block js %}
