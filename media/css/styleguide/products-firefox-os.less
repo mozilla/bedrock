@@ -1,0 +1,78 @@
+@import "../styleguide/styleguide.less";
+
+/* {{{ Firefox OS icons */
+
+.firefox-os-icons {
+    #basics {
+        .divider-dark;
+        .clearfix;
+        h2 {
+            .span_guide(12);
+            margin-bottom: @baseLine;
+        }
+        #shape,
+        #shadow {
+            p {
+                .span_guide(12);
+                margin-bottom: @baseLine;
+            }
+        }
+    }
+    #silhouette {
+        .clearfix;
+        .divider-dark;
+        h2 {
+            margin-bottom: @baseLine;
+        }
+        h3,
+        .intro {
+            .span_guide(12);
+        }
+        #do,
+        #do-not {
+            clear: both;
+        }
+    }
+    #circle {
+        .clearfix;
+        .divider-dark;
+        clear: both;
+        .intro,
+        h2 {
+            margin-bottom: @baseLine;
+        }
+        h3 {
+            .span_guide(12);
+        }
+        #circle-c {
+            h3 {
+                margin-bottom: @baseLine;
+            }
+            p {
+                .span_guide(12);
+            }
+        }
+    }
+    #examples {
+        .clearfix;
+        .divider-dark;
+        h2 {
+            .span_guide(12);
+            margin-bottom: @baseLine;
+        }
+        div {
+            clear: both;
+        }
+    }
+    figure {
+        .span_guide(3);
+        margin-top: @baseLine;
+        margin-bottom: (2 * @baseLine);
+        figcaption {
+            color: @darkThemeText;
+            margin: (@baseLine / 2) auto;
+        }
+    }
+}
+
+/* }}} */
