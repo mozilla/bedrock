@@ -25,10 +25,17 @@
     font-weight: 600;
 }
 
-.divider {
+@darkThemeText: #9a9ea1;
+
+.divider() {
     padding-bottom: @baseLine * 3;
     margin-bottom: @baseLine * 2;
     background: url(/media/img/styleguide/divider.png) 50% 100% no-repeat;
+}
+
+.divider-dark() {
+    .divider();
+    background-image: url(/media/img/styleguide/divider-dark.png);
 }
 
 a[href="#TODO"] { color: #f00 !important; }
@@ -248,6 +255,66 @@ h1 {
         a:last-child,b:last-child {
             background: none;
         }
+    }
+}
+
+/* }}} */
+/* {{{ Dark theme */
+
+.dark.sand #outer-wrapper {
+    background-color: #272e33;
+    background-image: url('/media/img/sandstone/grain.png');
+    background-repeat: repeat;
+}
+
+body.dark {
+    color: #fff;
+    h1, h2, h3, h4, h5, h6, .huge, .large {
+        color: #eee;
+        text-shadow: 0 1px #333;
+    }
+    #sidebar {
+        h2 a {
+            color: @darkThemeText;
+        }
+        nav {
+            a,b {
+                color: @darkThemeText;
+            }
+            ul {
+                li {
+                    &.active > a:only-child {
+                        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAPCAYAAADZCo4zAAAAqklEQVR42n2QSQ7CMAxFexguwSA60IEwSblEegBOTxYJz5a8SGmp9BXX79uJXf379nXvNmE7PfyxHeMqrIebP/cuovwDSfpmvEeUMZaGQzNIW61EpYEKbXvqpowE6qmwuz49iYgMqOiWK4IdwUcAL8900vb2b6+eUQJq0s5iChJqkrYiYjUu55+ZJAlki/niXqt7CFQmm2TJbR+Ba9S0xm0vgXelLW77eX8BLJlorrHHwwoAAAAASUVORK5CYII=);
+                    }
+                    &.active {
+                        background: rgba(0,0,0,0.2);
+                        .active {
+                            background: rgba(0,0,0,0.2);
+                        }
+                    }
+                    &.path a {
+                        color: @darkThemeText;
+                    }
+                }
+            }
+        }
+        nav > ul > li {
+            border-top-color: rgba(255,255,255,0.2);
+        }
+    }
+    #subnav {
+        #nextprev {
+            a {
+                background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAOCAYAAAASVl2WAAAAbUlEQVR42n2QMQqAMAxF6wkcREEQRSg6SAdd9KRezsPEBhII+dXhLX2vtPxAREC4nzlDmbEkB5YCyF6EEq1sndz4XGXj5K4XWdZOniz+gssGX+8fNtCoc1GSADcwrKWhJhwKoyjBYgREFfyhxAv1GBxsBsu5pwAAAABJRU5ErkJggg==);
+            }
+            a.next {
+                background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAOCAYAAAD9lDaoAAAAdElEQVR42o3QOwqAMBAA0XgATSFBBAtbO1HExspDejnP4aeLG8hCGBAtpgh5bMIa770x295Jt9SEMwvASj52STWRTuoBHZHCKYGnVBIpXACtIsI1gYeU/0HF7+cUzACOKxixgup1mdw6Jw0RtAT8U4ZLoI8ekPNDKNrJjGQAAAAASUVORK5CYII=);
+            }
+        }
+    }
+    #colophon {
+        background: transparent;
+        color: @darkThemeText;
     }
 }
 
