@@ -51,7 +51,6 @@
 {% endblock %}
 
 {% block js %}
-  {{ js('firefox_platforms') }}
   {# searching with js only makes sense if we're displaying all #}
   {% if not query %}
     {{ js('firefox_all') }}
