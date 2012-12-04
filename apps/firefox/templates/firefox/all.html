@@ -27,7 +27,18 @@
              placeholder="{{ _('Search languages') }}"
              name="q"
              id="language-search-q"
+             list="languages"
              {% if query %}value="{{ query }}"{% endif %}>
+      <datalist id="languages">
+        {% for build in full_builds -%}
+          <option value="{{ build.name_en }}"></option>
+          <option value="{{ build.name_native }}"></option>
+        {% endfor -%}
+        {% for build in test_builds -%}
+          <option value="{{ build.name_en }}"></option>
+          <option value="{{ build.name_native }}"></option>
+        {% endfor -%}
+      </datalist>
       <button class="button arrow"><span>{{ _('Search') }}</span></button>
     </div>
     <div class="other-column">

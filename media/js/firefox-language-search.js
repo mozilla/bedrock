@@ -8,7 +8,7 @@ $(function(){
 
     $form.on('submit', function(e){
         e.preventDefault();
-        var search_q = $input.val().replace(/^\s+|\s+$/g, '');  // trim whitespace
+        var search_q = $.trim($input.val()).toLowerCase();  // trim whitespace
         if (!search_q) {
             show_all();
             return;
@@ -20,7 +20,7 @@ $(function(){
             var $not_found = $container.find('.not-found');
             var $all_rows = $table.find('tr[data-search]');
             var $matches = $all_rows.filter(function(){
-                return $(this).data('search').indexOf(search_q) > -1;
+                return $(this).data('search').indexOf(search_q) !== -1;
             });
 
             if ($matches.length) {
@@ -36,11 +36,11 @@ $(function(){
         });
     });
 
-    var show_all = function(){
+    function show_all(){
         $tables.show();
         $('tr[data-search]').show();
         $('.not-found').hide();
-    };
+    }
 });
 
 })(jQuery);

@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 
-import unittest
+import json
+import os
 from urlparse import parse_qs, urlparse
 
 from django.test.client import Client
+from django.utils import unittest
 
 from funfactory.urlresolvers import reverse
 from mock import patch
 from mozorg.tests import TestCase
-from nose.plugins.skip import SkipTest
 from nose.tools import eq_, ok_
 from platforms import load_devices
 from pyquery import PyQuery as pq
@@ -17,7 +18,21 @@ from firefox.firefox_details import firefox_details
 from firefox.views import product_details
 
 
+TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), 'test_data')
+PROD_DETAILS_DIR = os.path.join(TEST_DATA_DIR, 'product_details_json')
+PROD_DETAILS_DATA = {}
+
+
+for filename in os.listdir(PROD_DETAILS_DIR):
+    if filename.endswith('.json'):
+        name = os.path.splitext(filename)[0]
+        path = os.path.join(PROD_DETAILS_DIR, filename)
+        PROD_DETAILS_DATA[name] = json.load(open(path))
+
+
+@patch.object(firefox_details, 'json_data', PROD_DETAILS_DATA)
 class TestFirefoxDetails(TestCase):
+
     def test_get_download_url(self):
         url = firefox_details.get_download_url('OS X', 'pt-BR', '17.0')
         self.assertDictEqual(parse_qs(urlparse(url).query),
@@ -28,7 +43,7 @@ class TestFirefoxDetails(TestCase):
     def test_filter_builds_by_locale_name(self):
         # search english
         builds = firefox_details.get_filtered_full_builds(
-            firefox_details.latest_versions['release'],
+            firefox_details.latest_version('release'),
             'ujara'
         )
         eq_(len(builds), 1)
@@ -36,13 +51,14 @@ class TestFirefoxDetails(TestCase):
 
         # search native
         builds = firefox_details.get_filtered_full_builds(
-            firefox_details.latest_versions['release'],
+            firefox_details.latest_version('release'),
             u'જરા'
         )
         eq_(len(builds), 1)
         eq_(builds[0]['name_en'], 'Gujarati')
 
 
+@patch.object(firefox_details, 'json_data', PROD_DETAILS_DATA)
 class TestFirefoxAll(TestCase):
     def setUp(self):
         self.client = Client()
@@ -68,7 +84,7 @@ class TestFirefoxAll(TestCase):
         eq_(len(doc('.build-table')), 2)
         eq_(len(doc('.not-found.hide')), 2)
 
-        release = firefox_details.latest_versions['release']
+        release = firefox_details.latest_version('release')
         num_builds = len(firefox_details.get_filtered_full_builds(release))
         num_builds += len(firefox_details.get_filtered_test_builds(release))
         eq_(len(doc('tr[data-search]')), num_builds)
@@ -80,13 +96,14 @@ class TestLoadDevices(unittest.TestCase):
         # where should the test file go?
         return 'TODO'
 
+    @unittest.skip('Please to write test')
     def test_load_devices(self):
-        raise SkipTest
-        devices = load_devices(self, self.file(), cacheDevices=False)
+        load_devices(self, self.file(), cacheDevices=False)
 
         #todo
 
 
+@patch.object(firefox_details, 'json_data', PROD_DETAILS_DATA)
 class FxVersionRedirectsMixin(object):
     def test_non_firefox(self):
         user_agent = 'random'
