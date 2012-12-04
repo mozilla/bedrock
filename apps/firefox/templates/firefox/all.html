@@ -81,7 +81,7 @@
 {% endmacro %}
 
 {% macro build_row(build) %}
-  <tr data-search="{{ build.name_en|lower }} {{ build.name_native|lower }}">
+  <tr id="{{ build.locale }}" data-search="{{ build.name_en|lower }} {{ build.name_native|lower }}">
     <td>{{ build.name_en }}</td>
     <td>{{ build.name_native }}</td>
     <td class="download win"><a href="{{ build.platforms['Windows'].download_url }}" title="{{ _('Download for Windows')}}">{{ _('Download') }}</a></td>
