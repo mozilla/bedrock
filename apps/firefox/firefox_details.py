@@ -22,15 +22,19 @@ class FirefoxDetails(ProductDetails):
             'id': 'linux',
         },
     }
+    channel_map = {
+        'aurora': 'FIREFOX_AURORA',
+        'beta': 'LATEST_FIREFOX_DEVEL_VERSION',
+        'esr': 'FIREFOX_ESR',
+        'release': 'LATEST_FIREFOX_VERSION',
+    }
 
     def __init__(self):
         super(FirefoxDetails, self).__init__()
-        self.latest_versions = {
-            'aurora': self.firefox_versions['FIREFOX_AURORA'],
-            'beta': self.firefox_versions['LATEST_FIREFOX_DEVEL_VERSION'],
-            'esr': self.firefox_versions['FIREFOX_ESR'],
-            'release': self.firefox_versions['LATEST_FIREFOX_VERSION'],
-        }
+
+    def latest_version(self, channel):
+        version = self.channel_map.get(channel, 'LATEST_FIREFOX_VERSION')
+        return self.firefox_versions[version]
 
     def _matches_query(self, info, query):
         query = query.lower()
@@ -63,7 +67,7 @@ class FirefoxDetails(ProductDetails):
             if query is not None and not self._matches_query(build_info, query):
                 continue
 
-            for plat in platforms.keys():
+            for plat in platforms:
                 build_info['platforms'][plat] = {
                     'download_url': self.get_download_url(plat, locale,
                                                           version),
@@ -76,7 +80,7 @@ class FirefoxDetails(ProductDetails):
     def get_filtered_full_builds(self, version, query=None):
         """
         Return filtered builds for the fully translated releases.
-        :param version: a firefox version. one of self.latest_versions.
+        :param version: a firefox version. one of self.latest_version.
         :param query: a string to match against native or english locale name
         :return: list
         """
@@ -86,7 +90,7 @@ class FirefoxDetails(ProductDetails):
     def get_filtered_test_builds(self, version, query=None):
         """
         Return filtered builds for the translated releases in beta.
-        :param version: a firefox version. one of self.latest_versions.
+        :param version: a firefox version. one of self.latest_version.
         :param query: a string to match against native or english locale name
         :return: list
         """
@@ -98,7 +102,7 @@ class FirefoxDetails(ProductDetails):
         Get direct download url for the product.
         :param platform: OS. one of self.platform_info.keys()
         :param language: a locale. e.g. pt-BR
-        :param version: a firefox version. one of self.latest_versions.
+        :param version: a firefox version. one of self.latest_version.
         :param product: optional. probably 'firefox'
         :return: string url
         """

@@ -1,7 +1,6 @@
-import unittest
-
 from django.conf import settings
 from django.test.client import Client
+from django.utils import unittest
 from test_utils import RequestFactory
 
 import basket

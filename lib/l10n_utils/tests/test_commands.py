@@ -1,4 +1,4 @@
-import unittest
+from django.utils import unittest
 
 from l10n_utils.management.commands.l10n_check import (list_templates,
                                                        L10nParser)
@@ -15,7 +15,7 @@ class TestL10nCheck(unittest.TestCase):
     def test_list_templates(self):
         """Make sure we capture both html and txt templates."""
         TEMPLATES = ['mozorg/home.html',
-                     'mozorg/emails/other.txt',]
+                     'mozorg/emails/other.txt']
         tmpls = filter(lambda tmpl: tmpl in TEMPLATES,
                        list_templates())
         assert len(tmpls) == len(TEMPLATES)

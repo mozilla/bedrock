@@ -118,7 +118,7 @@ def is_current_or_newer(user_version):
 
 
 def all_downloads(request):
-    version = firefox_details.latest_versions['release']
+    version = firefox_details.latest_version('release')
     query = request.GET.get('q')
     return l10n_utils.render(request, 'firefox/all.html', {
         'full_builds': firefox_details.get_filtered_full_builds(version, query),
