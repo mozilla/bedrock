@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-import json
 import os
 from urlparse import parse_qs, urlparse
 
+from django.conf import settings
 from django.test.client import Client
 from django.utils import unittest
 
@@ -14,23 +14,19 @@ from nose.tools import eq_, ok_
 from platforms import load_devices
 from pyquery import PyQuery as pq
 
-from firefox.firefox_details import firefox_details
+from firefox import views as fx_views
+from firefox.firefox_details import FirefoxDetails
 from firefox.views import product_details
 
 
 TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), 'test_data')
 PROD_DETAILS_DIR = os.path.join(TEST_DATA_DIR, 'product_details_json')
-PROD_DETAILS_DATA = {}
+
+with patch.object(settings, 'PROD_DETAILS_DIR', PROD_DETAILS_DIR):
+    firefox_details = FirefoxDetails()
 
 
-for filename in os.listdir(PROD_DETAILS_DIR):
-    if filename.endswith('.json'):
-        name = os.path.splitext(filename)[0]
-        path = os.path.join(PROD_DETAILS_DIR, filename)
-        PROD_DETAILS_DATA[name] = json.load(open(path))
-
-
-@patch.object(firefox_details, 'json_data', PROD_DETAILS_DATA)
+@patch.object(fx_views, 'firefox_details', firefox_details)
 class TestFirefoxDetails(TestCase):
 
     def test_get_download_url(self):
@@ -58,7 +54,7 @@ class TestFirefoxDetails(TestCase):
         eq_(builds[0]['name_en'], 'Gujarati')
 
 
-@patch.object(firefox_details, 'json_data', PROD_DETAILS_DATA)
+@patch.object(fx_views, 'firefox_details', firefox_details)
 class TestFirefoxAll(TestCase):
     def setUp(self):
         self.client = Client()
@@ -103,7 +99,7 @@ class TestLoadDevices(unittest.TestCase):
         #todo
 
 
-@patch.object(firefox_details, 'json_data', PROD_DETAILS_DATA)
+@patch.object(fx_views, 'firefox_details', firefox_details)
 class FxVersionRedirectsMixin(object):
     def test_non_firefox(self):
         user_agent = 'random'
