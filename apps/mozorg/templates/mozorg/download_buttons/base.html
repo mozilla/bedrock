@@ -24,21 +24,12 @@
          data-direct-link="{{ build.download_link_direct }}"{% endif %}>
         {% block download_content scoped %}
           <span class="download-content">
-            <span class="download-title">{% block title scoped %}Firefox{% endblock %}</span>
-            {% block subtitle scoped %}{{ _('Free Download') }}{% endblock %}
-            {% block download_info scoped %}
-              <span class="download-info">
-                {% block download_version scoped %}
-                  <span class="download-version">
-                    {{ version }} for {{ build.platform_pretty }}
-                  </span>
-                {% endblock %}
-                {% block download_lang scoped %}
-                  {% if build.platform != 'os_android' %}
-                    <span class="download-lang">{{ locale_name }}</span>
-                  {% endif %}
-                {% endblock %}
-              </span>
+            <strong class="download-title">{% block title scoped %}Firefox{% endblock %}</strong>
+            <span class="download-subtitle">{% block subtitle scoped %}{{ _('Free Download') }}{% endblock %}</span>
+            {% block download_lang scoped %}
+              {% if build.platform != 'os_android' %}
+                <span class="download-lang">{{ locale_name }}</span>
+              {% endif %}
             {% endblock %}
           </span>
         {% endblock %}
