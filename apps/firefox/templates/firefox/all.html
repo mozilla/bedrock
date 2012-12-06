@@ -65,14 +65,14 @@
   {% endif %}
 {% endblock %}
 
-{% macro build_table(builds, heading, preamble) %}
+{% macro build_table(builds, title, description) %}
   <div class="build-table-container">
     {% if builds %}
       <table class="build-table">
       <caption>
-        <h3>{{ heading }}</h3>
-        {% if preamble %}
-        <p>{{ preamble }}</p>
+        <h3>{{ title }}</h3>
+        {% if description %}
+        <p>{{ description }}</p>
         {% endif %}
       </caption>
         <thead>
