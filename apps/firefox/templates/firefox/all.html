@@ -49,11 +49,14 @@
 
   <div id="main-content">
     <div id="localized">
-      {{ build_table(test_builds, _('Fully localized versions')) }}
+      {{ build_table(test_builds, 
+                      _('Fully localized versions')) }}
     </div>
 
     <div id="localized-testing">
-      {{ build_table(test_builds, _('Localized versions in testing'), _('These localizations aren’t final. We’re waiting for more feedback from the community to perfect them.')) }}
+      {{ build_table(test_builds, 
+                      _('Localized versions in testing'), 
+                      _('These localizations aren’t final. We’re waiting for more feedback from the community to perfect them.')) }}
     </div>
   </div>
 {% endblock %}
@@ -69,12 +72,12 @@
   <div class="build-table-container">
     {% if builds %}
       <table class="build-table">
-      <caption>
-        <h3>{{ title }}</h3>
-        {% if description %}
-        <p>{{ description }}</p>
-        {% endif %}
-      </caption>
+        <caption>
+          <h3>{{ title }}</h3>
+            {% if description %}
+              <p>{{ description }}</p>
+            {% endif %}
+        </caption>
         <thead>
           <tr>
             <th colspan="2" scope="col">{{ _('Language') }}</th>
