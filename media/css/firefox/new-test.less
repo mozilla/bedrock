@@ -1,0 +1,120 @@
+@import "template-resp.less";
+
+// COMMON A/B
+#main-feature {
+    margin-top: 30px;
+    h1 {
+        text-align: center;
+        font-size: 80px;
+    }
+}
+
+#features {
+    float: left;
+    width: 492px;
+    margin: 0 83px 0 62px;
+    padding: 0;
+    list-style-type: none;
+    .clearfix;
+    li {
+        float: left;
+        width: 164px;
+        height: 80px;
+        text-align: center;
+        padding-top: 20px;
+        margin-left: 0;
+        font-size: 22px;
+        line-height: 100%;
+        .open-sans-light;
+        background: url(/media/img/firefox/new/features-divider.png) right top no-repeat;
+        &:last-child {
+            background: none;
+        }
+    }
+}
+
+#download {
+    float: left;
+}
+
+.download-button {
+    .download-link {
+        .download-content {
+            background: none;
+            padding-left: 72px;
+        }
+        .download-title {
+            .open-sans;
+            font-size: 28px;
+            background: url(/media/img/sandstone/buttons/arrow-large-inverted.png) no-repeat 100% 0;
+        }
+    }
+    small.download-other {
+        a:link, a:visited {
+            color: #85c4e3;
+        }
+    }
+}
+
+#firefox-screenshot {
+    margin-top: 50px;
+}
+
+#dl-feedback {
+    display: none;
+    p {
+        background: url(/media/img/firefox/new/thankyou-check.png) left top no-repeat;
+        padding: 0 0 0 35px;
+        margin: 0 140px ;
+        color: #6ca52a;
+        font-style: italic;
+        font-size: 18px;
+        .open-sans-light;
+    }
+}
+
+.installation {
+    margin: 0 auto;
+    padding: 0;
+    width: 900px;
+    display: block;
+    list-style-type: none;
+    .clearfix;
+    li {
+        float: left;
+        width: 232px;
+        padding: 0 34px;
+        margin: 0;
+        text-align: center;
+        color: #666;
+        font-style: italic;
+        img {
+            display: block;
+            margin-bottom: 5px;
+        }
+    }
+}
+
+// A
+#firefox-new-a {
+    .installation {
+        margin-top: 40px;
+    }
+    #firefox-container {
+        height: 340px;
+        overflow: hidden;
+    }
+}
+
+// B
+#firefox-new-b {
+    #dl-feedback {
+        margin-top: 60px;
+        h3 {
+            text-align: center;
+        }
+    }
+    .installation {
+        margin: 26px auto 40px;
+    }
+}
