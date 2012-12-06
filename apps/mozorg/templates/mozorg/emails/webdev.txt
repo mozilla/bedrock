@@ -12,6 +12,8 @@ If you are interested in HTML, CSS, and JavaScript, we could also use your help 
 
 https://wiki.mozilla.org/Gaia/Hacking
 
+If none of that interests you, check out http://whatcanidoformozilla.org/ to see other ways you can help!
+
 This is a lot of information, so let me know if you have any questions as you get started.
 
 Regards,
