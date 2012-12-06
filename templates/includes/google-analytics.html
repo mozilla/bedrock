@@ -3,6 +3,12 @@ var _gaq = _gaq || [];
 _gaq.push(['_setAccount', '{{ settings.GA_ACCOUNT_CODE }}']);
 _gaq.push(['_trackPageview']);
 
+// In-page analysis
+var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+_gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+_gaq.push(['_setAllowLinker', true]);
+_gaq.push(['_setAllowAnchor', true]);
+
 {% if settings.GA_ACCOUNT_CODE %}
 (function() {
     var ga = document.createElement('script');
