@@ -3,10 +3,11 @@
 // COMMON A/B
 #main-feature {
     margin-top: 30px;
-    h1 {
-        text-align: center;
-        font-size: 80px;
-    }
+}
+
+h1.large {
+    text-align: center;
+    font-size: 80px;
 }
 
 #features {
@@ -37,6 +38,7 @@
     float: left;
 }
 
+/*
 .download-button {
     .download-link {
         .download-content {
@@ -55,6 +57,7 @@
         }
     }
 }
+*/
 
 #firefox-screenshot {
     margin-top: 50px;
@@ -62,15 +65,16 @@
 
 #dl-feedback {
     display: none;
-    p {
-        background: url(/media/img/firefox/new/thankyou-check.png) left top no-repeat;
-        padding: 0 0 0 35px;
-        margin: 0 140px ;
-        color: #6ca52a;
-        font-style: italic;
-        font-size: 18px;
-        .open-sans-light;
-    }
+}
+
+.thankyou {
+    background: url(/media/img/firefox/new/thankyou-check.png) left top no-repeat;
+    padding: 0 0 0 35px;
+    margin: 0 140px ;
+    color: #6ca52a;
+    font-style: italic;
+    font-size: 18px;
+    .open-sans-light;
 }
 
 .installation {
@@ -117,4 +121,58 @@
     .installation {
         margin: 26px auto 40px;
     }
+}
+
+// C
+#firefox-new-c {
+    #firefox-screenshot { margin-top: 10px; }
+    .installation {
+        margin-top: 40px;
+    }
+
+    #firefox-container {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 340px;
+        overflow: hidden;
+    }
+}
+
+#stage {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 340px;
+
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+
+    // hardware acceleration for webkit
+    -webkit-transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility: hidden;
+}
+
+// add class when button is clicked
+#stage.scene2 {
+    transform: translateY(-100%);
+    -webkit-transform: translateY(-100%);
+}
+
+.scene {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 340px;
+    width: 100%;
+    .clearfix;
+    overflow: hidden;
+}
+
+#scene1 {
+    .row { padding: 40px 0 48px; }
 }
