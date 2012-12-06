@@ -49,14 +49,11 @@
 
   <div id="main-content">
     <div id="localized">
-      <h3>{{ _('Fully localized versions') }}</h3>
-      {{ build_table(full_builds) }}
+      {{ build_table(test_builds, _('Fully localized versions')) }}
     </div>
 
     <div id="localized-testing">
-      <h3>{{ _('Localized versions in testing') }}</h3>
-      <p>{{ _('These localizations aren’t final. We’re waiting for more feedback from the community to perfect them.') }}</p>
-      {{ build_table(test_builds) }}
+      {{ build_table(test_builds, _('Localized versions in testing'), _('These localizations aren’t final. We’re waiting for more feedback from the community to perfect them.')) }}
     </div>
   </div>
 {% endblock %}
@@ -68,10 +65,16 @@
   {% endif %}
 {% endblock %}
 
-{% macro build_table(builds) %}
+{% macro build_table(builds, heading, preamble) %}
   <div class="build-table-container">
     {% if builds %}
       <table class="build-table">
+      <caption>
+        <h3>{{ heading }}</h3>
+        {% if preamble %}
+        <p>{{ preamble }}</p>
+        {% endif %}
+      </caption>
         <thead>
           <tr>
             <th colspan="2">{{ _('Language') }}</th>
