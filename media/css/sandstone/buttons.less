@@ -267,7 +267,10 @@
     cursor: pointer;
     padding: 0;
     margin-left: 54px;
-    width: 230px;
+    width: 220px;
+    /* for IE6 */
+    _margin-left: 0;
+    _width: 294px;
     text-align: inherit;
     font-weight: normal;
     .download-content {
@@ -275,6 +278,7 @@
         position: relative;
         color: #b8e779;
         margin-left: -54px;
+        _margin-left:0;
         background: url(/media/img/sandstone/buttons/firefox-large.png) 0 0 no-repeat;
         min-height: 82px;
         margin-bottom: -12px;
@@ -287,7 +291,7 @@
         font-size: 30px;
         font-weight: normal;
         letter-spacing: -0.02em;
-        margin-top: 8px;
+        padding-top: 8px;
         margin-bottom: 10px;
         text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
     }
@@ -315,7 +319,11 @@
 
 .download-button-small .download-link,
 .download-button-mobile-small .download-link {
-    white-space: nowrap;
+    margin-left: 44px;
+    width: 230px;
+    /* for IE6 */
+    _margin-left: 0;
+    _width: 274px;
     .download-content {
         margin-left: -34px;
         _margin-left:0;
@@ -330,13 +338,15 @@
     }
     .download-title {
         font-size: 22px;
-        margin-top: 0;
+        padding-top: 0;
         margin-bottom: 0;
     }
     .download-lang {
         position: absolute;
-        top: 10px;
+        top: 20px;
         right: 10px;
+        text-align: right;
+        width: 100px;
     }
 }
 
