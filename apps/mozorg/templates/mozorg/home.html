@@ -49,7 +49,21 @@
 
   <div class="pager-content">
 
-    <div class="pager-page default-page" id="promo-android">
+    <div class="pager-page default-page" id="promo-flicksvideo">
+      <script>
+        document.getElementById('promo-flicksvideo').id = 'page-promo-flicksvideo';
+      </script>
+      <img src="{{ media('img/home/promo-flicks-video-thumb.jpg') }}" alt="">
+      <a href="https://firefoxflicks.mozilla.org/?WT.mc_id=mofxflicks&amp;WT.mc_ev=click" class="container">
+        <div>
+          <h3>{{_('The best of Firefox Flicks')}}</h3>
+          <h4>{{_('See the amazing videos created by our amazing community.')}}</h4>
+          <p class="go">{{_('Visit Firefox Flicks')}}</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="pager-page" id="promo-android">
       <script>// <![CDATA[
       document.getElementById('promo-android').id = 'page-promo-android';
       // ]]></script>
@@ -73,19 +87,6 @@
           <h3>{{_('Firefox OS is coming')}}</h3>
           <h4>{{_('We’re bringing the Open Web to mobile devices.')}}</h4>
           <p class="go">{{_('Learn More')}}</p>
-        </div>
-      </a>
-    </div>
-    
-    <div class="pager-page" id="promo-storyvideo">
-      <script>// <![CDATA[
-        document.getElementById('promo-storyvideo').id = 'page-promo-storyvideo';
-      // ]]></script>
-      <a href="https://donate.mozilla.org/Mozilla-Story7?WT.mc_id=mostoryvideo&amp;WT.mc_ev=click" class="container">
-        <img src="{{ media('img/home/promo-storyvideo.jpg') }}" alt="">
-        <div>
-          <h3>{{_('Help us build a better Web')}}</h3>
-          <h4>{{_('Watch the video to see how Mozilla keeps the Web a force for good in the world.')}}</h4>
         </div>
       </a>
     </div>
