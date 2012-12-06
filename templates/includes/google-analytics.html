@@ -1,0 +1,20 @@
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', '{{ settings.GA_ACCOUNT_CODE }}']);
+_gaq.push(['_trackPageview']);
+
+{% if settings.GA_ACCOUNT_CODE %}
+(function() {
+    var ga = document.createElement('script');
+    ga.type = 'text/javascript';
+    ga.async = true;
+
+    var prefix = ('https:' == document.location.protocol ? 'https://ssl' :
+                  'http://www');
+    ga.src = prefix + '.google-analytics.com/ga.js';
+
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ga, s);
+})();
+{% endif %}
+</script>

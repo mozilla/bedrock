@@ -25,6 +25,8 @@
     {% block favicon %}<link rel="shortcut icon" href="{{ MEDIA_URL }}img/favicon.ico">{% endblock %}
 
     {{ js('site') }}
+
+    {% include 'includes/google-analytics.html' %}
   </head>
 
   <body id="{% block body_id %}{% endblock %}" class="html-{{ DIR }} {% block body_class %}{% endblock %}"{% block body_attrs %}{% endblock %}>

@@ -34,3 +34,6 @@ STATSD_HOST = ''
 STATSD_PORT = 8125
 STATSD_PREFIX = 'bedrock'
 STATSD_CLIENT = 'django_statsd.clients.normal'
+
+# Google Apps tracking code
+GA_ACCOUNT_CODE = ''

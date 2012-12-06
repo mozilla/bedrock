@@ -540,3 +540,6 @@ def lazy_email_backend():
 EMAIL_BACKEND = lazy(lazy_email_backend, str)()
 
 AURORA_STUB_INSTALLER = False
+
+# Google Analytics
+GA_ACCOUNT_CODE = ''
