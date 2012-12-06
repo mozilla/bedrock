@@ -161,6 +161,9 @@ MINIFY_BUNDLES = {
         'firefox_new': (
             'css/firefox/new.less',
         ),
+        'firefox_new_test': (
+            'css/firefox/new-test.less',
+        ),
         'firefox_organizations': (
             'css/firefox/organizations.less',
         ),
@@ -316,6 +319,9 @@ MINIFY_BUNDLES = {
         'firefox_happy': (
             'js/libs/jquery-1.4.4.min.js',
             'js/firefox/happy.js',
+        ),
+        'firefox_new': (
+            'js/firefox/new.js',
         ),
         'firefox_platforms': (
             'js/mozilla-expanders.js',
