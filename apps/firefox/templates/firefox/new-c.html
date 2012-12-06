@@ -1,0 +1,67 @@
+{% extends "/firefox/base-resp.html" %}
+
+{% block page_title %}Free Download{% endblock %}
+{% block body_id %}firefox-new-c{% endblock %}
+
+{% block site_header_nav %}{% endblock %}
+{% block site_header_logo %}
+  <h2><a href="{{ url('mozorg.home') }}"><img src="/media/img/firefox/new/header-firefox.png" alt="Firefox for desktop" /></a></h2>
+{% endblock %}
+
+{% block site_css %}
+  {{ css('firefox_new_test') }}
+{% endblock %}
+
+{% block content %}
+
+<div id="firefox-container">
+  <!-- shown at page load -->
+  <div id="stage">
+    <div class="scene" id="scene1">
+      <div class="row">
+        <h1 class="large">{{_('Different by design')}}</h1>
+      </div>
+      <ul id="features">
+        <li>{{_('Proudly <br />non-profit')}}</li>
+        <li>{{_('Innovating<br /> for you')}}</li>
+        <li>{{_('Fast, flexible,<br /> secure')}}</li>
+      </ul>
+
+      {{ download_button('download', 'large', force_direct=true) }}
+    </div> <!-- /#scene1 -->
+
+    <div class="scene" id="scene2">
+      <p class="thankyou">
+        {{_("Thanks for downloading Firefox! As a non-profit, we're free to innovate on your behalf without any pressure to compromise. You're going to love the difference.")}}
+      </p>
+
+      <ul class="installation">
+        <li>
+          <img src="{{ media('img/firefox/new/install1-mac.png') }}" />
+          {{_('Your download should begin automatically. If not, click here.')}}
+        </li>
+        <li>
+          <img src="{{ media('img/firefox/new/install2-mac.png') }}" />
+          {{_('Drag the Firefox icon into your Applications folder as seen above.')}}
+        </li>
+        <li>
+          <img src="{{ media('img/firefox/new/install3-mac.png') }}" />
+          {{_("Drag the Firefox icon into your dock so it's always there. Enjoy!")}}
+        </li>
+      </ul>
+    </div> <!-- /#scene2 -->
+
+  </div> <!-- /#stage -->
+</div>
+
+<div class="container">
+  {{ platform_img('img/firefox/new/browser.png', alt='Firefox screenshot', id='firefox-screenshot') }}
+</div>
+
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{% block js %}
+  {{ js('firefox_new') }}
+{% endblock  %}

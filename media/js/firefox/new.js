@@ -16,7 +16,19 @@ Mozilla.Firefox.New = (function() {
 		$('#firefox-new-b .download-firefox').on('click', function(e) {
 			e.preventDefault();
 
-			$('#dl-feedback').slideDown('normal');
+			$('#dl-feedback').slideDown('normal', function() {
+
+			});
+
+			$('html, body').animate({
+				scrollTop: $('#dl-feedback').offset().top
+			}, 500);
+		});
+
+		$('#firefox-new-c .download-firefox').on('click', function(e) {
+			e.preventDefault();
+
+			$('#stage').addClass('scene2');
 		});
 	};
 
