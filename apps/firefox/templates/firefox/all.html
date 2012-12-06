@@ -77,10 +77,10 @@
       </caption>
         <thead>
           <tr>
-            <th colspan="2">{{ _('Language') }}</th>
-            <th>{{ _('Windows') }}</th>
-            <th>{{ _('Mac OS X') }}</th>
-            <th>{{ _('Linux') }}</th>
+            <th colspan="2" scope="col">{{ _('Language') }}</th>
+            <th scope="col">{{ _('Windows') }}</th>
+            <th scope="col">{{ _('Mac OS X') }}</th>
+            <th scope="col">{{ _('Linux') }}</th>
           </tr>
         </thead>
         <tbody>
@@ -96,7 +96,7 @@
 
 {% macro build_row(build) %}
   <tr id="{{ build.locale }}" data-search="{{ build.name_en|lower }} {{ build.name_native|lower }}">
-    <td>{{ build.name_en }}</td>
+    <th scope="row">{{ build.name_en }}</td>
     <td lang="{{ build.locale }}">{{ build.name_native }}</td>
     <td class="download win"><a href="{{ build.platforms['Windows'].download_url }}" title="{{ _('Download for Windows')}}">{{ _('Download') }}</a></td>
     <td class="download mac"><a href="{{ build.platforms['OS X'].download_url }}" title="{{ _('Download for Mac OS X')}}">{{ _('Download') }}</a></td>
