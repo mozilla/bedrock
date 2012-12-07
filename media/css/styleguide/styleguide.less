@@ -257,6 +257,7 @@ h1 {
 /* }}} */
 /* {{{ Dark theme */
 
+.dark.sand,
 .dark.sand #outer-wrapper {
     background-color: #272e33;
     background-image: url('/media/img/sandstone/grain.png');
@@ -311,6 +312,9 @@ body.dark {
     #colophon {
         background: transparent;
         color: @darkThemeText;
+        .footer-logo {
+            .offset_guide(1);
+        }
     }
 }
 
