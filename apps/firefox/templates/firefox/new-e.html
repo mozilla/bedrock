@@ -1,7 +1,7 @@
 {% extends "/firefox/base-resp.html" %}
 
 {% block page_title %}Free Download{% endblock %}
-{% block body_id %}firefox-new-c{% endblock %}
+{% block body_id %}firefox-new-e{% endblock %}
 
 {% block site_header_nav %}{% endblock %}
 {% block site_header_logo %}
@@ -14,20 +14,14 @@
 
 {% block content %}
 
+<div id="main-feature">
+  <div class="row">
+    <h1 class="large">{{_('Different by design')}}</h1>
+  </div>
+</div>
+
 <div id="firefox-container">
   <div id="stage">
-    <div class="scene" id="scene1">
-      <div class="row">
-        <h1 class="large">{{_('Different by design')}}</h1>
-      </div>
-      <ul id="features">
-        <li>{{_('Proudly <br />non-profit')}}</li>
-        <li>{{_('Innovating<br /> for you')}}</li>
-        <li>{{_('Fast, flexible,<br /> secure')}}</li>
-      </ul>
-
-      {{ download_button('download', 'large', force_direct=true) }}
-    </div> <!-- /#scene1 -->
 
     <div class="scene" id="scene2">
       <p class="thankyou">
@@ -50,11 +44,21 @@
       </ul>
     </div> <!-- /#scene2 -->
 
-  </div> <!-- /#stage -->
-</div>
+    <div class="scene" id="scene1">
+      <div class="container">
+        <ul id="features">
+          <li>{{_('Proudly <br />non-profit')}}</li>
+          <li>{{_('Innovating<br /> for you')}}</li>
+          <li>{{_('Fast, flexible,<br /> secure')}}</li>
+        </ul>
 
-<div class="container">
-  {{ platform_img('img/firefox/new/browser.png', alt='Firefox screenshot', id='firefox-screenshot') }}
+        {{ download_button('download', 'large', force_direct=true) }}
+      </div>
+
+      {{ platform_img('img/firefox/new/browser.png', alt='Firefox screenshot', id='firefox-screenshot') }}
+    </div> <!-- /#scene1 -->
+
+  </div> <!-- /#stage -->
 </div>
 
 {% endblock %}

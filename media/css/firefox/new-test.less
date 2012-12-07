@@ -123,8 +123,8 @@ h1.large {
     }
 }
 
-// C
-#firefox-new-c, #firefox-new-d {
+// C & D
+#firefox-new-c, #firefox-new-d, #firefox-new-e {
     #firefox-screenshot { margin-top: 10px; }
     .installation {
         margin-top: 40px;
@@ -159,8 +159,9 @@ h1.large {
 
 // add class when button is clicked
 #stage.scene2 {
-    transform: translateY(-100%);
+    -moz-transform: translateY(-100%);
     -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
 }
 
 .scene {
@@ -177,6 +178,32 @@ h1.large {
     .row { padding: 40px 0 48px; }
 }
 
+// D
 #firefox-new-d {
     #firefox-screenshot { margin-top: 40px; }
+}
+
+// E
+#firefox-new-e {
+    #wrapper {
+        padding-bottom: 0;
+    }
+    #firefox-screenshot {
+        position: absolute;
+        bottom: 0px;
+    }
+    #stage {
+        -moz-transform: translateY(-100%);
+        -webkit-transform: translateY(-100%);
+        transform: translateY(-100%);
+    }
+
+    #stage.scene2 {
+        -moz-transform: translateY(0%);
+        -webkit-transform: translateY(0%);
+        transform: translateY(0%);
+    }
+    #colophon {
+        margin-top: 0;
+    }
 }
