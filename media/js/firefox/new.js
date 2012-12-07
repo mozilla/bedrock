@@ -30,6 +30,12 @@ Mozilla.Firefox.New = (function() {
 
 			$('#stage').addClass('scene2');
 		});
+
+		$('#firefox-new-d .download-firefox').on('click', function(e) {
+			e.preventDefault();
+
+			$('#stage').addClass('scene2');
+		});
 	};
 
 	return {
