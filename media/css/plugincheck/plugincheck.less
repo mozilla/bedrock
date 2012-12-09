@@ -1,0 +1,207 @@
+// in order to use the mixins from sandstone and not inlclude the mixins file twice,
+// we need to import the main sandstone LESS file here. We are therefore also not
+// including it in the home.html template.
+@import "../sandstone/sandstone-resp.less";
+
+.billboard {
+    padding-top: 42px;
+    padding-bottom: 0;
+}
+.download-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.billboard {
+    table {
+        width: 100%;
+        caption {
+            font-size: 24px;
+        }
+        th {
+            padding: 0;
+            font-size: 18px;
+        }
+        tbody {
+            h4 {
+                margin: 5px 0 5px 0;
+                font-size: 18px;
+            }
+        }
+    }
+}
+.plugin-status-container {
+    h3 {
+        font-size: 48px;
+        letter-spacing: -2px;
+    }
+    .shadow-separator {
+        background: white url(/media/img/plugincheck/separators/section_shadow.png) 0 10px no-repeat;
+        padding: 45px 0 15px 0;
+    }
+    .icon {
+        float: left;
+        margin: -8px 5px 0 0;
+    }
+    .plugin-detail {
+        font-size: 12px;
+    }
+    .plugin-status-detail {
+        width: 60%;
+    }
+    .plugin-status-status {
+        width: 20%;
+    }
+    .plugin-status-action {
+        width:20%;
+    }
+}
+.container-column {
+    .span(6);
+}
+.container-wide {
+    .span(12)
+}
+.code-snippet {
+    width: 290px;
+}
+.code-snippet-wide {
+    width: 690px
+}
+.blocklisted {
+    display: none;
+    margin: 30px 0 40px 0;
+    padding: 8px 25px 8px 25px;
+}
+// Button overrides
+.button-negative,
+.button-negative:link,
+.button-negative:visited {
+    padding: 0 12px 0 12px;
+    width: 125px;
+    font-weight: normal;
+    span {
+        display: inline-block;
+        background: transparent url(/media/img/plugincheck/buttons/update-now.png) 0 5px no-repeat;
+        color: #fff;
+        padding: 12px 0 12px 21px;
+        width: 101px;
+    }
+}
+.insensitive,
+.insensitive:link,
+.insensitive:visited {
+    padding: 0 12px 0 12px;
+    width: 125px;
+    font-weight: normal;
+    span {
+        display: inline-block;
+        background: transparent url(/media/img/plugincheck/buttons/up-to-date.png) 0 5px no-repeat;
+        color: #fff;
+        padding: 12px 0 12px 21px;
+        width: 101px;
+    }
+}
+.research,
+.research:link,
+.research:visited {
+    background-color: #0095dd;
+    background-image: linear-gradient(#77bef5, #0095dd);
+    padding: 0 12px 0 12px;
+    width: 125px;
+    font-weight: normal;
+    span {
+        display: inline-block;
+        background: transparent url(/media/img/plugincheck/buttons/research.png) 0 5px no-repeat;
+        color: #fff;
+        padding: 12px 0 12px 21px;
+        width: 101px;
+    }
+}
+.research:hover,
+.research:link:hover,
+.research:link:focus,
+.research:visited:hover,
+.research:visited:focus,
+.research:focus {
+    box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.1),
+                0 -2px 0 0 rgba(0, 0, 0, 0.2) inset,
+                0 12px 24px 2px #77bef5 inset;
+}
+// Mozilla Support Badge
+.moz-support {
+    clear: both;
+    background-color: #f7f8f8;
+    padding: 10px;
+    border: 2px solid #ededee;
+    margin: 0 auto;
+    width: 595px;
+    height: 55px;
+    h4 {
+        margin-bottom: 0;
+    }
+    .moz-support-logo {
+        float: left;
+        padding: 10px 40px 10px 15px;
+    }
+}
+#old_browser,
+#modern_browsers,
+#exploder,
+#sec-plugin-vulnerable,
+#sec-plugin-outdated,
+#sec-plugin-unknown,
+#sec-plugin-uptodate {
+    display: none;
+}
+#footer-email-form {
+    input[type="email"],
+    select {
+        margin-top: 2px;
+        width: 80%;
+    }
+    input[type="submit"] {
+        font-size: 18px;
+        width: 210px;
+    }
+    .field {
+        padding: 4px 0;
+    }
+    h3,
+    .form-contents,
+    .form-submit {
+        float: left;
+        margin: 0 10px;
+        width: 300;
+    }
+    h3 {
+        padding-top: 4px;
+    }
+    .form-submit {
+        width: 220px;
+    }
+}
+
+/* Tablet Layout: 760px */
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+    .download-button {
+        position: relative;
+        margin-top: 20px;
+    }
+}
+
+/* Mobile Layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+    .download-button {
+        position: relative;
+        margin-top: 20px;
+    }
+}
+
+/* Wide Mobile Layout: 480px */
+@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+    .download-button {
+        position: relative;
+        margin-top: 20px;
+    }
+}

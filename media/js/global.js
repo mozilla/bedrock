@@ -78,6 +78,12 @@ function getFirefoxMasterVersion()
 
 
 // Create text translation function using #strings element.
+// TODO: Move to docs
+// In order to use it, you need a block string_data bit inside your template,
+// @see https://github.com/mozilla/bedrock/blob/master/apps/firefox/templates/firefox/partners/landing.html#L14
+// then, each key name needs to be preceeded by data- as this uses data attributes
+// to work. After this, you can access all strings defined inside the
+// string_data block in JS using window.trans('keyofstring'); Thank @mkelly
 var $strings = $('#strings');
 window.trans = function trans(stringId) {
     return $strings.data(stringId);

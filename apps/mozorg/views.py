@@ -2,6 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import re
+
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 
@@ -9,9 +11,12 @@ import basket
 import l10n_utils
 from commonware.decorators import xframe_allow
 
+from firefox import version_re
+from firefox.utils import is_current_or_newer
 from mozorg import email_contribute
 from mozorg.forms import ContributeForm, NewsletterForm
 from mozorg.util import hide_contrib_form
+
 
 @xframe_allow
 def hacks_newsletter(request):
@@ -84,3 +89,23 @@ def contribute(request, template, return_to_form):
 def contribute_embed(request, template, return_to_form):
     """The same as contribute but allows frame embedding."""
     return contribute(request, template, return_to_form)
+
+
+def plugincheck(request, template='mozorg/plugincheck.html'):
+    """
+    Determine whether the current UA is the latest Firefox,
+    passes the result to the template and renders the
+    specified template.
+    """
+    user_agent = request.META.get('HTTP_USER_AGENT', '')
+    user_version = "0"
+    ua_regexp = r"Firefox/(%s)" % version_re
+    match = re.search(ua_regexp, user_agent)
+    if match:
+        user_version = match.group(1)
+
+    data = {
+        'is_latest': is_current_or_newer(user_version)
+    }
+
+    return l10n_utils.render(request, template, data)
