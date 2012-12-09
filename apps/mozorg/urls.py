@@ -39,5 +39,7 @@ urlpatterns = patterns('',
         name='mozorg.contribute_embed',
         kwargs={'template': 'mozorg/contribute-embed.html',
                 'return_to_form': False}),
-
+    url(r'^plugincheck/$',
+        views.plugincheck,
+        name='mozorg.plugincheck'),
 )
