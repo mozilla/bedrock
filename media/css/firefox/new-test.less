@@ -1,13 +1,17 @@
 @import "template-resp.less";
 
-// COMMON A/B
+// override default styles
+#wrapper { padding-bottom: 0; }
+#colophon { margin-top: 0; }
+
 #main-feature {
     margin-top: 30px;
-}
-
-h1.large {
-    text-align: center;
-    font-size: 80px;
+    h1.large {
+        text-align: center;
+        font-size: 80px;
+        br { display: none; }
+    }
+    img { display: none; }
 }
 
 #features {
@@ -34,43 +38,12 @@ h1.large {
     }
 }
 
-#download {
-    float: left;
-}
-
-/*
-.download-button {
-    .download-link {
-        .download-content {
-            background: none;
-            padding-left: 72px;
-        }
-        .download-title {
-            .open-sans;
-            font-size: 28px;
-            background: url(/media/img/sandstone/buttons/arrow-large-inverted.png) no-repeat 100% 0;
-        }
-    }
-    small.download-other {
-        a:link, a:visited {
-            color: #85c4e3;
-        }
-    }
-}
-*/
-
-#firefox-screenshot {
-    margin-top: 50px;
-}
-
-#dl-feedback {
-    display: none;
-}
+ .download-button-wrapper { float: left; }
 
 .thankyou {
     background: url(/media/img/firefox/new/thankyou-check.png) left top no-repeat;
     padding: 0 0 0 35px;
-    margin: 0 140px ;
+    margin: 0 140px;
     color: #6ca52a;
     font-style: italic;
     font-size: 18px;
@@ -78,7 +51,7 @@ h1.large {
 }
 
 .installation {
-    margin: 0 auto;
+    margin: 40px auto 0;
     padding: 0;
     width: 900px;
     display: block;
@@ -95,73 +68,77 @@ h1.large {
         img {
             display: block;
             margin-bottom: 5px;
+            width: 100%;
+            height: auto;
         }
     }
 }
 
-// A
-#firefox-new-a {
-    .installation {
-        margin-top: 40px;
-    }
-    #firefox-container {
-        height: 340px;
-        overflow: hidden;
-    }
-}
-
-// B
-#firefox-new-b {
-    #dl-feedback {
-        margin-top: 60px;
-        h3 {
-            text-align: center;
-        }
-    }
-    .installation {
-        margin: 26px auto 40px;
-    }
-}
-
-// C & D
-#firefox-new-c, #firefox-new-d, #firefox-new-e {
-    #firefox-screenshot { margin-top: 10px; }
-    .installation {
-        margin-top: 40px;
-    }
-
-    #firefox-container {
-        position: relative;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 340px;
-        overflow: hidden;
-    }
-}
-
-#stage {
+.theater {
     position: relative;
     top: 0;
     left: 0;
     width: 100%;
     height: 340px;
-
-    -moz-transition: all 0.3s ease-in-out;
-    -ms-transition: all 0.3s ease-in-out;
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-
-    // hardware acceleration for webkit
-    -webkit-transform: translate3d(0, 0, 0);
-    -webkit-backface-visibility: hidden;
+    overflow: hidden;
 }
 
-// add class when button is clicked
-#stage.scene2 {
-    -moz-transform: translateY(-100%);
-    -webkit-transform: translateY(-100%);
-    transform: translateY(-100%);
+.stage {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 340px;
+}
+
+.mobile {
+    display: none;
+}
+
+// android view
+.android {
+    .mobile {
+        display: block;
+    }
+    .desktop {
+        display: none;
+    }
+    .theater { height: 260px; }
+    #features {
+        margin-left: 50px;
+        margin-right: 58px;
+    }
+}
+
+// only apply transforms/transitions to supporting browsers
+.csstransforms.csstransitions {
+    .stage {
+        // initial view of stage = -((# of slides - 1) * 100)
+        -moz-transform: translateY(-100%);
+        -webkit-transform: translateY(-100%);
+        -ms-transform: translateY(-100%);
+        -o-transform: translateY(-100%);
+        transform: translateY(-100%);
+
+        // add transition after button click to avoid any animation flicker at page load
+        &.transition {
+            -moz-transition: all 0.4s ease 0.1s;
+            -ms-transition: all 0.4s ease 0.1s;
+            -webkit-transition: all 0.4s ease 0.1s;
+            -o-transition: all 0.4s ease 0.1s;
+            transition: all 0.4s ease 0.1s;
+            // hardware acceleration for webkit
+            -webkit-backface-visibility: hidden;
+        }
+
+        &.scene2 {
+            -moz-transform: translateY(0%);
+            -webkit-transform: translateY(0%);
+            -ms-transform: translateY(0%);
+            -o-transform: translateY(0%);
+            transform: translateY(0%);
+        }
+    }
 }
 
 .scene {
@@ -174,36 +151,125 @@ h1.large {
     overflow: hidden;
 }
 
-#scene1 {
-    .row { padding: 40px 0 48px; }
+#firefox-screenshot {
+    position: absolute;
+    bottom: 0px;
 }
 
-// D
-#firefox-new-d {
-    #firefox-screenshot { margin-top: 40px; }
+/* Tablet Layout: 760px */
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+    .theater, .stage, .scene { height: 320px; }
+    #features-download {
+        margin-top: 30px;
+    }
+    #features {
+        width: 400px;
+        margin: 0;
+        li {
+            width: 130px;
+            font-size: 18px;
+            padding-top: 26px;
+        }
+    }
+    .thankyou {
+        margin: 0 40px;
+    }
+    .installation {
+        width: 700px;
+        li {
+            width: 200px;
+            padding: 0 15px;
+            font-size: 12px;
+        }
+    }
+    .android #features {
+        margin: 0;
+        width: 360px;
+        li {
+            width: 120px;
+        }
+    }
 }
 
-// E
-#firefox-new-e {
-    #wrapper {
-        padding-bottom: 0;
-    }
-    #firefox-screenshot {
-        position: absolute;
-        bottom: 0px;
-    }
-    #stage {
-        -moz-transform: translateY(-100%);
-        -webkit-transform: translateY(-100%);
-        transform: translateY(-100%);
+/* Mobile layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+    #masthead h2 { display: none; }
+    #main-feature {
+        .row {
+            .clearfix;
+            width: 300px;
+            margin: 0 auto;
+        }
+        h1.large {
+            float: left;
+            width: 180px;
+            margin-left: 20px;
+            font-size: 36px;
+            letter-spacing: -1px;
+            padding-top: 12px;
+            text-align: left;
+            br { display: block; }
+        }
+        img {
+            float: left;
+            display: block;
+        }
     }
 
-    #stage.scene2 {
-        -moz-transform: translateY(0%);
-        -webkit-transform: translateY(0%);
-        transform: translateY(0%);
+    #firefox-screenshot { display: none; }
+
+    #features-download { padding-top: 20px; }
+
+    #features {
+        margin: 0 auto 20px;
+        float: none;
+        width: 320px;
+        li {
+            width: 85px;
+            height: 60px;
+            padding: 15px 10px 0;
+            font-size: 16px;
+            text-align: left;
+        }
     }
-    #colophon {
-        margin-top: 0;
+
+    .download-button-wrapper {
+        float: none;
+        text-align: center;
+        .download-button {
+            text-align: left;
+        }
+    }
+
+    .thankyou {
+        margin: 0;
+    }
+
+    .installation {
+        width: 280px;
+        margin: 20px 0 0;
+        list-style-type: decimal;
+        padding-left: 20px;
+        li {
+            width: auto;
+            margin-bottom: 10px;
+            float: none;
+            font-style: normal;
+            text-align: left;
+            padding: 0;
+            img {
+                display: none;
+            }
+        }
+    }
+
+    .android {
+        .theater {
+            height: 280px;
+        }
+
+        #features {
+            margin: 0 auto 20px;
+        }
     }
 }
