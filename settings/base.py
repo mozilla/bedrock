@@ -77,9 +77,6 @@ MINIFY_BUNDLES = {
         'firefoxos': (
             'css/firefoxos.less',
         ),
-        'gameon': (
-            'css/gameon.less',
-        ),
         'grants': (
             'css/grants.less',
         ),
@@ -470,7 +467,6 @@ INSTALLED_APPS = (
     # Local apps
     'firefoxos',
     'foundation',
-    'gameon',
     'grants',
     'collusion',
     'firefox',
