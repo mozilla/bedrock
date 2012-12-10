@@ -4,32 +4,36 @@ Mozilla.Firefox = window.Mozilla.Firefox || {};
 Mozilla.Firefox.New = (function() {
 	//"use strict";
 
+	var _css3;
+
 	var _init = function() {
-		$('#firefox-new-a .download-firefox').on('click', function(e) {
-			e.preventDefault();
+		// hack to test android
+		if (window.location.href.indexOf('forceandroid') > -1) {
+			var h = document.documentElement;
+			$(h).removeClass(site.platform).addClass('android');
+		}
 
-			$('#features-download').fadeOut('fast', function() {
-				$('#dl-feedback').fadeIn('fast');
+		if (!$('html').hasClass('android')) {
+			_css3 = ($('html').is('.csstransforms.csstransitions')) ? true : false;
+
+			// if browser does not support css transforms
+			if (!_css3) {
+				$('#stage-firefox').css('top', '-100%');
+			}
+
+			$('.download-firefox').on('click', function(e) {
+				// prevent download during testing
+				//e.preventDefault();
+
+				if (_css3) {
+					$('#stage-firefox').addClass('transition scene2');
+				} else {
+					$('#stage-firefox').animate({
+						top: '0%'
+					}, 400);
+				}
 			});
-		});
-
-		$('#firefox-new-b .download-firefox').on('click', function(e) {
-			e.preventDefault();
-
-			$('#dl-feedback').slideDown('normal', function() {
-
-			});
-
-			$('html, body').animate({
-				scrollTop: $('#dl-feedback').offset().top
-			}, 500);
-		});
-
-		$('#firefox-new-c .download-firefox, #firefox-new-d .download-firefox, #firefox-new-e .download-firefox').on('click', function(e) {
-			e.preventDefault();
-
-			$('#stage').addClass('scene2');
-		});
+		}
 	};
 
 	return {
