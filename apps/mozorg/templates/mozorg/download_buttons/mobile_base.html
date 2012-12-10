@@ -6,9 +6,18 @@
 
 {% block class %}download-button-mobile{% endblock %}
 
+{% block title %}{{ _('<span>Firefox</span> for Android') }}{% endblock %}
 {% block subtitle %}{{ _('Get it free on Google Play') }}{% endblock %}
 
 {% block download_lang %}{% endblock %}
+
+{% block download_info %}
+  <span class="download-info">
+    {{ _('Free from the Google Play Store') }}
+  </span>
+{% endblock %}
+
+{% block unsupported %}{% endblock %}
 
 {% block small_print %}
 <small class="download-other">
@@ -17,5 +26,3 @@
   <a href="{{ php_url('/legal/privacy/firefox.html') }}">{{ _('Privacy') }}</a>
 </small>
 {% endblock %}
-
-{% block unsupported %}{% endblock %}
