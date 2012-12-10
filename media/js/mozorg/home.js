@@ -1,19 +1,24 @@
 $(document).ready(function() {
 
-    var $keyframe = $('#promo-flicks-keyframe');
-    var $link = $keyframe.next();
+    var $thumb = $('#promo-flicks-keyframe');
+    var $link = $thumb.next();
     var $container = $('<div class="container"></div>');
-    var $keyframeParent = $keyframe.parent();
+    $container
+        .css('display', 'none')
+        .insertBefore($link);
 
     var $goLink = $('<a class="go"></a>');
-    $goLink.attr('href', $link.attr('href'));
-    $goLink.text($link.find('.go').text());
-    $goLink.appendTo($container);
+    $goLink
+        .attr('href', $link.attr('href'))
+        .text($link.find('.go').text())
+        .appendTo($container);
 
-    var open = false;
+    var opened = false;
 
-    var startHeight = $link.height();
-    var startWidth  = $keyframe.width();
+    var startWidth    = $thumb.width();
+    var startHeight   = $thumb.height();
+    var startPosition = $thumb.position();
+    var startOffset   = $thumb.offset();
 
     var closeText = 'close';
 
@@ -22,157 +27,235 @@ $(document).ready(function() {
     var $close;
     var videoJS;
 
-    function openVideo()
+    var $close = $(
+        '<span class="video-close" tabindex="0" role="button"></span>'
+    );
+
+    $close
+        .text(closeText)
+        .click(function(e) {
+            hideVideo();
+            close();
+        });
+
+    var destHeight = 480;
+    var destWidth  = 853;
+
+    var margin = 20;
+    var duration = 400;
+    var easing = 'swing';
+
+    var $videoContainer = $('<div class="video-container"></div>');
+    $videoContainer
+        .css('display', 'none')
+        .insertAfter($thumb);
+
+    var $video = $(
+        '<video id="video-player" class="video-js vjs-default-skin" '
+        + 'controls="controls"></video>'
+    );
+
+    $video.appendTo($videoContainer);
+
+    var sources = [
+        {
+            src:  'http://videos.mozilla.org/uploads/brand/State%20of%20Mozilla%202011%20(fcp2)-RC%20-%20720p%20-%20MPEG-4.mp4',
+            type: 'video/mp4'
+        },
+        {
+            src:  'http://videos.mozilla.org/uploads/brand/State%20of%20Mozilla%202011%20(fcp2)-RC%20-%20720p%20-%20MPEG-4.webm',
+            type: 'video/webm'
+        },
+    ];
+
+    for (var i = 0; i < sources.length; i++) {
+        $source = $(
+            '<source src="' + sources[i].src + '" '
+            + 'type="' + sources[i].type + '"></source>'
+        );
+        $source.appendTo($video);
+    }
+
+    function open()
     {
-        if (open) {
+        if (opened) {
             return;
         }
 
-        open = true;
+        opened = true;
 
         var height = $link.height();
         var width  = $link.width();
 
-        var destHeight = 480;
-        var destWidth  = 853;
+        var thumbOffset   = $thumb.offset();
+        var thumbPosition = $thumb.position();
+        var thumbWidth    = $thumb.width();
+        var linkPosition  = $link.position();
 
-        $link.replaceWith($container);
-        $container.height(height);
+        $link.css('display', 'none');
+
+        $container
+            .height(height)
+            .css('display', 'block');
+
+        $close
+            .insertBefore($container)
+            .css(
+                {
+                    'right' : 'auto'
+                }
+            )
+            .offset(
+                {
+                    'left'  : thumbOffset.left + thumbWidth
+                }
+            )
+            .animate(
+                {
+                    'left': Math.floor(((width - 2 * margin) / 2) + (destWidth / 2) + margin)
+                },
+                duration
+            );
 
         var goHeight = $goLink.height();
-        $goLink.css('left', ((width - 40) / 2) - (destWidth / 2) + 20);
+        $goLink.css('left', Math.floor(((width - 2 * margin) / 2) - (destWidth / 2) + margin));
 
-        $container.animate({ height: destHeight + 40 + goHeight + 10 });
+        $container
+            .animate(
+                {
+                    'height' : destHeight + 2 * margin + goHeight + 10
+                },
+                duration,
+                easing
+            );
 
-        $keyframe.animate(
-            {
-                height: destHeight,
-                width: destWidth,
-                right: ((width - 40) / 2) - (destWidth / 2) + 20
-            },
-            400,
-            'swing',
-            showVideo
-        );
+        $thumb
+            .css(
+                {
+                    'right' : 'auto'
+                }
+            )
+            .offset(
+                {
+                    'left'  : thumbOffset.left
+                }
+            )
+            .animate(
+                {
+                    'height' : destHeight,
+                    'width'  : destWidth,
+                    'left'   : Math.floor(((width - 2 * margin) / 2) - (destWidth / 2) + margin)
+                },
+                duration,
+                easing,
+                showVideo
+            );
 
         $('body').animate(
             {
                 scrollTop: $('#home-promo').position().top - 20
-            }
+            },
+            duration,
+            easing
         );
     };
 
     function showVideo()
     {
-        $container = $('<div class="video-container"></div>');
-
-        $video = $(
-            '<video id="video-player" class="video-js vjs-default-skin" '
-            + 'controls="controls"></video>'
-        );
+        var thumbPosition = $thumb.position();
 
         $video
-            .attr('width', $keyframe.width())
-            .attr('height', $keyframe.height())
-            .attr('controls', 'controls');
+            .attr('width', $thumb.width())
+            .attr('height', $thumb.height());
 
-        $video.appendTo($container);
-
-        var sources = [
+        $thumb.css(
             {
-                src:  'http://videos.mozilla.org/uploads/brand/State%20of%20Mozilla%202011%20(fcp2)-RC%20-%20720p%20-%20MPEG-4.mp4',
-                type: 'video/mp4'
-            },
-            {
-                src:  'http://videos.mozilla.org/uploads/brand/State%20of%20Mozilla%202011%20(fcp2)-RC%20-%20720p%20-%20MPEG-4.webm',
-                type: 'video/webm'
-            },
-        ];
-
-        for (var i = 0; i < sources.length; i++) {
-            $source = $(
-                '<source src="' + sources[i].src + '" '
-                + 'type="' + sources[i].type + '"></source>'
-            );
-            $source.appendTo($video);
-        }
-
-        var right = $keyframe.css('right');
-        var top   = $keyframe.css('top');
-
-        $keyframe.replaceWith($container);
-        $container.css({
-            'top'     : top,
-            'right'   : right
-        });
-
-        $close = $(
-            '<span class="video-close" tabindex="0" role="button"></span>'
+                'display' : 'none'
+            }
         );
-        $close
-            .text(closeText)
-            .click(function(e) {
-                hideVideo();
-                closeVideo();
+
+        $videoContainer.css(
+            {
+                'top'     : thumbPosition.top,
+                'right'   : 'auto',
+                'left'    : thumbPosition.left,
+                'display' : 'block'
+            }
+        );
+
+        if (videoJS) {
+            videoJS.play();
+        } else {
+            _V_('video-player', {}, function() {
+                this.play();
+                videoJS = this;
             });
-
-        $close.insertBefore($container);
-
-        var $videoPlayer;
-
-        _V_('video-player', {}, function() {
-            $videoPlayer = $('#video-player');
-            this.play();
-            videoJS = this;
-        });
+        }
     };
 
     function hideVideo()
     {
         if (videoJS) {
             videoJS.pause();
-            videoJS = null;
         }
-        $container.replaceWith($keyframe);
-        $close.remove();
+
+        var videoPosition = $videoContainer.position();
+
+        $videoContainer.css(
+            {
+                'display' : 'none'
+            }
+        );
+
+        $thumb.css(
+            {
+                'top'     : videoPosition.top,
+                'right'   : 'auto',
+                'left'    : videoPosition.left,
+                'display' : 'block'
+            }
+        );
+
+        $close.detach();
     }
 
-    function closeVideo()
+    function close()
     {
-        if (!open) {
+        if (!opened) {
             return;
         }
 
-        open = false;
+        opened = false;
 
         var height = $container.height();
 
-        $container.replaceWith($link);
-        $link.height(height);
+        $container.css('display', 'none');
 
-        $link.animate({ height: startHeight });
+        $link
+            .height(height)
+            .css('display', 'block')
+            .animate(
+                {
+                    'height' : startHeight + 2 * margin
+                },
+                duration,
+                easing
+            );
 
-        $keyframe.animate(
+        $thumb.animate(
             {
-                height: startHeight - 40,
-                width: startWidth,
-                right: 20
-            }
+                'height' : startHeight,
+                'width'  : startWidth,
+                'left'   : startPosition.left
+            },
+            duration,
+            easing
         );
 
     };
 
-    function toggleVideo()
-    {
-        if (open) {
-            closeVideo();
-        } else {
-            openVideo();
-        }
-    };
-
-    $keyframe.click(function(e) {
-        toggleVideo();
+    $thumb.click(function(e) {
+        open();
     });
 
 });
