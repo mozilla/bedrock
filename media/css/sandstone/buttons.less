@@ -273,6 +273,9 @@
     _width: 294px;
     text-align: inherit;
     font-weight: normal;
+    line-height: @baseLine;
+    font-size: 16px;
+    .border-radius(6px);
     .download-content {
         display: block;
         position: relative;
@@ -296,7 +299,8 @@
         text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
     }
     .download-title span {
-        margin-bottom: 0;
+        padding-top: 0;
+        margin-bottom: 5px;
     }
     .download-subtitle {
         text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
@@ -311,14 +315,7 @@
     }
 }
 
-.download-button-large .download-link {
-    line-height: @baseLine;
-    font-size: 16px;
-    .border-radius(6px);
-}
-
-.download-button-small .download-link,
-.download-button-mobile-small .download-link {
+.download-button-small .download-link {
     margin-left: 44px;
     width: 230px;
     /* for IE6 */
@@ -347,22 +344,6 @@
         right: 10px;
         text-align: right;
         width: 100px;
-    }
-}
-
-.download-button-mobile-small .download-link {
-    .download-title {
-        display: block;
-        background: url(/media/img/sandstone/buttons/android-corner.png) no-repeat 100% 100%;
-        padding-right: 40px;
-        margin-right: 0;
-        .open-sans;
-        font-size: 16px;
-        letter-spacing: -0.5px;
-        text-shadow: 0 -1px rgba(0, 0, 0, 0.2);
-    }
-    .download-content {
-        padding-right: 0;
     }
 }
 
@@ -451,45 +432,45 @@ li.os_android,
 .download-button-mobile {
     .download-link {
        .download-title {
+            padding-top: 0;
+            margin-bottom: 5px;
             font-size: 16px;
             color: #346012;
             text-shadow: 0 1px rgba(255, 255, 255, 0.2);
         }
+        .download-subtitle {
+            display: block;
+            margin-right: 40px;
+            color: #fff;
+            font-size: @smallFontSize;
+            line-height: 1.2;
+            letter-spacing: normal;
+            text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+        }
     }
 }
 
-.download-button-mobile-large {
+.download-button.download-button-mobile.download-button-small {
     .download-link {
-        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-        line-height: 1.2;
-        height: auto;
-        margin-left: auto;
-        .download-content-wrapper {
-            display: block;
-            background-image: url(/media/img/sandstone/buttons/arrow-large.png);
-            background-position: 12px 50%;
-            background-repeat: no-repeat;
+       .download-title {
+            padding-top: 0;
+            margin-bottom: 5px;
+            font-size: 12px;
+            color: #346012;
+            text-shadow: 0 1px rgba(255, 255, 255, 0.2);
+            letter-spacing: normal;
+            span {
+                font-size: 22px;
+                margin-bottom: 0;
+            }
         }
-        .download-content {
-            color: #b5e786;
-            margin-left: auto;
-            height: auto;
-            padding-left: 54px;
-            padding-bottom: 18px;
-            background-image: url(/media/img/sandstone/buttons/android-corner.png);
-            background-position: 100% 100%;
-            .border-radius(4px);
-            .download-title {
-                .open-sans;
-                color: #fff;
-                background: none;
-                padding-right: 0;
-            }
-            .download-info {
-                padding-top: 6px;
-                padding-right: 30px;
-                text-shadow: 0 1px rgba(255,255,255,0.2);
-            }
+        .download-subtitle {
+            position: absolute;
+            top: 15px;
+            right: 10px;
+            text-align: right;
+            width: 100px;
+            margin-right: 0;
         }
     }
 }
