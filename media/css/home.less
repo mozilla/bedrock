@@ -233,7 +233,7 @@
             text-decoration: none;
         }
     }
-    div {
+    div.content {
         .span(4);
         margin-left: 0;
         padding: 0 0 @baseLine 48px;
@@ -312,7 +312,7 @@
             width: 50%;
             margin-bottom: @baseLine;
         }
-        div  {
+        .content {
             width: 60%;
             padding-left: 30px;
         }
@@ -352,6 +352,44 @@
         position: relative;
         .container {
             background: url(/media/img/home/promo-flicks-video.jpg) 0 0 repeat-x;
+            position: relative;
+            border-bottom: 1px solid #ddd;
+            width: 100%;
+            padding: 0;
+            a.go {
+                display: inline;
+                border: none;
+                width: auto;
+                height: auto;
+                position: absolute;
+                bottom: 20px;
+                left: 20px;
+                color: #fff;
+            }
+        }
+        .video-container {
+            position: absolute;
+            /* player is skinned using ems and expects a font size of 10px */
+            font-size: 10px;
+            video {
+                xwidth: 100%;
+                xpadding: 0;
+                xfloat: none;
+                xmargin: 0;
+            }
+            z-index: 99;
+        }
+        .video-close {
+            display: block;
+            width: 18px;
+            height: 18px;
+            text-indent: -10000px;
+            background: rgba(0,0,0,0.7);
+            position: absolute;
+            z-index: 99;
+            right: 20px;
+            top:0;
+            cursor: pointer;
         }
         img {
             position: absolute;
@@ -361,6 +399,7 @@
             height: auto;
             width: 400px;
             z-index: 99;
+            cursor: pointer;
         }
         h3 {
             font-size: 46px

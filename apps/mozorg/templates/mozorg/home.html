@@ -10,11 +10,15 @@
 
 {% block extrahead %}
   {{ css('home') }}
+  {{ js('home_head') }}
 {% endblock %}
 
 {% block js %}
-  {{ js('pager') }}
-  <script>Mozilla.Pager.AUTO_ROTATE_INTERVAL = 5000;</script>
+  {{ js('home') }}
+  <script>
+    Mozilla.Pager.AUTO_ROTATE_INTERVAL = 5000;
+    _V_.options.flash.swf = '/js/libs/video-js/video-js.swf';
+  </script>
 {% endblock %}
 
 {% block site_header_logo %}{% endblock %}
@@ -45,7 +49,7 @@
   {{ download_button('download','small') }}
 </section>
 
-<section id="home-promo" class="pager pager-with-tabs pager-auto-rotate pager-no-history">
+<section id="home-promo" class="pager pager-with-tabs pager-no-auto-rotate pager-no-history">
 
   <div class="pager-content">
 
@@ -53,9 +57,9 @@
       <script>
         document.getElementById('promo-flicksvideo').id = 'page-promo-flicksvideo';
       </script>
-      <img src="{{ media('img/home/promo-flicks-video-thumb.jpg') }}" alt="">
+      <img id="promo-flicks-keyframe" src="{{ media('img/home/promo-flicks-video-thumb.jpg') }}" alt="" tabindex="0">
       <a href="https://firefoxflicks.mozilla.org/?WT.mc_id=mofxflicks&amp;WT.mc_ev=click" class="container">
-        <div>
+        <div class="content">
           <h3>{{_('The best of Firefox Flicks')}}</h3>
           <h4>{{_('See the amazing videos created by our amazing community.')}}</h4>
           <p class="go">{{_('Visit Firefox Flicks')}}</p>
@@ -69,7 +73,7 @@
       // ]]></script>
       <a href="{{ url('firefox.fx') }}?WT.mc_id=moandroid&amp;WT.mc_ev=click#mobile" class="container">
         <img src="{{ media('img/home/promo-android.jpg') }}" alt="">
-        <div>
+        <div class="content">
           <h3>{{_('Fast. Smart. Safe.')}}</h3>
           <h4>{{_('Get the mobile browser that’s got your back.')}}</h4>
           <p class="go">{{_('Get Firefox for Android')}}</p>
@@ -83,7 +87,7 @@
       // ]]></script>
       <a href="https://blog.mozilla.org/blog/2012/07/02/firefox-mobile-os/" class="container">
         <img src="{{ media('img/home/promo-firefoxos.jpg') }}" alt="">
-        <div>
+        <div class="content">
           <h3>{{_('Firefox OS is coming')}}</h3>
           <h4>{{_('We’re bringing the Open Web to mobile devices.')}}</h4>
           <p class="go">{{_('Learn More')}}</p>
