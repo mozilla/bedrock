@@ -217,6 +217,7 @@ MINIFY_BUNDLES = {
         'home': (
             'css/home.less',
             'js/libs/video-js/video-js.css',
+            'js/libs/video-js/video-js-sandstone.css',
         ),
         'marketplace': (
             'css/marketplace.less',
