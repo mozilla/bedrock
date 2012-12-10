@@ -1,0 +1,67 @@
+.vjs-default-skin .vjs-controls,
+.vjs-default-skin .vjs-time-controls,
+.vjs-default-skin div.vjs-progress-control,
+.vjs-default-skin .vjs-big-play-button {
+    background: rgb(50,50,50);
+    background: rgba(50,50,50,0.5);
+    color: #999;
+    border: 0;
+}
+
+.vjs-default-skin .vjs-progress-holder {
+    background: none;
+}
+
+.vjs-default-skin .vjs-time-controls,
+.vjs-default-skin div.vjs-progress-control {
+    border: 0;
+    height: 12px;
+    top: -16px;
+    padding: 2px 0;
+}
+
+.vjs-default-skin .vjs-progress-holder .vjs-play-progress,
+.vjs-default-skin .vjs-progress-holder .vjs-load-progress {
+    -webkit-border-radius: 3px;
+       -moz-border-radius: 3px;
+            border-radius: 3px;
+}
+.vjs-default-skin .vjs-volume-bar,
+.vjs-default-skin .vjs-volume-level {
+    -webkit-border-radius: 2px;
+       -moz-border-radius: 2px;
+            border-radius: 2px;
+}
+
+.vjs-default-skin .vjs-volume-bar {
+    background: rgb(100,100,100);
+    background: rgba(100,100,100,0.5);
+}
+
+.vjs-default-skin .vjs-volume-level,
+.vjs-default-skin .vjs-progress-holder .vjs-play-progress,
+.vjs-default-skin .vjs-progress-holder .vjs-load-progress {
+    background: rgb(150,150,150);
+    background: rgba(150,150,150,0.5);
+}
+
+.vjs-default-skin .vjs-volume-handle {
+    background: #888;
+    border-color: #888;
+    -webkit-box-shadow: 0 1px rgba(255,255,255,0.2) inset, 0 0 0 1px rgba(0,0,0,0.2), 0 1px rgba(0,0,0,0.5);
+       -moz-box-shadow: 0 1px rgba(255,255,255,0.2) inset, 0 0 0 1px rgba(0,0,0,0.2), 0 1px rgba(0,0,0,0.5);
+            box-shadow: 0 1px rgba(255,255,255,0.2) inset, 0 0 0 1px rgba(0,0,0,0.2), 0 1px rgba(0,0,0,0.5);
+}
+
+.vjs-default-skin .vjs-big-play-button {
+    -webkit-border-radius: 8em;
+       -moz-border-radius: 8em;
+            border-radius: 8em;
+    border: 0;
+}
+
+.vjs-default-skin div.vjs-big-play-button:hover {
+    -webkit-box-shadow: inherit;
+       -moz-box-shadow: inherit;
+            box-shadow: inherit;
+}
