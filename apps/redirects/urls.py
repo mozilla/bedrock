@@ -41,4 +41,7 @@ urlpatterns = patterns('',
     # Bug 800298 /webmaker/ -> wm.o and /webmaker/videos/ -> wm.o/videos/
     redirect(r'webmaker/$', 'https://webmaker.org'),
     redirect(r'webmaker/videos/$', 'https://webmaker.org/videos/'),
+
+    # Bug 819317 /gameon/ -> gameon.m.o
+    redirect(r'gameon/$', 'https://gameon.mozilla.org'),
 )
