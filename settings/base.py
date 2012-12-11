@@ -386,9 +386,6 @@ MINIFY_BUNDLES = {
             'js/libs/video-js/video.js',
             'js/mozorg/home.js'
         ),
-        'home_head': (
-            'js/libs/video-js/video-js-html5-shiv.js',
-        ),
         'marketplace': (
             'js/nav-main-resp.js',
             'js/mozilla-pager.js',

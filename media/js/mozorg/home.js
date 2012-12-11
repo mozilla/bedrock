@@ -52,7 +52,7 @@ $(document).ready(function() {
 
     var $video = $(
         '<video id="video-player" class="video-js vjs-default-skin" '
-        + 'controls="controls"></video>'
+        + 'controls="controls" preload="auto"></video>'
     );
 
     $video.appendTo($videoContainer);
@@ -65,15 +65,16 @@ $(document).ready(function() {
         {
             src:  'http://videos.mozilla.org/uploads/brand/State%20of%20Mozilla%202011%20(fcp2)-RC%20-%20720p%20-%20MPEG-4.webm',
             type: 'video/webm'
-        },
+        }
     ];
 
     for (var i = 0; i < sources.length; i++) {
-        $source = $(
-            '<source src="' + sources[i].src + '" '
-            + 'type="' + sources[i].type + '"></source>'
+        $video.append(
+            $(
+                '<source src="' + sources[i].src + '" '
+                + 'type="' + sources[i].type + '"></source>'
+            )
         );
-        $source.appendTo($video);
     }
 
     function open()
@@ -187,8 +188,10 @@ $(document).ready(function() {
             videoJS.play();
         } else {
             _V_('video-player', {}, function() {
-                this.play();
                 videoJS = this;
+/*                videoJS.addEvent('canplay', function() {
+                    videoJS.play();
+                });*/
             });
         }
     };

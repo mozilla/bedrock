@@ -10,14 +10,16 @@
 
 {% block extrahead %}
   {{ css('home') }}
-  {{ js('home_head') }}
 {% endblock %}
 
 {% block js %}
   {{ js('home') }}
   <script>
     Mozilla.Pager.AUTO_ROTATE_INTERVAL = 5000;
-    _V_.options.flash.swf = '/js/libs/video-js/video-js.swf';
+    (function() {
+      var base = location.protocol + '//' + location.host;
+      _V_.options.flash.swf = base + '/media/js/libs/video-js/video-js.swf';
+    })();
   </script>
 {% endblock %}
 
