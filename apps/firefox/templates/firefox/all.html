@@ -49,13 +49,13 @@
 
   <div id="main-content">
     <div id="localized">
-      {{ build_table(test_builds, 
+      {{ build_table(full_builds,
                       _('Fully localized versions')) }}
     </div>
 
     <div id="localized-testing">
-      {{ build_table(test_builds, 
-                      _('Localized versions in testing'), 
+      {{ build_table(test_builds,
+                      _('Localized versions in testing'),
                       _('These localizations aren’t final. We’re waiting for more feedback from the community to perfect them.')) }}
     </div>
   </div>
