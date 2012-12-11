@@ -5,6 +5,13 @@ $(function(){
     var $form = $('#language-search');
     var $input = $('#language-search-q');
     var $tables = $('table.build-table');
+    var ariaAnnounce = $('<div/>').attr({
+        'role': 'status',
+        'aria-live': 'polite',
+        'class': 'hide-offscreen'
+    });
+    
+    $('body').append(ariaAnnounce);
 
     $form.on('submit', function(e){
         e.preventDefault();
@@ -35,8 +42,17 @@ $(function(){
                 $not_found.show();
             }
         });
+        aria_announcement(search_q);
     });
-
+    
+    function aria_announcement (search_q) {
+        var announcement = 'You have searched for '+search_q+', resulting in '+ $('#localized tbody tr:visible').length + ' fully localized version and '+ $('#localized-testing tbody tr:visible').length +' localized version in testing in the two tables below';
+        ariaAnnounce.html(announcement);
+        var clear_announcement = setTimeout(function() {
+            ariaAnnounce.html('');
+        }, 5000);
+    }
+ 
     function show_all(){
         $tables.find('thead, tbody').show();
         $('tr[data-search]').show();
