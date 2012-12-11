@@ -246,6 +246,9 @@ MINIFY_BUNDLES = {
             'css/styleguide/communications.less',
             'css/styleguide/products-firefox-os.less',
         ),
+        'tabzilla': (
+            'css/tabzilla.less',
+        ),
         'video': (
             'css/sandstone/video.less',
         ),
@@ -409,6 +412,8 @@ DOMAIN_METHODS = {
             'tower.management.commands.extract.extract_tower_python'),
         ('apps/**/templates/**.html',
             'tower.management.commands.extract.extract_tower_template'),
+        ('apps/**/templates/**.js',
+            'tower.management.commands.extract.extract_tower_template'),
         ('templates/**.html',
             'tower.management.commands.extract.extract_tower_template'),
     ],
@@ -465,19 +470,20 @@ INSTALLED_APPS = (
     'product_details',
 
     # Local apps
+    'collusion',
+    'firefox',
     'firefoxos',
     'foundation',
     'grants',
-    'collusion',
-    'firefox',
+    'legal',
     'marketplace',
     'mozorg',
     'persona',
-    'research',
-    'styleguide',
     'privacy',
     'redirects',
-    'legal',
+    'research',
+    'styleguide',
+    'tabzilla',
 
     # libs
     'l10n_utils',
