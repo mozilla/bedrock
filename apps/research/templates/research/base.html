@@ -2,14 +2,13 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% extends "sand.html" %}
+{% extends "base-resp.html" %}
+{% block body_class %}sand{% endblock %}
 
 {% set navigation_bar = [
     (url('research.research'), 'research', 'Mozilla Research'),
     (url('research.projects'), 'projects', 'Projects'),
     (url('research.researchers'), 'researchers', 'Researchers'),
-    (url('research.publications'), 'publications', 'Publications'),
-    (url('research.collaborations'), 'collaborations', 'Collaborations'),
     ('http://blog.mozilla.org/research/', 'blog', 'Blog'),
 ] -%}
 {% set active_page = active_page|default('index') -%}
@@ -28,18 +27,10 @@
   </nav>
 {% endblock %}
 
-{% block content %}
-
-<div id="main-content">
-<div class="row">
-
-<article class="main-column">
-{% block article %}{% endblock %}
-</article>
-
-<aside class="sidebar">
-  <nav>
-    <ul>
+{% block site_header_nav %}
+  <nav id="nav-main" role="navigation">
+    <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
+    <ul id="nav-main-menu">
     {% for href, id, caption in navigation_bar %}
       <li>
       {% if id == body_id %}
@@ -51,10 +42,8 @@
     {% endfor %}
     </ul>
   </nav>
+{% endblock %}
 
-</aside>
-
-</div>
-</div>
-
+{% block site_js %}
+  {{ js('mozorg-resp') }}
 {% endblock %}

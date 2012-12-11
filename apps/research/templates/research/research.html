@@ -2,9 +2,9 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% extends "sand.html" %}
-{% set body_id = "research" %}
+{% extends "research/base.html" %}
 
+{% block body_id %}research{% endblock %}
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}Mozilla Research{% endblock %}
 
@@ -18,7 +18,7 @@
 
 <hgroup id="main-feature" class="large center">
   <h1>Mozilla Research</h1>
-  <h2>Pushing the boundaries of the Open Web</h2>
+  <h2>Expanding the Foundations of the Open Web</h2>
 </hgroup>
 
 <div id="rust-promo" class="billboard">
@@ -30,28 +30,24 @@
 
 <div id="main-content">
 
-<p class="intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ultrices sodales interdum. In hac habitasse platea dictumst. Cras vel tortor eu purus ultrices venenatis eget a nunc.</p>
+<p class="intro">
+  At Mozilla Research, our focus is advanced Web platform technology.
+  Specifically, we're out to prove that there are no limits on open technology and that it has the same capabilities and potential that closed technology does.
+  We spend our days finding things that are impossible — and then figuring out how to make them possible.
+</p>
 
 <ul class="links">
   <li id="projects" class="odd">
     <h4><a href="{{ url('research.projects') }}">Projects</a></h4>
-    <p>Lorem ipsum dolor sit amet, consectetur.</p>
+    <p>See what we're working on and building</p>
   </li>
   <li id="researchers">
     <h4><a href="{{ url('research.researchers') }}#">Researchers</a></h4>
-    <p>Lorem ipsum dolor sit amet, consectetur.</p>
-  </li>
-  <li id="publications" class="odd">
-    <h4><a href="{{ url('research.publications') }}">Publications</a></h4>
-    <p>Lorem ipsum dolor sit amet, consectetur.</p>
-  </li>
-  <li id="collaborations">
-    <h4><a href="{{ url('research.collaborations') }}">Collaborations</a></h4>
-    <p>Lorem ipsum dolor sit amet, consectetur.</p>
+    <p>Get to know the Mozilla Research team</p>
   </li>
   <li id="blog" class="odd">
     <h4><a href="http://blog.mozilla.org/research/">Blog</a></h4>
-    <p>Lorem ipsum dolor sit amet, consectetur.</p>
+    <p>Read up on our latest thoughts and news</p>
   </li>
 </ul>
 

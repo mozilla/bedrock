@@ -3,17 +3,15 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
 {% extends "research/base.html" %}
-{% set body_id = "researchers" %}
+{% block body_id %}researchers{% endblock %}
 
 {% block page_title %}Researchers{% endblock %}
 
-{% block article %}
+{% block content %}
 
-<hgroup>
-  <h1>Mozilla Researchers</h1>
-</hgroup>
+<h1 id="main-feature">Mozilla Researchers</h1>
 
-<section id="people">
+<section id="main-content" class="people">
 
   <ul>
 

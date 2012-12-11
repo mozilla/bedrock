@@ -2,16 +2,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import "../sandstone/variables.less";
-@import "../sandstone/mixins.less";
-
-.main-column {
-    .span(7);
-}
-
-.sidebar {
-    .offset(1);
-}
+@import "../sandstone/lib.less";
 
 #project-list {
     width: auto;
@@ -20,31 +11,47 @@
 
 #projects {
     section {
+        .clearfix;
         border-bottom: 1px dotted @borderColor;
         margin-bottom: @baseLine * 2;
         padding-bottom: @baseLine;
+        .intro {
+            .span(3);
+            padding-top: 0;
+        }
+        .details {
+            .span(9);
+        }
+    }
+}
+
+#main-feature {
+    .span(12);
+    width: auto;
+    float: none;
+    padding-bottom: 0;
+}
+
+#research {
+    #main-feature {
+        padding-bottom: @baseLine * 2;
     }
 }
 
 #main-content {
     .intro {
-        .span(4);
-        margin-left: 0;
+        .span(6);
         padding-top: @baseLine;
     }
 
     ul.links {
-        .span(6);
+        .span(5);
+        .offset(1);
         li {
-            .span(3);
             list-style-type: none;
             padding-top: @baseLine;
+            margin-left: 0;
             border-bottom: 1px dotted @borderColor;
-            min-height: @baseLine * 4;
-            &.odd {
-                margin-left: 0;
-                clear: left;
-            }
         }
         h4 {
             margin-bottom: @baseLine / 6;
@@ -60,10 +67,8 @@
     }
 }
 
-#people {
-    .span(7);
-    margin-left: 0;
-    margin-bottom: @baseLine;
+.people {
+    padding-top: @baseLine * 2;
     h2 {
         .span(2);
         margin-left: 0;
@@ -77,16 +82,16 @@
         clear: left;
     }
     li {
+        .clearfix;
         list-style-type: none;
         margin: 0 0 (@baseLine * 2) 0;
         border-top: 1px dotted @borderColor;
         padding-top: (@baseLine * 2);
-        .row;
         img {
             .span(2);
         }
         h3 {
-            .span(5);
+            .span(4);
             em {
                 display: block;
                 font-style: normal;
@@ -94,7 +99,7 @@
             }
         }
         p {
-            .span(5);
+            .span(6);
             margin-bottom: 0;
         }
     }
@@ -107,7 +112,6 @@
 #rust-promo {
     background: #fff url(/media/img/research/promo-rust.jpg) top right no-repeat;
     padding: 0;
-    width: 896px + 48px + 48px;
     a {
         display: block;
         padding: @baseLine (@baseLine * 2);
@@ -119,5 +123,95 @@
     }
     p {
         margin-bottom: 0;
+    }
+}
+
+/* Tablet Layout: 760px */
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+    .large h2 {
+        font-size: 36px;
+    }
+    #rust-promo {
+        background-position: 100px 0;
+    }
+    #main-content {
+        .intro {
+            .span_narrow(6);
+        }
+
+        ul.links {
+            .span_narrow(6);
+        }
+    }
+    #projects {
+        section {
+            .intro {
+                .span_narrow(4);
+            }
+            .details {
+                .span_narrow(8);
+            }
+        }
+    }
+    nav.menu-bar ul li a {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+/* Mobile layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+    .large {
+        h1 {
+            font-size: 40px;
+            margin-bottom: 5px;
+        }
+        h2 {
+            font-size: 24px;
+        }
+    }
+    #research #main-feature {
+        padding-bottom: @baseLine;
+    }
+    #rust-promo {
+        display: none;
+        background-position: 90px 0;
+        background-size: auto 100%;
+    }
+    #main-content {
+        .intro,
+        ul.links {
+            .span_narrow(5);
+            width: auto;
+            float: none;
+        }
+    }
+    #projects {
+        section {
+            .intro {
+                float: none;
+                width: auto;
+                ul {
+                    margin-bottom: @baseLine / 2;
+                }
+            }
+            .details {
+                float: none;
+                width: auto;
+            }
+        }
+    }
+    .people {
+        li {
+            img {
+                .span_narrow(2);
+            }
+            h3 {
+                .span_narrow(3);
+            }
+            p {
+                .span_narrow(5);
+            }
+        }
     }
 }
