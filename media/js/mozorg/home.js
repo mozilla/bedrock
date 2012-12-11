@@ -1,5 +1,9 @@
 $(document).ready(function() {
 
+    var isMSIEpre9 = (function() {
+        return (/MSIE\ (4|5|6|7|8)/.test(navigator.userAgent));
+    })();
+
     var $thumb = $('#promo-flicks-keyframe');
     var $link = $thumb.next();
     var $container = $('<div class="container"></div>');
@@ -189,9 +193,7 @@ $(document).ready(function() {
         } else {
             _V_('video-player', {}, function() {
                 videoJS = this;
-/*                videoJS.addEvent('canplay', function() {
-                    videoJS.play();
-                });*/
+                videoJS.play();
             });
         }
     };
@@ -260,5 +262,76 @@ $(document).ready(function() {
     $thumb.click(function(e) {
         open();
     });
+
+    function handleResize()
+    {
+        var width = $(window).width();
+
+        if (videoJS) {
+            var videoWidth = $videoContainer.width();
+
+            if (width <= 480 && videoWidth != 320) {
+                videoJS.size(320, 180);
+                reposition(0);
+            } else if (width > 480 && width <= 760 && videoWidth != 440) {
+                videoJS.size(440, 248);
+                reposition(0);
+            } else if (width > 760 && width <= 1000 && videoWidth != 720) {
+                videoJS.size(720, 405);
+                reposition(20);
+            } else if (width > 1000 && videoWidth != 853) {
+                videoJS.size(853, 480);
+                reposition(20);
+            }
+        }
+    };
+
+    function reposition(videoMargin)
+    {
+        var $offsetParent = $videoContainer.offsetParent();
+
+        var totalWidth = $offsetParent.width();
+        var width      = $videoContainer.width();
+        var height     = $videoContainer.height();
+        var goHeight   = $goLink.height();
+        var goLeft     = Math.max(Math.floor((totalWidth - width) / 2), margin);
+
+        $videoContainer.css(
+            {
+                'right' : 'auto',
+                'top'   : videoMargin,
+                'left'  : Math.floor((totalWidth - width) / 2)
+            }
+        );
+
+        $close.css(
+            {
+                'right' : 'auto',
+                'top'   : videoMargin,
+                'left'  : Math.floor((totalWidth + width) / 2)
+            }
+        );
+
+        $goLink.css(
+            {
+                'bottom' : 'auto',
+                'left'   : goLeft,
+                'top'    : height + videoMargin + 10
+            }
+        );
+
+        $container.css(
+            {
+                'height' : videoMargin + height + goHeight + 10 + margin
+            }
+        );
+
+    };
+
+    if (!isMSIEpre9) {
+        $(window).resize(handleResize);
+        handleResize();
+    }
+
 
 });
