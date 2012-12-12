@@ -499,6 +499,12 @@ nav.menu-bar {
 .table {
     border-collapse: collapse;
     border-spacing: 0;
+    caption {
+        text-align:left;
+        padding-bottom:1px; /* fix to get it to look nice in many browsers */
+        margin-bottom:-1px;
+        width:100%;
+    }
     th,
     td {
         border-top: 1px solid rgba(0,0,0,0.2);
