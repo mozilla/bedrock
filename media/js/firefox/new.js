@@ -7,6 +7,20 @@ Mozilla.Firefox.New = (function() {
 	var _css3;
 
 	var _init = function() {
+		// wrap #wrapper in div for noise bg
+		$('#wrapper').wrap('<div id="inner-wrapper" />');
+
+		// swipe FF dl link from button
+		var ff_dl_link;
+
+		$('.download-list li').each(function(i, li) {
+			if ($(li).is(':visible')) {
+				ff_dl_link = $(li).find('a:first').attr('href');
+				$('#direct-download-link').attr('href', ff_dl_link);
+				return false;
+			}
+		});
+
 		// hack to test android
 		if (window.location.href.indexOf('forceandroid') > -1) {
 			var h = document.documentElement;
