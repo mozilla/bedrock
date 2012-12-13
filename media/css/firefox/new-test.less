@@ -1,14 +1,73 @@
 @import "template-resp.less";
 
-// override default styles
-#wrapper { padding-bottom: 0; }
-#colophon { margin-top: 0; }
+.sky #outer-wrapper {
+    background: rgb(234,239,242);
+    background: url(/media/img/firefox/new/bg-blue-gradient.png) top left repeat-x, -moz-radial-gradient(center, ellipse cover,  rgba(234,239,242,1) 0%, rgba(212,221,228,1) 100%);
+    background: url(/media/img/firefox/new/bg-blue-gradient.png) top left repeat-x, -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(234,239,242,1)), color-stop(100%,rgba(212,221,228,1)));
+    background: url(/media/img/firefox/new/bg-blue-gradient.png) top left repeat-x, -webkit-radial-gradient(center, ellipse cover,  rgba(234,239,242,1) 0%,rgba(212,221,228,1) 100%);
+    background: url(/media/img/firefox/new/bg-blue-gradient.png) top left repeat-x, -o-radial-gradient(center, ellipse cover,  rgba(234,239,242,1) 0%,rgba(212,221,228,1) 100%);
+    background: url(/media/img/firefox/new/bg-blue-gradient.png) top left repeat-x, -ms-radial-gradient(center, ellipse cover,  rgba(234,239,242,1) 0%,rgba(212,221,228,1) 100%);
+    background: url(/media/img/firefox/new/bg-blue-gradient.png) top left repeat-x, radial-gradient(ellipse at center,  rgba(234,239,242,1) 0%,rgba(212,221,228,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eaeff2', endColorstr='#d4dde4',GradientType=1 );
+}
+
+#inner-wrapper {
+    background: url(/media/img/firefox/new/bg-noise.png) top left repeat;
+}
+
+#wrapper {
+    width: 980px;
+    padding: 0 10px 0 10px;
+}
+
+#colophon {
+    margin-top: 0;
+    padding-top: 20px;
+    text-align: center;
+    .primary, .secondary {
+        margin-bottom: 10px;
+        li {
+            display: inline;
+            margin-left: 20px;
+            a, a:link, a:visited {
+                display: inline-block;
+                padding: 2px 12px;
+                border-left: 1px dotted @textColorLight;
+            }
+            &:first-child a {
+                border: 0;
+            }
+        }
+    }
+
+    .primary li {
+        a, a:link, a:visited {
+            text-transform: uppercase;
+            font-size: 14px;
+            color: @linkSkyBlue;
+            &:after {
+                content: " \00BB";
+            }
+            span {
+                color: @textColorSecondary;
+            }
+        }
+    }
+
+    .secondary {
+        a, a:link, a:visited {
+            font-size: 12px;
+            color: @textColorLight;
+        }
+    }
+}
 
 #main-feature {
-    margin-top: 30px;
+    margin-top: 14px;
+    padding-bottom: 18px;
     h1.large {
         text-align: center;
-        font-size: 80px;
+        font-size: 72px;
         br { display: none; }
     }
     img { display: none; }
@@ -16,20 +75,22 @@
 
 #features {
     float: left;
-    width: 492px;
-    margin: 0 83px 0 62px;
-    padding: 0;
+    width: 480px;
+    margin: 0 20px 0 16px;
+    padding: 0 0 0 20px;
     list-style-type: none;
     .clearfix;
     li {
         float: left;
-        width: 164px;
-        height: 80px;
+        width: 140px;
+        height: 89px;
         text-align: center;
-        padding-top: 20px;
+        padding: 28px 20px 0 0;
         margin-left: 0;
-        font-size: 22px;
+        font-size: 24px;
+        letter-spacing: -0.1em;
         line-height: 100%;
+        color: @textColorSecondary;
         .open-sans-light;
         background: url(/media/img/firefox/new/features-divider.png) right top no-repeat;
         &:last-child {
@@ -43,10 +104,11 @@
 .thankyou {
     background: url(/media/img/firefox/new/thankyou-check.png) left top no-repeat;
     padding: 0 0 0 35px;
-    margin: 0 140px;
-    color: #6ca52a;
+    margin: 20px 130px 0;
+    color: @buttonGreenDark;
     font-style: italic;
     font-size: 18px;
+    //letter-spacing: -0.1em;
     .open-sans-light;
 }
 
@@ -63,7 +125,8 @@
         padding: 0 34px;
         margin: 0;
         text-align: center;
-        color: #666;
+        font-size: 12px;
+        color: @textColorTertiary;
         font-style: italic;
         img {
             display: block;
@@ -74,12 +137,15 @@
     }
 }
 
+.osx .install-win { display: none; }
+.windows .install-osx { display: none; }
+
 .theater {
     position: relative;
-    top: 0;
-    left: 0;
+    margin: 0 auto;
     width: 100%;
-    height: 340px;
+    height: 400px;
+
     overflow: hidden;
 }
 
@@ -88,7 +154,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 340px;
+    height: 400px;
 }
 
 .mobile {
@@ -105,39 +171,46 @@
     }
     .theater { height: 260px; }
     #features {
-        margin-left: 50px;
-        margin-right: 58px;
+        float: none;
+        margin: 0 auto 10px auto;
+        width: 720px;
+        li {
+            width: 220px;
+        }
+    }
+
+    .download-button-wrapper {
+        float: none;
+        text-align: center;
+        .download-button {
+            text-align: left;
+        }
     }
 }
 
-// only apply transforms/transitions to supporting browsers
-.csstransforms.csstransitions {
-    .stage {
-        // initial view of stage = -((# of slides - 1) * 100)
-        -moz-transform: translateY(-100%);
-        -webkit-transform: translateY(-100%);
-        -ms-transform: translateY(-100%);
-        -o-transform: translateY(-100%);
-        transform: translateY(-100%);
+// only apply transforms/transitions to supporting browsers (ms-transform deliberately omitted)
+.stage {
+    // initial view of stage = -((# of slides - 1) * 100)
+    -moz-transform: translateY(-100%);
+    -webkit-transform: translateY(-100%);
+    -o-transform: translateY(-100%);
+    transform: translateY(-100%);
 
-        // add transition after button click to avoid any animation flicker at page load
-        &.transition {
-            -moz-transition: all 0.4s ease 0.1s;
-            -ms-transition: all 0.4s ease 0.1s;
-            -webkit-transition: all 0.4s ease 0.1s;
-            -o-transition: all 0.4s ease 0.1s;
-            transition: all 0.4s ease 0.1s;
-            // hardware acceleration for webkit
-            -webkit-backface-visibility: hidden;
-        }
+    // add transition after button click to avoid any animation flicker at page load
+    &.transition {
+        -moz-transition: all 0.4s ease 0.1s;
+        -webkit-transition: all 0.4s ease 0.1s;
+        -o-transition: all 0.4s ease 0.1s;
+        transition: all 0.4s ease 0.1s;
+        // hardware acceleration for webkit
+        -webkit-backface-visibility: hidden;
+    }
 
-        &.scene2 {
-            -moz-transform: translateY(0%);
-            -webkit-transform: translateY(0%);
-            -ms-transform: translateY(0%);
-            -o-transform: translateY(0%);
-            transform: translateY(0%);
-        }
+    &.scene2 {
+        -moz-transform: translateY(0%);
+        -webkit-transform: translateY(0%);
+        -o-transform: translateY(0%);
+        transform: translateY(0%);
     }
 }
 
@@ -145,7 +218,7 @@
     position: relative;
     top: 0;
     left: 0;
-    height: 340px;
+    height: 400px;
     width: 100%;
     .clearfix;
     overflow: hidden;
@@ -158,17 +231,21 @@
 
 /* Tablet Layout: 760px */
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
-    .theater, .stage, .scene { height: 320px; }
-    #features-download {
-        margin-top: 30px;
+    #wrapper {
+        width: 760px;
+        padding: 0;
+    }
+    .theater, .stage, .scene {
+        height: 360px;
     }
     #features {
-        width: 400px;
+        width: 391px;
         margin: 0;
         li {
-            width: 130px;
+            width: 110px;
             font-size: 18px;
-            padding-top: 26px;
+            padding-top: 32px;
+            height: 85px;
         }
     }
     .thankyou {
@@ -179,22 +256,46 @@
         li {
             width: 200px;
             padding: 0 15px;
-            font-size: 12px;
         }
     }
-    .android #features {
-        margin: 0;
-        width: 360px;
-        li {
-            width: 120px;
-        }
+
+    .android #features li {
+        font-size: 24px;
+        padding-top: 28px;
+        height: 89px;
     }
 }
 
 /* Mobile layout: 320px */
 @media only screen and (max-width: @breakTablet) {
+    #wrapper {
+        width: 320px;
+        padding: 0;
+    }
+    #colophon {
+        .primary {
+            text-align: left;
+            li {
+                display: block;
+                margin-left: 0;
+                a, a:link, a:visited {
+                    display: block;
+                    border-left: none;
+                    border-top: 1px dotted @textColorLight;
+                    padding: 10px;
+                }
+                &:first-child a {
+                    border: 0;
+                }
+            }
+        }
+    }
     #masthead h2 { display: none; }
+    .theater, .stage, .scene {
+        height: 310px;
+    }
     #main-feature {
+        padding-bottom: 0px;
         .row {
             .clearfix;
             width: 300px;
@@ -218,17 +319,18 @@
 
     #firefox-screenshot { display: none; }
 
-    #features-download { padding-top: 20px; }
+    #features-download { padding-top: 10px; }
 
-    #features {
+    .android #features, #features {
         margin: 0 auto 20px;
         float: none;
         width: 320px;
+        padding-left: 0;
         li {
             width: 85px;
-            height: 60px;
-            padding: 15px 10px 0;
-            font-size: 16px;
+            height: 78px;
+            padding: 35px 10px 0;
+            font-size: 14px;
             text-align: left;
         }
     }
@@ -242,14 +344,14 @@
     }
 
     .thankyou {
-        margin: 0;
+        margin: 10px 0 0 0;
+        font-size: 14px;
+        letter-spacing: auto;
     }
 
     .installation {
-        width: 280px;
+        width: 300px;
         margin: 20px 0 0;
-        list-style-type: decimal;
-        padding-left: 20px;
         li {
             width: auto;
             margin-bottom: 10px;
@@ -264,12 +366,8 @@
     }
 
     .android {
-        .theater {
-            height: 280px;
-        }
-
-        #features {
-            margin: 0 auto 20px;
+        .theater, .stage, .scene {
+            height: 310px;
         }
     }
 }
