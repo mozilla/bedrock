@@ -246,6 +246,9 @@ MINIFY_BUNDLES = {
             'css/styleguide/communications.less',
             'css/styleguide/products-firefox-os.less',
         ),
+        'tabzilla': (
+            'css/tabzilla.less',
+        ),
         'video': (
             'css/sandstone/video.less',
         ),
