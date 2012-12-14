@@ -7,8 +7,24 @@ Mozilla.Firefox.New = (function() {
 	var _css3;
 
 	var _init = function() {
+		// hack to test android
+		// TODO: remove for production
+		if (window.location.href.indexOf('forceandroid') > -1) {
+			var h = document.documentElement;
+			$(h).removeClass(site.platform).addClass('android');
+		}
+
 		// wrap #wrapper in div for noise bg
 		$('#wrapper').wrap('<div id="inner-wrapper" />');
+
+		// replace install images
+		if (site.platform === 'osx') {
+			$('.install-image').each(function(i, img) {
+				$(this).attr('src', $(this).attr('src').replace(/win/gi, 'mac'));
+			});
+		} else if (site.platform === 'windows' && $.browser.msie && $.browser.version < 9) {
+			$('#install1').attr('src', $('#install1').attr('src').replace(/win/gi, 'winIE8'));
+		}
 
 		// swipe FF dl link from button
 		var ff_dl_link;
@@ -21,12 +37,6 @@ Mozilla.Firefox.New = (function() {
 			}
 		});
 
-		// hack to test android
-		if (window.location.href.indexOf('forceandroid') > -1) {
-			var h = document.documentElement;
-			$(h).removeClass(site.platform).addClass('android');
-		}
-
 		if (!$('html').hasClass('android')) {
 			_css3 = ($('html').is('.csstransforms.csstransitions')) ? true : false;
 
@@ -37,7 +47,12 @@ Mozilla.Firefox.New = (function() {
 
 			$('.download-firefox').on('click', function(e) {
 				// prevent download during testing
-				//e.preventDefault();
+				e.preventDefault();
+
+				// track download click
+				if (window._gaq) {
+					_gaq.push(['_trackPageview', document.location.href]);
+				}
 
 				if (_css3) {
 					$('#stage-firefox').addClass('transition scene2');
