@@ -51,7 +51,7 @@ Mozilla.Firefox.New = (function() {
 
 				// track download click
 				if (window._gaq) {
-					_gaq.push(['_trackPageview', document.location.href]);
+					_gaq.push(['_trackPageview', window.location.pathname]);
 				}
 
 				if (_css3) {
