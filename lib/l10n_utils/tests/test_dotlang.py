@@ -20,7 +20,7 @@ from pyquery import PyQuery as pq
 from tower.management.commands.extract import extract_tower_python
 
 from l10n_utils.dotlang import (_, FORMAT_IDENTIFIER_RE, lang_file_is_active,
-                                parse, translate)
+                                parse, translate, _lazy)
 from mozorg.tests import TestCase
 
 
@@ -199,6 +199,66 @@ class TestDotlang(TestCase):
 
         # restore original value to avoid test leakage
         LANG_FILES = old_lang_files
+
+    @patch('l10n_utils.dotlang.translate')
+    def test_gettext_searches_kwarg_specified_lang_files(self, trans_patch):
+        """
+        The `l10n_utils.dotlang._` function should search .lang files
+        specified in the `lang_files` keyword arg, and not the ones from the
+        module.
+        """
+        # test the case when LANG_FILES is a string
+        trans_str = 'Translate me'
+        _(trans_str, lang_files='maude')
+        call_lang_files = ['maude'] + settings.DOTLANG_FILES
+        trans_patch.assert_called_with(trans_str, call_lang_files)
+
+        # test the case when LANG_FILES is a list
+        lang_files_list = ['maude', 'bunny', 'uli']
+        _(trans_str, lang_files=lang_files_list)
+        print lang_files_list
+        call_lang_files = lang_files_list + settings.DOTLANG_FILES
+        trans_patch.assert_called_with(trans_str, call_lang_files)
+
+    @patch('l10n_utils.dotlang.translate')
+    def test_gettext_lazy_searches_kwarg_specified_lang_files(self, trans_patch):
+        """
+        The `l10n_utils.dotlang._lazy` function should search .lang files
+        specified in the `lang_files` keyword arg, and not the ones from the
+        module.
+        """
+        # test the case when LANG_FILES is a string
+        trans_str = 'Translate me'
+        # have to call __unicode__ directly because the value is a Mock
+        # object, and the `unicode()` function throws an exception.
+        _lazy(trans_str, lang_files='maude').__unicode__()
+        call_lang_files = ['maude'] + settings.DOTLANG_FILES
+        trans_patch.assert_called_with(trans_str, call_lang_files)
+
+        # test the case when LANG_FILES is a list
+        lang_files_list = ['maude', 'bunny', 'uli']
+        _lazy(trans_str, lang_files=lang_files_list).__unicode__()
+        print lang_files_list
+        call_lang_files = lang_files_list + settings.DOTLANG_FILES
+        trans_patch.assert_called_with(trans_str, call_lang_files)
+
+    @patch('l10n_utils.dotlang.translate')
+    def test_lazy_gettext_searches_specified_lang_files(self, trans_patch):
+        """
+        The `l10n_utils.dotlang._lazy` function should search .lang files
+        specified in the module from which it's called before the
+        default files.
+        """
+        from l10n_utils.tests.test_files import extract_me_with_langfiles_lazy
+
+        dude_says = extract_me_with_langfiles_lazy.do_translate()
+        dirty_string = u"I'm The Dude, so that's what you call me, man."
+        self.assertFalse(trans_patch.called)
+        # have to call __unicode__ directly because the value is a Mock
+        # object, and the `unicode()` function throws an exception.
+        dude_says.__unicode__()
+        trans_patch.assert_called_with(dirty_string, ['donnie', 'walter'] +
+                                       settings.DOTLANG_FILES)
 
     @patch('l10n_utils.dotlang.translate')
     def test_gettext_works_without_extra_lang_files(self, trans_patch):

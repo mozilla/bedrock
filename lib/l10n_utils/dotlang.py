@@ -10,17 +10,18 @@ system.
 It caches them using the django caching library, but it could
 potentially just use thread-local variables. Caching seems safer at
 the expense of another caching layer."""
-
 import codecs
 import inspect
 import os
 import re
+from functools import partial
 
 from django.conf import settings
 from django.core.cache import cache
 from django.utils import translation
 from django.utils.functional import lazy
 
+from jinja2 import Markup
 from tower.management.commands.extract import tweak_message
 
 
@@ -99,22 +100,12 @@ def translate(text, files):
                 message = '%s\n\n%s\n%s' % (explanation, text,
                                             trans[tweaked_text])
                 mail_error(rel_path, message)
-                return text
-            return trans[tweaked_text]
-    return text
+                return Markup(text)
+            return Markup(trans[tweaked_text])
+    return Markup(text)
 
 
-def _(text, *args):
-    """
-    Translate a piece of text from the global files. If `LANG_FILES` is defined
-    in the module from which this function is called, those files (or file)
-    will be searched first for the translation, followed by the default files.
-
-    :param text: string to translate
-    :param args: items for interpolation into `text`
-    :return: translated string
-    """
-    lang_files = settings.DOTLANG_FILES
+def _get_extra_lang_files():
     frame = inspect.currentframe()
     if frame is None:
         if settings.DEBUG:
@@ -124,14 +115,40 @@ def _(text, *args):
                           'source files will not work.', RuntimeWarning)
     else:
         try:
-            # gets value of LANG_FILE constant in calling module if specified
-            new_lang_files = frame.f_back.f_globals.get('LANG_FILES')
+            # gets value of LANG_FILE constant in calling module if specified.
+            # have to go back 2x to compensate for this function.
+            new_lang_files = frame.f_back.f_back.f_globals.get('LANG_FILES', [])
         finally:
             del frame
         if new_lang_files:
             if isinstance(new_lang_files, basestring):
                 new_lang_files = [new_lang_files]
-            lang_files = new_lang_files + lang_files
+    return new_lang_files
+
+
+def _(text, *args, **kwargs):
+    """
+    Translate a piece of text from the global files. If `LANG_FILES` is defined
+    in the module from which this function is called, those files (or file)
+    will be searched first for the translation, followed by the default files.
+
+    :param text: string to translate
+    :param args: items for interpolation into `text`
+    :param lang_files: extra lang file names to search for a translation.
+        NOTE: DO NOT USE THIS for string extraction. It will NOT respect
+        the values in this kwarg when extracting strings. This is only useful
+        if you know the string is in a different file but you don't want to
+        add that file for the whole module via the `LANG_FILES` constant.
+    :return: translated string
+    """
+    lang_files = kwargs.pop('lang_files', [])
+    if isinstance(lang_files, list):
+        lang_files = lang_files[:]
+    else:
+        lang_files = [lang_files]
+    if not lang_files:
+        lang_files += _get_extra_lang_files()
+    lang_files += settings.DOTLANG_FILES
 
     text = translate(text, lang_files)
     if args:
@@ -139,7 +156,14 @@ def _(text, *args):
     return text
 
 
-_lazy = lazy(_, unicode)
+_lazy_proxy = lazy(_, unicode)
+
+
+def _lazy(*args, **kwargs):
+    lang_files = _get_extra_lang_files()
+    if lang_files:
+        return partial(_lazy_proxy, lang_files=lang_files)(*args, **kwargs)
+    return _lazy_proxy(*args, **kwargs)
 
 
 def get_lang_path(path):
