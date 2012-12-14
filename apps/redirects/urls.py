@@ -2,8 +2,11 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+from django.conf import settings
 from django.conf.urls.defaults import *
+
 from util import redirect
+
 
 urlpatterns = patterns('',
 
@@ -45,6 +48,9 @@ urlpatterns = patterns('',
     # Bug 819317 /gameon/ -> gameon.m.o
     redirect(r'gameon/$', 'https://gameon.mozilla.org'),
 
+    # Tabzilla
     redirect(r'tabzilla/media/js/tabzilla\.js$', '/tabzilla/tabzilla.js'),
-    redirect(r'tabzilla/media/css/tabzilla\.css$', '/media/css/tabzilla-min.css'),
+    redirect(r'tabzilla/media/css/tabzilla\.css$',
+             lambda r: '/media/css/tabzilla.less.css' if settings.TEMPLATE_DEBUG
+                       else '/media/css/tabzilla-min.css'),
 )

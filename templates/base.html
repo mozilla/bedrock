@@ -10,6 +10,8 @@
     <title>{% block page_title_prefix %}Mozilla — {% endblock %}{% block page_title %}{% endblock %}{% block page_title_suffix %} — mozilla.org{% endblock %}</title>
     <meta name="description" content="{% block description %}{% endblock %}">
 
+    <link href="/tabzilla/media/css/tabzilla.css" rel="stylesheet">
+
     <!--[if lt IE 9]>
       <script src="/media/js/libs/html5shiv.js"></script>
     <![endif]-->
@@ -17,8 +19,6 @@
     {% block site_css %}
       {{ css('common') }}
     {% endblock %}
-
-    {{ css('tabzilla') }}
 
     {% block extrahead %}{% endblock %}
 
@@ -101,7 +101,7 @@
       </footer>
     {% endblock %}
 
-    <script src="{{ url('tabzilla') }}"></script>
+    <script src="/tabzilla/media/js/tabzilla.js"></script>
     </div><!-- close #outer-wrapper -->
 
     {% block site_js %}

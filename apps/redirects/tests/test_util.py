@@ -30,3 +30,12 @@ class TestUrlPatterns(unittest.TestCase):
         response = self.client.get('/en-US/gloubi-boulga/ext/')
         eq_(response.status_code, 301)
         eq_(response['Location'], 'https://marketplace.mozilla.org')
+
+    def test_callable_redirect(self):
+        response = self.client.get('/en-US/gloubi-boulga/call/')
+        eq_(response.status_code, 301)
+        eq_(response['Location'], 'http://testserver/qwer')
+
+        response = self.client.get('/en-US/gloubi-boulga/call/?test=1')
+        eq_(response.status_code, 301)
+        eq_(response['Location'], 'http://testserver/asdf')
