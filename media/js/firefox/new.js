@@ -47,7 +47,7 @@ Mozilla.Firefox.New = (function() {
 
 			$('.download-firefox').on('click', function(e) {
 				// prevent download during testing
-				e.preventDefault();
+				//e.preventDefault();
 
 				// track download click
 				if (window._gaq) {
