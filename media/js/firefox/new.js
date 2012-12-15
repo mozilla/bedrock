@@ -42,24 +42,33 @@ Mozilla.Firefox.New = (function() {
 
 			// if browser does not support css transforms
 			if (!_css3) {
-				$('#stage-firefox').css('top', '-100%');
+				//$('#stage-firefox').css('top', '-100%');
 			}
 
 			$('.download-firefox').on('click', function(e) {
 				// prevent download during testing
-				//e.preventDefault();
+				e.preventDefault();
 
 				// track download click
 				if (window._gaq) {
 					_gaq.push(['_trackPageview', window.location.pathname]);
 				}
 
-				if (_css3) {
-					$('#stage-firefox').addClass('transition scene2');
-				} else {
+				$('#stage-firefox').show();
+
+				if (!_css3) {
 					$('#stage-firefox').animate({
-						top: '0%'
-					}, 400);
+						bottom: '-400px'
+					}, 400, function() {
+						$('.thankyou').focus();
+					});
+				} else {
+					$('#stage-firefox').addClass('scene2');
+					// transitionend firing multiple times in FF 17, including before transition actually finished
+					// work-around with setTimeout
+					setTimeout(function() {
+						$('.thankyou').focus();
+					}, 500);
 				}
 			});
 		}

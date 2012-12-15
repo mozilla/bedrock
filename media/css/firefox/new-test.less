@@ -108,8 +108,10 @@
     color: @buttonGreenDark;
     font-style: italic;
     font-size: 18px;
-    //letter-spacing: -0.1em;
     .open-sans-light;
+    &:focus {
+        outline: none;
+    }
 }
 
 .installation {
@@ -145,16 +147,7 @@
     margin: 0 auto;
     width: 100%;
     height: 400px;
-
     overflow: hidden;
-}
-
-.stage {
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 400px;
 }
 
 .mobile {
@@ -188,8 +181,14 @@
     }
 }
 
+/*
 // only apply transforms/transitions to supporting browsers (ms-transform deliberately omitted)
 .stage {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 400px;
     // initial view of stage = -((# of slides - 1) * 100)
     -moz-transform: translateY(-100%);
     -webkit-transform: translateY(-100%);
@@ -222,6 +221,45 @@
     width: 100%;
     .clearfix;
     overflow: hidden;
+}
+*/
+
+.stage {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 800px;
+
+    // add transition after button click to avoid any animation flicker at page load
+    //&.transition {
+        -moz-transition: bottom 0.4s ease 0.1s;
+        -webkit-transition: bottom 0.4s ease 0.1s;
+        -o-transition: bottom 0.4s ease 0.1s;
+        transition: bottom 0.4s ease 0.1s;
+    //}
+
+    &.scene2 {
+        bottom: -400px;
+    }
+}
+
+.scene {
+    position: absolute;
+    left: 0;
+    height: 400px;
+    width: 100%;
+    .clearfix;
+    overflow: hidden;
+}
+
+#scene1 {
+    top: 0;
+}
+
+#scene2 {
+    top: -400px;
+    //display: none;
 }
 
 #firefox-screenshot {
