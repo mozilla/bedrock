@@ -23,6 +23,7 @@ FORMATS = (('H', 'HTML'), ('T', 'Text'))
 LANGS = settings.NEWSLETTER_LANGUAGES
 LANGS_TO_STRIP = ['en-US', 'es']
 PARENTHETIC_RE = re.compile(r' \([^)]+\)$')
+LANG_FILES = 'mozorg/contribute'
 
 
 def strip_parenthetical(lang_name):
