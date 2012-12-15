@@ -7,13 +7,6 @@ Mozilla.Firefox.New = (function() {
 	var _css3;
 
 	var _init = function() {
-		// hack to test android
-		// TODO: remove for production
-		if (window.location.href.indexOf('forceandroid') > -1) {
-			var h = document.documentElement;
-			$(h).removeClass(site.platform).addClass('android');
-		}
-
 		// wrap #wrapper in div for noise bg
 		$('#wrapper').wrap('<div id="inner-wrapper" />');
 
@@ -26,7 +19,8 @@ Mozilla.Firefox.New = (function() {
 			$('#install1').attr('src', $('#install1').attr('src').replace(/win/gi, 'winIE8'));
 		}
 
-		// swipe FF dl link from button
+		// swipe FF dl link from button & add to 'click here' link
+		// better way coming in bedrock soon
 		var ff_dl_link;
 
 		$('.download-list li').each(function(i, li) {
@@ -41,9 +35,6 @@ Mozilla.Firefox.New = (function() {
 			_css3 = ($('html').is('.csstransforms.csstransitions')) ? true : false;
 
 			$('.download-firefox').on('click', function(e) {
-				// prevent download during testing
-				e.preventDefault();
-
 				// track download click
 				if (window._gaq) {
 					_gaq.push(['_trackPageview', window.location.pathname]);
