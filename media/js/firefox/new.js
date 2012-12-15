@@ -40,11 +40,6 @@ Mozilla.Firefox.New = (function() {
 		if (!$('html').hasClass('android')) {
 			_css3 = ($('html').is('.csstransforms.csstransitions')) ? true : false;
 
-			// if browser does not support css transforms
-			if (!_css3) {
-				//$('#stage-firefox').css('top', '-100%');
-			}
-
 			$('.download-firefox').on('click', function(e) {
 				// prevent download during testing
 				e.preventDefault();
