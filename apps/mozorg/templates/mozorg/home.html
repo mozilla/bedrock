@@ -48,8 +48,22 @@
 <section id="home-promo" class="pager pager-with-tabs pager-auto-rotate pager-no-history">
 
   <div class="pager-content">
+  
+    <div class="pager-page default-page" id="promo-ptwtshirt">
+      <script>// <![CDATA[
+        document.getElementById('promo-ptwtshirt').id = 'page-promo-ptwtshirt';
+      // ]]></script>
+      <a href="https://donate.mozilla.org/Protect-T-Shirt7?WT.mc_id=moptwtshirt&amp;WT.mc_ev=click" class="container">
+        <img src="{{ media('img/home/promo-ptwtshirt.jpg') }}" alt="">
+        <div>
+          <h3>{{_('Protect the world’s<br> largest public resource')}}</h3>
+          <h4>{{_('And get a T-shirt that says so.')}}</h4>
+          <p class="go">{{_('Donate to Mozilla')}}</p>
+        </div>
+      </a>
+    </div>
 
-    <div class="pager-page default-page" id="promo-android">
+    <div class="pager-page" id="promo-android">
       <script>// <![CDATA[
       document.getElementById('promo-android').id = 'page-promo-android';
       // ]]></script>
@@ -93,20 +107,6 @@
       </a>
     </div>
 #}
-    
-    <div class="pager-page" id="promo-ptwtshirt">
-      <script>// <![CDATA[
-        document.getElementById('promo-ptwtshirt').id = 'page-promo-ptwtshirt';
-      // ]]></script>
-      <a href="https://donate.mozilla.org/Protect-T-Shirt7?WT.mc_id=moptwtshirt&amp;WT.mc_ev=click" class="container">
-        <img src="{{ media('img/home/promo-ptwtshirt.jpg') }}" alt="">
-        <div>
-          <h3>{{_('Protect the world’s<br> largest public resource')}}</h3>
-          <h4>{{_('And get a T-shirt that says so.')}}</h4>
-          <p class="go">{{_('Donate to Mozilla')}}</p>
-        </div>
-      </a>
-    </div>
 
   </div>
 
