@@ -2,9 +2,7 @@ var Mozilla = window.Mozilla || {};
 Mozilla.Firefox = window.Mozilla.Firefox || {};
 
 Mozilla.Firefox.New = (function() {
-	//"use strict";
-
-	var _css3;
+	"use strict";
 
 	var _init = function() {
 
