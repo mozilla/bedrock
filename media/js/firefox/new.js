@@ -7,8 +7,6 @@ Mozilla.Firefox.New = (function() {
 	var _css3;
 
 	var _init = function() {
-		// wrap #wrapper in div for noise bg
-		$('#wrapper').wrap('<div id="inner-wrapper" />');
 
 		// replace install images
 		if (site.platform === 'osx') {
