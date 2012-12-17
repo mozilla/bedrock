@@ -44,6 +44,9 @@ urlpatterns = patterns('',
     # Bug 815527 /m/privacy.html -> /legal/privacy/firefox.html
     redirect(r'^m/privacy.html$', '/legal/privacy/firefox.html'),
 
+    # Bug 821047 /about/mission.html -> /mission/
+    redirect(r'^about/mission.html$', '/mission/'),
+
     # Bug 800298 /webmaker/ -> wm.o and /webmaker/videos/ -> wm.o/videos/
     redirect(r'webmaker/$', 'https://webmaker.org'),
     redirect(r'webmaker/videos/$', 'https://webmaker.org/videos/'),
