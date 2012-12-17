@@ -2,13 +2,9 @@ var Mozilla = window.Mozilla || {};
 Mozilla.Firefox = window.Mozilla.Firefox || {};
 
 Mozilla.Firefox.New = (function() {
-	//"use strict";
-
-	var _css3;
+	"use strict";
 
 	var _init = function() {
-		// wrap #wrapper in div for noise bg
-		$('#wrapper').wrap('<div id="inner-wrapper" />');
 
 		// replace install images
 		if (site.platform === 'osx') {
@@ -32,7 +28,6 @@ Mozilla.Firefox.New = (function() {
 		});
 
 		if (!$('html').hasClass('android')) {
-			_css3 = ($('html').is('.csstransforms.csstransitions')) ? true : false;
 
 			$('.download-firefox').on('click', function(e) {
 				// track download click
@@ -40,9 +35,8 @@ Mozilla.Firefox.New = (function() {
 					_gaq.push(['_trackPageview', window.location.pathname]);
 				}
 
-				$('#stage-firefox').show();
-
-				if (!_css3) {
+				if (!Modernizr.csstransitions) {
+				    $('#scene2').show();
 					$('#stage-firefox').animate({
 						bottom: '-400px'
 					}, 400, function() {

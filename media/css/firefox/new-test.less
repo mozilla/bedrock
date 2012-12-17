@@ -1,26 +1,36 @@
 @import "template-resp.less";
 
 .sky #outer-wrapper {
-    background: rgb(234,239,242);
-    background: url(/media/img/firefox/new/bg-blue-gradient.png) top left repeat-x, -moz-radial-gradient(center, ellipse cover,  rgba(234,239,242,1) 0%, rgba(212,221,228,1) 100%);
-    background: url(/media/img/firefox/new/bg-blue-gradient.png) top left repeat-x, -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(234,239,242,1)), color-stop(100%,rgba(212,221,228,1)));
-    background: url(/media/img/firefox/new/bg-blue-gradient.png) top left repeat-x, -webkit-radial-gradient(center, ellipse cover,  rgba(234,239,242,1) 0%,rgba(212,221,228,1) 100%);
-    background: url(/media/img/firefox/new/bg-blue-gradient.png) top left repeat-x, -o-radial-gradient(center, ellipse cover,  rgba(234,239,242,1) 0%,rgba(212,221,228,1) 100%);
-    background: url(/media/img/firefox/new/bg-blue-gradient.png) top left repeat-x, -ms-radial-gradient(center, ellipse cover,  rgba(234,239,242,1) 0%,rgba(212,221,228,1) 100%);
-    background: url(/media/img/firefox/new/bg-blue-gradient.png) top left repeat-x, radial-gradient(ellipse at center,  rgba(234,239,242,1) 0%,rgba(212,221,228,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eaeff2', endColorstr='#d4dde4',GradientType=1 );
-}
-
-#inner-wrapper {
-    background: url(/media/img/firefox/new/bg-noise.png) top left repeat;
+    background: #eaeff2;
+    background: -moz-radial-gradient(center, ellipse cover, rgba(234,239,242,1) 0%, rgba(212,221,228,.5) 60%),
+                -moz-linear-gradient(top, rgba(202,225,244,1) 0%, rgba(125,185,232,0) 100%);
+    background: -webkit-gradient(radial, center center, 0px, center center, 60%, color-stop(0%,rgba(234,239,242,.9)), color-stop(60%,rgba(212,221,228,.5))),
+                -webkit-linear-gradient(top, rgba(202,225,244,1) 0%, rgba(125,185,232,0) 100%);
+    background: -webkit-radial-gradient(center, ellipse cover, rgba(234,239,242,1) 0%, rgba(212,221,228,.4) 60%),
+                -webkit-linear-gradient(top, rgba(202,225,244,1) 0%, rgba(125,185,232,0) 100%);
+    background: -ms-radial-gradient(center, ellipse cover,  rgba(234,239,242,1) 0%, rgba(212,221,228,.5) 60%),
+                -ms-linear-gradient(top, rgba(202,225,244,1) 0%, rgba(125,185,232,0) 100%);
+    background: radial-gradient(ellipse at center, rgba(234,239,242,1) 0%,rgba(212,221,228,.5) 50%),
+                linear-gradient(to bottom, rgba(202,225,244,1) 0%,rgba(125,185,232,0) 100%);
+    &:after {
+        z-index: 0;
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAMAAABgZ9sFAAAAOVBMVEWzs7OoqKjDw8PPz8+YmJjb29uNjY2AgIDn5+d0dHTy8vJpaWn///+mpqaWlpaOjo7Z2dlcXFyXl5d+/Ed9AAAAE3RSTlMTExMTExMTExMTExMTExMTExMTdz7yJQAAAy1JREFUeF6VlQ2OXkUQxFw/3TPvfZsEuP9hOQAINjcolSybpvZGjVwMU2kdR1afWhGplMuKRsm1VusIL3HD+DEnaeixZaNleCGRj0zarS+mkZ9cxtHpelIJArGKlO3O8ivy2rbXznF6dVPY62z/gHtCUVYurLoS4jLt7J8jHnCxV2HOHWY6uJrR0UQSRh3Zqq2tiFtjWRrVJEa7vqG79rVxo7TXPWe9QvdQNxRODtgwc2uOGrPvepSpZ0MnnoKY9IT1RhcFvTd0iUXU0WsD664TNUlQJIhbHwyPdcaTvojy7FUd0RuJKJLt1YvygVgf2xraMfJtGjBGO0TJw8JB8XtOLHtnKoX/GCqGgZGIiO8xv3OLTL2EUZTYmloJuPUzO1vt5iW2RIjIl0dyXYNG8zZqY9c48SrbDVqikTS560NVO8XM0Nx6n5yK3GgYkYiX1KmsV0dG0vHIGVNzmuzKHJibil12vNJfY00tOZu+bRUNTLwUao69RJfpodopMle1oDzN4tpOWbmcIxFg0ila+zJdLmZFTjg/8pgVEmRuZS6OZVNXyTqPsPdk5rCD/YzmDMZmWYICcRR1Y4Er3vEKhrM6msqo4fVo5K31eDvJTiKfpwxzj0iqo0exDiqQzzOUR3q7IcFvF7qXFS/gwu1aFZQpHN9+ETuqd4VVmxmTM7KOPGdvX2sISUXADFaZJuHeKSTuvljKkkq1JN3ngNBXDs+TLiUCyyzaU8VYgHLcp/Jsg4lV9PNGUix5V/ps6ciN7Oy42DD+HdYn5jvejd3DKCKzhLrqN3Cj43XljZ24SJkdmanwbS1tuKoGbBp7RCMezbmfu+KyFPgy+65lNyrb4FTqWmaHIvcgonGXDJc+t18D/6oTgzSaPVaqs5XQi1GQ5AHaJf83rpPHCLyxe1ZC1jrQS7Qqmu5g4b7qNBqwBZbFOZkxtED1y0JowTuPMXrOl+nKwoKf+SQ4W+fojGFugIK4adQzLUmMaLz0kohTryCLuLqUqTQhRpHxWvpnt+gh8559d86NML31JX4V3Y22EC2JL4VizfeSBsrEm7L2D3Ezp3iiO69vLOzzSmrtvwHzThlF3RYPUQAAAABJRU5ErkJggg==);
+    }
 }
 
 #wrapper {
+    z-index: 1;
     width: 980px;
     padding: 0 10px 0 10px;
 }
 
 #colophon {
+    z-index: 1;
     margin-top: 0;
     padding-top: 20px;
     text-align: center;
@@ -259,7 +269,10 @@
 
 #scene2 {
     top: -400px;
-    //display: none;
+    display: none;
+}
+.scene2 #scene2{
+    display: block;
 }
 
 #firefox-screenshot {
