@@ -28,7 +28,6 @@ Mozilla.Firefox.New = (function() {
 		});
 
 		if (!$('html').hasClass('android')) {
-			_css3 = ($('html').is('.csstransforms.csstransitions')) ? true : false;
 
 			$('.download-firefox').on('click', function(e) {
 				// track download click
@@ -36,9 +35,8 @@ Mozilla.Firefox.New = (function() {
 					_gaq.push(['_trackPageview', window.location.pathname]);
 				}
 
-				$('#stage-firefox').show();
-
-				if (!_css3) {
+				if (!Modernizr.csstransitions) {
+				    $('#scene2').show();
 					$('#stage-firefox').animate({
 						bottom: '-400px'
 					}, 400, function() {
