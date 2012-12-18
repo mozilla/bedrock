@@ -15,7 +15,7 @@ $(document).ready(function() {
             from    : 480,
             to      : 760,
             width   : 440,
-            height  : 180,
+            height  : 248,
             padding : 0
         },
         {
@@ -48,8 +48,8 @@ $(document).ready(function() {
 
         for (var i = 0; i < sizes.length; i++) {
             if (
-                   (!sizes[i].from || width > sizes[i].from)
-                && (!sizes[i].to || width <= sizes[i].to)
+                   (!sizes[i].from || width >= sizes[i].from)
+                && (!sizes[i].to || width < sizes[i].to)
             ) {
                 size = {
                     width   : sizes[i].width,
@@ -175,7 +175,8 @@ $(document).ready(function() {
             )
             .animate(
                 {
-                    'left': Math.floor(((width - 2 * margin) / 2) + (size.width / 2) + margin)
+                    'left' : Math.floor(((width - 2 * margin) / 2) + (size.width / 2) + margin),
+                    'top'  : size.padding
                 },
                 duration
             );
@@ -186,7 +187,7 @@ $(document).ready(function() {
         $container
             .animate(
                 {
-                    'height' : size.height + 2 * margin + goHeight + 10
+                    'height' : size.height + margin + goHeight + 10 + size.padding
                 },
                 duration,
                 easing
@@ -207,7 +208,8 @@ $(document).ready(function() {
                 {
                     'height' : size.height,
                     'width'  : size.width,
-                    'left'   : Math.floor(((width - 2 * margin) / 2) - (size.width / 2) + margin)
+                    'left'   : Math.floor(((width - 2 * margin) / 2) - (size.width / 2) + margin),
+                    'top'    : size.padding
                 },
                 duration,
                 easing,
