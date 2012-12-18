@@ -182,7 +182,7 @@ $(document).ready(function() {
             );
 
         var goHeight = $goLink.height();
-        $goLink.css('left', Math.floor(((width - 2 * margin) / 2) - (size.width / 2) + margin));
+        $goLink.css('left', Math.max(Math.floor((width - size.width) / 2), margin));
 
         $container
             .animate(
