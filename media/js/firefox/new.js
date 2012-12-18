@@ -40,7 +40,7 @@ Mozilla.Firefox.New = (function() {
 					_gaq.push(['_trackPageview', window.location.pathname]);
 				}
 
-				$('#stage-firefox').show();
+				$('#scene2').show();
 
 				if (!_css3) {
 					$('#stage-firefox').animate({
