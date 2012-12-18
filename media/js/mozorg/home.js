@@ -32,11 +32,11 @@ $(document).ready(function() {
     var videoJS;
 
     var $close = $(
-        '<span class="video-close" tabindex="0" role="button"></span>'
+        '<span class="video-close" tabindex="0" role="button">×</span>'
     );
 
     $close
-        .text(closeText)
+        .attr('title', closeText)
         .click(function(e) {
             hideVideo();
             close();
