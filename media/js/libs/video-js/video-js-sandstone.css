@@ -1,31 +1,81 @@
+.vjs-default-skin.vjs-paused .vjs-play-control div,
+.vjs-default-skin.vjs-playing .vjs-play-control div,
+.vjs-default-skin .vjs-rewind-control div,
+.vjs-default-skin .vjs-mute-control div,
+.vjs-default-skin .vjs-mute-control div,
+.vjs-default-skin .vjs-mute-control.vjs-vol-0 div,
+.vjs-default-skin .vjs-mute-control.vjs-vol-1 div,
+.vjs-default-skin .vjs-mute-control.vjs-vol-2 div,
+.vjs-default-skin div.vjs-seek-handle,
+.vjs-default-skin .vjs-fullscreen-control div,
+.vjs-default-skin.vjs-fullscreen .vjs-fullscreen-control div,
+.vjs-default-skin div.vjs-big-play-button span,
+.vjs-default-skin .vjs-menu-button div,
+.vjs-default-skin .vjs-menu-button ul li.vjs-selected {
+    background-image:  url('video-js-sandstone.png');
+}
+
+
 .vjs-default-skin .vjs-controls,
-.vjs-default-skin .vjs-time-controls,
 .vjs-default-skin div.vjs-progress-control,
 .vjs-default-skin .vjs-big-play-button {
     background: rgb(50,50,50);
-    background: rgba(50,50,50,0.5);
+    background: rgba(30,30,30,0.5);
     color: #999;
     border: 0;
+}
+
+.vjs-default-skin .vjs-control,
+.vjs-default-skin .vjs-controls {
+    height: 3em;
+}
+
+.vjs-default-skin .vjs-play-control {
+    width: 3em;
+}
+
+.vjs-default-skin.vjs-paused .vjs-play-control div,
+.vjs-default-skin.vjs-playing .vjs-play-control div,
+.vjs-default-skin .vjs-rewind-control div,
+.vjs-default-skin .vjs-mute-control div,
+.vjs-default-skin .vjs-fullscreen-control div {
+    margin-top: 0.7em;
 }
 
 .vjs-default-skin .vjs-progress-holder {
     background: none;
 }
 
-.vjs-default-skin .vjs-time-controls,
-.vjs-default-skin div.vjs-progress-control {
+.vjs-default-skin .vjs-time-controls {
     border: 0;
-    height: 12px;
-    top: -16px;
-    padding: 2px 0;
+    top: 0;
+    left: 3em;
+    line-height: 3em;
+    background: none;
 }
 
+.vjs-default-skin .vjs-remaining-time {
+    right: 12em;
+    left: auto;
+}
+
+.vjs-default-skin div.vjs-progress-control {
+    background: none;
+    border: 0;
+    top: 1em;
+    left: 8em;
+    right: 17em;
+}
+
+.vjs-default-skin .vjs-progress-holder,
 .vjs-default-skin .vjs-progress-holder .vjs-play-progress,
 .vjs-default-skin .vjs-progress-holder .vjs-load-progress {
-    -webkit-border-radius: 3px;
-       -moz-border-radius: 3px;
-            border-radius: 3px;
+    height: 0.8em;
+    -webkit-border-radius: 2px;
+       -moz-border-radius: 2px;
+            border-radius: 2px;
 }
+
 .vjs-default-skin .vjs-volume-bar,
 .vjs-default-skin .vjs-volume-level {
     -webkit-border-radius: 2px;
@@ -40,7 +90,7 @@
 
 .vjs-default-skin .vjs-progress-holder {
     background: rgb(100,100,100);
-    background: rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.5);
     -webkit-border-radius: 2px;
        -moz-border-radius: 2px;
             border-radius: 2px;
@@ -55,12 +105,22 @@
     background: rgb(255,255,255);
 }
 
-.vjs-default-skin .vjs-volume-handle {
+.vjs-default-skin .vjs-volume-handle,
+.vjs-default-skin div.vjs-seek-handle {
     background: #888;
     border-color: #888;
     -webkit-box-shadow: 0 1px rgba(255,255,255,0.2) inset, 0 0 0 1px rgba(0,0,0,0.2), 0 1px rgba(0,0,0,0.5);
        -moz-box-shadow: 0 1px rgba(255,255,255,0.2) inset, 0 0 0 1px rgba(0,0,0,0.2), 0 1px rgba(0,0,0,0.5);
             box-shadow: 0 1px rgba(255,255,255,0.2) inset, 0 0 0 1px rgba(0,0,0,0.2), 0 1px rgba(0,0,0,0.5);
+}
+
+.vjs-default-skin div.vjs-seek-handle {
+    width: 1.2em;
+    height: 1.2em;
+    top: 0.1em;
+    -webkit-border-radius: 0.6em;
+       -moz-border-radius: 0.6em;
+            border-radius: 0.6em;
 }
 
 .vjs-default-skin .vjs-big-play-button {
