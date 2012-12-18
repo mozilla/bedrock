@@ -4,6 +4,65 @@ $(document).ready(function() {
         return (/MSIE\ (4|5|6|7|8)/.test(navigator.userAgent));
     })();
 
+    var sizes = [
+        {
+            to      : 480,
+            width   : 320,
+            height  : 180,
+            padding : 0
+        },
+        {
+            from    : 480,
+            to      : 760,
+            width   : 440,
+            height  : 180,
+            padding : 0
+        },
+        {
+            from    : 760,
+            to      : 1000,
+            width   : 720,
+            height  : 405,
+            padding : 20
+        },
+        {
+            from    : 1000,
+            width   : 853,
+            height  : 480,
+            padding : 20
+        }
+    ];
+
+    function getSize()
+    {
+        var width = $(window).width();
+        var size  = {
+            width   : sizes[0].width,
+            height  : sizes[0].height,
+            padding : sizes[0].padding
+        };
+
+        if (isMSIEpre9) {
+            width = 1001;
+        }
+
+        for (var i = 0; i < sizes.length; i++) {
+            if (
+                   (!sizes[i].from || width > sizes[i].from)
+                && (!sizes[i].to || width <= sizes[i].to)
+            ) {
+                size = {
+                    width   : sizes[i].width,
+                    height  : sizes[i].height,
+                    padding : sizes[i].padding
+                };
+                break;
+            }
+        }
+
+        return size;
+    };
+
     var $thumb = $('#promo-flicks-keyframe');
     var $link = $thumb.next();
     var $container = $('<div class="container"></div>');
@@ -268,9 +327,15 @@ $(document).ready(function() {
         var width = $(window).width();
 
         if (videoJS) {
+            var size = getSize();
             var videoWidth = $videoContainer.width();
 
-            if (width <= 480 && videoWidth != 320) {
+            if (size.width != videoWidth) {
+                videoJS.size(size.width, size.height);
+                reposition(size.padding);
+            }
+
+/*            if (width <= 480 && videoWidth != 320) {
                 videoJS.size(320, 180);
                 reposition(0);
             } else if (width > 480 && width <= 760 && videoWidth != 440) {
@@ -282,7 +347,7 @@ $(document).ready(function() {
             } else if (width > 1000 && videoWidth != 853) {
                 videoJS.size(853, 480);
                 reposition(20);
-            }
+            }*/
         }
     };
 
