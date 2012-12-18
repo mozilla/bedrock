@@ -101,9 +101,6 @@ $(document).ready(function() {
             close();
         });
 
-    var destHeight = 480;
-    var destWidth  = 853;
-
     var margin = 20;
     var duration = 400;
     var easing = 'swing';
@@ -156,6 +153,8 @@ $(document).ready(function() {
         var thumbWidth    = $thumb.width();
         var linkPosition  = $link.position();
 
+        var size = getSize();
+
         $link.css('display', 'none');
 
         $container
@@ -176,18 +175,18 @@ $(document).ready(function() {
             )
             .animate(
                 {
-                    'left': Math.floor(((width - 2 * margin) / 2) + (destWidth / 2) + margin)
+                    'left': Math.floor(((width - 2 * margin) / 2) + (size.width / 2) + margin)
                 },
                 duration
             );
 
         var goHeight = $goLink.height();
-        $goLink.css('left', Math.floor(((width - 2 * margin) / 2) - (destWidth / 2) + margin));
+        $goLink.css('left', Math.floor(((width - 2 * margin) / 2) - (size.width / 2) + margin));
 
         $container
             .animate(
                 {
-                    'height' : destHeight + 2 * margin + goHeight + 10
+                    'height' : size.height + 2 * margin + goHeight + 10
                 },
                 duration,
                 easing
@@ -206,9 +205,9 @@ $(document).ready(function() {
             )
             .animate(
                 {
-                    'height' : destHeight,
-                    'width'  : destWidth,
-                    'left'   : Math.floor(((width - 2 * margin) / 2) - (destWidth / 2) + margin)
+                    'height' : size.height,
+                    'width'  : size.width,
+                    'left'   : Math.floor(((width - 2 * margin) / 2) - (size.width / 2) + margin)
                 },
                 duration,
                 easing,
@@ -334,20 +333,6 @@ $(document).ready(function() {
                 videoJS.size(size.width, size.height);
                 reposition(size.padding);
             }
-
-/*            if (width <= 480 && videoWidth != 320) {
-                videoJS.size(320, 180);
-                reposition(0);
-            } else if (width > 480 && width <= 760 && videoWidth != 440) {
-                videoJS.size(440, 248);
-                reposition(0);
-            } else if (width > 760 && width <= 1000 && videoWidth != 720) {
-                videoJS.size(720, 405);
-                reposition(20);
-            } else if (width > 1000 && videoWidth != 853) {
-                videoJS.size(853, 480);
-                reposition(20);
-            }*/
         }
     };
 
