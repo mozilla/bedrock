@@ -111,6 +111,9 @@ MINIFY_BUNDLES = {
         'firefox': (
             'css/firefox/template.less',
         ),
+        'firefox_all': (
+            'css/firefox/all.less',
+        ),
         'firefox-resp': (
             'css/firefox/template-resp.less',
         ),
@@ -293,12 +296,17 @@ MINIFY_BUNDLES = {
             'js/global.js',
             'js/nav-main.js',
             'js/footer-email-form.js',
+            'js/mozilla-input-placeholder.js',
+        ),
+        'firefox_all': (
+            'js/firefox-language-search.js',
         ),
         'firefox-resp': (
             'js/libs/jquery-1.7.1.min.js',
             'js/global.js',
             'js/nav-main-resp.js',
             'js/footer-email-form.js',
+            'js/mozilla-input-placeholder.js',
         ),
         'firefox_central': (
             'js/mozilla-video-tools.js',
