@@ -1,3 +1,7 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
 from django.conf.urls.defaults import *
 from mozorg.hierarchy import PageNode, PageRoot
 
@@ -59,6 +63,11 @@ hierarchy = PageRoot('Home', children=(
         PageNode('Copy tone', path='copy-tone', template='styleguide/communications/copy-tone.html'),
         PageNode('Copy rules', path='copy-rules', template='styleguide/communications/copy-rules.html'),
         PageNode('Translation', path='translation', template='styleguide/communications/translation.html'),
+    )),
+    PageNode('Products', path='products', children=(
+        PageNode('Firefox OS', path='firefoxos', children=(
+            PageNode('Icons', path='icons', template='styleguide/products/firefox-os-icons.html'),
+        )),
     )),
 ))
 

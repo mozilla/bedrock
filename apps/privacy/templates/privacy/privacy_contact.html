@@ -1,7 +1,11 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
 {% if not form_submitted %}
     <form name="contact_privacy" id="contact_privacy" action="#contactus" method="post">
         <fieldset>
-            <legend>Requests or other questions</legend>
+            <legend>Please use this form to send us your questions, concerns or thoughts related to privacy at Mozilla.</legend>
             <div class="field">
               {{ form.name.errors }}
               <label for="id_name" class="open-sans-light">Your name:</label>

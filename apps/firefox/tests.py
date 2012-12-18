@@ -1,3 +1,7 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
 import unittest
 
 from django.test.client import Client
@@ -32,6 +36,14 @@ class FxVersionRedirectsMixin(object):
         eq_(response['Vary'], 'User-Agent')
         eq_(response['Location'],
             'http://testserver%s' % reverse('firefox.new'))
+
+    def test_bad_firefox(self):
+        user_agent = 'Mozilla/5.0 (SaferSurf) Firefox 1.5'
+        response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
+        eq_(response.status_code, 301)
+        eq_(response['Vary'], 'User-Agent')
+        eq_(response['Location'],
+            'http://testserver%s' % reverse('firefox.update'))
 
     @patch.dict(product_details.firefox_versions,
                 LATEST_FIREFOX_VERSION='14.0')

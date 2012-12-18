@@ -1,5 +1,12 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+from django.conf import settings
 from django.conf.urls.defaults import *
+
 from util import redirect
+
 
 urlpatterns = patterns('',
 
@@ -34,7 +41,19 @@ urlpatterns = patterns('',
     # Bug 800467 /apps/partners -> marketplace.m.o/developers
     redirect(r'apps/partners/$', 'https://marketplace.mozilla.org/developers/'),
 
+    # Bug 815527 /m/privacy.html -> /legal/privacy/firefox.html
+    redirect(r'^m/privacy.html$', '/legal/privacy/firefox.html'),
+
     # Bug 800298 /webmaker/ -> wm.o and /webmaker/videos/ -> wm.o/videos/
     redirect(r'webmaker/$', 'https://webmaker.org'),
     redirect(r'webmaker/videos/$', 'https://webmaker.org/videos/'),
+
+    # Bug 819317 /gameon/ -> gameon.m.o
+    redirect(r'gameon/$', 'https://gameon.mozilla.org'),
+
+    # Tabzilla
+    redirect(r'tabzilla/media/js/tabzilla\.js$', '/tabzilla/tabzilla.js'),
+    redirect(r'tabzilla/media/css/tabzilla\.css$',
+             lambda r: '/media/css/tabzilla.less.css' if settings.TEMPLATE_DEBUG
+                       else '/media/css/tabzilla-min.css'),
 )

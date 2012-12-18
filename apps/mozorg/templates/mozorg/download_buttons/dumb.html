@@ -1,0 +1,12 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+<div class="download download-dumb">
+  <h4>Download Firefox — {{ locale_name }}</h4>
+  <ul>
+    {% for build in builds %}
+      <li><a href="{{ build.download_link_direct or build.download_link }}" class="button-white">{{ build.platform_pretty }}</a></li>
+    {% endfor %}
+  </ul>
+</div>

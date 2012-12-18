@@ -1,0 +1,63 @@
+@import "sandstone/lib.less";
+
+@background: #f5f1e8;
+
+hgroup {
+    text-align: center;
+    padding-bottom: @baseLine * 2;
+    img {
+        width: 100%;
+        height: auto;
+        padding-top: @baseLine * 2;
+    }
+}
+
+#itu {
+    .main-column {
+        .span(5);
+    }
+    .sidebar {
+        .span(7);
+        img {
+            margin-bottom: @gridGutterWidth;
+        }
+        ol {
+            font-size: 24px;
+            p {
+                font-size: 14px;
+            }
+        }
+        h3 {
+            letter-spacing: -0.25px;
+            line-height: 100%;
+        }
+    }
+    .your-say {
+        border-bottom: 1px solid @borderColor;
+        margin-bottom: @gridGutterWidth;
+    }
+}
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+    #itu {
+        .main-column {
+            .span_narrow(5);
+        }
+        .sidebar {
+            .span_narrow(7);
+        }   
+    } 
+}
+@media only screen and (max-width: @breakTablet) {
+    #itu {
+        .main-column {
+            width: auto;
+            margin: 0;
+        }
+        .sidebar {
+            width: auto;
+            margin: @gridGutterWidth 0 0 0;
+            border-top: 1px solid @borderColor;
+            padding-top: @gridGutterWidth;
+        }
+    }
+}

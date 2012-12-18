@@ -1,0 +1,56 @@
+{% extends "base-resp.html" %}
+
+{% block page_title %}ITU{% endblock %}
+
+{% block body_id %}itu{% endblock %}
+{% block body_class %}sand{% endblock %}
+
+{% block extrahead %}
+  {{ css('itu') }}
+{% endblock %}
+
+{% block content %}
+<hgroup class="container">
+  <h1 class="large">ITU</h1>
+  <h2>Make your voice heard on the ITU</h2>
+</hgroup>
+<div id="main-content">
+  <article class="row">
+    <div class="main-column">
+      <p>The Web lets us speak out, share, and connect around the things that matter. It creates new opportunities, holds governments to account, breaks through barriers, and makes cats famous. This isn't a coincidence. It's because the Web belongs to all of us: We all get a say in how it's built.</p>
+      <p>Mozilla has made it <a href="{{ url('mozorg.mission') }}">our mission</a> to keep the power of the web in people's hands. But all this could change on December 3.</p>
+      <p>Our governments are going to meet in Dubai to decide whether an old treaty, the International Telecommunication Union, can be expanded to regulate - to control - the Internet.</p>
+      <p>The issue isn't whether our governments, the UN, or even the ITU should play a role in shaping the Web. The problem is that they are trying to do it behind closed doors, in secret, without us.</p>
+      <p>We believe everyone should have a voice. And this site is to help you be heard in Dubai.</p>
+    </div>
+    <aside class="sidebar">
+      {% block sidebar %}
+        <section class="your-say">
+          <h2>Have Your Say</h2>
+          <p>Our <a href="https://webmaker.org/en-US/ITU/kit/">ITU Engagement Kit</a> provides resources for understanding what’s at stake and the tools to make a difference.</p>
+          <ol>
+            <li>
+              <h3>Learn Why This Matters</h3>
+              <p>Read <a href="https://blog.mozilla.org/blog/2012/11/29/the-itu-and-you/">Mozilla's position on the ITU</a> and explore other <a href="https://webmaker.org/ITU/kit/#the-issues">resources from across the Web</a>.</p>
+            </li>
+            <li>
+              <h3>Create Your Message</h3>
+              <p><a href="https://webmaker.org/ITU/videos/">See what other people are saying</a> and <a href="https://www.webmaker.org/en-US/projects/roll-your-own-itu-activism-video/">make your own interactive video</a> to <a href="https://webmaker.org/ITU/kit/#activate">share your own ITU message</a>.</p>
+            </li>
+            <li>
+              <h3>Engage in the Conversation</h3>
+              <p>Get the word out! We've collected some channels and allies you can work with to <a href="https://webmaker.org/en-US/ITU/kit/#custom-message">get people engaged</a> on- and offline.</p>
+            </li>
+          </ol>
+        </section>
+        <section class="micro-grants">    
+          <h2>Micro-grants for Civil Society</h2>
+          <p>We've provided support to 10 amazing open web advocates from around the world. <a href="https://webmaker.org/ITU/advocates/">Check out their projects and get involved!</a></p>
+        </section>
+      {% endblock %}
+    </aside>
+  </article>
+</div>
+{% endblock %}
+
+{% block email_form %}{% endblock %}

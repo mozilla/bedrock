@@ -1,3 +1,7 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
 # Django settings file for bedrock.
 
 import os
@@ -73,14 +77,14 @@ MINIFY_BUNDLES = {
         'firefoxos': (
             'css/firefoxos.less',
         ),
-        'gameon': (
-            'css/gameon.less',
-        ),
         'grants': (
             'css/grants.less',
         ),
         'collusion': (
             'css/collusion.less',
+        ),
+        'itu': (
+            'css/itu.less',
         ),
         'common': (
             'css/sandstone/sandstone.less',
@@ -243,6 +247,10 @@ MINIFY_BUNDLES = {
             'css/styleguide/identity-thunderbird.less',
             'css/styleguide/identity-webmaker.less',
             'css/styleguide/communications.less',
+            'css/styleguide/products-firefox-os.less',
+        ),
+        'tabzilla': (
+            'css/tabzilla.less',
         ),
         'video': (
             'css/sandstone/video.less',
@@ -411,6 +419,8 @@ DOMAIN_METHODS = {
             'tower.management.commands.extract.extract_tower_python'),
         ('apps/**/templates/**.html',
             'tower.management.commands.extract.extract_tower_template'),
+        ('apps/**/templates/**.js',
+            'tower.management.commands.extract.extract_tower_template'),
         ('templates/**.html',
             'tower.management.commands.extract.extract_tower_template'),
     ],
@@ -467,20 +477,20 @@ INSTALLED_APPS = (
     'product_details',
 
     # Local apps
-    'firefoxos',
-    'foundation',
-    'gameon',
-    'grants',
     'collusion',
     'firefox',
+    'firefoxos',
+    'foundation',
+    'grants',
+    'legal',
     'marketplace',
     'mozorg',
     'persona',
-    'research',
-    'styleguide',
     'privacy',
     'redirects',
-    'legal',
+    'research',
+    'styleguide',
+    'tabzilla',
 
     # libs
     'l10n_utils',
@@ -539,3 +549,6 @@ def lazy_email_backend():
 EMAIL_BACKEND = lazy(lazy_email_backend, str)()
 
 AURORA_STUB_INSTALLER = False
+
+# Google Analytics
+GA_ACCOUNT_CODE = ''

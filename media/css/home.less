@@ -1,3 +1,7 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
 @import "sandstone/lib.less";
 
 /* {{{ Main Feature */
@@ -303,6 +307,7 @@
             text-decoration: none;
             text-shadow: none;
             font-size: 28px;
+            line-height: 1.2;
             float: none;
             width: 50%;
             margin-bottom: @baseLine;
@@ -313,20 +318,40 @@
         }
     }
 
+    #promo-android,
+    #page-promo-android {
+        background-color: #76b0cd;
+    }
+
     #promo-firefoxos,
     #page-promo-firefoxos {
+        background-color: #637079;
         h4 {
             width: 70%;
         }
     }
 
-    #promo-flicksbest,
-    #page-promo-flicksbest {
+    #promo-fxtshirt,
+    #page-promo-fxtshirt {
+        background-color: #637079;
         h3 {
-            font-size: 46px
+            font-size: 46px;
+            width: 100%;
         }
         h4 {
-            width: 70%;
+            width: 100%;
+        }
+    }
+
+    #promo-ptwtshirt,
+    #page-promo-ptwtshirt {
+        background-color: #76b0cd;
+        h3 {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+        h4 {
+             width: 100%;
         }
     }
 }
@@ -508,26 +533,26 @@
             padding: 12px;
             font-size: 28px;
         }
-        
+
         #promo-firefoxos,
         #page-promo-firefoxos {
             h4 {
                 width: auto;
             }
         }
-        #promo-flicksbest,
-        #page-promo-flicksbest {
-            h3  {
-                font-size: 24px;
+
+        #promo-ptwtshirt,
+        #page-promo-ptwtshirt {
+            background-color: #76b0cd;
+            h3 {
+                font-size: 28px;
             }
             h4 {
-                font-size: 20px;
                 width: auto;
             }
         }
+
     }
-
-
 
     #home-news,
     #home-promos,
@@ -592,20 +617,10 @@
             padding: 12px;
             font-size: 28px;
         }
-        
+
         #promo-firefoxos,
         #page-promo-firefoxos {
             h4 {
-                width: auto;
-            }
-        }
-        #promo-flicksbest,
-        #page-promo-flicksbest {
-            h3  {
-                font-size: 32px;
-            }
-            h4 {
-                font-size: 20px;
                 width: auto;
             }
         }

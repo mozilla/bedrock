@@ -1,3 +1,7 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
 from django.conf import settings
 from django.conf.urls.defaults import *
 
@@ -14,20 +18,20 @@ handler500 = 'bedrock_util.server_error_view'
 
 urlpatterns = patterns('',
     # Main pages
-    (r'^firefoxos/', include('firefoxos.urls')),
-    (r'^gameon/', include('gameon.urls')),
-    (r'^grants/', include('grants.urls')),
-    (r'^collusion/', include('collusion.urls')),
     (r'^apps/', include('marketplace.urls')),
-    (r'^persona/', include('persona.urls')),
-    (r'^styleguide/', include('styleguide.urls')),
+    (r'^collusion/', include('collusion.urls')),
+    (r'^firefoxos/', include('firefoxos.urls')),
+    (r'^foundation/', include('foundation.urls')),
+    (r'^grants/', include('grants.urls')),
     (r'^legal/', include('legal.urls')),
-    (r'', include('redirects.urls')),
+    (r'^persona/', include('persona.urls')),
+    (r'^privacy', include('privacy.urls')),
+    (r'^styleguide/', include('styleguide.urls')),
+    (r'^tabzilla/', include('tabzilla.urls')),
     (r'', include('firefox.urls')),
     (r'', include('mozorg.urls')),
-    (r'^privacy', include('privacy.urls')),
+    (r'', include('redirects.urls')),
     (r'', include('research.urls')),
-    (r'^foundation/', include('foundation.urls')),
 
     # L10n example.
     (r'^l10n_example/', include('l10n_example.urls')),

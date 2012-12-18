@@ -1,3 +1,7 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
 {% extends "base-resp.html" %}
 
 {% block page_title_prefix %}{{ page_title }} — {% endblock %}
@@ -29,7 +33,7 @@
 {% block sidebar %}
   <div id="sidebar">
   <h2><a href="{{ url('styleguide.home') }}">
-    <img src="{{ media('/img/styleguide/mozilla.png') }}" height="28" width="107" alt="mozilla">
+    <img src="{% block guide_logo %}{{ media('/img/styleguide/mozilla.png') }}{% endblock %}" height="28" width="107" alt="mozilla">
     Style guide
   </a></h2>
   <nav>

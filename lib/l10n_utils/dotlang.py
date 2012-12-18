@@ -1,5 +1,9 @@
 # coding=utf-8
 
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
 """This library parses dotlang files migrated over from the old PHP
 system.
 
@@ -78,11 +82,11 @@ def translate(text, files):
 
     for file_ in files:
         key = "dotlang-%s-%s" % (lang, file_)
+        rel_path = os.path.join('locale', lang, '%s.lang' % file_)
 
         trans = cache.get(key)
         if trans is None:
-            path = os.path.join(settings.ROOT, 'locale', lang,
-                                '%s.lang' % file_)
+            path = os.path.join(settings.ROOT, rel_path)
             trans = parse(path)
             cache.set(key, trans, settings.DOTLANG_CACHE)
 
@@ -94,7 +98,7 @@ def translate(text, files):
                                'replaced text (aka %s)')
                 message = '%s\n\n%s\n%s' % (explanation, text,
                                             trans[tweaked_text])
-                mail_error(file_, message)
+                mail_error(rel_path, message)
                 return text
             return trans[tweaked_text]
     return text
@@ -155,3 +159,30 @@ def get_lang_path(path):
     path = '/'.join(p)
     base, ext = os.path.splitext(path)
     return base
+
+
+def lang_file_is_active(path, lang):
+    """
+    If the lang file for a locale exists and has the correct comment returns
+    True, and False otherwise.
+    :param path: the relative lang file name
+    :param lang: the language code
+    :return: bool
+    """
+    rel_path = os.path.join('locale', lang, '%s.lang' % path)
+    cache_key = 'active:%s' % rel_path
+    is_active = cache.get(cache_key)
+    if is_active is None:
+        is_active = False
+        fpath = os.path.join(settings.ROOT, rel_path)
+        try:
+            with codecs.open(fpath, 'r', 'utf-8', errors='replace') as lines:
+                firstline = lines.readline()
+                if firstline.startswith('## active ##'):
+                    is_active = True
+        except IOError:
+            pass
+
+        cache.set(cache_key, is_active, settings.DOTLANG_CACHE)
+
+    return is_active

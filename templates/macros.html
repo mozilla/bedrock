@@ -1,3 +1,7 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
 {% macro email_newsletter_form(newsletter_id='mozilla-and-you', title=None, include_country=True, include_language=True) %}
   {% if not request.newsletter_success %}
     {% if request.newsletter_form.errors %}
@@ -56,7 +60,7 @@
 
       <div class="form-submit">
         <input type="submit" id="footer_email_submit"
-               value="{{ _('Sign me up »') }}" class="button">
+               value="{{ _('Sign me up') }} »" class="button">
 
         <p class="form-details">
           <small>{{ _('We will only send you Mozilla-related information.') }}</small>

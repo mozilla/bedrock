@@ -1,3 +1,7 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
 from django.conf.urls.defaults import patterns, url
 from django.http import HttpResponse
 
@@ -13,4 +17,6 @@ urlpatterns = patterns('',
     redirect(r'^gloubi-boulga/$', 'mock_view'),
     redirect(r'^gloubi-boulga/tmp/$', 'mock_view', permanent=False),
     redirect(r'^gloubi-boulga/ext/$', 'https://marketplace.mozilla.org'),
+    redirect(r'^gloubi-boulga/call/$',
+             lambda r: '/asdf' if r.GET.get('test', False) else '/qwer')
 )

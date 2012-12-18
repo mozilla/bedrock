@@ -1,0 +1,15 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/download_buttons/mobile_base.html" %}
+
+{% block class %}download-button-mobile-large aurora{% endblock %}
+
+{% block title %}{{ _('Get Firefox Aurora for Android') }}{% endblock %}
+
+{% block download_content %}
+  <span class="download-content-wrapper">{{ super() }}</span>
+{% endblock %}
+
+{% block download_info %}{% endblock %}

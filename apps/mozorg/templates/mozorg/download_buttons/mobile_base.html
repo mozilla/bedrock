@@ -1,0 +1,17 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/download_buttons/base.html" %}
+
+{% block class %}download-button-mobile{% endblock %}
+
+{% block small_print %}
+<small class="download-other">
+  <a href="{{ php_url('/firefox/mobile/platforms') }}">{{ _('Supported Devices') }}</a> |
+  <a href="{{ php_url('/mobile/notes') }}">{{ _('What’s New') }}</a> |
+  <a href="{{ php_url('/legal/privacy/firefox.html') }}">{{ _('Privacy') }}</a>
+</small>
+{% endblock %}
+
+{% block unsupported %}{% endblock %}

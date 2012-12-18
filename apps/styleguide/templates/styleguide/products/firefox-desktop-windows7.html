@@ -1,0 +1,36 @@
+{% extends "styleguide/base.html" %}
+
+{% block guide_logo %}{{ media('/img/styleguide/mozilla-dark.png') }}{% endblock %}
+
+{% block body_class %}
+  {{ super() }}
+  dark dark-sample
+{% endblock %}
+
+{% block content_title %}Dark theme sample page{% endblock%}
+{% block content_area %}
+<section id="tabs">
+  <h2>Tabs</h2>
+
+  <figure id="tabs-shape">
+    <figcaption>Shape</figcaption>
+    <img src="{{ media('/img/styleguide/products/firefox/tabs-shape.png') }}" alt="Tabs shape" />
+  </figure>
+
+  <figure id="tabs-dimentions">
+    <figcaption>Dimentions | Padding</figcaption>
+    <img src="{{ media('/img/styleguide/products/firefox/tabs-dimentions.png') }}" alt="Tab dimensions | padding" />
+  </figure>
+
+  <figure id="tabs-overlap">
+    <figcaption>Tab Overlap</figcaption>
+    <img src="{{ media('/img/styleguide/products/firefox/tabs-overlap.png') }}" alt="Tab overlap" />
+  </figure>
+
+  <figure id="tabstrip">
+    <figcaption>Tabstrip Layout Visualization</figcaption>
+    <img src="{{ media('/img/styleguide/products/firefox/tabstrip.png') }}" alt="Tabstrip layout visualization" />
+  </figure>
+
+</section>
+{% endblock %}

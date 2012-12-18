@@ -1,4 +1,8 @@
-@import "sandstone/sandstone.less";
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "sandstone/sandstone-resp.less";
 
 .huge,
 .huge h1 {
@@ -8,11 +12,11 @@
   font-size: 40px;
 }
 #main-content {
-  padding-left: 0;
-  width: 944px;
+  padding: 0;
+  width: 100%;
 }
 .main-column {
-  margin-right: 16px;
+  margin: 0 16px 0 0;
   width: 720px;
 }
 .sub-section-header {
@@ -27,27 +31,29 @@
 }
 .sidebar {
   margin-left: 16px;
-  width: 192px;
 }
 nav.menu-bar {
   margin-bottom: 24px;
 }
 #contact_privacy {
-  width: 635px;
-}
-#contact_privacy legend {
-  margin-bottom: 8px;
-  font-size: 28px;
-}
-#contact_privacy label {
-   font-family: 'Open Sans Light', sans-serif;
-}
-#contact_privacy input {
-  margin-top: 2px;
-  width: 232px;
-}
-#contact_privacy .field {
-  margin-top: 10px;
+  width: 100%;
+  legend {
+    margin-bottom: 8px;
+    font-size: 18px;
+  }
+  label {
+    font-family: 'Open Sans Light', sans-serif;
+  }
+  input {
+    margin: 2px -2px 2px 2px;
+    width: 232px;
+  }
+  textarea {
+    width: 98%;
+  }
+  .field {
+    margin-top: 10px;
+  }
 }
 #contact_privacy_submit {
   float: right;

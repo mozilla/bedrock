@@ -1,0 +1,66 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+<aside id="{{ id }}" class="download-button {% block class %}download-button-large{% endblock %}">
+  {% block noscript %}
+  <noscript>
+    {% include "mozorg/download_buttons/dumb.html" %}
+  </noscript>
+  {% endblock %}
+
+  {% block unrecognized %}
+  <div class="unrecognized-download">
+    {% include "mozorg/download_buttons/dumb.html" %}
+  </div>
+  {% endblock %}
+
+  {% block contents %}
+  <ul class="download-list">
+    {% for build in builds %}
+    <li class="{{ build.platform }}">
+      <a class="download-link download-{{ product }}"
+         href="{{ build.download_link }}"{% if build.download_link_direct %}
+         data-direct-link="{{ build.download_link_direct }}"{% endif %}>
+        {% block download_content scoped %}
+          <span class="download-content">
+            <span class="download-title">{% block title scoped %}Firefox{% endblock %}</span>
+            {% block subtitle scoped %}{{ _('Free Download') }}{% endblock %}
+            {% block download_info scoped %}
+              <span class="download-info">
+                {% block download_version scoped %}
+                  <span class="download-version">
+                    {{ version }} for {{ build.platform_pretty }}
+                  </span>
+                {% endblock %}
+                {% block download_lang scoped %}
+                  {% if build.platform != 'os_android' %}
+                    <span class="download-lang">{{ locale_name }}</span>
+                  {% endif %}
+                {% endblock %}
+              </span>
+            {% endblock %}
+          </span>
+        {% endblock %}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endblock %}
+
+  {% block unsupported %}
+    {% set requirements_url = php_url('/firefox/' ~ version ~ '/requirements') %}
+    <p class="unsupported-download">
+      {{ _('Your system doesn\'t meet the <a href="%(url)s">requirements</a> to run Firefox.')|format(url=requirements_url) }}
+    </p>
+  {% endblock %}
+
+  {% block small_print %}
+  <small class="download-other">
+    <a href="{{ php_url('/firefox/all.html') }}">{{ _('Systems & Languages') }}</a> |
+    <a href="{{ php_url('/firefox/notes') }}">{{ _('What’s New') }}</a> |
+    <a href="{{ php_url('/legal/privacy/firefox.html') }}">{{ _('Privacy') }}</a>
+  </small>
+  {% endblock %}
+
+</aside>

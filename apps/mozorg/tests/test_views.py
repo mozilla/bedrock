@@ -1,9 +1,14 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
 from mock import Mock, patch
 from captcha.fields import ReCaptchaField
 
 from django.core import mail
 from django.test.client import Client
 
+import l10n_utils
 from mozorg.tests import TestCase
 from funfactory.urlresolvers import reverse
 from nose.tools import assert_false, eq_, ok_
@@ -11,6 +16,7 @@ from nose.plugins.skip import SkipTest
 from pyquery import PyQuery as pq
 
 
+@patch.object(l10n_utils, 'lang_file_is_active', lambda *x: True)
 class TestContribute(TestCase):
     def setUp(self):
         self.client = Client()

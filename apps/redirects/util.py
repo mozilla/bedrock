@@ -1,3 +1,7 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
 from django.core.urlresolvers import NoReverseMatch
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 
@@ -26,11 +30,17 @@ def redirect(pattern, to, permanent=True, anchor=None):
         redirect_class = HttpResponseRedirect
 
     def _view(request):
+        # If it's a callable, call it and get the url out.
+        if callable(to):
+            to_value = to(request)
+        else:
+            to_value = to
+
         try:
-            redirect_url = reverse(to)
+            redirect_url = reverse(to_value)
         except NoReverseMatch:
             # Assume it's a URL
-            redirect_url = to
+            redirect_url = to_value
 
         if anchor:
             redirect_url = '#'.join([redirect_url, anchor])

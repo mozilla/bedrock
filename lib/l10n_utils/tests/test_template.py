@@ -1,3 +1,7 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
 import os
 
 from django.conf import settings
@@ -18,14 +22,14 @@ ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test_files')
 TEMPLATE_DIRS = (os.path.join(ROOT, 'templates'),)
 
 
+@patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
+@patch.object(settings, 'ROOT_URLCONF', 'l10n_utils.tests.test_files.urls')
+@patch.object(settings, 'ROOT', ROOT)
 class TestTransBlocks(TestCase):
     def setUp(self):
         clear_url_caches()
         self.client = Client()
 
-    @patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
-    @patch.object(settings, 'ROOT_URLCONF', 'l10n_utils.tests.test_files.urls')
-    @patch.object(settings, 'ROOT', ROOT)
     def test_trans_block_works(self):
         """ Sanity check to make sure translations work at all. """
         response = self.client.get('/de/trans-block-reload-test/')
