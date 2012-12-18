@@ -190,11 +190,13 @@
     height: 800px;
     -moz-transition: bottom 0.4s ease 0.1s;
     -webkit-transition: bottom 0.4s ease 0.1s;
+    -ms-transition: bottom 0.4s ease 0.1s;
     -o-transition: bottom 0.4s ease 0.1s;
     transition: bottom 0.4s ease 0.1s;
 
     &.scene2 {
         bottom: -400px;
+        #scene2 { visibility: visible; }
     }
 }
 
@@ -213,7 +215,7 @@
 
 #scene2 {
     top: -400px;
-    display: none;
+    visibility: hidden;
 }
 
 #firefox-screenshot {
