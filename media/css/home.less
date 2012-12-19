@@ -233,7 +233,7 @@
             text-decoration: none;
         }
     }
-    div.content {
+    .content {
         .span(4);
         margin-left: 0;
         padding: 0 0 @baseLine 48px;
@@ -400,12 +400,13 @@
             }
         }
         img {
+            .span(5);
+            margin: 0;
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 25px;
+            right: 30px;
             left: auto;
             height: auto;
-            width: 400px;
             z-index: 99;
             cursor: pointer;
         }
@@ -458,7 +459,7 @@
             a.container {
                 height: 198px;
             }
-            div.content {
+            .content {
                 width: 60%;
             }
             h3 {
@@ -481,11 +482,10 @@
                 font-size: 20px;
                 margin-bottom: @baseLine / 2;
             }
-            div.content {
+            .content {
                 width: 70%;
             }
         }
-
         #promo-storyvideo,
         #page-promo-storyvideo {
             h3 {
@@ -496,6 +496,21 @@
             }
             div {
                 margin: 20px 30px 0 290px;
+            }
+        }
+        #promo-flicksvideo,
+        #page-promo-flicksvideo {
+            img {
+                .span_narrow(5);
+                margin: 0;
+                top: 20px;
+                right: 20px;
+            }
+            .content {
+                .span_narrow(7);
+            }
+            h3 {
+                font-size: 36px;
             }
         }
     }
@@ -586,7 +601,7 @@
                 width: auto;
                 margin-bottom: @baseLine / 2;
             }
-            div.content {
+            .content {
                 padding-left: @gridGutterWidth;
                 padding-right: @gridGutterWidth;
                 margin: 0;
@@ -628,7 +643,33 @@
                 margin: 0;
             }
         }
-
+        #promo-flicksvideo,
+        #page-promo-flicksvideo {
+            img {
+                position: static;
+                width: auto;
+                float: none;
+            }
+            .container {
+                position: static;
+            }
+            .content {
+                float: none;
+                margin: 0;
+                width: auto;
+                position: static;
+            }
+            h3 {
+                font-size: 24px;
+                width: auto;
+                float: none;
+            }
+            h4 {
+                font-size: 18px;
+                width: auto;
+                float: none;
+            }
+        }
     }
 
     #home-news,
@@ -672,7 +713,7 @@
                 width: auto;
                 margin-bottom: @baseLine / 2;
             }
-            div.content {
+            .content {
                 padding-left: @gridGutterWidth;
                 padding-right: @gridGutterWidth;
                 margin: 0;
