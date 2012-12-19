@@ -9,17 +9,20 @@ Mozilla.Firefox.New = (function() {
 	var _init = function() {
 		if (!$('html').hasClass('android')) {
 			// replace install images
-			var img_os = (site.platform === 'osx') ? 'mac' : 'win';
+			$(window).on('load', function() {
+				$('html').addClass('ready-for-scene2');
+				var img_os = (site.platform === 'osx') ? 'mac' : 'win';
 
-			$('#install2').attr('src', $('#install2').attr('data-src').replace(/win/gi, img_os));
-			$('#install3').attr('src', $('#install3').attr('data-src').replace(/win/gi, img_os));
+				$('#install2').attr('src', $('#install2').attr('data-src').replace(/win/gi, img_os));
+				$('#install3').attr('src', $('#install3').attr('data-src').replace(/win/gi, img_os));
 
-			// screen 1 is unique for IE < 9
-			if (site.platform === 'windows' && $.browser.msie && $.browser.version < 9) {
-				img_os = 'winIE8';
-			}
+				// screen 1 is unique for IE < 9
+				if (site.platform === 'windows' && $.browser.msie && $.browser.version < 9) {
+					img_os = 'winIE8';
+				}
 
-			$('#install1').attr('src', $('#install1').attr('data-src').replace(/win/gi, img_os));
+				$('#install1').attr('src', $('#install1').attr('data-src').replace(/win/gi, img_os));
+			});
 
 			// swipe FF dl link from button & add to 'click here' link
 			// better way coming in bedrock soon
