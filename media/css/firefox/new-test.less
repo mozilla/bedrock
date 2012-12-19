@@ -103,7 +103,7 @@
         line-height: 100%;
         color: @textColorSecondary;
         .open-sans-light;
-        background: url(/media/img/firefox/new/features-divider.png) right top no-repeat;
+        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAB1CAMAAACiRJviAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAHVQTFRFAAAAN0FIN0FIN0FIN0FIN0FIN0FIN0FIN0FIN0FIN0FIN0FIN0FIN0FIN0FIN0FIN0FIN0FIN0FIN0FIN0FIN0FIN0FIN0FIN0FIN0FIN0FIN0FIN0FIN0FIN0FIN0FIN0FIN0FIN0FIN0FIN0FIN0FIN0FIQEl50QAAACd0Uk5TAAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8gISIjJCUmZiD6WAAAAUFJREFUOI1tU0sSQzEIAu9/Z7rwh+nrdKYxKgKxQWI/AfBEFgbJDcOD6qP38fRdzLl5cqQ1Rp4rDhJbHAnBrXyZ9Yxkffq4mDAVkRLqIis7nHmVS4HsPkfpCY5SVI0LE4WYSlThVuJB+dNA9hu1F2GzWZ61TbFtOX3bWsO+Cmr+cGnQ6GPPm/kcZs5zFOXlKLIFKeeft52oB4Acr1nMYJ/APBfAvxz8je6WP/8Aj9i0P3I3Uv5KX5W6fRaGBM1FCG/lJEOWVCBhJGVOdZQQdXTMnSBLRpPW5k4lkN+cLkE1oYROH6YzIDQTKFE0GlKPXHsxf5llmwAIIWDCrizcf9amCJ1TOaGjdlUUynptmgIz+jrhLn05mNhVW07g1fBwaQcN06SXZ7MTuNrRvnelc3m37qi13EJMn2v3zfKwN/Jr3g9aywD8JHqUKAAAAABJRU5ErkJggg==) right top no-repeat;
         &:last-child {
             background: none;
         }
@@ -112,41 +112,43 @@
 
  .download-button-wrapper { float: left; }
 
-.ready-for-scene2 .thankyou {
-    background: url(/media/img/firefox/new/thankyou-check.png) left top no-repeat;
-    padding: 0 0 0 35px;
-    margin: 20px 130px 0;
-    color: @buttonGreenDark;
-    font-style: italic;
-    font-size: 18px;
-    .open-sans-light;
-    &:focus {
-        outline: none;
-    }
-}
-
-.installation {
-    margin: 40px auto 0;
-    padding: 0;
-    width: 900px;
-    display: block;
-    list-style-type: none;
-    .clearfix;
-    li {
-        float: left;
-        width: 248px;
-        padding: 0 26px;
-        overflow: hidden;
-        margin: 0;
-        text-align: left;
-        font-size: 12px;
-        color: @textColorTertiary;
+.ready-for-scene2 {
+    .thankyou {
+        background: url(/media/img/firefox/new/thankyou-check.png) left top no-repeat;
+        padding: 0 0 0 35px;
+        margin: 20px 130px 0;
+        color: @buttonGreenDark;
         font-style: italic;
-        img {
-            display: block;
-            margin: 0 0 5px 0;
-            width: 100%;
-            height: auto;
+        font-size: 18px;
+        .open-sans-light;
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .installation {
+        margin: 40px auto 0;
+        padding: 0;
+        width: 900px;
+        display: block;
+        list-style-type: none;
+        .clearfix;
+        li {
+            float: left;
+            width: 248px;
+            padding: 0 26px;
+            overflow: hidden;
+            margin: 0;
+            text-align: left;
+            font-size: 12px;
+            color: @textColorTertiary;
+            font-style: italic;
+            img {
+                display: block;
+                margin: 0 0 5px 0;
+                width: 100%;
+                height: auto;
+            }
         }
     }
 }
@@ -259,14 +261,16 @@ noscript {
             height: 85px;
         }
     }
-    .thankyou {
-        margin: 0 40px;
-    }
-    .installation {
-        width: 700px;
-        li {
-            width: 200px;
-            padding: 0 15px;
+    .ready-for-scene2 {
+        .thankyou {
+            margin: 0 40px;
+        }
+        .installation {
+            width: 700px;
+            li {
+                width: 200px;
+                padding: 0 15px;
+            }
         }
     }
 
@@ -353,24 +357,26 @@ noscript {
         }
     }
 
-    .thankyou {
-        margin: 10px 0 0 0;
-        font-size: 14px;
-        letter-spacing: auto;
-    }
+    .ready-for-scene2 {
+        .thankyou {
+            margin: 10px 0 0 0;
+            font-size: 14px;
+            letter-spacing: auto;
+        }
 
-    .installation {
-        width: 300px;
-        margin: 20px 0 0;
-        li {
-            width: auto;
-            margin-bottom: 10px;
-            float: none;
-            font-style: normal;
-            text-align: left;
-            padding: 0;
-            img {
-                display: none;
+        .installation {
+            width: 300px;
+            margin: 20px 0 0;
+            li {
+                width: auto;
+                margin-bottom: 10px;
+                float: none;
+                font-style: normal;
+                text-align: left;
+                padding: 0;
+                img {
+                    display: none;
+                }
             }
         }
     }
