@@ -233,7 +233,7 @@
             text-decoration: none;
         }
     }
-    div.content {
+    .content {
         .span(4);
         margin-left: 0;
         padding: 0 0 @baseLine 48px;
@@ -307,7 +307,6 @@
             text-decoration: none;
             text-shadow: none;
             font-size: 28px;
-            line-height: 1.2;
             float: none;
             width: 50%;
             margin-bottom: @baseLine;
@@ -318,32 +317,20 @@
         }
     }
 
-    #promo-android,
-    #page-promo-android {
-        background-color: #76b0cd;
-    }
-
     #promo-firefoxos,
     #page-promo-firefoxos {
-        background-color: #637079;
         h4 {
             width: 70%;
         }
     }
-    
-    #promo-storyvideo,
-    #page-promo-storyvideo {
-        background-color: #c8352b;
+
+    #promo-flicksbest,
+    #page-promo-flicksbest {
         h3 {
-            font-size: 36px;
+            font-size: 46px
         }
         h4 {
-            font-size: 28px;
-            width: auto;
-        }
-        div {
-            width: auto;
-            margin: 20px 40px 0 380px;
+            width: 70%;
         }
     }
 
@@ -400,12 +387,13 @@
             }
         }
         img {
+            .span(5);
+            margin: 0;
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 25px;
+            right: 30px;
             left: auto;
             height: auto;
-            width: 400px;
             z-index: 99;
             cursor: pointer;
         }
@@ -458,7 +446,7 @@
             a.container {
                 height: 198px;
             }
-            div.content {
+            .content {
                 width: 60%;
             }
             h3 {
@@ -481,21 +469,23 @@
                 font-size: 20px;
                 margin-bottom: @baseLine / 2;
             }
-            div.content {
+            .content {
                 width: 70%;
             }
         }
-
-        #promo-storyvideo,
-        #page-promo-storyvideo {
+        #promo-flicksvideo,
+        #page-promo-flicksvideo {
+            img {
+                .span_narrow(5);
+                margin: 0;
+                top: 20px;
+                right: 20px;
+            }
+            .content {
+                .span_narrow(7);
+            }
             h3 {
-                font-size: 32px;
-            }
-            h4 {
-                font-size: 22px;
-            }
-            div {
-                margin: 20px 30px 0 290px;
+                font-size: 36px;
             }
         }
     }
@@ -586,7 +576,7 @@
                 width: auto;
                 margin-bottom: @baseLine / 2;
             }
-            div.content {
+            .content {
                 padding-left: @gridGutterWidth;
                 padding-right: @gridGutterWidth;
                 margin: 0;
@@ -615,21 +605,46 @@
                 width: auto;
             }
         }
-
-        #promo-storyvideo,
-        #page-promo-storyvideo {
-            h3 {
-                font-size: 32px;
+        #promo-flicksbest,
+        #page-promo-flicksbest {
+            h3  {
+                font-size: 24px;
             }
             h4 {
                 font-size: 20px;
-            }
-            div {
-                margin: 0;
+                width: auto;
             }
         }
-
+        #promo-flicksvideo,
+        #page-promo-flicksvideo {
+            img {
+                position: static;
+                width: auto;
+                float: none;
+            }
+            .container {
+                position: static;
+            }
+            .content {
+                float: none;
+                margin: 0;
+                width: auto;
+                position: static;
+            }
+            h3 {
+                font-size: 24px;
+                width: auto;
+                float: none;
+            }
+            h4 {
+                font-size: 18px;
+                width: auto;
+                float: none;
+            }
+        }
     }
+
+
 
     #home-news,
     #home-promos,
@@ -672,7 +687,7 @@
                 width: auto;
                 margin-bottom: @baseLine / 2;
             }
-            div.content {
+            .content {
                 padding-left: @gridGutterWidth;
                 padding-right: @gridGutterWidth;
                 margin: 0;
@@ -694,14 +709,26 @@
             padding: 12px;
             font-size: 28px;
         }
-
+        
         #promo-firefoxos,
         #page-promo-firefoxos {
             h4 {
                 width: auto;
             }
         }
+        #promo-flicksbest,
+        #page-promo-flicksbest {
+            h3  {
+                font-size: 32px;
+            }
+            h4 {
+                font-size: 20px;
+                width: auto;
+            }
+        }
     }
+
+
 
     #home-news,
     #home-promos,
