@@ -1,0 +1,112 @@
+{% extends "/firefox/base-resp.html" %}
+
+{% block page_title %}Free Download{% endblock %}
+{% block body_id %}firefox-new{% endblock %}
+
+{% block site_header_nav %}{% endblock %}
+{% block site_header_logo %}
+  <h2><a href="{{ url('mozorg.home') }}"><img src="/media/img/firefox/new/header-firefox.png" alt="{{_('Firefox for desktop')}}" /></a></h2>
+{% endblock %}
+
+{% block site_css %}
+  {{ css('firefox_new_test') }}
+{% endblock %}
+
+{% block content %}
+
+<div id="main-feature">
+  <div class="row">
+    <img src="{{ media('img/sandstone/buttons/firefox-large.png') }}" />
+    <h1 class="large">{{_('Different <span>by design</span>')}}</h1>
+  </div>
+</div>
+
+<div class="theater" id="theater-firefox">
+  <div class="stage" id="stage-firefox">
+    <div class="scene" id="scene1">
+      <div class="container" id="features-download">
+        <ul id="features">
+          <li>{{_('Proudly <br />non-profit')}}</li>
+          <li>{{_('Innovating<br /> for you')}}</li>
+          <li>{{_('Fast, flexible,<br /> secure')}}</li>
+        </ul>
+
+        <div class="desktop download-button-wrapper">
+          {{ download_button('download', 'large', force_direct=true) }}
+        </div>
+        <div class="mobile download-button-wrapper">
+          {{ mobile_download_button('primary-download-mobile') }}
+        </div>
+      </div>
+
+      <div class="desktop">
+        {{ platform_img('img/firefox/new/browser.png', alt='Firefox screenshot', id='firefox-screenshot') }}
+      </div>
+    </div> <!-- /#scene1 -->
+
+    <div class="scene" id="scene2">
+      <p class="thankyou" tabindex="0">
+        {{_("Thanks for downloading Firefox! As a non-profit, we're free to innovate on your behalf without any pressure to compromise. You're going to love the difference.")}}
+      </p>
+
+      <ol class="installation">
+        <li>
+          <img src="" data-src="{{ media('img/firefox/new/install1-win.png') }}" class="install-image" id="install1" alt="" />
+          <strong>{{_('1')}}.</strong>
+          <span class="install-win">
+            {{_('Start the process by clicking Run.')}}
+          </span>
+          {{_('Your download should begin automatically. If not, <a id="%s" href="">click here</a>. It could take a few minutes, but it’s worth the wait.')|format('direct-download-link')}}
+        </li>
+        <li>
+          <img src="" data-src="{{ media('img/firefox/new/install2-win.png') }}" class="install-image" id="install2" alt="" />
+          <strong>{{_('2')}}.</strong>
+          <span class="install-osx">
+            {{_('When prompted, drag the Firefox icon into the image of your Applications folder.')}}
+          </span>
+          <span class="install-win">
+            {{_("Click Run to launch the Mozilla Firefox setup wizard. Then, just follow the steps (we've made the process as painless as possible).")}}
+          </span>
+        </li>
+        <li>
+          <img src="" data-src="{{ media('img/firefox/new/install3-win.png') }}" class="install-image" id="install3" alt="" />
+          <strong>{{_('3')}}.</strong>
+          <span class="install-osx">
+            {{_('Drag the Firefox icon from the Applications folder into the dock. Then, just click on Firefox whenever you want to use the web!')}}
+          </span>
+          <span class="install-win">
+            {{_('Now you’re ready to leap boldly into a new era of Web surfing. Double-click on the Firefox icon whenever you want to go online.')}}
+          </span>
+        </li>
+      </ol>
+    </div> <!-- /#scene2 -->
+
+  </div> <!-- /#stage -->
+</div>
+
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{% block site_footer %}
+  <footer id="colophon">
+    <div class="row">
+      <ul class="primary">
+        <li><a href="{{ url('firefox.central') }}"><span>{{_('Tour')}}</span></a></li>
+        <li><a href="{{ url('firefox.features') }}"><span>{{_('Desktop')}}</span></a></li>
+        <li><a href="{{ url('firefox.fx') }}"><span>{{_('Mobile')}}</span></a></li>
+        <li><a href="https://addons.mozilla.org"><span>{{_('Add-ons')}}</span></a></li>
+        <li><a href="http://support.mozilla.org"><span>{{_('Support')}}</span></a></li>
+        <li><a href="{{ url('mozorg.about') }}"><span>{{_('About')}}</span></a></li>
+      </ul>
+      <ul class="secondary">
+        <li><a href="{{ url('privacy.index') }}">{{_('Privacy Policy')}}</a></li>
+        <li><a href="{{ php_url('/about/legal.html') }}">{{_('Legal Notices')}}</a></li>
+      </ul>
+    </div>
+  </footer>
+{% endblock %}
+
+{% block js %}
+  {{ js('firefox_new') }}
+{% endblock  %}

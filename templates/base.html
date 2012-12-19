@@ -5,6 +5,7 @@
      assets default to windows #}
 <html class="windows no-js" lang="{{ LANG }}" dir="{{ DIR }}">
   <head>
+    {% block ga_experiments %}{% endblock %}
     <meta charset="utf-8">
 
     <title>{% block page_title_prefix %}Mozilla — {% endblock %}{% block page_title %}{% endblock %}{% block page_title_suffix %} — mozilla.org{% endblock %}</title>
