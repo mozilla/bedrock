@@ -39,10 +39,7 @@ Mozilla.Firefox.New = (function() {
 			$('.download-firefox').on('click', function(e) {
 				// track download click
 				if (window._gaq) {
-					var track_url = window.location.pathname;
-					track_url += (track_url.charAt(track_url.length - 1) === '/') ? 'download/' : '/download/';
-
-					_gaq.push(['_trackPageview', track_url]);
+					_gaq.push(['_trackPageview', '/en-US/products/download.html?referrer=new-b']);
 				}
 
 				if (!Modernizr.csstransitions) {
