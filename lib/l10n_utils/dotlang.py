@@ -202,6 +202,8 @@ def lang_file_is_active(path, lang):
         try:
             with codecs.open(fpath, 'r', 'utf-8', errors='replace') as lines:
                 firstline = lines.readline()
+                # Filter out Byte order Mark
+                firstline = firstline.replace(u'\ufeff', '')
                 if firstline.startswith('## active ##'):
                     is_active = True
         except IOError:
