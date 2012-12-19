@@ -2,37 +2,36 @@ var Mozilla = window.Mozilla || {};
 Mozilla.Firefox = window.Mozilla.Firefox || {};
 
 Mozilla.Firefox.New = (function() {
-	//"use strict";
+	"use strict";
 
 	var _css3;
 
 	var _init = function() {
-		// wrap #wrapper in div for noise bg
-		$('#wrapper').wrap('<div id="inner-wrapper" />');
-
-		// replace install images
-		if (site.platform === 'osx') {
-			$('.install-image').each(function(i, img) {
-				$(this).attr('src', $(this).attr('src').replace(/win/gi, 'mac'));
-			});
-		} else if (site.platform === 'windows' && $.browser.msie && $.browser.version < 9) {
-			$('#install1').attr('src', $('#install1').attr('src').replace(/win/gi, 'winIE8'));
-		}
-
-		// swipe FF dl link from button & add to 'click here' link
-		// better way coming in bedrock soon
-		var ff_dl_link;
-
-		$('.download-list li').each(function(i, li) {
-			if ($(li).is(':visible')) {
-				ff_dl_link = $(li).find('a:first').attr('href');
-				$('#direct-download-link').attr('href', ff_dl_link);
-				return false;
-			}
-		});
-
 		if (!$('html').hasClass('android')) {
-			_css3 = ($('html').is('.csstransitions')) ? true : false;
+			// replace install images
+			var img_os = (site.platform === 'osx') ? 'mac' : 'win';
+
+			$('#install2').attr('src', $('#install2').attr('data-src').replace(/win/gi, img_os));
+			$('#install3').attr('src', $('#install3').attr('data-src').replace(/win/gi, img_os));
+
+			// screen 1 is unique for IE < 9
+			if (site.platform === 'windows' && $.browser.msie && $.browser.version < 9) {
+				img_os = 'winIE8';
+			}
+
+			$('#install1').attr('src', $('#install1').attr('data-src').replace(/win/gi, img_os));
+
+			// swipe FF dl link from button & add to 'click here' link
+			// better way coming in bedrock soon
+			var ff_dl_link;
+
+			$('.download-list li').each(function(i, li) {
+				if ($(li).is(':visible')) {
+					ff_dl_link = $(li).find('a:first').attr('href');
+					$('#direct-download-link').attr('href', ff_dl_link);
+					return false;
+				}
+			});
 
 			$('.download-firefox').on('click', function(e) {
 				// track download click
@@ -43,7 +42,7 @@ Mozilla.Firefox.New = (function() {
 					_gaq.push(['_trackPageview', track_url]);
 				}
 
-				if (!_css3) {
+				if (!Modernizr.csstransitions) {
 					$('#scene2').css('visibility', 'visible');
 					$('#stage-firefox').animate({
 						bottom: '-400px'
