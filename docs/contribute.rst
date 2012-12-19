@@ -80,11 +80,11 @@ When you're ready to make a page available to everyone, we need to remove that
     .. code-block:: apache
 
         # bug 123456
-        RewriteRule ^/(\w{2,3}(?:-\w{2}(?:-mac)?)?/)?foo/bar/2011/?$ /b/$1foo/bar$2 [PT]
+        RewriteRule ^/(\w{2,3}(?:-\w{2}(?:-mac)?)?/)?foo/bar(.*)$ /b/$1foo/bar$2 [PT]
 
 Server architecture
 -------------------
-**Demo** (and dev [1]_)
+**Demos**
 
 - *URLs:* http://www-demo1.allizom.org/ , http://www-demo2.allizom.org/ and
   http://www-demo3.allizom.org/
@@ -92,12 +92,19 @@ Server architecture
 - *Bedrock locale SVN branch:* trunk, updated every 10 minutes
 - *Bedrock Git branch:* any branch we want, manually updated
 
+**Dev**
+
+- *URL:* http://www-dev.allizom.org/
+- *PHP SVN branch:* trunk, updated every 10 minutes
+- *Bedrock locale SVN branch:* trunk, updated every 10 minutes
+- *Bedrock Git branch:* master, updated every 10 minutes
+
 **Stage**
 
 - *URL:* http://www.allizom.org/
 - *PHP SVN branch:* tags/stage, updated every 10 minutes
 - *Bedrock locale SVN branch:* trunk, updated every 10 minutes
-- *Bedrock Git branch:* master, updated every 10 minutes
+- *Bedrock Git branch:* master, updated manually
 
 **Production**
 
@@ -120,7 +127,17 @@ After doing a push, the "pusher" needs to update the bugs that have been pushed
 with a quick message stating that the code was deployed. Chief will send on
 #www a URL with all commits that have been deployed.
 
-.. [1] Dev is currently unused.
+If you'd like to see the commits that will be deployed before the push run the
+following command:
+
+    .. code-block:: bash
+
+        open https://github.com/mozilla/bedrock/compare/`curl -sS https://www.mozilla.org/media/revision.txt`...master
+
+This should work on a Mac. On other platforms that support a bash compatible
+shell substitute `open` for a command that will open a web browser and make
+sure `curl` is installed.
+
 .. _Git book: http://git-scm.com/book
 .. _how to write good git commit messages: http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
 .. _IT documentation: https://mana.mozilla.org/wiki/pages/viewpage.action?pageId=1802733
