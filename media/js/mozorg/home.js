@@ -121,12 +121,14 @@ $(document).ready(function() {
         .insertAfter($thumb);
 
     // create video
-    var $video = $(
-        '<video id="video-player" class="video-js vjs-default-skin" '
-        + 'controls="controls" preload="auto"></video>'
-    );
 
-    $video.appendTo($videoContainer);
+    // IE9 didn't like a video element build using jQuery so we build it
+    // using the DOM API.
+    var video = document.createElement('video');
+    video.id        = 'video-player';
+    video.className = 'video-js vjs-default-skin';
+    video.controls  = 'controls';
+    video.preload   = 'auto';
 
     // create video sources
     var sources = [
@@ -140,14 +142,16 @@ $(document).ready(function() {
         }
     ];
 
+    var source;
     for (var i = 0; i < sources.length; i++) {
-        $video.append(
-            $(
-                '<source src="' + sources[i].src + '" '
-                + 'type="' + sources[i].type + '"></source>'
-            )
-        );
+        source = document.createElement('source');
+        source.src = sources[i].src;
+        source.type = sources[i].type;
+        video.appendChild(source);
     }
+
+    $video = $(video);
+    $video.appendTo($videoContainer);
 
     // shared reference to the video.js player when it exists
     var videoJS;
