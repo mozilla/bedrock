@@ -7,21 +7,12 @@
 
     // Load images on load so as not to block the loading of other images.
     $(window).on('load', function() {
-        // Replace install images depending on the user's platform.
-        var $install1 = $('#install1');
-        var $install2 = $('#install2');
-        var $install3 = $('#install3');
-        var img_os = (site.platform === 'osx') ? 'mac' : 'win';
-
-        $('html').addClass('ready-for-scene2');
-        $install2.attr('src', $install2.data('src').replace(/win/gi, img_os));
-        $install3.attr('src', $install3.data('src').replace(/win/gi, img_os));
-
         // Screen 1 is unique for IE < 9
         if (site.platform === 'windows' && $.browser.msie && $.browser.version < 9) {
-            img_os = 'winIE8';
+            $('html').addClass('winIE8');
         }
-        $install1.attr('src', $install1.data('src').replace(/win/gi, img_os));
+
+        $('body').addClass('ready-for-scene2');
     });
 
     // Bind events on domReady.
