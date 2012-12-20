@@ -176,7 +176,12 @@ Tabzilla.run = function()
     // FireFox and Opera: These browsers provide a event for this
     // moment.  The latest WebKit releases now support this event.
     } else {
-        Tabzilla.addEventListener(document, 'DOMContentLoaded', Tabzilla.ready);
+        var rs = document.readyState;
+        if (rs == 'interactive' || rs == 'complete') {
+            Tabzilla.ready();
+        } else {
+            Tabzilla.addEventListener(document, 'DOMContentLoaded', Tabzilla.ready);
+        }
     }
 };
 
@@ -197,9 +202,6 @@ Tabzilla.ready = function()
         // if we don't have jQuery, dynamically load jQuery from CDN
         if (typeof jQuery == 'undefined') {
             var script = document.createElement('script');
-            script.type = 'text/javascript';
-            script.src = Tabzilla.jQueryCDNSrc;
-            document.getElementsByTagName('body')[0].appendChild(script);
 
             if (script.readyState) {
                 // IE
@@ -214,6 +216,10 @@ Tabzilla.ready = function()
                 // Others
                 script.onload = onLoad;
             }
+
+            script.type = 'text/javascript';
+            script.src = Tabzilla.jQueryCDNSrc;
+            document.getElementsByTagName('body')[0].appendChild(script);
         } else {
             onLoad();
         }
