@@ -111,8 +111,6 @@ $(document).ready(function() {
             close();
         });
 
-    var margin = 20;
-
     // shared animation settings
     var duration = 400;
     var easing = 'swing';
