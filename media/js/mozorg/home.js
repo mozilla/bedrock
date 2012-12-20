@@ -203,7 +203,7 @@ $(document).ready(function() {
         var goHeight = $goLink.height();
         $goLink.css(
             'left',
-            Math.max(Math.floor((linkWidth - size.videoWidth) / 2), margin)
+            Math.max(Math.floor((linkWidth - size.videoWidth) / 2), 20)
         );
 
         $container
@@ -358,7 +358,7 @@ $(document).ready(function() {
             var videoWidth = $videoContainer.width();
 
             if (size.width != videoWidth) {
-                videoJS.size(size.width, size.height);
+                videoJS.size(size.videoWidth, size.videoHeight);
                 reposition(size);
             }
         }
@@ -368,25 +368,23 @@ $(document).ready(function() {
     {
         var $offsetParent = $videoContainer.offsetParent();
 
-        var totalWidth = $offsetParent.width();
-        var width      = $videoContainer.width();
-        var height     = $videoContainer.height();
-        var goHeight   = $goLink.height();
-        var goLeft     = Math.max(Math.floor((totalWidth - width) / 2), size.marginWidth);
+        var linkWidth = $offsetParent.width();
+        var goHeight  = $goLink.height();
+        var goLeft    = Math.max(Math.floor((linkWidth - size.videoWidth) / 2), 20);
 
         $videoContainer.css(
             {
                 'right' : 'auto',
-                'top'   : videoMargin,
-                'left'  : Math.floor((totalWidth - width) / 2)
+                'top'   : size.marginHeight,
+                'left'  : Math.floor((linkWidth - size.videoWidth) / 2)
             }
         );
 
         $close.css(
             {
                 'right' : 'auto',
-                'top'   : videoMargin,
-                'left'  : Math.floor((totalWidth + width) / 2)
+                'top'   : size.marginHeight,
+                'left'  : Math.floor((linkWidth + size.videoWidth) / 2)
             }
         );
 
@@ -394,13 +392,13 @@ $(document).ready(function() {
             {
                 'bottom' : 'auto',
                 'left'   : goLeft,
-                'top'    : height + size.marginHeight + 10
+                'top'    : size.videoHeight + size.marginHeight + 10
             }
         );
 
         $container.css(
             {
-                'height' : videoMargin + height + goHeight + 10 + margin
+                'height' : size.marginHeight + size.videoHeight + goHeight + 10 + 20
             }
         );
 
