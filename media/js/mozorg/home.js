@@ -395,6 +395,12 @@ $(document).ready(function() {
 
             if (size.width != videoWidth) {
                 videoJS.size(size.videoWidth, size.videoHeight);
+                $overlay.css(
+                    {
+                        'width'  : size.videoWidth,
+                        'height' : size.videoHeight
+                    }
+                );
                 reposition(size);
             }
         }
@@ -409,6 +415,14 @@ $(document).ready(function() {
         var goLeft    = Math.max(Math.floor((linkWidth - size.videoWidth) / 2), 20);
 
         $videoContainer.css(
+            {
+                'right' : 'auto',
+                'top'   : size.marginHeight,
+                'left'  : Math.floor((linkWidth - size.videoWidth) / 2)
+            }
+        );
+
+        $overlay.css(
             {
                 'right' : 'auto',
                 'top'   : size.marginHeight,
