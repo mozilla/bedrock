@@ -646,12 +646,14 @@
         #promo-flicksvideo,
         #page-promo-flicksvideo {
             img {
-                position: static;
+                top: 0;
+                left: 0;
                 width: auto;
                 float: none;
             }
             .container {
                 position: static;
+                padding-top: 247px;
             }
             .content {
                 float: none;
@@ -750,6 +752,19 @@
         width: @widthMobileLandscape - (@gridGutterWidth * 2);
     }
 
+}
+
+/* Mobile layout: 320px */
+@media only screen and (max-width: @breakMobileLandscape) {
+
+    #home-promo {
+        #promo-firefoxos,
+        #page-promo-firefoxos {
+            .container {
+                padding-top: 179px;
+            }
+        }
+    }
 }
 
 /* }}} */
