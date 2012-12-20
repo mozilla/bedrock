@@ -9,6 +9,7 @@ mozilla.governance                      Governance of the Mozilla Project. (Mode
 
 mozilla.affiliates                      The Mozilla Affiliates program, encouraging people to spread the news about Firefox and other Mozilla software
 mozilla.airmozilla                      For discussions related to Mozilla's video distribution site, Air Mozilla. (Moderated)
+mozilla.education                       For Mozilla's education initiatives. (Moderated)
 mozilla.engagement.developers           Engaging with developers of all types, through events, evangelism, documentation, and so on. (Moderated)
 mozilla.events                          For discussions about Mozilla events.
 mozilla.general                         For everything with no forum of its own: discussion about any and all aspects of all the things that we're doing here at mozilla.org (high traffic; often off-topic).
@@ -20,7 +21,6 @@ mozilla.legal                           For discussions about the <a href="../..
 mozilla.marketing                       Our plans for world domination.
 mozilla.mozillians                      For discussions about how to <a href="http://wiki.mozilla.org/Grow">grow Mozilla</a> and bring in new contributors.
 mozilla.privacy                         Forum for discussion of privacy issues and Mozilla's response. (Moderated)
-mozilla.privacy.friends                 The "Privacy Friends" initiative.
 mozilla.tools                           Discussion of the software development tools the Mozilla project uses (Hg, buildbot, bugzilla.mozilla.org, Tinderbox, bonsai...) (Moderated)
 mozilla.wishlist                        For discussions of future ideas, ranging from the practical to the far out.
 
@@ -45,7 +45,6 @@ mozilla.dev.apps.webtools               mozilla.org has developed several Web-ba
 :General Development
 
 mozilla.dev.accessibility               For the <a href="../../projects/ui/accessibility/">accessibility</a> development effort.
-mozilla.dev.affiliates                  For Affiliates platform development.
 mozilla.dev.automation                  For development discussion about test automation. (Moderated)
 mozilla.dev.builds                      For discussions about compiling the source code or improving the build system.
 mozilla.dev.chat                        The real-time chat capabilities in the Mozilla platform (IM, IRC etc.) (Moderated)
@@ -55,6 +54,7 @@ mozilla.dev.l10n                        For <a href="../../projects/l10n/mlp.htm
 mozilla.dev.mdc                         Discussion about developer documentation on <a href="http://developer.mozilla.org/">MDN Documentation Center</a> (MDC)
 mozilla.dev.mdn                         Code development for the Mozilla Developer Network (MDN) website and platform
 mozilla.dev.media                       Development of Mozilla's media support (audio and video). (Moderated)
+mozilla.dev.metro                       For work on porting Firefox to the Metro environment of Windows 8. (Moderated)
 mozilla.dev.mozilla-org                 For people working on the mozilla.org website.
 mozilla.dev.pdf-js                      pdf.js, the PDF renderer written in JS. (Moderated)
 mozilla.dev.platform                    For people working on Mozilla-the-platform.
@@ -72,12 +72,14 @@ mozilla.dev.tree-management.tracemonkey For management of the separate tracemonk
 mozilla.dev.usability                   For discussions on <a href="../../projects/ui/">user interface</a> and usability issues, including future directions, cross-platform consistency, and so on. (Moderated)
 mozilla.dev.webapi                      For development of new Web APIs to enhance the web platform. (Moderated)
 mozilla.dev.webdev                      Mozilla's web development team. (Moderated)
+mozilla.dev.developer-tools             For development of tools for web developers inside Firefox and other Mozilla products. (Moderated)
 mozilla.tools.elmo                      Development of web apps for localization (l10n). (Moderated)
 mozilla.tools.l10n                      Development of tools for l10n. (Moderated)
 mozilla.tools.pulse                     The Pulse tool for event-driven notifications.
 mozilla.tools.socorro                   The Socorro crash-reporting system.
 mozilla.dev.community-tools             Development of tools for building the Mozilla community. (Moderated)
 mozilla.dev.services.circus             Development of circus, a process runner and watcher. (Moderated)
+mozilla.addons.user-experience          Improving the user experience for using/installing/managing addons in Firefox. (Moderated)
 
 :Mozilla Technologies
 
@@ -115,6 +117,7 @@ mozilla.dev.ports.os2                   For discussions about <a href="../../por
 mozilla.dev.quality                     For <a href="../../quality/">QA</a> discussion, including using Bugzilla, Mozilla testing, and bug triaging. Do not report bugs here.
 mozilla.qa.b2g                          QA for B2G. (Moderated)
 mozilla.qa.webapps                      QA for Mozilla's web apps. (Moderated)
+mozilla.qa.webmaker                     QA for Webmaker projects. (Moderated)
 
 :Extension Development
 
@@ -139,6 +142,7 @@ mozilla.community.mojo                  The Knight-Mozilla News Technology Initi
 mozilla.education.hackasaurus           The Hackasaurus project to get kids hacking the open web. (Moderated)
 mozilla.dev.popcorn                     Development of popcorn.js, the HTML5 video toolkit. (Moderated)
 mozilla.webmaker                        The Webmaker initiative - teaching the world to hack the web. (Moderated)
+mozilla.webmaker.canada.bc              Webmaker initiative in British Columbia, Canada. (Moderated)
 
 :Regional
 
@@ -166,17 +170,21 @@ mozilla.community.mexico                The Mozilla community in Mexico.
 mozilla.community.morocco               The Mozilla community in Morocco. (Moderated)
 mozilla.community.new-zealand           The Mozilla community in New Zealand.
 mozilla.community.philippines           The Mozilla community in the Philippines. (Moderated)
+mozilla.community.quebec                The Mozilla community in Quebec. (Moderated)
 mozilla.community.romania               The Mozilla community in Romania. (Moderated)
 mozilla.community.senegal               The Mozilla community in Senegal.
 mozilla.community.sweden                The Mozilla community in Sweden. (Moderated)
+mozilla.community.switzerland           The Mozilla community in Switzerland. (Moderated)
 mozilla.community.taiwan                The Mozilla community in Taiwan. (Moderated)
 mozilla.community.turkey                The Mozilla community in Turkey. (Moderated)
 mozilla.community.tunisia               The Mozilla community in Tunisia.
 mozilla.community.uganda                The Mozilla community in Uganda. (Moderated)
 mozilla.community.uk                    The Mozilla community in the United Kingdom. (Moderated)
+mozilla.community.usa                   The Mozilla community in the United States of America. (Moderated)
 mozilla.community.vietnam               The Mozilla community in Vietnam. (Moderated)
 
 mozilla.dev.general.zh                  Mozilla project development discussion in Chinese. (Moderated)
+mozilla.hispano.general                 Mozilla Hispano (Spanish-speaking countries). (Moderated)
 mozilla.hispano.labs                    Mozilla Hispano's labs division. (Moderated)
 mozilla.webapps.pt-br                   Web application development in Brazilian Portuguese. (Moderated)
 
