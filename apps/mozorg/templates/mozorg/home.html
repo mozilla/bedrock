@@ -49,7 +49,21 @@
 
   <div class="pager-content">
   
-    <div class="pager-page default-page" id="promo-ptwtshirt">
+    <div class="pager-page default-page" id="promo-storyvideo">
+      <script>// <![CDATA[
+        document.getElementById('promo-ptwtshirt').id = 'page-promo-storyvideo';
+      // ]]></script>
+      <a href="https://donate.mozilla.org/Mozilla-Story7?WT.mc_id=mostoryvideo&amp;WT.mc_ev=click" class="container">
+        <img src="{{ media('img/home/promo-storyvideo.jpg') }}" alt="">
+        <div>
+          <h3>{{_('Help us build a better Web')}}</h3>
+          <h4>{{_('Watch the video to see how Mozilla keeps the Web a force for good in the world.')}}</h4>
+        </div>
+      </a>
+    </div>
+
+{# Temporarily removing this promo - it will be coming back soon. Bug 816565
+    <div class="pager-page" id="promo-ptwtshirt">
       <script>// <![CDATA[
         document.getElementById('promo-ptwtshirt').id = 'page-promo-ptwtshirt';
       // ]]></script>
@@ -62,6 +76,7 @@
         </div>
       </a>
     </div>
+#}
 
     <div class="pager-page" id="promo-android">
       <script>// <![CDATA[
