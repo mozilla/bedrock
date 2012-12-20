@@ -6,7 +6,7 @@ $(document).ready(function() {
 
     var sizes = [
         {
-            to      : 480,
+            to      : 479,
             width   : 320,
             height  : 180,
             padding : 0
@@ -19,14 +19,14 @@ $(document).ready(function() {
             padding : 0
         },
         {
-            from    : 760,
+            from    : 761,
             to      : 1000,
             width   : 720,
             height  : 405,
             padding : 20
         },
         {
-            from    : 1000,
+            from    : 1001,
             width   : 853,
             height  : 480,
             padding : 20
@@ -49,7 +49,7 @@ $(document).ready(function() {
         for (var i = 0; i < sizes.length; i++) {
             if (
                    (!sizes[i].from || width >= sizes[i].from)
-                && (!sizes[i].to || width < sizes[i].to)
+                && (!sizes[i].to || width <= sizes[i].to)
             ) {
                 size = {
                     width   : sizes[i].width,
@@ -325,9 +325,8 @@ $(document).ready(function() {
 
     function handleResize()
     {
-        var width = $(window).width();
-
         if (videoJS) {
+            var width = $(window).width();
             var size = getSize();
             var videoWidth = $videoContainer.width();
 
