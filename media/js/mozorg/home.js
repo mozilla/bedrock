@@ -375,9 +375,12 @@ $(document).ready(function() {
 
     function handleResize()
     {
-        if (videoJS) {
+        if (videoJS && opened) {
             var width = $(window).width();
             var size = getSize();
+
+            // getting width of container because of video-js Issue 258
+            // https://github.com/zencoder/video-js/issues/258
             var videoWidth = $videoContainer.width();
 
             if (size.width != videoWidth) {
