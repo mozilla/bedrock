@@ -162,6 +162,9 @@ $(document).ready(function() {
             return;
         }
 
+        // if pager is auto-rotating, stop rotating when video opened
+        Mozilla.Pager.pagers['home-promo'].stopAutoRotate();
+
         opened = true;
 
         var linkHeight   = $link.height();
@@ -409,5 +412,11 @@ $(document).ready(function() {
         handleResize();
     }
 
+    // pause video if pager changes pages
+    Mozilla.Pager.pagers['home-promo'].$container.bind('changePage', function() {
+        if (videoJS) {
+            videoJS.pause();
+        }
+    });
 
 });
