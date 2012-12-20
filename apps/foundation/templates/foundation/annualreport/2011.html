@@ -579,7 +579,7 @@
         </aside>
 
         <p>
-        {% trans contribute_url='https://www.mozilla.org/contribute' %}
+        {% trans %}
           Mozilla is an organization that is fundamentally about people and
           making the Web better for everyone. The Mozilla community is essential
           to the success of the project. We can’t fight for an open, hackable and
@@ -587,9 +587,13 @@
           We have Mozilla communities spanning the world and these remarkable
           people are responsible for coding, testing, localizing, hosting
           hackfests and summer code parties, teaching Webmakers, marketing,
-          evangelizing Mozilla products and much more. Learn more about how you 
-          can <a href="{{ contribute_url }}" rel="external" hreflang="en-US">get involved with Mozilla</a>
+          evangelizing Mozilla products and much more.
         {% endtrans %}
+      {% if request.locale.startswith('en') %}
+        {% trans contribute_url='https://www.mozilla.org/contribute' %}
+          Learn more about how you can <a href="{{ contribute_url }}" rel="external" hreflang="en-US">get involved with Mozilla</a>.
+        {% endtrans %}
+      {% endif %}
         </p>
       </section>
 
