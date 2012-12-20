@@ -48,14 +48,7 @@ $(document).ready(function() {
     function getSize()
     {
         var width = $(window).width();
-        var size  = {
-            thumbWidth   : sizes[0].thumbWidth,
-            thumbHeight  : sizes[0].thumbHeight,
-            videoWidth   : sizes[0].thumbWidth,
-            videoHeight  : sizes[0].thumbHeight,
-            marginWidth  : sizes[0].marginWidth,
-            marginHeight : sizes[0].marginHeight
-        };
+        var size  = sizes[0];
 
         if (isMSIEpre9) {
             // no media queries means we always use desktop width
@@ -67,14 +60,7 @@ $(document).ready(function() {
                    (!sizes[i].from || width >= sizes[i].from)
                 && (!sizes[i].to || width <= sizes[i].to)
             ) {
-                size = {
-                    thumbWidth   : sizes[i].thumbWidth,
-                    thumbHeight  : sizes[i].thumbHeight,
-                    videoWidth   : sizes[i].videoWidth,
-                    videoHeight  : sizes[i].videoHeight,
-                    marginWidth  : sizes[i].marginWidth,
-                    marginHeight : sizes[i].marginHeight
-                };
+                size = sizes[i];
                 break;
             }
         }
@@ -84,17 +70,21 @@ $(document).ready(function() {
 
     var $thumb = $('#promo-flicks-keyframe');
     var $link = $thumb.next();
+
+    // create container that replaces the link when the video is open
     var $container = $('<div class="container"></div>');
     $container
         .css('display', 'none')
         .insertBefore($link);
 
+    // create go link shown when video is open
     var $goLink = $('<a class="go"></a>');
     $goLink
         .attr('href', $link.attr('href'))
         .text($link.find('.go').text())
         .appendTo($container);
 
+    // get video-complteted overlay and set up replay button click handler
     var $overlay = $('#promo-flicks-overlay');
     $overlay.find('.video-replay').click(function(e) {
         e.preventDefault();
@@ -107,17 +97,8 @@ $(document).ready(function() {
 
     var opened = false;
 
-    var startWidth    = $thumb.width();
-    var startHeight   = $thumb.height();
-    var startPosition = $thumb.position();
-    var startOffset   = $thumb.offset();
-
-    var closeText = 'close';
-
-    var $container;
-    var $video;
-    var $close;
-    var videoJS;
+    // create close button for closing open video
+    var closeText = 'close'; // TODO l10n
 
     var $close = $(
         '<span class="video-close" tabindex="0" role="button">×</span>'
@@ -131,14 +112,18 @@ $(document).ready(function() {
         });
 
     var margin = 20;
+
+    // shared animation settings
     var duration = 400;
     var easing = 'swing';
 
+    // create container to hold the video player
     var $videoContainer = $('<div class="video-container"></div>');
     $videoContainer
         .css('display', 'none')
         .insertAfter($thumb);
 
+    // create video
     var $video = $(
         '<video id="video-player" class="video-js vjs-default-skin" '
         + 'controls="controls" preload="auto"></video>'
@@ -146,6 +131,7 @@ $(document).ready(function() {
 
     $video.appendTo($videoContainer);
 
+    // create video sources
     var sources = [
         {
             src:  'http://videos.mozilla.org/uploads/brand/State%20of%20Mozilla%202011%20(fcp2)-RC%20-%20720p%20-%20MPEG-4.mp4',
@@ -165,6 +151,9 @@ $(document).ready(function() {
             )
         );
     }
+
+    // shared reference to the video.js player when it exists
+    var videoJS;
 
     function open()
     {
@@ -222,7 +211,7 @@ $(document).ready(function() {
         $container
             .animate(
                 {
-                    'height' : size.videoHeight + margin + goHeight + 10 + size.marginHeight
+                    'height' : size.videoHeight + goHeight + 10 + size.marginHeight * 2
                 },
                 duration,
                 easing
