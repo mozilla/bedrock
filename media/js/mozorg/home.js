@@ -6,30 +6,42 @@ $(document).ready(function() {
 
     var sizes = [
         {
-            to      : 479,
-            width   : 320,
-            height  : 180,
-            padding : 0
+            to           : 479,
+            thumbWidth   : 320,
+            thumbHeight  : 180,
+            videoWidth   : 320,
+            videoHeight  : 180,
+            marginWidth  : 0,
+            marginHeight : 0
         },
         {
-            from    : 480,
-            to      : 760,
-            width   : 440,
-            height  : 248,
-            padding : 0
+            from         : 480,
+            to           : 760,
+            thumbWidth   : 440,
+            thumbHeight  : 248,
+            videoWidth   : 440,
+            videoHeight  : 248,
+            marginWidth  : 0,
+            marginHeight : 0
         },
         {
-            from    : 761,
-            to      : 1000,
-            width   : 720,
-            height  : 405,
-            padding : 20
+            from         : 761,
+            to           : 1000,
+            thumbWidth   : 280,
+            thumbHeight  : 158,
+            videoWidth   : 720,
+            videoHeight  : 405,
+            marginWidth  : 20,
+            marginHeight : 20
         },
         {
-            from    : 1001,
-            width   : 853,
-            height  : 480,
-            padding : 20
+            from         : 1001,
+            thumbWidth   : 380,
+            thumbHeight  : 214,
+            videoWidth   : 853,
+            videoHeight  : 480,
+            marginWidth  : 30,
+            marginHeight : 25
         }
     ];
 
@@ -37,12 +49,16 @@ $(document).ready(function() {
     {
         var width = $(window).width();
         var size  = {
-            width   : sizes[0].width,
-            height  : sizes[0].height,
-            padding : sizes[0].padding
+            thumbWidth   : sizes[0].thumbWidth,
+            thumbHeight  : sizes[0].thumbHeight,
+            videoWidth   : sizes[0].thumbWidth,
+            videoHeight  : sizes[0].thumbHeight,
+            marginWidth  : sizes[0].marginWidth,
+            marginHeight : sizes[0].marginHeight
         };
 
         if (isMSIEpre9) {
+            // no media queries means we always use desktop width
             width = 1001;
         }
 
@@ -52,9 +68,12 @@ $(document).ready(function() {
                 && (!sizes[i].to || width <= sizes[i].to)
             ) {
                 size = {
-                    width   : sizes[i].width,
-                    height  : sizes[i].height,
-                    padding : sizes[i].padding
+                    thumbWidth   : sizes[i].thumbWidth,
+                    thumbHeight  : sizes[i].thumbHeight,
+                    videoWidth   : sizes[i].videoWidth,
+                    videoHeight  : sizes[i].videoHeight,
+                    marginWidth  : sizes[i].marginWidth,
+                    marginHeight : sizes[i].marginHeight
                 };
                 break;
             }
@@ -145,22 +164,22 @@ $(document).ready(function() {
 
         opened = true;
 
-        var height = $link.height();
-        var width  = $link.width();
+        var linkHeight   = $link.height();
+        var linkWidth    = $link.width();
+        var linkPosition = $link.position();
 
         var thumbOffset   = $thumb.offset();
         var thumbPosition = $thumb.position();
-        var thumbWidth    = $thumb.width();
-        var linkPosition  = $link.position();
 
         var size = getSize();
 
+        // hide link and show container with same dimensions
         $link.css('display', 'none');
-
         $container
-            .height(height)
+            .height(linkHeight)
             .css('display', 'block');
 
+        // show close link
         $close
             .insertBefore($container)
             .css(
@@ -170,24 +189,27 @@ $(document).ready(function() {
             )
             .offset(
                 {
-                    'left'  : thumbOffset.left + thumbWidth
+                    'left'  : thumbOffset.left + size.thumbWidth
                 }
             )
             .animate(
                 {
-                    'left' : Math.floor(((width - 2 * margin) / 2) + (size.width / 2) + margin),
-                    'top'  : size.padding
+                    'left' : Math.floor((linkWidth + size.videoWidth) / 2),
+                    'top'  : size.marginHeight
                 },
                 duration
             );
 
         var goHeight = $goLink.height();
-        $goLink.css('left', Math.max(Math.floor((width - size.width) / 2), margin));
+        $goLink.css(
+            'left',
+            Math.max(Math.floor((linkWidth - size.videoWidth) / 2), margin)
+        );
 
         $container
             .animate(
                 {
-                    'height' : size.height + margin + goHeight + 10 + size.padding
+                    'height' : size.videoHeight + margin + goHeight + 10 + size.marginHeight
                 },
                 duration,
                 easing
@@ -206,10 +228,10 @@ $(document).ready(function() {
             )
             .animate(
                 {
-                    'height' : size.height,
-                    'width'  : size.width,
-                    'left'   : Math.floor(((width - 2 * margin) / 2) - (size.width / 2) + margin),
-                    'top'    : size.padding
+                    'height' : size.videoHeight,
+                    'width'  : size.videoWidth,
+                    'left'   : Math.floor((linkWidth - size.videoWidth) / 2),
+                    'top'    : size.marginHeight
                 },
                 duration,
                 easing,
@@ -292,16 +314,21 @@ $(document).ready(function() {
 
         opened = false;
 
-        var height = $container.height();
+        var linkWidth  = $container.width();
+        var linkHeight = $container.height();
 
+        var size = getSize();
+
+        //TODO: get to height better
+
+        // hide container and show link at same dimensions
         $container.css('display', 'none');
-
         $link
-            .height(height)
+            .height(linkHeight)
             .css('display', 'block')
             .animate(
                 {
-                    'height' : startHeight + 2 * margin
+                    'height' : size.thumbHeight + 2 * size.marginHeight
                 },
                 duration,
                 easing
@@ -309,9 +336,9 @@ $(document).ready(function() {
 
         $thumb.animate(
             {
-                'height' : startHeight,
-                'width'  : startWidth,
-                'left'   : startPosition.left
+                'height' : size.thumbHeight,
+                'width'  : size.thumbWidth,
+                'left'   : linkWidth - size.thumbWidth - size.marginWidth
             },
             duration,
             easing
@@ -332,12 +359,12 @@ $(document).ready(function() {
 
             if (size.width != videoWidth) {
                 videoJS.size(size.width, size.height);
-                reposition(size.padding);
+                reposition(size);
             }
         }
     };
 
-    function reposition(videoMargin)
+    function reposition(size)
     {
         var $offsetParent = $videoContainer.offsetParent();
 
@@ -345,7 +372,7 @@ $(document).ready(function() {
         var width      = $videoContainer.width();
         var height     = $videoContainer.height();
         var goHeight   = $goLink.height();
-        var goLeft     = Math.max(Math.floor((totalWidth - width) / 2), margin);
+        var goLeft     = Math.max(Math.floor((totalWidth - width) / 2), size.marginWidth);
 
         $videoContainer.css(
             {
@@ -367,7 +394,7 @@ $(document).ready(function() {
             {
                 'bottom' : 'auto',
                 'left'   : goLeft,
-                'top'    : height + videoMargin + 10
+                'top'    : height + size.marginHeight + 10
             }
         );
 
