@@ -95,7 +95,7 @@ $(document).ready(function() {
         }
     });
 
-    var opened = false;
+    var state = 'closed';
 
     // create close button for closing open video
     var closeText = 'close'; // TODO l10n
@@ -107,7 +107,6 @@ $(document).ready(function() {
     $close
         .attr('title', closeText)
         .click(function(e) {
-            hideVideo();
             close();
         });
 
@@ -155,14 +154,14 @@ $(document).ready(function() {
 
     function open()
     {
-        if (opened) {
+        if (state != 'closed') {
             return;
         }
 
+        state = 'opening';
+
         // if pager is auto-rotating, stop rotating when video opened
         Mozilla.Pager.pagers['home-promo'].stopAutoRotate();
-
-        opened = true;
 
         var linkHeight   = $link.height();
         var linkWidth    = $link.width();
@@ -235,7 +234,11 @@ $(document).ready(function() {
                 },
                 duration,
                 easing,
-                showVideo
+                function() {
+                    showVideo();
+                    // only allow closing after opened
+                    state = 'opened';
+                }
             );
 
         $('body').animate(
@@ -331,11 +334,13 @@ $(document).ready(function() {
 
     function close()
     {
-        if (!opened) {
+        if (state != 'opened') {
             return;
         }
 
-        opened = false;
+        state = 'closing';
+
+        hideVideo();
 
         var linkWidth  = $container.width();
         var linkHeight = $container.height();
@@ -364,7 +369,12 @@ $(document).ready(function() {
                 'left'   : linkWidth - size.thumbWidth - size.marginWidth
             },
             duration,
-            easing
+            easing,
+            function()
+            {
+                // only allow opening after closing finished
+                state = 'closed';
+            }
         );
 
     };
@@ -375,7 +385,7 @@ $(document).ready(function() {
 
     function handleResize()
     {
-        if (videoJS && opened) {
+        if (videoJS && state == 'opened') {
             var width = $(window).width();
             var size = getSize();
 
