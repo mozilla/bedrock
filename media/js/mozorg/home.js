@@ -95,6 +95,16 @@ $(document).ready(function() {
         .text($link.find('.go').text())
         .appendTo($container);
 
+    var $overlay = $('#promo-flicks-overlay');
+    $overlay.find('.video-replay').click(function(e) {
+        e.preventDefault();
+        hideOverlay();
+        if (videoJS) {
+            videoJS.currentTime(0);
+            videoJS.play();
+        }
+    });
+
     var opened = false;
 
     var startWidth    = $thumb.width();
@@ -278,9 +288,32 @@ $(document).ready(function() {
         } else {
             _V_('video-player', {}, function() {
                 videoJS = this;
+                videoJS.addEvent('ended', showOverlay);
                 videoJS.play();
             });
         }
+    };
+
+    function showOverlay()
+    {
+        var width    = $videoContainer.width();
+        var height   = $videoContainer.height();
+        var position = $videoContainer.position();
+
+        $overlay.css(
+            {
+                'top'     : position.top,
+                'left'    : position.left,
+                'width'   : width,
+                'height'  : height,
+                'display' : 'block'
+            }
+        );
+    };
+
+    function hideOverlay()
+    {
+        $overlay.css('display', 'none');
     };
 
     function hideVideo()
