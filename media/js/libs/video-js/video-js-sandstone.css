@@ -125,8 +125,6 @@
 }
 
 .vjs-default-skin .vjs-big-play-button {
-    display: none;
-    background: none;
     filter: none;
     -webkit-border-radius: 8em;
        -moz-border-radius: 8em;
@@ -134,7 +132,12 @@
     border: 0;
 }
 
-.vjs-default-skin div.vjs-big-play-button span {
+.vjs-moz-ended .vjs-big-play-button {
+    background: none;
+}
+
+.vjs-moz-ended div.vjs-big-play-button span,
+.vjs-moz-ended div.vjs-loading-spinner div {
     display: none;
 }
 

@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     var isMSIEpre9 = (/MSIE\ (4|5|6|7|8)/.test(navigator.userAgent));
-    var noVideo = (typeof HTMLMediaElement == 'undefined');
+    var noVideo    = (typeof HTMLMediaElement == 'undefined');
 
     var sizes = [
         {
@@ -89,6 +89,11 @@ $(document).ready(function() {
         e.preventDefault();
         hideOverlay();
         if (videoJS) {
+            // let the loading and big play buttons show up again.
+            $videoContainer
+                .find('.video-js')
+                .removeClass('vjs-moz-ended');
+
             videoJS.currentTime(0);
             videoJS.play();
         }
@@ -292,6 +297,11 @@ $(document).ready(function() {
         );
 
         if (videoJS) {
+            // let the loading and big play buttons show up again.
+            $videoContainer
+                .find('.video-js')
+                .removeClass('vjs-moz-ended');
+
             videoJS.size(size.videoWidth, size.videoHeight);
             videoJS.play();
         } else {
@@ -325,6 +335,12 @@ $(document).ready(function() {
                 'display' : 'block'
             }
         );
+
+        // hide video-js big play button and loading spinner (Chrome
+        // shows spinnemr for some videos after they are finished)
+        $videoContainer
+            .find('.video-js')
+            .addClass('vjs-moz-ended');
     };
 
     function hideOverlay()
@@ -423,11 +439,8 @@ $(document).ready(function() {
 
     function handleResize()
     {
-//        if (videoJS && state == 'opened') {
-            var size = getSize();
-            reposition(size);
-  //          }
-    //    }
+        var size = getSize();
+        reposition(size);
     };
 
     function reposition(size)
@@ -436,6 +449,8 @@ $(document).ready(function() {
         var width = $(window).width();
 
         if (state == 'opened' || state == 'opening') {
+
+            // TODO: check for and stop animations
 
             if (videoJS) {
                 // getting width of container because of video-js Issue 258
@@ -497,6 +512,8 @@ $(document).ready(function() {
             );
 
         } else {
+
+            // TODO: check for and stop animations
 
             linkWidth = $link.width();
 
