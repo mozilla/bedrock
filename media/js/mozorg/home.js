@@ -481,9 +481,11 @@ $(document).ready(function() {
 
             $videoContainer.css(
                 {
-                    'right' : 'auto',
-                    'top'   : currentSize.marginHeight,
-                    'left'  : Math.floor((linkWidth - currentSize.videoWidth) / 2)
+                    'right'  : 'auto',
+                    'top'    : currentSize.marginHeight,
+                    'left'   : Math.floor((linkWidth - currentSize.videoWidth) / 2),
+                    'width'  : currentSize.videoWidth,
+                    'height' : currentSize.videoHeight,
                 }
             );
 
