@@ -392,72 +392,99 @@ $(document).ready(function() {
 
     function handleResize()
     {
-        if (videoJS && state == 'opened') {
-            var width = $(window).width();
+//        if (videoJS && state == 'opened') {
             var size = getSize();
-
-            // getting width of container because of video-js Issue 258
-            // https://github.com/zencoder/video-js/issues/258
-            var videoWidth = $videoContainer.width();
-
-            if (size.width != videoWidth) {
-                videoJS.size(size.videoWidth, size.videoHeight);
-                $overlay.css(
-                    {
-                        'width'  : size.videoWidth,
-                        'height' : size.videoHeight
-                    }
-                );
-                reposition(size);
-            }
-        }
+            reposition(size);
+  //          }
+    //    }
     };
 
     function reposition(size)
     {
-        var $offsetParent = $videoContainer.offsetParent();
+        var linkWidth;
+        var width = $(window).width();
 
-        var linkWidth = $offsetParent.width();
-        var goHeight  = $goLink.height();
-        var goLeft    = Math.max(Math.floor((linkWidth - size.videoWidth) / 2), 20);
+        if (state == 'opened' || state == 'opening') {
 
-        $videoContainer.css(
-            {
-                'right' : 'auto',
-                'top'   : size.marginHeight,
-                'left'  : Math.floor((linkWidth - size.videoWidth) / 2)
+            if (videoJS) {
+                // getting width of container because of video-js Issue 258
+                // https://github.com/zencoder/video-js/issues/258
+                var videoWidth = $videoContainer.width();
+
+                if (size.width != videoWidth) {
+                    videoJS.size(size.videoWidth, size.videoHeight);
+                    $overlay.css(
+                        {
+                            'width'  : size.videoWidth,
+                            'height' : size.videoHeight
+                        }
+                    );
+                }
             }
-        );
 
-        $overlay.css(
-            {
-                'right' : 'auto',
-                'top'   : size.marginHeight,
-                'left'  : Math.floor((linkWidth - size.videoWidth) / 2)
-            }
-        );
+            var $offsetParent = $videoContainer.offsetParent();
+            linkWidth = $offsetParent.width();
 
-        $close.css(
-            {
-                'right' : 'auto',
-                'top'   : size.marginHeight,
-                'left'  : Math.floor((linkWidth + size.videoWidth) / 2)
-            }
-        );
+            var goHeight  = $goLink.height();
 
-        $goLink.css(
-            {
-                'bottom' : 'auto',
-                'left'   : goLeft,
-                'top'    : size.videoHeight + size.marginHeight + 10
-            }
-        );
+            $videoContainer.css(
+                {
+                    'right' : 'auto',
+                    'top'   : size.marginHeight,
+                    'left'  : Math.floor((linkWidth - size.videoWidth) / 2)
+                }
+            );
 
-        $container.css(
-            {
-                'height' : size.marginHeight + size.videoHeight + goHeight + 10 + 20
-            }
-        );
+            $overlay.css(
+                {
+                    'right' : 'auto',
+                    'top'   : size.marginHeight,
+                    'left'  : Math.floor((linkWidth - size.videoWidth) / 2)
+                }
+            );
+
+            $close.css(
+                {
+                    'right' : 'auto',
+                    'top'   : size.marginHeight,
+                    'left'  : Math.floor((linkWidth + size.videoWidth) / 2)
+                }
+            );
+
+            $goLink.css(
+                {
+                    'bottom' : 'auto',
+                    'left'   : Math.max(Math.floor((linkWidth - size.videoWidth) / 2), 20),
+                    'top'    : size.videoHeight + size.marginHeight + 10
+                }
+            );
+
+            $container.css(
+                {
+                    'height' : size.marginHeight + size.videoHeight + goHeight + 10 + 20
+                }
+            );
+
+        } else {
+
+            linkWidth = $link.width();
+
+            $thumb.css(
+                {
+                    'right'  : 'auto',
+                    'top'    : size.marginHeight,
+                    'left'   : linkWidth - size.thumbWidth - size.marginWidth,
+                    'width'  : size.thumbWidth,
+                    'height' : size.thumbHeight
+                }
+            );
+
+            $link.css (
+                {
+                    'height' : size.thumbHeight + size.marginHeight * 2
+                }
+            );
+        }
 
     };
 
