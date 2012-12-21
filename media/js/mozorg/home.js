@@ -1,3 +1,15 @@
+if (typeof Mozilla == 'undefined') {
+    var Mozilla = {};
+}
+
+if (typeof Mozilla.page == 'undefined') {
+    Mozilla.page = {};
+}
+
+Mozilla.page.Home = {
+    'closeText' : 'close'
+};
+
 $(document).ready(function() {
 
     var isMSIEpre9 = (/MSIE\ (4|5|6|7|8)/.test(navigator.userAgent));
@@ -104,14 +116,12 @@ $(document).ready(function() {
     var state = 'closed';
 
     // create close button for closing open video
-    var closeText = 'close'; // TODO l10n
-
     var $close = $(
         '<span class="video-close" tabindex="0" role="button">×</span>'
     );
 
     $close
-        .attr('title', closeText)
+        .attr('title', Mozilla.page.Home.closeText)
         .click(function(e) {
             close();
         });
@@ -406,7 +416,6 @@ $(document).ready(function() {
 
         hideVideo();
 
-        //TODO: get to height better
         var linkWidth  = $container.width();
         var linkHeight = $container.height();
 
