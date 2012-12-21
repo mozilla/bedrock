@@ -1,8 +1,7 @@
 $(document).ready(function() {
 
-    var isMSIEpre9 = (function() {
-        return (/MSIE\ (4|5|6|7|8)/.test(navigator.userAgent));
-    })();
+    var isMSIEpre9 = (/MSIE\ (4|5|6|7|8)/.test(navigator.userAgent));
+    var noVideo = (typeof HTMLMediaElement == 'undefined');
 
     var sizes = [
         {
@@ -282,6 +281,13 @@ $(document).ready(function() {
         } else {
             _V_('video-player', {}, function() {
                 videoJS = this;
+
+                // Flash player fails to initialize dynamically inserted source
+                // elements. Set up the sources after the player exists. See
+                // http://help.videojs.com/discussions/questions/350-flash-fallback-in-ie8
+                if (noVideo) {
+                    videoJS.src(sources);
+                }
                 videoJS.addEvent('ended', showOverlay);
                 videoJS.play();
             });
