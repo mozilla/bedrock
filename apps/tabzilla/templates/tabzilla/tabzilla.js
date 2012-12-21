@@ -530,7 +530,7 @@ Tabzilla.content =
     + '  <div id="tabzilla-promo">'
     + '    <div class="snippet" id="tabzilla-promo-donate">'
     + '    <a href="https://donate.mozilla.org/Firefox-T-Shirt-8?WT.mc_id=tzdonate&amp;WT.mc_ev=click">'
-    + '     <h4>{{ _('Support Mozilla and Get a T-shirt to Boot!')|js_escape }}</h4>'
+    + '     <h4>{{ _('Support Mozilla and get a t-shirt to boot!')|js_escape }}</h4>'
     + '     <p>{{ _('Donate now')|js_escape }} »</p></a>'
     + '    </div>'
     + '  </div>'
