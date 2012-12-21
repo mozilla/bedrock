@@ -1,4 +1,4 @@
-{% extends "/firefox/base-resp.html" %}
+{% extends "firefox/base-resp.html" %}
 
 {% block page_title %}Free Download{% endblock %}
 {% block body_id %}firefox-new{% endblock %}
@@ -7,6 +7,8 @@
 {% block site_header_logo %}
   <h2><a href="{{ url('mozorg.home') }}"><img src="/media/img/firefox/new/header-firefox.png" alt="{{_('Firefox for desktop')}}" /></a></h2>
 {% endblock %}
+
+{% block webtrends %}{% endblock %}
 
 {% block site_css %}
   {{ css('firefox_new_test') }}

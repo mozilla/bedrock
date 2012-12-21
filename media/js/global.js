@@ -5,6 +5,10 @@
 
 // download buttons
 
+if (typeof(dcsMultiTrack) === 'undefined') {
+    dcsMultiTrack = function(){};
+}
+
 /**
  * A special function for IE.  Without this hack there is no prompt to download after they click.  sigh.
  * bug 393263
@@ -70,14 +74,14 @@ $(document).ready(function() {
 function getFirefoxMasterVersion()
 {
     var version = 0;
-    
+
     var matches = /Firefox\/([0-9]+).[0-9]+(?:.[0-9]+)?/.exec(
         navigator.userAgent
     );
-    
+
     if (matches !== null && matches.length > 0) {
         version = parseInt(matches[1], 10);
     }
-    
+
     return version;
 }
