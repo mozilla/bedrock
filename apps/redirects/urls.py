@@ -55,7 +55,7 @@ urlpatterns = patterns('',
     redirect(r'gameon/$', 'https://gameon.mozilla.org'),
 
     # Tabzilla
-    redirect(r'tabzilla/media/js/tabzilla\.js$', '/tabzilla/tabzilla.js'),
+    redirect(r'tabzilla/media/js/tabzilla\.js$', 'tabzilla'),
     redirect(r'tabzilla/media/css/tabzilla\.css$',
              lambda r: '/media/css/tabzilla.less.css' if settings.TEMPLATE_DEBUG
                        else '/media/css/tabzilla-min.css'),
