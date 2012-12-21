@@ -155,11 +155,12 @@ class TestDotlang(TestCase):
         # translation
         # path won't exist for en-US as there isn't a dir for that
         # in locale.
-        result = translate(dirty_string, ['does_not_exist'])
-        eq_(result, dirty_string)
+        with self.activate('en-US'):
+            result = translate(dirty_string, ['does_not_exist'])
+            eq_(result, dirty_string)
 
-        result = translate(dirty_string, ['tweaked_message_translation'])
-        eq_(result, trans_string)
+            result = translate(dirty_string, ['tweaked_message_translation'])
+            eq_(result, trans_string)
 
     @patch('l10n_utils.dotlang.translate')
     def test_new_lang_files_do_not_modify_settings(self, trans_patch):
