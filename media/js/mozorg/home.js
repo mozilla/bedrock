@@ -324,11 +324,8 @@ $(document).ready(function() {
 
         var videoPosition = $videoContainer.position();
 
-        $videoContainer.css(
-            {
-                'display' : 'none'
-            }
-        );
+        $videoContainer.css('display', 'none');
+        $overlay.css('display', 'none');
 
         $thumb.css(
             {
