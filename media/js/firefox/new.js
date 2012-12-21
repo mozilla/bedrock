@@ -28,13 +28,15 @@
         var $scene2 = $('#scene2');
         var $stage = $('#stage-firefox');
         var $thankYou = $('.thankyou');
-        $('.download-firefox').on('click', function() {
+        $('.download-firefox').on('click', function(e) {
+            // cancel natural event
+            e.preventDefault();
+
             // track download click
             if (_gaq) {
                 _gaq.push(['_trackPageview',
                            '/en-US/products/download.html?referrer=new-b']);
             }
-
             if (!Modernizr.csstransitions) {
                 $scene2.css('visibility', 'visible');
                 $stage.animate({
@@ -51,6 +53,12 @@
                     $thankYou.focus();
                 }, 500);
             }
+
+            // delay natural event
+            var that = this;
+            setTimeout(function() {
+                window.location.href = $(that).attr('href');
+            }, 300);
         });
     });
 })(window.jQuery, window.Modernizr, window._gaq, window.site);
