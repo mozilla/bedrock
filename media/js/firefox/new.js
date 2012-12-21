@@ -14,6 +14,14 @@
 
         $('body').addClass('ready-for-scene2');
     });
+    
+    function sleep(ms) {
+        var dt = new Date();
+        dt.setTime(dt.getTime() + ms);
+        while (new Date().getTime() < dt.getTime()) {
+            // yawn
+        }
+    }
 
     // Bind events on domReady.
     $(function() {
@@ -33,8 +41,8 @@
             if (_gaq) {
                 _gaq.push(['_trackPageview',
                            '/en-US/products/download.html?referrer=new-b']);
+                sleep(200);
             }
-
             if (!Modernizr.csstransitions) {
                 $scene2.css('visibility', 'visible');
                 $stage.animate({
