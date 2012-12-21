@@ -503,6 +503,13 @@ $(document).ready(function() {
                 }
             );
 
+            $thumb.css(
+                {
+                    'width'  : currentSize.videoWidth,
+                    'height' : currentSize.videoHeight
+                }
+            );
+
             if (currentSize.videoWidth >= 720) {
                 $goLink.css(
                     {
