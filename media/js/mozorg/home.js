@@ -193,21 +193,11 @@ $(document).ready(function() {
 
         if (currentSize.videoWidth >= 720) {
 
-            var linkHeight   = $link.height();
-            var linkWidth    = $link.width();
-            var linkPosition = $link.position();
+            var linkWidth = $link.width();
 
-            // hide link and show container with same dimensions
-            $link.css('display', 'none');
-            $container
-                .height(linkHeight)
-                .css('display', 'block');
+            hideLink();
 
             var goHeight = $goLink.height();
-            $goLink.css(
-                'left',
-                Math.max(Math.floor((linkWidth - currentSize.videoWidth) / 2), 20)
-            );
 
             $container
                 .animate(
@@ -267,6 +257,34 @@ $(document).ready(function() {
             showVideo();
             state = 'opened';
         }
+    };
+
+    function hideLink()
+    {
+        var linkHeight = $link.height();
+        var linkWidth  = $link.width();
+
+        // hide link and show container with same dimensions
+        $link.css('display', 'none');
+        $container
+            .height(linkHeight)
+            .css('display', 'block');
+
+        $goLink.css(
+            'left',
+            Math.max(Math.floor((linkWidth - currentSize.videoWidth) / 2), 20)
+        );
+    };
+
+    function showLink()
+    {
+        var linkWidth  = $container.width();
+        var linkHeight = $container.height();
+
+            // hide container and show link at same dimensions
+            $container.css('display', 'none');
+            $link
+                .css('display', 'block')
     };
 
     function showVideo()
@@ -388,18 +406,15 @@ $(document).ready(function() {
 
         hideVideo();
 
+        //TODO: get to height better
         var linkWidth  = $container.width();
         var linkHeight = $container.height();
 
         if (currentSize.videoWidth >= 720) {
 
-            //TODO: get to height better
-
-            // hide container and show link at same dimensions
-            $container.css('display', 'none');
+            showLink();
             $link
                 .height(linkHeight)
-                .css('display', 'block')
                 .animate(
                     {
                         'height' : currentSize.thumbHeight + 2 * currentSize.marginHeight
@@ -464,8 +479,6 @@ $(document).ready(function() {
             var $offsetParent = $videoContainer.offsetParent();
             linkWidth = $offsetParent.width();
 
-            var goHeight  = $goLink.height();
-
             $videoContainer.css(
                 {
                     'right' : 'auto',
@@ -490,19 +503,27 @@ $(document).ready(function() {
                 }
             );
 
-            $goLink.css(
-                {
-                    'bottom' : 'auto',
-                    'left'   : Math.max(Math.floor((linkWidth - currentSize.videoWidth) / 2), 20),
-                    'top'    : currentSize.videoHeight + currentSize.marginHeight + 10
-                }
-            );
+            if (currentSize.videoWidth >= 720) {
+                $goLink.css(
+                    {
+                        'bottom' : 'auto',
+                        'left'   : Math.max(Math.floor((linkWidth - currentSize.videoWidth) / 2), 20),
+                        'top'    : currentSize.videoHeight + currentSize.marginHeight + 10
+                    }
+                );
 
-            $container.css(
-                {
-                    'height' : currentSize.marginHeight + currentSize.videoHeight + goHeight + 10 + 20
-                }
-            );
+                hideLink();
+
+                var goHeight  = $goLink.height();
+
+                $container.css(
+                    'height',
+                    currentSize.marginHeight + currentSize.videoHeight + goHeight + 10 + 20
+                );
+            } else {
+                showLink();
+                $link.css('height', 'auto');
+            }
 
         } else {
 
