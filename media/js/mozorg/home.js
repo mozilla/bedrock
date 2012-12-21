@@ -166,20 +166,10 @@ $(document).ready(function() {
         // if pager is auto-rotating, stop rotating when video opened
         Mozilla.Pager.pagers['home-promo'].stopAutoRotate();
 
-        var linkHeight   = $link.height();
-        var linkWidth    = $link.width();
-        var linkPosition = $link.position();
+        var size = getSize();
 
         var thumbOffset   = $thumb.offset();
         var thumbPosition = $thumb.position();
-
-        var size = getSize();
-
-        // hide link and show container with same dimensions
-        $link.css('display', 'none');
-        $container
-            .height(linkHeight)
-            .css('display', 'block');
 
         // show close link
         $close
@@ -191,66 +181,87 @@ $(document).ready(function() {
             )
             .offset(
                 {
-                    'left'  : thumbOffset.left + size.thumbWidth
+                    'left' : thumbOffset.left + size.thumbWidth,
+                    'top'  : thumbOffset.top
                 }
             )
-            .animate(
-                {
-                    'left' : Math.floor((linkWidth + size.videoWidth) / 2),
-                    'top'  : size.marginHeight
-                },
-                duration
+
+        if (size.videoWidth >= 720) {
+
+            var linkHeight   = $link.height();
+            var linkWidth    = $link.width();
+            var linkPosition = $link.position();
+
+            // hide link and show container with same dimensions
+            $link.css('display', 'none');
+            $container
+                .height(linkHeight)
+                .css('display', 'block');
+
+            var goHeight = $goLink.height();
+            $goLink.css(
+                'left',
+                Math.max(Math.floor((linkWidth - size.videoWidth) / 2), 20)
             );
 
-        var goHeight = $goLink.height();
-        $goLink.css(
-            'left',
-            Math.max(Math.floor((linkWidth - size.videoWidth) / 2), 20)
-        );
+            $container
+                .animate(
+                    {
+                        'height' : size.videoHeight + goHeight + 10 + size.marginHeight * 2
+                    },
+                    duration,
+                    easing
+                );
 
-        $container
-            .animate(
-                {
-                    'height' : size.videoHeight + goHeight + 10 + size.marginHeight * 2
-                },
-                duration,
-                easing
-            );
+            $close
+                .animate(
+                    {
+                        'left' : Math.floor((linkWidth + size.videoWidth) / 2),
+                        'top'  : size.marginHeight
+                    },
+                    duration
+                );
 
-        $thumb
-            .css(
-                {
-                    'right' : 'auto'
-                }
-            )
-            .offset(
-                {
-                    'left'  : thumbOffset.left
-                }
-            )
-            .animate(
-                {
-                    'height' : size.videoHeight,
-                    'width'  : size.videoWidth,
-                    'left'   : Math.floor((linkWidth - size.videoWidth) / 2),
-                    'top'    : size.marginHeight
-                },
-                duration,
-                easing,
-                function() {
-                    showVideo();
-                    // only allow closing after opened
-                    state = 'opened';
-                }
-            );
+            $thumb
+                .css(
+                    {
+                        'right' : 'auto'
+                    }
+                )
+                .offset(
+                    {
+                        'left'  : thumbOffset.left
+                    }
+                )
+                .animate(
+                    {
+                        'height' : size.videoHeight,
+                        'width'  : size.videoWidth,
+                        'left'   : Math.floor((linkWidth - size.videoWidth) / 2),
+                        'top'    : size.marginHeight
+                    },
+                    duration,
+                    easing,
+                    function() {
+                        showVideo();
+                        // only allow closing after opened
+                        state = 'opened';
+                    }
+                );
 
-        $('body').animate(
-            {
-                scrollTop: $('#home-promo').position().top - 20
-            },
-            duration,
-            easing
-        );
+                $('body').animate(
+                    {
+                        scrollTop: $('#home-promo').position().top - 20
+                    },
+                    duration,
+                    easing
+                );
+
+        } else {
+            // for small sizes, no animation required
+            showVideo();
+            state = 'opened';
+        }
     };
 
     function showVideo()
@@ -479,9 +490,13 @@ $(document).ready(function() {
                 }
             );
 
+            var height = (size.videoWidth >= 720)
+                ? size.thumbHeight + size.marginHeight * 2
+                : 'auto';
+
             $link.css (
                 {
-                    'height' : size.thumbHeight + size.marginHeight * 2
+                    'height' : height
                 }
             );
         }
