@@ -6,7 +6,7 @@
 
 {% block body_id %}research{% endblock %}
 {% block page_title_prefix %}{% endblock %}
-{% block page_title %}Mozilla Research{% endblock %}
+{% block page_title %}{{_('Mozilla Research') }}{% endblock %}
 
 {% block extrahead %}
  {{ css('research') }}
@@ -17,37 +17,32 @@
 {% block content %}
 
 <hgroup id="main-feature" class="large center">
-  <h1>Mozilla Research</h1>
-  <h2>Expanding the Foundations of the Open Web</h2>
+  <h1>{{_('Mozilla Research') }}</h1>
+  <h2>{{_('Expanding the Foundations of the Open Web') }}</h2>
 </hgroup>
-
-<div id="rust-promo" class="billboard">
-  <a href="{{ url('research.projects') }}#rust">
-    <h2>Rust</h2>
-    <p>A safe, concurrent, practical language.</p>
-  </a>
-</div>
 
 <div id="main-content">
 
 <p class="intro">
+{% trans %}
   At Mozilla Research, our focus is advanced Web platform technology.
   Specifically, we're out to prove that there are no limits on open technology and that it has the same capabilities and potential that closed technology does.
   We spend our days finding things that are impossible — and then figuring out how to make them possible.
+{% endtrans %}
 </p>
 
 <ul class="links">
   <li id="projects" class="odd">
-    <h4><a href="{{ url('research.projects') }}">Projects</a></h4>
-    <p>See what we're working on and building</p>
+    <h4><a href="{{ url('research.projects') }}">{{_('Projects') }}</a></h4>
+    <p>{{_('See what we’re working on and building') }}</p>
   </li>
   <li id="researchers">
-    <h4><a href="{{ url('research.researchers') }}#">Researchers</a></h4>
-    <p>Get to know the Mozilla Research team</p>
+    <h4><a href="{{ url('research.researchers') }}#">{{_('Researchers') }}</a></h4>
+    <p>{{_('Get to know the Mozilla Research team') }}</p>
   </li>
   <li id="blog" class="odd">
-    <h4><a href="http://blog.mozilla.org/research/">Blog</a></h4>
-    <p>Read up on our latest thoughts and news</p>
+    <h4><a href="http://blog.mozilla.org/research/">{{_('Blog') }}</a></h4>
+    <p>{{_('Read up on our latest thoughts and news') }}</p>
   </li>
 </ul>
 

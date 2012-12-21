@@ -34,7 +34,7 @@
 
 #research {
     #main-feature {
-        padding-bottom: @baseLine * 2;
+        padding-bottom: @baseLine;
     }
 }
 
@@ -42,6 +42,8 @@
     .intro {
         .span(6);
         padding-top: @baseLine;
+        font-size: 18px;
+        .open-sans-light;
     }
 
     ul.links {
@@ -109,30 +111,10 @@
     }
 }
 
-#rust-promo {
-    background: #fff url(/media/img/research/promo-rust.jpg) top right no-repeat;
-    padding: 0;
-    a {
-        display: block;
-        padding: @baseLine (@baseLine * 2);
-        color: @textColorSecondary;
-        &:hover,
-        &:active {
-            text-decoration: none;
-        }
-    }
-    p {
-        margin-bottom: 0;
-    }
-}
-
 /* Tablet Layout: 760px */
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
     .large h2 {
         font-size: 36px;
-    }
-    #rust-promo {
-        background-position: 100px 0;
     }
     #main-content {
         .intro {
@@ -173,17 +155,16 @@
     #research #main-feature {
         padding-bottom: @baseLine;
     }
-    #rust-promo {
-        display: none;
-        background-position: 90px 0;
-        background-size: auto 100%;
-    }
     #main-content {
         .intro,
         ul.links {
             .span_narrow(5);
             width: auto;
             float: none;
+        }
+        .intro {
+            font-size: @baseFontSize;
+            .open-sans;
         }
     }
     #projects {
