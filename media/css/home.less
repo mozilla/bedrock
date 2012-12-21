@@ -344,20 +344,49 @@
         text-align: center;
 
         .video-visit {
-            display: inline-block;
-            padding: 6px 12px;
-            background: #8f8;
-            border-radius: 5px;
-            margin-bottom: 20px;
+            .inline-block;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            font-size: 32px;
+            .open-sans-light;
+        }
+
+        .share-links {
+            li {
+                .inline-block;
+                a {
+                    .inline-block;
+                    padding: 5px 10px 5px 36px;
+                    background: url(/media/img/home/video-overlay-icons.png) 0 center no-repeat;
+                    &.share-facebook {
+                        background-position: -400px center;
+                    }
+                }
+            }
         }
 
         .video-replay {
+            opacity: 0.8;
             cursor: pointer;
-            margin-top: 20px;
-            display: inline-block;
-            padding: 6px 40px 6px 12px;
-            background: #f88;
-            border-radius: 5px;
+            margin-top: 40px;
+            .inline-block;
+            padding: 50px 10px 10px 10px;
+            position: relative;
+            color: #ccc;
+            &:after {
+                content: " ";
+                display: block;
+                position: absolute;
+                top: 0;
+                left: auto;
+                margin: 0 auto;
+                background: url(/media/img/home/video-overlay-icons.png) -800px center no-repeat;
+                height: 34px;
+                width: 38px;
+            }
+            &:hover {
+                opacity: 1;
+            }
         }
     }
 
@@ -365,7 +394,7 @@
     #page-promo-flicksvideo {
         position: relative;
         .container {
-            background: url(/media/img/home/promo-flicks-video.jpg) 0 0 repeat-x;
+            background: #8e121c url(/media/img/home/promo-flicks-video.jpg) 0 0 repeat-x;
             position: relative;
             border-bottom: 1px solid #ddd;
             width: 100%;
@@ -771,8 +800,8 @@
 @media only screen and (max-width: @breakMobileLandscape) {
 
     #home-promo {
-        #promo-firefoxos,
-        #page-promo-firefoxos {
+        #promo-flicksvideo,
+        #page-promo-flicksvideo {
             .container {
                 padding-top: 179px;
             }
