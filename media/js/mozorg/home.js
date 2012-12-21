@@ -268,9 +268,11 @@ $(document).ready(function() {
     {
         var thumbPosition = $thumb.position();
 
+        var size = getSize();
+
         $video
-            .attr('width', $thumb.width())
-            .attr('height', $thumb.height());
+            .attr('width', size.videoWidth)
+            .attr('height', size.videoHeight);
 
         $thumb.css(
             {
@@ -283,11 +285,14 @@ $(document).ready(function() {
                 'top'     : thumbPosition.top,
                 'right'   : 'auto',
                 'left'    : thumbPosition.left,
+                'width'   : size.videoWidth,
+                'height'  : size.videoHeight,
                 'display' : 'block'
             }
         );
 
         if (videoJS) {
+            videoJS.size(size.videoWidth, size.videoHeight);
             videoJS.play();
         } else {
             _V_('video-player', {}, function() {
@@ -332,6 +337,7 @@ $(document).ready(function() {
         if (videoJS) {
             videoJS.pause();
         }
+        var size = getSize();
 
         var videoPosition = $videoContainer.position();
 
@@ -346,6 +352,15 @@ $(document).ready(function() {
                 'display' : 'block'
             }
         );
+
+        if (size.videoWidth < 720) {
+            $thumb.css(
+                {
+                    'width'   : size.thumbWidth,
+                    'height'  : size.thumbHeight,
+                }
+            );
+        }
 
         $close.detach();
     }
@@ -365,35 +380,40 @@ $(document).ready(function() {
 
         var size = getSize();
 
-        //TODO: get to height better
+        if (size.videoWidth >= 720) {
 
-        // hide container and show link at same dimensions
-        $container.css('display', 'none');
-        $link
-            .height(linkHeight)
-            .css('display', 'block')
-            .animate(
+            //TODO: get to height better
+
+            // hide container and show link at same dimensions
+            $container.css('display', 'none');
+            $link
+                .height(linkHeight)
+                .css('display', 'block')
+                .animate(
+                    {
+                        'height' : size.thumbHeight + 2 * size.marginHeight
+                    },
+                    duration,
+                    easing
+                );
+
+            $thumb.animate(
                 {
-                    'height' : size.thumbHeight + 2 * size.marginHeight
+                    'height' : size.thumbHeight,
+                    'width'  : size.thumbWidth,
+                    'left'   : linkWidth - size.thumbWidth - size.marginWidth
                 },
                 duration,
-                easing
+                easing,
+                function()
+                {
+                    // only allow opening after closing finished
+                    state = 'closed';
+                }
             );
-
-        $thumb.animate(
-            {
-                'height' : size.thumbHeight,
-                'width'  : size.thumbWidth,
-                'left'   : linkWidth - size.thumbWidth - size.marginWidth
-            },
-            duration,
-            easing,
-            function()
-            {
-                // only allow opening after closing finished
-                state = 'closed';
-            }
-        );
+        } else {
+            state = 'closed';
+        }
 
     };
 
