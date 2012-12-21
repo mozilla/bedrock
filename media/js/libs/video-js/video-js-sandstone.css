@@ -89,15 +89,16 @@
 }
 
 .vjs-default-skin .vjs-progress-holder {
-    background: rgb(100,100,100);
-    background: rgba(255,255,255,0.5);
+    background: rgb(500,500,500);
+    background: rgba(255,255,255,0.3);
     -webkit-border-radius: 2px;
        -moz-border-radius: 2px;
             border-radius: 2px;
 }
 
 .vjs-default-skin .vjs-progress-holder .vjs-load-progress {
-    background: transparent;
+    background: rgb(100,100,100);
+    background: rgba(255,255,255,0.5);
 }
 
 .vjs-default-skin .vjs-volume-level,
@@ -124,11 +125,17 @@
 }
 
 .vjs-default-skin .vjs-big-play-button {
+    display: none;
+    background: none;
     filter: none;
     -webkit-border-radius: 8em;
        -moz-border-radius: 8em;
             border-radius: 8em;
     border: 0;
+}
+
+.vjs-default-skin div.vjs-big-play-button span {
+    display: none;
 }
 
 .vjs-default-skin div.vjs-big-play-button:hover {
