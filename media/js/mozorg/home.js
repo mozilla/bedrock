@@ -67,6 +67,8 @@ $(document).ready(function() {
         return size;
     };
 
+    var currentSize = getSize();
+
     var $thumb = $('#promo-flicks-keyframe');
     var $link = $thumb.next();
 
@@ -171,8 +173,6 @@ $(document).ready(function() {
         // if pager is auto-rotating, stop rotating when video opened
         Mozilla.Pager.pagers['home-promo'].stopAutoRotate();
 
-        var size = getSize();
-
         var thumbOffset   = $thumb.offset();
         var thumbPosition = $thumb.position();
 
@@ -186,12 +186,12 @@ $(document).ready(function() {
             )
             .offset(
                 {
-                    'left' : thumbOffset.left + size.thumbWidth,
+                    'left' : thumbOffset.left + currentSize.thumbWidth,
                     'top'  : thumbOffset.top
                 }
             )
 
-        if (size.videoWidth >= 720) {
+        if (currentSize.videoWidth >= 720) {
 
             var linkHeight   = $link.height();
             var linkWidth    = $link.width();
@@ -206,13 +206,13 @@ $(document).ready(function() {
             var goHeight = $goLink.height();
             $goLink.css(
                 'left',
-                Math.max(Math.floor((linkWidth - size.videoWidth) / 2), 20)
+                Math.max(Math.floor((linkWidth - currentSize.videoWidth) / 2), 20)
             );
 
             $container
                 .animate(
                     {
-                        'height' : size.videoHeight + goHeight + 10 + size.marginHeight * 2
+                        'height' : currentSize.videoHeight + goHeight + 10 + currentSize.marginHeight * 2
                     },
                     duration,
                     easing
@@ -221,8 +221,8 @@ $(document).ready(function() {
             $close
                 .animate(
                     {
-                        'left' : Math.floor((linkWidth + size.videoWidth) / 2),
-                        'top'  : size.marginHeight
+                        'left' : Math.floor((linkWidth + currentSize.videoWidth) / 2),
+                        'top'  : currentSize.marginHeight
                     },
                     duration
                 );
@@ -240,10 +240,10 @@ $(document).ready(function() {
                 )
                 .animate(
                     {
-                        'height' : size.videoHeight,
-                        'width'  : size.videoWidth,
-                        'left'   : Math.floor((linkWidth - size.videoWidth) / 2),
-                        'top'    : size.marginHeight
+                        'height' : currentSize.videoHeight,
+                        'width'  : currentSize.videoWidth,
+                        'left'   : Math.floor((linkWidth - currentSize.videoWidth) / 2),
+                        'top'    : currentSize.marginHeight
                     },
                     duration,
                     easing,
@@ -273,11 +273,9 @@ $(document).ready(function() {
     {
         var thumbPosition = $thumb.position();
 
-        var size = getSize();
-
         $video
-            .attr('width', size.videoWidth)
-            .attr('height', size.videoHeight);
+            .attr('width', currentSize.videoWidth)
+            .attr('height', currentSize.videoHeight);
 
         $thumb.css(
             {
@@ -290,8 +288,8 @@ $(document).ready(function() {
                 'top'     : thumbPosition.top,
                 'right'   : 'auto',
                 'left'    : thumbPosition.left,
-                'width'   : size.videoWidth,
-                'height'  : size.videoHeight,
+                'width'   : currentSize.videoWidth,
+                'height'  : currentSize.videoHeight,
                 'display' : 'block'
             }
         );
@@ -302,7 +300,7 @@ $(document).ready(function() {
                 .find('.video-js')
                 .removeClass('vjs-moz-ended');
 
-            videoJS.size(size.videoWidth, size.videoHeight);
+            videoJS.size(currentSize.videoWidth, currentSize.videoHeight);
             videoJS.play();
         } else {
             _V_('video-player', {}, function() {
@@ -353,7 +351,6 @@ $(document).ready(function() {
         if (videoJS) {
             videoJS.pause();
         }
-        var size = getSize();
 
         var videoPosition = $videoContainer.position();
 
@@ -369,11 +366,11 @@ $(document).ready(function() {
             }
         );
 
-        if (size.videoWidth < 720) {
+        if (currentSize.videoWidth < 720) {
             $thumb.css(
                 {
-                    'width'   : size.thumbWidth,
-                    'height'  : size.thumbHeight,
+                    'width'   : currentSize.thumbWidth,
+                    'height'  : currentSize.thumbHeight
                 }
             );
         }
@@ -394,9 +391,7 @@ $(document).ready(function() {
         var linkWidth  = $container.width();
         var linkHeight = $container.height();
 
-        var size = getSize();
-
-        if (size.videoWidth >= 720) {
+        if (currentSize.videoWidth >= 720) {
 
             //TODO: get to height better
 
@@ -407,7 +402,7 @@ $(document).ready(function() {
                 .css('display', 'block')
                 .animate(
                     {
-                        'height' : size.thumbHeight + 2 * size.marginHeight
+                        'height' : currentSize.thumbHeight + 2 * currentSize.marginHeight
                     },
                     duration,
                     easing
@@ -415,9 +410,9 @@ $(document).ready(function() {
 
             $thumb.animate(
                 {
-                    'height' : size.thumbHeight,
-                    'width'  : size.thumbWidth,
-                    'left'   : linkWidth - size.thumbWidth - size.marginWidth
+                    'height' : currentSize.thumbHeight,
+                    'width'  : currentSize.thumbWidth,
+                    'left'   : linkWidth - currentSize.thumbWidth - currentSize.marginWidth
                 },
                 duration,
                 easing,
@@ -440,10 +435,13 @@ $(document).ready(function() {
     function handleResize()
     {
         var size = getSize();
-        reposition(size);
+        if (size.videoWidth != currentSize.videoWidth) {
+            currentSize = size;
+            reposition();
+        }
     };
 
-    function reposition(size)
+    function reposition()
     {
         var linkWidth;
         var width = $(window).width();
@@ -453,20 +451,15 @@ $(document).ready(function() {
             // TODO: check for and stop animations
 
             if (videoJS) {
-                // getting width of container because of video-js Issue 258
-                // https://github.com/zencoder/video-js/issues/258
-                var videoWidth = $videoContainer.width();
-
-                if (size.width != videoWidth) {
-                    videoJS.size(size.videoWidth, size.videoHeight);
-                    $overlay.css(
-                        {
-                            'width'  : size.videoWidth,
-                            'height' : size.videoHeight
-                        }
-                    );
-                }
+                videoJS.size(currentSize.videoWidth, currentSize.videoHeight);
             }
+
+            $overlay.css(
+                {
+                    'width'  : currentSize.videoWidth,
+                    'height' : currentSize.videoHeight
+                }
+            );
 
             var $offsetParent = $videoContainer.offsetParent();
             linkWidth = $offsetParent.width();
@@ -476,38 +469,38 @@ $(document).ready(function() {
             $videoContainer.css(
                 {
                     'right' : 'auto',
-                    'top'   : size.marginHeight,
-                    'left'  : Math.floor((linkWidth - size.videoWidth) / 2)
+                    'top'   : currentSize.marginHeight,
+                    'left'  : Math.floor((linkWidth - currentSize.videoWidth) / 2)
                 }
             );
 
             $overlay.css(
                 {
                     'right' : 'auto',
-                    'top'   : size.marginHeight,
-                    'left'  : Math.floor((linkWidth - size.videoWidth) / 2)
+                    'top'   : currentSize.marginHeight,
+                    'left'  : Math.floor((linkWidth - currentSize.videoWidth) / 2)
                 }
             );
 
             $close.css(
                 {
                     'right' : 'auto',
-                    'top'   : size.marginHeight,
-                    'left'  : Math.floor((linkWidth + size.videoWidth) / 2)
+                    'top'   : currentSize.marginHeight,
+                    'left'  : Math.floor((linkWidth + currentSize.videoWidth) / 2)
                 }
             );
 
             $goLink.css(
                 {
                     'bottom' : 'auto',
-                    'left'   : Math.max(Math.floor((linkWidth - size.videoWidth) / 2), 20),
-                    'top'    : size.videoHeight + size.marginHeight + 10
+                    'left'   : Math.max(Math.floor((linkWidth - currentSize.videoWidth) / 2), 20),
+                    'top'    : currentSize.videoHeight + currentSize.marginHeight + 10
                 }
             );
 
             $container.css(
                 {
-                    'height' : size.marginHeight + size.videoHeight + goHeight + 10 + 20
+                    'height' : currentSize.marginHeight + currentSize.videoHeight + goHeight + 10 + 20
                 }
             );
 
@@ -520,15 +513,15 @@ $(document).ready(function() {
             $thumb.css(
                 {
                     'right'  : 'auto',
-                    'top'    : size.marginHeight,
-                    'left'   : linkWidth - size.thumbWidth - size.marginWidth,
-                    'width'  : size.thumbWidth,
-                    'height' : size.thumbHeight
+                    'top'    : currentSize.marginHeight,
+                    'left'   : linkWidth - currentSize.thumbWidth - currentSize.marginWidth,
+                    'width'  : currentSize.thumbWidth,
+                    'height' : currentSize.thumbHeight
                 }
             );
 
-            var height = (size.videoWidth >= 720)
-                ? size.thumbHeight + size.marginHeight * 2
+            var height = (currentSize.videoWidth >= 720)
+                ? currentSize.thumbHeight + currentSize.marginHeight * 2
                 : 'auto';
 
             $link.css (
