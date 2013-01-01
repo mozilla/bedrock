@@ -121,4 +121,4 @@ def video(*args, **kwargs):
     data.update(filetypes=filetypes, mime=mime, videos=videos)
 
     return jinja2.Markup(jingo.env.get_template(
-        'mozorg/videotag.html').render(**data))
+        'mozorg/videotag.html').render(data))

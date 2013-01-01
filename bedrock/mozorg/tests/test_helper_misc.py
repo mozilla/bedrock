@@ -13,7 +13,7 @@ from pyquery import PyQuery as pq
 # Where should this function go?
 def render(s, context={}):
     t = jingo.env.from_string(s)
-    return t.render(**context)
+    return t.render(context)
 
 
 class TestVideoTag(unittest.TestCase):
@@ -83,7 +83,7 @@ class TestVideoTag(unittest.TestCase):
         eq_(doc('video object').length, 0)
 
 
-@patch.object(settings, 'ROOT_URLCONF', 'mozorg.tests.urls')
+@patch.object(settings, 'ROOT_URLCONF', 'bedrock.mozorg.tests.urls')
 class TestNewsletterFunction(unittest.TestCase):
     def setUp(self):
         self.client = Client()

@@ -29,24 +29,26 @@ def l10n_tmpl(tmpl, lang):
 
 def app_tmpl(tmpl):
     app = tmpl[:tmpl.index('/')]
-    return path.join(settings.ROOT, 'apps', app, 'templates', tmpl)
+    return path.join(settings.ROOT, settings.PROJECT_MODULE, app, 'templates', tmpl)
 
 
 def list_templates():
     """List all the templates in all the installed apps"""
 
     for app in settings.INSTALLED_APPS:
-        tmpl_dir = path.join(settings.ROOT, 'apps', app, 'templates')
+        if app.startswith(settings.PROJECT_MODULE):
+            app = app[len(settings.PROJECT_MODULE) + 1:]
+            tmpl_dir = path.join(settings.ROOT, 'bedrock', app, 'templates')
 
-        if path.exists(tmpl_dir):
-            # Find all the .html files
-            for root, dirs, files in os.walk(tmpl_dir):
-                for filename in files:
-                    name, ext = os.path.splitext(filename)
+            if path.exists(tmpl_dir):
+                # Find all the .html files
+                for root, dirs, files in os.walk(tmpl_dir):
+                    for filename in files:
+                        name, ext = os.path.splitext(filename)
 
-                    if ext in ['.txt', '.html']:
-                        full_path = os.path.join(root, filename)
-                        yield full_path.replace(tmpl_dir, '').lstrip('/')
+                        if ext in ['.txt', '.html']:
+                            full_path = os.path.join(root, filename)
+                            yield full_path.replace(tmpl_dir, '').lstrip('/')
 
 
 def update_templates(langs):

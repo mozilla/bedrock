@@ -10,7 +10,7 @@ from mock import patch
 from nose.tools import eq_
 
 
-@patch.object(settings, 'ROOT_URLCONF', 'redirects.tests.urls')
+@patch.object(settings, 'ROOT_URLCONF', 'bedrock.redirects.tests.urls')
 class TestUrlPatterns(unittest.TestCase):
     def setUp(self):
         self.client = Client()

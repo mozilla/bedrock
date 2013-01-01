@@ -5,7 +5,7 @@
 from django.conf.urls.defaults import patterns, url
 from django.http import HttpResponse
 
-from redirects.util import redirect
+from bedrock.redirects.util import redirect
 
 
 def mock_view(request):

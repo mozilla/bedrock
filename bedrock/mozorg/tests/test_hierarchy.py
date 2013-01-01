@@ -40,7 +40,7 @@ class TestPageNode(TestCase):
         PageRoot('', path='blah', children=[PageNode('', children=[child])])
         eq_(child.full_path, 'blah/asdf')
 
-    @patch('mozorg.hierarchy.page')
+    @patch('bedrock.mozorg.hierarchy.page')
     def test_page(self, page):
         """
         If a pagenode is given a template, it should provide a page for
@@ -174,7 +174,7 @@ class TestPageNode(TestCase):
         eq_(child3.next, child4)
         eq_(child4.next, None)
 
-    @patch('mozorg.hierarchy.reverse')
+    @patch('bedrock.mozorg.hierarchy.reverse')
     def test_url(self, reverse):
         """If a node has a page, url should return the url for that page."""
         node = PageRoot('test', path='asdf/qwer', template='fake.html')
@@ -182,7 +182,7 @@ class TestPageNode(TestCase):
         eq_(node.url, 'asdf')
         reverse.assert_called_with('fake')
 
-    @patch('mozorg.hierarchy.reverse')
+    @patch('bedrock.mozorg.hierarchy.reverse')
     def test_url_child(self, reverse):
         """
         If a node doesn't have a page, but has children, it should return the
@@ -203,7 +203,7 @@ class TestPageNode(TestCase):
 
 
 class TestPageRoot(TestCase):
-    @patch('mozorg.hierarchy.patterns')
+    @patch('bedrock.mozorg.hierarchy.patterns')
     @patch.object(PageNode, 'page')
     def test_as_urlpatterns(self, page, patterns):
         """

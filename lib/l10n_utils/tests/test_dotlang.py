@@ -21,7 +21,7 @@ from tower.management.commands.extract import extract_tower_python
 
 from lib.l10n_utils.dotlang import (_, FORMAT_IDENTIFIER_RE, lang_file_is_active,
                                 parse, translate, _lazy)
-from mozorg.tests import TestCase
+from bedrock.mozorg.tests import TestCase
 
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test_files')
@@ -30,7 +30,7 @@ TEMPLATE_DIRS = (os.path.join(ROOT, 'templates'),)
 
 
 @patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
-@patch.object(settings, 'ROOT_URLCONF', 'l10n_utils.tests.test_files.urls')
+@patch.object(settings, 'ROOT_URLCONF', 'lib.l10n_utils.tests.test_files.urls')
 @patch.object(settings, 'ROOT', ROOT)
 class TestLangFilesActivation(TestCase):
     def setUp(self):
@@ -161,7 +161,7 @@ class TestDotlang(TestCase):
         result = translate(dirty_string, ['tweaked_message_translation'])
         eq_(result, trans_string)
 
-    @patch('l10n_utils.dotlang.translate')
+    @patch('lib.l10n_utils.dotlang.translate')
     def test_new_lang_files_do_not_modify_settings(self, trans_patch):
         """
         Test to make sure that building the new lang files list does not
@@ -174,7 +174,7 @@ class TestDotlang(TestCase):
         trans_patch.assert_called_with(trans_str, call_lang_files)
         eq_(old_setting, settings.DOTLANG_FILES)
 
-    @patch('l10n_utils.dotlang.translate')
+    @patch('lib.l10n_utils.dotlang.translate')
     def test_gettext_searches_specified_lang_files(self, trans_patch):
         """
         The `l10n_utils.dotlang._` function should search .lang files
@@ -200,7 +200,7 @@ class TestDotlang(TestCase):
         # restore original value to avoid test leakage
         LANG_FILES = old_lang_files
 
-    @patch('l10n_utils.dotlang.translate')
+    @patch('lib.l10n_utils.dotlang.translate')
     def test_gettext_searches_kwarg_specified_lang_files(self, trans_patch):
         """
         The `l10n_utils.dotlang._` function should search .lang files
@@ -220,7 +220,7 @@ class TestDotlang(TestCase):
         call_lang_files = lang_files_list + settings.DOTLANG_FILES
         trans_patch.assert_called_with(trans_str, call_lang_files)
 
-    @patch('l10n_utils.dotlang.translate')
+    @patch('lib.l10n_utils.dotlang.translate')
     def test_gettext_lazy_searches_kwarg_specified_lang_files(self, trans_patch):
         """
         The `l10n_utils.dotlang._lazy` function should search .lang files
@@ -242,7 +242,7 @@ class TestDotlang(TestCase):
         call_lang_files = lang_files_list + settings.DOTLANG_FILES
         trans_patch.assert_called_with(trans_str, call_lang_files)
 
-    @patch('l10n_utils.dotlang.translate')
+    @patch('lib.l10n_utils.dotlang.translate')
     def test_lazy_gettext_searches_specified_lang_files(self, trans_patch):
         """
         The `l10n_utils.dotlang._lazy` function should search .lang files
@@ -260,7 +260,7 @@ class TestDotlang(TestCase):
         trans_patch.assert_called_with(dirty_string, ['donnie', 'walter'] +
                                        settings.DOTLANG_FILES)
 
-    @patch('l10n_utils.dotlang.translate')
+    @patch('lib.l10n_utils.dotlang.translate')
     def test_gettext_works_without_extra_lang_files(self, trans_patch):
         """
         The `l10n_utils.dotlang._` function should search the default .lang

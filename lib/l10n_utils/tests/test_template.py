@@ -15,7 +15,7 @@ from nose.plugins.skip import SkipTest
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 
-from mozorg.tests import TestCase
+from bedrock.mozorg.tests import TestCase
 
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test_files')
@@ -23,7 +23,7 @@ TEMPLATE_DIRS = (os.path.join(ROOT, 'templates'),)
 
 
 @patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
-@patch.object(settings, 'ROOT_URLCONF', 'l10n_utils.tests.test_files.urls')
+@patch.object(settings, 'ROOT_URLCONF', 'lib.l10n_utils.tests.test_files.urls')
 @patch.object(settings, 'ROOT', ROOT)
 class TestTransBlocks(TestCase):
     def setUp(self):
@@ -58,7 +58,7 @@ class TestTemplateLangFiles(TestCase):
         template = env.get_template('some_lang_files.html')
         # make a dummy object capable of having arbitrary attrs assigned
         request = type('request', (), {})()
-        template.render(request=request)
+        template.render({'request':request})
         eq_(request.langfiles, ['dude', 'walter',
                                 'main', 'base', 'newsletter'])
 

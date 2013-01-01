@@ -12,7 +12,7 @@ from mock import patch
 from nose.tools import eq_
 
 from lib.l10n_utils.gettext import langfiles_for_path, parse_python, parse_template
-from mozorg.tests import TestCase
+from bedrock.mozorg.tests import TestCase
 
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test_files')
@@ -29,7 +29,7 @@ class TempFileMixin(object):
 
 
 class TestParseTemplate(TempFileMixin, TestCase):
-    @patch('l10n_utils.gettext.codecs')
+    @patch('lib.l10n_utils.gettext.codecs')
     def test_single_lang_file_added(self, codecs_mock):
         tempf = self.tempfile("""
             {% add_lang_files "lebowski" %}
@@ -40,7 +40,7 @@ class TestParseTemplate(TempFileMixin, TestCase):
         lang_files = parse_template('file/doesnt/matter.html')
         eq_(lang_files, ['lebowski'])
 
-    @patch('l10n_utils.gettext.codecs')
+    @patch('lib.l10n_utils.gettext.codecs')
     def test_multiple_lang_files_added(self, codecs_mock):
         tempf = self.tempfile("""
             {% add_lang_files "lebowski" "walter" "dude" %}
@@ -53,7 +53,7 @@ class TestParseTemplate(TempFileMixin, TestCase):
 
 
 class TestParsePython(TempFileMixin, TestCase):
-    @patch('l10n_utils.gettext.codecs')
+    @patch('lib.l10n_utils.gettext.codecs')
     def test_new_lang_file_defined_list(self, codecs_mock):
         """
         If `LANG_FILES` is defined as a single item list it should be returned.
@@ -70,7 +70,7 @@ class TestParsePython(TempFileMixin, TestCase):
         lang_files = parse_python('file/doesnt/matter.py')
         eq_(lang_files, ['lebowski'])
 
-    @patch('l10n_utils.gettext.codecs')
+    @patch('lib.l10n_utils.gettext.codecs')
     def test_new_multiple_lang_files_defined_list(self, codecs_mock):
         """
         If `LANG_FILES` is defined as a list it should be returned.
@@ -87,7 +87,7 @@ class TestParsePython(TempFileMixin, TestCase):
         lang_files = parse_python('file/doesnt/matter.py')
         eq_(lang_files, ['lebowski', 'dude'])
 
-    @patch('l10n_utils.gettext.codecs')
+    @patch('lib.l10n_utils.gettext.codecs')
     def test_new_multiple_lang_files_multi_line(self, codecs_mock):
         """
         If `LANG_FILES` is defined as a multiline list it should be returned.
@@ -107,7 +107,7 @@ class TestParsePython(TempFileMixin, TestCase):
         lang_files = parse_python('file/doesnt/matter.py')
         eq_(lang_files, ['lebowski', 'dude'])
 
-    @patch('l10n_utils.gettext.codecs')
+    @patch('lib.l10n_utils.gettext.codecs')
     def test_new_single_lang_file_defined(self, codecs_mock):
         """
         If `LANG_FILES` is defined as a string it should be returned as a
@@ -125,7 +125,7 @@ class TestParsePython(TempFileMixin, TestCase):
         lang_files = parse_python('file/doesnt/matter.py')
         eq_(lang_files, ['lebowski'])
 
-    @patch('l10n_utils.gettext.codecs')
+    @patch('lib.l10n_utils.gettext.codecs')
     def test_new_single_lang_file_defined_dbl_quote(self, codecs_mock):
         """
         If `LANG_FILES` is defined as a double quoted string it should be
@@ -143,7 +143,7 @@ class TestParsePython(TempFileMixin, TestCase):
         lang_files = parse_python('file/doesnt/matter.py')
         eq_(lang_files, ['lebowski'])
 
-    @patch('l10n_utils.gettext.codecs')
+    @patch('lib.l10n_utils.gettext.codecs')
     def test_no_lang_files_defined(self, codecs_mock):
         """
         If `LANG_FILES` is not defined an empty list should be returned.
