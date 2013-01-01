@@ -2,11 +2,9 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import os
+from django.conf import settings
 from django.conf.urls.defaults import include, patterns
 from django.http import HttpResponse
-
-from funfactory.manage import ROOT
 
 from bedrock.mozorg.util import page
 
@@ -15,7 +13,7 @@ def mock_view(request):
     return HttpResponse('test')
 
 urlpatterns = patterns('',
-    (r'', include('%s.urls' % os.path.basename(ROOT))),
+    (r'', include('%s.urls' % settings.PROJECT_MODULE)),
 
     # Used by test_helper
     page('base', 'base-resp.html'),
