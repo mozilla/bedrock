@@ -14,12 +14,12 @@ from product_details import product_details
 from product_details.version_compare import Version
 from funfactory.urlresolvers import reverse
 
-import l10n_utils
-from firefox import version_re
-from firefox.forms import SMSSendForm
-from firefox.platforms import load_devices
-from firefox.firefox_details import firefox_details
-from l10n_utils.dotlang import _
+from lib import l10n_utils
+from bedrock.firefox import version_re
+from bedrock.firefox.forms import SMSSendForm
+from bedrock.firefox.platforms import load_devices
+from bedrock.firefox.firefox_details import firefox_details
+from lib.l10n_utils.dotlang import _
 
 
 @csrf_exempt

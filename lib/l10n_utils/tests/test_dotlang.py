@@ -19,7 +19,7 @@ from nose.tools import assert_not_equal, eq_, ok_
 from pyquery import PyQuery as pq
 from tower.management.commands.extract import extract_tower_python
 
-from l10n_utils.dotlang import (_, FORMAT_IDENTIFIER_RE, lang_file_is_active,
+from lib.l10n_utils.dotlang import (_, FORMAT_IDENTIFIER_RE, lang_file_is_active,
                                 parse, translate, _lazy)
 from mozorg.tests import TestCase
 
@@ -249,7 +249,7 @@ class TestDotlang(TestCase):
         specified in the module from which it's called before the
         default files.
         """
-        from l10n_utils.tests.test_files import extract_me_with_langfiles_lazy
+        from lib.l10n_utils.tests.test_files import extract_me_with_langfiles_lazy
 
         dude_says = extract_me_with_langfiles_lazy.do_translate()
         dirty_string = u"I'm The Dude, so that's what you call me, man."
@@ -266,7 +266,7 @@ class TestDotlang(TestCase):
         The `l10n_utils.dotlang._` function should search the default .lang
         files if no others are specified.
         """
-        from l10n_utils.tests.test_files import extract_me
+        from lib.l10n_utils.tests.test_files import extract_me
 
         extract_me.do_translate()
         dirty_string = u'Stuff\xa0about\r\nmany\t   things.'

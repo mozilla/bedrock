@@ -2,7 +2,7 @@ from django.test import Client
 
 from funfactory.urlresolvers import reverse
 
-from mozorg.tests import TestCase
+from bedrock.mozorg.tests import TestCase
 
 
 class TabzillaViewTests(TestCase):

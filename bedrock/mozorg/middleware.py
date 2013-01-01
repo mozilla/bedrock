@@ -9,8 +9,8 @@ import time
 import basket
 from django_statsd.middleware import GraphiteRequestTimingMiddleware
 
-from l10n_utils.dotlang import _lazy
-from mozorg.forms import NewsletterForm
+from lib.l10n_utils.dotlang import _lazy
+from bedrock.mozorg.forms import NewsletterForm
 
 
 class CacheMiddleware(object):

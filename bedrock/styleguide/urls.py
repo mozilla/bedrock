@@ -3,7 +3,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from django.conf.urls.defaults import *
-from mozorg.hierarchy import PageNode, PageRoot
+from bedrock.mozorg.hierarchy import PageNode, PageRoot
 
 hierarchy = PageRoot('Home', children=(
     PageNode('Home', template='styleguide/home.html'),

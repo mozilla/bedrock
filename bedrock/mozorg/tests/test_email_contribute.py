@@ -3,10 +3,10 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from django.conf import settings
-from mozorg.tests import TestCase
+from bedrock.mozorg.tests import TestCase
 from nose.tools import assert_false, eq_, ok_
 
-from mozorg.email_contribute import FUNCTIONAL_AREAS, LOCALE_CONTACTS
+from bedrock.mozorg.email_contribute import FUNCTIONAL_AREAS, LOCALE_CONTACTS
 
 class TestEmailContribute(TestCase):
     def test_valid_locale_contacts(self):

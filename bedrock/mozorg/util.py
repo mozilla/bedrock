@@ -9,7 +9,7 @@ from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 
 from funfactory.urlresolvers import reverse
-import l10n_utils
+from lib import l10n_utils
 
 
 def page(name, tmpl, **kwargs):

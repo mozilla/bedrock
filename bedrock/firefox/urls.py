@@ -6,9 +6,9 @@ from django.conf.urls.defaults import *
 from django.conf import settings
 from product_details import product_details
 
-from firefox import version_re
-from redirects.util import redirect
-from mozorg.util import page
+from bedrock.firefox import version_re
+from bedrock.redirects.util import redirect
+from bedrock.mozorg.util import page
 import views
 
 

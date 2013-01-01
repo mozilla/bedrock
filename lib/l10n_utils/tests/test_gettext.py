@@ -11,7 +11,7 @@ from django.conf import settings
 from mock import patch
 from nose.tools import eq_
 
-from l10n_utils.gettext import langfiles_for_path, parse_python, parse_template
+from lib.l10n_utils.gettext import langfiles_for_path, parse_python, parse_template
 from mozorg.tests import TestCase
 
 
@@ -59,7 +59,7 @@ class TestParsePython(TempFileMixin, TestCase):
         If `LANG_FILES` is defined as a single item list it should be returned.
         """
         tempf = self.tempfile("""
-            from l10n_utils.dotlang import _
+            from lib.l10n_utils.dotlang import _
 
 
             LANG_FILES = ['lebowski']
@@ -76,7 +76,7 @@ class TestParsePython(TempFileMixin, TestCase):
         If `LANG_FILES` is defined as a list it should be returned.
         """
         tempf = self.tempfile("""
-            from l10n_utils.dotlang import _
+            from lib.l10n_utils.dotlang import _
 
 
             LANG_FILES = ['lebowski', 'dude']
@@ -93,7 +93,7 @@ class TestParsePython(TempFileMixin, TestCase):
         If `LANG_FILES` is defined as a multiline list it should be returned.
         """
         tempf = self.tempfile("""
-            from l10n_utils.dotlang import _
+            from lib.l10n_utils.dotlang import _
 
 
             LANG_FILES = [
@@ -114,7 +114,7 @@ class TestParsePython(TempFileMixin, TestCase):
         list of length 1.
         """
         tempf = self.tempfile("""
-            from l10n_utils.dotlang import _
+            from lib.l10n_utils.dotlang import _
 
 
             LANG_FILES = 'lebowski'
@@ -132,7 +132,7 @@ class TestParsePython(TempFileMixin, TestCase):
         returned as a list of length 1.
         """
         tempf = self.tempfile("""
-            from l10n_utils.dotlang import _
+            from lib.l10n_utils.dotlang import _
 
 
             LANG_FILES = "lebowski"
@@ -149,7 +149,7 @@ class TestParsePython(TempFileMixin, TestCase):
         If `LANG_FILES` is not defined an empty list should be returned.
         """
         tempf = self.tempfile("""
-            from l10n_utils.dotlang import _
+            from lib.l10n_utils.dotlang import _
 
 
             stuff = _('whatnot')

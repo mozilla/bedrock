@@ -5,7 +5,7 @@
 from operator import attrgetter
 from django.http import Http404
 
-import l10n_utils
+from lib import l10n_utils
 import bleach
 
 from grants_db import GRANTS

@@ -6,7 +6,7 @@ import re
 
 from django import forms
 
-from l10n_utils.dotlang import _
+from lib.l10n_utils.dotlang import _
 
 
 # WebTrends click tracking code.

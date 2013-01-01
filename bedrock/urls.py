@@ -18,23 +18,23 @@ handler500 = 'bedrock_util.server_error_view'
 
 urlpatterns = patterns('',
     # Main pages
-    (r'^apps/', include('marketplace.urls')),
-    (r'^collusion/', include('collusion.urls')),
-    (r'^firefoxos/', include('firefoxos.urls')),
-    (r'^foundation/', include('foundation.urls')),
-    (r'^grants/', include('grants.urls')),
-    (r'^legal/', include('legal.urls')),
-    (r'^persona/', include('persona.urls')),
-    (r'^privacy', include('privacy.urls')),
-    (r'^styleguide/', include('styleguide.urls')),
-    (r'^tabzilla/', include('tabzilla.urls')),
-    (r'', include('firefox.urls')),
-    (r'', include('mozorg.urls')),
-    (r'', include('redirects.urls')),
-    (r'', include('research.urls')),
+    (r'^apps/', include('bedrock.marketplace.urls')),
+    (r'^collusion/', include('bedrock.collusion.urls')),
+    (r'^firefoxos/', include('bedrock.firefoxos.urls')),
+    (r'^foundation/', include('bedrock.foundation.urls')),
+    (r'^grants/', include('bedrock.grants.urls')),
+    (r'^legal/', include('bedrock.legal.urls')),
+    (r'^persona/', include('bedrock.persona.urls')),
+    (r'^privacy', include('bedrock.privacy.urls')),
+    (r'^styleguide/', include('bedrock.styleguide.urls')),
+    (r'^tabzilla/', include('bedrock.tabzilla.urls')),
+    (r'', include('bedrock.firefox.urls')),
+    (r'', include('bedrock.mozorg.urls')),
+    (r'', include('bedrock.redirects.urls')),
+    (r'', include('bedrock.research.urls')),
 
     # L10n example.
-    (r'^l10n_example/', include('l10n_example.urls')),
+    (r'^l10n_example/', include('bedrock.l10n_example.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),

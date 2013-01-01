@@ -3,8 +3,8 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from django.conf.urls.defaults import *
-from redirects.util import redirect
-from mozorg.util import page
+from bedrock.redirects.util import redirect
+from bedrock.mozorg.util import page
 
 import views
 

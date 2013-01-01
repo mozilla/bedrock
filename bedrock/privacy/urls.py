@@ -4,8 +4,8 @@
 
 from django.conf.urls.defaults import *
 
-from mozorg.util import page
-from privacy import views
+from bedrock.mozorg.util import page
+import views
 
 urlpatterns = patterns('',
     page('/policies/firefox', 'privacy/firefox.html'),

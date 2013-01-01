@@ -5,10 +5,10 @@
 from django.views.decorators.csrf import csrf_exempt
 
 import basket
-import l10n_utils
+from lib import l10n_utils
 
-from mozorg import email_contribute
-from mozorg.forms import ContributeForm, NewsletterForm
+from bedrock.mozorg import email_contribute
+from bedrock.mozorg.forms import ContributeForm, NewsletterForm
 
 
 @csrf_exempt

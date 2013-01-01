@@ -5,8 +5,8 @@
 from mock import patch
 from nose.tools import eq_, ok_
 
-from mozorg.hierarchy import PageNode, PageRoot
-from mozorg.tests import TestCase
+from bedrock.mozorg.hierarchy import PageNode, PageRoot
+from bedrock.mozorg.tests import TestCase
 
 
 class TestPageNode(TestCase):

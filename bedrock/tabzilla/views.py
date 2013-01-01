@@ -1,4 +1,4 @@
-import l10n_utils
+from lib import l10n_utils
 
 
 def tabzilla_js(request):

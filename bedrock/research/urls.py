@@ -3,8 +3,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from django.conf.urls.defaults import *
-from mozorg.util import page
-import views
+from bedrock.mozorg.util import page
 
 urlpatterns = patterns('',
     page('research', 'research/research.html'),

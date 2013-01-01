@@ -5,7 +5,7 @@
 from django.conf import settings
 from django.http import HttpResponseRedirect
 
-import l10n_utils
+from lib import l10n_utils
 
 
 def secure_required(view_func):

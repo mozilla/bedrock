@@ -8,7 +8,7 @@ from django.http import HttpResponse
 
 from funfactory.manage import ROOT
 
-from mozorg.util import page
+from bedrock.mozorg.util import page
 
 
 def mock_view(request):

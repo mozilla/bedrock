@@ -8,8 +8,8 @@ from captcha.fields import ReCaptchaField
 from django.core import mail
 from django.test.client import Client
 
-import l10n_utils
-from mozorg.tests import TestCase
+from lib import l10n_utils
+from bedrock.mozorg.tests import TestCase
 from funfactory.urlresolvers import reverse
 from nose.tools import assert_false, eq_, ok_
 from nose.plugins.skip import SkipTest

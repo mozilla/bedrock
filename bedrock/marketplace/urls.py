@@ -4,7 +4,7 @@
 
 from django.conf.urls.defaults import *
 
-from mozorg.util import page
+from bedrock.mozorg.util import page
 
 urlpatterns = patterns('',
     # /apps is temporarily redirected to /apps/partners as per

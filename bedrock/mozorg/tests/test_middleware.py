@@ -6,9 +6,9 @@ from mock import patch
 
 from django.test.client import Client
 
-import l10n_utils
+from lib import l10n_utils
 from funfactory.urlresolvers import reverse
-from mozorg.tests import TestCase
+from bedrock.mozorg.tests import TestCase
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 

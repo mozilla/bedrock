@@ -8,5 +8,5 @@ import jingo
 
 
 urlpatterns = patterns('',
-    (r'^$', 'l10n_example.views.example'),
+    (r'^$', 'bedrock.l10n_example.views.example'),
 )

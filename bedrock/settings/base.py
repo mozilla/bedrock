@@ -11,7 +11,8 @@ from django.utils.functional import lazy
 from funfactory.settings_base import *
 
 # Make file paths relative to settings.
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT = os.path.dirname(os.path.dirname(
+                       os.path.dirname(os.path.abspath(__file__))))
 path = lambda *a: os.path.join(ROOT, *a)
 
 # Language code for this installation. All choices can be found here:
@@ -54,9 +55,9 @@ TEMPLATE_DIRS = (
 def JINJA_CONFIG():
     return {
         'extensions': [
-            'l10n_utils.template.i18n', 'jinja2.ext.do', 'jinja2.ext.with_',
-            'jinja2.ext.loopcontrols', 'l10n_utils.template.l10n_blocks',
-            'l10n_utils.template.lang_blocks'
+            'lib.l10n_utils.template.i18n', 'jinja2.ext.do', 'jinja2.ext.with_',
+            'jinja2.ext.loopcontrols', 'lib.l10n_utils.template.l10n_blocks',
+            'lib.l10n_utils.template.lang_blocks'
         ],
         # Make None in templates render as ''
         'finalize': lambda x: x if x is not None else '',
@@ -425,11 +426,11 @@ ROOT_URLCONF = 'bedrock.urls'
 # handles the extraction. The Tower library expects this.
 DOMAIN_METHODS = {
     'messages': [
-        ('apps/**.py',
+        ('bedrock/**.py',
             'tower.management.commands.extract.extract_tower_python'),
-        ('apps/**/templates/**.html',
+        ('bedrock/**/templates/**.html',
             'tower.management.commands.extract.extract_tower_template'),
-        ('apps/**/templates/**.js',
+        ('bedrock/**/templates/**.js',
             'tower.management.commands.extract.extract_tower_template'),
         ('templates/**.html',
             'tower.management.commands.extract.extract_tower_template'),
@@ -443,18 +444,18 @@ LESS_BIN = 'lessc'
 
 # Override this because we've moved settings into a directory
 PROD_DETAILS_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)),
-                                'lib/product_details_json')
+                                '../lib/product_details_json')
 
 MIDDLEWARE_CLASSES = (
-    'mozorg.middleware.MozorgRequestTimingMiddleware',
+    'bedrock.mozorg.middleware.MozorgRequestTimingMiddleware',
     'django_statsd.middleware.GraphiteMiddleware',
     'funfactory.middleware.LocaleURLMiddleware',
     'django.middleware.common.CommonMiddleware',
     'commonware.middleware.FrameOptionsHeader',
-    'mozorg.middleware.CacheMiddleware',
-    'mozorg.middleware.NewsletterMiddleware',
+    'bedrock.mozorg.middleware.CacheMiddleware',
+    'bedrock.mozorg.middleware.NewsletterMiddleware',
     'dnt.middleware.DoNotTrackMiddleware',
-    'l10n_utils.middleware.FixLangFileTranslationsMiddleware',
+    'lib.l10n_utils.middleware.FixLangFileTranslationsMiddleware',
 )
 
 INSTALLED_APPS = (
@@ -487,28 +488,28 @@ INSTALLED_APPS = (
     'product_details',
 
     # Local apps
-    'collusion',
-    'firefox',
-    'firefoxos',
-    'foundation',
-    'grants',
-    'legal',
-    'marketplace',
-    'mozorg',
-    'persona',
-    'privacy',
-    'redirects',
-    'research',
-    'styleguide',
-    'tabzilla',
+    'bedrock.collusion',
+    'bedrock.firefox',
+    'bedrock.firefoxos',
+    'bedrock.foundation',
+    'bedrock.grants',
+    'bedrock.legal',
+    'bedrock.marketplace',
+    'bedrock.mozorg',
+    'bedrock.persona',
+    'bedrock.privacy',
+    'bedrock.redirects',
+    'bedrock.research',
+    'bedrock.styleguide',
+    'bedrock.tabzilla',
 
     # libs
-    'l10n_utils',
+    'lib.l10n_utils',
     'captcha',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS += (
-    'mozorg.context_processors.current_year',
+    'bedrock.mozorg.context_processors.current_year',
 )
 
 ## Auth

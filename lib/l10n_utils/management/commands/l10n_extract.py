@@ -8,7 +8,7 @@ from django.core.management import call_command
 from django.core.management.base import BaseCommand
 from django.conf import settings
 
-from l10n_utils.gettext import pot_to_langfiles
+from lib.l10n_utils.gettext import pot_to_langfiles
 
 def gettext_extract():
     call_command('extract', create=True)

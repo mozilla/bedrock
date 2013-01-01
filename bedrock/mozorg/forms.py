@@ -13,7 +13,7 @@ from django.forms import widgets
 from django.utils.safestring import mark_safe
 
 from captcha.fields import ReCaptchaField
-from l10n_utils.dotlang import _
+from lib.l10n_utils.dotlang import _
 from product_details import product_details
 
 from .email_contribute import INTEREST_CHOICES

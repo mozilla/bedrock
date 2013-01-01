@@ -10,7 +10,7 @@ import basket
 import jingo
 from jinja2.exceptions import TemplateNotFound
 
-from l10n_utils.dotlang import _lazy as _
+from lib.l10n_utils.dotlang import _lazy as _
 
 
 fa = namedtuple('FunctionalArea', ['id', 'name', 'subject', 'contacts'])

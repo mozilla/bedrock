@@ -4,7 +4,7 @@
 
 from django.utils import unittest
 
-from l10n_utils.management.commands.l10n_check import (list_templates,
+from lib.l10n_utils.management.commands.l10n_check import (list_templates,
                                                        L10nParser)
 
 

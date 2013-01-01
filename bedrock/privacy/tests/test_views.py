@@ -5,7 +5,7 @@
 from django.core import mail
 from django.test.client import Client
 
-from mozorg.tests import TestCase
+from bedrock.mozorg.tests import TestCase
 from funfactory.urlresolvers import reverse
 
 from nose.tools import eq_

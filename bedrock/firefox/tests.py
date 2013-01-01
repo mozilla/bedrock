@@ -13,14 +13,14 @@ from django.utils import unittest
 
 from funfactory.urlresolvers import reverse
 from mock import patch
-from mozorg.tests import TestCase
+from bedrock.mozorg.tests import TestCase
 from nose.tools import eq_, ok_
 from platforms import load_devices
 from pyquery import PyQuery as pq
 
-from firefox import views as fx_views
-from firefox.firefox_details import FirefoxDetails
-from firefox.views import product_details
+from bedrock.firefox import views as fx_views
+from bedrock.firefox.firefox_details import FirefoxDetails
+from bedrock.firefox.views import product_details
 
 
 TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), 'test_data')

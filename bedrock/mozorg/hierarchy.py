@@ -6,7 +6,7 @@ from django.conf.urls.defaults import patterns
 
 from funfactory.urlresolvers import reverse
 
-from mozorg.util import page
+from bedrock.mozorg.util import page
 
 
 class PageNode(object):
