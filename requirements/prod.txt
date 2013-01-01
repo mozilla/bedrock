@@ -1,10 +1,30 @@
--r ../vendor/src/funfactory/funfactory/requirements/prod.txt
+# Django stuff
+-e git://github.com/django/django@1.4.2#egg=django
 
+# Templates
+-e git://github.com/jbalogh/jingo.git#egg=jingo
+-e git://github.com/jsocol/jingo-minify.git#egg=jingo-minify
+GitPython==0.1.7
 
+# Various tidbits
+-e git://github.com/jsocol/commonware.git#egg=commonware
+-e git://github.com/mozilla/nuggets.git#egg=nuggets
 -e git://github.com/kurtmckee/feedparser#egg=feedparser
+
+# Security
+-e git://github.com/fwenzel/django-sha2.git#egg=django-sha2
+
+# Celery: Message queue
+celery
+django-celery
 
 # bcrypt
 django-bcrypt
+
+# L10n
+Babel>=0.9.4
+-e git://github.com/clouserw/tower.git#egg=tower
+-e git://github.com/fwenzel/django-mozilla-product-details#egg=django-mozilla-product-details
 
 python-memcached==1.45
 

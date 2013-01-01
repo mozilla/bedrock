@@ -10,11 +10,6 @@ from django.utils.functional import lazy
 
 from funfactory.settings_base import *
 
-# Make file paths relative to settings.
-ROOT = os.path.dirname(os.path.dirname(
-                       os.path.dirname(os.path.abspath(__file__))))
-path = lambda *a: os.path.join(ROOT, *a)
-
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-US'

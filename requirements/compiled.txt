@@ -1,7 +1,3 @@
-#Maybe we could install MySQL-python w/o actually using it?
-#-r ../vendor/src/funfactory/funfactory/requirements/compiled.txt
-
-
 #MySQL-python==1.2.3c1
 Jinja2==2.5.5
 
