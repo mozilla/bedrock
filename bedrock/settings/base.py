@@ -420,17 +420,19 @@ MINIFY_BUNDLES = {
     }
 }
 
-ROOT_URLCONF = 'bedrock.urls'
+PROJECT_MODULE = 'bedrock'
+
+ROOT_URLCONF = '%s.urls' % PROJECT_MODULE
 
 # Tells the extract script what files to look for L10n in and what function
 # handles the extraction. The Tower library expects this.
 DOMAIN_METHODS = {
     'messages': [
-        ('bedrock/**.py',
+        ('%s/**.py' % PROJECT_MODULE,
             'tower.management.commands.extract.extract_tower_python'),
-        ('bedrock/**/templates/**.html',
+        ('%s/**/templates/**.html' % PROJECT_MODULE,
             'tower.management.commands.extract.extract_tower_template'),
-        ('bedrock/**/templates/**.js',
+        ('%s/**/templates/**.js' % PROJECT_MODULE,
             'tower.management.commands.extract.extract_tower_template'),
         ('templates/**.html',
             'tower.management.commands.extract.extract_tower_template'),
@@ -441,10 +443,6 @@ DOMAIN_METHODS = {
 # development)
 LESS_PREPROCESS = False
 LESS_BIN = 'lessc'
-
-# Override this because we've moved settings into a directory
-PROD_DETAILS_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)),
-                                '../lib/product_details_json')
 
 MIDDLEWARE_CLASSES = (
     'bedrock.mozorg.middleware.MozorgRequestTimingMiddleware',
@@ -488,24 +486,28 @@ INSTALLED_APPS = (
     'product_details',
 
     # Local apps
-    'bedrock.collusion',
-    'bedrock.firefox',
-    'bedrock.firefoxos',
-    'bedrock.foundation',
-    'bedrock.grants',
-    'bedrock.legal',
-    'bedrock.marketplace',
-    'bedrock.mozorg',
-    'bedrock.persona',
-    'bedrock.privacy',
-    'bedrock.redirects',
-    'bedrock.research',
-    'bedrock.styleguide',
-    'bedrock.tabzilla',
+    '%s.collusion' % PROJECT_MODULE,
+    '%s.firefox' % PROJECT_MODULE,
+    '%s.firefoxos' % PROJECT_MODULE,
+    '%s.foundation' % PROJECT_MODULE,
+    '%s.grants' % PROJECT_MODULE,
+    '%s.legal' % PROJECT_MODULE,
+    '%s.marketplace' % PROJECT_MODULE,
+    '%s.mozorg' % PROJECT_MODULE,
+    '%s.persona' % PROJECT_MODULE,
+    '%s.privacy' % PROJECT_MODULE,
+    '%s.redirects' % PROJECT_MODULE,
+    '%s.research' % PROJECT_MODULE,
+    '%s.styleguide' % PROJECT_MODULE,
+    '%s.tabzilla' % PROJECT_MODULE,
 
     # libs
     'lib.l10n_utils',
     'captcha',
+)
+
+LOCALE_PATHS = (
+    path('locale'),
 )
 
 TEMPLATE_CONTEXT_PROCESSORS += (

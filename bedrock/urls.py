@@ -3,7 +3,8 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from django.conf import settings
-from django.conf.urls.defaults import *
+from django.conf.urls.defaults import patterns, include
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from funfactory.monkeypatches import patch
 patch()
@@ -51,4 +52,5 @@ if settings.DEBUG:
         (r'^%s/(?P<path>.*)$' % media_url, 'django.views.static.serve',
          {'document_root': settings.MEDIA_ROOT}),
     )
+    from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 

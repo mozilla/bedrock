@@ -33,8 +33,8 @@ ENV_BRANCH = {
     'prod':  ['prod',   'master'],
 }
 
-# The URL of the SVN repository with the localization files (*.po). If you set 
-# it to a non-empty value, remember to `git rm --cached -r locale` in the root 
+# The URL of the SVN repository with the localization files (*.po). If you set
+# it to a non-empty value, remember to `git rm --cached -r locale` in the root
 # of the project.  Example:
 # LOCALE_REPO_URL = 'https://svn.mozilla.org/projects/l10n-misc/trunk/playdoh/locale'
 LOCALE_REPO_URL = ''
@@ -92,7 +92,9 @@ def update_site(env, debug):
         (EXEC,  GIT_SUBMODULE),
         (CHDIR, os.path.join(here)),
         (EXEC, 'python2.6 vendor/src/schematic/schematic migrations/'),
-        (EXEC, 'python2.6 manage.py compress_assets'),
+        (EXEC, 'python2.6 manage.py collectstatic --noinput'),
+        # un-comment if you haven't moved to django-compressor yet
+        #(EXEC, 'python2.6 manage.py compress_assets'),
     ]
 
     for cmd, cmd_args in commands:
