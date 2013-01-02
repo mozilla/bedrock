@@ -3,9 +3,9 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from django.conf.urls.defaults import *
-from views import collusion, demo
+from bedrock.mozorg.util import page
 
 urlpatterns = patterns('',
-    url(r'^demo/$', demo, name='collusion.demo'),
-    url(r'^$', collusion, name='collusion'),
+    page('demo', 'collusion/demo.html'),
+    page('', 'collusion/collusion.html'),
 )

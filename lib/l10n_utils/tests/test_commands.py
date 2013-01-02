@@ -5,7 +5,7 @@
 from django.utils import unittest
 
 from lib.l10n_utils.management.commands.l10n_check import (list_templates,
-                                                       L10nParser)
+                                                           L10nParser)
 
 
 class TestL10nCheck(unittest.TestCase):

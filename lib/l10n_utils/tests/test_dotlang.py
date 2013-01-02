@@ -20,7 +20,7 @@ from pyquery import PyQuery as pq
 from tower.management.commands.extract import extract_tower_python
 
 from lib.l10n_utils.dotlang import (_, FORMAT_IDENTIFIER_RE, lang_file_is_active,
-                                parse, translate, _lazy)
+                                    parse, translate, _lazy)
 from bedrock.mozorg.tests import TestCase
 
 

@@ -15,7 +15,7 @@ from StringIO import StringIO
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
 
-from jinja2 import Environment, TemplateNotFound
+from jinja2 import Environment
 from jinja2.parser import Parser
 
 
@@ -38,7 +38,7 @@ def list_templates():
     for app in settings.INSTALLED_APPS:
         if app.startswith(settings.PROJECT_MODULE):
             app = app[len(settings.PROJECT_MODULE) + 1:]
-            tmpl_dir = path.join(settings.ROOT, 'bedrock', app, 'templates')
+            tmpl_dir = path.join(settings.ROOT, settings.PROJECT_MODULE, app, 'templates')
 
             if path.exists(tmpl_dir):
                 # Find all the .html files

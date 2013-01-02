@@ -3,10 +3,8 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from django.conf.urls.defaults import patterns
-
-import jingo
-
+from bedrock.mozorg.util import page
 
 urlpatterns = patterns('',
-    (r'^$', 'bedrock.l10n_example.views.example'),
+    page('', 'l10n_example/example.html'),
 )
