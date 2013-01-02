@@ -337,8 +337,11 @@ MINIFY_BUNDLES = {
             'js/firefox/happy.js',
         ),
         'firefox_new': (
-            'js/libs/modernizr.custom.csstransitions.js',
             'js/firefox/new.js',
+        ),
+        'firefox_new_b': (
+            'js/libs/modernizr.custom.csstransitions.js',
+            'js/firefox/new-b.js',
         ),
         'firefox_platforms': (
             'js/mozilla-expanders.js',
