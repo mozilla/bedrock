@@ -340,6 +340,9 @@ MINIFY_BUNDLES = {
             'js/libs/modernizr.custom.csstransitions.js',
             'js/firefox/new.js',
         ),
+        'firefox_new_a': (
+            'js/firefox/new-a.js',
+        ),
         'firefox_platforms': (
             'js/mozilla-expanders.js',
         ),
