@@ -5,6 +5,11 @@
         return;
     }
 
+    // possible race condition? this is set on DOM ready, which *should* always happen
+    // prior to window.load. alternative could be re-querying the DOM for the dl link
+    // in window.load.
+    var ff_dl_url;
+
     // Load images on load so as not to block the loading of other images.
     $(window).on('load', function() {
         // Screen 1 is unique for IE < 9
@@ -13,6 +18,19 @@
         }
 
         $('body').addClass('ready-for-scene2');
+
+        // initiate download/scene2 if coming directly to #download
+        // minor concern: what if install images are not loaded yet (slow connection)?
+        // tried to mitigate with timeout.
+        if (window.location.hash === '#download') {
+            setTimeout(function() {
+                ga_track();
+
+                show_scene(2);
+
+                dl_redirect(ff_dl_url);
+            }, 300);
+        }
     });
 
     function ga_track() {
@@ -82,14 +100,14 @@
                 } else {
                     show_scene(1);
                 }
-            });
+            }, false);
         }
 
         // Pull Firefox download link from the download button and add to the
         // 'click here' link.
         // TODO: Remove and generate link in bedrock.
         var $li = $('.download-list li:visible').filter(':first');
-        var ff_dl_url = $li.find('a:first').attr('href');
+        ff_dl_url = $li.find('a:first').attr('href');
         $('#direct-download-link').attr('href', ff_dl_url).on('click', function(e) {
             e.preventDefault();
             ga_track();
@@ -104,7 +122,7 @@
             ga_track();
 
             if (can_hashchange) {
-                window.location.href += '#download';
+                window.location.hash = '#download';
             } else {
                 show_scene(2);
             }
