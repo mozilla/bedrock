@@ -15,11 +15,13 @@ of terms and example values for them:
 
 from distutils.version import StrictVersion
 
+from django.conf import settings
+from django.template.loader import render_to_string
+
 import jingo
 import jinja2
-from django.conf import settings
-
 from product_details import product_details
+
 
 download_urls = {
     'transition': '/products/download.html',
@@ -241,4 +243,107 @@ def download_button(ctx, id, format='large', build=None, force_direct=False,
     html = jingo.render_to_string(ctx['request'],
                                   'mozorg/download_buttons/%s.html' % format,
                                   data)
+    return jinja2.Markup(html)
+
+
+@jingo.register.function
+@jinja2.contextfunction
+def download_firefox(ctx, size='large', build='release', icon=True,
+                     platform='desktop', dom_id=None, force_direct=False,
+                     force_full_installer=False):
+    """Output a "download firefox" button.
+
+    :param cxt: context from the calling template.
+    :param size: 'large' or 'small'
+    :param build: 'release' or 'beta', possibly 'aurora' or 'esr' in future
+    :param icon: boolean to show the Fx logo or not.
+    :param platform: 'desktop' or 'mobile'
+    """
+    locale = ctx['request'].locale
+    dom_id = dom_id or 'download-button-%s-%s' % (platform, build)
+
+    def latest(locale):
+        if build == 'aurora':
+            return latest_aurora_version(locale)
+        elif build == 'beta':
+            return latest_beta_version(locale)
+        else:
+            return latest_version(locale)
+
+    version, platforms = latest(locale) or latest('en-US')
+
+    # Gather data about the build for each platform
+    builds = []
+    if platform == 'desktop':
+        for plat_os in ['Windows', 'Linux', 'OS X']:
+            # Fallback to en-US if this plat_os/version isn't available
+            # for the current locale
+            _locale = locale
+            if plat_os not in platforms:
+                _locale = 'en-US'
+
+            # Normalize the platform os name
+            plat_os = 'os_%s' % plat_os.lower().replace(' ', '')
+            plat_os_pretty = {
+                'os_osx': 'Mac OS X',
+                'os_windows': 'Windows',
+                'os_linux': 'Linux'
+            }[plat_os]
+
+            # And generate all the info
+            download_link = make_download_link(
+                'firefox', build, version, plat_os,
+                _locale, force_direct, force_full_installer
+            )
+
+            # If download_link_direct is False the data-direct-link attr
+            # will not be output, and the JS won't attempt the IE popup.
+            if force_direct:
+                # no need to run make_download_link again with the same args
+                download_link_direct = False
+            else:
+                download_link_direct = make_download_link(
+                    'firefox', build, version, plat_os,
+                    _locale, True, force_full_installer
+                )
+                if download_link_direct == download_link:
+                    download_link_direct = False
+
+            builds.append({'os': plat_os,
+                           'os_pretty': plat_os_pretty,
+                           'download_link': download_link,
+                           'download_link_direct': download_link_direct})
+
+    elif platform == 'mobile':
+        if build == 'aurora':
+            android_link = download_urls['aurora-mobile']
+        elif build == 'beta':
+            android_link = ('https://market.android.com/details?'
+                            'id=org.mozilla.firefox_beta')
+        else:
+            android_link = ('https://market.android.com/details?'
+                            'id=org.mozilla.firefox')
+
+        builds.append({'os': 'os_android',
+                       'os_pretty': 'Android',
+                       'download_link': android_link})
+
+    # Get the native name for current locale
+    langs = product_details.languages
+    locale_name = langs[locale]['native'] if locale in langs else locale
+
+    data = {
+        'locale_name': locale_name,
+        'version': version,
+        'product': 'firefox',
+        'builds': builds,
+        'id': dom_id,
+        'size': size,
+        'build': build,
+        'platform': platform,
+        'icon': icon,
+    }
+
+    html = render_to_string('mozorg/download_firefox_button.html', data,
+                            context_instance=ctx)
     return jinja2.Markup(html)
