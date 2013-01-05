@@ -41,6 +41,18 @@ DOTLANG_CACHE = 60
 
 DOTLANG_FILES = ['main', 'base', 'newsletter']
 
+# Paths that don't require a locale code in the URL.
+# matches the first url component (e.g. mozilla.org/gameon/)
+SUPPORTED_NONLOCALES = [
+    'media',
+    'admin',
+
+    # from redirects.urls
+    'telemetry',
+    'webmaker',
+    'gameon',
+]
+
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '1iz#v0m55@h26^m6hxk3a7at*h$qj_2a$juu1#nv50548j(x1v'
 

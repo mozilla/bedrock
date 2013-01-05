@@ -59,4 +59,7 @@ urlpatterns = patterns('',
     redirect(r'tabzilla/media/css/tabzilla\.css$',
              lambda r: '/media/css/tabzilla.less.css' if settings.TEMPLATE_DEBUG
                        else '/media/css/tabzilla-min.css'),
+
+    # Bug 822817 /telemetry/ -> http://wiki.mozilla.org/Telemetry/FAQ
+    redirect(r'telemetry/$', 'http://wiki.mozilla.org/Telemetry/FAQ'),
 )
