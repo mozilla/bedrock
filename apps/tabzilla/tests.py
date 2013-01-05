@@ -3,6 +3,7 @@ from django.test import Client
 
 from funfactory.urlresolvers import reverse
 from mock import patch
+from nose.tools import eq_
 
 from mozorg.tests import TestCase
 
@@ -30,3 +31,23 @@ class TabzillaRedirectTests(TestCase):
         self.assertEqual(resp.status_code, 301)
         self.assertEqual(resp['Location'],
                          'http://testserver/de/tabzilla/tabzilla.js')
+
+    @patch.object(settings, 'MEDIA_URL', '//example.com/')
+    @patch.object(settings, 'TEMPLATE_DEBUG', False)
+    def test_tabzilla_css_redirect(self):
+        """
+        Tabzilla css redirect should use MEDIA_URL setting and switch
+        based on TEMPLATE_DEBUG setting.
+        Bug 826866.
+        """
+        tabzilla_css_url = '/en-US/tabzilla/media/css/tabzilla.css'
+        with self.activate('en-US'):
+            response = self.client.get(tabzilla_css_url)
+        eq_(response.status_code, 301)
+        eq_(response['Location'], 'http://example.com/css/tabzilla-min.css')
+
+        with patch.object(settings, 'TEMPLATE_DEBUG', True):
+            with self.activate('en-US'):
+                response = self.client.get(tabzilla_css_url)
+        eq_(response.status_code, 301)
+        eq_(response['Location'], 'http://example.com/css/tabzilla.less.css')
