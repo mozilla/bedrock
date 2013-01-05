@@ -8,6 +8,11 @@ from django.conf.urls.defaults import *
 from util import redirect
 
 
+def tabzilla_css_redirect(r):
+    ext = '.less' if settings.TEMPLATE_DEBUG else '-min'
+    return '%scss/tabzilla%s.css' % (settings.MEDIA_URL, ext)
+
+
 urlpatterns = patterns('',
 
     redirect(r'^b2g', 'firefoxos.firefoxos'),
@@ -56,7 +61,5 @@ urlpatterns = patterns('',
 
     # Tabzilla
     redirect(r'tabzilla/media/js/tabzilla\.js$', 'tabzilla'),
-    redirect(r'tabzilla/media/css/tabzilla\.css$',
-             lambda r: '/media/css/tabzilla.less.css' if settings.TEMPLATE_DEBUG
-                       else '/media/css/tabzilla-min.css'),
+    redirect(r'tabzilla/media/css/tabzilla\.css$', tabzilla_css_redirect),
 )
