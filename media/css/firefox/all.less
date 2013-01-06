@@ -66,6 +66,13 @@
         tbody th {
             font-weight: normal;
         }
+        .unavailable {
+            padding-right: @baseLine * 2;
+            padding: 10px 10px 10px 10px;
+            background-repeat: no-repeat;
+            color: @textColorTertiary;
+            text-shadow: 0 -1px #fff;
+        }
         .download {
             padding-right: @baseLine * 2;
             a {
@@ -171,6 +178,9 @@
         }
         table {
             thead {
+                display: none;
+            }
+            .unavailable {
                 display: none;
             }
             .download {
