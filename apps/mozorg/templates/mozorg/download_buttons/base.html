@@ -49,7 +49,7 @@
   {% endblock %}
 
   {% block unsupported %}
-    {% set requirements_url = php_url('/firefox/' ~ version ~ '/requirements') %}
+    {% set requirements_url = php_url('/firefox/' ~ version ~ '/system-requirements/') %}
     <p class="unsupported-download">
       {{ _('Your system doesn\'t meet the <a href="%(url)s">requirements</a> to run Firefox.')|format(url=requirements_url) }}
     </p>
