@@ -48,18 +48,20 @@ function init_download_links() {
 function init_platform_imgs() {
     $('.platform-img').each(function() {
         var suffix = '';
-        if(site.platform == 'osx' || site.platform == 'mac') {
+        var $img = $(this);
+        if (site.platform === 'osx' || site.platform === 'oldmac') {
             suffix = '-mac';
         }
-        else if(site.platform == 'linux') {
+        else if (site.platform === 'linux') {
             suffix = '-linux';
         }
 
-        var el = $(this);
-        var parts = el.data('src').split('.');
-        var base = parts.slice(0, parts.length-1);
-        this.src = base + suffix + '.' + parts[parts.length-1];
-        el.addClass(site.platform);
+        var orig_src = $img.data('src');
+        var i = orig_src.lastIndexOf('.');
+        var base = orig_src.substring(0, i);
+        var ext = orig_src.substring(i);
+        this.src = base + suffix + ext;
+        $img.addClass(site.platform);
     });
 }
 
