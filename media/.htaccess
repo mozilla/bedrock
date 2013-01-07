@@ -14,6 +14,7 @@ AddCharset utf-8 .css .js
 ExpiresActive on
 
 ExpiresDefault "access plus 1 week"
+ExpiresByType text/plain "access plus 0 seconds"
 ExpiresByType text/css "access plus 1 year"
 ExpiresByType text/javascript "access plus 1 year"
 ExpiresByType image/png "access plus 1 month"
@@ -24,13 +25,14 @@ ExpiresByType image/vnd.microsoft.icon "access plus 1 month"
 ExpiresByType video/webm "access plus 1 week"
 ExpiresByType video/ogg "access plus 1 week"
 ExpiresByType video/x-flv "access plus 1 week"
+ExpiresByType application/font-woff "access plus 1 year"
+ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
 ExpiresByType application/x-shockwave-flash "access plus 1 week"
-ExpiresByType text/plain "access plus 0 seconds"
 ExpiresByType application/octet-stream "access plus 0 seconds"
 
 # tabzilla
 <Files tabzilla-min.css>
-    ExpiresDefault "access plus 12 hours"
+    ExpiresByType text/css "access plus 12 hours"
 </Files>
 
 FileETag MTime
@@ -42,5 +44,5 @@ FileETag MTime
 # fonts
 <FilesMatch "\.(eot|svg|ttf|woff)$">
     Header set Access-Control-Allow-Origin "*"
-    ExpiresDefault "access plus 1 year"
+    ExpiresByType application/octet-stream "access plus 1 year"
 </FilesMatch>
