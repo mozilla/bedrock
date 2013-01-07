@@ -49,49 +49,7 @@
 
   <div class="pager-content">
 
-    <div class="pager-page default-page" id="promo-fxtshirt">
-      <script>// <![CDATA[
-       document.getElementById('promo-fxtshirt').id = 'page-promo-fxtshirt';
-      // ]]></script>
-      <a href="https://donate.mozilla.org/Firefox-T-Shirt7?WT.mc_id=mofxtshirt&amp;WT.mc_ev=click" class="container">
-       <img src="{{ media('img/home/promo-fxtshirt.jpg') }}" alt="">
-       <div>
-         <h3>{{_('Join Mozilla')}}</h3>
-         <h4>{{_('Support us with $30 or more and we‘ll send you an official Firefox T-shirt. ')}}</h4>
-         <p class="go">{{_('Donate now')}}</p>
-       </div>
-      </a>
-    </div>
-
-    <div class="pager-page" id="promo-storyvideo">
-      <script>// <![CDATA[
-        document.getElementById('promo-storyvideo').id = 'page-promo-storyvideo';
-      // ]]></script>
-      <a href="https://donate.mozilla.org/Mozilla-Story7?WT.mc_id=mostoryvideo&amp;WT.mc_ev=click" class="container">
-        <img src="{{ media('img/home/promo-storyvideo.jpg') }}" alt="">
-        <div>
-          <h3>{{_('Help us build a better Web')}}</h3>
-          <h4>{{_('Watch the video to see how Mozilla keeps the Web a force for good in the world.')}}</h4>
-        </div>
-      </a>
-    </div>
-
-    <div class="pager-page" id="promo-ptwtshirt">
-      <script>// <![CDATA[
-        document.getElementById('promo-ptwtshirt').id = 'page-promo-ptwtshirt';
-      // ]]></script>
-      <a href="https://donate.mozilla.org/Protect-T-Shirt7?WT.mc_id=moptwtshirt&amp;WT.mc_ev=click" class="container">
-        <img src="{{ media('img/home/promo-ptwtshirt.jpg') }}" alt="">
-        <div>
-          <h3>{{_('Protect the world’s<br> largest public resource')}}</h3>
-          <h4>{{_('And get a T-shirt that says so.')}}</h4>
-          <p class="go">{{_('Donate to Mozilla')}}</p>
-        </div>
-      </a>
-    </div>
-
-{# Temporarily removing these promos - they will be back soon. Bug 816565
-    <div class="pager-page" id="promo-android">
+    <div class="pager-page default-page" id="promo-android">
       <script>// <![CDATA[
       document.getElementById('promo-android').id = 'page-promo-android';
       // ]]></script>
@@ -118,7 +76,19 @@
         </div>
       </a>
     </div>
-#}
+    
+    <div class="pager-page" id="promo-storyvideo">
+      <script>// <![CDATA[
+        document.getElementById('promo-storyvideo').id = 'page-promo-storyvideo';
+      // ]]></script>
+      <a href="https://donate.mozilla.org/Mozilla-Story7?WT.mc_id=mostoryvideo&amp;WT.mc_ev=click" class="container">
+        <img src="{{ media('img/home/promo-storyvideo.jpg') }}" alt="">
+        <div>
+          <h3>{{_('Help us build a better Web')}}</h3>
+          <h4>{{_('Watch the video to see how Mozilla keeps the Web a force for good in the world.')}}</h4>
+        </div>
+      </a>
+    </div>
 
   </div>
 
