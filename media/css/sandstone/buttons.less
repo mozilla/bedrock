@@ -313,6 +313,9 @@
         line-height: 100%;
         text-shadow: 0 1px rgba(255,255,255,0.2);
     }
+    .download-platform {
+        display: none;
+    }
 }
 
 .download-button-small .download-link {
@@ -347,6 +350,27 @@
     }
 }
 
+.download-button-beta {
+    .download-link .download-title,
+    .download-link .download-title span {
+        font-size: 24px;
+    }
+}
+
+.download-button-beta.download-button-small {
+    .download-link .download-title,
+    .download-link .download-title span {
+        font-size: 20px;
+    }
+}
+
+.download-button.download-button-mobile.download-button-beta.download-button-small {
+    .download-link .download-title span {
+        font-size: 18px;
+        letter-spacing: -0.01em;
+    }
+}
+
 .download-button-large.beta .download-link .download-content {
   background-image: url(/media/img/sandstone/buttons/beta-large.png);
 }
@@ -361,6 +385,43 @@
 
 .download-button-small.aurora .download-link .download-content {
   background-image: url(/media/img/sandstone/buttons/aurora-small.png);
+}
+
+.download-button.download-button-noicon {
+    .download-link {
+        width: 250px;
+        margin-left: auto;
+        .download-content {
+            margin-left: auto;
+            padding-left: 55px;
+            background-image: url(/media/img/sandstone/buttons/download-arrow.png);
+            background-position: 15px 30px;
+        }
+        .download-subtitle {
+            margin-right: auto;
+        }
+    }
+}
+
+.download-button-mobile.download-button-noicon {
+    .download-link .download-title span {
+        padding-top: 7px;
+    }
+}
+
+.download-button-small.download-button-noicon {
+    .download-link {
+        .download-content {
+            background-image: url(/media/img/sandstone/buttons/download-arrow-small.png);
+            background-position: 15px 18px;
+        }
+    }
+}
+
+.download-button-small.download-button-mobile.download-button-noicon {
+    .download-link .download-title span {
+        padding-top: 0;
+    }
 }
 
 
@@ -442,7 +503,7 @@ li.os_android,
             display: block;
             margin-right: 40px;
             color: #fff;
-            font-size: @smallFontSize;
+            font-size: 11px;
             line-height: 1.2;
             letter-spacing: normal;
             text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
@@ -455,7 +516,7 @@ li.os_android,
        .download-title {
             padding-top: 0;
             margin-bottom: 5px;
-            font-size: 12px;
+            font-size: 13px;
             color: #346012;
             text-shadow: 0 1px rgba(255, 255, 255, 0.2);
             letter-spacing: normal;
