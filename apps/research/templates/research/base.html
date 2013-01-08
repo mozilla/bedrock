@@ -2,14 +2,13 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% extends "sand.html" %}
+{% extends "base-resp.html" %}
+{% block body_class %}sand{% endblock %}
 
 {% set navigation_bar = [
     (url('research.research'), 'research', 'Mozilla Research'),
     (url('research.projects'), 'projects', 'Projects'),
     (url('research.researchers'), 'researchers', 'Researchers'),
-    (url('research.publications'), 'publications', 'Publications'),
-    (url('research.collaborations'), 'collaborations', 'Collaborations'),
     ('http://blog.mozilla.org/research/', 'blog', 'Blog'),
 ] -%}
 {% set active_page = active_page|default('index') -%}
@@ -18,28 +17,20 @@
  {{ css('research') }}
 {% endblock %}
 
-{% block page_title_prefix %}Mozilla Research — {% endblock %}
+{% block page_title_prefix %}{{_('Mozilla Research — ')}}{% endblock %}
 {% block page_title %}{% endblock %}
-{% block page_title_suffix %} — mozilla.org{% endblock %}
+{% block page_title_suffix %}{{_(' — mozilla.org')}}{% endblock %}
 {% block breadcrumbs %}
   <nav class="breadcrumbs">
-    <a href="{{ url('mozorg.home') }}">Home</a> >
-    <a href="{{ url('research.research') }}">Mozilla Research</a> >
+    <a href="{{ url('mozorg.home') }}">{{_('Home')}}</a> >
+    <a href="{{ url('research.research') }}">{{_('Mozilla Research')}}</a> >
   </nav>
 {% endblock %}
 
-{% block content %}
-
-<div id="main-content">
-<div class="row">
-
-<article class="main-column">
-{% block article %}{% endblock %}
-</article>
-
-<aside class="sidebar">
-  <nav>
-    <ul>
+{% block site_header_nav %}
+  <nav id="nav-main" role="navigation">
+    <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
+    <ul id="nav-main-menu">
     {% for href, id, caption in navigation_bar %}
       <li>
       {% if id == body_id %}
@@ -51,10 +42,10 @@
     {% endfor %}
     </ul>
   </nav>
-
-</aside>
-
-</div>
-</div>
-
 {% endblock %}
+
+{% block site_js %}
+  {{ js('mozorg-resp') }}
+{% endblock %}
+
+{% block email_form %}{% endblock %}
