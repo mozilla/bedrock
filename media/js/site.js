@@ -35,9 +35,11 @@
         // if other than 'windows', immediately replace the platform classname on the html-element
         // to avoid lots of flickering
         var h = document.documentElement;
-        window.site = getPlatform();
-        if (window.site !== 'windows') {
-            h.className = h.className.replace("windows", window.site);
+        window.site = {
+            platform : getPlatform()
+        };
+        if (window.site.platform !== 'windows') {
+            h.className = h.className.replace("windows", window.site.platform);
         }
         // Add class to reflect javascript availability for CSS
         h.className = h.className.replace(/\bno-js\b/, 'js');
