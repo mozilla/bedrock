@@ -24,15 +24,15 @@
     <video
       width="640"
       height="360"
-      poster="/media/img/contribute/poster-brand.jpg"
+      poster="{{ MEDIA_URL }}img/contribute/poster-brand.jpg"
       controls="controls">
       <source src="//videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.webm" type="video/webm" />
       <source src="//videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.theora.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;" />
       <source src="//videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.mp4" type="video/mp4" />
       <object type="application/x-shockwave-flash"
         style="width: 640px; height: 388px;"
-        data="/media/flash/playerWithControls.swf?flv=brand/Mozilla_Firefox_Manifesto_v0.2_640.mp4&amp;autoplay=false&amp;msg=Play%20Video">
-        <param name="movie" value="/media/flash/playerWithControls.swf?flv=brand/Mozilla_Firefox_Manifesto_v0.2_640.mp4&amp;autoplay=false&amp;msg=Play%20Video" />
+        data="{{ MEDIA_URL }}flash/playerWithControls.swf?flv=brand/Mozilla_Firefox_Manifesto_v0.2_640.mp4&amp;autoplay=false&amp;msg=Play%20Video">
+        <param name="movie" value="{{ MEDIA_URL }}flash/playerWithControls.swf?flv=brand/Mozilla_Firefox_Manifesto_v0.2_640.mp4&amp;autoplay=false&amp;msg=Play%20Video" />
         <param name="wmode" value="transparent" />
 
         <div class="video-player-no-flash">
@@ -73,7 +73,7 @@
 
             <ul class="contribute-options">
               <li class="row">
-                <img src="/media/img/contribute/sumo.png" alt="" />
+                <img src="{{ MEDIA_URL }}img/contribute/sumo.png" alt="" />
                 <h3 id="support">{{_('Helping Users')}}</h3>
                 <div class="content">
                   <p>
@@ -84,7 +84,7 @@ Our support process relies on enthusiastic contributors like you to help others 
                 </div>
               </li>
               <li class="row">
-                <img src="/media/img/contribute/qmo.png" alt="" />
+                <img src="{{ MEDIA_URL }}img/contribute/qmo.png" alt="" />
                 <h3 id="qa">{{_('Quality Assurance')}}</h3>
                 <div class="content">
                   <p>
@@ -95,7 +95,7 @@ Quality assurance testing is one of the easiest ways to get started with Mozilla
                 </div>
               </li>
               <li class="row">
-                <img src="/media/img/contribute/dinohead.png" alt="" />
+                <img src="{{ MEDIA_URL }}img/contribute/dinohead.png" alt="" />
                 <h3 id="coding">{{_('Coding')}}</h3>
                 <div class="content">
                   <p>
@@ -106,7 +106,7 @@ Quality assurance testing is one of the easiest ways to get started with Mozilla
                 </div>
               </li>
               <li class="row">
-                <img src="/media/img/contribute/firefox.png" alt="" />
+                <img src="{{ MEDIA_URL }}img/contribute/firefox.png" alt="" />
                 <h3 id="marketing">{{_('Spread the Word')}}</h3>
                 <div class="content">
                   <p>
@@ -194,37 +194,37 @@ Help build a generation of webmakers by teaching others how the web works. <a hr
             <ul>
               <li class="row">
                 <a href="/contribute/local/northamerica.html">
-                  <img src="/media/img/contribute/local/map-th-northamerica.png" alt="">
+                  <img src="{{ MEDIA_URL }}img/contribute/local/map-th-northamerica.png" alt="">
                   <h3>{{_('US and Canada')}}</h3>
                 </a>
               </li>
               <li class="row">
                 <a href="/contribute/local/europe.html">
-                  <img src="/media/img/contribute/local/map-th-europe.png" alt="">
+                  <img src="{{ MEDIA_URL }}img/contribute/local/map-th-europe.png" alt="">
                   <h3>{{_('Europe')}}</h3>
                 </a>
               </li>
               <li class="row">
                 <a href="/contribute/local/latinamerica.html">
-                  <img src="/media/img/contribute/local/map-th-latinamerica.png" alt="">
+                  <img src="{{ MEDIA_URL }}img/contribute/local/map-th-latinamerica.png" alt="">
                   <h3>{{_('Latin America')}}</h3>
                 </a>
               </li>
               <li class="row">
                 <a href="/contribute/local/africamideast.html">
-                  <img src="/media/img/contribute/local/map-th-africamideast.png" alt="">
+                  <img src="{{ MEDIA_URL }}img/contribute/local/map-th-africamideast.png" alt="">
                   <h3>{{_('Africa and the Middle East')}}</h3>
                 </a>
               </li>
               <li class="row">
                 <a href="/contribute/local/asia.html">
-                  <img src="/media/img/contribute/local/map-th-asia.png" alt="">
+                  <img src="{{ MEDIA_URL }}img/contribute/local/map-th-asia.png" alt="">
                   <h3>{{_('Asia and the South Pacific')}}</h3>
                 </a>
               </li>
               <li class="row">
                 <a href="/contribute/local/southpole.html">
-                  <img src="/media/img/contribute/local/map-th-southpole.png" alt="">
+                  <img src="{{ MEDIA_URL }}img/contribute/local/map-th-southpole.png" alt="">
                   <h3>{{_('Antarctica')}}</h3>
                 </a>
               </li>

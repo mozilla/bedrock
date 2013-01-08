@@ -14,7 +14,7 @@
     <link href="/tabzilla/media/css/tabzilla.css" rel="stylesheet">
 
     <!--[if lt IE 9]>
-      <script src="/media/js/libs/html5shiv.js"></script>
+      <script src="{{ MEDIA_URL }}js/libs/html5shiv.js"></script>
     <![endif]-->
 
     {% block site_css %}
@@ -50,7 +50,7 @@
         {% endblock %}
 
         {% block site_header_logo %}
-        <h2><a href="{{ url('mozorg.home') }}"><img src="/media/img/sandstone/header-mozilla-stone.png" alt="mozilla"></a></h2>
+        <h2><a href="{{ url('mozorg.home') }}"><img src="{{ MEDIA_URL }}img/sandstone/header-mozilla-stone.png" alt="mozilla"></a></h2>
         {% endblock %}
 
         {% block breadcrumbs %}{% endblock %}
