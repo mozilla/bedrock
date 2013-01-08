@@ -21,6 +21,10 @@ class FirefoxDetails(ProductDetails):
             'title': 'Linux',
             'id': 'linux',
         },
+        'Linux64': {
+            'title': 'Linux64',
+            'id': 'linux64',
+        },
     }
     channel_map = {
         'aurora': 'FIREFOX_AURORA',
