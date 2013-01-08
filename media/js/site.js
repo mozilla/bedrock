@@ -43,5 +43,5 @@
         }
         // Add class to reflect javascript availability for CSS
         h.className = h.className.replace(/\bno-js\b/, 'js');
-    }());
-}());
+    })();
+})();
