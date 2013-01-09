@@ -144,7 +144,7 @@ $(document).ready(function() {
     video.id        = 'video-player';
     video.className = 'video-js vjs-default-skin';
     video.controls  = 'controls';
-    video.preload   = 'auto';
+    video.preload   = 'none';
 
     // create video sources
     var sources = [
