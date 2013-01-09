@@ -1,5 +1,10 @@
+from math import floor
+import time
+from hashlib import md5
+
 from django.conf import settings
 from django.test import Client
+from django.utils.http import parse_http_date
 
 from funfactory.urlresolvers import reverse
 from mock import patch
@@ -18,6 +23,21 @@ class TabzillaViewTests(TestCase):
             resp = self.client.get(reverse('tabzilla'))
         self.assertEqual(resp['content-type'], 'text/javascript')
 
+    def test_cache_headers(self):
+        """
+        Should have appropriate Cache-Control, Expires, and ETag headers.
+        """
+        with self.activate('en-US'):
+            resp = self.client.get(reverse('tabzilla'))
+        self.assertEqual(resp['cache-control'], 'max-age=43200')  # 12h
+
+        now_date = floor(time.time())
+        exp_date = parse_http_date(resp['expires'])
+        self.assertAlmostEqual(now_date + 43200, exp_date, delta=2)
+
+        etag = '"%s"' % md5(resp.content).hexdigest()
+        self.assertEqual(resp['etag'], etag)
+
 
 @patch.object(settings, 'DEV_LANGUAGES', ['en-US', 'de'])
 @patch.object(settings, 'PROD_LANGUAGES', ['en-US', 'de'])
@@ -26,7 +46,7 @@ class TabzillaRedirectTests(TestCase):
         self.client = Client()
 
     def test_locale_preserved(self):
-        """The old tabzilla URL should preserve the locale through redirects."""
+        """The tabzilla URL should preserve the locale through redirects."""
         resp = self.client.get('/de/tabzilla/media/js/tabzilla.js')
         self.assertEqual(resp.status_code, 301)
         self.assertEqual(resp['Location'],
