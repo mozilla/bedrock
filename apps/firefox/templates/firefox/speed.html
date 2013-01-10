@@ -14,11 +14,7 @@
   {{ css('firefox_speed') }}
 {% endblock %}
 
-{% block body_attrs %}{{ super() }} data-latest-firefox="{{ latest_version }}"{% endblock %}
-
 {% block content %}
-
-
 <div id="main-feature">
 {% block heading_primary %}
   <h1 class="">How fast is your Firefox?</h1>

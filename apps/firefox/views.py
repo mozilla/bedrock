@@ -22,6 +22,9 @@ from firefox.firefox_details import firefox_details
 from l10n_utils.dotlang import _
 
 
+UA_REGEXP = re.compile(r"Firefox/(%s)" % version_re)
+
+
 @csrf_exempt
 def sms_send(request):
     form = SMSSendForm(request.POST or None)
@@ -83,8 +86,7 @@ def latest_fx_redirect(request, fake_version, template_name):
         return HttpResponsePermanentRedirect(url)
 
     user_version = "0"
-    ua_regexp = r"Firefox/(%s)" % version_re
-    match = re.search(ua_regexp, user_agent)
+    match = UA_REGEXP.search(user_agent)
     if match:
         user_version = match.group(1)
 

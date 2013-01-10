@@ -73,8 +73,7 @@ $(document).ready(function() {
 });
 
 //get Master firefox version
-function getFirefoxMasterVersion()
-{
+function getFirefoxMasterVersion() {
     var version = 0;
 
     var matches = /Firefox\/([0-9]+).[0-9]+(?:.[0-9]+)?/.exec(

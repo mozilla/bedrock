@@ -85,6 +85,21 @@
 
 {% block site_js %}
   {{ js('firefox-resp') }}
+  <script type="text/javascript">
+      latest_firefox_version = parseInt('{{ latest_firefox_version }}'.split('.')[0], 10);
+      esr_firefox_versions = {{ esr_firefox_versions|safe }};
+
+      function isFirefox() {
+          return /\sFirefox/.test(navigator.userAgent);
+      }
+
+      //is firefox up-to-date
+      function isFirefoxUpToDate() {
+          var fx_version = getFirefoxMasterVersion();
+          return ($.inArray(fx_version, esr_firefox_versions) !== -1 ||
+                  latest_firefox_version <= fx_version);
+      }
+  </script>
 {% endblock %}
 
 {% block webtrends %}

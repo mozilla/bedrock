@@ -13,9 +13,6 @@ $(document).ready(function() {
     var needle = $('#needle');
     var gauge = $('#gauge');
     var angle = 0;
-    var latestVersion = $('body').attr('data-latest-firefox');
-    latestVersion = parseInt(latestVersion.split('.')[0], 10);
-    var isFirefox = (/\sFirefox/.test(window.navigator.userAgent));
 
     $.easing.easeInOutSine = function (x, t, b, c, d) {
         return -c/2 * (Math.cos(Math.PI*t/d) - 1) + b;
@@ -80,11 +77,11 @@ $(document).ready(function() {
         }
     };
 
-    if (isFirefox) {
+    if (isFirefox()) {
         // initial position
         rotate(-1.5, 10, startWaver, 'linear');
 
-        if (latestVersion > getFirefoxMasterVersion()) {
+        if (!isFirefoxUpToDate()) {
             // slow
             setTimeout(function() {
                 stopWaver();
