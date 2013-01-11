@@ -158,9 +158,8 @@ $(document).ready(function() {
         }
     ];
 
-    var source;
     for (var i = 0; i < sources.length; i++) {
-        source = document.createElement('source');
+        var source = document.createElement('source');
         source.src = sources[i].src;
         source.type = sources[i].type;
         video.appendChild(source);
