@@ -12,7 +12,7 @@
 .vjs-default-skin div.vjs-big-play-button span,
 .vjs-default-skin .vjs-menu-button div,
 .vjs-default-skin .vjs-menu-button ul li.vjs-selected {
-    background-image:  url('video-js-sandstone.png');
+    background-image:  url('/media/js/libs/video-js/video-js-sandstone.png');
 }
 
 
