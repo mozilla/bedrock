@@ -362,7 +362,7 @@ $(document).ready(function() {
         );
 
         // hide video-js big play button and loading spinner (Chrome
-        // shows spinnemr for some videos after they are finished)
+        // shows spinner for some videos after they are finished)
         $videoContainer
             .find('.video-js')
             .addClass('vjs-moz-ended');
