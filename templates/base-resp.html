@@ -11,7 +11,7 @@
 
     <title>{% block page_title_prefix %}Mozilla — {% endblock %}{% block page_title %}{% endblock %}{% block page_title_suffix %} — mozilla.org{% endblock %}</title>
 
-    <link href="/tabzilla/media/css/tabzilla.css" rel="stylesheet">
+    {{ css('tabzilla') }}
 
     <!--[if lte IE 8]>
     <script src="{{ MEDIA_URL }}js/libs/html5shiv.js"></script>
