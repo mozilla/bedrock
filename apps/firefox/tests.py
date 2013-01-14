@@ -145,6 +145,25 @@ class FxVersionRedirectsMixin(object):
         eq_(response['Vary'], 'User-Agent')
 
     @patch.dict(product_details.firefox_versions,
+                LATEST_FIREFOX_VERSION='18.0')
+    def test_esr_firefox(self):
+        """
+        Currently released ESR firefoxen should not redirect. At present
+        they are 10.0.x and 17.0.x.
+        """
+        user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:10.0.12) '
+                      'Gecko/20111101 Firefox/10.0.12')
+        response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
+        eq_(response.status_code, 200)
+        eq_(response['Vary'], 'User-Agent')
+
+        user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:17.0) '
+                      'Gecko/20100101 Firefox/17.0')
+        response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
+        eq_(response.status_code, 200)
+        eq_(response['Vary'], 'User-Agent')
+
+    @patch.dict(product_details.firefox_versions,
                 LATEST_FIREFOX_VERSION='16.0')
     def test_current_firefox(self):
         user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:16.0) '

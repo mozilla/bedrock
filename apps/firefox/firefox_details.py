@@ -28,6 +28,7 @@ class FirefoxDetails(ProductDetails):
         'esr': 'FIREFOX_ESR',
         'release': 'LATEST_FIREFOX_VERSION',
     }
+    esr_major_versions = [10, 17]
 
     def __init__(self):
         super(FirefoxDetails, self).__init__()

@@ -1,8 +1,8 @@
-if (typeof Mozilla == 'undefined') {
+if (typeof Mozilla === 'undefined') {
     var Mozilla = {};
 }
 
-if (typeof Mozilla.page == 'undefined') {
+if (typeof Mozilla.page === 'undefined') {
     Mozilla.page = {};
 }
 
@@ -13,53 +13,52 @@ Mozilla.page.Home = {
 $(document).ready(function() {
 
     var isMSIEpre9 = (/MSIE\ (4|5|6|7|8)/.test(navigator.userAgent));
-    var noVideo    = (typeof HTMLMediaElement == 'undefined');
+    var noVideo = (typeof HTMLMediaElement === 'undefined');
 
     var sizes = [
         {
-            to           : 479,
-            thumbWidth   : 320,
-            thumbHeight  : 180,
-            videoWidth   : 320,
-            videoHeight  : 180,
-            marginWidth  : 0,
+            to : 479,
+            thumbWidth : 320,
+            thumbHeight : 180,
+            videoWidth : 320,
+            videoHeight : 180,
+            marginWidth : 0,
             marginHeight : 0
         },
         {
-            from         : 480,
-            to           : 760,
-            thumbWidth   : 440,
-            thumbHeight  : 248,
-            videoWidth   : 440,
-            videoHeight  : 248,
-            marginWidth  : 0,
+            from : 480,
+            to : 760,
+            thumbWidth : 440,
+            thumbHeight : 248,
+            videoWidth : 440,
+            videoHeight : 248,
+            marginWidth : 0,
             marginHeight : 0
         },
         {
-            from         : 761,
-            to           : 1000,
-            thumbWidth   : 280,
-            thumbHeight  : 158,
-            videoWidth   : 720,
-            videoHeight  : 405,
-            marginWidth  : 20,
+            from : 761,
+            to : 1000,
+            thumbWidth : 280,
+            thumbHeight : 158,
+            videoWidth : 720,
+            videoHeight : 405,
+            marginWidth : 20,
             marginHeight : 20
         },
         {
-            from         : 1001,
-            thumbWidth   : 380,
-            thumbHeight  : 214,
-            videoWidth   : 853,
-            videoHeight  : 480,
-            marginWidth  : 30,
+            from : 1001,
+            thumbWidth : 380,
+            thumbHeight : 214,
+            videoWidth : 853,
+            videoHeight : 480,
+            marginWidth : 30,
             marginHeight : 25
         }
     ];
 
-    function getSize()
-    {
+    function getSize() {
         var width = $(window).width();
-        var size  = sizes[0];
+        var size = sizes[0];
 
         if (isMSIEpre9) {
             // no media queries means we always use desktop width
@@ -67,17 +66,15 @@ $(document).ready(function() {
         }
 
         for (var i = 0; i < sizes.length; i++) {
-            if (
-                   (!sizes[i].from || width >= sizes[i].from)
-                && (!sizes[i].to || width <= sizes[i].to)
-            ) {
+            if ((!sizes[i].from || width >= sizes[i].from) &&
+                (!sizes[i].to || width <= sizes[i].to)) {
                 size = sizes[i];
                 break;
             }
         }
 
         return size;
-    };
+    }
 
     var currentSize = getSize();
 
@@ -86,14 +83,12 @@ $(document).ready(function() {
 
     // create container that replaces the link when the video is open
     var $container = $('<div class="container"></div>');
-    $container
-        .css('display', 'none')
+    $container.css('display', 'none')
         .insertBefore($link);
 
     // create go link shown when video is open
     var $goLink = $('<a class="go"></a>');
-    $goLink
-        .attr('href', $link.attr('href'))
+    $goLink.attr('href', $link.attr('href'))
         .text($link.find('.go').text())
         .appendTo($container);
 
@@ -104,10 +99,7 @@ $(document).ready(function() {
         hideOverlay();
         if (videoJS) {
             // let the loading and big play buttons show up again.
-            $videoContainer
-                .find('.video-js')
-                .removeClass('vjs-moz-ended');
-
+            $videoContainer.find('.video-js').removeClass('vjs-moz-ended');
             videoJS.currentTime(0);
             videoJS.play();
         }
@@ -120,11 +112,8 @@ $(document).ready(function() {
         '<span class="video-close" tabindex="0" role="button">×</span>'
     );
 
-    $close
-        .attr('title', Mozilla.page.Home.closeText)
-        .click(function(e) {
-            close();
-        });
+    $close.attr('title', Mozilla.page.Home.closeText)
+        .click(function(e) { close(); });
 
     // shared animation settings
     var duration = 400;
@@ -132,8 +121,7 @@ $(document).ready(function() {
 
     // create container to hold the video player
     var $videoContainer = $('<div class="video-container"></div>');
-    $videoContainer
-        .css('display', 'none')
+    $videoContainer.css('display', 'none')
         .insertAfter($thumb);
 
     // create video
@@ -141,40 +129,38 @@ $(document).ready(function() {
     // IE9 didn't like a video element build using jQuery so we build it
     // using the DOM API.
     var video = document.createElement('video');
-    video.id        = 'video-player';
+    video.id = 'video-player';
     video.className = 'video-js vjs-default-skin';
-    video.controls  = 'controls';
-    video.preload   = 'none';
+    video.controls = 'controls';
+    video.preload = 'none';
 
     // create video sources
     var sources = [
         {
-            src:  'http://videos.mozilla.org/uploads/brand/State%20of%20Mozilla%202011%20(fcp2)-RC%20-%20720p%20-%20MPEG-4.mp4',
+            src: 'http://videos.mozilla.org/uploads/brand/State%20of%20Mozilla%202011%20(fcp2)-RC%20-%20720p%20-%20MPEG-4.mp4',
             type: 'video/mp4'
         },
         {
-            src:  'http://videos.mozilla.org/uploads/brand/State%20of%20Mozilla%202011%20(fcp2)-RC%20-%20720p%20-%20MPEG-4.webm',
+            src: 'http://videos.mozilla.org/uploads/brand/State%20of%20Mozilla%202011%20(fcp2)-RC%20-%20720p%20-%20MPEG-4.webm',
             type: 'video/webm'
         }
     ];
 
-    var source;
     for (var i = 0; i < sources.length; i++) {
-        source = document.createElement('source');
+        var source = document.createElement('source');
         source.src = sources[i].src;
         source.type = sources[i].type;
         video.appendChild(source);
     }
 
-    $video = $(video);
+    var $video = $(video);
     $video.appendTo($videoContainer);
 
     // shared reference to the video.js player when it exists
     var videoJS;
 
-    function open()
-    {
-        if (state != 'closed') {
+    function open() {
+        if (state !== 'closed') {
             return;
         }
 
@@ -183,23 +169,15 @@ $(document).ready(function() {
         // if pager is auto-rotating, stop rotating when video opened
         Mozilla.Pager.pagers['home-promo'].stopAutoRotate();
 
-        var thumbOffset   = $thumb.offset();
-        var thumbPosition = $thumb.position();
+        var thumbOffset = $thumb.offset();
 
         // show close link
-        $close
-            .insertBefore($container)
-            .css(
-                {
-                    'right' : 'auto'
-                }
-            )
-            .offset(
-                {
-                    'left' : thumbOffset.left + currentSize.thumbWidth,
-                    'top'  : thumbOffset.top
-                }
-            )
+        $close.insertBefore($container)
+            .css('right', 'auto')
+            .offset({
+                'left' : thumbOffset.left + currentSize.thumbWidth,
+                'top' : thumbOffset.top
+            });
 
         if (currentSize.videoWidth >= 720) {
 
@@ -209,41 +187,30 @@ $(document).ready(function() {
 
             var goHeight = $goLink.height();
 
-            $container
-                .animate(
-                    {
-                        'height' : currentSize.videoHeight + goHeight + 10 + currentSize.marginHeight * 2
-                    },
-                    duration,
-                    easing
-                );
+            $container.animate(
+                {
+                    'height' : currentSize.videoHeight + goHeight + 10 + currentSize.marginHeight * 2
+                },
+                duration,
+                easing
+            );
 
-            $close
-                .animate(
-                    {
-                        'left' : Math.floor((linkWidth + currentSize.videoWidth) / 2),
-                        'top'  : currentSize.marginHeight
-                    },
-                    duration
-                );
+            $close.animate(
+                {
+                    'left' : Math.floor((linkWidth + currentSize.videoWidth) / 2),
+                    'top'  : currentSize.marginHeight
+                },
+                duration
+            );
 
-            $thumb
-                .css(
-                    {
-                        'right' : 'auto'
-                    }
-                )
-                .offset(
-                    {
-                        'left'  : thumbOffset.left
-                    }
-                )
+            $thumb.css('right', 'auto')
+                .offset({ 'left' : thumbOffset.left })
                 .animate(
                     {
                         'height' : currentSize.videoHeight,
-                        'width'  : currentSize.videoWidth,
-                        'left'   : Math.floor((linkWidth - currentSize.videoWidth) / 2),
-                        'top'    : currentSize.marginHeight
+                        'width' : currentSize.videoWidth,
+                        'left' : Math.floor((linkWidth - currentSize.videoWidth) / 2),
+                        'top' : currentSize.marginHeight
                     },
                     duration,
                     easing,
@@ -254,79 +221,62 @@ $(document).ready(function() {
                     }
                 );
 
-                $('body').animate(
-                    {
-                        scrollTop: $('#home-promo').position().top - 20
-                    },
-                    duration,
-                    easing
-                );
+            $('body').animate(
+                {
+                    scrollTop: $('#home-promo').position().top - 20
+                },
+                duration,
+                easing
+            );
 
         } else {
             // for small sizes, no animation required
             showVideo();
             state = 'opened';
         }
-    };
+    }
 
-    function hideLink()
-    {
+    function hideLink() {
         var linkHeight = $link.height();
-        var linkWidth  = $link.width();
+        var linkWidth = $link.width();
 
         // hide link and show container with same dimensions
         $link.css('display', 'none');
-        $container
-            .height(linkHeight)
+        $container.height(linkHeight)
             .css('display', 'block');
 
         $goLink.css(
             'left',
             Math.max(Math.floor((linkWidth - currentSize.videoWidth) / 2), 20)
         );
-    };
+    }
 
-    function showLink()
-    {
-        var linkWidth  = $container.width();
-        var linkHeight = $container.height();
+    function showLink() {
+        // hide container and show link at same dimensions
+        $container.css('display', 'none');
+        $link.css('display', 'block');
+    }
 
-            // hide container and show link at same dimensions
-            $container.css('display', 'none');
-            $link
-                .css('display', 'block')
-    };
-
-    function showVideo()
-    {
+    function showVideo() {
         var thumbPosition = $thumb.position();
 
-        $video
-            .attr('width', currentSize.videoWidth)
+        $video.attr('width', currentSize.videoWidth)
             .attr('height', currentSize.videoHeight);
 
-        $thumb.css(
-            {
-                'display' : 'none'
-            }
-        );
+        $thumb.css('display', 'none');
 
-        $videoContainer.css(
-            {
-                'top'     : thumbPosition.top,
-                'right'   : 'auto',
-                'left'    : thumbPosition.left,
-                'width'   : currentSize.videoWidth,
-                'height'  : currentSize.videoHeight,
-                'display' : 'block'
-            }
-        );
+        $videoContainer.css({
+            'top' : thumbPosition.top,
+            'right' : 'auto',
+            'left' : thumbPosition.left,
+            'width' : currentSize.videoWidth,
+            'height' : currentSize.videoHeight,
+            'display' : 'block'
+        });
 
         if (videoJS) {
             // let the loading and big play buttons show up again.
-            $videoContainer
-                .find('.video-js')
-                .removeClass('vjs-moz-ended');
+            $videoContainer.find('.video-js').removeClass('vjs-moz-ended');
 
             videoJS.size(currentSize.videoWidth, currentSize.videoHeight);
             videoJS.play();
@@ -344,38 +294,31 @@ $(document).ready(function() {
                 videoJS.play();
             });
         }
-    };
+    }
 
-    function showOverlay()
-    {
-        var width    = $videoContainer.width();
-        var height   = $videoContainer.height();
+    function showOverlay() {
+        var width = $videoContainer.width();
+        var height = $videoContainer.height();
         var position = $videoContainer.position();
 
-        $overlay.css(
-            {
-                'top'     : position.top,
-                'left'    : position.left,
-                'width'   : width,
-                'height'  : height,
-                'display' : 'block'
-            }
-        );
+        $overlay.css({
+            'top' : position.top,
+            'left' : position.left,
+            'width' : width,
+            'height' : height,
+            'display' : 'block'
+        });
 
         // hide video-js big play button and loading spinner (Chrome
-        // shows spinnemr for some videos after they are finished)
-        $videoContainer
-            .find('.video-js')
-            .addClass('vjs-moz-ended');
-    };
+        // shows spinner for some videos after they are finished)
+        $videoContainer.find('.video-js').addClass('vjs-moz-ended');
+    }
 
-    function hideOverlay()
-    {
+    function hideOverlay() {
         $overlay.css('display', 'none');
-    };
+    }
 
-    function hideVideo()
-    {
+    function hideVideo() {
         if (videoJS) {
             videoJS.pause();
         }
@@ -385,30 +328,25 @@ $(document).ready(function() {
         $videoContainer.css('display', 'none');
         $overlay.css('display', 'none');
 
-        $thumb.css(
-            {
-                'top'     : videoPosition.top,
-                'right'   : 'auto',
-                'left'    : videoPosition.left,
-                'display' : 'block'
-            }
-        );
+        $thumb.css({
+            'top' : videoPosition.top,
+            'right' : 'auto',
+            'left' : videoPosition.left,
+            'display' : 'block'
+        });
 
         if (currentSize.videoWidth < 720) {
-            $thumb.css(
-                {
-                    'width'   : currentSize.thumbWidth,
-                    'height'  : currentSize.thumbHeight
-                }
-            );
+            $thumb.css({
+                'width' : currentSize.thumbWidth,
+                'height' : currentSize.thumbHeight
+            });
         }
 
         $close.detach();
     }
 
-    function close()
-    {
-        if (state != 'opened') {
+    function close() {
+        if (state !== 'opened') {
             return;
         }
 
@@ -416,14 +354,13 @@ $(document).ready(function() {
 
         hideVideo();
 
-        var linkWidth  = $container.width();
+        var linkWidth = $container.width();
         var linkHeight = $container.height();
 
         if (currentSize.videoWidth >= 720) {
 
             showLink();
-            $link
-                .height(linkHeight)
+            $link.height(linkHeight)
                 .animate(
                     {
                         'height' : currentSize.thumbHeight + 2 * currentSize.marginHeight
@@ -440,8 +377,7 @@ $(document).ready(function() {
                 },
                 duration,
                 easing,
-                function()
-                {
+                function() {
                     // only allow opening after closing finished
                     state = 'closed';
                 }
@@ -450,27 +386,22 @@ $(document).ready(function() {
             state = 'closed';
         }
 
-    };
+    }
 
-    $thumb.click(function(e) {
-        open();
-    });
+    $thumb.click(function(e) { open(); });
 
-    function handleResize()
-    {
+    function handleResize() {
         var size = getSize();
-        if (size.videoWidth != currentSize.videoWidth) {
+        if (size.videoWidth !== currentSize.videoWidth) {
             currentSize = size;
             reposition();
         }
-    };
+    }
 
-    function reposition()
-    {
+    function reposition() {
         var linkWidth;
-        var width = $(window).width();
 
-        if (state == 'opened' || state == 'opening') {
+        if (state === 'opened' || state === 'opening') {
 
             // TODO: check for and stop animations
 
@@ -478,61 +409,49 @@ $(document).ready(function() {
                 videoJS.size(currentSize.videoWidth, currentSize.videoHeight);
             }
 
-            $overlay.css(
-                {
-                    'width'  : currentSize.videoWidth,
-                    'height' : currentSize.videoHeight
-                }
-            );
+            $overlay.css({
+                'width' : currentSize.videoWidth,
+                'height' : currentSize.videoHeight
+            });
 
             var $offsetParent = $videoContainer.offsetParent();
             linkWidth = $offsetParent.width();
 
-            $videoContainer.css(
-                {
-                    'right'  : 'auto',
-                    'top'    : currentSize.marginHeight,
-                    'left'   : Math.floor((linkWidth - currentSize.videoWidth) / 2),
-                    'width'  : currentSize.videoWidth,
-                    'height' : currentSize.videoHeight,
-                }
-            );
+            $videoContainer.css({
+                'right' : 'auto',
+                'top' : currentSize.marginHeight,
+                'left' : Math.floor((linkWidth - currentSize.videoWidth) / 2),
+                'width' : currentSize.videoWidth,
+                'height' : currentSize.videoHeight
+            });
 
-            $overlay.css(
-                {
-                    'right' : 'auto',
-                    'top'   : currentSize.marginHeight,
-                    'left'  : Math.floor((linkWidth - currentSize.videoWidth) / 2)
-                }
-            );
+            $overlay.css({
+                'right' : 'auto',
+                'top' : currentSize.marginHeight,
+                'left' : Math.floor((linkWidth - currentSize.videoWidth) / 2)
+            });
 
-            $close.css(
-                {
-                    'right' : 'auto',
-                    'top'   : currentSize.marginHeight,
-                    'left'  : Math.floor((linkWidth + currentSize.videoWidth) / 2)
-                }
-            );
+            $close.css({
+                'right' : 'auto',
+                'top' : currentSize.marginHeight,
+                'left' : Math.floor((linkWidth + currentSize.videoWidth) / 2)
+            });
 
-            $thumb.css(
-                {
-                    'width'  : currentSize.videoWidth,
-                    'height' : currentSize.videoHeight
-                }
-            );
+            $thumb.css({
+                'width' : currentSize.videoWidth,
+                'height' : currentSize.videoHeight
+            });
 
             if (currentSize.videoWidth >= 720) {
-                $goLink.css(
-                    {
-                        'bottom' : 'auto',
-                        'left'   : Math.max(Math.floor((linkWidth - currentSize.videoWidth) / 2), 20),
-                        'top'    : currentSize.videoHeight + currentSize.marginHeight + 10
-                    }
-                );
+                $goLink.css({
+                    'bottom' : 'auto',
+                    'left' : Math.max(Math.floor((linkWidth - currentSize.videoWidth) / 2), 20),
+                    'top' : currentSize.videoHeight + currentSize.marginHeight + 10
+                });
 
                 hideLink();
 
-                var goHeight  = $goLink.height();
+                var goHeight = $goLink.height();
 
                 $container.css(
                     'height',
@@ -549,28 +468,25 @@ $(document).ready(function() {
 
             linkWidth = $link.width();
 
-            $thumb.css(
-                {
-                    'right'  : 'auto',
-                    'top'    : currentSize.marginHeight,
-                    'left'   : linkWidth - currentSize.thumbWidth - currentSize.marginWidth,
-                    'width'  : currentSize.thumbWidth,
-                    'height' : currentSize.thumbHeight
-                }
-            );
+            $thumb.css({
+                'right' : 'auto',
+                'top' : currentSize.marginHeight,
+                'left' : linkWidth - currentSize.thumbWidth - currentSize.marginWidth,
+                'width' : currentSize.thumbWidth,
+                'height' : currentSize.thumbHeight
+            });
 
-            var height = (currentSize.videoWidth >= 720)
-                ? currentSize.thumbHeight + currentSize.marginHeight * 2
-                : 'auto';
+            var height;
+            if (currentSize.videoWidth >= 720) {
+                height = currentSize.thumbHeight + currentSize.marginHeight * 2;
+            } else {
+                height = 'auto';
+            }
 
-            $link.css (
-                {
-                    'height' : height
-                }
-            );
+            $link.css('height', height);
         }
 
-    };
+    }
 
     if (!isMSIEpre9) {
         $(window).resize(handleResize);
