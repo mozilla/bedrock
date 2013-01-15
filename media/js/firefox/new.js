@@ -24,7 +24,6 @@
             window.location.href = url;
         }, 500);
     }
-
     function show_scene(scene) {
         var CSSbottom = (scene === 2) ? '-400px' : 0;
         $stage.data('scene', scene);
@@ -50,7 +49,6 @@
         }
         $('body').addClass('ready-for-scene2');
     }
-
     $(function() {
         // Pull Firefox download link from the download button and add to the
         // 'click here' link.
