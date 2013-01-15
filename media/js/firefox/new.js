@@ -1,23 +1,28 @@
-;(function($, Modernizr, _gaq, site) {   
+;(function($, Modernizr, _gaq, site) {
     'use strict';
-    
+
     if (site.platform === 'android') {
         return;
     }
-    
+
+    var path_parts = window.location.pathname.split('/');
+    var query_str = window.location.search ? window.location.search + '&' : '?';
+    var referrer = path_parts[path_parts.length-2];
+    var locale = path_parts[1];
+    var virtual_url = ('/' + locale + '/products/download.html' +
+                       query_str + 'referrer=' + referrer);
     var $scene1 = $('#scene1');
     var $stage = $('#stage-firefox');
     var $thankYou = $('.thankyou');
     var hash_change = ('onhashchange' in window);
-    
+
     function track_and_redirect(url) {
         if (_gaq) {
-            _gaq.push(['_trackPageview',
-                       '/en-US/products/download.html?referrer=new-b']);
+            _gaq.push(['_trackPageview', virtual_url]);
         }
         setTimeout(function() {
-            location.href = url;
-        }, 300);
+            window.location.href = url;
+        }, 500);
     }
 
     function show_scene(scene) {
@@ -38,7 +43,7 @@
             }, 500);
         }
     }
-    
+
     // Load images on load so as not to block the loading of other images.
     $(window).on('load', function() {
         // Screen 1 is unique for IE < 9
@@ -55,7 +60,7 @@
         }
     });
 
-    $(function() {        
+    $(function() {
         // Pull Firefox download link from the download button and add to the
         // 'click here' link.
         // TODO: Remove and generate link in bedrock.
@@ -67,7 +72,7 @@
             e.preventDefault();
 
             track_and_redirect($(e.currentTarget).attr('href'));
-            
+
             if ($stage.data('scene') !== 2) {
                 if (hash_change) {
                     location.hash = '#download-fx';
@@ -76,7 +81,7 @@
                 }
             }
         });
-        
+
         if (hash_change) {
             $(window).on('hashchange', function() {
                 if (location.hash === '#download-fx') {
