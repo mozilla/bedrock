@@ -61,4 +61,6 @@ urlpatterns = patterns('',
         kwargs={'template_name': 'firefox/firstrun.html'}),
     url(whatsnew_re, views.latest_fx_redirect, name='firefox.whatsnew',
         kwargs={'template_name': 'firefox/whatsnew.html'}),
+        
+    page('firefox/partners', 'firefox/partners/landing.html'),
 )

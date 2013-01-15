@@ -276,6 +276,9 @@ MINIFY_BUNDLES = {
         'annual_2011': (
             'css/foundation/annual2011.less',
         ),
+        'partners': (
+            'css/partners.less',
+        ),
     },
     'js': {
         'site': (
@@ -430,6 +433,10 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.jcarousel.min.js',
             'js/annual2011.js',
+        ),
+        'partners': (
+            'js/libs/mozcountdown.js',
+            'js/partners.js',
         ),
     }
 }
