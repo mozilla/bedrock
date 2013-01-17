@@ -2,11 +2,17 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% extends "base.html" %}
+{% extends "base-resp.html" %}
+
+{% block extrahead %}
+  {{ css('page_not_found') }}
+{% endblock %}
 
 {% block content %}
-<div id="main-content">
+<div id="main-content" class="error500">
   <h1>Oh Noes!</h1>
-  An error occurred. Try back later!
+  <p>An error occurred. Try back later!</p>
 </div>
 {% endblock %}
+
+{% block email_form %}{% endblock %}
