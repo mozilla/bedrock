@@ -1,43 +1,50 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+{% set download_class = 'download-button' %}
+{% set download_class = download_class ~ ' download-button-' ~ build if build else download_class %}
+{% set download_class = download_class ~ ' download-button-mobile' if mobile else download_class %}
+{% set download_class = download_class ~ ' download-button-small' if small else download_class %}
+{% set download_class = download_class ~ ' download-button-noicon' if not icon else download_class %}
 
-<aside id="{{ id }}" class="download-button download-button-{{ size }}">
-  <noscript>
-    {% include "mozorg/download_buttons/dumb.html" %}
-  </noscript>
-
-  <div class="unrecognized-download">
-    {% include "mozorg/download_buttons/dumb.html" %}
-  </div>
-
+<div id="{{ id }}" class="{{ download_class }}">
   <ul class="download-list">
     {% for build in builds %}
-    <li class="{{ build.platform }}">
-      <a class="download-link download-{{ product }}"
-         href="{{ build.download_link }}"{% if build.download_link_direct %}
-         data-direct-link="{{ build.download_link_direct }}"{% endif %}>
+      <li class="{{ build.os }}">
+        <a class="download-link"
+           href="{{ build.download_link }}"{% if build.download_link_direct %}
+           data-direct-link="{{ build.download_link_direct }}"{% endif %}>
           <span class="download-content">
-            <strong class="download-title">Firefox{{ ' Beta' if build == 'beta' }}{{ ' for Android' if platform == 'mobile' }}</strong>
-            <span class="download-subtitle">{{ _('Free Download') }}</span>
-              {% if build.platform != 'os_android' %}
-                <span class="download-lang">{{ locale_name }}</span>
+            {% if mobile %}
+              {% if build == 'beta' %}
+                <strong class="download-title">{{ _('<span>Firefox Beta</span> for Android') }}</strong>
+              {% else %}
+                <strong class="download-title">{{ _('<span>Firefox</span> for Android') }}</strong>
               {% endif %}
+              <span class="download-subtitle">{{ _('Get it free on Google Play') }}</span>
+            {% else %}
+              {% if build == 'beta' %}
+                <strong class="download-title">{{ _('Firefox Beta') }}</strong>
+              {% else %}
+                <strong class="download-title">{{ _('Firefox') }}</strong>
+              {% endif %}
+              <span class="download-subtitle">{{ _('Free Download') }}</span>
+              <span class="download-lang">{{ locale_name }}</span>
+              <span class="download-platform">{{ build.os_pretty }}</span>
+            {% endif %}
           </span>
-      </a>
-    </li>
+        </a>
+      </li>
     {% endfor %}
   </ul>
-
-  {% set requirements_url = php_url('/firefox/' ~ version ~ '/requirements') %}
-  <p class="unsupported-download">
-    {{ _('Your system doesn\'t meet the <a href="%(url)s">requirements</a> to run Firefox.')|format(url=requirements_url) }}
-  </p>
-
   <small class="download-other">
-    <a href="{{ php_url('/firefox/all.html') }}">{{ _('Systems & Languages') }}</a> |
-    <a href="{{ php_url('/firefox/notes') }}">{{ _('What’s New') }}</a> |
-    <a href="{{ php_url('/legal/privacy/firefox.html') }}">{{ _('Privacy') }}</a>
+    {% if mobile %}
+      <a href="/en-US/firefox/mobile/platforms">{{ _('Supported Devices') }}</a> |
+      <a href="/en-US/mobile/notes">{{ _('What’s New') }}</a> |
+    {% else %}
+      <a href="/en-US/firefox/all.html">{{ _('Systems &amp; Languages') }}</a> |
+      <a href="/en-US/firefox/notes">{{ _('What’s New') }}</a> |
+    {% endif %}
+    <a href="/en-US/legal/privacy/firefox.html">{{ _('Privacy') }}</a>
   </small>
-
-</aside>
+</div>

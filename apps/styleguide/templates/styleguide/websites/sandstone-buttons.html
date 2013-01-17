@@ -48,6 +48,7 @@
               <a href="/en-US/legal/privacy/firefox.html">Privacy</a>
             </small>
           </div>
+          {{ download_firefox() }}
         </td>
         <td>
           <div class="download-button download-button-beta">
@@ -69,6 +70,7 @@
               <a href="/en-US/legal/privacy/firefox.html">Privacy</a>
             </small>
           </div>
+            {{ download_firefox(build='beta') }}
         </td>
         <td>
           <div class="download-button download-button-mobile">
@@ -88,6 +90,7 @@
               <a href="/en-US/legal/privacy/firefox.html">Privacy</a>
             </small>
           </div>
+            {{ download_firefox(mobile=True) }}
         </td>
         <td>
           <div class="download-button download-button-mobile download-button-beta">
@@ -107,6 +110,7 @@
               <a href="/en-US/legal/privacy/firefox.html">Privacy</a>
             </small>
           </div>
+            {{ download_firefox(mobile=True, build='beta') }}
         </td>
       </tr>
       <tr>
@@ -131,6 +135,7 @@
               <a href="/en-US/legal/privacy/firefox.html">Privacy</a>
             </small>
           </div>
+            {{ download_firefox(small=True) }}
         </td>
         <td>
           <div class="download-button download-button-small download-button-beta">
@@ -152,6 +157,7 @@
               <a href="/en-US/legal/privacy/firefox.html">Privacy</a>
             </small>
           </div>
+            {{ download_firefox(build='beta', small=True) }}
         </td>
         <td>
           <div class="download-button download-button-mobile download-button-small">
@@ -171,6 +177,7 @@
               <a href="/en-US/legal/privacy/firefox.html">Privacy</a>
             </small>
           </div>
+            {{ download_firefox(mobile=True, small=True) }}
         </td>
         <td>
           <div class="download-button download-button-mobile download-button-small download-button-beta">
@@ -190,6 +197,7 @@
               <a href="/en-US/legal/privacy/firefox.html">Privacy</a>
             </small>
           </div>
+            {{ download_firefox(mobile=True, small=True, build='beta') }}
         </td>
       </tr>
       <tr>
@@ -214,6 +222,7 @@
               <a href="/en-US/legal/privacy/firefox.html">Privacy</a>
             </small>
           </div>
+            {{ download_firefox(icon=False) }}
         </td>
         <td>
           <div class="download-button download-button-beta download-button-noicon">
@@ -235,6 +244,7 @@
               <a href="/en-US/legal/privacy/firefox.html">Privacy</a>
             </small>
           </div>
+            {{ download_firefox(build='beta', icon=False) }}
         </td>
         <td>
           <div class="download-button download-button-mobile download-button-noicon">
@@ -254,6 +264,7 @@
               <a href="/en-US/legal/privacy/firefox.html">Privacy</a>
             </small>
           </div>
+            {{ download_firefox(mobile=True, icon=False) }}
         </td>
         <td>
           <div class="download-button download-button-mobile download-button-noicon download-button-beta">
@@ -273,6 +284,7 @@
               <a href="/en-US/legal/privacy/firefox.html">Privacy</a>
             </small>
           </div>
+            {{ download_firefox(mobile=True, icon=False, build='beta') }}
         </td>
       </tr>
       <tr>
@@ -297,6 +309,7 @@
               <a href="/en-US/legal/privacy/firefox.html">Privacy</a>
             </small>
           </div>
+            {{ download_firefox(small=True, icon=False) }}
         </td>
         <td>
           <div class="download-button download-button-small download-button-noicon download-button-beta">
@@ -318,6 +331,7 @@
               <a href="/en-US/legal/privacy/firefox.html">Privacy</a>
             </small>
           </div>
+            {{ download_firefox(small=True, icon=False, build='beta') }}
         </td>
         <td>
           <div class="download-button download-button-mobile download-button-small download-button-noicon">
@@ -337,6 +351,7 @@
               <a href="/en-US/legal/privacy/firefox.html">Privacy</a>
             </small>
           </div>
+            {{ download_firefox(mobile=True, small=True, icon=False) }}
         </td>
         <td>
           <div class="download-button download-button-mobile download-button-small download-button-noicon download-button-beta">
@@ -356,6 +371,7 @@
               <a href="/en-US/legal/privacy/firefox.html">Privacy</a>
             </small>
           </div>
+            {{ download_firefox(mobile=True, small=True, icon=False, build='beta') }}
         </td>
       </tr>
     </tbody>

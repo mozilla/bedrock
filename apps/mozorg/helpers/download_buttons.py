@@ -16,7 +16,6 @@ of terms and example values for them:
 from distutils.version import StrictVersion
 
 from django.conf import settings
-from django.template.loader import render_to_string
 
 import jingo
 import jinja2
@@ -248,8 +247,8 @@ def download_button(ctx, id, format='large', build=None, force_direct=False,
 
 @jingo.register.function
 @jinja2.contextfunction
-def download_firefox(ctx, size='large', build='release', icon=True,
-                     platform='desktop', dom_id=None, force_direct=False,
+def download_firefox(ctx, build='release', small=False, icon=True,
+                     mobile=False, dom_id=None, force_direct=False,
                      force_full_installer=False):
     """Output a "download firefox" button.
 
@@ -257,8 +256,10 @@ def download_firefox(ctx, size='large', build='release', icon=True,
     :param size: 'large' or 'small'
     :param build: 'release' or 'beta', possibly 'aurora' or 'esr' in future
     :param icon: boolean to show the Fx logo or not.
-    :param platform: 'desktop' or 'mobile'
+    :param mobile: boolean
     """
+    alt_build = '' if build == 'release' else build
+    platform = 'mobile' if mobile else 'desktop'
     locale = ctx['request'].locale
     dom_id = dom_id or 'download-button-%s-%s' % (platform, build)
 
@@ -274,7 +275,21 @@ def download_firefox(ctx, size='large', build='release', icon=True,
 
     # Gather data about the build for each platform
     builds = []
-    if platform == 'desktop':
+
+    if mobile:
+        if build == 'aurora':
+            android_link = download_urls['aurora-mobile']
+        elif build == 'beta':
+            android_link = ('https://market.android.com/details?'
+                            'id=org.mozilla.firefox_beta')
+        else:
+            android_link = ('https://market.android.com/details?'
+                            'id=org.mozilla.firefox')
+
+        builds.append({'os': 'os_android',
+                       'os_pretty': 'Android',
+                       'download_link': android_link})
+    else:
         for plat_os in ['Windows', 'Linux', 'OS X']:
             # Fallback to en-US if this plat_os/version isn't available
             # for the current locale
@@ -314,20 +329,6 @@ def download_firefox(ctx, size='large', build='release', icon=True,
                            'download_link': download_link,
                            'download_link_direct': download_link_direct})
 
-    elif platform == 'mobile':
-        if build == 'aurora':
-            android_link = download_urls['aurora-mobile']
-        elif build == 'beta':
-            android_link = ('https://market.android.com/details?'
-                            'id=org.mozilla.firefox_beta')
-        else:
-            android_link = ('https://market.android.com/details?'
-                            'id=org.mozilla.firefox')
-
-        builds.append({'os': 'os_android',
-                       'os_pretty': 'Android',
-                       'download_link': android_link})
-
     # Get the native name for current locale
     langs = product_details.languages
     locale_name = langs[locale]['native'] if locale in langs else locale
@@ -338,12 +339,13 @@ def download_firefox(ctx, size='large', build='release', icon=True,
         'product': 'firefox',
         'builds': builds,
         'id': dom_id,
-        'size': size,
-        'build': build,
-        'platform': platform,
+        'small': small,
+        'build': alt_build,
+        'mobile': mobile,
         'icon': icon,
     }
 
-    html = render_to_string('mozorg/download_firefox_button.html', data,
-                            context_instance=ctx)
+    html = jingo.render_to_string(ctx['request'],
+                                  'mozorg/download_firefox_button.html',
+                                  data)
     return jinja2.Markup(html)
