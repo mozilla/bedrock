@@ -159,6 +159,7 @@ $(document).ready(function() {
 
         // if pager is auto-rotating, stop rotating when video opened
         Mozilla.Pager.pagers['home-promo'].stopAutoRotate();
+        Mozilla.Pager.pagers['home-promo'].autoRotate = false;
 
         var thumbOffset = $thumb.offset();
 
