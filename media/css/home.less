@@ -324,62 +324,6 @@
         }
     }
 
-    #promo-flicks-overlay {
-        display: none;
-        z-index: 100;
-        background: #000;
-        background: rgba(0,0,0,0.75);
-        color: #fff;
-        position: absolute;
-        text-align: center;
-
-        .video-visit {
-            .inline-block;
-            margin-top: 40px;
-            margin-bottom: 40px;
-            font-size: 32px;
-            .open-sans-light;
-        }
-
-        .share-links {
-            li {
-                .inline-block;
-                a {
-                    .inline-block;
-                    padding: 5px 10px 5px 36px;
-                    background: url(/media/img/home/video-overlay-icons.png) 0 center no-repeat;
-                    &.share-facebook {
-                        background-position: -400px center;
-                    }
-                }
-            }
-        }
-
-        .video-replay {
-            opacity: 0.8;
-            cursor: pointer;
-            margin-top: 40px;
-            .inline-block;
-            padding: 40px 10px 10px 10px;
-            position: relative;
-            color: #ccc;
-            &:after {
-                content: " ";
-                display: block;
-                position: absolute;
-                top: 0;
-                left: auto;
-                margin: 0 auto;
-                background: url(/media/img/home/video-overlay-icons.png) -800px center no-repeat;
-                height: 34px;
-                width: 38px;
-            }
-            &:hover {
-                opacity: 1;
-            }
-        }
-    }
-
     #promo-flicksvideo,
     #page-promo-flicksvideo {
         position: relative;
@@ -487,7 +431,8 @@
             }
         }
 
-        .video-replay {
+        .video-replay,
+        .video-continue {
             opacity: 0.8;
             cursor: pointer;
             margin-top: 40px;
@@ -810,7 +755,8 @@
                 margin-bottom: 5px;
             }
 
-            .video-replay {
+            .video-replay,
+            .video-continue {
                 margin-top: 10px;
             }
         }
