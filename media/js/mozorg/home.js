@@ -7,12 +7,12 @@ if (typeof Mozilla.page === 'undefined') {
 }
 
 Mozilla.page.Home = {
-    'closeText' : 'close'
+    'closeText' : 'close',
+    'shareText' : 'Share'
 };
 
 $(document).ready(function() {
 
-    var isMSIEpre9 = (/MSIE\ (4|5|6|7|8)/.test(navigator.userAgent));
     var hasMediaQueries = (typeof matchMedia !== 'undefined');
     var noVideo = (typeof HTMLMediaElement === 'undefined');
 
@@ -67,6 +67,37 @@ $(document).ready(function() {
         return sizes[3];
     }
 
+    function createVideo() {
+        // IE9 didn't like a video element build using jQuery so we build it
+        // using the DOM API.
+        var video = document.createElement('video');
+        video.id = 'video-player';
+        video.className = 'video-js vjs-default-skin';
+        video.controls = 'controls';
+        video.preload = 'none';
+
+        // create video sources
+        var sources = [
+            {
+                src: 'http://videos.mozilla.org/uploads/brand/State%20of%20Mozilla%202011%20(fcp2)-RC%20-%20720p%20-%20MPEG-4.mp4',
+                type: 'video/mp4'
+            },
+            {
+                src: 'http://videos.mozilla.org/uploads/brand/State%20of%20Mozilla%202011%20(fcp2)-RC%20-%20720p%20-%20MPEG-4.webm',
+                type: 'video/webm'
+            }
+        ];
+
+        for (var i = 0; i < sources.length; i++) {
+            var source = document.createElement('source');
+            source.src = sources[i].src;
+            source.type = sources[i].type;
+            video.appendChild(source);
+        }
+
+        return $(video);
+    }
+
     var currentSize = getSize();
 
     var $thumb = $('#promo-flicks-keyframe');
@@ -83,7 +114,8 @@ $(document).ready(function() {
         .text($link.find('.go').text())
         .appendTo($container);
 
-    // get video-complteted overlay and set up replay button click handler
+    // get video-completed overlay and set up replay and continue button click
+    // handlers
     var $overlay = $('#promo-flicks-overlay');
     $overlay.find('.video-replay').click(function(e) {
         e.preventDefault();
@@ -92,6 +124,13 @@ $(document).ready(function() {
             // let the loading and big play buttons show up again.
             $videoContainer.find('.video-js').removeClass('vjs-moz-ended');
             videoJS.currentTime(0);
+            videoJS.play();
+        }
+    });
+    $overlay.find('.video-continue').click(function(e) {
+        e.preventDefault();
+        hideOverlay();
+        if (videoJS) {
             videoJS.play();
         }
     });
@@ -115,40 +154,14 @@ $(document).ready(function() {
     $videoContainer.css('display', 'none')
         .insertAfter($thumb);
 
-    // create video
-
-    // IE9 didn't like a video element build using jQuery so we build it
-    // using the DOM API.
-    var video = document.createElement('video');
-    video.id = 'video-player';
-    video.className = 'video-js vjs-default-skin';
-    video.controls = 'controls';
-    video.preload = 'none';
-
-    // create video sources
-    var sources = [
-        {
-            src: 'http://videos.mozilla.org/uploads/brand/State%20of%20Mozilla%202011%20(fcp2)-RC%20-%20720p%20-%20MPEG-4.mp4',
-            type: 'video/mp4'
-        },
-        {
-            src: 'http://videos.mozilla.org/uploads/brand/State%20of%20Mozilla%202011%20(fcp2)-RC%20-%20720p%20-%20MPEG-4.webm',
-            type: 'video/webm'
-        }
-    ];
-
-    for (var i = 0; i < sources.length; i++) {
-        var source = document.createElement('source');
-        source.src = sources[i].src;
-        source.type = sources[i].type;
-        video.appendChild(source);
-    }
-
-    var $video = $(video);
+    var $video = createVideo();
     $video.appendTo($videoContainer);
 
-    // shared reference to the video.js player when it exists
+    // the video.js player when it exists
     var videoJS;
+
+    // the share button, when it exists
+    var $shareButton;
 
     function open() {
         if (state !== 'closed') {
@@ -276,22 +289,47 @@ $(document).ready(function() {
             _V_('video-player', {}, function() {
                 videoJS = this;
 
+                // add share button to controls on first play
+                videoJS.addEvent('play', function() {
+                    if (!$shareButton) {
+                        $shareButton = $(
+                            '<button class="vjs-sandstone-share">' +
+                            Mozilla.page.Home.shareText +
+                            '</button>'
+                        );
+                        $shareButton.click(function() {
+                            videoJS.pause();
+                            showOverlay(false);
+                        });
+                        var $controls = $(videoJS.controlBar.el);
+                        $controls.append($shareButton);
+                    }
+                });
+
                 // Flash player fails to initialize dynamically inserted source
                 // elements. Set up the sources after the player exists. See
                 // http://help.videojs.com/discussions/questions/350-flash-fallback-in-ie8
                 if (noVideo) {
                     videoJS.src(sources);
                 }
-                videoJS.addEvent('ended', showOverlay);
+                videoJS.addEvent('ended', function() { showOverlay(true); });
                 videoJS.play();
             });
         }
     }
 
-    function showOverlay() {
+    function showOverlay(ended) {
         var width = $videoContainer.width();
         var height = $videoContainer.height();
         var position = $videoContainer.position();
+
+        if (ended) {
+            $overlay.find('.video-replay').css('display', 'inline-block');
+            $overlay.find('.video-continue').css('display', 'none');
+        } else {
+            $overlay.find('.video-replay').css('display', 'none');
+            $overlay.find('.video-continue').css('display', 'inline-block');
+        }
 
         $overlay.css({
             'top' : position.top,
@@ -301,9 +339,11 @@ $(document).ready(function() {
             'display' : 'block'
         });
 
-        // hide video-js big play button and loading spinner (Chrome
-        // shows spinner for some videos after they are finished)
-        $videoContainer.find('.video-js').addClass('vjs-moz-ended');
+        if (ended) {
+            // hide video-js big play button and loading spinner (Chrome
+            // shows spinner for some videos after they are finished)
+            $videoContainer.find('.video-js').addClass('vjs-moz-ended');
+        }
     }
 
     function hideOverlay() {
@@ -480,7 +520,7 @@ $(document).ready(function() {
 
     }
 
-    if (!isMSIEpre9) {
+    if (hasMediaQueries) {
         $(window).resize(handleResize);
         handleResize();
     }

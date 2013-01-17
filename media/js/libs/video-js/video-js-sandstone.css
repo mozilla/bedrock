@@ -146,3 +146,25 @@
        -moz-box-shadow: inherit;
             box-shadow: inherit;
 }
+
+.vjs-sandstone-share {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    position: absolute;
+    border: none;
+    color: #999;
+    right: 20px;
+    top: -60px;
+    font-size: 18px;
+    padding: 8px 18px;
+    cursor: pointer;
+    background: #323232;
+    background: rgba(30, 30, 30, 0.5);
+}
+
+.vjs-sandstone-share:hover {
+    background: #222;
+    background: rgba(30, 30, 30, 0.9);
+    color: #fff;
+}
