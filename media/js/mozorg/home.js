@@ -13,11 +13,11 @@ Mozilla.page.Home = {
 $(document).ready(function() {
 
     var isMSIEpre9 = (/MSIE\ (4|5|6|7|8)/.test(navigator.userAgent));
+    var hasMediaQueries = (typeof matchMedia !== 'undefined');
     var noVideo = (typeof HTMLMediaElement === 'undefined');
 
     var sizes = [
         {
-            to : 479,
             thumbWidth : 320,
             thumbHeight : 180,
             videoWidth : 320,
@@ -26,8 +26,6 @@ $(document).ready(function() {
             marginHeight : 0
         },
         {
-            from : 480,
-            to : 760,
             thumbWidth : 440,
             thumbHeight : 248,
             videoWidth : 440,
@@ -36,8 +34,6 @@ $(document).ready(function() {
             marginHeight : 0
         },
         {
-            from : 761,
-            to : 1000,
             thumbWidth : 280,
             thumbHeight : 158,
             videoWidth : 720,
@@ -46,7 +42,6 @@ $(document).ready(function() {
             marginHeight : 20
         },
         {
-            from : 1001,
             thumbWidth : 380,
             thumbHeight : 214,
             videoWidth : 853,
@@ -57,23 +52,19 @@ $(document).ready(function() {
     ];
 
     function getSize() {
-        var width = $(window).width();
-        var size = sizes[0];
-
-        if (isMSIEpre9) {
-            // no media queries means we always use desktop width
-            width = 1001;
+        if (hasMediaQueries && matchMedia('(max-width: 480px)').matches) {
+            return sizes[0];
         }
 
-        for (var i = 0; i < sizes.length; i++) {
-            if ((!sizes[i].from || width >= sizes[i].from) &&
-                (!sizes[i].to || width <= sizes[i].to)) {
-                size = sizes[i];
-                break;
-            }
+        if (hasMediaQueries && matchMedia('(min-width: 480px) and (max-width: 760px)').matches) {
+            return sizes[1];
         }
 
-        return size;
+        if (hasMediaQueries && matchMedia('(min-width: 760px) and (max-width: 1000px)').matches) {
+            return sizes[2];
+        }
+
+        return sizes[3];
     }
 
     var currentSize = getSize();
