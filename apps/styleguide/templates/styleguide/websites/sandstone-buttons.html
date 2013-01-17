@@ -29,333 +29,63 @@
       <tr>
         <th>Full-size + icon</th>
         <td>
-          <div class="download-button">
-            <div class="os_windows">
-              <a class="download-link"
-                 href="/products/download.html?product=firefox-17.0.1&amp;os=win&amp;lang=en-US"
-                 data-direct-link="https://download.mozilla.org/?product=firefox-17.0.1&amp;os=win&amp;lang=en-US">
-                 <span class="download-content">
-                   <strong class="download-title">Firefox</strong>
-                   <span class="download-subtitle">Free Download</span>
-                   <span class="download-lang">English (US)</span>
-                   <span class="download-platform">Windows</span>
-                 </span>
-              </a>
-            </div>
-            <small class="download-other">
-              <a href="/en-US/firefox/all.html">Systems &amp; Languages</a> |
-              <a href="/en-US/firefox/notes">What’s New</a> |
-              <a href="/en-US/legal/privacy/firefox.html">Privacy</a>
-            </small>
-          </div>
+          <div style="width:274px">{# only set with for test no-js buttons #}</div>
+          {{ download_firefox() }}
         </td>
         <td>
-          <div class="download-button download-button-beta">
-            <div class="os_windows">
-              <a class="download-link"
-                 href="/products/download.html?product=firefox-17.0.1&amp;os=win&amp;lang=en-US"
-                 data-direct-link="https://download.mozilla.org/?product=firefox-17.0.1&amp;os=win&amp;lang=en-US">
-                 <span class="download-content">
-                   <strong class="download-title">Firefox Beta</strong>
-                   <span class="download-subtitle">Free Download</span>
-                   <span class="download-lang">English (US)</span>
-                   <span class="download-platform">Windows</span>
-                 </span>
-              </a>
-            </div>
-            <small class="download-other">
-              <a href="/en-US/firefox/all.html">Systems &amp; Languages</a> |
-              <a href="/en-US/firefox/notes">What’s New</a> |
-              <a href="/en-US/legal/privacy/firefox.html">Privacy</a>
-            </small>
-          </div>
+          <div style="width:274px">{# only set with for test no-js buttons #}</div>
+          {{ download_firefox(build='beta') }}
         </td>
         <td>
-          <div class="download-button download-button-mobile">
-            <div class="os_windows">
-              <a class="download-link"
-                 href="/products/download.html?product=firefox-17.0.1&amp;os=win&amp;lang=en-US"
-                 data-direct-link="https://download.mozilla.org/?product=firefox-17.0.1&amp;os=win&amp;lang=en-US">
-                 <span class="download-content">
-                   <strong class="download-title"><span>Firefox</span> for Android</strong>
-                   <span class="download-subtitle">Get it free on Google Play</span>
-                 </span>
-              </a>
-            </div>
-            <small class="download-other">
-              <a href="/en-US/firefox/mobile/platforms">Supported Devices</a> |
-              <a href="/en-US/mobile/notes">What’s New</a> |
-              <a href="/en-US/legal/privacy/firefox.html">Privacy</a>
-            </small>
-          </div>
+          {{ download_firefox(mobile=True) }}
         </td>
         <td>
-          <div class="download-button download-button-mobile download-button-beta">
-            <div class="os_windows">
-              <a class="download-link"
-                 href="/products/download.html?product=firefox-17.0.1&amp;os=win&amp;lang=en-US"
-                 data-direct-link="https://download.mozilla.org/?product=firefox-17.0.1&amp;os=win&amp;lang=en-US">
-                 <span class="download-content">
-                   <strong class="download-title"><span>Firefox Beta</span> for Android</strong>
-                   <span class="download-subtitle">Get it free on Google Play</span>
-                 </span>
-              </a>
-            </div>
-            <small class="download-other">
-              <a href="/en-US/firefox/mobile/platforms">Supported Devices</a> |
-              <a href="/en-US/mobile/notes">What’s New</a> |
-              <a href="/en-US/legal/privacy/firefox.html">Privacy</a>
-            </small>
-          </div>
+          {{ download_firefox(mobile=True, build='beta') }}
         </td>
       </tr>
       <tr>
         <th>Compact + icon</th>
         <td>
-          <div class="download-button download-button-small">
-            <div class="os_windows">
-              <a class="download-link"
-                 href="/products/download.html?product=firefox-17.0.1&amp;os=win&amp;lang=en-US"
-                 data-direct-link="https://download.mozilla.org/?product=firefox-17.0.1&amp;os=win&amp;lang=en-US">
-                 <span class="download-content">
-                   <strong class="download-title">Firefox</strong>
-                   <span class="download-subtitle">Free Download</span>
-                   <span class="download-lang">English (US)</span>
-                   <span class="download-platform">Windows</span>
-                 </span>
-              </a>
-            </div>
-            <small class="download-other">
-              <a href="/en-US/firefox/all.html">Systems &amp; Languages</a> |
-              <a href="/en-US/firefox/notes">What’s New</a> |
-              <a href="/en-US/legal/privacy/firefox.html">Privacy</a>
-            </small>
-          </div>
+          {{ download_firefox(small=True) }}
         </td>
         <td>
-          <div class="download-button download-button-small download-button-beta">
-            <div class="os_windows">
-              <a class="download-link"
-                 href="/products/download.html?product=firefox-17.0.1&amp;os=win&amp;lang=en-US"
-                 data-direct-link="https://download.mozilla.org/?product=firefox-17.0.1&amp;os=win&amp;lang=en-US">
-                 <span class="download-content">
-                   <strong class="download-title">Firefox Beta</strong>
-                   <span class="download-subtitle">Free Download</span>
-                   <span class="download-lang">English (US)</span>
-                   <span class="download-platform">Windows</span>
-                 </span>
-              </a>
-            </div>
-            <small class="download-other">
-              <a href="/en-US/firefox/all.html">Systems &amp; Languages</a> |
-              <a href="/en-US/firefox/notes">What’s New</a> |
-              <a href="/en-US/legal/privacy/firefox.html">Privacy</a>
-            </small>
-          </div>
+          {{ download_firefox(build='beta', small=True) }}
         </td>
         <td>
-          <div class="download-button download-button-mobile download-button-small">
-            <div class="os_windows">
-              <a class="download-link"
-                 href="/products/download.html?product=firefox-17.0.1&amp;os=win&amp;lang=en-US"
-                 data-direct-link="https://download.mozilla.org/?product=firefox-17.0.1&amp;os=win&amp;lang=en-US">
-                 <span class="download-content">
-                   <strong class="download-title"><span>Firefox</span> for Android</strong>
-                   <span class="download-subtitle">Get it free on Google Play</span>
-                 </span>
-              </a>
-            </div>
-            <small class="download-other">
-              <a href="/en-US/firefox/mobile/platforms">Supported Devices</a> |
-              <a href="/en-US/mobile/notes">What’s New</a> |
-              <a href="/en-US/legal/privacy/firefox.html">Privacy</a>
-            </small>
-          </div>
+          {{ download_firefox(mobile=True, small=True) }}
         </td>
         <td>
-          <div class="download-button download-button-mobile download-button-small download-button-beta">
-            <div class="os_windows">
-              <a class="download-link"
-                 href="/products/download.html?product=firefox-17.0.1&amp;os=win&amp;lang=en-US"
-                 data-direct-link="https://download.mozilla.org/?product=firefox-17.0.1&amp;os=win&amp;lang=en-US">
-                 <span class="download-content">
-                   <strong class="download-title"><span>Firefox Beta</span> for Android</strong>
-                   <span class="download-subtitle">Get it free on Google Play</span>
-                 </span>
-              </a>
-            </div>
-            <small class="download-other">
-              <a href="/en-US/firefox/mobile/platforms">Supported Devices</a> |
-              <a href="/en-US/mobile/notes">What’s New</a> |
-              <a href="/en-US/legal/privacy/firefox.html">Privacy</a>
-            </small>
-          </div>
+          {{ download_firefox(mobile=True, small=True, build='beta') }}
         </td>
       </tr>
       <tr>
         <th>Full-size + no icon</th>
         <td>
-          <div class="download-button download-button-noicon">
-            <div class="os_windows">
-              <a class="download-link"
-                 href="/products/download.html?product=firefox-17.0.1&amp;os=win&amp;lang=en-US"
-                 data-direct-link="https://download.mozilla.org/?product=firefox-17.0.1&amp;os=win&amp;lang=en-US">
-                 <span class="download-content">
-                   <strong class="download-title">Firefox</strong>
-                   <span class="download-subtitle">Free Download</span>
-                   <span class="download-lang">English (US)</span>
-                   <span class="download-platform">Windows</span>
-                 </span>
-              </a>
-            </div>
-            <small class="download-other">
-              <a href="/en-US/firefox/all.html">Systems &amp; Languages</a> |
-              <a href="/en-US/firefox/notes">What’s New</a> |
-              <a href="/en-US/legal/privacy/firefox.html">Privacy</a>
-            </small>
-          </div>
+          {{ download_firefox(icon=False) }}
         </td>
         <td>
-          <div class="download-button download-button-beta download-button-noicon">
-            <div class="os_windows">
-              <a class="download-link"
-                 href="/products/download.html?product=firefox-17.0.1&amp;os=win&amp;lang=en-US"
-                 data-direct-link="https://download.mozilla.org/?product=firefox-17.0.1&amp;os=win&amp;lang=en-US">
-                 <span class="download-content">
-                   <strong class="download-title">Firefox Beta</strong>
-                   <span class="download-subtitle">Free Download</span>
-                   <span class="download-lang">English (US)</span>
-                   <span class="download-platform">Windows</span>
-                 </span>
-              </a>
-            </div>
-            <small class="download-other">
-              <a href="/en-US/firefox/all.html">Systems &amp; Languages</a> |
-              <a href="/en-US/firefox/notes">What’s New</a> |
-              <a href="/en-US/legal/privacy/firefox.html">Privacy</a>
-            </small>
-          </div>
+          {{ download_firefox(build='beta', icon=False) }}
         </td>
         <td>
-          <div class="download-button download-button-mobile download-button-noicon">
-            <div class="os_windows">
-              <a class="download-link"
-                 href="/products/download.html?product=firefox-17.0.1&amp;os=win&amp;lang=en-US"
-                 data-direct-link="https://download.mozilla.org/?product=firefox-17.0.1&amp;os=win&amp;lang=en-US">
-                 <span class="download-content">
-                   <strong class="download-title"><span>Firefox</span> for Android</strong>
-                   <span class="download-subtitle">Get it free on Google Play</span>
-                 </span>
-              </a>
-            </div>
-            <small class="download-other">
-              <a href="/en-US/firefox/mobile/platforms">Supported Devices</a> |
-              <a href="/en-US/mobile/notes">What’s New</a> |
-              <a href="/en-US/legal/privacy/firefox.html">Privacy</a>
-            </small>
-          </div>
+          {{ download_firefox(mobile=True, icon=False) }}
         </td>
         <td>
-          <div class="download-button download-button-mobile download-button-noicon download-button-beta">
-            <div class="os_windows">
-              <a class="download-link"
-                 href="/products/download.html?product=firefox-17.0.1&amp;os=win&amp;lang=en-US"
-                 data-direct-link="https://download.mozilla.org/?product=firefox-17.0.1&amp;os=win&amp;lang=en-US">
-                 <span class="download-content">
-                   <strong class="download-title"><span>Firefox Beta</span> for Android</strong>
-                   <span class="download-subtitle">Get it free on Google Play</span>
-                 </span>
-              </a>
-            </div>
-            <small class="download-other">
-              <a href="/en-US/firefox/mobile/platforms">Supported Devices</a> |
-              <a href="/en-US/mobile/notes">What’s New</a> |
-              <a href="/en-US/legal/privacy/firefox.html">Privacy</a>
-            </small>
-          </div>
+          {{ download_firefox(mobile=True, icon=False, build='beta') }}
         </td>
       </tr>
       <tr>
         <th>Compact + no icon</th>
         <td>
-          <div class="download-button download-button-small download-button-noicon">
-            <div class="os_windows">
-              <a class="download-link"
-                 href="/products/download.html?product=firefox-17.0.1&amp;os=win&amp;lang=en-US"
-                 data-direct-link="https://download.mozilla.org/?product=firefox-17.0.1&amp;os=win&amp;lang=en-US">
-                 <span class="download-content">
-                   <strong class="download-title">Firefox</strong>
-                   <span class="download-subtitle">Free Download</span>
-                   <span class="download-lang">English (US)</span>
-                   <span class="download-platform">Windows</span>
-                 </span>
-              </a>
-            </div>
-            <small class="download-other">
-              <a href="/en-US/firefox/all.html">Systems &amp; Languages</a> |
-              <a href="/en-US/firefox/notes">What’s New</a> |
-              <a href="/en-US/legal/privacy/firefox.html">Privacy</a>
-            </small>
-          </div>
+          {{ download_firefox(small=True, icon=False) }}
         </td>
         <td>
-          <div class="download-button download-button-small download-button-noicon download-button-beta">
-            <div class="os_windows">
-              <a class="download-link"
-                 href="/products/download.html?product=firefox-17.0.1&amp;os=win&amp;lang=en-US"
-                 data-direct-link="https://download.mozilla.org/?product=firefox-17.0.1&amp;os=win&amp;lang=en-US">
-                 <span class="download-content">
-                   <strong class="download-title">Firefox Beta</strong>
-                   <span class="download-subtitle">Free Download</span>
-                   <span class="download-lang">English (US)</span>
-                   <span class="download-platform">Windows</span>
-                 </span>
-              </a>
-            </div>
-            <small class="download-other">
-              <a href="/en-US/firefox/all.html">Systems &amp; Languages</a> |
-              <a href="/en-US/firefox/notes">What’s New</a> |
-              <a href="/en-US/legal/privacy/firefox.html">Privacy</a>
-            </small>
-          </div>
+          {{ download_firefox(small=True, icon=False, build='beta') }}
         </td>
         <td>
-          <div class="download-button download-button-mobile download-button-small download-button-noicon">
-            <div class="os_windows">
-              <a class="download-link"
-                 href="/products/download.html?product=firefox-17.0.1&amp;os=win&amp;lang=en-US"
-                 data-direct-link="https://download.mozilla.org/?product=firefox-17.0.1&amp;os=win&amp;lang=en-US">
-                 <span class="download-content">
-                   <strong class="download-title"><span>Firefox</span> for Android</strong>
-                   <span class="download-subtitle">Get it free on Google Play</span>
-                 </span>
-              </a>
-            </div>
-            <small class="download-other">
-              <a href="/en-US/firefox/mobile/platforms">Supported Devices</a> |
-              <a href="/en-US/mobile/notes">What’s New</a> |
-              <a href="/en-US/legal/privacy/firefox.html">Privacy</a>
-            </small>
-          </div>
+          {{ download_firefox(mobile=True, small=True, icon=False) }}
         </td>
         <td>
-          <div class="download-button download-button-mobile download-button-small download-button-noicon download-button-beta">
-            <div class="os_windows">
-              <a class="download-link"
-                 href="/products/download.html?product=firefox-17.0.1&amp;os=win&amp;lang=en-US"
-                 data-direct-link="https://download.mozilla.org/?product=firefox-17.0.1&amp;os=win&amp;lang=en-US">
-                 <span class="download-content">
-                   <strong class="download-title"><span>Firefox Beta</span> for Android</strong>
-                   <span class="download-subtitle">Get it free on Google Play</span>
-                 </span>
-              </a>
-            </div>
-            <small class="download-other">
-              <a href="/en-US/firefox/mobile/platforms">Supported Devices</a> |
-              <a href="/en-US/mobile/notes">What’s New</a> |
-              <a href="/en-US/legal/privacy/firefox.html">Privacy</a>
-            </small>
-          </div>
+          {{ download_firefox(mobile=True, small=True, icon=False, build='beta') }}
         </td>
       </tr>
     </tbody>
@@ -374,17 +104,17 @@
 
   <div class="examples">
     <h3>Standard download</h3>
-    <div class="example">{{ download_button('example-download') }}</div>
-    <div class="example">{{ download_button('example-download-small','small') }}</div>
-    <div class="example">{{ download_button('example-download', build='beta') }}</div>
-    <div class="example">{{ download_button('example-download-small','small', build='beta') }}</div>
+    <div class="example">{{ download_firefox() }}</div>
+    <div class="example">{{ download_firefox(small=True) }}</div>
+    <div class="example">{{ download_firefox('beta', icon=False) }}</div>
+    <div class="example">{{ download_firefox('beta', small=True, icon=False) }}</div>
   </div>
   <div class="examples">
     <h3>Mobile download</h3>
-    <div class="example">{{ mobile_download_button('example-download-mobile') }}</div>
-    <div class="example">{{ mobile_download_button('example-download-mobile-small', 'mobile_small') }}</div>
-    <div class="example">{{ mobile_download_button('example-download-mobile', build='beta') }}</div>
-    <div class="example">{{ mobile_download_button('example-download-mobile-small', 'mobile_small', build='beta') }}</div>
+    <div class="example">{{ download_firefox(mobile=True) }}</div>
+    <div class="example">{{ download_firefox(small=True, mobile=True) }}</div>
+    <div class="example">{{ download_firefox('beta', mobile=True, icon=False) }}</div>
+    <div class="example">{{ download_firefox('beta', small=True, mobile=True, icon=False) }}</div>
   </div>
   <div class="examples" id="examples-standard">
     <h3>Standard</h3>

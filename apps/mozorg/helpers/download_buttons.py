@@ -16,7 +16,6 @@ of terms and example values for them:
 from distutils.version import StrictVersion
 
 from django.conf import settings
-from django.template.loader import render_to_string
 
 import jingo
 import jinja2
@@ -127,139 +126,28 @@ def make_download_link(product, build, version, platform, locale,
 
 @jingo.register.function
 @jinja2.contextfunction
-def mobile_download_button(ctx, id, format='large_mobile', build=None):
-    if build == 'aurora':
-        android_link = download_urls['aurora-mobile']
-        version = product_details.mobile_details['alpha_version']
-    elif build == 'beta':
-        android_link = ('https://market.android.com/details?'
-                        'id=org.mozilla.firefox_beta')
-        version = product_details.mobile_details['beta_version']
-    else:
-        android_link = ('https://market.android.com/details?'
-                        'id=org.mozilla.firefox')
-        version = product_details.mobile_details['version']
+def download_firefox(ctx, build='release', small=False, icon=True,
+                     mobile=None, dom_id=None, locale=None,
+                     force_direct=False, force_full_installer=False):
+    """ Output a "download firefox" button.
 
-    builds = [{'platform': '',
-               'platform_pretty': 'Android',
-               'download_link': android_link}]
-
-    data = {
-        'locale_name': 'en-US',
-        'version': version,
-        'product': 'firefox-mobile',
-        'builds': builds,
-        'id': id
-    }
-
-    html = jingo.render_to_string(ctx['request'],
-                                  'mozorg/download_buttons/%s.html' % format,
-                                  data)
-    return jinja2.Markup(html)
-
-
-@jingo.register.function
-@jinja2.contextfunction
-def download_button(ctx, id, format='large', build=None, force_direct=False,
-                    force_full_installer=False):
-    locale = ctx['request'].locale
-
-    def latest(locale):
-        if build == 'aurora':
-            return latest_aurora_version(locale)
-        elif build == 'beta':
-            return latest_beta_version(locale)
-        else:
-            return latest_version(locale)
-
-    version, platforms = latest(locale) or latest('en-US')
-
-    # Gather data about the build for each platform
-    builds = []
-    for platform in ['Windows', 'Linux', 'OS X']:
-        # Fallback to en-US if this platform/version isn't available
-        # for the current locale
-        _locale = locale
-        if platform not in platforms:
-            _locale = 'en-US'
-
-        # Normalize the platform name
-        platform = 'os_%s' % platform.lower().replace(' ', '')
-        platform_pretty = {
-            'os_osx': 'Mac OS X',
-            'os_windows': 'Windows',
-            'os_linux': 'Linux'
-        }[platform]
-
-        # And generate all the info
-        download_link = make_download_link(
-            'firefox', build, version, platform,
-            _locale, force_direct, force_full_installer
-        )
-
-        # If download_link_direct is False the data-direct-link attr
-        # will not be output, and the JS won't attempt the IE popup.
-        if force_direct:
-            # no need to run make_download_link again with the same args
-            download_link_direct = False
-        else:
-            download_link_direct = make_download_link(
-                'firefox', build, version, platform,
-                _locale, True, force_full_installer
-            )
-            if download_link_direct == download_link:
-                download_link_direct = False
-
-        builds.append({'platform': platform,
-                       'platform_pretty': platform_pretty,
-                       'download_link': download_link,
-                       'download_link_direct': download_link_direct})
-
-    if build == 'aurora':
-        android_link = download_urls['aurora-mobile']
-    elif build == 'beta':
-        android_link = ('https://market.android.com/details?'
-                        'id=org.mozilla.firefox_beta')
-    else:
-        android_link = ('https://market.android.com/details?'
-                        'id=org.mozilla.firefox')
-
-    builds.append({'platform': 'os_android',
-                   'platform_pretty': 'Android',
-                   'download_link': android_link})
-
-    # Get the native name for current locale
-    langs = product_details.languages
-    locale_name = langs[locale]['native'] if locale in langs else locale
-
-    data = {
-        'locale_name': locale_name,
-        'version': version,
-        'product': 'firefox',
-        'builds': builds,
-        'id': id,
-    }
-
-    html = jingo.render_to_string(ctx['request'],
-                                  'mozorg/download_buttons/%s.html' % format,
-                                  data)
-    return jinja2.Markup(html)
-
-
-@jingo.register.function
-@jinja2.contextfunction
-def download_firefox(ctx, size='large', build='release', icon=True,
-                     platform='desktop', dom_id=None, force_direct=False,
-                     force_full_installer=False):
-    """Output a "download firefox" button.
-
-    :param cxt: context from the calling template.
-    :param size: 'large' or 'small'
-    :param build: 'release' or 'beta', possibly 'aurora' or 'esr' in future
-    :param icon: boolean to show the Fx logo or not.
-    :param platform: 'desktop' or 'mobile'
+    :param ctx: context from calling template.
+    :param build: name of build: 'release', 'beta' or 'aurora'.
+    :param small: Display the small button if True.
+    :param icon: Display the Fx icon on the button if True.
+    :param mobile: Display the android download button if True, the desktop
+                   button only if False, and by default (None) show whichever
+                   is appropriate for the user's system.
+    :param dom_id: Use this string as the id attr on the element.
+    :param locale: The locale of the download. Default to locale of request.
+    :param force_direct: Force the download URL to be direct.
+    :param force_full_installer: Force the installer download to not be
+                                 the stub installer.
+    :return: The button html.
     """
-    locale = ctx['request'].locale
+    alt_build = '' if build == 'release' else build
+    platform = 'mobile' if mobile else 'desktop'
+    locale = locale or ctx['request'].locale
     dom_id = dom_id or 'download-button-%s-%s' % (platform, build)
 
     def latest(locale):
@@ -274,7 +162,8 @@ def download_firefox(ctx, size='large', build='release', icon=True,
 
     # Gather data about the build for each platform
     builds = []
-    if platform == 'desktop':
+
+    if not mobile:
         for plat_os in ['Windows', 'Linux', 'OS X']:
             # Fallback to en-US if this plat_os/version isn't available
             # for the current locale
@@ -313,8 +202,7 @@ def download_firefox(ctx, size='large', build='release', icon=True,
                            'os_pretty': plat_os_pretty,
                            'download_link': download_link,
                            'download_link_direct': download_link_direct})
-
-    elif platform == 'mobile':
+    if mobile is not False:
         if build == 'aurora':
             android_link = download_urls['aurora-mobile']
         elif build == 'beta':
@@ -335,15 +223,17 @@ def download_firefox(ctx, size='large', build='release', icon=True,
     data = {
         'locale_name': locale_name,
         'version': version,
-        'product': 'firefox',
+        'product': 'firefox-mobile' if mobile else 'firefox',
         'builds': builds,
         'id': dom_id,
-        'size': size,
-        'build': build,
-        'platform': platform,
+        'small': small,
+        'build': alt_build,
+        'show_mobile': mobile is not False,
+        'show_desktop': mobile is not True,
         'icon': icon,
     }
 
-    html = render_to_string('mozorg/download_firefox_button.html', data,
-                            context_instance=ctx)
+    html = jingo.render_to_string(ctx['request'],
+                                  'mozorg/download_firefox_button.html',
+                                  data)
     return jinja2.Markup(html)

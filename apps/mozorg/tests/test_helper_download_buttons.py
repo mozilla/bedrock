@@ -42,11 +42,11 @@ class TestDownloadButtons(unittest.TestCase):
         eq_(pq(links[3]).attr('href'),
             'https://market.android.com/details?id=org.mozilla.firefox')
 
-    def test_button(self, format='large'):
+    def test_button(self, small=False):
         rf = RequestFactory()
         get_request = rf.get('/fake')
         get_request.locale = 'fr'
-        doc = pq(render("{{ download_button('button', '%s') }}" % format,
+        doc = pq(render("{{ download_firefox(small=%s, dom_id='button') }}" % small,
                         {'request': get_request}))
 
         eq_(doc.attr('id'), 'button')
@@ -55,10 +55,10 @@ class TestDownloadButtons(unittest.TestCase):
         self.check_dumb_button(doc('.unrecognized-download'))
         self.check_dumb_button(doc('.download-list'))
 
-        eq_(doc('.download-other a').length, 3)
+        eq_(doc('.download-other a').length, 6)
 
     def test_small_button(self):
-        self.test_button('small')
+        self.test_button(True)
 
     def test_button_force_direct(self):
         """
@@ -68,7 +68,7 @@ class TestDownloadButtons(unittest.TestCase):
         rf = RequestFactory()
         get_request = rf.get('/fake')
         get_request.locale = 'fr'
-        doc = pq(render("{{ download_button('button', force_direct=true) }}",
+        doc = pq(render("{{ download_firefox(force_direct=true) }}",
                         {'request': get_request}))
 
         # Check that the first 3 links are direct.
@@ -88,7 +88,7 @@ class TestDownloadButtons(unittest.TestCase):
         rf = RequestFactory()
         get_request = rf.get('/fake')
         get_request.locale = 'fr'
-        doc = pq(render("{{ download_button('button') }}",
+        doc = pq(render("{{ download_firefox() }}",
                         {'request': get_request}))
 
         # The first 3 links should be for desktop.
@@ -105,7 +105,7 @@ class TestDownloadButtons(unittest.TestCase):
         rf = RequestFactory()
         get_request = rf.get('/fake')
         get_request.locale = 'en-US'
-        doc = pq(render("{{ download_button('button', build='aurora') }}",
+        doc = pq(render("{{ download_firefox('aurora') }}",
                         {'request': get_request}))
 
         links = doc('.download-list a')[:3]
@@ -119,7 +119,7 @@ class TestDownloadButtons(unittest.TestCase):
         rf = RequestFactory()
         get_request = rf.get('/fake')
         get_request.locale = 'fr'
-        doc = pq(render("{{ download_button('button', build='aurora') }}",
+        doc = pq(render("{{ download_firefox('aurora') }}",
                         {'request': get_request}))
 
         links = doc('.download-list a')
@@ -131,7 +131,7 @@ class TestDownloadButtons(unittest.TestCase):
         rf = RequestFactory()
         get_request = rf.get('/fake')
         get_request.locale = 'en-US'
-        doc = pq(render("{{ download_button('button', build='aurora') }}",
+        doc = pq(render("{{ download_firefox('aurora') }}",
                         {'request': get_request}))
 
         links = doc('li a')[:3]
@@ -143,7 +143,7 @@ class TestDownloadButtons(unittest.TestCase):
         rf = RequestFactory()
         get_request = rf.get('/fake')
         get_request.locale = 'fr'
-        doc = pq(render("{{ download_button('button', build='aurora') }}",
+        doc = pq(render("{{ download_firefox('aurora') }}",
                         {'request': get_request}))
 
         links = doc('.download-list a')[:3]
@@ -155,8 +155,8 @@ class TestDownloadButtons(unittest.TestCase):
         rf = RequestFactory()
         get_request = rf.get('/fake')
         get_request.locale = 'en-US'
-        doc = pq(render("{{ download_button('button', build='aurora', \
-                            force_full_installer=True) }}",
+        doc = pq(render("{{ download_firefox('aurora', "
+                        "force_full_installer=True) }}",
                         {'request': get_request}))
 
         links = doc('.download-list a')[:3]
@@ -168,8 +168,8 @@ class TestDownloadButtons(unittest.TestCase):
         rf = RequestFactory()
         get_request = rf.get('/fake')
         get_request.locale = 'fr'
-        doc = pq(render("{{ download_button('button', build='aurora', \
-                            force_full_installer=True) }}",
+        doc = pq(render("{{ download_firefox('aurora', "
+                        "force_full_installer=True) }}",
                         {'request': get_request}))
 
         links = doc('.download-list a')[:3]

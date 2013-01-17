@@ -271,7 +271,7 @@
     /* for IE6 */
     _margin-left: 0;
     _width: 294px;
-    text-align: inherit;
+    text-align: left;
     font-weight: normal;
     line-height: @baseLine;
     font-size: 16px;
@@ -350,20 +350,30 @@
     }
 }
 
-.download-button-beta {
+.download-button-beta.download-button-small .download-link .download-lang,
+.download-button-aurora.download-button-small .download-link .download-lang {
+    top: 33px;
+}
+
+.download-button-beta,
+.download-button-aurora {
     .download-link .download-title,
     .download-link .download-title span {
         font-size: 24px;
     }
 }
 
-.download-button-beta.download-button-small {
+.download-button-beta.download-button-small,
+.download-button-aurora.download-button-small {
     .download-link .download-title,
     .download-link .download-title span {
         font-size: 20px;
     }
 }
 
+.download-button.download-button-beta.download-button-small .download-list .os_android,
+.download-button.download-button-aurora.download-button-small .download-list .os_android,
+.download-button.download-button-mobile.download-button-aurora.download-button-small,
 .download-button.download-button-mobile.download-button-beta.download-button-small {
     .download-link .download-title span {
         font-size: 18px;
@@ -403,6 +413,7 @@
     }
 }
 
+.download-button-noicon .download-list .os_android,
 .download-button-mobile.download-button-noicon {
     .download-link .download-title span {
         padding-top: 7px;
@@ -418,6 +429,7 @@
     }
 }
 
+.download-button-small.download-button-noicon .download-list .os_android,
 .download-button-small.download-button-mobile.download-button-noicon {
     .download-link .download-title span {
         padding-top: 0;
@@ -427,23 +439,34 @@
 
 // OS detection
 
-li.os_linux,
-li.os_windows,
-li.os_osx,
-li.os_android,
-.no-js .windows li.os_windows { display: none; }
+.download-button .os_linux,
+.download-button .os_windows,
+.download-button .os_osx,
+.download-button .os_android,
+.no-js .download-list,
+.other .download-list {
+    display: none !important;
+}
 
-.linux li.os_linux,
-.windows li.os_windows,
-.osx li.os_osx,
-.android li.os_android {
-    display: block;
+.linux .download-button .os_linux,
+.windows .download-button .os_windows,
+.osx .download-button .os_osx,
+.android .download-button .os_android,
+.download-button-mobile .os_android,
+.android .download-button-desktop .download-list,
+.android .download-button-desktop small.os_windows,
+.no-js .download-button-mobile .download-list,
+.other .download-button-mobile .download-list,
+.other .download-button small.os_windows {
+    display: block !important;
 }
 
 
 // Small print
 
-.download-button small.download-other {
+.download-button small.download-other,
+.other .download-button-mobile small.download-other,
+.android .download-button-desktop small.download-other {
     .open-sans;
     display: block;
     font-size: 11px;
@@ -457,8 +480,17 @@ li.os_android,
     }
 }
 
-.other .download-button .unrecognized-download {
-    display: block;
+.no-js .download-button small.download-other,
+.other .download-button small.download-other,
+.android .download-button-desktop small.download-other {
+    text-align: left;
+}
+
+.other .download-button,
+.android .download-button-desktop {
+    .unrecognized-download {
+        display: block;
+    }
 }
 
 .oldmac .download-button .unsupported-download {
@@ -467,7 +499,7 @@ li.os_android,
 
 .download-button noscript,
 .download-button .unrecognized-download {
-    text-align: right;
+    text-align: left;
     h4 {
         text-shadow: none;
         margin: 0 0 6px 0;
@@ -481,15 +513,18 @@ li.os_android,
         font-size: 11px;
         letter-spacing: normal;
     }
-    .button-white {
+    .button-green {
         padding-left: 6px;
         padding-right: 6px;
+        margin-left: 3px;
+        margin-bottom: 3px;
     }
 
 }
 
 // Mobile download buttons
 
+.download-button .download-list .os_android,
 .download-button-mobile {
     .download-link {
        .download-title {
@@ -511,6 +546,7 @@ li.os_android,
     }
 }
 
+.download-button.download-button-small .download-list .os_android,
 .download-button.download-button-mobile.download-button-small {
     .download-link {
        .download-title {

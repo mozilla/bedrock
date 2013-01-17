@@ -32,7 +32,7 @@
           <h1>{{_('Firefox for Android')}}</h1>
         </hgroup>
         <div id="download-column">
-          {{ mobile_download_button('download-mobile', 'mobile_small_landing') }}
+          {{ download_firefox(mobile=True, icon=False) }}
         </div>
         <aside id="phone-tablet-image">
           <img alt="Android Phone and Tablet" src="/media/img/firefox/fx/android-phone-tablet.png">
@@ -49,7 +49,7 @@
           <a class="mobile-link" href="{{ url('firefox.mobile.features') }}">
             <h3>Learn More</h3>
             <span class="link">{{_('Explore Firefox for Android features &nbsp;»')}}</span>
-          </a>      
+          </a>
         </li>
         <li id="supported">
           <a class="mobile-link" href="{{ url('firefox.mobile.platforms') }}">
@@ -82,7 +82,7 @@
           <li id="new-copy"><div class="wrap">
             <h4>{{ _('Need a fresh copy?') }}</h4>
             <p>{{ _('You’ve come to the right place!') }}</p>
-            {{ download_button('download', 'small') }}
+            {{ download_firefox(small=True, mobile=False) }}
           </div></li>
           <li id="beta-promo"><div class="wrap">
             <h4>{{ _('Try Firefox Beta') }}</h4>
@@ -101,7 +101,7 @@
           <h1>{{ _('Different by Design')}}</h1>
           <h2>{{ _('Get the latest version of Firefox. It’s fast, flexible and secure.')}}</h2>
         </hgroup>
-        {{ download_button('download') }}
+        {{ download_firefox() }}
         <figure id="firefox-screenshot">
           {{ platform_img('img/firefox/fx/existing-screen.jpg', alt='Firefox screenshot') }}
         </figure>
