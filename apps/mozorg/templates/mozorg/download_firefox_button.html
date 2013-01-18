@@ -1,6 +1,17 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% macro nojs_buttons(builds) %}
+  <div class="download download-dumb">
+    <ul>
+      {% for plat in builds %}
+        <li><a href="{{ plat.download_link_direct or plat.download_link }}" class="button-white">{{ plat.platform_pretty }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endmacro %}
+
 {% set download_class = 'download-button' %}
 {% set download_class = download_class ~ ' download-button-' ~ build if build else download_class %}
 {% set download_class = download_class ~ ' download-button-mobile' if mobile else download_class %}
@@ -8,14 +19,22 @@
 {% set download_class = download_class ~ ' download-button-noicon' if not icon else download_class %}
 
 <div id="{{ id }}" class="{{ download_class }}">
+  {% if not mobile %}
+    <noscript>
+      {{ nojs_buttons(builds) }}
+    </noscript>
+    <div class="unrecognized-download">
+      {{ nojs_buttons(builds) }}
+    </div>
+  {% endif %}
   <ul class="download-list">
-    {% for build in builds %}
-      <li class="{{ build.os }}">
+    {% for plat in builds %}
+      <li{% if not mobile %} class="{{ plat.os }}"{% endif %}>
         <a class="download-link"
-           href="{{ build.download_link }}"{% if build.download_link_direct %}
+           href="{{ plat.download_link }}"{% if plat.download_link_direct %}
            data-direct-link="{{ build.download_link_direct }}"{% endif %}>
           <span class="download-content">
-            {% if mobile %}
+            {% if plat.os == 'os_android' %}
               {% if build == 'beta' %}
                 <strong class="download-title">{{ _('<span>Firefox Beta</span> for Android') }}</strong>
               {% else %}
@@ -30,7 +49,7 @@
               {% endif %}
               <span class="download-subtitle">{{ _('Free Download') }}</span>
               <span class="download-lang">{{ locale_name }}</span>
-              <span class="download-platform">{{ build.os_pretty }}</span>
+              <span class="download-platform">{{ plat.os_pretty }}</span>
             {% endif %}
           </span>
         </a>
@@ -42,8 +61,14 @@
       <a href="/en-US/firefox/mobile/platforms">{{ _('Supported Devices') }}</a> |
       <a href="/en-US/mobile/notes">{{ _('What’s New') }}</a> |
     {% else %}
-      <a href="/en-US/firefox/all.html">{{ _('Systems &amp; Languages') }}</a> |
-      <a href="/en-US/firefox/notes">{{ _('What’s New') }}</a> |
+      <span class="os_android">
+        <a href="/en-US/firefox/mobile/platforms">{{ _('Supported Devices') }}</a> |
+        <a href="/en-US/mobile/notes">{{ _('What’s New') }}</a> |
+      </span>
+      <span class="os_linux os_osx os_windows">
+        <a href="/en-US/firefox/all.html">{{ _('Systems &amp; Languages') }}</a> |
+        <a href="/en-US/firefox/notes">{{ _('What’s New') }}</a> |
+      </span>
     {% endif %}
     <a href="/en-US/legal/privacy/firefox.html">{{ _('Privacy') }}</a>
   </small>

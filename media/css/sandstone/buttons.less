@@ -427,17 +427,25 @@
 
 // OS detection
 
-li.os_linux,
-li.os_windows,
-li.os_osx,
-li.os_android,
-.no-js .windows li.os_windows { display: none; }
+.download-button .os_linux,
+.download-button .os_windows,
+.download-button .os_osx,
+.download-button .os_android,
+.no-js .windows .download-button .os_windows {
+    display: none;
+}
 
-.linux li.os_linux,
-.windows li.os_windows,
-.osx li.os_osx,
-.android li.os_android {
+.linux .download-button .os_linux,
+.windows .download-button .os_windows,
+.osx .download-button .os_osx,
+.android .download-button .os_android {
     display: block;
+}
+
+.linux .download-other .os_linux,
+.windows .download-other .os_windows,
+.osx .download-other .os_osx {
+    display: inline;
 }
 
 

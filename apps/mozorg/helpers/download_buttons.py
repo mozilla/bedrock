@@ -276,20 +276,7 @@ def download_firefox(ctx, build='release', small=False, icon=True,
     # Gather data about the build for each platform
     builds = []
 
-    if mobile:
-        if build == 'aurora':
-            android_link = download_urls['aurora-mobile']
-        elif build == 'beta':
-            android_link = ('https://market.android.com/details?'
-                            'id=org.mozilla.firefox_beta')
-        else:
-            android_link = ('https://market.android.com/details?'
-                            'id=org.mozilla.firefox')
-
-        builds.append({'os': 'os_android',
-                       'os_pretty': 'Android',
-                       'download_link': android_link})
-    else:
+    if not mobile:
         for plat_os in ['Windows', 'Linux', 'OS X']:
             # Fallback to en-US if this plat_os/version isn't available
             # for the current locale
@@ -328,6 +315,19 @@ def download_firefox(ctx, build='release', small=False, icon=True,
                            'os_pretty': plat_os_pretty,
                            'download_link': download_link,
                            'download_link_direct': download_link_direct})
+
+    if build == 'aurora':
+        android_link = download_urls['aurora-mobile']
+    elif build == 'beta':
+        android_link = ('https://market.android.com/details?'
+                        'id=org.mozilla.firefox_beta')
+    else:
+        android_link = ('https://market.android.com/details?'
+                        'id=org.mozilla.firefox')
+
+    builds.append({'os': 'os_android',
+                   'os_pretty': 'Android',
+                   'download_link': android_link})
 
     # Get the native name for current locale
     langs = product_details.languages
