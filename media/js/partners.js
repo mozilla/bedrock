@@ -13,10 +13,13 @@
         dayText : trans('daytext'),
         daysText : trans('daystext'),
         hoursText : trans('hourstext'),
+        hoursTextEx : trans('hourstextex'),
         minutesText : trans('minutestext'),
+        minutesTextEx : trans('minutestextex'),
         secondsText : trans('secondstext'),
+        secondsTextEx : trans('secondstextex'),
         displayZeroDays : true,
-        oneDayClass : 'one-day'
+        oneDayClass : 'one-day',
     });
     
     // Load content in a full-page modal

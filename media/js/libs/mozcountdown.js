@@ -17,17 +17,21 @@
   $.fn.mozcountdown = function(options) {
 
   var defaults = {
-      dayText : 'day ',
-      daysText : 'days ',
-      hoursText : ':',
-      minutesText : ':',
-      secondsText : '',
+      dayText : 'day',
+      daysText : 'days',
+      daysTextEx : 'days',
+      hoursText : 'hrs',
+      hoursTextEx : 'hours',
+      minutesText : 'min',
+      minutesTextEx : 'minutes',
+      secondsText : 'sec',
+      secondsTextEx : 'seconds',
       textAfterCount : '',
       oneDayClass : false,
       displayDays : true,
       displayZeroDays : true,
       addClass : false,
-      callback : false
+      callback : false,
   };
 
   options =  $.extend(defaults, options);
@@ -40,10 +44,10 @@
       var hoursCount = $(document.createElement('span')).addClass('hours-count count');
       var minsCount = $(document.createElement('span')).addClass('mins-count count');
       var secsCount = $(document.createElement('span')).addClass('secs-count count');
-      var daysLabel = $(document.createElement('span')).addClass('days-label label');
-      var hoursLabel = $(document.createElement('span')).addClass('hours-label label');
-      var minsLabel = $(document.createElement('span')).addClass('mins-label label');
-      var secsLabel = $(document.createElement('span')).addClass('secs-labe; label');
+      var daysLabel = $(document.createElement('abbr')).addClass('days-label label').attr('title', options.daysTextEx);
+      var hoursLabel = $(document.createElement('abbr')).addClass('hours-label label').attr('title', options.hoursTextEx);
+      var minsLabel = $(document.createElement('abbr')).addClass('mins-label label').attr('title', options.minutesTextEx);
+      var secsLabel = $(document.createElement('abbr')).addClass('secs-label label').attr('title', options.secondsTextEx);
   
       var daysBox = $(document.createElement('span')).addClass('days-box box');
       daysBox.append(daysCount).append(daysLabel);
