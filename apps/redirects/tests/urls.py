@@ -17,4 +17,6 @@ urlpatterns = patterns('',
     redirect(r'^gloubi-boulga/$', 'mock_view'),
     redirect(r'^gloubi-boulga/tmp/$', 'mock_view', permanent=False),
     redirect(r'^gloubi-boulga/ext/$', 'https://marketplace.mozilla.org'),
+    redirect(r'^gloubi-boulga/call/$',
+             lambda r: '/asdf' if r.GET.get('test', False) else '/qwer')
 )

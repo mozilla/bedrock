@@ -1,0 +1,192 @@
+@import "template-resp.less";
+
+.build-table-container {
+    .hide {
+        display: none;
+    }
+}
+
+#main-feature {
+    h1 {
+        font-size: 64px;
+        .span-all;
+        margin-bottom: @baseLine;
+    }
+    h2 {
+        font-size: 24px;
+        letter-spacing: -0.25px;
+        .span(10);
+        line-height: 1.1;
+    }
+}
+
+#language-search {
+    .billboard();
+    padding-top: @baseLine;
+    padding-bottom: @baseLine;
+    margin-left: @gridGutterWidth * 1.5;
+    margin-right: @gridGutterWidth * 1.5;
+    input[type=search] {
+        .span(3);
+        float: none;
+        margin-left: 0;
+        vertical-align: middle;
+    }
+    button {
+        vertical-align: middle;
+    }
+    .search-column {
+        .span(6);
+        margin-right: ((@gridGutterWidth / 2) - 1px);
+        border-right: 1px dotted @borderColor;
+        padding: 5px 0;
+    }
+    .other-column {
+        .span(5);
+        h4 {
+            margin-bottom: 2px;
+        }
+    }
+}
+
+#main-content {
+    #localized {
+        .span-all();
+    }
+    #localized-testing {
+        .span-all();
+        margin-top: @baseLine * 2;
+    }
+    table {
+        .table;
+        width: 100%;
+        thead th:first-child {
+            width: 100%;
+        }
+        tbody th {
+            font-weight: normal;
+        }
+        .download {
+            padding-right: @baseLine * 2;
+            a {
+                display: block;
+                padding: 10px 10px 10px 50px;
+                background-position: 0 50%;
+                background-repeat: no-repeat;
+                background-image: url(/media/img/firefox/all/download-icons.png);
+            }
+            &.mac a {
+                background-position: -300px 50%
+            }
+            &.linux a {
+                background-position: -600px 50%
+            }
+        }
+    }
+}
+
+/* Tablet Layout: 760px */
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+
+    #main-feature {
+        h1 {
+            font-size: 48px;
+        }
+        h2 {
+            .span-all();
+        }
+    }
+
+    #language-search {
+        input[type=search] {
+            .span_narrow(3);
+            float: none;
+        }
+        button {
+            vertical-align: middle;
+        }
+        .search-column {
+            .span_narrow(6);
+            margin-right: ((@gridGutterWidth / 2) - 1px);
+            border-right: 1px dotted @borderColor;
+            padding: 5px 0;
+        }
+        .other-column {
+            .span_narrow(5);
+            h4 {
+                margin-bottom: 2px;
+            }
+        }
+    }
+
+    #main-content table .download {
+        padding-right: @baseLine;
+    }
+
+}
+
+
+/* Mobile layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+
+    #main-feature {
+        h1 {
+            font-size: 36px;
+        }
+        h2 {
+            font-size: 18px;
+            letter-spacing: normal;
+            .span-all();
+        }
+    }
+
+    #language-search {
+        margin-left: @gridGutterWidth;
+        margin-right: @gridGutterWidth;
+        input[type=search] {
+            .span(3);
+            float: none;
+            margin-left: 0;
+            vertical-align: middle;
+        }
+        button {
+            display: none;
+        }
+        .search-column {
+            margin: 0 0 (@baseLine / 2) 0;
+            float: none;
+            width: auto;
+            border: 0;
+        }
+        .other-column {
+            margin: 0;
+            float: none;
+            width: auto;
+        }
+    }
+
+    #main-content {
+        table, thead, tbody, th, td, tr, caption {
+            display: block;
+        }
+        table {
+            thead {
+                display: none;
+            }
+            .download {
+                padding-right: @baseLine;
+                a {
+                    max-width: 200px;
+                }
+            }
+            td,
+            th {
+                border: 0;
+                padding: 5px;
+            }
+            tr {
+                border-top: 1px solid rgba(0, 0, 0, 0.2);
+            }
+        }
+    }
+}

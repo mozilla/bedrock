@@ -2,8 +2,20 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+from django.conf import settings
 from django.conf.urls.defaults import *
+
 from util import redirect
+
+
+def tabzilla_css_redirect(r):
+    ext = '.less' if settings.TEMPLATE_DEBUG else '-min'
+    if settings.LESS_PREPROCESS:
+        from jingo_minify.helpers import build_less
+        build_less('css/tabzilla.less')
+
+    return '%scss/tabzilla%s.css' % (settings.MEDIA_URL, ext)
+
 
 urlpatterns = patterns('',
 
@@ -38,6 +50,12 @@ urlpatterns = patterns('',
     # Bug 800467 /apps/partners -> marketplace.m.o/developers
     redirect(r'apps/partners/$', 'https://marketplace.mozilla.org/developers/'),
 
+    # Bug 815527 /m/privacy.html -> /legal/privacy/firefox.html
+    redirect(r'^m/privacy.html$', '/legal/privacy/firefox.html'),
+
+    # Bug 821047 /about/mission.html -> /mission/
+    redirect(r'^about/mission.html$', '/mission/'),
+
     # Bug 800298 /webmaker/ -> wm.o and /webmaker/videos/ -> wm.o/videos/
     redirect(r'webmaker/$', 'https://webmaker.org'),
     redirect(r'webmaker/videos/$', 'https://webmaker.org/videos/'),
@@ -45,6 +63,10 @@ urlpatterns = patterns('',
     # Bug 819317 /gameon/ -> gameon.m.o
     redirect(r'gameon/$', 'https://gameon.mozilla.org'),
 
-    redirect(r'tabzilla/media/js/tabzilla\.js$', '/tabzilla/tabzilla.js'),
-    redirect(r'tabzilla/media/css/tabzilla\.css$', '/media/css/tabzilla-min.css'),
+    # Tabzilla
+    redirect(r'tabzilla/media/js/tabzilla\.js$', 'tabzilla'),
+    redirect(r'tabzilla/media/css/tabzilla\.css$', tabzilla_css_redirect),
+
+    # Bug 822817 /telemetry/ -> http://wiki.mozilla.org/Telemetry/FAQ
+    redirect(r'telemetry/$', 'http://wiki.mozilla.org/Telemetry/FAQ'),
 )

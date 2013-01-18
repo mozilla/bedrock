@@ -17,6 +17,7 @@ firstrun_re = latest_re % (version_re, 'firstrun')
 whatsnew_re = latest_re % (version_re, 'whatsnew')
 
 urlpatterns = patterns('',
+    url(r'^firefox/all/$', views.all_downloads, name='firefox.all'),
     page('firefox/central', 'firefox/central.html'),
     page('firefox/channel', 'firefox/channel.html'),
     redirect('^firefox/channel/android/$', 'firefox.channel'),
@@ -36,6 +37,7 @@ urlpatterns = patterns('',
     url('^firefox/sms/$', views.sms_send, name='firefox.sms'),
     page('firefox/sms/sent', 'firefox/mobile/sms-thankyou.html'),
     page('firefox/new', 'firefox/new.html'),
+    page('firefox/new-b', 'firefox/new-b.html'),
     page('firefox/organizations/faq', 'firefox/organizations/faq.html'),
     page('firefox/organizations', 'firefox/organizations/organizations.html'),
     page('firefox/performance', 'firefox/performance.html'),
@@ -59,4 +61,6 @@ urlpatterns = patterns('',
         kwargs={'template_name': 'firefox/firstrun.html'}),
     url(whatsnew_re, views.latest_fx_redirect, name='firefox.whatsnew',
         kwargs={'template_name': 'firefox/whatsnew.html'}),
+        
+    page('firefox/partners', 'firefox/partners/landing.html'),
 )

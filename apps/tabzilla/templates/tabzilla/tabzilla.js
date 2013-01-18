@@ -531,7 +531,7 @@ Tabzilla.content =
     + '    <div class="snippet" id="tabzilla-promo-mobile">'
     + '    <a href="https://www.mozilla.org/firefox/fx/?WT.mc_id=tzfxmobile&amp;WT.mc_ev=click#mobile">'
     + '     <h4>{{ _('Fast. Smart. Safe.')|js_escape }}</h4>'
-    + '     <p>{{ _('Get Firefox for Android')|js_escape }} »</p></a>'
+    + '     <p>{{ _('Get Firefox for Android')|js_escape }} »</p></a>'
     + '    </div>'
     + '  </div>'
     + '  <div id="tabzilla-nav">'

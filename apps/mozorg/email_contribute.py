@@ -12,8 +12,9 @@ from jinja2.exceptions import TemplateNotFound
 
 from l10n_utils.dotlang import _lazy as _
 
-fa = namedtuple('FunctionalArea', ['id', 'name', 'subject', 'contacts'])
 
+fa = namedtuple('FunctionalArea', ['id', 'name', 'subject', 'contacts'])
+LANG_FILES = 'mozorg/contribute'
 FUNCTIONAL_AREAS = (
     fa('support',
         _('Helping Users'),

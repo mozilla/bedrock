@@ -28,6 +28,10 @@ body {
     position: relative;
 }
 
+#strings { /* An arbitrary container for translatable strings to use in in scripts */
+    display: none;
+}
+
 a {
     color: @linkBlue;
     text-decoration: none;
@@ -238,6 +242,7 @@ img {
 textarea,
 input[type=email],
 input[type=password],
+input[type=search],
 input[type=text] {
     height: @baseLine;
     background: #fff;
@@ -258,6 +263,7 @@ textarea { height: auto; }
 textarea:focus,
 input[type=email]:focus,
 input[type=password]:focus,
+input[type=search]:focus,
 input[type=text]:focus,
 input.focus {
     border-color: #42a4e0;
@@ -497,6 +503,12 @@ nav.menu-bar {
 .table {
     border-collapse: collapse;
     border-spacing: 0;
+    caption {
+        text-align:left;
+        padding-bottom:1px; /* fix to get it to look nice in many browsers */
+        margin-bottom:-1px;
+        width:100%;
+    }
     th,
     td {
         border-top: 1px solid rgba(0,0,0,0.2);
@@ -948,7 +960,8 @@ nav.menu-bar {
             border: 0;
         }
 
-        #nav-main-menu a {
+        #nav-main-menu a,
+        #nav-main-menu b {
             cursor: pointer;
             display: block;
             text-transform: none;

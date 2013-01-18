@@ -36,9 +36,7 @@ def gettext(ctx, text):
     """Translate a string, loading the translations for the locale if
     necessary."""
     install_lang_files(ctx)
-
-    trans = translate(text, ctx['request'].langfiles)
-    return jinja2.Markup(trans)
+    return translate(text, ctx['request'].langfiles)
 
 
 @jingo.register.function

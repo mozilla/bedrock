@@ -41,6 +41,18 @@ DOTLANG_CACHE = 60
 
 DOTLANG_FILES = ['main', 'base', 'newsletter']
 
+# Paths that don't require a locale code in the URL.
+# matches the first url component (e.g. mozilla.org/gameon/)
+SUPPORTED_NONLOCALES = [
+    'media',
+    'admin',
+
+    # from redirects.urls
+    'telemetry',
+    'webmaker',
+    'gameon',
+]
+
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '1iz#v0m55@h26^m6hxk3a7at*h$qj_2a$juu1#nv50548j(x1v'
 
@@ -111,6 +123,9 @@ MINIFY_BUNDLES = {
         'firefox': (
             'css/firefox/template.less',
         ),
+        'firefox_all': (
+            'css/firefox/all.less',
+        ),
         'firefox-resp': (
             'css/firefox/template-resp.less',
         ),
@@ -164,6 +179,9 @@ MINIFY_BUNDLES = {
         ),
         'firefox_new': (
             'css/firefox/new.less',
+        ),
+        'firefox_new_test': (
+            'css/firefox/new-test.less',
         ),
         'firefox_organizations': (
             'css/firefox/organizations.less',
@@ -258,6 +276,9 @@ MINIFY_BUNDLES = {
         'annual_2011': (
             'css/foundation/annual2011.less',
         ),
+        'partners': (
+            'css/partners.less',
+        ),
     },
     'js': {
         'site': (
@@ -293,12 +314,17 @@ MINIFY_BUNDLES = {
             'js/global.js',
             'js/nav-main.js',
             'js/footer-email-form.js',
+            'js/mozilla-input-placeholder.js',
+        ),
+        'firefox_all': (
+            'js/firefox-language-search.js',
         ),
         'firefox-resp': (
             'js/libs/jquery-1.7.1.min.js',
             'js/global.js',
             'js/nav-main-resp.js',
             'js/footer-email-form.js',
+            'js/mozilla-input-placeholder.js',
         ),
         'firefox_central': (
             'js/mozilla-video-tools.js',
@@ -324,6 +350,13 @@ MINIFY_BUNDLES = {
         'firefox_happy': (
             'js/libs/jquery-1.4.4.min.js',
             'js/firefox/happy.js',
+        ),
+        'firefox_new': (
+            'js/libs/modernizr.custom.csstransitions.js',
+            'js/firefox/new.js',
+        ),
+        'firefox_new_a': (
+            'js/firefox/new-a.js',
         ),
         'firefox_platforms': (
             'js/mozilla-expanders.js',
@@ -400,6 +433,10 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.jcarousel.min.js',
             'js/annual2011.js',
+        ),
+        'partners': (
+            'js/libs/mozcountdown.js',
+            'js/partners.js',
         ),
     }
 }
