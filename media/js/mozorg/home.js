@@ -143,7 +143,7 @@ $(document).ready(function() {
     );
 
     $close.attr('title', Mozilla.page.Home.closeText)
-        .click(function(e) { close(); });
+        .click(function(e) { close(); })
         .keypress(function(e) {
             if (e.keyCode == 13) {
                 e.preventDefault(e);
