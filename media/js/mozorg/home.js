@@ -13,161 +13,161 @@ Mozilla.page.Home = {
 
 $(document).ready(function() {
 
-    var hasMediaQueries = (typeof matchMedia !== 'undefined');
-    var noVideo = (typeof HTMLMediaElement === 'undefined');
+    // {{{ showLink()
 
-    var sizes = [
-        {
-            thumbWidth : 320,
-            thumbHeight : 180,
-            videoWidth : 320,
-            videoHeight : 180,
-            marginWidth : 0,
-            marginHeight : 0
-        },
-        {
-            thumbWidth : 440,
-            thumbHeight : 248,
-            videoWidth : 440,
-            videoHeight : 248,
-            marginWidth : 0,
-            marginHeight : 0
-        },
-        {
-            thumbWidth : 280,
-            thumbHeight : 158,
-            videoWidth : 720,
-            videoHeight : 405,
-            marginWidth : 20,
-            marginHeight : 20
-        },
-        {
-            thumbWidth : 380,
-            thumbHeight : 214,
-            videoWidth : 853,
-            videoHeight : 480,
-            marginWidth : 30,
-            marginHeight : 25
-        }
-    ];
-
-    function getSize() {
-        if (hasMediaQueries && matchMedia('(max-width: 480px)').matches) {
-            return sizes[0];
-        }
-
-        if (hasMediaQueries && matchMedia('(min-width: 480px) and (max-width: 760px)').matches) {
-            return sizes[1];
-        }
-
-        if (hasMediaQueries && matchMedia('(min-width: 760px) and (max-width: 1000px)').matches) {
-            return sizes[2];
-        }
-
-        return sizes[3];
+    function showLink() {
+        // hide container and show link at same dimensions
+        $container.css('display', 'none');
+        $link.css('display', 'block');
     }
 
-    function createVideo() {
-        // IE9 didn't like a video element build using jQuery so we build it
-        // using the DOM API.
-        var video = document.createElement('video');
-        video.id = 'video-player';
-        video.className = 'video-js vjs-default-skin';
-        video.controls = 'controls';
-        video.preload = 'none';
+    // }}}
+    // {{{ hideLink()
 
-        // create video sources
-        var sources = [
-            {
-                src: 'http://videos.mozilla.org/uploads/brand/State%20of%20Mozilla%202011%20(fcp2)-RC%20-%20720p%20-%20MPEG-4.mp4',
-                type: 'video/mp4'
-            },
-            {
-                src: 'http://videos.mozilla.org/uploads/brand/State%20of%20Mozilla%202011%20(fcp2)-RC%20-%20720p%20-%20MPEG-4.webm',
-                type: 'video/webm'
-            }
-        ];
+    function hideLink() {
+        var linkHeight = $link.height();
+        var linkWidth = $link.width();
 
-        for (var i = 0; i < sources.length; i++) {
-            var source = document.createElement('source');
-            source.src = sources[i].src;
-            source.type = sources[i].type;
-            video.appendChild(source);
-        }
+        // hide link and show container with same dimensions
+        $link.css('display', 'none');
+        $container.height(linkHeight)
+            .css('display', 'block');
 
-        return $(video);
+        $goLink.css(
+            'left',
+            Math.max(Math.floor((linkWidth - currentSize.videoWidth) / 2), 20)
+        );
     }
 
-    var currentSize = getSize();
+    // }}}
+    // {{{ showVideo()
 
-    var $thumb = $('#promo-flicks-keyframe');
-    var $link = $thumb.next();
+    function showVideo() {
+        var thumbPosition = $thumb.position();
 
-    // create container that replaces the link when the video is open
-    var $container = $('<div class="container"></div>');
-    $container.css('display', 'none')
-        .insertBefore($link);
+        $video.attr('width', currentSize.videoWidth)
+            .attr('height', currentSize.videoHeight);
 
-    // create go link shown when video is open
-    var $goLink = $('<a class="go"></a>');
-    $goLink.attr('href', $link.attr('href'))
-        .text($link.find('.go').text())
-        .appendTo($container);
+        $thumb.css('display', 'none');
 
-    // get video-completed overlay and set up replay and continue button click
-    // handlers
-    var $overlay = $('#promo-flicks-overlay');
-    $overlay.find('.video-replay').click(function(e) {
-        e.preventDefault();
-        hideOverlay();
+        $videoContainer.css({
+            'top' : thumbPosition.top,
+            'right' : 'auto',
+            'left' : thumbPosition.left,
+            'width' : currentSize.videoWidth,
+            'height' : currentSize.videoHeight,
+            'display' : 'block'
+        });
+
         if (videoJS) {
             // let the loading and big play buttons show up again.
             $videoContainer.find('.video-js').removeClass('vjs-moz-ended');
-            videoJS.currentTime(0);
+
+            videoJS.size(currentSize.videoWidth, currentSize.videoHeight);
             videoJS.play();
+        } else {
+            _V_('video-player', {}, function() {
+                videoJS = this;
+
+                // add share button to controls on first play
+                videoJS.addEvent('play', function() {
+                    if (!$shareButton) {
+                        $shareButton = $(
+                            '<button class="vjs-sandstone-share">' +
+                            Mozilla.page.Home.shareText +
+                            '</button>'
+                        );
+                        $shareButton.click(function() {
+                            videoJS.pause();
+                            showOverlay(false);
+                        });
+                        var $controls = $(videoJS.controlBar.el);
+                        $controls.append($shareButton);
+                    }
+                });
+
+                // Flash player fails to initialize dynamically inserted source
+                // elements. Set up the sources after the player exists. See
+                // http://help.videojs.com/discussions/questions/350-flash-fallback-in-ie8
+                if (!hasVideo) {
+                    videoJS.src(sources);
+                }
+                videoJS.addEvent('ended', function() { showOverlay(true); });
+                videoJS.play();
+            });
         }
-    });
-    $overlay.find('.video-continue').click(function(e) {
-        e.preventDefault();
-        hideOverlay();
+    }
+
+    // }}}
+    // {{{ hideVideo()
+
+    function hideVideo() {
         if (videoJS) {
-            videoJS.play();
+            videoJS.pause();
         }
-    });
 
-    var state = 'closed';
+        var videoPosition = $videoContainer.position();
 
-    // create close button for closing open video
-    var $close = $(
-        '<span class="video-close" tabindex="0" role="button">×</span>'
-    );
+        $videoContainer.css('display', 'none');
+        $overlay.css('display', 'none');
 
-    $close.attr('title', Mozilla.page.Home.closeText)
-        .click(function(e) { close(); })
-        .keypress(function(e) {
-            if (e.keyCode == 13) {
-                e.preventDefault(e);
-                close();
-            }
+        $thumb.css({
+            'top' : videoPosition.top,
+            'right' : 'auto',
+            'left' : videoPosition.left,
+            'display' : 'block'
         });
 
-    // shared animation settings
-    var duration = 400;
-    var easing = 'swing';
+        if (currentSize.videoWidth < 720) {
+            $thumb.css({
+                'width' : currentSize.thumbWidth,
+                'height' : currentSize.thumbHeight
+            });
+        }
 
-    // create container to hold the video player
-    var $videoContainer = $('<div class="video-container"></div>');
-    $videoContainer.css('display', 'none')
-        .insertAfter($thumb);
+        $close.detach();
+    }
 
-    var $video = createVideo();
-    $video.appendTo($videoContainer);
+    // }}}
+    // {{{ showOverlay()
 
-    // the video.js player when it exists
-    var videoJS;
+    function showOverlay(ended) {
+        var width = $videoContainer.width();
+        var height = $videoContainer.height();
+        var position = $videoContainer.position();
 
-    // the share button, when it exists
-    var $shareButton;
+        if (ended) {
+            $overlay.find('.video-replay').css('display', 'inline-block');
+            $overlay.find('.video-continue').css('display', 'none');
+        } else {
+            $overlay.find('.video-replay').css('display', 'none');
+            $overlay.find('.video-continue').css('display', 'inline-block');
+        }
+
+        $overlay.css({
+            'top' : position.top,
+            'left' : position.left,
+            'width' : width,
+            'height' : height,
+            'display' : 'block'
+        });
+
+        if (ended) {
+            // hide video-js big play button and loading spinner (Chrome
+            // shows spinner for some videos after they are finished)
+            $videoContainer.find('.video-js').addClass('vjs-moz-ended');
+        }
+    }
+
+    // }}}
+    // {{{ hideOverlay()
+
+    function hideOverlay() {
+        $overlay.css('display', 'none');
+    }
+
+    // }}}
+    // {{{ open()
 
     function open() {
         if (state !== 'closed') {
@@ -247,141 +247,8 @@ $(document).ready(function() {
         }
     }
 
-    function hideLink() {
-        var linkHeight = $link.height();
-        var linkWidth = $link.width();
-
-        // hide link and show container with same dimensions
-        $link.css('display', 'none');
-        $container.height(linkHeight)
-            .css('display', 'block');
-
-        $goLink.css(
-            'left',
-            Math.max(Math.floor((linkWidth - currentSize.videoWidth) / 2), 20)
-        );
-    }
-
-    function showLink() {
-        // hide container and show link at same dimensions
-        $container.css('display', 'none');
-        $link.css('display', 'block');
-    }
-
-    function showVideo() {
-        var thumbPosition = $thumb.position();
-
-        $video.attr('width', currentSize.videoWidth)
-            .attr('height', currentSize.videoHeight);
-
-        $thumb.css('display', 'none');
-
-        $videoContainer.css({
-            'top' : thumbPosition.top,
-            'right' : 'auto',
-            'left' : thumbPosition.left,
-            'width' : currentSize.videoWidth,
-            'height' : currentSize.videoHeight,
-            'display' : 'block'
-        });
-
-        if (videoJS) {
-            // let the loading and big play buttons show up again.
-            $videoContainer.find('.video-js').removeClass('vjs-moz-ended');
-
-            videoJS.size(currentSize.videoWidth, currentSize.videoHeight);
-            videoJS.play();
-        } else {
-            _V_('video-player', {}, function() {
-                videoJS = this;
-
-                // add share button to controls on first play
-                videoJS.addEvent('play', function() {
-                    if (!$shareButton) {
-                        $shareButton = $(
-                            '<button class="vjs-sandstone-share">' +
-                            Mozilla.page.Home.shareText +
-                            '</button>'
-                        );
-                        $shareButton.click(function() {
-                            videoJS.pause();
-                            showOverlay(false);
-                        });
-                        var $controls = $(videoJS.controlBar.el);
-                        $controls.append($shareButton);
-                    }
-                });
-
-                // Flash player fails to initialize dynamically inserted source
-                // elements. Set up the sources after the player exists. See
-                // http://help.videojs.com/discussions/questions/350-flash-fallback-in-ie8
-                if (noVideo) {
-                    videoJS.src(sources);
-                }
-                videoJS.addEvent('ended', function() { showOverlay(true); });
-                videoJS.play();
-            });
-        }
-    }
-
-    function showOverlay(ended) {
-        var width = $videoContainer.width();
-        var height = $videoContainer.height();
-        var position = $videoContainer.position();
-
-        if (ended) {
-            $overlay.find('.video-replay').css('display', 'inline-block');
-            $overlay.find('.video-continue').css('display', 'none');
-        } else {
-            $overlay.find('.video-replay').css('display', 'none');
-            $overlay.find('.video-continue').css('display', 'inline-block');
-        }
-
-        $overlay.css({
-            'top' : position.top,
-            'left' : position.left,
-            'width' : width,
-            'height' : height,
-            'display' : 'block'
-        });
-
-        if (ended) {
-            // hide video-js big play button and loading spinner (Chrome
-            // shows spinner for some videos after they are finished)
-            $videoContainer.find('.video-js').addClass('vjs-moz-ended');
-        }
-    }
-
-    function hideOverlay() {
-        $overlay.css('display', 'none');
-    }
-
-    function hideVideo() {
-        if (videoJS) {
-            videoJS.pause();
-        }
-
-        var videoPosition = $videoContainer.position();
-
-        $videoContainer.css('display', 'none');
-        $overlay.css('display', 'none');
-
-        $thumb.css({
-            'top' : videoPosition.top,
-            'right' : 'auto',
-            'left' : videoPosition.left,
-            'display' : 'block'
-        });
-
-        if (currentSize.videoWidth < 720) {
-            $thumb.css({
-                'width' : currentSize.thumbWidth,
-                'height' : currentSize.thumbHeight
-            });
-        }
-
-        $close.detach();
-    }
+    // }}}
+    // {{{ close()
 
     function close() {
         if (state !== 'opened') {
@@ -426,13 +293,27 @@ $(document).ready(function() {
 
     }
 
-    $thumb.click(function(e) { open(); })
-        .keypress(function(e) {
-            if (e.keyCode == 13) {
-                e.preventDefault(e);
-                open();
-            }
-        });
+    // }}}
+    // {{{ getSize()
+
+    function getSize() {
+        if (hasMediaQueries && matchMedia('(max-width: 480px)').matches) {
+            return sizes[0];
+        }
+
+        if (hasMediaQueries && matchMedia('(min-width: 480px) and (max-width: 760px)').matches) {
+            return sizes[1];
+        }
+
+        if (hasMediaQueries && matchMedia('(min-width: 760px) and (max-width: 1000px)').matches) {
+            return sizes[2];
+        }
+
+        return sizes[3];
+    }
+
+    // }}}
+    // {{{ handleResize()
 
     function handleResize() {
         var size = getSize();
@@ -442,13 +323,14 @@ $(document).ready(function() {
         }
     }
 
+    // }}}
+    // {{{ resposition()
+
     function reposition() {
         var linkWidth;
 
+        // TODO: check for and stop animations
         if (state === 'opened' || state === 'opening') {
-
-            // TODO: check for and stop animations
-
             if (videoJS) {
                 videoJS.size(currentSize.videoWidth, currentSize.videoHeight);
             }
@@ -505,11 +387,8 @@ $(document).ready(function() {
                 showLink();
                 $link.css('height', 'auto');
             }
-
+        // TODO: check for and stop animations
         } else {
-
-            // TODO: check for and stop animations
-
             linkWidth = $link.width();
 
             $thumb.css({
@@ -529,8 +408,197 @@ $(document).ready(function() {
 
             $link.css('height', height);
         }
-
     }
+
+    // }}}
+    // {{{ createVideo()
+
+    function createVideo() {
+        // IE9 didn't like a video element build using jQuery so we build it
+        // using the DOM API.
+        var video = document.createElement('video');
+        video.id = 'video-player';
+        video.className = 'video-js vjs-default-skin';
+        video.controls = 'controls';
+        video.preload = 'none';
+
+        // create video sources
+        var sources = [
+            {
+                src: 'http://videos.mozilla.org/uploads/brand/State%20of%20Mozilla%202011%20(fcp2)-RC%20-%20720p%20-%20MPEG-4.mp4',
+                type: 'video/mp4'
+            },
+            {
+                src: 'http://videos.mozilla.org/uploads/brand/State%20of%20Mozilla%202011%20(fcp2)-RC%20-%20720p%20-%20MPEG-4.webm',
+                type: 'video/webm'
+            }
+        ];
+
+        for (var i = 0; i < sources.length; i++) {
+            var source = document.createElement('source');
+            source.src = sources[i].src;
+            source.type = sources[i].type;
+            video.appendChild(source);
+        }
+
+        return $(video);
+    }
+
+    // }}}
+    // {{{ createCloseButton()
+
+    function createCloseButton() {
+        var $close = $(
+            '<span class="video-close" tabindex="0" role="button">×</span>'
+        );
+
+        $close.attr('title', Mozilla.page.Home.closeText)
+            .click(function(e) { close(); })
+            .keypress(function(e) {
+                if (e.keyCode == 13) {
+                    e.preventDefault(e);
+                    close();
+                }
+            });
+
+        return $close;
+    }
+
+    // }}}
+    // {{{ createThumb()
+
+    function createThumb() {
+        var $thumb = $('#promo-flicks-keyframe');
+
+        $thumb.click(function(e) { open(); })
+            .keypress(function(e) {
+                if (e.keyCode == 13) {
+                    e.preventDefault(e);
+                    open();
+                }
+            });
+
+        return $thumb;
+    }
+
+    // }}}
+    // {{{ createContainer()
+
+    function createContainer() {
+        var $container = $('<div class="container"></div>');
+        $container.css('display', 'none')
+        return $container;
+    }
+
+    // }}}
+    // {{{ createGoLink()
+
+    function createGoLink($link) {
+        var $goLink = $('<a class="go"></a>');
+        $goLink.attr('href', $link.attr('href'))
+            .text($link.find('.go').text());
+
+        return $goLink;
+    }
+
+    // }}}
+    // {{{ createVideoContainer()
+
+    function createVideoContainer() {
+        var $videoContainer = $('<div class="video-container"></div>');
+        $videoContainer.css('display', 'none')
+        return $videoContainer;
+    }
+
+    // }}}
+    // {{{ createSocialOverlay()
+
+    function createSocialOverlay() {
+        var $overlay = $('#promo-flicks-overlay');
+        $overlay.find('.video-replay').click(function(e) {
+            e.preventDefault();
+            hideOverlay();
+            if (videoJS) {
+                // let the loading and big play buttons show up again.
+                $videoContainer.find('.video-js').removeClass('vjs-moz-ended');
+                videoJS.currentTime(0);
+                videoJS.play();
+            }
+        });
+        $overlay.find('.video-continue').click(function(e) {
+            e.preventDefault();
+            hideOverlay();
+            if (videoJS) {
+                videoJS.play();
+            }
+        });
+        return $overlay;
+    }
+
+    // }}}
+
+    var hasMediaQueries = (typeof matchMedia !== 'undefined');
+    var hasVideo = (typeof HTMLMediaElement !== 'undefined');
+
+    var sizes = [
+        {
+            thumbWidth : 320,
+            thumbHeight : 180,
+            videoWidth : 320,
+            videoHeight : 180,
+            marginWidth : 0,
+            marginHeight : 0
+        },
+        {
+            thumbWidth : 440,
+            thumbHeight : 248,
+            videoWidth : 440,
+            videoHeight : 248,
+            marginWidth : 0,
+            marginHeight : 0
+        },
+        {
+            thumbWidth : 280,
+            thumbHeight : 158,
+            videoWidth : 720,
+            videoHeight : 405,
+            marginWidth : 20,
+            marginHeight : 20
+        },
+        {
+            thumbWidth : 380,
+            thumbHeight : 214,
+            videoWidth : 853,
+            videoHeight : 480,
+            marginWidth : 30,
+            marginHeight : 25
+        }
+    ];
+
+    var currentSize = getSize();
+    var $thumb = createThumb();
+    var $link = $thumb.next();
+    var $container = createContainer();
+    var $goLink = createGoLink($link);
+    var $close = createCloseButton();
+    var $videoContainer = createVideoContainer();
+    var $video = createVideo();
+    var $overlay = createSocialOverlay();
+    var $shareButton;
+
+    $container.insertBefore($link);
+    $goLink.appendTo($container);
+    $videoContainer.insertAfter($thumb);
+    $video.appendTo($videoContainer);
+
+    var state = 'closed';
+
+    // shared animation settings
+    var duration = 400;
+    var easing = 'swing';
+
+    // the video.js player when it exists
+    var videoJS;
 
     if (hasMediaQueries) {
         $(window).resize(handleResize);
