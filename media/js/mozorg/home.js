@@ -143,7 +143,13 @@ $(document).ready(function() {
     );
 
     $close.attr('title', Mozilla.page.Home.closeText)
-        .click(function(e) { close(); });
+        .click(function(e) { close(); })
+        .keypress(function(e) {
+            if (e.keyCode == 13) {
+                e.preventDefault(e);
+                close();
+            }
+        });
 
     // shared animation settings
     var duration = 400;
@@ -420,7 +426,13 @@ $(document).ready(function() {
 
     }
 
-    $thumb.click(function(e) { open(); });
+    $thumb.click(function(e) { open(); })
+        .keypress(function(e) {
+            if (e.keyCode == 13) {
+                e.preventDefault(e);
+                open();
+            }
+        });
 
     function handleResize() {
         var size = getSize();
