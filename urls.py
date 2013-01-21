@@ -20,7 +20,6 @@ urlpatterns = patterns('',
     # Main pages
     (r'^apps/', include('marketplace.urls')),
     (r'^collusion/', include('collusion.urls')),
-    (r'^firefoxos/', include('firefoxos.urls')),
     (r'^foundation/', include('foundation.urls')),
     (r'^grants/', include('grants.urls')),
     (r'^legal/', include('legal.urls')),

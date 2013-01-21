@@ -19,9 +19,9 @@ def tabzilla_css_redirect(r):
 
 urlpatterns = patterns('',
 
-    redirect(r'^b2g', 'firefoxos.firefoxos'),
-    redirect(r'^b2g/faq', 'firefoxos.firefoxos'),
-    redirect(r'^b2g/about', 'firefoxos.firefoxos'),
+    redirect(r'^b2g', 'firefox.partners.index'),
+    redirect(r'^b2g/faq', 'firefox.partners.index'),
+    redirect(r'^b2g/about', 'firefox.partners.index'),
 
     redirect(r'^contribute/areas.html$', 'mozorg.contribute'),  # Bug 781914
     redirect(r'^projects/$', 'mozorg.products'),  # Bug 763665

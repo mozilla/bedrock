@@ -130,44 +130,46 @@
 .mobile-content {
     overflow: hidden;
     text-align: center;
+    .download-link {
+        line-height: 27px;
+    }
+    .download-button {
+        .download-title {
+            font-size: 18px;
+        }
+        .download-info {
+            color: #FFFFFF;
+            font-size: 11px;
+        }
+        .download-content {
+            background-image: none;
+            margin-left: -50px;
+        }
+    }
     #download-column {
-        .span(4);
-        margin-top: 45px;
         position: relative;
         z-index: 10;
-        text-align: right;
         aside {
             text-align: left;
         }
     }
-    #photo-column {
-        .span(4);
-        position: relative;
-        img {
-            position: relative;
-            right: 45px;
-            z-index: 5;
-            height: 422px;
-            width: 281px;
-        }
+    #phone-tablet-image {
+        margin: @gridColumnWidth/2 auto -6px;
+    }
+    #rating-column {
+        .span(2);
+        font-family: "Open Sans Light";
+        font-size: 18px;
+        padding-top: 20px;
+        float: none;
+        display: inline-block;
+        vertical-align: top;
+        background: url(/media/img/firefox/fx/android-four-stars.png) center top no-repeat;
     }
     .sub-features {
-        .span(4);
-        margin-bottom: 0;
-        margin-top: 45px;
-        li {
-            float: none;
-            width: auto;
-            padding: 0;
-            right: 0;
-            a.link {
-                border-left: 0;
-                border-top: 1px dotted @borderColor;
-            }
-            &:first-child a.link {
-                border-top: 0;
-            }
-        }
+        margin-top: -50px;
+        background-color: #fafafa;
+        position: relative;
     }
 }
 
@@ -184,7 +186,14 @@
         padding: 0;
         position: relative;
         right: 10px;
-        a.link {
+        a.mobile-link {
+            border-left: 1px dotted @borderColor;
+            display: block;
+        }
+        a.mobile-link:hover {
+            text-decoration: none;
+        }
+        a.link, span.link {
             display: block;
             padding: @baseLine / 2;
             padding-left: 70px;
@@ -192,9 +201,19 @@
             .open-sans-light;
             letter-spacing: -0.02em;
             min-height: 50px;
-            color: @textColorTertiary;
             background: url(/media/img/firefox/fx/sub-feature-icons.png) 0 0 no-repeat;
             border-left: 1px dotted @borderColor;
+            color: @textColorTertiary;
+        }
+        span.link {
+            border-left: 0;
+        }
+        span.link:hover {
+            text-decoration: underline;
+        }
+        h3 {
+            font-size: 24px;
+            margin: 5px 0px 0px 35px;
         }
         .wrap {
             border-left: 1px dotted @borderColor;
@@ -202,73 +221,17 @@
         }
     }
     li:first-child a.link,
+    li:first-child a.mobile-link,
+    li:first-child span.link,
     li:first-child .wrap {
         border-left: 0;
     }
     li#customize        a { background-position: 0 -200px; }
     li#playstore        a { background-position: 0 -400px; }
-    li#supported        a { background-position: 0 -400px; }
-    li#firefox-mobile   a { background-position: 0 -600px; }
-    li#playstore-mobile a { background-position: 0 -800px; }
+    li#supported        span { background-position: 0 -400px; }
+    li#firefox-mobile   span { background-position: 0 -600px; }
+    li#playstore-mobile span { background-position: 0 -800px; }
 }
-
-#phone-screen {
-    position: absolute;
-    top: 45px;
-    left: 71px;
-    height: 264px;
-    width: 160px;
-    background: url(/media/img/firefox/fx/android-animation-screens.jpg) 0 0 repeat-x;
-    display: block;
-    z-index: 6;
-    &:after {
-        content: "";
-        height: 264px;
-        width: 160px;
-        display: block;
-        background: url(/media/img/firefox/fx/android-animation-sheen.png) 0 0 no-repeat;
-        position: relative;
-        z-index: 7;
-    }
-
-    -moz-animation: screenslide 20s ease infinite alternate;
-    -webkit-animation: screenslide 20s ease infinite alternate;
-    animation: screenslide 20s ease infinite alternate;
-}
-
-@keyframes screenslide {
-      0% { background-position: 0 0; }
-     20% { background-position: 0 0; }
-     22% { background-position: -160px 0; }
-     42% { background-position: -160px 0; }
-     44% { background-position: -320px 0; }
-     64% { background-position: -320px 0; }
-     66% { background-position: -480px 0; }
-    100% { background-position: -480px 0; }
-}
-
-@-moz-keyframes screenslide {
-      0% { background-position: 0 0; }
-     20% { background-position: 0 0; }
-     22% { background-position: -160px 0; }
-     42% { background-position: -160px 0; }
-     44% { background-position: -320px 0; }
-     64% { background-position: -320px 0; }
-     66% { background-position: -480px 0; }
-    100% { background-position: -480px 0; }
-}
-
-@-webkit-keyframes screenslide {
-      0% { background-position: 0 0; }
-     20% { background-position: 0 0; }
-     22% { background-position: -160px 0; }
-     42% { background-position: -160px 0; }
-     44% { background-position: -320px 0; }
-     64% { background-position: -320px 0; }
-     66% { background-position: -480px 0; }
-    100% { background-position: -480px 0; }
-}
-
 
 /* Tablet Layout: 760px */
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
@@ -276,39 +239,27 @@
     .sub-features li {
         .span_narrow(4);
         font-size: 14px;
-        a.link {
+        span.link {
             margin: 0;
         }
     }
 
     .mobile-content {
-        #download-column,
-        #photo-column,
-        .sub-features {
-            .span_narrow(4);
-        }
-    }
-
-    .mobile-content {
-        #photo-column {
+        #phone-tablet-image {
             img {
                 height: auto;
             }
-            #phone-screen {
-                top: 36px;
-                left: 39px;
-                height: 214px;
-                width: 126px;
-                -moz-animation: none;
-                -webkit-animation: none;
-                animation: none;
-            }
         }
         #download-column,
         .sub-features {
-            margin-top: 20px;
             .download-button small.download-other {
                 text-align: left;
+            }
+            li {
+                h3 {
+                    font-size: 18px;
+                    margin-left: 25px;
+                }
             }
         }
     }
@@ -381,26 +332,37 @@
             .download-button small.download-other {
                 text-align: left;
             }
+            margin-bottom: 20px;
         }
-        #photo-column { display: none; }
+        #phone-tablet-image { display: none; }
     }
 
     .sub-features,
     .mobile-content .sub-features {
         width: auto;
+        margin-top: 0;
         li {
+            
             float: none;
             width: auto;
             padding: 0;
             right: 0;
             .wrap,
-            a.link {
+            span.link {
                 border-left: 0;
-                border-top: 1px dotted @borderColor;
+            }
+            a.link, a.mobile-link {
+                border-left: 0;    
                 margin: 0;
+                border-top: 1px dotted @borderColor;
+            }
+            h3 {
+                font-size: 20px;
+                margin: 5px 0px 0px 25px;
             }
         }
         li:first-child a.link,
+        li:first-child a.mobile-link,
         li:first-child .wrap {
                 border-top: 0;
         }

@@ -36,6 +36,20 @@
     font-style: normal;
 }
 
+/* Meta Web Pro Black Italic font for Firefox OS MWCpromo */
+
+/* first for IE 6/7/8 */
+@font-face {
+  font-family: MetaWebPro-BlackIta;
+  src: url('/media/fonts/MetaWebPro-BlackIta.eotlite');
+}
+
+/* then for Mozilla browsers -> Firefox */
+@font-face {
+  font-family: MetaWebPro-BlackIta;
+  src: url('/media/fonts/MetaWebPro-BlackIta.woff') format('woff');
+}
+
 
 // Tab
 
@@ -290,8 +304,6 @@
     display: block;
     padding: 40px 35px 40px 95px;
     height: 130px;
-    background-image: url('/media/img/tabzilla/promo-flicks.png');
-    background-position: 20px 37px;
     background-repeat: no-repeat;
     color: #484848;
     -webkit-transition: all 0.2s ease-in-out;
@@ -315,10 +327,10 @@
 
 #tabzilla-promo .snippet#tabzilla-promo-flicks a {
     padding: 40px 35px;
-	background-color: #212a2f;
+    background-color: #212a2f;
     background-image: url('/media/img/tabzilla/promo-flicks.jpg');
     background-position: 0 100%;
-	overflow: hidden;
+    overflow: hidden;
 }
 
 #tabzilla-promo .snippet#tabzilla-promo-flicks a h4,
@@ -327,59 +339,30 @@
 	left: -400px;
 }
 
-#tabzilla-promo .snippet#tabzilla-promo-beta a {
-    background-image: url('/media/img/tabzilla/promo-beta.jpg');
+#tabzilla-promo .snippet#tabzilla-promo-mwc a {
+    background-image: url('/media/img/tabzilla/promo-mwc.jpg');
     background-position: 0 0;
     background-color: #226aa7;
     color: #fff;
     font-size: 12px;
-    padding: 50px 15px 30px 145px;
+    padding: 20px;
+    height: 170px;
     line-height: 20px;
-}
-
-#tabzilla-promo .snippet#tabzilla-promo-beta a b {
-    white-space: nowrap;
-}
-
-#tabzilla-promo .snippet#tabzilla-promo-mobile a {
-    background-image: url('/media/img/tabzilla/promo-mobile.jpg');
-    background-position: 0 0;
-    background-color: #69acc7;
-    color: #fff;
-    font-size: 12px;
-    padding: 40px 12px 30px 140px;
-    height: 140px;
-    line-height: 20px;
-    text-shadow: none;
-}
-
-#tabzilla-promo .snippet#tabzilla-promo-mobile a h4 {
-    color: #fff;
-    text-transform: none;
-    font-size: 32px;
-    letter-spacing: -1px;
-    font-family: 'Open Sans Light';
-    font-weight: normal;
-    text-shadow: none;
-    width: 100px;
-}
-
-#tabzilla-promo .snippet#tabzilla-promo-donate a {
-    background-image: url('/media/img/tabzilla/promo-donate.jpg');
-    background-position: 0 0;
-    background-color: #0095dd;
-    color: #fff;
-    padding: 20px 10px 0 182px;
-    height: 190px;
-}
-
-#tabzilla-promo .snippet#tabzilla-promo-donate h4 {
-    font-size: 24px;
-    color: #fff;
-    font-weight: normal;
-    font-family: 'Open Sans Light', sans-serif;
-    text-transform: none;
-    text-shadow: none;
+    h4 {
+        text-shadow: none;
+        color: #fff;
+        font-family: MetaWebPro-BlackIta;
+        text-transform: uppercase;
+        font-weight: normal;
+        font-size: 46px;
+        line-height: 46px;
+        margin-bottom: 5px;
+    }
+    p {
+        font-size: 16px;
+        width: 150px;
+        margin-bottom: 10px;
+    }
 }
 
 @media only screen and (min-width: 720px) and (max-width: 979px) {
