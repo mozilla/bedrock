@@ -1,0 +1,215 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+/* {{{ Template overrides */
+
+#wrapper {
+    width: auto;
+    padding-bottom: 0;
+}
+
+#colophon {
+    margin-top: 0;
+}
+
+#masthead,
+.article-content {
+    width: @widthDesktop - (@gridGutterWidth * 2);
+    margin: 0 auto;
+    position: relative;
+}
+
+#masthead {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -500px;
+}
+
+.partner-article {
+    padding: (@baseLine * 3) 0;
+    .article-content {
+        display: block;
+        margin: 0 auto;
+        padding-left: @gridGutterWidth;
+        padding-right: @gridGutterWidth;
+        position: relative;
+        .clearfix;
+        h2 {
+            .span(8);
+            margin-bottom: @baseLine;
+        }
+        .intro {
+            .span(8);
+        }
+    }
+}
+
+/* }}} */
+/* {{{ Left menu */
+
+#partner-nav {
+    position: fixed;
+    z-index: 1000;
+    top: 300px;
+    left: 30px;
+    ul {
+        padding: 0;
+        margin: 0;
+        background: #fff;
+        @shadow: 0 1px 2px rgba(0,0,0,0.6);
+        .box-shadow(@shadow);
+        border-radius: 3px;
+        li {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            a {
+                display: block;
+                width: 60px;
+                height: 60px;
+                background: #fff url(/media/img/firefox/partners/menu-icons.png) 0 0 no-repeat;
+                text-indent: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                @shadow: 0 -1px rgba(0,0,0,0.1) inset;
+                .box-shadow(@shadow);
+                .transition(background-color ease-out .3s);
+                &:hover {
+                    background-color: #15aaff;
+                    .transition(background-color ease-in .1s);
+                }
+            }
+            &:first-child a {
+                border-top-left-radius: 3px;
+                border-top-right-radius: 3px;
+            }
+            &:last-child a {
+                border-bottom-left-radius: 3px;
+                border-bottom-right-radius: 3px;
+            }
+            &#menu-os          a { background-position: 0  -60px; }
+            &#menu-marketplace a { background-position: 0 -120px; }
+            &#menu-android     a { background-position: 0 -180px; }
+            &#menu-overview    a:hover { background-position: -60px   0px; }
+            &#menu-os          a:hover { background-position: -60px -60px; }
+            &#menu-marketplace a:hover { background-position: -60px -120px; }
+            &#menu-android     a:hover { background-position: -60px -180px; }
+        }
+    }
+}
+
+/* }}} */
+
+#overview {
+    background: url(/media/img/firefox/partners/overview-bg.png) center top no-repeat;
+    h2 {
+        font-size: 78px;
+        .span(11);
+        .offset(1);
+        padding-top: 20px;
+        padding-bottom: 80px;
+    }
+}
+
+#phone {
+    background: url(/media/img/firefox/partners/phone.png) 0 0 no-repeat;
+    height: 555px;
+    width: 359px;
+    position: fixed;
+    z-index: 1000;
+    top: 220px;
+    left: 50%;
+    margin-left: 150px;
+}
+
+.logos {
+    list-style-type: none;
+    padding: 0;
+    margin: @baseLine 0;
+    .clearfix();
+    li {
+        background: rgba(0,0,0,0.1);
+        border-radius: 3px;
+        float: left;
+        width: 120px;
+        padding: 15px 10px;
+        text-align: center;
+        color: #888;
+        margin: 0 10px 10px 0;
+    }
+}
+
+/* {{{ Firefox OS section */
+
+#os {
+    #gradient > .vertical(#0f9fdb, #0055a0);
+    color: #fff;
+    text-shadow: none;
+    h2 {
+        font-size: 78px;
+        .span(12);
+        padding-top: 20px;
+        padding-bottom: 80px;
+        color: #fff;
+        text-shadow: none;
+    }
+    padding-bottom: 200px;
+}
+
+/* }}} */
+/* {{{ Firefox for Android section */
+
+#android {
+    #gradient > .vertical(#0f9fdb, #0055a0);
+    color: #fff;
+    text-shadow: none;
+    h2 {
+        font-size: 78px;
+        .span(12);
+        padding-top: 20px;
+        padding-bottom: 80px;
+        color: #fff;
+        text-shadow: none;
+    }
+    padding-bottom: 200px;
+}
+
+/* }}} */
+/* {{{ Responsive Grid */
+
+/* Tablet Layout: 760px */
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+
+    #masthead,
+    .partner-article {
+      width: @widthTablet;
+    }
+
+}
+
+
+/* Mobile Layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+
+    #masthead,
+    .partner-article {
+      width: @widthMobile;
+    }
+
+}
+
+
+/* Wide Mobile Layout: 480px */
+@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+
+    #masthead,
+    .partner-article {
+        width: @widthMobileLandscape;
+    }
+
+}
+/* }}} */

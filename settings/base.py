@@ -276,7 +276,7 @@ MINIFY_BUNDLES = {
             'css/foundation/annual2011.less',
         ),
         'partners': (
-            'css/partners.less',
+            'css/firefox/partners.less',
         ),
     },
     'js': {
@@ -436,8 +436,7 @@ MINIFY_BUNDLES = {
             'js/annual2011.js',
         ),
         'partners': (
-            'js/libs/mozcountdown.js',
-            'js/partners.js',
+            'js/firefox/partners.js',
         ),
     }
 }

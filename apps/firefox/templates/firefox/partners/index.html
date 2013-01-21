@@ -1,0 +1,157 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "base-resp.html" %}
+
+{% block body_class %}sky{% endblock %}
+
+{% block extrahead %}
+  {{ css('partners') }}
+{% endblock %}
+
+{% block site_js %}
+  {{ js('mozorg-resp') }}
+{% endblock %}
+
+{% block js %}
+  {{ js('partners') }}
+{% endblock %}
+
+{% block site_header %}
+  <header id="masthead">
+    <a href="http://www.mozilla.org/" id="tabzilla">{{ _('Mozilla') }}</a>
+
+    {% block site_header_nav %}
+    <nav id="nav-main" role="navigation">
+      <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
+      <ul id="nav-main-menu">
+        <li class="first"><a href="#overview">{{_('Overview')}}</a></li>
+        <li><a href="#os">{{_('OS')}}</a></li>
+        <li><a href="#marketplace">{{_('Marketplace')}}</a></li>
+        <li class="last"><a href="#android">{{_('Android')}}</a></li>
+      </ul>
+    </nav>
+    {% endblock %}
+
+  </header>
+  <nav id="partner-nav" role="navigation">
+    <ul id="partner-menu">
+      <li id="menu-overview"><a href="#overview">{{_('Overview')}}</a></li>
+      <li id="menu-os"><a href="#os">{{_('OS')}}</a></li>
+      <li id="menu-marketplace"><a href="#marketplace">{{_('Marketplace')}}</a></li>
+      <li id="menu-android"><a href="#android">{{_('Android')}}</a></li>
+    </ul>
+  </nav>
+{% endblock %}
+
+{% block content %}
+
+<div id="phone"></div>
+
+<article id="overview" class="partner-article">
+  <div class="article-content">
+    <h2>Greatest. Headline. Ever.</h2>
+    <div class="intro">
+      <p>Dempta enim aeternitate nihilo beatior Iuppiter quam Epicurus; Itaque primos congressus copulationesque et consuetudinum instituendarum voluntates fieri propter voluptatem; Videamus igitur sententias eorum, tum ad verba redeamus. Haec bene dicuntur, nec ego repugno, sed inter sese ipsa pugnant.</p>
+      <p>Dempta enim aeternitate nihilo beatior Iuppiter quam Epicurus; Itaque primos congressus copulationesque et consuetudinum instituendarum voluntates fieri propter voluptatem; Videamus igitur sententias eorum, tum ad verba redeamus. Haec bene dicuntur, nec ego repugno, sed inter sese ipsa pugnant.</p>
+      <ul class="logos">
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+      </ul>
+    </div>
+  </div>
+</article>
+
+<article id="os" class="partner-article">
+  <div class="article-content">
+    <h2>Another. Giant. Headline.</h2>
+    <div class="intro">
+      <p>Dempta enim aeternitate nihilo beatior Iuppiter quam Epicurus; Itaque primos congressus copulationesque et consuetudinum instituendarum voluntates fieri propter voluptatem; Videamus igitur sententias eorum, tum ad verba redeamus. Haec bene dicuntur, nec ego repugno, sed inter sese ipsa pugnant.</p>
+      <p>Dempta enim aeternitate nihilo beatior Iuppiter quam Epicurus; Itaque primos congressus copulationesque et consuetudinum instituendarum voluntates fieri propter voluptatem; Videamus igitur sententias eorum, tum ad verba redeamus. Haec bene dicuntur, nec ego repugno, sed inter sese ipsa pugnant.</p>
+      <ul class="logos">
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+      </ul>
+    </div>
+  </div>
+</article>
+
+<article id="marketplace" class="partner-article">
+  <div class="article-content">
+    <h2>Marketplace headline</h2>
+    <div class="intro">
+      <p>Dempta enim aeternitate nihilo beatior Iuppiter quam Epicurus; Itaque primos congressus copulationesque et consuetudinum instituendarum voluntates fieri propter voluptatem; Videamus igitur sententias eorum, tum ad verba redeamus. Haec bene dicuntur, nec ego repugno, sed inter sese ipsa pugnant.</p>
+      <p>Dempta enim aeternitate nihilo beatior Iuppiter quam Epicurus; Itaque primos congressus copulationesque et consuetudinum instituendarum voluntates fieri propter voluptatem; Videamus igitur sententias eorum, tum ad verba redeamus. Haec bene dicuntur, nec ego repugno, sed inter sese ipsa pugnant.</p>
+      <ul class="logos">
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+      </ul>
+    </div>
+  </div>
+</article>
+
+<article id="android" class="partner-article">
+  <div class="article-content">
+    <h2>Moar headline</h2>
+    <div class="intro">
+      <p>Dempta enim aeternitate nihilo beatior Iuppiter quam Epicurus; Itaque primos congressus copulationesque et consuetudinum instituendarum voluntates fieri propter voluptatem; Videamus igitur sententias eorum, tum ad verba redeamus. Haec bene dicuntur, nec ego repugno, sed inter sese ipsa pugnant.</p>
+      <p>Dempta enim aeternitate nihilo beatior Iuppiter quam Epicurus; Itaque primos congressus copulationesque et consuetudinum instituendarum voluntates fieri propter voluptatem; Videamus igitur sententias eorum, tum ad verba redeamus. Haec bene dicuntur, nec ego repugno, sed inter sese ipsa pugnant.</p>
+      <ul class="logos">
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+        <li>logo</li>
+      </ul>
+    </div>
+  </div>
+</article>
+
+
+{% endblock %}
+
+{% block email_form %}{% endblock %}
