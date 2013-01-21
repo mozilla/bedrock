@@ -557,6 +557,7 @@ Tabzilla.content =
     + '          <li><a href="https://webfwd.org/">WebFWD</a></li>'
     + '          <li><a href="https://mozillalabs.com/">Labs</a></li>'
     + '          <li><a href="https://webmaker.org/">Webmaker</a></li>'
+    + '          <li><a href="https://www.mozilla.org/research/">Research</a></li>'
     + '        </ul>'
     + '      </li>'
     + '      <li><h2>{{ _('Get Involved')|js_escape }}</h2>'
