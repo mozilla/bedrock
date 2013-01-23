@@ -31,7 +31,7 @@
       displayDays : true,
       displayZeroDays : true,
       addClass : false,
-      callback : false,
+      callback : false
   };
 
   options =  $.extend(defaults, options);

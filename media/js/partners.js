@@ -19,7 +19,7 @@
         secondsText : trans('secondstext'),
         secondsTextEx : trans('secondstextex'),
         displayZeroDays : true,
-        oneDayClass : 'one-day',
+        oneDayClass : 'one-day'
     });
     
     // Load content in a full-page modal
