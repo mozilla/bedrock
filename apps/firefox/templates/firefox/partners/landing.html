@@ -14,13 +14,19 @@
 {% block string_data %}
   {# L10N: This is the label for a button that closes a modal dialog #}
   data-close="{{ _('Close') }}"
-  
-  {# L10N: These are abbreviations of 'days', 'hours', 'minutes', and 'seconds', used as labels on a countdown clock. Translated labels should be as short as possible. #}
   data-daytext="{{ _('day') }}"
+  {# L10N: This is an abbreviation of 'days', used as a label on a countdown clock. The translated label should be as short as possible. #}
   data-daystext="{{ _('days') }}"
+  data-daystextex="{{ _('days') }}"
+  {# L10N: This is an abbreviation of 'hours', used as a label on a countdown clock. The translated label should be as short as possible. #}
   data-hourstext="{{ _('hrs') }}"
+  data-hourstextex="{{ _('hours') }}"
+  {# L10N: This is an abbreviation of 'minutes', used as a label on a countdown clock. The translated label should be as short as possible. #}  
   data-minutestext="{{ _('min') }}"
+  data-minutestextex="{{ _('minutes') }}"
+  {# L10N: This is an abbreviation of 'seconds', used as a label on a countdown clock. The translated label should be as short as possible. #}
   data-secondstext="{{ _('sec') }}"
+  data-secondstextex="{{ _('seconds') }}"
 {% endblock %}
 
 {% block content %}
