@@ -35,6 +35,11 @@
 <ul id="platforms-list">
   {% for platform in devices %}
   <li class="platforms-platform">
+    {% if platform == 'Phone' %}
+      <h3>{{ _('Phones') }}</h3>
+    {% elif platform == 'Tablet' %}
+      <h3>{{ _('Tablets') }}</h3>
+    {% endif %}
     <ul class="platforms-manufacturer">
     {% for manufacturer in devices[platform]['manufacturers'] %}
       <li class="expander expander-{{ loop.cycle('even', 'odd') }}">
