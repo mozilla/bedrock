@@ -30,8 +30,28 @@
 }
 
 .partner-article {
-    padding: (@baseLine * 3) 0;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    height: 800px;
+    .clearfix();
+    section {
+        width: 100%;
+        height: 600px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        .transition();
+        &.section-2 {
+            left: 100%;
+        }
+        &.section-3 {
+            left: 200%;
+        }
+    }
+
     .article-content {
+        padding: (@baseLine * 3) 0;
         display: block;
         margin: 0 auto;
         padding-left: @gridGutterWidth;
