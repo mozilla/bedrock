@@ -8,7 +8,10 @@
                 navigator.platform.indexOf("Win64") !== -1) {
             return 'windows';
         }
-        if (navigator.platform.indexOf("armv7l") !== -1) {
+        if (/android/i.test(navigator.userAgent)) {
+            return 'android';
+        }
+        if (/armv[6-7]l/.test(navigator.platform)) {
             return 'android';
         }
         if (navigator.platform.indexOf("Linux") !== -1) {

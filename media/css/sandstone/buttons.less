@@ -364,6 +364,7 @@
     }
 }
 
+.download-button.download-button-beta.download-button-small .download-list .os_android,
 .download-button.download-button-mobile.download-button-beta.download-button-small {
     .download-link .download-title span {
         font-size: 18px;
@@ -403,6 +404,7 @@
     }
 }
 
+.download-button-noicon .download-list .os_android,
 .download-button-mobile.download-button-noicon {
     .download-link .download-title span {
         padding-top: 7px;
@@ -418,6 +420,7 @@
     }
 }
 
+.download-button-small.download-button-noicon .download-list .os_android,
 .download-button-small.download-button-mobile.download-button-noicon {
     .download-link .download-title span {
         padding-top: 0;
@@ -431,27 +434,27 @@
 .download-button .os_windows,
 .download-button .os_osx,
 .download-button .os_android,
-.no-js .windows .download-button .os_windows {
-    display: none;
+.no-js .download-list,
+.other .download-list {
+    display: none !important;
 }
 
 .linux .download-button .os_linux,
 .windows .download-button .os_windows,
 .osx .download-button .os_osx,
-.android .download-button .os_android {
-    display: block;
-}
-
-.linux .download-other .os_linux,
-.windows .download-other .os_windows,
-.osx .download-other .os_osx {
-    display: inline;
+.android .download-button .os_android,
+.download-button-mobile .os_android,
+.no-js .download-button-mobile .download-list,
+.other .download-button-mobile .download-list,
+.other .download-button small.os_windows {
+    display: block !important;
 }
 
 
 // Small print
 
-.download-button small.download-other {
+.download-button small.download-other,
+.other .download-button.download-button-mobile small.download-other {
     .open-sans;
     display: block;
     font-size: 11px;
@@ -463,6 +466,11 @@
     a:visited {
         color: #999;
     }
+}
+
+.no-js .download-button small.download-other,
+.other .download-button small.download-other {
+    text-align: left;
 }
 
 .other .download-button .unrecognized-download {
@@ -489,15 +497,18 @@
         font-size: 11px;
         letter-spacing: normal;
     }
-    .button-white {
+    .button-green {
         padding-left: 6px;
         padding-right: 6px;
+        margin-left: 3px;
+        margin-bottom: 3px;
     }
 
 }
 
 // Mobile download buttons
 
+.download-button .download-list .os_android,
 .download-button-mobile {
     .download-link {
        .download-title {
@@ -519,6 +530,7 @@
     }
 }
 
+.download-button.download-button-small .download-list .os_android,
 .download-button.download-button-mobile.download-button-small {
     .download-link {
        .download-title {

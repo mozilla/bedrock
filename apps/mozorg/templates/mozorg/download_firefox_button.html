@@ -4,10 +4,11 @@
 
 {% macro nojs_buttons(builds) %}
   <div class="download download-dumb">
+    <h4>Download Firefox — {{ locale_name }}</h4>
     <ul>
-      {% for plat in builds %}
-        <li><a href="{{ plat.download_link_direct or plat.download_link }}" class="button-white">{{ plat.platform_pretty }}</a></li>
-      {% endfor %}
+      {% for plat in builds -%}
+        <li><a href="{{ plat.download_link_direct or plat.download_link }}" class="button-green">{{ plat.os_pretty }}</a></li>
+      {%- endfor %}
     </ul>
   </div>
 {% endmacro %}
@@ -26,10 +27,14 @@
     <div class="unrecognized-download">
       {{ nojs_buttons(builds) }}
     </div>
+    {% set requirements_url = php_url('/firefox/' ~ version ~ '/system-requirements/') %}
+    <p class="unsupported-download">
+      {{ _('Your system doesnt meet the <a href="%(url)s">requirements</a> to run Firefox.')|format(url=requirements_url) }}
+    </p>
   {% endif %}
   <ul class="download-list">
     {% for plat in builds %}
-      <li{% if not mobile %} class="{{ plat.os }}"{% endif %}>
+      <li class="{{ plat.os }}">
         <a class="download-link"
            href="{{ plat.download_link }}"{% if plat.download_link_direct %}
            data-direct-link="{{ build.download_link_direct }}"{% endif %}>
@@ -56,20 +61,16 @@
       </li>
     {% endfor %}
   </ul>
-  <small class="download-other">
-    {% if mobile %}
-      <a href="/en-US/firefox/mobile/platforms">{{ _('Supported Devices') }}</a> |
-      <a href="/en-US/mobile/notes">{{ _('What’s New') }}</a> |
-    {% else %}
-      <span class="os_android">
-        <a href="/en-US/firefox/mobile/platforms">{{ _('Supported Devices') }}</a> |
-        <a href="/en-US/mobile/notes">{{ _('What’s New') }}</a> |
-      </span>
-      <span class="os_linux os_osx os_windows">
-        <a href="/en-US/firefox/all.html">{{ _('Systems &amp; Languages') }}</a> |
-        <a href="/en-US/firefox/notes">{{ _('What’s New') }}</a> |
-      </span>
-    {% endif %}
+  <small class="download-other os_android">
+    <a href="/en-US/firefox/mobile/platforms">{{ _('Supported Devices') }}</a> |
+    <a href="/en-US/mobile/notes">{{ _('What’s New') }}</a> |
     <a href="/en-US/legal/privacy/firefox.html">{{ _('Privacy') }}</a>
   </small>
+  {% if not mobile %}
+    <small class="download-other os_linux os_osx os_windows">
+      <a href="/en-US/firefox/all.html">{{ _('Systems &amp; Languages') }}</a> |
+      <a href="/en-US/firefox/notes">{{ _('What’s New') }}</a> |
+      <a href="/en-US/legal/privacy/firefox.html">{{ _('Privacy') }}</a>
+    </small>
+  {% endif %}
 </div>
