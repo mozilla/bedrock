@@ -436,6 +436,8 @@ MINIFY_BUNDLES = {
             'js/annual2011.js',
         ),
         'partners': (
+            'js/libs/tweenmax.min.js',
+            'js/libs/superscrollorama.js',
             'js/firefox/partners.js',
         ),
     }
