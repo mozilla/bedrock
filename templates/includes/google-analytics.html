@@ -8,13 +8,14 @@ _gaq.push(['_setAllowAnchor', true]);
 _gaq.push(['_trackPageview']);
 
 {% if settings.GA_ACCOUNT_CODE %}
+{% set GA_FILE = 'u/ga_debug.js' if settings.TEMPLATE_DEBUG else 'ga.js' %}
 (function() {
     var ga = document.createElement('script');
     ga.type = 'text/javascript';
     ga.async = true;
 
     var prefix = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www');
-    ga.src = prefix + '.google-analytics.com/ga.js';
+    ga.src = prefix + '.google-analytics.com/{{ GA_FILE }}';
 
     var s = document.getElementsByTagName('script')[0];
     s.parentNode.insertBefore(ga, s);

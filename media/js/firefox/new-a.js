@@ -15,7 +15,7 @@
 
             window.setTimeout(function() {
                 window.location.href = $link.attr('href');
-            }, 300);
+            }, 500);
         });
     });
 })(window, window.jQuery, window._gaq);

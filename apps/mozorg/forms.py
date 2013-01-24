@@ -70,7 +70,7 @@ class PrivacyWidget(widgets.CheckboxInput):
         input_txt = super(PrivacyWidget, self).render(name, value, attrs)
 
         policy_txt = _(u'I’m okay with you handling this info as you explain '
-                       u'in your <a href="%s">Privacy Policy</a>')
+                       u'in your <a href="%s" target="_top">Privacy Policy</a>')
         return mark_safe(
             '<label for="%s" class="privacy-check-label">'
             '%s '

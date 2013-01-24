@@ -6,9 +6,16 @@ from django.views.decorators.csrf import csrf_exempt
 
 import basket
 import l10n_utils
+from commonware.decorators import xframe_allow
 
 from mozorg import email_contribute
 from mozorg.forms import ContributeForm, NewsletterForm
+
+
+@xframe_allow
+def hacks_newsletter(request):
+    return l10n_utils.render(request,
+                             'mozorg/newsletter/hacks.mozilla.org.html')
 
 
 @csrf_exempt

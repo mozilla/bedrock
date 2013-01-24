@@ -3,7 +3,6 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from django.conf.urls.defaults import *
-from redirects.util import redirect
 from util import page
 import views
 
@@ -22,6 +21,8 @@ urlpatterns = patterns('',
     page('mobile', 'mozorg/mobile.html'),
     page('ITU', 'mozorg/itu.html'),
 
+    url('^newsletter/hacks\.mozilla\.org/$', views.hacks_newsletter,
+        name='mozorg.hacks_newsletter'),
     url('^contribute/$', views.contribute, name='mozorg.contribute',
         kwargs={'template': 'mozorg/contribute.html',
                 'return_to_form': False}),
