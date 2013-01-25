@@ -10,6 +10,7 @@ from django.test.client import Client
 
 from jingo import env
 from jinja2 import FileSystemLoader
+from jinja2.nodes import Block
 from mock import patch
 from nose.plugins.skip import SkipTest
 from nose.tools import eq_, ok_
@@ -20,6 +21,20 @@ from mozorg.tests import TestCase
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test_files')
 TEMPLATE_DIRS = (os.path.join(ROOT, 'templates'),)
+
+
+class TestL10nBlocks(TestCase):
+    def test_l10n_block_locales(self):
+        """
+        Parsing an l10n block with locales info should put that info
+        on the node.
+        """
+        tree = env.parse("""{% l10n dude locales=ru,es-ES,fr 20121212 %}
+                              This stuff is totally translated.
+                            {% endl10n %}""")
+        l10n_block = tree.find(Block)
+        self.assertEqual(l10n_block.locales, ['ru', 'es-ES', 'fr'])
+        self.assertEqual(l10n_block.version, 20121212)
 
 
 @patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
