@@ -35,5 +35,9 @@ STATSD_PORT = 8125
 STATSD_PREFIX = 'bedrock'
 STATSD_CLIENT = 'django_statsd.clients.normal'
 
+# Settings for Download Firefox Facebook tab
+#FACEBOOK_PAGE_NAMESPACE = ''
+#FACEBOOK_APP_ID = ''
+
 # Google Apps tracking code
 GA_ACCOUNT_CODE = ''
