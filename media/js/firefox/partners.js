@@ -14,6 +14,8 @@
             return false;
         });
 
+        var $giantfox = $('#giantfox');
+
         $('.view-section').on('click', function(e) {
             e.preventDefault();
 
@@ -48,6 +50,14 @@
             });
         });
 
+        $('a[data-section="os-partners"]').on('click', function() {
+            $giantfox.css('left', '-48%');
+        });
+
+        $('a[data-section="os-overview"]').on('click', function() {
+            $giantfox.css('left', '52%');
+        });
+
         var controller = $.superscrollorama();
 
         var tweens = {};
@@ -65,6 +75,11 @@
         tweens.slide_left = {
             from: { css: { right: 150, opacity: 0 }, immediateRender: true },
             to: { css: { right: 0, opacity: 1 } }
+        };
+
+        tweens.giantfox = {
+            from: { css: { left: '60%', opacity: 0 }, immediateRender: true },
+            to: { css: { left: '52%', opacity: 1 } }
         };
 
         $('.tween').each(function(i, el) {
@@ -87,42 +102,16 @@
             }
         });
 
-        /*
         controller.addTween(
-            '#os-overview-headline', // scroll target
+            '#giantfox',
             TweenMax.fromTo(
-                $('#os-overview-headline'), // element to tween
-                0.4, // tween duration
-                tweens.slide_up.from,
-                tweens.slide_up.to
-            ),
-            100, // scroll length of animation
-            -250 // animation offset. begin animation 200px *above* target
-        );
-
-        controller.addTween(
-            '#os-overview-intro',
-            TweenMax.fromTo(
-                $('#os-overview-intro'),
+                $('#giantfox'),
                 0.4,
-                parallax_from,
-                parallax_to
+                tweens.giantfox.from,
+                tweens.giantfox.to
             ),
             100,
-            -250
+            -70
         );
-
-        controller.addTween(
-            '#os-overview-logos',
-            TweenMax.fromTo(
-                $('#os-overview-logos'),
-                0.4,
-                parallax_from,
-                parallax_to
-            ),
-            100,
-            -250
-        );
-        */
     //});
 })(window.jQuery, window.TweenMax, window.Quad);
