@@ -86,6 +86,11 @@ $(document).ready(function() {
                     }
                 });
 
+                // show share overlay on pause
+                videoJS.addEvent('pause', function() {
+                    showOverlay(false);
+                });
+
                 // Flash player fails to initialize dynamically inserted source
                 // elements. Set up the sources after the player exists. See
                 // http://help.videojs.com/discussions/questions/350-flash-fallback-in-ie8
