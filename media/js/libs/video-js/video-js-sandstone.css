@@ -172,3 +172,7 @@
     background: rgba(30, 30, 30, 0.9);
     color: #fff;
 }
+
+.vjs-sandstone-share:focus {
+    outline: 1px dotted #fff;
+}
