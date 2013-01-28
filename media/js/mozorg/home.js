@@ -455,7 +455,7 @@ $(document).ready(function() {
         $close.attr('title', Mozilla.page.Home.closeText)
             .click(function(e) { close(); })
             .keypress(function(e) {
-                if (e.keyCode == 13) {
+                if (e.keyCode === 13 || e.keyCode === 32) {
                     e.preventDefault(e);
                     close();
                 }
@@ -472,7 +472,7 @@ $(document).ready(function() {
 
         $thumb.click(function(e) { open(); })
             .keypress(function(e) {
-                if (e.keyCode == 13) {
+                if (e.keyCode === 13 || e.keyCode === 32) {
                     e.preventDefault(e);
                     open();
                 }
@@ -516,23 +516,45 @@ $(document).ready(function() {
     function createSocialOverlay() {
         var $overlay = $('#promo-flicks-overlay');
         $overlay.find('.video-replay').click(function(e) {
-            e.preventDefault();
-            hideOverlay();
-            if (videoJS) {
-                // let the loading and big play buttons show up again.
-                $videoContainer.find('.video-js').removeClass('vjs-moz-ended');
-                videoJS.currentTime(0);
-                videoJS.play();
+            handleReplayAction();
+        }).keypress(function(e) {
+            if (e.keyCode === 13 || e.keyCode === 32) {
+                e.preventDefault(e);
+                handleReplayAction();
             }
         });
         $overlay.find('.video-continue').click(function(e) {
-            e.preventDefault();
-            hideOverlay();
-            if (videoJS) {
-                videoJS.play();
+            handleContinueAction();
+        }).keypress(function(e) {
+            if (e.keyCode === 13 || e.keyCode === 32) {
+                e.preventDefault(e);
+                handleContinueAction();
             }
         });
         return $overlay;
+    }
+
+    // }}}
+    // {{{ handleReplayAction()
+
+    function handleReplayAction() {
+        hideOverlay();
+        if (videoJS) {
+            // let the loading and big play buttons show up again.
+            $videoContainer.find('.video-js').removeClass('vjs-moz-ended');
+            videoJS.currentTime(0);
+            videoJS.play();
+        }
+    }
+
+    // }}}
+    // {{{ handleContinueAction()
+
+    function handleContinueAction() {
+        hideOverlay();
+        if (videoJS) {
+            videoJS.play();
+        }
     }
 
     // }}}
