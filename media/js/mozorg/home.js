@@ -422,18 +422,6 @@ $(document).ready(function() {
         video.controls = 'controls';
         video.preload = 'none';
 
-        // create video sources
-        var sources = [
-            {
-                src: 'http://videos.mozilla.org/uploads/brand/State%20of%20Mozilla%202011%20(fcp2)-RC%20-%20720p%20-%20MPEG-4.mp4',
-                type: 'video/mp4'
-            },
-            {
-                src: 'http://videos.mozilla.org/uploads/brand/State%20of%20Mozilla%202011%20(fcp2)-RC%20-%20720p%20-%20MPEG-4.webm',
-                type: 'video/webm'
-            }
-        ];
-
         for (var i = 0; i < sources.length; i++) {
             var source = document.createElement('source');
             source.src = sources[i].src;
@@ -597,6 +585,14 @@ $(document).ready(function() {
         }
     ];
 
+    var sources = [{
+        src: 'http://videos.mozilla.org/uploads/brand/State%20of%20Mozilla%202011%20(fcp2)-RC%20-%20720p%20-%20MPEG-4.mp4',
+        type: 'video/mp4'
+    }, {
+        src: 'http://videos.mozilla.org/uploads/brand/State%20of%20Mozilla%202011%20(fcp2)-RC%20-%20720p%20-%20MPEG-4.webm',
+        type: 'video/webm'
+    }];
+
     var currentSize = getSize();
     var $thumb = createThumb();
     var $link = $thumb.next();
@@ -633,5 +629,11 @@ $(document).ready(function() {
             videoJS.pause();
         }
     });
+
+    // video.js configuration of Flash player. If the SWF is moved to a
+    // Mozilla CDN in the future, a crossdomain.xml file will need to be
+    // configured before the SWF will work.
+    var base = location.protocol + '//' + location.host;
+    _V_.options.flash.swf = base + '/media/js/libs/video-js/video-js.swf';
 
 });
