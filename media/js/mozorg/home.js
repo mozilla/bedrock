@@ -86,9 +86,11 @@ $(document).ready(function() {
                     }
                 });
 
-                // show share overlay on pause
+                // show share overlay on pause if the player is opened
                 videoJS.addEvent('pause', function() {
-                    showOverlay(false);
+                    if (state === 'opened') {
+                        showOverlay(false);
+                    }
                 });
 
                 // Flash player fails to initialize dynamically inserted source
