@@ -586,10 +586,10 @@ $(document).ready(function() {
     ];
 
     var sources = [{
-        src: 'http://videos.mozilla.org/uploads/brand/State%20of%20Mozilla%202011%20(fcp2)-RC%20-%20720p%20-%20MPEG-4.mp4',
+        src: 'http://videos-cdn.mozilla.net/serv/firefoxflicks/FireFoxFlicks_2013-Teaser.mp4',
         type: 'video/mp4'
     }, {
-        src: 'http://videos.mozilla.org/uploads/brand/State%20of%20Mozilla%202011%20(fcp2)-RC%20-%20720p%20-%20MPEG-4.webm',
+        src: 'http://videos-cdn.mozilla.net/serv/firefoxflicks/FireFoxFlicks_2013-Teaser.webm',
         type: 'video/webm'
     }];
 
