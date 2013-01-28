@@ -86,6 +86,11 @@ $(document).ready(function() {
                     }
                 });
 
+                // show share overlay on pause
+                videoJS.addEvent('pause', function() {
+                    showOverlay(false);
+                });
+
                 // Flash player fails to initialize dynamically inserted source
                 // elements. Set up the sources after the player exists. See
                 // http://help.videojs.com/discussions/questions/350-flash-fallback-in-ie8
@@ -422,18 +427,6 @@ $(document).ready(function() {
         video.controls = 'controls';
         video.preload = 'none';
 
-        // create video sources
-        var sources = [
-            {
-                src: 'http://videos-cdn.mozilla.net/serv/firefoxflicks/FireFoxFlicks_2013-Teaser.mp4',
-                type: 'video/mp4'
-            },
-            {
-                src: 'http://videos-cdn.mozilla.net/serv/firefoxflicks/FireFoxFlicks_2013-Teaser.webm',
-                type: 'video/webm'
-            }
-        ];
-
         for (var i = 0; i < sources.length; i++) {
             var source = document.createElement('source');
             source.src = sources[i].src;
@@ -455,7 +448,7 @@ $(document).ready(function() {
         $close.attr('title', Mozilla.page.Home.closeText)
             .click(function(e) { close(); })
             .keypress(function(e) {
-                if (e.keyCode == 13) {
+                if (e.keyCode === 13 || e.keyCode === 32) {
                     e.preventDefault(e);
                     close();
                 }
@@ -472,7 +465,7 @@ $(document).ready(function() {
 
         $thumb.click(function(e) { open(); })
             .keypress(function(e) {
-                if (e.keyCode == 13) {
+                if (e.keyCode === 13 || e.keyCode === 32) {
                     e.preventDefault(e);
                     open();
                 }
@@ -516,23 +509,45 @@ $(document).ready(function() {
     function createSocialOverlay() {
         var $overlay = $('#promo-flicks-overlay');
         $overlay.find('.video-replay').click(function(e) {
-            e.preventDefault();
-            hideOverlay();
-            if (videoJS) {
-                // let the loading and big play buttons show up again.
-                $videoContainer.find('.video-js').removeClass('vjs-moz-ended');
-                videoJS.currentTime(0);
-                videoJS.play();
+            handleReplayAction();
+        }).keypress(function(e) {
+            if (e.keyCode === 13 || e.keyCode === 32) {
+                e.preventDefault(e);
+                handleReplayAction();
             }
         });
         $overlay.find('.video-continue').click(function(e) {
-            e.preventDefault();
-            hideOverlay();
-            if (videoJS) {
-                videoJS.play();
+            handleContinueAction();
+        }).keypress(function(e) {
+            if (e.keyCode === 13 || e.keyCode === 32) {
+                e.preventDefault(e);
+                handleContinueAction();
             }
         });
         return $overlay;
+    }
+
+    // }}}
+    // {{{ handleReplayAction()
+
+    function handleReplayAction() {
+        hideOverlay();
+        if (videoJS) {
+            // let the loading and big play buttons show up again.
+            $videoContainer.find('.video-js').removeClass('vjs-moz-ended');
+            videoJS.currentTime(0);
+            videoJS.play();
+        }
+    }
+
+    // }}}
+    // {{{ handleContinueAction()
+
+    function handleContinueAction() {
+        hideOverlay();
+        if (videoJS) {
+            videoJS.play();
+        }
     }
 
     // }}}
@@ -575,6 +590,14 @@ $(document).ready(function() {
         }
     ];
 
+    var sources = [{
+        src: 'http://videos-cdn.mozilla.net/serv/firefoxflicks/FireFoxFlicks_2013-Teaser.mp4',
+        type: 'video/mp4'
+    }, {
+        src: 'http://videos-cdn.mozilla.net/serv/firefoxflicks/FireFoxFlicks_2013-Teaser.webm',
+        type: 'video/webm'
+    }];
+
     var currentSize = getSize();
     var $thumb = createThumb();
     var $link = $thumb.next();
@@ -611,5 +634,11 @@ $(document).ready(function() {
             videoJS.pause();
         }
     });
+
+    // video.js configuration of Flash player. If the SWF is moved to a
+    // Mozilla CDN in the future, a crossdomain.xml file will need to be
+    // configured before the SWF will work.
+    var base = location.protocol + '//' + location.host;
+    _V_.options.flash.swf = base + '/media/js/libs/video-js/video-js.swf';
 
 });
