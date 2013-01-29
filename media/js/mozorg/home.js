@@ -86,12 +86,9 @@ $(document).ready(function() {
                     }
                 });
 
-                // show share overlay on pause if the player is opened
-                videoJS.addEvent('pause', function() {
-                    if (state === 'opened') {
-                        showOverlay(false);
-                    }
-                });
+                // Ideally, we'd like to show the overlay on pause. Video-js
+                // Issue 159 prevents us from doing so:
+                // https://github.com/zencoder/video-js/issues/159
 
                 // Flash player fails to initialize dynamically inserted source
                 // elements. Set up the sources after the player exists. See
