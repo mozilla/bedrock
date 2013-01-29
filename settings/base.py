@@ -216,6 +216,8 @@ MINIFY_BUNDLES = {
         ),
         'home': (
             'css/home.less',
+            'js/libs/video-js/video-js.css',
+            'js/libs/video-js/video-js-sandstone.css',
         ),
         'marketplace': (
             'css/marketplace.less',
@@ -381,6 +383,11 @@ MINIFY_BUNDLES = {
             'js/mozilla-expanders.js',
             'js/geolocation-demo.js',
             'js/footer-email-form.js',
+        ),
+        'home': (
+            'js/mozilla-pager.js',
+            'js/libs/video-js/video.js',
+            'js/mozorg/home.js'
         ),
         'marketplace': (
             'js/nav-main-resp.js',
