@@ -1,7 +1,7 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
-;(function($, TweenMax, Quad) {
+;(function($, TweenMax, TimelineLite, Quad) {
     'use strict';
 
     // i heard document.ready isn't necessary anymore. just trying it out...
@@ -62,19 +62,14 @@
 
         var tweens = {};
 
-        tweens.slide_up = {
-            from: { css: { top: 50, opacity: 0.2 }, immediateRender: true },
+        tweens.slide_down = {
+            from: { css: { top: -80, opacity: 0 }, immediateRender: true },
             to: { css: { top: 0, opacity: 1 } }
         };
 
-        tweens.slide_right = {
-            from: { css: { left: 150, opacity: 0 }, immediateRender: true },
-            to: { css: { left: 0, opacity: 1 } }
-        };
-
-        tweens.slide_left = {
-            from: { css: { right: 150, opacity: 0 }, immediateRender: true },
-            to: { css: { right: 0, opacity: 1 } }
+        tweens.article_down = {
+            from: { css: { top: -80 }, immediateRender: true },
+            to: { css: { top: 0 } }
         };
 
         tweens.giantfox = {
@@ -82,22 +77,42 @@
             to: { css: { left: '52%', opacity: 1 } }
         };
 
-        $('.tween').each(function(i, el) {
-            var $el = $(el);
+        $('.partner-article').each(function(i, article) {
+            var $article = $(article);
 
-            var el_tween = $el.data('tween') || 'slide_up';
+            var my_tweens = [], tween, $tweener;
 
-            if (el_tween) {
+            if ($article.attr('id') !== 'overview') {
+                tween = TweenMax.fromTo(
+                    $article,
+                    1,
+                    tweens.article_down.from,
+                    tweens.article_down.to
+                );
+
+                my_tweens.push(tween);
+            }
+
+            // build tween for each element in $article with class of tween
+            $article.find('.tween').each(function(i, tweener) {
+                $tweener = $(tweener);
+
+                tween = TweenMax.fromTo(
+                    $tweener,
+                    0.5,
+                    tweens.slide_down.from,
+                    tweens.slide_down.to
+                );
+
+                my_tweens.push(tween);
+            });
+
+            if (my_tweens.length > 0) {
                 controller.addTween(
-                    '#' + $el.attr('id'), // scroll target
-                    TweenMax.fromTo(
-                        $el, // element to tween
-                        0.4, // tween duration
-                        tweens[el_tween].from,
-                        tweens[el_tween].to
-                    ),
-                    100, // scroll length of tween
-                    -250 // animation offset. begin 200px above scroll target
+                    '#' + $article.attr('id'),
+                    (new TimelineLite()).append(my_tweens),
+                    400, // scroll duration
+                    0 // start offset
                 );
             }
         });
@@ -114,4 +129,4 @@
             -70
         );
     //});
-})(window.jQuery, window.TweenMax, window.Quad);
+})(window.jQuery, window.TweenMax, window.TimelineLite, window.Quad);
