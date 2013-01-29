@@ -438,6 +438,7 @@ MINIFY_BUNDLES = {
         'partners': (
             'js/libs/tweenmax.min.js',
             'js/libs/superscrollorama.js',
+            'js/libs/jquery.spritely-0.6.1.js',
             'js/firefox/partners.js',
         ),
     }
