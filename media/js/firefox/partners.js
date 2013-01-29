@@ -4,7 +4,7 @@
 
 $(document).ready(function()
 {
-    $('#foxtail').sprite({fps: 24, no_of_frames: 44, rewind: true});
+    $('#foxtail').sprite({fps: 12, no_of_frames: 44, rewind: true});
 });
 
 
