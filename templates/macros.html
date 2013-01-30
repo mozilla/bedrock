@@ -73,3 +73,11 @@
     </div>
   {% endif %}
 {% endmacro %}
+
+{% macro facebook_share_url(url) -%}
+  {{ 'https://www.facebook.com/sharer/sharer.php?u=%s'|format(url|urlencode)|e }}
+{%- endmacro %}
+
+{% macro twitter_share_url(url, tweet_text) -%}
+  {{ 'https://www.twitter.com/intent/tweet?url=%s&text=%s'|format(url|urlencode, tweet_text|urlencode)|e }}
+{%- endmacro %}
