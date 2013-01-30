@@ -87,3 +87,10 @@ function getFirefoxMasterVersion()
 
     return version;
 }
+
+        
+// Create text translation function using #strings element.
+var $strings = $('#strings');
+window.trans = function trans(stringId) {
+    return $strings.data(stringId);
+};

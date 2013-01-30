@@ -216,6 +216,8 @@ MINIFY_BUNDLES = {
         ),
         'home': (
             'css/home.less',
+            'js/libs/video-js/video-js.css',
+            'js/libs/video-js/video-js-sandstone.css',
         ),
         'marketplace': (
             'css/marketplace.less',
@@ -275,6 +277,9 @@ MINIFY_BUNDLES = {
         ),
         'annual_2011': (
             'css/foundation/annual2011.less',
+        ),
+        'partners': (
+            'css/partners.less',
         ),
     },
     'js': {
@@ -379,6 +384,11 @@ MINIFY_BUNDLES = {
             'js/geolocation-demo.js',
             'js/footer-email-form.js',
         ),
+        'home': (
+            'js/mozilla-pager.js',
+            'js/libs/video-js/video.js',
+            'js/mozorg/home.js'
+        ),
         'marketplace': (
             'js/nav-main-resp.js',
             'js/mozilla-pager.js',
@@ -430,6 +440,10 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.jcarousel.min.js',
             'js/annual2011.js',
+        ),
+        'partners': (
+            'js/libs/mozcountdown.js',
+            'js/partners.js',
         ),
     }
 }

@@ -10,6 +10,10 @@ from util import redirect
 
 def tabzilla_css_redirect(r):
     ext = '.less' if settings.TEMPLATE_DEBUG else '-min'
+    if settings.LESS_PREPROCESS:
+        from jingo_minify.helpers import build_less
+        build_less('css/tabzilla.less')
+
     return '%scss/tabzilla%s.css' % (settings.MEDIA_URL, ext)
 
 

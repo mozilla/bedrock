@@ -71,3 +71,20 @@ class TabzillaRedirectTests(TestCase):
                 response = self.client.get(tabzilla_css_url)
         eq_(response.status_code, 301)
         eq_(response['Location'], 'http://example.com/css/tabzilla.less.css')
+
+    @patch('jingo_minify.helpers.build_less')
+    def test_tabzilla_css_less_processing(self, less_mock):
+        """
+        The tabzilla.less file should be compiled by the redirect if
+        settings.LESS_PREPROCESS is True.
+        """
+        tabzilla_css_url = '/en-US/tabzilla/media/css/tabzilla.css'
+        with patch.object(settings, 'LESS_PREPROCESS', False):
+            with self.activate('en-US'):
+                self.client.get(tabzilla_css_url)
+        eq_(less_mock.call_count, 0)
+
+        with patch.object(settings, 'LESS_PREPROCESS', True):
+            with self.activate('en-US'):
+                self.client.get(tabzilla_css_url)
+        eq_(less_mock.call_count, 1)
