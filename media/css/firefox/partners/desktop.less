@@ -71,12 +71,22 @@
 
 #giantfox {
     width: 900px;
-    height: 400px;
-    background: #d84a12;
+    height: 600px;
+    background: url(/media/img/firefox/partners/firefoxos-giantfox-back.png) no-repeat 0 0 ;
     position: absolute;
     top: 60px;
-    left: 52%;
+    left: 400px;
     .transition();
+    #giantfox-foreground {
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        width: 900px;
+        height: 600px;
+        background: url(/media/img/firefox/partners/firefoxos-giantfox-front.png) no-repeat 100% 100%;
+        z-index: 110;
+    }
 }
 
 /* }}} */

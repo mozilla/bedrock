@@ -58,11 +58,11 @@ $(document).ready(function()
         });
 
         $('a[data-section="os-partners"]').on('click', function() {
-            $giantfox.css('left', '-48%');
+            $giantfox.css('left', '-720px');
         });
 
         $('a[data-section="os-overview"]').on('click', function() {
-            $giantfox.css('left', '52%');
+            $giantfox.css('left', '600px');
         });
 
         var controller = $.superscrollorama();
@@ -80,8 +80,8 @@ $(document).ready(function()
         };
 
         tweens.giantfox = {
-            from: { css: { left: '60%', opacity: 0 }, immediateRender: true },
-            to: { css: { left: '52%', opacity: 1 } }
+            from: { css: { left: '800px', opacity: 0 }, immediateRender: true },
+            to: { css: { left: '600px', opacity: 1 } }
         };
 
         $('.partner-article').each(function(i, article) {
