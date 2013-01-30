@@ -45,7 +45,7 @@ class TestL10nCheck(unittest.TestCase):
         self.assertEqual(baz['version'], 20110914)
 
         blocks = parser.parse('foo bar bizzle what? '
-                              '{% l10n baz, 20110914 %}'
+                              '{% l10n baz ; locales=ru,bn-IN ; 20110914 %}'
                               'mumble'
                               '{% endl10n %}'
                               'qux',
@@ -53,6 +53,7 @@ class TestL10nCheck(unittest.TestCase):
 
         baz = self._get_block(blocks, 'baz')
         self.assertEqual(baz['main'], 'mumble')
+        self.assertEqual(baz['locales'], ['ru', 'bn-IN'])
 
     def test_content_halt(self):
         """Make sure the parser will halt on the content block if told
