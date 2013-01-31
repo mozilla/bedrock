@@ -1,18 +1,13 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
-
-$(document).ready(function()
-{
-    $('#foxtail').sprite({fps: 12, no_of_frames: 44, rewind: true});
-});
-
-
 ;(function($, TweenMax, TimelineLite, Quad) {
     'use strict';
 
     // i heard document.ready isn't necessary anymore. just trying it out...
     //$(document).ready(function () {
+        $('#foxtail').sprite({fps: 24, no_of_frames: 44, rewind: true});
+
         // Smooth scroll-to for left menu navigation
         $('#partner-nav a, #nav-main-menu a').click(function() {
             var elementClicked = $(this).attr("href");
@@ -70,12 +65,12 @@ $(document).ready(function()
         var tweens = {};
 
         tweens.slide_down = {
-            from: { css: { top: -80, opacity: 0 }, immediateRender: true },
+            from: { css: { top: 80, opacity: 0 }, immediateRender: true },
             to: { css: { top: 0, opacity: 1 } }
         };
 
         tweens.article_down = {
-            from: { css: { top: -80 }, immediateRender: true },
+            from: { css: { top: 100 }, immediateRender: true },
             to: { css: { top: 0 } }
         };
 
@@ -92,7 +87,7 @@ $(document).ready(function()
             if ($article.attr('id') !== 'overview') {
                 tween = TweenMax.fromTo(
                     $article,
-                    1,
+                    0.5,
                     tweens.article_down.from,
                     tweens.article_down.to
                 );
@@ -106,7 +101,7 @@ $(document).ready(function()
 
                 tween = TweenMax.fromTo(
                     $tweener,
-                    0.5,
+                    0.6,
                     tweens.slide_down.from,
                     tweens.slide_down.to
                 );
@@ -118,8 +113,8 @@ $(document).ready(function()
                 controller.addTween(
                     '#' + $article.attr('id'),
                     (new TimelineLite()).append(my_tweens),
-                    400, // scroll duration
-                    0 // start offset
+                    200, // scroll duration
+                    -200 // start offset
                 );
             }
         });
@@ -132,7 +127,7 @@ $(document).ready(function()
                 tweens.giantfox.from,
                 tweens.giantfox.to
             ),
-            100,
+            200,
             -70
         );
     //});
