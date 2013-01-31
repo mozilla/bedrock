@@ -4,27 +4,8 @@
 
 /* {{{ Template overrides */
 
-#wrapper {
-    width: auto;
-    padding-bottom: 0;
-}
-
-#colophon {
-    margin-top: 0;
-}
-
-#masthead,
-.article-content {
-    width: @widthDesktop - (@gridGutterWidth * 2);
-    margin: 0 auto;
-    position: relative;
-}
-
 #masthead {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    margin-left: -500px;
+    margin-bottom: -64px;
 }
 
 #article-wrapper {
@@ -33,9 +14,7 @@
 }
 
 .partner-article {
-    width: 100%;
     overflow: hidden;
-    position: relative;
     height: 800px;
     background: #eee;
     .clearfix();
@@ -55,25 +34,24 @@
             left: 200%;
         }
     }
-
     .article-content {
-        padding: (@baseLine * 3) 0;
-        display: block;
-        margin: 0 auto;
-        padding-left: @gridGutterWidth;
-        padding-right: @gridGutterWidth;
-        position: relative;
-        .clearfix;
         h2 {
             .span(8);
             margin-bottom: @baseLine;
-            position: relative;
         }
         .intro {
             .span(8);
-            position: relative;
         }
-        .logos { position: relative; }
+    }
+
+}
+
+/* }}} */
+/* {{{ Back to top links */
+
+h2 {
+    .top {
+        display: none;
     }
 }
 
@@ -83,6 +61,9 @@
 #marketplace.partner-article { top: 2400px; }
 #android.partner-article { top: 3200px; }
 */
+
+/* }}} */
+/* {{{ Giant Fox */
 
 #giantfox {
     width: 900px;
@@ -124,6 +105,29 @@
 
 #android {
     z-index: 113; // 1 higher than #phone-container
+}
+
+/* }}} */
+/* {{{ Firefox OS section */
+
+#os {
+    h2 {
+        font-size: 78px;
+        padding-top: 20px;
+        padding-bottom: 80px;
+    }
+    padding-bottom: 200px;
+}
+
+/* }}} */
+/* {{{ Firefox for Android section */
+
+#android {
+    h2 {
+        font-size: 78px;
+        padding-top: 20px;
+        padding-bottom: 80px;
+    }
 }
 
 /* }}} */
@@ -220,4 +224,3 @@
 }
 
 /* }}} */
-

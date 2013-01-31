@@ -13,14 +13,59 @@
         background: rgba(0,0,0,0.1);
         border-radius: 3px;
         float: left;
-        width: 120px;
+        width: 110px;
         padding: 15px 10px;
         text-align: center;
         color: #888;
-        margin: 0 10px 10px 0;
+        margin: 0 5px 10px 5px;
     }
 }
 
+
+
+/* {{{ Template overrides */
+
+#wrapper {
+    width: auto;
+    padding-bottom: 0;
+}
+
+#colophon {
+    margin-top: 0;
+}
+
+.partner-article {
+    width: 100%;
+    position: relative;
+    .clearfix();
+    section {
+        width: 100%;
+    }
+
+    .article-content {
+        width: @widthDesktop;
+        padding: (@baseLine * 2) 0;
+        display: block;
+        margin: 0 auto;
+        padding-left: @gridGutterWidth;
+        padding-right: @gridGutterWidth;
+        position: relative;
+        .clearfix;
+        h2 {
+            .span-all();
+            margin-bottom: @baseLine;
+            position: relative;
+        }
+        .intro {
+            .span-all();
+            position: relative;
+            clear: both;
+        }
+        .logos { position: relative; }
+    }
+}
+
+/* }}} */
 /* {{{ Left menu */
 
 #partner-nav {
@@ -73,6 +118,70 @@
 }
 
 /* }}} */
+/* {{{ Back to top links */
+
+h2 {
+    position: relative;
+    .top {
+        background: url(/media/img/firefox/partners/top.png) 50% 50% no-repeat;
+        position: absolute;
+        display: block;
+        top: 0;
+        left: -40px;
+        height: 40px;
+        width: 40px;
+        line-height: 80px;
+        overflow: hidden;
+        text-indent: 100%;
+    }
+}
+
+/* }}} */
+/* {{{ Overview Article */
+
+#overview {
+    h2 {
+        text-align: center;
+        font-size: 30px;
+    }
+    .intro {
+        text-align: center;
+    }
+}
+
+/* }}} */
+/* {{{ Firefox OS section */
+
+#os {
+    #gradient > .vertical(#0f9fdb, #0055a0);
+    color: #fff;
+    text-shadow: none;
+    h2 {
+        font-size: 30px;
+        .span-all();
+        color: #fff;
+        text-shadow: none;
+    }
+    padding-bottom: 200px;
+}
+
+/* }}} */
+/* {{{ Firefox for Android section */
+
+#android {
+    #gradient > .vertical(#0f9fdb, #0055a0);
+    color: #fff;
+    text-shadow: none;
+    h2 {
+        font-size: 30px;
+        .span-all();
+        color: #fff;
+        text-shadow: none;
+    }
+    padding-bottom: 200px;
+}
+
+/* }}} */
 /* {{{  Desktop Layout */
 @media only screen and (min-width: @widthDesktop) {
     @import "partners/desktop.less";
@@ -84,8 +193,17 @@
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
 
     #masthead,
-    .partner-article {
-      width: @widthTablet;
+    #partner-nav,
+    .partner-article .article-content {
+        width: @widthTablet - 40px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #overview {
+        h2 {
+            font-size: 48px;
+        }
     }
 
 }
@@ -95,8 +213,11 @@
 @media only screen and (max-width: @breakTablet) {
 
     #masthead,
-    .partner-article {
-      width: @widthMobile;
+    #partner-nav,
+    .partner-article .article-content {
+        width: @widthMobile - 20px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
 }
@@ -106,8 +227,17 @@
 @media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
 
     #masthead,
-    .partner-article {
-        width: @widthMobileLandscape;
+    #partner-nav,
+    .partner-article .article-content {
+        width: @widthMobileLandscape - 20px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #overview {
+        h2 {
+            font-size: 42px;
+        }
     }
 
 }
