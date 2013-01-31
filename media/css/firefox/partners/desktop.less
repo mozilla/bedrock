@@ -90,60 +90,6 @@
 }
 
 /* }}} */
-/* {{{ Left menu */
-
-#partner-nav {
-    position: fixed;
-    z-index: 1000;
-    top: 300px;
-    left: 30px;
-    ul {
-        padding: 0;
-        margin: 0;
-        background: #fff;
-        @shadow: 0 1px 2px rgba(0,0,0,0.6);
-        .box-shadow(@shadow);
-        border-radius: 3px;
-        li {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            a {
-                display: block;
-                width: 60px;
-                height: 60px;
-                background: #fff url(/media/img/firefox/partners/menu-icons.png) 0 0 no-repeat;
-                text-indent: 100%;
-                white-space: nowrap;
-                overflow: hidden;
-                @shadow: 0 -1px rgba(0,0,0,0.1) inset;
-                .box-shadow(@shadow);
-                .transition(background-color ease-out .3s);
-                &:hover {
-                    background-color: #15aaff;
-                    .transition(background-color ease-in .1s);
-                }
-            }
-            &:first-child a {
-                border-top-left-radius: 3px;
-                border-top-right-radius: 3px;
-            }
-            &:last-child a {
-                border-bottom-left-radius: 3px;
-                border-bottom-right-radius: 3px;
-            }
-            &#menu-os          a { background-position: 0  -60px; }
-            &#menu-marketplace a { background-position: 0 -120px; }
-            &#menu-android     a { background-position: 0 -180px; }
-            &#menu-overview    a:hover { background-position: -60px   0px; }
-            &#menu-os          a:hover { background-position: -60px -60px; }
-            &#menu-marketplace a:hover { background-position: -60px -120px; }
-            &#menu-android     a:hover { background-position: -60px -180px; }
-        }
-    }
-}
-
-/* }}} */
 /* {{{ Overview Article */
 
 #overview {
@@ -154,6 +100,60 @@
         .offset(1);
         padding-top: 20px;
         padding-bottom: 80px;
+    }
+}
+
+/* }}} */
+/* {{{ Left menu */
+
+#partner-nav {
+    position: fixed;
+    z-index: 1000;
+    top: 300px;
+    left: 30px;
+    ul {
+        li {
+            display: block;
+            float: none;
+            width: 60px;
+            a {
+                @shadow: 0 -1px rgba(0,0,0,0.1) inset;
+                .box-shadow(@shadow);
+            }
+            &:first-child a {
+                border-radius: 3px 3px 0 0;
+            }
+            &:last-child a {
+                border-radius: 0 0 3px 3px;
+            }
+        }
+    }
+}
+
+/* }}} */
+/* {{{ Large Phone */
+
+#phone-container {
+    background: url(/media/img/firefox/partners/phone-shadow.png) 0 100% no-repeat;
+    height: 555px;
+    width: 359px;
+    position: fixed;
+    z-index: 100;
+    top: 220px;
+    left: 50%;
+    margin-left: 150px;
+    #phone {
+        background: url(/media/img/firefox/partners/phone.png) 0 0 no-repeat;
+        height: 555px;
+        width: 359px;
+    }
+    #foxtail {
+        height: 156px;
+        width: 156px;
+        position: absolute;
+        top: 110px;
+        left: 90px;
+        background: url(/media/img/firefox/partners/foxtail.png) 0 0 no-repeat;
     }
 }
 

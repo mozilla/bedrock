@@ -4,30 +4,6 @@
 
 @import "../sandstone/lib.less";
 
-#phone-container {
-    background: url(/media/img/firefox/partners/phone-shadow.png) 0 100% no-repeat;
-    height: 555px;
-    width: 359px;
-    position: fixed;
-    z-index: 100;
-    top: 220px;
-    left: 50%;
-    margin-left: 150px;
-    #phone {
-        background: url(/media/img/firefox/partners/phone.png) 0 0 no-repeat;
-        height: 555px;
-        width: 359px;
-    }
-    #foxtail {
-        height: 156px;
-        width: 156px;
-        position: absolute;
-        top: 110px;
-        left: 90px;
-        background: url(/media/img/firefox/partners/foxtail.png) 0 0 no-repeat;
-    }
-}
-
 .logos {
     list-style-type: none;
     padding: 0;
@@ -45,6 +21,58 @@
     }
 }
 
+/* {{{ Left menu */
+
+#partner-nav {
+    ul {
+        padding: 0;
+        margin: 0;
+        background: #fff;
+        @shadow: 0 1px 2px rgba(0,0,0,0.6);
+        .box-shadow(@shadow);
+        border-radius: 3px;
+        .clearfix();
+        li {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            float: left;
+            width: 25%;
+            a {
+                display: block;
+                width: auto;
+                height: 60px;
+                background: #fff url(/media/img/firefox/partners/menu-icons.png) 0 0 no-repeat;
+                text-indent: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                @shadow: -1px 0 rgba(0,0,0,0.1) inset;
+                .box-shadow(@shadow);
+                .transition(background-color ease-out .3s);
+                &:hover {
+                    background-color: #15aaff;
+                    .transition(background-color ease-in .1s);
+                }
+            }
+            &:first-child a {
+                border-radius: 3px 0 0 3px;
+            }
+            &:last-child a {
+                border-radius: 0 3px 3px 0;
+            }
+            &#menu-overview    a { background-position: 50% 0; }
+            &#menu-os          a { background-position: 50% -120px; }
+            &#menu-marketplace a { background-position: 50% -240px; }
+            &#menu-android     a { background-position: 50% -360px; }
+            &#menu-overview    a:hover { background-position: 50% -60px; }
+            &#menu-os          a:hover { background-position: 50% -180px; }
+            &#menu-marketplace a:hover { background-position: 50% -300px; }
+            &#menu-android     a:hover { background-position: 50% -420px; }
+        }
+    }
+}
+
+/* }}} */
 /* {{{  Desktop Layout */
 @media only screen and (min-width: @widthDesktop) {
 
