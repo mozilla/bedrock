@@ -34,13 +34,34 @@
             left: 200%;
         }
     }
+    .article-header {
+        .clearfix();
+        h2 {
+            float: left;
+        }
+        nav {
+            display: block;
+            float: left;
+            padding: 30px 0 0 40px;
+            a {
+                display: inline-block;
+                color: #fff;
+                background: rgba(255,255,255,0.1);
+                padding: 10px;
+                border-radius: 4px;
+                margin-left: 20px;
+            }
+        }
+    }
     .article-content {
         h2 {
-            .span(8);
+            .span(7);
+            .offset(1);
             margin-bottom: @baseLine;
         }
         .intro {
-            .span(8);
+            .span(7);
+            .offset(1);
         }
     }
 
@@ -97,6 +118,9 @@ h2 {
         padding-top: 20px;
         padding-bottom: 80px;
     }
+    .intro {
+        .offset(1);
+    }
 }
 
 #marketplace {
@@ -112,11 +136,10 @@ h2 {
 
 #os {
     h2 {
-        font-size: 78px;
-        padding-top: 20px;
-        padding-bottom: 80px;
     }
-    padding-bottom: 200px;
+    .intro {
+        padding-top: 140px;
+    }
 }
 
 /* }}} */
@@ -187,40 +210,6 @@ h2 {
 .android-phone-container {
     top: auto;
     bottom: -600px;
-}
-
-/* }}} */
-/* {{{ Firefox OS section */
-
-#os {
-    #gradient > .vertical(#0f9fdb, #0055a0);
-    color: #fff;
-    text-shadow: none;
-    h2 {
-        font-size: 78px;
-        .span(12);
-        padding-top: 20px;
-        padding-bottom: 80px;
-        color: #fff;
-        text-shadow: none;
-    }
-}
-
-/* }}} */
-/* {{{ Firefox for Android section */
-
-#android {
-    #gradient > .vertical(#0f9fdb, #0055a0);
-    color: #fff;
-    text-shadow: none;
-    h2 {
-        font-size: 78px;
-        .span(12);
-        padding-top: 20px;
-        padding-bottom: 80px;
-        color: #fff;
-        text-shadow: none;
-    }
 }
 
 /* }}} */
