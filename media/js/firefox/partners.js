@@ -1,7 +1,7 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
-;(function($, TweenMax, TimelineLite, Quad) {
+;(function($, TweenMax, TimelineLite, Power2, Quad) {
     'use strict';
 
     // i heard document.ready isn't necessary anymore. just trying it out...
@@ -17,7 +17,10 @@
         });
 
         var $giantfox = $('#giantfox');
+        var $phone = $('#phone-common');
+        var $phone_android = $('#phone-android');
 
+        // side scrolling sections
         $('.view-section').on('click', function(e) {
             e.preventDefault();
 
@@ -65,18 +68,59 @@
         var tweens = {};
 
         tweens.slide_down = {
-            from: { css: { top: 80, opacity: 0 }, immediateRender: true },
+            from: {
+                css: { top: 80, opacity: 0 },
+                immediateRender: true
+            },
             to: { css: { top: 0, opacity: 1 } }
         };
 
-        tweens.article_down = {
-            from: { css: { top: 100 }, immediateRender: true },
-            to: { css: { top: 0 } }
+        tweens.article_os = {
+            from: {
+                css: { top: 0, ease: Power2.easeOut },
+                immediateRender: true
+            },
+            to: { css: { top: -120 } }
         };
 
+        tweens.article_marketplace = {
+            from: {
+                css: { top: -120, ease: Power2.easeOut },
+                immediateRender: true
+            },
+            to: { css: { top: -240 } }
+        };
+
+        tweens.article_android = {
+            from: {
+                css: { top: -240, ease: Power2.easeOut },
+                immediateRender: true
+            },
+            to: { css: { top: -360 } }
+        };
+
+        tweens.phone_os = {
+            css: { top: 944, ease: Power2.easeInOut }
+        };
+        tweens.phone_marketplace = {
+            css: { top: 1520, ease: Power2.easeInOut },
+            onStart: function() {
+                $phone.css('z-index', 112);
+            },
+            onReverseComplete: function() {
+                $phone.css('z-index', 110);
+            }
+        };
+        tweens.phone_android = { css: { top: 2200, ease: Power2.easeInOut } };
+
         tweens.giantfox = {
-            from: { css: { left: '800px', opacity: 0 }, immediateRender: true },
-            to: { css: { left: '600px', opacity: 1 } }
+            from: {
+                css: { left: 800, opacity: 0 },
+                immediateRender: true
+            },
+            to: {
+                css: { left: 600, opacity: 1 }
+            }
         };
 
         $('.partner-article').each(function(i, article) {
@@ -85,11 +129,22 @@
             var my_tweens = [], tween, $tweener;
 
             if ($article.attr('id') !== 'overview') {
+                controller.addTween(
+                    '#' + $article.attr('id'),
+                    TweenMax.to(
+                        $phone,
+                        1,
+                        tweens['phone_' + $article.attr('id')]
+                    ),
+                    0,
+                    0
+                );
+
                 tween = TweenMax.fromTo(
                     $article,
                     0.5,
-                    tweens.article_down.from,
-                    tweens.article_down.to
+                    tweens['article_' + $article.attr('id')].from,
+                    tweens['article_' + $article.attr('id')].to
                 );
 
                 my_tweens.push(tween);
@@ -113,22 +168,34 @@
                 controller.addTween(
                     '#' + $article.attr('id'),
                     (new TimelineLite()).append(my_tweens),
-                    200, // scroll duration
+                    250, // scroll duration
                     -200 // start offset
                 );
             }
         });
 
         controller.addTween(
+            '#android',
+            TweenMax.to(
+                $phone_android,
+                0.5,
+                { css: { bottom: 0 } }
+            ),
+            0,
+            0
+        );
+
+        // BIG TAIL FIREFOX!
+        controller.addTween(
             '#giantfox',
             TweenMax.fromTo(
-                $('#giantfox'),
+                $giantfox,
                 0.4,
                 tweens.giantfox.from,
                 tweens.giantfox.to
             ),
-            200,
-            -70
+            100,
+            -200
         );
     //});
-})(window.jQuery, window.TweenMax, window.TimelineLite, window.Quad);
+})(window.jQuery, window.TweenMax, window.TimelineLite, window.Power2, window.Quad);

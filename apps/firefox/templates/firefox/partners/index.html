@@ -47,12 +47,13 @@
 
 {% block content %}
 
-<div id="phone-container">
-  <div id="phone">
+<div class="phone-container" id="phone-common">
+  <div class="phone">
     <div id="foxtail"></div>
   </div>
 </div>
 
+<div id="article-wrapper">
 <article id="overview" class="partner-article">
   <section class="section-1">
     <div class="article-content">
@@ -229,7 +230,11 @@
       </div>
     </div>
   </section>
+  <div class="phone-container android-phone-container" id="phone-android">
+    <div class="phone"></div>
+  </div>
 </article>
+</div>
 
 {% endblock %}
 
