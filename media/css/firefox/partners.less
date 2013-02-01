@@ -13,10 +13,10 @@
         background: rgba(0,0,0,0.1);
         border-radius: 3px;
         float: left;
-        width: 105px;
-        padding: 15px 10px;
+        width: 100px;
+        padding: 15px 0;
         text-align: center;
-        color: #888;
+        color: rgba(0,0,0,0.4);
         margin: 0 5px 10px 5px;
     }
 }
@@ -40,22 +40,30 @@
     .clearfix();
     section {
         width: 100%;
+        padding-top: (@baseLine * 2);
+        padding-bottom: (@baseLine);
+        border-style: solid;
+        border-width: 0 0 1px 0;
+        border-color: rgb(30,30,30);
+        border-color: rgba(0,0,0,0.1);
     }
 
     .article-header {
         position: relative;
         z-index: 100;
         width: @widthDesktop - (@gridGutterWidth * 2);
-        padding: (@baseLine * 2) 0;
+        padding: @baseLine 0;
         display: block;
         margin: 0 auto;
+        h2 {
+            margin: 0;
+        }
         nav {
             display: none;
         }
     }
     .article-content {
         width: @widthDesktop - (@gridGutterWidth * 2);
-        padding: (@baseLine * 2) 0;
         display: block;
         margin: 0 auto;
         position: relative;
@@ -151,6 +159,7 @@ h2 {
 #overview {
     h2 {
         text-align: center;
+        margin-top: 20px;
         font-size: 30px;
     }
     .intro {
@@ -165,10 +174,53 @@ h2 {
     #gradient > .vertical(#0f9fdb, #0055a0);
     color: #fff;
     text-shadow: none;
-    h3 {
-        font-size: 30px;
+    p,
+    h2,
+    h3,
+    h4 {
         color: #fff;
         text-shadow: none;
+    }
+    h3 {
+        font-size: 32px;
+    }
+    h4 {
+        font-size: 24px;
+    }
+    #os-overview {
+        padding-top: 0;
+    }
+    #os-operators-intro {
+        .left {
+            .partner-button {
+                text-align: center;
+                padding-bottom: 20px;
+                border-bottom: 1px solid rgba(0,0,0,0.2);
+                margin-bottom: 0;
+            }
+            #os-promos {
+                border-top: 1px solid rgba(255,255,255,0.2);
+                padding-top: 20px;
+                div  {
+                    margin-bottom: 20px;
+                }
+                h4 {
+                    text-transform: uppercase;
+                    font-weight: bold;
+                    font-size: 16px;
+                    letter-spacing: normal;
+                    margin-bottom: 0;
+                }
+                a {
+                    display: block;
+                    color: #ffd200;
+                    font-style: italic;
+                    &:after {
+                        content: " »";
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -226,6 +278,14 @@ h2 {
         margin-left: auto;
         margin-right: auto;
     }
+
+    .logos {
+        li {
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+    }
+
 
 }
 

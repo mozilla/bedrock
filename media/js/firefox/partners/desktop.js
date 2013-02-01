@@ -58,7 +58,7 @@
             dest.attr('data-current', 1);
         });
 
-        $('a[data-section="os-partners"]').on('click', function() {
+        $('a[data-section="os-operators"]').on('click', function() {
             $giantfox.css('left', '-720px');
         });
 
@@ -103,7 +103,7 @@
         };
 
         tweens.phone_os = {
-            css: { top: 944, ease: Power2.easeInOut }
+            css: { top: 894, ease: Power2.easeInOut }
         };
         tweens.phone_marketplace = {
             css: { top: 1520, ease: Power2.easeInOut },
