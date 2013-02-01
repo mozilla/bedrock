@@ -9,10 +9,27 @@
         $('#foxtail').sprite({fps: 12, no_of_frames: 44, rewind: true});
 
         // Smooth scroll-to for left menu navigation
-        $('#partner-nav a, #nav-main-menu a').click(function() {
+        $('#partner-nav a, #nav-main-menu a').click(function(e) {
             var elementClicked = $(this).attr("href");
-            var destination = $(elementClicked).offset().top;
-            $("html:not(:animated),body:not(:animated)").animate({ scrollTop: destination-20}, 500 );
+            var destination;
+
+            // all <article>'s have set height and position
+            switch (elementClicked) {
+                case '#overview':
+                    destination = 0;
+                    break;
+                case '#os':
+                    destination = 680;
+                    break;
+                case '#marketplace':
+                    destination = 1360;
+                    break;
+                case '#android':
+                    destination = 2040;
+                    break;
+            }
+
+            $("html:not(:animated),body:not(:animated)").animate({ scrollTop: destination }, 700);
             return false;
         });
 
@@ -59,11 +76,11 @@
         });
 
         $('a[data-section="os-operators"]').on('click', function() {
-            $giantfox.css('left', '-720px');
+            $giantfox.css('left', '-45%');
         });
 
         $('a[data-section="os-overview"]').on('click', function() {
-            $giantfox.css('left', '600px');
+            $giantfox.css('left', '45%');
         });
 
         var controller = $.superscrollorama();
@@ -83,7 +100,15 @@
                 css: { top: 0, ease: Power2.easeOut },
                 immediateRender: true
             },
-            to: { css: { top: -120 } }
+            to: {
+                css: { top: -120 },
+                onComplete: function() {
+                    $phone.css('top', '944px');
+                },
+                onReverseComplete: function() {
+                    $phone.css('top', '220px');
+                }
+            }
         };
 
         tweens.article_marketplace = {
@@ -91,7 +116,18 @@
                 css: { top: -120, ease: Power2.easeOut },
                 immediateRender: true
             },
-            to: { css: { top: -240 } }
+            to: {
+                css: { top: -240 },
+                onStart: function() {
+                    $phone.css('z-index', 112);
+                },
+                onComplete: function() {
+                    $phone.css('top', '1520px');
+                },
+                onReverseComplete: function() {
+                    $phone.css({ 'top': '944px', 'z-index': 110 });
+                }
+            }
         };
 
         tweens.article_android = {
@@ -99,22 +135,18 @@
                 css: { top: -240, ease: Power2.easeOut },
                 immediateRender: true
             },
-            to: { css: { top: -360 } }
-        };
-
-        tweens.phone_os = {
-            css: { top: 894, ease: Power2.easeInOut }
-        };
-        tweens.phone_marketplace = {
-            css: { top: 1520, ease: Power2.easeInOut },
-            onStart: function() {
-                $phone.css('z-index', 112);
-            },
-            onReverseComplete: function() {
-                $phone.css('z-index', 110);
+            to: {
+                css: { top: -360 },
+                onComplete: function() {
+                    $phone.css('top', '2200px');
+                    $phone_android.css('bottom', '0px');
+                },
+                onReverseComplete: function() {
+                    $phone.css('top', '1520px');
+                    $phone_android.css('bottom', '-600px');
+                }
             }
         };
-        tweens.phone_android = { css: { top: 2200, ease: Power2.easeInOut } };
 
         // only animate giantfox if on first section of #os
         var _animate_giantfox = function() {
@@ -125,11 +157,11 @@
 
         tweens.giantfox = {
             from: {
-                css: { left: 800, opacity: 0 },
+                css: { left: '65%', opacity: 0 },
                 immediateRender: true
             },
             to: {
-                css: { left: 500, opacity: 1 },
+                css: { left: '45%', opacity: 1 },
                 onUpdateParams: ["{self}"],
                 onUpdate: function(tween) {
                     /*
@@ -137,9 +169,9 @@
                     var progress = tween.progress();
 
                     if (progress === 0 || progress === 1) {
-                        console.log('checking...');
+                        console.log('at beginning or end');
                         var ok = _animate_giantfox();
-                        console.log(ok);
+                        console.log("can animated = " + ok);
                         if (ok) {
                             console.log('playing');
                             tween.play();
@@ -160,17 +192,6 @@
             var my_tweens = [], tween, $tweener;
 
             if ($article.attr('id') !== 'overview') {
-                controller.addTween(
-                    '#' + $article.attr('id'),
-                    TweenMax.to(
-                        $phone,
-                        1,
-                        tweens['phone_' + $article.attr('id')]
-                    ),
-                    0,
-                    0
-                );
-
                 tween = TweenMax.fromTo(
                     $article,
                     0.5,
@@ -204,17 +225,6 @@
                 );
             }
         });
-
-        controller.addTween(
-            '#android',
-            TweenMax.to(
-                $phone_android,
-                0.8,
-                { css: { bottom: 0, ease: Power2.easeOut } }
-            ),
-            0,
-            0
-        );
 
         // BIG TAIL FIREFOX!
         controller.addTween(
