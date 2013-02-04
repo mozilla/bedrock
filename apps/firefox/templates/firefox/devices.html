@@ -54,8 +54,8 @@
             <p id="fx-features"><a href="{{ php_url('/firefox/features/') }}" class="button go">{{ _('More Features') }}</a></p>
             <p id="fx-download"><a href="{{ php_url('/firefox/') }}" class="button go" onclick="dcsMultiTrack('WT.z_panel','Desktops & Laptops','WT.z_cta','download firefox','WT.z_convert','downloadfirefox','WT.dl',99);">{{ _('Download Firefox') }}</a> <br> <a href="/firefox/central/" class="go">Learn more</a></p>
           </div>
-          
-          <div id="gauge" data-latest-version="{{ latest_version }}">
+
+          <div id="gauge" data-latest-version="{{ latest_firefox_version }}">
             <img src="{{ media('img/firefox/devices/needle.png') }}" alt="" id="needle">
             <p id="gauge-slow">{{ _('Old Firefox = Sadface') }}</p>
             <p id="gauge-fast">{{ _('New Firefox = Yay!') }}</p>
@@ -66,7 +66,7 @@
               <p><strong>Now we’re talking!</strong> Feels better, doesn’t it? Welcome to the future of the Web. It’s nice here.</p>
             </div>
           </div>
-  
+
           <div id="non-fx">
             <p id="detected">Hey, looks like you’re using %BROWSER%. Why not grab Firefox and get up to speed?</p>
             <p id="notdetected">Hey, looks like you’re not using Firefox as your browser. Why not grab Firefox and get up to speed?</p>
@@ -74,7 +74,7 @@
           </div>
         </div>
       </section>
-      
+
       <section class="slide" id="smartphones-slide">
         <div class="slide-content">
           <div class="content">
@@ -88,16 +88,16 @@
                 </a>
               </p>
               <small class="download-other">
-                <a href="/legal/privacy/firefox.html">{{ _('Privacy Policy') }}</a> | 
-                <a href="/mobile/platforms">{{ _('Supported Devices') }}</a> | 
-                <a href="/mobile/{{latest_version}}/releasenotes">{{ _('Release Notes') }}</a>
+                <a href="/legal/privacy/firefox.html">{{ _('Privacy Policy') }}</a> |
+                <a href="/mobile/platforms">{{ _('Supported Devices') }}</a> |
+                <a href="/mobile/{{ latest_firefox_version }}/releasenotes">{{ _('Release Notes') }}</a>
               </small>
             </aside>
           </div>
           <p class="footnote">iPhone user? <a href="http://support.mozilla.org/en-US/kb/will-firefox-work-my-mobile-device?s=firefox+on+iphone&r=1&e=sph&as=s#w_firefox-home-for-iphone">Click here.</a></p>
         </div>
       </section>
-      
+
       <section class="slide" id="tablets-slide">
         <div class="slide-content">
           <div class="content">
@@ -111,16 +111,16 @@
                 </a>
               </p>
               <small class="download-other">
-                <a href="/legal/privacy/firefox.html">{{ _('Privacy Policy') }}</a> | 
-                <a href="/mobile/platforms">{{ _('Supported Devices') }}</a> | 
-                <a href="/mobile/{{latest_version}}/releasenotes">{{ _('Release Notes') }}</a>
+                <a href="/legal/privacy/firefox.html">{{ _('Privacy Policy') }}</a> |
+                <a href="/mobile/platforms">{{ _('Supported Devices') }}</a> |
+                <a href="/mobile/{{ latest_firefox_version }}/releasenotes">{{ _('Release Notes') }}</a>
               </small>
             </aside>
           </div>
           <p class="footnote">iPad user? <a href="http://support.mozilla.org/en-US/kb/will-firefox-work-my-mobile-device?s=firefox+on+iphone&r=1&e=sph&as=s#w_firefox-home-for-iphone">Click here.</a></p>
         </div>
       </section>
-      
+
       <section class="slide" id="addons-slide">
         <div class="slide-content">
           <div class="content">
@@ -129,7 +129,7 @@
           </div>
           <ul id="addons-list">
             <li class="addon">
-              <h3><a href="https://addons.mozilla.org/en-US/mobile/addon/adblock-plus/?src=fx-devices" rel="external"><img src="//static-ssl-cdn.addons.mozilla.net/img/uploads/addon_icons/1/1865-48.png" alt=""> {{ _('AdBlock Plus') }}</a></h3> 
+              <h3><a href="https://addons.mozilla.org/en-US/mobile/addon/adblock-plus/?src=fx-devices" rel="external"><img src="//static-ssl-cdn.addons.mozilla.net/img/uploads/addon_icons/1/1865-48.png" alt=""> {{ _('AdBlock Plus') }}</a></h3>
               <p class="desc">{{ _('Regain control and change the way that you view the Web.') }}</p>
               <ul class="add-to">
                 <li><a href="https://addons.mozilla.org/en-US/firefox/addon/adblock-plus/?src=fx-devices" onclick="dcsMultiTrack('WT.z_panel','Favorite Add-ons','WT.z_cta','Adblock Plus Desktop','WT.dl',99);">{{ _('Add to Desktop') }}</a></li>
@@ -150,13 +150,13 @@
               <ul class="add-to">
                 <li><a href="https://addons.mozilla.org/en-US/firefox/addon/speed-dial/?src=fx-devices" onclick="dcsMultiTrack('WT.z_panel','Favorite Add-ons','WT.z_cta','Speed Dial Desktop','WT.dl',99);">{{ _('Add to Desktop') }}</a></li>
                 <li><a href="https://addons.mozilla.org/en-US/mobile/addon/speed-dial/?src=fx-devices" onclick="dcsMultiTrack('WT.z_panel','Favorite Add-ons','WT.z_cta','Speed Dial Mobile','WT.dl',99);">{{ _('Add to Mobile') }}</a></li>
-              </ul>  
+              </ul>
             </li>
           </ul>
           <p class="footnote">These are just three of our favorites, but there are <a href="https://addons.mozilla.org">thousands more</a>.</p>
         </div>
       </section>
-      
+
       <section class="slide" id="sync-slide">
         <div class="slide-content">
           <div class="content">

@@ -536,6 +536,7 @@ INSTALLED_APPS = (
 
 TEMPLATE_CONTEXT_PROCESSORS += (
     'mozorg.context_processors.current_year',
+    'firefox.context_processors.latest_firefox_versions',
 )
 
 ## Auth

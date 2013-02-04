@@ -4,7 +4,6 @@
 
 from django.conf.urls.defaults import *
 from django.conf import settings
-from product_details import product_details
 
 from firefox import version_re
 from redirects.util import redirect
@@ -23,13 +22,11 @@ urlpatterns = patterns('',
     redirect('^firefox/channel/android/$', 'firefox.channel'),
     page('firefox/customize', 'firefox/customize.html'),
     page('firefox/features', 'firefox/features.html'),
-    page('firefox/fx', 'firefox/fx.html',
-         latest_version=product_details.firefox_versions['LATEST_FIREFOX_VERSION']),
+    page('firefox/fx', 'firefox/fx.html'),
     page('firefox/geolocation', 'firefox/geolocation.html',
          gmap_api_key=settings.GMAP_API_KEY),
     page('firefox/happy', 'firefox/happy.html'),
-    page('firefox/memory', 'firefox/memory.html',
-         latest_version=product_details.firefox_versions['LATEST_FIREFOX_VERSION']),
+    page('firefox/memory', 'firefox/memory.html'),
     url('^firefox/mobile/platforms/$', views.platforms,
         name='firefox.mobile.platforms'),
     page('firefox/mobile/features', 'firefox/mobile/features.html'),
@@ -43,13 +40,10 @@ urlpatterns = patterns('',
     page('firefox/performance', 'firefox/performance.html'),
     page('firefox/security', 'firefox/security.html'),
     page('firefox/installer-help', 'firefox/installer-help.html'),
-    page('firefox/speed', 'firefox/speed.html',
-         latest_version=product_details.firefox_versions['LATEST_FIREFOX_VERSION']),
+    page('firefox/speed', 'firefox/speed.html'),
     page('firefox/technology', 'firefox/technology.html'),
-    page('firefox/toolkit/download-to-your-devices', 'firefox/devices.html',
-         latest_version=product_details.firefox_versions['LATEST_FIREFOX_VERSION']),
-    page('firefox/update', 'firefox/update.html',
-         latest_version=product_details.firefox_versions['LATEST_FIREFOX_VERSION']),
+    page('firefox/toolkit/download-to-your-devices', 'firefox/devices.html'),
+    page('firefox/update', 'firefox/update.html'),
 
     page('firefox/unsupported/warning', 'firefox/unsupported-warning.html'),
     page('firefox/unsupported/EOL', 'firefox/unsupported-EOL.html'),
