@@ -4,6 +4,7 @@
 
 {% extends "base-resp.html" %}
 
+{% block body_id %}firefox-partners{% endblock %}
 {% block body_class %}sky{% endblock %}
 
 {% block extrahead %}
@@ -223,7 +224,7 @@
   <section id="marketplace-operators" class="section-2" data-pos="2">
     <div class="article-content">
       <div class="intro tween">
-        <h3>{{ _('The world’s largest developer community') }}</h4>
+        <h3>{{ _('The world’s largest developer community') }}</h3>
         <p>{{ _('Marketplace offers:') }}</p>
         <ul>
           <li>{{ _('Commitment from well-known, tier 1 developers') }}</li>
@@ -242,7 +243,7 @@
   <section id="marketplace-developers" class="section-3" data-pos="3">
     <div class="article-content">
       <div class="intro tween">
-        <h3>{{ _('Developed with developers in mind') }}</h4>
+        <h3>{{ _('Developed with developers in mind') }}</h3>
         <p>{{ _('Marketplace offers:') }}</p>
         <ul>
           <li>{{ _('HTML5 apps that provide a native-like experience') }}</li>
@@ -336,6 +337,79 @@
   </div>
 </article>
 </div>
+
+<section id="form">
+
+  <h3>{{ _('Get involved') }}</h3>
+  <p>{{ _('Contact our business development team to get on board.') }}</p>
+
+  <form action="https://www.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" id="sf-form">
+
+  <input type=hidden name="oid" value="00DU0000000IrgO">
+  <input type=hidden name="retURL" value="http://www.mozilla.org/en-US/about/partnerships?success=1">
+
+  <!--  NOTE: These fields are optional debugging elements.  Please uncomment   -->
+  <!--  these lines if you wish to test in debug mode.                          -->
+  <!--input type="hidden" name="debug" value=1-->
+  <!--input type="hidden" name="debugEmail" value=""-->
+
+  <div class="field">
+    <input id="first_name" maxlength="40" name="first_name" size="20" type="text" placeholder="{{ _('First Name') }}" class="required" />
+  </div>
+
+  <div class="field">
+    <input id="last_name" maxlength="80" name="last_name" size="20" type="text" placeholder="{{ _('Last Name') }}" class="required" />
+
+  </div>
+
+  <div class="field">
+    <input id="title" maxlength="40" name="title" size="20" type="text" placeholder="{{ _('Title') }}" />
+  </div>
+
+  <div class="field">
+    <input id="company" maxlength="40" name="company" size="20" type="text" placeholder="{{ _('Company') }}" class="required" />
+  </div>
+
+  <div class="field">
+    <input id="URL" maxlength="80" name="URL" size="20" type="text" placeholder="{{ _('Website') }}" />
+  </div>
+
+  <div class="field">
+    <input id="email" maxlength="80" name="email" size="20" type="text" placeholder="{{ _('Email') }}" class="required" />
+  </div>
+
+  <div class="field">
+    <input id="phone" maxlength="40" name="phone" size="20" type="text" placeholder="{{ _('Phone') }}" />
+  </div>
+
+  <div class="field">
+    <input id="mobile" maxlength="40" name="mobile" size="20" type="text" placeholder="{{ _('Mobile') }}" />
+  </div>
+
+  <div class="field">
+    <label for="00NU0000002pDJr">Interest:</label>
+    <select  id="00NU0000002pDJr" multiple="multiple" name="00NU0000002pDJr" title="{{ _('Interest') }}" size="7">
+      <option value="Firefox for Desktop">{{ _('Firefox for Desktop') }}</option>
+      <option value="Firefox for Android">{{ _('Firefox for Android') }}</option>
+      <option value="Firefox Marketplace">{{ _('Firefox Marketplace') }}</option>
+      <option value="Firefox OS">{{ _('Firefox OS') }}</option>
+      <option value="Persona">{{ _('Persona') }}</option>
+      <option value="{{ _('Marketing and Co-promotions">Marketing and Co-promotions') }}</option>
+      <option value="Other">{{ _('Other') }}</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <textarea name="description" placeholder="{{ _('Comments or questions?') }}"></textarea>
+  </div>
+
+  <div class="field footer-field">
+    <input type="submit" name="submit" value="{{ _('Submit my request') }}" class="button-blue" />
+  </div>
+
+  </form>
+
+</section>
 
 {% endblock %}
 

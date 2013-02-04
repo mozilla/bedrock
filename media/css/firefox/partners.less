@@ -251,6 +251,50 @@ h2 {
 /* {{{ Firefox for Android section */
 
 /* }}} */
+/* {{{ Firefox for Android section */
+
+#form {
+
+    display: none;
+
+    #sf-form label {
+        color: @textColorTertiary;
+    }
+
+    #sf-form .field {
+        padding: 5px 0;
+    }
+
+    #sf-form input,
+    #sf-form select,
+    #sf-form textarea {
+        width: 200px
+    }
+
+    #sf-form select {
+        width : 100%;
+    }
+
+    #sf-form .footer-field input {
+        width: 218px;
+    }
+
+    #sf-form input.error {
+        border-color: rgb(175,50,50);
+        @shadow: 0 2px 1px rgba(0,0,0,0.1) inset, 0 0 8px 0 rgba(175,50,50,.6);
+        .box-shadow(@shadow);
+    }
+
+    #sf-form label.error {
+        .open-sans;
+        font-size: 12px;
+        color: rgb(175,50,50);
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+}
+
+/* }}} */
 /* {{{  Desktop Layout */
 @media only screen and (min-width: @widthDesktop) {
     @import "partners/desktop.less";
