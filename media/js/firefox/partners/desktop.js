@@ -104,8 +104,10 @@
         };
 
         var _move_phone = function(top_pos, slide) {
+            var cur_left = parseInt($phone.css('left'), 10);
+
             if (Number(slide.find('section:first').attr('data-current')) === 1) {
-                if ($phone.css('left') === '-50%') {
+                if (cur_left < 0) {
                     $phone.animate({
                         top: top_pos
                     }, 100, function() {
@@ -115,7 +117,7 @@
                     $phone.animate({ 'top': top_pos + 'px' }, 500);
                 }
             } else {
-                if ($phone.css('left') !== '-50%') {
+                if (cur_left > 0) {
                     $phone.animate({
                         'left': '-50%'
                     }, 500, function() {
