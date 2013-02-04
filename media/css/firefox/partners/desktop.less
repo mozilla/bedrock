@@ -15,6 +15,7 @@
 
 .partner-article {
     overflow: hidden;
+    position: relative;
     height: 800px;
     background: #eee;
     .clearfix();
@@ -29,7 +30,7 @@
         padding-top: 0;
         padding-bottom: 0;
         border: 0;
-        .transition();
+        .transition(all ease .5s);
         &.section-2 {
             left: 100%;
         }
@@ -81,14 +82,12 @@ h2 {
         display: none;
     }
 }
-
 /*
 #overview.partner-article { top: 800px; }
 #os.partner-article { top: 1600px; }
 #marketplace.partner-article { top: 2400px; }
 #android.partner-article { top: 3200px; }
 */
-
 /* }}} */
 /* {{{ Giant Fox */
 
@@ -98,17 +97,19 @@ h2 {
     background: url(/media/img/firefox/partners/firefoxos-giantfox-back.png) no-repeat 0 0 ;
     position: absolute;
     top: 140px;
-    left: 400px;
-    .transition();
+    left: 45%;
+    .transition(all ease 0.6s);
     #giantfox-foreground {
         position: absolute;
         display: block;
-        top: 0;
+        top: -120px;
         left: 0;
         width: 900px;
         height: 700px;
         background: url(/media/img/firefox/partners/firefoxos-giantfox-front.png) no-repeat 100% 130px;
         z-index: 110;
+        opacity: 0.2;
+        .transition(all ease 0.5s);
     }
 }
 
@@ -128,7 +129,7 @@ h2 {
     .intro {
         p {
             font-size: 16px;
-            .open-sans-light; 
+            .open-sans-light;
         }
         .offset(1);
     }
@@ -139,7 +140,7 @@ h2 {
 }
 
 #android {
-    z-index: 113; // 1 higher than #phone-container
+    z-index: 121; // 1 higher than #phone-container
 }
 
 /* }}} */
@@ -252,11 +253,10 @@ h2 {
     height: 555px;
     width: 359px;
     position: absolute;
-    z-index: 100;
+    z-index: 120;
     top: 220px;
     left: 50%;
     margin-left: 150px;
-    .transition(all ease 1s);
     .phone {
         background: url(/media/img/firefox/partners/phone.png) 0 0 no-repeat;
         height: 555px;
@@ -275,6 +275,7 @@ h2 {
 .android-phone-container {
     top: auto;
     bottom: -600px;
+    .transition(all ease 1s);
 }
 
 /* }}} */

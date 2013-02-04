@@ -10,6 +10,7 @@
         setup: function() {
             Modernizr.load([{
                 both: [ '/media/js/libs/tweenmax.min.js', '/media/js/libs/superscrollorama.js', '/media/js/libs/jquery.spritely-0.6.1.js', '/media/js/firefox/partners/desktop.js' ],
+                //both: [ '/media/js/libs/stellar.min.js', '/media/js/libs/jquery.spritely-0.6.1.js', '/media/js/firefox/partners/desktop-stellar.js' ],
                 complete: function() {
                     // no action needed?
                 }
