@@ -2,6 +2,19 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+/* {{{ Vollkorn font */
+
+@font-face {
+    font-family: 'Journal';
+    src: url('/media/fonts/journal-webfont.eot');
+    src: url('/media/fonts/journal-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/media/fonts/journal-webfont.woff') format('woff'),
+         url('/media/fonts/journal-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* }}} */
 /* {{{ Template overrides */
 
 #masthead {
@@ -226,6 +239,14 @@ h2 {
     z-index: 1000;
     top: 300px;
     left: 30px;
+    h3 {
+        display: block;
+        font-family: Journal;
+        display: position: absolute;
+        top: 0;
+        left: -50px;
+        width: 100px;
+    }
     ul {
         li {
             display: block;
