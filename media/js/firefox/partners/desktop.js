@@ -95,43 +95,33 @@
             $giantfox.css('left', '45%');
         });
 
-        var _move_phone = function(top_pos, slide, new_z) {
-            var cur_left = parseInt($phone.css('left'), 10);
+        var _transition_tail = function(z_index, opacity, top) {
+            $giantfox_tail.css({
+                'z-index': z_index,
+                'opacity': opacity,
+                'top': top
+            });
+        };
 
+        var _move_phone = function(top_pos, slide) {
             if (Number(slide.find('section:first').attr('data-current')) === 1) {
-                if (cur_left < 0) {
-                    if (new_z) {
-                        $phone.css('z-index', new_z);
-                    }
-
+                if ($phone.css('left') === '-50%') {
                     $phone.animate({
                         top: top_pos
                     }, 100, function() {
                         $phone.animate({ 'left': '50%' }, 500);
                     });
                 } else {
-                    $phone.animate({ 'top': top_pos + 'px' }, 500, function() {
-                        if (new_z) {
-                            $phone.css('z-index', new_z);
-                        }
-                    });
+                    $phone.animate({ 'top': top_pos + 'px' }, 500);
                 }
             } else {
-                if (cur_left > 0) {
+                if ($phone.css('left') !== '-50%') {
                     $phone.animate({
                         'left': '-50%'
                     }, 500, function() {
                         $phone.css('top', top_pos + 'px');
-
-                        if (new_z) {
-                            $phone.css('z-index', new_z);
-                        }
                     });
                 } else {
-                    if (new_z) {
-                        $phone.css('z-index', new_z);
-                    }
-
                     $phone.animate({ 'top': top_pos + 'px' }, 500);
                 }
             }
@@ -156,14 +146,13 @@
             },
             to: {
                 css: { top: -120 },
-                onStart: function() {
-                    $phone.css('z-index', 110);
-                },
                 onComplete: function() {
                     _move_phone(944, $os);
+                    _transition_tail(121, 1, 0);
                 },
                 onReverseComplete: function() {
                     _move_phone(220, $overview);
+                    _transition_tail(110, 0.2, -120);
                 }
             }
         };
@@ -176,13 +165,14 @@
             to: {
                 css: { top: -240 },
                 onStart: function() {
-                    $phone.css('z-index', 120);
+                    _transition_tail(110, 0.2, -120);
                 },
                 onComplete: function() {
                     _move_phone(1520, $marketplace);
                 },
                 onReverseComplete: function() {
                     _move_phone(944, $os, 110);
+                    _transition_tail(121, 1, 0);
                 }
             }
         };
@@ -252,3 +242,4 @@
         });
     //});
 })(window, window.jQuery, window.TweenMax, window.TimelineLite, window.Power2, window.Quad);
+
