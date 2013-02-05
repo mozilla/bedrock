@@ -155,9 +155,11 @@ h2 {
         }
         .offset(1);
         #more-partners {
+            margin-top: 10px;
             float: left;
         }
         .partner-button {
+            margin-top: 10px;
             float: right;
         }
         #overview-news {
@@ -180,6 +182,14 @@ h2 {
                 font-size: 18px;
                 text-transform: uppercase;
             }
+        }
+    }
+    .overview-actions {
+        margin: 0;
+        padding: 0;
+        li {
+            width: 33%;
+            float: left;
         }
     }
 
@@ -271,8 +281,6 @@ h2 {
 /* }}} */
 /* {{{ Firefox for Android section */
 
-/* {{{ Firefox OS section */
-
 #android {
     .intro {
         padding-top: 140px;
@@ -307,22 +315,45 @@ h2 {
         font-size: 30px;
         background: url(/media/img/firefox/partners/menu-icons.png) 0 -720px no-repeat;
     }
-    ul {
-        li {
-            display: block;
-            float: none;
-            width: auto;
-            a {
-                @shadow: 0 -1px rgba(0,0,0,0.1) inset;
-                .box-shadow(@shadow);
-            }
-            &:first-child a {
-                border-radius: 3px 3px 0 0;
-            }
-            &:last-child a {
-                border-radius: 0 0 3px 3px;
-            }
+}
+
+.menu {
+    li {
+        display: block;
+        float: none;
+        width: auto;
+        a {
+            @shadow: 0 -1px rgba(0,0,0,0.1) inset;
+            .box-shadow(@shadow);
         }
+        &:first-child a {
+            border-radius: 3px 3px 0 0;
+        }
+        &:last-child a {
+            border-radius: 0 0 3px 3px;
+        }
+    }
+}
+
+#overlay-menu {
+    display: block;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    z-index: 100;
+    border-radius: 3px;
+    li {
+        width: 40px;
+        border-radius: 3px;
+        padding-left: 14px;
+        background: #515f6a url(/media/img/firefox/partners/menu-icons.png) -23px -910px no-repeat;
+        a {
+            background-position: 50% -790px;
+            border-radius: 0 3px 3px 0;
+            width: 40px;
+            height: 40px;
+        }
+        a:hover { background-position: 50% -850px; }
     }
 }
 
@@ -360,7 +391,6 @@ h2 {
 }
 
 /* }}} */
-
 /* {{{ Form */
 #form {
     display: none;

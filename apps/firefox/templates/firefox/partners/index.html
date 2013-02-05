@@ -38,16 +38,16 @@
   </header>
   <nav id="partner-nav" role="navigation">
     <h3>{{_('Explore the site') }}</h3>
-    <ul id="partner-menu">
+    <ul id="partner-menu" class="menu">
       <li id="menu-overview"><a href="#overview">{{_('Overview')}}</a></li>
       <li id="menu-os"><a href="#os">{{_('Firefox OS')}}</a></li>
       <li id="menu-marketplace"><a href="#marketplace">{{_('Marketplace')}}</a></li>
       <li id="menu-android"><a href="#android">{{_('Android')}}</a></li>
     </ul>
-    <ul id="overlay-menu">
-      <li id="menu-form"><a href="#form" class="no-scroll" id="toggle-form">{{_('Get Involved')}}</a></li>
-    </ul>
   </nav>
+  <ul id="overlay-menu" class="menu">
+    <li id="menu-form"><a href="#form" class="no-scroll" id="toggle-form">{{_('Get Involved')}}</a></li>
+  </ul>
 {% endblock %}
 
 {% block content %}
