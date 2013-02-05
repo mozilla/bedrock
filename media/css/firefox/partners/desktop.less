@@ -154,7 +154,35 @@ h2 {
             .open-sans-light;
         }
         .offset(1);
+        #more-partners {
+            float: left;
+        }
+        .partner-button {
+            float: right;
+        }
+        #overview-news {
+            clear: both;
+            .clearfix();
+            background: url(/media/img/firefox/partners/divider.png) 50% 100% no-repeat;
+            padding-bottom: @baseLine;
+            min-height: 60px;
+            position: relative;
+            img {
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+            h3 {
+                color: @textColorSecondary;
+                margin-left: 150px;
+                text-align: left;
+                font-weight: bold;
+                font-size: 18px;
+                text-transform: uppercase;
+            }
+        }
     }
+
 }
 
 #marketplace {
@@ -262,6 +290,7 @@ h2 {
     z-index: 1000;
     top: 160px;
     left: 30px;
+    width: 60px;
     h3 {
         position: absolute;
         display: block;
@@ -279,11 +308,10 @@ h2 {
         background: url(/media/img/firefox/partners/menu-icons.png) 0 -720px no-repeat;
     }
     ul {
-        width: 60px;
         li {
             display: block;
             float: none;
-            width: 60px;
+            width: auto;
             a {
                 @shadow: 0 -1px rgba(0,0,0,0.1) inset;
                 .box-shadow(@shadow);

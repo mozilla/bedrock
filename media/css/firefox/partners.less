@@ -6,17 +6,19 @@
 .logos {
     list-style-type: none;
     padding: 0;
-    margin: @baseLine 0;
+    margin: @baseLine 0 0 0;
     .clearfix();
     li {
         background: rgba(0,0,0,0.1);
         border-radius: 3px;
         float: left;
-        width: 100px;
-        padding: 15px 0;
+        width: 120px;
+        height: 46px;
+        line-height: 46px;
+        padding: 0;
         text-align: center;
         color: rgba(0,0,0,0.4);
-        margin: 0 5px 10px 5px;
+        margin: 5px 10px;
     }
 }
 
@@ -99,6 +101,7 @@
 /* {{{ Left menu */
 
 #partner-nav {
+    width: auto;
     h3 {
         display: none;
     }
@@ -296,17 +299,37 @@ h2 {
 
 /* }}} */
 /* {{{  Desktop Layout */
-@media only screen and (min-width: @widthDesktop) {
+@media only screen and (min-width: @widthTablet) {
     @import "partners/desktop.less";
 }
 
 /* }}} */
 /* {{{ Responsive Grid */
+
+/* Desktop Layout */
+@media only screen and (min-width: @breakTablet) {
+
+    #masthead,
+    .partner-article .article-content {
+        width: @widthDesktop - 40px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .logos {
+        li {
+            margin-left: 7px;
+            margin-right: 7px;
+        }
+    }
+
+}
+
+
 /* Tablet Layout: 760px */
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
 
     #masthead,
-    #partner-nav,
     .partner-article .article-content {
         width: @widthTablet - 40px;
         margin-left: auto;
@@ -334,14 +357,6 @@ h2 {
         margin-right: auto;
     }
 
-    .logos {
-        li {
-            margin-left: 20px;
-            margin-right: 20px;
-        }
-    }
-
-
 }
 
 
@@ -365,8 +380,8 @@ h2 {
 
     .logos {
         li {
-            margin-left: 16px;
-            margin-right: 16px;
+            margin-left: 6px;
+            margin-right: 6px;
         }
     }
 
