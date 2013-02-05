@@ -180,9 +180,6 @@ MINIFY_BUNDLES = {
         'firefox_new': (
             'css/firefox/new.less',
         ),
-        'firefox_new_test': (
-            'css/firefox/new-test.less',
-        ),
         'firefox_organizations': (
             'css/firefox/organizations.less',
         ),
@@ -356,9 +353,6 @@ MINIFY_BUNDLES = {
         'firefox_new': (
             'js/libs/modernizr.custom.csstransitions.js',
             'js/firefox/new.js',
-        ),
-        'firefox_new_a': (
-            'js/firefox/new-a.js',
         ),
         'firefox_platforms': (
             'js/mozilla-expanders.js',
