@@ -44,6 +44,9 @@
       <li id="menu-marketplace"><a href="#marketplace">{{_('Marketplace')}}</a></li>
       <li id="menu-android"><a href="#android">{{_('Android')}}</a></li>
     </ul>
+    <ul id="overlay-menu">
+      <li id="menu-form"><a href="#form" class="no-scroll" id="toggle-form">{{_('Get Involved')}}</a></li>
+    </ul>
   </nav>
 {% endblock %}
 
@@ -56,360 +59,365 @@
 </div>
 
 <div id="article-wrapper">
-<article id="overview" class="partner-article">
-  <section class="section-1" data-current="1">
-    <div class="article-content">
-      <h2>{{ _('Blaze Your Own Path') }}</h2>
-      <div class="intro">
-        <p>We’re enabling operators, phone manufacturers and developers to manage, customize and own relationships with their customers directly through our mobile products: <a href="#os">Firefox OS</a>, <a href="#marketplace">Firefox Marketplace</a> and <a href="#android">Firefox for Android</a>.</p>
-        <div class="partner-logos">
-          <ul class="logos">
-            <li>logo</li>
-            <li>logo</li>
-            <li>logo</li>
-            <li>logo</li>
-            <li>logo</li>
-            <li>logo</li>
-            <li>logo</li>
-            <li>logo</li>
-            <li>logo</li>
-            <li>logo</li>
-            <li>logo</li>
-            <li>logo</li>
-            <li>logo</li>
-            <li>logo</li>
-            <li>logo</li>
-            <li>logo</li>
+  <article id="overview" class="partner-article">
+    <section class="section-1" data-current="1">
+      <div class="article-content">
+        <h2>{{ _('Blaze Your Own Path') }}</h2>
+        <div class="intro">
+          <p>We’re enabling operators, phone manufacturers and developers to manage, customize and own relationships with their customers directly through our mobile products: <a href="#os">Firefox OS</a>, <a href="#marketplace">Firefox Marketplace</a> and <a href="#android">Firefox for Android</a>.</p>
+          <div class="partner-logos">
+            <ul class="logos">
+              <li>logo</li>
+              <li>logo</li>
+              <li>logo</li>
+              <li>logo</li>
+              <li>logo</li>
+              <li>logo</li>
+              <li>logo</li>
+              <li>logo</li>
+              <li>logo</li>
+              <li>logo</li>
+              <li>logo</li>
+              <li>logo</li>
+              <li>logo</li>
+              <li>logo</li>
+              <li>logo</li>
+              <li>logo</li>
+            </ul>
+            <p>{{_('See more partners') }}</p>
+            <p class="partner-button"><a href="#" class="button">{{ _('Partner with us') }}</a></p>
+          </div>
+          <div id="overview-news">
+            <img src="X" alt="{{ _('Mobile World Congress, Barcelona, 25 - 28 February 2013') }}" />
+            <h3>{{ _('Recent news') }}</h3>
+          </div>
+          <ul class="overview-actions">
+            <li>{{ _('Join us at Stand F20, Hall 8.1, App Planet') }}</li>
+            <li>{{ _('Our keynote & other scheduled events') }}</li>
+            <li>{{ _('Firefox tweets from MWC in Barcelona') }}</li>
           </ul>
-          <p>{{_('See more partners') }}</p>
-          <p class="partner-button"><a href="#" class="button">{{ _('Partner with us') }}</a></p>
         </div>
-        <div id="overview-news">
-          <img src="X" alt="{{ _('Mobile World Congress, Barcelona, 25 - 28 February 2013') }}" />
-          <h3>{{ _('Recent news') }}</h3>
-        </div>
-        <ul class="overview-actions">
-          <li>{{ _('Join us at Stand F20, Hall 8.1, App Planet') }}</li>
-          <li>{{ _('Our keynote & other scheduled events') }}</li>
-          <li>{{ _('Firefox tweets from MWC in Barcelona') }}</li>
-        </ul>
       </div>
-    </div>
-  </section>
-</article>
+    </section>
+  </article>
 
-<article id="os" class="partner-article dark">
-  <div id="giantfox"><div id="giantfox-foreground"></div></div>
-  <div class="article-header">
-    <h2 id="os-overview-headline" class="tween">
-      <a href="#" class="top">{{ _('Back to top') }}</a>
-      <img src="{{ media('img/firefox/partners/firefoxos-title.png')}}" alt="{{ _('Firefox OS') }}" />
-    </h2>
-    <nav>
-      <a href="" class="view-section" data-section="os-overview">{{ _('Overview') }}</a>
-      <a href="" class="view-section" data-section="os-operators">{{ _('For Operators & Manufacturers') }}</a>
-    </nav>
-  </div>
-  <section id="os-overview" class="section-1" data-pos="1" data-current="1">
-    <div class="article-content">
-      <div id="os-overview-intro" class="intro tween">
-        <h4>{{ _('The Web is the platform')}}</h4>
-        <p>{% trans url='#form' %}
-          Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater participation in the value chain. <a href="{{ url }}">See how you can get involved</a>
-        {% endtrans %}</p>
-        <ul id="os-overview-logos" class="logos tween">
-          <li>logo</li>
-          <li>logo</li>
-          <li>logo</li>
-          <li>logo</li>
-          <li>logo</li>
-          <li>logo</li>
-        </ul>
-        <h4 class="narrow">{{ _('Made of the Web') }}</h4>
-        <p class="narrow">{{ _('Built entirely using HTML5 and other open Web standards, Firefox OS is free from the rules and restrictions of existing proprietary platforms.') }}</p>
-        <h4>{{ _('Made by Firefox') }}</h4>
-        <p>{{ _('For the past 15 years, we’ve been instrumental in innovating and shaping the Web to keep it open and accessible to all. As a result of our efforts, one fifth of all Web activity today happens through Firefox products.') }}</p>
-      </div>
+  <article id="os" class="partner-article dark">
+    <div id="giantfox"><div id="giantfox-foreground"></div></div>
+    <div class="article-header">
+      <h2 id="os-overview-headline" class="tween">
+        <a href="#" class="top">{{ _('Back to top') }}</a>
+        <img src="{{ media('img/firefox/partners/firefoxos-title.png')}}" alt="{{ _('Firefox OS') }}" />
+      </h2>
+      <nav>
+        <a href="" class="view-section" data-section="os-overview">{{ _('Overview') }}</a>
+        <a href="" class="view-section" data-section="os-operators">{{ _('For Operators & Manufacturers') }}</a>
+      </nav>
     </div>
-  </section>
-  <section id="os-operators" class="section-2" data-pos="2">
-    <div class="article-content">
-      <div id="os-operators-intro" class="intro tween">
-        <h3 id="os-operators-headline" class="tween">{{ _('The difference the Open Web makes') }}</h3>
-        <div class="left">
-          <h4>{{ _('Firefox OS offers:') }}</h4>
-          <ul>
-            <li>{{ _('A level playing field against other OS and marketplace providers') }}</li>
-            <li>{{ _('Greater participation in the value chain') }}</li>
-            <li>{{ _('Ownership and control over relationships with customers') }}</li>
-            <li>{{ _('Customized phones that meet the specific needs of various target markets') }}</li>
+    <section id="os-overview" class="section-1" data-pos="1" data-current="1">
+      <div class="article-content">
+        <div id="os-overview-intro" class="intro tween">
+          <h4>{{ _('The Web is the platform')}}</h4>
+          <p>{% trans url='#form' %}
+            Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater participation in the value chain. <a href="{{ url }}">See how you can get involved</a>
+          {% endtrans %}</p>
+          <ul id="os-overview-logos" class="logos tween">
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
           </ul>
-          <p class="partner-button"><a href="#" class="button">{{ _('Partner with us') }}</a></p>
-          <div id="os-promos" class="promos">
+          <h4 class="narrow">{{ _('Made of the Web') }}</h4>
+          <p class="narrow">{{ _('Built entirely using HTML5 and other open Web standards, Firefox OS is free from the rules and restrictions of existing proprietary platforms.') }}</p>
+          <h4>{{ _('Made by Firefox') }}</h4>
+          <p>{{ _('For the past 15 years, we’ve been instrumental in innovating and shaping the Web to keep it open and accessible to all. As a result of our efforts, one fifth of all Web activity today happens through Firefox products.') }}</p>
+        </div>
+      </div>
+    </section>
+    <section id="os-operators" class="section-2" data-pos="2">
+      <div class="article-content">
+        <div id="os-operators-intro" class="intro tween">
+          <h3 id="os-operators-headline" class="tween">{{ _('The difference the Open Web makes') }}</h3>
+          <div class="left">
+            <h4>{{ _('Firefox OS offers:') }}</h4>
+            <ul>
+              <li>{{ _('A level playing field against other OS and marketplace providers') }}</li>
+              <li>{{ _('Greater participation in the value chain') }}</li>
+              <li>{{ _('Ownership and control over relationships with customers') }}</li>
+              <li>{{ _('Customized phones that meet the specific needs of various target markets') }}</li>
+            </ul>
+            <p class="partner-button"><a href="#" class="button">{{ _('Partner with us') }}</a></p>
+            <div id="os-promos" class="promos">
+              <div class="first">
+                <h4>{{ _('White Papers') }}</h4>
+                <a href="">{{ _('Learn more about the technology behind Firefox OS') }}</a>
+              </div>
+              <div>
+                <h4>{{ _('Get Involved') }}</h4>
+                <a href="">{{ _('Contact our business development team to get on board') }}</a>
+              </div>
+            </div>
+          </div>
+          <ul id="os-operators-logos" class="logos tween">
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </article>
+
+  <article id="marketplace" class="partner-article">
+    <div class="article-header">
+      <h2 class="tween">
+        <a href="#" class="top">{{ _('Back to top') }}</a>
+        <img src="{{ media('img/firefox/partners/marketplace-title.png')}}" alt="{{ _('Firefox Marketplace') }}" />
+      </h2>
+      <nav>
+        <a href="" class="view-section" data-section="marketplace-overview">{{ _('Overview') }}</a>
+        <a href="" class="view-section" data-section="marketplace-operators">{{ _('For Operators & Manufacturers') }}</a>
+        <a href="" class="view-section" data-section="marketplace-developers">{{ _('For Developers') }}</a>
+      </nav>
+    </div>
+    <section id="marketplace-overview" class="section-1" data-pos="1" data-current="1">
+      <div class="article-content">
+        <div id="marketplace-overview-intro" class="intro tween">
+          <h4>{{ _('HTML5 apps for all')}}</h4>
+          <p>{% trans url1='#', url2='#' %}
+            Discover a new way to participate in an ecosystem that features the world’s most popular apps as well as more relevant, targeted content to suit customers’ local needs. See how that can help <a href="{{ url1 }}">operators and manufacturers</a> as well as <a href="{{ url2 }}">developers</a>.
+          {% endtrans %}</p>
+          <h4>{{ _('Your needs') }}</h4>
+          <p>{{ _('It’s now possible to own billing and payment relationships with customers, reach new markets and customize purchasing and app experiences to meet your specific needs.') }}</p>
+          <h4>{{ _('Our experience') }}</h4>
+          <p>{{ _('Our proven track record of providing excellent user experiences and serving content to huge global audiences runs through everything we do. Our directory of add-ons serves content to hundreds of millions of users worldwide.') }}</p>
+          <div id="marketplace-promos" class="promos">
             <div class="first">
-              <h4>{{ _('White Papers') }}</h4>
-              <a href="">{{ _('Learn more about the technology behind Firefox OS') }}</a>
+              <h4>{{ _('Testimonials') }}</h4>
+              <a href="">{{ _('See what Nokia, SoundCloud and others have to say') }}</a>
             </div>
             <div>
-              <h4>{{ _('Get Involved') }}</h4>
-              <a href="">{{ _('Contact our business development team to get on board') }}</a>
+              <h4>{{ _('Join the Conversation') }}</h4>
+              <a href="">{{ _('Follow @firefoxapps on Twitter') }}</a>
+              <a href="">{{ _('Read more on the Apps Blog') }}</a>
             </div>
           </div>
         </div>
-        <ul id="os-operators-logos" class="logos tween">
-          <li>logo</li>
-          <li>logo</li>
-          <li>logo</li>
-          <li>logo</li>
-          <li>logo</li>
-          <li>logo</li>
-          <li>logo</li>
-          <li>logo</li>
-          <li>logo</li>
-          <li>logo</li>
-          <li>logo</li>
-          <li>logo</li>
-          <li>logo</li>
-          <li>logo</li>
-          <li>logo</li>
-          <li>logo</li>
-          <li>logo</li>
-          <li>logo</li>
-          <li>logo</li>
-          <li>logo</li>
-          <li>logo</li>
-        </ul>
       </div>
-    </div>
-  </section>
-</article>
-
-<article id="marketplace" class="partner-article">
-  <div class="article-header">
-    <h2 class="tween">
-      <a href="#" class="top">{{ _('Back to top') }}</a>
-      <img src="{{ media('img/firefox/partners/marketplace-title.png')}}" alt="{{ _('Firefox Marketplace') }}" />
-    </h2>
-    <nav>
-      <a href="" class="view-section" data-section="marketplace-overview">{{ _('Overview') }}</a>
-      <a href="" class="view-section" data-section="marketplace-operators">{{ _('For Operators & Manufacturers') }}</a>
-      <a href="" class="view-section" data-section="marketplace-developers">{{ _('For Developers') }}</a>
-    </nav>
-  </div>
-  <section id="marketplace-overview" class="section-1" data-pos="1" data-current="1">
-    <div class="article-content">
-      <div id="marketplace-overview-intro" class="intro tween">
-        <h4>{{ _('HTML5 apps for all')}}</h4>
-        <p>{% trans url1='#', url2='#' %}
-          Discover a new way to participate in an ecosystem that features the world’s most popular apps as well as more relevant, targeted content to suit customers’ local needs. See how that can help <a href="{{ url1 }}">operators and manufacturers</a> as well as <a href="{{ url2 }}">developers</a>.
-        {% endtrans %}</p>
-        <h4>{{ _('Your needs') }}</h4>
-        <p>{{ _('It’s now possible to own billing and payment relationships with customers, reach new markets and customize purchasing and app experiences to meet your specific needs.') }}</p>
-        <h4>{{ _('Our experience') }}</h4>
-        <p>{{ _('Our proven track record of providing excellent user experiences and serving content to huge global audiences runs through everything we do. Our directory of add-ons serves content to hundreds of millions of users worldwide.') }}</p>
-        <div id="marketplace-promos" class="promos">
-          <div class="first">
-            <h4>{{ _('Testimonials') }}</h4>
-            <a href="">{{ _('See what Nokia, SoundCloud and others have to say') }}</a>
-          </div>
-          <div>
-            <h4>{{ _('Join the Conversation') }}</h4>
-            <a href="">{{ _('Follow @firefoxapps on Twitter') }}</a>
-            <a href="">{{ _('Read more on the Apps Blog') }}</a>
+    </section>
+    <section id="marketplace-operators" class="section-2" data-pos="2">
+      <div class="article-content">
+        <div class="intro tween">
+          <h3>{{ _('The world’s largest developer community') }}</h3>
+          <p>{{ _('Marketplace offers:') }}</p>
+          <ul>
+            <li>{{ _('Commitment from well-known, tier 1 developers') }}</li>
+            <li>{{ _('Micro-targeted content for every use-case to meet customers’ local needs') }}</li>
+            <li>{{ _('Lower barriers to entry for local app developers in both resource and cost') }}</li>
+            <li>{{ _('Content, experiences and promotional offers relevant to users’ demographics and usage requirements') }}</li>
+            <li>{{ _('Access to our relationships with developers in almost every country as a trusted authority on HTML5 and Web development in general') }}</li>
+          </ul>
+          <p class="partner-button">
+            <a href="#" class="button">{{ _('Partner with us') }}</a>
+            <a href="#" class="button">{{ _('MWC demonstrations') }}</a>
+          </p>
+        </div>
+      </div>
+    </section>
+    <section id="marketplace-developers" class="section-3" data-pos="3">
+      <div class="article-content">
+        <div class="intro tween">
+          <h3>{{ _('Developed with developers in mind') }}</h3>
+          <p>{{ _('Marketplace offers:') }}</p>
+          <ul>
+            <li>{{ _('HTML5 apps that provide a native-like experience') }}</li>
+            <li>{{ _('Apps that customers can access across multiple platforms, devices and operating systems') }}</li>
+            <li>{{ _('Flexible business models and multiple payment monetization options') }}</li>
+            <li>{{ _('Carrier billing in regional currencies') }}</li>
+            <li>{{ _('The ability to connect with hundreds of millions of Firefox supporters around the world') }}</li>
+            <li>{{ _('Access to relatively untapped markets') }}</li>
+          </ul>
+          <div class="promos">
+            <div class="first">
+              <h4>{{ _('Developer hub') }}</h4>
+              <a href="">{{ _('Learn how to make HTML5 apps for an open marketplace') }}</a>
+            </div>
+            <div>
+              <h4>{{ _('Have an app?') }}</h4>
+              <a href="">{{ _('Submit it to the Firefox Marketplace today') }}</a>
+            </div>
+            <div>
+              <h4>{{ _('WIPJAM') }}</h4>
+              <a href="">{{ _('Jam with us, learn about new tools, meet other developers and more') }}</a>
+            </div>
+            <div>
+              <a href="#" class="button">{{ _('Register') }}</a>
+            </div>
           </div>
         </div>
       </div>
+    </section>
+  </article>
+
+  <article id="android" class="partner-article dark">
+    <div class="article-header">
+      <h2 class="tween">
+        <a href="#" class="top">{{ _('Back to top') }}</a>
+        <img src="{{ media('img/firefox/partners/android-title.png')}}" alt="{{ _('Firefox for Android') }}" />
+      </h2>
+      <nav>
+        <a href="" class="view-section" data-section="android-overview">{{ _('Overview') }}</a>
+        <a href="" class="view-section" data-section="android-partner">{{ _('Partner Opportunities') }}</a>
+        <a href="" class="view-section" data-section="android-benchmarking">{{ _('Benchmarking') }}</a>
+      </nav>
     </div>
-  </section>
-  <section id="marketplace-operators" class="section-2" data-pos="2">
-    <div class="article-content">
-      <div class="intro tween">
-        <h3>{{ _('The world’s largest developer community') }}</h3>
-        <p>{{ _('Marketplace offers:') }}</p>
-        <ul>
-          <li>{{ _('Commitment from well-known, tier 1 developers') }}</li>
-          <li>{{ _('Micro-targeted content for every use-case to meet customers’ local needs') }}</li>
-          <li>{{ _('Lower barriers to entry for local app developers in both resource and cost') }}</li>
-          <li>{{ _('Content, experiences and promotional offers relevant to users’ demographics and usage requirements') }}</li>
-          <li>{{ _('Access to our relationships with developers in almost every country as a trusted authority on HTML5 and Web development in general') }}</li>
-        </ul>
-        <p class="partner-button">
-          <a href="#" class="button">{{ _('Partner with us') }}</a>
-          <a href="#" class="button">{{ _('MWC demonstrations') }}</a>
-        </p>
-      </div>
-    </div>
-  </section>
-  <section id="marketplace-developers" class="section-3" data-pos="3">
-    <div class="article-content">
-      <div class="intro tween">
-        <h3>{{ _('Developed with developers in mind') }}</h3>
-        <p>{{ _('Marketplace offers:') }}</p>
-        <ul>
-          <li>{{ _('HTML5 apps that provide a native-like experience') }}</li>
-          <li>{{ _('Apps that customers can access across multiple platforms, devices and operating systems') }}</li>
-          <li>{{ _('Flexible business models and multiple payment monetization options') }}</li>
-          <li>{{ _('Carrier billing in regional currencies') }}</li>
-          <li>{{ _('The ability to connect with hundreds of millions of Firefox supporters around the world') }}</li>
-          <li>{{ _('Access to relatively untapped markets') }}</li>
-        </ul>
-        <div class="promos">
-          <div class="first">
-            <h4>{{ _('Developer hub') }}</h4>
-            <a href="">{{ _('Learn how to make HTML5 apps for an open marketplace') }}</a>
-          </div>
-          <div>
-            <h4>{{ _('Have an app?') }}</h4>
-            <a href="">{{ _('Submit it to the Firefox Marketplace today') }}</a>
-          </div>
-          <div>
-            <h4>{{ _('WIPJAM') }}</h4>
-            <a href="">{{ _('Jam with us, learn about new tools, meet other developers and more') }}</a>
-          </div>
-          <div>
-            <a href="#" class="button">{{ _('Register') }}</a>
-          </div>
+    <section id="android-overview" class="section-1" data-pos="1" data-current="1">
+      <div class="article-content">
+        <div class="intro tween">
+          <h4>{{ _('A superior Web experience') }}</h4>
+          <p>{% trans url='#' %}
+            With high-performance, advanced cross-platform features and the latest in security, our top-rated browser offers an alternative to closed platforms, giving you the flexibility to design, distribute and charge as you see fit. Learn more about partner opportunities. With high-performance, advanced cross-platform features and the latest in security, our top-rated browser offers an alternative to closed platforms, giving you the flexibility to design, distribute and charge as you see fit. <a href="{{ url }}">Learn more about partner opportunities.</a>
+          {% endtrans %}</p>
+          <h4>{{ _('Strengthen customer relationships') }}</h4>
+          <p>{{ _('Create your own unique branded sections of Firefox for Android and Firefox Marketplace for a more engaging user experience and to increase the visibility of your brand.') }}</p>
+          <h4>{{ _('Drive new revenue opportunities') }}</h4>
+          <p>{{ _('Take advantage of service opportunities like Firefox Marketplace and WebRTC to create new, platform-independent offerings and establish direct customer billing.') }}</p>
         </div>
       </div>
+    </section>
+    <section id="android-partner" class="section-2" data-pos="2">
+      <div class="article-content">
+        <div class="intro tween">
+          <h4>{{ _('Stand out from the crowd') }}</h4>
+          <p>{{ _('Take advantage of our strong brand and service offerings to differentiate your product and drive sales.') }}</p>
+          <h4>{{ _('Firefox for Android lets you:') }}</h4>
+          <ul>
+            <li>
+              <h5>{{ _('Customize the experience') }}</h5>
+              <p>{{ _('Add your brand and content to increase customer touchpoints, improve retention and drive future sales.') }}</p>
+            </li>
+            <li>
+              <h5>{{ _('Build new service offerings') }}</h5>
+              <p>{{ _('Integrate services directly into the browser with Firefox Marketplace and WebRTC to free yourself from the constraints of proprietary platforms.') }}</p>
+            </li>
+            <li>
+              <h5>{{ _('Direct customer billing') }}</h5>
+              <p>{{ _('Grow your business by combining your own customer payment plans with our open source service offerings.') }}</p>
+            </li>
+          </ul>
+          <p class="partner-button"><a href="#" class="button">{{ _('Partner with us') }}</a></p>
+        </div>
+      </div>
+    </section>
+    <section id="android-benchmarking" class="section-3" data-pos="3">
+      <div class="article-content">
+        <div class="intro tween">
+        ...
+        </div>
+      </div>
+    </section>
+    <div class="phone-container android-phone-container" id="phone-android">
+      <div class="phone"></div>
     </div>
+  </article>
+</div> <!--/#article-wrapper-->
+
+<article id="overlay">
+  <section id="map"></section>
+  <section id="calendar"></section>
+  <section id="testimonials"></section>
+  <section id="form">
+
+    <h3>{{ _('Get involved') }}</h3>
+    <p>{{ _('Contact our business development team to get on board.') }}</p>
+
+    <form action="https://www.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" id="sf-form">
+
+    <input type=hidden name="oid" value="00DU0000000IrgO">
+    <input type=hidden name="retURL" value="http://www.mozilla.org/en-US/about/partnerships?success=1">
+
+    <!--  NOTE: These fields are optional debugging elements.  Please uncomment   -->
+    <!--  these lines if you wish to test in debug mode.                          -->
+    <!--input type="hidden" name="debug" value=1-->
+    <!--input type="hidden" name="debugEmail" value=""-->
+
+    <div class="field">
+      <input id="first_name" maxlength="40" name="first_name" size="20" type="text" placeholder="{{ _('First Name') }}" class="required" />
+    </div>
+
+    <div class="field">
+      <input id="last_name" maxlength="80" name="last_name" size="20" type="text" placeholder="{{ _('Last Name') }}" class="required" />
+
+    </div>
+
+    <div class="field">
+      <input id="title" maxlength="40" name="title" size="20" type="text" placeholder="{{ _('Title') }}" />
+    </div>
+
+    <div class="field">
+      <input id="company" maxlength="40" name="company" size="20" type="text" placeholder="{{ _('Company') }}" class="required" />
+    </div>
+
+    <div class="field">
+      <input id="URL" maxlength="80" name="URL" size="20" type="text" placeholder="{{ _('Website') }}" />
+    </div>
+
+    <div class="field">
+      <input id="email" maxlength="80" name="email" size="20" type="text" placeholder="{{ _('Email') }}" class="required" />
+    </div>
+
+    <div class="field">
+      <input id="phone" maxlength="40" name="phone" size="20" type="text" placeholder="{{ _('Phone') }}" />
+    </div>
+
+    <div class="field">
+      <input id="mobile" maxlength="40" name="mobile" size="20" type="text" placeholder="{{ _('Mobile') }}" />
+    </div>
+
+    <div class="field">
+      <label for="00NU0000002pDJr">Interest:</label>
+      <select  id="00NU0000002pDJr" multiple="multiple" name="00NU0000002pDJr" title="{{ _('Interest') }}" size="7">
+        <option value="Firefox for Desktop">{{ _('Firefox for Desktop') }}</option>
+        <option value="Firefox for Android">{{ _('Firefox for Android') }}</option>
+        <option value="Firefox Marketplace">{{ _('Firefox Marketplace') }}</option>
+        <option value="Firefox OS">{{ _('Firefox OS') }}</option>
+        <option value="Persona">{{ _('Persona') }}</option>
+        <option value="{{ _('Marketing and Co-promotions">Marketing and Co-promotions') }}</option>
+        <option value="Other">{{ _('Other') }}</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <textarea name="description" placeholder="{{ _('Comments or questions?') }}"></textarea>
+    </div>
+
+    <div class="field footer-field">
+      <input type="submit" name="submit" value="{{ _('Submit my request') }}" class="button-blue" />
+    </div>
+
+    </form>
+
   </section>
 </article>
-
-<article id="android" class="partner-article dark">
-  <div class="article-header">
-    <h2 class="tween">
-      <a href="#" class="top">{{ _('Back to top') }}</a>
-      <img src="{{ media('img/firefox/partners/android-title.png')}}" alt="{{ _('Firefox for Android') }}" />
-    </h2>
-    <nav>
-      <a href="" class="view-section" data-section="android-overview">{{ _('Overview') }}</a>
-      <a href="" class="view-section" data-section="android-partner">{{ _('Partner Opportunities') }}</a>
-      <a href="" class="view-section" data-section="android-benchmarking">{{ _('Benchmarking') }}</a>
-    </nav>
-  </div>
-  <section id="android-overview" class="section-1" data-pos="1" data-current="1">
-    <div class="article-content">
-      <div class="intro tween">
-        <h4>{{ _('A superior Web experience') }}</h4>
-        <p>{% trans url='#' %}
-          With high-performance, advanced cross-platform features and the latest in security, our top-rated browser offers an alternative to closed platforms, giving you the flexibility to design, distribute and charge as you see fit. Learn more about partner opportunities. With high-performance, advanced cross-platform features and the latest in security, our top-rated browser offers an alternative to closed platforms, giving you the flexibility to design, distribute and charge as you see fit. <a href="{{ url }}">Learn more about partner opportunities.</a>
-        {% endtrans %}</p>
-        <h4>{{ _('Strengthen customer relationships') }}</h4>
-        <p>{{ _('Create your own unique branded sections of Firefox for Android and Firefox Marketplace for a more engaging user experience and to increase the visibility of your brand.') }}</p>
-        <h4>{{ _('Drive new revenue opportunities') }}</h4>
-        <p>{{ _('Take advantage of service opportunities like Firefox Marketplace and WebRTC to create new, platform-independent offerings and establish direct customer billing.') }}</p>
-      </div>
-    </div>
-  </section>
-  <section id="android-partner" class="section-2" data-pos="2">
-    <div class="article-content">
-      <div class="intro tween">
-        <h4>{{ _('Stand out from the crowd') }}</h4>
-        <p>{{ _('Take advantage of our strong brand and service offerings to differentiate your product and drive sales.') }}</p>
-        <h4>{{ _('Firefox for Android lets you:') }}</h4>
-        <ul>
-          <li>
-            <h5>{{ _('Customize the experience') }}</h5>
-            <p>{{ _('Add your brand and content to increase customer touchpoints, improve retention and drive future sales.') }}</p>
-          </li>
-          <li>
-            <h5>{{ _('Build new service offerings') }}</h5>
-            <p>{{ _('Integrate services directly into the browser with Firefox Marketplace and WebRTC to free yourself from the constraints of proprietary platforms.') }}</p>
-          </li>
-          <li>
-            <h5>{{ _('Direct customer billing') }}</h5>
-            <p>{{ _('Grow your business by combining your own customer payment plans with our open source service offerings.') }}</p>
-          </li>
-        </ul>
-        <p class="partner-button"><a href="#" class="button">{{ _('Partner with us') }}</a></p>
-      </div>
-    </div>
-  </section>
-  <section id="android-benchmarking" class="section-3" data-pos="3">
-    <div class="article-content">
-      <div class="intro tween">
-      ...
-      </div>
-    </div>
-  </section>
-  <div class="phone-container android-phone-container" id="phone-android">
-    <div class="phone"></div>
-  </div>
-</article>
-</div>
-
-<section id="form">
-
-  <h3>{{ _('Get involved') }}</h3>
-  <p>{{ _('Contact our business development team to get on board.') }}</p>
-
-  <form action="https://www.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" id="sf-form">
-
-  <input type=hidden name="oid" value="00DU0000000IrgO">
-  <input type=hidden name="retURL" value="http://www.mozilla.org/en-US/about/partnerships?success=1">
-
-  <!--  NOTE: These fields are optional debugging elements.  Please uncomment   -->
-  <!--  these lines if you wish to test in debug mode.                          -->
-  <!--input type="hidden" name="debug" value=1-->
-  <!--input type="hidden" name="debugEmail" value=""-->
-
-  <div class="field">
-    <input id="first_name" maxlength="40" name="first_name" size="20" type="text" placeholder="{{ _('First Name') }}" class="required" />
-  </div>
-
-  <div class="field">
-    <input id="last_name" maxlength="80" name="last_name" size="20" type="text" placeholder="{{ _('Last Name') }}" class="required" />
-
-  </div>
-
-  <div class="field">
-    <input id="title" maxlength="40" name="title" size="20" type="text" placeholder="{{ _('Title') }}" />
-  </div>
-
-  <div class="field">
-    <input id="company" maxlength="40" name="company" size="20" type="text" placeholder="{{ _('Company') }}" class="required" />
-  </div>
-
-  <div class="field">
-    <input id="URL" maxlength="80" name="URL" size="20" type="text" placeholder="{{ _('Website') }}" />
-  </div>
-
-  <div class="field">
-    <input id="email" maxlength="80" name="email" size="20" type="text" placeholder="{{ _('Email') }}" class="required" />
-  </div>
-
-  <div class="field">
-    <input id="phone" maxlength="40" name="phone" size="20" type="text" placeholder="{{ _('Phone') }}" />
-  </div>
-
-  <div class="field">
-    <input id="mobile" maxlength="40" name="mobile" size="20" type="text" placeholder="{{ _('Mobile') }}" />
-  </div>
-
-  <div class="field">
-    <label for="00NU0000002pDJr">Interest:</label>
-    <select  id="00NU0000002pDJr" multiple="multiple" name="00NU0000002pDJr" title="{{ _('Interest') }}" size="7">
-      <option value="Firefox for Desktop">{{ _('Firefox for Desktop') }}</option>
-      <option value="Firefox for Android">{{ _('Firefox for Android') }}</option>
-      <option value="Firefox Marketplace">{{ _('Firefox Marketplace') }}</option>
-      <option value="Firefox OS">{{ _('Firefox OS') }}</option>
-      <option value="Persona">{{ _('Persona') }}</option>
-      <option value="{{ _('Marketing and Co-promotions">Marketing and Co-promotions') }}</option>
-      <option value="Other">{{ _('Other') }}</option>
-    </select>
-  </div>
-
-  <div class="field">
-    <textarea name="description" placeholder="{{ _('Comments or questions?') }}"></textarea>
-  </div>
-
-  <div class="field footer-field">
-    <input type="submit" name="submit" value="{{ _('Submit my request') }}" class="button-blue" />
-  </div>
-
-  </form>
-
-</section>
 
 {% endblock %}
 

@@ -276,6 +276,7 @@ MINIFY_BUNDLES = {
             'css/foundation/annual2011.less',
         ),
         'partners': (
+            'css/libs/jquery.pageslide.css',
             'css/firefox/partners.less',
         ),
     },

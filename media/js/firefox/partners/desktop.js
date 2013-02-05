@@ -6,10 +6,11 @@
 
     // i heard document.ready isn't necessary anymore. just trying it out...
     //$(document).ready(function () {
+        // set up foxtail sprite animation
         $('#foxtail').sprite({fps: 12, no_of_frames: 44, rewind: true});
 
         // Smooth scroll-to for left menu navigation
-        $('#partner-nav a, #nav-main-menu a').click(function(e) {
+        $('#partner-nav a[class!="no-scroll"], #nav-main-menu a').click(function(e) {
             var elementClicked = $(this).attr("href");
             var destination;
 
@@ -31,6 +32,14 @@
 
             $("html:not(:animated),body:not(:animated)").animate({ scrollTop: destination }, 700);
             return false;
+        });
+
+        // move form out of overlay
+        var $form = $('#form').detach();
+        $('#article-wrapper').after($form);
+
+        $('#toggle-form').pageslide({
+            direction: 'left'
         });
 
         var $giantfox = $('#giantfox');
