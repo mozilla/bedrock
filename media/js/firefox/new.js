@@ -24,7 +24,6 @@
             window.location.href = url;
         }, 500);
     }
-
     function show_scene(scene) {
         var CSSbottom = (scene === 2) ? '-400px' : 0;
         $stage.data('scene', scene);
@@ -43,30 +42,35 @@
             }, 500);
         }
     }
-
-    // Load images on load so as not to block the loading of other images.
-    $(window).on('load', function() {
+    function setup_scene2() {
         // Screen 1 is unique for IE < 9
         if (site.platform === 'windows' && $.browser.msie && $.browser.version < 9) {
             $('html').addClass('winIE8');
         }
-
         $('body').addClass('ready-for-scene2');
-
-        // initiate download/scene2 if coming directly to #download
-        if (location.hash === '#download-fx' && site.platform !== 'other') {
-            show_scene(2);
-            $('#direct-download-link').trigger('click');
-        }
-    });
-
+    }
     $(function() {
         // Pull Firefox download link from the download button and add to the
         // 'click here' link.
-        // TODO: Remove and generate link in bedrock.
         $('#direct-download-link').attr(
             'href', $('.download-list li:visible .download-firefox').attr('href')
         );
+        
+        // initiate download/scene2 if coming directly to #download-fx
+        if (location.hash === '#download-fx' && site.platform !== 'other') {
+            // load assets for scene2 directly
+            setup_scene2();
+            // when all is loaded, show scene2 and trigger click
+            $(window).on('load', function() {
+                show_scene(2);
+                $('#direct-download-link').trigger('click');
+            });
+        }else{
+            // Load assets on load so as not to block the loading of other images.
+            $(window).on('load', function() {
+                setup_scene2();
+            });
+        }
 
         $stage.on('click', '#direct-download-link, .download-firefox', function(e) {
             e.preventDefault();
