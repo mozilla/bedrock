@@ -29,7 +29,7 @@
 .partner-article {
     overflow: hidden;
     position: relative;
-    height: 800px;
+    height: 820px;
     background: #eee url("/media/img/sandstone/bg-sky.png") 0 0 repeat-x;
     .clearfix();
     -webkit-box-shadow:  0px -3px 5px 1px rgba(0, 0, 0, 0.3);
@@ -364,7 +364,7 @@ h2 {
     width: 359px;
     position: absolute;
     z-index: 120;
-    top: 220px;
+    top: 200px;
     left: 50%;
     margin-left: 150px;
     .phone {
@@ -386,6 +386,9 @@ h2 {
     top: auto;
     bottom: -600px;
     .transition(all ease 1s);
+    &.android-phone-visible {
+        bottom: 80px;
+    }
 }
 
 /* }}} */

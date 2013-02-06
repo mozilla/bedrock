@@ -4,6 +4,10 @@
 ;(function(w, $, TweenMax, TimelineLite, Power2, Quad) {
     'use strict';
 
+    var article_height = 820;
+    var parallax_offset = 120;
+    var phone_offset = 200; // distance from top of article to top of phone
+
     // i heard document.ready isn't necessary anymore. just trying it out...
     //$(document).ready(function () {
         // set up foxtail sprite animation
@@ -20,13 +24,13 @@
                     destination = 0;
                     break;
                 case '#os':
-                    destination = 680;
+                    destination = (article_height - parallax_offset);
                     break;
                 case '#marketplace':
-                    destination = 1360;
+                    destination = ((article_height * 2) - (parallax_offset * 2));
                     break;
                 case '#android':
-                    destination = 2040;
+                    destination = ((article_height * 3) - (parallax_offset * 3));
                     break;
             }
 
@@ -38,6 +42,7 @@
         var $form = $('#form').detach();
         $('#article-wrapper').after($form);
 
+        // activate form drawer
         $('#toggle-form').pageslide({
             direction: 'left'
         });
@@ -104,11 +109,21 @@
             $giantfox.css('left', '45%');
         });
 
-        var _move_phone = function(top_pos, slide, new_z) {
-            var cur_left = parseInt($phone.css('left'), 10);
+        var _move_phone = function(factor, slide, new_z) {
+            var cur_left = $phone.position().left;
+            var doc_width = $(w.document).width();
 
+            // when jumping more than one section with nav, phone may
+            // not make it all the way to -50%
+            // if phone is less than halfway across current viewport,
+            // assume it's not visible
+            var visible = (cur_left >= (doc_width/2));
+
+            var top_pos = ((article_height * factor) - (parallax_offset * factor)) + phone_offset;
+
+            // would like to abstract this more, but each scenario requires specific sequencing
             if (Number(slide.find('section:first').attr('data-current')) === 1) {
-                if (cur_left < 0) {
+                if (!visible) {
                     if (new_z) {
                         $phone.css('z-index', new_z);
                     }
@@ -126,7 +141,7 @@
                     });
                 }
             } else {
-                if (cur_left > 0) {
+                if (visible) {
                     $phone.animate({
                         'left': '-50%'
                     }, 500, function() {
@@ -152,7 +167,7 @@
 
         tweens.slide_up = {
             from: {
-                css: { top: 80, opacity: 0 },
+                css: { top: 120, opacity: 0 },
                 immediateRender: true
             },
             to: { css: { top: 0, opacity: 1 } }
@@ -164,52 +179,52 @@
                 immediateRender: true
             },
             to: {
-                css: { top: -120 },
+                css: { top: (parallax_offset*-1) },
                 onStart: function() {
                     $phone.css('z-index', 110);
                 },
                 onComplete: function() {
-                    _move_phone(944, $os);
+                    _move_phone(1, $os);
                 },
                 onReverseComplete: function() {
-                    _move_phone(220, $overview);
+                    _move_phone(0, $overview);
                 }
             }
         };
 
         tweens.article_marketplace = {
             from: {
-                css: { top: -120, ease: Power2.easeOut },
+                css: { top: (parallax_offset*-1), ease: Power2.easeOut },
                 immediateRender: true
             },
             to: {
-                css: { top: -240 },
+                css: { top: (parallax_offset*-2) },
                 onStart: function() {
                     $phone.css('z-index', 120);
                 },
                 onComplete: function() {
-                    _move_phone(1520, $marketplace);
+                    _move_phone(2, $marketplace);
                 },
                 onReverseComplete: function() {
-                    _move_phone(944, $os, 110);
+                    _move_phone(1, $os, 110);
                 }
             }
         };
 
         tweens.article_android = {
             from: {
-                css: { top: -240, ease: Power2.easeOut },
+                css: { top: (parallax_offset*-2), ease: Power2.easeOut },
                 immediateRender: true
             },
             to: {
-                css: { top: -360 },
+                css: { top: (parallax_offset*-3) },
                 onComplete: function() {
-                    _move_phone(2200, $android);
-                    $phone_android.css('bottom', '0px');
+                    _move_phone(3, $android);
+                    $phone_android.addClass('android-phone-visible');
                 },
                 onReverseComplete: function() {
-                    _move_phone(1520, $marketplace);
-                    $phone_android.css('bottom', '-600px');
+                    _move_phone(2, $marketplace);
+                    $phone_android.removeClass('android-phone-visible');
                 }
             }
         };
