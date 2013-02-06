@@ -250,13 +250,18 @@ def download_button(ctx, id, format='large', build=None, force_direct=False,
 def download_firefox(ctx, build='release', small=False, icon=True,
                      mobile=False, dom_id=None, force_direct=False,
                      force_full_installer=False):
-    """Output a "download firefox" button.
+    """ Output a "download firefox" button.
 
-    :param cxt: context from the calling template.
-    :param size: 'large' or 'small'
-    :param build: 'release' or 'beta', possibly 'aurora' or 'esr' in future
-    :param icon: boolean to show the Fx logo or not.
-    :param mobile: boolean
+    :param ctx: context from calling template
+    :param build: name of build: 'release' or 'beta'
+    :param small: Display the small button if True
+    :param icon: Display the Fx icon on the button if True
+    :param mobile: Display the android download button if True
+    :param dom_id: Use this string as the id attr on the element
+    :param force_direct: Force the download URL to be direct
+    :param force_full_installer: Force the installer download to not be
+                                 the stub installer
+    :return: The button html
     """
     alt_build = '' if build == 'release' else build
     platform = 'mobile' if mobile else 'desktop'
@@ -336,7 +341,7 @@ def download_firefox(ctx, build='release', small=False, icon=True,
     data = {
         'locale_name': locale_name,
         'version': version,
-        'product': 'firefox',
+        'product': 'firefox-mobile' if mobile else 'firefox',
         'builds': builds,
         'id': dom_id,
         'small': small,
