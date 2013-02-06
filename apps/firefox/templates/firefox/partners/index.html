@@ -339,9 +339,69 @@
 </div> <!--/#article-wrapper-->
 
 <article id="overlay">
-  <section id="map"></section>
-  <section id="calendar"></section>
-  <section id="testimonials"></section>
+  <section id="location">
+    <a href="#">{{ _('Location') }}</a>
+    <h2>{{ _('Firefox at MWC 2013 — Stand F20, Hall 8.1, App Planet') }}</h2>
+    <div class="footer">
+      <div>
+        <h3>{{ _('From the South Entrance:') }}</h3>
+        <p>{{ _('Walk straight down the main hallway of Hall 8.1. Our stand is located in the middle of the hall on the right.') }}</p>
+      </div>
+      <div>
+        <h3>{{ _('From the North Entrance:') }}</h3>
+        <p>{{ _('Go up the escalator to Hall 8.1. Our stand is located in the middle of the hall.') }}</p>
+      </div>
+      <div>
+        <a href="#">{{ _('Download map (PDF)') }}</a>
+      </div>
+    </div>
+  </section>
+  <section id="schedule">
+    <a href="#">{{ _('Schedule') }}</a>
+    <h2>{{ _('Firefox at MWC 2013 — Schedule of events') }}</h2>
+    <div class="calendar">
+      <div class="day">
+        <h4><span>{{ _('Monday') }}</span> {{ _('February 25') }}</h4>
+        <div class="day-contents">
+          <h3>{{ _('Apps Panel: Evolving Ecosystems') }}</h3>
+          <p>{{ _('Experts from across the board will discuss the current state of the apps industry and consider how the roles and responsibilities within it are adapting as the apps market evolves.') }}</p>
+          <div class="time">{{ _('16:00–17:30') }}</div>
+          <div class="location">{{ _('Location TBD') }}</div>
+          <div class="person">{{ _('Jay Sullivan') }}</div>
+          <div class="role">{{ _('VP of Products, Mozilla') }}</div>
+        </div>
+      </div>
+      <div class="day">
+        <h4><span>{{ _('Tuesday') }}</span> {{ _('February 26') }}</h4>
+        <div class="day-contents">
+          <h3>{{ _('Mozilla Keynote') }}</h3>
+          <p>{{ _('Mozilla CEO Gary Kovacs will discuss the benefits of an Open Web device in markets around the world and how Firefox OS will help carriers, OEMs and developers reach the next billion Web users.') }}</p>
+          <div class="time">{{ _('09:00–10:30') }}</div>
+          <div class="location">{{ _('Location TBD') }}</div>
+          <div class="person">{{ _('Gary Kovacs') }}</div>
+          <div class="role">{{ _('CEO, Mozilla') }}</div>
+        </div>
+      </div>
+      <div class="day">
+        <h4><span>{{ _('Wednesday') }}</span> {{ _('February 27') }}</h4>
+        <div class="day-contents">
+          <p class="note">{{ _('Check back for schedule additions and updates.') }}</p>
+        </div>
+      </div>
+      <div class="day">
+        <h4><span>{{ _('Thursday') }}</span> {{ _('February 28') }}</h4>
+        <div class="day-contents">
+          <h3>{{ _('WIPJam') }}</h3>
+          <div class="time">{{ _('09:00–16:00') }}</div>
+          <div class="location">{{ _('Hall 8.0, Theatre B, Theatre District, App Planet ') }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="testimonials">
+    <a href="#">{{ _('Testimonials') }}</a>
+    <h2>{{ _('Firefox OS — Operator and manufacturer testimonials') }}</h2>
+  </section>
   <section id="form">
 
     <h3>{{ _('Get involved') }}</h3>
