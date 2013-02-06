@@ -25,6 +25,8 @@
 .partner-button {
     .button {
         font-size: 18px;
+        padding-top: 10px;
+        padding-bottom: 10px;
         &:after {
             content: " ";
             display: inline-block;
@@ -190,7 +192,10 @@ h2 {
         text-shadow: none;
     }
     a {
-       color: #ffd200;
+        color: #ffd200;
+    }
+    a.button {
+        color: #fff;
     }
 }
 
@@ -250,6 +255,9 @@ h2 {
     }
     #os-overview {
         padding-top: 0;
+        .logos {
+            margin-bottom: @baseLine;
+        }
     }
     #os-operators-intro {
         .left {
@@ -283,9 +291,6 @@ h2 {
         }
     }
 }
-
-/* }}} */
-/* {{{ Firefox for Android section */
 
 /* }}} */
 /* {{{ Firefox for Android section */
@@ -338,6 +343,24 @@ h2 {
     @import "partners/desktop.less";
 }
 
+@media only screen and (min-width: 1000px) and (max-width: 1090px)  {
+    #partner-nav {
+        left: -3px;
+        width: 38px;
+        .transition();
+        &:hover {
+            width: 60px;
+        }
+    }
+}
+
+@media only screen and (min-width: 1090px) and (max-width: 1150px)  {
+    #partner-nav {
+        left: 10px;
+    }
+}
+
+
 /* }}} */
 /* {{{ Responsive Grid */
 
@@ -353,8 +376,8 @@ h2 {
 
     .logos {
         li {
-            margin-left: 7px;
-            margin-right: 7px;
+            margin-left: 16px;
+            margin-right: 17px;
         }
     }
 

@@ -56,7 +56,6 @@
         padding: (@baseLine * 2) 0;
         h2 {
             float: left;
-            .offset(1);
         }
         nav {
             display: block;
@@ -75,13 +74,13 @@
     .article-content {
         padding: (@baseLine * 2) 0;
         h2 {
-            .span(7);
-            .offset(1);
+            .span(8);
             margin-bottom: @baseLine;
         }
         .intro {
-            .span(7);
-            .offset(1);
+            .span(8);
+            margin-left: 20px;
+            margin-right: 0;
         }
     }
 
@@ -142,18 +141,20 @@ h2 {
     background: url(/media/img/firefox/partners/overview-bg.png) center top no-repeat;
     h2 {
         font-size: 84px;
-        letter-spacing: -2px;
-        .span(11);
-        .offset(1);
+        letter-spacing: -4px;
+        .span-all();
         padding-top: 40px;
         padding-bottom: 40px;
     }
     .intro {
         p {
-            font-size: 16px;
             .open-sans-light;
+            font-size: 17px;
+            letter-spacing: -0.01em;
+            a {
+                .open-sans;
+            }
         }
-        .offset(1);
         #more-partners {
             margin-top: 10px;
             float: left;
@@ -209,8 +210,7 @@ h2 {
 #os {
     .intro {
         padding-top: 140px;
-        .span(6);
-        .offset(1);
+        .span(7);
         .narrow {
             margin-right: 100px;
         }
@@ -222,8 +222,7 @@ h2 {
         font-size: 30px;
     }
     #os-operators-intro {
-        .span(11);
-        .offset(1);
+        .span-all();
         padding-top: 120px;
         h3 {
             font-size: 52px;
@@ -261,7 +260,7 @@ h2 {
             }
         }
         .logos {
-            .span(5);
+            .span(6);
             margin-right: 0;
         }
     }
@@ -274,7 +273,6 @@ h2 {
     .intro {
         padding-top: 140px;
         .span(6);
-        .offset(1);
     }
 }
 
