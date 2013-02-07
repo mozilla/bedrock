@@ -93,11 +93,14 @@
             // update current section
             dest.attr('data-current', 1);
 
+            // which phone should we move?
+            var $cur_phone = (article.attr('id') === 'android') ? $phone_android : $phone;
+
             // slide phone?
             if (dest_pos > 1) {
-                $phone.animate({ 'left': '-50%' }, 500);
+                $cur_phone.animate({ 'left': '-50%' }, 500);
             } else {
-                $phone.animate({ 'left': '50%' }, 500);
+                $cur_phone.animate({ 'left': '50%' }, 500);
             }
         });
 
@@ -122,41 +125,45 @@
             var top_pos = ((article_height * factor) - (parallax_offset * factor)) + phone_offset;
 
             // would like to abstract this more, but each scenario requires specific sequencing
-            if (Number(slide.find('section:first').attr('data-current')) === 1) {
-                if (!visible) {
-                    if (new_z) {
-                        $phone.css('z-index', new_z);
-                    }
-
-                    $phone.animate({
-                        top: top_pos
-                    }, 100, function() {
-                        $phone.animate({ 'left': '50%' }, 500);
-                    });
-                } else {
-                    $phone.animate({ 'top': top_pos + 'px' }, 500, function() {
-                        if (new_z) {
-                            $phone.css('z-index', new_z);
-                        }
-                    });
-                }
+            if (slide.attr('id') === 'android') {
+                $phone.animate({ 'top': top_pos + 'px' }, 500);
             } else {
-                if (visible) {
-                    $phone.animate({
-                        'left': '-50%'
-                    }, 500, function() {
-                        $phone.css('top', top_pos + 'px');
-
+                if (Number(slide.find('section:first').attr('data-current')) === 1) {
+                    if (!visible) {
                         if (new_z) {
                             $phone.css('z-index', new_z);
                         }
-                    });
-                } else {
-                    if (new_z) {
-                        $phone.css('z-index', new_z);
-                    }
 
-                    $phone.animate({ 'top': top_pos + 'px' }, 500);
+                        $phone.animate({
+                            top: top_pos
+                        }, 100, function() {
+                            $phone.animate({ 'left': '50%' }, 500);
+                        });
+                    } else {
+                        $phone.animate({ 'top': top_pos + 'px' }, 500, function() {
+                            if (new_z) {
+                                $phone.css('z-index', new_z);
+                            }
+                        });
+                    }
+                } else {
+                    if (visible) {
+                        $phone.animate({
+                            'left': '-50%'
+                        }, 500, function() {
+                            $phone.css('top', top_pos + 'px');
+
+                            if (new_z) {
+                                $phone.css('z-index', new_z);
+                            }
+                        });
+                    } else {
+                        if (new_z) {
+                            $phone.css('z-index', new_z);
+                        }
+
+                        $phone.animate({ 'top': top_pos + 'px' }, 500);
+                    }
                 }
             }
         };
