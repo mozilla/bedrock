@@ -26,6 +26,7 @@ class FirefoxDetails(ProductDetails):
         'aurora': 'FIREFOX_AURORA',
         'beta': 'LATEST_FIREFOX_DEVEL_VERSION',
         'esr': 'FIREFOX_ESR',
+        'esr_qa': 'FIREFOX_ESR_QA',
         'release': 'LATEST_FIREFOX_VERSION',
     }
     esr_major_versions = [10, 17]

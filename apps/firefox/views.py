@@ -133,3 +133,17 @@ def all_downloads(request):
         'test_builds': firefox_details.get_filtered_test_builds(version, query),
         'query': query,
     })
+
+def all_downloads_esr(request):
+    esr_version = firefox_details.latest_version('esr')
+    qa_version = firefox_details.latest_version('esr_qa')
+    query = request.GET.get('q')
+    return l10n_utils.render(request, 'firefox/organizations/all.html', {
+        'full_esr_builds': firefox_details.get_filtered_full_builds(esr_version, query),
+        'test_esr_builds': firefox_details.get_filtered_test_builds(esr_version, query),
+        'full_esr_qa_builds': firefox_details.get_filtered_full_builds(qa_version, query),
+        'test_esr_qa_builds': firefox_details.get_filtered_test_builds(qa_version, query),
+        'esr_version': esr_version,
+        'esr_qa_version': qa_version,
+        'query': query,
+    })
