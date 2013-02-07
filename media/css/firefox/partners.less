@@ -135,7 +135,7 @@
             .box-shadow(@shadow);
             .transition(background-color ease-out .3s);
             &:hover {
-                background-color: #15aaff;
+                background-color: #eee;
                 .transition(background-color ease-in .1s);
             }
         }
@@ -145,14 +145,21 @@
         &:last-child a {
             border-radius: 0 3px 3px 0;
         }
-        &#menu-overview    a { background-position: 50% 0; }
-        &#menu-os          a { background-position: 50% -120px; }
-        &#menu-marketplace a { background-position: 50% -240px; }
-        &#menu-android     a { background-position: 50% -360px; }
-        &#menu-overview    a:hover { background-position: 50% -60px; }
-        &#menu-os          a:hover { background-position: 50% -180px; }
-        &#menu-marketplace a:hover { background-position: 50% -300px; }
-        &#menu-android     a:hover { background-position: 50% -420px; }
+        &.active a {
+            background-color: #15aaff;
+        }
+        &#menu-overview           a { background-position: 50% 0; }
+        &#menu-overview.active    a { background-position: 50% -60px; }
+        &#menu-os                 a { background-position: 50% -120px; }
+        &#menu-os.active          a { background-position: 50% -180px; }
+        &#menu-marketplace        a { background-position: 50% -240px; }
+        &#menu-marketplace.active a { background-position: 50% -300px; }
+        &#menu-android            a { background-position: 50% -360px; }
+        &#menu-android.active     a { background-position: 50% -420px; }
+        &#menu-location           a { background-position: 50% -480px; }
+        &#menu-location.active    a { background-position: 50% -540px; }
+        &#menu-schedule           a { background-position: 50% -600px; }
+        &#menu-schedule.active    a { background-position: 50% -660px; }
     }
 }
 
