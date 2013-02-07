@@ -16,13 +16,52 @@
             }]);
         },
         match: function() {
-            // no action needed, but handler must be present
+            // remove mobile hooks (fires before setup above)
+            _detach_mobile();
         },
         unmatch: function() {
             // no action needed?
+            _attach_mobile();
             // currently no way of unbinding superscrollorama stuff (wut!?)
-            // however, only desktop users should ever go from desktop to mobile, so...it's ok? maybe?
+            // however, only desktop users should ever go from desktop to mobile, so...it's ok?
         }
     }, true).listen(); // true param here forces non-mq browsers to match this rule
     // so, i don't think we need a polyfill
+
+    // mobile functionality
+    var _attach_mobile = function() {
+        // hide back to top arrows
+        $('.top').hide();
+
+        // hide all articles except the first
+        $('.partner-article[id!="overview"]').hide();
+
+        // set overview as active
+        $('a[href="#overview"]').parent('li').addClass('active');
+
+        // hook up article nav
+        $('#partner-nav a, #nav-main-menu a').on('click.mobile', function(e) {
+            e.preventDefault();
+
+            var $that = $(this);
+            var $li = $that.parent('li');
+
+            if (!$li.hasClass('active')) {
+                $('.partner-article:visible').fadeOut('fast', function() {
+                    $($that.attr('href')).fadeIn('fast');
+
+                    $('a[href!="' + $that.attr('href') + '"]').parent('li').removeClass('active');
+                    $('a[href="' + $that.attr('href') + '"]').parent('li').addClass('active');
+                });
+            }
+        });
+    };
+
+    // remove mobile functionality
+    var _detach_mobile = function() {
+        $('.partner-article').show();
+        $('#partner-nav a, #nav-main-menu a').off('click.mobile');
+    };
+
+    _attach_mobile();
 })(window, window.jQuery, window.enquire, window.Modernizr);

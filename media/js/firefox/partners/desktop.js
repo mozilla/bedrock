@@ -14,7 +14,7 @@
         $('#foxtail').sprite({fps: 12, no_of_frames: 44, rewind: true});
 
         // Smooth scroll-to for left menu navigation
-        $('#partner-nav a[class!="no-scroll"], #nav-main-menu a').click(function(e) {
+        $('#partner-nav a, #nav-main-menu a').click(function(e) {
             var elementClicked = $(this).attr("href");
             var destination;
 
@@ -43,8 +43,18 @@
         $('#article-wrapper').after($form);
 
         // activate form drawer
-        $('#toggle-form').pageslide({
-            direction: 'left'
+        $('#toggle-form').on('click', function() {
+            var $menu = $('#overlay-menu');
+
+            $menu.toggleClass('form-open');
+
+            if (!$menu.hasClass('form-open')) {
+                $.pageslide.close();
+            }
+        }).pageslide({
+            direction: 'left',
+            modal: true,
+            speed: 300
         });
 
         var $giantfox = $('#giantfox');
@@ -93,6 +103,9 @@
             // update current section
             dest.attr('data-current', 1);
 
+            // update parent article selector
+            article.attr('data-section', dest.attr('id'));
+
             // which phone should we move?
             var $cur_phone = (article.attr('id') === 'android') ? $phone_android : $phone;
 
@@ -113,21 +126,26 @@
         });
 
         var _move_phone = function(factor, slide, new_z) {
-            var cur_left = $phone.position().left;
-            var doc_width = $(w.document).width();
+            $('body').attr('data-article', slide.attr('id'));
+
+            $('#partner-menu li').removeClass('active');
+            $('#partner-menu li[id="menu-' + slide.attr('id') + '"]').addClass('active');
 
             // when jumping more than one section with nav, phone may
             // not make it all the way to -50%
             // if phone is less than halfway across current viewport,
             // assume it's not visible
+            var cur_left = $phone.position().left;
+            var doc_width = $(w.document).width();
             var visible = (cur_left >= (doc_width/2));
 
             var top_pos = ((article_height * factor) - (parallax_offset * factor)) + phone_offset;
 
-            // would like to abstract this more, but each scenario requires specific sequencing
+            // scrolling to android slide should never affect standard phone's left or z-index
             if (slide.attr('id') === 'android') {
                 $phone.animate({ 'top': top_pos + 'px' }, 500);
             } else {
+                // would like to abstract this more, but each scenario requires specific sequencing
                 if (Number(slide.find('section:first').attr('data-current')) === 1) {
                     if (!visible) {
                         if (new_z) {
