@@ -77,24 +77,6 @@
                     text-decoration: none;
                     background: rgba(166,189,206,0.4);
                 }
-                &:first-child {
-                    background: #fff;
-                    border: #fff;
-                    color: @textColorSecondary;
-                    @shadow: 0 1px 2px rgba(0,0,0,0.4);
-                    .box-shadow(@shadow);
-                    &:after {
-                        content: " ";
-                        display: block;
-                        position: absolute;
-                        height: 12px;
-                        width: 25px;
-                        background: url(/media/img/firefox/partners/menu-icons.png) 50% -1140px no-repeat;
-                        bottom: -12px;
-                        left: 50%;
-                        margin-left: -12px;
-                    }
-                }
             }
         }
     }
@@ -123,14 +105,45 @@
                     text-decoration: none;
                     background: rgba(255,255,255,0.2);
                 }
-                &:first-child {
-                    background: #fff;
-                    border: #fff;
-                    color: @textColorSecondary;
-                }
             }
         }
     }
+}
+
+.partner-article[data-section="os-overview"] .article-header nav a[data-section="os-overview"],
+.partner-article[data-section="os-operators"] .article-header nav a[data-section="os-operators"],
+.partner-article[data-section="marketplace-overview"] .article-header nav a[data-section="marketplace-overview"],
+.partner-article[data-section="marketplace-operators"] .article-header nav a[data-section="marketplace-operators"],
+.partner-article[data-section="marketplace-developers"] .article-header nav a[data-section="marketplace-developers"],
+.partner-article[data-section="android-overview"] .article-header nav a[data-section="android-overview"],
+.partner-article[data-section="android-partner"] .article-header nav a[data-section="android-partner"],
+.partner-article[data-section="android-benchmarking"] .article-header nav a[data-section="android-benchmarking"] {
+    background: #fff;
+    border: #fff;
+    color: @textColorSecondary;
+    @shadow: 0 1px 2px rgba(0,0,0,0.4);
+    .box-shadow(@shadow);
+    &:after {
+        content: " ";
+        display: block;
+        position: absolute;
+        height: 12px;
+        width: 25px;
+        background: url(/media/img/firefox/partners/menu-icons.png) 50% -1140px no-repeat;
+        bottom: -12px;
+        left: 50%;
+        margin-left: -12px;
+    }
+}
+
+.partner-article[data-section="os-overview"] .article-header nav a[data-section="os-overview"],
+.partner-article[data-section="os-operators"] .article-header nav a[data-section="os-operators"],
+.partner-article[data-section="android-overview"] .article-header nav a[data-section="android-overview"],
+.partner-article[data-section="android-partner"] .article-header nav a[data-section="android-partner"],
+.partner-article[data-section="android-benchmarking"] .article-header nav a[data-section="android-benchmarking"] {
+    background: #fff;
+    border: #fff;
+    color: @textColorSecondary;
 }
 
 /* }}} */
