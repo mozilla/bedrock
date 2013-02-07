@@ -248,24 +248,25 @@ def download_button(ctx, id, format='large', build=None, force_direct=False,
 @jingo.register.function
 @jinja2.contextfunction
 def download_firefox(ctx, build='release', small=False, icon=True,
-                     mobile=False, dom_id=None, force_direct=False,
-                     force_full_installer=False):
+                     mobile=False, dom_id=None, locale=None,
+                     force_direct=False, force_full_installer=False):
     """ Output a "download firefox" button.
 
-    :param ctx: context from calling template
-    :param build: name of build: 'release' or 'beta'
-    :param small: Display the small button if True
-    :param icon: Display the Fx icon on the button if True
-    :param mobile: Display the android download button if True
-    :param dom_id: Use this string as the id attr on the element
-    :param force_direct: Force the download URL to be direct
+    :param ctx: context from calling template.
+    :param build: name of build: 'release', 'beta' or 'aurora'.
+    :param small: Display the small button if True.
+    :param icon: Display the Fx icon on the button if True.
+    :param mobile: Display the android download button if True.
+    :param dom_id: Use this string as the id attr on the element.
+    :param locale: The locale of the download. Default to locale of request.
+    :param force_direct: Force the download URL to be direct.
     :param force_full_installer: Force the installer download to not be
-                                 the stub installer
-    :return: The button html
+                                 the stub installer.
+    :return: The button html.
     """
     alt_build = '' if build == 'release' else build
     platform = 'mobile' if mobile else 'desktop'
-    locale = ctx['request'].locale
+    locale = locale or ctx['request'].locale
     dom_id = dom_id or 'download-button-%s-%s' % (platform, build)
 
     def latest(locale):
