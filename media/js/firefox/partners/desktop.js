@@ -4,6 +4,7 @@
 ;(function(w, $, TweenMax, TimelineLite, Power2, Quad) {
     'use strict';
 
+    var $article_wrapper = $('#article-wrapper');
     var article_height = 820;
     var parallax_offset = 120;
     var phone_offset = 200; // distance from top of article to top of phone
@@ -38,9 +39,21 @@
             return false;
         });
 
+        $(function() {
+            setTimeout(function() {
+                if (w.location.hash) {
+                    $article_wrapper.scrollTop(0);
+
+                    $('#partner-nav a[href="' + window.location.hash + '"]').trigger('click');
+
+                    w.location.hash = '';
+                }
+            }, 1);
+        });
+
         // move form out of overlay
         var $form = $('#form').detach();
-        $('#article-wrapper').after($form);
+        $article_wrapper.after($form);
 
         // activate form drawer
         $('#toggle-form').on('click', function() {

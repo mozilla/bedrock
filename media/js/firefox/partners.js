@@ -16,52 +16,30 @@
             }]);
         },
         match: function() {
-            // remove mobile hooks (fires before setup above)
-            _detach_mobile();
+            // TODO: attach desktop hooks
         },
         unmatch: function() {
-            // no action needed?
-            _attach_mobile();
+            // TODO: detach desktop hooks
+
             // currently no way of unbinding superscrollorama stuff (wut!?)
             // however, only desktop users should ever go from desktop to mobile, so...it's ok?
         }
-    }, true).listen(); // true param here forces non-mq browsers to match this rule
-    // so, i don't think we need a polyfill
-
-    // mobile functionality
-    var _attach_mobile = function() {
-        // hide back to top arrows
-        $('.top').hide();
-
-        // hide all articles except the first
-        $('.partner-article[id!="overview"]').hide();
-
-        // set overview as active
-        $('a[href="#overview"]').parent('li').addClass('active');
-
-        // hook up article nav
-        $('#partner-nav a, #nav-main-menu a').on('click.mobile', function(e) {
-            e.preventDefault();
-
-            var $that = $(this);
-            var $li = $that.parent('li');
-
-            if (!$li.hasClass('active')) {
-                $('.partner-article:visible').fadeOut('fast', function() {
-                    $($that.attr('href')).fadeIn('fast');
-
-                    $('a[href!="' + $that.attr('href') + '"]').parent('li').removeClass('active');
-                    $('a[href="' + $that.attr('href') + '"]').parent('li').addClass('active');
-                });
-            }
-        });
-    };
-
-    // remove mobile functionality
-    var _detach_mobile = function() {
-        $('.partner-article').show();
-        $('#partner-nav a, #nav-main-menu a').off('click.mobile');
-    };
-
-    _attach_mobile();
+    // true param here forces non-mq browsers to match this rule, so, i don't think we need a polyfill
+    }, true).register("screen and (max-width: 759px)", {
+        deferSetup: true,
+        setup: function() {
+            Modernizr.load([{
+                both: [ '/media/js/firefox/partners/mobile.js' ],
+                complete: function() {
+                    w.attach_mobile();
+                }
+            }]);
+        },
+        match: function() {
+            // handler must exist
+        },
+        unmatch: function() {
+            w.detach_mobile();
+        }
+    }, false).listen();
 })(window, window.jQuery, window.enquire, window.Modernizr);
