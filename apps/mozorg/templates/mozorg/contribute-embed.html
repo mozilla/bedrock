@@ -30,5 +30,9 @@
     </div>
     {{ js('common') }}
     {{ js('contribute') }}
+    <script>
+      {# set target without invalidating already translated strings. #}
+      $('.field-privacy a').attr('target', '_top');
+    </script>
   </body>
 </html>
