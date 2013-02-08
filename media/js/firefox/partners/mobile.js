@@ -20,7 +20,7 @@
         $('a[href="#overview"]').parent('li').addClass('active');
 
         // hook up article nav
-        $('#partner-nav a, #nav-main-menu a').on('click.mobile', function(e) {
+        $('#partner-menu a, #nav-main-menu a').on('click.mobile', function(e) {
             e.preventDefault();
 
             var $that = $(this);

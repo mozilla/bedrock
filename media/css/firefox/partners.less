@@ -346,6 +346,53 @@ h2 {
 }
 
 /* }}} */
+/* {{{ Full window overlay */
+
+body.noscroll {
+  overflow: hidden;
+}
+#modal {
+  background: #444;
+  background: rgba(0, 0, 0, 0.9);
+  width: 100%;
+  height: 101%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+  overflow: auto;
+}
+#modal .inner {
+  width: 960px;
+  margin: 60px auto;
+  padding: 0 10px;
+  color: #f3f3f3;
+}
+#modal .close {
+  display: inline;
+  position: fixed;
+  z-index: 99;
+  top: 25px;
+  right: 25px;
+  color: #ccc;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding-right: 22px;
+  cursor: pointer;
+  border: 0;
+  background: transparent url(/media/img/firefox/partners/closex.png) right center no-repeat;
+}
+#modal .close:hover,
+#modal .close:focus {
+  text-decoration: underline;
+  color: #eee;
+}
+
+/* }}} */
 /* {{{  Desktop Layout */
 @media only screen and (min-width: @widthTablet) {
     @import "partners/desktop.less";

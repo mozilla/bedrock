@@ -6,7 +6,7 @@
 
     var $article_wrapper = $('#article-wrapper');
     var article_height = 820;
-    var parallax_offset = 120;
+    var parallax_offset = 142;
     var phone_offset = 200; // distance from top of article to top of phone
 
     // i heard document.ready isn't necessary anymore. just trying it out...
@@ -15,7 +15,7 @@
         $('#foxtail').sprite({fps: 12, no_of_frames: 44, rewind: true});
 
         // Smooth scroll-to for left menu navigation
-        $('#partner-nav a, #nav-main-menu a').click(function(e) {
+        $('#partner-menu a, #nav-main-menu a').click(function(e) {
             var elementClicked = $(this).attr("href");
             var destination;
 
@@ -124,9 +124,9 @@
 
             // slide phone?
             if (dest_pos > 1) {
-                $cur_phone.animate({ 'left': '-50%' }, 500);
+                $cur_phone.stop().animate({ 'left': '-50%' }, 500);
             } else {
-                $cur_phone.animate({ 'left': '50%' }, 500);
+                $cur_phone.stop().animate({ 'left': '50%' }, 500);
             }
         });
 
@@ -303,8 +303,8 @@
                 controller.addTween(
                     prev_article,
                     (new TimelineLite()).append(my_tweens),
-                    350, // scroll duration
-                    500 // start offset
+                    0, // scroll duration
+                    600 // start offset
                 );
             }
 

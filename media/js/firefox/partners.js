@@ -1,7 +1,7 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
-;(function(w, $, enquire, Modernizr) {
+;(function(w, $, enquire, Modernizr, trans) {
     'use strict';
 
     // tablet is good enough for full experience?
@@ -42,4 +42,68 @@
             w.detach_mobile();
         }
     }, false).listen();
-})(window, window.jQuery, window.enquire, window.Modernizr);
+
+    // global overlay handler (mobile/desktop)
+    var $overlay = $('#overlay');
+
+    $("a.modal").click(function(e) {
+        e.preventDefault();
+        // Extract the target element's ID from the link's href.
+        var elem = $(this).attr('href').replace(/.*?(#.*)/g, '$1');
+
+        $overlay.find('section').hide();
+        $(elem).show();
+
+        var content = $overlay.detach();
+        createModal(this, content);
+
+        return false;
+    });
+
+    // Create a full-page overlay and append the content
+    function createModal(origin, content) {
+        // Clear existing modal, if necessary,
+        $('#modal').remove();
+        $('.modalOrigin').removeClass('modalOrigin');
+
+        // Create new modal
+        var html = (
+            '<div id="modal">' +
+            '  <div class="inner">' +
+            '    <button type="button" class="close">' +
+            '      ' + trans('close') +
+            '    </button>' +
+            '  </div>' +
+            '</div>'
+        );
+
+        // Add it to the page.
+        $('body').addClass("noscroll").append(html);
+        $("#modal .inner").append(content);
+
+        $('#modal #overlay').fadeIn('fast');
+
+        $(origin).addClass('modalOrigin');
+    }
+
+    function closeModal() {
+        $('#modal').fadeOut('fast', function() {
+            $overlay.hide();
+            var content = $overlay.detach();
+            $('#overlay-container').append(content);
+            $(this).remove();
+        });
+        $('body').removeClass('noscroll');
+        $('.modalOrigin').focus().remove('modalOrigin');
+    }
+
+    // Close modal on clicking close button or background.
+    $(w.document).on('click', '#modal .close', closeModal);
+
+    // Close on escape
+    $(w.document).on('keyup', function(e) {
+        if (e.keyCode === 27) { // esc
+            closeModal();
+        }
+    });
+})(window, window.jQuery, window.enquire, window.Modernizr, window.trans);

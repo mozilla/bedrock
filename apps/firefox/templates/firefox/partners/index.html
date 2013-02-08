@@ -19,6 +19,11 @@
   {{ js('partners') }}
 {% endblock %}
 
+{% block string_data %}
+  {# L10N: This is the label for a button that closes a modal dialog #}
+  data-close="{{ _('Close') }}"
+{% endblock %}
+
 {% block site_header %}
   <header id="masthead">
     <a href="http://www.mozilla.org/" id="tabzilla">{{ _('Mozilla') }}</a>
@@ -46,8 +51,8 @@
     </ul>
     <ul id="mwc-menu" class="menu">
       <li class="title">{{ _('MWC') }}</li>
-      <li id="menu-location"><a href="#location">{{_('Location')}}</a></li>
-      <li id="menu-schedule"><a href="#schedule">{{_('Schedule')}}</a></li>
+      <li id="menu-location"><a class="modal" href="#location">{{_('Location')}}</a></li>
+      <li id="menu-schedule"><a class="modal" href="#schedule">{{_('Schedule')}}</a></li>
     </ul>
   </nav>
   <ul id="overlay-menu" class="menu">
@@ -343,143 +348,145 @@
   </article>
 </div> <!--/#article-wrapper-->
 
-<article id="overlay">
-  <section id="location">
-    <a href="#">{{ _('Location') }}</a>
-    <h2>{{ _('Firefox at MWC 2013 — Stand F20, Hall 8.1, App Planet') }}</h2>
-    <div class="footer">
-      <div>
-        <h3>{{ _('From the South Entrance:') }}</h3>
-        <p>{{ _('Walk straight down the main hallway of Hall 8.1. Our stand is located in the middle of the hall on the right.') }}</p>
-      </div>
-      <div>
-        <h3>{{ _('From the North Entrance:') }}</h3>
-        <p>{{ _('Go up the escalator to Hall 8.1. Our stand is located in the middle of the hall.') }}</p>
-      </div>
-      <div>
-        <a href="#">{{ _('Download map (PDF)') }}</a>
-      </div>
-    </div>
-  </section>
-  <section id="schedule">
-    <a href="#">{{ _('Schedule') }}</a>
-    <h2>{{ _('Firefox at MWC 2013 — Schedule of events') }}</h2>
-    <div class="calendar">
-      <div class="day">
-        <h4><span>{{ _('Monday') }}</span> {{ _('February 25') }}</h4>
-        <div class="day-contents">
-          <h3>{{ _('Apps Panel: Evolving Ecosystems') }}</h3>
-          <p>{{ _('Experts from across the board will discuss the current state of the apps industry and consider how the roles and responsibilities within it are adapting as the apps market evolves.') }}</p>
-          <div class="time">{{ _('16:00–17:30') }}</div>
-          <div class="location">{{ _('Location TBD') }}</div>
-          <div class="person">{{ _('Jay Sullivan') }}</div>
-          <div class="role">{{ _('VP of Products, Mozilla') }}</div>
+<div id="overlay-container">
+  <article id="overlay">
+    <section id="location">
+      <a href="#">{{ _('Location') }}</a>
+      <h2>{{ _('Firefox at MWC 2013 — Stand F20, Hall 8.1, App Planet') }}</h2>
+      <div class="footer">
+        <div>
+          <h3>{{ _('From the South Entrance:') }}</h3>
+          <p>{{ _('Walk straight down the main hallway of Hall 8.1. Our stand is located in the middle of the hall on the right.') }}</p>
+        </div>
+        <div>
+          <h3>{{ _('From the North Entrance:') }}</h3>
+          <p>{{ _('Go up the escalator to Hall 8.1. Our stand is located in the middle of the hall.') }}</p>
+        </div>
+        <div>
+          <a href="#">{{ _('Download map (PDF)') }}</a>
         </div>
       </div>
-      <div class="day">
-        <h4><span>{{ _('Tuesday') }}</span> {{ _('February 26') }}</h4>
-        <div class="day-contents">
-          <h3>{{ _('Mozilla Keynote') }}</h3>
-          <p>{{ _('Mozilla CEO Gary Kovacs will discuss the benefits of an Open Web device in markets around the world and how Firefox OS will help carriers, OEMs and developers reach the next billion Web users.') }}</p>
-          <div class="time">{{ _('09:00–10:30') }}</div>
-          <div class="location">{{ _('Location TBD') }}</div>
-          <div class="person">{{ _('Gary Kovacs') }}</div>
-          <div class="role">{{ _('CEO, Mozilla') }}</div>
+    </section>
+    <section id="schedule">
+      <a href="#">{{ _('Schedule') }}</a>
+      <h2>{{ _('Firefox at MWC 2013 — Schedule of events') }}</h2>
+      <div class="calendar">
+        <div class="day">
+          <h4><span>{{ _('Monday') }}</span> {{ _('February 25') }}</h4>
+          <div class="day-contents">
+            <h3>{{ _('Apps Panel: Evolving Ecosystems') }}</h3>
+            <p>{{ _('Experts from across the board will discuss the current state of the apps industry and consider how the roles and responsibilities within it are adapting as the apps market evolves.') }}</p>
+            <div class="time">{{ _('16:00–17:30') }}</div>
+            <div class="location">{{ _('Location TBD') }}</div>
+            <div class="person">{{ _('Jay Sullivan') }}</div>
+            <div class="role">{{ _('VP of Products, Mozilla') }}</div>
+          </div>
+        </div>
+        <div class="day">
+          <h4><span>{{ _('Tuesday') }}</span> {{ _('February 26') }}</h4>
+          <div class="day-contents">
+            <h3>{{ _('Mozilla Keynote') }}</h3>
+            <p>{{ _('Mozilla CEO Gary Kovacs will discuss the benefits of an Open Web device in markets around the world and how Firefox OS will help carriers, OEMs and developers reach the next billion Web users.') }}</p>
+            <div class="time">{{ _('09:00–10:30') }}</div>
+            <div class="location">{{ _('Location TBD') }}</div>
+            <div class="person">{{ _('Gary Kovacs') }}</div>
+            <div class="role">{{ _('CEO, Mozilla') }}</div>
+          </div>
+        </div>
+        <div class="day">
+          <h4><span>{{ _('Wednesday') }}</span> {{ _('February 27') }}</h4>
+          <div class="day-contents">
+            <p class="note">{{ _('Check back for schedule additions and updates.') }}</p>
+          </div>
+        </div>
+        <div class="day">
+          <h4><span>{{ _('Thursday') }}</span> {{ _('February 28') }}</h4>
+          <div class="day-contents">
+            <h3>{{ _('WIPJam') }}</h3>
+            <div class="time">{{ _('09:00–16:00') }}</div>
+            <div class="location">{{ _('Hall 8.0, Theatre B, Theatre District, App Planet ') }}</div>
+          </div>
         </div>
       </div>
-      <div class="day">
-        <h4><span>{{ _('Wednesday') }}</span> {{ _('February 27') }}</h4>
-        <div class="day-contents">
-          <p class="note">{{ _('Check back for schedule additions and updates.') }}</p>
-        </div>
+    </section>
+    <section id="testimonials">
+      <a href="#">{{ _('Testimonials') }}</a>
+      <h2>{{ _('Firefox OS — Operator and manufacturer testimonials') }}</h2>
+    </section>
+    <section id="form">
+
+      <h3>{{ _('Get involved') }}</h3>
+      <p>{{ _('Contact our business development team to get on board.') }}</p>
+
+      <form action="https://www.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" id="sf-form">
+
+      <input type=hidden name="oid" value="00DU0000000IrgO">
+      <input type=hidden name="retURL" value="http://www.mozilla.org/en-US/about/partnerships?success=1">
+
+      <!--  NOTE: These fields are optional debugging elements.  Please uncomment   -->
+      <!--  these lines if you wish to test in debug mode.                          -->
+      <!--input type="hidden" name="debug" value=1-->
+      <!--input type="hidden" name="debugEmail" value=""-->
+
+      <div class="field">
+        <input id="first_name" maxlength="40" name="first_name" size="20" type="text" placeholder="{{ _('First Name') }}" class="required" />
       </div>
-      <div class="day">
-        <h4><span>{{ _('Thursday') }}</span> {{ _('February 28') }}</h4>
-        <div class="day-contents">
-          <h3>{{ _('WIPJam') }}</h3>
-          <div class="time">{{ _('09:00–16:00') }}</div>
-          <div class="location">{{ _('Hall 8.0, Theatre B, Theatre District, App Planet ') }}</div>
-        </div>
+
+      <div class="field">
+        <input id="last_name" maxlength="80" name="last_name" size="20" type="text" placeholder="{{ _('Last Name') }}" class="required" />
+
       </div>
-    </div>
-  </section>
-  <section id="testimonials">
-    <a href="#">{{ _('Testimonials') }}</a>
-    <h2>{{ _('Firefox OS — Operator and manufacturer testimonials') }}</h2>
-  </section>
-  <section id="form">
 
-    <h3>{{ _('Get involved') }}</h3>
-    <p>{{ _('Contact our business development team to get on board.') }}</p>
+      <div class="field">
+        <input id="title" maxlength="40" name="title" size="20" type="text" placeholder="{{ _('Title') }}" />
+      </div>
 
-    <form action="https://www.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" id="sf-form">
+      <div class="field">
+        <input id="company" maxlength="40" name="company" size="20" type="text" placeholder="{{ _('Company') }}" class="required" />
+      </div>
 
-    <input type=hidden name="oid" value="00DU0000000IrgO">
-    <input type=hidden name="retURL" value="http://www.mozilla.org/en-US/about/partnerships?success=1">
+      <div class="field">
+        <input id="URL" maxlength="80" name="URL" size="20" type="text" placeholder="{{ _('Website') }}" />
+      </div>
 
-    <!--  NOTE: These fields are optional debugging elements.  Please uncomment   -->
-    <!--  these lines if you wish to test in debug mode.                          -->
-    <!--input type="hidden" name="debug" value=1-->
-    <!--input type="hidden" name="debugEmail" value=""-->
+      <div class="field">
+        <input id="email" maxlength="80" name="email" size="20" type="text" placeholder="{{ _('Email') }}" class="required" />
+      </div>
 
-    <div class="field">
-      <input id="first_name" maxlength="40" name="first_name" size="20" type="text" placeholder="{{ _('First Name') }}" class="required" />
-    </div>
+      <div class="field">
+        <input id="phone" maxlength="40" name="phone" size="20" type="text" placeholder="{{ _('Phone') }}" />
+      </div>
 
-    <div class="field">
-      <input id="last_name" maxlength="80" name="last_name" size="20" type="text" placeholder="{{ _('Last Name') }}" class="required" />
+      <div class="field">
+        <input id="mobile" maxlength="40" name="mobile" size="20" type="text" placeholder="{{ _('Mobile') }}" />
+      </div>
 
-    </div>
+      <div class="field">
+        <label for="00NU0000002pDJr">Interest:</label>
+        <select  id="00NU0000002pDJr" multiple="multiple" name="00NU0000002pDJr" title="{{ _('Interest') }}" size="7">
+          <option value="Firefox for Desktop">{{ _('Firefox for Desktop') }}</option>
+          <option value="Firefox for Android">{{ _('Firefox for Android') }}</option>
+          <option value="Firefox Marketplace">{{ _('Firefox Marketplace') }}</option>
+          <option value="Firefox OS">{{ _('Firefox OS') }}</option>
+          <option value="Persona">{{ _('Persona') }}</option>
+          <option value="Marketing and Co-promotions">{{ _('Marketing and Co-promotions') }}</option>
+          <option value="Other">{{ _('Other') }}</option>
+        </select>
+      </div>
 
-    <div class="field">
-      <input id="title" maxlength="40" name="title" size="20" type="text" placeholder="{{ _('Title') }}" />
-    </div>
+      <div class="field">
+        <textarea name="description" placeholder="{{ _('Comments or questions?') }}"></textarea>
+      </div>
 
-    <div class="field">
-      <input id="company" maxlength="40" name="company" size="20" type="text" placeholder="{{ _('Company') }}" class="required" />
-    </div>
+      <div class="field footer-field">
+        <input type="submit" name="submit" value="{{ _('Submit my request') }}" class="button-blue" />
+      </div>
 
-    <div class="field">
-      <input id="URL" maxlength="80" name="URL" size="20" type="text" placeholder="{{ _('Website') }}" />
-    </div>
+      </form>
 
-    <div class="field">
-      <input id="email" maxlength="80" name="email" size="20" type="text" placeholder="{{ _('Email') }}" class="required" />
-    </div>
-
-    <div class="field">
-      <input id="phone" maxlength="40" name="phone" size="20" type="text" placeholder="{{ _('Phone') }}" />
-    </div>
-
-    <div class="field">
-      <input id="mobile" maxlength="40" name="mobile" size="20" type="text" placeholder="{{ _('Mobile') }}" />
-    </div>
-
-    <div class="field">
-      <label for="00NU0000002pDJr">Interest:</label>
-      <select  id="00NU0000002pDJr" multiple="multiple" name="00NU0000002pDJr" title="{{ _('Interest') }}" size="7">
-        <option value="Firefox for Desktop">{{ _('Firefox for Desktop') }}</option>
-        <option value="Firefox for Android">{{ _('Firefox for Android') }}</option>
-        <option value="Firefox Marketplace">{{ _('Firefox Marketplace') }}</option>
-        <option value="Firefox OS">{{ _('Firefox OS') }}</option>
-        <option value="Persona">{{ _('Persona') }}</option>
-        <option value="Marketing and Co-promotions">{{ _('Marketing and Co-promotions') }}</option>
-        <option value="Other">{{ _('Other') }}</option>
-      </select>
-    </div>
-
-    <div class="field">
-      <textarea name="description" placeholder="{{ _('Comments or questions?') }}"></textarea>
-    </div>
-
-    <div class="field footer-field">
-      <input type="submit" name="submit" value="{{ _('Submit my request') }}" class="button-blue" />
-    </div>
-
-    </form>
-
-  </section>
-</article>
+    </section>
+  </article>
+</div>
 
 {% endblock %}
 
