@@ -1,13 +1,13 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
-    {% from "macros.html" import email_newsletter_form with context %}
+{% from "macros.html" import email_newsletter_form with context %}
 <!doctype html>
 <html>
     <head>
         <style type="text/css">
-            body { 
-                margin: 0; padding: 0; background: #f2f2f2; 
+            body {
+                margin: 0; padding: 0; background: #f2f2f2;
                 font: 10px Arial, sans-serif;
             }
             h3 {
@@ -26,7 +26,7 @@
                 border: 1px solid #CCCCCC;
                 background:white;
                 padding: 0 5%;
-                clear: both; 
+                clear: both;
                 overflow: hidden;
             }
             .field-country {
@@ -42,7 +42,7 @@
                 border-top: none;
             }
             .billboard label {
-                display: block; font-weight: bold; 
+                display: block; font-weight: bold;
                 line-height: 1em; margin: 0.3em 0;
             }
             .billboard label#id_privacy {
@@ -54,25 +54,29 @@
                 width: 95%;
             }
             .billboard .thank {
-                padding: 0.25em 0.5em 0.25em 0.5em; 
+                padding: 0.25em 0.5em 0.25em 0.5em;
                 background: #E3FBE4;
                 color: #529214;
             }
             .billboard input.submit {
                 font-size: 100%;
-                clear: both; width: auto; display: block; 
+                clear: both; width: auto; display: block;
                 margin: 1em 0pt 1em 0pt;
             }
             .billboard .field-format label,
             .billboard .field-format input {
                 display: inline;
             }
-                
+
         </style>
     </head>
     <body>
         {{ email_newsletter_form('app-dev',
                                  _('Subscribe to our newsletter.'),
                                  include_language=False) }}
+        <script>
+            {# set target without invalidating already translated strings. #}
+            document.getElementsByTagName('a')[0].target = '_top';
+        </script>
     </body>
 </html>
