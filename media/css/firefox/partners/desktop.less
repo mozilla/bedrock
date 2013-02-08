@@ -61,18 +61,28 @@
             position: relative;
             display: block;
             float: left;
-            padding: 30px 0 0 40px;
+            padding: 25px 0 0 40px;
             a {
-                display: inline-block;
+                display: table;
+                float: left;
+                position: relative;
+                height: 40px;
+                max-width: 150px;
                 color: @textColorSecondary;
                 background: rgba(166,189,206,0.2);
                 border: 1px solid rgba(173,201,222,0.4);
-                padding: 10px;
+                padding: 0 10px;
                 border-radius: 4px;
                 margin-left: 20px;
                 text-transform: uppercase;
-                position: relative;
+                text-align: center;
+                line-height: 1;
                 .transition();
+                span {
+                    display: table-cell;
+                    width: 100%;
+                    vertical-align: middle;
+                }
                 &:hover {
                     text-decoration: none;
                     background: rgba(166,189,206,0.4);
@@ -119,7 +129,7 @@
 .partner-article[data-section="android-partner"] .article-header nav a[data-section="android-partner"],
 .partner-article[data-section="android-benchmarking"] .article-header nav a[data-section="android-benchmarking"] {
     background: #fff;
-    border: #fff;
+    border-color: #fff;
     color: @textColorSecondary;
     @shadow: 0 1px 2px rgba(0,0,0,0.4);
     .box-shadow(@shadow);
@@ -142,7 +152,7 @@
 .partner-article[data-section="android-partner"] .article-header nav a[data-section="android-partner"],
 .partner-article[data-section="android-benchmarking"] .article-header nav a[data-section="android-benchmarking"] {
     background: #fff;
-    border: #fff;
+    border-color: #fff;
     color: @textColorSecondary;
 }
 
@@ -245,14 +255,6 @@ h2 {
 
 }
 
-#marketplace {
-    z-index: 111;
-}
-
-#android {
-    z-index: 121; // 1 higher than #phone-container
-}
-
 /* }}} */
 /* {{{ Firefox OS section */
 
@@ -319,6 +321,12 @@ h2 {
 /* {{{ Marketplace section */
 
 #marketplace {
+    z-index: 111;
+    .article-header {
+        h2 {
+            padding-top: 15px;
+        }
+    }
     .intro {
         padding-top: 140px;
         .span(6);
@@ -329,11 +337,15 @@ h2 {
 /* {{{ Firefox for Android section */
 
 #android {
+    z-index: 121; // 1 higher than #phone-container
     .intro {
         padding-top: 140px;
     }
-    h2 {
-        font-size: 78px;
+    .article-header {
+        h2 {
+            padding-top: 5px;
+            font-size: 78px;
+        }
     }
 }
 
