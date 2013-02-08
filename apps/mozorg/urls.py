@@ -34,5 +34,9 @@ urlpatterns = patterns('',
         kwargs={'template': 'mozorg/contribute-page.html',
                 'return_to_form': False},
         name='mozorg.contribute_page'),
+    url('^contribute/embed/$', views.contribute_embed,
+        name='mozorg.contribute_embed',
+        kwargs={'template': 'mozorg/contribute-embed.html',
+                'return_to_form': False}),
 
 )
