@@ -27,15 +27,15 @@
 
   <div class="channels">
     <div class="download-box" id="firefox-desktop">
-      {{ download_button('download', 'large', force_direct=true) }}
+      {{ download_firefox(force_direct=True) }}
     </div>
 
     <div class="download-box" id="beta-desktop">
-      {{ download_button('beta-download', 'beta_small', build='beta', force_direct=true) }}
+      {{ download_firefox('beta', small=True, force_direct=True, icon=False) }}
     </div>
 
     <div class="download-box" id="aurora-desktop">
-      {{ download_button('aurora-download', 'aurora_small', build='aurora', force_direct=true) }}
+      {{ download_firefox('aurora', small=True, force_direct=True, icon=False) }}
     </div>
   </div>
  </div>

@@ -93,23 +93,6 @@
                 margin-bottom: @baseLine / 2;
             }
         }
-        #new-copy {
-            .download-list li {
-                width: auto;
-                position: static;
-            }
-            .download-button-small .download-link {
-                margin-left: 0;
-                .download-content {
-                    background-image: none;
-                    margin-left: 0;
-                    padding-left: 20px;
-                }
-            }
-            .download-button small.download-other {
-                text-align: left;
-            }
-        }
         #android-promo {
             .icon {
                 display: block;
@@ -123,10 +106,6 @@
     }
 }
 
-.no-js .mobile-content .download-list{
-    display: none;
-}
-
 .mobile-content {
     overflow: hidden;
     text-align: center;
@@ -136,7 +115,7 @@
         position: relative;
         z-index: 10;
         text-align: right;
-        aside {
+        .download-button {
             text-align: left;
         }
     }
@@ -155,7 +134,7 @@
         .span(4);
         margin-bottom: 0;
         margin-top: 45px;
-        li {
+        >li {
             float: none;
             width: auto;
             padding: 0;
@@ -177,7 +156,7 @@
     margin-bottom: 0;
     padding-top: @baseLine / 2;
     padding-bottom: @baseLine / 2;
-    li {
+    >li {
         .span(4);
         list-style-type: none;
         text-align: left;
@@ -307,9 +286,6 @@
         #download-column,
         .sub-features {
             margin-top: 20px;
-            .download-button small.download-other {
-                text-align: left;
-            }
         }
     }
 }
@@ -359,9 +335,6 @@
                     width: 100%;
                 }
             }
-        }
-        .download-button-large .download-link {
-            min-width: 0;
         }
         #up-to-date {
             hgroup {

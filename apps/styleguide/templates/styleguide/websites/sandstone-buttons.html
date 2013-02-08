@@ -104,17 +104,17 @@
 
   <div class="examples">
     <h3>Standard download</h3>
-    <div class="example">{{ download_button('example-download') }}</div>
-    <div class="example">{{ download_button('example-download-small','small') }}</div>
-    <div class="example">{{ download_button('example-download', build='beta') }}</div>
-    <div class="example">{{ download_button('example-download-small','small', build='beta') }}</div>
+    <div class="example">{{ download_firefox() }}</div>
+    <div class="example">{{ download_firefox(small=True) }}</div>
+    <div class="example">{{ download_firefox('beta', icon=False) }}</div>
+    <div class="example">{{ download_firefox('beta', small=True, icon=False) }}</div>
   </div>
   <div class="examples">
     <h3>Mobile download</h3>
-    <div class="example">{{ mobile_download_button('example-download-mobile') }}</div>
-    <div class="example">{{ mobile_download_button('example-download-mobile-small', 'mobile_small') }}</div>
-    <div class="example">{{ mobile_download_button('example-download-mobile', build='beta') }}</div>
-    <div class="example">{{ mobile_download_button('example-download-mobile-small', 'mobile_small', build='beta') }}</div>
+    <div class="example">{{ download_firefox(mobile=True) }}</div>
+    <div class="example">{{ download_firefox(small=True, mobile=True) }}</div>
+    <div class="example">{{ download_firefox('beta', mobile=True, icon=False) }}</div>
+    <div class="example">{{ download_firefox('beta', small=True, mobile=True, icon=False) }}</div>
   </div>
   <div class="examples" id="examples-standard">
     <h3>Standard</h3>
