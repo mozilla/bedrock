@@ -271,7 +271,7 @@
     /* for IE6 */
     _margin-left: 0;
     _width: 294px;
-    text-align: inherit;
+    text-align: left;
     font-weight: normal;
     line-height: @baseLine;
     font-size: 16px;
@@ -350,6 +350,7 @@
     }
 }
 
+.download-button-beta.download-button-small .download-link .download-lang,
 .download-button-aurora.download-button-small .download-link .download-lang {
     top: 33px;
 }
@@ -452,6 +453,8 @@
 .osx .download-button .os_osx,
 .android .download-button .os_android,
 .download-button-mobile .os_android,
+.android .download-button-desktop .download-list,
+.android .download-button-desktop small.os_windows,
 .no-js .download-button-mobile .download-list,
 .other .download-button-mobile .download-list,
 .other .download-button small.os_windows {
@@ -462,7 +465,8 @@
 // Small print
 
 .download-button small.download-other,
-.other .download-button.download-button-mobile small.download-other {
+.other .download-button-mobile small.download-other,
+.android .download-button-desktop small.download-other {
     .open-sans;
     display: block;
     font-size: 11px;
@@ -477,12 +481,16 @@
 }
 
 .no-js .download-button small.download-other,
-.other .download-button small.download-other {
+.other .download-button small.download-other,
+.android .download-button-desktop small.download-other {
     text-align: left;
 }
 
-.other .download-button .unrecognized-download {
-    display: block;
+.other .download-button,
+.android .download-button-desktop {
+    .unrecognized-download {
+        display: block;
+    }
 }
 
 .oldmac .download-button .unsupported-download {
@@ -491,7 +499,7 @@
 
 .download-button noscript,
 .download-button .unrecognized-download {
-    text-align: right;
+    text-align: left;
     h4 {
         text-shadow: none;
         margin: 0 0 6px 0;

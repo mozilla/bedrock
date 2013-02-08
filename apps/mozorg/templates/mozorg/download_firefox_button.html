@@ -15,12 +15,13 @@
 
 {% set download_class = 'download-button' %}
 {% set download_class = download_class ~ ' download-button-' ~ build if build else download_class %}
-{% set download_class = download_class ~ ' download-button-mobile' if mobile else download_class %}
+{% set download_class = download_class ~ ' download-button-mobile' if not show_desktop else download_class %}
+{% set download_class = download_class ~ ' download-button-desktop' if not show_mobile else download_class %}
 {% set download_class = download_class ~ ' download-button-small' if small else download_class %}
 {% set download_class = download_class ~ ' download-button-noicon' if not icon else download_class %}
 
 <div id="{{ id }}" class="{{ download_class }}">
-  {% if not mobile %}
+  {% if show_desktop %}
     <noscript>
       {{ alt_buttons(builds) }}
     </noscript>
@@ -67,12 +68,14 @@
       </li>
     {% endfor %}
   </ul>
+  {% if show_mobile %}
   <small class="download-other os_android">
     <a href="/en-US/firefox/mobile/platforms">{{ _('Supported Devices') }}</a> |
     <a href="/en-US/mobile/notes">{{ _('What’s New') }}</a> |
     <a href="/en-US/legal/privacy/firefox.html">{{ _('Privacy') }}</a>
   </small>
-  {% if not mobile %}
+  {% endif %}
+  {% if show_desktop %}
     <small class="download-other os_linux os_osx os_windows">
       <a href="/en-US/firefox/all.html">{{ _('Systems &amp; Languages') }}</a> |
       <a href="/en-US/firefox/notes">{{ _('What’s New') }}</a> |

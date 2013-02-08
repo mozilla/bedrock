@@ -93,23 +93,6 @@
                 margin-bottom: @baseLine / 2;
             }
         }
-        #new-copy {
-            .download-list li {
-                width: auto;
-                position: static;
-            }
-            .download-button-small .download-link {
-                margin-left: 0;
-                .download-content {
-                    background-image: none;
-                    margin-left: 0;
-                    padding-left: 20px;
-                }
-            }
-            .download-button small.download-other {
-                text-align: left;
-            }
-        }
         #android-promo {
             .icon {
                 display: block;
@@ -121,10 +104,6 @@
             }
         }
     }
-}
-
-.no-js .mobile-content .download-list{
-    display: none;
 }
 
 .mobile-content {
@@ -149,9 +128,6 @@
     #download-column {
         position: relative;
         z-index: 10;
-        aside {
-            text-align: left;
-        }
     }
     #phone-tablet-image {
         margin: @gridColumnWidth/2 auto -6px;
@@ -170,6 +146,22 @@
         margin-top: -50px;
         background-color: #fafafa;
         position: relative;
+        .span(4);
+        margin-bottom: 0;
+        margin-top: 45px;
+        >li {
+            float: none;
+            width: auto;
+            padding: 0;
+            right: 0;
+            a.link {
+                border-left: 0;
+                border-top: 1px dotted @borderColor;
+            }
+            &:first-child a.link {
+                border-top: 0;
+            }
+        }
     }
 }
 
@@ -179,7 +171,7 @@
     margin-bottom: 0;
     padding-top: @baseLine / 2;
     padding-bottom: @baseLine / 2;
-    li {
+    >li {
         .span(4);
         list-style-type: none;
         text-align: left;
@@ -261,6 +253,7 @@
                     margin-left: 25px;
                 }
             }
+            margin-top: 20px;
         }
     }
 }
@@ -311,9 +304,6 @@
                 }
             }
         }
-        .download-button-large .download-link {
-            min-width: 0;
-        }
         #up-to-date {
             hgroup {
                 h1 {
@@ -342,7 +332,6 @@
         width: auto;
         margin-top: 0;
         li {
-            
             float: none;
             width: auto;
             padding: 0;
@@ -352,7 +341,7 @@
                 border-left: 0;
             }
             a.link, a.mobile-link {
-                border-left: 0;    
+                border-left: 0;
                 margin: 0;
                 border-top: 1px dotted @borderColor;
             }
@@ -369,5 +358,3 @@
     }
 
 }
-
-
