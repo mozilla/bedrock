@@ -1,0 +1,132 @@
+{% extends "firefox/base-resp.html" %}
+
+{% block page_title %}{{ _('Firefox Extended Support Release') }}{% endblock %}
+{% block body_id %}firefox-all{% endblock %}
+
+{% block site_css %}
+  {{ css('firefox_all') }}
+{% endblock %}
+
+{% block breadcrumbs %}
+  <nav class="breadcrumbs">
+    <a href="{{ url('mozorg.home') }}">{{_('Home')}}</a> >
+    <a href="/firefox/">{{_('Firefox')}}</a> >
+    <a href="/firefox/organizations/">{{_('Organizations')}}</a> >
+    <span>{{_('Languages')}}</span>
+  </nav>
+{% endblock %}
+
+{% block content %}
+  <hgroup id="main-feature">
+    <h1>{{_('Firefox Extended Support Release')}}</h1>
+    <h2>{{ _('Firefox ESR is intended for groups who deploy and maintain the desktop environment in large organizations.') }} <a href="{{ url('firefox.organizations.organizations') }}">{{ _('Learn more.') }}</a></h2>
+  </hgroup>
+
+  <form id="language-search" method="get">
+    <div class="search-column">
+      <input type="search"
+             placeholder="{{ _('Search languages') }}"
+             name="q"
+             id="language-search-q"
+             list="languages"
+             {% if query %}value="{{ query }}"{% endif %}>
+      <datalist id="languages">
+        {% for build in full_esr_builds -%}
+          <option value="{{ build.name_en }}"></option>
+          <option value="{{ build.name_native }}"></option>
+        {% endfor -%}
+        {% for build in test_esr_builds -%}
+          <option value="{{ build.name_en }}"></option>
+          <option value="{{ build.name_native }}"></option>
+        {% endfor -%}
+        {% for build in full_esr_qa_builds -%}
+          <option value="{{ build.name_en }}"></option>
+          <option value="{{ build.name_native }}"></option>
+        {% endfor -%}
+        {% for build in test_esr_qa_builds -%}
+          <option value="{{ build.name_en }}"></option>
+          <option value="{{ build.name_native }}"></option>
+        {% endfor -%}
+      </datalist>
+      <button class="button arrow" type="submit"><span>{{ _('Search') }}</span></button>
+    </div>
+    <div class="other-column">
+      <h4>{{ _('Other Firefox downloads') }}</h4>
+      <a href="#localized-testing">{{ _('New languages still in beta') }}</a>
+    </div>
+  </form>
+
+  <div id="main-content">
+    {% if full_esr_qa_builds %}
+      <div id="localized">
+        {{ build_table(full_esr_qa_builds,
+                       _('Fully localized versions of %s')|format(esr_qa_version)) }}
+      </div>
+    {% endif %}
+
+    <div id="localized">
+      {{ build_table(full_esr_builds,
+                      _('Fully localized versions of %s')|format(esr_version)) }}
+    </div>
+
+    {% if test_esr_qa_builds %}
+      <div id="localized-testing">
+        {{ build_table(test_esr_qa_builds,
+                       _('Localized versions in testing of %s')|format(esr_qa_version),
+                       _('These localizations aren’t final. We’re waiting for more feedback from the community to perfect them.')) }}
+      </div>
+    {% endif %}
+
+    <div id="localized-testing">
+      {{ build_table(test_esr_builds,
+                      _('Localized versions in testing of %s')|format(esr_version),
+                      _('These localizations aren’t final. We’re waiting for more feedback from the community to perfect them.')) }}
+    </div>
+  </div>
+{% endblock %}
+
+{% block js %}
+  {# searching with js only makes sense if we're displaying all #}
+  {% if not query %}
+    {{ js('firefox_all') }}
+  {% endif %}
+{% endblock %}
+
+{% macro build_table(builds, title, description) %}
+  <div class="build-table-container">
+    {% if builds %}
+      <table class="build-table">
+        <caption>
+          <h3>{{ title }}</h3>
+            {% if description %}
+              <p>{{ description }}</p>
+            {% endif %}
+        </caption>
+        <thead>
+          <tr>
+            <th colspan="2" scope="col">{{ _('Language') }}</th>
+            <th scope="col">{{ _('Windows') }}</th>
+            <th scope="col">{{ _('Mac OS X') }}</th>
+            <th scope="col">{{ _('Linux') }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for build in builds %}
+            {{ build_row(build) }}
+          {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+    <h4 class="not-found{% if builds %} hide{% endif %}">{{ _('No matching languages found.') }}</h4>
+  </div>
+{% endmacro %}
+
+{% macro build_row(build) %}
+  <tr id="{{ build.locale }}" data-search="{{ build.name_en|lower }} {{ build.name_native|lower }}">
+    <th scope="row">{{ build.name_en }}</th>
+    <td lang="{{ build.locale }}">{{ build.name_native }}</td>
+    <td class="download win"><a href="{{ build.platforms['Windows'].download_url }}" title="{{ _('Download for Windows')}}">{{ _('Download') }}</a></td>
+    <td class="download mac"><a href="{{ build.platforms['OS X'].download_url }}" title="{{ _('Download for Mac OS X')}}">{{ _('Download') }}</a></td>
+    <td class="download linux"><a href="{{ build.platforms['Linux'].download_url }}" title="{{ _('Download for Linux')}}">{{ _('Download') }}</a></td>
+  </tr>
+{% endmacro %}

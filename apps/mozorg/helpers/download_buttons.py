@@ -56,6 +56,7 @@ def latest_version(locale):
     beta_vers = fx_versions['FIREFOX_AURORA']
     aurora_vers = fx_versions['LATEST_FIREFOX_DEVEL_VERSION']
     esr_vers = fx_versions['FIREFOX_ESR']
+    esr_qa_vers = fx_versions['FIREFOX_ESR_QA']
 
     def _check_builds(builds):
         if locale in builds and isinstance(builds[locale], dict):
@@ -65,6 +66,7 @@ def latest_version(locale):
                 match = (version != beta_vers and
                          version != aurora_vers and
                          version != esr_vers and
+                         version != esr_qa_vers and
                          info)
                 if match:
                     if not greatest:
