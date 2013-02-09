@@ -38,7 +38,7 @@
       <li class="{{ plat.os }}">
         <a class="download-link"
            href="{{ plat.download_link }}"{% if plat.download_link_direct %}
-           data-direct-link="{{ build.download_link_direct }}"{% endif %}>
+           data-direct-link="{{ plat.download_link_direct }}"{% endif %}>
           <span class="download-content">
             {% if plat.os == 'os_android' %}
               {% if build == 'beta' %}
