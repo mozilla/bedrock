@@ -29,8 +29,6 @@
 
         // Smooth scroll-to for left menu navigation
         $('#partner-menu a, #nav-main-menu a, a.nav').click(function(e) {
-            e.preventDefault();
-
             var elementClicked = $(this).attr("href");
             var destination;
 
@@ -63,7 +61,7 @@
                 });
             });
 
-            $("body:not(:animated)").animate({ scrollTop: destination }, 1000);
+            $("html:not(:animated),body:not(:animated)").animate({ scrollTop: destination }, 1000);
 
             return false;
         });
