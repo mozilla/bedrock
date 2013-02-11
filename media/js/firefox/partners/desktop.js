@@ -51,7 +51,7 @@
             // reset phone & giantfox
             $phone.animate({ 'left': '50%' }, phone_speed);
             $phone_android.animate({ 'left': '50%' }, phone_speed);
-            $giantfox.css('left', '45%');
+            $giantfox.css('margin-left', '-70px');
 
             // force all first sections to be current
             $('.partner-article').each(function(i, article) {
@@ -150,11 +150,11 @@
         });
 
         $('a[data-section="os-operators"]').on('click', function() {
-            $giantfox.css('left', '-45%');
+            $giantfox.css('margin-left', '-1380px');
         });
 
         $('a[data-section="os-overview"]').on('click', function() {
-            $giantfox.css('left', '45%');
+            $giantfox.css('margin-left', '-70px');
         });
 
         var _move_phone = function(factor, slide, new_z) {
