@@ -19,6 +19,9 @@
   {{ js('partners') }}
 {% endblock %}
 
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{ _('Firefox at MWC 2013') }}{% endblock %}
+
 {% block string_data %}
   {# L10N: This is the label for a button that closes a modal dialog #}
   data-close="{{ _('Close') }}"
@@ -74,7 +77,9 @@
       <div class="article-content">
         <h2>{{ _('Blaze Your Own Path') }}</h2>
         <div class="intro">
-          <p>We’re enabling operators, phone manufacturers and developers to manage, customize and own relationships with their customers directly through our mobile products: <a href="#os">Firefox OS</a>, <a href="#marketplace">Firefox Marketplace</a> and <a href="#android">Firefox for Android</a>.</p>
+          <p>{% trans url1='href="#os"', url2='href="#marketplace"', url3='href="#android"' %}
+          We’re enabling operators, phone manufacturers and developers to manage, customize and own relationships with their customers directly through our mobile products: <a {{url1}}>Firefox OS</a>, <a {{url2}}>Firefox Marketplace</a> and <a {{url3}}>Firefox for Android</a>.
+          {% endtrans %}</p>
           <div class="partner-logos">
             <ul class="logos">
               <li>logo</li>
