@@ -8,14 +8,29 @@
     var article_height = 820;
     var parallax_offset = 142;
     var phone_offset = 200; // distance from top of article to top of phone
+    var phone_speed = 400; // ms phone movement speed between articles
+
+    var $giantfox = $('#giantfox');
+    var $giantfox_tail = $('#giantfox-foreground');
+    var $phone = $('#phone-common');
+    var $phone_android = $('#phone-android');
+    var $overview = $('#overview');
+    var $os = $('#os');
+    var $marketplace = $('#marketplace');
+    var $android = $('#android');
 
     // i heard document.ready isn't necessary anymore. just trying it out...
     //$(document).ready(function () {
+        // set phone position (needs to be in style object for retrieval later)
+        $phone.css('left', '50%');
+
         // set up foxtail sprite animation
         $('#foxtail').sprite({fps: 12, no_of_frames: 44, rewind: true});
 
         // Smooth scroll-to for left menu navigation
-        $('#partner-menu a, #nav-main-menu a').click(function(e) {
+        $('#partner-menu a, #nav-main-menu a, a.nav').click(function(e) {
+            e.preventDefault();
+
             var elementClicked = $(this).attr("href");
             var destination;
 
@@ -35,20 +50,34 @@
                     break;
             }
 
-            $("html:not(:animated),body:not(:animated)").animate({ scrollTop: destination }, 700);
+            // reset phone & giantfox
+            $phone.animate({ 'left': '50%' }, phone_speed);
+            $phone_android.animate({ 'left': '50%' }, phone_speed);
+            $giantfox.css('left', '45%');
+
+            // force all first sections to be current
+            $('.partner-article').each(function(i, article) {
+                $(article).attr('data-section', $(article).find('section:first').attr('id'));
+                $(article).find('section').each(function(j, section) {
+                    $(section).css('left', (j * 100) + '%').attr('data-current', ((j === 0) ? 1 : 0));
+                });
+            });
+
+            $("body:not(:animated)").animate({ scrollTop: destination }, 1000);
+
             return false;
         });
 
+        // fix for loading page with anchor in URL
         $(function() {
             setTimeout(function() {
                 if (w.location.hash) {
-                    $article_wrapper.scrollTop(0);
-
-                    $('#partner-nav a[href="' + window.location.hash + '"]').trigger('click');
-
-                    w.location.hash = '';
+                    $article_wrapper.animate({ scrollTop: 0 }, 100, function() {
+                        $('#partner-nav a[href="' + window.location.hash + '"]').trigger('click');
+                        w.location.hash = '';
+                    });
                 }
-            }, 1);
+            }, 60); // may need to increase timeout
         });
 
         // move form out of overlay
@@ -69,15 +98,6 @@
             modal: true,
             speed: 300
         });
-
-        var $giantfox = $('#giantfox');
-        var $giantfox_tail = $('#giantfox-foreground');
-        var $phone = $('#phone-common');
-        var $phone_android = $('#phone-android');
-        var $overview = $('#overview');
-        var $os = $('#os');
-        var $marketplace = $('#marketplace');
-        var $android = $('#android');
 
         // side scrolling sections
         $('.view-section').on('click', function(e) {
@@ -108,7 +128,8 @@
                 // (left will be in px and will be multiple of doc_width)
                 var el_left = (section.position().left/doc_width) * 100;
 
-                var new_left = el_left - delta;
+                // make sure we round to the nearest 100
+                var new_left = Math.round((el_left - delta)/100)*100;
 
                 section.css('left', new_left + '%').attr('data-current', 0);
             });
@@ -139,6 +160,21 @@
         });
 
         var _move_phone = function(factor, slide, new_z) {
+            // chaining animations gets too crazy
+            // make sure only one animation is running/queued at one time
+            if ($phone.is(':animated')) {
+                $phone.stop();
+
+                // if phone is inbetween hiding/showing, force that to finish
+                if (Number($phone.attr('data-hiding')) === 1) {
+                    $phone.css('left', '-50%');
+                    $phone.attr('data-hiding', 0);
+                } else if (Number($phone.attr('data-showing')) === 1) {
+                    $phone.css('left', '50%');
+                    $phone.attr('data-showing', 0);
+                }
+            }
+
             $('body').attr('data-article', slide.attr('id'));
 
             $('#partner-menu li').removeClass('active');
@@ -146,17 +182,14 @@
 
             // when jumping more than one section with nav, phone may
             // not make it all the way to -50%
-            // if phone is less than halfway across current viewport,
-            // assume it's not visible
-            var cur_left = $phone.position().left;
-            var doc_width = $(w.document).width();
-            var visible = (cur_left >= (doc_width/2));
+            var cur_left = $phone[0].style.left;
+            var visible = (cur_left === '50%');
 
             var top_pos = ((article_height * factor) - (parallax_offset * factor)) + phone_offset;
 
             // scrolling to android slide should never affect standard phone's left or z-index
             if (slide.attr('id') === 'android') {
-                $phone.animate({ 'top': top_pos + 'px' }, 500);
+                $phone.animate({ 'top': top_pos + 'px' }, phone_speed);
             } else {
                 // would like to abstract this more, but each scenario requires specific sequencing
                 if (Number(slide.find('section:first').attr('data-current')) === 1) {
@@ -168,10 +201,13 @@
                         $phone.animate({
                             top: top_pos
                         }, 100, function() {
-                            $phone.animate({ 'left': '50%' }, 500);
+                            $phone.attr('data-showing', 1);
+                            $phone.animate({ 'left': '50%' }, phone_speed, function() {
+                                $phone.attr('data-showing', 0);
+                            });
                         });
                     } else {
-                        $phone.animate({ 'top': top_pos + 'px' }, 500, function() {
+                        $phone.animate({ 'top': top_pos + 'px' }, phone_speed, function() {
                             if (new_z) {
                                 $phone.css('z-index', new_z);
                             }
@@ -179,9 +215,11 @@
                     }
                 } else {
                     if (visible) {
+                        $phone.attr('data-hiding', 1);
                         $phone.animate({
                             'left': '-50%'
-                        }, 500, function() {
+                        }, phone_speed, function() {
+                            $phone.attr('data-hiding', 0);
                             $phone.css('top', top_pos + 'px');
 
                             if (new_z) {
@@ -193,7 +231,7 @@
                             $phone.css('z-index', new_z);
                         }
 
-                        $phone.animate({ 'top': top_pos + 'px' }, 500);
+                        $phone.animate({ 'top': top_pos + 'px' }, phone_speed);
                     }
                 }
             }
@@ -211,6 +249,23 @@
             to: { css: { top: 0, opacity: 1 } }
         };
 
+        tweens.article_overview = {
+            from: {
+                css: { top: 0 },
+                immediateRender: true
+            },
+            to: {
+                css: { top: 0 },
+                onComplete: function() {
+                    //console.log('overview complete');
+                },
+                onReverseComplete: function() {
+                    //console.log('overview rev complete');
+                    _move_phone(0, $overview);
+                }
+            }
+        };
+
         tweens.article_os = {
             from: {
                 css: { top: 0, ease: Power2.easeOut },
@@ -222,9 +277,11 @@
                     $phone.css('z-index', 110);
                 },
                 onComplete: function() {
+                    //console.log('os complete');
                     _move_phone(1, $os);
                 },
                 onReverseComplete: function() {
+                    //console.log('os rev complete');
                     _move_phone(0, $overview);
                 }
             }
@@ -241,9 +298,11 @@
                     $phone.css('z-index', 120);
                 },
                 onComplete: function() {
+                    //console.log('marketplace complete');
                     _move_phone(2, $marketplace);
                 },
                 onReverseComplete: function() {
+                    //console.log('marketplace rev complete');
                     _move_phone(1, $os, 110);
                 }
             }
@@ -257,10 +316,12 @@
             to: {
                 css: { top: (parallax_offset*-3) },
                 onComplete: function() {
+                    //console.log('android complete');
                     _move_phone(3, $android);
                     $phone_android.addClass('android-phone-visible');
                 },
                 onReverseComplete: function() {
+                    //console.log('android rev complete');
                     _move_phone(2, $marketplace);
                     $phone_android.removeClass('android-phone-visible');
                 }
@@ -274,16 +335,18 @@
 
             var my_tweens = [], tween, $tweener;
 
-            if ($article.attr('id') !== 'overview') {
+            var dur = ($article.attr('id') === 'overview') ? 1.6 : 0.5;
+
+            //if ($article.attr('id') !== 'overview') {
                 tween = TweenMax.fromTo(
                     $article,
-                    0.5,
+                    dur,
                     tweens['article_' + $article.attr('id')].from,
                     tweens['article_' + $article.attr('id')].to
                 );
 
                 my_tweens.push(tween);
-            }
+            //}
 
             // build tween for each element in $article with class of tween
             $article.find('.tween').each(function(i, tweener) {
@@ -303,7 +366,7 @@
                 controller.addTween(
                     prev_article,
                     (new TimelineLite()).append(my_tweens),
-                    0, // scroll duration
+                    300, // scroll duration
                     600 // start offset
                 );
             }
