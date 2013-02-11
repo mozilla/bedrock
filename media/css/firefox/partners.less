@@ -4,6 +4,9 @@
 
 @import "../sandstone/lib.less";
 
+@localBlue:     #43a6e2;
+@localBlueDark: #247ac1;
+
 .logos {
     list-style-type: none;
     padding: 0;
@@ -23,11 +26,26 @@
     }
 }
 
+@localShadowBottom:      0px 2px 0px 0px rgba(0, 0, 0, 0.1);
+@localShadowBottomInset: inset 0px -1px 0px 0px rgba(0, 0, 0, 0.2);
+@localShadowBorderInset: inset 0px 0px 0px 1px rgba(255,255,255,0.2);
+@localShadowHoverInset:  inset 0px 12px 24px 2px lighten(@localBlue, 2%);
+@localShadowActiveInset: inset 0px 0px 2px 2px rgba(0,0,0,0.2),
+                         inset 0px 0px 20px 30px rgba(0,0,0,0.2);
+
+@localShadow:          @localShadowBottom, @localShadowBottomInset, @localShadowBorderInset;
+@localShadowHover:     @localShadowBottom, @localShadowBottomInset, @localShadowBorderInset, @localShadowHoverInset;
+@localShadowActive:    @localShadowBottom, @localShadowBottomInset, @localShadowBorderInset, @localShadowActiveInset;
+
 .partner-button {
     .button {
-        font-size: 18px;
-        padding-top: 10px;
-        padding-bottom: 10px;
+        background-color: @localBlue;
+        #gradient > .vertical(@localBlue, @localBlueDark);
+        font-size: 16px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        .box-shadow(@localShadow);
+        .border-radius(8px);
         &:after {
             content: " ";
             display: inline-block;
@@ -36,6 +54,13 @@
             vertical-align: middle;
             margin-left: 10px;
             background: url(/media/img/sandstone/buttons/arrow-go-r.png) 0 0;
+        }
+        &:hover,
+        &:focus {
+            .box-shadow(@localShadowHover);
+        }
+        &:active {
+            .box-shadow(@localShadowActive);
         }
     }
 }
