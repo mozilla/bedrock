@@ -16,9 +16,10 @@ def install_lang_files(ctx):
 
     if not hasattr(req, 'langfiles'):
         files = list(settings.DOTLANG_FILES)
-        if ctx.get('langfile'):
-            files.append(ctx.get('langfile'))
-        setattr(req, 'langfiles', files)
+        langfile = ctx.get('langfile')
+        if langfile:
+            files.insert(0, langfile)
+        req.langfiles = files
 
 
 def add_lang_files(ctx, files):
