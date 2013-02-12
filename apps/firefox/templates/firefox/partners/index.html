@@ -78,8 +78,8 @@
       <div class="article-content">
         <h2>{{ _('Blaze Your Own Path') }}</h2>
         <div class="intro">
-          <p>{% trans url1='href="#os"'|safe, url2='href="#marketplace"'|safe, url3='href="#android"'|safe %}
-          We’re enabling operators, phone manufacturers and developers to manage, customize and own relationships with their customers directly through our mobile products: <a class="nav" {{url1}}>Firefox OS</a>, <a class="nav" {{url2}}>Firefox Marketplace</a> and <a class="nav" {{url3}}>Firefox for Android</a>.
+          <p>{% trans url1='class="nav" href="#os"'|safe, url2='class="nav" href="#marketplace"'|safe, url3='class="nav" href="#android"'|safe %}
+          We’re enabling operators, phone manufacturers and developers to manage, customize and own relationships with their customers directly through our mobile products: <a {{url1}}>Firefox OS</a>, <a {{url2}}>Firefox Marketplace</a> and <a {{url3}}>Firefox for Android</a>.
           {% endtrans %}</p>
           <div class="partner-logos">
             <ul class="logos">
@@ -118,7 +118,7 @@
   </article>
 
   <article id="os" class="partner-article dark" data-section="os-overview">
-    <div id="giantfox"><div id="giantfox-foreground"></div></div>
+    <div class="giantfox"><div class="giantfox-foreground"></div></div>
     <div class="article-header">
       <h2 id="os-overview-headline" class="tween">
         <img src="{{ media('img/firefox/partners/firefoxos-title.png')}}" alt="{{ _('Firefox OS') }}" />
@@ -164,7 +164,7 @@
             </ul>
             <p class="partner-button"><a href="#" class="button">{{ _('Partner with us') }}</a></p>
             <div id="os-promos" class="promos">
-              <div class="first">
+              <div>
                 <h4>{{ _('Get Involved') }}</h4>
                 <a href="">{{ _('Contact our business development team to get on board') }}</a>
               </div>
@@ -199,6 +199,7 @@
   </article>
 
   <article id="marketplace" class="partner-article" data-section="marketplace-overview">
+    <div class="giantfox"><div class="giantfox-foreground"></div></div>
     <div class="article-header">
       <h2 class="tween">
         <img src="{{ media('img/firefox/partners/marketplace-title.png')}}" alt="{{ _('Firefox Marketplace') }}" />
@@ -221,11 +222,13 @@
           <h4>{{ _('Our experience') }}</h4>
           <p>{{ _('Our proven track record of providing excellent user experiences and serving content to huge global audiences runs through everything we do. Our directory of add-ons serves content to hundreds of millions of users worldwide.') }}</p>
           <div id="marketplace-promos" class="promos">
-            <div class="first">
+            <div class="promo-testimonials icon">
+              <span></span>
               <h4>{{ _('Testimonials') }}</h4>
               <a href="">{{ _('See what Nokia, SoundCloud and others have to say') }}</a>
             </div>
-            <div>
+            <div class="promo-conversation icon">
+              <span></span>
               <h4>{{ _('Join the Conversation') }}</h4>
               <a href="">{{ _('Follow @firefoxapps on Twitter') }}</a>
               <a href="">{{ _('Read more on the Apps Blog') }}</a>
@@ -238,16 +241,41 @@
       <div class="article-content">
         <div class="intro tween">
           <h3>{{ _('The world’s largest developer community') }}</h3>
-          <p>{{ _('Marketplace offers:') }}</p>
-          <ul>
-            <li>{{ _('Commitment from well-known, tier 1 developers') }}</li>
-            <li>{{ _('Micro-targeted content for every use-case to meet customers’ local needs') }}</li>
-            <li>{{ _('Lower barriers to entry for local app developers in both resource and cost') }}</li>
+          <div class="left">
+            <h4>{{ _('Marketplace offers:') }}</h4>
+            <ul>
+              <li>{{ _('Commitment from well-known, tier 1 developers') }}</li>
+              <li>{{ _('Micro-targeted content for every use-case to meet customers’ local needs') }}</li>
+              <li>{{ _('Lower barriers to entry for local app developers in both resource and cost') }}</li>
+            </ul>
+            <p class="partner-button">
+              <a href="#" class="button">{{ _('Partner with us') }}</a>
+              <a href="#" class="button">{{ _('MWC demonstrations') }}</a>
+            </p>
+          </div>
+          <ul class="logos tween">
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
           </ul>
-          <p class="partner-button">
-            <a href="#" class="button">{{ _('Partner with us') }}</a>
-            <a href="#" class="button">{{ _('MWC demonstrations') }}</a>
-          </p>
         </div>
       </div>
     </section>
@@ -255,16 +283,38 @@
       <div class="article-content">
         <div class="intro tween">
           <h3>{{ _('Developed with developers in mind') }}</h3>
-          <p>{{ _('Marketplace offers:') }}</p>
-          <ul>
-            <li>{{ _('Apps that customers can access across multiple platforms, devices and operating systems') }}</li>
-            <li>{{ _('Flexible business models and multiple payment monetization options') }}</li>
-            <li>{{ _('Carrier billing in regional currencies') }}</li>
-            <li>{{ _('The ability to connect with hundreds of millions of Firefox supporters around the world') }}</li>
-            <li>{{ _('Access to relatively untapped markets') }}</li>
+          <div class="left">
+            <h4>{{ _('Marketplace offers:') }}</h4>
+            <ul>
+              <li>{{ _('Apps that customers can access across multiple platforms, devices and operating systems') }}</li>
+              <li>{{ _('Flexible business models and multiple payment monetization options') }}</li>
+              <li>{{ _('Carrier billing in regional currencies') }}</li>
+              <li>{{ _('The ability to connect with hundreds of millions of Firefox supporters around the world') }}</li>
+              <li>{{ _('Access to relatively untapped markets') }}</li>
+            </ul>
+          </div>
+          <ul class="logos tween">
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
+            <li>logo</li>
           </ul>
           <div class="promos">
-            <div class="first">
+            <div>
               <h4>{{ _('Developer hub') }}</h4>
               <a href="">{{ _('Learn how to make HTML5 apps for an open marketplace') }}</a>
             </div>
@@ -272,11 +322,12 @@
               <h4>{{ _('Have an app?') }}</h4>
               <a href="">{{ _('Submit it to the Firefox Marketplace today') }}</a>
             </div>
-            <div>
+            <div class="wipjam icon">
+              <span></span>
               <h4>WIPJam</h4>
               <a href="">{{ _('Jam with us, learn about new tools, meet other developers and more') }}</a>
             </div>
-            <div>
+            <div class="register partner-button">
               <a href="#" class="button">{{ _('Register') }}</a>
             </div>
           </div>

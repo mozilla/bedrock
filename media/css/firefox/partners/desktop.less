@@ -105,6 +105,17 @@
             .span(8);
             margin-left: 20px;
             margin-right: 0;
+            .promos {
+                div {
+                    .span(3);
+                    &:first-child {
+                        margin-left: 0;
+                    }
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                }
+            }
         }
     }
 
@@ -164,25 +175,51 @@
 /* }}} */
 /* {{{ Giant Fox */
 
-#giantfox {
-    width: 900px;
-    height: 700px;
-    background: url(/media/img/firefox/partners/firefoxos-giantfox-back.png) no-repeat 0 0 ;
-    position: absolute;
-    top: 140px;
-    left: 50%;
-    margin-left: -70px;
-    .transition(all ease 0.6s);
-    #giantfox-foreground {
-        position: absolute;
-        display: block;
-        top: 0;
-        right: 0;
-        width: 469px;
+#os {
+    .giantfox {
+        width: 900px;
         height: 700px;
-        background: url(/media/img/firefox/partners/firefoxos-giantfox-front.png) no-repeat 100% 130px;
-        z-index: 110;
+        background: url(/media/img/firefox/partners/firefoxos-giantfox-back.png) no-repeat 0 0 ;
+        position: absolute;
+        top: 140px;
+        left: 50%;
+        margin-left: -70px;
+        .transition(all ease 0.6s);
+        .giantfox-foreground {
+            position: absolute;
+            display: block;
+            top: 0;
+            right: 0;
+            width: 469px;
+            height: 700px;
+            background: url(/media/img/firefox/partners/firefoxos-giantfox-front.png) no-repeat 100% 130px;
+            z-index: 110;
+        }
     }
+}
+
+#marketplace {
+    .giantfox {
+        width: 580px;
+        height: 520px;
+        background: url(/media/img/firefox/partners/marketplace-giantfox-back.png) no-repeat 0 0 ;
+        position: absolute;
+        top: 220px;
+        left: 50%;
+        margin-left: -40px;
+        .transition(all ease 0.6s);
+        .giantfox-foreground {
+            position: absolute;
+            display: block;
+            top: 0;
+            right: 0;
+            width: 580px;
+            height: 520px;
+            background: url(/media/img/firefox/partners/marketplace-giantfox-front.png) no-repeat 0 0;
+            z-index: 110;
+        }
+    }
+    
 }
 
 /* }}} */
@@ -202,9 +239,6 @@
             .open-sans-light;
             font-size: 17px;
             letter-spacing: -0.01em;
-            a {
-                .open-sans;
-            }
         }
         #more-partners {
             margin-top: 10px;
@@ -262,9 +296,6 @@
     h3 {
         font-size: 42px;
     }
-    h4 {
-        font-size: 30px;
-    }
     #os-operators-intro {
         .span-all();
         padding-top: 120px;
@@ -278,29 +309,8 @@
         .left {
             .span(6);
             margin-left: 0;
-            h4 {
-                font-size: 32px;
-            }
             ul li {
                 margin: 10px 20px;
-            }
-            .partner-button {
-                text-align: center;
-                padding-bottom: 20px;
-                border-bottom: 1px solid rgba(0,0,0,0.2);
-                margin-bottom: 0;
-            }
-            #os-promos {
-                border-top: 1px solid rgba(255,255,255,0.2);
-                padding-top: 20px;
-                div  {
-                    float: left;
-                    width: 48%;
-                    margin-left: 4%;
-                    &.first {
-                        margin-left: 0;
-                    }
-                }
             }
         }
         .logos {
@@ -322,7 +332,90 @@
     }
     .intro {
         padding-top: 140px;
-        .span(6);
+        z-index: 50;
+    }
+    #marketplace-overview {
+        .intro {
+            .span(6);
+            .promos {
+                .span(8);
+                width: 580px;
+                margin-left: 0;
+                margin-right: 0;
+                div {
+                    .span(4);
+                    width: 280px;
+                    &:first-child { margin-left: 0; }
+                    &:last-child  { margin-right: 0; }
+                }
+            }
+        }
+    }
+    #marketplace-operators {
+        .intro {
+            .span-all();
+            h3 {
+                font-size: 48px;
+                letter-spacing: -2px;
+                text-align: center;
+                margin-bottom: @baseLine * 2;
+            }
+        }
+        .left {
+            .span(6);
+            margin-left: 0;
+            .partner-button {
+                a:first-child {
+                    margin-right: 20px;
+                }
+            }
+            ul li {
+                margin: 10px 20px;
+            }
+        }
+        .logos {
+            .span(6);
+            margin-right: 0;
+        }
+    }
+    #marketplace-developers {
+        .article-content {
+            .intro {
+                .span-all();
+                h3 {
+                    font-size: 48px;
+                    letter-spacing: -2px;
+                    text-align: center;
+                    margin-bottom: @baseLine * 2;
+                }
+                .promos {
+                    .wipjam {
+                        .span(4);
+                    }
+                    .register {
+                        .span(2);
+                        margin-right: 0;
+                    }
+                }
+            }
+            .left {
+                .span(6);
+                margin-left: 0;
+                .partner-button {
+                    a:first-child {
+                        margin-right: 20px;
+                    }
+                }
+                ul li {
+                    margin: 10px 20px;
+                }
+            }
+            .logos {
+                .span(6);
+                margin-right: 0;
+                margin-bottom: @baseLine;
+            }
+        }
     }
 }
 

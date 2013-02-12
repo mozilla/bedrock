@@ -10,8 +10,10 @@
     var phone_offset = 200; // distance from top of article to top of phone
     var phone_speed = 400; // ms phone movement speed between articles
 
-    var $giantfox = $('#giantfox');
-    var $giantfox_tail = $('#giantfox-foreground');
+    var $os_giantfox = $('#os .giantfox');
+    var $os_giantfox_tail = $('#os .giantfox .giantfox-foreground');
+    var $marketplace_giantfox = $('#marketplace .giantfox');
+    var $marketplcae_giantfox_tail = $('#marketplace .giantfox .giantfox-foreground');
     var $phone = $('#phone-common');
     var $phone_android = $('#phone-android');
     var $overview = $('#overview');
@@ -51,7 +53,8 @@
             // reset phone & giantfox
             $phone.animate({ 'left': '50%' }, phone_speed);
             $phone_android.animate({ 'left': '50%' }, phone_speed);
-            $giantfox.css('margin-left', '-70px');
+            $os_giantfox.css('margin-left', '-70px');
+            $marketplace_giantfox.css('margin-left', '-40px');
 
             // force all first sections to be current
             $('.partner-article').each(function(i, article) {
@@ -150,11 +153,23 @@
         });
 
         $('a[data-section="os-operators"]').on('click', function() {
-            $giantfox.css('margin-left', '-1380px');
+            $os_giantfox.css('margin-left', '-1380px');
         });
 
         $('a[data-section="os-overview"]').on('click', function() {
-            $giantfox.css('margin-left', '-70px');
+            $os_giantfox.css('margin-left', '-70px');
+        });
+
+        $('a[data-section="marketplace-developers"]').on('click', function() {
+            $marketplace_giantfox.css('margin-left', '-2120px');
+        });
+
+        $('a[data-section="marketplace-operators"]').on('click', function() {
+            $marketplace_giantfox.css('margin-left', '-1120px');
+        });
+
+        $('a[data-section="marketplace-overview"]').on('click', function() {
+            $marketplace_giantfox.css('margin-left', '-40px');
         });
 
         var _move_phone = function(factor, slide, new_z) {
