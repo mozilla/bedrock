@@ -54,7 +54,9 @@ def parse(path):
                 for tag in ('{ok}', '{l10n-extra}'):
                     if line.endswith(tag):
                         line = line[:-len(tag)]
-                trans[source] = line.strip()
+                line = line.strip()
+                if not source == line:
+                    trans[source] = line
 
     return trans
 
