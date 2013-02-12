@@ -57,7 +57,21 @@
 
   <div class="pager-content">
 
-    <div class="pager-page default-page" id="promo-flicksvideo">
+    <div class="pager-page default-page" id="promo-mwc-preview">
+      <script>// <![CDATA[
+      document.getElementById('promo-mwc-preview').id = 'page-promo-mwc-preview';
+      // ]]></script>
+      <a href="{{ url('firefox.partners.landing')  }}" class="container">
+        <img src="{{ media('img/home/promo-mwc-preview.jpg') }}" alt="">
+        <div class="content">
+          <h3>{{_('The Web is the platform')}}</h3>
+          <h4>{{_('Last year at Mobile World Congress, Mozilla made a promise: to deliver the Web as the platform for mobile devices. Now we’re coming back with the proof.')}}</h4>
+          <p class="go">{{_('Learn More')}}</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="pager-page" id="promo-flicksvideo">
       <script>
         document.getElementById('promo-flicksvideo').id = 'page-promo-flicksvideo';
       </script>
@@ -91,20 +105,6 @@
           <h3>{{_('Fast. Smart. Safe.')}}</h3>
           <h4>{{_('Get the mobile browser that’s got your back.')}}</h4>
           <p class="go">{{_('Get Firefox for Android')}}</p>
-        </div>
-      </a>
-    </div>
-
-    <div class="pager-page" id="promo-mwc-preview">
-      <script>// <![CDATA[
-      document.getElementById('promo-mwc-preview').id = 'page-promo-mwc-preview';
-      // ]]></script>
-      <a href="{{ url('firefox.partners.landing')  }}" class="container">
-        <img src="{{ media('img/home/promo-mwc-preview.jpg') }}" alt="">
-        <div class="content">
-          <h3>{{_('The Web is the platform')}}</h3>
-          <h4>{{_('Last year at Mobile World Congress, Mozilla made a promise: to deliver the Web as the platform for mobile devices. Now we’re coming back with the proof.')}}</h4>
-          <p class="go">{{_('Learn More')}}</p>
         </div>
       </a>
     </div>

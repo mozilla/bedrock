@@ -311,7 +311,7 @@ Mozilla.Pager.LOCATION_INTERVAL    = 200;    // milliseconds
 Mozilla.Pager.NEXT_TEXT            = 'Next';
 Mozilla.Pager.PREV_TEXT            = 'Previous';
 Mozilla.Pager.PAGE_NUMBER_TEXT     = '%s / %s';
-Mozilla.Pager.AUTO_ROTATE_INTERVAL = 10000;  // milliseconds
+Mozilla.Pager.AUTO_ROTATE_INTERVAL = 7000;  // milliseconds
 
 // {{{ setStateFromPath()
 
