@@ -218,7 +218,7 @@
             z-index: 110;
         }
     }
-    
+
 }
 
 /* }}} */
@@ -552,7 +552,6 @@
     .phone {
         height: 586px;
         width: 327px;
-        background: url(/media/img/firefox/partners/phone-shadow.png) 50% 100% no-repeat;
     }
     .phone-overlay {
         position: absolute;
@@ -579,6 +578,23 @@
             left: 30px;
             background: url(/media/img/firefox/partners/foxtail.png) 0 0 no-repeat;
         }
+    }
+}
+
+.phone-shadow {
+    opacity: 0;
+    position: absolute;
+    top: 682px;
+    left: 50%;
+    margin-left: 166px;
+    width: 327px;
+    height: 104px;
+    background: url(/media/img/firefox/partners/phone-shadow.png) 50% 100% no-repeat;
+    background-size: 50%;
+    .transition(all ease 0.5s);
+    &.visible {
+        background-size: 100%;
+        opacity: 1;
     }
 }
 
