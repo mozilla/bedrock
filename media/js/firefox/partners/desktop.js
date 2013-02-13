@@ -87,7 +87,7 @@
         $article_wrapper.after($form);
 
         // activate form drawer
-        $('#toggle-form').on('click', function() {
+        $('.toggle-form').on('click', function() {
             var $menu = $('#overlay-menu');
 
             $menu.toggleClass('form-open');
