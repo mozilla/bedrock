@@ -438,7 +438,6 @@ MINIFY_BUNDLES = {
         ),
         'partners': (
             'js/libs/modernizr.custom.shiv-load.js',
-            'js/libs/enquire.min.js',
             'js/firefox/partners.js',
         ),
     }
