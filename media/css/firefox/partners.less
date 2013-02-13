@@ -351,7 +351,7 @@
 
 #marketplace {
     .promos {
-        div.icon {
+        .icon {
             position: relative;
             a,
             h4 {
@@ -372,11 +372,15 @@
                 background-repeat: no-repeat;
             }
             &.promo-conversation span { background-position: 0 -68px; }
+            &.wipjam span             { background-position: 0 -146px; }
         }
         .register {
             a {
                 line-height: @baseLine * 2;
                 font-style: normal;
+                font-size: 14px;
+                padding-left: 10px;
+                padding-right: 10px;
                 &:after {
                     content: "";
                 }
