@@ -41,7 +41,7 @@
     box-shadow:  0px -3px 5px 1px rgba(0, 0, 0, 0.3);
     section {
         width: 100%;
-        height: 600px;
+        height: 820px;
         position: absolute;
         top: 0;
         left: 0;
@@ -218,8 +218,40 @@
             z-index: 110;
         }
     }
-
 }
+
+#android {
+    .android-tablet {
+        width: 1021px;
+        height: 662px;
+        background: url(/media/img/firefox/partners/android-tablet-frame.png) no-repeat 0 0;
+        position: absolute;
+        top: 120px;
+        left: 50%;
+        margin-left: -40px;
+        .transition(all ease 0.6s);
+        .screen {
+            position: absolute;
+            display: block;
+            top: 58px;
+            right: 127px;
+            width: 767px;
+            height: 488px;
+            background: url(/media/img/firefox/partners/android-tablet-screen.jpg) no-repeat 0 0;
+        }
+        .android-dude {
+            position: absolute;
+            display: block;
+            top: 405px;
+            left: -75px;
+            width: 231px;
+            height: 256px;
+            background: url(/media/img/firefox/partners/android-dude.png) no-repeat 0 0;
+        }
+        
+    }
+}
+
 
 /* }}} */
 /* {{{ Overview Article */
@@ -433,12 +465,19 @@
     z-index: 121; // 1 higher than #phone-container
     .intro {
         padding-top: 140px;
+        .span(6);
+        .narrow {
+            margin-right: 100px;
+        }
     }
     .article-header {
         h2 {
             padding-top: 5px;
             font-size: 78px;
         }
+    }
+    #android-partner {
+        background: url(/media/img/firefox/partners/android-partners-bg.png) 50% 200px no-repeat;
     }
 }
 
@@ -601,15 +640,18 @@
 .android-phone-container {
     top: auto;
     bottom: -600px;
+    height: 636px;
     .transition(all ease 1s);
     .phone {
         background: url(/media/img/firefox/partners/phone-android-shadow.png) 50% 100% no-repeat;
+        height: 636px;
     }
     .phone-overlay {
-        background: url(/media/img/firefox/partners/phone-android.png) 50% 0 no-repeat;
+        background: url(/media/img/firefox/partners/phone-android.png) 50% 100% no-repeat;
+        height: 636px;
     }
     &.android-phone-visible {
-        bottom: 80px;
+        bottom: 30px;
     }
 }
 

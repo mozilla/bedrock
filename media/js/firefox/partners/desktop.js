@@ -14,6 +14,7 @@
     var $os_giantfox_tail = $('#os .giantfox .giantfox-foreground');
     var $marketplace_giantfox = $('#marketplace .giantfox');
     var $marketplcae_giantfox_tail = $('#marketplace .giantfox .giantfox-foreground');
+    var $android_tablet = $('#android .android-tablet');
     var $phone = $('#phone-common');
     var $phone_android = $('#phone-android');
     var $phone_shadows = $('.phone-shadow');
@@ -56,6 +57,7 @@
             $phone_android.animate({ 'left': '50%' }, phone_speed);
             $os_giantfox.css('margin-left', '-70px');
             $marketplace_giantfox.css('margin-left', '-40px');
+            $android_tablet.css('margin-left', '-40px');
 
             // force all first sections to be current
             $('.partner-article').each(function(i, article) {
@@ -171,6 +173,14 @@
 
         $('a[data-section="marketplace-overview"]').on('click', function() {
             $marketplace_giantfox.css('margin-left', '-40px');
+        });
+
+        $('a[data-section="android-partner"]').on('click', function() {
+            $android_tablet.css('margin-left', '-1520px');
+        });
+
+        $('a[data-section="android-overview"]').on('click', function() {
+            $android_tablet.css('margin-left', '-40px');
         });
 
         var _fade_phone_shadow = function(shadow, inout) {
