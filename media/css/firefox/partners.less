@@ -39,38 +39,36 @@
 @localShadowHover:     @localShadowBottom, @localShadowBottomInset, @localShadowBorderInset, @localShadowHoverInset;
 @localShadowActive:    @localShadowBottom, @localShadowBottomInset, @localShadowBorderInset, @localShadowActiveInset;
 
-.partner-button {
-    .button {
-        background-color: @localBlue;
-        #gradient > .vertical(@localBlue, @localBlueDark);
-        font-size: 16px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        .box-shadow(@localShadow);
-        .border-radius(8px);
-        &:after {
-            content: " ";
-            display: inline-block;
-            height: 24px;
-            width: 20px;
-            vertical-align: middle;
-            margin-left: 10px;
-            background: url(/media/img/sandstone/buttons/arrow-go-r.png) 0 0;
-        }
-        &:hover,
-        &:focus {
-            .box-shadow(@localShadowHover);
-        }
-        &:active {
-            .box-shadow(@localShadowActive);
-        }
+.button {
+    background-color: @localBlue;
+    #gradient > .vertical(@localBlue, @localBlueDark);
+    font-size: 16px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    .box-shadow(@localShadow);
+    .border-radius(8px);
+    &:after {
+        content: " ";
+        display: inline-block;
+        height: 24px;
+        width: 20px;
+        vertical-align: middle;
+        margin-left: 10px;
+        background: url(/media/img/sandstone/buttons/arrow-go-r.png) 0 0;
+    }
+    &:hover,
+    &:focus {
+        .box-shadow(@localShadowHover);
+    }
+    &:active {
+        .box-shadow(@localShadowActive);
     }
 }
 
 
 @darkShadowHover: @localShadowBottom, @localShadowBottomInset, @localShadowBorderInset, @localShadowHoverInsetDark;
 
-.dark .partner-button {
+.dark {
     .button {
         background-color: #fff;
         #gradient > .vertical(#fff, #d0d0d0);
@@ -431,35 +429,57 @@
 }
 
 #form {
-    #sf-form label {
-        color: @textColorTertiary;
+    padding-top: 50px;
+    text-shadow: 1px 1px #000;
+    color: #fff;
+
+    h3 {
+        color: #fff;
     }
 
-    #sf-form .field {
+    p {
+        font-size: 16px;
+    }
+    label {
+        display: block;
+        color: #fff;
+        margin: 0 0 4px 0;
+    }
+
+    .field {
         padding: 5px 0;
     }
 
-    #sf-form input,
-    #sf-form select,
-    #sf-form textarea {
-        width: 200px
+    input[type="text"],
+    select,
+    textarea {
+        width: 240px;
+        background: #191b1e;
+        color: #888;
+        padding: 8px;
+        .border-radius(6px);
+        border-style: solid;
+        border-color: #333;
+        border-width: 0 0 1px 0;
+        @shadow: 0 0 3px rgba(0,0,0,0.3) inset;
+        .box-shadow(@shadow);
     }
 
-    #sf-form select {
+    select {
         width : 100%;
     }
 
-    #sf-form .footer-field input {
+    .footer-field input {
         width: 218px;
     }
 
-    #sf-form input.error {
+    input.error {
         border-color: rgb(175,50,50);
         @shadow: 0 2px 1px rgba(0,0,0,0.1) inset, 0 0 8px 0 rgba(175,50,50,.6);
         .box-shadow(@shadow);
     }
 
-    #sf-form label.error {
+    label.error {
         .open-sans;
         font-size: 12px;
         color: rgb(175,50,50);
