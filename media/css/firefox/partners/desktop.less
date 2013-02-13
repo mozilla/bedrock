@@ -535,34 +535,43 @@
 /* {{{ Large Phone */
 
 .phone-container {
-    background: url(/media/img/firefox/partners/phone-shadow.png) 50% 100% no-repeat;
     height: 586px;
-    width: 359px;
+    width: 327px;
     position: absolute;
     z-index: 120;
     top: 200px;
     left: 50%;
-    margin-left: 150px;
+    margin-left: 166px;
     .phone {
-        background: url(/media/img/firefox/partners/phone.png) 50% 0 no-repeat;
         height: 586px;
-        width: 359px;
+        width: 327px;
+        background: url(/media/img/firefox/partners/phone-shadow.png) 50% 100% no-repeat;
     }
-    #gloss {
+    .phone-overlay {
         position: absolute;
         top: 0;
         left: 0;
-        background: url(/media/img/firefox/partners/phone-gloss.png) 50% 0 no-repeat;
+        background: url(/media/img/firefox/partners/phone-overlay.png) 0 0 no-repeat;
         height: 586px;
-        width: 359px;
+        width: 327px;
     }
-    #foxtail {
-        height: 156px;
-        width: 156px;
+    .screen {
         position: absolute;
-        top: 160px;
-        left: 80px;
-        background: url(/media/img/firefox/partners/foxtail.png) 0 0 no-repeat;
+        top: 79px;
+        left: 41px;
+        height: 373px;
+        width: 244px;
+    }
+    #screen-overview {
+        background: url(/media/img/firefox/partners/screen-overview.jpg) 0 0 no-repeat;
+        #foxtail {
+            height: 156px;
+            width: 156px;
+            position: absolute;
+            top: 90px;
+            left: 30px;
+            background: url(/media/img/firefox/partners/foxtail.png) 0 0 no-repeat;
+        }
     }
 }
 
