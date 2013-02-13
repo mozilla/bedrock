@@ -220,38 +220,6 @@
     }
 }
 
-#android {
-    .android-tablet {
-        width: 1021px;
-        height: 662px;
-        background: url(/media/img/firefox/partners/android-tablet-frame.png) no-repeat 0 0;
-        position: absolute;
-        top: 120px;
-        left: 50%;
-        margin-left: -40px;
-        .transition(all ease 0.6s);
-        .screen {
-            position: absolute;
-            display: block;
-            top: 58px;
-            right: 127px;
-            width: 767px;
-            height: 488px;
-            background: url(/media/img/firefox/partners/android-tablet-screen.jpg) no-repeat 0 0;
-        }
-        .android-dude {
-            position: absolute;
-            display: block;
-            top: 405px;
-            left: -75px;
-            width: 231px;
-            height: 256px;
-            background: url(/media/img/firefox/partners/android-dude.png) no-repeat 0 0;
-        }
-        
-    }
-}
-
 
 /* }}} */
 /* {{{ Overview Article */
@@ -476,8 +444,40 @@
             font-size: 78px;
         }
     }
+    .android-dude {
+        position: absolute;
+        display: block;
+        top: 405px;
+        left: -75px;
+        width: 231px;
+        height: 256px;
+        background: url(/media/img/firefox/partners/android-dude.png) no-repeat 0 0;
+    }
     #android-partner {
         background: url(/media/img/firefox/partners/android-partners-bg.png) 50% 200px no-repeat;
+        .android-dude {
+            top: 440px;
+            left: 560px;
+        }
+    }
+    .android-tablet {
+        width: 1021px;
+        height: 662px;
+        background: url(/media/img/firefox/partners/android-tablet-frame.png) no-repeat 0 0;
+        position: absolute;
+        top: 120px;
+        left: 50%;
+        margin-left: -40px;
+        .transition(all ease 0.6s);
+        .screen {
+            position: absolute;
+            display: block;
+            top: 58px;
+            right: 127px;
+            width: 767px;
+            height: 488px;
+            background: url(/media/img/firefox/partners/android-tablet-screen.jpg) no-repeat 0 0;
+        }
     }
 }
 
