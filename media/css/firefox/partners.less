@@ -500,6 +500,39 @@
 }
 
 /* }}} */
+/* {{{ Pager */
+
+.pager-page {
+    display: none;
+    &.default-page {
+        display: block;
+    }
+}
+
+.pager-tabs {
+    text-align: center;
+    clear: both;
+    li {
+        display: inline;
+        list-style-type: none;
+        margin: 0;
+        a {
+            color: rgba(0,0,0,0.2);
+            .inline-block;
+            padding: 6px;
+            &:hover,
+            &:active {
+                text-decoration: none;
+                color: @textColorSecondary;
+            }
+            &.selected {
+                color: @textColorSecondary;
+            }
+        }
+    }
+}
+
+/* }}} */
 /* {{{ Full window overlay */
 
 body.noscroll {

@@ -81,31 +81,63 @@
       <div class="article-content">
         <h2>{{ _('Blaze Your Own Path') }}</h2>
         <div class="intro">
+
           <p>{% trans url1='class="nav" href="#os"'|safe, url2='class="nav" href="#marketplace"'|safe, url3='class="nav" href="#android"'|safe %}
           We’re enabling operators, phone manufacturers and developers to manage, customize and own relationships with their customers directly through our mobile products: <a {{url1}}>Firefox OS</a>, <a {{url2}}>Firefox Marketplace</a> and <a {{url3}}>Firefox for Android</a>.
           {% endtrans %}</p>
+
           <div class="partner-logos">
-            <ul class="logos">
-              <li>logo</li>
-              <li>logo</li>
-              <li>logo</li>
-              <li>logo</li>
-              <li>logo</li>
-              <li>logo</li>
-              <li>logo</li>
-              <li>logo</li>
-              <li>logo</li>
-              <li>logo</li>
-              <li>logo</li>
-              <li>logo</li>
-              <li>logo</li>
-              <li>logo</li>
-              <li>logo</li>
-              <li>logo</li>
-            </ul>
-            <p id="more-partners">{{_('See more partners') }}</p>
-            <p class="partner-button"><a href="#form" class="button toggle-form">{{ _('Partner with us') }}</a></p>
-          </div>
+            <div class="pager pager-with-tabs pager-no-history">
+              <div class="pager-content">
+                <div class="pager-page default-page">
+                  <ul class="logos">
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                  </ul>
+                </div>
+                <div class="pager-page">
+                  <ul class="logos">
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                  </ul>
+                </div>
+
+                <ul class="pager-tabs">
+                  <li><a href="#p1">●</a></li>
+                  <li><a href="#p2">●</a></li>
+                </ul>
+              </div><!--/pager-content-->
+            </div><!--/pager-->
+          </div><!--/partner-logos-->
+
+          <p id="more-partners">{{_('See more partners') }}</p>
+          <p class="partner-button"><a href="#form" class="button toggle-form">{{ _('Partner with us') }}</a></p>
+
           <div id="overview-news">
             <img src="{{ media('img/firefox/partners/mwc-logo.png') }}" alt="{{ _('Mobile World Congress, Barcelona, 25 - 28 February 2013') }}" />
             <h3>{{ _('Recent news') }}</h3>
@@ -174,29 +206,92 @@
               </div>
             </div>
           </div>
-          <ul id="os-operators-logos" class="logos tween">
-            <li>logo</li>
-            <li>logo</li>
-            <li>logo</li>
-            <li>logo</li>
-            <li>logo</li>
-            <li>logo</li>
-            <li>logo</li>
-            <li>logo</li>
-            <li>logo</li>
-            <li>logo</li>
-            <li>logo</li>
-            <li>logo</li>
-            <li>logo</li>
-            <li>logo</li>
-            <li>logo</li>
-            <li>logo</li>
-            <li>logo</li>
-            <li>logo</li>
-            <li>logo</li>
-            <li>logo</li>
-            <li>logo</li>
-          </ul>
+
+          <div class="pager pager-with-tabs pager-no-history">
+              <div class="pager-content tween">
+                <div class="pager-page default-page">
+                  <ul id="os-operators-logos1" class="logos">
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                    <li>logo</li>
+                  </ul>
+                </div>
+                <div class="pager-page">
+                  <ul id="os-operators-logos2" class="logos">
+                    <li>logo p2</li>
+                    <li>logo p2</li>
+                    <li>logo p2</li>
+                    <li>logo p2</li>
+                    <li>logo p2</li>
+                    <li>logo p2</li>
+                    <li>logo p2</li>
+                    <li>logo p2</li>
+                    <li>logo p2</li>
+                    <li>logo p2</li>
+                    <li>logo p2</li>
+                    <li>logo p2</li>
+                    <li>logo p2</li>
+                    <li>logo p2</li>
+                    <li>logo p2</li>
+                    <li>logo p2</li>
+                    <li>logo p2</li>
+                    <li>logo p2</li>
+                    <li>logo p2</li>
+                    <li>logo p2</li>
+                    <li>logo p2</li>
+                  </ul>
+                </div>
+                <div class="pager-page">
+                  <ul id="os-operators-logos3" class="logos">
+                    <li>logo p3</li>
+                    <li>logo p3</li>
+                    <li>logo p3</li>
+                    <li>logo p3</li>
+                    <li>logo p3</li>
+                    <li>logo p3</li>
+                    <li>logo p3</li>
+                    <li>logo p3</li>
+                    <li>logo p3</li>
+                    <li>logo p3</li>
+                    <li>logo p3</li>
+                    <li>logo p3</li>
+                    <li>logo p3</li>
+                    <li>logo p3</li>
+                    <li>logo p3</li>
+                    <li>logo p3</li>
+                    <li>logo p3</li>
+                    <li>logo p3</li>
+                    <li>logo p3</li>
+                    <li>logo p3</li>
+                    <li>logo p3</li>
+                  </ul>
+                </div>
+
+                <ul class="pager-tabs">
+                  <li><a href="#p1">●</a></li>
+                  <li><a href="#p2">●</a></li>
+                  <li><a href="#p3">●</a></li>
+                </ul>
+              </div><!--/pager-content-->
+            </div><!--/pager-->
         </div>
       </div>
     </section>

@@ -67,6 +67,7 @@
                 });
             });
 
+            // slow-ish scrolling to help scroll animations
             $("html:not(:animated),body:not(:animated)").animate({ scrollTop: destination }, 1000);
 
             return false;
@@ -183,17 +184,23 @@
             $android_tablet.css('margin-left', '-40px');
         });
 
-        var _fade_phone_shadow = function(shadow, inout) {
-            if (inout === 'in') {
+        var _refresh_phone = function(to_slide, shadowinout) {
+            var shadow = to_slide.find('.phone-shadow');
+            if (shadowinout === 'in') {
                 shadow.addClass('visible');
             } else {
                 shadow.removeClass('visible');
             }
+
+            $('.screen:visible').fadeOut('fast', function() {
+                $('#screen-' + to_slide.attr('id')).fadeIn('fast');
+            });
         };
 
         var _move_phone = function(factor, slide, new_z) {
             // fade out all phone shadows
-            _fade_phone_shadow($phone_shadows, 'out');
+            $phone_shadows.fadeOut('fast');
+            //_fade_phone_shadow($phone_shadows, 'out');
 
             // chaining animations gets too crazy
             // make sure only one animation is running/queued at one time
@@ -238,14 +245,14 @@
                         }, 100, function() {
                             $phone.attr('data-showing', 1);
 
-                            _fade_phone_shadow(slide.find('.phone-shadow'), 'in');
+                            _refresh_phone(slide, 'in');
 
                             $phone.animate({ 'left': '50%' }, phone_speed, function() {
                                 $phone.attr('data-showing', 0);
                             });
                         });
                     } else {
-                        _fade_phone_shadow(slide.find('.phone-shadow'), 'in');
+                        _refresh_phone(slide, 'in');
 
                         $phone.animate({ 'top': top_pos + 'px' }, phone_speed, function() {
                             if (new_z) {
@@ -257,7 +264,7 @@
                     if (visible) {
                         $phone.attr('data-hiding', 1);
 
-                        _fade_phone_shadow(slide.find('.phone-shadow'), 'out');
+                        _refresh_phone(slide, 'out');
 
                         $phone.animate({
                             'left': '-50%'
@@ -274,7 +281,7 @@
                             $phone.css('z-index', new_z);
                         }
 
-                        _fade_phone_shadow(slide.find('.phone-shadow'), 'out');
+                        _refresh_phone(slide, 'out');
 
                         $phone.animate({ 'top': top_pos + 'px' }, phone_speed);
                     }

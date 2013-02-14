@@ -438,6 +438,7 @@ MINIFY_BUNDLES = {
         ),
         'partners': (
             'js/libs/modernizr.custom.shiv-load.js',
+            'js/mozilla-pager.js',
             'js/firefox/partners.js',
         ),
     }
