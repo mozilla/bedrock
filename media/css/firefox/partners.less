@@ -39,36 +39,39 @@
 @localShadowHover:     @localShadowBottom, @localShadowBottomInset, @localShadowBorderInset, @localShadowHoverInset;
 @localShadowActive:    @localShadowBottom, @localShadowBottomInset, @localShadowBorderInset, @localShadowActiveInset;
 
-.button {
-    background-color: @localBlue;
-    #gradient > .vertical(@localBlue, @localBlueDark);
-    font-size: 16px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    .box-shadow(@localShadow);
-    .border-radius(8px);
-    &:after {
-        content: " ";
-        display: inline-block;
-        height: 24px;
-        width: 20px;
-        vertical-align: middle;
-        margin-left: 10px;
-        background: url(/media/img/sandstone/buttons/arrow-go-r.png) 0 0;
-    }
-    &:hover,
-    &:focus {
-        .box-shadow(@localShadowHover);
-    }
-    &:active {
-        .box-shadow(@localShadowActive);
+#form,
+.partner-article {
+    .button {
+        background-color: @localBlue;
+        #gradient > .vertical(@localBlue, @localBlueDark);
+        font-size: 16px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        .box-shadow(@localShadow);
+        .border-radius(8px);
+        &:after {
+            content: " ";
+            display: inline-block;
+            height: 24px;
+            width: 20px;
+            vertical-align: middle;
+            margin-left: 10px;
+            background: url(/media/img/sandstone/buttons/arrow-go-r.png) 0 0;
+        }
+        &:hover,
+        &:focus {
+            .box-shadow(@localShadowHover);
+        }
+        &:active {
+            .box-shadow(@localShadowActive);
+        }
     }
 }
 
 
 @darkShadowHover: @localShadowBottom, @localShadowBottomInset, @localShadowBorderInset, @localShadowHoverInsetDark;
 
-.dark {
+.partner-article.dark {
     .button {
         background-color: #fff;
         #gradient > .vertical(#fff, #d0d0d0);
@@ -185,6 +188,10 @@
 
 /* }}} */
 /* {{{ Left menu */
+
+#explore {
+    display: none;
+}
 
 #partner-nav {
     width: auto;

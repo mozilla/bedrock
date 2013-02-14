@@ -71,7 +71,7 @@
                 display: table;
                 float: left;
                 position: relative;
-                height: 40px;
+                height: 45px;
                 width: 150px;
                 color: @textColorSecondary;
                 background: rgba(166,189,206,0.2);
@@ -455,6 +455,12 @@
     }
     #android-partner {
         background: url(/media/img/firefox/partners/android-partners-bg.png) 50% 200px no-repeat;
+        .intro {
+            padding-top: 120px;
+            h4 {
+                font-size: 26px;
+            }
+        }
         .android-dude {
             top: 440px;
             left: 560px;
@@ -664,6 +670,17 @@
 
 #pageslide {
     background: #1e2023 url(/media/img/firefox/partners/form-bg.jpg) 0 0 repeat-y;
+}
+
+/* }}} */
+/* {{{ l10n tweaks */
+
+/* German */
+
+html[lang="de"] {
+    #overview h2 {
+        font-size: 66px;
+    }
 }
 
 /* }}} */
