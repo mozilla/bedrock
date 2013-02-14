@@ -106,4 +106,24 @@
             closeModal();
         }
     });
+
+    // ajax-ify form
+    $('#sf-form').on('submit', function(e) {
+        e.preventDefault();
+
+        var $form = $(this);
+
+        $.ajax({
+            type: $form.attr('method'),
+            url: $form.attr('action'),
+            data: $form.serialize(),
+            success: function(data, status, xhr) {
+                $form.fadeOut('fast', function() {
+                    $('.sf-form').addClass('completed');
+                    $('#pageslide').scrollTop(0);
+                    $('.form-results').fadeIn('fast');
+                });
+            }
+        });
+    });
 })(window, window.jQuery, window.enquire, window.Modernizr, window.trans);
