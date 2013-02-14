@@ -565,7 +565,7 @@ Tabzilla.content =
     + '          <li><a href="https://www.mozilla.org/contribute/">{{ _('Volunteer')|js_escape }}</a></li>'
     + '          <li><a href="https://www.mozilla.org/en-US/about/careers.html">{{ _('Careers')|js_escape }}</a></li>'
     + '          <li><a href="https://www.mozilla.org/en-US/about/mozilla-spaces/">{{ _('Find us')|js_escape }}</a></li>'
-    + '          <li><a href="https://donate.mozilla.org/">{{ _('Join us')|js_escape }}</a></li>'
+    + '          <li><a href="https://sendto.mozilla.org/">{{ _('Join us')|js_escape }}</a></li>'
     + '        </ul>'
     + '      </li>'
     + '      <li id="tabzilla-search">'
