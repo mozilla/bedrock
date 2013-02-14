@@ -1,6 +1,7 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
 @import "../sandstone/lib.less";
 
 @localBlue:     #43a6e2;
@@ -442,6 +443,7 @@
 }
 
 #form {
+    .close { display: none; }
     padding-top: 50px;
     padding-bottom: 20px;
     text-shadow: 1px 1px #000;
@@ -576,6 +578,28 @@
 /* }}} */
 /* {{{ Full window overlay */
 
+.close {
+  display: inline;
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  color: #ccc;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding-right: 22px;
+  cursor: pointer;
+  border: 0;
+  background: transparent url(/media/img/firefox/partners/closex.png) right center no-repeat;
+}
+
+.close:hover,
+.close:focus {
+  text-decoration: underline;
+  color: #eee;
+}
+
 body.noscroll {
   overflow: hidden;
 }
@@ -599,25 +623,8 @@ body.noscroll {
   color: #f3f3f3;
 }
 #modal .close {
-  display: inline;
   position: fixed;
   z-index: 99;
-  top: 25px;
-  right: 25px;
-  color: #ccc;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 12px;
-  font-weight: bold;
-  text-transform: uppercase;
-  padding-right: 22px;
-  cursor: pointer;
-  border: 0;
-  background: transparent url(/media/img/firefox/partners/closex.png) right center no-repeat;
-}
-#modal .close:hover,
-#modal .close:focus {
-  text-decoration: underline;
-  color: #eee;
 }
 
 /* }}} */

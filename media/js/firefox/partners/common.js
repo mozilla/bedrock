@@ -46,16 +46,20 @@
     // global overlay handler (mobile/desktop)
     var $overlay = $('#overlay');
 
-    $("a.modal").click(function(e) {
-        e.preventDefault();
-        // Extract the target element's ID from the link's href.
-        var elem = $(this).attr('href').replace(/.*?(#.*)/g, '$1');
-
+    w.show_overlay = function(elem) {
         $overlay.find('section').hide();
         $(elem).show();
 
         var content = $overlay.detach();
         createModal(this, content);
+    };
+
+    $("a.modal").click(function(e) {
+        e.preventDefault();
+        // Extract the target element's ID from the link's href.
+        var elem = $(this).attr('href').replace(/.*?(#.*)/g, '$1');
+
+        w.show_overlay(elem);
 
         return false;
     });

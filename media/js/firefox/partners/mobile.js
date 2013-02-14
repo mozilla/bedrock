@@ -41,6 +41,14 @@
         });
     };
 
+    $('.toggle-form').off().on('click', function(e) {
+        e.preventDefault();
+
+        w.show_overlay('#form');
+
+        return false;
+    });
+
     // remove mobile functionality
     w.detach_mobile = function() {
         $('.partner-article').show();

@@ -85,12 +85,7 @@
             }, 60); // may need to increase timeout
         });
 
-        // move form out of overlay
-        var $form = $('#form').detach();
-        $article_wrapper.after($form);
-
-        // activate form drawer
-        $('.toggle-form').on('click', function() {
+        var _toggle_form = function() {
             var $menu = $('#overlay-menu');
 
             $menu.toggleClass('form-open');
@@ -98,6 +93,19 @@
             if (!$menu.hasClass('form-open')) {
                 $.pageslide.close();
             }
+        };
+
+        // move form out of overlay
+        var $form = $('#form').detach();
+        $form.hide();
+        $article_wrapper.after($form);
+        $form.find('.close').click(function() {
+            _toggle_form();
+        });
+
+        // activate form drawer
+        $('.toggle-form').off().on('click', function() {
+            _toggle_form();
         }).pageslide({
             direction: 'left',
             modal: true,
@@ -199,8 +207,7 @@
 
         var _move_phone = function(factor, slide, new_z) {
             // fade out all phone shadows
-            $phone_shadows.fadeOut('fast');
-            //_fade_phone_shadow($phone_shadows, 'out');
+            $phone_shadows.removeClass('visible');
 
             // chaining animations gets too crazy
             // make sure only one animation is running/queued at one time
