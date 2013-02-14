@@ -3,33 +3,24 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import datetime
+import errno
 import itertools
 import re
-import os, errno
+import os
 from os import path
-from optparse import make_option
 import codecs
 from contextlib import closing
 from StringIO import StringIO
 
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from django.conf import settings
+from django.utils.functional import cached_property
 
 from jinja2 import Environment
-from jinja2.parser import Parser
 
 
 def l10n_file(*args):
     return path.join(settings.ROOT, 'locale', *args)
-
-
-def l10n_tmpl(tmpl, lang):
-    return l10n_file(lang, 'templates', tmpl)
-
-
-def app_tmpl(tmpl):
-    app = tmpl[:tmpl.index('/')]
-    return path.join(settings.ROOT, settings.PROJECT_MODULE, app, 'templates', tmpl)
 
 
 def list_templates():
@@ -47,27 +38,16 @@ def list_templates():
                         name, ext = os.path.splitext(filename)
 
                         if ext in ['.txt', '.html']:
-                            full_path = os.path.join(root, filename)
-                            yield full_path.replace(tmpl_dir, '').lstrip('/')
+                            yield os.path.join(root, filename)
 
 
 def update_templates(langs):
     """List templates with outdated/incorrect l10n blocks"""
 
     for tmpl in list_templates():
-        print "%s..." % tmpl
-
-        # Parse the reference template that will provide new content
-        # and only get the blocks from it
-        parser = L10nParser()
-        blocks = list(parser.parse_template(app_tmpl(tmpl),
-                                            only_blocks=True))
-
-        for lang in langs:
-            if path.exists(l10n_tmpl(tmpl, lang)):
-                update_template(tmpl, blocks, lang)
-            else:
-                copy_template(tmpl, blocks, lang)
+        template = L10nTemplate(tmpl)
+        print "%s..." % template.rel_path
+        template.process(langs)
 
 
 def get_todays_version():
@@ -84,22 +64,102 @@ def ensure_dir_exists(path):
     except OSError as exc:
         if exc.errno == errno.EEXIST:
             pass
-        else: raise
+        else:
+            raise
 
 
-def update_template(tmpl, blocks, lang):
-    """Detect outdated l10n blocks and update the template"""
+def write_block(block, dest, force_was=False):
+    """Write out a block to an l10n template"""
+    dest.write('{%% l10n %s %%}\n' % block['name'])
+    dest.write(block['main'])
+    if block['was'] or force_was:
+        dest.write('\n{% was %}')
+        dest.write('\n%s' % block['was'] if block['was'] else '')
+    dest.write('\n{% endl10n %}')
+    dest.write('\n\n')
 
-    def get_ref_block(name):
+
+class L10nTemplate(object):
+
+    def __init__(self, template=None, source=None):
+        """
+        Initialize the template class.
+
+        :param template:
+            Full path to a template file.
+        :param source:
+            Template text as a string if there is no template file.
+        """
+        self.full_path = template
+        self.source = source
+        self.parser = L10nParser()
+
+    @cached_property
+    def rel_path(self):
+        """
+        Return the part of the template path after the 'templates' directory.
+        """
+        args = self.full_path.split(path.sep)
+        args = args[args.index('templates') + 1:]
+        return path.join(*args)
+
+    def l10n_path(self, lang):
+        """
+        Return the path to the localized version of the template for lang.
+        """
+        return l10n_file(lang, 'templates', self.rel_path)
+
+    @cached_property
+    def blocks(self):
+        if self.full_path:
+            blocks = self.parser.parse_template(self.full_path,
+                                                only_blocks=True)
+        elif self.source:
+            blocks = self.parser.parse(self.source, only_blocks=True)
+        return tuple(blocks)
+
+    def blocks_for_lang(self, lang):
+        """Filter blocks to only those that allow this locale or all locales."""
+        return tuple(b for b in self.blocks
+                     if not b['locales'] or lang in b['locales'])
+
+    def process(self, langs):
+        """
+        Update existing templates and create new ones for specified langs.
+        """
+        for lang in langs:
+            if path.exists(self.l10n_path(lang)):
+                self.update(lang)
+            else:
+                self.copy(lang)
+
+    def copy(self, lang):
+        """Create a new l10n template by copying the l10n blocks"""
+        blocks = self.blocks_for_lang(lang)
+        if not blocks:
+            return
+
+        dest_file = self.l10n_path(lang)
+
+        # Make sure the templates directory for this locale and app exists
+        ensure_dir_exists(os.path.dirname(dest_file))
+
+        with codecs.open(dest_file, 'w', 'utf-8') as dest:
+            dest.write('{# Version: %s #}\n\n' % get_todays_version())
+            dest.write('{%% extends "%s" %%}\n\n' % self.rel_path)
+
+            for block in blocks:
+                write_block(block, dest)
+
+        print '%s: %s' % (lang, self.rel_path)
+
+    def _get_ref_block(self, name, blocks=None):
         """Return the reference block"""
+        blocks = blocks or self.blocks
+        return next((b for b in blocks if b['name'] == name), None)
 
-        for block in blocks:
-            if block['name'] == name:
-                return block
-
-    def transfer_content(l10n_block, ref_block):
+    def _transfer_content(self, l10n_block, ref_block):
         """Transfer any new content from the reference block"""
-
         if ref_block:
             # Update if the l10n file is older than this block
             if l10n_block['version'] < ref_block['version']:
@@ -108,89 +168,64 @@ def update_template(tmpl, blocks, lang):
                 if not l10n_block['was']:
                     l10n_block['was'] = l10n_block['main']
                 l10n_block['main'] = ref_block['main']
+            l10n_block['locales'] = ref_block['locales']
 
-        return l10n_block
+    def update(self, lang):
+        """Detect outdated l10n blocks and update the template"""
+        blocks = self.blocks_for_lang(lang)
+        if not blocks:
+            return
 
-    parser = L10nParser()
-    file_version = None
-    dest_tmpl = l10n_tmpl(tmpl, lang)
-    halted = False
-    written_blocks = []
+        file_version = None
+        parser = L10nParser()
+        dest_tmpl = self.l10n_path(lang)
+        written_blocks = []
 
-    # Make sure the templates directory for this locale and app exists
-    ensure_dir_exists(os.path.dirname(dest_tmpl))
-
-    # Parse the l10n template, run through it and update it where
-    # appropriate into a new template file
-    with closing(StringIO()) as buffer:
-        for token in parser.parse_template(dest_tmpl, strict=False,
-                                           halt_on_content=True):
-            if not token:
-                # If False is returned, that means a content block
-                # exists so we don't do anything to the template since
-                # it's customized
-                return
-            elif token[0] == 'content':
-                buffer.write(token[1])
-            elif token[0] == 'version':
-                buffer.write('{# Version: %s #}' % get_todays_version())
-                file_version = token[1]
-            elif token[0] == 'block':
-                if not file_version:
-                    raise Exception('l10n file version tag does not exist '
-                                    'before initial l10n block')
-
-                # We have an l10n block, set its version and keep
-                # track of it for later use
-                l10n_block = token[1]
-                l10n_block['version'] = file_version
-                name = l10n_block['name']
-                written_blocks.append(name)
-
-                # Update the block and write it out
-                l10n_block = transfer_content(l10n_block,
-                                              get_ref_block(name))
-                write_block(l10n_block, buffer)
-
-        # Check for any missing blocks
-        for block in blocks:
-            if block['name'] not in written_blocks:
-                buffer.write('\n\n')
-                write_block(block, buffer)
-
-        # Write out the result to the l10n template
-        with codecs.open(dest_tmpl, 'w', 'utf-8') as dest:
-            dest.write(buffer.getvalue())
-
-    print '%s: %s' % (lang, tmpl)
-
-def write_block(block, dest, force_was=False):
-    """Write out a block to an l10n template"""
-
-    dest.write('{%% l10n %s %%}\n' % block['name'])
-    dest.write(block['main'])
-    if block['was'] or force_was:
-        dest.write('\n{% was %}')
-        dest.write('\n%s' % block['was'] if block['was'] else '')
-    dest.write('\n{% endl10n %}')
-
-
-def copy_template(tmpl, blocks, lang):
-    """Create a new l10n template by copying the l10n blocks"""
-
-    dest_file = l10n_tmpl(tmpl, lang)
-
-    if blocks:
         # Make sure the templates directory for this locale and app exists
-        ensure_dir_exists(os.path.dirname(dest_file))
+        ensure_dir_exists(os.path.dirname(dest_tmpl))
 
-        with codecs.open(dest_file, 'w', 'utf-8') as dest:
-            dest.write('{# Version: %s #}\n\n' % get_todays_version())
-            dest.write('{%% extends "%s" %%}\n\n' % tmpl)
+        # Parse the l10n template, run through it and update it where
+        # appropriate into a new template file
+        with closing(StringIO()) as buffer:
+            for token in parser.parse_template(dest_tmpl, strict=False,
+                                               halt_on_content=True):
+                if not token:
+                    # If False is returned, that means a content block
+                    # exists so we don't do anything to the template since
+                    # it's customized
+                    return
+                elif token[0] == 'content':
+                    buffer.write(token[1])
+                elif token[0] == 'version':
+                    buffer.write('{# Version: %s #}' % get_todays_version())
+                    file_version = token[1]
+                elif token[0] == 'block':
+                    if not file_version:
+                        raise Exception('l10n file version tag does not exist '
+                                        'before initial l10n block')
 
+                    # We have an l10n block, set its version and keep
+                    # track of it for later use
+                    l10n_block = token[1]
+                    l10n_block['version'] = file_version
+                    name = l10n_block['name']
+                    written_blocks.append(name)
+
+                    # Update the block and write it out
+                    self._transfer_content(l10n_block,
+                                           self._get_ref_block(name, blocks))
+                    write_block(l10n_block, buffer)
+
+            # Check for any missing blocks
             for block in blocks:
-                write_block(block, dest)
-                dest.write('\n\n')
+                if block['name'] not in written_blocks:
+                    write_block(block, buffer)
+
+            # Write out the result to the l10n template
+            with codecs.open(dest_tmpl, 'w', 'utf-8') as dest:
+                dest.write(buffer.getvalue())
+
+        print '%s: %s' % (lang, self.rel_path)
 
 
 class L10nParser():
@@ -262,7 +297,7 @@ class L10nParser():
 
                     if not version:
                         raise Exception('Invalid version metadata in '
-                                        'template: %s '% self.tmpl)
+                                        'template: %s' % self.tmpl)
 
                     yield ('version', version)
                     self.scan_until('comment_end')
@@ -325,23 +360,42 @@ class L10nParser():
         except ValueError:
             return None
 
+    def get_block_version(self, version_str):
+        block_version = self.parse_version(version_str)
+        if not block_version:
+            raise Exception("Invalid l10n block declaration: "
+                            "bad version '%s' in %s"
+                            % (block_version, self.tmpl))
+        return block_version
+
     def parse_block(self, strict=True):
         """Parse out the l10n block metadata and content"""
 
         block_name = self.scan_next('name')
         block_version = None
+        locales = []
 
         self.scan_ignore('whitespace')
-        if self.scan_next('operator') == ',':
-            self.scan_ignore('whitespace')
-            version_str = self.scan_next('integer')
-            block_version = self.parse_version(version_str)
 
-            if not block_version:
-                raise Exception("Invalid l10n block declaration: "
-                                "bad version '%s' in %s"
-                                % (block_name, self.tmpl))
+        # Grab the locales if provided
+        prev_sub = False
+        for _, token_type, token_value in self.tokens:
+            if token_type in ['integer', 'block_end']:
+                break
+            if token_type == 'operator' and token_value in [',', '=']:
+                continue
+            if token_type == 'name' and token_value != 'locales':
+                if prev_sub:
+                    locales[-1] += token_value
+                    prev_sub = False
+                else:
+                    locales.append(token_value)
+            if token_type == 'operator' and token_value == '-':
+                locales[-1] += '-'
+                prev_sub = True
 
+        if token_type == 'integer':
+            block_version = self.get_block_version(token_value)
             self.scan_until('block_end')
         elif strict:
             raise Exception("Invalid l10n block declaration: "
@@ -352,7 +406,8 @@ class L10nParser():
         yield ('block', {'name': block_name,
                          'version': block_version,
                          'main': main,
-                         'was': was_})
+                         'was': was_,
+                         'locales': locales})
 
     def block_content(self):
         """Parse the content from an l10n block"""
@@ -404,6 +459,8 @@ class L10nParser():
         token = self.tokens.next()
         if token and token[1] == name:
             return token[2]
+        # Put it back on the list
+        self.tokens = itertools.chain([token], self.tokens)
         return False
 
 
@@ -417,6 +474,6 @@ class Command(BaseCommand):
             langs = args
         else:
             langs = os.listdir(l10n_file())
-            langs = filter(lambda x: x[0] != '.' , langs)
+            langs = filter(lambda x: x[0] != '.', langs)
 
         update_templates(langs)

@@ -1,8 +1,51 @@
-;(function(window, $, Modernizr, _gaq, site) {
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+;(function($, Modernizr, _gaq, site) {
     'use strict';
 
     if (site.platform === 'android') {
         return;
+    }
+
+    var path_parts = window.location.pathname.split('/');
+    var query_str = window.location.search ? window.location.search + '&' : '?';
+    var referrer = path_parts[path_parts.length-2];
+    var locale = path_parts[1];
+    var virtual_url = ('/' + locale + '/products/download.html' +
+                       query_str + 'referrer=' + referrer);
+    var $scene1 = $('#scene1');
+    var $stage = $('#stage-firefox');
+    var $thankYou = $('.thankyou');
+    var hash_change = ('onhashchange' in window);
+
+    function track_and_redirect(url) {
+        if (_gaq) {
+            _gaq.push(['_trackPageview', virtual_url]);
+        }
+        setTimeout(function() {
+            window.location.href = url;
+        }, 500);
+    }
+
+    function show_scene(scene) {
+        var CSSbottom = (scene === 2) ? '-400px' : 0;
+        $stage.data('scene', scene);
+        $('.scene').css('visibility', 'visible');
+        if (!Modernizr.csstransitions) {
+            $stage.animate({
+                bottom: CSSbottom
+            }, 400);
+        } else {
+            $stage.toggleClass('scene2');
+        }
+        if (scene === 2) {
+            setTimeout(function() {
+                $scene1.css('visibility', 'hidden');
+                $thankYou.focus();
+            }, 500);
+        }
     }
 
     // Load images on load so as not to block the loading of other images.
@@ -13,63 +56,45 @@
         }
 
         $('body').addClass('ready-for-scene2');
+
+        // initiate download/scene2 if coming directly to #download
+        if (location.hash === '#download-fx' && site.platform !== 'other') {
+            show_scene(2);
+            $('#direct-download-link').trigger('click');
+        }
     });
 
-    function ga_track() {
-        if (_gaq) {
-            // track download click
-            _gaq.push(['_trackPageview',
-                       '/en-US/products/download.html?referrer=new-b']);
-        }
-    }
-
-    function dl_redirect(url) {
-        // delay redirect to ensure GA tracking occurs
-        window.setTimeout(function() {
-            window.location.href = url;
-        }, 300);
-    }
-
-    // Bind events on domReady.
     $(function() {
         // Pull Firefox download link from the download button and add to the
         // 'click here' link.
         // TODO: Remove and generate link in bedrock.
-        var $li = $('.download-list li:visible').filter(':first');
-        var ff_dl_url = $li.find('a:first').attr('href');
-        $('#direct-download-link').attr('href', ff_dl_url).on('click', function(e) {
-            e.preventDefault();
-            ga_track();
-            dl_redirect($(this).attr('href'));
-        });
+        $('#direct-download-link').attr(
+            'href', $('.download-list li:visible .download-firefox').attr('href')
+        );
 
-        // Trigger animation after download.
-        var $scene2 = $('#scene2');
-        var $stage = $('#stage-firefox');
-        var $thankYou = $('.thankyou');
-        $('.download-firefox').on('click', function(e) {
+        $stage.on('click', '#direct-download-link, .download-firefox', function(e) {
             e.preventDefault();
-            var $link = $(this);
-            ga_track();
 
-            if (!Modernizr.csstransitions) {
-                $scene2.css('visibility', 'visible');
-                $stage.animate({
-                    bottom: '-400px'
-                }, 400, function() {
-                    $thankYou.focus();
-                });
-            } else {
-                $stage.addClass('scene2');
-                // transitionend fires multiple times in FF 17, including
-                // before the transition actually finished.
-                // Work-around with setTimeout.
-                window.setTimeout(function() {
-                    $thankYou.focus();
-                }, 500);
+            track_and_redirect($(e.currentTarget).attr('href'));
+
+            if ($stage.data('scene') !== 2) {
+                if (hash_change) {
+                    location.hash = '#download-fx';
+                } else {
+                    show_scene(2);
+                }
             }
-
-            dl_redirect($link.attr('href'));
         });
+
+        if (hash_change) {
+            $(window).on('hashchange', function() {
+                if (location.hash === '#download-fx') {
+                    show_scene(2);
+                }
+                if (location.hash === '') {
+                    show_scene(1);
+                }
+            });
+        }
     });
-})(window, window.jQuery, window.Modernizr, window._gaq, window.site);
+})(window.jQuery, window.Modernizr, window._gaq, window.site);

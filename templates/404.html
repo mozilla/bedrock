@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% extends "base.html" %}
+{% extends "base-resp.html" %}
 
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}404: Page Not Found{% endblock %}
@@ -13,15 +13,16 @@
 
 {% block content %}
 <div id="main-feature">
+  <div id="error-content">
+    <h1>Whoops!</h1>
+    <p>Did you make a left at that last URL instead of a right? No problem. here are some tips to get you back on your way:</p>
+    <ul>
+      <li>If you typed in the address, check your spelling. Could just be a typo.</li>
+      <li>If you followed a link, it’s probably broken. Please <a href="{{ php_url('/about/contact/') }}">contact us</a> and we’ll fix it.</li>
+      <li>If you’re not sure what you’re looking for, start at <a href="{{ url('mozorg.home') }}">mozilla.org</a>.</li>
+    </ul>
+  </div>
   {{ download_button('download', 'small') }}
-  <h1>Whoops!</h1>
-  <p class="column">Did you make a left at that last URL instead of a right? No problem. here are some tips to get you back on your way:</p>
-  <ul class="column">
-    <li>If you typed in the address, check your spelling. Could just be a typo.</li>
-    <li>If you followed a link, it’s probably broken. Please <a href="{{ php_url('/about/contact/') }}">contact us</a> and we’ll fix it.</li>
-    <li>If you’re not sure what you’re looking for, start at <a href="{{ url('mozorg.home') }}">mozilla.org</a>.
-</li>
-  </ul>
 </div>
 {% endblock %}
 

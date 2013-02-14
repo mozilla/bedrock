@@ -8,13 +8,13 @@ import os
 
 from django.conf import settings
 from django.core import mail
+from django.core.cache import cache
 from django.core.urlresolvers import clear_url_caches
 from django.test.client import Client
 
 from jingo import env
 from jinja2 import FileSystemLoader
 from mock import patch
-from nose.plugins.skip import SkipTest
 from nose.tools import assert_not_equal, eq_, ok_
 from pyquery import PyQuery as pq
 from tower.management.commands.extract import extract_tower_python
@@ -37,7 +37,7 @@ class TestLangFilesActivation(TestCase):
         clear_url_caches()
         self.client = Client()
 
-    @patch.object(settings, 'DEV', False)
+    @patch('lib.l10n_utils.settings.DEV', False)
     def test_lang_file_is_active(self):
         """
         `lang_file_is_active` should return true if lang file has the
@@ -48,7 +48,7 @@ class TestLangFilesActivation(TestCase):
         ok_(not lang_file_is_active('inactive_de_lang_file', 'de'))
         ok_(not lang_file_is_active('does_not_exist', 'de'))
 
-    @patch.object(settings, 'DEV', False)
+    @patch('lib.l10n_utils.settings.DEV', False)
     def test_active_locale_not_redirected(self):
         """ Active lang file should render correctly. """
         response = self.client.get('/de/active-de-lang-file/')
@@ -56,7 +56,7 @@ class TestLangFilesActivation(TestCase):
         doc = pq(response.content)
         eq_(doc('h1').text(), 'Die Lage von Mozilla')
 
-    @patch.object(settings, 'DEV', False)
+    @patch('lib.l10n_utils.settings.DEV', False)
     @patch.object(settings, 'LANGUAGE_CODE', 'en-US')
     def test_inactive_locale_redirected(self):
         """ Inactive locale should redirect to en-US. """
@@ -68,13 +68,11 @@ class TestLangFilesActivation(TestCase):
         doc = pq(response.content)
         eq_(doc('h1').text(), 'The State of Mozilla')
 
-    @patch.object(settings, 'DEV', True)
+    @patch('lib.l10n_utils.settings.DEV', True)
     def test_inactive_locale_not_redirected_dev_true(self):
         """
         Inactive lang file should not redirect in DEV mode.
         """
-        # Disabled because of bug 815573
-        raise SkipTest
         response = self.client.get('/de/inactive-de-lang-file/')
         eq_(response.status_code, 200)
         doc = pq(response.content)
@@ -82,6 +80,11 @@ class TestLangFilesActivation(TestCase):
 
 
 class TestDotlang(TestCase):
+    def setUp(self):
+        cache.clear()
+        clear_url_caches()
+        self.client = Client()
+
     def test_parse(self):
         path = os.path.join(ROOT, 'test.lang')
         parsed = parse(path)
@@ -105,6 +108,15 @@ class TestDotlang(TestCase):
         }
         eq_(parsed, expected)
         mail.outbox = []
+
+    def test_parse_ingnores_untranslated(self):
+        """parse should skip strings that aren't translated."""
+        path = os.path.join(ROOT, 'locale/de/main.lang')
+        parsed = parse(path)
+        expected = {
+            u'The State of Mozilla': u'Awesome Baby! YEEEAAHHHH!!'
+        }
+        self.assertDictEqual(parsed, expected)
 
     def test_format_identifier_re(self):
         eq_(FORMAT_IDENTIFIER_RE.findall('%s %s'),
@@ -138,6 +150,16 @@ class TestDotlang(TestCase):
         assert_not_equal(expected, result)
         eq_(len(mail.outbox), 0)
 
+    @patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
+    @patch.object(settings, 'ROOT_URLCONF', 'lib.l10n_utils.tests.test_files.urls')
+    @patch.object(settings, 'ROOT', ROOT)
+    def test_lang_files_queried_in_order(self):
+        """The more specific lang files should be searched first."""
+        response = self.client.get('/de/trans-block-reload-test/')
+        doc = pq(response.content)
+        gettext_call = doc('h1')
+        eq_(gettext_call.text(), 'Die Lage von Mozilla')
+
     @patch.object(settings, 'ROOT', ROOT)
     def test_extract_message_tweaks_do_not_break(self):
         """
@@ -155,11 +177,12 @@ class TestDotlang(TestCase):
         # translation
         # path won't exist for en-US as there isn't a dir for that
         # in locale.
-        result = translate(dirty_string, ['does_not_exist'])
-        eq_(result, dirty_string)
+        with self.activate('en-US'):
+            result = translate(dirty_string, ['does_not_exist'])
+            eq_(result, dirty_string)
 
-        result = translate(dirty_string, ['tweaked_message_translation'])
-        eq_(result, trans_string)
+            result = translate(dirty_string, ['tweaked_message_translation'])
+            eq_(result, trans_string)
 
     @patch('lib.l10n_utils.dotlang.translate')
     def test_new_lang_files_do_not_modify_settings(self, trans_patch):

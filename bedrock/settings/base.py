@@ -37,6 +37,18 @@ DOTLANG_CACHE = 60
 
 DOTLANG_FILES = ['main', 'base', 'newsletter']
 
+# Paths that don't require a locale code in the URL.
+# matches the first url component (e.g. mozilla.org/gameon/)
+SUPPORTED_NONLOCALES = [
+    'media',
+    'admin',
+
+    # from redirects.urls
+    'telemetry',
+    'webmaker',
+    'gameon',
+]
+
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '1iz#v0m55@h26^m6hxk3a7at*h$qj_2a$juu1#nv50548j(x1v'
 
@@ -164,9 +176,6 @@ MINIFY_BUNDLES = {
         'firefox_new': (
             'css/firefox/new.less',
         ),
-        'firefox_new_test': (
-            'css/firefox/new-test.less',
-        ),
         'firefox_organizations': (
             'css/firefox/organizations.less',
         ),
@@ -200,6 +209,8 @@ MINIFY_BUNDLES = {
         ),
         'home': (
             'css/home.less',
+            'js/libs/video-js/video-js.css',
+            'js/libs/video-js/video-js-sandstone.css',
         ),
         'marketplace': (
             'css/marketplace.less',
@@ -259,6 +270,9 @@ MINIFY_BUNDLES = {
         ),
         'annual_2011': (
             'css/foundation/annual2011.less',
+        ),
+        'partners': (
+            'css/partners.less',
         ),
     },
     'js': {
@@ -360,6 +374,11 @@ MINIFY_BUNDLES = {
             'js/geolocation-demo.js',
             'js/footer-email-form.js',
         ),
+        'home': (
+            'js/mozilla-pager.js',
+            'js/libs/video-js/video.js',
+            'js/mozorg/home.js'
+        ),
         'marketplace': (
             'js/nav-main-resp.js',
             'js/mozilla-pager.js',
@@ -411,6 +430,10 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.jcarousel.min.js',
             'js/annual2011.js',
+        ),
+        'partners': (
+            'js/libs/mozcountdown.js',
+            'js/partners.js',
         ),
     }
 }

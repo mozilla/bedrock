@@ -6,9 +6,16 @@ from django.views.decorators.csrf import csrf_exempt
 
 import basket
 from lib import l10n_utils
+from commonware.decorators import xframe_allow
 
 from bedrock.mozorg import email_contribute
 from bedrock.mozorg.forms import ContributeForm, NewsletterForm
+
+
+@xframe_allow
+def hacks_newsletter(request):
+    return l10n_utils.render(request,
+                             'mozorg/newsletter/hacks.mozilla.org.html')
 
 
 @csrf_exempt
@@ -67,3 +74,10 @@ def contribute(request, template, return_to_form):
                               'newsletter_form': newsletter_form,
                               'newsletter_success': newsletter_success,
                               'return_to_form': return_to_form})
+
+
+@xframe_allow
+@csrf_exempt
+def contribute_embed(request, template, return_to_form):
+    """The same as contribute but allows frame embedding."""
+    return contribute(request, template, return_to_form)

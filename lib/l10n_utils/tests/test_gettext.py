@@ -3,8 +3,6 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import os
-from tempfile import TemporaryFile
-from textwrap import dedent
 
 from django.conf import settings
 
@@ -12,20 +10,12 @@ from mock import patch
 from nose.tools import eq_
 
 from lib.l10n_utils.gettext import langfiles_for_path, parse_python, parse_template
+from lib.l10n_utils.tests import TempFileMixin
 from bedrock.mozorg.tests import TestCase
 
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test_files')
 TEMPLATE_DIRS = (os.path.join(ROOT, 'templates'))
-
-
-class TempFileMixin(object):
-    """Provide a method for getting a temp file that is removed when closed."""
-    def tempfile(self, data):
-        tempf = TemporaryFile()
-        tempf.write(dedent(data))
-        tempf.seek(0)
-        return tempf
 
 
 class TestParseTemplate(TempFileMixin, TestCase):

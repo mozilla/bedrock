@@ -6,5 +6,5 @@ from django.conf.urls.defaults import *
 from bedrock.mozorg.util import page
 
 urlpatterns = patterns('',
-    page('eula', 'legal/index.html'),
+    page('eula', 'legal/eula.html'),
 )

@@ -10,7 +10,8 @@ from django.test.client import Client
 
 from jingo import env
 from jinja2 import FileSystemLoader
-from mock import patch
+from jinja2.nodes import Block
+from mock import patch, ANY
 from nose.plugins.skip import SkipTest
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
@@ -20,6 +21,20 @@ from bedrock.mozorg.tests import TestCase
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test_files')
 TEMPLATE_DIRS = (os.path.join(ROOT, 'templates'),)
+
+
+class TestL10nBlocks(TestCase):
+    def test_l10n_block_locales(self):
+        """
+        Parsing an l10n block with locales info should put that info
+        on the node.
+        """
+        tree = env.parse("""{% l10n dude locales=ru,es-ES,fr 20121212 %}
+                              This stuff is totally translated.
+                            {% endl10n %}""")
+        l10n_block = tree.find(Block)
+        self.assertEqual(l10n_block.locales, ['ru', 'es-ES', 'fr'])
+        self.assertEqual(l10n_block.version, 20121212)
 
 
 @patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
@@ -50,6 +65,10 @@ class TestTransBlocks(TestCase):
 
 
 class TestTemplateLangFiles(TestCase):
+    def setUp(self):
+        clear_url_caches()
+        self.client = Client()
+
     @patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
     def test_added_lang_files(self):
         """
@@ -78,3 +97,30 @@ class TestTemplateLangFiles(TestCase):
         template.render(request=request)
         eq_(request.langfiles, ['donnie', 'smokey', 'jesus', 'dude', 'walter',
                                 'main', 'base', 'newsletter'])
+
+    @patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
+    @patch.object(settings, 'ROOT_URLCONF', 'lib.l10n_utils.tests.test_files.urls')
+    @patch.object(settings, 'ROOT', ROOT)
+    @patch('lib.l10n_utils.settings.DEV', True)
+    @patch('lib.l10n_utils.helpers.translate')
+    def test_lang_files_order(self, translate):
+        """
+        Lang files should be queried in order they appear in the file and then
+        the defaults.
+        """
+        self.client.get('/de/some-lang-files/')
+        translate.assert_called_with(ANY, ['dude', 'walter', 'some_lang_files',
+                                           'main', 'base', 'newsletter'])
+
+    @patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
+    @patch.object(settings, 'ROOT_URLCONF', 'lib.l10n_utils.tests.test_files.urls')
+    @patch.object(settings, 'ROOT', ROOT)
+    @patch('lib.l10n_utils.settings.DEV', True)
+    @patch('lib.l10n_utils.helpers.translate')
+    def test_lang_files_default_order(self, translate):
+        """
+        The template-specific lang file should come before the defaults.
+        """
+        self.client.get('/de/active-de-lang-file/')
+        translate.assert_called_with(ANY, ['active_de_lang_file', 'main',
+                                           'base', 'newsletter'])

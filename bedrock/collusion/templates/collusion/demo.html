@@ -50,12 +50,12 @@ $(window).ready(function() {
   $("#domain-infos").hide();
 
   // get list of known trackers from trackers.json file hosted on website:
-  jQuery.getJSON("/media/js/collusion/trackers.json", function(trackers) {
+  jQuery.getJSON("{{ MEDIA_URL }}js/collusion/trackers.json", function(trackers) {
     var runner = GraphRunner.Runner({
       width: 640,
       height: 480,
       trackers: trackers,
-      hideFavicons: false 
+      hideFavicons: false
     });
     var graph = runner.graph;
 
@@ -84,7 +84,7 @@ $(window).ready(function() {
       if (graphUrl == "opener") {
         updateGraphViaPostMessage(graph, window.opener);
       } else if (graphUrl == "parent") {
-        
+
         updateGraphViaPostMessage(graph, window.parent);
       } else
         jQuery.getJSON(graphUrl, function(data) {
@@ -93,7 +93,7 @@ $(window).ready(function() {
       return;
     }
 
-    
+
     Demo.show(graph);
 
     // Display the footer now the page is rendered
@@ -196,6 +196,6 @@ $(window).ready(function() {
     </div>
   </div>
 </div>
-</section>    
+</section>
 
 {% endblock %}
