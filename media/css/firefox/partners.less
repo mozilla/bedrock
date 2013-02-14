@@ -441,6 +441,7 @@
 
 #form {
     padding-top: 50px;
+    padding-bottom: 20px;
     text-shadow: 1px 1px #000;
     color: #fff;
 
@@ -512,6 +513,8 @@
 .pager-tabs {
     text-align: center;
     clear: both;
+    margin: 0;
+    padding: 10px 0 0 0;
     li {
         display: inline;
         list-style-type: none;
@@ -519,17 +522,53 @@
         a {
             color: rgba(0,0,0,0.2);
             .inline-block;
-            padding: 6px;
+            position: relative;
+            height: 20px;
+            width: 20px;
+            line-height: 50px;
+            overflow: hidden;
+            font-size: 5px;
+            &:after {
+                content: " ";
+                display: block;
+                position: absolute;
+                height: 12px;
+                width: 12px;
+                top: 4px;
+                left: 4px;
+                background-color: rgba(100, 100, 100, 0.3);
+                .border-radius(10px);
+                @shadow: 0 2px 5px rgba(0,0,0,0.3) inset, 0 1px rgba(255,255,255,0.3);
+                .box-shadow(@shadow)
+            }
             &:hover,
             &:active {
                 text-decoration: none;
                 color: @textColorSecondary;
+                &:after {
+                    background-color: rgba(100, 100, 100, 0.5);
+                }
             }
             &.selected {
                 color: @textColorSecondary;
+                &:after {
+                    background: #1963ad;
+                    .box-shadow(none);
+                    #gradient > .vertical(#3696d6,#1963ad);
+                }
             }
         }
     }
+}
+
+.dark .pager-tabs {
+    li a.selected:after {
+        background: #fff;
+    }
+}
+
+#more-partners {
+    display: none;
 }
 
 /* }}} */
