@@ -109,6 +109,7 @@ def translate(text, files):
 
 def _get_extra_lang_files():
     frame = inspect.currentframe()
+    new_lang_files = []
     if frame is None:
         if settings.DEBUG:
             import warnings
@@ -125,7 +126,7 @@ def _get_extra_lang_files():
         if new_lang_files:
             if isinstance(new_lang_files, basestring):
                 new_lang_files = [new_lang_files]
-    return new_lang_files
+    return [lf for lf in new_lang_files if lf not in settings.DOTLANG_FILES]
 
 
 def _(text, *args, **kwargs):
