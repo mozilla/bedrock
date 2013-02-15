@@ -46,7 +46,8 @@ def lang_files(ctx, *files):
     """Add more lang files to the translation object"""
     # Filter out empty files
     install_lang_files(ctx)
-    add_lang_files(ctx, [f for f in files if f])
+    add_lang_files(ctx, [f for f in files
+                         if f and f not in settings.DOTLANG_FILES])
 
 
 # backward compatible for imports

@@ -116,7 +116,8 @@ def parse_python(path):
         new_lang_files = eval(untokenize(result))
         if isinstance(new_lang_files, basestring):
             new_lang_files = [new_lang_files]
-        return new_lang_files
+        # remove empties
+        return [lf for lf in new_lang_files if lf]
     return []
 
 
@@ -147,7 +148,8 @@ def parse_template(path):
                     lang_files.append(arg[2].strip('"'))
                     arg = ignore_whitespace(tokens)
 
-                lang_files = filter(lambda x: x, lang_files)
+                # remove empties
+                lang_files = [lf for lf in lang_files if lf]
                 if lang_files:
                     return lang_files
     return []
