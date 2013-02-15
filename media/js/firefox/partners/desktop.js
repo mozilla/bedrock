@@ -103,6 +103,13 @@
             _toggle_form();
         });
 
+        // move links/button down in Overview for desktop
+        var $overview_actions= $('#overview .overview-actions').detach();
+        $('#overview-news').after($overview_actions);
+
+        var $overview_partner= $('#overview .partner-button').detach();
+        $('#overview .partner-logos').after($overview_partner);
+
         // activate form drawer
         $('.toggle-form').off().on('click', function() {
             _toggle_form();
