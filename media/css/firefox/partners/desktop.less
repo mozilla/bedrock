@@ -252,7 +252,7 @@
             background: url(/media/img/firefox/partners/partners-arrow.png) 100% 50% no-repeat;
         }
         .partner-button {
-            margin-top: 10px;
+            margin-top: -35px;
             float: right;
         }
         #overview-news {
@@ -635,10 +635,49 @@
         }
     }
     #screen-os {
-        background: rgba(255, 0, 0, 0.5);
+        background: url(/media/img/firefox/partners/phone-os-screenshots.jpg) 0 0 repeat-x;
+
+        -moz-animation: os-screenslide 20s ease infinite alternate;
+        -webkit-animation: os-screenslide 20s ease infinite alternate;
+        animation: os-screenslide 20s ease infinite alternate;
     }
+
+    @keyframes os-screenslide {
+          0% { background-position: 0 0; }
+         20% { background-position: 0 0; }
+         22% { background-position: -244px 0; }
+         42% { background-position: -244px 0; }
+         44% { background-position: -488px 0; }
+         64% { background-position: -488px 0; }
+         66% { background-position: -732px 0; }
+        100% { background-position: -732px 0; }
+    }
+
+    @-moz-keyframes os-screenslide {
+          0% { background-position: 0 0; }
+         20% { background-position: 0 0; }
+         22% { background-position: -244px 0; }
+         42% { background-position: -244px 0; }
+         44% { background-position: -488px 0; }
+         64% { background-position: -488px 0; }
+         66% { background-position: -732px 0; }
+        100% { background-position: -732px 0; }
+    }
+
+    @-webkit-keyframes os-screenslide {
+          0% { background-position: 0 0; }
+         20% { background-position: 0 0; }
+         22% { background-position: -244px 0; }
+         42% { background-position: -244px 0; }
+         44% { background-position: -488px 0; }
+         64% { background-position: -488px 0; }
+         66% { background-position: -732px 0; }
+        100% { background-position: -732px 0; }
+    }
+
+
     #screen-marketplace {
-        background: rgba(0, 255, 0, 0.5);
+        background: url(/media/img/firefox/partners/phone-marketplace-screenshot.jpg) 0 0 no-repeat;
     }
 }
 
