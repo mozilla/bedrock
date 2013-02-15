@@ -170,7 +170,7 @@
       <div class="article-content">
         <div id="os-overview-intro" class="intro tween">
           <h4>{{ _('The Web is the platform')}}</h4>
-          <p>{% trans url='href="#form"' %}
+          <p>{% trans url='href="#form" class="toggle-form"'|safe %}
             Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater participation in the value chain. <a {{ url }}>See how you can get involved.</a>
           {% endtrans %}</p>
           <ul id="os-overview-logos" class="logos tween">
@@ -204,7 +204,7 @@
             <div id="os-promos" class="promos">
               <div>
                 <h4>{{ _('Get involved') }}</h4>
-                <a href="">{{ _('Contact our business development team to get on board') }}</a>
+                <a href="#form" class="toggle-form">{{ _('Contact our business development team to get on board') }}</a>
               </div>
             </div>
           </div>
@@ -332,8 +332,8 @@
             <div class="promo-conversation icon">
               <span></span>
               <h4>{{ _('Join the Conversation') }}</h4>
-              <a href="">{{ _('Follow @firefoxapps on Twitter') }}</a>
-              <a href="">{{ _('Read more on the Apps Blog') }}</a>
+              <a href="https://twitter.com/firefoxapps">{{ _('Follow @firefoxapps on Twitter') }}</a>
+              <a href="https://blog.mozilla.org/apps/">{{ _('Read more on the Apps Blog') }}</a>
             </div>
           </div>
         </div>
@@ -502,9 +502,9 @@
 
 <div id="overlay-container">
   <article id="overlay">
-    <section id="location">
-      <a href="#">{{ _('Location') }}</a>
+    <section id="location" class="overlay-contents">
       <h2>{{ _('Firefox at MWC 2013 — Stand F20, Hall 8.1, App Planet') }}</h2>
+      <img src="{{ media('img/firefox/partners/map.png') }}" alt="" class="map">
       <div class="footer">
         <div>
           <h3>{{ _('From the South Entrance:') }}</h3>
@@ -515,12 +515,11 @@
           <p>{{ _('Go up the escalator to Hall 8.1. Our stand is located in the middle of the hall.') }}</p>
         </div>
         <div>
-          <a href="#">{{ _('Download map (PDF)') }}</a>
+          <a href="http://static.mozilla.com/moco/en-US/pdf/Firefox_at_MWC_2013_map.pdf" class="button">{{ _('Download map (PDF)') }}</a>
         </div>
       </div>
     </section>
-    <section id="schedule">
-      <a href="#">{{ _('Schedule') }}</a>
+    <section id="schedule" class="overlay-contents">
       <h2>{{ _('Firefox at MWC 2013 — Schedule of events') }}</h2>
       <div class="calendar">
         <div class="day">
@@ -561,8 +560,7 @@
         </div>
       </div>
     </section>
-    <section id="testimonials">
-      <a href="#">{{ _('Testimonials') }}</a>
+    <section id="testimonials" class="overlay-contents">
       <h2>{{ _('Firefox OS — Operator and manufacturer testimonials') }}</h2>
       <iframe width="640" height="360" src="https://www.youtube-nocookie.com/embed/videoseries?list=PLWK3kWTuPoUKFCTRtVkTUXn26PYF311w9" frameborder="0" allowfullscreen></iframe>
     </section>
