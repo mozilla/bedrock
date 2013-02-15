@@ -136,4 +136,8 @@
             }
         });
     });
+    
+    // set a cookie
+    document.cookie = 'seen_mwc2013=true;expires=Tue, 5 Mar 2013 00:00:01 UTC;path=/'
+    
 })(window, window.jQuery, window.enquire, window.Modernizr, window.trans);

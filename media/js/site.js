@@ -44,4 +44,26 @@
         // Add class to reflect javascript availability for CSS
         h.className = h.className.replace(/\bno-js\b/, 'js');
     })();
+
+
+    // Read cookies
+    function readCookie(name) {
+    	var nameEQ = name + "=";
+    	var ca = document.cookie.split(';');
+    	for(var i=0;i < ca.length;i++) {
+    		var c = ca[i];
+    		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+    		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    	}
+    	return null;
+    }
+
+    document.addEventListener('DOMContentLoaded',function(){
+        // Add class if MWC cookie is true
+        var seen_mwc = readCookie('seen_mwc2013');
+        if (seen_mwc === 'true') {
+            document.body.className += ' mwc2013';
+        }
+    });
+
 })();
