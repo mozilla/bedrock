@@ -4,44 +4,50 @@
 ;(function(w, $, enquire, Modernizr, trans) {
     'use strict';
 
-    // tablet is good enough for full experience?
-    enquire.register("screen and (min-width: 760px)", {
-        deferSetup: true, // don't run setup until mq matches
-        setup: function() {
-            Modernizr.load([{
-                both: [ '/media/js/libs/jquery.pageslide.min.js', '/media/js/libs/tweenmax.min.js', '/media/js/libs/superscrollorama.js', '/media/js/libs/jquery.spritely-0.6.1.js', '/media/js/firefox/partners/desktop.js' ],
-                complete: function() {
-                    // no action needed?
-                }
-            }]);
-        },
-        match: function() {
-            // TODO: attach desktop hooks
-        },
-        unmatch: function() {
-            // TODO: detach desktop hooks
-
-            // currently no way of unbinding superscrollorama stuff (wut!?)
-            // however, only desktop users should ever go from desktop to mobile, so...it's ok?
-        }
-    // true param here forces non-mq browsers to match this rule, so, i don't think we need a polyfill
-    }, true).register("screen and (max-width: 759px)", {
+    enquire.register("screen and (max-width: 759px)", {
         deferSetup: true,
         setup: function() {
             Modernizr.load([{
                 both: [ '/media/js/firefox/partners/mobile.js' ],
                 complete: function() {
+                    //alert("mobile");
                     w.attach_mobile();
                 }
             }]);
         },
         match: function() {
+            //alert("mobile match!");
             // handler must exist
         },
         unmatch: function() {
             w.detach_mobile();
         }
-    }, false).listen();
+    }, false).register("screen and (min-width: 760px)", {
+        deferSetup: true, // don't run setup until mq matches
+        setup: function() {
+            //if (!($.browser.msie && parseInt($.browser.version, 10) >= 9)) {
+                Modernizr.load([{
+                    both: [ '/media/js/libs/jquery.pageslide.min.js', '/media/js/libs/tweenmax.min.js', '/media/js/libs/superscrollorama.js', '/media/js/libs/jquery.spritely-0.6.1.js', '/media/js/firefox/partners/desktop.js' ],
+                    complete: function() {
+                        //alert("desktop");
+                        // no action needed?
+                    }
+                }]);
+            //}
+        },
+        match: function() {
+            //alert("desktop match!");
+            // TODO: attach desktop hooks
+        },
+        unmatch: function() {
+            // TODO: detach desktop hooks
+            w.location.reload();
+
+            // currently no way of unbinding superscrollorama stuff (wut!?)
+            // however, only desktop users should ever go from desktop to mobile, so...it's ok?
+        }
+    // true param here forces non-mq browsers to match this rule, so, i don't think we need a polyfill
+    }, true).listen();
 
     // global overlay handler (mobile/desktop)
     var $overlay = $('#overlay');

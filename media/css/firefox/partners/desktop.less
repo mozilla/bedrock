@@ -18,7 +18,9 @@
 /* {{{ Template overrides */
 
 #masthead {
-    margin-bottom: -64px;
+    position: absolute;
+    top: 0px;
+    //margin-bottom: -64px;
     z-index: 200;
 }
 
@@ -29,6 +31,9 @@
 #article-wrapper {
     height: 2840px;
     overflow: hidden;
+    position: relative;
+    top: 0px;
+    left: 0px;
 }
 
 .partner-article {
@@ -252,10 +257,12 @@
             background: url(/media/img/firefox/partners/partners-arrow.png) 100% 50% no-repeat;
         }
         .partner-button {
+            display: none;
             margin-top: -35px;
             float: right;
         }
         #overview-news {
+            display: none;
             clear: both;
             .clearfix();
             background: url(/media/img/firefox/partners/divider.png) 50% 100% no-repeat;
@@ -278,6 +285,7 @@
         }
     }
     .overview-actions {
+        display: none;
         margin: 0;
         padding: 0;
         li {
@@ -460,6 +468,7 @@
         width: 231px;
         height: 256px;
         background: url(/media/img/firefox/partners/android-dude.png) no-repeat 0 0;
+        z-index: 130;
     }
     #android-partner {
         background: url(/media/img/firefox/partners/android-partners-bg.png) 50% 200px no-repeat;

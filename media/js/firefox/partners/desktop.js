@@ -104,11 +104,17 @@
         });
 
         // move links/button down in Overview for desktop
+        var $overview_news = $('#overview-news').detach();
+        $('#more-partners').after($overview_news);
+        $overview_news.fadeIn('fast');
+
         var $overview_actions= $('#overview .overview-actions').detach();
         $('#overview-news').after($overview_actions);
+        $overview_actions.fadeIn('fast');
 
         var $overview_partner= $('#overview .partner-button').detach();
         $('#overview .partner-logos').after($overview_partner);
+        $overview_partner.fadeIn('fast');
 
         // activate form drawer
         $('.toggle-form').off().on('click', function() {
@@ -207,9 +213,13 @@
                 shadow.removeClass('visible');
             }
 
-            $('.screen:visible').fadeOut('fast', function() {
-                $('#screen-' + to_slide.attr('id')).fadeIn('fast');
-            });
+            var $visible = $('.screen:visible:first');
+
+            if ($visible.attr('id') !== ('screen-' + to_slide.attr('id'))) {
+                $('#screen-' + to_slide.attr('id')).fadeIn('fast', function() {
+                    $visible.hide();
+                });
+            }
         };
 
         var _move_phone = function(factor, slide, new_z) {
@@ -348,7 +358,7 @@
                 },
                 onReverseComplete: function() {
                     //console.log('os rev complete');
-                    _move_phone(0, $overview);
+                    //_move_phone(0, $overview);
                 }
             }
         };

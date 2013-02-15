@@ -94,6 +94,11 @@
 
           <p class="partner-button"><a href="#form" class="button toggle-form">{{ _('Partner with us') }}</a></p>
 
+          <div id="overview-news">
+            <img src="{{ media('img/firefox/partners/mwc-logo.png') }}" alt="{{ _('Mobile World Congress, Barcelona, 25 - 28 February 2013') }}" />
+            <h3>{{ _('Recent news') }}</h3>
+          </div>
+
           <div class="partner-logos">
             <div class="pager pager-with-tabs pager-no-history">
               <div class="pager-content">
@@ -144,11 +149,6 @@
           </div><!--/partner-logos-->
 
           <p id="more-partners">{{_('See more partners') }}</p>
-
-          <div id="overview-news">
-            <img src="{{ media('img/firefox/partners/mwc-logo.png') }}" alt="{{ _('Mobile World Congress, Barcelona, 25 - 28 February 2013') }}" />
-            <h3>{{ _('Recent news') }}</h3>
-          </div>
         </div>
       </div>
     </section>
@@ -170,7 +170,7 @@
       <div class="article-content">
         <div id="os-overview-intro" class="intro tween">
           <h4>{{ _('The Web is the platform')}}</h4>
-          <p>{% trans url='href="#form" class="toggle-form"'|safe %}
+          <p>{% trans url='class="view-section" data-section="os-operators" href="#"'|safe %}
             Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater participation in the value chain. <a {{ url }}>See how you can get involved.</a>
           {% endtrans %}</p>
           <ul id="os-overview-logos" class="logos tween">
@@ -316,7 +316,7 @@
       <div class="article-content">
         <div id="marketplace-overview-intro" class="intro tween">
           <h4>{{ _('HTML5 apps for all')}}</h4>
-          <p class="narrow">{% trans url1='href="#"', url2='href="#"' %}
+          <p class="narrow">{% trans url1='class="view-section" data-section="marketplace-operators" href="#"'|safe, url2='class="view-section" data-section="marketplace-developers" href="#"'|safe %}
             Discover a new way to participate in an ecosystem that features the world’s most popular apps as well as more relevant, targeted content to suit customers’ local needs. See how that can help <a {{ url1 }}>operators and manufacturers</a> as well as <a {{ url2 }}>developers</a>.
           {% endtrans %}</p>
           <h4>{{ _('Your needs') }}</h4>
@@ -457,7 +457,7 @@
         <div class="intro tween">
           <h4>{{ _('A superior Web experience') }}</h4>
           <a href="https://market.android.com/details?id=org.mozilla.firefox"><img src="{{ media('img/firefox/partners/google-play.png') }}" alt="{{ _('Get it on Google Play') }}" class="play" /></a>
-          <p>{% trans url='href="#"' %}
+          <p>{% trans url='class="view-section" data-section="android-partner" href="#"'|safe %}
             With high-performance, advanced cross-platform features and the latest in security, our top-rated browser offers an alternative to closed platforms, giving you the flexibility to design, distribute and charge as you see fit. <a {{ url }}>Learn more about partner opportunities.</a>
           {% endtrans %}</p>
           <h4>{{ _('Strengthen customer relationships') }}</h4>
