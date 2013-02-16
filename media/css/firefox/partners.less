@@ -44,6 +44,7 @@
 #overlay,
 .partner-article {
     .button {
+        display: block;
         background-color: @localBlue;
         #gradient > .vertical(@localBlue, @localBlueDark);
         font-size: 16px;
@@ -393,6 +394,15 @@
             }
         }
     }
+    #marketplace-operators {
+        .left {
+            .partner-button {
+                a:first-child {
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
 }
 
 /* }}} */
@@ -666,6 +676,13 @@ body.noscroll {
 /* {{{  Desktop Layout */
 @media only screen and (min-width: @widthTablet) {
     @import "partners/desktop.less";
+    #form,
+    #overlay,
+    .partner-article {
+        .button {
+            .inline-block();
+        }
+    }
 }
 
 @media only screen and (min-width: 1000px) and (max-width: 1090px)  {
