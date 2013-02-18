@@ -4,50 +4,52 @@
 ;(function(w, $, enquire, Modernizr, trans) {
     'use strict';
 
-    enquire.register("screen and (max-width: 759px)", {
-        deferSetup: true,
-        setup: function() {
-            Modernizr.load([{
-                both: [ '/media/js/firefox/partners/mobile.js' ],
-                complete: function() {
-                    //alert("mobile");
-                    w.attach_mobile();
-                }
-            }]);
-        },
-        match: function() {
-            //alert("mobile match!");
-            // handler must exist
-        },
-        unmatch: function() {
-            w.detach_mobile();
-        }
-    }, false).register("screen and (min-width: 760px)", {
-        deferSetup: true, // don't run setup until mq matches
-        setup: function() {
-            //if (!($.browser.msie && parseInt($.browser.version, 10) >= 9)) {
-                Modernizr.load([{
-                    both: [ '/media/js/libs/jquery.pageslide.min.js', '/media/js/libs/tweenmax.min.js', '/media/js/libs/superscrollorama.js', '/media/js/libs/jquery.spritely-0.6.1.js', '/media/js/firefox/partners/desktop.js' ],
-                    complete: function() {
-                        //alert("desktop");
-                        // no action needed?
-                    }
-                }]);
-            //}
-        },
-        match: function() {
-            //alert("desktop match!");
-            // TODO: attach desktop hooks
-        },
-        unmatch: function() {
-            // TODO: detach desktop hooks
-            w.location.reload();
+    var _load_mobile = function() {
+        w.Modernizr.load([{
+            both: [ '/media/js/firefox/partners/mobile.js' ],
+            complete: function() {
+                w.attach_mobile();
+            }
+        }]);
+    };
 
-            // currently no way of unbinding superscrollorama stuff (wut!?)
-            // however, only desktop users should ever go from desktop to mobile, so...it's ok?
-        }
-    // true param here forces non-mq browsers to match this rule, so, i don't think we need a polyfill
-    }, true).listen();
+    if (($.browser.msie && parseInt($.browser.version, 10) < 9)) {
+        _load_mobile();
+    } else {
+        enquire.register("screen and (max-width: 759px)", {
+            deferSetup: true,
+            setup: function() {
+                _load_mobile();
+            },
+            match: function() {
+                // handler must exist
+            },
+            unmatch: function() {
+                closeModal();
+                w.detach_mobile();
+            }
+        }, false).register("screen and (min-width: 760px)", {
+            deferSetup: true,
+            setup: function() {
+                    Modernizr.load([{
+                        both: [ '/media/js/libs/jquery.pageslide.min.js', '/media/js/libs/tweenmax.min.js', '/media/js/libs/superscrollorama.js', '/media/js/libs/jquery.spritely-0.6.1.js', '/media/js/firefox/partners/desktop.js' ],
+                        complete: function() {
+                            // no action needed?
+                        }
+                    }]);
+            },
+            match: function() {
+                // handler must exist
+                // desktop hooks are added when desktop.js is loaded (in setup above)
+            },
+            unmatch: function() {
+                // rather difficult to unbind all the fancy desktop js. in the interest
+                // of time, just reload the page when we get to mobile size.
+                // (should be a rare use case)
+                w.location.reload();
+            }
+        }, true).listen();
+    }
 
     // global overlay handler (mobile/desktop)
     var $overlay = $('#overlay');
@@ -69,6 +71,8 @@
 
         return false;
     });
+
+    // modal functions pilfered from existing MWC landing page
 
     // Create a full-page overlay and append the content
     function createModal(origin, content) {
@@ -123,17 +127,12 @@
 
         var $form = $(this);
 
-        $.ajax({
-            type: $form.attr('method'),
-            url: $form.attr('action'),
-            data: $form.serialize(),
-            success: function(data, status, xhr) {
-                $form.fadeOut('fast', function() {
-                    $('.sf-form').addClass('completed');
-                    $('#pageslide').scrollTop(0);
-                    $('.form-results').fadeIn('fast');
-                });
-            }
+        // TODO: hook up bedrock proxy for cross-domain form POST
+        // waiting on proxy to be ready. faking for now...
+        $form.fadeOut('fast', function() {
+            $('.sf-form').addClass('completed');
+            $('#pageslide').scrollTop(0);
+            $('.form-results').fadeIn('fast');
         });
     });
     
