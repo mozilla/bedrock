@@ -74,3 +74,10 @@ def contribute(request, template, return_to_form):
                               'newsletter_form': newsletter_form,
                               'newsletter_success': newsletter_success,
                               'return_to_form': return_to_form})
+
+
+@xframe_allow
+@csrf_exempt
+def contribute_embed(request, template, return_to_form):
+    """The same as contribute but allows frame embedding."""
+    return contribute(request, template, return_to_form)

@@ -1,0 +1,38 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+<!doctype html>
+{% add_lang_files "mozorg/contribute" "mozorg/contribute-form" %}
+{# Note the "windows" class, without javascript platform-specific
+     assets default to windows #}
+<html class="windows no-js" lang="{{ LANG }}" dir="{{ DIR }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Mozilla — {{_('Get Involved: Volunteer Opportunities at Mozilla')}} — mozilla.org</title>
+
+    <!--[if lte IE 8]>
+    <script src="{{ MEDIA_URL }}js/libs/html5shiv.js"></script>
+    <![endif]-->
+
+    {{ css('responsive') }}
+    {{ css('contribute') }}
+    <link rel="shortcut icon" href="{{ MEDIA_URL }}img/favicon.ico">
+    {{ js('site') }}
+
+    {% include 'includes/google-analytics.html' %}
+  </head>
+
+  <body id="contribute" class="embed html-{{ DIR }}">
+    <div id="wrapper">
+      {% include "mozorg/contribute-form.html" %}
+    </div>
+    {{ js('common') }}
+    {{ js('contribute') }}
+    <script>
+      {# set target without invalidating already translated strings. #}
+      $('.field-privacy a').attr('target', '_top');
+    </script>
+  </body>
+</html>

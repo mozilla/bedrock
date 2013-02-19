@@ -14,13 +14,19 @@
 {% block string_data %}
   {# L10N: This is the label for a button that closes a modal dialog #}
   data-close="{{ _('Close') }}"
-  
-  {# L10N: These are abbreviations of 'days', 'hours', 'minutes', and 'seconds', used as labels on a countdown clock. Translated labels should be as short as possible. #}
   data-daytext="{{ _('day') }}"
+  {# L10N: This is an abbreviation of 'days', used as a label on a countdown clock. The translated label should be as short as possible. #}
   data-daystext="{{ _('days') }}"
+  data-daystextex="{{ _('days') }}"
+  {# L10N: This is an abbreviation of 'hours', used as a label on a countdown clock. The translated label should be as short as possible. #}
   data-hourstext="{{ _('hrs') }}"
+  data-hourstextex="{{ _('hours') }}"
+  {# L10N: This is an abbreviation of 'minutes', used as a label on a countdown clock. The translated label should be as short as possible. #}  
   data-minutestext="{{ _('min') }}"
+  data-minutestextex="{{ _('minutes') }}"
+  {# L10N: This is an abbreviation of 'seconds', used as a label on a countdown clock. The translated label should be as short as possible. #}
   data-secondstext="{{ _('sec') }}"
+  data-secondstextex="{{ _('seconds') }}"
 {% endblock %}
 
 {% block content %}
@@ -42,7 +48,7 @@
 
         <p>
         {% trans %}
-          We’re enabling carriers, OEMs and developers to manage, customize
+          We’re enabling operators, phone manufacturers and developers to manage, customize
           and own relationships with their customers directly through our
           products:
         {% endtrans %}
@@ -163,7 +169,7 @@
           {% trans %}
             We’re working with major global partners to enable the Open Web as a
             platform for mobile devices, free from the rules and restrictions of
-            existing proprietary platforms. This allows carriers and OEMs to customize
+            existing proprietary platforms. This allows operators and phone manufacturers to customize
             phones to meet the specific needs of their target markets and to own and
             manage the relationship with their customers themselves.
           {% endtrans %}
@@ -176,10 +182,10 @@
           <p>
           {% trans %}
             The Marketplace offers an open app environment that leverages the scale
-            of the Web as a development platform, allowing carriers, OEMs and developers
+            of the Web as a development platform, allowing operators, phone manufacturers and developers
             greater flexibility. It's now possible to own billing and payment relationships,
-            reach new markets and customize purchasing and app experiences to meet carrier
-            or OEM needs.
+            reach new markets and customize purchasing and app experiences to meet operator
+            or phone manufacturer needs.
           {% endtrans %}
             <br><a href="{{ url('marketplace.marketplace') }}" class="go">Learn more</a>
           </p>
@@ -190,7 +196,7 @@
           <p>
           {% trans %}
             Pre-installing Firefox for Android — a full-featured, top-performing
-            browser used by millions every day — on their devices allows OEMs and carriers
+            browser used by millions every day — on their devices allows phone manufacturers and operators
             to differentiate their products in a crowded, competitive market and maintain
             relationships with customers through unique co-branding opportunities.
           {% endtrans %}
@@ -283,7 +289,7 @@
         <p class="description">
         {% trans %}
           Mozilla CEO Gary Kovacs will discuss the benefits of an Open Web device 
-          in markets around the world and how Firefox OS will help carriers, OEMs 
+          in markets around the world and how Firefox OS will help operators, phone manufacturers 
           and developers reach the next billion Web users.
         {% endtrans %}
         </p>

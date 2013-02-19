@@ -3,8 +3,6 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import os
-from tempfile import TemporaryFile
-from textwrap import dedent
 
 from django.conf import settings
 
@@ -12,20 +10,12 @@ from mock import patch
 from nose.tools import eq_
 
 from l10n_utils.gettext import langfiles_for_path, parse_python, parse_template
+from l10n_utils.tests import TempFileMixin
 from mozorg.tests import TestCase
 
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test_files')
 TEMPLATE_DIRS = (os.path.join(ROOT, 'templates'))
-
-
-class TempFileMixin(object):
-    """Provide a method for getting a temp file that is removed when closed."""
-    def tempfile(self, data):
-        tempf = TemporaryFile()
-        tempf.write(dedent(data))
-        tempf.seek(0)
-        return tempf
 
 
 class TestParseTemplate(TempFileMixin, TestCase):
@@ -173,7 +163,7 @@ class TestLangfilesForPath(TestCase):
         """ If lang files are set, they should be returned. """
         lang_files = langfiles_for_path('lib/l10n_utils/tests/test_files/'
                                         'templates/some_lang_files.html')
-        eq_(lang_files, ['dude', 'walter'])
+        eq_(lang_files, ['dude', 'walter', 'main'])
 
     def test_py_no_lang_files_defined(self):
         """

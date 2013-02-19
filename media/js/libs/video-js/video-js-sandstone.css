@@ -1,0 +1,178 @@
+.vjs-default-skin.vjs-paused .vjs-play-control div,
+.vjs-default-skin.vjs-playing .vjs-play-control div,
+.vjs-default-skin .vjs-rewind-control div,
+.vjs-default-skin .vjs-mute-control div,
+.vjs-default-skin .vjs-mute-control div,
+.vjs-default-skin .vjs-mute-control.vjs-vol-0 div,
+.vjs-default-skin .vjs-mute-control.vjs-vol-1 div,
+.vjs-default-skin .vjs-mute-control.vjs-vol-2 div,
+.vjs-default-skin div.vjs-seek-handle,
+.vjs-default-skin .vjs-fullscreen-control div,
+.vjs-default-skin.vjs-fullscreen .vjs-fullscreen-control div,
+.vjs-default-skin div.vjs-big-play-button span,
+.vjs-default-skin .vjs-menu-button div,
+.vjs-default-skin .vjs-menu-button ul li.vjs-selected {
+    background-image:  url('/media/js/libs/video-js/video-js-sandstone.png');
+}
+
+
+.vjs-default-skin .vjs-controls,
+.vjs-default-skin div.vjs-progress-control,
+.vjs-default-skin .vjs-big-play-button {
+    background: rgb(50,50,50);
+    background: rgba(30,30,30,0.5);
+    color: #999;
+    border: 0;
+}
+
+.vjs-default-skin .vjs-control:focus {
+    outline: 1px dotted #999;
+}
+
+.vjs-default-skin .vjs-control,
+.vjs-default-skin .vjs-controls {
+    height: 3em;
+}
+
+.vjs-default-skin .vjs-play-control {
+    width: 3em;
+}
+
+.vjs-default-skin.vjs-paused .vjs-play-control div,
+.vjs-default-skin.vjs-playing .vjs-play-control div,
+.vjs-default-skin .vjs-rewind-control div,
+.vjs-default-skin .vjs-mute-control div,
+.vjs-default-skin .vjs-fullscreen-control div {
+    margin-top: 0.7em;
+}
+
+.vjs-default-skin .vjs-progress-holder {
+    background: none;
+}
+
+.vjs-default-skin .vjs-time-controls {
+    border: 0;
+    top: 0;
+    left: 3em;
+    line-height: 3em;
+    background: none;
+}
+
+.vjs-default-skin .vjs-remaining-time {
+    right: 12em;
+    left: auto;
+}
+
+.vjs-default-skin div.vjs-progress-control {
+    background: none;
+    border: 0;
+    top: 1em;
+    left: 8em;
+    right: 17em;
+}
+
+.vjs-default-skin .vjs-progress-holder,
+.vjs-default-skin .vjs-progress-holder .vjs-play-progress,
+.vjs-default-skin .vjs-progress-holder .vjs-load-progress {
+    height: 0.8em;
+    -webkit-border-radius: 2px;
+       -moz-border-radius: 2px;
+            border-radius: 2px;
+}
+
+.vjs-default-skin .vjs-volume-bar,
+.vjs-default-skin .vjs-volume-level {
+    -webkit-border-radius: 2px;
+       -moz-border-radius: 2px;
+            border-radius: 2px;
+}
+
+.vjs-default-skin .vjs-volume-bar {
+    background: rgb(100,100,100);
+    background: rgba(255,255,255,0.6);
+}
+
+.vjs-default-skin .vjs-progress-holder {
+    background: rgb(500,500,500);
+    background: rgba(255,255,255,0.3);
+    -webkit-border-radius: 2px;
+       -moz-border-radius: 2px;
+            border-radius: 2px;
+}
+
+.vjs-default-skin .vjs-progress-holder .vjs-load-progress {
+    background: rgb(100,100,100);
+    background: rgba(255,255,255,0.5);
+}
+
+.vjs-default-skin .vjs-volume-level,
+.vjs-default-skin .vjs-progress-holder .vjs-play-progress {
+    background: rgb(255,255,255);
+}
+
+.vjs-default-skin .vjs-volume-handle,
+.vjs-default-skin div.vjs-seek-handle {
+    background: #888;
+    border-color: #888;
+    -webkit-box-shadow: 0 1px rgba(255,255,255,0.2) inset, 0 0 0 1px rgba(0,0,0,0.2), 0 1px rgba(0,0,0,0.5);
+       -moz-box-shadow: 0 1px rgba(255,255,255,0.2) inset, 0 0 0 1px rgba(0,0,0,0.2), 0 1px rgba(0,0,0,0.5);
+            box-shadow: 0 1px rgba(255,255,255,0.2) inset, 0 0 0 1px rgba(0,0,0,0.2), 0 1px rgba(0,0,0,0.5);
+}
+
+.vjs-default-skin div.vjs-seek-handle {
+    width: 1.2em;
+    height: 1.2em;
+    top: 0.1em;
+    -webkit-border-radius: 0.6em;
+       -moz-border-radius: 0.6em;
+            border-radius: 0.6em;
+}
+
+.vjs-default-skin .vjs-big-play-button {
+    filter: none;
+    -webkit-border-radius: 8em;
+       -moz-border-radius: 8em;
+            border-radius: 8em;
+    border: 0;
+}
+
+.vjs-moz-ended .vjs-big-play-button {
+    background: none;
+}
+
+.vjs-moz-ended div.vjs-big-play-button span,
+.vjs-moz-ended div.vjs-loading-spinner div {
+    display: none;
+}
+
+.vjs-default-skin div.vjs-big-play-button:hover {
+    -webkit-box-shadow: inherit;
+       -moz-box-shadow: inherit;
+            box-shadow: inherit;
+}
+
+.vjs-sandstone-share {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    position: absolute;
+    border: none;
+    color: #999;
+    right: 20px;
+    top: -60px;
+    font-size: 18px;
+    padding: 8px 18px;
+    cursor: pointer;
+    background: #323232;
+    background: rgba(30, 30, 30, 0.5);
+}
+
+.vjs-sandstone-share:hover {
+    background: #222;
+    background: rgba(30, 30, 30, 0.9);
+    color: #fff;
+}
+
+.vjs-sandstone-share:focus {
+    outline: 1px dotted #fff;
+}

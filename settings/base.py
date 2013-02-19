@@ -180,9 +180,6 @@ MINIFY_BUNDLES = {
         'firefox_new': (
             'css/firefox/new.less',
         ),
-        'firefox_new_test': (
-            'css/firefox/new-test.less',
-        ),
         'firefox_organizations': (
             'css/firefox/organizations.less',
         ),
@@ -216,6 +213,8 @@ MINIFY_BUNDLES = {
         ),
         'home': (
             'css/home.less',
+            'js/libs/video-js/video-js.css',
+            'js/libs/video-js/video-js-sandstone.css',
         ),
         'marketplace': (
             'css/marketplace.less',
@@ -355,9 +354,6 @@ MINIFY_BUNDLES = {
             'js/libs/modernizr.custom.csstransitions.js',
             'js/firefox/new.js',
         ),
-        'firefox_new_a': (
-            'js/firefox/new-a.js',
-        ),
         'firefox_platforms': (
             'js/mozilla-expanders.js',
         ),
@@ -381,6 +377,11 @@ MINIFY_BUNDLES = {
             'js/mozilla-expanders.js',
             'js/geolocation-demo.js',
             'js/footer-email-form.js',
+        ),
+        'home': (
+            'js/mozilla-pager.js',
+            'js/libs/video-js/video.js',
+            'js/mozorg/home.js'
         ),
         'marketplace': (
             'js/nav-main-resp.js',

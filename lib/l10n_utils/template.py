@@ -30,9 +30,31 @@ class L10nBlockExtension(Extension):
 
         # Block name is mandatory.
         name = parser.stream.expect('name').value
+        locales = []
 
-        # Comma optional.
         parser.stream.skip_if('comma')
+
+        # Grab the locales if provided
+        if parser.stream.current.type == 'name':
+            parser.stream.skip()  # locales
+            parser.stream.skip()  # assign (=)
+            prev_sub = False
+            while parser.stream.current.type not in ['integer', 'block_end']:
+                parser.stream.skip_if('comma')
+                parser.stream.skip_if('assign')
+                token = parser.stream.current
+                if token.type in ['integer', 'block_end']:
+                    break
+                if token.type == 'name':
+                    if prev_sub:
+                        locales[-1] += token.value
+                        prev_sub = False
+                    else:
+                        locales.append(token.value)
+                if token.type == 'sub':
+                    locales[-1] += '-'
+                    prev_sub = True
+                parser.stream.next()
 
         # Add version if provided.
         if parser.stream.current.type == 'integer':
@@ -55,6 +77,7 @@ class L10nBlockExtension(Extension):
         node.set_lineno(lineno)
         node.name = '__l10n__{0}'.format(name)
         node.version = version  # For debugging only, for now.
+        node.locales = locales
         node.body = body
         # I *think*, `true` would mean that variable assignments inside this
         # block do not persist beyond this block (like a `with` block).
