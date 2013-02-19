@@ -5,21 +5,43 @@
 import re
 
 from django.conf import settings
-from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
+from django.http import (HttpResponse, HttpResponsePermanentRedirect,
+                         HttpResponseRedirect)
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 from django.views.decorators.vary import vary_on_headers
 
 import basket
+import requests
 from product_details import product_details
 from product_details.version_compare import Version
 from funfactory.urlresolvers import reverse
 
 import l10n_utils
 from firefox import version_re
-from firefox.forms import SMSSendForm
+from firefox.forms import SMSSendForm, WebToLeadForm
 from firefox.platforms import load_devices
 from firefox.firefox_details import firefox_details
 from l10n_utils.dotlang import _
+
+
+@csrf_exempt
+@require_POST
+def contact_bizdev(request):
+    form = WebToLeadForm(request.POST)
+    if form.is_valid():
+        data = form.cleaned_data.copy()
+        interest = data.pop('interest')
+        data['00NU0000002pDJr'] = interest
+        data['oid'] = '00DU0000000IrgO'
+        data['retURL'] = ('http://www.mozilla.org/en-US/about/'
+                          'partnerships?success=1')
+        r = requests.post('https://www.salesforce.com/servlet/'
+                          'servlet.WebToLead?encoding=UTF-8', data)
+        msg = requests.status_codes._codes.get(r.status_code, ['error'])[0]
+        return HttpResponse(msg, status=r.status_code)
+
+    return HttpResponse('Form invalid', status=400)
 
 
 @csrf_exempt

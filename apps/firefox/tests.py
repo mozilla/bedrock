@@ -12,7 +12,7 @@ from django.test.client import Client
 from django.utils import unittest
 
 from funfactory.urlresolvers import reverse
-from mock import patch
+from mock import ANY, Mock, patch
 from mozorg.tests import TestCase
 from nose.tools import eq_, ok_
 from platforms import load_devices
@@ -88,6 +88,66 @@ class TestFirefoxAll(TestCase):
         num_builds = len(firefox_details.get_filtered_full_builds(release))
         num_builds += len(firefox_details.get_filtered_test_builds(release))
         eq_(len(doc('tr[data-search]')), num_builds)
+
+
+class TestFirefoxPartners(TestCase):
+    def setUp(self):
+        self.client = Client()
+
+    @patch('firefox.views.requests.post')
+    def test_sf_form_proxy_error_response(self, post_patch):
+        """An error response from SF should be returned."""
+        new_mock = Mock()
+        new_mock.status_code = 400
+        post_patch.return_value = new_mock
+        with self.activate('en-US'):
+            url = reverse('firefox.partners.contact-bizdev')
+            resp = self.client.post(url)
+        self.assertEqual(resp.status_code, 400)
+        self.assertEqual(resp.content, 'bad_request')
+        self.assertTrue(post_patch.called)
+
+    @patch('firefox.views.requests.post')
+    def test_sf_form_proxy_invalid_form(self, post_patch):
+        """A form error should result in a 400 response."""
+        with self.activate('en-US'):
+            url = reverse('firefox.partners.contact-bizdev')
+            resp = self.client.post(url, {
+                'first_name': 'Dude' * 20,
+            })
+        self.assertEqual(resp.status_code, 400)
+        self.assertEqual(resp.content, 'Form invalid')
+        self.assertFalse(post_patch.called)
+
+    @patch('firefox.views.requests.post')
+    def test_sf_form_proxy(self, post_patch):
+        new_mock = Mock()
+        new_mock.status_code = 200
+        post_patch.return_value = new_mock
+        with self.activate('en-US'):
+            url = reverse('firefox.partners.contact-bizdev')
+            resp = self.client.post(url, {
+                'first_name': 'The',
+                'last_name': 'Dude',
+                'title': 'Abider of things',
+            })
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp.content, 'ok')
+        post_patch.assert_called_once_with(ANY, {
+            'first_name': u'The',
+            'last_name': u'Dude',
+            'description': u'',
+            'retURL': 'http://www.mozilla.org/en-US/about/'
+                      'partnerships?success=1',
+            'title': u'Abider of things',
+            'URL': u'',
+            'company': u'',
+            'oid': '00DU0000000IrgO',
+            'phone': u'',
+            'mobile': u'',
+            '00NU0000002pDJr': [],
+            'email': u'',
+        })
 
 
 class TestLoadDevices(unittest.TestCase):

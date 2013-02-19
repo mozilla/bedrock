@@ -62,4 +62,6 @@ urlpatterns = patterns('',
         kwargs={'template_name': 'firefox/whatsnew.html'}),
 
     page('firefox/partners', 'firefox/partners/index.html'),
+    url(r'^firefox/partners/contact-bizdev/', views.contact_bizdev,
+        name='firefox.partners.contact-bizdev'),
 )

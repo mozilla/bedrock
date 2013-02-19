@@ -536,19 +536,15 @@
         <p>{{ _('We will review your request and get back to you about possibilities and opportunities soon.') }}</p>
       </div>
 
-      <form action="https://www.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" id="sf-form" class="sf-form">
+      <form action="{{ url('firefox.partners.contact-bizdev') }}" method="POST" id="sf-form" class="sf-form">
 
       <h3>{{ _('Get involved') }}</h3>
       <p>{{ _('Contact our business development team to get on board.') }}</p>
 
-
-      <input type=hidden name="oid" value="00DU0000000IrgO">
-      <input type=hidden name="retURL" value="http://www.mozilla.org/en-US/about/partnerships?success=1">
-
       <!--  NOTE: These fields are optional debugging elements.  Please uncomment   -->
       <!--  these lines if you wish to test in debug mode.                          -->
-      <!--input type="hidden" name="debug" value=1-->
-      <!--input type="hidden" name="debugEmail" value=""-->
+      <!-- input type="hidden" name="debug" value=1 -->
+      <!-- input type="hidden" name="debugEmail" value="" -->
 
       <div class="field">
         <input id="first_name" maxlength="40" name="first_name" size="20" type="text" placeholder="{{ _('First Name') }}" class="required" />
@@ -556,7 +552,6 @@
 
       <div class="field">
         <input id="last_name" maxlength="80" name="last_name" size="20" type="text" placeholder="{{ _('Last Name') }}" class="required" />
-
       </div>
 
       <div class="field">
@@ -584,8 +579,8 @@
       </div>
 
       <div class="field">
-        <label for="00NU0000002pDJr">{{ _('Interest:') }}</label>
-        <select  id="00NU0000002pDJr" multiple="multiple" name="00NU0000002pDJr" title="{{ _('Interest') }}" size="4">
+        <label for="interest">{{ _('Interest:') }}</label>
+        <select  id="interest" multiple="multiple" name="interest" title="{{ _('Interest') }}" size="4">
           <option value="Firefox for Android">{{ _('Firefox for Android') }}</option>
           <option value="Firefox Marketplace">{{ _('Firefox Marketplace') }}</option>
           <option value="Firefox OS">{{ _('Firefox OS') }}</option>
