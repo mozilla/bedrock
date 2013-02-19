@@ -513,6 +513,7 @@
 }
 
 .overlay-contents {
+    .clearfix();
     background: #fff;
     margin: 0 auto;
     .border-radius(4px);
@@ -544,6 +545,92 @@
     }
     .footer p {
         font-style: italic;
+    }
+}
+
+#schedule {
+    h2 {
+        text-align: center;
+        padding: 20px;
+        margin: 0;
+    }
+    .calendar {
+        padding: 0 20px 20px 20px;
+        .clearfix();
+        .day {
+            color: #888;
+            background: #fff;
+            font-size: @smallFontSize;
+            .span-all();
+            .border-box();
+            border: 1px solid #d6d6d6;
+            margin-bottom: -1px;
+            &:first-child {
+                .border-radius(4px 4px 0 0);
+            }
+            &:last-child {
+                .border-radius(0 0 4px 4px);
+            }
+            h4 {
+                .border-box();
+                #gradient > .vertical(#f4f6f6,#ecedee);
+                border-bottom: 1px solid #d6d6d6;
+                padding: 20px;
+                margin: 0;
+                @shadow: 0 0 2px rgba(0,0,0,0.2);
+                .box-shadow(@shadow);
+                span {
+                    display: block;
+                    font-size: @baseFontSize;
+                    font-weight: bold;
+                    color: @textColorTertiary;
+                    text-transform: uppercase;
+                    color: #888;
+                    line-height: 1;
+                }
+            }
+            .day-contents {
+                padding: 20px;
+                h3 {
+                    font-size: 24px;
+                }
+            }
+            .time,
+            .person {
+                display: block;
+                position: relative;
+                padding: 0 0 0 20px;
+                color: @textColorSecondary;
+                font-weight: bold;
+                font-size: 16px;
+                text-transform: uppercase;
+                line-height: 1.1;
+                margin-top: 5px;
+                &:after {
+                    display: block;
+                    content: " ";
+                    font-size: 1px;
+                    height: 12px;
+                    width: 12px;
+                    position: absolute;
+                    top: 50%;
+                    left: 0;
+                    margin-top: -6px;
+                    background: url(/media/img/firefox/partners/menu-icons.png) 0 -1152px no-repeat;
+                }
+            }
+            .person:after {
+                background-position: -12px -1152px;
+            }
+            .role,
+            .location {
+                display: block;
+                padding: 2px 0 0 20px;
+                line-height: 1.2;
+                font-style: italic;
+                font-size: @baseFontSize;
+            }
+        }
     }
 }
 
@@ -631,10 +718,11 @@
   font-size: 12px;
   font-weight: bold;
   text-transform: uppercase;
-  padding-right: 22px;
+  padding: 5px 22px 5px 5px;
   cursor: pointer;
   border: 0;
-  background: transparent url(/media/img/firefox/partners/closex.png) right center no-repeat;
+  .border-radius(6px);
+  background: rgba(0,0,0,0.6) url(/media/img/firefox/partners/closex.png) right center no-repeat;
 }
 
 .close:hover,
@@ -704,6 +792,46 @@ body.noscroll {
 /* {{{ Responsive Grid */
 
 /* Desktop Layout */
+@media only screen and (min-width: @breakDesktop) {
+    #modal .inner {
+        width: @widthDesktop;
+        margin: 60px auto;
+        .footer {
+            .clearfix();
+            padding-left: 30px;
+            padding-right: 30px;
+            div {
+                padding: 0;
+                .span(4);
+                &:first-child {
+                    margin-left: 0;
+                }
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+    #schedule {
+        .calendar {
+            .day {
+                float: left;
+                width: 240px;
+                min-height: 500px;
+                margin: 0 0 0 -1px;
+                &:first-child {
+                    .border-radius(4px 0 0 4px);
+                }
+                &:last-child {
+                    .border-radius(0 4px 4px 0);
+                }
+            }
+        }
+    }
+}
+
+
+/* Tablet Layout */
 @media only screen and (min-width: @breakTablet) {
 
     #masthead,
@@ -723,26 +851,6 @@ body.noscroll {
     .close {
         top: 25px;
         right: 25px;
-    }
-
-    #modal .inner {
-        .span(12);
-        float: none;
-        margin: 60px auto;
-        .footer {
-            .clearfix();
-            div {
-                padding: 0;
-                .span(4);
-                &:first-child {
-                    margin-left: 0;
-                }
-                &:last-child {
-                    .span(3);
-                    margin-right: 0;
-                }
-            }
-        }
     }
 
 }
