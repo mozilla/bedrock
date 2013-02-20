@@ -129,21 +129,19 @@
 
         var $form = $(this);
 
+        $form.fadeOut('fast', function() {
+            $('.sf-form').addClass('completed');
+            $('#pageslide').scrollTop(0);
+            $('.form-results').fadeIn('fast');
+        });
+
         $.ajax({
             url: $form.attr('action'),
             data: $form.serialize(),
-            type: $form.attr('method'),
-            success: function() {
-                $form.fadeOut('fast', function() {
-                    $('.sf-form').addClass('completed');
-                    $('#pageslide').scrollTop(0);
-                    $('.form-results').fadeIn('fast');
-                });
-
-                // track form submission?
-                w.ga_track('form/submit/');
-            }
+            type: $form.attr('method')
         });
+
+        w.ga_track('form/submit/');
     });
 
     var path_parts = window.location.pathname.split('/');

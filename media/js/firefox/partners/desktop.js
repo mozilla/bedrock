@@ -31,6 +31,13 @@
     // set up foxtail sprite animation
     $('#foxtail').sprite({fps: 12, no_of_frames: 44, rewind: true});
 
+    var activate_nav_item = function(active_id) {
+        $('#partner-menu li').removeClass('active');
+        $('#partner-menu li[id="menu-' + active_id + '"]').addClass('active');
+    };
+
+    activate_nav_item('overview');
+
     // Smooth scroll-to for left menu navigation
     $('#partner-menu a, #nav-main-menu a, a.nav').click(function(e) {
         var elementClicked = $(this).attr("href");
@@ -273,8 +280,7 @@
         $('body').attr('data-article', slide.attr('id'));
 
         // set active left menu item
-        $('#partner-menu li').removeClass('active');
-        $('#partner-menu li[id="menu-' + slide.attr('id') + '"]').addClass('active');
+        activate_nav_item(slide.attr('id'));
 
         // phone is visible if at 50% left
         var cur_left = $phone[0].style.left;
