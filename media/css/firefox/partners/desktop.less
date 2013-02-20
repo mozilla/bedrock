@@ -192,26 +192,25 @@
     }
 }
 
-#marketplace {
-    .giantfox {
-        width: 580px;
+.marketplacegiantfox {
+    position: absolute;
+    display: block;
+    top: 1576px;
+    left: 50%;
+    .transition(all ease 0.6s);
+    &.giantfox-foreground {
+        background: url(/media/img/firefox/partners/marketplace-giantfox-front.png) no-repeat 100% top;
+        z-index: 120;
+        width: 454px;
         height: 520px;
+        margin-left: 86px;
+    }
+    &.giantfox-background {
         background: url(/media/img/firefox/partners/marketplace-giantfox-back.png) no-repeat 0 0 ;
-        position: absolute;
-        top: 220px;
-        left: 50%;
+        z-index: 112;
+        width: 580px;
+        height: 240px;
         margin-left: -40px;
-        .transition(all ease 0.6s);
-        .giantfox-foreground {
-            position: absolute;
-            display: block;
-            top: 0;
-            right: 0;
-            width: 580px;
-            height: 520px;
-            background: url(/media/img/firefox/partners/marketplace-giantfox-front.png) no-repeat 0 0;
-            z-index: 110;
-        }
     }
 }
 

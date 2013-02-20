@@ -14,8 +14,8 @@
 
     var $os_giantfox = $('#os .giantfox');
     var $os_giantfox_tail = $('#os .giantfox .giantfox-foreground');
-    var $marketplace_giantfox = $('#marketplace .giantfox');
-    var $marketplcae_giantfox_tail = $('#marketplace .giantfox .giantfox-foreground');
+    var $marketplace_giantfox_bg = $('.marketplacegiantfox.giantfox-background');
+    var $marketplace_giantfox_fg = $('.marketplacegiantfox.giantfox-foreground');
     var $android_tablet = $('#android .android-tablet');
     var $phone = $('#phone-common');
     var $phone_android = $('#phone-android');
@@ -63,7 +63,8 @@
         $phone.animate({ 'left': '50%' }, phone_speed);
         $phone_android.animate({ 'left': '50%' }, phone_speed);
         $os_giantfox.css('margin-left', '-70px');
-        $marketplace_giantfox.css('margin-left', '-40px');
+        $marketplace_giantfox_bg.css('margin-left', '-40px');
+        $marketplace_giantfox_fg.css('margin-left', '86px');
         $android_tablet.css('margin-left', '-40px');
 
         // force all first sections to be current
@@ -219,15 +220,18 @@
     });
 
     $('a[data-section="marketplace-developers"]').on('click', function() {
-        $marketplace_giantfox.css('margin-left', '-2120px');
+        $marketplace_giantfox_bg.css('margin-left', '-2120px');
+        $marketplace_giantfox_fg.css('margin-left', '-1994px');
     });
 
     $('a[data-section="marketplace-operators"]').on('click', function() {
-        $marketplace_giantfox.css('margin-left', '-1120px');
+        $marketplace_giantfox_bg.css('margin-left', '-1120px');
+        $marketplace_giantfox_fg.css('margin-left', '-994px');
     });
 
     $('a[data-section="marketplace-overview"]').on('click', function() {
-        $marketplace_giantfox.css('margin-left', '-40px');
+        $marketplace_giantfox_bg.css('margin-left', '-40px');
+        $marketplace_giantfox_fg.css('margin-left', '86px');
     });
 
     $('a[data-section="android-partner"]').on('click', function() {
