@@ -548,7 +548,7 @@
     }
 }
 
-#schedule {
+.schedule {
     h2 {
         text-align: center;
         padding: 20px;
@@ -638,6 +638,23 @@
                 font-style: italic;
                 font-size: @smallFontSize;
                 margin-bottom: 5px;
+            }
+            dl {
+                dt {
+                    color: @textColorSecondary;
+                    font-weight: bold;
+                    font-size: @baseFontSize;
+                    text-transform: uppercase;
+                    .open-sans;
+                    letter-spacing: normal;
+                    margin: 10px 0 5px 0;
+                }
+                dd {
+                    font-size: 16px;
+                    line-height: 1.2;
+                    min-height: 3.5em;
+                    margin: 0;
+                }
             }
         }
     }
@@ -821,7 +838,7 @@ body.noscroll {
             }
         }
     }
-    #schedule {
+    .schedule {
         .calendar {
             .day {
                 float: left;
@@ -834,6 +851,13 @@ body.noscroll {
                 &:last-child {
                     .border-radius(0 4px 4px 0);
                 }
+            }
+        }
+    }
+    .schedule#demo-schedule {
+        .calendar {
+            .day {
+                min-height: 500px;
             }
         }
     }

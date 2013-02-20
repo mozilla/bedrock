@@ -300,7 +300,7 @@
             </ul>
             <p class="partner-button">
               <a href="#form" class="button toggle-form">{{ _('Partner with us') }}</a>
-              <a href="#" class="button">{{ _('MWC demonstrations') }}</a>
+              <a class="button modal" href="#demo-schedule">{{ _('MWC demonstrations') }}</a>
             </p>
           </div>
           <ul class="logos tween">
@@ -484,7 +484,7 @@
         </div>
       </div>
     </section>
-    <section id="schedule" class="overlay-contents">
+    <section id="schedule" class="overlay-contents schedule">
       <h2>{{ _('Firefox at MWC 2013 — Schedule of events') }}</h2>
       <div class="calendar">
         <div class="day">
@@ -557,7 +557,7 @@
       <h2>{{ _('Firefox OS — Operator and manufacturer testimonials') }}</h2>
       <iframe width="640" height="360" src="https://www.youtube-nocookie.com/embed/videoseries?list=PLWK3kWTuPoUKFCTRtVkTUXn26PYF311w9" frameborder="0" allowfullscreen></iframe>
     </section>
-    <section id="demo-schedule" class="overlay-contents">
+    <section id="demo-schedule" class="overlay-contents schedule">
       <h2>{{ _('MWC demonstrations') }}</h2>
       <div class="calendar">
         <div class="day">
@@ -573,6 +573,7 @@
               <dt>{{ _('16:30 – 19:00:') }}</dt>
               <dd>{{ _('Soundcloud - Andy Carvell') }}</dd>
             </dl>
+          </div>
         </div>
         <div class="day">
           <h4><span>{{ _('Tuesday') }}</span> {{ _('February 26') }}</h4>
