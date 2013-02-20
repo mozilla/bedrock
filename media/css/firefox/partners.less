@@ -590,10 +590,18 @@
                 }
             }
             .day-contents {
-                padding: 20px;
+                padding: 20px 20px 0 20px;
                 h3 {
-                    font-size: 24px;
+                    font-size: 18px;
+                    letter-spacing: normal;
+                    margin-bottom: 5px;
                 }
+                p {
+                    margin-bottom: 10px;
+                }
+            }
+            .event {
+                margin-bottom: @baseLine * 1.5;
             }
             .time,
             .person {
@@ -602,7 +610,7 @@
                 padding: 0 0 0 20px;
                 color: @textColorSecondary;
                 font-weight: bold;
-                font-size: 16px;
+                font-size: @baseFontSize;
                 text-transform: uppercase;
                 line-height: 1.1;
                 margin-top: 5px;
@@ -628,7 +636,8 @@
                 padding: 2px 0 0 20px;
                 line-height: 1.2;
                 font-style: italic;
-                font-size: @baseFontSize;
+                font-size: @smallFontSize;
+                margin-bottom: 5px;
             }
         }
     }
@@ -817,7 +826,7 @@ body.noscroll {
             .day {
                 float: left;
                 width: 240px;
-                min-height: 500px;
+                min-height: 800px;
                 margin: 0 0 0 -1px;
                 &:first-child {
                     .border-radius(4px 0 0 4px);
