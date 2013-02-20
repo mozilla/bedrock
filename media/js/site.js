@@ -58,12 +58,9 @@
     	return null;
     }
 
-    document.addEventListener('DOMContentLoaded',function(){
-        // Add class if MWC cookie is true
-        var seen_mwc = readCookie('seen_mwc2013');
-        if (seen_mwc === 'true') {
-            document.body.className += ' mwc2013';
-        }
-    });
+    // Add class if MWC cookie is true
+    if (readCookie('seen_mwc2013') === 'true') {
+      document.documentElement.className += ' mwc2013';
+    }
 
 })();
