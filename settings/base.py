@@ -53,12 +53,17 @@ SUPPORTED_NONLOCALES = [
     'gameon',
 ]
 
+ALLOWED_HOSTS = [
+    'www.mozilla.org',
+    'www.allizom.org',
+]
+
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '1iz#v0m55@h26^m6hxk3a7at*h$qj_2a$juu1#nv50548j(x1v'
+SECRET_KEY = 'ssssshhhhh'
 
 TEMPLATE_DIRS = (
     path('templates'),
-    path('locale')
+    path('locale'),
 )
 
 
