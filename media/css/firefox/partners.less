@@ -90,6 +90,18 @@
 /* }}} */
 /* {{{ Template overrides */
 
+#masthead {
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    margin-left: -(@widthMobile / 2);
+    z-index: 200;
+}
+
+#tabzilla-panel {
+    z-index: 1100;
+}
+
 #wrapper {
     width: auto;
     padding-bottom: 0;
@@ -105,7 +117,8 @@
     .clearfix();
     section {
         width: 100%;
-        padding-bottom: (@baseLine);
+        padding-top: 120px;
+        padding-bottom: @baseLine;
         border-style: solid;
         border-width: 0 0 1px 0;
         border-color: rgb(30,30,30);
@@ -114,6 +127,7 @@
 
     .article-header {
         position: relative;
+        top: 120px;
         z-index: 98;
         width: @widthDesktop - (@gridGutterWidth * 2);
         padding: @baseLine 0;
@@ -141,8 +155,11 @@
             .span-all();
             position: relative;
             clear: both;
+            h3 {
+                font-size: 32px;
+            }
             h4 {
-                font-size: 30px;
+                font-size: 24px;
             }
             .promos {
                 @shadow: 0 1px 0 0 rgba(0,0,0,0.15) inset, 0 2px 0 0 rgba(255,255,255,0.5) inset;
@@ -193,7 +210,13 @@
 }
 
 #partner-nav {
+    position: absolute;
+    z-index: 1000;
+    top: 60px;
+    left: 50%;
     width: auto;
+    margin-left: -(@widthMobile / 2);
+    padding: 0 10px;
     h3 {
         display: none;
     }
@@ -332,11 +355,7 @@
 /* {{{ Firefox OS section */
 
 #os {
-    h3 {
-        font-size: 32px;
-    }
     #os-overview {
-        padding-top: 0;
         .logos {
             margin-bottom: @baseLine;
         }
@@ -346,6 +365,12 @@
             .partner-button {
                 text-align: center;
             }
+        }
+    }
+    #os-operators {
+        padding-top: @baseLine * 2;
+        h4 {
+            font-size: 22px;
         }
     }
 }
@@ -392,12 +417,19 @@
         }
     }
     #marketplace-operators {
+        padding-top: @baseLine * 2;
         .left {
             .partner-button {
                 a:first-child {
                     margin-bottom: 10px;
                 }
             }
+        }
+    }
+    #marketplace-developers {
+        padding-top: @baseLine * 2;
+        .logos {
+            margin-bottom: @baseLine;
         }
     }
 }
@@ -409,17 +441,14 @@
     #android-overview {
         .intro {
             .play {
-                float: right;
-                margin: 5px 20px 0px 10px;
+                display: block;
+                margin: 5px auto;
             }
         }
     }
     #android-partner {
+        padding-top: @baseLine * 2;
         .intro {
-            h3 {
-                font-size: 56px;
-                letter-spacing: -2px;
-            }
             ul {
                 li {
                     list-style-type: none;
@@ -548,7 +577,7 @@
     }
 }
 
-#schedule {
+.schedule {
     h2 {
         text-align: center;
         padding: 20px;
@@ -638,6 +667,23 @@
                 font-style: italic;
                 font-size: @smallFontSize;
                 margin-bottom: 5px;
+            }
+            dl {
+                dt {
+                    color: @textColorSecondary;
+                    font-weight: bold;
+                    font-size: @baseFontSize;
+                    text-transform: uppercase;
+                    .open-sans;
+                    letter-spacing: normal;
+                    margin: 10px 0 5px 0;
+                }
+                dd {
+                    font-size: 16px;
+                    line-height: 1.2;
+                    min-height: 3.5em;
+                    margin: 0;
+                }
             }
         }
     }
@@ -821,7 +867,7 @@ body.noscroll {
             }
         }
     }
-    #schedule {
+    .schedule {
         .calendar {
             .day {
                 float: left;
@@ -834,6 +880,13 @@ body.noscroll {
                 &:last-child {
                     .border-radius(0 4px 4px 0);
                 }
+            }
+        }
+    }
+    .schedule#demo-schedule {
+        .calendar {
+            .day {
+                min-height: 500px;
             }
         }
     }
@@ -850,6 +903,11 @@ body.noscroll {
         margin-right: auto;
     }
 
+    #partner-nav,
+    #masthead {
+        margin-left: -(@widthDesktop / 2);
+    }
+
     .logos {
         li {
             margin-left: 16px;
@@ -861,6 +919,19 @@ body.noscroll {
         top: 25px;
         right: 25px;
     }
+
+    .partner-article .article-content .intro h4 {
+        font-size: 30px;
+    }
+
+    #android {
+        #android-overview {
+            .play {
+                float: right;
+                margin: 5px 20px 0px 10px;
+            }
+        }
+     }
 
 }
 
@@ -874,6 +945,12 @@ body.noscroll {
         margin-left: auto;
         margin-right: auto;
     }
+
+    #partner-nav,
+    #masthead {
+        margin-left: -(@widthTablet / 2);
+    }
+
 
     #overview {
         h2 {
@@ -901,6 +978,11 @@ body.noscroll {
         margin-right: auto;
     }
 
+    #partner-nav,
+    #masthead {
+        margin-left: -(@widthMobile / 2);
+    }
+
 }
 
 
@@ -916,6 +998,12 @@ body.noscroll {
         margin-right: auto;
     }
 
+    #partner-nav,
+    #masthead {
+        margin-left: -(@widthMobileLandscape / 2);
+    }
+
+
     #overview {
         h2 {
             font-size: 42px;
@@ -928,6 +1016,15 @@ body.noscroll {
             margin-right: 6px;
         }
     }
+
+    #android {
+        #android-overview {
+            .play {
+                float: right;
+                margin: 5px 20px 0px 10px;
+            }
+        }
+     }
 
 }
 /* }}} */

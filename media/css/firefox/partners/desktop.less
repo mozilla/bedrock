@@ -17,18 +17,6 @@
 /* }}} */
 /* {{{ Template overrides */
 
-body #masthead {
-    position: absolute;
-    top: 0px;
-    left: 50%;
-    margin-left: -(@widthDesktop / 2);
-    z-index: 200;
-}
-
-#tabzilla-panel {
-    z-index: 1100;
-}
-
 #article-wrapper {
     height: 2840px;
     overflow: hidden;
@@ -65,6 +53,7 @@ body #masthead {
     .article-header {
         .clearfix();
         padding: (@baseLine * 2) 0;
+        top: auto;
         h2 {
             float: left;
             margin-right: 30px;
@@ -316,8 +305,8 @@ body #masthead {
         .span-all();
         padding-top: 120px;
         h3 {
-            font-size: 52px;
-            letter-spacing: -1px;
+            font-size: 50px;
+            letter-spacing: -2px;
             margin-left: 0;
             margin-bottom: 40px;
             text-align: center;
@@ -336,6 +325,9 @@ body #masthead {
             .span(6);
             margin-right: 0;
         }
+    }
+    #os-operators {
+        padding-top: 0;
     }
 }
 
@@ -376,6 +368,7 @@ body #masthead {
         }
     }
     #marketplace-operators {
+        padding-top: 0;
         .intro {
             .span-all();
             h3 {
@@ -403,6 +396,7 @@ body #masthead {
         }
     }
     #marketplace-developers {
+        padding-top: 0;
         .article-content {
             .intro {
                 .span-all();
@@ -474,9 +468,13 @@ body #masthead {
         z-index: 130;
     }
     #android-partner {
+        padding-top: 0;
         background: url(/media/img/firefox/partners/android-partners-bg.png) 50% 200px no-repeat;
         .intro {
             padding-top: 120px;
+            h3 {
+                font-size: 42px;
+            }
             h4 {
                 font-size: 26px;
             }
@@ -510,12 +508,14 @@ body #masthead {
 /* }}} */
 /* {{{ Left menu */
 
-#partner-nav {
+body #partner-nav {
     position: fixed;
     z-index: 1000;
     top: 160px;
     left: 30px;
     width: 60px;
+    margin-left: auto;
+    padding: 0;
 }
 
 #explore {
