@@ -4,6 +4,8 @@
 ;(function(w, $, TweenMax, TimelineLite, Power2, Quad) {
     'use strict';
 
+    w.ga_track('');
+
     var $article_wrapper = $('#article-wrapper');
     var article_height = 820;
     var parallax_offset = 142;
@@ -68,6 +70,10 @@
         // slow-ish scrolling to make scroll animation life easier
         $("html:not(:animated),body:not(:animated)").animate({ scrollTop: destination }, 1000);
 
+        var virtual_page = (elementClicked !== '#overview') ? elementClicked.replace(/#/, '') + '/' : '';
+
+        w.ga_track(virtual_page);
+
         return false;
     });
 
@@ -99,6 +105,8 @@
 
         if (!$menu.hasClass('form-open')) {
             $.pageslide.close();
+        } else {
+            w.ga_track('form/');
         }
     };
 
@@ -182,6 +190,16 @@
         } else {
             $cur_phone.stop().animate({ 'left': '50%' }, phone_speed);
         }
+
+        // track section view
+        var virtual_page = article.attr('id') + '/';
+
+        // only add sub-section id if not in first position
+        if (dest_pos > 1) {
+            virtual_page += dest.attr('id') + '/';
+        }
+
+        w.ga_track(virtual_page);
     });
 
     // custom horizontal movement of large background graphics
@@ -241,7 +259,7 @@
         if ($phone.is(':animated')) {
             $phone.stop();
 
-            // if phone is inbetween hiding/showing, force that to finish immediately
+            // if phone is in between hiding/showing, force that to finish immediately
             if (Number($phone.attr('data-hiding')) === 1) {
                 $phone.css('left', '-50%');
                 $phone.attr('data-hiding', 0);

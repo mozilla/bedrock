@@ -4,6 +4,8 @@
 ;(function(w, $) {
     'use strict';
 
+    w.ga_track('');
+
     // mobile functionality
     w.attach_mobile = function() {
         if (w.location.hash) {
@@ -38,6 +40,9 @@
 
             $('a[href!="' + anchor + '"]').parent('li').removeClass('active');
             $('a[href="' + anchor + '"]').parent('li').addClass('active');
+
+            var virtual_page = (anchor !== '#overview') ? anchor.replace(/#/, '') + '/' : '';
+            w.ga_track(virtual_page);
         });
     };
 
@@ -45,6 +50,8 @@
         e.preventDefault();
 
         w.show_overlay('#form');
+
+        w.ga_track('form/');
 
         return false;
     });

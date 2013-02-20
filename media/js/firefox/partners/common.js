@@ -60,6 +60,8 @@
 
         var content = $overlay.detach();
         createModal(this, content);
+
+        w.ga_track(elem.replace(/#/, '') + '/');
     };
 
     $("a.modal").click(function(e) {
@@ -127,16 +129,38 @@
 
         var $form = $(this);
 
-        // TODO: hook up bedrock proxy for cross-domain form POST
-        // waiting on proxy to be ready. faking for now...
-        $form.fadeOut('fast', function() {
-            $('.sf-form').addClass('completed');
-            $('#pageslide').scrollTop(0);
-            $('.form-results').fadeIn('fast');
+        $.ajax({
+            url: $form.attr('action'),
+            data: $form.serialize(),
+            type: $form.attr('method'),
+            success: function() {
+                $form.fadeOut('fast', function() {
+                    $('.sf-form').addClass('completed');
+                    $('#pageslide').scrollTop(0);
+                    $('.form-results').fadeIn('fast');
+                });
+
+                // track form submission?
+                w.ga_track('form/submit/');
+            }
         });
     });
-    
+
+    var path_parts = window.location.pathname.split('/');
+    var query_str = window.location.search ? window.location.search + '&' : '?';
+    var referrer = path_parts[path_parts.length-2];
+    var locale = path_parts[1];
+
+    // GA tracking
+    w.ga_track = function(virtual_page) {
+        if (w._gaq) {
+            //var v_url = '/' + locale + '/firefox/partners/' + virtual_page;
+            //w.console.log('tracking ' + v_url);
+            w._gaq.push(['_trackPageview', '/' + locale + '/firefox/partners/' + virtual_page]);
+        }
+    };
+
     // set a cookie
-    document.cookie = 'seen_mwc2013=true;expires=Tue, 5 Mar 2013 00:00:01 UTC;path=/'
-    
+    document.cookie = 'seen_mwc2013=true;expires=Tue, 5 Mar 2013 00:00:01 UTC;path=/';
+
 })(window, window.jQuery, window.enquire, window.Modernizr, window.trans);
