@@ -490,37 +490,65 @@
         <div class="day">
           <h4><span>{{ _('Monday') }}</span> {{ _('February 25') }}</h4>
           <div class="day-contents">
-            <h3>{{ _('Apps Panel: Evolving Ecosystems') }}</h3>
-            <p>{{ _('Experts from across the board will discuss the current state of the apps industry and consider how the roles and responsibilities within it are adapting as the apps market evolves.') }}</p>
-            <div class="time">{{ _('16:00–17:30') }}</div>
-            <div class="location">{{ _('Location TBD') }}</div>
-            <div class="person">{{ _('Jay Sullivan') }}</div>
-            <div class="role">{{ _('VP of Products, Mozilla') }}</div>
+            <div class="event">
+              <h3>{{ _('Mobile World Live TV Panel') }}</h3>
+              <p>{{ _('Johnathan Nightingale, VP of Firefox Engineering, will participate in a discussion about future opportunities in the apps market.') }}</p>
+              <div class="time">{{ _('12:30-13:00 CET') }}</div>
+              <div class="location">{{ _('Location: the live panel will be streamed on all major screens throughout the show area') }}</div>
+            </div>
+            <div class="event">
+              <h3>{{ _('Apps Panel: Evolving Ecosystems') }}</h3>
+              <p>{{ _('Jay Sullivan, Vice President of Products, will take part in the Apps Panel: Evolving Ecosystems. The panel will discuss the current state of the apps industry and consider how the roles and responsibilities within it are adapting as the apps market evolves.') }}</p>
+              <div class="time">{{ _('16:00-17:30 CET') }}</div>
+              <div class="location">{{ _('Hall 4, Conference Village, Auditorium 2') }}</div>
+            </div>
+            <div class="event">
+              <h3>{{ _('Mobile Premier Awards & AppCircus After Party') }}</h3>
+              <p>{{ _('Mozilla Marketplace VP Rick Fant will present and judge select the winning app.') }}</p>
+              <div class="time">{{ _('16:00-23:00 CET (awards at 22:30)') }}</div>
+              <div class="location">{{ _('Sala Apolo, Barcelona') }}</div>
+            </div>
           </div>
         </div>
         <div class="day">
           <h4><span>{{ _('Tuesday') }}</span> {{ _('February 26') }}</h4>
           <div class="day-contents">
-            <h3>{{ _('Mozilla Keynote') }}</h3>
-            <p>{{ _('Mozilla CEO Gary Kovacs will discuss the benefits of an Open Web device in markets around the world and how Firefox OS will help carriers, OEMs and developers reach the next billion Web users.') }}</p>
-            <div class="time">{{ _('09:00–10:30') }}</div>
-            <div class="location">{{ _('Location TBD') }}</div>
-            <div class="person">{{ _('Gary Kovacs') }}</div>
-            <div class="role">{{ _('CEO, Mozilla') }}</div>
+            <div class="event">
+              <h3>{{ _('Gary Kovacs CEO of Mozilla Keynote') }}</h3>
+              <p>{{ _('Mozilla CEO Gary Kovacs’ keynote speech will discuss the benefits of an Open Web device in markets around the world and how Firefox OS will help operators, phone manufacturers and developers reach the next billion Web users.') }}</p>
+              <div class="time">{{ _('9.00-10.30 CET') }}</div>
+              <div class="location">{{ _('Hall 4, Conference Village, Auditorium 1') }}</div>
+            </div>
+            <div class="event">
+              <h3>{{ _('Mobile World Live Keynote with Mitchell Baker') }}</h3>
+              <p>{{ _('Mitchell Baker, Chairperson of the Mozilla Foundation, will discuss the importance of bringing Open Web innovation to mobile devices.') }}</p>
+              <div class="time">{{ _('17:45 - 18:30 CET') }}</div>
+              <div class="location">{{ _('Hall 4, Conference Village, Auditorium 1') }}</div>
+            </div>
           </div>
         </div>
         <div class="day">
           <h4><span>{{ _('Wednesday') }}</span> {{ _('February 27') }}</h4>
           <div class="day-contents">
-            <p class="note">{{ _('Check back for schedule additions and updates.') }}</p>
+            <div class="event">
+              <h3>{{ _('Mobile App Privacy Debate') }}</h3>
+              <p>{{ _('Harvey Anderson, Vice President of Business Affairs and General Counsel at Mozilla, will take part in the debate “Mobile app privacy: What’s your view?” This interactive session is for anyone interested in helping consumers easily make privacy choices on a mobile device.') }}</p>
+              <div class="time">{{ _('13:00-15:00 CET ') }}</div>
+              <div class="location">{{ _('GSMA Pavilion, Congress Square (CS80)') }}</div>
+            </div>
           </div>
         </div>
         <div class="day">
           <h4><span>{{ _('Thursday') }}</span> {{ _('February 28') }}</h4>
           <div class="day-contents">
-            <h3>WIPJam</h3>
-            <div class="time">{{ _('09:00–16:00') }}</div>
-            <div class="location">{{ _('Hall 8.0, Theatre B, Theatre District, App Planet ') }}</div>
+            <div class="event">
+              <h3>{{ _('WIP Jam - Day for Developers ') }}</h3>
+              <p>{% trans link='<a href="http://bit.ly/mozwipjam">http://bit.ly/mozwipjam</a>'|safe %}
+              The key event for mobile developers at MWC. Mozilla CTO Brendan Eich and Mozilla Developer Evangelist Robert Nyman will host a workshop and Q&A session on “Why Open Web Apps & Firefox OS are good for mobile developers.” Mozilla developer evangelist Chris Heilmann will present an UnPanel on "HTML5 Beyond the Hype" and lead several HTML5 discussion groups. WIP Jam will also see DemoCamps of HTML5 apps created during Mozilla Developer Days. Full schedule available here: {{link}}
+              {% endtrans %}</p>
+              <div class="time">{{ _('2013, 9:00-16:00 CET') }}</div>
+              <div class="location">{{ _('App Planet (Hall 8.0), Theatre B') }}</div>
+            </div>
           </div>
         </div>
       </div>
@@ -528,6 +556,70 @@
     <section id="testimonials" class="overlay-contents">
       <h2>{{ _('Firefox OS — Operator and manufacturer testimonials') }}</h2>
       <iframe width="640" height="360" src="https://www.youtube-nocookie.com/embed/videoseries?list=PLWK3kWTuPoUKFCTRtVkTUXn26PYF311w9" frameborder="0" allowfullscreen></iframe>
+    </section>
+    <section id="demo-schedule" class="overlay-contents">
+      <h2>{{ _('MWC demonstratoins') }}</h2>
+      <div class="calendar">
+        <div class="day">
+          <h4><span>{{ _('Monday') }}</span> {{ _('February 25') }}</h4>
+          <div class="day-contents">
+            <dl>
+              <dt>{{ _('09:00 – 11:30:') }}</dt>
+              <dd>{{ _('Here.com (Nokia Maps) - Andy Tjin') }}</dd>
+              <dt>{{ _('11:30 – 14:00:') }}</dt>
+              <dd>{{ _('Accuweather - Eric Guyer') }}</dd>
+              <dt>{{ _('14:00 – 16:30:') }}</dt>
+              <dd>{{ _('Twitter - Michael Ducker') }}</dd>
+              <dt>{{ _('16:30 – 19:00:') }}</dt>
+              <dd>{{ _('Soundcloud - Andy Carvell') }}</dd>
+            </dl>
+        </div>
+        <div class="day">
+          <h4><span>{{ _('Tuesday') }}</span> {{ _('February 26') }}</h4>
+          <div class="day-contents">
+            <dl>
+              <dt>{{ _('09:00 – 11:30:') }}</dt>
+              <dd>{{ _('SporTV - Leo Copello') }}</dd>
+              <dt>{{ _('11:30 – 14:00:') }}</dt>
+              <dd>{{ _('Airbnb - Marc McCabe') }}</dd>
+              <dt>{{ _('14:00 – 16:30:') }}</dt>
+              <dd>{{ _('Time Out - Taylor Wescoatt') }}</dd>
+              <dt>{{ _('16:30 – 19:00:') }}</dt>
+              <dd>{{ _('Fale Transito & Parkster - Andre Natal') }}</dd>
+            </dl>
+          </div>
+        </div>
+        <div class="day">
+          <h4><span>{{ _('Wednesday') }}</span> {{ _('February 27') }}</h4>
+          <div class="day-contents">
+            <dl>
+              <dt>{{ _('09:00 – 11:30:') }}</dt>
+              <dd>{{ _('Soundcloud - Andy Carvell') }}</dd>
+              <dt>{{ _('11:30 – 14:00:') }}</dt>
+              <dd>{{ _('Here.com (Nokia Maps) - Andy Tjin') }}</dd>
+              <dt>{{ _('14:00 – 16:30:') }}</dt>
+              <dd>{{ _('TBD') }}</dd>
+              <dt>{{ _('16:30 – 19:00:') }}</dt>
+              <dd>{{ _('TBD') }}</dd>
+            </dl>
+          </div>
+        </div>
+        <div class="day">
+          <h4><span>{{ _('Thursday') }}</span> {{ _('February 28') }}</h4>
+          <div class="day-contents">
+            <dl>
+              <dt>{{ _('09:00 – 11:30:') }}</dt>
+              <dd>{{ _('Box - Indy Sen') }}</dd>
+              <dt>{{ _('11:30 – 14:00:') }}</dt>
+              <dd>{{ _('TBD') }}</dd>
+              <dt>{{ _('14:00 – 16:30:') }}</dt>
+              <dd>{{ _('Wikipedia - Amit Kapoor') }}</dd>
+              <dt>{{ _('16:30 – 19:00:') }}</dt>
+              <dd>{{ _('TBD') }}</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
     </section>
     <section id="form">
       <button type="button" class="close">{{ _('Close') }}</button>
