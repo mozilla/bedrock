@@ -99,7 +99,6 @@ LOCALE_CONTACTS = {
 def handle_form(request, form):
     if form.is_valid():
         data = form.cleaned_data
-        data['locale'] = getattr(request, 'locale', 'en-US')
         send(request, data)
         autorespond(request, data)
 
