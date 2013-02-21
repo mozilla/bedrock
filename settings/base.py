@@ -279,6 +279,9 @@ MINIFY_BUNDLES = {
             'css/libs/jquery.pageslide.css',
             'css/firefox/partners.less',
         ),
+        'partners-ie7': (
+            'css/firefox/partners/ie7.less',
+        ),
     },
     'js': {
         'site': (
