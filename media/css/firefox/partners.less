@@ -831,7 +831,7 @@ body.noscroll {
 
 /* }}} */
 /* {{{  Desktop Layout */
-@media only screen and (min-width: @widthTablet) {
+@media only screen and (min-width: @widthDesktop) {
     @import "partners/desktop.less";
     #form,
     #overlay,
@@ -964,16 +964,33 @@ body.noscroll {
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
 
     #masthead,
+    #partner-nav,
+    .partner-article .article-header,
     .partner-article .article-content {
         width: @widthTablet - 40px;
         margin-left: auto;
         margin-right: auto;
     }
 
+
     #partner-nav,
     #masthead {
         margin-left: -(@widthTablet / 2);
     }
+
+    #partner-nav {
+        position: absolute;
+        z-index: 1000;
+        top: 60px;
+        left: 50%;
+        width: @widthTablet;
+        margin-left: -(@widthTablet / 2);
+        padding: 0 10px;
+        h3 {
+            display: none;
+        }
+    }
+
 
 
     #overview {
