@@ -96,7 +96,7 @@
     top: 0px;
     left: 50%;
     margin-left: -(@widthMobile / 2);
-    z-index: 200;
+    z-index: 2000;
 }
 
 #tabzilla-panel {
@@ -122,7 +122,7 @@
         padding-bottom: @baseLine;
         border-style: solid;
         border-width: 0 0 1px 0;
-        border-color: rgb(30,30,30);
+        border-color: rgb(200,200,200);
         border-color: rgba(0,0,0,0.1);
     }
 
@@ -383,6 +383,7 @@
     .promos {
         .icon {
             position: relative;
+            height: 70px;
             a,
             h4 {
                 margin-left: 80px;
@@ -788,10 +789,11 @@
   font-size: 12px;
   font-weight: bold;
   text-transform: uppercase;
-  padding: 5px 22px 5px 5px;
+  padding: 5px 28px 5px 5px;
   cursor: pointer;
   border: 0;
   .border-radius(6px);
+  background: rgb(0,0,0) url(/media/img/firefox/partners/closex.png) right center no-repeat;
   background: rgba(0,0,0,0.6) url(/media/img/firefox/partners/closex.png) right center no-repeat;
 }
 
@@ -841,7 +843,7 @@ body.noscroll {
 }
 
 @media only screen and (min-width: 1000px) and (max-width: 1090px)  {
-    #partner-nav {
+    body #partner-nav {
         left: -3px;
         width: 38px;
         .transition();
@@ -852,7 +854,7 @@ body.noscroll {
 }
 
 @media only screen and (min-width: 1090px) and (max-width: 1150px)  {
-    #partner-nav {
+    body #partner-nav {
         left: 10px;
     }
 }

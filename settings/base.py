@@ -279,6 +279,9 @@ MINIFY_BUNDLES = {
             'css/libs/jquery.pageslide.css',
             'css/firefox/partners.less',
         ),
+        'partners-ie7': (
+            'css/firefox/partners/ie7.less',
+        ),
     },
     'js': {
         'site': (
@@ -438,6 +441,7 @@ MINIFY_BUNDLES = {
         ),
         'partners': (
             'js/libs/modernizr.custom.shiv-load.js',
+            'js/mozilla-input-placeholder.js',
             'js/mozilla-pager.js',
             'js/firefox/partners.js',
         ),

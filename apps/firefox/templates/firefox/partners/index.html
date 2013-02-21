@@ -9,6 +9,9 @@
 
 {% block extrahead %}
   {{ css('partners') }}
+<!--[if lte IE 7]>
+  {{ css('partners-ie7') }}
+<![endif]-->
 {% endblock %}
 
 {% block site_js %}
