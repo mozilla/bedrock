@@ -96,7 +96,7 @@
     top: 0px;
     left: 50%;
     margin-left: -(@widthMobile / 2);
-    z-index: 200;
+    z-index: 2000;
 }
 
 #tabzilla-panel {
@@ -383,6 +383,7 @@
     .promos {
         .icon {
             position: relative;
+            height: 70px;
             a,
             h4 {
                 margin-left: 80px;
@@ -842,7 +843,7 @@ body.noscroll {
 }
 
 @media only screen and (min-width: 1000px) and (max-width: 1090px)  {
-    #partner-nav {
+    body #partner-nav {
         left: -3px;
         width: 38px;
         .transition();
@@ -853,7 +854,7 @@ body.noscroll {
 }
 
 @media only screen and (min-width: 1090px) and (max-width: 1150px)  {
-    #partner-nav {
+    body #partner-nav {
         left: 10px;
     }
 }
