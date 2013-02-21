@@ -93,6 +93,7 @@ LOCALE_CONTACTS = {
     'es-ES': ['participa@mozilla-hispano.org'],
     'nl'   : ['contribute@mozilla-nl.org'],
     'pt-BR': ['marcelo.araldi@yahoo.com.br'],
+    'zh-TW': ['contribute@mail.moztw.org'],
 }
 
 
