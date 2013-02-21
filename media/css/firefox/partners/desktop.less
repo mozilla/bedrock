@@ -409,19 +409,26 @@
                     margin-bottom: @baseLine * 2;
                 }
                 .promos {
-                    .wipjam {
-                        .span(4);
-                        width: 260px;
+                    .span(5);
+                    margin-right: 0;
+                    margin-bottom: @baseLine;
+                    clear: none;
+                    div {
+                        .span-all();
+                        margin-bottom: @baseLine;
                     }
                     .register {
-                        .span(2);
-                        width: 180px;
                         margin-right: 0;
+                        .button {
+                            .inline-block();
+                            padding-left: 30px;
+                            padding-right: 30px;
+                        }
                     }
                 }
             }
             .left {
-                .span(6);
+                .span(7);
                 margin-left: 0;
                 .partner-button {
                     a:first-child {
@@ -431,11 +438,6 @@
                 ul li {
                     margin: 10px 20px;
                 }
-            }
-            .logos {
-                .span(6);
-                margin-right: 0;
-                margin-bottom: @baseLine;
             }
         }
     }
