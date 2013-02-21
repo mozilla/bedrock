@@ -30,6 +30,7 @@ urlpatterns = patterns('',
     (r'^tabzilla/', include('bedrock.tabzilla.urls')),
     (r'', include('bedrock.firefox.urls')),
     (r'', include('bedrock.mozorg.urls')),
+    (r'', include('bedrock.newsletter.urls')),
     (r'', include('bedrock.redirects.urls')),
     (r'', include('bedrock.research.urls')),
 

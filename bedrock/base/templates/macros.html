@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% macro email_newsletter_form(newsletter_id='mozilla-and-you', title=None, include_country=True, include_language=True) %}
+{% macro email_newsletter_form(newsletter_id='mozilla-and-you', title=None, include_country=True, include_language=True, footer=True) %}
   {% if not request.newsletter_success %}
     {% if request.newsletter_form.errors %}
       <div id="footer-email-errors">
@@ -25,8 +25,16 @@
     {% endif %}
 
     <form class="billboard{% if request.newsletter_form.errors %} has-errors{% endif %}"
-          id="footer-email-form" action="#footer-email-form" method="post">
-      <input type="hidden" name="newsletter-footer" value="Y">
+          {% if footer %}
+             id="footer-email-form" action="#footer-email-form"
+          {% else %}
+              id="email-form" action=""
+          {% endif %}
+          method="post"
+          onsubmit="dcsMultiTrack('DCS.dcsuri','/signmeup.button','WT.ti','Sign%20Me%20Up','WT.dl','26');">
+      {% if footer %}
+        <input type="hidden" name="newsletter-footer" value="Y">
+      {% endif %}
       <input type="hidden" name="newsletter" value="{{ newsletter_id }}">
       <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
 

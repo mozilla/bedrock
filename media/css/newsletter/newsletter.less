@@ -1,0 +1,271 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+#main-feature {
+    margin-top: @baseLine * 2;
+    text-align: center;
+    h1 {
+        line-height: 1.1;
+        margin: 0;
+        span {
+            display: block;
+            font-size: 64px;
+        }
+    }
+}
+
+#newsletter-updated {
+    #content {
+        h3,
+        h4 {
+            .span-all();
+            text-align: center;
+            margin-bottom: @baseLine * 2;
+        }
+        .table {
+            .span(6);
+            margin: auto;
+            float: none;
+            textarea {
+                .border-box();
+                width: 100%;
+            }
+        }
+        .sub-feature {
+            text-align: center;
+            .span(4);
+            p,
+            h4 {
+                margin-bottom: @baseLine / 2;
+            }
+        }
+    }
+}
+
+#existing-newsletter-form {
+    .field {
+        .clearfix();
+        padding-bottom: @baseLine;
+        label,
+        .field-label {
+            .span(3);
+            .open-sans-light;
+            font-size: @largeFontSize;
+            text-align: right;
+        }
+        .field-contents {
+            .span(6);
+            label {
+                float: none;
+                width: auto;
+                margin: auto;
+                font-family: inherit;
+                font-size: @baseFontSize;
+                text-align: left;
+            }
+            input[type="email"],
+            select {
+                width: 100%;
+                .border-box();
+            }
+        }
+        &.format-field {
+            .field-contents {
+                label {
+                    text-align: left;
+                    margin-right: 20px;
+                    line-height: 30px;
+                }
+            }
+        }
+        .field-radios {
+            input[type="radio"] {
+                vertical-align: text-top;
+            }
+        }
+        .errorlist {
+            .span(3);
+        }
+    }
+    h3 {
+        font-size: 24px;
+    }
+    h3.field-label {
+        letter-spacing: normal;
+        font-family: inherit;
+    }
+    #other-newsletters {
+        .span(6);
+        .offset(3);
+    }
+    #remove-all-section {
+        .span(6);
+        .offset(3);
+        label {
+            float: none;
+            width: auto;
+            margin: auto;
+            font-family: inherit;
+            font-size: @smallFontSize;
+            text-align: left;
+            color: @textColorTertiary;
+        }
+        input {
+            vertical-align: text-top;
+        }
+    }
+    .table {
+        width: 100%;
+        thead th {
+            text-align: center;
+        }
+        tbody {
+            th {
+                text-align: left;
+                h4 {
+                    margin: 0 0 5px 0;
+                    font-size: 22px;
+                    .en-only {
+                        color: @textColorTertiary;
+                        font-size: @baseFontSize;
+                    }
+                }
+                .description {
+                    margin: 0.2em 0 0 0;
+                    color: @textColorTertiary;
+                    font-weight: normal;
+                    font-size: @smallFontSize;
+                    line-height: 1.3;
+                }
+            }
+            td {
+                text-align: center;
+            }
+        }
+    }
+    .submit-field {
+        .span(6);
+        .offset(3);
+    }
+}
+
+/* {{{ Tablet  Layout and smaller : 768px */
+@media only screen and (max-width: @widthDesktop) {
+
+    #existing-newsletter-form {
+        .table {
+            thead {
+                td,th {
+                    padding-right: 5px;
+                    font-size: @smallFontSize;
+                    &:last-child {
+                        padding-right: 0;
+                    }
+                }
+            }
+            tbody {
+                th {
+                    h4 {
+                        font-size: 18px;
+                        .en-only {
+                            font-size: @smallFontSize;
+                        }
+                    }
+                }
+                td,th {
+                    padding-right: 5px;
+                    &:last-child {
+                        padding-right: 0;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+/* }}} */
+/* {{{ Tablet  Layout: 768px */
+@media only screen and (min-width: @widthTablet) and (max-width: @widthDesktop) {
+
+    #newsletter-updated {
+        #content {
+            .table {
+                .span_narrow(8);
+                margin: auto;
+                float: none;
+            }
+            .sub-feature {
+                .span_narrow(4);
+            }
+        }
+    }
+
+    #existing-newsletter-form {
+        .field {
+            label,
+            .field-label {
+                .span_narrow(3);
+            }
+            .field-contents {
+                .span_narrow(6);
+            }
+        }
+        #other-newsletters,
+        #remove-all-section,
+        .submit-field {
+            .span_narrow(6);
+            .offset_narrow(3);
+        }
+    }
+
+}
+
+/* }}} */
+/* {{{ Wide Mobile Layout: 480px */
+@media only screen and (max-width: @widthTablet) {
+
+    #main-feature {
+        h1 {
+            font-size: 26px;
+            span {
+                font-size: inherit;
+            }
+        }
+    }
+
+    #newsletter-updated {
+        #content {
+            .sub-feature {
+                .span-all();
+                margin-bottom: @baseLine;
+            }
+            .table {
+                .span-all();
+            }
+        }
+    }
+
+    #existing-newsletter-form {
+        .field {
+            label,
+            .field-label {
+                .span-all();
+            }
+            .field-contents {
+                .span-all();
+            }
+        }
+        #other-newsletters,
+        #remove-all-section,
+        .submit-field {
+            .span-all();
+        }
+    }
+
+}
+
+/* }}} */
