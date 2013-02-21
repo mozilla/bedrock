@@ -16,21 +16,6 @@ from nose.plugins.skip import SkipTest
 from pyquery import PyQuery as pq
 
 
-class TestViews(TestCase):
-    def setUp(self):
-        self.client = Client()
-
-    def test_hacks_newsletter_frames_allow(self):
-        """
-        Bedrock pages get the 'x-frame-options: DENY' header by default.
-        The hacks newsletter page is framed, so needs to ALLOW.
-        """
-        with self.activate('en-US'):
-            resp = self.client.get(reverse('mozorg.hacks_newsletter'))
-
-        ok_('x-frame-options' not in resp)
-
-
 @patch.object(l10n_utils, 'lang_file_is_active', lambda *x: True)
 class TestContribute(TestCase):
     def setUp(self):

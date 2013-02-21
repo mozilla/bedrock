@@ -29,6 +29,7 @@ urlpatterns = patterns('',
     (r'^tabzilla/', include('tabzilla.urls')),
     (r'', include('firefox.urls')),
     (r'', include('mozorg.urls')),
+    (r'', include('newsletter.urls')),
     (r'', include('redirects.urls')),
     (r'', include('research.urls')),
 

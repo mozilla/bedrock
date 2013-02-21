@@ -1,0 +1,202 @@
+{% extends 'base-resp.html' %}
+
+{#
+# FIXME - this page needs better styling
+#}
+
+{# Template used for a user to manage their subscriptions #}
+
+{% block page_title %}{{ _('Mozilla Newsletter') }}{% endblock page_title %}
+
+{% block body_id %}newsletter-existing{% endblock body_id %}
+
+{# If we want this page to use the Firefox 'sand' color scheme,
+uncomment the next block or add it to the inheriting template:
+{% block body_class %}sand{% endblock %}
+#}
+
+{% block site_css %}
+    {{ super() }}
+    {{ css('newsletter') }}
+{% endblock %}
+
+{% block js %}
+    {{ super() }}
+    <script type="text/javascript">
+
+        $(function() {
+            var _newsletter_langs = {{ newsletter_languages }};
+
+            function show_newsletters(lang) {
+                var letters = _newsletter_langs[lang][1];
+
+                if (letters) {
+                    // Hide all the newsletters
+                    // FIXME: unless they're subscribed to them
+                    var $rows = $('#all-newsletters tbody tr.subscription');
+                    {# on /new, we have checkboxes, so hide rows with unchecked checkboxes #}
+                    var $tohide_new = $rows.find('input[type="checkbox"]').not(':checked')
+                    {# on /existing, we have radio buttons, so hide rows where value="False" is checked #}
+                    var $tohide_existing = $rows.find('input[type="radio"][value="False"]:checked')
+                    {# now we have two sets of input elements, but we want their parents #}
+                    var $rows_to_hide = $tohide_new.parent().add($tohide_existing.parent())
+
+                    $rows_to_hide
+                        .each(function() {
+                            console.log("About to hide:");
+                            console.log(this);
+                            $(this).hide();
+                        });
+                    // Show individually available newsletters
+                    $.each(letters, function(i, nl) {
+                        var field = $('input[value=' + nl + ']');
+                        field.parents('tbody tr').show();
+                    });
+                }
+            }
+
+            $('select[name=lang]').change(function() {
+                show_newsletters($(this).find(':selected').val());
+            });
+
+            var lang = $('select[name=lang] :selected').val();
+            show_newsletters(lang);
+        });
+
+
+    </script>
+{% endblock js %}
+
+{% block content %}
+    <!-- Begin content -->
+
+    {% block main_feature %}
+        <h1 id="main-feature">{{ _('Manage your <span>Newsletter Subscriptions</span>') }}</h1>
+    {% endblock %}
+
+    {% if messages %}  {# FIXME - this ought to be in base-resp.html #}
+        <ul class="messagelist">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <section id="main-content">
+
+        {% if formset %}
+            <form method="post" action="" id="newsletter-form">
+                {{ formset.management_form }}
+
+                <div id="basic-settings">
+
+                    {% block intro %}{% endblock %}
+
+                    {% if form.non_field_errors() %}
+                        <div class="errorlist">
+                            {{ form.non_field_errors() }}
+                        </div>
+                    {% endif %}
+
+                    {% set email = form['email'] %}
+                    <div class="field email-field {% if email.errors %}field-error{% endif %}">
+                        <label for="email">{{ _('Your email address:') }}</label>
+                        {{ email.errors }}
+                        <div class="field-contents">
+                            {{ email }}
+                        </div>
+                    </div>
+
+                    {% set country = form['country'] %}
+                    <div class="field country-field {% if country.errors %}field-error{% endif %}">
+                        <label for="country">{{ _('Country:') }}</label>
+                        {{ country.errors }}
+                        <div class="field-contents">
+                            {{ country }}
+                        </div>
+                    </div>
+
+                    {% set lang = form['lang'] %}
+                    <div class="field lang-field {% if lang.errors %}field-error{% endif %}">
+                        <label for="lang">{{ _('Language:') }}</label>
+                        {{ lang.errors }}
+                        <div class="field-contents">
+                            {{ lang }}
+                        </div>
+                    </div>
+
+                    <div class="field format-field">
+                        <span class="field-label">{{ _('Format:') }}</span>
+                        {{ form['format'].errors }}
+                        <div class="field-radios">
+                            {{ form['format'] }}
+                        </div>
+                    </div>
+                </div><!-- close #basic-settings -->
+
+                <div id="other-newsletters">
+                    <h3><span>{{ _('Our Monthly Newsletters:') }}</span></h3>
+                    <table>
+                        <thead>
+                        <tr>
+                            <td></td>
+                            <th>Subscribe</th>
+                            {% if user_exists %}
+                                <th>{{ _('Unsubscribe') }}</th>
+                            {% endif %}
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for formpart in formset %}  {# each newsletter is a formset #}
+                            <tr class="subscription">
+                                <th>
+                                    <h4>{{ formpart.initial['title'] }}</h4>
+                                    {# hidden field: #}
+                                    {{ formpart.newsletter }}
+                                </th>
+                                {{ formpart.subscribed }}
+                            </tr>
+                        {% endfor %}
+
+                        {% if user_exists %}{# existing users can unsubscribe all #}
+                            <tr>
+                                <td colspan="3" id="remove-all-section">
+                                    {{ form['remove_all'] }}
+                                    <label for="id_remove_all">{{ _('Remove me from all Mozilla emails') }}</label>
+                                </td>
+                            </tr>
+                        {% else %}  {# New users have to agree to privacy policy #}
+                            <tr>
+                                <td colspan="3" id="privacy-section" class="field field-privacy ">
+                                    {% set privacy = form['privacy'] %}
+                                    <input required="true" type="checkbox"
+                                           name="{{ privacy.html_name }}"
+                                           id="id_{{ privacy.html_name }}" />
+                                    <label for="id_{{ privacy.html_name }}" class="privacy-check-label">
+                                            <span class="title">
+                                                {% trans privacy=url('privacy.index') %}
+                                                I’m okay with you handling this info as you explain in your
+                                                <a href="{{ privacy }}">Privacy Policy</a>
+                                                {% endtrans %}
+                                            </span>
+                                    </label>
+                                </td>
+                            </tr>
+                        {% endif %}
+                        </tbody>
+                    </table>
+                </div><!-- close #all-newsletters -->
+
+                <div class="field submit-field">
+                    <input name="submit" type="submit" value="Save Preferences" class="button">
+                </div><!-- close .submit-field -->
+
+            </form>
+        {% endif %}
+    </section>
+    <!-- End content -->
+{% endblock %}
+
+{# Don't display an email signup form in the footer of this page, #}
+{# it would be redundant. #}
+{% block email_form %}{% endblock %}

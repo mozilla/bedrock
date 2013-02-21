@@ -83,39 +83,6 @@ class PrivacyWidget(widgets.CheckboxInput):
 class EmailInput(widgets.TextInput):
     input_type = 'email'
 
-NEWSLETTER_CHOICES = (('app-dev',) * 2,
-                      ('mozilla-and-you',) * 2)
-
-
-class NewsletterForm(forms.Form):
-    newsletter = forms.ChoiceField(choices=NEWSLETTER_CHOICES,
-                                   widget=forms.HiddenInput)
-    email = forms.EmailField(widget=EmailInput(attrs={'required': 'true'}))
-    fmt = forms.ChoiceField(widget=forms.RadioSelect(renderer=SideRadios),
-                            choices=FORMATS,
-                            initial='H')
-    privacy = forms.BooleanField(widget=PrivacyWidget)
-    source_url = forms.URLField(verify_exists=False, required=False)
-
-    LANG_CHOICES = get_lang_choices()
-
-    def __init__(self, locale, *args, **kwargs):
-        regions = product_details.get_regions(locale)
-        regions = sorted(regions.iteritems(), key=lambda x: x[1])
-
-        lang = country = locale.lower()
-        if '-' in lang:
-            lang, country = lang.split('-', 1)
-        lang = lang if lang in LANGS else 'en'
-
-        super(NewsletterForm, self).__init__(*args, **kwargs)
-        self.fields['country'] = forms.ChoiceField(choices=regions,
-                                                   initial=country,
-                                                   required=False)
-        self.fields['lang'] = forms.ChoiceField(choices=self.LANG_CHOICES,
-                                                initial=lang,
-                                                required=False)
-
 
 class ContributeForm(forms.Form):
     email = forms.EmailField(widget=EmailInput(attrs={'required': 'true'}))

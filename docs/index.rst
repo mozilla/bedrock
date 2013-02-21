@@ -28,4 +28,5 @@ Contents
    l10n
    coding
    contribute
+   newsletters
    tabzilla
