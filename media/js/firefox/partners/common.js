@@ -16,7 +16,7 @@
     if (($.browser.msie && parseInt($.browser.version, 10) < 9)) {
         _load_mobile();
     } else {
-        enquire.register("screen and (max-width: 759px)", {
+        enquire.register("screen and (max-width: 999px)", {
             deferSetup: true,
             setup: function() {
                 _load_mobile();
@@ -28,7 +28,7 @@
                 closeModal();
                 w.detach_mobile();
             }
-        }, false).register("screen and (min-width: 760px)", {
+        }, false).register("screen and (min-width: 1000px)", {
             deferSetup: true,
             setup: function() {
                     Modernizr.load([{
