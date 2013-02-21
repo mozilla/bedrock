@@ -119,6 +119,9 @@ MINIFY_BUNDLES = {
         'responsive': (
             'css/sandstone/sandstone-resp.less',
         ),
+        'newsletter': (
+            'css/newsletter/newsletter.less',
+        ),
         'contribute': (
             'css/mozorg/contribute.less',
             'css/sandstone/video-resp.less',
@@ -578,15 +581,16 @@ MIDDLEWARE_CLASSES = (
 ) + get_middleware(exclude=(
     'funfactory.middleware.LocaleURLMiddleware',
     'multidb.middleware.PinningRouterMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'session_csrf.CsrfMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'mobility.middleware.DetectMobileMiddleware',
     'mobility.middleware.XMobileMiddleware',
 ), append=(
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
     'bedrock.mozorg.middleware.CacheMiddleware',
-    'bedrock.mozorg.middleware.NewsletterMiddleware',
+    'bedrock.newsletter.middleware.NewsletterMiddleware',
     'dnt.middleware.DoNotTrackMiddleware',
     'lib.l10n_utils.middleware.FixLangFileTranslationsMiddleware',
 ))
@@ -604,6 +608,7 @@ INSTALLED_APPS = get_apps(exclude=(
 
     # Django contrib apps
     'django_sha2',  # Load after auth to monkey-patch it.
+    'django.contrib.messages',
 
     # Local apps
     '%s.base' % PROJECT_MODULE,
@@ -614,6 +619,7 @@ INSTALLED_APPS = get_apps(exclude=(
     '%s.legal' % PROJECT_MODULE,
     '%s.marketplace' % PROJECT_MODULE,
     '%s.mozorg' % PROJECT_MODULE,
+    '%s.newsletter' % PROJECT_MODULE,
     '%s.persona' % PROJECT_MODULE,
     '%s.privacy' % PROJECT_MODULE,
     '%s.redirects' % PROJECT_MODULE,
@@ -632,6 +638,7 @@ LOCALE_PATHS = (
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = get_template_context_processors(append=(
+    'django.contrib.messages.context_processors.messages',
     'bedrock.mozorg.context_processors.current_year',
     'bedrock.firefox.context_processors.latest_firefox_versions',
 ))
@@ -679,6 +686,10 @@ RECAPTCHA_PRIVATE_KEY = ''
 RECAPTCHA_USE_SSL = True
 
 TEST_RUNNER = 'test_utils.runner.NoDBTestSuiterunner'
+
+# Use a message storage mechanism that doesn't need a database.
+# This can be changed to use session once we do add a database.
+MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
 
 def lazy_email_backend():

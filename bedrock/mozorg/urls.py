@@ -22,8 +22,6 @@ urlpatterns = patterns('',
     page('ITU', 'mozorg/itu.html'),
     page('about/powered-by', 'mozorg/powered-by.html'),
 
-    url('^newsletter/hacks\.mozilla\.org/$', views.hacks_newsletter,
-        name='mozorg.hacks_newsletter'),
     url('^contribute/$', views.contribute, name='mozorg.contribute',
         kwargs={'template': 'mozorg/contribute.html',
                 'return_to_form': False}),

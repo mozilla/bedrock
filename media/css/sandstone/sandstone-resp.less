@@ -245,7 +245,6 @@ input[type=email],
 input[type=password],
 input[type=search],
 input[type=text] {
-    height: @baseLine;
     background: #fff;
     border-color: #b2b2b2;
     border-style: solid;
@@ -253,10 +252,11 @@ input[type=text] {
     @shadow: 0 1px rgba(255,255,255,0.5);
     font-size: @smallFontSize;
     .open-sans;
-    padding: (@baseLine / 6)  (@baseLine / 3);
+    padding: (@baseLine / 5)  (@baseLine / 2);
     .border-radius(3px);
     .box-shadow(@shadow);
     .transition(all linear .1s);
+    line-height: 1.1;
 }
 
 textarea { height: auto; }
@@ -287,6 +287,17 @@ input.invalid {
 
 .form-field {
     margin-bottom: @baseLine / 3;
+}
+
+.messagelist {
+    margin: 0 0 24px 0;
+    .open-sans;
+    li {
+        list-style-type: none;
+    }
+    .error { color: #c00; }
+    .warning { color: #0c0; }
+    .info { color: #000; }
 }
 
 .errorlist {
@@ -337,10 +348,21 @@ input[type=email], input[type=password], input[type=text] {
         position: absolute;
         top: 100%;
         left: 15px;
-        border-top: 10px solid blue;
-        border-top-color: #a91300;
-        border-left: 10px solid transparent;
-        border-right: 10px solid transparent;
+        border-style: solid;
+        border-width: 10px 10px 0;
+        border-color: #a91300 transparent;
+    }
+    &.arrow-top:after {
+        top: -10px;
+        border-width: 0 10px 10px;
+        border-color: #d54a2c transparent;
+    }
+    &.arrow-left:after {
+        top: 50%;
+        margin-top: -10px;
+        left: -10px;
+        border-width: 10px 10px 10px 0;
+        border-color: transparent #c13018;
     }
 }
 
@@ -607,7 +629,7 @@ nav.menu-bar {
 /* }}} */
 /* {{{ Footer Email Form */
 
-#footer-email-form {
+#footer-email-form, #newsletter-form {
     padding-top: @baseLine;
     padding-bottom: @baseLine;
     margin-bottom: 0;
@@ -649,7 +671,7 @@ nav.menu-bar {
 
 }
 
-#footer-email-form.thank {
+#footer-email-form.thank, #newsletter-form.thank {
     h3 {
         width: auto;
         margin: auto;
@@ -669,7 +691,8 @@ nav.menu-bar {
     }
 }
 
-#footer-email-errors .errorlist {
+#footer-email-errors .errorlist,
+#newsletter-errors .errorlist {
     .container;
     background: #AF3232;
     color: #fff;
@@ -772,7 +795,7 @@ nav.menu-bar {
         .offset_narrow(1);
     }
 
-    #footer-email-form {
+    #footer-email-form, #newsletter-form {
         h3 {
             .span_narrow(4);
             padding-top: 4px;
@@ -937,7 +960,7 @@ nav.menu-bar {
         }
     }
 
-    #footer-email-form {
+    #footer-email-form, #newsletter-form {
         h3,
         .form-contents,
         .form-submit {
