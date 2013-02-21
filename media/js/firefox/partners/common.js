@@ -148,13 +148,18 @@
     var query_str = window.location.search ? window.location.search + '&' : '?';
     var referrer = path_parts[path_parts.length-2];
     var locale = path_parts[1];
+    var last_virtual_page;
 
     // GA tracking
     w.ga_track = function(virtual_page) {
         if (w._gaq) {
-            //var v_url = '/' + locale + '/firefox/partners/' + virtual_page;
-            //w.console.log('tracking ' + v_url);
-            w._gaq.push(['_trackPageview', '/' + locale + '/firefox/partners/' + virtual_page]);
+            if (last_virtual_page !== virtual_page) {
+                var v_url = '/' + locale + '/firefox/partners/' + virtual_page;
+                w.console.log('tracking ' + v_url);
+                //w._gaq.push(['_trackPageview', '/' + locale + '/firefox/partners/' + virtual_page]);
+
+                last_virtual_page = virtual_page;
+            }
         }
     };
 

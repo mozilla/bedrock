@@ -25,6 +25,20 @@
     var $marketplace = $('#marketplace');
     var $android = $('#android');
 
+    var virtual_page;
+    var scroll_tracking = true;
+
+    var scroll_track = function(url) {
+        if (scroll_tracking) {
+            // bit of a hack to standardize tracking
+            if (url === 'overview/') {
+                url = '';
+            }
+
+            w.ga_track(url);
+        }
+    };
+
     // set phone position (needs to be in inline style object for retrieval later)
     $phone.css('left', '50%');
 
@@ -75,10 +89,15 @@
             });
         });
 
-        // slow-ish scrolling to make scroll animation life easier
-        $("html:not(:animated),body:not(:animated)").animate({ scrollTop: destination }, 1000);
+        // make sure scroll tracking doesn't happen while animating scroll position with buttons
+        scroll_tracking = false;
 
-        var virtual_page = (elementClicked !== '#overview') ? elementClicked.replace(/#/, '') + '/' : '';
+        // slow-ish scrolling to make scroll animation life easier
+        $("html:not(:animated),body:not(:animated)").animate({ scrollTop: destination }, 1000, function() {
+            scroll_tracking = true;
+        });
+
+        virtual_page = (elementClicked !== '#overview') ? elementClicked.replace(/#/, '') + '/' : '';
 
         w.ga_track(virtual_page);
 
@@ -87,9 +106,14 @@
 
     // if hash changes, make sure parallax doesn't go haywire
     var _handle_hash = function() {
-        if (window.location.hash !== '') {
+        if (w.location.hash !== '') {
             $article_wrapper.animate({ scrollTop: 0 }, 100, function() {
-                $('#partner-nav a[href="' + window.location.hash + '"]').trigger('click');
+                if (w.location.hash === 'location' || w.location.hash === 'schedule') {
+                    $('a.modal[href="#' + w.location.hash + '"]').trigger('click');
+                } else {
+                    $('#partner-nav a[href="' + w.location.hash + '"]').trigger('click');
+                }
+
                 w.location.hash = '';
             });
         }
@@ -200,7 +224,7 @@
         }
 
         // track section view
-        var virtual_page = article.attr('id') + '/';
+        virtual_page = article.attr('id') + '/';
 
         // only add sub-section id if not in first position
         if (dest_pos > 1) {
@@ -295,10 +319,23 @@
 
         // scrolling to android slide should never affect standard phone's left or z-index
         if (slide.attr('id') === 'android') {
-            $phone.animate({ 'top': top_pos + 'px' }, phone_speed);
+            $phone.animate({ 'top': top_pos + 'px' }, phone_speed, function() {
+                virtual_page = 'android/';
+
+                if (slide.find('section:first').attr('data-current') !== '1') {
+                    virtual_page += slide.find('section[data-current]:first').attr('id') + '/';
+                }
+
+                scroll_track(virtual_page);
+            });
         } else {
             // would like to abstract this more, but each scenario requires specific sequencing
+
+            // if going to the first section in an article, phone should end up in viewport
+            // only need to track root article
             if (Number(slide.find('section:first').attr('data-current')) === 1) {
+                // if phone is not visible, quickly change top position, then nicely
+                // animate in from left
                 if (!visible) {
                     if (new_z) {
                         $phone.css('z-index', new_z);
@@ -306,15 +343,18 @@
 
                     $phone.animate({
                         top: top_pos
-                    }, 100, function() {
+                    }, 50, function() {
                         $phone.attr('data-showing', 1);
 
                         _refresh_phone(slide, 'in');
 
                         $phone.animate({ 'left': '50%' }, phone_speed, function() {
                             $phone.attr('data-showing', 0);
+
+                            scroll_track(slide.attr('id') + '/');
                         });
                     });
+                // if phone is visible, animate top position only
                 } else {
                     _refresh_phone(slide, 'in');
 
@@ -322,9 +362,17 @@
                         if (new_z) {
                             $phone.css('z-index', new_z);
                         }
+
+                        scroll_track(slide.attr('id') + '/');
                     });
                 }
+            // if moving to a sub-section of article, phone should end up off
+            // screen to the left. track article and sub-section
             } else {
+                // if phone is visible, animate nicely off to the left, then
+                // change top position
+                virtual_page = slide.attr('id') + '/' + slide.find('section[data-current="1"]:first').attr('id') + '/';
+
                 if (visible) {
                     $phone.attr('data-hiding', 1);
 
@@ -339,7 +387,10 @@
                         if (new_z) {
                             $phone.css('z-index', new_z);
                         }
+
+                        scroll_track(virtual_page);
                     });
+                // if phone is not visible, just change top position
                 } else {
                     if (new_z) {
                         $phone.css('z-index', new_z);
@@ -347,7 +398,9 @@
 
                     _refresh_phone(slide, 'out');
 
-                    $phone.animate({ 'top': top_pos + 'px' }, phone_speed);
+                    $phone.css('top', top_pos + 'px');
+
+                    scroll_track(virtual_page);
                 }
             }
         }
@@ -470,8 +523,7 @@
         });
 
         if (my_tweens.length > 0) {
-            // add the tween when the previous article is 600px away from being "in view"
-            // (which i think means horizontal middle of viewport)
+            // execute tween when previous article is 600px from being out of viewport
             controller.addTween(
                 prev_article,
                 (new TimelineLite()).append(my_tweens),
@@ -485,4 +537,3 @@
         }
     });
 })(window, window.jQuery, window.TweenMax, window.TimelineLite, window.Power2, window.Quad);
-
