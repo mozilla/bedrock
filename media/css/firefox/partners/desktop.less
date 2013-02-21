@@ -105,6 +105,7 @@
             margin-left: 20px;
             margin-right: 0;
             .promos {
+                padding-top: @baseLine;
                 div {
                     .span(3);
                     &:first-child {
@@ -410,6 +411,7 @@
                 }
                 .promos {
                     .span(5);
+                    padding-top: 0;
                     margin-right: 0;
                     margin-bottom: @baseLine;
                     clear: none;
@@ -533,7 +535,7 @@ body #partner-nav {
     top: 80px;
     left: 34px;
     width: 50px;
-    padding: 0 0 20px 50px;
+    padding: 0 0 18px 50px;
     margin: 0;
     font-size: 23px;
     background: url(/media/img/firefox/partners/menu-icons.png) 0 -720px no-repeat;
@@ -755,6 +757,26 @@ body #partner-nav {
 html[lang="de"] {
     #overview h2 {
         font-size: 66px;
+    }
+}
+
+html[lang="fr"],
+html[lang="pt-BR"] {
+    #overview h2 {
+        font-size: 72px;
+    }
+}
+
+html[lang="pl"] {
+    #explore,
+    #overview .intro #more-partners {
+        display: none;
+    }
+}
+
+html[lang="zh-CN"] {
+    #overview .intro p {
+        padding: 0 10px;
     }
 }
 
