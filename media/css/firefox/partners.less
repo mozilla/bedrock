@@ -1,7 +1,6 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
-
 @import "../sandstone/lib.less";
 
 @localBlue:     #43a6e2;
@@ -465,7 +464,7 @@
 /* }}} */
 /* {{{ Overlay / Form */
 
-#overlay {
+.js #overlay {
     display: none;
 }
 
@@ -475,23 +474,32 @@
     display: none;
 }
 
-#form {
-    .close { display: none; }
-    padding-top: 50px;
-    padding-bottom: 20px;
+.js #form {
     text-shadow: 1px 1px #000;
     color: #fff;
-
     h3 {
         color: #fff;
     }
+    label {
+        color: #fff;
+    }
+    .field label {
+        display: none;
+    }
+}
 
+#form {
+    &.overlay-contents {
+        background: none;
+    }
+    .close { display: none; }
+    padding-top: 50px;
+    padding-bottom: 20px;
     p {
         font-size: 16px;
     }
     label {
         display: block;
-        color: #fff;
         margin: 0 0 4px 0;
     }
 
@@ -538,6 +546,7 @@
 }
 
 .overlay-contents {
+    padding: 0 100px;
     .clearfix();
     background: #fff;
     margin: 0 auto;
@@ -557,6 +566,10 @@
             margin-bottom: 5px;
         }
     }
+}
+
+.js .overlay-contents {
+    padding: 0;
 }
 
 #location {
@@ -702,14 +715,19 @@
 /* }}} */
 /* {{{ Pager */
 
-.pager-page {
+.js .pager-page {
     display: none;
     &.default-page {
         display: block;
     }
 }
 
+.js .pager-tabs {
+    display: block;
+}
+
 .pager-tabs {
+    display: none;
     text-align: center;
     clear: both;
     margin: 0;
