@@ -414,7 +414,7 @@
     // generic tween used for most article content
     tweens.slide_up = {
         from: {
-            css: { top: 120, opacity: 0 },
+            css: { top: (('ontouchstart' in w.document.documentElement) ? 0 : 120), opacity: (('ontouchstart' in w.document.documentElement) ? 1 : 0) },
             immediateRender: true
         },
         to: { css: { top: 0, opacity: 1 } }
