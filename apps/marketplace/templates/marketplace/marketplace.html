@@ -40,23 +40,7 @@
 
 <p>{{_('The first Aurora release of Firefox Marketplace is available on Firefox Aurora for Android, giving developers a means to get feedback on their apps as the Marketplace grows and progresses.')}}</p>
 
-<aside id="apps-bag">
-  <div id="apps-bag-background"></div>
-  <div id="apps-container">
-    <div id="apps-physics">
-      <div class="apps-icon" id="app-jauntly"></div>
-      <div class="apps-icon" id="app-minimalist"></div>
-      <div class="apps-icon" id="app-solitaire"></div>
-      <div class="apps-icon" id="app-soundcloud"></div>
-      <div class="apps-icon" id="app-distantorbit"></div>
-      <div class="apps-icon" id="app-twitter"></div>
-      <div class="apps-icon" id="app-wired"></div>
-      <div class="apps-icon" id="app-wordwars"></div>
-    </div>
-  </div>
-  <div id="apps-bag-handle"></div>
-  <div id="apps-bag-foreground"></div>
-</aside>
+<aside id="apps-hero-background"></aside>
 
 </section>
 
@@ -182,9 +166,6 @@
 {% endblock %}
 
 {% block js %}
-  <!--[if gte IE 9]><!-->
-  {{ js('box2d') }}
-  <!--<![endif]-->
 
   {{ js('marketplace') }}
 {% endblock %}
