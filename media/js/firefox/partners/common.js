@@ -154,9 +154,9 @@
     w.ga_track = function(virtual_page) {
         if (w._gaq) {
             if (last_virtual_page !== virtual_page) {
-                var v_url = '/' + locale + '/firefox/partners/' + virtual_page;
-                w.console.log('tracking ' + v_url);
-                //w._gaq.push(['_trackPageview', '/' + locale + '/firefox/partners/' + virtual_page]);
+                //var v_url = '/' + locale + '/firefox/partners/' + virtual_page;
+                //w.console.log('tracking ' + v_url);
+                w._gaq.push(['_trackPageview', '/' + locale + '/firefox/partners/' + virtual_page]);
 
                 last_virtual_page = virtual_page;
             }

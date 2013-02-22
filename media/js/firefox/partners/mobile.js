@@ -8,9 +8,12 @@
 
     // mobile functionality
     w.attach_mobile = function() {
-        if (w.location.hash) {
-            _show_scene(w.location.hash);
-        }
+        setTimeout(function() {
+            if (w.location.hash) {
+                _show_scene(w.location.hash);
+                w.location.hash = '';
+            }
+        }, 60);
 
         // hide back to top arrows
         $('.top').hide();
@@ -35,15 +38,20 @@
     };
 
     var _show_scene = function(anchor) {
-        $('.partner-article:visible').fadeOut('fast', function() {
-            $(anchor).fadeIn('fast');
+        if (anchor === '#overview' || anchor === '#os' || anchor === '#marketplace' || anchor === '#android') {
+            $('.partner-article:visible').fadeOut('fast', function() {
+                $(anchor).fadeIn('fast');
 
-            $('a[href!="' + anchor + '"]').parent('li').removeClass('active');
-            $('a[href="' + anchor + '"]').parent('li').addClass('active');
+                // #partner-menu
+                $('a[href!="' + anchor + '"]').parent('li').removeClass('active');
+                $('a[href="' + anchor + '"]').parent('li').addClass('active');
 
-            var virtual_page = (anchor !== '#overview') ? anchor.replace(/#/, '') + '/' : '';
-            w.ga_track(virtual_page);
-        });
+                var virtual_page = (anchor !== '#overview') ? anchor + '/' : '';
+                w.ga_track(virtual_page);
+            });
+        } else if (anchor === '#location' || anchor === '#schedule') {
+            $('a.modal[href="' + anchor + '"]:first').trigger('click');
+        }
     };
 
     $('.toggle-form').off().on('click', function(e) {
