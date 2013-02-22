@@ -441,6 +441,21 @@ MINIFY_BUNDLES = {
             'js/mozilla-pager.js',
             'js/firefox/partners.js',
         ),
+        'partners_common': (
+            'js/libs/enquire.min.js',
+            'js/firefox/partners/common.js',
+        ),
+        'partners_mobile': (
+            'js/firefox/partners/mobile.js',
+        ),
+        'partners_desktop': (
+            'js/libs/jquery.pageslide.min.js',
+            'js/libs/tweenmax.min.js',
+            'js/libs/superscrollorama.js',
+            'js/libs/jquery.spritely-0.6.1.js',
+            'js/firefox/partners/desktop.js',
+        ),
+
     }
 }
 

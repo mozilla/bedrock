@@ -331,7 +331,7 @@
                 virtual_page = 'android/';
 
                 if (slide.find('section:first').attr('data-current') !== '1') {
-                    virtual_page += slide.find('section[data-current]:first').attr('id') + '/';
+                    virtual_page += slide.find('section[data-current="1"]:first').attr('id') + '/';
                 }
 
                 scroll_track(virtual_page);
