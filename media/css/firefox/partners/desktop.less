@@ -16,8 +16,7 @@
 
 /* }}} */
 /* {{{ Template overrides */
-
-#article-wrapper {
+.js #article-wrapper {
     height: 2840px;
     overflow: hidden;
     position: relative;
@@ -28,7 +27,6 @@
 .partner-article {
     overflow: hidden;
     position: relative;
-    height: 820px;
     background: #eee url(/media/img/sandstone/grain.png) repeat;
     background: url(/media/img/sandstone/bg-gradient-sky.png) repeat-x 0 0,
                 url(/media/img/sandstone/grain.png) repeat 0 0,
@@ -38,20 +36,10 @@
     box-shadow:  0px -3px 5px 1px rgba(0, 0, 0, 0.3);
     section {
         width: 100%;
-        height: 820px;
-        position: absolute;
-        top: 0;
-        left: 0;
         padding-top: 0;
         padding-bottom: 0;
         border: 0;
         .transition(all ease .5s);
-        &.section-2 {
-            left: 100%;
-        }
-        &.section-3 {
-            left: 200%;
-        }
     }
     .article-header {
         .clearfix();
@@ -63,7 +51,7 @@
         }
         nav {
             position: relative;
-            display: block;
+            display: none;
             padding: 25px 0 0 0;
             a {
                 display: table;
@@ -119,6 +107,25 @@
         }
     }
 
+}
+
+.js .partner-article {
+    height: 820px;
+    .article-header nav {
+        display: block;
+    }
+    section {
+        position: absolute;
+        height: 820px;
+        top: 0;
+        left: 0;
+        &.section-2 {
+            left: 100%;
+        }
+        &.section-3 {
+            left: 200%;
+        }
+    }
 }
 
 .partner-article.dark {
@@ -196,10 +203,14 @@
     }
 }
 
+.js .marketplacegiantfox {
+    top: 1600px;
+}
+
 .marketplacegiantfox {
     position: absolute;
     display: block;
-    top: 1576px;
+    top: 2576px;
     left: 50%;
     .transition(all ease 0.6s);
     &.giantfox-foreground {
@@ -222,6 +233,17 @@
 /* }}} */
 /* {{{ Overview Article */
 
+.js #overview {
+    .partner-button, #overview-news, .overview-actions {
+        display: none;
+    }
+    .partner-button {
+        margin-top: -35px;
+    }
+    #more-partners {
+        display: block;
+    }
+}
 #overview {
     background: url(/media/img/firefox/partners/overview-bg.png) center top no-repeat;
     h2 {
@@ -240,7 +262,7 @@
         #more-partners {
             margin: -30px 0 0 0;
             float: left;
-            display: block;
+            display: none;
             font-family: Journal;
             font-size: 23px;
             color: @textColorTertiary;
@@ -250,12 +272,9 @@
             background: url(/media/img/firefox/partners/partners-arrow.png) 100% 50% no-repeat;
         }
         .partner-button {
-            display: none;
-            margin-top: -35px;
             float: right;
         }
         #overview-news {
-            display: none;
             clear: both;
             .clearfix();
             background: url(/media/img/firefox/partners/divider.png) 50% 100% no-repeat;
@@ -278,7 +297,6 @@
         }
     }
     .overview-actions {
-        display: none;
         margin: 0;
         padding: 0;
         li {
@@ -291,11 +309,13 @@
 
 /* }}} */
 /* {{{ Firefox OS section */
+.js #os .intro {
+    padding-top: 140px;
+}
 
 #os {
     .intro {
         z-index: 50;
-        padding-top: 140px;
         .span(7);
         margin-left: 20px;
         .narrow {
@@ -338,6 +358,10 @@
 /* }}} */
 /* {{{ Marketplace section */
 
+.js #marketplace .intro {
+    padding-top: 140px;
+}
+
 #marketplace {
     z-index: 111;
     .article-header {
@@ -347,7 +371,6 @@
         }
     }
     .intro {
-        padding-top: 140px;
         z-index: 50;
     }
     #marketplace-overview {
@@ -450,10 +473,12 @@
 /* }}} */
 /* {{{ Firefox for Android section */
 
+.js #android .intro {
+    padding-top: 140px;
+}
 #android {
     z-index: 121; // 1 higher than #phone-container
     .intro {
-        padding-top: 140px;
         .span(6);
         margin-left: 20px;
         .narrow {
@@ -741,8 +766,7 @@ body #partner-nav {
 
 /* }}} */
 /* {{{ Form */
-
-#form {
+.js #form {
     .close { display: inline; }
     display: none;
     height: 820px;

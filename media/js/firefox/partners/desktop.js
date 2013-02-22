@@ -109,7 +109,7 @@
         if (w.location.hash !== '') {
             $article_wrapper.animate({ scrollTop: 0 }, 100, function() {
                 if (w.location.hash === 'location' || w.location.hash === 'schedule') {
-                    $('a.modal[href="#' + w.location.hash + '"]').trigger('click');
+                    $('a.modal[href="#' + w.location.hash + '"]:first').trigger('click');
                 } else {
                     $('#partner-nav a[href="' + w.location.hash + '"]').trigger('click');
                 }
@@ -142,10 +142,18 @@
         }
     };
 
+    // set up AJAX form
+    var $sf_form = $('#sf-form'), $interest = $('#interest');
+    $sf_form.attr('action', $sf_form.attr('data-ajax-action'));
+    $interest.attr('name', $interest.attr('data-ajax-name'));
+    $('#sf-form-oid').remove();
+    $('#sf-form-retURL').remove();
+
     // move form out of overlay and into its own container for side slider
     var $form = $('#form').detach();
     $form.hide();
     $article_wrapper.after($form);
+
     $form.find('.close').click(function() {
         _toggle_form();
     });
