@@ -512,7 +512,6 @@ INSTALLED_APPS = (
     # Local apps
     'collusion',
     'firefox',
-    'firefoxos',
     'foundation',
     'grants',
     'legal',
