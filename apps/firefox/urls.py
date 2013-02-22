@@ -2,8 +2,12 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import json
+
 from django.conf.urls.defaults import *
 from django.conf import settings
+
+from jingo_minify.helpers import BUILD_ID_JS, BUNDLE_HASHES
 from product_details import product_details
 
 from firefox import version_re
@@ -15,6 +19,24 @@ import views
 latest_re = r'^firefox(?:/(%s))?/%s/$'
 firstrun_re = latest_re % (version_re, 'firstrun')
 whatsnew_re = latest_re % (version_re, 'whatsnew')
+
+
+def get_js_bundle_files(bundle):
+    """
+    Return a JSON string of the list of file names for lazy loaded
+    javascript.
+    """
+    # mostly stolen from jingo_minify.helpers.js
+    if settings.DEBUG:
+        items = settings.MINIFY_BUNDLES['js'][bundle]
+    else:
+        build_id = BUILD_ID_JS
+        bundle_full = "js:%s" % bundle
+        if bundle_full in BUNDLE_HASHES:
+            build_id = BUNDLE_HASHES[bundle_full]
+        items = ("js/%s-min.js?build=%s" % (bundle, build_id,),)
+    return json.dumps([settings.MEDIA_URL + i for i in items])
+
 
 urlpatterns = patterns('',
     url(r'^firefox/all/$', views.all_downloads, name='firefox.all'),
@@ -61,7 +83,10 @@ urlpatterns = patterns('',
     url(whatsnew_re, views.latest_fx_redirect, name='firefox.whatsnew',
         kwargs={'template_name': 'firefox/whatsnew.html'}),
 
-    page('firefox/partners', 'firefox/partners/index.html'),
+    page('firefox/partners', 'firefox/partners/index.html',
+         js_common=get_js_bundle_files('partners_common'),
+         js_mobile=get_js_bundle_files('partners_mobile'),
+         js_desktop=get_js_bundle_files('partners_desktop')),
     url(r'^firefox/partners/contact-bizdev/', views.contact_bizdev,
         name='firefox.partners.contact-bizdev'),
 )

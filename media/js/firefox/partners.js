@@ -9,7 +9,6 @@
             test: window.matchMedia,
             nope: '/media/js/libs/matchMedia.js'
         },
-        '/media/js/libs/enquire.min.js',
-        '/media/js/firefox/partners/common.js'
+        COMMON_JS_FILES
     ]);
 })(window.Modernizr);

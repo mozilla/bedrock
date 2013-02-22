@@ -6,7 +6,7 @@
 
     var _load_mobile = function() {
         w.Modernizr.load([{
-            both: [ '/media/js/firefox/partners/mobile.js' ],
+            both: MOBILE_JS_FILES,
             complete: function() {
                 w.attach_mobile();
             }
@@ -32,7 +32,7 @@
             deferSetup: true,
             setup: function() {
                     Modernizr.load([{
-                        both: [ '/media/js/libs/jquery.pageslide.min.js', '/media/js/libs/tweenmax.min.js', '/media/js/libs/superscrollorama.js', '/media/js/libs/jquery.spritely-0.6.1.js', '/media/js/firefox/partners/desktop.js' ],
+                        both: DESKTOP_JS_FILES,
                         complete: function() {
                             // no action needed?
                         }
@@ -154,8 +154,6 @@
     w.ga_track = function(virtual_page) {
         if (w._gaq) {
             if (last_virtual_page !== virtual_page) {
-                //var v_url = '/' + locale + '/firefox/partners/' + virtual_page;
-                //w.console.log('tracking ' + v_url);
                 w._gaq.push(['_trackPageview', '/' + locale + '/firefox/partners/' + virtual_page]);
 
                 last_virtual_page = virtual_page;
