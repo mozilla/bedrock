@@ -251,6 +251,9 @@ NavMain.enterSmallMode = function()
 	.addClass('submenu-item')
 	.unbind('click', NavMain.handleSubmenuClick);
 
+    // add click handler to menu links to hide menu
+    NavMain.linkMenuHideOnClick();
+
     NavMain.smallMode = true;
 };
 
@@ -284,9 +287,40 @@ NavMain.leaveSmallMode = function()
 	)
 	.attr('aria-expanded', 'false');
 
+    // remove click handler from menu links that hide menu
+    NavMain.unlinkMenuHideOnClick();
+
     NavMain.currentSmallSubmenu = null;
     NavMain.smallMode = false;
     NavMain.smallMenuOpen = false;
+};
+
+/**
+ * Causes smallMode menu to close when clicking on a menu/submenu link
+ *
+ * Allows closing of smallMode menu when navigating in-page
+ */
+NavMain.linkMenuHideOnClick = function() {
+    if (NavMain.mainMenuItems.length === 0) {
+        $('#nav-main-menu > li > a').on('click.smallmode', function(e) {
+            NavMain.closeSmallMenu();
+        });
+    } else {
+        $('.submenu > li > a').on('click.smallmode', function(e) {
+            NavMain.closeSmallMenu();
+        });
+    }
+};
+
+/**
+ * Remove smallMode menu closing when clicking menu/submenu link
+ */
+NavMain.unlinkMenuHideOnClick = function() {
+    if (NavMain.mainMenuItems.length === 0) {
+        $('#nav-main-menu > li > a').off('click.smallmode');
+    } else {
+        $('.submenu > li > a').of('click.smallmode');
+    }
 };
 
 /**
