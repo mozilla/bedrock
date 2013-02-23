@@ -3,6 +3,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
+import json
 
 import os
 from urlparse import parse_qs, urlparse
@@ -93,6 +94,29 @@ class TestFirefoxAll(TestCase):
 class TestFirefoxPartners(TestCase):
     def setUp(self):
         self.client = Client()
+
+    @patch('firefox.views.settings.DEBUG', True)
+    def test_js_bundle_files_debug_true(self):
+        """
+        When DEBUG is on the bundle should return the individual files
+        with the MEDIA_URL.
+        """
+        bundle = 'partners_desktop'
+        files = settings.MINIFY_BUNDLES['js'][bundle]
+        files = [settings.MEDIA_URL + f for f in files]
+        self.assertEqual(files,
+                         json.loads(fx_views.get_js_bundle_files(bundle)))
+
+    @patch('firefox.views.settings.DEBUG', False)
+    def test_js_bundle_files_debug_false(self):
+        """
+        When DEBUG is off the bundle should return a single minified filename.
+        """
+        bundle = 'partners_desktop'
+        filename = '%sjs/%s-min.js?build=' % (settings.MEDIA_URL, bundle)
+        bundle_file = json.loads(fx_views.get_js_bundle_files(bundle))
+        self.assertEqual(len(bundle_file), 1)
+        self.assertTrue(bundle_file[0].startswith(filename))
 
     @patch('firefox.views.requests.post')
     def test_sf_form_proxy_error_response(self, post_patch):

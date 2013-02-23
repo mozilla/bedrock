@@ -2,6 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import json
 import re
 
 from django.conf import settings
@@ -13,6 +14,7 @@ from django.views.decorators.vary import vary_on_headers
 
 import basket
 import requests
+from jingo_minify.helpers import BUILD_ID_JS, BUNDLE_HASHES
 from product_details import product_details
 from product_details.version_compare import Version
 from funfactory.urlresolvers import reverse
@@ -23,6 +25,39 @@ from firefox.forms import SMSSendForm, WebToLeadForm
 from firefox.platforms import load_devices
 from firefox.firefox_details import firefox_details
 from l10n_utils.dotlang import _
+
+
+LOCALE_OS_URLS = {
+    'en-US': 'englishOsUrl',
+    'de': 'http://blog.mozilla.org/press-de/?p=760',
+    'it': 'http://blog.mozilla.org/press-it/?p=347',
+    'pl': 'http://blog.mozilla.org/press-pl/?p=407',
+    'fr': 'http://blog.mozilla.org/press-fr/?p=366',
+    'es-ES': 'http://blog.mozilla.org/press-es/?p=340',
+    'en-GB': 'http://blog.mozilla.org/press-uk/?p=471'
+}
+
+
+def get_js_bundle_files(bundle):
+    """
+    Return a JSON string of the list of file names for lazy loaded
+    javascript.
+    """
+    # mostly stolen from jingo_minify.helpers.js
+    if settings.DEBUG:
+        items = settings.MINIFY_BUNDLES['js'][bundle]
+    else:
+        build_id = BUILD_ID_JS
+        bundle_full = "js:%s" % bundle
+        if bundle_full in BUNDLE_HASHES:
+            build_id = BUNDLE_HASHES[bundle_full]
+        items = ("js/%s-min.js?build=%s" % (bundle, build_id,),)
+    return json.dumps([settings.MEDIA_URL + i for i in items])
+
+
+JS_COMMON = get_js_bundle_files('partners_common')
+JS_MOBILE = get_js_bundle_files('partners_mobile')
+JS_DESKTOP = get_js_bundle_files('partners_desktop')
 
 
 @csrf_exempt
@@ -154,4 +189,16 @@ def all_downloads(request):
         'full_builds': firefox_details.get_filtered_full_builds(version, query),
         'test_builds': firefox_details.get_filtered_test_builds(version, query),
         'query': query,
+    })
+
+
+def firefox_partners(request):
+    # If the current locale isn't in our list, return the en-US value
+    locale_os_url = LOCALE_OS_URLS.get(request.locale, LOCALE_OS_URLS['en-US'])
+
+    return l10n_utils.render(request, 'firefox/partners/index.html', {
+        'locale_os_url': locale_os_url,
+        'js_common': JS_COMMON,
+        'js_mobile': JS_MOBILE,
+        'js_desktop': JS_DESKTOP,
     })
