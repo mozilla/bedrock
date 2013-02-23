@@ -107,7 +107,7 @@
     // if hash changes, make sure parallax doesn't go haywire
     var _handle_hash = function() {
         if (w.location.hash !== '') {
-            $article_wrapper.animate({ scrollTop: 0 }, 100, function() {
+            $article_wrapper.animate({ scrollTop: 0 }, 50, function() {
                 if (w.location.hash === 'location' || w.location.hash === 'schedule') {
                     $('a.modal[href="#' + w.location.hash + '"]:first').trigger('click');
                 } else {
@@ -124,6 +124,11 @@
         setTimeout(function() {
             _handle_hash();
         }, 60); // may need to increase timeout?
+        // ease flicker when loading hash/content
+        setTimeout(function() {
+            $article_wrapper.animate({ opacity: 1}, 'fast');
+            $phone.show();
+        }, 150);
     });
 
     $(w).on('hashchange', function() {
