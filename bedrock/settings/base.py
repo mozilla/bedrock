@@ -58,7 +58,6 @@ ALLOWED_HOSTS = [
 SECRET_KEY = 'ssssshhhhh'
 
 TEMPLATE_DIRS = (
-    path('templates'),
     path('locale'),
 )
 
@@ -457,8 +456,6 @@ DOMAIN_METHODS = {
             'tower.management.commands.extract.extract_tower_template'),
         ('%s/**/templates/**.js' % PROJECT_MODULE,
             'tower.management.commands.extract.extract_tower_template'),
-        ('templates/**.html',
-            'tower.management.commands.extract.extract_tower_template'),
     ],
 }
 
@@ -509,6 +506,7 @@ INSTALLED_APPS = (
     'product_details',
 
     # Local apps
+    '%s.base' % PROJECT_MODULE,
     '%s.collusion' % PROJECT_MODULE,
     '%s.firefox' % PROJECT_MODULE,
     '%s.firefoxos' % PROJECT_MODULE,
