@@ -28,7 +28,7 @@ from l10n_utils.dotlang import _
 
 
 LOCALE_OS_URLS = {
-    'en-US': 'englishOsUrl',
+    'en-US': 'http://blog.mozilla.org/press/2013/02/firefox-os-expansion',
     'de': 'http://blog.mozilla.org/press-de/?p=760',
     'it': 'http://blog.mozilla.org/press-it/?p=347',
     'pl': 'http://blog.mozilla.org/press-pl/?p=407',
