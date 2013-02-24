@@ -198,6 +198,26 @@ class TestDotlang(TestCase):
         eq_(old_setting, settings.DOTLANG_FILES)
 
     @patch('lib.l10n_utils.dotlang.translate')
+    def test_gettext_ignores_default_lang_files(self, trans_patch):
+        """
+        The `l10n_utils.dotlang._` function should search .lang files
+        specified in the module from which it's called before the
+        default files, but it should not include the defaults twice.
+        """
+        # use LANG_FILES global in this module
+        global LANG_FILES
+        old_lang_files = LANG_FILES
+
+        trans_str = 'Translate me'
+        LANG_FILES = [settings.DOTLANG_FILES[0], 'dude', 'donnie', 'walter']
+        _(trans_str)
+        call_lang_files = LANG_FILES[1:] + settings.DOTLANG_FILES
+        trans_patch.assert_called_with(trans_str, call_lang_files)
+
+        # restore original value to avoid test leakage
+        LANG_FILES = old_lang_files
+
+    @patch('lib.l10n_utils.dotlang.translate')
     def test_gettext_searches_specified_lang_files(self, trans_patch):
         """
         The `l10n_utils.dotlang._` function should search .lang files
@@ -239,7 +259,6 @@ class TestDotlang(TestCase):
         # test the case when LANG_FILES is a list
         lang_files_list = ['maude', 'bunny', 'uli']
         _(trans_str, lang_files=lang_files_list)
-        print lang_files_list
         call_lang_files = lang_files_list + settings.DOTLANG_FILES
         trans_patch.assert_called_with(trans_str, call_lang_files)
 

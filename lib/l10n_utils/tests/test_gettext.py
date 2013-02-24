@@ -163,7 +163,7 @@ class TestLangfilesForPath(TestCase):
         """ If lang files are set, they should be returned. """
         lang_files = langfiles_for_path('lib/l10n_utils/tests/test_files/'
                                         'templates/some_lang_files.html')
-        eq_(lang_files, ['dude', 'walter'])
+        eq_(lang_files, ['dude', 'walter', 'main'])
 
     def test_py_no_lang_files_defined(self):
         """

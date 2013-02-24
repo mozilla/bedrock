@@ -105,8 +105,8 @@ class TestTemplateLangFiles(TestCase):
     @patch('lib.l10n_utils.helpers.translate')
     def test_lang_files_order(self, translate):
         """
-        Lang files should be queried in order they appear in the file and then
-        the defaults.
+        Lang files should be queried in order they appear in the file,
+        excluding defaults and then the defaults.
         """
         self.client.get('/de/some-lang-files/')
         translate.assert_called_with(ANY, ['dude', 'walter', 'some_lang_files',
