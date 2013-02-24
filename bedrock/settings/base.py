@@ -81,22 +81,22 @@ def JINJA_CONFIG():
 MINIFY_BUNDLES = {
     'css': {
         'about': (
-            'css/about.less',
+            'css/mozorg/about.less',
         ),
         'mobile_overview': (
-            'css/mobile.less',
+            'css/mozorg/mobile.less',
         ),
         'firefoxos': (
-            'css/firefoxos.less',
+            'css/firefoxos/firefoxos.less',
         ),
         'grants': (
-            'css/grants.less',
+            'css/grants/grants.less',
         ),
         'collusion': (
-            'css/collusion.less',
+            'css/collusion/collusion.less',
         ),
         'itu': (
-            'css/itu.less',
+            'css/mozorg/itu.less',
         ),
         'common': (
             'css/sandstone/sandstone.less',
@@ -105,19 +105,14 @@ MINIFY_BUNDLES = {
             'css/sandstone/sandstone-resp.less',
         ),
         'contribute': (
-            'css/contribute.less',
+            'css/mozorg/contribute.less',
             'css/sandstone/video-resp.less',
         ),
         'contribute-page': (
-            'css/contribute-page.less',
-        ),
-        'channel': (
-            'css/covehead/template.css',
-            'css/covehead/content.css',
-            'css/covehead/channel.css',
+            'css/mozorg/contribute-page.less',
         ),
         'dnt': (
-            'css/mozilla-expanders.less',
+            'css/base/mozilla-expanders.less',
             'css/firefox/dnt.less',
         ),
         'firefox': (
@@ -159,7 +154,7 @@ MINIFY_BUNDLES = {
         ),
         'firefox_faq': (
             'css/firefox/template-resp.less',
-            'css/mozilla-expanders.less',
+            'css/base/mozilla-expanders.less',
         ),
         'firefox_firstrun': (
             'css/sandstone/video.less',
@@ -170,7 +165,7 @@ MINIFY_BUNDLES = {
             'css/sandstone/video.less',
         ),
         'firefox_geolocation': (
-            'css/mozilla-expanders.less',
+            'css/base/mozilla-expanders.less',
             'css/firefox/geolocation.less',
             'css/jquery/nyroModal.css'
         ),
@@ -185,7 +180,7 @@ MINIFY_BUNDLES = {
         ),
         'firefox_platforms': (
             'css/firefox/template-resp.less',
-            'css/mozilla-expanders.less',
+            'css/base/mozilla-expanders.less',
             'css/firefox/platforms.less',
         ),
         'firefox_security': (
@@ -199,7 +194,7 @@ MINIFY_BUNDLES = {
             'css/firefox/technology-demos.css',
         ),
         'firefox_updates': (
-            'css/mozilla-expanders.less',
+            'css/base/mozilla-expanders.less',
             'css/firefox/update.less',
         ),
         'firefox_whatsnew': (
@@ -212,43 +207,40 @@ MINIFY_BUNDLES = {
             'css/firefox/installer-help.less',
         ),
         'home': (
-            'css/home.less',
+            'css/mozorg/home.less',
             'js/libs/video-js/video-js.css',
             'js/libs/video-js/video-js-sandstone.css',
         ),
         'marketplace': (
-            'css/marketplace.less',
+            'css/marketplace/marketplace.less',
         ),
         'mission': (
             'css/sandstone/video-resp.less',
-            'css/mission.less',
+            'css/mozorg/mission.less',
         ),
         'mozilla_expanders': (
-            'css/mozilla-expanders.less',
+            'css/base/mozilla-expanders.less',
         ),
         'partnerships': (
-            'css/partnerships.less',
+            'css/mozorg/partnerships.less',
         ),
         'persona': (
-            'css/persona.less',
+            'css/persona/persona.less',
         ),
         'privacy': (
-            'css/privacy.less',
+            'css/privacy/privacy.less',
         ),
         'fb_privacy': (
-            'css/fb-privacy.less',
+            'css/privacy/fb-privacy.less',
         ),
         'products': (
-            'css/products.less',
+            'css/mozorg/products.less',
         ),
         'projects_mozilla_based': (
-            'css/projects/mozilla-based.less',
+            'css/mozorg/projects-mozilla-based.less',
         ),
         'research': (
             'css/research/research.less',
-        ),
-        'sandstone_guide': (
-            'css/sandstone-guide.less',
         ),
         'styleguide': (
             'css/styleguide/styleguide.less',
@@ -264,19 +256,19 @@ MINIFY_BUNDLES = {
             'css/styleguide/products-firefox-os.less',
         ),
         'tabzilla': (
-            'css/tabzilla.less',
+            'css/tabzilla/tabzilla.less',
         ),
         'video': (
             'css/sandstone/video.less',
         ),
         'page_not_found': (
-            'css/page-not-found.less',
+            'css/base/page-not-found.less',
         ),
         'annual_2011': (
             'css/foundation/annual2011.less',
         ),
         'partners': (
-            'css/partners.less',
+            'css/firefox/partners.less',
         ),
     },
     'js': {
