@@ -28,7 +28,7 @@ class TestUrlPatterns(unittest.TestCase):
     def test_external_redirect(self):
         response = self.client.get('/en-US/gloubi-boulga/ext/')
         eq_(response.status_code, 301)
-        eq_(response['Location'], 'https://marketplace.mozilla.org')
+        eq_(response['Location'], 'https://marketplace.firefox.com')
 
     def test_callable_redirect(self):
         response = self.client.get('/en-US/gloubi-boulga/call/')
