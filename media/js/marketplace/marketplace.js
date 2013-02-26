@@ -25,7 +25,7 @@ jQuery(document).ready(function ()
         $button.text($button.attr('data-mobile-title'));
 
     } else {
-        
+
         // add accessible attributes
         $button.attr({
             'role': 'button',
@@ -57,7 +57,7 @@ jQuery(document).ready(function ()
                 $button.focus();
             }
         }
-        
+
         var documentKeydownHandler = function(event){
             if(event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) {
                 return true;
@@ -67,16 +67,11 @@ jQuery(document).ready(function ()
             }
         }
 
-        // prevent linking to apps, just let QR codes appear
-        $('#apps-preview .pager-page a').click(function(e) {
-            e.preventDefault();
-        });
-
         // make clicking the button open the panel
         $panel = $('#marketplace-panel');
         $button.click(function(e) {
             e.preventDefault(e);
-            
+
             // change the state of aria-expanded
             $button.attr('aria-expanded', $panel.css('display') !== 'block');
 
