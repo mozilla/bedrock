@@ -160,6 +160,17 @@
             }
         }
     };
+    
+    // Load external links in new tab/window
+    $('a[rel="external"]').click(function(e){
+        e.preventDefault();
+        var opts = $(this).data('windowOpts');
+        if (opts) {
+            window.open(this.href, '_blank', $(this).data('windowOpts'));
+        } else {
+            window.open(this.href);
+        }
+    });
 
     // set a cookie
     document.cookie = 'seen_mwc2013=true;expires=Tue, 5 Mar 2013 00:00:01 UTC;path=/';
