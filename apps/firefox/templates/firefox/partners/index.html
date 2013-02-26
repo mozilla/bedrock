@@ -45,8 +45,7 @@
     <nav id="nav-main" role="navigation">
       <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
       <ul id="nav-main-menu">
-        <li class="first"><a href="#overview">{{_('Overview')}}</a></li>
-        <li><a href="#os">{{_('Firefox OS')}}</a></li>
+        <li class="first"><a href="#os">{{_('Firefox OS')}}</a></li>
         <li><a href="#marketplace">{{_('Marketplace')}}</a></li>
         <li class="last"><a href="#android">{{_('Android')}}</a></li>
       </ul>
@@ -197,8 +196,8 @@
       <div class="phone-shadow"></div>
       <div class="article-content">
         <div id="os-overview-intro" class="intro tween">
-          <h4>{{ _('The Web is the platform')}}</h4>
-          <p>{% trans url='class="view-section" data-section="os-operators" href="#"'|safe %}
+          <h4 class="narrow">{{ _('The Web is the platform')}}</h4>
+          <p class="narrow">{% trans url='class="view-section" data-section="os-operators" href="#"'|safe %}
             Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater participation in the value chain. <a {{ url }}>See how you can get involved.</a>
           {% endtrans %}</p>
           <h4 class="narrow">{{ _('Made of the Web') }}</h4>
@@ -285,7 +284,7 @@
           <h4>{{ _('Your needs') }}</h4>
           <p>{{ _('Grow your business by combining your own customer payment plans with our open source service offerings, reach new markets and customize purchasing and app experiences to meet your specific needs.') }}</p>
           <h4>{{ _('Our experience') }}</h4>
-          <p>{{ _('Our proven track record of providing excellent user experiences and serving content to huge global audiences runs through everything we do. Our directory of add-ons serves content to hundreds of millions of users worldwide.') }}</p>
+          <p class="less-narrow">{{ _('Our proven track record of providing excellent user experiences and serving content to huge global audiences runs through everything we do. Our directory of add-ons serves content to hundreds of millions of users worldwide.') }}</p>
           <div id="marketplace-promos" class="promos">
             <div class="promo-testimonials icon">
               <span></span>
@@ -421,7 +420,8 @@
       <div class="article-content">
         <div class="intro tween">
           <div class="android-dude"></div>
-          <h3>{{ _('Stand out from the crowd') }}</h3>
+          {# L10N: The line break in this headline is essentially presentational. Place the break wherever it seems best for your locale, or omit it if it isn't needed. #}
+          <h3>{{ _('Stand out <br>from the crowd') }}</h3>
           <p>{{ _('Take advantage of our strong brand and service offerings to differentiate your product and drive sales.') }}</p>
           <h4>{{ _('Firefox for Android lets you:') }}</h4>
           <ul>
