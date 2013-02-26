@@ -34,7 +34,7 @@ FUNCTIONAL_AREAS = (
     fa('marketing',
         _('Marketing'),
         'Marketing',
-        ['cnovak@mozilla.com'],
+        ['marketing-get-involved@mozilla.com'],
     ),
     fa('localization',
         _('Localization and Translation'),
