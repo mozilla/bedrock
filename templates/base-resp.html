@@ -11,7 +11,7 @@
 
     <title>{% block page_title_prefix %}Mozilla — {% endblock %}{% block page_title %}{% endblock %}{% block page_title_suffix %} — mozilla.org{% endblock %}</title>
 
-    <link href="/tabzilla/media/css/tabzilla.css" rel="stylesheet">
+    <link href="/tabzilla/media/css/tabzilla.css?build=1" rel="stylesheet">
 
     <!--[if lte IE 8]>
     <script src="{{ MEDIA_URL }}js/libs/html5shiv.js"></script>
@@ -33,6 +33,11 @@
   <body id="{% block body_id %}{% endblock %}" class="html-{{ DIR }} {% block body_class %}{% endblock %}"{% block body_attrs %}{% endblock %}>
     <div id="strings" {% block string_data %}{% endblock %}></div>
     <div id="outer-wrapper">
+
+    {% block mwc_badge %}
+    <div id="mwc-badge"><a href="/firefox/partners/">{{ _('Mobile World Congress') }}</a></div>
+    {% endblock %}
+
     <div id="wrapper">
 
     {% block site_header %}
@@ -107,7 +112,7 @@
       </footer>
     {% endblock %}
 
-    <script src="/tabzilla/media/js/tabzilla.js"></script>
+    <script src="/tabzilla/media/js/tabzilla.js?build=1"></script>
     </div><!-- close #outer-wrapper -->
 
     {% block site_js %}

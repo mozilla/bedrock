@@ -4,6 +4,7 @@
 
 from django.conf.urls.defaults import *
 from django.conf import settings
+
 from product_details import product_details
 
 from firefox import version_re
@@ -15,6 +16,7 @@ import views
 latest_re = r'^firefox(?:/(%s))?/%s/$'
 firstrun_re = latest_re % (version_re, 'firstrun')
 whatsnew_re = latest_re % (version_re, 'whatsnew')
+
 
 urlpatterns = patterns('',
     url(r'^firefox/all/$', views.all_downloads, name='firefox.all'),
@@ -61,5 +63,8 @@ urlpatterns = patterns('',
     url(whatsnew_re, views.latest_fx_redirect, name='firefox.whatsnew',
         kwargs={'template_name': 'firefox/whatsnew.html'}),
 
-    page('firefox/partners', 'firefox/partners/landing.html'),
+    url(r'^firefox/partners/$', views.firefox_partners,
+        name='firefox.partners.index'),
+    url(r'^firefox/partners/contact-bizdev/$', views.contact_bizdev,
+        name='firefox.partners.contact-bizdev'),
 )

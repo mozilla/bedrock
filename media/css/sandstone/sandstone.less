@@ -47,9 +47,10 @@ a {
 
 .sky {
     #outer-wrapper {
-        background-color: #eee;
-        background-image: url(/media/img/sandstone/bg-sky.png);
-        background-repeat: repeat-x;
+        background: #eee url(/media/img/sandstone/grain.png) repeat;
+        background: url(/media/img/sandstone/bg-gradient-sky.png) repeat-x 0 0,
+                    url(/media/img/sandstone/grain.png) repeat 0 0,
+                    #eee;
     }
 
     a {
@@ -289,6 +290,34 @@ input[type=text]:focus {
 }
 
 /* }}} */
+
+
+/* {{{ MWC badge */
+#mwc-badge {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 999;
+}
+
+.mwc2013 #mwc-badge {
+    display: block;
+}
+
+#mwc-badge a {
+    display: block;
+    text-indent: -999em;
+    overflow: hidden;
+    width: 140px;
+    height: 140px;
+    background: url(/media/img/firefox/partners/mwc_badge-corner.png) no-repeat;
+    color: #fff;
+    border-bottom-right-radius: 100%;
+}
+/* }}} */
+
+
 /* {{{ Less Framework Grid */
 
 /*      Default Layout: 992px.

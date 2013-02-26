@@ -4,6 +4,23 @@
 
 @import "sandstone/lib.less";
 
+/* {{{ Meta Web Pro Black Italic font for Firefox OS MWCpromo */
+
+/* first for IE 6/7/8 */
+@font-face {
+  font-family: MetaWebPro-BlackIta;
+  src: url('/media/fonts/MetaWebPro-BlackIta.eotlite');
+}
+
+/* then for Mozilla browsers -> Firefox */
+@font-face {
+  font-family: MetaWebPro-BlackIta;
+  src: url('/media/fonts/MetaWebPro-BlackIta.woff') format('woff');
+}
+
+
+
+/* }}} */
 /* {{{ Vollkorn font for Firefox Flicks promo */
 
 @font-face {
@@ -343,16 +360,19 @@
         }
     }
 
-    #promo-mwc-preview,
-    #page-promo-mwc-preview {
+    #promo-mwc-announce,
+    #page-promo-mwc-announce {
         .content {
             width: 80%;
         }
+        h3 {
+            font-family: MetaWebPro-BlackIta;
+            text-transform: uppercase;
+        }
         h4 {
-            width: 70%;
-            .open-sans;
+            width: 90%;
             font-size: 20px;
-            line-height: 1.2;
+            line-height: 1.3;
         }
     }
 
@@ -554,8 +574,11 @@
             }
         }
 
-        #promo-mwc-preview,
-        #page-promo-mwc-preview {
+        #promo-mwc-announce,
+        #page-promo-mwc-announce {
+            h3 {
+                font-size: 50px;
+            }
             h4 {
                 font-size: 16px;
             }
@@ -698,8 +721,11 @@
             font-size: 28px;
         }
 
-        #promo-mwc-preview,
-        #page-promo-mwc-preview {
+        #promo-mwc-announce,
+        #page-promo-mwc-announce {
+            h3 {
+                font-size: 32px;
+            }
             h4 {
                 width: auto;
             }
@@ -822,8 +848,8 @@
             font-size: 28px;
         }
 
-        #promo-mwc-preview,
-        #page-promo-mwc-preview {
+        #promo-mwc-announce,
+        #page-promo-mwc-announce {
             .content {
                 width: auto;
                 h4 {
@@ -854,8 +880,8 @@
                 padding-top: 179px;
             }
         }
-        #promo-mwc-preview,
-        #page-promo-mwc-preview {
+        #promo-mwc-announce,
+        #page-promo-mwc-announce {
             .content {
                 width: auto;
                 h3 {

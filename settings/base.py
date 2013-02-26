@@ -53,12 +53,17 @@ SUPPORTED_NONLOCALES = [
     'gameon',
 ]
 
+ALLOWED_HOSTS = [
+    'www.mozilla.org',
+    'www.allizom.org',
+]
+
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '1iz#v0m55@h26^m6hxk3a7at*h$qj_2a$juu1#nv50548j(x1v'
+SECRET_KEY = 'ssssshhhhh'
 
 TEMPLATE_DIRS = (
     path('templates'),
-    path('locale')
+    path('locale'),
 )
 
 
@@ -276,7 +281,11 @@ MINIFY_BUNDLES = {
             'css/foundation/annual2011.less',
         ),
         'partners': (
-            'css/partners.less',
+            'css/libs/jquery.pageslide.css',
+            'css/firefox/partners.less',
+        ),
+        'partners-ie7': (
+            'css/firefox/partners/ie7.less',
         ),
     },
     'js': {
@@ -388,10 +397,6 @@ MINIFY_BUNDLES = {
             'js/mozilla-pager.js',
             'js/marketplace/marketplace.js',
         ),
-        'box2d': (
-            'js/libs/jquery-box2dweb/Box2dWeb-2.1.a.3.js',
-            'js/libs/jquery-box2dweb/jQbox2D.Alpha.js',
-        ),
         'mozorg-resp': (
             'js/libs/jquery-1.7.1.min.js',
             'js/global.js',
@@ -436,9 +441,26 @@ MINIFY_BUNDLES = {
             'js/annual2011.js',
         ),
         'partners': (
-            'js/libs/mozcountdown.js',
-            'js/partners.js',
+            'js/libs/modernizr.custom.shiv-load.js',
+            'js/mozilla-input-placeholder.js',
+            'js/mozilla-pager.js',
+            'js/firefox/partners.js',
         ),
+        'partners_common': (
+            'js/libs/enquire.min.js',
+            'js/firefox/partners/common.js',
+        ),
+        'partners_mobile': (
+            'js/firefox/partners/mobile.js',
+        ),
+        'partners_desktop': (
+            'js/libs/jquery.pageslide.min.js',
+            'js/libs/tweenmax.min.js',
+            'js/libs/superscrollorama.js',
+            'js/libs/jquery.spritely-0.6.1.js',
+            'js/firefox/partners/desktop.js',
+        ),
+
     }
 }
 
@@ -510,7 +532,6 @@ INSTALLED_APPS = (
     # Local apps
     'collusion',
     'firefox',
-    'firefoxos',
     'foundation',
     'grants',
     'legal',
