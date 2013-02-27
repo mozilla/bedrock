@@ -27,13 +27,16 @@ mozilla.wishlist                        For discussions of future ideas, ranging
 :Applications and Projects
 
 mozilla.dev.apps.firefox                For development of Firefox, a lightweight browser built on the Mozilla platform.
+firefox-dev                             For development of Firefox, a lightweight browser built on the Mozilla platform.
 mozilla.dev.apps.thunderbird            For development of Thunderbird, an email client built on the Mozilla platform.
+tb-planning                             For development of Thunderbird, an email client built on the Mozilla platform.
 mozilla.dev.platforms.mobile            For discussions about the <a href="http://wiki.mozilla.org/Mobile">Mozilla platform on mobile devices</a>, e.g. Firefox for Android.
 mozilla.dev.b2g                         For Boot2Gecko (Firefox OS), Mozilla's effort to build a mobile platform powered by the Open Web. (Moderated)
 mozilla.dev.gaia                        For Gaia, the HTML5 app suite for Firefox OS. (Moderated)
 mozilla.dev.marketplace                 For development of the Mozilla Marketplace and addons.mozilla.org. (Moderated)
 mozilla.dev.webapps                     For development of our Open Web Apps site and ecosystem.
 mozilla.dev.identity                    Identity in the browser (BrowserID/Mozilla Persona)
+mozilla.dev.identity.performance        Improving the performance of our identity solutions. (Moderated)
 mozilla.dev.apps.bugzilla               For development of the Bugzilla bug-tracking system (for support, see <a href="#support-bugzilla">mozilla.support.bugzilla</a>).
 mozilla.dev.apps.calendar               For development of the standard-based <a href="../../projects/calendar/">Calendar</a> projects - Sunbird and Lightning.
 mozilla.dev.apps.chatzilla              For development of the Chatzilla IRC chat extension.
@@ -50,6 +53,7 @@ mozilla.dev.builds                      For discussions about compiling the sour
 mozilla.dev.chat                        The real-time chat capabilities in the Mozilla platform (IM, IRC etc.) (Moderated)
 mozilla.dev.embedding                   For <a href="../../projects/embedding/">embedding</a> Mozilla components such as Gecko, ender, and JavaScript into software.
 mozilla.dev.i18n                        For discussions about <a href="../../projects/intl/">internationalization</a> (I18N) issues. I18N is the infrastructure that allows software to be <a href="#dev-l10n">localized</a>.
+mozilla.dev.js-sourcemap                The JS sourcemap project, which maps obfuscated JS back to the original version for debugging. (Moderated)
 mozilla.dev.l10n                        For <a href="../../projects/l10n/mlp.html">localization</a> (L10N) issues. L10N is the process of adapting software to a specific language and culture (see also <a href="#mozilla-i18n">internationalization</a>).
 mozilla.dev.mdc                         Discussion about developer documentation on <a href="http://developer.mozilla.org/">MDN Documentation Center</a> (MDC)
 mozilla.dev.mdn                         Code development for the Mozilla Developer Network (MDN) website and platform
@@ -118,6 +122,7 @@ mozilla.dev.quality                     For <a href="../../quality/">QA</a> disc
 mozilla.qa.b2g                          QA for B2G. (Moderated)
 mozilla.qa.webapps                      QA for Mozilla's web apps. (Moderated)
 mozilla.qa.webmaker                     QA for Webmaker projects. (Moderated)
+mozilla.bugmasters                      Our intrepid bug handling team. (Moderated)
 
 :Extension Development
 
@@ -157,8 +162,12 @@ mozilla.community.belgium               The Mozilla community in Belgium.
 mozilla.community.brasil                The Mozilla community in Brazil. (Moderated)
 mozilla.community.bulgaria              The Mozilla community in Bulgaria.
 mozilla.community.canada                The Mozilla community in Canada. (Moderated)
+mozilla.community.chile                 The Mozilla community in Chile. (Moderated)
 mozilla.community.croatia               The Mozilla community in Croatia. (Moderated)
+mozilla.community.dutch                 The Mozilla Dutch-speaking community. (Moderated)
+mozilla.community.esperanto             The Mozilla Esperanto-speaking community. (Moderated)
 mozilla.community.europe                The Mozilla community in Europe. (Moderated)
+mozilla.community.german                The Mozilla German-speaking community. (Moderated)
 mozilla.community.ghana                 The Mozilla community in Ghana.
 mozilla.community.greece                The Mozilla community in Greece. (Moderated)
 mozilla.community.india                 The Mozilla community in India.
