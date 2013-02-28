@@ -19,9 +19,9 @@ def tabzilla_css_redirect(r):
 
 urlpatterns = patterns('',
 
-    redirect(r'^b2g', 'firefoxos.firefoxos'),
-    redirect(r'^b2g/faq', 'firefoxos.firefoxos'),
-    redirect(r'^b2g/about', 'firefoxos.firefoxos'),
+    redirect(r'^b2g', 'firefox.partners.index'),
+    redirect(r'^b2g/faq', 'firefox.partners.index'),
+    redirect(r'^b2g/about', 'firefox.partners.index'),
 
     redirect(r'^contribute/areas.html$', 'mozorg.contribute'),  # Bug 781914
     redirect(r'^projects/$', 'mozorg.products'),  # Bug 763665
@@ -47,8 +47,8 @@ urlpatterns = patterns('',
     redirect(r'^foundation/identity-guidelines/mozilla-foundation.html', 'styleguide.identity.mozilla-branding'),
     redirect(r'^foundation/identity-guidelines/thunderbird.html', 'styleguide.identity.thunderbird-logo'),
 
-    # Bug 800467 /apps/partners -> marketplace.m.o/developers
-    redirect(r'apps/partners/$', 'https://marketplace.mozilla.org/developers/'),
+    # Bug 800467 /apps/partners -> marketplace.firefox.com/developers
+    redirect(r'apps/partners/$', 'https://marketplace.firefox.com/developers/'),
 
     # Bug 815527 /m/privacy.html -> /legal/privacy/firefox.html
     redirect(r'^m/privacy.html$', '/legal/privacy/firefox.html'),

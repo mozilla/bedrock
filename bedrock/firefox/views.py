@@ -2,24 +2,81 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import json
 import re
 
 from django.conf import settings
-from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
+from django.http import (HttpResponse, HttpResponsePermanentRedirect,
+                         HttpResponseRedirect)
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 from django.views.decorators.vary import vary_on_headers
 
 import basket
+import requests
+from jingo_minify.helpers import BUILD_ID_JS, BUNDLE_HASHES
 from product_details import product_details
 from product_details.version_compare import Version
 from funfactory.urlresolvers import reverse
 
 from lib import l10n_utils
 from bedrock.firefox import version_re
-from bedrock.firefox.forms import SMSSendForm
+from bedrock.firefox.forms import SMSSendForm, WebToLeadForm
 from bedrock.firefox.platforms import load_devices
 from bedrock.firefox.firefox_details import firefox_details
 from lib.l10n_utils.dotlang import _
+
+
+LOCALE_OS_URLS = {
+    'en-US': 'http://blog.mozilla.org/press/2013/02/firefox-os-expansion',
+    'de': 'http://blog.mozilla.org/press-de/?p=760',
+    'it': 'http://blog.mozilla.org/press-it/?p=353',
+    'pl': 'http://blog.mozilla.org/press-pl/?p=407',
+    'fr': 'http://blog.mozilla.org/press-fr/?p=366',
+    'es-ES': 'http://blog.mozilla.org/press-es/?p=340',
+    'en-GB': 'http://blog.mozilla.org/press-uk/?p=471'
+}
+
+
+def get_js_bundle_files(bundle):
+    """
+    Return a JSON string of the list of file names for lazy loaded
+    javascript.
+    """
+    # mostly stolen from jingo_minify.helpers.js
+    if settings.DEBUG:
+        items = settings.MINIFY_BUNDLES['js'][bundle]
+    else:
+        build_id = BUILD_ID_JS
+        bundle_full = "js:%s" % bundle
+        if bundle_full in BUNDLE_HASHES:
+            build_id = BUNDLE_HASHES[bundle_full]
+        items = ("js/%s-min.js?build=%s" % (bundle, build_id,),)
+    return json.dumps([settings.MEDIA_URL + i for i in items])
+
+
+JS_COMMON = get_js_bundle_files('partners_common')
+JS_MOBILE = get_js_bundle_files('partners_mobile')
+JS_DESKTOP = get_js_bundle_files('partners_desktop')
+
+
+@csrf_exempt
+@require_POST
+def contact_bizdev(request):
+    form = WebToLeadForm(request.POST)
+    if form.is_valid():
+        data = form.cleaned_data.copy()
+        interest = data.pop('interest')
+        data['00NU0000002pDJr'] = interest
+        data['oid'] = '00DU0000000IrgO'
+        data['retURL'] = ('http://www.mozilla.org/en-US/about/'
+                          'partnerships?success=1')
+        r = requests.post('https://www.salesforce.com/servlet/'
+                          'servlet.WebToLead?encoding=UTF-8', data)
+        msg = requests.status_codes._codes.get(r.status_code, ['error'])[0]
+        return HttpResponse(msg, status=r.status_code)
+
+    return HttpResponse('Form invalid', status=400)
 
 
 @csrf_exempt
@@ -132,4 +189,16 @@ def all_downloads(request):
         'full_builds': firefox_details.get_filtered_full_builds(version, query),
         'test_builds': firefox_details.get_filtered_test_builds(version, query),
         'query': query,
+    })
+
+
+def firefox_partners(request):
+    # If the current locale isn't in our list, return the en-US value
+    locale_os_url = LOCALE_OS_URLS.get(request.locale, LOCALE_OS_URLS['en-US'])
+
+    return l10n_utils.render(request, 'firefox/partners/index.html', {
+        'locale_os_url': locale_os_url,
+        'js_common': JS_COMMON,
+        'js_mobile': JS_MOBILE,
+        'js_desktop': JS_DESKTOP,
     })

@@ -30,27 +30,37 @@
       <section>
         <hgroup>
           <h1>{{_('Firefox for Android')}}</h1>
-          <h2>{{_('Fast. Smart. Safe.')}}</h2>
         </hgroup>
         <div id="download-column">
-          {{ mobile_download_button('primary-download-mobile') }}
+          <div id="rating-column">
+            <span>4.5 star rating</span>
+          </div>
+          {{ mobile_download_button('download-mobile', 'mobile_small_landing') }}
         </div>
-        <div id="photo-column">
-          <img src="{{ media('/img/firefox/fx/mobile-phone.jpg') }}" alt="{{_('Firefox on Android')}}" />
-          <span id="phone-screen"></span>
-        </div>
-        <ul class="sub-features">
-          <li id="supported">
-            <a class="link" href="{{ url('firefox.mobile.platforms') }}">{{ _('Find out if your device is supported&nbsp;»') }}</a>
-          </li>
-          <li id="firefox-mobile">
-            <a class="link" href="{{ url('firefox.mobile.features') }}">{{ _('Learn more about Firefox for Android&nbsp;»') }}</a>
-          </li>
-          <li id="playstore-mobile">
-            <a class="link" href="https://market.android.com/details?id=org.mozilla.firefox">{{ _('Get Firefox for Android free from the Google Play Store&nbsp;»') }}</a>
-          </li>
-        </ul>
+        <aside id="phone-tablet-image">
+          <img alt="Android Phone and Tablet" src="/media/img/firefox/fx/android-phone-tablet.png">
+        </aside>
       </section>
+      <ul class="sub-features">
+        <li id="playstore-mobile">
+          <a class="mobile-link" href="https://market.android.com/details?id=org.mozilla.firefox">
+            <h3>Get Firefox for Android</h3>
+            <span class="link">{{_('Get the mobile browser that\'s got your back for free from Google Play&nbsp;»')}}</span>
+          </a>
+        </li>
+        <li id="firefox-mobile">
+          <a class="mobile-link" href="{{ url('firefox.mobile.features') }}">
+            <h3>Learn More</h3>
+            <span class="link">{{_('Explore Firefox for Android features &nbsp;»')}}</span>
+          </a>      
+        </li>
+        <li id="supported">
+          <a class="mobile-link" href="{{ url('firefox.mobile.platforms') }}">
+            <h3>Supported devices</h3>
+            <span class="link">{{_('Find out if your device is supported &nbsp;»')}}</span>
+          </a>
+        </li>
+      </ul>
     </div>
 
     <div class="pager-page desktop-content" id="desktop">

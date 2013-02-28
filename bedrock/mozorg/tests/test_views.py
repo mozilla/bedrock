@@ -112,7 +112,7 @@ class TestContribute(TestCase):
         m = mail.outbox[0]
         eq_(m.from_email, 'contribute-form@mozilla.org')
         eq_(m.to, ['contribute@mozilla.org'])
-        eq_(m.cc, ['marcelo.araldi@yahoo.com.br'])
+        eq_(m.cc, ['mlcaraldi@gmail.com'])
         eq_(m.extra_headers['Reply-To'], self.contact)
 
     @patch.object(ReCaptchaField, 'clean', Mock())

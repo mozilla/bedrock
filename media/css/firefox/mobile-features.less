@@ -61,8 +61,7 @@
 
 #fast,
 #smart {
-    border-bottom: 1px dotted @borderColor;
-    margin-bottom: @baseLine;
+    margin-bottom: @baseLine + 40;
 }
 
 #safe .privacy .img {
@@ -81,11 +80,12 @@
     background-position: 0 -180px;
 }
 
-#get a {
+#get {
     display: block;
-    padding-left: 48px;
-    background: url(/media/img/firefox/mobile/android-tiny.png) no-repeat;
-    font-size: .875em;
+    padding: 25px 0 0 @gridColumnWidth;
+    float: left;
+    border-top: 1px dotted @borderColor;
+    background: 7px 20px url(/media/img/firefox/mobile/android.png) no-repeat;
 }
 
 a.more:after,

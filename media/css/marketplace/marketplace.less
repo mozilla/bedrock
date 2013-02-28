@@ -127,77 +127,14 @@
     position: relative;
 }
 
-#apps-bag {
+#apps-hero-background {
     position: absolute;
-    top: -300px;
+    width: 488px;
+    height: 488px;
+    bottom: 120px;
     right: 0;
-    width: 344px;
-    height: 858px;
+    background: url(/media/img/marketplace/apps-firefox-hero.png) 0 100% no-repeat;
 }
-
-#apps-bag-background {
-    position: absolute;
-    width: 344px;
-    height: 108px;
-    bottom: 216px;
-    left: 0;
-    background: url(/media/img/marketplace/apps-bag.png) 0 100% no-repeat;
-}
-
-#apps-bag-handle {
-    pointer-events: none;
-    position: absolute;
-    width: 202px;
-    height: 60px;
-    bottom: 216px;
-    left: 71px;
-    z-index: 10;
-    background: url(/media/img/marketplace/apps-bag.png) -71px 0 no-repeat;
-}
-
-#apps-bag-foreground {
-    position: absolute;
-    width: 344px;
-    height: 216px;
-    bottom: 0;
-    left: 0;
-    z-index: 10;
-    background: url(/media/img/marketplace/apps-bag.png) 0 -61px no-repeat;
-}
-
-#apps-container {
-    position: absolute;
-    width: 260px;
-    height: 658px;
-    bottom: 150px;
-    left: 37px;
-}
-
-#apps-physics {
-    position: relative;
-    width: 260px;
-    height: 658px;
-}
-
-#apps-container .apps-icon {
-    margin: 0;
-    padding: 0;
-    width: 96px;
-    height: 96px;
-    display: none;
-    background: url(/media/img/marketplace/apps-icons.png) no-repeat;
-    background-position: 0 0;
-    &#app-jauntly      { background-position:    0      0; }
-    &#app-minimalist   { background-position:  -96px    0; }
-    &#app-pomodoro     { background-position: -192px    0; }
-    &#app-solitaire    { background-position:    0    -96px; }
-    &#app-soundcloud   { background-position:  -96px  -96px; }
-    &#app-distantorbit { background-position: -192px  -96px; }
-    &#app-twitter      { background-position:    0   -192px; }
-    &#app-wired        { background-position:  -96px -192px; }
-    &#app-wordwars     { background-position: -192px -192px; }
-}
-
 
 #apps-list {
     .inset;
@@ -467,10 +404,6 @@
 
 /* Mobile layout: 320px */
 @media only screen and (max-width: @breakTablet) {
-
-    #apps-bag {
-        display: none;
-    }
 
     #main-feature {
         p,

@@ -21,7 +21,6 @@ urlpatterns = patterns('',
     # Main pages
     (r'^apps/', include('bedrock.marketplace.urls')),
     (r'^collusion/', include('bedrock.collusion.urls')),
-    (r'^firefoxos/', include('bedrock.firefoxos.urls')),
     (r'^foundation/', include('bedrock.foundation.urls')),
     (r'^grants/', include('bedrock.grants.urls')),
     (r'^legal/', include('bedrock.legal.urls')),
