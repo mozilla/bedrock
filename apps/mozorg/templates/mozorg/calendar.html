@@ -1,0 +1,87 @@
+{% extends "mozorg/base-resp.html" %}
+
+{% block page_title %}Calendar Project - Home of Lightning and Sunbird®{% endblock %}
+{% block body_id %}calendar{% endblock %}
+{% block body_class %}sand{% endblock %}
+
+{% block extrahead %}
+  {{ css('calendar') }}
+{% endblock %}
+
+{% block content %}
+    <div class="centerbox">
+        <div class="topbox row">
+            <div class="four columns logobox hide-for-touch">
+                <img src="{{ MEDIA_URL }}img/calendar/lightning/calendar-logo.png" alt="Mozilla Calendar"/>
+            </div>
+            <div class="eight columns infobox">
+                <h1 class="productlabel">Lightning Calendar</h1>
+                <h2 class="productlabel">Organize your life &mdash; its about time!</h2>
+                <aside id="download" class="hide-for-touch">
+                    <a id="download-link" class="loading" href="https://addons.mozilla.org/thunderbird/addon/lightning/">
+                        <span id="version-box" class="title">Lightning 1.5.2</span>
+                        <span class="desc">Free download</span>
+                    </a>
+                    <small class="download-other">
+                        <a href="https://addons.mozilla.org/thunderbird/addon/lightning/versions/">Other Systems &amp; Versions</a>
+                    </small>
+                </aside>
+            </div>
+        </div>
+        <div class="midbox row">
+            <div class="six columns productdescription">
+            Organize your schedule and life's important events in a calendar that's fully integrated with your Thunderbird or Seamonkey email. Manage multiple calendars, create your daily to do list, invite friends to events, and subscribe to public calendars.
+            </div>
+            <div class="six columns">
+                <h1 class="rsshead">Latest Headlines</h1>
+                <ul class="rss">
+                    <li>
+                        <a href="http://blog.mozilla.org/calendar/2012/06/finally-windows-nightly-builds-are-back/">Finally, Windows Nightly Builds are Back!</a>
+                    </li>
+                    <li>
+                        <a href="http://blog.mozilla.org/calendar/2012/06/invite-attendees-bug-in-1-5-1-mac-osx-nightly-build-available/">Invite Attendees bug in 1.5.1, Mac OSX nightly... </a>
+                    </li>
+                    <li>
+                        <a href="http://blog.mozilla.org/calendar/2012/06/new-lightning-versions-for-thunderbird/">New Lightning versions (almost) available for...</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="midbox row">
+            <div class="six columns">
+                <div class="item">
+                    <img class="item-logo" src="{{ MEDIA_URL }}img/calendar/lightning/bulb-icon.png" alt="Knowledge Base"/>
+                    <a href="http://support.mozillamessaging.com/" class="title">Knowledge Base</a>
+                    <span class="desc">Need Help with Lightning?</span>
+                </div>
+                <div class="item">
+                    <img class="item-logo" src="{{ MEDIA_URL }}img/calendar/lightning/question-icon.png" alt="Question"/>
+                    <a href="http://getsatisfaction.com/mozilla_messaging/" class="title">Get Support</a>
+                    <span class="desc">No luck above? Ask a question!</span>
+                </div>
+                <div class="item">
+                    <img class="item-logo" src="{{ MEDIA_URL }}img/calendar/lightning/bug-icon.png" alt="Calendar Bugs"/>
+                    <a href="https://bugzilla.mozilla.org/describecomponents.cgi?product=Calendar" class="title">Bugzilla</a>
+                    <span class="desc">Found a bug? Let us know!</span>
+                </div>
+            </div>
+            <div class="six columns">
+                <div class="item">
+                    <img class="item-logo" src="{{ MEDIA_URL }}img/calendar/lightning/info-icon.png" alt="Compatibility Information"/>
+                    <a href="https://developer.mozilla.org/en/Calendar/Calendar_Versions" class="title">Compatibility Information</a>
+                    <span class="desc">Thunderbird, Seamonkey, what version?</span>
+                </div>
+                <div class="item">
+                    <img class="item-logo" src="{{ MEDIA_URL }}img/calendar/lightning/tools-icon.png" alt="Calendar Development"/>
+                    <a href="https://developer.mozilla.org/en/Calendar/" class="title">Developer Tools</a>
+                    <span class="desc">Dive into development.</span>
+                </div>
+                <div class="item">
+                    <img class="item-logo" src="{{ MEDIA_URL }}img/calendar/lightning/bugspray-icon.png" alt="Bug of the day"/>
+                    <a href="#" class="title">Bug of the day</a>
+                    <span class="desc">Confirm it or even fix it. Also for non-developers.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
