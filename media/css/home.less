@@ -103,6 +103,8 @@
         }
     }
     .download-button {
+        .span(4);
+        width: auto;
         float: right;
         margin-top: -6px;
         margin-left: (@gridGutterWidth / 2);
@@ -634,6 +636,15 @@
             min-height: 60px;
             white-space: normal;
         }
+        .download-button {
+            width: auto;
+            float: none;
+            display: block;
+            margin-top: 10px;
+            .download-link {
+                width: 100%;
+            }
+        }
         #firefox-promo-link {
             left: @gridGutterWidth;
             top: @gridGutterWidth / 2;
@@ -642,16 +653,6 @@
         }
         ul.features {
             display: none;
-        }
-        .download-button {
-            position: static;
-            margin: 12px 10px 0 10px;
-            width: @widthMobile - (@gridGutterWidth * 2);
-            .download-link {
-                text-align: center;
-                display: block;
-                margin-bottom: 6px;
-            }
         }
     }
 
@@ -776,9 +777,6 @@
         h3 {
             margin-top: 25px;
             min-height: 55px;
-        }
-        .download-button {
-            width: @widthMobileLandscape - (@gridGutterWidth * 2);
         }
     }
 
