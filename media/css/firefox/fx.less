@@ -109,22 +109,6 @@
 .mobile-content {
     overflow: hidden;
     text-align: center;
-    .download-link {
-        line-height: 27px;
-    }
-    .download-button {
-        .download-title {
-            font-size: 18px;
-        }
-        .download-info {
-            color: #FFFFFF;
-            font-size: 11px;
-        }
-        .download-content {
-            background-image: none;
-            margin-left: -50px;
-        }
-    }
     #download-column {
         position: relative;
         z-index: 10;
@@ -136,22 +120,6 @@
         margin-top: -50px;
         background-color: #fafafa;
         position: relative;
-        .span(4);
-        margin-bottom: 0;
-        margin-top: 45px;
-        >li {
-            float: none;
-            width: auto;
-            padding: 0;
-            right: 0;
-            a.link {
-                border-left: 0;
-                border-top: 1px dotted @borderColor;
-            }
-            &:first-child a.link {
-                border-top: 0;
-            }
-        }
     }
 }
 
@@ -304,15 +272,10 @@
     }
 
     .mobile-content {
-        #download-column {
-            padding-top: 0;
-            width: auto;
-            float: none;
-            text-align: center;
-            .download-button small.download-other {
-                text-align: left;
-            }
-            margin-bottom: 20px;
+        #download-column,
+        #rating-column {
+            margin: 0 auto 10px auto;
+            display: block;
         }
         #phone-tablet-image { display: none; }
     }
