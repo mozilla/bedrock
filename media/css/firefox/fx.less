@@ -109,22 +109,6 @@
 .mobile-content {
     overflow: hidden;
     text-align: center;
-    .download-link {
-        line-height: 27px;
-    }
-    .download-button {
-        .download-title {
-            font-size: 18px;
-        }
-        .download-info {
-            color: #FFFFFF;
-            font-size: 11px;
-        }
-        .download-content {
-            background-image: none;
-            margin-left: -50px;
-        }
-    }
     #download-column {
         position: relative;
         z-index: 10;
@@ -137,6 +121,8 @@
         font-family: "Open Sans Light";
         font-size: 18px;
         padding-top: 20px;
+        margin-top: 5px;
+        margin-right: 30px;
         float: none;
         display: inline-block;
         vertical-align: top;
@@ -314,15 +300,10 @@
     }
 
     .mobile-content {
-        #download-column {
-            padding-top: 0;
-            width: auto;
-            float: none;
-            text-align: center;
-            .download-button small.download-other {
-                text-align: left;
-            }
-            margin-bottom: 20px;
+        #download-column,
+        #rating-column {
+            margin: 0 auto 10px auto;
+            display: block;
         }
         #phone-tablet-image { display: none; }
     }
