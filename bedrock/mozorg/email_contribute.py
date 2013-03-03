@@ -92,6 +92,7 @@ LOCALE_CONTACTS = {
     'fr'   : ['contact@mozfr.org'],
     'el'   : ['core@mozilla-greece.org'],
     'es-ES': ['participa@mozilla-hispano.org'],
+    'hr'   : ['contribute@mozilla-hr.org'],
     'nl'   : ['contribute@mozilla-nl.org'],
     'pt-BR': ['mlcaraldi@gmail.com'],
     'zh-TW': ['contribute@mail.moztw.org'],
