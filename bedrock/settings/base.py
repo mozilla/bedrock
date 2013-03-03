@@ -277,7 +277,7 @@ MINIFY_BUNDLES = {
     },
     'js': {
         'site': (
-            'js/site.js',  # this is automatically included on every page
+            'js/base/site.js',  # this is automatically included on every page
         ),
         'collusion': (
             'js/collusion/d3.layout.js',
@@ -288,59 +288,59 @@ MINIFY_BUNDLES = {
         ),
         'common': (
             'js/libs/jquery-1.7.1.min.js',
-            'js/global.js',
-            'js/footer-email-form.js',
-            'js/mozilla-input-placeholder.js',
+            'js/base/global.js',
+            'js/base/footer-email-form.js',
+            'js/base/mozilla-input-placeholder.js',
         ),
         'contribute': (
-            'js/contribute-page.js',
-            'js/mozilla-pager.js',
-            'js/mozilla-video-tools.js',
+            'js/mozorg/contribute-page.js',
+            'js/base/mozilla-pager.js',
+            'js/base/mozilla-video-tools.js',
         ),
         'contribute-form': (
-            'js/contribute-form.js',
-            'js/mozilla-input-placeholder.js',
+            'js/mozorg/contribute-form.js',
+            'js/base/mozilla-input-placeholder.js',
         ),
         'expanders': (
-            'js/mozilla-expanders.js',
+            'js/base/mozilla-expanders.js',
         ),
         'firefox': (
             'js/libs/jquery-1.7.1.min.js',
-            'js/global.js',
-            'js/nav-main.js',
-            'js/footer-email-form.js',
-            'js/mozilla-input-placeholder.js',
+            'js/base/global.js',
+            'js/base/nav-main.js',
+            'js/base/footer-email-form.js',
+            'js/base/mozilla-input-placeholder.js',
         ),
         'firefox_all': (
-            'js/firefox-language-search.js',
+            'js/firefox/firefox-language-search.js',
         ),
         'firefox-resp': (
             'js/libs/jquery-1.7.1.min.js',
-            'js/global.js',
-            'js/nav-main-resp.js',
-            'js/footer-email-form.js',
-            'js/mozilla-input-placeholder.js',
+            'js/base/global.js',
+            'js/base/nav-main-resp.js',
+            'js/base/footer-email-form.js',
+            'js/base/mozilla-input-placeholder.js',
         ),
         'firefox_central': (
-            'js/mozilla-video-tools.js',
+            'js/base/mozilla-video-tools.js',
             'js/firefox/central.js',
-            'js/mozilla-pager.js',
+            'js/base/mozilla-pager.js',
         ),
         'firefox_channel': (
-            'js/mozilla-pager.js',
+            'js/base/mozilla-pager.js',
             'js/firefox/channel.js',
         ),
         'firefox_customize': (
-            'js/mozilla-video-tools.js',
+            'js/base/mozilla-video-tools.js',
             'js/firefox/customize.js',
         ),
         'firefox_features': (
-            'js/mozilla-video-tools.js',
+            'js/base/mozilla-video-tools.js',
             'js/firefox/features.js',
         ),
         'firefox_fx': (
-            'js/mozilla-pager.js',
-            'js/mozilla-video-tools.js',
+            'js/base/mozilla-pager.js',
+            'js/base/mozilla-video-tools.js',
         ),
         'firefox_happy': (
             'js/libs/jquery-1.4.4.min.js',
@@ -351,10 +351,10 @@ MINIFY_BUNDLES = {
             'js/firefox/new.js',
         ),
         'firefox_platforms': (
-            'js/mozilla-expanders.js',
+            'js/base/mozilla-expanders.js',
         ),
         'firefox_faq': (
-            'js/mozilla-expanders.js',
+            'js/base/mozilla-expanders.js',
         ),
         'firefox_speed': (
             'js/libs/jquery-1.4.4.min.js',
@@ -370,48 +370,48 @@ MINIFY_BUNDLES = {
         'geolocation': (
             'js/libs/jquery-1.4.4.min.js',
             'js/libs/jquery.nyroModal.pack.js',
-            'js/mozilla-expanders.js',
-            'js/geolocation-demo.js',
-            'js/footer-email-form.js',
+            'js/base/mozilla-expanders.js',
+            'js/firefox/geolocation-demo.js',
+            'js/base/footer-email-form.js',
         ),
         'home': (
-            'js/mozilla-pager.js',
+            'js/base/mozilla-pager.js',
             'js/libs/video-js/video.js',
             'js/mozorg/home.js'
         ),
         'marketplace': (
-            'js/nav-main-resp.js',
-            'js/mozilla-pager.js',
+            'js/base/nav-main-resp.js',
+            'js/base/mozilla-pager.js',
             'js/marketplace/marketplace.js',
         ),
         'mozorg-resp': (
             'js/libs/jquery-1.7.1.min.js',
-            'js/global.js',
-            'js/nav-main-resp.js',
-            'js/footer-email-form.js',
+            'js/base/global.js',
+            'js/base/nav-main-resp.js',
+            'js/base/footer-email-form.js',
         ),
         'pager': (
-            'js/mozilla-pager.js',
+            'js/base/mozilla-pager.js',
         ),
         'partnerships': (
             'js/libs/jquery.validate.js',
-            'js/partnerships.js',
-            'js/mozilla-input-placeholder.js',
+            'js/mozorg/partnerships.js',
+            'js/base/mozilla-input-placeholder.js',
         ),
         'privacy': (
-            'js/mozilla-pager.js',
-            'js/privacy.js',
+            'js/base/mozilla-pager.js',
+            'js/privacy/privacy.js',
         ),
         'styleguide': (
-            'js/styleguide.js',
+            'js/styleguide/styleguide.js',
         ),
         'video': (
-            'js/mozilla-video-tools.js',
+            'js/base/mozilla-video-tools.js',
         ),
         'firefox_devices': (
             'js/libs/jquery-1.4.4.min.js',
-            'js/global.js',
-            'js/nav-main.js',
+            'js/base/global.js',
+            'js/base/nav-main.js',
             'js/libs/jquery.cycle.all.js',
             'js/libs/jquery.ba-hashchange.min.js',
             'js/firefox/devices.js'
@@ -425,12 +425,12 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.hoverIntent.minified.js',
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.jcarousel.min.js',
-            'js/annual2011.js',
+            'js/foundation/annual2011.js',
         ),
         'partners': (
             'js/libs/modernizr.custom.shiv-load.js',
-            'js/mozilla-input-placeholder.js',
-            'js/mozilla-pager.js',
+            'js/base/mozilla-input-placeholder.js',
+            'js/base/mozilla-pager.js',
             'js/firefox/partners.js',
         ),
         'partners_common': (
