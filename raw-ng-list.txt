@@ -81,7 +81,6 @@ mozilla.tools.elmo                      Development of web apps for localization
 mozilla.tools.l10n                      Development of tools for l10n. (Moderated)
 mozilla.tools.pulse                     The Pulse tool for event-driven notifications.
 mozilla.tools.socorro                   The Socorro crash-reporting system.
-mozilla.dev.community-tools             Development of tools for building the Mozilla community. (Moderated)
 mozilla.dev.services.circus             Development of circus, a process runner and watcher. (Moderated)
 mozilla.addons.user-experience          Improving the user experience for using/installing/managing addons in Firefox. (Moderated)
 
