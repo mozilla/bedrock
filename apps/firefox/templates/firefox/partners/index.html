@@ -69,11 +69,6 @@
       <li id="menu-marketplace"><a href="#marketplace">{{_('Marketplace')}}</a></li>
       <li id="menu-android"><a href="#android">{{_('Android')}}</a></li>
     </ul>
-    <ul id="mwc-menu" class="menu">
-      <li class="title">{{ _('MWC') }}</li>
-      <li id="menu-location"><a class="modal" href="#location">{{_('Location')}}</a></li>
-      <li id="menu-schedule"><a class="modal" href="#schedule">{{_('Schedule')}}</a></li>
-    </ul>
   </nav>
   <ul id="overlay-menu" class="menu">
     <li id="menu-form"><a href="#form" class="no-scroll toggle-form">{{_('Get involved')}}</a></li>
@@ -106,16 +101,9 @@
           We’re enabling operators, phone manufacturers and developers to manage, customize and improve relationships with their customers directly through our mobile products: <a {{url1}}>Firefox OS</a>, <a {{url2}}>Firefox Marketplace</a> and <a {{url3}}>Firefox for Android</a>.
           {% endtrans %}</p>
 
-          <ul class="overview-actions">
-            <li class="location"><a class="modal" href="#location"><span></span>{{ _('Join us at Stand F20, Hall 8.1, App Planet') }}</a></li>
-            <li class="schedule"><a class="modal" href="#schedule"><span></span>{{ _('Our keynote & other scheduled events') }}</a></li>
-            <li class="twitter"><a href="https://twitter.com/firefox" rel="external"><span></span>{{ _('Firefox tweets from MWC in Barcelona') }}</a></li>
-          </ul>
-
           <p class="partner-button"><a href="#form" class="button toggle-form">{{ _('Partner with us') }}</a></p>
 
           <div id="overview-news">
-            <img src="{{ media('img/firefox/partners/mwc-logo.png') }}" alt="{{ _('Mobile World Congress, Barcelona, 25 - 28 February 2013') }}" />
             <h3>{{ _('Recent news') }}</h3>
             <ul>
               <li><a href="{{ locale_os_url }}" rel="external">{{ _('Mozilla Announces Global Expansion for Firefox OS') }}</a></li>
@@ -322,7 +310,6 @@
             </ul>
             <p class="partner-button">
               <a href="#form" class="button toggle-form">{{ _('Partner with us') }}</a>
-              <a class="button modal" href="#demo-schedule">{{ _('MWC demonstrations') }}</a>
             </p>
           </div>
           <ul class="logos tween">
@@ -380,14 +367,6 @@
             <div>
               <h4>{{ _('Have an app?') }}</h4>
               <a href="https://developer.mozilla.org/docs/Apps/Publishing/Submitting_an_app" rel="external">{{ _('Submit it to the Firefox Marketplace today') }}</a>
-            </div>
-            <div class="wipjam icon">
-              <span></span>
-              <h4>WIPJam</h4>
-              <a href="http://www.wipconnector.com/wipjam/entry/wipjam_mwc_2013_agenda" rel="external">{{ _('Jam with us, learn about new tools, meet other developers and more') }}</a>
-            </div>
-            <div class="register partner-button">
-              <a href="http://www.wipconnector.com/wipjam/entry/mwc2013" class="button" rel="external">{{ _('Register') }}</a>
             </div>
           </div>
         </div>
@@ -460,160 +439,9 @@
 
 <div id="overlay-container">
   <article id="overlay">
-    <section id="location" class="overlay-contents">
-      <h2>{{ _('Firefox at MWC 2013 — Stand F20, Hall 8.1, App Planet') }}</h2>
-      <img src="{{ media('img/firefox/partners/map.png') }}" alt="" class="map">
-      <div class="footer">
-        <div>
-          <h3>{{ _('From the South Entrance:') }}</h3>
-          <p>{{ _('Walk straight down the main hallway of Hall 8.1. Our stand is located in the middle of the hall on the right.') }}</p>
-        </div>
-        <div>
-          <h3>{{ _('From the North Entrance:') }}</h3>
-          <p>{{ _('Go up the escalator to Hall 8.1. Our stand is located in the middle of the hall.') }}</p>
-        </div>
-        <div>
-          <a href="http://static.mozilla.com/moco/en-US/pdf/Firefox_at_MWC_2013_map.pdf" class="button">{{ _('Download map (PDF)') }}</a>
-        </div>
-      </div>
-    </section>
-    <section id="schedule" class="overlay-contents schedule">
-      <h2>{{ _('Firefox at MWC 2013 — Schedule of events') }}</h2>
-      <div class="calendar">
-        <div class="day">
-          <h4><span>{{ _('Monday') }}</span> {{ _('February 25') }}</h4>
-          <div class="day-contents">
-            <div class="event">
-              <h3>{{ _('Mobile World Live TV Panel') }}</h3>
-              <p>{{ _('Johnathan Nightingale, VP of Firefox Engineering, will participate in a discussion about future opportunities in the apps market.') }}</p>
-              <div class="time">{{ _('12:30-13:00 CET') }}</div>
-              <div class="location">{{ _('Location: the live panel will be streamed on all major screens throughout the show area') }}</div>
-            </div>
-            <div class="event">
-              <h3>{{ _('Apps Panel: Evolving Ecosystems') }}</h3>
-              <p>{{ _('Jay Sullivan, Vice President of Products, will take part in the Apps Panel: Evolving Ecosystems. The panel will discuss the current state of the apps industry and consider how the roles and responsibilities within it are adapting as the apps market evolves.') }}</p>
-              <div class="time">{{ _('16:00-17:30 CET') }}</div>
-              <div class="location">{{ _('Hall 4, Conference Village, Auditorium 2') }}</div>
-            </div>
-            <div class="event">
-              <h3>{{ _('Mobile Premier Awards & AppCircus After Party') }}</h3>
-              <p>{{ _('Firefox Marketplace VP Rick Fant will select and present the winning app.') }}</p>
-              <div class="time">{{ _('16:00-23:00 CET (awards at 22:30)') }}</div>
-              <div class="location">{{ _('Sala Apolo, Barcelona') }}</div>
-            </div>
-          </div>
-        </div>
-        <div class="day">
-          <h4><span>{{ _('Tuesday') }}</span> {{ _('February 26') }}</h4>
-          <div class="day-contents">
-            <div class="event">
-              <h3>{{ _('Gary Kovacs CEO of Mozilla Keynote') }}</h3>
-              <p>{{ _('Mozilla CEO Gary Kovacs’ keynote speech will discuss the benefits of an Open Web device in markets around the world and how Firefox OS will help operators, phone manufacturers and developers reach the next billion Web users.') }}</p>
-              <div class="time">{{ _('09:00-10:30 CET') }}</div>
-              <div class="location">{{ _('Hall 4, Conference Village, Auditorium 1') }}</div>
-            </div>
-            <div class="event">
-              <h3>{{ _('Mobile World Live Keynote with Mitchell Baker') }}</h3>
-              <p>{{ _('Mitchell Baker, Chairperson of the Mozilla Foundation, will discuss the importance of bringing Open Web innovation to mobile devices.') }}</p>
-              <div class="time">{{ _('17:45-18:30 CET') }}</div>
-              <div class="location">{{ _('Hall 4, Conference Village, Auditorium 1') }}</div>
-            </div>
-          </div>
-        </div>
-        <div class="day">
-          <h4><span>{{ _('Wednesday') }}</span> {{ _('February 27') }}</h4>
-          <div class="day-contents">
-            <div class="event">
-              <h3>{{ _('Mobile App Privacy Debate') }}</h3>
-              <p>{{ _('Harvey Anderson, Vice President of Business Affairs and General Counsel at Mozilla, will take part in the debate “Mobile app privacy: What’s your view?” This interactive session is for anyone interested in helping consumers easily make privacy choices on a mobile device.') }}</p>
-              <div class="time">{{ _('13:00-15:00 CET') }}</div>
-              <div class="location">{{ _('GSMA Pavilion, Congress Square (CS80)') }}</div>
-            </div>
-          </div>
-        </div>
-        <div class="day">
-          <h4><span>{{ _('Thursday') }}</span> {{ _('February 28') }}</h4>
-          <div class="day-contents">
-            <div class="event">
-              <h3>{{ _('WIP Jam - Day for Developers') }}</h3>
-              <p>{% trans link='<a href="http://bit.ly/mozwipjam">http://bit.ly/mozwipjam</a>'|safe %}
-              The key event for mobile developers at MWC. Mozilla CTO Brendan Eich and Mozilla Developer Evangelist Robert Nyman will host a workshop and Q&A session on “Why Open Web Apps & Firefox OS are good for mobile developers.” Mozilla developer evangelist Chris Heilmann will present an UnPanel on "HTML5 Beyond the Hype" and lead several HTML5 discussion groups. WIP Jam will also see DemoCamps of HTML5 apps created during Mozilla Developer Days. Full schedule available here: {{link}}
-              {% endtrans %}</p>
-              <div class="time">{{ _('09:00-16:00 CET') }}</div>
-              <div class="location">{{ _('App Planet (Hall 8.0), Theatre B') }}</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
     <section id="testimonials" class="overlay-contents">
       <h2>{{ _('Firefox Marketplace — Developer testimonials') }}</h2>
       <div class="video-wrapper"><iframe width="640" height="360" src="https://www.youtube-nocookie.com/embed/videoseries?list=PLWK3kWTuPoUKFCTRtVkTUXn26PYF311w9" frameborder="0" allowfullscreen></iframe></div>
-    </section>
-    <section id="demo-schedule" class="overlay-contents schedule">
-      <h2>{{ _('MWC demonstrations') }}</h2>
-      <div class="calendar">
-        <div class="day">
-          <h4><span>{{ _('Monday') }}</span> {{ _('February 25') }}</h4>
-          <div class="day-contents">
-            <dl>
-              <dt>{{ _('09:00 – 11:30:') }}</dt>
-              <dd>{{ _('Here (Nokia Maps)') }}</dd>
-              <dt>{{ _('11:30 – 14:00:') }}</dt>
-              <dd>{{ _('Accuweather') }}</dd>
-              <dt>{{ _('14:00 – 16:30:') }}</dt>
-              <dd>{{ _('Twitter') }}</dd>
-              <dt>{{ _('16:30 – 19:00:') }}</dt>
-              <dd>{{ _('Soundcloud') }}</dd>
-            </dl>
-          </div>
-        </div>
-        <div class="day">
-          <h4><span>{{ _('Tuesday') }}</span> {{ _('February 26') }}</h4>
-          <div class="day-contents">
-            <dl>
-              <dt>{{ _('09:00 – 11:30:') }}</dt>
-              <dd>{{ _('Cut the Rope') }}</dd>
-              <dt>{{ _('11:30 – 14:00:') }}</dt>
-              <dd>{{ _('Airbnb') }}</dd>
-              <dt>{{ _('14:00 – 16:30:') }}</dt>
-              <dd>{{ _('Time Out') }}</dd>
-              <dt>{{ _('16:30 – 19:00:') }}</dt>
-              <dd>{{ _('Fale Transito & Parkster') }}</dd>
-            </dl>
-          </div>
-        </div>
-        <div class="day">
-          <h4><span>{{ _('Wednesday') }}</span> {{ _('February 27') }}</h4>
-          <div class="day-contents">
-            <dl>
-              <dt>{{ _('09:00 – 11:30:') }}</dt>
-              <dd>{{ _('Soundcloud') }}</dd>
-              <dt>{{ _('11:30 – 14:00:') }}</dt>
-              <dd>{{ _('Here (Nokia Maps)') }}</dd>
-              <dt>{{ _('14:00 – 15:45:') }}</dt>
-              <dd>{{ _('Reditr') }}</dd>
-              <dt>{{ _('15:45 – 17:30:') }}</dt>
-              <dd>{{ _('Untapped') }}</dd>
-              <dt>{{ _('17:30 — 19:00:') }}</dt>
-              <dd>{{ _('Jaxogram') }}</dd>
-            </dl>
-          </div>
-        </div>
-        <div class="day">
-          <h4><span>{{ _('Thursday') }}</span> {{ _('February 28') }}</h4>
-          <div class="day-contents">
-            <dl>
-              <dt>{{ _('09:00 – 11:30:') }}</dt>
-              <dd>{{ _('Box') }}</dd>
-              <dt>{{ _('11:30 – 14:00:') }}</dt>
-              <dd>{{ _('SporTV') }}</dd>
-              <dt>{{ _('14:00 – 16:30:') }}</dt>
-              <dd>{{ _('Wikipedia') }}</dd>
-            </dl>
-          </div>
-        </div>
-      </div>
     </section>
     <section id="form" class="overlay-contents">
       <div class="form-results">
