@@ -337,11 +337,11 @@ input.focus {
 }
 
 .main-column {
-    .span(6);
+    .span(7);
 }
 
 .sidebar {
-    .span(2);
+    .span(3);
     .offset(2);
 }
 
@@ -763,12 +763,17 @@ nav.menu-bar {
         width: @widthTablet - (@gridGutterWidth * 2);
     }
 
+    .main-column {
+        .span_narrow(8);
+    }
+
     nav.menu-bar {
         font-size: .9375em;
     }
 
     .sidebar {
-        .offset(0);
+        .span_narrow(3);
+        .offset_narrow(1);
     }
 
     #footer-email-form {
@@ -830,6 +835,7 @@ nav.menu-bar {
     .sidebar {
         padding-left: 0;
         padding-right: 0;
+        .span-all();
     }
 
     .row {
@@ -907,6 +913,9 @@ nav.menu-bar {
         font-size: 14px;
     }
 
+    dl dt {
+        font-size: 24px;
+    }
 
     nav.menu-bar {
         text-align: inherit;
