@@ -2,11 +2,12 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% extends "sand.html" %}
+{% extends "base-resp.html" %}
 
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}Mozilla Persona — an identity system for the web{% endblock %}
 {% block body_id %}persona{% endblock %}
+{% block body_class %}sand{% endblock %}
 
 {% block site_header_logo %}
   <h2><a href="/persona/"><img src="{{ MEDIA_URL }}img/persona/title.png" height="66" width="180" alt="mozilla Persona"></a></h2>
@@ -14,7 +15,8 @@
 
 {% block site_header_nav %}
   <nav id="nav-main" role="navigation">
-  <ul>
+  <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
+  <ul id="nav-main-menu">
       <li><b>Home</b></li>
       <li><a href="/persona/about/">About</a></li>
       <li><a href="/persona/developer-faq/">Developer FAQ</a></li>
