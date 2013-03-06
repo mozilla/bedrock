@@ -23,7 +23,7 @@ from product_details import product_details
 
 
 download_urls = {
-    'transition': '/products/download.html',
+    'transition': '/{locale}/products/download.html',
     'direct': 'https://download.mozilla.org/',
     'aurora': 'https://ftp.mozilla.org/pub/mozilla.org/firefox/'
               'nightly/latest-mozilla-aurora',
@@ -120,8 +120,11 @@ def make_download_link(product, build, version, platform, locale,
     if locale in settings.LOCALES_WITH_TRANSITION and not force_direct:
         src = 'transition'
 
-    return ('%s?product=%s-%s&os=%s&lang=%s' %
-            (download_urls[src], product, version, platform, locale))
+    tmpl = '?'.join([download_urls[src], 'product={prod}-{vers}&os={plat}'
+                                         '&lang={locale}'])
+
+    return tmpl.format(prod=product, vers=version,
+                       plat=platform, locale=locale)
 
 
 @jingo.register.function

@@ -12,8 +12,9 @@ from nose.tools import assert_not_equal, eq_, ok_
 from product_details import product_details
 from pyquery import PyQuery as pq
 
+from mozorg.helpers.download_buttons import make_download_link
 
-# Where should this function go?
+
 def render(s, context={}):
     t = jingo.env.from_string(s)
     return t.render(**context)
@@ -46,7 +47,8 @@ class TestDownloadButtons(unittest.TestCase):
         rf = RequestFactory()
         get_request = rf.get('/fake')
         get_request.locale = 'fr'
-        doc = pq(render("{{ download_firefox(small=%s, dom_id='button') }}" % small,
+        doc = pq(render("{{ download_firefox(small=%s, "
+                        "dom_id='button') }}" % small,
                         {'request': get_request}))
 
         eq_(doc.attr('id'), 'button')
@@ -175,3 +177,14 @@ class TestDownloadButtons(unittest.TestCase):
         links = doc('.download-list a')[:3]
         for link in links:
             ok_('stub' not in pq(link).attr('href'))
+
+    def test_download_transition_link_contains_locale(self):
+        """
+        "transition" download links should include the locale in the path as
+        well as the query string.
+        """
+        locale = settings.LOCALES_WITH_TRANSITION[0]
+        url = make_download_link('firefox', 'release', 19.0, 'os_osx', locale)
+        good_url = ('/{locale}/products/download.html?product=firefox-19.0&'
+                    'os=osx&lang={locale}').format(locale=locale)
+        eq_(url, good_url)
