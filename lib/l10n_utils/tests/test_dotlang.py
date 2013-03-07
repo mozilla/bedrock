@@ -44,6 +44,7 @@ class TestLangFilesActivation(TestCase):
         comment, and false otherwise.
         """
         ok_(lang_file_is_active('active_de_lang_file', 'de'))
+        ok_(lang_file_is_active('active_de_lang_file_bom', 'de'))
         ok_(not lang_file_is_active('active_de_lang_file', 'es'))
         ok_(not lang_file_is_active('inactive_de_lang_file', 'de'))
         ok_(not lang_file_is_active('does_not_exist', 'de'))
