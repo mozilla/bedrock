@@ -43,13 +43,6 @@
 .partner-article {
     .button {
         display: block;
-        background-color: @localBlue;
-        #gradient > .vertical(@localBlue, @localBlueDark);
-        font-size: 16px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        .box-shadow(@localShadow);
-        .border-radius(8px);
         &:after {
             content: " ";
             display: inline-block;
@@ -58,6 +51,13 @@
             vertical-align: middle;
             margin-left: 10px;
             background: url(/media/img/sandstone/buttons/arrow-go-r.png) 0 0;
+        }
+        &:before {
+            content: " ";
+            display: inline-block;
+            height: 24px;
+            width: 10px;
+            vertical-align: middle;
         }
         &:hover,
         &:focus {
