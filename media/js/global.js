@@ -27,8 +27,8 @@ function trigger_ie_download(link) {
 // ie functionality if on ie
 function init_download_links() {
     $('.download-link').each(function() {
-        var el = $(this);
-        el.click(function() {
+        var $el = $(this);
+        $el.click(function() {
             dcsMultiTrack('DCS.dcssip',
                           'www.mozilla.org',
                           'DCS.dcsuri',
@@ -38,9 +38,10 @@ function init_download_links() {
                           'WT.nv', 'Content',
                           'WT.ac', 'Download Firefox');
 
-            trigger_ie_download(el.data('direct-link'));
+            trigger_ie_download($el.data('direct-link'));
         });
     });
+    $('.download-list').attr('role', 'presentation');
 }
 
 // platform images

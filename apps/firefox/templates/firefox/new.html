@@ -22,7 +22,7 @@
 <main role="main">
   <div id="main-feature">
     <div class="row">
-      <img src="{{ media('img/sandstone/buttons/firefox-large.png') }}" alt="Firefox" />
+      <img src="{{ media('img/firefox/new/firefox-logo.png') }}" alt="Firefox" />
       <h1 class="large">{{_('Different <span>by design</span>')}}</h1>
     </div>
   </div>
@@ -38,10 +38,10 @@
           </ul>
 
           <div class="desktop download-button-wrapper">
-            {{ download_button('download', 'large', force_direct=true) }}
+            {{ download_firefox(force_direct=true) }}
           </div>
           <div class="mobile download-button-wrapper">
-            {{ mobile_download_button('primary-download-mobile') }}
+            {{ download_firefox(mobile=True) }}
           </div>
         </div>
 
