@@ -2,10 +2,19 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% extends "sand.html" %}
+{% extends "base-resp.html" %}
+
+{% block body_class %}sand{% endblock %}
 
 {% block extrahead %}
   {{ css('grants') }}
+{% endblock %}
+
+{% block breadcrumbs %}
+  <nav class="breadcrumbs">
+    <a href="{{ url('mozorg.home') }}">Home</a> >
+    <a href="{{ url('grants') }}">{{ _('Mozilla Grants') }}</a> >
+  </nav>
 {% endblock %}
 
 {% block content %}
