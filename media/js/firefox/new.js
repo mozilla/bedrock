@@ -69,10 +69,10 @@
         // 'click here' link.
         // TODO: Remove and generate link in bedrock.
         $('#direct-download-link').attr(
-            'href', $('.download-list li:visible .download-firefox').attr('href')
+            'href', $('.download-list li:visible .download-link').attr('href')
         );
 
-        $stage.on('click', '#direct-download-link, .download-firefox', function(e) {
+        $stage.on('click', '#direct-download-link, .download-link', function(e) {
             e.preventDefault();
 
             track_and_redirect($(e.currentTarget).attr('href'));
