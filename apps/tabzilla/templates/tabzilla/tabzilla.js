@@ -85,7 +85,7 @@ function Tabzilla()
 Tabzilla.READY_POLL_INTERVAL = 40;
 Tabzilla.readyInterval = null;
 Tabzilla.jQueryCDNSrc =
-    '//www.mozilla.org/media/js/libs/jquery-1.7.1.min.js';
+    '//mozorg.cdn.mozilla.net/media/js/libs/jquery-1.7.1.min.js';
 
 Tabzilla.LINK_TITLE = {
     CLOSED: '{{ _('Mozilla links')|js_escape }}',
