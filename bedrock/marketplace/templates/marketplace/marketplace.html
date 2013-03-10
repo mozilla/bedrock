@@ -28,7 +28,7 @@
   <div id="marketplace-panel">
     <div id="panel-download">
       <p>{{_('To test out the Aurora release of Firefox Marketplace, you first need to download Firefox Aurora on your Android phone.')}}</p>
-      {{ mobile_download_button('primary-download-mobile', 'mobile_aurora', build='aurora') }}
+      {{ download_firefox('aurora', mobile=True, icon=False) }}
     </div>
     <div id="panel-info">
       <p>{{_('Once you have downloaded and installed Firefox Aurora for Android, you can access the Firefox Marketplace from the “Apps” menu option within Firefox Aurora.')}}</p>

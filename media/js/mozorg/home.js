@@ -590,10 +590,10 @@ $(document).ready(function() {
     ];
 
     var sources = [{
-        src: 'http://videos-cdn.mozilla.net/serv/firefoxflicks/FireFoxFlicks_2013-Teaser.mp4',
+        src: 'http://videos-cdn.mozilla.net/serv/firefoxflicks/IC_2_6_13_H264.mp4',
         type: 'video/mp4'
     }, {
-        src: 'http://videos-cdn.mozilla.net/serv/firefoxflicks/FireFoxFlicks_2013-Teaser.webm',
+        src: 'http://videos-cdn.mozilla.net/serv/firefoxflicks/IC_2_6_13_H264.webm',
         type: 'video/webm'
     }];
 

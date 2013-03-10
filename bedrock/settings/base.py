@@ -292,6 +292,13 @@ MINIFY_BUNDLES = {
             'js/base/footer-email-form.js',
             'js/base/mozilla-input-placeholder.js',
         ),
+        'common-resp': (
+            'js/libs/jquery-1.7.1.min.js',
+            'js/base/global.js',
+            'js/base/nav-main-resp.js',
+            'js/base/footer-email-form.js',
+            'js/base/mozilla-input-placeholder.js',
+        ),
         'contribute': (
             'js/mozorg/contribute-page.js',
             'js/base/mozilla-pager.js',
