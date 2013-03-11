@@ -148,7 +148,6 @@
              -1px  0   0 0 rgba(255,255,255,0.5) inset,
               0   -2px 0 0 rgba(0,0,0,0.1)       inset;
     .box-shadow(@shadow);
-    .border-radius(8px);
     color: @linkBlue;
     text-shadow: none;
     &:hover,
@@ -178,8 +177,8 @@
         }
         &:first-child {
             .button-sand {
-                border-top-left-radius: 8px;
-                border-bottom-left-radius: 8px;
+                border-top-left-radius: 0.25em;
+                border-bottom-left-radius: 0.25em;
                 border-left-width: 1px;
                 @shadow:  0    1px 0 0 rgba(255,255,255,0.5) inset,
                           1px  0   0 0 rgba(255,255,255,0.5) inset,
@@ -194,8 +193,8 @@
         }
         &:last-child {
             .button-sand {
-                border-top-right-radius: 8px;
-                border-bottom-right-radius: 8px;
+                border-top-right-radius: 0.25em;
+                border-bottom-right-radius: 0.25em;
             }
         }
     }
