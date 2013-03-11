@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% extends "base.html" %}
+{% extends "base-resp.html" %}
 
 {% block page_title %}Collusion Demo{% endblock %}
 {% block body_id %}collusion-demo{% endblock %}
@@ -10,7 +10,8 @@
 
 {% block site_header_nav %}
   <nav id="nav-main" role="navigation">
-  <ul>
+    <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
+    <ul id="nav-main-menu">
       <li><a href="{{ url('collusion') }}">Home</a></li>
       <li><b>Demo</b></li>
   </ul>
@@ -109,10 +110,10 @@ $(window).ready(function() {
 {% block content %}
 
 <h1 class="container">Collusion Demo</h1>
-<section class="container">
+<section id="demo-section" class="container">
 
-<div id="page" class="row">
-<div id="sidebar" class="box span3">
+<div id="page">
+<div id="sidebar" class="box">
   <div class="byline"></a></div>
 
   <div id="sidebar-content">
