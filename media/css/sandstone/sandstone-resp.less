@@ -337,11 +337,11 @@ input.focus {
 }
 
 .main-column {
-    .span(6);
+    .span(7);
 }
 
 .sidebar {
-    .span(2);
+    .span(3);
     .offset(2);
 }
 
@@ -374,7 +374,6 @@ input.focus {
     .clearfix;
 }
 /* }}} */
-
 /* {{{ Header Nav */
 #masthead {
 
@@ -586,7 +585,6 @@ nav.menu-bar {
 
     h3 {
         .span(4);
-        padding-top: 4px;
     }
 
     .form-contents {
@@ -598,7 +596,7 @@ nav.menu-bar {
     }
 
     .field {
-        padding: 4px 0;
+        padding: 0 0 8px 0;
     }
 
     select {
@@ -607,11 +605,6 @@ nav.menu-bar {
 
     input[type=email] {
         width: 80%;
-        margin-top: 2px;
-    }
-
-    input[type=submit] {
-        font-size: 18px;
     }
 
     .field-privacy {
@@ -720,32 +713,6 @@ nav.menu-bar {
 }
 
 /* }}} */
-
-/* {{{ MWC badge */
-#mwc-badge {
-    display: none;
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 999;
-}
-
-.mwc2013 #mwc-badge {
-    display: block;
-}
-
-#mwc-badge a {
-    display: block;
-    text-indent: -999em;
-    overflow: hidden;
-    width: 140px;
-    height: 140px;
-    background: url(/media/img/firefox/partners/mwc_badge-corner.png) no-repeat;
-    color: #fff;
-    border-bottom-right-radius: 100%;
-}
-/* }}} */
-
 /* {{{ Responsive Grid */
 
 /* Tablet Layout: 760px */
@@ -763,12 +730,17 @@ nav.menu-bar {
         width: @widthTablet - (@gridGutterWidth * 2);
     }
 
+    .main-column {
+        .span_narrow(8);
+    }
+
     nav.menu-bar {
         font-size: .9375em;
     }
 
     .sidebar {
-        .offset(0);
+        .span_narrow(3);
+        .offset_narrow(1);
     }
 
     #footer-email-form {
@@ -830,6 +802,7 @@ nav.menu-bar {
     .sidebar {
         padding-left: 0;
         padding-right: 0;
+        .span-all();
     }
 
     .row {
@@ -907,6 +880,9 @@ nav.menu-bar {
         font-size: 14px;
     }
 
+    dl dt {
+        font-size: 24px;
+    }
 
     nav.menu-bar {
         text-align: inherit;
@@ -1071,10 +1047,6 @@ nav.menu-bar {
         top: -10px;
     }
 
-    .mwc2013 #mwc-badge {
-        display: none;
-    }
-
 }
 
 
@@ -1109,8 +1081,6 @@ nav.menu-bar {
 
 }
 /* }}} */
-
-
 
 // Don't display the dynamic platform images when js is disabled
 // because the ones in the noscript tag will be shown

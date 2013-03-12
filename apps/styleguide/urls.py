@@ -25,6 +25,8 @@ hierarchy = PageRoot('Home', children=(
         )),
         PageNode('Firefox OS', path='firefoxos', children=(
             PageNode('Branding', path='branding', template='styleguide/identity/firefoxos-branding.html'),
+#            PageNode('Promo Materials', path='promo', template='styleguide/identity/firefoxos-promo-materials.html'),
+            PageNode('Color', path='color', template='styleguide/identity/firefoxos-color.html'),
         )),
         PageNode('Marketplace', path='marketplace', children=(
             PageNode('Branding', path='branding', template='styleguide/identity/marketplace-branding.html'),

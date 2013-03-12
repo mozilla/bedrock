@@ -144,6 +144,9 @@
             $.pageslide.close();
         } else {
             w.ga_track('form/');
+            setTimeout(function () {
+                $("#pageslide form").attr('tabindex', '-1')[0].focus();
+            }, 300);
         }
     };
 

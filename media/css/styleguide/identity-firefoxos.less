@@ -4,8 +4,7 @@
 
 @import "../styleguide/styleguide.less";
 
-/* {{{ Firefox - Branding  */
-
+/* {{{ Firefox OS - Branding  */
 .firefoxos-branding {
     #intro {
         float: left;
@@ -15,6 +14,44 @@
         }
         p {
             .span_guide(9);
+        }
+    }
+    #guidelines {
+        float: left;
+        .divider;
+        div {
+            .span_guide(3);
+        }
+        #guidelines-list {
+            .span_guide(9);
+        }
+    }
+    #versus {
+        float: left;
+        .divider;
+        h2 {
+            .span_guide(3);
+        }
+        div {
+            .span_guide(9);
+        }
+    }
+    #usage {
+        float: left;
+       .divider;
+        h2 {
+            .span_guide(12);
+        }
+        div,
+        p {
+            .span_guide(3);
+            margin-top: 20px;
+        }
+        div {
+            text-align: center;
+        }
+        div.clear {
+            clear: both;
         }
     }
     #wordmark {
@@ -47,10 +84,68 @@
                 margin-bottom: 0;
             }
         }
-        .button-sand, .button-sand:link, .button-sand:visited {
-            padding: 0 12px;
+    }
+}
+/* }}} */
+/* {{{ Firefox OS - Promo Materials  */
+.firefoxos-promo {
+    #intro {
+        float: left;
+        .divider;
+        h2 {
+            .span_guide(3);
+        }
+        p {
+            .span_guide(9);
+        }
+    }
+    #guidelines {
+        float: left;
+        .divider;
+        div {
+            .span_guide(3);
+        }
+        #guidelines-list {
+            .span_guide(9);
         }
     }
 }
-
+/* }}} */
+/* {{{ Firefox OS - Colors  */
+.firefoxos-colors {
+    #intro {
+        float: left;
+        .divider;
+        h2 {
+            .span_guide(3);
+        }
+        p {
+            .span_guide(8);
+        }
+    }
+    .swatch-card {
+        .span_guide(6);
+        position: relative;
+        margin: 0 0 20px 0;
+        .button-sand {
+            position: absolute;
+            top: 0;
+            right: 75px;
+            background: url(/media/img/styleguide/download-arrow.png) center right no-repeat;
+            padding-right: 40px
+        }
+    }
+    .clear {
+        clear: left;
+    }
+    #swatch-orange .swatch { background-color: #e66000; }
+    #swatch-light-orange .swatch { background-color: #ff9500; }
+    #swatch-blue .swatch { background-color: #00539f; }
+    #swatch-light-blue .swatch { background-color: #0095dd; }
+    #swatch-brown .swatch { background-color: #330000; }
+    #swatch-charcoal .swatch { background-color: #4d4e53; }
+    #swatch-orange-grad .swatch { #gradient > .vertical(#ff9500, #e66000); }
+    #swatch-blue-grad .swatch { #gradient > .vertical(#0095dd, #00539f); }
+    #swatch-lightgrey-grad .swatch { #gradient > .vertical(#eaeff2, #d4dde4); }
+}
 /* }}} */

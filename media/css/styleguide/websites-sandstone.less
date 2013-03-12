@@ -32,10 +32,6 @@
         }
         #grid-downloads {
             .span_guide(3);
-            .button-list .button-sand {
-                padding-left: 12px;
-                padding-right: 12px;
-            }
         }
     }
     #grid-phone,
@@ -72,10 +68,6 @@
         }
         #tabzilla-downloads {
             .span_guide(3);
-            .button-sand {
-                padding-left: 12px;
-                padding-right: 12px;
-            }
         }
     }
     #examples {
@@ -204,7 +196,15 @@
 
 .sandstone-buttons {
 
+    #buttons-static,
     #buttons {
+        td {
+            text-align: right;
+            div {
+                text-align: left;
+            }
+        }
+        clear: both;
         .clearfix;
         .divider;
         .examples {
@@ -214,7 +214,7 @@
             }
         }
         #examples-standard {
-            .offset_guide(3);            
+            .offset_guide(3);
         }
     }
 
@@ -225,13 +225,6 @@
         .span_guide(9);
         .example {
             margin-bottom: @baseLine;
-        }
-    }
-    #buttons,
-    #icons {
-        .button-sand {
-            padding-left: 12px;
-            padding-right: 12px;
         }
     }
 }
@@ -273,7 +266,7 @@
             }
         }
         #examples-standard {
-            .offset_guide(3);            
+            .offset_guide(3);
         }
     }
 
@@ -284,13 +277,6 @@
         .span_guide(9);
         .example {
             margin-bottom: @baseLine;
-        }
-    }
-    #buttons,
-    #icons {
-        .button-sand {
-            padding-left: 12px;
-            padding-right: 12px;
         }
     }
 }
