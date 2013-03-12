@@ -2,11 +2,18 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import "template.less";
+@import "template-resp.less";
+
+#main-feature {
+    h1,
+    p {
+        .span-all();
+        margin-bottom: @baseLine / 2;
+    }
+}
 
 .main-column {
     .span(8);
-    margin-left: 0;
 }
 
 #map_canvas {
@@ -29,3 +36,12 @@
     color: red;
 }
 
+
+/* Mobile Layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+
+    .main-column {
+        .span-all();
+    }
+
+}
