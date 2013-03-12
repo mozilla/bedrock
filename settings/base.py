@@ -271,6 +271,9 @@ MINIFY_BUNDLES = {
         'tabzilla': (
             'css/tabzilla.less',
         ),
+        'tabzilla_initialized': (
+            'css/tabzilla-initialized.less',
+        ),
         'video': (
             'css/sandstone/video.less',
         ),

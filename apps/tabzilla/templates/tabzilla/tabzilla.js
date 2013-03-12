@@ -11,7 +11,7 @@ var moz = (function (parent) {
     var loadCss = function () {
         var css = document.createElement("link");
         css.rel = "stylesheet";
-        css.href = '/media/css/tabzilla-initialized.css';
+        css.href = '/media/css/tabzilla-initialized.less.css';
         document.getElementsByTagName("head")[0].appendChild(css);
     };
     var loadJS = function (callback) {
