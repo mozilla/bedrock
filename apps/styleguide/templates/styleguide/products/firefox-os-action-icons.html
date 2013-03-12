@@ -1,0 +1,282 @@
+{% extends "styleguide/base.html" %}
+
+{% block guide_logo %}{{ media('/img/styleguide/mozilla-dark.png') }}{% endblock %}
+
+{% block body_class %}
+  {{ super() }}
+  dark firefox-os-action-icons
+{% endblock %}
+
+{% set page_title = 'Firefox OS action icons' %}
+{% block content_area %}
+<section id="basics">
+
+  <div class="intro">
+    <h2>{{ _('Basics') }}</h2>
+    <p>{{ _('A Firefox OS action icon is a 30x30 image provided in 24-bit PNG format. In some places, the dimensions can vary. For example, active call action icons are 40x40.') }}</p>
+  </div>
+
+  <div id="color">
+
+    <h3>{{ _('Color') }}</h3>
+
+    <div class="swatch-card" id="swatch-standard">
+      <div class="swatch"></div>
+      <h4>{{ _('Standard') }}</h4>
+      <p>{{ _('#FFFFFF') }}</p>
+    </div>
+
+    <div class="swatch-card" id="swatch-dark">
+      <div class="swatch"></div>
+      <h4>{{ _('Dark on Light') }}</h4>
+      <p>{{ _('#2C393B') }}</p>
+    </div>
+
+    <div class="swatch-card" id="swatch-favorite">
+      <div class="swatch"></div>
+      <h4>{{ _('Favorite (Browser) <small>Toggle color as shown below</small>') }}</h4>
+      <p>{{ _('#FCCB00 to FF9500') }}</p>
+    </div>
+
+    <div class="swatch-card" id="swatch-mark">
+      <div class="swatch"></div>
+      <h4>{{ _('Mark (Email) <small>Toggle color as shown below</small>') }}</h4>
+      <p>{{ _('#EC1313') }}</p>
+    </div>
+
+  </div>
+
+  <div id="shadow">
+
+    <h3>{{ _('Drop shadows') }}</h3>
+
+    <div class="headers">
+      <h4>{{ _('For headers and toolbars:') }}</h4>
+      <figure>
+        <img src="{{ media('/img/styleguide/products/firefoxos/action-icons/icon-shadow.png') }}" alt="" />
+        <figcaption><div>
+          <h5>{{ _('Drop shadow (Photoshop)') }}</h5>
+          <ul>
+            <li>{{ _('Color: #000000') }}</li>
+            <li>{{ _('Blend mode: Normal') }}</li>
+            <li>{{ _('Opacity: 20%') }}</li>
+            <li>{{ _('Angle: 120') }}</li>
+            <li>{{ _('User Global Light: No') }}</li>
+            <li>{{ _('Distance: 1') }}</li>
+            <li>{{ _('Spread: 0') }}</li>
+            <li>{{ _('Size: 0') }}</li>
+          </ul>
+        </div></figcaption>
+      </figure>
+    </div>
+
+    <div class="buttons">
+      <h4>{{ _('For buttons:') }}</h4>
+      <figure>
+        <img src="{{ media('/img/styleguide/products/firefoxos/action-icons/icon-no-shadow.png') }}" alt="" />
+        <figcaption><div>
+          <h5>{{ _('No drop shadow') }}</h5>
+        </div></figcaption>
+      </figure>
+    </div>
+
+    <div class="light">
+      <h4>{{ _('For light backgrounds:') }}</h4>
+      <figure>
+        <img src="{{ media('/img/styleguide/products/firefoxos/action-icons/icon-light.png') }}" alt="" />
+        <figcaption><div>
+          <h5>{{ _('Drop shadow (same as above)') }}</h5>
+        </div></figcaption>
+      </figure>
+    </div>
+
+  </div>
+
+</section>
+
+<section id="design">
+
+  <h2>{{ _('Design principles') }}</h2>
+  <div class="intro">
+    <p>{{ _('Action Icons should look both <strong>confident</strong> and <strong>approachable</strong>.') }}</p>
+    <ul>
+      <li>{{ _('<strong>Confident</strong> means action-oriented and trustworthy.') }}</li>
+      <li>{{ _('<strong>Approachable</strong> means friendly, inviting the user to touch.') }}</li>
+    </ul>
+    <p>{{ _('To achieve this look, we take the basic form of a radiused squared (approachable) and intersect it with both straight and elliptical cut lines (confident), as show below.') }}</p>
+    <p><img src="{{ media('/img/styleguide/products/firefoxos/action-icons/design-1.png') }}" alt="{{ _('Icon examples') }}" /></p>
+    <p>{{ _('Complex forms can be achieved using radiused square, circle, & ellipse.') }}</p>
+    <p><img src="{{ media('/img/styleguide/products/firefoxos/action-icons/design-2.png') }}" alt="{{ _('Icon examples') }}" /></p>
+    <p>{{ _('The designer should aim to create an icon that represents the desired function as simply and clearly as possible, while avoiding overly complex or compound ideas.') }}</p>
+  </div>
+
+</section>
+
+<section id="conventions">
+
+  <h2>{{ _('Conventions') }}</h2>
+  <div class="intro">
+    <p>{{ _('It is recommended that you either a) crop your icon with a circle shape or b) use a circle shape as a backdrop
+as in the following examples.') }}</p>
+  </div>
+
+  <div id="line-weights" class="sub-section">
+    <h3>{{ _('Line weights') }}</h3>
+    <p>{{ _('There are two main line weights that should be used. Additional line weights are allowed, but use sparingly if one of these two do not suffice.') }}</p>
+    <p><img src="{{ media('/img/styleguide/products/firefoxos/action-icons/line-weights.png') }}" alt="{{ _('Line weights: 2.4 pixels and 1.2 pixels') }}" /></p>
+  </div>
+
+  <div id="radius" class="sub-section">
+    <h3>{{ _('Radiused Corners') }}</h3>
+    <p>{{ _('Radiused corners come in two sizes. Use as you feel appropriate.') }}</p>
+    <p><img src="{{ media('/img/styleguide/products/firefoxos/action-icons/radiused-corners.png') }}" alt="{{ _('1.25 pixel radius or 2.5 pixel radius') }}" /></p>
+  </div>
+
+  <div id="arrows" class="sub-section">
+    <h3>{{ _('Arrows') }}</h3>
+    <p>{{ _('The use of arrow heads differs when it comes to navigation and non navigation UI.') }}</p>
+    <p>{{ _('There are 3 types of arrows:') }}</p>
+    <figure class="first">
+      <img src="{{ media('/img/styleguide/products/firefoxos/action-icons/arrows-ui.png') }}" alt="" />
+      <figcaption>UI navigation <small>(chevron)</small></figcaption>
+    </figure>
+    <figure>
+      <img src="{{ media('/img/styleguide/products/firefoxos/action-icons/arrows-web.png') }}" alt="" />
+      <figcaption>Webpage navigation <small>(chevron + tail)</small></figcaption>
+    </figure>
+    <figure id="arrows-transfer">
+      <img src="{{ media('/img/styleguide/products/firefoxos/action-icons/arrows-transfer.png') }}" alt="" />
+      <figcaption>Data transfer: E-Mail Send & Forward shown <small>(half radiused square head)</small></figcaption>
+    </figure>
+  </div>
+
+  <div id="documents" class="sub-section">
+    <h3>{{ _('Documents') }}</h3>
+    <p>{{ _('Documents are represented by a 45 degree cut line on the top-left corner of a radiused square.') }}</p>
+    <p><img src="{{ media('/img/styleguide/products/firefoxos/action-icons/documents.png') }}" alt="{{ _('Document icons') }}</" /></p>
+  </div>
+
+</section>
+
+<section id="blocks">
+
+  <h2>{{ _('Building blocks') }}</h2>
+  <div class="intro">
+    <p>{{ _('Designers should re-use existing components wherever possible, to maintain maximum consistency. For example, if you need an ‘X’ or a ‘+’ in your icon, reuse one previously designed. In some cases, it may make more sense to create a new version that better integrates into the overall icon -- this is at the designers’ discretion.') }}</p>
+  </div>
+  <div id="common-header-icons" class="common-icons">
+    <h3>{{ _('Common Header Icons') }}</h3>
+    <figure class="first">
+      <img src="{{ media('/img/styleguide/products/firefoxos/action-icons/common-menu.png') }}" alt="" />
+      <figcaption>{{ _('Menu') }}</figcaption>
+    </figure>
+    <figure>
+      <img src="{{ media('/img/styleguide/products/firefoxos/action-icons/common-back.png') }}" alt="" />
+      <figcaption>{{ _('Back') }}</figcaption>
+    </figure>
+    <figure>
+      <img src="{{ media('/img/styleguide/products/firefoxos/action-icons/common-cancel.png') }}" alt="" />
+      <figcaption>{{ _('Cancel') }}</figcaption>
+    </figure>
+    <figure>
+      <img src="{{ media('/img/styleguide/products/firefoxos/action-icons/common-new.png') }}" alt="" />
+      <figcaption>{{ _('New') }}</figcaption>
+    </figure>
+    <figure class="first">
+      <img src="{{ media('/img/styleguide/products/firefoxos/action-icons/common-compose.png') }}" alt="" />
+      <figcaption>{{ _('Compose') }}</figcaption>
+    </figure>
+    <figure>
+      <img src="{{ media('/img/styleguide/products/firefoxos/action-icons/common-edit-list.png') }}" alt="" />
+      <figcaption>{{ _('Edit List') }}</figcaption>
+    </figure>
+    <figure>
+      <img src="{{ media('/img/styleguide/products/firefoxos/action-icons/common-settings.png') }}" alt="" />
+      <figcaption>{{ _('Settings') }}</figcaption>
+    </figure>
+  </div>
+  <div id="common-toolbar-icons" class="common-icons">
+    <h3>{{ _('Common toolbar icons') }}</h3>
+    <figure class="first">
+      <img src="{{ media('/img/styleguide/products/firefoxos/action-icons/common-refresh.png') }}" alt="{{ _('') }}" />
+      <figcaption>{{ _('Refresh') }}</figcaption>
+    </figure>
+    <figure>
+      <img src="{{ media('/img/styleguide/products/firefoxos/action-icons/common-delete.png') }}" alt="{{ _('') }}" />
+      <figcaption>{{ _('Delete') }}</figcaption>
+    </figure>
+    <figure>
+      <img src="{{ media('/img/styleguide/products/firefoxos/action-icons/common-search.png') }}" alt="{{ _('') }}" />
+      <figcaption>{{ _('Search') }}</figcaption>
+    </figure>
+    <figure>
+      <img src="{{ media('/img/styleguide/products/firefoxos/action-icons/common-share.png') }}" alt="{{ _('') }}" />
+      <figcaption>{{ _('Share') }}</figcaption>
+    </figure>
+    <figure class="first">
+      <img src="{{ media('/img/styleguide/products/firefoxos/action-icons/common-bookmark.png') }}" alt="{{ _('') }}" />
+      <figcaption>{{ _('Bookmark (Toggle)') }}</figcaption>
+    </figure>
+    <figure>
+      <img src="{{ media('/img/styleguide/products/firefoxos/action-icons/common-bookmarked.png') }}" alt="{{ _('') }}" />
+      <figcaption>{{ _('Bookmarked (Toggle)') }}</figcaption>
+    </figure>
+    <figure>
+      <img src="{{ media('/img/styleguide/products/firefoxos/action-icons/common-mark.png') }}" alt="{{ _('') }}" />
+      <figcaption>{{ _('Mark (Toggle)') }}</figcaption>
+    </figure>
+    <figure>
+      <img src="{{ media('/img/styleguide/products/firefoxos/action-icons/common-marked.png') }}" alt="{{ _('') }}" />
+      <figcaption>{{ _('Marked (Toggle)') }}</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="examples">
+  <h2>{{ _('Action icons examples') }}</h2>
+  <div class="intro">
+    <figure>
+      <h4>{{ _('Contact Details') }}</h4>
+      <img src="{{ media('/img/styleguide/products/firefoxos/action-icons/example-contact-details.png') }}" alt="{{ _('') }}" />
+    </figure>
+    <figure>
+      <h4>{{ _('Call Log') }}</h4>
+      <img src="{{ media('/img/styleguide/products/firefoxos/action-icons/example-call-log.png') }}" alt="{{ _('') }}" />
+    </figure>
+    <figure>
+      <h4>{{ _('Email Inbox') }}</h4>
+      <img src="{{ media('/img/styleguide/products/firefoxos/action-icons/example-email-inbox.png') }}" alt="{{ _('') }}" />
+    </figure>
+  </div>
+</section>
+
+<section id="action-downloads">
+  <div class="intro">
+    <h2>{{ _('Download') }}</h2>
+    <p>{% trans link='href="https://assets.mozillalabs.com/Projects/Firefox%20OS/UX/VsD/v01.0/Action%20Icon%20Templates/PNG/"'|safe %}
+    Download Firefox OS action icons in Photoshop or PNG format, or <a {{link}}>download individual icons</a>.
+    {% endtrans %}</p>
+  </div>
+  <div class="download-group" id="download-primary">
+    <h5>{{ _("Primary action icons") }}</h5>
+    <ul class="button-list">
+      <li><a href="https://assets.mozillalabs.com/Projects/Firefox%20OS/UX/VsD/v01.0/Action%20Icon%20Templates/PSD/IconsPrimaryAction_20130305.psd" class="button-sand">{{ _('PSD') }}</a></li><li>
+      <a href="https://assets.mozillalabs.com/Projects/Firefox%20OS/UX/VsD/v01.0/Action%20Icon%20Templates/PNG/IconsPrimaryAction_20130305.png" class="button-sand">{{ _('PNG') }}</a></li>
+    </ul>
+  </div>
+  <div class="download-group" id="download-communication">
+    <h5>{{ _("Communication action icons") }}</h5>
+    <ul class="button-list">
+      <li><a href="https://assets.mozillalabs.com/Projects/Firefox%20OS/UX/VsD/v01.0/Action%20Icon%20Templates/PSD/IconsCommunications_20130305.psd" class="button-sand">{{ _('PSD') }}</a></li><li>
+      <a href="https://assets.mozillalabs.com/Projects/Firefox%20OS/UX/VsD/v01.0/Action%20Icon%20Templates/PNG/IconsCommunications_20130305.png" class="button-sand">{{ _('PNG') }}</a></li>
+    </ul>
+  </div>
+  <div class="download-group" id="download-media">
+    <h5>{{ _("Media action icons") }}</h5>
+    <ul class="button-list">
+      <li><a href="https://assets.mozillalabs.com/Projects/Firefox%20OS/UX/VsD/v01.0/Action%20Icon%20Templates/PSD/IconsMedia_20130305.psd" class="button-sand">{{ _('PSD') }}</a></li><li>
+      <a href="https://assets.mozillalabs.com/Projects/Firefox%20OS/UX/VsD/v01.0/Action%20Icon%20Templates/PNG/IconsMedia_20130305.png" class="button-sand">{{ _('PNG') }}</a></li>
+    </ul>
+  </div>
+</section>
+{% endblock %}
