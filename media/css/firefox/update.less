@@ -2,18 +2,80 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import "template.less";
+@import "template-resp.less";
 
-#main-feature h1,
-#main-feature h3 {
-    .span(6);
-    margin-left: 0;
+#main-feature {
+    h1,
+    h3 {
+        .span(8);
+    }
+    .download-button{
+        .span(4);
+        width: auto;
+        max-width: 300px;
+        float: right;
+    }
 }
 
 .main-column {
-    .span(7);
+    .span(8);
 }
 
 .sidebar {
     .span(3);
+    .offset(1);
+}
+
+/* {{{ Responsive Grid */
+
+/* Tablet Layout: 760px */
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+
+    #main-feature {
+        h1,
+        h3 {
+            .span_narrow(7);
+        }
+        .download-button{
+            .span_narrow(4);
+            width: auto;
+            max-width: 300px;
+            float: right;
+        }
+    }
+
+    .main-column {
+        .span_narrow(9);
+    }
+
+    .sidebar {
+        .span_narrow(3);
+    }
+
+
+}
+
+
+/* Mobile Layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+
+    #main-feature {
+        h1,
+        h3 {
+            .span-all();
+            margin-bottom: 10px;
+        }
+        .download-button {
+            .span-all();
+        }
+    }
+
+    .main-column {
+        .span-all();
+    }
+
+    .sidebar {
+        .span-all();
+    }
+
 }
