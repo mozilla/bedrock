@@ -287,6 +287,10 @@ MINIFY_BUNDLES = {
         'partners-ie7': (
             'css/firefox/partners/ie7.less',
         ),
+        'spaces': (
+            'css/min-spaces.css',
+            'css/spaces.css',
+            )
     },
     'js': {
         'site': (
@@ -460,6 +464,12 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.spritely-0.6.1.js',
             'js/firefox/partners/desktop.js',
         ),
+        'spaces': (
+            'js/mozorg/min.js',
+            'js/mozorg/min2.js',
+            'js/mozorg/newsletter-form.js',
+            'js/mozorg/spaces.js',
+        ) 
 
     }
 }
