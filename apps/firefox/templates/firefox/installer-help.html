@@ -27,11 +27,11 @@
 
   <div class="channels">
     <div class="download-box" id="firefox-desktop">
-      {{ download_firefox(force_direct=True) }}
+      {{ download_firefox(force_direct=True, force_funnelcake=True) }}
     </div>
 
     <div class="download-box" id="beta-desktop">
-      {{ download_firefox('beta', small=True, force_direct=True, icon=False) }}
+      {{ download_firefox('beta', small=True, force_direct=True, icon=False, force_funnelcake=True) }}
     </div>
 
     <div class="download-box" id="aurora-desktop">

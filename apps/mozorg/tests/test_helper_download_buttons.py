@@ -188,3 +188,24 @@ class TestDownloadButtons(unittest.TestCase):
         good_url = ('/{locale}/products/download.html?product=firefox-19.0&'
                     'os=osx&lang={locale}').format(locale=locale)
         eq_(url, good_url)
+
+    def test_force_funnelcake(self):
+        url = make_download_link('firefox', 'release', 19.0, 'os_windows',
+                                 'en-US', force_funnelcake=True)
+        ok_('product=firefox-latest&' in url)
+
+        url = make_download_link('firefox', 'beta', '20.0b4', 'os_windows',
+                                 'en-US', force_funnelcake=True)
+        ok_('product=firefox-beta-latest&' in url)
+
+    def test_force_funnelcake_en_us_win_only(self):
+        """
+        Ensure that force_funnelcake doesn't affect non en-US Windows urls
+        """
+        url = make_download_link('firefox', 'release', 19.0, 'os_osx',
+                                 'en-US', force_funnelcake=True)
+        ok_('product=firefox-latest&' not in url)
+
+        url = make_download_link('firefox', 'beta', '20.0b4', 'os_windows',
+                                 'fr', force_funnelcake=True)
+        ok_('product=firefox-beta-latest&' not in url)
