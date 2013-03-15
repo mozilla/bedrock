@@ -31,6 +31,20 @@ To extract all the strings from the codebase, run:
 
     $ ./manage.py l10n_extract
 
+If you'd only like to extract strings from certain files, you may optionally
+list them on the command line:
+
+::
+
+    $ ./manage.py l10n_extract apps/mozorg/templates/mozorg/contribute.html
+
+Command line glob matching will work as well if you want all of the html files
+in a directory for example:
+
+::
+
+    $ ./manage.py l10n_extract apps/mozorg/templates/mozorg/*.html
+
 That will use gettext to get all the needed localizations from python
 and html files, and will convert the result into a bunch of .lang
 files inside ``locale/templates``. This directory represents the
