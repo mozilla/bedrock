@@ -6,9 +6,10 @@ from os import path
 from StringIO import StringIO
 from textwrap import dedent
 
+from django.conf import settings
 from django.utils import unittest
 
-from mock import MagicMock, patch
+from mock import ANY, MagicMock, Mock, patch
 
 from lib.l10n_utils.management.commands.l10n_check import (
     get_todays_version,
@@ -17,19 +18,103 @@ from lib.l10n_utils.management.commands.l10n_check import (
     list_templates,
     update_templates,
 )
+from lib.l10n_utils.management.commands.l10n_extract import extract_from_files
+from lib.l10n_utils.tests import capture_stdio
 
 
 ROOT = path.join(path.dirname(path.abspath(__file__)), 'test_files')
 TEMPLATE_DIRS = (path.join(ROOT, 'templates'),)
 
+METHODS = [
+    ('lib/l10n_utils/tests/test_files/templates/**.html',
+     'tower.management.commands.extract.extract_tower_template'),
+]
+
+
+class TestL10nExtract(unittest.TestCase):
+    def test_extract_from_files(self):
+        """
+        Should be able to extract strings from a specific file.
+        """
+        testfile = ('lib/l10n_utils/tests/test_files/templates/'
+                    'even_more_lang_files.html',)
+        with capture_stdio() as out:
+            extracted = next(extract_from_files(testfile, method_map=METHODS))
+        self.assertTupleEqual(extracted,
+                              (testfile[0], 9, 'Mark it 8 Dude.', []))
+        # test default callback
+        self.assertEqual(out[0], '  %s' % testfile)
+
+    def test_extract_from_multiple_files(self):
+        """
+        Should be able to extract strings from specific files.
+        """
+        basedir = 'lib/l10n_utils/tests/test_files/templates/'
+        testfiles = (
+            basedir + 'even_more_lang_files.html',
+            basedir + 'some_lang_files.html',
+        )
+        good_extracts = (
+            (testfiles[0], 9, 'Mark it 8 Dude.', []),
+            (testfiles[1], 9, 'Is this your homework Larry?', []),
+        )
+        with capture_stdio() as out:
+            for i, extracted in enumerate(
+                    extract_from_files(testfiles, method_map=METHODS)):
+                self.assertTupleEqual(extracted, good_extracts[i])
+        self.assertEqual(out[0], '  %s\n  %s' % testfiles)
+
+    def test_extract_from_files_no_match(self):
+        """
+        If the file path doesn't match a domain method, it should be skipped.
+        """
+        testfile = ('bedrock/mozorg/templates/mozorg/home.html',)
+        with capture_stdio() as out:
+            extracted = next(extract_from_files(testfile, method_map=METHODS),
+                             None)
+        self.assertIsNone(extracted)
+        self.assertEqual(out[0],
+                         '! %s does not match any domain methods!' % testfile)
+
+    def test_extract_from_files_no_file(self):
+        """
+        If the file path doesn't exist, it should be skipped.
+        """
+        testfile = ('lib/l10n_utils/tests/test_files/templates/'
+                    'file_does_not_exist.html',)
+        with capture_stdio() as out:
+            extracted = next(extract_from_files(testfile, method_map=METHODS),
+                             None)
+        self.assertIsNone(extracted)
+        self.assertEqual(out[0], '! %s does not exist!' % testfile)
+
+    @patch('lib.l10n_utils.management.commands.l10n_extract.extract_from_file')
+    def test_extract_from_files_passes_args(self, eff):
+        """The correct args should be passed through to extract_from_file"""
+        testfile = ('lib/l10n_utils/tests/test_files/templates/'
+                    'even_more_lang_files.html',)
+        testfile_full = path.join(settings.ROOT, testfile[0])
+        next(extract_from_files(testfile, method_map=METHODS), None)
+        eff.assert_called_once_with(METHODS[0][1], testfile_full,
+                                    keywords=ANY,
+                                    comment_tags=ANY,
+                                    options=ANY,
+                                    strip_comment_tags=ANY)
+
+    def test_extract_from_files_callback_works(self):
+        """extract_from_files should call our callback"""
+        testfile = ('lib/l10n_utils/tests/test_files/templates/'
+                    'even_more_lang_files.html',)
+        callback = Mock()
+        next(extract_from_files(testfile, callback=callback,
+                                method_map=METHODS), None)
+        callback.assert_called_once_with(testfile[0], METHODS[0][1], ANY)
+
 
 class TestL10nCheck(unittest.TestCase):
     def _get_block(self, blocks, name):
         """Out of all blocks, grab the one with the specified name."""
-        for b in blocks:
-            if b['name'] == name:
-                return b
-        return None
+        return next((b for b in blocks if b['name'] == name), None)
 
     def test_list_templates(self):
         """Make sure we capture both html and txt templates."""
