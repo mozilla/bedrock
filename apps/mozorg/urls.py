@@ -20,6 +20,7 @@ urlpatterns = patterns('',
     page('mission', 'mozorg/mission.html'),
     page('mobile', 'mozorg/mobile.html'),
     page('ITU', 'mozorg/itu.html'),
+    page('about/powered-by', 'mozorg/powered-by.html'),
 
     url('^newsletter/hacks\.mozilla\.org/$', views.hacks_newsletter,
         name='mozorg.hacks_newsletter'),
