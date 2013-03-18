@@ -26,7 +26,6 @@ mozilla.wishlist                        For discussions of future ideas, ranging
 
 :Applications and Projects
 
-mozilla.dev.apps.firefox                For development of Firefox, a lightweight browser built on the Mozilla platform.
 firefox-dev                             For development of Firefox, a lightweight browser built on the Mozilla platform.
 mozilla.dev.apps.thunderbird            For development of Thunderbird, an email client built on the Mozilla platform.
 tb-planning                             For development of Thunderbird, an email client built on the Mozilla platform.
