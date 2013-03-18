@@ -39,7 +39,7 @@ NEWSLETTER_LANGUAGES = ['de', 'en', 'es', 'fr', 'id', 'pt', 'ru']
 FEED_CACHE = 3900
 DOTLANG_CACHE = 60
 
-DOTLANG_FILES = ['main', 'base', 'newsletter']
+DOTLANG_FILES = ['main', 'download_button', 'newsletter']
 
 # Paths that don't require a locale code in the URL.
 # matches the first url component (e.g. mozilla.org/gameon/)
