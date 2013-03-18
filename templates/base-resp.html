@@ -107,13 +107,14 @@
       </footer>
     {% endblock %}
 
-    <script src="/tabzilla/media/js/tabzilla.js?build=1"></script>
     </div><!-- close #outer-wrapper -->
 
     {% block site_js %}
       {{ js('common-resp') }}
     {% endblock %}
     {% block js %}{% endblock %}
+
+    <script src="/tabzilla/media/js/tabzilla.js?build=1"></script>
 
     {% block webtrends %}
      {% include "includes/webtrends.html" %}
