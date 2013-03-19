@@ -4,7 +4,7 @@
 
 {% macro alt_buttons(builds) %}
   <div class="download download-dumb">
-    <h4>Download Firefox — {{ locale_name }}</h4>
+    <h4>{{ _('Download Firefox') }} — {{ locale_name }}</h4>
     <ul>
       {% for plat in builds -%}
         <li><a href="{{ plat.download_link_direct or plat.download_link }}" class="button-green">{{ plat.os_pretty }}</a></li>
@@ -30,7 +30,7 @@
     </div>
     {% set requirements_url = php_url('/firefox/' ~ version ~ '/system-requirements/') %}
     <p class="unsupported-download">
-      {{ _('Your system doesn\t meet the <a href="%(url)s">requirements</a> to run Firefox.')|format(url=requirements_url) }}
+      {{ _('Your system doesn\'t meet the <a href="%(url)s">requirements</a> to run Firefox.')|format(url=requirements_url) }}
     </p>
   {% endif %}
   <ul class="download-list">
