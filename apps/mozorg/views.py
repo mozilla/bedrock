@@ -3,6 +3,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
 
 import basket
 import l10n_utils
@@ -66,14 +67,15 @@ def contribute(request, template, return_to_form):
                 newsletter_form.errors['__all__'] = msg
     else:
         newsletter_form = NewsletterForm(locale, prefix='newsletter')
-
+  
     return l10n_utils.render(request,
                              template,
                              {'form': form,
                               'contribute_success': contribute_success,
                               'newsletter_form': newsletter_form,
                               'newsletter_success': newsletter_success,
-                              'return_to_form': return_to_form})
+                              'return_to_form': return_to_form,
+                              'has_moz15': locale in settings.LOCALES_WITH_MOZ15})
 
 
 @xframe_allow
