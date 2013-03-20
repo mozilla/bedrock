@@ -111,7 +111,7 @@ MINIFY_BUNDLES = {
         ),
         'contribute': (
             'css/contribute.less',
-            'css/sandstone/video-resp.less',
+            'css/mozilla15.less',
         ),
         'contribute-page': (
             'css/contribute-page.less',
@@ -313,6 +313,8 @@ MINIFY_BUNDLES = {
             'js/mozilla-input-placeholder.js',
         ),
         'contribute': (
+            'js/libs/jquery.sequence.min.js',
+            'js/mozilla15.js',
             'js/contribute-page.js',
             'js/mozilla-pager.js',
             'js/mozilla-video-tools.js',
