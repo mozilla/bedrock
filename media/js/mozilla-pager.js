@@ -224,14 +224,12 @@ Mozilla.Pager = function(container, parentPager)
         );
 
         // prevent auto-rotate when focused on container
-        this.$container.find('a,input,textarea').each(function (i) {
-            $(this)
-                .focus(function(e) {
-                    that.stopAutoRotate();
-                })
-                .blur(function(e) {
-                    if (that.autoRotate) { that.startAutoRotate(); }
-                });
+        this.$container.focusin(function(e) {
+            that.stopAutoRotate();
+        }).focusout(function(e) {
+            if (that.autoRotate) {
+                that.startAutoRotate();
+            }
         });
     } else {
         this.autoRotate = false;
