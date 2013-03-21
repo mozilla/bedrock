@@ -722,7 +722,9 @@ Mozilla.Pager.prototype.startAutoRotate = function()
             Mozilla.Pager.AUTO_ROTATE_INTERVAL, pager)
     }
 
-    setupInterval(this);
+    if (!this.autoRotateInterval) {
+        setupInterval(this);
+    }
 };
 
 // }}}
