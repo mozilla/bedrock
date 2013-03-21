@@ -634,6 +634,17 @@ $(document).ready(function() {
         }
     });
 
+    // prevent auto-rotate when focused on video elements
+    $thumb.focus(function(e) {
+            Mozilla.Pager.pagers['home-promo'].stopAutoRotate();
+        })
+        .blur(function(e) {
+            if (Mozilla.Pager.pagers['home-promo'].autoRotate) {
+                Mozilla.Pager.pagers['home-promo'].startAutoRotate();
+            }
+        });
+
+
     // video.js configuration of Flash player. If the SWF is moved to a
     // Mozilla CDN in the future, a crossdomain.xml file will need to be
     // configured before the SWF will work.
