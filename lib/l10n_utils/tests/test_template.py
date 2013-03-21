@@ -79,7 +79,7 @@ class TestTemplateLangFiles(TestCase):
         request = type('request', (), {})()
         template.render({'request':request})
         eq_(request.langfiles, ['dude', 'walter',
-                                'main', 'base', 'newsletter'])
+                                'main', 'download_button', 'newsletter'])
 
     @patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
     def test_added_lang_files_inheritance(self):
@@ -96,7 +96,7 @@ class TestTemplateLangFiles(TestCase):
         request = type('request', (), {})()
         template.render(request=request)
         eq_(request.langfiles, ['donnie', 'smokey', 'jesus', 'dude', 'walter',
-                                'main', 'base', 'newsletter'])
+                                'main', 'download_button', 'newsletter'])
 
     @patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
     @patch.object(settings, 'ROOT_URLCONF', 'lib.l10n_utils.tests.test_files.urls')
@@ -110,7 +110,7 @@ class TestTemplateLangFiles(TestCase):
         """
         self.client.get('/de/some-lang-files/')
         translate.assert_called_with(ANY, ['dude', 'walter', 'some_lang_files',
-                                           'main', 'base', 'newsletter'])
+                                           'main', 'download_button', 'newsletter'])
 
     @patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
     @patch.object(settings, 'ROOT_URLCONF', 'lib.l10n_utils.tests.test_files.urls')
@@ -123,4 +123,4 @@ class TestTemplateLangFiles(TestCase):
         """
         self.client.get('/de/active-de-lang-file/')
         translate.assert_called_with(ANY, ['active_de_lang_file', 'main',
-                                           'base', 'newsletter'])
+                                           'download_button', 'newsletter'])
