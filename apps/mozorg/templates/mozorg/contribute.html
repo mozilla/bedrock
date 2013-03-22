@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
+{% add_lang_files "mozorg/15years" %}
+
 {% extends "mozorg/base-resp.html" %}
 
 {% block page_title %}{{_('Get Involved: Volunteer Opportunities at Mozilla')}}{% endblock %}
@@ -24,12 +26,16 @@
     <h1 class="title">{{ _('<strong>15 years</strong> of a better Web') }}</h1>
     <p>
     {% trans %}
+
       Mozilla exists to promote openness, innovation and opportunity on the Internet.
+    {% endtrans %}
+    {% trans %}
       We’ve been doing it for 15 years and the following 15 facts offer a look at who
       we are, including some of our biggest achievements and milestones. But in some
       ways we’re just getting started, exploring new technology, entering new areas
       and reaching new users every day.
     {% endtrans %}
+
     </p>
   </header>
 
@@ -38,12 +44,12 @@
   <div id="slideshow">
     <div class="slide-control">
       <button class="prev">{{ _('Previous') }}</button>
-  		<button class="next">{{ _('Next') }}</button>
+        <button class="next">{{ _('Next') }}</button>
     </div>
     <ul class="slides">
       <li id="fact01" class="slide">
       <span class="back"></span>
-      <div class="slide-wrap">  
+      <div class="slide-wrap">
         <span class="number">01</span>
         <div class="message">
         <p>
@@ -75,7 +81,7 @@
       </li>
       <li id="fact03" class="slide">
         <span class="back"></span>
-        <div class="slide-wrap">  
+        <div class="slide-wrap">
           <span class="number">03</span>
           <div class="message">
           <p>
@@ -91,7 +97,7 @@
       </li>
       <li id="fact04" class="slide">
         <span class="back"></span>
-        <div class="slide-wrap">  
+        <div class="slide-wrap">
           <span class="number">04</span>
           <div class="message">
           <p>
@@ -106,7 +112,7 @@
       </li>
       <li id="fact05" class="slide">
         <span class="back"></span>
-        <div class="slide-wrap">  
+        <div class="slide-wrap">
           <span class="number">05</span>
           <div class="message">
           <p>
