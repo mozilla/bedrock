@@ -111,6 +111,7 @@ MINIFY_BUNDLES = {
         ),
         'contribute': (
             'css/contribute.less',
+            'css/sandstone/video-resp.less',
             'css/mozilla15.less',
         ),
         'contribute-page': (
