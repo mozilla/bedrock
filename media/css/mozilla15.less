@@ -1,8 +1,35 @@
+#contribute #wrapper {
+  width: 100%;
+}
+
+#contribute #masthead {
+  width: 1000px;
+}
+
+#contribute .billboard,
+#opportunities {
+  width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#moz15 header,
+#moz15 .cta {
+  width: 980px;
+  margin: 0 auto;
+}
+
+#slideshow-stage {
+  margin-bottom: 40px;
+}
+
+
 #slideshow {
-  margin: 0 auto 30px;
+  margin: 0 auto;
+  width: 100%;
   height: 340px;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   -webkit-backface-visibility: hidden; /* prevent graphical glitches in WebKit browsers when using transitions */
 }
 
@@ -12,6 +39,14 @@
   margin: 0;
   width: 100%;
   height: 100%;
+}
+
+#slideshow .slide-control {
+  width: 980px;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  margin-left: -490px;
 }
 
 #slideshow .prev,
@@ -41,19 +76,54 @@
   position: absolute;
 }
 
+/* Background */
 .slide .back {
-  left: -100px;
+  left: 0;
   top: 0;
   display: block;
   width: 100%;
   height: 100%;
-  padding: 0 100px;
-  opacity: 0;
-  background-position: 0 50%;
   background-repeat: repeat-x;
+  background-position: 0 50%;
+  opacity: 0;
+  transition-property: background-position, opacity;
+  transition-timing-function: ease;
+  transition-duration: 2s;
+}
+.slide.animate-in .back {
+  opacity: 1;
+  transition-duration: 2s;
+}
+.slide.animate-out .back {
+  opacity: 0;
+  transition-duration: 2s;
 }
 
+/* Slide content wrapper */
+.slide .slide-wrap {
+  width: 980px;
+  height: 340px;
+  top: 0;
+  left: 50%;
+  margin-left: -490px;
+  overflow: hidden;
+  transition: top .1s ease;
+}
+/* Sequencejs will only animate elements that actually change 
+   between states, and will only autoplay when all elements are 
+   animatable. This arbitrary transition has no visible effect 
+   but serves to trigger autoplay. */
+.slide.animate-in .slide-wrap {
+  top: 1px;
+  margin-top: -1px;
+}
+.slide.animate-out .slide-wrap {
+  top: 0;
+}
+
+/* Number block */
 .slide .number {
+  border-radius: 20px;
   font-size: 30px;
   padding: 10px;
   display: block;
@@ -62,15 +132,17 @@
   position: absolute;
   top: 60px;
   left: 1080px;
-  border-radius: 20px;
   opacity: 0;
-  border: 1px solid rgba(0,0,0,.1);
+  transition-property: left, opacity;
+  transition-timing-function: ease;
 }
 
+/* Message block */
 .slide .message { 
   position: absolute;
   font: italic 26px/1.15 'Open Sans Light', sans-serif;
   letter-spacing: -.025px;
+  color: #fff;
   top: 30px; 
   left: 1080px;
   width: 440px;
@@ -78,9 +150,22 @@
   padding: 30px;
   border-radius: 20px;
   opacity: 0;
-  border: 1px solid rgba(0,0,0,.1);
+  transition-property: left, opacity;
+  transition-timing-function: ease;
 }
 
+.slide .message p {
+  opacity: 0;
+  transition: opacity .3s ease-in .4s;
+}
+.slide.animate-in .message p {
+  opacity: 1;
+}
+.slide.animate-out .message p {
+  opacity: 0;
+}
+
+/* Generic block 1 */
 .slide .block1 { 
   position: absolute;
   top: 20px; 
@@ -91,8 +176,11 @@
   border-radius: 20px;
   opacity: 0;
   border: 1px solid rgba(0,0,0,.1);
+  transition-property: left, opacity;
+  transition-timing-function: ease;
 }
 
+/* Generic block 2 */
 .slide .block2 { 
   position: absolute;
   top: 35px; 
@@ -103,8 +191,11 @@
   border-radius: 20px;
   opacity: 0;
   border: 1px solid rgba(0,0,0,.1);
+  transition-property: left, opacity;
+  transition-timing-function: ease;
 }
 
+/* Generic widget */
 .slide .widget {
   position: absolute;
   z-index: 10;
@@ -112,8 +203,67 @@
   width: 95px;
   height: 95px;
   opacity: 0;
+  transition-property: top, left, bottom, right, opacity;
+  transition-timing-function: ease;
 }
 
+/* Default transitions  - for prototyping */
+.slide.animate-in .number {
+  left: 50px;
+  opacity: 1;
+  transition-duration: 1.625s;
+}
+.slide.animate-out .number {
+  left: -280px;
+  opacity: 0;
+  transition-duration: 1s;
+}
+
+.slide.animate-in .message {
+  left: 160px;
+  opacity: 1;
+  transition-duration: 1.6s;
+}
+.slide.animate-out .message {
+  left: -520px;
+  opacity: 0;
+  transition-duration: 1.6s;
+}
+
+.slide.animate-in .block1 {
+  left: 680px;
+  opacity: 1;
+  transition-duration: 1.6s;
+}
+.slide.animate-out .block1 {
+  left: -320px;
+  opacity: 0;
+  transition-duration: 1.6s;
+}
+
+.slide.animate-in .block2 {
+  left: 780px;
+  opacity: 1;
+  transition-duration: 1.65s;
+}
+.slide.animate-out .block2 {
+  left: -290px;
+  opacity: 0;
+  transition-duration: 1.65s;
+}
+
+.slide.animate-in .widget {
+  top: 19px;
+  opacity: 1;
+  transition-duration: 1.25s;
+}
+.slide.animate-out .widget {
+  top: -100px;
+  opacity: 0;
+  transition-duration: 1.5s;
+}
+
+/* Fact 01 */
 #fact01 {
   .back {
     background-image: url(/media/img/contribute/mozilla15/line-red.png);
@@ -189,7 +339,7 @@
   }
 }
 
-
+/* Fact 02 */
 #fact02 {
   .back {
     background-image: url(/media/img/contribute/mozilla15/line-blue.png);
@@ -268,16 +418,17 @@
   }
 }
 
+/* Fact 03 */
 #fact03 {
   .back {
-    background-image: url(/media/img/contribute/mozilla15/line-yellow.png);
+    background-image: url(/media/img/contribute/mozilla15/line-green.png);
     background-position: -100px 50%;
   }
   .number,
   .message,
   .block1,
   .block2 {
-    background: rgba(255,255,0,.25);
+    background: #5fa400;
   }
 }
 
@@ -293,6 +444,7 @@
   }
 }
 
+/* Fact 04 */
 #fact04 {
   .back {
     background-image: url(/media/img/contribute/mozilla15/line-purple.png);
@@ -302,7 +454,7 @@
   .message,
   .block1,
   .block2 {
-    background: rgba(150,0,255,.25);
+    background: rgba(150,0,255,.95);
   }
 }
 
@@ -318,17 +470,17 @@
   }
 }
 
-
+/* Fact 05 */
 #fact05 {
   .back {
-    background-image: url(/media/img/contribute/mozilla15/line-green.png);
+    background-image: url(/media/img/contribute/mozilla15/line-yellow.png);
     background-position: -300px 50%;
   }
   .number,
   .message,
   .block1,
   .block2 {
-    background: rgba(0,255,0,.25);
+    background: #db4700;
   }
 }
 
@@ -343,91 +495,3 @@
     background-position: -500px 50%;
   }
 }
-
-.slide .back {
-  opacity: 0;
-  transition-property: background-position, opacity;
-  transition-timing-function: ease-in-out;
-  transition-duration: 2s;
-}
-
-.slide.animate-in .back {
-  opacity: 1;
-  transition-property: background-position, opacity;
-  transition-timing-function: ease-in-out;
-  transition-duration: 2s;
-}
-
-.slide.animate-out .back {
-  opacity: 0;
-  transition-property: background-position, opacity;
-  transition-timing-function: ease-in-out;
-  transition-duration: 2s;
-}
-
-.slide.animate-in .number {
-  left: 50px;
-  opacity: 1;
-  transition-property: left, opacity;
-  transition: 1.625s ease-in-out;
-}
-.slide.animate-out .number {
-  left: -280px;
-  opacity: 0;
-  transition-property: left, opacity;
-  transition: 1s ease-in-out;
-}
-
-.slide.animate-in .message {
-  left: 160px;
-  opacity: 1;
-  transition-property: left, opacity;
-  transition: 1.6s ease-in-out;
-}
-.slide.animate-out .message {
-  left: -520px;
-  opacity: 0;
-  transition-property: left, opacity;
-  transition: 1.6s ease-in-out;
-}
-
-.slide.animate-in .block1 {
-  left: 680px;
-  opacity: 1;
-  transition-property: left, opacity;
-  transition: 1.6s ease-in-out;
-}
-.slide.animate-out .block1 {
-  left: -320px;
-  opacity: 0;
-  transition-property: left, opacity;
-  transition: 1.6s ease-in-out;
-}
-
-.slide.animate-in .block2 {
-  left: 780px;
-  opacity: 1;
-  transition: left 1.65s ease-in-out;
-}
-.slide.animate-out .block2 {
-  left: -290px;
-  opacity: 0;
-  transition-property: left, opacity;
-  transition: 1.65s ease-in-out;
-}
-
-.slide.animate-in .widget {
-  top: 19px;
-  opacity: 1;
-  transition-property: top, opacity;
-  transition-duration: 1.25s;
-  transition-timing-function: ease-in-out;
-}
-.slide.animate-out .widget {
-  top: -100px;
-  opacity: 0;
-  transition-property: top, opacity;
-  transition-duration: 1.5s;
-  transition-timing-function: ease-in-out;
-}
-

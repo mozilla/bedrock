@@ -34,12 +34,16 @@
   </header>
 
 <div id="slideshow-stage">
+
   <div id="slideshow">
-    <button class="prev">{{ _('Previous') }}</button>
-		<button class="next">{{ _('Next') }}</button>
+    <div class="slide-control">
+      <button class="prev">{{ _('Previous') }}</button>
+  		<button class="next">{{ _('Next') }}</button>
+    </div>
     <ul class="slides">
-      <li id="fact01" class="slide animate-in">
-        <span class="back"></span>
+      <li id="fact01" class="slide">
+      <span class="back"></span>
+      <div class="slide-wrap">  
         <span class="number">01</span>
         <div class="message">
         <p>
@@ -51,60 +55,69 @@
         <span class="block1"></span>
         <span class="block2"></span>
         <span class="widget"></span>
+      </div>
       </li>
       <li id="fact02" class="slide">
         <span class="back"></span>
-        <span class="number">02</span>
-        <div class="message">
-        <p>
-        {% trans %}
-          Proudly non-profit, Mozilla makes products like Firefox with a mission to keep the power of the Web in the hands of users everywhere.
-        {% endtrans %}
-        </p>
+        <div class="slide-wrap">
+          <span class="number">02</span>
+          <div class="message">
+          <p>
+          {% trans %}
+            Proudly non-profit, Mozilla makes products like Firefox with a mission to keep the power of the Web in the hands of users everywhere.
+          {% endtrans %}
+          </p>
+          </div>
+          <span class="block1"></span>
+          <span class="block2"></span>
+          <span class="widget"></span>
         </div>
-        <span class="block1"></span>
-        <span class="block2"></span>
-        <span class="widget"></span>
       </li>
       <li id="fact03" class="slide">
         <span class="back"></span>
-        <span class="number">03</span>
-        <div class="message">
-        <p>
-        {# L10N: "The New York Times" is the proper name of an English publication and should not be translated. #}
-        {% trans %}
-          More than 10,000 contributors expressed their support for our mission by paying for a full-page ad in <cite>The New York Times</cite> on the day Firefox 1.0 launched in 2004.
-        {% endtrans %}
-        </p>
+        <div class="slide-wrap">  
+          <span class="number">03</span>
+          <div class="message">
+          <p>
+          {# L10N: "The New York Times" is the proper name of an English publication and should not be translated. #}
+          {% trans %}
+            More than 10,000 contributors expressed their support for our mission by paying for a full-page ad in <cite>The New York Times</cite> on the day Firefox 1.0 launched in 2004.
+          {% endtrans %}
+          </p>
+          </div>
+          <span class="block1"></span>
+          <span class="block2"></span>
         </div>
-        <span class="block1"></span>
-        <span class="block2"></span>
       </li>
       <li id="fact04" class="slide">
         <span class="back"></span>
-        <span class="number">04</span>
-        <div class="message">
-        <p>
-        {% trans %}
-          Today Mozilla has contributors on every continent, including Antarctica (where Firefox is used by 80% of people).
-        {% endtrans %}
-        </p>
+        <div class="slide-wrap">  
+          <span class="number">04</span>
+          <div class="message">
+          <p>
+          {% trans %}
+            Today Mozilla has contributors on every continent, including Antarctica (where Firefox is used by 80% of people).
+          {% endtrans %}
+          </p>
+          </div>
+          <span class="block1"></span>
+          <span class="block2"></span>
         </div>
-        <span class="block1"></span>
-        <span class="block2"></span>
       </li>
       <li id="fact05" class="slide">
         <span class="back"></span>
-        <span class="number">05</span>
-        <div class="message">
-        <p>
-        {% trans %}
-          Firefox Add-Ons allow you to customize and take control of your Web experience. Over 3 billion of them have been downloaded by users so far.
-        {% endtrans %}
-        </p>
+        <div class="slide-wrap">  
+          <span class="number">05</span>
+          <div class="message">
+          <p>
+          {% trans %}
+            Firefox Add-Ons allow you to customize and take control of your Web experience. Over 3 billion of them have been downloaded by users so far.
+          {% endtrans %}
+          </p>
+          </div>
+          <span class="block1"></span>
+          <span class="block2"></span>
         </div>
-        <span class="block1"></span>
-        <span class="block2"></span>
       </li>
 <!--
       <li id="fact06" class="slide">
@@ -210,6 +223,7 @@
 -->
     </ul>
   </div>
+
 </div>
 
   <div class="cta">
