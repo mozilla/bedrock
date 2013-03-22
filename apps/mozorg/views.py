@@ -67,13 +67,28 @@ def contribute(request, template, return_to_form):
     else:
         newsletter_form = NewsletterForm(locale, prefix='newsletter')
 
+    locales_with_moz15 = {
+        'en-US': 'English (US)',
+        'en-GB': 'English (Britain)',
+        'de': 'German',
+        'es-AR': 'Spanish (Argentina)',
+        'es-CL': 'Spanish (Chile)',
+        'es-ES': 'Spanish (Spain)',
+        'es-MX': 'Spanish (Mexico)',
+        'fr': 'French',
+        'id': 'Indonesian',
+        'nl': 'Dutch',
+        'pt-BR': 'Portuguese (Brazil)',
+        'zh-TW': 'Taiwanese',
+    }    
     return l10n_utils.render(request,
                              template,
                              {'form': form,
                               'contribute_success': contribute_success,
                               'newsletter_form': newsletter_form,
                               'newsletter_success': newsletter_success,
-                              'return_to_form': return_to_form})
+                              'return_to_form': return_to_form,
+                              'locales_with_moz15': locales_with_moz15})
 
 
 @xframe_allow

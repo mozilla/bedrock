@@ -17,20 +17,23 @@
 
 {% block content %}
 
+{% if request.locale in locales_with_moz15 %}
+
 <article id="moz15">
   <header>
     <h1 class="title">{{ _('<strong>15 years</strong> of a better Web') }}</h1>
     <p>
     {% trans %}
-      Mozilla exists to promote openness, innovation and opportunity on the Internet. 
-      We’ve been doing it for 15 years and the following 15 facts offer a look at who 
-      we are, including some of our biggest achievements and milestones. But in some 
-      ways we’re just getting started, exploring new technology, entering new areas 
+      Mozilla exists to promote openness, innovation and opportunity on the Internet.
+      We’ve been doing it for 15 years and the following 15 facts offer a look at who
+      we are, including some of our biggest achievements and milestones. But in some
+      ways we’re just getting started, exploring new technology, entering new areas
       and reaching new users every day.
     {% endtrans %}
     </p>
   </header>
 
+<div id="slideshow-stage">
   <div id="slideshow">
     <button class="prev">{{ _('Previous') }}</button>
 		<button class="next">{{ _('Next') }}</button>
@@ -207,18 +210,51 @@
 -->
     </ul>
   </div>
+</div>
 
   <div class="cta">
     <h2>{{ _('The success of our mission depends on participation from people like you.') }}</h2>
     <p>
     {% trans %}
-      Find out how you can get involved or support Mozilla to help make a difference 
+      Find out how you can get involved or support Mozilla to help make a difference
       in the lives of users everywhere for the next 15 years — and beyond.
     {% endtrans %}
     </p>
   </div>
 
 </article>
+
+{% else %}
+
+<h1 id="main-feature" class="large">{{_('Get Involved')}}</h1>
+
+<section id="welcome" class="container">
+  <div id="welcome-video" class="mozilla-video-control mozilla-video-shadow">
+    <video
+      width="640"
+      height="360"
+      poster="{{ MEDIA_URL }}img/contribute/poster-brand.jpg"
+      controls="controls">
+      <source src="//videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.webm" type="video/webm" />
+      <source src="//videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.theora.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;" />
+      <source src="//videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.mp4" type="video/mp4" />
+      <object type="application/x-shockwave-flash"
+        style="width: 640px; height: 388px;"
+        data="{{ MEDIA_URL }}flash/playerWithControls.swf?flv=brand/Mozilla_Firefox_Manifesto_v0.2_640.mp4&amp;autoplay=false&amp;msg=Play%20Video">
+        <param name="movie" value="{{ MEDIA_URL }}flash/playerWithControls.swf?flv=brand/Mozilla_Firefox_Manifesto_v0.2_640.mp4&amp;autoplay=false&amp;msg=Play%20Video" />
+        <param name="wmode" value="transparent" />
+
+        <div class="video-player-no-flash">
+        {{_('This video requires a browser with support for open video or the <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player</a>.')}}
+        </div>
+      </object>
+    </video>
+    <p>
+      {{_('You don’t have to be a C++ guru (or even know what that means!) to get involved.<br><b>You just have to love the Web.</b>')}}
+    </p>
+</section>
+
+{% endif %}
 
 {% include "mozorg/contribute-form.html" %}
 
