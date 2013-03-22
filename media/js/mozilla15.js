@@ -11,6 +11,7 @@
         autoPlay: true,
         autoPlayDelay: 3000,
         fadeFrameWhenSkipped: false,
+        animateStartingFrameIn: true,
     };
 
     var sequence = $('#slideshow').sequence(options).data('sequence');

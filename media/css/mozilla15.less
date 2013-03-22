@@ -52,14 +52,39 @@
 #slideshow .prev,
 #slideshow .next {
   position: absolute;
-  top: 160px;
+  top: 140px;
+  opacity: .6;
+  transition: opacity, left, right .3s ease-in-out;
   z-index: 999;
+  width: 44px;
+  height: 60px;
+  border: 0;
+  background: transparent url(/media/img/contribute/mozilla15/slide-arrows.png) no-repeat;
+  display: block;
+  text-indent: -99em;
+  cursor: pointer;
+  overflow: hidden;
 }
 #slideshow .prev {
-  left: 0;
+  left: -10px;
+  background-position: left center;
 }
 #slideshow .next {
-  right: 0;
+  right: -10px;
+  background-position: right center;
+}
+
+#slideshow .prev:hover,
+#slideshow .prev:focus {
+  left: -14px;
+  opacity: 1;
+  transition: opacity, left .3s ease-in-out;  
+}
+#slideshow .next:hover,
+#slideshow .next:focus {
+  right: -14px;
+  opacity: 1;
+  transition: opacity, right .3s ease-in-out;
 }
 
 #slideshow .slide {
@@ -195,7 +220,7 @@
   transition-timing-function: ease;
 }
 
-/* Generic widget */
+/* Generic widget *
 .slide .widget {
   position: absolute;
   z-index: 10;
@@ -253,14 +278,18 @@
 }
 
 .slide.animate-in .widget {
+/*
   top: 19px;
   opacity: 1;
   transition-duration: 1.25s;
+*/
 }
 .slide.animate-out .widget {
+/*
   top: -100px;
   opacity: 0;
   transition-duration: 1.5s;
+*/
 }
 
 /* Fact 01 */
@@ -306,12 +335,16 @@
     background: transparent url(/media/img/contribute/mozilla15/01-block2.png) no-repeat;
   }
   .widget {
-    left: 765px;
-    top: -120px;
+    display: block;
+    width: 95px;
+    height: 95px;
+    position: absolute;
+    z-index: 10;
+    left: 770px;
+    top: -200px;
     background: transparent url(/media/img/contribute/mozilla15/01-widget.png) no-repeat;
   }
 }
-
 #fact01.animate-in {
   .back {
     background-position: 0 50%;
@@ -329,14 +362,29 @@
     left: 750px;
   }
   .widget {
-    top: 19px;
+    animation-name: fact01-widget-in;
+    animation-duration: 1.5s;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
   }
 }
-
 #fact01.animate-out {
   .back {
     background-position: -100px 50%;
   }
+  .widget {
+    opacity: 0;
+    top: -100px;
+    transition-property: opacity, top;
+    transition-duration: 1s;
+  }
+}
+@keyframes fact01-widget-in {
+  0% { top: -200px; }
+  30% { top: 70px; }
+  40% { top: 40px; }
+  50% { top: 50px; }
+  100% { top: 50px; }
 }
 
 /* Fact 02 */
@@ -381,7 +429,11 @@
     border: 0;
     background: transparent url(/media/img/contribute/mozilla15/02-block2.png) no-repeat;
   }
-  .widget {
+  .logo {
+    display: block;
+    position: absolute;
+    z-index: 10;
+    opacity: 0;
     top: -250px;
     left: 252px;
     width: 185px;
@@ -389,7 +441,6 @@
     background: transparent url(/media/img/contribute/mozilla15/02-widget.png) no-repeat;
   }
 }
-
 #fact02.animate-in {
   .back {
     background-position: -100px 50%;
@@ -406,16 +457,32 @@
   .block2 {
     left: 215px;
   }
-  .widget {
-    top: 71px;
-    transition-delay: 1.4s;
+  .logo {
+    opacity: 1;
+    top: -250px;
+  	animation-name: fact02-logo-in;
+    animation-duration: 1.5s;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
   }
 }
-
 #fact02.animate-out {
  .back {
     background-position: -200px 50%;
   }
+  .logo {
+    top: 500px;
+    opacity: 0;
+    transition-duration: 1s;
+    transition-property: top, opacity;
+  }
+}
+@keyframes fact02-logo-in {
+  0% { top: -250px; }
+  30% { top: 90px; }
+  40% { top: 60px; }
+  50% { top: 71px; }
+  100% { top: 71px; }
 }
 
 /* Fact 03 */
@@ -495,3 +562,6 @@
     background-position: -500px 50%;
   }
 }
+
+
+
