@@ -24,19 +24,20 @@
 <article id="moz15">
   <header>
     <h1 class="title">{{ _('<strong>15 years</strong> of a better Web') }}</h1>
-    <p>
-    {% trans %}
+    <div class="intro">
+      <p>
+      {% trans %}
+        Mozilla exists to promote openness, innovation and opportunity on the Internet.
+      {% endtrans %}
+      {% trans %}
+        We’ve been doing it for 15 years and the following 15 facts offer a look at who
+        we are, including some of our biggest achievements and milestones. But in some
+        ways we’re just getting started, exploring new technology, entering new areas
+        and reaching new users every day.
+      {% endtrans %}
 
-      Mozilla exists to promote openness, innovation and opportunity on the Internet.
-    {% endtrans %}
-    {% trans %}
-      We’ve been doing it for 15 years and the following 15 facts offer a look at who
-      we are, including some of our biggest achievements and milestones. But in some
-      ways we’re just getting started, exploring new technology, entering new areas
-      and reaching new users every day.
-    {% endtrans %}
-
-    </p>
+      </p>
+    </div>
   </header>
 
 <div id="slideshow-stage">
@@ -44,7 +45,7 @@
   <div id="slideshow">
     <div class="slide-control">
       <button class="prev">{{ _('Previous') }}</button>
-        <button class="next">{{ _('Next') }}</button>
+      <button class="next">{{ _('Next') }}</button>
     </div>
     <ul class="slides">
       <li id="fact01" class="slide">
