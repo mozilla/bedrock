@@ -8,10 +8,11 @@
     var options = {
         nextButton: '.next',
         prevButton: '.prev',
-        autoPlay: true,
+        autoPlay: false,
         autoPlayDelay: 3000,
         fadeFrameWhenSkipped: false,
         animateStartingFrameIn: true,
+        startingFrameID: '2',
     };
 
     var sequence = $('#slideshow').sequence(options).data('sequence');

@@ -1,3 +1,18 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@font-face {
+  font-family: 'League Gothic';
+  src: url('/media/fonts/League_Gothic-webfont.eot');
+  src: url('/media/fonts/League_Gothic-webfont.eot?#iefix') format('embedded-opentype'),
+       url('/media/fonts/League_Gothic-webfont.woff') format('woff'),
+       url('/media/fonts/League_Gothic-webfont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 #contribute #wrapper {
   width: 100%;
 }
@@ -19,18 +34,35 @@
   min-height: 170px;
   margin: 0 auto 20px;
   padding-left: 320px;
-  .title {
-    width: 235px;
+  .mark {
+    width: 300px;
     height: 180px;
     position: absolute;
-    left: 30px;
+    left: 0;
     top: -10px;
+  }
+  .title {
     background: #bf383e;
-    color: #fff;
-    font-size: 24px;
+    width: 215px;
+    position: absolute;
+    left: 50px;
+    top: 90px;
+    transform: rotate(-11.5deg);
+    color: #eaecec;
+    font: normal 26px/1 'League Gothic', 'Arial Narrow', sans-serif;
     text-transform: uppercase;
+    text-shadow: -1px -1px 0 rgba(0,0,0,.1);
+    letter-spacing: normal;
+    text-align: center;
     strong {
-      font-size: 35px;
+      background: #bf383e;
+      position: absolute;
+      top: -60px;
+      left: 5px;
+      width: 200px;
+      transform: rotate(2deg);
+      font-size: 48px;
+      font-weight: normal;
       display: block;
     }
   }
@@ -42,13 +74,24 @@
 
 #moz15 .cta {
   width: 980px;
-  margin: 0 auto;
+  margin: 0 auto 40px;
+  text-align: center;
+  h2 {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: normal;
+    margin-bottom: 0.25em;
+  }
+  p {
+    width: 600px;
+    margin: 0 auto;
+    font: italic 18px 'Open Sans Light', sans-serif;
+  }
 }
 
 #slideshow-stage {
   margin-bottom: 40px;
 }
-
 
 #slideshow {
   margin: 0 auto;
@@ -59,7 +102,6 @@
   -webkit-backface-visibility: hidden; /* prevent graphical glitches in WebKit browsers when using transitions */
 }
 
-
 #slideshow .slides {
   list-style: none;
   margin: 0;
@@ -67,6 +109,21 @@
   height: 100%;
 }
 
+#slideshow .slide {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+#slideshow .slide > * {
+  position: absolute;
+}
+
+/* Slide controls */
 #slideshow .slide-control {
   width: 980px;
   position: absolute;
@@ -113,21 +170,7 @@
   transition: opacity, right .3s ease-in-out;
 }
 
-#slideshow .slide {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  z-index: 1;
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-
-#slideshow .slide > * {
-  position: absolute;
-}
-
-/* Background */
+/* Background path */
 .slide .back {
   left: 0;
   top: 0;
@@ -158,9 +201,7 @@
   left: 50%;
   margin-left: -490px;
   overflow: hidden;
-  border-radius: 40px;
-//  box-shadow: inset 0 0 20px 5px #f5f1e8;
-  transition: top .1s ease;
+  transition: top .1s linear;
 }
 /* Sequencejs will only animate elements that actually change 
    between states, and will only autoplay when all elements are 
@@ -174,8 +215,9 @@
   top: 0;
 }
 
+/*{{{ Generic blocks - for prototyping testing purposes */
 /* Number block */
-.slide .number {
+.generic .number {
   border-radius: 20px;
   font-size: 30px;
   padding: 10px;
@@ -187,190 +229,177 @@
   left: 1080px;
   opacity: 0;
   transition-property: left, opacity;
-  transition-timing-function: cubic-bezier(.87,0,.43,1.34), linear;
+  transition-timing-function: cubic-bezier(.81,0,.64,1.26), linear;
 }
 
 /* Message block */
-.slide .message { 
-  position: absolute;
-  font: italic 26px/1.15 'Open Sans Light', sans-serif;
-  letter-spacing: -.025px;
-  color: #fff;
+.generic .message { 
   top: 30px; 
   left: 1080px;
   width: 440px;
   min-height: 200px;
   padding: 30px;
   border-radius: 20px;
-  opacity: 0;
-  transition-property: left, opacity;
-  transition-timing-function: cubic-bezier(.87,0,.43,1.34), linear;
 }
 
-.slide .message p {
-  opacity: 0;
-  transition: opacity .3s ease-in .4s;
-}
-.slide.animate-in .message p {
-  opacity: 1;
-}
-.slide.animate-out .message p {
-  opacity: 0;
-}
 
 /* Generic block 1 */
-.slide .block1 { 
+.generic .block1 { 
   position: absolute;
   top: 20px; 
   left: 1080px;
   width: 50px;
   min-height: 180px;
-  padding: 30px;
   border-radius: 20px;
   opacity: 0;
-  border: 1px solid rgba(0,0,0,.1);
   transition-property: left, opacity;
-  transition-timing-function: cubic-bezier(.87,0,.43,1.34), linear;
+  transition-timing-function: cubic-bezier(.81,0,.64,1.26), linear;
 }
 
 /* Generic block 2 */
-.slide .block2 { 
+.generic .block2 { 
   position: absolute;
   top: 35px; 
   left: 1080px;
   width: 40px;
   min-height: 180px;
-  padding: 30px;
   border-radius: 20px;
   opacity: 0;
-  border: 1px solid rgba(0,0,0,.1);
   transition-property: left, opacity;
-  transition-timing-function: cubic-bezier(.87,0,.43,1.34), linear;
-}
-
-/* Generic widget *
-.slide .widget {
-  position: absolute;
-  z-index: 10;
-  display: block;
-  width: 95px;
-  height: 95px;
-  opacity: 0;
-  transition-property: top, left, bottom, right, opacity;
-  transition-timing-function: ease;
+  transition-timing-function: cubic-bezier(.81,0,.64,1.26), linear;
 }
 
 /* Default transitions  - for prototyping */
 .slide.animate-in .number {
   left: 50px;
   opacity: 1;
-  transition-duration: 1.625s;
+  transition-duration: 2s;
 }
 .slide.animate-out .number {
   left: -280px;
   opacity: 0;
-  transition-duration: 1s;
+  transition-duration: 2s;
 }
 
 .slide.animate-in .message {
   left: 160px;
   opacity: 1;
-  transition-duration: 1.6s;
+  transition-duration: 2s;
 }
 .slide.animate-out .message {
   left: -520px;
   opacity: 0;
-  transition-duration: 1.6s;
+  transition-duration: 2s;
 }
 
 .slide.animate-in .block1 {
   left: 680px;
   opacity: 1;
-  transition-duration: 1.6s;
+  transition-duration: 2s;
 }
 .slide.animate-out .block1 {
   left: -320px;
   opacity: 0;
-  transition-duration: 1.6s;
+  transition-duration: 2s;
 }
 
 .slide.animate-in .block2 {
   left: 780px;
   opacity: 1;
-  transition-duration: 1.65s;
+  transition-duration: 2s;
 }
 .slide.animate-out .block2 {
   left: -290px;
   opacity: 0;
-  transition-duration: 1.65s;
+  transition-duration: 2s;
+}
+.slide.animate-in .block3 {
+  left: 780px;
+  opacity: 1;
+  transition-duration: 2s;
+}
+.slide.animate-out .block3 {
+  left: -290px;
+  opacity: 0;
+  transition-duration: 2s;
+}
+/*** end generics }}} */
+
+/* Base styles for all slides */
+.number, .message, .block1, .block2, .block3 {
+  display: block;
+  position: absolute;
+  opacity: 0;
+  transition-property: left, right, top, bottom, opacity;
+  transition-timing-function: cubic-bezier(.81,0,.64,1.26), linear;
+  transition-duration: 2s;
 }
 
-.slide.animate-in .widget {
-/*
-  top: 19px;
-  opacity: 1;
-  transition-duration: 1.25s;
-*/
+.number {
+  text-indent: -999em;
+  overflow: hidden;
 }
-.slide.animate-out .widget {
-/*
-  top: -100px;
+
+.message {
+  font: italic 24px/1.15 'Open Sans Light', sans-serif;
+  letter-spacing: -.025px;
+  color: #fff;
+}
+.message p {
   opacity: 0;
-  transition-duration: 1.5s;
-*/
+  transition: opacity .3s ease-in 1s;
+}
+.animate-in .message p {
+  opacity: 1;
+}
+.animate-out .message p {
+  opacity: 0;
 }
 
 /* Fact 01 */
 #fact01 {
   .back {
-    background-image: url(/media/img/contribute/mozilla15/line-red.png);
+    background-image: url(/media/img/contribute/mozilla15/path-red.png);
     background-position: 0 50%;
+  }
+  .number, .message, .block1, .block2 {
+    background: url(/media/img/contribute/mozilla15/fact01-pads.png) no-repeat;
   }
   .number {
     z-index: 5;
-    top: 19px;
-    width: 150px;
-    height: 130px;
-    text-indent: -999em;
-    overflow: hidden;
-    border: 0;
-    background: transparent url(/media/img/contribute/mozilla15/01-number.png) no-repeat;
+    width: 145px;
+    height: 125px;
+    left: 1040px;
+    top: 99px;
+    background-position: 0 0;
   }
   .message {
     z-index: 2;
-    color: #fff;
-    top: 42px;
-    width: 360px;
-    height: 220px;
-    padding: 60px 50px 0 40px;
+    width: 380px;
+    height: 224px;
+    padding: 62px 40px 0 28px;
     border: 0;
-    background: transparent url(/media/img/contribute/mozilla15/01-message.png) no-repeat;
+    top: 18px;
+    left: 1040px;
+    background-position: -150px 0;
   }
   .block1 {
     z-index: 4;
-    width: 108px;
-    height: 260px;
-    top: 42px;
+    width: 226px;
+    height: 270px;
     border: 0;
-    background: transparent url(/media/img/contribute/mozilla15/01-block1.png) no-repeat;
+    top: 61px;
+    left: 1040px;
+    background-position: -610px 0;
   }
   .block2 {
     z-index: 3;
-    width: 168px;
-    height: 230px;
-    top: 72px;
+    width: 98px;
+    height: 256px;
     border: 0;
-    background: transparent url(/media/img/contribute/mozilla15/01-block2.png) no-repeat;
-  }
-  .widget {
-    display: block;
-    width: 95px;
-    height: 95px;
-    position: absolute;
-    z-index: 10;
-    left: 770px;
-    top: -200px;
-    background: transparent url(/media/img/contribute/mozilla15/01-widget.png) no-repeat;
+    top: 61px;
+    left: 1040px;
+    background-position: -840px 0;
   }
 }
 #fact01.animate-in {
@@ -378,84 +407,77 @@
     background-position: 0 50%;
   }
  .number {
-    left: 12px;
+    left: 21px;
   }
   .message {
-    left: 162px;
+    left: 161px;
   }
   .block1 {
-    left: 642px;
+    left: 606px;
   }
   .block2 {
-    left: 750px;
-  }
-  .widget {
-    animation-name: fact01-widget-in;
-    animation-duration: 1.5s;
-    animation-delay: 1s;
-    animation-fill-mode: forwards;
+    left: 831px;
   }
 }
 #fact01.animate-out {
   .back {
-    background-position: -100px 50%;
+    background-position: -150px 50%;
   }
-  .widget {
+  .number, .message, .block1, .block2 {
+    left: -600px;
     opacity: 0;
-    top: -100px;
-    transition-property: opacity, top;
-    transition-duration: 1s;
   }
-}
-@keyframes fact01-widget-in {
-  0% { top: -200px; }
-  30% { top: 70px; }
-  40% { top: 40px; }
-  50% { top: 50px; }
-  100% { top: 50px; }
 }
 
 /* Fact 02 */
 #fact02 {
   .back {
-    background-image: url(/media/img/contribute/mozilla15/line-blue.png);
+    background-image: url(/media/img/contribute/mozilla15/path-darkblue.png);
     background-position: 0 50%;
+  }
+  .number, .message, .block1, .block2, .block3 {
+    background: url(/media/img/contribute/mozilla15/fact02-pads.png) no-repeat;
   }
   .number {
     z-index: 5;
-    top: 117px;
-    width: 181px;
-    height: 115px;
-    text-indent: -999em;
-    overflow: hidden;
-    border: 0;
-    background: transparent url(/media/img/contribute/mozilla15/02-number.png) no-repeat;
+    width: 114px;
+    height: 102px;
+    background-position: 0 0;
+    left: 1040px;
+    top: 184px;
   }
   .message {
     z-index: 2;
-    color: #fff;
-    top: 42px;
-    width: 340px;
-    height: 220px;
-    padding: 60px 50px 0 40px;
-    border: 0;
-    background: transparent url(/media/img/contribute/mozilla15/02-message.png) no-repeat;
+    width: 363px;
+    height: 170px;
+    padding: 110px 105px 0 35px;
+    background-position: -151px 0;
+    left: 1040px;
+    top: 41px;
   }
   .block1 {
     z-index: 4;
-    width: 108px;
-    height: 260px;
-    top: 42px;
-    border: 0;
-    background: transparent url(/media/img/contribute/mozilla15/02-block1.png) no-repeat;
+    width: 151px;
+    height: 75px;
+    background-position: 0 -102px;
+    left: 1040px;
+    top: 113px;
   }
   .block2 {
     z-index: 3;
-    width: 266px;
-    height: 230px;
-    top: 72px;
-    border: 0;
-    background: transparent url(/media/img/contribute/mozilla15/02-block2.png) no-repeat;
+    width: 230px;
+    height: 83px;
+    background-position: -654px 0;
+    left: 1040px;
+    top: 47px;
+  }
+  .block3 {
+    z-index: 5;
+    width: 230px;
+    height: 185px;
+    background-position: -654px -83px;
+    left: 1040px;
+    top: 126px;
   }
   .logo {
     display: block;
@@ -463,61 +485,80 @@
     z-index: 10;
     opacity: 0;
     top: -250px;
-    left: 252px;
-    width: 185px;
-    height: 200px;
-    background: transparent url(/media/img/contribute/mozilla15/02-widget.png) no-repeat;
+    left: 41px;
+    width: 132px;
+    height: 152px;
+    background: transparent url(/media/img/contribute/mozilla15/fxlogo.png) no-repeat;
+    transition: opacity .25s ease-in;
   }
 }
 #fact02.animate-in {
   .back {
-    background-position: -100px 50%;
+    background-position: -150px 50%;
   }
  .number {
-    left: 25px;
+    left: 77px;
   }
   .message {
-    left: 480px;
+    left: 199px;
   }
   .block1 {
-    left: 29px;
+    left: 28px;
   }
   .block2 {
-    left: 215px;
+    left: 702px;
+  }
+  .block3 {
+    opacity: 1;
+    left: 702px;
   }
   .logo {
     opacity: 1;
-    top: -250px;
+    transition: opacity .25s ease-in 1.5s;
+    top: -150px;
   	animation-name: fact02-logo-in;
     animation-duration: 1.5s;
-    animation-delay: 1s;
+    animation-delay: 1.5s;
     animation-fill-mode: forwards;
   }
 }
 #fact02.animate-out {
  .back {
-    background-position: -200px 50%;
+    background-position: -300px 50%;
   }
   .logo {
-    top: 500px;
+    top: 41px;
     opacity: 0;
-    transition-duration: 1s;
-    transition-property: top, opacity;
+    transition: opacity .25s ease-in .6s;
+    animation-name: fact02-logo-out;
+    animation-duration: 1s;
+    animation-delay: .5s;
+    animation-fill-mode: forwards;
+  }
+  .number, .message, .block1, .block2, .block3 {
+    left: -600px;
+    opacity: 0;
   }
 }
 @keyframes fact02-logo-in {
   0% { top: -250px; }
-  30% { top: 90px; }
-  40% { top: 60px; }
-  50% { top: 71px; }
-  100% { top: 71px; }
+  30% { top: 50px; }
+  40% { top: 30px; }
+  50% { top: 41px; }
+  100% { top: 41px; }
+}
+@keyframes fact02-logo-out {
+  0% { top: 41px; }
+  10% { top: 30px }
+  20% { top: 50px; }
+  40%, 100% { top: 400px; }
 }
 
 /* Fact 03 */
 #fact03 {
   .back {
-    background-image: url(/media/img/contribute/mozilla15/line-green.png);
-    background-position: -100px 50%;
+    background-image: url(/media/img/contribute/mozilla15/path-green.png);
+    background-position: -150px 50%;
   }
   .number,
   .message,
@@ -529,21 +570,21 @@
 
 #fact03.animate-in {
   .back {
-    background-position: -200px 50%;
+    background-position: -300px 50%;
   }
 }
 
 #fact03.animate-out {
   .back {
-    background-position: -300px 50%;
+    background-position: -450px 50%;
   }
 }
 
 /* Fact 04 */
 #fact04 {
   .back {
-    background-image: url(/media/img/contribute/mozilla15/line-purple.png);
-    background-position: -200px 50%;
+    background-image: url(/media/img/contribute/mozilla15/path-lightblue.png);
+    background-position: -300px 50%;
   }
   .number,
   .message,
@@ -555,21 +596,21 @@
 
 #fact04.animate-in {
   .back {
-    background-position: -300px 50%;
+    background-position: -450px 50%;
   }
 }
 
 #fact04.animate-out {
   .back {
-    background-position: -400px 50%;
+    background-position: -600px 50%;
   }
 }
 
 /* Fact 05 */
 #fact05 {
   .back {
-    background-image: url(/media/img/contribute/mozilla15/line-yellow.png);
-    background-position: -300px 50%;
+    background-image: url(/media/img/contribute/mozilla15/path-orange.png);
+    background-position: -450px 50%;
   }
   .number,
   .message,
@@ -581,13 +622,13 @@
 
 #fact05.animate-in {
   .back {
-    background-position: -400px 50%;
+    background-position: -600px 50%;
   }
 }
 
 #fact05.animate-out {
   .back {
-    background-position: -500px 50%;
+    background-position: -750px 50%;
   }
 }
 
