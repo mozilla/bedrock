@@ -8,13 +8,14 @@
     var options = {
         nextButton: '.next',
         prevButton: '.prev',
-        autoPlay: false,
-        autoPlayDelay: 3000,
+        autoPlay: true,
+        autoPlayDelay: 6000,
+        pauseOnHover: true,
         fadeFrameWhenSkipped: false,
-        animateStartingFrameIn: true,
-        startingFrameID: '2',
+        animateStartingFrameIn: false,
+        moveActiveFrameToTop: false,
     };
 
-    var sequence = $('#slideshow').sequence(options).data('sequence');
+    var slideshow = $('#slideshow').sequence(options).data('sequence');
 
 })();

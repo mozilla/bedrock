@@ -49,9 +49,7 @@
       <button class="next">{{ _('Next') }}</button>
     </div>
     <ul class="slides">
-      <li id="fact01" class="slide">
-      <span class="back"></span>
-      <div class="slide-wrap">
+      <li id="fact01" class="slide animate-in">
         <span class="number">01</span>
         <div class="message">
         <p>
@@ -62,70 +60,66 @@
         </div>
         <span class="block1"></span>
         <span class="block2"></span>
-      </div>
+        <span class="back"></span>
       </li>
+
       <li id="fact02" class="slide">
-        <span class="back"></span>
-        <div class="slide-wrap">
-          <span class="number">02</span>
-          <div class="message">
-          <p>
-          {% trans %}
-            Proudly non-profit, Mozilla makes products like Firefox with a mission to keep the power of the Web in the hands of users everywhere.
-          {% endtrans %}
-          </p>
-          </div>
-          <span class="block1"></span>
-          <span class="block2"></span>
-          <span class="block3"></span>
-          <span class="logo"></span>
+        <span class="number">02</span>
+        <div class="message">
+        <p>
+        {% trans %}
+          Proudly non-profit, Mozilla makes products like Firefox with a mission to keep the power of the Web in the hands of users everywhere.
+        {% endtrans %}
+        </p>
         </div>
+        <span class="block1"></span>
+        <span class="block2"></span>
+        <span class="block3"></span>
+        <span class="logo"></span>
+        <span class="back"></span>
       </li>
-      <li id="fact03" class="slide generic">
-        <span class="back"></span>
-        <div class="slide-wrap">
-          <span class="number">03</span>
-          <div class="message">
-          <p>
-          {# L10N: "The New York Times" is the proper name of an English publication and should not be translated. #}
-          {% trans %}
-            More than 10,000 contributors expressed their support for our mission by paying for a full-page ad in <cite>The New York Times</cite> on the day Firefox 1.0 launched in 2004.
-          {% endtrans %}
-          </p>
-          </div>
-          <span class="block1"></span>
-          <span class="block2"></span>
+
+      <li id="fact03" class="slide">
+        <span class="number">03</span>
+        <div class="message">
+        <p>
+        {# L10N: "The New York Times" is the proper name of an English publication and should not be translated. #}
+        {% trans %}
+          More than 10,000 contributors expressed their support for our mission by paying for a full-page ad in <cite>The New York Times</cite> on the day Firefox 1.0 launched in 2004.
+        {% endtrans %}
+        </p>
         </div>
+        <span class="block1"></span>
+        <span class="block2"></span>
+        <span class="back"></span>
       </li>
-      <li id="fact04" class="slide generic">
-        <span class="back"></span>
-        <div class="slide-wrap">
-          <span class="number">04</span>
-          <div class="message">
-          <p>
-          {% trans %}
-            Today Mozilla has contributors on every continent, including Antarctica (where Firefox is used by 80% of people).
-          {% endtrans %}
-          </p>
-          </div>
-          <span class="block1"></span>
-          <span class="block2"></span>
+
+      <li id="fact04" class="slide">
+        <span class="number">04</span>
+        <div class="message">
+        <p>
+        {% trans %}
+          Today Mozilla has contributors on every continent, including Antarctica (where Firefox is used by 80% of people).
+        {% endtrans %}
+        </p>
         </div>
+        <span class="block1"></span>
+        <span class="block2"></span>
+        <span class="back"></span>
       </li>
-      <li id="fact05" class="slide generic">
-        <span class="back"></span>
-        <div class="slide-wrap">
-          <span class="number">05</span>
-          <div class="message">
-          <p>
-          {% trans %}
-            Firefox Add-Ons allow you to customize and take control of your Web experience. Over 3 billion of them have been downloaded by users so far.
-          {% endtrans %}
-          </p>
-          </div>
-          <span class="block1"></span>
-          <span class="block2"></span>
+
+      <li id="fact05" class="slide">
+        <span class="number">05</span>
+        <div class="message">
+        <p>
+        {% trans %}
+          Firefox Add-Ons allow you to customize and take control of your Web experience. Over 3 billion of them have been downloaded by users so far.
+        {% endtrans %}
+        </p>
         </div>
+        <span class="block1"></span>
+        <span class="block2"></span>
+        <span class="back"></span>
       </li>
 <!--
       <li id="fact06" class="slide">
@@ -138,6 +132,7 @@
         </p>
         </div>
       </li>
+
       <li id="fact08" class="slide">
         <span class="number"></span>
         <div class="message">
@@ -148,6 +143,7 @@
         </p>
         </div>
       </li>
+
       <li id="fact09" class="slide">
         <span class="number"></span>
         <div class="message">
@@ -158,6 +154,7 @@
         </p>
         </div>
       </li>
+
       <li id="fact10" class="slide">
         <span class="number"></span>
         <div class="message">
@@ -168,6 +165,7 @@
         </p>
         </div>
       </li>
+
       <li id="fact11" class="slide">
         <span class="number"></span>
         <div class="message">
@@ -178,6 +176,7 @@
         </p>
         </div>
       </li>
+
       <li id="fact12" class="slide">
         <span class="number"></span>
         <div class="message">
@@ -188,6 +187,7 @@
         </p>
         </div>
       </li>
+
       <li id="fact13" class="slide">
         <span class="number"></span>
         <div class="message">
@@ -208,6 +208,7 @@
         </p>
         </div>
       </li>
+
       <li id="fact15" class="slide">
         <span class="number"></span>
         <div class="message">
@@ -218,6 +219,7 @@
         </p>
         </div>
       </li>
+
       <li class="slide">
         <span class="number"></span>
         <div class="message">
@@ -231,7 +233,17 @@
 -->
     </ul>
   </div>
-
+<!--
+  <div id="background">
+    <ul class="background" aria-hidden="true" role="presentation">
+      <li id="back01" class="animate-in"><span class="back"></span></li>
+      <li id="back02"><span class="back"></span></li>
+      <li id="back03"><span class="back"></span></li>
+      <li id="back04"><span class="back"></span></li>
+      <li id="back05"><span class="back"></span></li>
+    </ul>
+  </div>
+-->
 </div>
 
   <div class="cta">

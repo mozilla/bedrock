@@ -102,244 +102,85 @@
   -webkit-backface-visibility: hidden; /* prevent graphical glitches in WebKit browsers when using transitions */
 }
 
-#slideshow .slides {
+.slides {
+  position: relative;
+  z-index: 2;
   list-style: none;
-  margin: 0;
+  margin: 0 auto;
   width: 100%;
-  height: 100%;
+  height: 340px;
+  overflow: hidden;
+  .slide {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
 }
-
-#slideshow .slide {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  z-index: 1;
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-
-#slideshow .slide > * {
+.slides .slide > * {
   position: absolute;
 }
 
 /* Slide controls */
-#slideshow .slide-control {
+.slide-control {
   width: 980px;
   position: absolute;
   left: 50%;
   top: 0;
   margin-left: -490px;
+  .prev,
+  .next {
+    position: absolute;
+    top: 140px;
+    opacity: .6;
+    z-index: 999;
+    width: 44px;
+    height: 60px;
+    border: 0;
+    background: transparent url(/media/img/contribute/mozilla15/slide-arrows.png) no-repeat;
+    display: block;
+    text-indent: -99em;
+    cursor: pointer;
+    overflow: hidden;
+    transition-property: opacity, left, right;
+    transition: .3s ease-in-out;
+  }
+  .prev {
+    left: -10px;
+    background-position: left center;
+    &:hover,
+    &:focus {
+      left: -14px;
+      opacity: 1;
+    }
+  }
+  .next {
+    right: -10px;
+    background-position: right center;
+    &:hover,
+    &:focus {
+      right: -14px;
+      opacity: 1;
+    }
+  }
 }
 
-#slideshow .prev,
-#slideshow .next {
-  position: absolute;
-  top: 140px;
-  opacity: .6;
-  transition: opacity, left, right .3s ease-in-out;
-  z-index: 999;
-  width: 44px;
-  height: 60px;
-  border: 0;
-  background: transparent url(/media/img/contribute/mozilla15/slide-arrows.png) no-repeat;
-  display: block;
-  text-indent: -99em;
-  cursor: pointer;
-  overflow: hidden;
-}
-#slideshow .prev {
-  left: -10px;
-  background-position: left center;
-}
-#slideshow .next {
-  right: -10px;
-  background-position: right center;
-}
-
-#slideshow .prev:hover,
-#slideshow .prev:focus {
-  left: -14px;
-  opacity: 1;
-  transition: opacity, left .3s ease-in-out;  
-}
-#slideshow .next:hover,
-#slideshow .next:focus {
-  right: -14px;
-  opacity: 1;
-  transition: opacity, right .3s ease-in-out;
-}
-
-/* Background path */
-.slide .back {
-  left: 0;
-  top: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
-  background-repeat: repeat-x;
-  background-position: 0 50%;
-  opacity: 0;
-  transition-property: background-position, opacity;
-  transition-timing-function: ease;
-  transition-duration: 2s;
-}
-.slide.animate-in .back {
-  opacity: 1;
-  transition-duration: 2s;
-}
-.slide.animate-out .back {
-  opacity: 0;
-  transition-duration: 2s;
-}
-
-/* Slide content wrapper */
-.slide .slide-wrap {
-  width: 980px;
-  height: 340px;
-  top: 0;
-  left: 50%;
-  margin-left: -490px;
-  overflow: hidden;
-  transition: top .1s linear;
-}
-/* Sequencejs will only animate elements that actually change 
-   between states, and will only autoplay when all elements are 
-   animatable. This arbitrary transition has no visible effect 
-   but serves to trigger autoplay. */
-.slide.animate-in .slide-wrap {
-  top: 1px;
-  margin-top: -1px;
-}
-.slide.animate-out .slide-wrap {
-  top: 0;
-}
-
-/*{{{ Generic blocks - for prototyping testing purposes */
-/* Number block */
-.generic .number {
-  border-radius: 20px;
-  font-size: 30px;
-  padding: 10px;
-  display: block;
-  width: 60px;
-  height: 60px;
-  position: absolute;
-  top: 60px;
-  left: 1080px;
-  opacity: 0;
-  transition-property: left, opacity;
-  transition-timing-function: cubic-bezier(.81,0,.64,1.26), linear;
-}
-
-/* Message block */
-.generic .message { 
-  top: 30px; 
-  left: 1080px;
-  width: 440px;
-  min-height: 200px;
-  padding: 30px;
-  border-radius: 20px;
-}
-
-
-/* Generic block 1 */
-.generic .block1 { 
-  position: absolute;
-  top: 20px; 
-  left: 1080px;
-  width: 50px;
-  min-height: 180px;
-  border-radius: 20px;
-  opacity: 0;
-  transition-property: left, opacity;
-  transition-timing-function: cubic-bezier(.81,0,.64,1.26), linear;
-}
-
-/* Generic block 2 */
-.generic .block2 { 
-  position: absolute;
-  top: 35px; 
-  left: 1080px;
-  width: 40px;
-  min-height: 180px;
-  border-radius: 20px;
-  opacity: 0;
-  transition-property: left, opacity;
-  transition-timing-function: cubic-bezier(.81,0,.64,1.26), linear;
-}
-
-/* Default transitions  - for prototyping */
-.slide.animate-in .number {
-  left: 50px;
-  opacity: 1;
-  transition-duration: 2s;
-}
-.slide.animate-out .number {
-  left: -280px;
-  opacity: 0;
-  transition-duration: 2s;
-}
-
-.slide.animate-in .message {
-  left: 160px;
-  opacity: 1;
-  transition-duration: 2s;
-}
-.slide.animate-out .message {
-  left: -520px;
-  opacity: 0;
-  transition-duration: 2s;
-}
-
-.slide.animate-in .block1 {
-  left: 680px;
-  opacity: 1;
-  transition-duration: 2s;
-}
-.slide.animate-out .block1 {
-  left: -320px;
-  opacity: 0;
-  transition-duration: 2s;
-}
-
-.slide.animate-in .block2 {
-  left: 780px;
-  opacity: 1;
-  transition-duration: 2s;
-}
-.slide.animate-out .block2 {
-  left: -290px;
-  opacity: 0;
-  transition-duration: 2s;
-}
-.slide.animate-in .block3 {
-  left: 780px;
-  opacity: 1;
-  transition-duration: 2s;
-}
-.slide.animate-out .block3 {
-  left: -290px;
-  opacity: 0;
-  transition-duration: 2s;
-}
-/*** end generics }}} */
 
 /* Base styles for all slides */
 .number, .message, .block1, .block2, .block3 {
   display: block;
   position: absolute;
+  z-index: 3;
   opacity: 0;
-  transition-property: left, right, top, bottom, opacity;
-  transition-timing-function: cubic-bezier(.81,0,.64,1.26), linear;
-  transition-duration: 2s;
+  left: 50%;
+  margin-left: 1000px;
 }
-
 .number {
   text-indent: -999em;
   overflow: hidden;
 }
-
 .message {
   font: italic 24px/1.15 'Open Sans Light', sans-serif;
   letter-spacing: -.025px;
@@ -349,92 +190,102 @@
   opacity: 0;
   transition: opacity .3s ease-in 1s;
 }
-.animate-in .message p {
-  opacity: 1;
+.message cite {
+  font-style: normal;
 }
-.animate-out .message p {
+.back {
+  display: block;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: repeat-x;
   opacity: 0;
 }
 
+.animate-in {
+  .number, .message, .block1, .block2, .block3 {
+    opacity: 1;
+    transition-duration: 2s;
+    transition-timing-function: cubic-bezier(.64,.01,.72,1.18);
+  }
+  .message p {
+    opacity: 1;
+  }
+  .back {
+    opacity: 1;
+    transition: opacity, background-position 2s linear;
+  }
+}
+.animate-out {
+  .number, .message, .block1, .block2, .block3 {
+    opacity: 0;
+    margin-left: -1000px;
+    transition-duration: 2s;
+  }
+  .message p {
+    opacity: 0;
+  }
+  .back {
+    opacity: 0;
+    transition: opacity, background-position 2s linear;
+  }
+}
+
+
 /* Fact 01 */
 #fact01 {
-  .back {
-    background-image: url(/media/img/contribute/mozilla15/path-red.png);
-    background-position: 0 50%;
-  }
   .number, .message, .block1, .block2 {
     background: url(/media/img/contribute/mozilla15/fact01-pads.png) no-repeat;
   }
   .number {
-    z-index: 5;
     width: 145px;
     height: 125px;
-    left: 1040px;
     top: 99px;
     background-position: 0 0;
   }
   .message {
-    z-index: 2;
     width: 380px;
     height: 224px;
     padding: 62px 40px 0 28px;
     border: 0;
     top: 18px;
-    left: 1040px;
     background-position: -150px 0;
   }
   .block1 {
-    z-index: 4;
     width: 226px;
     height: 270px;
     border: 0;
     top: 61px;
-    left: 1040px;
     background-position: -610px 0;
   }
   .block2 {
-    z-index: 3;
     width: 98px;
     height: 256px;
     border: 0;
     top: 61px;
-    left: 1040px;
     background-position: -840px 0;
   }
 }
 #fact01.animate-in {
-  .back {
-    background-position: 0 50%;
-  }
  .number {
-    left: 21px;
+    margin-left: -460px;
   }
   .message {
-    left: 161px;
+    margin-left: -320px;
   }
   .block1 {
-    left: 606px;
+    margin-left: 124px;
   }
   .block2 {
-    left: 831px;
-  }
-}
-#fact01.animate-out {
-  .back {
-    background-position: -150px 50%;
-  }
-  .number, .message, .block1, .block2 {
-    left: -600px;
-    opacity: 0;
+    margin-left: 351px;
   }
 }
 
 /* Fact 02 */
 #fact02 {
-  .back {
-    background-image: url(/media/img/contribute/mozilla15/path-darkblue.png);
-    background-position: 0 50%;
-  }
   .number, .message, .block1, .block2, .block3 {
     background: url(/media/img/contribute/mozilla15/fact02-pads.png) no-repeat;
   }
@@ -443,7 +294,6 @@
     width: 114px;
     height: 102px;
     background-position: 0 0;
-    left: 1040px;
     top: 184px;
   }
   .message {
@@ -452,7 +302,6 @@
     height: 170px;
     padding: 110px 105px 0 35px;
     background-position: -151px 0;
-    left: 1040px;
     top: 41px;
   }
   .block1 {
@@ -460,7 +309,6 @@
     width: 151px;
     height: 75px;
     background-position: 0 -102px;
-    left: 1040px;
     top: 113px;
   }
   .block2 {
@@ -468,7 +316,6 @@
     width: 230px;
     height: 83px;
     background-position: -654px 0;
-    left: 1040px;
     top: 47px;
   }
   .block3 {
@@ -476,7 +323,6 @@
     width: 230px;
     height: 185px;
     background-position: -654px -83px;
-    left: 1040px;
     top: 126px;
   }
   .logo {
@@ -485,7 +331,8 @@
     z-index: 10;
     opacity: 0;
     top: -250px;
-    left: 41px;
+    left: 50%;
+    margin-left: -446px;
     width: 132px;
     height: 152px;
     background: transparent url(/media/img/contribute/mozilla15/fxlogo.png) no-repeat;
@@ -493,24 +340,20 @@
   }
 }
 #fact02.animate-in {
-  .back {
-    background-position: -150px 50%;
-  }
  .number {
-    left: 77px;
+    margin-left: -412px;
   }
   .message {
-    left: 199px;
+    margin-left: -290px;
   }
   .block1 {
-    left: 28px;
+    margin-left: -457px;
   }
   .block2 {
-    left: 702px;
+    margin-left: 216px;
   }
   .block3 {
-    opacity: 1;
-    left: 702px;
+    margin-left: 216px;
   }
   .logo {
     opacity: 1;
@@ -523,9 +366,6 @@
   }
 }
 #fact02.animate-out {
- .back {
-    background-position: -300px 50%;
-  }
   .logo {
     top: 41px;
     opacity: 0;
@@ -534,10 +374,6 @@
     animation-duration: 1s;
     animation-delay: .5s;
     animation-fill-mode: forwards;
-  }
-  .number, .message, .block1, .block2, .block3 {
-    left: -600px;
-    opacity: 0;
   }
 }
 @keyframes fact02-logo-in {
@@ -556,81 +392,158 @@
 
 /* Fact 03 */
 #fact03 {
-  .back {
-    background-image: url(/media/img/contribute/mozilla15/path-green.png);
-    background-position: -150px 50%;
-  }
-  .number,
-  .message,
-  .block1,
-  .block2 {
+  .number, .message, .block1 {
+    display: block;
     background: #5fa400;
   }
+  .number {
+    width: 100px;
+    height: 100px;
+  }
+  .message {
+    height: 200px;
+    width: 400px;
+    padding: 30px;
+  }
+  .block1 {
+    width: 200px;
+    height: 200px;
+  }
 }
-
 #fact03.animate-in {
-  .back {
-    background-position: -300px 50%;
+  .number {
+    margin-left: -440px;
+  }
+  .message {
+    margin-left: -280px;
+  }
+  .block1 {
+    margin-left: 195px;
   }
 }
 
-#fact03.animate-out {
-  .back {
-    background-position: -450px 50%;
-  }
-}
 
 /* Fact 04 */
 #fact04 {
-  .back {
-    background-image: url(/media/img/contribute/mozilla15/path-lightblue.png);
-    background-position: -300px 50%;
+  .number, .message, .block1 {
+    display: block;
+    background: #54a3dd;
   }
-  .number,
-  .message,
-  .block1,
-  .block2 {
-    background: rgba(150,0,255,.95);
+  .number {
+    width: 100px;
+    height: 100px;
+  }
+  .message {
+    height: 200px;
+    width: 400px;
+    padding: 30px;
+  }
+  .block1 {
+    width: 200px;
+    height: 200px;
   }
 }
-
 #fact04.animate-in {
-  .back {
-    background-position: -450px 50%;
+  .number {
+    margin-left: -440px;
+  }
+  .message {
+    margin-left: -280px;
+  }
+  .block1 {
+    margin-left: 195px;
   }
 }
 
-#fact04.animate-out {
-  .back {
-    background-position: -600px 50%;
-  }
-}
 
 /* Fact 05 */
 #fact05 {
-  .back {
-    background-image: url(/media/img/contribute/mozilla15/path-orange.png);
-    background-position: -450px 50%;
+  .number, .message, .block1 {
+    display: block;
+    background: #e26c33;
   }
-  .number,
-  .message,
-  .block1,
-  .block2 {
-    background: #db4700;
+  .number {
+    width: 100px;
+    height: 100px;
+  }
+  .message {
+    height: 200px;
+    width: 400px;
+    padding: 30px;
+  }
+  .block1 {
+    width: 200px;
+    height: 200px;
   }
 }
-
 #fact05.animate-in {
-  .back {
-    background-position: -600px 50%;
+  .number {
+    margin-left: -440px;
+  }
+  .message {
+    margin-left: -280px;
+  }
+  .block1 {
+    margin-left: 195px;
   }
 }
 
-#fact05.animate-out {
-  .back {
-    background-position: -750px 50%;
-  }
+
+/* Shift backgrounds for each slide */
+/* Keeping this separate for further testing, need to work out the 05->01 transition */
+#fact01 .back {
+  background-image: url(/media/img/contribute/mozilla15/path-red.png);
+  background-position: 0 50%;
+}
+#fact01.animate-in .back {
+  background-position: -300px 50%;  
+}
+#fact01.animate-out .back {
+  background-position: -600px 50%;  
 }
 
+#fact02 .back {
+  background-image: url(/media/img/contribute/mozilla15/path-darkblue.png);
+  background-position: -300px 50%;
+}
+#fact02.animate-in .back {
+  background-position: -600px 50%;  
+}
+#fact02.animate-out .back {
+  background-position: -900px 50%;  
+}
+
+#fact03 .back {
+  background-image: url(/media/img/contribute/mozilla15/path-green.png);
+  background-position: -600px 50%;
+}
+#fact03.animate-in .back {
+  background-position: -900px 50%;  
+}
+#fact03.animate-out .back {
+  background-position: -1200px 50%;  
+}
+
+#fact04 .back {
+  background-image: url(/media/img/contribute/mozilla15/path-lightblue.png);
+  background-position: -900px 50%;
+}
+#fact04.animate-in .back {
+  background-position: -1200px 50%;  
+}
+#fact04.animate-out .back {
+  background-position: -1500px 50%;  
+}
+
+#fact05 .back {
+  background-image: url(/media/img/contribute/mozilla15/path-orange.png);
+  background-position: -1200px 50%;
+}
+#fact05.animate-in .back {
+  background-position: -1500px 50%;  
+}
+#fact05.animate-out .back {
+  background-position: -1800px 50%;  
+}
 
 
