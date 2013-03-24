@@ -175,7 +175,7 @@
   z-index: 3;
   opacity: 0;
   left: 50%;
-  margin-left: 1000px;
+  margin-left: 800px;
 }
 .number {
   text-indent: -999em;
@@ -188,7 +188,6 @@
 }
 .message p {
   opacity: 0;
-  transition: opacity .3s ease-in 1s;
 }
 .message cite {
   font-style: normal;
@@ -208,29 +207,40 @@
 .animate-in {
   .number, .message, .block1, .block2, .block3 {
     opacity: 1;
-    transition-duration: 2s;
-    transition-timing-function: cubic-bezier(.64,.01,.72,1.18);
+    transition-property: opacity, margin-left, margin-top;
+    transition-delay: .2s, 0s, 0s;
+    transition-duration: 1.4s, 2s, 2s;
+    transition-timing-function: linear, cubic-bezier(.64,.01,.72,1.18), cubic-bezier(.64,.01,.72,1.25);
   }
   .message p {
     opacity: 1;
+    transition: opacity .3s ease-in 1.6s;
   }
   .back {
     opacity: 1;
-    transition: opacity, background-position 2s linear;
+    transition-property: opacity, background-position;
+    transition-duration: 2s;
+    transition-timing-function: linear;
   }
 }
 .animate-out {
   .number, .message, .block1, .block2, .block3 {
     opacity: 0;
-    margin-left: -1000px;
-    transition-duration: 2s;
+    margin-left: -900px;
+    transition-property: opacity, margin-left, margin-top;
+    transition-delay: .6s, 0s, 0s;
+    transition-duration: 1s, 2s, 2s;
+    transition-timing-function: linear, cubic-bezier(.64,.01,.72,1.18), cubic-bezier(.64,.01,.72,1.25);
   }
   .message p {
     opacity: 0;
+    transition: opacity .3s ease-in 1.6s;
   }
   .back {
     opacity: 0;
-    transition: opacity, background-position 2s linear;
+    transition-property: opacity, background-position;
+    transition-duration: 2s;
+    transition-timing-function: linear;
   }
 }
 
@@ -245,6 +255,7 @@
     height: 125px;
     top: 99px;
     background-position: 0 0;
+    margin-left: 1000px;
   }
   .message {
     width: 380px;
@@ -253,6 +264,7 @@
     border: 0;
     top: 18px;
     background-position: -150px 0;
+    margin-left: 1400px;
   }
   .block1 {
     width: 226px;
@@ -260,13 +272,16 @@
     border: 0;
     top: 61px;
     background-position: -610px 0;
+    margin-left: 2200px;
   }
   .block2 {
     width: 98px;
     height: 256px;
     border: 0;
     top: 61px;
+    margin-left: 990px;
     background-position: -840px 0;
+    margin-left: 3000px;
   }
 }
 #fact01.animate-in {
@@ -283,6 +298,20 @@
     margin-left: 351px;
   }
 }
+#fact01.animate-out {
+  .number {
+    margin-left: -2000px;
+  }
+  .message {
+    margin-left: -1600px;
+  }
+  .block1 {
+    margin-left: -800px;
+  }
+  .block2 {
+    margin-left: -340px;
+  }
+}
 
 /* Fact 02 */
 #fact02 {
@@ -295,6 +324,8 @@
     height: 102px;
     background-position: 0 0;
     top: 184px;
+    margin-top: 30px;
+    margin-left: 1990px;
   }
   .message {
     z-index: 2;
@@ -303,6 +334,7 @@
     padding: 110px 105px 0 35px;
     background-position: -151px 0;
     top: 41px;
+    margin-left: 1450px;
   }
   .block1 {
     z-index: 4;
@@ -310,6 +342,8 @@
     height: 75px;
     background-position: 0 -102px;
     top: 113px;
+    margin-left: 1040px;
+    margin-top: -30px;
   }
   .block2 {
     z-index: 3;
@@ -317,6 +351,7 @@
     height: 83px;
     background-position: -654px 0;
     top: 47px;
+    margin-left: 1640px;
   }
   .block3 {
     z-index: 5;
@@ -324,6 +359,8 @@
     height: 185px;
     background-position: -654px -83px;
     top: 126px;
+    margin-left: 1880px;
+    margin-top: 60px;
   }
   .logo {
     display: block;
@@ -342,18 +379,21 @@
 #fact02.animate-in {
  .number {
     margin-left: -412px;
+    margin-top: 0;
   }
   .message {
     margin-left: -290px;
   }
   .block1 {
     margin-left: -457px;
+    margin-top: 0;
   }
   .block2 {
     margin-left: 216px;
   }
   .block3 {
     margin-left: 216px;
+    margin-top: 0;
   }
   .logo {
     opacity: 1;
@@ -366,6 +406,22 @@
   }
 }
 #fact02.animate-out {
+  .number {
+    margin-left: -1450px;
+  }
+  .message {
+    margin-left: -1000px;
+  }
+  .block1 {
+    margin-left: -1040px;
+    margin-top: 0;
+  }
+  .block2 {
+    margin-left: -950px;
+  }
+  .block3 {
+    margin-left: -820px;
+  }
   .logo {
     top: 41px;
     opacity: 0;
@@ -387,107 +443,268 @@
   0% { top: 41px; }
   10% { top: 30px }
   20% { top: 50px; }
-  40%, 100% { top: 400px; }
+  70%, 100% { top: 400px; }
 }
 
 /* Fact 03 */
 #fact03 {
   .number, .message, .block1 {
-    display: block;
-    background: #5fa400;
+    background: url(/media/img/contribute/mozilla15/fact03-pads.png) no-repeat;
   }
   .number {
-    width: 100px;
-    height: 100px;
+    width: 119px;
+    height: 129px;
+    top: 140px;
+    background-position: 0 0;
+    margin-left: 1000px;
   }
   .message {
-    height: 200px;
-    width: 400px;
-    padding: 30px;
+    height: 242px;
+    width: 440px;
+    padding: 40px 55px 0 35px;
+    top: 35px;
+    background-position: -120px 0;
+    margin-left: 1450px;
   }
   .block1 {
-    width: 200px;
-    height: 200px;
+    width: 208px;
+    height: 228px;
+    top: 22px;
+    background-position: -652px 0;
+    margin-left: 1990px;
+    margin-top: 50px;
   }
 }
 #fact03.animate-in {
   .number {
-    margin-left: -440px;
+    margin-left: -445px;
   }
   .message {
-    margin-left: -280px;
+    margin-left: -297px;
   }
   .block1 {
-    margin-left: 195px;
+    margin-left: 234px;
+    margin-top: 0;
   }
 }
-
+#fact03.animate-out {
+  .number {
+    margin-left: -1680px;
+  }
+  .message {
+    margin-left: -1220px;
+  }
+  .block1 {
+    margin-left: -600px;
+    margin-top: 90px;
+  }
+}
 
 /* Fact 04 */
 #fact04 {
   .number, .message, .block1 {
-    display: block;
-    background: #54a3dd;
+    background: url(/media/img/contribute/mozilla15/fact04-pads.png);
   }
   .number {
-    width: 100px;
-    height: 100px;
+    width: 103px;
+    height: 173px;
+    background-position: 0 0;
+    top: 78px;
+    margin-left: 1020px;
+    margin-top: 60px;
   }
   .message {
-    height: 200px;
-    width: 400px;
-    padding: 30px;
+    height: 225px;
+    width: 403px;
+    padding: 35px 45px 0 40px;
+    background-position: -103px 0;
+    top: 28px;
+    margin-left: 1500px;
+    margin-top: 60px;
   }
   .block1 {
-    width: 200px;
-    height: 200px;
+    width: 291px;
+    height: 290px;
+    background-position: -592px 0;
+    top: 15px;
+    margin-left: 2500px;
+    margin-top: 60px;
   }
 }
 #fact04.animate-in {
   .number {
-    margin-left: -440px;
+    margin-left: -457px;
+    margin-top: 0;
   }
   .message {
-    margin-left: -280px;
+    margin-left: -322px;
+    margin-top: 0;
   }
   .block1 {
-    margin-left: 195px;
+    margin-left: 167px;
+    margin-top: 0;
+  }
+}
+#fact04.animate-out {
+  .number {
+    margin-left: -2000px;
+    margin-top: 60px;
+  }
+  .message {
+    margin-left: -1400px;
+    margin-top: 60px;
+  }
+  .block1 {
+    margin-left: -800px;
+    margin-top: 60px;
   }
 }
 
 
 /* Fact 05 */
 #fact05 {
-  .number, .message, .block1 {
-    display: block;
-    background: #e26c33;
+  .number, .message, .block1, .block2, .block3, .puzz {
+    background: url(/media/img/contribute/mozilla15/fact05-pads.png) no-repeat;
   }
   .number {
     width: 100px;
-    height: 100px;
+    height: 105px;
+    background-position: 0 0;
+    top: 87px;
+    margin-top: -40px;
+    margin-left: 1020px;
   }
   .message {
-    height: 200px;
-    width: 400px;
-    padding: 30px;
+    width: 403px;
+    height: 237px;
+    padding: 30px 40px 0 40px;
+    background-position: -100px 0;
+    top: 46px;
+    margin-left: 1500px;
   }
   .block1 {
-    width: 200px;
-    height: 200px;
+    width: 320px;
+    height: 94px;
+    background-position: -583px 0;
+    top: 30px;
+    margin-left: 2300px;
+    margin-top: -40px;
+  }
+  .block2 {
+    width: 320px;
+    height: 102px;
+    background-position: -583px -94px;
+    top: 121px;
+    margin-left: 2800px;
+  }
+  .block3 {
+    width: 320px;
+    height: 95px;
+    background-position: -583px -196px;
+    top: 222px;
+    margin-left: 3300px;
+    margin-top: 40px;
+  }
+  .puzz {
+    opacity: .5;
+    display: block;
+    width: 85px;
+    height: 85px;
+    background-position: 0 -102px;
+    position: absolute;
+    z-index: 20;
+    left: 50%;
+    top: -100px;
+    margin-left: -14px;
   }
 }
 #fact05.animate-in {
   .number {
-    margin-left: -440px;
+    margin-top: 0;
+    margin-left: -461px;
   }
   .message {
-    margin-left: -280px;
+    margin-left: -352px;
   }
   .block1 {
-    margin-left: 195px;
+    margin-top: 0;
+    margin-left: 134px;
+    transition-delay: .5s;
+  } 
+  .block2 {
+    margin-left: 134px;
+    transition-delay: .6s;    
+  } 
+  .block3 {
+    margin-top: 0;
+    margin-left: 134px;
+    transition-delay: .7s;
+  }
+  .puzz {
+    opacity: 1;
+    top: 196px;
+    transition-property: opacity, top;
+    transition-duration: 1s, 1.5s;
+    transition-timing-function: linear, ease-in;
+    transition-delay: 1.5s; 
+  	animation-name: fact05-puzz-in;
+    animation-duration: 1.5s;
+    animation-delay: 1.5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in;
   }
 }
-
+#fact05.animate-out {
+  .number {
+    margin-left: -1840px;
+  }
+  .message {
+    margin-left: -2280px;
+  }
+  .block1 {
+    margin-top: -40px;
+    margin-left: -1005px;
+    transition-property: margin-left, margin-top, opacity;
+    transition-duration: 2s, 2s, 1s;
+    transition-timing-function: ease-in, ease-in, linear;
+    transition-delay: .8s, .9s, .8s;
+  } 
+  .block2 {
+    margin-left: -1205px;
+    transition-property: margin-left, margin-top, opacity;
+    transition-duration: 2s, 2s, 1s;
+    transition-timing-function: ease-in, ease-in, linear;
+    transition-delay: .6s, .7s, .7s;
+  } 
+  .block3 {
+    margin-top: 40px;
+    margin-left: -1405px;
+    transition-property: margin-left, margin-top, opacity;
+    transition-duration: 2s, 2s, 1s;
+    transition-timing-function: ease-in, ease-in, linear;
+    transition-delay: .4s, .5s, .6s;
+  }
+  .puzz {
+    opacity: 0;
+    top: 500px;
+    transition-property: opacity, top;
+    transition-duration: 1s, 1s;
+    transition-timing-function: linear, ease-in;
+    transition-delay: .5s; 
+    animation-name: fact05-puzz-out;
+    animation-duration: 1s;
+    animation-delay: .5s;
+    transform-style: preserve-3d;
+  }
+}
+@keyframes fact05-puzz-in {
+  0% { transform: rotateX( 0deg ); transform-origin: center center; }
+  100% { transform: rotateX( 360deg ); transform-origin: center center; }
+}
+@keyframes fact05-puzz-out {
+  0% { transform: rotateX( 0deg ); transform-origin: center; }
+  100% { transform: rotateX( -360deg ); transform-origin: center; }
+}
 
 /* Shift backgrounds for each slide */
 /* Keeping this separate for further testing, need to work out the 05->01 transition */
@@ -496,54 +713,54 @@
   background-position: 0 50%;
 }
 #fact01.animate-in .back {
-  background-position: -300px 50%;  
+  background-position: -200px 50%;  
 }
 #fact01.animate-out .back {
-  background-position: -600px 50%;  
+  background-position: -400px 50%;  
 }
 
 #fact02 .back {
   background-image: url(/media/img/contribute/mozilla15/path-darkblue.png);
-  background-position: -300px 50%;
+  background-position: -200px 50%;
 }
 #fact02.animate-in .back {
-  background-position: -600px 50%;  
+  background-position: -400px 50%;  
 }
 #fact02.animate-out .back {
-  background-position: -900px 50%;  
+  background-position: -600px 50%;  
 }
 
 #fact03 .back {
   background-image: url(/media/img/contribute/mozilla15/path-green.png);
-  background-position: -600px 50%;
+  background-position: -400px 50%;
 }
 #fact03.animate-in .back {
-  background-position: -900px 50%;  
+  background-position: -600px 50%;  
 }
 #fact03.animate-out .back {
-  background-position: -1200px 50%;  
+  background-position: -800px 50%;  
 }
 
 #fact04 .back {
   background-image: url(/media/img/contribute/mozilla15/path-lightblue.png);
-  background-position: -900px 50%;
+  background-position: -600px 50%;
 }
 #fact04.animate-in .back {
-  background-position: -1200px 50%;  
+  background-position: -800px 50%;  
 }
 #fact04.animate-out .back {
-  background-position: -1500px 50%;  
+  background-position: -1000px 50%;  
 }
 
 #fact05 .back {
   background-image: url(/media/img/contribute/mozilla15/path-orange.png);
-  background-position: -1200px 50%;
+  background-position: -800px 50%;
 }
 #fact05.animate-in .back {
-  background-position: -1500px 50%;  
+  background-position: -1000px 50%;  
 }
 #fact05.animate-out .back {
-  background-position: -1800px 50%;  
+  background-position: -1200px 50%;  
 }
 
 

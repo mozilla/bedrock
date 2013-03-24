@@ -9,11 +9,12 @@
         nextButton: '.next',
         prevButton: '.prev',
         autoPlay: true,
-        autoPlayDelay: 6000,
+        autoPlayDelay: 7000,
         pauseOnHover: true,
         fadeFrameWhenSkipped: false,
-        animateStartingFrameIn: false,
+        animateStartingFrameIn: true,
         moveActiveFrameToTop: false,
+//        startingFrameID: '5',
     };
 
     var slideshow = $('#slideshow').sequence(options).data('sequence');
