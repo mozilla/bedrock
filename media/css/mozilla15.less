@@ -210,7 +210,7 @@
     transition-property: opacity, margin-left, margin-top;
     transition-delay: .2s, 0s, 0s;
     transition-duration: 1.4s, 2s, 2s;
-    transition-timing-function: linear, cubic-bezier(.64,.01,.72,1.18), cubic-bezier(.64,.01,.72,1.25);
+    transition-timing-function: linear, cubic-bezier(.54,-0.09,.63,1.21), cubic-bezier(.64,.01,.72,1.25);
   }
   .message p {
     opacity: 1;
@@ -230,7 +230,7 @@
     transition-property: opacity, margin-left, margin-top;
     transition-delay: .6s, 0s, 0s;
     transition-duration: 1s, 2s, 2s;
-    transition-timing-function: linear, cubic-bezier(.64,.01,.72,1.18), cubic-bezier(.64,.01,.72,1.25);
+    transition-timing-function: linear, cubic-bezier(.54,-0.09,.63,1.21), cubic-bezier(.64,.01,.72,1.25);
   }
   .message p {
     opacity: 0;
@@ -401,7 +401,7 @@
     top: -150px;
   	animation-name: fact02-logo-in;
     animation-duration: 1.5s;
-    animation-delay: 1.5s;
+    animation-delay: 1.8s;
     animation-fill-mode: forwards;
   }
 }
@@ -428,7 +428,7 @@
     transition: opacity .25s ease-in .6s;
     animation-name: fact02-logo-out;
     animation-duration: 1s;
-    animation-delay: .5s;
+    animation-delay: .4s;
     animation-fill-mode: forwards;
   }
 }
@@ -539,10 +539,12 @@
   .message {
     margin-left: -322px;
     margin-top: 0;
+    transition-delay: .2s;
   }
   .block1 {
     margin-left: 167px;
     margin-top: 0;
+    transition-delay: .4s;
   }
 }
 #fact04.animate-out {
@@ -644,12 +646,12 @@
     opacity: 1;
     top: 196px;
     transition-property: opacity, top;
-    transition-duration: 1s, 1.5s;
+    transition-duration: 1s, 1s;
     transition-timing-function: linear, ease-in;
-    transition-delay: 1.5s; 
+    transition-delay: 1.2s; 
   	animation-name: fact05-puzz-in;
-    animation-duration: 1.5s;
-    animation-delay: 1.5s;
+    animation-duration: 1s;
+    animation-delay: 1.2s;
     animation-fill-mode: forwards;
     animation-timing-function: ease-in;
   }
@@ -698,7 +700,7 @@
   }
 }
 @keyframes fact05-puzz-in {
-  0% { transform: rotateX( 0deg ); transform-origin: center center; }
+  0% { transform: rotateX( -360deg ); transform-origin: center center; }
   100% { transform: rotateX( 360deg ); transform-origin: center center; }
 }
 @keyframes fact05-puzz-out {
@@ -706,16 +708,99 @@
   100% { transform: rotateX( -360deg ); transform-origin: center; }
 }
 
+#fact06 {
+  .number, .message, .block1, .keyhole {
+    background: url(/media/img/contribute/mozilla15/fact06-pads.png) no-repeat;
+  }
+  .number {
+    width: 178px;
+    height: 115px;
+    background-position: 0 0;
+    top: 110px;
+    margin-left: 1000px;
+    .keyhole {
+      display: block;
+      width: 46px;
+      height: 56px;
+      position: absolute;
+      z-index: 8;
+      top: 25px;
+      left: 108px;
+      background-color: #000;
+      background-image: url(/media/img/contribute/mozilla15/fact06-pads.png), url(/media/img/contribute/mozilla15/fact06-pads.png);
+      background-position: 0 -117px, -86px -117px;
+      transform: rotateY(90deg);
+      transform-style: preserve-3d;
+    }
+  }
+  .message {
+    width: 349px;
+    height: 240px;
+    padding: 40px 130px 0 50px;
+    background-position: -179px 0;
+    top: 35px;
+    margin-left: 1700px;
+  }
+  .block1 {
+    width: 193px;
+    height: 248px;
+    background-position: -707px 0;
+    top: 55px;
+    margin-left: 2800px;
+  }
+  &.animate-in {
+    .number {
+      margin-left: -462px;
+      margin-top: 0;
+      .keyhole {
+        transform: rotateY(0deg);
+        transform-style: preserve-3d;
+        transition-property: transform, background-position;
+        transition-duration: .4s, 1s;
+        transition-timing-function: ease-in-out;
+        transition-delay: 2s, .5s;
+      }
+      .keyhole:hover {
+        background-position: 0 -117px, -86px -175px;
+        transition: background-position .6s ease-in-out 2s;
+      }
+    }
+    .message {
+      margin-left: -270px;
+    }
+    .block1 {
+      margin-left: 268px;
+    }
+  }
+  &.animate-out {
+    .number {
+      margin-left: -2200px;
+      .keyhole {
+        transform: rotateY(0deg);
+      }
+    }
+    .message {
+      margin-left: -1500px;
+    }
+    .block1 {
+      margin-left: -800px;
+    }
+  }
+}
+
 /* Shift backgrounds for each slide */
 /* Keeping this separate for further testing, need to work out the 05->01 transition */
-#fact01 .back {
+#fact01 .back,
+#fact06 .back {
   background-image: url(/media/img/contribute/mozilla15/path-red.png);
   background-position: 0 50%;
 }
-#fact01.animate-in .back {
+#fact01.animate-in .back, 
+#fact06.animate-in .back {
   background-position: -200px 50%;  
 }
-#fact01.animate-out .back {
+#fact01.animate-out .back,
+#fact06.animate-out .back {
   background-position: -400px 50%;  
 }
 
