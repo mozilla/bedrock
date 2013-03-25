@@ -8,13 +8,13 @@
     var options = {
         nextButton: '.next',
         prevButton: '.prev',
-        autoPlay: true,
-        autoPlayDelay: 3000,
+        autoPlay: false,
+        autoPlayDelay: 5000,
         pauseOnHover: true,
         fadeFrameWhenSkipped: false,
         animateStartingFrameIn: true,
         moveActiveFrameToTop: false,
-//        startingFrameID: '6',
+//        startingFrameID: '9',
     };
 
     var slideshow = $('#slideshow').sequence(options).data('sequence');
