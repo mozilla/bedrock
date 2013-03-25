@@ -8,7 +8,7 @@
     var options = {
         nextButton: '.next',
         prevButton: '.prev',
-        autoPlay: false,
+        autoPlay: true,
         autoPlayDelay: 5000,
         pauseOnHover: true,
         fadeFrameWhenSkipped: false,
