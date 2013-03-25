@@ -69,4 +69,7 @@ urlpatterns = patterns('',
 
     # Bug 822817 /telemetry/ -> http://wiki.mozilla.org/Telemetry/FAQ
     redirect(r'telemetry/$', 'http://wiki.mozilla.org/Telemetry/FAQ'),
+
+    #Bug 854561 - move /projects/mozilla-based/ to /about/mozilla-based/
+    redirect(r'projects/mozilla-based/', '/about/mozilla-based'),
 )
