@@ -28,9 +28,9 @@ from newsletter import utils
 
 log = commonware.log.getLogger('b.newsletter')
 
-general_error = _lazy('Something is amiss with our system, sorry! Please try '
+general_error = _lazy(u'Something is amiss with our system, sorry! Please try '
                       'again later.')
-thank_you = _lazy('Thank you for updating your email preferences')
+thank_you = _lazy(u'Thank you for updating your email preferences')
 
 
 @xframe_allow
@@ -292,11 +292,11 @@ def existing(request, token=None):
 
 # Possible reasons for unsubscribing
 REASONS = [
-    _lazy("You send too many emails."),
-    _lazy("Your content wasn't relevant to me."),
-    _lazy("Your email design was too hard to read."),
-    _lazy("I didn't sign up for this."),
-    _lazy("I'm keeping in touch with Mozilla on Facebook and Twitter "
+    _lazy(u"You send too many emails."),
+    _lazy(u"Your content wasn't relevant to me."),
+    _lazy(u"Your email design was too hard to read."),
+    _lazy(u"I didn't sign up for this."),
+    _lazy(u"I'm keeping in touch with Mozilla on Facebook and Twitter "
           "instead."),
 ]
 
