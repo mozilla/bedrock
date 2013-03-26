@@ -112,6 +112,7 @@ MINIFY_BUNDLES = {
         'contribute': (
             'css/contribute.less',
             'css/sandstone/video-resp.less',
+            'css/mozilla15.less',
         ),
         'contribute-page': (
             'css/contribute-page.less',
@@ -313,6 +314,8 @@ MINIFY_BUNDLES = {
             'js/mozilla-input-placeholder.js',
         ),
         'contribute': (
+            'js/libs/jquery.sequence.min.js',
+            'js/mozilla15.js',
             'js/contribute-page.js',
             'js/mozilla-pager.js',
             'js/mozilla-video-tools.js',
@@ -591,6 +594,10 @@ LOCALES_WITH_TRANSITION = ['en-US', 'af', 'ar', 'ast', 'be', 'bg',
                            'rm', 'ro', 'ru', 'si', 'sk', 'sl', 'sq',
                            'sr', 'sv-SE', 'ta', 'ta-LK', 'te', 'th',
                            'tr', 'uk', 'vi', 'zh-CN', 'zh-TW']
+
+# Locales showing the 15th Anniversary slideshow on /contribute
+LOCALES_WITH_MOZ15 = ['en-US', 'en-GB', 'de', 'es-AR', 'es-CL', 'es-ES', 
+                      'es-MX', 'fr', 'id', 'nl', 'pt-BR', 'zh-TW']
 
 # reCAPTCHA keys
 RECAPTCHA_PUBLIC_KEY = ''
