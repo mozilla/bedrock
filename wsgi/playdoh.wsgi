@@ -1,8 +1,14 @@
 import os
 import site
 
-import newrelic.agent
-newrelic.agent.initialize(os.environ['NEWRELIC_PYTHON_INI_FILE'])
+try:
+    import newrelic.agent
+except ImportError:
+    newrelic = False
+
+
+if newrelic:
+    newrelic.agent.initialize(os.environ['NEWRELIC_PYTHON_INI_FILE'])
 
 os.environ['CELERY_LOADER'] = 'django'
 
@@ -17,4 +23,5 @@ import django.core.handlers.wsgi
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 application = django.core.handlers.wsgi.WSGIHandler()
 
-application = newrelic.agent.wsgi_application()(application)
+if newrelic:
+    application = newrelic.agent.wsgi_application()(application)
