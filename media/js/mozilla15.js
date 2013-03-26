@@ -8,15 +8,18 @@
     var options = {
         nextButton: '.next',
         prevButton: '.prev',
-        autoPlay: true,
+        autoPlay: false,
         autoPlayDelay: 5000,
         pauseOnHover: true,
         fadeFrameWhenSkipped: false,
         animateStartingFrameIn: true,
         moveActiveFrameToTop: false,
-//        startingFrameID: '13',
+        preloader: true,
+        startingFrameID: '7',
     };
 
     var slideshow = $('#slideshow').sequence(options).data('sequence');
+
+
 
 })();

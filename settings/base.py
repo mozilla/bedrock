@@ -314,7 +314,7 @@ MINIFY_BUNDLES = {
             'js/mozilla-input-placeholder.js',
         ),
         'contribute': (
-            'js/libs/jquery.sequence.min.js',
+            'js/libs/jquery.sequence.js',
             'js/mozilla15.js',
             'js/contribute-page.js',
             'js/mozilla-pager.js',
