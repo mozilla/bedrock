@@ -8,7 +8,11 @@ except ImportError:
 
 
 if newrelic:
-    newrelic.agent.initialize(os.environ['NEWRELIC_PYTHON_INI_FILE'])
+    newrelic_ini = os.getenv('NEWRELIC_PYTHON_INI_FILE', False)
+    if newrelic_ini:
+        newrelic.agent.initialize(newrelic_ini)
+    else:
+        newrelic = False
 
 os.environ['CELERY_LOADER'] = 'django'
 
