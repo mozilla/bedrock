@@ -1,6 +1,15 @@
 import os
 import site
 
+try:
+    import newrelic.agent
+except ImportError:
+    newrelic = False
+
+
+if newrelic:
+    newrelic.agent.initialize(os.environ['NEWRELIC_PYTHON_INI_FILE'])
+
 os.environ['CELERY_LOADER'] = 'django'
 
 # Add the app dir to the python path so we can import manage.
@@ -14,4 +23,5 @@ import django.core.handlers.wsgi
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 application = django.core.handlers.wsgi.WSGIHandler()
 
-# vim: ft=python
+if newrelic:
+    application = newrelic.agent.wsgi_application()(application)
