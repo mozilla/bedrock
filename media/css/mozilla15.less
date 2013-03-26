@@ -12,6 +12,14 @@
   font-style: normal;
 }
 
+/* No italics in Chinese/Taiwanese */
+html[lang="zh-TW"] {
+  #moz15 .cta p, 
+  .message {
+    font-style: normal;
+  }
+}
+
 
 #contribute #wrapper {
   width: 100%;
@@ -230,9 +238,9 @@
 .animate-out {
   .number, .message, .block1, .block2, .block3 {
     opacity: 0;
-    margin-left: -900px;
+    margin-left: -1000px;
     transition-property: opacity, margin-left, margin-top;
-    transition-delay: .6s, 0s, 0s;
+    transition-delay: .8s, 0s, 0s;
     transition-duration: 1s, 2s, 2s;
     transition-timing-function: linear, cubic-bezier(.54,-0.09,.63,1.21), cubic-bezier(.64,.01,.72,1.25);
   }
@@ -243,7 +251,7 @@
   .back {
     opacity: 0;
     transition-property: opacity, background-position;
-    transition-duration: 1.5s, 2.6s;
+    transition-duration: 1s, 2.6s;
     transition-timing-function: linear, ease-in-out;
   }
 }
@@ -283,7 +291,7 @@
     height: 256px;
     border: 0;
     top: 61px;
-    margin-left: 990px;
+    margin-left: 1190px;
     background-position: -840px 0;
     margin-left: 3000px;
   }
@@ -304,16 +312,16 @@
 }
 #fact01.animate-out {
   .number {
-    margin-left: -2000px;
+    margin-left: -2400px;
   }
   .message {
-    margin-left: -1600px;
+    margin-left: -2000px;
   }
   .block1 {
-    margin-left: -800px;
+    margin-left: -1500px;
   }
   .block2 {
-    margin-left: -340px;
+    margin-left: -1100px;
   }
 }
 
@@ -510,59 +518,62 @@
     background: url(/media/img/contribute/mozilla15/fact04-pads.png);
   }
   .number {
-    width: 103px;
-    height: 173px;
+    width: 98px;
+    height: 176px;
     background-position: 0 0;
     top: 78px;
     margin-left: 1020px;
     margin-top: 60px;
   }
   .message {
-    height: 225px;
+    height: 228px;
     width: 403px;
-    padding: 35px 45px 0 40px;
-    background-position: -103px 0;
+    padding: 35px 40px 0 40px;
+    background-position: -98px 0;
     top: 28px;
     margin-left: 1500px;
     margin-top: 60px;
   }
   .block1 {
-    width: 291px;
-    height: 290px;
-    background-position: -592px 0;
+    width: 284px;
+    height: 291px;
+    background-position: -582px 0;
     top: 15px;
     margin-left: 2500px;
     margin-top: 60px;
   }
-}
-#fact04.animate-in {
-  .number {
-    margin-left: -457px;
-    margin-top: 0;
+  &.animate-in {
+    .number {
+      margin-left: -457px;
+      margin-top: 0;
+    }
+    .message {
+      margin-left: -322px;
+      margin-top: 0;
+      transition-delay: .1s;
+    }
+    .block1 {
+      margin-left: 167px;
+      margin-top: 0;
+      transition-delay: .2s;
+    }
   }
-  .message {
-    margin-left: -322px;
-    margin-top: 0;
-    transition-delay: .1s;
-  }
-  .block1 {
-    margin-left: 167px;
-    margin-top: 0;
-    transition-delay: .2s;
-  }
-}
-#fact04.animate-out {
-  .number {
-    margin-left: -2000px;
-    margin-top: 60px;
-  }
-  .message {
-    margin-left: -1400px;
-    margin-top: 60px;
-  }
-  .block1 {
-    margin-left: -800px;
-    margin-top: 60px;
+  &.animate-out {
+    .number {
+      margin-left: -2000px;
+      margin-top: 60px;
+      transition-delay: .6s, 0, 0;
+    }
+    .message {
+      margin-left: -1400px;
+      margin-top: 60px;
+      transition-delay: .6s, 0, 0;
+    }
+    .block1 {
+      margin-left: -800px;
+      margin-top: 60px;
+      transition-delay: .6s, 0, 0;
+    }
   }
 }
 
@@ -573,41 +584,41 @@
     background: url(/media/img/contribute/mozilla15/fact05-pads.png) no-repeat;
   }
   .number {
-    width: 100px;
-    height: 105px;
+    width: 96px;
+    height: 103px;
     background-position: 0 0;
     top: 87px;
     margin-top: -40px;
     margin-left: 1020px;
   }
   .message {
-    width: 403px;
+    width: 398px;
     height: 237px;
     padding: 30px 40px 0 40px;
-    background-position: -100px 0;
+    background-position: -96px 0;
     top: 46px;
     margin-left: 1500px;
   }
   .block1 {
-    width: 320px;
-    height: 94px;
-    background-position: -583px 0;
+    width: 316px;
+    height: 95px;
+    background-position: -574px 0;
     top: 30px;
     margin-left: 2300px;
     margin-top: -40px;
   }
   .block2 {
-    width: 320px;
-    height: 102px;
-    background-position: -583px -94px;
-    top: 121px;
+    width: 316px;
+    height: 105px;
+    background-position: -574px -95px;
+    top: 122px;
     margin-left: 2800px;
   }
   .block3 {
-    width: 320px;
+    width: 316px;
     height: 95px;
-    background-position: -583px -196px;
-    top: 222px;
+    background-position: -574px -200px;
+    top: 223px;
     margin-left: 3300px;
     margin-top: 40px;
   }
@@ -616,91 +627,83 @@
     display: block;
     width: 85px;
     height: 85px;
-    background-position: 0 -102px;
+    background-position: 0 -103px;
     position: absolute;
     z-index: 20;
     left: 50%;
     top: -100px;
-    margin-left: -14px;
+    margin-left: 20px;
   }
-}
-#fact05.animate-in {
-  .number {
-    margin-top: 0;
-    margin-left: -461px;
+  &.animate-in {
+    .number {
+      margin-top: 0;
+      margin-left: -461px;
+    }
+    .message {
+      margin-left: -352px;
+    }
+    .block1 {
+      margin-top: 0;
+      margin-left: 134px;
+      transition-delay: .5s;
+    }
+    .block2 {
+      margin-left: 134px;
+      transition-delay: .6s;
+    }
+    .block3 {
+      margin-top: 0;
+      margin-left: 134px;
+      transition-delay: .7s;
+    }
+    .puzz {
+      opacity: 1;
+      top: 196px;
+      transition-property: opacity, top;
+      transition-duration: 1s, 1s;
+      transition-timing-function: linear, ease-in;
+      transition-delay: 1.2s;
+    	animation-name: fact05-puzz-in;
+      animation-duration: 1s;
+      animation-delay: 1.2s;
+      animation-fill-mode: forwards;
+      animation-timing-function: ease-in;
+    }
   }
-  .message {
-    margin-left: -352px;
-  }
-  .block1 {
-    margin-top: 0;
-    margin-left: 134px;
-    transition-delay: .5s;
-  }
-  .block2 {
-    margin-left: 134px;
-    transition-delay: .6s;
-  }
-  .block3 {
-    margin-top: 0;
-    margin-left: 134px;
-    transition-delay: .7s;
-  }
-  .puzz {
-    opacity: 1;
-    top: 196px;
-    transition-property: opacity, top;
-    transition-duration: 1s, 1s;
-    transition-timing-function: linear, ease-in;
-    transition-delay: 1.2s;
-  	animation-name: fact05-puzz-in;
-    animation-duration: 1s;
-    animation-delay: 1.2s;
-    animation-fill-mode: forwards;
-    animation-timing-function: ease-in;
-  }
-}
-#fact05.animate-out {
-  .number {
-    margin-left: -1840px;
-  }
-  .message {
-    margin-left: -2280px;
-  }
-  .block1 {
-    margin-top: -40px;
-    margin-left: -1005px;
-    transition-property: margin-left, margin-top, opacity;
-    transition-duration: 2s, 2s, 1s;
-    transition-timing-function: ease-in, ease-in, linear;
-    transition-delay: .1s, .2s, .3s;
-  }
-  .block2 {
-    margin-left: -1205px;
-    transition-property: margin-left, margin-top, opacity;
-    transition-duration: 2s, 2s, 1s;
-    transition-timing-function: ease-in, ease-in, linear;
-    transition-delay: .3s, .3s, .3s;
-  }
-  .block3 {
-    margin-top: 40px;
-    margin-left: -1405px;
-    transition-property: margin-left, margin-top, opacity;
-    transition-duration: 2s, 2s, 1s;
-    transition-timing-function: ease-in, ease-in, linear;
-    transition-delay: .5s, .4s, .3s;
-  }
-  .puzz {
-    opacity: 0;
-    top: 500px;
-    transition-property: opacity, top;
-    transition-duration: 1s, 1s;
-    transition-timing-function: linear, ease-in;
-    transition-delay: .5s;
-    animation-name: fact05-puzz-out;
-    animation-duration: 1s;
-    animation-delay: .5s;
-    transform-style: preserve-3d;
+  &.animate-out {
+    .number {
+      margin-left: -1840px;
+    }
+    .message {
+      margin-left: -2280px;
+    }
+    .block1 {
+      margin-left: -1205px;
+      transition-duration: 2s, 1s;
+      transition-delay: .1s, .5s;
+    }
+    .block2 {
+      margin-left: -1405px;
+      transition-duration: 2s, 1s;
+      transition-delay: .1s, .5s;
+    }
+    .block3 {
+      margin-left: -1605px;
+      transition-duration: 2s, 1s;
+      transition-delay: .1s, .5s;
+    }
+    .puzz {
+      opacity: 0;
+      top: 500px;
+      transition-property: opacity, top;
+      transition-duration: 1s, 1s;
+      transition-timing-function: linear, ease-in;
+      transition-delay: .5s;
+      animation-name: fact05-puzz-out;
+      animation-duration: 1s;
+      animation-delay: .5s;
+      transform-style: preserve-3d;
+    }
   }
 }
 @keyframes fact05-puzz-in {
@@ -957,6 +960,8 @@
       width: 106px;
       height: 106px;
       background-position: 0 -205px;
+      animation: fact09-logo-spin 10s linear infinite;
+      transform-origin: center center;
     }
   }
   &.animate-in {
@@ -979,10 +984,6 @@
       transition-duration: 1.6s, .5s;
       transition-delay: .8s, 1.5s;
       transition-timing-function: cubic-bezier(.64,.01,.72,1.25), ease-in;
-      span {
-        animation: fact09-logo-spin 10s linear infinite;
-        transform-origin: center;
-      }
     }
   }
   &.animate-out {
@@ -1004,9 +1005,6 @@
       transition-duration: 1.6s, .5s;
       transition-timing-function: cubic-bezier(.2,-0.2,.83,.67);
       transition-delay: .25s, .5s;
-      span {
-        animation: fact09-logo-spin 10s linear infinite;
-      }
     }
   }
 }
@@ -1015,75 +1013,506 @@
   100% { transform: rotate(360deg); }
 }
 
+/* Fact =10 */
+#fact10 {
+  .number, .message, .block1, .block2 {
+    background: url(/media/img/contribute/mozilla15/fact10-pads.png) no-repeat;
+  }
+  .number {
+    width: 112px;
+    height: 119px;
+    top: 22px;
+    background-position: 0 0;
+    margin-left: 1200px;
+  }
+  .message {
+    width: 398px;
+    height: 200px;
+    padding: 56px 40px 0 40px;
+    top: 26px;
+    background-position: -112px 0;
+    margin-left: 1800px;
+  }
+  .block1 {
+    width: 315px;
+    height: 150px;
+    top: 40px;
+    background-position: -590px 0;
+    margin-left: 2200px;
+  }
+  .block2 {
+    width: 315px;
+    height: 140px;
+    top: 186px;
+    background-position: -590px -150px;
+    margin-left: 3000px;
+  }
+  &.animate-in {
+    .number {
+      margin-left: -458px;
+    }
+    .message {
+      margin-left: -342px;
+    }
+    .block1 {
+      margin-left: 143px;
+      transition-delay: .2s;
+    }
+    .block2 {
+      margin-left: 140px;
+      transition-delay: .4s;
+    }
+  }
+  &.animate-out {
+    .number {
+      margin-left: -2200px;
+      transition-delay: .25s;
+    }
+    .message {
+      margin-left: -1690px;
+      transition-delay: .35s;
+    }
+    .block1 {
+      margin-left: -1200px;
+      transition-delay: .1s;
+    }
+    .block2 {
+      margin-left: -1000px;
+    }
+  }
+}
+
+/* Fact =11 */
+#fact11 {
+  .number, .message, .block1, .logo {
+    background: url(/media/img/contribute/mozilla15/fact11-pads.png) no-repeat;
+  }
+  .number {
+    width: 123px;
+    height: 143px;
+    background-position: 0 0;
+    top: 85px;
+    margin-left: 1200px;
+  }
+  .message {
+    width: 435px;
+    height: 230px;
+    padding: 40px 40px 0 40px;
+    background-position: -135px 0;
+    top: 48px;
+    margin-left: 1800px;
+  }
+  .block1 {
+    width: 211px;
+    height: 227px;
+    background-position: -650px 0;
+    top: 22px;
+    margin-left: 2200px;
+  }
+  .logo {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 100px;
+    z-index: 10;
+    opacity: 0;
+    width: 135px;
+    height: 176px;
+    background-position: 0 -144px;
+    margin-left: -2200px;
+  }
+  &.animate-in {
+    .number {
+      margin-left: -455px;
+    }
+    .message {
+      margin-left: -302px;
+    }
+    .block1 {
+      margin-left: 220px;
+    }
+    .logo {
+      opacity: 1;
+      margin-left: 270px;
+      transition-property: margin-left, opacity;
+      transition-duration: 2s, 1s;
+      transition-timing-function: cubic-bezier(.54,-0.09,.63,1.21), linear;
+      transition-delay: 1s, 1s;
+    }
+  }
+  &.animate-out {
+    .number {
+      margin-left: -2200px;
+    }
+    .message {
+      margin-left: -1690px;
+    }
+    .block1 {
+      margin-left: -800px;
+    }
+    .logo {
+      margin-left: 2200px;
+      opacity: 0;
+      transition-property: margin-left, opacity;
+      transition-duration: 2s, 1s;
+      transition-timing-function: cubic-bezier(.54,-0.09,.63,1.21), linear;
+      transition-delay: .1s, .2s;
+    }
+  }
+}
+
+/* Fact =12 */
+#fact12 {
+  .number, .message, .block1, .block2, .stars, .rocket {
+    background: url(/media/img/contribute/mozilla15/fact12-pads.png) no-repeat;
+  }
+  .number {
+    width: 139px;
+    height: 126px;
+    background-position: 0 0;
+    top: 33px;
+    margin-left: 1200px;
+  }
+  .message {
+    width: 393px;
+    height: 242px;
+    padding: 40px 40px 0 40px;
+    background-position: -445px 0;
+    top: 41px;
+    margin-left: 1800px;
+  }
+  .block1 {
+    width: 108px;
+    height: 235px;
+    background-position: -139px 0;
+    top: 86px;
+    margin-left: 2200px;
+  }
+  .block2 {
+    width: 186px;
+    height: 232px;
+    background-position: -247px 0;
+    top: 94px;
+    margin-left: 2200px;
+  }
+  .stars {
+    display: block;
+    width: 223px;
+    height: 248px;
+    background-position: -222px -251px;
+    opacity: 0;
+    position: absolute;
+    left: 50%;
+    top: 97px;
+    z-index: 10;
+    margin-left: 2200px;
+  }
+  .rocket {
+    display: block;
+    width: 222px;
+    height: 139px;
+    background-position: 0 -235px;
+    opacity: 0;
+    position: absolute;
+    left: 50%;
+    top: 166px;
+    z-index: 11;
+    margin-left: -1900px;
+    margin-top: 500px;
+  }
+  &.animate-in {
+    .number {
+      margin-left: -461px;
+    }
+    .message {
+      margin-left: -13px;
+    }
+    .block1 {
+      margin-left: -322px;
+    }
+    .block2 {
+      margin-left: -218px;
+    }
+    .stars {
+      opacity: 1;
+      margin-left: -295px;
+      animation: fact12-stars-spin 90s linear infinite;
+      transform-origin: center center;
+      transition-property: margin-left, opacity;
+      transition-duration: 2s, 1s;
+      transition-timing-function: ease, linear;
+      transition-delay: .1s, .2s;
+    }
+    .rocket {
+      opacity: 1;
+      margin-left: -287px;
+      margin-top: 0;
+      transition-property: margin-left, margin-top, opacity;
+      transition-duration: 2s, 2s, 1s;
+      transition-timing-function: ease-out, ease-out, linear;
+      transition-delay: .8s, .8s, 1.6s;
+    }
+  }
+  &.animate-out {
+    .number {
+      margin-left: -2200px;
+    }
+    .message {
+      margin-left: -1690px;
+    }
+    .block1 {
+      margin-left: -1000px;
+    }
+    .block2 {
+      margin-left: -1000px;
+    }
+    .stars {
+      opacity: 0;
+      margin-left: -1200px;
+    }
+    .rocket {
+      opacity: 0;
+      margin-left: 1200px;
+      margin-top: -600px;
+      transition-property: margin-left, margin-top, opacity;
+      transition-duration: 2.5s, 2.5s, .8s;
+      transition-timing-function: ease-out, ease-out, linear;
+      transition-delay: 0s, 0s, .2s;
+    }
+  }
+}
+@keyframes fact12-stars-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Fact =13 */
+#fact13 {
+  .number, .message, .block1 {
+    background: url(/media/img/contribute/mozilla15/fact13-pads.png) no-repeat;
+  }
+  .number {
+    width: 109px;
+    height: 108px;
+    background-position: 0 0;
+    top: 118px;
+    margin-left: 1200px;
+  }
+  .message {
+    width: 319px;
+    height: 178px;
+    padding: 55px 40px 0 40px;
+    background-position: -109px 0;
+    top: 42px;
+    margin-left: 1800px;
+  }
+  .block1 {
+    width: 197px;
+    height: 282px;
+    background-position: -508px 0;
+    top: 32px;
+    margin-left: 2200px;
+  }
+  &.animate-in {
+    .number {
+      margin-left: -381px;
+    }
+    .message {
+      margin-left: -240px;
+    }
+    .block1 {
+      margin-left: 167px;
+      transition-delay: .1s;
+    }
+  }
+  &.animate-out {
+    .number {
+      margin-left: -2200px;
+    }
+    .message {
+      margin-left: -1690px;
+    }
+    .block1 {
+      margin-left: -1000px;
+    }
+  }
+}
+
+/* Fact =14 */
+#fact14 {
+  .number, .message, .block1 {
+    background: #54a3dd;
+  }
+  .number {
+    width: 100px;
+    height: 100px;
+    margin-left: 1200px;
+  }
+  .message {
+    width: 340px;
+    height: 220px;
+    padding: 40px 40px 0 40px;
+    margin-left: 1800px;
+  }
+  .block1 {
+    width: 100px;
+    height: 160px;
+    margin-left: 2200px;
+  }
+  &.animate-in {
+    .number {
+      margin-left: -410px;
+    }
+    .message {
+      margin-left: -200px;
+    }
+    .block1 {
+      margin-left: 260px;
+    }
+  }
+  &.animate-out {
+    .number {
+      margin-left: -2200px;
+    }
+    .message {
+      margin-left: -1690px;
+    }
+    .block1 {
+      margin-left: -1000px;
+    }
+  }
+}
+
+/* Fact =15 */
+#fact15 {
+  .number, .message, .block1 {
+    background: #e26c33;
+  }
+  .number {
+    width: 100px;
+    height: 100px;
+    margin-left: 1200px;
+  }
+  .message {
+    width: 340px;
+    height: 220px;
+    padding: 40px 40px 0 40px;
+    margin-left: 1800px;
+  }
+  .block1 {
+    width: 100px;
+    height: 160px;
+    margin-left: 2200px;
+  }
+  &.animate-in {
+    .number {
+      margin-left: -410px;
+    }
+    .message {
+      margin-left: -200px;
+    }
+    .block1 {
+      margin-left: 260px;
+    }
+  }
+  &.animate-out {
+    .number {
+      margin-left: -2200px;
+    }
+    .message {
+      margin-left: -1690px;
+    }
+    .block1 {
+      margin-left: -1000px;
+    }
+  }
+}
+
+
 /* Shift =backgrounds for each slide */
 /* Keeping this separate for further testing, need to work out the 05->01 transition */
 #fact01 .back,
-#fact06 .back {
+#fact06 .back,
+#fact11 .back {
   background-image: url(/media/img/contribute/mozilla15/path-red.png);
   background-position: 0 50%;
 }
 #fact01.animate-in .back,
-#fact06.animate-in .back {
+#fact06.animate-in .back,
+#fact11.animate-in .back {
   background-position: -200px 50%;
 }
 #fact01.animate-out .back,
-#fact06.animate-out .back {
+#fact06.animate-out .back,
+#fact11.animate-out .back {
   background-position: -400px 50%;
 }
 
 #fact02 .back,
-#fact07 .back {
+#fact07 .back,
+#fact12 .back {
   background-image: url(/media/img/contribute/mozilla15/path-darkblue.png);
   background-position: -200px 50%;
 }
 #fact02.animate-in .back,
-#fact07.animate-in .back {
+#fact07.animate-in .back,
+#fact12.animate-in .back {
   background-position: -400px 50%;
 }
 #fact02.animate-out .back,
-#fact07.animate-out .back {
+#fact07.animate-out .back,
+#fact12.animate-out .back {
   background-position: -600px 50%;
 }
 
 #fact03 .back,
-#fact08 .back {
+#fact08 .back,
+#fact13 .back {
   background-image: url(/media/img/contribute/mozilla15/path-green.png);
   background-position: -400px 50%;
 }
 #fact03.animate-in .back,
-#fact08.animate-in .back {
+#fact08.animate-in .back,
+#fact13.animate-in .back {
   background-position: -600px 50%;
 }
 #fact03.animate-out .back,
-#fact08.animate-out .back {
+#fact08.animate-out .back,
+#fact13.animate-out .back {
   background-position: -800px 50%;
 }
 
 #fact04 .back,
-#fact09 .back {
+#fact09 .back,
+#fact14 .back {
   background-image: url(/media/img/contribute/mozilla15/path-lightblue.png);
   background-position: -600px 50%;
 }
 #fact04.animate-in .back,
-#fact09.animate-in .back {
+#fact09.animate-in .back,
+#fact14.animate-in .back {
   background-position: -800px 50%;
 }
 #fact04.animate-out .back,
-#fact09.animate-out .back {
+#fact09.animate-out .back,
+#fact14.animate-out .back {
   background-position: -1000px 50%;
 }
 
 #fact05 .back,
-#fact10 .back {
+#fact10 .back,
+#fact15 .back {
   background-image: url(/media/img/contribute/mozilla15/path-orange.png);
   background-position: -800px 50%;
 }
 #fact05.animate-in .back,
-#fact10.animate-in .back {
+#fact10.animate-in .back,
+#fact15.animate-in .back {
   background-position: -1000px 50%;
 }
 #fact05.animate-out .back,
-#fact10.animate-out .back {
+#fact10.animate-out .back,
+#fact15.animate-out .back {
   background-position: -1200px 50%;
 }
 

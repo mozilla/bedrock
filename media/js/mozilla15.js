@@ -14,7 +14,7 @@
         fadeFrameWhenSkipped: false,
         animateStartingFrameIn: true,
         moveActiveFrameToTop: false,
-//        startingFrameID: '9',
+//        startingFrameID: '13',
     };
 
     var slideshow = $('#slideshow').sequence(options).data('sequence');
