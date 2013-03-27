@@ -69,4 +69,7 @@ urlpatterns = patterns('',
 
     # Bug 822817 /telemetry/ -> http://wiki.mozilla.org/Telemetry/FAQ
     redirect(r'telemetry/$', 'http://wiki.mozilla.org/Telemetry/FAQ'),
+
+    #Bug 837942 /ports/ --> https://developer.mozilla.org/en-US/docs/Tinderbox
+    redirect(r'ports/$', 'https://developer.mozilla.org/docs/Tinderbox'),
 )
