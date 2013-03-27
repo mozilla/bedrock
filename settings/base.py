@@ -55,6 +55,7 @@ SUPPORTED_NONLOCALES = [
 
 ALLOWED_HOSTS = [
     'www.mozilla.org',
+    'www.ipv6.mozilla.org',
     'www.allizom.org',
 ]
 
