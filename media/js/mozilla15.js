@@ -8,18 +8,23 @@
     // default user action to auto
     var action = 'auto';
 
+    // declare slideshow options
+    // @requires: sequencejs
     var options = {
         nextButton: '.next',
         prevButton: '.prev',
         autoPlay: true,
-        autoPlayDelay: 5000,
+        autoPlayDelay: 7000,
         pauseOnHover: true,
+        pauseIcon: '.pause-icon',
+        pauseButton: true,
         fadeFrameWhenSkipped: false,
         animateStartingFrameIn: true,
         moveActiveFrameToTop: false,
-        preloader: true
     };
-
+    
+    // set up the slideshow
+    // @requires: sequencejs
     var slideshow = $('#slideshow').sequence(options).data('sequence');
 
     var track = function() {
