@@ -1,0 +1,175 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/about-base.html" %}
+
+{% block page_title %}{{ _('History of the Mozilla Project') }}{% endblock %}
+{% block body_id %}about-history{% endblock %}
+{% block body_class %}sand{% endblock %}
+
+{% block article %}
+    <h1 class="title-banner">{{ _('History of the Mozilla Project') }}</h1>
+
+    <p>
+      {% trans coderush="http://clickmovement.org/coderush",
+               sourcerelease="http://web.archive.org/web/20021001071727/wp.netscape.com/newsref/pr/newsrelease558.html",
+               firstyear="http://www-archive.mozilla.org/mozilla-at-one.html"
+      %}
+        The Mozilla project <a href="{{ coderush }}">was created</a>
+        in 1998 with the <a href="{{ sourcerelease }}">release of
+        the Netscape browser suite source code</a>
+        that was intended to harness the creative power of thousands
+        of programmers on the Internet and fuel unprecedented levels
+        of innovation in the browser market.
+        Within the <a href="{{ firstyear }}">first year</a>, new
+        community members from around the world
+        had already contributed new functionality, enhanced
+        existing features and became engaged in the management and
+        planning of the project itself.
+      {% endtrans %}
+    </p>
+
+    <p>
+      {% trans stevecase="http://www-archive.mozilla.org/stevecase.html",
+               mission="http://www-archive.mozilla.org/mission.html",
+               browsers="http://www.oreillynet.com/pub/a/mozilla/2002/09/12/mozilla_browsers.html",
+               bugzilla="http://www.bugzilla.org",
+               projects="/projects"
+      %}
+        By creating an open community, the Mozilla project had become
+        <a href="{{ stevecase }}">larger than any one company</a>.
+        Community members got involved and expanded the scope of the
+        project's original
+        <a href="{{ mission }}">mission</a>&mdash;instead of just
+        working on Netscape's next browser, people started creating
+        <a href="{{ browsers }}">a variety of browsers</a>,
+        <a href="{{ bugzilla }}">development tools</a> and a range
+        of other <a href="{{ projects }}">projects</a>.  People
+        contributed to Mozilla in different ways, but everyone was
+        passionate about creating free software that would enable
+        people to have a choice in how
+        they experienced the Internet.
+      {% endtrans %}
+    </p>
+
+    <p>
+      {% trans mozilla1="http://www.mozillazine.org/articles/article2278.html",
+               over90="http://www.onestat.com/html/aboutus_pressbox4.html",
+               charter="http://www-archive.mozilla.org/projects/firefox/charter.html"
+      %}
+        After several years of development,
+        <a href="{{ mozilla1 }}">Mozilla 1.0</a>, the first major
+        version, was released in 2002.  This version featured many
+        improvements to the browser, email client and other
+        applications included in the
+        suite, but not many people were using it.  By 2002, well
+        <a href="{{ over90 }}">over 90% of Internet users</a> were
+        browsing with Internet Explorer.  Not many people noticed at
+        the time, but the first version of Phoenix (later renamed to
+        Firefox) was also released by Mozilla community members that
+        year with the goal of providing the
+        <a href="{{ charter }}">best possible browsing experience</a>
+        to the widest possible set of people.
+      {% endtrans %}
+    </p>
+
+    <p>
+      {% trans foundation="http://www.mozilla.org/press/mozilla-foundation.html",
+               manifesto="/about/manifesto",
+               grants="/foundation/grants/"
+      %}
+        In 2003, the Mozilla project created the Mozilla Foundation, an
+        <a href="{{ foundation }}">independent non-profit organization</a>
+        supported by individual donors and a variety of companies.
+        The new Mozilla Foundation continued the role of managing the
+        daily operations of the project and also officially took on
+        the role of promoting
+        <a href="{{ manifesto }}">openness, innovation, and opportunity</a>
+        on the Internet.  It did this by continuing to release
+        software, such as Firefox and Thunderbird, and expanding to
+        new areas, such as providing <a href="{{ grants }}">grants</a>
+        to support accessibility improvements on the Web.
+      {% endtrans %}
+    </p>
+
+    <p>
+      {% trans firefox1="http://www.mozilla.org/press/mozilla-2004-11-09.html",
+               millions="http://www.mozilla.org/press/mozilla-2005-10-19.html",
+               records="http://www.spreadfirefox.com/en-US/worldrecord/",
+               share="http://www.tgdaily.com/content/view/40381/113/",
+               innovation="http://www.mozilla.com/en-US/press/mozilla-2006-12-04.html"
+      %}
+        <a href="{{ firefox1 }}">Firefox 1.0</a> was released in 2004
+        and became a big success.  In less than
+        a year, Firefox had been downloaded over
+        <a href="{{ millions }}">100 million times</a>.  New versions
+        of Firefox have come out regularly since then and keep setting
+        <a href="{{ records }}">new records</a>.  The
+        popularity of Firefox has helped bring choice back to users.
+        In 2008, Firefox reached
+        <a href="{{ share }}">20% worldwide market share</a> and
+        renewed competition has
+        <a href="{{ innovation }}">accelerated innovation</a> and
+        improved the Internet for everyone.
+      {% endtrans %}
+    </p>
+
+    <p>
+      {% trans anniv10="http://www-archive.mozilla.org/mozilla-ten-year.html",
+               all="http://www.mozilla.com/en-US/firefox/all.html",
+               broad="http://open-government.us/",
+               range="http://www.wikipedia.org",
+               areas="http://creativecommons.org/"
+      %}
+        Mozilla celebrated its
+        <a href="{{ anniv10 }}">10th anniversary</a> in 2008.  In
+        ten years the community has shown that commercial companies
+        can benefit by collaborating in open source projects and that
+        great end user products can be produced as
+        open source software.  More people than ever before are using
+        the Internet and are experiencing it
+        <a href="{{ all }}">in their own language</a>.  A sustainable
+        organization has been created that uses market
+        mechanisms to support a public benefit mission and this model
+        has been reused by others to create open, transparent and
+        collaborative organizations in a <a href="{{ broad }}">broad</a>
+        <a href="{{ range }}">range</a> <a href="{{ areas }}">of areas</a>.
+      {% endtrans %}
+    </p>
+
+    <p>
+      {% trans contribute="/contribute/" %}
+        The next ten years have challenges and opportunities equal
+        to those of our first decade.  There's no guarantee that
+        the Internet will remain open or enjoyable or safe.
+        Mozilla will continue to provide an opportunity for people
+        to make their voices heard and to shape their own online lives.
+        Of course, we're not alone in doing this.  The Mozilla
+        community, as well as other open source projects and other
+        public benefit organizations, exists only because of the
+        people who are engaged with making our common goals a
+        reality.  If you want to join us in our mission, please
+        <a href="{{ contribute }}">get involved</a>.
+      {% endtrans %}
+    </p>
+
+    <p>
+      {% trans %}
+        For more information about Mozilla's history, see the
+        following:
+      {% endtrans %}
+    </p>
+
+    <ul>
+      <li><a href="https://wiki.mozilla.org/Historical_Documents">{{ _('Mozilla Bookmarks') }}</a></li>
+      <li><a href="https://wiki.mozilla.org/Timeline">{{ _('Timeline of Mozilla Project') }}</a></li>
+      <li><a href="http://mozillamemory.org/index.php">{{ _('Mozilla Digital Memory Bank') }}</a></li>
+      <li>
+        {% trans link="http://www.foxkeh.com/downloads/" %}
+          <a href="{{ link }}">The History of Firefox and Mozilla Posters</a>
+          (available in English and Japanese)
+        {% endtrans %}
+      </li>
+    </ul>
+{% endblock %}
