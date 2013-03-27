@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-;(function($) {
+;(function(w, $) {
     "use strict";
 
     // default user action to auto
@@ -20,16 +20,18 @@
         pauseButton: true,
         fadeFrameWhenSkipped: false,
         animateStartingFrameIn: true,
-        moveActiveFrameToTop: false,
+        moveActiveFrameToTop: false
     };
-    
+
     // set up the slideshow
     // @requires: sequencejs
     var slideshow = $('#slideshow').sequence(options).data('sequence');
 
     var track = function() {
-        // must use nextFrame here - currentFrame (oddly) isn't updated yet.
-        console.log('tracking ' + slideshow.nextFrame[0].id + ' with action ' + action);
+        if (w._gaq) {
+            // must use nextFrame here - currentFrame (oddly) isn't updated yet.
+            w._gaq.push(['_trackEvent', 'mozilla15 SlideShow', action, slideshow.nextFrame[0].id]);
+        }
 
         // reset action to autoplay
         action = 'auto';
@@ -52,4 +54,4 @@
             action = 'keydown';
         }
     });
-})(jQuery);
+})(window, jQuery);
