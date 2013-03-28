@@ -4,16 +4,6 @@
 
 @import "sandstone/lib.less";
 
-@font-face {
-  font-family: 'League Gothic';
-  src: url('/media/fonts/League_Gothic-webfont.eot');
-  src: url('/media/fonts/League_Gothic-webfont.eot?#iefix') format('embedded-opentype'),
-       url('/media/fonts/League_Gothic-webfont.woff') format('woff'),
-       url('/media/fonts/League_Gothic-webfont.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
 /* No italics in Chinese/Taiwanese */
 .lang-zh-TW {
   #moz15 .cta p,
@@ -28,12 +18,12 @@
 }
 
 #contribute #masthead {
-  width: 1000px;
+  width: @widthDesktop - (@gridGutterWidth * 2);
 }
-
 #contribute .billboard,
-#opportunities {
-  width: 980px;
+#opportunities,
+#moz15 .cta {
+  width: @widthDesktop - (@gridGutterWidth * 2);
   margin-left: auto;
   margin-right: auto;
 }
@@ -41,55 +31,55 @@
 /* Moz15 header and intro */
 #moz15 header {
   position: relative;
-  width: 660px;
+  width: 670px;
   min-height: 170px;
-  margin: 0 auto 20px;
-  padding-left: 320px;
-  .mark {
-    width: 300px;
-    height: 180px;
-    position: absolute;
-    left: 0;
-    top: -10px;
-  }
+  margin: 0 auto 10px;
+  padding-left: 290px;
   .title {
-    background: #bf383e;
-    width: 215px;
+    width: 220px;
+    height: 175px;
     position: absolute;
-    left: 50px;
-    top: 90px;
-    transform: rotate(-11.5deg);
-    color: #eaecec;
-    font: normal 26px/1 'League Gothic', 'Arial Narrow', sans-serif;
-    text-transform: uppercase;
-    text-shadow: -1px -1px 0 rgba(0,0,0,.1);
-    letter-spacing: normal;
-    text-align: center;
-    strong {
-      background: #bf383e;
-      position: absolute;
-      top: -60px;
-      left: 5px;
-      width: 200px;
-      transform: rotate(2deg);
-      font-size: 48px;
-      font-weight: normal;
-      display: block;
-    }
+    left: 25px;
+    top: 0;
+    background: transparent url(/media/img/contribute/mozilla15/moz15-mark-en.png) center center no-repeat;
+    text-indent: -999em;
+    overflow: hidden;
   }
   .intro {
-    padding: 20px 0 20px 20px;
+    font-size: 16px;
+    line-height: 1.7;
+    padding: 20px 0 20px 40px;
     border-left: 1px solid #bebbb8;
   }
 }
 
+.lang-es-ES #moz15 .title {
+  background-image: url(/media/img/contribute/mozilla15/moz15-mark-es.png);
+}
+.lang-nl #moz15 .title {
+  background-image: url(/media/img/contribute/mozilla15/moz15-mark-nl.png);
+}
+.lang-fr #moz15 .title {
+  background-image: url(/media/img/contribute/mozilla15/moz15-mark-fr.png);
+}
+.lang-id #moz15 .title {
+  background-image: url(/media/img/contribute/mozilla15/moz15-mark-id.png);
+}
+.lang-zh-TW #moz15 .title {
+  background-image: url(/media/img/contribute/mozilla15/moz15-mark-zh.png);
+}
+.lang-pt-BR #moz15 .title {
+  background-image: url(/media/img/contribute/mozilla15/moz15-mark-pt.png);
+}
+
+
 /* Moz15 call to action */
 #moz15 .cta {
-  width: 980px;
+  width: 960px;
   margin: 0 auto 40px;
   text-align: center;
   h2 {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
     letter-spacing: normal;
     margin-bottom: 0.25em;
@@ -137,7 +127,7 @@
 
 /* Slide controls */
 .slide-control {
-  width: 980px;
+  width: @widthDesktop - (@gridGutterWidth * 2);
   position: absolute;
   left: 50%;
   top: 0;
@@ -1590,6 +1580,7 @@
     margin-left: 199px;
     opacity: 0;
     .transition-duration(1s);
+    .transition-delay(.5s);
   }
   .fox {
     width: 158px;
@@ -1840,4 +1831,28 @@
   background-position: -1200px 50%;
 }
 
+/* Tablet Layout: 760px */
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
 
+  #contribute #masthead,
+  #contribute .billboard,
+  #opportunities {
+    width: @widthTablet - (@gridGutterWidth * 2);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+}
+
+/* Mobile Layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+
+  #contribute #masthead,
+  #contribute .billboard,
+  #opportunities {
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+}
