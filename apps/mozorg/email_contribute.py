@@ -95,7 +95,7 @@ LOCALE_CONTACTS = {
     'hr'   : ['contribute@mozilla-hr.org'],
     'nl'   : ['contribute@mozilla-nl.org'],
     'pt-BR': ['mlcaraldi@gmail.com'],
-    'zh-CN': ['cn-community@mozilla.com'],
+    'zh-CN': ['contributor-zh-cn@mozilla.org'],
     'zh-TW': ['contribute@mail.moztw.org'],
 }
 
