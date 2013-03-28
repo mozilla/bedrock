@@ -9,10 +9,13 @@ from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 
 from funfactory.urlresolvers import reverse
+import commonware.log
 import l10n_utils
 
 
-def page(name, tmpl, **kwargs):
+log = commonware.log.getLogger('mozorg.util')
+
+def page(name, tmpl, decorators=None, **kwargs):
     # The URL pattern is the name with a forced trailing slash if not
     # empty
     pattern = r'^%s/$' % name if name else r'^$'
@@ -30,5 +33,19 @@ def page(name, tmpl, **kwargs):
     # This is for graphite so that we can differentiate pages
     _view.page_name = name
 
-    return url(pattern, _view, name=name)
 
+    # Apply decorators
+    if decorators:
+        if callable(decorators):
+            _view = decorators(_view)
+        else:
+            try:
+                # Decorators should be applied in reverse order so that input
+                # can be sent in the order your would write nested decorators
+                # e.g. dec1(dec2(_view)) -> [dec1, dec2]
+                for decorator in reversed(decorators):
+                    _view = decorator(_view)
+            except TypeError:
+                log.exception('decorators not iterable or does not contain callable items')
+
+    return url(pattern, _view, name=name)
