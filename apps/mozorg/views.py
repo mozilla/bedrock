@@ -11,6 +11,9 @@ from commonware.decorators import xframe_allow
 from mozorg import email_contribute
 from mozorg.forms import ContributeForm, NewsletterForm
 
+from mozorg.util import hide_contrib_form
+
+LANG_FILES = 'mozorg/contribute'
 
 @xframe_allow
 def hacks_newsletter(request):
@@ -67,13 +70,16 @@ def contribute(request, template, return_to_form):
     else:
         newsletter_form = NewsletterForm(locale, prefix='newsletter')
 
+    hide_form = hide_contrib_form(LANG_FILES, request.locale)
+
     return l10n_utils.render(request,
                              template,
                              {'form': form,
                               'contribute_success': contribute_success,
                               'newsletter_form': newsletter_form,
                               'newsletter_success': newsletter_success,
-                              'return_to_form': return_to_form})
+                              'return_to_form': return_to_form,
+                              'hide_form': hide_form})
 
 
 @xframe_allow
