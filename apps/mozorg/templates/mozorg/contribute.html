@@ -46,7 +46,9 @@
   </p>
 </section>
 
-{% include "mozorg/contribute-form.html" %}
+{% if not hide_form %}
+  {% include "mozorg/contribute-form.html" %}
+{% endif %}
 
   <section id="opportunities">
 
