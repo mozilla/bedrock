@@ -17,12 +17,12 @@
         pauseOnHover: true,
         pauseIcon: '.pause-icon',
         pauseButton: true,
-        fadeFrameWhenSkipped: true,
-        animateStartingFrameIn: true,
         moveActiveFrameToTop: false,
-        reverseAnimationsWhenNavigatingBackwards: false,
+        fadeFrameWhenSkipped: false,
+        animateStartingFrameIn: true,        
+        reverseAnimationsWhenNavigatingBackwards: true,
         preventDelayWhenReversingAnimations: true,
-        startingFrameID: '11',
+        startingFrameID: '1',
     };
 
     // set up the slideshow
@@ -66,4 +66,5 @@
             action = 'keydown';
         }
     });
+
 })(window, jQuery);
