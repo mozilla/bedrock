@@ -12,8 +12,8 @@
     var options = {
         nextButton: '.next',
         prevButton: '.prev',
-        autoPlay: false,
-        autoPlayDelay: 2000,
+        autoPlay: true,
+        autoPlayDelay: 7000,
         pauseOnHover: true,
         pauseIcon: '.pause-icon',
         pauseButton: true,
@@ -21,8 +21,7 @@
         fadeFrameWhenSkipped: false,
         animateStartingFrameIn: true,        
         reverseAnimationsWhenNavigatingBackwards: true,
-        preventDelayWhenReversingAnimations: true,
-        startingFrameID: '1',
+        preventDelayWhenReversingAnimations: false
     };
 
     // set up the slideshow

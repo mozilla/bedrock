@@ -146,8 +146,11 @@
     text-indent: -99em;
     cursor: pointer;
     overflow: hidden;
-    .transition-property(opacity, left, right;);
-    .transition(.3s ease-in-out);
+    -moz-transition: opacity .3s ease-in-out, left .3s ease-in-out, right .3s ease-in-out;
+    -ms-transition: opacity .3s ease-in-out, left .3s ease-in-out, right .3s ease-in-out;
+    -o-transition: opacity .3s ease-in-out, left .3s ease-in-out, right .3s ease-in-out;
+    -webkit-transition: opacity .3s ease-in-out, left .3s ease-in-out, right .3s ease-in-out;
+    transition: opacity .3s ease-in-out, left .3s ease-in-out, right .3s ease-in-out;
   }
   .prev {
     left: -10px;
@@ -230,7 +233,11 @@
   }
   .back {
     opacity: 1;
-    .transition(opacity 1.5s linear, background-position 2.6s ease-in-out;);
+    -moz-transition: opacity 1.5s linear, background-position 2.6s ease-in-out;
+    -ms-transition: opacity 1.5s linear, background-position 2.6s ease-in-out;
+    -o-transition: opacity 1.5s linear, background-position 2.6s ease-in-out;
+    -webkit-transition: opacity 1.5s linear, background-position 2.6s ease-in-out;
+    transition: opacity 1.5s linear, background-position 2.6s ease-in-out;
   }
 }
 
@@ -245,7 +252,11 @@
   }
   .back {
     opacity: 0;
-    .transition(opacity 1.5s linear, background-position 2.6s ease-in-out;);
+    -moz-transition: opacity 1.5s linear, background-position 2.6s ease-in-out;
+    -ms-transition: opacity 1.5s linear, background-position 2.6s ease-in-out;
+    -o-transition: opacity 1.5s linear, background-position 2.6s ease-in-out;
+    -webkit-transition: opacity 1.5s linear, background-position 2.6s ease-in-out;
+    transition: opacity 1.5s linear, background-position 2.6s ease-in-out;
   }
 }
 
@@ -253,7 +264,7 @@
 #fact01 {
   .number, .message, .block1, .block2 {
     background: url(/media/img/contribute/mozilla15/fact01-pads.png) no-repeat;
-//    .transition-duration(2s);
+    .transition-duration(2s);
   }
   .number {
     width: 145px;
@@ -291,7 +302,11 @@
 }
 #fact01.animate-in {
   .number, .message, .block1, .block2 {
-    .transition(opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1););
+    -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+    -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+    -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+    -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+    transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
   }
  .number {
     margin-left: -460px;
@@ -308,7 +323,11 @@
 }
 #fact01.animate-out {
   .number, .message, .block1, .block2 {
-    .transition(opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1););
+    -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+    -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+    -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+    -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+    transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
   }
   .number {
     margin-left: -3800px;
@@ -328,7 +347,7 @@
 #fact02 {
   .number, .message, .block1, .block2, .block3 {
     background: url(/media/img/contribute/mozilla15/fact02-pads.png) no-repeat;
-//    .transition-duration(2s);
+    .transition-duration(2s);
   }
   .number {
     z-index: 5;
@@ -390,7 +409,11 @@
 }
 #fact02.animate-in {
   .number, .message, .block1, .block2, .block3 {
-    .transition(opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1););
+    -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+    -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+    -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+    -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+    transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
   }
  .number {
     margin-left: -412px;
@@ -419,7 +442,11 @@
 }
 #fact02.animate-out {
   .number, .message, .block1, .block2, .block3 {
-    .transition(opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1););
+    -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+    -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+    -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+    -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+    transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
   }
   .number {
     margin-left: -3000px;
@@ -515,7 +542,7 @@
 #fact03 {
   .number, .message, .block1 {
     background: url(/media/img/contribute/mozilla15/fact03-pads.png) no-repeat;
-//    .transition-duration(2s);
+    .transition-duration(2s);
   }
   .number {
     width: 119px;
@@ -543,7 +570,11 @@
 }
 #fact03.animate-in {
   .number, .message, .block1 {
-    .transition(opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1););
+    -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+    -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+    -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+    -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+    transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
   }
   .number {
     margin-left: -445px;
@@ -558,7 +589,11 @@
 }
 #fact03.animate-out {
   .number, .message, .block1, .block2, .block3 {
-    .transition(opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1););
+    -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+    -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+    -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+    -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+    transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
   }
   .number {
     margin-left: -4000px;
@@ -576,7 +611,7 @@
 #fact04 {
   .number, .message, .block1 {
     background: url(/media/img/contribute/mozilla15/fact04-pads.png) no-repeat;
-//    .transition-duration(2s);
+    .transition-duration(2s);
   }
   .number {
     width: 98px;
@@ -605,7 +640,11 @@
   }
   &.animate-in {
     .number, .message, .block1 {
-      .transition(opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1););
+      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
     }
     .number {
       margin-left: -457px;
@@ -624,7 +663,11 @@
   }
   &.animate-out {
     .number, .message, .block1 {
-      .transition(opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1););
+      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
     }
     .number {
       margin-left: -4500px;
@@ -646,7 +689,7 @@
 #fact05 {
   .number, .message, .block1, .block2, .block3, {
     background: url(/media/img/contribute/mozilla15/fact05-pads.png) no-repeat;
-//    .transition-duration(2s);
+    .transition-duration(2s);
   }
   .number {
     width: 96px;
@@ -689,7 +732,11 @@
   }
   &.animate-in {
     .number, .message, .block1, .block2, .block3 {
-      .transition(opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1););
+      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
     }
     .number {
       margin-top: 0;
@@ -715,7 +762,11 @@
   }
   &.animate-out {
     .number, .message, .block1, .block2, .block3 {
-      .transition(opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1););
+      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
     }
     .number {
       margin-left: -1840px;
@@ -779,7 +830,11 @@
   }
   &.animate-in {
     .number, .message, .block1 {
-      .transition(opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1););
+      -webkit-transition: opacity 1s cubic-bezier(0.86, 0.01, 0.86, 0.87), margin-left 2s cubic-bezier(0.6, -0.08, 0.6, 1), margin-top 2s cubic-bezier(0.6, -0.08, 0.6, 1);
+      -moz-transition: opacity 1s cubic-bezier(0.86, 0.01, 0.86, 0.87), margin-left 2s cubic-bezier(0.6, -0.08, 0.6, 1), margin-top 2s cubic-bezier(0.6, -0.08, 0.6, 1);
+      -o-transition: opacity 1s cubic-bezier(0.86, 0.01, 0.86, 0.87), margin-left 2s cubic-bezier(0.6, -0.08, 0.6, 1), margin-top 2s cubic-bezier(0.6, -0.08, 0.6, 1);
+      -ms-transition: opacity 1s cubic-bezier(0.86, 0.01, 0.86, 0.87), margin-left 2s cubic-bezier(0.6, -0.08, 0.6, 1), margin-top 2s cubic-bezier(0.6, -0.08, 0.6, 1);
+      transition: opacity 1s cubic-bezier(0.86, 0.01, 0.86, 0.87), margin-left 2s cubic-bezier(0.6, -0.08, 0.6, 1), margin-top 2s cubic-bezier(0.6, -0.08, 0.6, 1);
     }
     .number {
       margin-left: -462px;
@@ -787,7 +842,11 @@
       .keyhole {
         .transform(rotateY(0deg));
         .transform-style(preserve-3d);
-        .transition(transform .4s ease-in-out 2.6s, background-position 1s ease-in-out .5s;);
+        -webkit-transition: transform 0.4s ease-in-out 2.6s, background-position 1s ease-in-out 0.5s;
+        -moz-transition: transform 0.4s ease-in-out 2.6s, background-position 1s ease-in-out 0.5s;
+        -o-transition: transform 0.4s ease-in-out 2.6s, background-position 1s ease-in-out 0.5s;
+        -ms-transition: transform 0.4s ease-in-out 2.6s, background-position 1s ease-in-out 0.5s;
+        transition: transform 0.4s ease-in-out 2.6s, background-position 1s ease-in-out 0.5s;
       }
       .keyhole:hover {
         background-position: 0 -117px, -86px -175px;
@@ -803,7 +862,11 @@
   }
   &.animate-out {
     .number, .message, .block1 {
-      .transition(opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1););
+      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
     }
     .number {
       margin-left: -3200px;
@@ -850,7 +913,11 @@
   }
   &.animate-in {
     .number, .message, .block1 {
-      .transition(opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1););
+      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
     }
     .number {
       margin-left: -463px;
@@ -864,7 +931,11 @@
   }
   &.animate-out {
     .number, .message, .block1 {
-      .transition(opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1););
+      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
     }
     .number {
       margin-left: -2200px;
@@ -915,7 +986,11 @@
   }
   &.animate-in {
     .number, .message, .block1, .block2 {
-      .transition(opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1););
+      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
     }
     .number {
       margin-left: -279px;
@@ -932,7 +1007,11 @@
   }
   &.animate-out {
     .number, .message, .block1, .block2, .block3 {
-      .transition(opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1););
+      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
     }
     .number {
       margin-left: -2200px;
@@ -1011,7 +1090,11 @@
   }
   &.animate-in {
     .number, .message, .block1, .block2 {
-      .transition(opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1););
+      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
     }
     .number {
       margin-left: -454px;
@@ -1028,12 +1111,20 @@
     .logo {
       opacity: 1;
       margin-top: 0;
-      .transition(opacity .5s ease-in 1.5s, margin-top 1.6s cubic-bezier(.64,.01,.72,1.25) .8s;);
+      -moz-transition: opacity .5s ease-in 1.5s, margin-top 1.6s cubic-bezier(.64,.01,.72,1.25) .8s;
+      -ms-transition: opacity .5s ease-in 1.5s, margin-top 1.6s cubic-bezier(.64,.01,.72,1.25) .8s;
+      -o-transition: opacity .5s ease-in 1.5s, margin-top 1.6s cubic-bezier(.64,.01,.72,1.25) .8s;
+      -webkit-transition: opacity .5s ease-in 1.5s, margin-top 1.6s cubic-bezier(.64,.01,.72,1.25) .8s;
+      transition: opacity .5s ease-in 1.5s, margin-top 1.6s cubic-bezier(.64,.01,.72,1.25) .8s;
     }
   }
   &.animate-out {
     .number, .message, .block1, .block2 {
-      .transition(opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1););
+      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
     }
     .number {
       margin-left: -3200px;
@@ -1049,29 +1140,33 @@
     }
     .logo {
       margin-top: 500px;
-      .transition(opacity .5s ease-in .5s, margin-top 1.6s cubic-bezier(.2,-0.2,.83,.67) .25s;);
+      -moz-transition: opacity .5s ease-in .5s, margin-top 1.6s cubic-bezier(.2,-0.2,.83,.67) .25s;
+      -ms-transition: opacity .5s ease-in .5s, margin-top 1.6s cubic-bezier(.2,-0.2,.83,.67) .25s;
+      -o-transition: opacity .5s ease-in .5s, margin-top 1.6s cubic-bezier(.2,-0.2,.83,.67) .25s;
+      -webkit-transition: opacity .5s ease-in .5s, margin-top 1.6s cubic-bezier(.2,-0.2,.83,.67) .25s;
+      transition: opacity .5s ease-in .5s, margin-top 1.6s cubic-bezier(.2,-0.2,.83,.67) .25s;
     }
   }
 }
-@-webkit-keyframes fact09-logo-spin {
-  0% { .transform(rotate(0deg)); }
-  100% { .transform(rotate(360deg)); }
-}
 @-moz-keyframes fact09-logo-spin {
-  0% { .transform(rotate(0deg)); }
-  100% { .transform(rotate(360deg)); }
-}
-@-o-keyframes fact09-logo-spin {
-  0% { .transform(rotate(0deg)); }
-  100% { .transform(rotate(360deg)); }
+  0% { -moz-transform: rotate(0deg); }
+  100% { -moz-transform: rotate(360deg); }
 }
 @-ms-keyframes fact09-logo-spin {
-  0% { .transform(rotate(0deg)); }
-  100% { .transform(rotate(360deg)); }
+  0% { -ms-transform: rotate(0deg); }
+  100% { -ms-transform: rotate(360deg); }
+}
+@-o-keyframes fact09-logo-spin {
+  0% { -o-transform: rotate(0deg); }
+  100% { -o-transform: rotate(360deg); }
+}
+@-webkit-keyframes fact09-logo-spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
 }
 @keyframes fact09-logo-spin {
-  0% { .transform(rotate(0deg)); }
-  100% { .transform(rotate(360deg)); }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 /* Fact =10 - Webmaker */
@@ -1111,7 +1206,11 @@
   }
   &.animate-in {
     .number, .message, .block1, .block2 {
-      .transition(opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1););
+      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
     }
     .number {
       margin-left: -458px;
@@ -1121,31 +1220,55 @@
     }
     .block1 {
       margin-left: 143px;
-      .transition-delay(.8s, .2s;);
+      -moz-transition-delay: .8s, .2s;
+      -ms-transition-delay: .8s, .2s;
+      -o-transition-delay: .8s, .2s;
+      -webkit-transition-delay: .8s, .2s;
+      transition-delay: .8s, .2s;
     }
     .block2 {
       margin-left: 140px;
-      .transition-delay(.8s, .4s;);
+      -moz-transition-delay: .8s, .4s;
+      -ms-transition-delay: .8s, .4s;
+      -o-transition-delay: .8s, .4s;
+      -webkit-transition-delay: .8s, .4s;
+      transition-delay: .8s, .4s;
     }
   }
   &.animate-out {
     .number, .message, .block1, .block2 {
-      .transition(opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1););
+      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
     }
     .number {
       margin-left: -3200px;
     }
     .message {
       margin-left: -2600px;
-      .transition-delay(.8s, 0;);
+      -moz-transition-delay: .8s, 0s;
+      -ms-transition-delay: .8s, 0s;
+      -o-transition-delay: .8s, 0s;
+      -webkit-transition-delay: .8s, 0s;
+      transition-delay: .8s, 0s;
     }
     .block1 {
       margin-left: -2000px;
-      .transition-delay(.8s, 0;);
+      -moz-transition-delay: .8s, 0s;
+      -ms-transition-delay: .8s, 0s;
+      -o-transition-delay: .8s, 0s;
+      -webkit-transition-delay: .8s, 0s;
+      transition-delay: .8s, 0s;
     }
     .block2 {
       margin-left: -1800px;
-      .transition-delay(.8s, 0;);
+      -moz-transition-delay: .8s, 0s;
+      -ms-transition-delay: .8s, 0s;
+      -o-transition-delay: .8s, 0s;
+      -webkit-transition-delay: .8s, 0s;
+      transition-delay: .8s, 0s;
     }
   }
 }
@@ -1193,11 +1316,19 @@
     height: 176px;
     background-position: 0 -144px;
     margin-left: -2200px;
-    .transition(opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1););
+    -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+    -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+    -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+    -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+    transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
   }
   &.animate-in {
     .number, .message, .block1 {
-      .transition(opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1););
+      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
     }
     .number {
       margin-left: -455px;
@@ -1217,7 +1348,11 @@
   }
   &.animate-out {
     .number, .message, .block1, .block2 {
-      .transition(opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1););
+       -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
     }
     .number {
       margin-left: -3200px;
@@ -1341,7 +1476,11 @@
   }
   &.animate-in {
     .number, .message, .block1, .block2 {
-      .transition(opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1););
+      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+      transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
     }
     .number {
       margin-left: -461px;
@@ -1360,7 +1499,11 @@
       margin-left: -295px;
       .animation(fact12-stars-spin 90s linear infinite);
       .transform-origin(center center);
-      .transition(opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;);
+      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
+      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
+      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
+      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
+      transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
     }
     .rocket {
       opacity: 1;
@@ -1370,7 +1513,11 @@
   }
   &.animate-out {
     .number, .message, .block1, .block2 {
-      .transition(opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1););
+      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
+      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
+      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
+      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
+      transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
     }
     .number {
       margin-left: -3000px;
@@ -1387,7 +1534,11 @@
     .stars {
       opacity: 0;
       margin-left: -1200px;
-      .transition(opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;);
+      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
+      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
+      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
+      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
+      transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
     }
     .rocket {
       opacity: 0;
@@ -1489,7 +1640,11 @@
   }
   &.animate-in {
     .number, .message, .block1 {
-      .transition(opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);)
+      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
+      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
+      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
+      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
+      transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
     }
     .number {
       margin-left: -381px;
@@ -1504,7 +1659,11 @@
   }
   &.animate-out {
     .number, .message, .block1 {
-      .transition(opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);)
+      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
+      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
+      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
+      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
+      transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
     }
     .number {
       margin-left: -2200px;
@@ -1594,7 +1753,11 @@
   }
   &.animate-in {
     .number, .message, .block1, .block2, .fox {
-      .transition(opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1););
+      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
     }
     .number {
       margin-left: -468px;
@@ -1614,13 +1777,20 @@
     .shadow {
       margin-top: 0;
       opacity: 1;
-      .transition-duration(2s);
-      .transition(opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-top 1s ease-out 1.4s;);
+      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-top 1s ease-out 1.4s;
+      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-top 1s ease-out 1.4s;
+      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-top 1s ease-out 1.4s;
+      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-top 1s ease-out 1.4s;
+      transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-top 1s ease-out 1.4s;
     }
     .phone {
       margin-top: 0;
       opacity: 1;
-      .transition(opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-top 1s ease-out 1.4s;);
+      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-top 1s ease-out 1.4s;
+      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-top 1s ease-out 1.4s;
+      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-top 1s ease-out 1.4s;
+      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-top 1s ease-out 1.4s;
+      transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-top 1s ease-out 1.4s;
     }
     .fox {
       margin-left: 299px;
@@ -1631,7 +1801,11 @@
   }
   &.animate-out {
     .number, .message, .block1, .block2, .fox {
-      .transition(opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1););
+      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
     }
     .number {
       margin-left: -3600px;
@@ -1650,12 +1824,20 @@
     .shadow {
       margin-top: 500px;
       opacity: 0;
-      .transition(opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-top .7s ease-in 0s;);
+      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-top .7s ease-in 0s;
+      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-top .7s ease-in 0s;
+      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-top .7s ease-in 0s;
+      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-top .7s ease-in 0s;
+      transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-top .7s ease-in 0s;
     }
     .phone {
       margin-top: -500px;
       opacity: 0;
-      .transition(opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-top .7s ease-in 0s;);
+      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-top .7s ease-in 0s;
+      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-top .7s ease-in 0s;
+      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-top .7s ease-in 0s;
+      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-top .7s ease-in 0s;
+      transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-top .7s ease-in 0s;
     }
     .fox {
       opacity: 0;
@@ -1705,7 +1887,11 @@
   }
   &.animate-in {
     .number, .message, .block1, .block2 {
-      .transition(opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1););
+      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
     }
     .number {
       margin-left: -458px;
@@ -1726,7 +1912,11 @@
   }
   &.animate-out {
     .number, .message, .block1, .block2 {
-      .transition(opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1););
+      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+      transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
     }
     .number {
       margin-left: -2200px;
