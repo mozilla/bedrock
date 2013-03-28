@@ -289,6 +289,7 @@ MINIFY_BUNDLES = {
             'css/firefox/partners/ie7.less',
         ),
         'facebookapps_downloadtab': (
+            'css/libs/h5bp_main.css',
             'css/facebookapps/downloadtab.less',
         ),
     },
