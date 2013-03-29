@@ -16,10 +16,10 @@ import l10n_utils
 import requests
 from commonware.decorators import xframe_allow
 from funfactory.urlresolvers import reverse
-from tower import ugettext as _, ugettext_lazy as _lazy
+from tower import ugettext_lazy as _lazy
 
 from .forms import (
-    ManageSubscriptionsForm, NewsletterForm, NewsletterSubscribeForm
+    ManageSubscriptionsForm, NewsletterForm
 )
 # Cannot use short "from . import utils" because we need to mock
 # utils.get_newsletters in our tests
@@ -31,6 +31,8 @@ log = commonware.log.getLogger('b.newsletter')
 general_error = _lazy(u'Something is amiss with our system, sorry! Please try '
                       'again later.')
 thank_you = _lazy(u'Thank you for updating your email preferences')
+bad_token = _lazy(u'The supplied link has expired. You will receive a new '
+                  u'one in the next newsletter.')
 
 
 @xframe_allow
@@ -67,36 +69,27 @@ def existing(request, token=None):
     #  u'email': u'user@example.com'
     # }
 
+    user_exists = False
     if token:
         try:
             user = basket.user(token)
         except basket.BasketException:
             log.exception("FAILED to get user from token")
-            # They gave us a token but it was bad. Let them know what the
-            # problem is.
-            msg = _('The supplied link has expired or is otherwise invalid. '
-                    'You will receive a new one in the next newsletter. '
-                    'You can still sign up for new newsletters.')
-            messages.add_message(request, messages.ERROR, msg)
-            # then redirect to the same page but without the bad token
-            # in the url
-            return redirect(reverse('newsletter.existing'))
         except requests.Timeout:
             # Something wrong with basket backend, no point in continuing,
             # we'd probably fail to subscribe them anyway.
             log.exception("Basket timeout")
             messages.add_message(request, messages.ERROR, general_error)
             return l10n_utils.render(request, 'newsletter/existing.html')
-        user_exists = True
-    else:
-        user_exists = False
-        # Make a mock user to simplify code below. Omitting the lang and
-        # country will cause the form to infer them from the request.locale.
-        user = {
-            'newsletters': [],
-            'email': '',
-            'format': 'H',
-        }
+        else:
+            user_exists = True
+
+    if not user_exists:
+        # Bad or no token
+        messages.add_message(request, messages.ERROR, bad_token)
+        # If we don't pass the template a formset, most of the page won't
+        # be displayed. Our message still will be displayed.
+        return l10n_utils.render(request, 'newsletter/existing.html', {})
 
     # Get the newsletter data - it's a dictionary of dictionaries
     newsletter_data = utils.get_newsletters()
@@ -114,16 +107,8 @@ def existing(request, token=None):
                 'newsletter': newsletter,
             })
 
-    # If user is managing their existing subscriptions, they can use
-    # NewsletterForm, which allows subscribing and unsubscribing.
-    # Otherwise, they use NewsletterSubscribeForm, which only allows
-    # subscribing.
-    if user_exists:
-        NewsletterFormSet = formset_factory(NewsletterForm, extra=0,
-                                            max_num=len(initial))
-    else:
-        NewsletterFormSet = formset_factory(NewsletterSubscribeForm, extra=0,
-                                            max_num=len(initial))
+    NewsletterFormSet = formset_factory(NewsletterForm, extra=0,
+                                        max_num=len(initial))
 
     if request.method == 'POST':
         form_kwargs = {}
@@ -155,56 +140,12 @@ def existing(request, token=None):
                                    if subform.cleaned_data['subscribed']])
                 form_kwargs['newsletters'] = newsletters
 
-                # A new user must subscribe to something; otherwise, what's
-                # the point?  Tell form to check that.  It also needs to
-                # provide a privacy checkbox.
-                if not user_exists:
-                    form_kwargs['must_subscribe'] = True
-                    form_kwargs['display_privacy_checkbox'] = True
-
         form = ManageSubscriptionsForm(locale, data=request.POST, initial=user,
                                        **form_kwargs)
 
         if formset_is_valid and form.is_valid():
 
             data = form.cleaned_data
-
-            if not user_exists:
-                # Create a new user and subscribe them in one swell foop
-                try:
-                    basket.subscribe(email=data['email'],
-                                     newsletters=list(newsletters),
-                                     lang=data['lang'],
-                                     country=data['country'],
-                                     format=data['format'])
-                except basket.BasketException:
-                    log.exception("Error adding user in basket")
-                    messages.add_message(
-                        request, messages.ERROR, general_error
-                    )
-                    return l10n_utils.render(request,
-                                             'newsletter/existing.html')
-
-                # Note: at this point, we could get the proper token out
-                # of the response to our subscribe call and use it when
-                # constructing the redirect URL, thus allowing this
-                # user to manage their subscriptions. BUT if we did that,
-                # then anybody could type in someone else's email on this
-                # form and not only subscribe them to unwanted newsletters
-                # (which they can do anyway in some countries where we
-                # don't require confirmation) but get their token and
-                # follow up by unsubscribing them from newsletters they
-                # want or doing other mischief.  So don't do that.
-                # http://www.theserverside.com/news/1365146/Redirect-After-Post
-                if data.get('lang', 'en').startswith('en'):
-                    unsub_parm = '3'
-                else:
-                    unsub_parm = '4'
-                # We're going to redirect, so the only way to tell the next
-                # view that we should display the welcome message in the
-                # template is to modify the URL
-                url = reverse('newsletter.updated') + "?unsub=%s" % unsub_parm
-                return redirect(url)
 
             # Update their email and locale information, if it has changed.
             # Also pass their updated list of newsletters they want to be
@@ -262,11 +203,8 @@ def existing(request, token=None):
 
         # FALL THROUGH so page displays errors
     else:
-        # Only ask them to agree to privacy policy if they're a new user
-        display_privacy_checkbox = not user_exists
         form = ManageSubscriptionsForm(
-            locale, initial=user,
-            display_privacy_checkbox=display_privacy_checkbox
+            locale, initial=user
         )
         formset = NewsletterFormSet(initial=initial)
 
@@ -282,7 +220,6 @@ def existing(request, token=None):
     context = {
         'form': form,
         'formset': formset,
-        'user_exists': user_exists,
         'newsletter_languages': newsletter_languages,
     }
     return l10n_utils.render(request,

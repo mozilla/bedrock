@@ -158,31 +158,12 @@ uncomment the next block or add it to the inheriting template:
                             </tr>
                         {% endfor %}
 
-                        {% if user_exists %}{# existing users can unsubscribe all #}
-                            <tr>
-                                <td colspan="3" id="remove-all-section">
-                                    {{ form['remove_all'] }}
-                                    <label for="id_remove_all">{{ _('Remove me from all Mozilla emails') }}</label>
-                                </td>
-                            </tr>
-                        {% else %}  {# New users have to agree to privacy policy #}
-                            <tr>
-                                <td colspan="3" id="privacy-section" class="field field-privacy ">
-                                    {% set privacy = form['privacy'] %}
-                                    <input required="true" type="checkbox"
-                                           name="{{ privacy.html_name }}"
-                                           id="id_{{ privacy.html_name }}" />
-                                    <label for="id_{{ privacy.html_name }}" class="privacy-check-label">
-                                            <span class="title">
-                                                {% trans privacy=url('privacy.index') %}
-                                                I’m okay with you handling this info as you explain in your
-                                                <a href="{{ privacy }}">Privacy Policy</a>
-                                                {% endtrans %}
-                                            </span>
-                                    </label>
-                                </td>
-                            </tr>
-                        {% endif %}
+                        <tr>
+                            <td colspan="3" id="remove-all-section">
+                                {{ form['remove_all'] }}
+                                <label for="id_remove_all">{{ _('Remove me from all Mozilla emails') }}</label>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                 </div><!-- close #all-newsletters -->

@@ -155,7 +155,7 @@ class TestExistingNewsletterView(TestCase):
     @patch('newsletter.utils.get_newsletters')
     def test_get_no_token(self, get_newsletters, mock_basket_request):
         # If user gets page with no valid token in their URL, they
-        # see default data, and a privacy checkbox
+        # see an error message and that's about it
         get_newsletters.return_value = newsletters
         self.request.method = 'GET'
         # noinspection PyUnresolvedReferences
@@ -167,60 +167,7 @@ class TestExistingNewsletterView(TestCase):
             with patch('l10n_utils.render') as render:
                 existing(self.request)
         request, template_name, context = render.call_args[0]
-        form = context['form']
-        self.assertIn('privacy', form.fields)
-        self.assertEqual(self.request.locale[:2], form.fields['lang'].initial)
-
-    @patch('newsletter.utils.get_newsletters')
-    def test_no_token(self, get_newsletters, mock_basket_request):
-        # No token - user can still sign up for stuff, assuming they
-        # accept the privacy checkbox
-        get_newsletters.return_value = newsletters
-        self.request.method = 'POST'
-        self.request.POST = self.data
-        with patch.multiple('basket',
-                            update_user=DEFAULT,
-                            subscribe=DEFAULT,
-                            unsubscribe=DEFAULT,
-                            user=DEFAULT) as basket_patches:
-            with patch('l10n_utils.render'):
-                existing(self.request)
-        # we don't call basket.user to find a user - we have no token
-        self.assertEqual(0, basket_patches['user'].call_count)
-        # new user - we do it all in one call to subscribe
-        self.assertEqual(0, basket_patches['update_user'].call_count)
-        self.assertEqual(1, basket_patches['subscribe'].call_count)
-        args, kwargs = basket_patches['subscribe'].call_args
-        # We pass all but the user's token (which they don't have yet)
-        user = self.user
-        del user['token']
-        self.assertEqual(user, kwargs)
-
-    @patch('newsletter.utils.get_newsletters')
-    def test_no_privacy(self, get_newsletters, mock_basket_request):
-        # No token - if user doesn't check the privacy box, they cannot
-        # sign up for anything
-        get_newsletters.return_value = newsletters
-        self.request.method = 'POST'
-        del self.data['privacy']
-        self.request.POST = self.data
-        with patch.multiple('basket',
-                            update_user=DEFAULT,
-                            subscribe=DEFAULT,
-                            unsubscribe=DEFAULT,
-                            user=DEFAULT) as basket_patches:
-            with patch('l10n_utils.render'):
-                with patch('django.contrib.messages.add_message') as add_msg:
-                    existing(self.request)
-        # we don't call basket.user to find a user - we have no token
-        self.assertEqual(0, basket_patches['user'].call_count)
-        # don't call basket at all, actually
-        self.assertEqual(0, basket_patches['update_user'].call_count)
-        self.assertEqual(0, basket_patches['unsubscribe'].call_count)
-        self.assertEqual(0, basket_patches['subscribe'].call_count)
-        # No message, form validation catches this
-        self.assertEqual(0, add_msg.call_count,
-                         msg=repr(add_msg.call_args_list))
+        self.assertNotIn('form', context)
 
     def test_user_not_found(self, mock_basket_request):
         # User passed token, but no user was found

@@ -97,8 +97,7 @@ class ManageSubscriptionsForm(forms.Form):
     remove_all = forms.BooleanField(required=False)
     LANG_CHOICES = get_lang_choices()
 
-    def __init__(self, locale, display_privacy_checkbox=False,
-                 *args, **kwargs):
+    def __init__(self, locale, *args, **kwargs):
         regions = product_details.get_regions(locale)
         regions = sorted(regions.iteritems(), key=lambda x: x[1])
 
@@ -122,11 +121,6 @@ class ManageSubscriptionsForm(forms.Form):
         self.fields['lang'] = forms.ChoiceField(choices=self.LANG_CHOICES,
                                                 initial=initial_lang,
                                                 required=False)
-
-        if display_privacy_checkbox:
-            # Let this default to required, and put the label in the template
-            # for easier translation
-            self.fields['privacy'] = forms.BooleanField()
 
     def clean(self):
         """If user has set .must_subscribe, then verify that .newsletters
@@ -155,19 +149,6 @@ class NewsletterForm(forms.Form):
     title = forms.CharField(required=False)
     subscribed = forms.BooleanField(
         widget=forms.RadioSelect(renderer=BooleanRadioRenderer),
-        required=False,  # they have to answer, but answer can be False
-    )
-    newsletter = forms.CharField(widget=forms.HiddenInput)
-
-
-class NewsletterSubscribeForm(forms.Form):
-    """Form to let a user subscribe to a newsletter.
-    The only real difference from NewsletterForm is that Newsletter form
-    displays Subscribe/Unsubscribe radio buttons, while this one just
-    displays a Subscribe checkbox."""
-    title = forms.CharField(required=False)
-    subscribed = forms.BooleanField(
-        widget=TableCheckboxInput,
         required=False,  # they have to answer, but answer can be False
     )
     newsletter = forms.CharField(widget=forms.HiddenInput)

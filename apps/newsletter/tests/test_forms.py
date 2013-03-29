@@ -65,17 +65,6 @@ class TestManageSubscriptionsForm(TestCase):
         self.assertEqual('pt', form.fields['lang'].initial)
         self.assertEqual('br', form.fields['country'].initial)
 
-    def test_privacy_box(self):
-        locale = "en-US"
-        form = ManageSubscriptionsForm(locale=locale,
-                                       display_privacy_checkbox=False)
-        rendered = str(form)
-        self.assertNotIn("privacy", rendered)
-        form = ManageSubscriptionsForm(locale=locale,
-                                       display_privacy_checkbox=True)
-        rendered = str(form)
-        self.assertIn("privacy", rendered)
-
     @mock.patch('newsletter.utils.get_newsletters')
     def test_must_subscribe(self, get_newsletters):
         # if must_subscribe is set, there must be at least one item
