@@ -46,8 +46,9 @@
     overflow: hidden;
   }
   .intro {
-    font-size: 16px;
-    line-height: 1.7;
+    .open-sans-light;
+    font-size: 18px;
+    line-height: 1.6;
     padding: 20px 0 20px 40px;
     border-left: 1px solid #bebbb8;
   }
@@ -588,7 +589,7 @@
   }
 }
 #fact03.animate-out {
-  .number, .message, .block1, .block2, .block3 {
+  .number, .message, .block1 {
     -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
     -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
     -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
@@ -1071,8 +1072,8 @@
     position: absolute;
     z-index: 10;
     left: 50%;
-    top: 198px;
-    margin-left: 310px;
+    top: 202px;
+    margin-left: 220px;
     margin-top: 500px;
     opacity: 0;
     span {
@@ -1539,6 +1540,7 @@
       -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
       -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
       transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
+      .animation(fact12-stars-spin 90s linear);
     }
     .rocket {
       opacity: 0;

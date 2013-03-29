@@ -15,28 +15,16 @@
         autoPlay: true,
         autoPlayDelay: 7000,
         pauseOnHover: true,
-        pauseIcon: '.pause-icon',
-        pauseButton: true,
         moveActiveFrameToTop: false,
         fadeFrameWhenSkipped: false,
         animateStartingFrameIn: true,        
         reverseAnimationsWhenNavigatingBackwards: true,
-        preventDelayWhenReversingAnimations: false
+        preventDelayWhenReversingAnimations: true
     };
 
     // set up the slideshow
     // @requires: sequencejs
     var slideshow = $('#slideshow').sequence(options).data('sequence');
-    
-    // Sequence does a simple show/hide for the pause icon. This fades it in...
-    slideshow.paused = function(){
-        $('.pause-icon').animate({ opacity: 1 }, 300);
-    }
-    // but it still hides instantly, alas. Once it's display:none there's nothing more we can do. 
-    // This just resets opacity for the next fadein.
-    slideshow.unpaused = function() {
-        $('.pause-icon').css({ opacity: 0 });
-    }
     
     var track = function() {
         if (w._gaq) {
