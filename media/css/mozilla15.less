@@ -51,8 +51,8 @@
   margin: 0 auto 10px;
   padding-left: 290px;
   .title {
-    width: 220px;
-    height: 175px;
+    width: 230px;
+    height: 180px;
     position: absolute;
     left: 25px;
     top: 0;
@@ -1027,6 +1027,13 @@
 }
 
 /* Fact =09 - Mozfest */
+#fact09 {
+  .number {
+    width: 139px;
+    height: 127px;
+    background-position: -229px -143px;
+  }
+}
 .on #fact09 {
   .number, .message, .block1, .block2, .logo, .logo span {
     background: url(/media/img/contribute/mozilla15/fact09-pads.png) no-repeat;
@@ -1155,6 +1162,13 @@
 }
 
 /* Fact =10 - Webmaker */
+#fact10 {
+  .number {
+    width: 111px;
+    height: 118px;
+    background-position: -368px -143px;
+  }
+}
 .on #fact10 {
   .number, .message, .block1, .block2 {
     background: url(/media/img/contribute/mozilla15/fact10-pads.png) no-repeat;
@@ -1246,6 +1260,14 @@
 }
 
 /* Fact =11 - WebFWD */
+#fact11 {
+  .number {
+    width: 125px;
+    height: 142px;
+    background-position: -479px -143px;
+    margin-left: -141px;
+  }
+}
 .on #fact11 {
   .number, .message, .block1, .logo {
     background: url(/media/img/contribute/mozilla15/fact11-pads.png) no-repeat;
@@ -1372,6 +1394,13 @@
 }
 
 /* Fact =12 - MDN */
+#fact12 {
+  .number {
+    width: 138px;
+    height: 127px;
+    background-position: -604px -143px;
+  }
+}
 .on #fact12 {
   .number, .message, .block1, .block2, .stars, .rocket {
     background: url(/media/img/contribute/mozilla15/fact12-pads.png) no-repeat;
@@ -1557,6 +1586,13 @@
 }
 
 /* Fact =13 - <3 the web */
+#fact13 {
+  .number {
+    width: 110px;
+    height: 108px;
+    background-position: 0 -287px;
+  }
+}
 .on #fact13 {
   .number, .message, .block1 {
     background: url(/media/img/contribute/mozilla15/fact13-pads.png) no-repeat;
@@ -1611,6 +1647,14 @@
 }
 
 /* Fact =14 - Firefox OS */
+#fact14 {
+  .number {
+    width: 97px;
+    height: 106px;
+    background-position: -110px -287px;
+    margin-left: -122px;
+  }
+}
 .on #fact14 {
   .number, .message, .block1, .block2, .shadow, .phone, .fox {
     background: url(/media/img/contribute/mozilla15/fact14-pads.png) no-repeat;
@@ -1769,6 +1813,13 @@
 }
 
 /* Fact =15 - Thank you */
+#fact15 {
+  .number {
+    width: 130px;
+    height: 142px;
+    background-position: -207px -287px;
+  }
+}
 .on #fact15 {
   .number, .message, .block1, .block2 {
     background-image: url(/media/img/contribute/mozilla15/fact15-pads.png);
@@ -2005,13 +2056,54 @@
         width: auto;
         height: auto;
         text-indent: 0;
+        text-align: center;
         padding: 5px 12px;
-        border-radius: 5px;
-        background: gray none;
+        border-radius: 25%;
+        background: #ccc none;
         color: #fff;
         font-weight: bold;
         font-size: 26px;
         margin: 10px 15px 5px 0;
+        box-shadow: 0 5px 0 rgba(0,0,0,.08);
+      }
+    }  
+    #fact01,
+    #fact06,
+    #fact11 {
+      .number {
+        background-color: #bf383e; /* red */
+      }
+    }
+    
+    #fact02,
+    #fact07,
+    #fact12 {
+      .number {
+        background-color: #1362ae; /* dark blue */
+      }
+    }
+    
+    #fact03,
+    #fact08,
+    #fact13 {
+      .number {
+        background-color: #86bb36; /* green */
+      }
+    }
+    
+    #fact04,
+    #fact09,
+    #fact14 {
+      .number {
+        background-color: #54a3dd; /* light blue */
+      }
+    }
+    
+    #fact05,
+    #fact10,
+    #fact15 {
+      .number {
+        background-color: #e26c33; /* orange */
       }
     }
   }

@@ -7,7 +7,6 @@
 
     // default user action to auto
     var action = 'auto';
-    
     var $window = $(window);
     var wideMode = false;
 
@@ -16,7 +15,7 @@
         nextButton: '.next',
         prevButton: '.prev',
         autoPlay: true,
-        autoPlayDelay: 2000,
+        autoPlayDelay: 7000,
         pauseOnHover: true,
         moveActiveFrameToTop: false,
         fadeFrameWhenSkipped: false,
@@ -36,8 +35,8 @@
     }
 
     $window.resize(function() {
-        clearTimeout(this.id);
-        this.id = setTimeout(doneResizing, 500);
+        clearTimeout(this.resizeTimeoutId);
+        this.resizeTimeoutId = setTimeout(doneResizing, 200);
     });
 
     function doneResizing() {
@@ -51,6 +50,7 @@
             slideshow.stopAutoPlay();
         }
     }
+    $(doneResizing);  // Call once when done loading the page to initialize.
 
 
     var track = function() {
