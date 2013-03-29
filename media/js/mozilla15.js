@@ -21,7 +21,14 @@
         fadeFrameWhenSkipped: false,
         animateStartingFrameIn: true,        
         reverseAnimationsWhenNavigatingBackwards: true,
-        preventDelayWhenReversingAnimations: true
+        preventDelayWhenReversingAnimations: true,
+        swipePreventsDefault: true,
+        swipeEvents: {
+            left: "next",
+            right: "prev",
+            up: false,
+            down: false
+        }
     };
     
     // set up the slideshow
