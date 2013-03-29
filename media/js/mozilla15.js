@@ -7,13 +7,16 @@
 
     // default user action to auto
     var action = 'auto';
+    
+    var $window = $(window);
+    var wideMode = false;
 
     // declare slideshow options
     var options = {
         nextButton: '.next',
         prevButton: '.prev',
         autoPlay: true,
-        autoPlayDelay: 7000,
+        autoPlayDelay: 2000,
         pauseOnHover: true,
         moveActiveFrameToTop: false,
         fadeFrameWhenSkipped: false,
@@ -21,11 +24,35 @@
         reverseAnimationsWhenNavigatingBackwards: true,
         preventDelayWhenReversingAnimations: true
     };
-
+    
     // set up the slideshow
     // @requires: sequencejs
     var slideshow = $('#slideshow').sequence(options).data('sequence');
-    
+
+    if ($window.width() >= 1000) {
+        wideMode = true;
+        $('#slideshow').addClass('on');
+        slideshow.startAutoPlay();
+    }
+
+    $window.resize(function() {
+        clearTimeout(this.id);
+        this.id = setTimeout(doneResizing, 500);
+    });
+
+    function doneResizing() {
+        if ($window.width() >= 1000) {
+            wideMode = true;
+            $('#slideshow').addClass('on');
+            slideshow.startAutoPlay();
+        } else {
+            wideMode = false;
+            $('#slideshow').removeClass('on');
+            slideshow.stopAutoPlay();
+        }
+    }
+
+
     var track = function() {
         if (w._gaq) {
             // must use nextFrame here - currentFrame (oddly) isn't updated yet.

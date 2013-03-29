@@ -4,6 +4,22 @@
 
 @import "sandstone/lib.less";
 
+.base-animate-in { /* Basic transitions for slide elements */
+  -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1.08), margin-top 2s cubic-bezier(.6,-0.08,.6,1.08);
+  -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1.08), margin-top 2s cubic-bezier(.6,-0.08,.6,1.08);
+  -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1.08), margin-top 2s cubic-bezier(.6,-0.08,.6,1.08);
+  -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1.08), margin-top 2s cubic-bezier(.6,-0.08,.6,1.08);
+  transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1.08), margin-top 2s cubic-bezier(.6,-0.08,.6,1.08);
+}
+
+.base-animate-out { /* Same as .base-animate-in, but with a delay on the fade out */
+  -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+  -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+  -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+  -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+  transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+}
+
 /* No italics in Chinese/Taiwanese */
 .lang-zh-TW {
   #moz15 .cta p,
@@ -17,9 +33,7 @@
   width: 100%;
 }
 
-#contribute #masthead {
-  width: @widthDesktop - (@gridGutterWidth * 2);
-}
+#contribute #masthead,
 #contribute .billboard,
 #opportunities,
 #moz15 .cta {
@@ -76,7 +90,7 @@
 
 /* Moz15 call to action */
 #moz15 .cta {
-  width: 960px;
+  width: @widthDesktop - (@gridGutterWidth * 2);
   margin: 0 auto 40px;
   text-align: center;
   h2 {
@@ -86,7 +100,7 @@
     margin-bottom: 0.25em;
   }
   p {
-    width: 600px;
+    width: (@gridColumnWidth * 8) + (@gridGutterWidth * 7);
     margin: 0 auto;
     font: italic 18px 'Open Sans Light', sans-serif;
   }
@@ -97,42 +111,80 @@
   margin-bottom: 20px;
 }
 
-#slideshow {
+.slide {
+  .clearfix;
+  border-top: 1px solid #d8d5d1;
+  list-style: none;
+  margin: 0 20px 10px;
+  padding: 20px 0 0 160px;
+  .number {
+    opacity: 1;
+    display: block;
+    float: left;
+    margin: 0 20px 5px -150px;
+    text-indent: -999em;
+    overflow: hidden;
+    background: url(/media/img/contribute/mozilla15/numbers.png) no-repeat;
+  }
+  .message {
+    opacity: 1;
+    margin: 0;
+    padding: 10px 10px 0;
+    .open-sans-light;
+    font-size: 18px;
+  }
+  .message p {
+    margin: 0 0 10px;
+  }
+}
+
+#slideshow.on {
   margin: 0 auto;
   width: 100%;
   height: 340px;
   position: relative;
   overflow: visible;
-  -webkit-backface-visibility: hidden; /* prevent graphical glitches in WebKit browsers when using transitions */
-}
-.slides {
-  position: relative;
-  z-index: 2;
-  list-style: none;
-  margin: 0 auto;
-  width: 100%;
-  height: 340px;
-  overflow: hidden;
-  .slide {
-    height: 100%;
+  -webkit-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+  .slides {
+    position: relative;
+    list-style: none;
+    margin: 0 auto;
     width: 100%;
-    position: absolute;
-    margin: 0;
-    padding: 0;
-    border: 0;
+    height: 340px;
+    overflow: hidden;
+    .slide {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      > * {
+        position: absolute;
+        z-index: 10;
+      }
+      > .back {
+        z-index: 1;
+      }
+    }
   }
-}
-.slides .slide > * {
-  position: absolute;
 }
 
 /* Slide controls */
 .slide-control {
+  display: none;
+}
+.on .slide-control {
+  display: block;
   width: @widthDesktop - (@gridGutterWidth * 2);
   position: absolute;
   left: 50%;
   top: 0;
-  margin-left: -490px;
+  margin-left: -(@widthDesktop - (@gridGutterWidth * 2))/2;
   .prev,
   .next {
     position: absolute;
@@ -171,101 +223,100 @@
       opacity: 1;
     }
   }
-  .pause-icon {
-    display: none;
-    opacity: 0;
-    width: 60px;
-    height: 44px;
-    background: transparent url(/media/img/contribute/mozilla15/slide-arrows.png) center bottom no-repeat;
-    position: absolute;
-    top: 310px;
-    left: 50%;
-    z-index: 99;
-    margin-left: -30px;
-  }
 }
 
 /* =Base styles for all slides */
-.number, .message, .block1, .block2, .block3 {
-  display: block;
-  position: absolute;
-  z-index: 3;
-  opacity: 0;
-  left: 50%;
-  margin-left: 2000px;
-}
-.number {
-  text-indent: -999em;
-  overflow: hidden;
-}
-.message {
-  font: italic 24px/1.15 'Open Sans Light', sans-serif;
-  letter-spacing: -.025px;
-  color: #fff;
-  text-shadow: 0 1px 1px rgba(0,0,0,.1);
-}
-.message p {
-  opacity: 0;
-  .transition(opacity .3s ease-in 0s);
-}
-.message cite {
-  font-style: normal;
-}
-.back {
-  display: block;
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-repeat: repeat-x;
-  opacity: 0;
-}
-
-/* Slides going from 'ready' to 'in' */
-.animate-in {
+.on {
   .number, .message, .block1, .block2, .block3 {
-    opacity: 1;
-  }
-  .message p {
-    opacity: 1;
-    .transition(opacity .3s ease-in 1.6s);
-  }
-  .back {
-    opacity: 1;
-    -moz-transition: opacity 1.5s linear, background-position 2.6s ease-in-out;
-    -ms-transition: opacity 1.5s linear, background-position 2.6s ease-in-out;
-    -o-transition: opacity 1.5s linear, background-position 2.6s ease-in-out;
-    -webkit-transition: opacity 1.5s linear, background-position 2.6s ease-in-out;
-    transition: opacity 1.5s linear, background-position 2.6s ease-in-out;
-  }
-}
-
-/* Slides going from 'in' to 'out' */
-.animate-out {
-  .number, .message, .block1, .block2, .block3 {
+    display: block;
+    float: none;
+    position: absolute;
+    z-index: 5;
     opacity: 0;
+    left: 50%;
+    margin: 0 0 0 2000px;
+  }
+  .number {
+    text-indent: -999em;
+    overflow: hidden;
+  }
+  .message {
+    font: italic 24px/1.15 'Open Sans Light', sans-serif;
+    letter-spacing: -.025px;
+    color: #fff;
+    text-shadow: 0 1px 1px rgba(0,0,0,.1);
   }
   .message p {
     opacity: 0;
-    .transition(opacity .3s ease-in 1.6s);
+    .transition(opacity .3s ease-in 0s);
+  }
+  .message cite {
+    font-style: normal;
   }
   .back {
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: repeat-x;
     opacity: 0;
-    -moz-transition: opacity 1.5s linear, background-position 2.6s ease-in-out;
-    -ms-transition: opacity 1.5s linear, background-position 2.6s ease-in-out;
-    -o-transition: opacity 1.5s linear, background-position 2.6s ease-in-out;
-    -webkit-transition: opacity 1.5s linear, background-position 2.6s ease-in-out;
-    transition: opacity 1.5s linear, background-position 2.6s ease-in-out;
+  }
+}
+
+.on {
+  /* Slides going from 'ready' to 'in' */
+  .animate-in {
+    .number, .message, .block1, .block2, .block3 {
+      opacity: 1;
+      .base-animate-in;
+    }
+    .message p {
+      opacity: 1;
+      .transition(opacity .3s ease-in 1.6s);
+    }
+    .back {
+      opacity: 1;
+      -moz-transition: opacity 1.5s linear, background-position 2.6s ease-in-out;
+      -ms-transition: opacity 1.5s linear, background-position 2.6s ease-in-out;
+      -o-transition: opacity 1.5s linear, background-position 2.6s ease-in-out;
+      -webkit-transition: opacity 1.5s linear, background-position 2.6s ease-in-out;
+      transition: opacity 1.5s linear, background-position 2.6s ease-in-out;
+    }
+  }
+  
+  /* Slides going from 'in' to 'out' */
+  .animate-out {
+    .number, .message, .block1, .block2, .block3 {
+      opacity: 0;
+      .base-animate-out;
+    }
+    .message p {
+      opacity: 0;
+      .transition(opacity .3s ease-in 1.6s);
+    }
+    .back {
+      opacity: 0;
+      -moz-transition: opacity 1.5s linear, background-position 2.6s ease-in-out;
+      -ms-transition: opacity 1.5s linear, background-position 2.6s ease-in-out;
+      -o-transition: opacity 1.5s linear, background-position 2.6s ease-in-out;
+      -webkit-transition: opacity 1.5s linear, background-position 2.6s ease-in-out;
+      transition: opacity 1.5s linear, background-position 2.6s ease-in-out;
+    }
   }
 }
 
 /* Fact =01 - Launch */
 #fact01 {
+  .number {
+    width: 139px;
+    height: 125px;
+    background-position: 0 0;
+  }
+}
+.on #fact01 {
   .number, .message, .block1, .block2 {
     background: url(/media/img/contribute/mozilla15/fact01-pads.png) no-repeat;
-    .transition-duration(2s);
   }
   .number {
     width: 145px;
@@ -300,58 +351,52 @@
     background-position: -840px 0;
     margin-left: 3800px;
   }
-}
-#fact01.animate-in {
-  .number, .message, .block1, .block2 {
-    -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-    -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-    -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-    -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-    transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
+
+  &.animate-in {
+   .number {
+      margin-left: -460px;
+    }
+    .message {
+      margin-left: -320px;
+    }
+    .block1 {
+      margin-left: 124px;
+    }
+    .block2 {
+      margin-left: 351px;
+    }
   }
- .number {
-    margin-left: -460px;
-  }
-  .message {
-    margin-left: -320px;
-  }
-  .block1 {
-    margin-left: 124px;
-  }
-  .block2 {
-    margin-left: 351px;
-  }
-}
-#fact01.animate-out {
-  .number, .message, .block1, .block2 {
-    -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-    -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-    -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-    -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-    transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-  }
-  .number {
-    margin-left: -3800px;
-  }
-  .message {
-    margin-left: -2900px;
-  }
-  .block1 {
-    margin-left: -1800px;
-  }
-  .block2 {
-    margin-left: -1100px;
+
+  &.animate-out {
+    .number {
+      margin-left: -3800px;
+    }
+    .message {
+      margin-left: -2900px;
+    }
+    .block1 {
+      margin-left: -1800px;
+    }
+    .block2 {
+      margin-left: -1100px;
+    }
   }
 }
 
 /* Fact =02 - Firefox */
 #fact02 {
+  .number {
+    width: 115px;
+    height: 107px;
+    background-position: -139px 0;
+    margin-left: -135px;
+  }
+}
+.on #fact02 {
   .number, .message, .block1, .block2, .block3 {
     background: url(/media/img/contribute/mozilla15/fact02-pads.png) no-repeat;
-    .transition-duration(2s);
   }
   .number {
-    z-index: 5;
     width: 114px;
     height: 102px;
     background-position: 0 0;
@@ -360,7 +405,6 @@
     margin-left: 1990px;
   }
   .message {
-    z-index: 2;
     width: 363px;
     height: 200px;
     padding: 80px 105px 0 35px;
@@ -369,7 +413,6 @@
     margin-left: 1750px;
   }
   .block1 {
-    z-index: 4;
     width: 151px;
     height: 75px;
     background-position: 0 -102px;
@@ -378,7 +421,6 @@
     margin-top: -90px;
   }
   .block2 {
-    z-index: 3;
     width: 230px;
     height: 83px;
     background-position: -654px 0;
@@ -386,7 +428,6 @@
     margin-left: 2640px;
   }
   .block3 {
-    z-index: 5;
     width: 230px;
     height: 185px;
     background-position: -654px -83px;
@@ -407,71 +448,60 @@
     background: transparent url(/media/img/contribute/mozilla15/fxlogo.png) no-repeat;
     .transition(opacity .25s ease-in);
   }
-}
-#fact02.animate-in {
-  .number, .message, .block1, .block2, .block3 {
-    -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-    -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-    -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-    -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-    transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+  
+  &.animate-in {
+   .number {
+      margin-left: -412px;
+      margin-top: 0;
+    }
+    .message {
+      margin-left: -290px;
+    }
+    .block1 {
+      margin-left: -457px;
+      margin-top: 0;
+    }
+    .block2 {
+      margin-left: 216px;
+    }
+    .block3 {
+      margin-left: 216px;
+      margin-top: 0;
+    }
+    .logo {
+      top: -150px;
+      opacity: 1;
+      .transition(opacity .25s ease-in 1.5s);
+    	.animation(fact02-logo-in 1.5s 1.8s forwards);
+    }
   }
- .number {
-    margin-left: -412px;
-    margin-top: 0;
-  }
-  .message {
-    margin-left: -290px;
-  }
-  .block1 {
-    margin-left: -457px;
-    margin-top: 0;
-  }
-  .block2 {
-    margin-left: 216px;
-  }
-  .block3 {
-    margin-left: 216px;
-    margin-top: 0;
-  }
-  .logo {
-    top: -150px;
-    opacity: 1;
-    .transition(opacity .25s ease-in 1.5s);
-  	.animation(fact02-logo-in 1.5s 1.8s forwards);
-  }
-}
-#fact02.animate-out {
-  .number, .message, .block1, .block2, .block3 {
-    -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-    -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-    -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-    -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-    transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-  }
-  .number {
-    margin-left: -3000px;
-  }
-  .message {
-    margin-left: -2500px;
-  }
-  .block1 {
-    margin-left: -2000px;
-    margin-top: 0;
-  }
-  .block2 {
-    margin-left: -1850px;
-  }
-  .block3 {
-    margin-left: -1500px;
-  }
-  .logo {
-    top: 41px;
-    opacity: 0;
-    .transition(opacity .25s ease-in .6s);
-    .animation(fact02-logo-out 1s .4s forwards);
+  
+  &.animate-out {
+    .number {
+      margin-left: -3000px;
+    }
+    .message {
+      margin-left: -2500px;
+    }
+    .block1 {
+      margin-left: -2000px;
+      margin-top: 0;
+    }
+    .block2 {
+      margin-left: -1850px;
+    }
+    .block3 {
+      margin-left: -1500px;
+    }
+    .logo {
+      top: 41px;
+      opacity: 0;
+      .transition(opacity .25s ease-in .6s);
+      .animation(fact02-logo-out 1s .4s forwards);
+    }
   }
 }
+
 @-webkit-keyframes fact02-logo-in {
   0% { top: -250px; }
   30% { top: 50px; }
@@ -541,9 +571,16 @@
 
 /* Fact =03 - NY Times */
 #fact03 {
+  .number {
+    width: 115px;
+    height: 127px;
+    background-position: -253px 0;
+    margin-left: -128px;
+  }
+}
+.on #fact03 {
   .number, .message, .block1 {
     background: url(/media/img/contribute/mozilla15/fact03-pads.png) no-repeat;
-    .transition-duration(2s);
   }
   .number {
     width: 119px;
@@ -568,51 +605,46 @@
     margin-left: 2500px;
     margin-top: 50px;
   }
-}
-#fact03.animate-in {
-  .number, .message, .block1 {
-    -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-    -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-    -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-    -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-    transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
+  
+  &.animate-in {
+    .number {
+      margin-left: -445px;
+    }
+    .message {
+      margin-left: -297px;
+    }
+    .block1 {
+      margin-left: 234px;
+      margin-top: 0;
+    }
   }
-  .number {
-    margin-left: -445px;
-  }
-  .message {
-    margin-left: -297px;
-  }
-  .block1 {
-    margin-left: 234px;
-    margin-top: 0;
-  }
-}
-#fact03.animate-out {
-  .number, .message, .block1 {
-    -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-    -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-    -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-    -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-    transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-  }
-  .number {
-    margin-left: -4000px;
-  }
-  .message {
-    margin-left: -3000px;
-  }
-  .block1 {
-    margin-left: -2000px;
-    margin-top: 90px;
+  
+  &.animate-out {
+    .number {
+      margin-left: -4000px;
+    }
+    .message {
+      margin-left: -3000px;
+    }
+    .block1 {
+      margin-left: -2000px;
+      margin-top: 90px;
+    }
   }
 }
 
 /* Fact =04 - Global community */
 #fact04 {
+  .number {
+    width: 98px;
+    height: 143px;
+    background-position: -368px 0;
+    margin-left: -135px;
+  }
+}
+.on #fact04 {
   .number, .message, .block1 {
     background: url(/media/img/contribute/mozilla15/fact04-pads.png) no-repeat;
-    .transition-duration(2s);
   }
   .number {
     width: 98px;
@@ -639,14 +671,8 @@
     margin-left: 2500px;
     margin-top: 60px;
   }
+  
   &.animate-in {
-    .number, .message, .block1 {
-      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-    }
     .number {
       margin-left: -457px;
       margin-top: 0;
@@ -662,14 +688,8 @@
       transition-delay: .2s;
     }
   }
+  
   &.animate-out {
-    .number, .message, .block1 {
-      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-    }
     .number {
       margin-left: -4500px;
       margin-top: 60px;
@@ -688,9 +708,16 @@
 
 /* Fact =05 - Addons */
 #fact05 {
+  .number {
+    width: 97px;
+    height: 102px;
+    background-position: -466px 0;
+    margin-left: -120px;
+  }
+}
+.on #fact05 {
   .number, .message, .block1, .block2, .block3, {
     background: url(/media/img/contribute/mozilla15/fact05-pads.png) no-repeat;
-    .transition-duration(2s);
   }
   .number {
     width: 96px;
@@ -731,14 +758,8 @@
     margin-left: 3300px;
     margin-top: 40px;
   }
+  
   &.animate-in {
-    .number, .message, .block1, .block2, .block3 {
-      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-    }
     .number {
       margin-top: 0;
       margin-left: -461px;
@@ -761,14 +782,8 @@
       .transition-delay(.5s);
     }
   }
+  
   &.animate-out {
-    .number, .message, .block1, .block2, .block3 {
-      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-    }
     .number {
       margin-left: -1840px;
     }
@@ -787,11 +802,19 @@
   }
 }
 
+
 /* Fact =06 - Privacy */
 #fact06 {
+  .number {
+    width: 149px;
+    height: 116px;
+    background-position: -563px 0;
+    margin-left: -162px;
+  }
+}
+.on #fact06 {
   .number, .message, .block1, .keyhole {
     background: url(/media/img/contribute/mozilla15/fact06-pads.png) no-repeat;
-    .transition-duration(2s);
   }
   .number {
     width: 178px;
@@ -830,13 +853,6 @@
     margin-left: 2800px;
   }
   &.animate-in {
-    .number, .message, .block1 {
-      -webkit-transition: opacity 1s cubic-bezier(0.86, 0.01, 0.86, 0.87), margin-left 2s cubic-bezier(0.6, -0.08, 0.6, 1), margin-top 2s cubic-bezier(0.6, -0.08, 0.6, 1);
-      -moz-transition: opacity 1s cubic-bezier(0.86, 0.01, 0.86, 0.87), margin-left 2s cubic-bezier(0.6, -0.08, 0.6, 1), margin-top 2s cubic-bezier(0.6, -0.08, 0.6, 1);
-      -o-transition: opacity 1s cubic-bezier(0.86, 0.01, 0.86, 0.87), margin-left 2s cubic-bezier(0.6, -0.08, 0.6, 1), margin-top 2s cubic-bezier(0.6, -0.08, 0.6, 1);
-      -ms-transition: opacity 1s cubic-bezier(0.86, 0.01, 0.86, 0.87), margin-left 2s cubic-bezier(0.6, -0.08, 0.6, 1), margin-top 2s cubic-bezier(0.6, -0.08, 0.6, 1);
-      transition: opacity 1s cubic-bezier(0.86, 0.01, 0.86, 0.87), margin-left 2s cubic-bezier(0.6, -0.08, 0.6, 1), margin-top 2s cubic-bezier(0.6, -0.08, 0.6, 1);
-    }
     .number {
       margin-left: -462px;
       margin-top: 0;
@@ -862,13 +878,6 @@
     }
   }
   &.animate-out {
-    .number, .message, .block1 {
-      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-    }
     .number {
       margin-left: -3200px;
       .keyhole {
@@ -886,13 +895,18 @@
 
 /* Fact =07 - l10n */
 #fact07 {
-  .number, .message, .block1 {
-    background: url(/media/img/contribute/mozilla15/fact07-pads.png) no-repeat;
-    .transition-duration(2s);
-  }
   .number {
     width: 124px;
     height: 143px;
+    background-position: 0 -138px;
+    margin-left: -142px;
+  }
+}
+.on #fact07 {
+  .number, .message, .block1 {
+    background: url(/media/img/contribute/mozilla15/fact07-pads.png) no-repeat;
+  }
+  .number {
     background-position: 0 0;
     top: 138px;
     margin-left: 1200px;
@@ -913,13 +927,6 @@
     margin-left: 2200px;
   }
   &.animate-in {
-    .number, .message, .block1 {
-      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-    }
     .number {
       margin-left: -463px;
     }
@@ -931,13 +938,6 @@
     }
   }
   &.animate-out {
-    .number, .message, .block1 {
-      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-    }
     .number {
       margin-left: -2200px;
     }
@@ -952,9 +952,16 @@
 
 /* Fact =08 - world record */
 #fact08 {
+  .number {
+    width: 91px;
+    height: 118px;
+    background-position: -138px -143px;
+    margin-left: -118px;
+  }
+}
+.on #fact08 {
   .number, .message, .block1, .block2 {
     background: url(/media/img/contribute/mozilla15/fact08-pads.png) no-repeat;
-    .transition-duration(2s);
   }
   .number {
     width: 90px;
@@ -985,14 +992,8 @@
     top: 141px;
     margin-left: 1100px;
   }
+  
   &.animate-in {
-    .number, .message, .block1, .block2 {
-      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-    }
     .number {
       margin-left: -279px;
     }
@@ -1006,14 +1007,8 @@
       margin-left: 295px;
     }
   }
+  
   &.animate-out {
-    .number, .message, .block1, .block2, .block3 {
-      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-    }
     .number {
       margin-left: -2200px;
     }
@@ -1030,10 +1025,9 @@
 }
 
 /* Fact =09 - Mozfest */
-#fact09 {
+.on #fact09 {
   .number, .message, .block1, .block2, .logo, .logo span {
     background: url(/media/img/contribute/mozilla15/fact09-pads.png) no-repeat;
-    .transition-duration(2s);
   }
   .number {
     width: 138px;
@@ -1089,14 +1083,8 @@
       .transform-origin(center center);
     }
   }
+  
   &.animate-in {
-    .number, .message, .block1, .block2 {
-      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-    }
     .number {
       margin-left: -454px;
     }
@@ -1119,14 +1107,8 @@
       transition: opacity .5s ease-in 1.5s, margin-top 1.6s cubic-bezier(.64,.01,.72,1.25) .8s;
     }
   }
+  
   &.animate-out {
-    .number, .message, .block1, .block2 {
-      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-    }
     .number {
       margin-left: -3200px;
     }
@@ -1171,10 +1153,9 @@
 }
 
 /* Fact =10 - Webmaker */
-#fact10 {
+.on #fact10 {
   .number, .message, .block1, .block2 {
     background: url(/media/img/contribute/mozilla15/fact10-pads.png) no-repeat;
-    .transition-duration(2s);
   }
   .number {
     width: 112px;
@@ -1205,14 +1186,8 @@
     background-position: -590px -150px;
     margin-left: 3000px;
   }
+  
   &.animate-in {
-    .number, .message, .block1, .block2 {
-      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-    }
     .number {
       margin-left: -458px;
     }
@@ -1236,14 +1211,8 @@
       transition-delay: .8s, .4s;
     }
   }
+  
   &.animate-out {
-    .number, .message, .block1, .block2 {
-      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-    }
     .number {
       margin-left: -3200px;
     }
@@ -1275,10 +1244,9 @@
 }
 
 /* Fact =11 - WebFWD */
-#fact11 {
+.on #fact11 {
   .number, .message, .block1, .logo {
     background: url(/media/img/contribute/mozilla15/fact11-pads.png) no-repeat;
-    .transition-duration(2s);
   }
   .number {
     width: 123px;
@@ -1304,7 +1272,6 @@
     top: 22px;
     margin-top: 90px;
     margin-left: 4000px;
-    .transition-duration(2s);
   }
   .logo {
     display: block;
@@ -1323,14 +1290,8 @@
     -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
     transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
   }
+  
   &.animate-in {
-    .number, .message, .block1 {
-      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-    }
     .number {
       margin-left: -455px;
     }
@@ -1347,14 +1308,8 @@
       .animation(fact11-logo-in 2s forwards 1s);
     }
   }
+  
   &.animate-out {
-    .number, .message, .block1, .block2 {
-       -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-    }
     .number {
       margin-left: -3200px;
     }
@@ -1415,10 +1370,9 @@
 }
 
 /* Fact =12 - MDN */
-#fact12 {
+.on #fact12 {
   .number, .message, .block1, .block2, .stars, .rocket {
     background: url(/media/img/contribute/mozilla15/fact12-pads.png) no-repeat;
-    .transition-duration(2s);
   }
   .number {
     width: 139px;
@@ -1475,14 +1429,8 @@
     margin-top: 500px;
     .transition-duration(0s);
   }
+  
   &.animate-in {
-    .number, .message, .block1, .block2 {
-      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-      transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1);
-    }
     .number {
       margin-left: -461px;
     }
@@ -1508,18 +1456,12 @@
     }
     .rocket {
       opacity: 1;
-      .transition(opacity 1s cubic-bezier(.86,.01,.86,.87) 1s);
+      .transition(opacity 1s cubic-bezier(.86,.01,.86,.87) .8s);
       .animation(fact12-rocket-in 1.2s .8s forwards);
     }
   }
+  
   &.animate-out {
-    .number, .message, .block1, .block2 {
-      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
-      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
-      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
-      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
-      transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
-    }
     .number {
       margin-left: -3000px;
     }
@@ -1613,10 +1555,9 @@
 }
 
 /* Fact =13 - <3 the web */
-#fact13 {
+.on #fact13 {
   .number, .message, .block1 {
     background: url(/media/img/contribute/mozilla15/fact13-pads.png) no-repeat;
-    .transition-duration(2s);
   }
   .number {
     width: 109px;
@@ -1640,14 +1581,8 @@
     top: 32px;
     margin-left: 2200px;
   }
+  
   &.animate-in {
-    .number, .message, .block1 {
-      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
-      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
-      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
-      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
-      transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
-    }
     .number {
       margin-left: -381px;
     }
@@ -1659,14 +1594,8 @@
       .transition-delay(.1s);
     }
   }
+  
   &.animate-out {
-    .number, .message, .block1 {
-      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
-      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
-      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
-      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
-      transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1) 0s;
-    }
     .number {
       margin-left: -2200px;
     }
@@ -1680,10 +1609,9 @@
 }
 
 /* Fact =14 - Firefox OS */
-#fact14 {
+.on #fact14 {
   .number, .message, .block1, .block2, .shadow, .phone, .fox {
     background: url(/media/img/contribute/mozilla15/fact14-pads.png) no-repeat;
-    .transition-duration(2s);
   }
   .shadow, .phone, .fox {
     display: block;
@@ -1753,14 +1681,8 @@
     opacity: 0;
     .transition-delay(0s);
   }
+  
   &.animate-in {
-    .number, .message, .block1, .block2, .fox {
-      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-    }
     .number {
       margin-left: -468px;
     }
@@ -1798,17 +1720,12 @@
       margin-left: 299px;
       margin-top: 0;
       opacity: 1;
+      .base-animate-in;
       .transition-delay(.15s);
     }
   }
+  
   &.animate-out {
-    .number, .message, .block1, .block2, .fox {
-      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-    }
     .number {
       margin-left: -3600px;
       margin-top: -90px;
@@ -1844,15 +1761,15 @@
     .fox {
       opacity: 0;
       margin-left: -2201px;
+      .base-animate-out;
     }
   }
 }
 
 /* Fact =15 - Thank you */
-#fact15 {
+.on #fact15 {
   .number, .message, .block1, .block2 {
     background-image: url(/media/img/contribute/mozilla15/fact15-pads.png);
-    .transition-duration(2s);
   }
   .number {
     width: 132px;
@@ -1888,13 +1805,6 @@
     margin-top: 50px;
   }
   &.animate-in {
-    .number, .message, .block1, .block2 {
-      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      transition: opacity 1s cubic-bezier(.86,.01,.86,.87), margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-    }
     .number {
       margin-left: -458px;
       margin-top: 0;
@@ -1913,13 +1823,6 @@
     }
   }
   &.animate-out {
-    .number, .message, .block1, .block2 {
-      -moz-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      -ms-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      -o-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-      transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
-    }
     .number {
       margin-left: -2200px;
     }
@@ -1935,92 +1838,92 @@
   }
 }
 
-
-/* Shift =backgrounds for each slide */
-/* Keeping this separate for further testing, need to work out the 05->01 transition */
-#fact01 .back,
-#fact06 .back,
-#fact11 .back {
-  background-image: url(/media/img/contribute/mozilla15/path-red.png);
-  background-position: 0 50%;
-}
-#fact01.animate-in .back,
-#fact06.animate-in .back,
-#fact11.animate-in .back {
-  background-position: -200px 50%;
-}
-#fact01.animate-out .back,
-#fact06.animate-out .back,
-#fact11.animate-out .back {
-  background-position: -400px 50%;
-}
-
-#fact02 .back,
-#fact07 .back,
-#fact12 .back {
-  background-image: url(/media/img/contribute/mozilla15/path-darkblue.png);
-  background-position: -200px 50%;
-}
-#fact02.animate-in .back,
-#fact07.animate-in .back,
-#fact12.animate-in .back {
-  background-position: -400px 50%;
-}
-#fact02.animate-out .back,
-#fact07.animate-out .back,
-#fact12.animate-out .back {
-  background-position: -600px 50%;
-}
-
-#fact03 .back,
-#fact08 .back,
-#fact13 .back {
-  background-image: url(/media/img/contribute/mozilla15/path-green.png);
-  background-position: -400px 50%;
-}
-#fact03.animate-in .back,
-#fact08.animate-in .back,
-#fact13.animate-in .back {
-  background-position: -600px 50%;
-}
-#fact03.animate-out .back,
-#fact08.animate-out .back,
-#fact13.animate-out .back {
-  background-position: -800px 50%;
-}
-
-#fact04 .back,
-#fact09 .back,
-#fact14 .back {
-  background-image: url(/media/img/contribute/mozilla15/path-lightblue.png);
-  background-position: -600px 50%;
-}
-#fact04.animate-in .back,
-#fact09.animate-in .back,
-#fact14.animate-in .back {
-  background-position: -800px 50%;
-}
-#fact04.animate-out .back,
-#fact09.animate-out .back,
-#fact14.animate-out .back {
-  background-position: -1000px 50%;
-}
-
-#fact05 .back,
-#fact10 .back,
-#fact15 .back {
-  background-image: url(/media/img/contribute/mozilla15/path-orange.png);
-  background-position: -800px 50%;
-}
-#fact05.animate-in .back,
-#fact10.animate-in .back,
-#fact15.animate-in .back {
-  background-position: -1000px 50%;
-}
-#fact05.animate-out .back,
-#fact10.animate-out .back,
-#fact15.animate-out .back {
-  background-position: -1200px 50%;
+.on {
+  /* Shift =backgrounds for each slide */
+  #fact01 .back,
+  #fact06 .back,
+  #fact11 .back {
+    background-image: url(/media/img/contribute/mozilla15/path-red.png);
+    background-position: 0 50%;
+  }
+  #fact01.animate-in .back,
+  #fact06.animate-in .back,
+  #fact11.animate-in .back {
+    background-position: -200px 50%;
+  }
+  #fact01.animate-out .back,
+  #fact06.animate-out .back,
+  #fact11.animate-out .back {
+    background-position: -400px 50%;
+  }
+  
+  #fact02 .back,
+  #fact07 .back,
+  #fact12 .back {
+    background-image: url(/media/img/contribute/mozilla15/path-darkblue.png);
+    background-position: -200px 50%;
+  }
+  #fact02.animate-in .back,
+  #fact07.animate-in .back,
+  #fact12.animate-in .back {
+    background-position: -400px 50%;
+  }
+  #fact02.animate-out .back,
+  #fact07.animate-out .back,
+  #fact12.animate-out .back {
+    background-position: -600px 50%;
+  }
+  
+  #fact03 .back,
+  #fact08 .back,
+  #fact13 .back {
+    background-image: url(/media/img/contribute/mozilla15/path-green.png);
+    background-position: -400px 50%;
+  }
+  #fact03.animate-in .back,
+  #fact08.animate-in .back,
+  #fact13.animate-in .back {
+    background-position: -600px 50%;
+  }
+  #fact03.animate-out .back,
+  #fact08.animate-out .back,
+  #fact13.animate-out .back {
+    background-position: -800px 50%;
+  }
+  
+  #fact04 .back,
+  #fact09 .back,
+  #fact14 .back {
+    background-image: url(/media/img/contribute/mozilla15/path-lightblue.png);
+    background-position: -600px 50%;
+  }
+  #fact04.animate-in .back,
+  #fact09.animate-in .back,
+  #fact14.animate-in .back {
+    background-position: -800px 50%;
+  }
+  #fact04.animate-out .back,
+  #fact09.animate-out .back,
+  #fact14.animate-out .back {
+    background-position: -1000px 50%;
+  }
+  
+  #fact05 .back,
+  #fact10 .back,
+  #fact15 .back {
+    background-image: url(/media/img/contribute/mozilla15/path-orange.png);
+    background-position: -800px 50%;
+  }
+  #fact05.animate-in .back,
+  #fact10.animate-in .back,
+  #fact15.animate-in .back {
+    background-position: -1000px 50%;
+  }
+  #fact05.animate-out .back,
+  #fact10.animate-out .back,
+  #fact15.animate-out .back {
+    background-position: -1200px 50%;
+  }
 }
 
 /* Tablet Layout: 760px */
@@ -2028,11 +1931,29 @@
 
   #contribute #masthead,
   #contribute .billboard,
-  #opportunities {
+  #opportunities,
+  #moz15 {
     width: @widthTablet - (@gridGutterWidth * 2);
     margin-left: auto;
     margin-right: auto;
   }
+  
+  #moz15 header {
+    width: 500px;
+    padding-left: 260px;
+    .title {
+      left: 0;
+      top: 30px;
+    }
+  }
+
+  #moz15 .cta {
+    width: @widthTablet - (@gridGutterWidth * 2);
+    p {
+      width: (@gridColumnWidthNarrow * 8) + (@gridGutterWidth * 7);
+    }
+  }
+
 
 }
 
@@ -2046,5 +1967,58 @@
     margin-left: auto;
     margin-right: auto;
   }
+
+  #moz15 header {
+    width: auto;
+    padding: 0 20px;
+    .title {
+      position: static;
+      margin: 0 auto 20px;
+    }
+    .intro {
+      padding: 20px 0 0;
+      border-left: 0;
+      border-top: 1px solid #bebbb8;
+    }
+  }
+
+  #moz15 .cta {
+    width: auto;
+    padding: 20px 0 0;
+    margin: 20px 20px 30px;
+    border-top: 1px solid #bebbb8;
+    p {
+      width: auto;
+    }
+  }
+
+}
+
+@media only screen and (max-width: @breakMobileLandscape) {
+  
+  #slideshow {
+    .slide {
+      padding: 10px 0;
+      .number {
+        width: auto;
+        height: auto;
+        text-indent: 0;
+        padding: 5px 12px;
+        border-radius: 5px;
+        background: gray none;
+        color: #fff;
+        font-weight: bold;
+        font-size: 26px;
+        margin: 10px 15px 5px 0;
+      }
+    }
+  }
+
+}
+
+/* Wide Mobile Layout: 480px */
+@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+
+
 
 }
