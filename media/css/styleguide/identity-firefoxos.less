@@ -149,3 +149,139 @@
     #swatch-lightgrey-grad .swatch { #gradient > .vertical(#eaeff2, #d4dde4); }
 }
 /* }}} */
+/* {{{ Firefox OS - common (Partners & Community so far...)  */
+.firefoxos-common {
+    .section {
+        .clearfix;
+        .divider;
+        &.last {
+            background: none;
+        }
+    }
+    .left-col {
+        .span_guide(3);
+        margin: 0 10px;
+    }
+    .right-col {
+        .span_guide(9);
+        .container {
+            padding: 0;
+        }
+    }
+    .split {
+        float: left;
+        width: 50%;
+    }
+    .example {
+        background: #fff;
+        padding: 40px;
+    }
+    .caption {
+        font-size: @smallFontSize;
+        font-style: italic;
+    }
+}
+/* }}} */
+/* {{{ Firefox OS - Partners  */
+.firefoxos-partners {
+    #licensed {
+        padding-bottom: 0;
+    }
+    .split {
+        text-align: center;
+        &.the-look {
+            width: 40%;
+        }
+        img {
+            display: block;
+            margin: 40px auto 0;
+        }
+    }
+    .based-on {
+        float: left;
+        width: 110px;
+        margin-right: 50px;
+        &.wordmark {
+            width: 132px;
+            margin-right: 18px;
+            padding-top: 33px;
+        }
+    }
+    .download {
+        .span_guide(3);
+        margin-right: 0;
+    }
+}
+/* }}} */
+/* {{{ Firefox OS - Community  */
+.firefoxos-community {
+    h3 {
+        font-size: 20px;
+    }
+    .split {
+        width: (320px - @baseLine);
+        padding-right: @baseLine;
+        &.example {
+            padding: @baseLine @baseLine 0;
+            position: relative;
+            width: (380px - (@baseLine * 2));
+        }
+    }
+    .caption {
+        position: absolute;
+        left: @baseLine;
+        width: 84px;
+    }
+    #caption-1 {
+        top: 124px;
+    }
+    #caption-2 {
+        top: 302px;
+    }
+    #caption-3 {
+        top: 447px;
+    }
+    #guidelines-example {
+        display: block;
+        float: right;
+        margin-top: 25px;
+    }
+    .artwork-list {
+        text-align: center;
+        float: left;
+        width: 220px;
+        margin-right: @baseLine;
+        &.last {
+            margin-right: 0;
+        }
+        li {
+            list-style-type: none;
+            img {
+                display: block;
+                margin-bottom: @baseLine;
+            }
+            .button-list {
+                margin-bottom: @baseLine;
+            }
+        }
+    }
+    #artwork .container {
+        padding: 0;
+    }
+    #examples {
+        position: relative;
+        clear: both;
+        .clearfix;
+        margin-top: @baseLine;
+        .box-arrow {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            margin-left: -11px;
+        }
+        .right-col {
+            .span_guide(8);
+        }
+    }
+}
+/* }}} */
