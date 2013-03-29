@@ -6,8 +6,8 @@ import os
 import codecs
 
 from django.conf import settings
-from django.core.cache import cache
 from django.conf.urls.defaults import url
+from django.core.cache import cache
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 
@@ -54,19 +54,17 @@ def page(name, tmpl, decorators=None, **kwargs):
     return url(pattern, _view, name=name)
 
 
-def hide_contrib_form(path, lang):
+def hide_contrib_form(lang):
     """
     If the lang file for a locale exists and has the correct comment returns
     True, and False otherwise.
-    :param path: the relative lang file name
     :param lang: the language code
     :return: bool
     """
-    rel_path = os.path.join('locale', lang, '%s.lang' % path)
+    rel_path = os.path.join('locale', lang, 'mozorg/contribute.lang')
     cache_key = 'hide:%s' % rel_path
     hide_form = cache.get(cache_key)
-    hide_form = False
-    if hide_form is False:
+    if hide_form is None:
         hide_form = False
         fpath = os.path.join(settings.ROOT, rel_path)
         try:
@@ -77,6 +75,8 @@ def hide_contrib_form(path, lang):
                     if line.startswith('##'):
                         if line.startswith('## hide_form ##'):
                             hide_form = True
+                    else:
+                        break
         except IOError:
             pass
 
