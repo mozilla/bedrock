@@ -3,8 +3,11 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import os
+import codecs
 
+from django.conf import settings
 from django.conf.urls.defaults import url
+from django.core.cache import cache
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 
@@ -49,3 +52,34 @@ def page(name, tmpl, decorators=None, **kwargs):
                 log.exception('decorators not iterable or does not contain callable items')
 
     return url(pattern, _view, name=name)
+
+
+def hide_contrib_form(lang):
+    """
+    If the lang file for a locale exists and has the correct comment returns
+    True, and False otherwise.
+    :param lang: the language code
+    :return: bool
+    """
+    rel_path = os.path.join('locale', lang, 'mozorg/contribute.lang')
+    cache_key = 'hide:%s' % rel_path
+    hide_form = cache.get(cache_key)
+    if hide_form is None:
+        hide_form = False
+        fpath = os.path.join(settings.ROOT, rel_path)
+        try:
+            with codecs.open(fpath, 'r', 'utf-8', errors='replace') as lines:
+                for line in lines:
+                    # Filter out Byte order Mark
+                    line = line.replace(u'\ufeff', '')
+                    if line.startswith('##'):
+                        if line.startswith('## hide_form ##'):
+                            hide_form = True
+                    else:
+                        break
+        except IOError:
+            pass
+
+        cache.set(cache_key, hide_form, settings.DOTLANG_CACHE)
+
+    return hide_form
