@@ -36,6 +36,9 @@ urlpatterns = patterns('',
     # L10n example.
     (r'^l10n_example/', include('bedrock.l10n_example.urls')),
 
+    # Facebook Apps
+    (r'^facebookapps/', include('bedrock.facebookapps.urls')),
+
     # Uncomment the admin/doc line below to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
 

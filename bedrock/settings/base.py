@@ -51,6 +51,7 @@ SUPPORTED_NONLOCALES = [
 
 ALLOWED_HOSTS = [
     'www.mozilla.org',
+    'www.ipv6.mozilla.org',
     'www.allizom.org',
 ]
 
@@ -274,6 +275,10 @@ MINIFY_BUNDLES = {
         'partners-ie7': (
             'css/firefox/partners/ie7.less',
         ),
+        'facebookapps_downloadtab': (
+            'css/libs/h5bp_main.css',
+            'css/facebookapps/downloadtab.less',
+        ),
     },
     'js': {
         'site': (
@@ -454,7 +459,19 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.spritely-0.6.1.js',
             'js/firefox/partners/desktop.js',
         ),
-
+        'facebookapps_redirect': (
+            'js/libs/jquery-1.7.1.min.js',
+            'js/facebookapps/redirect.js',
+        ),
+        'facebookapps_downloadtab': (
+            'js/facebookapps/downloadtab-init.js',
+            'js/facebookapps/Base.js',
+            'js/facebookapps/Facebook.js',
+            'js/facebookapps/Theater.js',
+            'js/facebookapps/Slider.js',
+            'js/facebookapps/App.js',
+            'js/facebookapps/downloadtab.js',
+        ),
     }
 }
 
@@ -536,6 +553,7 @@ INSTALLED_APPS = (
     '%s.research' % PROJECT_MODULE,
     '%s.styleguide' % PROJECT_MODULE,
     '%s.tabzilla' % PROJECT_MODULE,
+    '%s.facebookapps' % PROJECT_MODULE,
 
     # libs
     'lib.l10n_utils',
@@ -601,3 +619,14 @@ AURORA_STUB_INSTALLER = False
 
 # Google Analytics
 GA_ACCOUNT_CODE = ''
+
+FACEBOOK_LOCALES = ['en-US', 'es-ES', 'pt-BR', 'id', 'de']
+FACEBOOK_PAGE_NAMESPACE = 'DUMMY_PAGE_NAMESPACE'
+FACEBOOK_APP_ID = 'DUMMY_APP_ID'
+
+# FACEBOOK_TAB_URL is lazily evaluated because it depends on the namespace
+# and app ID settings in local settings.
+def facebook_tab_url_lazy():
+    from django.conf import settings
+    return '//www.facebook.com/{}/app_{}'.format(settings.FACEBOOK_PAGE_NAMESPACE, settings.FACEBOOK_APP_ID)
+FACEBOOK_TAB_URL = lazy(facebook_tab_url_lazy, str)()
