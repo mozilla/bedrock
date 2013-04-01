@@ -1,0 +1,122 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{# firstrun for nightlies #}
+
+{% extends "/firefox/base-resp.html" %}
+
+{% block site_css %}
+  {{ css('nightly_firstrun') }}
+{% endblock %}
+
+{% add_lang_files "firstrun" "mobile" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{ _('Firefox Nightly First Run Page') }}{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+{% block body_id %}firefox-firstrun{% endblock %}
+
+{% block site_header_nav %}{% endblock %}
+{% block site_header_logo %}{% endblock %}
+
+{% block content %}
+<h1 id="firstrun-header">{{ _('Firefox Nightlies') }}</h1>
+
+
+<div id="main-content">
+  <article class="main-column">
+  <p>{{ _('Thank you for trying a nightly build and helping improve future versions of Firefox.  Learn more about how you can get involved with our testing and developer community.') }}</p>
+
+  <div id="video-player" class="mozilla-video-control mozilla-video-shadow">
+    <video
+      controls="controls"
+      poster="{{ media('/img/contribute/nightly_video_poster.jpg') }}"
+      height="360"
+      width="640">
+        <source src="http://videos-cdn.mozilla.net/serv/qa/qa-360-mp4.webm" type="video/webm"/>
+        <source src="http://videos-cdn.mozilla.net/serv/qa/qa-360p-mp4.theora.ogv" type="video/ogg"/>
+        <source src="http://videos-cdn.mozilla.net/serv/qa/qa-360-mp4.mp4" type="video/mp4"/>
+    </video>
+  </div>
+
+  <h2>Links In Video</h2>
+
+  <ul class="unstyled">
+    <li><a href="http://widget.mibbit.com/?server=irc.mozilla.org&channel=%23testday">{{ _('Attend a Test Day every Friday on #testday') }}</a></li>
+    <li><a href="http://www.mozilla.org/firefox/channel/#aurora/aurora-desktop">{{ _('Download Firefox Aurora') }}</a></li>
+    <li><a href="https://input.mozilla.com/feedback">{{ _('Submit feedback') }}</a></li>
+    <li><a href="https://bugzilla.mozilla.org/enter_bug.cgi?product=Firefox">{{ _('Report bugs in Bugzilla') }}</a></li>
+    <li><a href="https://wiki.mozilla.org/Performance/Telemetry">{{ _('Submit performance data') }}</a></li>
+  </ul>
+
+  <h2>More Ways To Test</h2>
+
+  <ul class="unstyled">
+    <li><a href="https://developer.mozilla.org/en/Crash_reporting">{{ _('Crash reporting') }}</a></li>
+    <li><a href="https://litmus.mozilla.org/">{{ _('Run test cases in Litmus') }}</a></li>
+  </ul>
+
+  <h2>Stay In Touch</h2>
+
+  <ul class="unstyled">
+    <li><a href="https://mail.mozilla.org/listinfo/nightly-testers">{{ _('Subscribe to Nightly-Testers on Desktop mailing list') }}</a></li>
+    <li><a href="https://mail.mozilla.org/listinfo/android-mobile-nightly-testers">{{ _('Subscribe to Nightly-Testers on Android mailing list') }}</a></li>
+  </ul>
+
+  <h2>Useful Add-ons</h2>
+
+  <ul class="unstyled">
+    <li><a href="https://addons.mozilla.org/firefox/addon/nightly-tester-tools/">{{ _('Nightly Tester Tools') }}</a></li>
+    <li><a href="https://addons.mozilla.org/firefox/addon/add-on-compatibility-reporter/">{{ _('Add-on Compatibility Reporter') }}</a></li>
+    <li><a href="https://addons.mozilla.org/firefox/addon/mozmill/">{{ _('MozMill') }}</a></li>
+  </ul>
+
+  <h2>Other Resources</h2>
+
+  <ul class="unstyled">
+    <li><a href="http://hg.mozilla.org/mozilla-central/pushloghtml?startdate=48+hours+ago&amp;enddate=now">{{ _('Last 48 hours of check-ins') }}</a></li>
+    <li><a href="http://www.squarefree.com/burningedge/">{{ _('The Burning Edge blog') }}</a></li>
+    <li><a href="http://forums.mozillazine.org/viewforum.php?f=23">{{ _('Firefox Builds forum') }}</a></li>
+    <li><a href="https://wiki.mozilla.org/Releases">{{ _('Release information') }}</a></li>
+    <li><a href="https://wiki.mozilla.org/Features/Release_Tracking">{{ _('Firefox Flight Tracking') }}</a></li>
+  </ul>
+
+</article>
+
+  <aside class="sidebar reference container">
+      <h4><a href="/contribute/">{{ _('Get Involved') }}</a></h4>
+        <ul class="unstyled">
+          <li class="first"><a href="/contribute/areas.html">{{ _('Area of
+            Interest') }}</a></li>
+          <li><a href="/contribute/timeavailable.html">{{ _('Time Available') }}</a></li>
+          <li><a href="/contribute/local/">{{ _('Mozilla Near You') }}</a></li>
+          <li><a href="http://www.mozilla.com/en-US/newsletter/about_mozilla/">{{ _('Contributor
+            Newsletter') }}</a></li>
+        </ul>
+  </aside>
+  </div> <!-- main-content -->
+
+{% endblock %}
+
+{% block email_form %}
+  <div id="email-form-wrapper" class="billboard">
+    {{ super() }}
+  </div>
+{% endblock%}
+
+{% block site_footer %}
+<section id="colophon" class="billboard">
+  <nav>
+    <ul class="primary">
+      <li> <a href="{{ php_url('/firefox/notes') }}">{{ _('Release Notes') }}</a></li>
+      <li><a href="{{ url('firefox.features') }}">{{ _('Firefox Features') }}</a></li>
+      <li><a href="http://support.mozilla.com/home">{{ _('Firefox Help') }}</a></li>
+    </ul>
+    <ul class="secondary">
+      <li><a href="{{ php_url('/privacy-policy.html') }}">{{ _('Privacy Policy') }}</a></li>
+      <li><a href="{{ php_url('/about/legal.html') }}">{{ _('Legal Notices') }}</a></li>
+    </ul>
+  </nav>
+</section>
+{% endblock %}
