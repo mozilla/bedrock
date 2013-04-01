@@ -88,7 +88,7 @@ DOWNLOADTAB.classes.App = (function (singleton) {
         // the 'click here' link.
         // TODO: Remove and generate link in bedrock.
         $('#direct-download-link').attr(
-            'href', $('.download-list li:visible .download-link').attr('href')
+            'href', $('.download-list .os_' + site.platform + ' .download-link').attr('href')
         );
 
         $('#direct-download-link, .download-link').on('click', function(event) {
@@ -97,14 +97,16 @@ DOWNLOADTAB.classes.App = (function (singleton) {
 
             event.preventDefault();
 
-            downloadUrl = $(event.currentTarget).attr('href');
-            self.trackRedirect(downloadUrl, this.virtualUrl);
-
             $activeScene = self.theater.getActiveScene();
-
             if ($activeScene.attr('id') !== 'scene2') {
                 self.theater.showScene(2);
             }
+
+            // Delay download so window.location doesn't block rendering
+            window.setTimeout(function() {
+                downloadUrl = $(event.currentTarget).attr('href');
+                self.trackRedirect(downloadUrl, this.virtualUrl);
+            }, 500);
         });
     };
 
