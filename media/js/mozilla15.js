@@ -15,7 +15,7 @@
         nextButton: '.next',
         prevButton: '.prev',
         autoPlay: true,
-        autoPlayDelay: 7000,
+        autoPlayDelay: 8500,
         pauseOnHover: true,
         moveActiveFrameToTop: false,
         fadeFrameWhenSkipped: false,
