@@ -22,7 +22,6 @@
         animateStartingFrameIn: true,        
         reverseAnimationsWhenNavigatingBackwards: true,
         preventDelayWhenReversingAnimations: true,
-        swipePreventsDefault: true,
         swipeEvents: {
             left: "next",
             right: "prev",
