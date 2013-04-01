@@ -11,6 +11,25 @@
 
 {% block extrahead %}
   {{ css('contribute') }}
+
+  {% if has_moz15 %}
+    {# OpenGraph Metadata #}
+    <meta property="og:title" content="{{_('Get Involved: Volunteer Opportunities at Mozilla')}}">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="{{ media('img/contribute/mozilla15/mozilla15-badge.png') }}">
+    <meta property="og:url" content="{{ request.build_absolute_uri() }}">
+    <meta property="og:site_name" content="{{ _('Mozilla.org') }}">
+    <meta property="og:description" content="
+    {% trans %}
+      Mozilla exists to promote openness, innovation and opportunity on the Internet.
+    {% endtrans %}
+    {% trans %}
+      We’ve been doing it for 15 years and the following 15 facts offer a look at who
+      we are, including some of our biggest achievements and milestones. But in some
+      ways we’re just getting started, exploring new technology, entering new areas
+      and reaching new users every day.
+    {% endtrans %}">
+  {% endif %}
 {% endblock %}
 
 {% block js %}
