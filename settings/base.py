@@ -178,6 +178,10 @@ MINIFY_BUNDLES = {
             'css/sandstone/video.less',
             'css/firefox/firstrun.less',
         ),
+        'nightly_firstrun': (
+            'css/sandstone/video.less',
+            'css/firefox/nightly_firstrun.less',
+        ),
         'firefox_fx': (
             'css/firefox/fx.less',
             'css/sandstone/video.less',
