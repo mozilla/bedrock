@@ -239,6 +239,9 @@ MINIFY_BUNDLES = {
         'persona': (
             'css/persona.less',
         ),
+        'powered-by': (
+            'css/powered-by.less',
+        ),
         'privacy': (
             'css/privacy.less',
         ),
