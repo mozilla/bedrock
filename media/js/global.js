@@ -5,10 +5,6 @@
 
 // download buttons
 
-if (typeof(dcsMultiTrack) === 'undefined') {
-    dcsMultiTrack = function(){};
-}
-
 /**
  * A special function for IE.  Without this hack there is no prompt to download after they click.  sigh.
  * bug 393263
@@ -29,15 +25,6 @@ function init_download_links() {
     $('.download-link').each(function() {
         var $el = $(this);
         $el.click(function() {
-            dcsMultiTrack('DCS.dcssip',
-                          'www.mozilla.org',
-                          'DCS.dcsuri',
-                          window.location.pathname,
-                          'WT.ti', 'Link: Get Firefox',
-                          'WT.dl', 99,
-                          'WT.nv', 'Content',
-                          'WT.ac', 'Download Firefox');
-
             trigger_ie_download($el.data('direct-link'));
         });
     });
@@ -89,7 +76,7 @@ function getFirefoxMasterVersion()
     return version;
 }
 
-        
+
 // Create text translation function using #strings element.
 var $strings = $('#strings');
 window.trans = function trans(stringId) {
