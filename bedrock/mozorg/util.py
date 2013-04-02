@@ -8,15 +8,20 @@ import codecs
 from django.conf import settings
 from django.conf.urls.defaults import url
 from django.core.cache import cache
-from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
 from funfactory.urlresolvers import reverse
 from lib import l10n_utils
 
+try:
+    import newrelic.agent
+except ImportError:
+    newrelic = False
+
 
 log = commonware.log.getLogger('mozorg.util')
+
 
 def page(name, tmpl, decorators=None, **kwargs):
     # The URL pattern is the name with a forced trailing slash if not
@@ -36,6 +41,10 @@ def page(name, tmpl, decorators=None, **kwargs):
     # This is for graphite so that we can differentiate pages
     _view.page_name = name
 
+    if newrelic:
+        # Name this in New Relic to differentiate pages
+        newrelic.agent.set_transaction_name(
+            'mozorg.util.page:' + name.replace('.', '_'))
 
     # Apply decorators
     if decorators:
@@ -49,7 +58,8 @@ def page(name, tmpl, decorators=None, **kwargs):
                 for decorator in reversed(decorators):
                     _view = decorator(_view)
             except TypeError:
-                log.exception('decorators not iterable or does not contain callable items')
+                log.exception('decorators not iterable or does not contain '
+                              'callable items')
 
     return url(pattern, _view, name=name)
 
