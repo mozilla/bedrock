@@ -66,7 +66,7 @@ class PrivacyWidget(widgets.CheckboxInput):
     it should be standardized"""
 
     def render(self, name, value, attrs=None):
-        attrs['required'] = 'true'
+        attrs['required'] = 'required'
         input_txt = super(PrivacyWidget, self).render(name, value, attrs)
 
         policy_txt = _(u'I’m okay with you handling this info as you explain '
@@ -90,7 +90,7 @@ NEWSLETTER_CHOICES = (('app-dev',) * 2,
 class NewsletterForm(forms.Form):
     newsletter = forms.ChoiceField(choices=NEWSLETTER_CHOICES,
                                    widget=forms.HiddenInput)
-    email = forms.EmailField(widget=EmailInput(attrs={'required': 'true'}))
+    email = forms.EmailField(widget=EmailInput(attrs={'required': 'required'}))
     fmt = forms.ChoiceField(widget=forms.RadioSelect(renderer=SideRadios),
                             choices=FORMATS,
                             initial='H')
@@ -118,14 +118,14 @@ class NewsletterForm(forms.Form):
 
 
 class ContributeForm(forms.Form):
-    email = forms.EmailField(widget=EmailInput(attrs={'required': 'true'}))
+    email = forms.EmailField(widget=EmailInput(attrs={'required': 'required'}))
     privacy = forms.BooleanField(widget=PrivacyWidget)
     newsletter = forms.BooleanField(required=False)
     interest = forms.ChoiceField(
         choices=INTEREST_CHOICES,
-        widget=forms.Select(attrs={'required': 'true'}))
+        widget=forms.Select(attrs={'required': 'required'}))
     comments = forms.CharField(
-        widget=forms.widgets.Textarea(attrs={'required': 'true',
-                                             'rows': '',
-                                             'cols': ''}))
+        widget=forms.widgets.Textarea(attrs={'required': 'required',
+                                             'rows': '4',
+                                             'cols': '30'}))
     captcha = ReCaptchaField(attrs={'theme': 'clean'})
