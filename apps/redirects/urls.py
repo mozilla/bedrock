@@ -69,4 +69,6 @@ urlpatterns = patterns('',
 
     # Bug 822817 /telemetry/ -> http://wiki.mozilla.org/Telemetry/FAQ
     redirect(r'telemetry/$', 'http://wiki.mozilla.org/Telemetry/FAQ'),
+    #Bug 856081 /about/drivers.html to  https://wiki.mozilla.org/Firefox/Drivers
+    redirect(r'about/drivers\.html', 'https://wiki.mozilla.org/Firefox/Drivers'),
 )
