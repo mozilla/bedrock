@@ -7,8 +7,6 @@
 import os
 
 from django.conf import settings
-from django.core.urlresolvers import clear_url_caches
-from django.test.client import Client
 
 from mock import patch
 from nose.tools import ok_
@@ -21,10 +19,6 @@ ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test_files')
 
 @patch.object(settings, 'ROOT', ROOT)
 class TestHideContribForm(TestCase):
-    def setUp(self):
-        clear_url_caches()
-        self.client = Client()
-
     def test_lang_file_is_hiding(self):
         """
         `hide_contrib_form` should return true if lang file has the
