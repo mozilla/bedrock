@@ -1,0 +1,82 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "firefox/base-resp.html" %}
+
+{% block extrahead %}
+<meta name="robots" content="noindex">
+{% endblock %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{ _('Download Firefox') }}{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+{% block body_id %}firefox-download{% endblock %}
+
+{% block site_header_nav %}{% endblock %}
+{% block site_header_logo %}{% endblock %}
+
+{% block site_css %}
+  {{ css('firefox_download') }}
+{% endblock %}
+
+{% block js %}
+  {{ js('firefox_download') }}
+{% endblock %}
+
+{% block content %}
+<div id="main-feature">
+  <h1>{{ _('Welcome to the only browser <em>that puts you first.</em>') }}</h1>
+  <h3>{{ _('Thanks for downloading Firefox! As a non-profit, we’re free to innovate on your behalf without any pressure to compromise. You’re going to love the difference.') }}</h3>
+</div>
+
+<main id="main-content" class="billboard">
+
+  <div class="install-steps" id="install-steps-default">
+    <p>
+      {% trans link_direct='TODO' %}
+        Your download should begin automatically. If not, <a {{ link_direct }}>click here</a>. It could take a few minutes, but it’s worth the wait.
+      {% endtrans%}
+    </p>
+  </div>
+
+  <ol class="install-steps" id="install-steps-windows">
+    <li class="one">
+      <p>
+        {% trans link_direct='TODO' %}
+          Your download should begin automatically. If not, <a {{ link_direct }}>click here</a>. It could take a few minutes, but it’s worth the wait.
+        {% endtrans%}
+      </p>
+    </li>
+    <li class="two">
+      <p>{{ _('Click Run to launch the Mozilla Firefox setup wizard.') }}</p>
+      <p class="note">{{ _('Then, just follow the steps (we’ve made the process as painless as possible).') }}</p>
+    </li>
+    <li class="three">
+      <p>{{ _('Now you’re ready to leap boldly into a new era of Web surfing.') }}</p>
+      <p class="note">{{ _('Double-click on the Firefox icon whenever you want to go online.') }}</p>
+    </li>
+  </ol>
+
+  <ol class="install-steps" id="install-steps-osx">
+    <li class="one">
+      <p>
+        {% trans link_direct='#TODO' %}
+          Your download should begin automatically. If not, <a href="{{ link_direct }}">click here</a>. It could take a few minutes, but it’s worth the wait.
+        {% endtrans%}
+      </p>
+    </li>
+    <li class="two">
+      <p>{{ _('When prompted, drag the Firefox icon into the image of your Applications folder.') }}</p>
+    </li>
+    <li class="three">
+      <p>{{ _('Drag the Firefox icon from the Applications folder into the dock. Then, just click on Firefox whenever you want to use the web!') }}</p>
+    </li>
+  </ol>
+
+</main>
+{% endblock %}
+
+{% block site_footer %}
+  {% include 'firefox/includes/simple_footer.html' %}
+{% endblock %}
