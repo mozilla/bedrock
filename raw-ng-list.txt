@@ -29,7 +29,7 @@ mozilla.wishlist                        For discussions of future ideas, ranging
 firefox-dev                             For development of Firefox, a lightweight browser built on the Mozilla platform.
 mozilla.dev.apps.thunderbird            For development of Thunderbird, an email client built on the Mozilla platform.
 tb-planning                             For development of Thunderbird, an email client built on the Mozilla platform.
-mozilla.dev.platforms.mobile            For discussions about the <a href="http://wiki.mozilla.org/Mobile">Mozilla platform on mobile devices</a>, e.g. Firefox for Android.
+mobile-firefox-dev                      For discussions about the <a href="http://wiki.mozilla.org/Mobile">Mozilla platform on mobile devices</a>, e.g. Firefox for Android.
 mozilla.dev.b2g                         For Boot2Gecko (Firefox OS), Mozilla's effort to build a mobile platform powered by the Open Web. (Moderated)
 mozilla.dev.gaia                        For Gaia, the HTML5 app suite for Firefox OS. (Moderated)
 mozilla.dev.marketplace                 For development of the Mozilla Marketplace and addons.mozilla.org. (Moderated)
