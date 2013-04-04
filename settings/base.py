@@ -55,6 +55,7 @@ SUPPORTED_NONLOCALES = [
 
 ALLOWED_HOSTS = [
     'www.mozilla.org',
+    'www.ipv6.mozilla.org',
     'www.allizom.org',
 ]
 
@@ -112,6 +113,7 @@ MINIFY_BUNDLES = {
         'contribute': (
             'css/contribute.less',
             'css/sandstone/video-resp.less',
+            'css/mozilla15.less',
         ),
         'contribute-page': (
             'css/contribute-page.less',
@@ -237,6 +239,9 @@ MINIFY_BUNDLES = {
         'persona': (
             'css/persona.less',
         ),
+        'powered-by': (
+            'css/powered-by.less',
+        ),
         'privacy': (
             'css/privacy.less',
         ),
@@ -287,6 +292,10 @@ MINIFY_BUNDLES = {
         'partners-ie7': (
             'css/firefox/partners/ie7.less',
         ),
+        'facebookapps_downloadtab': (
+            'css/libs/h5bp_main.css',
+            'css/facebookapps/downloadtab.less',
+        ),
     },
     'js': {
         'site': (
@@ -313,6 +322,8 @@ MINIFY_BUNDLES = {
             'js/mozilla-input-placeholder.js',
         ),
         'contribute': (
+            'js/libs/jquery.sequence.js',
+            'js/mozilla15.js',
             'js/contribute-page.js',
             'js/mozilla-pager.js',
             'js/mozilla-video-tools.js',
@@ -467,7 +478,19 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.spritely-0.6.1.js',
             'js/firefox/partners/desktop.js',
         ),
-
+        'facebookapps_redirect': (
+            'js/libs/jquery-1.7.1.min.js',
+            'js/facebookapps/redirect.js',
+        ),
+        'facebookapps_downloadtab': (
+            'js/facebookapps/downloadtab-init.js',
+            'js/facebookapps/Base.js',
+            'js/facebookapps/Facebook.js',
+            'js/facebookapps/Theater.js',
+            'js/facebookapps/Slider.js',
+            'js/facebookapps/App.js',
+            'js/facebookapps/downloadtab.js',
+        ),
     }
 }
 
@@ -550,6 +573,7 @@ INSTALLED_APPS = (
     'research',
     'styleguide',
     'tabzilla',
+    'facebookapps',
 
     # libs
     'l10n_utils',
@@ -592,6 +616,10 @@ LOCALES_WITH_TRANSITION = ['en-US', 'af', 'ar', 'ast', 'be', 'bg',
                            'sr', 'sv-SE', 'ta', 'ta-LK', 'te', 'th',
                            'tr', 'uk', 'vi', 'zh-CN', 'zh-TW']
 
+# Locales showing the 15th Anniversary slideshow on /contribute
+LOCALES_WITH_MOZ15 = ['en-US', 'en-GB', 'de', 'es-ES', 'fr',
+                      'id', 'nl', 'pt-BR', 'zh-TW', 'zh-CN',]
+
 # reCAPTCHA keys
 RECAPTCHA_PUBLIC_KEY = ''
 RECAPTCHA_PRIVATE_KEY = ''
@@ -611,3 +639,14 @@ AURORA_STUB_INSTALLER = False
 
 # Google Analytics
 GA_ACCOUNT_CODE = ''
+
+FACEBOOK_LOCALES = ['en-US', 'es-ES', 'pt-BR', 'id', 'de']
+FACEBOOK_PAGE_NAMESPACE = 'DUMMY_PAGE_NAMESPACE'
+FACEBOOK_APP_ID = 'DUMMY_APP_ID'
+
+# FACEBOOK_TAB_URL is lazily evaluated because it depends on the namespace
+# and app ID settings in local settings.
+def facebook_tab_url_lazy():
+    from django.conf import settings
+    return '//www.facebook.com/{}/app_{}'.format(settings.FACEBOOK_PAGE_NAMESPACE, settings.FACEBOOK_APP_ID)
+FACEBOOK_TAB_URL = lazy(facebook_tab_url_lazy, str)()

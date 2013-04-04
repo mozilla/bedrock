@@ -3,6 +3,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
 
 import basket
 import l10n_utils
@@ -10,7 +11,7 @@ from commonware.decorators import xframe_allow
 
 from mozorg import email_contribute
 from mozorg.forms import ContributeForm, NewsletterForm
-
+from mozorg.util import hide_contrib_form
 
 @xframe_allow
 def hacks_newsletter(request):
@@ -73,7 +74,9 @@ def contribute(request, template, return_to_form):
                               'contribute_success': contribute_success,
                               'newsletter_form': newsletter_form,
                               'newsletter_success': newsletter_success,
-                              'return_to_form': return_to_form})
+                              'return_to_form': return_to_form,
+                              'hide_form': hide_contrib_form(request.locale),
+                              'has_moz15': locale in settings.LOCALES_WITH_MOZ15})
 
 
 @xframe_allow

@@ -71,11 +71,25 @@
       </a>
     </div>
 
+    <div class="pager-page" id="promo-mozilla15">
+      <script>// <![CDATA[
+        document.getElementById('promo-mozilla15').id = 'page-promo-mozilla15';
+      // ]]></script>
+      <a href="{{ url('mozorg.contribute')  }}?icn=hpromo2" class="container">
+        <img src="{{ media('img/home/promo-mozilla15.jpg') }}" alt="">
+        <div class="content">
+          <h3>{{_('Mozilla turns 15!')}}</h3>
+          <h4>{{_('Help us celebrate with a look at who we are and what we’ve accomplished.')}}</h4>
+          <p class="go">{{_('See all 15 facts')}}</p>
+        </div>
+      </a>
+    </div>
+
     <div class="pager-page" id="promo-flicksvideo">
       <script>// <![CDATA[
         document.getElementById('promo-flicksvideo').id = 'page-promo-flicksvideo';
       // ]]></script>
-      <img id="promo-flicks-keyframe" src="{{ media('img/home/promo-flicks-ic-video-thumb.jpg') }}" alt="{{_('Play Video')}}" tabindex="0" role="button" />
+      <img id="promo-flicks-keyframe" src="{{ media('img/home/promo-flicks-allthree-video-thumb.jpg') }}" alt="{{_('Play Video')}}" tabindex="0" role="button" />
       <a href="https://firefoxflicks.mozilla.org/" class="container">
         <div class="content">
           <h3>{{_('You’re the director. Mobile is the star.')}}</h3>
@@ -98,7 +112,7 @@
       <script>// <![CDATA[
       document.getElementById('promo-android').id = 'page-promo-android';
       // ]]></script>
-      <a href="{{ url('firefox.fx') }}?WT.mc_id=moandroid&amp;WT.mc_ev=click#mobile" class="container">
+      <a href="{{ url('firefox.fx') }}" class="container">
         <img src="{{ media('img/home/promo-android.jpg') }}" alt="">
         <div class="content">
           {# L10n: Firefox for Android tagline. #}
@@ -115,6 +129,7 @@
     <li><a href="#p1">●</a></li>
     <li><a href="#p2">●</a></li>
     <li><a href="#p3">●</a></li>
+    <li><a href="#p4">●</a></li>
   </ul>
 
 </section>
@@ -126,13 +141,13 @@
     <h3>{{ _('In the news') }}</h3>
     <ul>
       <li>
+        <h4><a href="https://blog.mozilla.org/privacy/2013/02/14/cyber-security-heating-up-on-both-sides-of-the-atlantic/">{{ _('Cyber-security heating up on both sides of the Atlantic') }}</a></h4>
+      </li>
+      <li>
         <h4><a href="https://blog.mozilla.org/blog/2013/02/25/mobilizing-mozilla-blaze-your-own-path/">{{ _('Mobilizing Mozilla: Blaze Your Own Path') }}</a></h4>
       </li>
       <li>
         <h4><a href="https://blog.mozilla.org/blog/2013/02/24/mozilla-unlocks-the-power-of-the-web-on-mobile-with-firefox-os/">{{ _('Mozilla Unlocks the Power of the Web on Mobile with Firefox OS') }}</a></h4>
-      </li>
-      <li>
-        <h4><a href="https://blog.mozilla.org/blog/2013/02/24/webrtc-ringing-a-mobile-phone-near-you/">{{ _('WebRTC – Ringing A Mobile Phone Near You') }}</a></h4>
       </li>
     </ul>
     <a href="https://blog.mozilla.org/" id="all-news">{{ _('See all news »') }}</a>

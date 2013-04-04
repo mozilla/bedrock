@@ -64,7 +64,7 @@ FUNCTIONAL_AREAS = (
     fa('education',
         _('Education'),
         'Education',
-        ['michelle@mozillafoundation.org'],
+        ['joinmozilla@mozilla.org'],
     ),
     fa('other',
         _('Other'),
@@ -89,12 +89,15 @@ FUNCTIONAL_AREAS_DICT = dict((area.id, area) for area in FUNCTIONAL_AREAS)
 
 LOCALE_CONTACTS = {
     'bn-BD': ['mahayalamkhan@gmail.com'],
+    'de'   : ['getinvolved@camp-firefox.de'],
     'fr'   : ['contact@mozfr.org'],
     'el'   : ['core@mozilla-greece.org'],
     'es-ES': ['participa@mozilla-hispano.org'],
     'hr'   : ['contribute@mozilla-hr.org'],
+    'id'   : ['info@mozilla.web.id'],
     'nl'   : ['contribute@mozilla-nl.org'],
     'pt-BR': ['mlcaraldi@gmail.com'],
+    'zh-CN': ['contributor-zh-cn@mozilla.org'],
     'zh-TW': ['contribute@mail.moztw.org'],
 }
 
