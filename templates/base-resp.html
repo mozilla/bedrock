@@ -109,13 +109,13 @@
       </footer>
     {% endblock %}
 
-    {% block tabzilla_js %}
-      <script src="/tabzilla/media/js/tabzilla.js?build=1"></script>
-    {% endblock %}
     </div><!-- close #outer-wrapper -->
 
     {% block site_js %}
       {{ js('common-resp') }}
+    {% endblock %}
+    {% block tabzilla_js %}
+      <script src="/tabzilla/media/js/tabzilla.js?build=1"></script>
     {% endblock %}
     {% block js %}{% endblock %}
   </body>
