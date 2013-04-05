@@ -1,5 +1,5 @@
 // Some mixins from http://markdotto.com/bootstrap
-// http://creativecommons.org/licenses/by/3.0/ 
+// http://creativecommons.org/licenses/by/3.0/
 
 .border-radius(@radius: 0.25em) {
   -moz-border-radius: @radius;
@@ -96,7 +96,7 @@
   // Setup the mixins to be used
   .columns(@gridGutterWidth, @gridColumnWidth, @gridRowWidth, @columns) {
     width: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1));
-  } 
+  }
   .offset(@gridColumnWidth, @gridGutterWidth, @columns) {
     margin-left: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1)) + (@gridGutterWidth * 2);
   }
@@ -169,4 +169,10 @@
 .hidden {
   position: absolute;
   left: -999em;
+}
+
+.form-field-error {
+  border-color: rgb(175,50,50);
+  @shadow: 0 2px 1px rgba(0,0,0,0.1) inset, 0 0 8px 0 rgba(175,50,50,.6);
+  .box-shadow(@shadow);
 }

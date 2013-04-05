@@ -6,14 +6,12 @@ import json
 import re
 
 from django.conf import settings
-from django.http import (HttpResponse, HttpResponsePermanentRedirect,
+from django.http import (HttpResponsePermanentRedirect,
                          HttpResponseRedirect)
 from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_POST
 from django.views.decorators.vary import vary_on_headers
 
 import basket
-import requests
 from jingo_minify.helpers import BUILD_ID_JS, BUNDLE_HASHES
 from product_details import product_details
 from product_details.version_compare import Version
@@ -21,7 +19,8 @@ from funfactory.urlresolvers import reverse
 
 import l10n_utils
 from firefox import version_re
-from firefox.forms import SMSSendForm, WebToLeadForm
+from firefox.forms import SMSSendForm
+from mozorg.forms import WebToLeadForm
 from firefox.platforms import load_devices
 from firefox.firefox_details import firefox_details
 from l10n_utils.dotlang import _
@@ -58,25 +57,6 @@ def get_js_bundle_files(bundle):
 JS_COMMON = get_js_bundle_files('partners_common')
 JS_MOBILE = get_js_bundle_files('partners_mobile')
 JS_DESKTOP = get_js_bundle_files('partners_desktop')
-
-
-@csrf_exempt
-@require_POST
-def contact_bizdev(request):
-    form = WebToLeadForm(request.POST)
-    if form.is_valid():
-        data = form.cleaned_data.copy()
-        interest = data.pop('interest')
-        data['00NU0000002pDJr'] = interest
-        data['oid'] = '00DU0000000IrgO'
-        data['retURL'] = ('http://www.mozilla.org/en-US/about/'
-                          'partnerships?success=1')
-        r = requests.post('https://www.salesforce.com/servlet/'
-                          'servlet.WebToLead?encoding=UTF-8', data)
-        msg = requests.status_codes._codes.get(r.status_code, ['error'])[0]
-        return HttpResponse(msg, status=r.status_code)
-
-    return HttpResponse('Form invalid', status=400)
 
 
 @csrf_exempt
@@ -196,9 +176,12 @@ def firefox_partners(request):
     # If the current locale isn't in our list, return the en-US value
     locale_os_url = LOCALE_OS_URLS.get(request.locale, LOCALE_OS_URLS['en-US'])
 
+    form = WebToLeadForm()
+
     return l10n_utils.render(request, 'firefox/partners/index.html', {
         'locale_os_url': locale_os_url,
         'js_common': JS_COMMON,
         'js_mobile': JS_MOBILE,
         'js_desktop': JS_DESKTOP,
+        'form': form,
     })

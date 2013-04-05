@@ -11,7 +11,7 @@ urlpatterns = patterns('',
 
     page('about', 'mozorg/about.html'),
     page('book', 'mozorg/book.html'),
-    page('about/partnerships', 'mozorg/partnerships.html'),
+    url('^about/partnerships/$', views.partnerships, name='mozorg.partnerships'),
     page('about/partnerships/distribution', 'mozorg/partnerships-distribution.html'),
     page('products', 'mozorg/products.html'),
     page('about/mozilla-based', 'mozorg/projects/mozilla-based.html'),
@@ -39,5 +39,7 @@ urlpatterns = patterns('',
         name='mozorg.contribute_embed',
         kwargs={'template': 'mozorg/contribute-embed.html',
                 'return_to_form': False}),
+    url(r'^about/partnerships/contact-bizdev/$', views.contact_bizdev,
+        name='about.partnerships.contact-bizdev'),
 
 )

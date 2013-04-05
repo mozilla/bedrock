@@ -4,9 +4,13 @@
 
 import l10n_utils
 from django.conf import settings
+from collusion.forms import SubscribeForm
+
 
 def collusion(request):
-    return l10n_utils.render(request, "collusion/collusion.html")
+    form = SubscribeForm()
+    return l10n_utils.render(request, "collusion/collusion.html", {'form': form})
+
 
 def demo(request):
     return l10n_utils.render(request, "collusion/demo.html")
