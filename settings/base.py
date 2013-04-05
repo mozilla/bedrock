@@ -111,7 +111,7 @@ MINIFY_BUNDLES = {
             'css/sandstone/sandstone-resp.less',
         ),
         'newsletter': (
-            'css/sandstone/newsletter.less',
+            'css/newsletter/newsletter.less',
         ),
         'contribute': (
             'css/contribute.less',

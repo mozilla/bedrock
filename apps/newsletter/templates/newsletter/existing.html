@@ -1,4 +1,4 @@
-{% extends 'base-resp.html' %}
+{% extends 'newsletter/base.html' %}
 
 {#
 # FIXME - this page needs better styling
@@ -6,7 +6,7 @@
 
 {# Template used for a user to manage their subscriptions #}
 
-{% block page_title %}{{ _('Mozilla Newsletter') }}{% endblock page_title %}
+{% block page_title %}{{ _('Newsletter Subscriptions') }}{% endblock page_title %}
 
 {% block body_id %}newsletter-existing{% endblock body_id %}
 
@@ -14,11 +14,6 @@
 uncomment the next block or add it to the inheriting template:
 {% block body_class %}sand{% endblock %}
 #}
-
-{% block site_css %}
-    {{ super() }}
-    {{ css('newsletter') }}
-{% endblock %}
 
 {% block js %}
     {{ super() }}
@@ -71,7 +66,9 @@ uncomment the next block or add it to the inheriting template:
     <!-- Begin content -->
 
     {% block main_feature %}
-        <h1 id="main-feature">{{ _('Manage your <span>Newsletter Subscriptions</span>') }}</h1>
+        <div id="main-feature">
+          <h1>{{ _('Manage your <span>Newsletter Subscriptions</span>') }}</h1>
+        </div>
     {% endblock %}
 
     {% if messages %}  {# FIXME - this ought to be in base-resp.html #}
@@ -82,10 +79,10 @@ uncomment the next block or add it to the inheriting template:
         </ul>
     {% endif %}
 
-    <section id="main-content">
+    <section id="main-content" class="billboard">
 
         {% if formset %}
-            <form method="post" action="" id="newsletter-form">
+            <form method="post" action="" id="existing-newsletter-form">
                 {{ formset.management_form }}
 
                 <div id="basic-settings">
@@ -100,46 +97,46 @@ uncomment the next block or add it to the inheriting template:
 
                     {% set email = form['email'] %}
                     <div class="field email-field {% if email.errors %}field-error{% endif %}">
-                        <label for="email">{{ _('Your email address:') }}</label>
-                        {{ email.errors }}
+                        {{ form.email.label_tag(_('Your email address:')) }}
                         <div class="field-contents">
                             {{ email }}
                         </div>
+                        {{ email.errors }}
                     </div>
 
                     {% set country = form['country'] %}
                     <div class="field country-field {% if country.errors %}field-error{% endif %}">
-                        <label for="country">{{ _('Country:') }}</label>
-                        {{ country.errors }}
+                        {{ form.country.label_tag(_('Country:')) }}
                         <div class="field-contents">
                             {{ country }}
                         </div>
+                        {{ country.errors }}
                     </div>
 
                     {% set lang = form['lang'] %}
                     <div class="field lang-field {% if lang.errors %}field-error{% endif %}">
-                        <label for="lang">{{ _('Language:') }}</label>
-                        {{ lang.errors }}
+                        {{ form.lang.label_tag(_('Language:')) }}
                         <div class="field-contents">
                             {{ lang }}
                         </div>
+                        {{ lang.errors }}
                     </div>
 
                     <div class="field format-field">
-                        <span class="field-label">{{ _('Format:') }}</span>
-                        {{ form['format'].errors }}
-                        <div class="field-radios">
+                        {{ form.format.label_tag(_('Format:')) }}
+                        <div class="field-contents field-radios">
                             {{ form['format'] }}
                         </div>
+                        {{ form['format'].errors }}
                     </div>
                 </div><!-- close #basic-settings -->
 
-                <div id="other-newsletters">
-                    <h3><span>{{ _('Our Monthly Newsletters:') }}</span></h3>
-                    <table>
+                <div class="field" id="other-newsletters">
+                  <div class="field-radios">
+                    <table class="table">
                         <thead>
                         <tr>
-                            <td></td>
+                            <td>{{ _('Our monthly newsletters') }}</td>
                             <th>Subscribe</th>
                             {% if user_exists %}
                                 <th>{{ _('Unsubscribe') }}</th>
@@ -158,15 +155,15 @@ uncomment the next block or add it to the inheriting template:
                             </tr>
                         {% endfor %}
 
-                        <tr>
-                            <td colspan="3" id="remove-all-section">
-                                {{ form['remove_all'] }}
-                                <label for="id_remove_all">{{ _('Remove me from all Mozilla emails') }}</label>
-                            </td>
-                        </tr>
                         </tbody>
                     </table>
+                  </div>
                 </div><!-- close #all-newsletters -->
+
+                <div class="field" id="remove-all-section">
+                  {{ form['remove_all'] }}
+                  {{ form.remove_all.label_tag(_('Remove me from all Mozilla emails')) }}
+                </div>
 
                 <div class="field submit-field">
                     <input name="submit" type="submit" value="Save Preferences" class="button">
@@ -177,7 +174,3 @@ uncomment the next block or add it to the inheriting template:
     </section>
     <!-- End content -->
 {% endblock %}
-
-{# Don't display an email signup form in the footer of this page, #}
-{# it would be redundant. #}
-{% block email_form %}{% endblock %}
