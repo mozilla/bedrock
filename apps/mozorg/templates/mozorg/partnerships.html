@@ -111,6 +111,8 @@
 
     <form action="{{ url('about.partnerships.contact-bizdev') }}" method="POST" id="sf-form">
 
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
     <!--  ----------------------------------------------------------------------  -->
     <!--  NOTE: These fields are optional debugging elements.  Please uncomment   -->
     <!--  these lines if you wish to test in debug mode.                          -->

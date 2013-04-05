@@ -449,6 +449,17 @@
 
       <form action="{{ url('about.partnerships.contact-bizdev') }}" role="dialog" aria-labelledby="get-involved-title" aria-describedby="get-involved-description" method="POST" id="sf-form" class="sf-form">
 
+      <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
+      <!--  ----------------------------------------------------------------------  -->
+      <!--  NOTE: These fields are optional debugging elements.  Please uncomment   -->
+      <!--  these lines if you wish to test in debug mode.                          -->
+
+       <!--input type="hidden" name="debug" value=1-->
+       <!--input type="hidden" name="debugEmail" value=""-->
+
+      <!--  ----------------------------------------------------------------------  -->
+
       <h3 id="get-involved-title">{{ _('Get involved') }}</h3>
       <p id="get-involved-description">{{ _('Contact our business development team to get on board.') }}</p>
 

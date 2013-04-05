@@ -8,7 +8,8 @@ import re
 from django.conf import settings
 from django.http import (HttpResponsePermanentRedirect,
                          HttpResponseRedirect)
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from django.core.context_processors import csrf
 from django.views.decorators.vary import vary_on_headers
 
 import basket
@@ -172,16 +173,21 @@ def all_downloads(request):
     })
 
 
+@csrf_protect
 def firefox_partners(request):
     # If the current locale isn't in our list, return the en-US value
     locale_os_url = LOCALE_OS_URLS.get(request.locale, LOCALE_OS_URLS['en-US'])
 
     form = WebToLeadForm()
 
-    return l10n_utils.render(request, 'firefox/partners/index.html', {
+    c = {
         'locale_os_url': locale_os_url,
         'js_common': JS_COMMON,
         'js_mobile': JS_MOBILE,
         'js_desktop': JS_DESKTOP,
         'form': form,
-    })
+    }
+
+    c.update(csrf(request))
+
+    return l10n_utils.render(request, 'firefox/partners/index.html', c)

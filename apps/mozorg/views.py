@@ -2,7 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from django.core.context_processors import csrf
 from django.views.decorators.http import require_POST
 from django.http import (HttpResponse, HttpResponseRedirect)
 from django.conf import settings
@@ -92,12 +93,18 @@ def contribute_embed(request, template, return_to_form):
     return contribute(request, template, return_to_form)
 
 
+@csrf_protect
 def partnerships(request):
     form = WebToLeadForm()
-    return l10n_utils.render(request, 'mozorg/partnerships.html', {'form': form})
+
+    c = {}
+    c.update(csrf(request))
+    c['form'] = form
+
+    return l10n_utils.render(request, 'mozorg/partnerships.html', c)
 
 
-@csrf_exempt
+@csrf_protect
 @require_POST
 def contact_bizdev(request):
     form = WebToLeadForm(request.POST)
