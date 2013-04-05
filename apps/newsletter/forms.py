@@ -84,8 +84,6 @@ class ManageSubscriptionsForm(forms.Form):
     @param locale: locale string, e.g. "en-US".  Will be used to set
     country and lang defaults if not otherwise provided in initial
     or bound data.
-    @param display_privacy_checkbox: If True, add the checkbox to force
-     the user to agree to privacy policy.
     @param args: Other standard form args
     @param kwargs: Other standard form kwargs
     """
@@ -121,21 +119,20 @@ class ManageSubscriptionsForm(forms.Form):
         self.fields['lang'] = forms.ChoiceField(choices=self.LANG_CHOICES,
                                                 initial=initial_lang,
                                                 required=False)
+        self.already_subscribed = initial.get('newsletters', [])
 
     def clean(self):
-        """If user has set .must_subscribe, then verify that .newsletters
-        has at least one subscription. (user must have set .newsletters too)
-        """
-        if self.must_subscribe and not self.newsletters:
-            err = _("Please subscribe to at least one newsletter")
-            raise ValidationError(err)
         valid_newsletters = utils.get_newsletters()
         lang = self.cleaned_data['lang']
         for newsletter in self.newsletters:
             if newsletter not in valid_newsletters:
                 msg = _("%s is not a valid newsletter") % newsletter
                 raise ValidationError(msg)
-            if lang not in valid_newsletters[newsletter]['languages']:
+            # Letters they're adding a new subscription to must exist
+            # in the language they've selected. But if they're already
+            # subscribed, that's okay.
+            if newsletter not in self.already_subscribed and \
+                    lang not in valid_newsletters[newsletter]['languages']:
                 template = _(
                     "%s is not a valid newsletter in this language (%s)",
                 )

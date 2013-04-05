@@ -217,10 +217,15 @@ def existing(request, token=None):
             newsletter_languages[lang].append(newsletter)
     newsletter_languages = mark_safe(json.dumps(newsletter_languages))
 
+    # We also want a list of the newsletters the user is already subscribed
+    # to
+    already_subscribed = mark_safe(json.dumps(user['newsletters']))
+
     context = {
         'form': form,
         'formset': formset,
         'newsletter_languages': newsletter_languages,
+        'newsletters_subscribed': already_subscribed,
     }
     return l10n_utils.render(request,
                              'newsletter/existing.html',

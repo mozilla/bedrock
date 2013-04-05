@@ -26,43 +26,42 @@ uncomment the next block or add it to the inheriting template:
 
         $(function() {
             var _newsletter_langs = {{ newsletter_languages }};
+            var _newsletters_subscribed = {{ newsletters_subscribed }};
 
-            function show_newsletters(lang) {
-                var letters = _newsletter_langs[lang][1];
-
-                if (letters) {
-                    // Hide all the newsletters
-                    // FIXME: unless they're subscribed to them
-                    var $rows = $('#all-newsletters tbody tr.subscription');
-                    {# on /new, we have checkboxes, so hide rows with unchecked checkboxes #}
-                    var $tohide_new = $rows.find('input[type="checkbox"]').not(':checked')
-                    {# on /existing, we have radio buttons, so hide rows where value="False" is checked #}
-                    var $tohide_existing = $rows.find('input[type="radio"][value="False"]:checked')
-                    {# now we have two sets of input elements, but we want their parents #}
-                    var $rows_to_hide = $tohide_new.parent().add($tohide_existing.parent())
-
-                    $rows_to_hide
-                        .each(function() {
-                            console.log("About to hide:");
-                            console.log(this);
-                            $(this).hide();
-                        });
-                    // Show individually available newsletters
-                    $.each(letters, function(i, nl) {
-                        var field = $('input[value=' + nl + ']');
-                        field.parents('tbody tr').show();
-                    });
-                }
+            function show_newsletters(newsletters) {
+                // show the newsletters whose keys are in the list
+                $.each(newsletters, function(i, name) {
+                    var $row = $('tr[id=tr_' + name + ']');
+                    $row.show();
+                });
             }
 
+            function show_newsletters_for_lang(lang) {
+                var newsletters = _newsletter_langs[lang];
+
+                if (newsletters) {
+                    // Hide all the newsletters
+                    $('tbody tr.subscription')
+                        .each(function() {
+                            $(this).hide();
+                        });
+                    // Show newsletters available in this language
+                    show_newsletters(newsletters);
+                }
+                // and show any they were already subscribed to
+                show_newsletters(_newsletters_subscribed);
+            }
+
+            // anytime someone changes their selected language,
+            // run the show_newsletters again with the new lang
             $('select[name=lang]').change(function() {
-                show_newsletters($(this).find(':selected').val());
+                show_newsletters_for_lang($(this).find(':selected').val());
             });
 
+            // initialize
             var lang = $('select[name=lang] :selected').val();
-            show_newsletters(lang);
+            show_newsletters_for_lang(lang);
         });
-
 
     </script>
 {% endblock js %}
@@ -140,15 +139,13 @@ uncomment the next block or add it to the inheriting template:
                         <thead>
                         <tr>
                             <td></td>
-                            <th>Subscribe</th>
-                            {% if user_exists %}
-                                <th>{{ _('Unsubscribe') }}</th>
-                            {% endif %}
+                            <th>{{ _('Subscribe') }}</th>
+                            <th>{{ _('Unsubscribe') }}</th>
                         </tr>
                         </thead>
                         <tbody>
                         {% for formpart in formset %}  {# each newsletter is a formset #}
-                            <tr class="subscription">
+                            <tr class="subscription" id="tr_{{ formpart.initial['newsletter'] }}">
                                 <th>
                                     <h4>{{ formpart.initial['title'] }}</h4>
                                     {# hidden field: #}
