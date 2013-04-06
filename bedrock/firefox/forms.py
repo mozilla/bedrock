@@ -9,13 +9,6 @@ from django import forms
 from lib.l10n_utils.dotlang import _
 
 
-# WebTrends click tracking code.
-PLAY_DOWNLOAD_ONCLICK = ("dcsMultiTrack('DCS.dcssip','www.mozilla.org',"
-                         "'DCS.dcsuri',window.location.pathname,'WT.ti',"
-                         "'Link: Download from Google Play','WT.dl',99,"
-                         "'WT.nv','SMS error, invalid number');")
-
-
 class SMSSendForm(forms.Form):
     number = forms.CharField(max_length=14)
     optin = forms.BooleanField(required=False)
@@ -28,9 +21,9 @@ class SMSSendForm(forms.Form):
         elif len(mobile) != 11 or mobile[0] != '1':
             raise forms.ValidationError(_(
                 'Sorry. This number isn\'t valid. Please enter a U.S. phone '
-                'number or <a href="%s" onclick="%s">'
+                'number or <a href="%s">'
                 'download directly from Google Play.</a>'
-            ) % ('http://mzl.la/OgZo6k', PLAY_DOWNLOAD_ONCLICK))
+            ) % ('http://mzl.la/OgZo6k'))
         return mobile
 
 
