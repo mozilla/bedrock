@@ -14,8 +14,6 @@ from funfactory.settings_base import *
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-US'
 
-SESSION_COOKIE_SECURE = True
-
 # Accepted locales
 PROD_LANGUAGES = ('ach', 'af', 'ak', 'an', 'ar', 'as', 'ast', 'be', 'bg',
                   'bn-BD', 'bn-IN', 'br', 'bs', 'ca', 'cs', 'csb', 'cy',
@@ -39,10 +37,7 @@ DOTLANG_FILES = ['main', 'download_button', 'newsletter']
 
 # Paths that don't require a locale code in the URL.
 # matches the first url component (e.g. mozilla.org/gameon/)
-SUPPORTED_NONLOCALES = [
-    'media',
-    'admin',
-
+SUPPORTED_NONLOCALES += [
     # from redirects.urls
     'telemetry',
     'webmaker',
@@ -506,44 +501,35 @@ LESS_BIN = 'lessc'
 MIDDLEWARE_CLASSES = (
     'bedrock.mozorg.middleware.MozorgRequestTimingMiddleware',
     'django_statsd.middleware.GraphiteMiddleware',
-    'funfactory.middleware.LocaleURLMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'commonware.middleware.FrameOptionsHeader',
+) + get_middleware(exclude=(
+    'multidb.middleware.PinningRouterMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'session_csrf.CsrfMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'mobility.middleware.DetectMobileMiddleware',
+    'mobility.middleware.XMobileMiddleware',
+), append=(
     'bedrock.mozorg.middleware.CacheMiddleware',
     'bedrock.mozorg.middleware.NewsletterMiddleware',
     'dnt.middleware.DoNotTrackMiddleware',
     'lib.l10n_utils.middleware.FixLangFileTranslationsMiddleware',
-)
+))
 
-INSTALLED_APPS = (
+INSTALLED_APPS = get_apps(exclude=(
+    'compressor',
+    'django_browserid',
+    'django.contrib.sessions',
+    'django.contrib.staticfiles',
+    'session_csrf',
+), append=(
     # Local apps
-    'funfactory',  # Content common to most playdoh-based apps.
     'jingo_minify',
-    'tower',  # for ./manage.py extract (L10n)
     'django_statsd',
 
     # Django contrib apps
-    'django.contrib.auth',
     'django_sha2',  # Load after auth to monkey-patch it.
-    'django.contrib.contenttypes',
-    #'django.contrib.sessions',
-    # 'django.contrib.sites',
-    # 'django.contrib.messages',
-    # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
-
-    # Third-party apps, patches, fixes
-    'commonware.response.cookies',
-    'djcelery',
-    'django_nose',
-    'cronjobs',
-    #'session_csrf',
-
-    # L10n
-    'product_details',
-
+    
     # Local apps
     '%s.base' % PROJECT_MODULE,
     '%s.collusion' % PROJECT_MODULE,
@@ -564,15 +550,15 @@ INSTALLED_APPS = (
     # libs
     'lib.l10n_utils',
     'captcha',
-)
+))
 
 LOCALE_PATHS = (
     path('locale'),
 )
 
-TEMPLATE_CONTEXT_PROCESSORS += (
+TEMPLATE_CONTEXT_PROCESSORS = get_template_context_processors(append=(
     'bedrock.mozorg.context_processors.current_year',
-)
+))
 
 ## Auth
 PWD_ALGORITHM = 'bcrypt'
