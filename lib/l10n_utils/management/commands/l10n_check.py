@@ -14,10 +14,9 @@ from StringIO import StringIO
 
 from django.core.management.base import BaseCommand
 from django.conf import settings
+from django.utils.functional import cached_property
 
 from jinja2 import Environment
-
-from bedrock_util import cached_property
 
 
 def l10n_file(*args):
@@ -28,16 +27,18 @@ def list_templates():
     """List all the templates in all the installed apps"""
 
     for app in settings.INSTALLED_APPS:
-        tmpl_dir = path.join(settings.ROOT, 'apps', app, 'templates')
+        if app.startswith(settings.PROJECT_MODULE):
+            app = app[len(settings.PROJECT_MODULE) + 1:]
+            tmpl_dir = path.join(settings.ROOT, settings.PROJECT_MODULE, app, 'templates')
 
-        if path.exists(tmpl_dir):
-            # Find all the .html files
-            for root, dirs, files in os.walk(tmpl_dir):
-                for filename in files:
-                    name, ext = os.path.splitext(filename)
+            if path.exists(tmpl_dir):
+                # Find all the .html files
+                for root, dirs, files in os.walk(tmpl_dir):
+                    for filename in files:
+                        name, ext = os.path.splitext(filename)
 
-                    if ext in ['.txt', '.html']:
-                        yield os.path.join(root, filename)
+                        if ext in ['.txt', '.html']:
+                            yield os.path.join(root, filename)
 
 
 def update_templates(langs):

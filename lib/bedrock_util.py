@@ -23,18 +23,3 @@ def secure_required(view_func):
 def server_error_view(request, template_name='500.html'):
     """500 error handler that runs context processors."""
     return l10n_utils.render(request, template_name)
-
-
-# backported from Django 1.4
-# https://github.com/django/django/blob/master/django/utils/functional.py#L34
-class cached_property(object):
-    """
-    Decorator that converts a method with a single self argument into a
-    property cached on the instance.
-    """
-    def __init__(self, func):
-        self.func = func
-
-    def __get__(self, instance, type):
-        res = instance.__dict__[self.func.__name__] = self.func(instance)
-        return res

@@ -22,6 +22,3 @@
 [submodule "vendor-local/src/pystatsd"]
 	path = vendor-local/src/pystatsd
 	url = git://github.com/jsocol/pystatsd.git
-[submodule "vendor-local/src/django"]
-	path = vendor-local/src/django
-	url = git://github.com/django/django.git

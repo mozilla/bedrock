@@ -1,0 +1,172 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+#main-feature {
+    text-align: center;
+    h2 {
+        font-size: 28px;
+        width: 75%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.products {
+    padding-top: @baseLine;
+    padding-bottom: @baseLine;
+    h1 {
+        margin-left: (@gridGutterWidth / 2);
+        margin-right: (@gridGutterWidth / 2);
+        font-size: 34px;
+    }
+    ul {
+        padding: 0;
+        margin: 0;
+    }
+    li {
+        .span(4);
+        .open-sans;
+        padding: (@baseLine / 4) 0;
+        font-size: @smallFontSize;
+        list-style-type: none;
+        a {
+            display: block;
+            h3 {
+                color: @linkRed;
+                font-size: 22px;
+                margin-bottom: @baseLine / 4;
+            }
+            &:hover,
+            &:active {
+                text-decoration: none;
+                h3 {
+                    color: darken(@linkRed, 10%);
+                    text-decoration: underline;
+                }
+            }
+        }
+        p {
+            color: @textColorTertiary;
+            min-height: 3em;
+        }
+    }
+    img {
+        @projectShadow: 0 0 16px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.5);
+        .box-shadow(@projectShadow);
+        margin-bottom: @baseLine / 2;
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+    }
+    #reserved {
+        position: relative;
+        img {
+           .box-shadow(none);
+        }
+        p {
+            .open-sans;
+            font-size: @baseFontSize;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            position: absolute;
+            top: 0;
+            padding: 60px 50px;
+            text-align: center;
+            color: #ababab;
+            text-shadow: 0 1px #fff;
+        }
+    }
+}
+
+#more-projects {
+    margin: (@baseLine * 2) (@gridGutterWidth * 1.5);
+}
+
+/* Tablet Layout: 760px */
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+
+#main-feature {
+    h2 {
+        width: auto;
+    }
+}
+
+.products {
+    li {
+       .span_narrow(4);
+    }
+    #reserved p {
+        font-size: @smallFontSize;
+        padding-top: 44px;
+        line-height: 1.2;
+        letter-spacing: normal;
+    }
+}
+
+}
+
+
+/* Mobile layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+
+#main-feature {
+    h1 {
+        font-size: 38px;
+    }
+    h2 {
+        font-size: 16px;
+        width: auto;
+        letter-spacing: normal;
+    }
+}
+
+nav#products-nav.menu-bar ul li {
+    padding: 0;
+}
+
+.products {
+    li {
+        width: auto;
+        margin: 0;
+        padding: 0 0 (@baseLine) 0;
+        clear: left;
+        a h3 {
+            font-size: 18px;
+            margin-bottom: 0;
+        }
+        p {
+            font-size: 12px;
+        }
+    }
+    img {
+        .span_narrow(2);
+    }
+    h3,
+    p {
+        .span_narrow(3);
+    }
+}
+
+#reserved { display: none; }
+
+#more-projects {
+    margin-left: @gridGutterWidth;
+    margin-right: @gridGutterWidth;
+}
+
+}
+
+/* Wide mobile layout: 480px; */
+@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+
+.products {
+    h3,
+    p {
+        .span_narrow(5);
+    }
+}
+
+}

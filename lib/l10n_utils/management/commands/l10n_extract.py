@@ -13,7 +13,7 @@ from babel.messages.extract import extract_from_file
 from babel.util import pathmatch
 from tower.management.commands import extract
 
-from l10n_utils.gettext import pot_to_langfiles
+from lib.l10n_utils.gettext import pot_to_langfiles
 
 
 DOMAIN = 'messages'

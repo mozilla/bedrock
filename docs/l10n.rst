@@ -148,7 +148,7 @@ value should be either a string, or a list of strings, similar to the
 
     # forms.py
 
-    from l10n_utils.dotlang import _
+    from lib.l10n_utils.dotlang import _
 
     LANG_FILES = ['foo', 'bar']
 
