@@ -4,8 +4,8 @@
 
 {% if not form_submitted %}
     <form name="contact_privacy" id="contact_privacy" action="#contactus" method="post">
-        <fieldset>
-            <legend>Please use this form to send us your questions, concerns or thoughts related to privacy at Mozilla.</legend>
+
+              <h5>Please use this form to send us your questions, concerns or thoughts related to privacy at Mozilla.</h5>
             <div class="field">
               {{ form.name.errors }}
               <label for="id_name" class="open-sans-light">Your name:</label>
@@ -20,9 +20,8 @@
               {{ form.comments.errors }}
               <label for="id_comments">Your comments:</label><br />
               {{ form.comments }}
+              <input type="submit" class="button" value="Send comments&nbsp;»" id="contact_privacy_submit" />
             </div>
-            <input type="submit" class="button" value="Send comments&nbsp;»" id="contact_privacy_submit" />
-        </fieldset>
     </form>
 {% else %}
     <p class="success" data-submission-state="{{ form_submitted }}"><strong>Thank you</strong> for sending us your questions or comments. A member of the privacy team will be in contact shortly.</p>
