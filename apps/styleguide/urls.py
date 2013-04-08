@@ -70,7 +70,8 @@ hierarchy = PageRoot('Home', children=(
     )),
     PageNode('Products', path='products', children=(
         PageNode('Firefox OS', path='firefoxos', children=(
-            PageNode('Icons', path='icons', template='styleguide/products/firefox-os-icons.html'),
+            PageNode('App Icons', path='icons', template='styleguide/products/firefox-os-icons.html'),
+            PageNode('Action Icons', path='action-icons', template='styleguide/products/firefox-os-action-icons.html'),
         )),
     )),
 ))
