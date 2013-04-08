@@ -75,4 +75,7 @@ urlpatterns = patterns('',
 
     # Bug 867773 - Redirect the Persona "Developer FAQ" link to MDN
     redirect(r'^persona/developer-faq/$', 'https://developer.mozilla.org/persona'),
+
+    #Bug 724633 - Porting foundation
+    redirect(r'foundation/donate\.html', 'https://donate.mozilla.org/page/contribute/openwebfund'),
 )

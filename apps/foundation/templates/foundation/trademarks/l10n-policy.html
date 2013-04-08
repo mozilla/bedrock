@@ -1,0 +1,267 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "foundation/base-resp.html" %}
+
+{% block page_title %}{{ _('Localization Trademark Policy') }}{% endblock %}
+
+
+{% block article %}
+  <h1 id="page-title">{{ _('Mozilla Trademark Policy for Localization Projects') }}</h1>
+
+  <p style="text-align:center"><i>{% trans %}Version 1.1{% endtrans %}</i></p>
+  <p>{% trans com="mailto:trademarks@mozilla.com", org="mailto:trademarks@mozilla.org" %}
+      Localization team members, please direct questions about this policy to the
+      <a href="{{ com }}">Mozilla Corporation</a> for Firefox and Thunderbird,
+      or the <a href="{{ org }}">Mozilla Foundation</a> for other products.{% endtrans %}</p>
+
+  <p>{% trans faq=url('foundation.trademarks.faq') %}
+      (Have you read the <a href="{{ faq }}">FAQ</a>?){% endtrans %}</p>
+
+  <h2>{% trans %}Introduction{% endtrans %}</h2>
+
+  <p>{% trans %}This document outlines the Mozilla Foundation's policy for
+  making localized versions of Firefox, Thunderbird and future products containing
+  our trademarks. What we are trying to do is offer a set of guidelines
+  that will be acceptable to localization projects but also pass legal
+  muster: in order to protect our trademarks, we must have processes in
+  place to guarantee the quality and the source of origin of products
+  that use our trademarks. This is why, in some areas, there is less flexibility
+  here than has traditionally been the case.
+  {% endtrans %}</p>
+
+  <p>{% trans %}Firefox and Thunderbird are open source projects, so this policy
+  only applies if you'd like to use our trademarks to identify your releases.
+  If you're not planning on doing that, then you don't have to worry about this
+  document.
+  {% endtrans %}</p>
+
+  <p>{% trans %}We greatly appreciate the hard work the localization community does, and
+  want to recognize that. So, for the first time, we hope to host, release and
+  promote official localized versions of Mozilla Firefox and Thunderbird.
+  These will be made by official mozilla.org Localization Teams.
+  {% endtrans %}</p>
+
+  <h2>{% trans %}Official mozilla.org Localization Teams{% endtrans %}</h2>
+
+  <p>{% trans staff="mailto:mlp-staff@mozilla.org" %}
+    The provisions in this document apply only to official mozilla.org
+    Localization Teams (a.k.a. L10n teams), as determined by the Mozilla
+    Foundation and its affiliates (e.g. Mozilla
+    Europe for Europe) in collaboration with the
+    <abbr title="Mozilla Localization Project">MLP</abbr> staff. If a L10n
+    project would like to be
+    recognized as an official mozilla.org Localization Team, please send a
+    simple email describing your team, your track record, and a link to
+    your web site (if your project has one) to the
+    <a href="{{ staff }}">MLP staff</a>.  A list of official localization
+    teams will be created shortly.
+  {% endtrans %}</p>
+
+  <p>{% trans %}This document mainly covers two sorts of releases L10n teams can make; we call these Official Releases and Community Releases.
+  {% endtrans %}</p>
+
+  <h2>{% trans %}Official Releases{% endtrans %}</h2>
+
+  <p>{% trans %}The Mozilla Foundation is excited to work with L10n teams to create
+  official localized versions of Firefox and Thunderbird.
+  Official localizations will be released by the Mozilla Foundation
+  and will be linked from our main download pages. We will also make an effort to include
+  them on the CDs we distribute (as long as the tight deadlines for CD
+  production are met). In Official releases, L10n teams can use the appropriate
+  Foundation trademarks - "Mozilla Firefox", "Firefox", "Mozilla
+  Thunderbird" and "Thunderbird" - and use the trademarked logos
+  (such as the fox-on-globe) to identify the software.
+  {% endtrans %}</p>
+
+  <p>{% trans %}Making an official build means that the L10n team and their code are
+  representing the Mozilla project. So there are a few things that we insist
+  on for a build to get Official status. The aim here is to provide
+  consistency of user experience by making the localized
+  build as much like the official build as possible.
+  {% endtrans %}</p>
+
+  <ol>
+    <li>{% trans %}The L10n team owner is the module owner for the translation.  The team owner must approve all CVS checkins, is responsible for maintaining the quality of the localization and is subject to the mozilla.org module ownership policies.{% endtrans %}</li>
+
+    <li>{% trans %}The L10n team will cooperate with the Mozilla Foundation on localizing and maintaining the start page as well as a localized version of "Firefox Central" and a small number helper pages. <em>Note: For the 1.0 release only, changes to those pages may be made at the discretion of mozilla.org independently of l10n freezes. Potential impacts of this on the release of localized versions of Firefox 1.0 will be considered.{% endtrans %}</em></li>
+
+    <li>{% trans %}The default bookmarks and personal
+  toolbar items should use the same folder structure as the
+  default bookmarks and personal toolbar of the en-US version. The
+  contents of each folder may be modified.{% endtrans %}</li>
+
+    <li>{% trans %}The search engines may be localized (eg. www.google.fr) but may not be changed without permission from the search engines module owner. The default search engine may be localized but it may not be changed. The set of search engines has been selected with the aims of keeping the list relatively short while offering a set of search engines that will be useful to a broad range of users and that expose the breadth of the available search plugins. If a specific search engine in the set is not appropriate for a given locale, a comparable alternative should be proposed by the L10n team owner to the search engines module owner.{% endtrans %}</li>
+
+    <li>{% trans %}Unless approved by the Firefox application module owners, localized builds must match the extensions distributed with the default en-US build.  If/when a locale switching extension is developed and available on update.mozilla.org, this extension may also be shipped by default.{% endtrans %}</li>
+
+    <li>{% trans %}The source code for these versions will be hosted in the
+  Mozilla CVS repository.{% endtrans %}</li>
+
+    <li>{% trans %}The following preferences may be modified as needed by L10n teams subject to the other restrictions detailed in this document:  browser.fixup.alternate.suffix, browser.search.defaulturl, browser.startup.homepage, browser.throbber.url, extensions.getMoreExtensionsURL, extensions.getMoreThemesURL, keyword.URL, update.app.url{% endtrans %}</li>
+
+    <li>{% trans %}Localization teams may transcribe the Mozilla, Firefox and Thunderbird names into a locale's alphabet as needed.{% endtrans %}</li>
+
+    <li>{% trans org="http://www.mozilla.org/" %}
+        All changes other than those above and other localizations or adaptions are subject to the tree rules for the respective English file. Refer to the review guides of the respective applications for details. In case of doubt, guidance from the application owner, the affiliate (e.g. Mozilla Europe) or
+        <a href="{{ org }}">mozilla.org</a>
+        should be requested.{% endtrans %}</li>
+  </ol>
+
+  <h2>{% trans %}Community Releases{% endtrans %}</h2>
+
+  <p>{% trans %}A Community Release is what an official L10n team does when they feel they can't live within all the restrictions necessary to make an official release. We expect
+  some official L10n teams to produce both Official and Community releases. The basic
+  idea is that more things can be changed, but you have to label the result
+  "Community Edition".
+  {% endtrans %}</p>
+
+  <p>{% trans %}For a Community Release, official L10n teams can make the following sorts of
+  configuration-related changes:{% endtrans %}</p>
+
+  <ol>
+    <li>{% trans %}Change certain preference settings{% endtrans %}</li>
+    <li>{% trans %}Change the default start page{% endtrans %}</li>
+    <li>{% trans %}Change both the structure and the contents of the default bookmarks and personal toolbar{% endtrans %}</li>
+    <li>{% trans %}Change the default search engine and other search engines in the
+  search engine pulldown box{% endtrans %}</li>
+    <li>{% trans %}Include extensions that are also available through
+  updates.mozilla.org{% endtrans %}</li>
+    <li>{% trans %}Include plugins, provided they can legally do so{% endtrans %}</li>
+  </ol>
+
+  <p>{% trans %}If an official localization team is creating a Community Release of Mozilla
+  Firefox or Thunderbird, it must use the names "Firefox Community
+  Edition" or
+  "Thunderbird Community Edition" to identify this software. Official ocalization
+  teams may, if they wish, qualify these names
+  further to identify the localization (eg "Firefox Community Edition,
+  French", "Polish Thunderbird Community Edition", "Firefox Community
+  Edition, by the German Localization Team" etc).
+  Localizers may also translate the words
+  "Community Edition". The binary (i.e. the name of the executable
+  file) may still be called plain "firefox" or "thunderbird".
+  {% endtrans %}</p>
+
+  <p>{% trans %}If you don't like the "Community Edition" identifier, you can contact
+  the licensing team and request permission to use a different name, but keep in mind that it
+  could take a while before the licensing team is able to review your
+  request: the volunteers who are monitoring this list often receiven dozens of trademark licensing inquiries per week.
+  {% endtrans %}</p>
+
+  <p>{% trans %}You can't prefix the name with
+  Mozilla (eg "Mozilla Firefox Community Edition" is not allowed) or use the
+  official Firefox or Thunderbird logos to identify the software. You can, of
+  course, still use the unofficial ones.
+  {% endtrans %}</p>
+
+  <h3>{% trans %}Quality Assurance{% endtrans %}</h3>
+
+  <p>{% trans %}It is very important that Community Releases of Firefox and
+  Thunderbird maintain (or even exceed!) the quality level people have
+  come to associate with Mozilla Firefox and Mozilla Thunderbird.
+  We need to ensure this, but we don't want to get in people's way. So,
+  we are taking an optimistic approach.
+  {% endtrans %}</p>
+
+  <p>{% trans %}Official L10n teams can start using the "Firefox Community Edition" and "Thunderbird
+  Community Edition" trademarks from day one, but the
+  Mozilla Foundation may require teams to stop doing so in the future if they
+  are redistributing software with low quality and efforts to remedy the
+  situation have not succeeded. Doing things this way allows us to give
+  as much freedom to people as
+  possible, while maintaining our trademarks as a mark of quality (which
+  we are required to do in order to keep them).
+  {% endtrans %}</p>
+
+  <p>{% trans %}In particular, when making
+  changes to preferences or adding in extensions or
+  plugins, we recommend that localization teams contact the Mozilla
+  Foundation in advance to discuss any quality concerns that may arise.
+  Rigorous testing of the effects of these extensions and plugins is
+  generally necessary to ensure high quality.
+  {% endtrans %}</p>
+
+  <h2>{% trans %}FAQ{% endtrans %}</h2>
+
+  <dl>
+    <dt>{% trans %}I have a question or a proposed change that I'd like to get approval for.  Who do I contact?{% endtrans %}</dt>
+
+    <dd>{% trans staff="mailto:mlp-staff@mozilla.org", licensing="mailto:licensing@mozilla.org" %}
+        If you need permission for a change you'd like to make and you can't identify a module owner, one good place to start is by filing a bug in Bugzilla, under the Trademark Permissions component in the Marketing product.  You may also ask for guidance from the <a href="{{ staff }}">MLP staff</a> or on the <a href="{{ licensing }}">Licensing mailing list</a>.{% endtrans %}</dd>
+
+    <dt>{% trans %}What if I and the other people on my L10n team don't want to
+    bother
+    with all this. We don't want to be an "official localization
+    team". Now which rules apply? Do I have to stop using all
+    of the Mozilla trademarks?{% endtrans %}</dt>
+
+    <dd>{% trans %}We haven't figured that out just yet. But the set of rules
+    that apply will probably be at least somewhat more restrictive.
+    If you're not interested in being recognized as an official
+    localization team, you'll have to be willing to live with some
+    uncertainty for just a little bit longer.{% endtrans %}</dd>
+
+    <dt>{% trans %}I create a custom build of Firefox or Thunderbird. Can I just
+    play by the rules in this localization policy?{% endtrans %}</dt>
+
+    <dd>{% trans %}We haven't created a complete, general trademark policy that applies
+    to everyone just yet. Hang in there just a little longer.
+    But it is quite likely that we will try to use the localization
+    trademark policy as the model for a more universal trademark policy.{% endtrans %}</dd>
+
+    <dt>{% trans %}What about trademark usage on web sites etc?{% endtrans %}</dt>
+    <dd>{% trans policy=url('foundation.trademarks.l10n-website-policy') %}
+        Please see the <a href="{{ policy }}">l10n website policy</a>.{% endtrans %}</dd>
+
+    <dt>{% trans %}What about Seamonkey?</dt>
+    <dd>This document is aimed at Firefox and Thunderbird. We may
+    create trademark guidelines for the Mozilla 1.x suite at some later
+    point.{% endtrans %}</dd>
+
+    <dt>{% trans %}Will Community Releases still be uploaded to ftp.mozilla.org and
+    linked from Mozilla.org web pages as "contributed builds"?{% endtrans %}</dt>
+
+    <dd>{% trans %}We haven't decided that yet, but our focus will definitely be on
+    helping projects that wish to create official localized builds, and
+    promoting these official builds.{% endtrans %}</dd>
+
+    <dt>{% trans %}Who will host start pages for official localized releases?{% endtrans %}</dt>
+    <dd>{% trans %}Most likely the Mozilla Foundation.{% endtrans %}</dd>
+
+    <dt>{% trans %}I'd like to do an Official Release but I want to make changes that
+    are more extensive than the ones allowed under this policy. Now
+    what?{% endtrans %}</dt>
+    <dd>{% trans %}Please contact the appropriate module owner, the application owner, the MLP project or, if all else fails, the licensing list and explain the change you'd like to
+    make.
+    {% endtrans %}</dd>
+
+    <dt>{% trans %}I'd like to do a Community Release but I want to make changes that
+    are more extensive than the ones allowed under this policy. Does
+    that mean that I can't use the name "Firefox" or "Thunderbird" at all
+    to refer to the software I'm creating?{% endtrans %}</dt>
+    <dd>{% trans %}Not necessarily. Contact us and explain the change you'd like to
+    make. If your change makes sense to us, we may well allow
+    you to still use our trademarks. But you need our prior, explicit
+    OK.  Expect some delays in reviewing your request though.
+    {% endtrans %}</dd>
+
+    <dt>{% trans %}I still have questions. What about spellchecker
+    dictionaries? What about localized search engines? What about
+    e.g. a modified default theme to fit for an RTL language?
+    For Community Releases, which preferences may be modified?{% endtrans %}</dt>
+
+    <dd>{% trans %}OK, together we'll find an answer to these and other open
+    questions. Hopefully this policy provides a good framework for
+    that.{% endtrans %}</dd>
+
+    <dt>{% trans %}Why are there so many open issues still?{% endtrans %}</dt>
+    <dd>{% trans %}This is a complex issue. We've already spent a lot of time trying to
+    come up with a policy that will meet most people's needs. We recognize
+    that people in the L10n projects are eager to have more clarity, and so
+    we've decided to move as quickly as possible and work with the L10n
+    community to resolve the open issues in the near future.{% endtrans %}</dd>
+  </dl>
+
+{% endblock article %}

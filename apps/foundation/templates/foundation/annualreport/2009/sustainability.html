@@ -1,0 +1,72 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "foundation/annualreport/2009/base.html" %}
+
+{% block page_title %}{{ _('State of Mozilla - Sustainability') }}{% endblock %}
+
+{% block article %}
+  <h1 id="site-title">{{ _('The State of Mozilla') }}</h1>
+
+  <h2 id="page-subtitle">{{ _('Sustainability') }}</h2>
+
+  <h3 class="timestamp"><strong>November 18, 2010</strong></h3>
+
+  <p>{% trans %}Mozilla remains well positioned, both financially and organizationally, to
+    advance our mission of building openness and participation into the
+    Internet. Our financial situation is very similar to last year and our
+    revenues continue to grow steadily.{% endtrans %}</p>
+
+  <p>{% trans %}For the calendar year 2009, Mozilla's consolidated reported revenues
+    (Mozilla Foundation and all subsidiaries) were $104 million, up 34 percent
+    from 2008 reported revenues of $78 million. Revenues include a 2009 reported
+    loss of $104,000 in investments from the Foundation's long-term portfolio as
+    a result of economic conditions and investment values at the end of 2009.
+    This compares to our 2008 loss from investments of $7.8 million. Excluding
+    investment gains and losses, revenues from operational activity were $104
+    million compared to $86 million in 2008, an annual increase of 22 percent.
+    The majority of Mozilla revenue continues to be generated from the search
+    functionality included in Mozilla's Firefox product from organizations such
+    as Google, Yahoo, Yandex, Amazon, eBay and a handful of others.{% endtrans %}</p>
+
+  <p>{% trans %}Mozilla consolidated expenses for 2009 were $61 million, up approximately
+    26 percent from 2008 expenses of $49 million. Mozilla operating expenses in
+    2009 continued to remain highly focused on people and infrastructure. At the
+    end of 2009, Mozilla was funding approximately 250 people working around the
+    world. Total nonprofit grants, community donations and contributions in 2009
+    remained at approximately $1 million as in previous years. Mozilla supported
+    projects in 2009 included contributions to accessibility, community support,
+    and education including such organizations as Mozdev, Software Freedom
+    Conservancy, Seneca College, University of Toronto, UC Irvine, NorthEastern
+    University, Creative Commons, Paciello Group, StopBadWare, the W3C, and
+    accessibility support such as Orca screen reader, jQuery library and HTML 5
+    video. In late 2009, the Mozilla Foundation began refocusing its public
+    support programs toward Mozilla Drumbeat, which was launched in early
+    2010.{% endtrans %}</p>
+
+  <p>{% trans %}Total assets as of December 31, 2009 were $143 million compared with $116
+    million at the end of 2008, an increase of 23 percent. Unrestricted net
+    assets at the end of 2009 were $120 million compared with $94 million in
+    2008, a 28 percent increase. The restricted assets remain the same as last
+    year: a "tax reserve fund" established in 2005 for a portion of the revenue
+    the Mozilla Foundation received that year from the search engine providers.
+    As noted last year, the IRS has opened an audit of the Mozilla Foundation.
+    We do not yet have a good feel for how long this process will take or the
+    overall scope of what will be involved.{% endtrans %}</p>
+
+  <p>{% trans %}We believe Mozilla's financial resources will continue with relative
+    stability and we continue to use our assets to execute on our mission.{% endtrans %}</p>
+
+  <p>
+    {% trans form990=media('/docs/foundation/mf-2009-irs-form-990.pdf'),
+      statement=media('/docs/foundation/mf-2009-audited-financial-statement.pdf'),
+      faq=url('foundation.annualreport.2009.faq')
+    %}
+      More details can be found in our <a
+      href="{{ form990 }}">Form 990</a>, <a
+      href="{{ statement }}">Audited
+      Financial Statement</a> and <a href="{{ faq }}">related FAQ</a>.
+    {% endtrans %}
+  </p>
+{% endblock %}

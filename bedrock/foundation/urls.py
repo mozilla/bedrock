@@ -7,6 +7,64 @@ from bedrock.mozorg.util import page
 
 
 urlpatterns = patterns('',
+    page('', 'foundation/index.html'),
+    page('about', 'foundation/about.html'),
+
+    # Older annual report financial faqs - these are linked from blog posts
+    # was e.g.: http://www.mozilla.org/foundation/documents/mozilla-2008-financial-faq.html
+    page('documents/mozilla-2006-financial-faq', 'foundation/documents/mozilla-2006-financial-faq.html'),
+    page('documents/mozilla-2007-financial-faq', 'foundation/documents/mozilla-2007-financial-faq.html'),
+    page('documents/mozilla-2008-financial-faq', 'foundation/documents/mozilla-2008-financial-faq.html'),
+
+    # was https://www.mozilla.org/foundation/annualreport/2009/
+    page('annualreport/2009', 'foundation/annualreport/2009/index.html'),
+    # was .html
+    page('annualreport/2009/a-competitive-world', 'foundation/annualreport/2009/a-competitive-world.html'),
+    # was .html
+    page('annualreport/2009/broadening-our-scope', 'foundation/annualreport/2009/broadening-our-scope.html'),
+    # was .html
+    page('annualreport/2009/sustainability', 'foundation/annualreport/2009/sustainability.html'),
+
+    # was         https://www.mozilla.org/foundation/annualreport/2009/faq.html
+    # changing to https://www.mozilla.org/foundation/annualreport/2009/faq/
+    page('annualreport/2009/faq', 'foundation/annualreport/2009/faq.html'),
+
+    page('annualreport/2010', 'foundation/annualreport/2010/index.html'),
+    page('annualreport/2010/ahead', 'foundation/annualreport/2010/ahead.html'),
+    page('annualreport/2010/opportunities', 'foundation/annualreport/2010/opportunities.html'),
+    page('annualreport/2010/people', 'foundation/annualreport/2010/people.html'),
+    page('annualreport/2010/faq', 'foundation/annualreport/2010/faq.html'),
+
     page('annualreport/2011', 'foundation/annualreport/2011.html'),
     page('annualreport/2011/faq', 'foundation/annualreport/2011faq.html'),
+
+    page('careers', 'foundation/careers.html'),
+
+    page('feed-icon-guidelines', 'foundation/feed-icon-guidelines/index.html'),
+    page('feed-icon-guidelines/faq', 'foundation/feed-icon-guidelines/faq.html'),
+
+    page('licensing', 'foundation/licensing.html'),
+    page('licensing/website-content', 'foundation/licensing/website-content.html'),
+    page('licensing/website-markup', 'foundation/licensing/website-markup.html'),
+    page('licensing/binary-components', 'foundation/licensing/binary-components/index.html'),
+    page('licensing/binary-components/rationale', 'foundation/licensing/binary-components/rationale.html'),
+    page('moco', 'foundation/moco.html'),
+    page('mocosc', 'foundation/mocosc.html'),
+
+    page('openwebfund/more', 'foundation/openwebfund/more.html'),
+    page('openwebfund/thanks', 'foundation/openwebfund/thanks.html'),
+
+    page('trademarks', 'foundation/trademarks/index.html'),
+    page('trademarks/policy', 'foundation/trademarks/policy.html'),
+    page('trademarks/list', 'foundation/trademarks/list.html'),
+    page('trademarks/faq', 'foundation/trademarks/faq.html'),
+    page('trademarks/l10n-policy', 'foundation/trademarks/l10n-policy.html'),
+    page('trademarks/l10n-website-policy', 'foundation/trademarks/l10n-website-policy.html'),
+    page('trademarks/distribution-policy', 'foundation/trademarks/distribution-policy.html'),
+    page('trademarks/community-edition-permitted-changes', 'foundation/trademarks/community-edition-permitted-changes.html'),
+    page('trademarks/community-edition-policy', 'foundation/trademarks/community-edition-policy.html'),
+    page('trademarks/poweredby/faq', 'foundation/trademarks/poweredby/faq.html'),
+
+    # documents
+    page('documents', 'foundation/documents/index.html'),
 )

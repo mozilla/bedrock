@@ -1,0 +1,97 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends 'foundation/base-resp.html' %}
+
+{% block page_title %}{{ _('Mozilla 2006 Financial FAQ') }}{% endblock %}
+
+{% block article %}
+  <h1 id="site-title">{{ _('Mozilla 2006 Financial FAQ') }}</h1>
+
+  <p>
+   {% trans form990=media('/docs/foundation/mf-2006-irs-form-990.pdf'),
+     statement=media('/docs/foundation/mf-2006-audited-financial-statement.pdf')
+   %}
+     This FAQ supplements the <a href="{{ form990 }}">Mozilla
+     Foundation 2006 Form 990</a> and the <a
+     href="{{ statement }}">consolidated financial
+     statement for the Mozilla Foundation and the Mozilla
+     Corporation</a>.{% endtrans %}
+  </p>
+
+  <ul>
+    <li><p>{% trans %}Your contract with Google ends in November 2008. What happens
+    then?{% endtrans %}</p>
+
+    <p>{% trans %}We have a range of options. We may continue to work with Google
+    which has so far provided a good fit with what our users find useful
+    in the product.  If for some reason that doesn't make sense then we
+    could look at other potential partners.  We have significant retained
+    earnings, which allows us a good degree of flexibility.{% endtrans %}</p></li>
+
+    <li><p>{% trans %}Your partnership with Google accounts for over 85% of your 2006
+    revenue. How does this affect your independence?{% endtrans %}</p>
+
+    <p>{% trans %}We develop our product and technical direction as part of an open
+    process unrelated to the search relationship with Google. We talk to
+    Google about the parts of the product that offer Google services
+    (i.e., the Firefox Start Page) and the services they provide, like
+    anti-phishing. Otherwise Google does not have any special relationship
+    to Mozilla project activities. We do not vet our initiatives with
+    Google. We spent months talking to Google and Yahoo! before entering
+    relationships with them to make sure they understood the separation
+    between a search relationship and the rest of our activities.{% endtrans %}</p>
+
+    <li><p>{% trans %}You have a sizable cash reserve on hand (relative to your revenue).
+    What plans do you have?{% endtrans %}</p>
+
+    <p>{% trans %}First, the cash reserve is of course a form of insurance against
+    the loss of income.  We will continue to maintain enough of a reserve
+    to allow us flexibility in making product decisions. Second, our main
+    expenses to date&mdash;people and infrastructure&mdash;are increasing,
+    and we'll continue to spend to meet needs in these areas.  Third, our
+    grant and grant-like funding are increasing as well. Fourth, our
+    financial resources allow us to launch significant new programs, such
+    as our mobile initiative we've started recently.  And fifth, we expect
+    the Mozilla Foundation to undertake significant new programs
+    shortly.{% endtrans %}</p></li>
+
+    <li><p>{% trans %}Mozilla Foundation spending in 2006 seems low, especially the
+    $80,000 in grants. Can you say more?{% endtrans %}</p>
+
+    <p>{% trans %}We planned 2006 spending on a conservative basis to make sure the
+    Foundation remained sustainable amid the growth and change of becoming
+    a much larger project. This meant we planned to spend income but not
+    the basic principal of the Foundation in 2006 and perhaps 2007, until
+    we have a good plan for the appropriate programs to put in place, and
+    the people make good programs happen. It turned out that our
+    investment income was greater than budgeted in 2006 as well.{% endtrans %}</p>
+
+    <p>{% trans %}The total spent on grants and grant-related expenditures was
+    approximately $285,000 in 2006. "Grants" has a very precise meaning in
+    the tax and accounting world, and this is narrower than the funding
+    programs we have in place.  So our forms show $80,000 in pure
+    "grants", comprised of assistance to the Mozdev Community Organization
+    (mozdev.org) and to Seneca College.  We also funded travel for a
+    number of primarily non-employee Mozilla contributors to meet and work
+    face-to-face; this shows up in a line item marked as "travel" and
+    "conferences" (but not as "grants") and totaled approximately
+    $40,000. Mozilla also funded technical work aimed at improving web
+    accessibility to people with disabilities; this work was implemented
+    via contracts with the people doing the work and totalled
+    approximately $47,500. We also made additional grant-related program
+    expenditures totaling $52,500, including a donation to the OpenBSD and
+    OpenSSH projects and covering the expenses for a representative to the
+    IETF. Finally, through our Community Giving Program we committed about
+    $65,000 for machines (both individual PCs and hosted servers) for a
+    number of community members and projects.{% endtrans %}</p></li>
+
+    <li><p>{% trans %}Any further corrections?{% endtrans %}</p>
+
+    <p>{% trans %}Mitchell Baker's 2006 salary is over-stated by 20%.  The amount
+    reported in the Form 990 includes approximately $100,000 for a salary
+    increase and one time bonus for 2005 that was not finally approved and
+    paid until 2006.{% endtrans %}</p></li>
+  </ul>
+{% endblock %}

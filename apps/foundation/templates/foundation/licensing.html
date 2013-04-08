@@ -1,0 +1,156 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "foundation/base-resp.html" %}
+{% block page_title %}{{ _('Mozilla Licensing Policies') }}{% endblock %}
+
+{% block article %}
+  <h1 class="page-title">{{ _('Mozilla Licensing Policies') }}</h1>
+
+  <h3>{{ _('Source Code') }}</h3>
+
+  <p>
+    {% trans
+      osd="http://www.opensource.org/docs/osd",
+      free="http://www.gnu.org/philosophy/free-sw.html"
+      %}
+      All Mozilla software is <a href="{{ osd }}">open source</a> and
+      <a href="{{ free }}">free software</a>. This means that it is not
+      only available for download free of charge, but you have access to
+      the source code and may modify and redistribute our software subject
+      to certain restrictions.
+    {% endtrans %}
+  </p>
+
+  <p>
+    {% trans
+      mpl="http://www.mozilla.org/MPL/",
+      policy="http://www.mozilla.org/MPL/license-policy.html"
+    %}
+      For more details, please read about our
+      <a href="{{ mpl }}">source code license</a> and
+      <a href="{{ policy }}">software licensing policy</a>.
+    {% endtrans %}
+  </p>
+
+  <h3>{{ _('Trademarks') }}</h3>
+
+  <p>
+    {% trans
+      trademarks=url('foundation.trademarks.policy')
+      %}
+      Although our code is free, it is very important that we strictly
+      enforce our trademark rights, in order to be able to protect our
+      users against people who use the marks to commit fraud. Our trademarks
+      include, among others, the names Mozilla&reg;, mozilla.org&reg;,
+      Firefox&reg;, Thunderbird&reg;, Bugzilla&trade;, Camino&reg;,
+      Sunbird&reg;, SeaMonkey&reg;, and XUL&trade;, as well as the
+      Mozilla logo, Firefox logo, Thunderbird logo and the red lizard
+      logo. (The full list is in the
+      <a href="{{ trademarks }}">Mozilla Trademark Policy</a>.)
+      This means that, while you have considerable freedom to redistribute
+      and modify our software, there are tight restrictions on your
+      ability to use the Mozilla names and logos in ways which fall
+      in the domain of trademark law, even when built into binaries
+      that we provide.
+    {% endtrans %}
+  </p>
+
+  <p>
+    {% trans
+      trademarks=url('foundation.trademarks.policy'),
+      email="mailto:trademarks@mozilla.org"
+    %}
+      For more detail on our trademark licensing, see our
+      <a href="{{ trademarks }}">Trademark Policy</a>. If you still have
+      questions after reading the policy, please contact
+      <a href="{{ email }}">trademarks@mozilla.org</a>.
+    {% endtrans %}
+  </p>
+
+  <h3>{{ _('Website Content') }}</h3>
+
+  <p>
+    {% trans %}
+      Mozilla website content (i.e. text and pictures, not look and feel) is
+      generally licensed under Creative Commons Attribution Share-Alike
+      (CC-SA) licenses. User-generated content, such as comments on our
+      blog posts, are also generally made available under CC-SA, but
+      different Mozilla websites (such as addons.mozilla.org) may allow
+      users to choose other licenses for content that they upload to
+      our sites.
+    {% endtrans %}
+  </p>
+
+  <p>
+    {% trans %}
+      For more details, see the policy on each individual website.
+    {% endtrans %}
+  </p>
+
+  <h3>{{ _('Website Code') }}</h3>
+
+  <p>
+    {% trans %}
+      You may use the HTML and CSS files on www.mozilla.org or other
+      mozilla.org websites for your web site - as long as you don't use
+      the visual design or style (the colors, gradients, fonts, etc.).
+      In other words, you can use the HTML and/or CSS code, but your
+      page should not look like you took Mozilla's page and dropped in
+      your logo. This does not grant you any right to use the trademarks,
+      trade names, service marks, or trade dress of the Mozilla Foundation.
+    {% endtrans %}
+  </p>
+
+  <h3>{{ _('Executable Software') }}</h3>
+
+  <p>
+    {% trans
+      binary=url('foundation.licensing.binary-components.index')
+    %}
+      Executable software binaries released by the Mozilla Project, such
+      as Firefox and Thunderbird, are made available under the terms of the
+      MPL. On some proprietary, non-free platforms, necessary binary components
+      subject to other licenses may be included in the installer, as explained
+      <a href="{{ binary }}">in this policy</a>.
+    {% endtrans %}
+  </p>
+
+  <h3>{{ _('Informative, Not Authoritative') }}</h3>
+
+  <p>
+    {% trans %}
+      This page is designed to inform, not to be the final, authoritative
+      reference. If you're looking to reuse or redistribute something
+      Mozilla has created, always check the licensing in the thing
+      itself (for example, in the footer of a web page, or in the "About"
+      box of software) after you've looked at this document.
+    {% endtrans %}
+  </p>
+
+  <p>
+    {% trans
+      email="mailto:licensing@mozilla.org"
+    %}
+      In case of a conflict between this document and other documents (for
+      example, if this document and the header file of a particular
+      source code file conflict) the other document should take
+      precedence. If you do discover such a conflict, please notify
+      <a href="{{ email }}">licensing@mozilla.org</a> so we can fix it.
+    {% endtrans %}
+  </p>
+
+  <h3>{{ _('Questions?') }}</h3>
+
+  <p>
+    {% trans
+      email="mailto:licensing@mozilla.org"
+    %}
+      If, after reading all the above carefully, you have a further
+      question about the licensing terms of anything created by the
+      Mozilla project, please send the question to
+      <a href="{{ email }}">licensing@mozilla.org</a>.
+    {% endtrans %}
+  </p>
+{% endblock %}

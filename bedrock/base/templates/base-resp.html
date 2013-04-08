@@ -1,6 +1,6 @@
 {% from "macros.html" import email_newsletter_form with context %}
 {% set_lang_files "main" %}
-<!doctype html>
+<!doctype html><!-- Bedrock base-resp -->
 {# Note the "windows" class, without javascript platform-specific
      assets default to windows #}
 <html class="windows no-js" lang="{{ LANG }}" dir="{{ DIR }}">
@@ -60,6 +60,8 @@
 
         {% block alt_header %}{% endblock %}
 
+        {% block subnav %}{% endblock %}
+
         {% block breadcrumbs %}{% endblock %}
 
       </header>
@@ -83,7 +85,7 @@
 
           <div class="footer-license">
               <p>
-                {% trans url='/foundation/licensing/website-content.html' %}
+                {% trans url=url('foundation.licensing.website-content') %}
                 Portions of this content are ©1998–{{ current_year }} by individual
                 mozilla.org contributors. Content available under
                 a <a href="{{ url }}">Creative Commons license</a>.

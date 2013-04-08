@@ -1,0 +1,54 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "foundation/base-resp.html" %}
+
+{% block page_title %}{{ _('More About the Open Web Fund') }}{% endblock %}
+
+{% block article %}
+  <h1 id="page-title">{{ _('More About the Open Web Fund') }}</h1>
+
+  <p>{% trans %}The Mozilla community's greatest achievement is the creation of the open source Firefox web browser. Building on our experience with Firefox, we
+  believe that even more people can – and must – get involved in the cause of keeping the internet open. Artists, lawyers, teachers, filmmakers, anyone who
+  cares about the future of the internet - these people have skills and creativity that can help make the open web stronger in very concrete ways. We've
+  started Mozilla Drumbeat to make this kind of participation possible, and easy.{% endtrans %}</p>
+
+  <p>{% trans %}Ultimately, our goal is a strong, safe, open internet: an internet built and backed by a massive global community committed to the idea that everyone
+  should all be able to freely create, innovate and express ideas online without asking permission from others.{% endtrans %}</p>
+
+  <p>{% trans %}Of course, we will make this in the same way we make Firefox -- using an open, participatory and global approach to build things that simultaneously make
+  the web stronger and delight the people who use them.{% endtrans %}</p>
+
+  <h2>{{ _('What is the Open Web Fund?') }}</h2>
+
+  <p>{% trans drumbeat="http://www.drumbeat.org" %}
+      Mozilla has launched <a href="{{ drumbeat }}">Drumbeat</a>: an invitation to everyday internet users to help keep the web open. This year,
+  Mozilla Foundation has committed more than $1.5 million to Drumbeat, including the Mozilla Drumbeat Open Web Fund to support initiatives will grow and
+  protect internet freedom.{% endtrans %}</p>
+
+  <p>{% trans projects="http://www.drumbeat.org/projects", events="http://www.drumbeat.org/events" %}
+      The first goal with Drumbeat is to develop new ways for everyday internet users to participate in building a better internet. We believe hands on,
+  participatory web projects are the best place to start. We'll back the best of these projects with modest seed funding and help recruit contributors
+  through local events. We began experiments with this model in early 2010 and innovative open web <a href="{{ projects }}">projects</a>
+  and vibrant <a href="{{ events }}">local events</a> are already starting to roll.{% endtrans %}</p>
+
+  <p>{% trans %}While this approach draws inspiration from other challenge-style programs, one thing is unique – projects have the opportunity to get going right away
+  without waiting around to see if they have 'won' the challenge. Members of the drumbeat community can join, volunteer or vote for any project as soon as
+  it has been created. Projects that gain community support move from emerging to featured status. Successful featured projects that fit closely with the
+  Drumbeat mission will be considered for a grant from the Mozilla Drumbeat Open Web Fund.{% endtrans %}</p>
+
+  <p>{% trans %}The benefit of this approach is that participating projects can get value even if they never receive full support or funding. Also, there is an increased
+  likelihood that funded projects will succeed as they have already developed a community and traction.{% endtrans %}</p>
+
+  <p>{% trans %}Right now we can only support so many projects. If you can support Drumbeat we can do more.{% endtrans %}</p>
+
+  <h2>How can you be a part of Mozilla Drumbeat?</h2>
+
+  <ul>
+    <li>{% trans people="http://www.drumbeat.org/people" %}<a href="{{ people }}">Join</a> Drumbeat{% endtrans %}</li>
+    <li>{% trans projects="http://www.drumbeat.org/projects" %}Get involved in a <a href="{{ projects }}">project</a>{% endtrans %}</li>
+    <li>{% trans openwebfund="https://donate.mozilla.org/page/contribute/openwebfund" %}<a href="{{ openwebfund }}">Donate</a> to the Mozilla Drumbeat Open Web Fund</a>{% endtrans %}</li>
+  </ul>
+
+{% endblock article %}

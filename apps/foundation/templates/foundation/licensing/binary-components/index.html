@@ -1,0 +1,81 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "foundation/base-resp.html" %}
+{% block page_title %}{{ _('Mozilla Licensing Policies - Binary Components') }}{% endblock %}
+
+{% block article %}
+  <h1 class="page-title">{{ _('Mozilla Licensing Policies - Binary Components') }}</h1>
+
+  <p>{% trans %}Mozilla is and remains irrevocably committed to making
+      free and open source software. We see this as the best way to advance
+      our mission of preserving and promoting the open web. However, we also
+      design and distribute our products to operate on both free and non-free,
+      proprietary platforms with the goal of reaching as many users as
+      reasonably possible.  Developing products on non-free, proprietary
+      platforms will often involve the use of OS vendor SDKs and other tools
+      to develop for those platforms.  In some cases, proprietary, non-free
+      operating systems do not always contain all of the operating system
+      components necessary for proper performance of our products and/or
+      the SDKs impose terms that are inconsistent with our existing licenses.
+  {% endtrans %}</p>
+
+  <p>{% trans %}When this occurs we may, under some circumstances, decide
+      to include additional OS vendor code with the installer of our
+      products designed for the proprietary platform to make our products
+      work well on that specific operating system.  This means some code
+      included with the installer of our products on non-free platforms
+      may be governed by licenses other than the Mozilla Public License.
+      Binary versions of our products are distributed under the MPL,
+      which allows bundling of proprietary code.  Of course those who wish
+      to compile the code without these components can do so from the
+      source code repository. We believe this approach is consistent with
+      other Linux distribution practices that may include binary elements,
+      most notably drivers, and firmware support for network devices.
+  {% endtrans %}</p>
+
+  <p>{% trans %}Some of the key factors in making such a decision include:
+  {% endtrans %}</p>
+
+  <ul>
+    <li>{% trans %}Whether the code provides OS level functionality that would
+        normally be in the OS or which we have reason to believe will be
+        there in the future;
+    {% endtrans %}</li>
+
+    <li>{% trans %}The code is provided by the OS vendor or a trusted
+        3rd party;
+    {% endtrans %}</li>
+
+    <li>{% trans %}Whether alternatives exist that provide a comparable
+        user experience;
+    {% endtrans %}</li>
+
+    <li>{% trans %}The terms under which the OS level code is available;
+        and
+    {% endtrans %}</li>
+
+    <li>{% trans %}Whether the inclusion of the code provides significant
+        and important functionality for developers and/or users.
+    {% endtrans %}</li>
+  </ul>
+
+  <p>
+    {% trans
+       rationale=url('foundation.licensing.binary-components.rationale') %}
+      You can read an <a href="{{ rationale }}">example rationale</a>
+      for one such decision we have taken.
+    {% endtrans %}
+  </p>
+
+  <p>
+    {% trans
+       email="mailto:licensing@mozilla.org" %}
+      We will indicate in <tt>about:license</tt> whether any such code
+      of this type is included in products designed for non-free platforms.
+      If you have additional questions about this policy, please feel
+      free to contact <a href="{{ email }}">licensing@mozilla.org</a>.
+    {% endtrans %}
+  </p>
+{% endblock article %}
