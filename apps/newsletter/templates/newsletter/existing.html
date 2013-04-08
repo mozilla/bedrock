@@ -147,9 +147,10 @@ uncomment the next block or add it to the inheriting template:
                         {% for formpart in formset %}  {# each newsletter is a formset #}
                             <tr class="subscription">
                                 <th>
-                                    <h4>{{ formpart.initial['title'] }}</h4>
+                                    <h4 class="title">{{ formpart.initial['title'] }}</h4>
                                     {# hidden field: #}
                                     {{ formpart.newsletter }}
+                                    <p class="description">{{ formpart.initial['description'] }}</p>
                                 </th>
                                 {{ formpart.subscribed }}
                             </tr>
