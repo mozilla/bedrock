@@ -91,6 +91,7 @@ LOCALE_CONTACTS = {
     'bn-BD': ['mahayalamkhan@gmail.com'],
     'de'   : ['getinvolved@camp-firefox.de'],
     'fr'   : ['contact@mozfr.org'],
+    'fy-NL': ['fryskefirefox@gmail.com'],
     'el'   : ['core@mozilla-greece.org'],
     'es-ES': ['participa@mozilla-hispano.org'],
     'hr'   : ['contribute@mozilla-hr.org'],
