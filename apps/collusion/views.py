@@ -3,13 +3,10 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import l10n_utils
-from django.conf import settings
-from collusion.forms import SubscribeForm
 
 
 def collusion(request):
-    form = SubscribeForm()
-    return l10n_utils.render(request, "collusion/collusion.html", {'form': form})
+    return l10n_utils.render(request, "collusion/collusion.html")
 
 
 def demo(request):

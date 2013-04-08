@@ -10,7 +10,6 @@ $(document).ready(function(){
         if ($element.attr('id') == 'privacy-check') {
           error.appendTo($('#privacy-field'));
         } else {
-          console.log('email');
           error.appendTo($('#email-wrapper'));
         }
       }
