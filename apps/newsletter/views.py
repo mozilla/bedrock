@@ -105,6 +105,7 @@ def existing(request, token=None):
                 'title': data['title'],
                 'subscribed': newsletter in user['newsletters'],
                 'newsletter': newsletter,
+                'description': data['description'],
             })
 
     NewsletterFormSet = formset_factory(NewsletterForm, extra=0,

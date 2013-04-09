@@ -144,6 +144,7 @@ class ManageSubscriptionsForm(forms.Form):
 class NewsletterForm(forms.Form):
     """Form to let a user subscribe to or unsubscribe from a newsletter"""
     title = forms.CharField(required=False)
+    description = forms.CharField(required=False)
     subscribed = forms.BooleanField(
         widget=forms.RadioSelect(renderer=BooleanRadioRenderer),
         required=False,  # they have to answer, but answer can be False

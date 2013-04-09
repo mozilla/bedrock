@@ -22,21 +22,25 @@ newsletters = {
         'title': "Firefox & You",
         'languages': ['en', 'fr', 'de', 'pt', 'ru'],
         'show': True,
+        'description': 'Firefox and you'
     },
     u'firefox-tips': {
         'show': True,
         'title': 'Firefox Tips',
         'languages': ['en', 'fr', 'de', 'pt', 'ru'],
+        'description': 'Firefox tips',
     },
     u'beta': {
         'show': False,
         'title': 'Beta News',
         'languages': ['en'],
+        'description': 'Beta News',
     },
     u'join-mozilla': {
         'show': False,
         'title': 'Join Mozilla',
         'languages': ['en'],
+        'description': 'Join Mozilla',
     },
 }
 

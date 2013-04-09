@@ -12,15 +12,15 @@
 
 {% block content %}
   <div id="doc">
-    {% if newsletter_success %}
-      <div id="email-form" class="thank billboard">
-        <h3>{{ _('Thank you for signing up!') }}</h3>
-      </div>
-    {% else %}
-      {% block newsletter_content %}{% endblock %}
-      {{ email_newsletter_form(newsletter,
-                               footer=False,
-                               title=newsletter_title) }}
-    {% endif %}
+  {% if newsletter_success %}
+    <div id="email-form" class="thank billboard">
+    <h3>{{ _('Thank you for signing up!') }}</h3>
+    </div>
+  {% else %}
+    {% block newsletter_content %}{% endblock %}
+    {{ email_newsletter_form(newsletter,
+                 footer=False,
+                 title=newsletter_title) }}
+  {% endif %}
   </div>
 {% endblock %}

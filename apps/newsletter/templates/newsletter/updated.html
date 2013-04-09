@@ -9,115 +9,115 @@
 {% block body_id %}newsletter-updated{% endblock body_id %}
 
 {% block content %}
-    {% if messages %}  {# FIXME - this ought to be in base-resp.html #}
-        <ul class="messagelist">
-            {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+  {% if messages %}  {# FIXME - this ought to be in base-resp.html #}
+    <ul class="messagelist">
+      {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
 
-    {% if unsubscribed_all %}  {# user requested to unsub all #}
+  {% if unsubscribed_all %}  {# user requested to unsub all #}
 
-        <div id="main-feature" class="unsub">
-            <h2>{{ _('You’ve been unsubscribed.') }}</h2>
+    <div id="main-feature" class="unsub">
+      <h2>{{ _('You’ve been unsubscribed.') }}</h2>
+    </div>
+
+    <div id="content" class="unsub">
+      <h3>{{ _('We’re sorry to see you go. Would you mind telling us why you’re leaving?') }}</h3>
+
+      <form action="{{ url('newsletter.updated') }}" method="post">
+        <input type="hidden" name="unsub" value="2" />
+        <input type="hidden" name="token" value="{{ token }}" />
+        <table>
+          {% for i, reason in reasons %}
+            <tr>
+            <td><input type="checkbox" id="unsub{{ i }}" name="reason{{ i }}"></td>
+            <td><label for="unsub{{ i }}">{{ reason }}</label></td>
+            </tr>
+          {% endfor %}
+          <tr>
+            <td><input type="checkbox" id="unsub99" name="reason-text-p"></td>
+            <td><textarea placeholder="{{ _('Other…') }}" cols="35" rows="3" name="reason-text"></textarea></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><input type="submit" value="Submit" class="button" name="feedback" /></td>
+          </tr>
+        </table>
+      </form>
+    </div>
+
+  {% elif reasons_submitted %}
+
+    <div id="main-feature" class="unsub">
+      <h2>{{ _('You’ve been unsubscribed.') }}</h2>
+    </div>
+
+    <div id="content" class="unsub">
+      <h3>{{ _('Thanks for telling us why you’re leaving.') }}</h3>
+    </div>
+
+  {% else %}
+
+    <div id="content">
+      {% if display_en_welcome %}
+        {#  do not translate this block, we only use it in English #}
+        <p><strong>Thank you for signing up!</strong></p>
+      {% elif display_non_en_welcome %}
+        {#  This should be translated to other languages #}
+        <p><strong>
+          {{ _('Thanks! Please check your inbox to confirm your subscription.') }}
+        </strong></p>
+      {% else %}
+        <h2>{{ _('Thanks for updating your email preferences.') }}</h2>
+      {% endif %}
+
+
+      {% if display_en_welcome %}
+        <div id="thankyou">
+          {#  do not translate this block, we only use it in English #}
+          <p>We look forward to sharing tips & tricks on getting the most
+            out of Firefox, as well as exciting news about Mozilla and how
+            we’re working to create a better Web.</p>
+
+          <p>Please add our sending address:
+            <a href="mailto:mozilla@e.mozilla.org">mozilla@e.mozilla.org</a>
+            to your address book to ensure we always reach your inbox.</p>
         </div>
-
-        <div id="content" class="unsub">
-            <h3>{{ _('We’re sorry to see you go. Would you mind telling us why you’re leaving?') }}</h3>
-
-            <form action="{{ url('newsletter.updated') }}" method="post">
-                <input type="hidden" name="unsub" value="2" />
-                <input type="hidden" name="token" value="{{ token }}" />
-                <table>
-                    {% for i, reason in reasons %}
-                        <tr>
-                        <td><input type="checkbox" id="unsub{{ i }}" name="reason{{ i }}"></td>
-                        <td><label for="unsub{{ i }}">{{ reason }}</label></td>
-                        </tr>
-                    {% endfor %}
-                    <tr>
-                        <td><input type="checkbox" id="unsub99" name="reason-text-p"></td>
-                        <td><textarea placeholder="{{ _('Other…') }}" cols="35" rows="3" name="reason-text"></textarea></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><input type="submit" value="Submit" class="button" name="feedback" /></td>
-                    </tr>
-                </table>
-            </form>
+      {% elif display_non_en_welcome %}
+        <div id="thankyou">
+          <p>{% trans email='mozilla@e.mozilla.org' %}
+            You'll receive an email from
+            <a href="mailto:{{ email }}">{{ email }}</a>
+            to confirm your subscription. If you don't see it, check your
+            spam filter. You must confirm your subscription to receive
+            our newsletter.
+          {% endtrans %}</p>
         </div>
+      {% endif %}
 
-    {% elif reasons_submitted %}
+      <h3>{{ _('While here, why not check out some more Firefox awesomeness.') }}</h3>
 
-        <div id="main-feature" class="unsub">
-            <h2>{{ _('You’ve been unsubscribed.') }}</h2>
-        </div>
+      <div class="sub-feature box" id="mobile">
+        <h4>{{ _('Get Up and Go') }}</h4>
+        <p>{{ _('It’s your Web anywhere you go.') }}</p>
+        <a href="{{ url('mozorg.mobile') }}" class="link">{{ _('Get Firefox for mobile! »') }}</a>
+      </div>
+      <div class="sub-feature box" id="addons">
+        <h4>{{ _('Added Extras') }}</h4>
+        <p>{{ _('Make Firefox do more with add-ons.') }}</p>
+        <a href="https://addons.mozilla.org/" class="link">{{ _('Find out how! »') }}</a>
+      </div>
+      <div class="sub-feature box" id="about">
+        <h4>{{ _('About Us') }}</h4>
+        <p>{{ _('What’s  Mozilla all about?') }}</p>
+        <a href="{{ url('mozorg.about') }}" class="link"{{ _('>We’re glad you asked! »') }}</a>
+      </div>
 
-        <div id="content" class="unsub">
-            <h3>{{ _('Thanks for telling us why you’re leaving.') }}</h3>
-        </div>
+    </div>
 
-    {% else %}
-
-        <div id="content">
-            {% if display_en_welcome %}
-                {#  do not translate this block, we only use it in English #}
-                <p><strong>Thank you for signing up!</strong></p>
-            {% elif display_non_en_welcome %}
-                {#  This should be translated to other languages #}
-                <p><strong>
-                    {{ _('Thanks! Please check your inbox to confirm your subscription.') }}
-                </strong></p>
-            {% else %}
-                <h2>{{ _('Thanks for updating your email preferences.') }}</h2>
-            {% endif %}
-
-
-            {% if display_en_welcome %}
-                <div id="thankyou">
-                    {#  do not translate this block, we only use it in English #}
-                    <p>We look forward to sharing tips & tricks on getting the most
-                        out of Firefox, as well as exciting news about Mozilla and how
-                        we’re working to create a better Web.</p>
-
-                    <p>Please add our sending address:
-                        <a href="mailto:mozilla@e.mozilla.org">mozilla@e.mozilla.org</a>
-                        to your address book to ensure we always reach your inbox.</p>
-                </div>
-            {% elif display_non_en_welcome %}
-                <div id="thankyou">
-                    <p>{% trans email='mozilla@e.mozilla.org' %}
-                        You'll receive an email from
-                        <a href="mailto:{{ email }}">{{ email }}</a>
-                        to confirm your subscription. If you don't see it, check your
-                        spam filter. You must confirm your subscription to receive
-                        our newsletter.
-                    {% endtrans %}</p>
-                </div>
-            {% endif %}
-
-            <h3>{{ _('While here, why not check out some more Firefox awesomeness.') }}</h3>
-
-            <div class="sub-feature box" id="mobile">
-                <h4>{{ _('Get Up and Go') }}</h4>
-                <p>{{ _('It’s your Web anywhere you go.') }}</p>
-                <a href="{{ url('mozorg.mobile') }}" class="link">{{ _('Get Firefox for mobile! »') }}</a>
-            </div>
-            <div class="sub-feature box" id="addons">
-                <h4>{{ _('Added Extras') }}</h4>
-                <p>{{ _('Make Firefox do more with add-ons.') }}</p>
-                <a href="https://addons.mozilla.org/" class="link">{{ _('Find out how! »') }}</a>
-            </div>
-            <div class="sub-feature box" id="about">
-                <h4>{{ _('About Us') }}</h4>
-                <p>{{ _('What’s  Mozilla all about?') }}</p>
-                <a href="{{ url('mozorg.about') }}" class="link"{{ _('>We’re glad you asked! »') }}</a>
-            </div>
-
-        </div>
-
-    {% endif %}
+  {% endif %}
 {% endblock %}
 
 {# Don't display an email signup form in the footer of this page, #}
