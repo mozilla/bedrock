@@ -101,11 +101,13 @@ def existing(request, token=None):
         # Only show a newsletter if it has ['show'] == True or the
         # user is already subscribed
         if data.get('show', False) or newsletter in user['newsletters']:
+            langs = data['languages']
             initial.append({
                 'title': data['title'],
                 'subscribed': newsletter in user['newsletters'],
                 'newsletter': newsletter,
                 'description': data['description'],
+                'english_only': len(langs) == 1 and langs[0].startswith('en')
             })
 
     NewsletterFormSet = formset_factory(NewsletterForm, extra=0,

@@ -65,30 +65,6 @@ class TestManageSubscriptionsForm(TestCase):
         self.assertEqual('pt', form.fields['lang'].initial)
         self.assertEqual('br', form.fields['country'].initial)
 
-    @mock.patch('newsletter.utils.get_newsletters')
-    def test_new_newsletters_in_language(self, get_newsletters):
-        # you cannot subscribe to newsletters that aren't available
-        # in the language that you've chosen
-        get_newsletters.return_value = newsletters
-        locale = "en-US"
-        user = {'email': 'user@example.com', 'format': 'H', 'newsletters': []}
-        form = ManageSubscriptionsForm(locale=locale, data=user)
-        form.newsletters = ['no-such-english-newsletter']
-        self.assertFalse(form.is_valid())
-
-    @mock.patch('newsletter.utils.get_newsletters')
-    def test_old_newsletters_any_language(self, get_newsletters):
-        # newsletters you were already subscribed to don't need to be
-        # validated against the language you submitted this time
-        get_newsletters.return_value = newsletters
-        locale = "fr"
-        user = {'email': 'user@example.com', 'format': 'H',
-                'newsletters': ['beta'],
-                'lang': 'fr'}
-        form = ManageSubscriptionsForm(locale=locale, initial=user, data=user)
-        form.newsletters = ['beta']
-        self.assertTrue(form.is_valid(), msg=form.errors)
-
 
 class TestNewsletterForm(TestCase):
     @mock.patch('newsletter.utils.get_newsletters')
@@ -102,6 +78,7 @@ class TestNewsletterForm(TestCase):
             'title': title,
             'newsletter': newsletter,
             'subscribed': True,
+            'english_only': False,
         }
         form = NewsletterForm(initial=initial)
         rendered = str(form)

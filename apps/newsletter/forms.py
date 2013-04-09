@@ -123,20 +123,9 @@ class ManageSubscriptionsForm(forms.Form):
 
     def clean(self):
         valid_newsletters = utils.get_newsletters()
-        lang = self.cleaned_data['lang']
         for newsletter in self.newsletters:
             if newsletter not in valid_newsletters:
                 msg = _("%s is not a valid newsletter") % newsletter
-                raise ValidationError(msg)
-            # Letters they're adding a new subscription to must exist
-            # in the language they've selected. But if they're already
-            # subscribed, that's okay.
-            if newsletter not in self.already_subscribed and \
-                    lang not in valid_newsletters[newsletter]['languages']:
-                template = _(
-                    "%s is not a valid newsletter in this language (%s)",
-                )
-                msg = template % (newsletter_title(newsletter), lang)
                 raise ValidationError(msg)
         return super(ManageSubscriptionsForm, self).clean()
 
@@ -150,6 +139,8 @@ class NewsletterForm(forms.Form):
         required=False,  # they have to answer, but answer can be False
     )
     newsletter = forms.CharField(widget=forms.HiddenInput)
+    # another hidden one, just so the template can get the data
+    english_only = forms.BooleanField(required=False)
 
 
 class NewsletterFooterForm(forms.Form):

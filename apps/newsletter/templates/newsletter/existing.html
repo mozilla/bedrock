@@ -90,7 +90,7 @@ uncomment the next block or add it to the inheriting template:
             <thead>
             <tr>
               <td>{{ _('Our monthly newsletters') }}</td>
-              <th>{{ _(Subscribe') }}</th>
+              <th>{{ _('Subscribe') }}</th>
               <th>{{ _('Unsubscribe') }}</th>
             </tr>
             </thead>
@@ -101,7 +101,12 @@ uncomment the next block or add it to the inheriting template:
                   <h4 class="title">{{ formpart.initial['title'] }}</h4>
                   {# hidden field: #}
                   {{ formpart.newsletter }}
-                  <p class="description">{{ formpart.initial['description'] }}</p>
+                  <p class="description">
+                    {{ formpart.initial['description'] }}
+                    {% if formpart.initial['english_only'] %}
+                      ({{ _('English only') }})
+                    {% endif %}
+                  </p>
                 </th>
                 {{ formpart.subscribed }}
               </tr>
