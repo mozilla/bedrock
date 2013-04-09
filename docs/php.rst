@@ -35,6 +35,36 @@ site to rule them all, or something like that).
 Installing
 ==========
 
+.. _apache:
+
+Apache
+------
+
+Whether you're installing just `mozilla.com` or also `mozilla.org`, there's
+some common configuration required for Apache.
+
+1. Install PHP.  On Ubuntu, you can use these commands::
+
+    sudo apt-get install libapache2-mod-php5
+
+2. Enable the required modules. On Ubuntu, this should get most of them::
+
+    sudo a2enmod actions expires headers php5 proxy proxy_http rewrite status vhost_alias
+
+but if Apache fails to start with errors about unknown directives, that
+probably means some other module also needs to be enabled.
+
+
+Bedrock
+-------
+
+The whole site now assumes Bedrock is also available. Even after following
+the instructions below, parts of the site will not work until/unless you also
+have :ref:`Bedrock running locally<with php>`. Or you might see an old version
+of a page from PHP, because the newer version is in Bedrock but the old
+version wasn't removed from PHP.
+
+
 .. _mozilla-com:
 
 mozilla.com
@@ -46,7 +76,7 @@ product pages. See :ref:`mozilla.org <mozilla-org>` for instructions
 on installing the org side of the site. For more details on why
 several codebases run the site, see :ref:`How a Request is Handled <merge>`.
 
-.. note:: This assumes you are using Apache. Windows might have
+.. note:: This assumes you are using Apache with Unix. Windows might have
           different steps, please contact us if you need help.
 
 1. Install it with these commands:
@@ -58,8 +88,13 @@ several codebases run the site, see :ref:`How a Request is Handled <merge>`.
   cp config.inc.php-dist config.inc.php
 
 2. Open /includes/config.inc.php and set the `server_name` to "mozilla.local" (or whatever you will use) and `file_root` to the site's path on the filesystem.
-3. Set up `mozilla.local` to resolve to localhost. This is different for each OS, but a quick way on Linux/OS X is to add an entry to /etc/hosts.
+3. Set up `mozilla.local` to resolve to localhost. This is different for each OS, but a quick way on Linux/OS X is to add an entry to /etc/hosts::
+
+    127.0.0.1 mozilla.local
+
 4. Configure Apache to allow the site to run with a Directory and VirtualHost directive:
+   This could go in the main Apache configuration file, or
+   on Ubuntu, you might put this in ``/etc/apache2/sites-available/mozilla.com``.
 
 ::
 
@@ -77,13 +112,20 @@ several codebases run the site, see :ref:`How a Request is Handled <merge>`.
 
 Make sure to replace ServerName and /path/to/ to the correct values.
 
+On Ubuntu, you would then enable the site with::
+
+    sudo a2ensite mozilla.com
+
 5. You *might* need to set the DocumentRoot to the site if you can't load any CSS files. We are looking to fix this.
 
-::
+        DocumentRoot "/path/to/mozilla/mozilla.com"
 
-  DocumentRoot "/path/to/mozilla/mozilla.com"
+You shouldn't need anything else in the site config for mozilla.com. The `.htaccess` file
+at the root of mozilla.com contains the rest of the required configuration.
 
-6. Restart Apache
+6. Restart Apache.  On Ubuntu::
+
+    sudo service apache2 restart
 
 If you go to http://mozilla.local/ you should see a page for downloading Firefox.
 
