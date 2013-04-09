@@ -21,7 +21,7 @@ from pyquery import PyQuery as pq
 
 from firefox import views as fx_views
 from firefox.firefox_details import FirefoxDetails
-from firefox.views import product_details
+from firefox.utils import product_details
 
 
 TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), 'test_data')
