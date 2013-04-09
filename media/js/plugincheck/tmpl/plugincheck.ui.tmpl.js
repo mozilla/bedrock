@@ -1,6 +1,6 @@
 var vulnerablePluginsTmpl = '{{#vulnerablePlugins}} <tr><td>' +
                         '<section>' +
-                        '<img class="icon" width="60" height="60" src="/media/img/plugincheck/app-icons/{{icon}}" alt="{{img_alt_txt}}" />' +
+                        '<img class="icon" width="60" height="60" src="{{icon}}" alt="{{img_alt_txt}}" />' +
                         '<h4 class="name">{{plugin_name}}</h4>' +
                         '<p class="plugin-detail">{{{ plugin_detail }}}</p>' +
                         '</section></td>' +
@@ -9,7 +9,7 @@ var vulnerablePluginsTmpl = '{{#vulnerablePlugins}} <tr><td>' +
                         '</tr> {{/vulnerablePlugins}}',
     outdatedPluginsTmpl = '{{#outdatedPlugins}} <tr><td>' +
                         '<section>' +
-                        '<img class="icon" width="60" height="60" src="/media/img/plugincheck/app-icons/{{icon}}" alt="{{img_alt_txt}}" />' +
+                        '<img class="icon" width="60" height="60" src="{{icon}}" alt="{{img_alt_txt}}" />' +
                         '<h4 class="name">{{plugin_name}}</h4>' +
                         '<p class="plugin-detail">{{{ plugin_detail }}}</p>' +
                         '</section></td>' +
@@ -18,7 +18,7 @@ var vulnerablePluginsTmpl = '{{#vulnerablePlugins}} <tr><td>' +
                         '</tr> {{/outdatedPlugins}}',
     unknownPluginsTmpl = '{{#unknownPlugins}} <tr><td>' +
                         '<section>' +
-                        '<img class="icon" width="60" height="60" src="/media/img/plugincheck/app-icons/{{icon}}" alt="{{img_alt_txt}} />' +
+                        '<img class="icon" width="60" height="60" src="{{icon}}" alt="{{img_alt_txt}} />' +
                         '<h4 class="name">{{plugin_name}}</h4>' +
                         '<p class="plugin-detail">{{{ plugin_detail }}}</p>' +
                         '</section></td>' +
@@ -27,7 +27,7 @@ var vulnerablePluginsTmpl = '{{#vulnerablePlugins}} <tr><td>' +
                         '</tr> {{/unknownPlugins}}',
     upToDatePluginsTmpl = '{{#upToDatePlugins}} <tr><td>' +
                         '<section>' +
-                        '<img class="icon" width="60" height="60" src="/media/img/plugincheck/app-icons/{{icon}}" alt="{{img_alt_txt}}" />' +
+                        '<img class="icon" width="60" height="60" src="{{icon}}" alt="{{img_alt_txt}}" />' +
                         '<h4 class="name">{{plugin_name}}</h4>' +
                         '<p class="plugin-detail">{{{ plugin_detail }}}</p>' +
                         '</section></td>' +

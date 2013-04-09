@@ -51,11 +51,8 @@ $(function() {
         if(data.vulnerablePlugins) {
             vulnerablePluginsHtml = Mustache.to_html(vulnerablePluginsTmpl, data);
             vulnerablePluginsBody.append(vulnerablePluginsHtml);
-            // If this section is already visible, do not
-            // bother to call show and save some repainting.
-            if(!vulnerablePluginsSection + ':visible') {
-                vulnerablePluginsSection.show();
-            }
+
+            vulnerablePluginsSection.show();
         }
 
         // If the latest response from the service was a outdated plugin,
@@ -63,11 +60,9 @@ $(function() {
         if(data.outdatedPlugins) {
             outdatedPluginsHtml = Mustache.to_html(outdatedPluginsTmpl, data);
             outdatedPluginsBody.append(outdatedPluginsHtml);
-            // If this section is already visible, do not
-            // bother to call show and save some repainting.
-            if(!outdatedPluginsSection + ':visible') {
-                outdatedPluginsSection.show();
-            }
+
+            outdatedPluginsSection.show();
+
         }
 
         // If the latest response from the service was an unknown plugin,
@@ -75,24 +70,17 @@ $(function() {
         if(data.unknownPlugins) {
             unknownPluginsHtml = Mustache.to_html(unknownPluginsTmpl, data);
             unknownPluginsBody.append(unknownPluginsHtml);
-            // If this section is already visible, do not
-            // bother to call show and save some repainting.
-            if(!unknownPluginsSection + ':visible') {
-                unknownPluginsSection.show();
-            }
+
+            unknownPluginsSection.show();
         }
 
-        // If the latest response from the service was an sweet plugin,
+        // If the latest response from the service was an up to date plugin,
         // pass the object here.
         if(data.upToDatePlugins) {
-            console.log(data);
             upToDatePluginsHtml = Mustache.to_html(upToDatePluginsTmpl, data);
             upToDatePluginsBody.append(upToDatePluginsHtml);
-            // If this section is already visible, do not
-            // bother to call show and save some repainting.
-            if(!upToDatePluginsSection + ':visible') {
-                upToDatePluginsSection.show();
-            }
+
+            upToDatePluginsSection.show();
         }
     },
     unknownPluginUrl = function (pluginName) {
@@ -101,14 +89,13 @@ $(function() {
     buildObject = function(data) {
         var plugin = data.pluginInfo.raw,
             url = data.url,
-            currentPlugin = {};
-
-            console.log(window.trans('button_update'));
+            currentPlugin = {},
+            mediaURL = window.trans('media-url') + 'img/plugincheck/app-icons/';
 
         if(data.status === 'should_disable' || data.status === 'vulnerable' ||
             data.status === 'maybe_vulnerable') {
             currentPlugin['vulnerablePlugins'] = {
-                'icon': iconFor(plugin.name),
+                'icon': mediaURL + iconFor(plugin.name),
                 'plugin_name': plugin.name,
                 'plugin_detail': plugin.description,
                 'plugin_status': 'vulnerable',
@@ -118,7 +105,7 @@ $(function() {
             };
         } else if(data.status === 'outdated' || data.status === 'maybe_outdated') {
             currentPlugin['outdatedPlugins'] = {
-                'icon': iconFor(plugin.name),
+                'icon': mediaURL + iconFor(plugin.name),
                 'plugin_name': plugin.name,
                 'plugin_detail': plugin.description,
                 'plugin_status': 'vulnerable',
@@ -128,7 +115,7 @@ $(function() {
             };
         } else if(data.status === 'unknown') {
             currentPlugin['unknownPlugins'] = {
-                'icon': iconFor(plugin.name),
+                'icon': mediaURL + iconFor(plugin.name),
                 'plugin_name': plugin.name,
                 'plugin_detail': plugin.description,
                 'plugin_status': 'unknown',
@@ -138,7 +125,7 @@ $(function() {
             };
         } else if(data.status === 'latest' || data.status === 'newer') {
             currentPlugin['upToDatePlugins'] = {
-                'icon': iconFor(plugin.name),
+                'icon': mediaURL + iconFor(plugin.name),
                 'plugin_name': plugin.name,
                 'plugin_detail': plugin.description,
                 'plugin_status': plugin.version,
