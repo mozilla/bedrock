@@ -30,7 +30,7 @@
       <h2 class="channel-title channel-title-beta"><img src="{{ media('/img/firefox/channel/title-beta.png') }}" alt="Firefox Beta" /></h2>
       <h3>The latest features in a more stable environment</h3>
       <div class="download-box" id="beta-desktop">
-        {{ download_firefox('beta', icon=False, small=True) }}
+        {{ download_firefox('beta', icon=False, small=True, force_stub_installer=True) }}
       </div>
       <div class="download-box mobile" id="beta-mobile">
         {{ download_firefox('beta', icon=False, mobile=True, small=True) }}
