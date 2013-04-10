@@ -1,21 +1,41 @@
-Thank you for your interest in contributing to our efforts to build a generation of webmakers.
+Thanks for your interest in education and Mozilla's web literacy initiative, Webmaker.
 
-We know that people learn best when they're making something together. So we're inviting people everywhere to meet up, make something cool, learn how the code behind the Web works -- and have a blast while doing it.
+Here are a few resources to help you get started.
 
-We've got all the tools and tips you need to get started at:
+# Make Something With the Web
 
-https://webmaker.org
+We believe making something helps you learn better. Try our open suite of tools to create, animate and remix web content:
 
-These events are quick, easy, and fun -- in as little as 30 minutes, you can have a handful of friends around your kitchen table, easily hack a webpage or make something new with our tools, and have something awesome to brag about.
+http://webmaker.org/tools
 
-If you don't want to host an event and would rather contribute your time building our tools, here are some links to issue trackers -- please dive right in!
+# Webmaker Mentors
 
-Thimble: https://github.com/mozilla/webpagemaker/issues
+We're a global community of techies, educators, makers and passionate people like you. We help learners make amazing things on the web and level up their digital skills as they go.
 
-Popcorn Maker & Popcorn.js: https://webmademovies.lighthouseapp.com/dashboard
+Webmaker Mentors support learners anywhere - in our homes, offices, neighborhoods and online.
 
-Open Badges: https://github.com/mozilla/openbadges/issues
+Our non-profit mission: Build a more web literate world. One webmaker at a time.
 
-X-Ray Goggles: https://github.com/toolness/webxray/issues
+Sign up to receive updates about Webmaker Mentors:
 
-Thanks so much for getting involved. If you have any questions, feel free to write us at joinmozilla@mozilla.org
+https://webmaker.org/teach/
+
+# Webmaker Teaching Resources
+
+If you are interested in teaching web skills, check out these free, hackable resources:
+
+https://webmaker.org/kits/
+
+# More Ways to Connect
+
+Here are other ways to connect with us:
+
+https://webmaker.org/connect
+
+And let us know if you need any help or have ideas on how to improve these efforts!
+
+# Sign Up
+
+Don't forget to sign up here to receive more updates and ways to get involved:
+
+https://webmaker.org/teach/

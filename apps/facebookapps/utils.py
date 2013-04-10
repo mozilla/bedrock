@@ -51,7 +51,7 @@ def unwrap_signed_request(request):
 
 
 def app_data_query_string_encode(app_data):
-    return urllib.urlencode([('app_data[{}]'.format(key), value) for key, value in app_data.items()])
+    return urllib.urlencode([('app_data[{key}]'.format(key=key), value) for key, value in app_data.items()])
 
 
 def get_best_locale(request, locale):

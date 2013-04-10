@@ -54,24 +54,6 @@ $(document).ready(function() {
             } else {
                 $('#slider').cycle(sidx);
             }
-            // Track which slides get viewed
-            switch (location.hash) {
-            case '#speed':
-                dcsMultiTrack('WT.z_panel','Desktops & Laptops','WT.dl',98);
-                break;
-            case '#smartphones':
-                dcsMultiTrack('WT.z_panel','Smartphones','WT.dl',98);
-                break;
-            case '#tablets':
-                dcsMultiTrack('WT.z_panel','Tablets','WT.dl',98);
-                break;
-            case '#addons':
-                dcsMultiTrack('WT.z_panel', 'Favorite Add-ons', 'WT.dl', 98);
-                break;
-            case '#sync':
-                dcsMultiTrack('WT.z_panel','Sync Your Gadgets','WT.dl',98);
-                break;
-            }
         });
 
         $(window).hashchange();

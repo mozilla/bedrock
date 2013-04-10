@@ -41,5 +41,7 @@ urlpatterns = patterns('',
                 'return_to_form': False}),
     url(r'^about/partnerships/contact-bizdev/$', views.contact_bizdev,
         name='about.partnerships.contact-bizdev'),
-
+    url(r'^plugincheck/$',
+        views.plugincheck,
+        name='mozorg.plugincheck'),
 )

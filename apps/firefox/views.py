@@ -14,8 +14,6 @@ from django.views.decorators.vary import vary_on_headers
 
 import basket
 from jingo_minify.helpers import BUILD_ID_JS, BUNDLE_HASHES
-from product_details import product_details
-from product_details.version_compare import Version
 from funfactory.urlresolvers import reverse
 
 import l10n_utils
@@ -23,6 +21,7 @@ from firefox import version_re
 from firefox.forms import SMSSendForm
 from mozorg.forms import WebToLeadForm
 from firefox.platforms import load_devices
+from firefox.utils import is_current_or_newer
 from firefox.firefox_details import firefox_details
 from l10n_utils.dotlang import _
 
@@ -143,24 +142,6 @@ def latest_fx_redirect(request, fake_version, template_name):
     }
     return l10n_utils.render(request, template_name,
                              {'locales_with_video': locales_with_video})
-
-
-def is_current_or_newer(user_version):
-    """
-    Return true if the version (X.Y only) is for the latest Firefox or newer.
-    """
-    latest = Version(product_details.firefox_versions['LATEST_FIREFOX_VERSION'])
-    user = Version(user_version)
-
-    # check for ESR
-    if user.major in firefox_details.esr_major_versions:
-        return True
-
-    # similar to the way comparison is done in the Version class,
-    # but only using the major and minor versions.
-    latest_int = int('%d%02d' % (latest.major, latest.minor1))
-    user_int = int('%d%02d' % (user.major or 0, user.minor1 or 0))
-    return user_int >= latest_int
 
 
 def all_downloads(request):
