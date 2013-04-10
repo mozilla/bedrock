@@ -1,19 +1,8 @@
 {% extends 'newsletter/base.html' %}
 
-{#
-# FIXME - this page needs better styling
-#}
-
 {# Template used for a user to manage their subscriptions #}
 
-{% block page_title %}{{ _('Newsletter Subscriptions') }}{% endblock page_title %}
-
 {% block body_id %}newsletter-existing{% endblock body_id %}
-
-{# If we want this page to use the Firefox 'sand' color scheme,
-uncomment the next block or add it to the inheriting template:
-{% block body_class %}sand{% endblock %}
-#}
 
 {% block js %}
   {{ super() }}
@@ -72,106 +61,103 @@ uncomment the next block or add it to the inheriting template:
   {% endblock %}
 
   {% if messages %}  {# FIXME - this ought to be in base-resp.html #}
-    <ul class="messagelist">
+    <ul class="messagelist billboard">
       {% for message in messages %}
         <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
       {% endfor %}
     </ul>
   {% endif %}
 
-  <section id="main-content" class="billboard">
+  {% if formset %}
+    <form method="post" action="" id="existing-newsletter-form" class="container billboard">
+      {{ formset.management_form }}
 
-    {% if formset %}
-      <form method="post" action="" id="existing-newsletter-form">
-        {{ formset.management_form }}
+      <div id="basic-settings">
 
-        <div id="basic-settings">
+        {% block intro %}{% endblock %}
 
-          {% block intro %}{% endblock %}
-
-          {% if form.non_field_errors() %}
-            <div class="errorlist">
-              {{ form.non_field_errors() }}
-            </div>
-          {% endif %}
-
-          {% set email = form['email'] %}
-          <div class="field email-field {% if email.errors %}field-error{% endif %}">
-            {{ form.email.label_tag(_('Your email address:')) }}
-            <div class="field-contents">
-              {{ email }}
-            </div>
-            {{ email.errors }}
+        {% if form.non_field_errors() %}
+          <div class="errorlist">
+            {{ form.non_field_errors() }}
           </div>
+        {% endif %}
 
-          {% set country = form['country'] %}
-          <div class="field country-field {% if country.errors %}field-error{% endif %}">
-            {{ form.country.label_tag(_('Country:')) }}
-            <div class="field-contents">
-              {{ country }}
-            </div>
-            {{ country.errors }}
+        {% set email = form['email'] %}
+        <div class="field email-field {% if email.errors %}field-error{% endif %}">
+          {{ form.email.label_tag(_('Your email address:')) }}
+          <div class="field-contents">
+            {{ email }}
           </div>
-
-          {% set lang = form['lang'] %}
-          <div class="field lang-field {% if lang.errors %}field-error{% endif %}">
-            {{ form.lang.label_tag(_('Language:')) }}
-            <div class="field-contents">
-              {{ lang }}
-            </div>
-            {{ lang.errors }}
-          </div>
-
-          <div class="field format-field">
-            {{ form.format.label_tag(_('Format:')) }}
-            <div class="field-contents field-radios">
-              {{ form['format'] }}
-            </div>
-            {{ form['format'].errors }}
-          </div>
-        </div><!-- close #basic-settings -->
-
-        <div class="field" id="other-newsletters">
-          <div class="field-radios">
-          <table class="table">
-            <thead>
-            <tr>
-              <td>{{ _('Our monthly newsletters') }}</td>
-              <th>Subscribe</th>
-              {% if user_exists %}
-                <th>{{ _('Unsubscribe') }}</th>
-              {% endif %}
-            </tr>
-            </thead>
-            <tbody>
-            {% for formpart in formset %}  {# each newsletter is a formset #}
-              <tr class="subscription">
-                <th>
-                  <h4 class="title">{{ formpart.initial['title'] }}</h4>
-                  {# hidden field: #}
-                  {{ formpart.newsletter }}
-                  <p class="description">{{ formpart.initial['description'] }}</p>
-                </th>
-                {{ formpart.subscribed }}
-              </tr>
-            {% endfor %}
-
-            </tbody>
-          </table>
-          </div>
-        </div><!-- close #all-newsletters -->
-
-        <div class="field" id="remove-all-section">
-          {{ form['remove_all'] }}
-          {{ form.remove_all.label_tag(_('Remove me from all Mozilla emails')) }}
+          {{ email.errors }}
         </div>
 
-        <div class="field submit-field">
-          <input name="submit" type="submit" value="Save Preferences" class="button">
-        </div><!-- close .submit-field -->
+        {% set country = form['country'] %}
+        <div class="field country-field {% if country.errors %}field-error{% endif %}">
+          {{ form.country.label_tag(_('Country:')) }}
+          <div class="field-contents">
+            {{ country }}
+          </div>
+          {{ country.errors }}
+        </div>
 
-      </form>
-    {% endif %}
-  </section>
+        {% set lang = form['lang'] %}
+        <div class="field lang-field {% if lang.errors %}field-error{% endif %}">
+          {{ form.lang.label_tag(_('Language:')) }}
+          <div class="field-contents">
+            {{ lang }}
+          </div>
+          {{ lang.errors }}
+        </div>
+
+        <div class="field format-field">
+          {{ form.format.label_tag(_('Format:')) }}
+          <div class="field-contents field-radios">
+            {{ form['format'] }}
+          </div>
+          {{ form['format'].errors }}
+        </div>
+      </div><!-- close #basic-settings -->
+
+      <div class="field" id="other-newsletters">
+        <div class="field-radios">
+        <table class="table">
+          <thead>
+          <tr>
+            <td>{{ _('Our monthly newsletters') }}</td>
+            <th>Subscribe</th>
+            {% if user_exists %}
+              <th>{{ _('Unsubscribe') }}</th>
+            {% endif %}
+          </tr>
+          </thead>
+          <tbody>
+          {% for formpart in formset %}  {# each newsletter is a formset #}
+            <tr class="subscription">
+              <th>
+                <h4 class="title">{{ formpart.initial['title'] }}</h4>
+                {# hidden field: #}
+                {{ formpart.newsletter }}
+                <p class="description">{{ formpart.initial['description'] }}</p>
+              </th>
+              {{ formpart.subscribed }}
+            </tr>
+          {% endfor %}
+
+          </tbody>
+        </table>
+        </div>
+      </div><!-- close #all-newsletters -->
+
+      <div class="field" id="remove-all-section">
+        {{ form['remove_all'] }}
+        {{ form.remove_all.label_tag(_('Remove me from all Mozilla emails')) }}
+      </div>
+
+      <div class="field submit-field">
+        <input name="submit" type="submit" value="Save Preferences" class="button">
+      </div><!-- close .submit-field -->
+
+    </form>
+  {% endif %}
   <!-- End content -->
 {% endblock %}

@@ -332,10 +332,21 @@ input.focus {
         position: absolute;
         top: 100%;
         left: 15px;
-        border-top: 10px solid blue;
-        border-top-color: #a91300;
-        border-left: 10px solid transparent;
-        border-right: 10px solid transparent;
+        border-style: solid;
+        border-width: 10px 10px 0;
+        border-color: #a91300 transparent;
+    }
+    &.arrow-top:after {
+        top: -10px;
+        border-width: 0 10px 10px;
+        border-color: #d54a2c transparent;
+    }
+    &.arrow-left:after {
+        top: 50%;
+        margin-top: -10px;
+        left: -10px;
+        border-width: 10px 10px 10px 0;
+        border-color: transparent #c13018;
     }
 }
 
