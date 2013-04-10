@@ -5,9 +5,10 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import re
-from random import randrange
-from operator import itemgetter
+
 from datetime import datetime
+from operator import itemgetter
+from random import randrange
 
 from django import forms
 from django.conf import settings
@@ -89,11 +90,11 @@ class HoneyPotWidget(widgets.CheckboxInput):
         honeypot_txt = _(u'Check this box if you are not human.')
         # semi-randomized in case we have more than one per page.
         # this is maybe/probably overthought
-        honeypot_id = 'honeypot-' + str(randrange(1001)) + '-' + str(datetime.now().strftime("%Y%m%d%H%M%S%f"))
+        honeypot_id = 'super-priority-' + str(randrange(1001)) + '-' + str(datetime.now().strftime("%Y%m%d%H%M%S%f"))
         return mark_safe(
-            '<div class="honeypot-field">'
-            '<label for="%s" class="honeypot-check-label">%s</label>'
-            '<input type="checkbox" name="honeypot" id="%s">'
+            '<div class="super-priority-field">'
+            '<label for="%s" class="super-priority-check-label">%s</label>'
+            '<input type="checkbox" name="superpriority" id="%s">'
             '</div>' % (honeypot_id, honeypot_txt, honeypot_id))
 
 
@@ -171,7 +172,7 @@ class WebToLeadForm(forms.Form):
     interest = forms.MultipleChoiceField(choices=interest_choices,
                                          required=False)
     description = forms.CharField(required=False)
-    honeypot = forms.BooleanField(widget=HoneyPotWidget, required=False)
+    superpriority = forms.BooleanField(widget=HoneyPotWidget, required=False)
     # uncomment below to debug salesforce
     # debug = forms.IntegerField(required=False)
     # debugEmail = forms.EmailField(required=False)

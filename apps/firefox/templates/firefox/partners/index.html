@@ -465,12 +465,12 @@
 
       <div class="field">
         <label for="first_name">{{ _('First Name') }}</label>
-        <input id="first_name" maxlength="40" name="first_name" size="20" type="text" placeholder="{{ _('First Name') }}" class="required" required />
+        <input id="first_name" maxlength="40" name="first_name" size="20" type="text" placeholder="{{ _('First Name') }}" class="required" required aria-required="true" />
       </div>
 
       <div class="field">
         <label for="last_name">{{ _('Last Name') }}</label>
-        <input id="last_name" maxlength="80" name="last_name" size="20" type="text" placeholder="{{ _('Last Name') }}" class="required" required />
+        <input id="last_name" maxlength="80" name="last_name" size="20" type="text" placeholder="{{ _('Last Name') }}" class="required" required aria-required="true" />
       </div>
 
       <div class="field">
@@ -480,7 +480,7 @@
 
       <div class="field">
         <label for="company">{{ _('Company') }}</label>
-        <input id="company" maxlength="40" name="company" size="20" type="text" placeholder="{{ _('Company') }}" class="required" required />
+        <input id="company" maxlength="40" name="company" size="20" type="text" placeholder="{{ _('Company') }}" class="required" required aria-required="true" />
       </div>
 
       <div class="field">
@@ -490,7 +490,7 @@
 
       <div class="field">
         <label for="email">{{ _('Email') }}</label>
-        <input id="email" maxlength="80" name="email" size="20" type="text" placeholder="{{ _('Email') }}" class="required" required />
+        <input id="email" maxlength="80" name="email" size="20" type="text" placeholder="{{ _('Email') }}" class="required" required aria-required="true" />
       </div>
 
       <div class="field">
@@ -522,7 +522,7 @@
         <input type="submit" name="submit" value="{{ _('Submit my request') }}" class="button" />
       </div>
 
-      {{ form.honeypot }}
+      {{ form.superpriority }}
 
       </form>
       <button type="button" class="close">{{ _('Close') }}</button>

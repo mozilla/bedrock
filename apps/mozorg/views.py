@@ -97,11 +97,11 @@ def contribute_embed(request, template, return_to_form):
 def partnerships(request):
     form = WebToLeadForm()
 
-    c = {}
-    c.update(csrf(request))
-    c['form'] = form
+    template_vars = {}
+    template_vars.update(csrf(request))
+    template_vars['form'] = form
 
-    return l10n_utils.render(request, 'mozorg/partnerships.html', c)
+    return l10n_utils.render(request, 'mozorg/partnerships.html', template_vars)
 
 
 @csrf_protect
@@ -116,7 +116,7 @@ def contact_bizdev(request):
     if form.is_valid():
         data = form.cleaned_data.copy()
 
-        if data['honeypot']:
+        if data['superpriority']:
             msg = 'Visitor invalid'
             stat = 400
         else:
@@ -129,6 +129,7 @@ def contact_bizdev(request):
                               'servlet.WebToLead?encoding=UTF-8', data)
             msg = requests.status_codes._codes.get(r.status_code, ['error'])[0]
             stat = r.status_code
+
             success = 1
 
     if request.is_ajax():

@@ -180,7 +180,7 @@ def firefox_partners(request):
 
     form = WebToLeadForm()
 
-    c = {
+    template_vars = {
         'locale_os_url': locale_os_url,
         'js_common': JS_COMMON,
         'js_mobile': JS_MOBILE,
@@ -188,6 +188,6 @@ def firefox_partners(request):
         'form': form,
     }
 
-    c.update(csrf(request))
+    template_vars.update(csrf(request))
 
-    return l10n_utils.render(request, 'firefox/partners/index.html', c)
+    return l10n_utils.render(request, 'firefox/partners/index.html', template_vars)
