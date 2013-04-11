@@ -55,15 +55,15 @@ class TestManageSubscriptionsForm(TestCase):
         # First, not passed in
         locale = "en-US"
         form = ManageSubscriptionsForm(locale=locale, initial={})
-        self.assertEqual('en', form.fields['lang'].initial)
-        self.assertEqual('us', form.fields['country'].initial)
+        self.assertEqual('en', form.initial['lang'])
+        self.assertEqual('us', form.initial['country'])
         form = ManageSubscriptionsForm(locale=locale,
                                        initial={
                                            'lang': 'pt',
                                            'country': 'br',
                                        })
-        self.assertEqual('pt', form.fields['lang'].initial)
-        self.assertEqual('br', form.fields['country'].initial)
+        self.assertEqual('pt', form.initial['lang'])
+        self.assertEqual('br', form.initial['country'])
 
 
 class TestNewsletterForm(TestCase):
