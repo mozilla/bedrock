@@ -19,10 +19,16 @@
 
 <div id="main-feature">
   <hgroup>
-    <h1 class="large">Partner with Mozilla</h1>
-    <h2>Help us shape the future of the Web for the public good</h2>
+    <h1 class="large">{{ _('Partner with Mozilla') }}</h1>
+    <h2>{{ _('Help us shape the future of the Web for the public good') }}</h2>
   </hgroup>
-  <p>Mozilla promotes openness, innovation and opportunity on the Internet by engaging in unique partnerships with some of the world’s leading brands and non-profits, as well as with technology, content and service providers. Find out how you and your company can get involved.</p>
+  <p>
+    {% trans %}
+    Mozilla promotes openness, innovation and opportunity on the Internet by engaging in unique partnerships with
+    some of the world’s leading brands and non-profits, as well as with technology, content and service providers.
+    Find out how you and your company can get involved.
+    {% endtrans %}
+  </p>
 </div>
 
 <article id="main-content" class="billboard">
@@ -30,147 +36,183 @@
 <div id="sections">
 
 <section id="firefox">
-  <img src="{{ media('/img/mozorg/partnerships/banner-firefox.jpg') }}" alt="Firefox screenshot" />
-  <img src="{{ media('/img/mozorg/partnerships/icon-firefox.png') }}" alt="Firefox icon" class="icon" />
-  <h3>Firefox for Desktop</h3>
-  <p>Opportunities include distribution, customized versions and more of our PC, Mac &amp; Linux browser. Learn more about <a href="{{ url('mozorg.partnerships-distribution') }}">Mozilla Firefox distribution policies »</a></p>
+  <img src="{{ media('/img/mozorg/partnerships/banner-firefox.jpg') }}" alt="{{ _('Firefox screenshot') }}" />
+  <img src="{{ media('/img/mozorg/partnerships/icon-firefox.png') }}" alt="{{ _('Firefox icon') }}" class="icon" />
+  <h3>{{ _('Firefox for Desktop') }}</h3>
+  <p>
+    {% trans url1=url('mozorg.partnerships-distribution') %}
+    Opportunities include distribution, customized versions and more of our PC, Mac &amp; Linux browser. Learn more
+    about <a href="{{ url1 }}">Mozilla Firefox distribution policies »</a>
+    {% endtrans %}
+  </p>
 </section>
 
 <section id="android">
-  <img src="{{ media('/img/mozorg/partnerships/banner-android.jpg') }}" alt="Firefox for Android screenshot" />
-  <img src="{{ media('/img/mozorg/partnerships/icon-android.png') }}" alt="Firefox for Android icon" class="icon" />
-  <h3>Firefox for Android</h3>
-  <p>Opportunities include distribution, customized versions and more of our mobile browser.</p>
+  <img src="{{ media('/img/mozorg/partnerships/banner-android.jpg') }}" alt="{{ _('Firefox for Android screenshot') }}" />
+  <img src="{{ media('/img/mozorg/partnerships/icon-android.png') }}" alt="{{ _('Firefox for Android icon') }}" class="icon" />
+  <h3>{{ _('Firefox for Android') }}</h3>
+  <p>{{ _('Opportunities include distribution, customized versions and more of our mobile browser.') }}</p>
 </section>
 
 <section id="marketplace">
-  <img src="{{ media('/img/mozorg/partnerships/banner-marketplace.jpg') }}" alt="Firefox Marketplace screenshot" />
-  <img src="{{ media('/img/mozorg/partnerships/icon-marketplace.png') }}" alt="Firefox Marketplace icon" class="icon" />
-  <h3>Firefox Marketplace</h3>
-  <p>Content providers and developers can reach Web users on desktop and mobile and have their apps promoted to hundreds of millions of users. <a href="{{ url('marketplace.marketplace') }}">Learn more about apps and the Firefox Marketplace »</a></p>
+  <img src="{{ media('/img/mozorg/partnerships/banner-marketplace.jpg') }}" alt="{{ _('Firefox Marketplace screenshot') }}" />
+  <img src="{{ media('/img/mozorg/partnerships/icon-marketplace.png') }}" alt="{{ _('Firefox Marketplace icon') }}" class="icon" />
+  <h3>{{ _('Firefox Marketplace') }}</h3>
+  <p>
+    {% trans url1=url('marketplace.marketplace') %}
+    Content providers and developers can reach Web users on desktop and mobile and have their apps promoted to
+    hundreds of millions of users. <a href="{{ url1 }}">Learn more about apps and the
+    Firefox Marketplace »</a>
+    {% endtrans %}
+  </p>
 </section>
 
 <section id="firefoxos">
-  <img src="{{ media('/img/mozorg/partnerships/banner-firefoxos.jpg') }}" alt="Firefox OS screenshot" />
-  <img src="{{ media('/img/mozorg/partnerships/icon-firefox.png') }}" alt="Firefox icon" class="icon" />
-  <h3>Firefox OS</h3>
-  <p>If you are a phone and tablet OEM/ODM or a mobile operator, talk to us about our new Web-based device platform.</p>
+  <img src="{{ media('/img/mozorg/partnerships/banner-firefoxos.jpg') }}" alt="{{ _('Firefox OS screenshot') }}" />
+  <img src="{{ media('/img/mozorg/partnerships/icon-firefox.png') }}" alt="{{ _('Firefox icon') }}" class="icon" />
+  <h3>{{ _('Firefox OS') }}</h3>
+  <p>{{ _('If you are a phone and tablet OEM/ODM or a mobile operator, talk to us about our new Web-based device platform.') }}</p>
 </section>
 
 <section id="persona">
-  <img src="{{ media('/img/mozorg/partnerships/banner-persona.jpg') }}" alt="Persona screenshot" />
-  <img src="{{ media('/img/mozorg/partnerships/icon-persona.png') }}" alt="Persona icon" class="icon" />
-  <h3>Mozilla Persona</h3>
-  <p>Be part of our quick and easy sign-in system for the Web that provides the highest degree of user privacy and security.  </p>
+  <img src="{{ media('/img/mozorg/partnerships/banner-persona.jpg') }}" alt="{{ _('Persona screenshot') }}" />
+  <img src="{{ media('/img/mozorg/partnerships/icon-persona.png') }}" alt="{{ _('Persona icon') }}" class="icon" />
+  <h3>{{ _('Mozilla Persona') }}</h3>
+  <p>{{ _('Be part of our quick and easy sign-in system for the Web that provides the highest degree of user privacy and security.') }}</p>
 </section>
 
 <section id="cobrand">
-  <img src="{{ media('/img/mozorg/partnerships/banner-cobrand.jpg') }}" alt="co-branding screenshot" />
-  <img src="{{ media('/img/mozorg/partnerships/icon-cobrand.png') }}" alt="co-branding icon" class="icon" />
-  <h3>Tell your brand story</h3>
-  <p>Co-branding, editorial partnerships, content creation, rewards, events and more —  Mozilla is always looking for innovative marketing collaborations with like-minded brands.</p>
+  <img src="{{ media('/img/mozorg/partnerships/banner-cobrand.jpg') }}" alt="{{ _('co-branding screenshot') }}" />
+  <img src="{{ media('/img/mozorg/partnerships/icon-cobrand.png') }}" alt="{{ _('co-branding icon') }}" class="icon" />
+  <h3>{{ _('Tell your brand story') }}</h3>
+  <p>
+    {% trans %}
+    Co-branding, editorial partnerships, content creation, rewards, events and more —  Mozilla is always looking
+    for innovative marketing collaborations with like-minded brands.
+    {% endtrans %}
+  </p>
 </section>
 
 </div>
 
 <section id="partner">
-{% if request.GET.success %}
-  <h3>Thank you</h3>
-  <p>We will review your request and get back to you as soon as possible.</p>
-{% else %}
-  <h3>Get started</h3>
-  <p>Please complete the form below. Our partnership team will review your request and get back to you as soon as possible</p>
-
-  <form action="https://www.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" id="sf-form">
-
-  <input type=hidden name="oid" value="00DU0000000IrgO">
-  <input type=hidden name="retURL" value="http://www.mozilla.org/en-US/about/partnerships?success=1">
-
-  <!--  ----------------------------------------------------------------------  -->
-  <!--  NOTE: These fields are optional debugging elements.  Please uncomment   -->
-  <!--  these lines if you wish to test in debug mode.                          -->
-
-   <!--input type="hidden" name="debug" value=1-->
-   <!--input type="hidden" name="debugEmail" value=""-->
-
-  <!--  ----------------------------------------------------------------------  -->
-
-  <div class="field">
-    <input id="first_name" maxlength="40" name="first_name" size="20" type="text" placeholder="First Name" class="required" />
+  <div id="partner-form-success" class="{% if request.GET.success != '1' %}cloaked{% endif %}">
+    <h3>{{ _('Thank you') }}</h3>
+    <p>{{ _('We will review your request and get back to you as soon as possible.') }}</p>
   </div>
 
-  <div class="field">
-    <input id="last_name" maxlength="80" name="last_name" size="20" type="text" placeholder="Last Name" class="required" />
+  <div id="partner-form" class="{% if request.GET.success == '1' %}cloaked{% endif %}">
+    <div id="partner-form-error" class="tooltip{% if request.GET.success != '0' %} cloaked{% endif %}">
+      {{ _('An error has occurred with your submission. Please review your information and try again.') }}
+    </div>
 
+    <h3>{{ _('Get started') }}</h3>
+    <p>{{ _('Please complete the form below. Our partnership team will review your request and get back to you as soon as possible.') }}</p>
+
+    <form action="{{ url('about.partnerships.contact-bizdev') }}" method="POST" id="sf-form">
+
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
+    <!--  ----------------------------------------------------------------------  -->
+    <!--  NOTE: These fields are optional debugging elements.  Please uncomment   -->
+    <!--  these lines if you wish to test in debug mode.                          -->
+
+     <!--input type="hidden" name="debug" value=1-->
+     <!--input type="hidden" name="debugEmail" value=""-->
+
+    <!--  ----------------------------------------------------------------------  -->
+
+    <div class="field">
+      <label for="first_name">{{ _('First Name') }}</label>
+      <input id="first_name" maxlength="40" name="first_name" size="20" type="text" placeholder="{{ _('First Name') }}" class="required" required aria-required="true" />
+    </div>
+
+    <div class="field">
+      <label for="last_name">{{ _('Last Name') }}</label>
+      <input id="last_name" maxlength="80" name="last_name" size="20" type="text" placeholder="{{ _('Last Name') }}" class="required" required aria-required="true" />
+    </div>
+
+    <div class="field">
+      <label for="title">{{ _('Title') }}</label>
+      <input id="title" maxlength="40" name="title" size="20" type="text" placeholder="{{ _('Title') }}" />
+    </div>
+
+    <div class="field">
+      <label for="company">{{ _('Company') }}</label>
+      <input id="company" maxlength="40" name="company" size="20" type="text" placeholder="{{ _('Company') }}" class="required" required aria-required="true" />
+    </div>
+
+    <div class="field">
+      <label for="URL">{{ _('Website') }}</label>
+      <input id="URL" maxlength="80" name="URL" size="20" type="text" placeholder="{{ _('Website') }}" />
+    </div>
+
+    <div class="field">
+      <label for="email">{{ _('Email') }}</label>
+      <input id="email" maxlength="80" name="email" size="20" type="text" placeholder="{{ _('Email') }}" class="required" required aria-required="true" />
+    </div>
+
+    <div class="field">
+      <label for="phone">{{ _('Phone') }}</label>
+      <input id="phone" maxlength="40" name="phone" size="20" type="text" placeholder="{{ _('Phone') }}" />
+    </div>
+
+    <div class="field">
+      <label for="mobile">{{ _('Mobile') }}</label>
+      <input id="mobile" maxlength="40" name="mobile" size="20" type="text" placeholder="{{ _('Mobile') }}" />
+    </div>
+
+    <div class="field">
+      <label for="street">{{ _('Address') }}</label>
+      <textarea id="street" name="street" placeholder="{{ _('Address') }}"></textarea>
+    </div>
+
+    <div class="field">
+      <label for="city">{{ _('City') }}</label>
+      <input id="city" maxlength="40" name="city" size="20" type="text" placeholder="{{ _('City') }}" />
+    </div>
+
+    <div class="field">
+      <label for="state">{{ _('State/Province') }}</label>
+      <input id="state" maxlength="20" name="state" size="20" type="text" placeholder="{{ _('State/Province') }}" />
+    </div>
+
+    <div class="field">
+      <label for="country">{{ _('Country') }}</label>
+      <input id="country" maxlength="40" name="country" size="20" type="text" placeholder="{{ _('Country') }}" />
+    </div>
+
+    <div class="field">
+      <label for="zip">{{ _('Zip') }}</label>
+      <input id="zip" maxlength="20" name="zip" size="20" type="text" placeholder="{{ _('Zip') }}" />
+    </div>
+
+    <div class="field">
+      <label for="interest" class="shown">{{ _('Interest') }}:</label>
+      <select id="interest" multiple="multiple" name="interest" title="{{ _('Interest') }}" size="7">
+        <option value="Firefox for Desktop">{{ _('Firefox for Desktop') }}</option>
+        <option value="Firefox for Android">{{ _('Firefox for Android') }}</option>
+        <option value="Firefox Marketplace">{{ _('Firefox Marketplace') }}</option>
+        <option value="Firefox OS">{{ _('Firefox OS') }}</option>
+        <option value="Persona">{{ _('Persona') }}</option>
+        <option value="Marketing and Co-promotions">{{ _('Marketing and Co-promotions') }}</option>
+        <option value="Other">{{ _('Other') }}</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="description">{{ _('Description') }}</label>
+      <textarea id="description" name="description" placeholder="{{ _('Description') }}"></textarea>
+    </div>
+
+    {{ form.superpriority }}
+
+    <div class="field footer-field">
+      <input type="submit" id="sf-form-submit" name="submit" value="{{ _('Submit my request') }}" class="button-blue" />
+    </div>
+
+    </form>
   </div>
-
-  <div class="field">
-    <input id="title" maxlength="40" name="title" size="20" type="text" placeholder="Title" />
-  </div>
-
-  <div class="field">
-    <input id="company" maxlength="40" name="company" size="20" type="text" placeholder="Company" class="required" />
-  </div>
-
-  <div class="field">
-    <input id="URL" maxlength="80" name="URL" size="20" type="text" placeholder="Website" />
-  </div>
-
-  <div class="field">
-    <input id="email" maxlength="80" name="email" size="20" type="text" placeholder="Email" class="required" />
-  </div>
-
-  <div class="field">
-    <input id="phone" maxlength="40" name="phone" size="20" type="text" placeholder="Phone" />
-  </div>
-
-  <div class="field">
-    <input id="mobile" maxlength="40" name="mobile" size="20" type="text" placeholder="Mobile" />
-  </div>
-
-  <div class="field">
-    <textarea name="street" placeholder="Address"></textarea>
-  </div>
-
-  <div class="field">
-    <input id="city" maxlength="40" name="city" size="20" type="text" placeholder="City" />
-  </div>
-
-  <div class="field">
-    <input id="state" maxlength="20" name="state" size="20" type="text" placeholder="State/Province" />
-  </div>
-
-  <div class="field">
-    <input id="country" maxlength="40" name="country" size="20" type="text" placeholder="Country" />
-  </div>
-
-  <div class="field">
-    <input id="zip" maxlength="20" name="zip" size="20" type="text" placeholder="Zip" />
-  </div>
-
-  <div class="field">
-    <label for="00NU0000002pDJr">Interest:</label>
-    <select  id="00NU0000002pDJr" multiple="multiple" name="00NU0000002pDJr" title="Interest" size="7">
-      <option value="Firefox for Desktop">Firefox for Desktop</option>
-      <option value="Firefox for Android">Firefox for Android</option>
-      <option value="Firefox Marketplace">Firefox Marketplace</option>
-      <option value="Firefox OS">Firefox OS</option>
-      <option value="Persona">Persona</option>
-      <option value="Marketing and Co-promotions">Marketing and Co-promotions</option>
-      <option value="Other">Other</option>
-    </select>
-  </div>
-
-  <div class="field">
-    <textarea name="description" placeholder="Description"></textarea>
-  </div>
-
-  <div class="field footer-field">
-    <input type="submit" name="submit" value="Submit my request" class="button-blue" />
-  </div>
-
-  </form>
-{% endif %}
 </section>
 </article>
 

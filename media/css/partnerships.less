@@ -60,6 +60,12 @@
 
     #sf-form label {
         color: @textColorTertiary;
+        .hidden;
+        &.shown {
+            text-indent: 0;
+            left: auto;
+            position: relative;
+        }
     }
 
     #sf-form .field {
@@ -98,6 +104,15 @@
 #distributions {
     .span(8);
     margin-left: 0;
+}
+
+#partner-form-error {
+    margin-bottom: @baseLine;
+}
+
+.cloaked {
+    display: none;
+    visibility: hidden;
 }
 
 /* Tablet Layout: 760px */
