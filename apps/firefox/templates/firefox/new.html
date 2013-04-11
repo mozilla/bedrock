@@ -4,7 +4,7 @@
 
 {% extends "firefox/base-resp.html" %}
 
-{% block page_title %}Free Download{% endblock %}
+{% block page_title %}{{_('Free Download')}}{% endblock %}
 {% block body_id %}firefox-new{% endblock %}
 
 {% block site_header_nav %}{% endblock %}
@@ -21,7 +21,7 @@
   <div id="main-feature">
     <div class="row">
       <img src="{{ media('img/firefox/new/firefox-logo.png') }}" alt="Firefox" />
-      <h1 class="large">{{_('Different <span>by design</span>')}}</h1>
+      <h1 class="large">{{_('Different by design')}}</h1>
     </div>
   </div>
 
@@ -30,9 +30,9 @@
       <div class="scene" id="scene1">
         <div class="container" id="features-download">
           <ul id="features">
-            <li>{{_('Proudly <br />non-profit')}}</li>
-            <li>{{_('Innovating<br /> for you')}}</li>
-            <li>{{_('Fast, flexible,<br /> secure')}}</li>
+            <li>{{_('Proudly<br />non-profit')}}</li>
+            <li>{{_('Innovating<br />for you')}}</li>
+            <li>{{_('Fast, flexible,<br />secure')}}</li>
           </ul>
 
           <div class="desktop download-button-wrapper">
@@ -44,13 +44,14 @@
         </div>
 
         <div class="desktop" id="firefox-screenshot">
-          {{ platform_img('img/firefox/new/browser.png', alt='Firefox screenshot') }}
+          {{ platform_img('img/firefox/new/browser.png', alt=_('Firefox screenshot')) }}
         </div>
       </div> <!-- /#scene1 -->
 
       <div class="scene" id="scene2">
         <p class="thankyou" tabindex="0">
-          {{_("Thanks for downloading Firefox! As a non-profit, we're free to innovate on your behalf without any pressure to compromise. You're going to love the difference.")}}
+          {{_("Thanks for downloading Firefox!")}}
+          {{_("As a non-profit, we’re free to innovate on your behalf without any pressure to compromise. You’re going to love the difference.")}}
         </p>
 
         <ol class="installation">
