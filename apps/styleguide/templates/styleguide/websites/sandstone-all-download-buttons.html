@@ -1,0 +1,111 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "styleguide/base.html" %}
+
+{% block body_class %}
+  {{ super() }}
+  sandstone-buttons
+{% endblock %}
+
+{% set page_title = 'All the Download Button Styles' %}
+
+{% block content_area %}
+<section id="buttons">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Variation</th>
+        <th>Desktop</th>
+        <th>Desktop (Beta)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Full-size + icon</th>
+        <td>
+          <div style="width:274px">{# only set with for test no-js buttons #}</div>
+          {{ download_firefox() }}
+        </td>
+        <td>
+          <div style="width:274px">{# only set with for test no-js buttons #}</div>
+          {{ download_firefox(build='beta') }}
+        </td>
+      </tr>
+      <tr>
+        <th>Compact + icon</th>
+        <td>
+          {{ download_firefox(small=True) }}
+        </td>
+        <td>
+          {{ download_firefox(build='beta', small=True) }}
+        </td>
+      </tr>
+      <tr>
+        <th>Full-size + no icon</th>
+        <td>
+          {{ download_firefox(icon=False) }}
+        </td>
+        <td>
+          {{ download_firefox(build='beta', icon=False) }}
+        </td>
+      </tr>
+      <tr>
+        <th>Compact + no icon</th>
+        <td>
+          {{ download_firefox(small=True, icon=False) }}
+        </td>
+        <td>
+          {{ download_firefox(small=True, icon=False, build='beta') }}
+        </td>
+      </tr>
+    </tbody>
+    <thead>
+      <tr>
+        <th>Variation</th>
+        <th>Mobile</th>
+        <th>Mobile (Beta)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Full-size + icon</th>
+        <td>
+          {{ download_firefox(mobile=True) }}
+        </td>
+        <td>
+          {{ download_firefox(mobile=True, build='beta') }}
+        </td>
+      </tr>
+      <tr>
+        <th>Compact + icon</th>
+        <td>
+          {{ download_firefox(mobile=True, small=True) }}
+        </td>
+        <td>
+          {{ download_firefox(mobile=True, small=True, build='beta') }}
+        </td>
+      </tr>
+      <tr>
+        <th>Full-size + no icon</th>
+        <td>
+          {{ download_firefox(mobile=True, icon=False) }}
+        </td>
+        <td>
+          {{ download_firefox(mobile=True, icon=False, build='beta') }}
+        </td>
+      </tr>
+      <tr>
+        <th>Compact + no icon</th>
+        <td>
+          {{ download_firefox(mobile=True, small=True, icon=False) }}
+        </td>
+        <td>
+          {{ download_firefox(mobile=True, small=True, icon=False, build='beta') }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+{% endblock %}
