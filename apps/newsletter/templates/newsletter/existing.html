@@ -4,53 +4,6 @@
 
 {% block body_id %}newsletter-existing{% endblock body_id %}
 
-{% block js %}
-  {{ super() }}
-  <script type="text/javascript">
-
-    $(function() {
-      var _newsletter_langs = {{ newsletter_languages }};
-
-      function show_newsletters(lang) {
-        var letters = _newsletter_langs[lang][1];
-
-        if (letters) {
-          // Hide all the newsletters
-          // FIXME: unless they're subscribed to them
-          var $rows = $('#all-newsletters tbody tr.subscription');
-          {# on /new, we have checkboxes, so hide rows with unchecked checkboxes #}
-          var $tohide_new = $rows.find('input[type="checkbox"]').not(':checked')
-          {# on /existing, we have radio buttons, so hide rows where value="False" is checked #}
-          var $tohide_existing = $rows.find('input[type="radio"][value="False"]:checked')
-          {# now we have two sets of input elements, but we want their parents #}
-          var $rows_to_hide = $tohide_new.parent().add($tohide_existing.parent())
-
-          $rows_to_hide
-            .each(function() {
-              console.log("About to hide:");
-              console.log(this);
-              $(this).hide();
-            });
-          // Show individually available newsletters
-          $.each(letters, function(i, nl) {
-            var field = $('input[value=' + nl + ']');
-            field.parents('tbody tr').show();
-          });
-        }
-      }
-
-      $('select[name=lang]').change(function() {
-        show_newsletters($(this).find(':selected').val());
-      });
-
-      var lang = $('select[name=lang] :selected').val();
-      show_newsletters(lang);
-    });
-
-
-  </script>
-{% endblock js %}
-
 {% block content %}
   <!-- Begin content -->
 
@@ -124,10 +77,8 @@
           <thead>
           <tr>
             <td>{{ _('Our monthly newsletters') }}</td>
-            <th>Subscribe</th>
-            {% if user_exists %}
-              <th>{{ _('Unsubscribe') }}</th>
-            {% endif %}
+            <th>{{ _('Subscribe') }}</th>
+            <th>{{ _('Unsubscribe') }}</th>
           </tr>
           </thead>
           <tbody>
@@ -137,12 +88,16 @@
                 <h4 class="title">{{ formpart.initial['title'] }}</h4>
                 {# hidden field: #}
                 {{ formpart.newsletter }}
-                <p class="description">{{ formpart.initial['description'] }}</p>
+                <p class="description">
+                  {{ formpart.initial['description'] }}
+                  {% if formpart.initial['english_only'] %}
+                    ({{ _('English only') }})
+                  {% endif %}
+                </p>
               </th>
               {{ formpart.subscribed }}
             </tr>
           {% endfor %}
-
           </tbody>
         </table>
         </div>

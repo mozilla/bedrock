@@ -157,6 +157,32 @@ class TestExistingNewsletterView(TestCase):
         self.assertEqual(set(), shown - subscribed - to_show)
 
     @patch('newsletter.utils.get_newsletters')
+    def test_english_only(self, get_newsletters, mock_basket_request):
+        # English-only newsletters are flagged in the forms passed to
+        # the template.
+        get_newsletters.return_value = newsletters
+        self.request.method = 'GET'
+        # Subscribe to them all
+        self.user['newsletters'] = newsletters.keys()
+        with patch.multiple('basket',
+                            update_user=DEFAULT,
+                            subscribe=DEFAULT,
+                            unsubscribe=DEFAULT,
+                            user=DEFAULT) as basket_patches:
+            with patch('l10n_utils.render') as render:
+                basket_patches['user'].return_value = self.user
+                existing(self.request, token=self.token)
+        request, template_name, context = render.call_args[0]
+        forms = context['formset'].initial_forms
+
+        for form in forms:
+            newsletter = newsletters[form.initial['newsletter']]
+            if form.initial['english_only']:
+                self.assertEqual(['en'], newsletter['languages'])
+            else:
+                self.assertNotEqual(['en'], newsletter['languages'])
+
+    @patch('newsletter.utils.get_newsletters')
     def test_get_no_token(self, get_newsletters, mock_basket_request):
         # If user gets page with no valid token in their URL, they
         # see an error message and that's about it

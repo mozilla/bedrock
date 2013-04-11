@@ -65,39 +65,6 @@ class TestManageSubscriptionsForm(TestCase):
         self.assertEqual('pt', form.fields['lang'].initial)
         self.assertEqual('br', form.fields['country'].initial)
 
-    @mock.patch('newsletter.utils.get_newsletters')
-    def test_must_subscribe(self, get_newsletters):
-        # if must_subscribe is set, there must be at least one item
-        # in .newsletters or validation will fail
-        # (These are not fields, just attributes we set on the form
-        # as we go along to help validate all the input)
-        get_newsletters.return_value = newsletters
-        locale = "en-US"
-        data = {'email': 'user@example.com', 'format': 'H', 'lang': 'en'}
-        form = ManageSubscriptionsForm(locale=locale, data=data)
-        form.must_subscribe = True
-        form.newsletters = []
-        self.assertFalse(form.is_valid())
-        form = ManageSubscriptionsForm(locale=locale, data=data)
-        form.must_subscribe = True
-        form.newsletters = ['mozilla-and-you']
-        self.assertTrue(form.is_valid(), msg=str(form.errors))
-        form = ManageSubscriptionsForm(locale=locale, data=data)
-        form.must_subscribe = False
-        form.newsletters = []
-        self.assertTrue(form.is_valid())
-
-    @mock.patch('newsletter.utils.get_newsletters')
-    def test_newsletters_in_language(self, get_newsletters):
-        # you cannot subscribe to newsletters that aren't available
-        # in the language that you've chosen
-        get_newsletters.return_value = newsletters
-        locale = "en-US"
-        data = {'email': 'user@example.com', 'format': 'H'}
-        form = ManageSubscriptionsForm(locale=locale, data=data)
-        form.newsletters = ['no-such-english-newsletter']
-        self.assertFalse(form.is_valid())
-
 
 class TestNewsletterForm(TestCase):
     @mock.patch('newsletter.utils.get_newsletters')
@@ -111,6 +78,7 @@ class TestNewsletterForm(TestCase):
             'title': title,
             'newsletter': newsletter,
             'subscribed': True,
+            'english_only': False,
         }
         form = NewsletterForm(initial=initial)
         rendered = str(form)

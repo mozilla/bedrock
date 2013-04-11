@@ -101,11 +101,13 @@ def existing(request, token=None):
         # Only show a newsletter if it has ['show'] == True or the
         # user is already subscribed
         if data.get('show', False) or newsletter in user['newsletters']:
+            langs = data['languages']
             initial.append({
                 'title': data['title'],
                 'subscribed': newsletter in user['newsletters'],
                 'newsletter': newsletter,
                 'description': data['description'],
+                'english_only': len(langs) == 1 and langs[0].startswith('en')
             })
 
     NewsletterFormSet = formset_factory(NewsletterForm, extra=0,
@@ -218,10 +220,15 @@ def existing(request, token=None):
             newsletter_languages[lang].append(newsletter)
     newsletter_languages = mark_safe(json.dumps(newsletter_languages))
 
+    # We also want a list of the newsletters the user is already subscribed
+    # to
+    already_subscribed = mark_safe(json.dumps(user['newsletters']))
+
     context = {
         'form': form,
         'formset': formset,
         'newsletter_languages': newsletter_languages,
+        'newsletters_subscribed': already_subscribed,
     }
     return l10n_utils.render(request,
                              'newsletter/existing.html',
