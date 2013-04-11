@@ -95,6 +95,11 @@ class ManageSubscriptionsForm(forms.Form):
     remove_all = forms.BooleanField(required=False)
     LANG_CHOICES = get_lang_choices()
 
+    country = forms.ChoiceField(choices=[],  # will set choices based on locale
+                                required=False)
+    lang = forms.ChoiceField(choices=LANG_CHOICES,
+                             required=False)
+
     def __init__(self, locale, *args, **kwargs):
         regions = product_details.get_regions(locale)
         regions = sorted(regions.iteritems(), key=lambda x: x[1])
@@ -105,20 +110,16 @@ class ManageSubscriptionsForm(forms.Form):
         lang = lang if lang in LANGS else 'en'
 
         self.newsletters = kwargs.pop('newsletters', [])
-        self.must_subscribe = kwargs.pop('must_subscribe', False)
-
-        super(ManageSubscriptionsForm, self).__init__(*args, **kwargs)
 
         initial = kwargs.get('initial', {})
-        initial_country = initial['country'] \
-            if 'country' in initial else country
-        initial_lang = initial['lang'] if 'lang' in initial else lang
-        self.fields['country'] = forms.ChoiceField(choices=regions,
-                                                   initial=initial_country,
-                                                   required=False)
-        self.fields['lang'] = forms.ChoiceField(choices=self.LANG_CHOICES,
-                                                initial=initial_lang,
-                                                required=False)
+        if not initial.get('country', None):
+            initial['country'] = country
+        if not initial.get('lang', None):
+            initial['lang'] = lang
+        kwargs['initial'] = initial
+
+        super(ManageSubscriptionsForm, self).__init__(*args, **kwargs)
+        self.fields['country'].choices = regions
         self.already_subscribed = initial.get('newsletters', [])
 
     def clean(self):
