@@ -102,7 +102,7 @@ def make_aurora_link(product, version, platform, locale,
 
 def make_download_link(product, build, version, platform, locale,
                        force_direct=False, force_full_installer=False,
-                       force_funnelcake=False):
+                       force_funnelcake=False, force_stub_installer=False):
     # Aurora has a special download link format
     if build == 'aurora':
         return make_aurora_link(product, version, platform, locale,
@@ -115,9 +115,15 @@ def make_download_link(product, build, version, platform, locale,
         'os_osx': 'osx'
     }[platform]
 
-    if (force_funnelcake and product == 'firefox' and locale.lower() == 'en-us'
-            and platform == 'win'):
-        version = ('beta-' if build == 'beta' else '') + 'latest'
+    # en-US windows exceptions
+    # TODO: NUKE FROM ORBIT!
+    if force_funnelcake or force_stub_installer:
+        if locale.lower() == 'en-us' and platform == 'win':
+            suffix = 'latest'
+            if force_stub_installer:
+                suffix = 'stub'
+
+            version = ('beta-' if build == 'beta' else '') + suffix
 
     # Figure out the base url. certain locales have a transitional
     # thankyou-style page (most do)
@@ -137,7 +143,7 @@ def make_download_link(product, build, version, platform, locale,
 def download_firefox(ctx, build='release', small=False, icon=True,
                      mobile=None, dom_id=None, locale=None,
                      force_direct=False, force_full_installer=False,
-                     force_funnelcake=False):
+                     force_funnelcake=False, force_stub_installer=False):
     """ Output a "download firefox" button.
 
     :param ctx: context from calling template.
@@ -145,16 +151,17 @@ def download_firefox(ctx, build='release', small=False, icon=True,
     :param small: Display the small button if True.
     :param icon: Display the Fx icon on the button if True.
     :param mobile: Display the android download button if True, the desktop
-                   button only if False, and by default (None) show whichever
-                   is appropriate for the user's system.
+            button only if False, and by default (None) show whichever
+            is appropriate for the user's system.
     :param dom_id: Use this string as the id attr on the element.
     :param locale: The locale of the download. Default to locale of request.
     :param force_direct: Force the download URL to be direct.
     :param force_full_installer: Force the installer download to not be
-                                 the stub installer.
+            the stub installer (for aurora).
     :param force_funnelcake: Force the download version for en-US Windows to be
-                             'latest', which bouncer will translate to the
-                             funnelcake build.
+            'latest', which bouncer will translate to the funnelcake build.
+    :param force_stub_installer: Force the download link for en-US windows to
+            be for the stub installer (for release and beta).
     :return: The button html.
     """
     alt_build = '' if build == 'release' else build
@@ -194,8 +201,8 @@ def download_firefox(ctx, build='release', small=False, icon=True,
             # And generate all the info
             download_link = make_download_link(
                 'firefox', build, version, plat_os,
-                _locale, force_direct, force_full_installer, force_funnelcake
-            )
+                _locale, force_direct, force_full_installer, force_funnelcake,
+                force_stub_installer)
 
             # If download_link_direct is False the data-direct-link attr
             # will not be output, and the JS won't attempt the IE popup.
@@ -205,8 +212,8 @@ def download_firefox(ctx, build='release', small=False, icon=True,
             else:
                 download_link_direct = make_download_link(
                     'firefox', build, version, plat_os,
-                    _locale, True, force_full_installer, force_funnelcake
-                )
+                    _locale, True, force_full_installer, force_funnelcake,
+                    force_stub_installer)
                 if download_link_direct == download_link:
                     download_link_direct = False
 

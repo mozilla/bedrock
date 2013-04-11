@@ -209,3 +209,24 @@ class TestDownloadButtons(unittest.TestCase):
         url = make_download_link('firefox', 'beta', '20.0b4', 'os_windows',
                                  'fr', force_funnelcake=True)
         ok_('product=firefox-beta-latest&' not in url)
+
+    def test_force_stub_installer(self):
+        url = make_download_link('firefox', 'release', 19.0, 'os_windows',
+                                 'en-US', force_stub_installer=True)
+        ok_('product=firefox-stub&' in url)
+
+        url = make_download_link('firefox', 'beta', '20.0b4', 'os_windows',
+                                 'en-US', force_stub_installer=True)
+        ok_('product=firefox-beta-stub&' in url)
+
+    def test_force_stub_installer_en_us_win_only(self):
+        """
+        Ensure that force_funnelcake doesn't affect non en-US Windows urls
+        """
+        url = make_download_link('firefox', 'release', 19.0, 'os_osx',
+                                 'en-US', force_stub_installer=True)
+        ok_('product=firefox-stub&' not in url)
+
+        url = make_download_link('firefox', 'beta', '20.0b4', 'os_windows',
+                                 'fr', force_stub_installer=True)
+        ok_('product=firefox-beta-stub&' not in url)
