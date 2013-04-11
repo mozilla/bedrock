@@ -125,8 +125,13 @@ class TestFirefoxPartners(TestCase):
         new_mock.status_code = 400
         post_patch.return_value = new_mock
         with self.activate('en-US'):
-            url = reverse('firefox.partners.contact-bizdev')
-            resp = self.client.post(url)
+            url = reverse('about.partnerships.contact-bizdev')
+            resp = self.client.post(url, {
+                'first_name': 'The',
+                'last_name': 'Dude',
+                'company': 'Urban Achievers',
+                'email': 'thedude@mozilla.com',
+            }, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEqual(resp.status_code, 400)
         self.assertEqual(resp.content, 'bad_request')
         self.assertTrue(post_patch.called)
@@ -135,10 +140,10 @@ class TestFirefoxPartners(TestCase):
     def test_sf_form_proxy_invalid_form(self, post_patch):
         """A form error should result in a 400 response."""
         with self.activate('en-US'):
-            url = reverse('firefox.partners.contact-bizdev')
+            url = reverse('about.partnerships.contact-bizdev')
             resp = self.client.post(url, {
                 'first_name': 'Dude' * 20,
-            })
+            }, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEqual(resp.status_code, 400)
         self.assertEqual(resp.content, 'Form invalid')
         self.assertFalse(post_patch.called)
@@ -149,12 +154,14 @@ class TestFirefoxPartners(TestCase):
         new_mock.status_code = 200
         post_patch.return_value = new_mock
         with self.activate('en-US'):
-            url = reverse('firefox.partners.contact-bizdev')
+            url = reverse('about.partnerships.contact-bizdev')
             resp = self.client.post(url, {
                 'first_name': 'The',
                 'last_name': 'Dude',
                 'title': 'Abider of things',
-            })
+                'company': 'Urban Achievers',
+                'email': 'thedude@mozilla.com',
+            }, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(resp.content, 'ok')
         post_patch.assert_called_once_with(ANY, {
@@ -165,12 +172,12 @@ class TestFirefoxPartners(TestCase):
                       'partnerships?success=1',
             'title': u'Abider of things',
             'URL': u'',
-            'company': u'',
+            'company': u'Urban Achievers',
             'oid': '00DU0000000IrgO',
             'phone': u'',
             'mobile': u'',
             '00NU0000002pDJr': [],
-            'email': u'',
+            'email': u'thedude@mozilla.com',
         })
 
 

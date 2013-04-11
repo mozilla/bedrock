@@ -309,6 +309,10 @@ MINIFY_BUNDLES = {
             'js/site.js',  # this is automatically included on every page
         ),
         'collusion': (
+            'js/collusion/collusion.js',
+            'js/libs/jquery.validate.js',
+        ),
+        'collusion_demo': (
             'js/collusion/d3.layout.js',
             'js/collusion/d3.geom.js',
             'js/collusion/collusion-addon.js',
@@ -656,6 +660,7 @@ GA_ACCOUNT_CODE = ''
 FACEBOOK_LOCALES = ['en-US', 'es-ES', 'pt-BR', 'id', 'de']
 FACEBOOK_PAGE_NAMESPACE = 'DUMMY_PAGE_NAMESPACE'
 FACEBOOK_APP_ID = 'DUMMY_APP_ID'
+
 
 # FACEBOOK_TAB_URL is lazily evaluated because it depends on the namespace
 # and app ID settings in local settings.

@@ -65,6 +65,4 @@ urlpatterns = patterns('',
 
     url(r'^firefox/partners/$', views.firefox_partners,
         name='firefox.partners.index'),
-    url(r'^firefox/partners/contact-bizdev/$', views.contact_bizdev,
-        name='firefox.partners.contact-bizdev'),
 )
