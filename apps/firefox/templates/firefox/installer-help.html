@@ -4,7 +4,7 @@
 
 {% extends "/firefox/base-resp.html" %}
 
-{% block page_title %}Your download was interrupted{% endblock %}
+{% block page_title %}{{_('Your download was interrupted')}}{% endblock %}
 {% block body_id %}installer-help{% endblock %}
 
 {% block site_css %}
@@ -16,12 +16,12 @@
 <div id="main-content">
   <div class="main">
     <hgroup>
-      <h1>Your download was interrupted</h1>
-      <h2>Please choose a download to continue.</h2>
+      <h1>{{_('Your download was interrupted')}}</h1>
+      <h2>{{_('Please choose a download to continue.')}}</h2>
     </hgroup>
     <aside class="help">
-      <h3>Need help installing?</h3>
-      <p><a href="https://support.mozilla.org/kb/install-firefox-windows">Visit support.mozilla.org</a></p>
+      <h3>{{_('Need help installing?')}}</h3>
+      <p><a href="https://support.mozilla.org/kb/install-firefox-windows">{{_('Visit')}} support.mozilla.org</a></p>
     </aside>
   </div>
 
