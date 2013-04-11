@@ -150,13 +150,6 @@
         }
     };
 
-    // set up AJAX form
-    var $sf_form = $('#sf-form'), $interest = $('#interest');
-    $sf_form.attr('action', $sf_form.attr('data-ajax-action'));
-    $interest.attr('name', $interest.attr('data-ajax-name'));
-    $('#sf-form-oid').remove();
-    $('#sf-form-retURL').remove();
-
     // move form out of overlay and into its own container for side slider
     var $form = $('#form').detach();
     $form.hide();

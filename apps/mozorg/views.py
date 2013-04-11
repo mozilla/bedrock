@@ -4,17 +4,22 @@
 
 import re
 
-from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
+from django.core.context_processors import csrf
+from django.http import (HttpResponse, HttpResponseRedirect)
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from django.views.decorators.http import require_POST
 
 import basket
 import l10n_utils
+import requests
 from commonware.decorators import xframe_allow
+from funfactory.urlresolvers import reverse
 
 from firefox import version_re
 from firefox.utils import is_current_or_newer
 from mozorg import email_contribute
-from mozorg.forms import ContributeForm, NewsletterForm
+from mozorg.forms import ContributeForm, NewsletterForm, WebToLeadForm
 from mozorg.util import hide_contrib_form
 
 
@@ -89,6 +94,53 @@ def contribute(request, template, return_to_form):
 def contribute_embed(request, template, return_to_form):
     """The same as contribute but allows frame embedding."""
     return contribute(request, template, return_to_form)
+
+
+@csrf_protect
+def partnerships(request):
+    form = WebToLeadForm()
+
+    template_vars = {}
+    template_vars.update(csrf(request))
+    template_vars['form'] = form
+
+    return l10n_utils.render(request, 'mozorg/partnerships.html', template_vars)
+
+
+@csrf_protect
+@require_POST
+def contact_bizdev(request):
+    form = WebToLeadForm(request.POST)
+
+    msg = 'Form invalid'
+    stat = 400
+    success = 0
+
+    if form.is_valid():
+        data = form.cleaned_data.copy()
+
+        honeypot = data.pop('superpriority')
+
+        if honeypot:
+            msg = 'Visitor invalid'
+            stat = 400
+        else:
+            interest = data.pop('interest')
+            data['00NU0000002pDJr'] = interest
+            data['oid'] = '00DU0000000IrgO'
+            data['retURL'] = ('http://www.mozilla.org/en-US/about/'
+                              'partnerships?success=1')
+            r = requests.post('https://www.salesforce.com/servlet/'
+                              'servlet.WebToLead?encoding=UTF-8', data)
+            msg = requests.status_codes._codes.get(r.status_code, ['error'])[0]
+            stat = r.status_code
+
+            success = 1
+
+    if request.is_ajax():
+        return HttpResponse(msg, status=stat)
+    else:
+        return HttpResponseRedirect("%s?success=%s" % (reverse('mozorg.partnerships'), success))
 
 
 def plugincheck(request, template='mozorg/plugincheck.html'):

@@ -25,28 +25,3 @@ class SMSSendForm(forms.Form):
                 'download directly from Google Play.</a>'
             ) % ('http://mzl.la/OgZo6k'))
         return mobile
-
-
-class WebToLeadForm(forms.Form):
-    # l10n handled in the template
-    interest_choices = (
-        ('Firefox for Android', 'Firefox for Android'),
-        ('Firefox Marketplace', 'Firefox Marketplace'),
-        ('Firefox OS', 'Firefox OS'),
-        ('Other', 'Other'),
-    )
-
-    first_name = forms.CharField(max_length=40, required=False)
-    last_name = forms.CharField(max_length=80, required=False)
-    title = forms.CharField(max_length=40, required=False)
-    company = forms.CharField(max_length=40, required=False)
-    URL = forms.URLField(max_length=80, required=False)
-    email = forms.EmailField(max_length=80, required=False)
-    phone = forms.CharField(max_length=40, required=False)
-    mobile = forms.CharField(max_length=40, required=False)
-    interest = forms.MultipleChoiceField(choices=interest_choices,
-                                         required=False)
-    description = forms.CharField(required=False)
-    # uncomment below to debug salesforce
-    # debug = forms.IntegerField(required=False)
-    # debugEmail = forms.EmailField(required=False)
