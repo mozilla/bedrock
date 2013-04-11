@@ -119,7 +119,9 @@ def contact_bizdev(request):
     if form.is_valid():
         data = form.cleaned_data.copy()
 
-        if data['superpriority']:
+        honeypot = data.pop('superpriority')
+
+        if honeypot:
             msg = 'Visitor invalid'
             stat = 400
         else:

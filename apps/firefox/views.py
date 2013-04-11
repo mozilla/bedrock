@@ -15,6 +15,7 @@ from django.views.decorators.vary import vary_on_headers
 import basket
 from jingo_minify.helpers import BUILD_ID_JS, BUNDLE_HASHES
 from funfactory.urlresolvers import reverse
+import requests
 
 import l10n_utils
 from firefox import version_re
