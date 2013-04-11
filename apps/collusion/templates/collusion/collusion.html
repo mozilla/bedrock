@@ -22,6 +22,10 @@
   {{ css('collusion') }}
 {% endblock %}
 
+{% block js %}
+  {{ js('collusion') }}
+{% endblock %}
+
 {% block content %}
 
 <hgroup class="container">
@@ -106,7 +110,10 @@
       <p class="intro">Get Mozilla updates:</p>
 
       <div class="field" id="email-field">
-        <span id="email-wrapper"><label class="hide-me" for="email">your email:</label><input name="email" type="email" id="email" value="" placeholder="Your Email Address" required aria-required="true"></span>
+        <span id="email-wrapper">
+          <label class="hide-me" for="email">your email:</label>
+          <input name="email" type="email" id="email" value="" placeholder="Your Email Address" class="required" required aria-required="true">
+        </span>
       </div>
 
         <div class="field" id="country-field">

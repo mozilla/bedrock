@@ -309,6 +309,10 @@ MINIFY_BUNDLES = {
             'js/site.js',  # this is automatically included on every page
         ),
         'collusion': (
+            'js/collusion/collusion.js',
+            'js/libs/jquery.validate.js',
+        ),
+        'collusion_demo': (
             'js/collusion/d3.layout.js',
             'js/collusion/d3.geom.js',
             'js/collusion/collusion-addon.js',
