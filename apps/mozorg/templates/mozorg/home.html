@@ -14,14 +14,13 @@
   {{ css('home') }}
 {% endblock %}
 
+{% block string_data %}
+  data-close='{{_('Close')}}'
+  data-share='{{_('Share')}}'
+{% endblock %}
+
 {% block js %}
   {{ js('home') }}
-  <script>
-    (function() {
-      Mozilla.page.Home.closeText = '{{_('close')}}';
-      Mozilla.page.Home.shareText = '{{_('Share')}}';
-    })();
-  </script>
 {% endblock %}
 
 {% block site_header_logo %}{% endblock %}
