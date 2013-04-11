@@ -2,27 +2,25 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from django.views.decorators.csrf import csrf_exempt, csrf_protect
-from django.core.context_processors import csrf
-from django.views.decorators.http import require_POST
-from django.http import (HttpResponse, HttpResponseRedirect)
-
 import re
 
 from django.conf import settings
+from django.core.context_processors import csrf
+from django.http import (HttpResponse, HttpResponseRedirect)
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from django.views.decorators.http import require_POST
 
 import basket
 import l10n_utils
 import requests
 from commonware.decorators import xframe_allow
+from funfactory.urlresolvers import reverse
 
 from firefox import version_re
 from firefox.utils import is_current_or_newer
 from mozorg import email_contribute
 from mozorg.forms import ContributeForm, NewsletterForm, WebToLeadForm
 from mozorg.util import hide_contrib_form
-
-from funfactory.urlresolvers import reverse
 
 
 @xframe_allow

@@ -60,6 +60,12 @@
 
     #sf-form label {
         color: @textColorTertiary;
+        .hidden;
+        &.shown {
+            text-indent: 0;
+            left: auto;
+            position: relative;
+        }
     }
 
     #sf-form .field {
@@ -104,9 +110,7 @@
     margin-bottom: @baseLine;
 }
 
-.hidden {
-    position: relative;
-    left: auto;
+.cloaked {
     display: none;
     visibility: hidden;
 }

@@ -96,13 +96,13 @@
 </div>
 
 <section id="partner">
-  <div id="partner-form-success" class="{% if request.GET.success != '1' %}hidden{% endif %}">
+  <div id="partner-form-success" class="{% if request.GET.success != '1' %}cloaked{% endif %}">
     <h3>{{ _('Thank you') }}</h3>
     <p>{{ _('We will review your request and get back to you as soon as possible.') }}</p>
   </div>
 
-  <div id="partner-form" class="{% if request.GET.success == '1' %}hidden{% endif %}">
-    <div id="partner-form-error" class="tooltip{% if request.GET.success != '0' %} hidden{% endif %}">
+  <div id="partner-form" class="{% if request.GET.success == '1' %}cloaked{% endif %}">
+    <div id="partner-form-error" class="tooltip{% if request.GET.success != '0' %} cloaked{% endif %}">
       {{ _('An error has occurred with your submission. Please review your information and try again.') }}
     </div>
 
@@ -123,59 +123,72 @@
     <!--  ----------------------------------------------------------------------  -->
 
     <div class="field">
+      <label for="first_name">{{ _('First Name') }}</label>
       <input id="first_name" maxlength="40" name="first_name" size="20" type="text" placeholder="{{ _('First Name') }}" class="required" required aria-required="true" />
     </div>
 
     <div class="field">
+      <label for="last_name">{{ _('Last Name') }}</label>
       <input id="last_name" maxlength="80" name="last_name" size="20" type="text" placeholder="{{ _('Last Name') }}" class="required" required aria-required="true" />
     </div>
 
     <div class="field">
+      <label for="title">{{ _('Title') }}</label>
       <input id="title" maxlength="40" name="title" size="20" type="text" placeholder="{{ _('Title') }}" />
     </div>
 
     <div class="field">
+      <label for="company">{{ _('Company') }}</label>
       <input id="company" maxlength="40" name="company" size="20" type="text" placeholder="{{ _('Company') }}" class="required" required aria-required="true" />
     </div>
 
     <div class="field">
+      <label for="URL">{{ _('Website') }}</label>
       <input id="URL" maxlength="80" name="URL" size="20" type="text" placeholder="{{ _('Website') }}" />
     </div>
 
     <div class="field">
+      <label for="email">{{ _('Email') }}</label>
       <input id="email" maxlength="80" name="email" size="20" type="text" placeholder="{{ _('Email') }}" class="required" required aria-required="true" />
     </div>
 
     <div class="field">
+      <label for="phone">{{ _('Phone') }}</label>
       <input id="phone" maxlength="40" name="phone" size="20" type="text" placeholder="{{ _('Phone') }}" />
     </div>
 
     <div class="field">
+      <label for="mobile">{{ _('Mobile') }}</label>
       <input id="mobile" maxlength="40" name="mobile" size="20" type="text" placeholder="{{ _('Mobile') }}" />
     </div>
 
     <div class="field">
-      <textarea name="street" placeholder="{{ _('Address') }}"></textarea>
+      <label for="street">{{ _('Address') }}</label>
+      <textarea id="street" name="street" placeholder="{{ _('Address') }}"></textarea>
     </div>
 
     <div class="field">
+      <label for="city">{{ _('City') }}</label>
       <input id="city" maxlength="40" name="city" size="20" type="text" placeholder="{{ _('City') }}" />
     </div>
 
     <div class="field">
+      <label for="state">{{ _('State/Province') }}</label>
       <input id="state" maxlength="20" name="state" size="20" type="text" placeholder="{{ _('State/Province') }}" />
     </div>
 
     <div class="field">
+      <label for="country">{{ _('Country') }}</label>
       <input id="country" maxlength="40" name="country" size="20" type="text" placeholder="{{ _('Country') }}" />
     </div>
 
     <div class="field">
+      <label for="zip">{{ _('Zip') }}</label>
       <input id="zip" maxlength="20" name="zip" size="20" type="text" placeholder="{{ _('Zip') }}" />
     </div>
 
     <div class="field">
-      <label for="interest">{{ _('Interest') }}:</label>
+      <label for="interest" class="shown">{{ _('Interest') }}:</label>
       <select id="interest" multiple="multiple" name="interest" title="{{ _('Interest') }}" size="7">
         <option value="Firefox for Desktop">{{ _('Firefox for Desktop') }}</option>
         <option value="Firefox for Android">{{ _('Firefox for Android') }}</option>
@@ -188,7 +201,8 @@
     </div>
 
     <div class="field">
-      <textarea name="description" placeholder="{{ _('Description') }}"></textarea>
+      <label for="description">{{ _('Description') }}</label>
+      <textarea id="description" name="description" placeholder="{{ _('Description') }}"></textarea>
     </div>
 
     {{ form.superpriority }}

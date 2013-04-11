@@ -5,7 +5,6 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import re
-
 from datetime import datetime
 from operator import itemgetter
 from random import randrange
