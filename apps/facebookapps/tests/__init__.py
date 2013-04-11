@@ -22,6 +22,14 @@ DUMMY_PATH = '/dummy-path'
 
 
 class TestCase(mozorg_tests.TestCase):
+    def assert_response_redirect(self, response, url, status_code=302):
+        eq_(response.status_code, status_code, 'Redirect response status_code'
+            ' should be {code}. Received {bad_code}.'.format(
+                code=status_code, bad_code=response.status_code))
+        ok_(response.has_header('Location'), 'No `Location` header found in '
+            'response:\n\n{response}.'.format(response=response))
+        eq_(response['Location'], url)
+
     def assert_js_redirect(self, response, url, status_code=200,
                            selector='#redirect', data_attr='redirect-url'):
         eq_(response.status_code, status_code, 'JavaScript redirect '
@@ -42,7 +50,7 @@ class TestCase(mozorg_tests.TestCase):
 
 
 def create_payload(user_id=None, algorithm='HMAC-SHA256', country='us',
-                   locale='en_US'):
+                   locale='en_US', app_data=None):
     """
     Creates a signed request payload with the proper structure.
 
@@ -59,6 +67,8 @@ def create_payload(user_id=None, algorithm='HMAC-SHA256', country='us',
 
     if user_id:
         payload['user_id'] = user_id
+    if app_data:
+        payload['app_data'] = app_data
     return payload
 
 

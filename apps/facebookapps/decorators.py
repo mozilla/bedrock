@@ -30,7 +30,7 @@ def facebook_locale(view_fn):
             # If user's locale isn't supported, get the next best one.
             # Defaults to en-US if no locale in same language as the
             # user's is found.
-            best_locale = utils.get_best_locale(request, facebook_locale)
+            best_locale = utils.get_best_locale(facebook_locale)
 
             prefix = urlresolvers.get_url_prefix()
 
@@ -40,12 +40,14 @@ def facebook_locale(view_fn):
                 prefix.locale = best_locale
                 locale_url = prefix.fix(request.path_info)
                 query_string = urllib.urlencode(request.GET)
-                final_url = '?'.join([locale_url, query_string])
+                final_url = ('?'.join([locale_url, query_string])
+                             if query_string else locale_url)
                 return redirect(final_url)
 
         return view_fn(request, *args, **kwargs)
 
     return _decorated_view
+
 
 def extract_app_data(view_fn):
     """
