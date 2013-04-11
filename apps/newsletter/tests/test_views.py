@@ -119,7 +119,7 @@ class TestExistingNewsletterView(TestCase):
         request, template_name, context = render.call_args[0]
         form = context['form']
         self.assertNotIn('privacy', form.fields)
-        self.assertEqual(self.user['lang'], form.fields['lang'].initial)
+        self.assertEqual(self.user['lang'], form.initial['lang'])
 
     @patch('newsletter.utils.get_newsletters')
     def test_show(self, get_newsletters, mock_basket_request):
