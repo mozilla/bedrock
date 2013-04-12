@@ -6,7 +6,7 @@
 import json
 
 import os
-from urlparse import parse_qs, urlparse
+from urlparse import parse_qsl, urlparse
 
 from django.conf import settings
 from django.test.client import Client
@@ -36,10 +36,10 @@ class TestFirefoxDetails(TestCase):
 
     def test_get_download_url(self):
         url = firefox_details.get_download_url('OS X', 'pt-BR', '17.0')
-        self.assertDictEqual(parse_qs(urlparse(url).query),
-                             {'lang': ['pt-BR'],
-                              'os': ['osx'],
-                              'product': ['firefox-17.0']})
+        self.assertListEqual(parse_qsl(urlparse(url).query),
+                             [('product', 'firefox-17.0'),
+                              ('os', 'osx'),
+                              ('lang', 'pt-BR'),])
 
     def test_filter_builds_by_locale_name(self):
         # search english
