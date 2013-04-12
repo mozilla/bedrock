@@ -12,7 +12,7 @@ $(document).ready(function ()
 		iframe.setAttribute('src', Mozilla.PersonaPreviewer.LIVE_URL);
 		iframe.setAttribute('id', 'persona-preview-frame');
 		iframe.setAttribute('width', '100%');
-		iframe.setAttribute('height', '180');
+		iframe.setAttribute('height', '240');
 
 		var previewers = $('.persona-previewer');
 
