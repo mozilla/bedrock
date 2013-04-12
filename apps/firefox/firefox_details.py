@@ -108,11 +108,12 @@ class FirefoxDetails(ProductDetails):
         :return: string url
         """
         return '?'.join([self.download_base_url_direct,
-                         urlencode({
-                             'product': '%s-%s' % (product, version),
-                             'os': self.platform_info[platform]['id'],
-                             'lang': language,
-                         })])
+                         urlencode([
+                             ('product', '%s-%s' % (product, version)),
+                             ('os', self.platform_info[platform]['id']),
+                             # Order matters, lang must be last for bouncer.
+                             ('lang', language),
+                         ])])
 
 
 firefox_details = FirefoxDetails()
