@@ -30,8 +30,14 @@ FORMAT_IDENTIFIER_RE = re.compile(r"""(%
                                       s)""", re.VERBOSE)
 
 
-def parse(path):
-    """Parse a dotlang file and return a dict of translations."""
+def parse(path, skip_untranslated=True):
+    """
+    Parse a dotlang file and return a dict of translations.
+    :param path: Absolute path to a lang file.
+    :param skip_untranslated: Exclude strings for which the ID and translation
+                              match.
+    :return: dict
+    """
     trans = {}
 
     if not os.path.exists(path):
@@ -55,8 +61,9 @@ def parse(path):
                     if line.endswith(tag):
                         line = line[:-len(tag)]
                 line = line.strip()
-                if not source == line:
-                    trans[source] = line
+                if skip_untranslated and source == line:
+                    continue
+                trans[source] = line
 
     return trans
 
