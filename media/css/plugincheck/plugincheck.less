@@ -3,6 +3,20 @@
 // including it in the home.html template.
 @import "../sandstone/sandstone-resp.less";
 
+#main-feature {
+    padding-bottom: 68px;
+    .preamble {
+        font-size: 24px;
+        letter-spacing: -0.25px;
+        margin-bottom: 0;
+        font-family: 'Open Sans Light', sans-serif;
+        font-weight: normal;
+        margin-bottom:0;
+        line-height: 100%;
+        text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.75);
+        color: rgb(72, 72, 72);
+    }
+}
 .billboard {
     padding-top: 42px;
     padding-bottom: 0;
@@ -18,15 +32,14 @@
         caption {
             font-size: 24px;
         }
-        th {
+        thead th {
             padding: 0;
             font-size: 18px;
         }
-        tbody {
-            h4 {
-                margin: 5px 0 5px 0;
-                font-size: 18px;
-            }
+        tbody th {
+            font-size: 18px;
+            font-weight: normal;
+            font-family: 'Open Sans Light',sans-serif;
         }
     }
 }
@@ -41,9 +54,10 @@
     }
     .icon {
         float: left;
-        margin: -8px 5px 0 0;
+        margin: -3px 5px 0 0;
     }
-    .plugin-detail {
+    small {
+        display: block;
         font-size: 12px;
     }
     .plugin-status-detail {
@@ -196,18 +210,18 @@
         position: relative;
         margin-top: 20px;
     }
-    
+
     .moz-support {
         width: (@gridColumnWidthNarrow * 10) + (@gridGutterWidth * 9);
     }
-    
+
     .container-column {
         width: (@gridColumnWidthNarrow * 6) + (@gridGutterWidth * 5);
     }
     .container-wide {
         width: (@gridColumnWidthNarrow * 10) + (@gridGutterWidth * 9);
     }
-    
+
     #footer-email-form {
         h3,
         .form-contents,
@@ -215,7 +229,7 @@
             width: (@gridColumnWidthNarrow * 4) + (@gridGutterWidth * 3);
         }
     }
-    
+
 }
 
 /* Mobile Layout: 320px */
@@ -224,7 +238,7 @@
         position: relative;
         margin-top: 20px;
     }
-    
+
     .moz-support {
         width: auto;
         text-align: center;
@@ -234,15 +248,15 @@
             padding: 0;
             margin: 10px auto;
         }
-    }    
+    }
 
-    .container-column, 
+    .container-column,
     .container-wide {
         width: auto;
         float: none;
         margin: 0 0 @baseLine;
     }
-    
+
     #footer-email-form {
         h3,
         .form-contents,

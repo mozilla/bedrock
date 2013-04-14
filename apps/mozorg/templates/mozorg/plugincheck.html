@@ -31,118 +31,111 @@
 {% endblock %}
 
 {% block content %}
-<div id="main-feature">
-  <div class="row">
-  <hgroup class="stacked">
-    <h1 class="large">{{_('Check Your Plugins')}}</h1>
-    <h4>{{_('Keeping your plugins up to date helps Firefox run safely and smoothly.')}}</h4>
-    {% if not is_latest %}
-      {{ download_firefox(small=True) }}
-    {% endif %}
-  </hgroup>
-  </div>
-</div>
-
-<article class="billboard">
-    <div class="plugin-status-container">
-        <h3>{{_('Plugin Status')}}</h3>
-        <div id="legend">
-          <ul>
-            <li id="old_browser">{{_('<strong>Warning, a newer version of your browser is available.</strong> Please upgrade your browser.')}}</li>
-            <li id="modern_browsers">{{_('This page works best with the latest browsers: Firefox 3.6+, Opera 10.5, Safari 4, Chrome 4, or IE 8')}}</li>
-            <li id="exploder">{{_('Plugin Check <strong>support for Internet Explorer is limited</strong>. Also use Tools &gt; Manage Addons')}}</li>
-            <li>{{_('Step 1: Click Update to update a plugin.')}}</li>
-            <li>{{_('Step 2: Complete all recommended updates before restarting your browser.')}}</li>
-          </ul>
-        </div>
-        <p id="pfs-status"></p>
-        <section id="sec-plugin-vulnerable">
+<main role="main">
+  <header id="main-feature">
+      <h1 class="large">{{_('Check Your Plugins')}}</h1>
+      <p class="preamble">{{_('Keeping your plugins up to date helps Firefox run safely and smoothly.')}}</p>
+      {% if not is_latest %}
+        {{ download_firefox(small=True) }}
+      {% endif %}
+  </header>
+  <section class="plugin-status-container billboard">
+      <h2>{{_('Plugin Status')}}</h2>
+      <ul>
+        <li id="old_browser">{{_('<strong>Warning, a newer version of your browser is available.</strong> Please upgrade your browser.')}}</li>
+        <li id="modern_browsers">{{_('This page works best with the latest browsers: Firefox 3.6+, Opera 10.5, Safari 4, Chrome 4, or IE 8')}}</li>
+        <li id="exploder">{{_('Plugin Check <strong>support for Internet Explorer is limited</strong>. Also use Tools &gt; Manage Addons')}}</li>
+        <li>{{_('Step 1: Click Update to update a plugin.')}}</li>
+        <li>{{_('Step 2: Complete all recommended updates before restarting your browser.')}}</li>
+      </ul>
+      <p id="pfs-status"></p>
+      <div id="sec-plugin-vulnerable">
         <table class="table status">
           <caption>{{_('Potentially vulnerable plugins')}}</caption>
           <thead>
             <tr>
-              <th class="plugin-status-detail" scope="col">{{_('Plugin Details')}}</th>
+              <th class="plugin-status-detail" scope="col">{{_('Plugin')}}</th>
               <th class="plugin-status-status" scope="col">{{_('Status')}}</th>
               <th class="plugin-status-action action" scope="col">{{_('Action')}}</th>
             </tr>
           </thead>
           <tbody id="plugin-vulnerable"></tbody>
         </table>
-        </section>
+      </div>
 
-        <section id="sec-plugin-outdated" class="shadow-separator">
+      <div id="sec-plugin-outdated" class="shadow-separator">
         <table class="table status">
           <caption>{{_('Outdated Plugins')}}</caption>
           <thead>
             <tr>
-              <th class="plugin-status-detail" scope="col">{{_('Plugin Details')}}</th>
+              <th class="plugin-status-detail" scope="col">{{_('Plugin')}}</th>
               <th class="plugin-status-status" scope="col">{{_('Status')}}</th>
               <th class="plugin-status-action action" scope="col">{{_('Action')}}</th>
             </tr>
           </thead>
           <tbody id="plugin-outdated"></tbody>
         </table>
-        </section>
+      </div>
 
-        <section id="sec-plugin-unknown" class="shadow-separator">
+      <div id="sec-plugin-unknown" class="shadow-separator">
         <table class="table status">
           <caption>{{_('Unknown Plugins')}}</caption>
           <thead>
             <tr>
-              <th class="plugin-status-detail" scope="col">{{_('Plugin Details')}}</th>
+              <th class="plugin-status-detail" scope="col">{{_('Plugin')}}</th>
               <th class="plugin-status-status" scope="col">{{_('Status')}}</th>
               <th class="plugin-status-action action" scope="col">{{_('Action')}}</th>
             </tr>
           </thead>
           <tbody id="plugin-unknown"></tbody>
         </table>
-        </section>
+      </div>
 
-        <section id="sec-plugin-uptodate" class="shadow-separator">
+      <div id="sec-plugin-uptodate" class="shadow-separator">
         <table class="table status">
           <caption>{{_('These plugins are up to date')}}</caption>
           <thead>
             <tr>
-              <th class="plugin-status-detail" scope="col">{{_('Plugin Details')}}</th>
+              <th class="plugin-status-detail" scope="col">{{_('Plugin')}}</th>
               <th class="plugin-status-status" scope="col">{{_('Status')}}</th>
               <th class="plugin-status-action action" scope="col">{{_('Action')}}</th>
             </tr>
           </thead>
           <tbody id="plugin-uptodate"></tbody>
         </table>
-        </section>
-        <p><a href="#top">{{_('Back to Top')}}</a></p>
-    </div>
-</article>
+      </div>
+      <p><a href="#top">{{_('Back to Top')}}</a></p>
+  </section>
+</main>
 
-<article class="billboard pluginfaq-container">
-    <h3>{{_('Frequently Asked Questions')}}</h3>
-    <section class="container-column">
-      <h4>{{_('What is a plugin?')}}</h4>
+<section class="billboard pluginfaq-container">
+    <h2>{{_('Frequently Asked Questions')}}</h2>
+    <div class="container-column">
+      <h3>{{_('What is a plugin?')}}</h3>
       <ul>
         <li>{{_('Plugins power videos, animation and games')}}</li>
         <li>{{_('They\'re built outside of Firefox by companies like Adobe Systems and Apple')}}</li>
         <li>{{_('Plugins don\'t always update automatically.')}}</li>
       </ul>
-      <h4>{{_('Why should I update my plugins?')}}</h4>
+      <h3>{{_('Why should I update my plugins?')}}</h3>
       <ul>
         <li>{{_('Old plugins can interrupt browsing and waste your time.')}}</li>
         <li>{{_('Old plugins <strong>increase your risk</strong> for attack by malware, viruses, and other security threats.')}}</li>
         <li>{{_('<strong>Updated plugins have improvements</strong> that make the web <strong>better and safer</strong> for you.')}}</li>
       </ul>
       <p><img src="{{ media('img/plugincheck/screenshots/addons-screenshot.jpg') }}" width="432" height="254" alt="Screenshot of Add-Ons window" /></p>
-    </section>
-    <section class="container-column">
-      <h4>{{_('How can Firefox help me?')}}</h4>
+    </div>
+    <div class="container-column">
+      <h3>{{_('How can Firefox help me?')}}</h3>
       <p>{{_('In the future, Firefox will update plugins for you. Until then, you should regularly check this page and update your plugins to stay safe.')}}</p>
-      <h4>{{_('Which Plugins do I have?')}}</h4>
+      <h3>{{_('Which Plugins do I have?')}}</h3>
       <p>{{_('We automatically detected your plugins above, to view your installed plugins in Firefox follow these steps:')}}</p>
       <ol>
         <li>{{_('Open the Tools menu.')}}</li>
         <li>{{_('Choose Add-ons.')}}</li>
         <li>{{_('Click the plugins tab.')}}</li>
       </ol>
-      <h4>{{_('How do I disable a plugin?')}}</h4>
+      <h3>{{_('How do I disable a plugin?')}}</h3>
       <p>{{_('In Firefox:')}}</p>
       <ol>
         <li>{{_('Open the Tools menu.')}}</li>
@@ -152,10 +145,10 @@
         <li>{{_('Click the Disable button.')}}</li>
       </ol>
       <p class="small">{{ _('Caution: disabling a plugin means that you will no longer be able to do certain things. For example, if you disable Flash, you will not be able to watch videos on YouTube.') }}</p>
-    </section>
+    </div>
     <div class="moz-support">
       <img src="{{ media('img/plugincheck/logos/sumo-logo.png') }}" class="moz-support-logo" width="199" height="31" alt="Mozilla Support" />
-      <h4>{{_('Have more questions?')}}</h4>
+      <h3>{{_('Have more questions?')}}</h3>
       <p>
         {% trans sumo_url='http://support.mozilla.com/' %}
         Visit <a href="{{ sumo_url }}">support.mozilla.com</a> for more help!
@@ -163,12 +156,12 @@
       </p>
     </div>
     <p><a href="#top">{{_('Back to Top')}}</a></p>
-</article>
+</section>
 
-<article class="billboard spread-the-word">
-  <h3>{{_('Help us spread the word')}}</h3>
-  <section class="container-column">
-    <h4>{{_('Spread the Word with a Badge')}}</h4>
+<section class="billboard spread-the-word">
+  <h2>{{_('Help us spread the word')}}</h2>
+  <div class="container-column">
+    <h3>{{_('Spread the Word with a Badge')}}</h3>
     <p>{{_('Help protect your friends! With a badge on your site, you can:')}}</p>
     <ul>
       <li>{{_('Use JavaScript to detect plugins')}}</li>
@@ -176,9 +169,9 @@
     </ul>
     <img src="{{ media('img/plugincheck/badges/plugincheck180x150.png') }}" width="180" height="150" alt="Plugincheck badge 180 x 150" />
     <textarea class="code-snippet" rows="10"><a href="https://www.mozilla.org/en-US/plugincheck/"><img id="mozilla_plugin_checker_badge" src="https://www.mozilla.org/img/covehead/plugincheck/wb/en-US/180_150/loading.png" width="180" height="150" alt="We can check your plugins and stuff" border="0" /></a><script type="text/javascript">var pfsNextImage = "https://www.mozilla.org/img/covehead/plugincheck/wb/en-US/180_150/safe.png";var pfsUpdateImage = "https://www.mozilla.org/img/covehead/plugincheck/wb/en-US/180_150/upyourplug.png";</script><script src="https://www.mozilla.org/js/plugincheck_badge.js"></script></textarea>
-  </section>
-  <section class="container-column">
-    <h4>{{_('How to Use a Badge on Your Site')}}</h4>
+  </div>
+  <div class="container-column">
+    <h3>{{_('How to Use a Badge on Your Site')}}</h3>
     <ol>
       <li>{{('Choose from the sizes below.')}}</li>
       <li>{{('Copy the code below the badge.')}}</li>
@@ -186,13 +179,13 @@
     </ol>
     <img src="{{ media('img/plugincheck/badges/plugincheck300x250.png') }}" width="300" height="250" alt="Plugincheck badge 300 x 250" />
     <textarea class="code-snippet" rows="10"><a href="https://www.mozilla.org/en-US/plugincheck/"><img id="mozilla_plugin_checker_badge" src="https://www.mozilla.org/img/covehead/plugincheck/wb/en-US/300_250/loading.png" width="300" height="250" alt="We can check your plugins and stuff" border="0" /></a><script type="text/javascript">var pfsNextImage = "https://www.mozilla.org/img/covehead/plugincheck/wb/en-US/300_250/safe.png";var pfsUpdateImage = "https://www.mozilla.org/img/covehead/plugincheck/wb/en-US/300_250/upyourplug.png";</script><script src="https://www.mozilla.org/js/plugincheck_badge.js"></script></textarea>
-  </section>
-  <section class="container-wide">
+  </div>
+  <div class="container-wide">
     <img src="{{ media('img/plugincheck/badges/plugincheck728x90.png') }}" width="728" height="90" alt="Plugincheck badge 728 x 90" />
     <textarea class="code-snippet" rows="5"><a href="https://www.mozilla.org/en-US/plugincheck/"><img id="mozilla_plugin_checker_badge" src="https://www.mozilla.org/img/covehead/plugincheck/wb/en-US/728_90/loading.png" width="728" height="90" alt="We can check your plugins and stuff" border="0" /></a><script type="text/javascript">var pfsNextImage = "https://www.mozilla.org/img/covehead/plugincheck/wb/en-US/728_90/safe.png";var pfsUpdateImage = "https://www.mozilla.org/img/covehead/plugincheck/wb/en-US/728_90/upyourplug.png";</script><script src="https://www.mozilla.org/js/plugincheck_badge.js"></script></textarea>
-  </section>
+  </div>
   <p><a href="#top">{{_('Back to Top')}}</a></p>
-</article>
+</section>
 {% endblock %}
 
 {% block js %}
