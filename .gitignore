@@ -19,3 +19,5 @@ tmp/*
 *.less.css
 db.sql
 /locale
+Thumbs.db
+Desktop.ini
