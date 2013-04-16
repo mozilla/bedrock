@@ -8,7 +8,7 @@ import views
 
 urlpatterns = patterns('',
     page("", "mozorg/home.html"),
-
+    page('about/manifesto', 'mozorg/about/manifesto.html'),
     page('about', 'mozorg/about.html'),
     page('book', 'mozorg/book.html'),
     url('^about/partnerships/$', views.partnerships, name='mozorg.partnerships'),
