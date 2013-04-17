@@ -670,5 +670,5 @@ FACEBOOK_APP_ID = 'DUMMY_APP_ID'
 # and app ID settings in local settings.
 def facebook_tab_url_lazy():
     from django.conf import settings
-    return '//www.facebook.com/{}/app_{}'.format(settings.FACEBOOK_PAGE_NAMESPACE, settings.FACEBOOK_APP_ID)
+    return '//www.facebook.com/{page}/app_{id}'.format(page=settings.FACEBOOK_PAGE_NAMESPACE, id=settings.FACEBOOK_APP_ID)
 FACEBOOK_TAB_URL = lazy(facebook_tab_url_lazy, str)()

@@ -12,10 +12,15 @@ from mozorg.util import page
 
 
 urlpatterns = patterns('',
-    url(r'^tab_redirect/$', views.tab_redirect, name='facebookapps.tab_redirect'),
-    url(r'^tab_redirect/(?P<redirect_type>[a-z]*)/$', views.tab_redirect, name='facebookapps.tab_redirect'),
+    url(r'^tab_redirect/$', views.tab_redirect,
+        name='facebookapps.tab_redirect'),
+    url(r'^tab_redirect/(?P<redirect_type>[a-z]*)/$', views.tab_redirect,
+        name='facebookapps.tab_redirect'),
 
     page('channel', 'facebookapps/channel.html'),
-    page('downloadtab', 'facebookapps/downloadtab.html', decorators=(xframe_allow, extract_app_data, facebook_locale)),
-    page('downloadtab/noscroll', 'facebookapps/downloadtab.html', decorators=(xframe_allow, extract_app_data, facebook_locale), noscroll=True),
+    page('downloadtab', 'facebookapps/downloadtab.html',
+        decorators=(xframe_allow, extract_app_data, facebook_locale)),
+    page('downloadtab/noscroll', 'facebookapps/downloadtab.html',
+        decorators=(xframe_allow, extract_app_data, facebook_locale),
+        noscroll=True),
 )

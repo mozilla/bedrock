@@ -18,6 +18,7 @@ from pyquery import PyQuery as pq
 
 DUMMY_CONTENT = 'I like pie.'
 DUMMY_DICT = {'pie': 'pumpkin', 'pizza': 'yes'}
+DUMMY_APP_DATA_QUERY = 'app_data[pie]=pumpkin&app_data[pizza]=yes'
 DUMMY_PATH = '/dummy-path'
 
 
@@ -47,6 +48,11 @@ class TestCase(mozorg_tests.TestCase):
         eq_(data_value, escaped_url, 'Attribute `data-{attr}` should be '
             '{value}. Received `{bad_value}`.'.format(attr=data_attr,
                 value=escaped_url, bad_value=data_value))
+
+    def assert_iframe_able(self, response):
+        header = 'X-Frame-Options'
+        self.assertFalse(response.has_header(header),
+            '{header} header present in response.'.format(header=header))
 
 
 def create_payload(user_id=None, algorithm='HMAC-SHA256', country='us',
