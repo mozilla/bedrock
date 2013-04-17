@@ -76,7 +76,7 @@
         <table class="table">
           <thead>
           <tr>
-            <td>{{ _('Our monthly newsletters') }}</td>
+            <td>{{ _('Our newsletters') }}</td>
             <th>{{ _('Subscribe') }}</th>
             <th>{{ _('Unsubscribe') }}</th>
           </tr>
@@ -85,14 +85,16 @@
           {% for formpart in formset %}  {# each newsletter is a formset #}
             <tr class="subscription">
               <th>
-                <h4 class="title">{{ formpart.initial['title'] }}</h4>
+                <h4 class="title">
+                  {{ formpart.initial['title'] }}
+                  {% if formpart.initial['english_only'] %}
+                    <span class="en-only">({{ _('English&nbsp;only') }})</span>
+                  {% endif %}
+                </h4>
                 {# hidden field: #}
                 {{ formpart.newsletter }}
                 <p class="description">
                   {{ formpart.initial['description'] }}
-                  {% if formpart.initial['english_only'] %}
-                    ({{ _('English only') }})
-                  {% endif %}
                 </p>
               </th>
               {{ formpart.subscribed }}

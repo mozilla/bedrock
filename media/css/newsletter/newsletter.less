@@ -126,10 +126,12 @@
             th {
                 text-align: left;
                 h4 {
-                    .open-sans;
-                    font-size: @baseFontSize;
-                    letter-spacing: normal;
-                    margin: 0;
+                    margin: 0 0 5px 0;
+                    font-size: 22px;
+                    .en-only {
+                        color: @textColorTertiary;
+                        font-size: @baseFontSize;
+                    }
                 }
                 .description {
                     margin: 0.2em 0 0 0;
@@ -150,6 +152,42 @@
     }
 }
 
+/* {{{ Tablet  Layout and smaller : 768px */
+@media only screen and (max-width: @widthDesktop) {
+
+    #existing-newsletter-form {
+        .table {
+            thead {
+                td,th {
+                    padding-right: 5px;
+                    font-size: @smallFontSize;
+                    &:last-child {
+                        padding-right: 0;
+                    }
+                }
+            }
+            tbody {
+                th {
+                    h4 {
+                        font-size: 18px;
+                        .en-only {
+                            font-size: @smallFontSize;
+                        }
+                    }
+                }
+                td,th {
+                    padding-right: 5px;
+                    &:last-child {
+                        padding-right: 0;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+/* }}} */
 /* {{{ Tablet  Layout: 768px */
 @media only screen and (min-width: @widthTablet) and (max-width: @widthDesktop) {
 
