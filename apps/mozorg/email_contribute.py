@@ -102,7 +102,7 @@ LOCALE_CONTACTS = {
     'nl'   : ['contribute@mozilla-nl.org'],
     'pt-BR': ['mlcaraldi@gmail.com'],
     'sr'   : ['prikljucise@mozilla-srbija.org'],
-    'sq'   : ['besnik@programeshqip.org'],
+    'sq'   : ['besnik@mozilla-albania.org'],
     'zh-CN': ['contributor-zh-cn@mozilla.org'],
     'zh-TW': ['contribute@mail.moztw.org'],
 }
