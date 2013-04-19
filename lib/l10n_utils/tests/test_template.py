@@ -11,11 +11,12 @@ from django.test.client import Client
 from jingo import env
 from jinja2 import FileSystemLoader
 from jinja2.nodes import Block
-from mock import patch, ANY
+from mock import patch, ANY, Mock
 from nose.plugins.skip import SkipTest
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 
+from l10n_utils import render
 from mozorg.tests import TestCase
 
 
@@ -124,3 +125,16 @@ class TestTemplateLangFiles(TestCase):
         self.client.get('/de/active-de-lang-file/')
         translate.assert_called_with(ANY, ['active_de_lang_file', 'main',
                                            'download_button', 'newsletter'])
+
+
+class TestNoLocale(TestCase):
+    @patch('l10n_utils.get_lang_path')
+    @patch('l10n_utils.django_render')
+    def test_render_no_locale(self, django_render, get_lang_path):
+        # Our render method doesn't blow up if the request has no .locale
+        # (can happen on 500 error path, for example)
+        get_lang_path.return_value = None
+        request = Mock(spec=object)
+        # Note: no .locale on request
+        # Should not cause an exception
+        render(request, None)

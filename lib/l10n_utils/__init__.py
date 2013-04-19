@@ -30,7 +30,7 @@ def render(request, template, context={}, **kwargs):
     context['langfile'] = get_lang_path(template)
 
     # Look for localized template if not default lang.
-    if request.locale != settings.LANGUAGE_CODE:
+    if hasattr(request, 'locale') and request.locale != settings.LANGUAGE_CODE:
 
         # redirect to default lang if locale not active
         if not (settings.DEV or
