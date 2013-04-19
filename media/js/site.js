@@ -23,6 +23,11 @@
         if (/Mac OS X 10.[0-5]/.test(navigator.userAgent)) {
             return 'oldmac';
         }
+        if (navigator.platform.indexOf('iPhone') !== -1 || 
+                navigator.platform.indexOf('iPad') !== -1 || 
+                navigator.platform.indexOf('iPod') !== -1 ) {
+            return 'ios';
+        }
         if (navigator.userAgent.indexOf("Mac OS X") !== -1) {
             return 'osx';
         }
