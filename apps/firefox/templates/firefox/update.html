@@ -121,7 +121,7 @@ $(document).ready(function() {
     var headline = $('#main-feature > h1');
     var subheadline = $('#main-feature > h3');
 
-    if(!isFirefox) {
+    if(isFirefox) {
         if(latestVersion <= getFirefoxMasterVersion()) {
             headline.html('Congratulations!');
             subheadline.html('Your Firefox is up to date.');
@@ -130,6 +130,9 @@ $(document).ready(function() {
             headline.html('Your Firefox is out of date.');
             subheadline.html('Get the newest version <a href="/firefox">here</a>.');
         }
+    } else {
+        headline.html('Welcome.');
+        subheadline.html('Download <a href="/firefox">Firefox</a> to get started.');
     }
 });
 </script>
