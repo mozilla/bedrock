@@ -25,5 +25,5 @@
         </fieldset>
     </form>
 {% else %}
-    <p>Thank you for sending us your questions or comments. A member of the privacy team will be in contact shortly.</p>
+    <p class="success" data-submission-state="{{ form_submitted }}"><strong>Thank you</strong> for sending us your questions or comments. A member of the privacy team will be in contact shortly.</p>
 {% endif %}

@@ -450,6 +450,9 @@ MINIFY_BUNDLES = {
             'js/mozilla-pager.js',
             'js/privacy.js',
         ),
+        'privacy-firefoxos': (
+            'js/privacy_firefoxos.js',
+        ),
         'styleguide': (
             'js/styleguide.js',
         ),
