@@ -110,6 +110,10 @@ def existing(request, token=None):
                 'english_only': len(langs) == 1 and langs[0].startswith('en')
             })
 
+    # FIXME: for now sort by title, later let basket specify the order to use
+    sortkey = lambda e: e['title']
+    initial.sort(key=sortkey)
+
     NewsletterFormSet = formset_factory(NewsletterForm, extra=0,
                                         max_num=len(initial))
 
