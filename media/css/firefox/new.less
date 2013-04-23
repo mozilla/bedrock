@@ -47,10 +47,6 @@
             a, a:link, a:visited {
                 display: inline-block;
                 padding: 2px 12px;
-                border-left: 1px dotted @textColorLight;
-            }
-            &:first-child a {
-                border: 0;
             }
         }
     }
@@ -70,9 +66,16 @@
     }
 
     .secondary {
-        a, a:link, a:visited {
-            font-size: 12px;
-            color: @textColorLight;
+        li {
+            margin-left: 0;
+            a, a:link, a:visited {
+                font-size: 12px;
+                color: @textColorLight;
+                border-left: 1px dotted @textColorLight;
+            }
+            &:first-child a {
+                border: 0;
+            }
         }
     }
 }
