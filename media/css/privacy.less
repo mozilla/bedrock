@@ -4,6 +4,17 @@
 
 @import "sandstone/sandstone-resp.less";
 
+@font-face {
+  font-family: 'icons';
+  src: url('/media/fonts/icons.eot?7695723');
+  src: url('/media/fonts/icons.eot?7695723#iefix') format('embedded-opentype'),
+       url('/media/fonts/icons.woff?7695723') format('woff'),
+       url('/media/fonts/icons.ttf?7695723') format('truetype'),
+       url('/media/fonts/icons.svg?7695723#icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .huge,
 .huge h1 {
   margin-bottom: .1em;
@@ -200,4 +211,116 @@ table.data-table tbody tr td:first-child {
         top: 0;
         left: 0;
     }
+}
+/* Firefox OS Privacy Policy */
+#contact {
+    legend {
+        margin-bottom: 8px;
+        font-size: 14px;
+        font-weight: normal;
+    }
+    textarea {
+        width: 85%;
+    }
+    input[type="submit"] {
+        float: none;
+        margin-left: 43px;
+    }
+    .success {
+        margin-top: 15px;
+        width: 90%;
+        text-align: center;
+    }
+}
+.firefoxos {
+    h2 {
+        margin: 10px 5px;
+        width: 270px;
+        font-size: 1.5rem;
+    }
+    h3 {
+        font-size: 1.2rem;
+        line-height: 1.5rem;
+    }
+}
+.firefoxos-header {
+    background: transparent url("/media/img/home/firefox_small.png") 0 10px no-repeat;
+    margin: 20px 0 0 20px;
+    padding-left: 85px;
+    width: 150px;
+    font-size: 42px;
+}
+.highlight {
+    background-color: #f9fafb;
+    color: #333;
+    padding: 1rem 1.5rem .1rem 1.5rem;
+    box-shadow: 1px 1px 2px #999;
+    line-height: 1.5rem;
+}
+.links {
+    text-align: center;
+}
+[data-icon]:before {
+    font-family: "icons";
+    content: '\2302';
+    speak: none;
+}
+.home {
+    display: inline-block;
+    margin-right: 10px;
+}
+.visually_hidden {
+    position: absolute;
+    clip: rect(1px, 1px, 1px, 1px);
+    padding:0;
+    border:0;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+}
+.thingstoknow,
+.policy,
+.contact {
+    position: relative;
+    left: -500px;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: left 400ms,
+                width 400ms,
+                opacity 400ms;
+}
+.active {
+    left: 0;
+    width: auto;
+    height: auto;
+    opacity: 1;
+    overflow: visible;
+}
+.thingstoknow {
+    h2 {
+        margin: 10px auto;
+        width: 250px;
+        font-size: 1.5rem;
+    }
+    ul {
+        display: none;
+        margin: 0;
+        padding: 0;
+    }
+    li {
+        margin-left: 10px;
+    }
+    .intro {
+        margin: 0 auto 15px auto;
+        padding-bottom: 15px;
+        border-radius: 6px;
+        width: 200px;
+    }
+}
+.policy,
+.contact {
+    margin-left: 15px;
+    line-height: 1.5rem;
 }

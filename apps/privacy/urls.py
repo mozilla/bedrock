@@ -22,5 +22,6 @@ urlpatterns = patterns('',
     page('/policies/archive/firefox-january-2010', 'privacy/archive/firefox-january-2010.html'),
     page('/policies/archive/firefox-december-2010', 'privacy/archive/firefox-december-2010.html'),
     url(r'^/$', views.privacy, name='privacy.index'),
+    url(r'^/policies/firefox-os/$', views.firefoxos, name='privacy.firefoxos'),
     url(r'^/policies/facebook/$', views.facebook, name='privacy/facebook'),
 )
