@@ -69,16 +69,25 @@
     {% endfor %}
   </ul>
   {% if show_mobile %}
-  <small class="download-other os_android">
-    <a href="/en-US/firefox/mobile/platforms">{{ _('Supported Devices') }}</a> |
-    <a href="/en-US/mobile/notes">{{ _('What’s New') }}</a> |
-    <a href="/en-US/legal/privacy/firefox.html">{{ _('Privacy') }}</a>
-  </small>
+    <small class="download-other os_android">
+      <a href="/en-US/firefox/mobile/platforms">{{ _('Supported Devices') }}</a> |
+      {% if build %}
+        <a href="/en-US/mobile/{{ build }}/notes">{{ _('What’s New') }}</a> |
+      {% else %}
+        <a href="/en-US/mobile/notes">{{ _('What’s New') }}</a> |
+      {% endif %}
+      <a href="/en-US/legal/privacy/firefox.html">{{ _('Privacy') }}</a>
+    </small>
   {% endif %}
   {% if show_desktop %}
     <small class="download-other os_linux os_osx os_windows">
-      <a href="/en-US/firefox/all.html">{{ _('Systems &amp; Languages') }}</a> |
-      <a href="/en-US/firefox/notes">{{ _('What’s New') }}</a> |
+      {% if build %}
+        <a href="/en-US/firefox/all-{{ build }}.html">{{ _('Systems &amp; Languages') }}</a> |
+        <a href="/en-US/firefox/{{ build }}/notes">{{ _('What’s New') }}</a> |
+      {% else %}
+        <a href="/en-US/firefox/all">{{ _('Systems &amp; Languages') }}</a> |
+        <a href="/en-US/firefox/notes">{{ _('What’s New') }}</a> |
+      {% endif %}
       <a href="/en-US/legal/privacy/firefox.html">{{ _('Privacy') }}</a>
     </small>
   {% endif %}
