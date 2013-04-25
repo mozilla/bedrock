@@ -135,6 +135,8 @@
         <li>{{_('Choose Add-ons.')}}</li>
         <li>{{_('Click the plugins tab.')}}</li>
       </ol>
+      <h3>{{ _('Want to spread the word?') }}</h3>
+      <p>{{ _('Help your friends stay safe online! Visit <a href="%(url)s">Firefox Affiliates</a> to get a plugin check badge for your site.') |format(url="https://affiliates.mozilla.org") }}</p>
       <h3>{{_('How do I disable a plugin?')}}</h3>
       <p>{{_('In Firefox:')}}</p>
       <ol>
@@ -156,35 +158,6 @@
       </p>
     </div>
     <p><a href="#top">{{_('Back to Top')}}</a></p>
-</section>
-
-<section class="billboard spread-the-word">
-  <h2>{{_('Help us spread the word')}}</h2>
-  <div class="container-column">
-    <h3>{{_('Spread the Word with a Badge')}}</h3>
-    <p>{{_('Help protect your friends! With a badge on your site, you can:')}}</p>
-    <ul>
-      <li>{{_('Use JavaScript to detect plugins')}}</li>
-      <li>{{_('Warn people if they have outdated plugins!')}}</li>
-    </ul>
-    <img src="{{ media('img/plugincheck/badges/plugincheck180x150.png') }}" width="180" height="150" alt="Plugincheck badge 180 x 150" />
-    <textarea class="code-snippet" rows="10"><a href="https://www.mozilla.org/en-US/plugincheck/"><img id="mozilla_plugin_checker_badge" src="https://www.mozilla.org/img/covehead/plugincheck/wb/en-US/180_150/loading.png" width="180" height="150" alt="We can check your plugins and stuff" border="0" /></a><script type="text/javascript">var pfsNextImage = "https://www.mozilla.org/img/covehead/plugincheck/wb/en-US/180_150/safe.png";var pfsUpdateImage = "https://www.mozilla.org/img/covehead/plugincheck/wb/en-US/180_150/upyourplug.png";</script><script src="https://www.mozilla.org/js/plugincheck_badge.js"></script></textarea>
-  </div>
-  <div class="container-column">
-    <h3>{{_('How to Use a Badge on Your Site')}}</h3>
-    <ol>
-      <li>{{('Choose from the sizes below.')}}</li>
-      <li>{{('Copy the code below the badge.')}}</li>
-      <li>{{('Paste it into your blog or other website.')}}</li>
-    </ol>
-    <img src="{{ media('img/plugincheck/badges/plugincheck300x250.png') }}" width="300" height="250" alt="Plugincheck badge 300 x 250" />
-    <textarea class="code-snippet" rows="10"><a href="https://www.mozilla.org/en-US/plugincheck/"><img id="mozilla_plugin_checker_badge" src="https://www.mozilla.org/img/covehead/plugincheck/wb/en-US/300_250/loading.png" width="300" height="250" alt="We can check your plugins and stuff" border="0" /></a><script type="text/javascript">var pfsNextImage = "https://www.mozilla.org/img/covehead/plugincheck/wb/en-US/300_250/safe.png";var pfsUpdateImage = "https://www.mozilla.org/img/covehead/plugincheck/wb/en-US/300_250/upyourplug.png";</script><script src="https://www.mozilla.org/js/plugincheck_badge.js"></script></textarea>
-  </div>
-  <div class="container-wide">
-    <img src="{{ media('img/plugincheck/badges/plugincheck728x90.png') }}" width="728" height="90" alt="Plugincheck badge 728 x 90" />
-    <textarea class="code-snippet" rows="5"><a href="https://www.mozilla.org/en-US/plugincheck/"><img id="mozilla_plugin_checker_badge" src="https://www.mozilla.org/img/covehead/plugincheck/wb/en-US/728_90/loading.png" width="728" height="90" alt="We can check your plugins and stuff" border="0" /></a><script type="text/javascript">var pfsNextImage = "https://www.mozilla.org/img/covehead/plugincheck/wb/en-US/728_90/safe.png";var pfsUpdateImage = "https://www.mozilla.org/img/covehead/plugincheck/wb/en-US/728_90/upyourplug.png";</script><script src="https://www.mozilla.org/js/plugincheck_badge.js"></script></textarea>
-  </div>
-  <p><a href="#top">{{_('Back to Top')}}</a></p>
 </section>
 {% endblock %}
 
