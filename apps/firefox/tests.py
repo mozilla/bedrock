@@ -31,6 +31,55 @@ with patch.object(settings, 'PROD_DETAILS_DIR', PROD_DETAILS_DIR):
     firefox_details = FirefoxDetails()
 
 
+class TestInstallerHelp(TestCase):
+    def setUp(self):
+        self.client = Client()
+        with self.activate('en-US'):
+            self.url = reverse('firefox.installer-help')
+
+    def test_buttons_use_lang(self):
+        """
+        The buttons should use the lang from the query parameter
+        """
+        resp = self.client.get(self.url, {
+            'installer_lang': 'fr'
+        })
+        content = resp.content.decode('utf8')
+        self.assertTrue(u'os=osx&amp;lang=fr"' in content)
+        self.assertFalse(u'os=osx&amp;lang=en-US"' in content)
+
+    def test_buttons_ignore_non_lang(self):
+        """
+        The buttons should use the lang from the query parameter
+        """
+        resp = self.client.get(self.url, {
+            'installer_lang': 'not-a-locale'
+        })
+        content = resp.content.decode('utf8')
+        self.assertTrue(u'os=osx&amp;lang=en-US"' in content)
+        self.assertFalse(u'os=osx&amp;lang=not-a-locale"' in content)
+
+    def test_invalid_channel_specified(self):
+        """
+        There should be only one button when the channel is given.
+        """
+        resp = self.client.get(self.url, {
+            'channel': 'dude',
+        })
+        doc = pq(resp.content.decode('utf8'))
+        self.assertEqual(len(doc('.download-button')), 3)
+
+    def test_one_button_when_channel_specified(self):
+        """
+        There should be only one button when the channel is given.
+        """
+        resp = self.client.get(self.url, {
+            'channel': 'beta',
+        })
+        doc = pq(resp.content.decode('utf8'))
+        self.assertEqual(len(doc('.download-button')), 1)
+
+
 @patch.object(fx_views, 'firefox_details', firefox_details)
 class TestFirefoxDetails(TestCase):
 
@@ -39,7 +88,7 @@ class TestFirefoxDetails(TestCase):
         self.assertListEqual(parse_qsl(urlparse(url).query),
                              [('product', 'firefox-17.0'),
                               ('os', 'osx'),
-                              ('lang', 'pt-BR'),])
+                              ('lang', 'pt-BR')])
 
     def test_filter_builds_by_locale_name(self):
         # search english
