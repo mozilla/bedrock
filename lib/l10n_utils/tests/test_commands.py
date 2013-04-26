@@ -11,6 +11,7 @@ from django.utils import unittest
 
 from mock import ANY, MagicMock, Mock, patch
 
+from l10n_utils.gettext import _append_to_lang_file, merge_lang_files
 from l10n_utils.management.commands.l10n_check import (
     get_todays_version,
     L10nParser,
@@ -328,3 +329,36 @@ class TestL10nCheck(unittest.TestCase):
             {{% endl10n %}}\n
         """.format(get_todays_version()))
         self.assertEqual(open_buffer.getvalue(), good_value)
+
+
+class Testl10nMerge(unittest.TestCase):
+
+    @patch('l10n_utils.gettext.settings.ROOT', ROOT)
+    @patch('l10n_utils.gettext._append_to_lang_file')
+    def test_merge_lang_files(self, write_mock):
+        """
+        `merge_lang_files()` should see all strings, not skip the untranslated.
+        Bug 861168.
+        """
+        merge_lang_files(['de'])
+        dest_file = path.join(ROOT, 'locale', 'de', 'firefox', 'fx.lang')
+        write_mock.assert_called_once_with(dest_file,
+                                           [u'Find out if your device is '
+                                            u'supported &nbsp;\xbb'])
+
+    @patch('l10n_utils.gettext.codecs.open')
+    def test_append_to_lang_file(self, open_mock):
+        """
+        `_append_to_lang_file()` should append any new messages to a lang file.
+        """
+        _append_to_lang_file('dude.lang', ['The Dude abides, man.'])
+        mock_write = open_mock.return_value.__enter__.return_value.write
+        mock_write.assert_called_once_with('\n\n;The Dude abides, man.\n'
+                                           'The Dude abides, man.\n')
+
+        # make sure writing multiple strings works.
+        mock_write.reset_mock()
+        msgs = ['The Dude abides, man.', 'Dammit Walter!']
+        _append_to_lang_file('dude.lang', msgs)
+        expected = [(('\n\n;{msg}\n{msg}\n'.format(msg=msg),),) for msg in msgs]
+        self.assertEqual(expected, mock_write.call_args_list)

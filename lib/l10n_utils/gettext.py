@@ -253,10 +253,15 @@ def merge_lang_files(langs):
                     os.makedirs(d)
 
             dest = lang_file(f, lang)
-            src_msgs = parse_lang(lang_file(f, 'templates'))
-            dest_msgs = parse_lang(dest)
+            src_msgs = parse_lang(lang_file(f, 'templates'),
+                                  skip_untranslated=False)
+            dest_msgs = parse_lang(dest, skip_untranslated=False)
 
-            with codecs.open(dest, 'a', 'utf-8') as out:
-                for msg in src_msgs:
-                    if msg not in dest_msgs:
-                        out.write('\n\n;%s\n%s\n' % (msg, msg))
+            new_msgs = [msg for msg in src_msgs if msg not in dest_msgs]
+            _append_to_lang_file(dest, new_msgs)
+
+
+def _append_to_lang_file(dest, new_msgs):
+    with codecs.open(dest, 'a', 'utf-8') as out:
+        for msg in new_msgs:
+            out.write('\n\n;{msg}\n{msg}\n'.format(msg=msg))
