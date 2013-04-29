@@ -21,6 +21,7 @@ mozilla.legal                           For discussions about the <a href="../..
 mozilla.marketing                       Our plans for world domination.
 mozilla.mozillians                      For discussions about how to <a href="http://wiki.mozilla.org/Grow">grow Mozilla</a> and bring in new contributors.
 mozilla.privacy                         Forum for discussion of privacy issues and Mozilla's response. (Moderated)
+mozilla.product-management              Discussion of techniques for product management. (Moderated)
 mozilla.tools                           Discussion of the software development tools the Mozilla project uses (Hg, buildbot, bugzilla.mozilla.org, Tinderbox, bonsai...) (Moderated)
 mozilla.wishlist                        For discussions of future ideas, ranging from the practical to the far out.
 
@@ -57,6 +58,7 @@ mozilla.dev.js-sourcemap                The JS sourcemap project, which maps obf
 mozilla.dev.l10n                        For <a href="../../projects/l10n/mlp.html">localization</a> (L10N) issues. L10N is the process of adapting software to a specific language and culture (see also <a href="#mozilla-i18n">internationalization</a>).
 mozilla.dev.mdc                         Discussion about developer documentation on <a href="http://developer.mozilla.org/">MDN Documentation Center</a> (MDC)
 mozilla.dev.mdn                         Code development for the Mozilla Developer Network (MDN) website and platform
+mozilla.mdn.drivers                     Release coordination for the Mozilla Developer Network (MDN) platform. (Moderated)
 mozilla.dev.media                       Development of Mozilla's media support (audio and video). (Moderated)
 metro                                   For work on porting Firefox to the Metro environment of Windows 8.
 mozilla.dev.mozilla-org                 For people working on the mozilla.org website.
@@ -105,7 +107,6 @@ mozilla.dev.tech.plugins                For discussions about <a href="../../pro
 mozilla.dev.tech.rdf                    For discussions about the Resource Description Framework (<a href="http://www.w3.org/RDF/FAQ">RDF</a>).
 mozilla.dev.tech.sql                    For discussions about using SQL in Mozilla.
 mozilla.dev.tech.svg                    This is the project forum for implementing Scalable Vector Graphics (<a href="../../projects/svg/">SVG</a>) in Mozilla.
-mozilla.dev.tech.xbl                    For discussion about the XML Bindings Language (XBL).
 mozilla.dev.tech.xforms                 For discussion about XForms in Firefox and Mozilla.
 mozilla.dev.tech.xml                    For discussions about using XML in Mozilla.
 mozilla.dev.tech.xpcom                  This forum is for discussions about the Cross-Platform Component Object Model (<a href="../../projects/xpcom/">XPCOM</a>) that we are using to purvey and discover interfaces between independently versioned and loaded modules. XPCOM combined with XPIDL also provides <a  href="../../scriptable/">scriptability</a>.
@@ -146,7 +147,9 @@ mozilla.community.mojo                  The Knight-Mozilla News Technology Initi
 mozilla.education.hackasaurus           The Hackasaurus project to get kids hacking the open web. (Moderated)
 mozilla.dev.popcorn                     Development of popcorn.js, the HTML5 video toolkit. (Moderated)
 mozilla.webmaker                        The Webmaker initiative - teaching the world to hack the web. (Moderated)
+mozilla.webmaker.brasil                 Webmaker initiative in Brazil. (Moderated)
 mozilla.webmaker.canada.bc              Webmaker initiative in British Columbia, Canada. (Moderated)
+mozilla.webmaker.l10n                   Localization of Webmaker content. (Moderated)
 
 :Regional
 
@@ -162,6 +165,7 @@ mozilla.community.brasil                The Mozilla community in Brazil. (Modera
 mozilla.community.bulgaria              The Mozilla community in Bulgaria.
 mozilla.community.canada                The Mozilla community in Canada. (Moderated)
 mozilla.community.chile                 The Mozilla community in Chile. (Moderated)
+mozilla.community.colombia              The Mozilla community in Colombia. (Moderated)
 mozilla.community.croatia               The Mozilla community in Croatia. (Moderated)
 mozilla.community.dutch                 The Mozilla Dutch-speaking community. (Moderated)
 mozilla.community.esperanto             The Mozilla Esperanto-speaking community. (Moderated)
