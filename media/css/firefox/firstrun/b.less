@@ -1,0 +1,184 @@
+@import "../../sandstone/lib.less";
+@import "common.less";
+
+#page-header {
+  h1 {
+    font-size: 84px;
+    margin-bottom: (@baseLine * 2.5);
+  }
+}
+
+.feature {
+  font-size: 16px;
+  h1 {
+    font-size: 56px;
+    line-height: 66px;
+  }
+
+  .copy {
+    width: 54%;
+    .border-box;
+    padding: (@baseLine * 1.5) (@baseLine * 1.5) (@baseLine/2) (@baseLine * 3);
+
+    p {
+      font-size: 24px;
+      line-height: 32px;
+    }
+
+    ul {
+      margin-top: @baseLine;
+      border-top: 1px dotted #b1b1b1;
+      li {
+        &:first-child {
+          margin-right: (@baseLine * 2);
+        }
+        a {
+          font-size: @baseFontSize;
+        }
+        img {
+          width: 25px;
+          height: 25px;
+        }
+      }
+    }
+  }
+
+  .screenshot {
+    width: 46%;
+  }
+}
+
+ul.social {
+  li {
+    display: inline-block;
+    img {
+      display: inline;
+    }
+  }
+}
+
+.column {
+  @shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  .box-shadow(@shadow);
+  position: relative;
+  float: left;
+  width: 313px;
+  height: 200px;
+  overflow: hidden;
+  margin: 0 @baseLine @baseLine 0;
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+  h1 {
+    font-size: 24px;
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+    letter-spacing: 0px;
+  }
+  a {
+    color: #ffde00;
+    &:hover {
+      color: #ffde00;
+    }
+  }
+
+  .copy {
+    position: relative;
+    padding: @baseLine @baseLine 0 @baseLine;
+    z-index: 2;
+
+    p {
+      line-height: 1.4;
+    }
+  }
+
+  .screenshot {
+    z-index: 1;
+  }
+}
+
+.column-last {
+  margin-right: 0;
+}
+
+.pinnedtabs {
+  background: #386394;
+
+  .screenshot {
+    left: auto;
+    right: 0px;
+  }
+}
+
+.themes {
+  background: #33607a;
+}
+
+.awesomebar {
+  background: #675e8a;
+
+  p {
+    width: 45%;
+  }
+
+  .screenshot {
+    left: auto;
+    right: 0px;
+  }
+}
+
+.bookmarks {
+  background: #8a5e5e;
+}
+
+.form {
+  .content-box;
+  width: 100%;
+
+  .billboard {
+    width: auto;
+    padding: 0;
+    border-bottom: 0;
+
+    .button {
+      margin-top: 0;
+    }
+  }
+
+  #footer-email-form {
+    margin-left: @baseLine;
+    h3 {
+      margin-top: 10px;
+    }
+
+    .form-contents {
+      margin-top: 6px;
+    }
+
+    .form-submit {
+      float: right;
+    }
+  }
+}
+
+// include the below if we go back to the responsive template.
+// this version (B) was never completely responsivized - there will
+// be a little work to do here if we go back to responsive.
+
+///* Tablet layout: 760px */
+//@media only screen and (max-width: @breakDesktop) and (min-width: @breakTablet) {
+//  .feature {
+//    h1 {
+//      font-size: 50px;
+//      line-height: 60px;
+//    }
+//
+//    .copy {
+//      padding: (@baseLine * 1.5) (@baseLine * 1.5) (@baseLine * 0.5) (@baseLine * 2);
+//    }
+//
+//    .screenshot {
+//      top: (@baseLine * 2);
+//      bottom: auto;
+//    }
+//  }
+//}
