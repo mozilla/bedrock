@@ -88,6 +88,10 @@ def translate(text, files):
     """Search a list of .lang files for a translation"""
     lang = fix_case(translation.get_language())
 
+    # don't attempt to translate the default language.
+    if lang == settings.LANGUAGE_CODE:
+        return Markup(text)
+
     tweaked_text = tweak_message(text)
 
     for file_ in files:
