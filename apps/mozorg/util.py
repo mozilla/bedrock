@@ -35,15 +35,14 @@ def page(name, tmpl, decorators=None, **kwargs):
     # newsletter form anyway)
     @csrf_exempt
     def _view(request):
+        if newrelic:
+            # Name this in New Relic to differentiate pages
+            newrelic.agent.set_transaction_name(
+                'mozorg.util.page:' + name.replace('.', '_'))
         return l10n_utils.render(request, tmpl, kwargs)
 
     # This is for graphite so that we can differentiate pages
     _view.page_name = name
-
-    if newrelic:
-        # Name this in New Relic to differentiate pages
-        newrelic.agent.set_transaction_name(
-            'mozorg.util.page:' + name.replace('.', '_'))
 
     # Apply decorators
     if decorators:
