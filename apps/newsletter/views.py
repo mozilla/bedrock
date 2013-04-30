@@ -30,7 +30,7 @@ log = commonware.log.getLogger('b.newsletter')
 
 general_error = _lazy(u'Something is amiss with our system, sorry! Please try '
                       'again later.')
-thank_you = _lazy(u'Thank you for updating your email preferences')
+thank_you = _lazy(u'Thank you for updating your email preferences.')
 bad_token = _lazy(u'The supplied link has expired. You will receive a new '
                   u'one in the next newsletter.')
 
