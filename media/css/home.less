@@ -314,6 +314,19 @@
 }
 
 #home-promo {
+
+    /* This class would likely be useful as a global class for use outside of the promo messages */
+    .visuallyhidden { 
+        border: 0; 
+        clip: rect(0 0 0 0); 
+        height: 1px; 
+        margin: -1px; 
+        overflow: hidden; 
+        padding: 0; 
+        position: absolute; 
+        width: 1px; 
+    }
+
     .pager-page {
         h3  {
             font-size: 64px;
@@ -426,6 +439,10 @@
             right: 10px;
             top: 20px;
             cursor: pointer;
+            border: 0;
+            background: none;
+            padding: 0; // Override default button padding
+            font-family: inherit; // Override browser button font family
             &:hover,
             &:active,
             &:focus {
