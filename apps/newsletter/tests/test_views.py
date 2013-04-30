@@ -253,8 +253,8 @@ class TestExistingNewsletterView(TestCase):
         self.assertEqual(0, basket_patches['unsubscribe'].call_count)
         # Should not have called subscribe
         self.assertEqual(0, basket_patches['subscribe'].call_count)
-        # Should redirect to the 'updated' view with unsub=3
-        url = reverse('newsletter.updated') + "?unsub=3"
+        # Should redirect to the 'updated' view with no parms
+        url = reverse('newsletter.updated')
         self.assertEqual(url, rsp['Location'])
 
     @patch('newsletter.utils.get_newsletters')
