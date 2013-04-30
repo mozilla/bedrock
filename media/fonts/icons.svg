@@ -2,24 +2,24 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
 <svg xmlns="http://www.w3.org/2000/svg">
 <metadata>
-Created by FontForge 20110222 at Wed Apr 24 01:19:13 2013
+Created by FontForge 20110222 at Mon Apr 29 17:01:15 2013
  By root
 Copyright (C) 2012 by original authors @ fontello.com
 </metadata>
 <defs>
-<font id="icons" horiz-adv-x="930" >
+<font id="icons" horiz-adv-x="364" >
   <font-face 
     font-family="icons"
     font-weight="500"
     font-stretch="normal"
     units-per-em="1000"
-    panose-1="2 0 6 9 0 0 0 0 0 0"
+    panose-1="2 0 6 3 0 0 0 0 0 0"
     ascent="850"
     descent="-150"
-    bbox="15.1579 -52 914.842 754"
+    bbox="14 -52 914.842 850"
     underline-thickness="50"
     underline-position="-100"
-    unicode-range="U+2302-2302"
+    unicode-range="U+2302-E75D"
   />
 <missing-glyph 
 d="M33 0v666h265v-666h-265zM66 33h199v600h-199v-600z" />
@@ -27,9 +27,11 @@ d="M33 0v666h265v-666h-265zM66 33h199v600h-199v-600z" />
 d="M33 0v666h265v-666h-265zM66 33h199v600h-199v-600z" />
     <glyph glyph-name=".null" horiz-adv-x="0" 
  />
-    <glyph glyph-name="nonmarkingreturn" 
+    <glyph glyph-name="nonmarkingreturn" horiz-adv-x="333" 
  />
-    <glyph glyph-name="house" unicode="&#x2302;" 
+    <glyph glyph-name="house" unicode="&#x2302;" horiz-adv-x="930" 
 d="M903 336q15 -15 11 -26.5t-27 -11.5h-84v-310q0 -22 -6 -31t-26 -9h-204v310h-204v-310h-194q-25 0 -33.5 8t-8.5 32v310h-84q-23 0 -27 11.5t11 26.5l400 402q16 16 38 16t38 -16z" />
+    <glyph glyph-name="uniE75D" unicode="&#xe75d;" horiz-adv-x="615" 
+d="M291 400l311 -311l-138 -139l-450 450l450 450l138 -139z" />
   </font>
 </defs></svg>
