@@ -37,7 +37,6 @@ bad_token = _lazy(u'The supplied link has expired. You will receive a new '
 
 UNSUB_UNSUBSCRIBED_ALL = 1
 UNSUB_REASONS_SUBMITTED = 2
-UNSUB_WELCOME = 3
 
 
 @xframe_allow
@@ -168,9 +167,6 @@ def existing(request, token=None):
                     kwargs[k] = data[k]
             if not remove_all:
                 kwargs['newsletters'] = ",".join(newsletters)
-                if set(newsletters) - set(user['newsletters']):
-                    # They're adding subscriptions
-                    unsub_parm = str(UNSUB_WELCOME)
             if kwargs:
                 try:
                     basket.update_user(token, **kwargs)
@@ -261,9 +257,7 @@ def updated(request):
     :param unsub: '1' means we are coming here after the user requested
     to unsubscribe all.  We want to ask them why. '2' means we are coming
     back here after they submitted the form saying why they unsubscribed
-    all. '3' means they subscribed to some newsletters and their language
-    is English, so we should display the welcome message we show to
-    English users. '4' is similar but for non-English users.
+    all.
 
     """
 
@@ -277,8 +271,6 @@ def updated(request):
     unsubscribed_all = unsub == UNSUB_UNSUBSCRIBED_ALL
     # Did they submit their reason? then unsub=2 was passed
     reasons_submitted = unsub == UNSUB_REASONS_SUBMITTED
-    # Do we want to display a welcome?
-    display_welcome = unsub == UNSUB_WELCOME
 
     # Token might also have been passed (on remove_all only)
     token = request.REQUEST.get('token', None)
@@ -305,7 +297,6 @@ def updated(request):
         'reasons_submitted': reasons_submitted,
         'token': token,
         'reasons': enumerate(REASONS),
-        'display_welcome': display_welcome,
     }
     return l10n_utils.render(request,
                              'newsletter/updated.html',
