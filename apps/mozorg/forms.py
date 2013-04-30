@@ -33,22 +33,38 @@ def strip_parenthetical(lang_name):
     return PARENTHETIC_RE.sub('', lang_name, 1)
 
 
+def get_lang_name(lang):
+    """
+    Return a localized name for a language.
+
+    E.g. if lang == 'de', it might return 'Deutche' (guessing).
+
+    Returns  None if it can't find a name.
+
+    @param lang:
+    @return:
+    """
+    if lang in product_details.languages:
+        lang_name = product_details.languages[lang]['native']
+    else:
+        try:
+            locale = [loc for loc in product_details.languages.keys()
+                      if loc.startswith(lang)][0]
+        except IndexError:
+            return None
+        lang_name = product_details.languages[locale]['native']
+    return strip_parenthetical(lang_name)
+
+
 def get_lang_choices():
     """
      Return a localized list of choices for language.
     """
     lang_choices = []
     for lang in LANGS:
-        if lang in product_details.languages:
-            lang_name = product_details.languages[lang]['native']
-        else:
-            try:
-                locale = [loc for loc in product_details.languages.keys()
-                          if loc.startswith(lang)][0]
-            except IndexError:
-                continue
-            lang_name = product_details.languages[locale]['native']
-        lang_choices.append([lang, strip_parenthetical(lang_name)])
+        lang_name = get_lang_name(lang)
+        if lang_name:
+            lang_choices.append([lang, lang_name])
     return sorted(lang_choices, key=itemgetter(1))
 
 
