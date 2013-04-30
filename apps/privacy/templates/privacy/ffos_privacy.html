@@ -10,7 +10,7 @@
 
 {% block body_id %}ffos-privacy{% endblock %}
 
-{% block page_title %}{{ _('Firefox OS Privacy Policy') }}{% endblock %}
+{% block page_title %}{{ _('Firefox OS Privacy') }}{% endblock %}
 
 {% block extrahead %}
   {{ css('privacy') }}
@@ -21,15 +21,15 @@
 {% block site_header_logo %}{% endblock %}
 
 {% block alt_header %}
-    <h1 class="firefoxos-header">{{ _('Firefox Privacy Notice') }}</h1>
+    <h1 class="firefoxos-header">{{ _('Firefox OS Privacy') }}</h1>
 {% endblock %}
 
 {% block content %}
 <main role="main">
     <section id="home" class="thingstoknow active">
         <div class="highlight">
-            <p>{{ _('Firefox OS is an operating system for your mobile device made by Mozilla. We care about your privacy.') }}</p>
-            <p>{{ _('When Firefox OS sends information to Mozilla, our <a href="#top" data-panelid="#privacy" id="show_policy">privacy policy</a> describes how we handle that information.') }}</p>
+            <p>{{ _('Firefox OS is an operating system for your mobile device made by Mozilla.') }}</p>
+            <p>{{ _('We care about your privacy. When Firefox OS sends information to Mozilla, our <a href="#top" data-panelid="#privacy" id="show_policy">privacy policy</a> describes how we handle that information.') }}</p>
         </div>
         <h2>{{ _('Things you should know') }}</h2>
         <div class="highlight intro">
@@ -37,13 +37,13 @@
             <ul id="external_parties">
                 <li>{{ _('Firefox OS automatically connects to your device\'s manufacturer to stay up to date.') }}</li>
                 <li>{{ _('Mozilla will make available updates to the manufacturer of your device who may deliver those updates to you. You can disable automatic update checking in Settings on your device.') }}</li>
+                <li>{{ _('When you ask Firefox OS to tell an app or site your location, Firefox OS uses various services to determine where you are.') }}</li>
+                <li>{{ _('When you turn location services on, Firefox OS may use multiple data points and entities to estimate your location, including GPS, AGPS and other geolocation service providers. You can disable location based services in the Firefox OS "Settings" app on your device.') }}</li>
             </ul>
         </div>
         <div class="highlight intro">
-            <p>{{ _('When you ask Firefox OS to tell an app or site your location, Firefox OS uses various services to determine where you are. <a href="#top" data-panelid="#location_services">Learn More</a>') }}</p>
+            <p>{{ _('The device you are using, like most mobile devices, is created by several parties. This notice only covers how Mozilla handles your information for official versions of Firefox OS authorized by Mozilla. <a href="#top" data-panelid="#location_services">Learn More</a>') }}</p>
             <ul id="location_services">
-                <li>{{ _('When you turn location services on, Firefox OS may use multiple data points and entities to estimate your location, including GPS, AGPS and other geolocation service providers. You can edit your location based services preferences in the Firefox OS "Settings" app on your device.') }}</li>
-                <li>{{ _('The device you are using, like most mobile devices, is created by several parties. This notice only covers how Mozilla handles your information for official versions of Firefox OS authorized by Mozilla.') }}</li>
                 <li>{{ _('If you use apps made by someone other than Mozilla, their privacy policies will apply.') }}</li>
                 <li>{{ _('The dynamic app search feature of Firefox OS is powered by Everything.me and its privacy policy applies, which you can find at <a href="%(url)s">http://corp.everything.me/ffos-privacy/</a>.')|format(url='http://corp.everything.me/ffos-privacy/') }}</li>
             </ul>
