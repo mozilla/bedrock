@@ -35,6 +35,11 @@ bad_token = _lazy(u'The supplied link has expired. You will receive a new '
                   u'one in the next newsletter.')
 
 
+UNSUB_UNSUBSCRIBED_ALL = 1
+UNSUB_REASONS_SUBMITTED = 2
+UNSUB_WELCOME = 3
+
+
 @xframe_allow
 def hacks_newsletter(request):
     return l10n_utils.render(request,
@@ -110,6 +115,10 @@ def existing(request, token=None):
                 'english_only': len(langs) == 1 and langs[0].startswith('en')
             })
 
+    # FIXME: for now sort by title, later let basket specify the order to use
+    sortkey = lambda e: e['title']
+    initial.sort(key=sortkey)
+
     NewsletterFormSet = formset_factory(NewsletterForm, extra=0,
                                         max_num=len(initial))
 
@@ -161,10 +170,7 @@ def existing(request, token=None):
                 kwargs['newsletters'] = ",".join(newsletters)
                 if set(newsletters) - set(user['newsletters']):
                     # They're adding subscriptions
-                    if data.get('lang', 'en').startswith('en'):
-                        unsub_parm = '3'  # display English welcome
-                    else:
-                        unsub_parm = '4'  # display non-English welcome
+                    unsub_parm = str(UNSUB_WELCOME)
             if kwargs:
                 try:
                     basket.update_user(token, **kwargs)
@@ -193,7 +199,7 @@ def existing(request, token=None):
                     messages.add_message(request, messages.INFO, thank_you)
                 # We need to pass their token to the next view
                 url = reverse('newsletter.updated') \
-                    + "?unsub=1&token=%s" % token
+                    + "?unsub=%s&token=%s" % (UNSUB_UNSUBSCRIBED_ALL, token)
                 return redirect(url)
 
             # We're going to redirect, so the only way to tell the next
@@ -268,12 +274,11 @@ def updated(request):
         unsub = 0
 
     # Did they do an unsubscribe all?  then unsub=1 was passed
-    unsubscribed_all = unsub == 1
+    unsubscribed_all = unsub == UNSUB_UNSUBSCRIBED_ALL
     # Did they submit their reason? then unsub=2 was passed
-    reasons_submitted = unsub == 2
+    reasons_submitted = unsub == UNSUB_REASONS_SUBMITTED
     # Do we want to display a welcome?
-    display_en_welcome = unsub == 3
-    display_non_en_welcome = unsub == 4
+    display_welcome = unsub == UNSUB_WELCOME
 
     # Token might also have been passed (on remove_all only)
     token = request.REQUEST.get('token', None)
@@ -300,8 +305,7 @@ def updated(request):
         'reasons_submitted': reasons_submitted,
         'token': token,
         'reasons': enumerate(REASONS),
-        'display_en_welcome': display_en_welcome,
-        'display_non_en_welcome': display_non_en_welcome,
+        'display_welcome': display_welcome,
     }
     return l10n_utils.render(request,
                              'newsletter/updated.html',
