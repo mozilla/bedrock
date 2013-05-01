@@ -11,9 +11,6 @@ def persona(request):
 def about(request):
     return l10n_utils.render(request, "persona/about.html")
 
-def developerfaq(request):
-    return l10n_utils.render(request, "persona/developer-faq.html")
-
 def termsofservice(request):
     return l10n_utils.render(request, "persona/terms-of-service.html")
 

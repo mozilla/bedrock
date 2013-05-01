@@ -72,4 +72,7 @@ urlpatterns = patterns('',
 
     #Bug 854561 - move /projects/mozilla-based/ to /about/mozilla-based/
     redirect(r'^projects/mozilla-based/$', '/about/mozilla-based/'),
+
+    # Bug 867773 - Redirect the Persona "Developer FAQ" link to MDN
+    redirect(r'^persona/developer-faq/$', 'https://developer.mozilla.org/persona'),
 )
