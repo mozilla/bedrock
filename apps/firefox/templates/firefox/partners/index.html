@@ -39,7 +39,7 @@
 {% block page_title %}{{ _('Firefox OS, Marketplace, Android — Partners') }}{% endblock %}
 
 {% block string_data %}
-  {# L10N: This is the label for a button that closes a modal dialog #}
+  {# L10n: This is the label for a button that closes a modal dialog #}
   data-close="{{ _('Close') }}"
 {% endblock %}
 
@@ -104,6 +104,7 @@
           <div id="overview-news">
             <h3>{{ _('Recent news') }}</h3>
             <ul>
+              <li><a href="#mwc-wrapup" class="modal">{{ _('Watch our wrap-up video from Mobile World Congress 2013') }}</a></li>
               <li><a href="{{ locale_os_url }}" rel="external">{{ _('Mozilla Announces Global Expansion for Firefox OS') }}</a></li>
             </ul>
           </div>
@@ -405,7 +406,7 @@
       <div class="article-content">
         <div class="intro tween">
           <div class="android-dude"></div>
-          {# L10N: The line break in this headline is essentially presentational. Place the break wherever it seems best for your locale, or omit it if it isn't needed. #}
+          {# L10n: The line break in this headline is essentially presentational. Place the break wherever it seems best for your locale, or omit it if it isn't needed. #}
           <h3>{{ _('Stand out <br>from the crowd') }}</h3>
           <p>{{ _('Take advantage of our strong brand and service offerings to differentiate your product and drive sales.') }}</p>
           <h4>{{ _('Firefox for Android lets you:') }}</h4>
@@ -440,6 +441,29 @@
     <section id="testimonials" class="overlay-contents">
       <h2>{{ _('Firefox Marketplace — Developer testimonials') }}</h2>
       <div class="video-wrapper"><iframe width="640" height="360" src="https://www.youtube-nocookie.com/embed/videoseries?list=PLWK3kWTuPoUKFCTRtVkTUXn26PYF311w9" frameborder="0" allowfullscreen></iframe></div>
+    </section>
+    <section id="mwc-wrapup" class="overlay-contents">
+      <h2>{{ _('Firefox at Mobile World Congress 2013') }}</h2>
+      <div class="video-wrapper">
+        <video id="mwc-wrapup-video" poster="{{ media('img/firefox/partners/mwc-wrapup-poster.jpg') }}" controls preload="metadata">
+          <source src="https://videos-cdn.mozilla.net/serv/drafts/MWC_2013.mp4" type="video/mp4">
+          <source src="https://videos-cdn.mozilla.net/serv/drafts/MWC_2013.webm" type="video/webm">
+          {# L10n: The "Play Video" message must be url encoded, so spaces should be escaped as '%20' #}
+          <object type="application/x-shockwave-flash"
+            style="width: 640px; height: 362px;"
+            data="{{ MEDIA_URL }}flash/playerWithControls.swf?flv=/serv/drafts/MWC_2013.mp4&amp;autoplay=false&amp;msg={{ _('Play%20Video') }}">
+            <param name="movie" value="{{ MEDIA_URL }}flash/playerWithControls.swf?flv=/serv/drafts/MWC_2013.mp4&amp;autoplay=false&amp;msg={{ _('Play%20Video') }}">
+            <param name="wmode" value="transparent">
+
+            <div class="video-player-no-flash">
+            {% trans link_flash='http://www.adobe.com/go/getflashplayer' %}
+              This video requires a browser with support for open video
+              or the <a href="{{ link_flash }}">Adobe Flash Player</a>.
+            {% endtrans %}
+            </div>
+          </object>
+        </video>
+      </div>
     </section>
     <section id="form" class="overlay-contents">
       <div class="form-results">
