@@ -293,39 +293,42 @@
 .pager-tabs {
     text-align: center;
     clear: both;
+    padding-top: 6px;
     li {
         display: inline;
         list-style-type: none;
         margin: 0;
         a {
             color: rgba(0,0,0,0.2);
-            .inline-block;
-            padding: 6px;
+            span {
+                .inline-block();
+                text-indent: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                background: rgb(100,100,100);
+                background: rgba(0,0,0,0.2);
+                height: 10px;
+                width: 10px;
+                margin: 6px;
+                border-radius: 10px;
+            }
+            &.selected span {
+                background: rgb(20,20,20);
+                background: rgba(0,0,0,0.5);
+            }
             &:hover,
             &:active {
                 text-decoration: none;
-                color: @textColorSecondary;
-            }
-            &.selected {
-                color: @textColorSecondary;
+                span {
+                    background: rgb(20,20,20);
+                    background: rgba(0,0,0,0.5);
+                }
             }
         }
     }
 }
 
 #home-promo {
-
-    /* This class would likely be useful as a global class for use outside of the promo messages */
-    .visuallyhidden { 
-        border: 0; 
-        clip: rect(0 0 0 0); 
-        height: 1px; 
-        margin: -1px; 
-        overflow: hidden; 
-        padding: 0; 
-        position: absolute; 
-        width: 1px; 
-    }
 
     .pager-page {
         h3  {
@@ -729,7 +732,11 @@
 
         .pager-tabs li a {
             padding: 12px;
-            font-size: 28px;
+            span {
+                height: 20px;
+                width: 20px;
+                border-radius: 20px;
+            }
         }
 
         #promo-mwc-announce,
