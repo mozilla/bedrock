@@ -381,6 +381,33 @@
         }
     }
 
+    #page-promo-donate-tshirt,
+    #promo-donate-tshirt {
+        .content {
+            width: auto;
+        }
+        h3 {
+            color: #cd5115;
+        }
+        h4 {
+            color: @textColorPrimary;
+            width: 60%;
+        }
+        .go {
+            background-color: #cd5115;
+            #gradient > .vertical(#cd5115, darken(#cd5115, 10%));
+            &:hover,
+            &:focus {
+                @orangeShadowPartHover:       inset 0px 12px 24px 2px saturate(#cd5115, 10%);
+                @orangeButtonShadowHover:     @shadowPartBottom, @shadowPartBottomInset, @orangeShadowPartHover;
+                .box-shadow(@orangeButtonShadowHover);
+            }
+        }
+        img {
+            background-color: #e1edf4;
+        }
+
+    }
     #promo-mozilla15,
     #page-promo-mozilla15 {
         .content {
@@ -399,6 +426,9 @@
             &:hover {
                 color: #00539F;
             }
+        }
+        img {
+            background-color: #fff;
         }
     }
 
@@ -787,6 +817,17 @@
                 color: @textColorPrimary;
             }
         }
+
+        #page-promo-donate-tshirt,
+        #promo-donate-tshirt {
+            h4 {
+                width: auto;
+            }
+            .go {
+                color: #fff;
+            }
+        }
+
 
         .pager-tabs li a {
             padding: 12px;
