@@ -114,6 +114,10 @@
 
     </div><!-- close #outer-wrapper -->
 
+    <!--[if IE 9]>
+      <script src="{{ MEDIA_URL }}js/libs/matchMedia.js"></script>
+    <![endif]-->
+
     {% block site_js %}
       {{ js('common-resp') }}
     {% endblock %}
