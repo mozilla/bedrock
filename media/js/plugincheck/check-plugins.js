@@ -98,7 +98,7 @@ $(function() {
                 'icon': mediaURL + iconFor(plugin.name),
                 'plugin_name': plugin.name,
                 'plugin_detail': plugin.description,
-                'plugin_status': 'vulnerable',
+                'plugin_status': window.trans('vulnerable'),
                 'button_update': window.trans('button_update'),
                 'img_alt_txt': window.trans('icon_alt_txt'),
                 'url': url
@@ -108,7 +108,7 @@ $(function() {
                 'icon': mediaURL + iconFor(plugin.name),
                 'plugin_name': plugin.name,
                 'plugin_detail': plugin.description,
-                'plugin_status': 'vulnerable',
+                'plugin_status': window.trans('vulnerable'),
                 'button_update': window.trans('button_update'),
                 'img_alt_txt': window.trans('icon_alt_txt'),
                 'url': url
@@ -118,7 +118,7 @@ $(function() {
                 'icon': mediaURL + iconFor(plugin.name),
                 'plugin_name': plugin.name,
                 'plugin_detail': plugin.description,
-                'plugin_status': 'unknown',
+                'plugin_status': window.trans('unknown'),
                 'button_research': window.trans('button_research'),
                 'img_alt_txt': window.trans('icon_alt_txt'),
                 'url': unknownPluginUrl(plugin.name)
