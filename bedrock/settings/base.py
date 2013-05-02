@@ -4,29 +4,21 @@
 
 # Django settings file for bedrock.
 
+import os
+
 from django.utils.functional import lazy
 
-from funfactory.settings_base import *  # noqa
+from funfactory.settings_base import *
 
-# No database yet. Override in local.py.
-# Need at least this for Django to run.
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.dummy',
-    },
-}
-
-# Override in local.py for memcached.
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'translations'
-    }
-}
+# Make file paths relative to settings.
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+path = lambda *a: os.path.join(ROOT, *a)
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-US'
+
+SESSION_COOKIE_SECURE = True
 
 # Accepted locales
 PROD_LANGUAGES = ('ach', 'af', 'ak', 'an', 'ar', 'as', 'ast', 'be', 'bg',
@@ -51,7 +43,10 @@ DOTLANG_FILES = ['main', 'download_button', 'newsletter']
 
 # Paths that don't require a locale code in the URL.
 # matches the first url component (e.g. mozilla.org/gameon/)
-SUPPORTED_NONLOCALES += [
+SUPPORTED_NONLOCALES = [
+    'media',
+    'admin',
+
     # from redirects.urls
     'telemetry',
     'webmaker',
@@ -68,6 +63,7 @@ ALLOWED_HOSTS = [
 SECRET_KEY = 'ssssshhhhh'
 
 TEMPLATE_DIRS = (
+    path('templates'),
     path('locale'),
 )
 
@@ -76,9 +72,9 @@ TEMPLATE_DIRS = (
 def JINJA_CONFIG():
     return {
         'extensions': [
-            'lib.l10n_utils.template.i18n', 'jinja2.ext.do', 'jinja2.ext.with_',
-            'jinja2.ext.loopcontrols', 'lib.l10n_utils.template.l10n_blocks',
-            'lib.l10n_utils.template.lang_blocks'
+            'l10n_utils.template.i18n', 'jinja2.ext.do', 'jinja2.ext.with_',
+            'jinja2.ext.loopcontrols', 'l10n_utils.template.l10n_blocks',
+            'l10n_utils.template.lang_blocks'
         ],
         # Make None in templates render as ''
         'finalize': lambda x: x if x is not None else '',
@@ -91,25 +87,25 @@ def JINJA_CONFIG():
 MINIFY_BUNDLES = {
     'css': {
         'about': (
-            'css/mozorg/about.less',
+            'css/about.less',
         ),
         'about-base': (
-            'css/mozorg/about-base.less',
+            'css/about-base.less',
         ),
         'mobile_overview': (
-            'css/mozorg/mobile.less',
+            'css/mobile.less',
         ),
         'firefoxos': (
-            'css/firefoxos/firefoxos.less',
+            'css/firefoxos.less',
         ),
         'grants': (
-            'css/grants/grants.less',
+            'css/grants.less',
         ),
         'collusion': (
-            'css/collusion/collusion.less',
+            'css/collusion.less',
         ),
         'itu': (
-            'css/mozorg/itu.less',
+            'css/itu.less',
         ),
         'common': (
             'css/sandstone/sandstone.less',
@@ -118,18 +114,23 @@ MINIFY_BUNDLES = {
             'css/sandstone/sandstone-resp.less',
         ),
         'contribute': (
-            'css/mozorg/contribute.less',
+            'css/contribute.less',
             'css/sandstone/video-resp.less',
-            'css/mozorg/mozilla15.less',
+            'css/mozilla15.less',
         ),
         'contribute-page': (
-            'css/mozorg/contribute-page.less',
+            'css/contribute-page.less',
         ),
         'contribute-university-ambassadors': (
-            'css/mozorg/contribute-ambassadors.less',
+            'css/contribute-ambassadors.less',
+        ),
+        'channel': (
+            'css/covehead/template.css',
+            'css/covehead/content.css',
+            'css/covehead/channel.css',
         ),
         'dnt': (
-            'css/base/mozilla-expanders.less',
+            'css/mozilla-expanders.less',
             'css/firefox/dnt.less',
         ),
         'firefox': (
@@ -171,7 +172,7 @@ MINIFY_BUNDLES = {
         ),
         'firefox_faq': (
             'css/firefox/template-resp.less',
-            'css/base/mozilla-expanders.less',
+            'css/mozilla-expanders.less',
         ),
         'firefox_firstrun': (
             'css/sandstone/video.less',
@@ -181,20 +182,12 @@ MINIFY_BUNDLES = {
             'css/sandstone/video.less',
             'css/firefox/nightly_firstrun.less',
         ),
-        'firefox_firstrun_new_a': (
-            'css/sandstone/video.less',
-            'css/firefox/firstrun/a.less',
-        ),
-        'firefox_firstrun_new_b': (
-            'css/sandstone/video.less',
-            'css/firefox/firstrun/b.less',
-        ),
         'firefox_fx': (
             'css/firefox/fx.less',
             'css/sandstone/video.less',
         ),
         'firefox_geolocation': (
-            'css/base/mozilla-expanders.less',
+            'css/mozilla-expanders.less',
             'css/firefox/geolocation.less',
             'css/jquery/nyroModal.css'
         ),
@@ -209,7 +202,7 @@ MINIFY_BUNDLES = {
         ),
         'firefox_platforms': (
             'css/firefox/template-resp.less',
-            'css/base/mozilla-expanders.less',
+            'css/mozilla-expanders.less',
             'css/firefox/platforms.less',
         ),
         'firefox_security': (
@@ -223,7 +216,7 @@ MINIFY_BUNDLES = {
             'css/firefox/technology-demos.css',
         ),
         'firefox_updates': (
-            'css/base/mozilla-expanders.less',
+            'css/mozilla-expanders.less',
             'css/firefox/update.less',
         ),
         'firefox_whatsnew': (
@@ -236,47 +229,51 @@ MINIFY_BUNDLES = {
             'css/firefox/installer-help.less',
         ),
         'home': (
-            'css/mozorg/home.less',
+            'css/home.less',
+            'css/home-promo.less',
             'js/libs/video-js/video-js.css',
             'js/libs/video-js/video-js-sandstone.css',
         ),
         'marketplace': (
-            'css/marketplace/marketplace.less',
+            'css/marketplace.less',
         ),
         'mission': (
             'css/sandstone/video-resp.less',
-            'css/mozorg/mission.less',
+            'css/mission.less',
         ),
         'mozilla_expanders': (
-            'css/base/mozilla-expanders.less',
+            'css/mozilla-expanders.less',
         ),
         'partnerships': (
-            'css/mozorg/partnerships.less',
+            'css/partnerships.less',
         ),
         'persona': (
-            'css/persona/persona.less',
+            'css/persona.less',
         ),
         'powered-by': (
-            'css/mozorg/powered-by.less',
+            'css/powered-by.less',
         ),
         'plugincheck': (
             'css/plugincheck/plugincheck.less',
             'css/plugincheck/qtip.css',
         ),
         'privacy': (
-            'css/privacy/privacy.less',
+            'css/privacy.less',
         ),
         'fb_privacy': (
-            'css/privacy/fb-privacy.less',
+            'css/fb-privacy.less',
         ),
         'products': (
-            'css/mozorg/products.less',
+            'css/products.less',
         ),
         'projects_mozilla_based': (
-            'css/mozorg/projects-mozilla-based.less',
+            'css/projects/mozilla-based.less',
         ),
         'research': (
             'css/research/research.less',
+        ),
+        'sandstone_guide': (
+            'css/sandstone-guide.less',
         ),
         'styleguide': (
             'css/styleguide/styleguide.less',
@@ -292,13 +289,13 @@ MINIFY_BUNDLES = {
             'css/styleguide/products-firefox-os.less',
         ),
         'tabzilla': (
-            'css/tabzilla/tabzilla.less',
+            'css/tabzilla.less',
         ),
         'video': (
             'css/sandstone/video.less',
         ),
         'page_not_found': (
-            'css/base/page-not-found.less',
+            'css/page-not-found.less',
         ),
         'annual_2011': (
             'css/foundation/annual2011.less',
@@ -317,7 +314,7 @@ MINIFY_BUNDLES = {
     },
     'js': {
         'site': (
-            'js/base/site.js',  # this is automatically included on every page
+            'js/site.js',  # this is automatically included on every page
         ),
         'collusion': (
             'js/collusion/collusion.js',
@@ -332,86 +329,72 @@ MINIFY_BUNDLES = {
         ),
         'common': (
             'js/libs/jquery-1.7.1.min.js',
-            'js/base/global.js',
-            'js/base/footer-email-form.js',
-            'js/base/mozilla-input-placeholder.js',
+            'js/global.js',
+            'js/footer-email-form.js',
+            'js/mozilla-input-placeholder.js',
         ),
         'common-resp': (
             'js/libs/jquery-1.7.1.min.js',
-            'js/base/global.js',
-            'js/base/nav-main-resp.js',
-            'js/base/footer-email-form.js',
-            'js/base/mozilla-input-placeholder.js',
+            'js/global.js',
+            'js/nav-main-resp.js',
+            'js/footer-email-form.js',
+            'js/mozilla-input-placeholder.js',
         ),
         'contribute': (
             'js/libs/jquery.sequence.js',
-            'js/mozorg/mozilla15.js',
-            'js/mozorg/contribute-page.js',
-            'js/base/mozilla-pager.js',
-            'js/base/mozilla-video-tools.js',
+            'js/mozilla15.js',
+            'js/contribute-page.js',
+            'js/mozilla-pager.js',
+            'js/mozilla-video-tools.js',
         ),
         'contribute-form': (
-            'js/mozorg/contribute-form.js',
-            'js/base/mozilla-input-placeholder.js',
+            'js/contribute-form.js',
+            'js/mozilla-input-placeholder.js',
         ),
         'contribute-university-ambassadors': (
-            'js/mozorg/contribute-university-ambassadors.js',
-            'js/base/mozilla-input-placeholder.js',
+            'js/contribute-university-ambassadors.js',
+            'js/mozilla-input-placeholder.js',
         ),
         'expanders': (
-            'js/base/mozilla-expanders.js',
+            'js/mozilla-expanders.js',
         ),
         'firefox': (
             'js/libs/jquery-1.7.1.min.js',
-            'js/base/global.js',
-            'js/base/nav-main.js',
-            'js/base/footer-email-form.js',
-            'js/base/mozilla-input-placeholder.js',
+            'js/global.js',
+            'js/nav-main.js',
+            'js/footer-email-form.js',
+            'js/mozilla-input-placeholder.js',
         ),
         'firefox_all': (
-            'js/firefox/firefox-language-search.js',
+            'js/firefox-language-search.js',
         ),
         'firefox-resp': (
             'js/libs/jquery-1.7.1.min.js',
-            'js/base/global.js',
-            'js/base/nav-main-resp.js',
-            'js/base/footer-email-form.js',
-            'js/base/mozilla-input-placeholder.js',
+            'js/global.js',
+            'js/nav-main-resp.js',
+            'js/footer-email-form.js',
+            'js/mozilla-input-placeholder.js',
         ),
         'firefox_central': (
-            'js/base/mozilla-video-tools.js',
+            'js/mozilla-video-tools.js',
             'js/firefox/central.js',
-            'js/base/mozilla-pager.js',
+            'js/mozilla-pager.js',
         ),
         'firefox_channel': (
-            'js/base/mozilla-pager.js',
+            'js/mozilla-pager.js',
             'js/firefox/channel.js',
         ),
         'firefox_customize': (
-            'js/base/mozilla-video-tools.js',
+            'js/mozilla-video-tools.js',
             'js/firefox/customize.js',
         ),
         'firefox_features': (
-            'js/base/mozilla-video-tools.js',
+            'js/mozilla-video-tools.js',
             'js/firefox/features.js',
         ),
-        'firefox_firstrun': (
-            'js/firefox/firstrun/firstrun.js',
-        ),
-        'firefox_firstrun_new_a': (
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/jquery.waypoints-sticky.min.js',
-            'js/base/mozilla-modal.js',
-            'js/firefox/firstrun/common.js',
-            'js/firefox/firstrun/a.js',
-        ),
-        'firefox_firstrun_new_b': (
-            'js/base/mozilla-modal.js',
-            'js/firefox/firstrun/common.js',
-        ),
         'firefox_fx': (
-            'js/base/mozilla-pager.js',
-            'js/base/mozilla-video-tools.js',
+            'js/mozilla-pager.js',
+            'js/mozilla-video-tools.js',
         ),
         'firefox_happy': (
             'js/libs/jquery-1.4.4.min.js',
@@ -422,10 +405,10 @@ MINIFY_BUNDLES = {
             'js/firefox/new.js',
         ),
         'firefox_platforms': (
-            'js/base/mozilla-expanders.js',
+            'js/mozilla-expanders.js',
         ),
         'firefox_faq': (
-            'js/base/mozilla-expanders.js',
+            'js/mozilla-expanders.js',
         ),
         'firefox_speed': (
             'js/libs/jquery-1.4.4.min.js',
@@ -441,33 +424,33 @@ MINIFY_BUNDLES = {
         'geolocation': (
             'js/libs/jquery-1.4.4.min.js',
             'js/libs/jquery.nyroModal.pack.js',
-            'js/base/mozilla-expanders.js',
-            'js/firefox/geolocation-demo.js',
-            'js/base/footer-email-form.js',
+            'js/mozilla-expanders.js',
+            'js/geolocation-demo.js',
+            'js/footer-email-form.js',
         ),
         'home': (
-            'js/base/mozilla-pager.js',
+            'js/mozilla-pager.js',
             'js/libs/video-js/video.js',
             'js/mozorg/home.js'
         ),
         'marketplace': (
-            'js/base/nav-main-resp.js',
-            'js/base/mozilla-pager.js',
+            'js/nav-main-resp.js',
+            'js/mozilla-pager.js',
             'js/marketplace/marketplace.js',
         ),
         'mozorg-resp': (
             'js/libs/jquery-1.7.1.min.js',
-            'js/base/global.js',
-            'js/base/nav-main-resp.js',
-            'js/base/footer-email-form.js',
+            'js/global.js',
+            'js/nav-main-resp.js',
+            'js/footer-email-form.js',
         ),
         'pager': (
-            'js/base/mozilla-pager.js',
+            'js/mozilla-pager.js',
         ),
         'partnerships': (
             'js/libs/jquery.validate.js',
-            'js/mozorg/partnerships.js',
-            'js/base/mozilla-input-placeholder.js',
+            'js/partnerships.js',
+            'js/mozilla-input-placeholder.js',
         ),
         'plugincheck': (
             'js/plugincheck/plugincheck.min.js',
@@ -476,22 +459,22 @@ MINIFY_BUNDLES = {
             'js/plugincheck/check-plugins.js',
         ),
         'privacy': (
-            'js/base/mozilla-pager.js',
-            'js/privacy/privacy.js',
+            'js/mozilla-pager.js',
+            'js/privacy.js',
         ),
         'privacy-firefoxos': (
             'js/privacy_firefoxos.js',
         ),
         'styleguide': (
-            'js/styleguide/styleguide.js',
+            'js/styleguide.js',
         ),
         'video': (
-            'js/base/mozilla-video-tools.js',
+            'js/mozilla-video-tools.js',
         ),
         'firefox_devices': (
             'js/libs/jquery-1.4.4.min.js',
-            'js/base/global.js',
-            'js/base/nav-main.js',
+            'js/global.js',
+            'js/nav-main.js',
             'js/libs/jquery.cycle.all.js',
             'js/libs/jquery.ba-hashchange.min.js',
             'js/firefox/devices.js'
@@ -505,12 +488,12 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.hoverIntent.minified.js',
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.jcarousel.min.js',
-            'js/foundation/annual2011.js',
+            'js/annual2011.js',
         ),
         'partners': (
             'js/libs/modernizr.custom.shiv-load.js',
-            'js/base/mozilla-input-placeholder.js',
-            'js/base/mozilla-pager.js',
+            'js/mozilla-input-placeholder.js',
+            'js/mozilla-pager.js',
             'js/firefox/partners.js',
         ),
         'partners_common': (
@@ -543,19 +526,17 @@ MINIFY_BUNDLES = {
     }
 }
 
-PROJECT_MODULE = 'bedrock'
-
-ROOT_URLCONF = '%s.urls' % PROJECT_MODULE
-
 # Tells the extract script what files to look for L10n in and what function
 # handles the extraction. The Tower library expects this.
 DOMAIN_METHODS = {
     'messages': [
-        ('%s/**.py' % PROJECT_MODULE,
+        ('apps/**.py',
             'tower.management.commands.extract.extract_tower_python'),
-        ('%s/**/templates/**.html' % PROJECT_MODULE,
+        ('apps/**/templates/**.html',
             'tower.management.commands.extract.extract_tower_template'),
-        ('%s/**/templates/**.js' % PROJECT_MODULE,
+        ('apps/**/templates/**.js',
+            'tower.management.commands.extract.extract_tower_template'),
+        ('templates/**.html',
             'tower.management.commands.extract.extract_tower_template'),
     ],
 }
@@ -565,69 +546,75 @@ DOMAIN_METHODS = {
 LESS_PREPROCESS = False
 LESS_BIN = 'lessc'
 
-MIDDLEWARE_CLASSES = (
-    'bedrock.mozorg.middleware.MozorgRequestTimingMiddleware',
-    'django_statsd.middleware.GraphiteMiddleware',
-    'bedrock.tabzilla.middleware.TabzillaLocaleURLMiddleware',
-) + get_middleware(exclude=(
-    'funfactory.middleware.LocaleURLMiddleware',
-    'multidb.middleware.PinningRouterMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'session_csrf.CsrfMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'mobility.middleware.DetectMobileMiddleware',
-    'mobility.middleware.XMobileMiddleware',
-), append=(
-    'bedrock.mozorg.middleware.CacheMiddleware',
-    'bedrock.mozorg.middleware.NewsletterMiddleware',
-    'dnt.middleware.DoNotTrackMiddleware',
-    'lib.l10n_utils.middleware.FixLangFileTranslationsMiddleware',
-))
+# Override this because we've moved settings into a directory
+PROD_DETAILS_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)),
+                                'lib/product_details_json')
 
-INSTALLED_APPS = get_apps(exclude=(
-    'compressor',
-    'django_browserid',
-    'django.contrib.sessions',
-    'django.contrib.staticfiles',
-    'session_csrf',
-), append=(
+MIDDLEWARE_CLASSES = (
+    'mozorg.middleware.MozorgRequestTimingMiddleware',
+    'django_statsd.middleware.GraphiteMiddleware',
+    'funfactory.middleware.LocaleURLMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'commonware.middleware.FrameOptionsHeader',
+    'mozorg.middleware.CacheMiddleware',
+    'mozorg.middleware.NewsletterMiddleware',
+    'dnt.middleware.DoNotTrackMiddleware',
+    'l10n_utils.middleware.FixLangFileTranslationsMiddleware',
+)
+
+INSTALLED_APPS = (
     # Local apps
+    'funfactory',  # Content common to most playdoh-based apps.
     'jingo_minify',
+    'tower',  # for ./manage.py extract (L10n)
     'django_statsd',
 
     # Django contrib apps
+    'django.contrib.auth',
     'django_sha2',  # Load after auth to monkey-patch it.
+    'django.contrib.contenttypes',
+    #'django.contrib.sessions',
+    # 'django.contrib.sites',
+    # 'django.contrib.messages',
+    # Uncomment the next line to enable the admin:
+    # 'django.contrib.admin',
+    # Uncomment the next line to enable admin documentation:
+    # 'django.contrib.admindocs',
+
+    # Third-party apps, patches, fixes
+    'commonware.response.cookies',
+    'djcelery',
+    'django_nose',
+    'cronjobs',
+    #'session_csrf',
+
+    # L10n
+    'product_details',
 
     # Local apps
-    '%s.base' % PROJECT_MODULE,
-    '%s.collusion' % PROJECT_MODULE,
-    '%s.firefox' % PROJECT_MODULE,
-    '%s.foundation' % PROJECT_MODULE,
-    '%s.grants' % PROJECT_MODULE,
-    '%s.legal' % PROJECT_MODULE,
-    '%s.marketplace' % PROJECT_MODULE,
-    '%s.mozorg' % PROJECT_MODULE,
-    '%s.persona' % PROJECT_MODULE,
-    '%s.privacy' % PROJECT_MODULE,
-    '%s.redirects' % PROJECT_MODULE,
-    '%s.research' % PROJECT_MODULE,
-    '%s.styleguide' % PROJECT_MODULE,
-    '%s.tabzilla' % PROJECT_MODULE,
-    '%s.facebookapps' % PROJECT_MODULE,
+    'collusion',
+    'firefox',
+    'foundation',
+    'grants',
+    'legal',
+    'marketplace',
+    'mozorg',
+    'persona',
+    'privacy',
+    'redirects',
+    'research',
+    'styleguide',
+    'tabzilla',
+    'facebookapps',
 
     # libs
-    'lib.l10n_utils',
+    'l10n_utils',
     'captcha',
-))
-
-LOCALE_PATHS = (
-    path('locale'),
 )
 
-TEMPLATE_CONTEXT_PROCESSORS = get_template_context_processors(append=(
-    'bedrock.mozorg.context_processors.current_year',
-))
+TEMPLATE_CONTEXT_PROCESSORS += (
+    'mozorg.context_processors.current_year',
+)
 
 ## Auth
 PWD_ALGORITHM = 'bcrypt'
@@ -697,7 +684,3 @@ def facebook_tab_url_lazy():
     from django.conf import settings
     return '//www.facebook.com/{page}/app_{id}'.format(page=settings.FACEBOOK_PAGE_NAMESPACE, id=settings.FACEBOOK_APP_ID)
 FACEBOOK_TAB_URL = lazy(facebook_tab_url_lazy, str)()
-
-# Prefix for media. No trailing slash.
-# e.g. '//mozorg.cdn.mozilla.net'
-CDN_BASE_URL = ''

@@ -58,6 +58,9 @@ function init_platform_imgs() {
 $(document).ready(function() {
     init_download_links();
     init_platform_imgs();
+    $(window).on('load', function () {
+        $('html').addClass('loaded');
+    });
 });
 
 //get Master firefox version
