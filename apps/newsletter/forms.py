@@ -10,8 +10,8 @@ from django.utils.safestring import mark_safe
 
 from mozorg.forms import (
     FORMATS, LANGS, EmailInput, PrivacyWidget,
-    SideRadios, get_lang_choices
-)
+    SideRadios, get_lang_choices,
+    get_lang_name)
 from product_details import product_details
 from tower import ugettext as _
 
@@ -88,7 +88,6 @@ class ManageSubscriptionsForm(forms.Form):
     @param kwargs: Other standard form kwargs
     """
 
-    email = forms.EmailField(widget=EmailInput(attrs={'required': 'true'}))
     format = forms.ChoiceField(widget=forms.RadioSelect(renderer=SideRadios),
                                choices=FORMATS,
                                initial='H')
@@ -116,10 +115,26 @@ class ManageSubscriptionsForm(forms.Form):
             initial['country'] = country
         if not initial.get('lang', None):
             initial['lang'] = lang
+        else:
+            lang = initial['lang']
         kwargs['initial'] = initial
 
         super(ManageSubscriptionsForm, self).__init__(*args, **kwargs)
         self.fields['country'].choices = regions
+
+        # Sometimes people are in ET with a language that is spelled a
+        # little differently from our list. E.g. we have 'pt' on our
+        # list, but in ET their language is 'pt-BR'. We need to make
+        # sure their exact language is a choice on the language field,
+        # otherwise it'll get reset to whatever the first language in
+        # the list is (Indonesian?) - very surprising to the user.
+        # Try to get a valid name for their language to display in the
+        # list, but if we can't, just use the abbrev for lack of any
+        # better option.
+        if lang not in [x[0] for x in self.LANG_CHOICES]:
+            name = get_lang_name(lang) or lang
+            self.fields['lang'].choices.append( (lang, name))
+
         self.already_subscribed = initial.get('newsletters', [])
 
     def clean(self):

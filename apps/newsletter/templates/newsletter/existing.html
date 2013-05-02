@@ -35,13 +35,11 @@
           </div>
         {% endif %}
 
-        {% set email = form['email'] %}
-        <div class="field email-field {% if email.errors %}field-error{% endif %}">
-          {{ form.email.label_tag(_('Your email address:')) }}
+        <div class="field email-field">
+          <label>{{ _('Your email address:') }}</label>
           <div class="field-contents">
             {{ email }}
           </div>
-          {{ email.errors }}
         </div>
 
         {% set country = form['country'] %}

@@ -57,28 +57,6 @@
   {% else %}
 
     <div id="content" class="billboard">
-      {% if display_welcome %}
-        <p><strong>{{ _('Thank you for signing up!') }}</strong></p>
-
-        <div id="thankyou">
-          <p>
-            {% trans %}
-              We look forward to sharing tips &amp; tricks on getting the most
-              out of Firefox, as well as exciting news about Mozilla and how
-              we’re working to create a better Web.
-            {% endtrans %}
-          </p>
-
-          <p>
-            {% trans email="mozilla@e.mozilla.org" %}
-              Please add our sending address:
-              <a href="mailto:{{ email }}">{{ email }}</a>
-              to your address book to ensure we always reach your inbox.
-            {% endtrans %}
-          </p>
-        </div>
-      {% endif %}
-
       <h3>{{ _('While here, why not check out some more Firefox awesomeness.') }}</h3>
 
       <div class="sub-feature" id="mobile">
