@@ -1,102 +1,130 @@
 {% extends "mozorg/base-resp.html" %}
 
 {% block page_title %}{{_('Firefox Student Ambassadors')}}{% endblock %}
+{% block body_id %}ambassadors{% endblock %}
+{% block body_class %}lang-{{ LANG }}{% endblock %}
 {% block extrahead %}
-  {{ css('contribute') }}
+  {{ css('contribute-university-ambassadors') }}
 {% endblock %}
 {% block content %}
-<h1>Become a member of Firefox Student Ambassadors!</h1>
-<h2>Show your university why Firefox rocks and encourage others to get
-involved with Mozilla! Get started by signing up now.</h2>
+
+<div id="main-feature">
+  <img src="{{ media('img/contribute/university-ambassadors/logo.png')}}" alt="Student Ambassadors">
+  <h1>Become a member of Firefox Student Ambassadors!</h1>
+  <h2>Show your university why Firefox rocks and encourage others to get
+  involved with Mozilla! Get started by signing up now.</h2>
+</div>
 
 <form method="POST" class="billboard {% if form.non_field_errors() or form.errors %}has-errors{% endif %}" id="help-form">
   {{ csrf() }}
 <div id="form-content">
   {{ form.non_field_errors() }}
   <fieldset>
-    <div class="form-row">
-      <h3>Information about You</h3>
-      <div class="field" style="float:left;margin-right:10px;">
-        {{ field_with_attrs(form.first_name, placeholder=_('First name'), required='required')|safe }}
-      </div>
-      <div class="field" style="float:left;margin-right:10px;">
-        {{ field_with_attrs(form.last_name, placeholder=_('Last name'), required='required')|safe }}
-      </div>
-      <div class="field" style="float:left;margin-right:10px;">
-        {{ field_with_attrs(form.email, placeholder=_('Email'), required='required')|safe }}
-        {{ form.email.errors }}
-      </div>
-    </div>
-    <div class="form-row-students" style="margin-top:40px">
-      <h3>School Information</h3>
-      <div class="field" style="float:left;margin-right:10px;">
-        {{ field_with_attrs(form.school, placeholder=_('School'), required='required')|safe }}
-      </div>
-      <div class="field" style="float:left;margin-right:10px;">
-        {{ field_with_attrs(form.city, placeholder=_('City'), required='required')|safe }}
-      </div>
-      <div class="field">
-        {{ field_with_attrs(form.country, required='required', style='width:200px') }}
-      </div>
-      <br/>
-      <div class="field" style="clear:left; float:left; margin-right: 10px;">
-        {{ field_with_attrs(form.current_status, required='required') }}
-        <div class="field hide" id="expected_graduation_year">
-          {{ field_with_attrs(form.expected_graduation_year)|safe }}
+    <div class="form-column">
+      <section class="about-you">
+        <h3>Information about You</h3>
+        <div class="field">
+          {{ field_with_attrs(form.first_name, placeholder=_('First name'), required='required')|safe }}
         </div>
-      </div>
-      <div class="field">
-        {{ form.area }}
-        <div class="field hide" id="area_free_text">
-          {{ field_with_attrs(form.area_free_text, placeholder=_('Area of Study')) }}
+        <div class="field">
+          {{ field_with_attrs(form.last_name, placeholder=_('Last name'), required='required')|safe }}
         </div>
-      </div>
+        <div class="field">
+          {{ field_with_attrs(form.email, placeholder=_('Email'), required='required')|safe }}
+          {{ form.email.errors }}
+        </div>
+      </section>
+      <section class="school">
+        <h3>School Information</h3>
+        <div class="field">
+          {{ field_with_attrs(form.school, placeholder=_('School'), required='required')|safe }}
+        </div>
+        <div class="field">
+          {{ field_with_attrs(form.city, placeholder=_('City'), required='required')|safe }}
+        </div>
+        <div class="select">
+          <div class="field country">
+            {{ field_with_attrs(form.country, required='required') }}
+          </div>
+          <div class="field">
+            {{ field_with_attrs(form.current_status, required='required') }}
+            <div class="field hide" id="expected_graduation_year">
+              {{ field_with_attrs(form.expected_graduation_year)|safe }}
+            </div>
+          </div>
+          <div class="field">
+            {{ form.area }}
+            <div class="field hide" id="area_free_text">
+              {{ field_with_attrs(form.area_free_text, placeholder=_('Area of Study')) }}
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-    <div class="form-row-students">
-      <h3>Mozilla Communications</h3>
-      <p>
-        Would you also like to hear about other things that are happening at
-        Mozilla?  You can sign-up to receive additional newsletters based on
-        your interests:
-      </p>
-      <div class="field field-newsletter">
-        {{ form.nl_mozilla_and_you }} {{ form.nl_mozilla_and_you.label }}<br/>
-      </div>
-      <div class="field field-newsletter">
-        {{ form.nl_mobile }} {{ form.nl_mobile.label }}<br/>
-      </div>
-      <div class="field field-newsletter">
-        {{ form.nl_firefox_flicks }} {{ form.nl_firefox_flicks.label }}<br/>
-      </div>
-      <div class="field field-newsletter">
-        {{ form.nl_about_mozilla }} {{ form.nl_about_mozilla.label }}<br/>
-      </div>
-    </div>
-    <div class="form-row-students">
-      Great news! after you sign-up for the program you'll be
-      receiving monthly bulletins from us with updates about the
-      Firefox Student Ambassador Program. Please look for an email
-      from us at the beginning of every month with some exciting news
-      about what is going on that month in the Firefox Student
-      Ambassador Program!
-    </div>
-    <div class="form-row-students">
-      {{ form.share_information }}{{ form.share_information.label }}<br/>
-      {{ field_with_attrs(form.age_confirmation, required='required') }}
-      {{ form.age_confirmation.label }} <br/>
-      {{ form.privacy }}
-    </div>
-    <div class="form-row-students" >
-      <div class="field">
-        {{ form.fmt.label }} {{ form.fmt }}
-      </div>
-      <div class="field field-captcha">
-        {{ form.captcha }}
-        {{ form.captcha.errors }}
-      </div>
+    <div class="form-column">
+      <section>
+        <h3>Mozilla Communications</h3>
+        <p>
+          Would you also like to hear about other things that are happening at
+          Mozilla?  You can sign-up to receive additional newsletters based on
+          your interests:
+        </p>
+        <div class="field field-newsletter">
+          <label for="id_nl_mozilla_and_you">
+            {{ form.nl_mozilla_and_you }}
+            <span class="title">{{ form.nl_mozilla_and_you.label }}</span>
+          </label>
+        </div>
+        <div class="field field-newsletter">
+          <label for="id_nl_mobile">
+            {{ form.nl_mobile }}
+            <span class="title">{{ form.nl_mobile.label }}</span>
+          </label>
+        </div>
+        <div class="field field-newsletter">
+          <label for="id_nl_firefox_flicks">
+            {{ form.nl_firefox_flicks }}
+            <span class="title">{{ form.nl_firefox_flicks.label }}</span>
+          </label>
+        </div>
+        <div class="field field-newsletter">
+          <label for="id_nl_about_mozilla">
+            {{ form.nl_about_mozilla }}
+            <span class="title">{{ form.nl_about_mozilla.label }}</span>
+          </label>
+        </div>
+        <p>
+          Great news! after you sign-up for the program you'll be
+          receiving monthly bulletins from us with updates about the
+          Firefox Student Ambassador Program. Please look for an email
+          from us at the beginning of every month with some exciting news
+          about what is going on that month in the Firefox Student
+          Ambassador Program!
+        </p>
+        <div class="field field-privacy">
+          <label for="id_share_information">
+            {{ form.share_information }}
+            <span class="title">{{ form.share_information.label }}</span>
+          </label>
+        </div>
+        <div class="field field-privacy">
+          <label for="id_age_confirmation">
+            {{ field_with_attrs(form.age_confirmation, required='required') }}
+            <span class="title">{{ form.age_confirmation.label }}</span>
+          </label>
+        </div>
+        {{ form.privacy }}
+        <div class="field field-format">
+          {{ form.fmt.label }} {{ form.fmt }}
+        </div>
+        <div class="field field-captcha">
+          {{ form.captcha }}
+          {{ form.captcha.errors }}
+        </div>
+      </section>
     </div>
   </fieldset>
-  <div class="form-submit" style="clear:left;">
+  <div class="form-submit">
     <input type="submit" class="button" id="form-submit" value="{{_('Sign me up!')}}">
   </div>
 </div>

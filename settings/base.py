@@ -121,6 +121,9 @@ MINIFY_BUNDLES = {
         'contribute-page': (
             'css/contribute-page.less',
         ),
+        'contribute-university-ambassadors': (
+            'css/contribute-ambassadors.less',
+        ),
         'channel': (
             'css/covehead/template.css',
             'css/covehead/content.css',
@@ -345,6 +348,7 @@ MINIFY_BUNDLES = {
         ),
         'contribute-university-ambassadors': (
             'js/contribute-university-ambassadors.js',
+            'js/mozilla-input-placeholder.js',
         ),
         'expanders': (
             'js/mozilla-expanders.js',
