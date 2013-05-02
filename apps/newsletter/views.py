@@ -158,11 +158,11 @@ def existing(request, token=None):
 
             data = form.cleaned_data
 
-            # Update their email and locale information, if it has changed.
+            # Update their format and locale information, if it has changed.
             # Also pass their updated list of newsletters they want to be
             # subscribed to, for basket to implement.
             kwargs = {}
-            for k in ['email', 'lang', 'format', 'country']:
+            for k in ['lang', 'format', 'country']:
                 if user[k] != data[k]:
                     kwargs[k] = data[k]
             if not remove_all:
@@ -182,7 +182,7 @@ def existing(request, token=None):
             # If they chose to remove all, tell basket that they've opted out
             if remove_all:
                 try:
-                    basket.unsubscribe(token, data['email'], optout=True)
+                    basket.unsubscribe(token, user['email'], optout=True)
                 except (basket.BasketException, requests.Timeout):
                     log.exception("Error updating subscriptions in basket")
                     messages.add_message(
@@ -231,6 +231,7 @@ def existing(request, token=None):
         'formset': formset,
         'newsletter_languages': newsletter_languages,
         'newsletters_subscribed': already_subscribed,
+        'email': user['email'],
     }
     return l10n_utils.render(request,
                              'newsletter/existing.html',

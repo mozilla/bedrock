@@ -81,7 +81,6 @@ class TestExistingNewsletterView(TestCase):
             u'form-MAX_NUM_FORMS': 5,
             u'form-INITIAL_FORMS': 5,
             u'form-TOTAL_FORMS': 5,
-            u'email': self.user['email'],
             u'lang': self.user['lang'],
             u'country': self.user['country'],
             u'format': self.user['format'],
@@ -343,42 +342,6 @@ class TestExistingNewsletterView(TestCase):
         self.assertEqual(
             {'lang': u'en',
              'country': u'us',
-             'newsletters': u'mozilla-and-you'},
-            kwargs
-        )
-        # One message should be emitted
-        self.assertEqual(1, add_msg.call_count,
-                         msg=repr(add_msg.call_args_list))
-        # Should redirect to the 'updated' view
-        url = reverse('newsletter.updated')
-        self.assertEqual(url, rsp['Location'])
-
-    @patch('newsletter.utils.get_newsletters')
-    def test_change_email(self, get_newsletters, mock_basket_request):
-        get_newsletters.return_value = newsletters
-        self.request.method = 'POST'
-        self.data['email'] = 'newaddr@example.com'
-        self.request.POST = self.data
-
-        with patch.multiple('basket',
-                            update_user=DEFAULT,
-                            subscribe=DEFAULT,
-                            user=DEFAULT) as basket_patches:
-            with patch('l10n_utils.render'):
-                with patch('django.contrib.messages.add_message') as add_msg:
-                    basket_patches['user'].return_value = self.user
-                    rsp = existing(self.request, token=self.token)
-
-        # We have an existing user with a change to their email data,
-        # but none to their subscriptions.
-        # 'subscribe' should not be called
-        self.assertEqual(0, basket_patches['subscribe'].call_count)
-        # update_user should be called once
-        self.assertEqual(1, basket_patches['update_user'].call_count)
-        # with the new email and the newsletter list
-        kwargs = basket_patches['update_user'].call_args[1]
-        self.assertEqual(
-            {'email': u'newaddr@example.com',
              'newsletters': u'mozilla-and-you'},
             kwargs
         )

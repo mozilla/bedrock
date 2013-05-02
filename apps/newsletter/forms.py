@@ -88,7 +88,6 @@ class ManageSubscriptionsForm(forms.Form):
     @param kwargs: Other standard form kwargs
     """
 
-    email = forms.EmailField(widget=EmailInput(attrs={'required': 'true'}))
     format = forms.ChoiceField(widget=forms.RadioSelect(renderer=SideRadios),
                                choices=FORMATS,
                                initial='H')
