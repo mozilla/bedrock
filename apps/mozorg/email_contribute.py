@@ -101,6 +101,7 @@ LOCALE_CONTACTS = {
     'id'   : ['info@mozilla.web.id'],
     'nl'   : ['contribute@mozilla-nl.org'],
     'pt-BR': ['mlcaraldi@gmail.com'],
+    'ru'   : ['contribute@mozilla-russia.org'],
     'sr'   : ['prikljucise@mozilla-srbija.org'],
     'sq'   : ['besnik@mozilla-albania.org'],
     'zh-CN': ['contributor-zh-cn@mozilla.org'],
