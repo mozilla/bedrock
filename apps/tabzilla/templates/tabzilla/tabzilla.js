@@ -66,7 +66,7 @@
  * @author    Isac Lagerblad <icaaaq@gmail.com>
  */
 
-;(function () {
+var Tabzilla = (function (Tabzilla) {
     'use strict';
     var panel;
     var nav;
@@ -75,6 +75,7 @@
     var opened = false;
     var hasMediaQueries = ('matchMedia' in window);
     var isIE9 = (document.documentMode === 9);
+    var hasConsole = (typeof console == "object");
     var mode = 'wide';
     var negativeTabIndex = '-1';
     var checkMode = function () {
@@ -182,7 +183,7 @@
     var removeCompactModeEvents = function () {
         nav.off('.submenu');
     };
-    var open = function () {
+    Tabzilla.open = function () {
         opened = true;
         panel.toggleClass('open');
         var height = $('#tabzilla-contents').height();
@@ -195,8 +196,9 @@
             .removeClass('tabzilla-closed');
 
         panel.focus();
+        return panel;
     };
-    var close = function () {
+    Tabzilla.close = function () {
         opened = false;
         panel.animate({height: 0}, 200, function () {
             panel.toggleClass('open');
@@ -206,7 +208,23 @@
             .attr({'aria-expanded' : 'false'})
             .addClass('tabzilla-closed')
             .removeClass('tabzilla-opened');
+        return tab;
     };
+
+    // Old public functions that needs to work for a while.
+    Tabzilla.opened = function () {
+        if (hasConsole) {
+            console.warn("This call is soon going to be deprecated, please replace it with Tabzilla.open() instead.");
+        }
+        return Tabzilla.open();
+    };
+    Tabzilla.closed = function () {
+        if (hasConsole) {
+            console.warn("This call is soon going to be deprecated, please replace it with Tabzilla.close() instead.");
+        }
+        return Tabzilla.close();
+    };
+
     var addEaseInOut = function () {
         jQuery.extend(jQuery.easing, {
             'easeInOut':  function (x, t, b, c, d) {
@@ -274,9 +292,9 @@
         tab.on('click', function (event) {
             event.preventDefault();
             if (opened) {
-                close();
+                Tabzilla.close();
             } else {
-                open();
+                Tabzilla.open();
             }
         });
     };
@@ -372,4 +390,7 @@
     + '    </div>'
     + '  </div>';
     + '</div>';
-})();
+
+    return Tabzilla;
+
+})(Tabzilla || {});
