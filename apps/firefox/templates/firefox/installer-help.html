@@ -18,7 +18,7 @@
     <hgroup>
       <h1>{{ _('Your download was interrupted') }}</h1>
       {% if installer_channel %}
-        <h2>{{ _('Click the button on the right to continue.') }}</h2>
+        <h2>{{ _('Click the download button on the right to continue.') }}</h2>
       {% else %}
         <h2>{{ _('Please choose a download to continue.') }}</h2>
       {% endif %}
@@ -36,11 +36,11 @@
       </div>
     {% else %}
       <div class="download-box" id="firefox-desktop">
-        {{ download_firefox(force_direct=True, locale=installer_lang) }}
+        {{ download_firefox(force_direct=True, force_full_installer=True, locale=installer_lang) }}
       </div>
 
       <div class="download-box" id="beta-desktop">
-        {{ download_firefox('beta', small=True, force_direct=True, icon=False, locale=installer_lang) }}
+        {{ download_firefox('beta', small=True, force_direct=True, force_full_installer=True, icon=False, locale=installer_lang) }}
       </div>
 
       <div class="download-box" id="aurora-desktop">

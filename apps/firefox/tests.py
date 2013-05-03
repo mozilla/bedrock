@@ -13,8 +13,7 @@ from django.test.client import Client
 from django.utils import unittest
 
 from funfactory.urlresolvers import reverse
-from mock import ANY, Mock, patch
-from mozorg.tests import TestCase
+from mock import ANY, call, Mock, patch
 from nose.tools import eq_, ok_
 from platforms import load_devices
 from pyquery import PyQuery as pq
@@ -22,6 +21,7 @@ from pyquery import PyQuery as pq
 from firefox import views as fx_views
 from firefox.firefox_details import FirefoxDetails
 from firefox.utils import product_details
+from mozorg.tests import TestCase
 
 
 TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), 'test_data')
@@ -33,51 +33,73 @@ with patch.object(settings, 'PROD_DETAILS_DIR', PROD_DETAILS_DIR):
 
 class TestInstallerHelp(TestCase):
     def setUp(self):
+        self.button_mock = Mock()
+        self.patcher = patch.dict('jingo.env.globals',
+                                  download_firefox=self.button_mock)
+        self.patcher.start()
         self.client = Client()
+        self.view_name = 'firefox.installer-help'
         with self.activate('en-US'):
-            self.url = reverse('firefox.installer-help')
+            self.url = reverse(self.view_name)
+
+    def tearDown(self):
+        self.patcher.stop()
 
     def test_buttons_use_lang(self):
         """
-        The buttons should use the lang from the query parameter
+        The buttons should use the lang from the query parameter.
         """
-        resp = self.client.get(self.url, {
+        self.client.get(self.url, {
             'installer_lang': 'fr'
         })
-        content = resp.content.decode('utf8')
-        self.assertTrue(u'os=osx&amp;lang=fr"' in content)
-        self.assertFalse(u'os=osx&amp;lang=en-US"' in content)
+        self.button_mock.assert_has_calls([
+            call(force_direct=True, force_full_installer=True, locale='fr'),
+            call('beta', small=ANY, force_direct=True,
+                 force_full_installer=True, icon=ANY, locale='fr'),
+            call('aurora', small=ANY, force_direct=True,
+                 force_full_installer=True, icon=ANY, locale='fr'),
+        ])
 
     def test_buttons_ignore_non_lang(self):
         """
-        The buttons should use the lang from the query parameter
+        The buttons should ignore an invalid lang.
         """
-        resp = self.client.get(self.url, {
+        self.client.get(self.url, {
             'installer_lang': 'not-a-locale'
         })
-        content = resp.content.decode('utf8')
-        self.assertTrue(u'os=osx&amp;lang=en-US"' in content)
-        self.assertFalse(u'os=osx&amp;lang=not-a-locale"' in content)
+        self.button_mock.assert_has_calls([
+            call(force_direct=True, force_full_installer=True, locale=None),
+            call('beta', small=ANY, force_direct=True,
+                 force_full_installer=True, icon=ANY, locale=None),
+            call('aurora', small=ANY, force_direct=True,
+                 force_full_installer=True, icon=ANY, locale=None),
+        ])
 
     def test_invalid_channel_specified(self):
         """
-        There should be only one button when the channel is given.
+        All buttons should show when channel is invalid.
         """
-        resp = self.client.get(self.url, {
+        self.client.get(self.url, {
             'channel': 'dude',
         })
-        doc = pq(resp.content.decode('utf8'))
-        self.assertEqual(len(doc('.download-button')), 3)
+        self.button_mock.assert_has_calls([
+            call(force_direct=True, force_full_installer=True, locale=None),
+            call('beta', small=ANY, force_direct=True,
+                 force_full_installer=True, icon=ANY, locale=None),
+            call('aurora', small=ANY, force_direct=True,
+                 force_full_installer=True, icon=ANY, locale=None),
+        ])
 
     def test_one_button_when_channel_specified(self):
         """
         There should be only one button when the channel is given.
         """
-        resp = self.client.get(self.url, {
+        self.client.get(self.url, {
             'channel': 'beta',
         })
-        doc = pq(resp.content.decode('utf8'))
-        self.assertEqual(len(doc('.download-button')), 1)
+        self.button_mock.assert_called_once_with('beta', force_direct=True,
+                                                 force_full_installer=True,
+                                                 locale=None)
 
 
 @patch.object(fx_views, 'firefox_details', firefox_details)
