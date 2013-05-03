@@ -225,10 +225,10 @@ def download_firefox(ctx, build='release', small=False, icon=True,
         if build == 'aurora':
             android_link = download_urls['aurora-mobile']
         elif build == 'beta':
-            android_link = ('https://market.android.com/details?'
+            android_link = ('https://play.google.com/store/apps/details?'
                             'id=org.mozilla.firefox_beta')
         else:
-            android_link = ('https://market.android.com/details?'
+            android_link = ('https://play.google.com/store/apps/details?'
                             'id=org.mozilla.firefox')
 
         builds.append({'os': 'os_android',
