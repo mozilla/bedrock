@@ -13,8 +13,7 @@ from django.test.client import Client
 from django.utils import unittest
 
 from funfactory.urlresolvers import reverse
-from mock import ANY, Mock, patch
-from mozorg.tests import TestCase
+from mock import ANY, call, Mock, patch
 from nose.tools import eq_, ok_
 from platforms import load_devices
 from pyquery import PyQuery as pq
@@ -22,6 +21,7 @@ from pyquery import PyQuery as pq
 from firefox import views as fx_views
 from firefox.firefox_details import FirefoxDetails
 from firefox.utils import product_details
+from mozorg.tests import TestCase
 
 
 TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), 'test_data')
@@ -29,6 +29,77 @@ PROD_DETAILS_DIR = os.path.join(TEST_DATA_DIR, 'product_details_json')
 
 with patch.object(settings, 'PROD_DETAILS_DIR', PROD_DETAILS_DIR):
     firefox_details = FirefoxDetails()
+
+
+class TestInstallerHelp(TestCase):
+    def setUp(self):
+        self.button_mock = Mock()
+        self.patcher = patch.dict('jingo.env.globals',
+                                  download_firefox=self.button_mock)
+        self.patcher.start()
+        self.client = Client()
+        self.view_name = 'firefox.installer-help'
+        with self.activate('en-US'):
+            self.url = reverse(self.view_name)
+
+    def tearDown(self):
+        self.patcher.stop()
+
+    def test_buttons_use_lang(self):
+        """
+        The buttons should use the lang from the query parameter.
+        """
+        self.client.get(self.url, {
+            'installer_lang': 'fr'
+        })
+        self.button_mock.assert_has_calls([
+            call(force_direct=True, force_full_installer=True, locale='fr'),
+            call('beta', small=ANY, force_direct=True,
+                 force_full_installer=True, icon=ANY, locale='fr'),
+            call('aurora', small=ANY, force_direct=True,
+                 force_full_installer=True, icon=ANY, locale='fr'),
+        ])
+
+    def test_buttons_ignore_non_lang(self):
+        """
+        The buttons should ignore an invalid lang.
+        """
+        self.client.get(self.url, {
+            'installer_lang': 'not-a-locale'
+        })
+        self.button_mock.assert_has_calls([
+            call(force_direct=True, force_full_installer=True, locale=None),
+            call('beta', small=ANY, force_direct=True,
+                 force_full_installer=True, icon=ANY, locale=None),
+            call('aurora', small=ANY, force_direct=True,
+                 force_full_installer=True, icon=ANY, locale=None),
+        ])
+
+    def test_invalid_channel_specified(self):
+        """
+        All buttons should show when channel is invalid.
+        """
+        self.client.get(self.url, {
+            'channel': 'dude',
+        })
+        self.button_mock.assert_has_calls([
+            call(force_direct=True, force_full_installer=True, locale=None),
+            call('beta', small=ANY, force_direct=True,
+                 force_full_installer=True, icon=ANY, locale=None),
+            call('aurora', small=ANY, force_direct=True,
+                 force_full_installer=True, icon=ANY, locale=None),
+        ])
+
+    def test_one_button_when_channel_specified(self):
+        """
+        There should be only one button when the channel is given.
+        """
+        self.client.get(self.url, {
+            'channel': 'beta',
+        })
+        self.button_mock.assert_called_once_with('beta', force_direct=True,
+                                                 force_full_installer=True,
+                                                 locale=None)
 
 
 @patch.object(fx_views, 'firefox_details', firefox_details)
@@ -39,7 +110,7 @@ class TestFirefoxDetails(TestCase):
         self.assertListEqual(parse_qsl(urlparse(url).query),
                              [('product', 'firefox-17.0'),
                               ('os', 'osx'),
-                              ('lang', 'pt-BR'),])
+                              ('lang', 'pt-BR')])
 
     def test_filter_builds_by_locale_name(self):
         # search english

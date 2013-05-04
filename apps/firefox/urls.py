@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from django.conf.urls.defaults import *
+from django.conf.urls.defaults import *  # noqa
 from django.conf import settings
 
 from product_details import product_details
@@ -43,7 +43,8 @@ urlpatterns = patterns('',
     page('firefox/organizations', 'firefox/organizations/organizations.html'),
     page('firefox/performance', 'firefox/performance.html'),
     page('firefox/security', 'firefox/security.html'),
-    page('firefox/installer-help', 'firefox/installer-help.html'),
+    url(r'^firefox/installer-help/$', views.installer_help,
+        name='firefox.installer-help'),
     page('firefox/speed', 'firefox/speed.html',
          latest_version=product_details.firefox_versions['LATEST_FIREFOX_VERSION']),
     page('firefox/technology', 'firefox/technology.html'),
