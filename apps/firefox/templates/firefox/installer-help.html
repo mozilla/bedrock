@@ -4,7 +4,7 @@
 
 {% extends "/firefox/base-resp.html" %}
 
-{% block page_title %}Your download was interrupted{% endblock %}
+{% block page_title %}{{ _('Your download was interrupted') }}{% endblock %}
 {% block body_id %}installer-help{% endblock %}
 
 {% block site_css %}
@@ -16,27 +16,37 @@
 <div id="main-content">
   <div class="main">
     <hgroup>
-      <h1>Your download was interrupted</h1>
-      <h2>Please choose a download to continue.</h2>
+      <h1>{{ _('Your download was interrupted') }}</h1>
+      {% if installer_channel %}
+        <h2>{{ _('Click the download button on the right to continue.') }}</h2>
+      {% else %}
+        <h2>{{ _('Please choose a download to continue.') }}</h2>
+      {% endif %}
     </hgroup>
     <aside class="help">
-      <h3>Need help installing?</h3>
-      <p><a href="https://support.mozilla.org/kb/install-firefox-windows">Visit support.mozilla.org</a></p>
+      <h3>{{ _('Need help installing?') }}</h3>
+      <p><a href="https://support.mozilla.org/kb/install-firefox-windows">{{ _('Visit support.mozilla.org') }}</a></p>
     </aside>
   </div>
 
   <div class="channels">
-    <div class="download-box" id="firefox-desktop">
-      {{ download_firefox(force_direct=True) }}
-    </div>
+    {% if installer_channel %}
+      <div class="download-box">
+        {{ download_firefox(installer_channel, force_direct=True, force_full_installer=True, locale=installer_lang) }}
+      </div>
+    {% else %}
+      <div class="download-box" id="firefox-desktop">
+        {{ download_firefox(force_direct=True, force_full_installer=True, locale=installer_lang) }}
+      </div>
 
-    <div class="download-box" id="beta-desktop">
-      {{ download_firefox('beta', small=True, force_direct=True, icon=False) }}
-    </div>
+      <div class="download-box" id="beta-desktop">
+        {{ download_firefox('beta', small=True, force_direct=True, force_full_installer=True, icon=False, locale=installer_lang) }}
+      </div>
 
-    <div class="download-box" id="aurora-desktop">
-      {{ download_firefox('aurora', small=True, force_direct=True, force_full_installer=True, icon=False) }}
-    </div>
+      <div class="download-box" id="aurora-desktop">
+        {{ download_firefox('aurora', small=True, force_direct=True, force_full_installer=True, icon=False, locale=installer_lang) }}
+      </div>
+    {% endif %}
   </div>
  </div>
 

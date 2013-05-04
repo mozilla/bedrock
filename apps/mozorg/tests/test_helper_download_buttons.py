@@ -190,6 +190,11 @@ class TestDownloadButtons(unittest.TestCase):
         eq_(url, good_url)
 
     def test_force_funnelcake(self):
+        """
+        force_funnelcake should force the product to be 'firefox-latest'
+        for en-US windows release downloads, and 'firefox-beta-latest' for
+        beta.
+        """
         url = make_download_link('firefox', 'release', 19.0, 'os_windows',
                                  'en-US', force_funnelcake=True)
         ok_('product=firefox-latest&' in url)
@@ -208,6 +213,32 @@ class TestDownloadButtons(unittest.TestCase):
 
         url = make_download_link('firefox', 'beta', '20.0b4', 'os_windows',
                                  'fr', force_funnelcake=True)
+        ok_('product=firefox-beta-latest&' not in url)
+
+    def test_force_full_installer(self):
+        """
+        force_full_installer should force the product to be 'firefox-latest'
+        for en-US windows release downloads, and 'firefox-beta-latest' for
+        beta.
+        """
+        url = make_download_link('firefox', 'release', 19.0, 'os_windows',
+                                 'en-US', force_full_installer=True)
+        ok_('product=firefox-latest&' in url)
+
+        url = make_download_link('firefox', 'beta', '20.0b4', 'os_windows',
+                                 'en-US', force_full_installer=True)
+        ok_('product=firefox-beta-latest&' in url)
+
+    def test_force_full_installer_en_us_win_only(self):
+        """
+        Ensure that force_full_installer doesn't affect non en-US Windows urls
+        """
+        url = make_download_link('firefox', 'release', 19.0, 'os_osx',
+                                 'en-US', force_full_installer=True)
+        ok_('product=firefox-latest&' not in url)
+
+        url = make_download_link('firefox', 'beta', '20.0b4', 'os_windows',
+                                 'fr', force_full_installer=True)
         ok_('product=firefox-beta-latest&' not in url)
 
     def test_force_stub_installer(self):

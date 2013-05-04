@@ -117,7 +117,7 @@ def make_download_link(product, build, version, platform, locale,
 
     # en-US windows exceptions
     # TODO: NUKE FROM ORBIT!
-    if force_funnelcake or force_stub_installer:
+    if force_funnelcake or force_full_installer or force_stub_installer:
         if locale.lower() == 'en-us' and platform == 'win':
             suffix = 'latest'
             if force_stub_installer:

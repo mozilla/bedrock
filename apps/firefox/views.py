@@ -37,6 +37,12 @@ LOCALE_OS_URLS = {
     'es-ES': 'http://blog.mozilla.org/press-es/?p=340',
     'en-GB': 'http://blog.mozilla.org/press-uk/?p=471'
 }
+INSTALLER_CHANNElS = [
+    'release',
+    'beta',
+    'aurora',
+    #'nightly',  # soon
+]
 
 
 def get_js_bundle_files(bundle):
@@ -59,6 +65,23 @@ def get_js_bundle_files(bundle):
 JS_COMMON = get_js_bundle_files('partners_common')
 JS_MOBILE = get_js_bundle_files('partners_mobile')
 JS_DESKTOP = get_js_bundle_files('partners_desktop')
+
+
+def installer_help(request):
+    installer_lang = request.GET.get('installer_lang', None)
+    installer_channel = request.GET.get('channel', None)
+    context = {
+        'installer_lang': None,
+        'installer_channel': None,
+    }
+
+    if installer_lang and installer_lang in firefox_details.languages:
+        context['installer_lang'] = installer_lang
+
+    if installer_channel and installer_channel in INSTALLER_CHANNElS:
+        context['installer_channel'] = installer_channel
+
+    return l10n_utils.render(request, 'firefox/installer-help.html', context)
 
 
 @csrf_exempt
