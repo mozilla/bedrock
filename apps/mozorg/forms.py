@@ -298,7 +298,6 @@ class ContributeUniversityAmbassadorForm(forms.Form):
             'COUNTRY_': data['country'],
             'STUDENTS_CITY': data['city'],
             'STUDENTS_ALLOW_SHARE': data['share_information'],
-            'EMAIL_FORMAT_': data['fmt'],
         }
         request('post', 'custom_update_student_ambassadors',
                 token=result['token'], data=data)
