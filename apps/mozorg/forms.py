@@ -273,7 +273,7 @@ class ContributeUniversityAmbassadorForm(forms.Form):
         return 'N'
 
     def newsletters(self):
-        newsletters = ['student-ambassadors']
+        newsletters = ['ambassadors']
         for newsletter in ['nl_mozilla_and_you', 'nl_mobile',
                            'nl_firefox_flicks', 'nl_about_mozilla']:
             if self.cleaned_data.get(newsletter, False):
@@ -295,5 +295,5 @@ class ContributeUniversityAmbassadorForm(forms.Form):
                 'COUNTRY': data['country'],
                 'STUDENTS_CITY': data['city'],
                 'STUDENTS_ALLOW_SHARE': data['share_information']}
-        request('post', 'custom_student_ambassadors', token=result['token'],
-                data=data)
+        request('post', 'custom_update_student_ambassadors',
+                token=result['token'], data=data)
