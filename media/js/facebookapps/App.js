@@ -13,7 +13,7 @@ DOWNLOADTAB.classes.App = (function (singleton) {
         this.appId = this._initData.appId;
         this.pageNamespace = this._initData.pageNamespace;
         this.tabRedirectUrl = this.absoluteUrl(this._initData.tabRedirectPath);
-        this.shareImageUrl = this.absoluteUrl(this._initData.shareImagePath);
+        this.shareImageUrl = this.mediaUrl(this._initData.shareImagePath);
         this._initData = undefined;
     }
 
@@ -132,6 +132,27 @@ DOWNLOADTAB.classes.App = (function (singleton) {
         var self = this;
         return self.getBaseUrl({ protocol: true }) + relativeUrl;
     };
+
+    App.prototype.mediaUrl = function(path) {
+        var self = this;
+        var fullUrlPrefixes = ['//', 'http://', 'https://'];
+        var length = fullUrlPrefixes.length;
+        var i;
+        var prefix;
+
+        for (i = 0; i < length; i += 1) {
+            prefix = fullUrlPrefixes[i];
+            if (path.indexOf(prefix) === 0) {
+                if (prefix === '//') {
+                    path = self.window.location.protocol + path;
+                }
+
+                return path;
+            }
+        }
+
+        return self.absoluteUrl(path);
+    }
 
     App.prototype.trackRedirect = function(url, virtualUrl) {
         var self = this;
