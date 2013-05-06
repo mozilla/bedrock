@@ -121,7 +121,7 @@ $(document).ready(function() {
     var headline = $('#main-feature > h1');
     var subheadline = $('#main-feature > h3');
 
-    if(!isFirefox) {
+    if(isFirefox) {
         if(latestVersion <= getFirefoxMasterVersion()) {
             headline.html('Congratulations!');
             subheadline.html('Your Firefox is up to date.');
