@@ -195,19 +195,19 @@ class ContributeUniversityAmbassadorForm(forms.Form):
         required=False,
         choices=([('', _lazy('Expected Graduation Year'))] +
                  [(i, str(i)) for i in range(datetime.now().year,
-                                             datetime.now().year+8)]))
+                                             datetime.now().year + 8)]))
     area = forms.ChoiceField(
         required=False,
-        choices =[('', _lazy('Area of Study')),
-                  ('computer science', _lazy('Computer Science')),
-                  ('computer engineering', _lazy('Computer Engineering')),
-                  ('engineering', _lazy('Engineering (other)')),
-                  ('social science', _lazy('Social Science')),
-                  ('science', _lazy('Science (other)')),
-                  ('business/marketing', _lazy('Business/Marketing')),
-                  ('education', _lazy('Education')),
-                  ('mathematics', _lazy('Mathematics')),
-                  ('other', _lazy('Other'))])
+        choices=[('', _lazy('Area of Study')),
+                 ('computer science', _lazy('Computer Science')),
+                 ('computer engineering', _lazy('Computer Engineering')),
+                 ('engineering', _lazy('Engineering (other)')),
+                 ('social science', _lazy('Social Science')),
+                 ('science', _lazy('Science (other)')),
+                 ('business/marketing', _lazy('Business/Marketing')),
+                 ('education', _lazy('Education')),
+                 ('mathematics', _lazy('Mathematics')),
+                 ('other', _lazy('Other'))])
     area_free_text = forms.CharField(max_length=100, required=False)
     city = forms.CharField(max_length=100)
     country = forms.ChoiceField()
@@ -244,6 +244,7 @@ class ContributeUniversityAmbassadorForm(forms.Form):
         widget=widgets.CheckboxInput(),
         label=_lazy(u'About Mozilla: News from the Mozilla Project'))
     captcha = ReCaptchaField(attrs={'theme': 'clean'})
+    source_url = forms.URLField(verify_exists=False, required=False)
 
     def __init__(self, *args, **kwargs):
         locale = kwargs.get('locale', 'en-US')
@@ -277,23 +278,27 @@ class ContributeUniversityAmbassadorForm(forms.Form):
         for newsletter in ['nl_mozilla_and_you', 'nl_mobile',
                            'nl_firefox_flicks', 'nl_about_mozilla']:
             if self.cleaned_data.get(newsletter, False):
-                newsletters.append(newsletter[3:].replace('_','-'))
+                newsletters.append(newsletter[3:].replace('_', '-'))
         return ','.join(newsletters)
 
     def save(self):
         data = self.cleaned_data
         result = basket.subscribe(data['email'], self.newsletters(),
                                   format=data['fmt'], country=data['country'],
-                                  welcome_message='Student_Ambassadors_Welcome')
+                                  welcome_message='Student_Ambassadors_Welcome',
+                                  source_url=data['source_url'])
 
-        data = {'FIRST_NAME': data['first_name'],
-                'LAST_NAME': data['last_name'],
-                'STUDENTS_CURRENT_STATUS': data['current_status'],
-                'STUDENTS_SCHOOL': data['school'],
-                'STUDENTS_GRAD_YEAR': data['expected_graduation_year'],
-                'STUDENTS_MAJOR': data['area'],
-                'COUNTRY': data['country'],
-                'STUDENTS_CITY': data['city'],
-                'STUDENTS_ALLOW_SHARE': data['share_information']}
+        data = {
+            'FIRST_NAME': data['first_name'],
+            'LAST_NAME': data['last_name'],
+            'STUDENTS_CURRENT_STATUS': data['current_status'],
+            'STUDENTS_SCHOOL': data['school'],
+            'STUDENTS_GRAD_YEAR': data['expected_graduation_year'],
+            'STUDENTS_MAJOR': data['area'],
+            'COUNTRY_': data['country'],
+            'STUDENTS_CITY': data['city'],
+            'STUDENTS_ALLOW_SHARE': data['share_information'],
+            'EMAIL_FORMAT_': data['fmt'],
+        }
         request('post', 'custom_update_student_ambassadors',
                 token=result['token'], data=data)

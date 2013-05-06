@@ -164,11 +164,12 @@ def plugincheck(request, template='mozorg/plugincheck.html'):
 
     return l10n_utils.render(request, template, data)
 
+
 @csrf_exempt
 def contribute_university_ambassadors(request):
     submit_successful = False
     form = ContributeUniversityAmbassadorForm(request.POST or None)
-    if request.method == 'POST' and form.is_valid():
+    if form.is_valid():
         try:
             form.save()
         except basket.BasketException:
@@ -176,8 +177,10 @@ def contribute_university_ambassadors(request):
                 [_('We apologize, but an error occurred in our system. '
                    'Please try again later.')])
             form.errors['__all__'] = msg
-        submit_successful = True
-    return l10n_utils.render(request,
-                             'mozorg/contribute_university_ambassadors.html',
-                             {'form':form,
-                              'submit_successful': submit_successful})
+        else:
+            submit_successful = True
+    return l10n_utils.render(
+        request,
+        'mozorg/contribute_university_ambassadors.html',
+        {'form': form, 'submit_successful': submit_successful},
+    )
