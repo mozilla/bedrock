@@ -11,21 +11,17 @@ from random import randrange
 
 from django import forms
 from django.conf import settings
-from django.forms import ValidationError, widgets
+from django.forms import widgets
 from django.utils.safestring import mark_safe
-
-import basket
-from basket.base import request
 
 from captcha.fields import ReCaptchaField
 from l10n_utils.dotlang import _
-from l10n_utils.dotlang import _lazy
 from product_details import product_details
 
 from .email_contribute import INTEREST_CHOICES
 
 
-FORMATS = (('H', _lazy('HTML')), ('T', _lazy('Text')))
+FORMATS = (('H', 'HTML'), ('T', 'Text'))
 LANGS = settings.NEWSLETTER_LANGUAGES
 LANGS_TO_STRIP = ['en-US', 'es']
 PARENTHETIC_RE = re.compile(r' \([^)]+\)$')
@@ -179,121 +175,3 @@ class WebToLeadForm(forms.Form):
     # uncomment below to debug salesforce
     # debug = forms.IntegerField(required=False)
     # debugEmail = forms.EmailField(required=False)
-
-
-class ContributeUniversityAmbassadorForm(forms.Form):
-    first_name = forms.CharField(max_length=50)
-    last_name = forms.CharField(max_length=50)
-    email = forms.EmailField(max_length=100)
-    current_status = forms.ChoiceField(
-        choices=(('', _lazy('Current Status')),
-                 ('student', _lazy('Student')), ('teacher', _lazy('Teacher')),
-                 ('administrator', _lazy('Administrator')),
-                 ('other', _lazy('Other'))))
-    school = forms.CharField(max_length=100)
-    expected_graduation_year = forms.ChoiceField(
-        required=False,
-        choices=([('', _lazy('Expected Graduation Year'))] +
-                 [(i, str(i)) for i in range(datetime.now().year,
-                                             datetime.now().year+8)]))
-    area = forms.ChoiceField(
-        required=False,
-        choices =[('', _lazy('Area of Study')),
-                  ('computer science', _lazy('Computer Science')),
-                  ('computer engineering', _lazy('Computer Engineering')),
-                  ('engineering', _lazy('Engineering (other)')),
-                  ('social science', _lazy('Social Science')),
-                  ('science', _lazy('Science (other)')),
-                  ('business/marketing', _lazy('Business/Marketing')),
-                  ('education', _lazy('Education')),
-                  ('mathematics', _lazy('Mathematics')),
-                  ('other', _lazy('Other'))])
-    area_free_text = forms.CharField(max_length=100, required=False)
-    city = forms.CharField(max_length=100)
-    country = forms.ChoiceField()
-    fmt = forms.ChoiceField(widget=forms.RadioSelect(renderer=SideRadios),
-                            label=_lazy('Email format preference:'),
-                            choices=FORMATS, initial='H')
-    age_confirmation = forms.BooleanField(
-        widget=widgets.CheckboxInput(),
-        label=_lazy(u'I’m 18 years old and eligible to participate in '
-                    'the program'))
-    share_information = forms.BooleanField(
-        required=False,
-        widget=widgets.CheckboxInput(),
-        label=_lazy(u'Please share my contact information and interests with '
-                    'related Mozilla contributors for the purpose of '
-                    'collaborating on Mozilla projects'))
-    privacy = forms.BooleanField(widget=PrivacyWidget)
-    nl_mozilla_and_you = forms.BooleanField(
-        required=False,
-        widget=widgets.CheckboxInput(),
-        label=_lazy(u'Firefox & You: A monthly newsletter packed with tips to'
-                    ' improve your browsing experience'))
-    nl_mobile = forms.BooleanField(
-        required=False,
-        widget=widgets.CheckboxInput(),
-        label=_lazy(u'Firefox for Android: Get the power of Firefox in the'
-                    ' palm of your hand'))
-    nl_firefox_flicks = forms.BooleanField(
-        required=False,
-        widget=widgets.CheckboxInput(),
-        label=_lazy(u'Firefox Flicks'))
-    nl_about_mozilla = forms.BooleanField(
-        required=False,
-        widget=widgets.CheckboxInput(),
-        label=_lazy(u'About Mozilla: News from the Mozilla Project'))
-    captcha = ReCaptchaField(attrs={'theme': 'clean'})
-
-    def __init__(self, *args, **kwargs):
-        locale = kwargs.get('locale', 'en-US')
-        super(ContributeUniversityAmbassadorForm, self).__init__(*args, **kwargs)
-        country_list = product_details.get_regions(locale).items()
-        country_list = sorted(country_list, key=lambda country: country[1])
-        country_list.insert(0, ('', _('Country')))
-        self.fields['country'].choices = country_list
-
-    def clean(self, *args, **kwargs):
-        super(ContributeUniversityAmbassadorForm, self).clean(*args, **kwargs)
-        if (self.cleaned_data['current_status'] == 'student'
-            and not self.cleaned_data['expected_graduation_year']):
-            raise ValidationError(_('Select graduation year'))
-        return self.cleaned_data
-
-    def clean_expected_graduation_year(self):
-        return self.cleaned_data.get('expected_graduation_year', '')
-
-    def clean_area(self):
-        return self.cleaned_data.get('area_free_field',
-                                     self.cleaned_data['area'])
-
-    def clean_share_information(self):
-        if self.cleaned_data.get('share_information', False):
-            return 'Y'
-        return 'N'
-
-    def newsletters(self):
-        newsletters = ['student-ambassadors']
-        for newsletter in ['nl_mozilla_and_you', 'nl_mobile',
-                           'nl_firefox_flicks', 'nl_about_mozilla']:
-            if self.cleaned_data.get(newsletter, False):
-                newsletters.append(newsletter[3:].replace('_','-'))
-        return ','.join(newsletters)
-
-    def save(self):
-        data = self.cleaned_data
-        result = basket.subscribe(data['email'], self.newsletters(),
-                                  format=data['fmt'], country=data['country'],
-                                  welcome_message='Student_Ambassadors_Welcome')
-
-        data = {'FIRST_NAME': data['first_name'],
-                'LAST_NAME': data['last_name'],
-                'STUDENTS_CURRENT_STATUS': data['current_status'],
-                'STUDENTS_SCHOOL': data['school'],
-                'STUDENTS_GRAD_YEAR': data['expected_graduation_year'],
-                'STUDENTS_MAJOR': data['area'],
-                'COUNTRY': data['country'],
-                'STUDENTS_CITY': data['city'],
-                'STUDENTS_ALLOW_SHARE': data['share_information']}
-        request('post', 'custom_student_ambassadors', token=result['token'],
-                data=data)

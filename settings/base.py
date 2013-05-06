@@ -343,9 +343,6 @@ MINIFY_BUNDLES = {
             'js/contribute-form.js',
             'js/mozilla-input-placeholder.js',
         ),
-        'contribute-university-ambassadors': (
-            'js/contribute-university-ambassadors.js',
-        ),
         'expanders': (
             'js/mozilla-expanders.js',
         ),

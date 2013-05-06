@@ -15,13 +15,11 @@ import l10n_utils
 import requests
 from commonware.decorators import xframe_allow
 from funfactory.urlresolvers import reverse
-from l10n_utils.dotlang import _
 
 from firefox import version_re
 from firefox.utils import is_current_or_newer
 from mozorg import email_contribute
-from mozorg.forms import (ContributeForm, ContributeUniversityAmbassadorForm,
-                          NewsletterForm, WebToLeadForm)
+from mozorg.forms import ContributeForm, NewsletterForm, WebToLeadForm
 from mozorg.util import hide_contrib_form
 
 
@@ -73,8 +71,8 @@ def contribute(request, template, return_to_form):
                 newsletter_success = True
             except basket.BasketException:
                 msg = newsletter_form.error_class(
-                    [_('We apologize, but an error occurred in our system. '
-                       'Please try again later.')]
+                    ['We apologize, but an error occurred in our system.'
+                     'Please try again later.']
                 )
                 newsletter_form.errors['__all__'] = msg
     else:
@@ -163,19 +161,3 @@ def plugincheck(request, template='mozorg/plugincheck.html'):
     }
 
     return l10n_utils.render(request, template, data)
-
-@csrf_exempt
-def contribute_university_ambassadors(request):
-    form = ContributeUniversityAmbassadorForm(request.POST or None)
-    if request.method == 'POST' and form.is_valid():
-        try:
-            form.save()
-        except basket.BasketException:
-            msg = form.error_class(
-                [_('We apologize, but an error occurred in our system. '
-                   'Please try again later.')])
-            form.errors['__all__'] = msg
-
-    return l10n_utils.render(request,
-                             'mozorg/contribute_university_ambassadors.html',
-                             {'form':form})
