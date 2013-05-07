@@ -9,17 +9,20 @@ from django.core.context_processors import csrf
 from django.http import (HttpResponse, HttpResponseRedirect)
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.views.decorators.http import require_POST
+from django.shortcuts import redirect
 
 import basket
 import l10n_utils
 import requests
 from commonware.decorators import xframe_allow
 from funfactory.urlresolvers import reverse
+from l10n_utils.dotlang import _
 
 from firefox import version_re
 from firefox.utils import is_current_or_newer
 from mozorg import email_contribute
-from mozorg.forms import ContributeForm, NewsletterForm, WebToLeadForm
+from mozorg.forms import (ContributeForm, ContributeUniversityAmbassadorForm,
+                          NewsletterForm, WebToLeadForm)
 from mozorg.util import hide_contrib_form
 
 
@@ -71,8 +74,8 @@ def contribute(request, template, return_to_form):
                 newsletter_success = True
             except basket.BasketException:
                 msg = newsletter_form.error_class(
-                    ['We apologize, but an error occurred in our system.'
-                     'Please try again later.']
+                    [_('We apologize, but an error occurred in our system. '
+                       'Please try again later.')]
                 )
                 newsletter_form.errors['__all__'] = msg
     else:
@@ -161,3 +164,22 @@ def plugincheck(request, template='mozorg/plugincheck.html'):
     }
 
     return l10n_utils.render(request, template, data)
+
+
+@csrf_exempt
+def contribute_university_ambassadors(request):
+    form = ContributeUniversityAmbassadorForm(request.POST or None)
+    if form.is_valid():
+        try:
+            form.save()
+        except basket.BasketException:
+            msg = form.error_class(
+                [_('We apologize, but an error occurred in our system. '
+                   'Please try again later.')])
+            form.errors['__all__'] = msg
+        else:
+            return redirect('mozorg.contribute_university_ambassadors_thanks')
+    return l10n_utils.render(
+        request,
+        'mozorg/contribute_university_ambassadors.html', {'form': form}
+    )

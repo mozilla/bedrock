@@ -31,6 +31,50 @@ class TestViews(TestCase):
         ok_('x-frame-options' not in resp)
 
 
+class TestUniversityAmbassadors(TestCase):
+    @patch.object(ReCaptchaField, 'clean', Mock())
+    @patch('mozorg.forms.request')
+    @patch('mozorg.forms.basket.subscribe')
+    def test_subscribe(self, mock_subscribe, mock_request):
+        mock_subscribe.return_value = {'token': 'token-example',
+                                       'status': 'ok',
+                                       'created': 'True'}
+        c = Client()
+        data = {'email': u'dude@example.com',
+                'country': 'gr',
+                'fmt': 'H',
+                'first_name': 'foo',
+                'last_name': 'bar',
+                'current_status': 'teacher',
+                'school': 'TuC',
+                'city': 'Chania',
+                'age_confirmation': 'on',
+                'expected_graduation_year': '',
+                'nl_about_mozilla': 'on',
+                'area': '',
+                'area_free_text': '',
+                'privacy': 'True'}
+        request_data = {'FIRST_NAME': data['first_name'],
+                        'LAST_NAME': data['last_name'],
+                        'STUDENTS_CURRENT_STATUS': data['current_status'],
+                        'STUDENTS_SCHOOL': data['school'],
+                        'STUDENTS_GRAD_YEAR': data['expected_graduation_year'],
+                        'STUDENTS_MAJOR': data['area'],
+                        'COUNTRY_': data['country'],
+                        'STUDENTS_CITY': data['city'],
+                        'STUDENTS_ALLOW_SHARE': 'N'}
+        with self.activate('en-US'):
+            c.post(reverse('mozorg.contribute_university_ambassadors'), data)
+        mock_subscribe.assert_called_with(
+            data['email'], 'ambassadors,about-mozilla', format=u'H',
+            country=u'gr', source_url=u'',
+            welcome_message='Student_Ambassadors_Welcome')
+        mock_request.assert_called_with('post',
+                                        'custom_update_student_ambassadors',
+                                        token='token-example',
+                                        data=request_data)
+
+
 @patch.object(l10n_utils, 'lang_file_is_active', lambda *x: True)
 class TestContribute(TestCase):
     def setUp(self):
