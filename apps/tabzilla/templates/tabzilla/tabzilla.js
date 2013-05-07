@@ -59,7 +59,7 @@
  *   DEALINGS IN THE SOFTWARE.
  *
  *
- * @copyright 2012 silverorange Inc.
+ * @copyright 2012-2013 silverorange Inc.
  * @license   http://www.mozilla.org/MPL/MPL-1.1.html Mozilla Public License 1.1
  * @author    Michael Gauthier <mike@silverorange.com>
  * @author    Steven Garrity <steven@silverorange.com>
@@ -68,6 +68,7 @@
 
 var Tabzilla = (function (Tabzilla) {
     'use strict';
+    var minimumJQuery = '1.7.1';
     var panel;
     var nav;
     var headlines;
@@ -78,6 +79,7 @@ var Tabzilla = (function (Tabzilla) {
     var hasConsole = (typeof console == "object");
     var mode = 'wide';
     var negativeTabIndex = '-1';
+    var jq = null; // non-version-conflicting jquery alias for tabzilla
     var checkMode = function () {
         var currentMode = getMode();
         if (mode !== currentMode) {
@@ -111,7 +113,7 @@ var Tabzilla = (function (Tabzilla) {
         nav.find('>ul').attr('role', 'presentation');
 
         headlines.each(function (i) {
-            $(this).attr({
+            jq(this).attr({
                 'id': 'tab-' + i,
                 'aria-controls': 'panel-' + i,
                 'tabindex': negativeTabIndex,
@@ -123,7 +125,7 @@ var Tabzilla = (function (Tabzilla) {
             nav.find('h2:first').attr('tabindex', 0);
         }
         nav.find('div').each(function (i) {
-            $(this).attr({
+            jq(this).attr({
                 'id': 'panel-' + i,
                 'aria-labeledby': 'tab-' + i,
                 'role': 'tabpanel'
@@ -138,13 +140,13 @@ var Tabzilla = (function (Tabzilla) {
     var addCompactModeEvents = function () {
         nav.on('click.submenu', 'h2', function (event) {
             event.preventDefault();
-            var div = $(event.target).next('div');
-            $(event.target).attr('aria-expanded', div.is(':hidden'));
+            var div = jq(event.target).next('div');
+            jq(event.target).attr('aria-expanded', div.is(':hidden'));
             div.toggle();
         });
         nav.on('keydown.submenu', function (event) {
             var which = event.which;
-            var target = $(event.target);
+            var target = jq(event.target);
             // enter or space
             if (which === 13 || which === 32) {
                 event.preventDefault();
@@ -154,9 +156,9 @@ var Tabzilla = (function (Tabzilla) {
             if (which === 37 || which === 38) {
                 event.preventDefault();
                 headlines.each(function (i) {
-                    if (i > 0 && $(this).attr('tabindex') === 0) {
-                        $(this).attr('tabindex', negativeTabIndex);
-                        $(headlines[i - 1]).attr('tabindex', 0).focus();
+                    if (i > 0 && jq(this).attr('tabindex') === 0) {
+                        jq(this).attr('tabindex', negativeTabIndex);
+                        jq(headlines[i - 1]).attr('tabindex', 0).focus();
                         return false;
                     }
                 });
@@ -165,9 +167,9 @@ var Tabzilla = (function (Tabzilla) {
             if (which === 40 || which === 39) {
                 event.preventDefault();
                 headlines.each(function (i) {
-                    if (i < (headlines.length - 1) && $(this).attr('tabindex') === 0) {
-                        $(this).attr('tabindex', negativeTabIndex);
-                        $(headlines[i + 1]).attr('tabindex', 0).focus();
+                    if (i < (headlines.length - 1) && jq(this).attr('tabindex') === 0) {
+                        jq(this).attr('tabindex', negativeTabIndex);
+                        jq(headlines[i + 1]).attr('tabindex', 0).focus();
                         return false;
                     }
                 });
@@ -186,7 +188,7 @@ var Tabzilla = (function (Tabzilla) {
     Tabzilla.open = function () {
         opened = true;
         panel.toggleClass('open');
-        var height = $('#tabzilla-contents').height();
+        var height = jq('#tabzilla-contents').height();
         panel.animate({'height': height}, 200, function () {
             panel.css('height', 'auto');
         });
@@ -226,7 +228,7 @@ var Tabzilla = (function (Tabzilla) {
     };
 
     var addEaseInOut = function () {
-        jQuery.extend(jQuery.easing, {
+        jq.extend(jq.easing, {
             'easeInOut':  function (x, t, b, c, d) {
                 if (( t /= d / 2) < 1) {
                     return c / 2 * t * t + b;
@@ -262,10 +264,10 @@ var Tabzilla = (function (Tabzilla) {
         }( document ));
     };
     var init = function () {
-        $('body').prepend(content);
-        tab = $('#tabzilla');
-        panel = $('#tabzilla-panel');
-        nav = $('#tabzilla-nav');
+        jq('body').prepend(content);
+        tab = jq('#tabzilla');
+        panel = jq('#tabzilla-panel');
+        nav = jq('#tabzilla-nav');
         headlines = nav.find('h2');
 
         if (isIE9 && !hasMediaQueries) {
@@ -276,7 +278,7 @@ var Tabzilla = (function (Tabzilla) {
         addEaseInOut();
 
         checkMode();
-        $(window).on('resize', function () {
+        jq(window).on('resize', function () {
             checkMode();
         });
 
@@ -299,29 +301,44 @@ var Tabzilla = (function (Tabzilla) {
         });
     };
     var loadJQuery = function (callback) {
+        var noConflictCallback = function() {
+            jq = $.noConflict(true); // set non-conflicting version local alias
+            callback.call();
+        };
         var script = document.createElement("script");
         if (script.readyState) {
             script.onreadystatechange = function () {
                 if (script.readyState === "loaded" || script.readyState === "complete") {
                     script.onreadystatechange = null;
-                    callback.call();
+                    noConflictCallback.call();
                 }
             };
         } else {
-            script.onload = callback;
+            script.onload = noConflictCallback;
         }
-        script.src = '//mozorg.cdn.mozilla.net/media/js/libs/jquery-1.7.1.min.js';
+        script.src = '//mozorg.cdn.mozilla.net/media/js/libs/jquery-' + minimumJQuery + '.min.js';
         document.getElementsByTagName('head')[0].appendChild(script);
     };
+    var compareVersion = function (a, b) {
+        a = ('' + a).split('.');
+        b = ('' + b).split('.');
+        while (a.length < b.length) { a.push('0'); }
+        while (b.length < a.length) { b.push('0'); }
+        for (var i = 0; i < a.length; i++) {
+            if (a[i] > b[i]) { return 1; }
+            if (a[i] < b[i]) { return -1; }
+        }
+        return 0;
+    };
     (function () {
-        if (typeof window.jQuery !== 'undefined') {
-            jQuery(document).ready(function () {
-                init();
-            });
+        if (   typeof window.jQuery !== 'undefined'
+            && compareVersion(jQuery.fn.jquery, minimumJQuery) !== -1
+        ) {
+            jq = jQuery; // set up local jQuery alias
+            jq(document).ready(init);
         } else {
-            loadJQuery(function () {
-                init();
-            });
+            // no jQuery or older than minimum required jQuery
+            loadJQuery(init);
         }
     })();
     var content =
