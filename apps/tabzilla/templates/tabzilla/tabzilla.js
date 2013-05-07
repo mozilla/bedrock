@@ -79,7 +79,8 @@ var Tabzilla = (function (Tabzilla) {
     var hasConsole = (typeof console == "object");
     var mode = 'wide';
     var negativeTabIndex = '-1';
-    var jq = null; // non-version-conflicting jquery alias for tabzilla
+    var $ = null; // non-version-conflicting jQuery alias for tabzilla
+    var jQuery;
     var checkMode = function () {
         var currentMode = getMode();
         if (mode !== currentMode) {
@@ -113,7 +114,7 @@ var Tabzilla = (function (Tabzilla) {
         nav.find('>ul').attr('role', 'presentation');
 
         headlines.each(function (i) {
-            jq(this).attr({
+            $(this).attr({
                 'id': 'tab-' + i,
                 'aria-controls': 'panel-' + i,
                 'tabindex': negativeTabIndex,
@@ -125,7 +126,7 @@ var Tabzilla = (function (Tabzilla) {
             nav.find('h2:first').attr('tabindex', 0);
         }
         nav.find('div').each(function (i) {
-            jq(this).attr({
+            $(this).attr({
                 'id': 'panel-' + i,
                 'aria-labeledby': 'tab-' + i,
                 'role': 'tabpanel'
@@ -140,13 +141,13 @@ var Tabzilla = (function (Tabzilla) {
     var addCompactModeEvents = function () {
         nav.on('click.submenu', 'h2', function (event) {
             event.preventDefault();
-            var div = jq(event.target).next('div');
-            jq(event.target).attr('aria-expanded', div.is(':hidden'));
+            var div = $(event.target).next('div');
+            $(event.target).attr('aria-expanded', div.is(':hidden'));
             div.toggle();
         });
         nav.on('keydown.submenu', function (event) {
             var which = event.which;
-            var target = jq(event.target);
+            var target = $(event.target);
             // enter or space
             if (which === 13 || which === 32) {
                 event.preventDefault();
@@ -156,9 +157,9 @@ var Tabzilla = (function (Tabzilla) {
             if (which === 37 || which === 38) {
                 event.preventDefault();
                 headlines.each(function (i) {
-                    if (i > 0 && jq(this).attr('tabindex') === 0) {
-                        jq(this).attr('tabindex', negativeTabIndex);
-                        jq(headlines[i - 1]).attr('tabindex', 0).focus();
+                    if (i > 0 && $(this).attr('tabindex') === 0) {
+                        $(this).attr('tabindex', negativeTabIndex);
+                        $(headlines[i - 1]).attr('tabindex', 0).focus();
                         return false;
                     }
                 });
@@ -167,9 +168,9 @@ var Tabzilla = (function (Tabzilla) {
             if (which === 40 || which === 39) {
                 event.preventDefault();
                 headlines.each(function (i) {
-                    if (i < (headlines.length - 1) && jq(this).attr('tabindex') === 0) {
-                        jq(this).attr('tabindex', negativeTabIndex);
-                        jq(headlines[i + 1]).attr('tabindex', 0).focus();
+                    if (i < (headlines.length - 1) && $(this).attr('tabindex') === 0) {
+                        $(this).attr('tabindex', negativeTabIndex);
+                        $(headlines[i + 1]).attr('tabindex', 0).focus();
                         return false;
                     }
                 });
@@ -188,7 +189,7 @@ var Tabzilla = (function (Tabzilla) {
     Tabzilla.open = function () {
         opened = true;
         panel.toggleClass('open');
-        var height = jq('#tabzilla-contents').height();
+        var height = $('#tabzilla-contents').height();
         panel.animate({'height': height}, 200, function () {
             panel.css('height', 'auto');
         });
@@ -228,7 +229,7 @@ var Tabzilla = (function (Tabzilla) {
     };
 
     var addEaseInOut = function () {
-        jq.extend(jq.easing, {
+        $.extend($.easing, {
             'easeInOut':  function (x, t, b, c, d) {
                 if (( t /= d / 2) < 1) {
                     return c / 2 * t * t + b;
@@ -264,10 +265,10 @@ var Tabzilla = (function (Tabzilla) {
         }( document ));
     };
     var init = function () {
-        jq('body').prepend(content);
-        tab = jq('#tabzilla');
-        panel = jq('#tabzilla-panel');
-        nav = jq('#tabzilla-nav');
+        $('body').prepend(content);
+        tab = $('#tabzilla');
+        panel = $('#tabzilla-panel');
+        nav = $('#tabzilla-nav');
         headlines = nav.find('h2');
 
         if (isIE9 && !hasMediaQueries) {
@@ -278,7 +279,7 @@ var Tabzilla = (function (Tabzilla) {
         addEaseInOut();
 
         checkMode();
-        jq(window).on('resize', function () {
+        $(window).on('resize', function () {
             checkMode();
         });
 
@@ -302,7 +303,9 @@ var Tabzilla = (function (Tabzilla) {
     };
     var loadJQuery = function (callback) {
         var noConflictCallback = function() {
-            jq = $.noConflict(true); // set non-conflicting version local alias
+            // set non-conflicting version local aliases
+            jQuery = window.jQuery.noConflict(true);
+            $ = jQuery;
             callback.call();
         };
         var script = document.createElement("script");
@@ -332,10 +335,12 @@ var Tabzilla = (function (Tabzilla) {
     };
     (function () {
         if (   typeof window.jQuery !== 'undefined'
-            && compareVersion(jQuery.fn.jquery, minimumJQuery) !== -1
+            && compareVersion(window.jQuery.fn.jquery, minimumJQuery) !== -1
         ) {
-            jq = jQuery; // set up local jQuery alias
-            jq(document).ready(init);
+            // set up local jQuery aliases
+            jQuery = window.jQuery;
+            $ = jQuery;
+            $(document).ready(init);
         } else {
             // no jQuery or older than minimum required jQuery
             loadJQuery(init);
