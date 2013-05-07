@@ -1,3 +1,5 @@
+# coding: utf-8
+
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -353,12 +355,24 @@ class Testl10nMerge(unittest.TestCase):
         """
         _append_to_lang_file('dude.lang', ['The Dude abides, man.'])
         mock_write = open_mock.return_value.__enter__.return_value.write
-        mock_write.assert_called_once_with('\n\n;The Dude abides, man.\n'
-                                           'The Dude abides, man.\n')
+        mock_write.assert_called_once_with(u'\n\n;The Dude abides, man.\n'
+                                           u'The Dude abides, man.\n')
 
         # make sure writing multiple strings works.
         mock_write.reset_mock()
         msgs = ['The Dude abides, man.', 'Dammit Walter!']
         _append_to_lang_file('dude.lang', msgs)
-        expected = [(('\n\n;{msg}\n{msg}\n'.format(msg=msg),),) for msg in msgs]
+        expected = [((u'\n\n;{msg}\n{msg}\n'.format(msg=msg),),)
+                    for msg in msgs]
         self.assertEqual(expected, mock_write.call_args_list)
+
+    @patch('l10n_utils.gettext.codecs.open')
+    def test_merge_unicode_strings(self, open_mock):
+        """
+        Bug 869538: Exception when merging unicode.
+        """
+        mock_write = open_mock.return_value.__enter__.return_value.write
+        msgs = [u"Désintéressé et fier de l'être"]
+        _append_to_lang_file('dude.lang', msgs)
+        mock_write.assert_called_once_with(
+            u'\n\n;{msg}\n{msg}\n'.format(msg=msgs[0]))

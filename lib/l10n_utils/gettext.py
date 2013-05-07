@@ -264,4 +264,4 @@ def merge_lang_files(langs):
 def _append_to_lang_file(dest, new_msgs):
     with codecs.open(dest, 'a', 'utf-8') as out:
         for msg in new_msgs:
-            out.write('\n\n;{msg}\n{msg}\n'.format(msg=msg))
+            out.write(u'\n\n;{msg}\n{msg}\n'.format(msg=msg))
