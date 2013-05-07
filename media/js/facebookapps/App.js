@@ -23,10 +23,9 @@ DOWNLOADTAB.classes.App = (function (singleton) {
     App.prototype.domInit = function() {
         var self = this;
         var path_parts = self.window.location.pathname.split('/');
-        var referrer = path_parts[path_parts.length - 2];
 
         self.locale = path_parts[1];
-        self.virtualUrl = '/' + self.locale + '/products/download.html?referrer=' + referrer;
+        self.virtualUrl = '/' + self.locale + '/products/download.html?referrer=downloadtab';
 
         self.setupDownloadLinks();
 
@@ -105,8 +104,8 @@ DOWNLOADTAB.classes.App = (function (singleton) {
             // Delay download so window.location doesn't block rendering
             window.setTimeout(function() {
                 downloadUrl = $(event.currentTarget).attr('href');
-                self.trackRedirect(downloadUrl, this.virtualUrl);
-            }, 500);
+                self.trackRedirect(downloadUrl, self.virtualUrl);
+            }, 600);
         });
     };
 
