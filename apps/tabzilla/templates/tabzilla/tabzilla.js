@@ -59,7 +59,7 @@
  *   DEALINGS IN THE SOFTWARE.
  *
  *
- * @copyright 2012 silverorange Inc.
+ * @copyright 2012-2013 silverorange Inc.
  * @license   http://www.mozilla.org/MPL/MPL-1.1.html Mozilla Public License 1.1
  * @author    Michael Gauthier <mike@silverorange.com>
  * @author    Steven Garrity <steven@silverorange.com>
@@ -68,6 +68,7 @@
 
 var Tabzilla = (function (Tabzilla) {
     'use strict';
+    var minimumJQuery = '1.7.1';
     var panel;
     var nav;
     var headlines;
@@ -78,6 +79,8 @@ var Tabzilla = (function (Tabzilla) {
     var hasConsole = (typeof console == "object");
     var mode = 'wide';
     var negativeTabIndex = '-1';
+    var $ = null; // non-version-conflicting jQuery alias for tabzilla
+    var jQuery;
     var checkMode = function () {
         var currentMode = getMode();
         if (mode !== currentMode) {
@@ -226,7 +229,7 @@ var Tabzilla = (function (Tabzilla) {
     };
 
     var addEaseInOut = function () {
-        jQuery.extend(jQuery.easing, {
+        $.extend($.easing, {
             'easeInOut':  function (x, t, b, c, d) {
                 if (( t /= d / 2) < 1) {
                     return c / 2 * t * t + b;
@@ -299,29 +302,48 @@ var Tabzilla = (function (Tabzilla) {
         });
     };
     var loadJQuery = function (callback) {
+        var noConflictCallback = function() {
+            // set non-conflicting version local aliases
+            jQuery = window.jQuery.noConflict(true);
+            $ = jQuery;
+            callback.call();
+        };
         var script = document.createElement("script");
         if (script.readyState) {
             script.onreadystatechange = function () {
                 if (script.readyState === "loaded" || script.readyState === "complete") {
                     script.onreadystatechange = null;
-                    callback.call();
+                    noConflictCallback.call();
                 }
             };
         } else {
-            script.onload = callback;
+            script.onload = noConflictCallback;
         }
-        script.src = '//mozorg.cdn.mozilla.net/media/js/libs/jquery-1.7.1.min.js';
+        script.src = '//mozorg.cdn.mozilla.net/media/js/libs/jquery-' + minimumJQuery + '.min.js';
         document.getElementsByTagName('head')[0].appendChild(script);
     };
+    var compareVersion = function (a, b) {
+        a = ('' + a).split('.');
+        b = ('' + b).split('.');
+        while (a.length < b.length) { a.push('0'); }
+        while (b.length < a.length) { b.push('0'); }
+        for (var i = 0; i < a.length; i++) {
+            if (a[i] > b[i]) { return 1; }
+            if (a[i] < b[i]) { return -1; }
+        }
+        return 0;
+    };
     (function () {
-        if (typeof window.jQuery !== 'undefined') {
-            jQuery(document).ready(function () {
-                init();
-            });
+        if (window.jQuery !== undefined &&
+            compareVersion(window.jQuery.fn.jquery, minimumJQuery) !== -1
+        ) {
+            // set up local jQuery aliases
+            jQuery = window.jQuery;
+            $ = jQuery;
+            $(document).ready(init);
         } else {
-            loadJQuery(function () {
-                init();
-            });
+            // no jQuery or older than minimum required jQuery
+            loadJQuery(init);
         }
     })();
     var content =
