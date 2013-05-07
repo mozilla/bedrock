@@ -334,8 +334,8 @@ var Tabzilla = (function (Tabzilla) {
         return 0;
     };
     (function () {
-        if (   typeof window.jQuery !== 'undefined'
-            && compareVersion(window.jQuery.fn.jquery, minimumJQuery) !== -1
+        if (window.jQuery !== undefined &&
+            compareVersion(window.jQuery.fn.jquery, minimumJQuery) !== -1
         ) {
             // set up local jQuery aliases
             jQuery = window.jQuery;
