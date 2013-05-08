@@ -6,6 +6,7 @@ import uuid
 from basket import BasketException
 from mock import DEFAULT, Mock, patch
 
+from django.http import HttpResponse
 from django.test.client import Client
 
 from funfactory.urlresolvers import reverse
@@ -114,6 +115,7 @@ class TestExistingNewsletterView(TestCase):
                             user=DEFAULT) as basket_patches:
             with patch('l10n_utils.render') as render:
                 basket_patches['user'].return_value = self.user
+                render.return_value = HttpResponse()
                 existing(self.request, token=self.token)
         request, template_name, context = render.call_args[0]
         form = context['form']
@@ -138,6 +140,7 @@ class TestExistingNewsletterView(TestCase):
                             user=DEFAULT) as basket_patches:
             with patch('l10n_utils.render') as render:
                 basket_patches['user'].return_value = self.user
+                render.return_value = HttpResponse()
                 existing(self.request, token=self.token)
         request, template_name, context = render.call_args[0]
         forms = context['formset'].initial_forms
@@ -170,6 +173,7 @@ class TestExistingNewsletterView(TestCase):
                             user=DEFAULT) as basket_patches:
             with patch('l10n_utils.render') as render:
                 basket_patches['user'].return_value = self.user
+                render.return_value = HttpResponse()
                 existing(self.request, token=self.token)
         request, template_name, context = render.call_args[0]
         forms = context['formset'].initial_forms
@@ -194,6 +198,7 @@ class TestExistingNewsletterView(TestCase):
                             unsubscribe=DEFAULT,
                             user=DEFAULT):
             with patch('l10n_utils.render') as render:
+                render.return_value = HttpResponse()
                 existing(self.request)
         request, template_name, context = render.call_args[0]
         self.assertNotIn('form', context)
@@ -207,9 +212,10 @@ class TestExistingNewsletterView(TestCase):
                             subscribe=DEFAULT,
                             unsubscribe=DEFAULT,
                             user=DEFAULT) as basket_patches:
-            with patch('l10n_utils.render'):
+            with patch('l10n_utils.render') as render:
                 with patch('django.contrib.messages.add_message') as add_msg:
                     basket_patches['user'].side_effect = BasketException
+                    render.return_value = HttpResponse()
                     existing(self.request, token='no such user')
         # Shouldn't call basket except for the attempt to find the user
         self.assertEqual(0, basket_patches['update_user'].call_count)

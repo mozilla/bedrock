@@ -4,11 +4,13 @@
 
 from collections import defaultdict
 import json
+from operator import itemgetter
 
 from django.contrib import messages
 from django.forms.formsets import formset_factory
 from django.shortcuts import redirect
 from django.utils.safestring import mark_safe
+from django.views.decorators.cache import never_cache
 
 import basket
 import commonware.log
@@ -45,6 +47,7 @@ def hacks_newsletter(request):
                              'newsletter/hacks.mozilla.org.html')
 
 
+@never_cache
 def existing(request, token=None):
     """Manage subscriptions.  If token is provided, user can manage their
     existing subscriptions, to subscribe, unsubscribe, change email or
@@ -114,9 +117,10 @@ def existing(request, token=None):
                 'english_only': len(langs) == 1 and langs[0].startswith('en')
             })
 
-    # FIXME: for now sort by title, later let basket specify the order to use
-    sortkey = lambda e: e['title']
-    initial.sort(key=sortkey)
+    # Sort by 'order' field if we were given it; otherwise, by title
+    if initial:
+        keyfield = 'order' if 'order' in initial[0] else 'title'
+        initial.sort(key=itemgetter(keyfield))
 
     NewsletterFormSet = formset_factory(NewsletterForm, extra=0,
                                         max_num=len(initial))
