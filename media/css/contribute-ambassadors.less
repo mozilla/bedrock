@@ -16,25 +16,23 @@
     width: 75%;
     margin: @baseLine auto;
   }
+  h2 {
+    padding-bottom: 10px;
+  }
   img {
     display: block;
     margin: @baseLine auto;
   }      
 }
 
-#help-form fieldset {
-  float: none;
-  width: 100%;
-}
-
 #help-form {
+  width: auto;
   h3 {
     color: @headingColor;
   }
   .form-column {
     position: relative;
     .span(6);
-    margin: 0;
   }
   .form-column section {
     margin-bottom: @baseLine;
@@ -50,7 +48,7 @@
   }
   .form-submit {
     .span(2);
-    float: right;
+    margin: 0;
   }
   .errorlist {
     padding-bottom: @baseLine / 2;
@@ -59,7 +57,7 @@
     display:none;
   }
   input[type=text] {
-    width: 90%;
+    width: 85%;
   }
   input[type=submit] {
     width: (@gridColumnWidth * 2) + (@gridGutterWidth);
@@ -70,14 +68,15 @@
   }
   .field-newsletter label,
   .field-privacy label,
+  .field-share label,
   .privacy-check-label {
     position: relative;
-    padding-left: 24px;
+    margin-left: 24px;
     display: block;
     input {
       position: absolute;
       top: 0;
-      left: 0;
+      left: -24px;
     }
   }
 }
@@ -90,6 +89,19 @@
   margin-top: 0;
 }
 
+span.required {
+  padding-left: .1em;
+  color: #c00;
+}
+
+.field-privacy span:after, 
+.privacy-check-label span:after {
+  content: " *";
+  color: #c00;
+}
+
+
+
 /* Tablet Layout: 760px */
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
 
@@ -97,9 +109,8 @@
     .form-column {
       .span(9);
     }
-    .about-you, .school {
-      .span_narrow(6);
-      margin: 0;
+    input[type=text] {
+      width: 60%;
     }
   }
 
