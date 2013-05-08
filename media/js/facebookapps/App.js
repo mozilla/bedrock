@@ -101,10 +101,15 @@ DOWNLOADTAB.classes.App = (function (singleton) {
                 self.theater.showScene(2);
             }
 
-            // Delay download so window.location doesn't block rendering
+            if (self.window._gaq) {
+                self.window._gaq.push(['_trackPageview', self.virtualUrl]);
+            }
+
+            // Delay download so window.location redirect doesn't interrupt
+            // rendering and to give Google Analytics time to track
             window.setTimeout(function() {
                 downloadUrl = $(event.currentTarget).attr('href');
-                self.trackRedirect(downloadUrl, self.virtualUrl);
+                self.redirect(downloadUrl);
             }, 600);
         });
     };
@@ -151,20 +156,6 @@ DOWNLOADTAB.classes.App = (function (singleton) {
         }
 
         return self.absoluteUrl(path);
-    }
-
-    App.prototype.trackRedirect = function(url, virtualUrl) {
-        var self = this;
-        virtualUrl = virtualUrl || url;
-
-        if (!self.window._gat) {
-            self.redirect(url);
-        }
-
-        self.window._gaq.push(['_trackPageview', virtualUrl]);
-        self.window._gaq.push(function() {
-            self.redirect(url);
-        });
     };
 
     App.prototype.redirect = function(url, options) {
