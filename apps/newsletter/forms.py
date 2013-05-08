@@ -110,7 +110,9 @@ class ManageSubscriptionsForm(forms.Form):
 
         self.newsletters = kwargs.pop('newsletters', [])
 
-        initial = kwargs.get('initial', {})
+        # Get initial - work with a copy so we're not modifying the
+        # data that was passed to us
+        initial = kwargs.get('initial', {}).copy()
         if not initial.get('country', None):
             initial['country'] = country
         if not initial.get('lang', None):
