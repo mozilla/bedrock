@@ -210,6 +210,11 @@ table.data-table tbody tr td:first-child {
     }
 }
 /* Firefox OS Privacy Policy */
+#ffos-privacy {
+    #masthead {
+        padding-bottom: 10px;
+    }
+}
 #contact {
     legend {
         margin-bottom: 8px;
@@ -236,8 +241,19 @@ table.data-table tbody tr td:first-child {
         font-size: 1.5rem;
     }
     h3 {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         line-height: 1.5rem;
+    }
+    h5 {
+        line-height: 1.2rem;
+    }
+    p {
+      margin-left: 15px;
+      font-size: 1.1rem;
+      font-family: 'Open Sans Light';
+    }
+    ul {
+        font-family: 'Open Sans Light';
     }
 }
 .firefoxos-header {
@@ -246,6 +262,13 @@ table.data-table tbody tr td:first-child {
     padding-left: 85px;
     width: 185px;
     font-size: 42px;
+}
+time {
+    display: block;
+    color: #484848;
+    margin: 10px 0 0 6px;
+    font-size: .8rem;
+    font-style: italic;
 }
 .highlight {
     background-color: #f9fafb;
@@ -300,18 +323,28 @@ table.data-table tbody tr td:first-child {
 }
 .thingstoknow {
     h2 {
-        margin: 15px auto;
-        width: 250px;
-        font-size: 1.5rem;
+        margin: 0 0 10px 0;
+        width: 175px;
+        font-size: 1.7rem;
+        line-height: 1.9rem;
     }
     ul {
         display: none;
-        margin: 20px 0 0 0;
-        font-family: 'Open Sans Light';
+        margin: 20px 0 0 -10px;
         line-height: 1.4rem;
     }
     li {
-        margin: 10px 0 0 10px;
+        margin-bottom: 1rem;
+        list-style: none;
+    }
+    li:before {
+        padding-right: 15px;
+        content: '++';
+    }
+    hr {
+        margin: 10px auto;
+        border-bottom: 1px solid #ccc;
+        width: 80%;
     }
     .intro {
         margin-bottom: 15px;
@@ -325,4 +358,26 @@ table.data-table tbody tr td:first-child {
 .contact {
     margin-left: 15px;
     line-height: 1.5rem;
+    p {
+        margin: 0 0 10px 10px;
+        font-size: .9rem;
+        line-height: 1.7rem;
+    }
+    ul {
+        font-size: .9rem;
+    }
+}
+.firefoxos_footer {
+    p {
+        margin: 0;
+        font-size: .8rem;
+    }
+    .footer-nav {
+        font-size: 1rem;
+        li {
+            font-family: 'Open Sans Light';
+            line-height: 1.6rem;
+        }
+    }
+
 }
