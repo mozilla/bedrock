@@ -253,7 +253,6 @@ REASONS = [
 ]
 
 
-@never_cache
 def updated(request):
     """View that users come to after submitting on the `existing`
     or `updated` pages.
