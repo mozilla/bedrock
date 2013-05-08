@@ -273,6 +273,18 @@ input.focus {
     .transition(all linear .1s);
 }
 
+textarea:-moz-ui-invalid:not(output),
+input[type=email]:-moz-ui-invalid:not(output),
+input[type=password]:-moz-ui-invalid:not(output),
+input[type=search]:-moz-ui-invalid:not(output),
+input[type=text]:-moz-ui-invalid:not(output),
+input.invalid {
+    border-color: #a91300;
+    @shadow: 0 0 0 2px rgba(255,80,80,0.4);
+    .box-shadow(@shadow);
+    .transition(all linear .1s);
+}
+
 .form-field {
     margin-bottom: @baseLine / 3;
 }
