@@ -76,7 +76,6 @@ var Tabzilla = (function (Tabzilla) {
     var opened = false;
     var hasMediaQueries = ('matchMedia' in window);
     var isIE9 = (document.documentMode === 9);
-    var hasConsole = (typeof console == "object");
     var mode = 'wide';
     var negativeTabIndex = '-1';
     var $ = null; // non-version-conflicting jQuery alias for tabzilla
@@ -212,20 +211,6 @@ var Tabzilla = (function (Tabzilla) {
             .addClass('tabzilla-closed')
             .removeClass('tabzilla-opened');
         return tab;
-    };
-
-    // Old public functions that needs to work for a while.
-    Tabzilla.opened = function () {
-        if (hasConsole) {
-            console.warn("This call is soon going to be deprecated, please replace it with Tabzilla.open() instead.");
-        }
-        return Tabzilla.open();
-    };
-    Tabzilla.closed = function () {
-        if (hasConsole) {
-            console.warn("This call is soon going to be deprecated, please replace it with Tabzilla.close() instead.");
-        }
-        return Tabzilla.close();
     };
 
     var addEaseInOut = function () {
