@@ -20,7 +20,7 @@ CREATE A THEME
 ================
 
 Background Themes let you personalize the look of your Firefox. To create your own, start here:
-http://www.getpersonas.com/en-US/demo_create
+https://addons.mozilla.org/firefox/themes/
 
 -------------------------------------------------------------------------------------------------------------------------------------------------
 
