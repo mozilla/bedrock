@@ -1,0 +1,129 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "template-resp.less";
+
+#firstrun-header {
+    margin: 0 0 -15px 0;
+    padding: 20px 0 40px 150px;
+    min-height: 140px;
+    background: url(/media/img/firefox/firstrun/logo-nightly.png) 0 0 no-repeat;
+    position: relative;
+    z-index: 10;
+}
+
+#main-content {
+    text-align: left;
+    video {
+      max-width: 100%;
+      height: auto;
+    }
+    #video-player {
+      margin: 0 auto 1.5em;
+    }
+}
+
+.main-column {
+    .span(8);
+}
+
+.sidebar {
+    .span(3);
+    .offset(1);
+}
+
+#colophon {
+    width: 100%;
+    text-align: center;
+    nav {
+        ul {
+            margin-bottom: @baseLine / 2;
+        }
+        li {
+            display: inline;
+            a,
+            a:link,
+            a:visited {
+            .inline-block;
+            .open-sans-light;
+            padding: 2px 12px;
+            border-left: 1px dotted @borderColor;
+            color: @textColorPrimary;
+            }
+            &:first-child a {
+            border: 0;
+            }
+        }
+        .primary {
+            font-family: @baseFontFamily;
+            font-size: @baseFontSize;
+            a:after {
+            content: " »";
+            color: #2983c8;
+            }
+        }
+        .secondary {
+            font-size: 11px;
+            a,
+            a:link,
+            a:visited {
+            color: @textColorTertiary;
+            }
+        }
+    }
+}
+
+/* Tablet Layout: 760px */
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+    .main-column {
+        .span_narrow(8);
+    }
+    .sidebar {
+        .span_narrow(3);
+        .offset_narrow(1);
+    }
+}
+
+/* Mobile Layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+    #firstrun-header {
+        
+    }
+
+    .main-column {
+        width: auto;
+        float: none;
+        margin: 0 auto 1em;
+    }
+    .sidebar {
+        width: auto;
+        float: none;
+        margin: 0 auto 1em;
+    }
+    #colophon {
+        width: auto;
+        text-align: left;
+        nav {
+            width: @widthMobile;
+            margin: 0 auto;
+            li {
+                display: block;
+                margin-left: 0;
+                a,
+                a:link,
+                a:visited {
+                    border-left: 0;
+                    padding-left: 0;
+                }
+            }
+        }
+    }
+}
+
+/* Wide Mobile Layout: 480px */
+@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+    #colophon nav {
+        width: @widthMobileLandscape;
+    }
+}
