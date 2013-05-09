@@ -258,7 +258,8 @@ class ContributeUniversityAmbassadorForm(forms.Form):
         super(ContributeUniversityAmbassadorForm, self).clean(*args, **kwargs)
         if (self.cleaned_data.get('current_status', '') == 'student'
             and not self.cleaned_data.get('expected_graduation_year', '')):
-            raise ValidationError(_('Select graduation year'))
+            self._errors['expected_graduation_year'] = (
+                self.error_class([_('Select graduation year')]))
         return self.cleaned_data
 
     def clean_expected_graduation_year(self):
