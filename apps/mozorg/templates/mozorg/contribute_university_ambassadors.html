@@ -61,12 +61,17 @@
             <div class="field">
               {{ field_with_attrs(form.current_status, required='required') }}
               <span class="required">*</span>
-              <div class="field {% if not form.expected_graduation_year.value() and not form.non_field_errors() %} hide {% endif %}"
+              <div class="field {% if not form.expected_graduation_year.value() and not form.expected_graduation_year.errors %} hide {% endif %}"
                    id="expected_graduation_year">
-                {{ field_with_attrs(form.expected_graduation_year)|safe }}
+                {% if not form.expected_graduation_year.value() and not form.expected_graduation_year.errors %}
+                  {{ form.expected_graduation_year }}
+                {% else %}
+                  {{ field_with_attrs(form.expected_graduation_year, required='required') }}
+                {% endif %}
+                <span class="required">*</span>
               </div>
               {{ form.current_status.errors }}
-              {{ form.non_field_errors() }}
+              {{ form.expected_graduation_year.errors }}
             </div>
             <div class="field">
               {{ form.area }}
@@ -86,7 +91,7 @@
           <div class="field field-privacy">
             <label for="id_age_confirmation">
               {{ field_with_attrs(form.age_confirmation, required='required') }}
-              {{ field_with_attrs(form.age_confirmation) }} 
+              {{ field_with_attrs(form.age_confirmation) }}
               <span class="title">{{ form.age_confirmation.label }}</span>
             </label>
             {{ form.age_confirmation.errors }}

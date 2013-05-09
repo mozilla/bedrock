@@ -66,7 +66,7 @@ class TestUniversityAmbassadors(TestCase):
         with self.activate('en-US'):
             c.post(reverse('mozorg.contribute_university_ambassadors'), data)
         mock_subscribe.assert_called_with(
-            data['email'], 'ambassadors,about-mozilla', format=u'H',
+            data['email'], ['ambassadors', 'about-mozilla'], format=u'H',
             country=u'gr', source_url=u'',
             welcome_message='Student_Ambassadors_Welcome')
         mock_request.assert_called_with('post',

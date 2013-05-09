@@ -11,7 +11,7 @@ from random import randrange
 
 from django import forms
 from django.conf import settings
-from django.forms import ValidationError, widgets
+from django.forms import widgets
 from django.utils.safestring import mark_safe
 
 import basket
@@ -257,8 +257,9 @@ class ContributeUniversityAmbassadorForm(forms.Form):
     def clean(self, *args, **kwargs):
         super(ContributeUniversityAmbassadorForm, self).clean(*args, **kwargs)
         if (self.cleaned_data.get('current_status', '') == 'student'
-            and not self.cleaned_data.get('expected_graduation_year', '')):
-            raise ValidationError(_('Select graduation year'))
+                and not self.cleaned_data.get('expected_graduation_year', '')):
+            self._errors['expected_graduation_year'] = (
+                self.error_class([_('This field is required.')]))
         return self.cleaned_data
 
     def clean_expected_graduation_year(self):
@@ -279,7 +280,7 @@ class ContributeUniversityAmbassadorForm(forms.Form):
                            'nl_firefox_flicks', 'nl_about_mozilla']:
             if self.cleaned_data.get(newsletter, False):
                 newsletters.append(newsletter[3:].replace('_', '-'))
-        return ','.join(newsletters)
+        return newsletters
 
     def save(self):
         data = self.cleaned_data
