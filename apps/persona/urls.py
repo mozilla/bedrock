@@ -10,5 +10,4 @@ urlpatterns = patterns('',
     page('about', 'persona/about.html'),
     page('privacy-policy', 'persona/privacy-policy.html'),
     page('terms-of-service', 'persona/terms-of-service.html'),
-    page('developer-faq', 'persona/developer-faq.html')
 )
