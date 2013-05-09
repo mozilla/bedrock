@@ -7,10 +7,12 @@ $(document).ready(function(){
     function toggle_field(field, cmp, value) {
         if (cmp.value === value) {
             field.parent().slideDown();
+            field.attr('required', 'required');
         }
         else {
             field.parent().slideUp();
             field.val('');
+            field.removeAttr('required');
         }
     }
     $current_status_obj.on('change', function() {
