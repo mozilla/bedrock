@@ -12,6 +12,14 @@
   {{ super() }}
 {% endblock %}
 
+{% block string_data %}
+  {# L10n: Congratulates the user on having an up-to-date version of Firefox. #}
+  data-head-uptodate="{{ _('Congratulations!') }}"
+  data-sub-uptodate="{{ _('Your Firefox is up to date.') }}"
+  data-head-outofdate="{{ _('Your Firefox is out of date.') }}"
+  data-sub-outofdate="{{ _('Get the newest version <a href="{url}">here</a>.')|f(url=php_url('/firefox/'))|escape }}"
+{% endblock %}
+
 {% block content %}
 <div id="main-feature">
   <h1>Keep Your Firefox Happy!</h1>
@@ -114,24 +122,5 @@
 
 {% block js %}
   {{ js('expanders') }}
-<script>
-$(document).ready(function() {
-    var latestVersion = parseInt('{{ latest_version }}'.split('.')[0], 10);
-    var isFirefox = (/\sFirefox/.test(window.navigator.userAgent));
-    var headline = $('#main-feature > h1');
-    var subheadline = $('#main-feature > h3');
-
-    if(isFirefox) {
-        if(latestVersion <= getFirefoxMasterVersion()) {
-            headline.html('Congratulations!');
-            subheadline.html('Your Firefox is up to date.');
-        }
-        else {
-            headline.html('Your Firefox is out of date.');
-            subheadline.html('Get the newest version <a href="/firefox">here</a>.');
-        }
-    }
-});
-</script>
-
+  {{ js('firefox_update')}}
 {% endblock %}

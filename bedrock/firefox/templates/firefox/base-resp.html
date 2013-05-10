@@ -20,6 +20,8 @@
 <meta name="og:image" content="{{ media('img/firefox/firefox-100.jpg') }}">
 {% endblock %}
 
+{% block body_attrs %}{{ super() }} data-latest-firefox="{{ latest_firefox_version }}" data-esr-versions="{{ esr_firefox_versions }}"{% endblock %}
+
 {% block site_header_nav %}
 <nav id="nav-main" role="navigation">
   <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
