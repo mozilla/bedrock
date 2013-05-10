@@ -287,8 +287,15 @@
         var $visible = $('.screen:visible:first');
 
         if ($visible.attr('id') !== ('screen-' + to_slide.attr('id'))) {
-            $('#screen-' + to_slide.attr('id')).fadeIn('fast', function() {
-                $visible.hide();
+            // make sure from/to screens are not currently animating
+            $visible.stop();
+
+            var $screen = $('#screen-' + to_slide.attr('id'));
+            
+            $screen.stop().fadeIn('fast', function() {
+                // make sure from/to screens are properly shown/hidden
+                $screen.css('opacity', 1).show();
+                $visible.css('opacity', 0).hide();
             });
         }
     };
@@ -451,10 +458,11 @@
         to: {
             css: { top: (parallax_offset*-1) },
             onStart: function() {
+                // make sure phone is below giantfox tail
                 $phone.css('z-index', 110);
             },
             onComplete: function() {
-                _move_phone(1, $os);
+                _move_phone(1, $os, 110);
             }
         }
     };
@@ -467,10 +475,13 @@
         to: {
             css: { top: (parallax_offset*-2) },
             onStart: function() {
+                // force z index immediately to avoid sliding behind
+                // the marketplace slide
                 $phone.css('z-index', 120);
             },
             onComplete: function() {
-                _move_phone(2, $marketplace);
+                // make sure z-index is updated
+                _move_phone(2, $marketplace, 120);
             },
             onReverseComplete: function() {
                 _move_phone(1, $os, 110);
