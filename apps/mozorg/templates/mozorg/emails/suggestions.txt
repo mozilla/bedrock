@@ -6,6 +6,6 @@ http://www.mozilla.com/firefox/channel/
 
 After trying that out, you can share your thoughts at
 
-http://input.mozilla.com/release/feedback
+https://input.mozilla.com/feedback
 
 Jay
