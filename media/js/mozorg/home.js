@@ -428,7 +428,7 @@ $(document).ready(function() {
 
     function createCloseButton() {
         var $close = $(
-            '<button class="video-close"><span class="visuallyhidden">Close Video </span><span aria-hidden="true">×</span></button>'
+            '<button class="video-close"><span class="hidden">Close Video </span><span aria-hidden="true">×</span></button>'
         );
 
         $close.attr('title', $('#strings').data('close'))
