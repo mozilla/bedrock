@@ -13,38 +13,13 @@
 }
 
 /* Firefox privacy policy */
-body#trademarks {
-  background-position: center -120px;
-}
-
-#trademarks {
-  #wrapper {
-    background-position: center -120px;
-  }
-  #main-feature {
-    height: 100px;
-    h2 {
-      margin: 0 0 0 35px;
-    }
-  }
-}
-
-#main-feature p {
-  font-size: 137%;
-  margin-right: 400px;
-}
-
 sup.mark {
   font-size: 50%;
 }
 
 table#logos {
-  margin-right: 4em;
-  display: block;
-  width: 450px;
-
   img {
-    max-width: 100px;
+    max-width: 140px;
   }
   td#communities {
     padding: 15px 0;
@@ -66,7 +41,13 @@ table#marks th,
 table#logos td,
 table#logos th {
   padding: 15px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid @borderColor;
+}
+
+table#marks th,
+table#logos th {
+  text-align: left;
+  font-weight: normal;
 }
 
 #other {

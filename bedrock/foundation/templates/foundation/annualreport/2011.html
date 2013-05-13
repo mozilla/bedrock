@@ -51,7 +51,7 @@
       <li id="nav-action"><a href="#action">{{ _('Action') }}</a></li>
       <li id="nav-community"><a href="#community">{{ _('Community') }}</a></li>
       <li id="nav-sustainability"><a href="#sustainability">{{ _('Sustainability') }}</a></li>
-      {# L10N: 'FAQ' is an acronym for 'Frequently Asked Questions'. #}
+      {# L10n: 'FAQ' is an acronym for 'Frequently Asked Questions'. #}
       <li id="nav-faq"><a href="{{ url('foundation.annualreport.2011faq') }}"><abbr title="{{ _('Frequently Asked Questions') }}">{{ _('FAQ') }}</abbr></a></li>
     </ul>
   </nav>
@@ -164,7 +164,7 @@
 
           <div class="overlay">
             <p>
-            {% trans fxos_url='https://www.mozilla.org/firefoxos/' %}
+            {% trans fxos_url='//www.mozilla.org/firefoxos/' %}
               Just like we did on the desktop, Mozilla is setting out to
               ensure that the mobile Web is full of freedom, choice and
               opportunity and that it has the ability for users to create
@@ -188,7 +188,7 @@
             </p>
 
             <p>
-            {% trans telefonica_url='http://www.telefonica.com' %}
+            {% trans telefonica_url='//www.telefonica.com' %}
               Firefox OS devices will launch in early 2013 through <a href="{{ telefonica_url }}" rel="external">Telefónica</a>,
               establishing HTML5 as a viable platform for the mobile industry.
               The Web as the platform will free developers to create groundbreaking
@@ -206,7 +206,7 @@
         <img class="left" src="{{ media('img/foundation/annualreport/2011/fxandroid-phone.png') }}" alt="">
 
         <div class="right overlay-wrap">
-          {# L10N: "Fast. Smart. Safe." is a slogan for Firefox for Android. It appears here as three separate strings for styling and layout purposes. #}
+          {# L10n: "Fast. Smart. Safe." is a slogan for Firefox for Android. It appears here as three separate strings for styling and layout purposes. #}
           <h4>
             {{ _('Fast.') }}<br>
             {{ _('Smart.') }}<br>
@@ -215,7 +215,7 @@
 
           <div class="overlay">
             <p>
-            {% trans mobile_url='http://www.mozilla.org/mobile/' %}
+            {% trans mobile_url=url('mozorg.mobile') %}
               In June 2012 we released an update to <a href="{{ mobile_url }}" rel="external">Firefox for Android</a>
               that we believe is the best browser for Android available. We completely
               rebuilt and redesigned the product in native UI, resulting in a
@@ -299,7 +299,7 @@
 
           <div class="overlay">
             <p>
-            {% trans webmaker_url='https://www.mozilla.org/webmaker/' %}
+            {% trans webmaker_url='//webmaker.org' %}
               The unique power of the Web means that anyone can make and build
               with it. Our new educational offering, <a href="{{ webmaker_url }}" rel="external">Mozilla Webmaker</a>,
               will place that power in the hands of millions of new creators everywhere.
@@ -308,8 +308,8 @@
 
             <p>
             {% trans
-                popcorn_url='http://mozillapopcorn.org/',
-                thimble_url='https://thimble.webmaker.org/' %}
+                popcorn_url='//mozillapopcorn.org/',
+                thimble_url='//thimble.webmaker.org/' %}
               Webmaker tools, projects and events help educators, youth, media-makers
               and everyday consumers around the world move from using the Web to
               making the Web. In 2013, Webmaker will mobilize a global community of
@@ -348,12 +348,12 @@
           <div class="overlay">
             <p>
             {% trans
-                cofound_url='http://brendaneich.com/2004/06/the-non-world-non-wide-non-web/',
-                whatwg_url='http://www.whatwg.org/',
-                html5_url='http://dev.w3.org/html5/spec/Overview.html',
-                javascript_url='http://ecmascript.org/',
-                dbaron_url='http://dbaron.org/',
-                ocallahan_url='http://robert.ocallahan.org/' %}
+                cofound_url='//brendaneich.com/2004/06/the-non-world-non-wide-non-web/',
+                whatwg_url='//www.whatwg.org/',
+                html5_url='//dev.w3.org/html5/spec/Overview.html',
+                javascript_url='//ecmascript.org/',
+                dbaron_url='//dbaron.org/',
+                ocallahan_url='//robert.ocallahan.org/' %}
               Mozilla has always contributed to Web standards, going back
               as far as the start of the project, and we will continue to do
               that moving forward. We <a href="{{ cofound_url }}" rel="external" hreflang="en-US">co-founded</a>
@@ -430,7 +430,7 @@
 
             <p>
             {% trans
-                dnt_url='https://www.mozilla.org/dnt/',
+                dnt_url=url('firefox.dnt'),
                 dntfxos_url='https://blog.mozilla.org/privacy/2012/02/28/do-not-track-goes-mobile-mozilla-demos-preference-at-mobile-world-congress/' %}
               In an effort to give users more control over their Web experiences,
               we developed the <a href="{{ dnt_url }}" rel="external">Do Not Track</a> feature
@@ -459,7 +459,7 @@
     <div class="row">
 
       <section class="left act-sopa has-overlay">
-        {# L10N: These acronyms don't require translation, but the structure of the heading may change for some locales. #}
+        {# L10n: These acronyms don't require translation, but the structure of the heading may change for some locales. #}
         <h3>{{ _('SOPA / PIPA & ACTA') }}</h3>
 
         <div class="overlay-wrap">
@@ -543,7 +543,7 @@
           <img src="{{ media('img/foundation/annualreport/2011/act-collusion.jpg') }}" alt="">
           <div class="overlay">
             <p>
-            {% trans collusion_url='https://www.mozilla.org/collusion/' %}
+            {% trans collusion_url=url('collusion.collusion') %}
               <a href="{{ collusion_url }}" rel="external" hreflang="en-US">Mozilla Collusion</a>
               gives consumers a powerful tool to protect their privacy, arming
               them with transparency, facts and the power to make their own
@@ -590,7 +590,7 @@
           evangelizing Mozilla products and much more.
         {% endtrans %}
       {% if request.locale.startswith('en') %}
-        {% trans contribute_url='https://www.mozilla.org/contribute' %}
+        {% trans contribute_url=url('mozorg.contribute') %}
           Learn more about how you can <a href="{{ contribute_url }}" rel="external" hreflang="en-US">get involved with Mozilla</a>.
         {% endtrans %}
       {% endif %}
@@ -675,10 +675,10 @@
           <div class="overlay">
             <p>
             {% trans
-                tunisia_url='http://mozilla-tunisia.org/',
-                kenya_url='http://www.mozilla-kenya.org/',
-                philippines_url='http://www.mozillaphilippines.org/',
-                myanmar_url='http://mozillamyanmar.org/' %}
+                tunisia_url='//mozilla-tunisia.org/',
+                kenya_url='//www.mozilla-kenya.org/',
+                philippines_url='//www.mozillaphilippines.org/',
+                myanmar_url='//mozillamyanmar.org/' %}
               Some of the fastest growing and most dynamic communities are some
               of our youngest communities. They can be found in the Middle East,
               Africa and South East Asia and many of their members have been invited
@@ -921,16 +921,16 @@
 
   </article>
 
-{# L10N: This is a button inciting the user to read the following section of content in an overlay. #}
+{# L10n: This is a button inciting the user to read the following section of content in an overlay. #}
 <button type="button" data-aria-show="{{ _('Click to show information on this topic') }}" data-aria-hide="{{ _('Click to hide information on this topic') }}" class="read">{{ _('Read') }}</button>
 
-{# L10N: This is a label for a button that closes an overlay; this is "done" meaning "completed" #}
+{# L10n: This is a label for a button that closes an overlay; this is "done" meaning "completed" #}
 <button type="button" id="done">{{ _('Done') }}</button>
 
-{# L10N: This is a label for a button that controls a slider control, moving backwards to reveal the previous item. #}
+{# L10n: This is a label for a button that controls a slider control, moving backwards to reveal the previous item. #}
 <button type="button" class="btn-prev">{{ _('Previous') }}</button>
 
-{# L10N: This is a label for a button that controls a slider control, advancing to reveal the next item. #}
+{# L10n: This is a label for a button that controls a slider control, advancing to reveal the next item. #}
 <button type="button" class="btn-next">{{ _('Next') }}</button>
 
 {% endblock %}

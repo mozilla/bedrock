@@ -108,7 +108,7 @@ MINIFY_BUNDLES = {
             'css/firefoxos/firefoxos.less',
         ),
         'foundation': (
-            'css/foundation.less',
+            'css/foundation/foundation.less',
         ),
         'grants': (
             'css/grants/grants.less',

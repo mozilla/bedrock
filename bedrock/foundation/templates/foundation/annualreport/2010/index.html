@@ -1,0 +1,47 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "foundation/annualreport/2010/base.html" %}
+
+{% block page_title %}{{ _('The State of Mozilla Annual Report, 2010') }}{% endblock %}
+
+{% block article_title %}
+  <h1 class="page-title">{{ _('The State of Mozilla Annual Report, 2010') }}</h1>
+{% endblock %}
+
+{% block article %}
+  <figure class="figure">
+    <div class="mozilla-video-control">
+      <video width="640" height="360" controls="controls" poster="{{ media('/img/foundation/annualreport/2010/poster-manifesto.jpg') }}">
+        <source src="//videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.webm" type='video/webm; codecs="vp8, vorbis"' />
+        <source src="//videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+        <source src="//videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.theora.ogv" type='video/ogg; codecs="theora, vorbis"' />
+      </video>
+    </div>
+  </figure>
+
+  <div id="video-description">{# FIXME: put this to the right of the video like it is on the old page? #}
+    <h3>{{ _('A Different Kind of Browser') }} <span class="time">1:45</span></h3>
+    <p>{{ _('What’s Mozilla all about? Why are we doing this? We’re glad you asked.') }}</p>
+    <p class="download">{{ _('Download this video:') }}</p>
+    <ul class="download">
+      <li><a href="//videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.webm">{{ _('WebM format') }}</a></li>
+      <li><a href="//videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.theora.ogv">{{ _('Ogg Theora format') }}</a></li>
+      <li><a href="//videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.mp4">{{ _('MPEG-4 format') }}</a></li>
+      <li><a href="//www.universalsubtitles.org/en/videos/NNxEqfuQSaPN/">{{ _('Other languages & sharing') }}</a></li>
+    </ul>
+  </div>
+
+  <div id="content">
+    <h2>{{ _('Welcome') }}</h2>
+    <p>{{ _('We are pleased to share with you this year’s annual State of Mozilla report. It details our opportunities and challenges, expanding set of initiatives, community and 2010 financials.') }}</p>
+    <p>{{ _('People are living more of their lives online and Mozilla’s role is expanding to keep these new onramps to the Web open, transparent, and interoperable. We believe that all people on this planet should benefit from the power of the Web and have control over their online experiences.') }}</p>
+    <p>{{ _('We invite you to learn more about the Mozilla Project and join us in our ongoing efforts to build a better Internet.') }}</p>
+  </div>
+
+  <ul class="nav-paging bottom">
+    <li class="next"><a href="{{ url('foundation.annualreport.2010.opportunities') }}">{{ _('Opportunities') }}</a></li>
+  </ul>
+
+{% endblock %}

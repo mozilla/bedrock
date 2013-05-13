@@ -1,0 +1,106 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends 'foundation/base-resp.html' %}
+
+{% block page_title %}{{ _('Mozilla 2007 Financial FAQ') }}{% endblock %}
+
+{% block article_title %}
+  <h1 class="page-title">{{ _('Mozilla 2007 Financial FAQ') }}</h1>
+{% endblock %}
+
+{% block article %}
+  <p>
+    {% trans
+      form990='http://static.mozilla.com/foundation/documents/mf-2007-irs-form-990.pdf',
+      statement='http://static.mozilla.com/foundation/documents/mf-2007-audited-financial-statement.pdf'
+    %}
+      This FAQ supplements the <a href="{{ form990 }}">Mozilla
+      Foundation 2007 Form 990</a> and
+      the <a href="{{ statement }}">consolidated
+      2007 financial statement for the Mozilla Foundation and the Mozilla
+      Corporation</a>.
+    {% endtrans %}
+  </p>
+
+  <dl class="faq">
+    <dt>{% trans %}What was Mozilla’s total revenue for 2007?{% endtrans %}</dt>
+    <dd>
+    <p>{% trans %}Mozilla’s revenues (including both Mozilla Foundation and
+    Mozilla Corporation) for 2007 were $75 million, up approximately 12%
+    from 2006 revenue of $67 million.{% endtrans %}</p>
+    </dd>
+
+    <dt>{% trans %}How does Mozilla generate revenue?{% endtrans %}</dt>
+    <dd>
+    <p>{% trans %}The vast majority of this revenue is associated with the search
+    functionality in Mozilla Firefox, and the majority of that is from
+    Google.  Mozilla takes in additional revenue from online affiliate
+    programs, the Mozilla Store, and interest and other income on our
+    invested assets.{% endtrans %}</p>
+    </dd>
+
+    <dt>{% trans %}Mozilla doesn’t have a stock ticker to follow.  How do you
+    measure success?{% endtrans %}</dt>
+    <dd>
+    <p>{% trans %}We measure success by examining factors that reflect our growth
+    such as community code contributions, localizations, market share, the
+    number of nightly testers, and total users.  We are committed to
+    promoting openness and participation on the Internet and demonstrating
+    that the Open Web is the most fundamental platform for ongoing
+    development.{% endtrans %}</p>
+    </dd>
+
+    <dt>{% trans %}Why is the growth in your claimed user base is not reflected in
+    revenue growth?{% endtrans %}</dt>
+    <dd>
+    <p>{% trans %}This is because search revenue increased at a lesser rate than
+    Firefox usage growth as the rate of payment declines with
+    volume.{% endtrans %}</p>
+    </dd>
+
+    <dt>{% trans %}Is Mozilla poised for continued growth through 2008 and
+    beyond?{% endtrans %}</dt>
+    <dd>
+    <p>{% trans %}Our financial objectives are for sustainability and our basic
+    structure &ndash; public benefit, non-profit &ndash; means that we can
+    continue with relative stability.  We’ve been building in the
+    ability to live with greatly reduced revenue for years. Mozilla has a
+    significant amount of retained earnings.{% endtrans %}</p>
+    </dd>
+
+    <dt>{% trans %}What is the status of your contract with Google?{% endtrans %}</dt>
+    <dd>
+    <p>{% trans %}The agreement between Google and the Mozilla Corporation that
+    accounts for the bulk of the revenue has been renewed for an
+    additional three years, and is now slated to expire at the end of
+    November of 2011.{% endtrans %}</p>
+    </dd>
+
+    <dt>{% trans %}Your partnership with Google accounts for over 88% of your 2007
+    revenue. How does this affect your independence?{% endtrans %}</dt>
+    <dd>
+    <p>{% trans %}We develop our product and technical direction as part of an open
+    process unrelated to the search relationship with Google. Mozilla
+    teams do collaborate with Google teams on parts of the product that
+    offer Google services (i.e., the Firefox Start Page) and the services
+    they provide, like anti-phishing. We do not vet our initiatives with
+    Google.{% endtrans %}</p>
+    </dd>
+
+    <dt>{% trans %}Are you exploring opportunities to diversify your revenue
+    stream?{% endtrans %}</dt>
+    <dd>
+    <p>{% trans %}Mozilla has always focused on building open products that people
+    love, in ways that are participatory, and then developing revenue to
+    support that work. For long-term financial viability, we will of
+    course look carefully at ways to diversify our revenue mix over
+    time. It’s an important concept, although our current contract
+    with Google gives us a firm base for the next three years. We’ll
+    continue to build great products that help people enjoy the richness
+    of the Internet, and we’re confident that this allows us to
+    identify appropriate sources of revenue diversification.{% endtrans %}</p>
+    </dd>
+  </dl>
+{% endblock %}
