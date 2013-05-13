@@ -76,7 +76,7 @@ var Tabzilla = (function (Tabzilla) {
     var opened = false;
     var hasMediaQueries = ('matchMedia' in window);
     var isIE9 = (document.documentMode === 9);
-    var hasConsole = (typeof console == "object");
+    var hasConsole = (typeof console === 'object');
     var mode = 'wide';
     var negativeTabIndex = '-1';
     var $ = null; // non-version-conflicting jQuery alias for tabzilla
@@ -308,10 +308,10 @@ var Tabzilla = (function (Tabzilla) {
             $ = jQuery;
             callback.call();
         };
-        var script = document.createElement("script");
+        var script = document.createElement('script');
         if (script.readyState) {
             script.onreadystatechange = function () {
-                if (script.readyState === "loaded" || script.readyState === "complete") {
+                if (script.readyState === 'loaded' || script.readyState === 'complete') {
                     script.onreadystatechange = null;
                     noConflictCallback.call();
                 }
@@ -322,21 +322,25 @@ var Tabzilla = (function (Tabzilla) {
         script.src = '//mozorg.cdn.mozilla.net/media/js/libs/jquery-' + minimumJQuery + '.min.js';
         document.getElementsByTagName('head')[0].appendChild(script);
     };
-    var compareVersion = function (a, b) {
-        a = ('' + a).split('.');
-        b = ('' + b).split('.');
-        while (a.length < b.length) { a.push('0'); }
-        while (b.length < a.length) { b.push('0'); }
-        for (var i = 0; i < a.length; i++) {
-            if (a[i] > b[i]) { return 1; }
-            if (a[i] < b[i]) { return -1; }
+    var hasRequiredJQVersion = function () {
+        if (window.jQuery.fn.jquery === minimumJQuery) {
+            return true;
         }
-        return 0;
+        var jq = window.jQuery.fn.jquery.split('.');
+        var minimum = minimumJQuery.split('.');
+        var maxLength = Math.max(jq.length, minimum.length);
+        for (var i = 0; i < maxLength; i++) {
+            jq[i] = parseInt(jq[i], 10) || 0;
+            minimum[i] = parseInt(minimum[i], 10) || 0;
+            if (jq[i] === minimum[i]) {
+                continue;
+            }
+            return jq[i] > minimum[i];
+        }
+        return true;
     };
     (function () {
-        if (window.jQuery !== undefined &&
-            compareVersion(window.jQuery.fn.jquery, minimumJQuery) !== -1
-        ) {
+        if (!!window.jQuery && hasRequiredJQVersion()) {
             // set up local jQuery aliases
             jQuery = window.jQuery;
             $ = jQuery;
