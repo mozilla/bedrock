@@ -182,6 +182,14 @@ MINIFY_BUNDLES = {
             'css/sandstone/video.less',
             'css/firefox/nightly_firstrun.less',
         ),
+        'firefox_firstrun_new_a': (
+            'css/sandstone/video.less',
+            'css/firefox/firstrun/a.less',
+        ),
+        'firefox_firstrun_new_b': (
+            'css/sandstone/video.less',
+            'css/firefox/firstrun/b.less',
+        ),
         'firefox_fx': (
             'css/firefox/fx.less',
             'css/sandstone/video.less',
@@ -390,6 +398,20 @@ MINIFY_BUNDLES = {
         'firefox_features': (
             'js/mozilla-video-tools.js',
             'js/firefox/features.js',
+        ),
+        'firefox_firstrun': (
+            'js/firefox/firstrun/firstrun.js',
+        ),
+        'firefox_firstrun_new_a': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/mozilla-modal.js',
+            'js/firefox/firstrun/common.js',
+            'js/firefox/firstrun/a.js',
+        ),
+        'firefox_firstrun_new_b': (
+            'js/mozilla-modal.js',
+            'js/firefox/firstrun/common.js',
         ),
         'firefox_fx': (
             'js/mozilla-pager.js',

@@ -1,0 +1,229 @@
+@import "../../sandstone/lib.less";
+@import "common.less";
+
+
+#page-header {
+  h1 {
+    font-size: 72px;
+    margin: -20px 0 0 0;
+  }
+
+  h2 {
+    font-size: 40px;
+    font-style: italic;
+    margin-bottom: @baseLine;
+  }
+}
+
+.sticky-nav {
+  .content-box;
+  margin-bottom: @baseLine;
+  .transition;
+  ul {
+    list-style-type: none;
+    text-align: center;
+    margin: 0;
+  }
+  li {
+    display: inline;
+    padding: 4px 0;
+    border-right: 1px dotted #d2d2d2;
+    margin-left: 0;
+    &.last {
+      border-right: none;
+    }
+  }
+  a {
+    padding: 0 @baseLine;
+    font-size: 16px;
+    line-height: 44px;
+  }
+}
+
+.stuck {
+  position: fixed;
+  top: 0px;
+  z-index: 10;
+  width: 980px;
+}
+
+.sticky-wrapper {
+  .stuck {
+    @shadow: 0 3px 4px 0px rgba(0, 0, 0, 0.4);
+    .box-shadow(@shadow);
+  }
+}
+
+.feature {
+  h1 {
+    font-size: 43px;
+    color: #484848;
+  }
+
+  .copy {
+    width: 49%;
+    .border-box;
+    padding: (@baseLine * 2) (@baseLine * 1.5) (@baseLine * 2) @baseLine;
+    font-size: 16px;
+
+    p {
+      font-size: 18px;
+      line-height: 26px;
+      color: #666;
+    }
+  }
+
+  .screenshot {
+    width: 49%;
+  }
+
+  .screenshot-offset {
+    margin-bottom: -30px;
+  }
+}
+
+.img-right {
+  .copy {
+    float: left;
+    padding: (@baseLine * 2) @baseLine (@baseLine * 2) (@baseLine * 1.5);
+  }
+
+  .screenshot {
+    left: auto;
+    right: 0px;
+  }
+
+  img {
+    float: right;
+  }
+}
+
+.column {
+  .content-box;
+  float: left;
+  width: (480px - (@baseLine * 2));
+  min-height: (210px - (@baseLine * 2.5));
+  padding: (@baseLine * 1.5) @baseLine @baseLine @baseLine;
+  overflow: hidden;
+  margin-right: 20px;
+
+  h1 {
+    font-size: 28px;
+  }
+
+  ul {
+    margin-bottom: 0;
+  }
+
+  .billboard {
+    border-bottom: none;
+    width: auto;
+  }
+
+  #footer-email-form {
+    padding: 0;
+    h3 {
+      font-size: 28px;
+      margin-bottom: 12px;
+      float: none;
+      width: auto;
+    }
+
+    .form-contents, .form-submit {
+      float: none;
+      margin-left: 0;
+    }
+
+    .button {
+      margin-top: @baseLine;
+    }
+  }
+}
+
+.column-last {
+  margin-right: 0;
+}
+
+// uncomment the below if we go back to the responsive template.
+
+/* Tablet layout: 760px */
+//@media only screen and (max-width: @breakDesktop) and (min-width: @breakTablet) {
+//  .stuck {
+//    width: @breakTablet;
+//  }
+//
+//  .column {
+//    width: (370px - (@baseLine * 2));
+//  }
+//}
+//
+///* Mobile landscape layout: 480px */
+//@media only screen and (max-width: @breakTablet) {
+//  #page-header {
+//    h1 {
+//      font-size: 52px;
+//    }
+//
+//    h2 {
+//      font-size: 30px;
+//    }
+//  }
+//
+//  .sticky-nav {
+//    padding: (@baseLine/2) 0;
+//    ul {
+//      text-align: left;
+//    }
+//    li {
+//      margin-left: 10px;
+//      display: block;
+//      border: none;
+//      a {
+//        line-height: 28px;
+//      }
+//    }
+//  }
+//
+//  .stuck {
+//    width: @breakMobileLandscape - (@baseLine * 2);
+//  } 
+//
+//  .feature {
+//    .copy {
+//      float: none;
+//      width: auto;
+//    }
+//
+//    .screenshot {
+//      position: relative;
+//      width: auto;
+//    }
+//  }
+//
+//  .column {
+//    float: none;
+//    margin: 0 0 @baseLine 0;
+//    width: (@breakMobileLandscape - (@baseLine * 4));
+//  }
+//}
+//
+///* Mobile layout: 320px */
+//@media only screen and (max-width: @breakMobileLandscape) {
+//  #page-header {
+//    h1 {
+//      font-size: 38px;
+//    }
+//
+//    h2 {
+//      font-size: 24px;
+//    }
+//  }
+//
+//  .stuck {
+//    width: @breakMobile;
+//  }
+//
+//  .column {
+//    width: (@breakMobile - (@baseLine * 2));
+//  }
+//}

@@ -197,3 +197,41 @@ def firefox_partners(request):
     template_vars.update(csrf(request))
 
     return l10n_utils.render(request, 'firefox/partners/index.html', template_vars)
+
+
+def firstrun_new(request, view, version):
+    # only Firefox users should see the firstrun pages
+    user_agent = request.META.get('HTTP_USER_AGENT', '')
+    if not 'Firefox' in user_agent:
+        url = reverse('firefox.new')
+        return HttpResponsePermanentRedirect(url)
+
+    # only users on the latest version should see the
+    # new pages (for GA experiment data purity)
+    user_version = "0"
+    ua_regexp = r"Firefox/(%s)" % version_re
+    match = re.search(ua_regexp, user_agent)
+    if match:
+        user_version = match.group(1)
+
+    if not is_current_or_newer(user_version):
+        url = reverse('firefox.update')
+        return HttpResponsePermanentRedirect(url)
+
+    # b only has 1-4 version
+    if (view == 'b' and (int(version) < 1 or int(version) > 4)):
+        version = '1'
+
+    if (view == 'a'):
+        copy = 'a' if (version in '123') else 'b'
+    else:
+        copy = 'a' if (version in '12') else 'b'
+
+    template_vars = {
+        'version': version,
+        'copy': copy,
+    }
+
+    template = view + '.html'
+
+    return l10n_utils.render(request, 'firefox/firstrun/' + template, template_vars)
