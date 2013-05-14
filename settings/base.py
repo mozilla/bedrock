@@ -8,7 +8,7 @@ import os
 
 from django.utils.functional import lazy
 
-from funfactory.settings_base import *
+from funfactory.settings_base import *  # noqa
 
 # Make file paths relative to settings.
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -574,7 +574,7 @@ PROD_DETAILS_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)),
 MIDDLEWARE_CLASSES = (
     'mozorg.middleware.MozorgRequestTimingMiddleware',
     'django_statsd.middleware.GraphiteMiddleware',
-    'funfactory.middleware.LocaleURLMiddleware',
+    'tabzilla.middleware.TabzillaLocaleURLMiddleware',
     'django.middleware.common.CommonMiddleware',
     'commonware.middleware.FrameOptionsHeader',
     'mozorg.middleware.CacheMiddleware',
@@ -705,3 +705,7 @@ def facebook_tab_url_lazy():
     from django.conf import settings
     return '//www.facebook.com/{page}/app_{id}'.format(page=settings.FACEBOOK_PAGE_NAMESPACE, id=settings.FACEBOOK_APP_ID)
 FACEBOOK_TAB_URL = lazy(facebook_tab_url_lazy, str)()
+
+# Prefix for media. No trailing slash.
+# e.g. '//mozorg.cdn.mozilla.net'
+CDN_BASE_URL = ''
