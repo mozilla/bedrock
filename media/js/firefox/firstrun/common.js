@@ -61,6 +61,8 @@
 
     Mozilla.Modal.create_modal(this, $video_content, position_video, reattach_video);
 
+    video_closing = false;
+
     gaq_track('first run interaction', 'open video', 'Pinned Tabs Video');
   });
 
@@ -81,11 +83,15 @@
     // video pause event is fired when modal closes
     // do not track this particular pause event
     if (!video_closing) {
-      gaq_track("first run interaction", "pause", "Pinned Tabs Video");
+      // is video over?
+      // 'pause' event fires just before 'ended', so
+      // using 'ended' results in extra pause tracking.
+      var action = ($video[0].currentTime === $video[0].duration) ? 'finish' : 'pause';
+
+      gaq_track("first run interaction", action, "Pinned Tabs Video");
+
       video_closing = false;
     }
-  }).on('ended', function() {
-    gaq_track("first run interaction", "finish", "Pinned Tabs Video");
   });
 
   $('#footer_email_submit').on('click', function(e) {
