@@ -1,0 +1,203 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "base-resp.html" %}
+
+{% block page_title %}Collusion Demo{% endblock %}
+{% block body_id %}collusion-demo{% endblock %}
+{% block body_class %}sand{% endblock %}
+
+{% block site_header_nav %}
+  <nav id="nav-main" role="navigation">
+    <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
+    <ul id="nav-main-menu">
+      <li><a href="{{ url('collusion.collusion') }}">Home</a></li>
+      <li><b>Demo</b></li>
+  </ul>
+  </nav>
+{% endblock %}
+
+{% block extrahead %}
+  {{ css('collusion') }}
+  <script src="{{ media('js/collusion/d3.js') }}"></script>
+{% endblock %}
+
+{% block js  %}
+  {{ js('collusion_demo')  }}
+<script>
+// taken from http://stackoverflow.com/questions/2090551/parse-query-string-in-javascript
+function getQueryVariable(variable) {
+  var query = window.location.search.substring(1);
+  var vars = query.split("&");
+  for (var i = 0; i < vars.length; i++) {
+    var pair = vars[i].split("=");
+    if (pair[0] == variable) {
+      return unescape(pair[1]);
+    }
+  }
+}
+
+function updateGraphViaPostMessage(graph, target) {
+  target.postMessage("ready", "*");
+  $(window).one("message", function(event) {
+    graph.update(JSON.parse(event.originalEvent.data));
+  });
+}
+
+$(window).ready(function() {
+  var addon = CollusionAddon;
+  var graphUrl = getQueryVariable("graph_url");
+
+  $("#domain-infos").hide();
+
+  // get list of known trackers from trackers.json file hosted on website:
+  jQuery.getJSON("{{ MEDIA_URL }}js/collusion/trackers.json", function(trackers) {
+    var runner = GraphRunner.Runner({
+      width: 640,
+      height: 480,
+      trackers: trackers,
+      hideFavicons: false
+    });
+    var graph = runner.graph;
+
+    // Enable drag-and-drop to import collusion graph data from a json file:
+    $(document.body).bind("dragover", function(event) {
+      event.preventDefault();
+    }).bind("drop", function(event) {
+      event.preventDefault();
+      var files = event.originalEvent.dataTransfer.files;
+      if (files.length == 1) {
+        var reader = new FileReader();
+        reader.onload = function() {
+          if (addon.importGraph) {
+            addon.importGraph(reader.result);
+            window.location.reload();
+          } else
+            graph.update(JSON.parse(reader.result));
+        };
+        reader.readAsText(files[0], "UTF-8");
+      }
+    });
+
+    $("#page").width(runner.width);
+
+    if (graphUrl) {
+      if (graphUrl == "opener") {
+        updateGraphViaPostMessage(graph, window.opener);
+      } else if (graphUrl == "parent") {
+
+        updateGraphViaPostMessage(graph, window.parent);
+      } else
+        jQuery.getJSON(graphUrl, function(data) {
+          graph.update(data);
+        });
+      return;
+    }
+
+
+    Demo.show(graph);
+
+    // Display the footer now the page is rendered
+    $('section.external').fadeIn();
+  });
+});
+
+</script>
+{% endblock %}
+
+
+{% block content %}
+
+<h1 class="container">Collusion Demo</h1>
+<section id="demo-section" class="container">
+
+<div id="page">
+<div id="sidebar" class="box">
+  <div class="byline"></a></div>
+
+  <div id="sidebar-content">
+  <div class="exposition">
+    <blockquote>If you're not paying for something, you're not the customer; you're the product being sold.</blockquote><span class="attribution">- Andrew Lewis</span>
+    <p>Collusion provides an interactive, real-time visualization of the entities that track your behavior across the web.</p>
+  </div> <!-- end of exposition -->
+
+  <div class="live-data" style="display: none;">
+    <p>Keep browsing the web. As you do so, a graph on this page will change. Each dot represents a website.</p>
+    <p>Sites in <span class="tracker">red</span> are confirmed trackers by <a href="http://privacychoice.org">privacychoice.org</a>. Sites in <span class="site">gray</span> are not, but may still track you.</p>
+    <p>Sites with a halo are sites that you have visited. Sites without a halo are sites you have not visited.</p>
+
+    <p>Hover your mouse over the dots to learn more about them.</p>
+    <div class="settings-menu">
+      <ul>
+        <li id="reset-graph">Reset Graph</li>
+        <li id="export-graph">Export Graph</li>
+        <li id="hide-ui">Hide UI</li>
+      </ul>
+
+    </div> <!-- end of settingsmenu -->
+    <p class="privacy-policy"><strong>Privacy Policy</strong> When you're using the add-on, we collect information from sites you visit solely to show you how they're connected. This information is stored locally on your computer and you can delete it by resetting the graph. We don't give away this information to anyone except you.</p>
+  </div> <!-- end of live-data -->
+  <div class="demo" style="display: none;">
+    <div class="step 0">
+      <p>This page will show you a demo of what you might see if you were surfing the web with Collusion.</p>
+
+      <p><span class="next">Click here</span> to see what happens when you start your browser and visit the Internet Movie Database at imdb.com.</p>
+    </div>
+    <div class="step 1">
+      <p>Each dot in this graph represents a website. The gray dot in the middle is imdb.com; the red dots near it are advertising sites that have created <a href="http://en.wikipedia.org/wiki/HTTP_cookie">cookies</a> in your browser and are now tracking your behavior on the IMDB.</p>
+      <p>The advertising sites are colored red because <a href="http://privacychoice.org">privacychoice.org</a> has determined that they're behavioral tracking sites.  Non-red sites may still track you.</p>
+
+      <p>Hover your mouse over any of the sites to learn more about them.</p>
+      <p>When you're done, <span class="next">click here</span> to continue your web adventure. Our next stop is the New York Times website.</p>
+    </div>
+    <div class="step 2">
+      <p>It looks like the New York Times is affiliated with some of the same advertising companies as the IMDB.</p>
+      <p>Because the same cookies were transmitted to the same advertisers when you visited both sites, those advertisers effectively track you <em>across</em> them. That's valuable data for their market research.</p>
+
+      <p>When you're ready, <span class="next">click here</span> to visit our next stop, the Huffington Post.</p>
+    </div>
+    <div class="step 3">
+      <p>Some companies are already using their knowledge about you to determine what you see on the sites they're affiliated with&mdash;not just the ads you see, but the actual content you read. Eli Pariser examines what this could mean for society at large in his book <b>The Filter Bubble</b>. Watch Eli's TED talk on the Filter Bubble <a href="http://www.ted.com/talks/eli_pariser_beware_online_filter_bubbles.html">here</a>.</p>
+
+      <p>By the way, if the graph is starting to look a bit confusing, try dragging the dots around with your mouse to get a better view.</p>
+      <p>Then, <span class="next">click here</span> to go to our next stop, gamespot.com.</p>
+    </div>
+    <div class="step 4">
+      <p>If you haven't realized it yet, companies are tracking you across most of the sites you visit daily on the web. It's quite likely that these companies know more about you than your government. Some of them might even know more about you than your best friends.</p>
+      <p><span class="next">Click here</span> to visit our final stop, reference.com.</p>
+
+    </div>
+    <div class="step 5">
+      <p>Thanks for trying out this demo. If you'd like to see this graph change in real time based on the sites you visit in your own browser, feel free to try the <a href="https://addons.mozilla.org/en-US/firefox/addon/collusion/" class="xpi-download">Collusion Firefox add-on</a>. Even visiting the sites mentioned in the demo will probably give you different visualizations, because some services you may be logged into&mdash;like Facebook&mdash;can also track you across sites.</p>
+      <p>If you want to block companies from tracking you on the internet, you can install <a href="http://www.privacychoice.org/trackerblock/firefox">TrackerBlock</a> for Firefox and Internet Explorer.</p>
+
+      <p>Collusion was created as a prototype by Atul Varma. For more information about the making of this demo, check out the <a href="http://www.toolness.com/wp/2011/07/collusion/">blog post</a> and <a href="https://github.com/toolness/collusion">code repository</a>.</p>
+    </div>
+  </div> <!-- End of .demo -->
+
+  <a href="https://addons.mozilla.org/en-US/firefox/addon/collusion/" class="button download">Download <small>the Collusion add-on for Firefox</small></a>
+
+  <div id="domain-infos">Mouse over any circle to see how that site is involved in tracking.</div> <!-- Templates are copied into here -->
+  </div> <!-- End of #sidebar-content -->
+</div> <!-- End of #sidebar -->
+<div id="chart"></div><!-- The d3 layout graph will go inside this div -->
+</div>
+<div id="templates">
+  <div class="info" style="display: none;">
+    <h2 class="domain"></h2>
+
+    <div class="referrees">
+      <p>When you visit <a class="domain"></a>, it informs the following websites about your visit.</p>
+      <ul></ul>
+    </div>
+    <div class="referrers">
+      <p>The site <a class="domain"></a> tracks your behavior across the following websites.</p>
+
+      <ul></ul>
+    </div>
+  </div>
+</div>
+</section>
+
+{% endblock %}

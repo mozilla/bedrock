@@ -1,0 +1,78 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "/firefox/base-resp.html" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}Firefox Extended Support Release for Your Organization, Business, Enterprise - Overview{% endblock %}
+{% block body_id %}organizations{% endblock %}
+
+{% block site_css %}
+  {{ css('firefox_organizations') }}
+{% endblock %}
+
+{% block site_header_nav %}
+{% endblock %}
+
+{% block site_header_logo %}
+<h2><img src="{{ media('img/firefox/organizations/title.png') }}" alt="Firefox ESR" height="68" width="299"></h2>
+{% endblock %}
+
+
+{% block content %}
+
+{% block main_feature %}
+<hgroup id="main-feature" class="stacked">
+  <h1>Mozilla Firefox <span class="large">Extended Support Release</span></h1>
+  <h4>A community-led project that allows organizations to benefit from the speed, flexibility and security of Firefox while getting the support they need.</h4>
+</hgroup>
+{% endblock %}
+
+<div id="main-content">
+<div class="row">
+  <div class="main-column">
+  {% block main_column %}
+
+    <h4>Who is it for?</h4>
+    <p>Firefox ESR is intended for groups who deploy and maintain the desktop environment in large organizations such as universities and other schools, county or city governments and businesses.</p>
+
+    <h4>Who is it not for?</h4>
+    <p>Individual users who always want the latest features, performance enhancements and technologies in their browser without waiting for them to become available in ESR several development cycles later.</p>
+
+    <div id="steps">
+      <h4>Step 1.</h4>
+      <p>Before proceeding, we strongly encourage Firefox ESR users to sign up for the <a href="https://mail.mozilla.org/listinfo/enterprise">Enterprise Working Group (EWG) mailing list</a>. The EWG list is a great place to discuss deploying Firefox with other community members and will be the only way to receive regular communications regarding product updates and support.</p>
+      <h4>Step 2.</h4>
+      <p><a href="{{ url('firefox.organizations.faq') }}">Review our handy FAQ</a> for your organization and download Firefox ESR.</p>
+    </div>
+
+  {% endblock %}
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+
+    <div id="alternate-download">
+      <h4>Not from an organization?</h4>
+      <p>If you’re looking for Firefox for personal use, please visit our <a href="/firefox/">Firefox</a> page.</p>
+    </div>
+
+    <form method="post" action="https://mail.mozilla.org/subscribe/enterprise" id="esr-form">
+      <h4>Subscribe to the Enterprise Working Group (EWG) mailing list</h4>
+      <div class="form-field">
+        <input type="email" name="email" id="email" size="30" value="" placeholder="Email" required />
+      </div>
+      <div class="form-field">
+        <input type="text" name="fullname" size="30" value="" placeholder="Full Name" />
+      </div>
+      <div class="form-field">
+        <input type="submit" name="email-button" value="Subscribe" class="button" />
+      </div>
+    </form>
+
+  </aside>
+
+</div>
+</div>
+
+{% endblock %}

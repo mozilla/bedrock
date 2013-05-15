@@ -1,0 +1,157 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+@headingColor: #d04b00;
+
+#outer-wrapper, #wrapper {
+  background: #f6f2e7;
+}
+
+#main-feature {
+  h1, h2 {
+    text-align: center;
+    width: 75%;
+    margin: @baseLine auto;
+  }
+  h2 {
+    padding-bottom: 10px;
+  }
+  img {
+    display: block;
+    margin: @baseLine auto;
+  }      
+}
+
+#help-form {
+  width: auto;
+  h3 {
+    color: @headingColor;
+  }
+  .form-column {
+    position: relative;
+    .span(6);
+  }
+  .form-column section {
+    margin-bottom: @baseLine;
+    .field {
+      margin-bottom: @baseLine / 2;
+    }
+  }
+  .field {
+    padding: @baseLine / 4 0;
+  }
+  .field-captcha, .field-format {
+    margin-top: @baseLine;
+  }
+  .form-submit {
+    .span(2);
+    margin: 0;
+  }
+  .errorlist {
+    padding-bottom: @baseLine / 2;
+  }
+  .hide {
+    display:none;
+  }
+  input[type=text] {
+    width: 85%;
+  }
+  input[type=submit] {
+    width: (@gridColumnWidth * 2) + (@gridGutterWidth);
+    max-width: 100%;
+  }
+  .country select {
+    width: 200px;
+  }
+  .field-newsletter label,
+  .field-privacy label,
+  .field-share label,
+  .privacy-check-label {
+    position: relative;
+    margin-left: 24px;
+    display: block;
+    input {
+      position: absolute;
+      top: 0;
+      left: -24px;
+    }
+  }
+}
+
+#help-form.has-errors {
+  border-top: 10px solid #AF3232;
+}
+
+#colophon {
+  margin-top: 0;
+}
+
+span.required {
+  padding-left: .1em;
+  color: #c00;
+}
+
+.field-privacy span:after, 
+.privacy-check-label span:after {
+  content: " *";
+  color: #c00;
+}
+
+
+
+/* Tablet Layout: 760px */
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+
+  #help-form {
+    .form-column {
+      .span(9);
+    }
+    input[type=text] {
+      width: 60%;
+    }
+  }
+
+}
+
+@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+  #main-feature {
+    h1, h2 {
+      width: @widthMobileLandscape;
+    }     
+  }
+
+  #help-form {
+    .form-column {
+      width: auto;
+      float: none;
+      margin: 0 (@gridGutterWidth / 2);
+    }
+    .form-submit {
+      float: left;
+    }
+  }
+}
+
+/* Mobile Layout: 320px */
+@media only screen and (max-width: @breakMobileLandscape) {
+
+  #main-feature {
+    h1, h2 {
+      width: @widthMobile;
+    }     
+  }
+
+  #help-form {
+    .form-column {
+      width: auto;
+      float: none;
+      margin: 0 (@gridGutterWidth / 2);
+    }
+    .form-submit {
+      float: left;
+    }
+  }
+}

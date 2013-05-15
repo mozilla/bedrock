@@ -1,0 +1,292 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+@import "contribute-form.less";
+
+#contribute {
+
+    h1.large {
+        text-align: center;
+        margin: 0 auto @baseLine auto;
+    }
+
+    #main-feature {
+        padding-bottom: 0;
+    }
+
+    #welcome-video {
+        max-width: 640px;
+        margin: 0 auto;
+        video {
+            max-width: 640px;
+            width: 100%;
+            height: auto;
+            background: #fff;
+        }
+    }
+
+    #welcome p {
+        .open-sans-light;
+        font-size: 22px;
+        line-height: 120%;
+        margin: @baseLine;
+        text-align: center;
+        b {
+            font-weight: bold;
+        }
+    }
+    
+    li.row {
+        margin-left: 0;
+    }
+
+    #opportunities {
+        padding-bottom: @baseLine * 2;
+        .container {
+            padding-left: @gridGutterWidth * 1.5;
+            padding-right: @gridGutterWidth * 1.5;
+        }
+        nav {
+            background: #f0ece3;
+            border: 1px solid rgba(0,0,0,0.03);
+            padding-top: 10px;
+            padding-bottom: 10px;
+            margin: @baseLine auto;
+            @shadow: 0 1px rgba(255,255,255,0.5), 0 0 0 2px rgba(0,0,0,0.01) inset;
+            .box-shadow(@shadow);
+            text-transform: uppercase;
+
+            h5,
+            ul {
+                display: inline;
+                margin: 0;
+                font-size: @baseFontSize * 0.75;
+            }
+
+            li {
+                list-style-type: none;
+                display: inline;
+                .open-sans;
+
+                a.selected {
+                    background: #d7d5d5;
+                    border-color: #bcb9b9;
+                    text-shadow: 0 1px #fff;
+                    @shadow: 0 1px 1px rgba(255,255,255,0.75), 0 1px 3px rgba(0,0,0,0.1) inset;
+                    .box-shadow(@shadow);
+                }
+
+            }
+
+        }
+
+        section {
+            li {
+                list-style-type: none;
+                border-top: 1px dotted @borderColor;
+                .clearfix;
+                &:first-child {
+                    border: 0;
+                }
+            }
+
+            img {
+                background: #fff;
+                width: 50px;
+                padding: (@gridColumnWidth - 52) / 2;
+                border: 1px solid @borderColor; 
+                .border-radius;
+                .box-shadow(0 2px 4px rgba(0,0,0,0.1));
+                float: left;
+                margin: @baseLine 10px @baseLine 0;
+            }
+
+            h3 {
+                .span(3);
+                margin-top: @baseLine * 1.25;
+            }
+
+            .content {
+                .span(7);
+                margin-top: @baseLine * 1.25;
+            }
+        }
+
+        .location-content {
+            li.row {
+                float: left;
+                margin-right: @gridGutterWidth;
+                border: 0;
+            }
+
+            img {
+                width: 130px;
+            }
+
+            h3 {
+                width: (@gridColumnWidth * 3) + (@gridGutterWidth * 2);
+                margin: (@baseLine * 2) 0 0 (@gridGutterWidth / 2);
+            }
+        }
+    }
+
+    #newsletter-form {
+        .field {
+            padding: 6px 0;
+        }
+        .field-email input {
+            width: 280px;
+        }
+        .field-country select {
+            width: 300px;
+        }
+        small {
+            color: @textColorSecondary;
+        }
+    }
+
+}
+
+.js #form-details { display: none; }
+
+/* Tablet Layout: 760px */
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+
+
+    #contribute {
+        #opportunities {
+            section {
+                img {
+                    width: 30px;
+                }
+    
+                h3 {
+                    .span_narrow(4);
+                    margin-top: @baseLine * 1.25;
+                }
+    
+                .content {
+                    .span_narrow(7);
+                    margin-top: @baseLine;
+                }
+            }
+            
+            .location-content {
+
+                h3 {
+                    font-size: 1.5em;
+                    width: (@gridColumnWidthNarrow * 3) + (@gridGutterWidth * 2);
+                    margin: (@baseLine * 1.5) 0 0 10px;
+                }
+            }
+
+        }
+    }
+
+}
+
+/* Mobile Layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+
+    #contribute {
+        #opportunities {
+            .container {
+                padding-left: @gridGutterWidth;
+                padding-right: @gridGutterWidth;
+            }
+            section {
+                img {
+                    float: left;
+                }
+                h3 {
+                    width: auto;
+                }
+                .content {
+                    width: auto;
+                    margin: 0 10px;
+                }
+            }
+        
+            .location-content {
+                li.row {
+                    margin: 0 0 (@baseLine * 1.5);
+                    width: 100%;
+                    float: none;
+                }
+                img {
+                    display: block;
+                    float: none;
+                    margin: 0 auto .5em;
+                }
+                h3 {
+                    margin: 0;
+                    width: auto;
+                    float: none;
+                    text-align: center;
+                }
+            }
+            
+            nav {
+                h5 {
+                    display: block;
+                    margin: 0 0 .5em;
+                }
+                li {
+                    display: inline;
+                    margin: 0 3px .25em 0;
+                }
+                a {
+                    margin-bottom: .5em;
+                }
+            }
+        }
+        #newsletter-form {
+            .field-email input {
+                width: 260px;
+            }
+            .field-country select {
+                width: 280px;
+            }
+        }
+    }
+
+}
+
+/* Wide Mobile Layout: 480px */
+@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+
+    #contribute {
+        #opportunities .location-content {
+            li.row {
+                margin: 0;
+            }
+            img {
+                float: left;
+                margin: @baseLine (@gridGutterWidth / 2);
+            }
+            h3 {
+                width: (@gridColumnWidthNarrow * 4) + (@gridGutterWidth * 3);
+                float: left;
+                text-align: left;
+                margin: (@baseLine * 1.5) 0 0 10px;
+            }
+        }
+    }
+    
+}
+
+/* Some overrides for the embedded contribute form. */
+.js .embed #form-details {
+    display: block;
+}
+
+.embed #wrapper {
+    padding-bottom: 0;
+}
+
+.embed #help-form {
+    border: none;
+    margin: 0;
+}

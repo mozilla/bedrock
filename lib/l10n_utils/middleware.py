@@ -4,7 +4,7 @@
 
 import jingo
 
-from l10n_utils.helpers import gettext
+from lib.l10n_utils.helpers import gettext
 
 
 # TODO: Fix tower and remove this.

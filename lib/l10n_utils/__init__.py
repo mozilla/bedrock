@@ -5,9 +5,9 @@
 from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.shortcuts import render as django_render
+from django.template import TemplateDoesNotExist
 
 from funfactory.urlresolvers import split_path
-from jinja2.exceptions import TemplateNotFound
 
 from dotlang import get_lang_path, lang_file_is_active
 
@@ -43,7 +43,7 @@ def render(request, template, context={}, **kwargs):
         localized_tmpl = '%s/templates/%s' % (request.locale, template)
         try:
             return django_render(request, localized_tmpl, context, **kwargs)
-        except TemplateNotFound:
+        except TemplateDoesNotExist:
             # If not found, just go on and try rendering the parent template.
             pass
 
