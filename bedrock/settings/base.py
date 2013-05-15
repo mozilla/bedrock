@@ -4,11 +4,25 @@
 
 # Django settings file for bedrock.
 
-import os
-
 from django.utils.functional import lazy
 
 from funfactory.settings_base import *  # noqa
+
+# No database yet. Override in local.py.
+# Need at least this for Django to run.
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.dummy',
+    },
+}
+
+# Override in local.py for memcached.
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'translations'
+    }
+}
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -584,7 +598,7 @@ INSTALLED_APPS = get_apps(exclude=(
 
     # Django contrib apps
     'django_sha2',  # Load after auth to monkey-patch it.
-    
+
     # Local apps
     '%s.base' % PROJECT_MODULE,
     '%s.collusion' % PROJECT_MODULE,
