@@ -16,8 +16,8 @@ from nose.plugins.skip import SkipTest
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 
-from l10n_utils import render
-from mozorg.tests import TestCase
+from lib.l10n_utils import render
+from bedrock.mozorg.tests import TestCase
 
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test_files')
@@ -39,7 +39,7 @@ class TestL10nBlocks(TestCase):
 
 
 @patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
-@patch.object(settings, 'ROOT_URLCONF', 'l10n_utils.tests.test_files.urls')
+@patch.object(settings, 'ROOT_URLCONF', 'lib.l10n_utils.tests.test_files.urls')
 @patch.object(settings, 'ROOT', ROOT)
 class TestTransBlocks(TestCase):
     def setUp(self):
@@ -78,7 +78,7 @@ class TestTemplateLangFiles(TestCase):
         template = env.get_template('some_lang_files.html')
         # make a dummy object capable of having arbitrary attrs assigned
         request = type('request', (), {})()
-        template.render(request=request)
+        template.render({'request':request})
         eq_(request.langfiles, ['dude', 'walter',
                                 'main', 'download_button', 'newsletter'])
 
@@ -100,10 +100,10 @@ class TestTemplateLangFiles(TestCase):
                                 'main', 'download_button', 'newsletter'])
 
     @patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
-    @patch.object(settings, 'ROOT_URLCONF', 'l10n_utils.tests.test_files.urls')
+    @patch.object(settings, 'ROOT_URLCONF', 'lib.l10n_utils.tests.test_files.urls')
     @patch.object(settings, 'ROOT', ROOT)
-    @patch('l10n_utils.settings.DEV', True)
-    @patch('l10n_utils.helpers.translate')
+    @patch('lib.l10n_utils.settings.DEV', True)
+    @patch('lib.l10n_utils.helpers.translate')
     def test_lang_files_order(self, translate):
         """
         Lang files should be queried in order they appear in the file,
@@ -114,10 +114,10 @@ class TestTemplateLangFiles(TestCase):
                                            'main', 'download_button', 'newsletter'])
 
     @patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
-    @patch.object(settings, 'ROOT_URLCONF', 'l10n_utils.tests.test_files.urls')
+    @patch.object(settings, 'ROOT_URLCONF', 'lib.l10n_utils.tests.test_files.urls')
     @patch.object(settings, 'ROOT', ROOT)
-    @patch('l10n_utils.settings.DEV', True)
-    @patch('l10n_utils.helpers.translate')
+    @patch('lib.l10n_utils.settings.DEV', True)
+    @patch('lib.l10n_utils.helpers.translate')
     def test_lang_files_default_order(self, translate):
         """
         The template-specific lang file should come before the defaults.
@@ -128,8 +128,8 @@ class TestTemplateLangFiles(TestCase):
 
 
 class TestNoLocale(TestCase):
-    @patch('l10n_utils.get_lang_path')
-    @patch('l10n_utils.django_render')
+    @patch('lib.l10n_utils.get_lang_path')
+    @patch('lib.l10n_utils.django_render')
     def test_render_no_locale(self, django_render, get_lang_path):
         # Our render method doesn't blow up if the request has no .locale
         # (can happen on 500 error path, for example)

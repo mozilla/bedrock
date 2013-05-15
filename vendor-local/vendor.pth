@@ -2,7 +2,6 @@ src/tower
 src/jingo-minify
 src/basket-client
 src/feedparser/feedparser
-src/django
 src/django-recaptcha
 src/django-dnt
 src/django-statsd
