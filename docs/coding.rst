@@ -21,7 +21,7 @@ Example::
 
 Bedrock comes with a handy shortcut to automate all of this::
 
-    from mozorg.util import page
+    from bedrock.mozorg.util import page
     page('channel', 'mozorg/channel.html')
 
 You don't even need to create a view. It will serve up the specified
@@ -43,7 +43,7 @@ If you need to write a view and the page has a newsletter signup form
 in the footer (most do), make sure to handle this in your view.
 Bedrock comes with a function for doing this automatically::
 
-    from mozorg.util import handle_newsletter
+    from bedrock.mozorg.util import handle_newsletter
     from django.views.decorators.csrf import csrf_exempt
     
     @csrf_exempt

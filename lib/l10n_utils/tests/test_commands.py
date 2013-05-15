@@ -13,16 +13,16 @@ from django.utils import unittest
 
 from mock import ANY, MagicMock, Mock, patch
 
-from l10n_utils.gettext import _append_to_lang_file, merge_lang_files
-from l10n_utils.management.commands.l10n_check import (
+from lib.l10n_utils.gettext import _append_to_lang_file, merge_lang_files
+from lib.l10n_utils.management.commands.l10n_check import (
     get_todays_version,
     L10nParser,
     L10nTemplate,
     list_templates,
     update_templates,
 )
-from l10n_utils.management.commands.l10n_extract import extract_from_files
-from l10n_utils.tests import capture_stdio
+from lib.l10n_utils.management.commands.l10n_extract import extract_from_files
+from lib.l10n_utils.tests import capture_stdio
 
 
 ROOT = path.join(path.dirname(path.abspath(__file__)), 'test_files')
@@ -71,7 +71,7 @@ class TestL10nExtract(unittest.TestCase):
         """
         If the file path doesn't match a domain method, it should be skipped.
         """
-        testfile = ('apps/mozorg/templates/mozorg/home.html',)
+        testfile = ('bedrock/mozorg/templates/mozorg/home.html',)
         with capture_stdio() as out:
             extracted = next(extract_from_files(testfile, method_map=METHODS),
                              None)
@@ -91,7 +91,7 @@ class TestL10nExtract(unittest.TestCase):
         self.assertIsNone(extracted)
         self.assertEqual(out[0], '! %s does not exist!' % testfile)
 
-    @patch('l10n_utils.management.commands.l10n_extract.extract_from_file')
+    @patch('lib.l10n_utils.management.commands.l10n_extract.extract_from_file')
     def test_extract_from_files_passes_args(self, eff):
         """The correct args should be passed through to extract_from_file"""
         testfile = ('lib/l10n_utils/tests/test_files/templates/'
@@ -203,10 +203,10 @@ class TestL10nCheck(unittest.TestCase):
         self.assertEqual(len(lang_blocks), 1)
         self.assertEqual(lang_blocks[0]['name'], 'donnie')
 
-    @patch('l10n_utils.management.commands.l10n_check.settings.ROOT', ROOT)
-    @patch('l10n_utils.management.commands.l10n_check.list_templates')
-    @patch('l10n_utils.management.commands.l10n_check.L10nTemplate.copy')
-    @patch('l10n_utils.management.commands.l10n_check.L10nTemplate.update')
+    @patch('lib.l10n_utils.management.commands.l10n_check.settings.ROOT', ROOT)
+    @patch('lib.l10n_utils.management.commands.l10n_check.list_templates')
+    @patch('lib.l10n_utils.management.commands.l10n_check.L10nTemplate.copy')
+    @patch('lib.l10n_utils.management.commands.l10n_check.L10nTemplate.update')
     def test_process_template(self, update_mock, copy_mock, lt_mock):
         """
         template.process() should update existing templates and create missing
@@ -243,7 +243,7 @@ class TestL10nCheck(unittest.TestCase):
                                           'l10n_blocks_with_langs.html'))
         # cause the template to be read and parsed before mocking open
         template.blocks
-        codecs_open = 'l10n_utils.management.commands.l10n_check.codecs.open'
+        codecs_open = 'lib.l10n_utils.management.commands.l10n_check.codecs.open'
         open_mock = MagicMock(spec=file)
         with patch(codecs_open, open_mock):
             template.update('zh-TW')
@@ -252,7 +252,7 @@ class TestL10nCheck(unittest.TestCase):
             template.update('de')
             assert file_handle.write.called
 
-    @patch('l10n_utils.management.commands.l10n_check.settings.ROOT', ROOT)
+    @patch('lib.l10n_utils.management.commands.l10n_check.settings.ROOT', ROOT)
     def test_update_template(self):
         """
         template.update() should update lang specific templates.
@@ -261,7 +261,7 @@ class TestL10nCheck(unittest.TestCase):
                                           'l10n_blocks_with_langs.html'))
         # cause the template to be read and parsed before mocking open
         template.blocks
-        codecs_open = 'l10n_utils.management.commands.l10n_check.codecs.open'
+        codecs_open = 'lib.l10n_utils.management.commands.l10n_check.codecs.open'
         open_mock = MagicMock(spec=file)
         open_buffer = StringIO()
         # for writing the new file
@@ -296,7 +296,7 @@ class TestL10nCheck(unittest.TestCase):
                                           'l10n_blocks_with_langs.html'))
         # cause the template to be read and parsed before mocking open
         template.blocks
-        codecs_open = 'l10n_utils.management.commands.l10n_check.codecs.open'
+        codecs_open = 'lib.l10n_utils.management.commands.l10n_check.codecs.open'
         open_mock = MagicMock(spec=file)
         with patch(codecs_open, open_mock):
             template.copy('zh-TW')
@@ -313,7 +313,7 @@ class TestL10nCheck(unittest.TestCase):
                                           'l10n_blocks_without_langs.html'))
         # cause the template to be read and parsed before mocking open
         template.blocks
-        codecs_open = 'l10n_utils.management.commands.l10n_check.codecs.open'
+        codecs_open = 'lib.l10n_utils.management.commands.l10n_check.codecs.open'
         open_mock = MagicMock(spec=file)
         open_buffer = StringIO()
         open_mock.return_value.__enter__.return_value = open_buffer
@@ -335,8 +335,8 @@ class TestL10nCheck(unittest.TestCase):
 
 class Testl10nMerge(unittest.TestCase):
 
-    @patch('l10n_utils.gettext.settings.ROOT', ROOT)
-    @patch('l10n_utils.gettext._append_to_lang_file')
+    @patch('lib.l10n_utils.gettext.settings.ROOT', ROOT)
+    @patch('lib.l10n_utils.gettext._append_to_lang_file')
     def test_merge_lang_files(self, write_mock):
         """
         `merge_lang_files()` should see all strings, not skip the untranslated.
@@ -348,7 +348,7 @@ class Testl10nMerge(unittest.TestCase):
                                            [u'Find out if your device is '
                                             u'supported &nbsp;\xbb'])
 
-    @patch('l10n_utils.gettext.codecs.open')
+    @patch('lib.l10n_utils.gettext.codecs.open')
     def test_append_to_lang_file(self, open_mock):
         """
         `_append_to_lang_file()` should append any new messages to a lang file.
@@ -366,7 +366,7 @@ class Testl10nMerge(unittest.TestCase):
                     for msg in msgs]
         self.assertEqual(expected, mock_write.call_args_list)
 
-    @patch('l10n_utils.gettext.codecs.open')
+    @patch('lib.l10n_utils.gettext.codecs.open')
     def test_merge_unicode_strings(self, open_mock):
         """
         Bug 869538: Exception when merging unicode.

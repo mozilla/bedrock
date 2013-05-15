@@ -19,9 +19,9 @@ from nose.tools import assert_not_equal, eq_, ok_
 from pyquery import PyQuery as pq
 from tower.management.commands.extract import extract_tower_python
 
-from l10n_utils.dotlang import (_, FORMAT_IDENTIFIER_RE, lang_file_is_active,
-                                parse, translate, _lazy)
-from mozorg.tests import TestCase
+from lib.l10n_utils.dotlang import (_, FORMAT_IDENTIFIER_RE, lang_file_is_active,
+                                    parse, translate, _lazy)
+from bedrock.mozorg.tests import TestCase
 
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test_files')
@@ -30,14 +30,14 @@ TEMPLATE_DIRS = (os.path.join(ROOT, 'templates'),)
 
 
 @patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
-@patch.object(settings, 'ROOT_URLCONF', 'l10n_utils.tests.test_files.urls')
+@patch.object(settings, 'ROOT_URLCONF', 'lib.l10n_utils.tests.test_files.urls')
 @patch.object(settings, 'ROOT', ROOT)
 class TestLangFilesActivation(TestCase):
     def setUp(self):
         clear_url_caches()
         self.client = Client()
 
-    @patch('l10n_utils.settings.DEV', False)
+    @patch('lib.l10n_utils.settings.DEV', False)
     def test_lang_file_is_active(self):
         """
         `lang_file_is_active` should return true if lang file has the
@@ -49,7 +49,7 @@ class TestLangFilesActivation(TestCase):
         ok_(not lang_file_is_active('inactive_de_lang_file', 'de'))
         ok_(not lang_file_is_active('does_not_exist', 'de'))
 
-    @patch('l10n_utils.settings.DEV', False)
+    @patch('lib.l10n_utils.settings.DEV', False)
     def test_active_locale_not_redirected(self):
         """ Active lang file should render correctly. """
         response = self.client.get('/de/active-de-lang-file/')
@@ -57,7 +57,7 @@ class TestLangFilesActivation(TestCase):
         doc = pq(response.content)
         eq_(doc('h1').text(), 'Die Lage von Mozilla')
 
-    @patch('l10n_utils.settings.DEV', False)
+    @patch('lib.l10n_utils.settings.DEV', False)
     @patch.object(settings, 'LANGUAGE_CODE', 'en-US')
     def test_inactive_locale_redirected(self):
         """ Inactive locale should redirect to en-US. """
@@ -69,7 +69,7 @@ class TestLangFilesActivation(TestCase):
         doc = pq(response.content)
         eq_(doc('h1').text(), 'The State of Mozilla')
 
-    @patch('l10n_utils.settings.DEV', True)
+    @patch('lib.l10n_utils.settings.DEV', True)
     def test_inactive_locale_not_redirected_dev_true(self):
         """
         Inactive lang file should not redirect in DEV mode.
@@ -152,7 +152,7 @@ class TestDotlang(TestCase):
         eq_(len(mail.outbox), 0)
 
     @patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
-    @patch.object(settings, 'ROOT_URLCONF', 'l10n_utils.tests.test_files.urls')
+    @patch.object(settings, 'ROOT_URLCONF', 'lib.l10n_utils.tests.test_files.urls')
     @patch.object(settings, 'ROOT', ROOT)
     def test_lang_files_queried_in_order(self):
         """The more specific lang files should be searched first."""
@@ -185,7 +185,7 @@ class TestDotlang(TestCase):
             result = translate(dirty_string, ['tweaked_message_translation'])
             eq_(result, trans_string)
 
-    @patch('l10n_utils.dotlang.translate')
+    @patch('lib.l10n_utils.dotlang.translate')
     def test_new_lang_files_do_not_modify_settings(self, trans_patch):
         """
         Test to make sure that building the new lang files list does not
@@ -198,7 +198,7 @@ class TestDotlang(TestCase):
         trans_patch.assert_called_with(trans_str, call_lang_files)
         eq_(old_setting, settings.DOTLANG_FILES)
 
-    @patch('l10n_utils.dotlang.translate')
+    @patch('lib.l10n_utils.dotlang.translate')
     def test_gettext_ignores_default_lang_files(self, trans_patch):
         """
         The `l10n_utils.dotlang._` function should search .lang files
@@ -218,7 +218,7 @@ class TestDotlang(TestCase):
         # restore original value to avoid test leakage
         LANG_FILES = old_lang_files
 
-    @patch('l10n_utils.dotlang.translate')
+    @patch('lib.l10n_utils.dotlang.translate')
     def test_gettext_searches_specified_lang_files(self, trans_patch):
         """
         The `l10n_utils.dotlang._` function should search .lang files
@@ -244,7 +244,7 @@ class TestDotlang(TestCase):
         # restore original value to avoid test leakage
         LANG_FILES = old_lang_files
 
-    @patch('l10n_utils.dotlang.translate')
+    @patch('lib.l10n_utils.dotlang.translate')
     def test_gettext_searches_kwarg_specified_lang_files(self, trans_patch):
         """
         The `l10n_utils.dotlang._` function should search .lang files
@@ -263,7 +263,7 @@ class TestDotlang(TestCase):
         call_lang_files = lang_files_list + settings.DOTLANG_FILES
         trans_patch.assert_called_with(trans_str, call_lang_files)
 
-    @patch('l10n_utils.dotlang.translate')
+    @patch('lib.l10n_utils.dotlang.translate')
     def test_gettext_lazy_searches_kwarg_specified_lang_files(self, trans_patch):
         """
         The `l10n_utils.dotlang._lazy` function should search .lang files
@@ -285,14 +285,14 @@ class TestDotlang(TestCase):
         call_lang_files = lang_files_list + settings.DOTLANG_FILES
         trans_patch.assert_called_with(trans_str, call_lang_files)
 
-    @patch('l10n_utils.dotlang.translate')
+    @patch('lib.l10n_utils.dotlang.translate')
     def test_lazy_gettext_searches_specified_lang_files(self, trans_patch):
         """
         The `l10n_utils.dotlang._lazy` function should search .lang files
         specified in the module from which it's called before the
         default files.
         """
-        from l10n_utils.tests.test_files import extract_me_with_langfiles_lazy
+        from lib.l10n_utils.tests.test_files import extract_me_with_langfiles_lazy
 
         dude_says = extract_me_with_langfiles_lazy.do_translate()
         dirty_string = u"I'm The Dude, so that's what you call me, man."
@@ -303,13 +303,13 @@ class TestDotlang(TestCase):
         trans_patch.assert_called_with(dirty_string, ['donnie', 'walter'] +
                                        settings.DOTLANG_FILES)
 
-    @patch('l10n_utils.dotlang.translate')
+    @patch('lib.l10n_utils.dotlang.translate')
     def test_gettext_works_without_extra_lang_files(self, trans_patch):
         """
         The `l10n_utils.dotlang._` function should search the default .lang
         files if no others are specified.
         """
-        from l10n_utils.tests.test_files import extract_me
+        from lib.l10n_utils.tests.test_files import extract_me
 
         extract_me.do_translate()
         dirty_string = u'Stuff\xa0about\r\nmany\t   things.'
@@ -319,7 +319,7 @@ class TestDotlang(TestCase):
         result = _('The %s %s.', 'dude', 'abides')
         eq_(result, 'The dude abides.')
 
-    @patch('l10n_utils.dotlang.cache')
+    @patch('lib.l10n_utils.dotlang.cache')
     def test_translate_skips_for_default_locale(self, cache_mock):
         """
         Translation calls should not hit the cache for the default language.

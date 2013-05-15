@@ -1,0 +1,45 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+.error500#main-content {
+    .span-all();
+}
+
+#wrapper {
+    .clearfix;
+}
+
+#error-content {
+    .span(6);
+    .clearfix;
+}
+
+.download-button {
+    .span-all();
+    float: right;
+}
+
+/* {{{ Tablet  Layout: 768px */
+
+@media only screen and (min-width: @widthTablet) and (max-width: @widthDesktop) {
+    #error-content {
+        .span_narrow(6);
+    }
+}
+
+/* }}} */
+/* {{{ Wide Mobile Layout: 480px */
+
+@media only screen and (max-width: @widthTablet) {
+    #error-content {
+        .span-all();
+    }
+    #download {
+        .span-all();
+    }
+}
+
+/* }}} */

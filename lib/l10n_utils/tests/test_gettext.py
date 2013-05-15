@@ -9,9 +9,9 @@ from django.conf import settings
 from mock import patch
 from nose.tools import eq_
 
-from l10n_utils.gettext import langfiles_for_path, parse_python, parse_template
-from l10n_utils.tests import TempFileMixin
-from mozorg.tests import TestCase
+from lib.l10n_utils.gettext import langfiles_for_path, parse_python, parse_template
+from lib.l10n_utils.tests import TempFileMixin
+from bedrock.mozorg.tests import TestCase
 
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test_files')
@@ -19,7 +19,7 @@ TEMPLATE_DIRS = (os.path.join(ROOT, 'templates'))
 
 
 class TestParseTemplate(TempFileMixin, TestCase):
-    @patch('l10n_utils.gettext.codecs')
+    @patch('lib.l10n_utils.gettext.codecs')
     def test_single_lang_file_added(self, codecs_mock):
         tempf = self.tempfile("""
             {% add_lang_files "lebowski" %}
@@ -30,7 +30,7 @@ class TestParseTemplate(TempFileMixin, TestCase):
         lang_files = parse_template('file/doesnt/matter.html')
         eq_(lang_files, ['lebowski'])
 
-    @patch('l10n_utils.gettext.codecs')
+    @patch('lib.l10n_utils.gettext.codecs')
     def test_multiple_lang_files_added(self, codecs_mock):
         tempf = self.tempfile("""
             {% add_lang_files "lebowski" "walter" "dude" %}
@@ -43,13 +43,13 @@ class TestParseTemplate(TempFileMixin, TestCase):
 
 
 class TestParsePython(TempFileMixin, TestCase):
-    @patch('l10n_utils.gettext.codecs')
+    @patch('lib.l10n_utils.gettext.codecs')
     def test_new_lang_file_defined_list(self, codecs_mock):
         """
         If `LANG_FILES` is defined as a single item list it should be returned.
         """
         tempf = self.tempfile("""
-            from l10n_utils.dotlang import _
+            from lib.l10n_utils.dotlang import _
 
 
             LANG_FILES = ['lebowski']
@@ -60,13 +60,13 @@ class TestParsePython(TempFileMixin, TestCase):
         lang_files = parse_python('file/doesnt/matter.py')
         eq_(lang_files, ['lebowski'])
 
-    @patch('l10n_utils.gettext.codecs')
+    @patch('lib.l10n_utils.gettext.codecs')
     def test_new_multiple_lang_files_defined_list(self, codecs_mock):
         """
         If `LANG_FILES` is defined as a list it should be returned.
         """
         tempf = self.tempfile("""
-            from l10n_utils.dotlang import _
+            from lib.l10n_utils.dotlang import _
 
 
             LANG_FILES = ['lebowski', 'dude']
@@ -77,13 +77,13 @@ class TestParsePython(TempFileMixin, TestCase):
         lang_files = parse_python('file/doesnt/matter.py')
         eq_(lang_files, ['lebowski', 'dude'])
 
-    @patch('l10n_utils.gettext.codecs')
+    @patch('lib.l10n_utils.gettext.codecs')
     def test_new_multiple_lang_files_multi_line(self, codecs_mock):
         """
         If `LANG_FILES` is defined as a multiline list it should be returned.
         """
         tempf = self.tempfile("""
-            from l10n_utils.dotlang import _
+            from lib.l10n_utils.dotlang import _
 
 
             LANG_FILES = [
@@ -97,14 +97,14 @@ class TestParsePython(TempFileMixin, TestCase):
         lang_files = parse_python('file/doesnt/matter.py')
         eq_(lang_files, ['lebowski', 'dude'])
 
-    @patch('l10n_utils.gettext.codecs')
+    @patch('lib.l10n_utils.gettext.codecs')
     def test_new_single_lang_file_defined(self, codecs_mock):
         """
         If `LANG_FILES` is defined as a string it should be returned as a
         list of length 1.
         """
         tempf = self.tempfile("""
-            from l10n_utils.dotlang import _
+            from lib.l10n_utils.dotlang import _
 
 
             LANG_FILES = 'lebowski'
@@ -115,14 +115,14 @@ class TestParsePython(TempFileMixin, TestCase):
         lang_files = parse_python('file/doesnt/matter.py')
         eq_(lang_files, ['lebowski'])
 
-    @patch('l10n_utils.gettext.codecs')
+    @patch('lib.l10n_utils.gettext.codecs')
     def test_new_single_lang_file_defined_dbl_quote(self, codecs_mock):
         """
         If `LANG_FILES` is defined as a double quoted string it should be
         returned as a list of length 1.
         """
         tempf = self.tempfile("""
-            from l10n_utils.dotlang import _
+            from lib.l10n_utils.dotlang import _
 
 
             LANG_FILES = "lebowski"
@@ -133,13 +133,13 @@ class TestParsePython(TempFileMixin, TestCase):
         lang_files = parse_python('file/doesnt/matter.py')
         eq_(lang_files, ['lebowski'])
 
-    @patch('l10n_utils.gettext.codecs')
+    @patch('lib.l10n_utils.gettext.codecs')
     def test_no_lang_files_defined(self, codecs_mock):
         """
         If `LANG_FILES` is not defined an empty list should be returned.
         """
         tempf = self.tempfile("""
-            from l10n_utils.dotlang import _
+            from lib.l10n_utils.dotlang import _
 
 
             stuff = _('whatnot')

@@ -1,0 +1,137 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "/firefox/base-resp.html" %}
+
+{% block page_title %}Check for Updates{% endblock %}
+{% block body_id %}firefox-updates{% endblock %}
+
+{% block extrahead %}
+  {{ css('firefox_updates') }}
+  {{ super() }}
+{% endblock %}
+
+{% block content %}
+<div id="main-feature">
+  <h1>Keep Your Firefox Happy!</h1>
+  <h3>Make sure you're running the latest, greatest and most secure version.</h3>
+  {{ download_firefox(small=True) }}
+</div>
+
+<div id="main-content">
+<div class="row">
+
+<div id="faq" class="main-column">
+    <div class="section-content">
+       <h3>Frequently asked <span>questions</span></h3>
+    </div>
+
+  <div class="expander expander-odd">
+      <h3 class="expander-header">What is a Firefox software update?</h3>
+      <div class="expander-content">
+          <p>A Firefox software update is a quick download of small amounts of new code to your existing Firefox browser. These small patches can contain security fixes or other little changes to the browser to ensure that you are using the best version of Firefox available.</p>
+      </div>
+  </div>
+
+  <div class="expander">
+      <h3 class="expander-header">How do I update Firefox?</h3>
+      <div class="expander-content">
+          <p>By default, Firefox is configured to automatically check for updates for itself and notify you when one is available. When prompted, just click OK and the newest version will be downloaded and installed on your computer. You'll need to restart Firefox to begin using the new version.</p>
+          <p>You are also able to check for updates manually. For details, check out the <a href="https://support.mozilla.org/en-US/kb/Updating+Firefox#Manually_check_for_updates">step-by-step guide</a>.</p>
+      </div>
+  </div>
+
+  <div class="expander expander-odd">
+      <h3 class="expander-header">How do I know what version of Firefox I am currently on?</h3>
+      <div class="expander-content">
+          <p>It varies slightly depending on the operating system you're using. You can find <a href="http://support.mozilla.org/kb/Finding+your+Firefox+version">instructions for your computer here</a>.</p>
+      </div>
+  </div>
+
+  <div class="expander">
+      <h3 class="expander-header">Do I need to uninstall my current version of Firefox before upgrading?</h3>
+      <div class="expander-content">
+          <p>No. The new version of Firefox will automatically take the place of your older version. To start the upgrade process, just click the green download button to the right.</p>
+      </div>
+  </div>
+
+  <div class="expander expander-odd">
+      <h3 class="expander-header">Why do I need to update?</h3>
+      <div class="expander-content">
+          <p>Firefox is constantly evolving as our community finds ways to make it better, and as we adjust to the latest security threats. Keeping your Firefox up-to-date is the best way to make sure that you are using the smartest, fastest and – most importantly – safest version of Firefox available.</p>
+      </div>
+  </div>
+
+  <div class="expander">
+      <h3 class="expander-header">How long will it take to update?</h3>
+      <div class="expander-content">
+          <p>Not long at all – the entire process just takes a minute or two. Visit our support page for <a href="https://support.mozilla.org/en-US/kb/Updating+Firefox#Automatic_updates">step-by-step instructions</a>.</p>
+      </div>
+  </div>
+
+  <div class="expander expander-odd">
+      <h3 class="expander-header">Will the update affect my settings and bookmarks?</h3>
+      <div class="expander-content">
+          <p>No. A Firefox update will not make any changes to your bookmarks, saved passwords or other settings. However, there is a possibility that some of your Add-ons won’t be immediately compatible with new updates.</p>
+      </div>
+  </div>
+
+  <div class="expander">
+      <h3 class="expander-header">If I already have Firefox, and then do a fresh install, what happens to my settings?</h3>
+      <div class="expander-content">
+          <p>Nothing. Re-installing Firefox will not affect your settings, bookmarks or preferences in any way.</p>
+      </div>
+  </div>
+
+  <div class="expander expander-odd">
+      <h3 class="expander-header">Are Firefox updates safe?</h3>
+      <div class="expander-content">
+          <p>Very much so – your security is our top priority. Our open source security process means we have an international community of experts working around the clock to monitor the latest threats. As soon as a security threat is discovered, we write a patch and release an update to stay one step ahead. Downloading Firefox updates is a very important part of staying safe online.</p>
+      </div>
+  </div>
+
+  <div class="expander">
+      <h3 class="expander-header">What if I miss an update? Can I check for one myself?</h3>
+      <div class="expander-content">
+          <p>Yes. Firefox is configured to automatically check for updates, but it’s also possible to check for updates yourself. </p>
+          <p><a href="https://support.mozilla.org/en-US/kb/Updating+Firefox#Manually_check_for_updates">Follow the step-by-step process</a></p>
+      </div>
+  </div>
+
+</div>
+
+<aside class="sidebar" class="span3">
+  <div class="reference">
+  <h3>Need Help?</h3>
+  <a href="https://support.mozilla.org/products/firefox" class="more">Visit support.mozilla.org</a>
+  </div>
+</aside>
+
+</div>
+</div>
+{% endblock %}
+
+{% block js %}
+  {{ js('expanders') }}
+<script>
+$(document).ready(function() {
+    var latestVersion = parseInt('{{ latest_version }}'.split('.')[0], 10);
+    var isFirefox = (/\sFirefox/.test(window.navigator.userAgent));
+    var headline = $('#main-feature > h1');
+    var subheadline = $('#main-feature > h3');
+
+    if(isFirefox) {
+        if(latestVersion <= getFirefoxMasterVersion()) {
+            headline.html('Congratulations!');
+            subheadline.html('Your Firefox is up to date.');
+        }
+        else {
+            headline.html('Your Firefox is out of date.');
+            subheadline.html('Get the newest version <a href="/firefox">here</a>.');
+        }
+    }
+});
+</script>
+
+{% endblock %}
