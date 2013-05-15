@@ -9,7 +9,7 @@
 Tabzilla
 ========
 
-*tabzilla* is the universal tab displayed on Mozilla websites.
+*Tabzilla* is the universal tab displayed on Mozilla websites.
 
 Adding the universal tab to a site requires:
 
@@ -18,16 +18,31 @@ Adding the universal tab to a site requires:
     <a href="http://www.mozilla.org/" id="tabzilla">mozilla</a>
 
 2. Include the tabzilla.css CSS file either as a CSS include or built in to your minified styles::
-    
-    <link href="//www.mozilla.org/media/css/tabzilla-min.css" rel="stylesheet" />
+
+    <link href="//mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" rel="stylesheet" />
 
 3. Include the tabzilla.js file in your template (preferably in the footer)::
 
-    <script src="//www.mozilla.org/tabzilla/tabzilla.js"></script>
+    <script src="//mozorg.cdn.mozilla.net/tabzilla/tabzilla.js"></script>
 
    This will choose the best locale for your visitor. If you prefer to force the locale, you can use::
 
-    <script src="//www.mozilla.org/{locale}/tabzilla/tabzilla.js"></script>
+    <script src="//mozorg.cdn.mozilla.net/{locale}/tabzilla/tabzilla.js"></script>
+
+   Where ``{locale}`` is the language in which you'd like Tabzilla to be loaded (e.g. fr or de).
+   If Tabzilla is not yet translated into said locale the user will get the en-US version.
+
+.. note:: Tabzilla uses jQuery. If your site already includes jQuery be sure to
+          place the Tabzilla script tag **after** the one for jQuery. Tabzilla will
+          use the existing jQuery if available and a supported version, otherwise
+          it will load its own version of jQuery.
+
+That the source file URLs begin with ``//`` is not a typo. This is a
+protocol-relative URL which allows the resource to be loaded via
+whichever protocol (http or https) the page itself is loaded. This
+removes the need to add any logic to support loading Tabzilla over
+both secure and insecure connections, thereby avoiding mixed-content
+warnings from the browser.
 
 
 Requirements

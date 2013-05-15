@@ -235,7 +235,7 @@
 /* {{{ Overview Article */
 
 .js #overview {
-    .partner-button, #overview-news, .overview-actions {
+    .partner-button, #overview-news {
         display: none;
     }
     .partner-button {
@@ -255,10 +255,14 @@
         padding-bottom: 30px;
     }
     .intro {
+        margin-top: 20px;
         p {
             .open-sans-light;
             font-size: 17px;
             letter-spacing: -0.01em;
+        }
+        .partner-logos {
+            margin-top: 40px;
         }
         #more-partners {
             margin: -30px 0 0 0;
@@ -277,31 +281,16 @@
             margin-bottom: 5px;
         }
         #overview-news {
+            padding-top: 20px;
             clear: both;
             .clearfix();
-            background: url(/media/img/firefox/partners/divider.png) 50% 100% no-repeat;
-            padding-bottom: @baseLine;
-            min-height: 60px;
             position: relative;
-            img {
-                position: absolute;
-                top: 0;
-                left: 0;
-            }
             h3 {
-                margin: 0 0 5px 150px;
+                margin: 0 0 5px 0;
             }
             ul {
-                margin: 0 0 10px 150px;
+                margin: 0 0 10px 0;
             }
-        }
-    }
-    .overview-actions {
-        margin: 0;
-        padding: 0;
-        li {
-            width: 33%;
-            float: left;
         }
     }
 
@@ -606,10 +595,6 @@ body #partner-nav {
     }
 }
 
-#mwc-menu {
-    display: block;
-}
-
 #overlay-menu {
     display: block;
     position: fixed;
@@ -686,6 +671,7 @@ body #partner-nav {
     #screen-overview {
         display: block;
         background: url(/media/img/firefox/partners/screen-overview.jpg) 0 0 no-repeat;
+        z-index: 3;
         #foxtail {
             height: 156px;
             width: 156px;
@@ -697,6 +683,7 @@ body #partner-nav {
     }
     #screen-os {
         background: url(/media/img/firefox/partners/phone-os-screenshots.jpg) 0 0 repeat-x;
+        z-index: 2;
 
         -moz-animation: os-screenslide 20s ease infinite alternate;
         -webkit-animation: os-screenslide 20s ease infinite alternate;
@@ -739,6 +726,7 @@ body #partner-nav {
 
     #screen-marketplace {
         background: url(/media/img/firefox/partners/phone-marketplace-screenshot.jpg) 0 0 no-repeat;
+        z-index: 1;
     }
 }
 
@@ -787,6 +775,9 @@ body #partner-nav {
 
 #pageslide {
     background: #1e2023 url(/media/img/firefox/partners/form-bg.jpg) 0 0 repeat-y;
+    &:focus{
+        outline: none;
+    }
 }
 
 /* }}} */

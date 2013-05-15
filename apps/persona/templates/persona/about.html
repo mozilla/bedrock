@@ -2,11 +2,12 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% extends "sand.html" %}
+{% extends "base-resp.html" %}
 
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}About Mozilla Persona{% endblock %}
 {% block body_id %}persona-about{% endblock %}
+{% block body_class %}sand{% endblock %}
 
 {% block site_header_logo %}
   <h2><a href="/persona/"><img src="{{ MEDIA_URL }}img/persona/title.png" height="66" width="180" alt="mozilla Persona"></a></h2>
@@ -14,15 +15,16 @@
 
 {% block site_header_nav %}
   <nav id="nav-main" role="navigation">
-  <ul>
-      <li><a href="/persona/">Home</a></li>
-      <li><b>About</b></li>
-      <li><a href="/persona/developer-faq/">Developer FAQ</a></li>
+  <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
+  <ul id="nav-main-menu">
+    <li><a href="/persona/">Home</a></li>
+    <li><b>About</b></li>
+    <li><a href="https://developer.mozilla.org/persona">Developer Docs</a></li>
   </ul>
   </nav>
 {% endblock %}
 
-{% block site_css %}
+{% block extrahead %}
   {{ css('persona') }}
 {% endblock %}
 
@@ -55,7 +57,7 @@
   <p>Build user trust and confidence by providing an alternate login that protects their privacy and does not exploit profit from stored data.</p>
   <p>Developers don’t need to manage their own sign-in program and implement a separate email verification process — and they don’t need to ask users to remember another password. In a single step, you can turn visitors into trusted users and get an email address for them.</p>
   <p>Show your users that you respect their privacy and that you will give them a choice about sharing their data.</p>
-  <p>Check out <a href="https://developer.mozilla.org/en/browserid">our developer site</a> to get the code and get started!</p>
+  <p>Check out <a href="https://developer.mozilla.org/persona">our developer site</a> to get the code and get started!</p>
 
 </article>
 
@@ -65,7 +67,7 @@
     <ul>
       <li><a href="/persona/">Persona</a></li>
       <li><b>About</b></li>
-      <li><a href="/persona/developer-faq/">Developer FAQ</a></li>
+      <li><a href="https://developer.mozilla.org/persona">Developer Docs</a></li>
       <li><a href="/persona/privacy-policy/">Privacy</a></li>
       <li><a href="/persona/terms-of-service/">Terms of Service</a></li>
     </ul>

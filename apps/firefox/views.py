@@ -6,23 +6,24 @@ import json
 import re
 
 from django.conf import settings
-from django.http import (HttpResponse, HttpResponsePermanentRedirect,
+from django.http import (HttpResponsePermanentRedirect,
                          HttpResponseRedirect)
-from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from django.core.context_processors import csrf
 from django.views.decorators.vary import vary_on_headers
 
 import basket
+import l10n_utils
 import requests
 from jingo_minify.helpers import BUILD_ID_JS, BUNDLE_HASHES
-from product_details import product_details
-from product_details.version_compare import Version
 from funfactory.urlresolvers import reverse
 
-import l10n_utils
+
 from firefox import version_re
-from firefox.forms import SMSSendForm, WebToLeadForm
+from firefox.forms import SMSSendForm
+from mozorg.forms import WebToLeadForm
 from firefox.platforms import load_devices
+from firefox.utils import is_current_or_newer
 from firefox.firefox_details import firefox_details
 from l10n_utils.dotlang import _
 
@@ -36,6 +37,12 @@ LOCALE_OS_URLS = {
     'es-ES': 'http://blog.mozilla.org/press-es/?p=340',
     'en-GB': 'http://blog.mozilla.org/press-uk/?p=471'
 }
+INSTALLER_CHANNElS = [
+    'release',
+    'beta',
+    'aurora',
+    #'nightly',  # soon
+]
 
 
 def get_js_bundle_files(bundle):
@@ -60,23 +67,21 @@ JS_MOBILE = get_js_bundle_files('partners_mobile')
 JS_DESKTOP = get_js_bundle_files('partners_desktop')
 
 
-@csrf_exempt
-@require_POST
-def contact_bizdev(request):
-    form = WebToLeadForm(request.POST)
-    if form.is_valid():
-        data = form.cleaned_data.copy()
-        interest = data.pop('interest')
-        data['00NU0000002pDJr'] = interest
-        data['oid'] = '00DU0000000IrgO'
-        data['retURL'] = ('http://www.mozilla.org/en-US/about/'
-                          'partnerships?success=1')
-        r = requests.post('https://www.salesforce.com/servlet/'
-                          'servlet.WebToLead?encoding=UTF-8', data)
-        msg = requests.status_codes._codes.get(r.status_code, ['error'])[0]
-        return HttpResponse(msg, status=r.status_code)
+def installer_help(request):
+    installer_lang = request.GET.get('installer_lang', None)
+    installer_channel = request.GET.get('channel', None)
+    context = {
+        'installer_lang': None,
+        'installer_channel': None,
+    }
 
-    return HttpResponse('Form invalid', status=400)
+    if installer_lang and installer_lang in firefox_details.languages:
+        context['installer_lang'] = installer_lang
+
+    if installer_channel and installer_channel in INSTALLER_CHANNElS:
+        context['installer_channel'] = installer_channel
+
+    return l10n_utils.render(request, 'firefox/installer-help.html', context)
 
 
 @csrf_exempt
@@ -164,24 +169,6 @@ def latest_fx_redirect(request, fake_version, template_name):
                              {'locales_with_video': locales_with_video})
 
 
-def is_current_or_newer(user_version):
-    """
-    Return true if the version (X.Y only) is for the latest Firefox or newer.
-    """
-    latest = Version(product_details.firefox_versions['LATEST_FIREFOX_VERSION'])
-    user = Version(user_version)
-
-    # check for ESR
-    if user.major in firefox_details.esr_major_versions:
-        return True
-
-    # similar to the way comparison is done in the Version class,
-    # but only using the major and minor versions.
-    latest_int = int('%d%02d' % (latest.major, latest.minor1))
-    user_int = int('%d%02d' % (user.major or 0, user.minor1 or 0))
-    return user_int >= latest_int
-
-
 def all_downloads(request):
     version = firefox_details.latest_version('release')
     query = request.GET.get('q')
@@ -192,13 +179,59 @@ def all_downloads(request):
     })
 
 
+@csrf_protect
 def firefox_partners(request):
     # If the current locale isn't in our list, return the en-US value
     locale_os_url = LOCALE_OS_URLS.get(request.locale, LOCALE_OS_URLS['en-US'])
 
-    return l10n_utils.render(request, 'firefox/partners/index.html', {
+    form = WebToLeadForm()
+
+    template_vars = {
         'locale_os_url': locale_os_url,
         'js_common': JS_COMMON,
         'js_mobile': JS_MOBILE,
         'js_desktop': JS_DESKTOP,
-    })
+        'form': form,
+    }
+
+    template_vars.update(csrf(request))
+
+    return l10n_utils.render(request, 'firefox/partners/index.html', template_vars)
+
+
+def firstrun_new(request, view, version):
+    # only Firefox users should see the firstrun pages
+    user_agent = request.META.get('HTTP_USER_AGENT', '')
+    if not 'Firefox' in user_agent:
+        url = reverse('firefox.new')
+        return HttpResponsePermanentRedirect(url)
+
+    # only users on the latest version should see the
+    # new pages (for GA experiment data purity)
+    user_version = "0"
+    ua_regexp = r"Firefox/(%s)" % version_re
+    match = re.search(ua_regexp, user_agent)
+    if match:
+        user_version = match.group(1)
+
+    if not is_current_or_newer(user_version):
+        url = reverse('firefox.update')
+        return HttpResponsePermanentRedirect(url)
+
+    # b only has 1-4 version
+    if (view == 'b' and (int(version) < 1 or int(version) > 4)):
+        version = '1'
+
+    if (view == 'a'):
+        copy = 'a' if (version in '123') else 'b'
+    else:
+        copy = 'a' if (version in '12') else 'b'
+
+    template_vars = {
+        'version': version,
+        'copy': copy,
+    }
+
+    template = view + '.html'
+
+    return l10n_utils.render(request, 'firefox/firstrun/' + template, template_vars)

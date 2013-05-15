@@ -1,0 +1,126 @@
+{% extends 'bare.html' %}
+
+{% block page_title %}{{ _('Download Firefox') }}{% endblock %}
+
+{% block site_css %}
+    {{ css('facebookapps_downloadtab') }}
+{% endblock %}
+
+{% block body_class -%}
+    {% if noscroll %}
+        noscroll
+    {% endif %}
+{%- endblock %}
+
+{% block string_data %}
+    data-app-title="{{ _('Download Firefox') }}"
+    data-share-caption="{{ _('Fast, safe and easy to use.') }}"
+    data-share-description="{{ _('A browser you’ll want to share with your friends.') }}"
+    data-invite-title="{{ _('Invite friends to Download Firefox') }}"
+    data-invite-message="{{ _('invited you to download Firefox, a faster and safer browser.') }}"
+{% endblock %}
+
+{% block content %}
+<header id="masthead">
+    {% if noscroll %}
+        <a href="#" id="logo">
+            <img src="{{ media('img/facebookapps/downloadtab/header-firefox.png') }}" alt="{{ _('Firefox for desktop') }}" width="180">
+        </a>
+    {% endif %}
+
+    <div id="progress">
+        <ol>
+            <li class="step1">{{ _('Download') }}</li>
+            <li class="step2">{{ _('Share') }}</li>
+            <li class="step3">{{ _('Congratulations') }}</li>
+        </ol>
+        <div class="ir" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuenow="3">{{ _('Step 1: Download') }}</div>
+    </div>
+</header>
+
+<div class="theater" id="theater-firefox">
+    <div class="stage" id="stage">
+        <div class="scene animated hidden" id="scene1">
+            <h1>{{ _('Different by design') }}</h1>
+
+            <ul id="features">
+                <li>{{ _('Proudly <span>non-profit</span>')|safe }}</li>
+                <li>{{ _('Innovating <span>for you</span>')|safe }}</li>
+                <li class="last">{{ _('Fast, flexible, <span>secure</span>')|safe }}</li>
+            </ul>
+
+            {{ download_firefox(force_direct=true) }}
+        </div><!-- /#scene1 -->
+
+        <div class="scene animated hidden" id="scene2">
+            <h2>{{ _('Thanks for downloading Firefox') }}</h2>
+            <p class="message">{{ _('As a non-profit, we’re free to deliver continuous innovation to meet your browsing needs. Discover a new and faster Web.') }}</p>
+
+            <ol class="installation">
+                <li id="install1">
+                    <span class="install-win">{{ _('Start the process by clicking Run.') }}</span>
+                    {{ _('Your download should begin automatically. If not, <a id="{link_id}" href="{download_url}">click here</a>. It could take a few minutes, but it’s worth the wait.')|fe(link_id='direct-download-link', download_url='#download_url') }}
+                </li>
+                <li id="install2">
+                    <span class="install-osx">{{ _('When prompted, drag the Firefox icon onto the image of your Applications folder.') }}</span>
+                    <span class="install-win">{{ _('Click Run to launch the Mozilla Firefox setup wizard. Then, just follow the steps (we’ve made the process as painless as possible).') }}</span>
+                </li>
+                <li id="install3">
+                    <span class="install-osx">{{ _('Drag the Firefox icon from the Applications folder into the dock. Then, just click on Firefox whenever you want to use the Web!') }}</span>
+                    <span class="install-win">{{ _('Now you’re ready to leap boldly into a new era of Web surfing. Double-click on the Firefox icon whenever you want to go online.') }}</span>
+                </li>
+            </ol>
+
+            <a id="button" class="button js-share" href="#">{{ _('Tell friends about Firefox') }}</a>
+        </div><!-- /#scene2 -->
+
+        <div class="scene animated hidden" id="scene3">
+            <h2>{{ _('Congratulations!') }}</h2>
+            <p class="message">{{ _('You’re now part of a global community helping us build a brighter future for the Web.') }}</p>
+
+            <p class="message facepile">&nbsp;</p>
+
+            <div id="slider-container">
+                <ul id="slider">
+                    <li>
+                        <h3 class="single-line">{{ _('Love Firefox? Become one of our 14 million fans.') }}</h3>
+                        <img src="{{ media('img/facebookapps/downloadtab/icon_like_with_txt.png') }}" width="133" height="42" alt="{{ _('Like icon') }}" class="like-txt"/>
+                    </li>
+                    <li class="visuallyhidden">
+                        <h3>{{ _('Facebook Messenger for Firefox') }}</h3>
+                        <p>{{ _('Keep up with friends wherever you go on the Web.') }}</p>
+                        <a class="button" href="https://addons.mozilla.org/en-US/firefox/addon/facebook-messenger/" target="_top">{{ _('Turn on Messenger') }}</a>
+                    </li>
+                    <li class="visuallyhidden">
+                        <h3>{{ _('Become a Firefox Affiliate') }}</h3>
+                        <p>{{ _('Get the tools you need to share your love of Firefox.') }}</p>
+                        <a class="button" href="https://www.facebook.com/Firefox/app_373528039377278" target="_top">{{ _('Learn more') }}</a>
+                    </li>
+                    <li class="visuallyhidden">
+                        <h3>{{ _('Friends tell friends to download Firefox') }}</h3>
+                        <p>{{ _('Invite friends to download a faster and safer browser.') }}</p>
+                        <a class="button js-invite" href="#">{{ _('Invite friends') }}</a>
+                    </li>
+                </ul>
+                <button class="ir prev">{{ _('Previous') }}</button>
+                <button class="ir next">{{ _('Next') }}</button>
+            </div><!-- /#slider-container -->
+        </div><!-- /#scene3 -->
+    </div><!-- /#stage -->
+</div><!-- /#theater-firefox -->
+{% endblock %}
+
+{% block js %}
+    <div id="init-data"
+        data-app-id="{{ settings.FACEBOOK_APP_ID }}"
+        data-page-namespace="{{ settings.FACEBOOK_PAGE_NAMESPACE }}"
+        data-active-scene="{{ request.GET.get('scene') }}"
+        data-tab-redirect-path="{{ url('facebookapps.tab_redirect') }}"
+        data-share-image-path="{{ media('img/facebookapps/downloadtab/sharing-image.jpg') }}"
+        data-is-dev="{{ 'true' if settings.DEV else 'false' }}"
+    ></div>
+
+    <div id="fb-root"></div>
+
+    {{ js('facebookapps_downloadtab') }}
+{% endblock %}

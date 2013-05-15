@@ -14,23 +14,85 @@
 {% block content_area %}
 <section id="intro">
   <h2>Introduction</h2>
-  <p>Welcome to home of our evolving Firefox OS brand (formerly Boot to Gecko) for mobile devices. Check back soon for complete usage examples and rules.</p>
+  <p>This page includes the brand marks for Firefox OS, our open
+  operating system for mobile devices, to be used non-commercially by the
+  Mozilla community. If you're interested in using these assets for
+  commercial purposes, please <a href="{{ url('mozorg.partnerships') }}">contact us</a>.</p>
 </section>
+
+<section id="guidelines">
+  <div>
+    <h2>Guidelines</h2>
+    <p>For all permitted uses of our trademarks, you may not:</p>
+  </div>
+  <ul id="guidelines-list">
+    <li>alter our logos in any way</li>
+    <li>place a logo in such close proximity to other content that it is indistinguishable</li>
+    <li>make our logo the most distinctive or prominent feature on your website, printed material or other content</li>
+    <li>use our logos in a way that suggests any type of association or partnership with Mozilla or approval, sponsorship or endorsement by  Mozilla (unless allowed via a license from us)</li>
+    <li>use our logos in a way that is harmful, deceptive, obscene or otherwise objectionable to the average person</li>
+    <li>use our logos on websites or other places containing content associated with hate speech, pornography, gambling or illegal activities</li>
+    <li>use our logos to, or in connection with, content that disparages us or sullies our reputation</li>
+  </ul>
+</section>
+
+<section id="versus">
+  <h2>Firefox OS vs. Boot 2 Gecko</h2>
+  <div>
+    <p>Firefox OS is a commercial product based on the open source Boot
+    to Gecko (B2G) project. While the B2G code is open to anyone to
+    implement, hack and experiment with, any properties or assets
+    associated specifically and directly with Firefox OS (e.g. the name,
+    logo, user interface, etc.) are subject to partner licensing agreements.
+    For more information on partnership opportunities, please
+    <a href="{{ url('mozorg.partnerships') }}">contact us.</a></p>
+
+{# Hide this paragraph until we have the promo materials page completed
+    <p>Please also have a look at the <a href="{{ url('styleguide.identity.firefoxos-promo-materials') }}">promotional branding</a>
+    we’ve created specifically for community and other non-commercial use.</p>
+#}
+  </div>
+</section>
+
+<section id="usage">
+  <h2>Usage</h2>
+  <div><img src="{{ media('/img/styleguide/identity/firefoxos/usage-standard.png') }}" alt="Firefox OS logo and wordmark, standard horizontal orientation" id="usage-standard"></div>
+  <p>Our standard lockup for representing Firefox OS. In most cases, use this.</p>
+  <div><img src="{{ media('/img/styleguide/identity/firefoxos/usage-standard-alt.png') }}" alt="Firefox OS logo and wordmark, alternative vertical orientation" id="usage-standard-alt"></div>
+  <p>Vertical lockup for layout specific usage.</p>
+</section>
+
+
 <section id="wordmark">
   <div class="build">
     <h2>Wordmark</h2>
     <p>The Firefox OS wordmark follows our <a href="{{ url('styleguide.communications.typefaces') }}#wordmarks">tiered font system</a>.</p>
   </div>
   <div class="logo">
-    <img src="{{ media('/img/styleguide/box-arrow-left.png') }}" alt="" class="box-arrow" />
-    <img src="{{ media('/img/styleguide/identity/firefoxos/wordmark.png') }}" alt="Logo" />
+    <img src="{{ media('/img/styleguide/box-arrow-left.png') }}" alt="" class="box-arrow">
+    <img src="{{ media('/img/styleguide/identity/firefoxos/wordmark-logo.png?build=2') }}" alt="Firefox OS logo and wordmark">
+    <img src="{{ media('/img/styleguide/identity/firefoxos/wordmark.png?build=2') }}" alt="Firefox OS wordmark">
+    <img src="{{ media('/img/styleguide/identity/firefoxos/wordmark-logo-vertical.png?build=2') }}" alt="Firefox OS logo and wordmark, vertical orientation">
   </div>
   <div class="download">
     <h4>Download</h4>
+    <h5>Wordmark + Logo</h5>
+    <ul class="button-list">
+      <li><a href="https://assets.mozillalabs.com/Brands-Logos/Firefox%20OS/logo-wordmark/firefox-os_logo-wordmark_CMYK.eps" class="button-sand">EPS</a>
+      </li><li><a href="https://assets.mozillalabs.com/Brands-Logos/Firefox%20OS/logo-wordmark/firefox-os_logo-wordmark_RGB-300dpi.jpg" class="button-sand">JPG (300dpi)</a>
+      </li><li><a href="https://assets.mozillalabs.com/Brands-Logos/Firefox%20OS/logo-wordmark/firefox-os_logo-wordmark_RGB.png" class="button-sand">PNG</a></li>
+    </ul>
+    <h5>Wordmark only</h5>
     <ul class="button-list">
       <li><a href="https://assets.mozillalabs.com/Brands-Logos/Firefox%20OS/wordmark-only/firefox-os_wordmark-only_CMYK.eps" class="button-sand">EPS</a>
       </li><li><a href="https://assets.mozillalabs.com/Brands-Logos/Firefox%20OS/wordmark-only/firefox-os_wordmark-only_RGB-300dpi.jpg" class="button-sand">JPG (300dpi)</a>
       </li><li><a href="https://assets.mozillalabs.com/Brands-Logos/Firefox%20OS/wordmark-only/firefox-os_wordmark-only_RGB.png" class="button-sand">PNG</a></li>
+    </ul>
+    <h5>Wordmark + Logo (vertical)</h5>
+    <ul class="button-list">
+      <li><a href="https://assets.mozillalabs.com/Brands-Logos/Firefox%20OS/logo-wordmark/firefox-os_logo-wordmark_RGB-vertical.eps" class="button-sand">EPS</a>
+      </li><li><a href="https://assets.mozillalabs.com/Brands-Logos/Firefox%20OS/logo-wordmark/firefox-os_logo-wordmark_RGB-vertical-300dpi.jpg" class="button-sand">JPG (300dpi)</a>
+      </li><li><a href="https://assets.mozillalabs.com/Brands-Logos/Firefox%20OS/logo-wordmark/firefox-os_logo-wordmark_RGB-vertical.png" class="button-sand">PNG</a></li>
     </ul>
   </div>
 </section>

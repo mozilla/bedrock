@@ -25,7 +25,7 @@
     <h4>Bringing together all kinds of awesomeness to make browsing better for you.</h4>
   </hgroup>
 
-  {{ download_button('download', 'small') }}
+  {{ download_firefox(small=True) }}
   </div>
 </div>
 
@@ -103,13 +103,13 @@
 
     <div id="tabs" class="feature">
       <h4>Tabs</h4>
-      <p>Browse multiple sites at once, simply and easily. Each new site appears as a new tab<br />(not a new window) and can be accessed in one click.</p>
+      <p>Browse multiple sites at once, simply and easily. Each new site appears as a new tab<br /> (not a new window) and can be accessed in one click.</p>
 
       <div class="column1">
         <div class="sub-feature">
-          <h5>App Tabs</h5>
-          <p>Take sites you always keep open—like Web mail—off your tab bar and give them a permanent home in your browser. <a href="http://support.mozilla.org/kb/what-are-app-tabs">Learn how.</a></p>
-          {{ platform_img('img/firefox/features/screen-apptab.png', alt='App Tabs screenshot') }}
+          <h5>Pinned Tabs</h5>
+          <p>Take sites you always keep open—like Web mail—off your tab bar and give them a permanent home in your browser. <a href="https://support.mozilla.org/kb/pinned-tabs-keep-favorite-websites-open">Learn how.</a></p>
+          {{ platform_img('img/firefox/features/screen-apptab.png', alt='Pinned Tabs screenshot') }}
         </div>
 
         <div class="feature">
@@ -317,7 +317,8 @@
             width="640"
             height="360"
             poster="{{ media('img/firefox/video/poster-runfield.jpg') }}"
-            controls="controls">
+            controls="controls"
+            data-overlay-hidden-text="{{_('Play video')}}">
 
             <source src="http://videos-cdn.mozilla.net/serv/mozhacks/demos/screencasts/runfield/screencast.webm" type="video/webm" />
             <source src="http://videos-cdn.mozilla.net/serv/mozhacks/demos/screencasts/runfield/screencast.theora.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;" />
@@ -345,7 +346,7 @@
 
         </video>
     </div>
-    <p>Runfield is a Web-based game built with JavaScript and Canvas. <a href="https://developer.mozilla.org/en-US/demosdetail/runfield">Try it for yourself »</a></p>
+    <p>Runfield is a Web-based game built with JavaScript and Canvas. <a href="https://developer.mozilla.org/en-US/demos/detail/runfield">Try it for yourself »</a></p>
     </div>
     <div class="column1">
       <div class="feature">
@@ -381,7 +382,8 @@
                         width="290"
                         height="163"
                         controls="controls"
-                        poster="{{ media('img/firefox/video/poster-3d.jpg') }}">
+                        poster="{{ media('img/firefox/video/poster-3d.jpg') }}"
+                        data-overlay-hidden-text="{{_('Play video')}}">
 
                         <source src="http://videos-cdn.mozilla.net/serv/mozhacks/demos/screencasts/remixingreality/screencast.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;" />
                         <source src="http://videos-cdn.mozilla.net/serv/mozhacks/demos/screencasts/remixingreality/screencast.mp4" type="video/mp4" />
@@ -444,7 +446,7 @@
 
       <div class="feature">
         <h4>Secure Updates</h4>
-        <p>Firefox looks for a secure connection before installing or updating add-ons, third-party software, and <a href="http://www.getpersonas.com/en-US/">Personas</a>.</p>
+        <p>Firefox looks for a secure connection before installing or updating add-ons, third-party software, and themes.</p>
       </div>
 
     </div>
@@ -452,7 +454,7 @@
     <div class="column2">
       <div class="feature">
         <h4>Private Browsing</h4>
-        <p>Sometimes it’s nice to go undercover: turn this feature on and protect your browsing history. You can slip in and out of private browsing mode quickly, so it’s easy to go back to what you were doing before as if nothing ever happened. This feature is great if you’re doing your online banking on a shared computer or checking email from an Internet café. <a href="http://support.mozilla.org/kb/Private+Browsing">Learn more.</a></p>
+        <p>Sometimes it’s nice to go undercover: Open a private window and protect your browsing history. You can switch between private and normal windows quickly, so it’s easy to go back to what you were doing before. This feature is great if you’re doing your online banking on a shared computer or checking email from an Internet café. <a href="http://support.mozilla.org/kb/Private+Browsing">Learn more.</a></p>
         {{ platform_img('img/firefox/features/screen-private.png', alt='Private Browsing screenshot') }}
       </div>
 
@@ -522,9 +524,9 @@
 
     <div class="column1">
       <div class="feature">
-        <h4>Dress Up Your Firefox with Personas</h4>
-        <p>Change the look of your Firefox to practically anything with Personas: thousands of easy-to-install themes created by users from around the world (or that you make yourself!). With a single click, you can dress your browser up in simple designs, colorful patterns, and content from partners like Harry Potter and Bob Marley.</p>
-        {{ platform_img('img/firefox/features/screen-personas.png', alt='Personas screenshot') }}
+        <h4>Dress Up Your Firefox with Themes</h4>
+        <p>Change the look of your Firefox to practically anything with Themes: thousands of easy-to-install themes created by users from around the world (or that you make yourself!). With a single click, you can dress your browser up in simple designs, colorful patterns, and content from partners like Harry Potter and Bob Marley.</p>
+        {{ platform_img('img/firefox/features/screen-personas.png', alt='Theme screenshot') }}
       </div>
     </div>
 
@@ -608,7 +610,8 @@
                         width="290"
                         height="163"
                         controls="controls"
-                        poster="{{ media('img/firefox/video/poster-brand.jpg') }}">
+                        poster="{{ media('img/firefox/video/poster-brand.jpg') }}"
+                        data-overlay-hidden-text="{{_('Play video')}}">
 
                         <source src="http://videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.webm" type="video/webm" />
                         <source src="http://videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.theora.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;" />

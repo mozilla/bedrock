@@ -143,46 +143,10 @@
     .inline-block;
     margin: 0 (@gridGutterWidth / 2);
     text-align: left;
-    .download-button .download-link {
-        display: block;
-        margin-left: 0;
-        height: auto;
-        line-height: @baseLine * 0.75;
-       .download-content {
-            background: url(/media/img/sandstone/buttons/arrow-large.png) no-repeat 12px 50%;
-            margin-left: 0;
-            height: auto;
-        }
-        .download-title {
-            background: none;
-            padding: 8px 0 2px 0;
-            height: auto;
-            .open-sans;
-            font-size: 18px;
-            text-shadow: 0 -1px rgba(0,0,0,0.2);
-        }
-        .download-subtitle {
-            color: #b8e779;
-            height: auto;
-            text-shadow: 0 -1px rgba(0,0,0,0.2);
-            display: block;
-            padding-bottom: 8px;
-        }
-    }
 }
 
-.download-box.mobile .download-button .download-link {
-    position: relative;
-}
-
-.download-box.mobile .download-button .download-link:after {
-    background: url(/media/img/firefox/channel/download-android.png) 0 0 no-repeat;
-    position: absolute;
-    content: "";
-    height: 53px;
-    width: 55px;
-    right: 0;
-    bottom: 0;
+.android .download-box.mobile {
+    display: none;
 }
 
 p.more {

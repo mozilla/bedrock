@@ -1,3 +1,5 @@
+# coding: utf-8
+
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -6,10 +8,12 @@ from os import path
 from StringIO import StringIO
 from textwrap import dedent
 
+from django.conf import settings
 from django.utils import unittest
 
-from mock import MagicMock, patch
+from mock import ANY, MagicMock, Mock, patch
 
+from l10n_utils.gettext import _append_to_lang_file, merge_lang_files
 from l10n_utils.management.commands.l10n_check import (
     get_todays_version,
     L10nParser,
@@ -17,19 +21,103 @@ from l10n_utils.management.commands.l10n_check import (
     list_templates,
     update_templates,
 )
+from l10n_utils.management.commands.l10n_extract import extract_from_files
+from l10n_utils.tests import capture_stdio
 
 
 ROOT = path.join(path.dirname(path.abspath(__file__)), 'test_files')
 TEMPLATE_DIRS = (path.join(ROOT, 'templates'),)
 
+METHODS = [
+    ('lib/l10n_utils/tests/test_files/templates/**.html',
+     'tower.management.commands.extract.extract_tower_template'),
+]
+
+
+class TestL10nExtract(unittest.TestCase):
+    def test_extract_from_files(self):
+        """
+        Should be able to extract strings from a specific file.
+        """
+        testfile = ('lib/l10n_utils/tests/test_files/templates/'
+                    'even_more_lang_files.html',)
+        with capture_stdio() as out:
+            extracted = next(extract_from_files(testfile, method_map=METHODS))
+        self.assertTupleEqual(extracted,
+                              (testfile[0], 9, 'Mark it 8 Dude.', []))
+        # test default callback
+        self.assertEqual(out[0], '  %s' % testfile)
+
+    def test_extract_from_multiple_files(self):
+        """
+        Should be able to extract strings from specific files.
+        """
+        basedir = 'lib/l10n_utils/tests/test_files/templates/'
+        testfiles = (
+            basedir + 'even_more_lang_files.html',
+            basedir + 'some_lang_files.html',
+        )
+        good_extracts = (
+            (testfiles[0], 9, 'Mark it 8 Dude.', []),
+            (testfiles[1], 9, 'Is this your homework Larry?', []),
+        )
+        with capture_stdio() as out:
+            for i, extracted in enumerate(
+                    extract_from_files(testfiles, method_map=METHODS)):
+                self.assertTupleEqual(extracted, good_extracts[i])
+        self.assertEqual(out[0], '  %s\n  %s' % testfiles)
+
+    def test_extract_from_files_no_match(self):
+        """
+        If the file path doesn't match a domain method, it should be skipped.
+        """
+        testfile = ('apps/mozorg/templates/mozorg/home.html',)
+        with capture_stdio() as out:
+            extracted = next(extract_from_files(testfile, method_map=METHODS),
+                             None)
+        self.assertIsNone(extracted)
+        self.assertEqual(out[0],
+                         '! %s does not match any domain methods!' % testfile)
+
+    def test_extract_from_files_no_file(self):
+        """
+        If the file path doesn't exist, it should be skipped.
+        """
+        testfile = ('lib/l10n_utils/tests/test_files/templates/'
+                    'file_does_not_exist.html',)
+        with capture_stdio() as out:
+            extracted = next(extract_from_files(testfile, method_map=METHODS),
+                             None)
+        self.assertIsNone(extracted)
+        self.assertEqual(out[0], '! %s does not exist!' % testfile)
+
+    @patch('l10n_utils.management.commands.l10n_extract.extract_from_file')
+    def test_extract_from_files_passes_args(self, eff):
+        """The correct args should be passed through to extract_from_file"""
+        testfile = ('lib/l10n_utils/tests/test_files/templates/'
+                    'even_more_lang_files.html',)
+        testfile_full = path.join(settings.ROOT, testfile[0])
+        next(extract_from_files(testfile, method_map=METHODS), None)
+        eff.assert_called_once_with(METHODS[0][1], testfile_full,
+                                    keywords=ANY,
+                                    comment_tags=ANY,
+                                    options=ANY,
+                                    strip_comment_tags=ANY)
+
+    def test_extract_from_files_callback_works(self):
+        """extract_from_files should call our callback"""
+        testfile = ('lib/l10n_utils/tests/test_files/templates/'
+                    'even_more_lang_files.html',)
+        callback = Mock()
+        next(extract_from_files(testfile, callback=callback,
+                                method_map=METHODS), None)
+        callback.assert_called_once_with(testfile[0], METHODS[0][1], ANY)
+
 
 class TestL10nCheck(unittest.TestCase):
     def _get_block(self, blocks, name):
         """Out of all blocks, grab the one with the specified name."""
-        for b in blocks:
-            if b['name'] == name:
-                return b
-        return None
+        return next((b for b in blocks if b['name'] == name), None)
 
     def test_list_templates(self):
         """Make sure we capture both html and txt templates."""
@@ -243,3 +331,48 @@ class TestL10nCheck(unittest.TestCase):
             {{% endl10n %}}\n
         """.format(get_todays_version()))
         self.assertEqual(open_buffer.getvalue(), good_value)
+
+
+class Testl10nMerge(unittest.TestCase):
+
+    @patch('l10n_utils.gettext.settings.ROOT', ROOT)
+    @patch('l10n_utils.gettext._append_to_lang_file')
+    def test_merge_lang_files(self, write_mock):
+        """
+        `merge_lang_files()` should see all strings, not skip the untranslated.
+        Bug 861168.
+        """
+        merge_lang_files(['de'])
+        dest_file = path.join(ROOT, 'locale', 'de', 'firefox', 'fx.lang')
+        write_mock.assert_called_once_with(dest_file,
+                                           [u'Find out if your device is '
+                                            u'supported &nbsp;\xbb'])
+
+    @patch('l10n_utils.gettext.codecs.open')
+    def test_append_to_lang_file(self, open_mock):
+        """
+        `_append_to_lang_file()` should append any new messages to a lang file.
+        """
+        _append_to_lang_file('dude.lang', ['The Dude abides, man.'])
+        mock_write = open_mock.return_value.__enter__.return_value.write
+        mock_write.assert_called_once_with(u'\n\n;The Dude abides, man.\n'
+                                           u'The Dude abides, man.\n')
+
+        # make sure writing multiple strings works.
+        mock_write.reset_mock()
+        msgs = ['The Dude abides, man.', 'Dammit Walter!']
+        _append_to_lang_file('dude.lang', msgs)
+        expected = [((u'\n\n;{msg}\n{msg}\n'.format(msg=msg),),)
+                    for msg in msgs]
+        self.assertEqual(expected, mock_write.call_args_list)
+
+    @patch('l10n_utils.gettext.codecs.open')
+    def test_merge_unicode_strings(self, open_mock):
+        """
+        Bug 869538: Exception when merging unicode.
+        """
+        mock_write = open_mock.return_value.__enter__.return_value.write
+        msgs = [u"Désintéressé et fier de l'être"]
+        _append_to_lang_file('dude.lang', msgs)
+        mock_write.assert_called_once_with(
+            u'\n\n;{msg}\n{msg}\n'.format(msg=msgs[0]))

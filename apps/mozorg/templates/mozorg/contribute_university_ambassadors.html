@@ -1,0 +1,161 @@
+{% extends "mozorg/base-resp.html" %}
+
+{% block page_title %}{{_('Firefox Student Ambassadors')}}{% endblock %}
+{% block body_id %}ambassadors{% endblock %}
+{% block body_class %}lang-{{ LANG }}{% endblock %}
+{% block extrahead %}
+  {{ css('contribute-university-ambassadors') }}
+{% endblock %}
+{% block content %}
+
+{% block pageheader %}
+<div id="main-feature">
+  <img src="{{ media('img/contribute/university-ambassadors/logo.png')}}" alt="{{ _('Student Ambassadors') }}">
+  <h1>{{ _('Become a member of Firefox Student Ambassadors!') }}</h1>
+  <h2>{{ _('Show your university why Firefox rocks and encourage others to get involved with Mozilla.') }}</h2>
+</div>
+{% endblock %}
+
+{% block billboardcontent %}
+  <form method="POST" class="billboard {% if form.non_field_errors() or form.errors %}has-errors{% endif %}"
+        id="help-form" action="#help-form">
+    {{ csrf() }}
+    <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
+      <div class="form-column">
+        <section class="about-you">
+          <h3>{{ _('Information about You') }}</h3>
+          <div class="field">
+            {{ field_with_attrs(form.first_name, placeholder=_('First name'), required='required')|safe }}
+            <span class="required">*</span>
+            {{ form.first_name.errors }}
+          </div>
+          <div class="field">
+            {{ field_with_attrs(form.last_name, placeholder=_('Last name'), required='required')|safe }}
+            <span class="required">*</span>
+            {{ form.last_name.errors }}
+          </div>
+          <div class="field">
+            {{ field_with_attrs(form.email, placeholder=_('Email'), required='required')|safe }}
+            <span class="required">*</span>
+            {{ form.email.errors }}
+          </div>
+        </section>
+        <section class="school">
+          <h3>{{ _('School Information') }}</h3>
+          <div class="field">
+            {{ field_with_attrs(form.school, placeholder=_('School'), required='required')|safe }}
+            <span class="required">*</span>
+            {{ form.school.errors }}
+          </div>
+          <div class="field">
+            {{ field_with_attrs(form.city, placeholder=_('City'), required='required')|safe }}
+            <span class="required">*</span>
+            {{ form.city.errors }}
+          </div>
+          <div class="select">
+            <div class="field country">
+              {{ field_with_attrs(form.country, required='required') }}
+              <span class="required">*</span>
+              {{ form.country.errors }}
+            </div>
+            <div class="field">
+              {{ field_with_attrs(form.current_status, required='required') }}
+              <span class="required">*</span>
+              <div class="field {% if not form.expected_graduation_year.value() and not form.expected_graduation_year.errors %} hide {% endif %}"
+                   id="expected_graduation_year">
+                {% if not form.expected_graduation_year.value() and not form.expected_graduation_year.errors %}
+                  {{ form.expected_graduation_year }}
+                {% else %}
+                  {{ field_with_attrs(form.expected_graduation_year, required='required') }}
+                {% endif %}
+                <span class="required">*</span>
+              </div>
+              {{ form.current_status.errors }}
+              {{ form.expected_graduation_year.errors }}
+            </div>
+            <div class="field">
+              {{ form.area }}
+              <div class="field {% if not form.area_free_text.value() %} hide {% endif %}"
+                   id="area_free_text">
+                {{ field_with_attrs(form.area_free_text, placeholder=_('Area of Study')) }}
+              </div>
+              {{ form.area.errors }}
+            </div>
+          </div>
+          <div class="field field-share">
+            <label for="id_share_information">
+              {{ form.share_information }}
+              <span class="title">{{ form.share_information.label }}</span>
+            </label>
+          </div>
+          <div class="field field-privacy">
+            <label for="id_age_confirmation">
+              {{ field_with_attrs(form.age_confirmation, required='required') }}
+              {{ field_with_attrs(form.age_confirmation) }}
+              <span class="title">{{ form.age_confirmation.label }}</span>
+            </label>
+            {{ form.age_confirmation.errors }}
+          </div>
+          {{ form.privacy }}
+          {{ form.privacy.errors }}
+          <div class="field field-format">
+            {{ form.fmt.label }} {{ form.fmt }}
+          </div>
+        </section>
+      </div>
+      <div class="form-column">
+        <section>
+          <h3>{{ _('Mozilla Communications') }}</h3>
+          <p>
+            {% trans %}
+              As part of the Student Ambassadors program, you'll receive an email newsletter from us every month with updates, achievements, Firefox news, and more.
+            {% endtrans %}
+          </p>
+          <p>
+            {% trans %}
+              Would you also like to hear about other things that are happening at Mozilla? You can sign-up to receive additional newsletters:
+            {% endtrans %}
+          </p>
+          <div class="field field-newsletter">
+            <label for="id_nl_mozilla_and_you">
+              {{ form.nl_mozilla_and_you }}
+              <span class="title">{{ form.nl_mozilla_and_you.label }}</span>
+            </label>
+          </div>
+          <div class="field field-newsletter">
+            <label for="id_nl_mobile">
+              {{ form.nl_mobile }}
+              <span class="title">{{ form.nl_mobile.label }}</span>
+            </label>
+          </div>
+          <div class="field field-newsletter">
+            <label for="id_nl_firefox_flicks">
+              {{ form.nl_firefox_flicks }}
+              <span class="title">{{ form.nl_firefox_flicks.label }}</span>
+            </label>
+          </div>
+          <div class="field field-newsletter">
+            <label for="id_nl_about_mozilla">
+              {{ form.nl_about_mozilla }}
+              <span class="title">{{ form.nl_about_mozilla.label }}</span>
+            </label>
+          </div>
+          <div class="field field-captcha">
+            {{ form.captcha }}
+            {{ form.captcha.errors }}
+          </div>
+        </section>
+        <div class="form-submit">
+          <input type="submit" class="button" id="form-submit" value="{{_('Sign me up!')}}">
+        </div>
+      </div>
+  </form>
+{% endblock %}
+
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{% block js %}
+  {{ js('contribute-university-ambassadors') }}
+{% endblock %}

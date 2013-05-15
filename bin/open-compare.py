@@ -37,6 +37,11 @@ def get_compare_url(env, branch=DEFAULT_BRANCH, repo=DEFAULT_REPO):
     return URL_TEMPLATE.format(rev=rev, branch=branch, repo=repo)
 
 
+def write_stdout(out_str):
+    sys.stdout.write(out_str)
+    sys.stdout.flush()
+
+
 def main():
     parser = argparse.ArgumentParser(description='Open github compare view '
                                                  'for bedrock.')
@@ -47,16 +52,22 @@ def main():
                         help='Repository. Default: ' + DEFAULT_REPO)
     parser.add_argument('-b', '--branch', default=DEFAULT_BRANCH,
                         help='Branch. Default: ' + DEFAULT_BRANCH)
-    parser.add_argument('-q', '--quiet', action='store_true', help='Shut up!')
+    parser.add_argument('-p', '--print', action='store_true', dest='print_only',
+                        help='Just print the URL instead of opening it.')
+    parser.add_argument('-v', '--verbose', action='store_true',
+                        help='Increase wordiness.')
     args = parser.parse_args()
     args_dict = vars(args).copy()
-    del args_dict['quiet']
-    if not args.quiet:
+    del args_dict['verbose']
+    del args_dict['print_only']
+    if args.verbose:
         out = 'Opening github url for {repo} comparing {env} with {branch}...\n'
-        sys.stdout.write(out.format(**args_dict))
-        sys.stdout.flush()
+        write_stdout(out.format(**args_dict))
     try:
-        webbrowser.open(get_compare_url(**args_dict))
+        compare_url = get_compare_url(**args_dict)
+        write_stdout(compare_url)
+        if not args.print_only:
+            webbrowser.open(compare_url)
     except Exception, e:
         sys.stderr.write('\nERROR: {0}\n'.format(e))
         return 1

@@ -21,7 +21,7 @@ def redirect(pattern, to, permanent=True, anchor=None):
     Usage:
     urlpatterns = patterns('',
         redirect(r'^projects/$', 'mozorg.product'),
-        redirect(r'^apps/$', url='https://marketplace.mozilla.org'),
+        redirect(r'^apps/$', 'https://marketplace.firefox.com'),
     )
     """
     if permanent:

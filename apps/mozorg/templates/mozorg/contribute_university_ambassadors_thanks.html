@@ -1,0 +1,15 @@
+{% extends "mozorg/contribute_university_ambassadors.html" %}
+
+{% block pageheader %}
+<div id="main-feature">
+  <img src="{{ media('img/contribute/university-ambassadors/logo.png')}}" alt="{{ _('Student Ambassadors') }}">
+</div>
+{% endblock %}
+
+{% block billboardcontent %}
+  <div id="help-form" class="billboard thank">
+    <h4>{{_('Thank you for signing up to be a Firefox Student Ambassador!')}}</h4>
+    <p>{{_('Please check your inbox for a confirmation email complete with next steps.')}}
+    </p>
+  </div>
+{% endblock billboardcontent %}

@@ -1,5 +1,19 @@
+import sys
+from contextlib import contextmanager
+from cStringIO import StringIO
 from tempfile import TemporaryFile
 from textwrap import dedent
+
+
+@contextmanager
+def capture_stdio():
+    oldout, olderr = sys.stdout, sys.stderr
+    newio = [StringIO(), StringIO()]
+    sys.stdout, sys.stderr = newio
+    yield newio
+    sys.stdout, sys.stderr = oldout, olderr
+    newio[0] = newio[0].getvalue().rstrip()
+    newio[1] = newio[1].getvalue().rstrip()
 
 
 class TempFileMixin(object):

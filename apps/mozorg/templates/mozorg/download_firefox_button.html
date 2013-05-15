@@ -1,0 +1,94 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% macro alt_buttons(builds) %}
+  <div class="download download-dumb">
+    <h4>{{ _('Download Firefox') }} — {{ locale_name }}</h4>
+    <ul>
+      {% for plat in builds -%}
+        <li><a href="{{ plat.download_link_direct or plat.download_link }}" class="button-green">{{ plat.os_pretty }}</a></li>
+      {%- endfor %}
+    </ul>
+  </div>
+{% endmacro %}
+
+{% set download_class = 'download-button' %}
+{% set download_class = download_class ~ ' download-button-' ~ build if build else download_class %}
+{% set download_class = download_class ~ ' download-button-mobile' if not show_desktop else download_class %}
+{% set download_class = download_class ~ ' download-button-desktop' if not show_mobile else download_class %}
+{% set download_class = download_class ~ ' download-button-small' if small else download_class %}
+{% set download_class = download_class ~ ' download-button-noicon' if not icon else download_class %}
+
+<div id="{{ id }}" class="{{ download_class }}">
+  {% if show_desktop %}
+    <noscript>
+      {{ alt_buttons(builds) }}
+    </noscript>
+    <div class="unrecognized-download">
+      {{ alt_buttons(builds) }}
+    </div>
+    {% set requirements_url = php_url('/firefox/' ~ version ~ '/system-requirements/') %}
+    <p class="unsupported-download">
+      {{ _('Your system doesn\'t meet the <a href="%(url)s">requirements</a> to run Firefox.')|format(url=requirements_url) }}
+    </p>
+  {% endif %}
+  <ul class="download-list">
+    {% for plat in builds %}
+      <li class="{{ plat.os }}">
+        <a class="download-link"
+           href="{{ plat.download_link }}"{% if plat.download_link_direct %}
+           data-direct-link="{{ plat.download_link_direct }}"{% endif %}>
+          <span class="download-content">
+            {% if plat.os == 'os_android' %}
+              {% if build == 'beta' %}
+                <strong class="download-title">{{ _('<span>Firefox Beta</span> for Android') }}</strong>
+              {% elif build == 'aurora' %}
+                <strong class="download-title">{{ _('<span>Firefox Aurora</span> for Android') }}</strong>
+              {% else %}
+                <strong class="download-title">{{ _('<span>Firefox</span> for Android') }}</strong>
+              {% endif %}
+              {% if build != 'aurora' %}
+                <span class="download-subtitle">{{ _('Get it free on Google Play') }}</span>
+              {% endif %}
+            {% else %}
+              {% if build == 'beta' %}
+                <strong class="download-title">{{ _('Firefox Beta') }}</strong>
+              {% elif build == 'aurora' %}
+                <strong class="download-title">{{ _('Firefox Aurora') }}</strong>
+              {% else %}
+                <strong class="download-title">{{ _('Firefox') }}</strong>
+              {% endif %}
+              <span class="download-subtitle">{{ _('Free Download') }}</span>
+              <span class="download-lang">{{ locale_name }}</span>
+              <span class="download-platform">{{ plat.os_pretty }}</span>
+            {% endif %}
+          </span>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+  {% if show_mobile %}
+    <small class="download-other os_android">
+      <a href="/en-US/firefox/mobile/platforms">{{ _('Supported Devices') }}</a> |
+      {% if build %}
+        <a href="/en-US/mobile/{{ build }}/notes">{{ _('What’s New') }}</a> |
+      {% else %}
+        <a href="/en-US/mobile/notes">{{ _('What’s New') }}</a> |
+      {% endif %}
+      <a href="/en-US/legal/privacy/firefox.html">{{ _('Privacy') }}</a>
+    </small>
+  {% endif %}
+  {% if show_desktop %}
+    <small class="download-other os_linux os_osx os_windows">
+      {% if build %}
+        <a href="/en-US/firefox/all-{{ build }}.html">{{ _('Systems &amp; Languages') }}</a> |
+        <a href="/en-US/firefox/{{ build }}/notes">{{ _('What’s New') }}</a> |
+      {% else %}
+        <a href="/en-US/firefox/all">{{ _('Systems &amp; Languages') }}</a> |
+        <a href="/en-US/firefox/notes">{{ _('What’s New') }}</a> |
+      {% endif %}
+      <a href="/en-US/legal/privacy/firefox.html">{{ _('Privacy') }}</a>
+    </small>
+  {% endif %}
+</div>

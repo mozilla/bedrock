@@ -94,7 +94,7 @@ NavMain.init = function()
             NavMain.toggleSmallMenu();
         })
         .keydown(function(e) {
-            if (e.keyCode == 13) {
+            if (e.keyCode == 13 || e.keyCode == 32) {
                 e.preventDefault();
                 NavMain.toggleSmallMenu();
             }

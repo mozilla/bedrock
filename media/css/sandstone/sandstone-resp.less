@@ -273,6 +273,18 @@ input.focus {
     .transition(all linear .1s);
 }
 
+textarea:-moz-ui-invalid:not(output),
+input[type=email]:-moz-ui-invalid:not(output),
+input[type=password]:-moz-ui-invalid:not(output),
+input[type=search]:-moz-ui-invalid:not(output),
+input[type=text]:-moz-ui-invalid:not(output),
+input.invalid {
+    border-color: #a91300;
+    @shadow: 0 0 0 2px rgba(255,80,80,0.4);
+    .box-shadow(@shadow);
+    .transition(all linear .1s);
+}
+
 .form-field {
     margin-bottom: @baseLine / 3;
 }
@@ -292,9 +304,13 @@ input.focus {
     input[type=email],
     input[type=password],
     input[type=text] {
-        border-color: rgb(175,50,50);
-        @shadow: 0 2px 1px rgba(0,0,0,0.1) inset, 0 0 8px 0 rgba(175,50,50,.6);
-        .box-shadow(@shadow);
+        .form-field-error;
+    }
+}
+
+input[type=email], input[type=password], input[type=text] {
+    &.error {
+        .form-field-error;
     }
 }
 
@@ -328,6 +344,19 @@ input.focus {
     }
 }
 
+label.error {
+    .open-sans;
+    font-size: 12px;
+    color: rgb(175,50,50);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.super-priority-field {
+    display: none;
+    visibility: hidden;
+}
+
 /* }}} */
 /* {{{ Layout */
 
@@ -337,11 +366,11 @@ input.focus {
 }
 
 .main-column {
-    .span(6);
+    .span(7);
 }
 
 .sidebar {
-    .span(2);
+    .span(3);
     .offset(2);
 }
 
@@ -374,7 +403,6 @@ input.focus {
     .clearfix;
 }
 /* }}} */
-
 /* {{{ Header Nav */
 #masthead {
 
@@ -586,7 +614,6 @@ nav.menu-bar {
 
     h3 {
         .span(4);
-        padding-top: 4px;
     }
 
     .form-contents {
@@ -598,7 +625,7 @@ nav.menu-bar {
     }
 
     .field {
-        padding: 4px 0;
+        padding: 0 0 8px 0;
     }
 
     select {
@@ -607,11 +634,6 @@ nav.menu-bar {
 
     input[type=email] {
         width: 80%;
-        margin-top: 2px;
-    }
-
-    input[type=submit] {
-        font-size: 18px;
     }
 
     .field-privacy {
@@ -720,32 +742,6 @@ nav.menu-bar {
 }
 
 /* }}} */
-
-/* {{{ MWC badge */
-#mwc-badge {
-    display: none;
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 999;
-}
-
-.mwc2013 #mwc-badge {
-    display: block;
-}
-
-#mwc-badge a {
-    display: block;
-    text-indent: -999em;
-    overflow: hidden;
-    width: 140px;
-    height: 140px;
-    background: url(/media/img/firefox/partners/mwc_badge-corner.png) no-repeat;
-    color: #fff;
-    border-bottom-right-radius: 100%;
-}
-/* }}} */
-
 /* {{{ Responsive Grid */
 
 /* Tablet Layout: 760px */
@@ -763,12 +759,17 @@ nav.menu-bar {
         width: @widthTablet - (@gridGutterWidth * 2);
     }
 
+    .main-column {
+        .span_narrow(8);
+    }
+
     nav.menu-bar {
         font-size: .9375em;
     }
 
     .sidebar {
-        .offset(0);
+        .span_narrow(3);
+        .offset_narrow(1);
     }
 
     #footer-email-form {
@@ -830,6 +831,7 @@ nav.menu-bar {
     .sidebar {
         padding-left: 0;
         padding-right: 0;
+        .span-all();
     }
 
     .row {
@@ -907,6 +909,9 @@ nav.menu-bar {
         font-size: 14px;
     }
 
+    dl dt {
+        font-size: 24px;
+    }
 
     nav.menu-bar {
         text-align: inherit;
@@ -1071,10 +1076,6 @@ nav.menu-bar {
         top: -10px;
     }
 
-    .mwc2013 #mwc-badge {
-        display: none;
-    }
-
 }
 
 
@@ -1109,8 +1110,6 @@ nav.menu-bar {
 
 }
 /* }}} */
-
-
 
 // Don't display the dynamic platform images when js is disabled
 // because the ones in the noscript tag will be shown

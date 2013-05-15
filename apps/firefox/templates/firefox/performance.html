@@ -20,7 +20,7 @@
 
 <div id="main-feature" class="stacked">
   <h1>Blazing <span class="large">Performance</span></h1>
-  {{ download_button('download', 'small') }}
+  {{ download_firefox(small=True) }}
 </div>
 
 <nav class="menu-bar billboard">
@@ -44,7 +44,8 @@
         width="640"
         height="360"
         poster="{{ media('img/firefox/video/poster-runfield.jpg') }}"
-        controls="controls">
+        controls="controls"
+        data-overlay-hidden-text="{{_('Play video')}}">
 
         <source src="http://videos-cdn.mozilla.net/serv/mozhacks/demos/screencasts/runfield/screencast.webm" type="video/webm" />
         <source src="http://videos-cdn.mozilla.net/serv/mozhacks/demos/screencasts/runfield/screencast.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;" />

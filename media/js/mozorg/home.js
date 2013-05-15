@@ -1,16 +1,3 @@
-if (typeof Mozilla === 'undefined') {
-    var Mozilla = {};
-}
-
-if (typeof Mozilla.page === 'undefined') {
-    Mozilla.page = {};
-}
-
-Mozilla.page.Home = {
-    'closeText' : 'close',
-    'shareText' : 'Share'
-};
-
 $(document).ready(function() {
 
     // {{{ showLink()
@@ -74,7 +61,7 @@ $(document).ready(function() {
                     if (!$shareButton) {
                         $shareButton = $(
                             '<button class="vjs-sandstone-share">' +
-                            Mozilla.page.Home.shareText +
+                                $('#strings').data('share') +
                             '</button>'
                         );
                         $shareButton.click(function() {
@@ -441,10 +428,10 @@ $(document).ready(function() {
 
     function createCloseButton() {
         var $close = $(
-            '<span class="video-close" tabindex="0" role="button">×</span>'
+            '<button class="video-close"><span class="visuallyhidden">Close Video </span><span aria-hidden="true">×</span></button>'
         );
 
-        $close.attr('title', Mozilla.page.Home.closeText)
+        $close.attr('title', $('#strings').data('close'))
             .click(function(e) { close(); })
             .keypress(function(e) {
                 if (e.keyCode === 13 || e.keyCode === 32) {
@@ -590,10 +577,10 @@ $(document).ready(function() {
     ];
 
     var sources = [{
-        src: 'http://videos-cdn.mozilla.net/serv/firefoxflicks/FireFoxFlicks_2013-Teaser.mp4',
+        src: 'http://videos-cdn.mozilla.net/serv/firefoxflicks/All%20Three_2_6_13_H264.mp4',
         type: 'video/mp4'
     }, {
-        src: 'http://videos-cdn.mozilla.net/serv/firefoxflicks/FireFoxFlicks_2013-Teaser.webm',
+        src: 'http://videos-cdn.mozilla.net/serv/firefoxflicks/All%20Three_2_6_13_H264.webm',
         type: 'video/webm'
     }];
 

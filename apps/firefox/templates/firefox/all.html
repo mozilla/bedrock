@@ -101,8 +101,21 @@
   <tr id="{{ build.locale }}" data-search="{{ build.name_en|lower }} {{ build.name_native|lower }}">
     <th scope="row">{{ build.name_en }}</th>
     <td lang="{{ build.locale }}">{{ build.name_native }}</td>
-    <td class="download win"><a href="{{ build.platforms['Windows'].download_url }}" title="{{ _('Download for Windows')}}">{{ _('Download') }}</a></td>
-    <td class="download mac"><a href="{{ build.platforms['OS X'].download_url }}" title="{{ _('Download for Mac OS X')}}">{{ _('Download') }}</a></td>
-    <td class="download linux"><a href="{{ build.platforms['Linux'].download_url }}" title="{{ _('Download for Linux')}}">{{ _('Download') }}</a></td>
+    {{ build_link(build, 'Windows', _('Download for Windows')) }}
+    {{ build_link(build, 'OS X', _('Download for Mac OS X')) }}
+    {{ build_link(build, 'Linux', _('Download for Linux')) }}
   </tr>
+{% endmacro %}
+
+<!--
+  build: Locale dictionary from product details.
+  platform: Value in build.platforms to use. One of 'Windows', 'OS X', 'Linux'.
+  tooltip: Text to display as tooltip for download link.
+-->
+{% macro build_link(build, platform, tooltip) %}
+  {% if build.platforms[platform] %}
+    <td class="download {% if platform == 'Windows' %}win{% elif platform == 'OS X' %}mac{% elif platform == 'Linux' %}linux{% endif %}"><a href="{{ build.platforms[platform].download_url }}" title="{{ tooltip }}">{{ _('Download') }}</a></td>
+  {% else %}
+    <td class="unavailable">{{ _('Not Yet Available') }}</td>
+  {% endif %}
 {% endmacro %}

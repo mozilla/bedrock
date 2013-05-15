@@ -16,10 +16,6 @@
   {{ js('firefox_devices') }}
 {% endblock %}
 
-{% block extrahead %}
-<meta name="WT.z_pdp" content="firefox;firefox_android;">
-{% endblock %}
-
 {% block content %}
 
 <hgroup id="main-feature" class="center">
@@ -50,38 +46,38 @@
         <div class="slide-content">
           <div class="content">
             <h2>{{ _('New Firefox is up to 7 times faster.') }}</h2>
-            <p id="fx-upgrade"><a href="{{ php_url('/firefox/') }}" class="button go" onclick="dcsMultiTrack('WT.z_panel','Desktops & Laptops','WT.z_cta','upgrade firefox','WT.z_convert','downloadfirefox','WT.dl',99);">{{ _('Upgrade your Firefox') }}</a></p>
+            <p id="fx-upgrade"><a href="{{ php_url('/firefox/') }}" class="button go">{{ _('Upgrade your Firefox') }}</a></p>
             <p id="fx-features"><a href="{{ php_url('/firefox/features/') }}" class="button go">{{ _('More Features') }}</a></p>
-            <p id="fx-download"><a href="{{ php_url('/firefox/') }}" class="button go" onclick="dcsMultiTrack('WT.z_panel','Desktops & Laptops','WT.z_cta','download firefox','WT.z_convert','downloadfirefox','WT.dl',99);">{{ _('Download Firefox') }}</a> <br> <a href="/firefox/central/" class="go">Learn more</a></p>
+            <p id="fx-download"><a href="{{ php_url('/firefox/') }}" class="button go">{{ _('Download Firefox') }}</a> <br> <a href="/firefox/central/" class="go">Learn more</a></p>
           </div>
-          
+
           <div id="gauge" data-latest-version="{{ latest_version }}">
             <img src="{{ media('img/firefox/devices/needle.png') }}" alt="" id="needle">
             <p id="gauge-slow">{{ _('Old Firefox = Sadface') }}</p>
             <p id="gauge-fast">{{ _('New Firefox = Yay!') }}</p>
             <div class="note" id="gauge-slow-note">
-              <p><strong>Seriously?</strong> That just isn’t going to cut it. Stop browsing in the past and <a href="/firefox/"onclick="dcsMultiTrack('WT.z_panel','Desktops & Laptops','WT.z_cta','upgrade firefox','WT.z_convert','downloadfirefox','WT.dl',99);">upgrade now!</a></p>
+              <p><strong>Seriously?</strong> That just isn’t going to cut it. Stop browsing in the past and <a href="/firefox/">upgrade now!</a></p>
             </div>
             <div class="note" id="gauge-fast-note">
               <p><strong>Now we’re talking!</strong> Feels better, doesn’t it? Welcome to the future of the Web. It’s nice here.</p>
             </div>
           </div>
-  
+
           <div id="non-fx">
             <p id="detected">Hey, looks like you’re using %BROWSER%. Why not grab Firefox and get up to speed?</p>
             <p id="notdetected">Hey, looks like you’re not using Firefox as your browser. Why not grab Firefox and get up to speed?</p>
-            <p id="followup">New Firefox is faster, free (as always), crashes less and protects your privacy more. <a href="/firefox/" onclick="dcsMultiTrack('WT.z_panel','Desktops & Laptops','WT.z_cta','download firefox','WT.z_convert','downloadfirefox','WT.dl',99);">Upgrading</a> takes less than a minute and you won’t lose your history or bookmarks. Hooray!</p>
+            <p id="followup">New Firefox is faster, free (as always), crashes less and protects your privacy more. <a href="/firefox/">Upgrading</a> takes less than a minute and you won’t lose your history or bookmarks. Hooray!</p>
           </div>
         </div>
       </section>
-      
+
       <section class="slide" id="smartphones-slide">
         <div class="slide-content">
           <div class="content">
             <h2>{{ _('Type less, browse more, and get to the Web quickly and easily.') }}</h2>
             <aside class="download-button">
               <p>
-                <a href="https://market.android.com/details?id=org.mozilla.firefox" class="button download-android" onclick="dcsMultiTrack('WT.z_panel','Smartphones','WT.z_cta','Get Firefox for Android','WT.z_convert','Get Firefox for Android','WT.dl',99);">
+                <a href="https://market.android.com/details?id=org.mozilla.firefox" class="button download-android">
                  <span class="download-content">
                   <span class="download-title">Get Firefox <span class="sub">for Android</span></span>
                  </span>
@@ -97,14 +93,14 @@
           <p class="footnote">iPhone user? <a href="http://support.mozilla.org/en-US/kb/will-firefox-work-my-mobile-device?s=firefox+on+iphone&r=1&e=sph&as=s#w_firefox-home-for-iphone">Click here.</a></p>
         </div>
       </section>
-      
+
       <section class="slide" id="tablets-slide">
         <div class="slide-content">
           <div class="content">
             <h2>Optimized for the size, shape, and the way you browse on tablets.</h2>
             <aside class="download-button">
               <p>
-                <a href="https://market.android.com/details?id=org.mozilla.firefox" class="button download-android" onclick="dcsMultiTrack('WT.z_panel','Tablets','WT.z_cta','Get Firefox for Android','WT.z_convert','Get Firefox for Android','WT.dl',99);">
+                <a href="https://market.android.com/details?id=org.mozilla.firefox" class="button download-android">
                  <span class="download-content">
                   <span class="download-title">Get Firefox <span class="sub">for Android</span></span>
                  </span>
@@ -120,48 +116,48 @@
           <p class="footnote">iPad user? <a href="http://support.mozilla.org/en-US/kb/will-firefox-work-my-mobile-device?s=firefox+on+iphone&r=1&e=sph&as=s#w_firefox-home-for-iphone">Click here.</a></p>
         </div>
       </section>
-      
+
       <section class="slide" id="addons-slide">
         <div class="slide-content">
           <div class="content">
             <h2>{{ _('Customize your browsing on both desktop and mobile.') }}</h2>
-            <p><a href="https://addons.mozilla.org" class="button go" onclick="dcsMultiTrack('WT.z_panel','Favorite Add-ons','WT.z_cta','Browse Add-ons','WT.dl',99);">{{ _('Browse Add-ons') }}</a></p>
+            <p><a href="https://addons.mozilla.org" class="button go">{{ _('Browse Add-ons') }}</a></p>
           </div>
           <ul id="addons-list">
             <li class="addon">
               <h3><a href="https://addons.mozilla.org/en-US/mobile/addon/adblock-plus/?src=fx-devices" rel="external"><img src="//static-ssl-cdn.addons.mozilla.net/img/uploads/addon_icons/1/1865-48.png" alt=""> {{ _('AdBlock Plus') }}</a></h3> 
               <p class="desc">{{ _('Regain control and change the way that you view the Web.') }}</p>
               <ul class="add-to">
-                <li><a href="https://addons.mozilla.org/en-US/firefox/addon/adblock-plus/?src=fx-devices" onclick="dcsMultiTrack('WT.z_panel','Favorite Add-ons','WT.z_cta','Adblock Plus Desktop','WT.dl',99);">{{ _('Add to Desktop') }}</a></li>
-                <li><a href="https://addons.mozilla.org/en-US/mobile/addon/adblock-plus/?src=fx-devices" onclick="dcsMultiTrack('WT.z_panel','Favorite Add-ons','WT.z_cta','Adblock Plus Mobile','WT.dl',99);">{{ _('Add to Mobile') }}</a></li>
+                <li><a href="https://addons.mozilla.org/en-US/firefox/addon/adblock-plus/?src=fx-devices">{{ _('Add to Desktop') }}</a></li>
+                <li><a href="https://addons.mozilla.org/en-US/mobile/addon/adblock-plus/?src=fx-devices">{{ _('Add to Mobile') }}</a></li>
               </ul>
             </li>
             <li class="addon">
               <h3><a href="https://addons.mozilla.org/en-US/mobile/addon/noscript/?src=fx-devices" rel="external"><img src="//static-ssl-cdn.addons.mozilla.net/img/uploads/addon_icons/0/722-48.png" alt=""> {{ _('No Script') }}</a></h3>
               <p class="desc">{{ _('Allow active content to run only from sites you trust.') }}</p>
               <ul class="add-to">
-                <li><a href="https://addons.mozilla.org/en-US/firefox/addon/noscript/?src=fx-devices" onclick="dcsMultiTrack('WT.z_panel','Favorite Add-ons','WT.z_cta','No Script Desktop','WT.dl',99);">{{ _('Add to Desktop') }}</a></li>
-                <li><a href="https://addons.mozilla.org/en-US/mobile/addon/noscript/?src=fx-devices" onclick="dcsMultiTrack('WT.z_panel','Favorite Add-ons','WT.z_cta','No Script Mobile','WT.dl',99);">{{ _('Add to Mobile') }}</a></li>
+                <li><a href="https://addons.mozilla.org/en-US/firefox/addon/noscript/?src=fx-devices">{{ _('Add to Desktop') }}</a></li>
+                <li><a href="https://addons.mozilla.org/en-US/mobile/addon/noscript/?src=fx-devices">{{ _('Add to Mobile') }}</a></li>
               </ul>
             </li>
             <li class="addon">
               <h3><a href="https://addons.mozilla.org/en-US/mobile/addon/speed-dial/?src=fx-devices" rel="external"><img src="//static-ssl-cdn.addons.mozilla.net/img/uploads/addon_icons/4/4810-48.png" alt=""> {{ _('Speed Dial') }}</a></h3>
               <p class="desc">{{ _('Direct access to your most visited websites.') }}</p>
               <ul class="add-to">
-                <li><a href="https://addons.mozilla.org/en-US/firefox/addon/speed-dial/?src=fx-devices" onclick="dcsMultiTrack('WT.z_panel','Favorite Add-ons','WT.z_cta','Speed Dial Desktop','WT.dl',99);">{{ _('Add to Desktop') }}</a></li>
-                <li><a href="https://addons.mozilla.org/en-US/mobile/addon/speed-dial/?src=fx-devices" onclick="dcsMultiTrack('WT.z_panel','Favorite Add-ons','WT.z_cta','Speed Dial Mobile','WT.dl',99);">{{ _('Add to Mobile') }}</a></li>
-              </ul>  
+                <li><a href="https://addons.mozilla.org/en-US/firefox/addon/speed-dial/?src=fx-devices">{{ _('Add to Desktop') }}</a></li>
+                <li><a href="https://addons.mozilla.org/en-US/mobile/addon/speed-dial/?src=fx-devices">{{ _('Add to Mobile') }}</a></li>
+              </ul>
             </li>
           </ul>
           <p class="footnote">These are just three of our favorites, but there are <a href="https://addons.mozilla.org">thousands more</a>.</p>
         </div>
       </section>
-      
+
       <section class="slide" id="sync-slide">
         <div class="slide-content">
           <div class="content">
             <h2>{{ _('Your Web, <br>anywhere you go.')|safe }}</h2>
-            <p><a href="http://www.mozilla.org/en-US/mobile/sync/" class="button go" onclick="dcsMultiTrack('WT.z_panel','Sync Your Gadgets','WT.z_cta','Sync Your Gadgets','WT.dl', 99);">{{ _('Get in Sync') }}</a></p>
+            <p><a href="http://www.mozilla.org/en-US/mobile/sync/" class="button go">{{ _('Get in Sync') }}</a></p>
           </div>
         </div>
       </section>

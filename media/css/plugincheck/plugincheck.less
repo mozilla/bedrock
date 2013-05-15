@@ -1,0 +1,277 @@
+// in order to use the mixins from sandstone and not inlclude the mixins file twice,
+// we need to import the main sandstone LESS file here. We are therefore also not
+// including it in the home.html template.
+@import "../sandstone/sandstone-resp.less";
+
+#main-feature {
+    padding-bottom: 68px;
+    .preamble {
+        font-size: 24px;
+        letter-spacing: -0.25px;
+        margin-bottom: 0;
+        font-family: 'Open Sans Light', sans-serif;
+        font-weight: normal;
+        margin-bottom:0;
+        line-height: 100%;
+        text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.75);
+        color: rgb(72, 72, 72);
+    }
+}
+.billboard {
+    padding-top: 42px;
+    padding-bottom: 0;
+}
+.download-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.billboard {
+    table {
+        width: 100%;
+        caption {
+            font-size: 24px;
+        }
+        thead th {
+            padding: 0;
+            font-size: 18px;
+        }
+        tbody th {
+            font-size: 18px;
+            font-weight: normal;
+            font-family: 'Open Sans Light',sans-serif;
+        }
+    }
+}
+.plugin-status-container {
+    h3 {
+        font-size: 48px;
+        letter-spacing: -2px;
+    }
+    .shadow-separator {
+        background: white url(/media/img/plugincheck/separators/section_shadow.png) center 10px no-repeat;
+        padding: 45px 0 15px 0;
+    }
+    .icon {
+        float: left;
+        margin: -3px 5px 0 0;
+    }
+    small {
+        display: block;
+        font-size: 12px;
+    }
+    .plugin-status-detail {
+        width: 60%;
+    }
+    .plugin-status-status {
+        width: 20%;
+    }
+    .plugin-status-action {
+        width:20%;
+    }
+}
+.container-column {
+    width: (@gridColumnWidth * 6) + (@gridGutterWidth * 5);
+    margin: 0 (@gridGutterWidth/2) @baseLine;
+    float: left;
+}
+.container-wide {
+    width: (@gridColumnWidth * 10) + (@gridGutterWidth * 9);
+    margin: 0 auto @baseLine;
+    float: none;
+    clear: both;
+    img {
+      height: auto;
+      display: block;
+      margin: 0 auto @baseLine;
+    }
+    .code-snippet {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+}
+.code-snippet {
+    width: 90%;
+    margin: 0 0 @baseLine;
+}
+
+.blocklisted {
+    display: none;
+    margin: 30px 0 40px 0;
+    padding: 8px 25px 8px 25px;
+}
+// Button overrides
+.button-negative,
+.button-negative:link,
+.button-negative:visited {
+    padding: 0 12px 0 12px;
+    width: 125px;
+    font-weight: normal;
+    span {
+        display: inline-block;
+        background: transparent url(/media/img/plugincheck/buttons/update-now.png) 0 5px no-repeat;
+        color: #fff;
+        padding: 12px 0 12px 21px;
+        width: 101px;
+    }
+}
+.insensitive,
+.insensitive:link,
+.insensitive:visited {
+    padding: 0 12px 0 12px;
+    width: 125px;
+    font-weight: normal;
+    span {
+        display: inline-block;
+        background: transparent url(/media/img/plugincheck/buttons/up-to-date.png) 0 5px no-repeat;
+        color: #fff;
+        padding: 12px 0 12px 21px;
+        width: 101px;
+    }
+}
+.research,
+.research:link,
+.research:visited {
+    background-color: #0095dd;
+    background-image: linear-gradient(#77bef5, #0095dd);
+    padding: 0 12px 0 12px;
+    width: 125px;
+    font-weight: normal;
+    span {
+        display: inline-block;
+        background: transparent url(/media/img/plugincheck/buttons/research.png) 0 5px no-repeat;
+        color: #fff;
+        padding: 12px 0 12px 21px;
+        width: 101px;
+    }
+}
+.research:hover,
+.research:link:hover,
+.research:link:focus,
+.research:visited:hover,
+.research:visited:focus,
+.research:focus {
+    box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.1),
+                0 -2px 0 0 rgba(0, 0, 0, 0.2) inset,
+                0 12px 24px 2px #77bef5 inset;
+}
+// Mozilla Support Badge
+.moz-support {
+    clear: both;
+    background-color: #f7f8f8;
+    padding: 10px;
+    border: 2px solid #ededee;
+    margin: 0 auto @baseLine;
+    width: (@gridColumnWidth * 9) + (@gridGutterWidth * 8);
+    min-height: 55px;
+    h4 {
+        margin-bottom: 0;
+    }
+    .moz-support-logo {
+        float: left;
+        padding: 10px 40px 10px 15px;
+    }
+}
+#old_browser,
+#modern_browsers,
+#exploder,
+#sec-plugin-vulnerable,
+#sec-plugin-outdated,
+#sec-plugin-unknown,
+#sec-plugin-uptodate {
+    display: none;
+}
+#footer-email-form {
+    input[type="email"],
+    select {
+        margin-top: 2px;
+        width: 90%;
+    }
+    .field {
+        padding: 4px 0;
+    }
+    h3,
+    .form-contents,
+    .form-submit {
+        width: (@gridColumnWidth * 4) + (@gridGutterWidth * 3);
+        float: left;
+        margin: 0 (@gridGutterWidth / 2);
+    }
+    h3,
+    .form-submit {
+        padding-top: 4px;
+    }
+}
+
+/* Tablet Layout: 760px */
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+    .download-button {
+        position: relative;
+        margin-top: 20px;
+    }
+
+    .moz-support {
+        width: (@gridColumnWidthNarrow * 10) + (@gridGutterWidth * 9);
+    }
+
+    .container-column {
+        width: (@gridColumnWidthNarrow * 6) + (@gridGutterWidth * 5);
+    }
+    .container-wide {
+        width: (@gridColumnWidthNarrow * 10) + (@gridGutterWidth * 9);
+    }
+
+    #footer-email-form {
+        h3,
+        .form-contents,
+        .form-submit {
+            width: (@gridColumnWidthNarrow * 4) + (@gridGutterWidth * 3);
+        }
+    }
+
+}
+
+/* Mobile Layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+    .download-button {
+        position: relative;
+        margin-top: 20px;
+    }
+
+    .moz-support {
+        width: auto;
+        text-align: center;
+        .moz-support-logo {
+            float: none;
+            display: block;
+            padding: 0;
+            margin: 10px auto;
+        }
+    }
+
+    .container-column,
+    .container-wide {
+        width: auto;
+        float: none;
+        margin: 0 0 @baseLine;
+    }
+
+    #footer-email-form {
+        h3,
+        .form-contents,
+        .form-submit {
+            width: auto;
+            float: none;
+            margin: 0 0 .5em;
+        }
+    }
+}
+
+/* Wide Mobile Layout: 480px */
+@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+    .download-button {
+        position: relative;
+        margin-top: 20px;
+    }
+}

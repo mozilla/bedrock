@@ -2,14 +2,28 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from django.views.decorators.csrf import csrf_exempt
+import re
+
+from django.conf import settings
+from django.core.context_processors import csrf
+from django.http import (HttpResponse, HttpResponseRedirect)
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from django.views.decorators.http import require_POST
+from django.shortcuts import redirect
 
 import basket
 import l10n_utils
+import requests
 from commonware.decorators import xframe_allow
+from funfactory.urlresolvers import reverse
+from l10n_utils.dotlang import _
 
+from firefox import version_re
+from firefox.utils import is_current_or_newer
 from mozorg import email_contribute
-from mozorg.forms import ContributeForm, NewsletterForm
+from mozorg.forms import (ContributeForm, ContributeUniversityAmbassadorForm,
+                          NewsletterForm, WebToLeadForm)
+from mozorg.util import hide_contrib_form
 
 
 @xframe_allow
@@ -60,8 +74,8 @@ def contribute(request, template, return_to_form):
                 newsletter_success = True
             except basket.BasketException:
                 msg = newsletter_form.error_class(
-                    ['We apologize, but an error occurred in our system.'
-                     'Please try again later.']
+                    [_('We apologize, but an error occurred in our system. '
+                       'Please try again later.')]
                 )
                 newsletter_form.errors['__all__'] = msg
     else:
@@ -73,7 +87,9 @@ def contribute(request, template, return_to_form):
                               'contribute_success': contribute_success,
                               'newsletter_form': newsletter_form,
                               'newsletter_success': newsletter_success,
-                              'return_to_form': return_to_form})
+                              'return_to_form': return_to_form,
+                              'hide_form': hide_contrib_form(request.locale),
+                              'has_moz15': locale in settings.LOCALES_WITH_MOZ15})
 
 
 @xframe_allow
@@ -81,3 +97,89 @@ def contribute(request, template, return_to_form):
 def contribute_embed(request, template, return_to_form):
     """The same as contribute but allows frame embedding."""
     return contribute(request, template, return_to_form)
+
+
+@csrf_protect
+def partnerships(request):
+    form = WebToLeadForm()
+
+    template_vars = {}
+    template_vars.update(csrf(request))
+    template_vars['form'] = form
+
+    return l10n_utils.render(request, 'mozorg/partnerships.html', template_vars)
+
+
+@csrf_protect
+@require_POST
+def contact_bizdev(request):
+    form = WebToLeadForm(request.POST)
+
+    msg = 'Form invalid'
+    stat = 400
+    success = 0
+
+    if form.is_valid():
+        data = form.cleaned_data.copy()
+
+        honeypot = data.pop('superpriority')
+
+        if honeypot:
+            msg = 'Visitor invalid'
+            stat = 400
+        else:
+            interest = data.pop('interest')
+            data['00NU0000002pDJr'] = interest
+            data['oid'] = '00DU0000000IrgO'
+            data['retURL'] = ('http://www.mozilla.org/en-US/about/'
+                              'partnerships?success=1')
+            r = requests.post('https://www.salesforce.com/servlet/'
+                              'servlet.WebToLead?encoding=UTF-8', data)
+            msg = requests.status_codes._codes.get(r.status_code, ['error'])[0]
+            stat = r.status_code
+
+            success = 1
+
+    if request.is_ajax():
+        return HttpResponse(msg, status=stat)
+    else:
+        return HttpResponseRedirect("%s?success=%s" % (reverse('mozorg.partnerships'), success))
+
+
+def plugincheck(request, template='mozorg/plugincheck.html'):
+    """
+    Determine whether the current UA is the latest Firefox,
+    passes the result to the template and renders the
+    specified template.
+    """
+    user_agent = request.META.get('HTTP_USER_AGENT', '')
+    user_version = "0"
+    ua_regexp = r"Firefox/(%s)" % version_re
+    match = re.search(ua_regexp, user_agent)
+    if match:
+        user_version = match.group(1)
+
+    data = {
+        'is_latest': is_current_or_newer(user_version)
+    }
+
+    return l10n_utils.render(request, template, data)
+
+
+@csrf_exempt
+def contribute_university_ambassadors(request):
+    form = ContributeUniversityAmbassadorForm(request.POST or None)
+    if form.is_valid():
+        try:
+            form.save()
+        except basket.BasketException:
+            msg = form.error_class(
+                [_('We apologize, but an error occurred in our system. '
+                   'Please try again later.')])
+            form.errors['__all__'] = msg
+        else:
+            return redirect('mozorg.contribute_university_ambassadors_thanks')
+    return l10n_utils.render(
+        request,
+        'mozorg/contribute_university_ambassadors.html', {'form': form}
+    )

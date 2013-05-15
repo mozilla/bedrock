@@ -87,9 +87,13 @@ Mozilla.VideoControl.controls = [];
 
 Mozilla.VideoControl.prototype.drawControl = function()
 {
-  var buttonTag = '<a href="#" class="mozilla-video-control-overlay" style="opacity: 0">' +
-                  '<span style="visibility:hidden;">' +
-                  this._video.id +
+  var $overlayHiddenText = $(this._video).data('overlay-hidden-text');
+  if (!$overlayHiddenText) {
+    $overlayHiddenText =  'Play video';
+  }
+  var buttonTag = '<a href="#" role="button" class="mozilla-video-control-overlay" style="opacity: 0">' +
+                  '<span class="hidden">' +
+                    $overlayHiddenText +
                   '</span></a>';
   this.control = $(buttonTag);
 

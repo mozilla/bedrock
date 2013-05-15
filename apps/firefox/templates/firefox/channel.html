@@ -30,10 +30,10 @@
       <h2 class="channel-title channel-title-beta"><img src="{{ media('/img/firefox/channel/title-beta.png') }}" alt="Firefox Beta" /></h2>
       <h3>The latest features in a more stable environment</h3>
       <div class="download-box" id="beta-desktop">
-        {{ download_button('beta-download', 'channel', build='beta') }}
+        {{ download_firefox('beta', icon=False, small=True, force_stub_installer=True) }}
       </div>
       <div class="download-box mobile" id="beta-mobile">
-        {{ mobile_download_button('beta-download-mobile', 'channel', build='beta') }}
+        {{ download_firefox('beta', icon=False, mobile=True, small=True) }}
       </div>
       <p class="more"><a href="{{ php_url('/firefox/beta/') }}">Learn more about Firefox Beta<span> »</span></a></p>
     </div>
@@ -42,10 +42,10 @@
       <h2 class="channel-title channel-title-firefox"><img src="{{ media('/img/firefox/channel/title-firefox.png') }}" alt="Firefox" /></h2>
       <h3>Tried, tested and used by millions around the world</h3>
       <div class="download-box" id="firefox-desktop">
-        {{ download_button('primary-download', 'channel') }}
+        {{ download_firefox(icon=False, small=True) }}
       </div>
       <div class="download-box mobile" id="firefox-mobile">
-        {{ mobile_download_button('primary-download-mobile', 'channel') }}
+        {{ download_firefox(icon=False, mobile=True, small=True) }}
       </div>
       <p class="more"><a href="{{ php_url('/firefox/') }}">Learn more about Firefox<span> »</span></a></p>
     </div>
@@ -54,10 +54,10 @@
       <h2 class="channel-title channel-title-aurora"><img src="{{ media('/img/firefox/channel/title-aurora.png') }}" alt="Firefox Aurora" /></h2>
       <h3>The newest innovations in an experimental environment</h3>
       <div class="download-box" id="aurora-desktop">
-        {{ download_button('aurora-download', 'channel', build='aurora') }}
+        {{ download_firefox('aurora', icon=False, small=True) }}
       </div>
       <div class="download-box mobile" id="aurora-mobile">
-        {{ mobile_download_button('aurora-download-mobile', 'channel', build='aurora') }}
+        {{ download_firefox('aurora', icon=False, mobile=True, small=True) }}
       </div>
       <p class="more"><a href="{{ php_url('/mobile/aurora/') }}">Learn more about Firefox Aurora<span> »</span></a></p>
       <p class="warning">Firefox Aurora automatically sends feedback to Mozilla. <a href="{{ php_url('/legal/privacy/firefox.html#telemetry') }}">Learn more</a>.</p>

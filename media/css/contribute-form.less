@@ -9,24 +9,28 @@
     
     fieldset,
     .form-row {
-        width: (@gridColumnWidth * 10) + (@gridGutterWidth * 10);
+        width: (@gridColumnWidth * 10) + (@gridGutterWidth * 9);
         float: left;
     }
 
+    .form-row-students {
+      width: auto;
+      padding-bottom: 24px;
+      clear: both;
+    }
+
     .form-column-1  {
-        .span(2);
+        .span(3);
         h3 {
+            font-size: 24px;
             padding-top: 4px;
             letter-spacing: -1px;
         }
     }
 
-    .form-column-2 {
-        .span(4);
-    }
-
+    .form-column-2,
     .form-column-3 {
-        .span(4);
+        .span(3);
     }
 
     .form-submit {
@@ -74,6 +78,9 @@
         padding-bottom: @baseLine / 2;
     }
 
+    .hide {
+      display:none;
+    }
 }
 
 #help-form.has-errors {
@@ -82,22 +89,23 @@
 
 .js #form-details { display: none; }
 
+
 /* Tablet Layout: 760px */
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
     
     #help-form {
         fieldset,
         .form-row {
-            width: (@gridColumnWidthNarrow * 10) + (@gridGutterWidth * 10);
+            width: (@gridColumnWidthNarrow * 10) + (@gridGutterWidth * 8);
             float: left;
         }
         .form-column-1,
-        .form-submit  {
-            .span_narrow(2);
-        }
         .form-column-2,
         .form-column-3 {
-            .span_narrow(4);
+            .span_narrow(3);
+        }
+        .form-submit {
+            .span_narrow(2);
         }
         
     }

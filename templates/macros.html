@@ -25,8 +25,7 @@
     {% endif %}
 
     <form class="billboard{% if request.newsletter_form.errors %} has-errors{% endif %}"
-          id="footer-email-form" action="#footer-email-form" method="post"
-          onsubmit="dcsMultiTrack('DCS.dcsuri','/signmeup.button','WT.ti','Sign%20Me%20Up','WT.dl','26');">
+          id="footer-email-form" action="#footer-email-form" method="post">
       <input type="hidden" name="newsletter-footer" value="Y">
       <input type="hidden" name="newsletter" value="{{ newsletter_id }}">
       <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">

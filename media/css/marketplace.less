@@ -360,13 +360,25 @@
 /* Tablet Layout: 760px */
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
 
+    #apps-hero-background {
+        background-size: 100% auto;
+        bottom: 275px;
+        left: 475px;
+        width: auto;
+    }
+
     #main-feature {
         p {
             .span_narrow(6);
         }
         #marketplace-launcher {
-            .span_narrow(6);
+            .span_narrow(7);
             margin-bottom: @baseLine;
+            font-size: 22px;
+            #marketplace-button {
+                font-size: 18px;
+                padding-right: 60px;
+            }
             #marketplace-panel {
                 width: @widthTablet - (@gridGutterWidth * 2);
                 background-position: 350px -12px;
@@ -405,6 +417,10 @@
 /* Mobile layout: 320px */
 @media only screen and (max-width: @breakTablet) {
 
+    #apps-hero-background {
+        display: none;
+    }
+
     #main-feature {
         p,
         hgroup {
@@ -424,10 +440,11 @@
         #marketplace-launcher {
             width: auto;
             #marketplace-button {
-                font-size: 18px;
+                font-size: 17px;
                 width: auto;
                 min-width: 0;
                 padding-left: 70px;
+                padding-right: 20px;
             }
             margin-bottom: @baseLine;
             #marketplace-panel {

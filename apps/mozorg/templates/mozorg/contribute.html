@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
+{% add_lang_files "mozorg/15years" %}
+
 {% extends "mozorg/base-resp.html" %}
 
 {% block page_title %}{{_('Get Involved: Volunteer Opportunities at Mozilla')}}{% endblock %}
@@ -9,6 +11,25 @@
 
 {% block extrahead %}
   {{ css('contribute') }}
+
+  {% if has_moz15 %}
+    {# OpenGraph Metadata #}
+    <meta property="og:title" content="{{_('Get Involved: Volunteer Opportunities at Mozilla')}}">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="{{ media('img/contribute/mozilla15/mozilla15-badge.png') }}">
+    <meta property="og:url" content="{{ request.build_absolute_uri() }}">
+    <meta property="og:site_name" content="{{ _('Mozilla.org') }}">
+    <meta property="og:description" content="
+    {% trans %}
+      Mozilla exists to promote openness, innovation and opportunity on the Internet.
+    {% endtrans %}
+    {% trans %}
+      We’ve been doing it for 15 years and the following 15 facts offer a look at who
+      we are, including some of our biggest achievements and milestones. But in some
+      ways we’re just getting started, exploring new technology, entering new areas
+      and reaching new users every day.
+    {% endtrans %}">
+  {% endif %}
 {% endblock %}
 
 {% block js %}
@@ -16,6 +37,266 @@
 {% endblock %}
 
 {% block content %}
+
+{% if has_moz15 %}
+
+<article id="moz15">
+  <header>
+    <h1 class="title">{{ _('<strong>15 years</strong> of a better Web') }}</h1>
+    <p class="intro">
+    {% trans %}
+      Mozilla exists to promote openness, innovation and opportunity on the Internet.
+    {% endtrans %}
+    {% trans %}
+      We’ve been doing it for 15 years and the following 15 facts offer a look at who
+      we are, including some of our biggest achievements and milestones. But in some
+      ways we’re just getting started, exploring new technology, entering new areas
+      and reaching new users every day.
+    {% endtrans %}
+    </p>
+  </header>
+
+  <div id="slideshow-stage">
+
+    <div id="slideshow">
+      <div class="slide-control">
+        <button class="prev">{{ _('Previous') }}</button>
+        <button class="next">{{ _('Next') }}</button>
+      </div>
+      <ul class="sequence-canvas slides">
+        <li id="fact01" class="slide">
+          <span class="number">01</span>
+          <div class="message">
+          <p>
+          {% trans %}
+            The Mozilla Project launched at Netscape on March 31, 1998, to offer choice to users and drive innovation on the Web.
+          {% endtrans %}
+          </p>
+          </div>
+          <span class="block1"></span>
+          <span class="block2"></span>
+          <span class="back"></span>
+        </li>
+
+        <li id="fact02" class="slide">
+          <span class="number">02</span>
+          <div class="message">
+          <p>
+          {% trans %}
+            Proudly non-profit, Mozilla makes products like Firefox with a mission to keep the power of the Web in the hands of users everywhere.
+          {% endtrans %}
+          </p>
+          </div>
+          <span class="block1"></span>
+          <span class="block2"></span>
+          <span class="block3"></span>
+          <span class="logo"></span>
+          <span class="back"></span>
+        </li>
+
+        <li id="fact03" class="slide">
+          <span class="number">03</span>
+          <div class="message">
+          <p>
+          {# L10N: "The New York Times" is the proper name of an English publication and should not be translated. #}
+          {% trans %}
+            More than 10,000 contributors expressed their support for our mission by paying for a full-page ad in <cite>The New York Times</cite> on the day Firefox 1.0 launched in 2004.
+          {% endtrans %}
+          </p>
+          </div>
+          <span class="block1"></span>
+          <span class="back"></span>
+        </li>
+
+        <li id="fact04" class="slide">
+          <span class="number">04</span>
+          <div class="message">
+          <p>
+          {% trans %}
+            Today Mozilla has contributors on every continent, including Antarctica (where Firefox is used by 80% of people).
+          {% endtrans %}
+          </p>
+          </div>
+          <span class="block1"></span>
+          <span class="back"></span>
+        </li>
+
+        <li id="fact05" class="slide">
+          <span class="number">05</span>
+          <div class="message">
+          <p>
+          {% trans %}
+            Firefox Add-Ons allow you to customize and take control of your Web experience. Over 3 billion of them have been downloaded by users so far.
+          {% endtrans %}
+          </p>
+          </div>
+          <span class="block1"></span>
+          <span class="block2"></span>
+          <span class="block3"></span>
+          <span class="back"></span>
+        </li>
+
+        <li id="fact06" class="slide">
+          <span class="number">06 <span class="keyhole"></span></span>
+          <div class="message">
+          <p>
+          {% trans %}
+            Mozilla is leading the way in online privacy with browser innovations like Do Not Track and Collusion that give users greater control of their personal data.
+          {% endtrans %}
+          </p>
+          </div>
+          <span class="block1"></span>
+          <span class="back"></span>
+        </li>
+
+        <li id="fact07" class="slide">
+          <span class="number">07</span>
+          <div class="message">
+          <p>
+          {% trans %}
+            Our global community has helped translate Firefox into 89 languages, making the browser available to more than 95% of the world's population.
+          {% endtrans %}
+          </p>
+          </div>
+          <span class="block1"></span>
+          <span class="back"></span>
+        </li>
+
+        <li id="fact08" class="slide">
+          <span class="number">08</span>
+          <div class="message">
+          <p>
+          {% trans %}
+            In 2008, 8,002,530 people chose Firefox in a single day to set a Guinness World Record for “Most Downloads of a Software Application in 24 Hours.”
+          {% endtrans %}
+          </p>
+          </div>
+          <span class="block1"></span>
+          <span class="block2"></span>
+          <span class="back"></span>
+        </li>
+
+        <li id="fact09" class="slide">
+          <span class="number">09</span>
+          <div class="message">
+          <p>
+          {% trans %}
+            The Mozilla Festival is our largest annual event, bringing together hundreds of creative minds to realize the full power and potential of the Web.
+          {% endtrans %}
+          </p>
+          </div>
+          <span class="block1"></span>
+          <span class="block2"></span>
+          <span class="logo"><span></span></span>
+          <span class="back"></span>
+        </li>
+
+        <li id="fact10" class="slide">
+          <span class="number">10</span>
+          <div class="message">
+          <p>
+          {% trans %}
+            Mozilla Webmaker works to create a more Web-literate planet, providing tools and projects to help people take greater control of their online lives.
+          {% endtrans %}
+          </p>
+          </div>
+          <span class="block1"></span>
+          <span class="block2"></span>
+          <span class="back"></span>
+        </li>
+
+        <li id="fact11" class="slide">
+          <span class="number">11</span>
+          <div class="message">
+          <p>
+          {% trans %}
+            The Mozilla WebFWD program helps open source innovators and entrepreneurs create products and solutions that empower users to push the Web forward.
+          {% endtrans %}
+          </p>
+          </div>
+          <span class="block1"></span>
+          <span class="logo"></span>
+          <span class="back"></span>
+        </li>
+
+        <li id="fact12" class="slide">
+          <span class="number">12</span>
+          <div class="message">
+          <p>
+          {% trans %}
+            The Mozilla Developer Network is a community-driven Web resource that provides the best documentation, tutorials and tools available to more than 2 million visitors each month.
+          {% endtrans %}
+          </p>
+          </div>
+          <span class="block1"></span>
+          <span class="block2"></span>
+          <span class="stars"></span>
+          <span class="rocket"></span>
+          <span class="back"></span>
+        </li>
+
+        <li id="fact13" class="slide">
+          <span class="number">13</span>
+          <div class="message">
+          <p>
+          {% trans %}
+            Mozilla works to care for and preserve the Web as a shared public resource for the benefit of everyone.
+          {% endtrans %}
+          </p>
+          </div>
+          <span class="block1"></span>
+          <span class="back"></span>
+        </li>
+
+        <li id="fact14" class="slide">
+          <span class="number">14</span>
+          <div class="message">
+          <p>
+          {% trans %}
+            In 2013, Mozilla is launching Firefox OS to unleash the full power of the Web on smartphones and once again offer control and choice to a new generation of people coming online.
+          {% endtrans %}
+          </p>
+          </div>
+          <span class="block1"></span>
+          <span class="block2"></span>
+          <span class="shadow"></span>
+          <span class="phone"></span>
+          <span class="fox"></span>
+          <span class="back"></span>
+        </li>
+
+        <li id="fact15" class="slide">
+          <span class="number">15</span>
+          <div class="message">
+          <p>
+          {% trans %}
+            The work Mozilla does is made possible thanks to tens of thousands of individual donors and volunteers — people like you who believe the Web should remain open and accessible to all.
+          {% endtrans %}
+          </p>
+          </div>
+          <span class="block1"></span>
+          <span class="block2"></span>
+          <span class="back"></span>
+        </li>
+
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="cta">
+    <h2>{{ _('The success of our mission depends on participation from people like you.') }}</h2>
+    <p>
+    {% trans %}
+      Find out how you can get involved or support Mozilla to help make a difference
+      in the lives of users everywhere for the next 15 years — and beyond.
+    {% endtrans %}
+    </p>
+  </div>
+
+</article>
+
+{% else %}
 
 <h1 id="main-feature" class="large">{{_('Get Involved')}}</h1>
 
@@ -25,7 +306,8 @@
       width="640"
       height="360"
       poster="{{ MEDIA_URL }}img/contribute/poster-brand.jpg"
-      controls="controls">
+      controls="controls"
+      data-overlay-hidden-text="{{_('Play video')}}">
       <source src="//videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.webm" type="video/webm" />
       <source src="//videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.theora.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;" />
       <source src="//videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.mp4" type="video/mp4" />
@@ -40,13 +322,17 @@
         </div>
       </object>
     </video>
+    <p>
+      {{_('You don’t have to be a C++ guru (or even know what that means!) to get involved.<br><b>You just have to love the Web.</b>')}}
+    </p>
   </div>
-  <p>
-    {{_('You don’t have to be a C++ guru (or even know what that means!) to get involved.<br><b>You just have to love the Web.</b>')}}
-  </p>
 </section>
 
-{% include "mozorg/contribute-form.html" %}
+{% endif %}
+
+{% if not hide_form %}
+  {% include "mozorg/contribute-form.html" %}
+{% endif %}
 
   <section id="opportunities">
 

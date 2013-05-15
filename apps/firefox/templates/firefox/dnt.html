@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% extends "/firefox/base.html" %}
+{% extends "/firefox/base-resp.html" %}
 
 {% block page_title %}Do Not Track{% endblock %}
 {% block body_id %}dnt{% endblock %}
@@ -20,11 +20,24 @@
 
 {% block content %}
 
-<h1 id="main-feature" class="large">Do Not Track</h1>
+<div id="main-feature" class="large">
+  <h1>Do Not Track</h1>
+  <div id="dnt-status-wrapper">
+  <div id="dnt-status">
+    <h3>Do Not Track</h3>
+    <h4>Your Status:</h4>
+    {% if request.DNT %}
+    <h5 class="dnt-on">Do Not Track is ON</h5>
+    {% else %}
+    <h5 class="dnt-off">Do Not Track is OFF</h5>
+    {% endif %}
+  </div>
+  </div>
+</div>
 
 <div id="main-content">
 
-<div class="span7" id="main-column">
+<article class="main-column">
 
 <p>Mozilla is a global, nonprofit organization dedicated to making the Web
 better. We emphasize principle over profit, and believe that the Web is a
@@ -130,21 +143,11 @@ want to opt-out of tracking for purposes like behavioral advertising.</p>
   </div>
 </div>
 
-</div>
+</article>
 
-<div id="sidebar" class="span3">
+<div class="sidebar">
 
-  <div id="dnt-status">
-    <h4>Do Not Track</h3>
-    <h4>Your Status:</h3>
-    {% if request.DNT %}
-    <h5 class="dnt-on">Do Not Track is ON</h4>
-    {% else %}
-    <h5 class="dnt-off">Do Not Track is OFF</h4>
-    {% endif %}
-  </div>
-
-  <div class="inset">
+  <div class="sidebar-inset">
 
     <h4>Enable Do Not Track in Firefox</h4>
     <p>
@@ -164,6 +167,7 @@ want to opt-out of tracking for purposes like behavioral advertising.</p>
   </div>
 
 </div>
+
 </div>
 
 

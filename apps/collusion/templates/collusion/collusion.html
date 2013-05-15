@@ -10,7 +10,8 @@
 
 {% block site_header_nav %}
   <nav id="nav-main" role="navigation">
-  <ul>
+    <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
+    <ul id="nav-main-menu">
       <li><b>Home</b></li>
       <li><a href="{{ url('collusion.demo') }}">Demo</a></li>
   </ul>
@@ -19,6 +20,10 @@
 
 {% block extrahead %}
   {{ css('collusion') }}
+{% endblock %}
+
+{% block js %}
+  {{ js('collusion') }}
 {% endblock %}
 
 {% block content %}
@@ -39,23 +44,25 @@
     spider-web of interaction between companies and other trackers.
   </p>
 
-  <a class="button" href="{{ url('collusion.demo') }}">
-    View Our Demo
-    <small>see how you’re being tracked</small>
-  </a>
+  <div class="buttons">
 
-  <a class="button" href="https://addons.mozilla.org/en-US/firefox/addon/collusion/">
-    Download
-    <small>the Collusion add-on for Firefox</small>
-  </a>
+    <a class="button" href="{{ url('collusion.demo') }}">
+      View Our Demo
+      <small>see how you’re being tracked</small>
+    </a>
+
+    <a class="button" href="https://addons.mozilla.org/en-US/firefox/addon/collusion/">
+      Download
+      <small>the Collusion add-on for Firefox</small>
+    </a>
+
+  </div>
 
 </section>
 
 <section id="secondary" class="container">
 
-<div class="row">
-
-  <div class="span6">
+  <div class="main-content">
 
     <h3>Take control of your data</h3>
     <p>
@@ -97,13 +104,16 @@
     </p>
   </div>
 
-  <div class="span3 offset1">
+  <div class="sidebar">
     <form action="https://sendto.mozilla.org/page/s/collusion" method="post" class="box" id="updates">
       <h3>Want to hear more?</h3>
       <p class="intro">Get Mozilla updates:</p>
 
       <div class="field" id="email-field">
-        <span id="email-wrapper"><label class="hide-me" for="email">your email:</label><input name="email" type="email" id="email" value="" placeholder="Your Email Address" required aria-required="true"></span>
+        <span id="email-wrapper">
+          <label class="hide-me" for="email">your email:</label>
+          <input name="email" type="email" id="email" value="" placeholder="Your Email Address" class="required" required aria-required="true">
+        </span>
       </div>
 
         <div class="field" id="country-field">
@@ -133,8 +143,6 @@
       <img src="{{ media('img/collusion/ford-foundation.png') }}" alt="Ford Foundation" />
 
     </div>
-
-  </div>
 
 </section>
 

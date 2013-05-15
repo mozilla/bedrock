@@ -15,11 +15,10 @@
 {% endblock %}
 
 {% block content %}
-{% set webtrends = '?WT.mc_id=moandroid&amp;WT.mc_ev=click' %}
 {% if request.locale.startswith('en') %}
-  {% set mobile_link = url('firefox.fx') + webtrends + '#mobile' %}
+  {% set mobile_link = url('firefox.fx') + '#mobile' %}
 {% else %}
-  {% set mobile_link = php_url('/mobile/') + webtrends %}
+  {% set mobile_link = php_url('/mobile/') %}
 {% endif %}
 
 <h1 id="whatsnew-header">{{ _('Hooray! Your Firefox is up to date.') }}</h1>
@@ -38,7 +37,7 @@
 
   <h2>{{ _('Now get the mobile browser that’s got your back') }}</h2>
 
-  {{ mobile_download_button('android-download') }}
+  {{ download_firefox(mobile=True, icon=False, small=True) }}
 
 {% if request.locale not in locales_with_video.keys() %}
   <div id="promo-android">
@@ -91,7 +90,8 @@
       controls="controls"
       poster="{{ media('/img/firefox/whatsnew/video-poster.jpg') }}"
       height="360"
-      width="640">
+      width="640"
+      data-overlay-hidden-text="{{_('Play video')}}">
       <source src="http://videos-cdn.mozilla.net/serv/marketing/fxforandroid/10-07-12_firefox_for_android_{{ locales_with_video[request.locale] }}-640x360 Video Sharing.webm">
     </video>
   </div>

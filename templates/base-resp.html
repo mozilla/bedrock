@@ -8,10 +8,13 @@
     {% block ga_experiments %}{% endblock %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block extra_meta %}{% endblock %}
 
     <title>{% block page_title_prefix %}Mozilla — {% endblock %}{% block page_title %}{% endblock %}{% block page_title_suffix %} — mozilla.org{% endblock %}</title>
 
-    <link href="/tabzilla/media/css/tabzilla.css?build=1" rel="stylesheet">
+    {% block tabzilla_css %}
+      <link href="/tabzilla/media/css/tabzilla.css?build=1" rel="stylesheet">
+    {% endblock %}
 
     <!--[if lte IE 8]>
     <script src="{{ MEDIA_URL }}js/libs/html5shiv.js"></script>
@@ -33,11 +36,6 @@
   <body id="{% block body_id %}{% endblock %}" class="html-{{ DIR }} {% block body_class %}{% endblock %}"{% block body_attrs %}{% endblock %}>
     <div id="strings" {% block string_data %}{% endblock %}></div>
     <div id="outer-wrapper">
-
-    {% block mwc_badge %}
-    <div id="mwc-badge"><a href="/firefox/partners/">{{ _('Mobile World Congress') }}</a></div>
-    {% endblock %}
-
     <div id="wrapper">
 
     {% block site_header %}
@@ -60,6 +58,8 @@
         <h2><a href="{{ url('mozorg.home') }}"><img src="{{ MEDIA_URL }}img/sandstone/header-mozilla-stone.png" alt="mozilla"></a></h2>
         {% endblock %}
 
+        {% block alt_header %}{% endblock %}
+
         {% block breadcrumbs %}{% endblock %}
 
       </header>
@@ -74,7 +74,7 @@
     </div><!-- close #wrapper -->
 
     {% block site_footer %}
-      <footer id="colophon">
+      <footer id="colophon" class="{% block footer_class %}{% endblock %}">
       <div class="row">
 
           <div class="footer-logo">
@@ -112,16 +112,18 @@
       </footer>
     {% endblock %}
 
-    <script src="/tabzilla/media/js/tabzilla.js?build=1"></script>
     </div><!-- close #outer-wrapper -->
 
+    <!--[if IE 9]>
+      <script src="{{ MEDIA_URL }}js/libs/matchMedia.js"></script>
+    <![endif]-->
+
     {% block site_js %}
-      {{ js('common') }}
+      {{ js('common-resp') }}
+    {% endblock %}
+    {% block tabzilla_js %}
+      <script src="/tabzilla/media/js/tabzilla.js?build=1"></script>
     {% endblock %}
     {% block js %}{% endblock %}
-
-    {% block webtrends %}
-     {% include "includes/webtrends.html" %}
-    {% endblock %}
   </body>
 </html>

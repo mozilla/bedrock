@@ -1,16 +1,21 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
 from math import floor
 import time
 from hashlib import md5
 
 from django.conf import settings
-from django.test import Client
+from django.test import Client, RequestFactory
 from django.utils.http import parse_http_date
 
 from funfactory.urlresolvers import reverse
 from mock import patch
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 
 from mozorg.tests import TestCase
+from tabzilla.middleware import TabzillaLocaleURLMiddleware
 
 
 class TabzillaViewTests(TestCase):
@@ -44,6 +49,12 @@ class TabzillaViewTests(TestCase):
 class TabzillaRedirectTests(TestCase):
     def setUp(self):
         self.client = Client()
+
+    def _process_request(self, url):
+        rf = RequestFactory()
+        with self.activate('en-US'):
+            req = rf.get(url)
+            return TabzillaLocaleURLMiddleware().process_request(req)
 
     def test_locale_preserved(self):
         """The tabzilla URL should preserve the locale through redirects."""
@@ -88,3 +99,51 @@ class TabzillaRedirectTests(TestCase):
             with self.activate('en-US'):
                 self.client.get(tabzilla_css_url)
         eq_(less_mock.call_count, 1)
+
+    @patch('tabzilla.middleware.settings.CDN_BASE_URL', '//example.com')
+    @patch('tabzilla.middleware.settings.TEMPLATE_DEBUG', True)
+    def test_no_cdn_redirect_middleware_template_debug(self):
+        """
+        Tabzilla should NOT redirect to a CDN when it redirects to a locale
+        when TEMPLATE_DEBUG = True.
+        """
+        resp = self._process_request('/tabzilla/tabzilla.js')
+        eq_(resp['location'], '/en-US/tabzilla/tabzilla.js')
+
+    @patch('tabzilla.middleware.settings.CDN_BASE_URL', '//example.com')
+    @patch('tabzilla.middleware.settings.TEMPLATE_DEBUG', False)
+    def test_no_cdn_redirect_middleware_specified_locale(self):
+        """
+        Tabzilla should NOT redirect to a CDN when it doesn't need to redirect
+        to a locale.
+        """
+        resp = self._process_request('/en-US/tabzilla/tabzilla.js')
+        ok_(resp is None)
+
+    @patch('tabzilla.middleware.settings.CDN_BASE_URL', '')
+    @patch('tabzilla.middleware.settings.TEMPLATE_DEBUG', True)
+    def test_no_cdn_redirect_middleware_no_cdn(self):
+        """
+        Tabzilla should NOT redirect to a CDN when it redirects to a locale
+        when no CDN is configured.
+        """
+        resp = self._process_request('/tabzilla/tabzilla.js')
+        eq_(resp['location'], '/en-US/tabzilla/tabzilla.js')
+
+    @patch('tabzilla.middleware.settings.CDN_BASE_URL', '//example.com')
+    @patch('tabzilla.middleware.settings.TEMPLATE_DEBUG', False)
+    def test_cdn_redirect_middleware(self):
+        """
+        Tabzilla should redirect to a CDN when it redirects to a locale
+        """
+        resp = self._process_request('/tabzilla/tabzilla.js')
+        eq_(resp['location'], 'http://example.com/en-US/tabzilla/tabzilla.js')
+
+    @patch('tabzilla.middleware.settings.CDN_BASE_URL', '//example.com')
+    @patch('tabzilla.middleware.settings.TEMPLATE_DEBUG', False)
+    def test_no_cdn_redirect_middleware(self):
+        """
+        Middleware should NOT redirect to a CDN when it's not tabzilla
+        """
+        resp = self._process_request('/')
+        eq_(resp['location'], '/en-US/')

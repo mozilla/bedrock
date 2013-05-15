@@ -1,0 +1,201 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "firefox/base.html" %}
+
+{% block page_title %}{{ _('Welcome to Firefox') }}{% endblock %}
+{% block body_id %}firefox-firstrun{% endblock %}
+
+{% block site_header_nav %}{% endblock %}
+{% block site_header_logo %}{% endblock %}
+
+{% block extrahead %}
+ <link rel="canonical" href="https://www.mozilla.org/en-US/firefox/21.0/firstrun/" />
+{% endblock %}
+
+{% block string_data %}
+  {# L10n: This is the label for a button that closes a modal dialog #}
+  data-close="{{ _('Close') }}"
+{% endblock %}
+
+{% block site_css %}
+  {{ css('firefox_firstrun_new_b') }}
+{% endblock %}
+
+{% block content %}
+<main role="main">
+  <header id="page-header">
+    <img src="{{ media('img/firefox/firstrun/firefox-logo.png') }}" alt="Firefox" />
+    <h1 class="large">{{_('Welcome to Firefox!')}}</h1>
+  </header>
+
+  <article class="feature">
+    <div class="copy">
+      <header>
+        {# L10n: Line break is for presentation only. Position as needed. #}
+        <h1>
+        {% if copy == 'a' %}
+          {{ _('Doing good is <br>part of our code') }}
+        {% else %}
+          {{ _('Discover what makes it different.') }}
+        {% endif %}
+        </h1>
+      </header>
+
+      <p>
+    {% if copy == 'a' %}
+      {% trans %}
+        Firefox is made with a mission to keep the power of the Web in the hands
+        of users everywhere - that includes you!
+      {% endtrans %}
+    {% else %}
+      {% trans %}
+        Our mission is to promote openness, innovation and opportunity by keeping
+        the power of the Web in people’s hands.
+      {% endtrans %}
+    {% endif %}
+      </p>
+
+      <a class="featurelink" href="{{ url('mozorg.mission') }}">
+      {% if copy == 'a' %}
+        {{ _('Learn more about what makes us different') }}
+      {% else %}
+        {{ _('See what that means for you') }}
+      {% endif %}
+      </a>
+
+      <ul class="social">
+        <li>
+          <img src="{{ media('img/firefox/firstrun/facebook.png') }}">
+          <a class="facebook" href="https://www.facebook.com/Firefox">{{ _('Like us on Facebook') }}</a>
+        </li>
+        <li>
+          <img src="{{ media('img/firefox/firstrun/twitter.png') }}">
+          <a class="twitter" href="https://twitter.com/firefox">{{ _('Follow us on Twitter') }}</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="screenshot">
+      <img src="{{ media('img/firefox/firstrun/b/doing-good-collage.jpg') }}">
+    </div>
+  </article>
+
+  <div class="columns">
+    <aside class="column pinnedtabs" id="pinnedtabs-screenshot">
+      <div class="copy">
+        <header>
+          <h1>
+          {% if copy == 'a' %}
+            {{ _('Save your faves') }}
+          {% else %}
+            {{ _('Innovative features') }}
+          {% endif %}
+          </h1>
+        </header>
+
+        <p>
+        {% if copy == 'a' %}
+          {{ _('Keep your favorite sites a click away with Pinned Tabs.') }}
+        {% else %}
+          {{ _('Right-click on any tab and select “Pin Tab” to keep it open.') }}
+        {% endif %}
+          <a id="pinnedtabs-video-link" href="#pinnedtabs-video">{{ _('See how they work') }}</a>
+        </p>
+      </div>
+
+      <div class="screenshot">
+        {{ platform_img('img/firefox/firstrun/b/pinnedtabs.jpg', alt=_('Bookmarks')) }}
+      </div>
+    </aside>
+    <aside class="column themes">
+      <div class="copy">
+        <header>
+          <h1>
+          {% if copy == 'a' %}
+            {{ _('Make it your own') }}
+          {% else %}
+            {{ _('Customization') }}
+          {% endif %}
+          </h1>
+        </header>
+
+        <p>
+      {% if copy == 'a' %}
+        {% trans url1='https://addons.mozilla.org/en-us/firefox/themes/', class1='featurelink' %}
+          Use Themes to personalize the look of your Firefox.
+          <a class="{{ class1 }}" href="{{ url1 }}">Find your theme</a>
+        {% endtrans %}
+      {% else %}
+        {% trans url1='https://addons.mozilla.org/en-us/firefox/themes/', class1='featurelink' %}
+          Use Themes to change the look of your Firefox.
+          <a class="{{ class1 }}" href="{{ url1 }}">Explore Themes</a>
+        {% endtrans %}
+      {% endif %}
+        </p>
+      </div>
+
+      <div class="screenshot">
+        {{ platform_img('img/firefox/firstrun/b/themes.jpg', alt=('Themes')) }}
+      </div>
+    </aside>
+  {% if version in '13' %}
+    <aside class="column awesomebar column-last">
+      <div class="copy">
+        <header>
+          <h1>{{ _('Find things fast') }}</h1>
+        </header>
+
+        <p>
+        {% trans url1=url('firefox.features') + '#madeeasy', class1='featurelink' %}
+          The Awesome Bar helps you find sites quickly - because it’s awesome.
+          <a class="{{ class1 }}" href="{{ url1 }}">See what it can do</a>
+        {% endtrans %}
+        </p>
+      </div>
+
+      <div class="screenshot">
+        {{ platform_img('img/firefox/firstrun/b/awesomebar.jpg', alt=('Awesome Bar')) }}
+      </div>  
+    </aside>
+  {% else %}
+    <aside class="column bookmarks column-last">
+      <div class="copy">
+        <header>
+          <h1>{{ _('Shortcuts') }}</h1>
+        </header>
+
+        <p>
+        {% trans url1='https://support.mozilla.org/en-US/kb/use-bookmarks-to-save-and-organize-websites#w_how-do-i-create-a-bookmark', class1='featurelink' %}
+          One click is all you need to save pages.
+          <a class="{{ class1 }}" href="{{ url1 }}">Learn how to bookmark</a>
+        {% endtrans %}
+        </p>
+      </div>
+
+      <div class="screenshot">
+        {{ platform_img('img/firefox/firstrun/b/bookmarks.jpg', alt=('Bookmarks')) }}
+      </div>  
+    </aside>
+  {% endif %}
+  </div>
+
+  <aside class="form">
+    {{ email_newsletter_form(title='Get Firefox Updates') }}
+  </aside>
+</main>
+
+{% include 'firefox/firstrun/_video.html' %}
+
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{% block site_footer %}
+  {% include 'firefox/includes/simple_footer.html' %}
+{% endblock %}
+
+{% block js %}
+  {{ js('firefox_firstrun_new_b') }}
+{% endblock  %}

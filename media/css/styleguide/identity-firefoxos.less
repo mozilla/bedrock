@@ -4,8 +4,7 @@
 
 @import "../styleguide/styleguide.less";
 
-/* {{{ Firefox - Branding  */
-
+/* {{{ Firefox OS - Branding  */
 .firefoxos-branding {
     #intro {
         float: left;
@@ -15,6 +14,44 @@
         }
         p {
             .span_guide(9);
+        }
+    }
+    #guidelines {
+        float: left;
+        .divider;
+        div {
+            .span_guide(3);
+        }
+        #guidelines-list {
+            .span_guide(9);
+        }
+    }
+    #versus {
+        float: left;
+        .divider;
+        h2 {
+            .span_guide(3);
+        }
+        div {
+            .span_guide(9);
+        }
+    }
+    #usage {
+        float: left;
+       .divider;
+        h2 {
+            .span_guide(12);
+        }
+        div,
+        p {
+            .span_guide(3);
+            margin-top: 20px;
+        }
+        div {
+            text-align: center;
+        }
+        div.clear {
+            clear: both;
         }
     }
     #wordmark {
@@ -47,10 +84,204 @@
                 margin-bottom: 0;
             }
         }
-        .button-sand, .button-sand:link, .button-sand:visited {
-            padding: 0 12px;
+    }
+}
+/* }}} */
+/* {{{ Firefox OS - Promo Materials  */
+.firefoxos-promo {
+    #intro {
+        float: left;
+        .divider;
+        h2 {
+            .span_guide(3);
+        }
+        p {
+            .span_guide(9);
+        }
+    }
+    #guidelines {
+        float: left;
+        .divider;
+        div {
+            .span_guide(3);
+        }
+        #guidelines-list {
+            .span_guide(9);
         }
     }
 }
-
+/* }}} */
+/* {{{ Firefox OS - Colors  */
+.firefoxos-colors {
+    #intro {
+        float: left;
+        .divider;
+        h2 {
+            .span_guide(3);
+        }
+        p {
+            .span_guide(8);
+        }
+    }
+    .swatch-card {
+        .span_guide(6);
+        position: relative;
+        margin: 0 0 20px 0;
+        .button-sand {
+            position: absolute;
+            top: 0;
+            right: 75px;
+            background: url(/media/img/styleguide/download-arrow.png) center right no-repeat;
+            padding-right: 40px
+        }
+    }
+    .clear {
+        clear: left;
+    }
+    #swatch-orange .swatch { background-color: #e66000; }
+    #swatch-light-orange .swatch { background-color: #ff9500; }
+    #swatch-blue .swatch { background-color: #00539f; }
+    #swatch-light-blue .swatch { background-color: #0095dd; }
+    #swatch-brown .swatch { background-color: #330000; }
+    #swatch-charcoal .swatch { background-color: #4d4e53; }
+    #swatch-orange-grad .swatch { #gradient > .vertical(#ff9500, #e66000); }
+    #swatch-blue-grad .swatch { #gradient > .vertical(#0095dd, #00539f); }
+    #swatch-lightgrey-grad .swatch { #gradient > .vertical(#eaeff2, #d4dde4); }
+}
+/* }}} */
+/* {{{ Firefox OS - common (Partners & Community so far...)  */
+.firefoxos-common {
+    .section {
+        .clearfix;
+        .divider;
+        &.last {
+            background: none;
+        }
+    }
+    .left-col {
+        .span_guide(3);
+        margin: 0 10px;
+    }
+    .right-col {
+        .span_guide(9);
+        .container {
+            padding: 0;
+        }
+    }
+    .split {
+        float: left;
+        width: 50%;
+    }
+    .example {
+        background: #fff;
+        padding: 40px;
+    }
+    .caption {
+        font-size: @smallFontSize;
+        font-style: italic;
+    }
+}
+/* }}} */
+/* {{{ Firefox OS - Partners  */
+.firefoxos-partners {
+    #licensed {
+        padding-bottom: 0;
+    }
+    .split {
+        text-align: center;
+        &.the-look {
+            width: 40%;
+        }
+        img {
+            display: block;
+            margin: 40px auto 0;
+        }
+    }
+    .based-on {
+        float: left;
+        width: 110px;
+        margin-right: 50px;
+        &.wordmark {
+            width: 132px;
+            margin-right: 18px;
+            padding-top: 33px;
+        }
+    }
+    .download {
+        .span_guide(3);
+        margin-right: 0;
+    }
+}
+/* }}} */
+/* {{{ Firefox OS - Community  */
+.firefoxos-community {
+    h3 {
+        font-size: 20px;
+    }
+    .split {
+        width: (320px - @baseLine);
+        padding-right: @baseLine;
+        &.example {
+            padding: @baseLine @baseLine 0;
+            position: relative;
+            width: (380px - (@baseLine * 2));
+        }
+    }
+    .caption {
+        position: absolute;
+        left: @baseLine;
+        width: 84px;
+    }
+    #caption-1 {
+        top: 124px;
+    }
+    #caption-2 {
+        top: 302px;
+    }
+    #caption-3 {
+        top: 447px;
+    }
+    #guidelines-example {
+        display: block;
+        float: right;
+        margin-top: 25px;
+    }
+    .artwork-list {
+        text-align: center;
+        float: left;
+        width: 220px;
+        margin-right: @baseLine;
+        &.last {
+            margin-right: 0;
+        }
+        li {
+            list-style-type: none;
+            img {
+                display: block;
+                margin-bottom: @baseLine;
+            }
+            .button-list {
+                margin-bottom: @baseLine;
+            }
+        }
+    }
+    #artwork .container {
+        padding: 0;
+    }
+    #examples {
+        position: relative;
+        clear: both;
+        .clearfix;
+        margin-top: @baseLine;
+        .box-arrow {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            margin-left: -11px;
+        }
+        .right-col {
+            .span_guide(8);
+        }
+    }
+}
 /* }}} */

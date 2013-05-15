@@ -93,23 +93,6 @@
                 margin-bottom: @baseLine / 2;
             }
         }
-        #new-copy {
-            .download-list li {
-                width: auto;
-                position: static;
-            }
-            .download-button-small .download-link {
-                margin-left: 0;
-                .download-content {
-                    background-image: none;
-                    margin-left: 0;
-                    padding-left: 20px;
-                }
-            }
-            .download-button small.download-other {
-                text-align: left;
-            }
-        }
         #android-promo {
             .icon {
                 display: block;
@@ -123,48 +106,15 @@
     }
 }
 
-.no-js .mobile-content .download-list{
-    display: none;
-}
-
 .mobile-content {
     overflow: hidden;
     text-align: center;
-    .download-link {
-        line-height: 27px;
-    }
-    .download-button {
-        .download-title {
-            font-size: 18px;
-        }
-        .download-info {
-            color: #FFFFFF;
-            font-size: 11px;
-        }
-        .download-content {
-            background-image: none;
-            margin-left: -50px;
-        }
-    }
     #download-column {
         position: relative;
         z-index: 10;
-        aside {
-            text-align: left;
-        }
     }
     #phone-tablet-image {
         margin: @gridColumnWidth/2 auto -6px;
-    }
-    #rating-column {
-        .span(2);
-        font-family: "Open Sans Light";
-        font-size: 18px;
-        padding-top: 20px;
-        float: none;
-        display: inline-block;
-        vertical-align: top;
-        background: url(/media/img/firefox/fx/android-four-stars.png) center top no-repeat;
     }
     .sub-features {
         margin-top: -50px;
@@ -179,7 +129,7 @@
     margin-bottom: 0;
     padding-top: @baseLine / 2;
     padding-bottom: @baseLine / 2;
-    li {
+    >li {
         .span(4);
         list-style-type: none;
         text-align: left;
@@ -261,6 +211,7 @@
                     margin-left: 25px;
                 }
             }
+            margin-top: 20px;
         }
     }
 }
@@ -311,9 +262,6 @@
                 }
             }
         }
-        .download-button-large .download-link {
-            min-width: 0;
-        }
         #up-to-date {
             hgroup {
                 h1 {
@@ -324,15 +272,10 @@
     }
 
     .mobile-content {
-        #download-column {
-            padding-top: 0;
-            width: auto;
-            float: none;
-            text-align: center;
-            .download-button small.download-other {
-                text-align: left;
-            }
-            margin-bottom: 20px;
+        #download-column,
+        #rating-column {
+            margin: 0 auto 10px auto;
+            display: block;
         }
         #phone-tablet-image { display: none; }
     }
@@ -342,7 +285,6 @@
         width: auto;
         margin-top: 0;
         li {
-            
             float: none;
             width: auto;
             padding: 0;
@@ -352,7 +294,7 @@
                 border-left: 0;
             }
             a.link, a.mobile-link {
-                border-left: 0;    
+                border-left: 0;
                 margin: 0;
                 border-top: 1px dotted @borderColor;
             }
@@ -369,5 +311,3 @@
     }
 
 }
-
-

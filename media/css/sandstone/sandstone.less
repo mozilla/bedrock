@@ -257,6 +257,11 @@ input[type=text]:focus {
     }
 }
 
+.super-priority-field {
+    display: none;
+    visibility: hidden;
+}
+
 /* }}} */
 /* {{{ Layout */
 
@@ -290,34 +295,6 @@ input[type=text]:focus {
 }
 
 /* }}} */
-
-
-/* {{{ MWC badge */
-#mwc-badge {
-    display: none;
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 999;
-}
-
-.mwc2013 #mwc-badge {
-    display: block;
-}
-
-#mwc-badge a {
-    display: block;
-    text-indent: -999em;
-    overflow: hidden;
-    width: 140px;
-    height: 140px;
-    background: url(/media/img/firefox/partners/mwc_badge-corner.png) no-repeat;
-    color: #fff;
-    border-bottom-right-radius: 100%;
-}
-/* }}} */
-
-
 /* {{{ Less Framework Grid */
 
 /*      Default Layout: 992px.
@@ -536,7 +513,6 @@ nav.menu-bar {
     h3 {
         .span(3);
         margin-left: 0;
-        padding-top: 4px;
     }
 
     .form-contents {
@@ -548,17 +524,11 @@ nav.menu-bar {
     }
 
     .field {
-        padding: 4px 0;
+        padding: 0 0 8px 0;
     }
 
     input[type=email], select {
         width: (@gridColumnWidth * 3) + (@gridGutterWidth * 2) - 20px;
-        margin-top: 2px;
-    }
-
-    input[type=submit] {
-        width: (@gridColumnWidth * 3) + (@gridGutterWidth * 2);
-        font-size: 18px;
     }
 
     .field-privacy {

@@ -43,13 +43,6 @@
 .partner-article {
     .button {
         display: block;
-        background-color: @localBlue;
-        #gradient > .vertical(@localBlue, @localBlueDark);
-        font-size: 16px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        .box-shadow(@localShadow);
-        .border-radius(8px);
         &:after {
             content: " ";
             display: inline-block;
@@ -58,6 +51,13 @@
             vertical-align: middle;
             margin-left: 10px;
             background: url(/media/img/sandstone/buttons/arrow-go-r.png) 0 0;
+        }
+        &:before {
+            content: " ";
+            display: inline-block;
+            height: 24px;
+            width: 10px;
+            vertical-align: middle;
         }
         &:hover,
         &:focus {
@@ -268,14 +268,9 @@
         &#menu-marketplace.active a { background-position: 50% -300px; }
         &#menu-android            a { background-position: 50% -360px; }
         &#menu-android.active     a { background-position: 50% -420px; }
-        &#menu-location           a { background-position: 50% -480px; }
-        &#menu-location.active    a { background-position: 50% -540px; }
-        &#menu-schedule           a { background-position: 50% -600px; }
-        &#menu-schedule.active    a { background-position: 50% -660px; }
     }
 }
 
-#mwc-menu,
 #overlay-menu {
     display: none;
 }
@@ -334,36 +329,6 @@
                     line-height: 1.2;
                 }
             }
-        }
-    }
-    .overview-actions {
-        margin: 0 0 20px 0;
-        padding: 0;
-        li {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            a {
-                display: block;
-                position: relative;
-                padding: 10px 0 10px 60px;
-                text-align: left;
-                font-style: italic;
-                line-height: 1.3;
-                span {
-                    display: block;
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    height: 60px;
-                    width: 60px;
-                    background-image: url(/media/img/firefox/partners/menu-icons.png);
-                    background-repeat: no-repeat;
-                }
-            }
-            &.location a span { background-position: 0 -960px; }
-            &.schedule a span { background-position: 0 -1020px; }
-            &.twitter  a span { background-position: 0 -1080px; }
         }
     }
 }
@@ -593,133 +558,8 @@
     padding: 0;
 }
 
-#location {
-    h2 {
-        text-align: center;
-        padding: 20px;
-    }
-    img {
-        display: block;
-        margin: 10px auto;
-    }
-    .footer p {
-        font-style: italic;
-    }
-}
-
-.schedule {
-    h2 {
-        text-align: center;
-        padding: 20px;
-        margin: 0;
-    }
-    .calendar {
-        padding: 0 20px 20px 20px;
-        .clearfix();
-        .day {
-            color: #888;
-            background: #fff;
-            font-size: @smallFontSize;
-            .span-all();
-            .border-box();
-            border: 1px solid #d6d6d6;
-            margin-bottom: -1px;
-            &:first-child {
-                .border-radius(4px 4px 0 0);
-            }
-            &:last-child {
-                .border-radius(0 0 4px 4px);
-            }
-            h4 {
-                .border-box();
-                #gradient > .vertical(#f4f6f6,#ecedee);
-                border-bottom: 1px solid #d6d6d6;
-                padding: 20px;
-                margin: 0;
-                @shadow: 0 0 2px rgba(0,0,0,0.2);
-                .box-shadow(@shadow);
-                span {
-                    display: block;
-                    font-size: @baseFontSize;
-                    font-weight: bold;
-                    color: @textColorTertiary;
-                    text-transform: uppercase;
-                    color: #888;
-                    line-height: 1;
-                }
-            }
-            .day-contents {
-                padding: 20px 20px 0 20px;
-                h3 {
-                    font-size: 18px;
-                    letter-spacing: normal;
-                    margin-bottom: 5px;
-                }
-                p {
-                    margin-bottom: 10px;
-                }
-            }
-            .event {
-                margin-bottom: @baseLine * 1.5;
-            }
-            .time,
-            .person {
-                display: block;
-                position: relative;
-                padding: 0 0 0 20px;
-                color: @textColorSecondary;
-                font-weight: bold;
-                font-size: @baseFontSize;
-                text-transform: uppercase;
-                line-height: 1.1;
-                margin-top: 5px;
-                &:after {
-                    display: block;
-                    content: " ";
-                    font-size: 1px;
-                    height: 12px;
-                    width: 12px;
-                    position: absolute;
-                    top: 50%;
-                    left: 0;
-                    margin-top: -6px;
-                    background: url(/media/img/firefox/partners/menu-icons.png) 0 -1152px no-repeat;
-                }
-            }
-            .person:after {
-                background-position: -12px -1152px;
-            }
-            .role,
-            .location {
-                display: block;
-                padding: 2px 0 0 20px;
-                line-height: 1.2;
-                font-style: italic;
-                font-size: @smallFontSize;
-                margin-bottom: 5px;
-            }
-            dl {
-                dt {
-                    color: @textColorSecondary;
-                    font-weight: bold;
-                    font-size: @baseFontSize;
-                    text-transform: uppercase;
-                    .open-sans;
-                    letter-spacing: normal;
-                    margin: 10px 0 5px 0;
-                }
-                dd {
-                    font-size: 16px;
-                    line-height: 1.2;
-                    min-height: 3.5em;
-                    margin: 0;
-                }
-            }
-        }
-    }
-}
-
-#testimonials {
+#testimonials,
+#mwc-wrapup {
     h2 {
         text-align: center;
         padding: 20px;
@@ -730,6 +570,13 @@
         display: block;
         width: 288px;
         height: 162px;
+    }
+    video {
+        margin: 0 auto 20px;
+        text-align: center;
+    }
+    .video-player-no-flash {
+        color: #333;
     }
 }
 
@@ -920,29 +767,6 @@ body.noscroll {
                 &:last-child {
                     margin-right: 0;
                 }
-            }
-        }
-    }
-    .schedule {
-        .calendar {
-            .day {
-                float: left;
-                width: 240px;
-                min-height: 800px;
-                margin: 0 0 0 -1px;
-                &:first-child {
-                    .border-radius(4px 0 0 4px);
-                }
-                &:last-child {
-                    .border-radius(0 4px 4px 0);
-                }
-            }
-        }
-    }
-    .schedule#demo-schedule {
-        .calendar {
-            .day {
-                min-height: 500px;
             }
         }
     }

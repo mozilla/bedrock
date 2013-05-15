@@ -2,10 +2,12 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from django.conf.urls.defaults import *
+from django.conf import settings
+
 from mozorg.hierarchy import PageNode, PageRoot
 
-hierarchy = PageRoot('Home', children=(
+
+all_children = [
     PageNode('Home', template='styleguide/home.html'),
     PageNode('Identity', path='identity', children=(
         PageNode('Mozilla', path='mozilla', children=(
@@ -25,6 +27,10 @@ hierarchy = PageRoot('Home', children=(
         )),
         PageNode('Firefox OS', path='firefoxos', children=(
             PageNode('Branding', path='branding', template='styleguide/identity/firefoxos-branding.html'),
+#            PageNode('Promo Materials', path='promo', template='styleguide/identity/firefoxos-promo-materials.html'),
+            PageNode('Partners', path='partners', template='styleguide/identity/firefoxos-partners.html'),
+            PageNode('Community', path='community', template='styleguide/identity/firefoxos-community.html'),
+            PageNode('Color', path='color', template='styleguide/identity/firefoxos-color.html'),
         )),
         PageNode('Marketplace', path='marketplace', children=(
             PageNode('Branding', path='branding', template='styleguide/identity/marketplace-branding.html'),
@@ -66,9 +72,16 @@ hierarchy = PageRoot('Home', children=(
     )),
     PageNode('Products', path='products', children=(
         PageNode('Firefox OS', path='firefoxos', children=(
-            PageNode('Icons', path='icons', template='styleguide/products/firefox-os-icons.html'),
+            PageNode('App Icons', path='icons', template='styleguide/products/firefox-os-icons.html'),
+            PageNode('Action Icons', path='action-icons', template='styleguide/products/firefox-os-action-icons.html'),
         )),
     )),
-))
+]
 
-urlpatterns = hierarchy.as_urlpatterns()
+if settings.DEV:
+    all_children.append(
+        PageNode('All Buttons', path='all-download-buttons',
+                 template='styleguide/websites/sandstone-all-download-buttons.html'),
+    )
+
+urlpatterns = PageRoot('Home', children=tuple(all_children)).as_urlpatterns()

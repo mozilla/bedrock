@@ -1,0 +1,395 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/variables.less";
+@import "../sandstone/mixins.less";
+@import "../sandstone/fonts.less";
+@import "../sandstone/buttons.less";
+@import "../libs/normalize.less";
+@import "animate.less";
+
+.noscroll {
+    overflow: hidden;
+}
+
+#outer-wrapper {
+    position: relative;
+    z-index: 0;
+
+    margin: 0 auto;
+    width: 790px;
+
+    background: #eaeff2;
+    background: -moz-radial-gradient(center, ellipse cover, rgba(234,239,242,1) 0%, rgba(212,221,228,.5) 60%),
+                -moz-linear-gradient(top, rgba(202,225,244,1) 0%, rgba(125,185,232,0) 100%);
+    background: -webkit-gradient(radial, center center, 0px, center center, 60%, color-stop(0%,rgba(234,239,242,.9)), color-stop(60%,rgba(212,221,228,.5))),
+                -webkit-linear-gradient(top, rgba(202,225,244,1) 0%, rgba(125,185,232,0) 100%);
+    background: -webkit-radial-gradient(center, ellipse cover, rgba(234,239,242,1) 0%, rgba(212,221,228,.4) 60%),
+                -webkit-linear-gradient(top, rgba(202,225,244,1) 0%, rgba(125,185,232,0) 100%);
+    background: -ms-radial-gradient(center, ellipse cover,  rgba(234,239,242,1) 0%, rgba(212,221,228,.5) 60%),
+                -ms-linear-gradient(top, rgba(202,225,244,1) 0%, rgba(125,185,232,0) 100%);
+    background: radial-gradient(ellipse at center, rgba(234,239,242,1) 0%,rgba(212,221,228,.5) 50%),
+                linear-gradient(to bottom, rgba(202,225,244,1) 0%,rgba(125,185,232,0) 100%);
+    .border-radius(10px);
+    font-family: 'Open Sans Light', sans-serif;
+    text-align: center;
+}
+
+#wrapper {
+    position: relative;
+    z-index: 1;
+
+    padding-bottom: 430px;
+    background: url(/media/img/facebookapps/downloadtab/firefox.png) no-repeat 50% 100%;
+    color: @textColorSecondary;
+
+    .noscroll & {
+        height: 800px;
+        padding: 0;
+
+        background-image: none;
+    }
+    .on-scene1 & {
+        background-position: 50% 100%;
+    }
+    .windows .on-scene1.noscroll &, .linux .on-scene1.noscroll & {
+        background-image: url(/media/img/facebookapps/downloadtab/browser-win.png);
+    }
+    .osx .on-scene1.noscroll & {
+        background-image: url(/media/img/facebookapps/downloadtab/browser-mac.png);
+    }
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+    .open-sans-light;
+}
+h1 {
+    clear: both;
+    margin: 30px 0 0;
+
+    font-size: 52px;
+}
+h2 {
+    font-size: 30px;
+}
+
+// Header
+#masthead {
+    #logo {
+        display: none;
+        float: left;
+        margin: 20px 70px;
+
+        text-align: left;
+
+        .noscroll & { display: block }
+    }
+    #tabzilla {
+        position: relative;
+        z-index: 999;
+
+        display: block;
+        float: right;
+        overflow: hidden;
+        margin: 0 30px 50px 0;
+        width: 148px;
+        height: 42px;
+
+        background: url(/media/img/facebookapps/downloadtab/tabzilla-tabless.png);
+        text-indent: -2000px;
+    }
+}
+
+
+
+// Subcaption
+.message {
+    margin: 0 auto;
+    width: 560px;
+
+    font-size: 16px;
+}
+
+// Steps progress bar
+#progress {
+    clear: both;
+    padding: 0;
+
+    ol {
+        .clearfix;
+        margin: 5px auto;
+        padding: 0;
+        width: 640px;
+
+        list-style: none;
+
+        li {
+            float: left;
+            width: 33.3%;
+
+            .open-sans-light;
+            font-size: 21px;
+        }
+    }
+    .step1 { text-align: left }
+    .step2 { text-align: center }
+    .step3 {
+        position: relative;
+        right: -25px; // needs a little nudge to be aligned right
+
+        text-align: right;
+    }
+
+    .ir {
+        margin: 0 auto;
+        width: 570px;
+        height: 30px;
+
+        background-image: url(/media/img/facebookapps/downloadtab/bg-progress.png);
+    }
+}
+
+// Buttons and CTAs
+.button, .button:link, .button:visited {
+    margin-bottom: 15px;
+    padding: 0 15px;
+    height: 45px;
+
+    font-size: 22px;
+    font-weight: normal;
+    line-height: 45px;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.75);
+}
+
+// All scenes
+.scene {
+    position: relative;
+}
+
+// Change scenes
+.on-scene1 {
+    #scene1 { display: block; }
+    #progress .ir { background-position: 0 0 }
+}
+.on-scene2 {
+    #scene2 { display: block; }
+    #progress .ir { background-position: 0 50% }
+}
+.on-scene3 {
+    #scene3 { display: block; }
+    #progress .ir { background-position: 0 100% }
+}
+
+//
+// Scene 1: Download
+//
+#features {
+    .clearfix;
+    margin: 15px auto 40px;
+    padding: 0;
+    width: 520px;
+
+    list-style: none;
+
+    li {
+        float: left;
+        padding: 28px 20px 0 0;
+        width: 160px;
+        height: 89px;
+
+        background: url(/media/img/firefox/new/features-divider.png) right top no-repeat;
+        color: @textColorSecondary;
+        .open-sans-light;
+        font-size: 24px;
+        letter-spacing: -0.03em;
+        line-height: 110%;
+        text-align: center;
+
+        &.last {
+            background: none;
+            padding-right: 0;
+        }
+    }
+
+    span {
+        display: block;
+    }
+}
+
+// Override the standard download button to match the approved design better
+.download-button {
+    .download-list {
+        padding: 0;
+    }
+
+    .download-link {
+        height: auto;
+        margin-bottom: 0;
+    }
+}
+
+//
+// Scene 2: Share
+//
+#scene2 {
+    h2 {
+        margin: 25px 0 5px;
+    }
+}
+
+.installation {
+    .clearfix;
+    display: block;
+    margin: 50px auto;
+    padding: 0;
+    width: 590px;
+
+    list-style-type: none;
+
+    li {
+        position: relative;
+
+        float: left;
+        margin-right: 30px;
+        padding: 150px 0 0 0;
+        width: 175px;
+
+        background-repeat: no-repeat;
+        color: @textColorTertiary;
+        font-size: 12px;
+        text-align: left;
+
+        &:after {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+
+            display: block;
+            width: 35px;
+            height: 35px;
+
+            background: url(/media/img/facebookapps/downloadtab/steps-installation.png);
+            content: ' ';
+        }
+    }
+    #install1:after { background-position: 0 0 }
+    #install2:after { background-position: 0 50% }
+    #install3 {
+        margin: 0;
+        &:after { background-position: 0 100% }
+    }
+}
+
+.osx {
+    #install1 { background-image: url(/media/img/facebookapps/downloadtab/install1-mac.png); }
+    #install2 { background-image: url(/media/img/facebookapps/downloadtab/install2-mac.png); }
+    #install3 { background-image: url(/media/img/facebookapps/downloadtab/install3-mac.png); }
+}
+
+.windows {
+    #install1 { background-image: url(/media/img/facebookapps/downloadtab/install1-win.png); }
+    #install2 { background-image: url(/media/img/facebookapps/downloadtab/install2-win.png); }
+    #install3 { background-image: url(/media/img/facebookapps/downloadtab/install3-win.png); }
+}
+
+.winIE8 #install1 {
+    background-image: url(/media/img/facebookapps/downloadtab/install1-winIE8.png);
+}
+
+.osx .install-win { display: none; }
+.windows .install-osx { display: none; }
+
+//
+// Scene 3: Get involved
+//
+#scene3 {
+    h2 {
+        margin: 25px 0 5px;
+    }
+    .message { width: auto }
+
+    .facepile {
+        display: block;
+        margin: 1em auto 0;
+        padding-top: 225px;
+        width: 661px;
+
+        background: url(/media/img/facebookapps/downloadtab/facepile.png) no-repeat top center;
+    }
+}
+
+#slider-container {
+    position: relative;
+    margin: 20px auto 40px;
+    width: 650px;
+
+    .ir {
+        display: block;
+        position: absolute;
+        top: 50%;
+
+        margin-top: -13px;
+        width: 30px;
+        height: 30px;
+
+        background-image: url(/media/img/facebookapps/downloadtab/ticker-arrows.png);
+        font: 0/0 a;
+    }
+    .prev {
+        left: -15px;
+    }
+    .next {
+        right: -15px;
+        background-position: top right;
+    }
+}
+
+#slider {
+    position: relative;
+    margin: 0;
+    padding: 0;
+
+    background: #fff;
+    .border-radius(10px);
+    .box-shadow(0 1px 2px rgba(0,0,0,.20));
+    list-style: none;
+    text-align: left;
+
+    li {
+        padding: 30px 0 30px 40px;
+        height: 42px;
+    }
+
+    h3 {
+        margin: 0;
+        font-size: 17px;
+
+        &.single-line {
+            margin-top: 9px;
+        }
+    }
+    p {
+        margin: 0;
+        font-size: 14px;
+    }
+
+    .button,
+    .like-txt {
+        position: absolute;
+        top: 50%;
+        right: 40px;
+        display: block;
+    }
+
+    .button {
+        margin: -20px 0 0 0;
+        padding: 0 20px;
+        height: 40px;
+
+        font-size: 18px;
+        line-height: 40px;
+    }
+    .like-txt { margin-top: -21px }
+}

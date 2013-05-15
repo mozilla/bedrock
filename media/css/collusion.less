@@ -2,8 +2,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import "sandstone/variables.less";
-@import "sandstone/mixins.less";
+@import "sandstone/lib.less";
 
 
 hgroup {
@@ -31,15 +30,13 @@ hgroup {
     background: #fff;
     #gradient > .radial(center, 45px, ellipse, farthest-corner, #f5f1e8 0%, #ffffff 100%);
     .clearfix;
-    height: 13em;
     margin-bottom: @baseLine * 3;
 
     img {
-        float: right;
-        margin-top: -@baseLine * 3;
         max-width: 50%;
-        position: relative;
+        position: absolute;
         right: -15px;
+        top: -80px;
     }
 
     p {
@@ -59,6 +56,7 @@ hgroup {
     margin-right: @gridGutterWidth;
     margin-bottom: @baseLine / 2;
     float: left;
+    font-weight: normal;
 
     small {
         display: block;
@@ -80,7 +78,7 @@ hgroup {
 }
 
 #chart {
-    margin-left: 250px; 
+    margin-left: 250px;
     font-size: 11px;
     font-family: sans-serif;
     color: #666;
@@ -116,7 +114,101 @@ hgroup {
             color: @textColorTertiary;
         }
     }
+    label.error {
+      display: block;
+    }
 }
+
+#secondary {
+    clear: both;
+}
+
+.main-content {
+    .span(7);
+}
+
+.sidebar {
+    .span(4);
+    .offset(1);
+}
+
+#collusion-demo {
+    #outer-wrapper {
+        min-width: @widthDesktop;
+    }
+    #wrapper {
+        width: @widthDesktop;
+        #masthead,
+        #main-feature,
+        #main-content,
+        .billboard,
+        .container {
+            width: auto;
+        }
+    }
+    #sidebar {
+        .span(3);
+    }
+    #demo-section {
+    }
+}
+
+
+/* {{{ Tablet  Layout: 768px */
+@media only screen and (min-width: @widthTablet) and (max-width: @widthDesktop) {
+
+    #collusion {
+        .main-content {
+            .span_narrow(7);
+        }
+        .sidebar {
+            .span_narrow(4);
+            .offset_narrow(1);
+        }
+    }
+
+}
+
+/* }}} */
+/* {{{ Wide Mobile Layout: 480px */
+@media only screen and (max-width: @widthTablet) {
+
+    #collusion {
+        .main-content {
+            .span-all();
+        }
+
+        .sidebar {
+            .span-all();
+        }
+
+        #primary {
+            padding-top: @baseLine;
+            padding-bottom: @baseLine;
+            p {
+                .span-all();
+            }
+            img {
+                display: none;
+            }
+            .buttons {
+                .span-all();
+                .button {
+                    margin: 10px auto;
+                    width: auto;
+                    display: block;
+                    float: none;
+                }
+            }
+        }
+    }
+
+}
+
+
+/* }}} */
+
+
 
 g.node.unrelated-domain image {
   display: none;
@@ -150,7 +242,7 @@ g.node.unrelated-domain circle.round-border {
 marker {
   stroke: none;
   fill: #fff;
-  fill-opacity: 1;  
+  fill-opacity: 1;
 }
 
 line.link {
@@ -205,7 +297,7 @@ h2.domain img.tracker {
 }
 
 
-/* On demo.html, the graph is shown against light background instead of dark 
+/* On demo.html, the graph is shown against light background instead of dark
    so make the bold arrows black instead of white. */
 
 line.bold {

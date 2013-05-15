@@ -14,14 +14,13 @@
   {{ css('home') }}
 {% endblock %}
 
+{% block string_data %}
+  data-close='{{_('Close')}}'
+  data-share='{{_('Share')}}'
+{% endblock %}
+
 {% block js %}
   {{ js('home') }}
-  <script>
-    (function() {
-      Mozilla.page.Home.closeText = '{{_('close')}}';
-      Mozilla.page.Home.shareText = '{{_('Share')}}';
-    })();
-  </script>
 {% endblock %}
 
 {% block site_header_logo %}{% endblock %}
@@ -50,7 +49,7 @@
     <li><small>{{_('Fast,&nbsp;flexible, <br> secure')}}</small></li>
   </ul>
 
-  {{ download_button('download','small') }}
+  {{ download_firefox(small=True, icon=False) }}
 </section>
 
 <section id="home-promo" class="pager pager-with-tabs pager-auto-rotate pager-no-history">
@@ -71,11 +70,39 @@
       </a>
     </div>
 
+    <div class="pager-page" id="promo-donate-tshirt">
+      <script>// <![CDATA[
+      document.getElementById('promo-donate-tshirt').id = 'page-promo-donate-tshirt';
+      // ]]></script>
+      <a href="https://sendto.mozilla.org/Donate-Moz-Banner_May" class="container">
+        <img src="{{ media('img/home/promo-supportfxtshirt.jpg') }}" alt="">
+        <div class="content">
+          <h3>{{_('Wear your support!')}}</h3>
+          <h4>{{_('Donate $30 to support our work together and we will send you an official Firefox T-shirt.')}}</h4>
+          <p class="button go">Donate Now</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="pager-page" id="promo-mozilla15">
+      <script>// <![CDATA[
+        document.getElementById('promo-mozilla15').id = 'page-promo-mozilla15';
+      // ]]></script>
+      <a href="{{ url('mozorg.contribute')  }}?icn=hpromo2" class="container">
+        <img src="{{ media('img/home/promo-mozilla15.jpg') }}" alt="">
+        <div class="content">
+          <h3>{{_('Mozilla turns 15!')}}</h3>
+          <h4>{{_('Help us celebrate with a look at who we are and what we’ve accomplished.')}}</h4>
+          <p class="go">{{_('See all 15 facts')}}</p>
+        </div>
+      </a>
+    </div>
+
     <div class="pager-page" id="promo-flicksvideo">
       <script>// <![CDATA[
         document.getElementById('promo-flicksvideo').id = 'page-promo-flicksvideo';
       // ]]></script>
-      <img id="promo-flicks-keyframe" src="{{ media('img/home/promo-flicks-video-thumb.jpg') }}" alt="{{_('Play Video')}}" tabindex="0" role="button" />
+      <img id="promo-flicks-keyframe" src="{{ media('img/home/promo-flicks-allthree-video-thumb.jpg') }}" alt="{{_('Play Video')}}" tabindex="0" role="button" />
       <a href="https://firefoxflicks.mozilla.org/" class="container">
         <div class="content">
           <h3>{{_('You’re the director. Mobile is the star.')}}</h3>
@@ -98,7 +125,7 @@
       <script>// <![CDATA[
       document.getElementById('promo-android').id = 'page-promo-android';
       // ]]></script>
-      <a href="{{ url('firefox.fx') }}?WT.mc_id=moandroid&amp;WT.mc_ev=click#mobile" class="container">
+      <a href="{{ url('firefox.fx') }}" class="container">
         <img src="{{ media('img/home/promo-android.jpg') }}" alt="">
         <div class="content">
           {# L10n: Firefox for Android tagline. #}
@@ -112,9 +139,11 @@
   </div>
 
   <ul class="pager-tabs">
-    <li><a href="#p1">●</a></li>
-    <li><a href="#p2">●</a></li>
-    <li><a href="#p3">●</a></li>
+    <li><a href="#p1"><span>{{_('View feature:')}} {{_('Introducing Firefox OS')}}</span></a></li>
+    <li><a href="#p2"><span>{{_('View feature:')}} {{_('Wear your support!')}}</span></a></li>
+    <li><a href="#p3"><span>{{_('View feature:')}} {{_('Mozilla turns 15!')}}</span></a></li>
+    <li><a href="#p4"><span>{{_('View feature:')}} {{_('Firefox Flicks')}}</span></a></li>
+    <li><a href="#p5"><span>{{_('View feature:')}} {{_('Firefox for Android: Fast. Smart. Safe.')}}</span></a></li>
   </ul>
 
 </section>
@@ -126,13 +155,13 @@
     <h3>{{ _('In the news') }}</h3>
     <ul>
       <li>
+        <h4><a href="https://blog.mozilla.org/privacy/2013/02/14/cyber-security-heating-up-on-both-sides-of-the-atlantic/">{{ _('Cyber-security heating up on both sides of the Atlantic') }}</a></h4>
+      </li>
+      <li>
         <h4><a href="https://blog.mozilla.org/blog/2013/02/25/mobilizing-mozilla-blaze-your-own-path/">{{ _('Mobilizing Mozilla: Blaze Your Own Path') }}</a></h4>
       </li>
       <li>
         <h4><a href="https://blog.mozilla.org/blog/2013/02/24/mozilla-unlocks-the-power-of-the-web-on-mobile-with-firefox-os/">{{ _('Mozilla Unlocks the Power of the Web on Mobile with Firefox OS') }}</a></h4>
-      </li>
-      <li>
-        <h4><a href="https://blog.mozilla.org/blog/2013/02/24/webrtc-ringing-a-mobile-phone-near-you/">{{ _('WebRTC – Ringing A Mobile Phone Near You') }}</a></h4>
       </li>
     </ul>
     <a href="https://blog.mozilla.org/" id="all-news">{{ _('See all news »') }}</a>
@@ -151,7 +180,7 @@
         <p>{{_('Help us share Firefox with the world!')}}</p>
       </li>
       <li>
-        <h4><a href="{{ url('marketplace.marketplace') }}">{{_('Mozilla Marketplace')}}</a></h4>
+        <h4><a href="{{ url('marketplace.marketplace') }}">{{ _('Firefox Marketplace') }}</a></h4>
         <p>{{_('Launch your app on the web')}}</p>
       </li>
     </ul>
@@ -172,8 +201,8 @@
         <h4>{{_('Find us')}}</h4>
         <p>{{_('Contact one of our global Mozilla Spaces.')}}</p>
       </a></li>
-      <li id="about-join"><a href="https://sendto.mozilla.org/page/contribute/join-mozilla">
-        <h4>{{_('Join us')}}</h4>
+      <li id="about-join"><a href="https://sendto.mozilla.org/Join-Moz-Org">
+        <h4>{{_('Donate')}}</h4>
         <p>{{_('Show your support and help us build a better Web.')}}</p>
       </a></li>
       <li id="about-learn"><a href="{{ url('mozorg.about') }}">

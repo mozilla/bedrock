@@ -1,39 +1,7 @@
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
-
 /**
  * Tabzilla global navigation for Mozilla projects
  *
  * This code is licensed under the Mozilla Public License 1.1.
- *
- * Event handling portions adapted from the YUI Event component used under
- * the following license:
- *
- *   Copyright © 2012 Yahoo! Inc. All rights reserved.
- *
- *   Redistribution and use of this software in source and binary forms,
- *   with or without modification, are permitted provided that the following conditions
- *   are met:
- *
- *   - Redistributions of source code must retain the above copyright notice,
- *     this list of conditions and the following disclaimer.
- *   - Redistributions in binary form must reproduce the above copyright
- *     notice, this list of conditions and the following disclaimer in the
- *     documentation and/or other materials provided with the distribution.
- *   - Neither the name of Yahoo! Inc. nor the names of YUI's contributors may
- *     be used to endorse or promote products derived from this software
- *     without specific prior written permission of Yahoo! Inc.
- *
- *   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- *   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
- *   TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- *   PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- *   CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- *   EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- *   PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- *   PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- *   LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- *   NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- *   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * Portions adapted from the jQuery Easing plugin written by Robert Penner and
  * used under the following license:
@@ -66,520 +34,385 @@
  *   NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  *   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
+ *   Media query matchMedia polyfill implementation from Paul Irish
+ *   (https://github.com/paulirish/matchMedia.js/) used under the following
+ *   license (MIT):
  *
- * @copyright 2012 silverorange Inc.
+ *   Copyright (c) 2012 Scott Jehl
+ *
+ *   Permission is hereby granted, free of charge, to any person obtaining a copy
+ *   of this software and associated documentation files (the "Software"), to
+ *   deal in the Software without restriction, including without limitation the
+ *   rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+ *   sell copies of the Software, and to permit persons to whom the Software is
+ *   furnished to do so, subject to the following conditions:
+ *
+ *   The above copyright notice and this permission notice shall be included in
+ *   all copies or substantial portions of the Software.
+ *
+ *   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ *   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ *   FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ *   DEALINGS IN THE SOFTWARE.
+ *
+ *
+ * @copyright 2012-2013 silverorange Inc.
  * @license   http://www.mozilla.org/MPL/MPL-1.1.html Mozilla Public License 1.1
  * @author    Michael Gauthier <mike@silverorange.com>
  * @author    Steven Garrity <steven@silverorange.com>
+ * @author    Isac Lagerblad <icaaaq@gmail.com>
  */
 
-function Tabzilla()
-{
-    if (typeof jQuery != 'undefined' && jQuery) {
-        jQuery(document).ready(Tabzilla.init);
-    } else {
-        Tabzilla.run();
-    }
-}
-
-Tabzilla.READY_POLL_INTERVAL = 40;
-Tabzilla.readyInterval = null;
-Tabzilla.jQueryCDNSrc =
-    '//www.mozilla.org/media/js/libs/jquery-1.7.1.min.js';
-
-Tabzilla.LINK_TITLE = {
-    CLOSED: '{{ _('Mozilla links')|js_escape }}',
-    OPENED: '{{ _('Close (Esc)')|js_escape }}'
-}
-
-/**
- * Whether or not Tabzilla is in small mode
- *
- * @var Boolean
- */
-Tabzilla.smallMode = false;
-
-/**
- * Whether or not min/max width media queries are supported in CSS
- *
- * If not supported, the small mode is never triggered.
- *
- * @var Boolean
- */
-Tabzilla.hasMediaQueryWidths = (function(){
-    return !(/MSIE\ (4|5|6|7|8)/.test(navigator.userAgent));
-})();
-
-/**
- * Sets up the DOMReady event for Tabzilla
- *
- * Adapted from the YUI Event component. Defined in Tabzilla so we do not
- * depend on YUI or jQuery. The YUI DOMReady implementation is based on work
- * Dean Edwards, John Resig, Matthias Miller and Diego Perini.
- */
-Tabzilla.run = function()
-{
-    var webkit = 0, isIE = false, ua = navigator.userAgent;
-    var m = ua.match(/AppleWebKit\/([^\s]*)/);
-
-    if (m && m[1]) {
-        webkit = parseInt(m[1], 10);
-    } else {
-        m = ua.match(/Opera[\s\/]([^\s]*)/);
-        if (!m || !m[1]) {
-            m = ua.match(/MSIE\s([^;]*)/);
-            if (m && m[1]) {
-                isIE = true;
-            }
+var Tabzilla = (function (Tabzilla) {
+    'use strict';
+    var minimumJQuery = '1.7.1';
+    var panel;
+    var nav;
+    var headlines;
+    var tab;
+    var opened = false;
+    var hasMediaQueries = ('matchMedia' in window);
+    var isIE9 = (document.documentMode === 9);
+    var hasConsole = (typeof console == "object");
+    var mode = 'wide';
+    var negativeTabIndex = '-1';
+    var $ = null; // non-version-conflicting jQuery alias for tabzilla
+    var jQuery;
+    var checkMode = function () {
+        var currentMode = getMode();
+        if (mode !== currentMode) {
+            mode = currentMode;
+            setMode();
         }
-    }
+    };
+    var getMode = function() {
+        if (hasMediaQueries && matchMedia('(max-width: 719px)').matches) {
+            return 'compact';
+        }
+        return 'wide';
+    };
+    var setMode = function () {
+        if (mode === 'wide') {
+            leaveCompactMode();
+        } else {
+            enterCompactMode();
+        }
+    };
+    var leaveCompactMode = function () {
+        removeCompactModeAttributes();
+        removeCompactModeEvents();
+        panel.focus();
+    };
+    var enterCompactMode = function () {
+        addCompactModeAttributes();
+        addCompactModeEvents();
+    };
+    var addCompactModeAttributes = function () {
+        nav.find('>ul').attr('role', 'presentation');
 
-    // Internet Explorer: use the readyState of a defered script.
-    // This isolates what appears to be a safe moment to manipulate
-    // the DOM prior to when the document's readyState suggests
-    // it is safe to do so.
-    if (isIE) {
-        if (self !== self.top) {
-            document.onreadystatechange = function() {
-                if (document.readyState == 'complete') {
-                    document.onreadystatechange = null;
-                    Tabzilla.ready();
+        headlines.each(function (i) {
+            $(this).attr({
+                'id': 'tab-' + i,
+                'aria-controls': 'panel-' + i,
+                'tabindex': negativeTabIndex,
+                'role': 'tab',
+                'aria-expanded': false
+            });
+        });
+        if (!nav.find('h2[tabindex=0]').length) {
+            nav.find('h2:first').attr('tabindex', 0);
+        }
+        nav.find('div').each(function (i) {
+            $(this).attr({
+                'id': 'panel-' + i,
+                'aria-labeledby': 'tab-' + i,
+                'role': 'tabpanel'
+            }).css('display','none');
+        });
+    };
+    var removeCompactModeAttributes = function () {
+        nav.find('>ul').removeAttr('role');
+        headlines.removeAttr('id aria-controls tabindex role aria-expanded');
+        nav.find('div').removeAttr('id aria-labeledby role style');
+    };
+    var addCompactModeEvents = function () {
+        nav.on('click.submenu', 'h2', function (event) {
+            event.preventDefault();
+            var div = $(event.target).next('div');
+            $(event.target).attr('aria-expanded', div.is(':hidden'));
+            div.toggle();
+        });
+        nav.on('keydown.submenu', function (event) {
+            var which = event.which;
+            var target = $(event.target);
+            // enter or space
+            if (which === 13 || which === 32) {
+                event.preventDefault();
+                target.trigger('click');
+            }
+            // up or left
+            if (which === 37 || which === 38) {
+                event.preventDefault();
+                headlines.each(function (i) {
+                    if (i > 0 && $(this).attr('tabindex') === 0) {
+                        $(this).attr('tabindex', negativeTabIndex);
+                        $(headlines[i - 1]).attr('tabindex', 0).focus();
+                        return false;
+                    }
+                });
+            }
+            // down or right
+            if (which === 40 || which === 39) {
+                event.preventDefault();
+                headlines.each(function (i) {
+                    if (i < (headlines.length - 1) && $(this).attr('tabindex') === 0) {
+                        $(this).attr('tabindex', negativeTabIndex);
+                        $(headlines[i + 1]).attr('tabindex', 0).focus();
+                        return false;
+                    }
+                });
+            }
+            // esc
+            if (which === 27 && target.is('a')) {
+                event.preventDefault();
+                event.stopPropagation();
+                target.parents('div').prev('h2').trigger('click').focus();
+            }
+        });
+    };
+    var removeCompactModeEvents = function () {
+        nav.off('.submenu');
+    };
+    Tabzilla.open = function () {
+        opened = true;
+        panel.toggleClass('open');
+        var height = $('#tabzilla-contents').height();
+        panel.animate({'height': height}, 200, function () {
+            panel.css('height', 'auto');
+        });
+        tab
+            .attr({'aria-expanded' : 'true'})
+            .addClass('tabzilla-opened')
+            .removeClass('tabzilla-closed');
+
+        panel.focus();
+        return panel;
+    };
+    Tabzilla.close = function () {
+        opened = false;
+        panel.animate({height: 0}, 200, function () {
+            panel.toggleClass('open');
+        });
+
+        tab
+            .attr({'aria-expanded' : 'false'})
+            .addClass('tabzilla-closed')
+            .removeClass('tabzilla-opened');
+        return tab;
+    };
+
+    // Old public functions that needs to work for a while.
+    Tabzilla.opened = function () {
+        if (hasConsole) {
+            console.warn("This call is soon going to be deprecated, please replace it with Tabzilla.open() instead.");
+        }
+        return Tabzilla.open();
+    };
+    Tabzilla.closed = function () {
+        if (hasConsole) {
+            console.warn("This call is soon going to be deprecated, please replace it with Tabzilla.close() instead.");
+        }
+        return Tabzilla.close();
+    };
+
+    var addEaseInOut = function () {
+        $.extend($.easing, {
+            'easeInOut':  function (x, t, b, c, d) {
+                if (( t /= d / 2) < 1) {
+                    return c / 2 * t * t + b;
+                }
+                return -c / 2 * ((--t) * (t - 2) - 1) + b;
+            }
+        });
+    };
+    var addMatchMediaPolyfill = function () {
+        window.matchMedia = window.matchMedia || (function( doc, undefined ) {
+            var bool;
+            var docElem = doc.documentElement;
+            var refNode = docElem.firstElementChild || docElem.firstChild;
+            // fakeBody required for <FF4 when executed in <head>
+            var fakeBody = doc.createElement( "body" );
+            var div = doc.createElement( "div" );
+
+            div.id = "mq-test-1";
+            div.style.cssText = "position:absolute;top:-100em";
+            fakeBody.style.background = "none";
+            fakeBody.appendChild(div);
+
+            return function(q){
+                div.innerHTML = "&shy;<style media=\"" + q + "\"> #mq-test-1 { width: 42px; }</style>";
+                docElem.insertBefore( fakeBody, refNode );
+                bool = div.offsetWidth === 42;
+                docElem.removeChild( fakeBody );
+                return {
+                    matches: bool,
+                    media: q
+                };
+            };
+        }( document ));
+    };
+    var init = function () {
+        $('body').prepend(content);
+        tab = $('#tabzilla');
+        panel = $('#tabzilla-panel');
+        nav = $('#tabzilla-nav');
+        headlines = nav.find('h2');
+
+        if (isIE9 && !hasMediaQueries) {
+            addMatchMediaPolyfill();
+            hasMediaQueries = true;
+        }
+
+        addEaseInOut();
+
+        checkMode();
+        $(window).on('resize', function () {
+            checkMode();
+        });
+
+        panel.on('keydown', function (event) {
+            if (event.which === 27) {
+                event.preventDefault();
+                close();
+            }
+        });
+
+        tab.attr('aria-label', '{{ _('Mozilla links')|js_escape }}');
+
+        tab.on('click', function (event) {
+            event.preventDefault();
+            if (opened) {
+                Tabzilla.close();
+            } else {
+                Tabzilla.open();
+            }
+        });
+    };
+    var loadJQuery = function (callback) {
+        var noConflictCallback = function() {
+            // set non-conflicting version local aliases
+            jQuery = window.jQuery.noConflict(true);
+            $ = jQuery;
+            callback.call();
+        };
+        var script = document.createElement("script");
+        if (script.readyState) {
+            script.onreadystatechange = function () {
+                if (script.readyState === "loaded" || script.readyState === "complete") {
+                    script.onreadystatechange = null;
+                    noConflictCallback.call();
                 }
             };
         } else {
-            var n = document.createElement('p');
-            Tabzilla.readyInterval = setInterval(function() {
-                try {
-                    // throws an error if doc is not ready
-                    n.doScroll('left');
-                    clearInterval(Tabzilla.readyInterval);
-                    Tabzilla.readyInterval = null;
-                    Tabzilla.ready();
-                    n = null;
-                } catch (ex) {
-                }
-            }, Tabzilla.READY_POLL_INTERVAL);
+            script.onload = noConflictCallback;
         }
-
-    // The document's readyState in Safari currently will
-    // change to loaded/complete before images are loaded.
-    } else if (webkit && webkit < 525) {
-        Tabzilla.readyInterval = setInterval(function() {
-            var rs = document.readyState;
-            if ('loaded' == rs || 'complete' == rs) {
-                clearInterval(Tabzilla.readyInterval);
-                Tabzilla.readyInterval = null;
-                Tabzilla.ready();
-            }
-        }, Tabzilla.READY_POLL_INTERVAL);
-
-    // FireFox and Opera: These browsers provide a event for this
-    // moment.  The latest WebKit releases now support this event.
-    } else {
-        Tabzilla.addEventListener(document, 'DOMContentLoaded', Tabzilla.ready);
-    }
-};
-
-Tabzilla.ready = function()
-{
-    if (!Tabzilla.DOMReady) {
-        Tabzilla.DOMReady = true;
-
-        var onLoad = function() {
-            Tabzilla.init();
-            Tabzilla.removeEventListener(
-                document,
-                'DOMContentLoaded',
-                Tabzilla.ready
-            );
-        };
-
-        // if we don't have jQuery, dynamically load jQuery from CDN
-        if (typeof jQuery == 'undefined') {
-            var script = document.createElement('script');
-            script.type = 'text/javascript';
-            script.src = Tabzilla.jQueryCDNSrc;
-            document.getElementsByTagName('body')[0].appendChild(script);
-
-            if (script.readyState) {
-                // IE
-                script.onreadystatechange = function() {
-                    if (   script.readyState == 'loaded'
-                        || script.readyState == 'complete'
-                    ) {
-                        onLoad();
-                    }
-                };
-            } else {
-                // Others
-                script.onload = onLoad;
-            }
+        script.src = '//mozorg.cdn.mozilla.net/media/js/libs/jquery-' + minimumJQuery + '.min.js';
+        document.getElementsByTagName('head')[0].appendChild(script);
+    };
+    var compareVersion = function (a, b) {
+        a = ('' + a).split('.');
+        b = ('' + b).split('.');
+        while (a.length < b.length) { a.push('0'); }
+        while (b.length < a.length) { b.push('0'); }
+        for (var i = 0; i < a.length; i++) {
+            if (a[i] > b[i]) { return 1; }
+            if (a[i] < b[i]) { return -1; }
+        }
+        return 0;
+    };
+    (function () {
+        if (window.jQuery !== undefined &&
+            compareVersion(window.jQuery.fn.jquery, minimumJQuery) !== -1
+        ) {
+            // set up local jQuery aliases
+            jQuery = window.jQuery;
+            $ = jQuery;
+            $(document).ready(init);
         } else {
-            onLoad();
+            // no jQuery or older than minimum required jQuery
+            loadJQuery(init);
         }
-    }
-};
-
-Tabzilla.init = function()
-{
-    // add easing functions
-    jQuery.extend(jQuery.easing, {
-        'easeInOut':  function (x, t, b, c, d) {
-            if (( t /= d / 2) < 1) {
-                return c / 2 * t * t + b;
-            }
-            return -c / 2 * ((--t) * (t - 2) - 1) + b;
-        }
-    });
-
-    Tabzilla.link  = document.getElementById('tabzilla');
-    Tabzilla.panel = Tabzilla.buildPanel();
-
-    // add panel as first element of body element
-    var body = document.getElementsByTagName('body')[0];
-    body.insertBefore(Tabzilla.panel, body.firstChild);
-
-    // set up event listeners for link
-    Tabzilla.addEventListener(Tabzilla.link, 'click', function(e) {
-        Tabzilla.preventDefault(e);
-        Tabzilla.toggle();
-    });
-
-    Tabzilla.$panel = jQuery(Tabzilla.panel);
-    Tabzilla.$link  = jQuery(Tabzilla.link);
-
-    Tabzilla.$panel.addClass('tabzilla-closed');
-    Tabzilla.$link.addClass('tabzilla-closed');
-    Tabzilla.$panel.removeClass('tabzilla-opened');
-    Tabzilla.$link.removeClass('tabzilla-opened');
-
-    // make panel unfocusable
-    Tabzilla.$panel.attr('tabindex', '-1');
-
-    Tabzilla.$link.attr({
-        'role'          : 'button',
-        'aria-expanded' : 'false',
-        'aria-controls' : Tabzilla.$panel.attr('id'),
-        'title'         : Tabzilla.LINK_TITLE.CLOSED
-    });
-
-    Tabzilla.opened = false;
-
-    jQuery(document).keydown(function(e) {
-        if (e.which === 27 && Tabzilla.opened) {
-            Tabzilla.toggle();
-        }
-    });
-    Tabzilla.$link.keypress(function(e) {
-        if (e.which === 32) {
-            Tabzilla.toggle();
-            Tabzilla.preventDefault(e);
-        }
-    });
-    Tabzilla.$panel.keypress(function(e) {
-        if (e.which === 13 && !Tabzilla.smallMode) {
-            Tabzilla.toggle();
-            Tabzilla.$link.focus();
-        }
-    });
-
-    if (Tabzilla.hasMediaQueryWidths) {
-        jQuery(window).resize(Tabzilla.handleResize);
-        Tabzilla.handleResize();
-    }
-};
-
-Tabzilla.buildPanel = function()
-{
-    var panel = document.createElement('div');
-    panel.id = 'tabzilla-panel';
-    panel.innerHTML = Tabzilla.content;
-    return panel;
-};
-
-Tabzilla.addEventListener = function(el, ev, handler)
-{
-    if (typeof el.attachEvent != 'undefined') {
-        el.attachEvent('on' + ev, handler);
-    } else {
-        el.addEventListener(ev, handler, false);
-    }
-};
-
-Tabzilla.removeEventListener = function(el, ev, handler)
-{
-    if (typeof el.detachEvent != 'undefined') {
-        el.detachEvent('on' + ev, handler);
-    } else {
-        el.removeEventListener(ev, handler, false);
-    }
-};
-
-Tabzilla.toggle = function()
-{
-    if (Tabzilla.opened) {
-        Tabzilla.close();
-    } else {
-        Tabzilla.open();
-    }
-};
-
-Tabzilla.open = function()
-{
-    if (Tabzilla.opened) {
-        return;
-    }
-
-    Tabzilla.$panel.toggleClass('open');
-
-    var $content = Tabzilla.$panel.children('#tabzilla-contents');
-    var height = $content.height();
-
-    Tabzilla.$panel
-        .animate({ 'height' : height }, 200, 'easeInOut', function() {
-            Tabzilla.$panel.css('height', 'auto');
-        });
-
-    Tabzilla.$link
-        .attr({
-            'aria-expanded' : 'true',
-            'title'         : Tabzilla.LINK_TITLE.OPENED
-        })
-        .addClass('tabzilla-opened')
-        .removeClass('tabzilla-closed');
-
-    Tabzilla.$panel.focus();
-    Tabzilla.opened = true;
-};
-
-Tabzilla.close = function()
-{
-    if (!Tabzilla.opened) {
-        return;
-    }
-
-    // jQuery animation fallback
-    Tabzilla.$panel
-        .animate({ height: 0 }, 200, 'easeInOut', function() {
-            Tabzilla.$panel.toggleClass('open');
-        });
-
-    Tabzilla.$link
-        .attr({
-            'aria-expanded' : 'false',
-            'title'         : Tabzilla.LINK_TITLE.CLOSED
-        })
-        .addClass('tabzilla-closed')
-        .removeClass('tabzilla-opened');
-
-
-    Tabzilla.opened = false;
-};
-
-Tabzilla.preventDefault = function(ev)
-{
-    if (ev.preventDefault) {
-        ev.preventDefault();
-    } else {
-        ev.returnValue = false;
-    }
-};
-
-Tabzilla.handleResize = function(e)
-{
-    var width = jQuery(window).width();
-    if (width <= 719 && !Tabzilla.smallMode) {
-        Tabzilla.enterSmallMode();
-    }
-
-    if (width > 719 && Tabzilla.smallMode) {
-        Tabzilla.leaveSmallMode();
-    }
-};
-
-Tabzilla.toggleSmallMode = function()
-{
-    if (Tabzilla.smallMode) {
-        Tabzilla.leaveSmallMode();
-    } else {
-        Tabzilla.enterSmallMode();
-    }
-};
-
-Tabzilla.enterSmallMode = function()
-{
-    // add focusability to menu headers
-    jQuery('#tabzilla-nav h2')
-        .attr({
-            'role'          : 'menuitem',
-            'tabindex'      : '0',
-            'aria-expanded' : 'false',
-            'aria-haspopup' : 'true'
-        })
-        .each(function(i, e) {
-            var $menu = jQuery(e).siblings('ul');
-            var $item = jQuery(e);
-            Tabzilla.initSubmenu($item, $menu);
-            Tabzilla.closeSubmenu($item, $menu);
-        });
-
-    Tabzilla.smallMode = true;
-};
-
-Tabzilla.leaveSmallMode = function()
-{
-    // remove focusability from menu headers
-    jQuery('#tabzilla-nav h2')
-        .removeAttr('role')
-        .removeAttr('tabindex')
-        .removeAttr('aria-haspopup')
-        .removeAttr('aria-expanded')
-        .each(function(i, e) {
-            var $menu = jQuery(e).siblings('ul');
-            var $item = jQuery(e);
-            Tabzilla.denitSubmenu($item, $menu);
-
-        });
-
-    Tabzilla.smallMode = false;
-};
-
-Tabzilla.initSubmenu = function($item, $menu)
-{
-    $item.click(function(e) {
-        Tabzilla.toggleSubmenu($item, $menu);
-    });
-    $item.keyup(function(e) {
-        if (e.keyCode === 13) {
-            Tabzilla.preventDefault(e);
-            Tabzilla.toggleSubmenu($item, $menu);
-        }
-        if (e.keyCode === 39) {
-            Tabzilla.preventDefault(e);
-            Tabzilla.openSubmenu($item, $menu);
-        }
-        if (e.keyCode === 37) {
-            Tabzilla.preventDefault(e);
-            Tabzilla.closeSubmenu($item, $menu);
-        }
-    });
-    $menu.attr('role', 'menu');
-
-    var $items = $menu.find('a');
-    $items.attr('role', 'menuitem');
-};
-
-Tabzilla.denitSubmenu = function($item, $menu)
-{
-    $item.unbind('click');
-    $menu.removeAttr('role');
-    $menu.css('height', 'auto');
-
-    var $items = $menu.find('a');
-    $items
-        .removeAttr('role')
-        .removeAttr('tabindex')
-        .unbind('keypress');
-};
-
-Tabzilla.toggleSubmenu = function($item, $menu)
-{
-    if ($item.attr('aria-expanded') === 'true') {
-        Tabzilla.closeSubmenu($item, $menu);
-    } else {
-        Tabzilla.openSubmenu($item, $menu);
-    }
-};
-
-Tabzilla.openSubmenu = function($item, $menu)
-{
-    $item.attr('aria-expanded', 'true');
-
-    var $items = $menu.find('a');
-    $items.attr('tabindex', '0');
-
-    // get natural menu height
-    var height = 0;
-    $menu.find('li').each(function(i, e) {
-        height += jQuery(e).height() + 1;
-    });
-    height--;
-
-    $menu
-        .css('height', height + 'px')
-        .attr('aria-hidden', 'false');
-};
-
-Tabzilla.closeSubmenu = function($item, $menu)
-{
-    $item.attr('aria-expanded', 'false');
-
-    $menu
-        .css({
-            'overflow' : 'hidden',
-            'height'   : '0'
-        })
-        .attr('aria-hidden', 'true');
-
-    var $items = $menu.find('a');
-    $items.attr('tabindex', '-1');
-};
-
-Tabzilla.content =
-    '<div id="tabzilla-contents">'
-    + '  <div id="tabzilla-promo">'
-    + '    <div class="snippet" id="tabzilla-promo-mwc">'
-    + '    <a href="https://www.mozilla.org/firefox/partners/">'
-    + '     <h4>{{ _('Firefox OS debuts')|js_escape }}</h4>'
-    + '     <p>{{ _('at Mobile World Congress!')|js_escape }}</p>'
-    + '     <p>{{ _('Learn more')|js_escape }} »</p></a>'
+    })();
+    var content =
+      '<div id="tabzilla-panel" class="tabzilla-closed" tabindex="-1">'
+    + '  <div id="tabzilla-contents">'
+    + '    <div id="tabzilla-promo">'
+    + '      <div class="snippet" id="tabzilla-promo-mwc">'
+    + '        <a href="https://www.mozilla.org/firefox/partners/">'
+    + '          <h4>{{ _('Firefox OS debuts <span>at Mobile World Congress!</span>') }}</h4>'
+    + '          <p>{{ _('Learn more')|js_escape }} »</p>'
+    + '        </a>'
+    + '      </div>'
     + '    </div>'
-    + '  </div>'
-    + '  <div id="tabzilla-nav">'
-    + '    <ul>'
-    + '      <li><h2>Mozilla</h2>'
-    + '        <ul>'
-    + '          <li><a href="https://www.mozilla.org/mission/">{{ _('Mission')|js_escape }}</a></li>'
-    + '          <li><a href="https://www.mozilla.org/about/">{{ _('About')|js_escape }}</a></li>'
-    + '          <li><a href="https://www.mozilla.org/projects/">{{ _('Projects')|js_escape }}</a></li>'
-    + '          <li><a href="https://support.mozilla.org/">{{ _('Support')|js_escape }}</a></li>'
-    + '          <li><a href="https://developer.mozilla.org">{{ _('Developer Network')|js_escape }}</a></li>'
-    + '        </ul>'
-    + '      </li>'
-    + '      <li><h2>{{ _('Products')|js_escape }}</h2>'
-    + '        <ul>'
-    + '          <li><a href="https://www.mozilla.org/firefox">Firefox</a></li>'
-    + '          <li><a href="https://www.mozilla.org/thunderbird">Thunderbird</a></li>'
-    + '          <li><a href="https://www.mozilla.org/firefoxos">Firefox OS</a></li>'
-    + '        </ul>'
-    + '      </li>'
-    + '      <li><h2>{{ _('Innovations')|js_escape }}</h2>'
-    + '        <ul>'
-    + '          <li><a href="https://webfwd.org/">WebFWD</a></li>'
-    + '          <li><a href="https://mozillalabs.com/">Labs</a></li>'
-    + '          <li><a href="https://webmaker.org/">Webmaker</a></li>'
-    + '          <li><a href="https://www.mozilla.org/research/">Research</a></li>'
-    + '        </ul>'
-    + '      </li>'
-    + '      <li><h2>{{ _('Get Involved')|js_escape }}</h2>'
-    + '        <ul>'
-    + '          <li><a href="https://www.mozilla.org/contribute/">{{ _('Volunteer')|js_escape }}</a></li>'
-    + '          <li><a href="https://www.mozilla.org/en-US/about/careers.html">{{ _('Careers')|js_escape }}</a></li>'
-    + '          <li><a href="https://www.mozilla.org/en-US/about/mozilla-spaces/">{{ _('Find us')|js_escape }}</a></li>'
-    + '          <li><a href="https://join.mozilla.org/">{{ _('Join us')|js_escape }}</a></li>'
-    + '        </ul>'
-    + '      </li>'
-    + '      <li id="tabzilla-search">'
-    + '        <a href="https://www.mozilla.org/community/directory.html">{{ _('Website Directory')|js_escape }}</a>'
-    + '        <form title="{{ _('Search Mozilla sites')|js_escape }}" role="search" action="http://www.google.com/cse">'
-    + '          <input type="hidden" value="002443141534113389537:ysdmevkkknw" name="cx">'
-    + '          <input type="hidden" value="FORID:0" name="cof">'
-    + '          <label for="q">{{ _('Search')|js_escape }}</label>'
-    + '          <input type="search" placeholder="{{ _('Search')|js_escape }}" id="q" name="q">'
-    + '        </form>'
-    + '      </li>'
-    + '    </ul>'
-    + '  </div>'
+    + '    <div id="tabzilla-nav">'
+    + '      <ul>'
+    + '        <li><h2>Mozilla</h2>'
+    + '          <div>'
+    + '            <ul>'
+    + '              <li><a href="https://www.mozilla.org/mission/">{{ _('Mission')|js_escape }}</a></li>'
+    + '              <li><a href="https://www.mozilla.org/about/">{{ _('About')|js_escape }}</a></li>'
+    + '              <li><a href="https://www.mozilla.org/projects/">{{ _('Projects')|js_escape }}</a></li>'
+    + '              <li><a href="https://support.mozilla.org/">{{ _('Support')|js_escape }}</a></li>'
+    + '              <li><a href="https://developer.mozilla.org">{{ _('Developer Network')|js_escape }}</a></li>'
+    + '            </ul>'
+    + '          </div>'
+    + '        </li>'
+    + '        <li><h2>{{ _('Products')|js_escape }}</h2>'
+    + '          <div>'
+    + '            <ul>'
+    + '              <li><a href="https://www.mozilla.org/firefox">Firefox</a></li>'
+    + '              <li><a href="https://www.mozilla.org/thunderbird">Thunderbird</a></li>'
+    + '              <li><a href="https://www.mozilla.org/firefoxos">Firefox OS</a></li>'
+    + '            </ul>'
+    + '          </div>'
+    + '        </li>'
+    + '        <li><h2>{{ _('Innovations')|js_escape }}</h2>'
+    + '          <div>'
+    + '            <ul>'
+    + '              <li><a href="https://webfwd.org/">WebFWD</a></li>'
+    + '              <li><a href="https://mozillalabs.com/">Labs</a></li>'
+    + '              <li><a href="https://webmaker.org/">Webmaker</a></li>'
+    + '              <li><a href="https://www.mozilla.org/research/">Research</a></li>'
+    + '            </ul>'
+    + '          </div>'
+    + '        </li>'
+    + '        <li><h2>{{ _('Get Involved')|js_escape }}</h2>'
+    + '          <div>'
+    + '            <ul>'
+    + '              <li><a href="https://www.mozilla.org/contribute/">{{ _('Volunteer')|js_escape }}</a></li>'
+    + '              <li><a href="https://www.mozilla.org/en-US/about/careers.html">{{ _('Careers')|js_escape }}</a></li>'
+    + '              <li><a href="https://www.mozilla.org/en-US/about/mozilla-spaces/">{{ _('Find us')|js_escape }}</a></li>'
+    + '              <li><a href="https://sendto.mozilla.org/Join-Tabzilla">{{ _('Donate')|js_escape }}</a></li>'
+    + '            </ul>'
+    + '          </div>'
+    + '        </li>'
+    + '        <li id="tabzilla-search">'
+    + '          <a href="https://www.mozilla.org/community/directory.html">{{ _('Website Directory')|js_escape }}</a>'
+    + '          <form title="{{ _('Search Mozilla sites')|js_escape }}" role="search" action="http://www.google.com/cse">'
+    + '            <input type="hidden" value="002443141534113389537:ysdmevkkknw" name="cx">'
+    + '            <input type="hidden" value="FORID:0" name="cof">'
+    + '            <label for="q">{{ _('Search')|js_escape }}</label>'
+    + '            <input type="search" placeholder="{{ _('Search')|js_escape }}" id="q" name="q">'
+    + '          </form>'
+    + '        </li>'
+    + '      </ul>'
+    + '    </div>'
+    + '  </div>';
     + '</div>';
 
-Tabzilla();
+    return Tabzilla;
+
+})(Tabzilla || {});

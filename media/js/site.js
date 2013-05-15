@@ -8,7 +8,10 @@
                 navigator.platform.indexOf("Win64") !== -1) {
             return 'windows';
         }
-        if (navigator.platform.indexOf("armv7l") !== -1) {
+        if (/android/i.test(navigator.userAgent)) {
+            return 'android';
+        }
+        if (/armv[6-7]l/.test(navigator.platform)) {
             return 'android';
         }
         if (navigator.platform.indexOf("Linux") !== -1) {
@@ -19,6 +22,11 @@
         }
         if (/Mac OS X 10.[0-5]/.test(navigator.userAgent)) {
             return 'oldmac';
+        }
+        if (navigator.platform.indexOf('iPhone') !== -1 || 
+                navigator.platform.indexOf('iPad') !== -1 || 
+                navigator.platform.indexOf('iPod') !== -1 ) {
+            return 'ios';
         }
         if (navigator.userAgent.indexOf("Mac OS X") !== -1) {
             return 'osx';
@@ -44,23 +52,4 @@
         // Add class to reflect javascript availability for CSS
         h.className = h.className.replace(/\bno-js\b/, 'js');
     })();
-
-
-    // Read cookies
-    function readCookie(name) {
-    	var nameEQ = name + "=";
-    	var ca = document.cookie.split(';');
-    	for(var i=0;i < ca.length;i++) {
-    		var c = ca[i];
-    		while (c.charAt(0)==' ') c = c.substring(1,c.length);
-    		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-    	}
-    	return null;
-    }
-
-    // Add class if MWC cookie is true
-    if (readCookie('seen_mwc2013') === 'true') {
-      document.documentElement.className += ' mwc2013';
-    }
-
 })();

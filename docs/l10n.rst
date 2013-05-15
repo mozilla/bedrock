@@ -31,6 +31,20 @@ To extract all the strings from the codebase, run:
 
     $ ./manage.py l10n_extract
 
+If you'd only like to extract strings from certain files, you may optionally
+list them on the command line:
+
+::
+
+    $ ./manage.py l10n_extract apps/mozorg/templates/mozorg/contribute.html
+
+Command line glob matching will work as well if you want all of the html files
+in a directory for example:
+
+::
+
+    $ ./manage.py l10n_extract apps/mozorg/templates/mozorg/*.html
+
 That will use gettext to get all the needed localizations from python
 and html files, and will convert the result into a bunch of .lang
 files inside ``locale/templates``. This directory represents the
@@ -103,7 +117,7 @@ know which one to use when translating a particular string?
 * All translations from Python files are put into main.lang. This
   should be a very limited set of strings and most likely should be
   available to all pages.
-* Templates always load in `main.lang`, `base.lang`, and `newsletter.lang`
+* Templates always load in `main.lang`, `download_button.lang`, and `newsletter.lang`
 * Additionally, each template has its own .lang file, so a template at
   `mozorg/firefox.html` would use the .lang file at
   `<locale>/mozorg/firefox.lang`.
@@ -117,7 +131,7 @@ know which one to use when translating a particular string?
     {% add_lang_files "foo" "bar" %}
 
 That will make the page load `foo.lang` and `bar.lang` in addition to
-`main.lang`, `base.lang`, and `newsletter.lang`.
+`main.lang`, `download_button.lang`, and `newsletter.lang`.
 
 When strings are extracted from a template, that are added to the
 template-specific .lang file. If the template explicitly specifies
@@ -141,7 +155,7 @@ value should be either a string, or a list of strings, similar to the
     sometext = _('Foo about bar.')
 
 This file's strings would be extracted to `foo.lang`, and the lang files
-`foo.lang`, `bar.lang`, `main.lang`, `base.lang`, and `newsletter.lang`
+`foo.lang`, `bar.lang`, `main.lang`, `download_button.lang`, and `newsletter.lang`
 would be searched for matches in that order.
 
 l10n blocks

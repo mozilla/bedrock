@@ -35,6 +35,9 @@ urlpatterns = patterns('',
     # L10n example.
     (r'^l10n_example/', include('l10n_example.urls')),
 
+    # Facebook Apps
+    (r'^facebookapps/', include('facebookapps.urls')),
+
     # Uncomment the admin/doc line below to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
@@ -49,5 +52,7 @@ if settings.DEBUG:
     urlpatterns += patterns('',
         (r'^%s/(?P<path>.*)$' % media_url, 'django.views.static.serve',
          {'document_root': settings.MEDIA_ROOT}),
+        (r'^404/$', handler404),
+        (r'^500/$', handler500),
     )
 

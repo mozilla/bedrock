@@ -44,6 +44,7 @@ class TestLangFilesActivation(TestCase):
         comment, and false otherwise.
         """
         ok_(lang_file_is_active('active_de_lang_file', 'de'))
+        ok_(lang_file_is_active('active_de_lang_file_bom', 'de'))
         ok_(not lang_file_is_active('active_de_lang_file', 'es'))
         ok_(not lang_file_is_active('inactive_de_lang_file', 'de'))
         ok_(not lang_file_is_active('does_not_exist', 'de'))
@@ -129,12 +130,12 @@ class TestDotlang(TestCase):
     def test_format_identifier_mismatch(self):
         path = 'format_identifier_mismatch'
         expected = '%(foo)s is the new %s'
-        with self.activate('en-US'):
+        with self.activate('fr'):
             result = translate(expected, [path])
         eq_(expected, result)
         eq_(len(mail.outbox), 1)
         eq_(mail.outbox[0].subject,
-            '[Django] locale/en-US/%s.lang is corrupted' % path)
+            '[Django] locale/fr/%s.lang is corrupted' % path)
         mail.outbox = []
 
     @patch.object(settings, 'ROOT', ROOT)
@@ -145,7 +146,7 @@ class TestDotlang(TestCase):
         """
         path = 'format_identifier_mismatch'
         expected = '%(foo)s is the new %(bar)s'
-        with self.activate('en-US'):
+        with self.activate('fr'):
             result = translate(expected, [path])
         assert_not_equal(expected, result)
         eq_(len(mail.outbox), 0)
@@ -177,7 +178,7 @@ class TestDotlang(TestCase):
         # translation
         # path won't exist for en-US as there isn't a dir for that
         # in locale.
-        with self.activate('en-US'):
+        with self.activate('fr'):
             result = translate(dirty_string, ['does_not_exist'])
             eq_(result, dirty_string)
 
@@ -317,3 +318,18 @@ class TestDotlang(TestCase):
     def test_gettext_str_interpolation(self):
         result = _('The %s %s.', 'dude', 'abides')
         eq_(result, 'The dude abides.')
+
+    @patch('l10n_utils.dotlang.cache')
+    def test_translate_skips_for_default_locale(self, cache_mock):
+        """
+        Translation calls should not hit the cache for the default language.
+        There will never be any lang files, and the strings in the calls are
+        the correct ones already.
+        """
+        with self.activate('fr'):
+            translate('The Dude abides.', ['main'])
+        self.assertEqual(cache_mock.get.call_count, 1)
+        cache_mock.reset_mock()
+        with self.activate(settings.LANGUAGE_CODE):
+            translate('The Dude abides.', ['main'])
+        self.assertEqual(cache_mock.get.call_count, 0)

@@ -4,6 +4,10 @@
 
 {% extends "mozorg/base-resp.html" %}
 
+{% block extrahead %}
+    {{ css('about-base') }}
+{% endblock %}
+
 {% block content %}
 
 <div id="main-content">
@@ -20,7 +24,7 @@
       <li><a href="{{ url('mozorg.mission') }}">Mission</a></li>
       <li><a href="/about/forums/">Forums</a></li>
       <li><a href="/about/governance.html">Governance</a></li>
-      <li><a href="/about/history.html">History</a></li>
+      <li><a href="{{ url('mozorg.about.history') }}">History</a></li>
     </ul>
   </nav>
 

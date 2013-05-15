@@ -5,10 +5,6 @@
 
 // download buttons
 
-if (typeof(dcsMultiTrack) === 'undefined') {
-    dcsMultiTrack = function(){};
-}
-
 /**
  * A special function for IE.  Without this hack there is no prompt to download after they click.  sigh.
  * bug 393263
@@ -27,20 +23,12 @@ function trigger_ie_download(link) {
 // ie functionality if on ie
 function init_download_links() {
     $('.download-link').each(function() {
-        var el = $(this);
-        el.click(function() {
-            dcsMultiTrack('DCS.dcssip',
-                          'www.mozilla.org',
-                          'DCS.dcsuri',
-                          window.location.pathname,
-                          'WT.ti', 'Link: Get Firefox',
-                          'WT.dl', 99,
-                          'WT.nv', 'Content',
-                          'WT.ac', 'Download Firefox');
-
-            trigger_ie_download(el.data('direct-link'));
+        var $el = $(this);
+        $el.click(function() {
+            trigger_ie_download($el.data('direct-link'));
         });
     });
+    $('.download-list').attr('role', 'presentation');
 }
 
 // platform images
@@ -88,8 +76,14 @@ function getFirefoxMasterVersion()
     return version;
 }
 
-        
+
 // Create text translation function using #strings element.
+// TODO: Move to docs
+// In order to use it, you need a block string_data bit inside your template,
+// @see https://github.com/mozilla/bedrock/blob/master/apps/firefox/templates/firefox/partners/landing.html#L14
+// then, each key name needs to be preceeded by data- as this uses data attributes
+// to work. After this, you can access all strings defined inside the
+// string_data block in JS using window.trans('keyofstring'); Thank @mkelly
 var $strings = $('#strings');
 window.trans = function trans(stringId) {
     return $strings.data(stringId);

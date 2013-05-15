@@ -64,7 +64,7 @@ FUNCTIONAL_AREAS = (
     fa('education',
         _('Education'),
         'Education',
-        ['bsimon@mozillafoundation.org'],
+        ['joinmozilla@mozilla.org'],
     ),
     fa('other',
         _('Other'),
@@ -89,10 +89,22 @@ FUNCTIONAL_AREAS_DICT = dict((area.id, area) for area in FUNCTIONAL_AREAS)
 
 LOCALE_CONTACTS = {
     'bn-BD': ['mahayalamkhan@gmail.com'],
+    'de'   : ['getinvolved@camp-firefox.de'],
     'fr'   : ['contact@mozfr.org'],
+    'fy-NL': ['fryskefirefox@gmail.com'],
+    'el'   : ['core@mozilla-greece.org'],
+    'es-AR': ['participa@mozilla-hispano.org'],
+    'es-CL': ['participa@mozilla-hispano.org'],
     'es-ES': ['participa@mozilla-hispano.org'],
+    'es-MX': ['participa@mozilla-hispano.org'],
+    'hr'   : ['contribute@mozilla-hr.org'],
+    'id'   : ['info@mozilla.web.id'],
     'nl'   : ['contribute@mozilla-nl.org'],
-    'pt-BR': ['marcelo.araldi@yahoo.com.br'],
+    'pt-BR': ['mlcaraldi@gmail.com'],
+    'ru'   : ['contribute@mozilla-russia.org'],
+    'sr'   : ['prikljucise@mozilla-srbija.org'],
+    'sq'   : ['besnik@mozilla-albania.org'],
+    'zh-CN': ['contributor-zh-cn@mozilla.org'],
     'zh-TW': ['contribute@mail.moztw.org'],
 }
 

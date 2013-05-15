@@ -4,6 +4,17 @@
 
 @import "sandstone/sandstone-resp.less";
 
+@font-face {
+  font-family: 'icons';
+  src: url('/media/fonts/icons.eot?7695723');
+  src: url('/media/fonts/icons.eot?7695723#iefix') format('embedded-opentype'),
+       url('/media/fonts/icons.woff?7695723') format('woff'),
+       url('/media/fonts/icons.ttf?7695723') format('truetype'),
+       url('/media/fonts/icons.svg?7695723#icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .huge,
 .huge h1 {
   margin-bottom: .1em;
@@ -37,10 +48,7 @@ nav.menu-bar {
 }
 #contact_privacy {
   width: 100%;
-  legend {
-    margin-bottom: 8px;
-    font-size: 18px;
-  }
+  .clearfix;
   label {
     font-family: 'Open Sans Light', sans-serif;
   }
@@ -200,4 +208,176 @@ table.data-table tbody tr td:first-child {
         top: 0;
         left: 0;
     }
+}
+/* Firefox OS Privacy Policy */
+#ffos-privacy {
+    #masthead {
+        padding-bottom: 10px;
+    }
+}
+#contact {
+    legend {
+        margin-bottom: 8px;
+        font-size: 14px;
+        font-weight: normal;
+    }
+    textarea {
+        width: 85%;
+    }
+    input[type="submit"] {
+        float: none;
+        margin-left: 43px;
+    }
+    .success {
+        margin-top: 15px;
+        width: 90%;
+        text-align: center;
+    }
+}
+.firefoxos {
+    h2 {
+        margin: 10px 5px;
+        width: 285px;
+        font-size: 1.5rem;
+    }
+    h3 {
+        font-size: 1.3rem;
+        line-height: 1.5rem;
+    }
+    h5 {
+        line-height: 1.2rem;
+    }
+    p {
+      margin-left: 15px;
+      font-size: 1.1rem;
+      font-family: 'Open Sans Light';
+    }
+    ul {
+        font-family: 'Open Sans Light';
+    }
+}
+.firefoxos-header {
+    background: transparent url("/media/img/home/firefox_small.png") 0 3px no-repeat;
+    margin: 20px 0 0 10px;
+    padding-left: 85px;
+    width: 185px;
+    font-size: 42px;
+}
+time {
+    display: block;
+    color: #484848;
+    margin: 10px 0 0 6px;
+    font-size: .8rem;
+    font-style: italic;
+}
+.highlight {
+    background-color: #f9fafb;
+    color: #333;
+    padding: 1rem;
+    box-shadow: 1px 1px 2px #999;
+    line-height: 1.5rem;
+}
+.links {
+    text-align: center;
+}
+[data-icon]:before {
+    font-family: "icons";
+    content: '\e75d \e75d';
+    speak: none;
+}
+.home {
+    display: inline-block;
+    margin-right: 10px;
+}
+.home:hover {
+    text-decoration: none;
+}
+.visually_hidden {
+    position: absolute;
+    clip: rect(1px, 1px, 1px, 1px);
+    padding:0;
+    border:0;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+}
+.thingstoknow,
+.policy,
+.contact {
+    position: relative;
+    left: -500px;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: left 400ms,
+                width 400ms,
+                opacity 400ms;
+}
+.active {
+    left: 0;
+    width: auto;
+    height: auto;
+    opacity: 1;
+    overflow: visible;
+}
+.thingstoknow {
+    h2 {
+        margin: 0 0 10px 0;
+        width: 175px;
+        font-size: 1.7rem;
+        line-height: 1.9rem;
+    }
+    ul {
+        display: none;
+        margin: 20px 0 0 -10px;
+        line-height: 1.4rem;
+    }
+    li {
+        margin-bottom: 1rem;
+        list-style: none;
+    }
+    li:before {
+        padding-right: 15px;
+        content: '++';
+    }
+    hr {
+        margin: 10px auto;
+        border-bottom: 1px solid #ccc;
+        width: 80%;
+    }
+    .intro {
+        margin-bottom: 15px;
+        p {
+          margin: 0;
+          font-size: 1rem;
+        }
+    }
+}
+.policy,
+.contact {
+    margin-left: 15px;
+    line-height: 1.5rem;
+    p {
+        margin: 0 0 10px 10px;
+        font-size: .9rem;
+        line-height: 1.7rem;
+    }
+    ul {
+        font-size: .9rem;
+    }
+}
+.firefoxos_footer {
+    p {
+        margin: 0;
+        font-size: .8rem;
+    }
+    .footer-nav {
+        font-size: 1rem;
+        li {
+            font-family: 'Open Sans Light';
+            line-height: 1.6rem;
+        }
+    }
+
 }

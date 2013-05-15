@@ -12,8 +12,9 @@ from nose.tools import assert_not_equal, eq_, ok_
 from product_details import product_details
 from pyquery import PyQuery as pq
 
+from mozorg.helpers.download_buttons import make_download_link
 
-# Where should this function go?
+
 def render(s, context={}):
     t = jingo.env.from_string(s)
     return t.render(**context)
@@ -42,11 +43,12 @@ class TestDownloadButtons(unittest.TestCase):
         eq_(pq(links[3]).attr('href'),
             'https://market.android.com/details?id=org.mozilla.firefox')
 
-    def test_button(self, format='large'):
+    def test_button(self, small=False):
         rf = RequestFactory()
         get_request = rf.get('/fake')
         get_request.locale = 'fr'
-        doc = pq(render("{{ download_button('button', '%s') }}" % format,
+        doc = pq(render("{{ download_firefox(small=%s, "
+                        "dom_id='button') }}" % small,
                         {'request': get_request}))
 
         eq_(doc.attr('id'), 'button')
@@ -55,10 +57,10 @@ class TestDownloadButtons(unittest.TestCase):
         self.check_dumb_button(doc('.unrecognized-download'))
         self.check_dumb_button(doc('.download-list'))
 
-        eq_(doc('.download-other a').length, 3)
+        eq_(doc('.download-other a').length, 6)
 
     def test_small_button(self):
-        self.test_button('small')
+        self.test_button(True)
 
     def test_button_force_direct(self):
         """
@@ -68,7 +70,7 @@ class TestDownloadButtons(unittest.TestCase):
         rf = RequestFactory()
         get_request = rf.get('/fake')
         get_request.locale = 'fr'
-        doc = pq(render("{{ download_button('button', force_direct=true) }}",
+        doc = pq(render("{{ download_firefox(force_direct=true) }}",
                         {'request': get_request}))
 
         # Check that the first 3 links are direct.
@@ -88,7 +90,7 @@ class TestDownloadButtons(unittest.TestCase):
         rf = RequestFactory()
         get_request = rf.get('/fake')
         get_request.locale = 'fr'
-        doc = pq(render("{{ download_button('button') }}",
+        doc = pq(render("{{ download_firefox() }}",
                         {'request': get_request}))
 
         # The first 3 links should be for desktop.
@@ -105,7 +107,7 @@ class TestDownloadButtons(unittest.TestCase):
         rf = RequestFactory()
         get_request = rf.get('/fake')
         get_request.locale = 'en-US'
-        doc = pq(render("{{ download_button('button', build='aurora') }}",
+        doc = pq(render("{{ download_firefox('aurora') }}",
                         {'request': get_request}))
 
         links = doc('.download-list a')[:3]
@@ -119,7 +121,7 @@ class TestDownloadButtons(unittest.TestCase):
         rf = RequestFactory()
         get_request = rf.get('/fake')
         get_request.locale = 'fr'
-        doc = pq(render("{{ download_button('button', build='aurora') }}",
+        doc = pq(render("{{ download_firefox('aurora') }}",
                         {'request': get_request}))
 
         links = doc('.download-list a')
@@ -131,7 +133,7 @@ class TestDownloadButtons(unittest.TestCase):
         rf = RequestFactory()
         get_request = rf.get('/fake')
         get_request.locale = 'en-US'
-        doc = pq(render("{{ download_button('button', build='aurora') }}",
+        doc = pq(render("{{ download_firefox('aurora') }}",
                         {'request': get_request}))
 
         links = doc('li a')[:3]
@@ -143,7 +145,7 @@ class TestDownloadButtons(unittest.TestCase):
         rf = RequestFactory()
         get_request = rf.get('/fake')
         get_request.locale = 'fr'
-        doc = pq(render("{{ download_button('button', build='aurora') }}",
+        doc = pq(render("{{ download_firefox('aurora') }}",
                         {'request': get_request}))
 
         links = doc('.download-list a')[:3]
@@ -155,8 +157,8 @@ class TestDownloadButtons(unittest.TestCase):
         rf = RequestFactory()
         get_request = rf.get('/fake')
         get_request.locale = 'en-US'
-        doc = pq(render("{{ download_button('button', build='aurora', \
-                            force_full_installer=True) }}",
+        doc = pq(render("{{ download_firefox('aurora', "
+                        "force_full_installer=True) }}",
                         {'request': get_request}))
 
         links = doc('.download-list a')[:3]
@@ -168,10 +170,94 @@ class TestDownloadButtons(unittest.TestCase):
         rf = RequestFactory()
         get_request = rf.get('/fake')
         get_request.locale = 'fr'
-        doc = pq(render("{{ download_button('button', build='aurora', \
-                            force_full_installer=True) }}",
+        doc = pq(render("{{ download_firefox('aurora', "
+                        "force_full_installer=True) }}",
                         {'request': get_request}))
 
         links = doc('.download-list a')[:3]
         for link in links:
             ok_('stub' not in pq(link).attr('href'))
+
+    def test_download_transition_link_contains_locale(self):
+        """
+        "transition" download links should include the locale in the path as
+        well as the query string.
+        """
+        locale = settings.LOCALES_WITH_TRANSITION[0]
+        url = make_download_link('firefox', 'release', 19.0, 'os_osx', locale)
+        good_url = ('/{locale}/products/download.html?product=firefox-19.0&'
+                    'os=osx&lang={locale}').format(locale=locale)
+        eq_(url, good_url)
+
+    def test_force_funnelcake(self):
+        """
+        force_funnelcake should force the product to be 'firefox-latest'
+        for en-US windows release downloads, and 'firefox-beta-latest' for
+        beta.
+        """
+        url = make_download_link('firefox', 'release', 19.0, 'os_windows',
+                                 'en-US', force_funnelcake=True)
+        ok_('product=firefox-latest&' in url)
+
+        url = make_download_link('firefox', 'beta', '20.0b4', 'os_windows',
+                                 'en-US', force_funnelcake=True)
+        ok_('product=firefox-beta-latest&' in url)
+
+    def test_force_funnelcake_en_us_win_only(self):
+        """
+        Ensure that force_funnelcake doesn't affect non en-US Windows urls
+        """
+        url = make_download_link('firefox', 'release', 19.0, 'os_osx',
+                                 'en-US', force_funnelcake=True)
+        ok_('product=firefox-latest&' not in url)
+
+        url = make_download_link('firefox', 'beta', '20.0b4', 'os_windows',
+                                 'fr', force_funnelcake=True)
+        ok_('product=firefox-beta-latest&' not in url)
+
+    def test_force_full_installer(self):
+        """
+        force_full_installer should force the product to be 'firefox-latest'
+        for en-US windows release downloads, and 'firefox-beta-latest' for
+        beta.
+        """
+        url = make_download_link('firefox', 'release', 19.0, 'os_windows',
+                                 'en-US', force_full_installer=True)
+        ok_('product=firefox-latest&' in url)
+
+        url = make_download_link('firefox', 'beta', '20.0b4', 'os_windows',
+                                 'en-US', force_full_installer=True)
+        ok_('product=firefox-beta-latest&' in url)
+
+    def test_force_full_installer_en_us_win_only(self):
+        """
+        Ensure that force_full_installer doesn't affect non en-US Windows urls
+        """
+        url = make_download_link('firefox', 'release', 19.0, 'os_osx',
+                                 'en-US', force_full_installer=True)
+        ok_('product=firefox-latest&' not in url)
+
+        url = make_download_link('firefox', 'beta', '20.0b4', 'os_windows',
+                                 'fr', force_full_installer=True)
+        ok_('product=firefox-beta-latest&' not in url)
+
+    def test_force_stub_installer(self):
+        url = make_download_link('firefox', 'release', 19.0, 'os_windows',
+                                 'en-US', force_stub_installer=True)
+        ok_('product=firefox-stub&' in url)
+
+        url = make_download_link('firefox', 'beta', '20.0b4', 'os_windows',
+                                 'en-US', force_stub_installer=True)
+        ok_('product=firefox-beta-stub&' in url)
+
+    def test_force_stub_installer_en_us_win_only(self):
+        """
+        Ensure that force_funnelcake doesn't affect non en-US Windows urls
+        """
+        url = make_download_link('firefox', 'release', 19.0, 'os_osx',
+                                 'en-US', force_stub_installer=True)
+        ok_('product=firefox-stub&' not in url)
+
+        url = make_download_link('firefox', 'beta', '20.0b4', 'os_windows',
+                                 'fr', force_stub_installer=True)
+        ok_('product=firefox-beta-stub&' not in url)

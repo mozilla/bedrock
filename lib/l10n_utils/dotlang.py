@@ -30,8 +30,14 @@ FORMAT_IDENTIFIER_RE = re.compile(r"""(%
                                       s)""", re.VERBOSE)
 
 
-def parse(path):
-    """Parse a dotlang file and return a dict of translations."""
+def parse(path, skip_untranslated=True):
+    """
+    Parse a dotlang file and return a dict of translations.
+    :param path: Absolute path to a lang file.
+    :param skip_untranslated: Exclude strings for which the ID and translation
+                              match.
+    :return: dict
+    """
     trans = {}
 
     if not os.path.exists(path):
@@ -55,8 +61,9 @@ def parse(path):
                     if line.endswith(tag):
                         line = line[:-len(tag)]
                 line = line.strip()
-                if not source == line:
-                    trans[source] = line
+                if skip_untranslated and source == line:
+                    continue
+                trans[source] = line
 
     return trans
 
@@ -80,6 +87,10 @@ def fix_case(locale):
 def translate(text, files):
     """Search a list of .lang files for a translation"""
     lang = fix_case(translation.get_language())
+
+    # don't attempt to translate the default language.
+    if lang == settings.LANGUAGE_CODE:
+        return Markup(text)
 
     tweaked_text = tweak_message(text)
 
@@ -205,6 +216,8 @@ def lang_file_is_active(path, lang):
         try:
             with codecs.open(fpath, 'r', 'utf-8', errors='replace') as lines:
                 firstline = lines.readline()
+                # Filter out Byte order Mark
+                firstline = firstline.replace(u'\ufeff', '')
                 if firstline.startswith('## active ##'):
                     is_active = True
         except IOError:

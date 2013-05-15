@@ -8,7 +8,7 @@ import os
 
 from django.utils.functional import lazy
 
-from funfactory.settings_base import *
+from funfactory.settings_base import *  # noqa
 
 # Make file paths relative to settings.
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,25 +21,25 @@ LANGUAGE_CODE = 'en-US'
 SESSION_COOKIE_SECURE = True
 
 # Accepted locales
-PROD_LANGUAGES = ('ab-CD', 'ach', 'af', 'ak', 'ar', 'as', 'ast', 'be', 'bg',
-                  'bin', 'bn-BD', 'bn-IN', 'br', 'bs', 'ca', 'cs', 'csb', 'cy',
+PROD_LANGUAGES = ('ach', 'af', 'ak', 'an', 'ar', 'as', 'ast', 'be', 'bg',
+                  'bn-BD', 'bn-IN', 'br', 'bs', 'ca', 'cs', 'csb', 'cy',
                   'da', 'de', 'el', 'en-GB', 'en-US', 'en-ZA', 'eo', 'es-AR',
                   'es-CL', 'es-ES', 'es-MX', 'et', 'eu', 'fa', 'ff', 'fi', 'fr',
                   'fy-NL', 'ga-IE', 'gd', 'gl', 'gu-IN', 'he', 'hi-IN', 'hr',
-                  'hu', 'hy-AM', 'id', 'is', 'it', 'ja', 'ja-JP-mac', 'js',
+                  'hu', 'hy-AM', 'id', 'is', 'it', 'ja', 'ja-JP-mac',
                   'ka', 'kk', 'km', 'kn', 'ko', 'ku', 'lg', 'lij', 'lt', 'lv',
                   'mai', 'mk', 'ml', 'mn', 'mr', 'ms', 'my', 'nb-NO', 'nl',
                   'nn-NO', 'nso', 'oc', 'or', 'pa-IN', 'pl', 'pt-BR', 'pt-PT',
-                  'rm', 'ro', 'ru', 'si', 'sk', 'sl', 'son', 'sq', 'sr',
+                  'rm', 'ro', 'ru', 'sah', 'si', 'sk', 'sl', 'son', 'sq', 'sr',
                   'sv-SE', 'sw', 'ta', 'ta-LK', 'te', 'th', 'tr', 'uk',
-                  'vi', 'wo', 'zh-CN', 'zh-TW', 'zu')
+                  'ur', 'vi', 'wo', 'zh-CN', 'zh-TW', 'zu')
 DEV_LANGUAGES = list(DEV_LANGUAGES) + ['en-US']
 NEWSLETTER_LANGUAGES = ['de', 'en', 'es', 'fr', 'id', 'pt', 'ru']
 
 FEED_CACHE = 3900
 DOTLANG_CACHE = 60
 
-DOTLANG_FILES = ['main', 'base', 'newsletter']
+DOTLANG_FILES = ['main', 'download_button', 'newsletter']
 
 # Paths that don't require a locale code in the URL.
 # matches the first url component (e.g. mozilla.org/gameon/)
@@ -55,6 +55,7 @@ SUPPORTED_NONLOCALES = [
 
 ALLOWED_HOSTS = [
     'www.mozilla.org',
+    'www.ipv6.mozilla.org',
     'www.allizom.org',
 ]
 
@@ -88,6 +89,9 @@ MINIFY_BUNDLES = {
         'about': (
             'css/about.less',
         ),
+        'about-base': (
+            'css/about-base.less',
+        ),
         'mobile_overview': (
             'css/mobile.less',
         ),
@@ -112,9 +116,13 @@ MINIFY_BUNDLES = {
         'contribute': (
             'css/contribute.less',
             'css/sandstone/video-resp.less',
+            'css/mozilla15.less',
         ),
         'contribute-page': (
             'css/contribute-page.less',
+        ),
+        'contribute-university-ambassadors': (
+            'css/contribute-ambassadors.less',
         ),
         'channel': (
             'css/covehead/template.css',
@@ -169,6 +177,18 @@ MINIFY_BUNDLES = {
         'firefox_firstrun': (
             'css/sandstone/video.less',
             'css/firefox/firstrun.less',
+        ),
+        'nightly_firstrun': (
+            'css/sandstone/video.less',
+            'css/firefox/nightly_firstrun.less',
+        ),
+        'firefox_firstrun_new_a': (
+            'css/sandstone/video.less',
+            'css/firefox/firstrun/a.less',
+        ),
+        'firefox_firstrun_new_b': (
+            'css/sandstone/video.less',
+            'css/firefox/firstrun/b.less',
         ),
         'firefox_fx': (
             'css/firefox/fx.less',
@@ -237,6 +257,13 @@ MINIFY_BUNDLES = {
         'persona': (
             'css/persona.less',
         ),
+        'powered-by': (
+            'css/powered-by.less',
+        ),
+        'plugincheck': (
+            'css/plugincheck/plugincheck.less',
+            'css/plugincheck/qtip.css',
+        ),
         'privacy': (
             'css/privacy.less',
         ),
@@ -287,12 +314,20 @@ MINIFY_BUNDLES = {
         'partners-ie7': (
             'css/firefox/partners/ie7.less',
         ),
+        'facebookapps_downloadtab': (
+            'css/libs/h5bp_main.css',
+            'css/facebookapps/downloadtab.less',
+        ),
     },
     'js': {
         'site': (
             'js/site.js',  # this is automatically included on every page
         ),
         'collusion': (
+            'js/collusion/collusion.js',
+            'js/libs/jquery.validate.js',
+        ),
+        'collusion_demo': (
             'js/collusion/d3.layout.js',
             'js/collusion/d3.geom.js',
             'js/collusion/collusion-addon.js',
@@ -305,13 +340,26 @@ MINIFY_BUNDLES = {
             'js/footer-email-form.js',
             'js/mozilla-input-placeholder.js',
         ),
+        'common-resp': (
+            'js/libs/jquery-1.7.1.min.js',
+            'js/global.js',
+            'js/nav-main-resp.js',
+            'js/footer-email-form.js',
+            'js/mozilla-input-placeholder.js',
+        ),
         'contribute': (
+            'js/libs/jquery.sequence.js',
+            'js/mozilla15.js',
             'js/contribute-page.js',
             'js/mozilla-pager.js',
             'js/mozilla-video-tools.js',
         ),
         'contribute-form': (
             'js/contribute-form.js',
+            'js/mozilla-input-placeholder.js',
+        ),
+        'contribute-university-ambassadors': (
+            'js/contribute-university-ambassadors.js',
             'js/mozilla-input-placeholder.js',
         ),
         'expanders': (
@@ -350,6 +398,20 @@ MINIFY_BUNDLES = {
         'firefox_features': (
             'js/mozilla-video-tools.js',
             'js/firefox/features.js',
+        ),
+        'firefox_firstrun': (
+            'js/firefox/firstrun/firstrun.js',
+        ),
+        'firefox_firstrun_new_a': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/mozilla-modal.js',
+            'js/firefox/firstrun/common.js',
+            'js/firefox/firstrun/a.js',
+        ),
+        'firefox_firstrun_new_b': (
+            'js/mozilla-modal.js',
+            'js/firefox/firstrun/common.js',
         ),
         'firefox_fx': (
             'js/mozilla-pager.js',
@@ -411,9 +473,18 @@ MINIFY_BUNDLES = {
             'js/partnerships.js',
             'js/mozilla-input-placeholder.js',
         ),
+        'plugincheck': (
+            'js/plugincheck/plugincheck.min.js',
+            'js/plugincheck/lib/mustache.js',
+            'js/plugincheck/tmpl/plugincheck.ui.tmpl.js',
+            'js/plugincheck/check-plugins.js',
+        ),
         'privacy': (
             'js/mozilla-pager.js',
             'js/privacy.js',
+        ),
+        'privacy-firefoxos': (
+            'js/privacy_firefoxos.js',
         ),
         'styleguide': (
             'js/styleguide.js',
@@ -460,7 +531,19 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.spritely-0.6.1.js',
             'js/firefox/partners/desktop.js',
         ),
-
+        'facebookapps_redirect': (
+            'js/libs/jquery-1.7.1.min.js',
+            'js/facebookapps/redirect.js',
+        ),
+        'facebookapps_downloadtab': (
+            'js/facebookapps/downloadtab-init.js',
+            'js/facebookapps/Base.js',
+            'js/facebookapps/Facebook.js',
+            'js/facebookapps/Theater.js',
+            'js/facebookapps/Slider.js',
+            'js/facebookapps/App.js',
+            'js/facebookapps/downloadtab.js',
+        ),
     }
 }
 
@@ -491,7 +574,7 @@ PROD_DETAILS_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)),
 MIDDLEWARE_CLASSES = (
     'mozorg.middleware.MozorgRequestTimingMiddleware',
     'django_statsd.middleware.GraphiteMiddleware',
-    'funfactory.middleware.LocaleURLMiddleware',
+    'tabzilla.middleware.TabzillaLocaleURLMiddleware',
     'django.middleware.common.CommonMiddleware',
     'commonware.middleware.FrameOptionsHeader',
     'mozorg.middleware.CacheMiddleware',
@@ -543,6 +626,7 @@ INSTALLED_APPS = (
     'research',
     'styleguide',
     'tabzilla',
+    'facebookapps',
 
     # libs
     'l10n_utils',
@@ -585,6 +669,11 @@ LOCALES_WITH_TRANSITION = ['en-US', 'af', 'ar', 'ast', 'be', 'bg',
                            'sr', 'sv-SE', 'ta', 'ta-LK', 'te', 'th',
                            'tr', 'uk', 'vi', 'zh-CN', 'zh-TW']
 
+# Locales showing the 15th Anniversary slideshow on /contribute
+LOCALES_WITH_MOZ15 = ['de', 'el', 'en-GB', 'en-US', 'es-AR', 'es-CL', 'es-ES',
+                      'es-MX', 'fr', 'id', 'nl', 'pt-BR', 'ru', 'sq', 'zh-CN',
+                      'zh-TW']
+
 # reCAPTCHA keys
 RECAPTCHA_PUBLIC_KEY = ''
 RECAPTCHA_PRIVATE_KEY = ''
@@ -604,3 +693,19 @@ AURORA_STUB_INSTALLER = False
 
 # Google Analytics
 GA_ACCOUNT_CODE = ''
+
+FACEBOOK_LOCALES = ['en-US', 'es-ES', 'pt-BR', 'id', 'de']
+FACEBOOK_PAGE_NAMESPACE = 'DUMMY_PAGE_NAMESPACE'
+FACEBOOK_APP_ID = 'DUMMY_APP_ID'
+
+
+# FACEBOOK_TAB_URL is lazily evaluated because it depends on the namespace
+# and app ID settings in local settings.
+def facebook_tab_url_lazy():
+    from django.conf import settings
+    return '//www.facebook.com/{page}/app_{id}'.format(page=settings.FACEBOOK_PAGE_NAMESPACE, id=settings.FACEBOOK_APP_ID)
+FACEBOOK_TAB_URL = lazy(facebook_tab_url_lazy, str)()
+
+# Prefix for media. No trailing slash.
+# e.g. '//mozorg.cdn.mozilla.net'
+CDN_BASE_URL = ''

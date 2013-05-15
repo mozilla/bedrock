@@ -1,6 +1,6 @@
 @import "../styleguide/styleguide.less";
 
-/* {{{ Firefox OS icons */
+/* {{{ Firefox OS app icons */
 
 .firefox-os-icons {
     #basics {
@@ -79,13 +79,213 @@
             .span_guide(12);
         }
         .download-group {
-            .span_guide(2);
+            .span_guide(3);
             p {
                 margin-bottom: 0;
             }
         }
         #icon-circle {
             .span_guide(4);
+        }
+    }
+}
+
+/* }}} */
+/* {{{ Firefox OS action icons */
+
+.firefox-os-action-icons {
+    #content_area {
+        h3 {
+            font-size: 24px;
+        }
+    }
+    .swatch-card {
+        .span_guide(6);
+        margin-bottom: @baseLine * 1.5;
+        h4 {
+            small {
+                font-size: @smallFontSize;
+                .open-sans;
+                letter-spacing: normal;
+                display: block;
+            }
+        }
+    }
+    #swatch-standard {
+        .swatch {
+            background-color: #fff;
+            color: @textColorPrimary;
+        }
+    }
+    #swatch-dark {
+        .swatch { background-color: #2c393b; }
+    }
+    #swatch-favorite {
+        .swatch { #gradient > .vertical(#fccb00, #ff9500); }
+    }
+    #swatch-mark {
+        .swatch { background-color: #ec1313; }
+    }
+    figure {
+        figcaption {
+            color: @darkThemeText;
+            margin: 0 auto @baseLine auto;
+        }
+    }
+    h4 {
+        font-size: 20px;
+    }
+    #basics {
+        .divider-dark;
+        .clearfix;
+        .intro {
+            .span_guide(12);
+            h2 {
+                margin-bottom: @baseLine;
+            }
+            p {
+                margin-bottom: @baseLine;
+            }
+        }
+        #color,
+        #shadow {
+            h3 {
+                .span_guide(12);
+                margin-bottom: @baseLine;
+            }
+        }
+        #shadow {
+            .headers,
+            .buttons,
+            .light {
+                .span_guide(6);
+                figure {
+                    width: auto;
+                    margin: 0 auto @baseLine auto;
+                    img {
+                        float: left;
+                        .span_guide(2);
+                        margin-left: 0;
+                    }
+                    div {
+                        .span_guide(2);
+                        margin-right: 0;
+                        padding-top: 15px;
+                        li {
+                            list-style-type: none;
+                            margin-left: 0;
+                            font-size: @smallFontSize;
+                            color: @darkThemeText;
+                        }
+                    }
+                }
+            }
+            .light {
+                clear: left;
+            }
+        }
+    }
+    #design {
+        .divider-dark;
+        .clearfix;
+        h2 {
+            .span_guide(12);
+            margin-bottom: @baseLine;
+        }
+        .intro {
+            .span_guide(12);
+        }
+    }
+    #conventions {
+        .divider-dark;
+        .clearfix;
+        h2 {
+            .span_guide(12);
+            margin-bottom: @baseLine;
+        }
+        .intro {
+            .span_guide(12);
+            margin-bottom: @baseLine * 2;
+            p { margin-bottom: 0; }
+        }
+        .sub-section {
+            .clearfix();
+            margin-bottom: @baseLine * 2;
+            p,
+            h3 {
+                .span_guide(12);
+                margin-bottom: @baseLine / 2;
+            }
+        }
+        #line-weights {
+            img { margin-top: @baseLine / 2; }
+        }
+        #arrows {
+            .clearfix;
+            figure {
+                .span_guide(2);
+                text-align: center;
+                img {
+                    margin: 0 auto;
+                }
+                small {
+                    display: block;
+                }
+                &#arrows-transfer {
+                    .span_guide(4);
+                }
+            }
+        }
+    }
+    #blocks {
+        .divider-dark;
+        .clearfix;
+        h2 {
+            .span_guide(12);
+            margin-bottom: @baseLine;
+        }
+        .intro {
+            .span_guide(12);
+            margin-bottom: @baseLine;
+        }
+        figure {
+            .span_guide(2);
+            text-align: center;
+            img {
+                margin: 0 auto;
+            }
+            &.first {
+                margin-left: 0;
+            }
+        }
+        .common-icons {
+            .clearfix;
+            .span_guide(9);
+            margin-bottom: @baseLine * 2;
+        }
+    }
+    #examples {
+        .clearfix;
+        .divider-dark;
+        margin-bottom: @baseLine * 2;
+        h2 {
+            .span_guide(12);
+            margin-bottom: @baseLine;
+        }
+        figure {
+            .span_guide(4);
+            img {
+                margin-top: @baseLine / 2;
+            }
+        }
+    }
+    #action-downloads {
+        .clearfix;
+        .intro {
+            .span_guide(12);
+        }
+        .download-group {
+            .span_guide(3);
         }
     }
 }

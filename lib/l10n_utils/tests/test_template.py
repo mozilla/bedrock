@@ -11,11 +11,12 @@ from django.test.client import Client
 from jingo import env
 from jinja2 import FileSystemLoader
 from jinja2.nodes import Block
-from mock import patch, ANY
+from mock import patch, ANY, Mock
 from nose.plugins.skip import SkipTest
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 
+from l10n_utils import render
 from mozorg.tests import TestCase
 
 
@@ -79,7 +80,7 @@ class TestTemplateLangFiles(TestCase):
         request = type('request', (), {})()
         template.render(request=request)
         eq_(request.langfiles, ['dude', 'walter',
-                                'main', 'base', 'newsletter'])
+                                'main', 'download_button', 'newsletter'])
 
     @patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
     def test_added_lang_files_inheritance(self):
@@ -96,7 +97,7 @@ class TestTemplateLangFiles(TestCase):
         request = type('request', (), {})()
         template.render(request=request)
         eq_(request.langfiles, ['donnie', 'smokey', 'jesus', 'dude', 'walter',
-                                'main', 'base', 'newsletter'])
+                                'main', 'download_button', 'newsletter'])
 
     @patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
     @patch.object(settings, 'ROOT_URLCONF', 'l10n_utils.tests.test_files.urls')
@@ -110,7 +111,7 @@ class TestTemplateLangFiles(TestCase):
         """
         self.client.get('/de/some-lang-files/')
         translate.assert_called_with(ANY, ['dude', 'walter', 'some_lang_files',
-                                           'main', 'base', 'newsletter'])
+                                           'main', 'download_button', 'newsletter'])
 
     @patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
     @patch.object(settings, 'ROOT_URLCONF', 'l10n_utils.tests.test_files.urls')
@@ -123,4 +124,17 @@ class TestTemplateLangFiles(TestCase):
         """
         self.client.get('/de/active-de-lang-file/')
         translate.assert_called_with(ANY, ['active_de_lang_file', 'main',
-                                           'base', 'newsletter'])
+                                           'download_button', 'newsletter'])
+
+
+class TestNoLocale(TestCase):
+    @patch('l10n_utils.get_lang_path')
+    @patch('l10n_utils.django_render')
+    def test_render_no_locale(self, django_render, get_lang_path):
+        # Our render method doesn't blow up if the request has no .locale
+        # (can happen on 500 error path, for example)
+        get_lang_path.return_value = None
+        request = Mock(spec=object)
+        # Note: no .locale on request
+        # Should not cause an exception
+        render(request, None)
