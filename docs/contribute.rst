@@ -72,15 +72,29 @@ then on our servers, it will be accessible at::
     http://www.mozilla.org/b/foo/bar
 
 When you're ready to make a page available to everyone, we need to remove that
-/b/ prefix. We handle that with Apache RewriteRule.
+/b/ prefix. We handle that with Apache RewriteRule. Apache config files that
+are included into the server's config are in the bedrock code base in the
+``etc/httpd`` directory. In there you'll find a file for each of the environments.
+You'll almost always want to use ``global.conf`` unless you have a great reason
+for only wanting the config to stay on one of the non-production environments.
 
-1. Open an `IT bug`_
-2. Provide a RewriteRule that looks like:
+In that file you'll add a RewriteRule that looks like the following:
 
     .. code-block:: apache
 
         # bug 123456
-        RewriteRule ^/(\w{2,3}(?:-\w{2}(?:-mac)?)?/)?foo/bar(.*)$ /b/$1foo/bar$2 [PT]
+        RewriteRule ^/(\w{2,3}(?:-\w{2}(?:-mac)?)?/)?foo/bar(/?)$ /b/$1foo/bar$2 [PT]
+
+This is a lot simpler than it looks. The first large capture is just what's necessary
+to catch every possible locale code. After that it's just your new path. Always capture
+the trailing slash as we want that to hit django so it will redirect.
+
+.. note::
+
+    It's best if the RewriteRule required for a new page is in the original pull request.
+    This allows it to flow through the push process with the code and for it to go live
+    as soon as it's on the production server. It's also one less review and pull-request for
+    us to manage.
 
 Server architecture
 -------------------
@@ -132,11 +146,10 @@ following command:
 
     .. code-block:: bash
 
-        open https://github.com/mozilla/bedrock/compare/`curl -sS https://www.mozilla.org/media/revision.txt`...master
+        ./bin/open-compare.py
 
-This should work on a Mac. On other platforms that support a bash compatible
-shell substitute `open` for a command that will open a web browser and make
-sure `curl` is installed.
+This will discover the currently deployed git hash, and open a compare URL at github
+to the latest master. Look at ``open-compare.py -h`` for more options.
 
 .. _Git book: http://git-scm.com/book
 .. _how to write good git commit messages: http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html

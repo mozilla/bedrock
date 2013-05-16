@@ -85,6 +85,8 @@ def JINJA_CONFIG():
         'auto_reload': True,
     }
 
+JINGO_MINIFY_USE_STATIC = False
+CACHEBUST_IMGS = True
 
 # Bundles is a dictionary of two dictionaries, css and js, which list css files
 # and js files that can be bundled together by the minify app.

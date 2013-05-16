@@ -1,5 +1,3 @@
-src/tower
-src/jingo-minify
 src/basket-client
 src/feedparser/feedparser
 src/django-recaptcha

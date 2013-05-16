@@ -1,12 +1,6 @@
 [submodule "vendor"]
     path = vendor
     url = git://github.com/mozilla/playdoh-lib.git
-[submodule "vendor-local/src/tower"]
-	path = vendor-local/src/tower
-	url = https://github.com/clouserw/tower.git
-[submodule "vendor-local/src/jingo-minify"]
-	path = vendor-local/src/jingo-minify
-	url = https://github.com/jsocol/jingo-minify.git
 [submodule "vendor-local/src/basket-client"]
 	path = vendor-local/src/basket-client
 	url = https://github.com/mozilla/basket-client.git

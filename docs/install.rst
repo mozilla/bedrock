@@ -37,7 +37,7 @@ If you are on OSX and some of the compiled dependencies fails to compile, try ex
 
 Now configure the application to run locally by creating your local settings file::
 
-    $ cp settings/local.py-dist settings/local.py
+    $ cp bedrock/settings/local.py-dist bedrock/settings/local.py
 
 You shouldn't need customize anything in there yet.
 
@@ -83,6 +83,32 @@ You can use git or svn to checkout the repo. Make sure that it is named ``locale
     ln -s locales locale
 
 You can read more details about how to localize content :ref:`here<l10n>`.
+
+Upgrading
+---------
+
+On May 15th, 2013 we upgraded to a newer version of Playdoh_. This brought with it a lot of structural changes to the code.
+Here are the required steps to get up and running again with the latest code::
+
+    # get the code
+    git pull origin master
+    # update the submodules
+    git submodule update --init --recursive
+    # move your local settings file
+    mv settings/local.py bedrock/settings/local.py
+    # remove old empty directories
+    rm -rf apps
+    rm -rf settings
+    rm -rf vendor-local/src/django
+    rm -rf vendor-local/src/tower
+    rm -rf vendor-local/src/jingo-minify
+
+That should do it. If you're not able to run the tests at that point (``python manage.py test``) then there are a couple more things to try.
+
+1. If you have a line like ``from settings.base import *`` in your ``bedrock/settings/local.py`` file, remove it.
+2. If you were setting a logging level in your ``bedrock/settings/local.py`` file, you may now need to explicitly need to import it (``import logging``).
+
+Otherwise please pop into our IRC channel (``#www`` on ``irc.mozilla.org``) and we'll be happy to help.
 
 Notes
 -----
