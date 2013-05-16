@@ -195,9 +195,10 @@ def pot_to_langfiles():
 
     # Start off with some global lang files so that strings don't
     # get duplicated everywhere
-    main_msgs = parse_lang(lang_file('main.lang', root))
-    main_msgs.update(parse_lang(lang_file('base.lang', root)))
-    main_msgs.update(parse_lang(lang_file('newsletter.lang', root)))
+    main_msgs = {}
+    for default_file in settings.DOTLANG_FILES:
+        main_msgs.update(parse_lang(lang_file(default_file + '.lang', root),
+                                    skip_untranslated=False))
 
     # Walk through the msgs and put them in the appropriate place. The
     # complex part about this is that templates and python files can
