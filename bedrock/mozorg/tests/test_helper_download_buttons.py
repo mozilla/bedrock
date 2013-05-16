@@ -41,7 +41,7 @@ class TestDownloadButtons(unittest.TestCase):
 
         # Check that last link is Android
         eq_(pq(links[3]).attr('href'),
-            'https://market.android.com/details?id=org.mozilla.firefox')
+            'https://play.google.com/store/apps/details?id=org.mozilla.firefox')
 
     def test_button(self, small=False):
         rf = RequestFactory()
