@@ -128,6 +128,8 @@ Mozilla.Pager = function(container, parentPager)
 
     this.history = (!this.$container.hasClass('pager-no-history'));
 
+    this.hideWithHiddenClass = this.$container.hasClass('pager-with-hidden-class');
+
     this.cleartypeFix = (this.$container.hasClass('pager-cleartype-fix'));
 
     // add pages
@@ -146,7 +148,8 @@ Mozilla.Pager = function(container, parentPager)
                     page = new Mozilla.Page(
                         pageNodes[i],
                         index,
-                        tabAnchorNodes[0]
+                        tabAnchorNodes[0],
+                        this.hideWithHiddenClass
                     );
 
                     this.addPage(page);
@@ -165,7 +168,7 @@ Mozilla.Pager = function(container, parentPager)
     } else {
         // initialize pages without tabs
         for (var i = 0; i < pageNodes.length; i++) {
-            page = new Mozilla.Page(pageNodes[i], i);
+            page = new Mozilla.Page(pageNodes[i], i, false, this.hideWithHiddenClass);
             this.addPage(page);
             this.childPagers[page.id] = [];
 
@@ -502,6 +505,13 @@ Mozilla.Pager.prototype.addPage = function(page)
             that.stopAutoRotate();
         });
     }
+    page.$el.find('*').focus(function(e) {
+        if (page.$el.hasClass('hidden')) {
+            that.setPage(page);
+            that.autoRotate = false;
+            that.stopAutoRotate();
+        }
+    });
 }
 
 // }}}
@@ -602,17 +612,17 @@ Mozilla.Pager.prototype.setPage = function(page)
     if (this.currentPage !== page) {
         if (this.currentPage) {
             this.currentPage.deselectTab();
-            this.currentPage.hide();
+            this.currentPage.hide(this.hideWithHiddenClass);
         }
 
         if (this.previousPage) {
-            this.previousPage.hide();
+            this.previousPage.hide(this.hideWithHiddenClass);
         }
 
         this.previousPage = this.currentPage;
 
         this.currentPage = page;
-        this.currentPage.show();
+        this.currentPage.show(this.hideWithHiddenClass);
         this.update();
     }
 }
@@ -679,10 +689,10 @@ Mozilla.Pager.prototype.setPageWithAnimation = function(page, duration)
 Mozilla.Pager.prototype.fadeInPage = function(duration)
 {
     if (this.previousPage) {
-        this.previousPage.hide();
+        this.previousPage.hide(this.hideWithHiddenClass);
     }
 
-    this.currentPage.show();
+    this.currentPage.show(this.hideWithHiddenClass);
 
     this.animatingOut = false;
 
@@ -736,7 +746,7 @@ Mozilla.Pager.prototype.startAutoRotate = function()
  * @param DOMElement el
  * @param DOMElement tab
  */
-Mozilla.Page = function(el, index, tab)
+Mozilla.Page = function(el, index, tab, hideWithHiddenClass)
 {
     this.el = el;
 
@@ -766,7 +776,7 @@ Mozilla.Page = function(el, index, tab)
 
     this.$el = $(this.el);
 
-    this.hide();
+    this.hide(hideWithHiddenClass);
 }
 
 // }}}
@@ -805,17 +815,25 @@ Mozilla.Page.prototype.focusTab = function()
 // }}}
 // {{{ hide()
 
-Mozilla.Page.prototype.hide = function()
+Mozilla.Page.prototype.hide = function(hideWithHiddenClass)
 {
-    this.el.style.display = 'none';
+    if (hideWithHiddenClass) {
+        this.$el.addClass('hidden');
+    } else {
+        this.el.style.display = 'none';
+    }
 }
 
 // }}}
 // {{{ show()
 
-Mozilla.Page.prototype.show = function()
+Mozilla.Page.prototype.show = function(hideWithHiddenClass)
 {
-    this.el.style.display = 'block';
+    if (hideWithHiddenClass) {
+        this.$el.removeClass('hidden');
+    } else {
+        this.el.style.display = 'block';
+    }
 }
 
 // }}}
