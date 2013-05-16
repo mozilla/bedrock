@@ -132,21 +132,4 @@
 
 {% block js %}
   {{ js('firefox_fx') }}
-
-<script>
-$(document).ready(function() {
-  var latestVersion = parseInt('{{latest_version}}'.split('.')[0], 10);
-  var isFirefox = (/\sFirefox/.test(window.navigator.userAgent));
-  var isMobile = (/\sMobile/.test(window.navigator.userAgent));
-
-  // If Firefox is the latest version and not mobile,
-  // hide the out-of-date messaging and show up-to-date
-  if(isFirefox && !isMobile) {
-    if (latestVersion <= getFirefoxMasterVersion()) {
-      $('#out-of-date').hide();
-      $('#up-to-date').show();
-    }
-  }
-});
-</script>
 {% endblock  %}

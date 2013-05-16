@@ -27,6 +27,7 @@ from bedrock.firefox.utils import is_current_or_newer
 from bedrock.firefox.firefox_details import firefox_details
 from lib.l10n_utils.dotlang import _
 
+UA_REGEXP = re.compile(r"Firefox/(%s)" % version_re)
 
 LOCALE_OS_URLS = {
     'en-US': 'http://blog.mozilla.org/press/2013/02/firefox-os-expansion',
@@ -145,8 +146,7 @@ def latest_fx_redirect(request, fake_version, template_name):
         return HttpResponsePermanentRedirect(url)
 
     user_version = "0"
-    ua_regexp = r"Firefox/(%s)" % version_re
-    match = re.search(ua_regexp, user_agent)
+    match = UA_REGEXP.search(user_agent)
     if match:
         user_version = match.group(1)
 

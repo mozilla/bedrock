@@ -4,12 +4,6 @@
 
 $(document).ready(function() {
 
-    // Get the latest version of firefox that is attached as a data
-    // attribute. Force a string because jquery sometimes converts it
-    // to an integer.
-    var latestVersion = ('' + $('#gauge').data('latest-version'));
-    latestVersion = parseInt(latestVersion.split('.')[0], 10);
-
     $('#fx-features').hide();
 
 
@@ -137,7 +131,9 @@ $(document).ready(function() {
             // initial position
             rotate(-1.5, 10, startWaver, 'linear');
 
-            if (latestVersion > getFirefoxMasterVersion()) { // latestVersion is defined inline on the page, fetched from product_details
+            // latestFirefoxVersion and esrFirefoxVersions are defined inline on the page
+            // fetched from product_details
+            if (!isFirefoxUpToDate()) { 
                 // slow
                 setTimeout(function() {
                     stopWaver();
