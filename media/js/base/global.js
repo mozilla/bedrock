@@ -61,8 +61,7 @@ $(document).ready(function() {
 });
 
 //get Master firefox version
-function getFirefoxMasterVersion()
-{
+function getFirefoxMasterVersion() {
     var version = 0;
 
     var matches = /Firefox\/([0-9]+).[0-9]+(?:.[0-9]+)?/.exec(
@@ -74,6 +73,32 @@ function getFirefoxMasterVersion()
     }
 
     return version;
+}
+
+function isFirefox() {
+    return /\sFirefox/.test(navigator.userAgent);
+}
+
+function isFirefoxUpToDate(latest, esr) {
+
+    var $body = $('body');
+    var fx_version = getFirefoxMasterVersion();
+    var esrFirefoxVersions = esr || $body.data('esr-versions');
+    var latestFirefoxVersion;
+
+    if (!latest) {
+        latestFirefoxVersion = $body.attr('data-latest-firefox');
+        latestFirefoxVersion = parseInt(latestFirefoxVersion.split('.')[0], 10);
+    } else {
+        latestFirefoxVersion = parseInt(latest.split('.')[0], 10);
+    }
+    
+    return ($.inArray(fx_version, esrFirefoxVersions) !== -1 ||
+            latestFirefoxVersion <= fx_version);
+}
+
+function isMobile() {
+    return /\sMobile/.test(window.navigator.userAgent);
 }
 
 

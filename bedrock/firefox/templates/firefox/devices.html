@@ -51,7 +51,7 @@
             <p id="fx-download"><a href="{{ php_url('/firefox/') }}" class="button go">{{ _('Download Firefox') }}</a> <br> <a href="/firefox/central/" class="go">Learn more</a></p>
           </div>
 
-          <div id="gauge" data-latest-version="{{ latest_version }}">
+          <div id="gauge">
             <img src="{{ media('img/firefox/devices/needle.png') }}" alt="" id="needle">
             <p id="gauge-slow">{{ _('Old Firefox = Sadface') }}</p>
             <p id="gauge-fast">{{ _('New Firefox = Yay!') }}</p>
@@ -84,9 +84,9 @@
                 </a>
               </p>
               <small class="download-other">
-                <a href="/legal/privacy/firefox.html">{{ _('Privacy Policy') }}</a> | 
-                <a href="/mobile/platforms">{{ _('Supported Devices') }}</a> | 
-                <a href="/mobile/{{latest_version}}/releasenotes">{{ _('Release Notes') }}</a>
+                <a href="/legal/privacy/firefox.html">{{ _('Privacy Policy') }}</a> |
+                <a href="/mobile/platforms">{{ _('Supported Devices') }}</a> |
+                <a href="/mobile/{{ latest_firefox_version }}/releasenotes">{{ _('Release Notes') }}</a>
               </small>
             </aside>
           </div>
@@ -107,9 +107,9 @@
                 </a>
               </p>
               <small class="download-other">
-                <a href="/legal/privacy/firefox.html">{{ _('Privacy Policy') }}</a> | 
-                <a href="/mobile/platforms">{{ _('Supported Devices') }}</a> | 
-                <a href="/mobile/{{latest_version}}/releasenotes">{{ _('Release Notes') }}</a>
+                <a href="/legal/privacy/firefox.html">{{ _('Privacy Policy') }}</a> |
+                <a href="/mobile/platforms">{{ _('Supported Devices') }}</a> |
+                <a href="/mobile/{{ latest_firefox_version }}/releasenotes">{{ _('Release Notes') }}</a>
               </small>
             </aside>
           </div>
@@ -125,7 +125,7 @@
           </div>
           <ul id="addons-list">
             <li class="addon">
-              <h3><a href="https://addons.mozilla.org/en-US/mobile/addon/adblock-plus/?src=fx-devices" rel="external"><img src="//static-ssl-cdn.addons.mozilla.net/img/uploads/addon_icons/1/1865-48.png" alt=""> {{ _('AdBlock Plus') }}</a></h3> 
+              <h3><a href="https://addons.mozilla.org/en-US/mobile/addon/adblock-plus/?src=fx-devices" rel="external"><img src="//static-ssl-cdn.addons.mozilla.net/img/uploads/addon_icons/1/1865-48.png" alt=""> {{ _('AdBlock Plus') }}</a></h3>
               <p class="desc">{{ _('Regain control and change the way that you view the Web.') }}</p>
               <ul class="add-to">
                 <li><a href="https://addons.mozilla.org/en-US/firefox/addon/adblock-plus/?src=fx-devices">{{ _('Add to Desktop') }}</a></li>
