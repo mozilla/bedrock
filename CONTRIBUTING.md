@@ -12,7 +12,9 @@ code-review experience.
 
 ## HUGE PROJECT STRUCTURE CHANGE
 
-On Wednesday, May 15th we'll be merging a very large refactoring of the
-codebase ([PR #755](https://github.com/mozilla/bedrock/pull/755)). Any
-pull-requests not merged by that point will need a major rebase, and we won't
-be merging anything for the day preceeding this work and until we push it live.
+On May 15th, 2013 we updated the site to the latest
+[Playdoh](http://playdoh.readthedocs.org/). This is a large change, so your local
+environment will need some updating, and if you submitted a pull-request prior to
+the merge it will need a rebase. Please check the
+[bedrock docs](bedrock.readthedocs.org/en/latest/install.html#upgrading) for
+details.

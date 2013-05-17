@@ -36,7 +36,7 @@ pip install -q -r requirements/compiled.txt
 pip install -q -r requirements/dev.txt
 
 cat > bedrock/settings/local.py <<SETTINGS
-from .base import *
+import logging
 
 ROOT_URLCONF = 'bedrock.urls'
 LOG_LEVEL = logging.ERROR
