@@ -52,9 +52,8 @@ class TabzillaRedirectTests(TestCase):
 
     def _process_request(self, url):
         rf = RequestFactory()
-        with self.activate('en-US'):
-            req = rf.get(url)
-            return TabzillaLocaleURLMiddleware().process_request(req)
+        req = rf.get(url)
+        return TabzillaLocaleURLMiddleware().process_request(req)
 
     def test_locale_preserved(self):
         """The tabzilla URL should preserve the locale through redirects."""
@@ -147,3 +146,51 @@ class TabzillaRedirectTests(TestCase):
         """
         resp = self._process_request('/')
         eq_(resp['location'], '/en-US/')
+
+    @patch('bedrock.tabzilla.middleware.settings.CDN_BASE_URL', '//example.com')
+    @patch('bedrock.tabzilla.middleware.settings.TEMPLATE_DEBUG', False)
+    @patch('lib.l10n_utils.settings.DEV', False)
+    @patch('lib.l10n_utils.lang_file_is_active')
+    def test_redirect_to_cdn_inactive_locale(self, lang_mock):
+        """
+        The view should redirect to the CDN when the locale is not active.
+        """
+        lang_mock.return_value = False
+        resp = self.client.get('/de/tabzilla/tabzilla.js')
+        eq_(resp['location'], 'http://example.com/en-US/tabzilla/tabzilla.js')
+
+    @patch('bedrock.tabzilla.middleware.settings.CDN_BASE_URL', '//example.com')
+    @patch('bedrock.tabzilla.middleware.settings.TEMPLATE_DEBUG', False)
+    @patch('lib.l10n_utils.settings.DEV', False)
+    @patch('lib.l10n_utils.lang_file_is_active')
+    def test_no_redirect_to_cdn_active_locale(self, lang_mock):
+        """
+        The view should NOT redirect to the CDN when the locale is active.
+        """
+        lang_mock.return_value = True
+        resp = self.client.get('/de/tabzilla/tabzilla.js')
+        ok_(resp.status_code == 200)
+
+    @patch('bedrock.tabzilla.middleware.settings.CDN_BASE_URL', '')
+    @patch('bedrock.tabzilla.middleware.settings.TEMPLATE_DEBUG', False)
+    @patch('lib.l10n_utils.settings.DEV', False)
+    @patch('lib.l10n_utils.lang_file_is_active')
+    def test_no_redirect_to_cdn_no_cdn(self, lang_mock):
+        """
+        The view should not redirect to the CDN when the CDN setting is empty.
+        """
+        lang_mock.return_value = False
+        resp = self.client.get('/de/tabzilla/tabzilla.js')
+        eq_(resp['location'], 'http://testserver/en-US/tabzilla/tabzilla.js')
+
+    @patch('bedrock.tabzilla.middleware.settings.CDN_BASE_URL', '//example.com')
+    @patch('bedrock.tabzilla.middleware.settings.TEMPLATE_DEBUG', True)
+    @patch('lib.l10n_utils.settings.DEV', False)
+    @patch('lib.l10n_utils.lang_file_is_active')
+    def test_no_redirect_to_cdn_template_debug(self, lang_mock):
+        """
+        The view should not redirect to the CDN when TEMPLATE_DEBUG is True.
+        """
+        lang_mock.return_value = False
+        resp = self.client.get('/de/tabzilla/tabzilla.js')
+        eq_(resp['location'], 'http://testserver/en-US/tabzilla/tabzilla.js')
