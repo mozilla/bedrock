@@ -218,8 +218,8 @@ def firstrun_new(request, view, version):
         url = reverse('firefox.update')
         return HttpResponsePermanentRedirect(url)
 
-    # b only has 1-4 version
-    if (view == 'b' and (int(version) < 1 or int(version) > 4)):
+    # b only has 1-5 version
+    if (view == 'b' and (int(version) < 1 or int(version) > 5)):
         version = '1'
 
     if (view == 'a'):
