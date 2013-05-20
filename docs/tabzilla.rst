@@ -15,7 +15,7 @@ Adding the universal tab to a site requires:
 
 1. Add the static tab link (example below) to the top of your template::
 
-    <a href="http://www.mozilla.org/" id="tabzilla">mozilla</a>
+    <a href="https://www.mozilla.org/" id="tabzilla">mozilla</a>
 
 2. Include the tabzilla.css CSS file either as a CSS include or built in to your minified styles::
 
