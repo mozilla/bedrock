@@ -76,7 +76,7 @@ def get_js_bundle_files(bundle):
         if bundle_full in BUNDLE_HASHES:
             build_id = BUNDLE_HASHES[bundle_full]
         items = ("js/%s-min.js?build=%s" % (bundle, build_id,),)
-    return json.dumps([settings.MEDIA_URL + i for i in items])
+    return json.dumps([settings.STATIC_URL + i for i in items])
 
 
 JS_COMMON = get_js_bundle_files('partners_common')

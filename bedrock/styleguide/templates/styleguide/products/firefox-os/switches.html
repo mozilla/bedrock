@@ -1,6 +1,6 @@
 {% extends "styleguide/base.html" %}
 
-{% block guide_logo %}{{ media('/img/styleguide/mozilla-dark.png') }}{% endblock %}
+{% block guide_logo %}{{ static('img/styleguide/mozilla-dark.png') }}{% endblock %}
 
 {% block body_class %}
   {{ super() }}
@@ -21,22 +21,22 @@
   <div class="switcher-example">
     <h5>Check Box (Idle)</h5>
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/switches/checkbox-idle-on.png') }}" alt="" />
+      <img src="{{ static('img/styleguide/products/firefoxos/switches/checkbox-idle-on.png') }}" alt="" />
       <figcaption>{{ _('On') }}</figcaption>
     </figure>
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/switches/checkbox-idle-off.png') }}" alt="" />
+      <img src="{{ static('img/styleguide/products/firefoxos/switches/checkbox-idle-off.png') }}" alt="" />
       <figcaption>{{ _('Off') }}</figcaption>
      </figure>
   </div>
   <div class="switcher-example">
     <h5>Check Box (Delete)</h5>
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/switches/checkbox-delete-on.png') }}" alt="" />
+      <img src="{{ static('img/styleguide/products/firefoxos/switches/checkbox-delete-on.png') }}" alt="" />
       <figcaption>{{ _('On') }}</figcaption>
     </figure>
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/switches/checkbox-delete-off.png') }}" alt="" />
+      <img src="{{ static('img/styleguide/products/firefoxos/switches/checkbox-delete-off.png') }}" alt="" />
       <figcaption>{{ _('Off') }}</figcaption>
      </figure>
   </div>
@@ -48,11 +48,11 @@
   <div class="switcher-example">
     <h5>Radio Buttons</h5>
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/switches/radio-buttons-on.png') }}" alt="" />
+      <img src="{{ static('img/styleguide/products/firefoxos/switches/radio-buttons-on.png') }}" alt="" />
       <figcaption>{{ _('On') }}</figcaption>
     </figure>
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/switches/radio-buttons-off.png') }}" alt="" />
+      <img src="{{ static('img/styleguide/products/firefoxos/switches/radio-buttons-off.png') }}" alt="" />
       <figcaption>{{ _('Off') }}</figcaption>
      </figure>
   </div>
@@ -64,11 +64,11 @@
   <div class="switcher-example">
     <h5>Toggles</h5>
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/switches/toggles-on.png') }}" alt="" />
+      <img src="{{ static('img/styleguide/products/firefoxos/switches/toggles-on.png') }}" alt="" />
       <figcaption>{{ _('On') }}</figcaption>
     </figure>
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/switches/toggles-off.png') }}" alt="" />
+      <img src="{{ static('img/styleguide/products/firefoxos/switches/toggles-off.png') }}" alt="" />
       <figcaption>{{ _('Off') }}</figcaption>
      </figure>
   </div>
@@ -80,11 +80,11 @@
   <div class="switcher-example">
     <h5>Ticks</h5>
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/switches/ticks-on.png') }}" alt="" />
+      <img src="{{ static('img/styleguide/products/firefoxos/switches/ticks-on.png') }}" alt="" />
       <figcaption>{{ _('On') }}</figcaption>
     </figure>
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/switches/ticks-off.png') }}" alt="" />
+      <img src="{{ static('img/styleguide/products/firefoxos/switches/ticks-off.png') }}" alt="" />
       <figcaption>{{ _('Off') }}</figcaption>
      </figure>
   </div>
@@ -96,11 +96,11 @@
   <div class="switcher-example">
     <h5>Sliders and Handlers</h5>
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/switches/sliders-normal.png') }}" alt="" />
+      <img src="{{ static('img/styleguide/products/firefoxos/switches/sliders-normal.png') }}" alt="" />
       <figcaption>{{ _('Normal') }}</figcaption>
     </figure>
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/switches/sliders-pressed.png') }}" alt="" />
+      <img src="{{ static('img/styleguide/products/firefoxos/switches/sliders-pressed.png') }}" alt="" />
       <figcaption>{{ _('Pressed') }}</figcaption>
      </figure>
   </div>
@@ -109,19 +109,19 @@
 <section id="examples">
   <h2>Usage Examples</h2>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/switches/example-red-checkbox.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/switches/example-red-checkbox.png') }}" alt="" />
     <figcaption>{{ _('Red check boxes for deleting') }}</figcaption>
   </figure>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/switches/example-toggle.png?2013-09') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/switches/example-toggle.png') }}?2013-09" alt="" />
     <figcaption>{{ _('Toggle on and off') }}</figcaption>
   </figure>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/switches/example-tick.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/switches/example-tick.png') }}" alt="" />
     <figcaption>{{ _('Tick for single selecting') }}</figcaption>
   </figure>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/switches/example-slider.png?2013-09') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/switches/example-slider.png') }}?2013-09" alt="" />
     <figcaption>{{ _('Brightness slider') }}</figcaption>
   </figure>
 </section>

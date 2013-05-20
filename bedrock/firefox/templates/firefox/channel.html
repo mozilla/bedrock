@@ -18,9 +18,9 @@
 <div id="main-content" class="pager pager-with-tabs pager-cleartype-fix">
 
   <ul id="toggler-container" class="pager-tabs">
-    <li id="beta-link"><a href="{{ php_url('/firefox/beta/') }}"><img src="{{ media('/img/firefox/channel/toggler-beta.png?2013-06') }}" id="toggler-logo-beta" /></a></li>
-    <li id="firefox-link"><a href="{{ php_url('/firefox/') }}"><img src="{{ media('/img/firefox/channel/toggler-firefox.png?2013-06') }}" id="toggler-logo-firefox" /></a></li>
-    <li id="aurora-link"><a href="{{ php_url('/firefox/aurora/') }}"><img src="{{ media('/img/firefox/channel/toggler-aurora.png?2013-06') }}" id="toggler-logo-aurora" /></a></li>
+    <li id="beta-link"><a href="{{ php_url('/firefox/beta/') }}"><img src="{{ static('img/firefox/channel/toggler-beta.png') }}?2013-06" id="toggler-logo-beta" /></a></li>
+    <li id="firefox-link"><a href="{{ php_url('/firefox/') }}"><img src="{{ static('img/firefox/channel/toggler-firefox.png') }}?2013-06" id="toggler-logo-firefox" /></a></li>
+    <li id="aurora-link"><a href="{{ php_url('/firefox/aurora/') }}"><img src="{{ static('img/firefox/channel/toggler-aurora.png') }}?2013-06" id="toggler-logo-aurora" /></a></li>
   </ul>
 
   <a href="#" id="carousel-left"></a>
@@ -29,7 +29,7 @@
   <div class="pager-content">
 
     <div id="beta" class="pager-page">
-      <h2 class="channel-title channel-title-beta"><img src="{{ media('/img/firefox/channel/title-beta.png') }}" alt="Firefox Beta" /></h2>
+      <h2 class="channel-title channel-title-beta"><img src="{{ static('img/firefox/channel/title-beta.png') }}" alt="Firefox Beta" /></h2>
       {# L10n: This description applies to Firefox Beta #}
       <h3>{{_('The latest features in a more stable environment')}}</h3>
       <div class="download-box" id="beta-desktop">
@@ -42,7 +42,7 @@
     </div>
 
     <div id="firefox" class="pager-page">
-      <h2 class="channel-title channel-title-firefox"><img src="{{ media('/img/firefox/channel/title-firefox.png') }}" alt="Firefox" /></h2>
+      <h2 class="channel-title channel-title-firefox"><img src="{{ static('img/firefox/channel/title-firefox.png') }}" alt="Firefox" /></h2>
       {# L10n: This description applies to Firefox on the Release channel #}
       <h3>{{_('Tried, tested and used by millions around the world')}}</h3>
       <div class="download-box" id="firefox-desktop">
@@ -55,7 +55,7 @@
     </div>
 
     <div id="aurora" class="pager-page">
-      <h2 class="channel-title channel-title-aurora"><img src="{{ media('/img/firefox/channel/title-aurora.png') }}" alt="Firefox Aurora" /></h2>
+      <h2 class="channel-title channel-title-aurora"><img src="{{ static('img/firefox/channel/title-aurora.png') }}" alt="Firefox Aurora" /></h2>
       {# L10n: This description applies to Firefox Aurora #}
       <h3>{{_('The newest innovations in an experimental environment')}}</h3>
       <div class="download-box" id="aurora-desktop">

@@ -207,11 +207,11 @@ class TestFirefoxPartners(TestCase):
     def test_js_bundle_files_debug_true(self):
         """
         When DEBUG is on the bundle should return the individual files
-        with the MEDIA_URL.
+        with the STATIC_URL.
         """
         bundle = 'partners_desktop'
         files = settings.MINIFY_BUNDLES['js'][bundle]
-        files = [settings.MEDIA_URL + f for f in files]
+        files = [settings.STATIC_URL + f for f in files]
         self.assertEqual(files,
                          json.loads(fx_views.get_js_bundle_files(bundle)))
 
@@ -221,7 +221,7 @@ class TestFirefoxPartners(TestCase):
         When DEBUG is off the bundle should return a single minified filename.
         """
         bundle = 'partners_desktop'
-        filename = '%sjs/%s-min.js?build=' % (settings.MEDIA_URL, bundle)
+        filename = '%sjs/%s-min.js?build=' % (settings.STATIC_URL, bundle)
         bundle_file = json.loads(fx_views.get_js_bundle_files(bundle))
         self.assertEqual(len(bundle_file), 1)
         self.assertTrue(bundle_file[0].startswith(filename))

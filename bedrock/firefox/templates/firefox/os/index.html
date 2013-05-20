@@ -29,7 +29,7 @@
         <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{{ settings.TABZILLA_INFOBAR_OPTIONS }}">{{ _('Mozilla') }}</a>
 
         {% block site_header_logo %}
-        <h2 id="ffos-main-logo"><a href="#masthead" class="nav"><img src="{{ MEDIA_URL }}img/firefox/os/logo/firefox-os.png" alt="Firefox OS"></a></h2>
+        <h2 id="ffos-main-logo"><a href="#masthead" class="nav"><img src="{{ static('img/firefox/os/logo/firefox-os.png') }}" alt="Firefox OS"></a></h2>
         {% endblock %}
         {% block site_header_nav %}
             <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>

@@ -18,7 +18,7 @@
   </div>
   <div class="right-col">
     <p>
-      {% trans url1=url('mozorg.partnerships'), url2=node.next.url, url3="https://assets.mozillalabs.com/Brands-Logos/Firefox%20OS/brand-guideline/FirefoxOS_BrandGuidelines_EN.pdf" %}
+      {% trans url1=url('mozorg.partnerships'), url2=node.next.url %}
       This page contains details on the Firefox OS promotional assets created for both licensed and unlicensed
       commercial use. Please <a href="{{ url1 }}">contact us</a> about partnership opportunities if you're
       interested in using these materials. If you're looking for promotional materials for community and other
@@ -44,11 +44,11 @@
     <div class="container">
       <div class="split the-look">
         {{ _('"The Look"') }}
-        <img src="{{ media('/img/styleguide/identity/firefoxos/partners-thelook.png?2013-06') }}" alt="The Look">
+        <img src="{{ static('img/styleguide/identity/firefoxos/partners-thelook.png') }}?2013-06" alt="The Look">
       </div>
       <div class="split">
         {{ _('"The Swoop"') }}
-        <img src="{{ media('/img/styleguide/identity/firefoxos/partners-theswoop.png?2013-06') }}" alt="The Swoop">
+        <img src="{{ static('img/styleguide/identity/firefoxos/partners-theswoop.png') }}?2013-06" alt="The Swoop">
       </div>
     </div>
   </div>
@@ -67,9 +67,9 @@
   </div>
   <div class="right-col">
     <div class="container">
-      <img class="based-on" src="{{ media('/img/styleguide/identity/firefoxos/partners-based-on-red.png?2013-06') }}" alt="{{ _('Based on red') }}">
-      <img class="based-on" src="{{ media('/img/styleguide/identity/firefoxos/partners-based-on-black.png?2013-06') }}" alt="{{ _('Based on black') }}">
-      <img class="based-on wordmark" src="{{ media('/img/styleguide/identity/firefoxos/partners-based-on-wordmark.png?2013-06') }}" alt="{{ _('Based on wordmark') }}">
+      <img class="based-on" src="{{ static('img/styleguide/identity/firefoxos/partners-based-on-red.png') }}?2013-06" alt="{{ _('Based on red') }}">
+      <img class="based-on" src="{{ static('img/styleguide/identity/firefoxos/partners-based-on-black.png') }}?2013-06" alt="{{ _('Based on black') }}">
+      <img class="based-on wordmark" src="{{ static('img/styleguide/identity/firefoxos/partners-based-on-wordmark.png') }}?2013-06" alt="{{ _('Based on wordmark') }}">
 
       <div class="download">
         <h4>Downloads</h4>

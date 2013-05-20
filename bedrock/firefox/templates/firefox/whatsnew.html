@@ -30,7 +30,7 @@
   {% if request.locale == 'ru' %}
   {% l10n whatsnew_feature, 20120712 %}
   <p id="ru-search">
-    <img src="{{ MEDIA_URL }}img/firefox/whatsnew/ru-search.png">
+    <img src="{{ static('img/firefox/whatsnew/ru-search.png') }}">
     Also new in this release: Google is now your default search engine. To change the active search engine, click the down arrow next to the search engine's icon, and select a new search engine.
     <a href="https://support.mozilla.org/ru/kb/stroka-poiska#w_clauhkilii-laiajahoki-aiaaikuki">Learn more.</a>
   </p>
@@ -44,7 +44,7 @@
 {% if request.locale not in locales_with_video.keys() %}
   <div id="promo-android">
     <a href="{{ mobile_link }}" class="container">
-      <img src="{{ media('img/home/promo/android/1000.jpg') }}" alt="{{ _('Firefox for Android artwork') }}">
+      <img src="{{ static('img/home/promo/android/1000.jpg') }}" alt="{{ _('Firefox for Android artwork') }}">
       <div>
         <h3>{{ _('Fast. Smart. Safe.') }}</h3>
         <h4>{{ _('Get the mobile browser that’s got your back.') }}</h4>
@@ -90,7 +90,7 @@
   <div id="video-player" class="mozilla-video-control mozilla-video-shadow">
     <video
       controls="controls"
-      poster="{{ media('/img/firefox/whatsnew/video-poster.jpg') }}"
+      poster="{{ static('img/firefox/whatsnew/video-poster.jpg') }}"
       height="360"
       width="640"
       data-overlay-hidden-text="{{_('Play video')}}">

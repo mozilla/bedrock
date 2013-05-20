@@ -8,10 +8,10 @@
 {% block page_desc %}{{_('Lightbeam is a Firefox add-on that uses interactive visualizations to show you the first and third party sites you interact with on the Web.')}}{% endblock %}
 {% block body_id %}lightbeam{% endblock %}
 {% block body_class %}sky lightbeam-home{% endblock %}
-{% block page_image %}{{ media('img/lightbeam/lightbeam_logo-wordmark_500x156.png') }}?2013-11{% endblock %}
-{% block page_favicon %}{{ media('img/lightbeam/favicon.png') }}?2013-11{% endblock %}
+{% block page_image %}{{ static('img/lightbeam/lightbeam_logo-wordmark_500x156.png') }}?2013-11{% endblock %}
+{% block page_favicon %}{{ static('img/lightbeam/favicon.png') }}?2013-11{% endblock %}
 {% block site_header_logo %}
-  <h2><a href="{{ url('lightbeam.lightbeam') }}"><img src="{{ media('img/lightbeam/lightbeam_logo-wordmark_500x156.png') }}?2013-11" class="ligthbeam-wordmark"></a></h2>
+  <h2><a href="{{ url('lightbeam.lightbeam') }}"><img src="{{ static('img/lightbeam/lightbeam_logo-wordmark_500x156.png') }}?2013-11" class="ligthbeam-wordmark"></a></h2>
 {% endblock %}
 {% block site_header_nav %}
   <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
@@ -36,7 +36,7 @@
 <h1 class="large">{{_('Shine a Light on Who’s Watching You')}}</h1>
 
 <div id="primary" class="container">
-    <img src="{{ media('img/lightbeam/Lightbeam-UpdatedGraphImageLandscape2.png') }}?2013-11" alt="">
+    <img src="{{ static('img/lightbeam/Lightbeam-UpdatedGraphImageLandscape2.png') }}?2013-11" alt="">
     <section>
       <h2>{{_('See who’s tracking you online')}}</h2>
       <p>
@@ -52,25 +52,25 @@
 <section id="secondary" class="container">
     <h2 class="page-slogan">{{_('How Lightbeam Works')}}</h2>
     <figure>
-      <img src="{{ media('img/lightbeam/Lightbeam_Illustration4.png') }}?2013-11" alt="">
+      <img src="{{ static('img/lightbeam/Lightbeam_Illustration4.png') }}?2013-11" alt="">
       <figcaption>
         {{_('Download and run the Lightbeam add-on in your Firefox browser.')}}
       </figcaption>
     </figure>
     <figure>
-      <img src="{{ media('img/lightbeam/Lightbeam_Illustration5.png') }}?2013-11" alt="">
+      <img src="{{ static('img/lightbeam/Lightbeam_Illustration5.png') }}?2013-11" alt="">
       <figcaption>
         {{_('Lightbeam will create a record of events for every site you visit and every third party site that is stored locally on your browser.')}}
       </figcaption>
     </figure>
     <figure>
-      <img src="{{ media('img/lightbeam/Lightbeam_Illustration6.png') }}?2013-11" alt="">
+      <img src="{{ static('img/lightbeam/Lightbeam_Illustration6.png') }}?2013-11" alt="">
       <figcaption>
         {{_('Lightbeam visually graphs these events to highlight the interactions between sites you intentionally visit and the third parties.')}}
       </figcaption>
     </figure>
     <figure>
-      <img src="{{ media('img/lightbeam/Lightbeam_Illustration7.png') }}?2013-11" alt="">
+      <img src="{{ static('img/lightbeam/Lightbeam_Illustration7.png') }}?2013-11" alt="">
       <figcaption>
         {{_('Lightbeam will continue to add to your graph as you browse the Web. You can stop Lightbeam at any time by disabling it or uninstalling the add-on. Your Lightbeam data can be easily saved or deleted.')}}
       </figcaption>
@@ -94,7 +94,7 @@
 
 <section class="container three-points">
   <figure class="span4 visualize">
-    <img src="{{ media('img/lightbeam/Lightbeam_Illustration1.png') }}?2013-11" alt="">
+    <img src="{{ static('img/lightbeam/Lightbeam_Illustration1.png') }}?2013-11" alt="">
     <figcaption>
       <h4>{{_('Visualize your data')}}</h4>
       <p>
@@ -103,7 +103,7 @@
     </figcaption>
   </figure>
   <figure class="span4 analyze">
-    <img src="{{ media('img/lightbeam/Lightbeam_Illustration2.png') }}?2013-11" alt="">
+    <img src="{{ static('img/lightbeam/Lightbeam_Illustration2.png') }}?2013-11" alt="">
     <figcaption>
       <h4>{{_('Analyze your connections')}}</h4>
       <p>
@@ -112,7 +112,7 @@
     </figcaption>
   </figure>
   <figure class="span4 contribute">
-    <img src="{{ media('img/lightbeam/Lightbeam_Illustration3.png') }}?2013-11" alt="">
+    <img src="{{ static('img/lightbeam/Lightbeam_Illustration3.png') }}?2013-11" alt="">
     <figcaption>
       <h4>{{_('Contribute your data')}}</h4>
       <p>
@@ -125,7 +125,7 @@
 <section class="container partners">
   <h2>{{_('Supported by the Ford Foundation')}}</h2>
   <div class="span6">
-    <img src="{{ media('img/lightbeam/Lightbeam_partners_fordfoundation.png') }}?2013-11" alt="Ford Foundation" class="partner-logo">
+    <img src="{{ static('img/lightbeam/Lightbeam_partners_fordfoundation.png') }}?2013-11" alt="Ford Foundation" class="partner-logo">
     <p>
       {{_('The work at the Ford Foundation focuses on building outreach campaigns to help people understand online data tracking — both the benefits and the issues')}}. <a href="http://www.fordfoundation.org/"> {{_('Learn more')}} »</a>
     </p>

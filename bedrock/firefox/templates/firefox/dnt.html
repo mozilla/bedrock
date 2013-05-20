@@ -232,7 +232,7 @@
     <p>
       <a href="https://support.mozilla.org/kb/how-do-i-stop-websites-tracking-me">
         <img alt="{{ _('Options window - Advanced panel - Do Not Track') }}"
-           src="{{ media('/img/firefox/dnt/screenshot.png') }}"
+           src="{{ static('img/firefox/dnt/screenshot.png') }}"
            title="{{ _('Enabling Do Not Track') }}">
         {{ _('Click for Instructions') }} »
       </a>
@@ -242,7 +242,7 @@
       <h4>{{ _('Enable Do Not Track in Internet Explorer 9') }}</h4>
       <p>
       {% trans url='http://ie.microsoft.com/testdrive/Browser/TrackingProtectionLists/faq.html',
-          tpl=media('/dnt/dnt-enabler.tpl') %}
+          tpl=static('dnt/dnt-enabler.tpl') %}
         To enable Do Not Track in IE 9, you need to enable IE 9’s
         <a href="{{ url }}">Tracking Protection</a> feature. The easiest way to do that
         is to install <a href="{{ tpl }}">Mozilla’s Simple Tracking Protection List</a>.

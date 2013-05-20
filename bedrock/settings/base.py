@@ -71,6 +71,16 @@ CANONICAL_URL = 'http://www.mozilla.org'
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'ssssshhhhh'
 
+STATICFILES_DIRS = (
+    path('static_src'),
+)
+
+MEDIA_ROOT = ''
+MEDIA_URL = ''
+
+STATIC_ROOT = path('media')
+STATIC_URL = '/media/'
+
 TEMPLATE_DIRS = (
     path('locale'),
 )
@@ -89,15 +99,14 @@ def JINJA_CONFIG():
         'auto_reload': True,
     }
 
-JINGO_MINIFY_USE_STATIC = False
-CACHEBUST_IMGS = False
+JINGO_MINIFY_USE_STATIC = True
 
 # Bundles is a dictionary of two dictionaries, css and js, which list css files
 # and js files that can be bundled together by the minify app.
 MINIFY_BUNDLES = {
     'css': {
         'csrf-failure': (
-            'css/csrf-failure.less',
+            'css/mozorg/csrf-failure.less',
         ),
         'about': (
             'css/mozorg/about.less',
@@ -588,7 +597,7 @@ MINIFY_BUNDLES = {
             'js/privacy/privacy-day.js',
         ),
         'privacy-firefoxos': (
-            'js/privacy_firefoxos.js',
+            'js/privacy/privacy_firefoxos.js',
         ),
         'products': (
             'js/libs/jquery.waypoints.min.js',
@@ -702,7 +711,6 @@ INSTALLED_APPS = get_apps(exclude=(
     'compressor',
     'django_browserid',
     'django.contrib.sessions',
-    'django.contrib.staticfiles',
     'session_csrf',
     'djcelery',
 ), append=(

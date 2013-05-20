@@ -2,19 +2,18 @@ import urlparse
 from os import path
 
 from django.conf import settings
+from django.contrib.staticfiles.finders import find as static_find
 
 import jingo
 import jinja2
-from funfactory.settings_base import path as base_path
+
+from funfactory.helpers import static
 from funfactory.urlresolvers import reverse
-
-
-L10N_IMG_PATH = base_path('media', 'img', 'l10n')
 
 
 def _l10n_media_exists(locale, url):
     """ checks if a localized media file exists for the locale """
-    return path.exists(path.join(L10N_IMG_PATH, locale, url))
+    return static_find(path.join('img', 'l10n', locale, url))
 
 
 @jingo.register.function
@@ -79,11 +78,11 @@ def l10n_img(ctx, url):
 
     For en-US this would output:
 
-        {{ MEDIA_URL }}img/l10n/en-US/firefox/screenshot.png
+        {{ STATIC_URL }}img/l10n/en-US/firefox/screenshot.png
 
     For fr this would output:
 
-        {{ MEDIA_URL }}img/l10n/fr/firefox/screenshot.png
+        {{ STATIC_URL }}img/l10n/fr/firefox/screenshot.png
 
     If that file did not exist it would default to the en-US version (if en-US
     was the default language for this install).
@@ -93,8 +92,8 @@ def l10n_img(ctx, url):
 
     Put files in folders like the following::
 
-        $ROOT/media/img/l10n/en-US/firefoxos/screenshot.png
-        $ROOT/media/img/l10n/fr/firefoxos/screenshot.png
+        $ROOT/static_src/img/l10n/en-US/firefoxos/screenshot.png
+        $ROOT/static_src/img/l10n/fr/firefoxos/screenshot.png
 
     """
     url = url.lstrip('/')
@@ -110,7 +109,7 @@ def l10n_img(ctx, url):
         if not _l10n_media_exists(locale, url):
             locale = settings.LANGUAGE_CODE
 
-    return media(path.join('img', 'l10n', locale, url))
+    return static(path.join('img', 'l10n', locale, url))
 
 
 @jingo.register.function
@@ -124,10 +123,15 @@ def field_with_attrs(bfield, **kwargs):
 @jingo.register.function
 @jinja2.contextfunction
 def platform_img(ctx, url, optional_attributes=None):
+    qs = None
+    if url.find('?') > -1:
+        url, qs = url.split('?', 1)
     if (optional_attributes and optional_attributes.pop('l10n', False) is True):
         url = l10n_img(ctx, url)
     else:
-        url = media(url)
+        url = static(url)
+    if qs:
+        url = '{url}?{qs}'.format(url=url, qs=qs)
 
     if optional_attributes:
         attrs = ' '.join('%s="%s"' % (attr, val)
@@ -148,10 +152,15 @@ def platform_img(ctx, url, optional_attributes=None):
 @jingo.register.function
 @jinja2.contextfunction
 def high_res_img(ctx, url, optional_attributes=None):
+    qs = None
+    if url.find('?') > -1:
+        url, qs = url.split('?', 1)
     if (optional_attributes and optional_attributes.pop('l10n', False) is True):
         url = l10n_img(ctx, url)
     else:
-        url = media(url)
+        url = static(url)
+    if qs:
+        url = '{url}?{qs}'.format(url=url, qs=qs)
 
     if optional_attributes:
         attrs = ' '.join(('%s="%s"' % (attr, val)
@@ -363,12 +372,12 @@ def absolute_url(url):
     -----------
     This filter can be used in combination with the media helper like this:
 
-        {{ media('path/to/img')|absolute_url }}
+        {{ static('path/to/img')|absolute_url }}
 
     With a block:
 
         {% filter absolute_url %}
-          {% block page_image %}{{ media('path/to/img') }}{% endblock %}
+          {% block page_image %}{{ static('path/to/img') }}{% endblock %}
         {% endfilter %}
     """
 

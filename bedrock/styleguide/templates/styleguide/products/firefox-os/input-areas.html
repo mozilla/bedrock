@@ -1,6 +1,6 @@
 {% extends "styleguide/base.html" %}
 
-{% block guide_logo %}{{ media('/img/styleguide/mozilla-dark.png') }}{% endblock %}
+{% block guide_logo %}{{ static('img/styleguide/mozilla-dark.png') }}{% endblock %}
 
 {% block body_class %}
   {{ super() }}
@@ -19,15 +19,15 @@
   <p>Input text areas are placed above the keyboard in its active state.</p>
   <figure>
     <figcaption>{{ _('Text Area Idle (Disabled)') }}</figcaption>
-    <img src="{{ media('/img/styleguide/products/firefoxos/textarea/textarea-disabled.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/textarea/textarea-disabled.png') }}" alt="" />
   </figure>
   <figure>
     <figcaption>{{ _('Text Area Idle (Active)') }}</figcaption>
-    <img src="{{ media('/img/styleguide/products/firefoxos/textarea/textarea-active.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/textarea/textarea-active.png') }}" alt="" />
   </figure>
   <figure>
     <figcaption>{{ _('Text Area (Expanded)') }}</figcaption>
-    <img src="{{ media('/img/styleguide/products/firefoxos/textarea/textarea-expanded.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/textarea/textarea-expanded.png') }}" alt="" />
   </figure>
   <p>The expanded text area makes the most of any available space without overlapping actionable elements. Once the maximum size is reached, the text will scroll behind these elements.</p>
 </section>
@@ -37,19 +37,19 @@
   <p>Search areas are background sensitive and have been designed for implementation with both light and dark apps.  They are placed just below the header.</p>
   <figure>
     <figcaption>{{ _('Search Area (Idle - Light)') }}</figcaption>
-    <img src="{{ media('/img/styleguide/products/firefoxos/textarea/searcharea-light-idle.png?2013-09') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/textarea/searcharea-light-idle.png') }}?2013-09" alt="" />
   </figure>
   <figure>
     <figcaption>{{ _('Search Area (Normal - Light)') }}</figcaption>
-    <img src="{{ media('/img/styleguide/products/firefoxos/textarea/searcharea-light-normal.png?2013-09') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/textarea/searcharea-light-normal.png') }}?2013-09" alt="" />
   </figure>
   <figure class="newrow">
     <figcaption>{{ _('Search Area (Idle - Dark)') }}</figcaption>
-    <img src="{{ media('/img/styleguide/products/firefoxos/textarea/searcharea-dark-idle.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/textarea/searcharea-dark-idle.png') }}" alt="" />
   </figure>
   <figure>
     <figcaption>{{ _('Search Area (Normal - Dark)') }}</figcaption>
-    <img src="{{ media('/img/styleguide/products/firefoxos/textarea/searcharea-dark-normal.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/textarea/searcharea-dark-normal.png') }}" alt="" />
   </figure>
 </section>
 
@@ -60,35 +60,35 @@
   <div class="column-group">
     <figure>
       <figcaption>{{ _('Group Form Field (Normal)') }}</figcaption>
-      <img src="{{ media('/img/styleguide/products/firefoxos/textarea/formfield-groupfield-normal.png') }}" alt="" />
+      <img src="{{ static('img/styleguide/products/firefoxos/textarea/formfield-groupfield-normal.png') }}" alt="" />
     </figure>
     <figure>
       <figcaption>{{ _('Group Form Field (Undo State)') }}</figcaption>
-      <img src="{{ media('/img/styleguide/products/firefoxos/textarea/formfield-groupfield-undo.png') }}" alt="" />
+      <img src="{{ static('img/styleguide/products/firefoxos/textarea/formfield-groupfield-undo.png') }}" alt="" />
     </figure>
   </div>
   <div class="column-group">
     <figure>
       <figcaption>{{ _('Single Form Field (Idle)') }}</figcaption>
-      <img src="{{ media('/img/styleguide/products/firefoxos/textarea/formfield-singlefield-idle.png') }}" alt="" />
+      <img src="{{ static('img/styleguide/products/firefoxos/textarea/formfield-singlefield-idle.png') }}" alt="" />
     </figure>
     <figure>
       <figcaption>{{ _('Single Form Field (Normal)') }}</figcaption>
-      <img src="{{ media('/img/styleguide/products/firefoxos/textarea/formfield-singlefield-normal.png') }}" alt="" />
+      <img src="{{ static('img/styleguide/products/firefoxos/textarea/formfield-singlefield-normal.png') }}" alt="" />
     </figure>
     <figure>
       <figcaption>{{ _('Single Form Field (Pressed)') }}</figcaption>
-      <img src="{{ media('/img/styleguide/products/firefoxos/textarea/formfield-singlefield-pressed.png') }}" alt="" />
+      <img src="{{ static('img/styleguide/products/firefoxos/textarea/formfield-singlefield-pressed.png') }}" alt="" />
     </figure>
   </div>
   <div class="column-group">
     <figure>
       <figcaption>{{ _('Single Form Field (Idle)') }}</figcaption>
-      <img src="{{ media('/img/styleguide/products/firefoxos/textarea/formfield-singlefield-idle-2.png') }}" alt="" />
+      <img src="{{ static('img/styleguide/products/firefoxos/textarea/formfield-singlefield-idle-2.png') }}" alt="" />
     </figure>
     <figure>
       <figcaption>{{ _('Single Form Field (Normal)') }}</figcaption>
-      <img src="{{ media('/img/styleguide/products/firefoxos/textarea/formfield-singlefield-normal-2.png') }}" alt="" />
+      <img src="{{ static('img/styleguide/products/firefoxos/textarea/formfield-singlefield-normal-2.png') }}" alt="" />
     </figure>
   </div>
 </section>
@@ -96,23 +96,23 @@
 <section id="examples">
   <h2>Usage Examples</h2>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/textarea/example-textfield-disabled.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/textarea/example-textfield-disabled.png') }}" alt="" />
     <figcaption>{{ _('Input text field (disabled)') }}</figcaption>
   </figure>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/textarea/example-textfield-expanded.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/textarea/example-textfield-expanded.png') }}" alt="" />
     <figcaption>{{ _('Input text field (expanded)') }}</figcaption>
   </figure>
   <figure class="newrow">
-    <img src="{{ media('/img/styleguide/products/firefoxos/textarea/example-search-contacts.png?2013-09') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/textarea/example-search-contacts.png') }}?2013-09" alt="" />
     <figcaption>{{ _('Input area (search contacts)') }}</figcaption>
   </figure>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/textarea/example-search-email.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/textarea/example-search-email.png') }}" alt="" />
     <figcaption>{{ _('Input area (search email)') }}</figcaption>
   </figure>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/textarea/example-group-fields.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/textarea/example-group-fields.png') }}" alt="" />
     <figcaption>{{ _('Group form fields') }}</figcaption>
   </figure>
 </section>

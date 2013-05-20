@@ -7,6 +7,7 @@ import time
 from hashlib import md5
 
 from django.conf import settings
+from django.contrib.staticfiles.storage import staticfiles_storage
 from django.test import RequestFactory
 from django.test.utils import override_settings
 from django.utils.http import parse_http_date
@@ -57,42 +58,19 @@ class TabzillaRedirectTests(TestCase):
         self.assertEqual(resp['Location'],
                          'http://testserver/de/tabzilla/tabzilla.js')
 
-    @patch.object(settings, 'MEDIA_URL', '//example.com/')
     @patch.object(settings, 'TEMPLATE_DEBUG', False)
+    @patch.object(staticfiles_storage, 'base_url', '//example.com/')
     def test_tabzilla_css_redirect(self):
         """
-        Tabzilla css redirect should use MEDIA_URL setting and switch
-        based on TEMPLATE_DEBUG setting.
+        Tabzilla css redirect should use STATIC_URL setting.
         Bug 826866.
+        Patching settings.STATIC_URL won't change staticfiles_storage.base_url
         """
         tabzilla_css_url = '/en-US/tabzilla/media/css/tabzilla.css'
         with self.activate('en-US'):
             response = self.client.get(tabzilla_css_url)
         eq_(response.status_code, 301)
         eq_(response['Location'], 'http://example.com/css/tabzilla-min.css')
-
-        with patch.object(settings, 'TEMPLATE_DEBUG', True):
-            with self.activate('en-US'):
-                response = self.client.get(tabzilla_css_url)
-        eq_(response.status_code, 301)
-        eq_(response['Location'], 'http://example.com/css/tabzilla/tabzilla.less.css')
-
-    @patch('jingo_minify.helpers.build_less')
-    def test_tabzilla_css_less_processing(self, less_mock):
-        """
-        The tabzilla.less file should be compiled by the redirect if
-        settings.LESS_PREPROCESS is True.
-        """
-        tabzilla_css_url = '/en-US/tabzilla/media/css/tabzilla.css'
-        with patch.object(settings, 'LESS_PREPROCESS', False):
-            with self.activate('en-US'):
-                self.client.get(tabzilla_css_url)
-        eq_(less_mock.call_count, 0)
-
-        with patch.object(settings, 'LESS_PREPROCESS', True):
-            with self.activate('en-US'):
-                self.client.get(tabzilla_css_url)
-        eq_(less_mock.call_count, 1)
 
     @patch('bedrock.tabzilla.middleware.settings.CDN_BASE_URL', '//example.com')
     @patch('bedrock.tabzilla.middleware.settings.TEMPLATE_DEBUG', True)

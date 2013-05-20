@@ -13,7 +13,7 @@
 {% block site_header_logo %}{% endblock %}
 
 {% block extrahead %}
- <link rel="canonical" href="https://www.mozilla.org/en-US/firefox/22.0/firstrun/" />
+  <link rel="canonical" href="https://www.mozilla.org/en-US/firefox/22.0/firstrun/" />
 {% endblock %}
 
 {% block site_css %}
@@ -28,18 +28,18 @@
 {% block content %}
 <main role="main">
   <header id="page-header">
-    <img src="{{ media('img/firefox/firstrun/firefox-logo.png') }}" alt="Firefox" />
+    <img src="{{ static('img/firefox/firstrun/firefox-logo.png') }}" alt="Firefox" />
     <h1 class="large">{{_('Welcome to Firefox!')}}</h1>
     <h2>{{ _('Discover what makes it different.') }}</h2>
   </header>
 
   <ul class="social">
     <li>
-      <img src="{{ media('img/firefox/firstrun/facebook.png') }}">
+      <img src="{{ static('img/firefox/firstrun/facebook.png') }}">
       <a class="facebook" href="https://www.facebook.com/Firefox">{{ _('Like us on Facebook') }}</a>
     </li>
     <li>
-      <img src="{{ media('img/firefox/firstrun/twitter.png') }}">
+      <img src="{{ static('img/firefox/firstrun/twitter.png') }}">
       <a class="twitter" href="https://twitter.com/firefox">{{ _('Follow us on Twitter') }}</a>
     </li>
   </ul>
@@ -131,7 +131,7 @@
 </main>
 
 <div id="video-container">
-  <video id="pinnedtabs-video" poster="{{ media('/img/firefox/firstrun/pinnedtabs-poster.jpg') }}" src="" controls></video>
+  <video id="pinnedtabs-video" poster="{{ static('img/firefox/firstrun/pinnedtabs-poster.jpg') }}" src="" controls></video>
 </div>
 
 {% endblock %}

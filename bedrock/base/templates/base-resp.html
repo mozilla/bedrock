@@ -22,7 +22,7 @@
     <meta property="og:site_name" content="{{ _('Mozilla') }}">
     <meta property="og:locale" content="{{ LANG|replace("-", "_") }}">
     <meta property="og:url" content="{{ settings.CANONICAL_URL + '/' + LANG + canonical_path }}">
-    <meta property="og:image" content="{% filter absolute_url %}{% block page_image %}{{ media('img/mozorg/mozilla-256.jpg') }}{% endblock %}{% endfilter %}">
+    <meta property="og:image" content="{% filter absolute_url %}{% block page_image %}{{ static('img/mozorg/mozilla-256.jpg') }}{% endblock %}{% endfilter %}">
     <meta property="og:title" content="{{ self.page_title_full()|striptags }}">
     <meta property="og:description" content="{{ self.page_desc()|striptags }}">
     <meta property="fb:page_id" content="{% block facebook_id %}262134952380{# facebook.com/mozilla #}{% endblock %}">
@@ -31,7 +31,7 @@
     <meta name="twitter:domain" content="mozilla.org">
     <meta name="twitter:app:name:googleplay" content="{% block android_app_name %}{{ _('Firefox') }}{% endblock %}">
     <meta name="twitter:app:id:googleplay" content="{% block android_app_id %}org.mozilla.firefox{% endblock %}">
-    <link rel="shortcut icon" href="{% block page_favicon %}{{ media('img/favicon.ico') }}{% endblock %}">
+    <link rel="shortcut icon" href="{% block page_favicon %}{{ static('img/favicon.ico') }}{% endblock %}">
     {% include 'includes/canonical-url.html' %}
     {% endblock shared_meta %}
 
@@ -40,7 +40,7 @@
     {% endblock %}
 
     <!--[if lte IE 8]>
-    <script src="{{ MEDIA_URL }}js/libs/html5shiv.js"></script>
+    <script src="{{ static('js/libs/html5shiv.js') }}"></script>
     <![endif]-->
 
     {% block site_css %}
@@ -52,18 +52,18 @@
       <style type="text/css">
         @font-face {
           font-family: 'Droid Arabic Naskh';
-          src: url({{ media('fonts/DroidNaskh-Regular.eot?#iefix') }}) format('embedded-opentype'),
-               url({{ media('fonts/DroidNaskh-Regular.woff') }}) format('woff'),
-               url({{ media('fonts/DroidNaskh-Regular.ttf') }}) format('truetype');
+          src: url({{ static('fonts/DroidNaskh-Regular.eot?#iefix') }}) format('embedded-opentype'),
+               url({{ static('fonts/DroidNaskh-Regular.woff') }}) format('woff'),
+               url({{ static('fonts/DroidNaskh-Regular.ttf') }}) format('truetype');
           font-style: normal;
           font-weight: normal;
         }
 
         @font-face {
           font-family: 'Droid Arabic Naskh';
-          src: url({{ media('/fonts/DroidNaskh-Bold.eot?#iefix') }}) format('embedded-opentype'),
-               url({{ media('/fonts/DroidNaskh-Bold.woff') }}) format('woff'),
-               url({{ media('/fonts/DroidNaskh-Bold.ttf') }}) format('truetype');
+          src: url({{ static('/fonts/DroidNaskh-Bold.eot?#iefix') }}) format('embedded-opentype'),
+               url({{ static('/fonts/DroidNaskh-Bold.woff') }}) format('woff'),
+               url({{ static('/fonts/DroidNaskh-Bold.ttf') }}) format('truetype');
           font-style: normal;
           font-weight: bold;
         }
@@ -105,7 +105,7 @@
         {% endblock %}
 
         {% block site_header_logo %}
-        <h2><a href="{{ url('mozorg.home') }}"><img src="{{ MEDIA_URL }}img/sandstone/header-mozilla-stone.png" alt="mozilla"></a></h2>
+        <h2><a href="{{ url('mozorg.home') }}"><img src="{{ static('img/sandstone/header-mozilla-stone.png') }}" alt="mozilla"></a></h2>
         {% endblock %}
 
         {% block alt_header %}{% endblock %}
@@ -140,7 +140,7 @@
       <div class="row">
 
           <div class="footer-logo">
-              <a href="{{ php_url('/') }}"><img src="{{ media('img/sandstone/footer-mozilla.png') }}" alt="mozilla"></a>
+              <a href="{{ php_url('/') }}"><img src="{{ static('img/sandstone/footer-mozilla.png') }}" alt="mozilla"></a>
           </div>
 
           <div class="footer-license">
@@ -185,7 +185,7 @@
     </div><!-- close #outer-wrapper -->
 
     <!--[if IE 9]>
-      <script src="{{ MEDIA_URL }}js/libs/matchMedia.js"></script>
+      <script src="{{ static('js/libs/matchMedia.js') }}"></script>
     <![endif]-->
 
     {% block site_js %}

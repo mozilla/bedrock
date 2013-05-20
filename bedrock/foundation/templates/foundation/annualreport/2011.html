@@ -12,7 +12,8 @@
 
 {% block extrahead %}
   {{ css('annual_2011') }}
-  <link rel="stylesheet" media="print" href="{{ MEDIA_URL }}css/foundation/annual2011print.css">
+  <link rel="stylesheet" media="print" href="{{ static('css/foundation/annual2011print.css') }}">
+
 {% endblock %}
 
 {% block js %}
@@ -54,7 +55,7 @@
 
       <figure class="right video">
         <a class="video-play" href="//videos-cdn.mozilla.net/brand/Mozilla_2011_Story.webm" data-video-source="//videos-cdn.mozilla.net/brand/Mozilla_2011_Story" title="{{ _('Click to play this video') }}">
-          <img src="{{ media('img/foundation/annualreport/2011/vid-welcome.jpg') }}" alt="{{ _('Watch a brief video about Mozilla and our mission') }}" width="380">
+          <img src="{{ static('img/foundation/annualreport/2011/vid-welcome.jpg') }}" alt="{{ _('Watch a brief video about Mozilla and our mission') }}" width="380">
         </a>
       </figure>
 
@@ -103,9 +104,9 @@
       <section class="row has-overlay mob-intro">
         <div class="overlay-wrap">
           <ul class="mob-topics">
-            <li id="topic-firefox"><img src="{{ media('img/foundation/annualreport/2011/logo-firefox.png') }}" alt="">Firefox</li>
-            <li id="topic-firefoxos"><img src="{{ media('img/foundation/annualreport/2011/logo-firefoxos.png') }}" alt="">Firefox OS</li>
-            <li id="topic-webmaker"><img src="{{ media('img/foundation/annualreport/2011/logo-webmaker.png') }}" alt="">Webmaker</li>
+            <li id="topic-firefox"><img src="{{ static('img/foundation/annualreport/2011/logo-firefox.png') }}" alt="">Firefox</li>
+            <li id="topic-firefoxos"><img src="{{ static('img/foundation/annualreport/2011/logo-firefoxos.png') }}" alt="">Firefox OS</li>
+            <li id="topic-webmaker"><img src="{{ static('img/foundation/annualreport/2011/logo-webmaker.png') }}" alt="">Webmaker</li>
           </ul>
 
           <div class="overlay">
@@ -192,7 +193,7 @@
       <section class="row has-overlay mob-fxandroid">
         <h3>{{ _('Firefox for Android') }}</h3>
 
-        <img class="left" src="{{ media('img/foundation/annualreport/2011/fxandroid-phone.png') }}" alt="">
+        <img class="left" src="{{ static('img/foundation/annualreport/2011/fxandroid-phone.png') }}" alt="">
 
         <div class="right overlay-wrap">
           {# L10n: "Fast. Smart. Safe." is a slogan for Firefox for Android. It appears here as three separate strings for styling and layout purposes. #}
@@ -318,7 +319,7 @@
         <h3>{{ _('Webmaker: Video') }}</h3>
         <figure class="video">
           <a class="video-play" href="https://webmaker.org/videos/" data-video-source="//videos-cdn.mozilla.net/serv/webmademovies/webmakers-instructors" title="{{ _('Click to view this video') }}">
-            <img src="{{ media('img/foundation/annualreport/2011/vid-webmaker.jpg') }}" alt="{{ _('Watch this video about teaching the next generation of Webmakers') }}">
+            <img src="{{ static('img/foundation/annualreport/2011/vid-webmaker.jpg') }}" alt="{{ _('Watch this video about teaching the next generation of Webmakers') }}">
           </a>
         </figure>
       </aside>
@@ -404,7 +405,7 @@
         <h3>{{ _('Do Not Track') }}</h3>
 
         <div class="overlay-wrap">
-          <img src="{{ media('img/foundation/annualreport/2011/logo-donottrack.png') }}" alt="">
+          <img src="{{ static('img/foundation/annualreport/2011/logo-donottrack.png') }}" alt="">
 
           <div class="overlay">
             <p>
@@ -452,7 +453,7 @@
         <h3>{{ _('SOPA / PIPA & ACTA') }}</h3>
 
         <div class="overlay-wrap">
-          <img src="{{ media('img/foundation/annualreport/2011/act-sopa.jpg') }}" alt="">
+          <img src="{{ static('img/foundation/annualreport/2011/act-sopa.jpg') }}" alt="">
 
           <div class="overlay">
             <h4>{{ _('SOPA/PIPA') }}</h4>
@@ -502,7 +503,7 @@
         <h3>{{ _('Firefox Flicks') }}</h3>
 
         <div class="overlay-wrap">
-          <img src="{{ media('img/foundation/annualreport/2011/logo-firefoxflicks.png') }}" alt="">
+          <img src="{{ static('img/foundation/annualreport/2011/logo-firefoxflicks.png') }}" alt="">
           <div class="overlay">
             <p>
             {% trans flicks_url='https://firefoxflicks.mozilla.org/' %}
@@ -529,7 +530,7 @@
         <h3>{{ _('Collusion') }}</h3>
 
         <div class="left overlay-wrap">
-          <img src="{{ media('img/foundation/annualreport/2011/act-collusion.jpg') }}" alt="">
+          <img src="{{ static('img/foundation/annualreport/2011/act-collusion.jpg') }}" alt="">
           <div class="overlay">
             <p>
             {% trans collusion_url=url('lightbeam.lightbeam') %}
@@ -548,7 +549,7 @@
 
         <figure class="right video act-kovacsted">
           <a class="vid-youtube" href="https://www.youtube.com/watch?v=f_f5wNw-2c0" title="{{ _('Click to view this video') }}">
-            <img src="{{ media('img/foundation/annualreport/2011/vid-kovacsted.jpg') }}" alt="{{ _('Watch a video of Mozilla CEO Gary Kovacs presenting Collusion at TED') }}">
+            <img src="{{ static('img/foundation/annualreport/2011/vid-kovacsted.jpg') }}" alt="{{ _('Watch a video of Mozilla CEO Gary Kovacs presenting Collusion at TED') }}">
           </a>
         </figure>
 
@@ -563,7 +564,7 @@
 
       <section class="com-intro">
         <aside class="pull">
-          <img src="{{ media('img/foundation/annualreport/2011/com-intro.png') }}" alt="">
+          <img src="{{ static('img/foundation/annualreport/2011/com-intro.png') }}" alt="">
           <h3><span>{{ _('Our success begins with you.') }}</span></h3>
         </aside>
 
@@ -590,7 +591,7 @@
         <h3>{{ _('Mozilla Reps') }}</h3>
 
         <div class="overlay-wrap left">
-          <img src="{{ media('img/foundation/annualreport/2011/com-reps.jpg') }}" alt="">
+          <img src="{{ static('img/foundation/annualreport/2011/com-reps.jpg') }}" alt="">
 
           <div class="overlay">
             <p>
@@ -610,21 +611,21 @@
           </div>
         </div>
 
-        <img class="rep right" src="{{ media('img/foundation/annualreport/2011/mozilla-rep.png') }}" alt="">
+        <img class="rep right" src="{{ static('img/foundation/annualreport/2011/mozilla-rep.png') }}" alt="">
       </section>
 
       <section class="row haz-overlay com-mozcamps">
         <h3>{{ _('MozCamps') }}</h3>
 
         <aside class="video left">
-          <img src="{{ media('img/foundation/annualreport/2011/logo-mozcamp.png') }}" alt="">
+          <img src="{{ static('img/foundation/annualreport/2011/logo-mozcamp.png') }}" alt="">
           <a class="video-play" href="//videos-cdn.mozilla.net/serv/drafts/MozCamp-Latam.webm" data-video-source="//videos-cdn.mozilla.net/serv/drafts/MozCamp-Latam" title="{{ _('Click to play this video') }}">
-            <img src="{{ media('img/foundation/annualreport/2011/vid-mozcamp.jpg') }}" alt="{{ _('Watch this video showing some of the activities from MozCamp in Latin America') }}">
+            <img src="{{ static('img/foundation/annualreport/2011/vid-mozcamp.jpg') }}" alt="{{ _('Watch this video showing some of the activities from MozCamp in Latin America') }}">
           </a>
         </aside>
 
         <div class="overlay-wrap right">
-          <img src="{{ media('img/foundation/annualreport/2011/com-mozcamp.jpg') }}" alt="">
+          <img src="{{ static('img/foundation/annualreport/2011/com-mozcamp.jpg') }}" alt="">
           <div class="overlay">
             <p>
             {% trans %}
@@ -660,7 +661,7 @@
         <h3>{{ _('Emerging Communities') }}</h3>
 
         <div class="overlay-wrap left">
-          <img src="{{ media('img/foundation/annualreport/2011/com-emerging.jpg') }}" alt="">
+          <img src="{{ static('img/foundation/annualreport/2011/com-emerging.jpg') }}" alt="">
           <div class="overlay">
             <p>
             {% trans
@@ -684,7 +685,7 @@
             </p>
           </div>
         </div>
-        <img class="meet right" src="{{ media('img/foundation/annualreport/2011/community-meet.png') }}" alt="">
+        <img class="meet right" src="{{ static('img/foundation/annualreport/2011/community-meet.png') }}" alt="">
       </section>
 
       <section class="row com-stories">
@@ -699,7 +700,7 @@
           <ul id="story-slider">
 
             <li id="story-chit" class="vcard">
-              <a class="contributor contrib-play" href="//videos-cdn.mozilla.net/serv/drafts/Contributorstory1.webm" data-poster="{{ media('img/foundation/annualreport/2011/contributors/chit-poster.jpg') }}">
+              <a class="contributor contrib-play" href="//videos-cdn.mozilla.net/serv/drafts/Contributorstory1.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/chit-poster.jpg') }}">
                 <hgroup>
                   <h4 class="fn">{{ _('Chit Thiri Maung') }}</h4>
                   <h5>
@@ -707,7 +708,7 @@
                     <span class="country-name">{{ _('Myanmar') }}</span>
                   </h5>
                 </hgroup>
-                <img class="photo" src="{{ media('img/foundation/annualreport/2011/contributors/chit-thumb.jpg') }}" alt="">
+                <img class="photo" src="{{ static('img/foundation/annualreport/2011/contributors/chit-thumb.jpg') }}" alt="">
                 <p class="note">
                 {% trans %}
                   Chit started contributing to Mozilla in 2010 and has been
@@ -718,7 +719,7 @@
             </li>
 
             <li id="story-viking" class="vcard">
-              <a class="contributor contrib-play" href="//videos-cdn.mozilla.net/serv/drafts/Contributorstory2.webm" data-poster="{{ media('img/foundation/annualreport/2011/contributors/viking-poster.jpg') }}">
+              <a class="contributor contrib-play" href="//videos-cdn.mozilla.net/serv/drafts/Contributorstory2.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/viking-poster.jpg') }}">
                 <hgroup>
                   <h4 class="fn">{{ _('Viking Karwur') }}</h4>
                   <h5>
@@ -726,7 +727,7 @@
                     <span class="country-name">{{ _('Indonesia') }}</span>
                   </h5>
                 </hgroup>
-                <img class="photo" src="{{ media('img/foundation/annualreport/2011/contributors/viking-thumb.jpg') }}" alt="">
+                <img class="photo" src="{{ static('img/foundation/annualreport/2011/contributors/viking-thumb.jpg') }}" alt="">
                 <p class="note">
                 {% trans %}
                   Viking organized the first ever Firefox launch party in
@@ -738,7 +739,7 @@
             </li>
 
             <li id="story-keng" class="vcard">
-              <a class="contributor contrib-play" href="//videos-cdn.mozilla.net/serv/drafts/Contributorstory4.webm" data-poster="{{ media('img/foundation/annualreport/2011/contributors/keng-poster.jpg') }}">
+              <a class="contributor contrib-play" href="//videos-cdn.mozilla.net/serv/drafts/Contributorstory4.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/keng-poster.jpg') }}">
                 <hgroup>
                   <h4 class="fn">{{ _('Patipat “Keng” Susumpow') }}</h4>
                   <h5>
@@ -746,7 +747,7 @@
                     <span class="country-name">{{ _('Thailand') }}</span>
                   </h5>
                 </hgroup>
-                <img class="photo" src="{{ media('img/foundation/annualreport/2011/contributors/keng-thumb.jpg') }}" alt="">
+                <img class="photo" src="{{ static('img/foundation/annualreport/2011/contributors/keng-thumb.jpg') }}" alt="">
                 <p class="note">
                 {% trans %}
                   Keng kickstarted efforts to get Firefox localized in Thai and
@@ -757,7 +758,7 @@
             </li>
 
             <li id="story-claire" class="vcard">
-              <a class="contributor contrib-play" href="//videos-cdn.mozilla.net/serv/drafts/Contributorstory5.webm" data-poster="{{ media('img/foundation/annualreport/2011/contributors/claire-poster.jpg') }}">
+              <a class="contributor contrib-play" href="//videos-cdn.mozilla.net/serv/drafts/Contributorstory5.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/claire-poster.jpg') }}">
                 <hgroup>
                   <h4 class="fn">{{ _('Claire Corgnou') }}</h4>
                   <h5>
@@ -765,7 +766,7 @@
                     <span class="country-name">{{ _('France') }}</span>
                   </h5>
                 </hgroup>
-                <img class="photo" src="{{ media('img/foundation/annualreport/2011/contributors/claire-thumb.jpg') }}" alt="">
+                <img class="photo" src="{{ static('img/foundation/annualreport/2011/contributors/claire-thumb.jpg') }}" alt="">
                 <p class="note">
                 {% trans %}
                   Claire started contributing to Mozilla in 2009 and is the editor
@@ -776,7 +777,7 @@
             </li>
 
             <li id="story-haitham" class="vcard">
-              <a class="contributor contrib-play" href="//videos-cdn.mozilla.net/serv/drafts/Contributorstory6.webm" data-poster="{{ media('img/foundation/annualreport/2011/contributors/haitham-poster.jpg') }}">
+              <a class="contributor contrib-play" href="//videos-cdn.mozilla.net/serv/drafts/Contributorstory6.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/haitham-poster.jpg') }}">
                 <hgroup>
                   <h4 class="fn">{{ _('Haitham El-Ghareeb') }}</h4>
                   <h5>
@@ -784,7 +785,7 @@
                     <span class="country-name">{{ _('Egypt') }}</span>
                   </h5>
                 </hgroup>
-                <img class="photo" src="{{ media('img/foundation/annualreport/2011/contributors/haitham-thumb.jpg') }}" alt="">
+                <img class="photo" src="{{ static('img/foundation/annualreport/2011/contributors/haitham-thumb.jpg') }}" alt="">
                 <p class="note">
                 {% trans %}
                   A passionate open source evangelist in his native Egypt, Haitham
@@ -795,7 +796,7 @@
             </li>
 
             <li id="story-ioana" class="vcard">
-              <a class="contributor contrib-play" href="//videos-cdn.mozilla.net/serv/drafts/Contributorstory7.webm" data-poster="{{ media('img/foundation/annualreport/2011/contributors/ioana-poster.jpg') }}">
+              <a class="contributor contrib-play" href="//videos-cdn.mozilla.net/serv/drafts/Contributorstory7.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/ioana-poster.jpg') }}">
                 <hgroup>
                   <h4 class="fn">{{ _('Ioana Chiorean') }}</h4>
                   <h5>
@@ -803,7 +804,7 @@
                     <span class="country-name">{{ _('Romania') }}</span>
                   </h5>
                 </hgroup>
-                <img class="photo" src="{{ media('img/foundation/annualreport/2011/contributors/ioana-thumb.jpg') }}" alt="">
+                <img class="photo" src="{{ static('img/foundation/annualreport/2011/contributors/ioana-thumb.jpg') }}" alt="">
                 <p class="note">
                 {% trans %}
                   Ioana has been driving Mozilla hackathons across her native Romania
@@ -814,7 +815,7 @@
             </li>
 
             <li id="story-brian" class="vcard">
-              <a class="contributor contrib-play" href="//videos-cdn.mozilla.net/serv/drafts/Contributorstory8.webm" data-poster="{{ media('img/foundation/annualreport/2011/contributors/brian-poster.jpg') }}">
+              <a class="contributor contrib-play" href="//videos-cdn.mozilla.net/serv/drafts/Contributorstory8.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/brian-poster.jpg') }}">
                 <hgroup>
                   <h4 class="fn">{{ _('Brian King') }}</h4>
                   <h5>
@@ -822,7 +823,7 @@
                     <span class="country-name">{{ _('Slovenia') }}</span>
                   </h5>
                 </hgroup>
-                <img class="photo" src="{{ media('img/foundation/annualreport/2011/contributors/brian-thumb.jpg') }}" alt="">
+                <img class="photo" src="{{ static('img/foundation/annualreport/2011/contributors/brian-thumb.jpg') }}" alt="">
                 <p class="note">
                 {% trans %}
                   Brian has been contributing to Mozilla for more than a decade and
@@ -833,7 +834,7 @@
             </li>
 
             <li id="story-mohomodou" class="vcard">
-              <a class="contributor contrib-play" href="//videos-cdn.mozilla.net/serv/drafts/Contributorstory9.webm" data-poster="{{ media('img/foundation/annualreport/2011/contributors/mohomodou-poster.jpg') }}">
+              <a class="contributor contrib-play" href="//videos-cdn.mozilla.net/serv/drafts/Contributorstory9.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/mohomodou-poster.jpg') }}">
                 <hgroup>
                   <h4 class="fn">{{ _('Mohomodou Houssouba') }}</h4>
                   <h5>
@@ -841,7 +842,7 @@
                     <span class="country-name">{{ _('Mali') }}</span>
                   </h5>
                 </hgroup>
-                <img class="photo" src="{{ media('img/foundation/annualreport/2011/contributors/mohomodou-thumb.jpg') }}" alt="">
+                <img class="photo" src="{{ static('img/foundation/annualreport/2011/contributors/mohomodou-thumb.jpg') }}" alt="">
                 <p class="note">
                 {% trans %}
                   Passionate about reviving Songay, a dialect in his native Mali,

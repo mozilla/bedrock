@@ -36,7 +36,7 @@
   {# L10n: This is the string used to prepend to Google searches for latest plugin #}
   data-google-searchq="{{ _('current version plugin') }}"
 
-  data-media-url="{{ MEDIA_URL }}"
+  data-media-url="{{ static('') }}"
 {% endblock %}
 
 {% block content %}
@@ -130,7 +130,7 @@
         <li>{{_('Old plugins <strong>increase your risk</strong> for attack by malware, viruses, and other security threats.')}}</li>
         <li>{{_('<strong>Updated plugins have improvements</strong> that make the web <strong>better and safer</strong> for you.')}}</li>
       </ul>
-      <p><img src="{{ media('img/plugincheck/screenshots/addons-screenshot.jpg?2013-07') }}" width="440" height="301" alt="{{_('Screenshot of Add-Ons manager')}}" /></p>
+      <p><img src="{{ static('img/plugincheck/screenshots/addons-screenshot.jpg') }}" width="440" height="301" alt="{{_('Screenshot of Add-Ons manager')}}" /></p>
     </div>
     <div class="container-column">
       <h3>{{_('How can Firefox help me?')}}</h3>
@@ -156,7 +156,7 @@
       <p class="small">{{ _('Caution: disabling a plugin means that you will no longer be able to do certain things. For example, if you disable Flash, you will not be able to watch videos on YouTube.') }}</p>
     </div>
     <div class="moz-support">
-      <img src="{{ media('img/plugincheck/logos/sumo-logo.png') }}" class="moz-support-logo" width="199" height="31" alt="{{_('Mozilla Support')}}" />
+      <img src="{{ static('img/plugincheck/logos/sumo-logo.png') }}" class="moz-support-logo" width="199" height="31" alt="{{_('Mozilla Support')}}" />
       <h3>{{_('Have more questions?')}}</h3>
       <p>
         {% trans sumo_url='https://support.mozilla.org/' %}
