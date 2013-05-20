@@ -30,33 +30,44 @@
     <h1 class="large">{{_('Welcome to Firefox!')}}</h1>
   </header>
 
-  <article class="feature">
+  <article class="feature{% if version == '5' %} feature-alt{% endif %}">
     <div class="copy">
       <header>
-        {# L10n: Line break is for presentation only. Position as needed. #}
         <h1>
-        {% if copy == 'a' %}
-          {{ _('Doing good is <br>part of our code') }}
+        {% if version == '5' %}
+          {{ _('Better browsing starts now') }}
         {% else %}
-          {{ _('Discover what makes it different.') }}
+          {% if copy == 'a' %}
+            {# L10n: Line break is for presentation only. Position as needed. #}
+            {{ _('Doing good is <br>part of our code') }}
+          {% else %}
+            {{ _('Discover what makes it different.') }}
+          {% endif %}
         {% endif %}
         </h1>
       </header>
 
       <p>
-    {% if copy == 'a' %}
-      {% trans %}
-        Firefox is made with a mission to keep the power of the Web in the hands
-        of users everywhere - that includes you!
-      {% endtrans %}
+    {% if version == '5' %}
+      {{ _('We’re always looking for ways to make your browsing easier and more efficient.') }}
     {% else %}
-      {% trans %}
-        Our mission is to promote openness, innovation and opportunity by keeping
-        the power of the Web in people’s hands.
-      {% endtrans %}
+      {% if copy == 'a' %}
+        {% trans %}
+          Firefox is made with a mission to keep the power of the Web in the hands
+          of users everywhere - that includes you!
+        {% endtrans %}
+      {% else %}
+        {% trans %}
+          Our mission is to promote openness, innovation and opportunity by keeping
+          the power of the Web in people’s hands.
+        {% endtrans %}
+      {% endif %}
     {% endif %}
       </p>
 
+    {% if version == '5' %}
+      <a href="{{ url('firefox.customize') }}">{{ _('Learn about how we make browsing better for you') }}</a>
+    {% else %}
       <a class="featurelink" href="{{ url('mozorg.mission') }}">
       {% if copy == 'a' %}
         {{ _('Learn more about what makes us different') }}
@@ -64,6 +75,7 @@
         {{ _('See what that means for you') }}
       {% endif %}
       </a>
+    {% endif %}
 
       <ul class="social">
         <li>
@@ -78,7 +90,11 @@
     </div>
 
     <div class="screenshot">
+    {% if version == '5' %}
+      {{ platform_img('img/firefox/firstrun/b/features.jpg') }}
+    {% else %}
       <img src="{{ media('img/firefox/firstrun/b/doing-good-collage.jpg') }}">
+    {% endif %}
     </div>
   </article>
 
