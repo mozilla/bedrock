@@ -8,6 +8,7 @@ import jingo
 from commonware.response.decorators import xframe_allow
 
 from django.core.mail import EmailMessage
+from django.shortcuts import redirect
 
 from forms import PrivacyContactForm
 
@@ -56,7 +57,14 @@ def firefoxos(request):
         form = PrivacyContactForm(request.POST)
         form_submitted = submit_form(request, form)
 
-    return l10n_utils.render(request, 'privacy/ffos_privacy.html', {
+        response = redirect('privacy.firefoxos')
+        response['Location'] += '?submitted=%s' % form_submitted
+
+        return response
+    else:
+        form_submitted = request.GET.get('submitted')
+
+        return l10n_utils.render(request, 'privacy/ffos_privacy.html', {
                              'form': form,
                              'form_submitted': form_submitted
                              })

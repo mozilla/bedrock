@@ -1,7 +1,7 @@
 $(function() {
 
     var $panels = $('section');
-    var $anchors = $('main a');
+    var $anchors = $('main a:not([href*="http"])');
     var $success = $('.success');
     var $submission_state = $success.data('submission-state');
 
