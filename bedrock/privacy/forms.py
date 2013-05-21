@@ -5,6 +5,7 @@
 from django import forms
 from django.forms import widgets
 
+from bedrock.mozorg.forms import HoneyPotWidget
 
 class EmailInput(widgets.TextInput):
     input_type = 'email'
@@ -33,3 +34,6 @@ class PrivacyContactForm(forms.Form):
                 'rows': '10',
                 'cols': '77'
             }))
+    superpriority = forms.BooleanField(
+        widget=HoneyPotWidget,
+        required=False)

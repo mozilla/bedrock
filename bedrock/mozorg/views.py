@@ -26,6 +26,11 @@ from bedrock.mozorg.forms import (ContributeForm, ContributeUniversityAmbassador
 from bedrock.mozorg.util import hide_contrib_form
 
 
+def csrf_failure(request, reason=''):
+    template_vars = {'reason': reason}
+    return l10n_utils.render(request, 'mozorg/csrf-failure.html', template_vars)
+
+
 @xframe_allow
 def hacks_newsletter(request):
     return l10n_utils.render(request,
