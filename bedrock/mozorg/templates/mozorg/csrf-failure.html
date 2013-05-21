@@ -1,0 +1,30 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/base-resp.html" %}
+
+{% block page_title %}Invalid Request{% endblock %}
+{% block body_id %}csrf-failure{% endblock %}
+
+{% block extrahead %}
+  {{ css('csrf-failure') }}
+{% endblock %}
+
+{% block content %}
+
+<article id="main-content">
+  <h1 class="title-banner hinge">{{ _("Invalid Request") }}</h1>
+
+  <div class="container">
+    <p class="lede">
+    {% trans %}
+      We could not process your request.
+    {% endtrans %}
+    </p>
+  </div>
+</article>
+
+{% endblock %}
+
+{% block email_form %}{% endblock %}
