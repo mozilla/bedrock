@@ -13,7 +13,7 @@
     <title>{% block page_title_prefix %}Mozilla — {% endblock %}{% block page_title %}{% endblock %}{% block page_title_suffix %} — mozilla.org{% endblock %}</title>
 
     {% block tabzilla_css %}
-      <link href="/tabzilla/media/css/tabzilla.css?build=1" rel="stylesheet">
+      {{ css('tabzilla') }}
     {% endblock %}
 
     <!--[if lte IE 8]>
@@ -40,7 +40,7 @@
 
     {% block site_header %}
       <header id="masthead">
-        <a href="http://www.mozilla.org/" id="tabzilla">{{ _('Mozilla') }}</a>
+        <a href="https://www.mozilla.org/" id="tabzilla">{{ _('Mozilla') }}</a>
 
         {% block site_header_nav %}
         <nav id="nav-main" role="navigation">
@@ -122,7 +122,7 @@
       {{ js('common-resp') }}
     {% endblock %}
     {% block tabzilla_js %}
-      <script src="/tabzilla/media/js/tabzilla.js?build=1"></script>
+      <script src="{{ settings.CDN_BASE_URL }}{{ url('tabzilla') }}"></script>
     {% endblock %}
     {% block js %}{% endblock %}
   </body>
