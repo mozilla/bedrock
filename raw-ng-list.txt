@@ -93,6 +93,7 @@ mozilla.dev.tech.crypto.checkins        Join this list if you'd like to be autom
 css?
 mozilla.dev.tech.dom                    For discussions about the <a href="http://www.w3.org/DOM/">Document Object Model</a> (DOM) in Mozilla. For scripting discussions, see the <a href="../../js/scripting/">scripting resources</a> page.
 mozilla.dev.tech.editor                 For discussions about HTML and text editing controls, including the <a href="../../editor/">Composer</a> component, <a href="../../editor/midas-spec.html">rich text editing</a> and text widgets.
+mozilla.dev.tech.electrolysis           For discussions multi-process Firefox. (Moderated)
 mozilla.dev.tech.java                   For discussions about Java: both embedding <abbr title="Java Runtime Environment">JRE</abbr>s in Mozilla and extending Mozilla itself using Java code. Also check out the <a href="#dev-tech-plugins">plug-in forum</a>.
 mozilla.dev.tech.js-engine              For <a href="../../js/">JavaScript engines</a>, including <a href="../../js/spidermonkey/">Spidermonkey</a> (JavaScript in C) and <a href="../../rhino/">Rhino</a> (JavaScript in Java). For scripting support, see the <a href="../../js/scripting/">scripting resources</a>.
 mozilla.dev.tech.js-engine.internals    The internals of SpiderMonkey, the Mozilla JavaScript engine in C
@@ -173,6 +174,7 @@ mozilla.community.europe                The Mozilla community in Europe. (Modera
 mozilla.community.german                The Mozilla German-speaking community. (Moderated)
 mozilla.community.ghana                 The Mozilla community in Ghana.
 mozilla.community.greece                The Mozilla community in Greece. (Moderated)
+mozilla.community.hungary               The Mozilla community in Hungary. (Moderated)
 mozilla.community.india                 The Mozilla community in India.
 mozilla.community.indonesia             The Mozilla community in Indonesia. (Moderated)
 mozilla.community.ireland               The Mozilla community in Ireland. (Moderated)
@@ -211,6 +213,7 @@ mozilla.dev.l10n.fa                     Persian localization discussions.
 mozilla.dev.l10n.in                     Indian localization discussions.
 mozilla.dev.l10n.km                     Khmer localization discussions. (Moderated)
 mozilla.dev.l10n.lo                     Lao localization discussions. (Moderated)
+mozilla.dev.l10n.ms                     Malay localization discussions. (Moderated)
 mozilla.dev.l10n.my                     Burmese localization discussions. (Moderated)
 mozilla.dev.l10n.pl                     Polish localization discussions.
 mozilla.dev.l10n.pt-br                  Brazilian Portuguese localization discussions. (Moderated)
