@@ -3,7 +3,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from django.conf import settings
-from django.conf.urls.defaults import *
+from django.conf.urls import patterns
 
 from util import redirect
 
