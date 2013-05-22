@@ -401,7 +401,7 @@ var Tabzilla = (function (Tabzilla) {
     + '        </li>'
     + '        <li id="tabzilla-search">'
     + '          <a href="https://www.mozilla.org/community/directory.html">{{ _('Website Directory')|js_escape }}</a>'
-    + '          <form title="{{ _('Search Mozilla sites')|js_escape }}" role="search" action="http://www.google.com/cse">'
+    + '          <form title="{{ _('Search Mozilla sites')|js_escape }}" role="search" action="//www.google.com/cse">'
     + '            <input type="hidden" value="002443141534113389537:ysdmevkkknw" name="cx">'
     + '            <input type="hidden" value="FORID:0" name="cof">'
     + '            <label for="q">{{ _('Search')|js_escape }}</label>'
