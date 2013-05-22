@@ -1,7 +1,7 @@
 from mock import patch
 from django.test import Client
 from funfactory.urlresolvers import reverse
-import l10n_utils
+from lib import l10n_utils
 from bedrock.mozorg.tests import TestCase
 from nose.tools import eq_
 from pyquery import PyQuery as pq
