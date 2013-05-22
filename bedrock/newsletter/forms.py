@@ -134,7 +134,11 @@ class ManageSubscriptionsForm(forms.Form):
         # better option.
         if lang not in [x[0] for x in self.LANG_CHOICES]:
             name = get_lang_name(lang) or lang
-            self.fields['lang'].choices.append( (lang, name))
+            # note: .choices is a property, not actually a list, so
+            # xxx.choices.append(y) silently does nothing useful. Be
+            # more explicit:
+            self.fields['lang'].choices = \
+                self.fields['lang'].choices + [(lang, name)]
 
         self.already_subscribed = initial.get('newsletters', [])
 

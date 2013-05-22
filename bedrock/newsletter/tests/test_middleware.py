@@ -1,13 +1,14 @@
-from mock import patch
 from django.test import Client
+
 from funfactory.urlresolvers import reverse
-import l10n_utils
-from bedrock.mozorg.tests import TestCase
+from mock import patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
+from bedrock.mozorg.tests import TestCase
 
-@patch.object(l10n_utils, 'lang_file_is_active', lambda *x: True)
+
+@patch('lib.l10n_utils.dotlang.settings.DEV', True)
 class TestNewsletterFooter(TestCase):
     def setUp(self):
         self.view_name = 'firefox.fx'
