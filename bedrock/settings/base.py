@@ -245,6 +245,9 @@ MINIFY_BUNDLES = {
             'js/libs/video-js/video-js.css',
             'js/libs/video-js/video-js-sandstone.css',
         ),
+        'manifesto': (
+            'css/mozorg/manifesto.less',
+        ),
         'marketplace': (
             'css/marketplace/marketplace.less',
         ),
