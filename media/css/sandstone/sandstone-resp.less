@@ -622,6 +622,11 @@ nav.menu-bar {
 
     .form-submit {
         .span(3);
+        input {
+            // fix for IE 6/7 treating min-width as width
+            // for submit input
+            overflow: visible;
+        }
     }
 
     .field {
