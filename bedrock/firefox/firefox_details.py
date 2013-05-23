@@ -102,11 +102,13 @@ class FirefoxDetails(ProductDetails):
         """
         Get direct download url for the product.
         :param platform: OS. one of self.platform_info.keys()
-        :param language: a locale. e.g. pt-BR
+        :param language: a locale. e.g. pt-BR. one exception is ja-JP-mac
         :param version: a firefox version. one of self.latest_version.
         :param product: optional. probably 'firefox'
         :return: string url
         """
+        if platform == 'OS X' and language == 'ja':
+            language = 'ja-JP-mac'
         return '?'.join([self.download_base_url_direct,
                          urlencode([
                              ('product', '%s-%s' % (product, version)),
