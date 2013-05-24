@@ -65,6 +65,22 @@ class TestManageSubscriptionsForm(TestCase):
         self.assertEqual('pt', form.initial['lang'])
         self.assertEqual('br', form.initial['country'])
 
+    def test_long_language(self):
+        # Suppose their selected language in ET is a long form ("es-ES")
+        # while we only have the short forms ("es") in our list of
+        # valid languages.  We should fake it - add es-ES to the choices
+        # so that it both shows up, and is selected by default.
+        locale = "es-ES"
+        form = ManageSubscriptionsForm(locale=locale,
+                                       initial={
+                                           'lang': 'es-ES',
+                                           'country': 'es',
+                                       })
+        # Initial value is 'es-ES'
+        self.assertEqual('es-ES', form.initial['lang'])
+        # es-ES is one of the valid choices for this field
+        self.assertIn('es-ES', [x[0] for x in form.fields['lang'].choices])
+
 
 class TestNewsletterForm(TestCase):
     @mock.patch('bedrock.newsletter.utils.get_newsletters')
