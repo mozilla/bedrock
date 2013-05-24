@@ -380,12 +380,11 @@ $(document).ready(function() {
             }
         // TODO: check for and stop animations
         } else {
-            linkWidth = $link.width();
 
             $thumb.css({
                 'right' : 'auto',
                 'top' : currentSize.marginHeight,
-                'left' : linkWidth - currentSize.thumbWidth - currentSize.marginWidth,
+                'left' : currentSize.linkWidth - currentSize.thumbWidth - currentSize.marginWidth,
                 'width' : currentSize.thumbWidth,
                 'height' : currentSize.thumbHeight
             });
@@ -548,7 +547,8 @@ $(document).ready(function() {
             videoWidth : 320,
             videoHeight : 180,
             marginWidth : 0,
-            marginHeight : 0
+            marginHeight : 0,
+            linkWidth: 320
         },
         {
             thumbWidth : 440,
@@ -556,7 +556,8 @@ $(document).ready(function() {
             videoWidth : 440,
             videoHeight : 248,
             marginWidth : 0,
-            marginHeight : 0
+            marginHeight : 0,
+            linkWidth: 440
         },
         {
             thumbWidth : 280,
@@ -564,7 +565,8 @@ $(document).ready(function() {
             videoWidth : 720,
             videoHeight : 405,
             marginWidth : 20,
-            marginHeight : 20
+            marginHeight : 20,
+            linkWidth: 760
         },
         {
             thumbWidth : 380,
@@ -572,7 +574,8 @@ $(document).ready(function() {
             videoWidth : 853,
             videoHeight : 480,
             marginWidth : 30,
-            marginHeight : 25
+            marginHeight : 25,
+            linkWidth: 1000
         }
     ];
 
