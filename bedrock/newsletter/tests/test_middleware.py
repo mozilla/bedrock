@@ -1,4 +1,5 @@
 from mock import patch
+from django.conf import settings
 from django.test import Client
 from funfactory.urlresolvers import reverse
 import l10n_utils
@@ -13,6 +14,7 @@ class TestNewsletterFooter(TestCase):
         self.view_name = 'firefox.fx'
         self.client = Client()
 
+    @patch.object(settings, 'DEV', True)
     def test_country_selected(self):
         """
         The correct country for the locale should be initially selected.
@@ -32,6 +34,7 @@ class TestNewsletterFooter(TestCase):
         doc = pq(resp.content)
         eq_(doc('#id_country option[selected="selected"]').val(), 'br')
 
+    @patch.object(settings, 'DEV', True)
     def test_language_selected(self):
         """
         The correct language for the locale should be initially selected or
