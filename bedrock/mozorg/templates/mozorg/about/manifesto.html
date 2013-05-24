@@ -7,12 +7,6 @@
 {% block page_title %}{{ _('The Mozilla Manifesto') }}{% endblock %}
 {% block body_id %}about-manifesto{% endblock %}
 
-{% block extrahead %}
-  {{ super() }}
-  {{ css('manifesto') }}
-{% endblock %}
-
-
 {% block article %}
   <h1 class="title-banner">{{ _('The Mozilla Manifesto') }}</h1>
   <h2 id="introduction">{{_('Introduction')}}</h2>
@@ -85,10 +79,5 @@
   <p>
     {{_('The Mozilla Foundation invites all others who support the principles of the Mozilla Manifesto to join with us, and to find new ways to make this vision of the Internet a reality.')}}
   </p>
-
-  {# Per-locale translation credits #}
-  {% if _('Translation provided by [localizer].') != 'Translation provided by [localizer].'  %}
-  <p class="credit small">{{ _('Translation provided by [localizer].') }}</p>
-  {% endif %}
 
 {% endblock %}
