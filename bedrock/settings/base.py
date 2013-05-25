@@ -674,8 +674,8 @@ LOCALES_WITH_TRANSITION = ['en-US', 'af', 'ar', 'ast', 'be', 'bg',
 
 # Locales showing the 15th Anniversary slideshow on /contribute
 LOCALES_WITH_MOZ15 = ['de', 'el', 'en-GB', 'en-US', 'es-AR', 'es-CL', 'es-ES',
-                      'es-MX', 'fr', 'id', 'nl', 'pt-BR', 'ru', 'sq', 'zh-CN',
-                      'zh-TW']
+                      'es-MX', 'fr', 'id', 'nl', 'pt-BR', 'ru', 'sq', 'sr',
+                      'zh-CN', 'zh-TW']
 
 # reCAPTCHA keys
 RECAPTCHA_PUBLIC_KEY = ''
