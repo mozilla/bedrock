@@ -6,6 +6,8 @@ from django import forms
 from django.forms import widgets
 
 from bedrock.mozorg.forms import HoneyPotWidget
+from lib.l10n_utils.dotlang import _lazy as _
+
 
 class EmailInput(widgets.TextInput):
     input_type = 'email'
@@ -14,12 +16,18 @@ class EmailInput(widgets.TextInput):
 class PrivacyContactForm(forms.Form):
     name = forms.CharField(
         required=True,
+        error_messages={
+            'required': _('This field is required, please enter your name.')
+        },
         widget=forms.TextInput(
             attrs={
                 'required': 'true'
             }))
     sender = forms.EmailField(
         required=True,
+        error_messages={
+            'required': _('This field is required, please enter your email address.')
+        },
         widget=EmailInput(
             attrs={
                 'required': 'true',
@@ -27,6 +35,9 @@ class PrivacyContactForm(forms.Form):
             }))
     comments = forms.CharField(
         required=True,
+        error_messages={
+            'required': _('This field is required, please enter your comments or questions.')
+        },
         widget=forms.Textarea(
             attrs={
                 'required': 'true',
