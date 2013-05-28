@@ -7,6 +7,10 @@
 # codebase.
 set -e
 
+if [ -z $WORKSPACE ] ; then
+  WORKSPACE=`/bin/pwd`
+fi
+
 cd $WORKSPACE
 VENV=$WORKSPACE/venv
 
