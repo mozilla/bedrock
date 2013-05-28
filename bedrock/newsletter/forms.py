@@ -10,7 +10,7 @@ from django.utils.safestring import mark_safe
 
 from bedrock.mozorg.forms import (
     FORMATS, LANGS, EmailInput, PrivacyWidget,
-    SideRadios, get_lang_choices, get_lang_name)
+    SideRadios, get_lang_choices)
 from product_details import product_details
 from tower import ugettext as _
 
@@ -118,23 +118,31 @@ class ManageSubscriptionsForm(forms.Form):
             initial['lang'] = lang
         else:
             lang = initial['lang']
-        kwargs['initial'] = initial
-
-        super(ManageSubscriptionsForm, self).__init__(*args, **kwargs)
-        self.fields['country'].choices = regions
 
         # Sometimes people are in ET with a language that is spelled a
-        # little differently from our list. E.g. we have 'pt' on our
-        # list, but in ET their language is 'pt-BR'. We need to make
-        # sure their exact language is a choice on the language field,
-        # otherwise it'll get reset to whatever the first language in
-        # the list is (Indonesian?) - very surprising to the user.
-        # Try to get a valid name for their language to display in the
-        # list, but if we can't, just use the abbrev for lack of any
-        # better option.
+        # little differently from our list. E.g. we have 'es' on our
+        # list, but in ET their language is 'es-ES'. Try to find a match
+        # for their current lang in our list and use that. If we can't
+        # find one, then fall back to guessing from their locale,
+        # ignoring what they had in ET.  (This is just for the initial
+        # value on the form; they can always change to another valid
+        # language before submitting.)
         if lang not in [x[0] for x in self.LANG_CHOICES]:
-            name = get_lang_name(lang) or lang
-            self.fields['lang'].choices.append( (lang, name))
+            for valid_lang, _unused in self.LANG_CHOICES:
+                # if the first two chars match, close enough
+                if lang.lower()[:2] == valid_lang.lower()[:2]:
+                    lang = valid_lang
+                    break
+            else:
+                # No luck - guess from the locale
+                lang = locale.lower()
+                if '-' in lang:
+                    lang, _unused = lang.split('-', 1)
+            initial['lang'] = lang
+
+        kwargs['initial'] = initial
+        super(ManageSubscriptionsForm, self).__init__(*args, **kwargs)
+        self.fields['country'].choices = regions
 
         self.already_subscribed = initial.get('newsletters', [])
 

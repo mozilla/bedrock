@@ -5,14 +5,15 @@ import mock
 
 from bedrock.mozorg.tests import TestCase
 
-from ..forms import (BooleanRadioRenderer, UnlabeledTableCellRadios,
-                     NewsletterForm, ManageSubscriptionsForm)
+from ..forms import (BooleanRadioRenderer, ManageSubscriptionsForm,
+                     NewsletterForm, UnlabeledTableCellRadios)
 from .test_views import newsletters
 
 
 class TestRenderers(TestCase):
 
     def test_radios(self):
+        """Test radio button renderer"""
         choices = ((123, "NAME_A"), (245, "NAME_2"))
         renderer = UnlabeledTableCellRadios("name", "value", {}, choices)
         output = str(renderer)
@@ -28,7 +29,7 @@ class TestRenderers(TestCase):
         self.assertIn("</td><td>", output)
 
     def test_boolean_true(self):
-        # Boolean renderer starts with True selected if value given is True
+        """renderer starts with True selected if value given is True"""
         choices = ((False, "False"), (True, "True"))
         renderer = BooleanRadioRenderer("name", value="True", attrs={},
                                         choices=choices)
@@ -38,7 +39,7 @@ class TestRenderers(TestCase):
         self.assertIn('checked=checked value="True"', output)
 
     def test_boolean_false(self):
-        # Boolean renderer starts with False selected if value given is True
+        """renderer starts with False selected if value given is False"""
         choices = ((False, "False"), (True, "True"))
         renderer = BooleanRadioRenderer("name", value="False", attrs={},
                                         choices=choices)
@@ -50,6 +51,7 @@ class TestRenderers(TestCase):
 
 class TestManageSubscriptionsForm(TestCase):
     def test_locale(self):
+        """Get initial lang, country from the right places"""
         # Get initial lang and country from 'initial' if provided there,
         # else from the locale passed in
         # First, not passed in
@@ -65,11 +67,38 @@ class TestManageSubscriptionsForm(TestCase):
         self.assertEqual('pt', form.initial['lang'])
         self.assertEqual('br', form.initial['country'])
 
+    def test_long_language(self):
+        """Fuzzy match their language preference"""
+        # Suppose their selected language in ET is a long form ("es-ES")
+        # while we only have the short forms ("es") in our list of
+        # valid languages.  Or vice-versa.  Find the match to the one
+        # in our list and use that, not the lang from ET.
+        locale = "en-US"
+        form = ManageSubscriptionsForm(locale=locale,
+                                       initial={
+                                           'lang': 'es-ES',
+                                           'country': 'es',
+                                       })
+        # Initial value is 'es'
+        self.assertEqual('es', form.initial['lang'])
+
+    def test_bad_language(self):
+        """Handle their language preference if it's not valid"""
+        # Suppose their selected language in ET is one we don't recognize
+        # at all.  Use the language from their locale instead.
+        locale = "pt-BR"
+        form = ManageSubscriptionsForm(locale=locale,
+                                       initial={
+                                           'lang': 'zz',
+                                           'country': 'es',
+                                       })
+        self.assertEqual('pt', form.initial['lang'])
+
 
 class TestNewsletterForm(TestCase):
     @mock.patch('bedrock.newsletter.utils.get_newsletters')
     def test_form(self, get_newsletters):
-        # test NewsletterForm
+        """test NewsletterForm"""
         # not much to test, but at least construct one
         get_newsletters.return_value = newsletters
         title = "Newsletter title"
