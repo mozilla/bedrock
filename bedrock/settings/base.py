@@ -242,6 +242,7 @@ MINIFY_BUNDLES = {
         ),
         'home': (
             'css/mozorg/home.less',
+            'css/mozorg/home-promo.less',
             'js/libs/video-js/video-js.css',
             'js/libs/video-js/video-js-sandstone.css',
         ),

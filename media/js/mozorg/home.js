@@ -589,7 +589,7 @@ $(document).ready(function() {
 
     var currentSize = getSize();
     var $thumb = createThumb();
-    var $link = $thumb.next();
+    var $link = $('#page-promo-flicksvideo > a');
     var $container = createContainer();
     var $goLink = createGoLink($link);
     var $close = createCloseButton();
