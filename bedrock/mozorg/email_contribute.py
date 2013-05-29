@@ -88,6 +88,7 @@ INTEREST_CHOICES = (('', _('Area of interest?')),) + tuple(
 FUNCTIONAL_AREAS_DICT = dict((area.id, area) for area in FUNCTIONAL_AREAS)
 
 LOCALE_CONTACTS = {
+    'bg': ['community@bgzilla.org'],
     'bn-BD': ['mahayalamkhan@gmail.com'],
     'de'   : ['getinvolved@camp-firefox.de'],
     'fr'   : ['contact@mozfr.org'],
@@ -102,6 +103,7 @@ LOCALE_CONTACTS = {
     'nl'   : ['contribute@mozilla-nl.org'],
     'pt-BR': ['envolva-se-mozilla-brasil@googlegroups.com'],
     'ru'   : ['contribute@mozilla-russia.org'],
+    'sl'   : ['info@mozilla.si'],
     'sr'   : ['prikljucise@mozilla-srbija.org'],
     'sq'   : ['besnik@mozilla-albania.org'],
     'zh-CN': ['contributor-zh-cn@mozilla.org'],
