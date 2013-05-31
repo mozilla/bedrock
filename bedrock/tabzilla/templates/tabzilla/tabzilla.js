@@ -147,6 +147,10 @@ var Tabzilla = (function (Tabzilla) {
         nav.on('keydown.submenu', function (event) {
             var which = event.which;
             var target = $(event.target);
+            // search
+            if (target.is('input')) {
+                return true;
+            }
             // enter or space
             if (which === 13 || which === 32) {
                 event.preventDefault();
