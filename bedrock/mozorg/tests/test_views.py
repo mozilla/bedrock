@@ -142,7 +142,7 @@ class TestContribute(TestCase):
         eq_(m.from_email, 'contribute-form@mozilla.org')
         eq_(m.to, [self.contact])
         eq_(m.cc, [])
-        eq_(m.extra_headers['Reply-To'], ','.join(cc))
+        eq_(m.extra_headers['Reply-To'], ','.join(['contribute@mozilla.org'] + cc))
 
     @patch.object(ReCaptchaField, 'clean', Mock())
     def test_no_autoresponse_locale(self):
