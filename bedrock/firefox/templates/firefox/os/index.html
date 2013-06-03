@@ -11,12 +11,9 @@
 {% block body_id %}firefox-os{% endblock %}
 {% block body_class %}firefox-os{% endblock %}
 
-{% block site_css %}
-  {{ css('firefox_os') }}
-{% endblock %}
-
 {% block extrahead %}
-{{ super() }}
+  {{ super() }}
+  {{ css('firefox_os') }}
 <!--[if lt IE 9]>
   {{ css('firefox_os_ie') }}
 <![endif]-->

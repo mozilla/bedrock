@@ -64,20 +64,18 @@ a.more {
     .trailing-arrow();
 }
 
-.sand {
-    #outer-wrapper {
-        background: #f5f1e8 url(/media/img/sandstone/bg-sand.png) repeat;
-        background: url(/media/img/sandstone/bg-gradient-sand.png) repeat-x 0 0,
-                    url(/media/img/sandstone/bg-sand.png) repeat 0 0,
-                    #f5f1e8;
-    }
+.sand #outer-wrapper {
+    background: #f5f1e8 url(/media/img/sandstone/bg-gradient-sand.png) repeat-x;
+    background: url(/media/img/sandstone/bg-gradient-sand.png) repeat-x,
+                url(/media/img/sandstone/bg-sand.png) repeat,
+                #f5f1e8;
 }
 
 .sky {
     #outer-wrapper {
-        background: #eee url(/media/img/sandstone/grain.png) repeat;
-        background: url(/media/img/sandstone/bg-gradient-sky.png) repeat-x 0 0,
-                    url(/media/img/sandstone/grain.png) repeat 0 0,
+        background: #eee url(/media/img/sandstone/bg-gradient-sky.png) repeat-x;
+        background: url(/media/img/sandstone/bg-gradient-sky.png) repeat-x,
+                    url(/media/img/sandstone/grain.png) repeat,
                     #eee;
     }
 
@@ -89,16 +87,13 @@ a.more {
             color: darken(@linkSkyBlue, 10%);
         }
     }
-
 }
 
 .space {
     color: #fff;
 
     #outer-wrapper {
-        background-color: #04020b;
-        background-image: url(/media/img/sandstone/bg-space.png);
-        background-repeat: repeat-x;
+        background: #04020b url(/media/img/sandstone/bg-space.png) repeat-x;
     }
 
     a {

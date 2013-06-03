@@ -6,6 +6,10 @@
   <head>
     <meta charset="utf-8">{# Note: Must be within first 512 bytes of page #}
 
+<!--
+{% include "includes/careers-teaser.html" %}
+-->
+
     {% block ga_experiments %}{% endblock %}
     {% block extra_meta %}{% endblock %}
 
@@ -35,17 +39,33 @@
       {{ css('tabzilla') }}
     {% endblock %}
 
-    <!--[if lt IE 9]>
-      <script src="{{ MEDIA_URL }}js/libs/html5shiv.js"></script>
+    <!--[if lte IE 8]>
+      {# Only needed for IE before v9 #}
+      <script src="{{ media('js/libs/html5shiv.js') }}"></script>
     <![endif]-->
 
+    <!--[if lte IE 7]>
+      {# Basic styles, only for IE7 and lower #}
+      {{ css('oldIE') }}
+    <![endif]-->
+
+    <!--[if !lte IE 7]><!-->
+    {# Global styles, hidden from IE7 and lower #}
     {% block site_css %}
       {{ css('common') }}
     {% endblock %}
 
+    {# Page-specific styles, hidden from IE7 and lower #}
+    {% block page_css %}{% endblock %}
+    <!--<![endif]-->
+
+    {% block extrahead %}
+      {# Extra header stuff (scripts, styles, metadata, etc) seen by all browsers. Use the 'page_css' block for CSS you want to hide from IE7 and lower. #}
+    {% endblock %}
+
     {% include 'includes/locale-font-faces.html' %}
 
-    {% block extrahead %}{% endblock %}
+    {% block favicon %}<link rel="shortcut icon" href="{{ media('img/favicon.ico') }}">{% endblock %}
 
     {{ js('site') }}
 
@@ -53,6 +73,7 @@
       {% include 'includes/optimizely.html' %}
     {% endblock %}
 
+    {% block js_pretrack %}{# include JavaScript that must be run pre GA tracking here #}{% endblock %}
     {% block google_analytics %}
       {% include 'includes/google-analytics.html' %}
     {% endblock %}
