@@ -1,0 +1,683 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+// This style sheet is served exclusively to Internet Explorer 7 and older.
+// Old versions get this minimal style while IE8 and up recieve more advanced styling.
+
+@import "lib.less";
+@import "reset.less";
+@import "buttons.less";
+@import "../firefox/menu.less";
+
+// @Fonts
+// oldIE only supports EOT so we needn't include TTF or Woff.
+@font-face {
+    font-family: 'Open Sans Light';
+    src: url('/media/fonts/OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Open Sans Light';
+    src: url('/media/fonts/OpenSans-Semibold-webfont.eot?#iefix') format('embedded-opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Open Sans Light';
+    src: url('/media/fonts/OpenSans-LightItalic-webfont.eot?#iefix') format('embedded-opentype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('/media/fonts/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('/media/fonts/OpenSans-Bold-webfont.eot?#iefix') format('embedded-opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('/media/fonts/OpenSans-Italic-webfont.eot?#iefix') format('embedded-opentype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+
+
+// General styles and containers
+html {
+    background: #fff;
+}
+
+body {
+    font-size: 100%;
+    line-height: 1.5;
+    font-family: @baseFontFamily;
+    color: @textColorPrimary;
+    background: #fff;
+}
+
+#outer-wrapper {
+    position: relative;
+    border-top: 2px solid #fff;
+    background: #f9f9f9 url(/media/img/sandstone/bg-stone.png) 0 0 repeat-x;
+    zoom: 1;
+}
+
+#wrapper {
+    margin: 0 auto;
+    position: relative;
+    width: @widthDesktop - (@gridGutterWidth * 2);
+    zoom: 1;
+}
+
+#masthead,
+#main-feature,
+#main-content,
+#colophon,
+.billboard,
+.container {
+    display: block;
+    margin: 0 auto;
+    padding-left: @gridGutterWidth;
+    padding-right: @gridGutterWidth;
+    width: @widthDesktop - (@gridGutterWidth * 2);
+    zoom: 1;
+}
+
+#main-content,
+#main-feature {
+    padding-bottom: 48px;
+}
+
+.main-column {
+    width: 540px;
+    float: left;
+    margin: 0 10px;
+}
+
+.sidebar {
+    width: 220px;
+    float: left;
+    margin: 0 10px 0 170px;
+}
+
+.billboard {
+    padding-top: @baseLine * 2;
+    padding-bottom: @baseLine * 2;
+    margin: 0 -@baseLine (@baseLine * 2) -@baseLine;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+
+    h1, h2, h3, h4, h5, h6, .huge, .large {
+        color: @textColorSecondary;
+    }
+}
+
+.callout-content {
+    display: block;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    margin: 0 auto @baseLine;
+    padding-left: @gridGutterWidth;
+    padding-right: @gridGutterWidth;
+    zoom: 1;
+}
+
+// An arbitrary container for translatable strings to use in in scripts
+#strings {
+    display: none;
+}
+
+// oldIE doesn't get a mosaic
+#mosaic {
+    display: none;
+}
+
+
+
+// Links
+a:link,
+a:visited {
+    color: @linkBlue;
+    text-decoration: none;
+}
+
+a:hover,
+a:focus,
+a:active {
+    color: darken(@linkBlue, 10%);
+    text-decoration: underline;
+}
+
+
+
+// Headings
+h1, h2, h3, h4, h5, h6, legend, .huge, .large {
+    .open-sans-light;
+    color: @textColorSecondary;
+    display: block;
+    line-height: 1;
+    margin: 0 0 12px 0;
+}
+
+.huge,
+.huge h1 {
+    font-size: 6.75em;
+    letter-spacing: -4px;
+    line-height: 1;
+}
+
+.large,
+.large h1 {
+    font-size: 4.5em;
+    letter-spacing: -3px;
+    line-height: 1;
+}
+
+h1,
+.huge h2,
+.large h2,
+.billboard h2 {
+    font-size: 3em;
+    letter-spacing: -2px;
+}
+
+h2 {
+    font-size: 2em;
+    letter-spacing: -1px;
+}
+
+h3 {
+    font-size: 1.75em;
+    letter-spacing: -0.5px;
+}
+
+h4,
+h1 .large,
+h2 .large {
+    font-size: 1.5em;
+    letter-spacing: -0.25px;
+}
+
+h5, legend {
+    font-size: 1em;
+}
+
+h6 {
+    font-size: .875em;
+}
+
+.small,
+small {
+    font-size: .75em;
+    line-height: 1.25;
+}
+
+hgroup {
+    h1, h2, h3, h4, h5, h6 {
+        margin-bottom: 0;
+    }
+}
+
+legend {
+    color: @textColorPrimary;
+    white-space: normal;
+}
+
+.title-shadow-box {
+    .open-sans-light;
+    background: #b30406;
+    color: #fff;
+    font-size: 48px;
+    letter-spacing: -2px;
+    margin: -60px 10px 40px;
+    padding: 20px;
+    position: relative;
+    width: 420px;
+    zoom: 1;
+}
+
+
+
+// Common elements
+p,
+ul,
+ol,
+dl,
+hgroup {
+    margin: 0 0 @baseLine 0;
+}
+
+ul.unstyled,
+ol.unstyled {
+    li {
+        list-style-type: none;
+        margin-left: 0;
+    }
+    li li {
+        list-style-type: disc;
+        margin-left: 20px;
+    }
+}
+
+li ul,
+li ol {
+    margin-bottom: 0;
+}
+
+li {
+    margin-left: 20px;
+}
+
+dt {
+    .open-sans-light;
+    font-size: 2em;
+    line-height: 100%;
+    letter-spacing: -1px;
+    margin-bottom: @baseLine / 2;
+}
+
+dd {
+    margin-bottom: @baseLine * 2;
+}
+
+dl.faq dt {
+    font-size: 1.125em;
+}
+
+dl.faq dd {
+    margin-bottom: 1.5em;
+}
+
+pre,
+code {
+    color: @textColorTertiary;
+    font-size: .875em;
+}
+
+.center {
+    text-align: center;
+}
+
+img {
+    -ms-interpolation-mode: bicubic;
+}
+
+
+
+// Color schemes
+.sand #outer-wrapper {
+    background: #f5f1e8 url(/media/img/sandstone/bg-gradient-sand.png) repeat-x;
+}
+
+.sky {
+    #outer-wrapper {
+        background: #eee url(/media/img/sandstone/bg-gradient-sky.png) repeat-x;
+    }
+
+    a:link,
+    a:visited {
+        color: @linkSkyBlue;
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+        color: darken(@linkSkyBlue, 10%);
+    }
+
+    #main-feature {
+        position: relative;
+
+        .download-button {
+            position: absolute;
+            right: 30px;
+            top: 0;
+        }
+    }
+}
+
+.space {
+    color: #fff;
+
+    #outer-wrapper {
+        background: #04020b url(/media/img/sandstone/bg-space.png) repeat-x;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        color: #fff;
+    }
+
+    a:link,
+    a:visited {
+        color: @linkSpaceBlue;
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+        color: lighten(@linkSpaceBlue, 10%);
+    }
+
+    #masthead nav li {
+        a:link,
+        a:visited {
+            color: @linkSpacePurple;
+        }
+
+        li {
+            a:link,
+            a:visited {
+                color: @textColorSecondary;
+            }
+        }
+    }
+}
+
+
+
+// Header navigation
+#masthead {
+    h2 {
+        padding: (@baseLine * 1.5) 0 @baseLine;
+        margin: 0 (@gridGutterWidth / 2);
+    }
+
+    nav {
+        float: right;
+        margin-right: 16px;
+        text-transform: uppercase;
+        font-size: .8125em;
+
+        li {
+            .inline-block;
+            list-style-type: none;
+            margin: 0;
+            a,
+            b {
+                display: inline-block;
+                padding: 12px;
+                font-weight: normal;
+            }
+            b,
+            .current {
+                background-position: 50% 0;
+                background-repeat: no-repeat;
+                background-image: url(/media/img/sandstone/menu-current.png);
+            }
+            a:link,
+            a:visited {
+                color: @textColorSecondary;
+            }
+        }
+    }
+}
+
+#masthead .toggle {
+    display: none; /* oldIE never gets a mobile menu. */
+}
+
+
+
+// Header Breadcrumbs
+#masthead {
+    .breadcrumbs {
+        padding: 0 10px (@baseLine / 2) 10px;
+        float: none;
+
+        a,
+        span {
+            margin-right: .5em;
+            margin-left: .5em;
+        }
+    }
+}
+
+
+
+// Menu bar
+.menu-bar {
+    margin-bottom: @baseLine * 2;
+    padding-bottom: 0;
+    padding-top: 0;
+    text-align: center;
+
+    ol,
+    ul {
+        margin: 0;
+        list-style: none;
+
+        li {
+            display: inline;
+            margin: 0;
+            padding-bottom: (@baseLine / 2);
+            padding-top: (@baseLine / 2);
+            zoom: 1;
+
+            a {
+                border-left: 1px dotted @borderColor;
+                display: inline;
+                padding: @baseLine / 3 @baseLine;
+                zoom: 1;
+
+                span {
+                    display: block;
+                }
+            }
+
+            &:first-child a {
+                border-left: 0;
+            }
+        }
+    }
+}
+
+
+
+// Sidebar navigation
+.sidebar nav,
+.sidebar .nav {
+    font-size: 1em;
+    color: @textColorSecondary;
+
+    li {
+        list-style-type: none;
+        border-bottom: 1px dotted #ccc;
+        margin: 0;
+        line-height: 1.1;
+
+        a, b {
+            display: block;
+            padding: 8px 0;
+        }
+
+        li b {
+            font-weight: bold;
+        }
+
+    }
+
+    li:first-child {
+        font-size: 24px;
+    }
+}
+
+.sidebar .reference {
+    margin: @baseLine * 2  auto;
+
+    .more {
+        display: block;
+        padding: (@baseLine / 2) 0;
+        border-bottom: 1px dotted @borderColor;
+    }
+
+    p {
+        margin: 0;
+    }
+}
+
+
+
+// Our standard footer email form
+#footer-email-form {
+    padding-top: @baseLine;
+    padding-bottom: @baseLine;
+    margin-bottom: 0;
+
+    h3 {
+        .span(4);
+    }
+
+    .form-contents {
+        .span(5);
+    }
+
+    .form-submit {
+        .span(3);
+
+        input {
+            overflow: visible;
+        }
+    }
+
+    .field {
+        padding: 0 0 8px 0;
+    }
+
+    .field-email input,
+    #form-details select {
+        width: 80%;
+    }
+
+    .field-privacy {
+        font-size: @smallFontSize;
+
+        input {
+            float: left;
+        }
+
+        .title {
+            display: block;
+            padding-left: 25px;
+        }
+    }
+}
+
+#footer-email-form.thank h3 {
+    width: auto;
+    margin: auto;
+    padding: 0;
+    float: none;
+}
+
+.js {
+    #form-details,
+    .form-details { display: none; }
+
+    .has-errors #form-details,
+    .has-errors .form-details { display: block; }
+
+    p.form-details {
+        margin-top: 8px;
+        line-height: 1;
+        color: @textColorSecondary;
+    }
+}
+
+#footer-email-errors .errorlist {
+    .container;
+    background: #af3232;
+    color: #fff;
+    padding-top: @baseLine / 2;
+    padding-bottom: @baseLine / 2;
+}
+
+
+
+// Footer
+#colophon {
+    background: #fff;
+    color: @textColorTertiary;
+    font-size: .875em;
+    margin: 1em 0 0;
+    padding: (@baseLine * 2) 0;
+    width: 100%;
+
+    .row {
+        width: @widthDesktop - (@gridGutterWidth * 2);
+        zoom: 1;
+        margin: 0 auto;
+    }
+
+    .footer-logo,
+    .footer-license,
+    .footer-nav {
+        margin: 0 (@gridGutterWidth / 2);
+    }
+
+    .footer-logo {
+        .span(3);
+    }
+
+    .footer-license {
+        .span(3);
+    }
+
+    .footer-nav {
+        .span(2);
+    }
+
+    a:link,
+    a:visited {
+        color: @linkBlue;
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+        color: darken(@linkBlue, 10%);
+    }
+
+    p {
+        margin-bottom: @baseLine / 2;
+    }
+
+    .footer-nav li {
+        list-style-type: none;
+        margin: 0 0 2px 0;
+    }
+}
+
+
+
+
+// Don't display the dynamic platform images when js is disabled
+// because the ones in the noscript tag will be shown
+.no-js .platform-img.js {
+    display: none;
+}
+
+.hidden {
+    .visually-hidden();
+}
+
+// not the most up to date method, but works in IE7
+.image-replaced {
+    text-indent: 110%; // extra 10% to account for fancy fonts that may overhang
+    white-space: nowrap;
+    overflow: hidden;
+}
+
