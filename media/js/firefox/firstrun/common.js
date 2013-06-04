@@ -59,7 +59,7 @@
 
     $video_content = $video.detach();
 
-    Mozilla.Modal.create_modal(this, $video_content, position_video, reattach_video);
+    Mozilla.Modal.create_modal(this, $video_content, { onCreate: position_video, onDestroy: reattach_video });
 
     video_closing = false;
 

@@ -1,0 +1,38 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+.bg-soccer {
+  background: transparent;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/media/img/firefox/os/bg/1400/soccer.jpg', sizingMethod='scale');
+  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src=/media/img/firefox/os/bg/1400/soccer.jpg, sizingMethod='scale')";     
+}
+
+.bg-cafe {
+  background: transparent;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/media/img/firefox/os/bg/1400/cafe.jpg', sizingMethod='scale');
+  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src=/media/img/firefox/os/bg/1400/cafe.jpg, sizingMethod='scale')";   
+}
+
+.bg-birthday {
+  background: transparent;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/media/img/firefox/os/bg/1400/birthday.jpg', sizingMethod='scale');
+  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src=/media/img/firefox/os/bg/1400/birthday.jpg, sizingMethod='scale')";   
+}
+
+#masthead {
+  .curr:before,
+  .curr:after {
+    border: none;
+  }
+}
+
+// fix ie7 z-index bug
+#get-firefox-os {
+  .item {
+    z-index: 5;
+  }
+  // #phone-item {
+  //   z-index: 6;
+  // }
+}

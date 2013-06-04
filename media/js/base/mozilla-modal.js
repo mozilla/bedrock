@@ -8,7 +8,8 @@ Mozilla.Modal = (function(w, $) {
 
   var _open = false;
   var _modal = null;
-  var _close_callback = null;
+  var $_body = $('body');
+  var _options = {};
 
   var _init = function() {
     var $d = $(w.document);
@@ -32,7 +33,15 @@ Mozilla.Modal = (function(w, $) {
     });
   };
 
-  var _create_modal = function(origin, content, create_callback, close_callback) {
+  /*
+    origin: element that triggered the modal
+    content: content to display in the modal
+    options: object of optional params:
+      onCreate: function to fire after modal has been created
+      onDestroy: function to fire after modal has been closed
+      allowScroll: boolean - allow/restrict page scrolling when modal is open
+  */
+  var _create_modal = function(origin, content, options) {
     // Clear existing modal, if necessary,
     $('#modal').remove();
     $('.modalOrigin').removeClass('modalOrigin');
@@ -48,8 +57,12 @@ Mozilla.Modal = (function(w, $) {
         '</div>'
     );
 
+    if (!options.allowScroll) {
+      $_body.addClass('noscroll');
+    }
+
     // Add it to the page.
-    $('body').addClass("noscroll").append(html);
+    $_body.append(html);
 
     _modal = $('#modal');
 
@@ -64,15 +77,13 @@ Mozilla.Modal = (function(w, $) {
 
     _open = true;
 
-    // store (optional) close callback
-    if (typeof(close_callback) === 'function') {
-      _close_callback = close_callback;
+    // execute (optional) open callback
+    if (typeof(options.onCreate) === 'function') {
+      options.onCreate();
     }
 
-    // execute (optional) callback
-    if (typeof(create_callback) === 'function') {
-      create_callback();
-    }
+    // store options for later use
+    _options = options;
   };
 
   var _close_modal = function() {
@@ -80,7 +91,7 @@ Mozilla.Modal = (function(w, $) {
       $(this).remove();
     });
 
-    $('body').removeClass('noscroll');
+    $_body.removeClass('noscroll');
 
     // restore focus to element that opened the modal
     $('.modalOrigin').focus().remove('modalOrigin');
@@ -89,18 +100,20 @@ Mozilla.Modal = (function(w, $) {
     _modal = null;
 
     // execute (optional) callback
-    if (_close_callback && typeof(_close_callback) === 'function') {
-      _close_callback();
-      _close_callback = null;
+    if (typeof(_options.onDestroy) === 'function') {
+      _options.onDestroy();
     }
+
+    // free up options
+    _options = {};
   };
 
   return {
     init: function() {
       _init();
     },
-    create_modal: function(origin, content, create_callback, close_callback) {
-      _create_modal(origin, content, create_callback, close_callback);
+    create_modal: function(origin, content, options) {
+      _create_modal(origin, content, options);
     },
     close_modal: function() {
       _close_modal();

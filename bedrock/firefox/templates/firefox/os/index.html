@@ -1,0 +1,442 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "base-resp.html" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}Firefox OS{% endblock %}
+
+{% block body_id %}firefox-os{% endblock %}
+{% block body_class %}firefox-os{% endblock %}
+
+{% block string_data %}
+  {# L10n: This is the label for a button that closes a modal dialog #}
+  data-close="{{ _('Close') }}"
+{% endblock %}
+
+{% block site_css %}
+  {{ css('firefox_os') }}
+{% endblock %}
+
+{% block extrahead %}
+<!--[if lt IE 9]>
+  {{ css('firefox_os_ie') }}
+<![endif]-->
+{% endblock %}
+
+{% block site_header %}
+  <header id="masthead">
+    <div class="wrapper stuck">
+      <div class="inner">
+        <a href="https://www.mozilla.org/" id="tabzilla">Mozilla</a>
+
+        {% block site_header_logo %}
+        <h2 id="ffos-main-logo"><a href="#masthead" class="nav"><img src="{{ MEDIA_URL }}img/firefox/os/logo/firefox-os.png" alt="Firefox OS"></a></h2>
+        {% endblock %}
+
+        {% block site_header_nav %}
+            <nav id="nav-main" role="navigation">
+              <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
+              <ul id="nav-main-menu">
+                <li class="first"><a class="nav" href="#adapt1">{{_('The Adaptive Phone')}}</a></li>
+                <li><a class="nav" href="#have-it-all">{{_('The Features')}}</a></li>
+                <li class="last"><a class="nav" href="#mission">{{_('The Mission')}}</a></li>
+              </ul>
+            </nav>
+        {% endblock %}
+        <div class="cta-button">
+          <a id="secondary-cta-signup" href="#email-form-wrapper" class="button newsletter-signup-toggle">{{_('Sign me up')}}</a>
+          <a id="secondary-cta-phone" href="#get-phone" class="button-green">{{_('Get a phone')}}</a>
+        </div>
+      </div>
+    </div>
+  </header>
+{% endblock %}
+
+{% block content %}
+<nav id="side-nav" role="navigation">
+  <ul>
+    <li><a class="nav" href="#adapt1" title="{{_('Adaptive App Search')}}">{{_('The Adaptive Phone')}}</a></li>
+    <li><a class="nav" href="#have-it-all" title="{{_('Features')}}">{{_('The Features')}}</a></li>
+    <li><a class="nav" href="#mission" title="{{_('Mission')}}">{{_('The Mission')}}</a></li>
+    <li><a class="share" href="#share" aria-controls="share-pane" role="button" title="{{_('Share')}}">{{_('Share')}}</a></li>
+  </ul>
+  <div id="share-pane" aria-expanded="false">
+    <a class="share close" href="#share" role="button" title="{{ _('Close') }}"><span>{{ _('Close') }}</span></a>
+    <div class="socialshare" data-type="small-bubbles"></div>
+  </div>
+</nav>
+
+<a href="#email-form-wrapper" id="signup-toggle-icon" class="newsletter-signup-toggle">{{_('Sign me up')}}</a>
+
+<div id="get-firefox-os">
+  <div id="adaptive-wrapper">
+    <div class="item phone-item" id="phone-item-intro">
+      <div class="phone-wrapper" id="phone-wrapper-intro">
+        <div class="phone"></div>
+        <div id="screen-intro" class="screen screen-birthday"></div>
+        <div id="fox-wrapper-intro" class="fox-wrapper">
+          <div class="fox"></div>
+          <div class="tail"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item phone-item" id="phone-item-soccer">
+      <div class="phone-wrapper" id="phone-wrapper-soccer">
+        <div class="phone"></div>
+        <div id="screen-soccer" class="screen screen-soccer"></div>
+        <div id="fox-wrapper-soccer" class="fox-wrapper">
+          <div class="fox"></div>
+          <div class="tail"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item phone-item" id="phone-item-cafe">
+      <div class="phone-wrapper" id="phone-wrapper-cafe">
+        <div class="phone"></div>
+        <div id="screen-cafe" class="screen screen-cafe"></div>
+        <div id="fox-wrapper-cafe" class="fox-wrapper">
+          <div class="fox"></div>
+          <div class="tail"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="adaptive-app-search">
+      <div id="scenes">
+        <div class="item-wrapper" id="every-moment">
+          <div id="intro-bg-a" class="intro-bg bg-birthday"></div>
+
+          <div class="item">
+            <section class="content">
+              {# L10n: The line break in this headline is presentational. Place the break wherever it seems best for your locale, or omit it if it isn't needed. #}
+              <h2>{{_('Make every <br>moment count')}}</h2>
+              <p>{{_('Your needs change from one moment to the next. That’s why Firefox OS does the same. It gives you the power to live every moment to its fullest and participate in a better world.')}}</p>
+              <div id="primary-cta-phone">
+                <p><a class="button-green" href="#get-phone">{{_('Get a Firefox OS smartphone today')}}</a></p>
+                <p class="small">{{_('Sign up for our monthly newsletter and get the latest on Firefox OS')}}</p>
+                <a class="button newsletter-signup-toggle" href="#email-form-wrapper">{{_('Sign me up')}}</a>
+              </div>
+              <div id="primary-cta-signup">
+                <p>{{_('Sign up for our monthly newsletter and get the latest on Firefox OS')}}</p>
+                <a class="button newsletter-signup-toggle wide" href="#email-form-wrapper">{{_('Sign me up')}}</a>
+              </div>
+            </section>
+          </div>
+        </div>
+      
+        <div class="item-wrapper bg-soccer nav-anchor" id="adapt1">
+          <div class="item">
+            <section class="content">
+              {# L10n: The line break in this headline is presentational. Place the break wherever it seems best for your locale, or omit it if it isn't needed. #}
+              <h2>{{_('It adapts, so you <br>can too')}}</h2>
+              {# L10n: The line break in this paragraph is presentational. Place the break wherever it seems best for your locale, or omit it if it isn't needed. #}
+              <p>{{_('Firefox OS anticipates your needs, adapts to every situation and instantly delivers the <br>information you want.')}}</p>
+              <p>{{_('That includes popular, big name apps, but also local content that means the most to you and your life.')}}</p>
+            </section>
+          </div>
+        </div>
+
+        <div class="item-wrapper bg-cafe" id="adapt2">
+          <div class="item" id="adapt-features">
+            <section class="content">
+              <h2>{{_('Adaptive App Search')}}</h2>
+              <ul>
+                <li class="type" id="adapt-feature-type">{{_('Type a word or subject you’re interested in')}}</li>
+                <li class="results" id="adapt-feature-results">{{_('Find exactly what you want — and more')}}</li>
+                <li class="save" id="adapt-feature-save">{{_('Get instant access or save apps to your phone')}}</li>
+                <li class="discover" id="adapt-feature-discover">{{_('Discover more apps on the Firefox Marketplace')}}</li>
+              </ul>
+
+              <div id="adapt-feature-sprites">
+                <div class="adapt-feature-sprite" id="adapt-feature-sprite-blue-line"></div>
+                <div class="adapt-feature-sprite" id="adapt-feature-sprite-orange-line"></div>
+                <div class="adapt-feature-sprite" id="adapt-feature-sprite-plus"></div>
+              </div>
+            </section>
+          </div>
+        </div>
+        <div class="item-wrapper bg-birthday" id="adapt3">
+          <div class="item"></div>
+        </div>
+      </div><!--/#scenes-->
+    </div><!--/#adaptive-app-search-->
+  </div><!--/#adaptive-wrapper-->
+
+  <div id="scene-hooks">
+    <div id="soccer-hook" class="item scene-hook"></div>
+    <div id="cafe-hook" class="item scene-hook"></div>
+    <div id="birthday-hook" class="item scene-hook"></div>
+  </div>
+
+  <div id="fox-tail-tip"></div>
+</div><!--/#get-firefox-os-->
+
+<div id="have-it-all" class="nav-anchor">
+
+  <div id="have-it-all-masthead">
+    <header>
+      <h2 class="large">{{_('Have it all')}}</h2>
+      <p>{{_('Firefox OS is packed with the features that made you want a smartphone in the first place. It fits your life perfectly so you can fit in with the world around you.')}}</p>
+
+      <nav id="have-it-all-nav">
+        <ul class="dock">
+          <li>
+            <a href="#social" id="social-link">
+              <div class="icon social"></div>
+              <span>{{_('Social')}}</span>
+            </a>
+          </li>
+          <li>
+            <a href="#photos" id="photos-link">
+              <div class="icon photos"></div>
+              <span>{{_('Photos')}}</span>
+            </a>
+          </li>
+          <li>
+            <a href="#music" id="music-link">
+              <div class="icon music"></div>
+              <span>{{_('Music')}}</span>
+            </a>
+          </li>
+          <li>
+            <a href="#maps" id="maps-link">
+              <div class="icon maps"></div>
+              <span>{{_('Maps')}}</span>
+            </a>
+          </li>
+          <li>
+            <a href="#messages" id="messages-link">
+              <div class="icon messages"></div>
+              <span>{{_('Messages')}}</span>
+            </a>
+          </li>
+          <li>
+            <a href="#marketplace" id="marketplace-link">
+              <div class="icon marketplace"></div>
+              <span>{{_('Marketplace')}}</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+    </header>
+  </div>
+  <div class="main-wrapper scroller-off">
+
+    <div class="item-wrapper" id="stage">
+      <div class="item"></div>
+    </div>
+
+    <div class="item-wrapper" id="landing">
+      <section class="item">
+        <h2 id="landing-heading">{{_('Made for the moments of your life')}}</h2>
+      </section>
+    </div>
+
+    <div class="item-wrapper" id="social">
+      <section class="item">
+        <div class="content left">
+          <h2>{{_('Moments with friends')}}</h2>
+          <p>{{_('Import your contacts directly from Facebook and share updates instantly.')}}</p>
+        </div>
+        <img class="app center" id="contacts-app" src="{{ img_l10n('firefox/os/have-it-all/contacts.jpg') }}" alt="{{_('Contacts app')}}">
+        <div class="content right">
+          <ul class="icon-list">
+            <li class="icon contacts"></li>
+            <li class="icon twitter"></li>
+            <li class="icon facebook"></li>
+          </ul>
+        </div>
+      </section>
+    </div>
+
+    <div class="item-wrapper" id="photos">
+      <section class="item">
+        <div class="content left">
+          <h2>{{_('Creative moments')}}</h2>
+          <p>{{_('Take photos on the go then make them amazing using built-in style filters.')}}</p>
+          <ul class="icon-list">
+            <li class="icon camera"></li>
+            <li class="icon gallery"></li>
+          </ul>
+        </div>
+        <img class="app center" id="photos-app" src="{{ img_l10n('firefox/os/have-it-all/photos.jpg') }}" alt="{{_('Photos app')}}">
+        <img class="app right" id="photos-edit-app" src="{{ img_l10n('firefox/os/have-it-all/photos-edit.jpg') }}" alt="{{_('Photos app')}}">
+      </section>
+    </div>
+
+    <div class="item-wrapper" id="music">
+      <section class="item">
+        <div class="content right">
+          <h2>{{_('Moments that entertain')}}</h2>
+          <p>{{_('Listen to your favorite songs, artists and radio stations, all from one device.')}}</p>
+          <ul class="icon-list">
+            <li class="icon music"></li>
+            <li class="icon radio"></li>
+            <li class="icon videos"></li>
+          </ul>
+        </div>
+        <img class="app left" id="music-app" src="{{ img_l10n('firefox/os/have-it-all/music.jpg') }}" alt="{{_('Music app')}}">
+        <img class="app center" id="radio-app" src="{{ img_l10n('firefox/os/have-it-all/radio.jpg') }}" alt="{{_('Radio app')}}">
+      </section>
+    </div>
+
+    <div class="item-wrapper" id="maps">
+      <section class="item">
+        <div class="content left wide">
+          <h2>{{_('Moments in between')}}</h2>
+          <p>{{_('Get to where you’re going with directions, traffic and local transit information.')}}</p>
+          <ul class="icon-list">
+            <li class="icon maps"></li>
+          </ul>
+        </div>
+        <img class="app right" id="maps-app" src="{{ img_l10n('firefox/os/have-it-all/maps.jpg') }}" alt="{{_('Maps app')}}">
+      </section>
+    </div>
+
+    <div class="item-wrapper" id="messages">
+      <section class="item">
+        <div class="content left messages-text">
+          <h2>{{_('Moments of connection')}}</h2>
+          <p>{{_('Stay in touch with family and friends by email and text message.')}}</p>
+          <ul class="icon-list">
+            <li class="icon mail"></li>
+            <li class="icon messages"></li>
+          </ul>
+        </div>
+        <img class="app center" id="messages-app" src="{{ img_l10n('firefox/os/have-it-all/messages.jpg') }}" alt="{{_('Messages app')}}">
+        <img class="app right" id="mail-app" src="{{ img_l10n('firefox/os/have-it-all/mail.jpg') }}" alt="{{_('Email app')}}">
+      </section>
+    </div>
+
+    <div class="item-wrapper" id="marketplace">
+      <section class="item">
+        <div class="content right wide">
+          <h2>{{_('Moments of discovery')}}</h2>
+          <p>{{_('Find the best apps from around the world and your own backyard.')}}</p>
+          <ul class="icon-list">
+            <li class="icon marketplace"></li>
+          </ul>
+        </div>
+        <img class="app left" id="marketplace-app" src="{{ img_l10n('firefox/os/have-it-all/marketplace.jpg') }}" alt="{{_('Marketplace app')}}">
+      </section>
+    </div>
+
+  </div>
+</div>
+
+<div id="mission" class="nav-anchor">
+
+  <header class="item" id="transform-the-future">
+    <h2>{{_('Transform the future')}}</h2>
+    <p>{{_('We’re out to make a difference, not a profit. When you choose Firefox OS, you’re helping build a brighter future for the Web and users everywhere.')}}</p>
+  </header>
+
+  <div id="our-community">
+    <div class="item">
+      <div class="bubbles"></div>
+      <section>
+        <h2>{{_('From our community to yours')}}</h2>
+        <p>{{_('Most smartphones are made by a small number of people, all in one place, probably pretty far from where you live. Firefox OS phones are different. They’re made by a huge global community and are the only smartphones that understand and deliver what you want and need.')}}</p>
+      </section>
+    </div>
+  </div>
+
+  <section class="item container" id="best-of-the-web">
+    <img src="{{ MEDIA_URL }}img/firefox/os/foxy-splash.png" alt="Firefox OS">
+    <div class="content">
+      <h2>{{_('The best of the Web')}}</h2>
+      <p>{{_('Firefox changed browsing forever by putting users first and offering a new level of choice and innovation online. Now we’re doing it all over again with Firefox OS, while bringing the same superior browsing experience to your smartphone. So you can take control of your life online and get the best the Web has to offer no matter where you go.')}}</p>
+    </div>
+  </section>
+
+  <div id="useful-links">
+    <section class="item container">
+      <div class="column column-first">
+        <h3>{{_('For partners &amp; developers:')}}</h3>
+        <ul>
+          <li>
+            {% trans link=url('firefox.partners.index') %}
+            Learn about partnership opportunities <a href="{{link}}">Visit the Firefox OS partner site</a>
+            {% endtrans %}
+          </li>
+          <li>
+            {% trans link="//developer.mozilla.org"|safe %}
+            Get your app on Firefox OS <a href="{{link}}">Submit it to the Firefox Marketplace</a>
+            {% endtrans %}
+          </li>
+        </ul>
+      </div>
+
+      <div class="column">
+        <h3>{{_('For users:')}}</h3>
+        <ul>
+          <li>
+            {% trans link="//support.mozilla.org/products/firefox-os"|safe %}
+            In case you need a little help <a href="{{link}}">Get it from your friends at Mozilla Support</a>
+            {% endtrans %}
+          </li>
+          <li>
+            {% trans link="//support.mozilla.org/kb/firefox-os-faq"|safe %}
+            All your questions will be answered <a href="{{link}}">Read our extra helpful FAQ</a>
+            {% endtrans %}
+          </li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div id="get-phone-wrapper">
+  <div id="get-phone" class="modal-content">
+    <header>
+      <img src="{{ MEDIA_URL }}img/firefox/os/logo/firefox-os-white.png" alt="mozilla">
+      <button type="button" class="close"><span class="close-text">{{ _('Close') }}</span></button>
+    </header>
+
+    <div class="content">
+      <h2>{{_('We work with a number of providers to offer Firefox OS on a variety of devices.')}}</h2>
+
+      <p id="provider-text-nojs">
+        {% trans link="//support.mozilla.org/kb/firefox-os-faq"|safe %}
+        All your questions will be answered <a href="{{link}}">Read our extra helpful FAQ</a>
+        {% endtrans %}
+      </p>
+      <p id="provider-text-multi">{{_('Choose one from the list below to get a Firefox OS smartphone in your country.')}}</p>
+      <p id="provider-text-single">{{_('Click on the provider below to get a Firefox OS smartphone in your country.')}}</p>
+      <p id="provider-links"></p>
+    </div>
+  </div>
+</div>
+<div id="fb-root"></div>
+{% endblock %}
+
+{% block email_form %}
+  <div id="email-form-wrapper">
+    <div id="email-form-content" class="modal-content">
+      <header>
+        <img src="{{ MEDIA_URL }}img/firefox/os/logo/firefox-os-white.png" alt="mozilla">
+        <button type="button" class="close"><span class="close-text">{{ _('Close') }}</span></button>
+      </header>
+      <div class="content">
+        <div id="footer-email-thanks">
+          <h3>{{ _('Thank you for signing up!') }}</h3>
+        </div>
+
+        {{ email_newsletter_form('mozilla-and-you,os', _('Sign up for our monthly newsletter')) }}
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block site_js %}
+  {{ js('mozorg-resp') }}
+{% endblock %}
+
+{% block js %}
+  {{ js('firefox_os') }}
+{% endblock  %}

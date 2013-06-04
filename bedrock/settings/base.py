@@ -211,6 +211,13 @@ MINIFY_BUNDLES = {
         'firefox_organizations': (
             'css/firefox/organizations.less',
         ),
+        'firefox_os': (
+            'css/libs/jquery.pageslide.css',
+            'css/firefox/os/firefox-os.less',
+        ),
+        'firefox_os_ie': (
+            'css/firefox/os/firefox-os-ie.less',
+        ),
         'firefox_platforms': (
             'css/firefox/template-resp.less',
             'css/base/mozilla-expanders.less',
@@ -429,6 +436,22 @@ MINIFY_BUNDLES = {
         'firefox_new': (
             'js/libs/modernizr.custom.csstransitions.js',
             'js/firefox/new.js',
+        ),
+        'firefox_os': (
+            'js/base/mozilla-input-placeholder.js',
+            'js/base/mozilla-modal.js',
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/libs/jquery.pageslide.min.js',
+            'js/libs/tweenmax.1.9.7.min.js',
+            'js/libs/superscrollorama-1.0.1.js',
+            'js/libs/jquery.plusslider.js',
+            'js/libs/jquery.color.js',
+            'js/libs/script.js',
+            'js/libs/socialshare.min.js',
+            'js/firefox/os/firefox-os.js',
+            'js/firefox/os/desktop.js',
+            'js/firefox/os/have-it.js',
         ),
         'firefox_platforms': (
             'js/base/mozilla-expanders.js',
