@@ -7,9 +7,11 @@ import jingo
 
 from commonware.response.decorators import xframe_allow
 
-#from django.core.context_processors import csrf
 from django.core.mail import EmailMessage
+from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_protect
+
+from funfactory.urlresolvers import reverse
 
 from forms import PrivacyContactForm
 
@@ -39,6 +41,8 @@ def submit_form(request, form):
 
             email = EmailMessage(subject, msg, sender, to, headers=headers)
             email.send()
+    else:
+        form_error = True
 
     return {'form_submitted': form_submitted, 'form_error': form_error}
 
@@ -85,4 +89,17 @@ def firefoxos(request):
         'form_error': form_error,
     }
 
-    return l10n_utils.render(request, 'privacy/ffos_privacy.html', template_vars)
+    if request.POST and not form_error:
+        # Seeing the form was submitted without error, redirect, do not simply
+        # send a response to avoid problem described below.
+        # @see https://bugzilla.mozilla.org/show_bug.cgi?id=873476 (3.2)
+        response = redirect(reverse('privacy.firefoxos'), template_vars)
+        response['Location'] += '?submitted=%s' % form_submitted
+
+        return response
+    else:
+        # If the below is called after a redirect the template_vars will be lost, therefore
+        # we need to update the form_submitted state from the submitted url parameter.
+        submitted = request.GET.get('submitted') == 'True'
+        template_vars['form_submitted'] = submitted
+        return l10n_utils.render(request, 'privacy/ffos_privacy.html', template_vars)

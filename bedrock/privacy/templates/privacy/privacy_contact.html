@@ -8,7 +8,7 @@
 
     <fieldset>
       <legend>{{ _('Please use this form to send us your questions, concerns or thoughts related to privacy at Mozilla.') }}</legend>
-    
+
       {% if form_error %}
         <p class="tooltip error">
         {% trans %}
@@ -16,13 +16,13 @@
         {% endtrans %}
         </p>
       {% endif %}
-      
+
       <div class="field">
         {{ form.name.errors }}
         <label for="id_name">{{ _('Your name') }}:</label>
         {{ form.name }}
       </div>
-      
+
       <div class="field">
         {{ form.sender.errors }}
         <label for="id_sender">{{ _('Your email') }}:</label>
