@@ -1,0 +1,85 @@
+{% extends 'newsletter/base.html' %}
+
+{% block body_id %}newsletter-updated{% endblock body_id %}
+
+{% block content %}
+  {% if messages %}  {# FIXME - this ought to be in base-resp.html #}
+    <ul class="messagelist billboard">
+      {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  {% if unsubscribed_all %}  {# user requested to unsub all #}
+
+    <div id="main-feature" class="unsub">
+      <h1>{{ _('You’ve been unsubscribed.') }}</h1>
+      <h3>{{ _('We’re sorry to see you go.')}}</h3>
+    </div>
+
+    <div id="content" class="unsub billboard">
+      <h4>{{_('Would you mind telling us why you’re leaving?') }}</h4>
+
+      <form action="{{ url('newsletter.updated') }}" method="post">
+        <input type="hidden" name="unsub" value="2" />
+        <input type="hidden" name="token" value="{{ token }}" />
+        <table class="table">
+          {% for i, reason in reasons %}
+            <tr>
+            <td><input type="checkbox" id="unsub{{ i }}" name="reason{{ i }}"></td>
+            <td><label for="unsub{{ i }}">{{ reason }}</label></td>
+            </tr>
+          {% endfor %}
+          <tr>
+            <td><input type="checkbox" id="unsub99" name="reason-text-p"></td>
+            <td><textarea placeholder="{{ _('Other…') }}" cols="35" rows="3" name="reason-text"></textarea></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><input type="submit" value="Submit" class="button" name="feedback" /></td>
+          </tr>
+        </table>
+      </form>
+    </div>
+
+  {% elif reasons_submitted %}
+
+    <div id="main-feature" class="unsub">
+      <h1>{{ _('You’ve been unsubscribed.') }}</h1>
+      <h3>{{ _('We’re sorry to see you go.')}}</h3>
+    </div>
+
+    <div id="content" class="unsub billboard">
+      <h4>{{ _('Thanks for telling us why you’re leaving.') }}</h4>
+    </div>
+
+  {% else %}
+
+    <div id="content" class="billboard">
+      <h3>{{ _('While here, why not check out some more Firefox awesomeness.') }}</h3>
+
+      <div class="sub-feature" id="mobile">
+        <h4>{{ _('Get up and go') }}</h4>
+        <p>{{ _('It’s your Web anywhere you go.') }}</p>
+        <a href="{{ url('mozorg.mobile') }}" class="link">{{ _('Get Firefox for mobile!') }}</a>
+      </div>
+      <div class="sub-feature" id="addons">
+        <h4>{{ _('Added extras') }}</h4>
+        <p>{{ _('Make Firefox do more with add-ons.') }}</p>
+        <a href="https://addons.mozilla.org/" class="link">{{ _('Find out how!') }}</a>
+      </div>
+      <div class="sub-feature" id="about">
+        <h4>{{ _('About us') }}</h4>
+        <p>{{ _('What’s  Mozilla all about?') }}</p>
+        <a href="{{ url('mozorg.about') }}" class="link"{{ _('>We’re glad you asked!') }}</a>
+      </div>
+
+    </div>
+
+  {% endif %}
+{% endblock %}
+
+{# Don't display an email signup form in the footer of this page, #}
+{# it would be redundant. #}
+{% block email_form %}{% endblock %}

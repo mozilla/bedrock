@@ -1,0 +1,83 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+{# Note: this page is displayed in a frame, it's not a separate page #}
+{% from "macros.html" import email_newsletter_form with context %}
+<!doctype html>
+<html>
+  <head>
+    <style type="text/css">
+      body {
+        margin: 0; padding: 0; background: #f2f2f2;
+        font: 10px Arial, sans-serif;
+      }
+      h3 {
+        font-weight: normal;
+        margin: 0 0 10px;
+      }
+      .billboard {
+        -moz-border-radius: 4px 4px 4px 4px;
+        background-color: #f2f2f2;
+        color: #000000;
+        padding-top: 0.25em;
+        min-height: 170px;
+        position: relative;
+      }
+      .form-contents, .form-submit {
+        border: 1px solid #CCCCCC;
+        background:white;
+        padding: 0 5%;
+        clear: both;
+        overflow: hidden;
+      }
+      .field-country {
+        margin: 5px 0;
+      }
+      #id_country {
+        width: 100%;
+      }
+      .form-contents {
+        border-bottom: none;
+      }
+      .form-submit {
+        border-top: none;
+      }
+      .billboard label {
+        display: block; font-weight: bold;
+        line-height: 1em; margin: 0.3em 0;
+      }
+      .billboard label#id_privacy {
+        display: inline; line-height: auto; margin: 0;
+        font-size: 90%;
+      }
+      .billboard input#id_email {
+        margin-top: 10px;
+        width: 95%;
+      }
+      .billboard .thank {
+        padding: 0.25em 0.5em 0.25em 0.5em;
+        background: #E3FBE4;
+        color: #529214;
+      }
+      .billboard input.submit {
+        font-size: 100%;
+        clear: both; width: auto; display: block;
+        margin: 1em 0pt 1em 0pt;
+      }
+      .billboard .field-format label,
+      .billboard .field-format input {
+        display: inline;
+      }
+
+    </style>
+  </head>
+  <body>
+    {{ email_newsletter_form('app-dev',
+                 _('Subscribe to our newsletter.'),
+                 include_language=False) }}
+    <script>
+      {# set target without invalidating already translated strings. #}
+      document.getElementsByTagName('a')[0].target = '_top';
+    </script>
+  </body>
+</html>

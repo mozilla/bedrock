@@ -27,6 +27,7 @@ class PrivacyFormTest(TestCase):
             'sender': self.contact,
             'comments': 'Forgot your name!'
         }
+        mail.outbox = []
 
     def tearDown(self):
         mail.outbox = []

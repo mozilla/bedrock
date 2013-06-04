@@ -1,0 +1,118 @@
+{% extends 'newsletter/base.html' %}
+
+{# Template used for a user to manage their subscriptions #}
+
+{% block body_id %}newsletter-existing{% endblock body_id %}
+
+{% block content %}
+  <!-- Begin content -->
+
+  {% block main_feature %}
+    <div id="main-feature">
+      <h1>{{ _('Manage your <span>Newsletter Subscriptions</span>') }}</h1>
+    </div>
+  {% endblock %}
+
+  {% if messages %}  {# FIXME - this ought to be in base-resp.html #}
+    <ul class="messagelist billboard">
+      {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  {% if formset %}
+    <form method="post" action="" id="existing-newsletter-form" class="container billboard">
+      {{ formset.management_form }}
+
+      <div id="basic-settings">
+
+        {% block intro %}{% endblock %}
+
+        {% if form.non_field_errors() %}
+          <div class="errorlist">
+            {{ form.non_field_errors() }}
+          </div>
+        {% endif %}
+
+        <div class="field email-field">
+          <label>{{ _('Your email address:') }}</label>
+          <div class="field-contents">
+            {{ email }}
+          </div>
+        </div>
+
+        {% set country = form['country'] %}
+        <div class="field country-field {% if country.errors %}field-error{% endif %}">
+          {{ form.country.label_tag(_('Country:')) }}
+          <div class="field-contents">
+            {{ country }}
+          </div>
+          {{ country.errors }}
+        </div>
+
+        {% set lang = form['lang'] %}
+        <div class="field lang-field {% if lang.errors %}field-error{% endif %}">
+          {{ form.lang.label_tag(_('Language:')) }}
+          <div class="field-contents">
+            {{ lang }}
+          </div>
+          {{ lang.errors }}
+        </div>
+
+        <div class="field format-field">
+          {{ form.format.label_tag(_('Format:')) }}
+          <div class="field-contents field-radios">
+            {{ form['format'] }}
+          </div>
+          {{ form['format'].errors }}
+        </div>
+      </div><!-- close #basic-settings -->
+
+      <div class="field" id="other-newsletters">
+        <div class="field-radios">
+        <table class="table">
+          <thead>
+          <tr>
+            <th></th>
+            <th>{{ _('Subscribe') }}</th>
+            <th>{{ _('Unsubscribe') }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          {% for formpart in formset %}  {# each newsletter is a formset #}
+            <tr class="subscription">
+              <th>
+                <h4 class="title">
+                  {{ formpart.initial['title'] }}
+                  {% if formpart.initial['english_only'] %}
+                    <span class="en-only">({{ _('English&nbsp;only') }})</span>
+                  {% endif %}
+                </h4>
+                {# hidden field: #}
+                {{ formpart.newsletter }}
+                <p class="description">
+                  {{ formpart.initial['description'] }}
+                </p>
+              </th>
+              {{ formpart.subscribed }}
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+        </div>
+      </div><!-- close #all-newsletters -->
+
+      <div class="field" id="remove-all-section">
+        {{ form['remove_all'] }}
+        {{ form.remove_all.label_tag(_('Remove me from all Mozilla emails')) }}
+      </div>
+
+      <div class="field submit-field">
+        <input name="submit" type="submit" value="Save Preferences" class="button">
+      </div><!-- close .submit-field -->
+
+    </form>
+  {% endif %}
+  <!-- End content -->
+{% endblock %}

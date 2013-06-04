@@ -1,13 +1,14 @@
 import unittest
 
+from mock import patch
+
 from django.conf import settings
 from django.test.client import Client
-
 import basket
 import jingo
-from mock import patch
 from nose.tools import assert_false, eq_, ok_
 from pyquery import PyQuery as pq
+from bedrock.newsletter.tests.test_views import newsletters
 
 
 # Where should this function go?
@@ -94,8 +95,10 @@ class TestNewsletterFunction(unittest.TestCase):
         assert_false(doc('#footer-email-errors'))
         ok_(doc('form#footer-email-form'))
 
+    @patch('bedrock.newsletter.utils.get_newsletters')
     @patch.object(basket, 'subscribe')
-    def test_post_correct_form(self, sub_mock):
+    def test_post_correct_form(self, sub_mock, get_newsletters):
+        get_newsletters.return_value = newsletters
         data = {
             'newsletter-footer': 'Y',
             'newsletter': 'mozilla-and-you',
@@ -110,15 +113,19 @@ class TestNewsletterFunction(unittest.TestCase):
         doc = pq(response.content)
         assert_false(doc('form#footer-email-form'))
         ok_(doc('div#footer-email-form.thank'))
-        sub_mock.assert_called_with('foo@bar.com', 'mozilla-and-you',
-                                    format='H', country='us', lang='en',
-                                    source_url='http://allizom.com/en-US/base/')
+        sub_mock.assert_called_with(
+            'foo@bar.com', 'mozilla-and-you',
+            format='H', country='us', lang='en',
+            source_url='http://allizom.com/en-US/base/')
 
+    @patch('bedrock.newsletter.utils.get_newsletters')
     @patch.object(basket, 'subscribe')
-    def test_post_form_country_lang_not_required(self, sub_mock):
+    def test_post_form_country_lang_not_required(self, sub_mock,
+                                                 get_newsletters):
         """
         Form should successfully post without country, lang, or src url.
         """
+        get_newsletters.return_value = newsletters
         data = {
             'newsletter-footer': 'Y',
             'newsletter': 'mozilla-and-you',
@@ -133,7 +140,9 @@ class TestNewsletterFunction(unittest.TestCase):
         sub_mock.assert_called_with('foo@bar.com', 'mozilla-and-you',
                                     format='H')
 
-    def test_post_wrong_form(self):
+    @patch('bedrock.newsletter.utils.get_newsletters')
+    def test_post_wrong_form(self, get_newsletters):
+        get_newsletters.return_value = newsletters
         response = self.client.post('/en-US/base/', {'newsletter-footer': 'Y'})
         doc = pq(response.content)
         ok_(doc('#footer-email-errors'))

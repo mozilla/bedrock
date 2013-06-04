@@ -39,11 +39,13 @@ Now configure the application to run locally by creating your local settings fil
 
     $ cp bedrock/settings/local.py-dist bedrock/settings/local.py
 
-You shouldn't need customize anything in there yet.
+You shouldn't need to customize anything in there yet.
 
 Check out the latest product-details::
 
     $ ./manage.py update_product_details
+
+This pulls in version information for Mozilla products like Firefox.
 
 Lastly, you need to install `node` and the `less` package. Soon you won't need this for local development but currently it compiles the LESS CSS code on the server-side::
 
