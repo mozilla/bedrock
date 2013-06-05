@@ -251,6 +251,19 @@ class TestFirefoxPartners(TestCase):
             'email': u'thedude@mozilla.com',
         })
 
+    def test_sf_form_csrf_status(self):
+        """Test that CSRF checks return 200 with token and 403 without."""
+        csrf_client = Client(enforce_csrf_checks=True)
+        response = csrf_client.get(reverse('firefox.partners.index'))
+        post_url = reverse('about.partnerships.contact-bizdev')
+        response = csrf_client.post(post_url, {
+            'first_name': "Partner",
+            'csrfmiddlewaretoken': response.cookies['csrftoken'].value,
+        })
+        self.assertEqual(response.status_code, 302)
+        response = csrf_client.post(post_url, {'first_name': "Partner"})
+        self.assertEqual(response.status_code, 403)
+
 
 class TestLoadDevices(unittest.TestCase):
 
