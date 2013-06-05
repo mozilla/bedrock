@@ -1,12 +1,15 @@
 import urlparse
 from os import path
 
+from django.conf import settings
+
 import jingo
 import jinja2
-from django.conf import settings
-from django.core.cache import cache
-
+from funfactory.settings_base import path as base_path
 from funfactory.urlresolvers import reverse
+
+
+L10N_IMG_PATH = base_path('media', 'img', 'l10n')
 
 
 @jingo.register.function
@@ -37,6 +40,54 @@ def url(viewname, *args, **kwargs):
 @jingo.register.function
 def media(url):
     return path.join(settings.MEDIA_URL, url.lstrip('/'))
+
+
+@jingo.register.function
+@jinja2.contextfunction
+def img_l10n(ctx, url):
+    """Output the url to a localized image.
+
+    Uses the locale from the current request. Checks to see if the localized
+    image exists, and falls back to the image for the default locale if not.
+
+    Examples
+    ========
+
+    In Template
+    -----------
+
+        {{ img_l10n('firefoxos/screenshot.png') }}
+
+    For en-US this would output:
+
+        {{ MEDIA_URL }}img/l10n/en-US/firefox/screenshot.png
+
+    For fr this would output:
+
+        {{ MEDIA_URL }}img/l10n/fr/firefox/screenshot.png
+
+    If that file did not exist it would default to the en-US version (if en-US
+    was the default language for this install).
+
+    In the Filesystem
+    -----------------
+
+    Put files in folders like the following::
+
+        $ROOT/media/img/l10n/en-US/firefoxos/screenshot.png
+        $ROOT/media/img/l10n/fr/firefoxos/screenshot.png
+
+    """
+    url = url.lstrip('/')
+    locale = getattr(ctx['request'], 'locale', None)
+    if not locale:
+        locale = settings.LANGUAGE_CODE
+
+    if locale != settings.LANGUAGE_CODE:
+        if not path.exists(path.join(L10N_IMG_PATH, locale, url)):
+            locale = settings.LANGUAGE_CODE
+
+    return path.join(settings.MEDIA_URL, 'img', 'l10n', locale, url)
 
 
 @jingo.register.function
