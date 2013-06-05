@@ -1,14 +1,22 @@
-import unittest
+import os.path
 
 from mock import patch
 
 from django.conf import settings
-from django.test.client import Client
+from django.test.client import Client, RequestFactory
+
 import basket
 import jingo
 from nose.tools import assert_false, eq_, ok_
 from pyquery import PyQuery as pq
 from bedrock.newsletter.tests.test_views import newsletters
+
+from bedrock.mozorg.tests import TestCase
+
+
+TEST_FILES_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                               'test_files')
+TEST_L10N_IMG_PATH = os.path.join(TEST_FILES_ROOT, 'media', 'img', 'l10n')
 
 
 # Where should this function go?
@@ -17,7 +25,49 @@ def render(s, context={}):
     return t.render(context)
 
 
-class TestVideoTag(unittest.TestCase):
+@patch('bedrock.mozorg.helpers.misc.L10N_IMG_PATH', TEST_L10N_IMG_PATH)
+@patch('django.conf.settings.LANGUAGE_CODE', 'en-US')
+class TestImgL10n(TestCase):
+    rf = RequestFactory()
+
+    def _render(self, locale, url):
+        req = self.rf.get('/')
+        req.locale = locale
+        return render("{{{{ img_l10n('{0}') }}}}".format(url), {'request': req})
+
+    def test_works_for_default_lang(self):
+        """Should output correct path for default lang always."""
+        eq_(self._render('en-US', 'dino/head.png'),
+            settings.MEDIA_URL + 'img/l10n/en-US/dino/head.png')
+
+        eq_(self._render('en-US', 'dino/does-not-exist.png'),
+            settings.MEDIA_URL + 'img/l10n/en-US/dino/does-not-exist.png')
+
+    def test_works_for_other_lang(self):
+        """Should use the request lang if file exists."""
+        eq_(self._render('de', 'dino/head.png'),
+            settings.MEDIA_URL + 'img/l10n/de/dino/head.png')
+
+    def test_defaults_when_lang_file_missing(self):
+        """Should use default lang when file doesn't exist for lang."""
+        eq_(self._render('es', 'dino/head.png'),
+            settings.MEDIA_URL + 'img/l10n/en-US/dino/head.png')
+
+    @patch('bedrock.mozorg.helpers.misc.path.exists')
+    def test_file_not_checked_for_default_lang(self, exists_mock):
+        """
+        Should not check filesystem for default lang, but should for others.
+        """
+        eq_(self._render('en-US', 'dino/does-not-exist.png'),
+            settings.MEDIA_URL + 'img/l10n/en-US/dino/does-not-exist.png')
+        ok_(not exists_mock.called)
+
+        self._render('es', 'dino/does-not-exist.png')
+        exists_mock.assert_called_once_with(os.path.join(
+            TEST_L10N_IMG_PATH, 'es', 'dino', 'does-not-exist.png'))
+
+
+class TestVideoTag(TestCase):
     # Video stubs
     moz_video = 'http://videos.mozilla.org/serv/flux/example.%s'
     nomoz_video = 'http://example.org/example.%s'
@@ -85,7 +135,7 @@ class TestVideoTag(unittest.TestCase):
 
 
 @patch.object(settings, 'ROOT_URLCONF', 'bedrock.mozorg.tests.urls')
-class TestNewsletterFunction(unittest.TestCase):
+class TestNewsletterFunction(TestCase):
     def setUp(self):
         self.client = Client()
 
