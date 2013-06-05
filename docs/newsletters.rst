@@ -148,3 +148,44 @@ include_language=[True|False] and/or include_country=[True|False].
 
 You can also use the same form outside a page footer by passing ``footer=False``
 to the macro.
+
+Creating a signup page
+----------------------
+
+Start with a template that extends ``'newsletter/one_newsletter_signup.html'``.
+It's probably simplest to copy an existing one, like ``'newsletter/mobile.html'``.
+
+The name of the template *must* be the internal name of newsletter, e.g.
+for the newsletter with internal name ``mobile``, the template is
+``'newsletter/mobile.html'``.  (The view could easily be enhanced to allow
+overriding this if needed.)
+
+Override at least the `page_title` and `newsletter_content` blocks:
+
+.. code-block:: jinja
+
+    {% block page_title %}Firefox and You{% endblock %}
+
+    {% block newsletter_content %}
+      <div id="main-feature">
+        <h2>Subscribe to <span>about:mobile</span>!</h2>
+        <p>Our about:mobile newsletter brings you the latest and greatest news
+            from the Mozilla contributor community.
+        </p>
+      </div>
+    {% endblock %}
+
+Then add a url to ``newsletter/urls.py``:
+
+.. code-block:: python
+
+    # "about:mobile"
+    url(r'^newsletter/about_mobile/$',
+        views.one_newsletter_signup,
+        kwargs={'newsletter': 'mobile'},
+        name='newsletter.mobile',
+    ),
+
+Pass the newsletter internal name, and choose a URL and URL name. The view
+will do the rest.  Look at the parent template and the view code to learn
+more.

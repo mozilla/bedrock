@@ -6,8 +6,9 @@ import mock
 from bedrock.mozorg.tests import TestCase
 
 from ..forms import (BooleanRadioRenderer, ManageSubscriptionsForm,
-                     NewsletterForm, NewsletterFooterForm,
-                     UnlabeledTableCellRadios)
+                     NewsletterFooterForm, NewsletterForm, 
+                     UnlabeledTableCellRadios 
+                     )
 from .test_views import newsletters
 
 
@@ -108,7 +109,6 @@ class TestNewsletterForm(TestCase):
             'title': title,
             'newsletter': newsletter,
             'subscribed': True,
-            'english_only': False,
         }
         form = NewsletterForm(initial=initial)
         rendered = str(form)
