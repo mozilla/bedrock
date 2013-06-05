@@ -697,6 +697,16 @@ EMAIL_BACKEND = lazy(lazy_email_backend, str)()
 
 AURORA_STUB_INSTALLER = False
 
+# special value that means all locales are enabled.
+STUB_INSTALLER_ALL = '__ALL__'
+# values should be a list of lower case locales per platform for which a
+# stub installer is available. Hopefully this can all be moved to bouncer.
+STUB_INSTALLER_LOCALES = {
+    'win': STUB_INSTALLER_ALL,
+    'osx': [],
+    'linux': [],
+}
+
 # Google Analytics
 GA_ACCOUNT_CODE = ''
 
