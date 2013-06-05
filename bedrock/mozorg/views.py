@@ -28,7 +28,8 @@ from bedrock.mozorg.util import hide_contrib_form
 
 def csrf_failure(request, reason=''):
     template_vars = {'reason': reason}
-    return l10n_utils.render(request, 'mozorg/csrf-failure.html', template_vars)
+    return l10n_utils.render(request, 'mozorg/csrf-failure.html', template_vars,
+                             status=403)
 
 
 @xframe_allow
