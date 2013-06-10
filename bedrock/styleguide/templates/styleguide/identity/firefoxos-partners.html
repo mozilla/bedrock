@@ -18,11 +18,16 @@
   </div>
   <div class="right-col">
     <p>
-      {% trans url1=url('mozorg.partnerships'), url2=node.next.url %}
+      {% trans url1=url('mozorg.partnerships'), url2=node.next.url, url3="https://assets.mozillalabs.com/Brands-Logos/Firefox%20OS/brand-guideline/FirefoxOS_BrandGuidelines_EN.pdf" %}
       This page contains details on the Firefox OS promotional assets created for both licensed and unlicensed
       commercial use. Please <a href="{{ url1 }}">contact us</a> about partnership opportunities if you're
       interested in using these materials. If you're looking for promotional materials for community and other
       non-commercial use, please visit our <a href="{{ url2 }}">community page</a>.
+      {% endtrans %}
+    </p>
+    <p>
+      {% trans url1='https://assets.mozillalabs.com/Brands-Logos/Firefox%20OS/brand-guideline/FirefoxOS_BrandGuidelines_EN.pdf' %} 
+      For more information, download the <a href="{{ url1 }}">Firefox OS brand guidelines (pdf)</a>.
       {% endtrans %}
     </p>
   </div>
