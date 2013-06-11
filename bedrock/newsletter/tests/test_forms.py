@@ -6,7 +6,8 @@ import mock
 from bedrock.mozorg.tests import TestCase
 
 from ..forms import (BooleanRadioRenderer, ManageSubscriptionsForm,
-                     NewsletterForm, UnlabeledTableCellRadios)
+                     NewsletterForm, NewsletterFooterForm,
+                     UnlabeledTableCellRadios)
 from .test_views import newsletters
 
 
@@ -117,3 +118,57 @@ class TestNewsletterForm(TestCase):
         form = NewsletterForm(data=initial)
         self.assertTrue(form.is_valid())
         self.assertEqual(title, form.cleaned_data['title'])
+
+    @mock.patch('bedrock.newsletter.utils.get_newsletters')
+    def test_invalid_newsletter(self, get_newsletters):
+        """Should raise a validation error for an invalid newsletter."""
+        get_newsletters.return_value = newsletters
+        data = {
+            'newsletter': 'mozilla-and-you',
+            'email': 'dude@example.com',
+            'privacy': 'Y',
+            'fmt': 'H',
+        }
+        form = NewsletterFooterForm('en-US', data=data)
+        self.assertTrue(form.is_valid())
+
+        data['newsletter'] = 'does-not-exist'
+        form = NewsletterFooterForm('en-US', data=data)
+        self.assertFalse(form.is_valid())
+        self.assertEqual(form.errors['newsletter'][0], 'does-not-exist is not '
+                                                       'a valid newsletter')
+
+    @mock.patch('bedrock.newsletter.utils.get_newsletters')
+    def test_multiple_newsletters(self, get_newsletters):
+        """Should allow to subscribe to multiple newsletters at a time."""
+        get_newsletters.return_value = newsletters
+        data = {
+            'newsletter': 'mozilla-and-you,beta',
+            'email': 'dude@example.com',
+            'privacy': 'Y',
+            'fmt': 'H',
+        }
+        form = NewsletterFooterForm('en-US', data=data.copy())
+        self.assertTrue(form.is_valid())
+
+        # whitespace shouldn't matter
+        data['newsletter'] = 'mozilla-and-you ,  beta  '
+        form = NewsletterFooterForm('en-US', data=data.copy())
+        self.assertTrue(form.is_valid())
+        self.assertEqual(form.cleaned_data['newsletter'],
+                         'mozilla-and-you,beta')
+
+    @mock.patch('bedrock.newsletter.utils.get_newsletters')
+    def test_multiple_newsletters_invalid(self, get_newsletters):
+        """Should throw error if any newsletter is invalid."""
+        get_newsletters.return_value = newsletters
+        data = {
+            'newsletter': 'mozilla-and-you,beta-DUDE',
+            'email': 'dude@example.com',
+            'privacy': 'Y',
+            'fmt': 'H',
+        }
+        form = NewsletterFooterForm('en-US', data=data.copy())
+        self.assertFalse(form.is_valid())
+        self.assertEqual(form.errors['newsletter'][0], 'beta-DUDE is not '
+                                                       'a valid newsletter')

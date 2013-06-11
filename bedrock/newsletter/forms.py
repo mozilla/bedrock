@@ -199,9 +199,11 @@ class NewsletterFooterForm(forms.Form):
     def clean_newsletter(self):
         # We didn't want to have to look up the list of valid newsletters
         # until we actually had a form submitted
-        if 'newsletter' in self.cleaned_data:
+        newsletter = self.cleaned_data.get('newsletter', None)
+        if newsletter:
+            newsletters = newsletter.replace(' ', '').split(',')
             valid_newsletters = utils.get_newsletters().keys()
-            if self.cleaned_data['newsletter'] not in valid_newsletters:
-                raise ValidationError("%s is not a valid newsletter" %
-                                      self.cleaned_data['newsletter'])
-            return self.cleaned_data['newsletter']
+            for nl in newsletters:
+                if nl not in valid_newsletters:
+                    raise ValidationError("%s is not a valid newsletter" % nl)
+            return ','.join(newsletters)
