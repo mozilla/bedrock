@@ -72,4 +72,7 @@ urlpatterns = patterns('',
 
     url(r'^firefox/partners/$', views.firefox_partners,
         name='firefox.partners.index'),
+
+    # This dummy page definition makes it possible to link to /firefox/ (Bug 878068)
+    url('^firefox/$', views.fx_home_redirect, name='firefox'),
 )

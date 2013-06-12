@@ -118,6 +118,10 @@ def windows_billboards(req):
     return l10n_utils.render(req, 'firefox/unsupported-win2k.html')
 
 
+def fx_home_redirect(request):
+    return HttpResponseRedirect(reverse('firefox.fx'))
+
+
 def platforms(request):
     file = settings.MEDIA_ROOT + '/devices.csv'
     return l10n_utils.render(request, 'firefox/mobile/platforms.html',
