@@ -3,6 +3,19 @@
 
 // Fonts
 
+
+// Open Sans Extra Bold Italic for Firefox OS promo
+@font-face {
+    font-family: 'Open Sans ExtraBoldItalic';
+    src: url('/media/fonts/OpenSans-ExtraBoldItalic-webfont.eot');
+    src: url('/media/fonts/OpenSans-ExtraBoldItalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/media/fonts/OpenSans-ExtraBoldItalic-webfont.woff') format('woff'),
+         url('/media/fonts/OpenSans-ExtraBoldItalic-webfont.ttf') format('truetype'),
+         url('/media/fonts/OpenSans-ExtraBoldItalic-webfont.svg#OpenSansExtraBoldItalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 @font-face {
     font-family: 'Open Sans';
     src: url('/media/fonts/OpenSans-Regular-webfont.eot');
@@ -32,17 +45,6 @@
          url('/media/fonts/OpenSans-Light-webfont.woff') format('woff'),
          url('/media/fonts/OpenSans-Light-webfont.ttf') format('truetype'),
          url('/media/fonts/OpenSans-Light-webfont.svg#OpenSansLight') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-/* Meta Web Pro Black Italic font for Firefox OS MWCpromo */
-
-@font-face {
-	font-family: MetaWebPro-BlackIta;
-    src: url('/media/fonts/MetaWebPro-BlackIta.eotlite');
-    src: url('/media/fonts/MetaWebPro-BlackIta.eotlite?#iefix') format('embedded-opentype'),
-         url('/media/fonts/MetaWebPro-BlackIta.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -348,8 +350,9 @@
     h4 {
         text-shadow: none;
         color: #fff;
-        font-family: MetaWebPro-BlackIta;
+        font-family: Open Sans ExtraBoldItalic;
         text-transform: uppercase;
+        letter-spacing: -3px;
         font-weight: normal;
         font-size: 46px;
         line-height: 46px;
@@ -364,6 +367,7 @@
             margin-top: 5px;
             margin-bottom: 10px;
             line-height: 20px;
+            letter-spacing: normal;
         }
     }
     p {
