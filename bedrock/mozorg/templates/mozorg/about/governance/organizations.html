@@ -1,0 +1,41 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/about-base.html" %}
+
+{% block page_title %}{{ _('Organizations') }}{% endblock %}
+{% block body_id %}about-governance-organizations{% endblock %}
+
+{% block article %}
+<h1 class="title-banner">{{_('Mozilla Organizations')}} </h1>
+
+<p>{{_('Mozilla is a global community of people ')}} <a href="{{ url('mozorg.mission') }}">creating a better Internet</a>.{{_(' We build public benefit into the Internet by creating free, open source products and technologies that improve the online experience for people everywhere.')}}</p>
+
+<p>{{_('There are several organizations that support the Mozilla community and ')}}<a href="{{ url('mozorg.about.manifesto') }}">{{_('Mozilla’s principles.</a> They include the non-profit Mozilla Foundation as well as the wholly owned taxable subsidiary, the Mozilla Corporation. Mozilla considers itself a <a href="http://commonspace.wordpress.com/category/hybrid/">hybrid organization</a>, combining non-profit and market strategies to ensure the Internet remains a shared public resource.')}}</p>
+
+<p>{{_('This page provides information about the various organizations and their relationships to each other. If you have any questions about this, please feel free to <a href="//www.mozilla.org/contact">contact us</a>')}}</p>
+
+<h2>{{_('Mozilla Foundation')}}</h2>
+
+<p>{{_('The <a href="//www.mozilla.org/foundation/">Mozilla Foundation</a> is a California non-profit corporation exempt from Federal income taxation under IRC 501(c)(3). The Foundation supports the existing Mozilla community and oversees Mozilla’s governance structure. It also actively seeks out new ways for people around the world to recognize and steward the Internet as a critical public resource.')}}</p>
+
+<p>{{_('<a href="//www.mozilla-japan.org/">Mozilla Japan</a> is a separate non-profit organization that promotes Mozillas products and mission in Japan and is affiliated with the Mozilla Foundation.')}}</p>
+
+<h2>{{_('Mozilla Corporation')}}</h2>
+
+<p>{{_('The <a href="//www.mozilla.org/foundation/moco.html">Mozilla Corporation</a>, a wholly owned subsidiary of the Mozilla Foundation, works with the community to develop software that advances Mozilla’s principles. This includes the <a href="//www.mozilla.org/firefox/">Firefox</a> browser, which is well recognized as a market leader in security, privacy and language localization. These features make the Internet safer and more accessible.')}}</p>
+
+<p>{{_('<a href="//firefox.com.cn/">Mozilla Online</a> is a separate organization that operates in China and is a wholly owned subsidiary of the Mozilla Corporation.')}}</p>
+
+<h2>{{_('Community Member Organizations')}}</h2>
+
+<p>{{_('There are <a href="//www.mozilla.org/contribute/local">other formal and informal organizations</a> that are maintained by people actively involved in the community that do not have an official relationship with the Mozilla Foundation. The following is not meant to be a comprehensive list.')}}</p>
+
+<ol> 
+	<li>{{_('<a href="http://www.mozillaitalia.it/">Mozilla Italia</a>')}}</li>
+	<li>{{_('<a href="http://www.mozilla-hispano.org/">Mozilla Hispano</a>')}}</li>
+	<li>{{_('<a href="http://www.mozdev.org/">Mozdev Community Organization</a>')}}</li>
+</ol>
+
+{% endblock %}
