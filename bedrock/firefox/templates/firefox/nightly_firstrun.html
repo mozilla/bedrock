@@ -21,10 +21,9 @@
 {% block site_header_logo %}{% endblock %}
 
 {% block content %}
-<h1 id="firstrun-header" class="large">{{ _('Firefox Nightlies') }}</h1>
-
 <main id="main-content" role="main">
-  <article class="main-column">
+<h1 id="firstrun-header" class="large">{{ _('Firefox Nightlies') }}</h1>
+  <div class="main-column">
     <p>{{ _('Thank you for trying a nightly build and helping improve future versions of Firefox. Learn more about how you can get involved with our testing and developer community.') }}</p>
   
     <div id="video-player" class="mozilla-video-control mozilla-video-shadow">
@@ -75,17 +74,15 @@
       <li><a href="https://wiki.mozilla.org/Releases">{{ _('Release information') }}</a></li>
       <li><a href="https://wiki.mozilla.org/Features/Release_Tracking">{{ _('Firefox Flight Tracking') }}</a></li>
     </ul>
-  </article>
+  </div>
 
   <aside class="sidebar">
-    <nav>
-      <ul>
-        <li><a href="{{ url('mozorg.contribute') }}">{{ _('Get involved') }}</a></li>
-        <li><a href="{{ url('mozorg.contribute')|urlparams(hash='interest') }}">{{ _('By area of interest') }}</a></li>
-        <li><a href="{{ url('mozorg.contribute')|urlparams(hash='location') }}">{{ _('By location') }}</a></li>
-        <li><a href="{{ url('mozorg.contribute')|urlparams(hash='newsletter') }}">{{ _('Contributor newsletter') }}</a></li>
-      </ul>
-    </nav>
+    <ul class="nav">
+      <li><a href="{{ url('mozorg.contribute') }}">{{ _('Get involved') }}</a></li>
+      <li><a href="{{ url('mozorg.contribute')|urlparams(hash='interest') }}">{{ _('By area of interest') }}</a></li>
+      <li><a href="{{ url('mozorg.contribute')|urlparams(hash='location') }}">{{ _('By location') }}</a></li>
+      <li><a href="{{ url('mozorg.contribute')|urlparams(hash='newsletter') }}">{{ _('Contributor newsletter') }}</a></li>
+    </ul>
   </aside>
 
 </main> <!-- main-content -->

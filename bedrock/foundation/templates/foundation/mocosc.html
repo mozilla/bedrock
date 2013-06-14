@@ -1,0 +1,57 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "foundation/base-resp.html" %}
+{% block page_title %}{{ _('About the Mozilla Corporation Steering Committee') }}{% endblock %}
+
+{% block article_title %}
+  <h1 class="page-title">{{ _('About the Mozilla Corporation Steering Committee') }}</h1>
+{% endblock %}
+
+{% block article %}
+  <p>{% trans %}
+    The Mozilla Corporation's senior executive team is known as the
+    Steering Committee.    The Steering Committee is responsible for
+    leadership, coordination among the various groups working together
+    to produce Mozilla's consumer products.    The Steering Committee
+    stays abreast of market conditions, charts Mozilla's path through this
+    environment,  and sets the direction of Mozilla's general consumer
+    product offerings.  The Steering Committee also performs traditional
+    management tasks such as hiring, planning, and resource allocation.
+    It does so in ways that align with Mozilla's non-profit, open-source,
+    community-based identity.  The Steering Committee seeks to absorb,
+    distill and reflect Mozilla community values in the exercise of its
+    responsibilities.
+  {% endtrans %}</p>
+
+  <p>
+    {% trans
+      blog="//blog.lizardwrangler.com/2008/02/28/steering-committee/"
+    %}
+      More information about the Steering Committee and its formation can be
+      found in <a href="{{ blog }}">this blog post</a>.
+      It has a standing weekly meeting, periodic multi-day sessions and meets
+      additionally on an as needed basis.
+    {% endtrans %}
+  </p>
+
+  <p>
+    {% trans %}
+      Members of the Steering Committee as of June 1, 2012 are listed below.
+    {% endtrans %}
+  </p>
+
+  <ul>
+    <li>Harvey Anderson, {{ _('General Counsel, Business Development') }}</li>
+    <li>Mitchell Baker, {{ _('Office of the Chair') }}</li>
+    <li>Chris Beard, {{ _('Marketing') }}</li>
+    <li>Debbie Cohen, {{ _('People') }}</li>
+    <li>Jim Cook,  {{ _('Finance') }}</li>
+    <li>Brendan Eich, {{ _('CTO') }}</li>
+    <li>Li Gong, {{ _('Mozilla Online and Mozilla Taiwan') }}</li>
+    <li>Gary Kovacs, {{ _('CEO') }}</li>
+    <li>Jay Sullivan, {{ _('Products') }}</li>
+    <li>Todd Simpson, {{ _('Labs, Services') }}</li>
+  </ul>
+{% endblock %}

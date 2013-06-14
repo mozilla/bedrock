@@ -1,0 +1,226 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+.page-title {
+  margin: 0 @gridGutterWidth/2 .5em;
+  h2 {
+    margin-bottom: 1em;
+  }
+}
+
+#main-content {
+  div.img-right, 
+  div.img-center, 
+  div.img-left {
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    background: #fff;
+    -moz-box-shadow: 0 2px rgba(0, 0, 0, 0.05), 0 -2px rgba(0, 0, 0, 0.05) inset;
+    -webkit-box-shadow: 0 2px rgba(0, 0, 0, 0.05), 0 -2px rgba(0, 0, 0, 0.05) inset;
+    box-shadow: 0 2px rgba(0, 0, 0, 0.05), 0 -2px rgba(0, 0, 0, 0.05) inset;
+    p {
+      margin: 0;
+    }
+  }
+  div.img-right {
+    float: right;
+    margin-left: 15px;
+  }
+  div.img-left {
+    float: left;
+    margin-right: 15px;
+  }
+  div.img-center {
+    clear: both;
+    margin: 0 auto 1.5em;
+  }
+}
+
+video,
+object, 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+#video-description,
+.video-description {
+  margin: 1em @gridGutterWidth 1.5em;
+  h3 {
+    font-size: 20px;
+    letter-spacing: normal;
+  }
+  h4 {
+    font-size: 16px;
+    letter-spacing: normal;
+  }
+  .download {
+    margin: 0 0 .5em;
+    font-size: 12px;
+  }
+}
+
+.timestamp {
+  font-size: 20px;
+  letter-spacing: normal;
+}
+
+.nav-paging {
+  clear: both;
+  list-style: none;
+  font-size: 16px;
+  font-style: italic;
+  margin: 15px 0;
+  padding: 0;
+  overflow: hidden;
+  li {
+    margin: 0;
+  }
+}
+
+.nav-paging .prev {
+  float: left;
+  width: 45%;
+  text-align: left;
+}
+
+.nav-paging .prev a:before {
+  font-size: 24px;
+  content: "\00AB\00A0";
+}
+
+.nav-paging .next {
+  float: right;
+  width: 45%;
+  text-align: right;
+}
+
+.nav-paging .next a:after {
+  font-size: 24px;
+  content: "\00A0\00BB";
+}
+
+.return-to-top {
+  font-size: 12px;
+}
+
+
+/* Q and A (FAQ) */
+.qandaset .question {
+  font-size: large;
+  font-weight: bold;
+}
+
+.qandaset .answer {
+  margin-top: 1em;
+}
+
+/* Tablet Layout: 760px */
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+
+  #masthead,
+  #main-content,
+  .billboard {
+    width: @widthTablet - (@gridGutterWidth * 2);
+  }
+
+  #main-content {
+    .intro {
+      .span_narrow(4);
+      font-size: 22px;
+    }
+
+    ul.links {
+      .span_narrow(4);
+      h4 {
+        font-size: 20px;
+      }
+    }
+
+  }
+
+}
+
+/* Mobile layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+
+  #masthead,
+  #main-content,
+  .billboard {
+    width: @widthMobile - (@gridGutterWidth * 2);
+  }
+
+  .billboard {
+    padding-left: @gridGutterWidth;
+    padding-right: @gridGutterWidth;
+  }
+
+  #main-content {
+    margin-bottom: @baseLine;
+
+    .title-banner {
+      width: 240px;
+      font-size: 28px;
+      letter-spacing: -.5px;
+      margin: -25px 0 @baseLine;
+    }
+
+    .title-banner:after {
+      display: none;
+    }
+
+    .intro {
+      width: auto;
+      font-size: 1em;
+      margin-bottom: @baseLine;
+    }
+
+    ul.links {
+      width: auto;
+      margin-bottom: 0;
+      li {
+        min-height: 0;
+      }
+    }
+
+  }
+
+}
+
+/* Wide mobile layout: 480px; */
+@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+
+  #masthead,
+  #main-content,
+  .billboard {
+    width: @widthMobileLandscape - @gridGutterWidth;
+  }
+
+  #main-content {
+    .title-banner {
+      width: 380px;
+      margin: -25px 0 40px;
+    }
+
+    .title-banner:after {
+      display: block;
+    }
+
+    .intro {
+      .span_narrow(3);
+    }
+
+    ul.links {
+      .span_narrow(4);
+      float: right;
+      clear: right;
+    }
+
+  }
+
+}

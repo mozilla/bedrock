@@ -39,6 +39,7 @@ def page(name, tmpl, decorators=None, **kwargs):
             # Name this in New Relic to differentiate pages
             newrelic.agent.set_transaction_name(
                 'mozorg.util.page:' + name.replace('.', '_'))
+        kwargs.setdefault('urlname', name)
         return l10n_utils.render(request, tmpl, kwargs)
 
     # This is for graphite so that we can differentiate pages

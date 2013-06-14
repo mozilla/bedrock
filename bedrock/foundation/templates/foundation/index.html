@@ -1,0 +1,71 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "foundation/base-resp.html" %}
+
+{% set body_id = "index" %}
+
+{% block page_title %}{{ _('The Mozilla Foundation') }}{% endblock %}
+
+{% block article_title %}
+<h1 class="page-title">{{ _('The Mozilla Foundation') }}</h1>
+{% endblock %}
+
+{% block article %}
+  <p>
+    {% trans
+      causes=url('mozorg.mission')
+    %}
+      The Mozilla Foundation is a non-profit organization that promotes
+      openness, innovation and participation on the Internet. We promote
+      the values of an <a href="{{ causes }}">open Internet</a> to the
+      broader world.
+    {% endtrans %}
+  </p>
+
+  <p>
+    {% trans
+      firefox=url('firefox.fx'),
+      projects=url('mozorg.products'),
+      grants=url('grants'),
+      webmaker="https://webmaker.org/"
+    %}
+      Mozilla is best known for the <a href="{{ firefox }}">Firefox </a>
+      browser, but we advance our mission through other
+      <a href="{{ projects }}">software projects</a>,
+      <a href="{{ grants }}">grants</a> and engagement and education
+      efforts such as <a href="{{ webmaker }}">Mozilla Webmaker</a>.
+    {% endtrans %}
+  </p>
+
+  <p>
+    {% trans %}
+      Webmaker is all about building a new generation of digital
+      creators and webmakers, giving people the tools and skills they
+      need to move from <strong>using</strong> the web to actively
+      <strong>making</strong> the web.
+    {% endtrans %}
+  </p>
+
+  <p>
+    {% trans badges="http://openbadges.org/" %}
+      Other projects, like Mozilla <a href="{{ badges }}">Open Badges</a>,
+      seek to unlock the full educational potential of the web by making
+      it easy for users to get recognition for skills they learn online
+      and offline.
+    {% endtrans %}
+  </p>
+
+  <p>
+    {% trans
+      donate="https://sendto.mozilla.org/",
+      contribute=url('mozorg.contribute')
+    %}
+      If you're interested in supporting our efforts, please consider getting
+      involved with Mozilla Webmaker or Open Badges, making a
+      <a href="{{ donate }}">donation</a> or
+      <a href="{{ contribute }}">getting involved</a> with the Mozilla community.
+    {% endtrans %}
+  </p>
+{% endblock %}

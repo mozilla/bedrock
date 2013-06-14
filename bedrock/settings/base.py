@@ -104,6 +104,12 @@ MINIFY_BUNDLES = {
         'mobile_overview': (
             'css/mozorg/mobile.less',
         ),
+        'firefoxos': (
+            'css/firefoxos/firefoxos.less',
+        ),
+        'foundation': (
+            'css/foundation/foundation.less',
+        ),
         'grants': (
             'css/grants/grants.less',
         ),
@@ -300,8 +306,14 @@ MINIFY_BUNDLES = {
         'tabzilla': (
             'css/tabzilla/tabzilla.less',
         ),
+        'trademark-list': (
+            'css/trademark-list.less',
+        ),
         'video': (
             'css/sandstone/video.less',
+        ),
+        'video-resp': (
+            'css/sandstone/video-resp.less',
         ),
         'page_not_found': (
             'css/base/page-not-found.less',

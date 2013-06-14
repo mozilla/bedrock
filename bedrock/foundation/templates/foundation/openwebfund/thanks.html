@@ -1,0 +1,28 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "foundation/base-resp.html" %}
+
+{% block page_title %}{{ _('Thank you') }}{% endblock %}
+
+{% block article_title %}
+  <h1 class="page-title">{{ _('Thank you for supporting the Mozilla Open Web Fund') }}</h1>
+{% endblock %}
+
+{% block article %}
+  <p>
+  {% trans %}
+    Your donation will help Mozilla support projects and people who are
+    committed to making the web better. Interested in becoming a part of the Mozilla
+    project? Here are some easy ways to get involved:
+  {% endtrans %}
+  </p>
+
+  <ul>
+    <li>{% trans join="http://www.drumbeat.org/people" %}<a href="{{ join }}">Join</a> Mozilla Drumbeat and start making the web more open and awesome right now{% endtrans %}</li>
+    <li>{% trans getinvolved=url('mozorg.contribute') %}<a href="{{ getinvolved }}">Get involved</a> with Mozilla{% endtrans %}</li>
+    <li>{% trans firefox=url('firefox.fx') %}Introduce someone to <a href="{{ firefox }}">Mozilla Firefox</a>{% endtrans %}</li>
+  </ul>
+
+{% endblock article %}
