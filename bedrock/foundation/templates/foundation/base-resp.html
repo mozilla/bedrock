@@ -4,14 +4,14 @@
 
 {% extends "base-resp.html" %}
 
-{% block body_class %}sand{% endblock %}
-
 {% block page_title_prefix %}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
 
 {% block extrahead %}
   {{ css('foundation') }}
 {% endblock %}
+
+{% block body_class %}sand{% endblock %}
 
 {% set navigation_bar = [
     (url('foundation.index'), 'index', 'The Mozilla Foundation'),

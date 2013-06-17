@@ -306,9 +306,6 @@ MINIFY_BUNDLES = {
         'tabzilla': (
             'css/tabzilla/tabzilla.less',
         ),
-        'trademark-list': (
-            'css/trademark-list.less',
-        ),
         'video': (
             'css/sandstone/video.less',
         ),
