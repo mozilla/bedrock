@@ -104,9 +104,6 @@ MINIFY_BUNDLES = {
         'mobile_overview': (
             'css/mozorg/mobile.less',
         ),
-        'firefoxos': (
-            'css/firefoxos/firefoxos.less',
-        ),
         'foundation': (
             'css/foundation/foundation.less',
         ),
