@@ -231,14 +231,22 @@ var Tabzilla = (function (Tabzilla) {
         $('#tabzilla-contents').on('click', 'a', function (e) {
             var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
             var href = this.href;
+            var timer = null;
+            var callback = function () {
+                clearTimeout(timer);
+                window.location = href;
+            };
 
             if (typeof(_gaq) == 'object') {
-                _gaq.push(['_trackEvent', 'Tabzilla', 'click', href]);
-                if (!newTab) {
+                if (newTab) {
+                    _gaq.push(['_trackEvent', 'Tabzilla', 'click', href]);
+                } else {
+                    _gaq.push(
+                        ['_set', 'hitCallback', callback()],
+                        ['_trackEvent', 'Tabzilla', 'click', href]
+                    );
                     e.preventDefault();
-                    setTimeout(function () {
-                        window.location = href;
-                    }, 500);
+                    timer = setTimeout(callback, 500);
                 }
             }
         });
@@ -248,14 +256,20 @@ var Tabzilla = (function (Tabzilla) {
             
             var $form = $(this);
             var keyword = $form.find('#q').val();
+            var timer = null;
+            var callback = function () {
+                clearTimeout(timer);
+                $form.submit();
+            };
 
             $form.unbind('submit');
 
             if (typeof(_gaq) == 'object' && keyword !== '') {
-                _gaq.push(['_trackEvent', 'Tabzilla', 'search', keyword]);
-                setTimeout(function () {
-                    $form.submit();
-                }, 500);
+                _gaq.push(
+                    ['_set', 'hitCallback', callback()],
+                    ['_trackEvent', 'Tabzilla', 'search', keyword]
+                );
+                timer = setTimeout(callback, 500);
             } else {
                 $form.submit();
             }
