@@ -52,7 +52,6 @@ urlpatterns = patterns('',
         name='firefox.installer-help'),
     page('firefox/speed', 'firefox/speed.html'),
     page('firefox/technology', 'firefox/technology.html'),
-    page('firefox/toolkit/download-to-your-devices', 'firefox/devices.html'),
     page('firefox/update', 'firefox/update.html'),
 
     page('firefox/unsupported/warning', 'firefox/unsupported-warning.html'),
