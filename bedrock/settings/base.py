@@ -160,10 +160,6 @@ MINIFY_BUNDLES = {
             'css/sandstone/video.less',
             'css/firefox/customize.less',
         ),
-        'firefox_devices': (
-            'css/firefox/devices.less',
-            'css/firefox/template.less'
-        ),
         'firefox_features': (
             'css/sandstone/video.less',
             'css/firefox/features.less',
@@ -503,14 +499,6 @@ MINIFY_BUNDLES = {
         ),
         'video': (
             'js/base/mozilla-video-tools.js',
-        ),
-        'firefox_devices': (
-            'js/libs/jquery-1.4.4.min.js',
-            'js/base/global.js',
-            'js/base/nav-main.js',
-            'js/libs/jquery.cycle.all.js',
-            'js/libs/jquery.ba-hashchange.min.js',
-            'js/firefox/devices.js'
         ),
         'mosaic': (
             'js/libs/modernizr.custom.26887.js',
