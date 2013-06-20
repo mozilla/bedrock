@@ -253,7 +253,7 @@ var Tabzilla = (function (Tabzilla) {
         // track search keywords in GA
         $('#tabzilla-search form').on('submit', function (e) {
             e.preventDefault();
-            
+
             var $form = $(this);
             var keyword = $form.find('#q').val();
             var timer = null;
@@ -399,10 +399,10 @@ var Tabzilla = (function (Tabzilla) {
       '<div id="tabzilla-panel" class="tabzilla-closed" tabindex="-1">'
     + '  <div id="tabzilla-contents">'
     + '    <div id="tabzilla-promo">'
-    + '      <div class="snippet" id="tabzilla-promo-mwc">'
+    + '      <div class="snippet" id="tabzilla-promo-fxos">'
     + '        <a href="https://www.mozilla.org/firefox/os/?icn=tabz">'
-    + '          <h4>{{ _('Firefox OS debuts <span>at Mobile World Congress!</span>') }}</h4>'
-    + '          <p>{{ _('Learn more')|js_escape }} »</p>'
+    + '          <h4>{{ _('Look ahead')|js_escape }}</h4>'
+    + '          <p>{{ _('Learn all about Firefox OS')|js_escape }} »</p>'
     + '        </a>'
     + '      </div>'
     + '    </div>'
