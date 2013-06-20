@@ -75,9 +75,4 @@ urlpatterns = patterns('',
 
     # Bug 867773 - Redirect the Persona "Developer FAQ" link to MDN
     redirect(r'^persona/developer-faq/$', 'https://developer.mozilla.org/persona'),
-
-    #Bug 860532- migrate governance, roles, and organizations to bedrock
-    redirect(r'^about/governance.html$', '/about/governance/'),
-    redirect(r'^about/roles.html$', '/about/governance/roles/'),
-    redirect(r'^about/organizations.html', '/about/governance/organizations/')
 )
