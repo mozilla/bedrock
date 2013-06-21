@@ -22,7 +22,8 @@
   {% endif %}
 
   {% if formset %}
-    <form method="post" action="" id="existing-newsletter-form" class="container billboard">
+    <form method="post" action="" id="existing-newsletter-form" class="container billboard"
+        data-initial-newsletters='{{ newsletters_subscribed }}'>
       {{ formset.management_form }}
 
       <div id="basic-settings">
@@ -109,10 +110,14 @@
       </div>
 
       <div class="field submit-field">
-        <input name="submit" type="submit" value="Save Preferences" class="button">
+        <input type="submit" value="Save Preferences" class="button">
       </div><!-- close .submit-field -->
 
     </form>
   {% endif %}
   <!-- End content -->
 {% endblock %}
+
+{% block js %}
+  {{ js('existing') }}
+{% endblock js %}
