@@ -18,6 +18,12 @@
 
 {% block content %}
 <main role="main">
+  <div id="version-message">
+    <div id="version-message-android-latest">{{_('You’re using the latest version of Firefox for Android!')}}</div>
+    <div id="version-message-android-old">{{_('You’re using an older version of Firefox. Update at the Google Play Store.')}}</div>
+    <div id="version-message-desktop-latest">{{_('You’re using the latest version of Firefox!')}}</div>
+    <div id="version-message-desktop-old">{{_('You’re using an older version of Firefox. Updating is quick and easy.')}}</div>
+  </div>
   <div id="main-feature">
     <div class="row">
       <img src="{{ media('img/firefox/new/firefox-logo.png?2013-06') }}" alt="Firefox" />

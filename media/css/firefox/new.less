@@ -35,6 +35,68 @@
     z-index: 1;
 }
 
+#version-message {
+    text-align: center;
+    font-size: 20px;
+    font-style: italic;
+    padding-bottom: 20px;
+    display: none;
+
+    div {
+        display: none;
+        background: url(/media/img/firefox/new/teardrop-arrow.png) no-repeat 0 0;
+        padding-left: 36px;
+    }
+}
+
+/* desktop version message (with Firefox) */
+html.firefox-latest {
+    #version-message {
+        display: block;
+        #version-message-desktop-latest {
+            display: inline;
+            background-position: 0 100%;
+        }
+    }
+}
+
+html.firefox-old {
+    #version-message {
+        display: block;
+        #version-message-desktop-old {
+            display: inline;
+        }
+    }
+}
+
+/* Android version message (with Firefox) */
+html.android {
+    &.firefox-latest {
+        #version-message {
+            display: block;
+            #version-message-android-latest {
+                display: inline;
+                background-position: 0 100%;
+            }
+            #version-message-desktop-latest {
+                display: none;
+            }
+        }
+    }
+
+    &.firefox-old {
+        #version-message {
+            display: block;
+            #version-message-android-old {
+                display: inline;
+            }
+            #version-message-desktop-old {
+                display: none;
+            }
+        }
+    }
+}
+
 #main-feature {
     margin-top: 14px;
     padding-bottom: 18px;
@@ -323,6 +385,7 @@ noscript {
     .theater, .stage, .scene {
         height: 356px;
     }
+    #version-message { display: none; }
     #main-feature {
         padding-bottom: 0px;
         .row {

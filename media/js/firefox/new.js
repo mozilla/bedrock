@@ -5,6 +5,16 @@
 ;(function($, Modernizr, _gaq, site) {
     'use strict';
 
+    if (isFirefox()) {
+        if (isFirefoxUpToDate()) {
+            $('html').addClass('firefox-latest');
+        } else {
+            $('html').addClass('firefox-old');
+        }
+    }
+
+    // TODO: is any of this needed? It's from the old version of the file
+
     if (site.platform === 'android') {
         return;
     }
