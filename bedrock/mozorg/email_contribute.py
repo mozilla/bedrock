@@ -100,6 +100,7 @@ LOCALE_CONTACTS = {
     'fy-NL': ['fryskefirefox@gmail.com'],
     'hr'   : ['contribute@mozilla-hr.org'],
     'id'   : ['info@mozilla.web.id'],
+    'it'   : ['collabora@mozillaitalia.org'],
     'nl'   : ['contribute@mozilla-nl.org'],
     'pt-BR': ['envolva-se-mozilla-brasil@googlegroups.com'],
     'ru'   : ['contribute@mozilla-russia.org'],
