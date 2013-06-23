@@ -1,0 +1,33 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "base-resp.html" %}
+
+{% block body_class %}sky{% endblock %}
+
+{% block description %}{% endblock %}
+
+{% block favicon %}<link rel="shortcut icon" type="image/icon" href="{{ MEDIA_URL }}img/firefox/favicon.ico">{% endblock %}
+
+{% block page_title_prefix %}Mozilla Firefox OS — {% endblock %}
+
+{% block site_css %}
+  {{ css('firefox-resp') }}
+{% endblock %}
+
+{% block extrahead %}
+<meta name="og:image" content="{{ media('img/firefox/firefox-100.jpg') }}">
+{% endblock %}
+
+{% block body_attrs %}{{ super() }} data-latest-firefox="{{ latest_firefox_version }}" data-esr-versions="{{ esr_firefox_versions }}"{% endblock %}
+
+{% block site_header_nav %}{% endblock %}
+
+{% block site_header_logo %}
+<h2><a href="{{ url('firefox.os.index') }}"><img src="{{ media('img/firefox/os/template/header-logo.png') }}" alt="Mozilla Firefox OS" height="70" width="220" data-inverse-src="{{media('img/firefox/os/template/header-logo-inverse.png') }}"></a></h2>
+{% endblock %}
+
+{% block site_js %}
+  {{ js('firefox-resp') }}
+{% endblock %}

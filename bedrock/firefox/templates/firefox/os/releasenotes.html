@@ -1,0 +1,393 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "firefox/fxos-base.html" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{_('Firefox OS — Notes')}}{% endblock %}
+
+{% block body_id %}notes{% endblock %}
+{% block body_class %}fxos-notes sky{% endblock %}
+
+
+{% block site_css %}
+  {{ css('firefox_releasenotes') }}
+{% endblock %}
+
+{% block extrahead %}
+{% endblock %}
+
+{% block content %}
+  <header id="main-feature">
+    <h1>{{ _('Firefox OS 1.0.1 Notes') }}</h1>
+
+    <h2>{{ _('First offered to partners for release on July 2, 2013') }}</h2>
+
+    <p>
+    {% trans feedback='https://input.mozilla.com/feedback',
+        bugzilla='https://bugzilla.mozilla.org/' %}
+      As always, you&#146;re encouraged to
+      <a href="{{ feedback }}">tell us what you think</a>,
+      or <a href="{{ bugzilla }}">file a bug in Bugzilla</a>.
+    {% endtrans %}
+    </p>
+  </header>
+
+<div id="main-content">
+  <article class="main-column">
+    <section id="overview">
+      <h3>{{ _('Overview') }}</h3>
+      <p>{{ _('Firefox OS is a mobile operating system developed by Mozilla. It
+      uses a Linux kernel and boots into a Gecko-based runtime engine, which lets
+      users run applications developed entirely using HTML, JavaScript, and other
+      open web application APIs.') }}</p>
+      <p>{{ _('These release notes document the features, changes, known issues
+      as well as links to useful resources to help developers and partners work
+      with this open web technology.') }}</p>
+    </section>
+
+    <section class="notes-section" id="features">
+      <h3>{{ _('Features') }}</h3>
+      <p>
+      {% trans %}
+        Welcome to the first release of the Firefox OS mobile operating system. This
+        release contains many core applications required for a smart phone but also
+        some features that  highlight the benefits and uniqueness of our open web
+        platform offering.
+      {% endtrans %}
+      </p>
+      <ul class="section-items">
+        <li>
+          <h4>{{ _('Adaptive App Search') }}</h4>
+          <p class="note">{{ _('Information on any subject right when you need it') }}</p>
+        </li>
+        <li>
+          <h4><a href="https://marketplace.firefox.com/" rel="external">{{ _('Marketplace') }}</a></h4>
+          <p class="note">{{ _('Your go-to source for the best apps for Firefox OS') }}</p>
+        </li>
+        <li>
+          <h4>{{ _('Firefox browser') }}</h4>
+          <p class="note">{{ _('The fast, smart, safe way to get the best of the Web') }}</p>
+        </li>
+        <li>
+          <h4>{{ _('Contacts') }}</h4>
+          <p class="note">{{ _('Import your contact from your favorite social networks') }}</p>
+        </li>
+        <li>
+          <h4>{{ _('Camera') }}</h4>
+          <p class="note">{{ _('With built-in style filters for fun, creative shots') }}</p>
+        </li>
+        <li>
+          <h4>{{ _('FM Radio') }}</h4>
+          <p class="note">{{ _('All the audio you want on the go, all on one device') }}</p>
+        </li>
+        <li>
+          <h4>{{ _('Maps') }}</h4>
+          <p class="note">{{ _('Includes directions, traffic and local transit information') }}</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="notes-section" id="gaia">
+      <h3>{{ _('System Applications') }}</h3>
+      <p>
+      {% trans marketplace='https://marketplace.firefox.com/' %}
+        These apps come pre-installed in every Firefox OS device and provide basic
+        smartphone capability. For more apps that can be installed on a device visit
+        the <a href="{{ marketplace }}" rel="external">Firefox Marketplace</a>.
+      {% endtrans %}
+      </p>
+      <ul class="section-items">
+        <li>
+          <h4>{{ _('Home Screen') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('Dialer') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('SMS') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('Contacts') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('Gallery') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('Video Player') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('Music Player') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('Settings') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('Marketplace') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('Alarm Clock') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('Camera') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('Firefox Browser') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('Email') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('Calendar') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('FM Radio') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('Cost Control') }}</h4>
+        </li>
+      </ul>
+    </section>
+
+    <section class="notes-section" id="platform">
+      <h3>{{ _('Platform Highlights') }}</h3>
+      <p>{{ _('Gecko platform based on Firefox 18, major changes completed May 21, 2013.') }}</p>
+      <ul class="section-items">
+        <li>
+          <h4><a href="https://developer.mozilla.org/docs/WebAPI/WebSMS" rel="external">{{ _('SMS') }}</a></h4>
+        </li>
+        <li>
+          <h4>{{ _('3G/Data') }}</h4>
+        </li>
+        <li>
+          <h4><a href="https://developer.mozilla.org/docs/WebAPI/WiFi_Information" rel="external">{{ _('WiFi') }}</a></h4>
+        </li>
+        <li>
+          <h4><a href="https://marketplace.firefox.com/" rel="external">{{ _('Open Web Apps') }}</a></h4>
+        </li>
+        <li>
+          <h4>{{ _('Voicemail') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('MozApp support') }}</h4>
+        </li>
+        <li>
+          <h4><a href="https://login.persona.org/" rel="external">{{ _('Persona / ID') }}</a></h4>
+        </li>
+        <li>
+          <h4>{{ _('Carrier billing') }}</h4>
+        </li>
+        <li>
+          <h4><a href="https://developer.mozilla.org/docs/WebAPI/WebBluetooth" rel="external">{{ _('Bluetooth') }}</a></h4>
+        </li>
+        <li>
+          <h4>{{ _('Network Manager') }}</h4>
+        </li>
+        <li>
+          <h4><a href="https://developer.mozilla.org/docs/WebAPI/Device_Storage_API" rel="external">{{ _('USB device storage') }}</a></h4>
+        </li>
+        <li>
+          <h4>{{ _('Multi-process support') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('Async pan/zoom') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('SIM Toolkit') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('Multi-APN support') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('Full Screen') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('WiFi Hotspot') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('Software Updates') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('Cell Broadcast') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('Notification Settings') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('UI Transition/Animations') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('Localization support') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('First Run Experience') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('Call Waiting') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('Call Forwarding') }}</h4>
+        </li>
+      </ul>
+    </section>
+
+    <section class="notes-section" id="locales">
+      <h3>{{ _('Supported Locales') }}</h3>
+      <ul class="section-items">
+        <li>
+          <h4>{{ _('Portugese (Brasil)') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('English (US)') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('Spanish (neutral)') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('Polish') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('Croatian') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('Czech') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('German') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('Hungarian') }}</h4>
+        </li>
+        <li>
+          <h4>{{ _('Romanian') }}</h4>
+        </li>
+      </ul>
+    </section>
+
+    <section class="notes-section" id="developer">
+      <h3>{{ _('Developer') }}</h3>
+      <ul class="section-items">
+        <li>
+          <h4><a href="https://developer.mozilla.org/docs/WebAPI/WebTelephony" rel="external">{{ _('Telephony API') }}</a></h4>
+        </li>
+        <li>
+          <h4><a href="https://developer.mozilla.org/docs/WebAPI/Contacts" rel="external">{{ _('Contacts API') }}</a></h4>
+        </li>
+        <li>
+          <h4><a href="https://developer.mozilla.org/docs/WebAPI/Settings" rel="external">{{ _('Settings API') }}</a></h4>
+        </li>
+        <li>
+          <h4><a href="https://developer.mozilla.org/docs/Using_geolocation" rel="external">{{ _('Geolocation API') }}</a></h4>
+        </li>
+        <li>
+          <h4><a href="https://developer.mozilla.org/docs/WebAPI/Web_Activities" rel="external">{{ _('Web Activities') }}</a></h4>
+        </li>
+        <li>
+          <h4><a href="https://developer.mozilla.org/docs/WebAPI/TCP_Socket" rel="external">{{ _('TCP Socket') }}</a></h4>
+        </li>
+        <li>
+          <h4><a href="https://developer.mozilla.org/docs/WebAPI/Using_Light_Events" rel="external">{{ _('Sensor API') }}</a></h4>
+        </li>
+        <li>
+          <h4><a href="https://developer.mozilla.org/docs/WebAPI/Permissions" rel="external">{{ _('Permissions and Security Model') }}</a></h4>
+        </li>
+      </ul>
+    </section>
+
+
+    <section class="notes-section" id="device-compat">
+      <h3>{{ _('Device Compatibility') }}</h3>
+      <ul class="section-items">
+        <li>
+          <h4>{{ _('ZTE Open') }}</h4>
+          <ul>
+            <li>{{ _('1GHz Processor, 256MB RAM, HVGA display') }}</li>
+            <li>{{ _('Screen: Capacitive TouchScreen TFT 3.5“ 320x480,262K color') }}</li>
+            <li>{{ _('Internal memory: 512MB NAND + 256MB DDR SDRAM') }}</li>
+            <li>{{ _('Maximum capacity of external memory card (GB): 32GB') }}</li>
+          </ul>
+        </li>
+        <li>
+          <h4>{{ _('Alcatel One Touch Fire') }}</h4>
+          <ul>
+            <li>{{ _('1GHz Processor, 256MB RAM, HVGA display') }}</li>
+            <li>{{ _('Screen: Capacitive touch, 3.5" HVGA, 320 x 480 pixels,TFT 262k color display') }}</li>
+            <li>{{ _('Internal memory 512MB NAND + 256MB RAM') }}</li>
+            <li>{{ _('Maximum Capacity of external memory card (GB) 32GB') }}</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+  </article>
+
+
+  <aside id="sidebar" class="sidebar">
+
+    <section id="get-involved">
+      <h3>{{ _('Want to get involved?') }}</h3>
+      <p>
+      {% trans
+        nontech='https://support.mozilla.org/en-US/kb/how-contribute-firefox-os-even-if-youre-not-techni' %}
+        Firefox OS is an open web  platform and there are plenty of opportunities to contribute
+        in both technical and <a href="{{ nontech }}" rel="external">non-technical</a> areas.
+      {% endtrans %}
+      </p>
+      <p><a href="{{ url('mozorg.contribute') }}" class="button go">{{ _('Learn more') }}</a></p>
+
+    </section>
+
+    <section id="developers">
+      <h3>{{ _('Develop for Firefox OS') }}</h3>
+      <ul>
+        <li><a href="https://marketplace.firefox.com/developers/" rel="external" class="go">{{ _('Start here') }}</a></li>
+        <li><a href="https://developer.mozilla.org/docs/Mozilla/Firefox_OS" rel="external">{{ _('All the docs') }}</a></li>
+        <li>
+        {% trans
+          sim1='https://addons.mozilla.org/en-US/firefox/addon/firefox-os-simulator/',
+          sim2='http://people.mozilla.org/~myk/r2d2b2g/' %}
+          Firefox OS Simulators: <a href="{{ sim1 }}" rel="external">One</a>
+          and <a href="{{ sim2 }}" rel="external">Two</a>
+        {% endtrans %}
+        </li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Mozilla/Firefox_OS/Building_and_installing_Firefox_OS">{{ _('Build & Install Firefox OS') }}</a></li>
+        <li>
+        {% trans gaiacode='https://github.com/mozilla-b2g/gaia/',
+          geckocode='https://github.com/mozilla/mozilla-central/tree/master/b2g' %}
+          Get the code: <a href="{{ gaiacode }}" rel="external">Gaia</a>
+          and <a href="{{ geckocode }}" rel="external">Gecko</a>
+        {% endtrans %}
+        </li>
+        <li><a href="https://bugzilla.mozilla.org/buglist.cgi?list_id=6785406&resolution=---&query_format=advanced&bug_status=UNCONFIRMED&bug_status=NEW&bug_status=REOPENED&product=Boot2Gecko" rel="external">{{ _('Known Bugs') }}</a></li>
+      </ul>
+    </section>
+
+    <section id="version">
+      <h3>{{ _('How do the version numbers work?') }}</h3>
+      <p>
+      {% trans %}
+        Firefox OS has a 4 digit version number: <samp>X.X.X.Y</samp>.
+        The first 2 digits are owned by the Mozilla product team and will denote releases
+        with new features (eg: v1.1, 1.2, etc). The third digit will be incremented with
+        regular release tags (~every 6 weeks) for security updates, and the fourth will
+        be OEM owned.
+      {% endtrans %}
+      </p>
+    </section>
+
+    <section id="other">
+      <h3>{{ _('Other Resources') }}</h3>
+      <ul>
+        <li><a href="{{ url('firefox.partners.index') }}" class="go">{{ _('Partner Information') }}</a></li>
+      </ul>
+    </section>
+
+  </aside>
+
+</div>
+{% endblock %}
+
+{% block js %}
+
+{% endblock  %}

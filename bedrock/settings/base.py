@@ -242,6 +242,9 @@ MINIFY_BUNDLES = {
             'css/firefox/whatsnew.less',
             'css/firefox/whatsnew-android.less',
         ),
+        'firefox_releasenotes': (
+            'css/firefox/releasenotes.less',
+        ),
         'installer_help': (
             'css/firefox/template-resp.less',
             'css/firefox/installer-help.less',
