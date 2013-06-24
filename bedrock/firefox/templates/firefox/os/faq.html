@@ -1,0 +1,159 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "/firefox/base-resp.html" %}
+
+{% block page_title %}Firefox OS Frequently Asked Questions{% endblock %}
+{% block body_id %}firefox-os-faq{% endblock %}
+
+{% block site_css %}
+  {{ css('firefox_faq') }}
+{% endblock %}
+
+{% block content %}
+
+<div id="main-feature">
+  <h1 class="large">{{_('Firefox OS FAQ')}}</h1>
+</div>
+
+<div id="main-content">
+
+  <ul class="expander-list">
+    <li class="expander">
+      <h2 class="expander-header">{{_('About Firefox OS')}}</h2>
+      <div class="expander-content">
+        <dl class="faq">
+
+          <dt>{{_('What is Firefox OS?')}}</dt>
+          <dd>{{_('Backed by some of the biggest names in the industry, Firefox OS is a new open operating system for smartphones developed by Mozilla. Built entirely using HTML5 and other open Web standards, Firefox OS is free from the rules and restrictions of existing proprietary platforms.')}}</dd>
+
+          <dt>{{_('How is Firefox OS different from other operating systems?')}}</dt>
+          <dd>
+            <p>{{_('Firefox OS is the only operating system with Adaptive App Search. While every other phone today is static, giving you the exact same apps each time you turn it on, Firefox OS is always changing to offer exactly the apps you need at any moment in your life. It adapts so you can live every moment to its fullest.')}}</p>
+            <p>{{_('Firefox OS is brought to you by Mozilla, a global nonprofit organization that emphasizes principle over profit. We believe that the Web is a shared public resource to be cared for, not a commodity to be sold. We work with a worldwide community to create open source products like Mozilla Firefox and to innovate for the benefit of the individual and the betterment of the Web. The result is great products built by passionate people and better choices for everyone.')}}</p>
+          </dd>
+
+        </dl>
+      </div>
+    </li>
+    <li class="expander">
+      <h2 class="expander-header">{{_('Buying Firefox OS')}}</h2>
+      <div class="expander-content">
+        <dl class="faq">
+
+          <dt>{{_('What phones will Firefox OS be available on?')}}</dt>
+          <dd>{{_('You can purchase Firefox OS on a ZTE Open handset or on an Alcatel One Touch device. More devices will be announced over the next few weeks.')}}</dd>
+
+          <dt>{{_('Where can I buy Firefox OS?')}}</dt>
+          <dd>
+            <p>{{_('Firefox OS will be available to buy in July 2013 from Movistar stores in Spain, Venezuela and Colombia. You can also purchase through T-Mobile stores in Poland.')}}</p>
+            <p>{{_('To date, 17 operators spanning the globe have committed to distributing Firefox OS devices: América Móvil, China Unicom, Deutsche Telekom, Etisalat, Hutchison Three Group, KDDI, KT, MegaFon, Qtel, SingTel, Smart, Sprint, Telecom Italia Group, Telefónica, Telenor, TMN and VimpelCom.')}}</p>
+            <p>{{_('As a result, more countries and mobile phone operators will be selling Firefox OS; further news will be announced in the coming weeks. Our operator partners will distribute the phones through a variety of locally-specific channels.')}}</p>
+          </dd>
+
+          <dt>{{_('What will be the price of the phone?')}}</dt>
+          <dd>{{_('Pricing is not set by Mozilla and will be established by our operator and manufacturer partners based on local market dynamics.')}}</dd>
+
+          <dt>{{_('What apps will be available on Firefox OS?')}}</dt>
+          <dd>{{_('The growing list includes leading apps like Accuweather, Airbnb, Box, EA Games, Facebook, Nokia HERE, MTV Brasil, Pulse News, SoundCloud, SporTV, Time Out and Twitter. Many more are being made available every day.')}}</dd>
+
+          <dt>{{_('Is Firefox OS available in my language?')}}</dt>
+          <dd>{{_('Firefox OS is currently available in Spanish, Polish and English. We’re working on adding more languages soon.')}}</dd>
+
+        </dl>
+      </div>
+    </li>
+    <li class="expander">
+      <h2 class="expander-header">{{_('Using Firefox')}}</h2>
+      <div class="expander-content">
+        <dl class="faq">
+
+          <dt>{{_('How do I…')}}</dt>
+          <dd>
+            <ul>
+              <li><a href="https://support.mozilla.org/en-US/kb/firefox-os-user-guide#w_how-to-make-a-call">
+                {{_('…make a call?')}}
+              </a></li>
+              <li><a href="https://support.mozilla.org/en-US/kb/firefox-os-user-guide#w_importing-facebook-sim-contacts">
+                {{_('…import my contacts? ')}}
+              </a></li>
+              <li><a href="https://support.mozilla.org/en-US/kb/using-messages-application-firefox-os">
+                {{_('…create and view messages? ')}}
+              </a></li>
+              <li><a href="https://support.mozilla.org/en-US/kb/firefox-os-user-guide#w_search">
+                {{_('…use the internet?')}}
+              </a></li>
+              <li><a href="https://support.mozilla.org/en-US/kb/firefox-os-user-guide#w_downloading-and-installing-apps">
+                {{_('…download and install an app?')}}
+              </a></li>
+              <li><a href="https://support.mozilla.org/en-US/kb/firefox-os-user-guide#w_pictures-video-music">
+                {{_('…take pictures?')}}
+              </a></li>
+              <li><a href="https://support.mozilla.org/en-US/kb/firefox-os-user-guide#w_composing-and-sending-emails">
+                {{_('…compose and send an email?')}}
+              </a></li>
+            </ul>
+          </dd>
+
+        </dl>
+      </div>
+    </li>
+    <li class="expander">
+      <h2 class="expander-header">{{_('Features')}}</h2>
+      <div class="expander-content">
+        <dl class="faq">
+
+          <dt>{{_('Adaptive App Search')}}</dt>
+          <dd>{{_('Get information on any subject right when you need it, brought to you and your phone by Firefox OS.')}}</dd>
+
+          <dt>{{_('Firefox Marketplace')}}</dt>
+          <dd>{{_('Your go-to source for the best apps for Firefox OS.')}}</dd>
+
+          <dt>{{_('Firefox browser')}}</dt>
+          <dd>{{_('The fast, smart, safe way to get the best of the Web.')}}</dd>
+
+          <dt>{{_('Deep integration with social media')}}</dt>
+          <dd>{{_('Full access to every Twitter and Facebook update from wherever you are.
+')}}</dd>
+
+          <dt>{{_('Camera')}}</dt>
+          <dd>{{_('With built-in style filters for fun, creative shots.')}}</dd>
+
+          <dt>{{_('FM Radio')}}</dt>
+          <dd>{{_('All the audio you want on the go, all on one device.')}}</dd>
+
+          <dt>{{_('Maps')}}</dt>
+          <dd>{{_('Includes directions, traffic and local transit information.')}}</dd>
+        </dl>
+      </div>
+    </li>
+    <li class="expander">
+      <h2 class="expander-header">{{_('Privacy and Security')}}</h2>
+      <div class="expander-content">
+        <dl class="faq">
+          <p>{% trans url='https://support.mozilla.org/kb/configure-mobile-privacy-and-security-settings' %}
+          Mozilla was the first to implement the Do Not Track privacy feature. Firefox also features customizable security settings to manage passwords, history, private data, cookies, site options and add-ons. <a href="{{url}}">Learn more.</a>
+          {% endtrans %}</p>
+        </dl>
+      </div>
+    </li>
+    <li class="expander">
+      <h2 class="expander-header">{{_('Developer Questions')}}</h2>
+      <div class="expander-content">
+        <dl class="faq">
+          <p>{% trans url='https://developer.mozilla.org/docs/Mozilla/Firefox_OS' %}
+          Are you a developer? Have questions? <a href="{{url}}">Learn more at the Mozilla Developer Network.</a>
+          {% endtrans %}</p>
+        </dl>
+      </div>
+    </li>
+  </ul>
+
+</div>
+
+{% endblock %}
+
+{% block js %}
+  {{ js('firefox_faq') }}
+{% endblock %}

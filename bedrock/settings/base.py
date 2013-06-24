@@ -174,6 +174,7 @@ MINIFY_BUNDLES = {
             'css/firefox/mobile-sms.less',
         ),
         'firefox_faq': (
+            'css/firefox/faq.less',
             'css/firefox/template-resp.less',
             'css/base/mozilla-expanders.less',
         ),

@@ -1,0 +1,21 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+#main-feature h1,
+#main-content .expander-list {
+    .span(8);
+}
+
+@media only screen and (max-width: @breakDesktop) {
+
+    #main-feature h1,
+    #main-content .expander-list {
+        .span-all();
+    }
+
+}
+
+
