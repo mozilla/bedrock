@@ -49,14 +49,38 @@
     }
 }
 
-/* desktop version message (with Firefox) */
-html.firefox-latest {
+.latest-links-wrapper {
+    display: none;
+    padding-top: 13px;
+
+    ul {
+        li {
+            list-style: none;
+            a {
+                margin-left: 50px;
+            }
+        }
+    }
+}
+
+/* desktop version (with Firefox) */
+html.firefox-latest { 
     #version-message {
         display: block;
         #version-message-desktop-latest {
             display: inline;
             background-position: 0 100%;
         }
+    }
+
+    /* hide download button */
+   .desktop.download-button-wrapper {
+        display: none;
+    }
+
+    /* show helpful links */
+    .desktop-latest-links-wrapper {
+        display: block;
     }
 }
 
@@ -82,6 +106,19 @@ html.android {
                 display: none;
             }
         }
+
+        /* hide download button */
+       .android.download-button-wrapper {
+            display: none;
+        }
+
+        /* show helpful links */
+        .android-latest-links-wrapper {
+            display: block;
+        }
+        .desktop-latest-links-wrapper {
+            display: none;
+        }
     }
 
     &.firefox-old {
@@ -94,6 +131,19 @@ html.android {
                 display: none;
             }
         }
+    }
+}
+
+/* FxOS */
+html.fxos {
+    /* show helpful links */
+    .fxos-latest-links-wrapper {
+        display: block;
+        padding-top: 38px;
+    }
+
+    #firefox-screenshot {
+        display: none;
     }
 }
 
@@ -246,27 +296,10 @@ html[lang="my"] #features {
 // android view
 .android {
     .mobile {
-        display: block;
-    }
-    .desktop {
         display: none;
     }
-    .theater { height: 260px; }
-    #features {
-        float: none;
-        margin: 0 auto 10px auto;
-        width: 720px;
-        li {
-            width: 220px;
-        }
-    }
-
-    .download-button-wrapper {
-        float: none;
-        text-align: center;
-        .download-button {
-            text-align: left;
-        }
+    .desktop {
+        display: block;
     }
 }
 
@@ -412,17 +445,44 @@ noscript {
 
     #features-download { padding-top: 10px; }
 
-    .android #features, #features {
-        margin: 0 auto 20px;
-        float: none;
-        width: 320px;
-        padding-left: 0;
-        li {
-            width: 85px;
-            height: 78px;
-            padding: 35px 10px 0;
-            font-size: 14px;
-            text-align: left;
+    .android {
+        .mobile {
+            display: block;
+        }
+        .desktop {
+            display: none;
+        }
+
+        #features, #features {
+            margin: 0 auto 20px;
+            float: none;
+            width: 320px;
+            padding-left: 0;
+            li {
+                width: 85px;
+                height: 78px;
+                padding: 35px 10px 0;
+                font-size: 14px;
+                text-align: left;
+            }
+        }
+
+        .theater { height: 260px; }
+        #features {
+            float: none;
+            margin: 0 auto 10px auto;
+            width: 720px;
+            li {
+                width: 220px;
+            }
+        }
+
+        .download-button-wrapper {
+            float: none;
+            text-align: center;
+            .download-button {
+                text-align: left;
+            }
         }
     }
 

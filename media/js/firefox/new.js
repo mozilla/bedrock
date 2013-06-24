@@ -13,8 +13,6 @@
         }
     }
 
-    // TODO: is any of this needed? It's from the old version of the file
-
     if (site.platform === 'android') {
         return;
     }

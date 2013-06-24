@@ -44,6 +44,9 @@ function init_platform_imgs() {
         else if (site.platform === 'linux') {
             suffix = '-linux';
         }
+        else if (site.platform === 'android') {
+            suffix = '-android';
+        }
 
         var orig_src = $img.data('src');
         var i = orig_src.lastIndexOf('.');

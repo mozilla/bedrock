@@ -47,6 +47,26 @@
           <div class="mobile download-button-wrapper">
             {{ download_firefox(mobile=True) }}
           </div>
+          <div class="desktop-latest-links-wrapper latest-links-wrapper">
+            <ul>
+              <li><a href="{{ url('firefox.all') }}">{{_('Need a fresh copy?')}}</a></li>
+              <li><a href="{{ url('firefox.features') }}">{{_('Learn more about Firefox for Desktop')}}</a></li>
+              <li><a href="https://support.mozilla.org/en-US/products/firefox">{{_('Need help?')}}</a></li>
+              <li><a href="{{ url('firefox.fx') }}">{{_('Looking for mobile?')}}</a></li>
+            </ul>
+          </div>
+          <div class="android-latest-links-wrapper latest-links-wrapper">
+            <ul>
+              <li><a href="{{ url('firefox.fx') }}">{{_('Learn more about Firefox for Android')}}</a></li>
+              <li><a href="http://support.mozilla.org/kb/how-do-i-set-up-firefox-sync">{{_('Sync Firefox on all your devices')}}</a></li>
+              <li><a href="https://support.mozilla.org/en-US/products/firefox">{{_('Need help?')}}</a></li>
+            </ul>
+          </div>
+          <div class="fxos-latest-links-wrapper latest-links-wrapper">
+            <ul>
+              <li><a href="http://www.mozilla.org/en-US/firefox/partners/">{{_('Learn more about Firefox OS')}}</a></li>
+            </ul>
+          </div>
         </div>
 
         <div class="desktop" id="firefox-screenshot">
