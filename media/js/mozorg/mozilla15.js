@@ -62,7 +62,7 @@
     var track = function() {
         if (w._gaq) {
             // must use nextFrame here - currentFrame (oddly) isn't updated yet.
-            w._gaq.push(['_trackEvent', 'mozilla15 SlideShow', action, slideshow.nextFrame[0].id]);
+            window._gaq.push(['_trackEvent', 'mozilla15 SlideShow', action, slideshow.nextFrame[0].id]);
         }
 
         // reset action to autoplay
