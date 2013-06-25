@@ -22,7 +22,7 @@
 
     function track_and_redirect(url) {
         if (_gaq) {
-            _gaq.push(['_trackPageview', virtual_url]);
+            window._gaq.push(['_trackPageview', virtual_url]);
         }
         setTimeout(function() {
             window.location.href = url;

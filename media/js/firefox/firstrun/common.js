@@ -14,7 +14,7 @@
 
   window.gaq_track = function(category, action, label) {
     if (window._gaq) {
-      _gaq.push(['_trackEvent', category, action, label]);
+      window._gaq.push(['_trackEvent', category, action, label]);
     }
   };
 
