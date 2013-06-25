@@ -192,8 +192,9 @@
       <div class="article-content">
         <div id="os-overview-intro" class="intro tween">
           <h4 class="narrow">{{ _('The Web is the platform')}}</h4>
-          <p class="narrow">{% trans url='class="view-section" data-section="os-operators" href="#"'|safe %}
-            Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater participation in the value chain. <a {{ url }}>See how you can get involved.</a>
+          <p class="narrow">{% trans url='class="view-section" data-section="os-operators" href="#"'|safe,
+            url2=url('firefox.os.index') %}
+            Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater participation in the value chain. <a {{ url }}>See how you can get involved</a> or <a href="{{ url2 }}">learn more about what it means for consumers</a>.
           {% endtrans %}</p>
           <h4 class="narrow">{{ _('Made of the Web') }}</h4>
           <p class="narrow">{{ _('Built entirely using HTML5 and other open Web standards, Firefox OS is free from the rules and restrictions of existing proprietary platforms.') }}</p>
