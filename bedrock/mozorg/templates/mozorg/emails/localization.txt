@@ -10,7 +10,7 @@ You can also visit the following wiki pages to learn the details of how we local
 
 A good description of the whole process:
 
-https://wiki.mozilla.org/L10n:Localization_Process L10n:Localization Process 
+https://wiki.mozilla.org/L10n:Localization_Process
 
 The L10n Quick Start Guide: A resource of technical tutorials you'll need to know as you get more involved. 
 
