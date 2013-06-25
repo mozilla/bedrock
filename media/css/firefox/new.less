@@ -46,6 +46,10 @@
         display: none;
         background: url(/media/img/firefox/new/teardrop-arrow.png) no-repeat 0 0;
         padding-left: 36px;
+
+        a {
+            font-size: 16px;
+        }
     }
 }
 
@@ -130,6 +134,14 @@ html.android {
             #version-message-desktop-old {
                 display: none;
             }
+        }
+    }
+
+    .download-button-wrapper {
+        display: none;
+        &.android {
+            display: block;
+            margin-top: 22px;
         }
     }
 }

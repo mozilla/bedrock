@@ -19,10 +19,20 @@
 {% block content %}
 <main role="main">
   <div id="version-message">
-    <div id="version-message-android-latest">{{_('You’re using the latest version of Firefox for Android!')}}</div>
-    <div id="version-message-android-old">{{_('You’re using an older version of Firefox. Update at the Google Play Store.')}}</div>
-    <div id="version-message-desktop-latest">{{_('You’re using the latest version of Firefox!')}}</div>
-    <div id="version-message-desktop-old">{{_('You’re using an older version of Firefox. Updating is quick and easy.')}}</div>
+    <div id="version-message-android-latest">
+      {{_('You’re using the latest version of Firefox for Android!')}}
+    </div>
+    <div id="version-message-android-old">
+      {{_('You’re using an older version of Firefox.')}}<br />
+      <a href="https://play.google.com/store/apps/details?id=org.mozilla.firefox">{{_('Update at the Google Play Store.')}}</a>
+    </div>
+    <div id="version-message-desktop-latest">
+      {{_('You’re using the latest version of Firefox!')}}
+    </div>
+    <div id="version-message-desktop-old">
+      {{_('You’re using an older version of Firefox.')}}<br />
+      <a href="https://support.mozilla.org/kb/update-firefox-latest-version?esab=a&s=silent+download&r=0&as=s">{{_('Updating is quick and easy.')}}</a>
+    </div>
   </div>
   <div id="main-feature">
     <div class="row">
@@ -47,11 +57,14 @@
           <div class="mobile download-button-wrapper">
             {{ download_firefox(mobile=True) }}
           </div>
+          <div class="android download-button-wrapper">
+            {{ download_firefox(mobile=True, small=True, icon=False) }}
+          </div>
           <div class="desktop-latest-links-wrapper latest-links-wrapper">
             <ul>
               <li><a href="{{ url('firefox.all') }}">{{_('Need a fresh copy?')}}</a></li>
               <li><a href="{{ url('firefox.features') }}">{{_('Learn more about Firefox for Desktop')}}</a></li>
-              <li><a href="https://support.mozilla.org/en-US/products/firefox">{{_('Need help?')}}</a></li>
+              <li><a href="https://support.mozilla.org/products/firefox">{{_('Need help?')}}</a></li>
               <li><a href="{{ url('firefox.fx') }}">{{_('Looking for mobile?')}}</a></li>
             </ul>
           </div>
@@ -59,12 +72,12 @@
             <ul>
               <li><a href="{{ url('firefox.fx') }}">{{_('Learn more about Firefox for Android')}}</a></li>
               <li><a href="http://support.mozilla.org/kb/how-do-i-set-up-firefox-sync">{{_('Sync Firefox on all your devices')}}</a></li>
-              <li><a href="https://support.mozilla.org/en-US/products/firefox">{{_('Need help?')}}</a></li>
+              <li><a href="https://support.mozilla.org/products/firefox">{{_('Need help?')}}</a></li>
             </ul>
           </div>
           <div class="fxos-latest-links-wrapper latest-links-wrapper">
             <ul>
-              <li><a href="http://www.mozilla.org/en-US/firefox/partners/">{{_('Learn more about Firefox OS')}}</a></li>
+              <li><a href="http://www.mozilla.org/firefox/partners/">{{_('Learn more about Firefox OS')}}</a></li>
             </ul>
           </div>
         </div>
