@@ -90,6 +90,7 @@ FUNCTIONAL_AREAS_DICT = dict((area.id, area) for area in FUNCTIONAL_AREAS)
 LOCALE_CONTACTS = {
     'bg'   : ['community@bgzilla.org'],
     'bn-BD': ['mahayalamkhan@gmail.com'],
+    'cs'   : ['info@mozilla.cz'],
     'de'   : ['contribute@mozilla.de'],
     'el'   : ['core@mozilla-greece.org'],
     'es-AR': ['participa@mozilla-hispano.org'],
@@ -100,6 +101,8 @@ LOCALE_CONTACTS = {
     'fy-NL': ['fryskefirefox@gmail.com'],
     'hr'   : ['contribute@mozilla-hr.org'],
     'id'   : ['info@mozilla.web.id'],
+    'it'   : ['collabora@mozillaitalia.org'],
+    'ms'   : ['community@mozilla.my'],
     'nl'   : ['contribute@mozilla-nl.org'],
     'pt-BR': ['envolva-se-mozilla-brasil@googlegroups.com'],
     'ru'   : ['contribute@mozilla-russia.org'],
