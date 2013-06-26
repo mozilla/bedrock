@@ -142,6 +142,9 @@ html.android {
         &.android {
             display: block;
             margin-top: 22px;
+            .download-link {
+                margin-left: 54px;
+            }
         }
     }
 }
@@ -354,9 +357,12 @@ html[lang="my"] #features {
     visibility: hidden;
 }
 
-#firefox-screenshot .platform-img {
-    position: absolute;
-    bottom: 0px;
+#firefox-screenshot {
+    padding: 0 20px;
+    .platform-img {
+        position: absolute;
+        bottom: 0px;
+    }
 }
 
 noscript {
