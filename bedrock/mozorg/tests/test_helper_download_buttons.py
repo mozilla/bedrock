@@ -3,12 +3,12 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from django.conf import settings
+from django.test.utils import override_settings
 from django.utils import unittest
 from test_utils import RequestFactory
 
 import jingo
-from mock import patch
-from nose.tools import assert_not_equal, eq_, ok_
+from nose.tools import eq_, ok_
 from product_details import product_details
 from pyquery import PyQuery as pq
 
@@ -27,10 +27,18 @@ class TestDownloadButtons(unittest.TestCase):
 
     def check_desktop_links(self, links):
         """Desktop links should have the correct firefox version"""
-        key = 'firefox-%s' % self.latest_version()
+        # valid product strings
+        keys = [
+            'firefox-%s' % self.latest_version(),
+            'firefox-stub',
+            'firefox-latest',
+            'firefox-beta-stub',
+            'firefox-beta-latest',
+        ]
 
         for link in links:
-            assert_not_equal(pq(link).attr('href').find(key), -1)
+            url = pq(link).attr('href')
+            ok_(any(key in url for key in keys))
 
     def check_dumb_button(self, doc):
         # Make sure 4 links are present
@@ -101,7 +109,7 @@ class TestDownloadButtons(unittest.TestCase):
         # The fourth link is mobile and should not have the attr
         ok_(pq(links[3]).attr('data-direct-link') is None)
 
-    @patch.object(settings, 'AURORA_STUB_INSTALLER', True)
+    @override_settings(AURORA_STUB_INSTALLER=True)
     def test_stub_aurora_installer_enabled_en_us(self):
         """Check that only the windows link goes to stub with en-US"""
         rf = RequestFactory()
@@ -115,7 +123,7 @@ class TestDownloadButtons(unittest.TestCase):
         for link in links[1:]:
             ok_('stub' not in pq(link).attr('href'))
 
-    @patch.object(settings, 'AURORA_STUB_INSTALLER', True)
+    @override_settings(AURORA_STUB_INSTALLER=True)
     def test_stub_aurora_installer_enabled_locales(self):
         """Check that the stub is not served to locales"""
         rf = RequestFactory()
@@ -128,7 +136,7 @@ class TestDownloadButtons(unittest.TestCase):
         for link in links:
             ok_('stub' not in pq(link).attr('href'))
 
-    @patch.object(settings, 'AURORA_STUB_INSTALLER', False)
+    @override_settings(AURORA_STUB_INSTALLER=False)
     def test_stub_aurora_installer_disabled_en_us(self):
         rf = RequestFactory()
         get_request = rf.get('/fake')
@@ -140,7 +148,7 @@ class TestDownloadButtons(unittest.TestCase):
         for link in links:
             ok_('stub' not in pq(link).attr('href'))
 
-    @patch.object(settings, 'AURORA_STUB_INSTALLER', False)
+    @override_settings(AURORA_STUB_INSTALLER=False)
     def test_stub_aurora_installer_disabled_locale(self):
         rf = RequestFactory()
         get_request = rf.get('/fake')
@@ -152,7 +160,7 @@ class TestDownloadButtons(unittest.TestCase):
         for link in links:
             ok_('stub' not in pq(link).attr('href'))
 
-    @patch.object(settings, 'AURORA_STUB_INSTALLER', True)
+    @override_settings(AURORA_STUB_INSTALLER=True)
     def test_stub_aurora_installer_override_en_us(self):
         rf = RequestFactory()
         get_request = rf.get('/fake')
@@ -165,7 +173,7 @@ class TestDownloadButtons(unittest.TestCase):
         for link in links:
             ok_('stub' not in pq(link).attr('href'))
 
-    @patch.object(settings, 'AURORA_STUB_INSTALLER', True)
+    @override_settings(AURORA_STUB_INSTALLER=True)
     def test_stub_aurora_installer_override_locale(self):
         rf = RequestFactory()
         get_request = rf.get('/fake')
@@ -189,6 +197,7 @@ class TestDownloadButtons(unittest.TestCase):
                     'os=osx&lang={locale}').format(locale=locale)
         eq_(url, good_url)
 
+    @override_settings(STUB_INSTALLER_LOCALES={'win': ['en-us']})
     def test_force_funnelcake(self):
         """
         force_funnelcake should force the product to be 'firefox-latest'
@@ -203,9 +212,10 @@ class TestDownloadButtons(unittest.TestCase):
                                  'en-US', force_funnelcake=True)
         ok_('product=firefox-beta-latest&' in url)
 
+    @override_settings(STUB_INSTALLER_LOCALES={'win': ['en-us']})
     def test_force_funnelcake_en_us_win_only(self):
         """
-        Ensure that force_funnelcake doesn't affect non en-US Windows urls
+        Ensure that force_funnelcake doesn't affect non configured locale urls
         """
         url = make_download_link('firefox', 'release', 19.0, 'os_osx',
                                  'en-US', force_funnelcake=True)
@@ -215,10 +225,11 @@ class TestDownloadButtons(unittest.TestCase):
                                  'fr', force_funnelcake=True)
         ok_('product=firefox-beta-latest&' not in url)
 
+    @override_settings(STUB_INSTALLER_LOCALES={'win': ['en-us']})
     def test_force_full_installer(self):
         """
         force_full_installer should force the product to be 'firefox-latest'
-        for en-US windows release downloads, and 'firefox-beta-latest' for
+        for configured locale release downloads, and 'firefox-beta-latest' for
         beta.
         """
         url = make_download_link('firefox', 'release', 19.0, 'os_windows',
@@ -229,9 +240,10 @@ class TestDownloadButtons(unittest.TestCase):
                                  'en-US', force_full_installer=True)
         ok_('product=firefox-beta-latest&' in url)
 
+    @override_settings(STUB_INSTALLER_LOCALES={'win': ['en-us']})
     def test_force_full_installer_en_us_win_only(self):
         """
-        Ensure that force_full_installer doesn't affect non en-US Windows urls
+        Ensure that force_full_installer doesn't affect non configured locales
         """
         url = make_download_link('firefox', 'release', 19.0, 'os_osx',
                                  'en-US', force_full_installer=True)
@@ -241,23 +253,55 @@ class TestDownloadButtons(unittest.TestCase):
                                  'fr', force_full_installer=True)
         ok_('product=firefox-beta-latest&' not in url)
 
-    def test_force_stub_installer(self):
+    @override_settings(STUB_INSTALLER_LOCALES={
+        'win': ['en-us'], 'osx': ['fr', 'de'], 'linux': []})
+    def test_stub_installer(self):
+        """Button should give stub for builds in the setting always."""
         url = make_download_link('firefox', 'release', 19.0, 'os_windows',
-                                 'en-US', force_stub_installer=True)
+                                 'en-US')
+        ok_('product=firefox-stub&' in url)
+
+        url = make_download_link('firefox', 'release', 19.0, 'os_osx',
+                                 'fr')
+        ok_('product=firefox-stub&' in url)
+
+        url = make_download_link('firefox', 'release', 19.0, 'os_osx',
+                                 'de')
         ok_('product=firefox-stub&' in url)
 
         url = make_download_link('firefox', 'beta', '20.0b4', 'os_windows',
-                                 'en-US', force_stub_installer=True)
+                                 'en-US')
         ok_('product=firefox-beta-stub&' in url)
 
-    def test_force_stub_installer_en_us_win_only(self):
+    @override_settings(STUB_INSTALLER_LOCALES={
+        'win': settings.STUB_INSTALLER_ALL})
+    def test_stub_installer_all(self):
+        """Button should give stub for all langs when ALL is set."""
+        url = make_download_link('firefox', 'release', 19.0, 'os_windows',
+                                 'en-US')
+        ok_('product=firefox-stub&' in url)
+
+        url = make_download_link('firefox', 'release', 19.0, 'os_windows',
+                                 'fr')
+        ok_('product=firefox-stub&' in url)
+
+        url = make_download_link('firefox', 'release', 19.0, 'os_windows',
+                                 'de')
+        ok_('product=firefox-stub&' in url)
+
+        url = make_download_link('firefox', 'beta', '20.0b4', 'os_windows',
+                                 'es-ES')
+        ok_('product=firefox-beta-stub&' in url)
+
+    @override_settings(STUB_INSTALLER_LOCALES={'win': ['en-us']})
+    def test_stub_installer_en_us_win_only(self):
         """
-        Ensure that force_funnelcake doesn't affect non en-US Windows urls
+        Ensure that builds not in the setting don't get stub.
         """
         url = make_download_link('firefox', 'release', 19.0, 'os_osx',
-                                 'en-US', force_stub_installer=True)
+                                 'en-US')
         ok_('product=firefox-stub&' not in url)
 
         url = make_download_link('firefox', 'beta', '20.0b4', 'os_windows',
-                                 'fr', force_stub_installer=True)
+                                 'fr')
         ok_('product=firefox-beta-stub&' not in url)
