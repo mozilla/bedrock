@@ -9,7 +9,7 @@
 
 {% block site_header_nav %}{% endblock %}
 {% block site_header_logo %}
-  <h2><a href="{{ url('mozorg.home') }}"><img src="{{ MEDIA_URL }}img/firefox/new/header-firefox.png" alt="{{_('Firefox for desktop')}}" /></a></h2>
+  <h2><a href="{{ url('mozorg.home') }}"><img src="{{ MEDIA_URL }}img/firefox/new/header-firefox.png?2013-06" alt="{{_('Firefox for desktop')}}" /></a></h2>
 {% endblock %}
 
 {% block site_css %}
@@ -20,7 +20,7 @@
 <main role="main">
   <div id="main-feature">
     <div class="row">
-      <img src="{{ media('img/firefox/new/firefox-logo.png') }}" alt="Firefox" />
+      <img src="{{ media('img/firefox/new/firefox-logo.png?2013-06') }}" alt="Firefox" />
       <h1 class="large">{{_('Different by design')}}</h1>
     </div>
   </div>
@@ -44,7 +44,7 @@
         </div>
 
         <div class="desktop" id="firefox-screenshot">
-          {{ platform_img('img/firefox/new/browser.png', alt=_('Firefox screenshot')) }}
+          {{ platform_img('img/firefox/new/browser.png?2013-06', alt=_('Firefox screenshot')) }}
         </div>
       </div> <!-- /#scene1 -->
 
