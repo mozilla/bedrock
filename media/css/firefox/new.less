@@ -466,36 +466,38 @@ noscript {
 
     #features-download { padding-top: 10px; }
 
-    .android {
+    #features {
+        margin: 0 auto 20px;
+        float: none;
+        width: 320px;
+        padding-left: 0;
+        li {
+            width: 85px;
+            height: 78px;
+            padding: 35px 10px 0;
+            font-size: 14px;
+            text-align: left;
+        }
+    }
+
+    .latest-links-wrapper ul li a {
+        margin-left: 0;
+    }
+
+    html.android {
         .mobile {
-            display: block;
+            display: none;
         }
         .desktop {
             display: none;
         }
 
-        #features, #features {
-            margin: 0 auto 20px;
-            float: none;
-            width: 320px;
-            padding-left: 0;
-            li {
-                width: 85px;
-                height: 78px;
-                padding: 35px 10px 0;
-                font-size: 14px;
-                text-align: left;
-            }
+        .theater, .stage, .scene {
+            height: 310px;
         }
 
-        .theater { height: 260px; }
-        #features {
-            float: none;
-            margin: 0 auto 10px auto;
-            width: 720px;
-            li {
-                width: 220px;
-            }
+        .download-button-wrapper.android .download-link {
+            margin-left: 25px;
         }
 
         .download-button-wrapper {
@@ -539,9 +541,6 @@ noscript {
         #install1, #install2, #install3 { background-image: none; }
     }
 
-    .android {
-        .theater, .stage, .scene {
-            height: 310px;
-        }
+    html.android {
     }
 }
