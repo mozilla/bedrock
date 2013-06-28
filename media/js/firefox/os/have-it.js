@@ -221,7 +221,7 @@
             $messagesContent.css('margin-left', '-100%');
             $messagesApp.css({'margin-left': '-175%'});
             $marketplaceContent.css('margin-right', 0);
-        });
+        }, { offset: landingOffset });
 
         // sometimes if you scroll up really fast tweens can get missed
         // these waypoints act as safety nets, and set content to correct places
@@ -456,9 +456,11 @@
                 break;
             }
 
-            $('html, body').animate({
-                scrollTop: $('.plusslider').offset().top
-            }, 200);
+            if (isSmallViewport) {
+                $('html, body').animate({
+                    scrollTop: $('.plusslider').offset().top
+                }, 200);
+            }
 
             //track GA event for icon clicks
             trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'click', this.hash]);

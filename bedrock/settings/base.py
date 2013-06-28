@@ -457,6 +457,9 @@ MINIFY_BUNDLES = {
             'js/firefox/os/desktop.js',
             'js/firefox/os/have-it.js',
         ),
+        'firefox_os_ie9': (
+            'js/libs/matchMedia.addListener.js',
+        ),
         'firefox_platforms': (
             'js/base/mozilla-expanders.js',
         ),

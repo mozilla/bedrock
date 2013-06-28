@@ -365,7 +365,7 @@
             {% endtrans %}
           </li>
           <li>
-            {% trans link="//developer.mozilla.org"|safe %}
+            {% trans link="https://developer.mozilla.org/docs/Web/Apps/Publishing/Submitting_an_app" %}
             Get your app on Firefox OS <a href="{{link}}">Submit it to the Firefox Marketplace</a>
             {% endtrans %}
           </li>
@@ -376,12 +376,12 @@
         <h3>{{_('For users:')}}</h3>
         <ul>
           <li>
-            {% trans link="//support.mozilla.org/products/firefox-os"|safe %}
+            {% trans link="https://support.mozilla.org/products/firefox-os" %}
             In case you need a little help <a href="{{link}}">Get it from your friends at Mozilla Support</a>
             {% endtrans %}
           </li>
           <li>
-            {% trans link="//support.mozilla.org/kb/firefox-os-faq"|safe %}
+            {% trans link=url('firefox.os.faq') %}
             All your questions will be answered <a href="{{link}}">Read our extra helpful FAQ</a>
             {% endtrans %}
           </li>
@@ -438,5 +438,8 @@
 {% endblock %}
 
 {% block js %}
+<!--[if IE 9]>
+  {{ js('firefox_os_ie9') }}
+<![endif]-->
   {{ js('firefox_os') }}
 {% endblock  %}
