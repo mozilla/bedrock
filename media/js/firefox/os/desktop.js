@@ -59,6 +59,11 @@
         // clear out URL hash
         window.location.hash = '';
       }
+    } else {
+      // force page to the top when refreshing
+      if ($w.scrollTop() > 0) {
+        $w.scrollTop(0);
+      }
     }
   }
 
