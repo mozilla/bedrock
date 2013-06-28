@@ -38,6 +38,43 @@
   var $bday_hook = $('#birthday-hook');
 
   /*
+  * Handle hash in URL
+  * #adapt{x} hashes are the only trouble makers
+  */
+
+  // if hash changes, make sure parallax doesn't go haywire
+  function _handle_hash() {
+    if (window.location.hash !== '') {
+      if (window.location.hash.indexOf('adapt') > -1) {
+        setTimeout(function() {
+          // make sure hash didn't scroll the adaptive section to the right
+          $('#adaptive-app-search').scrollLeft(0);
+
+          // scroll user to #adapt1
+          $('html, body').animate({
+            scrollTop: scene_hooks_top
+          }, 300);
+        }, 100);
+
+        // clear out URL hash
+        window.location.hash = '';
+      }
+    }
+  }
+
+  // fix for loading page with hash in URL
+  // can't fire immediately, must let browser do it's thing first
+  $(function() {
+    setTimeout(function() {
+      _handle_hash();
+    }, 60);
+  });
+
+  $w.on('hashchange', function() {
+    _handle_hash();
+  });
+
+  /*
   * Spoofing responsiveness
   */
 
