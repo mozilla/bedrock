@@ -9,6 +9,8 @@
 ;(function($) {
   'use strict';
 
+  window.pause_ga_tracking = false;
+
   var COUNTRY_CODE = '';
 
   var PARTNER_DATA = {
@@ -96,25 +98,27 @@
   }
 
   window.trackGAEvent = function (eventsArray, callback) {
-    var timer = null;
-    var hasCallback = typeof(callback) == 'function';
-    var gaCallback = function () {
-      clearTimeout(timer);
-      callback();
-    };
-    if (typeof(window._gaq) == 'object') {
+    if (!pause_ga_tracking) {
+      var timer = null;
+      var hasCallback = typeof(callback) == 'function';
+      var gaCallback = function () {
+        clearTimeout(timer);
+        callback();
+      };
+      if (typeof(window._gaq) == 'object') {
 
-      if (hasCallback) {
-        timer = setTimeout(gaCallback, 500);
-        window._gaq.push(
-          ['_set', 'hitCallback', gaCallback()],
-          eventsArray
-        );           
-      } else {
-        window._gaq.push(eventsArray);
+        if (hasCallback) {
+          timer = setTimeout(gaCallback, 500);
+          window._gaq.push(
+            ['_set', 'hitCallback', gaCallback()],
+            eventsArray
+          );
+        } else {
+          window._gaq.push(eventsArray);
+        }
+      } else if (hasCallback) {
+        callback();
       }
-    } else if (hasCallback) {
-      callback();
     }
   };
 

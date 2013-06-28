@@ -316,6 +316,21 @@
   /*
   * Nav scroll
   */
+
+  // tracks click even on nav link, and pauses scroll tracking momentarily
+  function navClickGATrack(section_hash) {
+    //track GA event for nav clicks
+    trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'nav click', section_hash]);
+
+    // do not track while page is flying around
+    pause_ga_tracking = true;
+
+    // enable tracking shortly after forcing scroll position
+    setTimeout(function() {
+      pause_ga_tracking = false;
+    }, 600);
+  }
+
   function initNavScroll () {
     // navigation
     var $navs = $('nav[role="navigation"], #ffos-main-logo');
@@ -326,11 +341,8 @@
     $navs.on('click', '.nav', function(e) {
       e.preventDefault();
 
-      //track GA event for nav clicks
-      trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'nav click', this.hash]);
-
-      // // tweak speed based on distance?
-      // var distance = Math.abs($(document).scrollTop() - ($($(this).attr('href')).offset().top - nav_height));
+      // GA track click
+      navClickGATrack(this.hash);
 
       var destination = $(this).attr('href');
       var new_scroll;
@@ -359,10 +371,6 @@
       }
 
       $w.scrollTop(new_scroll - nav_height);
-
-      // $('html, body').animate({
-      //   scrollTop: $($(this).attr('href')).offset().top - nav_height
-      // }, (distance/4));
     });
 
     // store possible nav targets in array for easier searching
@@ -387,6 +395,12 @@
         }
       }
     }, { offset: nav_height });
+  }
+
+  function initTouchNavScroll() {
+    $('#nav-main').on('click', 'a', function(e) {
+      navClickGATrack(this.hash);
+    });
   }
 
   // if user begins transition into next scene and stops scrolling, force transition to complete
@@ -629,6 +643,7 @@
   // else use scrolling interactions
   if ('ontouchstart' in window || navigator.msMaxTouchPoints || navigator.maxTouchPoints || isSmallViewport) {
     trackGAPageNoScroll();
+    initTouchNavScroll();
   } else {
     initIntroBGRotation();
     initNavScroll();
