@@ -9,6 +9,7 @@
   var is_us = $('html').attr('lang') === 'en-US';
 
   var isSmallViewport = $w.width() < 760;
+  var isTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints || navigator.maxTouchPoints || isSmallViewport;
 
   var $tabzilla = $('#tabzilla');
   var $masthead = $('#masthead');
@@ -69,15 +70,17 @@
 
   // fix for loading page with hash in URL
   // can't fire immediately, must let browser do it's thing first
-  $(function() {
-    setTimeout(function() {
-      _handle_hash();
-    }, 60);
-  });
+  if (!isTouch) {
+    $(function() {
+      setTimeout(function() {
+        _handle_hash();
+      }, 60);
+    });
 
-  $w.on('hashchange', function() {
-    _handle_hash();
-  });
+    $w.on('hashchange', function() {
+      _handle_hash();
+    });
+  }
 
   /*
   * Spoofing responsiveness
@@ -403,7 +406,10 @@
   }
 
   function initTouchNavScroll() {
-    $('#nav-main').on('click', 'a', function(e) {
+    $('nav[role="navigation"], #ffos-main-logo').on('click', '.nav', function(e) {
+      e.preventDefault();
+      var offset = isSmallViewport ? 0 : nav_height;
+      $w.scrollTop($($(this).attr('href')).offset().top - offset);
       navClickGATrack(this.hash);
     });
   }
@@ -646,7 +652,7 @@
 
   // if we have touch or pointer events, use a slider
   // else use scrolling interactions
-  if ('ontouchstart' in window || navigator.msMaxTouchPoints || navigator.maxTouchPoints || isSmallViewport) {
+  if (isTouch) {
     trackGAPageNoScroll();
     initTouchNavScroll();
   } else {

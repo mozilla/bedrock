@@ -435,6 +435,9 @@
         $('#have-it-all-nav').on('click', 'a', function (e) {
             e.preventDefault();
 
+            var hiaNavOffset = $('#masthead').height() + $('#have-it-all-nav').outerHeight();
+            var offset = isSmallViewport ? 0 : hiaNavOffset;
+
             switch (this.id) {
             case 'social-link':
                 slider.toSlide(0);
@@ -456,11 +459,9 @@
                 break;
             }
 
-            if (isSmallViewport) {
-                $('html, body').animate({
-                    scrollTop: $('.plusslider').offset().top
-                }, 200);
-            }
+            $('html, body').animate({
+                scrollTop: $('.plusslider').offset().top - offset
+            }, 200);
 
             //track GA event for icon clicks
             trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'click', this.hash]);
