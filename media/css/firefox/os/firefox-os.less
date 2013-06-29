@@ -301,7 +301,7 @@ section p, header p {
     z-index: 2;
   }
   #adapt-features .content {
-    top: 65px;
+    top: 55px;
   }
   h2, p {
     color: #fff;
@@ -369,6 +369,21 @@ section p, header p {
   &.scroller-on {
     z-index: 2;
     background: #0f9fdb;
+    #keep-scrolling {
+      position: fixed;
+      top: 645px;
+      left: 50%;
+      margin-left: -12px;
+      display: block;
+      background: url('/media/img/firefox/os/adapt/keep-scrolling.png') no-repeat left top;
+      width: 24px;
+      height: 35px;
+      z-index: 100;
+
+      -moz-animation: keep-scrolling 2s steps(25) infinite;
+      -webkit-animation: keep-scrolling 2s steps(25) infinite;
+      animation: keep-scrolling 2s steps(25) infinite;
+    }
     #phone-item-soccer, #phone-item-cafe {
       display: none;
     }
@@ -1319,6 +1334,20 @@ html[lang="pl"] {
         border-left: 1px dashed #666;
       }
     }
+  }
+
+  // animation for #keep-scrolling
+  @keyframes keep-scrolling {
+    from { background-position: 0 0; }
+    to { background-position: 0 -875px; }
+  }
+  @-moz-keyframes keep-scrolling {
+    from { background-position: 0 0; }
+    to { background-position: 0 -875px; }
+  }
+  @-webkit-keyframes keep-scrolling {
+    from { background-position: 0 1px; } // webkit browsers seem to need this 1px offset
+    to { background-position: 0 -875px; }
   }
 }
 
