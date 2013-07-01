@@ -104,11 +104,11 @@
           <div id="overview-news">
             <h3>{{ _('Recent news') }}</h3>
             <ul>
-              {% if LANG == 'en-US' %}
-              <li><a href="https://blog.mozilla.org/blog/2013/07/01/mozilla-and-partners-prepare-to-launch-first-firefox-os-smartphones">{{ _('Mozilla and partners prepare to launch first Firefox OS smartsphones') }}</a></li>
+              {% if request.locale in locale_os_release_active %}
+              <li><a href="{{ locale_os_release_url }}">{{ _('Mozilla and partners prepare to launch first Firefox OS smartsphones') }}</a></li>
               {% endif %}
               <li><a href="#mwc-wrapup" class="modal">{{ _('Watch our wrap-up video from Mobile World Congress 2013') }}</a></li>
-              {% if LANG != 'en-US' %}
+              {% if request.locale not in locale_os_release_active %}
               <li><a href="{{ locale_os_url }}" rel="external">{{ _('Mozilla Announces Global Expansion for Firefox OS') }}</a></li>
               {% endif %}
             </ul>
