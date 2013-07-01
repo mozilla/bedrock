@@ -341,7 +341,7 @@
 
   function initNavScroll () {
     // navigation
-    var $navs = $('nav[role="navigation"], #ffos-main-logo');
+    var $navs = $('nav[role="navigation"], #ffos-main-logo, #keep-scrolling');
     var $side_nav = $('#side-nav');
     var side_nav_targets = [];
 

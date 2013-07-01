@@ -376,15 +376,17 @@ section p, header p {
       top: 645px;
       left: 50%;
       margin-left: -12px;
-      display: block;
-      background: url('/media/img/firefox/os/adapt/keep-scrolling.png') no-repeat left top;
-      width: 24px;
-      height: 35px;
-      z-index: 100;
+      a {
+        display: block;
+        background: url('/media/img/firefox/os/adapt/keep-scrolling.png') no-repeat left top;
+        width: 24px;
+        height: 35px;
 
-      -moz-animation: keep-scrolling 2s steps(25) infinite;
-      -webkit-animation: keep-scrolling 2s steps(25) infinite;
-      animation: keep-scrolling 2s steps(25) infinite;
+        -moz-animation: keep-scrolling 2s steps(25) infinite;
+        -webkit-animation: keep-scrolling 2s steps(25) infinite;
+        animation: keep-scrolling 2s steps(25) infinite;
+      }
+      z-index: 100;
     }
     #phone-item-soccer, #phone-item-cafe {
       display: none;
