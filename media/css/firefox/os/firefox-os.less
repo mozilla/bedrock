@@ -51,7 +51,7 @@ html, body {
   }
 
   ul {
-    margin: 0 0 0 60px;
+    margin: 0 0 0 45px;
     li {
       margin: 0;
       padding-right: 40px;
@@ -253,10 +253,12 @@ section p, header p {
   height: 100%;
 }
 
+//get phone modals are JS dependent, so hide by default
 #primary-cta-phone, #secondary-cta-phone {
   display: none;
 }
 
+//if JS enabled hide the primary signup cta initially
 .js #primary-cta-signup {
   display: none;
 }
@@ -1162,9 +1164,12 @@ html[lang="pl"] {
   }
 }
 
-.modal-content {
-  width: 960px;
-  margin: 0 auto;
+// get phone default no-JS styles
+#get-phone {
+  width: @widthDesktop - (@gridGutterWidth * 4);
+  padding: @baseLine;
+  margin: 0 auto @baseLine auto;
+  background: #fff;
   header {
     display: none;
   }
@@ -1177,23 +1182,31 @@ html[lang="pl"] {
   }
 }
 
-#provider-text-multi, #provider-text-single { display: none; }
+#provider-text-multi, 
+#provider-text-single { 
+  display: none; 
+}
 
+// email signup form no-JS styles
 #email-form-content {
-  #footer-email-thanks {
-    display: none;
-  }
   h3 {
     font-size: 26px;
     line-height: 32px;
     text-shadow: none;
   }
+  header {
+    display: none;
+  }
+}
+
+#footer-email-thanks {
+  display: none;
 }
 
 #footer-email-form {
-  width: @widthDesktop - (@gridGutterWidth * 2);
-  margin: 0 auto;
-  background: transparent;
+  width: @widthDesktop - (@gridGutterWidth * 4);
+  margin: 0 auto @baseLine auto;
+  background: #fff;
   border: 0;
   box-shadow: none;
   a {
@@ -1202,8 +1215,13 @@ html[lang="pl"] {
   }
 }
 
+#footer-email-errors {
+  width: @widthDesktop - (@gridGutterWidth * 2);
+  margin: 0 auto;
+}
+
+// JS specific styles for signup and get phone modal content
 .js {
-  // newsletter to slide in via CTA button
   #signup-toggle-icon {
     position: fixed;
     top: (@baseLine + 80); // @baseLine below height of masthead
@@ -1234,8 +1252,16 @@ html[lang="pl"] {
     width: 100%;
   }
 
+  #email-form-content {
+    header {
+      display: block;
+    }
+  }
+
   #footer-email-form {
     width: 100%;
+    background: transparent;
+    margin: 0 auto;
     #form-details, .form-details {
       display: block;
     }
@@ -1254,6 +1280,7 @@ html[lang="pl"] {
 
   .modal-content {
     width: 990px;
+    margin: 0 auto;
     background: #fff;
     @shadow: 0 1px 22px rgba(0, 0, 0, 0.8);
     .box-shadow(@shadow);
@@ -1304,10 +1331,14 @@ html[lang="pl"] {
   }
 
   #get-phone {
+    padding: 0;
     .content {
       text-align: center;
       font-size: 20px;
       letter-spacing: -1px;
+    }
+    header {
+      display: block;
     }
     #provider-links {
       vertical-align: middle;
@@ -1403,7 +1434,7 @@ body.noscroll {
     ul {
       margin: 0;
       li {
-        padding: 0 20px;
+        padding: 0 5px;
       }
     }
     h2 {
@@ -1439,6 +1470,11 @@ body.noscroll {
         margin-top: 0;
       }
     }
+    .phone-item {
+      .fox-wrapper {
+        display: none;
+      }
+    }    
     #adapt-feature-sprites { display: none; }
   }
   #have-it-all {
@@ -1511,19 +1547,27 @@ body.noscroll {
   }
   #useful-links {
     padding: (@baseLine * 4) 0;
+    .item {
+      width: @widthTablet;
+    }
     .column {
-      width: @widthTablet - (@gridGutterWidth * 2);
+      width: 100%;
+      margin: 0;
     }
     .column-first {
-      width: @widthTablet - (@gridGutterWidth * 2);
+      width: 100%;
+      margin: 0;
     }
     ul {
-      display: table;
+      list-style-type: none;
+      display: block;
       margin: @baseLine 0;
+      padding: 0;
     }
     ul li {
-      display: table-cell;
-      width: @widthTablet  - (@gridGutterWidth * 2);
+      display: block;
+      width: 100%;
+      margin: 5px 0;
     }
   }
   .bg-soccer {
@@ -1540,6 +1584,12 @@ body.noscroll {
       width: 400px;
     }
   }
+  #footer-email-form, #get-phone {
+    width: @widthTablet - (@gridGutterWidth * 2);
+  }
+  #footer-email-errors {
+    width: @widthTablet;
+  }
   .js {
     .modal-content {
       width: @widthTablet - (@gridGutterWidth * 2);
@@ -1552,6 +1602,13 @@ body.noscroll {
             opacity: 0;
           }
         }
+      }
+    }
+  }
+  html[lang="en-US"] {
+    #masthead {
+      ul li {
+        margin: 0 20px;
       }
     }
   }
@@ -1603,6 +1660,7 @@ body.noscroll {
   }
   #signup-toggle-icon {
     display: none;
+    visibility: hidden;
   }
   #get-firefox-os {
     margin-top: 0;
@@ -1621,8 +1679,9 @@ body.noscroll {
       top: 85px; // for non en-US locales
       left: 80px;
       .small {
-        width: auto;
         float: none;
+        width: auto;
+        font-size: 14px;
         text-align: center;
       }
       h2 {
@@ -1632,14 +1691,14 @@ body.noscroll {
       p {
         font-size: 16px;
       }
+      .button {
+        float: none;
+      }
     }
     #adapt-features {
       .content {
         top: 35px; // for non en-US locales - this content is much taller than the others in this section
       }
-    }
-    .button {
-      float: none;
     }
     ul {
       width: auto;
@@ -1665,7 +1724,6 @@ body.noscroll {
   html[lang="en-US"] {
     #get-firefox-os {
       .content {
-        top: 105px;
         left: 80px;
         h2 {
           font-size: 36px;
@@ -1678,7 +1736,7 @@ body.noscroll {
       }
       #adapt-features {
         .content {
-          top: 105px;
+          top: 85px;
         }
       }
     }
@@ -1795,6 +1853,15 @@ body.noscroll {
   .bg-birthday {
     background: url('/media/img/firefox/os/bg/760/birthday.jpg') no-repeat center center; 
   }
+  #get-phone {
+    width: @widthMobileLandscape - (@gridGutterWidth * 3);
+  }
+  #footer-email-form {
+    width: @widthMobileLandscape - (@gridGutterWidth * 2);
+  }
+  #footer-email-errors {
+    width: @widthMobileLandscape - @gridGutterWidth;
+  }
   .js {
     #modal {
       width: 100%;
@@ -1816,6 +1883,9 @@ body.noscroll {
         }
       }  
     } 
+    #get-phone {
+      width: 100%;
+    }
   }
 }
 
@@ -1851,6 +1921,10 @@ body.noscroll {
       position: relative; //override fixed position for mobile
     }  
   }
+  #signup-toggle-icon {
+    display: none;
+    visibility: hidden;
+  }
   #have-it-all-masthead {
     background-position: top 0 right -400px;
     h2, p {
@@ -1870,6 +1944,9 @@ body.noscroll {
       width: auto;
       left: 65px;
       right: 8px;
+      .small {
+        font-size: 12px;
+      }
     }
     ul {
       width: auto;
@@ -2007,6 +2084,15 @@ body.noscroll {
       margin: 5px 0;
     }
   }
+  #get-phone {
+    width: @widthMobile - (@gridGutterWidth * 3);
+  }
+  #footer-email-form {
+    width: @widthMobile - (@gridGutterWidth * 2);
+  }
+  #footer-email-errors {
+    width: @widthMobile - @gridGutterWidth;
+  }
   .bg-soccer {
     background: url('/media/img/firefox/os/bg/480/soccer.jpg') no-repeat center center; 
   }
@@ -2043,5 +2129,8 @@ body.noscroll {
         }
       }  
     } 
+    #get-phone {
+      width: 100%;
+    }
   }
 }
