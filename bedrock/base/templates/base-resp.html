@@ -11,6 +11,7 @@
     {% block extra_meta %}{% endblock %}
 
     <title>{% block page_title_prefix %}Mozilla — {% endblock %}{% block page_title %}{% endblock %}{% block page_title_suffix %} — mozilla.org{% endblock %}</title>
+    <meta name="description" content="{% block description %}{% endblock %}">
 
     {% block tabzilla_css %}
       {{ css('tabzilla') }}
