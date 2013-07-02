@@ -18,7 +18,7 @@
     //   "partner": [
     //     {
     //       "name": "Movistar",
-    //       "url": "http://www.movistar.es/firefoxos"          
+    //       "url": "http://www.movistar.es/firefoxos"
     //     }
     //   ]
     // }
@@ -51,7 +51,10 @@
         links += '<a class="' + data.name.toLowerCase() + ' ' + index + '" href="' + data.url + '">' + data.name + '</a>';
       });
       $('#provider-links').html(links);
-      $('#signup-toggle-icon').fadeIn();
+      // persistent pencil icon is distracting/obtrusive on small screens
+      if ($(window).width() > 480) {
+        $('#signup-toggle-icon').fadeIn();
+      }
     } else {
       $('#primary-cta-signup').fadeIn();
       $('#primary-cta-phone').addClass('visibility', 'hidden');
@@ -82,8 +85,8 @@
       $('#id_lang option[value="es"]').attr('selected', 'selected');
       break;
     default:
-      $('#id_lang option[value="' + COUNTRY_CODE + '"]').attr('selected', 'selected'); 
-    }    
+      $('#id_lang option[value="' + COUNTRY_CODE + '"]').attr('selected', 'selected');
+    }
   }
 
   /*
