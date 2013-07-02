@@ -77,6 +77,6 @@ urlpatterns = patterns('',
     redirect(r'^persona/developer-faq/$', 'https://developer.mozilla.org/persona'),
     
     # Bug 869495 - For now we'll hard-code a redirect to 1.0.1
-    # In the future this should automatically go to the latest version's release notes
-    redirect(r'^firefox/os/releasenotes/$', '/firefox/os/releasenotes/1.0.1/')
+    # In the future this should automatically go to the latest version's notes
+    redirect(r'^firefox/os/notes/$', '/firefox/os/notes/1.0.1/'),
 )
