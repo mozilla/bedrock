@@ -104,6 +104,7 @@ LOCALE_CONTACTS = {
     'it'   : ['collabora@mozillaitalia.org'],
     'ms'   : ['community@mozilla.my'],
     'nl'   : ['contribute@mozilla-nl.org'],
+    'pl'   : ['chcepomoc@aviary.pl'],
     'pt-BR': ['envolva-se-mozilla-brasil@googlegroups.com'],
     'ru'   : ['contribute@mozilla-russia.org'],
     'sl'   : ['info@mozilla.si'],
