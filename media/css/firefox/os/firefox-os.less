@@ -1481,7 +1481,7 @@ body.noscroll {
     .scroller-off {
       #contacts-app, #photos-app, #messages-app {
         left: auto;
-        right: -25px;
+        right: 0;
       } 
       .content {
         padding-top: @baseLine * 3;
@@ -1499,6 +1499,10 @@ body.noscroll {
       #mail-app {
         display: none;
         visibility: hidden;
+      }
+      #social .left .icon-list {
+        display: block;
+        visibility: visible;
       } 
     } 
     .scroller-on {
@@ -1548,7 +1552,7 @@ body.noscroll {
   #useful-links {
     padding: (@baseLine * 4) 0;
     .item {
-      width: @widthTablet;
+      width: @widthTablet - (@gridGutterWidth * 2);
     }
     .column {
       width: 100%;
@@ -1585,7 +1589,7 @@ body.noscroll {
     }
   }
   #footer-email-form, #get-phone {
-    width: @widthTablet - (@gridGutterWidth * 2);
+    width: @widthTablet - (@gridGutterWidth * 4);
   }
   #footer-email-errors {
     width: @widthTablet;
