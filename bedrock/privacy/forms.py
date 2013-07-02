@@ -21,7 +21,7 @@ class PrivacyContactForm(forms.Form):
         },
         widget=forms.TextInput(
             attrs={
-                'required': 'true'
+                'required': 'required'
             }))
     sender = forms.EmailField(
         required=True,
@@ -30,7 +30,7 @@ class PrivacyContactForm(forms.Form):
         },
         widget=EmailInput(
             attrs={
-                'required': 'true',
+                'required': 'required',
                 'placeholder': 'you@yourdomain.com'
             }))
     comments = forms.CharField(
@@ -40,7 +40,7 @@ class PrivacyContactForm(forms.Form):
         },
         widget=forms.Textarea(
             attrs={
-                'required': 'true',
+                'required': 'required',
                 'placeholder': 'Enter your comments...',
                 'rows': '10',
                 'cols': '77'
