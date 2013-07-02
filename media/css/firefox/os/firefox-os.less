@@ -543,17 +543,21 @@ html[lang="en-US"] #get-firefox-os {
     z-index: 1;
   }
 
-  .screen {
+  .screen-wrapper {
     position: absolute;
     top: 141px;
     left: 144px;
-    background-image: url('/media/img/firefox/os/phone/screens-en-us.jpg');
-    background-repeat: no-repeat;
     z-index: 2;
     width: 218px;
     height: 332px;
-    @transition: background-position 0.5s ease-out;
-    .transition(@transition);
+    overflow: hidden;
+  }
+
+  .screen {
+    width: 218px;
+    height: 332px;
+    background-image: url('/media/img/firefox/os/phone/screens-en-us.jpg');
+    background-repeat: no-repeat;
   }
 
   .screen-soccer {
@@ -1379,6 +1383,19 @@ html[lang="pl"] {
   @-webkit-keyframes keep-scrolling {
     from { background-position: 0 1px; } // webkit browsers seem to need this 1px offset
     to { background-position: 0 -875px; }
+  }
+
+  #screen-intro {
+    .screen {
+      position: absolute;
+      top: 0;
+    }
+    #screen-intro-a {
+      left: 0;
+    }
+    #screen-intro-b {
+      left: 218px;
+    }
   }
 }
 
