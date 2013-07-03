@@ -6,7 +6,7 @@
 
   var $w = $(window);
 
-  var is_us = $('html').attr('lang') === 'en-US';
+  var isUS = $('html').attr('lang') === 'en-US';
 
   var isSmallViewport = $w.width() < 760;
   var isTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints || navigator.maxTouchPoints || isSmallViewport;
@@ -32,55 +32,37 @@
   var intro_bgs = ['soccer', 'cafe', 'birthday'];
   var $intro_bg_b = $intro_bg_a.clone();
 
-  var nav_height = $('#masthead').height();
+  var nav_height = $masthead.height();
 
   // adaptive scroll
-  var scene_hooks_top = 420;
+  var scene_hooks_top = 620;
   var $soccer_hook = $('#soccer-hook');
   var $cafe_hook = $('#cafe-hook');
   var $bday_hook = $('#birthday-hook');
 
+  // have it all
+  var $have_it_all = $('#have-it-all');
+
   /*
-  * Handle hash in URL
-  * #adapt{x} hashes are the only trouble makers
+  * Handle page load re: scroll position
   */
 
-  // if hash changes, make sure parallax doesn't go haywire
-  function _handle_hash() {
-    if (window.location.hash !== '') {
-      if (window.location.hash.indexOf('adapt') > -1 || window.location.hash.indexOf('soccer-hook') > -1) {
-        setTimeout(function() {
-          // make sure hash didn't scroll the adaptive section to the right
-          $('#adaptive-app-search').scrollLeft(0);
-
-          // scroll user to #soccer-hook
-          $('html, body').animate({
-            scrollTop: scene_hooks_top
-          }, 300);
-        }, 100);
-
-        // clear out URL hash
-        window.location.hash = '';
-      }
-    } else {
-      // force page to the top when refreshing
+  // if page loads with no hash, make sure user starts at top of page
+  function resetPageScroll() {
+    if (window.location.hash === '') {
       if ($w.scrollTop() > 0) {
         $w.scrollTop(0);
       }
     }
   }
 
-  // fix for loading page with hash in URL
+  // fix for loading page with scroll position > 0
   // can't fire immediately, must let browser do it's thing first
   if (!isTouch) {
     $(function() {
       setTimeout(function() {
-        _handle_hash();
+        resetPageScroll();
       }, 60);
-    });
-
-    $w.on('hashchange', function() {
-      _handle_hash();
     });
   }
 
@@ -100,7 +82,7 @@
   * Rotating intro background
   */
 
-  function rotate_intro_bg () {
+  function rotateIntroBG () {
     intro_bg_index = ((intro_bg_index + 1) < intro_bgs.length) ? intro_bg_index + 1 : 0;
 
     var $bg_cur, $bg_next;
@@ -126,7 +108,7 @@
   function engageIntroBGRotation() {
     clearInterval(adapt_bg_rotate_interval);
     adapt_bg_rotate_interval = setInterval(function() {
-      rotate_intro_bg();
+      rotateIntroBG();
     }, 3500);
   }
 
@@ -191,6 +173,21 @@
         left: '218px'
       }, 150);
     }
+  }
+
+  function displayAdaptiveBG(bg) {
+    // set all to non-active and top level z-index
+    $('.adaptive-bg').stop();
+
+    $('.adaptive-bg[data-current="1"]').attr('data-current', 0).css('opacity', 1).addClass('top');
+
+    // set new bg to current, fully visible, and put on bottom of stack
+    $('#adaptive-bg-' + bg).attr('data-current', 1).css('opacity', 1).removeClass('top');
+
+    // fade out non-current bg
+    $('.adaptive-bg[data-current="0"]').animate({
+      'opacity': 0
+    }, 350);
   }
 
   /*
@@ -306,7 +303,7 @@
   /*
    * Sticky masthead navigation
    */
-  $('#masthead').waypoint(function(direction) {
+  $masthead.waypoint(function(direction) {
     var $tab = $('#tabzilla-panel');
     var $btn = $('#masthead .cta-button');
     var $current = $('#masthead .curr');
@@ -361,12 +358,11 @@
   /*
   * Share widget togggle
   */
+
   $('#side-nav').on('click', '.share', function (e) {
     e.preventDefault();
     toggleSharePane();
   });
-
-
 
   /*
   * Nav scroll
@@ -387,11 +383,6 @@
   }
 
   function initNavScroll () {
-    // update adaptive anchors
-    $('a[href="#adapt1"]').attr('href', '#soccer-hook');
-    $('#adapt1').removeClass('nav-anchor');
-    $('#soccer-hook').addClass('nav-anchor');
-
     // navigation
     var $navs = $('nav[role="navigation"], #ffos-main-logo');
     var $side_nav = $('#side-nav');
@@ -404,31 +395,7 @@
       // GA track click
       navClickGATrack(this.hash);
 
-      var destination = $(this).attr('href');
-      var new_scroll;
-
-      switch (destination) {
-        case '#soccer-hook': // first scene (soccer) of adaptive section
-          // animations aren't resetting when forcing scroll to #soccer-hook top position.
-          // i don't know why - probably moving too fast for tweens to catch up.
-          // works fine forcing to 0, but we don't want that - we want #soccer-hook to show up.
-          // for some reason, setting the scroll to about 100, then animating the scroll to
-          // the top position of #scene-hooks works. it's a little not-perfect, but i'd say
-          // good enough.
-          new_scroll = 100;
-
-          // excuse me while i pull out my pickaxe
-          setTimeout(function() {
-            $('html, body').animate({
-              scrollTop: scene_hooks_top
-            }, 300);
-          }, 100);
-
-          break;
-        default:
-          new_scroll = $($(this).attr('href')).offset().top;
-          break;
-      }
+      var new_scroll = $($(this).attr('href')).offset().top;
 
       $w.scrollTop(new_scroll - nav_height);
     });
@@ -465,53 +432,18 @@
     });
   }
 
-  // if user begins transition into next scene and stops scrolling, force transition to complete
-  var tween_previous = 0; // previous progress of executing tween
-  var scroll_queued = false; // boolean to know if auto-scroll is queued up
-  var scroll_timeout = null; // holds timeout to auto-scroll
-
-  // sets or clears timeout to auto-scroll screen to the specified top position
-  function autoAdvanceAdaptiveScene(new_scroll) {
-    if (new_scroll === false) {
-      clearTimeout(scroll_timeout);
-      scroll_queued = false;
-    } else {
-      if (!scroll_queued) {
-        scroll_timeout = setTimeout(function() {
-          $('html, body').animate({ scrollTop: new_scroll }, 500);
-          scroll_queued = false;
-        }, 500);
-
-        scroll_queued = true;
-      }
-    }
-  }
-
-  // called in onUpdate handler in tweens
-  function onUpdateHandler(new_scroll, current_tween_progress) {
-    // if there's no auto-scroll queued up, check if there should be
-    if (!scroll_queued) {
-      // is the tween reversing?
-      // (my kingdom for an onReverseStart callback. jeez.)
-      if (current_tween_progress < tween_previous) {
-        autoAdvanceAdaptiveScene(new_scroll);
-        tween_previous = 0;
-      } else {
-        tween_previous = current_tween_progress;
-      }
-    }
-  }
-
   function initAdaptiveAppSearchScroller() {
-    var $adapt_features = $('#adapt-features').detach();
     var $scenes = $('#scenes');
-    var soccer_hook_height = 520;
-    var cafe_hook_height = 1220;
-    var bday_hook_height = 1520;
+    var bday_hook_height = 520;
+    var cafe_hook_height = 920;
+    var soccer_hook_height = 1520;
     var controller = $.superscrollorama({ playoutAnimations: false });
 
     var phone_screen_timeout;
     var phone_screen_timeout_delay = 350;
+
+    var $adaptive_mask = $('#adaptive-mask');
+    var $fox_tail_tip = $('#fox-tail-tip');
 
     // height of hook determines scroll duration (available animation time) for each scene
     $('#scene-hooks').css('top', scene_hooks_top + 'px');
@@ -519,186 +451,162 @@
     $cafe_hook.css('height', cafe_hook_height + 'px');
     $bday_hook.css('height', bday_hook_height + 'px');
 
-    var pinDur = soccer_hook_height + cafe_hook_height + bday_hook_height + $('#every-moment').height();
+    var pinDur = soccer_hook_height + cafe_hook_height + bday_hook_height;
 
     // add scroller-on class for css repositioning, & set total height
-    $('#get-firefox-os').addClass('scroller-on').css('height', pinDur + 'px');
+    $('#adaptive-wrapper').addClass('scroller-on').css('height', pinDur + 'px');
 
-    // re-position adative features bullet list in markup
-    $adapt_features.insertAfter('#phone-item-intro');
+    // set height of blue mask covering bottom of adaptive content
+    $adaptive_mask.css('height', 620);
 
-    // pin the ffos section pretty much immediately on page load
-    controller.pin($('#adaptive-wrapper'), pinDur, {
-      offset: -(nav_height - 1), // -1 is for tabzilla
+    $('#phone-hook').css('position', 'fixed');
+
+    // pin the adaptive background and let rest of content scroll naturally
+    controller.pin($('#adaptive-bgs'), pinDur, {
+      offset: -(nav_height - 1),
       pushFollowers: false
     });
 
-    // define all tweens
-
-    var to_soccer = TweenMax.to(
-      $scenes, // element to animate
-      1, // duration of animation in seconds
-      { // animation parameters
-        css: { 'left': '-100%' }, // CSS properties to animate
-        onStart: function(tween) {
-          autoAdvanceAdaptiveScene(scene_hooks_top + nav_height);
-        },
-        onComplete: function() { // call when animation completes
-          autoAdvanceAdaptiveScene(false);
-
-          disengageIntroBGRotation();
-
-          clearTimeout(phone_screen_timeout);
-          phone_screen_timeout = setTimeout(function() {
-            displayPhoneScreen(0); // soccer
-          }, phone_screen_timeout_delay);
-        },
-        onReverseComplete: function() { // call when animation completes reversal
-          autoAdvanceAdaptiveScene(false);
-
-          clearTimeout(phone_screen_timeout);
-          phone_screen_timeout = setTimeout(function() {
-            displayPhoneScreen(intro_bg_index); // last bg shown in intro screen
-          }, phone_screen_timeout_delay);
-
-          engageIntroBGRotation();
-
-          // make sure phone screen is set right
-          // really fast upwards scrolling can cause onReverseComplete's to fire
-          // in incorrect order
-          setTimeout(function() {
-            displayPhoneScreen(intro_bg_index); // last bg shown in intro screen
-          }, phone_screen_timeout_delay * 2);
-        },
-        onUpdate: function() { // call every time animation changes frames
-          onUpdateHandler(0, this.totalTime());
+    // pin the blue mask
+    controller.pin($adaptive_mask, pinDur, {
+      offset: -(nav_height + 620 - 1),
+      pushFollowers: false,
+      onPin: function() {
+        // make sure we have space for the tail
+        if ($w.height() > 744) {
+          $fox_tail_tip.animate({
+            'bottom': 0
+          }, 350);
         }
+      },
+      onUnpin: function(going_down) {
+        // only slide tail down if we're scrolling up
+        if (!going_down) {
+          $fox_tail_tip.animate({
+            'bottom': '-45px'
+          }, 350);
+        }
+      }
     });
 
-    var to_fox_wrapper = TweenMax.to($('#fox-wrapper-intro'), 1, { css: { 'left': '-100%' } });
+    // pin the adaptive features list
+    controller.pin($('#adapt2'), pinDur, {
+      offset: -nav_height,
+      pushFollowers: false
+    });
 
-    var to_cafe = TweenMax.to($scenes, 1, {
-      css: { 'left': '-200%' },
-      onStart: function() {
-        autoAdvanceAdaptiveScene(soccer_hook_height + cafe_hook_height);
-      },
-      onComplete: function() {
-        autoAdvanceAdaptiveScene(false);
+    // toggle background when scrolling up/down from masthead
+    $masthead.waypoint(function (dir) {
+      if (dir === 'up') {
+        engageIntroBGRotation();
+        displayAdaptiveBG('birthday');
+      } else {
+        disengageIntroBGRotation();
+        displayAdaptiveBG('birthday');
+      }
+    }, { offset: -1 });
 
-        clearTimeout(phone_screen_timeout);
+    // toggle phone screen when scrolling to first adaptive section
+    // offset a bit from masthead/bg change above
+    $bday_hook.waypoint(function (dir) {
+      clearTimeout(phone_screen_timeout);
+
+      if (dir === 'down') {
         phone_screen_timeout = setTimeout(function() {
-          displayPhoneScreen(1); // cafe
+          displayPhoneScreen(2); // birthday
         }, phone_screen_timeout_delay);
-      },
-      onReverseComplete: function() {
-        autoAdvanceAdaptiveScene(false);
+      } else {
+        phone_screen_timeout = setTimeout(function() {
+          displayPhoneScreen(intro_bg_index); // last bg shown in intro screen
+        }, phone_screen_timeout_delay);
+      }
+    }, { offset: 300 });
 
-        clearTimeout(phone_screen_timeout);
+    $cafe_hook.waypoint(function (dir) {
+      clearTimeout(phone_screen_timeout);
+
+      if (dir === 'down') {
+        phone_screen_timeout = setTimeout(function() {
+          displayPhoneScreen(1); // birthday
+        }, phone_screen_timeout_delay);
+
+        displayAdaptiveBG('cafe');
+      } else {
+        phone_screen_timeout = setTimeout(function() {
+          displayPhoneScreen(2); // birthday
+        }, phone_screen_timeout_delay);
+
+        displayAdaptiveBG('birthday');
+      }
+    }, { offset: -nav_height });
+
+    $soccer_hook.waypoint(function (dir) {
+      clearTimeout(phone_screen_timeout);
+
+      if (dir === 'down') {
         phone_screen_timeout = setTimeout(function() {
           displayPhoneScreen(0); // soccer
         }, phone_screen_timeout_delay);
-      },
-      onUpdate: function() {
-        onUpdateHandler(scene_hooks_top + nav_height, this.totalTime());
-      }
-    });
 
-    var to_cafe_features = TweenMax.to($adapt_features, 1, {
-      css: { 'opacity': 1 },
-      onStart: function() {
-        $adapt_features.css('display', 'block');
-      },
-      onReverseComplete: function() {
-        $adapt_features.css('display', 'none');
-      }
-    });
-
-    var to_cafe_blue_line = TweenMax.to($('#adapt-feature-sprite-blue-line'), 1, { css: { 'width': '123px' } });
-    var to_cafe_type = TweenMax.to($('#adapt-feature-type'), 1, {
-      css: { 'opacity': 1 }
-    });
-    var to_cafe_orange_line = TweenMax.to($('#adapt-feature-sprite-orange-line'), 1, { css: { 'width': '123px' } });
-    var to_cafe_results = TweenMax.to($('#adapt-feature-results'), 1, {
-      css: { 'marginTop': 0, 'opacity': 1 }
-    });
-
-    var to_bday = TweenMax.to($scenes, 1, {
-      css: { 'left': '-300%' },
-      onStart: function() {
-        autoAdvanceAdaptiveScene(cafe_hook_height + bday_hook_height);
-      },
-      onComplete: function() {
-        autoAdvanceAdaptiveScene(false);
-
-        clearTimeout(phone_screen_timeout);
-        phone_screen_timeout = setTimeout(function() {
-          displayPhoneScreen(2); // bday
-        }, phone_screen_timeout_delay);
-      },
-      onReverseComplete: function() {
-        autoAdvanceAdaptiveScene(false);
-
-        clearTimeout(phone_screen_timeout);
+        displayAdaptiveBG('soccer');
+      } else {
         phone_screen_timeout = setTimeout(function() {
           displayPhoneScreen(1); // cafe
         }, phone_screen_timeout_delay);
-      },
-      onUpdate: function() {
-        onUpdateHandler(soccer_hook_height + cafe_hook_height, this.totalTime());
+
+        displayAdaptiveBG('cafe');
       }
-    });
+    }, { offset: -nav_height });
 
-    var to_bday_save = TweenMax.to($('#adapt-feature-save'), 1, { css: { 'marginTop': 0, 'opacity': 1 } });
-
-    var to_bday_plus = TweenMax.to($('#adapt-feature-sprite-plus'), 1, {
-      css: { 'top': '286px', 'opacity': 1 }
-    });
-
-    var to_bday_discover = TweenMax.to($('#adapt-feature-discover'), 1, { css: { 'opacity': 1, 'marginTop': ((is_us) ? '44px' : '0px') } });
+    // define adaptive features tweens    
+    var to_feature_type = TweenMax.to(
+      $('#adapt-feature-type'),// element to animate
+      1,// duration in seconds
+      {
+        css: { 'opacity': 1 }// CSS to alter
+      }
+    );
+    var to_feature_results = TweenMax.to($('#adapt-feature-results'), 1, { css: { 'marginTop': 0, 'opacity': 1 } });
+    var to_feature_save = TweenMax.to($('#adapt-feature-save'), 1, { css: { 'marginTop': 0, 'opacity': 1 } });
+    var to_feature_discover = TweenMax.to($('#adapt-feature-discover'), 1, { css: { 'opacity': 1, 'marginTop': ((isUS) ? '44px' : '0px') } });
 
     controller.addTween(
-      $soccer_hook, // trigger animation when this element is scrolled to
-      to_soccer, // tween to execute
-      200, // duration of animation in pixels
-      0 // trigger offset in pixels
+      $cafe_hook,// execute tween when this element is visible
+      to_feature_type,// tween to execute
+      150,// scroll duration (px) of tween
+      425// offset of tween (start 425 pixels after $cafe_hook comes in to viewport)
     );
-
-    controller.addTween($soccer_hook, to_fox_wrapper, 300, 0);
-
-    controller.addTween($cafe_hook, to_cafe, 200, 0);
-    controller.addTween($cafe_hook, to_cafe_features, 200, 80);
-    controller.addTween($cafe_hook, to_cafe_type, 150, 425);
-    controller.addTween($cafe_hook, to_cafe_results, 150, 700);
-
-    controller.addTween($bday_hook, to_bday, 200, 0);
-    controller.addTween($bday_hook, to_bday_save, 250, 400);
-    controller.addTween($bday_hook, to_bday_discover, 225, 550);
+    controller.addTween($cafe_hook, to_feature_results, 150, 700);
+    controller.addTween($soccer_hook, to_feature_save, 250, 400);
+    controller.addTween($soccer_hook, to_feature_discover, 225, 550);
 
     // if en-US, show sprites
-    if (is_us) {
-      controller.addTween($cafe_hook, to_cafe_blue_line, 250, 250);
-      controller.addTween($cafe_hook, to_cafe_orange_line, 250, 550);
+    if (isUS) {
+      var to_blue_line = TweenMax.to($('#adapt-feature-sprite-blue-line'), 1, { css: { 'width': '123px' } });
+      var to_orange_line = TweenMax.to($('#adapt-feature-sprite-orange-line'), 1, { css: { 'width': '123px' } });
+      var to_feature_plus = TweenMax.to($('#adapt-feature-sprite-plus'), 1, { css: { 'top': '286px', 'opacity': 1 } });
 
-      controller.addTween($bday_hook, to_bday_plus, 200, 525);
+      controller.addTween($cafe_hook, to_blue_line, 250, 400);
+      controller.addTween($cafe_hook, to_orange_line, 250, 700);
+      controller.addTween($soccer_hook, to_feature_plus, 200, 525);
     }
 
     // position fox tail tip when have it all comes in to view
-    $('#have-it-all').waypoint(function(dir) {
+    $have_it_all.waypoint(function(dir) {
         if (dir === 'down') {
-          $('#fox-tail-tip').css('position', 'absolute');
+          $fox_tail_tip.css('position', 'absolute');
         } else {
-          $('#fox-tail-tip').css('position', 'fixed');
+          $fox_tail_tip.css('position', 'fixed');
         }
       },{ offset: '100%' }
     );
 
-    //reset default position if we scroll really fast to top of page (e.g. home key)
-    $('#masthead').waypoint(function (dir) {
-        if (dir === 'up') {
-          $('#scenes').css('left', 0);
-        }
-      },{ offset: -1 }
-    );
+    $('#keep-scrolling').click(function(e) {
+      e.preventDefault();
+
+      //track GA event for monitoring if users are clicking on animated scroller
+      trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'click', 'Adaptive animated scroll arrows']);
+    });
   }
 
   function trackGAPageNoScroll () {
@@ -708,7 +616,7 @@
     $('#adapt2').waypoint(function () {
       trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'scroll', 'Adaptive App Search']);
     });
-    $('#have-it-all').waypoint(function () {
+    $have_it_all.waypoint(function () {
       trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'scroll', 'Have it All']);
     });
     $('#mission').waypoint(function () {
@@ -717,20 +625,30 @@
   }
 
   function trackGAPageScroller () {
-    $('#soccer-hook').waypoint(function () {
+    $soccer_hook.waypoint(function () {
       trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'scroll', 'It adapts, so you can too']);
     });
-    $('#cafe-hook').waypoint(function () {
+    $cafe_hook.waypoint(function () {
       trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'scroll', 'Adaptive App Search (restaurant)']);
     });
-    $('#birthday-hook').waypoint(function () {
+    $bday_hook.waypoint(function () {
       trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'scroll', 'Adaptive App Search (birthday)']);
     });
-    $('#have-it-all').waypoint(function () {
+    $have_it_all.waypoint(function () {
       trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'scroll', 'Have it All']);
     });
     $('#mission').waypoint(function () {
       trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'scroll', 'Transform the Future']);
+    });
+  }
+
+  // track clicks on plus sprite (only visible for US on tablet & larger)
+  if (isUS && !isSmallViewport) {
+    var click_event = (isTouch) ? "touchend" : "click";
+
+    $('#adapt-feature-sprite-plus').on(click_event, function(e) {
+      e.preventDefault();
+      trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'click', 'Adaptive sprite plus']);
     });
   }
 

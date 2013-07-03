@@ -270,6 +270,9 @@ section p, header p {
 
 #get-firefox-os {
   position: relative;
+  #every-moment {
+    z-index: 3;
+  }
   .item-wrapper {
     width: 100%;
     height: 620px;
@@ -283,17 +286,6 @@ section p, header p {
     left: 50%;
     margin-left: -480px;
   }
-  #phone-item-intro {
-    top: 0;
-  }
-  #phone-item-soccer {
-    top: 620px;
-    .fox-wrapper { display: none; }
-  }
-  #phone-item-cafe {
-    top: 1240px;
-    .fox-wrapper { display: none; }
-  }
   .content {
     position: absolute;
     top: 105px;
@@ -301,6 +293,9 @@ section p, header p {
     width: 460px;
     text-align: center;
     z-index: 2;
+  }
+  #adaptive-bgs {
+    display: none;
   }
   #adapt-features .content {
     top: 55px;
@@ -368,69 +363,87 @@ section p, header p {
     padding: 1em 0;
   }
   // javascript only styles
-  &.scroller-on {
+  #adaptive-wrapper.scroller-on {
+    position: relative;
+    width: 100%;
+    height: 1860px;
+    overflow: hidden;
     z-index: 2;
     background: #0f9fdb;
+
+    //sticky adaptive background while content scrolls naturally
+    #adaptive-bgs {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 620px;
+      z-index: 2;
+      .adaptive-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 620px;
+        opacity: 0;
+        z-index: 1;
+        &.top {
+          z-index: 2;
+        }
+      }
+      #adaptive-bg-birthday {
+        opacity: 1;
+      }
+    }
+
+    #adaptive-mask {
+      position: absolute;
+      top: 620px;
+      width: 100%;
+      background: #0f9fdb;
+      z-index: 5;
+    }
+
     #keep-scrolling {
-      position: fixed;
-      top: 645px;
+      position: absolute;
+      top: 550px;
       left: 50%;
-      margin-left: -12px;
+      margin-left: -48px;
       display: block;
       background: url('/media/img/firefox/os/adapt/keep-scrolling.png') no-repeat left top;
       width: 24px;
       height: 35px;
-      z-index: 100;
+      z-index: 1;
 
       -moz-animation: keep-scrolling 2s steps(25) infinite;
       -webkit-animation: keep-scrolling 2s steps(25) infinite;
       animation: keep-scrolling 2s steps(25) infinite;
     }
+
     #phone-item-soccer, #phone-item-cafe {
       display: none;
     }
-    #adaptive-wrapper {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 620px;
-      overflow: hidden;
+
+    #adapt1 {
+      background: transparent;
+    }
+
+    #adapt2 {
+      background: transparent;
       z-index: 2;
     }
 
-    #adapt-features {
-      display: none;
-      opacity: 0;
-      z-index: 10;
+    #adapt3 {
+      display: block;
+      background: transparent;
     }
 
     #adaptive-app-search {
       position: absolute;
-      top: 0;
+      top: 200px;
       left: 0;
       width: 100%;
-      height: 620px;
-      overflow: hidden;
-      #scenes {
-        height: 620px;
-        position: relative;
-        transition: left 0.3s ease;
-      }
-      .item-wrapper {
-        position: absolute;
-        top: 0px;
-      }
-      #adapt1 {
-        left: 100%;
-      }
-      #adapt2 {
-        left: 200%;
-      }
-      #adapt3 {
-        display: block;
-        left: 300%;
-      }
     }
     ul {
       .type {
@@ -452,27 +465,28 @@ section p, header p {
         z-index: 1;
       }
     }
-    // placeholders for scroll position based animations
-    #scene-hooks {
-      display: block;
-      z-index: 1;
-      position: absolute;
-      top: 620px;
-    }
-
-    .scene-hook {
-      background: transparent;
-    }
-
+    
     #fox-tail-tip {
       display: block;
       position: fixed;
-      bottom: 0;
+      bottom: -45px;
       right: 0;
       width: 604px;
       height: 45px;
       background: url('/media/img/firefox/os/adapt/fox-tail-tip.png') top right no-repeat;
+      z-index: 5;
     }
+  }
+  // placeholders for scroll position based animations
+  #scene-hooks {
+    display: block;
+    z-index: 1;
+    position: absolute;
+    top: 620px;
+  }
+
+  .scene-hook {
+    background: transparent;
   }
 }
 
@@ -486,15 +500,15 @@ html[lang="en-US"] #get-firefox-os {
     height: 24px;
     width: 24px;
     background-position: left -168px;
-    top: 286px; // animate to 286px
-    left: 227px;
+    top: 286px;
+    left: 50%;
   }
   ul {
     .discover {
       margin-top: 46px;
     }
   }
-  &.scroller-on {
+  #adaptive-wrapper.scroller-on {
     ul {
       .discover {
         margin-top: -66px;
@@ -505,21 +519,11 @@ html[lang="en-US"] #get-firefox-os {
       width: 0;
       z-index: -1;
     }
-    #adapt-feature-sprite-blue-line {
-      top: 60px;
-      left: -103px;
-      height: 56px;
-      background-position: left top;
-    }
-    #adapt-feature-sprite-orange-line {
-      top: 173px;
-      left: -103px;
-      height: 12px;
-      background-position: left -106px;
-    }
     #adapt-feature-sprite-plus {
       opacity: 0;
+      width: 26px;
       top: 200px; // animate to 286px
+      z-index: 2;
     }
   }
 }
@@ -575,6 +579,10 @@ html[lang="en-US"] #get-firefox-os {
 
   .fox-wrapper {
     position: absolute;
+  }
+
+  #phone-hook {
+    z-index: 2;
   }
 
   .fox {
@@ -976,6 +984,7 @@ html[lang=hu] {
       }
       #photos-edit-app {
         margin-top: 80px;
+        opacity: 0;
       }
       #mail-app {
         top: -270px;
@@ -1031,6 +1040,15 @@ html[lang=hu] {
     #social .left .icon-list {
       display: none;
       visibility: hidden;
+    }
+    .content {
+      padding-top: @baseLine * 3;
+    }
+    .content.wide {
+      margin-top: 0;
+    }
+    #social .icon-list {
+      margin-top: 0;
     }
   }
   .plusslider-arrows {
@@ -1401,6 +1419,30 @@ html[lang="pl"] {
   }
 }
 
+// get sprites (dotted lines) to sit on top of phone
+html[lang="en-US"].js {
+  #get-firefox-os {
+    .adapt-feature-sprite {
+      display: block;
+    }
+  }
+  .adapt-feature-sprite-line {
+    z-index: 10;
+    display: block;
+    left: 370px;
+  }
+  #adapt-feature-sprite-blue-line {
+    top: 164px;
+    height: 56px;
+    background-position: left top;
+  }
+  #adapt-feature-sprite-orange-line {
+    top: 277px;
+    height: 12px;
+    background-position: left -106px;
+  }
+}
+
 #colophon {
   margin: 0;
   z-index: 101;
@@ -1494,7 +1536,7 @@ body.noscroll {
         display: none;
       }
     }    
-    #adapt-feature-sprites { display: none; }
+    //#adapt-feature-sprites { display: none; }
   }
   #have-it-all {
     .scroller-off {
@@ -1634,6 +1676,26 @@ body.noscroll {
         margin: 0 20px;
       }
     }
+    #get-firefox-os {
+      #adaptive-wrapper.scroller-on {
+        #adapt-feature-sprite-plus {
+          display: none;
+        }
+      }
+      #adapt-feature-sprite-plus {
+        top: 258px;
+      }
+    }
+    .adapt-feature-sprite {
+      display: none;
+    }
+    &.js {
+      #get-firefox-os {
+        .adapt-feature-sprite {
+          display: none;
+        }
+      }
+    }
   }
 }
 
@@ -1739,7 +1801,7 @@ body.noscroll {
         background: transparent;
       }
     }
-    #adapt-feature-sprites {
+    #adapt-feature-sprite-plus {
       display: none;
     }
   }
@@ -1761,6 +1823,9 @@ body.noscroll {
         .content {
           top: 85px;
         }
+      }
+      #adapt-feature-sprite-plus {
+        display: none;
       }
     }
   }
