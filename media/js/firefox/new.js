@@ -14,6 +14,9 @@
     }
 
     if (site.platform === 'android') {
+        $('#download-button-android .download-subtitle').html(
+            $('.android.download-button-wrapper').data('upgradeSubtitle'));
+
         return;
     }
 

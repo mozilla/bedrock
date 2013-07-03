@@ -24,7 +24,6 @@
     </div>
     <div id="version-message-android-old">
       {{_('You’re using an older version of Firefox.')}}<br />
-      <a href="https://play.google.com/store/apps/details?id=org.mozilla.firefox">{{_('Update at the Google Play Store.')}}</a>
     </div>
     <div id="version-message-desktop-latest">
       {{_('You’re using the latest version of Firefox!')}}
@@ -57,7 +56,7 @@
           <div class="mobile download-button-wrapper">
             {{ download_firefox(mobile=True) }}
           </div>
-          <div class="android download-button-wrapper">
+          <div class="android download-button-wrapper" data-upgrade-subtitle="{{_('Update for Free on Google Play')}}">
             {{ download_firefox(mobile=True, small=True, icon=False, dom_id='download-button-android') }}
           </div>
           <div class="desktop-latest-links-wrapper latest-links-wrapper">
