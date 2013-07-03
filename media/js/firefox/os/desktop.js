@@ -48,12 +48,12 @@
   // if hash changes, make sure parallax doesn't go haywire
   function _handle_hash() {
     if (window.location.hash !== '') {
-      if (window.location.hash.indexOf('adapt') > -1) {
+      if (window.location.hash.indexOf('adapt') > -1 || window.location.hash.indexOf('soccer-hook') > -1) {
         setTimeout(function() {
           // make sure hash didn't scroll the adaptive section to the right
           $('#adaptive-app-search').scrollLeft(0);
 
-          // scroll user to #adapt1
+          // scroll user to #soccer-hook
           $('html, body').animate({
             scrollTop: scene_hooks_top
           }, 300);
@@ -387,6 +387,11 @@
   }
 
   function initNavScroll () {
+    // update adaptive anchors
+    $('a[href="#adapt1"]').attr('href', '#soccer-hook');
+    $('#adapt1').removeClass('nav-anchor');
+    $('#soccer-hook').addClass('nav-anchor');
+
     // navigation
     var $navs = $('nav[role="navigation"], #ffos-main-logo');
     var $side_nav = $('#side-nav');
@@ -403,10 +408,10 @@
       var new_scroll;
 
       switch (destination) {
-        case '#adapt1': // first scene (soccer) of adaptive section
+        case '#soccer-hook': // first scene (soccer) of adaptive section
           // animations aren't resetting when forcing scroll to #soccer-hook top position.
           // i don't know why - probably moving too fast for tweens to catch up.
-          // works fine forcing to 0, but we don't want that - we want #adapt1 to show up.
+          // works fine forcing to 0, but we don't want that - we want #soccer-hook to show up.
           // for some reason, setting the scroll to about 100, then animating the scroll to
           // the top position of #scene-hooks works. it's a little not-perfect, but i'd say
           // good enough.
@@ -442,7 +447,6 @@
       } else {
         // find index in nav array of currently scrolled to target
         var cur_target_index = $.inArray('#' + $(this).attr('id'), side_nav_targets);
-        //var cur_target_index = side_nav_targets.indexOf('#' + $(this).attr('id'));
 
         // if there's a previous target, update the active navs
         if (cur_target_index > 0) {
@@ -737,8 +741,8 @@
     initTouchNavScroll();
   } else {
     initIntroBGRotation();
-    initNavScroll();
     initAdaptiveAppSearchScroller();
+    initNavScroll();
     trackGAPageScroller();
   }
 })(jQuery);
