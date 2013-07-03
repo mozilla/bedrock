@@ -28,7 +28,7 @@ Anderson,David
 Anderson,Harvey
 Anderson,Mark
 Ando,Ryota
-András,Tímár
+Tímár,András
 Ang,Mike
 Annaka,Hiroshi
 Annema,Peter
@@ -1367,7 +1367,6 @@ Thompson,Andrew
 Thomson,Laura
 Thorne,Rob
 Tian,Siyuan
-Timar,Andras
 Tıratacı,Ahmet Serkan
 Tobschall,Dominik
 Toivonen,Heikki
@@ -1379,7 +1378,6 @@ Topal,Abdulkadir
 Torek,Chris
 Torgemane,Henri
 Torkington,Nathan
-Torsten,Rüger
 Toshok,Chris
 Totic,Aleks
 Touzet,Joan
@@ -1921,3 +1919,4 @@ de la Puente González, Salvador
 Nair,Saurabh
 Martin,Stacy
 Packiyarajah,Sureshkumar
+Farrow,Thomas
