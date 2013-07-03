@@ -449,7 +449,7 @@
           $navs.find('a[href="' + side_nav_targets[cur_target_index - 1] + '"]').addClass('curr');
         }
       }
-    }, { offset: nav_height });
+    }, { offset: nav_height + 1 });
   }
 
   function initTouchNavScroll() {
@@ -525,7 +525,7 @@
 
     // pin the ffos section pretty much immediately on page load
     controller.pin($('#adaptive-wrapper'), pinDur, {
-      offset: -(nav_height-2), // -2 is for tabzilla top border
+      offset: -(nav_height - 1), // -1 is for tabzilla
       pushFollowers: false
     });
 
