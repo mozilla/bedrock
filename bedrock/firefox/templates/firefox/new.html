@@ -19,18 +19,22 @@
 {% block content %}
 <main role="main">
   <div id="version-message">
+    <div id="version-message-ios">
+      {{_('Your system does not meet the <a href="%s">requirements</a> to run Firefox.')|format('https://www.mozilla.org/firefox/22.0/system-requirements/')}}
+    </div>
     <div id="version-message-android-latest">
       {{_('You’re using the latest version of Firefox for Android!')}}
     </div>
     <div id="version-message-android-old">
-      {{_('You’re using an older version of Firefox.')}}<br />
+      {{_('You’re using an older version of Firefox.')}}
     </div>
     <div id="version-message-desktop-latest">
       {{_('You’re using the latest version of Firefox!')}}
     </div>
     <div id="version-message-desktop-old">
-      {{_('You’re using an older version of Firefox.')}}<br />
-      <a href="https://support.mozilla.org/kb/update-firefox-latest-version?esab=a&s=silent+download&r=0&as=s">{{_('Updating is quick and easy.')}}</a>
+      {{_('You’re using an older version of Firefox.')}}
+      <div><a href="https://support.mozilla.org/kb/update-firefox-latest-version?esab=a&s=silent+download&r=0&as=s">{{_('Updating is quick and easy.')}}</a></div>
+
     </div>
   </div>
   <div id="main-feature">
