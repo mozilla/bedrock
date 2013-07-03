@@ -170,7 +170,7 @@ class NewsletterForm(forms.Form):
 
 class NewsletterFooterForm(forms.Form):
     newsletter = forms.CharField(widget=forms.HiddenInput)
-    email = forms.EmailField(widget=EmailInput(attrs={'required': 'true'}))
+    email = forms.EmailField(widget=EmailInput(attrs={'required': 'required'}))
     fmt = forms.ChoiceField(widget=forms.RadioSelect(renderer=SideRadios),
                             choices=FORMATS,
                             initial='H')
