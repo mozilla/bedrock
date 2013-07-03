@@ -15,7 +15,9 @@
   var $masthead = $('#masthead');
 
   // phone
-  var $screen = $('#screen-intro');
+  var $screen_a = $('#screen-intro .screen');
+  var $screen_b = $screen_a.clone();
+  var $screen_cur, $screen_next; // for animating/rotating screens
 
   // signup
   var $signup_content;
@@ -101,25 +103,23 @@
   function rotate_intro_bg () {
     intro_bg_index = ((intro_bg_index + 1) < intro_bgs.length) ? intro_bg_index + 1 : 0;
 
-    var $cur, $next;
+    var $bg_cur, $bg_next;
 
+    // determine current/next bg
     if ($intro_bg_a.is(':visible')) {
-      $cur = $intro_bg_a;
-      $next = $intro_bg_b;
+      $bg_cur = $intro_bg_a;
+      $bg_next = $intro_bg_b;
     } else {
-      $cur = $intro_bg_b;
-      $next = $intro_bg_a;
+      $bg_cur = $intro_bg_b;
+      $bg_next = $intro_bg_a;
     }
 
-    // transition phone screen
-    setTimeout(function() {
-      $screen.attr('class', 'screen screen-' + intro_bgs[intro_bg_index]);
-    }, 300);
+    displayPhoneScreen(intro_bg_index);
 
-    $next.attr('class', 'intro-bg bg-' + intro_bgs[intro_bg_index]).show();
-    $cur.fadeOut(1000, function() {
-      $next.css('z-index', 2);
-      $cur.css('z-index', 1);
+    $bg_next.attr('class', 'intro-bg bg-' + intro_bgs[intro_bg_index]).show();
+    $bg_cur.fadeOut(1000, function() {
+      $bg_next.css('z-index', 2);
+      $bg_cur.css('z-index', 1);
     });
   }
 
@@ -136,14 +136,61 @@
 
   function initIntroBGRotation() {
     // switch out initial/default screen & bg
-    $screen.removeClass('screen-birthday').addClass('screen-soccer');
+    $screen_a.removeClass('screen-birthday').addClass('screen-soccer').attr('data-current', 1);
     $intro_bg_a.removeClass('bg-birthday').addClass('bg-soccer').css('z-index', '2');
 
     $intro_bg_b.attr('id', 'intro-bg-b').css('z-index', '1').removeClass('bg-soccer');
     $intro_bg_b.insertAfter($intro_bg_a);
 
+    // set up secondary phone screen for rotation
+    $screen_b.attr({'id': 'screen-intro-b', 'data-current': 0}).removeClass('screen-birthday').addClass('screen-cafe').insertAfter($screen_a);
+
     // start intro bg rotation on page load
     engageIntroBGRotation();
+  }
+
+  function displayPhoneScreen(bg_index) {
+    // determine current/next screen
+    if (Number($screen_a.attr('data-current')) === 1) {
+      $screen_cur = $screen_a;
+      $screen_next = $screen_b;
+    } else {
+      $screen_cur = $screen_b;
+      $screen_next = $screen_a;
+    }
+
+    // stop any existing animations
+    if ($screen_cur.is(':animated')) {
+      $screen_cur.stop();
+    }
+
+    if ($screen_next.is(':animated')) {
+      $screen_next.stop();
+    }
+
+    if (!$screen_cur.hasClass('screen-' + intro_bgs[bg_index])) {
+      // update next screen's bg and slide it in
+      $screen_next.attr({'class': 'screen screen-' + intro_bgs[bg_index], 'data-current': 1}).animate({
+        left: 0
+      }, 300);
+
+      // slide current screen out, then place it over to the right
+      $screen_cur.attr('data-current', 0).animate({
+        left: '-218px'
+      }, 300, function() {
+        $screen_cur.css('left', '218px');
+      });
+    } else {
+      // make sure screen is visible and set back to 0px left
+      $screen_cur.show().animate({
+        left: 0
+      }, 150);
+
+      // make sure next goes back to the right and gets hidden
+      $screen_next.animate({
+        left: '218px'
+      }, 150);
+    }
   }
 
   /*
@@ -459,6 +506,9 @@
     var bday_hook_height = 1520;
     var controller = $.superscrollorama({ playoutAnimations: false });
 
+    var phone_screen_timeout;
+    var phone_screen_timeout_delay = 350;
+
     // height of hook determines scroll duration (available animation time) for each scene
     $('#scene-hooks').css('top', scene_hooks_top + 'px');
     $soccer_hook.css('height', soccer_hook_height + 'px');
@@ -494,13 +544,27 @@
 
           disengageIntroBGRotation();
 
-          setTimeout(function() {
-            $screen.attr('class', 'screen screen-soccer');
-          }, 500);
+          clearTimeout(phone_screen_timeout);
+          phone_screen_timeout = setTimeout(function() {
+            displayPhoneScreen(0); // soccer
+          }, phone_screen_timeout_delay);
         },
         onReverseComplete: function() { // call when animation completes reversal
           autoAdvanceAdaptiveScene(false);
+
+          clearTimeout(phone_screen_timeout);
+          phone_screen_timeout = setTimeout(function() {
+            displayPhoneScreen(intro_bg_index); // last bg shown in intro screen
+          }, phone_screen_timeout_delay);
+
           engageIntroBGRotation();
+
+          // make sure phone screen is set right
+          // really fast upwards scrolling can cause onReverseComplete's to fire
+          // in incorrect order
+          setTimeout(function() {
+            displayPhoneScreen(intro_bg_index); // last bg shown in intro screen
+          }, phone_screen_timeout_delay * 2);
         },
         onUpdate: function() { // call every time animation changes frames
           onUpdateHandler(0, this.totalTime());
@@ -516,11 +580,19 @@
       },
       onComplete: function() {
         autoAdvanceAdaptiveScene(false);
-        $screen.attr('class', 'screen screen-cafe');
+
+        clearTimeout(phone_screen_timeout);
+        phone_screen_timeout = setTimeout(function() {
+          displayPhoneScreen(1); // cafe
+        }, phone_screen_timeout_delay);
       },
       onReverseComplete: function() {
         autoAdvanceAdaptiveScene(false);
-        $screen.attr('class', 'screen screen-soccer');
+
+        clearTimeout(phone_screen_timeout);
+        phone_screen_timeout = setTimeout(function() {
+          displayPhoneScreen(0); // soccer
+        }, phone_screen_timeout_delay);
       },
       onUpdate: function() {
         onUpdateHandler(scene_hooks_top + nav_height, this.totalTime());
@@ -553,11 +625,19 @@
       },
       onComplete: function() {
         autoAdvanceAdaptiveScene(false);
-        $screen.attr('class', 'screen screen-birthday');
+
+        clearTimeout(phone_screen_timeout);
+        phone_screen_timeout = setTimeout(function() {
+          displayPhoneScreen(2); // bday
+        }, phone_screen_timeout_delay);
       },
       onReverseComplete: function() {
         autoAdvanceAdaptiveScene(false);
-        $screen.attr('class', 'screen screen-cafe');
+
+        clearTimeout(phone_screen_timeout);
+        phone_screen_timeout = setTimeout(function() {
+          displayPhoneScreen(1); // cafe
+        }, phone_screen_timeout_delay);
       },
       onUpdate: function() {
         onUpdateHandler(soccer_hook_height + cafe_hook_height, this.totalTime());
