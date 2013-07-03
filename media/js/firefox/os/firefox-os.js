@@ -14,14 +14,14 @@
   var COUNTRY_CODE = '';
 
   var PARTNER_DATA = {
-    // "es": {
-    //   "partner": [
-    //     {
-    //       "name": "Movistar",
-    //       "url": "http://www.movistar.es/firefoxos"
-    //     }
-    //   ]
-    // }
+    "es": {
+      "partner": [
+        {
+          "name": "Movistar",
+          "url": "http://www.movistar.es/firefoxos"
+        }
+      ]
+    }
   };
 
   /*
