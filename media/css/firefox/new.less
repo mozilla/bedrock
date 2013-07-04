@@ -152,8 +152,22 @@ html[lang="my"] #features {
     background-image: url(/media/img/firefox/new/install1-winIE8.png);
 }
 
-.osx .install-win { display: none; }
-.windows .install-osx { display: none; }
+.osx .install-win,
+.linux .install-win,
+.windows .install-osx,
+.linux .install-osx,
+.linux #install1 strong,
+.linux .installation li:not(#install1) {
+    display: none;
+}
+
+.linux #install1 {
+    float: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+}
 
 .theater {
     position: relative;
