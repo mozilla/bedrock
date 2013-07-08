@@ -68,12 +68,12 @@
         if (pf.indexOf("Mac") !== -1) {
             return 'oldmac';
         }
-
-        // this should be last as it requires no OS in the user-agent
-        if (navigator.platform.indexOf("Firefox") !== -1 &&
-            navigator.platform.indexOf("Mobile") !== -1) {
+        if (navigator.platform == '' &&
+            navigator.userAgent.indexOf("Firefox") !== -1 &&
+            navigator.userAgent.indexOf("Mobile") !== -1) {
             return 'fxos';
         }
+
         return 'other';
     }
     (function () {
