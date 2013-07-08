@@ -67,6 +67,7 @@
     }
 }
 
+/* iOS */
 html.ios {
     #version-message {
         display: block;
@@ -76,6 +77,14 @@ html.ios {
     }
 
     .desktop.download-button-wrapper {
+        display: none;
+    }
+
+    .ios-links-wrapper {
+        display: block;
+        padding-top: 26px;
+    }
+    .desktop-latest-links-wrapper {
         display: none;
     }
 }
@@ -132,6 +141,7 @@ html.android {
         /* show helpful links */
         .android-latest-links-wrapper {
             display: block;
+            padding-top: 38px;
         }
         .desktop-latest-links-wrapper {
             display: none;
@@ -171,7 +181,7 @@ html.fxos {
     /* show helpful links */
     .fxos-latest-links-wrapper {
         display: block;
-        padding-top: 38px;
+        padding-top: 26px;
     }
 
     #firefox-screenshot {
