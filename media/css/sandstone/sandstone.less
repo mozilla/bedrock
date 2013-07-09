@@ -31,6 +31,7 @@ a {
     color: @linkBlue;
     text-decoration: none;
     &:hover,
+    &:focus,
     &:active {
         color: darken(@linkBlue, 10%);
         text-decoration: underline;
@@ -57,6 +58,7 @@ a {
     a {
         color: @linkSkyBlue;
         &:hover,
+        &:focus,
         &:active {
             color: darken(@linkSkyBlue, 10%);
         }
@@ -76,6 +78,7 @@ a {
     a {
         color: @linkSpaceBlue;
         &:hover,
+        &:focus,
         &:active {
             color: lighten(@linkSpaceBlue, 10%);
         }
@@ -592,6 +595,7 @@ nav.menu-bar {
     }
 
     a:hover,
+    a:focus,
     a:active {
         color: darken(@linkBlue, 10%);
     }
