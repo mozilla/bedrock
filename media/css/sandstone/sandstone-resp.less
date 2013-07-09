@@ -111,7 +111,7 @@ a {
 
 }
 
-h1, h2, h3, h4, h5, h6, legend, .huge, .large {
+h1, h2, h3, h4, h5, h6, legend, .huge, .large, legend {
     .open-sans-light;
     display: block;
     margin: 0 0 12px 0;
@@ -152,12 +152,12 @@ h3 {
     letter-spacing: -0.5px;
 }
 
-h4 {
+h4, legend {
     font-size: 24px;
     letter-spacing: -0.25px;
 }
 
-h5, legend {
+h5 {
     font-size: 16px;
 }
 
@@ -277,6 +277,11 @@ input.focus {
     .transition(all linear .1s);
 }
 
+select:focus {
+    @shadow: 0 0 0 2px rgba(73,173,227,0.4);
+    .box-shadow(@shadow);
+}
+
 textarea:-moz-ui-invalid:not(output),
 input[type=email]:-moz-ui-invalid:not(output),
 input[type=password]:-moz-ui-invalid:not(output),
@@ -289,8 +294,61 @@ input.invalid {
     .transition(all linear .1s);
 }
 
-.form-field {
-    margin-bottom: @baseLine / 3;
+.fill-width {
+    display: block;
+    width: 100%;
+    .border-box();
+}
+
+.field {
+    margin-bottom: @baseLine / 2;
+    label {
+        display: block;
+        margin-bottom: 0.1em;
+        .required {
+            font-size: @smallFontSize;
+            color: @linkRed;
+            text-transform: uppercase;
+        }
+        &.checkbox,
+        &.radio {
+            display: block;
+            padding-left: 1.5em;
+        }
+        &.checkbox input[type="checkbox"],
+        &.radio input[type="radio"] {
+            float: left;
+            margin-left: -1.5em;
+        }
+    }
+    &.required label:after {
+        .required-star();
+    }
+    .field-note {
+        font-size: @smallFontSize;
+        color: @textColorTertiary;
+        margin-top: 0.1em;
+    }
+}
+
+.form-minimal-label {
+    label {
+        font-size: @smallFontSize;
+        color: #999;
+    }
+}
+
+.in-form-fieldset {
+    margin-top: @baseLine / 2;
+    margin-bottom: @baseLine / 2;
+    legend {
+        margin-bottom: @baseLine / 2;
+        font-size: 18px;
+        letter-spacing: normal;
+        &.required:after {
+            .required-star();
+        }
+    }
 }
 
 .messagelist {
@@ -321,12 +379,22 @@ input.invalid {
     input[type=text] {
         .form-field-error;
     }
+    select {
+        .box-shadow(@formFieldSelectErrorShadow);
+    }
+    label {
+        color: @linkRed;
+    }
 }
 
 input[type=email], input[type=password], input[type=text] {
     &.error {
         .form-field-error;
     }
+}
+
+select.error {
+    .box-shadow(@formFieldSelectErrorShadow);
 }
 
 .tooltip {
@@ -372,10 +440,7 @@ input[type=email], input[type=password], input[type=text] {
 
 label.error {
     .open-sans;
-    font-size: 12px;
     color: rgb(175,50,50);
-    font-weight: bold;
-    text-transform: uppercase;
 }
 
 .super-priority-field {
