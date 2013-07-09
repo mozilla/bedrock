@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% extends "base-resp.html" %}
+{% extends "firefox/base-resp.html" %}
 
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}Firefox OS{% endblock %}
@@ -20,6 +20,7 @@
 {% endblock %}
 
 {% block extrahead %}
+{{ super() }}
 <!--[if lt IE 9]>
   {{ css('firefox_os_ie') }}
 <![endif]-->
