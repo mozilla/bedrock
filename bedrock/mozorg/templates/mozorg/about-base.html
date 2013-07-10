@@ -4,6 +4,14 @@
 
 {% extends "mozorg/base-resp.html" %}
 
+{% set navigation_bar = [
+    (url('mozorg.about'), _('About Mozilla')),
+    (url('mozorg.mission'),  _('Mission')),
+    ('/about/forums/', _('Forums')),
+    (url('mozorg.about.governance.governance'), _('Governance')),
+    (url('mozorg.about.history'), _('History')),
+] -%}
+
 {% block extrahead %}
     {{ css('about-base') }}
 {% endblock %}
@@ -18,14 +26,17 @@
 </article>
 
 <aside class="sidebar">
-
   <nav>
     <ul>
-      <li><a href="{{ url('mozorg.mission') }}">Mission</a></li>
-      <li><a href="/about/forums/">Forums</a></li>
-      <li><a href="/about/governance.html">Governance</a></li>
-      <li><a href="{{ url('mozorg.about.history') }}">History</a></li>
-    </ul>
+    {% for href, caption in navigation_bar %}
+      <li>
+      {% if href == request.path %}
+        <b>{{ caption|e }}</b>
+      {% else %}
+        <a href="{{ href|e }}">{{ caption|e }}</a>
+      {% endif %}
+      </li>
+    {% endfor %}
   </nav>
 
   <div class="reference">
