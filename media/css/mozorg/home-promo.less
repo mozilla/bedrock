@@ -137,6 +137,7 @@
                 background: rgba(0,0,0,0.5);
             }
             &:hover,
+            &:focus,
             &:active {
                 text-decoration: none;
                 span {
@@ -174,24 +175,39 @@
 }
 
 .loaded {
-    #promo-mozilla15 a,
-    #page-promo-mozilla15 a {
-        background-image: url('/media/img/home/promo/mozilla15/1000.jpg');
+    #promo-makerparty a,
+    #page-promo-makerparty a {
+        background-image: url('/media/img/home/promo/makerparty/1000.jpg');
         .content {
             width: 50%;
+            color: #fff;
         }
         h3 {
-            color: #333;
+            font-size: 30px;
+            .open-sans;
         }
         h4 {
-            color: #333;
             width: auto;
+            font-size: 20px;
+            line-height: 1.4;
+            .open-sans;
         }
         .go {
-            color: #282828;
-            font-size: 16px;
-            &:hover {
-                color: #00539F;
+            color: #d14d32;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            display: inline-block;
+            padding: .25em 20px;
+            border-radius: 3px;
+            .box-shadow(0 1px 2px rgba(0,0,0,.2));
+            background: #ffe600;
+            #gradient.vertical(#ffe600, #f6de01);
+            &:hover,
+            &:focus {
+                color: #c1361a;
+                background: #feee57;
+                #gradient.vertical(#feee57, #f6e546);
             }
         }
     }
@@ -384,9 +400,17 @@
         }
     }
     .loaded {
-        #promo-mozilla15 a,
-        #page-promo-mozilla15 a {
-            background-image: url('/media/img/home/promo/mozilla15/760.jpg');
+        #promo-makerparty a,
+        #page-promo-makerparty a {
+            background-image: url('/media/img/home/promo/makerparty/760.jpg');
+            .content {
+                h3 {
+                    font-size: 26px;
+                }
+                h4 {
+                    font-size: 16px;
+                }
+            }
         }
         #promo-flicksvideo,
         #page-promo-flicksvideo {
@@ -467,6 +491,24 @@
         border-radius: 20px;
     }
     .loaded {
+        #promo-makerparty,
+        #page-promo-makerparty {
+            .content {
+                width: auto;
+                color: @textColorPrimary;
+                h3 {
+                    font-size: 24px;
+                    .open-sans-light;
+                }
+                h4 {
+                    font-size: 18px;
+                    .open-sans-light;
+                }
+                .go {
+                    border: 1px solid #e4ce00;
+                }
+            }
+        }
         #promo-flicksvideo,
         #page-promo-flicksvideo {
             padding-top: 180px;
@@ -548,9 +590,9 @@
         }
     }
     .loaded {
-        #promo-mozilla15 a,
-        #page-promo-mozilla15 a {
-            background-image: url('/media/img/home/promo/mozilla15/440.jpg');
+        #promo-makerparty a,
+        #page-promo-makerparty a {
+            background-image: url('/media/img/home/promo/makerparty/440.jpg');
             .content {
                 width: auto;
             }
@@ -583,13 +625,13 @@
         .content {
             width: auto;
             h3 {
-                font-size: 20px;
+                font-size: 24px;
                 letter-spacing: -1px;
                 padding-top: 20px;
                 margin-bottom: 5px;
             }
             h4 {
-                font-size: @baseFontSize;
+                font-size: 18px;
                 width: auto;
                 line-height: 1.3;
                 letter-spacing: normal;
@@ -597,11 +639,12 @@
         }
     }
     .loaded {
-        #promo-mozilla15 a,
-        #page-promo-mozilla15 a {
-            background-image: url('/media/img/home/promo/mozilla15/320.jpg');
+        #promo-makerparty a,
+        #page-promo-makerparty a {
+            background-image: url('/media/img/home/promo/makerparty/320.jpg');
             .content {
                 width: auto;
+                color: @textColorPrimary;
             }
         }
         #promo-flicksvideo,
