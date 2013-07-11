@@ -5,34 +5,33 @@
 .bg-soccer {
   background: transparent;
   filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/media/img/firefox/os/bg/1400/soccer.jpg', sizingMethod='scale');
-  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src=/media/img/firefox/os/bg/1400/soccer.jpg, sizingMethod='scale')";     
+  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/media/img/firefox/os/bg/1400/soccer.jpg', sizingMethod='scale')";     
 }
 
 .bg-cafe {
   background: transparent;
   filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/media/img/firefox/os/bg/1400/cafe.jpg', sizingMethod='scale');
-  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src=/media/img/firefox/os/bg/1400/cafe.jpg, sizingMethod='scale')";   
+  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/media/img/firefox/os/bg/1400/cafe.jpg', sizingMethod='scale')";   
 }
 
 .bg-birthday {
   background: transparent;
   filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/media/img/firefox/os/bg/1400/birthday.jpg', sizingMethod='scale');
-  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src=/media/img/firefox/os/bg/1400/birthday.jpg, sizingMethod='scale')";   
+  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/media/img/firefox/os/bg/1400/birthday.jpg', sizingMethod='scale')";   
 }
 
-#masthead {
-  .curr:before,
-  .curr:after {
-    border: none;
-  }
+#adaptive-wrapper.scroller-on {
+    #adapt1, #adapt2, #adapt3 {
+      background: transparent;
+      filter: none;
+      -ms-filter: none;
+    }
 }
 
-// fix ie7 z-index bug
-#get-firefox-os {
-  .item {
-    z-index: 5;
-  }
-  #phone-item-intro {
-    z-index: 6;
-  }
+#get-firefox-os .item {
+  z-index: 5;
+}
+
+#adaptive-bgs {
+  z-index: -10 !important;
 }
