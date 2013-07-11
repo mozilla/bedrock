@@ -42,7 +42,7 @@
             <nav id="nav-main" role="navigation">
               <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
               <ul id="nav-main-menu">
-                <li class="first"><a class="nav" href="#adapt1">{{_('The Adaptive Phone')}}</a></li>
+                <li class="first"><a class="nav" href="#adaptive-wrapper">{{_('The Adaptive Phone')}}</a></li>
                 <li><a class="nav" href="#have-it-all">{{_('The Features')}}</a></li>
                 <li class="last"><a class="nav" href="#mission">{{_('The Mission')}}</a></li>
               </ul>
@@ -60,7 +60,8 @@
 {% block content %}
 <nav id="side-nav" role="navigation">
   <ul>
-    <li><a class="nav" href="#adapt1" title="{{_('Adaptive App Search')}}">{{_('The Adaptive Phone')}}</a></li>
+    <li><a class="nav" href="#every-moment" title="{{_('Firefox OS')}}">{{_('Firefox OS')}}</a></li>
+    <li><a class="nav" href="#adaptive-wrapper" title="{{_('Adaptive App Search')}}">{{_('The Adaptive Phone')}}</a></li>
     <li><a class="nav" href="#have-it-all" title="{{_('Features')}}">{{_('The Features')}}</a></li>
     <li><a class="nav" href="#mission" title="{{_('Mission')}}">{{_('The Mission')}}</a></li>
     <li><a class="share" href="#share" aria-controls="share-pane" role="button" title="{{_('Share')}}">{{_('Share')}}</a></li>
@@ -74,72 +75,66 @@
 <a href="#email-form-wrapper" id="signup-toggle-icon" class="newsletter-signup-toggle">{{_('Sign me up')}}</a>
 
 <div id="get-firefox-os">
-  <!--<span id="keep-scrolling"></span>-->
-
-  <div id="adaptive-wrapper">
+  <div class="item-wrapper" id="every-moment">
     <div class="item phone-item" id="phone-item-intro">
       <div class="phone-wrapper" id="phone-wrapper-intro">
-        <div class="phone"></div>
-        <div id="screen-intro" class="screen-wrapper">
-          <div id="screen-intro-a" class="screen screen-birthday"></div>
+        <div id="phone-hook">
+          <div class="adapt-feature-sprite adapt-feature-sprite-line" id="adapt-feature-sprite-blue-line"></div>
+          <div class="adapt-feature-sprite adapt-feature-sprite-line" id="adapt-feature-sprite-orange-line"></div>
+          
+          <div class="phone"></div>
+          <div id="screen-intro" class="screen-wrapper">
+            <div id="screen-intro-a" class="screen screen-birthday"></div>
+          </div>
         </div>
         <div id="fox-wrapper-intro" class="fox-wrapper">
           <div class="fox"></div>
           <div class="tail"></div>
         </div>
       </div>
+    </div><!--/#phone-item-intro-->
+
+    <div id="intro-bg-a" class="intro-bg bg-birthday"></div>
+
+    <div class="item">
+      <section class="content">
+        {# L10n: The line break in this headline is presentational. Place the break wherever it seems best for your locale, or omit it if it isn't needed. #}
+        <h2>{{_('Make every <br>moment count')}}</h2>
+        <p>{{_('Your needs change from one moment to the next. That’s why Firefox OS does the same. It gives you the power to live every moment to its fullest and participate in a better world.')}}</p>
+        <div id="primary-cta-phone">
+          <p><a class="button-green" href="#get-phone">{{_('Get a Firefox OS smartphone today')}}</a></p>
+          <p class="small">{{_('Sign up for our monthly newsletter and get the latest on Firefox OS')}}</p>
+          <a class="button newsletter-signup-toggle" href="#email-form-wrapper">{{_('Sign me up')}}</a>
+        </div>
+        <div id="primary-cta-signup">
+          <p>{{_('Sign up for our monthly newsletter and get the latest on Firefox OS')}}</p>
+          <a class="button newsletter-signup-toggle wide" href="#email-form-wrapper">{{_('Sign me up')}}</a>
+        </div>
+      </section>
+    </div><!--/.item-->
+  </div><!--/#every-moment-->
+
+  <div id="adaptive-wrapper" class="nav-anchor">
+    <div id="adaptive-bgs">
+      <div id="adaptive-bg-birthday" class="adaptive-bg bg-birthday"></div>
+      <div id="adaptive-bg-cafe" class="adaptive-bg bg-cafe"></div>
+      <div id="adaptive-bg-soccer" class="adaptive-bg bg-soccer"></div>
+
+      <a title="{{_('Scroll down')}}" href="#" id="keep-scrolling"></a>
     </div>
 
-    <div class="item phone-item" id="phone-item-soccer">
-      <div class="phone-wrapper" id="phone-wrapper-soccer">
-        <div class="phone"></div>
-        <div id="screen-soccer" class="screen-wrapper">
-          <div class="screen screen-soccer"></div>
-        </div>
-        <div id="fox-wrapper-soccer" class="fox-wrapper">
-          <div class="fox"></div>
-          <div class="tail"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="item phone-item" id="phone-item-cafe">
-      <div class="phone-wrapper" id="phone-wrapper-cafe">
-        <div class="phone"></div>
-        <div id="screen-cafe" class="screen-wrapper">
-          <div class="screen screen-cafe"></div>
-        </div>
-        <div id="fox-wrapper-cafe" class="fox-wrapper">
-          <div class="fox"></div>
-          <div class="tail"></div>
-        </div>
-      </div>
-    </div>
-    
     <div id="adaptive-app-search">
       <div id="scenes">
-        <div class="item-wrapper" id="every-moment">
-          <div id="intro-bg-a" class="intro-bg bg-birthday"></div>
-
-          <div class="item">
-            <section class="content">
-              {# L10n: The line break in this headline is presentational. Place the break wherever it seems best for your locale, or omit it if it isn't needed. #}
-              <h2>{{_('Make every <br>moment count')}}</h2>
-              <p>{{_('Your needs change from one moment to the next. That’s why Firefox OS does the same. It gives you the power to live every moment to its fullest and participate in a better world.')}}</p>
-              <div id="primary-cta-phone">
-                <p><a class="button-green" href="#get-phone">{{_('Get a Firefox OS smartphone today')}}</a></p>
-                <p class="small">{{_('Sign up for our monthly newsletter and get the latest on Firefox OS')}}</p>
-                <a class="button newsletter-signup-toggle" href="#email-form-wrapper">{{_('Sign me up')}}</a>
+        <div class="item-wrapper bg-soccer" id="adapt1">
+          <div class="item phone-item" id="phone-item-soccer">
+            <div class="phone-wrapper" id="phone-wrapper-soccer">
+              <div class="phone"></div>
+              <div id="screen-soccer" class="screen-wrapper">
+                <div class="screen screen-soccer"></div>
               </div>
-              <div id="primary-cta-signup">
-                <p>{{_('Sign up for our monthly newsletter and get the latest on Firefox OS')}}</p>
-                <a class="button newsletter-signup-toggle wide" href="#email-form-wrapper">{{_('Sign me up')}}</a>
-              </div>
-            </section>
+            </div>
           </div>
-        </div>
-      
-        <div class="item-wrapper bg-soccer nav-anchor" id="adapt1">
+
           <div class="item">
             <section class="content">
               {# L10n: The line break in this headline is presentational. Place the break wherever it seems best for your locale, or omit it if it isn't needed. #}
@@ -152,6 +147,15 @@
         </div>
 
         <div class="item-wrapper bg-cafe" id="adapt2">
+          <div class="item phone-item" id="phone-item-cafe">
+            <div class="phone-wrapper" id="phone-wrapper-cafe">
+              <div class="phone"></div>
+              <div id="screen-cafe" class="screen-wrapper">
+                <div class="screen screen-cafe"></div>
+              </div>
+            </div>
+          </div>
+
           <div class="item" id="adapt-features">
             <section class="content">
               <h2>{{_('Adaptive App Search')}}</h2>
@@ -162,11 +166,7 @@
                 <li class="discover" id="adapt-feature-discover">{{_('Discover more apps on the Firefox Marketplace')}}</li>
               </ul>
 
-              <div id="adapt-feature-sprites">
-                <div class="adapt-feature-sprite" id="adapt-feature-sprite-blue-line"></div>
-                <div class="adapt-feature-sprite" id="adapt-feature-sprite-orange-line"></div>
-                <div class="adapt-feature-sprite" id="adapt-feature-sprite-plus"></div>
-              </div>
+              <div class="adapt-feature-sprite" id="adapt-feature-sprite-plus"></div>
             </section>
           </div>
         </div>
@@ -175,15 +175,16 @@
         </div>
       </div><!--/#scenes-->
     </div><!--/#adaptive-app-search-->
+
+    <div id="adaptive-mask"></div>
+    <div id="fox-tail-tip"></div>
   </div><!--/#adaptive-wrapper-->
 
   <div id="scene-hooks">
-    <div id="soccer-hook" class="item scene-hook"></div>
-    <div id="cafe-hook" class="item scene-hook"></div>
     <div id="birthday-hook" class="item scene-hook"></div>
+    <div id="cafe-hook" class="item scene-hook"></div>
+    <div id="soccer-hook" class="item scene-hook"></div>
   </div>
-
-  <div id="fox-tail-tip"></div>
 </div><!--/#get-firefox-os-->
 
 <div id="have-it-all" class="nav-anchor">
@@ -248,7 +249,7 @@
       </section>
     </div>
 
-    <div class="item-wrapper" id="social">
+    <div class="item-wrapper hia-anchor" id="social">
       <section class="item">
         <div class="content left">
           <h2>{{_('Moments with friends')}}</h2>
@@ -265,7 +266,7 @@
       </section>
     </div>
 
-    <div class="item-wrapper" id="photos">
+    <div class="item-wrapper hia-anchor" id="photos">
       <section class="item">
         <div class="content left">
           <h2>{{_('Creative moments')}}</h2>
@@ -280,7 +281,7 @@
       </section>
     </div>
 
-    <div class="item-wrapper" id="music">
+    <div class="item-wrapper hia-anchor" id="music">
       <section class="item">
         <div class="content right">
           <h2>{{_('Moments that entertain')}}</h2>
@@ -296,7 +297,7 @@
       </section>
     </div>
 
-    <div class="item-wrapper" id="maps">
+    <div class="item-wrapper hia-anchor" id="maps">
       <section class="item">
         <div class="content left wide">
           <h2>{{_('Moments in between')}}</h2>
@@ -309,7 +310,7 @@
       </section>
     </div>
 
-    <div class="item-wrapper" id="messages">
+    <div class="item-wrapper hia-anchor" id="messages">
       <section class="item">
         <div class="content left messages-text">
           <h2>{{_('Moments of connection')}}</h2>
@@ -324,7 +325,7 @@
       </section>
     </div>
 
-    <div class="item-wrapper" id="marketplace">
+    <div class="item-wrapper hia-anchor" id="marketplace">
       <section class="item">
         <div class="content right wide">
           <h2>{{_('Moments of discovery')}}</h2>
