@@ -3,25 +3,28 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 $(document).ready(function() {
-    function footer_email_form_show_details(trigger_click) {
-        $('#form-details').slideDown('normal', function() {
-            if (trigger_click) {
-                $('#footer-email-form input[type=submit]').trigger('click');
-            }
-        });
+  var $submit_button = $('#footer-email-form input[type=submit], #help-form input[type=submit]');
+  var $form_details = $('#form-details');
 
-        $('#footer-email-form .form-details').slideDown();
+  function footer_email_form_show_details(trigger_click) {
+    $('#form-details').slideDown('normal', function() {
+      if (trigger_click) {
+        $submit_button.trigger('click');
+      }
+    });
+
+    $form_details.slideDown();
+  }
+
+  $('#id_email, #id_interest, #footer-email-form select, #footer-email-form input').focus(function () {
+    footer_email_form_show_details(false);
+  });
+
+  $submit_button.click(function(e) {
+    if (!$form_details.is(':visible')) {
+      e.preventDefault();
+      footer_email_form_show_details(true);
     }
-
-    $('#footer-email-form select, #footer-email-form input').focus(function () {
-        footer_email_form_show_details(false);
-    });
-
-    $('#footer-email-form input[type=submit]').click(function(e) {
-        if (!$('#form-details').is(':visible')) {
-            e.preventDefault();
-            footer_email_form_show_details(true);
-        }
-    });
+  });
 
 });
