@@ -70,6 +70,7 @@ def privacy(request):
     return l10n_utils.render(request, 'privacy/index.html', template_vars)
 
 
+@xframe_allow
 @csrf_protect
 def firefoxos(request):
     form = PrivacyContactForm()
