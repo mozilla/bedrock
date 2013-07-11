@@ -10,7 +10,8 @@ from django.utils.safestring import mark_safe
 
 from bedrock.mozorg.forms import (
     FORMATS, LANGS, EmailInput, PrivacyWidget,
-    SideRadios, get_lang_choices)
+    SideRadios, get_lang_choices
+)
 from product_details import product_details
 from tower import ugettext as _
 
@@ -156,7 +157,10 @@ class ManageSubscriptionsForm(forms.Form):
 
 
 class NewsletterForm(forms.Form):
-    """Form to let a user subscribe to or unsubscribe from a newsletter"""
+    """
+    Form to let a user subscribe to or unsubscribe from a newsletter
+    on the manage existing newsletters page.  Used in a FormSet.
+    """
     title = forms.CharField(required=False)
     description = forms.CharField(required=False)
     subscribed = forms.BooleanField(
@@ -164,11 +168,14 @@ class NewsletterForm(forms.Form):
         required=False,  # they have to answer, but answer can be False
     )
     newsletter = forms.CharField(widget=forms.HiddenInput)
-    # another hidden one, just so the template can get the data
-    english_only = forms.BooleanField(required=False)
 
 
 class NewsletterFooterForm(forms.Form):
+    """
+    Form used to subscribe to a single newsletter, typically in the
+    footer of a page (see newsletters/middleware.py) but sometimes
+    on a dedicated page.
+    """
     newsletter = forms.CharField(widget=forms.HiddenInput)
     email = forms.EmailField(widget=EmailInput(attrs={'required': 'true'}))
     fmt = forms.ChoiceField(widget=forms.RadioSelect(renderer=SideRadios),

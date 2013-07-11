@@ -5,7 +5,6 @@
 @import "../sandstone/lib.less";
 
 #main-feature {
-    margin-top: @baseLine * 2;
     text-align: center;
     h1 {
         line-height: 1.1;
@@ -13,34 +12,6 @@
         span {
             display: block;
             font-size: 64px;
-        }
-    }
-}
-
-#newsletter-updated {
-    #content {
-        h3,
-        h4 {
-            .span-all();
-            text-align: center;
-            margin-bottom: @baseLine * 2;
-        }
-        .table {
-            .span(6);
-            margin: auto;
-            float: none;
-            textarea {
-                .border-box();
-                width: 100%;
-            }
-        }
-        .sub-feature {
-            text-align: center;
-            .span(4);
-            p,
-            h4 {
-                margin-bottom: @baseLine / 2;
-            }
         }
     }
 }
@@ -126,19 +97,10 @@
             th {
                 text-align: left;
                 h4 {
-                    margin: 0 0 5px 0;
-                    font-size: 22px;
-                    .en-only {
-                        color: @textColorTertiary;
-                        font-size: @baseFontSize;
-                    }
-                }
-                .description {
-                    margin: 0.2em 0 0 0;
-                    color: @textColorTertiary;
-                    font-weight: normal;
-                    font-size: @smallFontSize;
-                    line-height: 1.3;
+                    .open-sans;
+                    font-size: @baseFontSize;
+                    letter-spacing: normal;
+                    margin: 0;
                 }
             }
             td {
@@ -152,57 +114,48 @@
     }
 }
 
-/* {{{ Tablet  Layout and smaller : 768px */
-@media only screen and (max-width: @widthDesktop) {
+.float-right {
+  float: right;
+}
 
-    #existing-newsletter-form {
-        .table {
-            thead {
-                td,th {
-                    padding-right: 5px;
-                    font-size: @smallFontSize;
-                    &:last-child {
-                        padding-right: 0;
-                    }
-                }
-            }
-            tbody {
-                th {
-                    h4 {
-                        font-size: 18px;
-                        .en-only {
-                            font-size: @smallFontSize;
-                        }
-                    }
-                }
-                td,th {
-                    padding-right: 5px;
-                    &:last-child {
-                        padding-right: 0;
-                    }
-                }
-            }
+/* {{{ /newsletter page email form */
+
+.js #newsletter-form {
+    #form-details,
+    .form-details { display: block; }
+}
+
+#newsletter {
+    #main-feature {
+        h1 {
+            font-size: 56px;
+            margin-top: @baseLine;
+            margin-bottom: @baseLine / 2;
+        }
+        p {
+            font-size: @largeFontSize;
         }
     }
-
+    #newsletter-form {
+        padding-top: @baseLine * 2;
+        padding-bottom: @baseLine * 2;
+        background-image: url(/media/img/newsletter/envelopes.png);
+        background-repeat: no-repeat;
+        background-position: 100% 100%;
+        .field {
+            margin: 5px 0;
+        }
+        .form-contents,
+        .form-submit {
+            .span(6);
+            clear: left;
+        }
+    }
 }
 
 /* }}} */
 /* {{{ Tablet  Layout: 768px */
 @media only screen and (min-width: @widthTablet) and (max-width: @widthDesktop) {
-
-    #newsletter-updated {
-        #content {
-            .table {
-                .span_narrow(8);
-                margin: auto;
-                float: none;
-            }
-            .sub-feature {
-                .span_narrow(4);
-            }
-        }
-    }
 
     #existing-newsletter-form {
         .field {
@@ -222,6 +175,25 @@
         }
     }
 
+    #newsletter {
+        #main-feature {
+            h1 {
+                font-size: 48px;
+            }
+            p {
+                font-size: inherit;
+            }
+        }
+        #newsletter-form {
+            background-position: 160% 100%;
+            .form-contents,
+            .form-submit {
+                .span_narrow(6);
+                clear: left;
+            }
+        }
+    }
+
 }
 
 /* }}} */
@@ -233,18 +205,6 @@
             font-size: 26px;
             span {
                 font-size: inherit;
-            }
-        }
-    }
-
-    #newsletter-updated {
-        #content {
-            .sub-feature {
-                .span-all();
-                margin-bottom: @baseLine;
-            }
-            .table {
-                .span-all();
             }
         }
     }
@@ -265,6 +225,28 @@
             .span-all();
         }
     }
+
+    #newsletter {
+        #main-feature {
+            h1 {
+                font-size: 28px;
+                letter-spacing: -1px;
+            }
+            p {
+                font-size: @smallFontSize;
+            }
+        }
+        #newsletter-form {
+            padding-top: @baseLine;
+            padding-bottom: @baseLine;
+            background-image: none;
+            .form-contents,
+            .form-submit {
+                .span-all();
+            }
+        }
+    }
+
 
 }
 

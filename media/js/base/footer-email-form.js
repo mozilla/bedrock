@@ -3,25 +3,25 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 $(document).ready(function() {
-	function footer_email_form_show_details(trigger_click) {
-		$('#form-details').slideDown('normal', function() {
-			if (trigger_click) {
-				$('#footer_email_submit').trigger('click');
-			}
+    function footer_email_form_show_details(trigger_click) {
+        $('#form-details').slideDown('normal', function() {
+            if (trigger_click) {
+                $('#footer-email-form input[type=submit]').trigger('click');
+            }
         });
-        
-        $('#footer-email-form .form-details').slideDown();
-	}
 
-    $('#id_email, #id_interest').focus(function () {
+        $('#footer-email-form .form-details').slideDown();
+    }
+
+    $('#footer-email-form select, #footer-email-form input').focus(function () {
         footer_email_form_show_details(false);
     });
 
-    $('#footer_email_submit').click(function(e) {
-		if (!$('#form-details').is(':visible')) {
-			e.preventDefault();
-			footer_email_form_show_details(true);
-		}
+    $('#footer-email-form input[type=submit]').click(function(e) {
+        if (!$('#form-details').is(':visible')) {
+            e.preventDefault();
+            footer_email_form_show_details(true);
+        }
     });
 
 });

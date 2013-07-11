@@ -23,8 +23,22 @@ log = commonware.log.getLogger('mozorg.util')
 
 
 def page(name, tmpl, decorators=None, **kwargs):
-    # The URL pattern is the name with a forced trailing slash if not
-    # empty
+    """
+    Define a bedrock page.
+
+    The URL name is the template name, with the extension stripped and the
+    slashes changed to dots. So if tmpl="path/to/template.html", then the
+    page's URL name will be "path.to.template".
+
+    @param name: The URL regex pattern.  If not empty, a trailing slash is
+        added automatically, so it shouldn't be included in the parameter
+        value.
+    @param tmpl: The template name.  Also used to come up with the URL name.
+    @param decorators: A decorator or an iterable of decorators that should
+        be applied to the view.
+    @param kwargs: Any additional arguments are passed to l10n_utils.render
+        after the request and the template name.
+    """
     pattern = r'^%s/$' % name if name else r'^$'
 
     # Set the name of the view to the template path replaced with dots
