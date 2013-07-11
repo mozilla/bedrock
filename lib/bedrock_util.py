@@ -22,4 +22,4 @@ def secure_required(view_func):
 
 def server_error_view(request, template_name='500.html'):
     """500 error handler that runs context processors."""
-    return l10n_utils.render(request, template_name)
+    return l10n_utils.render(request, template_name, status=500)
