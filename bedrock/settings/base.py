@@ -366,6 +366,7 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.sequence.js',
             'js/mozorg/mozilla15.js',
             'js/mozorg/contribute-page.js',
+            'js/base/footer-email-form.js',
             'js/base/mozilla-pager.js',
             'js/base/mozilla-video-tools.js',
         ),
