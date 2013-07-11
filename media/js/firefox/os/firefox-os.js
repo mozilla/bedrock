@@ -21,6 +21,14 @@
           "url": "http://www.movistar.es/firefoxos"
         }
       ]
+    },
+    "pl": {
+      "partner": [
+        {
+          "name": "T-Mobile",
+          "url": "http://www.t-mobile.pl/pl/firefox"
+        }
+      ]
     }
   };
 
