@@ -28,7 +28,7 @@
           {% if footer %}
              id="footer-email-form" action="#footer-email-form"
           {% else %}
-              id="email-form" action=""
+              id="newsletter-form" action=""
           {% endif %}
           method="post">
       {% if footer %}
@@ -37,7 +37,9 @@
       <input type="hidden" name="newsletter" value="{{ newsletter_id }}">
       <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
 
-      <h3>{{ title|d(_('Get Firefox news'), true) }}</h3>
+      {% if footer %}
+        <h3>{{ title|d(_('Get Firefox news'), true) }}</h3>
+      {% endif %}
 
       <div class="form-contents">
         <div class="field field-email {% if request.newsletter_form.email.errors %}field-error{% endif %}">

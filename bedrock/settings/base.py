@@ -608,7 +608,6 @@ MIDDLEWARE_CLASSES = (
     'multidb.middleware.PinningRouterMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'session_csrf.CsrfMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
     'mobility.middleware.DetectMobileMiddleware',
     'mobility.middleware.XMobileMiddleware',
 ), append=(
@@ -633,6 +632,7 @@ INSTALLED_APPS = get_apps(exclude=(
 
     # Django contrib apps
     'django_sha2',  # Load after auth to monkey-patch it.
+    'django.contrib.contenttypes',
     'django.contrib.messages',
 
     # Local apps

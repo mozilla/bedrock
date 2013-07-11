@@ -1,10 +1,9 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
+from django.conf.urls import patterns, url
+
 from bedrock.newsletter import views
-
-from django.conf.urls.defaults import *
-
 
 # A UUID looks like: f81d4fae-7dec-11d0-a765-00a0c91e6bf6
 # Here's a regex to match a UUID:
@@ -42,19 +41,9 @@ urlpatterns = patterns('',
         views.hacks_newsletter,
         name='mozorg.hacks_newsletter'),
 
-    # We developers don't get to pick the URLs used to sign up for
-    # individual newsletters, so we have to use URL patterns to map
-    # URLs to which newsletter we're subscribing to (rather than, say,
-    # including the newsletter key in the URL itself).
-    #
-    # We can, however, pick the URL names and template filenames as follows:
-    #
-    # URL name = "newsletter.<newsletter key>"
-    # Template = "newsletter/<newsletter key>.html"
-
-    # # "Firefox & You"
-    # url(r'^newsletter/$',
-    #     views.one_newsletter_signup,
-    #     kwargs={'newsletter': 'mozilla-and-you'},
-    #     name='newsletter.mozilla-and-you'),
+    # Page to subscribe to 'mozilla-and-you' newsletter
+    url('^newsletter/$',
+        views.one_newsletter_signup,
+        name='newsletter.mozilla-and-you',
+        kwargs={'template_name': 'newsletter/mozilla-and-you.html'}),
 )

@@ -1,5 +1,18 @@
 {% extends 'base-resp.html' %}
-{% block email_form %}{% endblock %}
+{#
+ Base template for pages used to signup for one particular newsletter.
+
+ Inheriting templates should put their body content in the newsletter_content block.
+
+ They must also set the newsletter_title and newsletter_id variables.
+
+ Finally, they can fill in the blocks 'success_en' and 'success_non_en' with
+ the page body to display to English and to non-English users after they
+ subscribe.  The default text here can be used as an example, but is probably
+ not exactly right for newsletters other than the Mozilla & You newsletter.
+#}
+
+{% block email_form %}{% endblock %}{# Don't need another signup form on the page. #}
 
 {% block body_id %}newsletter{% endblock %}
 
@@ -12,15 +25,27 @@
 
 {% block content %}
   <div id="doc">
-  {% if newsletter_success %}
-    <div id="email-form" class="thank billboard">
-    <h3>{{ _('Thank you for signing up!') }}</h3>
-    </div>
-  {% else %}
-    {% block newsletter_content %}{% endblock %}
-    {{ email_newsletter_form(newsletter,
-                 footer=False,
-                 title=newsletter_title) }}
-  {% endif %}
-  </div>
-{% endblock %}
+    {% if request.newsletter_success %}
+      {# User has been subscribed #}
+      <div id="email-form" class="thank billboard">
+        <h3>{{ _('Thanks for Subscribing!') }}</h3>
+          {# user did not need to confirm before starting subscription (no double-opt-in) #}
+          {% if request.newsletter_lang.startswith('en') %}
+            {% block success_no_confirm %}
+              <p>{% trans %}We look forward to soon begin sharing tips &amp; tricks on getting the most out of Firefox, as well as exciting news about Mozilla and how we’re working to create a better Web.{% endtrans %}</p>
+              <p>{% trans %}Please be sure to add our sending address: mozilla@e.mozilla.org to your address book to ensure we always reach your inbox.{% endtrans %}</p>
+            {% endblock success_no_confirm %}
+          {% else %}
+            {# user will have to confirm before starting subscription #}
+            {% block success_confirm %}
+              <p>{% trans %}Thanks! Please check your inbox to confirm your subscription.{% endtrans %}</p>
+              <p>{% trans %}You'll receive an email from mozilla@e.mozilla.org to confirm your subscription. If you don't see it, check your spam filter. You must confirm your subscription to receive our newsletter.{% endtrans %}</p>
+            {% endblock success_confirm %}
+          {% endif %}
+      </div>
+    {% else %}
+      {% block newsletter_content %}{% endblock newsletter_content %}
+      {{ email_newsletter_form(newsletter_id=newsletter_id,title=newsletter_title,footer=False) }}
+    {% endif %}
+  </div><!-- doc -->
+{% endblock content %}

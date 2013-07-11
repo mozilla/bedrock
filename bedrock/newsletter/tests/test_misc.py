@@ -1,7 +1,6 @@
 import mock
 
 from bedrock.mozorg.tests import TestCase
-
 from bedrock.newsletter.utils import get_newsletters
 
 
