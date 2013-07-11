@@ -16,6 +16,11 @@
   {{ css('firefox_new') }}
 {% endblock %}
 
+{% block js_pretrack %}
+  {{ js('common-resp') }}
+  {{ js('firefox_new') }}
+{% endblock %}
+
 {% block content %}
 <main role="main">
   <div id="version-message">
@@ -141,6 +146,4 @@
   {% include 'firefox/includes/simple_footer.html' %}
 {% endblock %}
 
-{% block js %}
-  {{ js('firefox_new') }}
-{% endblock %}
+{% block site_js %}{% endblock %}

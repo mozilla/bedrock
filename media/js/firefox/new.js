@@ -6,8 +6,8 @@
     'use strict';
 
     if (isFirefox()) {
-        var $body = $('body');
-        var latestFirefoxVersion = $body.attr('data-latest-firefox');
+        var $html = $(document.documentElement);
+        var latestFirefoxVersion = $html.attr('data-latest-firefox');
         latestFirefoxVersion = parseInt(latestFirefoxVersion.split('.')[0], 10);
         latestFirefoxVersion--; // subtract one since a silent update may be
                                 // complete and the user hasn't restarted their
@@ -16,9 +16,9 @@
                                 // from the browser
 
         if (isFirefoxUpToDate(latestFirefoxVersion + '')) {
-            $('html').addClass('firefox-latest');
+            $html.addClass('firefox-latest');
         } else {
-            $('html').addClass('firefox-old');
+            $html.addClass('firefox-old');
         }
     }
 
@@ -117,4 +117,31 @@
             });
         }
     });
+
+    // Add GA custom tracking and external link tracking
+    var className = $html.getClass();
+    var state = 'Original State';
+    if (/\bandroid\b/.test(className)) {
+        if (/\bfirefox-latest\b/.test(className)) {
+            state = 'Android, up-to-date';
+        } else if (/\bfirefox-old\b/.test(className)) {
+            state = 'Android, not up-to-date';
+        } else {
+            state = 'Android, no Fx detected';
+        }
+    } else if (/\bios\b/.test(className)) {
+        state = 'iOS';
+    } else if (/\bfxos\b/.test(className)) {
+        state = 'FxOS';
+    } else {
+        if (/\bfirefox-latest\b/.test(className)) {
+            state = 'Desktop, up-to-date';
+        } else if (/\bfirefox-old\b/.test(className)) {
+            state = 'Desktop, not up-to-date';
+        }
+    }
+    window._gaq = _gaq || [];
+    window._gaq.push(['_setCustomVar', 4, '/new conditional message', state, 3]);
+
+
 })(window.jQuery, window.Modernizr, window._gaq, window.site);

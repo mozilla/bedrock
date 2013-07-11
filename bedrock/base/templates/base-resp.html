@@ -3,7 +3,7 @@
 <!doctype html>
 {# Note the "windows" class, without javascript platform-specific
      assets default to windows #}
-<html class="windows no-js" lang="{{ LANG }}" dir="{{ DIR }}">
+<html class="windows no-js" lang="{{ LANG }}" dir="{{ DIR }}"{% block html_attrs %}{% endblock %}>
   <head>
     {% block ga_experiments %}{% endblock %}
     <meta charset="utf-8">
@@ -31,6 +31,7 @@
 
     {{ js('site') }}
 
+    {% block js_pretrack %}{# include JavaScript that must be run pre GA tracking here #}{% endblock %}
     {% include 'includes/google-analytics.html' %}
   </head>
 

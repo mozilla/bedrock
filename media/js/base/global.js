@@ -108,13 +108,13 @@ function isFirefox() {
 
 function isFirefoxUpToDate(latest, esr) {
 
-    var $body = $('body');
+    var $html = $(document.documentElement);
     var fx_version = getFirefoxMasterVersion();
-    var esrFirefoxVersions = esr || $body.data('esr-versions');
+    var esrFirefoxVersions = esr || $html.data('esr-versions');
     var latestFirefoxVersion;
 
     if (!latest) {
-        latestFirefoxVersion = $body.attr('data-latest-firefox');
+        latestFirefoxVersion = $html.attr('data-latest-firefox');
         latestFirefoxVersion = parseInt(latestFirefoxVersion.split('.')[0], 10);
     } else {
         latestFirefoxVersion = parseInt(latest.split('.')[0], 10);
