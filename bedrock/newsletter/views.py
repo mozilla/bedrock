@@ -16,9 +16,9 @@ import basket
 import commonware.log
 import lib.l10n_utils as l10n_utils
 import requests
+from lib.l10n_utils.dotlang import _lazy
 from commonware.decorators import xframe_allow
 from funfactory.urlresolvers import reverse
-from tower import ugettext_lazy as _lazy
 
 from .forms import (
     ManageSubscriptionsForm, NewsletterForm,
@@ -30,12 +30,12 @@ from bedrock.newsletter import utils
 
 log = commonware.log.getLogger('b.newsletter')
 
-general_error = _lazy(u'Something is amiss with our system, sorry! Please try '
-                      'again later.')
+LANG_FILES = ['mozorg/contribute']
+general_error = _lazy(u'We are sorry, but there was a problem '
+                      u'with our system. Please try again later!')
 thank_you = _lazy(u'Thank you for updating your email preferences.')
 bad_token = _lazy(u'The supplied link has expired. You will receive a new '
                   u'one in the next newsletter.')
-
 
 UNSUB_UNSUBSCRIBED_ALL = 1
 UNSUB_REASONS_SUBMITTED = 2
@@ -331,9 +331,7 @@ def one_newsletter_signup(request, template_name):
         except basket.BasketException:
             log.exception("Error subscribing %s to newsletter %s" %
                           (data['email'], data['newsletter']))
-            msg = _lazy("We are sorry, but there was a problem "
-                        "with our system. Please try again later!")
-            form.errors['__all__'] = form.error_class([msg])
+            form.errors['__all__'] = form.error_class([general_error])
         else:
             success = True
 
