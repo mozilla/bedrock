@@ -28,7 +28,6 @@ class FirefoxDetails(ProductDetails):
         'esr': 'FIREFOX_ESR',
         'release': 'LATEST_FIREFOX_VERSION',
     }
-    esr_major_versions = [10, 17]
 
     def __init__(self):
         super(FirefoxDetails, self).__init__()
@@ -36,6 +35,18 @@ class FirefoxDetails(ProductDetails):
     def latest_version(self, channel):
         version = self.channel_map.get(channel, 'LATEST_FIREFOX_VERSION')
         return self.firefox_versions[version]
+
+    def latest_major_version(self, channel):
+        """Return latest major version as an int."""
+        lv = self.latest_version(channel)
+        try:
+            return int(lv.split('.')[0])
+        except ValueError:
+            return 0
+
+    @property
+    def esr_major_versions(self):
+        return range(10, self.latest_major_version('release'), 7)
 
     def _matches_query(self, info, query):
         query = query.lower()

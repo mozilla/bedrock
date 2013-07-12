@@ -12,8 +12,8 @@ from django.views.decorators.http import require_POST
 from django.shortcuts import redirect
 
 import basket
-from lib import l10n_utils
 import requests
+from lib import l10n_utils
 from commonware.decorators import xframe_allow
 from funfactory.urlresolvers import reverse
 from lib.l10n_utils.dotlang import _

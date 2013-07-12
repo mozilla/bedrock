@@ -129,6 +129,30 @@ class TestFirefoxDetails(TestCase):
         eq_(len(builds), 1)
         eq_(builds[0]['name_en'], 'Gujarati')
 
+    @patch.dict(firefox_details.firefox_versions,
+                LATEST_FIREFOX_VERSION='25.0.2')
+    def test_esr_major_versions(self):
+        """ESR versions should be dynamic based on latest"""
+        eq_(firefox_details.esr_major_versions, [10, 17, 24])
+
+    @patch.dict(firefox_details.firefox_versions,
+                LATEST_FIREFOX_VERSION='Phoenix')
+    def test_esr_major_versions_no_latest(self):
+        """ESR versions should not blow up if current version is broken."""
+        eq_(firefox_details.esr_major_versions, [])
+
+    @patch.dict(firefox_details.firefox_versions,
+                LATEST_FIREFOX_VERSION='18.0.1')
+    def test_latest_major_version(self):
+        """latest_major_version should return an int of the major version."""
+        eq_(firefox_details.latest_major_version('release'), 18)
+
+    @patch.dict(firefox_details.firefox_versions,
+                LATEST_FIREFOX_VERSION='Phoenix')
+    def test_latest_major_version_no_int(self):
+        """latest_major_version should return 0 when no int."""
+        eq_(firefox_details.latest_major_version('release'), 0)
+
 
 @patch.object(fx_views, 'firefox_details', firefox_details)
 class TestFirefoxAll(TestCase):
@@ -189,7 +213,7 @@ class TestFirefoxPartners(TestCase):
         self.assertEqual(len(bundle_file), 1)
         self.assertTrue(bundle_file[0].startswith(filename))
 
-    @patch('bedrock.firefox.views.requests.post')
+    @patch('bedrock.mozorg.views.requests.post')
     def test_sf_form_proxy_error_response(self, post_patch):
         """An error response from SF should be returned."""
         new_mock = Mock()
@@ -207,7 +231,7 @@ class TestFirefoxPartners(TestCase):
         self.assertEqual(resp.content, 'bad_request')
         self.assertTrue(post_patch.called)
 
-    @patch('bedrock.firefox.views.requests.post')
+    @patch('bedrock.mozorg.views.requests.post')
     def test_sf_form_proxy_invalid_form(self, post_patch):
         """A form error should result in a 400 response."""
         with self.activate('en-US'):
@@ -219,7 +243,7 @@ class TestFirefoxPartners(TestCase):
         self.assertEqual(resp.content, 'Form invalid')
         self.assertFalse(post_patch.called)
 
-    @patch('bedrock.firefox.views.requests.post')
+    @patch('bedrock.mozorg.views.requests.post')
     def test_sf_form_proxy(self, post_patch):
         new_mock = Mock()
         new_mock.status_code = 200
@@ -280,32 +304,27 @@ class TestLoadDevices(unittest.TestCase):
 
 @patch.object(fx_views, 'firefox_details', firefox_details)
 class FxVersionRedirectsMixin(object):
-    def test_non_firefox(self):
-        user_agent = 'random'
-        response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
-        eq_(response.status_code, 301)
+    def assert_ua_redirects_to(self, ua, url_name, status_code=301):
+        response = self.client.get(self.url, HTTP_USER_AGENT=ua)
+        eq_(response.status_code, status_code)
         eq_(response['Vary'], 'User-Agent')
         eq_(response['Location'],
-            'http://testserver%s' % reverse('firefox.new'))
+            'http://testserver%s' % reverse(url_name))
+
+    def test_non_firefox(self):
+        user_agent = 'random'
+        self.assert_ua_redirects_to(user_agent, 'firefox.new')
 
     def test_bad_firefox(self):
         user_agent = 'Mozilla/5.0 (SaferSurf) Firefox 1.5'
-        response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
-        eq_(response.status_code, 301)
-        eq_(response['Vary'], 'User-Agent')
-        eq_(response['Location'],
-            'http://testserver%s' % reverse('firefox.update'))
+        self.assert_ua_redirects_to(user_agent, 'firefox.update')
 
     @patch.dict(product_details.firefox_versions,
                 LATEST_FIREFOX_VERSION='14.0')
     def test_old_firefox(self):
         user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:13.0) '
                       'Gecko/20100101 Firefox/13.0')
-        response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
-        eq_(response.status_code, 301)
-        eq_(response['Vary'], 'User-Agent')
-        eq_(response['Location'],
-            'http://testserver%s' % reverse('firefox.update'))
+        self.assert_ua_redirects_to(user_agent, 'firefox.update')
 
     @patch.dict(product_details.firefox_versions,
                 LATEST_FIREFOX_VERSION='13.0.5')
@@ -369,3 +388,48 @@ class TestFirstrunRedirect(FxVersionRedirectsMixin, TestCase):
         self.client = Client()
         with self.activate('en-US'):
             self.url = reverse('firefox.firstrun', args=['13.0'])
+
+
+class FirefoxMainRedirect(FxVersionRedirectsMixin, TestCase):
+    def setUp(self):
+        self.url = reverse('firefox')
+        self.client = Client()
+
+    @patch.dict(product_details.firefox_versions,
+                LATEST_FIREFOX_VERSION='13.0.5')
+    def test_current_minor_version_firefox(self):
+        """
+        Should show current even if behind by a patch version
+        """
+        user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:13.0) '
+                      'Gecko/20100101 Firefox/13.0')
+        self.assert_ua_redirects_to(user_agent, 'firefox.fx', 302)
+
+    @patch.dict(product_details.firefox_versions,
+                LATEST_FIREFOX_VERSION='18.0')
+    def test_esr_firefox(self):
+        """
+        Currently released ESR firefoxen should not redirect. At present
+        they are 10.0.x and 17.0.x.
+        """
+        user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:10.0.12) '
+                      'Gecko/20111101 Firefox/10.0.12')
+        self.assert_ua_redirects_to(user_agent, 'firefox.fx', 302)
+
+        user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:17.0) '
+                      'Gecko/20100101 Firefox/17.0')
+        self.assert_ua_redirects_to(user_agent, 'firefox.fx', 302)
+
+    @patch.dict(product_details.firefox_versions,
+                LATEST_FIREFOX_VERSION='16.0')
+    def test_current_firefox(self):
+        user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:16.0) '
+                      'Gecko/20100101 Firefox/16.0')
+        self.assert_ua_redirects_to(user_agent, 'firefox.fx', 302)
+
+    @patch.dict(product_details.firefox_versions,
+                LATEST_FIREFOX_VERSION='16.0')
+    def test_future_firefox(self):
+        user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:18.0) '
+                      'Gecko/20100101 Firefox/18.0')
+        self.assert_ua_redirects_to(user_agent, 'firefox.fx', 302)
