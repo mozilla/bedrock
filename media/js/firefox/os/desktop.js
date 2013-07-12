@@ -35,6 +35,7 @@
   var nav_height = $masthead.height();
 
   // adaptive scroll
+  var adaptive_text_offset = 200;
   var scene_hooks_top = 620;
   var $soccer_hook = $('#soccer-hook');
   var $cafe_hook = $('#cafe-hook');
@@ -395,7 +396,15 @@
       // GA track click
       navClickGATrack(this.hash);
 
-      var new_scroll = $($(this).attr('href')).offset().top;
+      var href = $(this).attr('href');
+      var new_scroll = $(href).offset().top;
+
+      // special case for adaptive section
+      // text is offset for scrolling, so we want to jump a bit
+      // further than the actual anchor
+      if (href == '#adaptive-wrapper') {
+        new_scroll += adaptive_text_offset;
+      }
 
       $w.scrollTop(new_scroll - nav_height);
     });
@@ -455,6 +464,9 @@
 
     // add scroller-on class for css repositioning, & set total height
     $('#adaptive-wrapper').addClass('scroller-on').css('height', pinDur + 'px');
+
+    // add offset to initial adaptive text (so user doesn't scroll by too fast)
+    $('#adaptive-app-search').css('top', adaptive_text_offset + 'px');
 
     // set height of blue mask covering bottom of adaptive content
     $adaptive_mask.css('height', 620);
