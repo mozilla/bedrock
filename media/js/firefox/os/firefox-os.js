@@ -18,7 +18,7 @@
       "partner": [
         {
           "name": "Movistar",
-          "url": "http://www.movistar.es/firefoxos"
+          "url": "http://www.movistar.es/firefoxos?aff=aff-firefoxOS1"
         }
       ]
     },
