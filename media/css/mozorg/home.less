@@ -9,13 +9,22 @@
 #main-feature {
     text-align: center;
     h1 {
+        font-size: 88px;
         img {
             vertical-align: baseline;
             position: relative;
-            top: 5px;
+            top: 0.05em;
+            height: 0.85em;
+            width: auto;
         }
     }
-    h2 {
+}
+
+html[lang="en-US"],
+html[lang="en-US"],
+html[lang="en-ZA"] {
+    #main-feature h1 {
+        font-size: 108px;
     }
 }
 
@@ -211,6 +220,20 @@
 
 @media only screen and (min-width: @widthTablet) and (max-width: @widthDesktop) {
 
+    html,
+    html[lang="en-US"],
+    html[lang="en-US"],
+    html[lang="en-ZA"] {
+        #main-feature {
+            h1 {
+                font-size: 72px;
+            }
+            h2 {
+                font-size: 38px;
+            }
+        }
+    }
+
     #firefox-promo {
         padding-bottom: 12px;
         h3 {
@@ -284,30 +307,27 @@
 /* {{{ Wide Mobile Layout: 480px */
 @media only screen and (max-width: @widthTablet) {
 
-    #main-feature h1 {
-        text-align: left;
-        width: 174px;
-        margin-left: auto;
-        margin-right: auto;
-        img {
-            height: auto;
-            width: 100%;
-            top: -7px;
-            display: block;
+    html,
+    html[lang="en-US"],
+    html[lang="en-US"],
+    html[lang="en-ZA"] {
+        #main-feature {
+            h1 {
+                width: auto;
+                font-size: 36px;
+                img {
+                    display: block;
+                    height: 1.3em;
+                    width: auto;
+                    margin: auto auto 0.2em;
+                }
+            }
+            h2 {
+                font-size: 20px;
+                letter-spacing: normal;
+            }
         }
-    }
-
-    .huge h1 {
-        font-size: 32px;
-    }
-
-    .huge h2 {
-        font-size: 22px;
-        letter-spacing: normal;
-        width: 190px;
-        margin-left: auto;
-        margin-right: auto;
-    }
+     }
 
     #firefox-promo {
         h3 {
@@ -375,17 +395,6 @@
         width: @widthMobileLandscape - (@gridGutterWidth * 2);
     }
 
-}
-
-/* }}} */
-/* {{{ l10n tweaks */
-
-/* French */
-
-html[lang="fr"] {
-    #main-feature h1 {
-        font-size: 98px;
-    }
 }
 
 /* }}} */
