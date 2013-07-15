@@ -33,17 +33,12 @@
   <article class="feature">
     <div class="copy">
       <header>
-        <h1>{{ _('Discover what makes it different.') }}</h1>
+        <h1>{{ _('Better browsing starts now') }}</h1>
       </header>
 
-      <p>
-      {% trans %}
-        Our mission is to promote openness, innovation and opportunity by keeping
-        the power of the Web in people’s hands.
-      {% endtrans %}
-      </p>
+      <p>{{ _('We’re always looking for ways to make your browsing easier and more efficient.') }}</p>
 
-      <a class="featurelink" href="{{ url('firefox.central') }}">{{ _('See what that means for you') }}</a>
+      <a class="featurelink" href="{{ url('firefox.central') }}">{{ _('Learn about how we make browsing better for you') }}</a>
 
       <ul class="social">
         <li>
@@ -58,7 +53,7 @@
     </div>
 
     <div class="screenshot">
-      <img src="{{ media('img/firefox/firstrun/b/doing-good-collage.jpg') }}">
+      {{ platform_img('img/firefox/firstrun/b/features.jpg') }}
     </div>
   </article>
 
