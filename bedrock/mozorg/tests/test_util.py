@@ -6,9 +6,8 @@
 
 import os
 
-from django.conf import settings
+from django.test.utils import override_settings
 
-from mock import patch
 from nose.tools import ok_
 
 from bedrock.mozorg.tests import TestCase
@@ -18,8 +17,8 @@ from bedrock.mozorg.util import hide_contrib_form
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test_files')
 
 
-@patch.object(settings, 'ROOT', ROOT)
 class TestHideContribForm(TestCase):
+    @override_settings(ROOT=ROOT)
     def test_lang_file_is_hiding(self):
         """
         `hide_contrib_form` should return true if lang file has the
