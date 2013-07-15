@@ -14,7 +14,6 @@ from django.views.decorators.vary import vary_on_headers
 
 import basket
 from lib import l10n_utils
-import requests
 from jingo_minify.helpers import BUILD_ID_JS, BUNDLE_HASHES
 from funfactory.urlresolvers import reverse
 
@@ -146,6 +145,31 @@ def dnt(request):
 
 
 @vary_on_headers('User-Agent')
+def firefox_redirect(request):
+    """
+    Redirect visitors based on their user-agent.
+
+    - Up-to-date Firefox users go to firefox/fx/.
+    - Other Firefox users go to the firefox/update/.
+    - Non Firefox users go to the new page.
+    """
+    user_agent = request.META.get('HTTP_USER_AGENT', '')
+    if not 'Firefox' in user_agent:
+        # TODO : Where to redirect bug 757206
+        return HttpResponsePermanentRedirect(reverse('firefox.new'))
+
+    user_version = "0"
+    match = UA_REGEXP.search(user_agent)
+    if match:
+        user_version = match.group(1)
+
+    if not is_current_or_newer(user_version):
+        return HttpResponsePermanentRedirect(reverse('firefox.update'))
+
+    return HttpResponseRedirect(reverse('firefox.fx'))
+
+
+@vary_on_headers('User-Agent')
 def latest_fx_redirect(request, fake_version, template_name):
     """
     Redirect visitors based on their user-agent.
@@ -160,7 +184,7 @@ def latest_fx_redirect(request, fake_version, template_name):
         # TODO : Where to redirect bug 757206
         return HttpResponsePermanentRedirect(url)
 
-    user_version = "0"
+    user_version = '0'
     match = UA_REGEXP.search(user_agent)
     if match:
         user_version = match.group(1)
