@@ -9,7 +9,7 @@ Sphinx==1.0.7
 
 # Testing
 nose==1.0.0
-mock==0.8.0
+mock==1.0.1
 -e git://github.com/jbalogh/django-nose.git#egg=django_nose
 -e git://github.com/jbalogh/test-utils.git#egg=test-utils
 pyquery==1.0
