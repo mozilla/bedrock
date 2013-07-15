@@ -45,16 +45,42 @@
   <nav class="sticky-nav" id="sticky-nav" role="navigation">
     <ul>
       <li>
-        <a href="#themes">{{ _('Customization') }}</a>
+        <a href="#pinnedtabs">{{ _('Innovative features') }}</a>
       </li>
       <li>
-        <a href="#fasteasy">{{ _('Shortcuts') }}</a>
+        <a href="#themes">{{ _('Customization') }}</a>
       </li>
       <li class="last">
-        <a href="#pinnedtabs">{{ _('Innovative features') }}</a>
+        <a href="#fasteasy">{{ _('Shortcuts') }}</a>
       </li>
     </ul>
   </nav>
+
+  <article class="feature img-right" id="pinnedtabs">
+    <div class="copy">
+      <header>
+        <h1>{{ _('Pinned tabs') }}</h1>
+      </header>
+
+      <p>
+      {% trans %}
+        These small tabs open automatically when you start your browser and notify you
+        with when something in them changes.
+      {% endtrans %}
+      </p>
+
+      <p>
+      {% trans url1='#pinnedtabs-video', id1='pinnedtabs-video-link' %}
+        Try it for yourself: Right-click on any tab and click “Pin Tab”.
+        <a id="{{ id1 }}" href="{{ url1 }}">See how they work</a>
+      {% endtrans %}
+      </p>
+    </div>
+
+    <div class="screenshot" id="pinnedtabs-screenshot">
+      {{ platform_img('img/firefox/firstrun/pinnedtabs.jpg', alt=_('Pinned tabs')) }}
+    </div>
+  </article>
 
   <article class="feature" id="themes">
     <div class="copy">
@@ -94,32 +120,6 @@
 
     <div class="screenshot">
       {{ platform_img('img/firefox/firstrun/awesomebar.jpg', alt=_('Awesome Bar')) }}
-    </div>
-  </article>
-
-  <article class="feature img-right" id="pinnedtabs">
-    <div class="copy">
-      <header>
-        <h1>{{ _('Pinned tabs') }}</h1>
-      </header>
-
-      <p>
-      {% trans %}
-        These small tabs open automatically when you start your browser and notify you
-        with when something in them changes.
-      {% endtrans %}
-      </p>
-
-      <p>
-      {% trans url1='#pinnedtabs-video', id1='pinnedtabs-video-link' %}
-        Try it for yourself: Right-click on any tab and click “Pin Tab”.
-        <a id="{{ id1 }}" href="{{ url1 }}">See how they work</a>
-      {% endtrans %}
-      </p>
-    </div>
-
-    <div class="screenshot" id="pinnedtabs-screenshot">
-      {{ platform_img('img/firefox/firstrun/pinnedtabs.jpg', alt=_('Pinned tabs')) }}
     </div>
   </article>
 
