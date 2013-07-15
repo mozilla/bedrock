@@ -219,7 +219,7 @@ def firefox_partners(request):
     return l10n_utils.render(request, 'firefox/partners/index.html', template_vars)
 
 
-def firstrun_new(request, view, version):
+def firstrun_new(request, view):
     # only Firefox users should see the firstrun pages
     user_agent = request.META.get('HTTP_USER_AGENT', '')
     if not 'Firefox' in user_agent:
@@ -238,20 +238,6 @@ def firstrun_new(request, view, version):
         url = reverse('firefox.update')
         return HttpResponsePermanentRedirect(url)
 
-    # b only has 1-5 version
-    if (view == 'b' and (int(version) < 1 or int(version) > 5)):
-        version = '1'
-
-    if (view == 'a'):
-        copy = 'a' if (version in '123') else 'b'
-    else:
-        copy = 'a' if (version in '12') else 'b'
-
-    template_vars = {
-        'version': version,
-        'copy': copy,
-    }
-
     template = view + '.html'
 
-    return l10n_utils.render(request, 'firefox/firstrun/' + template, template_vars)
+    return l10n_utils.render(request, 'firefox/firstrun/' + template)

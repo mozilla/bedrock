@@ -11,7 +11,7 @@
 {% block site_header_logo %}{% endblock %}
 
 {% block extrahead %}
- <link rel="canonical" href="https://www.mozilla.org/en-US/firefox/21.0/firstrun/" />
+ <link rel="canonical" href="https://www.mozilla.org/en-US/firefox/22.0/firstrun/" />
 {% endblock %}
 
 {% block site_css %}
@@ -28,83 +28,81 @@
   <header id="page-header">
     <img src="{{ media('img/firefox/firstrun/firefox-logo.png') }}" alt="Firefox" />
     <h1 class="large">{{_('Welcome to Firefox!')}}</h1>
-    <h2>
-    {% if copy == 'a' %}
-      {{ _('Better browsing starts now.') }}
-    {% else %}
-      {{ _('Discover what makes it different.') }}
-    {% endif %}
-    </h2>
+    <h2>{{ _('Discover what makes it different.') }}</h2>
   </header>
+
+  <ul class="social">
+    <li>
+      <img src="{{ media('img/firefox/firstrun/facebook.png') }}">
+      <a class="facebook" href="https://www.facebook.com/Firefox">{{ _('Like us on Facebook') }}</a>
+    </li>
+    <li>
+      <img src="{{ media('img/firefox/firstrun/twitter.png') }}">
+      <a class="twitter" href="https://twitter.com/firefox">{{ _('Follow us on Twitter') }}</a>
+    </li>
+  </ul>
 
   <nav class="sticky-nav" id="sticky-nav" role="navigation">
     <ul>
       <li>
-        <a href="#pinnedtabs">
-        {% if copy == 'a' %}
-          {{ _('Smart features') }}
-        {% else %}
-          {{ _('Innovative features') }}
-        {% endif %}
-        </a>
+        <a href="#pinnedtabs">{{ _('Innovative features') }}</a>
       </li>
-    {# if showing brand content #}
-    {% if version in '36' %}
       <li>
-        <a href="#brand">
-        {% if copy == 'a' %}
-          {{ _('Made for you') }}
-        {% else %}
-          {{ _('Our mission') }}
-        {% endif %}
-        </a>
+        <a href="#themes">{{ _('Customization') }}</a>
       </li>
-    {# if brand isn't shown, themes will be #}
-    {% else %}
-      <li>
-        <a href="#themes">
-        {% if copy == 'a' %}
-          {{ _('Make it your own') }}
-        {% else %}
-          {{ _('Customization') }}
-        {% endif %}
-        </a>
-      </li>
-    {% endif %}
       <li class="last">
-        <a href="#fasteasy">
-        {% if copy == 'a' %}
-          {{ _('Fast &amp; easy') }}
-        {% else %}
-          {{ _('Shortcuts') }}
-        {% endif %}
-        </a>
+        <a href="#fasteasy">{{ _('Shortcuts') }}</a>
       </li>
     </ul>
   </nav>
 
-  <article class="feature img-right" id="pinnedtabs">
+  <article class="feature" id="themes">
     <div class="copy">
       <header>
-        <h1>
-        {% if copy == 'a' %}
-          {{ _('Save your faves') }}
-        {% else %}
-          {{ _('Pinned tabs') }}
-        {% endif %}
-        </h1>
+        <h1>{{ _('Themes') }}</h1>
       </header>
 
-    {% if copy == 'a' %}
       <p>
       {% trans %}
-        Keep your favorite sites a click away with Pinned Tabs, small tabs that open
-        automatically when you start your browser and notify you when something changes.
+        Use Themes to change the look of your Firefox just about any way you like.
       {% endtrans %}
       </p>
 
-      <a id="pinnedtabs-video-link" href="#pinnedtabs-video">{{ _('See how they work') }}</a>
-    {% else %}
+      <a class="featurelink" href="https://addons.mozilla.org/en-us/firefox/themes/">{{ _('Explore Themes') }}</a>
+    </div>
+
+    <div class="screenshot">
+      {{ platform_img('img/firefox/firstrun/themes.jpg', alt=_('Themes')) }}
+    </div>
+  </article>
+
+  <article class="feature img-right" id="fasteasy">
+    <div class="copy">
+      <header>
+        <h1>{{ _('Awesome Bar') }}</h1>
+      </header>
+
+      <p>
+      {% trans %}
+        The address bar remembers sites as you browse and helps you find them quickly
+        and easily using words from any part of the URL or page title.
+      {% endtrans %}
+      </p>
+
+      <a class="featurelink" href="{{ url('firefox.features') }}#madeeasy">{{ _('See how it works') }}</a>
+    </div>
+
+    <div class="screenshot">
+      {{ platform_img('img/firefox/firstrun/awesomebar.jpg', alt=_('Awesome Bar')) }}
+    </div>
+  </article>
+
+  <article class="feature img-right" id="pinnedtabs">
+    <div class="copy">
+      <header>
+        <h1>{{ _('Pinned tabs') }}</h1>
+      </header>
+
       <p>
       {% trans %}
         These small tabs open automatically when you start your browser and notify you
@@ -118,203 +116,16 @@
         <a id="{{ id1 }}" href="{{ url1 }}">See how they work</a>
       {% endtrans %}
       </p>
-    {% endif %}
     </div>
 
-    <div class="screenshot{% if copy == 'a' %} screenshot-offset{% endif %}" id="pinnedtabs-screenshot">
+    <div class="screenshot" id="pinnedtabs-screenshot">
       {{ platform_img('img/firefox/firstrun/pinnedtabs.jpg', alt=_('Pinned tabs')) }}
     </div>
   </article>
 
-{% if version in '36' %}
-  <article class="feature" id="brand">
-    <div class="copy">
-      <header>
-        <h1>
-        {% if copy == 'a' %}
-          {{ _('Discover our mission') }}
-        {% else %}
-          {{ _('The Firefox mission') }}
-        {% endif %}
-        </h1>
-      </header>
-
-      <p>
-    {% if copy == 'a' %}
-      {% trans %}
-        Firefox is made to keep the power of the Web in the hands of users everywhere -
-        that includes you!
-      {% endtrans %}
-    {% else %}
-      {% trans %}
-        We’re dedicated to promoting openness, innovation and opportunity by keeping
-        the power of the Web in people’s hands.
-      {% endtrans %}
-    {% endif %}
-      </p>
-
-      <a class="featurelink" href="{{ url('mozorg.mission') }}">
-      {% if copy == 'a' %}
-        {{ _('Learn more about what makes us different') }}
-      {% else %}
-        {{ _('See what that means for you') }}
-      {% endif %}
-      </a>
-    </div>
-
-    <div class="screenshot">
-      <img src="{{ media('img/firefox/firstrun/brand.jpg') }}">
-    </div>
-  </article>
-{% endif %}
-
-{% if version in '1245' %}
-  <article class="feature" id="themes">
-    <div class="copy">
-      <header>
-        <h1>
-        {% if copy == 'a' %}
-          {{ _('Show off your style') }}
-        {% else %}
-          {{ _('Themes') }}
-        {% endif %}
-        </h1>
-      </header>
-
-      <p>
-    {% if copy == 'a' %}
-      {% trans %}
-        Use Themes to personalize the look of your Firefox to match your mood, the
-        season or even just your favorite color.
-      {% endtrans %}
-    {% else %}
-      {% trans %}
-        Use Themes to change the look of your Firefox just about any way you like.
-      {% endtrans %}
-    {% endif %}
-      </p>
-
-      <a class="featurelink" href="https://addons.mozilla.org/en-us/firefox/themes/">
-      {% if copy == 'a' %}
-        {{ _('Find the one for you') }}
-      {% else %}
-        {{ _('Explore Themes') }}
-      {% endif %}
-      </a>
-    </div>
-
-    <div class="screenshot">
-      {{ platform_img('img/firefox/firstrun/themes.jpg', alt=_('Themes')) }}
-    </div>
-  </article>
-{% endif %}
-
-{% if version in '1346' %}
-  <article class="feature img-right" id="fasteasy">
-    <div class="copy">
-      <header>
-        <h1>
-        {% if copy == 'a' %}
-          {{ _('Find what you need fast') }}
-        {% else %}
-          {{ _('Awesome Bar') }}
-        {% endif %}
-        </h1>
-      </header>
-
-      <p>
-    {% if copy == 'a' %}
-      {% trans %}
-        Find your favorite sites quickly, even if you don't remember the URL. It’s not
-        called the Awesome Bar for nothing.
-      {% endtrans %}
-    {% else %}
-      {% trans %}
-        The address bar remembers sites as you browse and helps you find them quickly
-        and easily using words from any part of the URL or page title.
-      {% endtrans %}
-    {% endif %}
-      </p>
-
-      <a class="featurelink" href="{{ url('firefox.features') }}#madeeasy">
-      {% if copy == 'a' %}
-        {{ _('See what it can do') }}
-      {% else %}
-        {{ _('See how it works') }}
-      {% endif %}
-      </a>
-    </div>
-
-    <div class="screenshot">
-      {{ platform_img('img/firefox/firstrun/awesomebar.jpg', alt=_('Awesome Bar')) }}
-    </div>
-  </article>
-{% endif %}
-
-{% if version in '25' %}
-  <article class="feature" id="fasteasy">
-    <div class="copy">
-      <header>
-        <h1>
-        {% if copy == 'a' %}
-          {{ _('Make a shortcut') }}
-        {% else %}
-          {{ _('Bookmarks') }}
-        {% endif %}
-        </h1>
-      </header>
-
-      <p>
-    {% if copy == 'a' %}
-      {% trans %}
-        Use Bookmarks to keep your favorite sites close and find them in a snap -
-        because you can’t dog-ear the Internet. 
-      {% endtrans %}
-    {% else %}
-      {% trans %}
-        One click is all you need to save pages for quick access whenever you need
-        them.
-      {% endtrans %}
-    {% endif %}
-      </p>
-
-      <a class="featurelink" href="https://support.mozilla.org/en-US/kb/use-bookmarks-to-save-and-organize-websites#w_how-do-i-create-a-bookmark">
-      {% if copy == 'a' %}
-        {{ _('Learn how to bookmark any page') }}
-      {% else %}
-        {{ _('Learn how to bookmark') }}
-      {% endif %}
-      </a>
-    </div>
-
-    <div class="screenshot">
-      {{ platform_img('img/firefox/firstrun/bookmarks.jpg', alt=_('Bookmarks')) }}
-    </div>
-  </article>
-{% endif %}
-
-  <div class="columns">
-    <aside class="column">
-      {{ email_newsletter_form(title='Get Firefox Updates') }}
-    </aside>
-
-    <aside class="column column-last">
-      <header>
-        <h3>{{ _("Let’s be friends") }}</h3>
-      </header>
-
-      <ul class="social">
-        <li>
-          <img src="{{ media('img/firefox/firstrun/facebook.png') }}">
-          <a class="facebook" href="https://www.facebook.com/Firefox">{{ _('Like us on Facebook') }}</a>
-        </li>
-        <li>
-          <img src="{{ media('img/firefox/firstrun/twitter.png') }}">
-          <a class="twitter" href="https://twitter.com/firefox">{{ _('Follow us on Twitter') }}</a>
-        </li>
-      </ul>
-    </aside>
-  </div>
+  <aside class="form">
+    {{ email_newsletter_form(title='Get Firefox Updates') }}
+  </aside>
 </main>
 
 {% include 'firefox/firstrun/_video.html' %}

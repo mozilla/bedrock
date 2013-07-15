@@ -11,7 +11,7 @@
 {% block site_header_logo %}{% endblock %}
 
 {% block extrahead %}
- <link rel="canonical" href="https://www.mozilla.org/en-US/firefox/21.0/firstrun/" />
+ <link rel="canonical" href="https://www.mozilla.org/en-US/firefox/22.0/firstrun/" />
 {% endblock %}
 
 {% block string_data %}
@@ -30,52 +30,20 @@
     <h1 class="large">{{_('Welcome to Firefox!')}}</h1>
   </header>
 
-  <article class="feature{% if version == '5' %} feature-alt{% endif %}">
+  <article class="feature">
     <div class="copy">
       <header>
-        <h1>
-        {% if version == '5' %}
-          {{ _('Better browsing starts now') }}
-        {% else %}
-          {% if copy == 'a' %}
-            {# L10n: Line break is for presentation only. Position as needed. #}
-            {{ _('Doing good is <br>part of our code') }}
-          {% else %}
-            {{ _('Discover what makes it different.') }}
-          {% endif %}
-        {% endif %}
-        </h1>
+        <h1>{{ _('Discover what makes it different.') }}</h1>
       </header>
 
       <p>
-    {% if version == '5' %}
-      {{ _('We’re always looking for ways to make your browsing easier and more efficient.') }}
-    {% else %}
-      {% if copy == 'a' %}
-        {% trans %}
-          Firefox is made with a mission to keep the power of the Web in the hands
-          of users everywhere - that includes you!
-        {% endtrans %}
-      {% else %}
-        {% trans %}
-          Our mission is to promote openness, innovation and opportunity by keeping
-          the power of the Web in people’s hands.
-        {% endtrans %}
-      {% endif %}
-    {% endif %}
+      {% trans %}
+        Our mission is to promote openness, innovation and opportunity by keeping
+        the power of the Web in people’s hands.
+      {% endtrans %}
       </p>
 
-    {% if version == '5' %}
-      <a class="featurelink" href="{{ url('firefox.customize') }}">{{ _('Learn about how we make browsing better for you') }}</a>
-    {% else %}
-      <a class="featurelink" href="{{ url('mozorg.mission') }}">
-      {% if copy == 'a' %}
-        {{ _('Learn more about what makes us different') }}
-      {% else %}
-        {{ _('See what that means for you') }}
-      {% endif %}
-      </a>
-    {% endif %}
+      <a class="featurelink" href="{{ url('firefox.central') }}">{{ _('See what that means for you') }}</a>
 
       <ul class="social">
         <li>
@@ -90,11 +58,7 @@
     </div>
 
     <div class="screenshot">
-    {% if version == '5' %}
-      {{ platform_img('img/firefox/firstrun/b/features.jpg') }}
-    {% else %}
       <img src="{{ media('img/firefox/firstrun/b/doing-good-collage.jpg') }}">
-    {% endif %}
     </div>
   </article>
 
@@ -102,22 +66,12 @@
     <aside class="column pinnedtabs" id="pinnedtabs-screenshot">
       <div class="copy">
         <header>
-          <h1>
-          {% if copy == 'a' %}
-            {{ _('Save your faves') }}
-          {% else %}
-            {{ _('Innovative features') }}
-          {% endif %}
-          </h1>
+          <h1>{{ _('Innovative features') }}</h1>
         </header>
 
         <p>
-        {% if copy == 'a' %}
-          {{ _('Keep your favorite sites a click away with Pinned Tabs.') }}
-        {% else %}
           {{ _('Right-click on any tab and select “Pin Tab” to keep it open.') }}
-        {% endif %}
-          <a id="pinnedtabs-video-link" href="#pinnedtabs-video">{{ _('See how they work') }}</a>
+          <a id="pinnedtabs-video-link" href="#pinnedtabs-video">{{ _('Try it for yourself') }}</a>
         </p>
       </div>
 
@@ -125,30 +79,18 @@
         {{ platform_img('img/firefox/firstrun/b/pinnedtabs.jpg', alt=_('Bookmarks')) }}
       </div>
     </aside>
+
     <aside class="column themes">
       <div class="copy">
         <header>
-          <h1>
-          {% if copy == 'a' %}
-            {{ _('Make it your own') }}
-          {% else %}
-            {{ _('Customization') }}
-          {% endif %}
-          </h1>
+          <h1>{{ _('Customization') }}</h1>
         </header>
 
         <p>
-      {% if copy == 'a' %}
-        {% trans url1='https://addons.mozilla.org/en-us/firefox/themes/', class1='featurelink' %}
-          Use Themes to personalize the look of your Firefox.
-          <a class="{{ class1 }}" href="{{ url1 }}">Find your theme</a>
-        {% endtrans %}
-      {% else %}
         {% trans url1='https://addons.mozilla.org/en-us/firefox/themes/', class1='featurelink' %}
           Use Themes to change the look of your Firefox.
           <a class="{{ class1 }}" href="{{ url1 }}">Explore Themes</a>
         {% endtrans %}
-      {% endif %}
         </p>
       </div>
 
@@ -156,7 +98,7 @@
         {{ platform_img('img/firefox/firstrun/b/themes.jpg', alt=('Themes')) }}
       </div>
     </aside>
-  {% if version in '13' %}
+
     <aside class="column awesomebar column-last">
       <div class="copy">
         <header>
@@ -175,26 +117,6 @@
         {{ platform_img('img/firefox/firstrun/b/awesomebar.jpg', alt=('Awesome Bar')) }}
       </div>  
     </aside>
-  {% else %}
-    <aside class="column bookmarks column-last">
-      <div class="copy">
-        <header>
-          <h1>{{ _('Shortcuts') }}</h1>
-        </header>
-
-        <p>
-        {% trans url1='https://support.mozilla.org/en-US/kb/use-bookmarks-to-save-and-organize-websites#w_how-do-i-create-a-bookmark', class1='featurelink' %}
-          One click is all you need to save pages.
-          <a class="{{ class1 }}" href="{{ url1 }}">Learn how to bookmark</a>
-        {% endtrans %}
-        </p>
-      </div>
-
-      <div class="screenshot">
-        {{ platform_img('img/firefox/firstrun/b/bookmarks.jpg', alt=('Bookmarks')) }}
-      </div>  
-    </aside>
-  {% endif %}
   </div>
 
   <aside class="form">
