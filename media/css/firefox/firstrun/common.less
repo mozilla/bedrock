@@ -22,6 +22,13 @@
 }
 // yep, wipe out the above if we switch back to the responsive template
 
+.sky a {
+  color: #00539F;
+  &:hover {
+    color: #0095DD;
+  }
+}
+
 .content-box {
   @shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   .box-shadow(@shadow);
@@ -68,6 +75,8 @@ ul.social {
     img {
       vertical-align: middle;
       margin-right: 12px;
+      width: 25px;
+      height: 25px;
     }
   }
 }
@@ -111,6 +120,36 @@ input[type="email"] {
   width: 415px;
   height: 232px;
   .box-shadow(@shadow);
+}
+
+.form {
+  .content-box;
+  width: 100%;
+
+  .billboard {
+    width: auto;
+    padding: 0;
+    border-bottom: 0;
+
+    .button {
+      margin-top: 0;
+    }
+  }
+
+  #footer-email-form {
+    margin-left: @baseLine;
+    h3 {
+      margin-top: 10px;
+    }
+
+    .form-contents {
+      margin-top: 6px;
+    }
+
+    .form-submit {
+      float: right;
+    }
+  }
 }
 
 // extract to modal.less?
