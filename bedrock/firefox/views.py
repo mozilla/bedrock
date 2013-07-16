@@ -150,7 +150,7 @@ def firefox_redirect(request):
     Redirect visitors based on their user-agent.
 
     - Up-to-date Firefox users go to firefox/fx/.
-    - Other Firefox users go to the firefox/update/.
+    - Other Firefox users go to the firefox/new/.
     - Non Firefox users go to the new page.
     """
     user_agent = request.META.get('HTTP_USER_AGENT', '')
@@ -158,13 +158,13 @@ def firefox_redirect(request):
         # TODO : Where to redirect bug 757206
         return HttpResponsePermanentRedirect(reverse('firefox.new'))
 
-    user_version = "0"
+    user_version = '0'
     match = UA_REGEXP.search(user_agent)
     if match:
         user_version = match.group(1)
 
     if not is_current_or_newer(user_version):
-        return HttpResponsePermanentRedirect(reverse('firefox.update'))
+        return HttpResponsePermanentRedirect(reverse('firefox.new'))
 
     return HttpResponseRedirect(reverse('firefox.fx'))
 
@@ -175,7 +175,7 @@ def latest_fx_redirect(request, fake_version, template_name):
     Redirect visitors based on their user-agent.
 
     - Up-to-date Firefox users see the whatsnew page.
-    - Other Firefox users go to the update page.
+    - Other Firefox users go to the new page.
     - Non Firefox users go to the new page.
     """
     user_agent = request.META.get('HTTP_USER_AGENT', '')
@@ -190,7 +190,7 @@ def latest_fx_redirect(request, fake_version, template_name):
         user_version = match.group(1)
 
     if not is_current_or_newer(user_version):
-        url = reverse('firefox.update')
+        url = reverse('firefox.new')
         return HttpResponsePermanentRedirect(url)
 
     locales_with_video = {

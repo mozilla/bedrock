@@ -317,14 +317,14 @@ class FxVersionRedirectsMixin(object):
 
     def test_bad_firefox(self):
         user_agent = 'Mozilla/5.0 (SaferSurf) Firefox 1.5'
-        self.assert_ua_redirects_to(user_agent, 'firefox.update')
+        self.assert_ua_redirects_to(user_agent, 'firefox.new')
 
     @patch.dict(product_details.firefox_versions,
                 LATEST_FIREFOX_VERSION='14.0')
     def test_old_firefox(self):
         user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:13.0) '
                       'Gecko/20100101 Firefox/13.0')
-        self.assert_ua_redirects_to(user_agent, 'firefox.update')
+        self.assert_ua_redirects_to(user_agent, 'firefox.new')
 
     @patch.dict(product_details.firefox_versions,
                 LATEST_FIREFOX_VERSION='13.0.5')
