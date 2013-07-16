@@ -48,8 +48,8 @@ class TestNewsletterFooter(TestCase):
         doc = pq(resp.content)
         eq_(doc('#id_lang option[selected="selected"]').val(), 'pt')
 
-        # not supported. should default to 'en'
+        # not supported. should default to ''
         with self.activate('ak'):
             resp = self.client.get(reverse(self.view_name))
         doc = pq(resp.content)
-        eq_(doc('#id_lang option[selected="selected"]').val(), 'en')
+        eq_(doc('#id_lang option[selected="selected"]').val(), '')
