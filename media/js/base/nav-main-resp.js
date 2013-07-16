@@ -319,7 +319,7 @@ NavMain.unlinkMenuHideOnClick = function() {
     if (NavMain.mainMenuItems.length === 0) {
         $('#nav-main-menu > li > a').off('click.smallmode');
     } else {
-        $('.submenu > li > a').of('click.smallmode');
+        $('.submenu > li > a').off('click.smallmode');
     }
 };
 

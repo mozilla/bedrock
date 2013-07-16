@@ -434,7 +434,6 @@ MINIFY_BUNDLES = {
             'js/firefox/fx.js',
         ),
         'firefox_happy': (
-            'js/libs/jquery-1.4.4.min.js',
             'js/firefox/happy.js',
         ),
         'firefox_new': (
@@ -467,7 +466,6 @@ MINIFY_BUNDLES = {
             'js/base/mozilla-expanders.js',
         ),
         'firefox_speed': (
-            'js/libs/jquery-1.4.4.min.js',
             'js/firefox/speed.js',
         ),
         'firefox_tech': (
@@ -481,11 +479,9 @@ MINIFY_BUNDLES = {
             'js/libs/socialshare.min.js',
         ),
         'geolocation': (
-            'js/libs/jquery-1.4.4.min.js',
             'js/libs/jquery.nyroModal.pack.js',
             'js/base/mozilla-expanders.js',
             'js/firefox/geolocation-demo.js',
-            'js/base/footer-email-form.js',
         ),
         'home': (
             'js/base/mozilla-pager.js',
