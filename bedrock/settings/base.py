@@ -481,11 +481,10 @@ MINIFY_BUNDLES = {
             'js/libs/socialshare.min.js',
         ),
         'geolocation': (
-            'js/libs/jquery-1.4.4.min.js',
+            #'js/libs/jquery-1.4.4.min.js',
             'js/libs/jquery.nyroModal.pack.js',
             'js/base/mozilla-expanders.js',
             'js/firefox/geolocation-demo.js',
-            'js/base/footer-email-form.js',
         ),
         'home': (
             'js/base/mozilla-pager.js',
