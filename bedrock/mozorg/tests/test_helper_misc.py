@@ -33,7 +33,8 @@ class TestImgL10n(TestCase):
     def _render(self, locale, url):
         req = self.rf.get('/')
         req.locale = locale
-        return render("{{{{ img_l10n('{0}') }}}}".format(url), {'request': req})
+        return render("{{{{ img_l10n('{0}') }}}}".format(url),
+                      {'request': req})
 
     def test_works_for_default_lang(self):
         """Should output correct path for default lang always."""
@@ -170,16 +171,17 @@ class TestNewsletterFunction(TestCase):
 
     @patch('bedrock.newsletter.utils.get_newsletters')
     @patch.object(basket, 'subscribe')
-    def test_post_form_country_lang_not_required(self, sub_mock,
-                                                 get_newsletters):
+    def test_post_form_country_url_not_required(self, sub_mock,
+                                                get_newsletters):
         """
-        Form should successfully post without country, lang, or src url.
+        Form should successfully post without country or src url.
         """
         get_newsletters.return_value = newsletters
         data = {
             'newsletter-footer': 'Y',
             'newsletter': 'mozilla-and-you',
             'email': 'foo@bar.com',
+            'lang': 'en',
             'fmt': 'H',
             'privacy': 'Y',
         }
@@ -188,7 +190,7 @@ class TestNewsletterFunction(TestCase):
         assert_false(doc('form#footer-email-form'))
         ok_(doc('div#footer-email-form.thank'))
         sub_mock.assert_called_with('foo@bar.com', 'mozilla-and-you',
-                                    format='H')
+                                    format='H', lang='en')
 
     @patch('bedrock.newsletter.utils.get_newsletters')
     def test_post_wrong_form(self, get_newsletters):

@@ -13,6 +13,10 @@
                 <li>{{ _('Please enter a valid email address') }}</li>
             {% endif %}
 
+            {% if request.newsletter_form.lang.errors %}
+                <li>{{ request.newsletter_form.lang.errors }}</li>
+            {% endif %}
+
             {% if request.newsletter_form.newsletter.errors %}
                 <li>{{ request.newsletter_form.newsletter.errors }}</li>
             {% endif %}
@@ -42,7 +46,7 @@
       {% endif %}
 
       <div class="form-contents">
-        <div class="field field-email {% if request.newsletter_form.email.errors %}field-error{% endif %}">
+        <div class="field field-email {% if request.newsletter_form.email.errors %}form-field-error{% endif %}">
           {{ field_with_attrs(request.newsletter_form.email, placeholder=_('YOUR EMAIL HERE'))|safe }}
         </div>
 
@@ -53,14 +57,14 @@
             </div>
           {% endif %}
           {% if include_language %}
-            <div class="field field-language">
+            <div class="field field-language {% if request.newsletter_form.lang.errors %}form-field-error{% endif %}">
               {{ request.newsletter_form.lang|safe }}
             </div>
           {% endif %}
           <div class="field field-format">
             {{ request.newsletter_form.fmt|safe }}
           </div>
-          <div class="field field-privacy {% if request.newsletter_form.privacy.errors %}field-error{% endif %}">
+          <div class="field field-privacy {% if request.newsletter_form.privacy.errors %}form-field-error{% endif %}">
             {{ request.newsletter_form.privacy|safe }}
           </div>
         </div>
