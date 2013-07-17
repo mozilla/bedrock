@@ -6,8 +6,8 @@ import mock
 from bedrock.mozorg.tests import TestCase
 
 from ..forms import (BooleanRadioRenderer, ManageSubscriptionsForm,
-                     NewsletterFooterForm, NewsletterForm, 
-                     UnlabeledTableCellRadios 
+                     NewsletterFooterForm, NewsletterForm,
+                     UnlabeledTableCellRadios
                      )
 from .test_views import newsletters
 
@@ -126,6 +126,7 @@ class TestNewsletterForm(TestCase):
         data = {
             'newsletter': 'mozilla-and-you',
             'email': 'dude@example.com',
+            'lang': 'en',
             'privacy': 'Y',
             'fmt': 'H',
         }
@@ -145,6 +146,7 @@ class TestNewsletterForm(TestCase):
         data = {
             'newsletter': 'mozilla-and-you,beta',
             'email': 'dude@example.com',
+            'lang': 'en',
             'privacy': 'Y',
             'fmt': 'H',
         }
