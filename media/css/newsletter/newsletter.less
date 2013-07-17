@@ -126,6 +126,34 @@
     }
 }
 
+#newsletter-updated {
+    #content {
+        h3,
+        h4 {
+            .span-all();
+            text-align: center;
+            margin-bottom: @baseLine * 2;
+        }
+        .table {
+            .span(6);
+            margin: auto;
+            float: none;
+            textarea {
+                .border-box();
+                width: 100%;
+            }
+        }
+        .sub-feature {
+            text-align: center;
+            .span(4);
+            p,
+            h4 {
+                margin-bottom: @baseLine / 2;
+            }
+        }
+    }
+}
+
 .float-right {
   float: right;
 }
@@ -187,6 +215,20 @@
         }
     }
 
+    #newsletter-updated {
+        #content {
+            .table {
+                .span_narrow(8);
+                margin: auto;
+                float: none;
+            }
+            .sub-feature {
+                .span_narrow(4);
+            }
+        }
+    }
+
+
     #newsletter {
         #main-feature {
             h1 {
@@ -237,6 +279,19 @@
             .span-all();
         }
     }
+
+    #newsletter-updated {
+        #content {
+            .sub-feature {
+                .span-all();
+                margin-bottom: @baseLine;
+            }
+            .table {
+                .span-all();
+            }
+        }
+    }
+
 
     #newsletter {
         #main-feature {
