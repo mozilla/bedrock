@@ -114,7 +114,8 @@ def existing(request, token=None):
                 'subscribed': newsletter in user['newsletters'],
                 'newsletter': newsletter,
                 'description': data['description'],
-                'english_only': len(langs) == 1 and langs[0].startswith('en')
+                'english_only': len(langs) == 1 and langs[0].startswith('en'),
+                'order': data['order'],
             })
 
     # Sort by 'order' field if we were given it; otherwise, by title
