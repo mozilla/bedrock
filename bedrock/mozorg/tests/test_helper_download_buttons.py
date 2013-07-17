@@ -15,6 +15,9 @@ from pyquery import PyQuery as pq
 from bedrock.mozorg.helpers.download_buttons import make_download_link
 
 
+_ALL = settings.STUB_INSTALLER_ALL
+
+
 def render(s, context={}):
     t = jingo.env.from_string(s)
     return t.render(context)
@@ -273,8 +276,7 @@ class TestDownloadButtons(unittest.TestCase):
                                  'en-US')
         ok_('product=firefox-beta-stub&' in url)
 
-    @override_settings(STUB_INSTALLER_LOCALES={
-        'win': settings.STUB_INSTALLER_ALL})
+    @override_settings(STUB_INSTALLER_LOCALES={'win': _ALL})
     def test_stub_installer_all(self):
         """Button should give stub for all langs when ALL is set."""
         url = make_download_link('firefox', 'release', 19.0, 'os_windows',
@@ -305,3 +307,22 @@ class TestDownloadButtons(unittest.TestCase):
         url = make_download_link('firefox', 'beta', '20.0b4', 'os_windows',
                                  'fr')
         ok_('product=firefox-beta-stub&' not in url)
+
+    @override_settings(STUB_INSTALLER_LOCALES={'win': _ALL})
+    def test_funnelcake_id(self):
+        """Button should append funnelcake ID to product in download URL."""
+        url = make_download_link('firefox', 'release', 19.0, 'os_windows',
+                                 'en-US', funnelcake_id='2')
+        ok_('product=firefox-stub-f2&' in url)
+
+        url = make_download_link('firefox', 'release', 19.0, 'os_windows',
+                                 'fr', funnelcake_id='2')
+        ok_('product=firefox-stub-f2&' in url)
+
+        url = make_download_link('firefox', 'release', 19.0, 'os_osx',
+                                 'de', funnelcake_id='23')
+        ok_('product=firefox-19.0-f23&' in url)
+
+        url = make_download_link('firefox', 'beta', '20.0b4', 'os_linux',
+                                 'es-ES', funnelcake_id='234')
+        ok_('product=firefox-20.0b4-f234&' in url)
