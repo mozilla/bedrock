@@ -45,41 +45,6 @@
   var $have_it_all = $('#have-it-all');
 
   /*
-  * Handle page load re: scroll position
-  */
-
-  // if page loads with no hash, make sure user starts at top of page
-  function resetPageScroll() {
-    if (window.location.hash === '') {
-      if ($w.scrollTop() > 0) {
-        $w.scrollTop(0);
-      }
-    }
-  }
-
-  // fix for loading page with scroll position > 0
-  // can't fire immediately, must let browser do it's thing first
-  if (!isTouch) {
-    $(function() {
-      setTimeout(function() {
-        resetPageScroll();
-      }, 60);
-    });
-  }
-
-  /*
-  * Spoofing responsiveness
-  */
-
-  // refresh page when below 760px only for browsers supporting media queries
-  if (window.matchMedia) {
-    var mobile_sized = matchMedia("(max-width: 760px)");
-    mobile_sized.addListener(function() {
-      window.location.reload();
-    });
-  }
-
-  /*
   * Rotating intro background
   */
 
@@ -670,6 +635,35 @@
     trackGAPageNoScroll();
     initTouchNavScroll();
   } else {
+    /*
+    * Desktop only fixes/hacks
+    */
+
+    // fix for loading page with scroll position > 0 (breaks scrollorama stuff)
+    // can't fire immediately, must let browser do it's thing first
+    $(function() {
+      setTimeout(function() {
+        if (window.location.hash === '') {
+          if ($w.scrollTop() > 0) {
+            $w.scrollTop(0);
+          }
+        }
+      }, 100);
+    });
+
+    // refresh page when below 760px only for browsers supporting media queries
+    // (spoof responsiveness)
+    if (window.matchMedia) {
+      var mobile_sized = matchMedia("(max-width: 760px)");
+      mobile_sized.addListener(function() {
+        window.location.reload();
+      });
+    }
+
+    /*
+    * Desktop interaction
+    */
+
     initIntroBGRotation();
     initAdaptiveAppSearchScroller();
     initNavScroll();
