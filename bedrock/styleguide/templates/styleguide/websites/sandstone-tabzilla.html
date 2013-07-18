@@ -58,7 +58,7 @@
   <p>To add Tabzilla to a site:</p>
   <ol class="big-list">
     <li>Add the static tab link (example below) to the top of your template <br />
-    <code>&lt;a href="https://www.mozilla.org/" id="tabzilla"&gt;mozilla&lt;/a&gt;</code></li>
+    <code>&lt;a href="{{ url('mozorg.home') }}" id="tabzilla"&gt;mozilla&lt;/a&gt;</code></li>
     <li>Include the tabzilla.css CSS file either as a CSS include or built into your minified styles <br />
     <code>&lt;link href="//mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" rel="stylesheet" /&gt;</code></li>
     <li>Include the tabzilla.js file in your template (preferably in the footer) <br />

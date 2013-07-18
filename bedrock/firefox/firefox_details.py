@@ -6,7 +6,7 @@ from product_details import ProductDetails
 
 # TODO: port this to django-mozilla-product-details
 class FirefoxDetails(ProductDetails):
-    download_base_url_direct = 'http://download.mozilla.org/'
+    download_base_url_direct = 'https://download.mozilla.org/'
     download_base_url_transition = '/products/download.html'
     platform_info = {
         'Windows': {

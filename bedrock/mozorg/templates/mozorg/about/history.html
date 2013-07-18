@@ -35,7 +35,7 @@
                mission="http://www-archive.mozilla.org/mission.html",
                browsers="http://www.oreillynet.com/pub/a/mozilla/2002/09/12/mozilla_browsers.html",
                bugzilla="http://www.bugzilla.org",
-               projects="/projects"
+               projects=url('mozorg.products')
       %}
         By creating an open community, the Mozilla project had become
         <a href="{{ stevecase }}">larger than any one company</a>.
@@ -75,9 +75,9 @@
     </p>
 
     <p>
-      {% trans foundation="http://www.mozilla.org/press/mozilla-foundation.html",
-               manifesto="/about/manifesto",
-               grants="/foundation/grants/"
+      {% trans foundation=php_url('/press/mozilla-foundation.html'),
+               manifesto=url('mozorg.about.manifesto'),
+               grants=url('grants')
       %}
         In 2003, the Mozilla project created the Mozilla Foundation, an
         <a href="{{ foundation }}">independent non-profit organization</a>
@@ -94,11 +94,11 @@
     </p>
 
     <p>
-      {% trans firefox1="http://www.mozilla.org/press/mozilla-2004-11-09.html",
-               millions="http://www.mozilla.org/press/mozilla-2005-10-19.html",
+      {% trans firefox1=php_url('/press/mozilla-2004-11-09.html'),
+               millions=php_url('/press/mozilla-2005-10-19.html'),
                records="http://www.spreadfirefox.com/en-US/worldrecord/",
                share="http://www.tgdaily.com/content/view/40381/113/",
-               innovation="http://www.mozilla.com/en-US/press/mozilla-2006-12-04.html"
+               innovation=php_url('/press/mozilla-2006-12-04.html')
       %}
         <a href="{{ firefox1 }}">Firefox 1.0</a> was released in 2004
         and became a big success.  In less than
@@ -117,7 +117,7 @@
 
     <p>
       {% trans anniv10="http://www-archive.mozilla.org/mozilla-ten-year.html",
-               all="http://www.mozilla.com/en-US/firefox/all.html",
+               all=url('firefox.all'),
                broad="http://open-government.us/",
                range="http://www.wikipedia.org",
                areas="http://creativecommons.org/"

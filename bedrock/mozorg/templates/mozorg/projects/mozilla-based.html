@@ -20,7 +20,7 @@
 
 <div id="main-feature">
   <h1>{{ _('Featured Mozilla-Based Applications') }}</h1>
-  <p>{{ _('<p>These are some of the applications being built by individuals and organizations using <a href="%(url1)s">Mozilla technologies</a>. If you would like to suggest other applications to feature here, please <a href="%(url2)s">let us know</a>.')|format(url1='http://www.mozilla.org/projects/technologies.html', url2='http://www.mozilla.org/contact/') }}</p>
+  <p>{{ _('<p>These are some of the applications being built by individuals and organizations using <a href="%(url1)s">Mozilla technologies</a>. If you would like to suggest other applications to feature here, please <a href="%(url2)s">let us know</a>.')|format(url1='/projects/technologies.html', url2=php_url('/contact/')) }}</p>
 </div>
 
 <ul id="featured" class="billboard">
@@ -29,7 +29,7 @@
   <p>{{ _('The all-in-one application formerly known as the “Mozilla Application Suite”, containing a web browser, a mail and newsgroups client, an HTML editor, web development tools, and an IRC chat client.') }}</p>
   </li>
   <li>
-  <h3><a href="http://www.mozilla.org/projects/calendar/"><img src="{{ media('/img/projects/mozilla-based/sunbird.png') }}" width="64" height="64" alt="" /><span>{{ _('Lightning/Sunbird') }}</span></a></h3>
+  <h3><a href="/projects/calendar/"><img src="{{ media('/img/projects/mozilla-based/sunbird.png') }}" width="64" height="64" alt="" /><span>{{ _('Lightning/Sunbird') }}</span></a></h3>
   <p>{{ _('Lightning is a popular calendaring, scheduling and task management extension. Sunbird® is a cross-platform application that brings Mozilla-style ease-of-use to your calendar.') }}</p>
   </li>
   <li>
@@ -173,12 +173,12 @@
   </li>
   <li>
     <!-- Google AdWords Editor featured on June '08 -->
-    <h3><a href="http://www.google.com/intl/en/adwordseditor/index.html"><img src="{{ media('/img/projects/mozilla-based/adwords.png') }}" width="50" height="60" alt="" /><span>{{ _("Google AdWords Editor") }}</span></a></h3>
+    <h3><a href="https://www.google.com/intl/en/adwordseditor/index.html"><img src="{{ media('/img/projects/mozilla-based/adwords.png') }}" width="50" height="60" alt="" /><span>{{ _("Google AdWords Editor") }}</span></a></h3>
     <p>{{ _("Google's free, downloadable campaign management application. Download your AdWords account to your computer, make your changes, then upload your revised campaigns.") }}</p>
   </li>
   <li>
     <!-- Google Gadgets for Linux -->
-    <h3><a href="http://code.google.com/p/google-gadgets-for-linux/"><img src="{{ media('/img/projects/mozilla-based/gadgets.png') }}" width="50" height="50" alt="" /><span>{{ _("Google Gadgets for Linux") }}</span></a></h3>
+    <h3><a href="https://code.google.com/p/google-gadgets-for-linux/"><img src="{{ media('/img/projects/mozilla-based/gadgets.png') }}" width="50" height="50" alt="" /><span>{{ _("Google Gadgets for Linux") }}</span></a></h3>
     <p>{{ _("Google Gadgets for Linux provides a platform for running desktop gadgets under Linux that are compatible with the gadgets written for Google Desktop for Windows as well as the Universal Gadgets on iGoogle.") }}</p>
   </li>
   <li>

@@ -67,8 +67,8 @@ urlpatterns = patterns('',
     redirect(r'tabzilla/media/js/tabzilla\.js$', 'tabzilla'),
     redirect(r'tabzilla/media/css/tabzilla\.css$', tabzilla_css_redirect),
 
-    # Bug 822817 /telemetry/ -> http://wiki.mozilla.org/Telemetry/FAQ
-    redirect(r'telemetry/$', 'http://wiki.mozilla.org/Telemetry/FAQ'),
+    # Bug 822817 /telemetry/ -> https://wiki.mozilla.org/Telemetry/FAQ
+    redirect(r'telemetry/$', 'https://wiki.mozilla.org/Telemetry/FAQ'),
 
     #Bug 854561 - move /projects/mozilla-based/ to /about/mozilla-based/
     redirect(r'^projects/mozilla-based/$', '/about/mozilla-based/'),

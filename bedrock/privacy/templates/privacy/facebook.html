@@ -14,7 +14,7 @@
 
 {% block site_header %}
   <header id="masthead">
-    <a href="https://www.mozilla.org/" id="tabzilla">{{ _('Mozilla') }}</a>
+    <a href="{{ url('mozorg.home') }}" id="tabzilla">{{ _('Mozilla') }}</a>
     {% block site_header_nav %}{% endblock %}
   </header>
 {% endblock %}
@@ -40,7 +40,7 @@
     access and store is affected by the permissions you grant and the privacy 
     settings you maintain through Facebook.  We will handle your information in 
     accordance with our 
-    <a href="http://www.mozilla.org/en-US/privacy-policy.html">privacy policy</a>.</p>
+    <a href="{{ php_url('/privacy-policy.html') }}">privacy policy</a>.</p>
 
     <p>There are three key ways that Mozilla obtains information about you through 
     our Facebook pages and all are voluntary. These include comments that you post 
@@ -149,7 +149,7 @@
     and the information associated it from our database.</p>
       
     <p>To view Mozilla’s Online Privacy Policy, 
-    <a href="http://www.mozilla.org/en-US/privacy-policy.html">click here</a>.</p>
+    <a href="{{ php_url('/privacy-policy.html') }}">click here</a>.</p>
     
     <p>For an FAQ on the Affiliates Facebook App, <a href="https://affiliates.mozilla.org/fb/faq">click here</a>.</p>
 

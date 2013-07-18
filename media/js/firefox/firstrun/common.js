@@ -7,9 +7,9 @@
   var video_closing = false;
 
   if ($('html').hasClass('osx')) {
-    $video.attr('src', 'https://videos-cdn.mozilla.net/serv/drafts/pinnedtabs-mac.webm');
+    $video.attr('src', '//videos-cdn.mozilla.net/serv/drafts/pinnedtabs-mac.webm');
   } else {
-    $video.attr('src', 'https://videos-cdn.mozilla.net/serv/drafts/pinnedtabs-win.webm');
+    $video.attr('src', '//videos-cdn.mozilla.net/serv/drafts/pinnedtabs-win.webm');
   }
 
   window.gaq_track = function(category, action, label) {
