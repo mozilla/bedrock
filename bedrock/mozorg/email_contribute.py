@@ -8,6 +8,7 @@ from django.core.mail import EmailMessage
 
 import basket
 import jingo
+import requests
 from jinja2.exceptions import TemplateNotFound
 
 from lib.l10n_utils.dotlang import _lazy as _
@@ -123,11 +124,20 @@ def handle_form(request, form):
         send(request, data)
         autorespond(request, data)
 
-        if data['newsletter']:
-            try:
-                basket.subscribe(data['email'], 'about-mozilla')
-            except basket.BasketException:
-                pass
+        if data.get('newsletter', False):
+            if data.get('interest', False) == 'education':
+                # custom-1788 is the privacy policy checkbox on this page
+                payload = {'email': data['email'], 'custom-1788': '1'}
+                try:
+                    requests.post('https://sendto.mozilla.org/page/s/mentor-signup',
+                                  data=payload, timeout=2)
+                except requests.exceptions.RequestException:
+                    pass
+            else:
+                try:
+                    basket.subscribe(data['email'], 'about-mozilla')
+                except basket.BasketException:
+                    pass
 
         return True
     return False
