@@ -580,10 +580,10 @@ $(document).ready(function() {
     ];
 
     var sources = [{
-        src: 'http://videos-cdn.mozilla.net/serv/firefoxflicks/All%20Three_2_6_13_H264.mp4',
+        src: '//videos-cdn.mozilla.net/serv/firefoxflicks/be-part-of-it-get-mobilized-H264.mp4',
         type: 'video/mp4'
     }, {
-        src: 'http://videos-cdn.mozilla.net/serv/firefoxflicks/All%20Three_2_6_13_H264.webm',
+        src: '//videos-cdn.mozilla.net/serv/firefoxflicks/be-part-of-it-get-mobilized-webmvp8.webm',
         type: 'video/webm'
     }];
 

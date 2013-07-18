@@ -215,16 +215,16 @@
     #page-promo-flicksvideo {
         position: relative;
         .content {
-            width: 50%;
+            width: 60%;
             padding-left: 60px;
-            padding-top: 20px;
+            padding-top: 30px;
             h3 {
-                font-size: 46px;
+                font-size: 34px;
                 font-family: VollkornBold;
                 line-height: 1;
             }
             h4 {
-                font-size: 20px;
+                font-size: 18px;
                 letter-spacing: normal;
                 line-height: 1.2;
                 font-family: VollkornRegular;
@@ -232,7 +232,7 @@
             }
         }
         .container {
-            background: #212a2f url(/media/img/home/promo-flicks-mobile.jpg) 0 0 repeat-x;
+            background: #212a2f url('/media/img/home/promo/flicks/1000.jpg') 0 0 repeat-x;
             position: relative;
             border-bottom: 1px solid #ddd;
             width: 100%;
@@ -314,18 +314,35 @@
             margin-bottom: 40px;
             font-size: 32px;
             .open-sans-light;
+            height: auto;
+            border: 0;
+            &:hover,
+            &:focus,
+            &:active {
+                text-decoration: underline;
+            }
         }
 
         .share-links {
             li {
                 .inline-block;
+                margin-right: 20px;
                 a {
                     .inline-block;
+                    height: auto;
+                    border: 0;
                     padding: 5px 10px 5px 36px;
                     background: url(/media/img/home/video-overlay-icons.png) 0 center no-repeat;
+                    text-decoration: none;
+                    text-align: left;
                     &.share-twitter {
                         background-position: -400px center;
                     }
+                }
+                a:hover,
+                a:focus,
+                a:active {
+                    text-decoration: underline;
                 }
             }
         }
@@ -415,7 +432,7 @@
         #promo-flicksvideo,
         #page-promo-flicksvideo {
             .container {
-                background-position: -20px -20px;
+                background-image: url('/media/img/home/promo/flicks/760.jpg');
             }
             img {
                 .span_narrow(5);
@@ -428,7 +445,7 @@
                 padding-left: 30px;
                 width: 50%;
                 h3 {
-                    font-size: 32px;
+                    font-size: 30px;
                     margin-bottom: 8px;
                 }
                 h4 {
@@ -534,6 +551,15 @@
                     .open-sans-light;
                     width: auto;
                     float: none;
+                    .hidden {
+                        height: auto;
+                        width: auto;
+                        margin: 0 0 .25em;
+                        clip: auto;
+                        position: static !important;
+                        display: block;
+                        font-style: normal;
+                    }
                 }
                 h4 {
                     font-size: 18px;
