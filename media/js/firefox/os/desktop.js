@@ -201,35 +201,43 @@
     return validateEmail(email) && $privacy.is(':checked');
   }
 
-  $('#footer-email-form').on('submit', function(e) {
-    e.preventDefault();
+  $(document).ready(function() {
+    // turn off default newsletter JS (from footer-email-form.js) and wire up our own
+    $('.newsletter-form').off('submit').on('submit', function(e) {
+      e.preventDefault();
 
-    if (validateForm()) {
-      $.ajax({
-        // Form action is just an anchor - must prepend current URL for IE.
-        url: document.location.href + $(this).attr('action'),
-        data: $(this).serialize(),
-        type: 'POST',
-        success: function(data) {
-          $('#footer-email-form').fadeOut('fast', function() {
-            $('#footer-email-thanks').fadeIn('fast');
-            setTimeout(function() {
-              Mozilla.Modal.close_modal();
-            }, 3000);
-          });
-        },
-        error: function() {
-          // ??
-        }
-      });
-    } else {
-      //highlight the required fields
-      if (validateEmail($('#id_email').val())) {
-        $('input[required]:not([type=email])').addClass('error');
+      if (validateForm()) {
+        var $form = $(this);
+
+        $.ajax({
+          // Form action is just an anchor - must prepend current URL for IE.
+          url: document.location.href + $form.attr('action'),
+          data: $form.serialize(),
+          type: 'POST',
+          success: function(data) {
+            $('#footer-email-form').fadeOut('fast', function() {
+              $('#footer-email-thanks').fadeIn('fast');
+              setTimeout(function() {
+                Mozilla.Modal.close_modal();
+              }, 3000);
+            });
+          },
+          error: function() {
+            // ??
+          }
+        });
+
+        //track GA event for newsletter signup
+        trackGAEvent(['_trackEvent', 'Newsletter Registration', 'submit', $form.find('input[name="newsletter"]').val()]);
       } else {
-        $('input[required]:not(:checked)').addClass('error');
+        //highlight the required fields
+        if (validateEmail($('#id_email').val())) {
+          $('input[required]:not([type=email])').addClass('error');
+        } else {
+          $('input[required]:not(:checked)').addClass('error');
+        }
       }
-    }
+    });
   });
 
   /*
