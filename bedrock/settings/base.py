@@ -377,6 +377,9 @@ MINIFY_BUNDLES = {
             'js/mozorg/contribute-university-ambassadors.js',
             'js/base/mozilla-input-placeholder.js',
         ),
+        'existing': (
+            'js/newsletter/existing.js',  
+        ),
         'expanders': (
             'js/base/mozilla-expanders.js',
         ),
