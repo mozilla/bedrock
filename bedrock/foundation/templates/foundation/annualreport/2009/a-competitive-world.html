@@ -71,7 +71,7 @@
   <img src="{{ media('img/foundation/annualreport/2009/Infographic.png') }}" alt="">
 
   <p>
-    {% trans feedback="/firefox/beta/", awesome="https://support.mozilla.com/en-US/army-of-awesome" %}
+    {% trans feedback=php_url('/firefox/beta/'), awesome="https://support.mozilla.org/en-US/army-of-awesome" %}
       Mozilla has tens of thousands of people contributing code and helping to
       localize and evangelize Firefox, and we've worked to expand/increase the
       ways that all Firefox users can participate in making Firefox better. With
@@ -103,8 +103,8 @@
     <source src="//videos-cdn.mozilla.net/serv/mozillaorg/Firefox_global_final.webm" type="video/webm">
     <source src="//videos-cdn.mozilla.net/serv/mozillaorg/Firefox_global_final.theora.ogv" type="video/ogg">
     <source src="//videos-cdn.mozilla.net/serv/mozillaorg/Firefox_global_final.mp4" type="video/mp4">
-    <object type="application/x-shockwave-flash" style="width: 640px; height: 360px;" data="//www.mozilla.org/includes/flash/playerWithControls.swf?flv=/serv/mozillaorg/Firefox_global_final.mp4&amp;autoplay=false&amp;msg=Play%20Video">
-      <param name="movie" value="//www.mozilla.org/includes/flash/playerWithControls.swf?flv=https://videos-cdn.mozilla.net/serv/mozillaorg/Firefox_global_final.mp4&amp;autoplay=false&amp;msg=Play%20Video"/>
+    <object type="application/x-shockwave-flash" style="width: 640px; height: 360px;" data="/includes/flash/playerWithControls.swf?flv=/serv/mozillaorg/Firefox_global_final.mp4&amp;autoplay=false&amp;msg=Play%20Video">
+      <param name="movie" value="/includes/flash/playerWithControls.swf?flv=//videos-cdn.mozilla.net/serv/mozillaorg/Firefox_global_final.mp4&amp;autoplay=false&amp;msg=Play%20Video"/>
       <param name="wmode" value="transparent"/>
     </object>
   </video>

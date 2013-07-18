@@ -33,7 +33,7 @@
         poster="{{ media('/img/contribute/nightly_video_poster.jpg') }}"
         height="360"
         width="640">
-          <source src="https://videos-cdn.mozilla.net/serv/qa/qa-360p-mp4.theora.ogv" type="video/ogg">
+          <source src="//videos-cdn.mozilla.net/serv/qa/qa-360p-mp4.theora.ogv" type="video/ogg">
       </video>
     </div>
 
@@ -41,7 +41,7 @@
     <ul class="unstyled">
       <li><a href="http://widget.mibbit.com/?server=irc.mozilla.org&channel=%23testday">{{ _('Attend a Test Day every Friday on #testday') }}</a></li>
       <li><a href="{{ url('firefox.channel')|urlparams(hash='aurora') }}">{{ _('Download Firefox Aurora') }}</a></li>
-      <li><a href="https://input.mozilla.com/feedback">{{ _('Submit feedback') }}</a></li>
+      <li><a href="https://input.mozilla.org/feedback">{{ _('Submit feedback') }}</a></li>
       <li><a href="https://bugzilla.mozilla.org/enter_bug.cgi?product=Firefox">{{ _('Report bugs in Bugzilla') }}</a></li>
       <li><a href="https://wiki.mozilla.org/Performance/Telemetry">{{ _('Submit performance data') }}</a></li>
     </ul>
@@ -95,7 +95,7 @@
     <ul class="primary">
       <li> <a href="{{ php_url('/firefox/notes') }}">{{ _('Release Notes') }}</a></li>
       <li><a href="{{ url('firefox.features') }}">{{ _('Firefox Features') }}</a></li>
-      <li><a href="http://support.mozilla.com/home">{{ _('Firefox Help') }}</a></li>
+      <li><a href="https://support.mozilla.org/">{{ _('Firefox Help') }}</a></li>
     </ul>
     <ul class="secondary">
       <li><a href="{{ php_url('/privacy-policy.html') }}">{{ _('Privacy Policy') }}</a></li>

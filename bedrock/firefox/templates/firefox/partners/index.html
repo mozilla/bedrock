@@ -45,7 +45,7 @@
 
 {% block site_header %}
   <header id="masthead">
-    <a href="https://www.mozilla.org/" id="tabzilla">{{ _('Mozilla') }}</a>
+    <a href="{{ url('mozorg.home') }}" id="tabzilla">{{ _('Mozilla') }}</a>
 
     {% block site_header_nav %}
     <nav id="nav-main" role="navigation">
@@ -450,14 +450,14 @@
   <article id="overlay">
     <section id="testimonials" class="overlay-contents">
       <h2>{{ _('Firefox Marketplace — Developer testimonials') }}</h2>
-      <div class="video-wrapper"><iframe width="640" height="360" src="https://www.youtube-nocookie.com/embed/videoseries?list=PLWK3kWTuPoUKFCTRtVkTUXn26PYF311w9" frameborder="0" allowfullscreen></iframe></div>
+      <div class="video-wrapper"><iframe width="640" height="360" src="//www.youtube-nocookie.com/embed/videoseries?list=PLWK3kWTuPoUKFCTRtVkTUXn26PYF311w9" frameborder="0" allowfullscreen></iframe></div>
     </section>
     <section id="mwc-wrapup" class="overlay-contents">
       <h2>{{ _('Firefox at Mobile World Congress 2013') }}</h2>
       <div class="video-wrapper">
         <video id="mwc-wrapup-video" poster="{{ media('img/firefox/partners/mwc-wrapup-poster.jpg') }}" controls preload="metadata">
-          <source src="https://videos-cdn.mozilla.net/serv/drafts/MWC_2013.mp4" type="video/mp4">
-          <source src="https://videos-cdn.mozilla.net/serv/drafts/MWC_2013.webm" type="video/webm">
+          <source src="//videos-cdn.mozilla.net/serv/drafts/MWC_2013.mp4" type="video/mp4">
+          <source src="//videos-cdn.mozilla.net/serv/drafts/MWC_2013.webm" type="video/webm">
           {# L10n: The "Play Video" message must be url encoded, so spaces should be escaped as '%20' #}
           <object type="application/x-shockwave-flash"
             style="width: 640px; height: 362px;"

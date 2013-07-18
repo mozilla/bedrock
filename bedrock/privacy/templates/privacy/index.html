@@ -88,9 +88,9 @@
         from receiving them by following the “unsubscribe” instructions in the next email you receive.</p>
       <h3 class="sub-section-header">Do Not Track</h3>
       <p>Do Not Track is a feature in Firefox (and some other sweet browsers) which lets you tell websites that you'd rather that they
-        don't keep track of you. You can <a href="http://dnt.mozilla.org">read more about Do Not Track</a> and how to
+        don't keep track of you. You can <a href="{{ url('firefox.dnt') }}">read more about Do Not Track</a> and how to
         turn it on in Firefox.</p>
-      <p><a id="dnt-enabled" class="button" href="http://dnt.mozilla.org/"></a></p>
+      <p><a id="dnt-enabled" class="button" href="{{ url('firefox.dnt') }}"></a></p>
     </section>
     <section id="info-sharing" class="section-content">
       <h1>When we share your Information</h1>
@@ -123,11 +123,11 @@
     <h4>Our Privacy Policies</h4>
     <p>Mozilla's specific privacy policies for our many websites, products and services:</p>
     <ul class="policy-nav">
-      <li><a href="http://www.mozilla.org/en-US/privacy-policy.html" class="policy-moz-websites">Mozilla Websites</a></li>
-      <li><a href="http://www.mozilla.org/en-US/legal/privacy/firefox.html" class="policy-firefox">Firefox</a></li>
-      <li><a href="http://www.mozilla.org/en-US/thunderbird/legal/privacy/" class="policy-thunderbird">Thunderbird</a></li>
+      <li><a href="{{ php_url('/privacy-policy.html') }}" class="policy-moz-websites">Mozilla Websites</a></li>
+      <li><a href="{{ php_url('/legal/privacy/firefox.html') }}" class="policy-firefox">Firefox</a></li>
+      <li><a href="{{ php_url('/thunderbird/legal/privacy/') }}" class="policy-thunderbird">Thunderbird</a></li>
       <li><a href="https://marketplace.firefox.com/privacy-policy" class="policy-marketplace">Marketplace</a></li>
-      <li><a href="http://www.mozilla.org/en-US/persona/privacy-policy/" class="policy-persona">Persona</a></li>
+      <li><a href="{{ url('persona.privacy-policy') }}" class="policy-persona">Persona</a></li>
       <li><a href="https://services.mozilla.com/privacy-policy/" class="policy-sync">Sync</a></li>
       <li><a href="https://testpilot.mozillalabs.com/privacy.php" class="policy-test-pilot">Test Pilot</a></li>
     </ul>

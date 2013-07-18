@@ -41,7 +41,7 @@
 
     {% block site_header %}
       <header id="masthead">
-        <a href="https://www.mozilla.org/" id="tabzilla">{{ _('Mozilla') }}</a>
+        <a href="{{ url('mozorg.home') }}" id="tabzilla">{{ _('Mozilla') }}</a>
 
         {% block site_header_nav %}
         <nav id="nav-main" role="navigation">
@@ -105,8 +105,8 @@
           </ul>
           {% block social %}
           <ul class="footer-nav">
-            <li><a href="http://twitter.com/firefox">{{_('Twitter')}}</a></li>
-            <li><a href="http://facebook.com/Firefox">{{_('Facebook')}}</a></li>
+            <li><a href="https://twitter.com/firefox">{{_('Twitter')}}</a></li>
+            <li><a href="https://facebook.com/Firefox">{{_('Facebook')}}</a></li>
             <li><a href="https://affiliates.mozilla.org/">{{_('Firefox Affiliates')}}</a></li>
           </ul>
           {% endblock %}

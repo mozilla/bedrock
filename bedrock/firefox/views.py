@@ -29,20 +29,20 @@ from lib.l10n_utils.dotlang import _
 UA_REGEXP = re.compile(r"Firefox/(%s)" % version_re)
 
 LOCALE_OS_URLS = {
-    'en-US': 'http://blog.mozilla.org/press/2013/02/firefox-os-expansion',
-    'de': 'http://blog.mozilla.org/press-de/?p=760',
-    'it': 'http://blog.mozilla.org/press-it/?p=353',
-    'pl': 'http://blog.mozilla.org/press-pl/?p=407',
-    'fr': 'http://blog.mozilla.org/press-fr/?p=366',
-    'es-ES': 'http://blog.mozilla.org/press-es/?p=340',
-    'en-GB': 'http://blog.mozilla.org/press-uk/?p=471'
+    'en-US': 'https://blog.mozilla.org/press/2013/02/firefox-os-expansion',
+    'de': 'https://blog.mozilla.org/press-de/?p=760',
+    'it': 'https://blog.mozilla.org/press-it/?p=353',
+    'pl': 'https://blog.mozilla.org/press-pl/?p=407',
+    'fr': 'https://blog.mozilla.org/press-fr/?p=366',
+    'es-ES': 'https://blog.mozilla.org/press-es/?p=340',
+    'en-GB': 'https://blog.mozilla.org/press-uk/?p=471'
 }
 
 LOCALE_OS_RELEASE_URLS = {
     'de': 'https://blog.mozilla.org/press-de/2013/07/01/mozilla-und-partner-machen-sich-bereit-fur-den-ersten-firefox-os-launch/',
     'en-GB': 'https://blog.mozilla.org/press-uk/2013/07/01/mozilla-and-partners-prepare-to-launch-first-firefox-os-smartphones/',
     'en-US': 'https://blog.mozilla.org/blog/2013/07/01/mozilla-and-partners-prepare-to-launch-first-firefox-os-smartphones',
-    'es-ES': 'http://blog.mozilla.org/press-es/?p=482',
+    'es-ES': 'https://blog.mozilla.org/press-es/?p=482',
     'fr': 'https://blog.mozilla.org/press-fr/2013/07/01/mozilla-et-ses-partenaires-preparent-le-lancement-des-premiers-smartphones-sous-firefox-os/',
     'it': 'https://blog.mozilla.org/press-it/2013/07/01/mozilla-e-i-suoi-partner-si-preparano-al-lancio-dei-primi-smartphone-con-firefox-os/',
     'pl': 'https://blog.mozilla.org/press-pl/2013/07/01/mozilla-wraz-z-partnerami-przygotowuje-sie-do-wprowadzenia-na-rynek-pierwszych-smartfonow-z-firefox-os/',
