@@ -114,7 +114,7 @@ Mozilla.PersonaPreviewer = function(container)
 }
 
 Mozilla.PersonaPreviewer.LIVE_URL =
-	'http://static.getpersonas.com/en-US/external/mozilla/';
+	'//getpersonas.cdn.mozilla.net/en-US/external/mozilla/';
 
 Mozilla.PersonaPreviewer.prototype.getPseudoRandomPersona = function()
 {

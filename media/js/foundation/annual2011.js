@@ -209,7 +209,7 @@
     $("a.vid-youtube").click( function(e) {
         e.preventDefault();
         var $origin = $(this);
-        var content = '<iframe width="640" height="360" src="http://www.youtube-nocookie.com/embed/f_f5wNw-2c0?rel=0" frameborder="0" allowfullscreen></iframe>';
+        var content = '<iframe width="640" height="360" src="//www.youtube-nocookie.com/embed/f_f5wNw-2c0?rel=0" frameborder="0" allowfullscreen></iframe>';
         createModal($origin, content);
     });
 

@@ -676,7 +676,7 @@ HMAC_KEYS = {
 }
 
 FEEDS = {
-    'mozilla': 'http://blog.mozilla.org/feed/'
+    'mozilla': 'https://blog.mozilla.org/feed/'
 }
 
 GMAP_API_KEY = ''

@@ -13,7 +13,7 @@
 {% block article %}
   <p><em><time datetime="2009-04-07">{{ _('April 7, 2009') }}</time></em></p>
 
-  <p>{% trans discussion="http://groups.google.com/group/mozilla.governance/browse_thread/thread/2903bc645085b41d/54e8efe5d335ac3f" %}
+  <p>{% trans discussion="https://groups.google.com/group/mozilla.governance/browse_thread/thread/2903bc645085b41d/54e8efe5d335ac3f" %}
     This was the page for the Community Editions Policy.  However, after
     <a href="{{ discussion }}">some discussion</a>,
     it was clear the program needs were being
@@ -43,7 +43,7 @@
         </li>
 
         <li><u>{{ _('Partnership Builds') }}</u>:
-          {% trans partners="http://www.mozilla.com/en-US/about/partnerships.html",
+          {% trans partners=url('mozorg.partnerships'),
             mail="mailto:partners@mozilla.com",
             bizdev="mailto:bizdev@mozilla.com"
           %}
