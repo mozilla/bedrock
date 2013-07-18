@@ -95,7 +95,7 @@ function isFirefoxUpToDate(latest, esr) {
     } else {
         latestFirefoxVersion = parseInt(latest.split('.')[0], 10);
     }
-    
+
     return ($.inArray(fx_version, esrFirefoxVersions) !== -1 ||
             latestFirefoxVersion <= fx_version);
 }
@@ -116,3 +116,52 @@ var $strings = $('#strings');
 window.trans = function trans(stringId) {
     return $strings.data(stringId);
 };
+
+
+function gaTrack(eventsArray, callback) {
+    // submit eventsArray to GA and call callback only after they've
+    // been sent, or if sending fails.
+    // Example usage:
+    //
+    // $(function() {
+    //      var handler = function(e) {
+    //           var _this = this;
+    //           e.preventDefault();
+    //           $(_this).off('submit', handler);
+    //           gaTrack(
+    //              [['_trackEvent', 'Newsletter Registration', 'submit', newsletter]],
+    //              function() {$(_this).submit();}
+    //           );
+    //      };
+    //      $(thing).on('submit', handler);
+    // });
+
+    var timer = null;
+    var hasCallback = typeof(callback) === 'function';
+    var gaCallback = function() {
+        clearTimeout(timer);
+        if (hasCallback) {
+            callback();
+        }
+    }
+    if (typeof(window._gaq) === 'object') {
+        // Failsafe - be sure we do the callback in a half-second
+        // even if GA isn't able to send in our trackEvent.
+        timer = setTimeout(gaCallback, 500);
+        // But ordinarily, we get GA to call us back immediately after
+        // it finishes sending our things.
+        window._gaq.push(
+            // https://developers.google.com/analytics/devguides/collection/analyticsjs/advanced#hitCallback
+            // This is called AFTER GA has sent all pending data:
+            ['_set', 'hitCallback', gaCallback()]
+        )
+        // send events to GA
+        window._gaq.push.apply(this, eventsArray);
+    } else {
+        // GA disabled or blocked or something, make sure we still
+        // call the caller's callback:
+        if (hasCallback) {
+            callback();
+        }
+    }
+}

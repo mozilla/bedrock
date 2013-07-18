@@ -7,7 +7,9 @@
 {% block body_class %}sand lang-{{ LANG }}{% endblock %}
 
 {% block email_form %}
-<form class="billboard" id="footer-email-form" method="post"
+  {# Note: not using the email footer macro here because that submits the
+  subscription to Bedrock.  This form goes to sendto.mozilla.org #}
+<form class="billboard newsletter-form" id="footer-email-form" method="post"
       action="https://sendto.mozilla.org/page/s/sign-up-for-mozilla">
   <h3>Get Mozilla updates</h3>
 
