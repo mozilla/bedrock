@@ -2,8 +2,10 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+from django.conf import settings
 from django.core import mail
 from django.test.client import Client
+from django.test.utils import override_settings
 
 from captcha.fields import ReCaptchaField
 from funfactory.urlresolvers import reverse
@@ -14,6 +16,9 @@ from pyquery import PyQuery as pq
 
 from bedrock.mozorg.tests import TestCase
 from lib import l10n_utils
+
+
+_ALL = settings.STUB_INSTALLER_ALL
 
 
 class TestViews(TestCase):
@@ -29,6 +34,25 @@ class TestViews(TestCase):
             resp = self.client.get(reverse('mozorg.hacks_newsletter'))
 
         ok_('x-frame-options' not in resp)
+
+    @override_settings(STUB_INSTALLER_LOCALES={'win': _ALL})
+    def test_download_button_funnelcake(self):
+        """The download button should have the funnelcake ID."""
+        with self.activate('en-US'):
+            resp = self.client.get(reverse('mozorg.home'), {'f': '5'})
+            ok_('product=firefox-stub-f5&' in resp.content)
+
+    @override_settings(STUB_INSTALLER_LOCALES={'win': _ALL})
+    def test_download_button_bad_funnelcake(self):
+        """The download button should not have a bad funnelcake ID."""
+        with self.activate('en-US'):
+            resp = self.client.get(reverse('mozorg.home'), {'f': '5dude'})
+            ok_('product=firefox-stub&' in resp.content)
+            ok_('product=firefox-stub-f5dude&' not in resp.content)
+
+            resp = self.client.get(reverse('mozorg.home'), {'f': '999999999'})
+            ok_('product=firefox-stub&' in resp.content)
+            ok_('product=firefox-stub-f999999999&' not in resp.content)
 
 
 class TestUniversityAmbassadors(TestCase):
