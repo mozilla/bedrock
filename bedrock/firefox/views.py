@@ -23,7 +23,7 @@ from bedrock.firefox.forms import SMSSendForm
 from bedrock.mozorg.forms import WebToLeadForm
 from bedrock.firefox.platforms import load_devices
 from bedrock.firefox.utils import is_current_or_newer
-from bedrock.firefox.firefox_details import firefox_details
+from bedrock.firefox.firefox_details import firefox_details, mobile_details
 from lib.l10n_utils.dotlang import _
 
 UA_REGEXP = re.compile(r"Firefox/(%s)" % version_re)
@@ -76,6 +76,13 @@ def get_js_bundle_files(bundle):
 JS_COMMON = get_js_bundle_files('partners_common')
 JS_MOBILE = get_js_bundle_files('partners_mobile')
 JS_DESKTOP = get_js_bundle_files('partners_desktop')
+
+
+def get_latest_version(product='firefox', channel='release'):
+    if product == 'mobile':
+        return mobile_details.latest_version(channel)
+    else:
+        return firefox_details.latest_version(channel)
 
 
 def installer_help(request):
@@ -215,7 +222,7 @@ def latest_fx_redirect(request, fake_version, template_name):
 
 
 def all_downloads(request):
-    version = firefox_details.latest_version('release')
+    version = get_latest_version()
     query = request.GET.get('q')
     return l10n_utils.render(request, 'firefox/all.html', {
         'full_builds': firefox_details.get_filtered_full_builds(version, query),
@@ -288,3 +295,27 @@ def releases_index(request):
 
     return l10n_utils.render(request, 'firefox/releases/index.html',
                              {'releases': sorted(releases.items(), reverse=True)})
+
+
+def latest_notes(request, product, channel='release'):
+    path = [
+        product,
+        get_latest_version(product, channel),
+        'auroranotes' if channel == 'aurora' else 'releasenotes'
+    ]
+    locale = getattr(request, 'locale', None)
+    if locale:
+        path.insert(0, locale)
+    return HttpResponseRedirect('/' + '/'.join(path) + '/')
+
+
+def latest_sysreq(request):
+    path = [
+        'firefox',
+        get_latest_version(),
+        'system-requirements'
+    ]
+    locale = getattr(request, 'locale', None)
+    if locale:
+        path.insert(0, locale)
+    return HttpResponseRedirect('/' + '/'.join(path) + '/')
