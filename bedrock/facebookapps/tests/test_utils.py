@@ -129,8 +129,9 @@ class TestGetBestLocale(tests.TestCase):
 
 class TestJsRedirect(tests.TestCase):
     def setUp(self):
-        self.request = Mock(['locale'])
+        self.request = Mock(['locale', 'GET'])
         self.request.locale = 'en-US'
+        self.request.GET = {}
         self.url = 'https://www.mozilla.org/'
         self.response = utils.js_redirect(self.url, self.request)
 

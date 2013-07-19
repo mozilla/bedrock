@@ -102,7 +102,7 @@ def make_aurora_link(product, version, platform, locale,
 
 def make_download_link(product, build, version, platform, locale,
                        force_direct=False, force_full_installer=False,
-                       force_funnelcake=False):
+                       force_funnelcake=False, funnelcake_id=None):
     # Aurora has a special download link format
     if build == 'aurora':
         return make_aurora_link(product, version, platform, locale,
@@ -125,6 +125,10 @@ def make_download_link(product, build, version, platform, locale,
             suffix = 'latest'
 
         version = ('beta-' if build == 'beta' else '') + suffix
+
+    # append funnelcake id to version if we have one
+    if funnelcake_id:
+        version = '{vers}-f{fc}'.format(vers=version, fc=funnelcake_id)
 
     # Figure out the base url. certain locales have a transitional
     # thankyou-style page (most do)
@@ -166,6 +170,7 @@ def download_firefox(ctx, build='release', small=False, icon=True,
     alt_build = '' if build == 'release' else build
     platform = 'mobile' if mobile else 'desktop'
     locale = locale or ctx['request'].locale
+    funnelcake_id = ctx.get('funnelcake_id', False)
     dom_id = dom_id or 'download-button-%s-%s' % (platform, build)
 
     def latest(locale):
@@ -199,8 +204,12 @@ def download_firefox(ctx, build='release', small=False, icon=True,
 
             # And generate all the info
             download_link = make_download_link(
-                'firefox', build, version, plat_os,
-                _locale, force_direct, force_full_installer, force_funnelcake)
+                'firefox', build, version, plat_os, _locale,
+                force_direct=force_direct,
+                force_full_installer=force_full_installer,
+                force_funnelcake=force_funnelcake,
+                funnelcake_id=funnelcake_id,
+            )
 
             # If download_link_direct is False the data-direct-link attr
             # will not be output, and the JS won't attempt the IE popup.
@@ -209,8 +218,12 @@ def download_firefox(ctx, build='release', small=False, icon=True,
                 download_link_direct = False
             else:
                 download_link_direct = make_download_link(
-                    'firefox', build, version, plat_os,
-                    _locale, True, force_full_installer, force_funnelcake)
+                    'firefox', build, version, plat_os, _locale,
+                    force_direct=True,
+                    force_full_installer=force_full_installer,
+                    force_funnelcake=force_funnelcake,
+                    funnelcake_id=funnelcake_id,
+                )
                 if download_link_direct == download_link:
                     download_link_direct = False
 

@@ -378,7 +378,7 @@ MINIFY_BUNDLES = {
             'js/base/mozilla-input-placeholder.js',
         ),
         'existing': (
-            'js/newsletter/existing.js',  
+            'js/newsletter/existing.js',
         ),
         'expanders': (
             'js/base/mozilla-expanders.js',
@@ -665,6 +665,7 @@ TEMPLATE_CONTEXT_PROCESSORS = get_template_context_processors(append=(
     'django.core.context_processors.csrf',
     'django.contrib.messages.context_processors.messages',
     'bedrock.mozorg.context_processors.current_year',
+    'bedrock.mozorg.context_processors.funnelcake_param',
     'bedrock.firefox.context_processors.latest_firefox_versions',
     'jingo_minify.helpers.build_ids',
 ))
@@ -703,8 +704,8 @@ LOCALES_WITH_TRANSITION = ['en-US', 'af', 'ar', 'ast', 'be', 'bg',
 
 # Locales showing the 15th Anniversary slideshow on /contribute
 LOCALES_WITH_MOZ15 = ['bg', 'cs', 'de', 'el', 'en-GB', 'en-US', 'es-AR', 'es-CL',
-                      'es-ES', 'es-MX', 'fr', 'fy-NL', 'hr', 'id', 'it', 'lt', 
-                      'ms', 'nl', 'pl' ,'pt-BR', 'ru', 'sl', 'sq', 'sr', 'ta', 
+                      'es-ES', 'es-MX', 'fr', 'fy-NL', 'hr', 'id', 'it', 'lt',
+                      'ms', 'nl', 'pl', 'pt-BR', 'ru', 'sl', 'sq', 'sr', 'ta',
                       'zh-CN', 'zh-TW']
 
 # reCAPTCHA keys
