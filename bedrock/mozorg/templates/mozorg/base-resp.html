@@ -11,12 +11,12 @@
   subscription to Bedrock.  This form goes to sendto.mozilla.org #}
 <form class="billboard newsletter-form" id="footer-email-form" method="post"
       action="https://sendto.mozilla.org/page/s/sign-up-for-mozilla">
-  <h3>Get Mozilla updates</h3>
+  <h3>{{ _('Get Mozilla updates') }}</h3>
 
   <div class="form-contents">
     <div class="field field-email">
       <label for="id_email" class="hidden">{{ _('Email') }}</label>
-      <input name="email" type="email" id="id_email" value="" required aria-required="true" placeholder="YOUR EMAIL HERE">
+      <input name="email" type="email" id="id_email" value="" required aria-required="true" placeholder="{{ _('YOUR EMAIL HERE') }}">
     </div>
 
     <div id="form-details">
@@ -262,15 +262,15 @@
       <div class="field field-privacy">
         <label for="id_privacy" class="privacy-check-label">
           <input required aria-required="true" type="checkbox" name="custom-314" id="id_privacy" />
-          <span class="title">I’m okay with you handling this info as you explain in your <a href="/en-US/privacy-policy">Privacy Policy</a></span>
+          <span class="title">{{ _('I’m okay with you handling this info as you explain in your <a href="%s">Privacy Policy</a>')|format('/en-US/privacy-policy') }}</span>
         </label>
       </div>
     </div>
   </div>
 
   <div class="form-submit">
-    <input type="submit" id="footer_email_submit" value="Sign me up »" class="button">
-    <p class="form-details"><small>We will only send you Mozilla-related information.</small></p>
+    <input type="submit" id="footer_email_submit" value="{{ _('Sign me up') }} »" class="button">
+    <p class="form-details"><small>{{ _('We will only send you Mozilla-related information.') }}</small></p>
   </div>
 </form>
 {% endblock %}
