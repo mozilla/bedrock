@@ -10,6 +10,7 @@ from django.test.utils import override_settings
 from captcha.fields import ReCaptchaField
 from funfactory.urlresolvers import reverse
 from jinja2.exceptions import TemplateNotFound
+from requests.exceptions import Timeout
 from mock import Mock, patch
 from nose.tools import assert_false, eq_, ok_
 from pyquery import PyQuery as pq
@@ -167,6 +168,45 @@ class TestContribute(TestCase):
         eq_(m.to, [self.contact])
         eq_(m.cc, [])
         eq_(m.extra_headers['Reply-To'], ','.join(cc))
+
+    @patch.object(ReCaptchaField, 'clean', Mock())
+    @patch('bedrock.mozorg.email_contribute.requests.post')
+    def test_webmaker_mentor_signup(self, mock_post):
+        """Test Webmaker Mentor signup form for education functional area"""
+        self.data.update(interest='education', newsletter=True)
+        self.client.post(self.url_en, self.data)
+
+        payload = {'email': self.contact, 'custom-1788': '1'}
+        mock_post.assert_called_with('https://sendto.mozilla.org/page/s/mentor-signup',
+                                     data=payload, timeout=2)
+
+    @patch.object(ReCaptchaField, 'clean', Mock())
+    @patch('bedrock.mozorg.email_contribute.requests.post')
+    def test_webmaker_mentor_signup_newsletter_fail(self, mock_post):
+        """Test Webmaker Mentor signup form when newsletter is not selected"""
+        self.data.update(interest='education', newsletter=False)
+        self.client.post(self.url_en, self.data)
+
+        assert_false(mock_post.called)
+
+    @patch.object(ReCaptchaField, 'clean', Mock())
+    @patch('bedrock.mozorg.email_contribute.requests.post')
+    def test_webmaker_mentor_signup_functional_area_fail(self, mock_post):
+        """Test Webmaker Mentor signup form when functional area is not education"""
+        self.data.update(interest='coding', newsletter=True)
+        self.client.post(self.url_en, self.data)
+
+        assert_false(mock_post.called)
+
+    @patch.object(ReCaptchaField, 'clean', Mock())
+    @patch('bedrock.mozorg.email_contribute.requests.post', )
+    def test_webmaker_mentor_signup_timeout_fail(self, mock_post):
+        """Test Webmaker Mentor signup form when request times out"""
+        mock_post.side_effect = Timeout('Timeout')
+        self.data.update(interest='education', newsletter=True)
+        res = self.client.post(self.url_en, self.data)
+
+        eq_(res.status_code, 200);
 
     @patch.object(ReCaptchaField, 'clean', Mock())
     @patch('bedrock.mozorg.email_contribute.jingo.render_to_string')
