@@ -21,25 +21,29 @@ newsletters = {
         'title': "Firefox & You",
         'languages': ['en', 'fr', 'de', 'pt', 'ru'],
         'show': True,
-        'description': 'Firefox and you'
+        'description': 'Firefox and you',
+        'order': 4,
     },
     u'firefox-tips': {
         'show': True,
         'title': 'Firefox Tips',
         'languages': ['en', 'fr', 'de', 'pt', 'ru'],
         'description': 'Firefox tips',
+        'order': 2,
     },
     u'beta': {
         'show': False,
         'title': 'Beta News',
         'languages': ['en'],
         'description': 'Beta News',
+        'order': 3,
     },
     u'join-mozilla': {
         'show': False,
         'title': 'Join Mozilla',
         'languages': ['en'],
         'description': 'Join Mozilla',
+        'order': 1,
     },
 }
 
@@ -340,3 +344,27 @@ class TestExistingNewsletterView(TestCase):
         # Should redirect to the 'updated' view
         url = reverse('newsletter.updated')
         assert_redirect(rsp, url)
+
+    @patch('bedrock.newsletter.utils.get_newsletters')
+    def test_newsletter_ordering(self, get_newsletters, mock_basket_request):
+        # Newsletters are listed in 'order' order, if they have an 'order'
+        # field
+        get_newsletters.return_value = newsletters
+        url = reverse('newsletter.existing.token', args=(self.token,))
+        self.user['newsletters'] = [u'mozilla-and-you', u'firefox-tips',
+                                    u'beta']
+        with patch.multiple('basket',
+                            update_user=DEFAULT,
+                            subscribe=DEFAULT,
+                            unsubscribe=DEFAULT,
+                            user=DEFAULT) as basket_patches:
+            with patch('lib.l10n_utils.render') as render:
+                basket_patches['user'].return_value = self.user
+                render.return_value = HttpResponse('')
+                self.client.get(url)
+        request, template_name, context = render.call_args[0]
+        forms = context['formset'].initial_forms
+
+        newsletters_in_order = [form.initial['newsletter'] for form in forms]
+        self.assertEqual([u'firefox-tips', u'beta', u'mozilla-and-you'],
+                         newsletters_in_order)
