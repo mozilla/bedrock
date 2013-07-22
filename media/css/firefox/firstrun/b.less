@@ -16,9 +16,9 @@
   }
 
   .copy {
-    width: 54%;
+    width: 456px;
     .border-box;
-    padding: (@baseLine * 1.5) (@baseLine * 1.5) (@baseLine/2) (@baseLine * 3);
+    padding: @baseLine @baseLine (@baseLine * 0.5) 0;
 
     p {
       font-size: 24px;
@@ -26,7 +26,7 @@
     }
 
     ul {
-      margin-top: @baseLine;
+      margin-top: (@baseLine * 2);
       border-top: 1px dotted #b1b1b1;
       li {
         &:first-child {
@@ -35,16 +35,12 @@
         a {
           font-size: @baseFontSize;
         }
-        img {
-          width: 25px;
-          height: 25px;
-        }
       }
     }
   }
 
   .screenshot {
-    width: 46%;
+    width: 524px;
   }
 }
 
@@ -143,35 +139,6 @@ ul.social {
   background: #8a5e5e;
 }
 
-.form {
-  .content-box;
-  width: 100%;
-
-  .billboard {
-    width: auto;
-    padding: 0;
-    border-bottom: 0;
-
-    .button {
-      margin-top: 0;
-    }
-  }
-
-  #footer-email-form {
-    margin-left: @baseLine;
-    h3 {
-      margin-top: 10px;
-    }
-
-    .form-contents {
-      margin-top: 6px;
-    }
-
-    .form-submit {
-      float: right;
-    }
-  }
-}
 
 // include the below if we go back to the responsive template.
 // this version (B) was never completely responsivized - there will
