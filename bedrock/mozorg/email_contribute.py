@@ -64,7 +64,7 @@ FUNCTIONAL_AREAS = (
     fa('education',
         _('Education'),
         'Education',
-        ['joinmozilla@mozilla.org'],
+        ['makerparty@mozilla.org'],
     ),
     fa('other',
         _('Other'),
