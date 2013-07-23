@@ -66,10 +66,9 @@ urlpatterns = patterns('',
         kwargs={'template_name': 'firefox/firstrun.html'}),
     url(whatsnew_re, views.latest_fx_redirect, name='firefox.whatsnew',
         kwargs={'template_name': 'firefox/whatsnew.html'}),
-    # firstrun tests
-    # temporarily disabled - will be used on demo server 2013-06
+    # firstrun tests (bug 865433 & 881207)
     # remove when instructed by bug 877202
-    #url('^firefox/21.0/firstrun/(?P<view>[a|b])(?P<version>[1-6])/$', views.firstrun_new, name='firefox.firstrun.new'),
+    url('^firefox/22.0/firstrun/(?P<view>[a|b])/$', views.firstrun_new, name='firefox.firstrun.new'),
 
     url(r'^firefox/partners/$', views.firefox_partners,
         name='firefox.partners.index'),

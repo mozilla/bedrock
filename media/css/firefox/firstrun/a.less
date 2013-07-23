@@ -1,7 +1,6 @@
 @import "../../sandstone/lib.less";
 @import "common.less";
 
-
 #page-header {
   h1 {
     font-size: 72px;
@@ -12,6 +11,14 @@
     font-size: 40px;
     font-style: italic;
     margin-bottom: @baseLine;
+  }
+}
+
+ul.social {
+  margin-bottom: (@baseLine/2);
+  li {
+    margin-top: (@baseLine/2);
+    text-align: right;
   }
 }
 
@@ -95,48 +102,6 @@
 
   img {
     float: right;
-  }
-}
-
-.column {
-  .content-box;
-  float: left;
-  width: (480px - (@baseLine * 2));
-  min-height: (210px - (@baseLine * 2.5));
-  padding: (@baseLine * 1.5) @baseLine @baseLine @baseLine;
-  overflow: hidden;
-  margin-right: 20px;
-
-  h1 {
-    font-size: 28px;
-  }
-
-  ul {
-    margin-bottom: 0;
-  }
-
-  .billboard {
-    border-bottom: none;
-    width: auto;
-  }
-
-  #footer-email-form {
-    padding: 0;
-    h3 {
-      font-size: 28px;
-      margin-bottom: 12px;
-      float: none;
-      width: auto;
-    }
-
-    .form-contents, .form-submit {
-      float: none;
-      margin-left: 0;
-    }
-
-    .button {
-      margin-top: @baseLine;
-    }
   }
 }
 
