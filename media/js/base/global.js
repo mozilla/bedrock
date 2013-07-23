@@ -143,7 +143,7 @@ function gaTrack(eventsArray, callback) {
         if (hasCallback) {
             callback();
         }
-    }
+    };
     if (typeof(window._gaq) === 'object') {
         // Failsafe - be sure we do the callback in a half-second
         // even if GA isn't able to send in our trackEvent.
@@ -154,9 +154,9 @@ function gaTrack(eventsArray, callback) {
             // https://developers.google.com/analytics/devguides/collection/analyticsjs/advanced#hitCallback
             // This is called AFTER GA has sent all pending data:
             ['_set', 'hitCallback', gaCallback()]
-        )
+        );
         // send events to GA
-        window._gaq.push.apply(this, eventsArray);
+        window._gaq.push.apply(window._gaq, eventsArray);
     } else {
         // GA disabled or blocked or something, make sure we still
         // call the caller's callback:
