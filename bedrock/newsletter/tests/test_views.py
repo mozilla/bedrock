@@ -368,3 +368,32 @@ class TestExistingNewsletterView(TestCase):
         newsletters_in_order = [form.initial['newsletter'] for form in forms]
         self.assertEqual([u'firefox-tips', u'beta', u'mozilla-and-you'],
                          newsletters_in_order)
+
+    @patch('bedrock.newsletter.utils.get_newsletters')
+    def test_newsletter_no_order(self, get_newsletters, mock_basket_request):
+        """Newsletter views should work if we get no order from basket."""
+        orderless_newsletters = {}
+        for key, val in newsletters.items():
+            nl_copy = val.copy()
+            del nl_copy['order']
+            orderless_newsletters[key] = nl_copy
+
+        get_newsletters.return_value = orderless_newsletters
+        url = reverse('newsletter.existing.token', args=(self.token,))
+        self.user['newsletters'] = [u'mozilla-and-you', u'firefox-tips',
+                                    u'beta']
+        with patch.multiple('basket',
+                            update_user=DEFAULT,
+                            subscribe=DEFAULT,
+                            unsubscribe=DEFAULT,
+                            user=DEFAULT) as basket_patches:
+            with patch('lib.l10n_utils.render') as render:
+                basket_patches['user'].return_value = self.user
+                render.return_value = HttpResponse('')
+                self.client.get(url)
+        request, template_name, context = render.call_args[0]
+        forms = context['formset'].initial_forms
+
+        newsletters_in_order = [form.initial['newsletter'] for form in forms]
+        self.assertEqual([u'beta', u'mozilla-and-you', u'firefox-tips'],
+                         newsletters_in_order)
