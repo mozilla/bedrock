@@ -397,3 +397,52 @@ class TestExistingNewsletterView(TestCase):
         newsletters_in_order = [form.initial['newsletter'] for form in forms]
         self.assertEqual([u'beta', u'mozilla-and-you', u'firefox-tips'],
                          newsletters_in_order)
+
+
+class TestConfirmView(TestCase):
+    def setUp(self):
+        self.token = unicode(uuid.uuid4())
+        self.url = reverse('newsletter.confirm', kwargs={'token': self.token})
+        self.client = Client()
+
+    def test_normal(self):
+        """Confirm works with a valid token"""
+        with patch('basket.confirm') as confirm:
+            confirm.return_value = {'status': 'ok'}
+            with patch('lib.l10n_utils.render') as mock_render:
+                mock_render.return_value = HttpResponse('')
+                rsp = self.client.get(self.url, follow=True)
+            self.assertEqual(200, rsp.status_code)
+            confirm.assert_called_with(self.token)
+            context = mock_render.call_args[0][2]
+            self.assertTrue(context['success'])
+            self.assertFalse(context['generic_error'])
+            self.assertFalse(context['token_error'])
+
+    def test_basket_down(self):
+        """If basket is down, we report the appropriate error"""
+        with patch('basket.confirm') as confirm:
+            confirm.side_effect = BasketException()
+            with patch('lib.l10n_utils.render') as mock_render:
+                mock_render.return_value = HttpResponse('')
+                rsp = self.client.get(self.url, follow=True)
+            self.assertEqual(200, rsp.status_code)
+            confirm.assert_called_with(self.token)
+            context = mock_render.call_args[0][2]
+            self.assertFalse(context['success'])
+            self.assertTrue(context['generic_error'])
+            self.assertFalse(context['token_error'])
+
+    def test_bad_token(self):
+        """If the token is bad, we report the appropriate error"""
+        with patch('basket.confirm') as confirm:
+            confirm.side_effect = BasketException(status_code=403)
+            with patch('lib.l10n_utils.render') as mock_render:
+                mock_render.return_value = HttpResponse('')
+                rsp = self.client.get(self.url, follow=True)
+            self.assertEqual(200, rsp.status_code)
+            confirm.assert_called_with(self.token)
+            context = mock_render.call_args[0][2]
+            self.assertFalse(context['success'])
+            self.assertFalse(context['generic_error'])
+            self.assertTrue(context['token_error'])
