@@ -109,14 +109,16 @@ def existing(request, token=None):
         # user is already subscribed
         if data.get('show', False) or newsletter in user['newsletters']:
             langs = data['languages']
-            initial.append({
+            form_data = {
                 'title': data['title'],
                 'subscribed': newsletter in user['newsletters'],
                 'newsletter': newsletter,
                 'description': data['description'],
                 'english_only': len(langs) == 1 and langs[0].startswith('en'),
-                'order': data['order'],
-            })
+            }
+            if 'order' in data:
+                form_data['order'] = data['order']
+            initial.append(form_data)
 
     # Sort by 'order' field if we were given it; otherwise, by title
     if initial:
