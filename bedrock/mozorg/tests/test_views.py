@@ -166,7 +166,8 @@ class TestContribute(TestCase):
         eq_(m.from_email, 'contribute-form@mozilla.org')
         eq_(m.to, [self.contact])
         eq_(m.cc, [])
-        eq_(m.extra_headers['Reply-To'], ','.join(['contribute@mozilla.org'] + cc))
+        eq_(m.extra_headers['Reply-To'], ','.join(['contribute@mozilla.org'] +
+                                                  cc))
 
     @patch.object(ReCaptchaField, 'clean', Mock())
     @patch('bedrock.mozorg.email_contribute.jingo.render_to_string')
@@ -209,4 +210,5 @@ class TestContribute(TestCase):
         eq_(m.from_email, 'contribute-form@mozilla.org')
         eq_(m.to, [self.contact])
         eq_(m.cc, [])
-        eq_(m.extra_headers['Reply-To'], ','.join(cc))
+        eq_(m.extra_headers['Reply-To'], ','.join(['contribute@mozilla.org'] +
+                                                  cc))
