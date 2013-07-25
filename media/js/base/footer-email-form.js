@@ -60,14 +60,15 @@ $(document).ready(function() {
         newsletter = $input.val();
       }
 
-      if (gaTrack && newsletter !== '') {
+      if (typeof(gaTrack) === 'function' && newsletter !== '') {
         // Need to wait to submit, until after we're sure we've sent
         // the tracking event to GA.
         e.preventDefault();
         $form.unbind('submit');
-        gaTrack([['_trackEvent', 'Newsletter Registration', 'submit', newsletter]],
-                function () { $form.submit(); }
-                );
+        gaTrack(
+          ['_trackEvent', 'Newsletter Registration', 'submit', newsletter],
+          function (){ $form.submit(); }
+        );
       }
     }
     // Else, just let the form submit.
