@@ -171,15 +171,16 @@ def autorespond(request, data):
     subject = 'Inquiry about Mozilla %s' % functional_area.subject
     to = [data['email']]
     from_ = 'contribute-form@mozilla.org'
+    reply_to = ['contribute@mozilla.org']
     headers = {}
     msg = ''
 
     template = 'mozorg/emails/%s.txt' % functional_area.id
     if request.locale != 'en-US' and request.locale in LOCALE_CONTACTS:
         template = '%s/templates/%s' % (request.locale, template)
-        reply_to = LOCALE_CONTACTS[request.locale]
+        reply_to += LOCALE_CONTACTS[request.locale]
     else:
-        reply_to = functional_area.contacts
+        reply_to += functional_area.contacts
 
     try:
         msg = jingo.render_to_string(request, template, data)
