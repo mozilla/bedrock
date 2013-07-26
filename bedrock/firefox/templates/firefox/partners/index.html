@@ -461,8 +461,8 @@
           {# L10n: The "Play Video" message must be url encoded, so spaces should be escaped as '%20' #}
           <object type="application/x-shockwave-flash"
             style="width: 640px; height: 362px;"
-            data="{{ MEDIA_URL }}flash/playerWithControls.swf?flv=/serv/drafts/MWC_2013.mp4&amp;autoplay=false&amp;msg={{ _('Play%20Video') }}">
-            <param name="movie" value="{{ MEDIA_URL }}flash/playerWithControls.swf?flv=/serv/drafts/MWC_2013.mp4&amp;autoplay=false&amp;msg={{ _('Play%20Video') }}">
+            data="{{ MEDIA_URL }}flash/playerWithControls.swf?flv=serv/drafts/MWC_2013.mp4&amp;autoplay=false&amp;msg={{ _('Play%20Video') }}">
+            <param name="movie" value="{{ MEDIA_URL }}flash/playerWithControls.swf?flv=serv/drafts/MWC_2013.mp4&amp;autoplay=false&amp;msg={{ _('Play%20Video') }}">
             <param name="wmode" value="transparent">
 
             <div class="video-player-no-flash">
