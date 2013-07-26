@@ -61,6 +61,7 @@
     padding-top: 13px;
 
     ul {
+        margin: 0;
         li {
             list-style: none;
             a {
@@ -93,7 +94,7 @@ html.ios {
 }
 
 /* desktop version (with Firefox) */
-html.firefox-latest { 
+html.firefox-latest {
     #version-message {
         display: block;
         #version-message-desktop-latest {
@@ -474,11 +475,12 @@ noscript {
         height: 356px;
     }
     #version-message {
-        display: none;
-        padding: 20px;
+        padding: 0 20px 20px;
+        font-size: 18px;
     }
     #main-feature {
-        padding-bottom: 0px;
+        margin: 0;
+        padding: 0 10px;
         .row {
             .clearfix;
             width: 300px;
@@ -501,7 +503,12 @@ noscript {
 
     #firefox-screenshot { display: none; }
 
-    #features-download { padding-top: 10px; }
+    #features-download {
+        padding-top: 10px;
+        .download-button {
+            display: block;
+        }
+    }
 
     #features {
         margin: 0 auto 20px;
@@ -517,10 +524,13 @@ noscript {
         }
     }
 
-    .latest-links-wrapper ul li {
-        margin: 0;
-        a {
+    .latest-links-wrapper {
+        padding: 0;
+        ul li {
             margin: 0 10px;
+            a {
+                margin: 0;
+            }
         }
     }
 
@@ -546,6 +556,22 @@ noscript {
             .download-button {
                 text-align: left;
             }
+        }
+
+        &.firefox-latest .android-latest-links-wrapper {
+            padding: 0;
+        }
+    }
+
+    html.fxos {
+        .fxos-latest-links-wrapper {
+            padding: 0;
+        }
+    }
+
+    html.ios {
+        .ios-latest-links-wrapper {
+            padding: 0;
         }
     }
 
@@ -579,8 +605,5 @@ noscript {
     }
     .osx .ready-for-scene2, .windows .ready-for-scene2, .winIE8 .ready-for-scene2 {
         #install1, #install2, #install3 { background-image: none; }
-    }
-
-    html.android {
     }
 }
