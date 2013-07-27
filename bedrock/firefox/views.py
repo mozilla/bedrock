@@ -265,3 +265,20 @@ def firstrun_new(request, view):
     template = view + '.html'
 
     return l10n_utils.render(request, 'firefox/firstrun/' + template)
+
+
+def releases_index(request):
+    releases = {}
+    major_releases = firefox_details.firefox_history_major_releases
+    minor_releases = firefox_details.firefox_history_stability_releases
+
+    for release in major_releases:
+        releases[float(re.findall(r'^\d+\.\d+', release)[0])] = {
+            'major': release,
+            'minor': sorted(filter(lambda x: re.findall(r'^' + re.escape(release), x),
+                                   minor_releases),
+                            key=lambda x: int(re.findall(r'\d+$', x)[0]))
+        }
+
+    return l10n_utils.render(request, 'firefox/releases/index.html',
+                             {'releases': sorted(releases.items(), reverse=True)})
