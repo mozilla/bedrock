@@ -18,7 +18,7 @@
 
 {% block billboardcontent %}
   <form method="POST" class="billboard {% if form.non_field_errors() or form.errors %}has-errors{% endif %}"
-        id="ambassadors-form" action="#ambassadors-form">
+        id="ambassadors-form" action="{{ secure_url() }}#ambassadors-form">
     {{ csrf() }}
     <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
       <div class="form-column">

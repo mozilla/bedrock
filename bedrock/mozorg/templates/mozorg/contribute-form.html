@@ -4,7 +4,7 @@
 
 {% if not contribute_success or return_to_form %}
 <form class="billboard{% if form.errors %} has-errors{% endif %}"
-      action="#help-form" id="help-form" method="post">
+      action="{{ secure_url() }}#help-form" id="help-form" method="post">
   <input type="hidden" name="contribute-form" value="Y" />
 
   {% if contribute_success and return_to_form %}

@@ -30,9 +30,9 @@
 
     <form class="billboard newsletter-form{% if request.newsletter_form.errors %} has-errors{% endif %}"
           {% if footer %}
-             id="footer-email-form" action="#footer-email-form"
+             id="footer-email-form" action="{{ secure_url() }}#footer-email-form"
           {% else %}
-              id="newsletter-form" action=""
+              id="newsletter-form" action="{{ secure_url() }}"
           {% endif %}
           method="post">
       {% if footer %}

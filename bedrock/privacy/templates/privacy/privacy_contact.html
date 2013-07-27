@@ -3,7 +3,7 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
 {% if not form_submitted or (form_submitted and form_error) %}
-  <form name="contact_privacy" id="contact_privacy" action="#contactus" method="post">
+  <form name="contact_privacy" id="contact_privacy" action="{{ secure_url() }}#contactus" method="post">
     {{ csrf() }}
 
     <fieldset>

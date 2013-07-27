@@ -38,6 +38,17 @@ def url(viewname, *args, **kwargs):
 
 
 @jingo.register.function
+@jinja2.contextfunction
+def secure_url(ctx, viewname=None):
+    """Retrieve a full secure URL especially for form submissions"""
+    _path = url(viewname) if viewname else None
+    _url = ctx['request'].build_absolute_uri(_path)
+    if settings.DEBUG:
+        return _url
+    return _url.replace('http://', 'https://')
+
+
+@jingo.register.function
 def media(url):
     return path.join(settings.MEDIA_URL, url.lstrip('/'))
 
