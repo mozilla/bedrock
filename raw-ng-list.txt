@@ -53,6 +53,7 @@ mozilla.dev.builds                      For discussions about compiling the sour
 mozilla.dev.chat                        The real-time chat capabilities in the Mozilla platform (IM, IRC etc.) (Moderated)
 mozilla.dev.community-tools             The tools Mozilla uses to manage its community. (Moderated)
 mozilla.dev.embedding                   For <a href="../../projects/embedding/">embedding</a> Mozilla components such as Gecko, ender, and JavaScript into software.
+mozilla.dev.geolocation                 Development of geolocation services. (Moderated)
 mozilla.dev.i18n                        For discussions about <a href="../../projects/intl/">internationalization</a> (I18N) issues. I18N is the infrastructure that allows software to be <a href="#dev-l10n">localized</a>.
 mozilla.dev.js-sourcemap                The JS sourcemap project, which maps obfuscated JS back to the original version for debugging. (Moderated)
 mozilla.dev.l10n                        For <a href="../../projects/l10n/mlp.html">localization</a> (L10N) issues. L10N is the process of adapting software to a specific language and culture (see also <a href="#mozilla-i18n">internationalization</a>).
@@ -121,7 +122,6 @@ mozilla.dev.ports.os2                   For discussions about <a href="../../por
 
 mozilla.dev.quality                     For <a href="../../quality/">QA</a> discussion, including using Bugzilla, Mozilla testing, and bug triaging. Do not report bugs here.
 mozilla.qa.b2g                          QA for B2G. (Moderated)
-mozilla.qa.webapps                      QA for Mozilla's web apps. (Moderated)
 mozilla.qa.webmaker                     QA for Webmaker projects. (Moderated)
 mozilla.bugmasters                      Our intrepid bug handling team. (Moderated)
 
@@ -183,6 +183,7 @@ mozilla.community.malaysia              The Mozilla community in Malaysia. (Mode
 mozilla.community.mexico                The Mozilla community in Mexico.
 mozilla.community.mongolia              The Mozilla community in Mongolia. (Moderated)
 mozilla.community.morocco               The Mozilla community in Morocco. (Moderated)
+mozilla.community.nepal                 The Mozilla community in Nepal. (Moderated)
 mozilla.community.new-zealand           The Mozilla community in New Zealand.
 mozilla.community.philippines           The Mozilla community in the Philippines. (Moderated)
 mozilla.community.quebec                The Mozilla community in Quebec. (Moderated)
@@ -215,7 +216,6 @@ mozilla.dev.l10n.km                     Khmer localization discussions. (Moderat
 mozilla.dev.l10n.lo                     Lao localization discussions. (Moderated)
 mozilla.dev.l10n.ms                     Malay localization discussions. (Moderated)
 mozilla.dev.l10n.my                     Burmese localization discussions. (Moderated)
-mozilla.dev.l10n.pl                     Polish localization discussions.
 mozilla.dev.l10n.pt-br                  Brazilian Portuguese localization discussions. (Moderated)
 mozilla.dev.l10n.sk                     Slovak localization discussions.
 mozilla.dev.l10n.sr                     Serbian localization discussions.
@@ -241,7 +241,8 @@ mozilla.reps.comms                      The ReMo Communications special interest
 mozilla.accessibility                   Discussion of all things related to accessibility. (Moderated)
 mozilla.community.armyofawesome         The Mozilla Army of Awesome twitter helpers.
 mozilla.community.artzilla              The Mozilla Artzilla community of artists.
-mozilla.community.b2g                  The community around Boot2Gecko (Firefox OS). (Moderated)
+mozilla.community.b2g                   The community around Boot2Gecko (Firefox OS). (Moderated)
+mozilla.community.devderby              The Mozilla monthly Developer Derby for web developers. (Moderated)
 mozilla.community.digital-freedom       Discussion of, and resistance to, laws which work against Mozilla's mission. (Moderated)
 mozilla.community.games                 Building games in HTML5. (Moderated)
 mozilla.community.web-standards         The community of Mozilla people involved in web standards efforts.
