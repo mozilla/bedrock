@@ -1,41 +1,45 @@
-Thanks for your interest in education and Mozilla's web literacy initiative, Webmaker.
+Thanks for your interest in Mozilla's educational initiative, Webmaker. We promote web literacy around the world with hands-on making and interest-driven learning.
 
 Here are a few resources to help you get started.
 
 # Make Something With the Web
 
-We believe making something helps you learn better. Try our open suite of tools to create, animate and remix web content:
+We believe making and learning go hand-in-hand. Try our open suite of tools to create, animate and remix web content and improve your web skills as you go:
 
 http://webmaker.org/tools
 
 # Webmaker Mentors
 
-We're a global community of techies, educators, makers and passionate people like you. We help learners make amazing things on the web and level up their digital skills as they go.
+Webmaker Mentors are fiercely unconventional  technologists, thinkers, and creators. We care about empowering everyone to be makers of the web – and pushing the limits of what's possible online.
 
-Webmaker Mentors support learners anywhere - in our homes, offices, neighborhoods and online.
+We help learners make amazing things on the web and level up their digital skills as they go. We promote radical inclusion and support learning anywhere - in our homes, offices, neighborhoods and online.
 
-Our non-profit mission: Build a more web literate world. One webmaker at a time.
+Please introduce yourself on our community mailing list. We don't bite!
 
-Sign up to receive updates about Webmaker Mentors:
+webmaker@lists.mozilla.org
 
-https://webmaker.org/teach/
+# Webmaker Teaching Kits
 
-# Webmaker Teaching Resources
+These teaching kits are full of activities and resources to help you facilitate learning sessions with a focus on webmaking. You'll find everything you need, from a pedagogical overview to tips on assessing participants' progress. Print them out, load them on your tablet or phone or simply use them as inspiration:
 
-If you are interested in teaching web skills, check out these free, hackable resources:
+https://webmaker.org/teach
 
-https://webmaker.org/kits/
+Mozilla is deeply committed to identifying the skills, competencies and literacies necessary to read, write and participate on the web, and our teaching kits align with the Web Literacy Standard.
 
-# More Ways to Connect
+# Webmaker Events
 
-Here are other ways to connect with us:
+Attending or organizing a Webmaker event is a great way to put these teaching kits and skills into practice. Gather your friends and family, grab a computer, and start making the web.
 
-https://webmaker.org/connect
+Find an event near you: https://webmaker.org/events
 
-And let us know if you need any help or have ideas on how to improve these efforts!
+And check out tips on organizing a hands-on Webmaker event: https://webmaker.org/guides
 
-# Sign Up
+# Let's teach the web!
 
-Don't forget to sign up here to receive more updates and ways to get involved:
+Thank you for your interest in education and teaching the web. Please feel free to use and remix these resources and to share your experiences with the Webmaker Mentor community.
 
-https://webmaker.org/teach/
+webmaker@lists.mozilla.org
+
+All the best,
+
+-- The Mozilla Webmaker Mentor team
