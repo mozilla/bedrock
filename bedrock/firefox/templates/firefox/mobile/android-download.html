@@ -1,0 +1,14 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "bare.html" %}
+
+{% block page_title %}{{ _('Firefox for Android') }}{% endblock %}
+
+{% block extrahead %}
+  <meta http-equiv="refresh"
+    content="1; url=https://play.google.com/store/apps/details?id=org.mozilla.firefox">
+  {% include 'includes/google-analytics.html' %}
+{% endblock %}
+
