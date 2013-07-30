@@ -4,6 +4,7 @@
 
 import re
 from datetime import datetime
+from bedrock.mozorg.util import get_fb_like_locale
 
 
 # match 1 - 4 digits only
@@ -23,3 +24,7 @@ def funnelcake_param(request):
         context['funnelcake_id'] = fc_id
 
     return context
+
+
+def facebook_locale(request):
+	return {'facebook_locale': get_fb_like_locale(request.locale)}
