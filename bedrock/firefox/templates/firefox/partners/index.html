@@ -481,7 +481,7 @@
         <p>{{ _('We will review your request and get back to you about possibilities and opportunities soon.') }}</p>
       </div>
 
-      <form action="{{ url('about.partnerships.contact-bizdev') }}" role="dialog" aria-labelledby="get-involved-title" aria-describedby="get-involved-description" method="POST" id="sf-form" class="sf-form">
+      <form action="{{ secure_url('about.partnerships.contact-bizdev') }}" role="dialog" aria-labelledby="get-involved-title" aria-describedby="get-involved-description" method="POST" id="sf-form" class="sf-form">
 
       <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
 

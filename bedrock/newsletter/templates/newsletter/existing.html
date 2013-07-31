@@ -22,7 +22,7 @@
   {% endif %}
 
   {% if formset %}
-    <form method="post" action="" id="existing-newsletter-form" class="container billboard"
+    <form method="post" action="{{ secure_url() }}" id="existing-newsletter-form" class="container billboard"
         data-initial-newsletters='{{ newsletters_subscribed }}'>
       {{ formset.management_form }}
 

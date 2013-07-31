@@ -527,7 +527,7 @@ Help build a generation of webmakers by teaching others how the web works. <a hr
             // ]]></script>
             <section>
               {% if not newsletter_success %}
-                <form action="#newsletter" method="post" id="newsletter-form">
+                <form action="{{ secure_url() }}#newsletter" method="post" id="newsletter-form">
                   <input type="hidden" name="newsletter-form" value="Y" />
                   <p>{{_('Sign up for a weekly newsletter that is full of community news and contribution opportunities.')}}</p>
                   {% if newsletter_form.errors %}

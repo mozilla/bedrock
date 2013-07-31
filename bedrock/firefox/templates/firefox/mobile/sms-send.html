@@ -14,7 +14,7 @@
 </div>
 
 <div id="main-content">
-  <form id="sms-send" method="post">
+  <form id="sms-send" method="post" action="{{ secure_url() }}">
     <h2>
     {# L10n: The line break in this headline is for visual formatting only #}
     {% trans %}
