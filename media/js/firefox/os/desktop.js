@@ -210,8 +210,7 @@
         var $form = $(this);
 
         $.ajax({
-          // Form action is just an anchor - must prepend current URL for IE.
-          url: document.location.href + $form.attr('action'),
+          url: $form.attr('action'),
           data: $form.serialize(),
           type: 'POST',
           success: function(data) {

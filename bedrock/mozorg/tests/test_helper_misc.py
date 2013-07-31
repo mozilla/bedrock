@@ -10,6 +10,7 @@ import jingo
 from nose.tools import assert_false, eq_, ok_
 from pyquery import PyQuery as pq
 from bedrock.newsletter.tests.test_views import newsletters
+from funfactory.urlresolvers import reverse
 
 from bedrock.mozorg.tests import TestCase
 
@@ -24,6 +25,39 @@ def render(s, context={}):
     t = jingo.env.from_string(s)
     return t.render(context)
 
+
+@patch('django.conf.settings.LANGUAGE_CODE', 'en-US')
+class TestSecureURL(TestCase):
+    host = 'www.mozilla.org'
+    test_path = '/firefox/partners/'
+    test_view_name = 'about.partnerships.contact-bizdev'
+    req = RequestFactory(HTTP_HOST=host).get(test_path)
+
+    def _test(self, view_name, expected_url):
+        eq_(render("{{ secure_url('%s') }}" % view_name, {'request': self.req}),
+            expected_url)
+
+    @patch('django.conf.settings.DEBUG', True)
+    def test_on_dev_with_view_name(self):
+        # Should output a reversed path
+        self._test(self.test_view_name,
+                   'http://' + self.host + reverse(self.test_view_name))
+
+    @patch('django.conf.settings.DEBUG', True)
+    def test_on_dev_without_view_name(self):
+        # Should output the current, full URL
+        self._test('', 'http://' + self.host + self.test_path)
+
+    @patch('django.conf.settings.DEBUG', False)
+    def test_on_prod_with_view_name(self):
+        # Should output a reversed, full secure URL
+        self._test(self.test_view_name,
+                   'https://' + self.host + reverse(self.test_view_name))
+
+    @patch('django.conf.settings.DEBUG', False)
+    def test_on_prod_without_view_name(self):
+        # Should output the current, full secure URL
+        self._test('', 'https://' + self.host + self.test_path)
 
 @patch('bedrock.mozorg.helpers.misc.L10N_IMG_PATH', TEST_L10N_IMG_PATH)
 @patch('django.conf.settings.LANGUAGE_CODE', 'en-US')
