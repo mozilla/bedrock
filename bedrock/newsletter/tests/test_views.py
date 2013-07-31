@@ -234,8 +234,8 @@ class TestExistingNewsletterView(TestCase):
                 with patch('lib.l10n_utils.render'):
                     basket_patches['user'].return_value = self.user
                     rsp = self.client.post(url, self.data)
-        # Should have given some messages
-        self.assertEqual(1, add_msg.call_count,
+        # Should have given no messages
+        self.assertEqual(0, add_msg.call_count,
                          msg=repr(add_msg.call_args_list))
         # Should have called update_user with subscription list
         self.assertEqual(1, basket_patches['update_user'].call_count)
@@ -338,8 +338,8 @@ class TestExistingNewsletterView(TestCase):
              'newsletters': u'mozilla-and-you'},
             kwargs
         )
-        # One message should be emitted
-        self.assertEqual(1, add_msg.call_count,
+        # No messages should be emitted
+        self.assertEqual(0, add_msg.call_count,
                          msg=repr(add_msg.call_args_list))
         # Should redirect to the 'updated' view
         url = reverse('newsletter.updated')
