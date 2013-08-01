@@ -8,12 +8,13 @@ from django.utils.functional import lazy
 
 from funfactory.settings_base import *  # noqa
 
-# No database yet. Override in local.py.
-# Need at least this for Django to run.
+# Production uses MySQL, but Sqlite should be sufficient for local development.
+# Our CI server tests against MySQL.
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.dummy',
-    },
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'bedrock.db',
+    }
 }
 
 # Override in local.py for memcached.
@@ -667,10 +668,13 @@ INSTALLED_APPS = get_apps(exclude=(
     'django.contrib.sessions',
     'django.contrib.staticfiles',
     'session_csrf',
+    'djcelery',
 ), append=(
     # Local apps
     'jingo_minify',
     'django_statsd',
+    'waffle',
+    'south',
 
     # Django contrib apps
     'django_sha2',  # Load after auth to monkey-patch it.
@@ -766,7 +770,7 @@ RECAPTCHA_PUBLIC_KEY = ''
 RECAPTCHA_PRIVATE_KEY = ''
 RECAPTCHA_USE_SSL = True
 
-TEST_RUNNER = 'test_utils.runner.NoDBTestSuiterunner'
+TEST_RUNNER = 'test_utils.runner.RadicalTestSuiteRunner'
 
 # Use a message storage mechanism that doesn't need a database.
 # This can be changed to use session once we do add a database.

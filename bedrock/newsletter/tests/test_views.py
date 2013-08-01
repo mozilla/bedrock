@@ -5,7 +5,6 @@ import uuid
 from bedrock.newsletter.views import unknown_address_text, recovery_text
 
 from django.http import HttpResponse
-from django.test.client import Client
 
 from mock import DEFAULT, patch
 from nose.tools import ok_
@@ -67,7 +66,6 @@ def assert_redirect(response, url):
 
 class TestViews(TestCase):
     def setUp(self):
-        self.client = Client()
         clear_caches()
 
     def test_hacks_newsletter_frames_allow(self):
@@ -86,7 +84,6 @@ class TestViews(TestCase):
 @patch('basket.base.request')
 class TestExistingNewsletterView(TestCase):
     def setUp(self):
-        self.client = Client()
         self.token = unicode(uuid.uuid4())
         self.user = {
             'newsletters': [u'mozilla-and-you'],
@@ -431,7 +428,6 @@ class TestConfirmView(TestCase):
     def setUp(self):
         self.token = unicode(uuid.uuid4())
         self.url = reverse('newsletter.confirm', kwargs={'token': self.token})
-        self.client = Client()
         clear_caches()
 
     def test_normal(self):
@@ -480,7 +476,6 @@ class TestConfirmView(TestCase):
 class TestRecoveryView(TestCase):
     def setUp(self):
         self.url = reverse('newsletter.recovery')
-        self.client = Client()
 
     def test_bad_email(self):
         """Email syntax errors are caught"""

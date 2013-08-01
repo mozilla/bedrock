@@ -38,7 +38,6 @@ class TestInstallerHelp(TestCase):
         self.patcher = patch.dict('jingo.env.globals',
                                   download_firefox=self.button_mock)
         self.patcher.start()
-        self.client = Client()
         self.view_name = 'firefox.installer-help'
         with self.activate('en-US'):
             self.url = reverse(self.view_name)
@@ -174,7 +173,6 @@ class TestMobileDetails(TestCase):
 @patch.object(fx_views, 'firefox_details', firefox_details)
 class TestFirefoxAll(TestCase):
     def setUp(self):
-        self.client = Client()
         with self.activate('en-US'):
             self.url = reverse('firefox.all')
 
@@ -204,9 +202,6 @@ class TestFirefoxAll(TestCase):
 
 
 class TestFirefoxPartners(TestCase):
-    def setUp(self):
-        self.client = Client()
-
     @patch('bedrock.firefox.views.settings.DEBUG', True)
     def test_js_bundle_files_debug_true(self):
         """
@@ -433,14 +428,12 @@ class FxVersionRedirectsMixin(object):
 
 class TestWhatsnewRedirect(FxVersionRedirectsMixin, TestCase):
     def setUp(self):
-        self.client = Client()
         with self.activate('en-US'):
             self.url = reverse('firefox.whatsnew', args=['13.0'])
 
 
 class TestFirstrunRedirect(FxVersionRedirectsMixin, TestCase):
     def setUp(self):
-        self.client = Client()
         with self.activate('en-US'):
             self.url = reverse('firefox.firstrun', args=['13.0'])
 
@@ -511,9 +504,6 @@ class TestFirstrunRedirect(FxVersionRedirectsMixin, TestCase):
 @patch.object(fx_views, 'firefox_details', firefox_details)
 @patch.object(fx_views, 'mobile_details', mobile_details)
 class TestNotesRedirects(TestCase):
-    def setUp(self):
-        self.client = Client()
-
     def _test(self, url_from, url_to):
         with self.activate('en-US'):
             url = '/en-US' + url_from
@@ -560,9 +550,6 @@ class TestNotesRedirects(TestCase):
 
 @patch.object(fx_views, 'firefox_details', firefox_details)
 class TestSysreqRedirect(TestCase):
-    def setUp(self):
-        self.client = Client()
-
     @patch.dict(product_details.firefox_versions,
                 LATEST_FIREFOX_VERSION='22.0')
     def test_release_version(self):

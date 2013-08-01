@@ -15,4 +15,10 @@ if DEV:
     ALLOWED_HOSTS = ['*']
 
 
+# Any databases configured other than "default" should be
+# read-only slaves, which funfactory's default router
+# should use with this setting.
+SLAVE_DATABASES = [db for db in DATABASES if db != 'default']
+
+
 MEDIA_URL = CDN_BASE_URL + MEDIA_URL

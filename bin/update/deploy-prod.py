@@ -38,12 +38,10 @@ def update_assets(ctx):
         ctx.local("LANG=en_US.UTF-8 python2.6 manage.py update_product_details")
 
 
-# bedrock has no database
-#@task
-#def database(ctx):
-#    with ctx.lcd(settings.SRC_DIR):
-#        ctx.local("python2.6 ./vendor/src/schematic/schematic migrations")  # schematic (old)
-#        ctx.local("python2.6 manage.py migrate")                            # South (new)
+@task
+def database(ctx):
+    with ctx.lcd(settings.SRC_DIR):
+        ctx.local("python2.6 manage.py syncdb --migrate --noinput")
 
 
 #@task
@@ -65,10 +63,14 @@ def deploy_app(ctx):
 #    ctx.remote("/bin/touch %s" % settings.REMOTE_WSGI)
     ctx.remote("service httpd graceful")
 
+
 @hostgroups(settings.WEB_HOSTGROUP, remote_kwargs={'ssh_key': settings.SSH_KEY})
 def prime_app(ctx):
     for http_port in range(80, 82):
-        ctx.remote("for i in {1..10}; do curl -so /dev/null -H 'Host: %s' -I http://localhost:%s/ & sleep 1; done" % (settings.REMOTE_HOSTNAME, http_port))
+        ctx.remote("for i in {1..10}; do curl -so /dev/null "
+                   "-H 'Host: %s' -I http://localhost:%s/ & "
+                   "sleep 1; done" % (settings.REMOTE_HOSTNAME, http_port))
+
 
 #@hostgroups(settings.CELERY_HOSTGROUP, remote_kwargs={'ssh_key': settings.SSH_KEY})
 #def update_celery(ctx):
@@ -103,7 +105,7 @@ def pre_update(ctx, ref=settings.UPDATE_REF):
 def update(ctx):
     update_assets()
     update_locales()
-    #database()
+    database()
 
 
 @task

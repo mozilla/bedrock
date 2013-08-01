@@ -3,8 +3,8 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from django.conf.urls import RegexURLPattern
+from django.test import TestCase
 from django.test.client import RequestFactory
-from django.utils import unittest
 
 from mock import patch
 from nose.tools import eq_, ok_
@@ -12,7 +12,7 @@ from nose.tools import eq_, ok_
 from bedrock.redirects.util import redirect
 
 
-class TestRedirectUrlPattern(unittest.TestCase):
+class TestRedirectUrlPattern(TestCase):
     def setUp(self):
         self.rf = RequestFactory()
 

@@ -62,10 +62,14 @@ def deploy_app(ctx):
     ctx.remote(settings.REMOTE_UPDATE_SCRIPT)
     ctx.remote("service httpd graceful")
 
+
 @hostgroups(settings.WEB_HOSTGROUP, remote_kwargs={'ssh_key': settings.SSH_KEY})
 def prime_app(ctx):
     for http_port in range(80, 82):
-        ctx.remote("for i in {1..10}; do curl -so /dev/null -H 'Host: %s' -I http://localhost:%s/ & sleep 1; done" % (settings.REMOTE_HOSTNAME, http_port))
+        ctx.remote("for i in {1..10}; do curl -so /dev/null "
+                   "-H 'Host: %s' -I http://localhost:%s/ & "
+                   "sleep 1; done" % (settings.REMOTE_HOSTNAME, http_port))
+
 
 #@hostgroups(settings.CELERY_HOSTGROUP, remote_kwargs={'ssh_key': settings.SSH_KEY})
 #def update_celery(ctx):

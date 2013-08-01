@@ -1,5 +1,3 @@
-from django.test import Client
-
 from funfactory.urlresolvers import reverse
 from mock import patch
 from nose.tools import eq_
@@ -13,7 +11,6 @@ from bedrock.mozorg.tests import TestCase
 class TestNewsletterFooter(TestCase):
     def setUp(self):
         self.view_name = 'newsletter.mozilla-and-you'
-        self.client = Client()
 
     def test_country_selected(self):
         """
