@@ -19,8 +19,9 @@ from nose.tools import assert_not_equal, eq_, ok_
 from pyquery import PyQuery as pq
 from tower.management.commands.extract import extract_tower_python
 
-from lib.l10n_utils.dotlang import (_, FORMAT_IDENTIFIER_RE, lang_file_is_active,
-                                    parse, translate, _lazy)
+from lib.l10n_utils.dotlang import (_, FORMAT_IDENTIFIER_RE, lang_file_has_tag,
+                                    lang_file_is_active, parse, translate,
+                                    _lazy)
 from bedrock.mozorg.tests import TestCase
 
 
@@ -48,6 +49,20 @@ class TestLangFilesActivation(TestCase):
         ok_(not lang_file_is_active('active_de_lang_file', 'es'))
         ok_(not lang_file_is_active('inactive_de_lang_file', 'de'))
         ok_(not lang_file_is_active('does_not_exist', 'de'))
+
+    def test_lang_file_has_tag(self):
+        """
+        `lang_file_has_tag` should return true if lang file has the
+        comment, and false otherwise.
+        """
+        ok_(lang_file_has_tag('active_de_lang_file', 'de', 'active'))
+        ok_(lang_file_has_tag('active_de_lang_file_bom', 'de', 'active'))
+        ok_(not lang_file_has_tag('active_de_lang_file', 'es', 'active'))
+        ok_(not lang_file_has_tag('inactive_de_lang_file', 'de', 'active'))
+        ok_(not lang_file_has_tag('file_does_not_exist', 'de', 'active'))
+        ok_(lang_file_has_tag('main', 'de', 'guten_tag'))
+        ok_(not lang_file_has_tag('main', 'de', 'tag_after_non_tag_lines'))
+        ok_(not lang_file_has_tag('main', 'de', 'no_such_tag'))
 
     @patch('lib.l10n_utils.settings.DEV', False)
     def test_active_locale_not_redirected(self):
