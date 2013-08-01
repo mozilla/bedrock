@@ -1,0 +1,17 @@
+{% extends 'newsletter/base.html' %}
+
+{% block body_id %}newsletter-confirm{% endblock body_id %}
+
+{% block page_title %}{{ _('Newsletter confirm') }}{% endblock page_title %}
+
+{% block content %}
+  {% if success %}
+    <h1>{{ _('Thanks for Subscribing!') }}</h1>
+    <p>{{ _('Your newsletter subscription has been confirmed.') }}</p>
+    <p>{{ _('Please be sure to add our sending address: mozilla@e.mozilla.org to your address book to ensure we always reach your inbox.') }}</p>
+  {% elif token_error %}
+    <p>{{ _('The supplied link has expired. You will receive a new one in the next newsletter.') }}</p>
+  {% elif generic_error %}
+    <p>{{ _('Something is amiss with our system, sorry! Please try again later.') }}</p>
+  {% endif %}
+{% endblock %}
