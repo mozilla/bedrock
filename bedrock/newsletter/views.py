@@ -48,6 +48,39 @@ def hacks_newsletter(request):
 
 
 @never_cache
+def confirm(request, token):
+    """
+    Confirm subscriptions.
+    """
+    success = generic_error = token_error = False
+
+    try:
+        result = basket.confirm(token)
+    except basket.BasketException as e:
+        log.exception("Exception confirming token %s" % token)
+        if e.status_code == 403:
+            # Basket returns 403 on bad token
+            token_error = True
+        else:
+            # Any other exception
+            generic_error = True
+    else:
+        if result['status'] == 'ok':
+            success = True
+        else:
+            # Shouldn't happen (errors should raise exception),
+            # but just in case:
+            generic_error = True
+
+    return l10n_utils.render(
+        request,
+        'newsletter/confirm.html',
+        {'success': success,
+         'generic_error': generic_error,
+         'token_error': token_error})
+
+
+@never_cache
 def existing(request, token=None):
     """Manage subscriptions.  If token is provided, user can manage their
     existing subscriptions, to subscribe, unsubscribe, change email or

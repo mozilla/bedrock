@@ -34,6 +34,11 @@ urlpatterns = patterns('',
         views.updated,
         name='newsletter.updated'),
 
+    # Confirm subscriptions
+    url('^newsletter/confirm/(?P<token>' + uuid_regex + ')/$',
+        views.confirm,
+        name='newsletter.confirm'),
+
     # This particular view is used inside a frame somewhere else, so it
     # has its own view and doesn't work like the rest of these newsletter
     # signup pages.
