@@ -579,11 +579,14 @@ $(document).ready(function() {
         }
     ];
 
+    // Need to include protocol to work around a Chrome bug. See
+    // Mozilla Bug 900171.
+
     var sources = [{
-        src: '//videos-cdn.mozilla.net/serv/firefoxflicks/be-part-of-it-get-mobilized-H264.mp4',
+        src: location.protocol + '//videos-cdn.mozilla.net/serv/firefoxflicks/be-part-of-it-get-mobilized-H264.mp4',
         type: 'video/mp4'
     }, {
-        src: '//videos-cdn.mozilla.net/serv/firefoxflicks/be-part-of-it-get-mobilized-webmvp8.webm',
+        src: location.protocol + '//videos-cdn.mozilla.net/serv/firefoxflicks/be-part-of-it-get-mobilized-webmvp8.webm',
         type: 'video/webm'
     }];
 
