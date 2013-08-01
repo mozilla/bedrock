@@ -14,6 +14,14 @@
   var COUNTRY_CODE = '';
 
   var PARTNER_DATA = {
+    "co": {
+      "partner": [
+        {
+          "name": "Movistar",
+          "url": "http://www.movistar.co"
+        }
+      ]
+    },
     "es": {
       "partner": [
         {
@@ -27,6 +35,14 @@
         {
           "name": "T-Mobile",
           "url": "http://www.t-mobile.pl/pl/firefox"
+        }
+      ]
+    },
+    "ve": {
+      "partner": [
+        {
+          "name": "Movistar",
+          "url": "http://www.movistar.com.ve/movistar_firefox/index.html"
         }
       ]
     }
