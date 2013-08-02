@@ -288,6 +288,9 @@ MINIFY_BUNDLES = {
         'fb_privacy': (
             'css/privacy/fb-privacy.less',
         ),
+        'web-privacy': (
+            'css/privacy/web-privacy.less',
+        ),
         'products': (
             'css/mozorg/products.less',
         ),
