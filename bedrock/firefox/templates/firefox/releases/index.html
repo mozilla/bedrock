@@ -1,0 +1,66 @@
+{% extends "firefox/base-resp.html" %}
+
+{% block page_title %}{{ _('Mozilla Firefox Release Notes') }}{% endblock %}
+{% block body_id %}firefox-releases-index{% endblock %}
+
+{% block site_css %}
+  {{ css('firefox_releases_index') }}
+{% endblock %}
+
+{% block breadcrumbs %}
+  <nav class="breadcrumbs">
+    <a href="{{ url('mozorg.home') }}">{{ _('Home') }}</a> >
+    <a href="{{ url('firefox') }}">{{ _('Firefox') }}</a> >
+    <span>{{ _('Release Notes') }}</span>
+  </nav>
+{% endblock %}
+
+{% block content %}
+  <div id="main-feature">
+    <h1>{{ _('Firefox Releases') }}</h1>
+    <p>{{ _('Firefox release notes are specific to each version of the application. Select your version from the list below to see the release notes for it.') }}</p>
+  </div>
+
+  <div id="main-content">
+    <ol reversed>
+      {% for int_version, versions in releases -%}
+      <li>
+        <strong>{{ get_link(int_version, versions.major) }}</strong>
+        {% if versions.minor -%}
+        <ol>
+          {% for version in versions.minor -%}
+          <li>{{ get_link(int_version, version) }}</li>
+          {% endfor -%}
+        </ol>
+        {% endif -%}
+      </li>
+      {% endfor -%}
+      <li>
+        <strong><a href="0.1.html">0.1</a></strong>
+        <ol>
+          <li><a href="0.2.html">0.2</a></li>
+          <li><a href="0.3.html">0.3</a></li>
+          <li><a href="0.4.html">0.4</a></li>
+          <li><a href="0.5.html">0.5</a></li>
+          <li><a href="0.6.html">0.6</a></li>
+          <li><a href="0.6.1.html">0.6.1</a></li>
+          <li><a href="0.7.html">0.7</a></li>
+          <li><a href="0.7.1.html">0.7.1</a></li>
+          <li><a href="0.8.html">0.8</a></li>
+          <li><a href="0.9.html">0.9</a></li>
+          <li><a href="0.9.1.html">0.9.1/0.9.2</a></li>
+          <li><a href="0.9.3.html">0.9.3</a></li>
+          <li><a href="0.10.html">1.0 Preview Release</a></li>
+        </ol>
+      </li>
+    </ol>
+  </div>
+{% endblock %}
+
+{% macro get_link(int_version, version) %}
+  {%- if int_version < 2 -%}
+    <a href="{{ version }}.html">{{ version }}</a>
+  {%- else -%}
+    <a href="../{{ version }}/releasenotes/">{{ version }}</a>
+  {%- endif -%}
+{% endmacro %}
