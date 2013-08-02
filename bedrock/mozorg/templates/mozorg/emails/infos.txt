@@ -1,4 +1,4 @@
 Email: {{ email }}
 Area of Interest: {{ interest }}
 Language: {{ request.locale }}
-Comment: {{ comments }}
+Comment: {{ comments|safe|strip_tags }}

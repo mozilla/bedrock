@@ -1,3 +1,4 @@
+# -*- coding: utf8 -*-
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -260,3 +261,27 @@ class TestContribute(TestCase):
         eq_(m.cc, [])
         eq_(m.extra_headers['Reply-To'], ','.join(['contribute@mozilla.org'] +
                                                   cc))
+
+    @patch.object(ReCaptchaField, 'clean', Mock())
+    def test_emails_not_escaped(self):
+        """
+        Strings in the contribute form should not be HTML escaped
+        when inserted into the email, which is just text.
+
+        E.g. if they entered
+
+            J'adore le ''Renard de feu''
+
+        the email should not contain
+
+            J&#39;adore le &#39;&#39;Renard de feu&#39;&#39;
+
+        Tags are still stripped, though.
+        """
+        STRING = u"J'adore Citröns & <Piñatas> so there"
+        EXPECTED = u"J'adore Citröns &  so there"
+        self.data.update(comments=STRING)
+        self.client.post(self.url_en, self.data)
+        eq_(len(mail.outbox), 1)
+        m = mail.outbox[0]
+        self.assertIn(EXPECTED, m.body)
