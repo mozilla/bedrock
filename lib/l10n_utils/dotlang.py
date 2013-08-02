@@ -30,6 +30,9 @@ FORMAT_IDENTIFIER_RE = re.compile(r"""(%
                                       s)""", re.VERBOSE)
 
 
+TAG_REGEX = re.compile(r"^## (\w+) ##")
+
+
 def parse(path, skip_untranslated=True):
     """
     Parse a dotlang file and return a dict of translations.
@@ -207,22 +210,41 @@ def lang_file_is_active(path, lang):
     :param lang: the language code
     :return: bool
     """
+    return lang_file_has_tag(path, lang, "active")
+
+
+def lang_file_has_tag(path, lang, tag):
+    """
+    Return True if the lang file exists and has a line like "^## tag ##"
+    at the top. Stops looking at the line that doesn't have a tag.
+
+    :param path: the relative lang file name
+    :param lang: the language code
+    @param tag: The string that should appear between ##'s. Can contain
+       alphanumerics and "_".
+    @return: bool
+    """
+
     rel_path = os.path.join('locale', lang, '%s.lang' % path)
-    cache_key = 'active:%s' % rel_path
-    is_active = cache.get(cache_key)
-    if is_active is None:
-        is_active = False
+    cache_key = 'tag:%s' % rel_path
+    tag_set = cache.get(cache_key)
+    if tag_set is None:
+        tag_set = set()
         fpath = os.path.join(settings.ROOT, rel_path)
         try:
             with codecs.open(fpath, 'r', 'utf-8', errors='replace') as lines:
-                firstline = lines.readline()
-                # Filter out Byte order Mark
-                firstline = firstline.replace(u'\ufeff', '')
-                if firstline.startswith('## active ##'):
-                    is_active = True
+                for line in lines:
+                    # Filter out Byte order Mark
+                    line = line.replace(u'\ufeff', '')
+                    m = TAG_REGEX.match(line)
+                    if m:
+                        tag_set.add(m.group(1))
+                    else:
+                        # Stop at the first non-tag line.
+                        break
         except IOError:
             pass
 
-        cache.set(cache_key, is_active, settings.DOTLANG_CACHE)
+        cache.set(cache_key, tag_set, settings.DOTLANG_CACHE)
 
-    return is_active
+    return tag in tag_set
