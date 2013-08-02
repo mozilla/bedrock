@@ -17,7 +17,7 @@ from jinja2 import FileSystemLoader
 from mock import patch
 from nose.tools import assert_not_equal, eq_, ok_
 from pyquery import PyQuery as pq
-from tower.management.commands.extract import extract_tower_python
+from tower import extract_tower_python
 
 from lib.l10n_utils.dotlang import (_, FORMAT_IDENTIFIER_RE, lang_file_has_tag,
                                     lang_file_is_active, parse, translate,

@@ -22,7 +22,7 @@ from django.utils import translation
 from django.utils.functional import lazy
 
 from jinja2 import Markup
-from tower.management.commands.extract import tweak_message
+from tower import tweak_message
 
 
 FORMAT_IDENTIFIER_RE = re.compile(r"""(%
