@@ -4,37 +4,68 @@
 (function () {
     'use strict';
     function getPlatform() {
-        if (navigator.platform.indexOf("Win32") !== -1 ||
-                navigator.platform.indexOf("Win64") !== -1) {
+        var ua = navigator.userAgent,
+            pf = navigator.platform;
+        if (/Win(16|9[x58]|NT( [1234]| 5\.0| [^0-9]|[^ -]|$))/.test(ua) ||
+                /Windows ([MC]E|9[x58]|3\.1|4\.10|NT( [1234]| 5\.0| [^0-9]|[^ ]|$))/.test(ua) ||
+                /Windows_95/.test(ua)) {
+            /**
+             * Officially unsupported platforms are Windows 95, 98, ME, NT 4.x, 2000
+             * These regular expressions match:
+             *  - Win16
+             *  - Win9x
+             *  - Win95
+             *  - Win98
+             *  - WinNT (not followed by version or followed by version <= 5)
+             *  - Windows ME
+             *  - Windows CE
+             *  - Windows 9x
+             *  - Windows 95
+             *  - Windows 98
+             *  - Windows 3.1
+             *  - Windows 4.10
+             *  - Windows NT (not followed by version or followed by version <= 5)
+             *  - Windows_95
+             */
+            return 'oldwin';
+        }
+        if (ua.indexOf("MSIE 6.0") !== -1 &&
+                ua.indexOf("Windows NT 5.1") !== -1 &&
+                ua.indexOf("SV1") === -1) {
+            // Windows XP SP1
+            return 'oldwin';
+        }
+        if (pf.indexOf("Win32") !== -1 ||
+                pf.indexOf("Win64") !== -1) {
             return 'windows';
         }
-        if (/android/i.test(navigator.userAgent)) {
+        if (/android/i.test(ua)) {
             return 'android';
         }
-        if (/armv[6-7]l/.test(navigator.platform)) {
+        if (/armv[6-7]l/.test(pf)) {
             return 'android';
         }
-        if (navigator.platform.indexOf("Linux") !== -1) {
+        if (pf.indexOf("Linux") !== -1) {
             return 'linux';
         }
-        if (navigator.platform.indexOf("MacPPC") !== -1) {
+        if (pf.indexOf("MacPPC") !== -1) {
             return 'oldmac';
         }
-        if (/Mac OS X 10.[0-5]/.test(navigator.userAgent)) {
+        if (/Mac OS X 10.[0-5]/.test(ua)) {
             return 'oldmac';
         }
-        if (navigator.platform.indexOf('iPhone') !== -1 || 
-                navigator.platform.indexOf('iPad') !== -1 || 
-                navigator.platform.indexOf('iPod') !== -1 ) {
+        if (pf.indexOf('iPhone') !== -1 || 
+                pf.indexOf('iPad') !== -1 || 
+                pf.indexOf('iPod') !== -1 ) {
             return 'ios';
         }
-        if (navigator.userAgent.indexOf("Mac OS X") !== -1) {
+        if (ua.indexOf("Mac OS X") !== -1) {
             return 'osx';
         }
-        if (navigator.userAgent.indexOf("MSIE 5.2") !== -1) {
+        if (ua.indexOf("MSIE 5.2") !== -1) {
             return 'oldmac';
         }
-        if (navigator.platform.indexOf("Mac") !== -1) {
+        if (pf.indexOf("Mac") !== -1) {
             return 'oldmac';
         }
         return 'other';
