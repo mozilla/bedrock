@@ -585,11 +585,11 @@ ROOT_URLCONF = '%s.urls' % PROJECT_MODULE
 DOMAIN_METHODS = {
     'messages': [
         ('%s/**.py' % PROJECT_MODULE,
-            'tower.management.commands.extract.extract_tower_python'),
+            'tower.extract_tower_python'),
         ('%s/**/templates/**.html' % PROJECT_MODULE,
-            'tower.management.commands.extract.extract_tower_template'),
+            'tower.extract_tower_template'),
         ('%s/**/templates/**.js' % PROJECT_MODULE,
-            'tower.management.commands.extract.extract_tower_template'),
+            'tower.extract_tower_template'),
     ],
 }
 
