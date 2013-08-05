@@ -151,6 +151,26 @@
     }
 }
 
+#newsletter-recovery {
+    #newsletter-recovery-form {
+        .intro {
+            .span(4);
+        }
+        .field {
+            .span(8);
+        }
+        .email-field {
+             label {
+                display: block;
+                margin-top: -1em;
+            }
+            input[type="text"] {
+                width: 300px;
+            }
+        }
+    }
+}
+
 .float-right {
   float: right;
 }
@@ -245,6 +265,15 @@
         }
     }
 
+    #newsletter-recovery #newsletter-recovery-form {
+        .intro {
+            .span_narrow(4);
+        }
+        .field {
+            .span_narrow(8);
+        }
+    }
+
 }
 
 /* }}} */
@@ -308,6 +337,25 @@
         }
     }
 
+    #newsletter-recovery #newsletter-recovery-form {
+        padding-top: 10px;
+        .intro,
+        .field {
+            .span-all();
+        }
+        .email-field {
+             label {
+                display: block;
+                margin-top: 0;
+            }
+            input,
+            input[type="text"] {
+                width: 100%;
+                margin-bottom: 5px;
+                .border-box();
+            }
+        }
+    }
 
 }
 

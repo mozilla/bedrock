@@ -15,18 +15,9 @@ urlpatterns = patterns('',  # noqa
     # subscribe, unsubscribe, change their preferences. Each newsletter
     # includes that link for them.
 
-    # There's more than one 'url' here because Django seems to have
-    # trouble reversing a regex with multiple optional parts.  All
-    # of these go to the same view method, they just pass different
-    # arguments.
-
-    url('^newsletter/existing/(?P<token>' + uuid_regex + ')/$',
+    url('^newsletter/existing/(?P<token>[^/]*)/?$',
         views.existing,
         name='newsletter.existing.token'),
-
-    url('^newsletter/existing/$',
-        views.existing,
-        name='newsletter.existing'),
 
     # After submitting on the `existing` page, users end up on the
     # `updated` page.  There are optional query params; see the view.
@@ -38,6 +29,11 @@ urlpatterns = patterns('',  # noqa
     url('^newsletter/confirm/(?P<token>' + uuid_regex + ')/$',
         views.confirm,
         name='newsletter.confirm'),
+
+    # Request recovery message with link to manage subscriptions
+    url('^newsletter/recovery/',
+        views.recovery,
+        name='newsletter.recovery'),
 
     # This particular view is used inside a frame somewhere else, so it
     # has its own view and doesn't work like the rest of these newsletter

@@ -2,6 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 import uuid
+from bedrock.newsletter.views import unknown_address_text, recovery_text
 
 from django.http import HttpResponse
 from django.test.client import Client
@@ -179,26 +180,47 @@ class TestExistingNewsletterView(TestCase):
         # No other newsletters are shown
         self.assertEqual(set(), shown - subscribed - to_show)
 
-    @patch('bedrock.newsletter.utils.get_newsletters')
-    def test_get_no_token(self, get_newsletters, mock_basket_request):
-        # If user gets page with no valid token in their URL, they
-        # see an error message and that's about it
-        get_newsletters.return_value = newsletters
-        url = reverse('newsletter.existing')
-        # noinspection PyUnresolvedReferences
+    def test_get_no_token(self, mock_basket_request):
+        # No token in URL - should redirect to recovery
+        url = reverse('newsletter.existing.token', args=('',))
+        rsp = self.client.get(url)
+        self.assertEqual(302, rsp.status_code)
+        self.assertTrue(rsp['Location'].endswith(reverse('newsletter.recovery')))
+
+    def test_get_user_not_found(self, mock_basket_request):
+        # Token in URL but not a valid token - should redirect to recovery
+        rand_token = unicode(uuid.uuid4())
+        url = reverse('newsletter.existing.token', args=(rand_token,))
         with patch.multiple('basket',
-                            update_user=DEFAULT,
-                            subscribe=DEFAULT,
-                            unsubscribe=DEFAULT,
-                            user=DEFAULT):
+                            user=DEFAULT) as basket_patches:
             with patch('lib.l10n_utils.render') as render:
                 render.return_value = HttpResponse('')
-                self.client.get(url)
-        request, template_name, context = render.call_args[0]
-        self.assertNotIn('form', context)
+                with patch('django.contrib.messages.add_message') as add_msg:
+                    basket_patches['user'].side_effect = BasketException
+                    rsp = self.client.get(url)
+        # Should have given a message
+        self.assertEqual(1, add_msg.call_count,
+                         msg=repr(add_msg.call_args_list))
+        # Should have been redirected to recovery page
+        self.assertEqual(302, rsp.status_code)
+        self.assertTrue(rsp['Location'].endswith(reverse('newsletter.recovery')))
 
-    def test_user_not_found(self, mock_basket_request):
-        # User passed token, but no user was found
+    def test_invalid_token(self, mock_basket_request):
+        # "Token" in URL is not syntactically a UUID - should redirect to
+        # recovery *without* calling Exact Target
+        token = "not a token"
+        url = reverse('newsletter.existing.token', args=(token,))
+        with patch.multiple('basket', user=DEFAULT) as basket_patches:
+            with patch('django.contrib.messages.add_message') as add_msg:
+                rsp = self.client.get(url, follow=False)
+        self.assertEqual(0, basket_patches['user'].call_count)
+        self.assertEqual(1, add_msg.call_count)
+        self.assertEqual(302, rsp.status_code)
+        self.assertTrue(rsp['Location'].endswith(reverse('newsletter.recovery')))
+
+    def test_post_user_not_found(self, mock_basket_request):
+        # User submits form and passed token, but no user was found
+        # Should issue message and redirect to recovery
         rand_token = unicode(uuid.uuid4())
         url = reverse('newsletter.existing.token', args=(rand_token,))
         with patch.multiple('basket',
@@ -210,7 +232,7 @@ class TestExistingNewsletterView(TestCase):
                 render.return_value = HttpResponse('')
                 with patch('django.contrib.messages.add_message') as add_msg:
                     basket_patches['user'].side_effect = BasketException
-                    self.client.post(url, self.data)
+                    rsp = self.client.post(url, self.data)
         # Shouldn't call basket except for the attempt to find the user
         self.assertEqual(0, basket_patches['update_user'].call_count)
         self.assertEqual(0, basket_patches['unsubscribe'].call_count)
@@ -218,6 +240,9 @@ class TestExistingNewsletterView(TestCase):
         # Should have given a message
         self.assertEqual(1, add_msg.call_count,
                          msg=repr(add_msg.call_args_list))
+        # Should have been redirected to recovery page
+        self.assertEqual(302, rsp.status_code)
+        self.assertTrue(rsp['Location'].endswith(reverse('newsletter.recovery')))
 
     @patch('bedrock.newsletter.utils.get_newsletters')
     def test_subscribing(self, get_newsletters, mock_basket_request):
@@ -450,3 +475,47 @@ class TestConfirmView(TestCase):
             self.assertFalse(context['success'])
             self.assertFalse(context['generic_error'])
             self.assertTrue(context['token_error'])
+
+
+class TestRecoveryView(TestCase):
+    def setUp(self):
+        self.url = reverse('newsletter.recovery')
+        self.client = Client()
+
+    def test_bad_email(self):
+        """Email syntax errors are caught"""
+        data = {'email': 'not_an_email'}
+        rsp = self.client.post(self.url, data)
+        self.assertEqual(200, rsp.status_code)
+        self.assertIn('email', rsp.context['form'].errors)
+
+    @patch('basket.send_recovery_message', autospec=True)
+    def test_unknown_email(self, mock_basket):
+        """Unknown email addresses give helpful error message"""
+        data = {'email': 'unknown@example.com'}
+        mock_basket.side_effect = BasketException(status_code=404)
+        rsp = self.client.post(self.url, data)
+        self.assertTrue(mock_basket.called)
+        self.assertEqual(200, rsp.status_code)
+        form = rsp.context['form']
+        expected_error = unknown_address_text % \
+            reverse('newsletter.mozilla-and-you')
+        self.assertIn(expected_error, form.errors['email'])
+
+    @patch('django.contrib.messages.add_message', autospec=True)
+    @patch('basket.send_recovery_message', autospec=True)
+    def test_good_email(self, mock_basket, add_msg):
+        """If basket returns success, don't report errors"""
+        data = {'email': 'known@example.com'}
+        mock_basket.return_value = {'status': 'ok'}
+        rsp = self.client.post(self.url, data)
+        self.assertTrue(mock_basket.called)
+        # On successful submit, we redirect
+        self.assertEqual(302, rsp.status_code)
+        rsp = self.client.get(rsp['Location'])
+        self.assertEqual(200, rsp.status_code)
+        self.assertFalse(rsp.context['form'])
+        # We also give them a success message
+        self.assertEqual(1, add_msg.call_count,
+                         msg=repr(add_msg.call_args_list))
+        self.assertIn(recovery_text, add_msg.call_args[0])
