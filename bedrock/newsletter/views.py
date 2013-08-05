@@ -14,6 +14,7 @@ from django.utils.safestring import mark_safe
 from django.views.decorators.cache import never_cache
 
 import basket
+from basket import errors
 import commonware.log
 import lib.l10n_utils as l10n_utils
 import requests
@@ -40,6 +41,14 @@ bad_token = _lazy(u'The supplied link has expired or is not valid. You will '
 recovery_text = _lazy(
     u'Success! An email has been sent to you with your preference center '
     u'link. Thanks!')
+expect_change_confirmation = _lazy(
+    u'You will receive an email message to confirm your address change. '
+    u'The change will not take effect until you follow the link in that '
+    u'message.')
+bad_change_key = _lazy(
+    u'The link you used is not valid. Please check it and try again.'
+)
+email_changed = _lazy(u"Your email address has been changed.")
 
 # NOTE: Must format a link into this: (https://www.mozilla.org/newsletter/)
 unknown_address_text = _lazy(
@@ -49,6 +58,7 @@ unknown_address_text = _lazy(
 
 UNSUB_UNSUBSCRIBED_ALL = 1
 UNSUB_REASONS_SUBMITTED = 2
+UNSUB_NO_THANK_YOU = 99
 
 # A UUID looks like: f81d4fae-7dec-11d0-a765-00a0c91e6bf6
 # Here's a regex to match a UUID:
@@ -96,6 +106,38 @@ def confirm(request, token):
 
 
 @never_cache
+def confirm_email_change(request, changekey):
+    """
+    Confirm change of email address.  Redirect to .updated with a message
+    to tell user the result.
+
+    @param request:
+    @param changekey:
+    @return:
+    """
+    try:
+        result = basket.confirm_email_change(changekey)
+    except basket.BasketException as e:
+        log.exception("Exception confirming change key %r" % changekey)
+        if e.code == errors.BASKET_CHANGE_REQUEST_NOT_FOUND:
+            messages.error(request, bad_change_key)
+        else:
+            # Any other exception
+            messages.error(request, general_error)
+    else:
+        if result['status'] == 'ok':
+            messages.info(request, email_changed)
+        else:
+            # Shouldn't happen (errors should raise exception),
+            # but just in case:
+            messages.error(request, general_error)
+            log.error("Unexpected error confirming email change: %r" % result)
+
+    url = reverse('newsletter.updated') + "?unsub=%d" % UNSUB_NO_THANK_YOU
+    return redirect(url)
+
+
+@never_cache
 def existing(request, token=None):
     """Manage subscriptions.  If token is provided, user can manage their
     existing subscriptions, to subscribe, unsubscribe, change email or
@@ -116,7 +158,7 @@ def existing(request, token=None):
 
     if not UUID_REGEX.match(token):
         # Bad token
-        messages.add_message(request, messages.ERROR, bad_token)
+        messages.error(request, bad_token)
         # Redirect to the recovery page
         return redirect(reverse('newsletter.recovery'))
 
@@ -141,7 +183,7 @@ def existing(request, token=None):
             # Something wrong with basket backend, no point in continuing,
             # we'd probably fail to subscribe them anyway.
             log.exception("Basket timeout")
-            messages.add_message(request, messages.ERROR, general_error)
+            messages.error(request, general_error)
             return l10n_utils.render(request, 'newsletter/existing.html')
         except basket.BasketException:
             log.exception("FAILED to get user from token")
@@ -150,7 +192,7 @@ def existing(request, token=None):
 
     if not user_exists:
         # Bad or no token
-        messages.add_message(request, messages.ERROR, bad_token)
+        messages.error(request, bad_token)
         # Redirect to the recovery page
         return redirect(reverse('newsletter.recovery'))
 
@@ -235,9 +277,7 @@ def existing(request, token=None):
                     basket.update_user(token, **kwargs)
                 except basket.BasketException:
                     log.exception("Error updating user in basket")
-                    messages.add_message(
-                        request, messages.ERROR, general_error
-                    )
+                    messages.error(request, general_error)
                     return l10n_utils.render(request,
                                              'newsletter/existing.html')
 
@@ -247,15 +287,37 @@ def existing(request, token=None):
                     basket.unsubscribe(token, user['email'], optout=True)
                 except (basket.BasketException, requests.Timeout):
                     log.exception("Error updating subscriptions in basket")
-                    messages.add_message(
-                        request, messages.ERROR, general_error
-                    )
+                    messages.error(request, general_error)
                     return l10n_utils.render(request,
                                              'newsletter/existing.html')
                 # We need to pass their token to the next view
                 url = reverse('newsletter.updated') \
                     + "?unsub=%s&token=%s" % (UNSUB_UNSUBSCRIBED_ALL, token)
                 return redirect(url)
+
+            # If they chose to change email, tell basket to start the process.
+            if form.cleaned_data['email'] != user['email']:
+                new_email = form.cleaned_data['email']
+                try:
+                    rsp = basket.start_email_change(token=token,
+                                                    new_email=new_email)
+                except (basket.BasketException, requests.Timeout):
+                    # There really shouldn't be any error from basket now
+                    # except network problems etc, since we've already verified
+                    # their token exists, they're changing their email, and
+                    # the new email address is valid.
+                    log.exception("ERROR from basket.start_email_change")
+                    messages.error(request, general_error)
+                    return l10n_utils.render(request,
+                                             'newsletter/existing.html')
+                if rsp['status'] != 'ok':
+                    messages.error(request, general_error)
+                    log.error("ERROR from basket.start_email_change"
+                              "(%s, %s): %r" % (token, new_email, rsp))
+                    return l10n_utils.render(request,
+                                             'newsletter/existing.html')
+                messages.info(request, expect_change_confirmation)
+                unsub_parm = unsub_parm or UNSUB_NO_THANK_YOU  # Don't say "thanks for updating your preferences", they haven't done it yet
 
             # We're going to redirect, so the only way to tell the next
             # view that we should display the welcome message in the
@@ -285,12 +347,16 @@ def existing(request, token=None):
     # to
     already_subscribed = mark_safe(json.dumps(user['newsletters']))
 
+    # If an email change is pending, remind them
+    email_change_pending = user.get('pending_email', None)
+
     context = {
         'form': form,
         'formset': formset,
         'newsletter_languages': newsletter_languages,
         'newsletters_subscribed': already_subscribed,
         'email': user['email'],
+        'email_change_pending': email_change_pending,
     }
     return l10n_utils.render(request,
                              'newsletter/existing.html',
@@ -304,10 +370,11 @@ REASONS = [
     _lazy(u"Your email design was too hard to read."),
     _lazy(u"I didn't sign up for this."),
     _lazy(u"I'm keeping in touch with Mozilla on Facebook and Twitter "
-          "instead."),
+          u"instead."),
 ]
 
 
+@never_cache
 def updated(request):
     """View that users come to after submitting on the `existing`
     or `updated` pages.
@@ -317,7 +384,8 @@ def updated(request):
     :param unsub: '1' means we are coming here after the user requested
     to unsubscribe all.  We want to ask them why. '2' means we are coming
     back here after they submitted the form saying why they unsubscribed
-    all.
+    all.  Any other non-0 value just turns off the automatic "thank
+    you for updating your email preferences" message.
 
     """
 
@@ -337,7 +405,7 @@ def updated(request):
 
     # Say thank you unless we're saying something more specific
     if not unsub:
-        messages.add_message(request, messages.INFO, thank_you)
+        messages.info(request, thank_you)
 
     if request.method == 'POST' and reasons_submitted and token:
         # Tell basket about their reasons
@@ -367,6 +435,7 @@ def updated(request):
                              context)
 
 
+@never_cache
 def one_newsletter_signup(request, template_name):
     success = False
 
@@ -429,7 +498,7 @@ def recovery(request):
                     # and tell the user that something went wrong
                     form.errors['__all__'] = form.error_class([general_error])
             else:
-                messages.add_message(request, messages.INFO, recovery_text)
+                messages.info(request, recovery_text)
                 # Redir as GET, signalling success
                 return redirect(request.path + "?success")
     elif 'success' in request.GET:

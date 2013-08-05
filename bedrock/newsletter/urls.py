@@ -30,6 +30,11 @@ urlpatterns = patterns('',  # noqa
         views.confirm,
         name='newsletter.confirm'),
 
+    # Confirm email change
+    url('^newsletter/confirm_change/(?P<changekey>' + uuid_regex + ')/$',
+        views.confirm_email_change,
+        name='newsletter.confirm_email_change'),
+
     # Request recovery message with link to manage subscriptions
     url('^newsletter/recovery/',
         views.recovery,

@@ -2,16 +2,18 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 import uuid
-from bedrock.newsletter.views import unknown_address_text, recovery_text
 
+
+from django.core.urlresolvers import NoReverseMatch
 from django.http import HttpResponse
 from django.test.client import Client
 
-from mock import DEFAULT, patch
+from mock import ANY, DEFAULT, patch
 from nose.tools import ok_
 
-from basket import BasketException
+from basket import BasketException, errors
 from bedrock.mozorg.tests import TestCase
+from bedrock.newsletter.views import UNSUB_NO_THANK_YOU, bad_change_key, email_changed, general_error, recovery_text, unknown_address_text
 from bedrock.newsletter.utils import clear_caches
 from funfactory.urlresolvers import reverse
 
@@ -60,9 +62,29 @@ def assert_redirect(response, url):
 
     # Django seems to stick this into the Location header
     url = "http://testserver" + url
-    assert url == response['Location'],\
-        "Response did not redirect to %s; Location=%s" % \
-        (url, response['Location'])
+    if 'Location' in response and url == response['Location']:
+        return
+
+    redirect_chain = getattr(response, 'redirect_chain', [])
+    if redirect_chain:
+        for redirect_url, status_code in redirect_chain:
+            if redirect_url == url:
+                return
+        else:
+            assert False, "Response redirected, but never to %s: %r" % (url, redirect_chain)
+    assert False, \
+        "Response did not redirect to %s; status=%d, Location=%s" % \
+        (url, int(response.status_code), response.get('Location', None))
+
+
+def assert_message(rsp, message):
+    """Assert that the given message will be displayed to the user"""
+    # Look in the context for 'messages'
+    # Message might be a lazy object...
+    message = unicode(message)
+    # And messages are also loaded lazily...
+    messages = [unicode(msg) for msg in rsp.context['messages']]
+    assert message in messages, "Message %s not among messages issued: %r" % (message, messages)
 
 
 class TestViews(TestCase):
@@ -195,7 +217,7 @@ class TestExistingNewsletterView(TestCase):
                             user=DEFAULT) as basket_patches:
             with patch('lib.l10n_utils.render') as render:
                 render.return_value = HttpResponse('')
-                with patch('django.contrib.messages.add_message') as add_msg:
+                with patch('django.contrib.messages.error') as add_msg:
                     basket_patches['user'].side_effect = BasketException
                     rsp = self.client.get(url)
         # Should have given a message
@@ -211,7 +233,7 @@ class TestExistingNewsletterView(TestCase):
         token = "not a token"
         url = reverse('newsletter.existing.token', args=(token,))
         with patch.multiple('basket', user=DEFAULT) as basket_patches:
-            with patch('django.contrib.messages.add_message') as add_msg:
+            with patch('django.contrib.messages.error') as add_msg:
                 rsp = self.client.get(url, follow=False)
         self.assertEqual(0, basket_patches['user'].call_count)
         self.assertEqual(1, add_msg.call_count)
@@ -230,7 +252,7 @@ class TestExistingNewsletterView(TestCase):
                             user=DEFAULT) as basket_patches:
             with patch('lib.l10n_utils.render') as render:
                 render.return_value = HttpResponse('')
-                with patch('django.contrib.messages.add_message') as add_msg:
+                with patch('django.contrib.messages.error') as add_msg:
                     basket_patches['user'].side_effect = BasketException
                     rsp = self.client.post(url, self.data)
         # Shouldn't call basket except for the attempt to find the user
@@ -374,6 +396,103 @@ class TestExistingNewsletterView(TestCase):
         assert_redirect(rsp, url)
 
     @patch('bedrock.newsletter.utils.get_newsletters')
+    def test_change_email(self, get_newsletters, mock_basket_request):
+        """Email change submitted okay"""
+        get_newsletters.return_value = newsletters
+        self.data['lang'] = 'en'
+        self.data['country'] = 'us'
+        NEW_EMAIL = u'foo' + self.user['email']
+        self.data['email'] = NEW_EMAIL
+        url = reverse('newsletter.existing.token', args=(self.token,))
+        with patch.multiple('basket',
+                            update_user=DEFAULT,
+                            start_email_change=DEFAULT,
+                            subscribe=DEFAULT,
+                            user=DEFAULT) as basket_patches:
+            with patch('django.contrib.messages.info') as info:
+                basket_patches['user'].return_value = self.user
+                basket_patches['start_email_change'].return_value = {'status': 'ok'}
+                rsp = self.client.post(url, self.data, follow=True)
+        self.assertEqual(200, rsp.status_code)
+        assert basket_patches['start_email_change'].called
+        new_url = reverse('newsletter.updated') + "?unsub=%d" % UNSUB_NO_THANK_YOU
+        assert_redirect(rsp, new_url)
+        assert info.called
+
+    @patch('bedrock.newsletter.utils.get_newsletters')
+    def test_change_email_existing(self, get_newsletters, mock_basket_request):
+        """Email change submitted but new email already in use"""
+        get_newsletters.return_value = newsletters
+        self.data['lang'] = 'en'
+        self.data['country'] = 'us'
+        NEW_EMAIL = u'foo' + self.user['email']
+        self.data['email'] = NEW_EMAIL
+        url = reverse('newsletter.existing.token', args=(self.token,))
+        with patch.multiple('basket',
+                            update_user=DEFAULT,
+                            start_email_change=DEFAULT,
+                            subscribe=DEFAULT,
+                            user=DEFAULT) as basket_patches:
+            with patch('django.contrib.messages.info') as add_msg:
+                basket_patches['user'].return_value = self.user
+                basket_patches['start_email_change'].return_value = {'status': 'ok'}
+                rsp = self.client.post(url, self.data, follow=True)
+        self.assertEqual(200, rsp.status_code)
+        assert basket_patches['start_email_change'].called
+        assert add_msg.called
+
+    @patch('bedrock.newsletter.utils.get_newsletters')
+    def test_change_email_basket_error(self, get_newsletters, mock_basket_request):
+        """If basket errors while starting email change, emit msg, don't redir"""
+        get_newsletters.return_value = newsletters
+        self.data['lang'] = 'en'
+        self.data['country'] = 'us'
+        NEW_EMAIL = u'foo' + self.user['email']
+        self.data['email'] = NEW_EMAIL
+        url = reverse('newsletter.existing.token', args=(self.token,))
+        with patch.multiple('basket',
+                            update_user=DEFAULT,
+                            start_email_change=DEFAULT,
+                            subscribe=DEFAULT,
+                            user=DEFAULT) as basket_patches:
+            with patch('django.contrib.messages.error') as add_msg:
+                basket_patches['user'].return_value = self.user
+                basket_patches['start_email_change'].side_effect = BasketException
+                rsp = self.client.post(url, self.data, follow=True)
+        self.assertEqual(200, rsp.status_code)
+        assert basket_patches['start_email_change'].called
+        add_msg.assert_called_with(ANY, general_error)
+        self.assertNotIn('Location', rsp)
+
+    @patch('bedrock.newsletter.utils.get_newsletters')
+    def test_change_email_basket_other_error(self, get_newsletters, mock_basket_request):
+        """No exception while starting email change, but basket err returned"""
+        get_newsletters.return_value = newsletters
+        self.data['lang'] = 'en'
+        self.data['country'] = 'us'
+        NEW_EMAIL = u'foo' + self.user['email']
+        self.data['email'] = NEW_EMAIL
+        url = reverse('newsletter.existing.token', args=(self.token,))
+        retval = {
+            'status': 'err',
+            'desc': 'some other error',
+        }
+        with patch.multiple('basket',
+                            update_user=DEFAULT,
+                            start_email_change=DEFAULT,
+                            subscribe=DEFAULT,
+                            user=DEFAULT) as basket_patches:
+            with patch('django.contrib.messages.error') as add_msg:
+                basket_patches['user'].return_value = self.user
+
+                basket_patches['start_email_change'].return_value = retval
+                rsp = self.client.post(url, self.data, follow=True)
+        self.assertEqual(200, rsp.status_code)
+        assert basket_patches['start_email_change'].called
+        add_msg.assert_called_with(ANY, general_error)
+        self.assertNotIn('Location', rsp)
+
+    @patch('bedrock.newsletter.utils.get_newsletters')
     def test_newsletter_ordering(self, get_newsletters, mock_basket_request):
         # Newsletters are listed in 'order' order, if they have an 'order'
         # field
@@ -425,6 +544,81 @@ class TestExistingNewsletterView(TestCase):
         newsletters_in_order = [form.initial['newsletter'] for form in forms]
         self.assertEqual([u'beta', u'mozilla-and-you', u'firefox-tips'],
                          newsletters_in_order)
+
+
+@patch('basket.confirm_email_change')
+class TestConfirmChangeView(TestCase):
+    """Tests for view confirming change of email address"""
+    # The view always returns 200 and redirects to management page (.existing),
+    # but messages should show the proper results
+    def setUp(self):
+        self.client = Client()
+
+    def assert_redirect_to_updated(self, rsp, unsub):
+        """Assert that the response redirects to newsletter.updated
+        with the given unsub value (None means don't pass it)"""
+        with self.activate('en-US'):
+            url = reverse('newsletter.updated')
+            if unsub is not None:
+                url += "?unsub=%d" % unsub
+            assert_redirect(rsp, url)
+
+    def test_normal(self, mock_confirm):
+        """Test with syntactically valid change key and basket returning ok"""
+        changekey = unicode(uuid.uuid4())
+        url = reverse('newsletter.confirm_email_change', args=(changekey,))
+        mock_confirm.return_value = {'status': 'ok'}
+        with self.activate('en-US'):
+            rsp = self.client.get(url, follow=True)
+        # should redirect to newsletter.updated
+        self.assert_redirect_to_updated(rsp, UNSUB_NO_THANK_YOU)
+        # there should be a success message
+        assert_message(rsp, email_changed)
+
+    def test_change_key_not_uuid(self, mock_confirm):
+        """Change key that's not a UUID should get back 404"""
+        # Really this is a test of the URL pattern
+        changekey = "not uuid"
+        with self.assertRaises(NoReverseMatch):
+            reverse('newsletter.confirm_email_change', args=(changekey,))
+
+    def test_change_key_unknown(self, mock_confirm):
+        """Change key that basket doesn't recognize"""
+        changekey = unicode(uuid.uuid4())
+        url = reverse('newsletter.confirm_email_change', args=(changekey,))
+        mock_confirm.side_effect = BasketException()
+        mock_confirm.side_effect.code = errors.BASKET_CHANGE_REQUEST_NOT_FOUND
+        with self.activate('en-US'):
+            rsp = self.client.get(url, follow=True)
+        # should redirect to newsletter.updated
+        self.assert_redirect_to_updated(rsp, UNSUB_NO_THANK_YOU)
+        # there should be an error message
+        assert_message(rsp, bad_change_key)
+
+    def test_basket_down(self, mock_confirm):
+        """Behave sensibly on errors talking to Basket"""
+        changekey = unicode(uuid.uuid4())
+        url = reverse('newsletter.confirm_email_change', args=(changekey,))
+        mock_confirm.side_effect = BasketException()
+        mock_confirm.side_effect.status_code = 500
+        with self.activate('en-US'):
+            rsp = self.client.get(url, follow=True)
+        # should redirect to newsletter.updated
+        self.assert_redirect_to_updated(rsp, UNSUB_NO_THANK_YOU)
+        # there should be an error message
+        assert_message(rsp, general_error)
+
+    def test_funky_basket_response(self, mock_confirm):
+        """Behave sensibly if basket returns non-ok without raising exception"""
+        changekey = unicode(uuid.uuid4())
+        url = reverse('newsletter.confirm_email_change', args=(changekey,))
+        mock_confirm.return_value = {'status': 'err'}
+        with self.activate('en-US'):
+            rsp = self.client.get(url, follow=True)
+        # should redirect to newsletter.updated
+        self.assert_redirect_to_updated(rsp, UNSUB_NO_THANK_YOU)
+        # there should be an error message
+        assert_message(rsp, general_error)
 
 
 class TestConfirmView(TestCase):
@@ -502,9 +696,9 @@ class TestRecoveryView(TestCase):
             reverse('newsletter.mozilla-and-you')
         self.assertIn(expected_error, form.errors['email'])
 
-    @patch('django.contrib.messages.add_message', autospec=True)
+    @patch('django.contrib.messages.info', autospec=True)
     @patch('basket.send_recovery_message', autospec=True)
-    def test_good_email(self, mock_basket, add_msg):
+    def test_good_email(self, mock_basket, info_msg):
         """If basket returns success, don't report errors"""
         data = {'email': 'known@example.com'}
         mock_basket.return_value = {'status': 'ok'}
@@ -516,6 +710,6 @@ class TestRecoveryView(TestCase):
         self.assertEqual(200, rsp.status_code)
         self.assertFalse(rsp.context['form'])
         # We also give them a success message
-        self.assertEqual(1, add_msg.call_count,
-                         msg=repr(add_msg.call_args_list))
-        self.assertIn(recovery_text, add_msg.call_args[0])
+        self.assertEqual(1, info_msg.call_count,
+                         msg=repr(info_msg.call_args_list))
+        self.assertIn(recovery_text, info_msg.call_args[0])

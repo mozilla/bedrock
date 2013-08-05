@@ -73,6 +73,7 @@ flake8 bedrock
 echo "Starting tests..."
 export FORCE_DB=1
 coverage run manage.py test --noinput --with-xunit
+coverage html $(find bedrock lib -name '*.py')
 coverage xml $(find bedrock lib -name '*.py')
 
 echo "FIN"
