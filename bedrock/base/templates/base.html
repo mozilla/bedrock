@@ -61,6 +61,16 @@
       </header>
     {% endblock %}
 
+    {% block messages %}
+      {% if messages %}
+        <ul class="messagelist billboard">
+          {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endblock messages %}
+
     {% block content %}{% endblock %}
 
     {% block email_form %}{{ email_newsletter_form() }}{% endblock %}
