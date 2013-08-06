@@ -217,7 +217,6 @@ def existing(request, token=None):
                     )
                     return l10n_utils.render(request,
                                              'newsletter/existing.html')
-                messages.add_message(request, messages.INFO, thank_you)
 
             # If they chose to remove all, tell basket that they've opted out
             if remove_all:
@@ -230,9 +229,6 @@ def existing(request, token=None):
                     )
                     return l10n_utils.render(request,
                                              'newsletter/existing.html')
-                if not kwargs:
-                    # We haven't told them thank you yet
-                    messages.add_message(request, messages.INFO, thank_you)
                 # We need to pass their token to the next view
                 url = reverse('newsletter.updated') \
                     + "?unsub=%s&token=%s" % (UNSUB_UNSUBSCRIBED_ALL, token)
@@ -315,6 +311,9 @@ def updated(request):
 
     # Token might also have been passed (on remove_all only)
     token = request.REQUEST.get('token', None)
+
+    # Always say thank you
+    messages.add_message(request, messages.INFO, thank_you)
 
     if request.method == 'POST' and reasons_submitted and token:
         # Tell basket about their reasons
