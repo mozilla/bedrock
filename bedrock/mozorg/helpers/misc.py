@@ -43,9 +43,12 @@ def secure_url(ctx, viewname=None):
     """Retrieve a full secure URL especially for form submissions"""
     _path = url(viewname) if viewname else None
     _url = ctx['request'].build_absolute_uri(_path)
-    if settings.DEBUG:
-        return _url
-    return _url.replace('http://', 'https://')
+
+    # only force https if current page was requested via SSL
+    # otherwise, CSRF/AJAX errors will occur (submitting to https from http)
+    if ctx['request'].is_secure():
+        return _url.replace('http://', 'https://')
+    return _url
 
 
 @jingo.register.function
