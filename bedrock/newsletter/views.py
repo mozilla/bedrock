@@ -312,8 +312,9 @@ def updated(request):
     # Token might also have been passed (on remove_all only)
     token = request.REQUEST.get('token', None)
 
-    # Always say thank you
-    messages.add_message(request, messages.INFO, thank_you)
+    # Say thank you unless we're saying something more specific
+    if not unsub:
+        messages.add_message(request, messages.INFO, thank_you)
 
     if request.method == 'POST' and reasons_submitted and token:
         # Tell basket about their reasons
