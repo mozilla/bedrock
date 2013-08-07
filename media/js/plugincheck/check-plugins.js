@@ -84,7 +84,7 @@ $(function() {
         }
     },
     unknownPluginUrl = function (pluginName) {
-        return Pfs_internal[18] + encodeURI(Pfs_internal[19] + ' ' + pluginName);
+        return 'http://www.google.com/search?q=' + encodeURI(window.trans('googleSearchq') + ' ' + pluginName);
     },
     buildObject = function(data) {
         var plugin = data.pluginInfo.raw,
