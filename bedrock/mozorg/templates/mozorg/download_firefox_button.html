@@ -4,7 +4,7 @@
 
 {% macro alt_buttons(builds) %}
   <div class="download download-dumb">
-    <h4>{{ _('Download Firefox') }} — {{ locale_name }}</h4>
+    <h4>{{ _('Download Firefox') }} — {{ locale_name|safe }}</h4>
     <ul>
       {% for plat in builds -%}
         <li><a href="{{ plat.download_link_direct or plat.download_link }}" class="button-green">{{ plat.os_pretty }}</a></li>
@@ -60,7 +60,7 @@
                 <strong class="download-title">{{ _('Firefox') }}</strong>
               {% endif %}
               <span class="download-subtitle">{{ _('Free Download') }}</span>
-              <span class="download-lang">{{ locale_name }}</span>
+              <span class="download-lang">{{ locale_name|safe }}</span>
               <span class="download-platform">{{ plat.os_pretty }}</span>
             {% endif %}
           </span>
