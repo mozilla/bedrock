@@ -1,37 +1,17 @@
 // create namespace
 if (typeof Mozilla == 'undefined') {
-    var Mozilla = {};
+  var Mozilla = {};
 }
 
 Mozilla.Modal = (function(w, $) {
   'use strict';
 
-  var _open = false;
-  var _modal = null;
-  var $_body = $('body');
-  var _options = {};
-
-  var _init = function() {
-    var $d = $(w.document);
-
-    // close modal on clicking close button or background.
-    $d.on('click', '#modal .close', _close_modal);
-
-    // close on escape
-    $d.on('keyup', function(e) {
-      if (e.keyCode === 27 && _open) { // esc
-        _close_modal();
-      }
-    });
-
-    // prevent focusing out of modal while open
-    $d.on('focus', function(e) {
-      if (_open && !_modal[0].contains(e.target)) {
-        e.stopPropagation();
-        _modal.focus();
-      }
-    });
-  };
+  var open = false;
+  var $modal = null;
+  var $body = $('body');
+  var options = {};
+  var $d = $(w.document);
+  var evtNamespace = 'moz-modal';
 
   /*
     origin: element that triggered the modal
@@ -41,86 +21,105 @@ Mozilla.Modal = (function(w, $) {
       onDestroy: function to fire after modal has been closed
       allowScroll: boolean - allow/restrict page scrolling when modal is open
   */
-  var _create_modal = function(origin, content, options) {
-    // Clear existing modal, if necessary,
-    $('#modal').remove();
-    $('.modalOrigin').removeClass('modalOrigin');
+  var _createModal = function(origin, content, opts) {
+    // Make sure modal is closed (if one exists)
+    if (open) {
+      _closeModal();
+    }
 
     // Create new modal
     var html = (
         '<div id="modal" role="dialog" aria-labelledby="' + origin.getAttribute('id') + '" tabindex="-1">' +
         '  <div class="inner">' +
         '    <button type="button" id="modal-close" class="close">' +
-        '      <span class="close-text">' + window.trans('close') + '</span>' +
+        '      <span class="close-text">' + w.trans('close') + '</span>' +
         '    </button>' +
         '  </div>' +
         '</div>'
     );
 
-    if (!options.allowScroll) {
-      $_body.addClass('noscroll');
+    // Restrict scrolling
+    if (!opts.allowScroll) {
+      $body.addClass('noscroll');
     }
 
-    // Add it to the page.
-    $_body.append(html);
+    // Add modal to page
+    $body.append(html);
 
-    _modal = $('#modal');
+    $modal = $('#modal');
 
+    // Add content to modal
     $("#modal .inner").append(content);
 
-    _modal.fadeIn('fast', function() {
-      $(this).focus();
+    $modal.fadeIn('fast', function() {
+      $modal.focus();
+    });
+
+    // close modal on clicking close button
+    $d.on('click.' + evtNamespace, '#modal .close', _closeModal);
+
+    // close with escape key
+    $d.on('keyup.' + evtNamespace, function(e) {
+      if (e.keyCode === 27 && open) {
+        _closeModal();
+      }
+    });
+
+    // prevent focusing out of modal while open
+    $d.on('focus.' + evtNamespace, 'body', function(e) {
+      // .contains must be called on the underlying HTML element, not the jQuery object
+      if (open && !$modal[0].contains(e.target)) {
+        e.stopPropagation();
+        $modal.focus();
+      }
     });
 
     // remember which element opened the modal for later focus
     $(origin).addClass('modalOrigin');
 
-    _open = true;
+    open = true;
 
     // execute (optional) open callback
-    if (typeof(options.onCreate) === 'function') {
-      options.onCreate();
+    if (typeof(opts.onCreate) === 'function') {
+      opts.onCreate();
     }
 
     // store options for later use
-    _options = options;
+    options = opts;
   };
 
-  var _close_modal = function() {
-    $('#modal').fadeOut('fast', function() {
+  var _closeModal = function() {
+    $modal.fadeOut('fast', function() {
       $(this).remove();
     });
 
-    $_body.removeClass('noscroll');
+    // allow page to scroll again
+    $body.removeClass('noscroll');
 
     // restore focus to element that opened the modal
-    $('.modalOrigin').focus().remove('modalOrigin');
+    $('.modalOrigin').focus().removeClass('modalOrigin');
 
-    _open = false;
-    _modal = null;
+    open = false;
+    $modal = null;
+
+    // unbind document listeners
+    $d.off('.' + evtNamespace);
 
     // execute (optional) callback
-    if (typeof(_options.onDestroy) === 'function') {
-      _options.onDestroy();
+    if (typeof(options.onDestroy) === 'function') {
+      options.onDestroy();
     }
 
     // free up options
-    _options = {};
+    options = {};
   };
 
   return {
-    init: function() {
-      _init();
+    createModal: function(origin, content, opts) {
+      _createModal(origin, content, opts);
     },
-    create_modal: function(origin, content, options) {
-      _create_modal(origin, content, options);
-    },
-    close_modal: function() {
-      _close_modal();
+    closeModal: function() {
+      _closeModal();
     }
   };
 })(window, window.jQuery);
-
-$(document).ready(function() {
-  Mozilla.Modal.init();
-});
