@@ -26,7 +26,7 @@ Mozilla.Modal = (function(w, $) {
 
     // prevent focusing out of modal while open
     $d.on('focus', function(e) {
-      if (_open && !_modal.contains(e.target)) {
+      if (_open && !_modal[0].contains(e.target)) {
         e.stopPropagation();
         _modal.focus();
       }
