@@ -8,42 +8,27 @@ describe("global.js", function() {
 
   describe("trigger_ie_download", function () {
 
-    // Store navigator.appVersion for reference
-    var original = navigator.appVersion;
-
-    /* After each test in the scope of this suite, 
-     * reset navigator.appVersion to it's original value */
-    afterEach(function () {
-      navigator.__defineGetter__('appVersion', function(){
-        return original;
-      });
-    });
-
     it("should call window.open for internet explorer", function () {
 
       // Let's pretend to be IE just for this individual test
-      navigator.__defineGetter__('appVersion', function(){
-        return '5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0)';
-      });
+      var appVersion = '5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0)';
 
       /* Wrap window.open with a stub function, since all we need 
        * to know is that window.open gets called. We do not need 
        * window.open to excecute to satisfy the test. We can also 
        * spy on this stub to see if it gets called successfully. */
       window.open = sinon.stub();
-      trigger_ie_download('foo');
+      trigger_ie_download('foo', appVersion);
       expect(window.open.called).toBeTruthy();
     });
 
     it("should not window.open for other browsers", function () {
 
       // Let's pretend to be a non IE browser
-      navigator.__defineGetter__('appVersion', function(){
-        return '5.0 (Macintosh)';
-      });
+      var appVersion = '5.0 (Macintosh)';
 
       window.open = sinon.stub();
-      trigger_ie_download('foo');
+      trigger_ie_download('foo', appVersion);
       expect(window.open.called).not.toBeTruthy();
     });
 
@@ -101,31 +86,18 @@ describe("global.js", function() {
 
   describe("getFirefoxMasterVersion", function () {
 
-    var original = navigator.userAgent;
-
-    afterEach(function () {
-      navigator.__defineGetter__('userAgent', function(){
-        return original;
-      });
-    });
-
     it("should return the firefox master version number", function () {
       var result;
       // Pretend to be Firefox 23
-      navigator.__defineGetter__('userAgent', function() {
-        return 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:23.0) Gecko/20100101 Firefox/23.0';
-      });
-      result = getFirefoxMasterVersion();
+      var ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:23.0) Gecko/20100101 Firefox/23.0';
+      result = getFirefoxMasterVersion(ua);
       expect(result).toEqual(23);
     });
 
     it("should return 0 for non Firefox browsers", function () {
       var result;
-      // Pretend to be Chrome
-      navigator.__defineGetter__('userAgent', function() {
-        return 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.71 Safari/537.36';
-      });
-      result = getFirefoxMasterVersion();
+      var ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.71 Safari/537.36';
+      result = getFirefoxMasterVersion(ua);
       expect(result).toEqual(0);
     });
   });
