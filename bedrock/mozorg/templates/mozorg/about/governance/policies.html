@@ -8,99 +8,70 @@
 {% block body_id %}about-governance-policies{% endblock %}
 
 {% block article %}
-{% trans %}
-<h1 class="title-banner">Official Mozilla Policies</h1>
 
-<p>This page provides links to various policies that are used to run the Mozilla community. This list is not necessarily comprehensive and other policies may be posted on other Mozilla sites. </p>
+<h1 class="title-banner">{{ _('Official Mozilla Policies') }}</h1>
 
-<h2>Governance </h2>
-{% endtrans %}
-{% trans 
-	module_ownership_url = "//www.mozilla.org/hacking/module-ownership.html",
-	module_url = "//wiki.mozilla.org/Modules ",
-	participation_url = "//www.mozilla.org/about/policies/participation.html"
-	%}
+<p>{{ _('This page provides links to various policies that are used to run the Mozilla community. This list is not necessarily comprehensive and other policies may be posted on other Mozilla sites.') }}</p>
+
+<h2>{{ _('Governance') }}</h2>
 <ul>
-	<li><a href=" {{ module_ownership_url }}">Mozilla Modules and Module Ownership</a> </li>
-	<li><a href=" {{ module_url }}">Module Owners List</a>  </li>
-	<li><a href="{{ participation_url }}">Mozilla Community Participation Guidelines</a> </li>
+  <li><a href="//www.mozilla.org/hacking/module-ownership.html">{{ _('Mozilla Modules and Module Ownership') }}</a></li>
+  <li><a href="//wiki.mozilla.org/Modules">{{ _('Module Owners List') }}</a></li>
+  <li><a href="//www.mozilla.org/about/policies/participation.html">{{ _('Mozilla Community Participation Guidelines') }}</a></li>
 </ul>
-{% endtrans %}
-<p>{{_('For additional information on Mozilla’s governance structure, see the ')}}<a href="{{ url('mozorg.about.governance.roles')}}">{{_('Roles and Responsibilities')}}</a> {{_('page.')}}</p>
+
+<p>{% trans roles_url = url('mozorg.about.governance.roles') %}
+For additional information on Mozilla’s governance structure, see the <a href="{{ roles_url }}">Roles and Responsibilities</a> page.
+{% endtrans %}</p>
 
 <h2>{{_('Hacking')}}</h2>
 
 <ul>
-	{% trans 
-		committers_url = "//www.mozilla.org/hacking/committer/",
-		super_review_url ="//www.mozilla.org/hacking/reviewers.html",
-		regression_policy_url = "//www.mozilla.org/hacking/regression-policy.html"%}
-	<li><a href="{{ committers_url }}">Commit Access Policy</a></li>
-	<li><a href="{{ super_review_url }}">Super-Review Policy</a></li>
-	<li><a href="{{ regression_policy_url }}">Performance Regressions Policy</a></li>
-	{% endtrans %}
-
-
+  <li><a href="//www.mozilla.org/hacking/committer/">{{ _('Commit Access Policy') }}</a></li>
+  <li><a href="//www.mozilla.org/hacking/reviewers.html">{{ _('Super-Review Policy') }}</a></li>
+  <li><a href="//www.mozilla.org/hacking/regression-policy.html">{{ _('Performance Regressions Policy') }}</a></li>
 </ul>
 
-{% trans
-	mpl_url = "//www.mozilla.org/MPL/",
-	license_url = "//www.mozilla.org/MPL/license-policy.html",
-	eula_url="//www.mozilla.org/legal/eula/"
-	%}
-<h2>Licensing </h2>
+<h2>{{ _('Licensing') }}</h2>
 <ul>
-	<li><a href="{{ mpl_url }}">Source Code Licensing Terms</a></li>
-	<li><a href=" {{ license_url }}">Mozilla Foundation License Policy</a></li>
-	<li><a href="{{ eula_url }}">Mozilla Corporation End-User Licensing Agreement</a></li>
-	<li><a href="{{ eula_url}}">Mozilla Foundation End-User Licensing Agreement</a></li>
+  <li><a href="//www.mozilla.org/MPL/">{{ _('Source Code Licensing Terms') }}</a></li>
+  <li><a href="//www.mozilla.org/MPL/license-policy.html">{{ _('Mozilla Foundation License Policy') }}</a></li>
+  <li><a href="//www.mozilla.org/legal/eula/">{{ _('Mozilla Corporation End-User Licensing Agreement') }}</a></li>
+  <li><a href="//www.mozilla.org/legal/eula/">{{ _('Mozilla Foundation End-User Licensing Agreement') }}</a></li>
 </ul>
-{% endtrans %}
 
-{% trans 
-	privacy_url = "/privacy-policy.html ",
-	firefox_privacy_url = "/legal/privacy/firefox.html",
-	weave_privacy_url = "//mozillalabs.com/weave/weave-privacy-policy/",
-	testpilot_privacy_url = "//testpilot.mozillalabs.com/privacy.html"
-	%}
-<h2>Privacy</h2>
+<h2>{{ _('Privacy') }}</h2>
 <ul>
-	<li><a href="{{ privacy_url }}">Mozilla Privacy Policy</a></li>
-	<li><a href="{{ firefox_privacy_url }}">Mozilla Firefox Privacy Policy</a></li>
-	<li><a href="{{ weave_privacy_url }}">Weave Privacy Policy</a></li>
-	<li><a href="{{ testpilot_privacy_url }}">Test Pilot Privacy Policy</a></li>
+  <li><a href="/privacy-policy.html">{{ _('Mozilla Privacy Policy') }}</a></li>
+  <li><a href="/legal/privacy/firefox.html">{{ _('Mozilla Firefox Privacy Policy') }}</a></li>
+  <li><a href="//mozillalabs.com/weave/weave-privacy-policy/">{{ _('Weave Privacy Policy') }}</a></li>
+  <li><a href="//testpilot.mozillalabs.com/privacy.html">{{ _('Test Pilot Privacy Policy') }}</a></li>
 </ul>
-{% endtrans %}
-{% trans
-	security_bugs_policy_url = "/projects/security/security-bugs-policy.html" ,
-	cert_policy_url = "/projects/security/certs/policy/",
-	trademark_policy_url = "/foundation/trademarks/policy.html ",
-	l10n_plolicy_url = "/foundation/trademarks/l10n-policy.html ",
-	l10n_website_policy_url =  "/foundation/trademarks/l10n-website-policy.html ",
-	distribution_policy_url = "/foundation/trademarks/distribution-policy.html ",
-	trademarks_url = "//www.mozilla.org/foundation/trademarks/",
-	website_markup_usage_policy_url = "/foundation/licensing/website-markup.html",
-	website_content_policy_url= "/foundation/licensing/website-content.html"
 
-	%}
-<h2>Security</h2>
+<h2>{{ _('Security') }}</h2>
 <ul>
-	<li><a href="{{ security_bugs_policy_url }}">Security Bugs Policy</a></li>
-	<li><a href="{{cert_policy_url }}">Mozilla CA Certificate Policy</a></li>
+  <li><a href="{{ url('mozorg.about.governance.policies.security.tld-idn') }}">{{ _('IDN-enabled TLDs') }}</a></li>
+  <li><a href="/projects/security/certs/policy/">{{ _('Mozilla CA Certificate Policy') }}</a></li>
+  <li><a href="{{ url('mozorg.about.governance.policies.security.group') }}">{{ _('Mozilla Security Group') }}</a></li>
+  <li><a href="{{ url('mozorg.about.governance.policies.security.membership') }}">{{ _('Mozilla Security Group Membership Policy') }}</a></li>
+  <li><a href="{{ url('mozorg.about.governance.policies.security.bugs') }}">{{ _('Security Bugs Policy') }}</a></li>
 </ul>
-<h2>Trademarks </h2>
+<h2>{{ _('Trademarks') }}</h2>
 <ul>
-	<li><a href="{{ trademark_policy_url }}">Mozilla Trademark Policy</a></li>
-	<li><a href="{{ l10n_plolicy_url }}">Mozilla Trademark Policy for Localization Projects</a></li>
-	<li><a href="{{ l10n_website_policy_url }}">Mozilla Trademark Policy for Web Sites Created by Localization Teams (draft)</a></li>
-	<li><a href="{{ distribution_policy_url }}">Mozilla Trademark Policy for Distribution Partners (draft)</a></li>
+  <li><a href="/foundation/trademarks/policy.html">{{ _('Mozilla Trademark Policy') }}</a></li>
+  <li><a href="/foundation/trademarks/l10n-policy.html">{{ _('Mozilla Trademark Policy for Localization Projects') }}</a></li>
+  <li><a href="/foundation/trademarks/l10n-website-policy.html">{{ _('Mozilla Trademark Policy for Web Sites Created by Localization Teams (draft)') }}</a></li>
+  <li><a href="/foundation/trademarks/distribution-policy.html">{{ _('Mozilla Trademark Policy for Distribution Partners (draft)') }}</a></li>
 </ul>
-<p>For guidelines, FAQs and other information about trademarks, see the <a href="{{ trademarks_url }}">Trademark Policy</a> page.</p>
-<h2>Website</h2>
+
+<p>{% trans trademarks_url = "//www.mozilla.org/foundation/trademarks/" %}
+For guidelines, FAQs and other information about trademarks, see the <a href="{{ trademarks_url }}">Trademark Policy</a> page.
+{% endtrans %}</p>
+
+<h2>{{ _('Website') }}</h2>
 <ul>
-	<li><a href="{{ website_markup_usage_policy_url }}">Website Markup Usage Policy</a></li>
-	<li><a href="{{ website_content_policy_url }}">Mozilla.org Site Licensing Policy</a></li>
+  <li><a href="/foundation/licensing/website-markup.html">{{ _('Website Markup Usage Policy') }}</a></li>
+  <li><a href="/foundation/licensing/website-content.html">{{ _('Mozilla.org Site Licensing Policy') }}</a></li>
 </ul>
-{% endtrans %}
 
 {% endblock %}

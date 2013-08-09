@@ -1,0 +1,430 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/about-base.html" %}
+
+{% block page_title %}{{ _('IDN-enabled TLDs') }}{% endblock %}
+{% block body_class %}sand{% endblock %}
+
+{% block extrahead %}
+  {{ css('security-tld-idn') }}
+{% endblock %}
+
+{% block article %}
+
+<h1 class="title-banner">{{ _('IDN-enabled TLDs') }}</h1>
+
+<p>{{ _('This is a list of top-level domains (TLDs) for which software from the Mozilla project displays Internationalized Domain Names (IDNs). It may not exactly match your product, depending on which version you have; search “about:config” for “IDN.whitelist” to see the list in your copy.') }}</p>
+
+<p><strong>{% trans url='https://wiki.mozilla.org/IDN_Display_Algorithm' %}
+Please note that the mechanism by which Firefox makes these decisions is due to change. <a href="{{ url }}">This document</a> has the details. Note in particular the section marked “Transition”, which defines the new requirement for registries seeking inclusion on the list in the period before the new algorithm is implemented in Firefox.
+{% endtrans %}</strong></p>
+
+<p>{{ _('In the absence of an entry in the list, a domain will still work, but it is rendered in its Punycode form instead of in native form. This helps to keep confusingly similar domains from being displayed when rendered for the user.') }}</p>
+
+<h2>{{ _('To Add/Update a TLD') }}</h2>
+
+<p>{% trans url='https://bugzilla.mozilla.org/enter_bug.cgi?product=Core&amp;component=Networking:+Domain+Lists&amp;short_desc=Add+TLD+[YOURTLD]+to+IDN+whitelist&amp;comment=TLD:+[YOURTLD]%0ARegistry+URL:+[URL+of+NIC]%0AIDN+Policy+URL:[URL+of+Policy]%0ACharacter+Table+URL:+[URL+of+Characters]%0A%0A&lt;Description+of+Homographs+not+being+possible+or+link+to+document+that+explains&gt;%0A%0ASincerely,%0A-Official+NIC+Representative+for+TLD+[As+much+contact+info+as+possible]&amp;cc=gerv@mozilla.org' %}
+Any registry which wishes the Foundation to update their information or enable IDN display for their TLD should <a href="{{ url }}">submit a bug</a>, providing the following:
+{% endtrans %}
+
+<ul>
+<li>{{ _('the TLD(s) being submitted for addition or modification, and') }}</li>
+<li>{{ _('a link to their registry home page, and') }}</li>
+<li>{% trans url='https://wiki.mozilla.org/IDN_Display_Algorithm' %}
+a link to their policy page, with an explanation of how their policy is equally or more restrictive than the one set out in the <a href="{{ url }}">algorithm document</a>, and{% endtrans %}</li>
+<li>{{ _('Their name, and role within the TLD Registry, with contact information for further correspondance or clarifications') }}</li>
+</ul>
+  
+<p>Anyone who has evidence that a registry is not following their published policies, or that the policy has changed to permit the situation prohibited above should <a href="http://www.mozilla.org/security/#For_Developers">contact the Mozilla security group</a>.</p>
+
+<h2>{{ _('ASCII Country Code or Generic/Sponsored Top Level Domains') }}</h2>
+
+<table class="table">
+  <tr>
+    <td>.ac</td>
+    <td><a href="http://www.nic.ac/">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.nic.ac/pdf/AC-IDN-Policy.pdf">{{ _('Policy') }}</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>.ar</td>
+    <td><a href="http://www.nic.ar/">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.nic.ar/616.html">{{ _('Policy') }}</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>.asia</td>
+    <td><a href="http://www.registry.asia">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.nic.at/en/service/legal_information/registration_guidelines/">{{ _('Policy') }}</a></td>
+    <td><a href="http://www.iana.org/domains/idn-tables/">{{ _('Character List') }}</a></td>
+  </tr>
+  <tr>
+    <td>.at</td>
+    <td><a href="http://www.nic.at/">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.nic.at/en/service/legal_information/registration_guidelines/">{{ _('Policy') }}</a></td>
+    <td><a href="http://www.nic.at/en/service/technical_information/idn/charset_converter/">{{ _('Character List') }}</a></td>
+  </tr>
+  <tr>
+    <td>.biz</td>
+    <td><a href="http://www.neustarregistry.biz/">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.neustarregistry.biz/products/idns">{{ _('Policy') }}</a></td>
+    <td><a href="http://www.iana.org/domains/idn-tables/">{{ _('Character List') }}</a></td>
+  </tr>
+  <tr>
+    <td>.br</td>
+    <td><a href="http://registro.br/">{{ _('Registry') }}</a></td>
+    <td><a href="http://registro.br/faq/faq6.html">{{ _('Policy') }}</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>.cat</td>
+    <td><a href="http://www.domini.cat/">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.domini.cat/normativa/en_normativa_registre.html">{{ _('Policy') }}</a></td>
+    <td><a href="http://www.iana.org/domains/idn-tables/">{{ _('Character List') }}</a></td>
+  </tr>
+  <tr>
+    <td>.ch</td>
+    <td><a href="http://www.switch.ch/id/">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.switch.ch/id/terms/agb.html#anhang1">{{ _('Policy') }}</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>.cl</td>
+    <td><a href="http://www.nic.cl/">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.nic.cl/CL-IDN-policy.html">{{ _('Policy') }}</a></td>
+    <td><a href="http://www.iana.org/domains/idn-tables/">{{ _('Character List') }}</a></td>
+  </tr>
+  <tr>
+    <td>.cn</td>
+    <td><a href="http://www.cnnic.net.cn/">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.faqs.org/rfcs/rfc3743.html">{{ _('Policy') }}</a></td>
+    <td><a href="http://www.iana.org/domains/idn-tables/">{{ _('Character List') }}</a><br />{{ _('(JET Guidelines') }})</td>
+  </tr>
+  <tr>
+    <td>.com</td>
+    <td><a href="http://verisigninc.com/en_US/products-and-services/domain-name-services/registry-services/index.xhtml">{{ _('Registry') }}</a></td>
+    <td><a href="http://verisigninc.com/en_US/products-and-services/domain-name-services/domain-information-center/idn-code-points/registration-rules/index.xhtml">{{ _('Policy') }}</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>.de</td>
+    <td><a href="http://www.denic.de/">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.denic.de/en/richtlinien.html">{{ _('Policy') }}</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>.dk</td>
+    <td><a href="http://www.dk-hostmaster.dk/">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.dk-hostmaster.dk/index.php?id=151">{{ _('Policy') }}</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>.es</td>
+    <td><a href="https://www.nic.es/">{{ _('Registry') }}</a></td>
+    <td><a href="https://www.nic.es/media/2008-12/1228818323935.pdf">{{ _('Policy') }}</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>.fi</td>
+    <td><a href="http://www.ficora.fi/">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.ficora.fi/en/index/palvelut/fiverkkotunnukset/aakkostenkaytto.html">{{ _('Policy') }}</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>.gr</td>
+    <td><a href="https://grweb.ics.forth.gr/english/index.html">{{ _('Registry') }}</a></td>
+    <td><a href="https://grweb.ics.forth.gr/english/ENCharacterTable1.jsp">{{ _('Policy') }}</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>.hu</td>
+    <td><a href="http://www.domain.hu/domain/">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.domain.hu/domain/English/szabalyzat.html">{{ _('Policy') }}</a></td>
+    <td>{{ _('(Characters in section 2.1.2 of Policy') }})</td>
+  </tr>
+  <tr>
+    <td>.il</td>
+    <td><a href="http://www.isoc.org.il/">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.isoc.org.il/domains/il-domain-rules.html">{{ _('Policy') }}</a></td>
+    <td><a href="http://www.iana.org/domains/idn-tables/">{{ _('Character List') }}</a></td>
+  </tr>
+  <tr>
+    <td>.info</td>
+    <td><a href="http://www.afilias.info/">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.afilias.info/register/idn/">{{ _('Policy') }}</a></td>
+    <td><a href="http://www.iana.org/domains/idn-tables/">{{ _('Character List') }}</a></td>
+  </tr>
+  <tr>
+    <td>.io</td>
+    <td><a href="http://www.nic.io">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.nic.io/IO-IDN-Policy.pdf">{{ _('Policy') }}</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>.ir</td>
+    <td><a href="https://www.nic.ir/">{{ _('Registry') }}</a></td>
+    <td><a href="https://www.nic.ir/IDN">{{ _('Policy') }}</a></td>
+    <td><a href="http://www.iana.org/domains/idn-tables/">{{ _('Character List') }}</a></td>
+  </tr>
+  <tr>
+    <td>.is</td>
+    <td><a href="http://www.isnic.is/">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.isnic.is/english/domain/rules.php">{{ _('Policy') }}</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>.jp</td>
+    <td><a href="http://jprs.co.jp/">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.iana.org/assignments/idn/jp-japanese.html">{{ _('Policy') }}</a></td>
+    <td><a href="http://www.iana.org/domains/idn-tables/">{{ _('Character List') }}</a></td>
+  </tr>
+  <tr>
+    <td>.kr</td>
+    <td><a href="http://domain.nic.or.kr/">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.faqs.org/rfcs/rfc3743.html">{{ _('Policy') }}</a></td>
+    <td><a href="http://www.iana.org/domains/idn-tables/">{{ _('Character List') }}</a><br />{{ _('(JET Guidelines') }})</td>
+  </tr>
+  <tr>
+    <td>.li</td>
+    <td><a href="http://www.switch.ch/id/">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.switch.ch/id/terms/agb.html#anhang1">{{ _('Policy') }}</a></td>
+    <td>{{ _('(see .ch registry') }})</td>
+  </tr>
+  <tr>
+    <td>.lt</td>
+    <td><a href="http://www.domreg.lt/public?pg=&sp=&loc=en">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.domreg.lt/public?pg=8A7FB6&amp;sp=idn&amp;loc=en">{{ _('Policy') }}</a></td>
+    <td><a href="http://www.domreg.lt/static/doc/public/idn_symbols-en.pdf">{{ _('Character List') }}</a></td>
+  </tr>
+  <tr>
+    <td>.lu</td>
+    <td><a href="http://www.dns.lu/">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.dns.lu/en/support/general-information/domain-name-policy-lu-charter/">{{ _('Policy') }}</a></td>
+    <td><a href="http://www.dns.lu/en/support/general-information/idn/">{{ _('Character List') }}</a></td>
+  </tr>
+  <tr>
+    <td>.lv</td>
+    <td><a href="http://www.nic.lv/">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.nic.lv/resource/show/53">{{ _('Policy') }}</a></td>
+    <td>{{ _('(Characters in 1.11 and 6.1.3 of Policy') }})</td>
+  </tr>
+  <tr>
+    <td>.museum</td>
+    <td><a href="http://about.museum/">{{ _('Registry') }}</a></td>
+    <td><a href="http://about.museum/idn/idnpolicy.html">{{ _('Policy') }}</a></td>
+    <td><a href="http://www.iana.org/domains/idn-tables/">{{ _('Character List') }}</a></td>
+  </tr>
+  <tr>
+    <td>.name</td>
+    <td><a href="http://verisigninc.com/en_US/products-and-services/domain-name-services/registry-services/index.xhtml">{{ _('Registry') }}</a></td>
+    <td><a href="http://verisigninc.com/en_US/products-and-services/domain-name-services/domain-information-center/idn-code-points/registration-rules/index.xhtml">{{ _('Policy') }}</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>.net</td>
+    <td><a href="http://verisigninc.com/en_US/products-and-services/domain-name-services/registry-services/index.xhtml">{{ _('Registry') }}</a></td>
+    <td><a href="http://verisigninc.com/en_US/products-and-services/domain-name-services/domain-information-center/idn-code-points/registration-rules/index.xhtml">{{ _('Policy') }}</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>.no</td>
+    <td><a href="http://www.norid.no/">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.norid.no/domeneregistrering/veiviser.en.html">{{ _('Policy') }}</a></td>
+    <td>{{ _('(characters in section 4 of Policy') }})</td>
+  </tr>
+  <tr>
+    <td>.nu</td>
+    <td><a href="http://www.nunames.nu/">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.nunames.nu/Local-Language.cfm">{{ _('Policy') }}</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>.nz</td>
+    <td><a href="http://dnc.org.nz/">{{ _('Registry') }}</a></td>
+    <td><a href="http://dnc.org.nz/content/rmc.html">{{ _('Policy') }}</a></td>
+    <td><a href="http://www.iana.org/domains/idn-tables/">{{ _('Character List') }}</a></td>
+  </tr>
+  <tr>
+    <td>.org</td>
+    <td><a href="http://www.pir.org/">{{ _('Registry') }}</a></td>
+    <td><a href="http://pir.org/PDFs/ORG-Extended-Characters-22-Jan-07.pdf">{{ _('Policy') }}</a></td>
+    <td><a href="http://www.iana.org/domains/idn-tables/">{{ _('Character List') }}</a></td>
+  </tr>
+  <tr>
+    <td>.pl</td>
+    <td><a href="http://www.nask.pl/">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.dns.pl/IDN/idn-registration-policy.txt">{{ _('Policy') }}</a></td>
+    <td><a href="http://www.iana.org/domains/idn-tables/">{{ _('Character List') }}</a></td>
+  </tr>
+  <tr>
+    <td>.pr</td>
+    <td><a href="https://www.nic.pr/">{{ _('Registry') }}</a></td>
+    <td><a href="https://www.nic.pr/idn_rules.asp">{{ _('Policy') }}</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>.se</td>
+    <td><a href="http://www.nic-se.se/">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.iis.se/en/domaner/internationaliserad-doman-idn/">{{ _('Policy') }}</a></td>
+    <td><a href="http://www.iis.se/docs/teckentabell-03.pdf">{{ _('Character List') }}</a></td>
+  </tr>
+  <tr>
+    <td>.sh</td>
+    <td><a href="http://www.nic.sh">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.nic.sh/SH-IDN-Policy.pdf">{{ _('Policy') }}</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>.tel</td>
+    <td><a href="http://www.telnic.org/">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.telnic.org/policies.html">{{ _('Policy') }}</a></td>
+    <td><a href="http://www.iana.org/domains/idn-tables/">{{ _('Character List') }}</a></td>
+  </tr>
+  <tr>
+    <td>.th</td>
+    <td><a href="http://www.thnic.or.th/">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.iana.org/assignments/idn/th-thai.html">{{ _('Policy') }}</a></td>
+    <td><a href="http://www.iana.org/domains/idn-tables/">{{ _('Character List') }}</a></td>
+  </tr>
+  <tr>
+    <td>.tm</td>
+    <td><a href="http://www.nic.tm">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.nic.tm/TM-IDN-Policy.pdf">{{ _('Policy') }}</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>.tw</td>
+    <td><a href="http://www.twnic.net.tw/">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.faqs.org/rfcs/rfc3743.html">{{ _('Policy') }}</a></td>
+    <td><a href="http://www.iana.org/domains/idn-tables/">{{ _('Character List') }}</a><br />{{ _('(JET Guidelines') }})</td>
+  </tr>
+  <tr>
+    <td>.ua</td>
+    <td><a href="http://www.hostmaster.ua/">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.hostmaster.ua/idn/">{{ _('Policy') }}</a></td>
+    <td><a href="http://www.iana.org/domains/idn-tables/">{{ _('Character List') }}</a></td>
+  </tr>
+  <tr>
+    <td>.vn</td>
+    <td><a href="http://www.vnnic.net.vn/">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.vnnic.vn/english/5-6-300-2-2-04-20071115.htm">{{ _('Policy') }}</a></td>
+    <td><a href="http://vietunicode.sourceforge.net/tcvn6909.pdf">{{ _('Character List') }}</a></td>
+  </tr>
+</table>
+
+<h2 id="country-code">{{ _('IDN Country Code or Generic/Sponsored Top Level Domains') }}</h2>
+
+<table class="table">
+  <tr>
+    <td align="right">.الاردن</td>
+    <td>.xn--mgbayh7gpa</td>
+    <td>.&lt;al-Ordon&gt;</td>
+    <td><a href="http://www.nitc.gov.jo/">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.iana.org/domains/idn-tables/tables/sa_ar_1.0.html">{{ _('Policy') }}</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right">.السعودية</td>
+    <td>.xn--mgberp4a5d4ar  and variants</td>
+    <td>.&lt;al-Saudiah&gt;</td>
+    <td><a href="http://nic.net.sa/">{{ _('Registry') }}</a></td>
+    <td><a href="http://nic.net.sa/adn-en.php">{{ _('Policy') }}</a></td> 
+    <td><a href="http://tools.ietf.org/html/rfc5564">{{ _('Character List') }}</a></td>
+  </tr>
+  <tr>
+    <td>.中國 .中国</td>
+    <td>.xn--fiqz9s<br />.xn--fiqs8s</td>
+    <td>.&lt;China&gt;</td>
+    <td><a href="http://www.cnnic.cn/">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.faqs.org/rfcs/rfc3743.html">{{ _('Policy') }}</a></td>
+    <td>{{ _('(JET Guidelines') }})</td>
+  </tr>
+  <tr>
+    <td align="right">.امارات</td>
+    <td>.xn--mgbaam7a8h</td>
+    <td>.&lt;Emarat&gt;</td>
+    <td><a href="http://aeda.ae/">{{ _('Registry') }}</a></td>
+    <td><a href="http://policy.aeda.ae">{{ _('Policy') }}</a></td>
+    <td><a href="http://aeda.ae/eng/emaratlngtb.php">{{ _('Character List') }}</a></td>
+  </tr>
+  <tr>
+    <td>.香港</td>
+    <td>.xn--j6w193g</td>
+    <td>.&lt;Hong Kong&gt;</td>
+    <td><a href=" https://www2.hkirc.hk/">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.faqs.org/rfcs/rfc3743.html">{{ _('Policy') }}</a></td>
+    <td>{{ _('(JET Guidelines') }})</td>
+  </tr>
+  <tr>
+    <td align=right>.ایران</td>
+    <td>.xn--mgba3a4f16a<br />.xn--mgba3a4fra</td>
+    <td>.&lt;Iran&gt;</td>
+    <td><a href="http://www.nic.ir/">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.nic.ir/IDN">{{ _('Policy') }}</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>.ලංකා<br />.இலங்கை</td>
+    <td>.xn--fzc2c9e2c<br />.xn--xkc2al3hye2a</td>
+    <td>.&lt;Lanka&gt;<br />.&lt;llangai&gt;</td>
+    <td><a href="http://www.nic.lk">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.nic.lk/index.php/en/idn-policy">{{ _('Policy') }}</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align=right>.مصر</td>
+    <td>.xn--wgbh1c</td>
+    <td>.&lt;Masr&gt;</td>
+    <td><a href="http://www.dotmasr.eg/">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.dotmasr.eg/LanguageTable.pdf">{{ _('Policy') }}</a></td>
+    <td><a href="http://www.dotmasr.eg/LanguageTable.pdf">{{ _('Character List') }}</a></td>
+  </tr>
+  <tr>
+    <td align=right>.قطر</td>
+    <td>.xn--wgbl6a</td>
+    <td>.&lt;Qatar&gt;</td>
+    <td><a href="http://domains.qa/">{{ _('Registry') }}</a></td>
+    <td><a href="http://domains.qa/sites/default/files/Qatar%20Domains%20Registry-Domain%20Name%20Registration%20Policy_0.pdf">{{ _('Policy') }}</a></td>
+    <td>{{ _('(characters in Appendix A of Policy') }})</td>
+  </tr>
+  <tr>
+    <td>.РФ</td>
+    <td>.xn--p1ai</td>
+    <td>.&lt;RF&gt;</td>
+    <td><a href="http://www.cctld.ru/">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.cctld.ru/en/docs/rulesrf.php">{{ _('Policy') }}</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align=right>.سورية</td>
+    <td>.xn--ogbpf8fl</td>
+    <td>.&lt;Souria&gt;</td>
+    <td><a href="https://reg.tld.sy">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.nans.gov.sy/index.php/services/sy-domain/29-dotsouria">{{ _('Policy') }}</a></td>
+    <td>{{ _('(JET Guidelines') }})</td>
+  </tr>
+  <tr>
+    <td>.台灣<br />.台湾</td>
+    <td>.xn--kpry57d <br />.xn--kprw13d</td>
+    <td>.&lt;Taiwan&gt;</td>
+    <td><a href="http://www.twnic.net/">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.faqs.org/rfcs/rfc3743.html">{{ _('Policy') }}</a></td>
+    <td>{{ _('(JET Guidelines') }})</td>
+  </tr>
+
+<!--
+  <tr>
+    <td></td>
+    <td><a href="">{{ _('Registry') }}</a></td>
+    <td><a href="">{{ _('Policy') }}</a></td>
+  </tr>
+-->
+
+</table>
+    
+<h2 id="testing">{{ _('Testing') }}</h2>
+
+<p class="testing">{{ _('To enable IDN for a particular TLD for testing purposes, go to the URL <tt>about:config</tt> in Firefox 1.1 or above and add a boolean pref called "network.IDN.whitelist.tld", where "tld" is the TLD, and set it to "true". <em>This procedure is not recommended for users as it may expose them to security risk.') }}</em></p>
+{% endblock %}
