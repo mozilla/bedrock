@@ -61,7 +61,7 @@ def parse(path, skip_untranslated=True):
                 source = line[1:]
             elif source:
                 for tag in ('{ok}', '{l10n-extra}'):
-                    if line.endswith(tag):
+                    if line.lower().endswith(tag):
                         line = line[:-len(tag)]
                 line = line.strip()
                 if skip_untranslated and source == line:

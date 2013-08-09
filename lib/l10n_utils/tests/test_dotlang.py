@@ -113,6 +113,22 @@ class TestDotlang(TestCase):
         }
         eq_(parsed, expected)
 
+    def test_parse_not_skip_untranslated(self):
+        path = os.path.join(ROOT, 'test.lang')
+        parsed = parse(path, skip_untranslated=False)
+        expected = {
+            u'Hooray! Your Firefox is up to date.':
+                u'F\xe9licitations&nbsp;! '
+                u'Votre Firefox a \xe9t\xe9 mis \xe0 jour.',
+            u'Your Firefox is out of date.':
+                u'Votre Firefox ne semble pas \xe0 jour.',
+            u'Firefox Beta':
+                u'Firefox Beta',
+            u'Firefox Aurora':
+                u'Firefox Aurora'
+        }
+        eq_(parsed, expected)
+
     def test_parse_utf8_error(self):
         path = os.path.join(ROOT, 'test_utf8_error.lang')
         parsed = parse(path)
