@@ -170,7 +170,7 @@ function gaTrack(eventArray, callback) {
 
                 // If hitCallback continues to cause problems, we should be able to safely
                 // remove it and use only the setTimeout technique.
-                ['_set', 'hitCallback', gaCallback()]
+                ['_set', 'hitCallback', gaCallback]
             );
         }
         // send event to GA

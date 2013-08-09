@@ -244,7 +244,7 @@ var Tabzilla = (function (Tabzilla) {
                     e.preventDefault();
                     timer = setTimeout(callback, 500);
                     window._gaq.push(
-                        ['_set', 'hitCallback', callback()],
+                        ['_set', 'hitCallback', callback],
                         ['_trackEvent', 'Tabzilla', 'click', href]
                     );
                 }
@@ -267,7 +267,7 @@ var Tabzilla = (function (Tabzilla) {
             if (typeof(_gaq) == 'object' && keyword !== '') {
                 timer = setTimeout(callback, 500);
                 window._gaq.push(
-                    ['_set', 'hitCallback', callback()],
+                    ['_set', 'hitCallback', callback],
                     ['_trackEvent', 'Tabzilla', 'search', keyword]
                 );
             } else {
