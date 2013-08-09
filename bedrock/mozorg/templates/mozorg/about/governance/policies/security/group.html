@@ -1,0 +1,211 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/about-base.html" %}
+
+{% block page_title %}{{ _('Mozilla Security Group') }}{% endblock %}
+{% block body_class %}sand{% endblock %}
+
+{% block extrahead %}
+    {{ css('security-group') }}
+{% endblock %}
+
+{% block article %}
+  <h1 class="title-banner">{{ _('Mozilla Security Group') }}</h1>
+
+  <p><strong>{% trans mail='mailto:security@mozilla.org?subject=Mozilla%20security%20bug%20report' %}
+    IMPORTANT: Anyone who believes they have found a Mozilla-related security vulnerability can and should report
+it by sending email to the address <a href="{{ mail }}">security@mozilla.org</a>.
+  {% endtrans %}</strong></p>
+
+  <ul>
+    <li><a href="{{ url('mozorg.about.governance.policies.security.membership') }}">
+      {{ _('Mozilla Security Group Membership Policy') }}
+    </a></li>
+  </ul>
+
+  <h3>{{ _('Security Group') }}</h3>
+
+  <ul class="unstyled members">
+    <li>Daniel Veditz, Moderator ({{ _('Mozilla') }})</li>
+    <li>Al Billings ({{ _('Mozilla') }})</li>
+    <li>Alex Keybl ({{ _('Mozilla') }})</li>
+    <li>Alexander Sack ({{ _('Ubuntu') }})</li>
+    <li>Alfred Peng ({{ _('OpenSolaris') }})</li>
+    <li>Andreas Gal ({{ _('Mozilla') }})</li>
+    <li>Andrew McCreight ({{ _('Mozilla') }})</li>
+    <li>Arun Ranganathan ({{ _('Mozilla') }})</li>
+    <li>Asa Dotzler ({{ _('Mozilla') }})</li>
+    <li>Ben Adida ({{ _('Mozilla') }})</li>
+    <li>Ben Bucksch ({{ _('Beonex') }})</li>
+    <li>Ben Turner ({{ _('Mozilla') }})</li>
+    <li>Benjamin Smedberg ({{ _('Mozilla') }})</li>
+    <li>Bill McCloskey ({{ _('Mozilla') }})</li>
+    <li>Blake Kaplan ({{ _('Mozilla') }})</li>
+    <li>Bob Clary ({{ _('Mozilla') }})</li>
+    <li>Bob Lord ({{ _('advisory member, Twitter') }})</li>
+    <li>Bob Moss ({{ _('Mozilla') }})</li>
+    <li>Boris Zbarsky ({{ _('Mozilla') }})</li>
+    <li>Brad Lassey ({{ _('Mozilla') }})</li>
+    <li>Brandon Sterne ({{ _('advisory member, Workday') }})</li>
+    <li>Brendan Eich ({{ _('Mozilla') }})</li>
+    <li>Cameron Kaiser ({{ _('TenFourFox') }})</li>
+    <li>Camilo Viecco ({{ _('Mozilla') }})</li>
+    <li>Carsten Book ({{ _('Mozilla') }})</li>
+    <li>Cheng Wang ({{ _('Mozilla') }})</li>
+    <li>Chris Beard ({{ _('Mozilla') }})</li>
+    <li>Chris Hofmann ({{ _('Mozilla') }})</li>
+    <li>Chris Lyon ({{ _('advisory member, Jive') }})</li>
+    <li>Christian Holler ({{ _('Mozilla') }})</li>
+    <li>Clint Talbert ({{ _('Mozilla') }})</li>
+    <li>Colin Blake ({{ _('Arcot') }})</li>
+    <li>Curtis Koenig ({{ _('Mozilla') }})</li>
+    <li>Dan Mosedale ({{ _('Mozilla') }})</li>
+    <li>Daniel Holbert ({{ _('Mozilla') }})</li>
+    <li>David Anderson ({{ _('Mozilla') }})</li>
+    <li>David Ascher ({{ _('Mozilla') }})</li>
+    <li>David Baron ({{ _('Mozilla') }})</li>
+    <li>David Bienvenu ({{ _('Mozilla') }})</li>
+    <li>David Bolter ({{ _('Mozilla') }})</li>
+    <li>David Chan ({{ _('Mozilla') }})</li>
+    <li>David Keeler ({{ _('Mozilla') }})</li>
+    <li>Dietrich Ayala ({{ _('Mozilla') }})</li>
+    <li>Doug Turner ({{ _('Mozilla') }})</li>
+    <li>Huzaifa Sidhpurwala ({{ _('Red Hat') }})</li>
+    <li>Gary Kwong ({{ _('Mozilla') }})</li>
+    <li>Gavin Sharp ({{ _('Mozilla') }})</li>
+    <li>Gervase Markham ({{ _('Mozilla') }})</li>
+    <li>Guillaume Destuynder ({{ _('Mozilla') }})</li>
+    <li>Ginn Chen ({{ _('Oracle') }})</li>
+    <li>Giorgio Maone ({{ _('NoScript.net') }})</li>
+    <li>Graydon Hoare ({{ _('Mozilla') }})</li>
+    <li>Ian Hickson ({{ _('advisory member, Google') }})</li>
+    <li>Ian Melven ({{ _('Mozilla') }})</li>
+    <li>J. Paul Reed ({{ _('Release Engineering Approaches') }})</li>
+    <li>Jay Sullivan ({{ _('Mozilla') }})</li>
+    <li>Jeff Walden ({{ _('Mozilla') }})</li>
+    <li>Jesse Ruderman ({{ _('Mozilla') }})</li>
+    <li>Jet Villeges ({{ _('Mozilla') }})</li>
+    <li>Joe Stevensen ({{ _('Mozilla') }})</li>
+    <li>Johnathan Nightingale ({{ _('Mozilla') }})</li>
+    <li>Johnny Stenback ({{ _('Mozilla') }})</li>
+    <li>John O'Duinn ({{ _('Mozilla') }})</li>
+    <li>Jonas Sicking ({{ _('Mozilla') }})</li>
+    <li>Jason Orendorff ({{ _('Mozilla') }})</li>
+    <li>Josh Aas ({{ _('Mozilla') }})</li>
+    <li>Juan Becerra ({{ _('Mozilla') }})</li>
+    <li>Justin Dolske ({{ _('Mozilla') }})</li>
+    <li>Justin Scott ({{ _('Mozilla') }})</li>
+    <li>Justin Wood ({{ _('SeaMonkey') }})</li>
+    <li>Kai Engert ({{ _('Red Hat') }})</li>
+    <li>Kathleen Wilson ({{ _('Mozilla') }})</li>
+    <li>Kevin Brosnan ({{ _('Mozilla') }})</li>
+    <li>Larissa Co ({{ _('Mozilla') }})</li>
+    <li>Lucas Adamski ({{ _('Mozilla') }})</li>
+    <li>Lukas Blakk ({{ _('Mozilla') }})</li>
+    <li>Marcia Knous ({{ _('Mozilla') }})</li>
+    <li>Mark Banner ({{ _('Mozilla') }})</li>
+    <li>Mark Finkle ({{ _('Mozilla') }})</li>
+    <li>Mark Goodwin ({{ _('Mozilla') }})</li>
+    <li>Martijn Wargers ({{ _('Mozilla') }})</li>
+    <li>Martin Stránský ({{ _('Red Hat') }})</li>
+    <li>Mats Palmgren ({{ _('Mozilla') }})</li>
+    <li>Matthew Zeier ({{ _('Mozilla') }})</li>
+    <li>Michael Coates ({{ _('Mozilla') }})</li>
+    <li>Mike Connor ({{ _('Mozilla') }})</li>
+    <li>Mike Hommey ({{ _('Debian') }})</li>
+    <li>Mitchell Baker ({{ _('Mozilla') }})</li>
+    <li>Monica Chew ({{ _('Mozilla') }})</li>
+    <li>Naoki Hirata ({{ _('Mozilla') }})</li>
+    <li>Naveed Ihsanullah ({{ _('Mozilla') }})</li>
+    <li>Neil Rashbrook</li>
+    <li>Olli Pettay ({{ _('Mozilla') }})</li>
+    <li>Patrick McManus ({{ _('Mozilla') }})</li>
+    <li>Paxton Cooper ({{ _('Mozilla') }})</li>
+    <li>Peter Van der Beken ({{ _('Mozilla') }})</li>
+    <li>Philipp Kewisch ({{ _('Calendar') }})</li>
+    <li>Randell Jesup ({{ _('Mozilla') }})</li>
+    <li>Raymond Forbes ({{ _('Mozilla') }})</li>
+    <li>Reed Loden</li>
+    <li>Rob Campbell ({{ _('Mozilla') }})</li>
+    <li>Robert Kaiser ({{ _('SeaMonkey') }})</li>
+    <li>Robert O'Callahan ({{ _('Mozilla') }})</li>
+    <li>Robert Relyea ({{ _('Red Hat') }})</li>
+    <li>Scott MacGregor ({{ _('Postbox, Inc.') }})</li>
+    <li>Seth Spitzer ({{ _('Postbox, Inc.') }})</li>
+    <li>Sheila Mooney ({{ _('Mozilla') }})</li>
+    <li>Sid Stamm ({{ _('Mozilla') }})</li>
+    <li>Smokey Ardisson ({{ _('Camino') }})</li>
+    <li>Stefan Arentz ({{ _('Mozilla') }})</li>
+    <li>Stephen Donner ({{ _('Mozilla') }})</li>
+    <li>Stuart Morgan ({{ _('Camino') }})</li>
+    <li>Tanvi Vyas ({{ _('Mozilla') }})</li>
+    <li>Tony Chung ({{ _('Mozilla') }})</li>
+    <li>Wan-Teh Chang ({{ _('Google') }})</li>
+    <li>Wolfgang Rosenauer ({{ _('openSUSE') }})</li>
+    <li>Yvan Boily ({{ _('Mozilla') }})</li>
+  </ul>
+
+  <h4 id="additional">{{ _('Additional developers with security bug access')}}</h4>
+
+  <ul class="unstyled members">
+    <li>Andrew Overholt ({{ _('Mozilla') }})</li>
+    <li>Anthony Hughes ({{ _('Mozilla') }})</li>
+    <li>Ben Hearsum ({{ _('Mozilla') }})</li>
+    <li>Benoit Jacob ({{ _('Mozilla') }})</li>
+    <li>Bhavana Bajaj ({{ _('Mozilla') }})</li>
+    <li>Brian Bondy ({{ _('Mozilla') }})</li>
+    <li>Brian Hackett ({{ _('Mozilla') }})</li>
+    <li>Bobby Holley ({{ _('Mozilla') }})</li>
+    <li>Chris AtLee ({{ _('Mozilla') }})</li>
+    <li>Chris Double ({{ _('Mozilla') }})</li>
+    <li>Chris Lee ({{ _('Mozilla') }})</li>
+    <li>Chris Pearce ({{ _('Mozilla') }})</li>
+    <li>Dão Gottwald ({{ _('Mozilla') }})</li>
+    <li>Dave Townsend ({{ _('Mozilla') }})</li>
+    <li>Deb Richardson ({{ _('Mozilla') }})</li>
+    <li>Ehsan Akhgari ({{ _('Mozilla') }})</li>
+    <li>Ed Morley ({{ _('Mozilla') }})</li>
+    <li>Florian Quèze</li>
+    <li>Gabor Krizsanits ({{ _('Mozilla') }})</li>
+    <li>Geo Mealer ({{ _('Mozilla') }})</li>
+    <li>Gregor Wagner ({{ _('UC Irvine') }})</li>
+    <li>Henrik Skupin ({{ _('Mozilla') }})</li>
+    <li>Honza Bambas ({{ _('Mozilla') }})</li>
+    <li>Irving Reid ({{ _('Mozilla') }})</li>
+    <li>Jan de Mooij ({{ _('Mozilla') }})</li>
+    <li>Jason Duell ({{ _('Mozilla') }})</li>
+    <li>Jason Smith ({{ _('Mozilla') }})</li>
+    <li>Jeff Muizelaar ({{ _('Mozilla') }})</li>
+    <li>Jim Blandy ({{ _('Mozilla') }})</li>
+    <li>Joe Drew ({{ _('Mozilla') }})</li>
+    <li>John Daggett ({{ _('Mozilla') }})</li>
+    <li>Jonathan Kew ({{ _('Mozilla') }})</li>
+    <li>Julian Seward ({{ _('Mozilla') }})</li>
+    <li>Karl Tomlinson ({{ _('Mozilla') }})</li>
+    <li>Kyle Huey ({{ _('Mozilla') }})</li>
+    <li>Lawrence Mandel ({{ _('Mozilla') }})</li>
+    <li>Ludovic Hirlimann ({{ _('Mozilla') }})</li>
+    <li>Luke Wagner ({{ _('Mozilla') }})</li>
+    <li>Marty Rosenberg ({{ _('Mozilla') }})</li>
+    <li>Matthew Gregan ({{ _('Mozilla') }})</li>
+    <li>Milan Sreckovic ({{ _('Mozilla') }})</li>
+    <li>Nick Thomas ({{ _('Mozilla') }})</li>
+    <li>Nicolas Pierron ({{ _('Mozilla') }})</li>
+    <li>Paul Theriault ({{ _('Mozilla') }})</li>
+    <li>Robert Longson</li>
+    <li>Robert Strong ({{ _('Mozilla') }})</li>
+    <li>Ryan VanderMeulen</li>
+    <li>Sean Stangl ({{ _('Mozilla') }})</li>
+    <li>Simon Montagu ({{ _('Mozilla') }})</li>
+    <li>Steve Fink ({{ _('Mozilla') }})</li>
+    <li>Steven Michaud ({{ _('Mozilla') }})</li>
+    <li>Terrance Cole ({{ _('Mozilla') }})</li>
+    <li>Tim Terriberry ({{ _('Mozilla') }})</li>
+    <li>Tracy Walker ({{ _('Mozilla') }})</li>
+    <li>Wayne Mery</li>
+  </ul>
+
+
+{% endblock %}
