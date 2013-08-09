@@ -168,14 +168,14 @@
       $signup_content = $('#email-form-content').detach();
     }
 
-    Mozilla.Modal.create_modal(this, $signup_content, { onDestroy: reattachSignupContent, allowScroll: true });
+    Mozilla.Modal.createModal(this, $signup_content, { onDestroy: reattachSignupContent, allowScroll: true });
 
     //track GA event for newsletter CTA
     trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'click', cta]);
   });
 
   $('#sign-up-form-close').on('click', function() {
-    Mozilla.Modal.close_modal();
+    Mozilla.Modal.closeModal();
   });
 
   function reattachSignupContent() {
@@ -217,7 +217,7 @@
             $('#footer-email-form').fadeOut('fast', function() {
               $('#footer-email-thanks').fadeIn('fast');
               setTimeout(function() {
-                Mozilla.Modal.close_modal();
+                Mozilla.Modal.closeModal();
               }, 3000);
             });
           },
@@ -249,7 +249,7 @@
       $get_phone_content = $('#get-phone').detach();
     }
 
-    Mozilla.Modal.create_modal(this, $get_phone_content, { onDestroy: reattachGetPhoneContent, allowScroll: true });
+    Mozilla.Modal.createModal(this, $get_phone_content, { onDestroy: reattachGetPhoneContent, allowScroll: true });
 
     //track GA event for get a phone CTA
     trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'click', 'Get a Phone']);
