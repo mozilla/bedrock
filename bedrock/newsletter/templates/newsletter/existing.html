@@ -13,14 +13,6 @@
     </div>
   {% endblock %}
 
-  {% if messages %}  {# FIXME - this ought to be in base-resp.html #}
-    <ul class="messagelist billboard">
-      {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-      {% endfor %}
-    </ul>
-  {% endif %}
-
   {% if formset %}
     <form method="post" action="{{ secure_url() }}" id="existing-newsletter-form" class="container billboard"
         data-initial-newsletters='{{ newsletters_subscribed }}'>
