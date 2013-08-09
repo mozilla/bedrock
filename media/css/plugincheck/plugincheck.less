@@ -116,19 +116,30 @@
         width: 101px;
     }
 }
-.insensitive,
-.insensitive:link,
-.insensitive:visited {
+.safe,
+.safe:link,
+.safe:visited {
+    background-image: linear-gradient(rgb(129, 188, 46), rgb(101, 147, 36));
     padding: 0 12px 0 12px;
     width: 125px;
     font-weight: normal;
     span {
         display: inline-block;
-        background: transparent url(/media/img/plugincheck/buttons/up-to-date.png) 0 5px no-repeat;
+        background: transparent url(/media/img/plugincheck/buttons/up-to-date.png?2013-08-08) 0 5px no-repeat;
         color: #fff;
         padding: 12px 0 12px 21px;
         width: 101px;
     }
+}
+.safe:hover,
+.safe:link:hover,
+.safe:link:focus,
+.safe:visited:hover,
+.safe:visited:focus,
+.safe:focus {
+    box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.2),
+                0px -1px 0px 0px rgba(0, 0, 0, 0.3) inset,
+                0px 12px 24px 2px rgb(131, 200, 34) inset;
 }
 .research,
 .research:link,
