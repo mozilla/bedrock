@@ -28,5 +28,5 @@ var vulnerablePluginsTmpl = '{{#vulnerablePlugins}} <tr><th scope="row">' +
                         '<small>{{{ plugin_detail }}}</small>' +
                         '</th>' +
                         '<td class="status">{{plugin_status}}</td>' +
-                        '<td class="action"><a href="{{ url }}" class="button insensitive"><span>{{button_uptodate}}</span></a></td>' +
+                        '<td class="action"><a href="{{ url }}" class="button safe"><span>{{button_uptodate}}</span></a></td>' +
                         '</tr> {{/upToDatePlugins}}';
