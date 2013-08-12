@@ -148,24 +148,15 @@
         if (e.target.nodeName === 'A' && e.target.hostname && e.target.hostname !== location.hostname) {
             var newTab = (e.target.target === '_blank' || e.metaKey || e.crtlKey);
             var href = e.target.href;
-            var timer = null;
             var callback = function() {
-                clearTimeout(timer);
                 window.location = href;
             }
 
-            if (typeof(_gaq) === 'object') {
-                if (newTab) {
-                    window._gaq.push(['_trackEvent', '/new Interaction', 'click', href]);
-                } else {
-                    e.preventDefault();
-                    timer = setTimeout(callback, 500);
-                    window._gaq.push(
-                        ['_set', 'hitCallback', callback],
-                        ['_trackEvent', '/new Interaction', 'click', href]
-                    );
-
-                }
+            if (!newTab) {
+                gaTrack(['_trackEvent', '/new Interaction', 'click', href]);
+            } else {
+                e.preventDefault();
+                gaTrack(['_trackEvent', '/new Interaction', 'click', href], callback);
             }
         }
     });
