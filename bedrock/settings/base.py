@@ -500,7 +500,7 @@ MINIFY_BUNDLES = {
         ),
         'home': (
             'js/base/mozilla-pager.js',
-            'js/libs/video-js/video.js',
+            'js/libs/video-js/video.dev.js',
             'js/mozorg/home.js'
         ),
         'marketplace': (
