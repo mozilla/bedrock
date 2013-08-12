@@ -40,15 +40,6 @@
     var $thankYou = $('.thankyou');
     var hash_change = ('onhashchange' in window);
 
-    function track_and_redirect(url) {
-        if (_gaq) {
-            window._gaq.push(['_trackPageview', virtual_url]);
-        }
-        setTimeout(function() {
-            window.location.href = url;
-        }, 500);
-    }
-
     function show_scene(scene) {
         var CSSbottom = (scene === 2) ? '-400px' : 0;
         $stage.data('scene', scene);
@@ -94,8 +85,11 @@
 
         $stage.on('click', '#direct-download-link, .download-link', function(e) {
             e.preventDefault();
-
-            track_and_redirect($(e.currentTarget).attr('href'));
+            var href = $(e.currentTarget).attr('href');
+            gaTrack(
+                ['_trackPageview', virtual_url],
+                function() { location.href = href; }
+            );
 
             if ($stage.data('scene') !== 2) {
                 if (hash_change) {
