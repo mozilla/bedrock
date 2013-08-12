@@ -9,6 +9,7 @@ from django.core.context_processors import csrf
 from django.http import (HttpResponse, HttpResponseRedirect)
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.views.decorators.http import require_POST
+from django.views.generic.base import TemplateView
 from django.shortcuts import redirect
 
 import basket
@@ -191,3 +192,11 @@ def contribute_university_ambassadors(request):
         request,
         'mozorg/contribute_university_ambassadors.html', {'form': form}
     )
+
+
+class Robots(TemplateView):
+    template_name = 'mozorg/robots.txt'
+
+    def get_context_data(self, **kwargs):
+        SITE_URL = getattr(settings, 'SITE_URL', '')
+        return {'disallow_all': not SITE_URL.endswith('://www.mozilla.org')}
