@@ -145,7 +145,7 @@
 
     // Add external link tracking
     $(document).click(function(e) {
-        if (e.target.nodeName === 'A' && /^\w+:\/\//.test(e.target.href)) {
+        if (e.target.nodeName === 'A' && e.target.hostname && e.target.hostname !== location.hostname) {
             var newTab = (e.target.target === '_blank' || e.metaKey || e.crtlKey);
             var href = e.target.href;
             var timer = null;
