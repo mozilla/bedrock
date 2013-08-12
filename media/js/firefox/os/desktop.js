@@ -62,13 +62,15 @@
       $bg_next = $intro_bg_a;
     }
 
-    displayPhoneScreen(intro_bg_index);
-
     $bg_next.attr('class', 'intro-bg bg-' + intro_bgs[intro_bg_index]).show();
     $bg_cur.fadeOut(1000, function() {
       $bg_next.css('z-index', 2);
       $bg_cur.css('z-index', 1);
     });
+
+    setTimeout(function () {
+      displayPhoneScreen(intro_bg_index);
+    }, 100);
   }
 
   function engageIntroBGRotation() {
