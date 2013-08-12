@@ -113,10 +113,12 @@ def field_with_attrs(bfield, **kwargs):
 
 
 @jingo.register.function
-def platform_img(url, **kwargs):
+def platform_img(url, optional_attributes = {}, prepend_media_url = True):
     attrs = ' '.join(('%s="%s"' % (attr, val)
-                      for attr, val in kwargs.items()))
-    url = path.join(settings.MEDIA_URL, url.lstrip('/'))
+                      for attr, val in optional_attributes.items()))
+
+    if prepend_media_url:
+        url = path.join(settings.MEDIA_URL, url.lstrip('/'))
 
     # Don't download any image until the javascript sets it based on
     # data-src so we can to platform detection. If no js, show the

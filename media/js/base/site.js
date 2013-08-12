@@ -68,6 +68,12 @@
         if (pf.indexOf("Mac") !== -1) {
             return 'oldmac';
         }
+        if (navigator.platform == '' &&
+            navigator.userAgent.indexOf("Firefox") !== -1 &&
+            navigator.userAgent.indexOf("Mobile") !== -1) {
+            return 'fxos';
+        }
+
         return 'other';
     }
     (function () {

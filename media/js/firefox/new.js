@@ -4,8 +4,28 @@
 
 ;(function($, Modernizr, _gaq, site) {
     'use strict';
+    var $html = $(document.documentElement);
+
+    if (isFirefox()) {
+        var latestFirefoxVersion = $html.attr('data-latest-firefox');
+        latestFirefoxVersion = parseInt(latestFirefoxVersion.split('.')[0], 10);
+        latestFirefoxVersion--; // subtract one since a silent update may be
+                                // complete and the user hasn't restarted their
+                                // browser. This will be removed once there's
+                                // a way to get the current version directly
+                                // from the browser
+
+        if (isFirefoxUpToDate(latestFirefoxVersion + '')) {
+            $html.addClass('firefox-latest');
+        } else {
+            $html.addClass('firefox-old');
+        }
+    }
 
     if (site.platform === 'android') {
+        $('#download-button-android .download-subtitle').html(
+            $('.android.download-button-wrapper').data('upgradeSubtitle'));
+
         return;
     }
 
@@ -19,15 +39,6 @@
     var $stage = $('#stage-firefox');
     var $thankYou = $('.thankyou');
     var hash_change = ('onhashchange' in window);
-
-    function track_and_redirect(url) {
-        if (_gaq) {
-            window._gaq.push(['_trackPageview', virtual_url]);
-        }
-        setTimeout(function() {
-            window.location.href = url;
-        }, 500);
-    }
 
     function show_scene(scene) {
         var CSSbottom = (scene === 2) ? '-400px' : 0;
@@ -74,8 +85,11 @@
 
         $stage.on('click', '#direct-download-link, .download-link', function(e) {
             e.preventDefault();
-
-            track_and_redirect($(e.currentTarget).attr('href'));
+            var href = $(e.currentTarget).attr('href');
+            gaTrack(
+                ['_trackPageview', virtual_url],
+                function() { location.href = href; }
+            );
 
             if ($stage.data('scene') !== 2) {
                 if (hash_change) {
@@ -97,4 +111,49 @@
             });
         }
     });
+
+    // Add GA custom tracking and external link tracking
+    var $html = $(document.documentElement);
+    var state = 'Original State';
+    if ($html.hasClass('android')) {
+        if ($html.hasClass('firefox-latest')) {
+            state = 'Android, up-to-date';
+        } else if ($html.hasClass('firefox-old')) {
+            state = 'Android, not up-to-date';
+        } else {
+            state = 'Android, no Fx detected';
+        }
+    } else if ($html.hasClass('ios')) {
+        state = 'iOS';
+    } else if ($html.hasClass('fxos')) {
+        state = 'FxOS';
+    } else {
+        if ($html.hasClass('firefox-latest')) {
+            state = 'Desktop, up-to-date';
+        } else if ($html.hasClass('firefox-old')) {
+            state = 'Desktop, not up-to-date';
+        }
+    }
+    window._gaq = _gaq || [];
+    window._gaq.push(['_setCustomVar', 4, '/new conditional message', state, 3]);
+
+    // Add external link tracking
+    $(document).click(function(e) {
+        if (e.target.nodeName === 'A' && e.target.hostname && e.target.hostname !== location.hostname) {
+            var newTab = (e.target.target === '_blank' || e.metaKey || e.crtlKey);
+            var href = e.target.href;
+            var callback = function() {
+                window.location = href;
+            }
+
+            if (!newTab) {
+                gaTrack(['_trackEvent', '/new Interaction', 'click', href]);
+            } else {
+                e.preventDefault();
+                gaTrack(['_trackEvent', '/new Interaction', 'click', href], callback);
+            }
+        }
+    });
+
+
 })(window.jQuery, window.Modernizr, window._gaq, window.site);

@@ -35,14 +35,36 @@ function init_download_links() {
 // platform images
 
 function init_platform_imgs() {
+    function has_platform(platforms, platform) {
+        for (var i = 0; i < platforms.length; i++) {
+            if (platforms[i] == platform && site.platform == platform) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     $('.platform-img').each(function() {
         var suffix = '';
         var $img = $(this);
-        if (site.platform === 'osx' || site.platform === 'oldmac') {
+
+        var default_platforms = ['osx', 'oldmac', 'linux'];
+
+        // use 'data-additional-platforms' to specify other supported platforms
+        // beyond the defaults
+        if ($img.data('additional-platforms')) {
+            var additional_platforms = $img.data('additional-platforms').split(' ');
+            var platforms = default_platforms.concat(additional_platforms);
+        } else {
+            var platforms = default_platforms;
+        }
+
+        if (has_platform(platforms, 'osx') || has_platform(platforms, 'oldmac')) {
             suffix = '-mac';
         }
-        else if (site.platform === 'linux') {
-            suffix = '-linux';
+        else if (has_platform(platforms, site.platform)) {
+            suffix = '-' + site.platform;
         }
 
         var orig_src = $img.data('src');
@@ -86,13 +108,13 @@ function isFirefox() {
 
 function isFirefoxUpToDate(latest, esr) {
 
-    var $body = $('body');
+    var $html = $(document.documentElement);
     var fx_version = getFirefoxMasterVersion();
-    var esrFirefoxVersions = esr || $body.data('esr-versions');
+    var esrFirefoxVersions = esr || $html.data('esr-versions');
     var latestFirefoxVersion;
 
     if (!latest) {
-        latestFirefoxVersion = $body.attr('data-latest-firefox');
+        latestFirefoxVersion = $html.attr('data-latest-firefox');
         latestFirefoxVersion = parseInt(latestFirefoxVersion.split('.')[0], 10);
     } else {
         latestFirefoxVersion = parseInt(latest.split('.')[0], 10);
