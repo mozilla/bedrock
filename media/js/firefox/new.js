@@ -119,24 +119,24 @@
     });
 
     // Add GA custom tracking and external link tracking
-    var className = document.documentElement.className;
+    var $html = $(document.documentElement);
     var state = 'Original State';
-    if (/\bandroid\b/.test(className)) {
-        if (/\bfirefox-latest\b/.test(className)) {
+    if ($html.hasClass('android')) {
+        if ($html.hasClass('firefox-latest')) {
             state = 'Android, up-to-date';
-        } else if (/\bfirefox-old\b/.test(className)) {
+        } else if ($html.hasClass('firefox-old')) {
             state = 'Android, not up-to-date';
         } else {
             state = 'Android, no Fx detected';
         }
-    } else if (/\bios\b/.test(className)) {
+    } else if ($html.hasClass('ios')) {
         state = 'iOS';
-    } else if (/\bfxos\b/.test(className)) {
+    } else if ($html.hasClass('fxos')) {
         state = 'FxOS';
     } else {
-        if (/\bfirefox-latest\b/.test(className)) {
+        if ($html.hasClass('firefox-latest')) {
             state = 'Desktop, up-to-date';
-        } else if (/\bfirefox-old\b/.test(className)) {
+        } else if ($html.hasClass('firefox-old')) {
             state = 'Desktop, not up-to-date';
         }
     }
