@@ -97,12 +97,20 @@ def img_l10n(ctx, url):
     if not locale:
         locale = settings.LANGUAGE_CODE
 
+    # We use the same localized screenshots for all Spanishes
+    if locale.startswith('es') and not media_exists(locale, url):
+        locale = 'es-ES'
+
     if locale != settings.LANGUAGE_CODE:
-        if not path.exists(path.join(L10N_IMG_PATH, locale, url)):
+        if not media_exists(locale, url):
             locale = settings.LANGUAGE_CODE
 
     return path.join(settings.MEDIA_URL, 'img', 'l10n', locale, url)
 
+@jingo.register.function
+def media_exists(locale, url):
+    """ checks if a localized media file exists for the locale """
+    return path.exists(path.join(L10N_IMG_PATH, locale, url))
 
 @jingo.register.function
 def field_with_attrs(bfield, **kwargs):
