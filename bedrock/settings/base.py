@@ -56,6 +56,7 @@ SUPPORTED_NONLOCALES += [
     'telemetry',
     'webmaker',
     'gameon',
+    'robots.txt',
 ]
 
 ALLOWED_HOSTS = [

@@ -1,0 +1,10 @@
+user-agent: *
+{% if disallow_all -%}
+disallow: /
+{% else -%}
+disallow: /*/download/
+disallow: /*/firstrun/
+disallow: /*/newsletter/existing/
+disallow: /*/whatsnew/
+disallow: /b/
+{% endif %}
