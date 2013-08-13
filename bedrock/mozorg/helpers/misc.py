@@ -12,6 +12,11 @@ from funfactory.urlresolvers import reverse
 L10N_IMG_PATH = base_path('media', 'img', 'l10n')
 
 
+def _l10n_media_exists(locale, url):
+    """ checks if a localized media file exists for the locale """
+    return path.exists(path.join(L10N_IMG_PATH, locale, url))
+
+
 @jingo.register.function
 @jinja2.contextfunction
 def php_url(ctx, url):
@@ -97,8 +102,12 @@ def img_l10n(ctx, url):
     if not locale:
         locale = settings.LANGUAGE_CODE
 
+    # We use the same localized screenshots for all Spanishes
+    if locale.startswith('es') and not _l10n_media_exists(locale, url):
+        locale = 'es-ES'
+
     if locale != settings.LANGUAGE_CODE:
-        if not path.exists(path.join(L10N_IMG_PATH, locale, url)):
+        if not _l10n_media_exists(locale, url):
             locale = settings.LANGUAGE_CODE
 
     return path.join(settings.MEDIA_URL, 'img', 'l10n', locale, url)
