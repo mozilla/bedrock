@@ -56,4 +56,5 @@ urlpatterns = patterns('',
     url(r'^plugincheck/$',
         views.plugincheck,
         name='mozorg.plugincheck'),
+    url(r'^robots.txt$', views.Robots.as_view(), name='robots.txt'),
 )

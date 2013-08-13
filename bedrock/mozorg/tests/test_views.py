@@ -17,6 +17,7 @@ from nose.tools import assert_false, eq_, ok_
 from pyquery import PyQuery as pq
 
 from bedrock.mozorg.tests import TestCase
+from bedrock.mozorg import views
 from lib import l10n_utils
 
 
@@ -285,3 +286,19 @@ class TestContribute(TestCase):
         eq_(len(mail.outbox), 1)
         m = mail.outbox[0]
         self.assertIn(EXPECTED, m.body)
+
+
+class TestRobots(TestCase):
+    @override_settings(SITE_URL='https://www.mozilla.org')
+    def test_production_disallow_all_is_false(self):
+        self.assertFalse(views.Robots().get_context_data()['disallow_all'])
+
+    @override_settings(SITE_URL='http://mozilla.local')
+    def test_non_production_disallow_all_is_true(self):
+        self.assertTrue(views.Robots().get_context_data()['disallow_all'])
+
+    @override_settings(SITE_URL='https://www.mozilla.org')
+    def test_robots_no_redirect(self):
+        response = Client().get('/robots.txt')
+        self.assertEqual(response.status_code, 200)
+        self.assertFalse(response.context['disallow_all'])
