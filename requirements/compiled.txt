@@ -4,6 +4,6 @@ Jinja2==2.5.5
 # for bcrypt passwords
 hmac==20101005
 hashlib==20081119
-py-bcrypt==0.2
+py-bcrypt==0.3
 
 lxml==2.3.3
