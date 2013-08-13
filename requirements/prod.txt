@@ -1,5 +1,6 @@
-# Django stuff
--e git://github.com/django/django@1.4.2#egg=django
+# Django 1.4.5 is also in vendor, but needs to be kept here so packages that
+# depend on Django do not install a newer version
+Django==1.4.5
 
 # Templates
 -e git://github.com/jbalogh/jingo.git#egg=jingo
@@ -17,9 +18,6 @@ GitPython==0.1.7
 # Celery: Message queue
 celery
 django-celery
-
-# bcrypt
-django-bcrypt
 
 # L10n
 Babel>=0.9.4

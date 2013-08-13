@@ -41,6 +41,7 @@ You need to create a virtual environment for Python libraries. Skip the first in
     $ virtualenv venv                            # create a virtual env in the folder `venv`
     $ source venv/bin/activate                   # activate the virtual env
     $ pip install -r requirements/compiled.txt   # installs compiled dependencies
+    $ pip install -r requirements/dev.txt        # installs test dependencies
 
 If you are on OSX and some of the compiled dependencies fails to compile, try explicitly setting the arch flags and try again::
 
