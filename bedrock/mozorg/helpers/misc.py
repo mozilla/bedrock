@@ -134,14 +134,17 @@ def video(*args, **kwargs):
     HTML5 Video tag helper.
 
     Accepted kwargs:
-    prefix, w, h, autoplay
+    prefix, w, h, autoplay, poster
 
     Use like this:
     {{ video('http://example.com/myvid.mp4', http://example.com/myvid.webm',
+             poster='http://example.com/myvid.jpg',
              w=640, h=360) }}
 
     You can also use a prefix like:
     {{ video('myvid.mp4', 'myvid.webm', prefix='http://example.com') }}
+
+    The prefix does not apply to the poster attribute.
 
     Finally, MIME type detection happens by file extension. Supported: webm,
     mp4, ogv. If you want anything else, patches welcome.

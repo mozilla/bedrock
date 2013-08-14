@@ -3,6 +3,9 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
 <video tabindex="0" id="htmlPlayer" controls="controls" {{ 'autoplay' if autoplay }}
+  {% if poster %}
+    poster="{{ poster }}"
+  {% endif %}
   width="{{ w }}" height="{{ h }}">
   {% for ft in filetypes %}
     {% if ft in videos %}
