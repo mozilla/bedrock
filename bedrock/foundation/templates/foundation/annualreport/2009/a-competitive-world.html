@@ -99,13 +99,10 @@
     build products that incorporate openness and individual control. This is an
     immense success for Mozilla.{% endtrans %}</p>
 
-  <video width="640" height="360" controls preload="metadata">
-    <source src="//videos-cdn.mozilla.net/serv/mozillaorg/Firefox_global_final.webm" type="video/webm">
-    <source src="//videos-cdn.mozilla.net/serv/mozillaorg/Firefox_global_final.theora.ogv" type="video/ogg">
-    <source src="//videos-cdn.mozilla.net/serv/mozillaorg/Firefox_global_final.mp4" type="video/mp4">
-    <object type="application/x-shockwave-flash" style="width: 640px; height: 360px;" data="/includes/flash/playerWithControls.swf?flv=/serv/mozillaorg/Firefox_global_final.mp4&amp;autoplay=false&amp;msg=Play%20Video">
-      <param name="movie" value="/includes/flash/playerWithControls.swf?flv=//videos-cdn.mozilla.net/serv/mozillaorg/Firefox_global_final.mp4&amp;autoplay=false&amp;msg=Play%20Video"/>
-      <param name="wmode" value="transparent"/>
-    </object>
-  </video>
+
+    {{ video('Firefox_global_final.mp4',
+            'Firefox_global_final.webm',
+            'Firefox_global_final.theora.ogv',
+            prefix='//videos-cdn.mozilla.net/serv/mozillaorg/') }}
+
 {% endblock %}
