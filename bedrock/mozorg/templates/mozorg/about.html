@@ -4,7 +4,7 @@
 
 {% extends "mozorg/base-resp.html" %}
 
-{% block page_title %}Get to Know Mozilla{% endblock %}
+{% block page_title %}{{ _('Get to know Mozilla') }}{% endblock %}
 {% block body_id %}about{% endblock %}
 {% block body_class %}sand{% endblock %}
 
@@ -24,53 +24,53 @@
 
 <article id="main-content">
 
-  <h1 class="title-banner">Get to know Mozilla</h1>
+  <h1 class="title-banner">{{ _('Get to know Mozilla') }}</h1>
   
-  <p class="intro">Whether you want to learn more about who we are, how to be a part of Mozilla or just where to find us, you've come to the right place.</p>
+  <p class="intro">{{ _('Whether you want to learn more about who we are, how to be a part of Mozilla or just where to find us, you’ve come to the right place.') }}</p>
   
   <ul class="links">
     <li>
-      <h4><a href="{{ url('mozorg.mission') }}">The Mozilla mission</a></h4>
-      <p>What drives us and makes us different</p>
+      <h4><a href="{{ url('mozorg.mission') }}">{{ _('The Mozilla mission') }}</a></h4>
+      <p>{{ _('What drives us and makes us different') }}</p>
     </li>    
     <li>
-      <h4><a href="https://careers.mozilla.org/">Career center</a></h4>
-      <p>Want to work on Firefox? Apply today!</p>
+      <h4><a href="https://careers.mozilla.org/">{{ _('Career center') }}</a></h4>
+      <p>{{ _('Want to work on Firefox? Apply today!') }}</p>
     </li>
     <li>
-      <h4><a href="https://blog.mozilla.org/">Mozilla blog</a></h4>
-      <p>News, notes and ramblings from the Mozilla project</p>
+      <h4><a href="https://blog.mozilla.org/">{{ _('Mozilla blog') }}</a></h4>
+      <p>{{ _('News, notes and ramblings from the Mozilla project') }}</p>
     </li>
     <li>
-      <h4><a href="/styleguide">Mozilla style guide</a></h4>
-      <p>Logos, copy rules, visual assets and more</p>
+      <h4><a href="/styleguide">{{ _('Mozilla style guide') }}</a></h4>
+      <p>{{ _('Logos, copy rules, visual assets and more') }}</p>
     </li>
     <li>
-      <h4><a href="{{ php_url('/about/contact') }}">Locations & contacts</a></h4>
-      <p>Addresses, emails, support and feedback forms</p>
+      <h4><a href="{{ php_url('/about/contact') }}">{{ _('Locations & contacts') }}</a></h4>
+      <p>{{ _('Addresses, emails, support and feedback forms') }}</p>
     </li>
   </ul>
 
   <ul class="links">
     <li>
-      <h4><a href="{{ url('mozorg.products') }}">Our products</a></h4>
-      <p>An overview of what we make and what we're working on</p>
+      <h4><a href="{{ url('mozorg.products') }}">{{ _('Our products') }}</a></h4>
+      <p>{{ _('An overview of what we make and what we’re working on') }}</p>
     </li>
     <li>
-      <h4><a href="{{ url('mozorg.contribute') }}">Get involved</a></h4>
-      <p>Become a volunteer contributor in a number of different areas</p>
+      <h4><a href="{{ url('mozorg.contribute') }}">{{ _('Get involved') }}</a></h4>
+      <p>{{ _('Become a volunteer contributor in a number of different areas') }}</p>
     </li>
     <li>
-      <h4><a href="https://blog.mozilla.org/press/">Press center</a></h4>
-      <p>Press info and other useful stuff</p>
+      <h4><a href="https://blog.mozilla.org/press/">{{ _('Press center') }}</a></h4>
+      <p>{{ _('Press info and other useful stuff') }}</p>
     </li>
     <li>
-      <h4><a href="{{ php_url('/privacy/') }}">Privacy center</a></h4>
-      <p>Policies used to run the Mozilla community</p>
+      <h4><a href="{{ php_url('/privacy/') }}">{{ _('Privacy center') }}</a></h4>
+      <p>{{ _('Policies used to run the Mozilla community') }}</p>
     </li>
     <li>
-      <h4><a href="{{ php_url('/about/partnerships') }}">Mozilla partnerships</a></h4>
-      <p>Details about partnering with us</p>
+      <h4><a href="{{ php_url('/about/partnerships') }}">{{ _('Mozilla partnerships') }}</a></h4>
+      <p>{{ _('Details about partnering with us') }}</p>
     </li>
   </ul>
 
