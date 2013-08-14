@@ -79,6 +79,5 @@ urlpatterns = patterns('',
     url('^firefox/$', views.fx_home_redirect, name='firefox'),
 
     page('firefox/os', 'firefox/os/index.html'),
-
     page('firefox/os/notes/1.0.1', 'firefox/os/releasenotes.html'),
 )
