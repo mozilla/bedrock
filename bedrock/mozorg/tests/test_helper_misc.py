@@ -234,7 +234,6 @@ class TestNewsletterFunction(TestCase):
         ok_(doc('#footer-email-errors'))
         ok_(doc('#footer-email-form.has-errors'))
 
-
 class TestPlatformImg(TestCase):
     @override_settings(MEDIA_URL='/media/')
     def test_platform_img_no_optional_attributes(self):
@@ -255,3 +254,39 @@ class TestPlatformImg(TestCase):
             u'data-test-attr="test"><noscript><img class="platform-img win" '
             u'src="/media/test.png" data-test-attr="test"></noscript>')
         self.assertEqual(markup, jinja2.Markup(expected))
+
+class TestPressBlogUrl(TestCase):
+    rf = RequestFactory()
+
+    def _render(self, locale):
+        req = self.rf.get('/')
+        req.locale = locale
+        return render("{{{{ press_blog_url() }}}}".format('/'),
+                      {'request': req})
+
+    def test_press_blog_url_no_locale(self):
+        """No locale, fallback to default press blog"""
+        eq_(self._render(''), 'https://blog.mozilla.org/press/')
+
+    def test_press_blog_url_english(self):
+        """en-US locale, default press blog"""
+        eq_(self._render('en-US'), 'https://blog.mozilla.org/press/')
+
+    def test_press_blog_url_europe(self):
+        """Major European locales have their own blog"""
+        eq_(self._render('es-ES'), 'https://blog.mozilla.org/press-es/')
+        eq_(self._render('fr'), 'https://blog.mozilla.org/press-fr/')
+        eq_(self._render('de'), 'https://blog.mozilla.org/press-de/')
+        eq_(self._render('pl'), 'https://blog.mozilla.org/press-pl/')
+        eq_(self._render('it'), 'https://blog.mozilla.org/press-it/')
+        eq_(self._render('en-GB'), 'https://blog.mozilla.org/press-uk/')
+
+    def test_press_blog_url_latam(self):
+        """South American Spanishes have a specific blog"""
+        eq_(self._render('es-AR'), 'https://blog.mozilla.org/press-latam/')
+        eq_(self._render('es-CL'), 'https://blog.mozilla.org/press-latam/')
+        eq_(self._render('es-MX'), 'https://blog.mozilla.org/press-latam/')
+
+    def test_press_blog_url_other_locale(self):
+        """No blog for locale, fallback to default press blog"""
+        eq_(self._render('oc'), 'https://blog.mozilla.org/press-fr/')

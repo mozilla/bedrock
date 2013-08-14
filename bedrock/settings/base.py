@@ -788,3 +788,18 @@ FACEBOOK_TAB_URL = lazy(facebook_tab_url_lazy, str)()
 CDN_BASE_URL = ''
 
 CSRF_FAILURE_VIEW = 'bedrock.mozorg.views.csrf_failure'
+
+# Regional press blogs map to locales
+PRESS_BLOG_ROOT = 'https://blog.mozilla.org/'
+PRESS_BLOGS = {
+    'de'   : 'press-de/',
+    'en-GB': 'press-uk/',
+    'en-US': 'press/',
+    'es-AR': 'press-latam/',
+    'es-CL': 'press-latam/',
+    'es-ES': 'press-es/',
+    'es-MX': 'press-latam/',
+    'fr'   : 'press-fr/',
+    'it'   : 'press-it/',
+    'pl'   : 'press-pl/',
+}
