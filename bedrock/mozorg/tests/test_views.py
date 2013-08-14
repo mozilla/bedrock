@@ -301,4 +301,5 @@ class TestRobots(TestCase):
     def test_robots_no_redirect(self):
         response = Client().get('/robots.txt')
         self.assertEqual(response.status_code, 200)
-        self.assertFalse(response.context['disallow_all'])
+        self.assertFalse(response.context_data['disallow_all'])
+        self.assertEqual(response.get('Content-Type'), 'text/plain')
