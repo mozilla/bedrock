@@ -257,8 +257,6 @@ MINIFY_BUNDLES = {
         'home': (
             'css/mozorg/home.less',
             'css/mozorg/home-promo.less',
-            'js/libs/video-js/video-js.css',
-            'js/libs/video-js/video-js-sandstone.css',
         ),
         'marketplace': (
             'css/marketplace/marketplace.less',
@@ -501,8 +499,6 @@ MINIFY_BUNDLES = {
         ),
         'home': (
             'js/base/mozilla-pager.js',
-            'js/libs/video-js/video.dev.js',
-            'js/mozorg/home.js'
         ),
         'marketplace': (
             'js/base/nav-main-resp.js',
