@@ -202,3 +202,41 @@ def video(*args, **kwargs):
 
     return jinja2.Markup(jingo.env.get_template(
         'mozorg/videotag.html').render(data))
+
+
+@jingo.register.function
+@jinja2.contextfunction
+def press_blog_url(ctx):
+    """Output a link to the press blog taking locales into account.
+
+    Uses the locale from the current request. Checks to see if we have
+    a press blog that match this locale, returns the localized press blog
+    url or falls back to the US press blog url if not.
+
+    Examples
+    ========
+
+    In Template
+    -----------
+
+        {{ press_blog_url() }}
+
+    For en-US this would output:
+
+        https://blog.mozilla.org/press/
+
+    For es-ES this would output:
+
+        https://blog.mozilla.org/press-es/
+
+    For es-MX this would output:
+
+        https://blog.mozilla.org/press-latam/
+
+    """
+    locale = getattr(ctx['request'], 'locale', None)
+
+    if not locale or locale == 'en-US' or locale not in settings.PRESS_BLOGS:
+        return settings.PRESS_BLOG_ROOT + settings.PRESS_BLOGS['en-US']
+
+    return settings.PRESS_BLOG_ROOT + settings.PRESS_BLOGS[locale]
