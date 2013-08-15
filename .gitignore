@@ -4,6 +4,7 @@ settings/local.py
 *.py[co]
 *.sw[po]
 .coverage
+.jshintrc
 pip-log.txt
 docs/_gh-pages
 build.py
