@@ -5,12 +5,12 @@
 {% extends "base-resp.html" %}
 
 {% block page_title_prefix %}{% endblock %}
-{% block page_title %}Mozilla Persona — an identity system for the web{% endblock %}
+{% block page_title %}Mozilla Persona — simple sign-in with email{% endblock %}
 {% block body_id %}persona{% endblock %}
 {% block body_class %}sand{% endblock %}
 
 {% block site_header_logo %}
-  <h2><a href="/persona/"><img src="{{ MEDIA_URL }}img/persona/title.png" height="66" width="180" alt="mozilla Persona"></a></h2>
+  <h2><a href="/persona/"><img src="{{ MEDIA_URL }}img/persona/title.png" height="66" width="180" alt="Mozilla Persona"></a></h2>
 {% endblock %}
 
 {% block site_header_nav %}
@@ -32,7 +32,7 @@
 
 <hgroup id="main-feature" class="large">
   <h1>Introducing Mozilla Persona</h1>
-  <h2>An Identity System for the Web</h2>
+  <h2>A sign-in system for the Web</h2>
 </hgroup>
 
 <section id="primary" class="billboard">
@@ -40,14 +40,14 @@
   <div class="row">
 
     <div id="text-column">
-      <h3>A better way to sign in</h3>
-      <p>At Mozilla, we believe that your online identity should belong exclusively to you. With that in mind, we created Persona to improve the way you sign in to websites.</p>
-      <p>Persona allows you to sign in to sites using an email address you choose. So, instead of having to manage multiple usernames and passwords across your favorite sites and devices, you’ll have more time to do the important stuff. We’ll manage the details!</p>
+      <h3>A simpler way to sign in</h3>
+      <p>At Mozilla, we believe that your online life is your business. With that in mind, we created Persona to make it easier to sign in to websites.</p>
+      <p>Persona allows you to sign in to sites using any of your existing email addresses; and if you use Yahoo! or Gmail for email, you will be able to sign in without having to create a new password.</p>
 
-      <h3>Own your data</h3>
-      <p>Many sign-in systems carry your profile data with them; some even share that info with other sites and social networks. We believe you should control how your personal information is shared. Persona lets you get started with just your email address; you can add your profile data later, when and where <em>you</em> think it’s appropriate.</p>
+      <h3>Roam free</h3>
+      <p>Many sign-in systems track your behavior around the web; and some even share that info with other sites and social networks. We believe you should control how your personal information is shared. Signing in using Persona requires only a valid email address; allowing you to provide personal information on as-needed basis, when and where <em>you</em> think it’s appropriate.</p>
 
-      <h3>Easy for publishers</h3>
+      <h3>Easy for developers</h3>
       <p>Persona makes things easy for site owners, too. Enabling Browser ID, the underlying Persona technology, on your site only takes a few lines of code and helps build good relationships by providing users with a trusted sign-in option. It’s a win-win!</p>
     </div>
 
@@ -58,9 +58,9 @@
         <figcaption>It’s simple: just click the sign in button, enter your preferred email and you’re ready to go.</figcaption>
       </figure>
 
-      <div id="trovebox">
+      <div id="rp-example">
         <h3>Try it Yourself</h3>
-        <p>Go to <a href="https://current.trovebox.com/user/login">Trovebox</a> and sign in.</p>
+        <p>Go to <a href="https://www.voo.st/">Voost</a> and sign in.</p>
       </div>
 
     </aside>
