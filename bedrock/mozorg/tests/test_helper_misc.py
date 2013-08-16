@@ -4,14 +4,17 @@ from mock import patch
 
 from django.conf import settings
 from django.test.client import Client, RequestFactory
+from django.test.utils import override_settings
 
 import basket
 import jingo
+import jinja2
 from nose.tools import assert_false, eq_, ok_
 from pyquery import PyQuery as pq
 from bedrock.newsletter.tests.test_views import newsletters
 from funfactory.urlresolvers import reverse
 
+from bedrock.mozorg.helpers.misc import platform_img
 from bedrock.mozorg.tests import TestCase
 
 
@@ -230,3 +233,25 @@ class TestNewsletterFunction(TestCase):
         doc = pq(response.content)
         ok_(doc('#footer-email-errors'))
         ok_(doc('#footer-email-form.has-errors'))
+
+
+class TestPlatformImg(TestCase):
+    @override_settings(MEDIA_URL='/media/')
+    def test_platform_img_no_optional_attributes(self):
+        """Should return expected markup without optional attributes"""
+        markup = platform_img('test.png')
+        expected = (
+            u'<img class="platform-img js" src="" data-src="/media/test.png" >'
+            u'<noscript><img class="platform-img win" src="/media/test.png" >'
+            u'</noscript>')
+        self.assertEqual(markup, jinja2.Markup(expected))
+
+    @override_settings(MEDIA_URL='/media/')
+    def test_platform_img_with_optional_attributes(self):
+        """Should return expected markup with optional attributes"""
+        markup = platform_img('test.png', {'data-test-attr': 'test'})
+        expected = (
+            u'<img class="platform-img js" src="" data-src="/media/test.png" '
+            u'data-test-attr="test"><noscript><img class="platform-img win" '
+            u'src="/media/test.png" data-test-attr="test"></noscript>')
+        self.assertEqual(markup, jinja2.Markup(expected))
