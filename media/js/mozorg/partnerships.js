@@ -8,7 +8,7 @@ $(document).ready(function(){
   $sf_form.validate();
 
   var scrollup = function() {
-    $('html, body').animate({ scrollTop: 0 }, 500);
+    $('html, body').animate({ scrollTop: $('#main-content').offset().top }, 500);
   };
 
   $('#sf-form-submit').on('click', function(e) {
@@ -19,7 +19,7 @@ $(document).ready(function(){
         url: $sf_form.attr('action'),
         data: $sf_form.serialize(),
         type: $sf_form.attr('method'),
-        dataType: 'text',
+        dataType: 'json',
         success: function(data, status, xhr) {
           $('#partner-form').fadeOut('fast', function() {
             $('#partner-form-success').css('visibility', 'visible').fadeIn('fast', function() {
@@ -28,6 +28,9 @@ $(document).ready(function(){
           });
         },
         error: function(xhr, status, error) {
+          // grab json string from server and convert to JSON obj
+          var json = $.parseJSON(xhr.responseText);
+          Mozilla.FormHelper.displayErrors(json.errors);
           $('#partner-form-error').css('visibility', 'visible').slideDown('fast', function() {
             scrollup();
           });

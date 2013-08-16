@@ -185,11 +185,11 @@ describe("global.js", function() {
      * synchronous implementation of setTimeout. Seems a little
      * waiting is needed when testing a push to window._gaq */
     beforeEach(function () {
-      clock = sinon.useFakeTimers(); 
+      clock = sinon.useFakeTimers();
     });
 
-    afterEach(function () { 
-      clock.restore(); 
+    afterEach(function () {
+      clock.restore();
       window._gaq = [];
     });
 
@@ -202,10 +202,10 @@ describe("global.js", function() {
 
     it("should fire a callback if needed", function () {
       /* For our callback use a jasmine spy, then we can easily test
-       * to make sure it gets called once gaTrack has finished excecuting */
+       * to make sure it gets called once gaTrack has finished executing */
       var callback = jasmine.createSpy();
       gaTrack(['_trackEvent', 'GA event test', 'test', 'test'], callback);
-      clock.tick(10);
+      clock.tick(600); // must be longer than callback timeout (500ms) in gaTrack
       expect(callback).toHaveBeenCalled();
     });
 

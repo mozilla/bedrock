@@ -34,7 +34,7 @@ def render(s, context={}):
 class TestSecureURL(TestCase):
     host = 'www.mozilla.org'
     test_path = '/firefox/partners/'
-    test_view_name = 'about.partnerships.contact-bizdev'
+    test_view_name = 'mozorg.partnerships'
     req = RequestFactory(HTTP_HOST=host).get(test_path)
     secure_req = RequestFactory(HTTP_HOST=host).get(test_path, {}, **{'wsgi.url_scheme': 'https'})
 

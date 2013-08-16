@@ -451,10 +451,17 @@
     display: none;
 }
 
-.sf-form.completed { display: none; }
-
 .form-results {
     display: none;
+}
+
+.form-success {
+    .form-results {
+        display: block;
+    }
+    .sf-form {
+        display: none;
+    }
 }
 
 .js #form {
@@ -491,6 +498,9 @@
     }
 
     input[type="text"],
+    input[type="email"],
+    input[type="url"],
+    input[type="tel"],
     select,
     textarea {
         width: 240px;

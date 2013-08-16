@@ -5,8 +5,9 @@
 
 from django.conf import settings
 from django.core import mail
-from django.test.client import Client
+from django.test.client import Client, RequestFactory
 from django.test.utils import override_settings
+from django.utils import simplejson
 
 from captcha.fields import ReCaptchaField
 from funfactory.urlresolvers import reverse
@@ -303,3 +304,105 @@ class TestRobots(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertFalse(response.context_data['disallow_all'])
         self.assertEqual(response.get('Content-Type'), 'text/plain')
+
+
+class TestProcessPartnershipForm(TestCase):
+    def setUp(self):
+        self.factory = RequestFactory()
+        self.template = 'mozorg/partnerships.html'
+        self.view = 'mozorg.partnerships'
+        self.post_data = {
+            'first_name': 'The',
+            'last_name': 'Dude',
+            'title': 'Abider of things',
+            'company': 'Urban Achievers',
+            'email': 'thedude@example.com',
+        }
+        self.invalid_post_data = {
+            'first_name': 'The',
+            'last_name': 'Dude',
+            'title': 'Abider of things',
+            'company': 'Urban Achievers',
+            'email': 'thedude',
+        }
+
+        with self.activate('en-US'):
+            self.url = reverse(self.view)
+
+    def test_get(self):
+        """
+        A GET request should simply return a 200.
+        """
+
+        request = self.factory.get(self.url)
+        request.locale = 'en-US'
+        response = views.process_partnership_form(request, self.template,
+                                                  self.view)
+        self.assertEqual(response.status_code, 200)
+
+    def test_post(self):
+        """
+        POSTing without AJAX should redirect to self.url on success and
+        render self.template on error.
+        """
+
+        with self.activate('en-US'):
+            # test non-AJAX POST with valid form data
+            request = self.factory.post(self.url, self.post_data)
+
+            response = views.process_partnership_form(request, self.template,
+                                                      self.view)
+
+            # should redirect to success URL
+            self.assertEqual(response.status_code, 302)
+            self.assertIn(self.url, response._headers['location'][1])
+            self.assertIn('text/html', response._headers['content-type'][1])
+
+            # test non-AJAX POST with invalid form data
+            request = self.factory.post(self.url, self.invalid_post_data)
+
+            # locale is not getting set via self.activate above...?
+            request.locale = 'en-US'
+
+            response = views.process_partnership_form(request, self.template,
+                                                      self.view)
+
+            self.assertEqual(response.status_code, 200)
+            self.assertIn('text/html', response._headers['content-type'][1])
+
+    def test_post_ajax(self):
+        """
+        POSTing with AJAX should return success/error JSON.
+        """
+
+        with self.activate('en-US'):
+            # test AJAX POST with valid form data
+            request = self.factory.post(self.url, self.post_data,
+                HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+
+            response = views.process_partnership_form(request, self.template,
+                                                      self.view)
+
+            # decode JSON response
+            resp_data = simplejson.loads(response.content)
+
+            self.assertEqual(resp_data['msg'], 'ok')
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(response._headers['content-type'][1],
+                             'application/json')
+
+            # test AJAX POST with invalid form data
+            request = self.factory.post(self.url, self.invalid_post_data,
+                HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+
+            response = views.process_partnership_form(request, self.template,
+                                                      self.view)
+
+            # decode JSON response
+            resp_data = simplejson.loads(response.content)
+
+            self.assertEqual(resp_data['msg'], 'Form invalid')
+            self.assertEqual(response.status_code, 400)
+            self.assertTrue('email' in resp_data['errors'])
+            self.assertEqual(response._headers['content-type'][1],
+                             'application/json')

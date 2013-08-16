@@ -10,6 +10,7 @@ from urlparse import parse_qsl, urlparse
 
 from django.conf import settings
 from django.test.client import Client
+from django.utils import simplejson
 from django.utils import unittest
 
 from funfactory.urlresolvers import reverse
@@ -237,7 +238,7 @@ class TestFirefoxPartners(TestCase):
         new_mock.status_code = 400
         post_patch.return_value = new_mock
         with self.activate('en-US'):
-            url = reverse('about.partnerships.contact-bizdev')
+            url = reverse('mozorg.partnerships')
             resp = self.client.post(url, {
                 'first_name': 'The',
                 'last_name': 'Dude',
@@ -245,19 +246,27 @@ class TestFirefoxPartners(TestCase):
                 'email': 'thedude@mozilla.com',
             }, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEqual(resp.status_code, 400)
-        self.assertEqual(resp.content, 'bad_request')
+
+        # decode JSON response
+        resp_data = simplejson.loads(resp.content)
+
+        self.assertEqual(resp_data['msg'], 'bad_request')
         self.assertTrue(post_patch.called)
 
     @patch('bedrock.mozorg.views.requests.post')
     def test_sf_form_proxy_invalid_form(self, post_patch):
         """A form error should result in a 400 response."""
         with self.activate('en-US'):
-            url = reverse('about.partnerships.contact-bizdev')
+            url = reverse('mozorg.partnerships')
             resp = self.client.post(url, {
                 'first_name': 'Dude' * 20,
             }, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEqual(resp.status_code, 400)
-        self.assertEqual(resp.content, 'Form invalid')
+
+        # decode JSON response
+        resp_data = simplejson.loads(resp.content)
+
+        self.assertEqual(resp_data['msg'], 'Form invalid')
         self.assertFalse(post_patch.called)
 
     @patch('bedrock.mozorg.views.requests.post')
@@ -266,7 +275,7 @@ class TestFirefoxPartners(TestCase):
         new_mock.status_code = 200
         post_patch.return_value = new_mock
         with self.activate('en-US'):
-            url = reverse('about.partnerships.contact-bizdev')
+            url = reverse('mozorg.partnerships')
             resp = self.client.post(url, {
                 'first_name': 'The',
                 'last_name': 'Dude',
@@ -275,7 +284,11 @@ class TestFirefoxPartners(TestCase):
                 'email': 'thedude@mozilla.com',
             }, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEqual(resp.status_code, 200)
-        self.assertEqual(resp.content, 'ok')
+
+        # decode JSON response
+        resp_data = simplejson.loads(resp.content)
+
+        self.assertEqual(resp_data['msg'], 'ok')
         post_patch.assert_called_once_with(ANY, {
             'first_name': u'The',
             'last_name': u'Dude',
@@ -287,6 +300,11 @@ class TestFirefoxPartners(TestCase):
             'company': u'Urban Achievers',
             'oid': '00DU0000000IrgO',
             'phone': u'',
+            'street': u'',
+            'zip': u'',
+            'city': u'',
+            'state': u'',
+            'country': u'',
             'mobile': u'',
             '00NU0000002pDJr': [],
             'email': u'thedude@mozilla.com',
@@ -296,12 +314,12 @@ class TestFirefoxPartners(TestCase):
         """Test that CSRF checks return 200 with token and 403 without."""
         csrf_client = Client(enforce_csrf_checks=True)
         response = csrf_client.get(reverse('firefox.partners.index'))
-        post_url = reverse('about.partnerships.contact-bizdev')
+        post_url = reverse('mozorg.partnerships')
         response = csrf_client.post(post_url, {
             'first_name': "Partner",
             'csrfmiddlewaretoken': response.cookies['csrftoken'].value,
         })
-        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.status_code, 200)
         response = csrf_client.post(post_url, {'first_name': "Partner"})
         self.assertEqual(response.status_code, 403)
 
