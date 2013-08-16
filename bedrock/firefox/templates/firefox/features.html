@@ -313,38 +313,12 @@
 
     <div id="video-wrapper">
     <div id="video-player-runfield" class="mozilla-video-control mozilla-video-shadow">
-        <video
-            width="640"
-            height="360"
-            poster="{{ media('img/firefox/video/poster-runfield.jpg') }}"
-            controls="controls"
-            data-overlay-hidden-text="{{_('Play video')}}">
-
-            <source src="//videos-cdn.mozilla.net/serv/mozhacks/demos/screencasts/runfield/screencast.webm" type="video/webm" />
-            <source src="//videos-cdn.mozilla.net/serv/mozhacks/demos/screencasts/runfield/screencast.theora.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;" />
-            <source src="//videos-cdn.mozilla.net/serv/mozhacks/demos/screencasts/runfield/screencast.mp4" type="video/mp4" />
-
-            <object type="application/x-shockwave-flash"
-                style="width: 640px; height: 388px;"
-                data="/includes/flash/playerWithControls.swf?flv=serv/mozhacks/demos/screencasts/runfield/screencast.mp4&amp;autoplay=false&amp;msg=Play%20Video">
-
-                <param name="movie" value="/includes/flash/playerWithControls.swf?flv=serv/mozhacks/demos/screencasts/runfield/screencast.mp4&amp;autoplay=false&amp;msg=Play%20Video" />
-                <param name="wmode" value="transparent" />
-
-                <div class="video-player-no-flash">
-                This video requires a browser with support for open video:
-                <ul>
-                <li><a href="{{ url('firefox') }}">Firefox</a> 3.5 or greater</li>
-                <li><a href="http://www.apple.com/safari/">Safari</a> 3.1 or greater</li>
-                </ul>
-
-                or the <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player</a>.
-                Alternatively, you may use the video download links to the right.
-                </div>
-
-            </object>
-
-        </video>
+      {{ video('screencast.webm',
+               'screencast.theora.ogv',
+               'screencast.mp4',
+               h=360, w=640,
+               prefix='//videos-cdn.mozilla.net/serv/mozhacks/demos/screencasts/runfield/',
+               poster=media('img/firefox/video/poster-runfield.jpg')) }}
     </div>
     <p>Runfield is a Web-based game built with JavaScript and Canvas. <a href="https://developer.mozilla.org/en-US/demos/detail/runfield">Try it for yourself »</a></p>
     </div>
@@ -376,40 +350,13 @@
       <div class="feature">
         <h4>3D on the Web</h4>
         <p>WebGL brings 3D graphics to Firefox, opening the door for developers to create vivid games and new kinds of visualizations and experiences on the Web.</p>
-                <div id="video-player-brand" class="mozilla-video-control section-video">
-                    <video
-                        id="video-brand"
-                        width="290"
-                        height="163"
-                        controls="controls"
-                        poster="{{ media('img/firefox/video/poster-3d.jpg') }}"
-                        data-overlay-hidden-text="{{_('Play video')}}">
-
-                        <source src="//videos-cdn.mozilla.net/serv/mozhacks/demos/screencasts/remixingreality/screencast.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;" />
-                        <source src="//videos-cdn.mozilla.net/serv/mozhacks/demos/screencasts/remixingreality/screencast.mp4" type="video/mp4" />
-
-                        <object type="application/x-shockwave-flash"
-                            style="width: 290px; height: 191px;"
-                            data="/includes/flash/playerWithControls.swf?flv=serv/mozhacks/demos/screencasts/remixingreality/screencast.mp4&amp;autoplay=false&amp;msg=Play%20Video">
-
-                            <param name="movie" value="/includes/flash/playerWithControls.swf?flv=serv/mozhacks/demos/screencasts/remixingreality/screencast.mp4&amp;autoplay=false&amp;msg=Play%20Video" />
-                            <param name="wmode" value="transparent" />
-
-                            <div class="video-player-no-flash">
-                            This video requires a browser with support for open video:
-                            <ul>
-                            <li><a href="{{ url('firefox') }}">Firefox</a> 3.5 or greater</li>
-                            <li><a href="http://www.apple.com/safari/">Safari</a> 3.1 or greater</li>
-                            </ul>
-
-                            or the <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player</a>.
-                            Alternatively, you may use the video download links to the right.
-                            </div>
-
-                        </object>
-
-                    </video>
-                </div>
+        <div id="video-player-brand" class="mozilla-video-control section-video">
+          {{ video('screencast.ogv',
+                   'screencast.mp4',
+                   h=163, w=290,
+                   prefix='//videos-cdn.mozilla.net/serv/mozhacks/demos/screencasts/remixingreality/',
+                   poster=media('img/firefox/video/poster-3d.jpg')) }}
+        </div>
       </div>
     </div>
 
@@ -603,42 +550,14 @@
       <div class="feature">
         <h4>WebM and HD Video</h4>
         <p>As pioneers of HTML5 video standards, Firefox also supports the WebM format so you can watch open HD-quality video.</p>
-                <div id="video-player" class="mozilla-video-control section-video">
-                    <video
-                        id="video"
-                        width="290"
-                        height="163"
-                        controls="controls"
-                        poster="{{ media('img/firefox/video/poster-brand.jpg') }}"
-                        data-overlay-hidden-text="{{_('Play video')}}">
-
-                        <source src="//videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.webm" type="video/webm" />
-                        <source src="//videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.theora.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;" />
-                        <source src="//videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.mp4" type="video/mp4" />
-
-                        <object type="application/x-shockwave-flash"
-                            style="width: 290px; height: 191px;"
-                            data="/includes/flash/playerWithControls.swf?flv=brand/Mozilla_Firefox_Manifesto_v0.2_640.mp4&amp;autoplay=false&amp;msg=Play%20Video">
-
-                            <param name="movie" value="/includes/flash/playerWithControls.swf?flv=brand/Mozilla_Firefox_Manifesto_v0.2_640.mp4&amp;autoplay=false&amp;msg=Play%20Video" />
-                            <param name="wmode" value="transparent" />
-
-                            <div class="video-player-no-flash">
-                            This video requires a browser with support for open video:
-                            <ul>
-                            <li><a href="{{ url('firefox') }}">Firefox</a> 3.5 or greater</li>
-                            <li><a href="http://www.apple.com/safari/">Safari</a> 3.1 or greater</li>
-                            </ul>
-
-                            or the <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player</a>.
-                            Alternatively, you may use the video download links to the right.
-                            </div>
-
-                        </object>
-
-                    </video>
-                </div>
-      </div>
+        <div id="video-player" class="mozilla-video-control section-video">
+          {{ video('Mozilla_Firefox_Manifesto_v0.2_640.webm',
+                   'Mozilla_Firefox_Manifesto_v0.2_640.theora.ogv',
+                   'Mozilla_Firefox_Manifesto_v0.2_640.mp4',
+                   h=360, w=640,
+                   prefix='//videos-cdn.mozilla.net/brand/',
+                   poster=media('img/contribute/poster-brand.jpg')) }}
+        </div>
     </div>
 
     <div class="column3">

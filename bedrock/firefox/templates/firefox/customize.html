@@ -87,29 +87,12 @@
   </div>
   <div id="addons-feature" class="span7">
     <div id="addons-video" class="mozilla-video-control mozilla-video-shadow">
-      <video
-        id="video"
-        width="620"
-        height="349"
-        poster="{{ media('img/firefox/video/poster-addons.jpg') }}"
-        controls="controls"
-        data-overlay-hidden-text="{{_('Play video')}}">
-
-        <source src="//videos-cdn.mozilla.net/serv/marketing/696470/FF%20576%20h264%20v6.webm" type="video/webm" />
-        <source src="//videos-cdn.mozilla.net/serv/marketing/696470/FF%20576%20h264%20v6.theora.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;" />
-        <source src="//videos-cdn.mozilla.net/serv/marketing/696470/FF%20576%20h264%20v6.mp4" type="video/mp4" />
-
-        <object type="application/x-shockwave-flash"
-            style="width: 640px; height: 388px;"
-            data="/includes/flash/playerWithControls.swf?flv=serv/marketing/696470/FF%20576%20h264%20v6.mp4&amp;autoplay=false&amp;msg=Play%20Video">
-            <param name="movie" value="/includes/flash/playerWithControls.swf?flv=serv/marketing/696470/FF%20576%20h264%20v6.mp4&amp;autoplay=false&amp;msg=Play%20Video" />
-            <param name="wmode" value="transparent" />
-            <div class="video-player-no-flash">
-              This video requires a browser with support for open video
-              or the <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player</a>.
-            </div>
-        </object>
-      </video>
+      {{ video('FF%20576%20h264%20v6.webm',
+               'FF%20576%20h264%20v6.theora.ogv',
+               'FF%20576%20h264%20v6.mp4',
+               h=349, w=620,
+               prefix='//videos-cdn.mozilla.net/serv/marketing/696470/',
+               poster=media('img/firefox/video/poster-addons.jpg')) }}
     </div>
     <p id="builder-link">Are you a web developer? <a href="https://addons.mozilla.org/en-US/developers/builder">Learn how to make fantastic, restartless add-ons.</a></p>
     </div>
@@ -150,29 +133,12 @@
   </div>
   <div class="span7">
     <div id="video-player" class="mozilla-video-control">
-      <video
-        id="video"
-        width="620"
-        height="349"
-        poster="{{ media('img/firefox/video/poster-fx4-sync.jpg') }}"
-        controls="controls"
-        data-overlay-hidden-text="{{_('Play video')}}">
-
-        <source src="//videos-cdn.mozilla.net/serv/marketing/firefox4/FoxySync640.webm" type="video/webm" />
-        <source src="//videos-cdn.mozilla.net/serv/marketing/firefox4/FoxySync640.theora.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;" />
-        <source src="//videos-cdn.mozilla.net/serv/marketing/firefox4/FoxySync640.mp4" type="video/mp4" />
-
-        <object type="application/x-shockwave-flash"
-          style="width: 640px; height: 388px;"
-          data="/includes/flash/playerWithControls.swf?flv=serv/marketing/firefox4/FoxySync640.mp4&amp;autoplay=false&amp;msg=Play%20Video">
-          <param name="movie" value="/includes/flash/playerWithControls.swf?flv=serv/marketing/firefox4/FoxySync640.mp4&amp;autoplay=false&amp;msg=Play%20Video" />
-          <param name="wmode" value="transparent" />
-          <div class="video-player-no-flash">
-            This video requires a browser with support for open video
-            or the <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player</a>.
-          </div>
-        </object>
-      </video>
+      {{ video('FoxySync640.webm',
+               'FoxySync640.theora.ogv',
+               'FoxySync640.mp4',
+               h=349, w=620,
+               prefix='//videos-cdn.mozilla.net/serv/marketing/firefox4/',
+               poster=media('img/firefox/video/poster-fx4-sync.jpg')) }}
     </div>
   </div>
 </section>
