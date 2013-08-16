@@ -39,33 +39,12 @@
   </div>
   <figure id="video-wrapper" class="span7">
     <div id="video-player" class="mozilla-video-control mozilla-video-shadow">
-      <video
-        id="video"
-        width="640"
-        height="360"
-        poster="{{ media('img/firefox/video/poster-runfield.jpg') }}"
-        controls="controls"
-        data-overlay-hidden-text="{{_('Play video')}}">
-
-        <source src="//videos-cdn.mozilla.net/serv/mozhacks/demos/screencasts/runfield/screencast.webm" type="video/webm" />
-        <source src="//videos-cdn.mozilla.net/serv/mozhacks/demos/screencasts/runfield/screencast.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;" />
-        <source src="//videos-cdn.mozilla.net/serv/mozhacks/demos/screencasts/runfield/screencast.mp4" type="video/mp4" />
-
-        <object type="application/x-shockwave-flash"
-          style="width: 640px; height: 388px;"
-          data="/includes/flash/playerWithControls.swf?flv=serv/mozhacks/demos/screencasts/runfield/screencast.mp4&amp;autoplay=false&amp;msg=Play%20Video">
-
-          <param name="movie" value="/includes/flash/playerWithControls.swf?flv=serv/mozhacks/demos/screencasts/runfield/screencast.mp4&amp;autoplay=false&amp;msg=Play%20Video" />
-          <param name="wmode" value="transparent" />
-
-          <div class="video-player-no-flash">
-            This video requires a browser with support for open video
-            or the <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player</a>.
-          </div>
-
-        </object>
-
-      </video>
+      {{ video('screencast.webm',
+               'screencast.theora.ogv',
+               'screencast.mp4',
+               h=360, w=640,
+               prefix='//videos-cdn.mozilla.net/serv/mozhacks/demos/screencasts/runfield/',
+               poster=media('img/firefox/video/poster-runfield.jpg')) }}
     </div>
     <figcaption>Runfield is a Web-based game built with JavaScript and Canvas. <a href="https://developer.mozilla.org/demos/detail/runfield/launch">Try it for yourself »</a></figcaption>
   </figure>

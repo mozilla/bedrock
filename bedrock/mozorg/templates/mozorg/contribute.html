@@ -302,30 +302,16 @@
 
 <section id="welcome" class="container">
   <div id="welcome-video" class="mozilla-video-control mozilla-video-shadow">
-    <video
-      width="640"
-      height="360"
-      poster="{{ MEDIA_URL }}img/contribute/poster-brand.jpg"
-      controls="controls"
-      data-overlay-hidden-text="{{_('Play video')}}">
-      <source src="//videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.webm" type="video/webm" />
-      <source src="//videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.theora.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;" />
-      <source src="//videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.mp4" type="video/mp4" />
-      <object type="application/x-shockwave-flash"
-        style="width: 640px; height: 388px;"
-        data="{{ MEDIA_URL }}flash/playerWithControls.swf?flv=brand/Mozilla_Firefox_Manifesto_v0.2_640.mp4&amp;autoplay=false&amp;msg=Play%20Video">
-        <param name="movie" value="{{ MEDIA_URL }}flash/playerWithControls.swf?flv=brand/Mozilla_Firefox_Manifesto_v0.2_640.mp4&amp;autoplay=false&amp;msg=Play%20Video" />
-        <param name="wmode" value="transparent" />
-
-        <div class="video-player-no-flash">
-        {{_('This video requires a browser with support for open video or the <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player</a>.')}}
-        </div>
-      </object>
-    </video>
-    <p>
-      {{_('You don’t have to be a C++ guru (or even know what that means!) to get involved.<br><b>You just have to love the Web.</b>')}}
-    </p>
+    {{ video('Mozilla_Firefox_Manifesto_v0.2_640.webm',
+             'Mozilla_Firefox_Manifesto_v0.2_640.theora.ogv',
+             'Mozilla_Firefox_Manifesto_v0.2_640.mp4',
+             h=360, w=640,
+             prefix='//videos-cdn.mozilla.net/brand/',
+             poster=media('img/contribute/poster-brand.jpg')) }}
   </div>
+  <p>
+    {{_('You don’t have to be a C++ guru (or even know what that means!) to get involved.<br><b>You just have to love the Web.</b>')}}
+  </p>
 </section>
 
 {% endif %}

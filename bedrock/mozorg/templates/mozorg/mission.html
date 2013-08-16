@@ -33,27 +33,12 @@
 
   <div class="video">
     <div id="welcome-video" class="mozilla-video-control mozilla-video-shadow">
-      <video
-        width="460"
-        height="259"
-        poster="{{ media('img/mission/poster-mission.jpg') }}"
-        controls="controls"
-        data-overlay-hidden-text="{{ _('Play video') }}">
-        <source src="//videos-cdn.mozilla.net/brand/Mozilla_2011_Story.webm" type="video/webm">
-        <source src="//videos-cdn.mozilla.net/brand/Mozilla_2011_Story.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;">
-        <source src="//videos-cdn.mozilla.net/brand/Mozilla_2011_Story.mp4" type="video/mp4">
-        <object type="application/x-shockwave-flash"
-          style="width: 460px; height: 259px;"
-          data="{{ MEDIA_URL }}flash/playerWithControls.swf?flv=brand/Mozilla_2011_Story.mp4&amp;autoplay=false&amp;msg=Play%20Video">
-          <param name="movie" value="{{ MEDIA_URL }}flash/playerWithControls.swf?flv=brand/Mozilla_2011_Story.mp4&amp;autoplay=false&amp;msg=Play%20Video">
-          <param name="wmode" value="transparent">
-
-          <div class="video-player-no-flash">
-          This video requires a browser with support for open video
-          or the <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player</a>.
-          </div>
-        </object>
-      </video>
+      {{ video('Mozilla_2011_Story.webm',
+               'Mozilla_2011_Story.ogv',
+               'Mozilla_2011_Story.mp4',
+               h=259, w=460,
+               prefix='//videos-cdn.mozilla.net/brand/',
+               poster=media('img/mission/poster-mission.jpg')) }}
     </div>
     <p class="caption">Watch the video above to learn more about who we are, where we came from and how we're making the Web better for you.</p>
   </div>
