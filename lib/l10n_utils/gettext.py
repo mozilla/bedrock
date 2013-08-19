@@ -35,21 +35,25 @@ def parse_po(path):
 
         msgid = None
         msgpath = None
+        msgcomment = None
 
         for line in lines:
             line = line.strip()
-            if line.startswith('#'):
+            if line.startswith('#:'):
                 matches = REGEX_URL.match(line)
                 if matches:
                     msgpath = matches.group(1)
+            elif line.startswith('#.'):
+                msgcomment = line.lstrip('#.').strip()
             elif line.startswith('msgid'):
                 msgid = extract_content(line)
             elif line.startswith('msgstr') and msgid and msgpath:
                 if msgpath not in msgs:
                     msgs[msgpath] = []
-                msgs[msgpath].append(msgid)
+                msgs[msgpath].append([msgcomment, msgid])
                 msgid = None
                 msgpath = None
+                msgcomment = None
             elif msgid is not None:
                 msgid += parse_string(line)
 
@@ -221,8 +225,10 @@ def pot_to_langfiles():
 
         with codecs.open(target, 'a', 'utf-8') as out:
             for msg in msgs:
-                if msg not in curr and msg not in main_msgs:
-                    out.write(';%s\n%s\n\n\n' % (msg, msg))
+                if msg[1] not in curr and msg[1] not in main_msgs:
+                    if msg[0] is not None:
+                        out.write(u'# %s\n' % (msg[0]))
+                    out.write(u';%s\n%s\n\n\n' % (msg[1], msg[1]))
 
 
 def find_lang_files(lang):
@@ -254,14 +260,21 @@ def merge_lang_files(langs):
 
             dest = lang_file(f, lang)
             src_msgs = parse_lang(lang_file(f, 'templates'),
-                                  skip_untranslated=False)
+                                  skip_untranslated=False,
+                                  extract_comments=True)
             dest_msgs = parse_lang(dest, skip_untranslated=False)
+            new_msgs = [src_msgs[msg] for msg in src_msgs if msg not in dest_msgs]
 
-            new_msgs = [msg for msg in src_msgs if msg not in dest_msgs]
             _append_to_lang_file(dest, new_msgs)
 
 
 def _append_to_lang_file(dest, new_msgs):
     with codecs.open(dest, 'a', 'utf-8') as out:
         for msg in new_msgs:
-            out.write(u'\n\n;{msg}\n{msg}\n'.format(msg=msg))
+            if isinstance(msg, basestring):
+                msg = [None, msg]
+            out_str = u'\n\n'
+            if msg[0]:
+                out_str += u'# {comment}\n'
+            out_str += u';{msg}\n{msg}\n'
+            out.write(out_str.format(msg=msg[1], comment=msg[0]))
