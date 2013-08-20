@@ -129,4 +129,20 @@ class FirefoxDetails(ProductDetails):
                          ])])
 
 
+class MobileDetails(ProductDetails):
+    channel_map = {
+        'aurora': 'alpha_version',
+        'beta': 'beta_version',
+        'release': 'version',
+    }
+
+    def __init__(self):
+        super(MobileDetails, self).__init__()
+
+    def latest_version(self, channel):
+        version = self.channel_map.get(channel, 'version')
+        return self.mobile_details[version]
+
+
 firefox_details = FirefoxDetails()
+mobile_details = MobileDetails()

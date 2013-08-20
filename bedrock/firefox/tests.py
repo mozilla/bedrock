@@ -19,7 +19,7 @@ from platforms import load_devices
 from pyquery import PyQuery as pq
 
 from bedrock.firefox import views as fx_views
-from bedrock.firefox.firefox_details import FirefoxDetails
+from bedrock.firefox.firefox_details import FirefoxDetails, MobileDetails
 from bedrock.firefox.utils import product_details
 from bedrock.mozorg.tests import TestCase
 
@@ -29,6 +29,7 @@ PROD_DETAILS_DIR = os.path.join(TEST_DATA_DIR, 'product_details_json')
 
 with patch.object(settings, 'PROD_DETAILS_DIR', PROD_DETAILS_DIR):
     firefox_details = FirefoxDetails()
+    mobile_details = MobileDetails()
 
 
 class TestInstallerHelp(TestCase):
@@ -152,6 +153,22 @@ class TestFirefoxDetails(TestCase):
     def test_latest_major_version_no_int(self):
         """latest_major_version should return 0 when no int."""
         eq_(firefox_details.latest_major_version('release'), 0)
+
+
+@patch.object(fx_views, 'mobile_details', mobile_details)
+class TestMobileDetails(TestCase):
+
+    @patch.dict(mobile_details.mobile_details,
+                version='22.0.1')
+    def test_latest_release_version(self):
+        """latest_version should return the latest release version."""
+        eq_(mobile_details.latest_version('release'), '22.0.1')
+
+    @patch.dict(mobile_details.mobile_details,
+                beta_version='23.0')
+    def test_latest_beta_version(self):
+        """latest_version should return the latest beta version."""
+        eq_(mobile_details.latest_version('beta'), '23.0')
 
 
 @patch.object(fx_views, 'firefox_details', firefox_details)
@@ -463,3 +480,51 @@ class FirefoxMainRedirect(FxVersionRedirectsMixin, TestCase):
         user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:18.0) '
                       'Gecko/20100101 Firefox/18.0')
         self.assert_ua_redirects_to(user_agent, 'firefox.fx', 302)
+
+
+@patch.object(fx_views, 'firefox_details', firefox_details)
+@patch.object(fx_views, 'mobile_details', mobile_details)
+class TestNotesRedirects(TestCase):
+    def setUp(self):
+        self.client = Client()
+
+    def _test(self, url_from, url_to):
+        with self.activate('en-US'):
+            url = '/en-US' + url_from
+        response = self.client.get(url)
+        eq_(response.status_code, 302)
+        eq_(response['Location'], 'http://testserver/en-US' + url_to)
+
+    @patch.dict(product_details.firefox_versions,
+                LATEST_FIREFOX_VERSION='22.0')
+    def test_release_version(self):
+        self._test('/firefox/notes/',
+                   '/firefox/22.0/releasenotes/')
+
+    @patch.dict(product_details.firefox_versions,
+                FIREFOX_AURORA='24.0a2')
+    def test_aurora_version(self):
+        self._test('/firefox/aurora/notes/',
+                   '/firefox/24.0a2/auroranotes/')
+
+    @patch.dict(product_details.mobile_details,
+                version='22.0')
+    def test_mobile_version(self):
+        self._test('/mobile/notes/',
+                   '/mobile/22.0/releasenotes/')
+
+
+@patch.object(fx_views, 'firefox_details', firefox_details)
+class TestSysreqRedirect(TestCase):
+    def setUp(self):
+        self.client = Client()
+
+    @patch.dict(product_details.firefox_versions,
+                LATEST_FIREFOX_VERSION='22.0')
+    def test_release_version(self):
+        with self.activate('en-US'):
+            url = '/en-US/firefox/system-requirements.html'
+        response = self.client.get(url)
+        eq_(response.status_code, 302)
+        eq_(response['Location'],
+            'http://testserver/en-US/firefox/22.0/system-requirements/')
