@@ -35,6 +35,191 @@
     z-index: 1;
 }
 
+.version-message-container {
+    text-align: center;
+    font-size: 20px;
+    font-style: italic;
+    padding-bottom: 20px;
+    display: none;
+}
+
+.version-message {
+    display: none;
+    background: url(/media/img/firefox/new/teardrop-arrow.png) no-repeat 0 0;
+    padding-left: 36px;
+}
+
+.version-message-secondary {
+    display: block;
+    padding: 0;
+    background: transparent;
+    font-size: 16px;
+}
+
+
+.latest-links-wrapper {
+    display: none;
+    padding-top: 13px;
+    width: 280px;
+    float: left;
+    ul {
+        margin: 0;
+        li {
+            margin: 0;
+            padding: 3px 0 2px;
+            list-style: none;
+            line-height: 1.2;
+        }
+    }
+}
+
+.download-button-wrapper {
+    width: 280px;
+}
+
+/* Unsupported platforms */
+html.oldmac,
+html.oldwin {
+    .download-button .unsupported-download {
+        margin: 32px 0 0;
+        text-align: left;
+    }
+}
+
+/* iOS */
+html.ios {
+    .version-message-container {
+        display: block;
+    }
+
+    #version-message-ios {
+        display: inline;
+    }
+
+    .desktop.download-button-wrapper {
+        display: none;
+    }
+
+    .ios-links-wrapper {
+        display: block;
+        padding-top: 26px;
+    }
+    .desktop-latest-links-wrapper {
+        display: none;
+    }
+}
+
+/* desktop version (with Firefox) */
+html.firefox-latest {
+    .version-message-container {
+        display: block;
+    }
+
+    #version-message-desktop-latest {
+        display: inline;
+        background-position: 0 100%;
+    }
+
+    /* hide download button */
+    .desktop.download-button-wrapper {
+        display: none;
+    }
+
+    /* show helpful links */
+    .desktop-latest-links-wrapper {
+        display: block;
+    }
+}
+
+html.firefox-old {
+    .version-message-container {
+        display: block;
+    }
+
+    #version-message-desktop-old {
+        display: inline;
+    }
+}
+
+/* Android version message (with Firefox) */
+html.android {
+    &.firefox-latest {
+        .version-message-container {
+            display: block;
+        }
+
+        #version-message-android-latest {
+            display: inline;
+            background-position: 0 100%;
+        }
+
+        #version-message-desktop-latest {
+            display: none;
+        }
+
+        /* hide download button */
+       .android.download-button-wrapper {
+            display: none;
+        }
+
+        /* show helpful links */
+        .android-latest-links-wrapper {
+            display: block;
+            padding-top: 38px;
+        }
+        .desktop-latest-links-wrapper {
+            display: none;
+        }
+    }
+
+    &.firefox-old {
+        .version-message-container {
+            display: block;
+        }
+
+        #version-message-android-old {
+            display: inline;
+        }
+
+        #version-message-desktop-old {
+            display: none;
+        }
+    }
+
+    .download-button-wrapper {
+        display: none;
+        &.android {
+            display: block;
+            margin-top: 22px;
+            .download-link {
+                margin-left: 54px;
+            }
+        }
+    }
+}
+
+/* FxOS */
+html.fxos {
+    // hide conditional messaging for firefox users,
+    // they get updates from the OS directly.
+    .version-message-container {
+        display: none;
+    }
+
+    .fxos-latest-links-wrapper {
+        display: block;
+        padding-top: 26px;
+    }
+
+    #firefox-screenshot {
+        display: none;
+    }
+
+    .desktop-latest-links-wrapper {
+        display: none;
+    }
+}
+
 #main-feature {
     margin-top: 14px;
     padding-bottom: 18px;
@@ -48,14 +233,13 @@
 
 #features {
     float: left;
-    width: 480px;
-    margin: 0 20px 0 16px;
-    padding: 0 0 0 20px;
+    margin: 0;
+    padding: 0;
     list-style-type: none;
     .clearfix;
     li {
         float: left;
-        width: 140px;
+        width: 190px;
         height: 89px;
         text-align: center;
         padding: 28px 20px 0 0;
@@ -72,30 +256,24 @@
     }
 }
 
-/* CSS tweaks */
-
-html[lang="it"] #features,
-html[lang="mk"] #features,
-html[lang="my"] #features,
-html[lang="ru"] #features,
-html[lang="uk"] #features {
-    width: 588px;
-    margin: 0 0 0 8px;
-    padding-left:0;
-    li {
-        width: 176px;
-        padding-right: 20px;
-    }
-}
-
-html[lang="my"] #features {
-    li {
-        font-size:20px;
-        letter-spacing:0;
+// l10n CSS tweaks. When editing, make sure to update tablet and mobile
+// as well.
+html[lang="hy-AM"],
+html[lang="it"],
+html[lang="gd"],
+html[lang="mk"],
+html[lang="my"],
+html[lang="ru"],
+html[lang="uk"] {
+    #features li {
+        font-size: 20px;
     }
 }
 
  .download-button-wrapper { float: left; }
+.download-button-wrapper.android {
+    display: none;
+}
 
 .ready-for-scene2 {
     .thankyou {
@@ -184,27 +362,10 @@ html[lang="my"] #features {
 // android view
 .android {
     .mobile {
-        display: block;
-    }
-    .desktop {
         display: none;
     }
-    .theater { height: 260px; }
-    #features {
-        float: none;
-        margin: 0 auto 10px auto;
-        width: 720px;
-        li {
-            width: 220px;
-        }
-    }
-
-    .download-button-wrapper {
-        float: none;
-        text-align: center;
-        .download-button {
-            text-align: left;
-        }
+    .desktop {
+        display: block;
     }
 }
 
@@ -244,9 +405,12 @@ html[lang="my"] #features {
     visibility: hidden;
 }
 
-#firefox-screenshot .platform-img {
-    position: absolute;
-    bottom: 0px;
+#firefox-screenshot {
+    padding: 0 20px;
+    .platform-img {
+        position: absolute;
+        bottom: 0px;
+    }
 }
 
 noscript {
@@ -264,16 +428,36 @@ noscript {
     .theater, .stage, .js .scene {
         height: 360px;
     }
+
     #features {
-        width: 391px;
         margin: 0;
         li {
-            width: 110px;
+            width: 125px;
             font-size: 18px;
             padding-top: 32px;
             height: 85px;
         }
     }
+
+    // l10n tweaks
+    html[lang="hy-AM"],
+    html[lang="it"],
+    html[lang="gd"],
+    html[lang="mk"],
+    html[lang="my"],
+    html[lang="ru"],
+    html[lang="uk"] {
+        #features li {
+            .open-sans();
+            font-size: @smallFontSize;
+            letter-spacing: normal;
+        }
+    }
+
+    #firefox-screenshot {
+        padding: 0;
+    }
+
     .ready-for-scene2 {
         .thankyou {
             margin: 0 40px;
@@ -287,7 +471,6 @@ noscript {
             }
         }
     }
-
     .android #features li {
         font-size: 24px;
         padding-top: 28px;
@@ -321,10 +504,18 @@ noscript {
     }
     #masthead h2 { display: none; }
     .theater, .stage, .scene {
-        height: 356px;
+        height: 310px;
+    }
+    .version-message-container {
+        padding: 0 20px 20px;
+        font-size: 18px;
+    }
+    .version-message {
+        padding-top: 2px; // so the teardrop arrow doesn't get cropped
     }
     #main-feature {
-        padding-bottom: 0px;
+        margin: 0;
+        padding: 0 10px;
         .row {
             .clearfix;
             width: 300px;
@@ -347,19 +538,102 @@ noscript {
 
     #firefox-screenshot { display: none; }
 
-    #features-download { padding-top: 10px; }
+    #features-download {
+        padding-top: 10px;
+        .download-button {
+            display: block;
+        }
+    }
 
-    .android #features, #features {
+    #features {
         margin: 0 auto 20px;
         float: none;
-        width: 320px;
-        padding-left: 0;
+        width: auto;
+        padding: 0;
         li {
-            width: 85px;
-            height: 78px;
-            padding: 35px 10px 0;
-            font-size: 14px;
+            width: 96px;
+            height: auto;
+            padding: 10px 2px;
+            font-size: @smallFontSize;
+            .open-sans();
+            letter-spacing: normal;
+            background: none;
+        }
+    }
+
+    // l10n tweaks
+    html[lang="hy-AM"],
+    html[lang="it"],
+    html[lang="gd"],
+    html[lang="mk"],
+    html[lang="my"],
+    html[lang="ru"],
+    html[lang="uk"] {
+        #features li {
+            display: block;
+            width: auto;
+            float: none;
+            padding: 0 4px 20px 4px;
+            font-size: @smallFontSize;
+            .open-sans();
+            letter-spacing: normal;
+            background: url(/media/img/firefox/new/features-divider-horizontal.png) center bottom no-repeat;
+        }
+    }
+
+    .latest-links-wrapper {
+        float: none;
+        width: auto;
+        margin: 0 10px;
+        padding: 0;
+    }
+
+    html.oldmac,
+    html.oldwin {
+        .download-button .unsupported-download {
             text-align: left;
+            max-width: none;
+        }
+    }
+
+    html.android {
+        .mobile {
+            display: none;
+        }
+        .desktop {
+            display: none;
+        }
+
+        .download-button-wrapper.android .download-link {
+            margin-left: 0;
+        }
+
+        .download-button-wrapper {
+            float: none;
+            text-align: center;
+            width: 250px;
+            margin: 0 auto;
+        }
+
+        &.firefox-latest .android-latest-links-wrapper {
+            padding: 0;
+        }
+    }
+
+    html.fxos {
+        .fxos-latest-links-wrapper {
+            padding: 0;
+        }
+    }
+
+    html.ios {
+        .stage,
+        .theater {
+            height: 250px;
+        }
+
+        .ios-links-wrapper {
+            padding: 0;
         }
     }
 
@@ -367,7 +641,12 @@ noscript {
         float: none;
         text-align: center;
         .download-button {
-            text-align: left;
+            text-align: center;
+
+            small.download-other {
+                text-align: center;
+                margin-top: 16px;
+            }
         }
     }
 
@@ -393,11 +672,5 @@ noscript {
     }
     .osx .ready-for-scene2, .windows .ready-for-scene2, .winIE8 .ready-for-scene2 {
         #install1, #install2, #install3 { background-image: none; }
-    }
-
-    .android {
-        .theater, .stage, .scene {
-            height: 310px;
-        }
     }
 }

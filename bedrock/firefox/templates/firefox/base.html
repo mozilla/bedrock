@@ -4,6 +4,8 @@
 
 {% extends "base.html" %}
 
+{% block html_attrs %}{{ super() }} data-latest-firefox="{{ latest_firefox_version }}" data-esr-versions="{{ esr_firefox_versions }}"{% endblock %}
+
 {% block body_class %}sky{% endblock %}
 
 {% block description %}Mozilla Firefox, free web browser, is created by a global non-profit dedicated to putting individuals in control &amp; shaping the future of the web for the public good.{% endblock %}
@@ -19,8 +21,6 @@
 {% block extrahead %}
 <meta name="og:image" content="{{ media('img/firefox/firefox-100.jpg?2013-06') }}">
 {% endblock %}
-
-{% block body_attrs %}{{ super() }} data-latest-firefox="{{ latest_firefox_version }}" data-esr-versions="{{ esr_firefox_versions }}"{% endblock %}
 
 {% block site_header_nav %}
 <nav role="navigation" id="nav-main">
