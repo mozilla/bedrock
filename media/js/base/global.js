@@ -14,7 +14,7 @@
 function trigger_ie_download(link, appVersion) {
     var version = appVersion || navigator.appVersion;
     // Only open if we got a link and this is IE.
-    if (link && version.indexOf('MSIE') != -1) {
+    if (link && version.indexOf('MSIE') !== -1) {
         window.open(link, 'download_window', 'toolbar=0,location=no,directories=0,status=0,scrollbars=0,resizeable=0,width=1,height=1,top=0,left=0');
         window.focus();
     }
@@ -41,6 +41,48 @@ function init_lang_switcher() {
             ['_trackEvent', 'Language Switcher', 'change', $(this).val()],
             function() {$('#lang_form').submit();}
         );
+    });
+}
+
+// platform images
+
+function init_platform_imgs() {
+    function has_platform(platforms, platform) {
+        for (var i = 0; i < platforms.length; i++) {
+            if (platforms[i] === platform && site.platform === platform) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    $('.platform-img').each(function() {
+        var suffix = '';
+        var $img = $(this);
+        var default_platforms = ['osx', 'oldmac', 'linux'];
+        var additional_platforms;
+        var platforms = default_platforms;
+
+        // use 'data-additional-platforms' to specify other supported platforms
+        // beyond the defaults
+        if ($img.data('additional-platforms')) {
+            additional_platforms = $img.data('additional-platforms').split(' ');
+            platforms = default_platforms.concat(additional_platforms);
+        }
+
+        if (has_platform(platforms, 'osx') || has_platform(platforms, 'oldmac')) {
+            suffix = '-mac';
+        } else if (has_platform(platforms, site.platform)) {
+            suffix = '-' + site.platform;
+        }
+
+        var orig_src = $img.data('src');
+        var i = orig_src.lastIndexOf('.');
+        var base = orig_src.substring(0, i);
+        var ext = orig_src.substring(i);
+        this.src = base + suffix + ext;
+        $img.addClass(site.platform);
     });
 }
 
@@ -78,13 +120,13 @@ function isFirefox(userAgent) {
 
 function isFirefoxUpToDate(latest, esr) {
 
-    var $body = $('body');
+    var $html = $(document.documentElement);
     var fx_version = getFirefoxMasterVersion();
-    var esrFirefoxVersions = esr || $body.data('esr-versions');
+    var esrFirefoxVersions = esr || $html.data('esr-versions');
     var latestFirefoxVersion;
 
     if (!latest) {
-        latestFirefoxVersion = $body.attr('data-latest-firefox');
+        latestFirefoxVersion = $html.attr('data-latest-firefox');
         latestFirefoxVersion = parseInt(latestFirefoxVersion.split('.')[0], 10);
     } else {
         latestFirefoxVersion = parseInt(latest.split('.')[0], 10);
