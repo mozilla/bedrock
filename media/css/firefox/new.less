@@ -35,6 +35,168 @@
     z-index: 1;
 }
 
+#version-message {
+    text-align: center;
+    font-size: 20px;
+    font-style: italic;
+    padding-bottom: 20px;
+    display: none;
+
+    div {
+        display: none;
+        background: url(/media/img/firefox/new/teardrop-arrow.png) no-repeat 0 0;
+        padding-left: 36px;
+
+        .version-message-secondary {
+            display: block;
+            padding: 0;
+            background: transparent;
+            font-size: 16px;
+        }
+    }
+}
+
+.latest-links-wrapper {
+    display: none;
+    padding-top: 13px;
+
+    ul {
+        margin: 0;
+        li {
+            list-style: none;
+            a {
+                margin-left: 50px;
+            }
+        }
+    }
+}
+
+/* iOS */
+html.ios {
+    #version-message {
+        display: block;
+        #version-message-ios {
+            display: inline;
+        }
+    }
+
+    .desktop.download-button-wrapper {
+        display: none;
+    }
+
+    .ios-links-wrapper {
+        display: block;
+        padding-top: 26px;
+    }
+    .desktop-latest-links-wrapper {
+        display: none;
+    }
+}
+
+/* desktop version (with Firefox) */
+html.firefox-latest {
+    #version-message {
+        display: block;
+        #version-message-desktop-latest {
+            display: inline;
+            background-position: 0 100%;
+        }
+    }
+
+    /* hide download button */
+    .desktop.download-button-wrapper {
+        display: none;
+    }
+
+    /* show helpful links */
+    .desktop-latest-links-wrapper {
+        display: block;
+    }
+}
+
+html.firefox-old {
+    #version-message {
+        display: block;
+        #version-message-desktop-old {
+            display: inline;
+        }
+    }
+}
+
+/* Android version message (with Firefox) */
+html.android {
+    &.firefox-latest {
+        #version-message {
+            display: block;
+            #version-message-android-latest {
+                display: inline;
+                background-position: 0 100%;
+            }
+            #version-message-desktop-latest {
+                display: none;
+            }
+        }
+
+        /* hide download button */
+       .android.download-button-wrapper {
+            display: none;
+        }
+
+        /* show helpful links */
+        .android-latest-links-wrapper {
+            display: block;
+            padding-top: 38px;
+        }
+        .desktop-latest-links-wrapper {
+            display: none;
+        }
+    }
+
+    &.firefox-old {
+        #version-message {
+            display: block;
+            #version-message-android-old {
+                display: inline;
+            }
+            #version-message-desktop-old {
+                display: none;
+            }
+        }
+    }
+
+    .download-button-wrapper {
+        display: none;
+        &.android {
+            display: block;
+            margin-top: 22px;
+            .download-link {
+                margin-left: 54px;
+            }
+        }
+    }
+}
+
+/* FxOS */
+html.fxos {
+    #version-message {
+        display: none;
+    }
+
+    /* show helpful links */
+    .fxos-latest-links-wrapper {
+        display: block;
+        padding-top: 26px;
+    }
+
+    #firefox-screenshot {
+        display: none;
+    }
+
+    .desktop-latest-links-wrapper {
+        display: none;
+    }
+}
+
 #main-feature {
     margin-top: 14px;
     padding-bottom: 18px;
@@ -96,6 +258,9 @@ html[lang="my"] #features {
 }
 
  .download-button-wrapper { float: left; }
+.download-button-wrapper.android {
+    display: none;
+}
 
 .ready-for-scene2 {
     .thankyou {
@@ -184,27 +349,10 @@ html[lang="my"] #features {
 // android view
 .android {
     .mobile {
-        display: block;
-    }
-    .desktop {
         display: none;
     }
-    .theater { height: 260px; }
-    #features {
-        float: none;
-        margin: 0 auto 10px auto;
-        width: 720px;
-        li {
-            width: 220px;
-        }
-    }
-
-    .download-button-wrapper {
-        float: none;
-        text-align: center;
-        .download-button {
-            text-align: left;
-        }
+    .desktop {
+        display: block;
     }
 }
 
@@ -244,9 +392,12 @@ html[lang="my"] #features {
     visibility: hidden;
 }
 
-#firefox-screenshot .platform-img {
-    position: absolute;
-    bottom: 0px;
+#firefox-screenshot {
+    padding: 0 20px;
+    .platform-img {
+        position: absolute;
+        bottom: 0px;
+    }
 }
 
 noscript {
@@ -321,10 +472,15 @@ noscript {
     }
     #masthead h2 { display: none; }
     .theater, .stage, .scene {
-        height: 356px;
+        height: 310px;
+    }
+    #version-message {
+        padding: 0 20px 20px;
+        font-size: 18px;
     }
     #main-feature {
-        padding-bottom: 0px;
+        margin: 0;
+        padding: 0 10px;
         .row {
             .clearfix;
             width: 300px;
@@ -347,9 +503,14 @@ noscript {
 
     #firefox-screenshot { display: none; }
 
-    #features-download { padding-top: 10px; }
+    #features-download {
+        padding-top: 10px;
+        .download-button {
+            display: block;
+        }
+    }
 
-    .android #features, #features {
+    #features {
         margin: 0 auto 20px;
         float: none;
         width: 320px;
@@ -363,11 +524,67 @@ noscript {
         }
     }
 
+    .latest-links-wrapper {
+        padding: 0;
+        ul li {
+            margin: 0 10px;
+            a {
+                margin: 0;
+            }
+        }
+    }
+
+    html.android {
+        .mobile {
+            display: none;
+        }
+        .desktop {
+            display: none;
+        }
+
+        .download-button-wrapper.android .download-link {
+            margin-left: 0;
+        }
+
+        .download-button-wrapper {
+            float: none;
+            text-align: center;
+            width: 250px;
+            margin: 0 auto;
+        }
+
+        &.firefox-latest .android-latest-links-wrapper {
+            padding: 0;
+        }
+    }
+
+    html.fxos {
+        .fxos-latest-links-wrapper {
+            padding: 0;
+        }
+    }
+
+    html.ios {
+        .stage,
+        .theater {
+            height: 250px;
+        }
+
+        .ios-links-wrapper {
+            padding: 0;
+        }
+    }
+
     .download-button-wrapper {
         float: none;
         text-align: center;
         .download-button {
-            text-align: left;
+            text-align: center;
+
+            small.download-other {
+                text-align: center;
+                margin-top: 16px;
+            }
         }
     }
 
@@ -393,11 +610,5 @@ noscript {
     }
     .osx .ready-for-scene2, .windows .ready-for-scene2, .winIE8 .ready-for-scene2 {
         #install1, #install2, #install3 { background-image: none; }
-    }
-
-    .android {
-        .theater, .stage, .scene {
-            height: 310px;
-        }
     }
 }
