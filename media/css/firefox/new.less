@@ -35,26 +35,27 @@
     z-index: 1;
 }
 
-#version-message {
+.version-message-container {
     text-align: center;
     font-size: 20px;
     font-style: italic;
     padding-bottom: 20px;
     display: none;
-
-    div {
-        display: none;
-        background: url(/media/img/firefox/new/teardrop-arrow.png) no-repeat 0 0;
-        padding-left: 36px;
-
-        .version-message-secondary {
-            display: block;
-            padding: 0;
-            background: transparent;
-            font-size: 16px;
-        }
-    }
 }
+
+.version-message {
+    display: none;
+    background: url(/media/img/firefox/new/teardrop-arrow.png) no-repeat 0 0;
+    padding-left: 36px;
+}
+
+.version-message-secondary {
+    display: block;
+    padding: 0;
+    background: transparent;
+    font-size: 16px;
+}
+
 
 .latest-links-wrapper {
     display: none;
@@ -73,11 +74,12 @@
 
 /* iOS */
 html.ios {
-    #version-message {
+    .version-message-container {
         display: block;
-        #version-message-ios {
-            display: inline;
-        }
+    }
+
+    #version-message-ios {
+        display: inline;
     }
 
     .desktop.download-button-wrapper {
@@ -95,12 +97,13 @@ html.ios {
 
 /* desktop version (with Firefox) */
 html.firefox-latest {
-    #version-message {
+    .version-message-container {
         display: block;
-        #version-message-desktop-latest {
-            display: inline;
-            background-position: 0 100%;
-        }
+    }
+
+    #version-message-desktop-latest {
+        display: inline;
+        background-position: 0 100%;
     }
 
     /* hide download button */
@@ -115,26 +118,29 @@ html.firefox-latest {
 }
 
 html.firefox-old {
-    #version-message {
+    .version-message-container {
         display: block;
-        #version-message-desktop-old {
-            display: inline;
-        }
+    }
+
+    #version-message-desktop-old {
+        display: inline;
     }
 }
 
 /* Android version message (with Firefox) */
 html.android {
     &.firefox-latest {
-        #version-message {
+        .version-message-container {
             display: block;
-            #version-message-android-latest {
-                display: inline;
-                background-position: 0 100%;
-            }
-            #version-message-desktop-latest {
-                display: none;
-            }
+        }
+
+        #version-message-android-latest {
+            display: inline;
+            background-position: 0 100%;
+        }
+
+        #version-message-desktop-latest {
+            display: none;
         }
 
         /* hide download button */
@@ -153,14 +159,16 @@ html.android {
     }
 
     &.firefox-old {
-        #version-message {
+        .version-message-container {
             display: block;
-            #version-message-android-old {
-                display: inline;
-            }
-            #version-message-desktop-old {
-                display: none;
-            }
+        }
+
+        #version-message-android-old {
+            display: inline;
+        }
+
+        #version-message-desktop-old {
+            display: none;
         }
     }
 
@@ -178,10 +186,6 @@ html.android {
 
 /* FxOS */
 html.fxos {
-    #version-message {
-        display: none;
-    }
-
     /* show helpful links */
     .fxos-latest-links-wrapper {
         display: block;
@@ -474,7 +478,7 @@ noscript {
     .theater, .stage, .scene {
         height: 310px;
     }
-    #version-message {
+    .version-message-container {
         padding: 0 20px 20px;
         font-size: 18px;
     }

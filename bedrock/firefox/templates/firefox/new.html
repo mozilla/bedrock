@@ -23,20 +23,20 @@
 
 {% block content %}
 <main role="main">
-  <div id="version-message">
-    <div id="version-message-ios">
+  <div class="version-message-container">
+    <div id="version-message-ios" class="version-message">
       {{_('Sorry, Firefox is currently unsupported by iOS devices.')}}
     </div>
-    <div id="version-message-android-latest">
+    <div id="version-message-android-latest" class="version-message">
       {{_('Congrats! You’re using the latest version of Firefox.')}}
     </div>
-    <div id="version-message-android-old">
+    <div id="version-message-android-old" class="version-message">
       {{_('Looks like you’re using an older version of Firefox. Update on Google Play.')}}
     </div>
-    <div id="version-message-desktop-latest">
+    <div id="version-message-desktop-latest" class="version-message">
       {{_('Congrats! You’re using the latest version of Firefox.')}}
     </div>
-    <div id="version-message-desktop-old">
+    <div id="version-message-desktop-old" class="version-message">
       {{_('Looks like you’re using an older version of Firefox.')}}
       <div class="version-message-secondary">
         <a href="https://support.mozilla.org/kb/update-firefox-latest-version?esab=a&s=silent+download&r=0&as=s">{{_('Updating is quick and easy.')}}</a>
