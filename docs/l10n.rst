@@ -9,11 +9,13 @@ Localization
 ============
 
 The site is fully localizable. Localization files are not shipped with the code
-distribution, but are available on SVN::
+distribution, but are available on SVN:
 
-    git svn clone https://svn.mozilla.org/projects/mozilla.com/trunk/locales/ locale
+.. code-block:: console
+
+    $ git svn clone https://svn.mozilla.org/projects/mozilla.com/trunk/locales/ locale
     # or
-    svn checkout https://svn.mozilla.org/projects/mozilla.com/trunk/locales/ locale
+    $ svn checkout https://svn.mozilla.org/projects/mozilla.com/trunk/locales/ locale
 
 .lang files
 -----------
@@ -27,21 +29,21 @@ a ``.lang`` extension.
 
 To extract all the strings from the codebase, run:
 
-::
+.. code-block:: console
 
     $ ./manage.py l10n_extract
 
 If you'd only like to extract strings from certain files, you may optionally
 list them on the command line:
 
-::
+.. code-block:: console
 
     $ ./manage.py l10n_extract apps/mozorg/templates/mozorg/contribute.html
 
 Command line glob matching will work as well if you want all of the html files
 in a directory for example:
 
-::
+.. code-block:: console
 
     $ ./manage.py l10n_extract apps/mozorg/templates/mozorg/*.html
 
@@ -55,14 +57,14 @@ being referenced correctly, from the code, see
 
 To merge new strings into locale directories, run:
 
-::
+.. code-block:: console
 
     $ ./manage.py l10n_merge
 
 If you want to merge only specific locales, you can pass any number of
 them as arguments:
 
-::
+.. code-block:: console
 
     $ ./manage.py l10n_merge fr de
 
@@ -76,7 +78,7 @@ To translate a string from a .lang file, simply use the gettext interface.
 
 In a jinja2 template:
 
-::
+.. code-block:: jinja
 
     <div>{{ _('Hello, how are you?') }}<div>
 
@@ -88,11 +90,41 @@ Note the usage of variable substitution in the latter examples. It is
 important not to hardcode URLs or other parameters in the string.
 jinja's `format` filter lets us apply variables outsite of the string.
 
+You can provide a one-line comment to the translators like this:
+
+.. code-block:: jinja
+
+    {# L10n: "like" as in "similar to", not "is fond of" #}
+    {{ _('Like this:') }}
+
+The comment will be included in the .lang files above the string to be
+translated.
+
+In a Python file, use ``lib.l10n_utils.dotlang._`` or
+``lib.l10n_utils.dotlang._lazy``, like this:
+
+.. code-block:: python
+
+    from lib.l10n_utils.dotlang import _lazy as _
+
+    sometext = _('Foo about bar.')
+
+You can provide a one-line comment to the translators like this:
+
+.. code-block:: python
+
+    # L10n: "like" as in "similar to", not "is fond of"
+    sometext = _('Like this:')
+
+The comment will be included in the .lang files above the string to be
+translated.
+
+
 There's another way to translate content within jinja2 templates. If
 you need a big chunk of content translated, you can put it all inside
 a `trans` block.
 
-::
+.. code-block:: jinja
 
     {% trans %}
       <div>Hello, how are you</div>
@@ -126,7 +158,7 @@ know which one to use when translating a particular string?
   `<locale>/mozorg/firefox.lang`, the template can specify a list of
   additional lang files to load with a template block:
 
-::
+.. code-block:: jinja
 
     {% add_lang_files "foo" "bar" %}
 
@@ -144,7 +176,7 @@ Simply add a module-level constant in the file named `LANG_FILES`. The
 value should be either a string, or a list of strings, similar to the
 `add_lang_files` tag above.
 
-::
+.. code-block:: python
 
     # forms.py
 
@@ -259,15 +291,18 @@ block.
 
 Generating the locale files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-::
 
-    ./manage.py l10n_check
+.. code-block:: console
+
+    $ ./manage.py l10n_check
 
 This command will check which blocks need to be translated and update
 the locale templates with needed translations. It will copy the
 English blocks into the locale files if a translation is needed.
 
-You can specify a list of locales to update::
+You can specify a list of locales to update:
 
-    ./mange.py l10n_check fr
-    ./mange.py l10n_check fr de es
+.. code-block:: console
+
+    $ ./manage.py l10n_check fr
+    $ ./manage.py l10n_check fr de es
