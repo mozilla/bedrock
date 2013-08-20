@@ -100,7 +100,7 @@
   <h1>{{ _('Tools') }}</h1>
   <ul>
     <li>
-      <a href="https://developer.mozilla.org/en/Tools/">
+      <a href="https://developer.mozilla.org/Tools/">
         <img src="{{ media('/img/products/badge-tools.jpg') }}" alt="" />
         <h3>{{ _('Firefox Developer Tools') }}</h3>
         <p>{{ _('A collection of tools built in to Firefox.') }}</p>
@@ -127,14 +127,14 @@
   <h1>{{ _('Platforms') }}</h1>
   <ul>
     <li>
-      <a href="https://developer.mozilla.org/en/Gecko">
+      <a href="https://developer.mozilla.org/Gecko">
         <img src="{{ media('/img/products/badge-gecko.jpg') }}" alt="" />
         <h3>{{ _('Gecko') }}</h3>
         <p>{{ _('The layout engine that drives Firefox.') }}</p>
       </a>
     </li>
     <li>
-      <a href="https://developer.mozilla.org/en/XULRunner">
+      <a href="https://developer.mozilla.org/XULRunner">
         <img src="{{ media('/img/products/badge-xulrunner.jpg') }}" alt="" />
         <h3>{{ _('XUL Runner') }}</h3>
         <p>{{ _('An environment for XUL-based applications.') }}</p>
@@ -147,8 +147,10 @@
   </ul>
 </section>
 
-<p id="more-projects">See even <a href="{{ url('mozorg.projects.mozilla-based') }}">more awesome software</a> based on Mozilla technologies.</p>
-
-
+<p id="more-projects">
+  {% trans link=url('mozorg.projects.mozilla-based') %}
+  See even <a href="{{link}}">more awesome software</a> based on Mozilla technologies.
+  {% endtrans %}
+</p>
 
 {% endblock %}
