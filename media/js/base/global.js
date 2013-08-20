@@ -48,22 +48,20 @@ function init_platform_imgs() {
     $('.platform-img').each(function() {
         var suffix = '';
         var $img = $(this);
-
         var default_platforms = ['osx', 'oldmac', 'linux'];
+        var additional_platforms;
+        var platforms = default_platforms;
 
         // use 'data-additional-platforms' to specify other supported platforms
         // beyond the defaults
         if ($img.data('additional-platforms')) {
-            var additional_platforms = $img.data('additional-platforms').split(' ');
-            var platforms = default_platforms.concat(additional_platforms);
-        } else {
-            var platforms = default_platforms;
+            additional_platforms = $img.data('additional-platforms').split(' ');
+            platforms = default_platforms.concat(additional_platforms);
         }
 
         if (has_platform(platforms, 'osx') || has_platform(platforms, 'oldmac')) {
             suffix = '-mac';
-        }
-        else if (has_platform(platforms, site.platform)) {
+        } else if (has_platform(platforms, site.platform)) {
             suffix = '-' + site.platform;
         }
 
