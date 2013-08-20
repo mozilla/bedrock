@@ -497,21 +497,39 @@ class TestNotesRedirects(TestCase):
 
     @patch.dict(product_details.firefox_versions,
                 LATEST_FIREFOX_VERSION='22.0')
-    def test_release_version(self):
+    def test_desktop_release_version(self):
         self._test('/firefox/notes/',
                    '/firefox/22.0/releasenotes/')
 
     @patch.dict(product_details.firefox_versions,
+                LATEST_FIREFOX_DEVEL_VERSION='23.0b1')
+    def test_desktop_beta_version(self):
+        self._test('/firefox/beta/notes/',
+                   '/firefox/23.0beta/releasenotes/')
+
+    @patch.dict(product_details.firefox_versions,
                 FIREFOX_AURORA='24.0a2')
-    def test_aurora_version(self):
+    def test_desktop_aurora_version(self):
         self._test('/firefox/aurora/notes/',
                    '/firefox/24.0a2/auroranotes/')
 
     @patch.dict(product_details.mobile_details,
                 version='22.0')
-    def test_mobile_version(self):
+    def test_mobile_release_version(self):
         self._test('/mobile/notes/',
                    '/mobile/22.0/releasenotes/')
+
+    @patch.dict(product_details.mobile_details,
+                beta_version='23.0b1')
+    def test_mobile_beta_version(self):
+        self._test('/mobile/beta/notes/',
+                   '/mobile/23.0beta/releasenotes/')
+
+    @patch.dict(product_details.mobile_details,
+                alpha_version='24.0a2')
+    def test_mobile_aurora_version(self):
+        self._test('/mobile/aurora/notes/',
+                   '/mobile/24.0a2/auroranotes/')
 
 
 @patch.object(fx_views, 'firefox_details', firefox_details)
