@@ -37,7 +37,7 @@ function init_download_links() {
 function init_platform_imgs() {
     function has_platform(platforms, platform) {
         for (var i = 0; i < platforms.length; i++) {
-            if (platforms[i] == platform && site.platform == platform) {
+            if (platforms[i] === platform && site.platform === platform) {
                 return true;
             }
         }
