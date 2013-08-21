@@ -24,6 +24,7 @@ Contents
    :maxdepth: 2
 
    install
+   vagrant
    php
    l10n
    coding
