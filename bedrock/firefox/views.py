@@ -298,9 +298,10 @@ def releases_index(request):
 
 
 def latest_notes(request, product, channel='release'):
+    version = get_latest_version(product, channel)
     path = [
         product,
-        get_latest_version(product, channel),
+        re.sub(r'b\d+$', 'beta', version) if channel == 'beta' else version,
         'auroranotes' if channel == 'aurora' else 'releasenotes'
     ]
     locale = getattr(request, 'locale', None)
