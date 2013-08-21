@@ -80,8 +80,10 @@ function getFirefoxMasterVersion(userAgent) {
     return version;
 }
 
-function isFirefox() {
-    return /\sFirefox/.test(navigator.userAgent);
+function isFirefox(userAgent) {
+    var ua = userAgent || navigator.userAgent;
+    // camino UA string contains 'like Firefox'
+    return ((/\sFirefox/).test(ua) && !(/like Firefox/i).test(ua));
 }
 
 function isFirefoxUpToDate(latest, esr) {
