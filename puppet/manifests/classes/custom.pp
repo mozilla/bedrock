@@ -1,0 +1,6 @@
+# Custom installs.
+
+class custom {
+
+}
+
