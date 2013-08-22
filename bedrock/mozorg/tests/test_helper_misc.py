@@ -85,8 +85,19 @@ class TestImgL10n(TestCase):
 
     def test_defaults_when_lang_file_missing(self):
         """Should use default lang when file doesn't exist for lang."""
-        eq_(self._render('es', 'dino/head.png'),
+        eq_(self._render('is', 'dino/head.png'),
             settings.MEDIA_URL + 'img/l10n/en-US/dino/head.png')
+
+    def test_latam_spanishes_fallback_to_european_spanish(self):
+        """Should use es-ES image when file doesn't exist for lang."""
+        eq_(self._render('es-AR', 'dino/head.png'),
+            settings.MEDIA_URL + 'img/l10n/es-ES/dino/head.png')
+        eq_(self._render('es-CL', 'dino/head.png'),
+            settings.MEDIA_URL + 'img/l10n/es-ES/dino/head.png')
+        eq_(self._render('es-MX', 'dino/head.png'),
+            settings.MEDIA_URL + 'img/l10n/es-ES/dino/head.png')
+        eq_(self._render('es', 'dino/head.png'),
+            settings.MEDIA_URL + 'img/l10n/es-ES/dino/head.png')
 
     @patch('bedrock.mozorg.helpers.misc.path.exists')
     def test_file_not_checked_for_default_lang(self, exists_mock):
@@ -97,9 +108,9 @@ class TestImgL10n(TestCase):
             settings.MEDIA_URL + 'img/l10n/en-US/dino/does-not-exist.png')
         ok_(not exists_mock.called)
 
-        self._render('es', 'dino/does-not-exist.png')
+        self._render('is', 'dino/does-not-exist.png')
         exists_mock.assert_called_once_with(os.path.join(
-            TEST_L10N_IMG_PATH, 'es', 'dino', 'does-not-exist.png'))
+            TEST_L10N_IMG_PATH, 'is', 'dino', 'does-not-exist.png'))
 
 
 class TestVideoTag(TestCase):
