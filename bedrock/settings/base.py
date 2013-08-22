@@ -42,7 +42,6 @@ PROD_LANGUAGES = ('ach', 'af', 'ak', 'an', 'ar', 'as', 'ast', 'az', 'be', 'bg',
                   'sv-SE', 'sw', 'ta', 'ta-LK', 'te', 'th', 'tr', 'uk',
                   'ur', 'vi', 'wo', 'zh-CN', 'zh-TW', 'zu')
 DEV_LANGUAGES = list(DEV_LANGUAGES) + ['en-US']
-NEWSLETTER_LANGUAGES = ['de', 'en', 'es', 'fr', 'id', 'pl', 'pt', 'ru']
 
 FEED_CACHE = 3900
 DOTLANG_CACHE = 60
@@ -715,7 +714,7 @@ LOCALES_WITH_TRANSITION = ['en-US', 'af', 'ar', 'ast', 'be', 'bg',
 # Locales showing the 15th Anniversary slideshow on /contribute
 LOCALES_WITH_MOZ15 = ['bg', 'cs', 'de', 'el', 'en-GB', 'en-US', 'es-AR', 'es-CL',
                       'es-ES', 'es-MX', 'fr', 'fy-NL', 'hr', 'id', 'it', 'lt',
-                      'ms', 'nl', 'pl', 'pt-BR', 'ro', 'ru', 'sl', 'sq', 'sr', 
+                      'ms', 'nl', 'pl', 'pt-BR', 'ro', 'ru', 'sl', 'sq', 'sr',
                       'ta', 'zh-CN', 'zh-TW']
 
 # reCAPTCHA keys
@@ -758,7 +757,7 @@ FACEBOOK_APP_ID = 'DUMMY_APP_ID'
 
 # Facebook Like button supported locales
 # https://www.facebook.com/translations/FacebookLocales.xml
-FACEBOOK_LIKE_LOCALES = ['af_ZA', 'ar_AR', 'az_AZ', 'be_BY', 'bg_BG', 
+FACEBOOK_LIKE_LOCALES = ['af_ZA', 'ar_AR', 'az_AZ', 'be_BY', 'bg_BG',
                          'bn_IN', 'bs_BA', 'ca_ES', 'cs_CZ', 'cy_GB',
                          'da_DK', 'de_DE', 'el_GR', 'en_GB', 'en_PI',
                          'en_UD', 'en_US', 'eo_EO', 'es_ES', 'es_LA',
@@ -788,3 +787,5 @@ FACEBOOK_TAB_URL = lazy(facebook_tab_url_lazy, str)()
 CDN_BASE_URL = ''
 
 CSRF_FAILURE_VIEW = 'bedrock.mozorg.views.csrf_failure'
+
+from .newsletters import DEFAULT_NEWSLETTERS

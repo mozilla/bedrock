@@ -61,6 +61,7 @@ class TestManageSubscriptionsForm(TestCase):
         form = ManageSubscriptionsForm(locale=locale, initial={})
         self.assertEqual('en', form.initial['lang'])
         self.assertEqual('us', form.initial['country'])
+        # now, test with them passed in.
         form = ManageSubscriptionsForm(locale=locale,
                                        initial={
                                            'lang': 'pt',

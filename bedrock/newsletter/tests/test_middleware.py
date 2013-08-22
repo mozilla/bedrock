@@ -7,6 +7,7 @@ from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 
+@patch('bedrock.newsletter.utils.get_newsletter_languages', lambda *x: set(['en', 'fr', 'pt']))
 @patch.object(l10n_utils, 'lang_file_is_active', lambda *x: True)
 class TestNewsletterFooter(TestCase):
     def setUp(self):

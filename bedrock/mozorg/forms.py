@@ -10,12 +10,12 @@ from operator import itemgetter
 from random import randrange
 
 from django import forms
-from django.conf import settings
 from django.forms import widgets
 from django.utils.safestring import mark_safe
 
 import basket
 from basket.base import request
+from bedrock.newsletter import utils
 
 from captcha.fields import ReCaptchaField
 from lib.l10n_utils.dotlang import _
@@ -26,7 +26,6 @@ from .email_contribute import INTEREST_CHOICES
 
 
 FORMATS = (('H', _lazy('HTML')), ('T', _lazy('Text')))
-LANGS = settings.NEWSLETTER_LANGUAGES
 LANGS_TO_STRIP = ['en-US', 'es']
 PARENTHETIC_RE = re.compile(r' \([^)]+\)$')
 LANG_FILES = 'mozorg/contribute'
@@ -42,9 +41,11 @@ def strip_parenthetical(lang_name):
 def get_lang_choices():
     """
      Return a localized list of choices for language.
+
+     List looks like: [[lang_code, lang_name], [lang_code, lang_name], ...]
     """
     lang_choices = []
-    for lang in LANGS:
+    for lang in utils.get_newsletter_languages():
         if lang in product_details.languages:
             lang_name = product_details.languages[lang]['native']
         else:
@@ -83,7 +84,7 @@ class PrivacyWidget(widgets.CheckboxInput):
             '<span class="title">%s</span></label>'
             % (attrs['id'], input_txt,
                policy_txt % '/en-US/privacy-policy')
-         )
+        )
 
 
 class HoneyPotWidget(widgets.CheckboxInput):
@@ -123,11 +124,12 @@ class NewsletterForm(forms.Form):
     def __init__(self, locale, *args, **kwargs):
         regions = product_details.get_regions(locale)
         regions = sorted(regions.iteritems(), key=lambda x: x[1])
+        languages = utils.get_newsletter_languages()
 
         lang = country = locale.lower()
         if '-' in lang:
             lang, country = lang.split('-', 1)
-        lang = lang if lang in LANGS else 'en'
+        lang = lang if lang in languages else 'en'
 
         super(NewsletterForm, self).__init__(*args, **kwargs)
         self.fields['country'] = forms.ChoiceField(choices=regions,

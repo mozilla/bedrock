@@ -11,6 +11,7 @@ from nose.tools import ok_
 
 from basket import BasketException
 from bedrock.mozorg.tests import TestCase
+from bedrock.newsletter.utils import clear_caches
 from funfactory.urlresolvers import reverse
 
 
@@ -66,6 +67,7 @@ def assert_redirect(response, url):
 class TestViews(TestCase):
     def setUp(self):
         self.client = Client()
+        clear_caches()
 
     def test_hacks_newsletter_frames_allow(self):
         """
@@ -117,6 +119,7 @@ class TestExistingNewsletterView(TestCase):
             u'form-4-subscribed': u'False',
             u'submit': u'Save Preferences',
         }
+        clear_caches()
         super(TestExistingNewsletterView, self).setUp()
 
     @patch('bedrock.newsletter.utils.get_newsletters')
@@ -404,6 +407,7 @@ class TestConfirmView(TestCase):
         self.token = unicode(uuid.uuid4())
         self.url = reverse('newsletter.confirm', kwargs={'token': self.token})
         self.client = Client()
+        clear_caches()
 
     def test_normal(self):
         """Confirm works with a valid token"""
