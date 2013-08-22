@@ -15,7 +15,7 @@ describe("global.js", function() {
 
       /* Wrap window.open with a stub function, since all we need 
        * to know is that window.open gets called. We do not need 
-       * window.open to excecute to satisfy the test. We can also 
+       * window.open to execute to satisfy the test. We can also 
        * spy on this stub to see if it gets called successfully. */
       window.open = sinon.stub();
       trigger_ie_download('foo', appVersion);
@@ -99,6 +99,40 @@ describe("global.js", function() {
       var ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.71 Safari/537.36';
       result = getFirefoxMasterVersion(ua);
       expect(result).toEqual(0);
+    });
+  });
+
+  describe("isFirefox", function() {
+    it("should consider Firefox to be Firefox", function() {
+      var ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:23.0) Gecko/20100101 Firefox/23.0';
+
+      var result = isFirefox(ua);
+
+      expect(result).toBeTruthy();
+    });
+
+    it("should not consider Camino to be Firefox", function() {
+      var ua = 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10.4; en; rv:1.9.2.24) Gecko/20111114 Camino/2.1 (like Firefox/3.6.24)';
+      var result = isFirefox(ua);
+      expect(result).not.toBeTruthy();
+    });
+
+    it("should not consider Chrome to be Firefox", function() {
+      var ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.57 Safari/537.36';
+      var result = isFirefox(ua);
+      expect(result).not.toBeTruthy();
+    });
+
+    it("should not consider Safari to be Firefox", function() {
+      var ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/537.13+ (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2';
+      var result = isFirefox(ua);
+      expect(result).not.toBeTruthy();
+    });
+
+    it("should not consider IE to be Firefox", function() {
+      var ua = 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; .NET CLR 2.0.50727; .NET CLR 3.0.04506.648; .NET CLR 3.5.21022; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729)';
+      var result = isFirefox(ua);
+      expect(result).not.toBeTruthy();
     });
   });
 
