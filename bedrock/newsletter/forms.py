@@ -9,7 +9,7 @@ from django.forms import widgets
 from django.utils.safestring import mark_safe
 
 from bedrock.mozorg.forms import (
-    FORMATS, LANGS, EmailInput, PrivacyWidget,
+    FORMATS, EmailInput, PrivacyWidget,
     SideRadios, get_lang_choices
 )
 from product_details import product_details
@@ -92,21 +92,22 @@ class ManageSubscriptionsForm(forms.Form):
                                choices=FORMATS,
                                initial='H')
     remove_all = forms.BooleanField(required=False)
-    LANG_CHOICES = get_lang_choices()
 
     country = forms.ChoiceField(choices=[],  # will set choices based on locale
                                 required=False)
-    lang = forms.ChoiceField(choices=LANG_CHOICES,
+    lang = forms.ChoiceField(choices=[],     # will set choices based on newsletter languages
                              required=False)
 
     def __init__(self, locale, *args, **kwargs):
         regions = product_details.get_regions(locale)
         regions = sorted(regions.iteritems(), key=lambda x: x[1])
+        lang_choices = get_lang_choices()
+        languages = [x[0] for x in lang_choices]
 
         lang = country = locale.lower()
         if '-' in lang:
             lang, country = lang.split('-', 1)
-        lang = lang if lang in LANGS else 'en'
+        lang = lang if lang in languages else 'en'
 
         self.newsletters = kwargs.pop('newsletters', [])
 
@@ -128,8 +129,8 @@ class ManageSubscriptionsForm(forms.Form):
         # ignoring what they had in ET.  (This is just for the initial
         # value on the form; they can always change to another valid
         # language before submitting.)
-        if lang not in [x[0] for x in self.LANG_CHOICES]:
-            for valid_lang, _unused in self.LANG_CHOICES:
+        if lang not in languages:
+            for valid_lang, _unused in lang_choices:
                 # if the first two chars match, close enough
                 if lang.lower()[:2] == valid_lang.lower()[:2]:
                     lang = valid_lang
@@ -144,6 +145,7 @@ class ManageSubscriptionsForm(forms.Form):
         kwargs['initial'] = initial
         super(ManageSubscriptionsForm, self).__init__(*args, **kwargs)
         self.fields['country'].choices = regions
+        self.fields['lang'].choices = lang_choices
 
         self.already_subscribed = initial.get('newsletters', [])
 
@@ -184,8 +186,6 @@ class NewsletterFooterForm(forms.Form):
     privacy = forms.BooleanField(widget=PrivacyWidget)
     source_url = forms.URLField(verify_exists=False, required=False)
 
-    LANG_CHOICES = get_lang_choices()
-
     def __init__(self, locale, *args, **kwargs):
         regions = product_details.get_regions(locale)
         regions = sorted(regions.iteritems(), key=lambda x: x[1])
@@ -193,8 +193,9 @@ class NewsletterFooterForm(forms.Form):
         lang = country = locale.lower()
         if '-' in lang:
             lang, country = lang.split('-', 1)
-        lang_choices = self.LANG_CHOICES[:]
-        if lang not in LANGS:
+        lang_choices = get_lang_choices()
+        languages = [x[0] for x in lang_choices]
+        if lang not in languages:
             # The lang from their locale is not one that our newsletters
             # are translated into. Initialize the language field to no
             # choice, to force the user to pick one of the languages that

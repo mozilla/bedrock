@@ -15,7 +15,7 @@ describe("global.js", function() {
 
       /* Wrap window.open with a stub function, since all we need 
        * to know is that window.open gets called. We do not need 
-       * window.open to execute to satisfy the test. We can also 
+       * window.open to execute to satisfy the test. We can also
        * spy on this stub to see if it gets called successfully. */
       window.open = sinon.stub();
       trigger_ie_download('foo', appVersion);
