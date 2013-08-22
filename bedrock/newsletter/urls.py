@@ -10,7 +10,7 @@ from bedrock.newsletter import views
 uuid_regex = r'[0-Fa-f]{8}-[0-Fa-f]{4}-[0-Fa-f]{4}-[0-Fa-f]{4}-[0-Fa-f]{12}'
 
 
-urlpatterns = patterns('',
+urlpatterns = patterns('',  # noqa
     # view.existing allows a user who has a link including their token to
     # subscribe, unsubscribe, change their preferences. Each newsletter
     # includes that link for them.
