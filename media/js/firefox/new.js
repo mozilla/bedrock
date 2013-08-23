@@ -4,43 +4,45 @@
 
 ;(function($, Modernizr, _gaq, site) {
     'use strict';
-    var $html = $(document.documentElement);
-
-    if (isFirefox()) {
-        var latestFirefoxVersion = $html.attr('data-latest-firefox');
-        latestFirefoxVersion = parseInt(latestFirefoxVersion.split('.')[0], 10);
-        latestFirefoxVersion--; // subtract one since a silent update may be
-                                // complete and the user hasn't restarted their
-                                // browser. This will be removed once there's
-                                // a way to get the current version directly
-                                // from the browser
-
-        if (isFirefoxUpToDate(latestFirefoxVersion + '')) {
-            $html.addClass('firefox-latest');
-        } else {
-            $html.addClass('firefox-old');
-        }
-    }
-
-    if (site.platform === 'android') {
-        $('#download-button-android .download-subtitle').html(
-            $('.android.download-button-wrapper').data('upgradeSubtitle'));
-
-        return;
-    }
 
     var path_parts = window.location.pathname.split('/');
     var query_str = window.location.search ? window.location.search + '&' : '?';
-    var referrer = path_parts[path_parts.length-2];
+    var referrer = path_parts[path_parts.length - 2];
     var locale = path_parts[1];
     var virtual_url = ('/' + locale + '/products/download.html' +
                        query_str + 'referrer=' + referrer);
 
     $(document).ready(function() {
+        var $html = $(document.documentElement);
         var $scene1 = $('#scene1');
         var $stage = $('#stage-firefox');
         var $thankYou = $('.thankyou');
         var hash_change = ('onhashchange' in window);
+
+        if (isFirefox()) {
+            var latestFirefoxVersion = $html.attr('data-latest-firefox');
+            latestFirefoxVersion = parseInt(latestFirefoxVersion.split('.')[0], 10);
+            latestFirefoxVersion--; // subtract one since a silent update may be
+                                    // complete and the user hasn't restarted their
+                                    // browser. This will be removed once there's
+                                    // a way to get the current version directly
+                                    // from the browser
+
+            if (isFirefoxUpToDate(latestFirefoxVersion + '')) {
+                $html.addClass('firefox-latest');
+            } else {
+                $html.addClass('firefox-old');
+            }
+        }
+
+        if (site.platform === 'android') {
+            $('#download-button-android .download-subtitle').html(
+                $('.android.download-button-wrapper').data('upgradeSubtitle'));
+
+            // On Android, skip all the scene transitions. We're just linking
+            // to the Play Store.
+            return;
+        }
 
         function show_scene(scene) {
             var CSSbottom = (scene === 2) ? '-400px' : 0;
@@ -113,49 +115,48 @@
                 });
             }
         });
-    });
 
-    // Add GA custom tracking and external link tracking
-    var state = 'Original State';
-    if ($html.hasClass('android')) {
-        if ($html.hasClass('firefox-latest')) {
-            state = 'Android, up-to-date';
-        } else if ($html.hasClass('firefox-old')) {
-            state = 'Android, not up-to-date';
-        } else {
-            state = 'Android, no Fx detected';
-        }
-    } else if ($html.hasClass('ios')) {
-        state = 'iOS';
-    } else if ($html.hasClass('fxos')) {
-        state = 'FxOS';
-    } else {
-        if ($html.hasClass('firefox-latest')) {
-            state = 'Desktop, up-to-date';
-        } else if ($html.hasClass('firefox-old')) {
-            state = 'Desktop, not up-to-date';
-        }
-    }
-    window._gaq = _gaq || [];
-    window._gaq.push(['_setCustomVar', 4, '/new conditional message', state, 3]);
-
-    // Add external link tracking
-    $(document).click(function(e) {
-        if (e.target.nodeName === 'A' && e.target.hostname && e.target.hostname !== location.hostname) {
-            var newTab = (e.target.target === '_blank' || e.metaKey || e.crtlKey);
-            var href = e.target.href;
-            var callback = function() {
-                window.location = href;
-            };
-
-            if (newTab) {
-                gaTrack(['_trackEvent', '/new Interaction', 'click', href]);
+        // Add GA custom tracking and external link tracking
+        var state = 'Original State';
+        if ($html.hasClass('android')) {
+            if ($html.hasClass('firefox-latest')) {
+                state = 'Android, up-to-date';
+            } else if ($html.hasClass('firefox-old')) {
+                state = 'Android, not up-to-date';
             } else {
-                e.preventDefault();
-                gaTrack(['_trackEvent', '/new Interaction', 'click', href], callback);
+                state = 'Android, no Fx detected';
+            }
+        } else if ($html.hasClass('ios')) {
+            state = 'iOS';
+        } else if ($html.hasClass('fxos')) {
+            state = 'FxOS';
+        } else {
+            if ($html.hasClass('firefox-latest')) {
+                state = 'Desktop, up-to-date';
+            } else if ($html.hasClass('firefox-old')) {
+                state = 'Desktop, not up-to-date';
             }
         }
-    });
+        window._gaq = _gaq || [];
+        window._gaq.push(['_setCustomVar', 4, '/new conditional message', state, 3]);
 
+        // Add external link tracking
+        $(document).click(function(e) {
+            if (e.target.nodeName === 'A' && e.target.hostname && e.target.hostname !== location.hostname) {
+                var newTab = (e.target.target === '_blank' || e.metaKey || e.crtlKey);
+                var href = e.target.href;
+                var callback = function() {
+                    window.location = href;
+                };
+
+                if (newTab) {
+                    gaTrack(['_trackEvent', '/new Interaction', 'click', href]);
+                } else {
+                    e.preventDefault();
+                    gaTrack(['_trackEvent', '/new Interaction', 'click', href], callback);
+                }
+            }
+        });
+    });
 
 })(window.jQuery, window.Modernizr, window._gaq, window.site);
