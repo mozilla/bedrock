@@ -116,7 +116,6 @@
     });
 
     // Add GA custom tracking and external link tracking
-    var $html = $(document.documentElement);
     var state = 'Original State';
     if ($html.hasClass('android')) {
         if ($html.hasClass('firefox-latest')) {
@@ -147,7 +146,7 @@
             var href = e.target.href;
             var callback = function() {
                 window.location = href;
-            }
+            };
 
             if (!newTab) {
                 gaTrack(['_trackEvent', '/new Interaction', 'click', href]);

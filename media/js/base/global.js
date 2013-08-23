@@ -14,7 +14,7 @@
 function trigger_ie_download(link, appVersion) {
     var version = appVersion || navigator.appVersion;
     // Only open if we got a link and this is IE.
-    if (link && version.indexOf('MSIE') != -1) {
+    if (link && version.indexOf('MSIE') !== -1) {
         window.open(link, 'download_window', 'toolbar=0,location=no,directories=0,status=0,scrollbars=0,resizeable=0,width=1,height=1,top=0,left=0');
         window.focus();
     }
