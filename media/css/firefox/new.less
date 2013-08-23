@@ -249,26 +249,36 @@ html.fxos {
     }
 }
 
-/* CSS tweaks */
-
-html[lang="it"] #features,
-html[lang="mk"] #features,
-html[lang="my"] #features,
-html[lang="ru"] #features,
-html[lang="uk"] #features {
-    width: 588px;
-    margin: 0 0 0 8px;
-    padding-left:0;
-    li {
-        width: 176px;
-        padding-right: 20px;
+// l10n CSS tweaks. When editing, make sure to update tablet and mobile
+// as well.
+html[lang="it"],
+html[lang="mk"],
+html[lang="my"],
+html[lang="ru"],
+html[lang="uk"] {
+    #features {
+        width: 588px;
+        margin: 0 0 0 8px;
+        padding-left:0;
+        li {
+            width: 176px;
+            padding-right: 20px;
+        }
+    }
+    .latest-links-wrapper {
+        padding-top: 13px;
+        width: 290px;
+        margin: 0 0 0 10px;
+        float: left;
     }
 }
 
-html[lang="my"] #features {
-    li {
-        font-size:20px;
-        letter-spacing:0;
+html[lang="my"] {
+    #features {
+        li {
+            font-size:20px;
+            letter-spacing:0;
+        }
     }
 }
 
@@ -430,9 +440,11 @@ noscript {
     .theater, .stage, .js .scene {
         height: 360px;
     }
+
     #features {
         width: 391px;
         margin: 0;
+        padding-left: 20px;
         li {
             width: 110px;
             font-size: 18px;
@@ -440,6 +452,32 @@ noscript {
             height: 85px;
         }
     }
+
+    // l10n tweaks
+    html[lang="it"],
+    html[lang="mk"],
+    html[lang="my"],
+    html[lang="ru"],
+    html[lang="uk"] {
+        #features {
+            width: 426px;
+            margin: 0;
+            padding-left: 20px;
+            li {
+                width: 122px;
+                font-size: 18px;
+                padding-top: 32px;
+                height: 85px;
+            }
+        }
+        .latest-links-wrapper {
+            padding-top: 13px;
+            width: 270px;
+            margin: 0;
+            float: left;
+        }
+    }
+
     .ready-for-scene2 {
         .thankyou {
             margin: 0 40px;
@@ -547,6 +585,33 @@ noscript {
         width: auto;
         margin: 0 10px;
         padding: 0;
+    }
+
+    // l10n tweaks
+    html[lang="it"],
+    html[lang="mk"],
+    html[lang="my"],
+    html[lang="ru"],
+    html[lang="uk"] {
+        #features {
+            margin: 0 auto 20px;
+            float: none;
+            width: 320px;
+            padding-left: 0;
+            li {
+                width: 95px;
+                height: 78px;
+                padding: 35px 5px 0;
+                font-size: 14px;
+                text-align: left;
+            }
+        }
+        .latest-links-wrapper {
+            float: none;
+            width: auto;
+            margin: 0 10px;
+            padding: 0;
+        }
     }
 
     html.oldmac,
