@@ -72,6 +72,15 @@
     }
 }
 
+/* Unsupported platforms */
+html.oldmac,
+html.oldwin {
+    .download-button .unsupported-download {
+        margin: 32px 0 0;
+        text-align: left;
+    }
+}
+
 /* iOS */
 html.ios {
     .version-message-container {
@@ -535,6 +544,14 @@ noscript {
             a {
                 margin: 0;
             }
+        }
+    }
+
+    html.oldmac,
+    html.oldwin {
+        .download-button .unsupported-download {
+            text-align: left;
+            max-width: none;
         }
     }
 
