@@ -148,7 +148,7 @@
                 window.location = href;
             };
 
-            if (!newTab) {
+            if (newTab) {
                 gaTrack(['_trackEvent', '/new Interaction', 'click', href]);
             } else {
                 e.preventDefault();
