@@ -60,14 +60,16 @@
 .latest-links-wrapper {
     display: none;
     padding-top: 13px;
-
+    width: 320px;
+    margin: 0 0 0 50px;
+    float: left;
     ul {
         margin: 0;
         li {
+            margin: 0;
+            padding: 3px 0 2px;
             list-style: none;
-            a {
-                margin-left: 50px;
-            }
+            line-height: 1.2;
         }
     }
 }
@@ -451,11 +453,14 @@ noscript {
             }
         }
     }
-
     .android #features li {
         font-size: 24px;
         padding-top: 28px;
         height: 89px;
+    }
+    .latest-links-wrapper {
+        margin-left: 20px;
+        width: 270px;
     }
 }
 
@@ -538,13 +543,10 @@ noscript {
     }
 
     .latest-links-wrapper {
+        float: none;
+        width: auto;
+        margin: 0 10px;
         padding: 0;
-        ul li {
-            margin: 0 10px;
-            a {
-                margin: 0;
-            }
-        }
     }
 
     html.oldmac,
