@@ -345,8 +345,8 @@ class Testl10nMerge(unittest.TestCase):
         merge_lang_files(['de'])
         dest_file = path.join(ROOT, 'locale', 'de', 'firefox', 'fx.lang')
         write_mock.assert_called_once_with(dest_file,
-                                           [u'Find out if your device is '
-                                            u'supported &nbsp;\xbb'])
+                                           [['', u'Find out if your device is '
+                                           u'supported &nbsp;\xbb']])
 
     @patch('lib.l10n_utils.gettext.codecs.open')
     def test_append_to_lang_file(self, open_mock):
