@@ -234,9 +234,8 @@ def press_blog_url(ctx):
         https://blog.mozilla.org/press-latam/
 
     """
-    locale = getattr(ctx['request'], 'locale', None)
-
-    if not locale or locale == 'en-US' or locale not in settings.PRESS_BLOGS:
-        return settings.PRESS_BLOG_ROOT + settings.PRESS_BLOGS['en-US']
+    locale = getattr(ctx['request'], 'locale', 'en-US')
+    if locale not in settings.PRESS_BLOGS:
+        locale = 'en-US'
 
     return settings.PRESS_BLOG_ROOT + settings.PRESS_BLOGS[locale]

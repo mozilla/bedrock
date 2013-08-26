@@ -300,4 +300,4 @@ class TestPressBlogUrl(TestCase):
 
     def test_press_blog_url_other_locale(self):
         """No blog for locale, fallback to default press blog"""
-        eq_(self._render('oc'), 'https://blog.mozilla.org/press-fr/')
+        eq_(self._render('oc'), 'https://blog.mozilla.org/press/')
