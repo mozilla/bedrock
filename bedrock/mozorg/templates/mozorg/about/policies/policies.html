@@ -1,0 +1,74 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/about-base.html" %}
+
+{% block page_title %}{{ _('Official Mozilla Policies') }}{% endblock %}
+{% block body_id %}about-governance-roles{% endblock %}
+
+
+{% block article %}
+<h1 class="title-banner">{{_('Official Mozilla Policies')}}</h1>
+
+<p>{{_('This page provides links to various policies that are used to run the Mozilla community. This list is not necessarily comprehensive and other policies may be posted on other Mozilla sites.')
+}}</p>
+
+<h2>{{_('Governance')}}</h2>
+
+<ul>
+    <li><a href="//www.mozilla.org/hacking/module-ownership.html">{{_('Mozilla Modules and Module Ownership')}}</a></li>
+    <li><a href="//wiki.mozilla.org/Modules">{{_('Module Owners List')}}</a></li>
+    <li><a href="{{ url('mozorg.about.policies.participation') }}">{{_('Mozilla Community Participation Guidelines')}}</a></li>
+</ul>
+
+<p>{{_('For additional information on Mozilla’s governance structure, see ')}}<a href="{{ url('mozorg.about.governance.roles') }}">{{_('the Roles and Responsibilities')}}</a> page.</p>
+
+<h2>{{_('Hacking')}}</h2>
+
+<ul>
+    <li><a href="//www.mozilla.org/hacking/committer/">{{_('Commit Access Policy')}}</a></li>
+    <li><a href="//www.mozilla.org/hacking/reviewers.html">{{_('Super-Review Policy')}}</a></li>
+    <li><a href="//www.mozilla.org/hacking/regression-policy.html">{{_('Performance Regressions Policy')}}</a></li>
+</ul>
+
+<h2>{{_('Licensing')}}</h2>
+
+<ul>
+    <li><a href="//www.mozilla.org/MPL/">{{_('Source Code Licensing Terms')}}</a></li>
+    <li><a href="//www.mozilla.org/MPL/license-policy.html">{{_('Mozilla Foundation License Policy')}}</a></li>
+    <li><a href="//www.mozilla.org/en-US/legal/eula/">{{_('Mozilla Corporation End-User Licensing Agreements')}}</a></li>
+    <li><a href="//www.mozilla.org/en-US/legal/eula/">{{_('Mozilla Foundation End-User Licensing Agreements')}}</a></li>
+</ul>
+
+<h2>{{_('Privacy')}}</h2>
+
+<ul>
+    <li><a href="{{ url('privacy.index') }}">{{_('Mozilla Privacy Policy')}}</a></li>
+    <li><a href="{{ url('privacy.index') }}">{{_('Mozilla Firefox Privacy Policy')}}</a></li>
+</ul>
+
+<h2>{{_('Security')}}</h2>
+
+<ul>
+    <li><a href="//www.mozilla.org/projects/security/security-bugs-policy.html">{{_('Security Bugs Policy')}}</a></li>
+    <li><a href="//www.mozilla.org/projects/security/certs/policy/">{{_('Mozilla CA Certificate Policy')}}</a></li>
+</ul>
+
+<h2>{{_('Trademarks')}} </h2>
+<ul>
+    <li><a href="{{ url('foundation.trademarks.policy') }}">{{_('Mozilla Trademark Policy')}}</a></li>
+    <li><a href="{{ url('foundation.trademarks.l10n-policy') }}">{{_('Mozilla Trademark Policy for Localization Projects')}}</a></li>
+    <li><a href="{{ url('foundation.trademarks.l10n-website-policy') }}">{{_('Mozilla Trademark Policy for Web Sites Created by Localization Teams')}}</a>{{_(' (draft)')}}</li>
+    <li><a href="{{ url('foundation.trademarks.distribution-policy') }}">{{_('Mozilla Trademark Policy for Distribution Partners')}}</a>{{_(' (draft)')}}</li>
+</ul>
+
+<p>{{_('For guidelines, FAQs and other information about trademarks, see the ')}}<a href="{{ url('foundation.trademarks.policy') }}">{{_('Trademarks Policy</a> page.')}}</p>
+
+<h2>{{_('Website')}}</h2>
+
+<ul>
+    <li><a href="{{ url('foundation.licensing.website-markup') }}">{{_('Website Markup Usage Policy')}}</a></li>
+    <li><a href="{{ url('foundation.licensing.website-content') }}">{{_('Mozilla.org Site Licensing Policies')}}</a></li>
+</ul>
+{%endblock%}
