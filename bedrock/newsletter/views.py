@@ -5,6 +5,7 @@
 from collections import defaultdict
 import json
 from operator import itemgetter
+import re
 
 from django.contrib import messages
 from django.forms.formsets import formset_factory
@@ -20,9 +21,8 @@ from lib.l10n_utils.dotlang import _lazy
 from commonware.decorators import xframe_allow
 from funfactory.urlresolvers import reverse
 
-from .forms import (
-    ManageSubscriptionsForm, NewsletterForm,
-    NewsletterFooterForm)
+from .forms import (EmailForm, ManageSubscriptionsForm, NewsletterForm,
+                    NewsletterFooterForm)
 # Cannot use short "from . import utils" because we need to mock
 # utils.get_newsletters in our tests
 from bedrock.newsletter import utils
@@ -34,11 +34,26 @@ LANG_FILES = ['mozorg/contribute']
 general_error = _lazy(u'We are sorry, but there was a problem '
                       u'with our system. Please try again later!')
 thank_you = _lazy(u'Thank you for updating your email preferences.')
-bad_token = _lazy(u'The supplied link has expired. You will receive a new '
-                  u'one in the next newsletter.')
+bad_token = _lazy(u'The supplied link has expired or is not valid. You will '
+                  u'receive a new one in the next newsletter, or below you '
+                  u'can request an email with the link.')
+recovery_text = _lazy(
+    u'Success! An email has been sent to you with your preference center '
+    u'link. Thanks!')
+
+# NOTE: Must format a link into this: (https://www.mozilla.org/newsletter/)
+unknown_address_text = _lazy(
+    u'This email address is not in our system. Please double check your '
+    u'address or <a href="%s">subscribe to our newsletters.</a>')
+
 
 UNSUB_UNSUBSCRIBED_ALL = 1
 UNSUB_REASONS_SUBMITTED = 2
+
+# A UUID looks like: f81d4fae-7dec-11d0-a765-00a0c91e6bf6
+# Here's a regex to match a UUID:
+UUID_REGEX = re.compile(r'^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$',
+                        re.IGNORECASE)
 
 
 @xframe_allow
@@ -96,6 +111,15 @@ def existing(request, token=None):
     """
     locale = getattr(request, 'locale', 'en-US')
 
+    if not token:
+        return redirect(reverse('newsletter.recovery'))
+
+    if not UUID_REGEX.match(token):
+        # Bad token
+        messages.add_message(request, messages.ERROR, bad_token)
+        # Redirect to the recovery page
+        return redirect(reverse('newsletter.recovery'))
+
     unsub_parm = None
 
     # Example user:
@@ -113,23 +137,22 @@ def existing(request, token=None):
     if token:
         try:
             user = basket.user(token)
-        except basket.BasketException:
-            log.exception("FAILED to get user from token")
-        except requests.Timeout:
+        except basket.BasketNetworkException:
             # Something wrong with basket backend, no point in continuing,
             # we'd probably fail to subscribe them anyway.
             log.exception("Basket timeout")
             messages.add_message(request, messages.ERROR, general_error)
             return l10n_utils.render(request, 'newsletter/existing.html')
+        except basket.BasketException:
+            log.exception("FAILED to get user from token")
         else:
             user_exists = True
 
     if not user_exists:
         # Bad or no token
         messages.add_message(request, messages.ERROR, bad_token)
-        # If we don't pass the template a formset, most of the page won't
-        # be displayed. Our message still will be displayed.
-        return l10n_utils.render(request, 'newsletter/existing.html', {})
+        # Redirect to the recovery page
+        return redirect(reverse('newsletter.recovery'))
 
     # Get the newsletter data - it's a dictionary of dictionaries
     newsletter_data = utils.get_newsletters()
@@ -377,3 +400,48 @@ def one_newsletter_signup(request, template_name):
     return l10n_utils.render(request,
                              template_name,
                              {})
+
+
+@never_cache
+def recovery(request):
+    """
+    Let user enter their email address and be sent a message with a link
+    to manage their subscriptions.
+    """
+
+    if request.method == 'POST':
+        form = EmailForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            try:
+                # Try it - basket will return an error if the email is unknown
+                basket.send_recovery_message(email)
+            except basket.BasketException as e:
+                # Was it that their email was not known?
+                if e.status_code == 404:
+                    # Tell them, give them a link to go subscribe if they want
+                    url = reverse('newsletter.mozilla-and-you')
+                    form.errors['email'] = \
+                        form.error_class([unknown_address_text % url])
+                else:
+                    # Log the details
+                    log.exception("Error sending recovery message")
+                    # and tell the user that something went wrong
+                    form.errors['__all__'] = form.error_class([general_error])
+            else:
+                messages.add_message(request, messages.INFO, recovery_text)
+                # Redir as GET, signalling success
+                return redirect(request.path + "?success")
+    elif 'success' in request.GET:
+        # We were redirected after a successful submission.
+        # A message will be displayed; don't display the form again.
+        form = None
+    else:
+        form = EmailForm()
+
+    return l10n_utils.render(
+        request,
+        "newsletter/recovery.html",
+        {
+            'form': form,
+        })

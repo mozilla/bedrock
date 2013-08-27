@@ -227,3 +227,10 @@ class NewsletterFooterForm(forms.Form):
                 if nl not in valid_newsletters:
                     raise ValidationError("%s is not a valid newsletter" % nl)
             return ','.join(newsletters)
+
+
+class EmailForm(forms.Form):
+    """
+    Form to enter email, e.g. to be sent a recovery message
+    """
+    email = forms.EmailField(widget=EmailInput(attrs={'required': 'required'}))
