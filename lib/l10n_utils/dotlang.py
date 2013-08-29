@@ -23,6 +23,7 @@ from django.utils.functional import lazy
 
 from jinja2 import Markup
 from tower import tweak_message
+from product_details import product_details
 
 
 FORMAT_IDENTIFIER_RE = re.compile(r"""(%
@@ -248,3 +249,27 @@ def lang_file_has_tag(path, lang, tag):
         cache.set(cache_key, tag_set, settings.DOTLANG_CACHE)
 
     return tag in tag_set
+
+
+def get_translations(langfile):
+    """
+    Return the list of available translations for the current page.
+
+    :param langfile: the path to a lang file, retrieved with get_lang_path()
+    :return: dict, like {'en-US': 'English (US)', 'fr': 'Français'}
+    """
+
+    cache_key = 'translations:%s' % langfile
+    translations = cache.get(cache_key, {})
+
+    if translations:
+        return translations
+
+    for lang in settings.PROD_LANGUAGES:
+        if (lang in product_details.languages and
+                (lang == settings.LANGUAGE_CODE or
+                lang_file_is_active(langfile, lang))):
+            translations[lang] = product_details.languages[lang]['native']
+
+    cache.set(cache_key, translations, settings.DOTLANG_CACHE)
+    return translations

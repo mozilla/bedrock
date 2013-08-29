@@ -10,6 +10,7 @@ from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
 from django.core.urlresolvers import clear_url_caches
+from django.http import HttpRequest
 from django.test.client import Client
 
 from jingo import env
@@ -19,9 +20,11 @@ from nose.tools import assert_not_equal, eq_, ok_
 from pyquery import PyQuery as pq
 from tower import extract_tower_python
 
+from lib.l10n_utils import render
 from lib.l10n_utils.dotlang import (_, FORMAT_IDENTIFIER_RE, lang_file_has_tag,
                                     lang_file_is_active, parse, translate,
                                     _lazy)
+from product_details import product_details
 from bedrock.mozorg.tests import TestCase
 
 
@@ -364,3 +367,40 @@ class TestDotlang(TestCase):
         with self.activate(settings.LANGUAGE_CODE):
             translate('The Dude abides.', ['main'])
         self.assertEqual(cache_mock.get.call_count, 0)
+
+
+@patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
+@patch.object(settings, 'ROOT_URLCONF', 'lib.l10n_utils.tests.test_files.urls')
+@patch.object(settings, 'ROOT', ROOT)
+class TestTranslationList(TestCase):
+    def _test(self, lang, view_name):
+        """
+        The context of each view should have the 'links' dictionary which
+        contains the canonical and alternate URLs of the page.
+        """
+        request = HttpRequest()
+        request.path = '/' + lang + '/' + view_name + '/'
+        request.locale = lang
+        template = view_name.replace('-', '_') + '.html'
+        with patch('lib.l10n_utils.django_render') as django_render:
+            render(request, template, {})
+        translations = django_render.call_args[0][2]['translations']
+
+        # The en-US locale is always active
+        eq_(translations['en-US'], product_details.languages['en-US']['native'])
+        # The de locale is active depending on the template
+        if view_name == 'active-de-lang-file':
+            eq_(translations['de'], product_details.languages['de']['native'])
+        else:
+            eq_('de' in translations, False)
+        # The fr locale is inactive
+        eq_('fr' in translations, False)
+
+    def test_localized_en(self):
+        self._test('en-US', 'active-de-lang-file')
+
+    def test_localized_de(self):
+        self._test('de', 'active-de-lang-file')
+
+    def test_unlocalized(self):
+        self._test('en-US', 'inactive-de-lang-file')
