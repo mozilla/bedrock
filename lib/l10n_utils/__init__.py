@@ -9,7 +9,7 @@ from django.template import TemplateDoesNotExist
 
 from funfactory.urlresolvers import split_path
 
-from dotlang import get_lang_path, lang_file_is_active
+from dotlang import get_lang_path, get_translations, lang_file_is_active
 
 
 def render(request, template, context={}, **kwargs):
@@ -28,6 +28,9 @@ def render(request, template, context={}, **kwargs):
     # Every template gets its own .lang file, so figure out what it is
     # and pass it in the context
     context['langfile'] = get_lang_path(template)
+
+    # Get the available translation list of the current page
+    context['translations'] = get_translations(context['langfile'])
 
     # Look for localized template if not default lang.
     if hasattr(request, 'locale') and request.locale != settings.LANGUAGE_CODE:
