@@ -3,10 +3,10 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import csv
-from operator import itemgetter
+import sys
 
 from django.core.cache import cache
-from django.core.files import File
+
 
 def case_insensitive_in(self, collection, value):
     """Check a collection for a string value ignoring case."""
@@ -17,7 +17,7 @@ def case_insensitive_in(self, collection, value):
     return False
 
 
-def load_devices(self, file, cacheDevices=True):
+def load_devices(self, filename, cacheDevices=True):
     """Load devices from a source csv, returning device names in a
     nested dict by platform and manufacturer with manufacturer and
     devices sorted.
@@ -49,9 +49,9 @@ def load_devices(self, file, cacheDevices=True):
         for platform in platforms:
             devices[platform] = dict()
 
-        with open(file, 'rb') as file:
-            reader = csv.DictReader(file, delimiter = ',',
-                                    skipinitialspace = True)
+        with open(filename, 'rb') as file:
+            reader = csv.DictReader(file, delimiter=',',
+                                    skipinitialspace=True)
 
             # Strip leading and trailing whitespace from each value to
             # normalize values in the csv. This prevents whitespace

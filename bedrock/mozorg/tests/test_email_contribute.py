@@ -4,9 +4,10 @@
 
 from django.conf import settings
 from bedrock.mozorg.tests import TestCase
-from nose.tools import assert_false, eq_, ok_
+from nose.tools import ok_
 
 from bedrock.mozorg.email_contribute import FUNCTIONAL_AREAS, LOCALE_CONTACTS
+
 
 class TestEmailContribute(TestCase):
     def test_valid_locale_contacts(self):

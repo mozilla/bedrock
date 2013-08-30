@@ -27,7 +27,7 @@ all_children = [
         )),
         PageNode('Firefox OS', path='firefoxos', children=(
             PageNode('Branding', path='branding', template='styleguide/identity/firefoxos-branding.html'),
-#            PageNode('Promo Materials', path='promo', template='styleguide/identity/firefoxos-promo-materials.html'),
+            # PageNode('Promo Materials', path='promo', template='styleguide/identity/firefoxos-promo-materials.html'),
             PageNode('Partners', path='partners', template='styleguide/identity/firefoxos-partners.html'),
             PageNode('Community', path='community', template='styleguide/identity/firefoxos-community.html'),
             PageNode('Color', path='color', template='styleguide/identity/firefoxos-color.html'),

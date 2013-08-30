@@ -180,7 +180,7 @@ class TestContribute(TestCase):
         self.data.update(interest='education', newsletter=True)
         self.client.post(self.url_en, self.data)
 
-        assert_false(mock_subscribe.called);
+        assert_false(mock_subscribe.called)
         payload = {'email': self.contact, 'custom-1788': '1'}
         mock_post.assert_called_with('https://sendto.mozilla.org/page/s/mentor-signup',
                                      data=payload, timeout=2)
@@ -193,7 +193,7 @@ class TestContribute(TestCase):
         self.data.update(interest='education', newsletter=False)
         self.client.post(self.url_en, self.data)
 
-        assert_false(mock_subscribe.called);
+        assert_false(mock_subscribe.called)
         assert_false(mock_post.called)
 
     @patch.object(ReCaptchaField, 'clean', Mock())
@@ -216,8 +216,8 @@ class TestContribute(TestCase):
         self.data.update(interest='education', newsletter=True)
         res = self.client.post(self.url_en, self.data)
 
-        assert_false(mock_subscribe.called);
-        eq_(res.status_code, 200);
+        assert_false(mock_subscribe.called)
+        eq_(res.status_code, 200)
 
     @patch.object(ReCaptchaField, 'clean', Mock())
     @patch('bedrock.mozorg.email_contribute.jingo.render_to_string')

@@ -22,7 +22,7 @@ find . -name '*.pyc' -exec rm {} \;
 if [ ! -d "$VENV/bin" ]; then
   echo "No virtualenv found.  Making one..."
   virtualenv $VENV --no-site-packages
-  source $VENV/bin/activate
+  . $VENV/bin/activate
   pip install --upgrade pip
   pip install coverage
 fi
@@ -35,7 +35,7 @@ if [ ! -d "$WORKSPACE/vendor" ]; then
     exit 1
 fi
 
-source $VENV/bin/activate
+. $VENV/bin/activate
 pip install -q -r requirements/compiled.txt
 pip install -q -r requirements/dev.txt
 
@@ -66,6 +66,9 @@ SETTINGS
 
 echo "Update product_details"
 ./manage.py update_product_details
+
+echo "Check PEP-8"
+flake8 bedrock
 
 echo "Starting tests..."
 export FORCE_DB=1

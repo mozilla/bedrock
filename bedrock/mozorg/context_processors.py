@@ -38,4 +38,4 @@ def funnelcake_param(request):
 
 
 def facebook_locale(request):
-	return {'facebook_locale': get_fb_like_locale(request.locale)}
+    return {'facebook_locale': get_fb_like_locale(request.locale)}

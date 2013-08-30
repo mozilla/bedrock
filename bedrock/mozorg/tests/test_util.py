@@ -44,8 +44,8 @@ class TestGetFacebookLikeLocale(TestCase):
 
     def test_first_supported_locale_for_language(self):
         """
-        If the given locale is not supported, iterate through 
-        the supported locales and return the first one that 
+        If the given locale is not supported, iterate through
+        the supported locales and return the first one that
         matches the language.
         """
         eq_(get_fb_like_locale('es-AR'), 'es_ES')
@@ -55,6 +55,3 @@ class TestGetFacebookLikeLocale(TestCase):
         Return the default en_US when locale isn't supported.
         """
         eq_(get_fb_like_locale('zz-ZZ'), 'en_US')
-
-
-
