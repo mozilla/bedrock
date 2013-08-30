@@ -50,7 +50,7 @@ def parse(path, skip_untranslated=True, extract_comments=False):
 
     with codecs.open(path, 'r', 'utf-8', errors='replace') as lines:
         source = None
-        comment = ''
+        comment = None
 
         for line in lines:
             if u'�' in line:
@@ -75,10 +75,10 @@ def parse(path, skip_untranslated=True, extract_comments=False):
                     continue
                 if extract_comments:
                     trans[source] = [comment, line]
-                    comment = ''
+                    comment = None
                 else:
                     trans[source] = line
-            
+
     return trans
 
 

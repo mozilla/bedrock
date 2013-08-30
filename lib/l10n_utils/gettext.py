@@ -61,8 +61,8 @@ def parse_po(path):
 
 
 def po_msgs():
-    return parse_po(join(settings.ROOT,
-                         'locale/templates/LC_MESSAGES/messages.pot'))
+    return parse_po(join(settings.ROOT, 'locale', 'templates', 'LC_MESSAGES',
+                         'messages.pot'))
 
 
 def translated_strings(file_):
@@ -205,30 +205,23 @@ def pot_to_langfiles():
     # all of them for the strings and add it to the first lang file
     # specified if not found.
     for path, msgs in all_msgs.items():
-        target = None
         lang_files = [lang_file('%s.lang' % f, root)
                       for f in langfiles_for_path(path)]
 
         # Get the current translations
         curr = {}
         for f in lang_files:
-            if os.path.exists(f):
-                curr.update(parse_lang(f))
+            curr.update(parse_lang(f, skip_untranslated=False))
 
-        # Add translations to the first lang file
-        target = lang_files[0]
+        # Filter out the already translated
+        new_msgs = [msg for msg in msgs
+                    if msg[1] not in curr and msg[1] not in main_msgs]
 
-        if not os.path.exists(target):
-            d = os.path.dirname(target)
-            if not os.path.exists(d):
-                os.makedirs(d)
+        if new_msgs:
+            # Add translations to the first lang file
+            target = lang_files[0]
 
-        with codecs.open(target, 'a', 'utf-8') as out:
-            for msg in msgs:
-                if msg[1] not in curr and msg[1] not in main_msgs:
-                    if msg[0] is not None:
-                        out.write(u'# %s\n' % (msg[0]))
-                    out.write(u';%s\n%s\n\n\n' % (msg[1], msg[1]))
+            _append_to_lang_file(target, new_msgs)
 
 
 def find_lang_files(lang):
@@ -269,6 +262,12 @@ def merge_lang_files(langs):
 
 
 def _append_to_lang_file(dest, new_msgs):
+    # make sure directory exists
+    if not os.path.exists(dest):
+        d = os.path.dirname(dest)
+        if not os.path.exists(d):
+            os.makedirs(d)
+
     with codecs.open(dest, 'a', 'utf-8') as out:
         for msg in new_msgs:
             if isinstance(msg, basestring):
