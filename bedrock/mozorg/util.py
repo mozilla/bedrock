@@ -88,9 +88,9 @@ def hide_contrib_form(lang):
 
 def get_fb_like_locale(request_locale):
     """
-    Returns the most appropriate locale from the list of supported Facebook 
-    Like button locales. This can either be the locale itself if it's 
-    supported, the next matching locale for that language if any or failing 
+    Returns the most appropriate locale from the list of supported Facebook
+    Like button locales. This can either be the locale itself if it's
+    supported, the next matching locale for that language if any or failing
     any of that the default `en_US`.
     Ref: https://www.facebook.com/translations/FacebookLocales.xml
 
@@ -109,4 +109,3 @@ def get_fb_like_locale(request_locale):
             lang = 'en_US'
 
     return lang
-    

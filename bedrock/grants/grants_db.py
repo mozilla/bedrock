@@ -552,7 +552,7 @@ GRANTS = [
         "$25,500",
         2011,
         '<p>Mozilla issued a grant to Phillip Schmidt in 2009 (<a href="http://www.p2pu.org/">P2PU</a>) to enable the creation of an online course called <a href="https://wiki.mozilla.org/Education/EduCourse">Open|Web|Content|Education</a>, where educators learned about open content licensing, open web technologies and open teaching methods. In 2011, Mozilla provided a grant to P2PU to support <a href="https://p2pu.org/en/schools/school-of-webcraft/sets/webmaking-101/">Webmaking 101</a> and the <a href="https://p2pu.org/en/groups/schools/school-of-webcraft/">School of Webcraft</a> community coordination.</p><p>P2PU combines open educational resources, structured courses, and recognition of knowledge and learning to offer high-quality low-cost education opportunities. It is run and governed by volunteers.</p>',
-                {
+        {
             '2009': ['Open|Web|Content|Education: $2,500'],
             '2011': ['Webmaking 101 - Project Management & School of Webcraft - Community Coordination: $23,000']
         },

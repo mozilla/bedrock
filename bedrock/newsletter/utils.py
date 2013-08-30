@@ -51,7 +51,7 @@ def get_newsletter_languages():
             langs.update(locale[:2] for locale in newsletter.get('languages', []))
         # Long cache okay; get_newsletters() invalidates our cache if the
         # newsletters change
-        cache.set(NEWSLETTER_LANGUAGES_CACHE_KEY, langs, 3600*24*7)
+        cache.set(NEWSLETTER_LANGUAGES_CACHE_KEY, langs, 3600 * 24 * 7)
     return langs
 
 

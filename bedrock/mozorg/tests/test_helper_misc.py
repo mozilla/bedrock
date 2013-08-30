@@ -35,7 +35,7 @@ class TestSecureURL(TestCase):
     test_path = '/firefox/partners/'
     test_view_name = 'about.partnerships.contact-bizdev'
     req = RequestFactory(HTTP_HOST=host).get(test_path)
-    secure_req = RequestFactory(HTTP_HOST=host).get(test_path, {}, **{ 'wsgi.url_scheme': 'https' })
+    secure_req = RequestFactory(HTTP_HOST=host).get(test_path, {}, **{'wsgi.url_scheme': 'https'})
 
     def _test(self, view_name, expected_url, ssl):
         eq_(render("{{ secure_url('%s') }}" % view_name, {'request': (self.secure_req if ssl else self.req)}),
@@ -58,6 +58,7 @@ class TestSecureURL(TestCase):
     def test_ssl_without_view_name(self):
         # Should output the current, full secure URL
         self._test('', 'https://' + self.host + self.test_path, True)
+
 
 @patch('bedrock.mozorg.helpers.misc.L10N_IMG_PATH', TEST_L10N_IMG_PATH)
 @patch('django.conf.settings.LANGUAGE_CODE', 'en-US')
@@ -245,6 +246,7 @@ class TestNewsletterFunction(TestCase):
         ok_(doc('#footer-email-errors'))
         ok_(doc('#footer-email-form.has-errors'))
 
+
 class TestPlatformImg(TestCase):
     @override_settings(MEDIA_URL='/media/')
     def test_platform_img_no_optional_attributes(self):
@@ -265,6 +267,7 @@ class TestPlatformImg(TestCase):
             u'data-test-attr="test"><noscript><img class="platform-img win" '
             u'src="/media/test.png" data-test-attr="test"></noscript>')
         self.assertEqual(markup, jinja2.Markup(expected))
+
 
 class TestPressBlogUrl(TestCase):
     rf = RequestFactory()
