@@ -8,6 +8,7 @@
 Sphinx==1.0.7
 
 # Testing
+flake8==2.0
 nose==1.0.0
 mock==1.0.1
 -e git://github.com/jbalogh/django-nose.git#egg=django_nose
