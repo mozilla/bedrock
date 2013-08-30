@@ -81,7 +81,7 @@
         <div id="phone-hook">
           <div class="adapt-feature-sprite adapt-feature-sprite-line" id="adapt-feature-sprite-blue-line"></div>
           <div class="adapt-feature-sprite adapt-feature-sprite-line" id="adapt-feature-sprite-orange-line"></div>
-          
+
           <div class="phone"></div>
           <div id="screen-intro" class="screen-wrapper">
             <div id="screen-intro-a" class="screen screen-birthday"></div>
@@ -441,7 +441,13 @@
       </header>
       <div class="content">
         <div id="footer-email-thanks">
-          <h3>{{ _('Thank you for signing up!') }}</h3>
+          <h3>{{ _('Thanks! Please check your inbox to confirm your subscription.') }}</h3>
+          <p>
+            {% trans %}
+              You'll receive an email from mozilla@e.mozilla.org to confirm your subscription.
+              If you don't see it, please check your spam filter. You must confirm your subscription to receive our newsletter.
+            {% endtrans %}
+          </p>
         </div>
 
         {{ email_newsletter_form('mozilla-and-you,os', _('Sign up for our monthly newsletter')) }}
