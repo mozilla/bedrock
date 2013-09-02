@@ -237,7 +237,6 @@ table.data-table tbody tr td:first-child {
 .firefoxos {
     h2 {
         margin: 10px 5px;
-        width: 285px;
         font-size: 1.5rem;
     }
     h3 {
@@ -258,9 +257,10 @@ table.data-table tbody tr td:first-child {
 }
 .firefoxos-header {
     background: transparent url("/media/img/home/firefox_small.png?2013-06") 0 3px no-repeat;
-    margin: 20px 0 0 10px;
-    padding-left: 85px;
-    width: 185px;
+    clear: both;
+    min-height: 83px;
+    padding-left: 85px; 
+    margin-left: 10px;     
     font-size: 42px;
 }
 time {
@@ -379,4 +379,12 @@ time {
         }
     }
 
+}
+
+/* Tablet Layout: 760px */
+@media only screen and (max-width: @breakTablet) {
+  .firefoxos-header {
+      background-position: 0 13px;
+      padding-top: 10px;    
+  }
 }
