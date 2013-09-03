@@ -26,7 +26,17 @@
         }
         setTimeout(function() {
             window.location.href = url;
-        }, 500);
+        }, 500);            
+    }
+
+    // we must use a popup to trigger download for IE6/7/8 as the
+    // asynchronous `setTimeout` in track_and_redirect() triggers
+    // the IE security blocker. Sigh.
+    function track_and_popup(url) {
+        if (_gaq) {
+            window._gaq.push(['_trackPageview', virtual_url]);
+        }
+        window.open(url, 'download_window', 'toolbar=0,location=no,directories=0,status=0,scrollbars=0,resizeable=0,width=1,height=1,top=0,left=0');
     }
 
     function show_scene(scene) {
@@ -74,8 +84,20 @@
 
         $stage.on('click', '#direct-download-link, .download-link', function(e) {
             e.preventDefault();
+            var url = $(e.currentTarget).attr('href');
 
-            track_and_redirect($(e.currentTarget).attr('href'));
+            if (site.platform === 'windows' && $.browser.msie && $.browser.version < 9) {
+                // We do a popup for IE < 9 users when they click the download button
+                // on scene 1. If they are going straight to scene 2 on page load,
+                // we still need to use the regular track_and_redirect() function.
+                if (hash_change && location.hash === '#download-fx') {
+                    track_and_redirect(url);
+                } else {
+                    track_and_popup(url);
+                }
+            } else {
+                track_and_redirect(url);
+            }
 
             if ($stage.data('scene') !== 2) {
                 if (hash_change) {
