@@ -6,6 +6,7 @@ from bedrock.newsletter.views import unknown_address_text, recovery_text
 
 from django.http import HttpResponse
 from django.test.client import Client
+from django.test.utils import override_settings
 
 from mock import DEFAULT, patch
 from nose.tools import ok_
@@ -482,6 +483,7 @@ class TestRecoveryView(TestCase):
         self.url = reverse('newsletter.recovery')
         self.client = Client()
 
+    @override_settings(TEMPLATE_DEBUG=True)
     def test_bad_email(self):
         """Email syntax errors are caught"""
         data = {'email': 'not_an_email'}
@@ -489,6 +491,7 @@ class TestRecoveryView(TestCase):
         self.assertEqual(200, rsp.status_code)
         self.assertIn('email', rsp.context['form'].errors)
 
+    @override_settings(TEMPLATE_DEBUG=True)
     @patch('basket.send_recovery_message', autospec=True)
     def test_unknown_email(self, mock_basket):
         """Unknown email addresses give helpful error message"""
@@ -502,6 +505,7 @@ class TestRecoveryView(TestCase):
             reverse('newsletter.mozilla-and-you')
         self.assertIn(expected_error, form.errors['email'])
 
+    @override_settings(TEMPLATE_DEBUG=True)
     @patch('django.contrib.messages.add_message', autospec=True)
     @patch('basket.send_recovery_message', autospec=True)
     def test_good_email(self, mock_basket, add_msg):
