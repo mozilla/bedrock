@@ -214,8 +214,8 @@ def latest_fx_redirect(request, fake_version, template_name):
     context = funnelcake_param(request)
 
     if (template_name == 'firefox/firstrun.html'
-        and request.locale == 'en-US' and
-        context.get('funnelcake_id', 0) == FX_FIRSTRUN_FUNNELCAKE_CAMPAIGN):
+            and request.locale == 'en-US' and
+            context.get('funnelcake_id', 0) == FX_FIRSTRUN_FUNNELCAKE_CAMPAIGN):
 
         return l10n_utils.render(request, 'firefox/firstrun/a.html')
     else:

@@ -426,6 +426,69 @@ class TestFirstrunRedirect(FxVersionRedirectsMixin, TestCase):
         with self.activate('en-US'):
             self.url = reverse('firefox.firstrun', args=['13.0'])
 
+    @patch.dict(product_details.firefox_versions,
+                LATEST_FIREFOX_VERSION='16.0')
+    def test_firstrun_standard(self):
+        """
+        Hitting /firefox/{version}/firstrun/ with latest Fx should render
+        firefox/firstrun.html, regardless of {version}.
+        """
+        user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:16.0) '
+                      'Gecko/20100101 Firefox/16.0')
+
+        expected = 'See how Firefox keeps the power of the web in your hands'
+
+        # TODO: use assertTemplateUsed in place of assertIn when available?
+        # jinja may get in the way though...
+
+        response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
+        self.assertIn(expected, response.content)
+
+        self.url = reverse('firefox.firstrun', args=['24.0'])
+        response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
+        self.assertIn(expected, response.content)
+
+        self.url = reverse('firefox.firstrun')
+        response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
+        self.assertIn(expected, response.content)
+
+    @patch.dict(product_details.firefox_versions,
+            LATEST_FIREFOX_VERSION='16.0')
+    def test_firstrun_alternate(self):
+        """
+        Hitting /firefox/{version}/firstrun/?f={fx_views.FX_FIRSTRUN_FUNNELCAKE_CAMPAIGN}
+        with latest Fx & en-US locale should render firefox/firstrun/a.html, regardless of
+        {version}. Any other f value or locale should render firefox/firstrun.html.
+        """
+        user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:16.0) '
+                      'Gecko/20100101 Firefox/16.0')
+
+        fc_id = fx_views.FX_FIRSTRUN_FUNNELCAKE_CAMPAIGN
+        expected = 'Use Themes to change the look of your Firefox just about any way you like.'
+
+        # en-US with proper funnelcake id should give expected content
+        response = self.client.get(self.url + '?f=' + fc_id, HTTP_USER_AGENT=user_agent)
+        self.assertIn(expected, response.content)
+
+        # en-US with improper funnelcake id should not give expected content
+        response = self.client.get(self.url + '?f=0', HTTP_USER_AGENT=user_agent)
+        self.assertNotIn(expected, response.content)
+
+        # en-US with no funnelcake id should not give expected content
+        response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
+        self.assertNotIn(expected, response.content)
+
+        # en-US with proper funnelcake id and no {version} should give expected content
+        self.url = reverse('firefox.firstrun')
+        response = self.client.get(self.url + '?f=' + fc_id, HTTP_USER_AGENT=user_agent)
+        self.assertIn(expected, response.content)
+
+        # es-ES with proper funnelcake id should not give expected content
+        with self.activate('es-ES'):
+            self.url = reverse('firefox.firstrun', args=['16.0'])
+            response = self.client.get(self.url + '?f=' + fc_id, HTTP_USER_AGENT=user_agent)
+            self.assertNotIn(expected, response.content)
+
 
 class FirefoxMainRedirect(FxVersionRedirectsMixin, TestCase):
     def setUp(self):
