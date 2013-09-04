@@ -20,6 +20,7 @@ from funfactory.urlresolvers import reverse
 
 from bedrock.firefox import version_re
 from bedrock.firefox.forms import SMSSendForm
+from bedrock.mozorg.context_processors import funnelcake_param
 from bedrock.mozorg.forms import WebToLeadForm
 from bedrock.firefox.platforms import load_devices
 from bedrock.firefox.utils import is_current_or_newer
@@ -54,6 +55,8 @@ INSTALLER_CHANNElS = [
     'aurora',
     #'nightly',  # soon
 ]
+
+FX_FIRSTRUN_FUNNELCAKE_CAMPAIGN = '25'
 
 
 def get_js_bundle_files(bundle):
@@ -206,19 +209,30 @@ def latest_fx_redirect(request, fake_version, template_name):
         url = reverse('firefox.new') + query
         return HttpResponsePermanentRedirect(url)
 
-    locales_with_video = {
-        'en-US': 'american',
-        'en-GB': 'british',
-        'de': 'german_final',
-        'it': 'italian_final',
-        'ja': 'japanese_final',
-        'es-AR': 'spanish_final',
-        'es-CL': 'spanish_final',
-        'es-ES': 'spanish_final',
-        'es-MX': 'spanish_final',
-    }
-    return l10n_utils.render(request, template_name,
-                             {'locales_with_video': locales_with_video})
+    # display alternate firstrun content for en-US with proper funnelcake param in URL
+    # remove when firstrun test is complete
+    context = funnelcake_param(request)
+
+    if (template_name == 'firefox/firstrun.html'
+        and request.locale == 'en-US' and
+        context.get('funnelcake_id', 0) == FX_FIRSTRUN_FUNNELCAKE_CAMPAIGN):
+
+        return l10n_utils.render(request, 'firefox/firstrun/a.html')
+    else:
+        locales_with_video = {
+            'en-US': 'american',
+            'en-GB': 'british',
+            'de': 'german_final',
+            'it': 'italian_final',
+            'ja': 'japanese_final',
+            'es-AR': 'spanish_final',
+            'es-CL': 'spanish_final',
+            'es-ES': 'spanish_final',
+            'es-MX': 'spanish_final',
+        }
+
+        return l10n_utils.render(request, template_name,
+                                 {'locales_with_video': locales_with_video})
 
 
 def all_downloads(request):
@@ -254,30 +268,6 @@ def firefox_partners(request):
     template_vars.update(csrf(request))
 
     return l10n_utils.render(request, 'firefox/partners/index.html', template_vars)
-
-
-def firstrun_new(request, view):
-    # only Firefox users should see the firstrun pages
-    user_agent = request.META.get('HTTP_USER_AGENT', '')
-    if not 'Firefox' in user_agent:
-        url = reverse('firefox.new')
-        return HttpResponsePermanentRedirect(url)
-
-    # only users on the latest version should see the
-    # new pages (for GA experiment data purity)
-    user_version = "0"
-    ua_regexp = r"Firefox/(%s)" % version_re
-    match = re.search(ua_regexp, user_agent)
-    if match:
-        user_version = match.group(1)
-
-    if not is_current_or_newer(user_version):
-        url = reverse('firefox.update')
-        return HttpResponsePermanentRedirect(url)
-
-    template = view + '.html'
-
-    return l10n_utils.render(request, 'firefox/firstrun/' + template)
 
 
 def releases_index(request):
