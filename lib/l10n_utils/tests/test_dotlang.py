@@ -132,6 +132,24 @@ class TestDotlang(TestCase):
         }
         eq_(parsed, expected)
 
+    def test_parse_with_comments(self):
+        path = os.path.join(ROOT, 'test.lang')
+        parsed = parse(path, extract_comments=True)
+
+        expected = {
+            u'Hooray! Your Firefox is up to date.': [
+                u'This is for the Whatsnew page: '
+                u'http://www-dev.allizom.org/b/firefox/whatsnew/',
+                u'F\xe9licitations&nbsp;! '
+                u'Votre Firefox a \xe9t\xe9 mis \xe0 jour.',
+            ],
+            u'Your Firefox is out of date.': [
+                None,
+                u'Votre Firefox ne semble pas \xe0 jour.',
+            ]
+        }
+        eq_(parsed, expected)
+
     def test_parse_utf8_error(self):
         path = os.path.join(ROOT, 'test_utf8_error.lang')
         parsed = parse(path)
