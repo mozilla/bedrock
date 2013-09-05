@@ -40,9 +40,11 @@
 @shadowPartBottom:      0px 1px 0px 0px rgba(0, 0, 0, 0.2);
 @shadowPartBottomInset: inset 0px -1px 0px 0px rgba(0, 0, 0, 0.3);
 @shadowPartHover:       inset 0px 12px 24px 2px saturate(@buttonBlue, 10%);
+@shadowPartFocusRing:   0 0 0 2px rgba(73,173,227,0.4);
 
 @buttonShadow:          @shadowPartBottom, @shadowPartBottomInset;
 @buttonShadowHover:     @shadowPartBottom, @shadowPartBottomInset, @shadowPartHover;
+@buttonShadowFocus:     @shadowPartBottom, @shadowPartBottomInset, @shadowPartHover, @shadowPartFocusRing;
 
 @buttonShadowActive:     inset 0px 2px 0px 0px rgba(0, 0, 0, 0.2),
                          inset 0px 12px 24px 6px rgba(0,0,0,0.2),
@@ -317,10 +319,26 @@
     .box-shadow(@shadow);
 }
 
+.button-focus-box-shadow(@color: #ffffff) {
+    @shadow:  @shadowPartBottom,
+              @shadowPartBottomInset,
+              0 0 0 2px fade(@color, 40%);
+    .box-shadow(@shadow);
+}
+
+@formFieldErrorShadow:       0 0 0 2px rgba(175, 50, 50, .4);
+@formFieldSelectErrorShadow: 0 0 0 3px rgba(175, 50, 50, .4);
+
 .form-field-error {
   border-color: rgb(175,50,50);
-  @shadow: 0 2px 1px rgba(0,0,0,0.1) inset, 0 0 8px 0 rgba(175,50,50,.6);
-  .box-shadow(@shadow);
+  .box-shadow(@formFieldErrorShadow);
+}
+
+.required-star() {
+    content: "*";
+    font-size: @smallFontSize;
+    font-weight: bold;
+    color: @linkRed;
 }
 
 // Hide visually, but not to screen readers

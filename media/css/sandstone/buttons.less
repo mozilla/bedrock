@@ -39,6 +39,7 @@
     &:focus,
     &.focus {
         outline-color: @textColorSecondary;
+        .box-shadow(@buttonShadowFocus);
     }
 
     &:active,
@@ -66,9 +67,12 @@
     background-color: @buttonGreen;
     #gradient > .vertical(@buttonGreen, @buttonGreenDark);
 
-    &:hover,
-    &:focus {
+    &:hover {
         .button-hover-box-shadow(@buttonGreen);
+    }
+
+    &:focus {
+        .button-focus-box-shadow(@buttonGreen);
     }
 }
 
@@ -79,9 +83,12 @@
     background-color: #a91300;
     #gradient > .vertical(#da5132, #a91300);
 
-    &:hover,
-    &:focus {
+    &:hover {
         .button-hover-box-shadow(#da5132);
+    }
+
+    &:focus {
+        .button-focus-box-shadow(#da5132);
     }
 }
 
