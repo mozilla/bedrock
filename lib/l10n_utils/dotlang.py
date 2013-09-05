@@ -34,12 +34,13 @@ FORMAT_IDENTIFIER_RE = re.compile(r"""(%
 TAG_REGEX = re.compile(r"^## (\w+) ##")
 
 
-def parse(path, skip_untranslated=True):
+def parse(path, skip_untranslated=True, extract_comments=False):
     """
     Parse a dotlang file and return a dict of translations.
     :param path: Absolute path to a lang file.
     :param skip_untranslated: Exclude strings for which the ID and translation
                               match.
+    :param extract_comments: Extract one line comments from template if True
     :return: dict
     """
     trans = {}
@@ -49,13 +50,18 @@ def parse(path, skip_untranslated=True):
 
     with codecs.open(path, 'r', 'utf-8', errors='replace') as lines:
         source = None
+        comment = None
 
         for line in lines:
             if u'�' in line:
                 mail_error(path, line)
 
             line = line.strip()
-            if line == '' or line[0] == '#':
+            if not line:
+                continue
+
+            if line[0] == '#':
+                comment = line.lstrip('#').strip()
                 continue
 
             if line[0] == ';':
@@ -67,7 +73,11 @@ def parse(path, skip_untranslated=True):
                 line = line.strip()
                 if skip_untranslated and source == line:
                     continue
-                trans[source] = line
+                if extract_comments:
+                    trans[source] = [comment, line]
+                    comment = None
+                else:
+                    trans[source] = line
 
     return trans
 

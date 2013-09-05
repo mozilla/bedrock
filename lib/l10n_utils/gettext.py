@@ -35,21 +35,25 @@ def parse_po(path):
 
         msgid = None
         msgpath = None
+        msgcomment = None
 
         for line in lines:
             line = line.strip()
-            if line.startswith('#'):
+            if line.startswith('#:'):
                 matches = REGEX_URL.match(line)
                 if matches:
                     msgpath = matches.group(1)
+            elif line.startswith('#.'):
+                msgcomment = line.lstrip('#.').strip()
             elif line.startswith('msgid'):
                 msgid = extract_content(line)
             elif line.startswith('msgstr') and msgid and msgpath:
                 if msgpath not in msgs:
                     msgs[msgpath] = []
-                msgs[msgpath].append(msgid)
+                msgs[msgpath].append([msgcomment, msgid])
                 msgid = None
                 msgpath = None
+                msgcomment = None
             elif msgid is not None:
                 msgid += parse_string(line)
 
@@ -57,8 +61,8 @@ def parse_po(path):
 
 
 def po_msgs():
-    return parse_po(join(settings.ROOT,
-                         'locale/templates/LC_MESSAGES/messages.pot'))
+    return parse_po(join(settings.ROOT, 'locale', 'templates', 'LC_MESSAGES',
+                         'messages.pot'))
 
 
 def translated_strings(file_):
@@ -201,28 +205,23 @@ def pot_to_langfiles():
     # all of them for the strings and add it to the first lang file
     # specified if not found.
     for path, msgs in all_msgs.items():
-        target = None
         lang_files = [lang_file('%s.lang' % f, root)
                       for f in langfiles_for_path(path)]
 
         # Get the current translations
         curr = {}
         for f in lang_files:
-            if os.path.exists(f):
-                curr.update(parse_lang(f))
+            curr.update(parse_lang(f, skip_untranslated=False))
 
-        # Add translations to the first lang file
-        target = lang_files[0]
+        # Filter out the already translated
+        new_msgs = [msg for msg in msgs
+                    if msg[1] not in curr and msg[1] not in main_msgs]
 
-        if not os.path.exists(target):
-            d = os.path.dirname(target)
-            if not os.path.exists(d):
-                os.makedirs(d)
+        if new_msgs:
+            # Add translations to the first lang file
+            target = lang_files[0]
 
-        with codecs.open(target, 'a', 'utf-8') as out:
-            for msg in msgs:
-                if msg not in curr and msg not in main_msgs:
-                    out.write(';%s\n%s\n\n\n' % (msg, msg))
+            _append_to_lang_file(target, new_msgs)
 
 
 def find_lang_files(lang):
@@ -254,14 +253,27 @@ def merge_lang_files(langs):
 
             dest = lang_file(f, lang)
             src_msgs = parse_lang(lang_file(f, 'templates'),
-                                  skip_untranslated=False)
+                                  skip_untranslated=False,
+                                  extract_comments=True)
             dest_msgs = parse_lang(dest, skip_untranslated=False)
+            new_msgs = [src_msgs[msg] for msg in src_msgs if msg not in dest_msgs]
 
-            new_msgs = [msg for msg in src_msgs if msg not in dest_msgs]
             _append_to_lang_file(dest, new_msgs)
 
 
 def _append_to_lang_file(dest, new_msgs):
+    # make sure directory exists
+    if not os.path.exists(dest):
+        d = os.path.dirname(dest)
+        if not os.path.exists(d):
+            os.makedirs(d)
+
     with codecs.open(dest, 'a', 'utf-8') as out:
         for msg in new_msgs:
-            out.write(u'\n\n;{msg}\n{msg}\n'.format(msg=msg))
+            if isinstance(msg, basestring):
+                msg = [None, msg]
+            out_str = u'\n\n'
+            if msg[0]:
+                out_str += u'# {comment}\n'
+            out_str += u';{msg}\n{msg}\n'
+            out.write(out_str.format(msg=msg[1], comment=msg[0]))

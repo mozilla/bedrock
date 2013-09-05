@@ -33,6 +33,11 @@ METHODS = [
      'tower.management.commands.extract.extract_tower_template'),
 ]
 
+# doing this to keep @patch from passing a new mock
+# we don't need to the decorated method.
+TRUE_MOCK = Mock()
+TRUE_MOCK.return_value = True
+
 
 class TestL10nExtract(unittest.TestCase):
     def test_extract_from_files(self):
@@ -59,7 +64,8 @@ class TestL10nExtract(unittest.TestCase):
         )
         good_extracts = (
             (testfiles[0], 9, 'Mark it 8 Dude.', []),
-            (testfiles[1], 9, 'Is this your homework Larry?', []),
+            (testfiles[1], 10, 'Is this your homework Larry?',
+             [u'Said angrily, loudly, and repeatedly.']),
         )
         with capture_stdio() as out:
             for i, extracted in enumerate(
@@ -334,7 +340,6 @@ class TestL10nCheck(unittest.TestCase):
 
 
 class Testl10nMerge(unittest.TestCase):
-
     @patch('lib.l10n_utils.gettext.settings.ROOT', ROOT)
     @patch('lib.l10n_utils.gettext._append_to_lang_file')
     def test_merge_lang_files(self, write_mock):
@@ -345,9 +350,10 @@ class Testl10nMerge(unittest.TestCase):
         merge_lang_files(['de'])
         dest_file = path.join(ROOT, 'locale', 'de', 'firefox', 'fx.lang')
         write_mock.assert_called_once_with(dest_file,
-                                           [u'Find out if your device is '
-                                            u'supported &nbsp;\xbb'])
+                                           [[None, u'Find out if your device is '
+                                                   u'supported &nbsp;\xbb']])
 
+    @patch('os.path.exists', TRUE_MOCK)
     @patch('lib.l10n_utils.gettext.codecs.open')
     def test_append_to_lang_file(self, open_mock):
         """
@@ -366,6 +372,7 @@ class Testl10nMerge(unittest.TestCase):
                     for msg in msgs]
         self.assertEqual(expected, mock_write.call_args_list)
 
+    @patch('os.path.exists', TRUE_MOCK)
     @patch('lib.l10n_utils.gettext.codecs.open')
     def test_merge_unicode_strings(self, open_mock):
         """

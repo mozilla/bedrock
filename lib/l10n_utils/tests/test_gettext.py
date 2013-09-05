@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -5,17 +7,98 @@
 import os
 
 from django.conf import settings
+from django.test.utils import override_settings
 
-from mock import patch
-from nose.tools import eq_
+from mock import ANY, Mock, patch
+from nose.tools import eq_, ok_
 
-from lib.l10n_utils.gettext import langfiles_for_path, parse_python, parse_template
+from lib.l10n_utils.gettext import (_append_to_lang_file, langfiles_for_path,
+                                    parse_python, parse_template, po_msgs,
+                                    pot_to_langfiles)
 from lib.l10n_utils.tests import TempFileMixin
 from bedrock.mozorg.tests import TestCase
 
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test_files')
 TEMPLATE_DIRS = (os.path.join(ROOT, 'templates'))
+
+# doing this to keep @patch from passing a new mock
+# we don't need to the decorated method.
+TRUE_MOCK = Mock()
+TRUE_MOCK.return_value = True
+
+
+class TestPOFiles(TestCase):
+    good_messages = [
+        [u'Said angrily, loudly, and repeatedly.',
+         u'Is this your homework Larry?'],
+        [None, u'The Dude minds!'],
+    ]
+
+    @override_settings(ROOT=ROOT)
+    def test_parse_po(self):
+        """Should return correct messages"""
+        msgs = po_msgs()
+        expected = {
+            u'templates/some_lang_files.html': self.good_messages,
+            u'templates/firefox/fx.html': [[None, u'Find out if your device '
+                                                  u'is supported &nbsp;»']],
+        }
+        self.assertDictEqual(msgs, expected)
+
+    @override_settings(ROOT=ROOT)
+    @patch('lib.l10n_utils.gettext._append_to_lang_file')
+    @patch('lib.l10n_utils.gettext.langfiles_for_path')
+    def test_po_to_langfiles(self, langfiles_mock, append_mock):
+        """Should get the correct messages for the correct langfile."""
+        # This should exclude the supported device message from the pot file.
+        langfiles_mock.return_value = ['some_lang_files',
+                                       'firefox/fx']
+        pot_to_langfiles()
+        append_mock.assert_called_once_with(ANY, self.good_messages)
+
+    @patch('os.path.exists', TRUE_MOCK)
+    @patch('lib.l10n_utils.gettext.codecs')
+    def test_append_to_lang_file(self, codecs_mock):
+        """Should attempt to write a correctly formatted langfile."""
+        _append_to_lang_file('dude.lang', self.good_messages)
+        lang_vals = codecs_mock.open.return_value
+        lang_vals = lang_vals.__enter__.return_value.write.call_args_list
+        lang_vals = [call[0][0] for call in lang_vals]
+        expected = [
+            u'\n\n# Said angrily, loudly, and repeatedly.\n'
+            u';Is this your homework Larry?\nIs this your homework Larry?\n',
+            u'\n\n;The Dude minds!\nThe Dude minds!\n',
+        ]
+        self.assertListEqual(lang_vals, expected)
+
+    @patch('os.makedirs')
+    @patch('lib.l10n_utils.gettext.codecs')
+    def test_append_to_lang_file_dir_creation(self, codecs_mock, md_mock):
+        """Should create dirs if required."""
+        path_exists = os.path.join(ROOT, 'locale', 'templates', 'firefox',
+                                   'fx.lang')
+        path_dir_exists = os.path.join(ROOT, 'locale', 'templates', 'firefox',
+                                       'new.lang')
+        path_new = os.path.join(ROOT, 'locale', 'de', 'does', 'not',
+                                'exist.lang')
+        with patch('os.path.dirname') as dn_mock:
+            _append_to_lang_file(path_exists, {})
+            ok_(not dn_mock.called)
+
+            dn_mock.reset_mock()
+            dn_mock.return_value = os.path.join(ROOT, 'locale', 'templates',
+                                                'firefox')
+            _append_to_lang_file(path_dir_exists, {})
+            ok_(dn_mock.called)
+
+        md_mock.reset_mock()
+        _append_to_lang_file(path_dir_exists, {})
+        ok_(not md_mock.called)
+
+        md_mock.reset_mock()
+        _append_to_lang_file(path_new, {})
+        ok_(md_mock.called)
 
 
 class TestParseTemplate(TempFileMixin, TestCase):
