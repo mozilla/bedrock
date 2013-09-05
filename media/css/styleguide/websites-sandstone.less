@@ -260,13 +260,58 @@
         .clearfix;
         .divider;
         .examples {
-            .span_guide(4);
+            .span_guide(9);
             h3 {
                 font-style: italic;
             }
         }
+        #form-example-standard {
+            .span(4);
+            margin-bottom: @baseLine;
+        }
+        #form-example-states {
+            .span(4);
+            .offset_guide(1);
+            margin-bottom: @baseLine;
+        }
         #examples-standard {
             .offset_guide(3);
+        }
+
+        .form-horizontal {
+            clear: both;
+            .span_guide(9);
+            .offset_guide(3);
+            padding-top: @baseLine;
+            padding-bottom: @baseLine;
+            position: relative;
+            left: -@gridGutterWidth;
+            h4 {
+                .span_guide(3);
+                margin-left: 0;
+            }
+            #column-primary {
+                .span_guide(3);
+            }
+            .field {
+                .span(2);
+                &.first {
+                    margin-left: 0;
+                }
+                &.last {
+                    margin-right: 0;
+                }
+                &.label-align {
+                    // Push down the contents of the form field without a label
+                    // (usually a button or checkbox) to top-align with adjacent
+                    // form elements that do have labels.
+                    padding-top: 8px;
+                }
+                &.form-minimal-label label {
+                    margin-top: -1em;
+                }
+            }
+
         }
     }
 

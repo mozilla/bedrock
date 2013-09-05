@@ -9,31 +9,141 @@
   sandstone-forms
 {% endblock %}
 
-{% set page_title = 'Sandstone forms & modules' %}
+{% set page_title = _('Sandstone forms & modules') %}
 
 {% block content_area %}
 <section id="forms">
   <div class="intro">
-    <h2>Forms</h2>
+    <h2>{{ _('Forms') }}</h2>
     <p></p>
   </div>
-  <div class="examples">
-    <h3>Standard forms</h3>
-    <p><input type="email" id="input-email" value="user@mozilla.org" /></p>
-    <p><input type="password" id="input-password" class="focus" value="12345678" /></p>
-    <div class="tooltip">
-      This account cannot be logged in with this username and password
+
+  <form id="form-example-standard">
+
+    <fieldset>
+      <legend>{{ _('Standard form') }}</legend>
+
+      <div class="field required">
+        <label for="input-email" title="{{ _('Required') }}">
+          {{ _('Text input') }}
+        </label>
+        <input type="email" id="input-email" placeholder="example" class="fill-width" required aria-required="true" />
+        <div class="field-note">{{ _('This is an in-line note about this field.') }}</div>
+      </div>
+
+      <div class="field">
+        <label for="flydown">{{ _('Select input') }}</label>
+        <select id="flydown" name="flydown" class="fill-width">
+          <option selected="selected">{{ _('Alpha') }}</option>
+          <option>{{ _('Beta') }}</option>
+          <option>{{ _('Gamma') }}</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="input-password">{{ _('Password input') }}</label>
+        <input type="password" id="input-password" value="12345678" />
+      </div>
+
+      <fieldset class="in-form-fieldset">
+        <legend>
+          {{ _('Checkbox fields') }}
+        </legend>
+        <div class="field">
+          <label class="checkbox">
+            <input type="checkbox" /> {{ _('Checkbox field') }}
+          </label>
+          <label class="checkbox">
+            <input type="checkbox" /> {{ _('Another checkbox field') }}
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="in-form-fieldset">
+        <legend class="required" title="Required" aria-required="true">
+          Radio button fields
+        </legend>
+        <div class="field">
+          <label class="radio">
+            <input type="radio" name="demo-options" /> One option
+          </label>
+          <label class="radio">
+            <input type="radio" name="demo-options" /> Another option
+          </label>
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <input type="button" value="{{ _('Primary action') }}" class="button" />
+      </div>
+
+    </fieldset>
+  </form>
+
+  <form id="form-example-states">
+
+    <fieldset>
+      <legend>{{ _('Form states') }}</legend>
+
+      <div class="field">
+        <label for="input-email">
+          {{ _('Focus') }}
+        </label>
+        <input type="email" id="input-email" placeholder="example" class="fill-width focus" />
+      </div>
+
+      <div class="field field-error">
+        <label for="input-email">
+          {{ _('Error/warning') }}
+        </label>
+        <input type="email" id="input-email" placeholder="example" class="fill-width" />
+      </div>
+
+      <div class="field field-error">
+        <label for="flydown">{{ _('Select input') }}</label>
+        <select id="flydown" name="flydown" class="fill-width">
+          <option selected="selected">{{ _('Alpha') }}</option>
+          <option>{{ _('Beta') }}</option>
+          <option>{{ _('Gamma') }}</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label class="checkbox">
+          <input type="checkbox" /> {{ _('Checkbox field') }}
+        </label>
+        <label class="checkbox error">
+          <input type="checkbox" /> {{ _('Checkbox field with error') }}
+        </label>
+      </div>
+
+    </fieldset>
+  </form>
+
+  <form class="billboard form-horizontal">
+
+    <h4>{{ _('Horizontal form') }}</h4>
+
+    <div id="column-primary" class="field form-minimal-label">
+      <label for="input-email">{{ _('Text input') }}</label>
+      <input type="email" id="input-email" placeholder="example" />
+      <div class="field-note">{{ _('This is an in-line note about this field.') }}</div>
     </div>
-  </div>
+
+    <div class="field last">
+      <input type="button" value="{{ _('Submit') }}" class="button fill-width" />
+    </div>
+
+    </fieldset>
+  </form>
 </section>
 
 <section id="modules">
   <div class="intro">
-    <h2>Call to action modules</h2>
-    <p></p>
+    <h2>{{ _('Call to action modules') }}</h2>
   </div>
   <div class="examples">
-    <img src="{{ media('/img/styleguide/websites/sandstone/modules.png?2013-06') }}" alt="Call to action modules examples" id="module-examples" />
+    <img src="{{ media('/img/styleguide/websites/sandstone/modules.png?2013-06') }}" alt="{{ _('Call to action modules examples') }}" id="module-examples" />
   </div>
 </section>
 
