@@ -9,7 +9,7 @@ import os
 from django.conf import settings
 from django.test.utils import override_settings
 
-from mock import ANY, Mock, patch
+from mock import ANY, MagicMock, Mock, patch
 from nose.tools import eq_, ok_
 
 from lib.l10n_utils.gettext import (_append_to_lang_file, langfiles_for_path,
@@ -21,6 +21,7 @@ from bedrock.mozorg.tests import TestCase
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test_files')
 TEMPLATE_DIRS = (os.path.join(ROOT, 'templates'))
+DOTLANG_FILES = ['dude', 'walter', 'donny']
 
 # doing this to keep @patch from passing a new mock
 # we don't need to the decorated method.
@@ -99,6 +100,18 @@ class TestPOFiles(TestCase):
         md_mock.reset_mock()
         _append_to_lang_file(path_new, {})
         ok_(md_mock.called)
+
+    @override_settings(ROOT=ROOT, DOTLANG_FILES=DOTLANG_FILES)
+    @patch('lib.l10n_utils.gettext.parse_lang')
+    @patch('lib.l10n_utils.gettext.codecs', MagicMock())
+    def test_uses_default_lang_files(self, pl_mock):
+        """Should use the default files from settings"""
+        pl_mock.return_value = {}  # avoid side-effects
+        pot_to_langfiles()
+        calls = [(('{0}/locale/templates/{1}.lang'.format(ROOT, lf),),
+                  {'skip_untranslated': False})
+                 for lf in DOTLANG_FILES]
+        pl_mock.assert_has_calls(calls)
 
 
 class TestParseTemplate(TempFileMixin, TestCase):
