@@ -367,6 +367,7 @@ MINIFY_BUNDLES = {
             'js/base/global.js',
             'js/base/footer-email-form.js',
             'js/base/mozilla-input-placeholder.js',
+            'js/base/mozilla-image-helper.js',
         ),
         'common-resp': (
             'js/libs/jquery-1.7.1.min.js',
@@ -374,6 +375,7 @@ MINIFY_BUNDLES = {
             'js/base/nav-main-resp.js',
             'js/base/footer-email-form.js',
             'js/base/mozilla-input-placeholder.js',
+            'js/base/mozilla-image-helper.js',
         ),
         'contribute': (
             'js/libs/jquery.sequence.js',
@@ -402,6 +404,7 @@ MINIFY_BUNDLES = {
             'js/base/nav-main.js',
             'js/base/footer-email-form.js',
             'js/base/mozilla-input-placeholder.js',
+            'js/base/mozilla-image-helper.js',
         ),
         'firefox_all': (
             'js/firefox/firefox-language-search.js',
@@ -412,6 +415,7 @@ MINIFY_BUNDLES = {
             'js/base/nav-main-resp.js',
             'js/base/footer-email-form.js',
             'js/base/mozilla-input-placeholder.js',
+            'js/base/mozilla-image-helper.js',
         ),
         'firefox_central': (
             'js/base/mozilla-video-tools.js',
@@ -512,6 +516,7 @@ MINIFY_BUNDLES = {
             'js/base/global.js',
             'js/base/nav-main-resp.js',
             'js/base/footer-email-form.js',
+            'js/base/mozilla-image-helper.js',
         ),
         'pager': (
             'js/base/mozilla-pager.js',

@@ -32,33 +32,10 @@ function init_download_links() {
     $('.download-list').attr('role', 'presentation');
 }
 
-// platform images
-
-function init_platform_imgs() {
-    $('.platform-img').each(function() {
-        var suffix = '';
-        var $img = $(this);
-        if (site.platform === 'osx' || site.platform === 'oldmac') {
-            suffix = '-mac';
-        }
-        else if (site.platform === 'linux') {
-            suffix = '-linux';
-        }
-
-        var orig_src = $img.data('src');
-        var i = orig_src.lastIndexOf('.');
-        var base = orig_src.substring(0, i);
-        var ext = orig_src.substring(i);
-        this.src = base + suffix + ext;
-        $img.addClass(site.platform);
-    });
-}
-
 // init
 
 $(document).ready(function() {
     init_download_links();
-    init_platform_imgs();
     $(window).on('load', function () {
         $('html').addClass('loaded');
     });
@@ -107,7 +84,6 @@ function isFirefoxUpToDate(latest, esr) {
 function isMobile() {
     return /\sMobile/.test(window.navigator.userAgent);
 }
-
 
 // Create text translation function using #strings element.
 // TODO: Move to docs

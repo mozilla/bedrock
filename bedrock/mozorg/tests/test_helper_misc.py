@@ -15,6 +15,7 @@ from bedrock.newsletter.tests.test_views import newsletters
 from funfactory.urlresolvers import reverse
 
 from bedrock.mozorg.helpers.misc import platform_img
+from bedrock.mozorg.helpers.misc import high_res_img
 from bedrock.mozorg.tests import TestCase
 
 
@@ -304,3 +305,26 @@ class TestPressBlogUrl(TestCase):
     def test_press_blog_url_other_locale(self):
         """No blog for locale, fallback to default press blog"""
         eq_(self._render('oc'), 'https://blog.mozilla.org/press/')
+
+
+class TestHighResImg(TestCase):
+    @override_settings(MEDIA_URL='/media/')
+    def test_high_res_img_no_optional_attributes(self):
+        """Should return expected markup without optional attributes"""
+        markup = high_res_img('test.png')
+        expected = (
+            u'<img class="js" src="" data-src="/media/test.png" '
+            u'data-high-res="true" >'
+            u'<noscript><img src="/media/test.png" ></noscript>')
+        self.assertEqual(markup, jinja2.Markup(expected))
+
+    @override_settings(MEDIA_URL='/media/')
+    def test_high_res_img_with_optional_attributes(self):
+        """Should return expected markup with optional attributes"""
+        markup = high_res_img('test.png', {'data-test-attr': 'test'})
+        expected = (
+            u'<img class="js" src="" data-src="/media/test.png" '
+            u'data-high-res="true" data-test-attr="test">'
+            u'<noscript><img src="/media/test.png" data-test-attr="test">'
+            u'</noscript>')
+        self.assertEqual(markup, jinja2.Markup(expected))
