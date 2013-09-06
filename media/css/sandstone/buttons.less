@@ -168,7 +168,11 @@
     margin-left: 0;
     margin-right: 0;
     padding: 0;
+    // Font size set to 0 on UL and reset to body size on the LI tags
+    // This avoids putting a horizontal space between inline-block links
+    font-size: 0;
     li {
+        font-size: @baseFontSize;
         margin: 0;
         padding: 0;
         list-style-style: none;

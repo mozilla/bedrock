@@ -71,9 +71,19 @@ all_children = [
         PageNode('Translation', path='translation', template='styleguide/communications/translation.html'),
     )),
     PageNode('Products', path='products', children=(
-        PageNode('Firefox OS', path='firefoxos', children=(
-            PageNode('App Icons', path='icons', template='styleguide/products/firefox-os-icons.html'),
-            PageNode('Action Icons', path='action-icons', template='styleguide/products/firefox-os-action-icons.html'),
+        PageNode('Firefox OS', path='firefox-os', children=(
+            PageNode('Guidelines', template='styleguide/products/firefox-os/guidelines.html'),
+            PageNode('Color Palette', path='color', template='styleguide/products/firefox-os/color.html'),
+            PageNode('Typeface', path='typeface', template='styleguide/products/firefox-os/typeface.html'),
+            PageNode('Headers', path='headers', template='styleguide/products/firefox-os/headers.html'),
+            PageNode('Backgrounds', path='backgrounds', template='styleguide/products/firefox-os/backgrounds.html'),
+            PageNode('Lists', path='lists', template='styleguide/products/firefox-os/lists.html'),
+            PageNode('Buttons', path='buttons', template='styleguide/products/firefox-os/buttons.html'),
+            PageNode('Tab Bars', path='tab-bars', template='styleguide/products/firefox-os/tab-bars.html'),
+            PageNode('Input Areas', path='input-areas', template='styleguide/products/firefox-os/input-areas.html'),
+            PageNode('Switchers', path='switchers', template='styleguide/products/firefox-os/switchers.html'),
+            PageNode('Action Icons', path='actionicons', template='styleguide/products/firefox-os/action-icons.html'),
+            PageNode('App Icons', path='icons', template='styleguide/products/firefox-os/icons.html'),
         )),
     )),
 ]

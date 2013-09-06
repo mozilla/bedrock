@@ -1,0 +1,219 @@
+{% extends "styleguide/base.html" %}
+
+{% block guide_logo %}{{ media('/img/styleguide/mozilla-dark.png') }}{% endblock %}
+
+{% block body_class %}
+  {{ super() }}
+  dark firefox-os-typeface
+{% endblock %}
+
+{% set page_title = 'Firefox OS Typeface' %}
+{% block content_area %}
+<section id="basics">
+  <h2>Basics</h2>
+  <p>Designed to integrate with the character of the OS, the Fira Sans typeface also aims to cover the legibility needs for a large range of handsets varying in screen quality and rendering. When working with Fira Sans it is recommended that micro font sizes that fall below our guidelines are avoided.</p>
+
+  <div id="fira_sans">
+
+    <h3>Fira Sans Light</h3>
+    <img src="{{ media('/img/styleguide/products/firefoxos/typeface/fira-sans-light.png') }}" alt="Fira Sans Light" />
+
+    <h3>Fira Sans Regular</h3>
+    <img src="{{ media('/img/styleguide/products/firefoxos/typeface/fira-sans-regular.png') }}" alt="Fira Sans Regular" />
+
+    <h3>Fira Sans Medium</h3>
+    <img src="{{ media('/img/styleguide/products/firefoxos/typeface/fira-sans-medium.png') }}" alt="Fira Sans Medium" />
+
+    <h3>Fira Sans Bold</h3>
+    <img src="{{ media('/img/styleguide/products/firefoxos/typeface/fira-sans-bold.png') }}" alt="Fira Sans Bold" />
+
+  </div>
+
+</section>
+
+<section id="text_styles">
+  <h2>Text Styles</h2>
+  <p>This is a list of the most common styles, and the basics you may need. </p>
+  <p>Note that the combination of sizes listed here are calculated for a 165 ppi screen. If you’re working with a different resolution you can use the conversion formula provided below.</p>
+
+  <table class="table">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>REM</th>
+    <th>Point</th>
+    <th>Weight</th>
+    <th>Use cases</th>
+    <th>Sample</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>h1</td>
+    <td>Heading</td>
+    <td>2.5</td>
+    <td>11</td>
+    <td>Regular / 400</td>
+    <td>Headers</td>
+    <td><div style="font-size: 2.5rem; font-weight: 400;">Lorem Ipsum</div></td>
+  </tr>
+  <tr>
+    <td>h2</td>
+    <td>Subheading</td>
+    <td>1.6</td>
+    <td>7</td>
+    <td>Regular / 400</td>
+    <td>Subheaders, Dialog titles</td>
+    <td><div style="font-size: 1.6rem; font-weight: 400;">Lorem Ipsum</div></td>
+  </tr>
+  <tr>
+    <td>p.large</td>
+    <td>Body Large</td>
+    <td>2.3</td>
+    <td>10</td>
+    <td>Light / 300</td>
+    <td>Dialogs</td>
+    <td><div style="font-size: 2.3rem; font-weight: 300;">Lorem Ipsum</div></td>
+  </tr>
+  <tr>
+    <td>p /ul</td>
+    <td>Body</td>
+    <td>1.9</td>
+    <td>8</td>
+    <td>Regular / 400</td>
+    <td>Body text, lists, default size</td>
+    <td><div style="font-size: 1.9rem; font-weight: 400;">Lorem Ipsum</div></td>
+  </tr>
+  <tr>
+    <td>p.alt</td>
+    <td>Body Medium</td>
+    <td>1.7</td>
+    <td>7</td>
+    <td>Medium / 500</td>
+    <td>Med. body text and btn label</td>
+    <td><div style="font-size: 1.7rem; font-weight: 500;">Lorem Ipsum</div></td>
+  </tr>
+  <tr>
+    <td>p.small</td>
+    <td>Body Small</td>
+    <td>1.5</td>
+    <td>6.5</td>
+    <td>Regular / 400</td>
+    <td>Status bar</td>
+    <td><div style="font-size: 1.5rem; font-weight: 400;">Lorem Ipsum</div></td>
+  </tr>
+  <tr>
+    <td>p.mini</td>
+    <td>Body Mini</td>
+    <td>1.4</td>
+    <td>6</td>
+    <td>Regular / 400</td>
+    <td>Fine print and status bar</td>
+    <td><div style="font-size: 1.4rem; font-weight: 400;">Lorem Ipsum</div></td>
+  </tr>
+  <tr>
+    <td>p.micro</td>
+    <td>Body Micro</td>
+    <td>1.3</td>
+    <td>5.75</td>
+    <td>Regular / 400</td>
+    <td>Application icon label</td>
+    <td><div style="font-size: 1.3rem; font-weight: 400;">Lorem Ipsum</div></td>
+  </tr>
+  </tbody>
+  </table>
+
+</section>
+
+<section id="examples">
+  <h2>Usage Examples</h2>
+  <img src="{{ media('/img/styleguide/products/firefoxos/typeface/example.png') }}" alt="Example" />
+</section>
+
+<section id="converting">
+  <h2>Converting Type, Sizes in Point, Pixels and REM</h2>
+  <p><strong>The calculations are density dependant</strong> and you may switch from one pixel density to another to obtain the right relationship between points and rems.</p>
+  <p>This is the <strong>formula to convert point to rem</strong> depending on the device’s pixel density.</p>
+
+  <h3>Conversion Formula</h3>
+
+  <p>We use typographic points as a base for all our measurements, this was done as point sizes are universally understood in design and are locked to a physical measurement. Firefox OS currently reads type best in pixels, we convert our spec’d point sizes to pixels per resolution. Here is the formula we used:</p>
+
+  <table class="table formula">
+  <tbody>
+  <tr>
+    <td>1 inch</td>
+    <td class="equal">=</td>
+    <td>72 point (pt)</td>
+  </tr>
+  </tbody>
+  </table>
+
+  <p>ie.<br/>
+  ZTE Open has 165 pixels per inch (ppi) = 72 pt<br/>
+  165ppi / 72 pt = 2.91667px (this how many pixels in 1 point at device resolution)</p>
+
+  <p>I want my body text to be 8pt, how big would that be on a ZTE Open in pixels?<br/>
+  8pt x 2.91667px = 18.33333px</p>
+
+  <p>We want to round up, because bigger type is better. So 8pt is actually 19px on our ZTE Open device.</p>
+
+
+  <h3>Type Unit</h3>
+  <table class="table">
+  <tbody>
+  <tr>
+    <td>10 Pixels</td>
+    <td class="equal">=</td>
+    <td>1 rem</td>
+  </tr>
+  </tbody>
+  </table>
+
+  <h3>Font Weight</h3>
+  <table class="table">
+  <thead>
+  <tr>
+    <th>PSDs</th>
+    <th></th>
+    <th>CSS</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>Light</td>
+    <td class="equal">=</td>
+    <td>300</td>
+  </tr>
+  <tr>
+    <td>Regular</td>
+    <td class="equal">=</td>
+    <td>400</td>
+  </tr>
+  <tr>
+    <td>Medium</td>
+    <td class="equal">=</td>
+    <td>500</td>
+  </tr>
+  </tbody>
+  </table>
+
+</section>
+
+<section id="downloads">
+  <div class="intro">
+    <h2>Download</h2>
+    <p>The Fira font family comes in a Sans Serif with 4 weights (light, regular, medium and bold) all accompanied by italic styles. The package also includes a Mono Spaced variant with 2 weights (regular and bold).</p>
+  </div>
+  <div class="download-group" id="download-primary">
+    <ul class="button-list">
+      <li><a href="https://mozilla.box.com/s/4dhgg18ybvlqojoi10zw" class="button-sand">{{ _('Fira Open Type') }}</a></li>
+      <li><a href="https://mozilla.box.com/s/t18u3o4wsd50qsjz4l1v" class="button-sand">{{ _('Fira True Type') }}</a></li>
+      <li><a href="https://mozilla.box.com/s/uwtm665j20w17lqtkytj" class="button-sand">{{ _('Fira Web Font') }}</a></li>
+    </ul>
+  </div>
+  <p class="css-link">You can also download the text CSS <a href="https://github.com/buildingfirefoxos/Building-Blocks/blob/gh-pages/util.css">here</a>.</p>
+</section>
+
+{% endblock %}
