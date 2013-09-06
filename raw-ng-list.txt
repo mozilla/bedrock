@@ -124,6 +124,7 @@ mozilla.dev.quality                     For <a href="../../quality/">QA</a> disc
 mozilla.qa.b2g                          QA for B2G. (Moderated)
 mozilla.qa.webmaker                     QA for Webmaker projects. (Moderated)
 mozilla.bugmasters                      Our intrepid bug handling team. (Moderated)
+mozilla.compatibility                   Web compatibility - making the web safe for standards-compliant browsers, one site at a time. (Moderated)
 
 :Extension Development
 
@@ -175,6 +176,7 @@ mozilla.community.german                The Mozilla German-speaking community. (
 mozilla.community.ghana                 The Mozilla community in Ghana.
 mozilla.community.greece                The Mozilla community in Greece. (Moderated)
 mozilla.community.hungary               The Mozilla community in Hungary. (Moderated)
+mozilla.community.iceland               The Mozilla community in Iceland. (Moderated)
 mozilla.community.india                 The Mozilla community in India.
 mozilla.community.indonesia             The Mozilla community in Indonesia. (Moderated)
 mozilla.community.ireland               The Mozilla community in Ireland. (Moderated)
@@ -185,13 +187,15 @@ mozilla.community.mongolia              The Mozilla community in Mongolia. (Mode
 mozilla.community.morocco               The Mozilla community in Morocco. (Moderated)
 mozilla.community.nepal                 The Mozilla community in Nepal. (Moderated)
 mozilla.community.new-zealand           The Mozilla community in New Zealand.
+mozilla.community.norway                The Mozilla community in Norway. (Moderated)
 mozilla.community.philippines           The Mozilla community in the Philippines. (Moderated)
-mozilla.community.quebec                The Mozilla community in Quebec. (Moderated)
+mozilla.community.quebec                The Mozilla community in Quebec, Canada. (Moderated)
 mozilla.community.romania               The Mozilla community in Romania. (Moderated)
 mozilla.community.senegal               The Mozilla community in Senegal.
 mozilla.community.sweden                The Mozilla community in Sweden. (Moderated)
 mozilla.community.switzerland           The Mozilla community in Switzerland. (Moderated)
 mozilla.community.taiwan                The Mozilla community in Taiwan. (Moderated)
+mozilla.community.toronto               The Mozilla community in Toronto, Canada. (Moderated)
 mozilla.community.turkey                The Mozilla community in Turkey. (Moderated)
 mozilla.community.tunisia               The Mozilla community in Tunisia.
 mozilla.community.uganda                The Mozilla community in Uganda. (Moderated)
