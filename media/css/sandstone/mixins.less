@@ -166,6 +166,13 @@
     .box-shadow(@shadow);
 }
 
+.button-focus-box-shadow(@color: #ffffff) {
+    @shadow:  @shadowPartBottom,
+              @shadowPartBottomInset,
+              0 0 0 2px fade(@color, 40%);
+    .box-shadow(@shadow);
+}
+
 .hidden {
   position: absolute;
   left: -999em;

@@ -28,9 +28,11 @@
 @shadowPartBottom:      0px 2px 0px 0px rgba(0, 0, 0, 0.1);
 @shadowPartBottomInset: inset 0px -2px 0px 0px rgba(0, 0, 0, 0.2);
 @shadowPartHover:       inset 0px 12px 24px 2px saturate(@buttonBlue, 10%);
+@shadowPartFocusRing:   0 0 0 2px rgba(73,173,227,0.4);
 
 @buttonShadow:          @shadowPartBottom, @shadowPartBottomInset;
 @buttonShadowHover:     @shadowPartBottom, @shadowPartBottomInset, @shadowPartHover;
+@buttonShadowFocus:     @shadowPartBottom, @shadowPartBottomInset, @shadowPartHover, @shadowPartFocusRing;
 
 @buttonShadowActive:     inset 0px 2px 0px 0px rgba(0, 0, 0, 0.2),
                          inset 0px 12px 24px 6px rgba(0,0,0,0.2),
