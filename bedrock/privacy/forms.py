@@ -9,6 +9,9 @@ from bedrock.mozorg.forms import HoneyPotWidget
 from lib.l10n_utils.dotlang import _lazy as _
 
 
+LANG_FILES = 'privacy/ffos_privacy'
+
+
 class EmailInput(widgets.TextInput):
     input_type = 'email'
 
@@ -31,7 +34,7 @@ class PrivacyContactForm(forms.Form):
         widget=EmailInput(
             attrs={
                 'required': 'required',
-                'placeholder': 'you@yourdomain.com'
+                'placeholder': _('you@yourdomain.com')
             }))
     comments = forms.CharField(
         required=True,
@@ -41,7 +44,7 @@ class PrivacyContactForm(forms.Form):
         widget=forms.Textarea(
             attrs={
                 'required': 'required',
-                'placeholder': 'Enter your comments...',
+                'placeholder': _('Enter your comments...'),
                 'rows': '10',
                 'cols': '77'
             }))
