@@ -368,7 +368,6 @@ section p, header p {
     position: relative;
     width: 100%;
     height: 1860px;
-    overflow: hidden;
     z-index: 2;
     background: #0f9fdb;
 
@@ -387,10 +386,21 @@ section p, header p {
         left: 0;
         width: 100%;
         height: 620px;
-        opacity: 0;
+        opacity: 1;
         z-index: 1;
+        .transition(opacity 0.3s ease);
+        background-repeat: no-repeat;
+        background-position: center center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        &.inactive {
+          opacity: 0;
+        }
         &.top {
           z-index: 2;
+          opacity: 1;
         }
       }
       #adaptive-bg-birthday {
@@ -455,6 +465,11 @@ section p, header p {
       }
       .type, .results, .save, .discover {
         opacity: 0;
+        .transition;
+        &.active {
+          margin-top: 0px;
+          opacity: 1;
+        }
       }
       .results {
         z-index: 3;
@@ -513,6 +528,9 @@ html[lang="en-US"] #get-firefox-os {
     ul {
       .discover {
         margin-top: -66px;
+        &.active {
+          margin-top: 44px;
+        }
       }
     }
     .adapt-feature-sprite {
@@ -525,6 +543,11 @@ html[lang="en-US"] #get-firefox-os {
       width: 26px;
       top: 200px; // animate to 286px
       z-index: 2;
+      .transition(all 0.5s ease);
+      &.active {
+        top: 286px;
+        opacity: 1;
+      }
     }
   }
 }
@@ -625,30 +648,29 @@ html[lang="pl"] {
   left: 0;
   width: 100%;
   height: 620px;
+  opacity: 1;
+  .transition(opacity 1s ease);
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  &.inactive {
+    opacity: 0;
+  }
 }
 
 .bg-soccer {
-  background: url('/media/img/firefox/os/bg/1400/soccer.jpg') no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  background-image: url('/media/img/firefox/os/bg/1400/soccer.jpg');
 }
 
 .bg-cafe {
-  background: url('/media/img/firefox/os/bg/1400/cafe.jpg') no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  background-image: url('/media/img/firefox/os/bg/1400/cafe.jpg');
 }
 
 .bg-birthday {
-  background: url('/media/img/firefox/os/bg/1400/birthday.jpg') no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  background-image: url('/media/img/firefox/os/bg/1400/birthday.jpg');
 }
 
 #have-it-all-masthead {
@@ -961,6 +983,8 @@ html[lang=hu] {
         top: 240px;
         left: 0;
         width: 100%;
+        -webkit-backface-visibility: hidden;
+        -webkit-perspective: 1000;
       }
       img {
         position: absolute;
@@ -1401,12 +1425,10 @@ html[lang="pl"] {
     .screen {
       position: absolute;
       top: 0;
-    }
-    #screen-intro-a {
-      left: 0;
-    }
-    #screen-intro-b {
-      left: 218px;
+      z-index: 2;
+      &.inactive {
+        z-index: 1;
+      }
     }
   }
 }
@@ -1416,6 +1438,7 @@ html[lang="en-US"].js {
   #get-firefox-os {
     .adapt-feature-sprite {
       display: block;
+      .transition(all 0.5s ease);
     }
   }
   .adapt-feature-sprite-line {
@@ -1432,6 +1455,12 @@ html[lang="en-US"].js {
     top: 277px;
     height: 12px;
     background-position: left -106px;
+  }
+  #adapt-feature-sprite-blue-line, #adapt-feature-sprite-orange-line {
+    width: 0px;
+    &.active {
+      width: 123px;
+    }
   }
 }
 
