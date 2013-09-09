@@ -1,6 +1,6 @@
-# Django 1.4.5 is also in vendor, but needs to be kept here so packages that
+# Django 1.4.6 is also in vendor, but needs to be kept here so packages that
 # depend on Django do not install a newer version
-Django==1.4.5
+Django==1.4.6
 
 # Templates
 -e git://github.com/jbalogh/jingo.git#egg=jingo
