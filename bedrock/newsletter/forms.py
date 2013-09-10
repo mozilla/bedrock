@@ -207,7 +207,9 @@ class NewsletterFooterForm(forms.Form):
         self.fields['country'] = forms.ChoiceField(choices=regions,
                                                    initial=country,
                                                    required=False)
-        self.fields['lang'] = forms.TypedChoiceField(choices=lang_choices,
+        select_widget = widgets.Select(attrs={'required': 'required'})
+        self.fields['lang'] = forms.TypedChoiceField(widget=select_widget,
+                                                     choices=lang_choices,
                                                      initial=lang,
                                                      required=False,
                                                      empty_value='')
