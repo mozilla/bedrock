@@ -120,6 +120,11 @@
             <li><a href="https://affiliates.mozilla.org/">{{_('Firefox Affiliates')}}</a></li>
           </ul>
           {% endblock %}
+          {% block lang_switcher %}
+          <div class="footer-lang">
+            {% include 'includes/lang_switcher.html' %}
+          </div>
+          {% endblock %}
 
       </div>
       </footer>

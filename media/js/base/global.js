@@ -32,10 +32,23 @@ function init_download_links() {
     $('.download-list').attr('role', 'presentation');
 }
 
+// language switcher
+
+function init_lang_switcher() {
+    $('#language').change(function(event) {
+        event.preventDefault();
+        gaTrack(
+            ['_trackEvent', 'Language Switcher', 'change', $(this).val()],
+            function() {$('#lang_form').submit();}
+        );
+    });
+}
+
 // init
 
 $(document).ready(function() {
     init_download_links();
+    init_lang_switcher();
     $(window).on('load', function () {
         $('html').addClass('loaded');
     });
