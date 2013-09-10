@@ -207,13 +207,9 @@ class NewsletterFooterForm(forms.Form):
         self.fields['country'] = forms.ChoiceField(choices=regions,
                                                    initial=country,
                                                    required=False)
-        # TypedChoiceField knows that '' is an empty choice, and with
-        # required=True, will not accept '' as valid input.
-        select_widget = widgets.Select(attrs={'required': 'required'})
-        self.fields['lang'] = forms.TypedChoiceField(widget=select_widget,
-                                                     choices=lang_choices,
+        self.fields['lang'] = forms.TypedChoiceField(choices=lang_choices,
                                                      initial=lang,
-                                                     required=True,
+                                                     required=False,
                                                      empty_value='')
 
     def clean_newsletter(self):
