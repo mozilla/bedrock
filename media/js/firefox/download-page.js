@@ -3,11 +3,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /**
- * 
- */
-
-
-/**
  * Over-ride this function that's originally setup in /js/download.js
  * We don't want to spawn the pop-up download hack if we're already
  * on the download page, since it will result in two downloads (the
@@ -16,7 +11,6 @@
  */
 function init_download() {
 }
-
 
 
 function parseGETVars()
@@ -36,6 +30,7 @@ function parseGETVars()
     return url;
 }
 
+
 function validateDownloadVar(value)
 {
     // validate download vars to prevent XSS
@@ -53,14 +48,14 @@ function initDownload()
     var get = parseGETVars();
 
     var product = (get['product']) ? get['product'] : null;
-    var os      = (get['os'])      ? get['os']      : null;
-    var dlang    = (get['dlang'])    ? get['dlang']    : null;
+    var os = (get['os']) ? get['os'] : null;
+    var lang = (get['lang']) ? get['lang'] : null;
     var channel = (get['channel']) ? get['channel'] : null;
 
-    if ( !os || !dlang
+    if ( !os || !lang
         || !validateDownloadVar(product)
         || !validateDownloadVar(os)
-        || !validateDownloadVar(dlang)
+        || !validateDownloadVar(lang)
     ) {
         // No vars were specified, just display the fallback content.
         return;
@@ -89,7 +84,7 @@ function initDownload()
      *  - Windows NT (not followed by version or followed by version < 5)
      *  - Windows_95
      */
-    gPlatformUnsupported = 
+    gPlatformUnsupported =
         /(Win(16|9[x58]|NT( [1234]| [^0-9]|[^ -]|$))|Windows ([MC]E|9[x58]|3\.1|4\.10|NT( [1234]| [^0-9]|[^ ]|$))|Windows_95)/.test(navigator.userAgent);
 
     // Check for known unsupported platforms and redirect to the
@@ -116,14 +111,13 @@ function initDownload()
 
     // 2. Build download.mozilla.org URL out of those vars.
     download_url = "https://download.mozilla.org/?product=";
-    download_url += product + '&os=' + os + '&dlang=' + dlang;
+    download_url += product + '&os=' + os + '&lang=' + lang;
 
     if (typeof(channel != "undefined" && channel !== null)) {
         if (channel == 'fxaurora' || channel == 'aurora') {
-            download_url = getDownloadURLForAuroraForLanguage(product, product_version, dlang, os);
-        } 
+            download_url = getDownloadURLForAuroraForLanguage(product, product_version, lang, os);
+        }
     }
-
 }
 
 initDownload();
@@ -143,5 +137,3 @@ if ( navigator.appVersion.indexOf('Safari') != -1 ) {
 } else {
     window.onload = downloadURL;
 }
-
-

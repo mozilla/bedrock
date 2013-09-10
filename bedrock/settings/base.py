@@ -821,3 +821,9 @@ PRESS_BLOGS = {
     'it': 'press-it/',
     'pl': 'press-pl/',
 }
+
+# exempts urls from the default lang query param function.
+# will be compared using `endswith()`
+FF_EXEMPT_LANG_PARAM_URLS = (
+    '/firefox/download/',
+)
