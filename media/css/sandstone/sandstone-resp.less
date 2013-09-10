@@ -801,16 +801,14 @@ nav.menu-bar {
         margin: 0 (@gridGutterWidth / 2);
     }
 
-    .footer-logo {
-        .span(4);
-    }
-
-    .footer-license {
-        .span(3);
-    }
-
+    .footer-logo,
     .footer-nav {
         .span(2);
+    }
+
+    .footer-license,
+    .footer-lang {
+        .span(3);
     }
 
     a,
@@ -891,16 +889,21 @@ nav.menu-bar {
         .row {
             width: @widthTablet - (@gridGutterWidth * 2);
         }
-        .footer-logo {
-            .span_narrow(4);
-        }
-        .footer-license {
-            .span_narrow(3);
-        }
-        .footer-nav {
-            .span_narrow(2);
+
+        .footer-logo,
+        .footer-license,
+        .footer-lang {
+            .span(2.5);
         }
 
+        .footer-nav {
+            .span(2);
+        }
+
+        .footer-logo {
+            float: none;
+            margin-bottom: @baseLine;
+        }
     }
 
 }
@@ -1059,9 +1062,6 @@ nav.menu-bar {
         .footer-nav {
             width: auto;
             float: none;
-        }
-        .footer-logo,
-        .footer-license {
             margin-bottom: @baseLine;
         }
     }
