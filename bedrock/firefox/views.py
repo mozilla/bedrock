@@ -155,7 +155,7 @@ def dnt(request):
 
 
 @vary_on_headers('User-Agent')
-def firefox_redirect(request):
+def firefox_redirect(request, **kwargs):
     """
     Redirect visitors based on their user-agent.
 
@@ -183,7 +183,7 @@ def firefox_redirect(request):
 
 
 @vary_on_headers('User-Agent')
-def latest_fx_redirect(request, fake_version, template_name):
+def latest_fx_redirect(request, fake_version, template_name, **kwargs):
     """
     Redirect visitors based on their user-agent.
 
@@ -287,7 +287,7 @@ def releases_index(request):
                              {'releases': sorted(releases.items(), reverse=True)})
 
 
-def latest_notes(request, product, channel='release'):
+def latest_notes(request, product, channel='release', **kwargs):
     version = get_latest_version(product, channel)
     path = [
         product,
@@ -300,7 +300,7 @@ def latest_notes(request, product, channel='release'):
     return HttpResponseRedirect('/' + '/'.join(path) + '/')
 
 
-def latest_sysreq(request):
+def latest_sysreq(request, **kwargs):
     path = [
         'firefox',
         get_latest_version(),

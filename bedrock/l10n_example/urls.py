@@ -6,5 +6,5 @@ from django.conf.urls.defaults import patterns
 from bedrock.mozorg.util import page
 
 urlpatterns = patterns('',
-    page('', 'l10n_example/example.html'),
+    page('', 'l10n_example/example.html', meta_robots=['noindex']),
 )

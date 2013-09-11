@@ -50,7 +50,7 @@ urlpatterns = patterns('',
     page('mocosc', 'foundation/mocosc.html'),
 
     page('openwebfund/more', 'foundation/openwebfund/more.html'),
-    page('openwebfund/thanks', 'foundation/openwebfund/thanks.html'),
+    page('openwebfund/thanks', 'foundation/openwebfund/thanks.html', meta_robots=['noindex']),
 
     page('trademarks', 'foundation/trademarks/index.html'),
     page('trademarks/policy', 'foundation/trademarks/policy.html'),

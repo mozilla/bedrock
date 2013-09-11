@@ -17,30 +17,35 @@ urlpatterns = patterns('',  # noqa
 
     url('^newsletter/existing/(?P<token>[^/]*)/?$',
         views.existing,
-        name='newsletter.existing.token'),
+        name='newsletter.existing.token',
+        kwargs={'robots': ['noindex']}),
 
     # After submitting on the `existing` page, users end up on the
     # `updated` page.  There are optional query params; see the view.
     url('^newsletter/updated/$',
         views.updated,
-        name='newsletter.updated'),
+        name='newsletter.updated',
+        kwargs={'robots': ['noindex']}),
 
     # Confirm subscriptions
     url('^newsletter/confirm/(?P<token>' + uuid_regex + ')/$',
         views.confirm,
-        name='newsletter.confirm'),
+        name='newsletter.confirm',
+        kwargs={'robots': ['noindex']}),
 
     # Request recovery message with link to manage subscriptions
     url('^newsletter/recovery/',
         views.recovery,
-        name='newsletter.recovery'),
+        name='newsletter.recovery',
+        kwargs={'robots': ['noindex']}),
 
     # This particular view is used inside a frame somewhere else, so it
     # has its own view and doesn't work like the rest of these newsletter
     # signup pages.
     url('^newsletter/hacks\.mozilla\.org/$',
         views.hacks_newsletter,
-        name='mozorg.hacks_newsletter'),
+        name='mozorg.hacks_newsletter',
+        kwargs={'robots': ['noindex']}),
 
     # Page to subscribe to 'mozilla-and-you' newsletter
     url('^newsletter/$',

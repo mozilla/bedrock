@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  {% set base_url = settings.CANONICAL_URL + '/' + settings.LANGUAGE_CODE + '/' -%}
+  {% for url in urls|sort -%}
+  <url><loc>{{ base_url + url }}</loc></url>
+  {% endfor -%}
+</urlset>

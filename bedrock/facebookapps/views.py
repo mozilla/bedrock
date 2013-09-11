@@ -11,7 +11,7 @@ from bedrock.facebookapps import utils
 
 
 @xframe_allow
-def tab_redirect(request, redirect_type='server'):
+def tab_redirect(request, redirect_type='server', **kwargs):
     app_data_query_string = utils.app_data_query_string_encode(request.GET)
     # Cast into unicode string to avoid `join` treating it as a `__proxy__`
     tab_url = unicode(settings.FACEBOOK_TAB_URL)

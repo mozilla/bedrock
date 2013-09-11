@@ -57,13 +57,13 @@ UUID_REGEX = re.compile(r'^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a
 
 
 @xframe_allow
-def hacks_newsletter(request):
+def hacks_newsletter(request, **kwargs):
     return l10n_utils.render(request,
                              'newsletter/hacks.mozilla.org.html')
 
 
 @never_cache
-def confirm(request, token):
+def confirm(request, token, **kwargs):
     """
     Confirm subscriptions.
     """
@@ -96,7 +96,7 @@ def confirm(request, token):
 
 
 @never_cache
-def existing(request, token=None):
+def existing(request, token=None, **kwargs):
     """Manage subscriptions.  If token is provided, user can manage their
     existing subscriptions, to subscribe, unsubscribe, change email or
     language preferences, etc.  If no token is provided, user can
@@ -308,7 +308,7 @@ REASONS = [
 ]
 
 
-def updated(request):
+def updated(request, **kwargs):
     """View that users come to after submitting on the `existing`
     or `updated` pages.
 
@@ -403,7 +403,7 @@ def one_newsletter_signup(request, template_name):
 
 
 @never_cache
-def recovery(request):
+def recovery(request, **kwargs):
     """
     Let user enter their email address and be sent a message with a link
     to manage their subscriptions.

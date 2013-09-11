@@ -13,13 +13,14 @@ from bedrock.mozorg.util import page
 
 urlpatterns = patterns('',
     url(r'^tab_redirect/$', views.tab_redirect,
-        name='facebookapps.tab_redirect'),
+        name='facebookapps.tab_redirect', kwargs={'meta_robots': ['noindex']}),
     url(r'^tab_redirect/(?P<redirect_type>[a-z]*)/$', views.tab_redirect,
-        name='facebookapps.tab_redirect'),
+        name='facebookapps.tab_redirect', kwargs={'meta_robots': ['noindex']}),
 
-    page('channel', 'facebookapps/channel.html'),
+    page('channel', 'facebookapps/channel.html', meta_robots=['noindex']),
     page('downloadtab', 'facebookapps/downloadtab.html',
-        decorators=(xframe_allow, extract_app_data, facebook_locale)),
+        decorators=(xframe_allow, extract_app_data, facebook_locale),
+        meta_robots=['noindex']),
     page('downloadtab/noscroll', 'facebookapps/downloadtab.html',
         decorators=(xframe_allow, extract_app_data, facebook_locale),
         noscroll=True),
