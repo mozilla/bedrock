@@ -1,0 +1,1169 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+
+// Bounce Tabzilla's caret when the page loads
+#tabzilla:after {
+    animation-name: bounce;
+    animation-delay: 1s;
+    animation-duration: .5s;
+    animation-iteration-count: 3;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes bounce {
+    0%   { top: 11px; }
+    50%  { top: 14px; }
+    100% { top: 11px; }
+}
+
+// Add a double-arrow after 'go' links
+.go:after {
+    content: ' »';
+    white-space: nowrap;
+}
+
+
+
+// Home page B, version 2
+// Override sandstone base layout so we can have full-width blocks.
+.home-b2 {
+    #wrapper,
+    #main-content,
+    .billboard {
+        width: 100%;
+        padding: 0;
+    }
+
+    #masthead,
+    .container,
+    .newsletter-form {
+        width: @widthDesktop - (@gridGutterWidth * 2);
+        .clearfix();
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0;
+    }
+
+    .mission,
+    .pillars {
+        width: @widthDesktop - (@gridGutterWidth * 2);
+    }
+
+    #colophon {
+        margin-top: 0;
+    }
+
+}
+
+
+
+// @Header, @mission statement
+.mission {
+    .open-sans-light;
+    line-height: 1.1;
+    margin: 0 auto 40px;
+    position: relative;
+    text-align: center;
+
+    h1 {
+        color: #c13832;
+        font-size: 84px;
+        font-weight: bold;
+        letter-spacing: -.05em;
+        margin: 0 0 .05em;
+
+        img {
+            margin-bottom: -4px;
+        }
+    }
+
+    p {
+       font-size: 55px;
+       letter-spacing: -.025em;
+       margin: 0;
+    }
+}
+
+// Adjustments for some locales
+.lang-bg,
+.lang-de,
+.lang-el,
+.lang-es-ES,
+.lang-fr,
+.lang-it,
+.lang-mk {
+    .mission p {
+        font-size: 42px;
+    }
+}
+
+.engage {
+    display: none; // hide this for now
+    margin: 0;
+
+    .button {
+        border-radius: 6px;
+        font-size: 16px;
+        padding: 10px 20px;
+        text-transform: uppercase;
+    }
+}
+
+
+
+// @Accordion
+.pillars {
+    background: url(/media/img/home/box-shadow-960.png) center bottom no-repeat;
+    padding: 0 0 40px;
+    position: relative;
+    margin: 0 auto 20px;
+}
+
+.wide .pillars {
+    height: 380px;
+}
+
+.accordion {
+    list-style: none;
+    position: absolute;
+    left: -.5%;
+    top: 0;
+    width: 102%;
+    overflow: hidden;
+}
+
+.panel {
+    display: block;
+    position: relative;
+
+    &:focus {
+        outline: 0;
+    }
+}
+
+.wide .panel {
+    margin: 0 0 0 -2px;
+    padding: 0;
+    float: left;
+    width: 25%;
+    height: 380px;
+    overflow: hidden;
+    box-shadow: -6px 0 10px -4px rgba(0, 0, 0, .5);
+
+    &:first-child {
+        box-shadow: none;
+    }
+}
+
+// A title visible when the panel is in its initial state.
+.panel-title {
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: -.025em;
+    line-height: 1.2;
+    margin: 0;
+    padding: 40px 15px 0;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, .15);
+    width: 215px;
+    height: 80px;
+
+    i {
+        font-style: normal;
+    }
+
+    &:after {
+        content: ' »';
+        white-space: nowrap;
+    }
+}
+
+// An inner wrapper mostly useful as an overlay for background effects.
+.panel-inner {
+    background-color: rgba(0, 0, 0, .1);
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: background-color .5s ease-in-out;
+       -moz-transition: background-color .5s ease-in-out;
+         -o-transition: background-color .5s ease-in-out;
+            transition: background-color .5s ease-in-out;
+}
+
+// Set background to transparent, to "brighten" the panel as it opens.
+.expanded .panel-inner {
+    background-color: transparent;
+    -webkit-transition: background-color .5s ease-in-out;
+       -moz-transition: background-color .5s ease-in-out;
+         -o-transition: background-color .5s ease-in-out;
+            transition: background-color .5s ease-in-out;
+}
+
+// Dim the unfocused panels
+.compressed .panel-inner {
+    background-color: rgba(0, 0, 0, .25);
+}
+
+// Container for the panel's text contents.
+.panel-content {
+    .open-sans-light;
+    color: #fff;
+    display: none;
+    font-size: 20px;
+    line-height: 1.3;
+    position: relative;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, .15);
+
+    .panel-logo {
+        position: absolute;
+        left: 300px;
+        top: 30px;
+    }
+
+    h3 {
+        font-weight: bold;
+        font-size: 100%;
+        color: inherit;
+        letter-spacing: -.03em;
+        margin: 0 0 .25em;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, .15);
+        text-transform: uppercase;
+    }
+
+    .go {
+        font-size: 90%;
+        font-weight: bold;
+        letter-spacing: -.025em;
+
+        &:after {
+            content: ' »';
+            white-space: nowrap;
+        }
+    }
+
+    // Expand the link to fill the panel.
+    // This presumes a single block link for the entire panel.
+    // Future updates may negate this.
+    & > a {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding: 80px 40px 40px 300px;
+    }
+
+    a:link,
+    a:visited {
+        color: inherit;
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+        color: inherit;
+        text-decoration: none;
+        outline: 0;
+    }
+
+    a:focus .go,
+    a:active .go,
+    .go:hover {
+        text-decoration: underline;
+    }
+}
+
+.wide .panel-content {
+    display: none; // This is safe because JS sets the 'wide' class
+    height: 260px;
+    width: 290px;
+    padding: 80px 40px 40px 300px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+
+// @Promo panels - specific styling for individual panels.
+
+// Mozilla Mission
+#panel-mission {
+    background: #b30406 url(/media/img/home/panel/mission/bg-mission-mosaic.png) -50px -80px no-repeat;
+    background: url(/media/img/home/panel/mission/bg-mission-mosaic.png) -50px -80px no-repeat,
+                #b30406 url(/media/img/home/panel/mission/bg-mission-cubes.png) repeat;
+    -webkit-transition: background-position .5s ease-in-out;
+       -moz-transition: background-position .5s ease-in-out;
+         -o-transition: background-position .5s ease-in-out;
+            transition: background-position .5s ease-in-out;
+
+    .panel-title i {
+        display: block;
+    }
+}
+
+.wide #panel-mission .panel-title {
+    background: #821117;
+    background: rgba(185, 24, 26, .8);
+    background: -webkit-linear-gradient(bottom, rgba(185, 24, 26, .8) 65%, rgba(185, 24, 26, 0) 100%);
+    background:    -moz-linear-gradient(bottom, rgba(185, 24, 26, .8) 65%, rgba(185, 24, 26, 0) 100%);
+    background:      -o-linear-gradient(bottom, rgba(185, 24, 26, .8) 65%, rgba(185, 24, 26, 0) 100%);
+    background:         linear-gradient(bottom, rgba(185, 24, 26, .8) 65%, rgba(185, 24, 26, 0) 100%);
+}
+
+// Firefox OS
+#panel-fxos {
+    background: #0095dd url(/media/img/home/panel/firefoxos/firefoxos-fox.png) -230px -190px no-repeat;
+    -webkit-transition: background-position .5s ease-in-out;
+       -moz-transition: background-position .5s ease-in-out;
+         -o-transition: background-position .5s ease-in-out;
+            transition: background-position .5s ease-in-out;
+
+    &.expanded {
+        background-position: -180px -190px;
+        -webkit-transition: background-position .5s ease-in-out;
+           -moz-transition: background-position .5s ease-in-out;
+             -o-transition: background-position .5s ease-in-out;
+                transition: background-position .5s ease-in-out;
+    }
+
+    &.compressed {
+        background-position: -260px -190px;
+        -webkit-transition: background-position .5s ease-in-out;
+           -moz-transition: background-position .5s ease-in-out;
+             -o-transition: background-position .5s ease-in-out;
+                transition: background-position .5s ease-in-out;
+    }
+}
+
+.wide #panel-fxos .panel-title {
+    background: #0095dd;
+    background: rgba(0, 84, 160, .8);
+    background: -webkit-linear-gradient(bottom, rgba(0, 84, 160, .8) 65%, rgba(0, 84, 160, 0) 100%);
+    background:    -moz-linear-gradient(bottom, rgba(0, 84, 160, .8) 65%, rgba(0, 84, 160, 0) 100%);
+    background:      -o-linear-gradient(bottom, rgba(0, 84, 160, .8) 65%, rgba(0, 84, 160, 0) 100%);
+    background:         linear-gradient(bottom, rgba(0, 84, 160, .8) 65%, rgba(0, 84, 160, 0) 100%);
+}
+
+// MDN
+#panel-mdn {
+    background: #1c1c1c url(/media/img/home/panel/mdn/bg-logo-mdn.png) -80px 10px no-repeat;
+    background: url(/media/img/home/panel/mdn/bg-logo-mdn.png) -80px 10px no-repeat,
+                #1c1c1c url(/media/img/home/panel/mdn/bg-grid.png);
+    transition: background-position .5s ease-in-out;
+
+    .panel-title i {
+        display: block;
+        color: #ff3c3e;
+    }
+
+    .panel-content {
+        color: #fff;
+
+        h3 {
+            color: #ff3c3e;
+        }
+
+        .go {
+            color: #ffa29f;
+        }
+    }
+
+    &.expanded {
+        background-position: -40px 10px;
+        background-position: -40px 10px, 0 0;
+        transition: background-position .5s ease-in-out;
+    }
+
+    &.compressed {
+        background-position: -90px 10px;
+        background-position: -90px 10px, 0 0;
+        transition: background-position .5s ease-in-out;
+    }
+}
+
+.wide #panel-mdn .panel-title {
+    background: #000;
+    background: rgba(0, 0, 0, .8);
+    background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, .8) 65%, rgba(0, 0, 0, 0) 100%);
+    background:    -moz-linear-gradient(bottom, rgba(0, 0, 0, .8) 65%, rgba(0, 0, 0, 0) 100%);
+    background:      -o-linear-gradient(bottom, rgba(0, 0, 0, .8) 65%, rgba(0, 0, 0, 0) 100%);
+    background:         linear-gradient(bottom, rgba(0, 0, 0, .8) 65%, rgba(0, 0, 0, 0) 100%);
+}
+
+// Mozilla Festival
+#panel-mozfest {
+    background: #ced3d3 url(/media/img/home/panel/mozfest/logo-mozfest-big.png) -110px -15px no-repeat;
+    background: url(/media/img/home/panel/mozfest/logo-mozfest-big.png) -110px -15px no-repeat,
+                #04364b url(/media/img/home/panel/mozfest/bg-mosaic.jpg);
+    transition: background-position .5s ease-in-out;
+
+    .panel-title {
+        color: #04364b;
+        text-shadow: 0 1px 0 #fff;
+
+        i {
+            display: block;
+            color: #cb1b1d;
+        }
+    }
+
+    .panel-content {
+        color: #fff;
+        background: transparent url(/media/img/home/panel/mozfest/bg-content.png) 230px 0 no-repeat;
+
+        h3 {
+            color: #ff3946;
+        }
+
+        .go {
+            color: #21aed9;
+        }
+    }
+
+    &.expanded {
+        background-position: -80px -15px;
+        background-position: -80px -15px, 0 0;
+        transition: background-position .5s ease-in-out;
+    }
+
+    &.compressed {
+        background-position: -170px -15px;
+        background-position: -170px -15px, 0 0;
+        transition: background-position .5s ease-in-out;
+    }
+}
+
+.wide #panel-mozfest .panel-title {
+    background: #ced3d3;
+    background: rgba(206, 211, 211, .8);
+    background: -webkit-linear-gradient(bottom, rgba(206, 211, 211, .95) 50%, rgba(206, 211, 211, .85) 65%, rgba(206, 211, 211, 0) 100%);
+    background:    -moz-linear-gradient(bottom, rgba(206, 211, 211, .95) 50%, rgba(206, 211, 211, .85) 65%, rgba(206, 211, 211, 0) 100%);
+    background:      -o-linear-gradient(bottom, rgba(206, 211, 211, .95) 50%, rgba(206, 211, 211, .85) 65%, rgba(206, 211, 211, 0) 100%);
+    background:         linear-gradient(bottom, rgba(206, 211, 211, .95) 50%, rgba(206, 211, 211, .85) 65%, rgba(206, 211, 211, 0) 100%);
+}
+
+
+
+// @Extra content - The lower section of the page
+.extra {
+    margin-bottom: @baseLine * 2;
+
+    h2 {
+        font-size: 34px;
+        margin: 0 0 .75em;
+    }
+}
+
+// Alternative styling for version B2
+.home-b2 .extra {
+    background: #c1423d;
+    padding: 40px 0;
+    margin-bottom: 0;
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, .1);
+
+    h2 {
+        color: #fff;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, .1);
+    }
+}
+
+
+
+// @Download Firefox - in right-side block for version B1
+.extra-download {
+    .span(4);
+    .offset(1);
+    float: right;
+}
+
+
+
+// @Newsletter form
+// Appears in the extra section in version B2
+.extra {
+    .newsletter-form {
+        .span(4);
+        .offset(1);
+        float: right;
+        background: transparent;
+        padding: 0;
+        border: 0;
+        box-shadow: none;
+    }
+
+    #footer-email-form {
+        h3 {
+            font-size: 34px;
+            margin: 0 0 .75em;
+            color: #fff;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, .1);
+        }
+
+        .form-contents,
+        .form-submit {
+            width: auto;
+            float: none;
+            margin: 0 0 @baseLine;
+        }
+
+        .field-email input {
+            width: 80%;
+            padding: 10px 5%;
+            border-radius: .5em;
+        }
+
+        a:link,
+        a:visited {
+            color: #fff;
+        }
+
+        .button {
+            width: 90%;
+            padding: 10px 5%;
+        }
+    }
+}
+
+// Newsletter form has the standard layout in B1
+// but with reduced padding
+.home-b1 .newsletter-form {
+    padding-top: @baseLine;
+    padding-bottom: @baseLine;
+}
+
+
+// @Download Firefox - promo bar appears in version B2
+#firefox-promo {
+    padding-top: 10px;
+    padding-bottom: 0;
+    margin: 0;
+    position: relative;
+
+    .container {
+        .span(10);
+        float: none;
+        margin: 0 auto;
+    }
+
+    h3 {
+        float: left;
+        letter-spacing: -1px;
+        margin: 20px 0 0;
+        width: 40%;
+    }
+
+    #firefox-promo-link {
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        margin-left: -54px;
+    }
+
+    .download-button {
+        float: right;
+        margin-top: 0;
+        padding-bottom: 6px;
+        max-width: 40%;
+    }
+}
+
+// iOS temporary styles until we have new unsupported text
+.ios {
+    #firefox-promo {
+        min-height: 62px;
+    }
+
+    .download-button .unsupported-download {
+        display: none;
+    }
+}
+
+
+
+// @News
+.extra-news {
+    .span(7);
+
+    .hfeed {
+        list-style: none;
+        margin: 0 0 .5em;
+    }
+
+    .hentry {
+        margin: 0;
+    }
+
+    .entry-title {
+        font-size: 20px;
+        line-height: 1.2;
+        .open-sans;
+    }
+}
+
+.js .extra-news .hentry {
+    height: 6em;
+}
+
+.news-buttons {
+    border-right: 1px solid #ccc;
+    margin-right: 10px;
+
+    button {
+        display: inline-block;
+        width: 25px;
+        height: 25px;
+        border: 0;
+        padding: 0;
+        text-indent: -99em;
+        overflow: hidden;
+        margin: 0 10px 0 0;
+        background: transparent url(/media/img/home/control-arrows.png) no-repeat;
+        cursor: pointer;
+    }
+
+    .btn-next {
+        background-position: -30px 0;
+    }
+
+    .btn-prev {
+        background-position: 0 0;
+    }
+
+    .disabled {
+        opacity: .5;
+        &:hover,
+        &:focus {
+            opacity: .8;
+        }
+    }
+}
+
+// @Contribute
+.extra-contribute {
+    .span(7);
+
+    p {
+        .open-sans-light;
+        font-size: 20px;
+    }
+
+}
+
+// Light colors for B2
+.home-b2 {
+    .extra-news a:link,
+    .extra-news a:visited,
+    .extra-contribute a:link,
+    .extra-contribute a:visited {
+        color: #fff;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, .1);
+    }
+
+    .extra-contribute a {
+        font-weight: bold;
+    }
+
+    .news-buttons button {
+        background-image: url(/media/img/home/control-arrows-lt.png);
+    }
+}
+
+
+
+/****************************************************************************/
+// @Tablet Layout: 760px
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+
+    // Adjust layout for B2
+    .home-b2 {
+        #masthead,
+        .container,
+        .newsletter-form,
+        .mission,
+        .pillars {
+            width: @widthTablet - (@gridGutterWidth * 2);
+        }
+
+    }
+
+    .mission p {
+        font-size: 42px;
+    }
+
+    .pillars {
+        background-image: url(/media/img/home/box-shadow-760.png);
+        padding-bottom: 32px;
+    }
+
+    .panel-title {
+        font-size: 16px;
+        width: 152px;
+    }
+
+    .wide .panel-content {
+        font-size: 16px;
+        height: 280px;
+        width: 250px;
+        padding: 80px 20px 20px 200px;
+
+        .panel-logo {
+            left: 200px;
+            top: 30px;
+        }
+
+        .go {
+            font-size: 16px;
+        }
+
+        & > a {
+            padding: 80px 20px 20px 200px;
+        }
+
+    }
+
+    // Adjust panel backgrounds
+    // Mozilla Mission
+    #panel-mission {
+        background-position: -80px -50px;
+        background-position: -80px -50px, 0 0;
+
+        &.expanded,
+        &.compressed {
+            background-position: -120px -50px;
+            background-position: -120px -50px, 0 0;
+        }
+    }
+
+    // Firefox OS
+    #panel-fxos {
+        background-image: url(/media/img/home/panel/firefoxos/firefoxos-fox-md.png);
+        background-position: -185px -100px;
+
+        &.expanded {
+            background-position: -166px -100px;
+        }
+        &.compressed {
+            background-position: -190px -100px;
+        }
+    }
+
+    // MDN
+    #panel-mdn {
+        background-position: -100px -5px;
+        background-position: -100px -5px, 0 0;
+
+        &.expanded,
+        &.compressed {
+            background-position: -120px -5px;
+            background-position: -120px -5px, 0 0;
+        }
+    }
+
+    // Mozilla Festival
+    #panel-mozfest .panel-content {
+        background-position: 140px 0;
+    }
+
+    // Adjust columns
+    .extra-news,
+    .extra-contribute {
+        .span_narrow(7);
+    }
+
+    .js .extra-news .hentry {
+        height: 7.2em;
+    }
+
+    .extra-download {
+        .span_narrow(5);
+        float: right;
+
+        .download-button {
+            margin: 0 auto;
+        }
+    }
+
+    .extra .newsletter-form {
+        .span_narrow(5);
+        float: right;
+    }
+
+    #firefox-promo .container {
+        width: @widthTablet - (@gridGutterWidth * 2);
+    }
+
+}
+
+
+/****************************************************************************/
+// @Mobile layout: 320px
+@media only screen and (max-width: @breakTablet) {
+
+    .home-b2 {
+        #masthead,
+        .container,
+        .newsletter-form,
+        .pillars {
+            width: @widthMobile - @gridGutterWidth;
+        }
+
+        .mission {
+            width: 260px;
+            margin: 20px auto;
+        }
+    }
+
+    .mission {
+        width: 260px;
+        margin: 20px auto;
+
+        h1 {
+            font-weight: normal;
+            font-size: 36px;
+            text-align: left;
+
+            img {
+                display: block;
+                margin: -.125em auto 0;
+            }
+        }
+
+        p {
+            font-size: 30px;
+        }
+    }
+
+    // Adjustments for some locales
+    .lang-bg,
+    .lang-it,
+    .lang-fr,
+    .lang-de,
+    .lang-el,
+    .lang-es-ES {
+        .mission p {
+            font-size: 24px;
+        }
+    }
+
+    .pillars {
+        padding-bottom: 13px;
+        background-image: url(/media/img/home/box-shadow-320.png);
+    }
+
+    .accordion {
+        width: auto;
+        padding: 0;
+        position: relative;
+        left: 0;
+        overflow: visible;
+        margin: 0;
+    }
+
+    // Vertical accordion for narrow viewports
+    .panel {
+        float: none;
+        width: 100%;
+        height: 4.5em;
+        margin: 0;
+        overflow: hidden;
+        position: relative;
+        box-shadow: inset 0 4px 10px -5px rgba(0, 0, 0, .75);
+
+        &:first-child {
+            box-shadow: none;
+        }
+    }
+
+    .panel-inner {
+        background: transparent;
+    }
+
+    .panel-title {
+        position: static;
+        width: auto;
+        height: auto;
+        padding: .75em 20px .75em 40%;
+        min-height: 3em;
+        text-align: left;
+        font-size: 16px;
+
+        &:after {
+            content: '\25bc'; /* Down arrow */
+            position: absolute;
+            right: 25px;
+            top: 35%;
+        }
+    }
+
+    .panel-content {
+        font-size: 16px;
+        line-height: 1.2;
+        width: 100%;
+        height: 100%;
+
+        & > a {
+            padding: 20px 20px 20px 40%;
+        }
+
+        .panel-logo {
+            position: static;
+            display: block;
+            margin-bottom: 10px;
+        }
+    }
+
+    // Adjustments for specific panels.
+    // Mozilla Mission
+    #panel-mission {
+        background-image: url(/media/img/home/panel/mission/bg-mission-mosaic-sm.png);
+        background-image: url(/media/img/home/panel/mission/bg-mission-mosaic-sm.png),
+                          url(/media/img/home/panel/mission/bg-mission-cubes.png);
+        background-position: -122px -45px;
+        background-position: -122px -45px, 0 0;
+
+        &.expanded {
+            background-position: -122px -20px;
+            background-position: -122px -20px, 0 0;
+        }
+    }
+
+    // Firefox OS
+    #panel-fxos {
+        background-image: url(/media/img/home/panel/firefoxos/firefoxos-fox-sm.png);
+        background-position: -110px -95px;
+
+        &.expanded {
+            background-position: -110px -30px;
+        }
+
+        &.compressed {
+            background-position: -110px -110px;
+        }
+    }
+
+    // MDN
+    #panel-mdn {
+        background-image: url(/media/img/home/panel/mdn/bg-logo-mdn-sm.png);
+        background-image: url(/media/img/home/panel/mdn/bg-logo-mdn-sm.png),
+                          url(/media/img/home/panel/mdn/bg-grid.png);
+        background-position: -25px -10px;
+
+        &.expanded {
+            background-position: -25px 25px;
+        }
+
+        &.compressed {
+            background-position: -25px -15px;
+        }
+
+        .panel-title i {
+            color: inherit;
+        }
+    }
+
+    // Mozilla Festival
+    #panel-mozfest {
+        background-image: url(/media/img/home/panel/mozfest/logo-mozfest-sm.png);
+        background-image: url(/media/img/home/panel/mozfest/logo-mozfest-sm.png),
+                          url(/media/img/home/panel/mozfest/bg-mosaic.jpg);
+        background-position: -60px -35px;
+        background-position: -60px -35px, 0 0;
+
+        .panel-content {
+            background-position: 70px 0;
+        }
+
+        .panel-title i {
+            color: inherit;
+        }
+
+        &.expanded {
+            background-position: -60px 20px;
+            background-position: -60px 20px, 0 0;
+        }
+
+        &.compressed {
+            background-position: -60px -40px;
+            background-position: -60px -40px, 0 0;
+        }
+    }
+
+    // Full width columns for narrow viewports
+    .extra-news,
+    .extra-download,
+    .extra-contribute {
+        width: auto;
+        float: none;
+        margin: 0 10px @baseLine;
+    }
+
+    .js .extra-news .hentry {
+        height: 8em;
+    }
+
+    .extra .newsletter-form {
+        width: auto;
+        float: none;
+        margin: 0 10px @baseLine;
+    }
+
+    // Download promo only appears in B2
+    #firefox-promo {
+        .container {
+            width: @widthMobile - (@gridGutterWidth * 2);
+        }
+
+        h3 {
+            float: none;
+            width: auto;
+            font-size: 28px;
+            margin: 5px auto auto 100px;
+            min-height: 60px;
+            white-space: normal;
+        }
+
+        .download-button {
+            width: auto;
+            max-width: 100%;
+            float: none;
+            display: block;
+            margin: 10px;
+
+            .download-link {
+                width: 100%;
+            }
+        }
+
+        #firefox-promo-link {
+            left: 0;
+            top: -25px;
+            margin: 0;
+            width: 80px;
+            height: auto;
+        }
+    }
+
+    /* iOS temporary styles until we have new 'unsupported' text */
+    .ios #firefox-promo {
+        min-height: 90px;
+        padding-top: 20px;
+        h3 {
+            margin: 0 auto auto 100px;
+        }
+        #firefox-promo-link {
+            left: 20px;
+        }
+    }
+
+}
+
+
+
+/****************************************************************************/
+// @Wide @mobile layout: 480px
+@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+
+    .pillars {
+        background-image: url(/media/img/home/box-shadow-440.png);
+        padding-bottom: 18px;
+    }
+
+    // Version B2
+    .home-b2 {
+        #masthead,
+        .container,
+        .pillars {
+            width: @widthMobileLandscape - @gridGutterWidth;
+        }
+    }
+
+    // Mozilla Mission
+    #panel-mission {
+        background-position: -80px -45px;
+        background-position: -80px -45px, 0 0;
+
+        &.expanded {
+            background-position: -80px -20px;
+            background-position: -80px -20px, 0 0;
+        }
+    }
+
+    // Firefox OS
+    #panel-fxos {
+        background-position: -70px -95px;
+
+        &.expanded {
+            background-position: -70px -30px;
+        }
+
+        &.compressed {
+            background-position: -70px -110px;
+        }
+    }
+
+    //MDN
+    #panel-mdn {
+        background-position: 10px -20px;
+        background-position: 10px -20px, 0 0;
+
+        &.expanded {
+            background-position: 10px 25px;
+            background-position: 10px 25px, 0 0;
+        }
+
+        &.compressed {
+            background-position: 10px -25px;
+            background-position: 10px -25px, 0 0;
+        }
+    }
+
+    // Mozilla Festival
+    #panel-mozfest {
+        background-position: -15px -35px;
+        background-position: -15px -35px, 0 0;
+
+        .panel-content {
+            background-position: 110px 0;
+        }
+
+        .panel-title i {
+            color: inherit;
+        }
+
+        &.expanded {
+            background-position: -15px 20px;
+            background-position: -15px 20px, 0 0;
+        }
+
+        &.compressed {
+            background-position: -15px -40px;
+            background-position: -15px -40px, 0 0;
+        }
+    }
+
+    .js .extra-news .hentry {
+        height: 7em;
+    }
+
+    .extra-download .download-button {
+        margin-left: 60px;
+    }
+
+    #firefox-promo .container {
+        width: @widthMobile;
+    }
+
+}

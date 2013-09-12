@@ -1,0 +1,84 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+// Special styling for IE8
+
+
+// Newer browsers hang these styles from a '.wide' class applied by JS (else
+// we assume no JS and it gets plain content without interaction).
+// IE8 does support the JS so it can get the interaction, but doesn't support
+// media queries so it's locked in permanent wideMode. We'll hang these from
+// the '.js' class instead, which is still added by JS.
+
+// Redeclaring all these rules is repetative and hacky and should be cleaned
+// up later (or drop IE8). To future me: You should be ashamed of yourself.
+// Fix this nonsense before anyone else sees it. To future devs inheriting my
+// mess: I'm sorry I never got around to fixing this.
+
+.js {
+    .pillars {
+        height: 380px;
+    }
+
+    .panel {
+        margin: 0 0 0 -2px;
+        padding: 0;
+        float: left;
+        width: 25%;
+        height: 380px;
+        overflow: hidden;
+
+        .panel-title {
+            padding-top: 20px;
+        }
+
+        .panel-content {
+            display: none;
+            height: 260px;
+            width: 290px;
+            padding: 80px 40px 40px 300px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    }
+
+    // IE8 doesn't support transitions so don't move the backgrounds.
+    #panel-mission.expanded,
+    #panel-mission.compressed {
+        background-position: -50px -80px;
+    }
+
+    #panel-fxos.expanded,
+    #panel-fxos.compressed {
+        background-position: -230px -190px
+    }
+
+    #panel-mdn.expanded,
+    #panel-mdn.compressed {
+        background-position: -80px 10px
+    }
+
+    #panel-mozfest.expanded,
+    #panel-mozfest.compressed {
+        background-position: -110px -15px
+    }
+
+    // IE8 doesn't do gradients or rgba() so it gets solid, opaque colors.
+    #panel-mission .panel-title {
+        background: #821117;
+    }
+
+    #panel-fxos .panel-title {
+        background: #0095dd;
+    }
+
+    #panel-mdn .panel-title {
+        background: #000;
+    }
+
+    #panel-mozfest .panel-title {
+        background: #ced3d3;
+    }
+}
