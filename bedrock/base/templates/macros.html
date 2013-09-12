@@ -81,7 +81,13 @@
     </form>
   {% else %}
     <div id="footer-email-form" class="thank billboard">
-      <h3>{{ _('Thank you for signing up!') }}</h3>
+      <h3>{{ _('Thanks! Please check your inbox to confirm your subscription.') }}</h3>
+        <p>
+          {% trans %}
+            You'll receive an email from mozilla@e.mozilla.org to confirm your subscription.
+            If you don't see it, please check your spam filter. You must confirm your subscription to receive our newsletter.
+          {% endtrans %}
+        </p>
     </div>
   {% endif %}
 {% endmacro %}
