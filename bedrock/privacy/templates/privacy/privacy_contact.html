@@ -19,22 +19,22 @@
 
       <div class="field">
         {{ form.name.errors }}
-        <label for="id_name">{{ _('Your name') }}:</label>
+        <label for="id_name">{{ _('Your name:') }}</label>
         {{ form.name }}
       </div>
 
       <div class="field">
         {{ form.sender.errors }}
-        <label for="id_sender">{{ _('Your email') }}:</label>
+        <label for="id_sender">{{ _('Your email:') }}</label>
         {{ form.sender }}
       </div>
 
       <div class="field">
         {{ form.comments.errors }}
-        <label for="id_comments">{{ _('Your comments') }}:</label><br />
+        <label for="id_comments">{{ _('Your comments:') }}</label><br />
         {{ form.comments }}
 
-        <input type="submit" class="button" value="{{ _('Send comments') }}&nbsp;»" id="contact_privacy_submit" />
+        <input type="submit" class="button" value="{{ _('Send comments') }}" id="contact_privacy_submit" />
       </div>
 
       {{ form.superpriority }}
