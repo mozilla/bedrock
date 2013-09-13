@@ -160,12 +160,22 @@
             .span(8);
         }
         .email-field {
-             label {
+            label {
                 display: block;
-                margin-top: -1em;
+                margin: -1em 0 0 @gridGutterWidth;
             }
-            input[type="text"] {
-                width: 300px;
+            input[type="email"] {
+                width: 350px;
+                margin-left: @gridGutterWidth;
+            }
+            input[type="submit"] {
+                position: absolute;
+                top: 45px;
+                right: 30px;
+                overflow: visible;
+            }
+            .errorlist {
+                margin-left: @gridGutterWidth;
             }
         }
     }
@@ -272,6 +282,11 @@
         .field {
             .span_narrow(8);
         }
+        .email-field {
+            input[type="email"] {
+                width: 250px;
+            }
+        }
     }
 
 }
@@ -338,21 +353,28 @@
     }
 
     #newsletter-recovery #newsletter-recovery-form {
-        padding-top: 10px;
+        padding-top: @baseLine;
         .intro,
         .field {
             .span-all();
         }
         .email-field {
-             label {
+            label {
                 display: block;
-                margin-top: 0;
+                margin: @baseLine 0 0 0;
             }
             input,
-            input[type="text"] {
+            input[type="email"] {
                 width: 100%;
-                margin-bottom: 5px;
+                margin: 0 0 @baseLine 0;
                 .border-box();
+            }
+            input[type="submit"] {
+                position: static;
+                margin-top: 0;
+            }
+            .errorlist {
+                margin: 0 0 @baseLine 0;
             }
         }
     }

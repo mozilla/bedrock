@@ -22,16 +22,14 @@
       {% endif %}
 
       <div class="field email-field">
-        <label>{{ _('Your email address:') }}</label>
+        <label for="id_email">{{ _('Your email address:') }}</label>
         <div class="field-contents">
           {{ form.email }}
-          <input type="submit" value="Send me a link" class="button">
+          {{ form.email.errors }}
         </div>
-        {{ form.email.errors }}
+        <input type="submit" value="Send me a link" class="button">
       </div>
 
-      <div class="field submit-field">
-      </div>
     </form>
   {% endif %}
 {% endblock %}
