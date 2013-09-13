@@ -5,6 +5,7 @@
 import re
 
 from django.conf import settings
+from django.core import urlresolvers
 from django.core.context_processors import csrf
 from django.http import (HttpResponse, HttpResponseRedirect)
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
@@ -42,7 +43,7 @@ def hacks_newsletter(request):
 
 
 @csrf_exempt
-def contribute(request, template, return_to_form):
+def contribute(request, template, return_to_form, **kwargs):
     has_contribute_form = (request.method == 'POST' and
                            'contribute-form' in request.POST)
 
@@ -103,7 +104,7 @@ def contribute(request, template, return_to_form):
 
 @xframe_allow
 @csrf_exempt
-def contribute_embed(request, template, return_to_form):
+def contribute_embed(request, template, return_to_form, **kwargs):
     """The same as contribute but allows frame embedding."""
     return contribute(request, template, return_to_form)
 
@@ -121,7 +122,7 @@ def partnerships(request):
 
 @csrf_protect
 @require_POST
-def contact_bizdev(request):
+def contact_bizdev(request, **kwargs):
     form = WebToLeadForm(request.POST)
 
     msg = 'Form invalid'
@@ -205,3 +206,19 @@ class Robots(TemplateView):
     def get_context_data(self, **kwargs):
         SITE_URL = getattr(settings, 'SITE_URL', '')
         return {'disallow_all': not SITE_URL.endswith('://www.mozilla.org')}
+
+
+def sitemap(request, **kwargs):
+    urls = []
+
+    for key, value in urlresolvers.get_resolver(None).reverse_dict.items():
+        url = value[0][0][0]
+        meta_robots = value[2].get('meta_robots')
+        if (not isinstance(key, basestring) or
+                (meta_robots and 'noindex' in meta_robots) or
+                re.search(r'%\(.*\)', url)):
+            continue
+        urls.append(url)
+
+    return l10n_utils.render(request, 'mozorg/sitemap.xml', {'urls': urls},
+                             content_type='text/xml')

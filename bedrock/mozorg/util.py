@@ -47,7 +47,7 @@ def page(name, tmpl, decorators=None, **kwargs):
     # we don't have a caching backend yet, so no csrf (it's just a
     # newsletter form anyway)
     @csrf_exempt
-    def _view(request):
+    def _view(request, **kwargs):
         if newrelic:
             # Name this in New Relic to differentiate pages
             newrelic.agent.set_transaction_name(
@@ -73,7 +73,7 @@ def page(name, tmpl, decorators=None, **kwargs):
                 log.exception('decorators not iterable or does not contain '
                               'callable items')
 
-    return url(pattern, _view, name=name)
+    return url(pattern, _view, kwargs, name=name)
 
 
 def hide_contrib_form(lang):

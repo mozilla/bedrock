@@ -8,5 +8,6 @@ import views
 
 
 urlpatterns = patterns('',
-    url(r'^tabzilla\.js$', views.tabzilla_js, name='tabzilla'),
+    url(r'^tabzilla\.js$', views.tabzilla_js, name='tabzilla',
+        kwargs={'meta_robots': ['noindex']})
 )
