@@ -35,7 +35,7 @@
     {% include 'includes/google-analytics.html' %}
   </head>
 
-  <body id="{% block body_id %}{% endblock %}" class="html-{{ DIR }} {% block body_class %}{% endblock %}"{% block body_attrs %}{% endblock %}>
+  <body id="{% block body_id %}{% endblock %}" class="html-{{ DIR }} {% block body_class %}{% endblock %}" data-section-id="{% block section_id %}{% endblock %}"{% block body_attrs %}{% endblock %}>
     <div id="strings" {% block string_data %}{% endblock %}></div>
     <div id="outer-wrapper">
     <div id="wrapper">

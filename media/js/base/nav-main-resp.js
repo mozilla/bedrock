@@ -405,8 +405,13 @@ NavMain.openSmallMenu = function()
         .addClass('submenu-item')
         .click(NavMain.handleSubmenuClick);
 
-    // focus first item
-    $('#nav-main-menu [tabindex=0]').get(0).focus();
+    // focus current page item
+    var sec = $('body').data('section-id');
+    $('ul#nav-main-menu > li').each(function( index ) {
+        if ($(this).text() == sec) {
+            $('#nav-main-menu [tabindex=0]').get(index).focus();
+        }
+    });
 
     NavMain.smallMenuOpen = true;
 };
