@@ -405,11 +405,14 @@ NavMain.openSmallMenu = function()
         .addClass('submenu-item')
         .click(NavMain.handleSubmenuClick);
 
-    // focus current page item
-    var sec = $('body').data('section-id');
+    // focus first item
+    $('#nav-main-menu [tabindex=0]').get(0).focus();
+
+    // highlight current page item
+    var sec = $('body').attr('id');
     $('ul#nav-main-menu > li').each(function( index ) {
-        if ($(this).text() == sec) {
-            $('#nav-main-menu [tabindex=0]').get(index).focus();
+        if ($(this).data('item-id') == sec) {
+            $(this).addClass('current');
         }
     });
 
