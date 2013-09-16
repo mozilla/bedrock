@@ -129,16 +129,22 @@
 
         var $form = $(this);
 
-        $form.fadeOut('fast', function() {
-            $('.sf-form').addClass('completed');
-            $('#pageslide').scrollTop(0);
-            $('.form-results').fadeIn('fast');
-        });
-
         $.ajax({
             url: $form.attr('action'),
             data: $form.serialize(),
-            type: $form.attr('method')
+            type: $form.attr('method'),
+            success: function() {
+                $form.fadeOut('fast', function() {
+                    $('.sf-form').addClass('completed');
+                    $('#pageslide').scrollTop(0);
+                    $('.form-results').fadeIn('fast');
+                });
+            },
+            error: function(xhr, status, error) {
+                // grab json string from server and convert to JSON obj
+                var json = $.parseJSON(xhr.responseText);
+                Mozilla.FormHelper.displayErrors(json.errors, $form);
+            }
         });
 
         w.ga_track('form/submit/');

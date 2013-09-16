@@ -2,10 +2,12 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import json
 import os
 
 from django.conf import settings
 from django.conf.urls.defaults import url
+from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
@@ -19,6 +21,13 @@ except ImportError:
 
 
 log = commonware.log.getLogger('mozorg.util')
+
+
+class HttpResponseJSON(HttpResponse):
+    def __init__(self, data, status=None):
+        super(HttpResponseJSON, self).__init__(content=json.dumps(data),
+                                               content_type='application/json',
+                                               status=status)
 
 
 def page(name, tmpl, decorators=None, **kwargs):

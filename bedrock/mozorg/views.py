@@ -6,9 +6,8 @@ import re
 
 from django.conf import settings
 from django.core.context_processors import csrf
-from django.http import (HttpResponse, HttpResponseRedirect)
+from django.http import HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
-from django.views.decorators.http import require_POST
 from django.views.generic.base import TemplateView
 from django.shortcuts import redirect
 
@@ -26,6 +25,7 @@ from bedrock.mozorg.forms import (ContributeForm,
                                   ContributeUniversityAmbassadorForm,
                                   WebToLeadForm)
 from bedrock.mozorg.util import hide_contrib_form
+from bedrock.mozorg.util import HttpResponseJSON
 from bedrock.newsletter.forms import NewsletterFooterForm
 
 
@@ -108,51 +108,72 @@ def contribute_embed(request, template, return_to_form):
     return contribute(request, template, return_to_form)
 
 
+def process_partnership_form(request, template, success_url_name, template_vars=None, form_kwargs=None):
+    template_vars = template_vars or {}
+    form_kwargs = form_kwargs or {}
+
+    if request.method == 'POST':
+        form = WebToLeadForm(data=request.POST, **form_kwargs)
+
+        msg = 'Form invalid'
+        stat = 400
+        success = False
+
+        if form.is_valid():
+            data = form.cleaned_data.copy()
+
+            honeypot = data.pop('superpriority')
+
+            if honeypot:
+                msg = 'Visitor invalid'
+                stat = 400
+            else:
+                interest = data.pop('interest')
+                data['00NU0000002pDJr'] = interest
+                data['oid'] = '00DU0000000IrgO'
+                # As we're doing the Salesforce POST in the background here,
+                # `retURL` is never visited/seen by the user. I believe it
+                # is required by Salesforce though, so it should hang around
+                # as a placeholder (with a valid URL, just in case).
+                data['retURL'] = ('http://www.mozilla.org/en-US/about/'
+                                  'partnerships?success=1')
+
+                r = requests.post('https://www.salesforce.com/servlet/'
+                                  'servlet.WebToLead?encoding=UTF-8', data)
+                msg = requests.status_codes._codes.get(r.status_code, ['error'])[0]
+                stat = r.status_code
+
+                success = True
+
+        if request.is_ajax():
+            return HttpResponseJSON({'msg': msg, 'errors': form.errors}, status=stat)
+        # non-AJAX POST
+        else:
+            # if form is not valid, render template to retain form data/error messages
+            if not success:
+                template_vars.update(csrf(request))
+                template_vars['form'] = form
+                template_vars['form_success'] = success
+
+                return l10n_utils.render(request, template, template_vars)
+            # if form is valid, redirect to avoid refresh double post possibility
+            else:
+                return HttpResponseRedirect("%s?success" % (reverse(success_url_name)))
+    # no form POST - build form, add CSRF, & render template
+    else:
+        # without auto_id set, all id's get prefixed with 'id_'
+        form = WebToLeadForm(auto_id='%s', **form_kwargs)
+
+        template_vars.update(csrf(request))
+        template_vars['form'] = form
+        template_vars['form_success'] = True if ('success' in request.GET) else False
+
+        return l10n_utils.render(request, template, template_vars)
+
+
 @csrf_protect
 def partnerships(request):
-    form = WebToLeadForm()
-
-    template_vars = {}
-    template_vars.update(csrf(request))
-    template_vars['form'] = form
-
-    return l10n_utils.render(request, 'mozorg/partnerships.html', template_vars)
-
-
-@csrf_protect
-@require_POST
-def contact_bizdev(request):
-    form = WebToLeadForm(request.POST)
-
-    msg = 'Form invalid'
-    stat = 400
-    success = 0
-
-    if form.is_valid():
-        data = form.cleaned_data.copy()
-
-        honeypot = data.pop('superpriority')
-
-        if honeypot:
-            msg = 'Visitor invalid'
-            stat = 400
-        else:
-            interest = data.pop('interest')
-            data['00NU0000002pDJr'] = interest
-            data['oid'] = '00DU0000000IrgO'
-            data['retURL'] = ('http://www.mozilla.org/en-US/about/'
-                              'partnerships?success=1')
-            r = requests.post('https://www.salesforce.com/servlet/'
-                              'servlet.WebToLead?encoding=UTF-8', data)
-            msg = requests.status_codes._codes.get(r.status_code, ['error'])[0]
-            stat = r.status_code
-
-            success = 1
-
-    if request.is_ajax():
-        return HttpResponse(msg, status=stat)
-    else:
-        return HttpResponseRedirect("%s?success=%s" % (reverse('mozorg.partnerships'), success))
+    return process_partnership_form(request, 'mozorg/partnerships.html', 'mozorg.partnerships')
 
 
 def plugincheck(request, template='mozorg/plugincheck.html'):

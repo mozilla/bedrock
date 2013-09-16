@@ -461,13 +461,13 @@
                poster=media('img/firefox/partners/mwc-wrapup-poster.jpg')) }}
       </div>
     </section>
-    <section id="form" class="overlay-contents">
+    <section id="form" class="overlay-contents{% if form_success %} form-success{% endif %}">
       <div class="form-results">
         <h3>{{ _('Thanks for your interest in partnering with us') }}</h3>
         <p>{{ _('We will review your request and get back to you about possibilities and opportunities soon.') }}</p>
       </div>
 
-      <form action="{{ secure_url('about.partnerships.contact-bizdev') }}" role="dialog" aria-labelledby="get-involved-title" aria-describedby="get-involved-description" method="POST" id="sf-form" class="sf-form">
+      <form action="{{ secure_url('firefox.partners.index') }}" role="dialog" aria-labelledby="get-involved-title" aria-describedby="get-involved-description" method="POST" id="sf-form" class="sf-form{% if form_success %} completed{% endif %}">
 
       <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
 
@@ -484,58 +484,58 @@
       <p id="get-involved-description">{{ _('Contact our business development team to get on board.') }}</p>
 
       <div class="field">
+        {{ form.first_name.errors }}
         <label for="first_name">{{ _('First Name') }}</label>
-        <input id="first_name" maxlength="40" name="first_name" size="20" type="text" placeholder="{{ _('First Name') }}" class="required" required aria-required="true" />
+        {{ form.first_name }}
       </div>
 
       <div class="field">
+        {{ form.last_name.errors }}
         <label for="last_name">{{ _('Last Name') }}</label>
-        <input id="last_name" maxlength="80" name="last_name" size="20" type="text" placeholder="{{ _('Last Name') }}" class="required" required aria-required="true" />
+        {{ form.last_name }}
       </div>
 
       <div class="field">
         <label for="title">{{ _('Title') }}</label>
-        <input id="title" maxlength="40" name="title" size="20" type="text" placeholder="{{ _('Title') }}" />
+        {{ form.title }}
       </div>
 
       <div class="field">
+        {{ form.company.errors }}
         <label for="company">{{ _('Company') }}</label>
-        <input id="company" maxlength="40" name="company" size="20" type="text" placeholder="{{ _('Company') }}" class="required" required aria-required="true" />
+        {{ form.company }}
       </div>
 
       <div class="field">
+        {{ form.URL.errors }}
         <label for="URL">{{ _('Website') }}</label>
-        <input id="URL" maxlength="80" name="URL" size="20" type="text" placeholder="{{ _('Website') }}" />
+        {{ form.URL }}
       </div>
 
       <div class="field">
+        {{ form.email.errors }}
         <label for="email">{{ _('Email') }}</label>
-        <input id="email" maxlength="80" name="email" size="20" type="text" placeholder="{{ _('Email') }}" class="required" required aria-required="true" />
+        {{ form.email }}
       </div>
 
       <div class="field">
         <label for="phone">{{ _('Phone') }}</label>
-        <input id="phone" maxlength="40" name="phone" size="20" type="text" placeholder="{{ _('Phone') }}" />
+        {{ form.phone }}
       </div>
 
       <div class="field">
         <label for="mobile">{{ _('Mobile') }}</label>
-        <input id="mobile" maxlength="40" name="mobile" size="20" type="text" placeholder="{{ _('Mobile') }}" />
+        {{ form.mobile }}
       </div>
 
       <div class="field">
-        <label for="interest">{{ _('Interest:') }}</label>
-        <select id="interest" multiple="multiple" name="interest" title="{{ _('Interest') }}" size="4">
-          <option value="Firefox for Android">{{ _('Firefox for Android') }}</option>
-          <option value="Firefox Marketplace">{{ _('Firefox Marketplace') }}</option>
-          <option value="Firefox OS">{{ _('Firefox OS') }}</option>
-          <option value="Other">{{ _('Other') }}</option>
-        </select>
+        <label for="interest" class="shown">{{ _('Interest') }}:</label>
+        {{ form.interest }}
       </div>
 
       <div class="field">
-        <label for="description">{{ _('Comments or questions?') }}</label>
-        <textarea id="description" name="description" placeholder="{{ _('Comments or questions?') }}"></textarea>
+        <label for="description">{{ _('Description') }}</label>
+        {{ form.description }}
       </div>
 
       <div class="field footer-field">

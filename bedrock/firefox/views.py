@@ -9,7 +9,6 @@ from django.conf import settings
 from django.http import (HttpResponsePermanentRedirect,
                          HttpResponseRedirect)
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
-from django.core.context_processors import csrf
 from django.views.decorators.vary import vary_on_headers
 
 import basket
@@ -21,7 +20,7 @@ from funfactory.urlresolvers import reverse
 from bedrock.firefox import version_re
 from bedrock.firefox.forms import SMSSendForm
 from bedrock.mozorg.context_processors import funnelcake_param
-from bedrock.mozorg.forms import WebToLeadForm
+from bedrock.mozorg.views import process_partnership_form
 from bedrock.firefox.platforms import load_devices
 from bedrock.firefox.utils import is_current_or_newer
 from bedrock.firefox.firefox_details import firefox_details, mobile_details
@@ -253,8 +252,6 @@ def firefox_partners(request):
     # Firefox OS 1.0 release
     locale_os_release_url = LOCALE_OS_RELEASE_URLS.get(request.locale, LOCALE_OS_RELEASE_URLS['en-US'])
 
-    form = WebToLeadForm()
-
     template_vars = {
         'locale_os_url': locale_os_url,
         'locale_os_release_url': locale_os_release_url,
@@ -262,12 +259,11 @@ def firefox_partners(request):
         'js_common': JS_COMMON,
         'js_mobile': JS_MOBILE,
         'js_desktop': JS_DESKTOP,
-        'form': form,
     }
 
-    template_vars.update(csrf(request))
+    form_kwargs = {'interest_set': 'fx'}
 
-    return l10n_utils.render(request, 'firefox/partners/index.html', template_vars)
+    return process_partnership_form(request, 'firefox/partners/index.html', 'firefox.partners.index', template_vars, form_kwargs)
 
 
 def releases_index(request):
