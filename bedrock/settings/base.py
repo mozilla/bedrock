@@ -523,6 +523,7 @@ MINIFY_BUNDLES = {
         ),
         'partnerships': (
             'js/libs/jquery.validate.js',
+            'js/base/mozilla-form-helper.js',
             'js/mozorg/partnerships.js',
             'js/base/mozilla-input-placeholder.js',
         ),
@@ -564,6 +565,7 @@ MINIFY_BUNDLES = {
         ),
         'partners_common': (
             'js/libs/enquire.min.js',
+            'js/base/mozilla-form-helper.js',
             'js/firefox/partners/common.js',
         ),
         'partners_mobile': (
