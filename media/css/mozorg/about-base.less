@@ -31,7 +31,8 @@
 
     .title-banner {
         .open-sans-light;
-        width: 420px;
+        min-width: 420px;
+        min-height: 80px;
         padding: 20px;
         font-size: 48px;
         letter-spacing: -2px;
@@ -118,6 +119,7 @@
     }
 
     #main-content {
+
         .intro {
             .span_narrow(4);
             font-size: 22px;
@@ -152,10 +154,12 @@
         margin-bottom: @baseLine;
 
         .title-banner {
-            width: 240px;
-            font-size: 28px;
+            min-width: 240px;
+            max-width: 285px;
+            font-size: 26px;
             letter-spacing: -.5px;
             margin: -25px 0 @baseLine;
+            overflow: hidden;
         }
 
         .title-banner:after {
@@ -191,7 +195,7 @@
 
     #main-content {
         .title-banner {
-            width: 380px;
+            min-width: 380px;
             margin: -25px 0 40px;
         }
 
