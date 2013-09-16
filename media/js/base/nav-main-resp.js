@@ -410,7 +410,7 @@ NavMain.openSmallMenu = function()
 
     // highlight current page item
     var sec = $('body').attr('id');
-    $('ul#nav-main-menu > li').each(function( index ) {
+    $('ul#nav-main-menu > li').each(function() {
         if ($(this).data('item-id') == sec) {
             $(this).addClass('current');
         }
