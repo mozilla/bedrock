@@ -22,7 +22,7 @@ mozilla.marketing                       Our plans for world domination.
 mozilla.mozillians                      For discussions about how to <a href="http://wiki.mozilla.org/Grow">grow Mozilla</a> and bring in new contributors.
 mozilla.privacy                         Forum for discussion of privacy issues and Mozilla's response. (Moderated)
 mozilla.product-management              Discussion of techniques for product management. (Moderated)
-mozilla.tools                           Discussion of the software development tools the Mozilla project uses (Hg, buildbot, bugzilla.mozilla.org, Tinderbox, bonsai...) (Moderated)
+mozilla.tools                           Discussion of the software development tools the Mozilla project uses (Hg, buildbot, Tinderbox, bonsai...) (Moderated)
 mozilla.wishlist                        For discussions of future ideas, ranging from the practical to the far out.
 
 :Applications and Projects
@@ -80,6 +80,7 @@ mozilla.dev.usability                   For discussions on <a href="../../projec
 mozilla.dev.webapi                      For development of new Web APIs to enhance the web platform. (Moderated)
 mozilla.dev.webdev                      Mozilla's web development team. (Moderated)
 mozilla.dev.developer-tools             For development of tools for web developers inside Firefox and other Mozilla products. (Moderated)
+mozilla.tools.bmo                       Development of bugzilla.mozilla.org, Mozilla's installation of the Bugzilla software. (Moderated)
 mozilla.tools.elmo                      Development of web apps for localization (l10n). (Moderated)
 mozilla.tools.l10n                      Development of tools for l10n. (Moderated)
 mozilla.tools.pulse                     The Pulse tool for event-driven notifications.
