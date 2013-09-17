@@ -17,7 +17,7 @@ import basket
 import commonware.log
 import lib.l10n_utils as l10n_utils
 import requests
-from lib.l10n_utils.dotlang import _lazy
+from lib.l10n_utils.dotlang import _, _lazy
 from commonware.decorators import xframe_allow
 from funfactory.urlresolvers import reverse
 
@@ -166,10 +166,10 @@ def existing(request, token=None):
         if data.get('show', False) or newsletter in user['newsletters']:
             langs = data['languages']
             form_data = {
-                'title': data['title'],
+                'title': _(data['title']),
                 'subscribed': newsletter in user['newsletters'],
                 'newsletter': newsletter,
-                'description': data['description'],
+                'description': _(data['description']),
                 'english_only': len(langs) == 1 and langs[0].startswith('en'),
             }
             if 'order' in data:
