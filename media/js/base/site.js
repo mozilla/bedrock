@@ -54,8 +54,8 @@
         if (/Mac OS X 10.[0-5]/.test(ua)) {
             return 'oldmac';
         }
-        if (pf.indexOf('iPhone') !== -1 || 
-                pf.indexOf('iPad') !== -1 || 
+        if (pf.indexOf('iPhone') !== -1 ||
+                pf.indexOf('iPad') !== -1 ||
                 pf.indexOf('iPod') !== -1 ) {
             return 'ios';
         }
@@ -68,6 +68,12 @@
         if (pf.indexOf("Mac") !== -1) {
             return 'oldmac';
         }
+        if (navigator.platform === '' &&
+            navigator.userAgent.indexOf("Firefox") !== -1 &&
+            navigator.userAgent.indexOf("Mobile") !== -1) {
+            return 'fxos';
+        }
+
         return 'other';
     }
     (function () {
