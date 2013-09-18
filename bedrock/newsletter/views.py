@@ -33,7 +33,7 @@ log = commonware.log.getLogger('b.newsletter')
 LANG_FILES = ['mozorg/contribute']
 general_error = _lazy(u'We are sorry, but there was a problem '
                       u'with our system. Please try again later!')
-thank_you = _lazy(u'Thank you for updating your email preferences.')
+thank_you = _lazy(u'Thanks for updating your email preferences.')
 bad_token = _lazy(u'The supplied link has expired or is not valid. You will '
                   u'receive a new one in the next newsletter, or below you '
                   u'can request an email with the link.')
