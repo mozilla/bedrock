@@ -408,14 +408,6 @@ NavMain.openSmallMenu = function()
     // focus first item
     $('#nav-main-menu [tabindex=0]').get(0).focus();
 
-    // highlight current page item
-    var sec = $('body').attr('id');
-    $('ul#nav-main-menu > li').each(function() {
-        if ($(this).data('item-id') == sec) {
-            $(this).addClass('current');
-        }
-    });
-
     NavMain.smallMenuOpen = true;
 };
 
