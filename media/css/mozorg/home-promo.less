@@ -206,33 +206,171 @@
         }
     }
 
-    #promo-flicksvoting,
-    #page-promo-flicksvoting {
-        .container {
-            background: #212a2f url('/media/img/home/promo/flicksvoting/1000.jpg') 0 0 no-repeat;
-        }
+    #promo-flickswinners,
+    #page-promo-flickswinners {
+        position: relative;
         .content {
-            width: 45%;
-            padding-left: 50px;
-            padding-top: 50px;
+            width: 60%;
+            padding-left: 60px;
+            padding-top: 24px;
             h3 {
-                font-size: 34px;
+                font-size: 30px;
                 font-family: VollkornBold;
                 line-height: 1;
             }
             h4 {
                 color: #ff592c;
-                font-family: VollkornRegular;
-                font-size: 18px;
-                line-height: 1.2;
+                font-size: 16px;
                 letter-spacing: normal;
+                line-height: 1.3;
+                .open-sans;
                 margin-bottom: 10px;
-                width: auto;
             }
             .go {
-                color: #1677b9;
+                color: #1f9ee5;
                 font-family: VollkornRegular;
-                font-size: 20px;
+                font-size: 16px;
+            }
+        }
+        .container {
+            background: #212a2f url('/media/img/home/promo/flickswinners/1000.jpg') 0 0 repeat-x;
+            position: relative;
+            border-bottom: 1px solid #ddd;
+            width: 100%;
+            padding: 0;
+            a.go {
+                display: inline;
+                border: none;
+                width: auto;
+                height: auto;
+                position: absolute;
+                bottom: 20px;
+                left: 20px;
+
+            }
+        }
+        .video-container {
+            position: absolute;
+            z-index: 99;
+        }
+        .video-close {
+            display: block;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            font-size: 24px;
+            color: rgb(200,200,200);
+            color: rgba(200,200,200,0.5);
+            text-align: center;
+            font-weight: bold;
+            position: absolute;
+            z-index: 99;
+            right: 10px;
+            top: 20px;
+            cursor: pointer;
+            border: 0;
+            background: none;
+            padding: 0; // Override default button padding
+            font-family: inherit; // Override browser button font family
+            &:hover,
+            &:active,
+            &:focus {
+                color: rgb(250,250,250);
+                color: rgba(200,200,200,0.8);
+            }
+        }
+        img {
+            .span(5);
+            margin: 0;
+            position: absolute;
+            top: 25px;
+            right: 30px;
+            left: auto;
+            height: auto;
+            z-index: 99;
+            cursor: pointer;
+            &:focus {
+                outline: 1px dotted #fff;
+            }
+        }
+        h3 {
+            font-size: 46px
+        }
+        h4 {
+            width: 70%;
+        }
+    }
+    #promo-flicks-overlay {
+        display: none;
+        z-index: 100;
+        background: #000;
+        background: rgba(0,0,0,0.75);
+        color: #fff;
+        position: absolute;
+        text-align: center;
+
+        .video-visit {
+            .inline-block;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            font-size: 32px;
+            .open-sans-light;
+            height: auto;
+            border: 0;
+            &:hover,
+            &:focus,
+            &:active {
+                text-decoration: underline;
+            }
+        }
+
+        .share-links {
+            li {
+                .inline-block;
+                margin-right: 20px;
+                a {
+                    .inline-block;
+                    height: auto;
+                    border: 0;
+                    padding: 5px 10px 5px 36px;
+                    background: url(/media/img/home/video-overlay-icons.png) 0 center no-repeat;
+                    text-decoration: none;
+                    text-align: left;
+                    &.share-twitter {
+                        background-position: -400px center;
+                    }
+                }
+                a:hover,
+                a:focus,
+                a:active {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        .video-replay,
+        .video-continue {
+            opacity: 0.8;
+            cursor: pointer;
+            margin-top: 40px;
+            .inline-block;
+            padding: 40px 10px 10px 10px;
+            min-width: 120px;
+            position: relative;
+            color: #ccc;
+            &:after {
+                content: " ";
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 46px;
+                margin: 0 auto;
+                background: url(/media/img/home/video-overlay-icons.png) -800px center no-repeat;
+                height: 34px;
+                width: 38px;
+            }
+            &:hover {
+                opacity: 1;
             }
         }
     }
@@ -293,20 +431,20 @@
                 }
             }
         }
-        #promo-flicksvoting,
-        #page-promo-flicksvoting {
+        #promo-flickswinners,
+        #page-promo-flickswinners {
             .container {
-                background-image: url('/media/img/home/promo/flicksvoting/760.jpg');
+                background-image: url('/media/img/home/promo/flickswinners/760.jpg');
             }
             .content {
                 padding-left: 40px;
                 width: 55%;
                 h3 {
-                    font-size: 30px;
+                    font-size: 26px;
                     margin-bottom: 8px;
                 }
                 h4 {
-                    font-size: 16px;
+                    font-size: 14px;
                     width: 100%;
                     margin-bottom: 8px;
                 }
@@ -383,26 +521,68 @@
                 }
             }
         }
-        #promo-flicksvoting,
-        #page-promo-flicksvoting {
-            .content {
+        #promo-flickswinners,
+        #page-promo-flickswinners {
+            padding-top: 180px;
+            img {
+                top: 0;
+                left: 0;
                 width: auto;
-                padding: 0 @gridGutterWidth @baseLine;
+                float: none;
+            }
+            .container {
+                background-image: none;
+                position: static;
+            }
+            .content {
+                float: none;
+                margin: 0;
+                width: auto;
+                position: static;
+                padding-left: 20px;
+                padding-top: 0;
                 h3 {
                     font-size: 24px;
                     .open-sans-light;
-                    color: @textColorPrimary;
+                    width: auto;
+                    float: none;
+                    .hidden {
+                        height: auto;
+                        width: auto;
+                        margin: 0 0 .25em;
+                        clip: auto;
+                        position: static !important;
+                        display: block;
+                        font-style: normal;
+                    }
                 }
                 h4 {
                     font-size: 18px;
                     .open-sans-light;
+                    width: auto;
+                    float: none;
                     color: @textColorPrimary;
                 }
                 .go {
-                    font-size: 16px;
-                    .open-sans;
                     color: @textColorPrimary;
                 }
+            }
+        }
+        #promo-flicks-overlay {
+            .video-visit {
+                margin-top: 10px;
+                margin-bottom: 10px;
+                font-size: 18px;
+                .open-sans-light;
+            }
+
+            .share-links {
+                margin-bottom: 5px;
+            }
+
+            .video-replay,
+            .video-continue {
+                margin-top: 10px;
             }
         }
     }
@@ -442,14 +622,9 @@
                 width: auto;
             }
         }
-        #promo-flicksvoting,
-        #page-promo-flicksvoting {
-            .container {
-                background-image: url('/media/img/home/promo/flicksvoting/440.jpg');
-            }
-            .content {
-                width: auto;
-            }
+        #promo-flickswinners,
+        #page-promo-flickswinners {
+            padding-top: 248px;
         }
         #promo-android a,
         #page-promo-android a {
@@ -497,10 +672,10 @@
                 color: @textColorPrimary;
             }
         }
-        #promo-flicksvoting,
-        #page-promo-flicksvoting {
+        #promo-flickswinners,
+        #page-promo-flickswinners {
             .container {
-                background-image: url('/media/img/home/promo/flicksvoting/320.jpg');
+                background-image: url('/media/img/home/promo/flickswinners/320.jpg');
             }
             .content {
                 width: auto;

@@ -87,17 +87,27 @@
       </a>
     </div>
 
-    <div class="pager-page" id="promo-flicksvoting">
+    <div class="pager-page" id="promo-flickswinners">
       <script>
-        document.getElementById('promo-flicksvoting').id = 'page-promo-flicksvoting';
+        document.getElementById('promo-flickswinners').id = 'page-promo-flickswinners';
       </script>
-      <a href="https://firefoxflicks.mozilla.org/video/" class="container">
+      <a href="https://firefoxflicks.mozilla.org/video/winners/" class="container">
         <div class="content">
-          <h3><i class="hidden">{{_('Firefox Flicks')}}</i> {{_('Choose your favorites')}}</h3>
-          <h4>{{_('August 31 is the last day to vote for the People‘s Choice Awards. Don‘t miss your chance.')}}</h4>
-          <p class="go">{{_('Vote now')}}</p>
+          <h3><i class="hidden">{{_('Firefox Flicks')}}</i> {{_('Congratulations to our winners')}}</h3>
+          <h4>{{_('The votes are in and we‘re excited to present the winners of Firefox Flicks 2013. Thanks to everyone who entered!')}}</h4>
+          <p class="go">{{_('Watch the winning flicks')}}</p>
         </div>
       </a>
+      <img id="promo-flicks-keyframe" src="{{ media('img/home/promo/flickswinners/2013-winner-thumb.jpg') }}" alt="{{_('Play Video')}}" tabindex="0" role="button">
+      <div id="promo-flicks-overlay" class="video-overlay">
+        <a class="video-visit" href="https://firefoxflicks.mozilla.org/">{{_('Visit FirefoxFlicks.org')}}</a>
+        <ul class="share-links">
+          <li><a href="{{ facebook_share_url('https://firefoxflicks.org') }}" class="share-facebook">{{_('Share on Facebook')}}</a></li>
+          <li><a href="{{ twitter_share_url('https://firefoxflicks.org', _('I just watched the winning video in the #FirefoxFlicks contest. See all the winning flicks for yourself!')) }}" class="share-twitter">{{_('Tweet')}}</a></li>
+        </ul>
+        <span tabindex="0" role="button" class="video-replay">{{_('Replay')}}</span>
+        <span tabindex="0" role="button" class="video-continue">{{_('Continue')}}</span>
+      </div>
     </div>
 
     <div class="pager-page" id="promo-android">
