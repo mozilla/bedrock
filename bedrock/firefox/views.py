@@ -39,13 +39,19 @@ LOCALE_OS_URLS = {
 }
 
 LOCALE_OS_RELEASE_URLS = {
-    'de': 'https://blog.mozilla.org/press-de/2013/07/01/mozilla-und-partner-machen-sich-bereit-fur-den-ersten-firefox-os-launch/',
-    'en-GB': 'https://blog.mozilla.org/press-uk/2013/07/01/mozilla-and-partners-prepare-to-launch-first-firefox-os-smartphones/',
-    'en-US': 'https://blog.mozilla.org/blog/2013/07/01/mozilla-and-partners-prepare-to-launch-first-firefox-os-smartphones',
+    'de': 'https://blog.mozilla.org/press-de/2013/07/01/'
+          'mozilla-und-partner-machen-sich-bereit-fur-den-ersten-firefox-os-launch/',
+    'en-GB': 'https://blog.mozilla.org/press-uk/2013/07/01/'
+             'mozilla-and-partners-prepare-to-launch-first-firefox-os-smartphones/',
+    'en-US': 'https://blog.mozilla.org/blog/2013/07/01/'
+             'mozilla-and-partners-prepare-to-launch-first-firefox-os-smartphones',
     'es-ES': 'https://blog.mozilla.org/press-es/?p=482',
-    'fr': 'https://blog.mozilla.org/press-fr/2013/07/01/mozilla-et-ses-partenaires-preparent-le-lancement-des-premiers-smartphones-sous-firefox-os/',
-    'it': 'https://blog.mozilla.org/press-it/2013/07/01/mozilla-e-i-suoi-partner-si-preparano-al-lancio-dei-primi-smartphone-con-firefox-os/',
-    'pl': 'https://blog.mozilla.org/press-pl/2013/07/01/mozilla-wraz-z-partnerami-przygotowuje-sie-do-wprowadzenia-na-rynek-pierwszych-smartfonow-z-firefox-os/',
+    'fr': 'https://blog.mozilla.org/press-fr/2013/07/01/'
+          'mozilla-et-ses-partenaires-preparent-le-lancement-des-premiers-smartphones-sous-firefox-os/',
+    'it': 'https://blog.mozilla.org/press-it/2013/07/01/'
+          'mozilla-e-i-suoi-partner-si-preparano-al-lancio-dei-primi-smartphone-con-firefox-os/',
+    'pl': 'https://blog.mozilla.org/press-pl/2013/07/01/'
+          'mozilla-wraz-z-partnerami-przygotowuje-sie-do-wprowadzenia-na-rynek-pierwszych-smartfonow-z-firefox-os/',
 }
 
 INSTALLER_CHANNElS = [
