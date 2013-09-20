@@ -172,6 +172,7 @@ MINIFY_BUNDLES = {
             'css/firefox/mobile-features.less',
         ),
         'firefox_sms': (
+            'css/libs/socialshare/socialshare.less',
             'css/firefox/template-resp.less',
             'css/sandstone/video-resp.less',
             'css/firefox/mobile-sms.less',
@@ -210,6 +211,7 @@ MINIFY_BUNDLES = {
             'css/firefox/happy.less',
         ),
         'firefox_new': (
+            'css/libs/socialshare/socialshare.less',
             'css/firefox/new.less',
         ),
         'firefox_organizations': (
@@ -459,6 +461,7 @@ MINIFY_BUNDLES = {
             'js/firefox/happy.js',
         ),
         'firefox_new': (
+            'js/libs/socialshare.min.js',
             'js/libs/modernizr.custom.csstransitions.js',
             'js/firefox/new.js',
         ),
