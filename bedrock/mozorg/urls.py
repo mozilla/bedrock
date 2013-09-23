@@ -29,8 +29,8 @@ urlpatterns = patterns('',
     page('about/governance/policies/security-group/tld-idn', 'mozorg/about/governance/policies/security/tld-idn.html'),
     page('about/governance/policies/security-group/membership', 'mozorg/about/governance/policies/security/membership.html'),
     page('about/governance/organizations', 'mozorg/about/governance/organizations.html'),
-    page('about/policies/participation', 'mozorg/about/policies/participation.html'),
-    page('about/policies', 'mozorg/about/policies/policies.html'),
+    page('about/governance/policies/participation', 'mozorg/about/governance/policies/participation.html'),
+    page('about/governance/policies', 'mozorg/about/governance/policies/policies.html'),
 
 
     url('^contribute/$', views.contribute, name='mozorg.contribute',
