@@ -8,25 +8,16 @@
   <head>
     <title>{{ _('Get the Newest Firefox') }}</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <link href="{{ media('css/firefox/unsupported.css') }}"
-          rel="stylesheet"
-          type="text/css" />
+    {{ css('firefox_unsupported') }}
   </head>
 
   <body billboard=1>
     <div id="wrapper">
       <div id="details-header">
-        <h1>{{ _('URGENT!') }}</h1>
-        <p>{{ _('Firefox no longer supports your operating system version and will be vulnerable to online attacks.') }}</p>
+      {% block unsupported_header %}{% endblock %}
       </div>
-
       <div id="details-content">
-        <p>{{ _('We recommend:') }}</p>
-        <ul>
-          <li>{{ _('Upgrading your <a %s>operating system</a>')|format('href="http://windows.microsoft.com"'|safe) }}</li>
-          <li>{{ _('Downloading a compatible browser') }}</li>
-        </ul>
-        <p><a href="https://support.mozilla.org/kb/firefox-no-longer-works-windows-2000">{{ _('Learn More') }}</a></p>
+      {% block unsupported_content %}{% endblock %}
       </div>
     </div>
   </body>
