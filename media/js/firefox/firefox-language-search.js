@@ -8,7 +8,7 @@ $(function(){
 
     $form.on('submit', function(e){
         e.preventDefault();
-        var search_q = $.trim($input.val()).toLowerCase();  // trim whitespace
+        var search_q = $.trim($input.val().replace(',', '')).toLowerCase();  // trim whitespace
         if (!search_q) {
             show_all();
             return;
