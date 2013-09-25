@@ -8,14 +8,11 @@ from django.test.utils import override_settings
 
 import basket
 import jingo
-import jinja2
 from nose.tools import assert_false, eq_, ok_
 from pyquery import PyQuery as pq
 from bedrock.newsletter.tests.test_views import newsletters
 from funfactory.urlresolvers import reverse
 
-from bedrock.mozorg.helpers.misc import platform_img
-from bedrock.mozorg.helpers.misc import high_res_img
 from bedrock.mozorg.tests import TestCase
 
 
@@ -69,7 +66,7 @@ class TestImgL10n(TestCase):
     def _render(self, locale, url):
         req = self.rf.get('/')
         req.locale = locale
-        return render("{{{{ img_l10n('{0}') }}}}".format(url),
+        return render("{{{{ l10n_img('{0}') }}}}".format(url),
                       {'request': req})
 
     def test_works_for_default_lang(self):
@@ -249,25 +246,64 @@ class TestNewsletterFunction(TestCase):
 
 
 class TestPlatformImg(TestCase):
+    rf = RequestFactory()
+
+    def _render(self, url, optional_attributes=None):
+        req = self.rf.get('/')
+        req.locale = 'en-US'
+        return render("{{{{ platform_img('{0}', {1}) }}}}".format(url, optional_attributes),
+                      {'request': req})
+
+    def _render_l10n(self, url):
+        req = self.rf.get('/')
+        req.locale = 'en-US'
+        return render("{{{{ l10n_img('{0}') }}}}".format(url),
+                      {'request': req})
+
     @override_settings(MEDIA_URL='/media/')
     def test_platform_img_no_optional_attributes(self):
         """Should return expected markup without optional attributes"""
-        markup = platform_img('test.png')
+        markup = self._render('test.png')
         expected = (
             u'<img class="platform-img js" src="" data-src="/media/test.png" >'
             u'<noscript><img class="platform-img win" src="/media/test.png" >'
             u'</noscript>')
-        self.assertEqual(markup, jinja2.Markup(expected))
+        self.assertEqual(markup, expected)
 
     @override_settings(MEDIA_URL='/media/')
     def test_platform_img_with_optional_attributes(self):
         """Should return expected markup with optional attributes"""
-        markup = platform_img('test.png', {'data-test-attr': 'test'})
+        markup = self._render('test.png', {'data-test-attr': 'test'})
         expected = (
             u'<img class="platform-img js" src="" data-src="/media/test.png" '
             u'data-test-attr="test"><noscript><img class="platform-img win" '
             u'src="/media/test.png" data-test-attr="test"></noscript>')
-        self.assertEqual(markup, jinja2.Markup(expected))
+        self.assertEqual(markup, expected)
+
+    @override_settings(MEDIA_URL='/media/')
+    def test_platform_img_with_l10n(self):
+        """Should return expected markup with l10n image path"""
+        l10n_url = self._render_l10n('test.png')
+        markup = self._render('test.png', {'l10n': True})
+        expected = (
+            u'<img class="platform-img js" src="" data-src="' + l10n_url + '" >'
+            u'<noscript><img class="platform-img win" src="' + l10n_url + '" >'
+            u'</noscript>')
+        self.assertEqual(markup, expected)
+
+    @override_settings(MEDIA_URL='/media/')
+    def test_platform_img_with_l10n_and_optional_attributes(self):
+        """
+        Should return expected markup with l10n image path and optional
+        attributes
+        """
+        l10n_url = self._render_l10n('test.png')
+        markup = self._render('test.png', {'l10n': True, 'data-test-attr': 'test'})
+        expected = (
+            u'<img class="platform-img js" src="" data-src="' + l10n_url + '" '
+            u'data-test-attr="test"><noscript><img class="platform-img win" '
+            u'src="' + l10n_url + '" data-test-attr="test"></noscript>')
+        self.assertEqual(markup, expected)
 
 
 class TestPressBlogUrl(TestCase):
@@ -308,26 +344,64 @@ class TestPressBlogUrl(TestCase):
 
 
 class TestHighResImg(TestCase):
+    rf = RequestFactory()
+
+    def _render(self, url, optional_attributes=None):
+        req = self.rf.get('/')
+        req.locale = 'en-US'
+        return render("{{{{ high_res_img('{0}', {1}) }}}}".format(url, optional_attributes),
+                      {'request': req})
+
+    def _render_l10n(self, url):
+        req = self.rf.get('/')
+        req.locale = 'en-US'
+        return render("{{{{ l10n_img('{0}') }}}}".format(url),
+                      {'request': req})
+
     @override_settings(MEDIA_URL='/media/')
     def test_high_res_img_no_optional_attributes(self):
         """Should return expected markup without optional attributes"""
-        markup = high_res_img('test.png')
+        markup = self._render('test.png')
         expected = (
             u'<img class="js" src="" data-src="/media/test.png" '
             u'data-high-res="true" >'
             u'<noscript><img src="/media/test.png" ></noscript>')
-        self.assertEqual(markup, jinja2.Markup(expected))
+        self.assertEqual(markup, expected)
 
     @override_settings(MEDIA_URL='/media/')
     def test_high_res_img_with_optional_attributes(self):
         """Should return expected markup with optional attributes"""
-        markup = high_res_img('test.png', {'data-test-attr': 'test'})
+        markup = self._render('test.png', {'data-test-attr': 'test'})
         expected = (
             u'<img class="js" src="" data-src="/media/test.png" '
             u'data-high-res="true" data-test-attr="test">'
             u'<noscript><img src="/media/test.png" data-test-attr="test">'
             u'</noscript>')
-        self.assertEqual(markup, jinja2.Markup(expected))
+        self.assertEqual(markup, expected)
+
+    @override_settings(MEDIA_URL='/media/')
+    def test_high_res_img_with_l10n(self):
+        """Should return expected markup with l10n image path"""
+        l10n_url = self._render_l10n('test.png')
+        markup = self._render('test.png', {'l10n': True})
+        expected = (
+            u'<img class="js" src="" data-src="' + l10n_url + '" '
+            u'data-high-res="true" >'
+            u'<noscript><img src="' + l10n_url + '" >'
+            u'</noscript>')
+        self.assertEqual(markup, expected)
+
+    @override_settings(MEDIA_URL='/media/')
+    def test_high_res_img_with_l10n_and_optional_attributes(self):
+        """Should return expected markup with l10n image path"""
+        l10n_url = self._render_l10n('test.png')
+        markup = self._render('test.png', {'l10n': True, 'data-test-attr': 'test'})
+        expected = (
+            u'<img class="js" src="" data-src="' + l10n_url + '" '
+            u'data-high-res="true" data-test-attr="test">'
+            u'<noscript><img src="' + l10n_url + '" data-test-attr="test">'
+            u'</noscript>')
+        self.assertEqual(markup, expected)
 
 
 class TestAbsoluteURLFilter(TestCase):

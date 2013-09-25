@@ -63,7 +63,7 @@ def media(url):
 
 @jingo.register.function
 @jinja2.contextfunction
-def img_l10n(ctx, url):
+def l10n_img(ctx, url):
     """Output the url to a localized image.
 
     Uses the locale from the current request. Checks to see if the localized
@@ -75,7 +75,7 @@ def img_l10n(ctx, url):
     In Template
     -----------
 
-        {{ img_l10n('firefoxos/screenshot.png') }}
+        {{ l10n_img('firefoxos/screenshot.png') }}
 
     For en-US this would output:
 
@@ -110,7 +110,7 @@ def img_l10n(ctx, url):
         if not _l10n_media_exists(locale, url):
             locale = settings.LANGUAGE_CODE
 
-    return path.join(settings.MEDIA_URL, 'img', 'l10n', locale, url)
+    return media(path.join('img', 'l10n', locale, url))
 
 
 @jingo.register.function
@@ -122,8 +122,13 @@ def field_with_attrs(bfield, **kwargs):
 
 
 @jingo.register.function
-def platform_img(url, optional_attributes=None):
-    url = path.join(settings.MEDIA_URL, url.lstrip('/'))
+@jinja2.contextfunction
+def platform_img(ctx, url, optional_attributes=None):
+    if (optional_attributes and optional_attributes.pop('l10n', False) is True):
+        url = l10n_img(ctx, url)
+    else:
+        url = media(url)
+
     if optional_attributes:
         attrs = ' '.join('%s="%s"' % (attr, val)
                          for attr, val in optional_attributes.items())
@@ -141,14 +146,18 @@ def platform_img(url, optional_attributes=None):
 
 
 @jingo.register.function
-def high_res_img(url, optional_attributes=None):
+@jinja2.contextfunction
+def high_res_img(ctx, url, optional_attributes=None):
+    if (optional_attributes and optional_attributes.pop('l10n', False) is True):
+        url = l10n_img(ctx, url)
+    else:
+        url = media(url)
+
     if optional_attributes:
         attrs = ' '.join(('%s="%s"' % (attr, val)
                           for attr, val in optional_attributes.items()))
     else:
         attrs = ''
-
-    url = media(url)
 
     # Don't download any image until the javascript sets it based on
     # data-src so we can do high-dpi detection. If no js, show the
