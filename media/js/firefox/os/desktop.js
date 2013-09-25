@@ -10,6 +10,7 @@
 
   var isSmallViewport = $w.width() < 760;
   var isTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints || navigator.maxTouchPoints || isSmallViewport;
+  var hasTransitions = false;
 
   var $tabzilla = $('#tabzilla');
   var $masthead = $('#masthead');
@@ -17,7 +18,6 @@
   // phone
   var $screen_a = $('#screen-intro .screen');
   var $screen_b = $screen_a.clone();
-  var $screen_cur, $screen_next; // for animating/rotating screens
 
   // signup
   var $signup_content;
@@ -28,13 +28,16 @@
   // intro background
   var adapt_bg_rotate_interval;
   var $intro_bg_a = $('#intro-bg-a');
+  var $intro_bg_b = $intro_bg_a.clone();
   var intro_bg_index = 0;
   var intro_bgs = ['soccer', 'cafe', 'birthday'];
-  var $intro_bg_b = $intro_bg_a.clone();
+  
 
   var nav_height = $masthead.height();
 
   // adaptive scroll
+  var $adaptive_bg_a = $('#adaptive-bg-birthday');
+  var $adaptive_bg_b = $('#adaptive-bg-cafe');
   var adaptive_text_offset = 200;
   var scene_hooks_top = 620;
   var $soccer_hook = $('#soccer-hook');
@@ -45,32 +48,89 @@
   var $have_it_all = $('#have-it-all');
 
   /*
-  * Rotating intro background
+  * Check for CSS transition support.
+  * via: http://stackoverflow.com/questions/7264899/detect-css-transitions-using-javascript-and-without-modernizr
   */
 
-  function rotateIntroBG () {
-    intro_bg_index = ((intro_bg_index + 1) < intro_bgs.length) ? intro_bg_index + 1 : 0;
+  function supportsTransitions() {
+    var b = document.body || document.documentElement;
+    var s = b.style;
+    var p = 'transition';
+    if (typeof s[p] == 'string') { return true; }
 
-    var $bg_cur, $bg_next;
+    // Tests for vendor specific prop
+    var v = ['Moz', 'Webkit', 'Khtml', 'O', 'ms'];
+    p = p.charAt(0).toUpperCase() + p.substr(1);
 
-    // determine current/next bg
-    if ($intro_bg_a.is(':visible')) {
-      $bg_cur = $intro_bg_a;
-      $bg_next = $intro_bg_b;
-    } else {
-      $bg_cur = $intro_bg_b;
-      $bg_next = $intro_bg_a;
+    for (var i = 0; i < v.length; i++) {
+      if (typeof s[v[i] + p] == 'string') { return true; }
     }
 
-    $bg_next.attr('class', 'intro-bg bg-' + intro_bgs[intro_bg_index]).show();
-    $bg_cur.fadeOut(1000, function() {
-      $bg_next.css('z-index', 2);
-      $bg_cur.css('z-index', 1);
-    });
+    return false;
+  }
 
-    setTimeout(function () {
+  hasTransitions = supportsTransitions();
+
+  /*
+  * Rotate intro/adaptive background
+  * 
+  * $bg_a fades in and out, $bg_b simply changes its background image via
+  * supplied css_classes param.
+  */
+
+  var rotateBG;
+
+  if (hasTransitions) {
+    // version for css transitioning browsers
+    rotateBG = function($bg_a, $bg_b, css_classes) {
+      if ($bg_a.hasClass('inactive')) {
+        $bg_a.attr('class', css_classes);
+      } else {
+        $bg_b.attr('class', css_classes);
+        $bg_a.addClass('inactive');
+      }
+    };
+  } else {
+    // build regex from already defined intro_bgs array
+    var rotate_bg_re = new RegExp(intro_bgs.join('|'), 'i');
+
+    // version for browsers lacking css transitions
+    rotateBG = function($bg_a, $bg_b, css_classes) {
+      // intro bg a is hidden
+      if ($bg_a.hasClass('inactive')) {
+        // inspect css_classes param to determine what
+        // bg image should applied to bg_a
+        var new_bg = css_classes.match(rotate_bg_re);
+
+        // filter prop is applied via style attribte.
+        // update the filter string to change the bg
+        var cur_filter = $bg_a.css('filter');
+        var new_filter = cur_filter.replace(rotate_bg_re, new_bg);
+
+        // update bg_a classes and filter property
+        $bg_a.attr('class', css_classes).css('filter', new_filter);
+
+        $bg_a.fadeIn(300);
+      } else {
+        // give intro bg b the desired background class
+        $bg_b.attr('class', css_classes);
+
+        // fade intro bg a out and add inactive class when it's done
+        $bg_a.fadeOut(300, function() {
+          $bg_a.addClass('inactive');
+        });
+      }
+    };
+  }
+
+  function rotateIntroBG() {
+    intro_bg_index = ((intro_bg_index + 1) < intro_bgs.length) ? intro_bg_index + 1 : 0;
+
+    rotateBG($intro_bg_a, $intro_bg_b, 'intro-bg bg-' + intro_bgs[intro_bg_index]);
+
+    setTimeout(function() {
       displayPhoneScreen(intro_bg_index);
-    }, 100);
+    }, 500);
   }
 
   function engageIntroBGRotation() {
@@ -86,22 +146,26 @@
 
   function initIntroBGRotation() {
     // switch out initial/default screen & bg
-    $screen_a.removeClass('screen-birthday').addClass('screen-soccer').attr('data-current', 1);
+    $screen_a.removeClass('screen-birthday').addClass('screen-soccer active').attr('data-current', 1);
+    // make sure intro_bg_a has a higher z-index than intro_bg_b
     $intro_bg_a.removeClass('bg-birthday').addClass('bg-soccer').css('z-index', '2');
-
     $intro_bg_b.attr('id', 'intro-bg-b').css('z-index', '1').removeClass('bg-soccer');
     $intro_bg_b.insertAfter($intro_bg_a);
 
     // set up secondary phone screen for rotation
-    $screen_b.attr({'id': 'screen-intro-b', 'data-current': 0}).removeClass('screen-birthday').addClass('screen-cafe').insertAfter($screen_a);
+    $screen_b.attr({'id': 'screen-intro-b', 'data-current': 0}).removeClass('screen-birthday').addClass('screen-cafe ready').insertAfter($screen_a);
+    // init matrix transform to place screen_b off to the right
+    TweenMax.set($screen_b, { x: '218px', y: 0 });
 
     // start intro bg rotation on page load
     engageIntroBGRotation();
   }
 
   function displayPhoneScreen(bg_index) {
+    var $screen_cur, $screen_next;
+
     // determine current/next screen
-    if (Number($screen_a.attr('data-current')) === 1) {
+    if ($screen_a.hasClass('active')) {
       $screen_cur = $screen_a;
       $screen_next = $screen_b;
     } else {
@@ -109,53 +173,41 @@
       $screen_next = $screen_a;
     }
 
-    // stop any existing animations
-    if ($screen_cur.is(':animated')) {
-      $screen_cur.stop();
-    }
-
-    if ($screen_next.is(':animated')) {
-      $screen_next.stop();
-    }
-
+    // if current screen is not the desired screen
     if (!$screen_cur.hasClass('screen-' + intro_bgs[bg_index])) {
       // update next screen's bg and slide it in
-      $screen_next.attr({'class': 'screen screen-' + intro_bgs[bg_index], 'data-current': 1}).animate({
-        left: 0
-      }, 300);
+      $screen_next.attr('class', 'screen active screen-' + intro_bgs[bg_index]);
+      TweenMax.to($screen_next, 0.3, { x: 0, y: 0 });
 
-      // slide current screen out, then place it over to the right
-      $screen_cur.attr('data-current', 0).animate({
-        left: '-218px'
-      }, 300, function() {
-        $screen_cur.css('left', '218px');
+      // transition current screen off to the left
+      $screen_cur.removeClass('active').addClass('inactive');
+      TweenMax.to($screen_cur, 0.3, {
+        x: '-218px', y: 0,
+        // after current screen has slid off to the left, move it back to 'ready' position off to the right
+        onComplete: function() {
+          TweenMax.to($screen_cur, 0.3, { x: '218px', y: 0 });
+        }
       });
+    // if current screen is the desired screen
     } else {
       // make sure screen is visible and set back to 0px left
-      $screen_cur.show().animate({
-        left: 0
-      }, 150);
+      $screen_cur.removeClass('inactive').addClass('active');
+      TweenMax.to($screen_cur, 0.3, { x: 0, y: 0 });
 
       // make sure next goes back to the right and gets hidden
-      $screen_next.animate({
-        left: '218px'
-      }, 150);
+      $screen_next.removeClass('active').addClass('inactive');
+      TweenMax.to($screen_next, 0.3, { x: '218px', y: 0 });
     }
   }
 
+  function initAdaptiveBGRotation() {
+    $adaptive_bg_a.attr('id', 'adative-bg1').css('z-index', 2);
+    $adaptive_bg_b.attr('id', 'adative-bg2');
+    $('#adaptive-bg-soccer').remove();
+  }
+
   function displayAdaptiveBG(bg) {
-    // set all to non-active and top level z-index
-    $('.adaptive-bg').stop();
-
-    $('.adaptive-bg[data-current="1"]').attr('data-current', 0).css('opacity', 1).addClass('top');
-
-    // set new bg to current, fully visible, and put on bottom of stack
-    $('#adaptive-bg-' + bg).attr('data-current', 1).css('opacity', 1).removeClass('top');
-
-    // fade out non-current bg
-    $('.adaptive-bg[data-current="0"]').animate({
-      'opacity': 0
-    }, 350);
+    rotateBG($adaptive_bg_a, $adaptive_bg_b, 'adaptive-bg bg-' + bg);
   }
 
   /*
@@ -428,6 +480,15 @@
     var $adaptive_mask = $('#adaptive-mask');
     var $fox_tail_tip = $('#fox-tail-tip');
 
+    var $adapt_feature_type = $('#adapt-feature-type');
+    var $adapt_feature_results = $('#adapt-feature-results');
+    var $adapt_feature_save = $('#adapt-feature-save');
+    var $adapt_feature_discover = $('#adapt-feature-discover');
+
+    var $sprite_blue_line = $('#adapt-feature-sprite-blue-line');
+    var $sprite_orange_line = $('#adapt-feature-sprite-orange-line');
+    var $sprite_plus = $('#adapt-feature-sprite-plus');
+
     // height of hook determines scroll duration (available animation time) for each scene
     $('#scene-hooks').css('top', scene_hooks_top + 'px');
     $soccer_hook.css('height', soccer_hook_height + 'px');
@@ -508,73 +569,104 @@
       }
     }, { offset: 300 });
 
+    // hook for phone screen & background
     $cafe_hook.waypoint(function (dir) {
       clearTimeout(phone_screen_timeout);
 
       if (dir === 'down') {
+        displayAdaptiveBG('cafe');
+
         phone_screen_timeout = setTimeout(function() {
           displayPhoneScreen(1); // birthday
         }, phone_screen_timeout_delay);
-
-        displayAdaptiveBG('cafe');
       } else {
+        displayAdaptiveBG('birthday');
+
         phone_screen_timeout = setTimeout(function() {
           displayPhoneScreen(2); // birthday
         }, phone_screen_timeout_delay);
-
-        displayAdaptiveBG('birthday');
       }
     }, { offset: -nav_height });
+
+    // hook for type feature point
+    $cafe_hook.waypoint(function(dir) {
+      if (dir === 'down') {
+        $adapt_feature_type.addClass('active');
+      } else {
+        $adapt_feature_type.removeClass('active');
+      }
+    }, { offset: -275});
+
+    // hook for results feature point
+    $cafe_hook.waypoint(function(dir) {
+      if (dir === 'down') {
+        $adapt_feature_results.addClass('active');
+      } else {
+        $adapt_feature_results.removeClass('active');
+      }
+    }, { offset: -550});
 
     $soccer_hook.waypoint(function (dir) {
       clearTimeout(phone_screen_timeout);
 
       if (dir === 'down') {
+        displayAdaptiveBG('soccer');
+
         phone_screen_timeout = setTimeout(function() {
           displayPhoneScreen(0); // soccer
         }, phone_screen_timeout_delay);
-
-        displayAdaptiveBG('soccer');
       } else {
+        displayAdaptiveBG('cafe');
+
         phone_screen_timeout = setTimeout(function() {
           displayPhoneScreen(1); // cafe
         }, phone_screen_timeout_delay);
-
-        displayAdaptiveBG('cafe');
       }
     }, { offset: -nav_height });
 
-    // define adaptive features tweens    
-    var to_feature_type = TweenMax.to(
-      $('#adapt-feature-type'),// element to animate
-      1,// duration in seconds
-      {
-        css: { 'opacity': 1 }// CSS to alter
+    // hook for save feature point
+    $soccer_hook.waypoint(function(dir) {
+      if (dir === 'down') {
+        $adapt_feature_save.addClass('active');
+      } else {
+        $adapt_feature_save.removeClass('active');
       }
-    );
-    var to_feature_results = TweenMax.to($('#adapt-feature-results'), 1, { css: { 'marginTop': 0, 'opacity': 1 } });
-    var to_feature_save = TweenMax.to($('#adapt-feature-save'), 1, { css: { 'marginTop': 0, 'opacity': 1 } });
-    var to_feature_discover = TweenMax.to($('#adapt-feature-discover'), 1, { css: { 'opacity': 1, 'marginTop': ((isUS) ? '44px' : '0px') } });
+    }, { offset: -100});
 
-    controller.addTween(
-      $cafe_hook,// execute tween when this element is visible
-      to_feature_type,// tween to execute
-      150,// scroll duration (px) of tween
-      425// offset of tween (start 425 pixels after $cafe_hook comes in to viewport)
-    );
-    controller.addTween($cafe_hook, to_feature_results, 150, 700);
-    controller.addTween($soccer_hook, to_feature_save, 250, 400);
-    controller.addTween($soccer_hook, to_feature_discover, 225, 550);
+    // hook for discover feature point
+    $soccer_hook.waypoint(function(dir) {
+      if (dir === 'down') {
+        $adapt_feature_discover.addClass('active');
+      } else {
+        $adapt_feature_discover.removeClass('active');
+      }
+    }, { offset: -400});
 
     // if en-US, show sprites
     if (isUS) {
-      var to_blue_line = TweenMax.to($('#adapt-feature-sprite-blue-line'), 1, { css: { 'width': '123px' } });
-      var to_orange_line = TweenMax.to($('#adapt-feature-sprite-orange-line'), 1, { css: { 'width': '123px' } });
-      var to_feature_plus = TweenMax.to($('#adapt-feature-sprite-plus'), 1, { css: { 'top': '286px', 'opacity': 1 } });
+      $cafe_hook.waypoint(function(dir) {
+        if (dir === 'down') {
+          $sprite_blue_line.addClass('active');
+        } else {
+          $sprite_blue_line.removeClass('active');
+        }
+      }, { offset: -225 });
 
-      controller.addTween($cafe_hook, to_blue_line, 250, 400);
-      controller.addTween($cafe_hook, to_orange_line, 250, 700);
-      controller.addTween($soccer_hook, to_feature_plus, 200, 525);
+      $cafe_hook.waypoint(function(dir) {
+        if (dir === 'down') {
+          $sprite_orange_line.addClass('active');
+        } else {
+          $sprite_orange_line.removeClass('active');
+        }
+      }, { offset: -500});
+
+      $soccer_hook.waypoint(function(dir) {
+        if (dir === 'down') {
+          $sprite_plus.addClass('active');
+        } else {
+          $sprite_plus.removeClass('active');
+        }
+      }, { offset: -200 });
     }
 
     // position fox tail tip when have it all comes in to view
@@ -674,6 +766,7 @@
     */
 
     initIntroBGRotation();
+    initAdaptiveBGRotation();
     initAdaptiveAppSearchScroller();
     initNavScroll();
     trackGAPageScroller();
