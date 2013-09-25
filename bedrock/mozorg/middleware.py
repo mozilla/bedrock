@@ -3,8 +3,8 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import datetime
-from email.utils import formatdate
 import time
+from email.utils import formatdate
 
 from django_statsd.middleware import GraphiteRequestTimingMiddleware
 

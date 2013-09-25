@@ -1,0 +1,65 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "template-resp.less";
+@import "simple_footer.less";
+
+#main-feature {
+    text-align: center;
+    h1 {
+        padding: 150px 0 0 0;
+        background: url(/media/img/firefox/firstrun/logo.png) 50% 0 no-repeat;
+        em {
+            display: block;
+            font-style: normal;
+        }
+    }
+    h3 {
+        font-size: 24px;
+    }
+}
+
+#main-content {
+    margin-bottom: @baseLine * 2;
+}
+
+#install-steps-windows,
+#install-steps-osx {
+    display: none;
+}
+
+/* Tablet Layout: 760px */
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+
+    #masthead,
+    #main-content {
+        width: @widthTablet - (@gridGutterWidth * 2);
+        padding-left: @gridGutterWidth;
+        padding-right: @gridGutterWidth;
+    }
+
+}
+
+/* Mobile layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+
+    #masthead,
+    #main-content {
+        width: @widthMobile - (@gridGutterWidth * 2);
+        padding-left: @gridGutterWidth;
+        padding-right: @gridGutterWidth;
+        margin: 0 auto;
+    }
+
+}
+
+/* Wide mobile layout: 480px; */
+@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+
+    #masthead,
+    #main-content {
+        width: @widthMobileLandscape - (@gridGutterWidth * 2);
+    }
+
+}

@@ -166,6 +166,9 @@ MINIFY_BUNDLES = {
             'css/sandstone/video.less',
             'css/firefox/customize.less',
         ),
+        'firefox_download': (
+            'css/firefox/download.less',
+        ),
         'firefox_features': (
             'css/sandstone/video.less',
             'css/firefox/features.less',
@@ -434,6 +437,9 @@ MINIFY_BUNDLES = {
         'firefox_customize': (
             'js/base/mozilla-video-tools.js',
             'js/firefox/customize.js',
+        ),
+        'firefox_download': (
+            'js/firefox/download-page.js',
         ),
         'firefox_features': (
             'js/base/mozilla-video-tools.js',
@@ -822,3 +828,9 @@ PRESS_BLOGS = {
     'it': 'press-it/',
     'pl': 'press-pl/',
 }
+
+# exempts urls from the default lang query param function.
+# will be compared using `endswith()`
+FF_EXEMPT_LANG_PARAM_URLS = (
+    '/firefox/download/',
+)
