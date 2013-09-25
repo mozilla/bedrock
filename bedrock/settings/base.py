@@ -219,7 +219,6 @@ MINIFY_BUNDLES = {
             'css/firefox/organizations.less',
         ),
         'firefox_os': (
-            'css/libs/jquery.pageslide.css',
             'css/firefox/os/firefox-os.less',
         ),
         'firefox_os_ie': (
@@ -470,7 +469,6 @@ MINIFY_BUNDLES = {
             'js/base/mozilla-modal.js',
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.waypoints-sticky.min.js',
-            'js/libs/jquery.pageslide.min.js',
             'js/libs/tweenmax.1.9.7.min.js',
             'js/libs/superscrollorama-1.0.1.js',
             'js/libs/jquery.plusslider.js',
