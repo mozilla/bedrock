@@ -207,8 +207,8 @@ MINIFY_BUNDLES = {
         ),
         'firefox_geolocation': (
             'css/base/mozilla-expanders.less',
-            'css/firefox/geolocation.less',
-            'css/jquery/nyroModal.css'
+            'css/base/mozilla-modal.less',
+            'css/firefox/geolocation.less'
         ),
         'firefox_happy': (
             'css/firefox/happy.less',
@@ -221,6 +221,8 @@ MINIFY_BUNDLES = {
             'css/firefox/organizations.less',
         ),
         'firefox_os': (
+            'css/base/mozilla-modal.less',
+            'css/libs/jquery.pageslide.css',
             'css/firefox/os/firefox-os.less',
         ),
         'firefox_os_ie': (
@@ -348,6 +350,7 @@ MINIFY_BUNDLES = {
             'css/foundation/annual2011.less',
         ),
         'partners': (
+            'css/base/mozilla-modal.less',
             'css/libs/jquery.pageslide.css',
             'css/firefox/partners.less',
         ),
@@ -504,9 +507,9 @@ MINIFY_BUNDLES = {
             'js/firefox/whatsnew-fxos.js',
         ),
         'geolocation': (
-            'js/libs/jquery.nyroModal.pack.js',
             'js/base/mozilla-expanders.js',
             'js/firefox/geolocation-demo.js',
+            'js/base/mozilla-modal.js',
         ),
         'home': (
             'js/base/mozilla-pager.js',
@@ -573,6 +576,7 @@ MINIFY_BUNDLES = {
             'js/libs/modernizr.custom.shiv-load.js',
             'js/base/mozilla-input-placeholder.js',
             'js/base/mozilla-pager.js',
+            'js/base/mozilla-modal.js',
             'js/firefox/partners.js',
         ),
         'partners_common': (

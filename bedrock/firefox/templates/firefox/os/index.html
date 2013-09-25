@@ -11,11 +11,6 @@
 {% block body_id %}firefox-os{% endblock %}
 {% block body_class %}firefox-os{% endblock %}
 
-{% block string_data %}
-  {# L10n: This is the label for a button that closes a modal dialog #}
-  data-close="{{ _('Close') }}"
-{% endblock %}
-
 {% block site_css %}
   {{ css('firefox_os') }}
 {% endblock %}
@@ -408,11 +403,6 @@
 
 <div id="get-phone-wrapper">
   <div id="get-phone" class="modal-content">
-    <header>
-      <img src="{{ MEDIA_URL }}img/firefox/os/logo/firefox-os-white.png" alt="mozilla">
-      <button type="button" class="close"><span class="close-text">{{ _('Close') }}</span></button>
-    </header>
-
     <div class="content">
       <h2>{{_('We work with a number of providers to offer Firefox OS on a variety of devices.')}}</h2>
 
@@ -433,10 +423,6 @@
 {% block email_form %}
   <div id="email-form-wrapper">
     <div id="email-form-content" class="modal-content">
-      <header>
-        <img src="{{ MEDIA_URL }}img/firefox/os/logo/firefox-os-white.png" alt="mozilla">
-        <button type="button" class="close"><span class="close-text">{{ _('Close') }}</span></button>
-      </header>
       <div class="content">
         <div id="footer-email-thanks">
           <h3>{{ _('Thanks! Please check your inbox to confirm your subscription.') }}</h3>

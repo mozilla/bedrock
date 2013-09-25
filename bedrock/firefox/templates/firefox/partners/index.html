@@ -35,11 +35,6 @@
   {{ js('partners') }}
 {% endblock %}
 
-{% block string_data %}
-  {# L10n: This is the label for a button that closes a modal dialog #}
-  data-close="{{ _('Close') }}"
-{% endblock %}
-
 {% block site_header %}
   <header id="masthead">
     <a href="{{ url('mozorg.home') }}" id="tabzilla">{{ _('Mozilla') }}</a>
@@ -541,7 +536,7 @@
       {{ form.superpriority }}
 
       </form>
-      <button type="button" class="close">{{ _('Close') }}</button>
+      <button id="pageslider-close" type="button" class="modal-close close">{{ _('Close') }}</button>
     </section>
   </article>
 </div>
