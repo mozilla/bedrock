@@ -32,7 +32,7 @@
 
     // Add GA custom tracking and external link tracking
     var state = 'Desktop, not Firefox';
-    if ($html.hasClass('android')) {
+    if (site.platform === 'android') {
         if ($html.hasClass('firefox-latest')) {
             state = 'Android, Firefox up-to-date';
         } else if ($html.hasClass('firefox-old')) {
@@ -40,9 +40,9 @@
         } else {
             state = 'Android, not Firefox';
         }
-    } else if ($html.hasClass('ios')) {
+    } else if (site.platform === 'ios') {
         state = 'iOS, Firefox not supported';
-    } else if ($html.hasClass('fxos')) {
+    } else if (site.platform === 'fxos') {
         state = 'FxOS';
     } else {
         if ($html.hasClass('firefox-latest')) {
@@ -53,6 +53,14 @@
     }
     window._gaq = _gaq || [];
     window._gaq.push(['_setCustomVar', 4, '/new conditional message', state, 3]);
+
+    // conditions in which scene2 should not be shown, even when the download-fx hash is set
+    var no_scene2 = (
+           $html.hasClass('firefox-latest')
+        || site.platform === 'other'
+        || site.platform === 'ios'
+        || site.platform === 'fxos'
+    );
 
     $(document).ready(function() {
         var $scene1 = $('#scene1');
@@ -116,10 +124,19 @@
 
             $('body').addClass('ready-for-scene2');
 
-            // initiate download/scene2 if coming directly to #download
-            if (location.hash === '#download-fx' && site.platform !== 'other') {
-                show_scene(2);
-                $('#direct-download-link').trigger('click');
+            // initiate download/scene2 if coming directly to #download-fx and not
+            // using latest Firefox or an unsupported platform
+            if (location.hash === '#download-fx') {
+                if (no_scene2) {
+                    // drop URL hash if we are not initializing a download
+                    if (window.history && window.history.replaceState) {
+                        var uri = window.location.href.split('#')[0];
+                        window.history.replaceState({}, '', uri);
+                    }
+                } else {
+                    show_scene(2);
+                    $('#direct-download-link').trigger('click');
+                }
             }
         });
 
@@ -171,7 +188,7 @@
             }
         });
 
-        if (hash_change) {
+        if (hash_change && !no_scene2) {
             $(window).on('hashchange', function() {
                 if (location.hash === '#download-fx') {
                     show_scene(2);
