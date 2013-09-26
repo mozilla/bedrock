@@ -31,12 +31,18 @@
              {% if query %}value="{{ query }}"{% endif %}>
       <datalist id="languages">
         {% for build in full_builds -%}
-          <option value="{{ build.name_en }}"></option>
-          <option value="{{ build.name_native }}"></option>
+          {% if build.name_en != build.name_native %}
+            <option value="{{ build.name_en }}, {{ build.name_native }}"></option>
+          {% else %}
+            <option value="{{ build.name_en }}"></option>
+          {% endif %}
         {% endfor -%}
         {% for build in test_builds -%}
-          <option value="{{ build.name_en }}"></option>
-          <option value="{{ build.name_native }}"></option>
+          {% if build.name_en != build.name_native %}
+            <option value="{{ build.name_en }}, {{ build.name_native }}"></option>
+          {% else %}
+            <option value="{{ build.name_en }}"></option>
+          {% endif %}
         {% endfor -%}
       </datalist>
       <button class="button arrow" type="submit"><span>{{ _('Search') }}</span></button>
