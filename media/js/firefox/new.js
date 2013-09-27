@@ -163,8 +163,10 @@
             // delay sending the page view tracking in track_and_redirect()
             // triggers the IE security blocker. Sigh.
             function track_and_popup(url, virtual_url) {
-                gaTrack(['_trackPageview', virtual_url]);
+                // popup must go before tracking to prevent timeouts that
+                // cause the security blocker.
                 window.open(url, 'download_window', 'toolbar=0,location=no,directories=0,status=0,scrollbars=0,resizeable=0,width=1,height=1,top=0,left=0');
+                gaTrack(['_trackPageview', virtual_url]);
             }
 
             if (isIELT9) {
