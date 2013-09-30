@@ -88,7 +88,7 @@ NavMain.init = function()
     }
 
     // set up small-mode menu toggle button
-    $('#nav-main .toggle')
+    $('#masthead .toggle')
         .click(function(e) {
             e.preventDefault();
             NavMain.toggleSmallMenu();
@@ -269,7 +269,7 @@ NavMain.leaveSmallMode = function()
     $('a, input, textarea, button, :focus')
         .unbind('focus', NavMain.handleDocumentFocus);
 
-    $('#nav-main .toggle').removeClass('open');
+    $('#masthead .toggle').removeClass('open');
 
     // reset submenus
     $('#nav-main-menu > li > .submenu')
@@ -358,7 +358,7 @@ NavMain.handleDocumentClick = function(e)
 {
     if (NavMain.smallMode) {
         var $clicked = $(e.target);
-        if (!$clicked.parents().is('#nav-main')) {
+        if (!$clicked.parents().is('#masthead')) {
             NavMain.closeSmallMenu();
         }
     }
@@ -367,7 +367,7 @@ NavMain.handleDocumentClick = function(e)
 NavMain.handleDocumentFocus = function(e)
 {
     var $focused = $(e.target);
-    if (!$focused.parents().is('#nav-main')) {
+    if (!$focused.parents().is('#masthead')) {
         NavMain.closeSmallMenu();
     }
 };
@@ -398,7 +398,7 @@ NavMain.openSmallMenu = function()
         .slideDown(150)
         .removeAttr('aria-hidden');
 
-    $('#nav-main .toggle').addClass('open');
+    $('#masthead .toggle').addClass('open');
 
     // add click handler and set submenu class on submenus
     NavMain.mainMenuLinks
@@ -421,7 +421,7 @@ NavMain.closeSmallMenu = function()
         .slideUp(100)
         .attr('aria-hidden', 'true');
 
-    $('#nav-main .toggle').removeClass('open');
+    $('#masthead .toggle').removeClass('open');
 
     // remove submenu click handler and CSS class
     NavMain.mainMenuLinks

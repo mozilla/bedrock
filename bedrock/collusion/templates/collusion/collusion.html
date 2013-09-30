@@ -7,10 +7,9 @@
 {% block page_title %}Collusion{% endblock %}
 {% block body_id %}collusion{% endblock %}
 {% block body_class %}sand{% endblock %}
-
 {% block site_header_nav %}
+  <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
   <nav id="nav-main" role="navigation">
-    <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
     <ul id="nav-main-menu">
       <li><b>Home</b></li>
       <li><a href="{{ url('collusion.demo') }}">Demo</a></li>
