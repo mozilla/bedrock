@@ -16,7 +16,7 @@ import requests
 from lib import l10n_utils
 from commonware.decorators import xframe_allow
 from funfactory.urlresolvers import reverse
-from lib.l10n_utils.dotlang import _
+from lib.l10n_utils.dotlang import _, lang_file_is_active
 
 from bedrock.firefox import version_re
 from bedrock.firefox.utils import is_current_or_newer
@@ -226,3 +226,37 @@ class Robots(TemplateView):
     def get_context_data(self, **kwargs):
         SITE_URL = getattr(settings, 'SITE_URL', '')
         return {'disallow_all': not SITE_URL.endswith('://www.mozilla.org')}
+
+
+class HomeTestView(TemplateView):
+    """Home page view that will use a different template for a QS."""
+    old_home_locales = ['en-US']
+
+    def get_context_data(self, **kwargs):
+        ctx = super(HomeTestView, self).get_context_data(**kwargs)
+        ctx['has_contribute'] = lang_file_is_active('mozorg/contribute',
+                                                    l10n_utils.get_locale(self.request))
+        locale = l10n_utils.get_locale(self.request)
+        locale = locale if locale in settings.MOBILIZER_LOCALE_LINK else 'en-US'
+        ctx['mobilizer_link'] = settings.MOBILIZER_LOCALE_LINK[locale]
+        return ctx
+
+    def get_template_names(self):
+        locale = l10n_utils.get_locale(self.request)
+        if locale in self.old_home_locales:
+            version = self.request.GET.get('v', 0)
+            if version == '1':
+                template = 'mozorg/home-b1.html'
+            elif version == '2':
+                template = 'mozorg/home-b2.html'
+            else:
+                template = 'mozorg/home.html'
+        else:
+            template = 'mozorg/home-b2.html'
+        return template
+
+    def render_to_response(self, context, **response_kwargs):
+        return l10n_utils.render(self.request,
+                                 self.get_template_names(),
+                                 context,
+                                 **response_kwargs)

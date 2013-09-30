@@ -1,0 +1,132 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+// Special styling for IE9 (and some for IE8)
+
+// Titles without gradients don't need as much space
+.wide .panel .panel-title {
+    padding-top: 20px;
+}
+
+// IE9 supports rgba() but not transitions, so we'll lose the dimming effect.
+.panel-inner,
+.compressed .panel-inner {
+    background-color: transparent;
+}
+
+
+.wide {
+    // IE9 doesn't support transitions so don't move the backgrounds.
+    #panel-mission.expanded,
+    #panel-mission.compressed {
+        background-position: -50px -80px;
+    }
+
+    #panel-fxos.expanded,
+    #panel-fxos.compressed {
+        background-position: -230px -190px
+    }
+
+    #panel-mdn.expanded,
+    #panel-mdn.compressed {
+        background-position: -80px 10px
+    }
+
+    #panel-mozfest.expanded,
+    #panel-mozfest.compressed {
+        background-position: -110px -15px
+    }
+}
+
+// @Tablet Layout: 760px
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+
+    .wide {
+        #panel-mission,
+        #panel-mission.expanded,
+        #panel-mission.compressed {
+            background-position: -120px -50px, 0 0;
+        }
+
+        // Firefox OS
+        #panel-fxos,
+        #panel-fxos.expanded,
+        #panel-fxos.compressed {
+            background-position: -185px -100px;
+        }
+
+        // MDN
+        #panel-mdn,
+        #panel-mdn.expanded,
+        #panel-mdn.compressed {
+            background-position: -110px -5px, 0 0;
+        }
+    }
+
+}
+
+// @Mobile layout: 320px
+@media only screen and (max-width: @breakTablet) {
+
+    // Mozilla Mission
+    #panel-mission,
+    #panel-mission.expanded,
+    #panel-mission.compressed {
+        background-position: -122px -30px, 0 0;
+    }
+
+    // Firefox OS
+    #panel-fxos,
+    #panel-fxos.expanded,
+    #panel-fxos.compressed {
+        background-position: -110px -85px;
+    }
+
+    #panel-mdn,
+    #panel-mdn.expanded,
+    #panel-mdn-compressed {
+        background-position: -25px -8px, 0 0;
+    }
+
+    #panel-mozfest,
+    #panel-mozfest.expanded,
+    #panel-mozfest.compressed {
+        background-position: -60px -20px, 0 0;
+    }
+
+}
+
+// @Wide @mobile layout: 480px
+@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+
+    // Mozilla Mission
+    #panel-mission,
+    #panel-mission.expanded,
+    #panel-mission.compressed {
+        background-position: -80px -30px, 0 0;
+    }
+
+    // Firefox OS
+    #panel-fxos,
+    #panel-fxos.expanded,
+    #panel-fxos.compressed {
+        background-position: -70px -85px;
+    }
+
+    #panel-mdn,
+    #panel-mdn.expanded,
+    #panel-mdn.compressed {
+        background-position: 10px -8px, 0 0;
+    }
+
+    #panel-mozfest,
+    #panel-mozfest.expanded,
+    #panel-mozfest.compressed {
+        background-position: -15px -20px, 0 0;
+    }
+
+}
+

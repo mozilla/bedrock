@@ -4,8 +4,11 @@
 
 import re
 from datetime import datetime
+
 from django.conf import settings
+
 from bedrock.mozorg.util import get_fb_like_locale
+from lib.l10n_utils import get_locale
 
 
 # match 1 - 4 digits only
@@ -38,4 +41,4 @@ def funnelcake_param(request):
 
 
 def facebook_locale(request):
-    return {'facebook_locale': get_fb_like_locale(request.locale)}
+    return {'facebook_locale': get_fb_like_locale(get_locale(request))}

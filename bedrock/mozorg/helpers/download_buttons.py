@@ -21,6 +21,8 @@ import jingo
 import jinja2
 from product_details import product_details
 
+from lib.l10n_utils import get_locale
+
 
 download_urls = {
     'transition': '/{locale}/products/download.html',
@@ -169,7 +171,7 @@ def download_firefox(ctx, build='release', small=False, icon=True,
     """
     alt_build = '' if build == 'release' else build
     platform = 'mobile' if mobile else 'desktop'
-    locale = locale or ctx['request'].locale
+    locale = locale or get_locale(ctx['request'])
     funnelcake_id = ctx.get('funnelcake_id', False)
     dom_id = dom_id or 'download-button-%s-%s' % (platform, build)
 

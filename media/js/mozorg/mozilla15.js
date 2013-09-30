@@ -19,7 +19,7 @@
         pauseOnHover: true,
         moveActiveFrameToTop: false,
         fadeFrameWhenSkipped: false,
-        animateStartingFrameIn: true,        
+        animateStartingFrameIn: true,
         reverseAnimationsWhenNavigatingBackwards: true,
         preventDelayWhenReversingAnimations: true,
         swipeEvents: {
@@ -29,7 +29,7 @@
             down: false
         }
     };
-    
+
     // set up the slideshow
     // @requires: sequencejs
     var slideshow = $('#slideshow').sequence(options).data('sequence');
