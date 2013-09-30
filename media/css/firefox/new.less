@@ -326,8 +326,8 @@ html[lang="uk"] {
     #install3 { background-image: url(/media/img/firefox/new/install3-win.png?2013-06); }
 }
 
-.winIE8 .ready-for-scene2 #install1 {
-    background-image: url(/media/img/firefox/new/install1-winIE8.png);
+.winIE8 .ready-for-scene2 {
+    #install1 { background-image: url(/media/img/firefox/new/install1-winIE8.png); }
 }
 
 .osx .install-win,
@@ -375,16 +375,16 @@ html[lang="uk"] {
     left: 0;
     width: 100%;
     height: 800px;
-    -moz-transition: bottom 0.4s ease 0.1s;
-    -webkit-transition: bottom 0.4s ease 0.1s;
-    -ms-transition: bottom 0.4s ease 0.1s;
-    -o-transition: bottom 0.4s ease 0.1s;
-    transition: bottom 0.4s ease 0.1s;
+    .transition(bottom 0.4s ease 0.1s);
 
     &.scene2 {
         bottom: -400px;
         #scene2 { visibility: visible; }
     }
+}
+
+.stage-no-anim {
+    .transition(none);
 }
 
 .scene {
