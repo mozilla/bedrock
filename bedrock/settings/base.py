@@ -264,6 +264,18 @@ MINIFY_BUNDLES = {
             'js/libs/video-js/video-js.css',
             'js/libs/video-js/video-js-sandstone.css',
         ),
+        'home-b': (
+            'css/mozorg/home-b.less',
+        ),
+        'home-b-ie9': (
+            'css/mozorg/home-b-ie9.less',
+        ),
+        'home-b-ie8': (
+            'css/mozorg/home-b-ie8.less',
+        ),
+        'home-b-ie': (
+            'css/mozorg/home-b-ie.less',
+        ),
         'marketplace': (
             'css/marketplace/marketplace.less',
         ),
@@ -510,6 +522,11 @@ MINIFY_BUNDLES = {
             'js/base/mozilla-pager.js',
             'js/libs/video-js/video.dev.js',
             'js/mozorg/home.js',
+        ),
+        'home-b': (
+            'js/libs/jquery.cycle2.min.js',
+            'js/libs/jquery.cycle2.carousel.min.js',
+            'js/mozorg/home-b.js',
         ),
         'marketplace': (
             'js/base/nav-main-resp.js',
@@ -819,4 +836,13 @@ PRESS_BLOGS = {
     'fr': 'press-fr/',
     'it': 'press-it/',
     'pl': 'press-pl/',
+}
+
+MOBILIZER_LOCALE_LINK = {
+    'en-US': 'https://wiki.mozilla.org/FirefoxOS/Community/Mobilizers',
+    'hu': 'https://wiki.mozilla.org/Mobilizers/MobilizerHungary/',
+    'pt-BR': 'https://wiki.mozilla.org/Mobilizers/MobilizerBrasil/',
+    'pl': 'https://wiki.mozilla.org/Mobilizers/MobilizerPolska/',
+    'gr': 'https://wiki.mozilla.org/Mobilizer/MobilizerGreece/',
+    'cs': 'https://wiki.mozilla.org/Mobilizer/MobilizerCzechRepublic/'
 }

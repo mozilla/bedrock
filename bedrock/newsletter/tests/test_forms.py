@@ -70,13 +70,15 @@ class TestManageSubscriptionsForm(TestCase):
         self.assertEqual('pt', form.initial['lang'])
         self.assertEqual('br', form.initial['country'])
 
-    def test_long_language(self):
+    @mock.patch('bedrock.newsletter.forms.get_lang_choices')
+    def test_long_language(self, langs_mock):
         """Fuzzy match their language preference"""
         # Suppose their selected language in ET is a long form ("es-ES")
         # while we only have the short forms ("es") in our list of
         # valid languages.  Or vice-versa.  Find the match to the one
         # in our list and use that, not the lang from ET.
-        locale = "en-US"
+        locale = 'en-US'
+        langs_mock.return_value = [['en', 'English'], ['es', 'Spanish']]
         form = ManageSubscriptionsForm(locale=locale,
                                        initial={
                                            'lang': 'es-ES',

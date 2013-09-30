@@ -11,6 +11,21 @@
 {% block body_class %}sand{% endblock %}
 
 {% block extra_meta %}
+  <!-- Google Analytics Content Experiment code -->
+  <script>function utmx_section(){}function utmx(){}(function(){var
+  k='71153379-29',d=document,l=d.location,c=d.cookie;
+  if(l.search.indexOf('utm_expid='+k)>0)return;
+  function f(n){if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.
+  indexOf(';',i);return escape(c.substring(i+n.length+1,j<0?c.
+  length:j))}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;d.write(
+  '<sc'+'ript src="'+'http'+(l.protocol=='https:'?'s://ssl':
+  '://www')+'.google-analytics.com/ga_exp.js?'+'utmxkey='+k+
+  '&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='+new Date().
+  valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
+  '" type="text/javascript" charset="utf-8"><\/sc'+'ript>')})();
+  </script><script>utmx('url','A/B');</script>
+  <!-- End of Google Analytics Content Experiment code -->
+
   <!-- validates bing webmaster tools -->
   <meta name="msvalidate.01" content="B7B177115A634927D608514DA17B2574" />
 {% endblock %}
@@ -32,13 +47,13 @@
 {% block content %}
 
 <hgroup id="main-feature" class="huge">
-  {# L10n: The Mozilla wordmark appears inline as part of this headline, so it reads as "We are Mozilla". The alt text should not be translated. #}
-  <h1>{{ _('We are <img src="%(img)s" alt="Mozilla" height="92" width="348">') | format(img=media('img/home/title-wordmark.png')) }}</h1>
+  {# L10n: The Mozilla wordmark appears inline as part of this headline, so it reads as "We are Mozilla". #}
+  <h1>{{ _('We are %(mozilla_wordmark)s') | format(mozilla_wordmark='<img src="'|safe+media('img/home/title-wordmark.png')+'" alt="Mozilla" height="92" width="348">'|safe) }}</h1>
   <h2>{{_('Doing good is part of our code')}}</h2>
 </hgroup>
 
 <section id="firefox-promo" class="billboard">
-  <h3>{{_('Different by&nbsp;Design')}}</h3>
+  <h3>{{_('Different by&nbsp;design')}}</h3>
   {# We intentionally don't use php_url() here because all locals
    # are seeing this English page and we want them to hit their locale for
    # firefox pages #}

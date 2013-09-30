@@ -1,0 +1,90 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+// Special styling for older versions of IE
+// They get no JavaScript, just accessible content.
+
+// I can hasLayout
+.mission,
+.extra,
+.pillars,
+.panel,
+.panel-content,
+.panel-logo,
+#firefox-promo,
+.container {
+    zoom: 1;
+}
+
+// Fix double margins on floats
+.extra-news,
+.extra-contribute,
+.extra-download,
+.extra-newsletter {
+    display: inline;
+}
+
+.pillars {
+    height: auto;
+    overflow: visible;
+    position: static;
+}
+
+.accordion {
+    height: auto;
+    width: auto;
+    overflow: visible;
+    position: static;
+}
+
+.panel {
+    min-height: 14em;
+    width: auto;
+    float: none;
+    overflow: visible;
+
+    .panel-title {
+        display: none;
+    }
+
+    .panel-inner {
+        position: static;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.panel-content {
+    position: relative;
+    display: block;
+    height: auto;
+    min-height: 10em;
+    width: auto;
+    padding: 3em 20px 1em 300px;
+
+    .panel-logo {
+        top: 15px;
+    }
+
+    h3 {
+        color: #fff;
+    }
+
+
+    & > a {
+        display: block;
+        color: #fff;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding: 60px 20px 20px 300px;
+    }
+}
+
+.panel-content a:link,
+.panel-content a:visited {
+    color: #fff;
+}

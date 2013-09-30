@@ -1,4 +1,9 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
 $(document).ready(function() {
+    'use strict';
 
     // {{{ showLink()
 
@@ -632,5 +637,43 @@ $(document).ready(function() {
     // configured before the SWF will work.
     var base = location.protocol + '//' + location.host;
     vjs.options.flash.swf = base + '/media/js/libs/video-js/video-js.swf';
+
+
+    // Track promo clicks
+    $('.pager-page > a').on('click', function(e) {
+        e.preventDefault();
+        var promo = $(this).parents('.pager-page');
+        var href = this.href;
+        var callback = function() {
+            window.location = href;
+        };
+        gaTrack(['_trackEvent','Homepage Interactions', 'click', (promo.index() + 1)+':'+promo.attr('id')], callback);
+    });
+
+    // Track news clicks
+    $('#home-news a').on('click', function(e) {
+        e.preventDefault();
+        var href = this.href;
+        var callback = function() {
+            window.location = href;
+        };
+        gaTrack(['_trackEvent', 'Mozilla in the News Interactions','click', href], callback);
+    });
+
+    // Track Firefox downloads
+    $('.download-link').on('click', function(e) {
+        e.preventDefault();
+        var href = this.href;
+        var callback = function() {
+            window.location = href;
+        };
+        var platform;
+        if ($(this).parents('li').hasClass('os_android')) {
+            platform = 'Firefox for Android';
+        } else {
+            platform = 'Firefox Desktop';
+        }
+        gaTrack(['_trackEvent', 'Firefox Downloads', 'download click', platform], callback);
+    });
 
 });
