@@ -2,39 +2,111 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from django.conf import settings
-from django.test.client import Client
+from django.conf.urls import RegexURLPattern
+from django.test.client import RequestFactory
 from django.utils import unittest
 
 from mock import patch
-from nose.tools import eq_
+from nose.tools import eq_, ok_
+
+from bedrock.redirects.util import redirect
 
 
-@patch.object(settings, 'ROOT_URLCONF', 'bedrock.redirects.tests.urls')
-class TestUrlPatterns(unittest.TestCase):
+class TestRedirectUrlPattern(unittest.TestCase):
     def setUp(self):
-        self.client = Client()
+        self.rf = RequestFactory()
 
-    def test_redirect(self):
-        response = self.client.get('/en-US/gloubi-boulga/')
+    def test_name(self):
+        """
+        Should return a RegexURLPattern with a matching name attribute
+        """
+        url_pattern = redirect(r'^the/dude$', 'abides', name='Lebowski')
+        ok_(isinstance(url_pattern, RegexURLPattern))
+        eq_(url_pattern.name, 'Lebowski')
+
+    def test_no_query(self):
+        """
+        Should return a 301 redirect
+        """
+        pattern, view = redirect(r'^the/dude$', 'abides')
+        request = self.rf.get('the/dude')
+        response = view(request)
         eq_(response.status_code, 301)
-        eq_(response['Location'], 'http://testserver/en-US/mock/view/')
+        eq_(response['Location'], 'abides')
+
+    def test_preserve_query(self):
+        """
+        Should preserve querys from the original request by default
+        """
+        pattern, view = redirect(r'^the/dude$', 'abides')
+        request = self.rf.get('the/dude?aggression=not_stand')
+        response = view(request)
+        eq_(response.status_code, 301)
+        eq_(response['Location'], 'abides?aggression=not_stand')
+
+    def test_replace_query(self):
+        """
+        Should replace query params if any are provided
+        """
+        pattern, view = redirect(r'^the/dude$', 'abides',
+                                 query={'aggression': 'not_stand'})
+        request = self.rf.get('the/dude?aggression=unchecked')
+        response = view(request)
+        eq_(response.status_code, 301)
+        eq_(response['Location'], 'abides?aggression=not_stand')
+
+    def test_empty_query(self):
+        """
+        Should strip query params if called with empty query
+        """
+        pattern, view = redirect(r'^the/dude$', 'abides', query={})
+        request = self.rf.get('the/dude?white=russian')
+        response = view(request)
+        eq_(response.status_code, 301)
+        eq_(response['Location'], 'abides')
 
     def test_temporary_redirect(self):
-        response = self.client.get('/en-US/gloubi-boulga/tmp/')
+        """
+        Should use a temporary redirect (status code 302) if permanent == False
+        """
+        pattern, view = redirect(r'^the/dude$', 'abides', permanent=False)
+        request = self.rf.get('the/dude')
+        response = view(request)
         eq_(response.status_code, 302)
-        eq_(response['Location'], 'http://testserver/en-US/mock/view/')
+        eq_(response['Location'], 'abides')
 
-    def test_external_redirect(self):
-        response = self.client.get('/en-US/gloubi-boulga/ext/')
+    def test_anchor(self):
+        """
+        Should append anchor text to the end, including after any querystring
+        """
+        pattern, view = redirect(r'^the/dude$', 'abides', anchor='toe')
+        request = self.rf.get('the/dude?want=a')
+        response = view(request)
         eq_(response.status_code, 301)
-        eq_(response['Location'], 'https://marketplace.firefox.com')
+        eq_(response['Location'], 'abides?want=a#toe')
 
-    def test_callable_redirect(self):
-        response = self.client.get('/en-US/gloubi-boulga/call/')
-        eq_(response.status_code, 301)
-        eq_(response['Location'], 'http://testserver/qwer')
+    def test_callable(self):
+        """
+        Should use the return value of the callable as redirect location
+        """
+        def opinion(request):
+            return '/just/your/opinion/man'
 
-        response = self.client.get('/en-US/gloubi-boulga/call/?test=1')
+        pattern, view = redirect(r'^the/dude$', opinion)
+        request = self.rf.get('the/dude')
+        response = view(request)
         eq_(response.status_code, 301)
-        eq_(response['Location'], 'http://testserver/asdf')
+        eq_(response['Location'], '/just/your/opinion/man')
+
+    @patch('bedrock.redirects.util.reverse')
+    def test_to_view(self, mock_reverse):
+        """
+        Should use return value of funfactory reverse as redirect location
+        """
+        mock_reverse.return_value = '/just/your/opinion/man'
+        pattern, view = redirect(r'^the/dude$', 'yeah.well.you.know.thats')
+        request = self.rf.get('the/dude')
+        response = view(request)
+        mock_reverse.assert_called_with('yeah.well.you.know.thats')
+        eq_(response.status_code, 301)
+        eq_(response['Location'], '/just/your/opinion/man')

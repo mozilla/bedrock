@@ -508,61 +508,6 @@ class TestFirstrunRedirect(FxVersionRedirectsMixin, TestCase):
             self.assertNotIn(expected, response.content)
 
 
-class FirefoxMainRedirect(FxVersionRedirectsMixin, TestCase):
-    def setUp(self):
-        self.url = reverse('firefox')
-        self.client = Client()
-
-    @patch.dict(product_details.firefox_versions,
-                LATEST_FIREFOX_VERSION='13.0.5')
-    def test_current_minor_version_firefox(self):
-        """
-        The current version of Firefox should be temporarily redirected to
-        /firefox/fx/ regardless of the minor version.
-        """
-        user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:13.0) '
-                      'Gecko/20100101 Firefox/13.0')
-        self.assert_ua_redirects_to(user_agent, 'firefox.fx', 302)
-
-    @patch.dict(product_details.firefox_versions,
-                LATEST_FIREFOX_VERSION='18.0')
-    def test_esr_firefox(self):
-        """
-        The ESR versions of Firefox should be temporarily redirected to
-        /firefox/fx/ regardless of the current version. At present they are
-        10.0.x and 17.0.x.
-        """
-        user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:10.0.12) '
-                      'Gecko/20111101 Firefox/10.0.12')
-        self.assert_ua_redirects_to(user_agent, 'firefox.fx', 302)
-
-        user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:17.0) '
-                      'Gecko/20100101 Firefox/17.0')
-        self.assert_ua_redirects_to(user_agent, 'firefox.fx', 302)
-
-    @patch.dict(product_details.firefox_versions,
-                LATEST_FIREFOX_VERSION='16.0')
-    def test_current_firefox(self):
-        """
-        The current version of Firefox should be temporarily redirected to
-        /firefox/fx/.
-        """
-        user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:16.0) '
-                      'Gecko/20100101 Firefox/16.0')
-        self.assert_ua_redirects_to(user_agent, 'firefox.fx', 302)
-
-    @patch.dict(product_details.firefox_versions,
-                LATEST_FIREFOX_VERSION='16.0')
-    def test_future_firefox(self):
-        """
-        Any newer versions of Firefox, including the Aurora and Beta channels,
-        should be temporarily redirected to /firefox/fx/.
-        """
-        user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:18.0) '
-                      'Gecko/20100101 Firefox/18.0')
-        self.assert_ua_redirects_to(user_agent, 'firefox.fx', 302)
-
-
 @patch.object(fx_views, 'firefox_details', firefox_details)
 @patch.object(fx_views, 'mobile_details', mobile_details)
 class TestNotesRedirects(TestCase):
