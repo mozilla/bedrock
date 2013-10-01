@@ -2,7 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from django.conf.urls.defaults import *
+from django.conf.urls import patterns
+
 from bedrock.mozorg.util import page
 
 
@@ -11,4 +12,5 @@ urlpatterns = patterns('',
     page('active-de-lang-file', 'active_de_lang_file.html'),
     page('inactive-de-lang-file', 'inactive_de_lang_file.html'),
     page('some-lang-files', 'some_lang_files.html'),
+    page('state-of-mozilla', 'state_of_mozilla.html'),
 )

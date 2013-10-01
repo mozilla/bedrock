@@ -1,17 +1,18 @@
-from mock import patch
 from django.test import Client
+
 from funfactory.urlresolvers import reverse
-from lib import l10n_utils
-from bedrock.mozorg.tests import TestCase
+from mock import patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
+from bedrock.mozorg.tests import TestCase
+
 
 @patch('bedrock.newsletter.utils.get_newsletter_languages', lambda *x: set(['en', 'fr', 'pt']))
-@patch.object(l10n_utils, 'lang_file_is_active', lambda *x: True)
+@patch('lib.l10n_utils.template_is_active', lambda *x: True)
 class TestNewsletterFooter(TestCase):
     def setUp(self):
-        self.view_name = 'firefox.fx'
+        self.view_name = 'newsletter.mozilla-and-you'
         self.client = Client()
 
     def test_country_selected(self):

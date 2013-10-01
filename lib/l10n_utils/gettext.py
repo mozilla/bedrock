@@ -11,9 +11,11 @@ from os.path import join
 from tokenize import generate_tokens, NAME, NEWLINE, OP, untokenize
 
 from django.conf import settings
+from django.core.cache import cache
+from django.template.loader import get_template
 from jinja2 import Environment
 
-from dotlang import parse as parse_lang, get_lang_path
+from dotlang import parse as parse_lang, get_lang_path, lang_file_is_active
 
 
 REGEX_URL = re.compile(r'.* (\S+/\S+\.[^:]+).*')
@@ -157,6 +159,35 @@ def parse_template(path):
                 if lang_files:
                     return lang_files
     return []
+
+
+def template_is_active(path, lang):
+    """Given a template path, determine if it should be active for a locale.
+
+    It is active if either the template's lang file, or the lang file
+    specified in the "set_lang_files" template tag has the active tag.
+
+    :param path: relative path to the template.
+    :param lang: language code
+    :return: boolean
+    """
+    if settings.DEV:
+        return True
+
+    cache_key = 'template_active:{lang}:{path}'.format(lang=lang, path=path)
+    is_active = cache.get(cache_key)
+    if is_active is None:
+        # try the quicker and more efficient check first
+        is_active = lang_file_is_active(get_lang_path(path), lang)
+
+        if not is_active:
+            template = get_template(path)
+            lang_files = parse_template(template.filename)
+            is_active = lang_files and lang_file_is_active(lang_files[0], lang)
+
+        cache.set(cache_key, is_active, settings.DOTLANG_CACHE)
+
+    return is_active
 
 
 def langfiles_for_path(path):

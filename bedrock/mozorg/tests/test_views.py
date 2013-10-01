@@ -159,7 +159,7 @@ class TestUniversityAmbassadors(TestCase):
                                         data=request_data)
 
 
-@patch.object(l10n_utils, 'lang_file_is_active', lambda *x: True)
+@patch.object(l10n_utils.dotlang, 'lang_file_is_active', lambda *x: True)
 class TestContribute(TestCase):
     def setUp(self):
         self.client = Client()

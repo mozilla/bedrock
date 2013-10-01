@@ -78,7 +78,7 @@ class TestTemplateLangFiles(TestCase):
         template = env.get_template('some_lang_files.html')
         # make a dummy object capable of having arbitrary attrs assigned
         request = type('request', (), {})()
-        template.render({'request':request})
+        template.render({'request': request})
         eq_(request.langfiles, ['dude', 'walter',
                                 'main', 'download_button', 'newsletter'])
 
@@ -123,8 +123,8 @@ class TestTemplateLangFiles(TestCase):
         The template-specific lang file should come before the defaults.
         """
         self.client.get('/de/active-de-lang-file/')
-        translate.assert_called_with(ANY, ['active_de_lang_file', 'main',
-                                           'download_button', 'newsletter'])
+        translate.assert_called_with(ANY, ['inactive_de_lang_file', 'active_de_lang_file',
+                                           'main', 'download_button', 'newsletter'])
 
 
 class TestNoLocale(TestCase):

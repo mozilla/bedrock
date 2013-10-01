@@ -9,7 +9,8 @@ from django.template import TemplateDoesNotExist
 
 from funfactory.urlresolvers import split_path
 
-from dotlang import get_lang_path, get_translations, lang_file_is_active
+from .dotlang import get_lang_path, get_translations
+from .gettext import template_is_active
 
 
 def render(request, template, context=None, **kwargs):
@@ -42,8 +43,7 @@ def render(request, template, context=None, **kwargs):
     if hasattr(request, 'locale') and request.locale != settings.LANGUAGE_CODE:
 
         # redirect to default lang if locale not active
-        if not (settings.DEV or
-                lang_file_is_active(context['langfile'], request.locale)):
+        if not template_is_active(template, get_locale(request)):
             return HttpResponseRedirect('/' + '/'.join([
                 settings.LANGUAGE_CODE,
                 split_path(request.get_full_path())[1]

@@ -13,8 +13,8 @@ from mock import ANY, MagicMock, Mock, patch
 from nose.tools import eq_, ok_
 
 from lib.l10n_utils.gettext import (_append_to_lang_file, langfiles_for_path,
-                                    parse_python, parse_template, po_msgs,
-                                    pot_to_langfiles)
+                                    parse_python, parse_template,
+                                    po_msgs, pot_to_langfiles, template_is_active)
 from lib.l10n_utils.tests import TempFileMixin
 from bedrock.mozorg.tests import TestCase
 
@@ -27,6 +27,40 @@ DOTLANG_FILES = ['dude', 'walter', 'donny']
 # we don't need to the decorated method.
 TRUE_MOCK = Mock()
 TRUE_MOCK.return_value = True
+
+
+class TestTemplateIsActive(TestCase):
+    @override_settings(DEV=False)
+    @patch('lib.l10n_utils.gettext.parse_template')
+    @patch('lib.l10n_utils.gettext.lang_file_is_active')
+    @patch('django.core.cache.cache.get')
+    @patch('django.core.cache.cache.set')
+    def test_cache_hit(self, cache_set_mock, cache_get_mock, lang_active_mock,
+                       parse_template_mock):
+        """Should not call other methods on cache hit."""
+        cache_get_mock.return_value = True
+        self.assertTrue(template_is_active('the/dude', 'de'))
+        cache_get_mock.assert_called_once_with('template_active:de:the/dude')
+        self.assertFalse(lang_active_mock.called)
+        self.assertFalse(parse_template_mock.called)
+        self.assertFalse(cache_set_mock.called)
+
+    @override_settings(DEV=False)
+    @patch('lib.l10n_utils.gettext.parse_template')
+    @patch('lib.l10n_utils.gettext.lang_file_is_active')
+    @patch('django.core.cache.cache.get')
+    @patch('django.core.cache.cache.set')
+    def test_cache_miss(self, cache_set_mock, cache_get_mock, lang_active_mock,
+                        parse_template_mock):
+        """Should check the files and set the cache on cache miss."""
+        cache_get_mock.return_value = None
+        lang_active_mock.return_value = True
+        self.assertTrue(template_is_active('the/dude', 'de'))
+        cache_key = 'template_active:de:the/dude'
+        cache_get_mock.assert_called_once_with(cache_key)
+        self.assertTrue(lang_active_mock.called)
+        self.assertFalse(parse_template_mock.called)
+        cache_set_mock.assert_called_once_with(cache_key, True, settings.DOTLANG_CACHE)
 
 
 class TestPOFiles(TestCase):

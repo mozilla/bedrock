@@ -12,20 +12,20 @@ from django.core.cache import cache
 from django.core.urlresolvers import clear_url_caches
 from django.http import HttpRequest
 from django.test.client import Client
+from django.test.utils import override_settings
 
 from jingo import env
 from jinja2 import FileSystemLoader
 from mock import patch
 from nose.tools import assert_not_equal, eq_, ok_
+from product_details import product_details
 from pyquery import PyQuery as pq
 from tower import extract_tower_python
 
-from lib.l10n_utils import render
-from lib.l10n_utils.dotlang import (_, FORMAT_IDENTIFIER_RE, lang_file_has_tag,
-                                    lang_file_is_active, parse, translate,
-                                    _lazy)
-from product_details import product_details
 from bedrock.mozorg.tests import TestCase
+from lib.l10n_utils import render
+from lib.l10n_utils.dotlang import (_, _lazy, FORMAT_IDENTIFIER_RE, lang_file_has_tag,
+                                    lang_file_is_active, parse, translate)
 
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test_files')
@@ -41,7 +41,7 @@ class TestLangFilesActivation(TestCase):
         clear_url_caches()
         self.client = Client()
 
-    @patch('lib.l10n_utils.settings.DEV', False)
+    @override_settings(DEV=False)
     def test_lang_file_is_active(self):
         """
         `lang_file_is_active` should return true if lang file has the
@@ -67,16 +67,19 @@ class TestLangFilesActivation(TestCase):
         ok_(not lang_file_has_tag('main', 'de', 'tag_after_non_tag_lines'))
         ok_(not lang_file_has_tag('main', 'de', 'no_such_tag'))
 
-    @patch('lib.l10n_utils.settings.DEV', False)
+    @override_settings(DEV=False)
     def test_active_locale_not_redirected(self):
-        """ Active lang file should render correctly. """
+        """ Active lang file should render correctly.
+
+        Also the template has an inactive lang file manually set,
+        but that should not cause it to be inactive.
+        """
         response = self.client.get('/de/active-de-lang-file/')
         eq_(response.status_code, 200)
         doc = pq(response.content)
         eq_(doc('h1').text(), 'Die Lage von Mozilla')
 
-    @patch('lib.l10n_utils.settings.DEV', False)
-    @patch.object(settings, 'LANGUAGE_CODE', 'en-US')
+    @override_settings(DEV=False, LANGUAGE_CODE='en-US')
     def test_inactive_locale_redirected(self):
         """ Inactive locale should redirect to en-US. """
         response = self.client.get('/de/inactive-de-lang-file/')
@@ -87,12 +90,20 @@ class TestLangFilesActivation(TestCase):
         doc = pq(response.content)
         eq_(doc('h1').text(), 'The State of Mozilla')
 
-    @patch('lib.l10n_utils.settings.DEV', True)
+    @override_settings(DEV=True)
     def test_inactive_locale_not_redirected_dev_true(self):
         """
         Inactive lang file should not redirect in DEV mode.
         """
         response = self.client.get('/de/inactive-de-lang-file/')
+        eq_(response.status_code, 200)
+        doc = pq(response.content)
+        eq_(doc('h1').text(), 'Die Lage von Mozilla')
+
+    @override_settings(DEV=False)
+    def test_active_alternate_lang_file(self):
+        """Template with active alternate lang file should activate from it."""
+        response = self.client.get('/de/state-of-mozilla/')
         eq_(response.status_code, 200)
         doc = pq(response.content)
         eq_(doc('h1').text(), 'Die Lage von Mozilla')
