@@ -42,11 +42,11 @@
 {% block content %}
 <main role="main">
   <header id="main-feature">
+      {% if not is_latest %}
+      {{ download_firefox(small=True) }}
+      {% endif %}
       <h1 class="large">{{_('Check Your Plugins')}}</h1>
       <p class="preamble">{{_('Keeping your plugins up to date helps Firefox run safely and smoothly.')}}</p>
-      {% if not is_latest %}
-        {{ download_firefox(small=True) }}
-      {% endif %}
   </header>
   <section class="plugin-status-container billboard">
       <h2>{{_('Plugin Status')}}</h2>
