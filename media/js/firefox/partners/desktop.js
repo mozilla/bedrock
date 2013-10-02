@@ -291,7 +291,7 @@
             $visible.stop();
 
             var $screen = $('#screen-' + to_slide.attr('id'));
-            
+
             $screen.stop().fadeIn('fast', function() {
                 // make sure from/to screens are properly shown/hidden
                 $screen.css('opacity', 1).show();
@@ -452,7 +452,8 @@
 
     tweens.article_os = {
         from: {
-            css: { top: 0, ease: Power2.easeOut },
+            css: { top: 0 },
+            ease: Power2.easeOut,
             immediateRender: true
         },
         to: {
@@ -469,7 +470,8 @@
 
     tweens.article_marketplace = {
         from: {
-            css: { top: (parallax_offset*-1), ease: Power2.easeOut },
+            css: { top: (parallax_offset*-1) },
+            ease: Power2.easeOut,
             immediateRender: true
         },
         to: {
@@ -491,7 +493,8 @@
 
     tweens.article_android = {
         from: {
-            css: { top: (parallax_offset*-2), ease: Power2.easeOut },
+            css: { top: (parallax_offset*-2) },
+            ease: Power2.easeOut,
             immediateRender: true
         },
         to: {
