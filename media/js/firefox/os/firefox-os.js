@@ -22,6 +22,14 @@
         }
       ]
     },
+    "de": {
+      "partner": [
+        {
+          "name": "congstar",
+          "url": "http://aktion.congstar.de/firefox-os"
+        }
+      ]
+    },
     "es": {
       "partner": [
         {
