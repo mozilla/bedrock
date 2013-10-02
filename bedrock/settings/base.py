@@ -595,8 +595,8 @@ MINIFY_BUNDLES = {
         ),
         'partners_desktop': (
             'js/libs/jquery.pageslide.min.js',
-            'js/libs/tweenmax.min.js',
-            'js/libs/superscrollorama.js',
+            'js/libs/tweenmax.1.9.7.min.js',
+            'js/libs/superscrollorama-1.0.1.js',
             'js/libs/jquery.spritely-0.6.1.js',
             'js/firefox/partners/desktop.js',
         ),
