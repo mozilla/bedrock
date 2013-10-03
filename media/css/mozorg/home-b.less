@@ -26,37 +26,39 @@
     white-space: nowrap;
 }
 
+// A few styles for non-JS browsers
+.no-js {
+    img.js,
+    .panel-title {
+        display: none;
+    }
+}
 
-
-// Home page B, version 2
 // Override sandstone base layout so we can have full-width blocks.
-.home-b2 {
-    #wrapper,
-    #main-content,
-    .billboard {
-        width: 100%;
-        padding: 0;
-    }
+#wrapper,
+#main-content,
+.billboard {
+    width: 100%;
+    padding: 0;
+}
 
-    #masthead,
-    .container,
-    .newsletter-form {
-        width: @widthDesktop - (@gridGutterWidth * 2);
-        .clearfix();
-        margin-left: auto;
-        margin-right: auto;
-        padding: 0;
-    }
+#masthead,
+.container,
+.newsletter-form {
+    width: (@widthDesktop - (@gridGutterWidth * 2));
+    .clearfix();
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+}
 
-    .mission,
-    .pillars {
-        width: @widthDesktop - (@gridGutterWidth * 2);
-    }
+.mission,
+.pillars {
+    width: (@widthDesktop - (@gridGutterWidth * 2));
+}
 
-    #colophon {
-        margin-top: 0;
-    }
-
+#colophon {
+    margin-top: 0;
 }
 
 
@@ -81,7 +83,7 @@
         }
     }
 
-    p {
+    .tagline {
        font-size: 55px;
        letter-spacing: -.025em;
        margin: 0;
@@ -96,7 +98,7 @@
 .lang-fr,
 .lang-it,
 .lang-mk {
-    .mission p {
+    .mission .tagline {
         font-size: 42px;
     }
 }
@@ -114,7 +116,6 @@
 }
 
 
-
 // @Accordion
 .pillars {
     background: url(/media/img/home/box-shadow-960.png) center bottom no-repeat;
@@ -129,15 +130,20 @@
 
 .accordion {
     list-style: none;
-    position: absolute;
+    position: relative;
     left: -.5%;
     top: 0;
     width: 102%;
+    margin: 0;
+}
+
+.js .accordion {
     overflow: hidden;
 }
 
 .panel {
     display: block;
+    margin: 0;
     position: relative;
 
     &:focus {
@@ -151,6 +157,7 @@
     float: left;
     width: 25%;
     height: 380px;
+    min-height: 0;
     overflow: hidden;
     box-shadow: -6px 0 10px -4px rgba(0, 0, 0, .5);
 
@@ -159,21 +166,25 @@
     }
 }
 
+.no-js .panel {
+    min-height: 16em;
+}
+
 // A title visible when the panel is in its initial state.
 .panel-title {
     color: #fff;
     font-size: 18px;
+    line-height: 1.2;
     font-weight: bold;
     letter-spacing: -.025em;
-    line-height: 1.2;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, .15);
+    text-transform: uppercase;
     margin: 0;
     padding: 40px 15px 0;
     position: absolute;
-    left: 0;
     bottom: 0;
-    text-align: center;
-    text-transform: uppercase;
-    text-shadow: 0 1px 0 rgba(0, 0, 0, .15);
+    left: 0;
     width: 215px;
     height: 80px;
 
@@ -219,17 +230,10 @@
 .panel-content {
     .open-sans-light;
     color: #fff;
-    display: none;
     font-size: 20px;
     line-height: 1.3;
     position: relative;
     text-shadow: 0 1px 0 rgba(0, 0, 0, .15);
-
-    .panel-logo {
-        position: absolute;
-        left: 300px;
-        top: 30px;
-    }
 
     h3 {
         font-weight: bold;
@@ -261,7 +265,7 @@
         right: 0;
         bottom: 0;
         left: 0;
-        padding: 80px 40px 40px 300px;
+        padding: 20px 20px 20px 300px;
     }
 
     a:link,
@@ -285,16 +289,27 @@
 }
 
 .wide .panel-content {
-    display: none; // This is safe because JS sets the 'wide' class
-    height: 260px;
+    height: 300px;
+    min-height: 0;
     width: 290px;
-    padding: 80px 40px 40px 300px;
+    padding: 40px 40px 40px 300px;
     position: absolute;
     top: 0;
     left: 0;
+
+    & > a {
+        padding: 40px 40px 40px 300px;
+    }
 }
 
+.js .panel-content {
+    display: none;
+}
 
+.no-js .panel-content {
+    min-height: 9.5em;
+    padding: 1em 40px 1em 300px;
+}
 
 // @Promo panels - specific styling for individual panels.
 
@@ -324,14 +339,14 @@
 
 // Firefox OS
 #panel-fxos {
-    background: #0095dd url(/media/img/home/panel/firefoxos/firefoxos-fox.png) -230px -190px no-repeat;
+    background: #0095dd url(/media/img/home/panel/firefoxos/firefoxos-fox.png?04-11-13) -100px -100px no-repeat;
     -webkit-transition: background-position .5s ease-in-out;
        -moz-transition: background-position .5s ease-in-out;
          -o-transition: background-position .5s ease-in-out;
             transition: background-position .5s ease-in-out;
 
     &.expanded {
-        background-position: -180px -190px;
+        background-position: -60px -100px;
         -webkit-transition: background-position .5s ease-in-out;
            -moz-transition: background-position .5s ease-in-out;
              -o-transition: background-position .5s ease-in-out;
@@ -339,7 +354,7 @@
     }
 
     &.compressed {
-        background-position: -260px -190px;
+        background-position: -140px -100px;
         -webkit-transition: background-position .5s ease-in-out;
            -moz-transition: background-position .5s ease-in-out;
              -o-transition: background-position .5s ease-in-out;
@@ -421,7 +436,7 @@
 
     .panel-content {
         color: #fff;
-        background: transparent url(/media/img/home/panel/mozfest/bg-content.png) 230px 0 no-repeat;
+        background: transparent url(/media/img/home/panel/mozfest/bg-content.png?04-11-13) 230px 0 no-repeat;
 
         h3 {
             color: #ff3946;
@@ -454,20 +469,37 @@
     background:         linear-gradient(bottom, rgba(206, 211, 211, .95) 50%, rgba(206, 211, 211, .85) 65%, rgba(206, 211, 211, 0) 100%);
 }
 
+// @High resolution images for @retina-type displays
+@media (-webkit-min-device-pixel-ratio: 1.5),
+       (                min-resolution: 1.5dppx),
+       (                min-resolution: 144dpi) {
+
+    #panel-fxos {
+        background-image: url(/media/img/home/panel/firefoxos/firefoxos-fox-hires.png);
+        background-size: 335px 468px;
+    }
+
+    #panel-mdn {
+        background-image: url(/media/img/home/panel/mdn/bg-logo-mdn-hires.png);
+        background-image: url(/media/img/home/panel/mdn/bg-logo-mdn-hires.png),
+                          url(/media/img/home/panel/mdn/bg-grid.png);
+        background-size: 300px 335px;
+        background-size: 300px 335px, auto auto;
+    }
+
+    #panel-mozfest {
+        background-image: url(/media/img/home/panel/mozfest/logo-mozfest-big-hires.png);
+        background-image: url(/media/img/home/panel/mozfest/logo-mozfest-big-hires.png),
+                          url(/media/img/home/panel/mozfest/bg-mosaic.jpg);
+        background-size: 360px 360px;
+        background-size: 360px 360px, auto auto;
+    }
+
+}
 
 
 // @Extra content - The lower section of the page
 .extra {
-    margin-bottom: @baseLine * 2;
-
-    h2 {
-        font-size: 34px;
-        margin: 0 0 .75em;
-    }
-}
-
-// Alternative styling for version B2
-.home-b2 .extra {
     background: #c1423d;
     padding: 40px 0;
     margin-bottom: 0;
@@ -475,6 +507,8 @@
     text-shadow: 0 1px 0 rgba(0, 0, 0, .1);
 
     h2 {
+        font-size: 34px;
+        margin: 0 0 .75em;
         color: #fff;
         text-shadow: 0 1px 0 rgba(0, 0, 0, .1);
     }
@@ -482,70 +516,51 @@
 
 
 
-// @Download Firefox - in right-side block for version B1
-.extra-download {
-    .span(4);
-    .offset(1);
-    float: right;
-}
-
-
-
 // @Newsletter form
-// Appears in the extra section in version B2
-.extra {
-    .newsletter-form {
-        .span(4);
-        .offset(1);
-        float: right;
-        background: transparent;
-        padding: 0;
-        border: 0;
-        box-shadow: none;
+.newsletter-form {
+    .span(4);
+    float: right;
+    background: transparent;
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+}
+
+#footer-email-form {
+    h3 {
+        font-size: 34px;
+        margin: 0 0 .75em;
+        color: #fff;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, .1);
     }
 
-    #footer-email-form {
-        h3 {
-            font-size: 34px;
-            margin: 0 0 .75em;
-            color: #fff;
-            text-shadow: 0 1px 0 rgba(0, 0, 0, .1);
-        }
+    .form-contents,
+    .form-submit {
+        width: auto;
+        float: none;
+        margin: 0 0 @baseLine;
+    }
 
-        .form-contents,
-        .form-submit {
-            width: auto;
-            float: none;
-            margin: 0 0 @baseLine;
-        }
+    .field-email input {
+        width: 80%;
+        padding: 10px 5%;
+        border-radius: .5em;
+    }
 
-        .field-email input {
-            width: 80%;
-            padding: 10px 5%;
-            border-radius: .5em;
-        }
+    a:link,
+    a:visited {
+        color: #fff;
+    }
 
-        a:link,
-        a:visited {
-            color: #fff;
-        }
-
-        .button {
-            width: 90%;
-            padding: 10px 5%;
-        }
+    .button {
+        width: 90%;
+        padding: 10px 5%;
     }
 }
 
-// Newsletter form has the standard layout in B1
-// but with reduced padding
-.home-b1 .newsletter-form {
-    padding-top: @baseLine;
-    padding-bottom: @baseLine;
-}
 
 
-// @Download Firefox - promo bar appears in version B2
+// @Download Firefox promo bar
 #firefox-promo {
     padding-top: 10px;
     padding-bottom: 0;
@@ -553,8 +568,7 @@
     position: relative;
 
     .container {
-        .span(10);
-        float: none;
+        width: (@widthDesktop - (@gridColumnWidth * 2) - (@gridGutterWidth * 2));
         margin: 0 auto;
     }
 
@@ -575,22 +589,100 @@
     .download-button {
         float: right;
         margin-top: 0;
-        padding-bottom: 6px;
         max-width: 40%;
+        padding-bottom: 6px;
     }
 }
 
-// iOS temporary styles until we have new unsupported text
-.ios {
-    #firefox-promo {
-        min-height: 62px;
+.home-b2 #firefox-promo {
+
+    .container {
+        width: (@widthDesktop - (@gridGutterWidth * 2));
+        padding-top: 40px;
+        padding-bottom: 10px;
     }
 
-    .download-button .unsupported-download {
+    h3 {
+        font-size: 40px;
+        letter-spacing: -.05em;
+        margin: -35px 0 0;
+        padding: 40px 0 0;
+        width: 70%;
+        color: #999;
+
+        b {
+            .open-sans;
+            border-right: 1px dotted @borderColor;
+            color: @textColorSecondary;
+            font-weight: normal;
+            margin-right: 10px;
+            padding-right: 20px;
+        }
+    }
+
+    img {
+        float: left;
+        margin: -30px 20px -5px 0;
+    }
+
+    #firefox-promo-link {
+        margin: 0;
+        position: static;
+
+        &:hover,
+        &:focus,
+        &:active {
+            text-decoration: none;
+        }
+    }
+
+    .download-button {
+        margin-top: -5px;
+    }
+
+    .download-link {
+        width: 280px;
+    }
+
+    .download-content {
+        padding: 15px 20px 15px 65px;
+        background-position: 20px 24px;
+    }
+
+    .download-title {
         display: none;
     }
-}
 
+    .download-subtitle {
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: bold;
+        display: block;
+        font-size: 18px;
+        letter-spacing: -.05em;
+    }
+
+    .download-lang,
+    .download-platform {
+        .open-sans-light;
+        color: #360;
+        display: inline;
+        font-size: 11px;
+        font-weight: bold;
+        text-shadow: 0 1px #9c6;
+    }
+
+    .download-lang {
+        position: static;
+        text-align: left;
+        width: auto;
+    }
+
+    .download-platform:before {
+        content: '• ';
+    }
+
+}
 
 
 // @News
@@ -622,16 +714,16 @@
     margin-right: 10px;
 
     button {
-        display: inline-block;
-        width: 25px;
-        height: 25px;
+        background: transparent url(/media/img/home/control-arrows.png) no-repeat;
         border: 0;
+        cursor: pointer;
+        display: inline-block;
+        height: 25px;
+        margin: 0 10px 0 0;
+        overflow: hidden;
         padding: 0;
         text-indent: -99em;
-        overflow: hidden;
-        margin: 0 10px 0 0;
-        background: transparent url(/media/img/home/control-arrows.png) no-repeat;
-        cursor: pointer;
+        width: 25px;
     }
 
     .btn-next {
@@ -662,23 +754,20 @@
 
 }
 
-// Light colors for B2
-.home-b2 {
-    .extra-news a:link,
-    .extra-news a:visited,
-    .extra-contribute a:link,
-    .extra-contribute a:visited {
-        color: #fff;
-        text-shadow: 0 1px 0 rgba(0, 0, 0, .1);
-    }
+.extra-news a:link,
+.extra-news a:visited,
+.extra-contribute a:link,
+.extra-contribute a:visited {
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, .1);
+}
 
-    .extra-contribute a {
-        font-weight: bold;
-    }
+.extra-contribute a {
+    font-weight: bold;
+}
 
-    .news-buttons button {
-        background-image: url(/media/img/home/control-arrows-lt.png);
-    }
+.news-buttons button {
+    background-image: url(/media/img/home/control-arrows-lt.png);
 }
 
 
@@ -687,19 +776,15 @@
 // @Tablet Layout: 760px
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
 
-    // Adjust layout for B2
-    .home-b2 {
-        #masthead,
-        .container,
-        .newsletter-form,
-        .mission,
-        .pillars {
-            width: @widthTablet - (@gridGutterWidth * 2);
-        }
-
+    #masthead,
+    .container,
+    .newsletter-form,
+    .mission,
+    .pillars {
+        width: (@widthTablet - (@gridGutterWidth * 2));
     }
 
-    .mission p {
+    .mission .tagline {
         font-size: 42px;
     }
 
@@ -749,14 +834,14 @@
 
     // Firefox OS
     #panel-fxos {
-        background-image: url(/media/img/home/panel/firefoxos/firefoxos-fox-md.png);
-        background-position: -185px -100px;
+        background-image: url(/media/img/home/panel/firefoxos/firefoxos-fox-md.png?04-11-13);
+        background-position: -115px -70px;
 
         &.expanded {
-            background-position: -166px -100px;
+            background-position: -95px -70px;
         }
         &.compressed {
-            background-position: -190px -100px;
+            background-position: -135px -70px;
         }
     }
 
@@ -802,28 +887,57 @@
     }
 
     #firefox-promo .container {
-        width: @widthTablet - (@gridGutterWidth * 2);
+        width: (@widthTablet - (@gridGutterWidth * 2));
+    }
+
+    .home-b2 #firefox-promo {
+        .container {
+            width: (@widthTablet - (@gridGutterWidth * 2));
+        }
+
+        h3 {
+            width: 60%;
+            font-size: 28px;
+
+            b {
+                border: 0;
+                display: block;
+                font-size: 32px;
+                margin: 0 0 .15em;
+                padding: 0;
+            }
+        }
     }
 
 }
 
 
+// @High resolution images for @retina-type displays
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) and (                min-resolution: 1.5dppx),
+       only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) and (                min-resolution: 144dpi) {
+
+    #panel-fxos {
+        background-image: url(/media/img/home/panel/firefoxos/firefoxos-fox-md-hires.png);
+        background-size: 290px 390px;
+    }
+
+}
+
 /****************************************************************************/
 // @Mobile layout: 320px
 @media only screen and (max-width: @breakTablet) {
 
-    .home-b2 {
-        #masthead,
-        .container,
-        .newsletter-form,
-        .pillars {
-            width: @widthMobile - @gridGutterWidth;
-        }
+    #masthead,
+    .container,
+    .newsletter-form,
+    .pillars {
+        width: (@widthMobile - @gridGutterWidth);
+    }
 
-        .mission {
-            width: 260px;
-            margin: 20px auto;
-        }
+    .mission {
+        width: 260px;
+        margin: 20px auto;
     }
 
     .mission {
@@ -841,7 +955,7 @@
             }
         }
 
-        p {
+        .tagline {
             font-size: 30px;
         }
     }
@@ -853,7 +967,7 @@
     .lang-de,
     .lang-el,
     .lang-es-ES {
-        .mission p {
+        .mission .tagline {
             font-size: 24px;
         }
     }
@@ -925,6 +1039,16 @@
         }
     }
 
+    .no-js .panel {
+        height: auto;
+        min-height: 20em;
+        padding: 0;
+
+        .panel-content {
+            padding: 0;
+        }
+    }
+
     // Adjustments for specific panels.
     // Mozilla Mission
     #panel-mission {
@@ -942,15 +1066,15 @@
 
     // Firefox OS
     #panel-fxos {
-        background-image: url(/media/img/home/panel/firefoxos/firefoxos-fox-sm.png);
-        background-position: -110px -95px;
+        background-image: url(/media/img/home/panel/firefoxos/firefoxos-fox-sm.png?04-11-13);
+        background-position: -85px -95px;
 
         &.expanded {
-            background-position: -110px -30px;
+            background-position: -85px -30px;
         }
 
         &.compressed {
-            background-position: -110px -110px;
+            background-position: -85px -110px;
         }
     }
 
@@ -1020,10 +1144,9 @@
         margin: 0 10px @baseLine;
     }
 
-    // Download promo only appears in B2
     #firefox-promo {
         .container {
-            width: @widthMobile - (@gridGutterWidth * 2);
+            width: (@widthMobile - (@gridGutterWidth * 2));
         }
 
         h3 {
@@ -1056,15 +1179,32 @@
         }
     }
 
-    /* iOS temporary styles until we have new 'unsupported' text */
-    .ios #firefox-promo {
-        min-height: 90px;
-        padding-top: 20px;
-        h3 {
-            margin: 0 auto auto 100px;
+    .home-b2 #firefox-promo {
+        .container {
+            width: (@widthMobile - (@gridGutterWidth * 2));
         }
-        #firefox-promo-link {
-            left: 20px;
+
+        h3 {
+            font-size: 24px;
+            min-height: 100px;
+            padding: 15px 0;
+            width: auto;
+
+            img {
+                margin-top: 0;
+            }
+
+            b {
+                border: 0;
+                display: block;
+                font-size: 30px;
+                margin: 10px 0 .15em;
+                padding: 0;
+            }
+        }
+
+        .download-button {
+            margin-top: 10px;
         }
     }
 
@@ -1081,13 +1221,10 @@
         padding-bottom: 18px;
     }
 
-    // Version B2
-    .home-b2 {
-        #masthead,
-        .container,
-        .pillars {
-            width: @widthMobileLandscape - @gridGutterWidth;
-        }
+    #masthead,
+    .container,
+    .pillars {
+        width: (@widthMobileLandscape - @gridGutterWidth);
     }
 
     // Mozilla Mission
@@ -1103,14 +1240,14 @@
 
     // Firefox OS
     #panel-fxos {
-        background-position: -70px -95px;
+        background-position: -40px -95px;
 
         &.expanded {
-            background-position: -70px -30px;
+            background-position: -40px -30px;
         }
 
         &.compressed {
-            background-position: -70px -110px;
+            background-position: -40px -110px;
         }
     }
 
@@ -1162,8 +1299,33 @@
         margin-left: 60px;
     }
 
-    #firefox-promo .container {
-        width: @widthMobile;
+}
+
+
+// @High resolution images for @retina-type displays
+@media only screen and (max-width: @breakTablet) and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (max-width: @breakTablet) and (                min-resolution: 1.5dppx),
+       only screen and (max-width: @breakTablet) and (                min-resolution: 144dpi) {
+
+    #panel-fxos {
+        background-image: url(/media/img/home/panel/firefoxos/firefoxos-fox-sm-hires.png);
+        background-size: 190px 246px;
+    }
+
+    #panel-mdn {
+        background-image: url(/media/img/home/panel/mdn/bg-logo-mdn-sm-hires.png);
+        background-image: url(/media/img/home/panel/mdn/bg-logo-mdn-sm-hires.png),
+                          url(/media/img/home/panel/mdn/bg-grid.png);
+        background-size: 136px 151px;
+        background-size: 136px 151px, auto auto;
+    }
+
+    #panel-mozfest {
+        background-image: url(/media/img/home/panel/mozfest/logo-mozfest-sm-hires.png);
+        background-image: url(/media/img/home/panel/mozfest/logo-mozfest-sm-hires.png),
+                          url(/media/img/home/panel/mozfest/bg-mosaic.jpg);
+        background-size: 170px 170px;
+        background-size: 170px 170px, auto auto;
     }
 
 }
