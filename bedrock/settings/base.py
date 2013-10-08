@@ -224,11 +224,6 @@ MINIFY_BUNDLES = {
         'firefox_os_ie': (
             'css/firefox/os/firefox-os-ie.less',
         ),
-        'firefox_platforms': (
-            'css/firefox/template-resp.less',
-            'css/base/mozilla-expanders.less',
-            'css/firefox/platforms.less',
-        ),
         'firefox_releases_index': (
             'css/firefox/releases-index.less',
         ),
@@ -493,9 +488,6 @@ MINIFY_BUNDLES = {
         ),
         'firefox_os_ie9': (
             'js/libs/matchMedia.addListener.js',
-        ),
-        'firefox_platforms': (
-            'js/base/mozilla-expanders.js',
         ),
         'firefox_faq': (
             'js/base/mozilla-expanders.js',
