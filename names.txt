@@ -1923,3 +1923,4 @@ Farrow,Thomas
 Khader,Rami
 Diaa,Abdullah
 Pradeesh,Jai
+Truong,Andrew
