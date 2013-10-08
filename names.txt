@@ -1557,7 +1557,7 @@ Duffy,Cian
 Farrell,Conor
 Gunn,Marion
 Höglund,Panu Petteri
-Mac Aodha Bhuí,Iarla 
+Mac Aodha Bhuí,Iarla
 Mac Mathúna,Diarmaid
 Mac Sithigh,Dáithi
 McGuinness,Enda
@@ -1775,7 +1775,6 @@ Vold,Erik
 Rozbora,Branislav
 Cajes,Aaron
 Tsalaportas,Panagiotis
-Bondy,Brian R.
 Bondy,Brian
 Ketunuti,Ekanan
 Kadiyala,Galaxy
@@ -1926,3 +1925,4 @@ Pradeesh,Jai
 Truong,Andrew
 Reddy,Sujith
 Elango,Gauthamraj
+Kitchener,James
