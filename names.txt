@@ -1941,3 +1941,5 @@ Klotz,Aaron
 Vijayan,Kannan
 Burns,David
 Alagenchev,Ivan
+Gohman,Dan
+Tausky,Yaron
