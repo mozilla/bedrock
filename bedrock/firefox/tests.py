@@ -11,12 +11,10 @@ from urlparse import parse_qsl, urlparse
 from django.conf import settings
 from django.test.client import Client
 from django.utils import simplejson
-from django.utils import unittest
 
 from funfactory.urlresolvers import reverse
 from mock import ANY, call, Mock, patch
 from nose.tools import eq_, ok_
-from platforms import load_devices
 from pyquery import PyQuery as pq
 
 from bedrock.firefox import views as fx_views
@@ -322,19 +320,6 @@ class TestFirefoxPartners(TestCase):
         self.assertEqual(response.status_code, 200)
         response = csrf_client.post(post_url, {'first_name': "Partner"})
         self.assertEqual(response.status_code, 403)
-
-
-class TestLoadDevices(unittest.TestCase):
-
-    def file(self):
-        # where should the test file go?
-        return 'TODO'
-
-    @unittest.skip('Please to write test')
-    def test_load_devices(self):
-        load_devices(self, self.file(), cacheDevices=False)
-
-        #todo
 
 
 @patch.object(fx_views, 'firefox_details', firefox_details)
