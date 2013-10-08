@@ -21,7 +21,6 @@ from bedrock.firefox import version_re
 from bedrock.firefox.forms import SMSSendForm
 from bedrock.mozorg.context_processors import funnelcake_param
 from bedrock.mozorg.views import process_partnership_form
-from bedrock.firefox.platforms import load_devices
 from bedrock.firefox.utils import is_current_or_newer
 from bedrock.firefox.firefox_details import firefox_details, mobile_details
 from lib.l10n_utils.dotlang import _
@@ -145,12 +144,6 @@ def windows_billboards(req):
 
 def fx_home_redirect(request):
     return HttpResponseRedirect(reverse('firefox.fx'))
-
-
-def platforms(request):
-    file = settings.MEDIA_ROOT + '/devices.csv'
-    return l10n_utils.render(request, 'firefox/mobile/platforms.html',
-                             {'devices': load_devices(request, file)})
 
 
 def dnt(request):
