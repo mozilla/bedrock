@@ -125,10 +125,11 @@
       </div> <!-- /#scene1 -->
 
       <div class="scene" id="scene2">
-        <p class="thankyou" tabindex="0">
+        <div class="thankyou" tabindex="0">
           {{_("Thanks for downloading Firefox!")}}
           {{_("As a non-profit, we’re free to innovate on your behalf without any pressure to compromise. You’re going to love the difference.")}}
-        </p>
+          {% include 'firefox/includes/social-share.html' %}
+        </div>
 
         <ol class="installation">
           <li id="install1">
