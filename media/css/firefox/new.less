@@ -413,6 +413,22 @@ html[lang="uk"] {
     }
 }
 
+.socialshare {
+    display: inline-block;
+    font-style: normal;
+    font-size: 16px;
+    div > a {
+        background: none;
+        padding: 0px 28px 0px .5em;
+    }
+}
+
+.socialshare.open {
+    #share-options {
+        .box-shadow(0 0 2px 0 rgba(0,0,0,0.5));
+    }
+}
+
 noscript {
     .button-white, .button-white:link, .button-white:visited {
         min-width: 0;
@@ -475,6 +491,13 @@ noscript {
         font-size: 24px;
         padding-top: 28px;
         height: 89px;
+    }
+    .socialshare {
+        display: block;
+        margin-top: @baseLine / 2;
+        div > a {
+            padding: 0px 28px 0px 0;
+        }
     }
 }
 
@@ -672,5 +695,13 @@ noscript {
     }
     .osx .ready-for-scene2, .windows .ready-for-scene2, .winIE8 .ready-for-scene2 {
         #install1, #install2, #install3 { background-image: none; }
+    }
+    .socialshare {
+        display: block;
+        font-size: 14px;
+        margin-top: @baseLine / 2;
+        div > a {
+            padding: 0px 28px 0px 0;
+        }
     }
 }

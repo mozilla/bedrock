@@ -68,7 +68,7 @@
   </ul>
   <div id="share-pane" aria-expanded="false">
     <a class="share close" href="#share" role="button" title="{{ _('Close') }}"><span>{{ _('Close') }}</span></a>
-    <div class="socialshare" data-type="small-bubbles" data-fb-lang="{{ facebook_locale }}"></div>
+    {% include 'firefox/includes/social-share.html' %}
   </div>
 </nav>
 
