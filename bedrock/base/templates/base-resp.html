@@ -52,10 +52,10 @@
         <nav id="nav-main" role="navigation">
           <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
           <ul id="nav-main-menu">
-            <li class="first"><a href="{{ url('mozorg.mission') }}">{{_('Mission')}}</a></li>
-            <li><a href="{{ url('mozorg.about') }}">{{_('About')}}</a></li>
-            <li><a href="{{ url('mozorg.products') }}">{{_('Products')}}</a></li>
-            <li class="last"><a href="{{ url('mozorg.contribute') }}">{{_('Get Involved')}}</a></li>
+            <li class="first mission-item"><a href="{{ url('mozorg.mission') }}">{{_('Mission')}}</a></li>
+            <li class="about-item"><a href="{{ url('mozorg.about') }}">{{_('About')}}</a></li>
+            <li class="products-item"><a href="{{ url('mozorg.products') }}">{{_('Products')}}</a></li>
+            <li class="last contribute-item"><a href="{{ url('mozorg.contribute') }}">{{_('Get Involved')}}</a></li>
           </ul>
         </nav>
         {% endblock %}
