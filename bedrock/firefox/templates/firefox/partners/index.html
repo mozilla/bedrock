@@ -4,6 +4,15 @@
 
 {% extends "base-resp.html" %}
 
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{ _('Firefox OS, Marketplace, Android — Partners') }}{% endblock %}
+{% block page_desc %}{{ _('We’re enabling operators, phone manufacturers and developers to manage, customize and improve relationships with their customers directly through our mobile products: Firefox OS, Firefox Marketplace and Firefox for Android.') }}{% endblock %}
+{% block page_image %}{{ media('img/firefox/firefox-256.jpg') }}{% endblock %}
+{% block page_favicon %}{{ media('img/firefox/favicon.ico?2013-08') }}{% endblock %}
+
+{% block facebook_id %}14696440021{# facebook.com/Firefox #}{% endblock %}
+{% block twitter_id %}firefoxapps{% endblock %}
+
 {% block body_id %}firefox-partners{% endblock %}
 {% block body_class %}sky{% endblock %}
 
@@ -17,14 +26,6 @@
     MOBILE_JS_FILES = {{ js_mobile|safe }};
     DESKTOP_JS_FILES = {{ js_desktop|safe }};
   </script>
-
-  {# OpenGraph Metadata #}
-  <meta property="og:url" content="{% block og_url %}{{ request.build_absolute_uri() }}{% endblock %}">
-  <meta property="og:site_name" content="{{ _('Mozilla') }}">
-  <meta property="og:title" content="{% block og_title %}{{ _('Firefox OS, Marketplace, Android — Partners — Mozilla') }}{% endblock %}">
-  <meta property="og:type" content="{% block og_type %}website{% endblock %}">
-  <meta property="og:image" content="{% block og_image %}{{ media('img/firefox/firefox-100.jpg?2013-06') }}{% endblock %}">
-  <meta property="og:description" content="{{ _('We’re enabling operators, phone manufacturers and developers to manage, customize and improve relationships with their customers directly through our mobile products: Firefox OS, Firefox Marketplace and Firefox for Android.') }}">
 {% endblock %}
 
 {% block site_js %}
@@ -34,9 +35,6 @@
 {% block js %}
   {{ js('partners') }}
 {% endblock %}
-
-{% block page_title_prefix %}{% endblock %}
-{% block page_title %}{{ _('Firefox OS, Marketplace, Android — Partners') }}{% endblock %}
 
 {% block string_data %}
   {# L10n: This is the label for a button that closes a modal dialog #}

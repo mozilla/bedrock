@@ -5,19 +5,12 @@
 {% extends "firefox/base-resp.html" %}
 
 {% block page_title %}{{ _('Get Firefox for Android') }}{% endblock %}
+{% block page_desc %}{{ _('Send yourself a text message to download Firefox for Android from Google Play.') }}{% endblock %}
+
 {% block body_id %}mobile-sms{% endblock %}
 
 {% block site_css %}
   {{ css('firefox_sms') }}
-{% endblock %}
-
-{% block extrahead %}
-  <meta property="og:title" content="{{ _('Get Firefox for Android') }}">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="http://mozcom-cdn.mozilla.net/img/firefox-100.jpg?2013-06">
-  <meta property="og:url" content="https://www.mozilla.org/firefox/sms/">
-  <meta property="og:site_name" content="{{ _('Get Firefox for Android') }}">
-  <meta property="og:description" content="{{ _('Send yourself a text message to download Firefox for Android from Google Play.') }}">
 {% endblock %}
 
 {% block site_header_nav %}{% endblock %}
