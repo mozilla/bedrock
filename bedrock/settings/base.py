@@ -248,6 +248,9 @@ MINIFY_BUNDLES = {
             'css/firefox/whatsnew.less',
             'css/firefox/whatsnew-android.less',
         ),
+        'firefox_whatsnew_fxos': (
+            'css/firefox/whatsnew-fxos.less',
+        ),
         'firefox_releasenotes': (
             'css/firefox/releasenotes.less',
         ),
@@ -507,6 +510,9 @@ MINIFY_BUNDLES = {
         'firefox_sms': (
             'js/firefox/sms.js',
             'js/libs/socialshare.min.js',
+        ),
+        'firefox_whatsnew_fxos': (
+            'js/firefox/whatsnew-fxos.js',
         ),
         'geolocation': (
             'js/libs/jquery.nyroModal.pack.js',

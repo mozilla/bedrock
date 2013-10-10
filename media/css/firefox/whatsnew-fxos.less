@@ -1,0 +1,103 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "template.less";
+@import "simple_footer.less";
+
+@wrapper_width: 992px;
+
+#wrapper {
+    padding-bottom: 0;
+}
+
+#main-content {
+    position: relative;
+    z-index: 9;
+    text-align: center;
+    border-bottom: 0;
+    margin-top: @baseLine;
+
+    h1 {
+        color: #484848;
+        text-shadow: none;
+        padding: 0 61px;
+        margin: 0 auto (@baseLine * 3) auto;
+        font-size: 60px;
+    }
+
+    p {
+        font-size: 18px;
+    }
+
+    .callout {
+        background: #0095dd url('/media/img/firefox/whatsnew/bg-fox.png') left center no-repeat;
+        padding: 95px 90px 0 370px;
+        width: 410px;
+        height: 315px;
+        margin: 0 auto;
+        text-align: left;
+
+        h2 {
+            font-size: 38px;
+            margin-bottom: (@baseLine * 2);
+            color: #fff;
+        }
+
+        .button-green {
+            padding: @baseLine;
+            .open-sans-light;
+            font-size: 15px;
+            .border-radius(8px);
+        }
+    }
+}
+
+#email-form-wrapper {
+    width: @wrapper_width;
+    background: #fff;
+    margin: 0 auto;
+    padding-top: 0;
+    padding-bottom: 0;
+    
+    .billboard {
+        background: #fafafa;
+        border: 1px solid #efefef;
+        @shadow: 0 0 3px 0 rgba(0, 0, 0, 0.1) inset;
+        .box-shadow(@shadow);
+        padding: (@baseLine*1.5) 31px @baseLine;
+    }
+
+    h3 {
+        margin-left: 0;
+        &:after { content: ":"; }
+    }
+
+    #footer-email-form {
+        width: 860px;
+
+        .form-submit {
+            width: 170px;
+            margin-right: 0;
+        }
+
+        input[type="email"] {
+            width: 300px;
+        }
+    }
+
+    .thank {
+        h3 {
+            margin-bottom: @baseLine;
+            &:after { content: ""; }
+        }
+    }
+}
+
+#colophon {
+    width: @wrapper_width;
+    background: #fff;
+    margin: 0 auto;
+    padding-top: @baseLine;
+    text-align: center;
+}

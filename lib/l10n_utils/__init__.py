@@ -27,6 +27,10 @@ def render(request, template, context=None, **kwargs):
     """
     context = {} if context is None else context
 
+    # Make sure we have a single template
+    if isinstance(template, list):
+        template = template[0]
+
     # Every template gets its own .lang file, so figure out what it is
     # and pass it in the context
     context['langfile'] = get_lang_path(template)

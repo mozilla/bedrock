@@ -1,8 +1,8 @@
 #colophon {
     z-index: 1;
     margin-top: 0;
-    padding-top: 20px;
     text-align: center;
+    padding-top: 20px;
     .primary, .secondary {
         margin-bottom: 10px;
         li {
@@ -51,28 +51,6 @@
         }
         select {
             margin: 0 .5em;
-        }
-    }
-}
-
-/* Mobile layout: 320px */
-@media only screen and (max-width: @breakTablet) {
-    #colophon {
-        .primary {
-            text-align: left;
-            li {
-                display: block;
-                margin-left: 0;
-                a, a:link, a:visited {
-                    display: block;
-                    border-left: none;
-                    border-top: 1px dotted @textColorLight;
-                    padding: 10px;
-                }
-                &:first-child a {
-                    border: 0;
-                }
-            }
         }
     }
 }
