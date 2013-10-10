@@ -7,8 +7,13 @@
 
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}{{_('Firefox Marketplace')}}{% endblock %}
+{% block page_image %}{{ media('img/mozorg/partnerships/icon-marketplace.png') }}{% endblock %}
+
 {% block body_id %}marketplace{% endblock %}
 {% block body_class %}sand{% endblock %}
+
+{% block facebook_id %}14696440021{# facebook.com/Firefox #}{% endblock %}
+{% block twitter_id %}mozmarketplace{% endblock %}
 
 {% block extrahead %}
   {{ css('marketplace') }}
