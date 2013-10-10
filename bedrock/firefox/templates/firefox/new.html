@@ -128,7 +128,9 @@
         <div class="thankyou" tabindex="0">
           {{_("Thanks for downloading Firefox!")}}
           {{_("As a non-profit, we’re free to innovate on your behalf without any pressure to compromise. You’re going to love the difference.")}}
-          {% include 'firefox/includes/social-share.html' %}
+          <div class="share-wrapper">
+            {% include 'firefox/includes/social-share.html' %}
+          </div>
         </div>
 
         <ol class="installation">

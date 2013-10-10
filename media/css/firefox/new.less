@@ -279,7 +279,7 @@ html[lang="uk"] {
     .thankyou {
         background: url(/media/img/firefox/new/thankyou-check.png) left top no-repeat;
         padding: 0 0 0 35px;
-        margin: 20px 130px 0;
+        margin: 0 130px 0;
         color: @buttonGreenDark;
         font-style: italic;
         font-size: 18px;
@@ -290,7 +290,7 @@ html[lang="uk"] {
     }
 
     .installation {
-        margin: 40px auto 0;
+        margin: 12px auto 0;
         padding: 0;
         width: 900px;
         display: block;
@@ -413,19 +413,31 @@ html[lang="uk"] {
     }
 }
 
+.share-wrapper {
+    text-align: center;
+}
+
 .socialshare {
     display: inline-block;
+    *display: inline;
+    zoom: 1;
+    text-align: left;
+    margin: 5px auto 0 -35px;
     font-style: normal;
     font-size: 16px;
     div > a {
         background: none;
-        padding: 0px 28px 0px .5em;
+        padding: 0px 28px 0px 0;
+    }
+    .fb-like iframe {
+        min-width: 450px;
     }
 }
 
-.socialshare.open {
+.socialshare.open[data-type="small-bubbles"] {
     #share-options {
         .box-shadow(0 0 2px 0 rgba(0,0,0,0.5));
+        margin-left: 0;
     }
 }
 
@@ -494,10 +506,7 @@ noscript {
     }
     .socialshare {
         display: block;
-        margin-top: @baseLine / 2;
-        div > a {
-            padding: 0px 28px 0px 0;
-        }
+        margin: 5px auto 0 0;
     }
 }
 
@@ -697,11 +706,6 @@ noscript {
         #install1, #install2, #install3 { background-image: none; }
     }
     .socialshare {
-        display: block;
-        font-size: 14px;
-        margin-top: @baseLine / 2;
-        div > a {
-            padding: 0px 28px 0px 0;
-        }
+        display: none;
     }
 }
