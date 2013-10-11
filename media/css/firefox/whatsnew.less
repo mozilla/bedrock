@@ -3,7 +3,6 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 @import "template.less";
-@breakTablet: 760px; // so simple_footer.less doesn't complain
 @import "simple_footer.less";
 
 @wrapper_width: 992px;
@@ -69,16 +68,24 @@
         padding: (@baseLine*1.5) 31px @baseLine;
     }
 
+    h3 {
+        margin-left: 0;
+        &:after { content: ":"; }
+    }
+
     #footer-email-form {
         width: 860px;
-        h3 {
-            margin-left: 0;
-            &:after { content: ":"; }
-        }
 
         .form-submit {
             width: 170px;
             margin-right: 0;
+        }
+    }
+
+    .thank {
+        h3 {
+            margin-bottom: @baseLine;
+            &:after { content: ""; }
         }
     }
 }
@@ -89,23 +96,4 @@
     margin: 0 auto;
     padding-top: @baseLine;
     text-align: center;
-}
-
-/* Mobile layout: 320px */
-// override for responsiveness in simple_footer.less
-@media only screen and (max-width: @breakTablet) {
-    #colophon {
-        .primary {
-            text-align: center;
-            li {
-                display: inline;
-                margin-left: @baseLine;
-                a, a:link, a:visited {
-                    display: inline-block;
-                    border-top: none;
-                    padding: 2px 12px;
-                }
-            }
-        }
-    }
 }
