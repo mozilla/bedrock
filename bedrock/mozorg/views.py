@@ -229,8 +229,8 @@ class Robots(TemplateView):
 
 
 class HomeTestView(TemplateView):
-    """Home page view that will use a different template for a QS."""
-    old_home_locales = ['en-US']
+    """Home page view."""
+    template_name = 'mozorg/home.html'
 
     def get_context_data(self, **kwargs):
         ctx = super(HomeTestView, self).get_context_data(**kwargs)
@@ -240,20 +240,6 @@ class HomeTestView(TemplateView):
         locale = locale if locale in settings.MOBILIZER_LOCALE_LINK else 'en-US'
         ctx['mobilizer_link'] = settings.MOBILIZER_LOCALE_LINK[locale]
         return ctx
-
-    def get_template_names(self):
-        locale = l10n_utils.get_locale(self.request)
-        if locale in self.old_home_locales:
-            version = self.request.GET.get('v', 0)
-            if version == '1':
-                template = 'mozorg/home-b1.html'
-            elif version == '2':
-                template = 'mozorg/home-b2.html'
-            else:
-                template = 'mozorg/home.html'
-        else:
-            template = 'mozorg/home-b2.html'
-        return template
 
     def render_to_response(self, context, **response_kwargs):
         return l10n_utils.render(self.request,
