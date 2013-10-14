@@ -1,0 +1,204 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% add_lang_files "mozorg/home" %}
+
+{% extends "mozorg/base-resp.html" %}
+
+{% from 'macros.html' import facebook_share_url, twitter_share_url %}
+
+{% block page_title %}{{_('Home of the Mozilla Project')}}{% endblock %}
+{% block body_id %}home-b1{% endblock %}
+{% block body_class %}sand lang-{{ LANG }} home-b1{% endblock %}
+
+{% block extra_meta %}
+  <!-- validates bing webmaster tools -->
+  <meta name="msvalidate.01" content="B7B177115A634927D608514DA17B2574" />
+{% endblock %}
+
+{% block extrahead %}
+  {{ css('home-b') }}
+<!--[if IE 9]>
+  {{ css('home-b-ie9') }}
+<![endif]-->
+<!--[if IE 8]>
+  {{ css('home-b-ie8') }}
+<![endif]-->
+<!--[if lt IE 8]>
+  {{ css('home-b-ie') }}
+<![endif]-->
+{% endblock %}
+
+{% block string_data %}
+  {# L10n: Used as a label for a button that scrolls through latest news. #}
+  data-news-next='{{_('Next article')}}'
+  {# L10n: Used as a label for a button that scrolls through latest news. #}
+  data-news-prev='{{_('Previous article')}}'
+{% endblock %}
+
+{% block js %}
+{# This hides the script from IE 7 and lower #}
+<!--[if gt IE 7]> <!-- -->
+  {{ js('home-b') }}
+<!-- <![endif]-->
+{% endblock %}
+
+{% block site_header_logo %}{% endblock %}
+
+{% block content %}
+<main id="main-content" role="main">
+  <header class="mission">
+    {# L10n: The Mozilla wordmark appears inline as part of this headline, so it reads as "We are Mozilla." #}
+    <h1>{{ _('We are %(mozilla_wordmark)s') | format(mozilla_wordmark='<img src="'|safe+media('img/home/mozilla-wordmark-red.png')+'" alt="Mozilla" height="70" width="258">'|safe) }}</h1>
+    <p>{{ _('Doing good is part of our code') }}</p>
+    <p class="engage"><a href="{{ url('mozorg.contribute') }}" class="button go">{{ _('Get involved') }}</a></p>
+  </header>
+
+  <section class="pillars">
+    <ul class="accordion">
+      <li id="panel-mission" class="panel" tabindex="0">
+        {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
+        <h2 class="panel-title">{{ _('<i>Explore</i> our mission') }}</h2>
+        <div class="panel-inner">
+          <div class="panel-content">
+            <a href="{{ url('mozorg.mission') }}">
+              <span class="panel-logo"><img src="{{ media('img/home/panel/mission/logo-mozilla.png') }}" alt="Mozilla"></span>
+              <h3>{{ _('Our principles guide us') }}</h3>
+              <p>{{ _('We’re a global community of technologists, thinkers and builders working to keep the Internet alive and accessible.') }}</p>
+              <p class="go">{{ _('Read more about our mission') }}</p>
+            </a>
+          </div>
+        </div>
+      </li>
+
+      <li id="panel-fxos" class="panel" tabindex="0">
+        {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
+        <h2 class="panel-title">{{ _('<i>Look</i> ahead') }}</h2>
+        <div class="panel-inner">
+          <div class="panel-content">
+            <a href="{{ url('firefox.os.index') }}">
+              <span class="panel-logo"><img src="{{ media('img/home/panel/firefoxos/logo-firefoxos.png') }}" alt="Firefox OS"></span>
+              <h3>{{ _('Look ahead') }}</h3>
+              <p>{{ _('We‘re bringing more people to the Web in more ways and from more places than ever before.') }}</p>
+              <p class="go">{{ _('Learn more about Firefox OS') }}</p>
+            </a>
+          </div>
+        </div>
+      </li>
+
+      <li id="panel-mdn" class="panel" tabindex="0">
+        {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
+        <h2 class="panel-title">{{ _('<i>Join</i> our community') }}</h2>
+        <div class="panel-inner">
+          <div class="panel-content">
+            <a href="https://developer.mozilla.org/">
+              {# L10n: This <br> is strictly for visual formatting; translations can omit or reposition as needed. #}
+              <h3>{{ _('Join our<br> developer community') }}</h3>
+              <p>{{ _('Get docs and demos, tools and tutorials and everything related to the Open Web.') }}</p>
+              <p class="go">{{ _('Visit the Mozilla Developer Network') }}</p>
+            </a>
+          </div>
+        </div>
+      </li>
+
+      <li id="panel-mozfest" class="panel" tabindex="0">
+        {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
+        <h2 class="panel-title">{{ _('<i>Forge</i> the future') }}</h2>
+        <div class="panel-inner">
+          <div class="panel-content">
+            <a href="https://mozillafestival.org">
+              <span class="panel-logo"><img src="{{ media('img/home/panel/mozfest/logo-mozfest.png') }}" alt="{{ _('Mozilla Festival') }}"></span>
+              {# L10n: This <br> is strictly for visual formatting; translations can omit or reposition as needed. #}
+              <h3>{{ _('Forge the future<br> of the Web') }}</h3>
+              <p>{{ _('Learn from some of the most passionate thinkers and inventors from around the world.') }}</p>
+              <p class="go">{{ _('Come to the Mozilla Festival') }}</p>
+            </a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <section class="extra">
+
+      <section class="extra-download">
+        <h2>{{_('Different by&nbsp;design')}}</h2>
+        {{ download_firefox(icon=True) }}
+      </section>
+
+    {% if request.locale in settings.PRESS_BLOGS %}
+
+      <section class="extra-news">
+        <h2>{{ _('In the news') }}</h2>
+        <ul class="hfeed cycle-slideshow" data-cycle-timeout="6000" data-cycle-slides="> .hentry" data-cycle-fx="carousel" data-cycle-carousel-fluid="true" data-cycle-carousel-vertical="true" data-cycle-next=".news-buttons .btn-next" data-cycle-prev=".news-buttons .btn-prev" data-cycle-carousel-visible="1" data-cycle-pause-on-hover="true">
+
+        {% l10n home_news, 20131010 %}
+          <li class="hentry">
+            <h3 class="entry-title">
+              <a class="url go" rel="bookmark external" hreflang="en-US" href="https://blog.mozilla.org/blog/2013/10/09/mozilla-and-partners-to-kick-off-second-round-of-firefox-os-launches/">
+                Mozilla and Partners to Kick off Second Round of Firefox OS Launches in More Markets Around the World
+              </a>
+            </h3>
+          </li>
+          <li class="hentry">
+            <h3 class="entry-title">
+              <a class="url go" rel="bookmark external" hreflang="en-US" href="https://blog.mozilla.org/blog/2013/08/01/telefonica-announces-launches-of-first-firefox-os-devices-in-latin-america/">
+                Telefonica Announces Launches of First Firefox OS Devices in Latin America
+              </a>
+            </h3>
+          </li>
+
+          <li class="hentry">
+            <h3 class="entry-title">
+              <a class="url go" rel="bookmark external" hreflang="en-US" href="https://blog.mozilla.org/blog/2013/07/11/deutsche-telekom-announces-european-launch-of-firefox-os-devices/">
+                Deutsche Telekom Announces European Launch of Firefox OS Devices
+              </a>
+            </h3>
+          </li>
+        {% endl10n %}
+
+        </ul>
+        <p class="control"><a href="{{ press_blog_url() }}" class="go">{{ _('See all news') }}</a></p>
+      </section>
+
+    {% elif request.locale in ['hu','pt-BR'] %}
+
+      <section class="extra-contribute fxos">
+        <h2>{{ _('Get involved') }}</h2>
+        <p>
+        {% trans link_mobilizer=mobilizer_link %}
+          Help launch Firefox OS in your country.
+          <a href="{{ link_mobilizer }}">Become a Mobilizer today</a>.
+        {% endtrans %}
+        </p>
+      </section>
+
+    {% elif has_contribute %}
+
+      <section class="extra-contribute volunteer">
+        <h2>{{ _('Get involved') }}</h2>
+        <p>
+        {{ _('You don’t have to know how to code to get involved with Mozilla. <a href="%s">Learn more about our volunteer opportunities</a>.') | format(url('mozorg.contribute')) }}
+        </p>
+      </section>
+
+    {% else %}
+
+      <section class="extra-contribute locale">
+        <h2>{{ _('Get involved') }}</h2>
+        <p>
+        {% trans link_l10n='https://l10n.mozilla.org' %}
+          Thanks to our global community, Mozilla products and websites are available in over 70 languages.
+          <a href="{{ link_l10n }}">Help translate them into yours</a>.
+        {% endtrans %}
+        </p>
+      </section>
+
+    {% endif %}
+
+  </section>
+
+</main>
+
+{% endblock %}
