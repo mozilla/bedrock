@@ -2,25 +2,13 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import "template-resp.less";
+@import "template.less";
+@import "simple_footer.less";
 
-.sky #outer-wrapper {
-    background: #e04113 url(/media/img/firefox/whatsnew/bg.jpg) 50% 0 no-repeat;
-}
+@wrapper_width: 992px;
 
 #wrapper {
     padding-bottom: 0;
-}
-
-#whatsnew-header {
-    color: #fff;
-    text-shadow: none;
-    margin: 0 0 -15px 0;
-    padding: 40px 0 40px 150px;
-    min-height: 50px;
-    background: url(/media/img/firefox/whatsnew/logo.png?2013-06) 0 0 no-repeat;
-    position: relative;
-    z-index: 10;
 }
 
 #main-content {
@@ -28,394 +16,84 @@
     z-index: 9;
     text-align: center;
     border-bottom: 0;
-    h2 {
-    font-size: 68px;
-    margin-bottom: @baseLine;
+    margin-top: @baseLine;
+
+    h1 {
+        color: #484848;
+        text-shadow: none;
+        padding: 0 61px;
+        margin: 0 auto (@baseLine * 3) auto;
+        font-size: 60px;
     }
+
     p {
-    font-size: 18px;
+        font-size: 18px;
+    }
+
+    .callout {
+        background: #0095dd url('/media/img/firefox/whatsnew/bg-fox.png') left center no-repeat;
+        padding: 95px 90px 0 370px;
+        width: 410px;
+        height: 315px;
+        margin: 0 auto;
+        text-align: left;
+
+        h2 {
+            font-size: 38px;
+            margin-bottom: (@baseLine * 2);
+            color: #fff;
+        }
+
+        .button-green {
+            padding: @baseLine;
+            .open-sans-light;
+            font-size: 15px;
+            .border-radius(8px);
+        }
     }
 }
 
 #email-form-wrapper {
-    border-bottom: 0;
-    margin-bottom: 0;
+    width: @wrapper_width;
+    background: #fff;
+    margin: 0 auto;
     padding-top: 0;
     padding-bottom: 0;
+    
     .billboard {
-    .inset;
+        background: #fafafa;
+        border: 1px solid #efefef;
+        @shadow: 0 0 3px 0 rgba(0, 0, 0, 0.1) inset;
+        .box-shadow(@shadow);
+        padding: (@baseLine*1.5) 31px @baseLine;
     }
-}
 
-#video-player {
-    width: 640px;
-    height: auto;
-    max-width: 100%;
-    margin: (@baseLine) auto;
-    video {
-    width: 640px;
-    height: auto;
-    max-width: 100%;
-    }
-}
-
-#android-download {
-    text-align: left;
-    .download-link {
-    .download-content-wrapper {
-        background: none;
-    }
-    .download-content {
-        padding: 8px 30px 12px 20px;
-        .download-title,
-        .download-subtitle {
-        font-size: 20px;
-        color: #fff;
-        display: inline;
-        }
-        .download-info {
-        padding-top: 3px;
-        font-size: 11px;
-        color: #b5e786;
-        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-        }
-    }
-    }
-    .download-other {
-    text-align: center;
-    }
-}
-
-#video-wrapper {
-    position: relative;
-    video {
-    position: relative;
-    z-index: 10;
-    }
-}
-
-
-
-
-
-#promo-android {
-    background-position: 0 0;
-    background-repeat: no-repeat;
-    background-color: #82bbd6;
-    text-align: left;
-    margin-top: @baseLine;
-    margin-bottom: @baseLine;
-    a {
-    display: block;
-    height: 253px;
-    padding: 0;
-    position: relative;
-    width: 100%;
-    border-bottom: 1px solid #ddd;
-    &:hover,
-    &:active {
-        text-decoration: none;
-    }
-    }
-    div {
-    .span(7);
-    margin-left: 0;
-    padding: 0 0 @baseLine 48px;
-    position: relative;
-    }
     h3 {
-    padding-top: @baseLine * 2;
-    margin-bottom: @baseLine / 2;
-    font-size: 48px;
-    letter-spacing: -1px;
-    color: #fff;
-    text-shadow: none;
-    }
-    h4 {
-    .span(5);
-    margin-left: 0;
-    margin-bottom: @baseLine;
-    clear: left;
-    color: #fff;
-    text-shadow: none;
-    }
-    p {
-    clear: left;
-    color: #fff;
-    text-shadow: none;
-    margin: 0;
-    }
-    img {
-    display: block;
-    background: @textColorPrimary;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    }
-}
-
-#ru-search {
-    margin: @baseLine auto;
-    width: 80%;
-}
-
-html[lang=ru] {
-    /*  Styles below are for the Switch to Google Search customizations in Russian */
-    #whatsnew-header,
-    #main-content h2 {
-        font-size: 45px;
+        margin-left: 0;
+        &:after { content: ":"; }
     }
 
-    #ru-search {
-        text-align: left;
-        min-height: 332px;
+    #footer-email-form {
+        width: 860px;
+
+        .form-submit {
+            width: 170px;
+            margin-right: 0;
+        }
     }
 
-    #ru-search img {
-        float: right;
-        margin-top: -30px;
-    }
-
-    #promo-android h3 {
-        font-size: 37px;
+    .thank {
+        h3 {
+            margin-bottom: @baseLine;
+            &:after { content: ""; }
+        }
     }
 }
 
 #colophon {
-    width: @widthDesktop;
+    width: @wrapper_width;
+    background: #fff;
     margin: 0 auto;
     padding-top: @baseLine;
     text-align: center;
-    nav {
-    ul {
-        margin-bottom: @baseLine / 2;
-    }
-    li {
-        display: inline;
-        a,
-        a:link,
-        a:visited {
-        .inline-block;
-        .open-sans-light;
-        padding: 2px 12px;
-        border-left: 1px dotted @borderColor;
-        color: @textColorPrimary;
-        }
-        &:first-child a {
-        border: 0;
-        }
-    }
-    .primary {
-        font-family: @baseFontFamily;
-        font-size: @baseFontSize;
-        a:after {
-        content: " »";
-        color: #2983c8;
-        }
-    }
-    .secondary {
-        font-size: 11px;
-        a,
-        a:link,
-        a:visited {
-        color: @textColorTertiary;
-        }
-    }
-    }
-    .attribution {
-    width: 50%;
-    margin: 0 auto;
-    small {
-        font-size: 11px;
-        color: @textColorLight;
-        .open-sans;
-        a,
-        a:link,
-        a:visited {
-        color: @textColorLight;
-        text-decoration: underline;
-        }
-    }
-    }
-}
-
-/* Tablet Layout: 760px */
-@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
-
-    #masthead,
-    #main-content,
-    #colophon {
-    width: @widthTablet - (@gridGutterWidth * 2);
-    padding-left: @gridGutterWidth;
-    padding-right: @gridGutterWidth;
-    }
-
-    #whatsnew-header {
-    font-size: 42px;
-    }
-
-    #main-content {
-    h2 {
-        font-size: 52px;
-    }
-    p {
-        font-size: 16px;
-    }
-    }
-
-    #footer-email-form {
-    width: auto;
-    h3 {
-        .span_narrow(3);
-        font-size: 22px;
-        padding-top: 8px;
-    }
-    }
-
-    #promo-android {
-    a {
-        height: 191px;
-    }
-    div {
-        .span_narrow(7);
-    }
-    h3 {
-        font-size: 34px;
-        letter-spacing: -1px;
-        padding-top: @baseLine;
-    }
-    h4 {
-        .span_narrow(5);
-        margin-left: 0;
-        margin-bottom: @baseLine;
-    }
-    }
-
-    html[lang=ru] {
-        #promo-android {
-            h3 {
-                font-size: 28px;
-            }
-            h4 {
-                font-size: 18px;
-            }
-        }
-    }
-
-    #android { display: none; }
-}
-
-/* Mobile layout: 320px */
-@media only screen and (max-width: @breakTablet) {
-
-    #masthead,
-    #main-content,
-    #colophon {
-    width: @widthMobile - (@gridGutterWidth * 2);
-    padding-left: @gridGutterWidth;
-    padding-right: @gridGutterWidth;
-    margin: 0 auto;
-    }
-
-    #whatsnew-header {
-    font-size: 24px;
-    padding-top: 25px;
-    background-size: 62px auto;
-    padding: 10px 20px 30px 80px;
-    }
-
-    #main-content {
-    h2 {
-        font-size: 32px;
-    }
-    p {
-        font-size: 16px;
-    }
-    }
-
-    #promo-android {
-        background-color: transparent;
-    }
-
-    #email-form-wrapper {
-    #footer-email-form {
-        width: auto;
-    }
-    }
-
-    #colophon {
-    padding-top: @baseLine / 2;
-    nav ul.primary li {
-        display: block;
-        a,
-        a:link,
-        a:visited {
-        display: block;
-        text-align: left;
-        border-left: 0;
-        border-top: 1px dotted @borderColor;
-        padding: @baseLine / 2;
-        }
-        &:first-child {
-        a,
-        a:link,
-        a:visited {
-            border: 0;
-           }
-        }
-    }
-    .attribution {
-        width: 80%;
-    }
-    }
-
-
-    #promo-android {
-    div,
-    h3,
-    h4,
-    p {
-        float: none;
-        width: auto;
-        margin-left: 0;
-        padding: 0;
-        color: @textColorSecondary;
-        text-align: center;
-    }
-    h3 {
-        font-size: 24px;
-    }
-    h4 {
-        margin-bottom: @baseLine / 3;
-    }
-    a {
-        border: 0;
-        width: auto;
-        height: auto;
-        img {
-        position: static;
-        margin-bottom: @baseLine / 2;
-        }
-    }
-    }
-
-    #android { display: none; }
-}
-
-/* Wide mobile layout: 480px; */
-@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
-
-    #masthead,
-    #main-content,
-    #colophon {
-    width: @widthMobileLandscape - (@gridGutterWidth * 2);
-    }
-
-    #email-form-wrapper {
-    #footer-email-form {
-        width: auto;
-    }
-    }
-
 }
