@@ -59,10 +59,8 @@ urlpatterns = patterns('',
 
     url(r'^firefox/unsupported/win/$', views.windows_billboards),
     url('^dnt/$', views.dnt, name='firefox.dnt'),
-    url(firstrun_re, views.latest_fx_redirect, name='firefox.firstrun',
-        kwargs={'template_name': 'firefox/firstrun.html'}),
-    url(whatsnew_re, views.latest_fx_redirect, name='firefox.whatsnew',
-        kwargs={'template_name': 'firefox/whatsnew.html'}),
+    url(firstrun_re, views.FirstrunView.as_view(), name='firefox.firstrun'),
+    url(whatsnew_re, views.WhatsnewView.as_view(), name='firefox.whatsnew'),
     url(r'^firefox/partners/$', views.firefox_partners,
         name='firefox.partners.index'),
 

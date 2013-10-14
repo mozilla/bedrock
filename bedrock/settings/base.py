@@ -244,7 +244,12 @@ MINIFY_BUNDLES = {
             'css/firefox/update.less',
         ),
         'firefox_whatsnew': (
+            'css/sandstone/video.less',
             'css/firefox/whatsnew.less',
+            'css/firefox/whatsnew-android.less',
+        ),
+        'firefox_whatsnew_fxos': (
+            'css/firefox/whatsnew-fxos.less',
         ),
         'firefox_releasenotes': (
             'css/firefox/releasenotes.less',

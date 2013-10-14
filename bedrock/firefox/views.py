@@ -10,6 +10,7 @@ from django.http import (HttpResponsePermanentRedirect,
                          HttpResponseRedirect)
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.views.decorators.vary import vary_on_headers
+from django.views.generic.base import TemplateView
 
 import basket
 from lib import l10n_utils
@@ -59,8 +60,6 @@ INSTALLER_CHANNElS = [
     'aurora',
     #'nightly',  # soon
 ]
-
-FX_FIRSTRUN_FUNNELCAKE_CAMPAIGN = '25'
 
 
 def get_js_bundle_files(bundle):
@@ -180,12 +179,11 @@ def firefox_redirect(request):
     return HttpResponseRedirect(reverse('firefox.fx') + query)
 
 
-@vary_on_headers('User-Agent')
-def latest_fx_redirect(request, fake_version, template_name):
+def latest_fx_redirect(request, default):
     """
     Redirect visitors based on their user-agent.
 
-    - Up-to-date Firefox users see the whatsnew page.
+    - Up-to-date Firefox users see the default.
     - Other Firefox users go to the new page.
     - Non Firefox users go to the new page.
     """
@@ -207,30 +205,7 @@ def latest_fx_redirect(request, fake_version, template_name):
         url = reverse('firefox.new') + query
         return HttpResponsePermanentRedirect(url)
 
-    # display alternate firstrun content for en-US with proper funnelcake param in URL
-    # remove when firstrun test is complete
-    context = funnelcake_param(request)
-
-    if (template_name == 'firefox/firstrun.html'
-            and request.locale == 'en-US' and
-            context.get('funnelcake_id', 0) == FX_FIRSTRUN_FUNNELCAKE_CAMPAIGN):
-
-        return l10n_utils.render(request, 'firefox/firstrun/a.html')
-    else:
-        locales_with_video = {
-            'en-US': 'american',
-            'en-GB': 'british',
-            'de': 'german_final',
-            'it': 'italian_final',
-            'ja': 'japanese_final',
-            'es-AR': 'spanish_final',
-            'es-CL': 'spanish_final',
-            'es-ES': 'spanish_final',
-            'es-MX': 'spanish_final',
-        }
-
-        return l10n_utils.render(request, template_name,
-                                 {'locales_with_video': locales_with_video})
+    return default
 
 
 def all_downloads(request):
@@ -305,3 +280,80 @@ def latest_sysreq(request):
     if locale:
         path.insert(0, locale)
     return HttpResponseRedirect('/' + '/'.join(path) + '/')
+
+
+class FirstrunView(TemplateView):
+    funnelcake_campaign = '25'
+
+    def get_context_data(self, **kwargs):
+        ctx = super(FirstrunView, self).get_context_data(**kwargs)
+        return ctx
+
+    def get_template_names(self):
+        locale = l10n_utils.get_locale(self.request)
+        fc_ctx = funnelcake_param(self.request)
+        if (locale == 'en-US' and
+                fc_ctx.get('funnelcake_id', 0) == self.funnelcake_campaign):
+
+            template = 'firefox/firstrun/a.html'
+        else:
+            template = 'firefox/firstrun.html'
+
+        return template
+
+    @vary_on_headers('User-Agent')
+    def dispatch(self, *args, **kwargs):
+        return super(FirstrunView, self).dispatch(*args, **kwargs)
+
+    def render_to_response(self, context, **response_kwargs):
+        default = l10n_utils.render(self.request,
+                             self.get_template_names(),
+                             context,
+                             **response_kwargs)
+        return latest_fx_redirect(self.request, default)
+
+
+class WhatsnewView(TemplateView):
+    # Locales targeted for FxOS
+    fxos_locales = ['en-US', 'hu', 'pl']
+
+    locales_with_video = {
+        'en-US': 'american',
+        'en-GB': 'british',
+        'de': 'german_final',
+        'it': 'italian_final',
+        'ja': 'japanese_final',
+        'es-AR': 'spanish_final',
+        'es-CL': 'spanish_final',
+        'es-ES': 'spanish_final',
+        'es-MX': 'spanish_final',
+    }
+
+    def get_context_data(self, **kwargs):
+        ctx = super(WhatsnewView, self).get_context_data(**kwargs)
+
+        locale = l10n_utils.get_locale(self.request)
+
+        if (locale not in self.fxos_locales):
+            ctx['locales_with_video'] = self.locales_with_video
+
+        return ctx
+
+    def get_template_names(self):
+        locale = l10n_utils.get_locale(self.request)
+        if locale in self.fxos_locales:
+            template = 'firefox/whatsnew-fxos.html'
+        else:
+            template = 'firefox/whatsnew.html'
+        return template
+
+    @vary_on_headers('User-Agent')
+    def dispatch(self, *args, **kwargs):
+        return super(WhatsnewView, self).dispatch(*args, **kwargs)
+
+    def render_to_response(self, context, **response_kwargs):
+        default = l10n_utils.render(self.request,
+                             self.get_template_names(),
+                             context,
+                             **response_kwargs)
+        return latest_fx_redirect(self.request, default)

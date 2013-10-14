@@ -1,4 +1,6 @@
-{% extends "/firefox/base.html" %}
+{% extends "/firefox/base-resp.html" %}
+
+{% add_lang_files "mobile" %}
 
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}{{ _('Welcome to Firefox') }}{% endblock %}
@@ -6,33 +8,121 @@
 {% block body_id %}firefox-whatsnew{% endblock %}
 
 {% block site_header_nav %}{% endblock %}
+{% block site_header_logo %}{% endblock %}
 
 {% block site_css %}
   {{ css('firefox_whatsnew') }}
 {% endblock %}
 
 {% block content %}
+{% if request.locale.startswith('en') %}
+  {% set mobile_link = url('firefox.fx') + '#mobile' %}
+{% else %}
+  {% set mobile_link = php_url('/mobile/') %}
+{% endif %}
+
+<h1 id="whatsnew-header">{{ _('Hooray! Your Firefox is up to date.') }}</h1>
 
 <article id="main-content" class="billboard">
-  {# L10n: The line breaks in this headline are for visual formatting only #}
-  <h1>{{ _('Congratulations!<br> Your browser is safer and<br>more secure than ever.') }}</h1>
 
-  <section class="callout">
-    {# L10n: The line breaks in this headline are for visual formatting only #}
-    <h2>{{ _('Get the same level of<br> choice and innovation<br> in a smartphone.') }}</h2>
+  {% if request.locale == 'ru' %}
+  {% l10n whatsnew_feature, 20120712 %}
+  <p id="ru-search">
+    <img src="{{ MEDIA_URL }}img/firefox/whatsnew/ru-search.png">
+    Also new in this release: Google is now your default search engine. To change the active search engine, click the down arrow next to the search engine's icon, and select a new search engine.
+    <a href="https://support.mozilla.org/ru/kb/stroka-poiska?e=es&redirectlocale=en-US&as=s&s=manage+search&r=3&redirectslug=Search+bar#w_managing-search-engines">Learn more.</a>
+  </p>
+  {% endl10n %}
+  {% endif %}
 
-    <a class="button-green" role="button" href="">{{ _('Learn more about Firefox OS') }}</a>
-  </section>
+  <h2>{{ _('Now get the mobile browser that’s got your back') }}</h2>
+
+  {{ download_firefox(mobile=True, icon=False, small=True) }}
+
+{% if request.locale not in locales_with_video.keys() %}
+  <div id="promo-android">
+    <a href="{{ mobile_link }}" class="container">
+      <img src="{{ media('img/home/promo/android/1000.jpg') }}" alt="{{ _('Firefox for Android artwork') }}">
+      <div>
+        <h3>{{ _('Fast. Smart. Safe.') }}</h3>
+        <h4>{{ _('Get the mobile browser that’s got your back.') }}</h4>
+        <p>{{ _('Get Firefox for Android') }}&nbsp;»</p>
+      </div>
+    </a>
+  </div>
+
+{% else %}
+
+  <div id="video-wrapper">
+
+  <div id="android">
+
+    <div class="droid-antenna left droid-part"></div>
+    <div class="droid-antenna right droid-part"></div>
+
+    <div class="droid-head-container droid-part">
+
+      <div class="droid-eye left droid-part"></div>
+      <div class="droid-eye right droid-part"></div>
+
+      <div class="droid-head droid-part"></div>
+
+    </div>
+
+    <div class="droid-antenna-border left droid-part"></div>
+    <div class="droid-antenna-border right droid-part"></div>
+
+    <div class="droid-body droid-part"></div>
+
+    <div class="droid-arm left droid-part"></div>
+    <div class="droid-arm right droid-part"></div>
+
+    <div class="droid-leg left droid-part"></div>
+    <div class="droid-leg right droid-part"></div>
+
+    <div class="droid-leg-border left droid-part"></div>
+    <div class="droid-leg-border right droid-part"></div>
+
+  </div>
+
+  <div id="video-player" class="mozilla-video-control mozilla-video-shadow">
+    <video
+      controls="controls"
+      poster="{{ media('/img/firefox/whatsnew/video-poster.jpg') }}"
+      height="360"
+      width="640"
+      data-overlay-hidden-text="{{_('Play video')}}">
+      <source src="//videos-cdn.mozilla.net/serv/marketing/fxforandroid/10-07-12_firefox_for_android_{{ locales_with_video[request.locale] }}-640x360 Video Sharing.webm">
+    </video>
+  </div>
+  </div>
+
+{% endif %}
 </article>
-
 {% endblock %}
 
 {% block email_form %}
-  <div id="email-form-wrapper">
-    {{ email_newsletter_form('mozilla-and-you', _('Get mozilla updates')) }}
+  <div id="email-form-wrapper" class="billboard">
+    {{ super() }}
   </div>
-{% endblock %}
+{% endblock%}
+
 
 {% block site_footer %}
-  {% include 'firefox/includes/simple_footer.html' %}
+<section id="colophon" class="billboard">
+  <nav>
+    <ul class="primary">
+      <li> <a href="{{ php_url('/firefox/notes') }}">{{ _('Release Notes') }}</a></li>
+      <li><a href="{{ url('firefox.features') }}">{{ _('Firefox Features') }}</a></li>
+      <li><a href="https://support.mozilla.org/">{{ _('Firefox Help') }}</a></li>
+    </ul>
+    <ul class="secondary">
+      <li><a href="{{ php_url('/privacy-policy.html') }}">{{ _('Privacy Policy') }}</a></li>
+      <li><a href="{{ php_url('/about/legal.html') }}">{{ _('Legal Notices') }}</a></li>
+    </ul>
+  </nav>
+  <p class="attribution"><small>
+    {{ _('The Android Robot was reproduced from work created and <a href="%s">shared by Google</a> and used according to terms described in the <a href="%s">Creative Commons 3.0 Attribution License</a>.')|format('https://code.google.com/policies.html', 'http://creativecommons.org/licenses/by/3.0/') }}
+</small></p>
+</section>
 {% endblock %}
