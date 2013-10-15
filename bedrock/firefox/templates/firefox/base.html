@@ -8,8 +8,8 @@
 
 {% block body_class %}sky{% endblock %}
 
-{% block page_title_prefix %}Mozilla Firefox Web Browser — {% endblock %}
-{% block page_desc %}Mozilla Firefox, free web browser, is created by a global non-profit dedicated to putting individuals in control &amp; shaping the future of the web for the public good.{% endblock %}
+{% block page_title_prefix %}{{ _('Mozilla Firefox Web Browser') }} — {% endblock %}
+{% block page_desc %}{{ _('Mozilla Firefox, free web browser, is created by a global non-profit dedicated to putting individuals in control &amp; shaping the future of the web for the public good.') }}{% endblock %}
 {% block page_image %}{{ media('img/firefox/firefox-256.jpg') }}{% endblock %}
 {% block page_favicon %}{{ media('img/firefox/favicon.ico?2013-08') }}{% endblock %}
 
@@ -34,9 +34,9 @@
     </li>
     <li id="nav-main-mobile"><a href="{{ url('firefox.fx') }}" tabindex="0" aria-owns="nav-main-mobile-submenu" aria-haspopup="true">Mobile</a>
       <ul aria-expanded="false" id="nav-main-mobile-submenu" class="submenu">
-        <li class="first"><a href="{{ url('firefox.mobile.features') }}" tabindex="-1">Features</a></li>
-        <li><a href="https://addons.mozilla.org/en-US/mobile/?browse=featured" tabindex="-1">Customize</a></li>
-        <li class="last"><a href="{{ url('firefox.mobile.faq') }}" tabindex="-1">FAQ</a></li>
+        <li class="first"><a href="{{ url('firefox.mobile.features') }}" tabindex="-1">{{ _('Features') }}</a></li>
+        <li><a href="https://addons.mozilla.org/en-US/mobile/?browse=featured" tabindex="-1">{{ _('Customize') }}</a></li>
+        <li class="last"><a href="{{ url('firefox.mobile.faq') }}" tabindex="-1">{{ _('FAQ') }}</a></li>
       </ul>
     </li>
     <li id="nav-main-releases" class=""><a href="{{ url('firefox.channel') }}" tabindex="0" aria-owns="nav-main-releases-submenu" aria-haspopup="true">{{ _('Releases') }}</a>
