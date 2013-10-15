@@ -511,6 +511,9 @@ MINIFY_BUNDLES = {
             'js/firefox/sms.js',
             'js/libs/socialshare.min.js',
         ),
+        'firefox_whatsnew_fxos': (
+            'js/firefox/whatsnew-fxos.js',
+        ),
         'geolocation': (
             'js/libs/jquery.nyroModal.pack.js',
             'js/base/mozilla-expanders.js',

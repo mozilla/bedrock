@@ -315,7 +315,7 @@ class FirstrunView(TemplateView):
 
 class WhatsnewView(TemplateView):
     # Locales targeted for FxOS
-    fxos_locales = ['en-US', 'hu', 'pl']
+    fxos_locales = ['hu', 'pl']
 
     locales_with_video = {
         'en-US': 'american',
