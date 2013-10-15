@@ -63,10 +63,9 @@
     {% block site_header %}
       <header id="masthead">
         <a href="{{ url('mozorg.home') }}" id="tabzilla">{{ _('Mozilla') }}</a>
-
         {% block site_header_nav %}
+        <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
         <nav id="nav-main" role="navigation">
-          <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
           <ul id="nav-main-menu">
             <li class="first mission-item"><a href="{{ url('mozorg.mission') }}">{{_('Mission')}}</a></li>
             <li class="about-item"><a href="{{ url('mozorg.about') }}">{{_('About')}}</a></li>
