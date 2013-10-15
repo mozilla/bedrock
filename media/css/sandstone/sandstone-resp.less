@@ -552,7 +552,7 @@ label.error {
 
 }
 
-#nav-main .toggle {
+#masthead .toggle {
     display: none; /* Hidden in non-mobile views */
 }
 
@@ -952,6 +952,24 @@ nav.menu-bar {
 
 
     #masthead {
+        
+        .toggle {
+            display: block;
+            width: 32px;
+            height: 32px;
+            /*margin: -3px 0 0 -3px;*/
+            background: no-repeat center top url(/media/img/sandstone/icn-menu.png);
+            text-indent: -999em;
+            overflow: hidden;
+            cursor: pointer;
+            position:relative;
+            top:7px;
+            left:10px;
+        }
+        .toggle.open {
+            background-position: center -100px;
+        }
+
         h2 {
             padding-top: @baseLine / 2;
             padding-bottom: @baseLine / 2;
@@ -1077,19 +1095,6 @@ nav.menu-bar {
     }
 
     #nav-main {
-        .toggle {
-            display: block;
-            width: 32px;
-            height: 32px;
-            margin: -3px 0 0 -3px;
-            background: no-repeat center top url(/media/img/sandstone/icn-menu.png);
-            text-indent: -999em;
-            overflow: hidden;
-            cursor: pointer;
-        }
-        .toggle.open {
-            background-position: center -100px;
-        }
 
         #nav-main-menu li {
             display: block;

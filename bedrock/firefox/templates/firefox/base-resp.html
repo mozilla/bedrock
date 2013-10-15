@@ -21,8 +21,8 @@
 {% endblock %}
 
 {% block site_header_nav %}
+<span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
 <nav id="nav-main" role="navigation">
-  <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
   <ul id="nav-main-menu" class="has-submenus">
     <li class="first" id="nav-main-features"><a href="{{ url('firefox.fx') }}#desktop" tabindex="0" aria-owns="nav-main-features-submenu" aria-haspopup="true">{{_('Desktop')}}</a>
       <ul aria-expanded="false" id="nav-main-features-submenu" class="submenu">
