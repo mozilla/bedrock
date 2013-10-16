@@ -1,0 +1,35 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/contact/contact-base.html" %}
+
+{% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('London') }}{% endblock %}
+
+{% block contact_entry %}
+  <div id="entry-container">
+    <section class="entry entry-space" id="london" data-tab="spaces">
+      <div class="card vcard">
+        <h2 class="fn">{{ _('London') }}</h2>
+        <p class="adr">
+        {# L10n: Addresses are marked up with hCard microformat. See http://microformats.org/wiki/h-card #}
+        {% trans %}
+          <span class="street-address">101 St Martin‘s Lane</span>, <span class="extended-address">3rd Floor</span><br>
+          <span class="locality">London</span> <span class="postal-code">WC2N 4AZ</span><br>
+          <abbr class="country-name" title="United Kingdom">UK</abbr>
+        {% endtrans %}
+        </p>
+
+        <ul class="extra">
+          <li><a href="https://twitter.com/MozLDN" class="twitter">@MozLDN</a></li>
+          <li><a href="irc://irc.mozilla.org/london" class="irc">IRC: #london</a></li>
+          <li><a href="https://wiki.mozilla.org/People:MozSpaces_Guidelines:London" class="book">{{ _('Space operations guide') }}</a></li>
+        </ul>
+
+        <figure class="feature-img">
+          <img src="//api.tiles.mapbox.com/v3/{{ settings.MAPBOX_TOKEN }}/url-{{ 'mozorg.cdn.mozilla.net/media/img/contact/moz-map-pin.png'|urlencode }}(-0.127544,51.510371)/-0.127544,51.510371,16/460x250.png" alt="">
+        </figure>
+      </div>
+    </section>
+  </div>
+{% endblock %}

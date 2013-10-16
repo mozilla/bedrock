@@ -1,0 +1,30 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/contact/contact-base.html" %}
+
+{% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Romania') }}{% endblock %}
+
+{% block contact_entry %}
+  <div id="entry-container">
+    <section class="entry entry-community" id="romania" data-tab="communities">
+      <div class="card">
+        <h2>{{ _('Romania') }}</h2>
+
+        <ul class="extra">
+          <li><a href="http://mozilla.ro/" class="website">mozilla.ro</a></li>
+          <li><a href="https://lists.mozilla.org/listinfo/community-romania" class="email">{{ _('Mailing list') }}</a></li>
+          <li><a href="https://groups.google.com/forum/#!forum/mozilla-ro" class="email">{{ _('Forum') }}</a></li>
+          <li><a href="http://twitter.com/mozillaro" class="twitter">@mozillaro</a></li>
+          <li><a href="https://www.facebook.com/MozillaRomania" class="facebook">Facebook</a></li>
+          <li><a href="irc://irc.mozilla.org/romania" class="irc">IRC: #romania</a></li>
+        </ul>
+
+        <figure class="feature-img">
+          <img src="//api.tiles.mapbox.com/v3/{{ settings.MAPBOX_TOKEN }}/24.96,45.79,5/380x250.png" alt="">
+        </figure>
+      </div>
+    </section>
+  </div>
+{% endblock %}

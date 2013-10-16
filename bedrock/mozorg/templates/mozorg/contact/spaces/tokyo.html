@@ -1,0 +1,29 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/contact/contact-base.html" %}
+
+{% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Tokyo') }}{% endblock %}
+
+{% block contact_entry %}
+  <div id="entry-container">
+    <section class="entry entry-space" id="tokyo" data-tab="spaces">
+      <div class="card vcard">
+        <h2 class="fn">{{ _('Tokyo') }}</h2>
+        <p class="adr">
+        {# L10n: Addresses are marked up with hCard microformat. See http://microformats.org/wiki/h-card #}
+        {% trans %}
+          <span class="street-address">7-5-6 Roppongi</span>, <span class="extended-address">Minato-ku</span><br>
+          <span class="locality">Tokyo</span> <span class="postal-code">106-0032</span><br>
+          <span class="country-name">Japan</span>
+        {% endtrans %}
+        </p>
+
+        <figure class="feature-img">
+          <img src="//api.tiles.mapbox.com/v3/{{ settings.MAPBOX_TOKEN }}/url-{{ 'mozorg.cdn.mozilla.net/media/img/contact/moz-map-pin.png'|urlencode }}(139.727765,35.665208)/139.727765,35.665208,16/460x250.png" alt="">
+        </figure>
+      </div>
+    </section>
+  </div>
+{% endblock %}
