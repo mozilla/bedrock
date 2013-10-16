@@ -84,6 +84,7 @@ mozilla.tools.bmo                       Development of bugzilla.mozilla.org, Moz
 mozilla.tools.elmo                      Development of web apps for localization (l10n). (Moderated)
 mozilla.tools.l10n                      Development of tools for l10n. (Moderated)
 mozilla.tools.pulse                     The Pulse tool for event-driven notifications.
+mozilla.tools.puppetagain               The <a href="https://wiki.mozilla.org/ReleaseEngineering/PuppetAgain">PuppetAgain</a> deployment automation tool. (Moderated)
 mozilla.tools.socorro                   The Socorro crash-reporting system.
 mozilla.dev.services.circus             Development of circus, a process runner and watcher. (Moderated)
 mozilla.addons.user-experience          Improving the user experience for using/installing/managing addons in Firefox. (Moderated)
@@ -179,6 +180,7 @@ mozilla.community.greece                The Mozilla community in Greece. (Modera
 mozilla.community.hungary               The Mozilla community in Hungary. (Moderated)
 mozilla.community.iceland               The Mozilla community in Iceland. (Moderated)
 mozilla.community.india                 The Mozilla community in India.
+mozilla.community.india.dev             Development work on the web presence of the Mozilla community in India. (Moderated)
 mozilla.community.indonesia             The Mozilla community in Indonesia. (Moderated)
 mozilla.community.ireland               The Mozilla community in Ireland. (Moderated)
 mozilla.community.kenya                 The Mozilla community in Kenya.
@@ -221,6 +223,7 @@ mozilla.dev.l10n.km                     Khmer localization discussions. (Moderat
 mozilla.dev.l10n.lo                     Lao localization discussions. (Moderated)
 mozilla.dev.l10n.ms                     Malay localization discussions. (Moderated)
 mozilla.dev.l10n.my                     Burmese localization discussions. (Moderated)
+mozilla.dev.l10n.nativo                 The Mozilla Nativo project (l10n into languages and cultures without an existing digital presence). (Moderated)
 mozilla.dev.l10n.pt-br                  Brazilian Portuguese localization discussions. (Moderated)
 mozilla.dev.l10n.sk                     Slovak localization discussions.
 mozilla.dev.l10n.sr                     Serbian localization discussions.
@@ -249,6 +252,7 @@ mozilla.community.artzilla              The Mozilla Artzilla community of artist
 mozilla.community.b2g                   The community around Boot2Gecko (Firefox OS). (Moderated)
 mozilla.community.devderby              The Mozilla monthly Developer Derby for web developers. (Moderated)
 mozilla.community.digital-freedom       Discussion of, and resistance to, laws which work against Mozilla's mission. (Moderated)
+mozilla.community.diversity             A group to plan, build, teach, empower, and grow our diversity skills project-wide. (Moderated)
 mozilla.community.games                 Building games in HTML5. (Moderated)
 mozilla.community.web-standards         The community of Mozilla people involved in web standards efforts.
 
