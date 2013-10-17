@@ -1,0 +1,2581 @@
+[{
+    "network_id": "20",
+    "domain": "bkrtx.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "20",
+    "domain": "bluekai.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "2",
+    "domain": "247realmedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "2",
+    "domain": "realmedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "10",
+    "domain": "imiclk.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "69",
+    "domain": "33across.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "3",
+    "domain": "acxiom.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "4",
+    "domain": "adadvisor.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "6",
+    "domain": "afy11.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "7",
+    "domain": "nspmotion.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "52",
+    "domain": "adtechus.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "52",
+    "domain": "adtech.de",
+    "block_cookies": "*"
+}, {
+    "network_id": "76",
+    "domain": "advertising.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "9",
+    "domain": "abmr.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "11",
+    "domain": "pro-market.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "14",
+    "domain": "atdmt.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "16",
+    "domain": "revsci.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "17",
+    "domain": "bizo.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "17",
+    "domain": "bizographics.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "24",
+    "domain": "casalemedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "79",
+    "domain": "chitika.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "26",
+    "domain": "collective-media.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "27",
+    "domain": "coremetrics.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "27",
+    "domain": "cmcore.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "29",
+    "domain": "exelator.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "34",
+    "domain": "fimserve.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "35",
+    "domain": "fwmrm.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "39",
+    "domain": "interclick.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "41",
+    "domain": "crwdcntrl.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "42",
+    "domain": "media6degrees.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "43",
+    "domain": "mathtag.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "45",
+    "domain": "mmismm.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "88",
+    "domain": "navegg.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "47",
+    "domain": "nextag.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "48",
+    "domain": "imrworldwide.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "49",
+    "domain": "nuggad.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "50",
+    "domain": "2o7.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "51",
+    "domain": "openx.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "75",
+    "domain": "pointroll.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "53",
+    "domain": "precisionclick.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "84",
+    "domain": "kanoodle.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "70",
+    "domain": "quantserve.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "54",
+    "domain": "adsonar.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "78",
+    "domain": "yieldmanager.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "71",
+    "domain": "rfihub.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "58",
+    "domain": "spotxchange.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "59",
+    "domain": "tacoda.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "61",
+    "domain": "trafficmp.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "62",
+    "domain": "tribalfusion.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "63",
+    "domain": "adlegend.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "66",
+    "domain": "webtrendslive.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "100",
+    "domain": "adinterax.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "1",
+    "domain": "ru4.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "14",
+    "domain": "adbureau.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "57",
+    "domain": "specificclick.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "57",
+    "domain": "specificmedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "76",
+    "domain": "atwola.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "65",
+    "domain": "apmebf.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "98",
+    "domain": "tattomedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "80",
+    "domain": "kontera.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "55",
+    "domain": "questionmarket.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "85",
+    "domain": "contextweb.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "65",
+    "domain": "mediaplex.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "110",
+    "domain": "eyewonder.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "112",
+    "domain": "interpolls.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "57",
+    "domain": "adviva.co.uk",
+    "block_cookies": "*"
+}, {
+    "network_id": "57",
+    "domain": "adviva.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "113",
+    "domain": "eyeconomy.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "114",
+    "domain": "acceleratorusa.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "115",
+    "domain": "adshuffle.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "116",
+    "domain": "adperium.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "117",
+    "domain": "unanimus.co.uk",
+    "block_cookies": "*"
+}, {
+    "network_id": "118",
+    "domain": "clicktale.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "118",
+    "domain": "clicktale.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "119",
+    "domain": "etology.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "120",
+    "domain": "insightexpress.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "120",
+    "domain": "insightexpressai.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "121",
+    "domain": "doubleverify.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "122",
+    "domain": "dotomi.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "123",
+    "domain": "gunggo.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "126",
+    "domain": "collarity.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "127",
+    "domain": "adknowledge.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "128",
+    "domain": "loomia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "129",
+    "domain": "clicksor.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "14",
+    "domain": "aquantive.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "127",
+    "domain": "cubics.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "131",
+    "domain": "vizu.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "133",
+    "domain": "sproutbuilder.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "134",
+    "domain": "quadrantone.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "135",
+    "domain": "checkm8.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "136",
+    "domain": "vibrantmedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "136",
+    "domain": "intellitxt.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "137",
+    "domain": "gigya.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "137",
+    "domain": "gigya-inc.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "139",
+    "domain": "crowdscience.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "141",
+    "domain": "sharethis.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "143",
+    "domain": "ads.e-planning.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "143",
+    "domain": "ads.us.e-planning.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "144",
+    "domain": "flashtalking.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "145",
+    "domain": "weborama.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "145",
+    "domain": "weborama.fr",
+    "block_cookies": "*"
+}, {
+    "network_id": "147",
+    "domain": "effectivemeasure.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "148",
+    "domain": "richrelevance.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "149",
+    "domain": "buysafe.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "150",
+    "domain": "iperceptions.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "151",
+    "domain": "baynote.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "151",
+    "domain": "baynote.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "153",
+    "domain": "tumri.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "153",
+    "domain": "tumri.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "83",
+    "domain": "adbrite.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "154",
+    "domain": "tradedoubler.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "155",
+    "domain": "demdex.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "99",
+    "domain": "clearspring.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "82",
+    "domain": "burstnet.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "104",
+    "domain": "clickability.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "68",
+    "domain": "undertone.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "62",
+    "domain": "exponential.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "64",
+    "domain": "turn.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "156",
+    "domain": "pubmatic.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "157",
+    "domain": "aggregateknowledge.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "158",
+    "domain": "adjuggler.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "93",
+    "domain": "videoegg.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "51",
+    "domain": "openx.org",
+    "block_cookies": "*"
+}, {
+    "network_id": "78",
+    "domain": "yieldmanager.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "67",
+    "domain": "overture.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "107",
+    "domain": "lucidmedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "159",
+    "domain": "factortg.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "160",
+    "domain": "tremormedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "89",
+    "domain": "adap.tv",
+    "block_cookies": "*"
+}, {
+    "network_id": "125",
+    "domain": "assoc-amazon.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "84",
+    "domain": "pulse360.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "163",
+    "domain": "admeld.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "16",
+    "domain": "targetingmarketplace.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "165",
+    "domain": "brand.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "166",
+    "domain": "optmd.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "92",
+    "domain": "blogads.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "101",
+    "domain": "adaptiveads.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "5",
+    "domain": "adcentriconline.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "72",
+    "domain": "adconion.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "103",
+    "domain": "adotube.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "22",
+    "domain": "btrll.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "23",
+    "domain": "btbuckets.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "146",
+    "domain": "clearsightinteractive.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "105",
+    "domain": "clipsyndicate.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "102",
+    "domain": "cj.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "95",
+    "domain": "congoo.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "94",
+    "domain": "datranmedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "31",
+    "domain": "serving-sys.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "31",
+    "domain": "eyeblaster.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "32",
+    "domain": "facilitatedigital.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "33",
+    "domain": "fetchback.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "38",
+    "domain": "hitbox.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "106",
+    "domain": "iacadvertising.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "152",
+    "domain": "mediawhiz.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "124",
+    "domain": "mpire.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "46",
+    "domain": "nextaction.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "46",
+    "domain": "nexac.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "108",
+    "domain": "popularmedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "97",
+    "domain": "shorttailmedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "56",
+    "domain": "smartadserver.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "81",
+    "domain": "spot200.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "130",
+    "domain": "tealium.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "87",
+    "domain": "yumenetworks.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "167",
+    "domain": "traffiq.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "168",
+    "domain": "scanscout.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "169",
+    "domain": "outbrain.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "50",
+    "domain": "omniture.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "72",
+    "domain": "amgdgt.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "170",
+    "domain": "sitemeter.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "50",
+    "domain": "offermatica.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "171",
+    "domain": "adperfect.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "124",
+    "domain": "widgetbucks.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "78",
+    "domain": "rmxads.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "172",
+    "domain": "cpxinteractive.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "174",
+    "domain": "channelintelligence.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "175",
+    "domain": "teracent.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "78",
+    "domain": "flingwebads.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "176",
+    "domain": "adserverplus.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "176",
+    "domain": "oridian.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "175",
+    "domain": "teracent.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "177",
+    "domain": "widgetserver.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "177",
+    "domain": "widgetbox.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "55",
+    "domain": "dl-rms.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "178",
+    "domain": "mediaforceads.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "179",
+    "domain": "addtoany.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "55",
+    "domain": "dlqm.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "180",
+    "domain": "contextuads.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "181",
+    "domain": "xgraph.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "32",
+    "domain": "adsfac.us",
+    "block_cookies": "*"
+}, {
+    "network_id": "183",
+    "domain": "cetrk.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "183",
+    "domain": "crazyegg.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "184",
+    "domain": "gumgum.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "185",
+    "domain": "lfstmedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "186",
+    "domain": "adtegrity.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "186",
+    "domain": "adtegrity.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "187",
+    "domain": "adfrontiers.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "188",
+    "domain": "reinvigorate.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "44",
+    "domain": "roiservice.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "189",
+    "domain": "adnxs.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "190",
+    "domain": "bridgetrack.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "191",
+    "domain": "adroll.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "67",
+    "domain": "adrevolver.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "67",
+    "domain": "bluelithium.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "192",
+    "domain": "adonnetwork.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "192",
+    "domain": "adonnetwork.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "51",
+    "domain": "openx.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "82",
+    "domain": "burstdirectads.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "194",
+    "domain": "addkick.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "195",
+    "domain": "peer39.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "196",
+    "domain": "accelerator-media.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "197",
+    "domain": "batanganetwork.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "197",
+    "domain": "batanga.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "99",
+    "domain": "connectedads.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "198",
+    "domain": "adfusion.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "199",
+    "domain": "adparlor.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "200",
+    "domain": "connextra.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "102",
+    "domain": "qksz.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "70",
+    "domain": "quantcast.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "201",
+    "domain": "proximic.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "201",
+    "domain": "proximic.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "72",
+    "domain": "euroclick.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "65",
+    "domain": "ftjcfx.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "202",
+    "domain": "hitslink.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "202",
+    "domain": "hitsprocessor.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "203",
+    "domain": "owneriq.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "203",
+    "domain": "owneriq.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "204",
+    "domain": "criteo.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "205",
+    "domain": "permuto.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "205",
+    "domain": "pulsemgr.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "206",
+    "domain": "dataxu.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "206",
+    "domain": "w55c.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "207",
+    "domain": "scorecardresearch.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "208",
+    "domain": "dapper.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "65",
+    "domain": "yceml.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "211",
+    "domain": "fastclick.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "211",
+    "domain": "fastclick.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "211",
+    "domain": "valueclick.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "211",
+    "domain": "valueclick.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "212",
+    "domain": "struq.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "65",
+    "domain": "awltovhc.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "211",
+    "domain": "lduhtrp.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "82",
+    "domain": "burstbeacon.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "78",
+    "domain": "yldmgrimg.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "213",
+    "domain": "invitemedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "214",
+    "domain": "beencounter.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "181",
+    "domain": "xgraph.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "215",
+    "domain": "gorillanation.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "216",
+    "domain": "vindicosuite.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "217",
+    "domain": "netmng.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "217",
+    "domain": "netmining.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "152",
+    "domain": "adnetinteractive.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "102",
+    "domain": "tqlkg.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "218",
+    "domain": "adspeed.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "63",
+    "domain": "trueffect.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "219",
+    "domain": "traveladvertising.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "219",
+    "domain": "traveladnetwork.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "220",
+    "domain": "amadesa.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "158",
+    "domain": "adjuggler.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "175",
+    "domain": "ytsa.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "175",
+    "domain": "smtad.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "222",
+    "domain": "netshelter.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "223",
+    "domain": "adbuyer.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "224",
+    "domain": "wunderloop.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "225",
+    "domain": "everesttech.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "226",
+    "domain": "adchemy.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "204",
+    "domain": "criteo.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "227",
+    "domain": "ctasnet.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "227",
+    "domain": "crimtan.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "229",
+    "domain": "tidaltv.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "230",
+    "domain": "raasnet.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "230",
+    "domain": "redaril.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "232",
+    "domain": "rapleaf.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "232",
+    "domain": "rlcdn.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "234",
+    "domain": "eyereturn.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "234",
+    "domain": "eyereturnmarketing.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "235",
+    "domain": "netseer.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "236",
+    "domain": "halogennetwork.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "237",
+    "domain": "qnsr.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "237",
+    "domain": "quinstreet.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "238",
+    "domain": "adgear.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "201",
+    "domain": "proxilinks.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "239",
+    "domain": "mythingsmedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "239",
+    "domain": "mythings.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "240",
+    "domain": "bannerconnect.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "241",
+    "domain": "hurra.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "153",
+    "domain": "yt1187.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "242",
+    "domain": "snoobi.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "243",
+    "domain": "opinmind.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "244",
+    "domain": "mxptint.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "244",
+    "domain": "maxpointinteractive.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "245",
+    "domain": "esm1.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "245",
+    "domain": "echosearch.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "246",
+    "domain": "adocean.pl",
+    "block_cookies": "*"
+}, {
+    "network_id": "246",
+    "domain": "adocean-global.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "247",
+    "domain": "tellapart.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "248",
+    "domain": "mixpo.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "249",
+    "domain": "faithadnet.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "250",
+    "domain": "retargeter.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "252",
+    "domain": "adready.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "253",
+    "domain": "xtendmedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "254",
+    "domain": "cpmatic.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "255",
+    "domain": "adpepper.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "256",
+    "domain": "pinnacledream.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "257",
+    "domain": "themig.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "258",
+    "domain": "domdex.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "258",
+    "domain": "qjex.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "257",
+    "domain": "mookie1.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "259",
+    "domain": "lockedonmedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "260",
+    "domain": "legolas-media.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "261",
+    "domain": "spongecell.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "262",
+    "domain": "httpool.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "263",
+    "domain": "didit.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "264",
+    "domain": "radiusmarketing.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "254",
+    "domain": "xa.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "265",
+    "domain": "inadco.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "265",
+    "domain": "anadcoads.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "266",
+    "domain": "lijit.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "267",
+    "domain": "bunchball.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "268",
+    "domain": "visiblemeasures.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "269",
+    "domain": "resonatenetworks.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "270",
+    "domain": "wsod.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "124",
+    "domain": "adxpose.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "127",
+    "domain": "bidsystem.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "271",
+    "domain": "triggit.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "243",
+    "domain": "yieldoptimizer.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "289",
+    "domain": "campaigngrid.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "290",
+    "domain": "oxamedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "290",
+    "domain": "adsbwm.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "3",
+    "domain": "mm7.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "291",
+    "domain": "mybuys.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "292",
+    "domain": "veruta.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "288",
+    "domain": "ib-ibi.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "288",
+    "domain": "i-behavior.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "205",
+    "domain": "buysight.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "93",
+    "domain": "saymedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "293",
+    "domain": "mediaforge.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "294",
+    "domain": "teadma.com",
+    "block_cookies": "0"
+}, {
+    "network_id": "67",
+    "domain": "yahoo.com",
+    "block_cookies": "B"
+}, {
+    "network_id": "140",
+    "domain": "addthis.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "298",
+    "domain": "wtp101.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "298",
+    "domain": "adnetik.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "299",
+    "domain": "gwallet.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "300",
+    "domain": "adsummos.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "300",
+    "domain": "adsummos.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "301",
+    "domain": "svc.pch.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "280",
+    "domain": "brilig.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "111",
+    "domain": "adblade.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "278",
+    "domain": "adroitinteractive.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "251",
+    "domain": "atrinsic.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "277",
+    "domain": "bvmedia.ca",
+    "block_cookies": "*"
+}, {
+    "network_id": "277",
+    "domain": "networldmedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "172",
+    "domain": "cpxadroit.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "37",
+    "domain": "doubleclick.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "284",
+    "domain": "groceryshopping.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "272",
+    "domain": "impressiondesk.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "282",
+    "domain": "inflectionpointmedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "281",
+    "domain": "infra-ad.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "268",
+    "domain": "cdn.visiblemeasures.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "213",
+    "domain": "cdn2.invitemedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "99",
+    "domain": "bin.clearspring.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "34",
+    "domain": "cache.opt.fimserve.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "57",
+    "domain": "cache.specificmedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "72",
+    "domain": "cdn-video.adconion.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "9",
+    "domain": "content.yieldmanager.edgesuite.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "120",
+    "domain": "core.insightexpressai.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "93",
+    "domain": "core.videoegg.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "147",
+    "domain": "effectivemeasure.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "70",
+    "domain": "flash.quantserve.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "80",
+    "domain": "kona.kontera.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "168",
+    "domain": "media.scanscout.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "160",
+    "domain": "objects.tremormedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "168",
+    "domain": "static.scanscout.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "132",
+    "domain": "tap-cdn.rubiconproject.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "99",
+    "domain": "widgets.clearspring.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "240",
+    "domain": "www.bannerconnect.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "94",
+    "domain": "www.datranmedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "268",
+    "domain": "www.visiblemeasures.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "99",
+    "domain": "cs69.clearspring.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "302",
+    "domain": "convertro.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "32",
+    "domain": "adsfac.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "6",
+    "domain": "adify.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "274",
+    "domain": "quisma.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "286",
+    "domain": "newtention.de",
+    "block_cookies": "*"
+}, {
+    "network_id": "272",
+    "domain": "infectiousmedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "35",
+    "domain": "freewheel.tv",
+    "block_cookies": "*"
+}, {
+    "network_id": "277",
+    "domain": "networldmedia.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "275",
+    "domain": "peerset.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "275",
+    "domain": "keewurd.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "32",
+    "domain": "adsfac.sg",
+    "block_cookies": "*"
+}, {
+    "network_id": "32",
+    "domain": "adsfac.eu",
+    "block_cookies": "*"
+}, {
+    "network_id": "2",
+    "domain": "decideinteractive.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "225",
+    "domain": "efrontier.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "211",
+    "domain": "valueclickmedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "41",
+    "domain": "lotame.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "233",
+    "domain": "monster.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "276",
+    "domain": "buzzlogic.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "94",
+    "domain": "displaymarketplace.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "286",
+    "domain": "newtention.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "283",
+    "domain": "predictad.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "17",
+    "domain": "www.bizo.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "214",
+    "domain": "www.beencounter.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "205",
+    "domain": "preferences.permuto.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "76",
+    "domain": "advertising.aol.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "303",
+    "domain": "simpli.fi",
+    "block_cookies": "*"
+}, {
+    "network_id": "85",
+    "domain": "agencytradingdesk.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "304",
+    "domain": "p-td.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "305",
+    "domain": "mochila.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "306",
+    "domain": "engagebdr.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "61",
+    "domain": "cdn1.trafficmp.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "307",
+    "domain": "meebo.com",
+    "block_cookies": "bcookie"
+}, {
+    "network_id": "306",
+    "domain": "bnmla.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "285",
+    "domain": "chango.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "285",
+    "domain": "chango.ca",
+    "block_cookies": "*"
+}, {
+    "network_id": "155",
+    "domain": "demdex.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "308",
+    "domain": "admagnet.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "309",
+    "domain": "cpmstar.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "310",
+    "domain": "adecn.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "156",
+    "domain": "ads.pubmatic.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "37",
+    "domain": "ad.doubleclick.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "37",
+    "domain": "googleads.g.doubleclick.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "6",
+    "domain": "im.afy11.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "174",
+    "domain": "youknowbest.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "311",
+    "domain": "kantarmedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "312",
+    "domain": "mediacom.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "2",
+    "domain": "decdna.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "2",
+    "domain": "pm14.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "312",
+    "domain": "gmads.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "132",
+    "domain": "rubiconproject.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "313",
+    "domain": "traffiliate.com",
+    "block_cookies": "0"
+}, {
+    "network_id": "314",
+    "domain": "tonefuse.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "315",
+    "domain": "tagman.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "315",
+    "domain": "levexis.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "316",
+    "domain": "clickdistrict.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "316",
+    "domain": "creative-serving.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "317",
+    "domain": "thetradedesk.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "317",
+    "domain": "adsrvr.org",
+    "block_cookies": "*"
+}, {
+    "network_id": "318",
+    "domain": "surphace.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "14",
+    "domain": "netconversions.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "254",
+    "domain": "cpmadvisors.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "319",
+    "domain": "oneriot.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "320",
+    "domain": "bluecava.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "37",
+    "domain": "googleadservices.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "128",
+    "domain": "loomia.com",
+    "block_cookies": "_loomiaUTrack"
+}, {
+    "network_id": "160",
+    "domain": "tmnetads.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "321",
+    "domain": "glam.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "321",
+    "domain": "glammedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "254",
+    "domain": "optim.al",
+    "block_cookies": "*"
+}, {
+    "network_id": "322",
+    "domain": "komli.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "323",
+    "domain": "liverail.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "324",
+    "domain": "cyberplex.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "325",
+    "domain": "cognitivematch.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "20",
+    "domain": "tracksimple.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "326",
+    "domain": "ignitad.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "206",
+    "domain": "dataxu.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "327",
+    "domain": "nxtck.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "327",
+    "domain": "nextperformance.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "328",
+    "domain": "eadvtracker.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "62",
+    "domain": "fulltango.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "329",
+    "domain": "crosspixelmedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "330",
+    "domain": "milabra.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "331",
+    "domain": "adzcentral.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "254",
+    "domain": "orbengine.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "169",
+    "domain": "surphace.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "333",
+    "domain": "p-td.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "333",
+    "domain": "accuenmedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "26",
+    "domain": "collective.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "334",
+    "domain": "mexad.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "335",
+    "domain": "applifier.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "336",
+    "domain": "certona.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "337",
+    "domain": "perfiliate.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "337",
+    "domain": "buy.at",
+    "block_cookies": "*"
+}, {
+    "network_id": "338",
+    "domain": "underdogmedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "339",
+    "domain": "oneiota.co.uk",
+    "block_cookies": "*"
+}, {
+    "network_id": "340",
+    "domain": "resolutionmedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "341",
+    "domain": "tynt.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "342",
+    "domain": "ohanaqb.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "342",
+    "domain": "ohana-media.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "342",
+    "domain": "adohana.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "343",
+    "domain": "forbesmedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "132",
+    "domain": "myads.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "225",
+    "domain": "everestads.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "225",
+    "domain": "everestjs.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "344",
+    "domain": "acquisio.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "345",
+    "domain": "veremedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "346",
+    "domain": "mercent.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "347",
+    "domain": "intentmedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "347",
+    "domain": "intentmedia.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "348",
+    "domain": "keyade.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "146",
+    "domain": "csi-tracking.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "349",
+    "domain": "rmmonline.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "350",
+    "domain": "ringleaderdigital.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "351",
+    "domain": "rovion.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "352",
+    "domain": "orangesoda.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "352",
+    "domain": "otracking.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "353",
+    "domain": "enecto.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "354",
+    "domain": "yabuka.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "355",
+    "domain": "mywebgrocer.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "356",
+    "domain": "mediatrust.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "357",
+    "domain": "contextin.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "357",
+    "domain": "admailtiser.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "358",
+    "domain": "admarketplace.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "236",
+    "domain": "halogenmediagroup.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "325",
+    "domain": "cmadseu.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "325",
+    "domain": "cmadsasia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "325",
+    "domain": "cmads.com.tw",
+    "block_cookies": "*"
+}, {
+    "network_id": "48",
+    "domain": "nielsen-online.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "336",
+    "domain": "res-x.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "359",
+    "domain": "adjug.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "360",
+    "domain": "switchconcepts.co.uk",
+    "block_cookies": "*"
+}, {
+    "network_id": "360",
+    "domain": "switchadhub.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "361",
+    "domain": "bizmey.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "362",
+    "domain": "wibiya.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "363",
+    "domain": "audienceiq.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "363",
+    "domain": "experian.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "364",
+    "domain": "adlantic.nl",
+    "block_cookies": "*"
+}, {
+    "network_id": "365",
+    "domain": "eyeviewdigital.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "366",
+    "domain": "51network.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "366",
+    "domain": "uniqlick.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "366",
+    "domain": "wanmo.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "367",
+    "domain": "eloqua.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "369",
+    "domain": "infogroup.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "370",
+    "domain": "scandinavianadnetworks.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "371",
+    "domain": "medicxmedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "372",
+    "domain": "hooklogic.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "373",
+    "domain": "kenshoo.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "56",
+    "domain": "meetic-partners.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "56",
+    "domain": "horyzon-media.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "374",
+    "domain": "fairfax.com.au",
+    "block_cookies": "*"
+}, {
+    "network_id": "375",
+    "domain": "sensis.com.au",
+    "block_cookies": "*"
+}, {
+    "network_id": "375",
+    "domain": "telstra.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "375",
+    "domain": "sensisdigitalmedia.com.au",
+    "block_cookies": "*"
+}, {
+    "network_id": "375",
+    "domain": "sensisdata.com.au",
+    "block_cookies": "*"
+}, {
+    "network_id": "376",
+    "domain": "maxusglobal.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "377",
+    "domain": "fetchforce.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "378",
+    "domain": "barilliance.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "379",
+    "domain": "jaroop.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "380",
+    "domain": "autonomy.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "381",
+    "domain": "collidermedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "382",
+    "domain": "epsilon.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "383",
+    "domain": "leadformix.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "384",
+    "domain": "rimmkaufman.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "384",
+    "domain": "rkdms.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "385",
+    "domain": "vizisense.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "385",
+    "domain": "vizisense.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "386",
+    "domain": "sagemetrics.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "386",
+    "domain": "sageanalyst.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "387",
+    "domain": "krxd.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "387",
+    "domain": "kruxdigital.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "24",
+    "domain": "medianet.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "274",
+    "domain": "iaded.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "274",
+    "domain": "xaded.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "274",
+    "domain": "xmladed.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "51",
+    "domain": "servedbyopenx.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "372",
+    "domain": "hlserve.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "388",
+    "domain": "mediaarmor",
+    "block_cookies": "*"
+}, {
+    "network_id": "389",
+    "domain": "viglink.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "390",
+    "domain": "inuvo.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "391",
+    "domain": "tubemogul.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "392",
+    "domain": "steelhouse.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "392",
+    "domain": "steelhousemedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "393",
+    "domain": "oggifinogi.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "394",
+    "domain": "sophus3.co.uk",
+    "block_cookies": "*"
+}, {
+    "network_id": "394",
+    "domain": "sophus3.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "395",
+    "domain": "daphnecm.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "395",
+    "domain": "gfk.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "395",
+    "domain": "gfkdaphne.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "245",
+    "domain": "thinkrealtime.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "396",
+    "domain": "sensic.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "396",
+    "domain": "nurago.de",
+    "block_cookies": "*"
+}, {
+    "network_id": "397",
+    "domain": "poprule.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "397",
+    "domain": "gocampaignlive.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "398",
+    "domain": "gemius.pl",
+    "block_cookies": "*"
+}, {
+    "network_id": "399",
+    "domain": "mindshare.nl",
+    "block_cookies": "*"
+}, {
+    "network_id": "399",
+    "domain": "mindshareworld.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "400",
+    "domain": "eulerian.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "400",
+    "domain": "eulerian.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "401",
+    "domain": "qoof.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "402",
+    "domain": "mecglobal.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "403",
+    "domain": "zedo.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "404",
+    "domain": "apture.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "405",
+    "domain": "adform.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "405",
+    "domain": "adform.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "68",
+    "domain": "undertonenetworks.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "406",
+    "domain": "pswec.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "406",
+    "domain": "proclivitysystems.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "407",
+    "domain": "martinimedianetwork.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "408",
+    "domain": "adriver.ru",
+    "block_cookies": "*"
+}, {
+    "network_id": "409",
+    "domain": "madisonlogic.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "410",
+    "domain": "adaptly.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "411",
+    "domain": "c3tag.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "411",
+    "domain": "c3metrics.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "412",
+    "domain": "cadreon.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "413",
+    "domain": "sociomantic.com",
+    "block_cookies": "0"
+}, {
+    "network_id": "414",
+    "domain": "atinternet.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "414",
+    "domain": "xiti.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "415",
+    "domain": "affinesystems.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "416",
+    "domain": "gmads.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "416",
+    "domain": "groupm.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "417",
+    "domain": "nascar.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "418",
+    "domain": "gravity.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "419",
+    "domain": "smowtion.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "420",
+    "domain": "v12groupinc.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "421",
+    "domain": "webtrekk.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "421",
+    "domain": "webtrekk.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "422",
+    "domain": "net-results.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "423",
+    "domain": "etracker.de",
+    "block_cookies": "*"
+}, {
+    "network_id": "423",
+    "domain": "etracker.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "424",
+    "domain": "woopra.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "425",
+    "domain": "blacklabelads.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "426",
+    "domain": "fireclick.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "427",
+    "domain": "personyze.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "428",
+    "domain": "adultadworld.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "429",
+    "domain": "vdopia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "429",
+    "domain": "ivdopia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "430",
+    "domain": "gourmetads.com",
+    "block_cookies": "0"
+}, {
+    "network_id": "431",
+    "domain": "dsnrmg.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "431",
+    "domain": "dsnrgroup.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "432",
+    "domain": "millennialmedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "432",
+    "domain": "mydas.mobi",
+    "block_cookies": "*"
+}, {
+    "network_id": "433",
+    "domain": "maxymiser.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "434",
+    "domain": "marketo.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "435",
+    "domain": "onestat.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "436",
+    "domain": "kissmyads.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "8",
+    "domain": "heias.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "437",
+    "domain": "zanox.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "438",
+    "domain": "haileo.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "439",
+    "domain": "tickerish.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "329",
+    "domain": "crosspixel.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "71",
+    "domain": "rfihub.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "440",
+    "domain": "adpredictive.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "441",
+    "domain": "xad.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "442",
+    "domain": "advertise.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "443",
+    "domain": "meteorsolutions.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "39",
+    "domain": "secure-adserver.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "444",
+    "domain": "adition.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "445",
+    "domain": "ooyala.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "446",
+    "domain": "dedicatednetworks.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "268",
+    "domain": "viewablemedia.net",
+    "block_cookies": "*"
+}, {
+    "network_id": "447",
+    "domain": "adnectar.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "448",
+    "domain": "smileymedia.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "449",
+    "domain": "emediate.biz",
+    "block_cookies": "*"
+}, {
+    "network_id": "449",
+    "domain": "emediate.dk",
+    "block_cookies": "*"
+}, {
+    "network_id": "449",
+    "domain": "emediate.eu",
+    "block_cookies": "*"
+}, {
+    "network_id": "450",
+    "domain": "optimumresponse.com",
+    "block_cookies": "*"
+}, {
+    "network_id": "451",
+    "domain": "crispmedia.com",
+    "block_cookies": "*"
+}]

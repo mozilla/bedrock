@@ -1,0 +1,44 @@
+{
+
+"imdb.com": {"visited": "true", "referrers": {}},
+
+"nytimes.com": {"visited": "true", "referrers": {}},
+
+"huffingtonpost.com": {"visited": "true", "referrers": {}},
+
+"gamespot.com": {"visited": "true", "referrers": {}},
+
+"scorecardresearch.com":{"referrers": {"imdb.com":[16876,null],"nytimes.com":[217723,"application/x-javascript",null],"huffingtonpost.com":[261056,null],"gamespot.com":[350881,null]}},
+
+"doubleclick.net":{"referrers":{"imdb.com":[16966,"application/x-javascript"],"nytimes.com":[212628,"text/html","text/javascript; charset=UTF-8"],"huffingtonpost.com":[261180,"text/html","application/x-javascript"],"gamespot.com":[347704,"text/html"],"reference.com":[406558,"application/x-javascript"]}},
+
+"atdmt.com":{"referrers":{"imdb.com":[17671,"text/html"]}},
+
+"checkm8.com":{"referrers":{"nytimes.com":[214265,"text/html","application/javascript"]}},
+
+"imrworldwide.com":{"referrers":{"nytimes.com":[217811,"text/html","image/gif"],"huffingtonpost.com":[261172,"image/gif"],"gamespot.com":[351053,"image/gif"]}},
+
+"quantserve.com":{"referrers":{"huffingtonpost.com":[257567,"application/x-javascript",null],"reference.com":[405447,"application/x-javascript"]}},
+
+"atwola.com":{"referrers":{"huffingtonpost.com":[258588,null,"application/x-javascript","text/html"],"adsonar.com":[260039,"text/html"]}},
+
+"aol.com":{"referrers":{"huffingtonpost.com":[259239,"text/plain","image/gif","text/html; charset=iso-8859-1"]}},
+
+"questionmarket.com":{"referrers":{"huffingtonpost.com":[261796,"text/html"]}},
+
+"advertising.com":{"referrers":{"atwola.com":[263125,"image/gif"]}},
+
+"com.com":{"referrers":{"gamespot.com":[350513,"text/plain","image/gif"]}},
+
+"bluekai.com":{"referrers":{"gamespot.com":[351413,"text/html","text/javascript"]}},
+
+"revsci.net":{"referrers":{"gamespot.com":[351492,"application/javascript;charset=UTF-8"]}},
+
+"dictionary.com":{"referrers":{"reference.com":[406550,"text/html; charset=UTF-8","application/x-shockwave-flash"]}},
+
+"adtechus.com":{"referrers":{"reference.com":[406676,null,"application/x-javascript"]}},
+
+"thesaurus.com":{"referrers":{"reference.com":[407038,"text/html; charset=UTF-8"]}},
+
+"zedo.com":{"referrers":{"reference.com":[407460,"text/html","application/x-javascript","image/gif"]}}
+}
