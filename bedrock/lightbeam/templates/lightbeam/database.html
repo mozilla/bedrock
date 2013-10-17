@@ -7,6 +7,9 @@
 {% block page_title %}Ligthbeam for Firefox{% endblock %}
 {% block body_id %}lightbeam{% endblock %}
 {% block body_class %}sky{% endblock %}
+{% block site_header_logo %}
+  <h2><a href="{{ url('lightbeam.lightbeam') }}"><img src="{{ media('img/lightbeam/lightbeam_logo-wordmark_800x250.png') }}" style="width: 250px"></a></h2>
+{% endblock %}
 {% block site_header_nav %}
   <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
   <nav id="nav-main" role="navigation">
@@ -88,4 +91,13 @@
   </div>
 </section>
 
+<section class="container">
+  <h3>Supported By</h3>
+  <div class="span-center">
+    <div class="text-center"><img src="{{ media('img/lightbeam/Lightbeam_partners_fordfoundation.png') }}" alt="" class="partner-logo"></div>
+    <p>
+        The work at the Ford Foundation focuses on building outreach compaigns to help people understand online data tracking -- both the benefits and the issues.
+    </p>
+  </div>
+</section>
 {% endblock %}

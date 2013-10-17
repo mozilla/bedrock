@@ -176,6 +176,11 @@ section.container{
   .span(12);
 }
 
+.span-center{
+  .span(6);
+  .offset(3);
+}
+
 .temp-placeholder{
   background-color: #444;
   border-radius: 5px;
@@ -226,11 +231,12 @@ section.container{
 .sorting-options a{
   padding: 0 5px;
   cursor: pointer;
+  color: #555;
 }
 
 .sorting-options a[data-selected]{
   font-weight: bold;
-  border: 1px solid #48C7E6;
+  color: #48C7E6;
 }
 
 .pagination{
@@ -357,6 +363,10 @@ svg.percent-bar rect + text{
   width: 90%;
 }
 
+.partner-logo{
+  width: 300px;
+}
+
 
 /* Styles for lightbeam Graph */
 
@@ -372,175 +382,4 @@ svg.percent-bar rect + text{
 
 .node{
     fill: #FFF;
-}
-
-
-/* {{{ Tablet  Layout: 768px */
-@media only screen and (min-width: @widthTablet) and (max-width: @widthDesktop) {
-
-    #collusion {
-        .main-content {
-            .span_narrow(7);
-        }
-        .sidebar {
-            .span_narrow(4);
-            .offset_narrow(1);
-        }
-    }
-
-}
-
-/* }}} */
-/* {{{ Wide Mobile Layout: 480px */
-@media only screen and (max-width: @widthTablet) {
-
-    #collusion {
-        .main-content {
-            .span-all();
-        }
-
-        .sidebar {
-            .span-all();
-        }
-
-        #primary {
-            padding-top: @baseLine;
-            padding-bottom: @baseLine;
-            p {
-                .span-all();
-            }
-            img {
-                display: none;
-            }
-            .buttons {
-                .span-all();
-                .button {
-                    margin: 10px auto;
-                    width: auto;
-                    display: block;
-                    float: none;
-                }
-            }
-        }
-    }
-
-}
-
-
-/* }}} */
-
-
-
-g.node.unrelated-domain image {
-  display: none;
-}
-
-g.node.unrelated-domain circle.glow {
-  display: none;
-}
-
-g.node.unrelated-domain circle.visited {
-  stroke: #102050;
-}
-
-g.node.unrelated-domain circle.site {
-  stroke: #202020;
-}
-
-g.node.unrelated-domain circle.tracker {
-  stroke: #400000;
-}
-
-g.node.unrelated-domain circle.round-border {
-  fill: #151515;
-}
-
-.round-border {
-  fill: #fff;
-  stroke-width: 2px;
-}
-
-marker {
-  stroke: none;
-  fill: #fff;
-  fill-opacity: 1;
-}
-
-line.link {
-  stroke: #999;
-  stroke-opacity: .6;
-}
-
-line.bold {
-  stroke: #fff;
-  stroke-opacity: 1;
-}
-
-.hidden {
-  .visually-hidden();
-}
-
-
-h2.domain img.favicon {
-  width: 16px;
-  height: 16px;
-  padding-right: 4px;
-}
-
-h2.domain img.tracker {
-  height: 30px;
-}
-
-.attribution {
-  margin-left: 20px;
-}
-
-.tracker {
-  stroke: @linkRed;
-}
-
-.site {
-  stroke: #7f7f7f;
-}
-
-.visited {
-  stroke: #67A7D0;
-}
-
-.demo span.next {
-  cursor: pointer;
-  font-weight: bold;
-  color: @linkRed;
-}
-
-.demo span.next:hover {
-    text-decoration: underline;
-}
-
-
-/* On demo.html, the graph is shown against light background instead of dark
-   so make the bold arrows black instead of white. */
-
-line.bold {
-  stroke: #000;
-}
-
-marker {
-  fill: #000;
-}
-
-g.node.unrelated-domain circle.visited {
-  stroke: #a0a0e0;
-}
-
-g.node.unrelated-domain circle.site {
-  stroke: #b0b0b0;
-}
-
-g.node.unrelated-domain circle.tracker {
-  stroke: #d6a0a0;
-}
-
-g.node.unrelated-domain circle.round-border {
-  fill: #e0e0e0;
 }

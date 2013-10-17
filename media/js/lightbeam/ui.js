@@ -5,12 +5,10 @@ var currentPage;
 var allSites;
 
 document.addEventListener("DOMContentLoaded", function(event) {
-    console.log("DOM fully loaded");
     var whichPage = document.querySelector("#primary");
     currentPage = document.querySelector("body");
 
     if ( whichPage.classList.contains("database") ){
-        console.log("--- database page");
         loadContentDatabase();
     }else if( whichPage.classList.contains("profile") ){
         var hrefArray = window.location.href.split('?');
@@ -42,7 +40,6 @@ var siteTableClickHandler = function(event){
     if ( !profileURL ){
         return;
     }
-    console.log(profileURL);
     window.location = profileURL;
 };
 
@@ -65,7 +62,6 @@ function loadContentDatabase(){
         url: DATABASE_URL + "/databaseSiteList",
         dataType: 'jsonp',
         success: function(data){
-            console.log(data[0][1]);
             allSites = data[0];
             var top10Trackers = data[1];
             showAllSitesTable();
@@ -86,7 +82,6 @@ function loadContentDatabase(){
 
 function showPotentialTracker(top10Trackers){
     var html = currentPage.querySelector(".top-trackers-table").innerHTML;
-    console.log(top10Trackers);
     var siteArray = Object.keys(top10Trackers);
     for ( var i=0; i<siteArray.length; i++ ){
         site = top10Trackers[siteArray[i]];
@@ -149,8 +144,6 @@ var paginationForSiteTables = function(event){
 
 var sortingForSiteTables = function(event){
     var sortBy = event.target.getAttribute("data-sort");
-    console.log(sortBy);
-
     if ( sortBy ){
         var sortByFunction;
         var sortByConnectedSites = function(a,b){ return b.numConnectedSites - a.numConnectedSites; };

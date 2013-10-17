@@ -7,12 +7,14 @@
 {% block page_title %}Ligthbeam for Firefox{% endblock %}
 {% block body_id %}lightbeam{% endblock %}
 {% block body_class %}sky{% endblock %}
+{% block site_header_logo %}
+  <h2><a href="{{ url('lightbeam.lightbeam') }}"><img src="{{ media('img/lightbeam/lightbeam_logo-wordmark_800x250.png') }}" style="width: 250px"></a></h2>
+{% endblock %}
 {% block site_header_nav %}
   <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
   <nav id="nav-main" role="navigation">
     <ul id="nav-main-menu">
       <li><a href="{{ url('lightbeam.lightbeam') }}">Home</a></li>
-      <li><a href="{{ url('lightbeam.demo') }}">Demo</a></li>
       <li><a href="{{ url('lightbeam.database') }}">Database</a></li>
       <li><b>About</b></li>
   </ul>
@@ -49,7 +51,8 @@
       Lightbeam has site preferences which enable users to block sites from connecting to their Firefox browser,  watch sites they are interested in or hide sites they do not want to see visualized.
     </p>
   </div>
-  <div class="span5 temp-placeholder" style="height: 400px">
+  <div class="span5">
+    <img src="{{ media('img/lightbeam/Lightbeam---Updated-Graph-Image.png') }}" alt="">
   </div>
 
 </section>
@@ -96,28 +99,28 @@
 
 <section class="container">
   <h3>Partners of Lightbeam</h3>
-  <div class="span4 text-center">
-            <div><img src="" alt="Ford Foundation" /></div>
-            <p class="text-left"> 
-              The <a href="http://www.fordfoundation.org/" target="_blank">Ford Foundatio</a> is a Non Profit Organization that focuses on the mission of advancing human welfare. They are interested in providing support for organizations devoted to strengthening democratic values, reducing poverty and social injustice, supporting human achievement and international cooperation.
-            </p>
-          </div>
-          <div class="span4 text-center">
-            <div><img src="" alt="Mozilla" /></div>
-            <p class="text-left"> 
-              The <a href="http://www.mozilla.org/en-US/foundation/" target="_blank">Mozilla Foundation</a> is a non-profit organization that promotes openness, innovation and participation on the Internet. We promote the values of an open Internet to the broader world.
-            </p>
-          </div>
-          <div class="span4 text-center">
-            <div><img src="" alt="SIM Centre" /></div>
-            <p class="text-left"> 
-              The <a href="http://www.simcentre.ca/" target="_blank">Social + Interactive Media Centre</a> supports a wide range of applied social, interactive and design projects. The Centre's research program engages BC companies to collaborate with Emily Carr University of Art + Design to uncover new ways to use social technologies and tackle interactive design challenges.
-            </p>
-          </div>
+  <div class="span6 text-center">
+    <div class="text-center"><img src="{{ media('img/lightbeam/Lightbeam_partners_fordfoundation.png') }}" alt="Ford Foundation" class="partner-logo"></div>
+    <p class="text-left"> 
+      The <a href="http://www.fordfoundation.org/" target="_blank">Ford Foundation</a> is a Non Profit Organization that focuses on the mission of advancing human welfare. They are interested in providing support for organizations devoted to strengthening democratic values, reducing poverty and social injustice, supporting human achievement and international cooperation.
+    </p>
+  </div>
+  <div class="span6 text-center">
+    <div class="text-center"><img src="{{ media('img/lightbeam/Lightbeam_partners_ecuad.png') }}" alt="SIM Centre" class="partner-logo"></div>
+    <p class="text-left"> 
+      The <a href="http://www.simcentre.ca/" target="_blank">Social + Interactive Media Centre</a> supports a wide range of applied social, interactive and design projects. The Centre's research program engages BC companies to collaborate with Emily Carr University of Art + Design to uncover new ways to use social technologies and tackle interactive design challenges.
+    </p>
+  </div>
 </section>
 
 <section class="container">
-
+  <h3>Supported By</h3>
+  <div class="span-center">
+    <div class="text-center"><img src="{{ media('img/lightbeam/Lightbeam_partners_fordfoundation.png') }}" alt="" class="partner-logo"></div>
+    <p>
+        The work at the Ford Foundation focuses on building outreach compaigns to help people understand online data tracking -- both the benefits and the issues.
+    </p>
+  </div>
 </section>
 
 {% endblock %}

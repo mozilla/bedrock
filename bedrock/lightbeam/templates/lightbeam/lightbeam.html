@@ -7,6 +7,9 @@
 {% block page_title %}Ligthbeam for Firefox{% endblock %}
 {% block body_id %}lightbeam{% endblock %}
 {% block body_class %}sky{% endblock %}
+{% block site_header_logo %}
+  <h2><a href="{{ url('lightbeam.lightbeam') }}"><img src="{{ media('img/lightbeam/lightbeam_logo-wordmark_800x250.png') }}" style="width: 250px"></a></h2>
+{% endblock %}
 {% block site_header_nav %}
   <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
   <nav id="nav-main" role="navigation">
@@ -50,43 +53,43 @@
 
 <section id="secondary" class="container">
 
-    <div class="span3 text-center">
-      <div class="temp-placeholder square"></div>
+    <div class="span3">
+      <div class="temp-placeholder square text-center"></div>
       You download and run the Lightbeam add-on in your Firefox browser.
     </div>
-    <div class="span3 text-center">
-      <div class="temp-placeholder square"></div>
+    <div class="span3">
+      <div class="temp-placeholder square text-center"></div>
       Whenever you visit a website, and that site notifies a third party, Lightbeam makes an de-identified record of this event.
     </div>
-    <div class="span3 text-center">
-      <div class="temp-placeholder square"></div>
+    <div class="span3">
+      <div class="temp-placeholder square text-center"></div>
       Lightbeam visually graphs these events to highlight the interactions between sites you intentionally visit and the third parties that load without your consent.
     </div>
-    <div class="span3 text-center">
-      <div class="temp-placeholder square"></div>
+    <div class="span3">
+      <div class="temp-placeholder square text-center"></div>
       Lightbeam will continue to add to your graph as you browse the web.  You can stop Lightbeam at any time by disabling it or uninstalling the add-on.  Your personal data can be easily saved or deleted.
     </div>
 
 </section>
 
-<section class="container white-bg text-center">
-  <h3 class="page-slogan">How Lightbeam Works</h3><br/>
+<section class="container white-bg">
+  <h2 class="page-slogan text-center">How Lightbeam Works</h2><br/>
   <div class="span4">
-    <div class="text-center"><img src="images/test1.png"></div>
+    <div class="text-center"><img src="{{ media('img/lightbeam/Lightbeam_Illustration1.png') }}" alt=""></div>
     <h4 class="text-center">Explore Visualization</h4>
     <p>
       Download the add-on to your Firefox browser. Open the add-on to see the various visualizations of your browsing being tracked by third parties.
     </p>
   </div>
   <div class="span4">
-    <div class="text-center"><img src="images/test2.png"></div>
+    <div class="text-center"><img src="{{ media('img/lightbeam/Lightbeam_Illustration2.png') }}" alt=""></div>
     <h4 class="text-center">Analyze the Trackers</h4>
     <p>
       As you view the visualizations that update in real-time, you can explore and analyze the website and connections that have connected to you that are stored in your data.
     </p>
   </div>
   <div class="span4">
-    <div class="text-center"><img src="images/test3.png"></div>
+    <div class="text-center"><img src="{{ media('img/lightbeam/Lightbeam_Illustration3.png') }}" alt=""></div>
     <h4 class="text-center">Contribute Data</h4>
     <p>
       You can reset or save your data as a .json file to make your own visualizations. You can donate your de-identified data to our database to further promote research in the field of online tracking and privacy.
@@ -109,5 +112,14 @@
   </div>
 </section>
 
+<section class="container">
+  <h3>Supported By</h3>
+  <div class="span-center">
+    <div class="text-center"><img src="{{ media('img/lightbeam/Lightbeam_partners_fordfoundation.png') }}" alt="" class="partner-logo"></div>
+    <p>
+        The work at the Ford Foundation focuses on building outreach compaigns to help people understand online data tracking -- both the benefits and the issues.
+    </p>
+  </div>
+</section>
 
 {% endblock %}
