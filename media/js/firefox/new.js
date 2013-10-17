@@ -146,16 +146,13 @@
             e.preventDefault();
             var url = $(e.currentTarget).attr('href');
 
-            // We must use an iframe to trigger download. If we just set
-            // the location.href, any images that are currently loading
-            // on the page get cancelled.
+            // An iframe can not be used here to trigger the download because
+            // it will be blocked by Chrome if the download link redirects
+            // to a HTTP URI and we are on HTTPS.
             function track_and_redirect(url, virtual_url) {
                 gaTrack(
                     ['_trackPageview', virtual_url],
-                    function() {
-                        var $iframe = $('<iframe src="' + url + '" frameborder="0" height="0" width="0"></iframe>');
-                        $('body').append($iframe);
-                    }
+                    function() { window.location.href = url; }
                 );
             }
 
@@ -220,7 +217,15 @@
                     }
                 } else {
                     show_scene(2);
-                    $('#direct-download-link').trigger('click');
+                    // We initiate the download on a timeout because when the
+                    // download starts, any assets that are downloading (i.e.
+                    // images from CSS) are cancelled. The delay is to give
+                    // the assets time to download. An iframe was used in the
+                    // past to work around this issue but it was blocked when
+                    // using HTTPS in some browsers.
+                    setTimeout(function() {
+                        $('#direct-download-link').trigger('click');
+                    }, 2000);
                 }
             }
         });
