@@ -4,26 +4,26 @@
 
 {% extends "base-resp.html" %}
 
-{% block page_title %}Collusion{% endblock %}
-{% block body_id %}collusion{% endblock %}
+{% block page_title %}Ligthbeam for Firefox{% endblock %}
+{% block body_id %}lightbeam{% endblock %}
 {% block body_class %}sky{% endblock %}
 {% block site_header_nav %}
   <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
   <nav id="nav-main" role="navigation">
     <ul id="nav-main-menu">
       <li><b>Home</b></li>
-      <li><a href="{{ url('collusion.database') }}">Database</a></li>
-      <li><a href="{{ url('collusion.about') }}">About</a></li>
+      <li><a href="{{ url('lightbeam.database') }}">Database</a></li>
+      <li><a href="{{ url('lightbeam.about') }}">About</a></li>
   </ul>
   </nav>
 {% endblock %}
 
 {% block extrahead %}
-  {{ css('collusion') }}
+  {{ css('lightbeam') }}
 {% endblock %}
 
 {% block js %}
-  {{ js('collusion') }}
+  {{ js('lightbeam') }}
 {% endblock %}
 
 {% block content %}
@@ -98,13 +98,13 @@
   <div class="span6">
     <h2>Tracking & Privacy</h2>
     <p>
-      Not all tracking is bad.  Many services rely on user data to provide relevant content and enhance your online experience.  But most tracking happens without users' consent and without their knowledge.  That's not okay.  It should be you who decides when , how and if you want to be tracked.  We recognize the importance of transparency and our mission is all about empowering users -- both with tools and with information. <a href="{{ url('collusion.about') }}"> >> Go to About</a>
+      Not all tracking is bad.  Many services rely on user data to provide relevant content and enhance your online experience.  But most tracking happens without users' consent and without their knowledge.  That's not okay.  It should be you who decides when , how and if you want to be tracked.  We recognize the importance of transparency and our mission is all about empowering users -- both with tools and with information. <a href="{{ url('lightbeam.about') }}"> >> Go to About</a>
     </p>
   </div>
   <div class="span6">
     <h2>Explore the Database</h2>
     <p>Browse first and third-party connection data uploaded by de-identified data donors that use the Lightbeam add-on.  W're building this crowd-sourced directory to encourage users to visualize the state of tracking on the web as an aggregate and see relationships that exist on the web. 
-    <a href="{{ url('collusion.database') }}"> >> Go to Database</a>
+    <a href="{{ url('lightbeam.database') }}"> >> Go to Database</a>
     </p>
   </div>
 </section>

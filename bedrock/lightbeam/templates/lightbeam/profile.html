@@ -4,26 +4,26 @@
 
 {% extends "base-resp.html" %}
 
-{% block page_title %}Collusion{% endblock %}
-{% block body_id %}collusion{% endblock %}
+{% block page_title %}Ligthbeam for Firefox{% endblock %}
+{% block body_id %}lightbeam{% endblock %}
 {% block body_class %}sky{% endblock %}
 {% block site_header_nav %}
   <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
   <nav id="nav-main" role="navigation">
     <ul id="nav-main-menu">
-      <li><a href="{{ url('collusion.collusion') }}">Home</a></li>
+      <li><a href="{{ url('lightbeam.lightbeam') }}">Home</a></li>
       <li><b>Database</b></li>
-      <li><a href="{{ url('collusion.about') }}">About</a></li>
+      <li><a href="{{ url('lightbeam.about') }}">About</a></li>
   </ul>
   </nav>
 {% endblock %}
 
 {% block extrahead %}
-  {{ css('collusion') }}
+  {{ css('lightbeam') }}
 {% endblock %}
 
 {% block js %}
-  {{ js('collusion') }}
+  {{ js('lightbeam') }}
 {% endblock %}
 
 {% block content %}
@@ -31,7 +31,7 @@
 <section id="primary" class="container profile">
   <div class="span12">
     <div class="db-breadcrumb">
-        <a href="{{ url('collusion.database') }}">Database</a>
+        <a href="{{ url('lightbeam.database') }}">Database</a>
         >> 
         <span class="site"></span>
     </div>
@@ -96,7 +96,7 @@
         </div>
         <div id="loading">
         <div>
-            <img src="{{ media('img/collusion/loader.gif') }}" alt="Loading"><br/>
+            <img src="{{ media('img/lightbeam/loader.gif') }}" alt="Loading"><br/>
             <span>LOADING...</span>
         </div>
   </div>

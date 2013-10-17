@@ -116,6 +116,9 @@ MINIFY_BUNDLES = {
         'collusion': (
             'css/collusion/collusion.less',
         ),
+        'lightbeam': (
+            'css/lightbeam/lightbeam.less',
+        ),
         'itu': (
             'css/mozorg/itu.less',
         ),
@@ -377,6 +380,12 @@ MINIFY_BUNDLES = {
             'js/collusion/demo.js',
             'js/collusion/graphrunner.js',
             'js/collusion/ui.js',
+        ),
+        'lightbeam': (
+            'js/lightbeam/d3.v3.min.js',
+            'js/lightbeam/lightbeam.js',
+            'js/lightbeam/ui.js',
+            'js/libs/jquery.validate.js',
         ),
         'common': (
             'js/libs/jquery-1.7.1.min.js',
