@@ -116,6 +116,9 @@ MINIFY_BUNDLES = {
         'collusion': (
             'css/collusion/collusion.less',
         ),
+        'lightbeam': (
+            'css/lightbeam/lightbeam.less',
+        ),
         'itu': (
             'css/mozorg/itu.less',
         ),
@@ -374,6 +377,13 @@ MINIFY_BUNDLES = {
             'js/collusion/collusion-addon.js',
             'js/collusion/demo.js',
             'js/collusion/graphrunner.js',
+        ),
+        'lightbeam': (
+            'js/lightbeam/d3.v3.min.js',
+            'js/lightbeam/rAF.js',
+            'js/lightbeam/lightbeam.js',
+            'js/lightbeam/ui.js',
+            'js/libs/jquery.validate.js',
         ),
         'common': (
             'js/libs/jquery-1.7.1.min.js',
@@ -672,6 +682,7 @@ INSTALLED_APPS = get_apps(exclude=(
     # Local apps
     '%s.base' % PROJECT_MODULE,
     '%s.collusion' % PROJECT_MODULE,
+    '%s.lightbeam' % PROJECT_MODULE,
     '%s.firefox' % PROJECT_MODULE,
     '%s.foundation' % PROJECT_MODULE,
     '%s.grants' % PROJECT_MODULE,
