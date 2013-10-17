@@ -85,7 +85,7 @@ function showPotentialTracker(top10Trackers){
     var siteArray = Object.keys(top10Trackers);
     for ( var i=0; i<siteArray.length; i++ ){
         site = top10Trackers[siteArray[i]];
-        row = "<tr data-url='/collusion/profile?site="+ site.site + "'>" +
+        row = "<tr data-url='/lightbeam/profile?site="+ site.site + "'>" +
                 "<td>" + (i+1) + "</td>" +
                 "<td>" + site.site + "</td>" +
             "</tr>";
@@ -130,7 +130,7 @@ function sortSiteList(sortByFunction){
 }
 
 function addTableRow(site){
-    var html = "<tr data-url='/collusion/profile?site="+ site.site + "'>" +
+    var html = "<tr data-url='/lightbeam/profile?site="+ site.site + "'>" +
                     "<td>" + site.site + "</td>";
     if ( site.numConnectedSites ){ html += "<td>" + addCommasToNumber(site.numConnectedSites) + "</td>"; }
     if ( site.numConnections ){    html += "<td>" + addCommasToNumber(site.numConnections) + "</td>"; }

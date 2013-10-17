@@ -33,41 +33,43 @@
 
 <hgroup class="container">
   <h1 class="large">Lightbeam for Firefox</h1>
-  <h2>Discover who is tracking you online</h2>
+  <h2>See who’s tracking you online.</h2>
 </hgroup>
 
 <section id="primary" class="container">
 
-  <div class="span4">
-    <h1>Discover who is tracking you online</h1>
-    Lightbeam is an add-on for Firefox and allows you to see all the third parties that are tracking your movements across the Web.  It will show, in real time, the interaction between companies and other trackers with various visualizaitons.
+  <div class="span6">
+    <h1>Shine a light on who’s watching you</h1>
+    Lightbeam is a Firefox add-on that allows you to see the third parties that are collecting information about your browsing activity, with and without your consent. Using interactive visualizations, Lightbeam shows you the relationships between these third parties and the sites you visit.
     <br/>
     <a class="button" href="https://addons.mozilla.org/en-US/firefox/addon/lightbeam/">
       Download
       <small>the Lightbeam add-on for Firefox</small>
     </a>
   </div>
-  <div class="span8 temp-placeholder text-center" style="height: 300px; line-height: 300px; color: white">Demo Video</div>
+  <div class="span6">
+    <img src="{{ media('img/lightbeam/Lightbeam---Updated-Graph-Image.png') }}" alt="">
+  </div>
 
 </section>
 
 <section id="secondary" class="container">
 
     <div class="span3">
-      <div class="temp-placeholder square text-center"></div>
-      You download and run the Lightbeam add-on in your Firefox browser.
+      <img src="{{ media('img/lightbeam/Lightbeam_Illustration4.png') }}" alt="">
+      Download and run the Lightbeam add-on in your Firefox browser.
     </div>
     <div class="span3">
-      <div class="temp-placeholder square text-center"></div>
-      Whenever you visit a website, and that site notifies a third party, Lightbeam makes an de-identified record of this event.
+      <img src="{{ media('img/lightbeam/Lightbeam_Illustration5.png') }}" alt="">
+      Lightbeam will create a de-identified record of events for every site you visit and every third party site that connects to you.
     </div>
     <div class="span3">
-      <div class="temp-placeholder square text-center"></div>
+      <img src="{{ media('img/lightbeam/Lightbeam_Illustration6.png') }}" alt="">
       Lightbeam visually graphs these events to highlight the interactions between sites you intentionally visit and the third parties that load without your consent.
     </div>
     <div class="span3">
-      <div class="temp-placeholder square text-center"></div>
-      Lightbeam will continue to add to your graph as you browse the web.  You can stop Lightbeam at any time by disabling it or uninstalling the add-on.  Your personal data can be easily saved or deleted.
+      <img src="{{ media('img/lightbeam/Lightbeam_Illustration7.png') }}" alt="">
+      Lightbeam will continue to add to your graph as you browse the Web. You can stop Lightbeam at any time by disabling it or uninstalling the add-on. Your personal data can be easily saved or deleted.
     </div>
 
 </section>
@@ -76,48 +78,48 @@
   <h2 class="page-slogan text-center">How Lightbeam Works</h2><br/>
   <div class="span4">
     <div class="text-center"><img src="{{ media('img/lightbeam/Lightbeam_Illustration1.png') }}" alt=""></div>
-    <h4 class="text-center">Explore Visualization</h4>
+    <h4 class="text-center">Visualize your data</h4>
     <p>
-      Download the add-on to your Firefox browser. Open the add-on to see the various visualizations of your browsing being tracked by third parties.
+      After you download and install the Lightbeam add-on to Firefox, it will begin watching connections — giving you interactive visualizations of your browsing activity and how that data is being collected.
     </p>
   </div>
   <div class="span4">
     <div class="text-center"><img src="{{ media('img/lightbeam/Lightbeam_Illustration2.png') }}" alt=""></div>
-    <h4 class="text-center">Analyze the Trackers</h4>
+    <h4 class="text-center">Analyze your connections</h4>
     <p>
-      As you view the visualizations that update in real-time, you can explore and analyze the website and connections that have connected to you that are stored in your data.
+      As you view the visualizations, you can take a closer look into the websites and their third party connections that are stored in your data. You can also reset or save your data to create your own visualizations.
     </p>
   </div>
   <div class="span4">
     <div class="text-center"><img src="{{ media('img/lightbeam/Lightbeam_Illustration3.png') }}" alt=""></div>
-    <h4 class="text-center">Contribute Data</h4>
+    <h4 class="text-center">Contribute your data</h4>
     <p>
-      You can reset or save your data as a .json file to make your own visualizations. You can donate your de-identified data to our database to further promote research in the field of online tracking and privacy.
+      To help us do further research around online tracking and privacy, you can donate your de-identified data to our Lightbeam database.
     </p>
   </div>
 </section>
 
 <section class="container">
   <div class="span6">
-    <h2>Tracking & Privacy</h2>
+    <h2>Tracking & privacy</h2>
     <p>
-      Not all tracking is bad.  Many services rely on user data to provide relevant content and enhance your online experience.  But most tracking happens without users' consent and without their knowledge.  That's not okay.  It should be you who decides when , how and if you want to be tracked.  We recognize the importance of transparency and our mission is all about empowering users -- both with tools and with information. <a href="{{ url('lightbeam.about') }}"> >> Go to About</a>
+      Not all tracking is bad. Many services rely on user data to provide relevant content and enhance your online experience. But most tracking happens without users’ consent and without their knowledge. That’s not okay. It should be you who decides when, how and if you want your data to be shared. We recognize the importance of transparency and our mission is all about empowering users — both with tools and information.  <a href="{{ url('lightbeam.about') }}"> About Lightbeam »</a>
     </p>
   </div>
   <div class="span6">
-    <h2>Explore the Database</h2>
-    <p>Browse first and third-party connection data uploaded by de-identified data donors that use the Lightbeam add-on.  W're building this crowd-sourced directory to encourage users to visualize the state of tracking on the web as an aggregate and see relationships that exist on the web. 
-    <a href="{{ url('lightbeam.database') }}"> >> Go to Database</a>
+    <h2>Explore the database</h2>
+    <p>In the Lightbeam database, you will be able to browse first and third-party connection data uploaded by de-identified donors who use the Lightbeam add-on. We’re building this crowd-sourced directory to encourage users to visualize the state of tracking as an aggregate and to examine relationships that exist on the Web. 
+    <a href="{{ url('lightbeam.database') }}"> Go to database »</a>
     </p>
   </div>
 </section>
 
 <section class="container">
-  <h3>Supported By</h3>
-  <div class="span-center">
-    <div class="text-center"><img src="{{ media('img/lightbeam/Lightbeam_partners_fordfoundation.png') }}" alt="" class="partner-logo"></div>
+  <h3>Supported by the Ford Foundation</h3>
+  <div class="span6">
+    <img src="{{ media('img/lightbeam/Lightbeam_partners_fordfoundation.png') }}" alt="" class="partner-logo">
     <p>
-        The work at the Ford Foundation focuses on building outreach compaigns to help people understand online data tracking -- both the benefits and the issues.
+        The work at the Ford Foundation focuses on building outreach campaigns to help people understand online data tracking — both the benefits and the issues. <a href="http://www.fordfoundation.org/" target="_blank"> Learn more »</a>
     </p>
   </div>
 </section>
