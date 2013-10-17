@@ -273,6 +273,9 @@ MINIFY_BUNDLES = {
         'home-b-ie': (
             'css/mozorg/home-b-ie.less',
         ),
+        'legal_fraud_report': (
+            'css/legal/fraud-report.less',
+        ),
         'marketplace': (
             'css/marketplace/marketplace.less',
         ),
@@ -522,6 +525,11 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.cycle2.min.js',
             'js/libs/jquery.cycle2.carousel.min.js',
             'js/mozorg/home-b.js',
+        ),
+        'legal_fraud_report': (
+            'js/libs/jquery.validate.js',
+            'js/legal/fraud-report.js',
+            'js/base/mozilla-input-placeholder.js',
         ),
         'marketplace': (
             'js/base/nav-main-resp.js',

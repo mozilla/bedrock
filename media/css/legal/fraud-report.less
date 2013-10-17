@@ -1,0 +1,70 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/sandstone-resp.less";
+
+#main-content {
+    .callout-content;
+    margin-top: 100px;
+}
+
+.main-header {
+    .clearfix;
+}
+
+.secondary-title {
+    margin-bottom: @baseLine * 2;
+}
+
+.main-column {
+    margin: 0;
+}
+
+.sidebar {
+    width: 250px;
+    margin-left: 100px;
+}
+
+.container {
+    width: auto;
+}
+
+#reportForm {
+    margin-top: @baseLine;
+
+    label.error {
+        .visually-hidden;
+    }
+
+    textarea {
+        height: 50px;
+    }
+}
+
+@media only screen and (max-width: @breakDesktop) {
+    .main-column {
+        float: none;
+        width: auto;
+    }
+
+    .sidebar {
+        float: none;
+        width: 280px;
+        margin: (@baseLine * 2) 0 0;
+    }
+}
+
+@media only screen and (max-width: @breakTablet) {
+    #main-content {
+        margin-top: @baseLine * 2;
+    }
+
+    .secondary-title {
+        margin: -(@baseLine * 1.5) 0 (@baseLine * 1.5);
+    }
+
+    .sidebar {
+        width: 240px;
+    }
+}

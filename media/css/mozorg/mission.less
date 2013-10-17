@@ -2,7 +2,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import "../sandstone/lib.less";
+@import "../sandstone/sandstone-resp.less";
 @import "mosaic.less";
 
 #wrapper {
@@ -23,52 +23,21 @@
 }
 
 #main-content {
-  display: block;
-  margin: 0 auto @baseLine;
-  padding-left: @gridGutterWidth;
-  padding-right: @gridGutterWidth;
+  .callout-content;
   position: relative;
-  .clearfix;
   .open-sans;
-  @shadow: 0 0 0 1px #fff inset;
-  .box-shadow(@shadow);
-  background: #fff;
-  border-bottom: 1px solid #ddd;
 
-  .title-banner {
-    .open-sans-light;
-    width: 420px;
-    padding: 20px;
-    font-size: 48px;
-    letter-spacing: -2px;
-    color: #fff;
-    text-shadow: none;
-    background-color: #b30406;
-    background-color: rgba(179,4,6,.95);
-    margin: -95px 10px 40px;
-    position: relative;
-    float: left;
+  .title-shadow-box {
+    margin-top: -95px;
   }
-  
-  .title-banner:after {
-    content: "";
-    display: block;
-    width: 100%;
-    padding: 0;
-    height: 40px;
-    position: absolute;
-    bottom: -40px;
-    left: 0;
-    background: url(/media/img/mission/title-banner-shadow.png) no-repeat;
-  }
-  
+
   .main {
     .span(6);
     float: left;
     clear: left;
     margin-bottom: @baseLine;
   }
-  
+
   .lede {
     .open-sans-light;
     font-size: 28px;
@@ -99,14 +68,14 @@
 ul.links {
   list-style: none;
   clear: both;
-  margin: @baseLine 0;  
+  margin: @baseLine 0;
   li {
     .span(3);
     list-style-type: none;
     padding-top: 25px;
     background: url(/media/img/mission/thin-stripe.png) center top repeat-x;
   }
-  
+
   h4 {
     margin-bottom: @baseLine / 6;
     a:after {
@@ -115,17 +84,15 @@ ul.links {
       font-weight: 300;
     }
   }
-  
+
   p {
     font-size: .857em;
     margin-bottom: @baseLine / 2;
   }
 }
 
-
 /* Tablet Layout: 760px */
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
-
   #masthead,
   #main-content,
   .billboard {
@@ -136,47 +103,34 @@ ul.links {
   #main-content .video {
     .span_narrow(6);
   }
-  
+
   ul.links li {
     .span_narrow(3);
   }
-
 }
 
 /* Mobile layout: 320px */
 @media only screen and (max-width: @breakTablet) {
-
   #masthead,
   #main-content,
   .billboard {
     width: @widthMobile - (@gridGutterWidth * 2);
   }
-  
+
   .billboard {
     padding-left: @gridGutterWidth;
     padding-right: @gridGutterWidth;
   }
-  
+
   #main-content .video {
     margin-top: 0;
   }
-    
+
   #main-content {
-    .title-banner {
-      width: 240px;
-      font-size: 28px;
-      letter-spacing: -.5px;
-      margin: -25px 0 @baseLine;
-    }
-  
-    .title-banner:after {
-      display: none;
-    }
-    
     .lede {
       font-size: 20px;
     }
-    
+
     .main,
     .video,
     ul.links li {
@@ -184,28 +138,13 @@ ul.links {
       float: none;
     }
   }
- 
 }
 
 /* Wide mobile layout: 480px; */
 @media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
-
   #masthead,
   #main-content,
   .billboard {
     width: @widthMobileLandscape - @gridGutterWidth;
   }
-
-  #main-content {
-    .title-banner {
-      width: 380px;
-      margin: -25px 0 40px;
-    }
-  
-    .title-banner:after {
-      display: block;
-    }
-  
-  }
-
 }
