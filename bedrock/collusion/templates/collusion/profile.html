@@ -1,0 +1,106 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "base-resp.html" %}
+
+{% block page_title %}Collusion{% endblock %}
+{% block body_id %}collusion{% endblock %}
+{% block body_class %}sky{% endblock %}
+{% block site_header_nav %}
+  <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
+  <nav id="nav-main" role="navigation">
+    <ul id="nav-main-menu">
+      <li><a href="{{ url('collusion.collusion') }}">Home</a></li>
+      <li><b>Database</b></li>
+      <li><a href="{{ url('collusion.about') }}">About</a></li>
+  </ul>
+  </nav>
+{% endblock %}
+
+{% block extrahead %}
+  {{ css('collusion') }}
+{% endblock %}
+
+{% block js %}
+  {{ js('collusion') }}
+{% endblock %}
+
+{% block content %}
+
+<section id="primary" class="container profile">
+  <div class="span12">
+    <div class="db-breadcrumb">
+        <a href="{{ url('collusion.database') }}">Database</a>
+        >> 
+        <span class="site"></span>
+    </div>
+  </div>
+  <div class="span12">
+    <h1 class="site site-title"></h1>
+  </div>
+  <div class="span12">
+    Server location: <span id="country"></span>
+    <span class="collectedSince"></span>
+  </div>
+
+  <div class="span4">
+    <div class="vizcanvas-container">
+        <svg class="vizcanvas" width="100%" height="100%" viewBox="0 0 1000 1000"></svg>
+    </div>
+    <h4 class="all-cap blue-text num-total-connection"><b></b> CONNECTIONS</h4>
+    <div>
+        <svg class="percent-bar" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <rect class="first-bar" height="20" />
+            <text x="5" y="15"></text>
+            <rect class="third-bar" height="20" />
+            <text y="15"></text>
+        </svg>
+    </div>
+    <div class="all-cap num-first"><b></b> first party connections</div>
+    <div class="all-cap num-third"><b></b> third party connections</div>
+  </div>
+    <div class="span8">
+        <div class="profile-main">
+            <div class="span8">
+                <h4 class="blue-text all-cap"><span class="num-sites"></span> connected websites</h4>
+            </div>
+            <div class="span8 float-left">
+                <div class="inline-label grey-text">SORT BY:</div> 
+                <div class="sorting-options">
+                  <a data-sort="alphabetically">alphabetically</a>  | 
+                  <a data-sort="siteConnected" data-selected>sites connected</a> | 
+                  <a data-sort="connections">connections</a>
+                </div>
+                <div class="float-right">
+                <div class="row-range">viewing
+                    <span class="row-start"></span> - <span class="row-end"></span> of <span class="num-sites"></span> sites <i><span class="site"></span></i>
+                </div>
+                <br/>
+                <div class="pagination">
+                </div>
+                </div>
+            </div>
+            <div class="span8">
+                <table class="website-list-table">
+                    <thead>
+                        <tr>
+                            <th class="fifty-percent">WEBSITE</th>
+                            <th class="fifty-percent">CONNECTIONS BETWEEN <br/><span class="site"></span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="loading">
+        <div>
+            <img src="{{ media('img/collusion/loader.gif') }}" alt="Loading"><br/>
+            <span>LOADING...</span>
+        </div>
+  </div>
+    </div>
+</section>
+
+{% endblock %}
