@@ -8,4 +8,7 @@ from bedrock.mozorg.util import page
 urlpatterns = patterns('',
     page('demo', 'collusion/demo.html'),
     page('', 'collusion/collusion.html'),
+    page('database', 'collusion/database.html'),
+    page('about', 'collusion/about.html'),
+    page('profile', 'collusion/profile.html'),
 )
