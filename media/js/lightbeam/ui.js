@@ -170,9 +170,6 @@ var sortingForSiteTables = function(event){
 
 if ( document.querySelector(".database") ){
     document.querySelector(".sorting-options").addEventListener("click",sortingForSiteTables);
-}
-
-if ( document.querySelector(".database") ){
     document.querySelector(".pagination").addEventListener("click",paginationForSiteTables);
 }
 
@@ -259,10 +256,7 @@ function addConnnectionBar(numFirstParty,numTotal){
 }
 
 
-if ( document.querySelector(".profile .pagination") ){
+if ( document.querySelector(".profile") ){
     document.querySelector(".profile .pagination").addEventListener("click",paginationForSiteTables);
-}
-
-if ( document.querySelector(".profile .sorting-options") ){
     document.querySelector(".profile .sorting-options").addEventListener("click",sortingForSiteTables);
 }
