@@ -7,8 +7,9 @@
 {% block page_title %}Ligthbeam for Firefox{% endblock %}
 {% block body_id %}lightbeam{% endblock %}
 {% block body_class %}sky{% endblock %}
+{% block page_favicon %}{{ media('img/lightbeam/favicon.png') }}{% endblock %}
 {% block site_header_logo %}
-  <h2><a href="{{ url('lightbeam.lightbeam') }}"><img src="{{ media('img/lightbeam/lightbeam_logo-wordmark_500x156.png') }}" style="width: 250px"></a></h2>
+  <h2><a href="{{ url('lightbeam.lightbeam') }}"><img src="{{ media('img/lightbeam/lightbeam_logo-wordmark_500x156.png') }}" class="ligthbeam-wordmark"></a></h2>
 {% endblock %}
 {% block site_header_nav %}
   <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
@@ -37,7 +38,7 @@
 
 <section id="secondary" class="container">
   <div class="span7">
-    <h3>How the add-on works</h3>
+    <h2>How the add-on works</h2>
     <p>
       Lightbeam visualizes the relationships between the sites you visit and the third parties that connect to those sites and collect data about your visit. 
     </p>
@@ -52,18 +53,21 @@
     </p>
   </div>
   <div class="span5">
+    <br/><br/><br/><br/>
     <img src="{{ media('img/lightbeam/Lightbeam-AMOScreenshot1.jpg') }}" alt="">
   </div>
 
 </section>
 
 <section class="container">
-  <div class="span7 temp-placeholder" style="height: 300px">
+  <div class="span6">
+    <br/><br/><br/>
+    <div class="text-center"><img src="{{ media('img/lightbeam/Lightbeam-meet-firefox.png') }}" alt=""></div>
   </div>
-  <div class="span5">
+  <div class="span6">
     <h2>The origins of Lightbeam</h2>
     <p>
-      Lightbeam began in July 2011 as Collusion, a personal project by Mozilla software developer <a href="http://www.toolness.com/wp/" target="_blank">Atul Varma</a>. Inspired by the book The Filter Bubble, Atul created an experimental add-on to visualize browsing behavior and data collection on the Web.  
+      Lightbeam began in July 2011 as Collusion, a personal project by Mozilla software developer <a href="http://www.toolness.com/wp/" target="_blank">Atul Varma</a>. Inspired by the book, <i>The Filter Bubble</i>, Atul created an experimental add-on to visualize browsing behavior and data collection on the Web.  
     </p>
     <p>
       In February 2012, Gary Kovacs, Mozilla CEO at the time, introduced the Collusion add-on in a TED talk (now one of the most watched TED talks of all time) about exposing online tracking.  
@@ -97,16 +101,19 @@
 </section>
 
 <section class="container">
-  <div class="span12">
+  <div class="span6">
     <h2>Data formats in Lightbeam</h2>
     <p>
       Visit our <a href="https://github.com/mozilla/lightbeam/blob/master/doc/data_format.v1.1.md" target="_blank">documentation on Github</a> to learn more about the file formats used in Lightbeam and to see details of the data that is uploaded if you opt in to contribute to the database.
     </p>
   </div>
+  <div class="span6">
+    <img src="{{ media('img/lightbeam/Lightbeam-list-view.jpg') }}" alt="">
+  </div>
 </section>
 
 <section class="container">
-  <h3>Partners of Lightbeam</h3>
+  <h2>Partners of Lightbeam</h2>
   <div class="span6">
     <div class="text-center"><img src="{{ media('img/lightbeam/Lightbeam_partners_fordfoundation.png') }}" alt="Ford Foundation" class="partner-logo"></div>
     <p class="text-left"> 

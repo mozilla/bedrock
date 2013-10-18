@@ -1,5 +1,5 @@
-// const DATABASE_URL = "http://collusiondb-development.herokuapp.com";
-const DATABASE_URL = "http://localhost:7000";
+// not sure what's the best way to include the URL
+const DATABASE_URL = "http://collusiondb.mofostaging.net/";
 const ROWS_PER_TABLE_PAGE = 20;
 var currentPage;
 var allSites;

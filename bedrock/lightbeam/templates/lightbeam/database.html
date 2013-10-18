@@ -7,8 +7,9 @@
 {% block page_title %}Ligthbeam for Firefox{% endblock %}
 {% block body_id %}lightbeam{% endblock %}
 {% block body_class %}sky{% endblock %}
+{% block page_favicon %}{{ media('img/lightbeam/favicon.png') }}{% endblock %}
 {% block site_header_logo %}
-  <h2><a href="{{ url('lightbeam.lightbeam') }}"><img src="{{ media('img/lightbeam/lightbeam_logo-wordmark_500x156.png') }}" style="width: 250px"></a></h2>
+  <h2><a href="{{ url('lightbeam.lightbeam') }}"><img src="{{ media('img/lightbeam/lightbeam_logo-wordmark_500x156.png') }}" class="ligthbeam-wordmark"></a></h2>
 {% endblock %}
 {% block site_header_nav %}
   <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
@@ -39,7 +40,7 @@
 </section>
 
 <section id="secondary" class="container white-bg">
-  <h3>Lightbeam Website Database</h3>
+  <h2>Lightbeam Website Database</h2>
   <div class="span8 float-left">
       <div class="inline-label grey-text">SORT BY:</div> 
       <div class="sorting-options">
@@ -92,12 +93,15 @@
 </section>
 
 <section class="container">
-  <h3>Supported by the Ford Foundation</h3>
+  <h2>Supported by the Ford Foundation</h2>
   <div class="span6">
-    <img src="{{ media('img/lightbeam/Lightbeam_partners_fordfoundation.png') }}" alt="" class="partner-logo">
+    <div class="text-center">
+      <img src="{{ media('img/lightbeam/Lightbeam_partners_fordfoundation.png') }}" alt="" class="partner-logo text-center">
+    </div>
     <p>
         The work at the Ford Foundation focuses on building outreach campaigns to help people understand online data tracking — both the benefits and the issues. <a href="http://www.fordfoundation.org/" target="_blank"> Learn more »</a>
     </p>
   </div>
 </section>
+
 {% endblock %}
