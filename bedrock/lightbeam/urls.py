@@ -6,7 +6,6 @@ from django.conf.urls import patterns
 from bedrock.mozorg.util import page
 
 urlpatterns = patterns('',
-    page('demo', 'lightbeam/demo.html'),
     page('', 'lightbeam/lightbeam.html'),
     page('database', 'lightbeam/database.html'),
     page('about', 'lightbeam/about.html'),
