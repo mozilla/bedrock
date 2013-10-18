@@ -133,6 +133,7 @@
         document.querySelector(".pagination select").selectedIndex = 0;
     }
 
+<<<<<<< HEAD
     function addTableRow(site){
         var html = "<tr data-url='/lightbeam/profile?site="+ site.site + "'>" +
                         "<td>" + site.site + "</td>";
@@ -164,6 +165,12 @@
             }else{
                 sortByFunction = sortByAlpha;
             }
+=======
+if ( document.querySelector(".database") ){
+    document.querySelector(".sorting-options").addEventListener("click",sortingForSiteTables);
+    document.querySelector(".pagination").addEventListener("click",paginationForSiteTables);
+}
+>>>>>>> b2c9d2cbcfd27c0e0ed70c46acee30ea7220b5a3
 
             document.querySelector(".sorting-options a[data-selected]").removeAttribute("data-selected");
             event.target.setAttribute("data-selected","true");
@@ -265,4 +272,30 @@
         document.querySelector(".profile .sorting-options").addEventListener("click",sortingForSiteTables);
     }
 
+<<<<<<< HEAD
 })();
+=======
+}
+
+function addConnnectionBar(numFirstParty,numTotal){
+    // calculate connections percentage bar
+    var totalWidth = currentPage.querySelector(".percent-bar").parentElement.getBoundingClientRect().width;
+    var firstPartyRatio = numFirstParty / numTotal;
+    var firstBar = currentPage.querySelector(".first-bar");
+    var thirdBar = currentPage.querySelector(".third-bar");
+    var firstBarLabel = currentPage.querySelector(".first-bar + text");
+    var thirdBarLabel = currentPage.querySelector(".third-bar + text");
+    firstBar.setAttribute("width", totalWidth*firstPartyRatio);
+    firstBarLabel.innerHTML = Math.round(firstPartyRatio*100) + "%";
+    thirdBar.setAttribute("x", totalWidth*firstPartyRatio);
+    thirdBar.setAttribute("width", totalWidth*(1-firstPartyRatio));
+    thirdBarLabel.setAttribute("x", totalWidth*firstPartyRatio + 5);
+    thirdBarLabel.innerHTML = Math.round((1-firstPartyRatio)*100) + "%";
+}
+
+
+if ( document.querySelector(".profile") ){
+    document.querySelector(".profile .pagination").addEventListener("click",paginationForSiteTables);
+    document.querySelector(".profile .sorting-options").addEventListener("click",sortingForSiteTables);
+}
+>>>>>>> b2c9d2cbcfd27c0e0ed70c46acee30ea7220b5a3
