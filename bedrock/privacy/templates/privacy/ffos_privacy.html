@@ -28,6 +28,7 @@
 {% block content %}
 <main role="main">
     <section id="home" class="thingstoknow active">
+        {% l10n thingstoknow, 20131019 %}
         <p>{% trans link='href="#top" data-panelid="#privacy" id="show_policy"'|safe %}
           We care about your privacy. When Firefox OS sends information to Mozilla (that’s us), our <a {{ link}} >privacy policy</a> describes how we handle that information.
         {% endtrans %}</p>
@@ -58,10 +59,12 @@
                 <li>{{ _('Firefox OS allows you to use several integrated third party services, such as your email or social provider. The privacy policy of those services will apply to your use of them.') }}</li>
             </ul>
         </div>
-        <p class="links"><a href="#top" data-panelid="#contact">{{ _('Contact Us') }} &raquo;</a></p>
+        {% endl10n %}
+        <p class="links"><a href="#top" data-panelid="#contact">{{ _('Contact Us') }}</a></p>
     </section>
     <!-- Privacy Policy -->
     <section id="privacy" class="policy">
+      {% l10n privacypolicy, 20131019 %}
         <h2>
             <a href="#top" data-panelid="#home" class="home">
                 <span aria-hidden="true" data-icon="\2302"></span>
@@ -101,6 +104,7 @@
         {% endtrans %}</p>
         <h3>{{ _('What if we change this policy?') }}</h3>
         <p>{{ _('We may need to change this policy and when we do, we’ll notify you.') }}</p>
+      {% endl10n %}
     </section>
     <section id="contact" class="contact">
         <h2>
