@@ -6,7 +6,7 @@
 
 {% block page_title %}Ligthbeam for Firefox{% endblock %}
 {% block body_id %}lightbeam{% endblock %}
-{% block body_class %}sky{% endblock %}
+{% block body_class %}sky profile{% endblock %}
 {% block page_favicon %}{{ media('img/lightbeam/favicon.png') }}{% endblock %}
 {% block site_header_logo %}
   <h2><a href="{{ url('lightbeam.lightbeam') }}"><img src="{{ media('img/lightbeam/lightbeam_logo-wordmark_500x156.png') }}" class="ligthbeam-wordmark"></a></h2>
@@ -32,7 +32,7 @@
 
 {% block content %}
 
-<section id="primary" class="container profile">
+<section id="primary" class="container">
   <div class="span12">
     <div class="db-breadcrumb">
         <a href="{{ url('lightbeam.database') }}">Database</a>
@@ -52,7 +52,7 @@
     <div class="vizcanvas-container">
         <svg class="vizcanvas" width="100%" height="100%" viewBox="0 0 1000 1000"></svg>
     </div>
-    <h4 class="all-cap blue-text num-total-connection"><b></b> Connection</h4>
+    <h4 class="all-cap blue-text num-total-connection"><b></b> Connections</h4>
     <div>
         <svg class="percent-bar" version="1.1" xmlns="http://www.w3.org/2000/svg">
             <rect class="first-bar" height="20" />
@@ -72,7 +72,8 @@
             <div class="span8 float-left">
                 <div class="inline-label all-cap">Sort By:</div> 
                 <div class="sorting-options">
-                  <a data-sort="alphabetically">alphabetically</a>  |  
+                  <a data-sort="alphabetically">alphabetically</a>
+                  <span class="option-divider">|</span>
                   <a data-sort="connections" data-selected>connections</a>
                 </div>
                 <div class="float-right">

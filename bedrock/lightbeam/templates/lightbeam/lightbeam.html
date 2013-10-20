@@ -6,7 +6,7 @@
 
 {% block page_title %}Ligthbeam for Firefox{% endblock %}
 {% block body_id %}lightbeam{% endblock %}
-{% block body_class %}sky{% endblock %}
+{% block body_class %}sky lightbeam-home{% endblock %}
 {% block page_favicon %}{{ media('img/lightbeam/favicon.png') }}{% endblock %}
 {% block site_header_logo %}
   <h2><a href="{{ url('lightbeam.lightbeam') }}"><img src="{{ media('img/lightbeam/lightbeam_logo-wordmark_500x156.png') }}" class="ligthbeam-wordmark"></a></h2>
@@ -45,19 +45,19 @@
     <br/>
     <div class="text-center">
       <a class="button" href="https://addons.mozilla.org/en-US/firefox/addon/lightbeam/">
-        Download
-        <small>the Lightbeam add-on for Firefox</small>
+        Download Lightbeam for Firefox
+        <small>Get it from Mozilla Add-Ons</small>
       </a>
     </div>
   </div>
   <div class="span6">
-    <img src="{{ media('img/lightbeam/Lightbeam---Updated-Graph-Image.png') }}" alt="">
+    <img src="{{ media('img/lightbeam/Lightbeam-UpdatedGraphImageLandscape2.png') }}" alt="">
   </div>
 
 </section>
 
 <section id="secondary" class="container">
-
+    <h2 class="page-slogan text-center">How Lightbeam Works</h2><br/>
     <div class="span3">
       <img src="{{ media('img/lightbeam/Lightbeam_Illustration4.png') }}" alt="">
       Download and run the Lightbeam add-on in your Firefox browser.
@@ -77,8 +77,23 @@
 
 </section>
 
-<section class="container white-bg">
-  <h2 class="page-slogan text-center">How Lightbeam Works</h2><br/>
+
+<section class="container">
+  <div class="span6">
+    <h2>Tracking & privacy</h2>
+    <p>
+      Not all tracking is bad. Many services rely on user data to provide relevant content and enhance your online experience. But most tracking happens without users’ consent and without their knowledge. That’s not okay. It should be you who decides when, how and if you want your data to be shared. We recognize the importance of transparency and our mission is all about empowering users — both with tools and information.  <a href="{{ url('lightbeam.about') }}"> About Lightbeam »</a>
+    </p>
+  </div>
+  <div class="span6">
+    <h2>Explore the database</h2>
+    <p>In the Lightbeam database, you will be able to browse first and third-party connection data uploaded by de-identified donors who use the Lightbeam add-on. We’re building this crowd-sourced directory to encourage users to visualize the state of tracking as an aggregate and to examine relationships that exist on the Web. 
+    <a href="{{ url('lightbeam.database') }}"> Go to database »</a>
+    </p>
+  </div>
+</section>
+
+<section class="container">
   <div class="span4">
     <div class="text-center"><img src="{{ media('img/lightbeam/Lightbeam_Illustration1.png') }}" alt=""></div>
     <h4 class="text-center">Visualize your data</h4>
@@ -98,21 +113,6 @@
     <h4 class="text-center">Contribute your data</h4>
     <p>
       To help us do further research around online tracking and privacy, you can donate your de-identified data to our Lightbeam database.
-    </p>
-  </div>
-</section>
-
-<section class="container">
-  <div class="span6">
-    <h2>Tracking & privacy</h2>
-    <p>
-      Not all tracking is bad. Many services rely on user data to provide relevant content and enhance your online experience. But most tracking happens without users’ consent and without their knowledge. That’s not okay. It should be you who decides when, how and if you want your data to be shared. We recognize the importance of transparency and our mission is all about empowering users — both with tools and information.  <a href="{{ url('lightbeam.about') }}"> About Lightbeam »</a>
-    </p>
-  </div>
-  <div class="span6">
-    <h2>Explore the database</h2>
-    <p>In the Lightbeam database, you will be able to browse first and third-party connection data uploaded by de-identified donors who use the Lightbeam add-on. We’re building this crowd-sourced directory to encourage users to visualize the state of tracking as an aggregate and to examine relationships that exist on the Web. 
-    <a href="{{ url('lightbeam.database') }}"> Go to database »</a>
     </p>
   </div>
 </section>

@@ -2,18 +2,17 @@
     "use strict";
 
     // not sure what's the best way to include the URL
-    var DATABASE_URL = "http://collusiondb.mofostaging.net/";
+    var DATABASE_URL = "http://collusiondb.mofostaging.net";
     var ROWS_PER_TABLE_PAGE = 20;
     var currentPage;
     var allSites;
 
     document.addEventListener("DOMContentLoaded", function(event) {
-        var whichPage = document.querySelector("#primary");
         currentPage = document.querySelector("body");
 
-        if ( whichPage.classList.contains("database") ){
+        if ( currentPage.classList.contains("database") ){
             loadContentDatabase();
-        }else if( whichPage.classList.contains("profile") ){
+        }else if( currentPage.classList.contains("profile") ){
             var hrefArray = window.location.href.split('?');
             var site = hrefArray[hrefArray.length-1].substr(5);
             loadContentProfile(site);
