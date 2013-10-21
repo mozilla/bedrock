@@ -46,7 +46,7 @@
         }
       ]
     },
-    "pt-BR": {
+    "br": {
       "partner": [
         {
           "name": "Vivo",
