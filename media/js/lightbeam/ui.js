@@ -2,12 +2,12 @@
     "use strict";
 
     // not sure what's the best way to include the URL
-    var DATABASE_URL = "http://collusiondb.mofostaging.net";
+    var DATABASE_URL = "http://collusiondb.mofoprod.net";
     var ROWS_PER_TABLE_PAGE = 20;
     var AJAX_JSONP_TIMEOUT = 60 * 1000; // in millinseconds
     var currentPage;
     var allSites;
-    var errorNotice = function(){
+    var errorNotice = function jsonpErrorHandling(){
         document.querySelector("#loading img").classList.add("hidden");
         document.querySelector("#loading span").innerHTML = "This is taking longer than expected. <br/>Please reload the page or check back later. <br/>Thanks!";
     };
@@ -71,11 +71,12 @@
             url: DATABASE_URL + "/databaseSiteList",
             dataType: 'jsonp',
             success: function(data) {
-                allSites = data[0];
                 var top10Trackers = data[1];
+                var total;
+                allSites = data[0];
                 showAllSitesTable();
                 showPotentialTracker(top10Trackers);
-                var total = currentPage.querySelectorAll(".num-sites");
+                total = currentPage.querySelectorAll(".num-sites");
                 for (var i=0; i<total.length; i++) {
                     total[i].textContent = addCommasToNumber(Object.keys(data[0]).length);
                 }
@@ -93,7 +94,8 @@
     function showPotentialTracker(top10Trackers) {
         var html = currentPage.querySelector(".top-trackers-table").innerHTML;
         var siteArray = Object.keys(top10Trackers);
-        var site, row;
+        var site;
+        var row;
         for ( var i=0; i<siteArray.length; i++ ) {
             site = top10Trackers[siteArray[i]];
             row = "<tr data-url='/lightbeam/profile?site="+ site.site + "'>" +
@@ -154,12 +156,12 @@
         return html + "</tr>";
     }
 
-    var paginationForSiteTables = function(event) {
+    var paginationForSiteTables = function paginationHandler(event) {
         var selectedIdx = document.querySelector(".pagination select").selectedIndex; // starts from 0
         showAllSitesTable( (selectedIdx+1));
     };
 
-    var sortingForSiteTables = function(event) {
+    var sortingForSiteTables = function sortingHandler(event) {
         var sortBy = event.target.getAttribute("data-sort");
         if (sortBy) {
             var sortByFunction;

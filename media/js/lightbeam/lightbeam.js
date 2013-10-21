@@ -16,10 +16,13 @@
         window.mozRequestAnimationFrame ||
         window.webkitRequestAnimationFrame;
 
-    lightbeam.loadData = function (data) {
+    lightbeam.loadData = function buildGraph(data) {
         vis = d3.select('.vizcanvas');
         nodemap = data;
-        var connections, node, edgename, edge;
+        var connections;
+        var node;
+        var edgename;
+        var edge;
         connections = Object.keys(data).map(function(key) {
             node = data[key];
             node.lastAccess = new Date(node.lastAccess);
