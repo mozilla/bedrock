@@ -46,6 +46,14 @@
         }
       ]
     },
+    "pt-BR": {
+      "partner": [
+        {
+          "name": "Vivo",
+          "url": "http://www.vivo.com.br/firefox"
+        }
+      ]
+    },
     "ve": {
       "partner": [
         {
