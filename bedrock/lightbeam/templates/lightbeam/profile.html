@@ -34,18 +34,11 @@
 
 <section id="primary" class="container">
   <div class="span12">
-    <div class="db-breadcrumb">
-        <a href="{{ url('lightbeam.database') }}">Database</a>
-        >> 
-        <span class="site"></span>
-    </div>
-  </div>
-  <div class="span12">
+    <a href="{{ url('lightbeam.database') }}">Database</a>
+    >> 
+    <span class="site"></span>
     <h1 class="site site-title"></h1>
-  </div>
-  <div class="span12">
     Server location: <span id="country"></span>
-    <span class="collectedSince"></span>
   </div>
 
   <div class="span4">
@@ -77,12 +70,12 @@
                   <a data-sort="connections" data-selected>connections</a>
                 </div>
                 <div class="float-right">
-                <div class="row-range">viewing
-                    <span class="row-start"></span> - <span class="row-end"></span> of <span class="num-sites"></span> sites <i><span class="site"></span></i>
-                </div>
-                <br/>
-                <div class="pagination">
-                </div>
+                  <div class="row-range">viewing
+                      <span class="row-start"></span> - <span class="row-end"></span> of <span class="num-sites"></span> sites <i><span class="site"></span></i>
+                  </div>
+                  <br/>
+                  <div class="pagination">
+                  </div>
                 </div>
             </div>
             <div class="span8">
@@ -99,11 +92,11 @@
             </div>
         </div>
         <div id="loading">
-        <div>
+          <div>
             <img src="{{ media('img/lightbeam/loader.gif') }}" alt="Loading"><br/>
-            <span>LOADING...</span>
+            <span>Loading...</span>
+          </div>
         </div>
-  </div>
     </div>
 </section>
 

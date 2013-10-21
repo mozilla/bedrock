@@ -18,7 +18,7 @@ hgroup {
 .lightbeam-home #primary{
     padding-top: @baseLine * 2;
     padding-bottom: @baseLine * 2;
-    @shadow: 0 1px 1px rgba(0,0,0,0.1), 0 0 0 1px #fff;
+    @shadow: 0 1px 1px rgba(0, 0, 0, .1), 0 0 0 1px #fff;
     margin-bottom: @baseLine * 3;
 
     img {
@@ -30,32 +30,33 @@ hgroup {
         margin-right: 40%;
     }
 
+    .button {
+        height: auto;
+        line-height: @baseLine;
+        font-size: 18px;
+        padding: @gridGutterWidth;
+        width: @gridColumnWidth * 5;
+        margin-top: @baseLine * 2;
+        font-weight: normal;
+
+        small {
+          display: block;
+        }
+    }
+
 }
 
-
-#primary .button {
-    height: auto;
-    line-height: @baseLine;
-    font-size: 18px;
-    padding: @gridGutterWidth;
-    width: @gridColumnWidth * 5;
-    margin-top: @baseLine * 2;
-    font-weight: normal;
-
-    small {
-        display: block;
+.three-points{
+    img{
+      margin-top: -30px;
     }
 }
 
 
-section.container{ 
+.container{ 
     padding-top: @baseLine;
     padding-bottom: @baseLine;
     margin-bottom: @baseLine * 2;
-}
-
-#secondary {
-    clear: both;
 }
 
 .span3{
@@ -87,7 +88,7 @@ section.container{
   .span(12);
 }
 
-.span-center{
+.centered-span3{
   .span(6);
   .offset(3);
 }
@@ -110,10 +111,6 @@ section.container{
   margin: 10px auto;
 }
 
-.centered-span3{
-  .span(6);
-  .offset(3);
-}
 
 .inline-label{
   letter-spacing: 1px;
@@ -135,6 +132,10 @@ section.container{
 
 
 /* Database Page & Profile Page */
+
+.data-section{
+  padding-bottom: 50px;
+}
 
 .table-controls{
   .span(12);
@@ -191,7 +192,6 @@ table tr{
   line-height: 35px;
   width: 100%;
   text-align: left;
-  margin-bottom: 50px;
 }
 
 .website-list-table th,{
@@ -263,7 +263,7 @@ svg.percent-bar rect + text{
   display: block;
   width: 100%;
   height: 100%;
-  background: rgba(255,255,255,0.6);
+  background: rgba(255, 255, 255,.6);
   pointer-events: none;
   text-align: center;
 }
@@ -345,7 +345,7 @@ svg.percent-bar rect + text{
       }
     }
 
-    section.container {
+    .container {
       width: span-all();
 
       .centered-span3{
@@ -429,7 +429,7 @@ svg.percent-bar rect + text{
       }
     }
 
-    section.container {
+    .container {
       width: span-all();
 
       .centered-span3{

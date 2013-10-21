@@ -4,52 +4,57 @@
     // not sure what's the best way to include the URL
     var DATABASE_URL = "http://collusiondb.mofostaging.net";
     var ROWS_PER_TABLE_PAGE = 20;
+    var AJAX_JSONP_TIMEOUT = 60 * 1000; // in millinseconds
     var currentPage;
     var allSites;
+    var errorNotice = function(){
+        document.querySelector("#loading img").classList.add("hidden");
+        document.querySelector("#loading span").innerHTML = "This is taking longer than expected. <br/>Please reload the page or check back later. <br/>Thanks!";
+    };
 
     document.addEventListener("DOMContentLoaded", function(event) {
         currentPage = document.querySelector("body");
 
-        if ( currentPage.classList.contains("database") ){
+        if (currentPage.classList.contains("database")) {
             loadContentDatabase();
-        }else if( currentPage.classList.contains("profile") ){
+        } else if (currentPage.classList.contains("profile")) {
             var hrefArray = window.location.href.split('?');
             var site = hrefArray[hrefArray.length-1].substr(5);
             loadContentProfile(site);
-        }else{
+        } else {
         }
     });
 
-    function showLoading(){
+    function showLoading() {
         document.querySelector("#loading").classList.remove("hidden");
     }
 
-    function hideLoading(){
+    function hideLoading() {
         document.querySelector("#loading").classList.add("hidden");
     }
 
-    function addCommasToNumber(num){
+    function addCommasToNumber(num) {
         return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
-    var siteTableClickHandler = function(event){
+    var siteTableClickHandler = function(event) {
         var row = event.target;
         var profileURL = "";
-        if( !row.getAttribute("data-url") ){
+        if (!row.getAttribute("data-url")) {
             row = row.parentElement;
         }
         profileURL = row.getAttribute("data-url"); 
-        if ( !profileURL ){
+        if (!profileURL) {
             return;
         }
         window.location = profileURL;
     };
 
-    if ( document.querySelector(".website-list-table") ){
+    if (document.querySelector(".website-list-table")) {
         document.querySelector(".website-list-table").addEventListener("click", siteTableClickHandler);
     }
 
-    if ( document.querySelector(".top-trackers-table") ){
+    if (document.querySelector(".top-trackers-table")) {
         document.querySelector(".top-trackers-table").addEventListener("click", siteTableClickHandler);
     }
 
@@ -58,21 +63,24 @@
     *   Database Page
     */
 
-    function loadContentDatabase(){
+    function loadContentDatabase() {
         showLoading();
-        $.ajax({
+        // jQuery does not handle cross-domain jsonp request. Set a timer as a workaround.
+        var timeoutTimer = setTimeout(errorNotice, AJAX_JSONP_TIMEOUT);
+        $.ajax( {
             url: DATABASE_URL + "/databaseSiteList",
             dataType: 'jsonp',
-            success: function(data){
+            success: function(data) {
                 allSites = data[0];
                 var top10Trackers = data[1];
                 showAllSitesTable();
                 showPotentialTracker(top10Trackers);
                 var total = currentPage.querySelectorAll(".num-sites");
-                for (var i=0; i<total.length; i++){
+                for (var i=0; i<total.length; i++) {
                     total[i].textContent = addCommasToNumber(Object.keys(data[0]).length);
                 }
                 hideLoading();
+                clearTimeout(timeoutTimer);
             }
         });
     }
@@ -82,11 +90,11 @@
     *   Table Sorting
     */
 
-    function showPotentialTracker(top10Trackers){
+    function showPotentialTracker(top10Trackers) {
         var html = currentPage.querySelector(".top-trackers-table").innerHTML;
         var siteArray = Object.keys(top10Trackers);
         var site, row;
-        for ( var i=0; i<siteArray.length; i++ ){
+        for ( var i=0; i<siteArray.length; i++ ) {
             site = top10Trackers[siteArray[i]];
             row = "<tr data-url='/lightbeam/profile?site="+ site.site + "'>" +
                     "<td>" + (i+1) + "</td>" +
@@ -97,26 +105,28 @@
         currentPage.querySelector(".top-trackers-table").innerHTML = html;
     }
 
-    function showAllSitesTable(pageIndex){
-        if (!pageIndex) pageIndex = 1;
+    function showAllSitesTable(pageIndex) {
+        if (!pageIndex) { 
+            pageIndex = 1; 
+        }
         var numTotalPages = Math.ceil(allSites.length/ROWS_PER_TABLE_PAGE);
         var start = (pageIndex-1) * ROWS_PER_TABLE_PAGE;
         var end = (pageIndex * ROWS_PER_TABLE_PAGE);
         var tbody = "";
-        allSites.slice(start,end).forEach(function(site){
+        allSites.slice(start,end).forEach(function(site) {
             tbody += addTableRow(site);
         });
         currentPage.querySelector(".website-list-table tbody").innerHTML = tbody;
         addPageSelection(pageIndex,numTotalPages);
     }
 
-    function addPageSelection(current,total){
+    function addPageSelection(current,total) {
         currentPage.querySelector(".row-start").textContent = (current-1) * ROWS_PER_TABLE_PAGE + 1;
         currentPage.querySelector(".row-end").textContent = (current-1) * ROWS_PER_TABLE_PAGE + currentPage.querySelectorAll(".website-list-table tbody tr[data-url]").length;
         
-        if ( !document.querySelector(".pagination select") ){
+        if ( !document.querySelector(".pagination select") ) {
             var html = "Page: <select>";
-            for (var i=1; i<=total; i++){
+            for (var i=1; i<=total; i++) {
                 html = html + "<option>" + i + "</option>";
             }
             html += "</select>";
@@ -124,43 +134,51 @@
         }
     }
 
-    function sortSiteList(sortByFunction){
-        if (sortByFunction){
+    function sortSiteList(sortByFunction) {
+        if (sortByFunction) {
             allSites.sort(sortByFunction);
         }
         showAllSitesTable();
         document.querySelector(".pagination select").selectedIndex = 0;
     }
 
-    function addTableRow(site){
+    function addTableRow(site) {
         var html = "<tr data-url='/lightbeam/profile?site="+ site.site + "'>" +
                         "<td>" + site.site + "</td>";
-        if ( site.numConnectedSites ){ html += "<td>" + addCommasToNumber(site.numConnectedSites) + "</td>"; }
-        if ( site.numConnections ){    html += "<td>" + addCommasToNumber(site.numConnections) + "</td>"; }
+        if ( site.numConnectedSites ) { 
+            html += "<td>" + addCommasToNumber(site.numConnectedSites) + "</td>"; 
+        }
+        if ( site.numConnections ) { 
+            html += "<td>" + addCommasToNumber(site.numConnections) + "</td>"; 
+        }
         return html + "</tr>";
     }
 
-    var paginationForSiteTables = function(event){
+    var paginationForSiteTables = function(event) {
         var selectedIdx = document.querySelector(".pagination select").selectedIndex; // starts from 0
         showAllSitesTable( (selectedIdx+1));
     };
 
-    var sortingForSiteTables = function(event){
+    var sortingForSiteTables = function(event) {
         var sortBy = event.target.getAttribute("data-sort");
-        if ( sortBy ){
+        if (sortBy) {
             var sortByFunction;
-            var sortByConnectedSites = function(a,b){ return b.numConnectedSites - a.numConnectedSites; };
-            var sortByConnections = function(a,b){ return b.numConnections - a.numConnections; };
-            var sortByAlpha = function(a,b){
-                                if(a.site.toLowerCase() < b.site.toLowerCase()) return -1;
-                                if(a.site.toLowerCase() > b.site.toLowerCase()) return 1;
+            var sortByConnectedSites = function(a,b) { return b.numConnectedSites - a.numConnectedSites; };
+            var sortByConnections = function(a,b) { return b.numConnections - a.numConnections; };
+            var sortByAlpha = function(a,b) {
+                                if (a.site.toLowerCase() < b.site.toLowerCase()) { 
+                                    return -1; 
+                                }
+                                if (a.site.toLowerCase() > b.site.toLowerCase()) { 
+                                    return 1;
+                                }
                                 return 0; 
                             };
-            if (sortBy == "siteConnected"){
+            if (sortBy === "siteConnected") {
                 sortByFunction = sortByConnectedSites;
-            }else if(sortBy == "connections"){
+            } else if (sortBy === "connections") {
                 sortByFunction = sortByConnections;
-            }else{
+            } else {
                 sortByFunction = sortByAlpha;
             }
 
@@ -171,7 +189,7 @@
         }
     };
 
-    if ( document.querySelector(".database") ){
+    if ( document.querySelector(".database") ) {
         document.querySelector(".sorting-options").addEventListener("click",sortingForSiteTables);
         document.querySelector(".pagination").addEventListener("click",paginationForSiteTables);
     }
@@ -181,25 +199,27 @@
     *   Profile Page
     */
 
-    function turnMapIntoArray(nodemap){
+    function turnMapIntoArray(nodemap) {
         var node;
-        var arr = Object.keys(nodemap).map(function(nodeName){
+        var arr = Object.keys(nodemap).map(function(nodeName) {
             node = nodemap[nodeName];
             return { site: node.name, numConnections: node.howMany };
         });
         return arr;
     }
 
-    function loadContentProfile(siteName){
+    function loadContentProfile(siteName) {
         showLoading();
         var sites = currentPage.querySelectorAll(".site");
-        for (var i=0; i<sites.length; i++){
+        for (var i=0; i<sites.length; i++) {
             sites[i].textContent = siteName;
         }
-        $.ajax({
+        // jQuery does not handle cross-domain jsonp request. Set a timer as a workaround.
+        var timeoutTimer = setTimeout(errorNotice, AJAX_JSONP_TIMEOUT);
+        $.ajax( {
             url: DATABASE_URL+"/getSiteProfileNew?name=" + siteName,
             dataType: 'jsonp',
-            success: function(data){
+            success: function(data) {
                 // generate d3 graph
                 lightbeam.loadData(data); 
                 // other UI content
@@ -213,10 +233,11 @@
                 allSites = turnMapIntoArray(data);
                 document.querySelector(".profile .sorting-options a[data-selected]").click();
                 var total = currentPage.querySelectorAll(".num-sites");
-                for (var i=0; i<total.length; i++){
+                for (var i=0; i<total.length; i++) {
                     total[i].textContent = addCommasToNumber(Object.keys(data).length);
                 }
                 hideLoading();
+                clearTimeout(timeoutTimer);
             }
         });
 
@@ -226,23 +247,26 @@
         *   Based on https://github.com/toolness/url-demystifier
         *   and uses Steven Levithan's parseUri 1.2.2
         */
-        $.ajax({
+        $.ajax( {
             url: "http://freegeoip.net/json/" + siteName,
-            dataType: 'jsonp',
-            success: function(data){
+            dataType: 'json',
+            success: function(data) {
                 var countryName = data.country_name;
                 var countryCode = data.country_code.toLowerCase();
-                if ( data === false || countryName === "Reserved" ){
+                if ( data === false || countryName === "Reserved" ) {
                     document.querySelector("#country").innerHTML = "(Unable to find server location)";
-                }else{
+                } else {
                     document.querySelector("#country").innerHTML = data.country_name;
                 }
+            },
+            error: function(){
+                document.querySelector("#country").innerHTML = "(Unable to find server location)";
             }
         });
 
     }
 
-    function addConnnectionBar(numFirstParty,numTotal){
+    function addConnnectionBar(numFirstParty,numTotal) {
         // calculate connections percentage bar
         var totalWidth = currentPage.querySelector(".percent-bar").parentElement.getBoundingClientRect().width;
         var firstPartyRatio = numFirstParty / numTotal;
@@ -259,7 +283,7 @@
     }
 
 
-    if ( document.querySelector(".profile") ){
+    if ( document.querySelector(".profile") ) {
         document.querySelector(".profile .pagination").addEventListener("click",paginationForSiteTables);
         document.querySelector(".profile .sorting-options").addEventListener("click",sortingForSiteTables);
     }

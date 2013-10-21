@@ -368,9 +368,7 @@ MINIFY_BUNDLES = {
             'js/base/site.js',  # this is automatically included on every page
         ),
         'collusion': (
-            'js/collusion/d3.v3.min.js',
             'js/collusion/collusion.js',
-            'js/collusion/ui.js',
             'js/libs/jquery.validate.js',
         ),
         'collusion_demo': (
@@ -379,7 +377,6 @@ MINIFY_BUNDLES = {
             'js/collusion/collusion-addon.js',
             'js/collusion/demo.js',
             'js/collusion/graphrunner.js',
-            'js/collusion/ui.js',
         ),
         'lightbeam': (
             'js/lightbeam/d3.v3.min.js',

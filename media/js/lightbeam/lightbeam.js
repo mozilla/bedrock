@@ -16,18 +16,18 @@
         window.mozRequestAnimationFrame ||
         window.webkitRequestAnimationFrame;
 
-    lightbeam.loadData = function (data){
+    lightbeam.loadData = function (data) {
         vis = d3.select('.vizcanvas');
         nodemap = data;
         var connections, node, edgename, edge;
-        connections = Object.keys(data).map(function(key){
+        connections = Object.keys(data).map(function(key) {
             node = data[key];
             node.lastAccess = new Date(node.lastAccess);
             node.firstAccess = new Date(node.firstAccess);
-            if (node.linkedFrom){
-                node.linkedFrom.forEach(function(name){
+            if (node.linkedFrom) {
+                node.linkedFrom.forEach(function(name) {
                     var source = nodemap[name];
-                    if (!source){
+                    if (!source) {
                         nodemap[name] = source = {
                             name: name,
                             notVisited: true,
@@ -36,17 +36,17 @@
                         };
                     }
                     edgename = name + '->' + node.name;
-                    if (!edgemap[edgename]){
-                        edge = {source: source, target: node, name: edgename};
+                    if (!edgemap[edgename]) {
+                        edge = { source: source, target: node, name: edgename };
                         edgemap[edgename] = edge;
                         edges.push(edge);
                     }
                 });
             }
-            if (node.linkedTo){
-                node.linkedTo.forEach(function(name){
+            if (node.linkedTo) {
+                node.linkedTo.forEach(function(name) {
                     var target = nodemap[name];
-                    if (!target){
+                    if (!target) {
                         nodemap[name] = target = {
                             name: name,
                             notVisited: true,
@@ -55,8 +55,8 @@
                         };
                     }
                     edgename = node.name + '->' + name;
-                    if (!edgemap[edgename]){
-                        edge = {source: node, target: target, name: edgename};
+                    if (!edgemap[edgename]) {
+                        edge = { source: node, target: target, name: edgename };
                         edgemap[edgename] = edge;
                         edges.push(edge);
                     }
@@ -76,27 +76,27 @@
 
     // UTILITIES FOR CREATING POLYGONS
 
-    function point(angle, size){
+    function point(angle, size) {
         return [Math.round(Math.cos(angle) * size), -Math.round(Math.sin(angle) * size)];
     }
 
-    function polygon(points, size, debug){
+    function polygon(points, size, debug) {
         var increment = Math.PI * 2 / points;
         var angles = [], i;
-        for (i = 0; i < points; i++){
+        for (i = 0; i < points; i++) {
             angles.push(i * increment + Math.PI/2); // add 90 degrees so first point is up
         }
-        return angles.map(function(angle){ return point(angle, size); });
+        return angles.map(function(angle) { return point(angle, size); });
     }
 
-    function polygonAsString(points, size){
+    function polygonAsString(points, size) {
         var poly = polygon(points, size);
-        return poly.map(function(pair){return pair.join(',');}).join(' ');
+        return poly.map(function(pair) { return pair.join(',');}).join(' ');
     }
 
     // SET UP D3 HANDLERS
 
-    function initGraph(){
+    function initGraph() {
         // Initialize D3 layout and bind data
         force = d3.layout.force()
             .nodes(aggregate.allnodes)
@@ -107,21 +107,21 @@
         updateGraph();
 
         // update method
-        force.on('tick', function(){
+        force.on('tick', function() {
             vis.selectAll('.edge')
-                .attr('x1', function(edge){ return edge.source.x; })
-                .attr('y1', function(edge){ return edge.source.y; })
-                .attr('x2', function(edge){ return edge.target.x; })
-                .attr('y2', function(edge){ return edge.target.y; });
+                .attr('x1', function(edge) { return edge.source.x; })
+                .attr('y1', function(edge) { return edge.source.y; })
+                .attr('x2', function(edge) { return edge.target.x; })
+                .attr('y2', function(edge) { return edge.target.y; });
             vis.selectAll('.node').call(updateNodes);
         });
 
     }
 
-    function updateGraph(){
+    function updateGraph() {
             // Data binding for links
         var lines = vis.selectAll('.edge')
-            .data(aggregate.edges, function(edge){ return edge.name; });
+            .data(aggregate.edges, function(edge) { return edge.name; });
 
         lines.enter().insert('line', ':first-child')
             .classed('edge', true);
@@ -130,15 +130,15 @@
             .remove();
 
         var nodes = vis.selectAll('.node')
-            .data(aggregate.allnodes, function(node){ return node.name; });
+            .data(aggregate.allnodes, function(node) { return node.name; });
 
         nodes.call(force.drag);
 
         nodes.enter().append('g')
-            .classed('visitedYes', function(node){ return node.visitedCount; })
-            .classed('visitedNo', function(node){ return !node.visitedCount; })
+            .classed('visitedYes', function(node) { return node.visitedCount; })
+            .classed('visitedNo', function(node) { return !node.visitedCount; })
             .call(addShape)
-            .attr('data-name', function(node){ return node.name; })
+            .attr('data-name', function(node) { return node.name; })
             .classed('node', true);
 
 
@@ -149,7 +149,7 @@
     }
 
 
-    function addCircle(selection){
+    function addCircle(selection) {
         selection
             .append('circle')
             .attr('cx', 0)
@@ -158,19 +158,19 @@
             .classed('site', true);
     }
 
-    function addShape(selection){
+    function addShape(selection) {
         selection.filter('.visitedYes').call(addCircle);
         selection.filter('.visitedNo').call(addTriangle);
     }
 
-    function addTriangle(selection){
+    function addTriangle(selection) {
         selection
             .append('polygon')
             .attr('points', polygonAsString(3, 20))
-            .attr('data-name', function(node){ return node.name; });
+            .attr('data-name', function(node) { return node.name; });
     }
 
-    function addSquare(selection){
+    function addSquare(selection) {
         selection
             .append('rect')
             .attr('x', -9)
@@ -180,14 +180,14 @@
     }
 
 
-    function updateNodes(thenodes){
+    function updateNodes(thenodes) {
         thenodes
-        .attr('transform', function(node){ return 'translate(' + node.x + ',' + node.y + ') scale(' + (1 + 0.03 * node.weight) + ')'; })
-        .classed('secureYes', function(node){ return node.secureCount === node.howMany; })
-        .classed('secureNo', function(node){ return node.secureCount !== node.howMany; })
-        .classed('cookieYes', function(node){ return node.cookieCount; })
-        .classed('cookieNo', function(node){ return !node.cookieCount; })
-        .attr('data-timestamp', function(node){ return node.lastAccess.toISOString(); });
+        .attr('transform', function(node) { return 'translate(' + node.x + ',' + node.y + ') scale(' + (1 + 0.03 * node.weight) + ')'; })
+        .classed('secureYes', function(node) { return node.secureCount === node.howMany; })
+        .classed('secureNo', function(node) { return node.secureCount !== node.howMany; })
+        .classed('cookieYes', function(node) { return node.cookieCount; })
+        .classed('cookieNo', function(node) { return !node.cookieCount; })
+        .attr('data-timestamp', function(node) { return node.lastAccess.toISOString(); });
         // change shape if needed
     }
 
