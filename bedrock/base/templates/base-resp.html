@@ -20,7 +20,7 @@
     <meta property="og:site_name" content="{{ _('Mozilla') }}">
     <meta property="og:locale" content="{{ LANG|replace("-", "_") }}">
     <meta property="og:url" content="{{ settings.CANONICAL_URL + '/' + LANG + canonical_path }}">
-    <meta property="og:image" content="{% block page_image %}{{ media('img/mozorg/mozilla-256.jpg') }}{% endblock %}">
+    <meta property="og:image" content="{% filter absolute_url %}{% block page_image %}{{ media('img/mozorg/mozilla-256.jpg') }}{% endblock %}{% endfilter %}">
     <meta property="og:title" content="{{ self.page_title_full() }}">
     <meta property="og:description" content="{{ self.page_desc() }}">
     <meta property="fb:page_id" content="{% block facebook_id %}262134952380{# facebook.com/mozilla #}{% endblock %}">

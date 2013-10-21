@@ -328,3 +328,30 @@ class TestHighResImg(TestCase):
             u'<noscript><img src="/media/test.png" data-test-attr="test">'
             u'</noscript>')
         self.assertEqual(markup, jinja2.Markup(expected))
+
+
+class TestAbsoluteURLFilter(TestCase):
+    rf = RequestFactory()
+    media_url_dev = '/media/'
+    media_url_prod = '//mozorg.cdn.mozilla.net/media/'
+    image_path = 'img/mozorg/mozilla-256.jpg'
+    inline_template = "{{ media('%s')|absolute_url }}" % image_path
+    block_template = ("{% filter absolute_url %}{% block page_image %}" +
+        "{{ media('%s') }}" % image_path + "{% endblock %}{% endfilter %}")
+
+    def _render(self, template):
+        return render(template, {'request': self.rf.get('/')})
+
+    @override_settings(MEDIA_URL=media_url_dev)
+    def test_dev(self):
+        """Should return a fully qualified URL including a protocol"""
+        expected = settings.CANONICAL_URL + self.media_url_dev + self.image_path
+        eq_(self._render(self.inline_template), expected)
+        eq_(self._render(self.block_template), expected)
+
+    @override_settings(MEDIA_URL=media_url_prod)
+    def test_prod(self):
+        """Should return a fully qualified URL including a protocol"""
+        expected = 'https:' + self.media_url_prod + self.image_path
+        eq_(self._render(self.inline_template), expected)
+        eq_(self._render(self.block_template), expected)

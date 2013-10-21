@@ -259,3 +259,33 @@ def press_blog_url(ctx):
         locale = 'en-US'
 
     return settings.PRESS_BLOG_ROOT + settings.PRESS_BLOGS[locale]
+
+
+@jingo.register.filter
+def absolute_url(url):
+    """
+    Return a fully qualified URL including a protocol especially for the Open
+    Graph Protocol image object.
+
+    Examples
+    ========
+
+    In Template
+    -----------
+    This filter can be used in combination with the media helper like this:
+
+        {{ media('path/to/img')|absolute_url }}
+
+    With a block:
+
+        {% filter absolute_url %}
+          {% block page_image %}{{ media('path/to/img') }}{% endblock %}
+        {% endfilter %}
+    """
+
+    if url.startswith('//'):
+        prefix = 'https:'
+    else:
+        prefix = settings.CANONICAL_URL
+
+    return prefix + url
