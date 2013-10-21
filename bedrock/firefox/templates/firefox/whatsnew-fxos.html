@@ -1,0 +1,44 @@
+{% extends "/firefox/base.html" %}
+
+{% add_lang_files "whatsnew" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{ _('Welcome to Firefox') }}{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+{% block body_id %}firefox-whatsnew{% endblock %}
+
+{% block site_header_nav %}{% endblock %}
+
+{% block site_css %}
+  {{ css('firefox_whatsnew_fxos') }}
+{% endblock %}
+
+{% block content %}
+
+<article id="main-content" class="billboard">
+  {# L10n: The line breaks in this headline are for visual formatting only #}
+  <h1>{{ _('Congratulations!<br> Your browser is safer and<br>more secure than ever.') }}</h1>
+
+  <section class="callout">
+    {# L10n: The line breaks in this headline are for visual formatting only #}
+    <h2>{{ _('Get the same level of<br> choice and innovation<br> in a smartphone.') }}</h2>
+
+    <a id="fxos-learn-more" class="button-green" role="button" href="{{ url('firefox.os.index') }}">{{ _('Learn more about Firefox OS') }}</a>
+  </section>
+</article>
+
+{% endblock %}
+
+{% block email_form %}
+  <div id="email-form-wrapper">
+    {{ email_newsletter_form('mozilla-and-you', _('Get Mozilla updates')) }}
+  </div>
+{% endblock %}
+
+{% block site_footer %}
+  {% include 'firefox/includes/simple_footer.html' %}
+{% endblock %}
+
+{% block js %}
+  {{ js('firefox_whatsnew_fxos') }}
+{% endblock %}

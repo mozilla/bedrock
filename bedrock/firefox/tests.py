@@ -459,14 +459,14 @@ class TestFirstrunRedirect(FxVersionRedirectsMixin, TestCase):
             LATEST_FIREFOX_VERSION='16.0')
     def test_firstrun_alternate(self):
         """
-        Hitting /firefox/{version}/firstrun/?f={fx_views.FX_FIRSTRUN_FUNNELCAKE_CAMPAIGN}
+        Hitting /firefox/{version}/firstrun/?f={fx_views.FirstrunView.funnelcake_campaign}
         with latest Fx & en-US locale should render firefox/firstrun/a.html, regardless of
         {version}. Any other f value or locale should render firefox/firstrun.html.
         """
         user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:16.0) '
                       'Gecko/20100101 Firefox/16.0')
 
-        fc_id = fx_views.FX_FIRSTRUN_FUNNELCAKE_CAMPAIGN
+        fc_id = fx_views.FirstrunView.funnelcake_campaign
         expected = 'Use Themes to change the look of your Firefox just about any way you like.'
 
         # en-US with proper funnelcake id should give expected content

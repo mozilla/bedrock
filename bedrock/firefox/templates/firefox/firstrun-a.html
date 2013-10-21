@@ -128,7 +128,9 @@
   </aside>
 </main>
 
-{% include 'firefox/firstrun/_video.html' %}
+<div id="video-container">
+  <video id="pinnedtabs-video" poster="{{ media('/img/firefox/firstrun/pinnedtabs-poster.jpg') }}" src="" controls></video>
+</div>
 
 {% endblock %}
 
