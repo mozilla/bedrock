@@ -1,10 +1,14 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
 (function() {
     "use strict";
 
     // not sure what's the best way to include the URL
-    var DATABASE_URL = "http://collusiondb.mofoprod.net";
+    var DATABASE_URL = "//collusiondb.mofoprod.net";
     var ROWS_PER_TABLE_PAGE = 20;
-    var AJAX_JSONP_TIMEOUT = 60 * 1000; // in millinseconds
+    var AJAX_JSONP_TIMEOUT = 30 * 1000; // in millinseconds
     var currentPage;
     var allSites;
     var errorNotice = function jsonpErrorHandling(){
@@ -250,7 +254,7 @@
         *   and uses Steven Levithan's parseUri 1.2.2
         */
         $.ajax( {
-            url: "http://freegeoip.net/json/" + siteName,
+            url: "//freegeoip.net/json/" + siteName,
             dataType: 'json',
             success: function(data) {
                 var countryName = data.country_name;
