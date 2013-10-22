@@ -15,11 +15,6 @@
     var edges = [];
     var aggregate;
 
-    var requestAnimationFrame =
-        window.requestAnimationFrame ||
-        window.mozRequestAnimationFrame ||
-        window.webkitRequestAnimationFrame;
-
     lightbeam.loadData = function buildGraph(data) {
         vis = d3.select('.vizcanvas');
         nodemap = data;
@@ -152,7 +147,7 @@
 
         nodes.exit()
             .remove();
-        requestAnimationFrame(updateGraph);
+        window.requestAnimationFrame(updateGraph);
     }
 
 

@@ -380,6 +380,7 @@ MINIFY_BUNDLES = {
         ),
         'lightbeam': (
             'js/lightbeam/d3.v3.min.js',
+            'js/lightbeam/rAF.js',
             'js/lightbeam/lightbeam.js',
             'js/lightbeam/ui.js',
             'js/libs/jquery.validate.js',

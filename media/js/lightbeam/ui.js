@@ -12,16 +12,34 @@
     var currentPage;
     var allSites;
     var errorNotice = function jsonpErrorHandling(){
-        document.querySelector("#loading img").classList.add("hidden");
+        addClass(document.querySelector("#loading img"),"hidden");
         document.querySelector("#loading span").innerHTML = "This is taking longer than expected. <br/>Please reload the page or check back later. <br/>Thanks!";
+    };
+    
+    function checkClassExist(elem,theClass){
+        return elem.className.split(" ").indexOf(theClass) > -1;
+    };
+
+    function addClass(elem,theClass){
+        if ( !checkClassExist(elem,theClass) ){
+            elem.className += " " + theClass; 
+        }
+    };
+
+    function removeClass(elem,theClass){
+        if ( checkClassExist(elem,theClass) ){
+            var classes = elem.className.split(" ");
+            classes.splice(classes.indexOf(theClass),1);
+            elem.className = classes.join(" ");
+        }
     };
 
     document.addEventListener("DOMContentLoaded", function(event) {
         currentPage = document.querySelector("body");
 
-        if (currentPage.classList.contains("database")) {
+        if (checkClassExist(currentPage,"database")) {
             loadContentDatabase();
-        } else if (currentPage.classList.contains("profile")) {
+        } else if (checkClassExist(currentPage,"profile")) {
             var hrefArray = window.location.href.split('?');
             var site = hrefArray[hrefArray.length-1].substr(5);
             loadContentProfile(site);
@@ -30,11 +48,11 @@
     });
 
     function showLoading() {
-        document.querySelector("#loading").classList.remove("hidden");
+        removeClass(document.querySelector("#loading"),"hidden");
     }
 
     function hideLoading() {
-        document.querySelector("#loading").classList.add("hidden");
+        addClass(document.querySelector("#loading"),"hidden");
     }
 
     function addCommasToNumber(num) {
@@ -108,7 +126,7 @@
                 "</tr>";
             html += row;
         }
-        currentPage.querySelector(".top-trackers-table").innerHTML = html;
+        $(".top-trackers-table").html(html);
     }
 
     function showAllSitesTable(pageIndex) {
@@ -122,7 +140,7 @@
         allSites.slice(start,end).forEach(function(site) {
             tbody += addTableRow(site);
         });
-        currentPage.querySelector(".website-list-table tbody").innerHTML = tbody;
+        $(".website-list-table tbody").html(tbody);
         addPageSelection(pageIndex,numTotalPages);
     }
 
@@ -274,7 +292,11 @@
 
     function addConnnectionBar(numFirstParty,numTotal) {
         // calculate connections percentage bar
-        var totalWidth = currentPage.querySelector(".percent-bar").parentElement.getBoundingClientRect().width;
+        try{
+            var totalWidth = currentPage.querySelector(".percent-bar").parentElement.getBoundingClientRect().width;
+        }catch(e){  // getBoundingClientRect() might not work in older IE
+            totalWidth = currentPage.querySelector(".percent-bar").clientWidth;
+        }
         var firstPartyRatio = numFirstParty / numTotal;
         var firstBar = currentPage.querySelector(".first-bar");
         var thirdBar = currentPage.querySelector(".third-bar");
