@@ -4,10 +4,19 @@
 
 {% extends "/firefox/speed.html" %}
 
+{% block page_desc %}{{ _('Our latest version features memory improvements that can make Firefox faster, smoother and more responsive.') }}{% endblock %}
+
 {% block heading_primary %}
-<h1>Improved memory,<br/>improved performance</h1>
+{# L10n: The line break below is for visual formatting only. #}
+<h1>{{ _('Improved memory,<br/>improved performance') }}</h1>
 {% endblock %}
 
 {% block heading_secondary %}
-<h4>Our latest version features memory improvements that can make Firefox faster, smoother and more responsive. See if your browser is performing at its best.</h4>
+<h4>
+{% trans %}
+	Our latest version features memory improvements that can make Firefox
+	faster, smoother and more responsive. See if your browser is performing
+	at its best.
+{% endtrans %}
+</h4>
 {% endblock %}

@@ -4,7 +4,8 @@
 
 {% extends "/firefox/base.html" %}
 
-{% block page_title %}Blazing Fast Performance{% endblock %}
+{% block page_title %}{{ _('Blazing Fast Performance') }}{% endblock %}
+{% block page_desc %}{{ _('The Firefox Web browser makes the Web faster. From initial start-up to loading Web pages and running applications, Firefox is blink-and-you-missed-it fast.') }}{% endblock %}
 {% block body_id %}firefox-security{% endblock %}
 
 {% block extrahead %}
@@ -19,23 +20,37 @@
 {% block content %}
 
 <div id="main-feature" class="stacked">
-  <h1>Blazing <span class="large">Performance</span></h1>
+  <h1>{{ _('Blazing <span class="%s">Performance</span>')|format('large') }}</h1>
   {{ download_firefox(small=True) }}
 </div>
 
 <nav class="menu-bar billboard">
   <ul>
-    <li><a href="#web">Making the Web Faster</a></li>
-    <li><a href="#hardware">Hardware Acceleration</a></li>
+    <li><a href="#web">{{ _('Making the Web Faster') }}</a></li>
+    <li><a href="#hardware">{{ _('Hardware Acceleration') }}</a></li>
   </ul>
 </nav>
 
 <section id="web" class="container divider">
 <div class="row">
   <div class="span3">
-    <h2>Making the Web <span>Faster</span></h2>
-    <p>Fasten your seat belts! With lightning fast start-up times, rapid graphics rendering and improved page load speed, the latest version of Firefox is full of performance enhancements that you’ll notice instantly.</p>
-    <p>Web applications like mail, video and games keep getting more awesome, but they also require additional power to run smoothly. To meet these increasingly sophisticated demands, our latest release features a massively improved JavaScript engine called JägerMonkey.</p>
+    <h2>{{ _('Making the Web <span>Faster</span>') }}</h2>
+    <p>
+    {% trans %}
+      Fasten your seat belts! With lightning fast start-up times, rapid
+      graphics rendering and improved page load speed, the latest version
+      of Firefox is full of performance enhancements that you’ll notice
+      instantly.
+    {% endtrans %}
+    </p>
+    <p>
+    {% trans %}
+      Web applications like mail, video and games keep getting more awesome,
+      but they also require additional power to run smoothly. To meet these
+      increasingly sophisticated demands, our latest release features a
+      massively improved JavaScript engine called JägerMonkey.
+    {% endtrans %}
+    </p>
   </div>
   <figure id="video-wrapper" class="span7">
     <div id="video-player" class="mozilla-video-control mozilla-video-shadow">
@@ -46,7 +61,11 @@
                prefix='//videos-cdn.mozilla.net/serv/mozhacks/demos/screencasts/runfield/',
                poster=media('img/firefox/video/poster-runfield.jpg')) }}
     </div>
-    <figcaption>Runfield is a Web-based game built with JavaScript and Canvas. <a href="https://developer.mozilla.org/demos/detail/runfield/launch">Try it for yourself »</a></figcaption>
+    <figcaption>
+    {% trans url='https://developer.mozilla.org/demos/detail/runfield/launch' %}
+      Runfield is a Web-based game built with JavaScript and Canvas. <a href="{{ url }}">Try it for yourself »</a>
+    {% endtrans %}
+    </figcaption>
   </figure>
 </div>
 </section>
@@ -54,11 +73,11 @@
 <section id="hardware" class="container divider-last">
 <div class="row">
   <div class="span3">
-    <h2>Hardware Acceleration</h2>
-    <p>Whether you’re using Firefox on Windows 7, Vista, XP or Mac OS X, you’ll also enjoy hardware acceleration for many other operations, like watching videos or playing games.</p>
+    <h2>{{ _('Hardware Acceleration') }}</h2>
+    <p>{{ _('Whether you’re using Firefox on Windows 7, Vista, XP or Mac OS X, you’ll also enjoy hardware acceleration for many other operations, like watching videos or playing games.') }}</p>
   </div>
   <div class="span7">
-    <img height="300" width="620" alt="Hardware Acceleration screenshot" src="{{ media('img/firefox/performance/hardware-accel.png') }}">
+    <img height="300" width="620" alt="{{ _('Hardware Acceleration screenshot') }}" src="{{ media('img/firefox/performance/hardware-accel.png') }}">
   </div>
 </div>
 </section>
