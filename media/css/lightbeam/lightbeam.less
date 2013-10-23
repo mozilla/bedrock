@@ -1,0 +1,481 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+
+hgroup {
+    text-align: center;
+    padding-top: @baseLine * 2;
+    padding-bottom: @baseLine * 2;
+
+    h2 {
+        font-size: 32px;
+    }
+}
+
+.lightbeam-home #primary{
+    padding-top: @baseLine * 2;
+    padding-bottom: @baseLine * 2;
+    @shadow: 0 1px 1px rgba(0, 0, 0, .1), 0 0 0 1px #fff;
+    margin-bottom: @baseLine * 3;
+
+    img {
+        position: absolute;
+        top: 15px;
+    }
+
+    p {
+        margin-right: 40%;
+    }
+
+    .button {
+        height: auto;
+        line-height: @baseLine;
+        font-size: 18px;
+        padding: @gridGutterWidth;
+        width: @gridColumnWidth * 5;
+        margin-top: @baseLine * 2;
+        font-weight: normal;
+
+        small {
+          display: block;
+        }
+    }
+
+}
+
+.three-points{
+    img{
+      margin-top: -30px;
+    }
+}
+
+
+.container{ 
+    padding-top: @baseLine;
+    padding-bottom: @baseLine;
+    margin-bottom: @baseLine * 2;
+}
+
+.span3{
+  .span(3);
+}
+
+.span4{
+  .span(4);
+}
+
+.span5{
+  .span(5);
+}
+
+.span6{
+  .span(6);
+}
+
+.span7{
+  .span(7);
+}
+
+.span8{
+  .span(8);
+  margin: 0;
+}
+
+.span12{
+  .span(12);
+}
+
+.centered-span3{
+  .span(6);
+  .offset(3);
+}
+
+.ligthbeam-wordmark{
+  width: 250px;
+}
+
+.white-bg{
+  background: #fff;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.square{
+  width: 120px;
+  height: 120px;
+  margin: 10px auto;
+}
+
+
+.inline-label{
+  letter-spacing: 1px;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.row-range{
+  float: right;
+}
+
+.float-left{
+  float: left;
+}
+
+.float-right{
+  float: right;
+}
+
+
+/* Database Page & Profile Page */
+
+.data-section{
+  padding-bottom: 50px;
+}
+
+.table-controls{
+  .span(12);
+  margin-top: 10px;
+}
+
+.website-list-container{
+  .span(8);
+}
+
+.top-trackers-container{
+  .span(4);
+}
+
+.sorting-options{
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.sorting-options a{
+  padding: 0 5px;
+  cursor: pointer;
+  color: #555;
+}
+
+.sorting-options a[data-selected]{
+  font-weight: bold;
+  color: #48C7E6;
+}
+
+.option-divider{
+  padding: 0 3px;
+}
+
+.pagination-container{
+  .float-right;
+  width: 100%;
+}
+
+.pagination{
+  margin: 0 0 10px 0;
+  float: right;
+}
+
+.pagination select{
+  width: 100px;
+}
+
+table{
+  border-collapse: collapse;
+}
+
+table tr{
+  border-bottom: 1px solid #999;  
+}
+
+.website-list-table, 
+.top-trackers-table{
+  line-height: 35px;
+  text-align: left;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.website-list-table th,{
+  background-color: #ABDFF2;
+  line-height: 150%;
+}
+
+.website-list-table tr:hover,
+.top-trackers-table tr:hover{
+  background-color: #BFBFBF;
+  cursor: pointer;
+}
+
+.top-trackers-table caption{
+  text-align: left;
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  padding: 3px 0;
+}
+
+.top-trackers-table tr td:first-child{
+  color: #2FB4D2;
+}
+
+svg.percent-bar{
+  height: 20px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+svg.percent-bar .first-bar{
+  fill: #3a75b6;
+}
+
+.num-first{
+  color: #3a75b6;
+}
+
+svg.percent-bar .third-bar{
+  fill: #f58329;
+}
+
+.num-third{
+  color: #f58329;
+}
+
+svg.percent-bar rect + text{
+  font-weight: bold;
+  fill: #fff;
+}
+
+.site-title{
+  margin-top: @baseLine;
+  margin-bottom: @baseLine;
+}
+
+#loading{
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10000000;
+}
+
+#loading div{
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255,.6);
+  pointer-events: none;
+  text-align: center;
+}
+
+#loading img, #loading span{
+  position: relative;
+  top: 50%;
+}
+
+.ten-percent{
+  width: 10%;
+}
+
+.twenty-percent{
+  width: 20%;
+}
+
+.fifty-percent{
+  width: 50%;
+}
+
+.sixty-percent{
+  width: 60%;
+}
+
+.ninety-percent{
+  width: 90%;
+}
+
+.partner-logo{
+  width: 300px;
+}
+
+.all-cap{
+  text-transform: uppercase;
+}
+
+
+/* Styles for lightbeam Graph */
+
+.vizcanvas-container{
+    background-color: #000;
+    border-radius: 5px;
+    margin-bottom: @baseLine / 2;
+}
+
+.edge{
+    stroke: #FFF;
+}
+
+.node{
+    fill: #FFF;
+}
+
+
+/* {{{ Tablet  Layout: 768px */
+@media only screen and (min-width: @widthTablet) and (max-width: @widthDesktop) {
+
+    .lightbeam-home .span6,
+    .about .span3,
+    .about .span5,
+    .about .span6,
+    .about .span7{
+      width: auto;
+    }
+
+    .profile {
+      .span4,
+      .span8,
+      .span12{
+        width: 100%;
+        margin: 0;
+        overflow: hidden;
+      }
+
+      .table-controls{
+        .span_narrow(12);
+        margin-top: 10px;
+      }
+    }
+
+    .container {
+      width: span-all();
+
+      .centered-span3{
+        width: auto;
+        margin: 0;
+      }
+
+      img{
+        width: 100%;
+      }
+
+      #loading img{
+        width: 100px;
+      }
+
+    }
+
+
+    .lightbeam-home #primary {
+      padding: 0;
+      margin-top: @baseLine * 14;
+      margin-bottom: @baseLine * 2;
+
+      img {
+          max-width: 40%;
+          top: -310px;
+          right: 200px;
+      }
+
+      p {
+      }
+
+    }
+
+}
+
+/* }}} */
+/* {{{ Wide Mobile Layout: 480px */
+@media only screen and (max-width: @widthTablet) {
+
+    .lightbeam-home,
+    .about {
+      .span3,
+      .span4,
+      .span5,
+      .span6,
+      .span7,
+      .span8{
+        width: auto;
+      }
+
+      #primary .button{
+        width: auto;
+      } 
+    }
+
+    .database,
+    .profile {
+      .span3,
+      .span4,
+      .span5,
+      .span6,
+      .span7,
+      .span8,
+      .span12,
+      .website-list-container,
+      .top-trackers-container{
+        width: 100%;
+        margin: 0;
+        overflow: hidden;
+      }
+
+      .table-controls{
+        width: 100%;
+        margin: 10px 0 0 0;
+        overflow: hidden;
+      }
+
+      .sorting-options a{
+        padding: 0;
+      }
+    }
+
+    .container {
+      width: span-all();
+
+      .centered-span3{
+        width: auto;
+        margin: 0;
+      }
+
+      img{
+        width: 100%;
+      }
+
+      #loading img{
+        width: 100px;
+      }
+
+      .website-list-table thead tr th:nth-child(3),
+      .website-list-table tbody tr td:nth-child(3),
+      .sorting-options a:nth-of-type(3),
+      .option-divider:nth-of-type(2){
+        display: none;
+      }
+
+      .website-list-table{
+        width: auto;
+      }
+
+    }
+
+
+    .lightbeam-home #primary {
+      padding: 0;
+      margin-top: @baseLine * 7;
+      margin-bottom: @baseLine * 2;
+
+      img {
+          max-width: 40%;
+          top: -150px;
+          right: 100px;
+      }
+
+    }
+
+}
