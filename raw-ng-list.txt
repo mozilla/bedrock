@@ -171,6 +171,7 @@ mozilla.community.canada                The Mozilla community in Canada. (Modera
 mozilla.community.chile                 The Mozilla community in Chile. (Moderated)
 mozilla.community.colombia              The Mozilla community in Colombia. (Moderated)
 mozilla.community.croatia               The Mozilla community in Croatia. (Moderated)
+mozilla.community.denmark               The Mozilla community in Denmark. (Moderated)
 mozilla.community.dutch                 The Mozilla Dutch-speaking community. (Moderated)
 mozilla.community.esperanto             The Mozilla Esperanto-speaking community. (Moderated)
 mozilla.community.europe                The Mozilla community in Europe. (Moderated)
@@ -250,6 +251,7 @@ mozilla.accessibility                   Discussion of all things related to acce
 mozilla.community.armyofawesome         The Mozilla Army of Awesome twitter helpers.
 mozilla.community.artzilla              The Mozilla Artzilla community of artists.
 mozilla.community.b2g                   The community around Boot2Gecko (Firefox OS). (Moderated)
+mozilla.community.crafting              Mozillians making craft-y things. (Moderated)
 mozilla.community.devderby              The Mozilla monthly Developer Derby for web developers. (Moderated)
 mozilla.community.digital-freedom       Discussion of, and resistance to, laws which work against Mozilla's mission. (Moderated)
 mozilla.community.diversity             A group to plan, build, teach, empower, and grow our diversity skills project-wide. (Moderated)
