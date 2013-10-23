@@ -4,6 +4,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import argparse
+import json
 import sys
 import urllib2
 import webbrowser
@@ -20,21 +21,37 @@ REV_PATH = '/media/revision.txt'
 DEFAULT_REPO = 'mozilla/bedrock'
 DEFAULT_BRANCH = 'master'
 URL_TEMPLATE = 'https://github.com/{repo}/compare/{rev}...{branch}'
+GITHUB_API_TEMPLATE = 'https://api.github.com/repos/{repo}/branches/{branch}'
 
 
 def get_current_rev(env):
     url = None
     try:
         url = urllib2.urlopen(ENV_URLS[env] + REV_PATH)
-        return url.read().strip()
+        return url.read().strip()[:10]
     finally:
         if url:
             url.close()
 
 
+def get_current_master(repo, branch):
+    url = GITHUB_API_TEMPLATE.format(repo=repo, branch=branch)
+    conn = None
+    try:
+        conn = urllib2.urlopen(url, timeout=30)
+        info = json.loads(conn.read().strip())
+        return info['commit']['sha'][:10]
+    except Exception:
+        return branch
+    finally:
+        if conn:
+            conn.close()
+
+
 def get_compare_url(env, branch=DEFAULT_BRANCH, repo=DEFAULT_REPO):
     rev = get_current_rev(env)
-    return URL_TEMPLATE.format(rev=rev, branch=branch, repo=repo)
+    sha = get_current_master(repo, branch)
+    return URL_TEMPLATE.format(rev=rev, branch=sha, repo=repo)
 
 
 def write_stdout(out_str):
