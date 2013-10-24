@@ -1,0 +1,122 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "firefox/fxos-base.html" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{_('Firefox OS — 1.1 Notes')}}{% endblock %}
+
+{% block body_id %}notes{% endblock %}
+{% block body_class %}fxos-notes sky{% endblock %}
+
+
+{% block site_css %}
+  {{ css('firefox_releasenotes') }}
+{% endblock %}
+
+{% block extrahead %}
+{% endblock %}
+
+{% block content %}
+  <header id="main-feature">
+    <h1>{{ _('Firefox OS 1.1 Notes') }}</h1>
+
+    <h2>{{ _('First offered to partners for release on October 21, 2013') }}</h2>
+
+    <p>
+    {% trans feedback='https://input.mozilla.org/feedback',
+        bugzilla='https://bugzilla.mozilla.org/' %}
+      As always, you&#146;re encouraged to
+      <a href="{{ feedback }}">tell us what you think</a>,
+      or <a href="{{ bugzilla }}">file a bug in Bugzilla</a>.
+    {% endtrans %}
+    </p>
+  </header>
+
+<div id="main-content">
+  <article class="main-column">
+
+    <section class="notes-section" id="features">
+      <h3>{{ _('New Features') }}</h3>
+      <ul class="section-items">
+        <li>{{ _('Multimedia Messaging (MMS) support added to the messaging app so that you can send pictures, video, and audio to contacts, or a text message to multiple people at the same time.') }}</li>
+        <li>{{ _('Saving images, video, and audio from the browser is now supported.') }}</li>
+        <li>{{ _('Email account contacts can now be imported from Gmail and Windows Live Mail (Outlook).') }}</li>
+        <li>{{ _('Email image, audio and video attachment download has been implemented.') }}</li>
+        <li>{{ _('Attaching and sending Gallery images now supported.') }}</li>
+        <li>{{ _('Email draft mode has been implemented.') }}</li>
+        <li>{{ _('Improvements to the dialer and contacts, such as easily adding a dialed number to an existing contact and dialer suggestions to easily find contacts.') }}</li>
+        <li>{{ _('Cell Broadcast  implemented for simultaneous delivery of emergency messages to subscribed users.') }}</li>
+        <li>{{ _('Major performance improvements around application launch time and scrolling.') }}</li>
+        <li>{{ _('<b>Music</b> search to find music by artist, album or song title.') }}</li>
+        <li>{{ _('Firefox OS offers <b>Calendar</b> features such as:') }}
+          <ul>
+            <li>{{ _('Separate detail and edit views.') }}</li>
+            <li>{{ _('Alarm sound notification selection.') }}</li>
+            <li>{{ _('Direct event creation at specific date/time.') }}</li>
+          </ul>
+        </li>
+        <li>{{ _('<b>Push Notifications API</b>: Developers can make use of push to deliver timely notifications to apps and reduce overall battery consumption.') }}</li>
+      </ul>
+    </section>
+
+    <section class="notes-section" id="fixed">
+      <h3>{{ _('Fixed Issues') }}</h3>
+      <ul class="section-items">
+        <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=817972">817972</a>: {{ _('[Bluetooth][File-Transfer] Support multiple files transferring.') }}</li>
+        <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=834672">834672</a>: {{ _('AppProtocolHandler.js should never throw.') }}</li>
+        <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=839500">839500</a>: {{ _('Gaia‘s identity.js opens a browser process that‘s stuck in the foreground. Therefore, if you open the marketplace app, you lose ~10% of available app memory until you reboot the phone.') }}
+        <li>{{ _('Memory fix for Persona logins.') }}</li>
+        <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=834773">834773</a>: {{ _('Using the pick activity and confirming an image for the gallery — app gets hung with no perceived perf for 5–10 seconds') }}</li>
+        <li><a href="http://mzl.la/1bqXGXS">{{ _('Resolved crashes.') }}</a></li>
+      </ul>
+    </section>
+
+    <section class="notes-section" id="webapis">
+      <h3>{{ _('Web APIs') }}</h3>
+      <ul class="section-items">
+        <li>{{ _('MMS and MobileMessage-related') }}</li>
+        <li>{{ _('SimplePush') }}</li>
+        <li>{{ _('WAP Push') }}</li>
+      </ul>
+    </section>
+
+    <section class="notes-section" id="locales">
+      <h3>{{ _('Supported Locales') }}</h3>
+      <ul class="section-items">
+        <li>{{ _('Catalan') }}</li>
+        <li>{{ _('Croatian') }}</li>
+        <li>{{ _('Czech') }}</li>
+        <li>{{ _('Dutch') }}</li>
+        <li>{{ _('English (US)') }}</li>
+        <li>{{ _('German') }}</li>
+        <li>{{ _('Greek') }}</li>
+        <li>{{ _('Hungarian') }}</li>
+        <li>{{ _('Italian') }}</li>
+        <li>{{ _('Polish') }}</li>
+        <li>{{ _('Portugese (Brazil)') }}</li>
+        <li>{{ _('Romanian') }}</li>
+        <li>{{ _('Russian') }}</li>
+        <li>{{ _('Serbian') }}</li>
+        <li>{{ _('Slovak') }}</li>
+        <li>{{ _('Spanish (neutral)') }}</li>
+        <li>{{ _('Turkish') }}</li>
+      </ul>
+    </section>
+
+  </article>
+
+
+  <aside id="sidebar" class="sidebar">
+
+    {% include 'firefox/os/_notes_sidebar.html' %}
+
+  </aside>
+
+</div>
+{% endblock %}
+
+{% block js %}
+
+{% endblock  %}
