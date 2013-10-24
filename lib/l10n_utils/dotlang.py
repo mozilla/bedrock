@@ -278,7 +278,7 @@ def get_translations(langfile):
     for lang in settings.PROD_LANGUAGES:
         if (lang in product_details.languages and
                 (lang == settings.LANGUAGE_CODE or
-                lang_file_is_active(langfile, lang))):
+                 lang_file_is_active(langfile, lang))):
             translations[lang] = product_details.languages[lang]['native']
 
     cache.set(cache_key, translations, settings.DOTLANG_CACHE)

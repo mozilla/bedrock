@@ -44,7 +44,7 @@ PROD_LANGUAGES = ('ach', 'af', 'ak', 'an', 'ar', 'as', 'ast', 'az', 'be', 'bg',
 DEV_LANGUAGES = list(DEV_LANGUAGES) + ['en-US']
 
 FEED_CACHE = 3900
-DOTLANG_CACHE = 60
+DOTLANG_CACHE = 600
 
 DOTLANG_FILES = ['main', 'download_button', 'newsletter']
 
