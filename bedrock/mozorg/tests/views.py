@@ -8,7 +8,6 @@ from bedrock.mozorg.decorators import cache_control_expires
 
 
 RESPONSE_CONTENT = 'The Dude abides, man.'
-RESPONSE_ETAG = '"9766cf1452d8b193ef3b608848863a13"'
 
 
 @cache_control_expires(48)
