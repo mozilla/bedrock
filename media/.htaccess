@@ -35,12 +35,6 @@ ExpiresByType application/octet-stream "access plus 0 seconds"
     ExpiresByType text/css "access plus 12 hours"
 </Files>
 
-# bug 848527
-<Files trackers.json>
-    Header set Access-Control-Allow-Origin "*"
-    ExpiresByType application/json "access plus 1 year"
-</Files>
-
 FileETag MTime
 
 <FilesMatch "\.txt$">
