@@ -150,9 +150,18 @@
             // it will be blocked by Chrome if the download link redirects
             // to a HTTP URI and we are on HTTPS.
             function track_and_redirect(url, virtual_url) {
-                gaTrack(
-                    ['_trackPageview', virtual_url],
-                    function() { window.location.href = url; }
+                // Delay to initiate download is required to allow animation
+                // to finish loading in IE. If delay is removed, the DOM will
+                // unload before the animation completes and the page will
+                // stop in a half-animated state.
+                window.setTimeout(
+                    function() {
+                        gaTrack(
+                            ['_trackPageview', virtual_url],
+                            function() { window.location.href = url; }
+                        );
+                    },
+                    500
                 );
             }
 
@@ -225,7 +234,7 @@
                     // using HTTPS in some browsers.
                     setTimeout(function() {
                         $('#direct-download-link').trigger('click');
-                    }, 2000);
+                    }, 1500);
                 }
             }
         });
