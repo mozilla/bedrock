@@ -1,6 +1,6 @@
 Hi,
 
-Would you let me know what projects and tasks you would like to help out with? We need help with many different QA projects such as Desktop Firefox, Firefox for Android, Boot to Gecko, Thunderbird, Websites, and more. In these projects, we need help on many different tasks such as running manual tests, writing test automation, and more.
+Would you let me know what projects and tasks you would like to help out with? We need help with many different QA projects such as Desktop Firefox, Firefox for Android, Boot to Gecko, Cloud Services, Thunderbird, Websites, and more. In these projects, we need help on many different tasks such as running manual tests, writing test automation, and more.
 
 Let me know what projects and tasks you would like to help out with by replying to this email. Our QA team will follow up and help you get started.
 
@@ -9,6 +9,7 @@ For more information on how you can get involved, check out these links below:
   * Desktop Firefox: https://wiki.mozilla.org/QA/Desktop_Firefox/GetInvolved
   * Firefox for Android: https://wiki.mozilla.org/QA/Fennec/NativeUI#Get_involved.21
   * Boot to Gecko: https://wiki.mozilla.org/B2G/QA
+  * Cloud Services: https://quality.mozilla.org/teams/services/
   * Thunderbird: https://wiki.mozilla.org/Thunderbird:Testing
   * Web QA: https://quality.mozilla.org/teams/web-qa/
   * QA Events: https://quality.mozilla.org/category/events/
