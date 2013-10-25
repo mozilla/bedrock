@@ -4,7 +4,6 @@
 
 from math import floor
 import time
-from hashlib import md5
 
 from django.conf import settings
 from django.test import RequestFactory
@@ -28,7 +27,7 @@ class TabzillaViewTests(TestCase):
 
     def test_cache_headers(self):
         """
-        Should have appropriate Cache-Control, Expires, and ETag headers.
+        Should have appropriate Cache-Control and Expires headers.
         """
         with self.activate('en-US'):
             resp = self.client.get(reverse('tabzilla'))
@@ -37,9 +36,6 @@ class TabzillaViewTests(TestCase):
         now_date = floor(time.time())
         exp_date = parse_http_date(resp['expires'])
         self.assertAlmostEqual(now_date + 43200, exp_date, delta=2)
-
-        etag = '"%s"' % md5(resp.content).hexdigest()
-        self.assertEqual(resp['etag'], etag)
 
 
 @patch.object(settings, 'DEV_LANGUAGES', ['en-US', 'de'])
