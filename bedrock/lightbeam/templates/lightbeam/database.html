@@ -4,7 +4,7 @@
 
 {% extends "base-resp.html" %}
 
-{% block page_title %}Ligthbeam for Firefox{% endblock %}
+{% block page_title %}{{_('Lightbeam for Firefox')}}{% endblock %}
 {% block body_id %}lightbeam{% endblock %}
 {% block body_class %}sky database{% endblock %}
 {% block page_favicon %}{{ media('img/lightbeam/favicon.png') }}{% endblock %}
@@ -15,9 +15,9 @@
   <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
   <nav id="nav-main" role="navigation">
     <ul id="nav-main-menu">
-      <li><a href="{{ url('lightbeam.lightbeam') }}">Home</a></li>
-      <li><b>Database</b></li>
-      <li><a href="{{ url('lightbeam.about') }}">About</a></li>
+      <li><a href="{{ url('lightbeam.lightbeam') }}">{{_('Home')}}</a></li>
+      <li><b>{{_('Database')}}</b></li>
+      <li><a href="{{ url('lightbeam.about') }}">{{_('About')}}</a></li>
   </ul>
   </nav>
 {% endblock %}
@@ -35,25 +35,25 @@
 <section id="primary" class="container text-center">
   <h1 class="page-slogan">Your donated data</h1>
   <div class="text-center centered-span3">
-      The data that you contribute to Lightbeam helps us generate a larger understanding of how we collectively interact in the online space.
+      {{_('The data that you contribute to Lightbeam helps us generate a larger understanding of how we collectively interact in the online space.')}}
   </div>
 </section>
 
 <section id="secondary" class="container data-section white-bg">
-  <h2 class="span12">Lightbeam Website Database</h2>
+  <h2 class="span12">{{_('Lightbeam Website Database')}}</h2>
   <div class="table-controls">
     <div class="span8">
-      <div class="inline-label all-cap">Sort By:</div> 
+      <div class="inline-label all-cap">{{_('Sort By')}}:</div> 
       <div class="sorting-options">
-          <a data-sort="alphabetically">alphabetically</a>
+          <a data-sort="alphabetically">{{_('alphabetically')}}</a>
           <span class="option-divider">|</span>
-          <a data-sort="siteConnected" data-selected>sites connected</a>
+          <a data-sort="siteConnected" data-selected>{{_('sites connected')}}</a>
           <span class="option-divider">|</span>
-          <a data-sort="connections">connections</a>
+          <a data-sort="connections">{{_('connections')}}</a>
       </div>
       <div class="pagination-container">
-        <div class="row-range">viewing
-            <span class="row-start"></span> - <span class="row-end"></span> of <span class="num-sites"></span> sites <i><span class="site"></span></i> 
+        <div class="row-range">{{_('viewing')}}
+            <span class="row-start"></span> - <span class="row-end"></span>{{_(' of <span class="num-sites"></span> sites ')}}<em><span class="site"></span></em> 
         </div>
         <br/>
         <div class="pagination">
@@ -65,9 +65,9 @@
       <table class="website-list-table">
           <thead class="all-cap">
               <tr>
-                  <th class="sixty-percent">Website</th>
-                  <th class="twenty-percent">Unique Sites Connected</th>
-                  <th class="twenty-percent">Connections</th>
+                  <th class="sixty-percent">{{_('Website')}}</th>
+                  <th class="twenty-percent">{{_('Unique Sites Connected')}}</th>
+                  <th class="twenty-percent">{{_('Connections')}}</th>
               </tr>
           </thead>
           <tbody>
@@ -76,7 +76,7 @@
   </div>
   <div class="top-trackers-container">
       <table class="top-trackers-table">
-          <caption class="all-cap">Top 10</caption>
+          <caption class="all-cap">{{_('Top 10')}}</caption>
           <thead>
               <tr>
                   <th class="ten-percent"></th>
@@ -84,24 +84,24 @@
               </tr>
           </thead>
       </table>
-      <br/><small>Note: Rankings are based on data provided by users of Lightbeam for Firefox. Additional data may alter these rankings over time, so check back often.</small>
+      <br/><small>{{_('Note: Rankings are based on data provided by users of Lightbeam for Firefox. Additional data may alter these rankings over time, so check back often.')}}</small>
   </div>
   <div id="loading">
     <div>
         <img src="{{ media('img/lightbeam/loader.gif') }}" alt="Loading"><br/>
-        <span>Loading...</span>
+        <span>{{_('Loading…')}}</span>
     </div>
   </div>
 </section>
 
 <section class="container">
-  <h2>Supported by the Ford Foundation</h2>
+  <h2>{{_('Supported by the Ford Foundation')}}</h2>
   <div class="span6">
     <div class="text-center">
       <img src="{{ media('img/lightbeam/Lightbeam_partners_fordfoundation.png') }}" alt="" class="partner-logo text-center">
     </div>
     <p>
-        The work at the Ford Foundation focuses on building outreach campaigns to help people understand online data tracking — both the benefits and the issues. <a href="http://www.fordfoundation.org/" target="_blank"> Learn more »</a>
+        {{_('The work at the Ford Foundation focuses on building outreach campaigns to help people understand online data tracking — both the benefits and the issues')}}. <a href="http://www.fordfoundation.org/" target="_blank"> {{_('Learn more')}} »</a>
     </p>
   </div>
 </section>

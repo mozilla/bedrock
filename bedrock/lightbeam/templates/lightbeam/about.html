@@ -4,7 +4,7 @@
 
 {% extends "base-resp.html" %}
 
-{% block page_title %}Ligthbeam for Firefox{% endblock %}
+{% block page_title %}{{_('Lightbeam for Firefox')}}{% endblock %}
 {% block body_id %}lightbeam{% endblock %}
 {% block body_class %}sky about{% endblock %}
 {% block page_favicon %}{{ media('img/lightbeam/favicon.png') }}{% endblock %}
@@ -32,23 +32,23 @@
 {% block content %}
 
 <section id="primary" class="container text-center">
-  <h1 class="page-slogan">About Lightbeam</h1>
+  <h1 class="page-slogan">{{_('About Lightbeam')}}</h1>
 </section>
 
 <section id="secondary" class="container">
   <div class="span7">
-    <h2>How the add-on works</h2>
+    <h2>{{_('How the add-on works')}}</h2>
     <p>
-      Lightbeam visualizes the relationships between the sites you visit and the third party sites that are active on those pages.
+      {{_('Lightbeam visualizes the relationships between the sites you visit and the third party sites that are active on those pages.')}}
     </p>
     <p>
-      Using three distinct interactive graphic representations — Graph, Clock and List — Lightbeam enables you to examine individual third parties over time and space, identify where they connect to your online activity and provides ways for you to engage with this unique view of the Web.
+      {{_('Using three distinct interactive graphic representations — Graph, Clock and List — Lightbeam enables you to examine individual third parties over time and space, identify where they connect to your online activity and provides ways for you to engage with this unique view of the Web.')}}
     </p>
     <p>
-      The default Graph view provides a real time visualization of every site you visit and all third party requests made from your browser. The Graph view also provides adjustable filters that allow you to visualize more types of data at a glance. The Clock view allows you to examine connections over a 24-hour period. The List view provides more options for drilling down into individual sites. Site preferences in the List view enable you to block sites from connecting to your Firefox browser, watch sites you’re interested in or hide sites you don’t want to see visualized.
+      {{_('The default Graph view provides a real time visualization of every site you visit and all third party requests made from your browser.')}} {{_('The Graph view also provides adjustable filters that allow you to visualize more types of data at a glance.')}} {{_('The Clock view allows you to examine connections over a 24-hour period.')}} {{_('The List view provides more options for drilling down into individual sites.')}} {{_('Site preferences in the List view enable you to block sites from connecting to your Firefox browser, watch sites you’re interested in or hide sites you don’t want to see visualized.')}}
     </p>
     <p>
-      Lightbeam also offers an information panel that provides additional details about the site you selected and the sites it has connected to.
+      {{_('Lightbeam also offers an information panel that provides additional details about the site you selected and the sites it has connected to.')}}
     </p>
   </div>
   <div class="span5">
@@ -64,44 +64,44 @@
     <div class="text-center"><img src="{{ media('img/lightbeam/Lightbeam-meet-firefox.png') }}" alt=""></div>
   </div>
   <div class="span6">
-    <h2>The origins of Lightbeam</h2>
+    <h2>{{_('The origins of Lightbeam')}}</h2>
     <p>
-      Lightbeam began in July 2011 as Collusion, a personal project by Mozilla software developer <a href="http://www.toolness.com/wp/" target="_blank">Atul Varma</a>. Inspired by the book, <i>The Filter Bubble</i>, Atul created an experimental add-on to visualize browsing behavior and data collection on the Web.
+      {{_('Lightbeam began in July 2011 as Collusion, a personal project by Mozilla software developer <a href="%s" target="_blank">Atul Varma</a>.')|format('http://www.toolness.com/wp/')}} {{_('Inspired by the book, <em>The Filter Bubble</em>, Atul created an experimental add-on to visualize browsing behavior and data collection on the Web.')}}
     </p>
     <p>
-      In February 2012, Gary Kovacs, Mozilla CEO at the time, introduced the Collusion add-on in a <a href="http://www.ted.com/talks/gary_kovacs_tracking_the_trackers.html" target="_blank">TED talk</a> (now one of the most watched TED talks of all time) about exposing online tracking.
+      {{_('In February 2012, Gary Kovacs, Mozilla CEO at the time, introduced the Collusion add-on in a <a href="%s" target="_blank">TED talk</a> (now one of the most watched TED talks of all time) about exposing online tracking.')|format('http://www.ted.com/talks/gary_kovacs_tracking_the_trackers.html')}}
     </p>
     <p>
-      In September 2012, Mozilla joined forces with students at <a href="https://www.ecuad.ca/" target="_blank">Emily Carr University of Art + Design</a> to develop and implement visualizations for the add-on. With the support of the Ford Foundation and the Natural Sciences and Engineering Research Council (NSERC), Collusion has been re-imagined as Lightbeam and was launched in the fall of 2013.
+      {{_('In September 2012, Mozilla joined forces with students at <a href="%s" target="_blank">Emily Carr University of Art + Design</a> to develop and implement visualizations for the add-on.')|format('https://www.ecuad.ca/')}} {{_('With the support of the Ford Foundation and the Natural Sciences and Engineering Research Council (NSERC), Collusion has been re-imagined as Lightbeam and was launched in the fall of 2013.')}}
     </p>
     <p>
-      To read more about the collaboration, please visit <a href="http://www.simcentre.ca" target="_blank">http://www.simcentre.ca</a>
+      {{ _('To read more about the collaboration, please visit <a href="{url}" target="_blank">{url}</a>')|fe(url='http://www.simcentre.ca') }}
     </p>
   </div>
 </section>
 
 <section class="container">
   <div class="span6">
-    <h2>Policy and the larger tracking narrative</h2>
+    <h2>{{_('Policy and the larger tracking narrative')}}</h2>
     <p>
-      At Mozilla, we believe that everyone should have the tools to make their own decisions about their online privacy and who collects data on them. With the Lightbeam add-on and database server, we are providing a valuable (and open) community research platform that aims to raise awareness, promote analysis and, ultimately, affect policy change in the areas of tracking and privacy. Lightbeam is one step in a larger, concerted effort by Mozilla and its partners to provide Web users with greater control and transparency of their personal data.
+      {{_('At Mozilla, we believe that everyone should have the tools to make their own decisions about their online privacy and who collects data on them.')}} {{_('With the Lightbeam add-on and database server, we are providing a valuable (and open) community research platform that aims to raise awareness, promote analysis and, ultimately, affect policy change in the areas of tracking and privacy.')}} {{_('Lightbeam is one step in a larger, concerted effort by Mozilla and its partners to provide Web users with greater control and transparency of their personal data.')}}
     </p>
   </div>
   <div class="span6">
-    <h2>Learn more about online tracking and privacy</h2>
+    <h2>{{_('Learn more about online tracking and privacy')}}</h2>
     <p>
-      The <a href="http://www.mozilla.org/en-US/foundation/" target="_blank">Mozilla Foundation</a> is a non-profit organization that promotes the values of an open Web to the broader world. The larger Mozilla community sees the growing relevance of online privacy and is supporting several initiatives that tackle the issue in various ways.
+      {{_('The <a href="%s" target="_blank">Mozilla Foundation</a> is a non-profit organization that promotes the values of an open Web to the broader world. The larger Mozilla community sees the growing relevance of online privacy and is supporting several initiatives that tackle the issue in various ways.')|format('http://www.mozilla.org/foundation/')}}
       <a href="http://stopwatching.us" target="_blank">stopwatching.us</a></br>
-      <a href="http://www.mozilla.org/en-US/dnt/" target="_blank">www.mozilla.org/en-US/dnt/</a>
+      <a href="http://www.mozilla.org/dnt/" target="_blank">www.mozilla.org/dnt/</a>
     </p>
   </div>
 </section>
 
 <section class="container">
   <div class="span6">
-    <h2>Data formats in Lightbeam</h2>
+    <h2>{{_('Data formats in Lightbeam')}}</h2>
     <p>
-      Visit our <a href="https://github.com/mozilla/lightbeam/blob/master/doc/data_format.v1.1.md" target="_blank">documentation on Github</a> to learn more about the file formats used in Lightbeam and to see details of the data that is uploaded if you opt in to contribute to the database.
+      {{_('Visit our <a href="%s" target="_blank">documentation on Github</a> to learn more about the file formats used in Lightbeam and to see details of the data that is uploaded if you opt in to contribute to the database.')|format('https://github.com/mozilla/lightbeam/blob/master/doc/data_format.v1.1.md')}}
     </p>
   </div>
   <div class="span6">
@@ -110,17 +110,17 @@
 </section>
 
 <section class="container">
-  <h2>Partners of Lightbeam</h2>
+  <h2>{{_('Partners of Lightbeam')}}</h2>
   <div class="span6">
     <div class="text-center"><img src="{{ media('img/lightbeam/Lightbeam_partners_fordfoundation.png') }}" alt="Ford Foundation" class="partner-logo"></div>
     <p class="text-left">
-      The <a href="http://www.fordfoundation.org/" target="_blank">Ford Foundation</a> is a non-profit organization that focuses on the mission of advancing human welfare. They provide support for companies and institutions devoted to strengthening democratic values, reducing poverty and social injustice, supporting human achievement and fostering international co-operation.
+      {{_('The <a href="%s" target="_blank">Ford Foundation</a> is a non-profit organization that focuses on the mission of advancing human welfare.')|format('http://www.fordfoundation.org/')}} {{_('They provide support for companies and institutions devoted to strengthening democratic values, reducing poverty and social injustice, supporting human achievement and fostering international co-operation.')}}
     </p>
   </div>
   <div class="span6">
     <div class="text-center"><img src="{{ media('img/lightbeam/Lightbeam_partners_ecuad.png') }}" alt="SIM Centre" class="partner-logo"></div>
     <p class="text-left">
-      The <a href="http://www.simcentre.ca/" target="_blank">Social + Interactive Media (SIM) Centre</a> at Emily Carr University of Art + Design supports a wide range of projects in design and media, giving companies direct access to the innovative thinking, design skills and research expertise of British Columbia’s most creative faculty and students.
+      {{_('The <a href="%s" target="_blank">Social + Interactive Media (SIM) Centre</a> at Emily Carr University of Art + Design supports a wide range of projects in design and media, giving companies direct access to the innovative thinking, design skills and research expertise of British Columbia’s most creative faculty and students.')|format('http://www.simcentre.ca/')}}
     </p>
   </div>
 </section>

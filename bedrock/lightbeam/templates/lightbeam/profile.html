@@ -4,7 +4,7 @@
 
 {% extends "base-resp.html" %}
 
-{% block page_title %}Ligthbeam for Firefox{% endblock %}
+{% block page_title %}{{_('Lightbeam for Firefox')}}{% endblock %}
 {% block body_id %}lightbeam{% endblock %}
 {% block body_class %}sky profile{% endblock %}
 {% block page_favicon %}{{ media('img/lightbeam/favicon.png') }}{% endblock %}
@@ -15,9 +15,9 @@
   <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
   <nav id="nav-main" role="navigation">
     <ul id="nav-main-menu">
-      <li><a href="{{ url('lightbeam.lightbeam') }}">Home</a></li>
+      <li><a href="{{ url('lightbeam.lightbeam') }}">{{_('Home')}}</a></li>
       <li><b>Database</b></li>
-      <li><a href="{{ url('lightbeam.about') }}">About</a></li>
+      <li><a href="{{ url('lightbeam.about') }}">{{_('About')}}</a></li>
   </ul>
   </nav>
 {% endblock %}
@@ -34,18 +34,18 @@
 
 <section id="primary" class="container">
   <div class="span12">
-    <a href="{{ url('lightbeam.database') }}">Database</a>
+    <a href="{{ url('lightbeam.database') }}">{{_('Database')}}</a>
     >> 
     <span class="site"></span>
     <h1 class="site site-title"></h1>
-    Server location: <span id="country"></span>
+    {{_('Server location')}}: <span id="country"></span>
   </div>
 
   <div class="span4">
     <div class="vizcanvas-container">
         <svg class="vizcanvas" width="100%" height="100%" viewBox="0 0 1000 1000"></svg>
     </div>
-    <h4 class="all-cap blue-text num-total-connection"><b></b> Connections</h4>
+    <h4 class="all-cap blue-text num-total-connection"><b></b> {{_('Connections')}}</h4>
     <div>
         <svg class="percent-bar" version="1.1" xmlns="http://www.w3.org/2000/svg">
             <rect class="first-bar" height="20" />
@@ -54,24 +54,24 @@
             <text y="15"></text>
         </svg>
     </div>
-    <div class="all-cap num-first"><b></b> first party connections</div>
-    <div class="all-cap num-third"><b></b> third party connections</div>
+    <div class="all-cap num-first"><b></b> {{_('first party connections')}}</div>
+    <div class="all-cap num-third"><b></b> {{_('third party connections')}}</div>
   </div>
     <div class="span8">
         <div class="profile-main">
             <div class="span8">
-                <h4 class="blue-text all-cap"><span class="num-sites"></span> connected websites</h4>
+                <h4 class="blue-text all-cap"><span class="num-sites"></span> {{_('connected websites')}}</h4>
             </div>
             <div class="span8 float-left">
-                <div class="inline-label all-cap">Sort By:</div> 
+                <div class="inline-label all-cap">{{_('Sort By')}}:</div> 
                 <div class="sorting-options">
-                  <a data-sort="alphabetically">alphabetically</a>
+                  <a data-sort="alphabetically">{{_('alphabetically')}}</a>
                   <span class="option-divider">|</span>
-                  <a data-sort="connections" data-selected>connections</a>
+                  <a data-sort="connections" data-selected>{{_('connections')}}</a>
                 </div>
                 <div class="pagination-container">
-                  <div class="row-range">viewing
-                      <span class="row-start"></span> - <span class="row-end"></span> of <span class="num-sites"></span> sites <i><span class="site"></span></i>
+                  <div class="row-range">{{_('viewing')}}
+                      <span class="row-start"></span> - <span class="row-end"></span> {{_('of <span class="num-sites"></span> sites')}} <i><span class="site"></span></i>
                   </div>
                   <br/>
                   <div class="pagination">
@@ -82,8 +82,8 @@
                 <table class="website-list-table">
                     <thead class="all-cap">
                         <tr>
-                            <th class="fifty-percent">Website</th>
-                            <th class="fifty-percent">Connections between <br/><span class="site"></span></th>
+                            <th class="fifty-percent">{{_('Website')}}</th>
+                            <th class="fifty-percent">{{_('Connections between')}} <br/><span class="site"></span></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -94,20 +94,20 @@
         <div id="loading">
           <div>
             <img src="{{ media('img/lightbeam/loader.gif') }}" alt="Loading"><br/>
-            <span>Loading...</span>
+            <span>{{_('Loading…')}}</span>
           </div>
         </div>
     </div>
 </section>
 
 <section class="container">
-  <h2>Supported by the Ford Foundation</h2>
+  <h2>{{_('Supported by the Ford Foundation')}}</h2>
   <div class="span6">
     <div class="text-center">
       <img src="{{ media('img/lightbeam/Lightbeam_partners_fordfoundation.png') }}" alt="" class="partner-logo text-center">
     </div>
     <p>
-        The work at the Ford Foundation focuses on building outreach campaigns to help people understand online data tracking — both the benefits and the issues. <a href="http://www.fordfoundation.org/" target="_blank"> Learn more »</a>
+        {{_('The work at the Ford Foundation focuses on building outreach campaigns to help people understand online data tracking — both the benefits and the issues')}}. <a href="http://www.fordfoundation.org/" target="_blank"> {{_('Learn more')}} »</a>
     </p>
   </div>
 </section>
