@@ -5,8 +5,10 @@
 {% extends "base-resp.html" %}
 
 {% block page_title %}{{_('Lightbeam for Firefox')}}{% endblock %}
+{% block page_desc %}{{_('Lightbeam is a Firefox add-on that uses interactive visualizations to show you the first and third party sites you interact with on the Web.')}}{% endblock %}
 {% block body_id %}lightbeam{% endblock %}
 {% block body_class %}sky lightbeam-home{% endblock %}
+{% block page_image %}{{ media('img/lightbeam/lightbeam_logo-wordmark_500x156.png') }}{% endblock %}
 {% block page_favicon %}{{ media('img/lightbeam/favicon.png') }}{% endblock %}
 {% block site_header_logo %}
   <h2><a href="{{ url('lightbeam.lightbeam') }}"><img src="{{ media('img/lightbeam/lightbeam_logo-wordmark_500x156.png') }}" class="ligthbeam-wordmark"></a></h2>
