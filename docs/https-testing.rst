@@ -24,6 +24,11 @@ a few steps are required.
 .. note:: These instructions assume you are using a Unix-like environment. The
           steps will be slightly different for Windows.
 
+stunnel is available in package repositories of most major Linux
+distributions. An `stunnel Windows installer <https://www.stunnel.org/downloads.html>`
+is provided on the stunnel website. On OS X, stunnel can be installed using
+`Homebrew <http://brew.sh/>`.
+
 .. _openssl:
 
 Generate a PEM File using OpenSSL
@@ -43,6 +48,8 @@ Next, generate DH parameters and append them to the PEM file. Stunnel requires
 the DH parameters to be pre-generated in the PEM file::
 
     openssl gendh 2048 >> bedrock-stunnel.pem
+
+.. note:: Generating DH parameters takes several minutes.
 
 The PEM file should be sufficient for use with stunnel. You can view
 information about the certificate you generated using the following
