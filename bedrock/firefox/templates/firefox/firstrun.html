@@ -6,6 +6,8 @@
 
 {% add_lang_files "firstrun" "mobile" %}
 
+{% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
+
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}{{ _('Welcome to Firefox') }}{% endblock %}
 {% block page_title_suffix %}{% endblock %}

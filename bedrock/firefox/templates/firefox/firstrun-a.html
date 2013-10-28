@@ -4,6 +4,8 @@
 
 {% extends "firefox/base.html" %}
 
+{% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
+
 {% block page_title %}{{ _('Welcome to Firefox') }}{% endblock %}
 {% block body_id %}firefox-firstrun{% endblock %}
 

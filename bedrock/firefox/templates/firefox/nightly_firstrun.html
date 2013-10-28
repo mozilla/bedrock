@@ -6,6 +6,8 @@
 
 {% extends "/firefox/base-resp.html" %}
 
+{% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
+
 {% block site_css %}
   {{ css('nightly_firstrun') }}
 {% endblock %}

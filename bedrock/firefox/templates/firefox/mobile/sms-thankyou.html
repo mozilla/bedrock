@@ -5,6 +5,8 @@
 {% extends "firefox/mobile/sms-base.html" %}
 {% from "macros.html" import email_newsletter_form with context %}
 
+{% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
+
 {% block content %}
 
 <div id="main-feature">
