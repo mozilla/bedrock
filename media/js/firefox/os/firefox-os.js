@@ -14,6 +14,14 @@
   var COUNTRY_CODE = '';
 
   var PARTNER_DATA = {
+    "br": {
+      "partner": [
+        {
+          "name": "Vivo",
+          "url": "http://www.vivo.com.br/firefox"
+        }
+      ]
+    },
     "co": {
       "partner": [
         {
@@ -38,6 +46,14 @@
         }
       ]
     },
+    "pe": {
+      "partner": [
+        {
+          "name": "Movistar",
+          "url": "http://catalogo.movistar.com.pe/zte-open"
+        }
+      ]
+    },
     "pl": {
       "partner": [
         {
@@ -46,11 +62,11 @@
         }
       ]
     },
-    "br": {
+    "uy": {
       "partner": [
         {
-          "name": "Vivo",
-          "url": "http://www.vivo.com.br/firefox"
+          "name": "Movistar",
+          "url": "http://www.firefoxos.movistar.com.uy/"
         }
       ]
     },
@@ -72,7 +88,7 @@
     var $providerLinks = $('#provider-links');
     var links = '';
 
-    if(PARTNER_DATA[COUNTRY_CODE]) {
+    if (PARTNER_DATA.hasOwnProperty(COUNTRY_CODE)) {
 
       // show get phone call to actions
       $('#primary-cta-phone').fadeIn();
