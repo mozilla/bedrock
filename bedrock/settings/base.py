@@ -639,6 +639,7 @@ MIDDLEWARE_CLASSES = (
     'bedrock.mozorg.middleware.MozorgRequestTimingMiddleware',
     'django_statsd.middleware.GraphiteMiddleware',
     'bedrock.tabzilla.middleware.TabzillaLocaleURLMiddleware',
+    'commonware.middleware.RobotsTagHeader',
 ) + get_middleware(exclude=(
     'funfactory.middleware.LocaleURLMiddleware',
     'multidb.middleware.PinningRouterMiddleware',
