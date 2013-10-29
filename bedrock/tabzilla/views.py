@@ -4,12 +4,14 @@
 
 from django.conf import settings
 from django.http import HttpResponseRedirect
+from django.views.decorators.http import conditional_page
 
 from lib import l10n_utils
 
 from bedrock.mozorg.decorators import cache_control_expires
 
 
+@conditional_page
 @cache_control_expires(12)
 def tabzilla_js(request):
     resp = l10n_utils.render(request, 'tabzilla/tabzilla.js',
