@@ -46,6 +46,14 @@
         }
       ]
     },
+    "mx": {
+      "partner": [
+        {
+          "name": "Movistar",
+          "url": "http://www.movistar.com.mx/firefox"
+        }
+      ]
+    },
     "pe": {
       "partner": [
         {
