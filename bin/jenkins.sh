@@ -68,7 +68,7 @@ echo "Update product_details"
 ./manage.py update_product_details
 
 echo "Check PEP-8"
-flake8 bedrock
+flake8 bedrock lib
 
 echo "Starting tests..."
 export FORCE_DB=1
