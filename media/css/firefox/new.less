@@ -292,58 +292,52 @@ html[lang="uk"] {
     .installation {
         margin: 12px auto 0;
         padding: 0;
-        width: 900px;
         display: block;
         list-style-type: none;
         .clearfix;
         li {
-            float: left;
-            width: 248px;
-            padding: 196px 0 0 0;
+            .span(4);
             overflow: hidden;
-            margin: 0 26px;
             text-align: left;
             font-size: 12px;
             color: @textColorTertiary;
             font-style: italic;
-            background-size: 100%;
-            background-repeat: no-repeat;
+            .screen {
+                display: block;
+                width: 298px;
+                height: 150px;
+                border: 1px solid #ccc;
+                margin-bottom: 5px;
+                background-size: 100%;
+                background-color: transparent;
+                background-repeat: no-repeat;
+                background-position: 0 0;
+            }
+            &.install2 .screen { background-position: 0 -160px; }
+            &.install3 .screen { background-position: 0 -320px; }
         }
     }
 
-    #install3 { margin-right: 0; }
 }
 
-.osx .ready-for-scene2 {
-    #install1 { background-image: url(/media/img/firefox/new/install1-mac.png?2013-06); }
-    #install2 { background-image: url(/media/img/firefox/new/install2-mac.png?2013-06); }
-    #install3 { background-image: url(/media/img/firefox/new/install3-mac.png?2013-06); }
-}
+.osx     .ready-for-scene2 .screen { background-image: url(/media/img/firefox/new/install-mac.jpg); }
+.windows .ready-for-scene2 .screen { background-image: url(/media/img/firefox/new/install-win.jpg); }
+.winIE8  .ready-for-scene2 .screen { background-image: url(/media/img/firefox/new/install-winIE8.jpg); }
 
-.windows .ready-for-scene2 {
-    #install1 { background-image: url(/media/img/firefox/new/install1-win.png?2013-06); }
-    #install2 { background-image: url(/media/img/firefox/new/install2-win.png?2013-06); }
-    #install3 { background-image: url(/media/img/firefox/new/install3-win.png?2013-06); }
-}
-
-.winIE8 .ready-for-scene2 {
-    #install1 { background-image: url(/media/img/firefox/new/install1-winIE8.png); }
-}
-
-.osx .install-win,
-.linux .install-win,
+.osx     .install-win,
+.linux   .install-win,
 .windows .install-osx,
-.linux .install-osx,
-.linux #install1 strong,
-.linux .installation li:not(#install1) {
+.linux   .install-osx,
+.linux   .install1 strong,
+.linux   .installation .install1 .screen,
+.linux   .install2,
+.linux   .install3 {
     display: none;
 }
 
-.linux #install1 {
-    float: none;
-    margin: 0;
+.linux .installation .install1 {
+    .span-all();
     padding: 0;
-    width: 100%;
     text-align: center;
 }
 
@@ -491,11 +485,14 @@ noscript {
             margin: 0 40px;
         }
         .installation {
-            width: 700px;
             li {
-                width: 200px;
-                padding: 159px 0 0 0;
-                margin: 0 15px;
+                .span_narrow(4);
+                .screen {
+                    width: 218px;
+                    height: 109px;
+                }
+                &.install2 .screen { background-position: 0 -117px; }
+                &.install3 .screen { background-position: 0 -234px; }
             }
         }
     }
@@ -702,8 +699,10 @@ noscript {
             }
         }
     }
-    .osx .ready-for-scene2, .windows .ready-for-scene2, .winIE8 .ready-for-scene2 {
-        #install1, #install2, #install3 { background-image: none; }
+    .osx,
+    .windows,
+    .winIE8 {
+        .ready-for-scene2 .installation li .screen { display: none; }
     }
     .socialshare {
         display: none;
