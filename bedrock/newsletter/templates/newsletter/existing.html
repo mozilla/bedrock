@@ -30,12 +30,23 @@
           </div>
         {% endif %}
 
-        <div class="field email-field">
-          <label>{{ _('Your email address:') }}</label>
+        {% set email = form['email'] %}
+        <div class="field email-field{% if email.errors %} field-error{% endif %}">
+          {{ form.email.label_tag(_('Your email address:')) }}
           <div class="field-contents">
             {{ email }}
           </div>
+          {{ email.errors }}
         </div>
+        {% if email_change_pending %}
+          <div class="field">
+            {% trans new_email=email_change_pending %}
+              An address change to {{ new_email }} is waiting to be confirmed.
+              Check your email for the confirmation message, or change the email
+              address above again to send a new confirmation message.
+            {% endtrans %}
+          </div>
+        {% endif %}
 
         {% set country = form['country'] %}
         <div class="field country-field {% if country.errors %}field-error{% endif %}">
