@@ -11,7 +11,7 @@ from os.path import join
 from tokenize import generate_tokens, NAME, NEWLINE, OP, untokenize
 
 from django.conf import settings
-from django.core.cache import cache
+from django.core.cache import get_cache
 from django.template.loader import get_template
 from jinja2 import Environment
 
@@ -19,6 +19,7 @@ from dotlang import parse as parse_lang, get_lang_path, lang_file_is_active
 
 
 REGEX_URL = re.compile(r'.* (\S+/\S+\.[^:]+).*')
+cache = get_cache('l10n')
 
 
 def parse_po(path):

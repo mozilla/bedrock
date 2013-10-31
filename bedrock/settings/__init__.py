@@ -15,12 +15,21 @@ except ImportError as exc:
 if DEV:
     ALLOWED_HOSTS = ['*']
 
-
 # Any databases configured other than "default" should be
 # read-only slaves, which funfactory's default router
 # should use with this setting.
 if 'manage.py' not in sys.argv:
     SLAVE_DATABASES = [db for db in DATABASES if db != 'default']
 
+# cache for lang files
+CACHES['l10n'] = {
+    'BACKEND': 'lib.l10n_utils.cache.L10nCache',
+    'LOCATION': 'l10n',
+    'TIMEOUT': DOTLANG_CACHE,
+    'OPTIONS': {
+        'MAX_ENTRIES': 1000,
+        'CULL_FREQUENCY': 4,  # 1/4 entries deleted if max reached
+    }
+}
 
 MEDIA_URL = CDN_BASE_URL + MEDIA_URL

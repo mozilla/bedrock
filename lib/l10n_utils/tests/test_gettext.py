@@ -33,8 +33,8 @@ class TestTemplateIsActive(TestCase):
     @override_settings(DEV=False)
     @patch('lib.l10n_utils.gettext.parse_template')
     @patch('lib.l10n_utils.gettext.lang_file_is_active')
-    @patch('django.core.cache.cache.get')
-    @patch('django.core.cache.cache.set')
+    @patch('lib.l10n_utils.gettext.cache.get')
+    @patch('lib.l10n_utils.gettext.cache.set')
     def test_cache_hit(self, cache_set_mock, cache_get_mock, lang_active_mock,
                        parse_template_mock):
         """Should not call other methods on cache hit."""
@@ -48,8 +48,8 @@ class TestTemplateIsActive(TestCase):
     @override_settings(DEV=False)
     @patch('lib.l10n_utils.gettext.parse_template')
     @patch('lib.l10n_utils.gettext.lang_file_is_active')
-    @patch('django.core.cache.cache.get')
-    @patch('django.core.cache.cache.set')
+    @patch('lib.l10n_utils.gettext.cache.get')
+    @patch('lib.l10n_utils.gettext.cache.set')
     def test_cache_miss(self, cache_set_mock, cache_get_mock, lang_active_mock,
                         parse_template_mock):
         """Should check the files and set the cache on cache miss."""
