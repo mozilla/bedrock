@@ -114,6 +114,7 @@ LOCALE_CONTACTS = {
     'sq': ['besnik@mozilla-albania.org'],
     'sr': ['prikljucise@mozilla-srbija.org'],
     'ta': ['vallavan2valluvan@gmail.com'],
+    'tr': ['bilgi@mozilla.org.tr'],
     'zh-CN': ['contributor-zh-cn@mozilla.org'],
     'zh-TW': ['contribute@mail.moztw.org'],
 }
