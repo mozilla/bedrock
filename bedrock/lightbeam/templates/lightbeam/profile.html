@@ -2,6 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
+{% set_lang_files "lightbeam/lightbeam" %}
 {% extends "base-resp.html" %}
 
 {% block page_title %}{{_('Lightbeam for Firefox')}}{% endblock %}
@@ -35,7 +36,7 @@
 <section id="primary" class="container">
   <div class="span12">
     <a href="{{ url('lightbeam.database') }}">{{_('Database')}}</a>
-    >> 
+    >>
     <span class="site"></span>
     <h1 class="site site-title"></h1>
     {{_('Server location')}}: <span id="country"></span>
@@ -63,7 +64,7 @@
                 <h4 class="blue-text all-cap"><span class="num-sites"></span> {{_('connected websites')}}</h4>
             </div>
             <div class="span8 float-left">
-                <div class="inline-label all-cap">{{_('Sort By')}}:</div> 
+                <div class="inline-label all-cap">{{_('Sort By')}}:</div>
                 <div class="sorting-options">
                   <a data-sort="alphabetically">{{_('alphabetically')}}</a>
                   <span class="option-divider">|</span>
