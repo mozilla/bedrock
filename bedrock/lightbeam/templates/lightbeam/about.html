@@ -52,7 +52,6 @@
     </p>
   </div>
   <div class="span5">
-    <br/><br/><br/><br/>
     <img src="{{ media('img/lightbeam/Lightbeam-AMOScreenshot1_anon.jpg') }}" alt="">
   </div>
 
@@ -60,22 +59,21 @@
 
 <section class="container">
   <div class="span6">
-    <br/><br/><br/>
-    <div class="text-center"><img src="{{ media('img/lightbeam/Lightbeam-meet-firefox.png') }}" alt=""></div>
+    <img src="{{ media('img/lightbeam/Lightbeam-meet-firefox.png') }}" alt="">
   </div>
   <div class="span6">
     <h2>{{_('The origins of Lightbeam')}}</h2>
     <p>
-      {{_('Lightbeam began in July 2011 as Collusion, a personal project by Mozilla software developer <a href="%s" target="_blank">Atul Varma</a>.')|format('http://www.toolness.com/wp/')}} {{_('Inspired by the book, <em>The Filter Bubble</em>, Atul created an experimental add-on to visualize browsing behavior and data collection on the Web.')}}
+      {{_('Lightbeam began in July 2011 as Collusion, a personal project by Mozilla software developer <a href="%s">Atul Varma</a>.')|format('http://www.toolness.com/wp/')}} {{_('Inspired by the book, <em>The Filter Bubble</em>, Atul created an experimental add-on to visualize browsing behavior and data collection on the Web.')}}
     </p>
     <p>
-      {{_('In February 2012, Gary Kovacs, Mozilla CEO at the time, introduced the Collusion add-on in a <a href="%s" target="_blank">TED talk</a> (now one of the most watched TED talks of all time) about exposing online tracking.')|format('http://www.ted.com/talks/gary_kovacs_tracking_the_trackers.html')}}
+      {{_('In February 2012, Gary Kovacs, Mozilla CEO at the time, introduced the Collusion add-on in a <a href="%s">TED talk</a> (now one of the most watched TED talks of all time) about exposing online tracking.')|format('http://www.ted.com/talks/gary_kovacs_tracking_the_trackers.html')}}
     </p>
     <p>
-      {{_('In September 2012, Mozilla joined forces with students at <a href="%s" target="_blank">Emily Carr University of Art + Design</a> to develop and implement visualizations for the add-on.')|format('https://www.ecuad.ca/')}} {{_('With the support of the Ford Foundation and the Natural Sciences and Engineering Research Council (NSERC), Collusion has been re-imagined as Lightbeam and was launched in the fall of 2013.')}}
+      {{_('In September 2012, Mozilla joined forces with students at <a href="%s">Emily Carr University of Art + Design</a> to develop and implement visualizations for the add-on.')|format('https://www.ecuad.ca/')}} {{_('With the support of the Ford Foundation and the Natural Sciences and Engineering Research Council (NSERC), Collusion has been re-imagined as Lightbeam and was launched in the fall of 2013.')}}
     </p>
     <p>
-      {{ _('To read more about the collaboration, please visit <a href="{url}" target="_blank">{url}</a>')|fe(url='http://www.simcentre.ca') }}
+      {{ _('To read more about the collaboration, please visit <a href="{url}">{url}</a>')|f(url='http://www.simcentre.ca')|safe }}
     </p>
   </div>
 </section>
@@ -90,9 +88,9 @@
   <div class="span6">
     <h2>{{_('Learn more about online tracking and privacy')}}</h2>
     <p>
-      {{_('The <a href="%s" target="_blank">Mozilla Foundation</a> is a non-profit organization that promotes the values of an open Web to the broader world. The larger Mozilla community sees the growing relevance of online privacy and is supporting several initiatives that tackle the issue in various ways.')|format('http://www.mozilla.org/foundation/')}}
-      <a href="http://stopwatching.us" target="_blank">stopwatching.us</a></br>
-      <a href="http://www.mozilla.org/dnt/" target="_blank">www.mozilla.org/dnt/</a>
+      {{_('The <a href="%s">Mozilla Foundation</a> is a non-profit organization that promotes the values of an open Web to the broader world. The larger Mozilla community sees the growing relevance of online privacy and is supporting several initiatives that tackle the issue in various ways.')|format(url('foundation.index'))}}
+      <a href="http://stopwatching.us">stopwatching.us</a><br>
+      <a href="{{ url('firefox.dnt') }}">www.mozilla.org/dnt/</a>
     </p>
   </div>
 </section>
@@ -101,7 +99,7 @@
   <div class="span6">
     <h2>{{_('Data formats in Lightbeam')}}</h2>
     <p>
-      {{_('Visit our <a href="%s" target="_blank">documentation on Github</a> to learn more about the file formats used in Lightbeam and to see details of the data that is uploaded if you opt in to contribute to the database.')|format('https://github.com/mozilla/lightbeam/blob/master/doc/data_format.v1.1.md')}}
+      {{_('Visit our <a href="%s">documentation on Github</a> to learn more about the file formats used in Lightbeam and to see details of the data that is uploaded if you opt in to contribute to the database.')|format('https://github.com/mozilla/lightbeam/blob/master/doc/data_format.v1.1.md')}}
     </p>
   </div>
   <div class="span6">
@@ -112,15 +110,15 @@
 <section class="container">
   <h2>{{_('Partners of Lightbeam')}}</h2>
   <div class="span6">
-    <div class="text-center"><img src="{{ media('img/lightbeam/Lightbeam_partners_fordfoundation.png') }}" alt="Ford Foundation" class="partner-logo"></div>
-    <p class="text-left">
-      {{_('The <a href="%s" target="_blank">Ford Foundation</a> is a non-profit organization that focuses on the mission of advancing human welfare.')|format('http://www.fordfoundation.org/')}} {{_('They provide support for companies and institutions devoted to strengthening democratic values, reducing poverty and social injustice, supporting human achievement and fostering international co-operation.')}}
+    <img src="{{ media('img/lightbeam/Lightbeam_partners_fordfoundation.png') }}" alt="Ford Foundation" class="partner-logo">
+    <p>
+      {{_('The <a href="%s">Ford Foundation</a> is a non-profit organization that focuses on the mission of advancing human welfare.')|format('http://www.fordfoundation.org/')}} {{_('They provide support for companies and institutions devoted to strengthening democratic values, reducing poverty and social injustice, supporting human achievement and fostering international co-operation.')}}
     </p>
   </div>
   <div class="span6">
-    <div class="text-center"><img src="{{ media('img/lightbeam/Lightbeam_partners_ecuad.png') }}" alt="SIM Centre" class="partner-logo"></div>
-    <p class="text-left">
-      {{_('The <a href="%s" target="_blank">Social + Interactive Media (SIM) Centre</a> at Emily Carr University of Art + Design supports a wide range of projects in design and media, giving companies direct access to the innovative thinking, design skills and research expertise of British Columbia’s most creative faculty and students.')|format('http://www.simcentre.ca/')}}
+    <img src="{{ media('img/lightbeam/Lightbeam_partners_ecuad.png') }}" alt="SIM Centre" class="partner-logo">
+    <p>
+      {{_('The <a href="%s">Social + Interactive Media (SIM) Centre</a> at Emily Carr University of Art + Design supports a wide range of projects in design and media, giving companies direct access to the innovative thinking, design skills and research expertise of British Columbia’s most creative faculty and students.')|format('http://www.simcentre.ca/')}}
     </p>
   </div>
 </section>
