@@ -1953,8 +1953,9 @@ Verschore,Hannes
 Grinstead,Brian
 Cole,Terrence
 Cameron,Nicholas
-de Bethencourt, Luis
+Bethencourt, Luis de
 Pierron,Nicolas B.
 Rathore,Dron
 Stathis,Christos
 Sapin,Simon
+Smith,Joshua
