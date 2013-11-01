@@ -1977,3 +1977,4 @@ Lugtu,Kristian Paul
 Rishav,Kumar
 Bishoyi,Abinash
 Aggarwal,Atul
+Juhasz,Balazs
