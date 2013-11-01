@@ -4,7 +4,7 @@
 
 {% extends "base-resp.html" %}
 
-{% block page_title %}Ligthbeam for Firefox{% endblock %}
+{% block page_title %}{{_('Lightbeam for Firefox')}}{% endblock %}
 {% block body_id %}lightbeam{% endblock %}
 {% block body_class %}sky lightbeam-home{% endblock %}
 {% block page_favicon %}{{ media('img/lightbeam/favicon.png') }}{% endblock %}
@@ -15,8 +15,8 @@
   <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
   <nav id="nav-main" role="navigation">
     <ul id="nav-main-menu">
-      <li><b>Home</b></li>
-      <li><a href="{{ url('lightbeam.about') }}">About</a></li>
+      <li><b>{{_('Home')}}</b></li>
+      <li><a href="{{ url('lightbeam.about') }}">{{_('About')}}</a></li>
   </ul>
   </nav>
 {% endblock %}
@@ -32,20 +32,20 @@
 {% block content %}
 
 <hgroup class="container">
-  <h1 class="large">Lightbeam for Firefox</h1>
-  <h2>See who’s tracking you online.</h2>
+  <h1 class="large">{{_('Lightbeam for Firefox')}}</h1>
+  <h2>{{_('See who’s tracking you online')}}.</h2>
 </hgroup>
 
 <section id="primary" class="container">
 
   <div class="span6">
-    <h1>Shine a light on who’s watching you</h1>
-    Lightbeam is a Firefox add-on that uses interactive visualizations to show you the first and third party sites you interact with on the Web. As you browse, Lightbeam reveals the full depth of the Web today, including parts that are not transparent to the average user.
+    <h1>{{_('Shine a light on who’s watching you')}}</h1>
+    {{_('Lightbeam is a Firefox add-on that uses interactive visualizations to show you the first and third party sites you interact with on the Web.')}} {{_('As you browse, Lightbeam reveals the full depth of the Web today, including parts that are not transparent to the average user.')}}
     <br/>
     <div class="text-center">
-      <a class="button" href="https://addons.mozilla.org/en-US/firefox/addon/lightbeam/">
-        Download Lightbeam for Firefox
-        <small>Get it from Mozilla Add-Ons</small>
+      <a class="button" href="https://addons.mozilla.org/firefox/addon/lightbeam/">
+        {{_('Download Lightbeam for Firefox')}}
+        <small>{{_('Get it from Mozilla Add-Ons')}}</small>
       </a>
     </div>
   </div>
@@ -56,22 +56,22 @@
 </section>
 
 <section id="secondary" class="container">
-    <h2 class="page-slogan text-center">How Lightbeam Works</h2><br/>
+    <h2 class="page-slogan text-center">{{_('How Lightbeam Works')}}</h2><br/>
     <div class="span3">
       <img src="{{ media('img/lightbeam/Lightbeam_Illustration4.png') }}" alt="">
-      Download and run the Lightbeam add-on in your Firefox browser.
+      {{_('Download and run the Lightbeam add-on in your Firefox browser.')}}
     </div>
     <div class="span3">
       <img src="{{ media('img/lightbeam/Lightbeam_Illustration5.png') }}" alt="">
-      Lightbeam will create a record of events for every site you visit and every third party site that is stored locally on your browser.
+      {{_('Lightbeam will create a record of events for every site you visit and every third party site that is stored locally on your browser.')}}
     </div>
     <div class="span3">
       <img src="{{ media('img/lightbeam/Lightbeam_Illustration6.png') }}" alt="">
-      Lightbeam visually graphs these events to highlight the interactions between sites you intentionally visit and the third parties.
+      {{_('Lightbeam visually graphs these events to highlight the interactions between sites you intentionally visit and the third parties.')}}
     </div>
     <div class="span3">
       <img src="{{ media('img/lightbeam/Lightbeam_Illustration7.png') }}" alt="">
-      Lightbeam will continue to add to your graph as you browse the Web. You can stop Lightbeam at any time by disabling it or uninstalling the add-on. Your Lightbeam data can be easily saved or deleted.
+      {{_('Lightbeam will continue to add to your graph as you browse the Web. You can stop Lightbeam at any time by disabling it or uninstalling the add-on. Your Lightbeam data can be easily saved or deleted.')}}
     </div>
 
 </section>
@@ -79,14 +79,14 @@
 
 <section class="container">
   <div class="span6">
-    <h2>Tracking & privacy</h2>
+    <h2>{{_('Tracking & privacy')}}</h2>
     <p>
-      Not all tracking is bad. Many services rely on user data to provide relevant content and enhance your online experience. But tracking can happen without the user’s knowledge. That’s not okay for some. It should be you who decides when, how and if you want your browsing data to be shared. We recognize the importance of transparency and our mission is all about empowering users — both with tools and information.  <a href="{{ url('lightbeam.about') }}"> About Lightbeam »</a>
+      {{_('Not all tracking is bad. Many services rely on user data to provide relevant content and enhance your online experience.')}} {{_('But tracking can happen without the user’s knowledge.')}} {{_('That’s not okay for some.')}} {{_('It should be you who decides when, how and if you want your browsing data to be shared. We recognize the importance of transparency and our mission is all about empowering users — both with tools and information.')}}  <a href="{{ url('lightbeam.about') }}"> {{_('About Lightbeam')}} »</a>
     </p>
   </div>
   <div class="span6">
-    <h2>Explore the database</h2>
-    <p>In the Lightbeam database, you will be able to browse first and third-party connection data uploaded by donors who use the Lightbeam add-on. We’re building this crowd-sourced directory to encourage users to visualize the state of tracking as an aggregate and to examine relationships that exist on the Web.
+    <h2>{{_('Explore the database')}}</h2>
+    <p>{{_('In the Lightbeam database, you will be able to browse first and third-party connection data uploaded by donors who use the Lightbeam add-on.')}} {{_('We’re building this crowd-sourced directory to encourage users to visualize the state of tracking as an aggregate and to examine relationships that exist on the Web.')}}
     </p>
   </div>
 </section>
@@ -94,35 +94,35 @@
 <section class="container three-points">
   <div class="span4">
     <div class="text-center"><img src="{{ media('img/lightbeam/Lightbeam_Illustration1.png') }}" alt=""></div>
-    <h4 class="text-center">Visualize your data</h4>
+    <h4 class="text-center">{{_('Visualize your data')}}</h4>
     <p>
-      After you download and install the Lightbeam add-on to Firefox, it will begin to create a real time visualization of the websites you visit and all the third parties that are also active on those pages.
+      {{_('After you download and install the Lightbeam add-on to Firefox, it will begin to create a real time visualization of the websites you visit and all the third parties that are also active on those pages.')}}
     </p>
   </div>
   <div class="span4">
     <div class="text-center"><img src="{{ media('img/lightbeam/Lightbeam_Illustration2.png') }}" alt=""></div>
-    <h4 class="text-center">Analyze your connections</h4>
+    <h4 class="text-center">{{_('Analyze your connections')}}</h4>
     <p>
-      As your visualizations grow, you can take a closer look into the relationships between the various first and third party sites that are stored in your data. You can also reset or save your data at any time.
+     {{_(' As your visualizations grow, you can take a closer look into the relationships between the various first and third party sites that are stored in your data. You can also reset or save your data at any time.')}}
     </p>
   </div>
   <div class="span4">
     <div class="text-center"><img src="{{ media('img/lightbeam/Lightbeam_Illustration3.png') }}" alt=""></div>
-    <h4 class="text-center">Contribute your data</h4>
+    <h4 class="text-center">{{_('Contribute your data')}}</h4>
     <p>
-      As a part of Lightbeam, we're creating a big-picture view of Internet tracking and of how first and third party sites are connected. To help us, you can contribute your data to our Lightbeam database.
+      {{_('As a part of Lightbeam, we are creating a big-picture view of Internet tracking and of how first and third party sites are connected.')}} {{_('To help us, you can contribute your data to our Lightbeam database.')}}
     </p>
   </div>
 </section>
 
 <section class="container">
-  <h2>Supported by the Ford Foundation</h2>
+  <h2>{{_('Supported by the Ford Foundation')}}</h2>
   <div class="span6">
     <div class="text-center">
       <img src="{{ media('img/lightbeam/Lightbeam_partners_fordfoundation.png') }}" alt="" class="partner-logo text-center">
     </div>
     <p>
-        The work at the Ford Foundation focuses on building outreach campaigns to help people understand online data tracking — both the benefits and the issues. <a href="http://www.fordfoundation.org/" target="_blank"> Learn more »</a>
+        {{_('The work at the Ford Foundation focuses on building outreach campaigns to help people understand online data tracking — both the benefits and the issues')}}. <a href="http://www.fordfoundation.org/" target="_blank"> {{_('Learn more')}} »</a>
     </p>
   </div>
 </section>
