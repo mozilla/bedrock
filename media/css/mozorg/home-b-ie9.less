@@ -20,24 +20,41 @@
 
 .wide {
     // IE9 doesn't support transitions so don't move the backgrounds.
+
+    // Mozilla Mission
     #panel-mission.expanded,
     #panel-mission.compressed {
-        background-position: -50px -80px;
+        background-position: -50px -80px, 0 0;
     }
 
+    // Lightbeam
+    #panel-lightbeam.expanded,
+    #panel-lightbeam.compressed {
+        background-position: -80px 20px, 0 0;
+    }
+
+    // Firefox OS
     #panel-fxos.expanded,
     #panel-fxos.compressed {
         background-position: -100px -100px;
     }
 
+    // MDN
     #panel-mdn.expanded,
     #panel-mdn.compressed {
-        background-position: -80px 10px;
+        background-position: -80px 10px, 0 0;
     }
 
+    // Mozfest
     #panel-mozfest.expanded,
     #panel-mozfest.compressed {
-        background-position: -110px -15px;
+        background-position: -110px -15px, 0 0;
+    }
+
+    // Webmaker
+    #panel-webmaker.expanded,
+    #panel-webmaker.compressed {
+        background-position: -95px 15px;
     }
 }
 
@@ -45,17 +62,25 @@
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
 
     .wide {
+        // Mozilla Mission
         #panel-mission,
         #panel-mission.expanded,
         #panel-mission.compressed {
             background-position: -120px -50px, 0 0;
         }
 
+        // Lightbeam
+        #panel-lightbeam,
+        #panel-lightbeam.expanded,
+        #panel-lightbeam.compressed {
+            background-position: -90px 20px, 0 0;
+        }
+
         // Firefox OS
         #panel-fxos,
         #panel-fxos.expanded,
         #panel-fxos.compressed {
-            background-position: -185px -100px;
+            background-position: -95px -70px;
         }
 
         // MDN
@@ -64,6 +89,14 @@
         #panel-mdn.compressed {
             background-position: -110px -5px, 0 0;
         }
+
+        // Webmaker
+        #panel-webmaker,
+        #panel-webmaker.expanded,
+        #panel-webmaker.compressed {
+            background-position: -100px 25px;
+        }
+
     }
 
 }
@@ -78,6 +111,13 @@
         background-position: -122px -30px, 0 0;
     }
 
+    // Lightbeam
+    #panel-lightbeam,
+    #panel-lightbeam.expanded,
+    #panel-lightbeam.compressed {
+        background-position: -50px -50px, 0 0;
+    }
+
     // Firefox OS
     #panel-fxos,
     #panel-fxos.expanded,
@@ -85,16 +125,25 @@
         background-position: -100px -100px;
     }
 
+    // MDN
     #panel-mdn,
     #panel-mdn.expanded,
     #panel-mdn-compressed {
         background-position: -25px -8px, 0 0;
     }
 
+    // Mozfest
     #panel-mozfest,
     #panel-mozfest.expanded,
     #panel-mozfest.compressed {
         background-position: -60px -20px, 0 0;
+    }
+
+    // Webmaker
+    #panel-webmaker,
+    #panel-webmaker.expanded,
+    #panel-webmaker.compressed {
+        background-position: -50px -40px;
     }
 
 }
@@ -109,6 +158,13 @@
         background-position: -80px -30px, 0 0;
     }
 
+    // Lightbeam
+    #panel-lightbeam,
+    #panel-lightbeam.expanded,
+    #panel-lightbeam.compressed {
+        background-position: -10px -50px, 0 0;
+    }
+
     // Firefox OS
     #panel-fxos,
     #panel-fxos.expanded,
@@ -116,16 +172,25 @@
         background-position: -70px -85px;
     }
 
+    // MDN
     #panel-mdn,
     #panel-mdn.expanded,
     #panel-mdn.compressed {
         background-position: 10px -8px, 0 0;
     }
 
+    // Mozfest
     #panel-mozfest,
     #panel-mozfest.expanded,
     #panel-mozfest.compressed {
         background-position: -15px -20px, 0 0;
+    }
+
+    // Webmaker
+    #panel-webmaker,
+    #panel-webmaker.expanded,
+    #panel-webmaker.compressed {
+        background-position: -15px -40px;
     }
 
 }

@@ -57,6 +57,22 @@
 
   <section class="pillars">
     <ul class="accordion">
+
+    {% if request.locale in ['en-US','en-GB'] %}
+      <li id="panel-lightbeam" class="panel" tabindex="0">
+        {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
+        <h2 class="panel-title">{{ _('<i>Watch</i> the watchers') }}</h2>
+        <div class="panel-inner">
+          <div class="panel-content">
+            <a href="{{ url('lightbeam.lightbeam')  }}">
+              <h3>{{ _('See who’s watching you online') }}</h3>
+              <p>{{ _('Shine a light on the third parties that are collecting data about your online activity.') }}</p>
+              <p class="go">{{ _('Install the Lightbeam add-on') }}</p>
+            </a>
+          </div>
+        </div>
+      </li>
+    {% else %}
       <li id="panel-mission" class="panel" tabindex="0">
         {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
         <h2 class="panel-title">{{ _('<i>Explore</i> our mission') }}</h2>
@@ -70,6 +86,7 @@
           </div>
         </div>
       </li>
+    {% endif %}
 
       <li id="panel-fxos" class="panel" tabindex="0">
         {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
@@ -100,6 +117,21 @@
         </div>
       </li>
 
+    {% if request.locale in ['en-US','en-GB'] %}
+      <li id="panel-webmaker" class="panel" tabindex="0">
+        {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
+        <h2 class="panel-title">{{ _('<i>Learn</i> the Web') }}</h2>
+        <div class="panel-inner">
+          <div class="panel-content">
+            <a href="https://webmaker.org" rel="external">
+              <h3>{{ _('We teach the Web') }}</h3>
+              <p>{{ _('Let‘s explore, tinker and create together to build a Web that‘s open and made by everyone.') }}</p>
+              <p class="go">{{ _('Become a Webmaker') }}</p>
+            </a>
+          </div>
+        </div>
+      </li>
+    {% else %}
       <li id="panel-mozfest" class="panel" tabindex="0">
         {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
         <h2 class="panel-title">{{ _('<i>Forge</i> the future') }}</h2>
@@ -114,6 +146,7 @@
           </div>
         </div>
       </li>
+    {% endif %}
     </ul>
   </section>
 
