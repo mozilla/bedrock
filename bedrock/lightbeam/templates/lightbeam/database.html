@@ -6,8 +6,10 @@
 {% extends "base-resp.html" %}
 
 {% block page_title %}{{_('Lightbeam for Firefox')}}{% endblock %}
+{% block page_desc %}{{_('The data that you contribute to Lightbeam helps us generate a larger understanding of how we collectively interact in the online space.')}}{% endblock %}
 {% block body_id %}lightbeam{% endblock %}
 {% block body_class %}sky database{% endblock %}
+{% block page_image %}{{ media('img/lightbeam/lightbeam_logo-wordmark_500x156.png') }}{% endblock %}
 {% block page_favicon %}{{ media('img/lightbeam/favicon.png') }}{% endblock %}
 {% block site_header_logo %}
   <h2><a href="{{ url('lightbeam.lightbeam') }}"><img src="{{ media('img/lightbeam/lightbeam_logo-wordmark_500x156.png') }}" class="ligthbeam-wordmark"></a></h2>
