@@ -25,13 +25,13 @@
     display: inline;
 }
 
+
 .pillars {
     height: auto;
     overflow: visible;
-    position: static;
 }
 
-.accordion {
+.js .accordion {
     height: auto;
     width: auto;
     overflow: visible;
@@ -39,7 +39,7 @@
 }
 
 .panel {
-    min-height: 14em;
+    min-height: 16em;
     width: auto;
     float: none;
     overflow: visible;
@@ -55,17 +55,14 @@
     }
 }
 
-.panel-content {
+.panel-content,
+.js .panel-content {
     position: relative;
     display: block;
     height: auto;
     min-height: 10em;
     width: auto;
-    padding: 3em 20px 1em 300px;
-
-    .panel-logo {
-        top: 15px;
-    }
+    padding: 20px 20px 20px 300px;
 
     h3 {
         color: #fff;
@@ -80,7 +77,7 @@
         right: 0;
         bottom: 0;
         left: 0;
-        padding: 60px 20px 20px 300px;
+        padding: 20px 20px 20px 300px;
     }
 }
 
@@ -88,3 +85,8 @@
 .panel-content a:visited {
     color: #fff;
 }
+
+#firefox-promo .download-button {
+    width: 240px;
+}
+

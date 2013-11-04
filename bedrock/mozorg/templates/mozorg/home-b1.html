@@ -13,8 +13,8 @@
 {% block body_class %}sand lang-{{ LANG }} home-b1{% endblock %}
 
 {% block extra_meta %}
-  <!-- validates bing webmaster tools -->
-  <meta name="msvalidate.01" content="B7B177115A634927D608514DA17B2574" />
+<!-- validates bing webmaster tools -->
+<meta name="msvalidate.01" content="B7B177115A634927D608514DA17B2574" />
 {% endblock %}
 
 {% block extrahead %}
@@ -50,8 +50,8 @@
 <main id="main-content" role="main">
   <header class="mission">
     {# L10n: The Mozilla wordmark appears inline as part of this headline, so it reads as "We are Mozilla." #}
-    <h1>{{ _('We are %(mozilla_wordmark)s') | format(mozilla_wordmark='<img src="'|safe+media('img/home/mozilla-wordmark-red.png')+'" alt="Mozilla" height="70" width="258">'|safe) }}</h1>
-    <p>{{ _('Doing good is part of our code') }}</p>
+    <h1>{{ _('We are %(mozilla_wordmark)s') | format(mozilla_wordmark=high_res_img('img/home/mozilla-wordmark-red.png', {'alt': 'Mozilla', 'width': '258', 'height': '70'})|safe) }}</h1>
+    <p class="tagline">{{ _('Doing good is part of our code') }}</p>
     <p class="engage"><a href="{{ url('mozorg.contribute') }}" class="button go">{{ _('Get involved') }}</a></p>
   </header>
 
@@ -63,7 +63,6 @@
         <div class="panel-inner">
           <div class="panel-content">
             <a href="{{ url('mozorg.mission') }}">
-              <span class="panel-logo"><img src="{{ media('img/home/panel/mission/logo-mozilla.png') }}" alt="Mozilla"></span>
               <h3>{{ _('Our principles guide us') }}</h3>
               <p>{{ _('We’re a global community of technologists, thinkers and builders working to keep the Internet alive and accessible.') }}</p>
               <p class="go">{{ _('Read more about our mission') }}</p>
@@ -78,7 +77,6 @@
         <div class="panel-inner">
           <div class="panel-content">
             <a href="{{ url('firefox.os.index') }}">
-              <span class="panel-logo"><img src="{{ media('img/home/panel/firefoxos/logo-firefoxos.png') }}" alt="Firefox OS"></span>
               <h3>{{ _('Look ahead') }}</h3>
               <p>{{ _('We‘re bringing more people to the Web in more ways and from more places than ever before.') }}</p>
               <p class="go">{{ _('Learn more about Firefox OS') }}</p>
@@ -108,7 +106,6 @@
         <div class="panel-inner">
           <div class="panel-content">
             <a href="https://mozillafestival.org">
-              <span class="panel-logo"><img src="{{ media('img/home/panel/mozfest/logo-mozfest.png') }}" alt="{{ _('Mozilla Festival') }}"></span>
               {# L10n: This <br> is strictly for visual formatting; translations can omit or reposition as needed. #}
               <h3>{{ _('Forge the future<br> of the Web') }}</h3>
               <p>{{ _('Learn from some of the most passionate thinkers and inventors from around the world.') }}</p>
@@ -120,12 +117,24 @@
     </ul>
   </section>
 
-  <section class="extra">
+  <section id="firefox-promo" class="billboard">
+    <div class="container">
+      <h3>{{_('Different by&nbsp;design')}}</h3>
+      {# We intentionally don't use php_url() here because all locals
+       # are seeing this English page and we want them to hit their locale for
+       # firefox pages #}
+      <a href="/firefox/" id="firefox-promo-link">
+      <img src="{{ media('img/home/firefox.png?2013-06')}}" id="promo-logo" alt="Firefox">
+      </a>
 
-      <section class="extra-download">
-        <h2>{{_('Different by&nbsp;design')}}</h2>
-        {{ download_firefox(icon=True) }}
-      </section>
+      {{ download_firefox(small=True, icon=False) }}
+    </div>
+  </section>
+
+  <section class="extra">
+    <div class="container">
+
+      {{ mozorg_newsletter_form() }}
 
     {% if request.locale in settings.PRESS_BLOGS %}
 
@@ -167,10 +176,8 @@
       <section class="extra-contribute fxos">
         <h2>{{ _('Get involved') }}</h2>
         <p>
-        {% trans link_mobilizer=mobilizer_link %}
-          Help launch Firefox OS in your country.
-          <a href="{{ link_mobilizer }}">Become a Mobilizer today</a>.
-        {% endtrans %}
+          {{_('Help launch Firefox OS in your country.')}}
+          <a href="{{ mobilizer_link }}">{{_('Become a Mobilizer today.')}}</a>
         </p>
       </section>
 
@@ -197,8 +204,11 @@
 
     {% endif %}
 
+    </div>
   </section>
 
 </main>
 
 {% endblock %}
+
+{% block email_form %}{% endblock %}
