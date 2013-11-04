@@ -239,10 +239,6 @@ MINIFY_BUNDLES = {
             'css/firefox/technology.less',
             'css/firefox/technology-demos.css',
         ),
-        'firefox_updates': (
-            'css/base/mozilla-expanders.less',
-            'css/firefox/update.less',
-        ),
         'firefox_whatsnew': (
             'css/sandstone/video.less',
             'css/firefox/whatsnew.less',
@@ -499,9 +495,6 @@ MINIFY_BUNDLES = {
         ),
         'firefox_tech': (
             'js/firefox/technology/tech.js',
-        ),
-        'firefox_update': (
-            'js/firefox/update.js',
         ),
         'firefox_sms': (
             'js/firefox/sms.js',
