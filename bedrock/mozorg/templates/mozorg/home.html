@@ -76,7 +76,20 @@
 
   <div class="pager-content">
 
-    <div class="pager-page default-page" id="promo-fxos">
+    <div class="pager-page default-page" id="promo-lightbeam">
+      <script>
+        document.getElementById('promo-lightbeam').id = 'page-promo-lightbeam';
+      </script>
+      <a href="{{ url('lightbeam.lightbeam')  }}" class="container">
+        <div class="content">
+          <h3><i class="hidden">{{ _('Lightbeam for Firefox') }}</i> {{ _('Watch the watchers') }}</h3>
+          <h4>{{ _('Shine a light on the third parties that are collecting data about your online activity.') }}</h4>
+          <p class="go">{{ _('Install the Lightbeam add-on') }}</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="pager-page" id="promo-fxos">
       <script>
         document.getElementById('promo-fxos').id = 'page-promo-fxos';
       </script>
@@ -132,6 +145,7 @@
     <li><a tabindex="-1" aria-hidden="true" href="#p1"></a></li>
     <li><a tabindex="-1" aria-hidden="true" href="#p2"></a></li>
     <li><a tabindex="-1" aria-hidden="true" href="#p3"></a></li>
+    <li><a tabindex="-1" aria-hidden="true" href="#p4"></a></li>
   </ul>
 
 </section>
