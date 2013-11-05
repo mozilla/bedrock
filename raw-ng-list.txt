@@ -138,7 +138,7 @@ mozilla.addons.chromebug                Development of Chromebug, a chrome debug
 
 mozilla.webapps                         Web application development (HTML5) for Firefox OS and the Open Web. (Moderated)
 
-:Mozilla Foundation
+:Mozilla Initiatives
 
 mozilla.community.drumbeat              Main Drumbeat newsgroup
 mozilla.drumbeat.website                For people working on <a href="http://www.drumbeat.org/">www.drumbeat.org</a>
@@ -154,6 +154,7 @@ mozilla.webmaker                        The Webmaker initiative - teaching the w
 mozilla.webmaker.brasil                 Webmaker initiative in Brazil. (Moderated)
 mozilla.webmaker.canada.bc              Webmaker initiative in British Columbia, Canada. (Moderated)
 mozilla.webmaker.l10n                   Localization of Webmaker content. (Moderated)
+mozilla.inform                          <a href="https://inform.mozilla.org/">Educating those who talk to policymakers</a>, helping them explain policy issues well. (Moderated)
 
 :Regional
 
@@ -195,6 +196,7 @@ mozilla.community.norway                The Mozilla community in Norway. (Modera
 mozilla.community.philippines           The Mozilla community in the Philippines. (Moderated)
 mozilla.community.quebec                The Mozilla community in Quebec, Canada. (Moderated)
 mozilla.community.romania               The Mozilla community in Romania. (Moderated)
+mozilla.community.rwanda                The Mozilla community in Rwanda. (Moderated)
 mozilla.community.senegal               The Mozilla community in Senegal.
 mozilla.community.sweden                The Mozilla community in Sweden. (Moderated)
 mozilla.community.switzerland           The Mozilla community in Switzerland. (Moderated)
