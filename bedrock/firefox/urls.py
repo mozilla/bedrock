@@ -67,6 +67,7 @@ urlpatterns = patterns('',
     url('^firefox/$', views.fx_home_redirect, name='firefox'),
 
     page('firefox/os', 'firefox/os/index.html'),
+    page('firefox/os/releases', 'firefox/os/releases.html'),
 
     # firefox/os/notes/ should redirect to the latest version; update this in /redirects/urls.py
     page('firefox/os/notes/1.0.1', 'firefox/os/notes-1.0.1.html'),
