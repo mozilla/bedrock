@@ -4,7 +4,8 @@
 
 {% extends "/firefox/base.html" %}
 
-{% block page_title %}Getting Started with Mozilla Firefox{% endblock %}
+{% block page_title %}{{ _('Getting Started with Mozilla Firefox') }}{% endblock %}
+{% block page_desc %}{{ _('Meet Mozilla Firefox') }}{% endblock %}
 {% block body_id %}firefox-central{% endblock %}
 
 {% block site_css %}
@@ -13,86 +14,86 @@
 
 {% block content %}
 
-<h1 class="container large center">Meet Mozilla Firefox</h1>
+<h1 class="container large center">{{ _('Meet Mozilla Firefox') }}</h1>
 
 <div id="main-feature" class="billboard">
-    <h2>Tour the User Interface</h2>
+    <h2>{{ _('Tour the User Interface') }}</h2>
     <div id="figure">
-      {{ platform_img('img/firefox/central/screen.png?2013-06', {'alt': 'Screenshot'}) }}
+      {{ platform_img('img/firefox/central/screen.png?2013-06', {'alt': _('Screenshot')}) }}
       <div id="svg-path"></div>
-      <span class="roll-over inset">Roll over the markers below for feature info</span>
+      <span class="roll-over inset">{{ _('Roll over the markers below for feature info') }}</span>
     </div>
 </div>
 <article id="not-this-marker" class="tip">
-    <h1>No, not this one</h1>
-    <p>This one's just here to tell you to roll over the other ones, which you should do, instead of rolling over this one, which is also fine, but doesn't actually give you any info about Firefox.</p>
+    <h1>{{ _('No, not this one') }}</h1>
+    <p>{{ _('This one’s just here to tell you to roll over the other ones, which you should do, instead of rolling over this one, which is also fine, but doesn’t actually give you any info about Firefox.') }}</p>
 </article>
 <article id="tabs-on-top" class="tip">
-    <h1>Tabs on top</h1>
-    <p>Tabs are now located above the Awesome Bar to make it easier to focus on the content of the sites you visit.</p>
+    <h1>{{ _('Tabs on top') }}</h1>
+    <p>{{ _('Tabs are now located above the Awesome Bar to make it easier to focus on the content of the sites you visit.') }}</p>
 </article>
 <article id="app-tab" class="tip">
-    <h1>App Tabs</h1>
-    <p>Take sites you always keep open — like Web mail — off your tab bar and give them a permanent home in your browser.</p>
+    <h1>{{ _('App Tabs') }}</h1>
+    <p>{{ _('Take sites you always keep open — like Web mail — off your tab bar and give them a permanent home in your browser.') }}</p>
 </article>
 <article id="new-tab" class="tip">
-    <h1>New tab</h1>
-    <p>Firefox gets you to your next task faster than ever. Choose from your most recently and frequently visited sites when you open a new tab.</p>
+    <h1>{{ _('New tab') }}</h1>
+    <p>{{ _('Firefox gets you to your next task faster than ever. Choose from your most recently and frequently visited sites when you open a new tab.') }}</p>
 </article>
 <article id="switch-to-tab" class="tip">
-    <h1>Switch to tab</h1>
-    <p>As you’re opening a new tab, Firefox will check to see if you already have that site open. If you do, you’ll be directed to the existing tab so you don’t open a duplicate.</p>
+    <h1>{{ _('Switch to tab') }}</h1>
+    <p>{{ _('As you’re opening a new tab, Firefox will check to see if you already have that site open. If you do, you’ll be directed to the existing tab so you don’t open a duplicate.') }}</p>
 </article>
 <article id="firefox-menu-button" class="tip">
-    <h1>Firefox menu</h1>
-    <p>All your menu items are now found in a single button for easy access.</p>
+    <h1>{{ _('Firefox menu') }}</h1>
+    <p>{{ _('All your menu items are now found in a single button for easy access.') }}</p>
 </article>
 <article id="bookmark-button" class="tip">
-    <h1>Bookmark button</h1>
-    <p>Manage your bookmarks in a single button. Find your favorite links without getting bogged down!</p>
+    <h1>{{ _('Bookmark button') }}</h1>
+    <p>{{ _('Manage your bookmarks in a single button. Find your favorite links without getting bogged down!') }}</p>
 </article>
 <article id="home-button" class="tip">
-    <h1>Home button</h1>
-    <p>The home button, now located on the right hand side of the browser, can be easily customized to open the preferred website you want to see as your home page.</p>
+    <h1>{{ _('Home button') }}</h1>
+    <p>{{ _('The home button, now located on the right hand side of the browser, can be easily customized to open the preferred website you want to see as your home page.') }}</p>
 </article>
 <article id="awesome-bar" class="tip">
-    <h1>Awesome Bar</h1>
-    <p>Get to your favorite sites quickly, even if you don’t remember the URL. Start typing and the Awesome Bar will include possible matches from your browsing history, bookmarked sites and open tabs.</p>
+    <h1>{{ _('Awesome Bar') }}</h1>
+    <p>{{ _('Get to your favorite sites quickly, even if you don’t remember the URL. Start typing and the Awesome Bar will include possible matches from your browsing history, bookmarked sites and open tabs.') }}</p>
 </article>
 <article id="instant-website-id" class="tip">
-    <h1>Instant website ID</h1>
-    <p>Want to be extra sure about a site’s legitimacy before you hand over your personal info? Click on its favicon for an instant identity overview.</p>
+    <h1>{{ _('Instant website ID') }}</h1>
+    <p>{{ _('Want to be extra sure about a site’s legitimacy before you hand over your personal info? Click on its favicon for an instant identity overview.') }}</p>
 </article>
 <article id="customize-toolbar" class="tip">
-    <h1>Customize toolbar</h1>
-    <p>You can adjust the Firefox interface to be exactly the way you like it: re-arrange, organize, add or remove buttons or fields to change your browsing experience however you want.</p>
+    <h1>{{ _('Customize toolbar') }}</h1>
+    <p>{{ _('You can adjust the Firefox interface to be exactly the way you like it: re-arrange, organize, add or remove buttons or fields to change your browsing experience however you want.') }}</p>
 </article>
 <article id="addons-manager" class="tip">
-    <h1>Add-ons manager</h1>
-    <p>The Add-ons Manager Discover and install add-ons without ever leaving Firefox. Browse ratings, recommendations, descriptions and pictures of the add-ons in action to help you make your selection.</p>
+    <h1>{{ _('Add-ons manager') }}</h1>
+    <p>{{ _('The Add-ons Manager Discover and install add-ons without ever leaving Firefox. Browse ratings, recommendations, descriptions and pictures of the add-ons in action to help you make your selection.') }}</p>
 </article>
 <article id="themes" class="tip">
-    <h1>Themes</h1>
-    <p>Change the look of your Firefox in a single click with Themes, Firefox’s easy-to-install browser art created by users from around the world (or that you make yourself!).</p>
+    <h1>{{ _('Themes') }}</h1>
+    <p>{{ _('Change the look of your Firefox in a single click with Themes, Firefox’s easy-to-install browser art created by users from around the world (or that you make yourself!).') }}</p>
 </article>
 
 <div id="features" class="pager pager-with-tabs container pager-no-history">
 
-  <h1>Become a Firefox expert in <span>5</span> easy steps</h1>
+  <h1>{{ _('Become a Firefox expert in <span>5</span> easy steps') }}</h1>
 
   <ul class="pager-tabs">
-    <li><a id="#get-started">Getting started</a></li>
-    <li><a id="#speed">Experience super speed</a></li>
-    <li><a id="#stay-in-sync">Stay in sync</a></li>
-    <li><a id="#customize">Customize your Firefox</a></li>
-    <li><a id="#personal">Secure your personal info</a></li>
+    <li><a id="#get-started">{{ _('Getting started') }}</a></li>
+    <li><a id="#speed">{{ _('Experience super speed') }}</a></li>
+    <li><a id="#stay-in-sync">{{ _('Stay in sync') }}</a></li>
+    <li><a id="#customize">{{ _('Customize your Firefox') }}</a></li>
+    <li><a id="#personal">{{ _('Secure your personal info') }}</a></li>
   </ul>
 
   <div class="pager-content">
 
     <div class="get-started-content default-page" id="get-started">
-      <h2>Getting started</h2>
-      <p>Ready to begin? Good! Getting started with Firefox is actually quite simple. Here are a few handy shortcuts to help you get going:</p>
+      <h2>{{ _('Getting started') }}</h2>
+      <p>{{ _('Ready to begin? Good! Getting started with Firefox is actually quite simple. Here are a few handy shortcuts to help you get going:') }}</p>
     <figure class="figure">
       {{ video('Browsing-Basics-640.mp4',
                'Browsing-Basics-640.webm',
@@ -100,43 +101,43 @@
                prefix='//videos-cdn.mozilla.net/serv/marketing/firefox4/',
                h=245, w=436,
                poster=media('img/firefox/central/poster-browsing-basics.png')) }}
-        <figcaption class="figcaption">Learn more about Firefox’s features</figcaption>
+        <figcaption class="figcaption">{{ _('Learn more about Firefox’s features') }}</figcaption>
       </figure>
       <ul>
-          <li><a href="https://support.mozilla.org/kb/Browsing%20basics">Browsing Basics</a></li>
-          <li><a href="https://support.mozilla.org/kb/Importing%20favorites%20and%20other%20data%20from%20Internet%20Explorer">Import bookmarks from another browser</a></li>
-          <li><a href="https://support.mozilla.org/kb/How%20to%20set%20the%20home%20page">Set your home page</a></li>
-          <li><a href="https://support.mozilla.org/en-US/kb/what-are-app-tabs">Create an App Tab</a></li>
-          <li><a href="https://support.mozilla.org/kb/new-tab-page-show-hide-and-customize-top-sites">Customize your New Tab page</a></li>
+          <li><a href="https://support.mozilla.org/kb/Browsing%20basics">{{ _('Browsing Basics') }}</a></li>
+          <li><a href="https://support.mozilla.org/kb/Importing%20favorites%20and%20other%20data%20from%20Internet%20Explorer">{{ _('Import bookmarks from another browser') }}</a></li>
+          <li><a href="https://support.mozilla.org/kb/How%20to%20set%20the%20home%20page">{{ _('Set your home page') }}</a></li>
+          <li><a href="https://support.mozilla.org/kb/what-are-app-tabs">{{ _('Create an App Tab') }}</a></li>
+          <li><a href="https://support.mozilla.org/kb/new-tab-page-show-hide-and-customize-top-sites">{{ _('Customize your New Tab page') }}</a></li>
       </ul>
     </div>
 
     <div class="experience-super-speed-content default-page" id="experience-super-speed">
-      <h2>Experience super speed</h2>
-      <p>We’ve optimized Firefox’s performance to support the way you browse, and with faster start-up times, rapid graphics rendering and improved page load times. Firefox is fast in ways you’ll notice instantly.</p>
+      <h2>{{ _('Experience super speed') }}</h2>
+      <p>{{ _('We’ve optimized Firefox’s performance to support the way you browse, and with faster start-up times, rapid graphics rendering and improved page load times. Firefox is fast in ways you’ll notice instantly.') }}</p>
       <figure class="figure">
-        <img src="{{ media('img/firefox/central/speed-illustration.png?2013-06') }}" alt="Speedometer illustration: Old Firefox = Sadface, New Firefox = Yay!" />
+        <img src="{{ media('img/firefox/central/speed-illustration.png?2013-06') }}" alt="{{ _('Speedometer illustration: Old Firefox = Sadface, New Firefox = Yay!') }}" />
       </figure>
       <ul>
-        <li><a href="{{ url('firefox.performance') }}">Go to the Performance page to learn more</a></li>
+        <li><a href="{{ url('firefox.performance') }}">{{ _('Go to the Performance page to learn more') }}</a></li>
       </ul>
     </div>
 
     <div class="stay-in-sync-content default-page" id="stay-in-sync">
-      <h2>Stay in sync</h2>
-      <p>Life on the go means that more and more people are browsing the Web on more than one device. That’s why we’ve created Sync to give you constant access to your browsing data, including history, passwords, bookmarks and open tabs, no matter what computer or phone you’re using.</p>
+      <h2>{{ _('Stay in sync') }}</h2>
+      <p>{{ _('Life on the go means that more and more people are browsing the Web on more than one device. That’s why we’ve created Sync to give you constant access to your browsing data, including history, passwords, bookmarks and open tabs, no matter what computer or phone you’re using.') }}</p>
       <figure class="figure">
-        <img src="{{ media('img/firefox/central/sync-illustration.png') }}" alt="Sync illustration" />
+        <img src="{{ media('img/firefox/central/sync-illustration.png') }}" alt="{{ _('Sync illustration') }}" />
       </figure>
       <ul>
-          <li><a href="https://support.mozilla.org/kb/sync-firefox-between-desktop-and-mobile">Create your Sync account</a></li>
-          <li><a href="https://support.mozilla.org/en-US/kb/add-a-device-to-firefox-sync">Add a device to Firefox Sync</a></li>
+          <li><a href="https://support.mozilla.org/kb/sync-firefox-between-desktop-and-mobile">{{ _('Create your Sync account') }}</a></li>
+          <li><a href="https://support.mozilla.org/kb/add-a-device-to-firefox-sync">{{ _('Add a device to Firefox Sync') }}</a></li>
       </ul>
     </div>
 
     <div class="customize-content default-page" id="customize">
-      <h2>Customize your Firefox</h2>
-      <p>When it comes to browsing, one size definitely doesn’t fit all. That’s why we’ve made sure you can customize Firefox to your exact needs in pretty much any possible way. Enhance functionality with extensions, add style with Themes or even change the toolbar icons to be just the way you like.</p>
+      <h2>{{ _('Customize your Firefox') }}</h2>
+      <p>{{ _('When it comes to browsing, one size definitely doesn’t fit all. That’s why we’ve made sure you can customize Firefox to your exact needs in pretty much any possible way. Enhance functionality with extensions, add style with Themes or even change the toolbar icons to be just the way you like.') }}</p>
       <figure class="figure">
         <div class="mozilla-video-control">
         {{ video('FF%20576%20h264%20v6.webm',
@@ -146,19 +147,19 @@
                  prefix='//videos-cdn.mozilla.net/serv/marketing/696470/',
                  poster=media('img/firefox/video/poster-addons.jpg')) }}
         </div>
-        <figcaption class="figcaption">Learn more about Themes</figcaption>
+        <figcaption class="figcaption">{{ _('Learn more about Themes') }}</figcaption>
       </figure>
       <ul>
-          <li><a href="https://support.mozilla.org/kb/Customizing%20Firefox%20with%20add-ons">Ways to personalize your Firefox</a></li>
-          <li><a href="https://support.mozilla.org/kb/Customizing%20Firefox%20with%20add-ons">How to install an add-on</a></li>
-          <li><a href="https://support.mozilla.org/kb/how-do-i-customize-toolbars">Customize your toolbars</a></li>
-          <li><a href="https://blog.mozilla.org/addons/2012/05/24/addons-firefox-3-6/">Upgrading Firefox and alternatives to outdated add-ons</a></li>
+          <li><a href="https://support.mozilla.org/kb/Customizing%20Firefox%20with%20add-ons">{{ _('Ways to personalize your Firefox') }}</a></li>
+          <li><a href="https://support.mozilla.org/kb/Customizing%20Firefox%20with%20add-ons">{{ _('How to install an add-on') }}</a></li>
+          <li><a href="https://support.mozilla.org/kb/how-do-i-customize-toolbars">{{ _('Customize your toolbars') }}</a></li>
+          <li><a href="https://blog.mozilla.org/addons/2012/05/24/addons-firefox-3-6/">{{ _('Upgrading Firefox and alternatives to outdated add-ons') }}</a></li>
       </ul>
     </div>
 
     <div class="personal-content default-page" id="personal">
-      <h2>Secure your personal info</h2>
-      <p>We’ve packed Firefox with highly advanced security features to keep you safe while you browse. And, as a non-profit organization, protecting your privacy by keeping you in control over your personal information is a key part of our mission.</p>
+      <h2>{{ _('Secure your personal info') }}</h2>
+      <p>{{ _('We’ve packed Firefox with highly advanced security features to keep you safe while you browse. And, as a non-profit organization, protecting your privacy by keeping you in control over your personal information is a key part of our mission.') }}</p>
       <figure class="figure">
         <div class="mozilla-video-control">
         {{ video('privatebrowsing640.mp4',
@@ -168,14 +169,14 @@
                  prefix='//videos-cdn.mozilla.net/serv/marketing/firefox4/',
                  poster=media('img/firefox/central/poster-privatebrowsing.png')) }}
         </div>
-        <figcaption class="figcaption">Learn more about Firefox’s security features</figcaption>
+        <figcaption class="figcaption">{{ _('Learn more about Firefox’s security features') }}</figcaption>
       </figure>
       <ul>
-        <li><a href="https://support.mozilla.org/kb/Private%20Browsing">Private Browsing</a></li>
-        <li><a href="https://support.mozilla.org/kb/how-do-i-stop-websites-tracking-me">Do not Track</a></li>
-        <li><a href="https://support.mozilla.org/kb/Site+Identity+Button">Instant Web ID</a></li>
-        <li><a href="https://support.mozilla.org/kb/Clear%20Recent%20History">Clear Recent History</a></li>
-        <li><a href="https://support.mozilla.org/kb/Options%20window%20-%20Security%20panel">Customized Security Setting</a></li>
+        <li><a href="https://support.mozilla.org/kb/Private%20Browsing">{{ _('Private Browsing') }}</a></li>
+        <li><a href="https://support.mozilla.org/kb/how-do-i-stop-websites-tracking-me">{{ _('Do not Track') }}</a></li>
+        <li><a href="https://support.mozilla.org/kb/Site+Identity+Button">{{ _('Instant Web ID') }}</a></li>
+        <li><a href="https://support.mozilla.org/kb/Clear%20Recent%20History">{{ _('Clear Recent History') }}</a></li>
+        <li><a href="https://support.mozilla.org/kb/Options%20window%20-%20Security%20panel">{{ _('Customized Security Setting') }}</a></li>
       </ul>
     </div>
 
