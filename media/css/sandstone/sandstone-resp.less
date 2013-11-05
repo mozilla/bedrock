@@ -520,6 +520,10 @@ label.error {
         font-size: 13px;
         .open-sans;
 
+        ul {
+            margin-bottom: 0;
+        }
+
         li {
             .inline-block;
             list-style-type: none;
@@ -551,6 +555,12 @@ label.error {
     }
 
 }
+
+.html-rtl #tabzilla,
+.html-rtl #masthead nav {
+    float: left;
+}
+
 
 #masthead .toggle {
     display: none; /* Hidden in non-mobile views */
@@ -655,6 +665,12 @@ nav.menu-bar {
             .open-sans-light;
         }
     }
+}
+
+.html-rtl .table caption,
+.html-rtl .table th,
+.html-rtl .table td {
+    text-align: right;
 }
 
 /* }}} */
@@ -952,7 +968,7 @@ nav.menu-bar {
 
 
     #masthead {
-        
+
         .toggle {
             display: block;
             width: 32px;
@@ -1162,9 +1178,9 @@ nav.menu-bar {
         position: absolute;
         z-index: 99;
         width: 200px;
-        margin: 15px 0 0 -10px;
+        margin: 20px 0 0 -20px;
         left: -999em;
-        top: 35px;
+        top: 30px;
         overflow: visible;
         .border-radius(10px);
         .box-shadow(0 1px 3px 0 rgba(0,0,0,.5));
@@ -1189,6 +1205,25 @@ nav.menu-bar {
         position: absolute;
         left: 12px;
         top: -10px;
+    }
+
+    .html-rtl #masthead nav {
+        float: right;
+    }
+
+    .html-rtl #masthead .toggle {
+        left: auto;
+        right: 10px;
+    }
+
+    .html-rtl #nav-main-menu {
+        margin-left: 0;
+        margin-right: -20px;
+    }
+
+    .html-rtl #nav-main-menu:before {
+        left: auto;
+        right: 12px;
     }
 
     #about {

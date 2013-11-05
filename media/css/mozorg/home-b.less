@@ -751,7 +751,30 @@
     .download-platform:before {
         content: '• ';
     }
+}
 
+.html-rtl.home-b2 #firefox-promo {
+    h3 {
+        float: right;
+
+        b {
+            border-right: 0;
+            border-left: 1px dotted @borderColor;
+            margin-right: 0;
+            margin-left: 10px;
+            padding-right: 0;
+            padding-left: 20px;
+        }
+    }
+
+    img {
+        float: right;
+        margin: -30px 0 -5px 20px;
+    }
+
+    .download-button {
+        float: left;
+    }
 }
 
 
@@ -1349,6 +1372,25 @@
 
         .download-button {
             margin-top: 10px;
+        }
+    }
+
+    .html-rtl.home-b2 #firefox-promo {
+        h3 {
+            float: none;
+
+            img {
+                float: right;
+                margin-top: 0;
+            }
+
+            b {
+                border: 0;
+            }
+        }
+
+        .download-button {
+            float: none;
         }
     }
 
