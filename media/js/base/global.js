@@ -32,6 +32,17 @@ function init_download_links() {
     $('.download-list').attr('role', 'presentation');
 }
 
+// Replace Google Play links on Android devices to let them open
+// the native Play Store app
+function init_android_download_links() {
+    if (site.platform === 'android') {
+        $('a[href^="https://play.google.com/store/apps/"]').each(function() {
+            $(this).attr('href', $(this).attr('href')
+                .replace('https://play.google.com/store/apps/', 'market://'));
+        });
+    }
+}
+
 // language switcher
 
 function init_lang_switcher() {
@@ -90,6 +101,7 @@ function init_platform_imgs() {
 
 $(document).ready(function() {
     init_download_links();
+    init_android_download_links();
     init_lang_switcher();
     $(window).on('load', function () {
         $('html').addClass('loaded');
