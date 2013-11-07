@@ -741,6 +741,11 @@ LOCALES_WITH_MOZ15 = ['bg', 'cs', 'de', 'el', 'en-GB', 'en-US', 'es-AR', 'es-CL'
                       'ms', 'nl', 'pl', 'pt-BR', 'ro', 'ru', 'sl', 'sq', 'sr',
                       'ta', 'tr', 'zh-CN', 'zh-TW']
 
+# Locales with the latest banners on home page
+LOCALES_WITH_LATEST_HOME = ['en-GB', 'en-US', 'en-ZA', 'de', 'el', 'es-AR',
+                            'fr', 'hy-AM', 'is', 'it', 'ko', 'pt-BR', 'sq',
+                            'sv-SE', 'tr', 'zh-TW']
+
 # reCAPTCHA keys
 RECAPTCHA_PUBLIC_KEY = ''
 RECAPTCHA_PRIVATE_KEY = ''
