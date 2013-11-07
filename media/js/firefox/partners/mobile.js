@@ -57,7 +57,7 @@
     $('.toggle-form').off().on('click', function(e) {
         e.preventDefault();
 
-        w.show_overlay('#form');
+        Mozilla.Modal.createModal(this, $('#form'), { allowScroll: false });
 
         w.ga_track('form/');
 

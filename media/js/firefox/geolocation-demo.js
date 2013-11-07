@@ -13,6 +13,9 @@ $(document).ready(function() {
                 zoom: 1,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             });
+
+            $('#locateButton').siblings('img').hide();
+            $('#geodemo-error').hide();
         },
 
         handleSuccess: function(position) {
@@ -57,18 +60,15 @@ $(document).ready(function() {
     };
 
     if (!navigator.geolocation) return true; // Fx 3.5+ only
-    $('#try-geolocation')
-        .nyroModal({
-            minWidth: 510,
-            minHeight: 400,
-            processHandler: function() {
-                $('#geodemo-error, #geo-busy').hide();
-            },
-            endShowContent: function() {
-                geodemo.initialize();
-            }
-        })
-        .show();
+    var that = this;
+
+    $('#try-geolocation').show();
+
+    $('#try-geolocation').click(function (e) {
+        e.preventDefault();
+        Mozilla.Modal.createModal(this, $('#geo-demo'), { onCreate: geodemo.initialize });
+    });
+
     $('#locateButton').click(function() {
         geodemo.locateMeOnMap();
     });

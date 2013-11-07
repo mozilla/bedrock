@@ -222,7 +222,10 @@
       $signup_content = $('#email-form-content').detach();
     }
 
-    Mozilla.Modal.createModal(this, $signup_content, { onDestroy: reattachSignupContent, allowScroll: true });
+    Mozilla.Modal.createModal(this, $signup_content, {
+        allowScroll: true,
+        title: '<img src="/media/img/firefox/os/logo/firefox-os-white.png" alt="mozilla" />'
+    });
 
     //track GA event for newsletter CTA
     trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'click', cta]);
@@ -231,10 +234,6 @@
   $('#sign-up-form-close').on('click', function() {
     Mozilla.Modal.closeModal();
   });
-
-  function reattachSignupContent() {
-    $('#email-form-wrapper').append($signup_content);
-  }
 
   // reallly primative validation e.g a@a
   // matches built-in validation in Firefox
@@ -303,15 +302,14 @@
       $get_phone_content = $('#get-phone').detach();
     }
 
-    Mozilla.Modal.createModal(this, $get_phone_content, { onDestroy: reattachGetPhoneContent, allowScroll: true });
+    Mozilla.Modal.createModal(this, $get_phone_content, {
+        allowScroll: true,
+        title: '<img src="/media/img/firefox/os/logo/firefox-os-white.png" alt="mozilla" />'
+    });
 
     //track GA event for get a phone CTA
     trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'click', 'Get a Phone']);
   });
-
-  var reattachGetPhoneContent = function() {
-    $('#get-phone-wrapper').append($get_phone_content);
-  };
 
   // toggle sticky masthead when tabzilla is opened/closed
   $tabzilla.on('click', function () {
