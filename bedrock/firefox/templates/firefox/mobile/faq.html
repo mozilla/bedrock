@@ -4,7 +4,8 @@
 
 {% extends "/firefox/base-resp.html" %}
 
-{% block page_title %}Frequently Asked Questions{% endblock %}
+{% block page_title %}{{ _('Frequently Asked Questions') }}{% endblock %}
+{% block page_desc %}{{ _('Firefox for Android is built on the same technology platform as Firefox for the desktop, making it fast, easy to use and secure.') }}{% endblock %}
 {% block body_id %}mobile-faq{% endblock %}
 
 {% block site_css %}
@@ -136,7 +137,7 @@
           {% endtrans %}
 
           {% trans %}
-          <dt>What does the Awesome Screen do?
+          <dt>What does the Awesome Screen do?</dt>
           <dd>The Awesome Screen gets you to where you want to go quickly
           with less typing by giving you a list of your most often visited
           sites along with the ability to browse through your bookmarks,
