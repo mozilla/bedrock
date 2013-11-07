@@ -58,7 +58,7 @@
   <section class="pillars">
     <ul class="accordion">
 
-    {% if request.locale in ['en-US','en-GB'] or settings.DEV %}
+    {% if request.locale in settings.LOCALES_WITH_LATEST_HOME or settings.DEV %}
       <li id="panel-lightbeam" class="panel" tabindex="0">
         {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
         <h2 class="panel-title">{{ _('<i>Watch</i> the watchers') }}</h2>
@@ -117,7 +117,7 @@
         </div>
       </li>
 
-    {% if request.locale in ['en-US','en-GB'] or settings.DEV %}
+    {% if request.locale in settings.LOCALES_WITH_LATEST_HOME or settings.DEV %}
       <li id="panel-webmaker" class="panel" tabindex="0">
         {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
         <h2 class="panel-title">{{ _('<i>Learn</i> the Web') }}</h2>
