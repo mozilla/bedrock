@@ -25,6 +25,7 @@ from bedrock.mozorg.tests import TestCase
 
 TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), 'test_data')
 PROD_DETAILS_DIR = os.path.join(TEST_DATA_DIR, 'product_details_json')
+GOOD_PLATS = {'Windows': {}, 'OS X': {}, 'Linux': {}}
 
 with patch.object(settings, 'PROD_DETAILS_DIR', PROD_DETAILS_DIR):
     firefox_details = FirefoxDetails()
@@ -368,7 +369,9 @@ class FxVersionRedirectsMixin(object):
 
     @patch.dict(product_details.firefox_versions,
                 LATEST_FIREFOX_VERSION='13.0.5')
-    def test_current_minor_version_firefox(self):
+    @patch('bedrock.mozorg.helpers.download_buttons.latest_version',
+           return_value=('13.0.5', GOOD_PLATS))
+    def test_current_minor_version_firefox(self, latest_mock):
         """
         Should show current even if behind by a patch version
         """
@@ -380,7 +383,9 @@ class FxVersionRedirectsMixin(object):
 
     @patch.dict(product_details.firefox_versions,
                 LATEST_FIREFOX_VERSION='18.0')
-    def test_esr_firefox(self):
+    @patch('bedrock.mozorg.helpers.download_buttons.latest_version',
+           return_value=('18.0', GOOD_PLATS))
+    def test_esr_firefox(self, latest_mock):
         """
         Currently released ESR firefoxen should not redirect. At present
         they are 10.0.x and 17.0.x.
@@ -399,7 +404,12 @@ class FxVersionRedirectsMixin(object):
 
     @patch.dict(product_details.firefox_versions,
                 LATEST_FIREFOX_VERSION='16.0')
-    def test_current_firefox(self):
+    @patch('bedrock.mozorg.helpers.download_buttons.latest_version',
+           return_value=('16.0', GOOD_PLATS))
+    def test_current_firefox(self, latest_mock):
+        """
+        Currently released firefoxen should not redirect.
+        """
         user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:16.0) '
                       'Gecko/20100101 Firefox/16.0')
         response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
@@ -408,7 +418,12 @@ class FxVersionRedirectsMixin(object):
 
     @patch.dict(product_details.firefox_versions,
                 LATEST_FIREFOX_VERSION='16.0')
-    def test_future_firefox(self):
+    @patch('bedrock.mozorg.helpers.download_buttons.latest_version',
+           return_value=('16.0', GOOD_PLATS))
+    def test_future_firefox(self, latest_mock):
+        """
+        Pre-release firefoxen should not redirect.
+        """
         user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:18.0) '
                       'Gecko/20100101 Firefox/18.0')
         response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
