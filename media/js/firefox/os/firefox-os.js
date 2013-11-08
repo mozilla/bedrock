@@ -46,6 +46,14 @@
         }
       ]
     },
+    "hu": {
+      "partner": [
+        {
+          "name": "T-Mobile",
+          "url": "https://webshop.t-mobile.hu/webapp/wcs/stores/ProductDisplay?catalogId=2001&storeId=2001&langId=-11&productId=644566"
+        }
+      ]
+    },
     "mx": {
       "partner": [
         {
@@ -98,7 +106,7 @@
 
     if (PARTNER_DATA.hasOwnProperty(COUNTRY_CODE)) {
 
-      // show get phone call to actions
+      // show get phone calls to action
       $('#primary-cta-phone').fadeIn();
       $('#primary-cta-signup').addClass('visibility', 'hidden');
       $('#secondary-cta-phone').css('display', 'inline-block');
@@ -114,7 +122,8 @@
         var index = i === 1 ? 'last' : '';
         links += '<a class="' + data.name.toLowerCase() + ' ' + index + '" href="' + data.url + '">' + data.name + '</a>';
       });
-      $('#provider-links').html(links);
+      // add country class as an extra style hook and inject the links
+      $('#provider-links').addClass(COUNTRY_CODE).html(links);
 
       // setup GA event tracking on telecom provider exit links
       $('#provider-links a').on('click', trackProviderExit);
