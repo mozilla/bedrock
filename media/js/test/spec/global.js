@@ -56,6 +56,30 @@ describe("global.js", function() {
 
   });
 
+  describe("init_android_download_links", function () {
+
+    beforeEach(function () {
+      // Pretend we're on Android
+      window.site = {
+        platform: 'android'
+      };
+      //create an HTML fixture to test against
+      $('<a class="download-link" href="https://play.google.com/store/apps/details?id=org.mozilla.firefox">foo</a>').appendTo('body');
+    });
+
+    afterEach(function(){
+      // Tidy up after each test
+      window.site = null;
+      $('.download-link').remove();
+    });
+
+    it("should set a URL with the market scheme", function () {
+      init_android_download_links();
+      expect($('.download-link').attr('href')).toEqual('market://details?id=org.mozilla.firefox');
+    });
+
+  });
+
   describe("init_platform_imgs", function () {
 
     beforeEach(function () {
