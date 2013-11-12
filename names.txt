@@ -1998,7 +1998,7 @@ Ramirez,Cherlowe Reinard
 Eyre,Rick
 Manai,Mohamed
 Suthar,Meghraj
-El Sharnoby, Mohamed
+El Sharnoby,Mohamed
 Valim,Carlos
 Muralidharan,Sreenidhi
 Welivitigoda,Kalpa
@@ -2019,4 +2019,5 @@ Avsar,Onur
 Jozwiak,Kamil
 Islam,Maliha
 Palharini,João
-de Souza, Zilmar
+de Souza,Zilmar
+Gandhi,Komal
