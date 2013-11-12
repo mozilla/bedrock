@@ -753,10 +753,13 @@ LOCALES_WITH_MOZ15 = ['bg', 'cs', 'de', 'el', 'en-GB', 'en-US', 'es-AR', 'es-CL'
                       'ms', 'nl', 'pl', 'pt-BR', 'ro', 'ru', 'sl', 'sq', 'sr',
                       'ta', 'tr', 'zh-CN', 'zh-TW']
 
-# Locales with the latest banners on home page
-LOCALES_WITH_LATEST_HOME = ['en-GB', 'en-US', 'en-ZA', 'ar', 'ca', 'de', 'el',
+# Locales with the Lightbeam and Webmaker banners on home page
+LOCALES_WITH_LIGHTBEAM_HOME = ['en-GB', 'en-US', 'en-ZA', 'ar', 'ca', 'de', 'el',
                             'es-AR', 'eu', 'fr', 'hy-AM', 'is', 'it', 'ko', 'mk',
                             'nl', 'pt-BR', 'sq', 'sv-SE', 'tr', 'zh-TW']
+
+# Locales with the Vans Triple Crown banner on home page
+LOCALES_WITH_VTCS_HOME = ['en-GB', 'en-US', 'en-ZA']
 
 # reCAPTCHA keys
 RECAPTCHA_PUBLIC_KEY = ''
