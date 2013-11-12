@@ -2049,3 +2049,4 @@ Fowler,Seth
 Chen,Marco
 Kolosiwsky,Chris
 Perriault,Nicolas
+Wajsberg,Julien
