@@ -61,7 +61,7 @@
         // Expand the accordion vertically
         expandVert: function(panel) {
             $('.panel-title').stop(true,true).fadeOut(200);
-            panel.stop().removeClass('compressed').addClass('expanded').animate({'height':'25em'},700);
+            panel.stop().removeClass('compressed').addClass('expanded').animate({'height':'22em'},700);
             panel.siblings('.panel').stop().removeClass('expanded').addClass('compressed').animate({'height':'3em'},700);
             $('.panel-content', panel).stop(true,true).delay(400).fadeIn(400);
             panel.siblings('.panel').find('.panel-content').stop(true,true).fadeOut(400, function() {
