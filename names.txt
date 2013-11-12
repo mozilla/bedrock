@@ -2032,3 +2032,4 @@ Bajaj,Vaibhav
 Shah,Jithin
 Carr,Edward
 Feal,Juan
+Priteržnik,Matej
