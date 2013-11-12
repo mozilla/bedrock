@@ -3,7 +3,6 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from django.conf.urls.defaults import *  # noqa
-from django.conf import settings
 
 from bedrock.firefox import version_re
 from bedrock.redirects.util import redirect
@@ -25,8 +24,7 @@ urlpatterns = patterns('',
     page('firefox/customize', 'firefox/customize.html'),
     page('firefox/features', 'firefox/features.html'),
     page('firefox/fx', 'firefox/fx.html'),
-    page('firefox/geolocation', 'firefox/geolocation.html',
-         gmap_api_key=settings.GMAP_API_KEY),
+    page('firefox/geolocation', 'firefox/geolocation.html'),
     page('firefox/happy', 'firefox/happy.html'),
     url('^(?P<product>(firefox|mobile))/((?P<channel>(aurora|beta))/)?notes/$',
         views.latest_notes, name='firefox.latest.notes'),

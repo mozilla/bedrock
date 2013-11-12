@@ -216,6 +216,7 @@ MINIFY_BUNDLES = {
         'firefox_geolocation': (
             'css/base/mozilla-expanders.less',
             'css/base/mozilla-modal.less',
+            'css/libs/mapbox.css',
             'css/firefox/geolocation.less'
         ),
         'firefox_happy': (
@@ -523,6 +524,7 @@ MINIFY_BUNDLES = {
             'js/firefox/whatsnew-fxos.js',
         ),
         'geolocation': (
+            'js/libs/mapbox.js',
             'js/base/mozilla-expanders.js',
             'js/firefox/geolocation-demo.js',
             'js/base/mozilla-modal.js',
@@ -744,8 +746,6 @@ HMAC_KEYS = {
 FEEDS = {
     'mozilla': 'https://blog.mozilla.org/feed/'
 }
-
-GMAP_API_KEY = ''
 
 BASKET_URL = 'http://basket.mozilla.com'
 

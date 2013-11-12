@@ -30,7 +30,7 @@
   </p>
 </div>
 
-<div id="main-content">
+<div id="main-content" data-mapbox="{{ settings.MAPBOX_TOKEN }}">
 
 <div class="main-column">
 
@@ -216,7 +216,5 @@
 </div>
 
 </div> <!-- end #main -->
-
-<script src="//maps.googleapis.com/maps/api/js?sensor=true&amp;key={{ gmap_api_key }}"></script>
 
 {% endblock %}
