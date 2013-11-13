@@ -8,16 +8,14 @@ from django.core.exceptions import ValidationError
 from django.forms import widgets
 from django.utils.safestring import mark_safe
 
+from product_details import product_details
+
 from bedrock.mozorg.forms import (
     FORMATS, EmailInput, PrivacyWidget,
     SideRadios, get_lang_choices
 )
-from product_details import product_details
-from tower import ugettext as _
-
-# Cannot use short "from . import utils" because we need to mock
-# utils.get_newsletters in our tests
 from bedrock.newsletter import utils
+from lib.l10n_utils.dotlang import _, _lazy
 
 
 def newsletter_title(newsletter):
@@ -190,9 +188,12 @@ class NewsletterFooterForm(forms.Form):
         regions = product_details.get_regions(locale)
         regions = sorted(regions.iteritems(), key=lambda x: x[1])
 
-        lang = country = locale.lower()
+        lang = locale.lower()
         if '-' in lang:
             lang, country = lang.split('-', 1)
+        else:
+            country = ''
+            regions.insert(0, ('', _lazy('Select country')))
         lang_choices = get_lang_choices()
         languages = [x[0] for x in lang_choices]
         if lang not in languages:
@@ -201,7 +202,7 @@ class NewsletterFooterForm(forms.Form):
             # choice, to force the user to pick one of the languages that
             # we do support.
             lang = ''
-            lang_choices.insert(0, (lang, lang))
+            lang_choices.insert(0, ('', _lazy('Available Languages')))
 
         super(NewsletterFooterForm, self).__init__(*args, **kwargs)
         self.fields['country'] = forms.ChoiceField(choices=regions,
@@ -211,8 +212,7 @@ class NewsletterFooterForm(forms.Form):
         self.fields['lang'] = forms.TypedChoiceField(widget=select_widget,
                                                      choices=lang_choices,
                                                      initial=lang,
-                                                     required=False,
-                                                     empty_value='')
+                                                     required=False)
 
     def clean_newsletter(self):
         # We didn't want to have to look up the list of valid newsletters
