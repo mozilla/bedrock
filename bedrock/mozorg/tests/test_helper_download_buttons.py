@@ -3,27 +3,81 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from django.conf import settings
+from django.test.client import RequestFactory
 from django.test.utils import override_settings
-from django.utils import unittest
-from test_utils import RequestFactory
 
 import jingo
+from mock import patch
 from nose.tools import eq_, ok_
 from product_details import product_details
 from pyquery import PyQuery as pq
 
-from bedrock.mozorg.helpers.download_buttons import make_download_link
+from bedrock.mozorg.helpers.download_buttons import (
+    firefox_details,
+    latest_version,
+    make_download_link,
+)
+from bedrock.mozorg.tests import TestCase
 
 
 _ALL = settings.STUB_INSTALLER_ALL
 
 
-def render(s, context={}):
+def render(s, context=None):
+    context = context or {}
     t = jingo.env.from_string(s)
     return t.render(context)
 
 
-class TestDownloadButtons(unittest.TestCase):
+GOOD_PLATS = {'Windows': {}, 'OS X': {}, 'Linux': {}}
+GOOD_BUILDS = {
+    'en-US': {
+        '25.0': GOOD_PLATS,  # current release
+        '26.0b2': GOOD_PLATS,
+        '27.0a1': GOOD_PLATS,
+    },
+    'de': {
+        '25.0': GOOD_PLATS,
+    },
+    'fr': {
+        '24.0': GOOD_PLATS,  # prev release
+    }
+}
+GOOD_VERSIONS = {
+    'LATEST_FIREFOX_VERSION': '25.0',
+    'LATEST_FIREFOX_DEVEL_VERSION': '26.0b2',
+    'FIREFOX_AURORA': '27.0a1',
+    'FIREFOX_ESR': '24.1.0esr',
+}
+
+
+@patch.object(firefox_details, 'firefox_primary_builds', GOOD_BUILDS)
+@patch.object(firefox_details, 'firefox_beta_builds', {})
+@patch.dict(firefox_details.firefox_versions, GOOD_VERSIONS)
+class TestLatestVersion(TestCase):
+    def test_latest_version(self):
+        """Should return platforms if localized build does exist."""
+        result = latest_version('de', 'release')
+        self.assertEqual(result[0], '25.0')
+        self.assertIs(result[1], GOOD_PLATS)
+
+    def test_latest_version_is_none_if_no_build(self):
+        """Should return None if the localized build for the channel doesn't exist."""
+        result = latest_version('fr', 'release')
+        self.assertIsNone(result)
+
+    def test_latest_version_channels(self):
+        """Should work with all channels."""
+        result = latest_version('en-US', 'beta')
+        self.assertEqual(result[0], '26.0b2')
+        self.assertIs(result[1], GOOD_PLATS)
+
+        result = latest_version('en-US', 'aurora')
+        self.assertEqual(result[0], '27.0a1')
+        self.assertIs(result[1], GOOD_PLATS)
+
+
+class TestDownloadButtons(TestCase):
 
     def latest_version(self):
         return product_details.firefox_versions['LATEST_FIREFOX_VERSION']
