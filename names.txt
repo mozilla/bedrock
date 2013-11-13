@@ -2080,3 +2080,4 @@ Bruaroey,Jan-Ivar
 Bonacci,James
 Shah,Saurabh
 Amarochan,Mohamed
+Agüero,Fernando
