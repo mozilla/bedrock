@@ -58,7 +58,7 @@
   <section class="pillars">
     <ul class="accordion">
 
-    {% if request.locale in ['en-US','en-GB'] %}
+    {% if request.locale in settings.LOCALES_WITH_LIGHTBEAM_HOME or settings.DEV %}
       <li id="panel-lightbeam" class="panel" tabindex="0">
         {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
         <h2 class="panel-title">{{ _('<i>Watch</i> the watchers') }}</h2>
@@ -88,6 +88,31 @@
       </li>
     {% endif %}
 
+    {% if request.locale in settings.LOCALES_WITH_VTCS_HOME or settings.DEV %}
+      <li id="panel-vans" class="panel" tabindex="0">
+        {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
+        <h2 class="panel-title">{{ _('<i>Stream</i> the surf') }}</h2>
+        <div class="panel-inner">
+          <div class="panel-content">
+            {% if request.locale in ['pt-BR'] %}
+            <a href="https://blog.mozilla.org/press-br/2013/11/12/viva-o-que-voce-ama-mozilla-firefox-e-vans-triple-crown-of-surfing/" hreflang="pt-BR">
+            {% elif request.locale in ['es-AR', 'es-CL', 'es-ES', 'es-MX'] %}
+            <a href="https://blog.mozilla.org/press-latam/2013/11/12/vive-lo-que-usted-ama-mozilla-firefox-y-el-vans-triple-crown-de-surfing/" hreflang="es-ES">
+            {% else %}
+            <a href="https://blog.mozilla.org/blog/2013/11/12/live-what-you-love-mozilla-firefox-the-vans-triple-crown-of-surfing" hreflang="en-US">
+            {% endif %}
+              <div class="angle">
+              <div class="content">
+                <h3>{{ _('Stream the surf') }}</h3>
+                <p>{{ _('Firefox connects you to the Vans Triple Crown of Surfing and all the things you love. Don‘t miss a second of the action from Hawaii, Nov. 12—Dec. 20.') }}</p>
+                <p class="go">{{ _('Learn more') }}</p>
+              </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </li>
+    {% else %}
       <li id="panel-fxos" class="panel" tabindex="0">
         {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
         <h2 class="panel-title">{{ _('<i>Look</i> ahead') }}</h2>
@@ -101,6 +126,7 @@
           </div>
         </div>
       </li>
+    {% endif %}
 
       <li id="panel-mdn" class="panel" tabindex="0">
         {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
@@ -117,7 +143,7 @@
         </div>
       </li>
 
-    {% if request.locale in ['en-US','en-GB'] %}
+    {% if request.locale in settings.LOCALES_WITH_LIGHTBEAM_HOME or settings.DEV %}
       <li id="panel-webmaker" class="panel" tabindex="0">
         {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
         <h2 class="panel-title">{{ _('<i>Learn</i> the Web') }}</h2>

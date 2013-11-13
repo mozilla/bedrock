@@ -142,13 +142,11 @@
 }
 
 .panel {
+    background-color: #777;
     display: block;
     margin: 0;
     position: relative;
-    -webkit-transition: background-position .5s ease-in-out;
-       -moz-transition: background-position .5s ease-in-out;
-         -o-transition: background-position .5s ease-in-out;
-            transition: background-position .5s ease-in-out;
+    .transition(background-position .5s ease-in-out);
 
     &:focus {
         outline: 0;
@@ -156,10 +154,7 @@
 
     &.expanded,
     &.compressed {
-        -webkit-transition: background-position .5s ease-in-out;
-           -moz-transition: background-position .5s ease-in-out;
-             -o-transition: background-position .5s ease-in-out;
-                transition: background-position .5s ease-in-out;
+        .transition(background-position .5s ease-in-out);
     }
 }
 
@@ -218,19 +213,13 @@
     right: 0;
     width: 100%;
     height: 100%;
-    -webkit-transition: background-color .5s ease-in-out;
-       -moz-transition: background-color .5s ease-in-out;
-         -o-transition: background-color .5s ease-in-out;
-            transition: background-color .5s ease-in-out;
+    .transition(background-color .5s ease-in-out);
 }
 
 // Set background to transparent, to "brighten" the panel as it opens.
 .expanded .panel-inner {
     background-color: transparent;
-    -webkit-transition: background-color .5s ease-in-out;
-       -moz-transition: background-color .5s ease-in-out;
-         -o-transition: background-color .5s ease-in-out;
-            transition: background-color .5s ease-in-out;
+    .transition(background-color .5s ease-in-out);
 }
 
 // Dim the unfocused panels
@@ -345,6 +334,7 @@
     background:         linear-gradient(bottom, rgba(185, 24, 26, .8) 65%, rgba(185, 24, 26, 0) 100%);
 }
 
+
 // Lightbeam
 #panel-lightbeam {
     background: #424f5a url(/media/img/home/panel/lightbeam/logo-lightbeam.png) -80px 20px no-repeat;
@@ -379,6 +369,7 @@
     background:         linear-gradient(bottom, rgba(66, 79, 90, .95) 50%, rgba(66, 79, 90, .8) 65%, rgba(66, 79, 90, 0) 100%);
 }
 
+
 // Firefox OS
 #panel-fxos {
     background: #0095dd url(/media/img/home/panel/firefoxos/firefoxos-fox.png?04-11-13) -100px -100px no-repeat;
@@ -400,6 +391,57 @@
     background:      -o-linear-gradient(bottom, rgba(0, 84, 160, .8) 65%, rgba(0, 84, 160, 0) 100%);
     background:         linear-gradient(bottom, rgba(0, 84, 160, .8) 65%, rgba(0, 84, 160, 0) 100%);
 }
+
+
+// Vans Triple Crown Surfing
+#panel-vans {
+    background: #159391 url(/media/img/home/panel/vans/bg-vtcs-en.jpg) -35px 0 no-repeat;
+
+    // These are presentational wrappers
+    .angle {
+        background: #159391;
+        height: 100%;
+        margin: -50% -50% -50% -25px;
+        padding: 50% 50% 50% 25px;
+        width: 100%;
+        .transform(rotate(5deg));
+
+        .content {
+            .transform(rotate(-5deg));
+        }
+    }
+
+    &.expanded {
+        background-position: -20px 0;
+    }
+
+    &.compressed {
+        background-position: -50px 0;
+    }
+}
+
+.wide #panel-vans .panel-title {
+    background: #159391;
+    background: rgba(21, 147, 145, .8);
+    background: -webkit-linear-gradient(bottom, rgba(21, 147, 145, .8) 65%, rgba(21, 147, 145, 0) 100%);
+    background:    -moz-linear-gradient(bottom, rgba(21, 147, 145, .8) 65%, rgba(21, 147, 145, 0) 100%);
+    background:      -o-linear-gradient(bottom, rgba(21, 147, 145, .8) 65%, rgba(21, 147, 145, 0) 100%);
+    background:         linear-gradient(bottom, rgba(21, 147, 145, .8) 65%, rgba(21, 147, 145, 0) 100%);
+}
+
+// A different image for Brazilian Portuguese
+.lang-pt-BR #panel-vans {
+    background-image: url(/media/img/home/panel/vans/bg-vtcs-pt.jpg);
+}
+
+// A different image for Spanish
+.lang-es-AR #panel-vans,
+.lang-es-CL #panel-vans,
+.lang-es-ES #panel-vans,
+.lang-es-MX #panel-vans {
+    background-image: url(/media/img/home/panel/vans/bg-vtcs-es.jpg);
+}
+
 
 // MDN
 #panel-mdn {
@@ -443,6 +485,7 @@
     background:      -o-linear-gradient(bottom, rgba(0, 0, 0, .8) 65%, rgba(0, 0, 0, 0) 100%);
     background:         linear-gradient(bottom, rgba(0, 0, 0, .8) 65%, rgba(0, 0, 0, 0) 100%);
 }
+
 
 // Mozilla Festival
 #panel-mozfest {
@@ -493,6 +536,7 @@
     background:         linear-gradient(bottom, rgba(206, 211, 211, .95) 50%, rgba(206, 211, 211, .85) 65%, rgba(206, 211, 211, 0) 100%);
 }
 
+
 // Webmaker
 #panel-webmaker {
     background: #e1ebed url(/media/img/home/panel/webmaker/logo-webmaker.png) -95px 15px no-repeat;
@@ -530,6 +574,7 @@
     background:      -o-linear-gradient(bottom, rgba(225, 235, 237, .8) 65%, rgba(225, 235, 237, 0) 100%);
     background:         linear-gradient(bottom, rgba(225, 235, 237, .8) 65%, rgba(225, 235, 237, 0) 100%);
 }
+
 
 // @High resolution images for @retina-type displays
 @media (-webkit-min-device-pixel-ratio: 1.5),
@@ -957,6 +1002,33 @@
         }
     }
 
+    // Vans Triple Crown
+    #panel-vans {
+        background-image: url(/media/img/home/panel/vans/bg-vtcs-en-md.jpg);
+        background-position: -30px 0;
+
+        &.expanded {
+            background-position: -20px 0;
+        }
+
+        &.compressed {
+            background-position: -35px 0;
+        }
+    }
+
+    // A different image for Brazilian Portuguese
+    .lang-pt-BR #panel-vans {
+        background-image: url(/media/img/home/panel/vans/bg-vtcs-pt-md.jpg);
+    }
+
+    // A different image for Spanish
+    .lang-es-AR #panel-vans,
+    .lang-es-CL #panel-vans,
+    .lang-es-ES #panel-vans,
+    .lang-es-MX #panel-vans {
+        background-image: url(/media/img/home/panel/vans/bg-vtcs-es-md.jpg);
+    }
+
     // MDN
     #panel-mdn {
         background-position: -100px -5px;
@@ -1100,7 +1172,10 @@
     .lang-fr,
     .lang-de,
     .lang-el,
-    .lang-es-ES {
+    .lang-es-ES,
+    .lang-es-MX,
+    .lang-es-CL,
+    .lang-es-AR {
         .mission .tagline {
             font-size: 24px;
         }
@@ -1198,6 +1273,7 @@
         }
     }
 
+
     // Lightbeam
     #panel-lightbeam {
         background-image: url(/media/img/home/panel/lightbeam/logo-lightbeam-sm.png);
@@ -1217,6 +1293,7 @@
         }
     }
 
+
     // Firefox OS
     #panel-fxos {
         background-image: url(/media/img/home/panel/firefoxos/firefoxos-fox-sm.png?04-11-13);
@@ -1230,6 +1307,36 @@
             background-position: -85px -110px;
         }
     }
+
+
+    // Vans Triple Crown Surfing
+    .accordion #panel-vans {  // higher specificity to override locale
+        background-image: url(/media/img/home/panel/vans/bg-vtcs-sm.png);
+        background-position: -50px -145px;
+
+        .angle {
+            background: transparent;
+            margin: 0;
+            padding: 0;
+            width: auto;
+            height: auto;
+            .transform(none);
+
+            .content {
+                .transform(none);
+            }
+        }
+
+        &.expanded {
+            background-position: -50px -60px;
+        }
+
+        &.compressed {
+            background-position: -50px -160px;
+        }
+
+    }
+
 
     // MDN
     #panel-mdn {
@@ -1455,6 +1562,23 @@
             background-position: -40px -110px;
         }
     }
+
+
+    // Vans Triple Crown Surfing
+    .accordion #panel-vans { // higher specificity to override locale
+        background-position: -15px -140px;
+
+        &.expanded {
+            background-position: -15px -70px;
+        }
+
+        &.compressed {
+            background-position: -15px -160px;
+        }
+
+    }
+
+
 
     //MDN
     #panel-mdn {
