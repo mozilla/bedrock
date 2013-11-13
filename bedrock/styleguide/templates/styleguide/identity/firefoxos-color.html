@@ -12,11 +12,13 @@
 {% set page_title = 'Firefox OS color' %}
 
 {% block content_area %}
+
 <section id="intro">
   <h2>Usage</h2>
   <p>Use these colors to guide your designs and layouts, both online and off, to ensure you’re staying consistent with the Firefox OS brand.</p>
 </section>
-<section>
+
+<section id="swatches">
   <div class="swatch-card">
     <h2>Swatches</h2>
   </div>
@@ -201,6 +203,51 @@
         <th>K</th> <td>34</td>
         <th></th> <td></td>
     </table>
+  </div>
+</section>
+
+<section id="color-combinations">
+  <div id="color-combinations-title">
+    <h2>Type and color combinations</h2>
+    <p>Never use more than two colors between type and the background. Limit one gradient per composition, whether applied to the type or the background. For maximum contrast, use white type on a color or gradient background. </p>
+  </div>
+  <div id="color-combinations-color">
+    <h2>Color background or type</h2>
+    <img src="{{ media('/img/styleguide/identity/firefoxos/color-combinations-color.png?2013-10') }}" alt="Color background or type">
+    <h2>Vertical gradient type</h2>
+    <img src="{{ media('/img/styleguide/identity/firefoxos/color-combinations-color-vertical.png?2013-10') }}" alt="Vertical gradient type">
+  </div>
+  <div id="color-combinations-gradient">
+    <h2>Gradient backgrounds</h2>
+    <img src="{{ media('/img/styleguide/identity/firefoxos/color-combinations-gradient.png?2013-10') }}" alt="Gradient backgrounds">
+  </div>
+</section>
+
+<section id="color-donts">
+  <h2>Color and gradient don’ts</h2>
+  <div class="example">
+    <img src="{{ media('/img/styleguide/identity/firefoxos/color-dont-two-gradients.png?2013-10') }}" alt="Don't use two gradients on an application example">
+    <p>Don't use two gradients on an application</p>
+  </div>
+  <div class="example">
+    <img src="{{ media('/img/styleguide/identity/firefoxos/color-dont-firefox-colors.png?2013-10') }}" alt="Don’t use the Firefox OS colors as tints example">
+    <p>Don’t use the Firefox OS colors as tints </p>
+  </div>
+  <div class="example">
+    <img src="{{ media('/img/styleguide/identity/firefoxos/color-dont-outside-colors.png?2013-10') }}" alt="Don’t use colors outside of the color palette example">
+    <p>Don’t use colors outside of the color palette </p>
+  </div>
+  <div class="example">
+    <img src="{{ media('/img/styleguide/identity/firefoxos/color-dont-illegible.png?2013-10') }}" alt="Don't choose a color background that renders the wordmark or type illegible example">
+    <p>Don't choose a color background that renders the wordmark or type illegible </p>
+  </div>
+  <div class="example">
+    <img src="{{ media('/img/styleguide/identity/firefoxos/color-dont-gradients.png?2013-10') }}" alt="Don’t use or create gradients other than specified example">
+    <p>Don’t use or create gradients other than specified</p>
+  </div>
+  <div class="example">
+    <img src="{{ media('/img/styleguide/identity/firefoxos/color-dont-image.png?2013-10') }}" alt="Don’t place colored text on top of an image example">
+    <p>Don’t place colored text on top of an image </p>
   </div>
 </section>
 
