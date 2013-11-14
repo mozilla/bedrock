@@ -437,29 +437,28 @@
   </article>
 </div> <!--/#article-wrapper-->
 
-<div id="overlay-container">
-  <article id="overlay">
-    <section id="testimonials" class="overlay-contents">
-      <h2>{{ _('Firefox Marketplace — Developer testimonials') }}</h2>
-      <div class="video-wrapper"><iframe width="640" height="360" src="//www.youtube-nocookie.com/embed/videoseries?list=PLWK3kWTuPoUKFCTRtVkTUXn26PYF311w9" frameborder="0" allowfullscreen></iframe></div>
-    </section>
-    <section id="mwc-wrapup" class="overlay-contents">
-      <h2>{{ _('Firefox at Mobile World Congress 2013') }}</h2>
-      <div class="video-wrapper">
-      {{ video('MWC_2013.mp4',
-               'MWC_2013.webm',
-               prefix='//videos-cdn.mozilla.net/serv/drafts/',
-               poster=media('img/firefox/partners/mwc-wrapup-poster.jpg')) }}
-      </div>
-    </section>
-    <section id="form" class="overlay-contents{% if form_success %} form-success{% endif %}">
-      <div class="form-results">
-        <h3>{{ _('Thanks for your interest in partnering with us') }}</h3>
-        <p>{{ _('We will review your request and get back to you about possibilities and opportunities soon.') }}</p>
-      </div>
 
-      <form action="{{ secure_url('firefox.partners.index') }}" role="dialog" aria-labelledby="get-involved-title" aria-describedby="get-involved-description" method="POST" id="sf-form" class="sf-form{% if form_success %} completed{% endif %}">
+<div id="overlay">
+  <section id="testimonials" class="overlay-contents">
+    <h2>{{ _('Firefox Marketplace — Developer testimonials') }}</h2>
+    <div class="video-wrapper"><iframe width="640" height="360" src="//www.youtube-nocookie.com/embed/videoseries?list=PLWK3kWTuPoUKFCTRtVkTUXn26PYF311w9" frameborder="0" allowfullscreen></iframe></div>
+  </section>
+  <section id="mwc-wrapup" class="overlay-contents">
+    <h2>{{ _('Firefox at Mobile World Congress 2013') }}</h2>
+    <div class="video-wrapper">
+    {{ video('MWC_2013.mp4',
+             'MWC_2013.webm',
+             prefix='//videos-cdn.mozilla.net/serv/drafts/',
+             poster=media('img/firefox/partners/mwc-wrapup-poster.jpg')) }}
+    </div>
+  </section>
+  <section id="form" class="overlay-contents{% if form_success %} form-success{% endif %}">
+    <div class="form-results">
+      <h3>{{ _('Thanks for your interest in partnering with us') }}</h3>
+      <p>{{ _('We will review your request and get back to you about possibilities and opportunities soon.') }}</p>
+    </div>
 
+    <form action="{{ secure_url('firefox.partners.index') }}" role="dialog" aria-labelledby="get-involved-title" aria-describedby="get-involved-description" method="POST" id="sf-form" class="sf-form{% if form_success %} completed{% endif %}">
       <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
 
       <!--  ----------------------------------------------------------------------  -->
@@ -534,11 +533,9 @@
       </div>
 
       {{ form.superpriority }}
-
-      </form>
-      <button id="pageslider-close" type="button" class="modal-close close">{{ _('Close') }}</button>
-    </section>
-  </article>
+    </form>
+    <button id="pageslider-close" type="button" class="modal-close close">{{ _('Close') }}</button>
+  </section>
 </div>
 
 {% endblock %}
