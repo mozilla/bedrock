@@ -24,10 +24,11 @@ class TestNewsletterFooter(TestCase):
         doc = pq(resp.content)
         eq_(doc('#id_country option[selected="selected"]').val(), 'us')
 
+        # no country in locale, no country selected
         with self.activate('fr'):
             resp = self.client.get(reverse(self.view_name))
         doc = pq(resp.content)
-        eq_(doc('#id_country option[selected="selected"]').val(), 'fr')
+        eq_(doc('#id_country option[selected="selected"]').val(), '')
 
         with self.activate('pt-BR'):
             resp = self.client.get(reverse(self.view_name))

@@ -199,11 +199,15 @@ class TestNewsletterFooterForm(TestCase):
         self.assertEqual(data['lang'], cleaned_data['lang'])
 
     def test_country_default(self):
-        """country defaults based on the locale"""
+        """country defaults based on the locale.
+
+        But only for country based locales (e.g. pt-BR)"""
         form = NewsletterFooterForm(locale='fr')
-        self.assertEqual('fr', form.fields['country'].initial)
+        self.assertEqual('', form.fields['country'].initial)
         form = NewsletterFooterForm(locale='pt-BR')
         self.assertEqual('br', form.fields['country'].initial)
+        form = NewsletterFooterForm(locale='zh-TW')
+        self.assertEqual('tw', form.fields['country'].initial)
 
     def test_lang_default(self):
         """lang defaults based on the locale"""
