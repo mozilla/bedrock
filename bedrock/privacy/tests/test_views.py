@@ -3,7 +3,6 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from django.core import mail
-from django.test.client import Client
 
 from bedrock.mozorg.tests import TestCase
 from funfactory.urlresolvers import reverse
@@ -13,7 +12,6 @@ from nose.tools import eq_
 
 class PrivacyFormTest(TestCase):
     def setUp(self):
-        self.client = Client()
         self.contact = 'foo@bar.com'
         with self.activate('en-US'):
             self.url = reverse('privacy.index')

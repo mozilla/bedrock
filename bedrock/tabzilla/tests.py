@@ -7,7 +7,7 @@ import time
 from hashlib import md5
 
 from django.conf import settings
-from django.test import Client, RequestFactory
+from django.test import RequestFactory
 from django.test.utils import override_settings
 from django.utils.http import parse_http_date
 
@@ -20,9 +20,6 @@ from bedrock.tabzilla.middleware import TabzillaLocaleURLMiddleware
 
 
 class TabzillaViewTests(TestCase):
-    def setUp(self):
-        self.client = Client()
-
     def test_tabzilla_content_type(self):
         """ Content-Type header should be text/javascript. """
         with self.activate('en-US'):
@@ -48,9 +45,6 @@ class TabzillaViewTests(TestCase):
 @patch.object(settings, 'DEV_LANGUAGES', ['en-US', 'de'])
 @patch.object(settings, 'PROD_LANGUAGES', ['en-US', 'de'])
 class TabzillaRedirectTests(TestCase):
-    def setUp(self):
-        self.client = Client()
-
     def _process_request(self, url):
         rf = RequestFactory()
         req = rf.get(url)

@@ -6,7 +6,6 @@ import os
 
 from django.conf import settings
 from django.core.urlresolvers import clear_url_caches
-from django.test.client import Client
 
 from jingo import env
 from jinja2 import FileSystemLoader
@@ -44,7 +43,6 @@ class TestL10nBlocks(TestCase):
 class TestTransBlocks(TestCase):
     def setUp(self):
         clear_url_caches()
-        self.client = Client()
 
     def test_trans_block_works(self):
         """ Sanity check to make sure translations work at all. """
@@ -68,7 +66,6 @@ class TestTransBlocks(TestCase):
 class TestTemplateLangFiles(TestCase):
     def setUp(self):
         clear_url_caches()
-        self.client = Client()
 
     @patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
     def test_added_lang_files(self):

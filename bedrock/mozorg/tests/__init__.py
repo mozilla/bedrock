@@ -4,15 +4,15 @@
 
 from contextlib import contextmanager
 
+from django.test import TestCase
 from django.utils.translation import get_language
-from django.utils import unittest
 
 import test_utils
 from tower import activate
 from funfactory.urlresolvers import (get_url_prefix, Prefixer, set_url_prefix)
 
 
-class TestCase(unittest.TestCase):
+class TestCase(TestCase):
     """Base class for Bedrock test cases."""
     def shortDescription(self):
         # Stop nose using the test docstring and instead the test method name.

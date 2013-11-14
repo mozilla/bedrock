@@ -25,3 +25,4 @@ Thumbs.db
 Desktop.ini
 venv
 .vagrant
+*.db

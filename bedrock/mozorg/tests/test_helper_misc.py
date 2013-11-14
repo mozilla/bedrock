@@ -3,7 +3,7 @@ import os.path
 from mock import patch
 
 from django.conf import settings
-from django.test.client import Client, RequestFactory
+from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
 import basket
@@ -181,9 +181,6 @@ class TestVideoTag(TestCase):
 
 @patch.object(settings, 'ROOT_URLCONF', 'bedrock.mozorg.tests.urls')
 class TestNewsletterFunction(TestCase):
-    def setUp(self):
-        self.client = Client()
-
     def test_get_form(self):
         response = self.client.get('/en-US/base/')
         doc = pq(response.content)
