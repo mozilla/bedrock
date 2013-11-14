@@ -205,11 +205,18 @@ class NewsletterFooterForm(forms.Form):
             lang_choices.insert(0, ('', _lazy('Available Languages')))
 
         super(NewsletterFooterForm, self).__init__(*args, **kwargs)
-        self.fields['country'] = forms.ChoiceField(choices=regions,
+
+        required_args = {
+            'required': 'required',
+            'aria-required': 'true',
+        }
+        country_widget = widgets.Select(attrs=required_args)
+        self.fields['country'] = forms.ChoiceField(widget=country_widget,
+                                                   choices=regions,
                                                    initial=country,
                                                    required=False)
-        select_widget = widgets.Select(attrs={'required': 'required'})
-        self.fields['lang'] = forms.TypedChoiceField(widget=select_widget,
+        lang_widget = widgets.Select(attrs=required_args)
+        self.fields['lang'] = forms.TypedChoiceField(widget=lang_widget,
                                                      choices=lang_choices,
                                                      initial=lang,
                                                      required=False)
