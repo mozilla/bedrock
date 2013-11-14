@@ -46,6 +46,7 @@ unknown_address_text = _lazy(
     u'This email address is not in our system. Please double check your '
     u'address or <a href="%s">subscribe to our newsletters.</a>')
 
+invalid_email_address = _lazy(u'This is not a valid email address')
 
 UNSUB_UNSUBSCRIBED_ALL = 1
 UNSUB_REASONS_SUBMITTED = 2
@@ -73,8 +74,7 @@ def confirm(request, token):
         result = basket.confirm(token)
     except basket.BasketException as e:
         log.exception("Exception confirming token %s" % token)
-        if e.status_code == 403:
-            # Basket returns 403 on bad token
+        if e.code == basket.errors.BASKET_UNKNOWN_TOKEN:
             token_error = True
         else:
             # Any other exception
@@ -143,8 +143,8 @@ def existing(request, token=None):
             log.exception("Basket timeout")
             messages.add_message(request, messages.ERROR, general_error)
             return l10n_utils.render(request, 'newsletter/existing.html')
-        except basket.BasketException:
-            log.exception("FAILED to get user from token")
+        except basket.BasketException as e:
+            log.exception("FAILED to get user from token (%s)", e.desc)
         else:
             user_exists = True
 
@@ -245,17 +245,25 @@ def existing(request, token=None):
             if remove_all:
                 try:
                     basket.unsubscribe(token, user['email'], optout=True)
-                except (basket.BasketException, requests.Timeout):
+                except basket.BasketException as e:
                     log.exception("Error updating subscriptions in basket")
                     messages.add_message(
                         request, messages.ERROR, general_error
                     )
                     return l10n_utils.render(request,
                                              'newsletter/existing.html')
-                # We need to pass their token to the next view
-                url = reverse('newsletter.updated') \
-                    + "?unsub=%s&token=%s" % (UNSUB_UNSUBSCRIBED_ALL, token)
-                return redirect(url)
+                except requests.Timeout as e:
+                    log.exception("Error updating subscriptions in basket")
+                    messages.add_message(
+                        request, messages.ERROR, general_error
+                    )
+                    return l10n_utils.render(request,
+                                             'newsletter/existing.html')
+                else:
+                    # We need to pass their token to the next view
+                    url = reverse('newsletter.updated') \
+                        + "?unsub=%s&token=%s" % (UNSUB_UNSUBSCRIBED_ALL, token)
+                    return redirect(url)
 
             # We're going to redirect, so the only way to tell the next
             # view that we should display the welcome message in the
@@ -387,10 +395,13 @@ def one_newsletter_signup(request, template_name):
         try:
             basket.subscribe(data['email'], data['newsletter'],
                              **kwargs)
-        except basket.BasketException:
-            log.exception("Error subscribing %s to newsletter %s" %
-                          (data['email'], data['newsletter']))
-            form.errors['__all__'] = form.error_class([general_error])
+        except basket.BasketException as e:
+            if e.code == basket.errors.BASKET_INVALID_EMAIL:
+                form.errors['email'] = form.error_class([invalid_email_address])
+            else:
+                log.exception("Error subscribing %s to newsletter %s" %
+                              (data['email'], data['newsletter']))
+                form.errors['__all__'] = form.error_class([general_error])
         else:
             success = True
 
@@ -417,8 +428,9 @@ def recovery(request):
                 # Try it - basket will return an error if the email is unknown
                 basket.send_recovery_message(email)
             except basket.BasketException as e:
-                # Was it that their email was not known?
-                if e.status_code == 404:
+                # Was it that their email was not known?  Or it could be invalid,
+                # but that doesn't really make a difference.
+                if e.code in (basket.errors.BASKET_UNKNOWN_EMAIL, basket.errors.BASKET_INVALID_EMAIL):
                     # Tell them, give them a link to go subscribe if they want
                     url = reverse('newsletter.mozilla-and-you')
                     form.errors['email'] = \

@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 import uuid
-from bedrock.newsletter.views import unknown_address_text, recovery_text
+from bedrock.newsletter.views import recovery_text, unknown_address_text
 
 from django.http import HttpResponse
 from django.test.client import Client
@@ -10,7 +10,7 @@ from django.test.client import Client
 from mock import DEFAULT, patch
 from nose.tools import ok_
 
-from basket import BasketException
+from basket import BasketException, errors
 from bedrock.mozorg.tests import TestCase
 from bedrock.newsletter.utils import clear_caches
 from funfactory.urlresolvers import reverse
@@ -196,7 +196,7 @@ class TestExistingNewsletterView(TestCase):
             with patch('lib.l10n_utils.render') as render:
                 render.return_value = HttpResponse('')
                 with patch('django.contrib.messages.add_message') as add_msg:
-                    basket_patches['user'].side_effect = BasketException
+                    basket_patches['user'].side_effect = BasketException('Email address not known', code=errors.BASKET_UNKNOWN_EMAIL)
                     rsp = self.client.get(url)
         # Should have given a message
         self.assertEqual(1, add_msg.call_count,
@@ -231,7 +231,7 @@ class TestExistingNewsletterView(TestCase):
             with patch('lib.l10n_utils.render') as render:
                 render.return_value = HttpResponse('')
                 with patch('django.contrib.messages.add_message') as add_msg:
-                    basket_patches['user'].side_effect = BasketException
+                    basket_patches['user'].side_effect = BasketException('User not found', code=errors.BASKET_UNKNOWN_TOKEN)
                     rsp = self.client.post(url, self.data)
         # Shouldn't call basket except for the attempt to find the user
         self.assertEqual(0, basket_patches['update_user'].call_count)
@@ -451,7 +451,7 @@ class TestConfirmView(TestCase):
     def test_basket_down(self):
         """If basket is down, we report the appropriate error"""
         with patch('basket.confirm') as confirm:
-            confirm.side_effect = BasketException()
+            confirm.side_effect = BasketException('network error', code=errors.BASKET_NETWORK_FAILURE)
             with patch('lib.l10n_utils.render') as mock_render:
                 mock_render.return_value = HttpResponse('')
                 rsp = self.client.get(self.url, follow=True)
@@ -465,7 +465,7 @@ class TestConfirmView(TestCase):
     def test_bad_token(self):
         """If the token is bad, we report the appropriate error"""
         with patch('basket.confirm') as confirm:
-            confirm.side_effect = BasketException(status_code=403)
+            confirm.side_effect = BasketException('unknown token', status_code=403, code=errors.BASKET_UNKNOWN_TOKEN)
             with patch('lib.l10n_utils.render') as mock_render:
                 mock_render.return_value = HttpResponse('')
                 rsp = self.client.get(self.url, follow=True)
@@ -493,7 +493,7 @@ class TestRecoveryView(TestCase):
     def test_unknown_email(self, mock_basket):
         """Unknown email addresses give helpful error message"""
         data = {'email': 'unknown@example.com'}
-        mock_basket.side_effect = BasketException(status_code=404)
+        mock_basket.side_effect = BasketException('unknown email', status_code=404, code=errors.BASKET_UNKNOWN_EMAIL)
         rsp = self.client.post(self.url, data)
         self.assertTrue(mock_basket.called)
         self.assertEqual(200, rsp.status_code)
