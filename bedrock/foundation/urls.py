@@ -38,6 +38,9 @@ urlpatterns = patterns('',
     page('annualreport/2011', 'foundation/annualreport/2011.html'),
     page('annualreport/2011/faq', 'foundation/annualreport/2011faq.html'),
 
+    page('annualreport/2012', 'foundation/annualreport/2012/index.html'),
+    page('annualreport/2012/faq', 'foundation/annualreport/2012/faq.html'),
+
     page('feed-icon-guidelines', 'foundation/feed-icon-guidelines/index.html'),
     page('feed-icon-guidelines/faq', 'foundation/feed-icon-guidelines/faq.html'),
 
