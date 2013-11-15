@@ -763,7 +763,8 @@ LOCALES_WITH_LIGHTBEAM_HOME = ['en-GB', 'en-US', 'en-ZA', 'ar', 'ca', 'da', 'de'
                             'ko', 'mk', 'nl', 'pt-BR', 'ru', 'sq', 'sv-SE', 'tr', 'zh-TW']
 
 # Locales with the Vans Triple Crown banner on home page
-LOCALES_WITH_VTCS_HOME = ['en-GB', 'en-US', 'en-ZA', 'de', 'eu', 'it', 'sv-SE', 'zh-TW']
+LOCALES_WITH_VTCS_HOME = ['en-GB', 'en-US', 'en-ZA', 'da', 'de', 'el', 'es-ES', 'eu',
+                          'it', 'sv-SE', 'tr', 'zh-TW']
 
 # reCAPTCHA keys
 RECAPTCHA_PUBLIC_KEY = ''
