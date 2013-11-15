@@ -46,6 +46,14 @@
         }
       ]
     },
+    "gr": {
+      "partner": [
+        {
+          "name": "Cosmote",
+          "url": "http://www.cosmote.gr/cosmoportal/cosmote.portal?_nfpb=true&_pageLabel=HDV&sku=20290038&s=0"
+        }
+      ]
+    },
     "hu": {
       "partner": [
         {
