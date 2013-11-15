@@ -75,7 +75,7 @@
   <body>
     {{ email_newsletter_form('app-dev',
                  _('Subscribe to our newsletter.'),
-                 include_language=True) }}
+                 include_language=False) }}
     <script>
       {# set target without invalidating already translated strings. #}
       document.getElementsByTagName('a')[0].target = '_top';
