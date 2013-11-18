@@ -144,8 +144,12 @@ def download_firefox(ctx, build='release', small=False, icon=True,
     funnelcake_id = ctx.get('funnelcake_id', False)
     dom_id = dom_id or 'download-button-%s-%s' % (platform, build)
 
-    version, platforms = (latest_version(locale, build) or
-                          latest_version('en-US', build))
+    l_version = latest_version(locale, build)
+    if l_version:
+        version, platforms = l_version
+    else:
+        locale = 'en-US'
+        version, platforms = latest_version('en-US', build)
 
     # Gather data about the build for each platform
     builds = []
