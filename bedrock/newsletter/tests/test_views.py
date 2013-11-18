@@ -2,17 +2,18 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 import uuid
-from bedrock.newsletter.views import unknown_address_text, recovery_text
 
 from django.http import HttpResponse
-
-from mock import DEFAULT, patch
-from nose.tools import ok_
+from django.test.client import RequestFactory
 
 from basket import BasketException
+from funfactory.urlresolvers import reverse
+from mock import DEFAULT, patch
+from nose.tools import eq_, ok_
+
 from bedrock.mozorg.tests import TestCase
 from bedrock.newsletter.utils import clear_caches
-from funfactory.urlresolvers import reverse
+from bedrock.newsletter.views import unknown_address_text, recovery_text, updated
 
 
 # Test data for newsletters
@@ -67,6 +68,7 @@ def assert_redirect(response, url):
 class TestViews(TestCase):
     def setUp(self):
         clear_caches()
+        self.rf = RequestFactory()
 
     def test_hacks_newsletter_frames_allow(self):
         """
@@ -77,6 +79,25 @@ class TestViews(TestCase):
             resp = self.client.get(reverse('mozorg.hacks_newsletter'))
 
         ok_('x-frame-options' not in resp)
+
+    @patch('bedrock.newsletter.views.l10n_utils.render')
+    def test_updated_allows_good_tokens(self, mock_render):
+        token = unicode(uuid.uuid4())
+        req = self.rf.get('/', {'token': token, 'unsub': 1})
+        updated(req)
+        self.assertEqual(mock_render.call_args[0][2]['token'], token)
+
+    @patch('bedrock.newsletter.views.l10n_utils.render')
+    def test_updated_disallows_bad_tokens(self, mock_render):
+        token = 'the-dude'
+        req = self.rf.get('/', {'token': token, 'unsub': 1})
+        updated(req)
+        eq_(mock_render.call_args[0][2]['token'], None)
+
+        token = '\'>"><img src=x onerror=alert(1)>'
+        req = self.rf.get('/', {'token': token, 'unsub': 1})
+        updated(req)
+        eq_(mock_render.call_args[0][2]['token'], None)
 
 
 # Always mock basket.request to be sure we never actually call basket
