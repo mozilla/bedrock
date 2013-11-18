@@ -357,6 +357,12 @@ class TestRobots(TestCase):
         self.assertEqual(response.get('Content-Type'), 'text/plain')
 
 
+# prevent view from calling to salesforce.com
+post_mock = Mock()
+status_mock = post_mock.return_value.status_code = 200
+
+
+@patch('bedrock.mozorg.views.requests.post', post_mock)
 class TestProcessPartnershipForm(TestCase):
     def setUp(self):
         self.factory = RequestFactory()
