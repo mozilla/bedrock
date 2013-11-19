@@ -334,6 +334,9 @@ def updated(request):
 
     # Token might also have been passed (on remove_all only)
     token = request.REQUEST.get('token', None)
+    # token must be a UUID
+    if token is not None and not UUID_REGEX.match(token):
+        token = None
 
     # Say thank you unless we're saying something more specific
     if not unsub:
