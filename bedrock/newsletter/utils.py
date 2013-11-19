@@ -1,3 +1,5 @@
+from hashlib import md5
+
 from django.conf import settings
 from django.core.cache import cache
 
@@ -7,7 +9,7 @@ import commonware.log
 log = commonware.log.getLogger('b.newsletter')
 
 NEWSLETTERS_CACHE_KEY = "newsletter-data"
-NEWSLETTER_LANGUAGES_CACHE_KEY = "newsletter-languages"
+NEWSLETTERS_CACHE_TIMEOUT = 3600  # 1 hour
 
 
 def get_newsletters():
@@ -29,29 +31,38 @@ def get_newsletters():
             log.exception("Error getting newsletters from basket")
             return settings.DEFAULT_NEWSLETTERS
         # Cache for an hour - newsletters very rarely change
-        cache.set(NEWSLETTERS_CACHE_KEY, data, 3600)
-        cache.delete(NEWSLETTER_LANGUAGES_CACHE_KEY)
+        cache.set(NEWSLETTERS_CACHE_KEY, data, NEWSLETTERS_CACHE_TIMEOUT)
     return data
 
 
-def get_newsletter_languages():
-    """Return a set of the language codes supported by our newsletters.
-    Any language supported by any newletter is included.
+def get_languages_for_newsletters(newsletters=None):
+    """Return a set of language codes supported by the newsletters.
+
+    If no newsletters are provided, it will return language codes
+    supported by all newsletters.
 
     These are 2-letter language codes and `do not` include the country part,
     even if the newsletter languages list does.  E.g. this returns 'pt',
     not 'pt-Br'
     """
-    # Cache this for a little while.  get_newsletters() will invalidate our
-    # cache if the newsletters change.
-    langs = cache.get(NEWSLETTER_LANGUAGES_CACHE_KEY)
+    cache_key = 'newsletter:languages:' + md5(repr(newsletters)).hexdigest()
+
+    langs = cache.get(cache_key)
     if langs is None:
+        all_newsletters = get_newsletters()
+        if newsletters is None:
+            newsletters = all_newsletters.values()
+        else:
+            if isinstance(newsletters, basestring):
+                newsletters = [nl.strip() for nl in newsletters.split(',')]
+            newsletters = [all_newsletters.get(nl, {}) for nl in newsletters]
+
         langs = set()
-        for newsletter in get_newsletters().values():
-            langs.update(locale[:2] for locale in newsletter.get('languages', []))
-        # Long cache okay; get_newsletters() invalidates our cache if the
-        # newsletters change
-        cache.set(NEWSLETTER_LANGUAGES_CACHE_KEY, langs, 3600 * 24 * 7)
+        for newsletter in newsletters:
+            langs.update(lang[:2].lower() for lang in newsletter.get('languages', []))
+
+        cache.set(cache_key, langs, NEWSLETTERS_CACHE_TIMEOUT)
+
     return langs
 
 
@@ -65,9 +76,3 @@ def custom_unsub_reason(token, reason):
         'reason': reason,
     }
     return basket.request('post', 'custom_unsub_reason', data=data)
-
-
-def clear_caches():
-    # Just for testing
-    cache.delete(NEWSLETTERS_CACHE_KEY)
-    cache.delete(NEWSLETTER_LANGUAGES_CACHE_KEY)

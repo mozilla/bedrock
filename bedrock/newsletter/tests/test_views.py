@@ -8,46 +8,16 @@ from django.test.client import RequestFactory
 
 from basket import BasketException
 from funfactory.urlresolvers import reverse
-from mock import DEFAULT, patch
+from mock import DEFAULT, Mock, patch
 from nose.tools import eq_, ok_
 
 from bedrock.mozorg.tests import TestCase
-from bedrock.newsletter.utils import clear_caches
+from bedrock.newsletter.tests import newsletters
 from bedrock.newsletter.views import unknown_address_text, recovery_text, updated
 
 
-# Test data for newsletters
-# In the format returned by utils.get_newsletters()
-newsletters = {
-    u'mozilla-and-you': {
-        'title': "Firefox & You",
-        'languages': ['en', 'fr', 'de', 'pt', 'ru'],
-        'show': True,
-        'description': 'Firefox and you',
-        'order': 4,
-    },
-    u'firefox-tips': {
-        'show': True,
-        'title': 'Firefox Tips',
-        'languages': ['en', 'fr', 'de', 'pt', 'ru'],
-        'description': 'Firefox tips',
-        'order': 2,
-    },
-    u'beta': {
-        'show': False,
-        'title': 'Beta News',
-        'languages': ['en'],
-        'description': 'Beta News',
-        'order': 3,
-    },
-    u'join-mozilla': {
-        'show': False,
-        'title': 'Join Mozilla',
-        'languages': ['en'],
-        'description': 'Join Mozilla',
-        'order': 1,
-    },
-}
+cache_mock = Mock()
+cache_mock.get.return_value = None
 
 
 def assert_redirect(response, url):
@@ -65,9 +35,9 @@ def assert_redirect(response, url):
         (url, response['Location'])
 
 
+@patch('bedrock.newsletter.utils.cache', cache_mock)
 class TestViews(TestCase):
     def setUp(self):
-        clear_caches()
         self.rf = RequestFactory()
 
     def test_hacks_newsletter_frames_allow(self):
@@ -103,6 +73,7 @@ class TestViews(TestCase):
 # Always mock basket.request to be sure we never actually call basket
 # during tests.
 @patch('basket.base.request')
+@patch('bedrock.newsletter.utils.cache', cache_mock)
 class TestExistingNewsletterView(TestCase):
     def setUp(self):
         self.token = unicode(uuid.uuid4())
@@ -138,7 +109,6 @@ class TestExistingNewsletterView(TestCase):
             u'form-4-subscribed': u'False',
             u'submit': u'Save Preferences',
         }
-        clear_caches()
         super(TestExistingNewsletterView, self).setUp()
 
     @patch('bedrock.newsletter.utils.get_newsletters')
@@ -445,11 +415,11 @@ class TestExistingNewsletterView(TestCase):
                          newsletters_in_order)
 
 
+@patch('bedrock.newsletter.utils.cache', cache_mock)
 class TestConfirmView(TestCase):
     def setUp(self):
         self.token = unicode(uuid.uuid4())
         self.url = reverse('newsletter.confirm', kwargs={'token': self.token})
-        clear_caches()
 
     def test_normal(self):
         """Confirm works with a valid token"""

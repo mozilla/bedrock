@@ -6,7 +6,6 @@
 
 import re
 from datetime import datetime
-from operator import itemgetter
 from random import randrange
 
 from django import forms
@@ -15,7 +14,6 @@ from django.utils.safestring import mark_safe
 
 import basket
 from basket.base import request
-from bedrock.newsletter import utils
 
 from captcha.fields import ReCaptchaField
 from lib.l10n_utils.dotlang import _
@@ -36,27 +34,6 @@ def strip_parenthetical(lang_name):
     Remove the parenthetical from the end of the language name string.
     """
     return PARENTHETIC_RE.sub('', lang_name, 1)
-
-
-def get_lang_choices():
-    """
-     Return a localized list of choices for language.
-
-     List looks like: [[lang_code, lang_name], [lang_code, lang_name], ...]
-    """
-    lang_choices = []
-    for lang in utils.get_newsletter_languages():
-        if lang in product_details.languages:
-            lang_name = product_details.languages[lang]['native']
-        else:
-            try:
-                locale = [loc for loc in product_details.languages.keys()
-                          if loc.startswith(lang)][0]
-            except IndexError:
-                continue
-            lang_name = product_details.languages[locale]['native']
-        lang_choices.append([lang, strip_parenthetical(lang_name)])
-    return sorted(lang_choices, key=itemgetter(1))
 
 
 class SideRadios(widgets.RadioFieldRenderer):
@@ -104,40 +81,6 @@ class HoneyPotWidget(widgets.CheckboxInput):
 
 class EmailInput(widgets.TextInput):
     input_type = 'email'
-
-NEWSLETTER_CHOICES = (('app-dev',) * 2,
-                      ('mozilla-and-you',) * 2)
-
-
-class NewsletterForm(forms.Form):
-    newsletter = forms.ChoiceField(choices=NEWSLETTER_CHOICES,
-                                   widget=forms.HiddenInput)
-    email = forms.EmailField(widget=EmailInput(attrs={'required': 'required'}))
-    fmt = forms.ChoiceField(widget=forms.RadioSelect(renderer=SideRadios),
-                            choices=FORMATS,
-                            initial='H')
-    privacy = forms.BooleanField(widget=PrivacyWidget)
-    source_url = forms.URLField(verify_exists=False, required=False)
-
-    LANG_CHOICES = get_lang_choices()
-
-    def __init__(self, locale, *args, **kwargs):
-        regions = product_details.get_regions(locale)
-        regions = sorted(regions.iteritems(), key=lambda x: x[1])
-        languages = utils.get_newsletter_languages()
-
-        lang = country = locale.lower()
-        if '-' in lang:
-            lang, country = lang.split('-', 1)
-        lang = lang if lang in languages else 'en'
-
-        super(NewsletterForm, self).__init__(*args, **kwargs)
-        self.fields['country'] = forms.ChoiceField(choices=regions,
-                                                   initial=country,
-                                                   required=False)
-        self.fields['lang'] = forms.ChoiceField(choices=self.LANG_CHOICES,
-                                                initial=lang,
-                                                required=False)
 
 
 class ContributeForm(forms.Form):

@@ -2,7 +2,6 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 {# Note: this page is displayed in a frame, it's not a separate page #}
-{% from "macros.html" import email_newsletter_form with context %}
 <!doctype html>
 <html>
   <head>
@@ -73,9 +72,7 @@
     </style>
   </head>
   <body>
-    {{ email_newsletter_form('app-dev',
-                 _('Subscribe to our newsletter.'),
-                 include_language=False) }}
+    {{ email_newsletter_form('app-dev', _('Subscribe to our newsletter.')) }}
     <script>
       {# set target without invalidating already translated strings. #}
       document.getElementsByTagName('a')[0].target = '_top';

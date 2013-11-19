@@ -1,0 +1,84 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% if not success %}
+  {% if form.errors %}
+    <div id="footer-email-errors">
+      {{ form.non_field_errors()|safe }}
+
+      <ul class="errorlist">
+        {% if form.email.errors %}
+          <li>{{ _('Please enter a valid email address') }}</li>
+        {% endif %}
+
+        {% if form.lang.errors %}
+          <li>{{ form.lang.errors }}</li>
+        {% endif %}
+
+        {% if form.privacy.errors %}
+          <li>{{ _('You must agree to the privacy policy') }}</li>
+        {% endif %}
+      </ul>
+    </div>
+  {% endif %}
+
+  <form class="billboard newsletter-form{% if form.errors %} has-errors{% endif %}"
+    {% if footer %}
+        id="footer-email-form" action="{{ secure_url() }}#footer-email-form"
+    {% else %}
+        id="newsletter-form" action="{{ secure_url() }}"
+    {% endif %}
+        method="post">
+    <input type="hidden" name="newsletter" value="{{ id }}">
+    <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
+
+    {% if footer %}
+      <h3>{{ title|d(_('Get Firefox news'), true) }}</h3>
+    {% endif %}
+
+    <div class="form-contents">
+      <div class="field field-email {% if form.email.errors %}form-field-error{% endif %}">
+        {{ field_with_attrs(form.email, placeholder=_('YOUR EMAIL HERE'))|safe }}
+      </div>
+
+      <div id="form-details">
+        {% if include_country %}
+          <div class="field field-country">
+            {{ form.country|safe }}
+          </div>
+        {% endif %}
+        {% if include_language %}
+          <div class="field field-language {% if form.lang.errors %}form-field-error{% endif %}">
+            {{ form.lang|safe }}
+          </div>
+        {% endif %}
+        <div class="field field-format">
+          {{ form.fmt|safe }}
+        </div>
+        <div class="field field-privacy {% if form.privacy.errors %}form-field-error{% endif %}">
+          {{ form.privacy|safe }}
+        </div>
+      </div>
+    </div>
+
+    <div class="form-submit">
+      <input type="submit" id="footer_email_submit"
+             value="{{ _('Sign me up') }} »" class="button">
+
+      <p class="form-details">
+        <small>{{ _('We will only send you Mozilla-related information.') }}</small>
+      </p>
+    </div>
+  </form>
+{% elif use_thankyou %}
+  <div id="footer-email-form" class="thank billboard">
+    <h3>{{ _('Thanks! Please check your inbox to confirm your subscription.') }}</h3>
+    <p>
+      {% trans %}
+        You'll receive an email from mozilla@e.mozilla.org to confirm your subscription.
+        If you don't see it, check your spam filter. You must confirm your subscription to receive our newsletter.
+      {% endtrans %}
+    </p>
+  </div>
+{% endif %}
