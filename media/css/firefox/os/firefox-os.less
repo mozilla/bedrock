@@ -1437,6 +1437,11 @@ html[lang="pl"] {
         height: 47px;
         background: transparent url('/media/img/firefox/os/logo/vivo.jpg') top center no-repeat;
       }
+      .telenor {
+        width: 100px;
+        height: 50px;
+        background: transparent url('/media/img/firefox/os/logo/telenor.jpg') top center no-repeat;
+      }
       .last {
         border-left: 1px dashed #666;
       }
@@ -1679,7 +1684,7 @@ html[lang="en-US"].js {
       width: 400px;
     }
   }
-  #footer-email-form, #get-phone {
+  #footer-email-form {
     width: @widthTablet - (@gridGutterWidth * 4);
   }
   #footer-email-errors {
@@ -1968,9 +1973,6 @@ html[lang="en-US"].js {
   .bg-birthday {
     background: url('/media/img/firefox/os/bg/760/birthday.jpg') no-repeat center center;
   }
-  #get-phone {
-    width: @widthMobileLandscape - (@gridGutterWidth * 3);
-  }
   #footer-email-form {
     width: @widthMobileLandscape - (@gridGutterWidth * 2);
   }
@@ -1984,9 +1986,6 @@ html[lang="en-US"].js {
           border-left: none;
         }
       }
-    }
-    #get-phone {
-      width: 100%;
     }
   }
 }
@@ -2186,9 +2185,6 @@ html[lang="en-US"].js {
       margin: 5px 0;
     }
   }
-  #get-phone {
-    width: @widthMobile - (@gridGutterWidth * 3);
-  }
   #footer-email-form {
     width: @widthMobile - (@gridGutterWidth * 2);
   }
@@ -2210,6 +2206,12 @@ html[lang="en-US"].js {
         font-size: 16px;
         letter-spacing: 0;
       }
+      #provider-links {
+        margin-bottom: 0px;
+        .last {
+          border-left: none;
+        }
+      }
     }
     .modal-content {
       h2 {
@@ -2218,15 +2220,6 @@ html[lang="en-US"].js {
         margin: 10px;
         padding-bottom: 30px;
       }
-      #provider-links {
-        margin-bottom: 0px;
-        .last {
-          border-left: none;
-        }
-      }
-    }
-    #get-phone {
-      width: 100%;
     }
   }
 }
