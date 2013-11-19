@@ -349,6 +349,13 @@ var Tabzilla = (function (Tabzilla) {
         });
 
         setupGATracking();
+
+        // Careers teaser in error console.
+        $(window).load(function() {
+            try {
+                console.log("{% filter js_escape|safe %}{% include "includes/careers-teaser.html" %}{% endfilter %}");
+            } catch(e) {}
+        });
     };
     var loadJQuery = function (callback) {
         var noConflictCallback = function() {
