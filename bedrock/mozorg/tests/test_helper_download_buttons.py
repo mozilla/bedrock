@@ -243,6 +243,22 @@ class TestDownloadButtons(TestCase):
         for link in links:
             ok_('stub' not in pq(link).attr('href'))
 
+    @patch.object(firefox_details, 'firefox_primary_builds', GOOD_BUILDS)
+    @patch.object(firefox_details, 'firefox_beta_builds', {})
+    @patch.dict(firefox_details.firefox_versions, GOOD_VERSIONS)
+    def test_download_unsupported_local(self):
+        """Should fall back to en-US"""
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'fr'
+        doc = pq(render("{{ download_firefox() }}",
+                        {'request': get_request}))
+
+        links = doc('.download-list a')[:3]
+        for link in links:
+            ok_('lang=fr' not in pq(link).attr('href'))
+            ok_('lang=en-US' in pq(link).attr('href'))
+
     def test_download_transition_link_contains_locale(self):
         """
         "transition" download links should include the locale in the path as
