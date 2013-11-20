@@ -27,3 +27,6 @@ Babel>=0.9.4
 python-memcached==1.53
 
 django-statsd-mozilla==0.3.5
+
+# Publishing system
+git+git://github.com/mozilla/rna.git@2b9dd508197ab2ef2b74c02a16fa8ef6c3fbab0d
