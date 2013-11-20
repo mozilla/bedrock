@@ -1,2 +1,0 @@
-certifi>=0.0.7
-chardet>=1.0.0
