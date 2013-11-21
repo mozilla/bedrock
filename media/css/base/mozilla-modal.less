@@ -33,7 +33,7 @@ body.noscroll {
             header {
                 display: block;
                 background: #0095dd;
-                padding: 10px @baseLine 10px;
+                padding: 10px @baseLine;
                 height: 38px;
                 font-size: 26px;
                 color: #fff;
@@ -116,6 +116,8 @@ body.noscroll {
         margin: 0 auto;
 
         .inner header {
+            // remove left/right padding so the .image-replaced works as expected
+            padding: 10px 0;
             .image-replaced;
         }
     }
