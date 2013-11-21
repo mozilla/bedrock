@@ -353,6 +353,10 @@ MINIFY_BUNDLES = {
         'annual_2011': (
             'css/foundation/annual2011.less',
         ),
+        'annual_2012': (
+            'css/base/mozilla-modal.less',
+            'css/foundation/annual2012.less',
+        ),
         'partners': (
             'css/base/mozilla-modal.less',
             'css/libs/jquery.pageslide.css',
@@ -580,6 +584,10 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.jcarousel.min.js',
             'js/foundation/annual2011.js',
+        ),
+        'annual_2012': (
+            'js/base/mozilla-modal.js',
+            'js/foundation/annual2012.js',
         ),
         'partners': (
             'js/libs/modernizr.custom.shiv-load.js',

@@ -35,6 +35,10 @@ body.noscroll {
                 background: #0095dd;
                 padding: 10px @baseLine 10px;
                 height: 38px;
+                font-size: 26px;
+                color: #fff;
+                .open-sans-light;
+                .transition;
             }
 
             #modal-close {
@@ -110,5 +114,9 @@ body.noscroll {
 @media only screen and (max-width: @breakTablet) {
     #modal .window {
         margin: 0 auto;
+
+        .inner header {
+            .image-replaced;
+        }
     }
 }

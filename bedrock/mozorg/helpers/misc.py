@@ -175,10 +175,10 @@ def video(*args, **kwargs):
     HTML5 Video tag helper.
 
     Accepted kwargs:
-    prefix, w, h, autoplay, poster
+    prefix, w, h, autoplay, poster, preload, id
 
     Use like this:
-    {{ video('http://example.com/myvid.mp4', http://example.com/myvid.webm',
+    {{ video('http://example.com/myvid.mp4', 'http://example.com/myvid.webm',
              poster='http://example.com/myvid.jpg',
              w=640, h=360) }}
 
@@ -216,6 +216,8 @@ def video(*args, **kwargs):
         'w': 640,
         'h': 360,
         'autoplay': False,
+        'preload': False,
+        'id': 'htmlPlayer'
     }
 
     # Flash fallback, if mp4 file on Mozilla Videos CDN.

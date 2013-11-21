@@ -1,0 +1,449 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+body {
+	background: url(/media/img/foundation/annualreport/2012/bg-grain.png) left top repeat;
+}
+
+#outer-wrapper {
+	background: transparent;
+	width: 1280px;
+	margin: 0 auto;
+}
+
+#wrapper {
+	width: 1280px;
+}
+
+.content {
+	padding-left: 170px;
+}
+
+.banner {
+	margin-top: -44px;
+	padding-top: 50px;
+	height: 562px;
+	color: #fff;
+	background: url(/media/img/foundation/annualreport/2012/bg-banner-desktop.jpg) center bottom no-repeat;
+
+	h1 {
+		.image-replaced;
+		width: 141px;
+		height: 140px;
+		margin-bottom: 60px;
+		background: url(/media/img/foundation/annualreport/2012/state-of-mozilla.png) left top no-repeat;
+	}
+
+	blockquote {
+		background: url(/media/img/foundation/annualreport/2012/quotes.png) left top no-repeat;
+		padding-left: 80px;
+		width: 470px;
+		font-size: 48px;
+		line-height: 100%;
+		.open-sans-light;
+
+		footer {
+			text-align: right;
+			padding-right: @baseLine/2;
+		}
+
+		cite {
+			font-size: 24px;
+			font-style: italic;
+		}
+	}
+}
+
+.content-section {
+	padding-top: @baseLine * 3;
+	padding-bottom: @baseLine;
+
+	header {
+		float: left;
+		width: 210px;
+		h1 {
+			font-size: 36px;
+			color: #0095dd;
+		}
+	}
+}
+
+.copy-wrapper {
+	width: 700px;
+	.clearfix;
+	.copy {
+		float: right;
+		width: 460px;
+		color: #4d4e53;
+		font-size: @largeFontSize;
+	}
+}
+
+#annual-2012-faq {
+	.copy-wrapper {
+		width: 800px;
+		.copy {
+			width: 560px;
+		}
+	}
+}
+
+.content-section-alt {
+	background: #eaeff2;
+	.copy-wrapper header h1 {
+		color: #637a8e;
+	}
+}
+
+.box-links {
+	.clearfix;
+	li {
+		float: left;
+		display: table;
+		*display: block;
+		margin: 0 @baseLine @baseLine 0;
+		a {
+			display: table-cell;
+			*display: block;
+			width: 100%;
+			height: 100%;
+			font-weight: 800;
+			font-style: italic;
+			font-size: 18px;
+			line-height: 100%;
+			text-transform: uppercase;
+			color: #fff;
+			&:hover {
+				text-decoration: none;
+			}
+		}
+	}
+}
+
+.videos {
+	width: 800px;
+	margin-left: 160px;
+	li {
+		width: 380px;
+		height: 214px;
+		background-position: left top;
+		background-repeat: no-repeat;
+		background-size: 100%;
+		a {
+			padding: 0 70px @baseLine @baseLine;
+			vertical-align: bottom;
+			.transition(background-color 0.2s ease);
+			background-image: url(/media/img/foundation/annualreport/2012/icon-play.png);
+			background-position: 320px 158px;
+			background-repeat: no-repeat;
+			// hide descriptive link text
+			span {
+				.visually-hidden;
+			}
+			&:hover, &:focus {
+				background-color: rgba(0, 0, 0, 0.25);
+			}
+		}
+	}
+
+	.baker {
+		background-image: url(/media/img/foundation/annualreport/2012/bg-baker.jpg);
+	}
+	.sullivan {
+		background-image: url(/media/img/foundation/annualreport/2012/bg-sullivan.jpg);
+	}
+	.anderson {
+		background-image: url(/media/img/foundation/annualreport/2012/bg-anderson.jpg);
+	}
+	.surman {
+		background-image: url(/media/img/foundation/annualreport/2012/bg-surman.jpg);
+	}
+	.nightingale {
+		background-image: url(/media/img/foundation/annualreport/2012/bg-nightingale.jpg);
+	}
+	.eich {
+		background-image: url(/media/img/foundation/annualreport/2012/bg-eich.jpg);
+	}
+	.journey {
+		background-image: url(/media/img/foundation/annualreport/2012/bg-the-journey.jpg);
+	}
+	.mozillian {
+		background-image: url(/media/img/foundation/annualreport/2012/bg-a-mozillian.jpg);
+	}
+}
+
+.video {
+	display: none;
+	width: auto;
+	video {
+		margin: 0 auto;
+	}
+}
+
+#modal .video {
+	display: block;
+}
+
+.site-footer {
+	padding-bottom: @baseLine * 4;
+	li {
+		width: 320px;
+		height: 100px;
+		background: #68c1a5;
+		box-shadow: inset 0 -5px 0 0 #5dad94,
+					0 5px 0 0 #eaeff2;
+
+		a {
+			vertical-align: middle;
+			padding: @baseLine @baseLine/2 @baseLine @baseLine;
+			.transition;
+			small {
+				font-size: 18px;
+				font-style: italic;
+				display: block;
+				font-weight: 100;
+				text-transform: none;
+			}
+			&:hover, &:focus {
+				background: darken(#68c1a5, 15%);
+				text-decoration: none;
+			}
+		}
+	}
+	p {
+		font-size: 12px;
+		color: #68c1a5;
+	}
+
+	.legal {
+		.clearfix;
+		a {
+			float: left;
+			width: 93px;
+			padding-top: 6px;
+			margin-right: @baseLine * 3;
+		}
+		p {
+			float: left;
+		}
+	}
+}
+
+dl.faq dt {
+	color: #0095dd;
+	line-height: 133%;
+	margin-bottom: @baseLine;
+}
+
+@media (max-width: 1279px) {
+	#outer-wrapper, #wrapper {
+		width: @breakDesktop;
+	}
+
+	.banner {
+		height: 532px;
+		padding-top: 40px;
+	}
+
+	.content {
+		padding-left: 60px;
+	}
+
+	.videos {
+		margin-left: 140px;
+	}
+
+	.site-footer {
+		li {
+			width: 280px;
+		}
+	}
+}
+
+// tablet (760 - 1000)
+@media (max-width: @breakDesktop) {
+	#outer-wrapper, #wrapper {
+		width: @breakTablet;
+	}
+
+	.banner {
+		height: 410px;
+		background: url(/media/img/foundation/annualreport/2012/bg-banner-tablet.jpg) center bottom no-repeat;
+		h1 {
+			margin-bottom: 40px;
+		}
+		blockquote {
+			font-size: 30px;
+			background: url(/media/img/foundation/annualreport/2012/quotes-tablet.png) left top no-repeat;
+			padding-left: 50px;
+			width: 360px;
+		}
+	}
+
+	.content {
+		padding-left: 40px;
+	}
+
+	.content-section {
+		header {
+			width: 180px;
+			h1 {
+				font-size: 30px;
+			}
+		}
+	}
+
+	#annual-2012-faq .copy-wrapper, .copy-wrapper {
+		width: 640px;
+		.copy {
+			width: 440px;
+		}
+	}
+
+	.videos {
+		width: 660px;
+		margin-left: 80px;
+		li {
+			width: 280px;
+			height: 150px;
+			a {
+				background-position: 220px 94px;
+			}
+		}
+	}
+
+	.site-footer {
+		li {
+			width: 220px;
+			a {
+				font-size: 16px;
+			}
+		}
+	}
+}
+
+/* wide mobile (480 - 760) */
+@media (max-width: @breakTablet) {
+	#outer-wrapper, #wrapper {
+		width: @breakMobileLandscape;
+	}
+
+	.content {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
+	.banner {
+		height: auto;
+		margin-top: -64px;
+		background: url(/media/img/foundation/annualreport/2012/bg-banner-mobile.jpg) right top no-repeat;
+		h1 {
+			margin-bottom: 60px;
+		}
+		blockquote {
+			background: #000;
+			margin-left: -20px;
+			width: @breakMobileLandscape - (@baseLine * 2);
+			padding: @baseLine;
+		}
+	}
+
+	.content-section {
+		header {
+			margin-bottom: @baseLine;
+			float: none;
+			width: auto;
+		}
+	}
+
+	#annual-2012-faq .copy-wrapper, .copy-wrapper {
+		width: auto;
+		.copy {
+			float: none;
+			width: auto;
+		}
+	}
+
+	.box-links {
+		li {
+			float: none;
+		}
+	}
+
+	.videos {
+		width: 380px;
+		margin: @baseLine auto;
+		li {
+			width: 360px;
+			height: 194px;
+			a {
+				background-position: 300px 138px;
+			}
+		}
+	}
+
+	video {
+		width: 100%;
+		height: auto;
+	}
+
+	.site-footer {
+		li {
+			float: none;
+			width: 440px;
+			a {
+				font-size: 18px;
+			}
+		}
+	}
+}
+
+@media (max-width: @breakMobileLandscape) {
+	#outer-wrapper, #wrapper {
+		width: @breakMobile;
+	}
+
+	.banner {
+		background: url(/media/img/foundation/annualreport/2012/bg-banner-mobile.jpg) right top no-repeat;
+		h1 {
+			width: 90px;
+			height: 90px;
+			background-size: 90px 90px;
+			margin-bottom: 130px;
+		}
+		blockquote {
+			background: #000;
+			margin-left: -20px;
+			width: @breakMobile - (@baseLine * 2);
+			padding: @baseLine;
+			font-size: 26px;
+		}
+	}
+
+	.content-section header h1 {
+		font-size: 30px;
+	}
+
+	.videos {
+		width: 280px;
+		li {
+			width: 260px;
+			height: 140px;
+			a {
+				background-position: 200px 86px;
+			}
+		}
+	}
+
+	.site-footer {
+		li {
+			width: 280px;
+			a {
+				font-size: 16px;
+			}
+		}
+	}
+}
