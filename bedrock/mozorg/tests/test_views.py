@@ -13,7 +13,7 @@ from captcha.fields import ReCaptchaField
 from funfactory.urlresolvers import reverse
 from jinja2.exceptions import TemplateNotFound
 from requests.exceptions import Timeout
-from mock import ANY, Mock, patch
+from mock import Mock, patch
 from nose.tools import assert_false, eq_, ok_
 from pyquery import PyQuery as pq
 
@@ -30,37 +30,6 @@ class TestHome(TestCase):
     def setUp(self):
         self.view = views.HomeTestView.as_view()
         self.rf = RequestFactory()
-
-    def _test_view_template(self, resp_mock, template, qs=None, locale='en-US'):
-        args = ['/en-US/']
-        if qs is not None:
-            args.append(qs)
-        req = self.rf.get(*args)
-        req.locale = locale
-        self.view(req)
-        resp_mock.assert_called_once_with(req, template, ANY)
-        resp_mock.reset_mock()
-
-    def test_uses_default_template(self, resp_mock):
-        """Home page should render the default template with no QS."""
-        self._test_view_template(resp_mock, 'mozorg/home.html')
-
-    def test_uses_default_template_other_qs(self, resp_mock):
-        """Home page should render the default template with wrong QS."""
-        self._test_view_template(resp_mock, 'mozorg/home.html', {'a': 1})
-        self._test_view_template(resp_mock, 'mozorg/home.html', {'v': 42})
-        self._test_view_template(resp_mock, 'mozorg/home.html', {'v': 'Abide'})
-        self._test_view_template(resp_mock, 'mozorg/home.html', {'v': '1234'})
-
-    def test_uses_test_template(self, resp_mock):
-        """Home page should render the test template with the right QS."""
-        self._test_view_template(resp_mock, 'mozorg/home-b1.html', {'v': 1})
-        self._test_view_template(resp_mock, 'mozorg/home-b2.html', {'v': 2})
-
-    def test_uses_new_template_for_other_locales(self, resp_mock):
-        """Should render the new template for locales not in test."""
-        self._test_view_template(resp_mock, 'mozorg/home-b2.html', locale='xx')
-        self._test_view_template(resp_mock, 'mozorg/home-b2.html', {'v': 2}, locale='xx')
 
     @override_settings(MOBILIZER_LOCALE_LINK={'es-ES': 'El Dudarino', 'de': 'Herr Dude'})
     def test_gets_right_mobilizer_url(self, resp_mock):

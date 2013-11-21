@@ -4,397 +4,900 @@
 
 @import "../sandstone/lib.less";
 
-/* {{{ Main Feature */
 
-#main-feature {
-    text-align: center;
-    h1 {
-        font-size: 88px;
-        img {
-            vertical-align: baseline;
-            position: relative;
-            top: 0.05em;
-            height: 0.85em;
-            width: auto;
-        }
-    }
+// Bounce Tabzilla's caret when the page loads
+#tabzilla:after {
+    animation-name: bounce;
+    animation-delay: 1s;
+    animation-duration: .5s;
+    animation-iteration-count: 3;
+    animation-timing-function: ease-in-out;
 }
 
-html[lang="en-US"],
-html[lang="en-US"],
-html[lang="en-ZA"] {
-    #main-feature h1 {
-        font-size: 108px;
-    }
+@keyframes bounce {
+    0%   { top: 11px; }
+    50%  { top: 14px; }
+    100% { top: 11px; }
 }
 
-/* }}} */
-/* {{{ Firefox Promo bar */
-
-#firefox-promo {
-    padding-top: @baseLine;
-    padding-bottom: 0;
-    h3 {
-        .span(3);
-        position: relative;
-        margin-top: 0;
-        margin-bottom: 0;
-        padding-bottom: 0.2em;
-        letter-spacing: -1px;
-        white-space: nowrap;
-    }
-    #firefox-promo-link {
-        position: absolute;
-        top: -10px;
-        left: 280px;
-    }
-    ul.features {
-        .span(4);
-        width: 280px;
-        margin: 0 0 0 160px;
-        li {
-            float: left;
-            list-style-type: none;
-            margin: 0;
-            width: 93px;
-            padding: 0;
-            text-align: center;
-            small {
-                display: block;
-                padding: 0 6px;
-                border-left: 1px dotted @borderColor;
-            }
-            &:first-child small {
-                border: 0;
-            }
-        }
-    }
-    .download-button {
-        .span(4);
-        width: auto;
-        float: right;
-        margin-top: -6px;
-        margin-left: (@gridGutterWidth / 2);
-        padding-bottom: 6px;
-    }
+// Add a double-arrow after 'go' links
+.go:after {
+    content: ' »';
+    white-space: nowrap;
 }
 
-/* iOS temporary styles until we have new unsupported text */
-.ios {
-    #firefox-promo {
-        min-height: 62px;
-        h3 {
-            margin: 0 0 0 170px;
-        }
-        #firefox-promo-link {
-            left: 445px;
-        }
-    }
-    .download-button .unsupported-download {
+// A few styles for non-JS browsers
+.no-js {
+    img.js,
+    .panel-title {
         display: none;
     }
 }
 
-/* }}} */
-/* {{{ Main Content Columns */
+// Override sandstone base layout so we can have full-width blocks.
+#wrapper,
+#main-content,
+.billboard {
+    width: 100%;
+    padding: 0;
+}
 
-#main-content {
-    li {
-        margin: @baseLine 0 0 0;
-        list-style-type: none;
-        border-bottom: 1px dotted @borderColor;
-        padding: 0 0 (@baseLine / 2) 0;
-        p {
-            margin: 0;
+#masthead,
+.container,
+.newsletter-form {
+    width: (@widthDesktop - (@gridGutterWidth * 2));
+    .clearfix();
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+}
+
+.mission,
+.pillars {
+    width: (@widthDesktop - (@gridGutterWidth * 2));
+}
+
+#colophon {
+    margin-top: 0;
+}
+
+
+
+// @Header, @mission statement
+.mission {
+    .open-sans-light;
+    line-height: 1.1;
+    margin: 0 auto 40px;
+    position: relative;
+    text-align: center;
+
+    h1 {
+        color: #c13832;
+        font-size: 84px;
+        font-weight: bold;
+        letter-spacing: -.05em;
+        margin: 0 0 .05em;
+
+        img {
+            margin-bottom: -4px;
         }
-        h4 {
-            margin: 0 0 (@baseLine / 4) 0;
-        }
-        h4 a:after,
-        a h4:after {
-            content: " »";
-            white-space: nowrap;
-            .open-sans-light;
-            font-weight: 300;
-        }
+    }
+
+    .tagline {
+       font-size: 55px;
+       letter-spacing: -.025em;
+       margin: 0;
     }
 }
 
-#home-news {
+// Adjustments for some locales
+.lang-bg,
+.lang-de,
+.lang-el,
+.lang-es-ES,
+.lang-fr,
+.lang-it,
+.lang-mk {
+    .mission .tagline {
+        font-size: 42px;
+    }
+}
+
+.engage {
+    display: none; // hide this for now
+    margin: 0;
+
+    .button {
+        border-radius: 6px;
+        font-size: 16px;
+        padding: 10px 20px;
+        text-transform: uppercase;
+    }
+}
+
+
+// @Accordion
+.pillars {
+    background: url(/media/img/home/box-shadow-960.png) center bottom no-repeat;
+    padding: 0 0 40px;
+    position: relative;
+    margin: 0 auto 20px;
+}
+
+.wide .pillars {
+    height: 380px;
+}
+
+.accordion {
+    list-style: none;
+    position: relative;
+    left: -.5%;
+    top: 0;
+    width: 102%;
+    margin: 0;
+}
+
+.js .accordion {
+    overflow: hidden;
+}
+
+.panel {
+    background-color: #777;
+    display: block;
+    margin: 0;
+    position: relative;
+    .transition(background-position .5s ease-in-out);
+
+    &:focus {
+        outline: 0;
+    }
+
+    &.expanded,
+    &.compressed {
+        .transition(background-position .5s ease-in-out);
+    }
+}
+
+.wide .panel {
+    margin: 0 0 0 -2px;
+    padding: 0;
+    float: left;
+    width: 25%;
+    height: 380px;
+    min-height: 0;
+    overflow: hidden;
+    box-shadow: -6px 0 10px -4px rgba(0, 0, 0, .5);
+
+    &:first-child {
+        box-shadow: none;
+    }
+}
+
+.no-js .panel {
+    min-height: 16em;
+}
+
+// A title visible when the panel is in its initial state.
+.panel-title {
+    color: #fff;
+    font-size: 18px;
+    line-height: 1.2;
+    font-weight: bold;
+    letter-spacing: -.025em;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, .15);
+    text-transform: uppercase;
+    margin: 0;
+    padding: 40px 15px 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 215px;
+    height: 80px;
+
+    i {
+        font-style: normal;
+    }
+
+    &:after {
+        content: ' »';
+        white-space: nowrap;
+    }
+}
+
+// An inner wrapper mostly useful as an overlay for background effects.
+.panel-inner {
+    background-color: rgba(0, 0, 0, .1);
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    .transition(background-color .5s ease-in-out);
+}
+
+// Set background to transparent, to "brighten" the panel as it opens.
+.expanded .panel-inner {
+    background-color: transparent;
+    .transition(background-color .5s ease-in-out);
+}
+
+// Dim the unfocused panels
+.compressed .panel-inner {
+    background-color: rgba(0, 0, 0, .25);
+}
+
+// Container for the panel's text contents.
+.panel-content {
+    .open-sans-light;
+    color: #fff;
+    font-size: 20px;
+    line-height: 1.3;
+    position: relative;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, .15);
+
+    h3 {
+        font-weight: bold;
+        font-size: 100%;
+        color: inherit;
+        letter-spacing: -.03em;
+        margin: 0 0 .25em;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, .15);
+        text-transform: uppercase;
+    }
+
+    .go {
+        font-size: 90%;
+        font-weight: bold;
+        letter-spacing: -.025em;
+
+        &:after {
+            content: ' »';
+            white-space: nowrap;
+        }
+    }
+
+    // Expand the link to fill the panel.
+    // This presumes a single block link for the entire panel.
+    // Future updates may negate this.
+    & > a {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding: 20px 20px 20px 300px;
+    }
+
+    a:link,
+    a:visited {
+        color: inherit;
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+        color: inherit;
+        text-decoration: none;
+        outline: 0;
+    }
+
+    a:focus .go,
+    a:active .go,
+    .go:hover {
+        text-decoration: underline;
+    }
+}
+
+.wide .panel-content {
+    height: 300px;
+    min-height: 0;
+    width: 290px;
+    padding: 40px 40px 40px 300px;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    & > a {
+        padding: 40px 40px 40px 300px;
+    }
+}
+
+.js .panel-content {
+    display: none;
+}
+
+.no-js .panel-content {
+    min-height: 9.5em;
+    padding: 1em 40px 1em 300px;
+}
+
+
+
+// @Extra content - The lower section of the page
+.extra {
+    background: #c1423d;
+    padding: 40px 0;
+    margin-bottom: 0;
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, .1);
+
+    h2 {
+        font-size: 34px;
+        margin: 0 0 .75em;
+        color: #fff;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, .1);
+    }
+}
+
+
+
+// @Newsletter form
+.newsletter-form {
     .span(4);
-    margin-bottom: @baseLine;
-    #all-news {
+    float: right;
+    background: transparent;
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+}
+
+#footer-email-form {
+    h3 {
+        font-size: 34px;
+        margin: 0 0 .75em;
+        color: #fff;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, .1);
+    }
+
+    .form-contents,
+    .form-submit {
+        width: auto;
+        float: none;
+        margin: 0 0 @baseLine;
+    }
+
+    .field-email input {
+        width: 80%;
+        padding: 10px 5%;
+        border-radius: .5em;
+    }
+
+    a:link,
+    a:visited {
+        color: #fff;
+    }
+
+    .button {
+        width: 90%;
+        padding: 10px 5%;
+    }
+}
+
+
+
+// @Download Firefox promo bar
+#firefox-promo {
+    padding-top: 10px;
+    padding-bottom: 0;
+    margin: 0;
+    position: relative;
+
+    .container {
+        width: (@widthDesktop - (@gridGutterWidth * 2));
+        padding-top: 40px;
+        padding-bottom: 10px;
+        margin: 0 auto;
+    }
+
+    h3 {
+        font-size: 40px;
+        letter-spacing: -.05em;
+        margin: -35px 0 0;
+        padding: 40px 0 0;
+        width: 70%;
+        color: #999;
+        float: left;
+
+        b {
+            .open-sans;
+            border-right: 1px dotted @borderColor;
+            color: @textColorSecondary;
+            font-weight: normal;
+            margin-right: 10px;
+            padding-right: 20px;
+        }
+    }
+
+    img {
+        float: left;
+        margin: -30px 20px -5px 0;
+    }
+
+    #firefox-promo-link {
+        margin: 0;
+        position: static;
+
+        &:hover,
+        &:focus,
+        &:active {
+            text-decoration: none;
+        }
+    }
+
+    .download-button {
+        margin-top: -5px;
+        float: right;
+        max-width: 40%;
+        padding-bottom: 6px;
+    }
+
+    .download-link {
+        width: 280px;
+    }
+
+    .download-content {
+        padding: 15px 20px 15px 65px;
+        background-position: 20px 24px;
+    }
+
+    .download-title {
+        display: none;
+    }
+
+    .download-subtitle {
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: bold;
+        display: block;
+        font-size: 18px;
+        letter-spacing: -.05em;
+    }
+
+    .download-lang,
+    .download-platform {
+        .open-sans-light;
+        color: #360;
+        display: inline;
+        font-size: 11px;
+        font-weight: bold;
+        text-shadow: 0 1px #9c6;
+    }
+
+    .download-lang {
+        position: static;
+        text-align: left;
+        width: auto;
+    }
+
+    .download-platform:before {
+        content: '• ';
+    }
+}
+
+.html-rtl #firefox-promo {
+    h3 {
+        float: right;
+
+        b {
+            border-right: 0;
+            border-left: 1px dotted @borderColor;
+            margin-right: 0;
+            margin-left: 10px;
+            padding-right: 0;
+            padding-left: 20px;
+        }
+    }
+
+    img {
+        float: right;
+        margin: -30px 0 -5px 20px;
+    }
+
+    .download-button {
+        float: left;
+    }
+}
+
+
+// @News
+.extra-news {
+    .span(7);
+
+    .hfeed {
+        list-style: none;
+        margin: 0 0 .5em;
+    }
+
+    .hentry {
+        margin: 0;
+    }
+
+    .entry-title {
+        font-size: 20px;
+        line-height: 1.2;
         .open-sans;
     }
 }
 
-#home-promo {
-    margin: 0 auto;
+.js .extra-news .hentry {
+    height: 6em;
 }
 
-#home-promos {
-    .span(4);
-    margin-bottom: @baseLine;
-}
+.news-buttons {
+    border-right: 1px solid #ccc;
+    margin-right: 10px;
 
-#home-about {
-    .span(4);
-    margin-bottom: @baseLine;
-    ul {
-        margin-top: @baseLine;
-    }
-    li {
+    button {
+        background: transparent url(/media/img/home/control-arrows.png) no-repeat;
         border: 0;
-        margin-top: @baseLine / 2;
-        padding-bottom: 0;
+        cursor: pointer;
+        display: inline-block;
+        height: 25px;
+        margin: 0 10px 0 0;
+        overflow: hidden;
+        padding: 0;
+        text-indent: -99em;
+        width: 25px;
     }
-    a {
-        display: block;
-        padding-left: 80px;
-        padding-bottom: @baseLine / 2;
-        background: url(/media/img/home/about-icons.png) 0 0 no-repeat;
-        h4 {
-            color: @linkBlue;
-        }
-        p {
-            color: @textColorSecondary;
-            font-size: @smallFontSize;
-            line-height: 18px;
-        }
-        &:hover {
-            text-decoration: none;
-            h4 {
-                text-decoration: underline;
-            }
+
+    .btn-next {
+        background-position: -30px 0;
+    }
+
+    .btn-prev {
+        background-position: 0 0;
+    }
+
+    .disabled {
+        opacity: .5;
+        &:hover,
+        &:focus {
+            opacity: .8;
         }
     }
 }
 
-#about-volunteer {
-    a { background-position: 0 0; }
-    a:hover,
-    a:focus {
-        background-position: -800px 0;
-        h4 { color: #linkRed; }
+// @Contribute
+.extra-contribute {
+    .span(7);
+
+    p {
+        .open-sans-light;
+        font-size: 20px;
     }
+
 }
 
-#about-work {
-    a { background-position: 0 -150px; }
-    a:hover,
-    a:focus {
-        background-position: -800px -150px;
-        h4 { color: #f79100; }
-    }
+.extra-news a:link,
+.extra-news a:visited,
+.extra-contribute a:link,
+.extra-contribute a:visited {
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, .1);
 }
 
-#about-find {
-    a { background-position: 0 -300px; }
-    a:hover,
-    a:focus {
-        background-position: -800px -300px;
-        h4 { color: #1b66af; }
-    }
+.extra-contribute a {
+    font-weight: bold;
 }
 
-#about-join {
-    a { background-position: 0 -450px; }
-    a:hover,
-    a:focus {
-        background-position: -800px -450px;
-        h4 { color: #d65106; }
-    }
+.news-buttons button {
+    background-image: url(/media/img/home/control-arrows-lt.png);
 }
 
-#about-learn {
-    a { background-position: 0 -600px; }
-    a:hover,
-    a:focus {
-        background-position: -800px -600px;
-        h4 { color: #669d28; }
+
+
+/****************************************************************************/
+// @Tablet Layout: 760px
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+
+    #masthead,
+    .container,
+    .newsletter-form,
+    .mission,
+    .pillars {
+        width: (@widthTablet - (@gridGutterWidth * 2));
     }
-}
 
-/* }}} */
-/* {{{ Tablet  Layout: 768px */
+    .mission .tagline {
+        font-size: 42px;
+    }
 
-@media only screen and (min-width: @widthTablet) and (max-width: @widthDesktop) {
+    .pillars {
+        background-image: url(/media/img/home/box-shadow-760.png);
+        padding-bottom: 32px;
+    }
 
-    html,
-    html[lang="en-US"],
-    html[lang="en-US"],
-    html[lang="en-ZA"] {
-        #main-feature {
-            h1 {
-                font-size: 72px;
-            }
-            h2 {
-                font-size: 38px;
-            }
+    .panel-title {
+        font-size: 16px;
+        width: 152px;
+    }
+
+    .wide .panel-content {
+        font-size: 16px;
+        height: 280px;
+        width: 250px;
+        padding: 80px 20px 20px 200px;
+
+        .panel-logo {
+            left: 200px;
+            top: 30px;
         }
+
+        .go {
+            font-size: 16px;
+        }
+
+        & > a {
+            padding: 80px 20px 20px 200px;
+        }
+
     }
 
-    #firefox-promo {
-        padding-bottom: 12px;
-        h3 {
-            .span_narrow(7);
-            white-space: normal;
-        }
-        ul.features {
-            .span_narrow(7);
-            margin-bottom: 10px;
-            li {
-                float: none;
-                width: auto;
-                margin: auto auto auto @baseLine;
-                list-style-type: disc;
-                small {
-                    text-align: left;
-                    border: 0;
-                    padding: 0;
-                    br { display: none; }
-                }
-            }
-        }
+    // Adjust columns
+    .extra-news,
+    .extra-contribute {
+        .span_narrow(7);
+    }
+
+    .js .extra-news .hentry {
+        height: 7.2em;
+    }
+
+    .extra-download {
+        .span_narrow(5);
+        float: right;
+
         .download-button {
-            position: absolute;
-            top:   @gridGutterWidth / 2;
-            right: @gridGutterWidth / 2;
-            margin-top: @gridGutterWidth / 2;
+            margin: 0 auto;
         }
     }
 
-    /* iOS temporary styles until we have new unsupported text */
-    .ios #firefox-promo {
+    .extra .newsletter-form {
+        .span_narrow(5);
+        float: right;
+    }
+
+    #firefox-promo {
+        .container {
+            width: (@widthTablet - (@gridGutterWidth * 2));
+        }
+
         h3 {
-            margin: 0 0 0 30px;
-        }
-        #firefox-promo-link {
-            left: 305px;
-        }
-        ul.features {
-            .span(4);
-            margin: 0;
-            width: auto;
-            li {
-                float: left;
-                list-style-type: none;
-                margin: 0;
-                width: 86px;
+            width: 60%;
+            font-size: 28px;
+
+            b {
+                border: 0;
+                display: block;
+                font-size: 32px;
+                margin: 0 0 .15em;
                 padding: 0;
-                text-align: center;
-                small {
-                    display: block;
-                    padding: 0 6px;
-                    border-left: 1px dotted @borderColor;
-                }
-                &:first-child small {
-                    border: 0;
-                }
             }
         }
-    }
-
-    #home-news,
-    #home-promos,
-    #home-about {
-        .span_narrow(4);
     }
 
 }
 
-/* }}} */
-/* {{{ Wide Mobile Layout: 480px */
-@media only screen and (max-width: @widthTablet) {
 
-    html,
-    html[lang="en-US"],
-    html[lang="en-US"],
-    html[lang="en-ZA"] {
-        #main-feature {
-            h1 {
-                width: auto;
-                font-size: 36px;
-                img {
-                    display: block;
-                    height: 1.3em;
-                    width: auto;
-                    margin: auto auto 0.2em;
-                }
-            }
-            h2 {
-                font-size: 20px;
-                letter-spacing: normal;
+
+/****************************************************************************/
+// @Mobile layout: 320px
+@media only screen and (max-width: @breakTablet) {
+
+    #masthead,
+    .container,
+    .newsletter-form,
+    .pillars {
+        width: (@widthMobile - @gridGutterWidth);
+    }
+
+    .mission {
+        width: 260px;
+        margin: 20px auto;
+    }
+
+    .mission {
+        width: 260px;
+        margin: 20px auto;
+
+        h1 {
+            font-weight: normal;
+            font-size: 36px;
+            text-align: left;
+
+            img {
+                display: block;
+                margin: -.125em auto 0;
             }
         }
-     }
+
+        .tagline {
+            font-size: 30px;
+        }
+    }
+
+    // Adjustments for some locales
+    .lang-bg,
+    .lang-it,
+    .lang-fr,
+    .lang-de,
+    .lang-el,
+    .lang-es-ES,
+    .lang-es-MX,
+    .lang-es-CL,
+    .lang-es-AR {
+        .mission .tagline {
+            font-size: 24px;
+        }
+    }
+
+    .pillars {
+        padding-bottom: 13px;
+        background-image: url(/media/img/home/box-shadow-320.png);
+    }
+
+    .accordion {
+        width: auto;
+        padding: 0;
+        position: relative;
+        left: 0;
+        overflow: visible;
+        margin: 0;
+    }
+
+    // Vertical accordion for narrow viewports
+    .panel {
+        float: none;
+        width: 100%;
+        height: 4.5em;
+        margin: 0;
+        overflow: hidden;
+        position: relative;
+        box-shadow: inset 0 4px 10px -5px rgba(0, 0, 0, .75);
+
+        &:first-child {
+            box-shadow: none;
+        }
+    }
+
+    .panel-inner {
+        background: transparent;
+    }
+
+    .panel-title {
+        position: static;
+        width: auto;
+        height: auto;
+        padding: .75em 20px .75em 40%;
+        min-height: 3em;
+        text-align: left;
+        font-size: 16px;
+
+        &:after {
+            content: '\25bc'; /* Down arrow */
+            position: absolute;
+            right: 25px;
+            top: 35%;
+        }
+    }
+
+    .panel-content {
+        font-size: 16px;
+        line-height: 1.2;
+        width: 100%;
+        height: 100%;
+
+        & > a {
+            padding: 20px 20px 20px 40%;
+        }
+
+        .panel-logo {
+            position: static;
+            display: block;
+            margin-bottom: 10px;
+        }
+    }
+
+    .no-js .panel {
+        height: auto;
+        min-height: 20em;
+        padding: 0;
+
+        .panel-content {
+            padding: 0;
+        }
+    }
+
+    // Full width columns for narrow viewports
+    .extra-news,
+    .extra-contribute {
+        width: auto;
+        float: none;
+        margin: 0 10px @baseLine;
+    }
+
+    .js .extra-news .hentry {
+        height: 8em;
+    }
+
+    .extra .newsletter-form {
+        width: auto;
+        float: none;
+        margin: 0 10px @baseLine;
+    }
 
     #firefox-promo {
+        .container {
+            width: (@widthMobile - (@gridGutterWidth * 2));
+        }
+
         h3 {
             float: none;
-            width: auto;
-            font-size: 28px;
-            margin: 0 auto auto 100px;
-            min-height: 60px;
+            font-size: 24px;
+            min-height: 100px;
+            padding: 15px 0;
             white-space: normal;
+            width: auto;
+
+            img {
+                margin-top: 0;
+            }
+
+            b {
+                border: 0;
+                display: block;
+                font-size: 30px;
+                margin: 10px 0 .15em;
+                padding: 0;
+            }
         }
+
         .download-button {
             width: auto;
+            max-width: 100%;
             float: none;
             display: block;
-            margin-top: 10px;
+            margin: 10px;
+
             .download-link {
                 width: 100%;
             }
         }
-        #firefox-promo-link {
-            left: @gridGutterWidth;
-            top: @gridGutterWidth / 2;
-            width: 80px;
-            height: auto;
-        }
-        ul.features {
-            display: none;
-        }
     }
 
-    /* iOS temporary styles until we have new 'unsupported' text */
-    .ios #firefox-promo {
-        min-height: 90px;
-        padding-top: 20px;
-        h3 {
-            margin: 0 auto auto 100px;
+    .html-rtl #firefox-promo h3 {
+        img {
+            float: right;
         }
-        #firefox-promo-link {
-            left: @gridGutterWidth;
-        }
-    }
 
-    #home-news,
-    #home-promos,
-    #home-about {
-        width: @widthMobile - (@gridGutterWidth * 2);
+        b {
+            border: 0;
+        }
     }
 
 }
 
-/* Wide Mobile Layout: 480px */
+
+
+/****************************************************************************/
+// @Wide @mobile layout: 480px
 @media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
 
-    #firefox-promo {
-        padding-top: 10px;
-        h3 {
-            margin-top: 25px;
-            min-height: 55px;
-        }
+    .pillars {
+        background-image: url(/media/img/home/box-shadow-440.png);
+        padding-bottom: 18px;
     }
 
-    #home-news,
-    #home-promos,
-    #home-about {
-        width: @widthMobileLandscape - (@gridGutterWidth * 2);
+    #masthead,
+    .container,
+    .pillars {
+        width: (@widthMobileLandscape - @gridGutterWidth);
+    }
+
+    .js .extra-news .hentry {
+        height: 7em;
     }
 
 }
 
-/* }}} */
