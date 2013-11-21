@@ -333,7 +333,7 @@ var Tabzilla = (function (Tabzilla) {
         panel.on('keydown', function (event) {
             if (event.which === 27) {
                 event.preventDefault();
-                close();
+                Tabzilla.close();
             }
         });
 
