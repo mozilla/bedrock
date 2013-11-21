@@ -1,4 +1,4 @@
-<footer class="site-footer content">
+<div class="site-footer content">
   <ul class="box-links">
     <li>
     {% if page == 'index' %}
@@ -20,17 +20,4 @@
       </a>
     </li>
   </ul>
-  <div class="legal">
-    <a href="/">
-      <img src="{{ media('img/foundation/annualreport/2012/footer-mozilla.png') }}" alt="Mozilla">
-    </a>
-    <p>
-    {# L10n: Line break below is for visual formatting only #}
-    {% trans %}
-      Portions of this content are &copy;1998-{{ current_year }} <br>
-      by individual mozilla.org contributors. Content available
-      under a Creative Commons license.
-    {% endtrans %}
-    </p>
-  </div>
-</footer>
+</div>
