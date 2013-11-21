@@ -238,6 +238,18 @@ dl.faq dt {
 	margin-bottom: @baseLine;
 }
 
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+	.banner h1 {
+		background: url(/media/img/foundation/annualreport/2012/state-of-mozilla-high-res.png) left top no-repeat;
+		background-size: 141px 140px;
+	}
+
+    .videos li a {
+    	background-image: url(/media/img/foundation/annualreport/2012/icon-play-high-res.png);
+    	background-size: 39px 39px;
+    }
+}
+
 @media (max-width: 1279px) {
 	#outer-wrapper, #wrapper {
 		width: @breakDesktop;
