@@ -568,6 +568,11 @@ MINIFY_BUNDLES = {
         'privacy-firefoxos': (
             'js/privacy_firefoxos.js',
         ),
+        'products': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/mozorg/products.js',
+        ),
         'styleguide': (
             'js/styleguide/styleguide.js',
         ),
