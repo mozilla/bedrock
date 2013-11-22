@@ -189,9 +189,15 @@ def releases_index(request):
     minor_releases = firefox_details.firefox_history_stability_releases
 
     for release in major_releases:
-        releases[float(re.findall(r'^\d+\.\d+', release)[0])] = {
+        major_verion = float(re.findall(r'^\d+\.\d+', release)[0])
+        # The version numbering scheme of Firefox changes sometimes. The second
+        # number has not been used since Firefox 4, then reintroduced with
+        # Firefox ESR 24 (Bug 870540). On this index page, 24.1.x should be
+        # fallen under 24.0. This patter is a tricky part.
+        major_pattern = r'^' + re.escape(('%s' if major_verion < 4 else '%g') % round(major_verion, 1))
+        releases[major_verion] = {
             'major': release,
-            'minor': sorted(filter(lambda x: re.findall(r'^' + re.escape(release), x),
+            'minor': sorted(filter(lambda x: re.findall(major_pattern, x),
                                    minor_releases),
                             key=lambda x: int(re.findall(r'\d+$', x)[0]))
         }
