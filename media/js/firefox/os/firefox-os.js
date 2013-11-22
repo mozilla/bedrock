@@ -59,6 +59,10 @@
         {
           "name": "T-Mobile",
           "url": "https://webshop.t-mobile.hu/webapp/wcs/stores/ProductDisplay?catalogId=2001&storeId=2001&langId=-11&productId=644566"
+        },
+        {
+          "name": "Telenor",
+          "url": "http://www.telenor.hu/mobiltelefon/alcatel/one-touch-fire"
         }
       ]
     },
