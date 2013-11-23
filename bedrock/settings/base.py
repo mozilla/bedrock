@@ -772,6 +772,9 @@ LOCALES_WITH_VTCS_HOME = ['en-GB', 'en-US', 'en-ZA', 'cy', 'da', 'de', 'el', 'es
                           'es-CL', 'es-MX', 'es-ES', 'eu', 'fr', 'fy-NL', 'is', 'it',
                           'mk', 'pl', 'sq', 'sv-SE', 'tr', 'uk', 'zh-TW']
 
+# Locales with the Donate banner on home page
+LOCALES_WITH_DONATE_HOME = ['en-US', 'de', 'fr', 'pt-BR']
+
 # reCAPTCHA keys
 RECAPTCHA_PUBLIC_KEY = ''
 RECAPTCHA_PRIVATE_KEY = ''

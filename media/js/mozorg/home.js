@@ -167,6 +167,21 @@
         gaTrack(['_trackEvent','Homepage Interactions', 'click', (panel.index() + 1)+':'+panel.attr('id')], callback);
     });
 
+    // Track donate clicks
+    $('#home-promo-donate-form').submit(function(e) {
+        e.preventDefault();
+
+        var $form = $(this);
+        $form.unbind('submit');
+
+        var panel = $(this).parents('.panel');
+
+        gaTrack(
+          ['_trackEvent', 'Homepage Interactions', 'submit', (panel.index() + 1) + ':donate'],
+          function (){ $form.submit(); }
+        );
+    });
+
     // Track news clicks
     $('.extra-news a').on('click', function(e) {
         e.preventDefault();
