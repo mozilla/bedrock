@@ -226,6 +226,20 @@ var Tabzilla = (function (Tabzilla) {
 
         return tab;
     };
+    Tabzilla.compareVersion = function (a, b) {
+        var num1, num2;
+        a = ('' + a).split('.');
+        b = ('' + b).split('.');
+        while (a.length < b.length) { a.push('0'); }
+        while (b.length < a.length) { b.push('0'); }
+        for (var i = 0; i < a.length; i++) {
+            num1 = parseInt(a[i], 10);
+            num2 = parseInt(b[i], 10);
+            if (num1 > num2) { return 1; }
+            if (num1 < num2) { return -1; }
+        }
+        return 0;
+    };
     var setupGATracking = function () {
         // track tabzilla links in GA
         $('#tabzilla-contents').on('click', 'a', function (e) {
@@ -378,20 +392,9 @@ var Tabzilla = (function (Tabzilla) {
         script.src = '//mozorg.cdn.mozilla.net/media/js/libs/jquery-' + minimumJQuery + '.min.js';
         document.getElementsByTagName('head')[0].appendChild(script);
     };
-    var compareVersion = function (a, b) {
-        a = ('' + a).split('.');
-        b = ('' + b).split('.');
-        while (a.length < b.length) { a.push('0'); }
-        while (b.length < a.length) { b.push('0'); }
-        for (var i = 0; i < a.length; i++) {
-            if (a[i] > b[i]) { return 1; }
-            if (a[i] < b[i]) { return -1; }
-        }
-        return 0;
-    };
     (function () {
         if (window.jQuery !== undefined &&
-            compareVersion(window.jQuery.fn.jquery, minimumJQuery) !== -1
+            Tabzilla.compareVersion(window.jQuery.fn.jquery, minimumJQuery) !== -1
         ) {
             // set up local jQuery aliases
             jQuery = window.jQuery;
