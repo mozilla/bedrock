@@ -502,6 +502,31 @@ class TestFirstrunRedirect(FxVersionRedirectsMixin, TestCase):
 
 
 @patch.object(fx_views, 'firefox_details', firefox_details)
+class TestReleaseNotesIndex(TestCase):
+    def test_relnotes_index(self):
+        with self.activate('en-US'):
+            response = self.client.get(reverse('firefox.releases.index'))
+        doc = pq(response.content)
+        eq_(len(doc('a[href="0.1.html"]')), 1)
+        eq_(len(doc('a[href="0.10.html"]')), 1)
+        eq_(len(doc('a[href="1.0.html"]')), 1)
+        eq_(len(doc('a[href="1.0.8.html"]')), 1)
+        eq_(len(doc('a[href="1.5.html"]')), 1)
+        eq_(len(doc('a[href="1.5.0.12.html"]')), 1)
+        eq_(len(doc('a[href="../2.0/releasenotes/"]')), 1)
+        eq_(len(doc('a[href="../2.0.0.20/releasenotes/"]')), 1)
+        eq_(len(doc('a[href="../3.6/releasenotes/"]')), 1)
+        eq_(len(doc('a[href="../3.6.28/releasenotes/"]')), 1)
+        eq_(len(doc('a[href="../17.0/releasenotes/"]')), 1)
+        eq_(len(doc('a[href="../17.0.11/releasenotes/"]')), 1)
+        eq_(len(doc('a[href="../24.0/releasenotes/"]')), 1)
+        eq_(len(doc('a[href="../24.1.0/releasenotes/"]')), 1)
+        eq_(len(doc('a[href="../24.1.1/releasenotes/"]')), 1)
+        eq_(len(doc('a[href="../25.0/releasenotes/"]')), 1)
+        eq_(len(doc('a[href="../25.0.1/releasenotes/"]')), 1)
+
+
+@patch.object(fx_views, 'firefox_details', firefox_details)
 @patch.object(fx_views, 'mobile_details', mobile_details)
 class TestNotesRedirects(TestCase):
     def _test(self, url_from, url_to):
