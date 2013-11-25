@@ -706,6 +706,7 @@ INSTALLED_APPS = get_apps(exclude=(
     '%s.styleguide' % PROJECT_MODULE,
     '%s.tabzilla' % PROJECT_MODULE,
     '%s.facebookapps' % PROJECT_MODULE,
+    '%s.humantxt' % PROJECT_MODULE,
 
     # libs
     'lib.l10n_utils',
@@ -885,3 +886,17 @@ DONATE_LOCALE_LINK = {
 
 # Mapbox token for spaces and communities pages
 MAPBOX_TOKEN = 'examples.map-9ijuk24y'
+HUMANSTXT_REPOS = [
+    {
+        'url': 'https://api.github.com/repos/mozilla/bedrock/contributors',
+        'header': 'Contributors on Github',
+        'prepend': 'Developers',
+        'type': 'github'
+    },
+    {
+        'url': 'https://svn.mozilla.org/projects/mozilla.com/trunk/locales/',
+        'header': 'Localizers on SVN',
+        'prepend': 'Localize',
+        'type': 'svn'
+    }
+]
