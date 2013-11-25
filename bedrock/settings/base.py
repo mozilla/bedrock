@@ -314,7 +314,10 @@ MINIFY_BUNDLES = {
             'css/mozorg/products.less',
         ),
         'projects_mozilla_based': (
-            'css/mozorg/projects-mozilla-based.less',
+            'css/mozorg/projects/mozilla-based.less',
+        ),
+        'projects-calendar': (
+            'css/mozorg/projects/calendar.less',
         ),
         'research': (
             'css/research/research.less',
@@ -380,6 +383,9 @@ MINIFY_BUNDLES = {
             'js/lightbeam/lightbeam.js',
             'js/lightbeam/ui.js',
             'js/libs/jquery.validate.js',
+        ),
+        'projects-calendar': (
+            'js/mozorg/calendar.js',
         ),
         'common': (
             'js/libs/jquery-1.7.1.min.js',
