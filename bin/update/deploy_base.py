@@ -5,10 +5,18 @@ Requires commander (https://github.com/oremj/commander) which is installed on
 the systems that need it.
 """
 import os
+import urllib
+import urllib2
 
 from commander.deploy import commands, task, hostgroups
 
 import commander_settings as settings
+
+
+NEW_RELIC_API_KEY = getattr(settings, 'NEW_RELIC_API_KEY', None)
+NEW_RELIC_APP_ID = getattr(settings, 'NEW_RELIC_APP_ID', None)
+NEW_RELIC_URL = 'https://rpm.newrelic.com/deployments.xml'
+GITHUB_URL = 'https://github.com/mozilla/bedrock/compare/{oldrev}...{newrev}'
 
 
 @task
@@ -65,7 +73,31 @@ def update_info(ctx):
             ctx.local("svn info")
             ctx.local("svn status")
 
+        ctx.local("mv media/revision.txt media/prev-revision.txt")
         ctx.local("git rev-parse HEAD > media/revision.txt")
+
+
+@task
+def ping_newrelic(ctx):
+    if NEW_RELIC_API_KEY and NEW_RELIC_APP_ID:
+        with ctx.lcd(settings.SRC_DIR):
+            oldrev = ctx.local('cat media/prev-revision.txt').out.strip()
+            newrev = ctx.local('cat media/revision.txt').out.strip()
+
+        print 'Post deployment to New Relic'
+        data = urllib.urlencode({
+            'deployment[description]': 'Chief Deployment',
+            'deployment[revision]': newrev,
+            'deployment[app_id]': NEW_RELIC_APP_ID,
+            'deployment[changelog]': GITHUB_URL.format(oldrev=oldrev,
+                                                       newrev=newrev),
+        })
+        headers = {'x-api-key': NEW_RELIC_API_KEY}
+        try:
+            request = urllib2.Request(NEW_RELIC_URL, data, headers)
+            urllib2.urlopen(request)
+        except urllib.URLError as exp:
+            print 'Error notifying New Relic: {0}'.format(exp)
 
 
 @task
@@ -85,6 +117,7 @@ def update(ctx):
 def deploy(ctx):
     commands['checkin_changes']()
     commands['deploy_app']()
+    commands['ping_newrelic']()
 
 
 @task
