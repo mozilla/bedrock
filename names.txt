@@ -2107,3 +2107,4 @@ Bai,Shiro
 Kumbhkar,Ravi
 Hatuwal,Ujjwal
 Rahman,Md. Anisur
+Nagy,Gergő
