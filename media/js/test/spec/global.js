@@ -158,6 +158,12 @@ describe("global.js", function() {
       var result = isFirefox(ua);
       expect(result).not.toBeTruthy();
     });
+
+    it("should not consider SeaMonkey to be Firefox", function() {
+      var ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:25.0) Gecko/20100101 Firefox/25.0 SeaMonkey/2.22.1';
+      var result = isFirefox(ua);
+      expect(result).not.toBeTruthy();
+    });
   });
 
   describe("isFirefoxUpToDate", function () {
