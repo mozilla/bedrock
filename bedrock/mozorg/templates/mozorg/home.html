@@ -149,7 +149,7 @@
         <h2 class="panel-title">{{ _('<i>Support</i> Mozilla') }}</h2>
         <div class="panel-inner">
           <div class="panel-content">
-            <h3>{{ _('Support Mozilla') }}</h3>
+            <h3>{{ _('<i>Support</i> Mozilla')|striptags }}</h3>
             <p>
               {{ _('Your gift goes directly to programs that help build the web the world needs.') }}
             </p>
@@ -169,15 +169,33 @@
                 <legend>{{ _('Your Gift Amount') }}</legend>
                 <label for="donate10">
                   <input type="radio" value="10" id="donate10" name="amount" checked>
+                  {% if request.locale in ['de', 'fr'] %}
+                    10&nbsp;$
+                  {% elif request.locale == 'pt-BR' %}
+                    US$&nbsp;10
+                  {% else %}
                   $10
+                  {% endif %}
                 </label>
                 <label for="donate25">
                   <input type="radio" value="25" id="donate25" name="amount">
+                  {% if request.locale in ['de', 'fr'] %}
+                    25&nbsp;$
+                  {% elif request.locale == 'pt-BR' %}
+                    US$&nbsp;25
+                  {% else %}
                   $25
+                  {% endif %}
                 </label>
                 <label for="donate50">
                   <input type="radio" value="50" id="donate50" name="amount">
+                  {% if request.locale in ['de', 'fr'] %}
+                    50&nbsp;$
+                  {% elif request.locale == 'pt-BR' %}
+                    US$&nbsp;50
+                  {% else %}
                   $50
+                  {% endif %}
                 </label>
                 <button class="button" type="submit">{{ _('Donate') }} »</button>
               </fieldset>
