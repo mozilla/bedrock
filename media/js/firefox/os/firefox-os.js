@@ -90,14 +90,6 @@
         }
       ]
     },
-    "rs": {
-      "partner": [
-        {
-          "name": "Telenor",
-          "url": "https://www.telenor.rs/sr/Privatni-korisnici/webshop/Mobilni-telefoni/Alcatel/One_Touch_Fire"
-        }
-      ]
-    },
     "uy": {
       "partner": [
         {
