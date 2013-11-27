@@ -1,0 +1,29 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/contact/contact-base.html" %}
+
+{% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Taipei') }}{% endblock %}
+
+{% block contact_entry %}
+  <div id="entry-container">
+    <section class="entry entry-space" id="taipei" data-tab="spaces">
+      <div class="card vcard">
+        <h2 class="fn">{{ _('Taipei') }}</h2>
+        <p class="adr">
+        {# L10n: Addresses are marked up with hCard microformat. See http://microformats.org/wiki/h-card #}
+        {% trans %}
+          <span class="street-address">4F-A1, No. 106, Sec. 5, Xinyi Rd.</span>, <span class="extended-address">Xinyi Dist.</span><br>
+          <span class="locality">Taipei City</span> <span class="postal-code">11047</span><br>
+          <span class="country-name">Taiwan</span>
+        {% endtrans %}
+        </p>
+
+        <figure class="feature-img">
+          <img src="//api.tiles.mapbox.com/v3/{{ settings.MAPBOX_TOKEN }}/url-{{ 'mozorg.cdn.mozilla.net/media/img/contact/moz-map-pin.png'|urlencode }}(121.567422,25.032329)/121.567422,25.032329,16/460x250.png" alt="">
+        </figure>
+      </div>
+    </section>
+  </div>
+{% endblock %}

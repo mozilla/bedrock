@@ -129,6 +129,13 @@ MINIFY_BUNDLES = {
         'newsletter': (
             'css/newsletter/newsletter.less',
         ),
+        'contact-spaces': (
+            'css/libs/mapbox.css',
+            'css/mozorg/contact-spaces.less',
+        ),
+        'contact-spaces-ie8': (
+            'css/libs/mapbox.ie.css',
+        ),
         'contribute': (
             'css/mozorg/contribute.less',
             'css/sandstone/video-resp.less',
@@ -390,6 +397,12 @@ MINIFY_BUNDLES = {
             'js/base/footer-email-form.js',
             'js/base/mozilla-input-placeholder.js',
             'js/base/mozilla-image-helper.js',
+        ),
+        'contact-spaces': (
+            'js/libs/mapbox.js',
+            'js/libs/jquery.history.js',
+            'js/mozorg/contact-data.js',
+            'js/mozorg/contact-spaces.js',
         ),
         'contribute': (
             'js/libs/jquery.sequence.js',
@@ -871,3 +884,6 @@ MOBILIZER_LOCALE_LINK = {
     'gr': 'https://wiki.mozilla.org/Mobilizer/MobilizerGreece/',
     'cs': 'https://wiki.mozilla.org/Mobilizer/MobilizerCzechRepublic/'
 }
+
+# Mapbox token for spaces and communities pages
+MAPBOX_TOKEN = 'examples.map-9ijuk24y'

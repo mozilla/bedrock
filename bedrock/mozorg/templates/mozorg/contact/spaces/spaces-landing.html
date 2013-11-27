@@ -1,0 +1,23 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/contact/contact-base.html" %}
+
+{% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Spaces') }}{% endblock %}
+
+{% block contact_entry %}
+  <div id="entry-container">
+    <section class="entry" id="spaces" data-tab="spaces">
+      <h2>{{ _('Mozilla Spaces') }}</h2>
+      <p>
+      {% trans %}
+        Mozilla Spaces are our offices around the world. They are open environments
+        where Mozillians can work side by side — hacking, coding, designing,
+        researching and creating. They are places for us to meet, collaborate and
+        continue to building a brighter future for the Web.
+      {% endtrans %}
+      </p>
+    </section>
+  </div>
+{% endblock %}

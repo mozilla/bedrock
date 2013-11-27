@@ -1,0 +1,31 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/contact/contact-base.html" %}
+
+{% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Beijing') }}{% endblock %}
+
+{% block contact_entry %}
+  <div id="entry-container">
+    <section class="entry entry-space" id="beijing" data-tab="spaces">
+      <div class="card vcard">
+        <h2 class="fn">{{ _('Beijing') }}</h2>
+        <p class="adr">
+        {# L10n: Addresses are marked up with hCard microformat. See http://microformats.org/wiki/h-card #}
+        {% trans %}
+          <span class="org">Mozilla Online Ltd.</span><br>
+          <span class="extended-address">International Club Office Tower 800A</span><br>
+          <span class="street-address">21 Jian Guo Men Wai Avenue</span><br>
+          <abbr class="region">Chaoyang District</abbr>, <span class="locality">Beijing</span> <span class="postal-code">100020</span><br>
+          <span class="country-name">China</span>
+        {% endtrans %}
+        </p>
+
+        <figure class="feature-img">
+          <img src="//api.tiles.mapbox.com/v3/{{ settings.MAPBOX_TOKEN }}/url-{{ 'mozorg.cdn.mozilla.net/media/img/contact/moz-map-pin.png'|urlencode }}(116.43405,39.909901)/116.43405,39.909901,16/460x250.png" alt="">
+        </figure>
+      </div>
+    </section>
+  </div>
+{% endblock %}

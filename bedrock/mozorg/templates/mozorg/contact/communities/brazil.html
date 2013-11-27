@@ -1,0 +1,28 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/contact/contact-base.html" %}
+
+{% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Brazil') }}{% endblock %}
+
+{% block contact_entry %}
+  <div id="entry-container">
+    <section class="entry entry-community" id="brazil" data-tab="communities">
+      <div class="card vcard">
+        <h2 class="fn">{{ _('Brazil') }}</h2>
+
+        <ul class="extra">
+          <li><a href="http://www.mozillabrasil.org.br/" class="website">mozillabrasil.org.br</a></li>
+          <li><a href="https://lists.mozilla.org/listinfo/community-brasil" class="email">{{ _('Mailing list') }}</a></li>
+          <li><a href="https://twitter.com/mozillabrasil" class="twitter">@mozillabrasil</a></li>
+          <li><a href="https://www.facebook.com/mozillabrasil" class="facebook">Facebook</a></li>
+        </ul>
+
+        <figure class="feature-img">
+          <img src="//api.tiles.mapbox.com/v3/{{ settings.MAPBOX_TOKEN }}/-53.08,-14.09,3/380x250.png" alt="">
+        </figure>
+      </div>
+    </section>
+  </div>
+{% endblock %}
