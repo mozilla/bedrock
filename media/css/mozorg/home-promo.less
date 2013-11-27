@@ -182,6 +182,75 @@
 }
 
 
+/****************************************************************************/
+// Donate
+#panel-donate {
+    background: #c13832 url(/media/img/home/panel/donate/bg-donate.png);
+    background: url(/media/img/home/panel/donate/bg-donate.png),
+        #c13832 -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0.15) 80%, rgba(0,0,0,0.1) 92%, rgba(0,0,0,0) 100%);
+    background: url(/media/img/home/panel/donate/bg-donate.png),
+        #c13832 -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0.15) 80%, rgba(0,0,0,0.1) 92%, rgba(0,0,0,0) 100%);
+    background: url(/media/img/home/panel/donate/bg-donate.png),
+        #c13832 -o-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0.15) 80%, rgba(0,0,0,0.1) 92%, rgba(0,0,0,0) 100%);
+    background: url(/media/img/home/panel/donate/bg-donate.png),
+        #c13832 linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0.15) 80%, rgba(0,0,0,0.1) 92%, rgba(0,0,0,0) 100%);
+
+    background-position: -50px 20px;
+    background-position: -50px 20px, 0 0;
+    background-repeat: no-repeat;
+    background-repeat: no-repeat, repeat-x;
+
+    .panel-title i {
+        display: block;
+    }
+
+    .panel-content {
+        color: #fff;
+        font-size: 20px;
+
+        h3 {
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        legend {
+            font-size: 20px;
+            color: #fff;
+            font-weight: 800;
+            text-shadow: none;
+        }
+
+        label {
+            display: inline-block;
+            font-size: 18px;
+            font-weight: 800;
+            margin: 0 @baseLine/2 @baseLine/2 0;
+        }
+
+        .button {
+            display: block;
+            padding: @baseLine/2 @baseLine;
+            font-size: 18px;
+            margin-top: @baseLine;
+        }
+    }
+
+    &.expanded {
+        background-position: -20px 20px;
+        background-position: -20px 20px, 0 0;
+    }
+
+    &.compressed {
+        background-position: -90px 20px;
+        background-position: -90px 20px, 0 0;
+    }
+}
+
+.no-js #panel-donate {
+    min-height: 22em;
+}
+
+
 
 /****************************************************************************/
 // Mozilla Festival
@@ -303,6 +372,21 @@
         background-size: 300px 335px, auto auto;
     }
 
+    #panel-donate {
+        background-image: url(/media/img/home/panel/donate/bg-donate-hires.png);
+        background-image: url(/media/img/home/panel/donate/bg-donate-hires.png),
+            -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0.15) 80%, rgba(0,0,0,0.1) 92%, rgba(0,0,0,0) 100%);
+        background-image: url(/media/img/home/panel/donate/bg-donate-hires.png),
+            -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0.15) 80%, rgba(0,0,0,0.1) 92%, rgba(0,0,0,0) 100%);
+        background-image: url(/media/img/home/panel/donate/bg-donate-hires.png),
+            -o-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0.15) 80%, rgba(0,0,0,0.1) 92%, rgba(0,0,0,0) 100%);
+        background-image: url(/media/img/home/panel/donate/bg-donate-hires.png),
+            linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0.15) 80%, rgba(0,0,0,0.1) 92%, rgba(0,0,0,0) 100%);
+
+        background-size: 287px 238px;
+        background-size: 287px 238px, auto auto;
+    }
+
     #panel-mozfest {
         background-image: url(/media/img/home/panel/mozfest/logo-mozfest-big-hires.png);
         background-image: url(/media/img/home/panel/mozfest/logo-mozfest-big-hires.png),
@@ -399,6 +483,32 @@
         &.compressed {
             background-position: -120px -5px;
             background-position: -120px -5px, 0 0;
+        }
+    }
+
+    // Donate
+    #panel-donate {
+        background-position: -50px 20px;
+        background-position: -50px 20px, 0 0;
+
+        &.expanded {
+            background-position: -110px 20px;
+            background-position: -110px 20px, 0 0;
+        }
+
+        .panel-content {
+            font-size: @largeFontSize;
+            h3 {
+                font-size: 20px;
+            }
+
+            label {
+                font-size: @largeFontSize;
+            }
+
+            .button {
+                font-size: @largeFontSize;
+            }
         }
     }
 
@@ -550,6 +660,64 @@
         }
     }
 
+    // Donate
+    #panel-donate {
+        background-image: url(/media/img/home/panel/donate/bg-donate-sm.png);
+        background-image: url(/media/img/home/panel/donate/bg-donate-sm.png),
+            -webkit-linear-gradient(top, rgba(0,0,0,0) 100%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0.15) 80%, rgba(0,0,0,0.1) 92%, rgba(0,0,0,0) 100%);
+        background-image: url(/media/img/home/panel/donate/bg-donate-sm.png),
+            -moz-linear-gradient(top, rgba(0,0,0,0) 100%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0.15) 80%, rgba(0,0,0,0.1) 92%, rgba(0,0,0,0) 100%);
+        background-image: url(/media/img/home/panel/donate/bg-donate-sm.png),
+            -o-linear-gradient(top, rgba(0,0,0,0) 100%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0.15) 80%, rgba(0,0,0,0.1) 92%, rgba(0,0,0,0) 100%);
+        background-image: url(/media/img/home/panel/donate/bg-donate-sm.png),
+            linear-gradient(top, rgba(0,0,0,0) 100%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0.15) 80%, rgba(0,0,0,0.1) 92%, rgba(0,0,0,0) 100%);
+
+        background-position: -24px -6px;
+        background-position: -24px -6px, 0 0;
+        background-size: 136px 114px;
+        background-size: 136px 114px, auto auto;
+
+        &.expanded {
+            background-image: url(/media/img/home/panel/donate/bg-donate-sm.png);
+            background-image: url(/media/img/home/panel/donate/bg-donate-sm.png),
+                -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0.15) 80%, rgba(0,0,0,0.1) 92%, rgba(0,0,0,0) 100%);
+            background-image: url(/media/img/home/panel/donate/bg-donate-sm.png),
+                -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0.15) 80%, rgba(0,0,0,0.1) 92%, rgba(0,0,0,0) 100%);
+            background-image: url(/media/img/home/panel/donate/bg-donate-sm.png),
+                -o-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0.15) 80%, rgba(0,0,0,0.1) 92%, rgba(0,0,0,0) 100%);
+            background-image: url(/media/img/home/panel/donate/bg-donate-sm.png),
+                linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0.15) 80%, rgba(0,0,0,0.1) 92%, rgba(0,0,0,0) 100%);
+
+            background-position: -24px 10px;
+            background-position: -24px 10px, 0 0;
+        }
+
+        &.compressed {
+            background-position: -24px -20px;
+            background-position: -24px -20px, 0 0;
+        }
+
+        .panel-content {
+            padding: @baseLine @baseLine @baseLine 40%;
+            height: auto;
+            width: auto;
+            font-size: @largeFontSize;
+
+            h3 {
+                font-size: @largeFontSize;
+            }
+
+            legend, label {
+                font-size: @baseFontSize;
+            }
+
+            .button {
+                font-size: @baseFontSize;
+                margin-top: 12px;
+            }
+        }
+    }
+
     // Mozilla Festival
     #panel-mozfest {
         background-image: url(/media/img/home/panel/mozfest/logo-mozfest-sm.png);
@@ -657,7 +825,6 @@
 
     }
 
-
     //MDN
     #panel-mdn {
         background-position: 10px -20px;
@@ -671,6 +838,22 @@
         &.compressed {
             background-position: 10px -25px;
             background-position: 10px -25px, 0 0;
+        }
+    }
+
+    // Donate
+    #panel-donate {
+        background-position: 0 0;
+        background-position: 0 0, 0 0;
+
+        &.expanded {
+            background-position: 0 10px;
+            background-position: 0 10px, 0 0;
+        }
+
+        &.compressed {
+            background-position: 0 -20px;
+            background-position: 0 -20px, 0 0;
         }
     }
 
@@ -738,6 +921,33 @@
                           url(/media/img/home/panel/mdn/bg-grid.png);
         background-size: 136px 151px;
         background-size: 136px 151px, auto auto;
+    }
+
+    #panel-donate {
+        background-image: url(/media/img/home/panel/donate/bg-donate.png);
+        background-image: url(/media/img/home/panel/donate/bg-donate.png),
+            -webkit-linear-gradient(top, rgba(0,0,0,0) 100%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0.15) 80%, rgba(0,0,0,0.1) 92%, rgba(0,0,0,0) 100%);
+        background-image: url(/media/img/home/panel/donate/bg-donate.png),
+            -moz-linear-gradient(top, rgba(0,0,0,0) 100%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0.15) 80%, rgba(0,0,0,0.1) 92%, rgba(0,0,0,0) 100%);
+        background-image: url(/media/img/home/panel/donate/bg-donate.png),
+            -o-linear-gradient(top, rgba(0,0,0,0) 100%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0.15) 80%, rgba(0,0,0,0.1) 92%, rgba(0,0,0,0) 100%);
+        background-image: url(/media/img/home/panel/donate/bg-donate.png),
+            linear-gradient(top, rgba(0,0,0,0) 100%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0.15) 80%, rgba(0,0,0,0.1) 92%, rgba(0,0,0,0) 100%);
+
+        background-size: 117px 92px;
+        background-size: 117px 92px, auto auto;
+
+        &.expanded {
+            background-image: url(/media/img/home/panel/donate/bg-donate.png);
+            background-image: url(/media/img/home/panel/donate/bg-donate.png),
+                -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0.15) 80%, rgba(0,0,0,0.1) 92%, rgba(0,0,0,0) 100%);
+            background-image: url(/media/img/home/panel/donate/bg-donate.png),
+                -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0.15) 80%, rgba(0,0,0,0.1) 92%, rgba(0,0,0,0) 100%);
+            background-image: url(/media/img/home/panel/donate/bg-donate.png),
+                -o-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0.15) 80%, rgba(0,0,0,0.1) 92%, rgba(0,0,0,0) 100%);
+            background-image: url(/media/img/home/panel/donate/bg-donate.png),
+                linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0.15) 80%, rgba(0,0,0,0.1) 92%, rgba(0,0,0,0) 100%);
+        }
     }
 
     #panel-mozfest {

@@ -143,7 +143,49 @@
         </div>
       </li>
 
-    {% if request.locale in settings.LOCALES_WITH_LIGHTBEAM_HOME or settings.DEV %}
+    {% if request.locale in settings.LOCALES_WITH_DONATE_HOME or settings.DEV %}
+      <li id="panel-donate" class="panel" tabindex="0">
+        {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
+        <h2 class="panel-title">{{ _('<i>Support</i> Mozilla') }}</h2>
+        <div class="panel-inner">
+          <div class="panel-content">
+            <h3>{{ _('Support Mozilla') }}</h3>
+            <p>
+              {{ _('Your gift goes directly to programs that help build the web the world needs.') }}
+            </p>
+            <form id="home-promo-donate-form" method="get"
+          {% if request.locale == 'de' %}
+            action="https://sendto.mozilla.org/page/contribute/EOYFR2013-webDE"
+          {% elif request.locale == 'fr' %}
+            action="https://sendto.mozilla.org/page/contribute/EOYFR2013-webFR"
+          {% elif request.locale == 'pt-BR' %}
+            action="https://sendto.mozilla.org/page/contribute/EOYFR2013-webPTBR"
+          {% else %}
+            action="https://sendto.mozilla.org/page/contribute/EOYFR2013-tabzilla"
+          {% endif %}
+            >
+              <input type="hidden" name="source" value="banner_people">
+              <fieldset>
+                <legend>{{ _('Your Gift Amount') }}</legend>
+                <label for="donate10">
+                  <input type="radio" value="10" id="donate10" name="amount" checked>
+                  $10
+                </label>
+                <label for="donate25">
+                  <input type="radio" value="25" id="donate25" name="amount">
+                  $25
+                </label>
+                <label for="donate50">
+                  <input type="radio" value="50" id="donate50" name="amount">
+                  $50
+                </label>
+                <button class="button" type="submit">{{ _('Donate') }} »</button>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </li>
+    {% elif request.locale in settings.LOCALES_WITH_VTCS_HOME or settings.DEV %}
       <li id="panel-webmaker" class="panel" tabindex="0">
         {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
         <h2 class="panel-title">{{ _('<i>Learn</i> the Web') }}</h2>

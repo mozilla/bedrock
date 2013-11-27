@@ -173,8 +173,15 @@
     }
 }
 
-.no-js .panel {
-    min-height: 16em;
+.no-js {
+    .panel {
+        min-height: 16em;
+    }
+
+    // make sure .angle div doesn't expand outside of the .panel
+    #panel-vans {
+        overflow: hidden;
+    }
 }
 
 // A title visible when the panel is in its initial state.

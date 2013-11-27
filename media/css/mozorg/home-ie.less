@@ -55,6 +55,14 @@
     }
 }
 
+// make sure .angle div doesn't expand outside of the .panel
+#panel-vans {
+    .angle {
+        width: auto;
+        height: auto;
+    }
+}
+
 .panel-content,
 .js .panel-content {
     position: relative;
@@ -89,6 +97,10 @@
 #panel-webmaker .panel-content a:link,
 #panel-webmaker .panel-content a:visited {
     color: #12ab86;
+}
+
+#panel-donate {
+    min-height: 22em;
 }
 
 #firefox-promo .download-button {
