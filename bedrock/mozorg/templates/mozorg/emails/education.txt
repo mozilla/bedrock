@@ -16,7 +16,7 @@ We help learners make amazing things on the web and level up their digital skill
 
 Please introduce yourself on our community mailing list. We don't bite!
 
-webmaker@lists.mozilla.org
+https://lists.mozilla.org/listinfo/webmaker
 
 # Webmaker Teaching Kits
 
@@ -38,7 +38,7 @@ And check out tips on organizing a hands-on Webmaker event: https://webmaker.org
 
 Thank you for your interest in education and teaching the web. Please feel free to use and remix these resources and to share your experiences with the Webmaker Mentor community.
 
-webmaker@lists.mozilla.org
+https://lists.mozilla.org/listinfo/webmaker
 
 All the best,
 
