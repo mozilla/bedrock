@@ -45,6 +45,10 @@
             mozMap.initResizeHandler();
             //initialize map and center.
             map = L.mapbox.map('map').setView([28, 0], 2);
+            // add open street map attribution
+            map.attributionControl.addAttribution(
+                '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            );
             // load mozilla custom map tiles
             var mapLayer = L.mapbox.tileLayer(token,{
                 detectRetina: true
