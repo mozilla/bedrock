@@ -66,6 +66,14 @@
         }
       ]
     },
+    "me": {
+      "partner": [
+        {
+          "name": "Telenor",
+          "url": "http://www.telenor.me/sr/Privatni-korisnici/Uredjaji/Alcatel/Alcatel-One-Touch-Fire/"
+        }
+      ]
+    },
     "mx": {
       "partner": [
         {
