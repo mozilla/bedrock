@@ -1,0 +1,146 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/about-base.html" %}
+
+{% block page_title %}{{ _('Mozilla CA Certificate Inclusion Policy') }}{% endblock %}
+{% block body_class %}sand{% endblock %}
+
+{% block extrahead %}
+  {{ css('security-group') }}
+{% endblock %}
+
+{% block article %}
+
+<h1>{{ _('Mozilla CA Certificate Maintenance Policy') }}</h1>
+<h3>{{ _('(Version 2.2)') }}</h3>
+
+<p>{{ _('This section of the <a href="%s">Mozilla CA Certificate Policy</a> describes the obligations of Certification Authorities applying for inclusion of their root certificates in Mozilla Products. This includes considerations that are taken into account such as the CA’s publicly available documentation about their policies, and audits of the CA’s operations in support of the documented policies.')|format(url('mozorg.about.governance.policies.security.certs.policy')) }}</p>
+<p>{{ _('This is the official Mozilla policy for Certification Authorities applying for inclusion of their CA Certificates to be distributed in Mozilla products:') }}</p>
+<ol>
+  <li>{{ _('We will determine which CA certificates are included in software products distributed by Mozilla, based on the benefits and risks of such inclusion to typical users of those products.') }}</li>
+  <li>{{ _('We will make such decisions through a public process, based on objective and verifiable criteria as described below.') }}</li>
+  <li>{{ _('We will not charge any fees to have a CA’s certificate(s) distributed with our software products.') }}</li>
+  <li>{{ _('We reserve the right to not include a particular CA certificate in our software products. This includes (but is not limited to) cases where we believe that including a CA certificate (or setting its "trust bits" in a particular way) would cause undue risks to users’ security, for example, with CAs that') }}
+    <ul>
+      <li>{{ _('knowingly issue certificates without the knowledge of the entities whose information is referenced in the certificates; <em>or</em>') }}</li>
+      <li>{{ _('knowingly issue certificates that appear to be intended for fraudulent use.') }}</li>
+    </ul>
+    {{ _('This also includes (but again is not limited to) cases where we believe that including a CA certificate (or setting its "trust bits" in a particular way) might cause technical problems with the operation of our software, for example, with CAs that issue certificates that have') }}
+    <ul>
+      <li>{{ _('ASN.1 DER encoding errors;') }}</li>
+      <li>{{ _('invalid public keys (e.g., RSA certificates with public exponent equal to 1);') }}</li>
+      <li>{{ _('duplicate issuer names and serial numbers;') }}</li>
+      <li>{{ _('incorrect extensions (e.g., SSL certificates that exclude SSL usage, or authority key IDs that include both the key ID and the issuer’s issuer name and serial number); <em>or</em>') }}</li>
+      <li>{{ _('cRLDistributionPoints or OCSP authorityInfoAccess extensions for which no operational CRL or OCSP service exists.') }}</li>
+    </ul>
+  </li>
+  <li>{{ _('We will consider adding certificates for additional CAs to the default certificate set upon request only by an authorized representative of the subject CA.') }}</li>
+  <li>{{ _('We require that all CAs whose certificates are distributed with our software products:') }}
+    <ul>
+      <li>{{ _('provide some service relevant to typical users of our software products;') }}</li>
+      <li>{{ _('publicly disclose information about their policies and business practices (e.g., in a Certificate Policy and Certification Practice Statement);') }}</li>
+      <li>{{ _('enforce multi-factor authentication for all accounts capable of directly causing certificate issuance or implement technical controls operated by the CA to restrict certificate issuance through the account to a limited set of pre-approved domains or email addresses;') }}</li>
+      <li>{{ _('maintain a certificate hierarchy such that the included certificate does not directly issue end-entity certificates to customers (e.g., the included certificate signs intermediate issuing certificates), as described in <cite><a href="%s">CA/Browser Forum Baseline Requirement #12;</a></cite>')|format('http://www.cabforum.org/documents.html') }}</li>
+      <li>{{ _('prior to issuing certificates, verify certificate signing requests in a manner that we deem acceptable for the stated purpose(s) of the certificates;') }}</li>
+      <li>{{ _('verify that all of the information that is included in SSL certificates remains current and correct at time intervals of thirty-nine months or less;') }}</li>
+      <li>{{ _('otherwise operate in accordance with published criteria that we deem acceptable; <em>and</em>') }}</li>
+      <li>{{ _('provide public attestation of their conformance to the stated verification requirements and other operational criteria by a competent independent party or parties with access to details of the CA’s internal operations.') }}</li>
+    </ul>
+  </li>
+  <li>{{ _('We consider verification of certificate signing requests to be acceptable if it meets or exceeds the following requirements:') }}
+    <ul>
+      <li>{{ _('all information that is supplied by the certificate subscriber must be verified by using an independent source of information or an alternative communication channel before it is included in the certificate;') }}</li>
+      <li>{{ _('for a certificate to be used for digitally signing or encrypting email messages, the CA takes reasonable measures to verify that the entity submitting the request controls the email account associated with the email address referenced in the certificate <em>or</em> has been authorized by the email account holder to act on the account holder’s behalf;') }}</li>
+      <li>{{ _('for a certificate to be used for SSL-enabled servers, the CA takes reasonable measures to verify that the entity submitting the certificate signing request has registered the domain(s) referenced in the certificate <em>or</em> has been authorized by the domain registrant to act on the registrant’s behalf;') }}</li>
+      <li>{{ _('for certificates to be used for digitally signing code objects, the CA takes reasonable measures to verify that the entity submitting the certificate signing request is the same entity referenced in the certificate <em>or</em> has been authorized by the entity referenced in the certificate to act on that entity’s behalf;') }}</li>
+      <li>{{ _('for certificates to be used for and marked as Extended Validation, the CA complies with <cite><a href="%s">Guidelines for the Issuance and Management of Extended Validation Certificates</a></cite> version 1.4 or later.')|format('http://www.cabforum.org/documents.html') }}</li>
+    </ul>We reserve the right to use other requirements in the future.') }}
+  </li>
+  <li>{{ _('All certificates that are capable of being used to issue new certificates, and which directly or transitively chain to a certificate included in Mozilla’s CA Certificate Program, MUST be operated in accordance with <a href="%s">Mozilla’s CA Certificate Policy</a> and MUST either be <b>technically constrained</b> or be <b>publicly disclosed and audited.</b>')|format(url('mozorg.about.governance.policies.security.certs.policy')) }}
+    <ul>
+      <li>{{ _('A certificate is deemed as capable of being used to issue new certificates if it contains an <a href="%s">X.509v3 basicConstraints extension,</a> with the cA boolean set to true. The term "subordinate CA" below refers to any organization or legal entity that is in possession or control of a certificate that is capable of being used to issue new certificates.')|format('http://tools.ietf.org/html/rfc5280#section-6.1.4') }}</li>
+      <li>{{ _('These requirements include all cross-certified certificates which chain to a certificate that is included in Mozilla’s CA Certificate Program.') }}</li>
+    </ul>
+  </li>
+  <li>{{ _('We encourage CAs to technically constrain all subordinate CA certificates. For a certificate to be considered <b>technically constrained,</b> the certificate MUST include an <a href="%s">Extended Key Usage (EKU)</a> extension specifying all extended key usages that the subordinate CA is authorized to issue certificates for. The anyExtendedKeyUsage KeyPurposeId MUST NOT appear within this extension.')|format('http://tools.ietf.org/html/rfc5280#section-4.2.1.12') }}'
+    <ul>
+      <li>{{ _('If the certificate includes the id-kp-serverAuth extended key usage, then the certificate MUST include the <a href="%s">Name Constraints X.509v3</a> extension with constraints on both dNSName and iPAddress. For each dNSName in permittedSubtrees, the issuing CA MUST confirm that the subordinate CA has registered the dNSName or has been authorized by the domain registrant to act on the registrant’s behalf. Each dNSName in permittedSubtrees must be a registered domain (with zero or more subdomains) according to the <a href="%s">Public Suffix List algorithm.</a>')|format('http://tools.ietf.org/html/rfc5280#section-4.2.1.10','http://publicsuffix.org/list/') }}
+        <ul>
+          <li>{{ _('For each iPAddress range in permittedSubtrees, the issuing CA MUST confirm that the subordinate CA has been assigned the iPAddress range or has been authorized by the assigner to act on the assignee’s behalf.') }}</li>
+          <li>{{ _('If the subordinate CA is not allowed to issue certificates with an iPAddress, then the subordinate CA certificate MUST specify the entire <a href="%s">IPv4</a> and <a href="%s">IPv6</a> address ranges in excludedSubtrees. The subordinate CA certificate MUST include within excludedSubtrees an iPAddress GeneralName of 8 zero octets (covering the IPv4 address range of 0.0.0.0/0). The subordinate CA certificate MUST also include within excludedSubtrees an iPAddress GeneralName of 32 zero octets (covering the IPv6 address range of ::0/0).')|format('http://www.iana.org/assignments/ipv4-address-space/ipv4-address-space.xml','http://www.iana.org/assignments/ipv6-address-space/ipv6-address-space.xml') }}</li>
+          <li>{{ _('If the subordinate CA is not allowed to issue certificates with dNSNames, then the subordinate CA certificate MUST include a zero-length dNSName in excludedSubtrees.') }}</li>
+        </ul>
+      </li>
+      <li>{{ _('If the certificate includes the id-kp-emailProtection extended key usage, then all end-entity certificates MUST only include e-mail addresses or mailboxes that the issuing CA has confirmed (via technical and/or business controls) that the subordinate CA is authorized to use.') }}</li>
+      <li>{{ _('If the certificate includes the id-kp-codeSigning extended key usage, then the certificate MUST contain a directoryName permittedSubtrees constraint where each permittedSubtree contains the organizationName, localityName (where relevant), stateOrProvinceName (where relevant) and countryName fields of an address that the issuing CA has confirmed belongs to the subordinate CA.') }}</li>
+    </ul>
+  </li>
+  <li>{{ _('We recognize that technically constraining subordinate CA certificates as described above may not be practical in some cases. All certificates that are capable of being used to issue new certificates, that are not technically constrained, and that directly or transitively chain to a certificate included in Mozilla’s CA Certificate Program MUST be audited in accordance with <a href="%s">Mozilla’s CA Certificate Policy</a> and MUST be publicly disclosed by the CA that has their certificate included in Mozilla’s CA Certificate Program. The CA with a certificate included in Mozilla’s CA Certificate Program MUST disclose this information before any such subordinate CA is allowed to issue certificates. All disclosure MUST be made freely available and without additional requirements, including, but not limited to, registration, legal agreements, or restrictions on redistribution of the certificates in whole or in part. The Certificate Policy or Certification Practice Statement of the CA that has their certificate included in Mozilla’s CA Certificate Program must specify where on that CA’s website all such public disclosures are located. For a certificate to be considered <b>publicly disclosed and audited,</b> the following information MUST be provided:')|format(url('mozorg.about.governance.policies.security.certs.policy')) }}
+    <ul>
+      <li>{{ _('The full DER-encoded X.509 certificate (Each issuing CA should provide one .p7c, .zip, or .tgz file containing all of the non-technically-constrained intermediate certificates that it has signed.);') }}</li>
+      <li>{{ _('The corresponding Certificate Policy or Certification Practice Statement used by the subordinate CA; <i>and</i>') }}</li>
+      <li>{{ _('Annual public attestation of conformance to the stated certificate verification requirements and other operational criteria by a competent independent party or parties with access to the details of the subordinate CA’s internal operations.') }}</li>
+    </ul>
+  </li>
+  <li>{{ _('We consider the criteria for CA operations published in any of the following documents to be acceptable:') }}
+    <ul>
+      <li>{{ _('Clause 7, "Requirements on CA practice", in ETSI TS 101 456 V1.4.3 or later version, <cite><a href="%s">Policy requirements for certification authorities issuing qualified certificates</a></cite> (only applicable to electronic signature certificate issuance; applicable to either the "QCP public" or "QCP public + SSCD" certificate policies);')|format('http://pda.etsi.org/pda/home.asp?wki_id=vXY0eat9Qxoquqxsw%27A2D') }}</li>
+      <li>{{ _('Clause 7, "Requirements on CA practice", in ETSI TS 102 042 V2.3.1 or later version, <cite><a href="%s">Policy requirements for certification authorities issuing public key certificates</a></cite> (as applicable to the "EVCP" and "EVCP+" certificate policies, DVCP and OVCP certificate policies for publicly trusted certificates - baseline requirements, and any of the "NCP", "NCP+", or "LCP" certificate policies);')|format('http://pda.etsi.org/pda/home.asp?wki_id=LJfRMZJQbbbekfdgITkht') }}</li>
+      <li>{{ _('<cite><a href="%s">ISO 21188:2006</a></cite> Public key infrastructure for financial services -- Practices and policy framework;')|format('http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=35707') }}</li>
+      <li>{{ _('WebTrust <cite><a href="%s">"Principles and Criteria for Certification Authorities 2.0" or later</a></cite> and <cite><a href="%s">"SSL Baseline Requirements Audit Criteria V1.1"</a></cite> (as applicable to SSL certificate issuance) in <cite><a href="%s">WebTrust Program for Certification Authorities;</a></cite>')|format('http://www.webtrust.org/homepage-documents/item54279.pdf','http://www.webtrust.org/homepage-documents/item72056.pdf','http://www.webtrust.org/homepage-documents/item27839.aspx') }}</li>
+      <li>{{ _('WebTrust <cite><a href="%s">"Principles and Criteria for Certification Authorities - Extended Validation Audit Criteria 1.4" or later</a></cite> in <cite><a href="%s">WebTrust Program for Certification Authorities</a></cite>.')|format('http://www.webtrust.org/homepage-documents/item72055.pdf','http://www.webtrust.org/homepage-documents/item27839.aspx') }}</li>
+    </ul>We reserve the right to accept other criteria in the future.') }}
+  </li>
+  <li>{{ _('CA operations and issuance of certificates to be used for SSL-enabled servers must also conform to version 1.1.5 of the <cite><a href="%s">CA/Browser Forum Baseline Requirements for the Issuance and Management of Publicly-Trusted Certificates.</a></cite> In the event of inconsistency between <a href="%s">Mozilla’s CA Certificate Policy</a> requirements and the Baseline Requirements, <a href="%s">Mozilla’s CA Certificate Policy</a> takes precedence. The items listed below will be accepted as reason for not following the Baseline Requirements. If you find an inconsistency that is not listed here, notify Mozilla by sending email to certificates@mozilla.org so the item can be considered.')|format('http://www.cabforum.org/documents.html',url('mozorg.about.governance.policies.security.certs.policy'),url('mozorg.about.governance.policies.security.certs.policy')) }}
+    <ul>
+      <li>{{ _('Mozilla’s CA Certificate Policy defining a competent and independent auditor is a superset of Baseline Requirement #17.6, Auditor Qualifications, and takes precedence over it.') }}</li>
+    </ul>
+  </li>
+  <li>{{ _('By "competent party" we mean a person or other entity who is authorized to perform audits according to the stated criteria (e.g., by the organization responsible for the criteria or by a relevant government agency) <em>or</em> for whom there is sufficient public information available to determine that the party is competent to judge the CA’s conformance to the stated criteria. In the latter case the "public information" referred to should include information regarding the party’s') }}
+    <ul>
+      <li>{{ _('knowledge of CA-related technical issues such as public key cryptography and related standards;') }}</li>
+      <li>{{ _('experience in performing security-related audits, evaluations, or risk analyses; <em>and</em>') }}</li>
+      <li>{{ _('honesty and objectivity.') }}</li>
+    </ul>
+  </li>
+  <li>{{ _('By "independent party" we mean a person or other entity who is not affiliated with the CA as an employee or director <em>and</em> for whom at least one of the following statements is true:') }}
+    <ul>
+      <li>{{ _('the party is not financially compensated by the CA;') }}</li>
+      <li>{{ _('the nature and amount of the party’s financial compensation by the CA is publicly disclosed; <em>or</em>') }}</li>
+      <li>{{ _('the party is bound by law, government regulation, and/or a professional code of ethics to render an honest and objective judgement regarding the CA.') }}</li>
+    </ul>
+  </li>
+  <li>{{ _('We reserve the right to designate our own representative(s) to act as the competent independent party or parties described above, should that prove to be necessary and appropriate.') }}</li>
+  <li>{{ _('The burden is on the CA to prove that it has met the above requirements. However the CA may request a preliminary determination from us regarding the acceptability of the criteria and/or the competent independent party or parties by which it proposes to meet the requirements of this policy.') }}</li>
+  <li>{{ _('We rely on publicly disclosed documentation (e.g., in a Certificate Policy and Certification Practice Statement) and publicly disclosed audit statements to ascertain that the above requirements are met. Therefore, inclusion requests will only be considered if the following are true:') }}
+    <ul>
+      <li>{{ _('the publicly disclosed documentation provides sufficient information for Mozilla to determine whether and how the CA complies with this policy, including a description of the steps taken by the CA to verify certificate signing requests;') }}</li>
+      <li>{{ _('the documentation is available from the CA’s official website; and') }}</li>
+      <li>{{ _('the public attestation of the CA’s conformance to the stated verification requirements by a competent independent party indicates which policy documents were included in the review.') }}</li>
+    </ul>
+  </li>
+  <li>{{ _('To request that its certificate(s) be added to the default set a CA should submit a formal request by submitting a <a href="%s">bug report</a> into the mozilla.org Bugzilla system, filed against the "CA Certificates" component of the "mozilla.org" product. Mozilla’s wiki page, <cite><a href="%s">Applying for root inclusion in Mozilla products,</a></cite> provides further details about how to submit a formal request. The request must be made by an authorized representative of the subject CA, and should include the following:')|format('https://bugzilla.mozilla.org/enter_bug.cgi?product=mozilla.org&amp;component=CA%20Certificates','https://wiki.mozilla.org/CA:How_to_apply') }}
+    <ul>
+      <li>{{ _('the certificate data (or links to the data) for the CA certificate(s) requested for inclusion;') }}</li>
+      <li>{{ _('for each CA certificate requested for inclusion, whether or not the CA issues certificates for each of the following purposes within the CA hierarchy associated with the CA certificate:') }}
+        <ul>
+          <li>{{ _('SSL-enabled servers,') }}</li>
+          <li>{{ _('digitally-signed and/or encrypted email, <em>or</em>') }}</li>
+          <li>{{ _('digitally-signed executable code objects;') }}</li>
+        </ul>
+      </li>
+      <li>{{ _('for each CA certificate requested for inclusion, whether the CA issues Extended Validation certificates within the CA hierarchy associated with the CA certificate <em>and</em>, if so, the EV policy OID associated with the CA certificate;') }}</li>
+      <li>{{ _('a Certificate Policy and Certification Practice Statement (or links to a CP and CPS) <em>or</em> equivalent disclosure document(s) for the CA or CAs in question; <em>and</em>') }}</li>
+      <li>{{ _('information as to how the CA has fulfilled the requirements stated above regarding its verification of certificate signing requests and its conformance to a set of acceptable operational criteria.') }}</li>
+    </ul>
+    {{ _('We will reject requests where the CA does not provide such information within a reasonable period of time after submitting its request.') }}
+  </li>
+  <li>{{ _('We have appointed a <a href="%s">CA certificate "module owner"</a> and (optionally) one or more "peers" to evaluate CA requests on our behalf and make decisions regarding all matters relating to CA certificates included in our products. CAs or others objecting to a particular decision may appeal to the <a href="%s">Mozilla governance module owner or peer(s)</a>, who will make a final decision.')|format('https://wiki.mozilla.org/Modules/Activities#Mozilla_CA_Certificate_Policy','https://wiki.mozilla.org/Modules/Activities#Governance') }}</li>
+</ol>
+<p>{{ _('This policy applies only to software products distributed by Mozilla, including the Mozilla Foundation and its subsidiaries. Other entities distributing such software are free to adopt their own policies. In particular, under the terms of the relevant Mozilla license(s) distributors of such software are permitted to add or delete CA certificates in the versions that they distribute, and are also permitted to modify the values of the "trust bits" on CA certificates in the default CA certificate set. As with other software modifications, by making such changes a distributor may affect its ability to use Mozilla trademarks in connection with its versions of the software; see the <a href="%s">Mozilla trademark policy</a> for more information.')|format(url('foundation.trademarks.policy')) }}</p>
+<p>{{ _('Please contact Mozilla at <a href="mailto:certificates@mozilla.org">certificates@mozilla.org</a> for more information about this policy and answers to related questions.') }}</p>
+<p>{{ _('We reserve the right to change this policy in the future. We will do so only after consulting with the public Mozilla community, in order to ensure that all views are taken into account.') }}</p>
+
+{%endblock%}
