@@ -41,7 +41,7 @@ PROD_LANGUAGES = ('ach', 'af', 'ak', 'an', 'ar', 'as', 'ast', 'az', 'be', 'bg',
                   'nn-NO', 'nso', 'oc', 'or', 'pa-IN', 'pl', 'pt-BR', 'pt-PT',
                   'rm', 'ro', 'ru', 'sah', 'si', 'sk', 'sl', 'son', 'sq', 'sr',
                   'sv-SE', 'sw', 'ta', 'ta-LK', 'te', 'th', 'tr', 'uk',
-                  'ur', 'vi', 'wo', 'zh-CN', 'zh-TW', 'zu')
+                  'ur', 'vi', 'wo', 'xh', 'zh-CN', 'zh-TW', 'zu')
 DEV_LANGUAGES = list(DEV_LANGUAGES) + ['en-US']
 
 FEED_CACHE = 3900
