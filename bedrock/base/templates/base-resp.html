@@ -4,12 +4,12 @@
 {# Note the "windows" class, without javascript platform-specific
      assets default to windows #}
 <html class="windows no-js" lang="{{ LANG }}" dir="{{ DIR }}"{% block html_attrs %}{% endblock %}>
+  <head>
+    <meta charset="utf-8">{# Note: Must be within first 512 bytes of page #}
 <!--
 {% include "includes/careers-teaser.html" %}
 -->
-  <head>
     {% block ga_experiments %}{% endblock %}
-    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% block extra_meta %}{% endblock %}
 
