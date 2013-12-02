@@ -70,7 +70,7 @@
       "partner": [
         {
           "name": "Telenor",
-          "url": "http://www.telenor.me/sr/Privatni-korisnici/Uredjaji/Alcatel/Alcatel-One-Touch-Fire/"
+          "url": "http://www.telenor.me/sr/Privatni-korisnici/Uredjaji/Mobilni-telefoni/Alcatel/OT_Fire"
         }
       ]
     },
