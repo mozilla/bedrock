@@ -775,15 +775,16 @@ LOCALES_WITH_MOZ15 = ['bg', 'cs', 'de', 'el', 'en-GB', 'en-US', 'es-AR', 'es-CL'
 
 # Locales with the Lightbeam and Webmaker banners on home page
 LOCALES_WITH_LIGHTBEAM_HOME = ['en-GB', 'en-US', 'en-ZA', 'ar', 'ca', 'cs', 'cy',
-                               'da', 'de', 'el', 'es-AR', 'es-CL', 'es-MX', 'es-ES',
-                               'eu', 'fr', 'fy-NL', 'hy-AM', 'is', 'it', 'ko', 'mk',
-                               'nl', 'pl', 'pt-BR', 'ru', 'sq', 'sv-SE', 'tr', 'uk',
-                               'zh-TW']
+                               'da', 'de', 'el', 'es-AR', 'es-CL', 'es-ES', 'es-MX',
+                               'et', 'eu', 'fr', 'fy-NL', 'hy-AM', 'hr', 'is', 'it',
+                               'ko', 'mk', 'nl', 'pl', 'pt-BR', 'ru', 'sq', 'sv-SE',
+                               'tr', 'uk', 'xh', 'zh-TW']
 
 # Locales with the Vans Triple Crown banner on home page
-LOCALES_WITH_VTCS_HOME = ['en-GB', 'en-US', 'en-ZA', 'cy', 'da', 'de', 'el', 'es-AR',
-                          'es-CL', 'es-MX', 'es-ES', 'eu', 'fr', 'fy-NL', 'is', 'it',
-                          'mk', 'pl', 'sq', 'sv-SE', 'tr', 'uk', 'zh-TW']
+LOCALES_WITH_VTCS_HOME = ['en-GB', 'en-US', 'en-ZA', 'ar', 'ca', 'cs', 'cy', 'da', 'de',
+                          'el', 'es-AR', 'es-CL', 'es-ES', 'es-MX', 'et', 'eu', 'fr',
+                          'fy-NL', 'hy-AM', 'hr', 'is', 'it', 'ko', 'mk', 'nl', 'pl',
+                          'pt-BR', 'ru', 'sq', 'sv-SE', 'tr', 'uk', 'zh-TW']
 
 # Locales with the Donate banner on home page
 LOCALES_WITH_DONATE_HOME = ['en-US', 'de', 'fr', 'pt-BR']
