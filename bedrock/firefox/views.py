@@ -8,17 +8,17 @@ import json
 import re
 
 from django.conf import settings
-from django.http import (HttpResponsePermanentRedirect,
-                         HttpResponseRedirect)
+from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
+from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.views.decorators.vary import vary_on_headers
 from django.views.generic.base import TemplateView
 
 import basket
-from lib import l10n_utils
-from jingo_minify.helpers import BUILD_ID_JS, BUNDLE_HASHES
 from funfactory.urlresolvers import reverse
-
+from jingo_minify.helpers import BUILD_ID_JS, BUNDLE_HASHES
+from lib import l10n_utils
+from rna.models import Release
 
 from bedrock.firefox import version_re
 from bedrock.firefox.forms import SMSSendForm
@@ -27,6 +27,7 @@ from bedrock.mozorg.views import process_partnership_form
 from bedrock.firefox.utils import is_current_or_newer
 from bedrock.firefox.firefox_details import firefox_details, mobile_details
 from lib.l10n_utils.dotlang import _
+
 
 UA_REGEXP = re.compile(r"Firefox/(%s)" % version_re)
 
@@ -407,3 +408,34 @@ class WhatsnewView(LatestFxView):
         else:
             template = 'firefox/whatsnew.html'
         return template
+
+
+def release_notes(request, version, channel='Release', product='Firefox'):
+    if len(version.split('.')) == 2:
+        query_version = version + '.0'
+    else:
+        query_version = version
+    release = get_object_or_404(Release, version=query_version,
+                                channel=channel, product=product)
+
+    new_features, known_issues = release.notes()
+    return l10n_utils.render(
+        request, 'firefox/releases/notes.html', {
+            'version': version,
+            'major_version': version.split('.', 1)[0],
+            'release': release,
+            'new_features': new_features,
+            'known_issues': known_issues})
+
+
+def system_requirements(request, version, channel='Release',
+                        product='Firefox'):
+    if len(version.split('.')) == 2:
+        query_version = version + '.0'
+    else:
+        query_version = version
+    release = get_object_or_404(Release, version=query_version,
+                                channel=channel, product=product)
+    return l10n_utils.render(
+        request, 'firefox/releases/system_requirements.html',
+        {'release': release, 'version': version})

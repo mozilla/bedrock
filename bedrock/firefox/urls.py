@@ -15,6 +15,7 @@ firstrun_re = latest_re % (version_re, 'firstrun')
 whatsnew_re = latest_re % (version_re, 'whatsnew')
 product_re = '(?P<product>firefox|mobile)'
 channel_re = '(?P<channel>beta|aurora|organizations)'
+releasenotes_re = latest_re % (version_re, 'releasenotes')
 
 
 urlpatterns = patterns('',
@@ -78,6 +79,8 @@ urlpatterns = patterns('',
 
     page('mwc', 'firefox/os/mwc-2014-preview.html'),
     page('firefox/os/devices', 'firefox/os/devices.html'),
+
+    url(releasenotes_re, views.release_notes, name='firefox.releasenotes'),
 
     # temporary URL for Aurora 29 survey
     page('firefox/aurora/up-to-date', 'firefox/whatsnew-aurora-29-survey.html'),

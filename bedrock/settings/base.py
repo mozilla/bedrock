@@ -788,8 +788,10 @@ INSTALLED_APPS = get_apps(exclude=(
     '%s.facebookapps' % PROJECT_MODULE,
 
     # libs
+    'django_extensions',
     'lib.l10n_utils',
     'captcha',
+    'rna',
 ))
 
 LOCALE_PATHS = (
@@ -973,3 +975,9 @@ GOOGLE_PLAY_FIREFOX_LINK = ('https://play.google.com/store/apps/details?'
 
 # Use bedrock Gruntfile.js for live reload
 USE_GRUNT_LIVERELOAD = False
+
+# Publishing system config
+RNA = {
+    'BASE_URL': os.environ.get('RNA_BASE_URL', 'https://nucleus.mozilla.org/rna/'),
+    'LEGACY_API': os.environ.get('RNA_LEGACY_API', False),
+}
