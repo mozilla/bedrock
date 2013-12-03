@@ -47,6 +47,9 @@ urlpatterns = patterns('',
     redirect(r'^foundation/identity-guidelines/mozilla-foundation.html', 'styleguide.identity.mozilla-branding'),
     redirect(r'^foundation/identity-guidelines/thunderbird.html', 'styleguide.identity.thunderbird-logo'),
 
+    # Bug 945474 - delete Marketplace marketing product page and redirect
+    redirect(r'^apps/$', 'https://marketplace.firefox.com/'),
+
     # Bug 800467 /apps/partners -> marketplace.firefox.com/developers
     redirect(r'apps/partners/$', 'https://marketplace.firefox.com/developers/'),
 
