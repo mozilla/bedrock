@@ -70,4 +70,5 @@ urlpatterns = patterns('',
     # firefox/os/notes/ should redirect to the latest version; update this in /redirects/urls.py
     page('firefox/os/notes/1.0.1', 'firefox/os/notes-1.0.1.html'),
     page('firefox/os/notes/1.1', 'firefox/os/notes-1.1.html'),
+    page('firefox/os/notes/1.2', 'firefox/os/notes-1.2.html'),
 )
