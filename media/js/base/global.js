@@ -202,6 +202,8 @@ function gaTrack(eventArray, callback) {
         };
     }
     if (typeof(window._gaq) === 'object') {
+        // send event to GA
+        window._gaq.push(eventArray);
         // Only set up timer and hitCallback if a callback exists.
         if (hasCallback) {
             // Failsafe - be sure we do the callback in a half-second
@@ -210,20 +212,10 @@ function gaTrack(eventArray, callback) {
 
             // But ordinarily, we get GA to call us back immediately after
             // it finishes sending our things.
-            window._gaq.push(
-                // https://developers.google.com/analytics/devguides/collection/analyticsjs/advanced#hitCallback
-                // This is called AFTER GA has sent all pending data:
-
-                // hitCallback is undocumented in ga.js, but the assumption is that it
-                // will fire after the *next* track event, and not *all* pending track events.
-
-                // If hitCallback continues to cause problems, we should be able to safely
-                // remove it and use only the setTimeout technique.
-                ['_set', 'hitCallback', gaCallback]
-            );
+            // https://developers.google.com/analytics/devguides/collection/gajs/#PushingFunctions
+            // This is called after GA has sent the current pending data:
+            window._gaq.push(gaCallback);
         }
-        // send event to GA
-        window._gaq.push(eventArray);
     } else {
         // GA disabled or blocked or something, make sure we still
         // call the caller's callback:
