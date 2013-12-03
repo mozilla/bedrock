@@ -9,14 +9,15 @@
 {% block contact_entry %}
   <div id="entry-container">
     <section class="entry entry-space" id="paris" data-tab="spaces">
-      <div class="card vcard">
-        <h2 class="fn">{{ _('Paris') }}</h2>
-        <p class="adr">
-        {# L10n: Addresses are marked up with hCard microformat. See http://microformats.org/wiki/h-card #}
+      <div class="card" itemscope itemtype="http://schema.org/Organization">
+        <h2>{{ _('Paris') }}</h2>
+        <meta itemprop="name" content="{{ _('Mozilla Space, Paris') }}">
+        <p itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+        {# L10n: Addresses are marked up with Schema.org. See http://schema.org/PostalAddress #}
         {% trans %}
-          <span class="street-address">16 Bis Boulevard Montmartre</span><br>
-          <span class="locality">Paris</span> <span class="postal-code">75009</span><br>
-          <span class="country-name">France</span>
+          <span itemprop="streetAddress">16 Bis Boulevard Montmartre</span><br>
+          <span itemprop="addressLocality">Paris</span> <span itemprop="postalCode">75009</span><br>
+          <span itemprop="addressCountry">France</span>
         {% endtrans %}
         </p>
 
