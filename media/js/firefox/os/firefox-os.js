@@ -66,6 +66,14 @@
         }
       ]
     },
+    "it": {
+      "partner": [
+        {
+          "name": "TIM",
+          "url": "http://www.tim.it/prodotti/alcatel-one-touch-fire-mozilla-orange"
+        }
+      ]
+    },
     "me": {
       "partner": [
         {
