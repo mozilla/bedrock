@@ -281,9 +281,6 @@ MINIFY_BUNDLES = {
         'legal_fraud_report': (
             'css/legal/fraud-report.less',
         ),
-        'marketplace': (
-            'css/marketplace/marketplace.less',
-        ),
         'mission': (
             'css/sandstone/video-resp.less',
             'css/mozorg/mission.less',
@@ -539,11 +536,6 @@ MINIFY_BUNDLES = {
             'js/legal/fraud-report.js',
             'js/base/mozilla-input-placeholder.js',
         ),
-        'marketplace': (
-            'js/base/nav-main-resp.js',
-            'js/base/mozilla-pager.js',
-            'js/marketplace/marketplace.js',
-        ),
         'mozorg-resp': (
             'js/libs/jquery-1.7.1.min.js',
             'js/base/global.js',
@@ -706,7 +698,6 @@ INSTALLED_APPS = get_apps(exclude=(
     '%s.foundation' % PROJECT_MODULE,
     '%s.grants' % PROJECT_MODULE,
     '%s.legal' % PROJECT_MODULE,
-    '%s.marketplace' % PROJECT_MODULE,
     '%s.mozorg' % PROJECT_MODULE,
     '%s.newsletter' % PROJECT_MODULE,
     '%s.persona' % PROJECT_MODULE,

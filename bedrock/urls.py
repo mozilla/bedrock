@@ -18,7 +18,6 @@ handler500 = 'lib.bedrock_util.server_error_view'
 
 urlpatterns = patterns('',
     # Main pages
-    (r'^apps/', include('bedrock.marketplace.urls')),
     (r'^lightbeam/', include('bedrock.lightbeam.urls')),
     (r'^foundation/', include('bedrock.foundation.urls')),
     (r'^grants/', include('bedrock.grants.urls')),
