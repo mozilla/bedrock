@@ -153,17 +153,7 @@
             <p>
               {{ _('Your gift goes directly to programs that help build the web the world needs.') }}
             </p>
-            <form id="home-promo-donate-form" method="get"
-          {% if request.locale == 'de' %}
-            action="https://sendto.mozilla.org/page/contribute/EOYFR2013-webDE"
-          {% elif request.locale == 'fr' %}
-            action="https://sendto.mozilla.org/page/contribute/EOYFR2013-webFR"
-          {% elif request.locale == 'pt-BR' %}
-            action="https://sendto.mozilla.org/page/contribute/EOYFR2013-webPTBR"
-          {% else %}
-            action="https://sendto.mozilla.org/page/contribute/EOYFR2013-tabzilla"
-          {% endif %}
-            >
+            <form id="home-promo-donate-form" method="get" action="{{ donate_url() }}">
               <input type="hidden" name="source" value="banner_people">
               <fieldset>
                 <legend>{{ _('Your Gift Amount') }}</legend>
