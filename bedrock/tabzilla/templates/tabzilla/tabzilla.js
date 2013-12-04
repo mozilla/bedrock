@@ -408,6 +408,7 @@ var Tabzilla = (function (Tabzilla) {
             loadJQuery(init);
         }
     })();
+    // icn=tabz appended to links for Google Analytics purposes
     var content =
       '<div id="tabzilla-panel" class="tabzilla-closed" tabindex="-1">'
     + '  <div id="tabzilla-contents">'
@@ -457,7 +458,7 @@ var Tabzilla = (function (Tabzilla) {
     + '              <li><a href="https://www.mozilla.org/contribute/?icn=tabz">{{ _('Volunteer')|js_escape }}</a></li>'
     + '              <li><a href="https://www.mozilla.org/en-US/about/careers.html?icn=tabz">{{ _('Careers')|js_escape }}</a></li>'
     + '              <li><a href="https://www.mozilla.org/en-US/about/mozilla-spaces/?icn=tabz">{{ _('Find us')|js_escape }}</a></li>'
-    + '              <li><a href="https://sendto.mozilla.org/Join-Tabzilla/?icn=tabz">{{ _('Donate')|js_escape }}</a></li>'
+    + '              <li><a href="https://sendto.mozilla.org/page/contribute/EOYFR2013-tabzilla?icn=tabz&source=tabzilla_donate&amount=20" class="donate">{{ _('Donate')|js_escape }}</a></li>'
     + '              <li><a href="https://www.mozilla.org/about/partnerships/?icn=tabz">{{ _('Partner')|js_escape }}</a></li>'
     + '            </ul>'
     + '          </div>'
