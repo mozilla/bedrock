@@ -1,0 +1,29 @@
+<!--
+The majority of these classes/ids are required by the reCAPTCHA JS, so only modify if you're sure.
+-->
+<div id="recaptcha_widget">
+  <div id="recaptcha_image"></div>
+  <div class="recaptcha_only_if_incorrect_sol">{{ _('Incorrect. Please try again.') }}</div>
+
+  <div class="recaptcha_entry">
+    <span class="recaptcha_only_if_image">{{ _('Enter the words above:') }}</span>
+    <span class="recaptcha_only_if_audio">{{ _('Enter the numbers you hear:') }}</span>
+
+    <input type="text" id="recaptcha_response_field" name="recaptcha_response_field" />
+  </div>
+
+  <div class="recaptcha_icons">
+    <div class="recaptcha_icon">
+      <a href="javascript:Recaptcha.reload()" class="recaptcha_refresh" title="{{ _('Get a new challenge') }}">{{ _('Get a new challenge') }}</a>
+    </div>
+    <div class="recaptcha_icon recaptcha_only_if_image">
+      <a href="javascript:Recaptcha.switch_type('audio')" class="recaptcha_audio" title="{{ _('Get an audio challenge') }}">{{ _('Get an audio challenge') }}</a>
+    </div>
+    <div class="recaptcha_icon recaptcha_only_if_audio">
+      <a href="javascript:Recaptcha.switch_type('image')" class="recaptcha_visual" title="{{ _('Get a visual challenge') }}">{{ _('Get a visual challenge') }}</a>
+    </div>
+    <div class="recaptcha_icon">
+      <a href="javascript:Recaptcha.showhelp()" class="recaptcha_help" title="{{ _('Help') }}">{{ _('Help') }}</a>
+    </div>
+  </div>
+</div>

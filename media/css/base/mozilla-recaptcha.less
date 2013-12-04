@@ -1,0 +1,125 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+/*
+The image supplied by reCAPTCHA is 300x57. As the image is already
+difficult to read, it's best to display at full resolution. This means
+any container (sidebar, etc) needs to be at least 300px wide. This
+default style expects the container to be 320px wide to account for
+border and padding.
+*/
+
+#recaptcha_widget {
+    background: #f1f1f1;
+    border: 1px solid #b2b2b2;
+    .border-radius(3px);
+    width: 300px;
+    padding: @baseLine/4 8px;
+    font-size: 12px;
+    .clearfix;
+
+    input[type="text"] {
+        width: 180px;
+    }
+}
+
+.recaptcha_only_if_incorrect_sol {
+    color: @linkRed;
+}
+
+#recaptcha_image {
+    margin-bottom: @baseLine/2;
+}
+
+.recaptcha_entry {
+    float: left;
+    width: 210px;
+}
+
+.recaptcha_icons {
+    float: right;
+    width: 80px;
+    padding-top: @baseLine;
+    .clearfix;
+}
+
+.recaptcha_icon {
+    float: left;
+    overflow: hidden;
+    margin-left: 7px;
+
+    a {
+        .image-replaced;
+        display: block;
+        width: 17px;
+        height: 27px;
+        background-image: url(/media/img/mozorg/recaptcha-icons.png);
+        background-repeat: no-repeat;
+    }
+}
+
+.recaptcha_refresh {
+    background-position: 0 3px;
+}
+
+.recaptcha_audio {
+    background-position: 0 -29px;
+}
+
+.recaptcha_visual {
+    background-position: 0 -57px;
+}
+
+.recaptcha_help {
+    background-position: 0 -88px;
+}
+
+/*
+Hide the custom widget for non-JS users. Also force the resulting
+iframe to be 320px wide (as opposed to default 500px).
+*/
+.no-js {
+    #recaptcha_widget {
+        display: none;
+    }
+
+    .field-captcha {
+        iframe {
+            width: 320px!important;
+        }
+    }
+}
+
+@media only screen and (max-width: @breakTablet) {
+    // At mobile, widget will be 260px wide (248px width + 2px border + 10px padding)
+    #recaptcha_widget {
+        width: 248px;
+        padding: @baseLine/4;
+
+        input[type="text"] {
+            width: 220px;
+        }
+    }
+
+    // Override inline styles added by reCAPTCHA
+    #recaptcha_image {
+        width: auto!important;
+        height: auto!important;
+    }
+
+    .recaptcha_entry, .recaptcha_icons {
+        float: none;
+        width: auto;
+    }
+
+    .recaptcha_icons {
+        padding-top: @baseLine/4;
+    }
+
+    .recaptcha_icon {
+        margin: 0 @baseLine/2 0 0;
+    }
+}

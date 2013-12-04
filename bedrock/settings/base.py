@@ -279,6 +279,7 @@ MINIFY_BUNDLES = {
             'css/mozorg/home-ie.less',
         ),
         'legal_fraud_report': (
+            'css/base/mozilla-recaptcha.less',
             'css/legal/fraud-report.less',
         ),
         'marketplace': (
