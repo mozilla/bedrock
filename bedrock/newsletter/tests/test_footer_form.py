@@ -6,7 +6,8 @@ from pyquery import PyQuery as pq
 from bedrock.mozorg.tests import TestCase
 
 
-@patch('bedrock.newsletter.utils.get_newsletter_languages', lambda *x: set(['en', 'fr', 'pt']))
+@patch('bedrock.newsletter.utils.get_languages_for_newsletters',
+       lambda *x: set(['en', 'fr', 'pt']))
 @patch('lib.l10n_utils.template_is_active', lambda *x: True)
 class TestNewsletterFooter(TestCase):
     def setUp(self):

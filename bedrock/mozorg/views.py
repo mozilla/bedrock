@@ -43,6 +43,7 @@ def hacks_newsletter(request):
 
 @csrf_exempt
 def contribute(request, template, return_to_form):
+    newsletter_id = 'about-mozilla'
     has_contribute_form = (request.method == 'POST' and
                            'contribute-form' in request.POST)
 
@@ -69,15 +70,15 @@ def contribute(request, template, return_to_form):
         form = ContributeForm()
 
     if has_newsletter_form:
-        newsletter_form = NewsletterFooterForm(locale,
-                                         request.POST,
-                                         prefix='newsletter')
+        newsletter_form = NewsletterFooterForm(newsletter_id, locale,
+                                               request.POST,
+                                               prefix='newsletter')
         if newsletter_form.is_valid():
             data = newsletter_form.cleaned_data
 
             try:
                 basket.subscribe(data['email'],
-                                 'about-mozilla',
+                                 newsletter_id,
                                  format=data['fmt'],
                                  country=data['country'])
                 newsletter_success = True
@@ -88,7 +89,7 @@ def contribute(request, template, return_to_form):
                 )
                 newsletter_form.errors['__all__'] = msg
     else:
-        newsletter_form = NewsletterFooterForm(locale, prefix='newsletter')
+        newsletter_form = NewsletterFooterForm(newsletter_id, locale, prefix='newsletter')
 
     return l10n_utils.render(request,
                              template,

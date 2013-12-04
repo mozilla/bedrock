@@ -16,28 +16,28 @@
 
 {% block body_id %}newsletter{% endblock %}
 
-{% from "macros.html" import email_newsletter_form with context %}
-
 {% block site_css %}
   {{ super() }}
   {{ css('newsletter') }}
 {% endblock %}
 
 {% block content %}
+  {# email_newsletter_form has to run regardless as it is what processes the form post #}
+  {% set newsletter_form = email_newsletter_form(newsletter_id, title=newsletter_title, footer=False, use_thankyou=False) %}
   <div id="doc">
-    {% if request.newsletter_success %}
+    {% if newsletter_form %}
+      {% block newsletter_content %}{% endblock newsletter_content %}
+      {{ newsletter_form }}
+    {% else %}
       {# User has been subscribed #}
       <div id="email-form" class="thank billboard">
         <h3>{{ _('Thanks for Subscribing!') }}</h3>
-          {# user will have to confirm before starting subscription #}
-          {% block success_confirm %}
-            <p>{% trans %}Thanks! Please check your inbox to confirm your subscription.{% endtrans %}</p>
-            <p>{% trans %}You'll receive an email from mozilla@e.mozilla.org to confirm your subscription. If you don't see it, check your spam filter. You must confirm your subscription to receive our newsletter.{% endtrans %}</p>
-          {% endblock success_confirm %}
+        {# user will have to confirm before starting subscription #}
+        {% block success_confirm %}
+          <p>{% trans %}Thanks! Please check your inbox to confirm your subscription.{% endtrans %}</p>
+          <p>{% trans %}You'll receive an email from mozilla@e.mozilla.org to confirm your subscription. If you don't see it, check your spam filter. You must confirm your subscription to receive our newsletter.{% endtrans %}</p>
+        {% endblock success_confirm %}
       </div>
-    {% else %}
-      {% block newsletter_content %}{% endblock newsletter_content %}
-      {{ email_newsletter_form(newsletter_id=newsletter_id,title=newsletter_title,footer=False) }}
     {% endif %}
   </div><!-- doc -->
 {% endblock content %}

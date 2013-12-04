@@ -155,16 +155,14 @@ Creating a signup page
 Start with a template that extends ``'newsletter/one_newsletter_signup.html'``.
 It's probably simplest to copy an existing one, like ``'newsletter/mobile.html'``.
 
-The name of the template *must* be the internal name of newsletter, e.g.
-for the newsletter with internal name ``mobile``, the template is
-``'newsletter/mobile.html'``.  (The view could easily be enhanced to allow
-overriding this if needed.)
-
-Override at least the `page_title` and `newsletter_content` blocks:
+Set the ``newsletter_title`` and ``newsletter_id`` variables and override at least
+the ``page_title`` and ``newsletter_content`` blocks:
 
 .. code-block:: jinja
+	{% set newsletter_title = _('Firefox and You') %}
+	{% set newsletter_id = 'mozilla-and-you' %}
 
-    {% block page_title %}Firefox and You{% endblock %}
+    {% block page_title %}{{ newsletter_title }}{% endblock %}
 
     {% block newsletter_content %}
       <div id="main-feature">
@@ -180,12 +178,5 @@ Then add a url to ``newsletter/urls.py``:
 .. code-block:: python
 
     # "about:mobile"
-    url(r'^newsletter/about_mobile/$',
-        views.one_newsletter_signup,
-        kwargs={'newsletter': 'mobile'},
-        name='newsletter.mobile',
-    ),
+    page('newsletter/about_mobile', 'newsletter/mobile.html'),
 
-Pass the newsletter internal name, and choose a URL and URL name. The view
-will do the rest.  Look at the parent template and the view code to learn
-more.
