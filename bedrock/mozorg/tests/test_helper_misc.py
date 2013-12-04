@@ -20,6 +20,13 @@ TEST_FILES_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                'test_files')
 TEST_L10N_IMG_PATH = os.path.join(TEST_FILES_ROOT, 'media', 'img', 'l10n')
 
+TEST_DONATE_LOCALE_LINK = {
+    'de': 'https://sendto.mozilla.org/page/contribute/EOYFR2013-webDE',
+    'en-US': 'https://sendto.mozilla.org/page/contribute/EOYFR2013-tabzilla',
+    'fr': 'https://sendto.mozilla.org/page/contribute/EOYFR2013-webFR',
+    'pt-BR': 'https://sendto.mozilla.org/page/contribute/EOYFR2013-webPTBR',
+}
+
 
 # Where should this function go?
 def render(s, context={}):
@@ -338,6 +345,52 @@ class TestPressBlogUrl(TestCase):
     def test_press_blog_url_other_locale(self):
         """No blog for locale, fallback to default press blog"""
         eq_(self._render('oc'), 'https://blog.mozilla.org/press/')
+
+
+@override_settings(DONATE_LOCALE_LINK=TEST_DONATE_LOCALE_LINK)
+class TestDonateUrl(TestCase):
+    rf = RequestFactory()
+
+    def _render(self, locale):
+        req = self.rf.get('/')
+        req.locale = locale
+        return render('{{ donate_url() }}', {'request': req})
+
+    def test_donate_url_no_locale(self):
+        """No locale, fallback to default page"""
+        eq_(self._render(''),
+            'https://sendto.mozilla.org/page/contribute/EOYFR2013-tabzilla')
+
+    def test_donate_url_english(self):
+        """en-US locale, default page"""
+        eq_(self._render('en-US'),
+            'https://sendto.mozilla.org/page/contribute/EOYFR2013-tabzilla')
+
+    def test_donate_url_spanish(self):
+        """de locale, a localed page"""
+        eq_(self._render('de'),
+            'https://sendto.mozilla.org/page/contribute/EOYFR2013-webDE')
+
+    def test_donate_url_french(self):
+        """fr locale, a localed page"""
+        eq_(self._render('fr'),
+            'https://sendto.mozilla.org/page/contribute/EOYFR2013-webFR')
+
+    def test_donate_url_portuguese(self):
+        """pt-BR locale, a localed page"""
+        eq_(self._render('pt-BR'),
+            'https://sendto.mozilla.org/page/contribute/EOYFR2013-webPTBR')
+
+    def test_donate_url_other_locale(self):
+        """No page for locale, fallback to default page"""
+        eq_(self._render('es-AR'),
+            'https://sendto.mozilla.org/page/contribute/EOYFR2013-tabzilla')
+        eq_(self._render('es-CL'),
+            'https://sendto.mozilla.org/page/contribute/EOYFR2013-tabzilla')
+        eq_(self._render('es-MX'),
+            'https://sendto.mozilla.org/page/contribute/EOYFR2013-tabzilla')
+        eq_(self._render('pt-PT'),
+            'https://sendto.mozilla.org/page/contribute/EOYFR2013-tabzilla')
 
 
 class TestHighResImg(TestCase):

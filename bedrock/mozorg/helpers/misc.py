@@ -272,6 +272,47 @@ def press_blog_url(ctx):
     return settings.PRESS_BLOG_ROOT + settings.PRESS_BLOGS[locale]
 
 
+@jingo.register.function
+@jinja2.contextfunction
+def donate_url(ctx):
+    """Output a link to the donation page taking locales into account.
+
+    Uses the locale from the current request. Checks to see if we have
+    a donation page that match this locale, returns the localized page
+    url or falls back to the US page url if not.
+
+    Examples
+    ========
+
+    In Template
+    -----------
+
+        {{ donate_url() }}
+
+    For en-US this would output:
+
+        https://sendto.mozilla.org/page/contribute/EOYFR2013-tabzilla
+
+    For de this would output:
+
+        https://sendto.mozilla.org/page/contribute/EOYFR2013-webDE
+
+    For fr this would output:
+
+        https://sendto.mozilla.org/page/contribute/EOYFR2013-webFR
+
+    For pt-BR this would output:
+
+        https://sendto.mozilla.org/page/contribute/EOYFR2013-webPTBR
+
+    """
+    locale = getattr(ctx['request'], 'locale', 'en-US')
+    if locale not in settings.DONATE_LOCALE_LINK:
+        locale = 'en-US'
+
+    return settings.DONATE_LOCALE_LINK[locale]
+
+
 @jingo.register.filter
 def absolute_url(url):
     """
