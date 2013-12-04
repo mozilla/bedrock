@@ -136,6 +136,9 @@ MINIFY_BUNDLES = {
         'contact-spaces-ie8': (
             'css/libs/mapbox.ie.css',
         ),
+        'contact-spaces-ie7': (
+            'css/mozorg/contact-spaces-ie7.less',
+        ),
         'contribute': (
             'css/mozorg/contribute.less',
             'css/sandstone/video-resp.less',
@@ -401,6 +404,9 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.history.js',
             'js/mozorg/contact-data.js',
             'js/mozorg/contact-spaces.js',
+        ),
+        'contact-spaces-ie7': (
+            'js/mozorg/contact-spaces-ie7.js',
         ),
         'contribute': (
             'js/libs/jquery.sequence.js',

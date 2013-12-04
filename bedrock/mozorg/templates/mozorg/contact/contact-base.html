@@ -10,13 +10,21 @@
 
 {% block extrahead %}
   {{ css('contact-spaces') }}
-  <!--[if lte IE 8]>
+  <!--[if IE 8]>
     {{ css('contact-spaces-ie8') }}
+  <![endif]-->
+  <!--[if lte IE 7]>
+    {{ css('contact-spaces-ie7') }}
   <![endif]-->
 {% endblock %}
 
 {% block js %}
-  {{ js('contact-spaces') }}
+  <!--[if gte IE 8]><!-->
+    {{ js('contact-spaces') }}
+  <!--<![endif]-->
+  <!--[if lte IE 7]>
+    {{ js('contact-spaces-ie7') }}
+  <![endif]-->
 {% endblock %}
 
 {% block string_data %}
