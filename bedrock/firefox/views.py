@@ -300,7 +300,7 @@ class FirstrunView(LatestFxView):
 
 class WhatsnewView(LatestFxView):
     # Locales targeted for FxOS
-    fxos_locales = ['pl']
+    fxos_locales = []
 
     locales_with_video = {
         'en-US': 'american',
