@@ -3,7 +3,8 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from django.conf import settings
-from django.conf.urls import patterns
+from django.conf.urls import patterns, url
+from django.views.generic.base import RedirectView
 
 from util import redirect
 
@@ -85,4 +86,11 @@ urlpatterns = patterns('',
 
     # Bug 896585 - Send /contact/ to the spaces landing
     redirect(r'^contact/$', '/contact/spaces/'),
+
+    # Bug 944213 /foundation/annualreport/ -> /foundation/annualreport/20xx/
+    url(r'^foundation/annualreport/$',
+        # In Django 1.6 and above:
+        # RedirectView.as_view(pattern_name='foundation.annualreport.2012.index'),
+        RedirectView.as_view(url='/foundation/annualreport/2012/'),
+        name='foundation.annualreport'),
 )
