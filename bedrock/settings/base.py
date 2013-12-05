@@ -708,8 +708,10 @@ INSTALLED_APPS = get_apps(exclude=(
     '%s.facebookapps' % PROJECT_MODULE,
 
     # libs
+    'django_extensions',
     'lib.l10n_utils',
     'captcha',
+    'rna',
 ))
 
 LOCALE_PATHS = (
@@ -885,3 +887,9 @@ DONATE_LOCALE_LINK = {
 
 # Mapbox token for spaces and communities pages
 MAPBOX_TOKEN = 'examples.map-9ijuk24y'
+
+# Publishing system config
+RNA = {
+    'BASE_URL': os.environ.get('RNA_BASE_URL', 'https://nucleus.paas.allizom.org/rna/'),
+    'LEGACY_API': os.environ.get('RNA_LEGACY_API', False),
+}
