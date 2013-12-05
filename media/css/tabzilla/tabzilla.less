@@ -103,6 +103,15 @@
     outline:none;
 }
 
+/* Tabzilla still must use content-box model to preserve layout */
+#tabzilla-panel *,
+#tabzilla-panel *:before,
+#tabzilla-panel *:after {
+    -webkit-box-sizing: content-box;
+       -moz-box-sizing: content-box;
+            box-sizing: content-box;
+}
+
 #tabzilla-contents {
     width: 960px;
     margin: 0 auto;
