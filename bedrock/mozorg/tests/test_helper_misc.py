@@ -29,9 +29,9 @@ TEST_DONATE_LOCALE_LINK = {
 
 
 # Where should this function go?
-def render(s, context={}):
+def render(s, context=None):
     t = jingo.env.from_string(s)
-    return t.render(context)
+    return t.render(context or {})
 
 
 @patch('django.conf.settings.LANGUAGE_CODE', 'en-US')
