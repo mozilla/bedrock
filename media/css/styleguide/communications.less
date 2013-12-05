@@ -10,55 +10,24 @@
         .span_guide(12);
     }
 
+    #standard,
+    #firefox-os,
+    #firefox-os-developers {
+        .span_guide(4);
+    }
+
     h3 {
-        .span_guide(12);
         margin-bottom: 20px;
+        span {
+            font-size: @baseFontSize;
+            line-height: 1;
+        }
     }
 
     .preview {
-        .span_guide(4);
         text-align: center;
     }
 
-    .examples {
-        h4 {
-            .span_guide(8);
-            font-style: italic;
-            margin-bottom: @baseLine;
-        }
-        .swatch-card {
-            float: left;
-            width: auto;
-             .span_guide(2);
-            .swatch {
-                margin: 0;
-            }
-        }
-        .swatches {
-            margin-bottom: @baseLine;
-            .swatch-card:last-child {
-                margin-right: 0;
-            }
-        }
-        #swatch-sand .swatch {
-            #gradient > .vertical(#f6f4ec, #d7d3c8);
-        }
-        #swatch-blue .swatch {
-            #gradient > .vertical(#0096db, #00539f);
-        }
-        #swatch-red .swatch {
-            #gradient > .vertical(#ea3b28, #c13832);
-        }
-        #swatch-grey .swatch {
-            #gradient > .vertical(#6a7b86, #424f5a);
-        }
-        ul {
-            .span_guide(3);
-            &:last-child {
-                .span_guide(2);
-            }
-        }
-    }
 }
 
 /* }}} */
