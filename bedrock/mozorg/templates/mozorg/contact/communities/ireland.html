@@ -24,6 +24,14 @@
           <img src="//api.tiles.mapbox.com/v3/{{ settings.MAPBOX_TOKEN }}/-7.82,53.35,5/380x250.png" alt="">
         </figure>
       </div>
+
+      <section class="gallery">
+        <h3>{{ _('Photo gallery') }}</h3>
+        <ul class="gallery-list">
+          <li class="gallery-image"><a href="{{ media('img/contact/pictures/ireland-01.jpg') }}"><img src="{{ media('img/contact/pictures/ireland-01-th.jpg') }}" alt="1"></a></li>
+        </ul>
+      </section>
+
     </section>
   </div>
 {% endblock %}
