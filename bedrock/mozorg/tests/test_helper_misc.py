@@ -27,6 +27,12 @@ TEST_DONATE_LOCALE_LINK = {
     'pt-BR': 'https://sendto.mozilla.org/page/contribute/EOYFR2013-webPTBR',
 }
 
+TEST_FIREFOX_TWITTER_ACCOUNTS = {
+    'en-US': 'https://twitter.com/firefox',
+    'es-ES': 'https://twitter.com/firefox_es',
+    'pt-BR': 'https://twitter.com/firefoxbrasil',
+}
+
 
 # Where should this function go?
 def render(s, context={}):
@@ -391,6 +397,39 @@ class TestDonateUrl(TestCase):
             'https://sendto.mozilla.org/page/contribute/EOYFR2013-tabzilla')
         eq_(self._render('pt-PT'),
             'https://sendto.mozilla.org/page/contribute/EOYFR2013-tabzilla')
+
+
+@override_settings(FIREFOX_TWITTER_ACCOUNTS=TEST_FIREFOX_TWITTER_ACCOUNTS)
+class TestFirefoxTwitterUrl(TestCase):
+    rf = RequestFactory()
+
+    def _render(self, locale):
+        req = self.rf.get('/')
+        req.locale = locale
+        return render('{{ firefox_twitter_url() }}', {'request': req})
+
+    def test_firefox_twitter_url_no_locale(self):
+        """No locale, fallback to default account"""
+        eq_(self._render(''), 'https://twitter.com/firefox')
+
+    def test_firefox_twitter_url_english(self):
+        """en-US locale, default account"""
+        eq_(self._render('en-US'), 'https://twitter.com/firefox')
+
+    def test_firefox_twitter_url_spanish(self):
+        """es-ES locale, a local account"""
+        eq_(self._render('es-ES'), 'https://twitter.com/firefox_es')
+
+    def test_firefox_twitter_url_portuguese(self):
+        """pt-BR locale, a local account"""
+        eq_(self._render('pt-BR'), 'https://twitter.com/firefoxbrasil')
+
+    def test_firefox_twitter_url_other_locale(self):
+        """No account for locale, fallback to default account"""
+        eq_(self._render('es-AR'), 'https://twitter.com/firefox')
+        eq_(self._render('es-CL'), 'https://twitter.com/firefox')
+        eq_(self._render('es-MX'), 'https://twitter.com/firefox')
+        eq_(self._render('pt-PT'), 'https://twitter.com/firefox')
 
 
 class TestHighResImg(TestCase):

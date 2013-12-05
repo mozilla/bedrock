@@ -313,6 +313,43 @@ def donate_url(ctx):
     return settings.DONATE_LOCALE_LINK[locale]
 
 
+@jingo.register.function
+@jinja2.contextfunction
+def firefox_twitter_url(ctx):
+    """Output a link to Twitter taking locales into account.
+
+    Uses the locale from the current request. Checks to see if we have
+    a Twitter account that match this locale, returns the localized account
+    url or falls back to the US account url if not.
+
+    Examples
+    ========
+
+    In Template
+    -----------
+
+        {{ firefox_twitter_url() }}
+
+    For en-US this would output:
+
+        https://twitter.com/firefox
+
+    For es-ES this would output:
+
+        https://twitter.com/firefox_es
+
+    For pt-BR this would output:
+
+        https://twitter.com/firefoxbrasil
+
+    """
+    locale = getattr(ctx['request'], 'locale', 'en-US')
+    if locale not in settings.FIREFOX_TWITTER_ACCOUNTS:
+        locale = 'en-US'
+
+    return settings.FIREFOX_TWITTER_ACCOUNTS[locale]
+
+
 @jingo.register.filter
 def absolute_url(url):
     """

@@ -883,5 +883,12 @@ DONATE_LOCALE_LINK = {
     'pt-BR': 'https://sendto.mozilla.org/page/contribute/EOYFR2013-webPTBR',
 }
 
+# Official Firefox Twitter accounts
+FIREFOX_TWITTER_ACCOUNTS = {
+    'en-US': 'https://twitter.com/firefox',
+    'es-ES': 'https://twitter.com/firefox_es',
+    'pt-BR': 'https://twitter.com/firefoxbrasil',
+}
+
 # Mapbox token for spaces and communities pages
 MAPBOX_TOKEN = 'examples.map-9ijuk24y'
