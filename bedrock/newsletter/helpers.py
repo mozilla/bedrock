@@ -54,7 +54,7 @@ def email_newsletter_form(ctx, newsletters='mozilla-and-you', title=None,
                                  **kwargs)
             except basket.BasketException:
                 log.exception("Error subscribing %s to newsletter %s" %
-                              (data['email'], data['newsletter']))
+                              (data['email'], newsletters))
                 msg = _lazy("We are sorry, but there was a problem "
                             "with our system. Please try again later!")
                 form.errors['__all__'] = form.error_class([msg])
