@@ -240,10 +240,7 @@
 
         if (hasCallback) {
           timer = setTimeout(gaCallback, 500);
-          window._gaq.push(
-            ['_set', 'hitCallback', gaCallback],
-            eventsArray
-          );
+          window._gaq.push(eventsArray, gaCallback);
         } else {
           window._gaq.push(eventsArray);
         }

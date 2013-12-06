@@ -76,8 +76,9 @@
         var $thankYou = $('.thankyou');
         var hash_change = ('onhashchange' in window);
 
-        // Add external link tracking
-        $(document).on('click', 'a', function(e) {
+        // Add external link tracking, excluding links in Tabzilla that will be
+        // logged in tabzilla.js
+        $('#outer-wrapper').on('click', 'a', function(e) {
             // only track off-site links and don't track download.mozilla.org links
             if (this.hostname && this.hostname !== location.hostname && this.hostname !== 'download.mozilla.org') {
                 var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);

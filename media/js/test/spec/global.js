@@ -239,6 +239,19 @@ describe("global.js", function() {
       expect(callback).toHaveBeenCalled();
     });
 
+    it("should not fire a callback twice", function () {
+      /* For our callback use a jasmine spy, then we can easily test
+       * to make sure it gets called once gaTrack has finished executing */
+      var callback = jasmine.createSpy();
+      gaTrack(['_trackEvent', 'GA event test', 'test', 'test'], callback);
+      clock.tick(600); // must be longer than callback timeout (500ms) in gaTrack
+      expect(callback.callCount).toEqual(1);
+      // The callback should not be executed by subsequent GA events
+      gaTrack(['_trackEvent', 'GA event test', 'test', 'test']);
+      clock.tick(600); // must be longer than callback timeout (500ms) in gaTrack
+      expect(callback.callCount).toEqual(1);
+    });
+
     it("should still fire a callback if window._gaq is undefined", function () {
       var callback = jasmine.createSpy();
       window._gaq = undefined;

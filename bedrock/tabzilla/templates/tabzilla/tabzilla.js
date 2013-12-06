@@ -257,10 +257,7 @@ var Tabzilla = (function (Tabzilla) {
                 } else {
                     e.preventDefault();
                     timer = setTimeout(callback, 500);
-                    window._gaq.push(
-                        ['_set', 'hitCallback', callback],
-                        ['_trackEvent', 'Tabzilla', 'click', href]
-                    );
+                    window._gaq.push(['_trackEvent', 'Tabzilla', 'click', href], callback);
                 }
             }
         });
@@ -280,10 +277,7 @@ var Tabzilla = (function (Tabzilla) {
 
             if (typeof(_gaq) == 'object' && keyword !== '') {
                 timer = setTimeout(callback, 500);
-                window._gaq.push(
-                    ['_set', 'hitCallback', callback],
-                    ['_trackEvent', 'Tabzilla', 'search', keyword]
-                );
+                window._gaq.push(['_trackEvent', 'Tabzilla', 'search', keyword], callback);
             } else {
                 $form.submit();
             }
