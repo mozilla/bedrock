@@ -15,7 +15,7 @@ FRAUD_REPORT_FILE_SIZE_LIMIT = 5242880  # 5MB
 
 
 class FraudReportForm(forms.Form):
-    url = forms.URLField(
+    input_url = forms.URLField(
         max_length=40,
         required=True,
         error_messages={
@@ -31,7 +31,7 @@ class FraudReportForm(forms.Form):
             }
         )
     )
-    category = forms.ChoiceField(
+    input_category = forms.ChoiceField(
         choices=(
             ('Charging for software', _lazy(u'Charging for software')),
             ('Collecting personal information', _lazy(u'Collecting personal information')),
@@ -52,7 +52,7 @@ class FraudReportForm(forms.Form):
             }
         )
     )
-    product = forms.ChoiceField(
+    input_product = forms.ChoiceField(
         choices=(
             ('Firefox', _lazy(u'Firefox')),
             ('SeaMonkey', _lazy(u'SeaMonkey')),
@@ -72,7 +72,7 @@ class FraudReportForm(forms.Form):
             }
         )
     )
-    specific_product = forms.CharField(
+    input_specific_product = forms.CharField(
         max_length=80,
         required=False,
         widget=forms.TextInput(
@@ -82,7 +82,7 @@ class FraudReportForm(forms.Form):
             }
         )
     )
-    details = forms.CharField(
+    input_details = forms.CharField(
         required=False,
         widget=forms.Textarea(
             attrs={
@@ -92,10 +92,10 @@ class FraudReportForm(forms.Form):
             }
         )
     )
-    attachment = forms.FileField(
+    input_attachment = forms.FileField(
         required=False,
     )
-    attachment_desc = forms.CharField(
+    input_attachment_desc = forms.CharField(
         max_length=40,
         required=False,
         widget=forms.Textarea(
@@ -106,7 +106,7 @@ class FraudReportForm(forms.Form):
             }
         )
     )
-    email = forms.EmailField(
+    input_email = forms.EmailField(
         max_length=80,
         required=False,
         error_messages={
@@ -121,9 +121,9 @@ class FraudReportForm(forms.Form):
     )
     superpriority = forms.BooleanField(widget=HoneyPotWidget, required=False)
 
-    def clean_attachment(self):
+    def clean_input_attachment(self):
         cleaned_data = super(FraudReportForm, self).clean()
-        attachment = cleaned_data.get("attachment")
+        attachment = cleaned_data.get("input_attachment")
 
         if attachment:
             if attachment._size > FRAUD_REPORT_FILE_SIZE_LIMIT:

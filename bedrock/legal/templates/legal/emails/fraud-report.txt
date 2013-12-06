@@ -1,22 +1,22 @@
 A new violating website report has been submitted with the following information:
 
 + URL
-{{ url }}
+{{ input_url }}
 
 + Category
-{{ category }}
+{{ input_category }}
 
 + Product
-{{ product }}
+{{ input_product }}
 
 + Specific product
-{{ specific_product|safe|strip_tags }}
+{{ input_specific_product|safe|strip_tags }}
 
 + Other details...
-{{ details|safe|strip_tags }}
+{{ input_details|safe|strip_tags }}
 
 + Attachments...
-{{ attachment_desc|safe|strip_tags }}
+{{ input_attachment_desc|safe|strip_tags }}
 
 + Email
-{{ email }}
+{{ input_email }}
