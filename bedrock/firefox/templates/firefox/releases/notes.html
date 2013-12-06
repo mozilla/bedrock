@@ -1,0 +1,74 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "firefox/fxos-base.html" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{ _('Firefox — {version} Notes')|f(version=version) }}{% endblock %}
+
+{% block body_id %}notes{% endblock %}
+{% block body_class %}fxos-notes sky{% endblock %}
+
+
+{% block site_css %}
+  {{ css('firefox_releasenotes') }}
+{% endblock %}
+
+{% block extrahead %}{% endblock %}
+
+{% block content %}
+  <header id="main-feature">
+    <h1>{{ _('Firefox {version} Notes')|f(version=version) }}</h1>
+
+    <h2>{{ _('First offered to release channel users on {date}')|f(date=release.release_date|l10n_format_date) }}</h2>
+
+    <p>
+    {% trans feedback='https://input.mozilla.org/feedback',
+        bugzilla='https://bugzilla.mozilla.org/' %}
+      As always, you&#146;re encouraged to
+      <a href="{{ feedback }}">tell us what you think</a>,
+      or <a href="{{ bugzilla }}">file a bug in Bugzilla</a>.
+    {% endtrans %}
+    </p>
+  </header>
+
+  <div id="main-content">
+    <article class="main-column">
+      <section class="notes-section" id="new-features">
+        <h3>{{ _('New Features') }}</h3>
+        <ul class="section-items">
+          {% for note in new_features %}
+            <li>
+              <small>{{ note.tag.text }}</small>
+              <p>{{ note.html|safe }}</p>
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+
+      <section class="notes-section" id="known-issues">
+        <h3>{{ _('Known Issues') }}</h3>
+        <ul class="section-items">
+          {% for note in known_issues %}
+            <li>
+              <small>{{ _('UNRESOLVED') }}</small>
+              <p>{{ note.html|safe }}</p>
+              {% if not note.fixed_in_version is none %}
+                <small>{{ _('Unresolved in v{version_number}')|f(version_number=major_version) }}</small>
+                <small>
+                  <a href="{{ url('firefox.releasenotes', '{major_version}.0'|f(major_version=note.fixed_in_version)) }}">
+                    {{ _('Resolved in v{version_number}')|f(version_number=note.fixed_in_version) }}
+                  </a>
+                </small>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+    </article>
+    <aside id="sidebar" class="sidebar"></aside>
+  </div>
+{% endblock %}
+
+{% block js %}{% endblock  %}

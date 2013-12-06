@@ -1,0 +1,4 @@
+South
+Django>=1.4.9
+djangorestframework==2.3.7
+django-extensions==1.2.0

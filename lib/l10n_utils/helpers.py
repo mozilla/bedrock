@@ -4,8 +4,11 @@
 
 import jingo
 import jinja2
+from babel.core import Locale, UnknownLocaleError
+from babel.dates import format_date
 
 from django.conf import settings
+from django.utils.translation import get_language
 
 from dotlang import translate
 
@@ -62,3 +65,20 @@ _ = gettext
 def js_escape(string):
     import json
     return json.dumps(string)[1:-1]
+
+
+def current_locale():
+    """Return the current Locale object (from Babel). Defaults to en-US
+    if locale does not exist."""
+    try:
+        return Locale.parse(get_language(), sep='-')
+    except (UnknownLocaleError, ValueError):
+        return Locale('en', 'US')
+
+
+@jingo.register.filter
+def l10n_format_date(date, format='long'):
+    """Formats a date according to the current locale. Wraps around
+    babel.dates.format_date."""
+    locale = current_locale()
+    return format_date(date, locale=locale, format=format)

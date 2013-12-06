@@ -14,6 +14,7 @@ mock==1.0.1
 -e git://github.com/jbalogh/django-nose.git#egg=django_nose
 -e git://github.com/jbalogh/test-utils.git#egg=test-utils
 pyquery==1.0
+factory_boy==2.2.1
 
 # L10n
 translate-toolkit==1.8.0

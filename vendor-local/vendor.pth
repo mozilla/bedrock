@@ -5,7 +5,6 @@ src/django-dnt
 src/django-statsd
 src/django-waffle
 src/pystatsd
-packages/requests
 packages/certifi
 packages/chardet
 packages/python-memcached

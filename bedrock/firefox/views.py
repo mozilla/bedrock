@@ -6,17 +6,18 @@ import json
 import re
 
 from django.conf import settings
-from django.http import (HttpResponsePermanentRedirect,
-                         HttpResponseRedirect)
+from django.db.models import Q
+from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
+from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.views.decorators.vary import vary_on_headers
 from django.views.generic.base import TemplateView
 
 import basket
-from lib import l10n_utils
-from jingo_minify.helpers import BUILD_ID_JS, BUNDLE_HASHES
 from funfactory.urlresolvers import reverse
-
+from jingo_minify.helpers import BUILD_ID_JS, BUNDLE_HASHES
+from lib import l10n_utils
+from rna.models import Note, Release
 
 from bedrock.firefox import version_re
 from bedrock.firefox.forms import SMSSendForm
@@ -25,6 +26,7 @@ from bedrock.mozorg.views import process_partnership_form
 from bedrock.firefox.utils import is_current_or_newer
 from bedrock.firefox.firefox_details import firefox_details, mobile_details
 from lib.l10n_utils.dotlang import _
+
 
 UA_REGEXP = re.compile(r"Firefox/(%s)" % version_re)
 
@@ -331,3 +333,45 @@ class WhatsnewView(LatestFxView):
         else:
             template = 'firefox/whatsnew.html'
         return template
+
+
+def release_notes(request, version):
+    """Release Notes for desktop Firefox."""
+    # Major version is the 18 in 18.0.5.
+    major_version = int(version.split('.', 1)[0])
+
+    # Minor version is the 5 in 18.0.5.
+    try:
+        minor_version = int(version.split('.', 2)[3])
+    except IndexError:
+        minor_version = 0
+
+    release = get_object_or_404(Release, version=major_version, sub_version=minor_version,
+                                channel__name='Release', product__name='Firefox')
+
+    # Valid notes must have started on or before this version, and must
+    # have been fixed on or after this version, or be unresolved.
+    fixed_by_this_version = (
+        Q(first_version__lte=major_version) &
+        (Q(fixed_in_version__isnull=True) | Q(fixed_in_version__gte=major_version))
+    )
+
+    notes = (Note.objects
+             .filter(fixed_by_this_version | Q(fixed_in_version=major_version),
+                     Q(product__name='Firefox') | Q(product__name__isnull=True))
+             .order_by('tag__sort_num', '-sort_num'))
+
+    # Split notes into New Features (Fixed in this version) and Known
+    # Issues.
+    new_features = [note for note in notes if note.fixed_in_version == major_version]
+    known_issues = [note for note in notes if
+                    note.fixed_in_version is None or note.fixed_in_version > major_version]
+
+    return l10n_utils.render(request, 'firefox/releases/notes.html', {
+        'major_version': major_version,
+        'minor_version': minor_version,
+        'version': version,
+        'release': release,
+        'new_features': new_features,
+        'known_issues': known_issues,
+    })
