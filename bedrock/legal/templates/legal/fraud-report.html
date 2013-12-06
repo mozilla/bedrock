@@ -128,54 +128,54 @@
           <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
 
           <div class="field required" id="url">
-            {{ form.url.errors }}
-            <label for="url" >{{ _('URL') }}</label>
-            {{ form.url }}
+            {{ form.input_url.errors }}
+            <label for="input_url" >{{ _('URL') }}</label>
+            {{ form.input_url }}
             <div class="field-note">{{ _('The URL of the violating website. e.g. http://offendingsite.com/') }}</div>
           </div>
 
           <div class="field required" id="category">
-            {{ form.category.errors }}
-            <label for="category">{{ _('Category') }}</label>
-            {{ form.category }}
+            {{ form.input_category.errors }}
+            <label for="input_category">{{ _('Category') }}</label>
+            {{ form.input_category }}
           </div>
 
           <div class="field required" id="product">
-            {{ form.product.errors }}
-            <label for="product">{{ _('Product') }}</label>
-            {{ form.product }}
+            {{ form.input_product.errors }}
+            <label for="input_product">{{ _('Product') }}</label>
+            {{ form.input_product }}
           </div>
 
           <div class="field" id="specific_product">
-            {{ form.specific_product.errors }}
-            <label for="specific_product">{{ _('Name a more specific product, if needed') }}</label>
-            {{ form.specific_product }}
+            {{ form.input_specific_product.errors }}
+            <label for="input_specific_product">{{ _('Name a more specific product, if needed') }}</label>
+            {{ form.input_specific_product }}
           </div>
 
           <div class="field" id="details">
-            {{ form.details.errors }}
-            <label for="details">{{ _('Please provide additional details') }}</label>
-            {{ form.details }}
+            {{ form.input_details.errors }}
+            <label for="input_details">{{ _('Please provide additional details') }}</label>
+            {{ form.input_details }}
           </div>
 
           <div class="field" id="attachment">
-            {{ form.attachment.errors }}
-            <label for="attachment">{{ _('Attachment') }}</label>
-            {{ form.attachment }}
+            {{ form.input_attachment.errors }}
+            <label for="input_attachment">{{ _('Attachment') }}</label>
+            {{ form.input_attachment }}
             <div class="field-note">{{ _('Maximum file size is 5 MB.') }}</div>
           </div>
 
           <div class="field" id="attachment_desc">
-            {{ form.attachment_desc.errors }}
-            <label for="attachment_desc">{{ _('Attachment Description') }}</label>
-            {{ form.attachment_desc }}
+            {{ form.input_attachment_desc.errors }}
+            <label for="input_attachment_desc">{{ _('Attachment Description') }}</label>
+            {{ form.input_attachment_desc }}
             <div class="field-note">{{ _('Please describe what you are attaching.') }}</div>
           </div>
 
           <div class="field" id="email">
-            {{ form.email.errors }}
-            <label for="email">{{ _('Email address (optional)') }}</label>
-            {{ form.email }}
+            {{ form.input_email.errors }}
+            <label for="input_email">{{ _('Email address (optional)') }}</label>
+            {{ form.input_email }}
             <div class="field-note">
             {% trans url=url('privacy.index') %}
               If you choose to provide it, your email address will only be

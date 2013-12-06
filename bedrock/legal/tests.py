@@ -23,13 +23,13 @@ class TestFraudReport(TestCase):
             self.url = reverse('legal.fraud-report')
 
         self.data = {
-            'url': 'http://www.test.com',
-            'category': 'Charging for software',
-            'product': 'Firefox',
-            'specific_product': '',
-            'details': 'test details',
-            'attachment_desc': 'test attachment',
-            'email': 'foo@bar.com',
+            'input_url': 'http://www.test.com',
+            'input_category': 'Charging for software',
+            'input_product': 'Firefox',
+            'input_specific_product': '',
+            'input_details': 'test details',
+            'input_attachment_desc': 'test attachment',
+            'input_email': 'foo@bar.com',
         }
 
     def tearDown(self):
@@ -56,7 +56,7 @@ class TestFraudReport(TestCase):
         errors in the template.
         """
 
-        self.data.update(url='')  # remove required url
+        self.data.update(input_url='')  # remove required url
 
         request = self.factory.post(self.url, self.data)
 
@@ -100,7 +100,7 @@ class TestFraudReport(TestCase):
         With incorrect data (missing url), form should not be valid and should
         have url in the errors hash.
         """
-        self.data.update(url='')  # remove required url
+        self.data.update(input_url='')  # remove required url
 
         form = FraudReportForm(self.data)
 
@@ -108,7 +108,7 @@ class TestFraudReport(TestCase):
         eq_(False, form.is_valid())
 
         # make sure url errors are in form
-        self.assertIn('url', form.errors)
+        self.assertIn('input_url', form.errors)
 
     def test_form_honeypot(self):
         """
@@ -127,7 +127,7 @@ class TestFraudReport(TestCase):
         # attachment within size limit
         mock_attachment = Mock(_size=legal_forms.FRAUD_REPORT_FILE_SIZE_LIMIT)
 
-        form = FraudReportForm(self.data, {'attachment': mock_attachment})
+        form = FraudReportForm(self.data, {'input_attachment': mock_attachment})
 
         # make sure form is valid
         ok_(form.is_valid())
@@ -141,13 +141,13 @@ class TestFraudReport(TestCase):
         mock_attachment = Mock(
             _size=(legal_forms.FRAUD_REPORT_FILE_SIZE_LIMIT + 1))
 
-        form = FraudReportForm(self.data, {'attachment': mock_attachment})
+        form = FraudReportForm(self.data, {'input_attachment': mock_attachment})
 
         # make sure form is not valid
         eq_(False, form.is_valid())
 
         # make sure attachment errors are in form
-        self.assertIn('attachment', form.errors)
+        self.assertIn('input_attachment', form.errors)
 
     @patch('bedrock.legal.views.jingo.render_to_string', return_value='jingo rendered')
     @patch('bedrock.legal.views.EmailMessage')
@@ -187,7 +187,7 @@ class TestFraudReport(TestCase):
         # make sure name attribute is treated as string
         mock_attachment.name = 'img.jpg'
 
-        form = FraudReportForm(self.data, {'attachment': mock_attachment})
+        form = FraudReportForm(self.data, {'input_attachment': mock_attachment})
 
         # submit form
         request = self.factory.get('/')
@@ -236,8 +236,8 @@ class TestFraudReport(TestCase):
         STRING3 = u"J'adore <coffee>el café</coffee> también"
         EXPECTED3 = u"J'adore el café también"
 
-        self.data.update(specific_product=STRING1, details=STRING2,
-                         attachment_desc=STRING3)
+        self.data.update(input_specific_product=STRING1, input_details=STRING2,
+                         input_attachment_desc=STRING3)
         request = self.factory.post(self.url, self.data)
 
         # make sure CSRF doesn't hold us up

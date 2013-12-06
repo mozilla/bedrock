@@ -32,7 +32,7 @@ def submit_form(request, form):
 
         email = EmailMessage(subject, msg, sender, to)
 
-        attachment = form.cleaned_data['attachment']
+        attachment = form.cleaned_data['input_attachment']
 
         if (attachment):
             email.attach(attachment.name, attachment.read(), attachment.content_type)
