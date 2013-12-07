@@ -8,6 +8,14 @@
 
 html { background: #fff; }
 
+// Locales with jointed scripts should always have normal letter-spacing
+html[lang='ar'] *,
+html[lang='fa'] *,
+html[lang='hi-IN'] *,
+html[lang='bn-IN'] * {
+    letter-spacing: normal !important;
+}
+
 body {
     font-size: @baseFontSize;
     line-height: @baseLine;
