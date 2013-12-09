@@ -10,6 +10,8 @@ from lib.l10n_utils.dotlang import _, _lazy
 
 from bedrock.mozorg.forms import HoneyPotWidget
 
+from captcha.fields import ReCaptchaField
+
 
 FRAUD_REPORT_FILE_SIZE_LIMIT = 5242880  # 5MB
 
@@ -119,6 +121,7 @@ class FraudReportForm(forms.Form):
             }
         )
     )
+    captcha = ReCaptchaField(attrs={'theme': 'custom'})
     superpriority = forms.BooleanField(widget=HoneyPotWidget, required=False)
 
     def clean_input_attachment(self):

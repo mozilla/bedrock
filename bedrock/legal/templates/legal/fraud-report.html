@@ -185,6 +185,17 @@
             </div>
           </div>
 
+          <div class="field field-captcha">
+          {% if form.captcha.errors %}
+            <ul class="errorlist">
+              <li>{{ _('Your CAPTCHA response did not match. Please try again.') }}</li>
+            </ul>
+          {% endif %}
+            {% include '/mozorg/includes/recaptcha-widget.html' %}
+
+            {{ form.captcha }}
+          </div>
+
           <button type="submit" name="submit_form" class="button">{{ _('Send Report') }}</button>
 
           {{ form.superpriority }}

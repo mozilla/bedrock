@@ -6,6 +6,7 @@
 from django.core import mail
 from django.test.client import RequestFactory
 
+from captcha.fields import ReCaptchaField
 from funfactory.urlresolvers import reverse
 from mock import Mock, patch
 from nose.tools import eq_, ok_
@@ -35,6 +36,7 @@ class TestFraudReport(TestCase):
     def tearDown(self):
         mail.outbox = []
 
+    @patch.object(ReCaptchaField, 'clean', Mock())
     def test_view_post_valid_data(self):
         """
         A valid POST should 302 redirect.
@@ -50,6 +52,7 @@ class TestFraudReport(TestCase):
         eq_(response.status_code, 302)
         eq_(response['Location'], '/en-US/legal/fraud-report/?submitted=True')
 
+    @patch.object(ReCaptchaField, 'clean', Mock())
     def test_view_post_missing_data(self):
         """
         POST with missing data should return 200 and contain form
@@ -86,6 +89,7 @@ class TestFraudReport(TestCase):
         eq_(response.status_code, 200)
         self.assertIn('An error has occurred', response.content)
 
+    @patch.object(ReCaptchaField, 'clean', Mock())
     def test_form_valid_data(self):
         """
         Form should be valid.
@@ -95,6 +99,7 @@ class TestFraudReport(TestCase):
         # make sure form is valid
         ok_(form.is_valid())
 
+    @patch.object(ReCaptchaField, 'clean', Mock())
     def test_form_invalid_data(self):
         """
         With incorrect data (missing url), form should not be valid and should
@@ -120,6 +125,7 @@ class TestFraudReport(TestCase):
 
         eq_(False, form.is_valid())
 
+    @patch.object(ReCaptchaField, 'clean', Mock())
     def test_form_valid_attachement(self):
         """
         Form should be valid when attachment under/at size limit.
@@ -132,6 +138,7 @@ class TestFraudReport(TestCase):
         # make sure form is valid
         ok_(form.is_valid())
 
+    @patch.object(ReCaptchaField, 'clean', Mock())
     def test_form_invalid_attachement(self):
         """
         Form should be invalid and contain attachment errors when attachment
@@ -151,6 +158,7 @@ class TestFraudReport(TestCase):
 
     @patch('bedrock.legal.views.jingo.render_to_string', return_value='jingo rendered')
     @patch('bedrock.legal.views.EmailMessage')
+    @patch.object(ReCaptchaField, 'clean', Mock())
     def test_email(self, mock_email_message, mock_render_to_string):
         """
         Make sure email is sent with expected values.
@@ -176,6 +184,7 @@ class TestFraudReport(TestCase):
 
     @patch('bedrock.legal.views.jingo.render_to_string', return_value='jingo rendered')
     @patch('bedrock.legal.views.EmailMessage')
+    @patch.object(ReCaptchaField, 'clean', Mock())
     def test_email_with_attachement(self, mock_email_message, mock_render_to_string):
         """
         Make sure email is sent with attachment.
@@ -211,6 +220,7 @@ class TestFraudReport(TestCase):
             legal_views.FRAUD_REPORT_EMAIL_FROM,
             legal_views.FRAUD_REPORT_EMAIL_TO)
 
+    @patch.object(ReCaptchaField, 'clean', Mock())
     def test_emails_not_escaped(self):
         """
         Strings in the fraud report form should not be HTML escaped
