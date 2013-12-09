@@ -541,6 +541,8 @@ class TestNotesRedirects(TestCase):
     def test_desktop_release_version(self):
         self._test('/firefox/notes/',
                    '/firefox/22.0/releasenotes/')
+        self._test('/firefox/latest/releasenotes/',
+                   '/firefox/22.0/releasenotes/')
 
     @patch.dict(product_details.firefox_versions,
                 LATEST_FIREFOX_DEVEL_VERSION='23.0b1')

@@ -206,7 +206,7 @@ def releases_index(request):
                              {'releases': sorted(releases.items(), reverse=True)})
 
 
-def latest_notes(request, product, channel='release'):
+def latest_notes(request, product='firefox', channel='release'):
     version = get_latest_version(product, channel)
     path = [
         product,
