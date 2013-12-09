@@ -158,23 +158,23 @@
               <fieldset>
                 <legend>{{ _('Your Gift Amount') }}</legend>
                 <label for="donate10">
-                  <input type="radio" value="10" id="donate10" name="amount" checked>
+                  <input type="radio" value="10" id="donate10" name="amount">
                   {% if request.locale in ['de', 'fr'] %}
                     10&nbsp;$
                   {% elif request.locale == 'pt-BR' %}
                     US$&nbsp;10
                   {% else %}
-                  $10
+                    $10
                   {% endif %}
                 </label>
                 <label for="donate25">
-                  <input type="radio" value="25" id="donate25" name="amount">
+                  <input type="radio" value="25" id="donate25" name="amount" checked>
                   {% if request.locale in ['de', 'fr'] %}
                     25&nbsp;$
                   {% elif request.locale == 'pt-BR' %}
                     US$&nbsp;25
                   {% else %}
-                  $25
+                    $25
                   {% endif %}
                 </label>
                 <label for="donate50">
@@ -184,7 +184,7 @@
                   {% elif request.locale == 'pt-BR' %}
                     US$&nbsp;50
                   {% else %}
-                  $50
+                    $50
                   {% endif %}
                 </label>
                 <button class="button" type="submit">{{ _('Donate') }} »</button>
