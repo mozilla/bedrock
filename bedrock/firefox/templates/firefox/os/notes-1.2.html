@@ -1,0 +1,163 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/fxos-base.html" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{_('Firefox OS — 1.2 Notes')}}{% endblock %}
+
+{% block body_id %}notes{% endblock %}
+{% block body_class %}fxos-notes sky{% endblock %}
+
+
+{% block site_css %}
+  {{ css('firefox_releasenotes') }}
+{% endblock %}
+
+{% block extrahead %}
+{% endblock %}
+
+{% block content %}
+  <header id="main-feature">
+    <h1>{{ _('Firefox OS 1.2 Notes') }}</h1>
+
+    <h2>{{ _('First offered to partners for release on December 9, 2013') }}</h2>
+
+    <p>
+    {% trans feedback='https://input.mozilla.org/feedback',
+        bugzilla='https://bugzilla.mozilla.org/' %}
+      As always, you&#146;re encouraged to
+      <a href="{{ feedback }}">tell us what you think</a>,
+      or <a href="{{ bugzilla }}">file a bug in Bugzilla</a>.
+    {% endtrans %}
+    </p>
+  </header>
+
+<div id="main-content">
+  <article class="main-column">
+
+    <section class="notes-section" id="features">
+      <h3>{{ _('What’s new') }}</h3>
+      <ul class="section-items">
+        <li>{{ _('Silent SMS to authenticate your device for mobile billing.') }}</li>
+        <li>{{ _('Press “call” once to show the last-dialed number.') }}</li>
+        <li>{{ _('Place calls via a BlueTooth headset button.') }}</li>
+        <li>{{ _('Create a <b>conference call</b> with up to 5 participants.') }}</li>
+        <li>{{ _('Export all your contacts to a USIM card.') }}</li>
+        <li>{{ _('Send and receive contacts as VCARDs via BlueTooth.') }}</li>
+        <li>{{ _('Export a contact as a VCARD to a media card.') }}</li>
+        <li>{{ _('CLIP and CLIR support.') }}</li>
+        <li>{{ _('Support for multi-resolution displays.') }}</li>
+        <li>{{ _('<b>Notifications for new emails</b>, with the ability to configure notification settings and the email sync interval. Notifications are grouped based on account. Clicking on an email notification launches the email app.') }}</li>
+        <li>{{ _('<b>Attach and send audio and video</b> files via email.') }}</li>
+        <li>{{ _('Share URLs from the Web browser through Web Activities.') }}</li>
+        <li>{{ _('<b>Redesigned</b> lock screen and incoming call screen.') }}</li>
+        <li>{{ _('Stopwatch and countdown timer have been added to the clock app.') }}</li>
+        <li>{{ _('View video file name, date, length, file size, video format, and resolution.') }}</li>
+        <li>{{ _('The status bar indicates when music or audio is playing. The <b>current song and album art</b> are now displayed in the utility tray for quick access.') }}</li>
+        <li>{{ _('<b>Improved push notifications</b>, with support for WAP 1.2.1 Push Access Protocol.') }}</li>
+        <li>{{ _('Ability to revoke or replace an issued notification.') }}</li>
+        <li>{{ _('Enabled Fixed Dialing Number mode.') }}</li>
+        <li>{{ _('<b>Do Not Track</b> three state setting now available.') }}</li>
+        <li>{{ _('Added support for AVRCP 1.0. 1.3, A2DP 1.2, and HFP 1.6 BlueTooth profiles.') }}</li>
+        <li>{{ _('Support for OMA client provisioning.') }}</li>
+        <li>{{ _('CDMA basic support pending OEM customizations.') }}</li>
+        <li>{{ _('IME framework for third party keyboards now supported in developer preview.') }}</li>
+        <li>{{ _('Several <b>performance improvements</b> in app launch latencies and scrolling.') }}</li>
+      </ul>
+    </section>
+
+    <section class="notes-section" id="customizations">
+      <h3>{{ _('Runtime market customizations by SIM') }}</h3>
+      <p>{{ _('Within a single build, the following market customizations can be configured based on the network and country code of the SIM card:') }}</p>
+      <ul class="section-items">
+        <li>{{ _('Preloaded applications') }}</li>
+        <li>{{ _('Preloaded contacts') }}</li>
+        <li>{{ _('Support contacts') }}</li>
+        <li>{{ _('Cell broadcast settings') }}</li>
+        <li>{{ _('Preloaded bookmarks') }}</li>
+        <li>{{ _('Data settings') }}</li>
+        <li>{{ _('Messaging settings') }}</li>
+        <li>{{ _('A-GPS settings') }}</li>
+        <li>{{ _('Voicemail settings') }}</li>
+        <li>{{ _('Homescreen wallpapers') }}</li>
+      </ul>
+    </section>
+
+    <section class="notes-section" id="fixed">
+      <h3>{{ _('Notable bug fixes') }}</h3>
+      <p><a href="http://mzl.la/1d00ElF">{{ _('See the complete list of bugs addressed in Firefox OS 1.2') }}</a></p>
+      <ul class="section-items">
+        <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=784816">784816</a>: {{ _('Implement startTLS for MozTCPSocket') }}</li>
+        <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=791380">791380</a>: {{ _('Need on-phone equivalent of about:crashes') }}</li>
+        <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=863932">863932</a>: {{ _('Camera does not work from lockscreen with passcode') }}</li>
+        <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=894848">894848</a>: {{ _('Microphone API') }}</li>
+        <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=901926">901926</a>: {{ _('Email app stops working if attachment contains an IMAP literal') }}</li>
+        <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=904345">904345</a>: {{ _('setting shows “Unknown SIM card state” after airplane mode on/off') }}</li>
+        <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=910697">910697</a>: {{ _('FxOS shows up the previous keyboard layout before displaying the correct one.') }}</li>
+        <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=915081">915081</a>: {{ _('The 2nd incoming call screen does not follow spec‘s UI definition.') }}</li>
+        <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=920722">920722</a>: {{ _('Time zone area contains overlapping UI') }}</li>
+        <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=923208">923208</a>: {{ _('Rebooting the phone with WiFi connected and then turning airplane mode on and off causes WiFi to break') }}</li>
+        <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=923718">923718</a>: {{ _('No message indicating there is no matching results when linking contacts') }}</li>
+        <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=924694">924694</a>: {{ _('The Select Contact and Add Contact screens do not display when user attempts to access them for a second time') }}</li>
+        <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=924971">924971</a>: {{ _('Trying to add a contact as a recipient opens contact details instead of returning to Messages app.') }}</li>
+        <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=925055">925055</a>: {{ _('The Music continues to play when the USB mode is enabled and phone is plugged in to computer') }}</li>
+        <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=925961">925961</a>: {{ _('Receiver‘s email address displays as “null” after saving, editing, and then saving the draft again') }}</li>
+        <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=932914">932914</a>: {{ _('Bluetooth name is erased when turning device OFF/ON') }}</li>
+        <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=934556">934556</a>: {{ _('Homescreen app icons disappear after restart in landscape position') }}</li>
+        <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=935270">935270</a>: {{ _('MMS has to be manually downloaded even though Auto-retrieve is enabled when using a roaming sim') }}</li>
+        <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=937205">937205</a>: {{ _('Contact picture does not display after Linking and Favoriting a Facebook contact') }}</li>
+      </ul>
+    </section>
+
+    <section class="notes-section" id="webapis">
+      <h3>{{ _('Updated Web APIs') }}</h3>
+      <p>
+      {% trans link_wiki='https://wiki.mozilla.org/NewAPIsInFxOS1.2',
+        link_mdn='https://developer.mozilla.org/en-US/Firefox_OS/Releases/1.2' %}
+        See <a href="{{ link_wiki }}">a detailed list of Web API changes in Firefox OS 1.2</a> and <a href="{{ link_mdn }}">read documentation for developers</a>.
+      {% endtrans %}
+      </p>
+      <ul class="section-items">
+        <li>{{ _('CSS') }}</li>
+        <li>{{ _('Media') }}</li>
+        <li>{{ _('DOM') }}</li>
+        <li>{{ _('Keyboard') }}</li>
+        <li>{{ _('Apps/General') }}</li>
+        <li>{{ _('RIL/Telephony') }}</li>
+        <li>{{ _('ICC') }}</li>
+        <li>{{ _('STK') }}</li>
+        <li>{{ _('MobileMessage') }}</li>
+        <li>{{ _('Telephony') }}</li>
+      </ul>
+    </section>
+
+    <section class="notes-section" id="locales">
+      <h3>{{ _('Updated locales') }}</h3>
+      <ul class="section-items">
+        <li>{{ _('Bengali') }}</li>
+        <li>{{ _('Bulgarian') }}</li>
+        <li>{{ _('French') }}</li>
+        <li>{{ _('Macedonian') }}</li>
+        <li>{{ _('Serbian Latin') }}</li>
+        <li>{{ _('Simplified Chinese') }}</li>
+        <li>{{ _('Traditional Chinese') }}</li>
+      </ul>
+    </section>
+
+  </article>
+
+
+  <aside id="sidebar" class="sidebar">
+
+    {% include 'firefox/os/_notes_sidebar.html' %}
+
+  </aside>
+
+</div>
+{% endblock %}
+
+{% block js %}
+
+{% endblock  %}
