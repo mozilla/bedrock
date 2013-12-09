@@ -92,6 +92,10 @@ def hide_contrib_form(lang):
     :param lang: the language code
     :return: bool
     """
+    # en-US has every tag, thus we special case the negative
+    if lang == settings.LANGUAGE_CODE:
+        return False
+
     return lang_file_has_tag("mozorg/contribute", lang, "hide_form")
 
 

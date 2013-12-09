@@ -213,7 +213,7 @@ def get_lang_path(path):
     return base
 
 
-def lang_file_is_active(path, lang):
+def lang_file_is_active(path, lang=None):
     """
     If the lang file for a locale exists and has the correct comment returns
     True, and False otherwise.
@@ -221,21 +221,25 @@ def lang_file_is_active(path, lang):
     :param lang: the language code
     :return: bool
     """
-    return lang_file_has_tag(path, lang, "active")
+    return lang_file_has_tag(path, lang, 'active')
 
 
-def lang_file_has_tag(path, lang, tag):
+def lang_file_has_tag(path, lang=None, tag='active'):
     """
     Return True if the lang file exists and has a line like "^## tag ##"
     at the top. Stops looking at the line that doesn't have a tag.
 
+    Always returns true for the default lang.
+
     :param path: the relative lang file name
-    :param lang: the language code
+    :param lang: the language code or the lang of the request if omitted
     @param tag: The string that should appear between ##'s. Can contain
        alphanumerics and "_".
     @return: bool
     """
-
+    lang = lang or fix_case(translation.get_language())
+    if lang == settings.LANGUAGE_CODE:
+        return True
     rel_path = os.path.join('locale', lang, '%s.lang' % path)
     cache_key = 'tag:%s' % rel_path
     tag_set = cache.get(cache_key)

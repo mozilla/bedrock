@@ -235,8 +235,7 @@ class HomeTestView(TemplateView):
 
     def get_context_data(self, **kwargs):
         ctx = super(HomeTestView, self).get_context_data(**kwargs)
-        ctx['has_contribute'] = lang_file_is_active('mozorg/contribute',
-                                                    l10n_utils.get_locale(self.request))
+        ctx['has_contribute'] = lang_file_is_active('mozorg/contribute')
         locale = l10n_utils.get_locale(self.request)
         locale = locale if locale in settings.MOBILIZER_LOCALE_LINK else 'en-US'
         ctx['mobilizer_link'] = settings.MOBILIZER_LOCALE_LINK[locale]
