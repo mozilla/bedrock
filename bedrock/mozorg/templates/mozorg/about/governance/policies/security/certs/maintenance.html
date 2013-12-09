@@ -1,0 +1,95 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/about-base.html" %}
+
+{% block page_title %}{{ _('Mozilla CA Certificate Maintenance Policy') }}{% endblock %}
+{% block body_class %}sand{% endblock %}
+
+{% block extrahead %}
+  {{ css('security-group') }}
+{% endblock %}
+
+{% block article %}
+
+<h1>{{ _('Mozilla CA Certificate Maintenance Policy') }}</h1>
+<h3>{{ _('(Version 2.2)') }}</h1>
+
+<p>{{ _('This section of the <a href="%s"> Mozilla CA Certificate Policy</a> describes the obligations of Certification Authorities for maintaining confidence in their root certificates that are included in Mozilla Products. This includes regular auditing of the CA’s policies and practices; conforming to current CA industry standards and recommended best practices; and making changes to included root certificates.')|format(url('mozorg.about.governance.policies.security.certs.policy')) }}</p>
+
+<p>{{ _('This is the official Mozilla policy for Certification Authorities to maintain their CA Certificates that are distributed in Mozilla products:') }}</p>
+
+<ol>
+  <li>{{ _('CAs are expected to maintain the level of service that was established in the <a href="%s"> Inclusion Section of the Mozilla CA Certificate Policy</a>')|format(url('mozorg.about.governance.policies.security.certs.inclusion')) }}</li>
+  <li>{{ _('CAs must revoke Certificates that they have issued upon the occurrence of any of the following events:') }}
+    <ul>
+      <li>{{ _('the subscriber indicates that the original certificate request was not authorized and does not retroactively grant authorization;') }}</li>
+      <li>{{ _('the CA obtains reasonable evidence that the subscriber’s private key (corresponding to the public key in the certificate) has been compromised or is suspected of compromise (e.g. Debian weak keys), or that the certificate has otherwise been misused;') }}</li>
+      <li>{{ _('the CA receives notice or otherwise becomes aware that a subscriber has violated one or more of its material obligations under the subscriber agreement;') }}</li>
+      <li>{{ _('the CA receives notice or otherwise becomes aware of any circumstance indicating that use of the domain name in the certificate is no longer legally permitted (e.g. a court or arbitrator has revoked a subscriber’s right to use the domain name listed in the certificate, a relevant licensing or services agreement with the registrant has terminated, or the registrant of the domain name has failed to renew it);') }}</li>
+      <li>{{ _('the CA receives notice or otherwise becomes aware of a material change in the information contained in the certificate;') }}</li>
+      <li>{{ _('a determination, in the CA’s sole discretion, that the certificate was not issued in accordance with the CA’s Certificate Policy or Certification Practice Statement;') }}</li>
+      <li>{{ _('the CA determines that any of the information appearing in the certificate is not accurate, with the exception of the organizationalUnitName field, if present.') }}</li>
+      <li>{{ _('the CA ceases operations for any reason and has not arranged for another CA to provide revocation support for the certificate;') }}</li>
+      <li>{{ _('the CA private key used in issuing the certificate is suspected to have been compromised; or') }}</li>
+      <li>{{ _('such additional revocation events as the CA publishes in its policy documentation.') }}</li>
+    </ul>
+  </li>
+  <li>{{ _('CAs must maintain an online 24x7 repository mechanism whereby application software can automatically check online the current status of all unexpired certificates issued by the CA. For end-entity certificates:') }}
+    <ul>
+      <li>{{ _('CRLs must be updated and reissued at least every seven days, and the value of the nextUpdate field shall not be more than ten days beyond the value of the thisUpdate field; or') }}</li>
+      <li>{{ _('if the CA provides revocation information via an Online Certificate Status Protocol (OCSP) service, it must update that service at least every four days. OCSP responses from this service must have a maximum expiration time of ten days.') }}</li>
+    </ul>
+  </li>
+  <li>{{ _('We require that all CAs whose certificates are distributed with our software products provide us an updated statement annually of attestation of their conformance to the stated verification requirements and other operational criteria by a competent independent party or parties, as outlined in this policy. To notify us of an updated statement of attestation, send email to <a href="mailto:certificates@mozilla.org">certificates@mozilla.org</a> or submit a bug report into the mozilla.org Bugzilla system, filed against the "CA Certificates" component of the "mozilla.org" product. The request should include the following:') }}
+    <ul>
+      <li>{{ _('the certificate data identifying the CA certificate(s) to which the updated statement of attestation applies;') }}</li>
+      <li>{{ _('a copy of (or link to) the updated statement of attestation (e.g., "Auditor’s Report and Management Assertions" or equivalent document); and') }}</li>
+      <li>{{ _('contact information for the party making the attestation, if the statement is not posted on an independent website (e.g. cert.webtrust.org).') }}</li>
+    </ul>
+  </li>
+  <li>{{ _('We require that all CAs whose certificates are distributed with our software products notify us when its policies and business practices change in regards to verification procedures for issuing certificates, when the ownership control of the CA’s certificate(s) changes, or when ownership control of the CA’s operations changes. To notify us of updated policies and business practices, send email to <a href="mailto:certificates@mozilla.org">certificates@mozilla.org</a> or submit a bug report into the mozilla.org Bugzilla system, filed against the "CA Certificates" component of the "mozilla.org" product. The request should include the following:') }}
+    <ul>
+      <li>{{ _('the certificate data identifying the CA certificate(s) that are affected by the change;') }}</li>
+      <li>{{ _('copies of (or links to) the updated Certificate Policy or Certification Practice Statement document(s) or equivalent disclosure document(s); and') }}</li>
+      <li>{{ _('a summary of the changes that impact the verification procedures for issuing certificates.') }}</li>
+    </ul>
+  </li>
+  <li>{{ _('We require that all CAs whose certificates are distributed with our software products ensure that we have their current contact information. If the CA’s primary representative for their included root certificates leaves the organization, then the burden is on the CA to inform Mozilla of the contact information for the new primary representative, by sending email to <a href="mailto:certificates@mozilla.org">certificates@mozilla.org</a>. If we are not able to contact a CA, or do not have current audit and policy documentation, then the CA’s root certificates may be disabled or removed as described in the <a href="%s"> Enforcement Section of the Mozilla CA Certificate Policy</a>')|format(url('mozorg.about.governance.policies.security.certs.enforcement')) }}</li>
+  <li>{{ _('A failure to provide required notifications or updates as specified in items #4, #5, and #6 in a timely manner shall be grounds for disabling a CA’s root certificates or removing them from Mozilla products. For this policy "a timely manner" means within 30 days of when the appropriate data or documentation becomes available to the CA.') }}</li>
+  <li>{{ _('We consider the following algorithms and key sizes to be acceptable and supported in Mozilla products:') }}
+    <ul>
+      <li>{{ _('SHA-1 (until a practical collision attack against SHA-1 certificates is imminent);') }}</li>
+      <li>{{ _('SHA-256, SHA-384, SHA-512;') }}</li>
+      <li>{{ _('Elliptic Curve Digital Signature Algorithm (using ANSI X9.62) over SECG and NIST named curves P-256, P-384, and P-512;') }}</li>
+      <li>{{ _('RSA 2048 bits or higher; and') }}</li>
+      <li>{{ _('RSA 1024 bits (only until December 31, 2013).') }}</li>
+    </ul>
+  </li>
+  <li>{{ _('We expect CAs to maintain current best practices to prevent algorithm attacks against certificates. As such, the following steps will be taken:') }}
+    <ul>
+      <li>{{ _('after June 30, 2011, software published by Mozilla will return an error when a certificate with an MD5-based signature is used;') }}</li>
+      <li>{{ _('all end-entity certificates with RSA key sizes smaller than 2048 bits must expire by December 31, 2013;') }}</li>
+      <li>{{ _('after December 31, 2013, Mozilla will disable or remove all root certificates with RSA key sizes smaller than 2048 bits; and') }}</li>
+      <li>{{ _('all new end-entity certificates must contain at least 20 bits of unpredictable random data (preferably in the serial number).') }}</li>
+    </ul>
+  </li>
+  <li>{{ _('Changes may be made to root certificates that are included in Mozilla products as follows:') }}
+    <ul>
+      <li>{{ _('root changes that are motivated by a serious security concern such as a major root compromise should be treated as a security-sensitive bug, and the <a href="%s"> Mozilla Policy for Handling Security Bugs</a> should be followed;')|format(url('mozorg.about.governance.policies.security.bugs')) }}</li>
+      <li>{{ _('enabling a trust bit in a root certificate that is currently included, may only be done after careful consideration of the CA’s current policies, practices, and audits, according to the <a href="%s"> Inclusion Section of the Mozilla CA Certificate Policy,</a> and may be requested by a representative of the CA or a representative of Mozilla by submitting a bug report into the mozilla.org Bugzilla system, as described in Mozilla’s wiki page, <cite><a href="%s"> Applying for root inclusion in Mozilla products;</a></cite>')|format(url('mozorg.about.governance.policies.security.certs.inclusion'), 'https://wiki.mozilla.org/CA:How_to_apply#Enable_Additional_Trust_Bits_for_an_included_root') }}</li>
+      <li>{{ _('enabling EV in a root certificate that is currently included, may only be done after careful consideration of the CA’s current policies, practices, and audits, according to the <a href="%s">Inclusion Section of the Mozilla CA Certificate Policy,</a> and may be requested by a representative of the CA or a representative of Mozilla by submitting a bug report into the mozilla.org Bugzilla system, as described in Mozilla’s wiki page, <cite><a href="%s"> Applying for root inclusion in Mozilla products;</a></cite>')|format(url('mozorg.about.governance.policies.security.certs.inclusion'), 'https://wiki.mozilla.org/CA:How_to_apply#Enable_Additional_Trust_Bits_for_an_included_root') }}</li>
+      <li>{{ _('disabling a root is the act of turning off one or more of the three trust bits (Websites, Email, Code Signing), and may be requested by a representative of the CA or a representative of Mozilla by submitting a bug report into the mozilla.org Bugzilla system, as described in the <a href="%s"> Root Change Process;</a>')|format('https://wiki.mozilla.org/CA:Root_Change_Process') }}</li>
+      <li>{{ _('a representative of the CA or a representative of Mozilla may request that a root certificate be removed by submitting a bug report into the mozilla.org Bugzilla system, as described in the <a href="%s"> Root Change Process.</a>')|format('https://wiki.mozilla.org/CA:Root_Change_Process') }}</li>
+    </ul>
+  </li>
+</ol>
+
+<p>{{ _('This policy applies only to software products distributed by Mozilla, including the Mozilla Foundation and its subsidiaries. Other entities distributing such software are free to adopt their own policies. In particular, under the terms of the relevant Mozilla license(s) distributors of such software are permitted to add or delete CA certificates in the versions that they distribute, and are also permitted to modify the values of the "trust bits" on CA certificates in the default CA certificate set. As with other software modifications, by making such changes a distributor may affect its ability to use Mozilla trademarks in connection with its versions of the software; see the <a href="%s">Mozilla trademark policy</a> for more information.')|format(url('foundation.trademarks.policy')) }}</p>
+
+<p>{{ _('Please contact Mozilla at <a href="mailto:certificates@mozilla.org">certificates@mozilla.org</a> for more information about this policy and answers to related questions.') }}</p>
+
+<p>{{ _('We reserve the right to change this policy in the future. We will do so only after consulting with the public Mozilla community, in order to ensure that all views are taken into account.') }}</p>
+
+{%endblock%}

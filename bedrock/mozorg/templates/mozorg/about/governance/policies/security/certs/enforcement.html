@@ -1,0 +1,49 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/about-base.html" %}
+	
+{% block page_title %}{{ _('Mozilla CA Certificate Enforcement Policy') }}{% endblock %}
+{% block body_class %}sand{% endblock %}
+
+{% block extrahead %}
+    {{ css('security-group') }}
+{% endblock %}
+
+{% block article %}
+<h1>{{ _('Mozilla CA Certificate Enforcement Policy') }}</h1>
+<h3>{{ _('(Version 2.2)') }}</h3>
+
+<p>{{ _('This section of the <a href="%s">Mozilla CA Certificate Policy</a> describes the steps that Mozilla may take in order to enforce this policy. This includes evaluation of security concerns, and removing or disabling a root certificate.')|format(url('mozorg.about.governance.policies.security.certs.policy')) }}</p>
+
+<p>{{ _('This is the official Mozilla policy for enforcing the <a href="%s">Mozilla CA Certificate Policy:</a>')|format(url('mozorg.about.governance.policies.security.certs.policy')) }}</p>
+
+<ol>
+  <li>
+    <p>{{ _('When a serious security concern is noticed, such as a major root compromise, it should be treated as a security-sensitive bug, and the <a href="%s">Mozilla Policy for Handling Security Bugs</a> should be followed.')|format(url('mozorg.about.governance.policies.security.bugs')) }}</p>
+  </li>
+  <li>
+    <p>{{ _('Mozilla may, at its sole discretion, disable (partially or fully) or remove a certificate at any time and for any reason. Mozilla will disable or remove a certificate if the CA demonstrates ongoing or egregious practices that do not maintain the level of service that was established in the <a href="%s">Inclusion Section of the Mozilla CA Certificate Policy</a> or that do not comply with the requirements of the <a href="%s">Maintenance Section of the Mozilla CA Certificate Policy.</a>')|format(url('mozorg.about.governance.policies.security.certs.inclusion'),url('mozorg.about.governance.policies.security.certs.maintenance')) }}</p>
+  </li>
+  <li>
+    <p>{{ _('Mozilla will take any steps we deem appropriate to protect our users if we learn that a CA has knowingly or intentionally mis-issued one or more certificates. This may include, but is not limited to disablement (partially or fully) or removal of all of the CA’s certificates from Mozilla’s products. A certificate that includes domain names that have not been verified according to the <a href="%s"> CA/Browser Forum’s Baseline Requirement #11.1.1 </a> is considered to be mis-issued. A certificate that is intended to be used only as an end entity certificate but includes a keyUsage extension with values keyCertSign and/or cRLSign or a basicConstraints extension with the cA field set to true is considered to be mis-issued.')|format('https://www.cabforum.org/documents.html') }}</p>
+  </li>
+  <li> 
+    <p>{{ _('A certificate is disabled by turning off one or more of the three trust bits (Websites, Email, Code Signing). 
+    Disablement or removal of a certificate may be initiated by submitting a bug report to the mozilla.org Bugzilla system, as described in the <a href="%s">Root Change Process</a> or the <a href="%s">Mozilla Policy for Handling Security Bugs</a>.')|format('https://wiki.mozilla.org/CA:Root_Change_Process', url('mozorg.about.governance.policies.security.certs.policy')) }}</p>
+  </li>
+  <li>
+    <p>{{ _('If Mozilla disables or removes a CA’s certificate(s) from Mozilla’s products based on a CA’s actions (or failure to act) that are contrary to the <a href="%s">Mozilla CA Certificate Policy,</a> Mozilla shall publicize that fact in newsgroups on the news.mozilla.org server, on Web pages in the www.mozilla.org and www.mozilla.com domains, in news releases sent to organizations specializing in computer and Internet news, or as an alert to the US-CERT organization of the U.S. Department of Homeland Security.')|format(url('mozorg.about.governance.policies.security.certs.policy')) }}</p>
+  </li>
+</ol>
+
+<p>{{ _('This policy applies only to software products distributed by Mozilla, including the Mozilla Foundation and its subsidiaries. Other entities distributing such software are free to adopt their own policies. In particular, under the terms of the
+relevant Mozilla license(s) distributors of such software are permitted to add or delete CA certificates in the versions that they
+distribute, and are also permitted to modify the values of the "trust bits" on CA certificates in the default CA certificate set. As with other software modifications, by making such changes a distributor may affect its ability to use Mozilla trademarks in connection with its versions of the software; see the <a href="%s">Mozilla trademark policy</a> for more information.')|format(url('foundation.trademarks.policy')) }}</p>
+
+<p>{{ _('Please contact Mozilla at <a href="mailto:certificates@mozilla.org">certificates@mozilla.org</a> for more information about this policy and answers to related questions.') }}</p>
+
+<p>{{ _('We reserve the right to change this policy in the future. We will do so only after consulting with the public Mozilla community, in order to ensure that all views are taken into account.') }}</p>
+
+{% endblock %}
