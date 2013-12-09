@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {% for locale in settings.PROD_LANGUAGES|sort -%}
+  <sitemap>
+    <loc>{{ settings.CANONICAL_URL + '/media/sitemaps/' + locale + '.xml' }}</loc>
+  </sitemap>
+  {% endfor -%}
+</sitemapindex>

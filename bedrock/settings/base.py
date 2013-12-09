@@ -59,6 +59,25 @@ SUPPORTED_NONLOCALES += [
     'robots.txt',
 ]
 
+# Path to the XML sitemap
+XML_SITEMAP_DIR = '/media/sitemaps'
+XML_SITEMAP_INDEX = XML_SITEMAP_DIR + '/index.xml'
+
+# Pages that we don't want be indexed by search engines.
+NOINDEX_URLS = [
+    r'^(404|500)/',
+    r'^about/partnerships/contact-bizdev/',
+    r'^contribute/(embed|event)/',
+    r'^facebookapps/',
+    r'^firefox/sms/sent/',
+    r'^firefox/unsupported/',
+    r'^l10n_example/',
+    r'^m/',
+    r'^newsletter/(confirm|existing|hacks\.mozilla\.org|recovery|updated)/',
+    r'^tabzilla/',
+    r'.*/(firstrun|thanks)/$',
+]
+
 ALLOWED_HOSTS = [
     'www.mozilla.org',
     'www.ipv6.mozilla.org',
@@ -760,6 +779,7 @@ INSTALLED_APPS = get_apps(exclude=(
 
     # libs
     'lib.l10n_utils',
+    'lib.sitemaps',
     'captcha',
 ))
 
