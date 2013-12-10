@@ -763,22 +763,6 @@ LOCALES_WITH_MOZ15 = ['bg', 'cs', 'de', 'el', 'en-GB', 'en-US', 'es-AR', 'es-CL'
                       'ms', 'nl', 'pl', 'pt-BR', 'ro', 'ru', 'sl', 'sq', 'sr',
                       'ta', 'tr', 'zh-CN', 'zh-TW']
 
-# Locales with the Lightbeam and Webmaker banners on home page
-LOCALES_WITH_LIGHTBEAM_HOME = ['en-GB', 'en-US', 'en-ZA', 'ar', 'ca', 'cs', 'cy',
-                               'da', 'de', 'el', 'es-AR', 'es-CL', 'es-ES', 'es-MX',
-                               'et', 'eu', 'fr', 'fy-NL', 'hr', 'hy-AM', 'is', 'it',
-                               'ko', 'mk', 'nl', 'pl', 'pt-BR', 'ru', 'sq', 'sv-SE',
-                               'tr', 'uk', 'xh', 'zh-TW']
-
-# Locales with the Vans Triple Crown banner on home page
-LOCALES_WITH_VTCS_HOME = ['en-GB', 'en-US', 'en-ZA', 'ar', 'ca', 'cs', 'cy', 'da', 'de',
-                          'el', 'es-AR', 'es-CL', 'es-ES', 'es-MX', 'et', 'eu', 'fr',
-                          'fy-NL', 'hr', 'hy-AM', 'is', 'it', 'ko', 'mk', 'nl', 'pl',
-                          'pt-BR', 'ru', 'sk', 'sq', 'sv-SE', 'tr', 'uk', 'zh-TW']
-
-# Locales with the Donate banner on home page
-LOCALES_WITH_DONATE_HOME = ['en-US', 'de', 'fr', 'pt-BR']
-
 # reCAPTCHA keys
 RECAPTCHA_PUBLIC_KEY = ''
 RECAPTCHA_PRIVATE_KEY = ''
