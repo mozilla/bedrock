@@ -81,12 +81,12 @@
 
   <h1>{{ _('Become a Firefox expert in <span>5</span> easy steps') }}</h1>
 
-  <ul class="pager-tabs">
-    <li><a id="#get-started">{{ _('Getting started') }}</a></li>
-    <li><a id="#speed">{{ _('Experience super speed') }}</a></li>
-    <li><a id="#stay-in-sync">{{ _('Stay in sync') }}</a></li>
-    <li><a id="#customize">{{ _('Customize your Firefox') }}</a></li>
-    <li><a id="#personal">{{ _('Secure your personal info') }}</a></li>
+  <ul id="steps-list" class="pager-tabs">
+    <li><a data-id="Getting started" href="#get-started">{{ _('Getting started') }}</a></li>
+    <li><a data-id="Experience super speed" href="#speed">{{ _('Experience super speed') }}</a></li>
+    <li><a data-id="Stay in sync" href="#stay-in-sync">{{ _('Stay in sync') }}</a></li>
+    <li><a data-id="Customize your Firefox" href="#customize">{{ _('Customize your Firefox') }}</a></li>
+    <li><a data-id="Secure your personal info" href="#personal">{{ _('Secure your personal info') }}</a></li>
   </ul>
 
   <div class="pager-content">
@@ -94,7 +94,7 @@
     <div class="get-started-content default-page" id="get-started">
       <h2>{{ _('Getting started') }}</h2>
       <p>{{ _('Ready to begin? Good! Getting started with Firefox is actually quite simple. Here are a few handy shortcuts to help you get going:') }}</p>
-    <figure class="figure">
+    <figure data-id="Getting started Video" class="figure">
       {{ video('Browsing-Basics-640.mp4',
                'Browsing-Basics-640.webm',
                'Browsing-Basics-640.theora.ogv',
@@ -103,12 +103,32 @@
                poster=media('img/firefox/central/poster-browsing-basics.png')) }}
         <figcaption class="figcaption">{{ _('Learn more about Firefox’s features') }}</figcaption>
       </figure>
-      <ul>
-          <li><a href="https://support.mozilla.org/kb/Browsing%20basics">{{ _('Browsing Basics') }}</a></li>
-          <li><a href="https://support.mozilla.org/kb/Importing%20favorites%20and%20other%20data%20from%20Internet%20Explorer">{{ _('Import bookmarks from another browser') }}</a></li>
-          <li><a href="https://support.mozilla.org/kb/How%20to%20set%20the%20home%20page">{{ _('Set your home page') }}</a></li>
-          <li><a href="https://support.mozilla.org/kb/what-are-app-tabs">{{ _('Create an App Tab') }}</a></li>
-          <li><a href="https://support.mozilla.org/kb/new-tab-page-show-hide-and-customize-top-sites">{{ _('Customize your New Tab page') }}</a></li>
+      <ul id="support-list">
+        <li>
+          <a data-id="Support: Browsing Basics" href="https://support.mozilla.org/kb/Browsing%20basics">
+            {{ _('Browsing Basics') }}
+          </a>
+        </li>
+        <li>
+          <a data-id="Support: Import bookmarks from another browser" href="https://support.mozilla.org/kb/Importing%20favorites%20and%20other%20data%20from%20Internet%20Explorer">
+            {{ _('Import bookmarks from another browser') }}
+          </a>
+        </li>
+        <li>
+          <a data-id="Support: Set your home page" href="https://support.mozilla.org/kb/How%20to%20set%20the%20home%20page">
+            {{ _('Set your home page') }}
+          </a>
+        </li>
+        <li>
+          <a data-id="Support: Create an App Tab" href="https://support.mozilla.org/kb/what-are-app-tabs">
+            {{ _('Create an App Tab') }}
+          </a>
+        </li>
+        <li>
+          <a data-id="Support: Customize your New Tab page" href="https://support.mozilla.org/kb/new-tab-page-show-hide-and-customize-top-sites">
+            {{ _('Customize your New Tab page') }}
+          </a>
+        </li>
       </ul>
     </div>
 
@@ -138,7 +158,7 @@
     <div class="customize-content default-page" id="customize">
       <h2>{{ _('Customize your Firefox') }}</h2>
       <p>{{ _('When it comes to browsing, one size definitely doesn’t fit all. That’s why we’ve made sure you can customize Firefox to your exact needs in pretty much any possible way. Enhance functionality with extensions, add style with Themes or even change the toolbar icons to be just the way you like.') }}</p>
-      <figure class="figure">
+      <figure data-id="Customize your Firefox Video" class="figure">
         <div class="mozilla-video-control">
         {{ video('FF%20576%20h264%20v6.webm',
                  'FF%20576%20h264%20v6.theora.ogv',
@@ -160,7 +180,7 @@
     <div class="personal-content default-page" id="personal">
       <h2>{{ _('Secure your personal info') }}</h2>
       <p>{{ _('We’ve packed Firefox with highly advanced security features to keep you safe while you browse. And, as a non-profit organization, protecting your privacy by keeping you in control over your personal information is a key part of our mission.') }}</p>
-      <figure class="figure">
+      <figure data-id="Secure your personal info Video" class="figure">
         <div class="mozilla-video-control">
         {{ video('privatebrowsing640.mp4',
                  'privatebrowsing640.webm',
