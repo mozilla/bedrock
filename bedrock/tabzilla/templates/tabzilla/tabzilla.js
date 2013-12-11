@@ -385,11 +385,6 @@ var Tabzilla = (function (Tabzilla) {
         userLang = (langLink.length) ? langLink.attr('hreflang')
                                      : langOption.val();
 
-        // The language label: English (US) -> English
-        var langLabel = (langLink.length) ? langLink.attr('title')
-                                          : langOption.text();
-        langLabel = langLabel.match(/^(.+?)(\s\(.+\))?$/)[1];
-
         // Log the language of the current page
         transbar.onshow.trackLabel = transbar.oncancel.trackLabel = userLang;
         transbar.oncancel.trackAction = 'hide';
@@ -411,7 +406,6 @@ var Tabzilla = (function (Tabzilla) {
         $.ajax({ url: '{{ settings.CDN_BASE_URL }}/' + userLang + '/tabzilla/transbar.jsonp',
                  cache: false, crossDomain: true, dataType: 'jsonp',
                  jsonpCallback: "_", success: function (str) {
-            str.message = str.message.replace('%s', langLabel);
             transbar.show(str).attr('lang', userLang);
         }});
     };
