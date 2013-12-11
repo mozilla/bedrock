@@ -18,11 +18,6 @@
     if (isFirefox()) {
         var latestFirefoxVersion = $html.attr('data-latest-firefox');
         latestFirefoxVersion = parseInt(latestFirefoxVersion.split('.')[0], 10);
-        latestFirefoxVersion--; // subtract one since a silent update may be
-                                // complete and the user hasn't restarted their
-                                // browser. This will be removed once there's
-                                // a way to get the current version directly
-                                // from the browser
 
         if (isFirefoxUpToDate(latestFirefoxVersion + '')) {
             $html.addClass('firefox-latest');
