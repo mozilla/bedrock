@@ -51,6 +51,10 @@
 
     {{ js('site') }}
 
+    {% block optimizely %}
+      {% include 'includes/optimizely.html' %}
+    {% endblock %}
+
     {% block js_pretrack %}{# include JavaScript that must be run pre GA tracking here #}{% endblock %}
     {% block google_analytics %}
       {% include 'includes/google-analytics.html' %}

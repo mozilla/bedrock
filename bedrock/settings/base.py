@@ -879,3 +879,6 @@ DONATE_LOCALE_LINK = {
 MAPBOX_TOKEN = 'examples.map-9ijuk24y'
 
 TABZILLA_INFOBAR_OPTIONS = 'translation'
+
+# Optimize.ly project code for base template JS snippet
+OPTIMIZELY_PROJECT_ID = None
