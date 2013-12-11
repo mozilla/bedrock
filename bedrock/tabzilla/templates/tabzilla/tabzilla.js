@@ -64,6 +64,7 @@
  * @author    Michael Gauthier <mike@silverorange.com>
  * @author    Steven Garrity <steven@silverorange.com>
  * @author    Isac Lagerblad <icaaaq@gmail.com>
+ * @author    Kohei Yoshino <kohei.yoshino@gmail.com>
  */
 
 var Tabzilla = (function (Tabzilla) {
@@ -240,6 +241,180 @@ var Tabzilla = (function (Tabzilla) {
         }
         return 0;
     };
+    var Infobar = function (id, name) {
+        this.id = id;
+        this.name = name;
+        this.disabled = false;
+        this.prefName = 'tabzilla.infobar.' + id + '.disabled';
+
+        // Read the preference
+        try {
+            if (sessionStorage.getItem(this.prefName) === 'true') {
+                this.disabled = true;
+            }
+        } catch (ex) {}
+
+        // If there is already another infobar, don't show this
+        if ($('#tabzilla-infobar').length) {
+            this.disabled = true;
+        }
+    };
+    Infobar.prototype.show = function (str) {
+        // A infobar can be disabled by pref.
+        // And check the existence of another infobar again
+        if (this.disabled || $('#tabzilla-infobar').length) {
+            return;
+        }
+
+        var self = this;
+        var bar = self.element = $(
+          '<div id="tabzilla-infobar" class="' + self.id + '" role="dialog"><div>'
+        + '<p>' + str.message + '</p><ul>'
+        + '<li><a href="#" class="btn-accept" role="button">' + str.accept + '</a></li>'
+        + '<li><a href="#" class="btn-cancel" role="button">' + str.cancel + '</a></li>'
+        + '</ul></div></div>').prependTo(panel);
+
+        bar.find('.btn-accept').click(function (event) {
+            event.preventDefault();
+            self.trackEvent(self.onaccept.trackAction || 'accept',
+                            self.onaccept.trackLabel,
+                            self.onaccept.callback);
+            self.hide();
+        });
+
+        bar.find('.btn-cancel').click(function (event) {
+            event.preventDefault();
+            self.trackEvent(self.oncancel.trackAction || 'cancel',
+                            self.oncancel.trackLabel,
+                            self.oncancel.callback);
+            self.hide();
+            try {
+                sessionStorage.setItem(self.prefName, 'true');
+            } catch (ex) {}
+        });
+
+        panel.trigger('infobar-showing');
+        self.trackEvent(self.onshow.trackAction || 'show',
+                        self.onshow.trackLabel,
+                        self.onshow.callback);
+
+        if (opened) {
+            bar.css('height', 0)
+               .animate({'height': bar.find('div').outerHeight()}, 200,
+                        function () { panel.trigger('infobar-shown'); });
+        } else {
+            panel.animate({'height': bar.height()}, 200,
+                          function () { panel.trigger('infobar-shown'); });
+        }
+
+        return bar;
+    };
+    Infobar.prototype.hide = function () {
+        var self = this;
+        var target = (opened) ? self.element : panel;
+
+        panel.trigger('infobar-hiding');
+
+        target.animate({'height': 0}, 200, function () {
+            self.element.remove();
+            panel.trigger('infobar-hidden');
+        });
+    };
+    Infobar.prototype.trackEvent = function (action, label, callback) {
+        if (typeof(_gaq) !== 'object') {
+            return;
+        }
+
+        // Track events with Google Analytics
+        window._gaq.push(['_trackEvent',
+                          'Tabzilla - ' + this.name, action, label]);
+
+        if (callback) {
+            var timer = null;
+            var _callback = function () {
+                clearTimeout(timer);
+                callback();
+            };
+            timer = setTimeout(_callback, 500);
+            window._gaq.push(_callback);
+        }
+    };
+    Infobar.prototype.onshow = {};
+    Infobar.prototype.onaccept = {};
+    Infobar.prototype.oncancel = {};
+    var setupTransbar = function () {
+        var transbar = new Infobar('transbar', 'Translation Bar');
+        if (transbar.disabled) {
+            return;
+        }
+
+        // Compare the user's language and the page's language
+        var userLang = navigator.language || navigator.browserLanguage;
+        var pageLang = document.documentElement.lang;
+        if (!userLang || !pageLang ||
+                userLang.toLowerCase() === pageLang.toLowerCase()) {
+            return;
+        }
+
+        // Normalize the user language in the form of ab or ab-CD
+        userLang = userLang.replace(/^(\w+)(?:-(\w+))?$/, function (m, p1, p2) {
+            return p1.toLowerCase() + ((p2) ? '-' + p2.toUpperCase() : '');
+        });
+
+        // Check the availability of the translated page for the user.
+        // Use an alternate URL in <head> or a language option in <form>
+        var langLink = $(['link[hreflang="' + userLang + '"]',
+            // The user language can be ab-CD while the page language is ab
+            // (Example: fr-FR vs fr, ja-JP vs ja)
+            'link[hreflang="' + userLang.split('-')[0] + '"]'].join(','));
+        var langOption = $(['#language [value="' + userLang + '"]',
+            // Languages in the language switcher are uncapitalized on some
+            // sites (AMO, Firefox Flicks)
+            '#language [value="' + userLang.toLowerCase() + '"]',
+            // The user language can be ab-CD while the page language is ab
+            // (Example: fr-FR vs fr, ja-JP vs ja)
+            '#language [value="' + userLang.split('-')[0] + '"]',
+            // Sometimes the value of a language switcher option is the path of
+            // a localized page on some sites (MDN)
+            '#language [value^="/' + userLang + '/"]'].join(','));
+        if (!langLink.length && !langOption.length) {
+            return;
+        }
+
+        // Normalize the user language again, based on the language of the site
+        userLang = (langLink.length) ? langLink.attr('hreflang')
+                                     : langOption.val();
+
+        // The language label: English (US) -> English
+        var langLabel = (langLink.length) ? langLink.attr('title')
+                                          : langOption.text();
+        langLabel = langLabel.match(/^(.+?)(\s\(.+\))?$/)[1];
+
+        // Log the language of the current page
+        transbar.onshow.trackLabel = transbar.oncancel.trackLabel = userLang;
+        transbar.oncancel.trackAction = 'hide';
+
+        // If the user selects Yes, show the translated page
+        transbar.onaccept = {
+            trackAction: 'change',
+            trackLabel: userLang,
+            callback: function () {
+                if (langLink.length) {
+                    location.href = langLink.attr('href');
+                } else {
+                    langOption.attr('selected', 'selected').get(0).form.submit();
+                }
+            }
+        };
+
+        // Fetch the localized strings and show the Translation Bar
+        $.ajax({ url: '{{ settings.CDN_BASE_URL }}/' + userLang + '/tabzilla/transbar.jsonp',
+                 cache: false, crossDomain: true, dataType: 'jsonp',
+                 jsonpCallback: "_", success: function (str) {
+            str.message = str.message.replace('%s', langLabel);
+            transbar.show(str).attr('lang', userLang);
+        }});
+    };
     var setupGATracking = function () {
         // track tabzilla links in GA
         $('#tabzilla-contents').on('click', 'a', function (e) {
@@ -353,6 +528,17 @@ var Tabzilla = (function (Tabzilla) {
                 Tabzilla.close();
             } else {
                 Tabzilla.open();
+            }
+        });
+
+        // Information Bars in order of priority
+        var infobars = {
+            translation: setupTransbar
+        };
+        $.each((tab.data('infobar') || '').split(' '), function (index, value) {
+            var setup = infobars[value];
+            if (setup) {
+                setup.call();
             }
         });
 

@@ -312,6 +312,36 @@
 #tabzilla-panel #tabzilla-nav ul li#tabzilla-search input::-webkit-input-placeholder { color: #ddd; }
 #tabzilla-panel #tabzilla-nav ul li#tabzilla-search input:-moz-placeholder           { color: #ddd; }
 
+#tabzilla-infobar {
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    width: 940px;
+    font-size: 12px;
+    line-height: 1.5;
+
+    div {
+        padding: 5px 0;
+    }
+
+    p {
+        display: inline;
+        margin: 0 10px 0 0;
+    }
+
+    ul {
+        display: inline;
+        margin: 0;
+    }
+
+    li {
+        display: inline;
+        margin: 0 10px 0 0;
+        white-space: nowrap;
+        list-style-type: none;
+    }
+}
+
 // Firefox Flicks Promo
 
 #tabzilla-promo .snippet {
@@ -486,6 +516,10 @@ html[lang='de'] #tabzilla-promo .snippet#tabzilla-promo-donate-201312 a {
         margin-bottom: 40px;
     }
 
+    #tabzilla-infobar {
+        position: static;
+        width: 90%;
+    }
 }
 
 @media only screen and (max-width: 719px) {
@@ -604,4 +638,12 @@ html[lang='de'] #tabzilla-promo .snippet#tabzilla-promo-donate-201312 a {
         box-sizing: border-box;
     }
 
+    #tabzilla-infobar {
+        position: static;
+        width: auto;
+
+        div {
+            padding: 10px 20px;
+        }
+    }
 }

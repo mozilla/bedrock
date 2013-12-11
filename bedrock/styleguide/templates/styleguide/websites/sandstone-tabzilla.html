@@ -63,6 +63,8 @@
     <code>&lt;link href="//mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" rel="stylesheet" /&gt;</code></li>
     <li>Include the tabzilla.js file in your template (preferably in the footer) <br />
     <code>&lt;script src="//mozorg.cdn.mozilla.net/tabzilla/tabzilla.js"&gt;&lt;/script&gt;</code></li>
+    <li>If you'd like to have the Translation Bar extension, include <a href="https://support.google.com/webmasters/answer/189077">alternate URLs</a> in the <code>&lt;head&gt;</code> element and add the <code>data-infobar</code> attribute to the tab link, with the <code>translation</code> option <br />
+    <code>&lt;a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="translation"&gt;{{ _('Mozilla') }}&lt;/a&gt;</code></li>
   </ol>
   <p>See the <a href="http://bedrock.readthedocs.org/en/latest/tabzilla.html">Tabzilla documentation</a> for full instructions and notes on localization.</p>
 </section>

@@ -27,7 +27,7 @@
 {% block content %}
 <div id="content">
   <header id="masthead">
-  <a href="{{ url('mozorg.home') }}" id="tabzilla">{{ _('Mozilla') }}</a>
+  <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{{ settings.TABZILLA_INFOBAR_OPTIONS }}">{{ _('Mozilla') }}</a>
   </header>
 
 {% block sidebar %}
