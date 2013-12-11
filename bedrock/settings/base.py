@@ -855,7 +855,7 @@ PRESS_BLOGS = {
 
 MOBILIZER_LOCALE_LINK = {
     'en-US': 'https://wiki.mozilla.org/FirefoxOS/Community/Mobilizers',
-    'hu': 'https://wiki.mozilla.org/Mobilizers/MobilizerHungary/',
+    'hu': 'https://www.facebook.com/groups/mobilizerhungary/',
     'pt-BR': 'https://wiki.mozilla.org/Mobilizers/MobilizerBrasil/',
     'pl': 'https://wiki.mozilla.org/Mobilizers/MobilizerPolska/',
     'gr': 'https://wiki.mozilla.org/Mobilizer/MobilizerGreece/',
