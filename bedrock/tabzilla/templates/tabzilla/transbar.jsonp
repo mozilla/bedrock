@@ -1,0 +1,9 @@
+{% set_lang_files "tabzilla/tabzilla" %}
+_({
+    {# L10n: %s will be replaced with a language name like English. You can instead hardcode your language name in the string if you want. -#}
+    "message": "{{ _('Would you like to see this page in %s?')|js_escape }}",
+    {# L10n: Your translation can just say Yes -#}
+    "accept": "{{ _('Yes, please!')|js_escape }}",
+    {# L10n: Your translation can just say No -#}
+    "cancel": "{{ _('No, thanks.')|js_escape }}"
+})

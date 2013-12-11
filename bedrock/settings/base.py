@@ -643,6 +643,8 @@ DOMAIN_METHODS = {
             'tower.extract_tower_template'),
         ('%s/**/templates/**.js' % PROJECT_MODULE,
             'tower.extract_tower_template'),
+        ('%s/**/templates/**.jsonp' % PROJECT_MODULE,
+            'tower.extract_tower_template'),
     ],
 }
 
@@ -885,3 +887,5 @@ DONATE_LOCALE_LINK = {
 
 # Mapbox token for spaces and communities pages
 MAPBOX_TOKEN = 'examples.map-9ijuk24y'
+
+TABZILLA_INFOBAR_OPTIONS = 'translation'

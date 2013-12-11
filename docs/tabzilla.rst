@@ -57,3 +57,26 @@ As the universal tab does inject HTML/CSS into the DOM, some there are some requ
 Any background image or absolutely positioned element attached to the ``body`` element would not move with the rest of the contents when the tab slides open. Instead, any such background or element should be attached to anoter HTML element in the page (a wrapper div, for example). Note that this issue does not apply to solid background colors, or backgrounds that do not vary vertically (solid vertical stripes, for example).
 
 If jQuery is already included on the page, it will be used by Tabzilla. If jQuery is not already on the page, it will automatically be included after the page has loaded.
+
+
+Translation Bar
+---------------
+
+Tabzilla has an opt-in extension called *Translation Bar* that automatically offers a link to a localized page, if available, based on the user's locale. It is intended to improve international user experience. 
+
+Adding the Translation Bar extension to Tabzilla requires:
+
+1. Include `alternate URLs <https://support.google.com/webmasters/answer/189077>`_ in the ``<head>`` element. For example::
+
+    <link rel="alternate" hreflang="en-US" href="http://www.mozilla.org/en-US/firefox/new/" title="English (US)">
+    <link rel="alternate" hreflang="fr" href="http://www.mozilla.org/fr/firefox/new/" title="Français">
+
+   The Translation Bar alternatively detects available translations by looking for a language switcher like below, but implementation of alternate URLs is recommended also from the SEO perspective::
+
+    <select id="language"><option value="en-US">English (US)</option></select>
+
+2. Add the ``data-infobar`` attribute to the tab link, with the ``translation`` option::
+
+    <a href="https://www.mozilla.org/" id="tabzilla" data-infobar="translation">mozilla</a>
+
+.. note:: Though the Translation Bar is currently implemented as an extension of Tabzilla, it might be moved to a standalone language utility in the future.
