@@ -195,6 +195,7 @@ MINIFY_BUNDLES = {
         ),
         'firefox_firstrun': (
             'css/sandstone/video.less',
+            'css/base/mozilla-modal.less',
             'css/firefox/firstrun.less',
         ),
         'nightly_firstrun': (
@@ -466,6 +467,7 @@ MINIFY_BUNDLES = {
             'js/firefox/features.js',
         ),
         'firefox_firstrun': (
+            'js/base/mozilla-modal.js',
             'js/firefox/firstrun/firstrun.js',
         ),
         'firefox_firstrun_new_a': (
