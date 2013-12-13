@@ -233,6 +233,10 @@ class HomeTestView(TemplateView):
     """Home page view that will use a different template for a QS."""
     template_name = 'mozorg/home.html'
 
+    def post(self, request, *args, **kwargs):
+        # required for newsletter form post that is handled in newsletter/helpers.py
+        return self.get(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         ctx = super(HomeTestView, self).get_context_data(**kwargs)
         ctx['has_contribute'] = lang_file_is_active('mozorg/contribute')
