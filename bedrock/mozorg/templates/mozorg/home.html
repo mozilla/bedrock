@@ -128,6 +128,32 @@
       </li>
     {% endif %}
 
+    {#
+      Restricted to DEV for localization. Another PR will be issued to
+      add the l10n_has_tag function on release day (12/19).
+    #}
+    {% if settings.DEV %}
+      <li id="panel-addons" class="panel" tabindex="0">
+        {# L10n: This <br> is strictly for visual formatting; translations can omit or reposition as needed. #}
+        <h2 class="panel-title">{{ _('See the<br> best add-ons') }}</h2>
+        <div class="panel-inner">
+          <div class="panel-content">
+          {% if request.locale == 'en-US' %}
+            <a href="http://blog.mozilla.org/theden/2013/12/04/13-best-firefox-add-ons-of-2013">
+          {% elif request.locale in ['es-AR', 'es-CL', 'es-ES', 'es-MX'] %}
+            <a href="http://blog.mozilla.org/laguaridadefirefox/2013/12/04/los-13-mejores-complementos-para-firefox-del-2013">
+          {% else %}
+            <a href="https://addons.mozilla.org/firefox/collections/mozilla/best-13-of-2013/">
+          {% endif %}
+              {# L10n: This <br> is strictly for visual formatting; translations can omit or reposition as needed. #}
+              <h3>{{ _('The best add-ons<br> of the year') }}</h3>
+              <p>{{ _('See the top 13 add-ons from 2013, as chosen by our amazing committee of volunteers.') }}</p>
+              <p class="go">{{ _('Add them to Firefox') }}</p>
+            </a>
+          </div>
+        </div>
+      </li>
+    {% else %}
       <li id="panel-mdn" class="panel" tabindex="0">
         {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
         <h2 class="panel-title">{{ _('<i>Join</i> our community') }}</h2>
@@ -142,6 +168,7 @@
           </div>
         </div>
       </li>
+    {% endif %}
 
     {% if l10n_has_tag('promo_donate') or settings.DEV %}
       <li id="panel-donate" class="panel" tabindex="0">
