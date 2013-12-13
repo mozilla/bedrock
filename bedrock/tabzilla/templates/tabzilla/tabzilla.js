@@ -569,19 +569,6 @@ var Tabzilla = (function (Tabzilla) {
         script.src = '//mozorg.cdn.mozilla.net/media/js/libs/jquery-' + minimumJQuery + '.min.js';
         document.getElementsByTagName('head')[0].appendChild(script);
     };
-    (function () {
-        if (window.jQuery !== undefined &&
-            Tabzilla.compareVersion(window.jQuery.fn.jquery, minimumJQuery) !== -1
-        ) {
-            // set up local jQuery aliases
-            jQuery = window.jQuery;
-            $ = jQuery;
-            $(document).ready(init);
-        } else {
-            // no jQuery or older than minimum required jQuery
-            loadJQuery(init);
-        }
-    })();
     // icn=tabz appended to links for Google Analytics purposes
     var content =
       '<div id="tabzilla-panel" class="tabzilla-closed" tabindex="-1">'
@@ -659,6 +646,21 @@ var Tabzilla = (function (Tabzilla) {
     + '    </div>'
     + '  </div>';
     + '</div>';
+
+    // Self-executing function must be after all vars have been initialized
+    (function () {
+        if (window.jQuery !== undefined &&
+            Tabzilla.compareVersion(window.jQuery.fn.jquery, minimumJQuery) !== -1
+        ) {
+            // set up local jQuery aliases
+            jQuery = window.jQuery;
+            $ = jQuery;
+            $(document).ready(init);
+        } else {
+            // no jQuery or older than minimum required jQuery
+            loadJQuery(init);
+        }
+    })();
 
     return Tabzilla;
 
