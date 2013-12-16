@@ -223,7 +223,7 @@
     }
 
     Mozilla.Modal.createModal(this, $signup_content, {
-        allowScroll: true,
+        allowScroll: false,
         title: '<img src="/media/img/firefox/os/logo/firefox-os-white.png" alt="mozilla" />'
     });
 
