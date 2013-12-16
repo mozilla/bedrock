@@ -270,8 +270,8 @@ var Tabzilla = (function (Tabzilla) {
         var bar = self.element = $(
           '<div id="tabzilla-infobar" class="' + self.id + '" role="dialog"><div>'
         + '<p>' + str.message + '</p><ul>'
-        + '<li><a href="#" class="btn-accept" role="button">' + str.accept + '</a></li>'
-        + '<li><a href="#" class="btn-cancel" role="button">' + str.cancel + '</a></li>'
+        + '<li><button class="btn-accept" type="button">' + str.accept + '</button></li>'
+        + '<li><button class="btn-cancel" type="button">' + str.cancel + '</button></li>'
         + '</ul></div></div>').prependTo(panel);
 
         bar.find('.btn-accept').click(function (event) {

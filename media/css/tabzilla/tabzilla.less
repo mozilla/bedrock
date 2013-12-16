@@ -340,6 +340,19 @@
         white-space: nowrap;
         list-style-type: none;
     }
+
+    button {
+        background-color: #f1f8ff;
+        border: 1px solid darken(#f1f8ff, 10%);
+        cursor: pointer;
+        border-radius: 3px;
+
+        &:hover,
+        &:focus {
+            background-color: darken(#f1f8ff, 3%);
+            border-color: darken(#f1f8ff, 13%);
+        }
+    }
 }
 
 // Firefox Flicks Promo
