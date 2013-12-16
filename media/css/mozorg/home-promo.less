@@ -181,6 +181,32 @@
     background:         linear-gradient(bottom, rgba(0, 0, 0, .8) 65%, rgba(0, 0, 0, 0) 100%);
 }
 
+/****************************************************************************/
+// Add-ons
+#panel-addons {
+    background: #e16130 url(/media/img/home/panel/addons/bg-addons-en.png) -10px 0 no-repeat;
+    background: url(/media/img/home/panel/addons/bg-addons-en.png) -10px 0 no-repeat,
+        url(/media/img/home/panel/addons/bg-addons-puzzle.png) right bottom no-repeat, #e16130;
+
+    &.expanded {
+        background-position: 0 0, right bottom;
+    }
+
+    &.compressed {
+        background-position: -20px 0, right bottom;
+    }
+}
+
+// A different image for Spanish
+.lang-es-AR #panel-addons,
+.lang-es-CL #panel-addons,
+.lang-es-ES #panel-addons,
+.lang-es-MX #panel-addons {
+    background-image: url(/media/img/home/panel/addons/bg-addons-es.png);
+    background-image: url(/media/img/home/panel/addons/bg-addons-es.png),
+        url(/media/img/home/panel/addons/bg-addons-puzzle.png);
+}
+
 
 /****************************************************************************/
 // Donate
@@ -486,6 +512,30 @@
         }
     }
 
+    // Add-ons
+    #panel-addons {
+        background-image: url(/media/img/home/panel/addons/bg-addons-en-md.png);
+        background-image: url(/media/img/home/panel/addons/bg-addons-en-md.png),
+            url(/media/img/home/panel/addons/bg-addons-puzzle.png);
+
+        background-position: 0 0;
+        background-position: 0 0, right bottom;
+
+        .panel-content > a {
+            padding-left: 240px;
+        }
+    }
+
+    // A different image for Spanish
+    .lang-es-AR #panel-addons,
+    .lang-es-CL #panel-addons,
+    .lang-es-ES #panel-addons,
+    .lang-es-MX #panel-addons {
+        background-image: url(/media/img/home/panel/addons/bg-addons-es-md.png);
+        background-image: url(/media/img/home/panel/addons/bg-addons-es-md.png),
+            url(/media/img/home/panel/addons/bg-addons-puzzle.png);
+    }
+
     // Donate
     #panel-donate {
         background-position: -50px 20px;
@@ -658,6 +708,36 @@
         .panel-title i {
             color: inherit;
         }
+    }
+
+    // Add-ons
+    #panel-addons {
+        background-image: url(/media/img/home/panel/addons/bg-addons-en-sm.png);
+        background-image: url(/media/img/home/panel/addons/bg-addons-en-sm.png),
+            url(/media/img/home/panel/addons/bg-addons-puzzle-sm.png);
+
+        background-position: -20px -30px;
+        background-position: -20px -30px, right bottom;
+
+        &.expanded {
+            background-position: -20px 0;
+            background-position: -20px 0, right bottom;
+        }
+
+        &.compressed {
+            background-position: -20px -40px;
+            background-position: -20px -40px, right bottom;
+        }
+    }
+
+    // A different image for Spanish
+    .lang-es-AR #panel-addons,
+    .lang-es-CL #panel-addons,
+    .lang-es-ES #panel-addons,
+    .lang-es-MX #panel-addons {
+        background-image: url(/media/img/home/panel/addons/bg-addons-es-sm.png);
+        background-image: url(/media/img/home/panel/addons/bg-addons-es-sm.png),
+            url(/media/img/home/panel/addons/bg-addons-puzzle-sm.png);
     }
 
     // Donate
@@ -838,6 +918,22 @@
         &.compressed {
             background-position: 10px -25px;
             background-position: 10px -25px, 0 0;
+        }
+    }
+
+    // Add-ons
+    #panel-addons {
+        background-position: 0 -30px;
+        background-position: 0 -30px, right bottom;
+
+        &.expanded {
+            background-position: 0 0;
+            background-position: 0 0, right bottom;
+        }
+
+        &.compressed {
+            background-position: 0 -40px;
+            background-position: 0 -40px, right bottom;
         }
     }
 
