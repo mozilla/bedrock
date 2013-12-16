@@ -21,6 +21,12 @@ NEW_RELIC_URL = 'https://rpm.newrelic.com/deployments.xml'
 GITHUB_URL = 'https://github.com/mozilla/bedrock/compare/{oldrev}...{newrev}'
 
 
+def management_cmd(ctx, cmd):
+    """Run a Django management command correctly."""
+    with ctx.lcd(settings.SRC_DIR):
+        ctx.local('LANG=en_US.UTF-8 python2.6 manage.py ' + cmd)
+
+
 @task
 def update_code(ctx, tag):
     with ctx.lcd(settings.SRC_DIR):
@@ -38,9 +44,8 @@ def update_locales(ctx):
 
 @task
 def update_assets(ctx):
-    with ctx.lcd(settings.SRC_DIR):
-        ctx.local("LANG=en_US.UTF-8 python2.6 manage.py compress_assets")
-        ctx.local("LANG=en_US.UTF-8 python2.6 manage.py update_product_details")
+    management_cmd(ctx, 'compress_assets')
+    management_cmd(ctx, 'update_product_details')
 
 
 @task
@@ -52,8 +57,7 @@ def update_revision_file(ctx):
 
 @task
 def database(ctx):
-    with ctx.lcd(settings.SRC_DIR):
-        ctx.local("python2.6 manage.py syncdb --migrate --noinput")
+    management_cmd(ctx, 'syncdb --migrate --noinput')
 
 
 @task
@@ -76,10 +80,10 @@ def update_info(ctx):
         ctx.local("git log -3")
         ctx.local("git status")
         ctx.local("git submodule status")
-        ctx.local("python ./manage.py migrate --list")
         with ctx.lcd("locale"):
             ctx.local("svn info")
             ctx.local("svn status")
+    management_cmd(ctx, 'migrate --list')
 
 
 @task
