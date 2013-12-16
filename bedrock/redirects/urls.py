@@ -48,13 +48,6 @@ urlpatterns = patterns('',
     redirect(r'^foundation/identity-guidelines/mozilla-foundation.html', 'styleguide.identity.mozilla-branding'),
     redirect(r'^foundation/identity-guidelines/thunderbird.html', 'styleguide.identity.thunderbird-logo'),
 
-    # Bug 939902 - Remove outdated l10n trademark policy
-    url(r'^foundation/trademarks/l10n-policy/$',
-        # In Django 1.6 and above:
-        # RedirectView.as_view(pattern_name='styleguide.communications.translation'),
-        RedirectView.as_view(url='/styleguide/communications/translation/'),
-        name='foundation.trademarks.l10n-policy'),
-
     # Bug 945474 - delete Marketplace marketing product page and redirect
     redirect(r'^apps/$', 'https://marketplace.firefox.com/'),
 
