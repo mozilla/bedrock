@@ -4,17 +4,11 @@
 
 @import "template-resp.less";
 
-.sky #outer-wrapper {
-    background: #e04113 url(/media/img/firefox/whatsnew/bg.jpg) 50% 0 no-repeat;
-}
-
 #wrapper {
     padding-bottom: 0;
 }
 
 #whatsnew-header {
-    color: #fff;
-    text-shadow: none;
     margin: 0 0 -15px 0;
     padding: 40px 0 40px 150px;
     min-height: 50px;
@@ -240,6 +234,24 @@ html[lang=ru] {
     }
 }
 
+.whatsnew29 {
+    #main-content {
+        text-align: inherit;
+        h3 {
+            margin-bottom: 20px;
+        }
+        .content-column {
+            .span(5);
+            p {
+                font-size: inherit;
+            }
+        }
+        .image-column {
+            .span(7);
+        }
+    }
+}
+
 /* Tablet Layout: 760px */
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
 
@@ -304,6 +316,20 @@ html[lang=ru] {
     }
 
     #android { display: none; }
+
+    .whatsnew29 {
+        #main-content {
+            .content-column {
+                .span_narrow(6);
+            }
+            .image-column {
+                .span_narrow(6);
+                img {
+                    max-width: 100%;
+                }
+            }
+        }
+    }
 }
 
 /* Mobile layout: 320px */
@@ -401,6 +427,18 @@ html[lang=ru] {
     }
 
     #android { display: none; }
+
+    .whatsnew29 {
+        #main-content {
+            .content-column,
+            .image-column {
+                .span-all();
+            }
+            .button {
+                display: block;
+            }
+        }
+    }
 }
 
 /* Wide mobile layout: 480px; */
