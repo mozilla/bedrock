@@ -41,8 +41,8 @@ body {
 		background: url(/media/img/foundation/annualreport/2012/quotes.png) left top no-repeat;
 		padding-left: 80px;
 		width: 470px;
-		font-size: 48px;
-		line-height: 100%;
+		font-size: 40px;
+		line-height: 1.2;
 		.open-sans-light;
 
 		footer {
@@ -51,7 +51,7 @@ body {
 		}
 
 		cite {
-			font-size: 24px;
+			font-size: 50%;
 			font-style: italic;
 		}
 	}
@@ -275,7 +275,7 @@ dl.faq dt {
 			margin-bottom: 40px;
 		}
 		blockquote {
-			font-size: 30px;
+			font-size: 30px !important;
 			background: url(/media/img/foundation/annualreport/2012/quotes-tablet.png) left top no-repeat;
 			padding-left: 50px;
 			width: 360px;
@@ -418,7 +418,7 @@ dl.faq dt {
 			margin-left: -20px;
 			width: @breakMobile - (@baseLine * 2);
 			padding: @baseLine;
-			font-size: 26px;
+			font-size: 26px !important;
 		}
 	}
 
@@ -445,6 +445,12 @@ dl.faq dt {
 			}
 		}
 	}
+}
+
+/* Larger font size in English */
+html[lang="en-US"] .banner blockquote {
+  font-size: 48px;
+  line-height: 1.1;
 }
 
 /* No Italic in Chinese */
