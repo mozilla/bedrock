@@ -263,6 +263,7 @@ MINIFY_BUNDLES = {
             'css/firefox/releasenotes.less',
         ),
         'installer_help': (
+            'css/base/mozilla-modal.less',
             'css/firefox/template-resp.less',
             'css/firefox/installer-help.less',
         ),
@@ -538,6 +539,10 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.cycle2.min.js',
             'js/libs/jquery.cycle2.carousel.min.js',
             'js/mozorg/home.js',
+        ),
+        'installer_help': (
+            'js/base/mozilla-modal.js',
+            'js/firefox/installer-help.js',
         ),
         'legal_fraud_report': (
             'js/libs/jquery.validate.js',
