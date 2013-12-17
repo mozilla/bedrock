@@ -243,6 +243,10 @@ class LatestFxView(TemplateView):
     def dispatch(self, *args, **kwargs):
         return super(LatestFxView, self).dispatch(*args, **kwargs)
 
+    def post(self, request, *args, **kwargs):
+        # required for newsletter form post that is handled in newsletter/helpers.py
+        return self.get(request, *args, **kwargs)
+
     def redirect_to(self):
         """
         Redirect visitors based on their user-agent.
@@ -319,14 +323,17 @@ class WhatsnewView(LatestFxView):
 
         locale = l10n_utils.get_locale(self.request)
 
-        if (locale not in self.fxos_locales):
+        if locale not in self.fxos_locales:
             ctx['locales_with_video'] = self.locales_with_video
 
         return ctx
 
     def get_template_names(self):
+        version = self.kwargs.get('fx_version')
         locale = l10n_utils.get_locale(self.request)
-        if locale in self.fxos_locales:
+        if version == '29.0a1':
+            template = 'firefox/whatsnew-nightly-29.html'
+        elif locale in self.fxos_locales:
             template = 'firefox/whatsnew-fxos.html'
         else:
             template = 'firefox/whatsnew.html'

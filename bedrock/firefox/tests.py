@@ -9,7 +9,8 @@ import os
 from urlparse import parse_qsl, urlparse
 
 from django.conf import settings
-from django.test.client import Client
+from django.http import HttpResponse
+from django.test.client import Client, RequestFactory
 from django.utils import simplejson
 
 from funfactory.urlresolvers import reverse
@@ -316,6 +317,57 @@ class TestFirefoxPartners(TestCase):
         self.assertEqual(response.status_code, 200)
         response = csrf_client.post(post_url, {'first_name': "Partner"})
         self.assertEqual(response.status_code, 403)
+
+
+none_mock = Mock()
+none_mock.return_value = None
+
+
+@patch.object(fx_views.WhatsnewView, 'redirect_to', none_mock)
+@patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
+class TestWhatsNew(TestCase):
+    def setUp(self):
+        self.view = fx_views.WhatsnewView.as_view()
+        self.rf = RequestFactory()
+
+    def test_can_post(self, render_mock):
+        """Home page must accept post for newsletter signup."""
+        req = self.rf.post('/en-US/firefox/whatsnew/')
+        self.view(req)
+        # would return 405 before calling render otherwise
+        render_mock.assert_called_once_with(req, 'firefox/whatsnew.html', ANY)
+
+    @patch.object(fx_views.WhatsnewView, 'fxos_locales', ['de'])
+    def test_fxos_locales(self, render_mock):
+        """Should use a different template for fxos locales."""
+        req = self.rf.get('/de/firefox/whatsnew/')
+        req.locale = 'de'
+        self.view(req)
+        template = render_mock.call_args[0][1]
+        ctx = render_mock.call_args[0][2]
+        ok_('locales_with_video' not in ctx)
+        eq_(template, 'firefox/whatsnew-fxos.html')
+
+    def test_fx_nightly_29(self, render_mock):
+        req = self.rf.get('/en-US/firefox/whatsnew/')
+        self.view(req, fx_version='29.0a1')
+        template = render_mock.call_args[0][1]
+        eq_(template, 'firefox/whatsnew-nightly-29.html')
+
+
+@patch.object(fx_views.FirstrunView, 'redirect_to', none_mock)
+@patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
+class TestFirstRun(TestCase):
+    def setUp(self):
+        self.view = fx_views.FirstrunView.as_view()
+        self.rf = RequestFactory()
+
+    def test_can_post(self, render_mock):
+        """Home page must accept post for newsletter signup."""
+        req = self.rf.post('/en-US/firefox/firstrun/')
+        self.view(req)
+        # would return 405 before calling render otherwise
+        render_mock.assert_called_once_with(req, 'firefox/firstrun.html', ANY)
 
 
 @patch.object(fx_views, 'firefox_details', firefox_details)
