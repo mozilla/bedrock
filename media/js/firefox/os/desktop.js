@@ -223,7 +223,7 @@
     }
 
     Mozilla.Modal.createModal(this, $signup_content, {
-        allowScroll: true,
+        allowScroll: !isSmallViewport,
         title: '<img src="/media/img/firefox/os/logo/firefox-os-white.png" alt="mozilla" />'
     });
 
@@ -303,7 +303,7 @@
     }
 
     Mozilla.Modal.createModal(this, $get_phone_content, {
-        allowScroll: true,
+        allowScroll: !isSmallViewport,
         title: '<img src="/media/img/firefox/os/logo/firefox-os-white.png" alt="mozilla" />'
     });
 
