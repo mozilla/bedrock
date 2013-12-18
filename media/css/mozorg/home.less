@@ -59,7 +59,44 @@
     margin-top: 0;
 }
 
+#nav-search-form {
+    float: right;
+    margin: 6px 14px 0 0;
 
+    .site-search {
+        // force content-box - webkit UA stylesheet gives search boxes border-box
+        -moz-box-sizing: content-box;
+        -webkit-box-sizing: content-box;
+        box-sizing: content-box;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        float: left;
+        .border-radius(0);
+        border: none;
+        @shadow: 0 1px 1px -1px rgba(0, 0, 0, 0.4);
+        .box-shadow(@shadow);
+        margin: 0;
+        padding: 6px 10px;
+        background: #f0efec;
+        .transition;
+        &:focus {
+            background: #fff;
+            outline: none;
+            @shadow: 0 0 1px 1px rgba(0, 0, 0, 0.3);
+            .box-shadow(@shadow);
+        }
+    }
+
+    button {
+        .image-replaced;
+        background: #c13832 url(/media/img/home/bg-search-magnifier.png) center center no-repeat;
+        padding: 0;
+        margin-left: 1px;
+        width: 28px;
+        height: 28px;
+        border: none;
+    }
+}
 
 // @Header, @mission statement
 .mission {
@@ -595,6 +632,18 @@
     background-image: url(/media/img/home/control-arrows-lt.png);
 }
 
+/****************************************************************************/
+// @High resolution images for @retina-type displays
+// Desktop
+@media (-webkit-min-device-pixel-ratio: 1.5),
+       (                min-resolution: 1.5dppx),
+       (                min-resolution: 144dpi) {
+
+        #nav-search-form button {
+            background-image: url(/media/img/home/bg-search-magnifier-hires.png);
+            background-size: 17px 17px;
+        }
+}
 
 
 /****************************************************************************/
@@ -607,6 +656,12 @@
     .mission,
     .pillars {
         width: (@widthTablet - (@gridGutterWidth * 2));
+    }
+
+    #nav-search-form {
+        .site-search {
+            width: 120px;
+        }
     }
 
     .mission .tagline {
@@ -700,6 +755,13 @@
     .newsletter-form,
     .pillars {
         width: (@widthMobile - @gridGutterWidth);
+    }
+
+    #nav-search-form {
+        margin: @baseLine 0 0;
+        .site-search {
+            width: 247px;
+        }
     }
 
     .mission {
@@ -893,6 +955,13 @@
 /****************************************************************************/
 // @Wide @mobile layout: 480px
 @media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+
+    #nav-search-form {
+        margin: 6px 14px 0 0;
+        .site-search {
+            width: 136px;
+        }
+    }
 
     .pillars {
         background-image: url(/media/img/home/box-shadow-440.png);
