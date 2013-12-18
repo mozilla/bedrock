@@ -13,7 +13,7 @@ from captcha.fields import ReCaptchaField
 from funfactory.urlresolvers import reverse
 from jinja2.exceptions import TemplateNotFound
 from requests.exceptions import Timeout
-from mock import Mock, patch
+from mock import ANY, Mock, patch
 from nose.tools import assert_false, eq_, ok_
 from pyquery import PyQuery as pq
 
@@ -48,6 +48,13 @@ class TestHome(TestCase):
         self.view(req)
         ctx = resp_mock.call_args[0][2]
         self.assertEqual(ctx['mobilizer_link'], 'His Dudeness')
+
+    def test_can_post(self, resp_mock):
+        """Home page must accept post for newsletter signup."""
+        req = self.rf.post('/')
+        self.view(req)
+        # would return 405 before calling render otherwise
+        resp_mock.assert_called_once_with(req, ['mozorg/home.html'], ANY)
 
 
 class TestViews(TestCase):

@@ -269,7 +269,11 @@
   <section class="extra">
     <div class="container">
 
-      {{ mozorg_newsletter_form() }}
+      {% if request.locale != 'en-US' %}
+        {{ email_newsletter_form() }}
+      {% else %}
+        {{ mozorg_newsletter_form() }}
+      {% endif %}
 
     {% if request.locale in settings.PRESS_BLOGS %}
 
