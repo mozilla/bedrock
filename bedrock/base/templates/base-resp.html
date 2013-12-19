@@ -138,8 +138,10 @@
           </ul>
           {% block social %}
           <ul class="footer-nav">
-            <li><a href="https://twitter.com/firefox">{{_('Twitter')}}</a></li>
-            <li><a href="https://facebook.com/Firefox">{{_('Facebook')}}</a></li>
+            <li><a href="https://twitter.com/mozilla">{{_('Mozilla on Twitter')}}</a></li>
+            <li><a href="{{ firefox_twitter_url() }}">{{_('Firefox on Twitter')}}</a></li>
+            <li><a href="https://www.facebook.com/mozilla">{{_('Mozilla on Facebook')}}</a></li>
+            <li><a href="https://www.facebook.com/Firefox">{{_('Firefox on Facebook')}}</a></li>
             <li><a href="https://affiliates.mozilla.org/">{{_('Firefox Affiliates')}}</a></li>
           </ul>
           {% endblock %}
