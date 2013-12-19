@@ -164,7 +164,7 @@
       Restricted to DEV for localization. Another PR will be issued to
       add the l10n_has_tag function on release day (12/19).
     #}
-    {% if settings.DEV %}
+    {% if l10n_has_tag('promo_addons2013') or settings.DEV %}
       <li id="panel-addons" class="panel" tabindex="0">
         {# L10n: This <br> is strictly for visual formatting; translations can omit or reposition as needed. #}
         <h2 class="panel-title">{{ _('See the<br> best add-ons') }}</h2>
