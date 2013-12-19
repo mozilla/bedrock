@@ -409,6 +409,38 @@ var Tabzilla = (function (Tabzilla) {
             transbar.show(str).attr('lang', userLang);
         }});
     };
+    var setupUpdatebar = function () {
+        var updatebar = new Infobar('updatebar', 'Update Bar');
+        var ua = navigator.userAgent;
+        var isFirefox = ((/\sFirefox\/\d+/).test(ua) &&
+                         !(/like Firefox/i).test(ua) && // Camino
+                         !(/SeaMonkey/i).test(ua));
+        var userVersion = (isFirefox) ? parseInt(ua.match(/Firefox\/(\d+)/)[1]) : 0;
+        var latestVersion = parseInt('{{ latest_firefox_version }}');
+        var esrVersions = {{ esr_firefox_versions }};
+        
+        if (updatebar.disabled || !isFirefox || userVersion >= latestVersion ||
+                $.inArray(userVersion, esrVersions) > -1) {
+            return;
+        }
+
+        // Log the used Firefox version
+        updatebar.onshow.trackLabel = updatebar.onaccept.trackLabel
+                                    = updatebar.oncancel.trackLabel
+                                    = userVersion;
+
+        // If the user accepts, show the SUMO article
+        updatebar.onaccept.callback = function () {
+            location.href = 'https://support.mozilla.org/{{ LANG }}/kb/update-firefox-latest-version';
+        };
+
+        // The message and accept strings are the same as /firefox/new/
+        updatebar.show({
+            message: '{{ _("Looks like you’re using an older version of Firefox.")|js_escape }}',
+            accept: '{{ _("Update to stay fast and safe.")|js_escape }}',
+            cancel: '{{ _("Later")|js_escape }}'
+        });
+    };
     var setupGATracking = function () {
         // track tabzilla links in GA
         $('#tabzilla-contents').on('click', 'a', function (e) {
@@ -527,6 +559,7 @@ var Tabzilla = (function (Tabzilla) {
 
         // Information Bars in order of priority
         var infobars = {
+            update: setupUpdatebar,
             translation: setupTransbar
         };
         $.each((tab.data('infobar') || '').split(' '), function (index, value) {
