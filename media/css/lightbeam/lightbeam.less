@@ -161,7 +161,7 @@ h1.large {
 }
 
 .row-range {
-    float: right;
+    text-align: right;
 }
 
 .float-left {
@@ -187,7 +187,7 @@ h1.large {
     .span(8);
 }
 
-.top-trackers-container {
+.top-sites-container {
     .span(4);
 }
 
@@ -213,7 +213,6 @@ h1.large {
 
 .pagination-container {
     .float-right;
-    width: 100%;
 }
 
 .pagination {
@@ -234,7 +233,7 @@ table tr {
 }
 
 .website-list-table,
-.top-trackers-table {
+.top-sites-table {
     line-height: 35px;
     text-align: left;
     margin-bottom: 15px;
@@ -247,21 +246,25 @@ table tr {
 }
 
 .website-list-table tr:hover,
-.top-trackers-table tr:hover {
+.top-sites-table tr:hover {
     background-color: #BFBFBF;
     cursor: pointer;
 }
 
-.top-trackers-table caption {
-    text-align: left;
+.top-sites-table caption {
     font-size: 15px;
     font-weight: bold;
     letter-spacing: 2px;
-    padding: 3px 0;
+    padding: 4px 0 3px 0;
 }
 
-.top-trackers-table tr td:first-child {
+.top-sites-table tr td:first-child {
     color: #2FB4D2;
+}
+
+.cannot-find-data{
+    text-align: center;
+    color: #0FA868;
 }
 
 svg.percent-bar {
@@ -505,7 +508,7 @@ svg.percent-bar rect + text {
         .span8,
         .span12,
         .website-list-container,
-        .top-trackers-container {
+        .top-sites-container {
             width: 100%;
             margin: 0;
             overflow: hidden;
