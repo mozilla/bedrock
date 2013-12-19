@@ -10,7 +10,7 @@ from bedrock.mozorg.util import page
 import views
 
 
-latest_re = r'^firefox(?:/(%s))?/%s/$'
+latest_re = r'^firefox(?:/(?P<fx_version>%s))?/%s/$'
 firstrun_re = latest_re % (version_re, 'firstrun')
 whatsnew_re = latest_re % (version_re, 'whatsnew')
 
