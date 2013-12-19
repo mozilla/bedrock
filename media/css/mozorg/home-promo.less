@@ -83,60 +83,6 @@
     background:         linear-gradient(bottom, rgba(0, 84, 160, .8) 65%, rgba(0, 84, 160, 0) 100%);
 }
 
-
-
-/****************************************************************************/
-// Vans Triple Crown Surfing
-#panel-vans {
-    background: #159391 url(/media/img/home/panel/vans/bg-vtcs-en.jpg) -35px 0 no-repeat;
-
-    // These are presentational wrappers
-    .angle {
-        background: #159391;
-        height: 100%;
-        margin: -50% -50% -50% -25px;
-        padding: 50% 50% 50% 25px;
-        width: 100%;
-        .transform(rotate(5deg));
-
-        .content {
-            .transform(rotate(-5deg));
-        }
-    }
-
-    &.expanded {
-        background-position: -20px 0;
-    }
-
-    &.compressed {
-        background-position: -50px 0;
-    }
-}
-
-.wide #panel-vans .panel-title {
-    background: #159391;
-    background: rgba(21, 147, 145, .8);
-    background: -webkit-linear-gradient(bottom, rgba(21, 147, 145, .8) 65%, rgba(21, 147, 145, 0) 100%);
-    background:    -moz-linear-gradient(bottom, rgba(21, 147, 145, .8) 65%, rgba(21, 147, 145, 0) 100%);
-    background:      -o-linear-gradient(bottom, rgba(21, 147, 145, .8) 65%, rgba(21, 147, 145, 0) 100%);
-    background:         linear-gradient(bottom, rgba(21, 147, 145, .8) 65%, rgba(21, 147, 145, 0) 100%);
-}
-
-// A different image for Brazilian Portuguese
-.lang-pt-BR #panel-vans {
-    background-image: url(/media/img/home/panel/vans/bg-vtcs-pt.jpg);
-}
-
-// A different image for Spanish
-.lang-es-AR #panel-vans,
-.lang-es-CL #panel-vans,
-.lang-es-ES #panel-vans,
-.lang-es-MX #panel-vans {
-    background-image: url(/media/img/home/panel/vans/bg-vtcs-es.jpg);
-}
-
-
-
 /****************************************************************************/
 // MDN
 #panel-mdn {
@@ -473,33 +419,6 @@
         }
     }
 
-    // Vans Triple Crown
-    #panel-vans {
-        background-image: url(/media/img/home/panel/vans/bg-vtcs-en-md.jpg);
-        background-position: -30px 0;
-
-        &.expanded {
-            background-position: -20px 0;
-        }
-
-        &.compressed {
-            background-position: -35px 0;
-        }
-    }
-
-    // A different image for Brazilian Portuguese
-    .lang-pt-BR #panel-vans {
-        background-image: url(/media/img/home/panel/vans/bg-vtcs-pt-md.jpg);
-    }
-
-    // A different image for Spanish
-    .lang-es-AR #panel-vans,
-    .lang-es-CL #panel-vans,
-    .lang-es-ES #panel-vans,
-    .lang-es-MX #panel-vans {
-        background-image: url(/media/img/home/panel/vans/bg-vtcs-es-md.jpg);
-    }
-
     // MDN
     #panel-mdn {
         background-position: -100px -5px;
@@ -659,36 +578,6 @@
             background-position: -85px -110px;
         }
     }
-
-
-    // Vans Triple Crown Surfing
-    .accordion #panel-vans {  // higher specificity to override locale
-        background-image: url(/media/img/home/panel/vans/bg-vtcs-sm.png);
-        background-position: -50px -145px;
-
-        .angle {
-            background: transparent;
-            margin: 0;
-            padding: 0;
-            width: auto;
-            height: auto;
-            .transform(none);
-
-            .content {
-                .transform(none);
-            }
-        }
-
-        &.expanded {
-            background-position: -50px -60px;
-        }
-
-        &.compressed {
-            background-position: -50px -160px;
-        }
-
-    }
-
 
     // MDN
     #panel-mdn {
@@ -888,21 +777,6 @@
         &.compressed {
             background-position: -40px -110px;
         }
-    }
-
-
-    // Vans Triple Crown Surfing
-    .accordion #panel-vans { // higher specificity to override locale
-        background-position: -15px -140px;
-
-        &.expanded {
-            background-position: -15px -70px;
-        }
-
-        &.compressed {
-            background-position: -15px -160px;
-        }
-
     }
 
     //MDN
