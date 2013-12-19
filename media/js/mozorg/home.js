@@ -35,6 +35,16 @@
         // Reset all accordion panels
         $('.panel, .panel-content, .panel-title').removeAttr('style');
         $('.panel-content a').blur();
+
+        // Adjust the news headlines
+        $('.extra-news a').each(function () {
+            var title = $(this).attr('title');
+            if (!title) {
+                title = $.trim($(this).text());
+                $(this).attr('title', title);
+            }
+            $(this).text(title).ellipsis({ row: 3 });
+        });
     }
 
     var accordion = {
