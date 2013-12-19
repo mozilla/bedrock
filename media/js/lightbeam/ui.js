@@ -5,10 +5,9 @@
 (function() {
     "use strict";
 
-    // not sure what's the best way to include the URL
     var DATABASE_URL = "//collusiondb.mofoprod.net";
-    var ROWS_PER_TABLE_PAGE = 20;
-    var AJAX_JSONP_TIMEOUT = 30 * 1000; // in millinseconds
+    var ROWS_PER_TABLE_PAGE = 10;
+    var AJAX_JSONP_TIMEOUT = 30 * 1000; // 30 sec in millinseconds
     var currentPage;
     var allSites;
     var errorNotice = function jsonpErrorHandling(){
@@ -76,8 +75,8 @@
         document.querySelector(".website-list-table").addEventListener("click", siteTableClickHandler);
     }
 
-    if (document.querySelector(".top-trackers-table")) {
-        document.querySelector(".top-trackers-table").addEventListener("click", siteTableClickHandler);
+    if (document.querySelector(".top-sites-table")) {
+        document.querySelector(".top-sites-table").addEventListener("click", siteTableClickHandler);
     }
 
 
@@ -85,27 +84,45 @@
     *   Database Page
     */
 
-    function loadContentDatabase() {
+    // jQuery does not handle cross-domain jsonp request. Set a timer as a workaround.
+    var timeoutTimer = setTimeout(errorNotice, AJAX_JSONP_TIMEOUT);
+    var dbPageTimeoutCleared = false;
+    function loadContentDatabase(){
         showLoading();
-        // jQuery does not handle cross-domain jsonp request. Set a timer as a workaround.
-        var timeoutTimer = setTimeout(errorNotice, AJAX_JSONP_TIMEOUT);
-        $.ajax( {
+        $.ajax({
             url: DATABASE_URL + "/databaseSiteList",
             dataType: 'jsonp',
-            success: function(data) {
-                var top10Trackers = data[1];
-                var total;
-                allSites = data[0];
+            success: function(data){
+                allSites = data.siteData;
                 showAllSitesTable();
-                showPotentialTracker(top10Trackers);
-                total = currentPage.querySelectorAll(".num-sites");
-                for (var i=0; i<total.length; i++) {
-                    total[i].textContent = addCommasToNumber(Object.keys(data[0]).length);
+                var total = currentPage.querySelectorAll(".num-sites");
+                for (var i=0; i<total.length; i++){
+                    total[i].textContent = addCommasToNumber(Object.keys(allSites).length);
                 }
+                document.querySelector("#webiste-list-time-range").innerHTML = data.timeRange;
                 hideLoading();
-                clearTimeout(timeoutTimer);
+                if ( !dbPageTimeoutCleared ){
+                    dbPageTimeoutCleared = true;
+                    clearTimeout(timeoutTimer);
+                }
             }
         });
+
+        // top 10
+        $.ajax({
+            url: DATABASE_URL + "/dashboardDataTop10",
+            dataType: 'jsonp',
+            success: function(data){
+                showPotentialTracker(data.topTenSites);
+                document.querySelector("#top-list-time-range").innerHTML = data.timeRange;
+                hideLoading();
+                if ( !dbPageTimeoutCleared ){
+                    dbPageTimeoutCleared = true;
+                    clearTimeout(timeoutTimer);
+                }
+            }
+        });
+
     }
 
 
@@ -114,7 +131,7 @@
     */
 
     function showPotentialTracker(top10Trackers) {
-        var html = currentPage.querySelector(".top-trackers-table").innerHTML;
+        var html = "";
         var siteArray = Object.keys(top10Trackers);
         var site;
         var row;
@@ -126,7 +143,7 @@
                 "</tr>";
             html += row;
         }
-        $(".top-trackers-table").html(html);
+        $(".top-sites-table tbody").html(html);
     }
 
     function showAllSitesTable(pageIndex) {
@@ -169,8 +186,8 @@
     function addTableRow(site) {
         var html = "<tr data-url='/lightbeam/profile?site="+ site.site + "'>" +
                         "<td>" + site.site + "</td>";
-        if ( site.numConnectedSites ) { 
-            html += "<td>" + addCommasToNumber(site.numConnectedSites) + "</td>"; 
+        if ( site.numSources ) { 
+            html += "<td>" + addCommasToNumber(site.numSources) + "</td>"; 
         }
         if ( site.numConnections ) { 
             html += "<td>" + addCommasToNumber(site.numConnections) + "</td>"; 
@@ -187,7 +204,7 @@
         var sortBy = event.target.getAttribute("data-sort");
         if (sortBy) {
             var sortByFunction;
-            var sortByConnectedSites = function(a,b) { return b.numConnectedSites - a.numConnectedSites; };
+            var sortByConnectedSites = function(a,b) { return b.numSources - a.numSources; };
             var sortByConnections = function(a,b) { return b.numConnections - a.numConnections; };
             var sortByAlpha = function(a,b) {
                                 if (a.site.toLowerCase() < b.site.toLowerCase()) { 
@@ -215,7 +232,7 @@
 
     if ( document.querySelector(".database") ) {
         document.querySelector(".sorting-options").addEventListener("click",sortingForSiteTables);
-        document.querySelector(".pagination").addEventListener("click",paginationForSiteTables);
+        document.querySelector(".pagination").addEventListener("change",paginationForSiteTables);
     }
 
 
@@ -244,22 +261,33 @@
             url: DATABASE_URL+"/getSiteProfileNew?name=" + siteName,
             dataType: 'jsonp',
             success: function(data) {
+                var siteData = data.siteData;
+                if ( Object.keys(siteData).length < 1 ){
+                    hideLoading();
+                    clearTimeout(timeoutTimer);
+                    document.querySelectorAll(".website-list-table tbody tr")[Math.floor((ROWS_PER_TABLE_PAGE-1)/2)].innerHTML 
+                                    = "<td colspan='2' class='cannot-find-data'>Cannot find any matching data in the database.</td>";
+                    return;
+                }
                 // generate d3 graph
-                lightbeam.loadData(data); 
+                lightbeam.loadData(siteData);
                 // other UI content
-                var siteData = data[siteName];
-                addConnnectionBar(siteData.howManyFirstParty, siteData.howMany);
-                currentPage.querySelector(".num-total-connection b").innerHTML = siteData.howMany;
-                currentPage.querySelector(".num-first b").innerHTML = siteData.howManyFirstParty;
-                currentPage.querySelector(".num-third b").innerHTML = siteData.howMany - siteData.howManyFirstParty;
+                var siteProfile = siteData[siteName];
+                var howMany = siteProfile.howMany;
+                var numFirstParty = siteProfile.howManyFirstParty;
+                addConnnectionBar(numFirstParty, howMany);
+                currentPage.querySelector(".num-total-connection b").innerHTML = addCommasToNumber(howMany);
+                currentPage.querySelector(".num-first b").innerHTML = addCommasToNumber(numFirstParty);
+                currentPage.querySelector(".num-third b").innerHTML = addCommasToNumber(howMany-numFirstParty);
                 // connected sites table
-                delete data[siteName];
-                allSites = turnMapIntoArray(data);
+                delete siteData[siteName];
+                allSites = turnMapIntoArray(siteData);
                 document.querySelector(".profile .sorting-options a[data-selected]").click();
                 var total = currentPage.querySelectorAll(".num-sites");
                 for (var i=0; i<total.length; i++) {
-                    total[i].textContent = addCommasToNumber(Object.keys(data).length);
+                    total[i].textContent = addCommasToNumber(Object.keys(siteData).length);
                 }
+                document.querySelector("#webiste-list-time-range").innerHTML = data.timeRange;
                 hideLoading();
                 clearTimeout(timeoutTimer);
             }
@@ -288,6 +316,10 @@
             }
         });
 
+        // squareify canvas size - cross broswer fix
+        var canvasContainer = document.querySelector(".vizcanvas-container");
+        var canvas = canvasContainer.querySelector("svg");
+        canvas.setAttribute("height",canvasContainer.getBoundingClientRect().width);
     }
 
     function addConnnectionBar(numFirstParty,numTotal) {
@@ -312,7 +344,7 @@
 
 
     if ( document.querySelector(".profile") ) {
-        document.querySelector(".profile .pagination").addEventListener("click",paginationForSiteTables);
+        document.querySelector(".profile .pagination").addEventListener("change",paginationForSiteTables);
         document.querySelector(".profile .sorting-options").addEventListener("click",sortingForSiteTables);
     }
 
