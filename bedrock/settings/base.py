@@ -536,6 +536,7 @@ MINIFY_BUNDLES = {
             'js/base/mozilla-modal.js',
         ),
         'home': (
+            'js/libs/jquery.ellipsis.min.js',
             'js/libs/jquery.cycle2.min.js',
             'js/libs/jquery.cycle2.carousel.min.js',
             'js/mozorg/home.js',
