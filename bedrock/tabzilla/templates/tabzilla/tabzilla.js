@@ -404,7 +404,7 @@ var Tabzilla = (function (Tabzilla) {
 
         // Fetch the localized strings and show the Translation Bar
         $.ajax({ url: '{{ settings.CDN_BASE_URL }}/' + userLang + '/tabzilla/transbar.jsonp',
-                 cache: false, crossDomain: true, dataType: 'jsonp',
+                 cache: true, crossDomain: true, dataType: 'jsonp',
                  jsonpCallback: "_", success: function (str) {
             transbar.show(str).attr('lang', userLang);
         }});
