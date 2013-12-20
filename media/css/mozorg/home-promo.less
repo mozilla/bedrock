@@ -130,9 +130,12 @@
 /****************************************************************************/
 // Add-ons
 #panel-addons {
-    background: #e16130 url(/media/img/home/panel/addons/bg-addons-en.png) -10px 0 no-repeat;
+    background: #e16130 url(/media/img/home/panel/addons/bg-addons-en.png) no-repeat;
     background: url(/media/img/home/panel/addons/bg-addons-en.png) -10px 0 no-repeat,
-        url(/media/img/home/panel/addons/bg-addons-puzzle.png) right bottom no-repeat, #e16130;
+        url(/media/img/home/panel/addons/bg-addons-puzzle.png) no-repeat, #e16130;
+
+    background-position: -10px 0;
+    background-position: -10px 0, right bottom;
 
     &.expanded {
         background-position: 0 0, right bottom;
