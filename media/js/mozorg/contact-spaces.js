@@ -89,6 +89,13 @@
 
                 mozMap.checkForHash();
             });
+
+            // init photo galleries using event delegation
+            $('#page-content').magnificPopup({
+                delegate: '.gallery-list a',
+                gallery: { enabled: true },
+                type: 'image'
+            });
         },
 
         /*
@@ -162,6 +169,9 @@
                         mozMap.showCommunityContent(null, initContentId);
                     }
                 }
+
+                // close any photo galleries that may have been open
+                $.magnificPopup.close();
             });
         },
 

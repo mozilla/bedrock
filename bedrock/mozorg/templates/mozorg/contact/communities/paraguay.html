@@ -23,6 +23,20 @@
           <img src="//api.tiles.mapbox.com/v3/{{ settings.MAPBOX_TOKEN }}/-58.09,-23.24,5/380x250.png" alt="">
         </figure>
       </div>
+
+      <section class="gallery">
+        <h3>{{ _('Photo gallery') }}</h3>
+        <ul class="gallery-list">
+          <li class="gallery-image"><a href="{{ media('img/contact/pictures/paraguay-01.jpg') }}"><img src="{{ media('img/contact/pictures/paraguay-01-th.jpg') }}" alt="1"></a></li>
+          <li class="gallery-image"><a href="{{ media('img/contact/pictures/paraguay-02.jpg') }}"><img src="{{ media('img/contact/pictures/paraguay-02-th.jpg') }}" alt="2"></a></li>
+          <li class="gallery-image"><a href="{{ media('img/contact/pictures/paraguay-03.jpg') }}"><img src="{{ media('img/contact/pictures/paraguay-03-th.jpg') }}" alt="3"></a></li>
+          <li class="gallery-image"><a href="{{ media('img/contact/pictures/paraguay-04.jpg') }}"><img src="{{ media('img/contact/pictures/paraguay-04-th.jpg') }}" alt="4"></a></li>
+          <li class="gallery-image"><a href="{{ media('img/contact/pictures/paraguay-05.jpg') }}"><img src="{{ media('img/contact/pictures/paraguay-05-th.jpg') }}" alt="5"></a></li>
+          <li class="gallery-image"><a href="{{ media('img/contact/pictures/paraguay-06.jpg') }}"><img src="{{ media('img/contact/pictures/paraguay-06-th.jpg') }}" alt="6"></a></li>
+          <li class="gallery-image"><a href="{{ media('img/contact/pictures/paraguay-07.jpg') }}"><img src="{{ media('img/contact/pictures/paraguay-07-th.jpg') }}" alt="7"></a></li>
+        </ul>
+      </section>
+
     </section>
   </div>
 {% endblock %}
