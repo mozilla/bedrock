@@ -52,7 +52,7 @@ body.noscroll {
                 a {
                     color: #fff;
                     vertical-align: middle;
-                    padding-right: 3px;
+                    padding: 0 3px;
                 }
 
                 .button {
@@ -78,6 +78,15 @@ body.noscroll {
                 }
             }
         }
+    }
+}
+
+/* Tweaks for RTL locales */
+html[dir="rtl"] {
+    #modal .window .inner #modal-close {
+        right: auto;
+        left: 9px;
+        text-align: left;
     }
 }
 
