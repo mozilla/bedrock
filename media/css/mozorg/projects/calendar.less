@@ -6,7 +6,7 @@
 @import "../../sandstone/lib.less";
 
 #lightning {
-    padding: (@baseLine * 2) (@baseLine * 5);
+    padding: (@baseLine * 2) (@baseLine * 4);
     .infobox {
         padding-bottom: @baseLine;
         float: right;
@@ -23,19 +23,38 @@
         h1 {
             font-size: 57px;
         }
-        h2 {
-            letter-spacing: -0.5px;
-            font-size: 24px;
-        }
+    }
+    h2 {
+        letter-spacing: -0.5px;
+        font-size: 24px;
     }
     .midbox {
-        padding: @baseLine 0;
+        padding: @baseLine 0 0 0;
         border-top: 1px solid #d6d6d6;
-        border-bottom: 1px solid #d6d6d6;
     }
     .topbox {
         img {
             vertical-align: top;
+        }
+    }
+    .holiday {
+        float: none;
+    }
+    table.data {
+        width: 100%;
+        margin-bottom: @baseLine;
+    }
+    .calendar-table {
+        padding: 0px 20px;
+    }
+    ul.holiday-nav {
+        text-align: center;
+        padding: @baseLine 0;
+        border-bottom: 1px solid #d6d6d6;
+        li {
+            display: inline;
+            float: none;
+            width: auto;
         }
     }
 }
@@ -151,12 +170,8 @@
                 font-size: 36px;
             }
             #download {
-                float: none;
+                display: none;
             }
-        }
-        .midbox {
-            float: left;
-            margin-bottom: @baseLine;
         }
         .topbox {
             padding: 0;
