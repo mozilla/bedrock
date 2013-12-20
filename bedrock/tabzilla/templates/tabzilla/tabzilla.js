@@ -278,6 +278,7 @@ var Tabzilla = (function (Tabzilla) {
             event.preventDefault();
             self.trackEvent(self.onaccept.trackAction || 'accept',
                             self.onaccept.trackLabel,
+                            undefined,
                             self.onaccept.callback);
             self.hide();
         });
@@ -286,6 +287,7 @@ var Tabzilla = (function (Tabzilla) {
             event.preventDefault();
             self.trackEvent(self.oncancel.trackAction || 'cancel',
                             self.oncancel.trackLabel,
+                            undefined,
                             self.oncancel.callback);
             self.hide();
             try {
@@ -296,6 +298,7 @@ var Tabzilla = (function (Tabzilla) {
         panel.trigger('infobar-showing');
         self.trackEvent(self.onshow.trackAction || 'show',
                         self.onshow.trackLabel,
+                        true,
                         self.onshow.callback);
 
         if (opened) {
@@ -320,14 +323,20 @@ var Tabzilla = (function (Tabzilla) {
             panel.trigger('infobar-hidden');
         });
     };
-    Infobar.prototype.trackEvent = function (action, label, callback) {
+    Infobar.prototype.trackEvent = function (action, label, value, callback) {
         if (typeof(_gaq) !== 'object') {
             return;
         }
 
-        // Track events with Google Analytics
-        window._gaq.push(['_trackEvent',
-                          'Tabzilla - ' + this.name, action, label]);
+        var cmd = ['_trackEvent', 'Tabzilla - ' + this.name, action, label];
+
+        // The optional value will be used to detect if the event is a real
+        // user interaction. Set true for a non-interaction event.
+        if (value !== undefined) {
+            cmd.push(value);
+        }
+
+        window._gaq.push(cmd);
 
         if (callback) {
             var timer = null;
