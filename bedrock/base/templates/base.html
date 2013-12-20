@@ -47,6 +47,10 @@
 
     {{ js('site') }}
 
+    {% block optimizely %}
+      {% include 'includes/optimizely.html' %}
+    {% endblock %}
+
     {% block google_analytics %}
       {% include 'includes/google-analytics.html' %}
     {% endblock %}
