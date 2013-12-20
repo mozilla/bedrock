@@ -342,18 +342,24 @@ var Tabzilla = (function (Tabzilla) {
     Infobar.prototype.onshow = {};
     Infobar.prototype.onaccept = {};
     Infobar.prototype.oncancel = {};
-    var setupTransbar = function () {
+    Tabzilla.setupTransbar = function (userLang, pageLang) {
         var transbar = new Infobar('transbar', 'Translation Bar');
-        if (transbar.disabled) {
-            return;
+        userLang = userLang || navigator.language || navigator.browserLanguage;
+        pageLang = pageLang || document.documentElement.lang;
+
+        if (transbar.disabled || !userLang || !pageLang) {
+            return false;
         }
 
+        var userLangLower = userLang.toLowerCase();
+        var userLangShort = userLangLower.split('-')[0];
+        var pageLangLower = pageLang.toLowerCase();
+
         // Compare the user's language and the page's language
-        var userLang = navigator.language || navigator.browserLanguage;
-        var pageLang = document.documentElement.lang;
-        if (!userLang || !pageLang ||
-                userLang.toLowerCase() === pageLang.toLowerCase()) {
-            return;
+        if (userLangLower === pageLangLower ||
+                // Consider some legacy locales like fr-FR, it-IT or el-GR
+                userLangShort === pageLangLower) {
+            return false;
         }
 
         // Normalize the user language in the form of ab or ab-CD
@@ -363,22 +369,28 @@ var Tabzilla = (function (Tabzilla) {
 
         // Check the availability of the translated page for the user.
         // Use an alternate URL in <head> or a language option in <form>
-        var langLink = $(['link[hreflang="' + userLang + '"]',
+        var langLink = $([
+            'link[hreflang="' + userLang + '"]',
             // The user language can be ab-CD while the page language is ab
             // (Example: fr-FR vs fr, ja-JP vs ja)
-            'link[hreflang="' + userLang.split('-')[0] + '"]'].join(','));
-        var langOption = $(['#language [value="' + userLang + '"]',
+            'link[hreflang="' + userLangShort + '"]'
+            ].join(','));
+        var langOption = $([
+            '#language [value="' + userLang + '"]',
             // Languages in the language switcher are uncapitalized on some
             // sites (AMO, Firefox Flicks)
-            '#language [value="' + userLang.toLowerCase() + '"]',
+            '#language [value="' + userLangLower + '"]',
             // The user language can be ab-CD while the page language is ab
             // (Example: fr-FR vs fr, ja-JP vs ja)
-            '#language [value="' + userLang.split('-')[0] + '"]',
+            '#language [value="' + userLangShort + '"]',
             // Sometimes the value of a language switcher option is the path of
             // a localized page on some sites (MDN)
-            '#language [value^="/' + userLang + '/"]'].join(','));
+            '#language [value^="/' + userLang + '/"]',
+            '#language [value^="/' + userLangShort + '/"]'
+            ].join(','));
+
         if (!langLink.length && !langOption.length) {
-            return;
+            return false;
         }
 
         // Normalize the user language again, based on the language of the site
@@ -408,6 +420,8 @@ var Tabzilla = (function (Tabzilla) {
                  jsonpCallback: "_", success: function (str) {
             transbar.show(str).attr('lang', userLang);
         }});
+
+        return true;
     };
     var setupGATracking = function () {
         // track tabzilla links in GA
@@ -527,7 +541,7 @@ var Tabzilla = (function (Tabzilla) {
 
         // Information Bars in order of priority
         var infobars = {
-            translation: setupTransbar
+            translation: Tabzilla.setupTransbar
         };
         $.each((tab.data('infobar') || '').split(' '), function (index, value) {
             var setup = infobars[value];
