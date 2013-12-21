@@ -5,7 +5,7 @@
 (function() {
     "use strict";
 
-    var DATABASE_URL = "//collusiondb.mofoprod.net";
+    var DATABASE_URL = "//lightbeamdb.org";
     var ROWS_PER_TABLE_PAGE = 10;
     var AJAX_JSONP_TIMEOUT = 30 * 1000; // 30 sec in millinseconds
     var currentPage;
