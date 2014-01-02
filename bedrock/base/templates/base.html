@@ -12,15 +12,15 @@
     {% block shared_meta %}
     {#- Please sync this block with the base-resp.html template.
         Because of blocks, we cannot use an include here. -#}
-    <title>{% block page_title_full %}{% block page_title_prefix %}{% endblock %}{% block page_title %}{% endblock %}{% endblock page_title_full %}{% block page_title_suffix %} — Mozilla{% endblock %}</title>
-    <meta name="description" content="{% block page_desc %}{% endblock %}">
+    <title>{% filter striptags %}{% block page_title_full %}{% block page_title_prefix %}{% endblock %}{% block page_title %}{% endblock %}{% endblock page_title_full %}{% block page_title_suffix %} — Mozilla{% endblock %}{% endfilter %}</title>
+    <meta name="description" content="{% filter striptags %}{% block page_desc %}{% endblock %}{% endfilter %}">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="{{ _('Mozilla') }}">
     <meta property="og:locale" content="{{ LANG|replace("-", "_") }}">
     <meta property="og:url" content="{{ settings.CANONICAL_URL + '/' + LANG + canonical_path }}">
     <meta property="og:image" content="{% filter absolute_url %}{% block page_image %}{{ media('img/mozorg/mozilla-256.jpg') }}{% endblock %}{% endfilter %}">
-    <meta property="og:title" content="{{ self.page_title_full() }}">
-    <meta property="og:description" content="{{ self.page_desc() }}">
+    <meta property="og:title" content="{{ self.page_title_full()|striptags }}">
+    <meta property="og:description" content="{{ self.page_desc()|striptags }}">
     <meta property="fb:page_id" content="{% block facebook_id %}262134952380{# facebook.com/mozilla #}{% endblock %}">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@{% block twitter_id %}mozilla{% endblock %}">
