@@ -30,6 +30,7 @@
       <p><a href="https://support.mozilla.org/kb/install-firefox-windows">{{ _('Visit support.mozilla.org') }}</a></p>
     </aside>
 
+{# Hide the survey until further notice. See bug 860873
     {% if request.locale in ['en-US', 'en-GB'] %}
     <aside class="help survey">
       <h3>Problems installing Firefox?</h3>
@@ -42,7 +43,7 @@
       </div>
     </aside>
     {% endif %}
-
+#}
   </div>
 
   <div class="channels">
