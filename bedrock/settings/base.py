@@ -270,6 +270,10 @@ MINIFY_BUNDLES = {
             'css/firefox/whatsnew.less',
             'css/firefox/whatsnew-android.less',
         ),
+        'firefox_whatsnew_aurora_29': (
+            'css/firefox/australis/australis-ui-tour.less',
+            'css/firefox/australis/aurora-whatsnew.less',
+        ),
         'firefox_whatsnew_fxos': (
             'css/firefox/whatsnew-fxos.less',
         ),
@@ -547,6 +551,11 @@ MINIFY_BUNDLES = {
         'firefox_sms': (
             'js/firefox/sms.js',
             'js/libs/socialshare.min.js',
+        ),
+        'firefox_whatsnew_aurora_29': (
+            'js/firefox/australis/australis-uitour.js',
+            'js/firefox/australis/browser-tour.js',
+            'js/firefox/australis/aurora-whatsnew.js',
         ),
         'firefox_whatsnew_fxos': (
             'js/firefox/whatsnew-fxos.js',

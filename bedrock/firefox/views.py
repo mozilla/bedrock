@@ -334,6 +334,16 @@ class WhatsnewView(LatestFxView):
         'es-MX': 'spanish_final',
     }
 
+    def get(self, request, *args, **kwargs):
+        version = kwargs.get('fx_version')
+        if version == '29.0a2' and not settings.DEV and not request.is_secure():
+            uri = 'https://{host}{path}'.format(
+                host=request.get_host(),
+                path=request.get_full_path(),
+            )
+            return HttpResponsePermanentRedirect(uri)
+        return super(WhatsnewView, self).get(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         ctx = super(WhatsnewView, self).get_context_data(**kwargs)
 
@@ -347,8 +357,11 @@ class WhatsnewView(LatestFxView):
     def get_template_names(self):
         version = self.kwargs.get('fx_version')
         locale = l10n_utils.get_locale(self.request)
+
         if version == '29.0a1':
             template = 'firefox/whatsnew-nightly-29.html'
+        elif version == '29.0a2':
+            template = 'firefox/whatsnew-aurora-29.html'
         elif locale in self.fxos_locales:
             template = 'firefox/whatsnew-fxos.html'
         else:
