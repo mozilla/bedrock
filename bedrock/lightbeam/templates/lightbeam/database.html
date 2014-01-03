@@ -50,14 +50,12 @@
             <span class="row-start"></span> - <span class="row-end"></span>{{_(' of <span class="num-sites"></span> sites ')}}<em><span class="site"></span></em>
       </div>
       <div class="float-left">
-        <div class="inline-label all-cap">{{_('Sort By')}}:</div>
-        <div class="sorting-options">
-            <a data-sort="alphabetically">{{_('alphabetically')}}</a>
-            <span class="option-divider">|</span>
-            <a data-sort="siteConnected" data-selected>{{_('sites connected')}}</a>
-            <span class="option-divider">|</span>
-            <a data-sort="connections">{{_('connections')}}</a>
-        </div>
+        <fieldset class="sorting-options">
+          <legend class="inline-label all-cap">{{_('Sort By')}}:</legend>
+            <button data-sort="alphabetically">{{_('alphabetically')}}</button>
+            <button data-sort="siteConnected" data-selected>{{_('sites connected')}}</button>
+            <button data-sort="connections">{{_('connection')}}</button>
+        </fieldset>
       </div>
       <div class="pagination-container">
         <div class="pagination">
@@ -69,9 +67,9 @@
       <table class="website-list-table">
           <thead class="all-cap">
               <tr>
-                  <th class="sixty-percent">{{_('Website')}}</th>
-                  <th class="twenty-percent">{{_('Unique Sites Connected')}}</th>
-                  <th class="twenty-percent">{{_('Connections')}}</th>
+                  <th scope="col" class="sixty-percent">{{_('Website')}}</th>
+                  <th scope="col" class="twenty-percent">{{_('Unique Sites Connected')}}</th>
+                  <th scope="col" class="twenty-percent">{{_('Connections')}}</th>
               </tr>
           </thead>
           <tbody>
@@ -87,9 +85,8 @@
             <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
           </tbody>
       </table>
-      </br>
       {% trans %}
-        <small>Data shown above is based on connections initiated in the past <span id="webiste-list-time-range"></span> hours.</small>
+        <p><small>Data shown above is based on connections initiated in the past <span id="website-list-time-range"></span> hours.</small></p>
       {% endtrans %}
   </div>
   <div class="top-sites-container">
@@ -114,16 +111,21 @@
             <tr><td>&nbsp;</td></tr>
           </tbody>
       </table>
-      <br/>
       {% trans %}
-        <small>Data shown above is based on connections initiated in the past <span id="top-list-time-range"></span> hours.</small><br/><br/>
-        <small>Rankings are based on data provided by users of Lightbeam for Firefox. Additional data may alter these rankings over time, so check back often.</small>
+        <p>
+          <small>Data shown above is based on connections initiated in the past <span id="top-list-time-range"></span> hours.</small>
+        </p>
+        <p>
+          <small>Rankings are based on data provided by users of Lightbeam for Firefox. Additional data may alter these rankings over time, so check back often.</small>
+        </p>
       {% endtrans %}
   </div>
   <div id="loading">
     <div>
-        <img src="{{ media('img/lightbeam/loader.gif') }}" alt="Loading"><br/>
-        <span>{{_('Loading…')}}</span>
+        <img src="{{ media('img/lightbeam/loader.gif') }}" alt="{{_('Loading')}}"><br/>
+      {% trans %}
+        <span data-message="This is taking longer than expected. <br/>Please reload the page or check back later. <br/>Thanks!">Loading...</span>
+      {% endtrans %}
     </div>
   </div>
 </section>

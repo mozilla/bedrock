@@ -12,18 +12,19 @@
     var allSites;
     var errorNotice = function jsonpErrorHandling(){
         addClass(document.querySelector("#loading img"),"hidden");
-        document.querySelector("#loading span").innerHTML = "This is taking longer than expected. <br/>Please reload the page or check back later. <br/>Thanks!";
+        var loadingMsg = document.querySelector("#loading span");
+        loadingMsg.innerHTML = loadingMsg.getAttribute("data-message");
     };
     
     function checkClassExist(elem,theClass){
         return elem.className.split(" ").indexOf(theClass) > -1;
-    };
+    }
 
     function addClass(elem,theClass){
         if ( !checkClassExist(elem,theClass) ){
             elem.className += " " + theClass; 
         }
-    };
+    }
 
     function removeClass(elem,theClass){
         if ( checkClassExist(elem,theClass) ){
@@ -31,9 +32,9 @@
             classes.splice(classes.indexOf(theClass),1);
             elem.className = classes.join(" ");
         }
-    };
+    }
 
-    document.addEventListener("DOMContentLoaded", function(event) {
+    document.addEventListener("DOMContentLoaded", function() {
         currentPage = document.querySelector("body");
 
         if (checkClassExist(currentPage,"database")) {
@@ -47,11 +48,11 @@
     });
 
     function showLoading() {
-        removeClass(document.querySelector("#loading"),"hidden");
+        removeClass(document.getElementById("loading"),"hidden");
     }
 
     function hideLoading() {
-        addClass(document.querySelector("#loading"),"hidden");
+        addClass(document.getElementById("loading"),"hidden");
     }
 
     function addCommasToNumber(num) {
@@ -99,7 +100,7 @@
                 for (var i=0; i<total.length; i++){
                     total[i].textContent = addCommasToNumber(Object.keys(allSites).length);
                 }
-                document.querySelector("#webiste-list-time-range").innerHTML = data.timeRange;
+                document.getElementById("website-list-time-range").innerHTML = data.timeRange;
                 hideLoading();
                 if ( !dbPageTimeoutCleared ){
                     dbPageTimeoutCleared = true;
@@ -114,7 +115,7 @@
             dataType: 'jsonp',
             success: function(data){
                 showPotentialTracker(data.topTenSites);
-                document.querySelector("#top-list-time-range").innerHTML = data.timeRange;
+                document.getElementById("top-list-time-range").innerHTML = data.timeRange;
                 hideLoading();
                 if ( !dbPageTimeoutCleared ){
                     dbPageTimeoutCleared = true;
@@ -195,7 +196,7 @@
         return html + "</tr>";
     }
 
-    var paginationForSiteTables = function paginationHandler(event) {
+    var paginationForSiteTables = function paginationHandler() {
         var selectedIdx = document.querySelector(".pagination select").selectedIndex; // starts from 0
         showAllSitesTable( (selectedIdx+1));
     };
@@ -223,7 +224,7 @@
                 sortByFunction = sortByAlpha;
             }
 
-            document.querySelector(".sorting-options a[data-selected]").removeAttribute("data-selected");
+            document.querySelector(".sorting-options button[data-selected]").removeAttribute("data-selected");
             event.target.setAttribute("data-selected","true");
 
             sortSiteList(sortByFunction);
@@ -231,7 +232,7 @@
     };
 
     if ( document.querySelector(".database") ) {
-        document.querySelector(".sorting-options").addEventListener("click",sortingForSiteTables);
+        $(".sorting-options button").click(sortingForSiteTables);
         document.querySelector(".pagination").addEventListener("change",paginationForSiteTables);
     }
 
@@ -265,8 +266,6 @@
                 if ( Object.keys(siteData).length < 1 ){
                     hideLoading();
                     clearTimeout(timeoutTimer);
-                    document.querySelectorAll(".website-list-table tbody tr")[Math.floor((ROWS_PER_TABLE_PAGE-1)/2)].innerHTML 
-                                    = "<td colspan='2' class='cannot-find-data'>Cannot find any matching data in the database.</td>";
                     return;
                 }
                 // generate d3 graph
@@ -282,12 +281,12 @@
                 // connected sites table
                 delete siteData[siteName];
                 allSites = turnMapIntoArray(siteData);
-                document.querySelector(".profile .sorting-options a[data-selected]").click();
+                document.querySelector(".sorting-options button[data-selected]").click();
                 var total = currentPage.querySelectorAll(".num-sites");
                 for (var i=0; i<total.length; i++) {
                     total[i].textContent = addCommasToNumber(Object.keys(siteData).length);
                 }
-                document.querySelector("#webiste-list-time-range").innerHTML = data.timeRange;
+                document.getElementById("website-list-time-range").innerHTML = data.timeRange;
                 hideLoading();
                 clearTimeout(timeoutTimer);
             }
@@ -299,20 +298,20 @@
         *   Based on https://github.com/toolness/url-demystifier
         *   and uses Steven Levithan's parseUri 1.2.2
         */
+        var countryElem = document.getElementById("country");
         $.ajax( {
             url: "//freegeoip.net/json/" + siteName,
             dataType: 'json',
             success: function(data) {
                 var countryName = data.country_name;
-                var countryCode = data.country_code.toLowerCase();
                 if ( data === false || countryName === "Reserved" ) {
-                    document.querySelector("#country").innerHTML = "(Unable to find server location)";
+                    countryElem.innerHTML = countryElem.getAttribute("data-message");
                 } else {
-                    document.querySelector("#country").innerHTML = data.country_name;
+                    countryElem.innerHTML = data.country_name;
                 }
             },
             error: function(){
-                document.querySelector("#country").innerHTML = "(Unable to find server location)";
+                countryElem.innerHTML = countryElem.getAttribute("data-message");
             }
         });
 
@@ -324,8 +323,9 @@
 
     function addConnnectionBar(numFirstParty,numTotal) {
         // calculate connections percentage bar
+        var totalWidth;
         try{
-            var totalWidth = currentPage.querySelector(".percent-bar").parentElement.getBoundingClientRect().width;
+            totalWidth = currentPage.querySelector(".percent-bar").parentElement.getBoundingClientRect().width;
         }catch(e){  // getBoundingClientRect() might not work in older IE
             totalWidth = currentPage.querySelector(".percent-bar").clientWidth;
         }
@@ -345,7 +345,7 @@
 
     if ( document.querySelector(".profile") ) {
         document.querySelector(".profile .pagination").addEventListener("change",paginationForSiteTables);
-        document.querySelector(".profile .sorting-options").addEventListener("click",sortingForSiteTables);
+        $(".profile .sorting-options button").click(sortingForSiteTables);
     }
 
 })();
