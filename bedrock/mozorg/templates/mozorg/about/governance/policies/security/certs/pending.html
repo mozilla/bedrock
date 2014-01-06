@@ -37,10 +37,10 @@
 
   <p>{{ _('View the <a href="%s">list of CA certificates that are currently distributed with Mozilla software products</a>.')|format(url('mozorg.about.governance.policies.security.certs.included')) }}</p>
 
-  <p>{{ _('If the spreadsheet does not display in the iframe below, then you may <a href="%s">access the spreadsheet directly</a>.')|format('https://docs.google.com/spreadsheet/pub?key=0Ah-tHXMAwqU3dHEtbFRSUGVtN0hoUVZnajFNRlJWenc&output=html') }}</p>
+  <p>{{ _('If the spreadsheet does not display in the iframe below, then you may <a href="%s">access the spreadsheet directly</a>.')|format('https://docs.google.com/spreadsheet/pub?key=0Ah-tHXMAwqU3dHEtbFRSUGVtN0hoUVZnajFNRlJWenc&amp;output=html') }}</p>
 
-  <iframe width="100%" height="700px" src="https://docs.google.com/spreadsheet/pub?key=0Ah-tHXMAwqU3dHEtbFRSUGVtN0hoUVZnajFNRlJWenc&output=html">
-    <a href="https://docs.google.com/spreadsheet/pub?key=0Ah-tHXMAwqU3dHEtbFRSUGVtN0hoUVZnajFNRlJWenc&output=html">{{ _('View spreadsheet') }}</a>
+  <iframe width="100%" height="700px" src="https://docs.google.com/spreadsheet/pub?key=0Ah-tHXMAwqU3dHEtbFRSUGVtN0hoUVZnajFNRlJWenc&amp;output=html">
+    <a href="https://docs.google.com/spreadsheet/pub?key=0Ah-tHXMAwqU3dHEtbFRSUGVtN0hoUVZnajFNRlJWenc&amp;output=html">{{ _('View spreadsheet') }}</a>
   </iframe>
 
 {% endblock %}
