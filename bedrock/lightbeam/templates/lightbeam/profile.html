@@ -66,9 +66,10 @@
             </div>
             <div class="span8 float-left">
               <fieldset class="sorting-options">
-                <legend class="inline-label all-cap">{{_('Sort By')}}:</legend>
+                <legend class="inline-label">{{_('Sort By')}}:</legend>
                   <button data-sort="alphabetically">{{_('alphabetically')}}</button>
-                  <button data-sort="connections" data-selected>{{_('connection')}}</button>
+                  <span class="vertical-seperator"></span>
+                  <button data-sort="connections" data-selected>{{_('connections')}}</button>
               </fieldset>
                 <div class="pagination-container">
                   <div class="row-range">{{_('viewing')}}
@@ -108,8 +109,10 @@
         </div>
         <div id="loading">
           <div>
-            <img src="{{ media('img/lightbeam/loader.gif') }}" alt="Loading"><br/>
-            <span>{{_('Loading…')}}</span>
+              <img src="{{ media('img/lightbeam/loader.gif') }}" alt="{{_('Loading')}}"><br/>
+            {% trans %}
+              <span data-message="This is taking longer than expected. <br/>Please reload the page or check back later. <br/>Thanks!">Loading...</span>
+            {% endtrans %}
           </div>
         </div>
     </div>

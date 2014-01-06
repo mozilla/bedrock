@@ -191,20 +191,39 @@ h1.large {
     .span(4);
 }
 
-.sorting-options {
-    display: inline-block;
-    margin-bottom: 5px;
+.sorting-options{
+  display: inline-block;
 }
 
-.sorting-options a {
-    padding: 0 5px;
-    cursor: pointer;
-    color: #555;
+.sorting-options legend{
+  font-size: 1em;
+  line-height: 20px;
+  position: absolute;
+  font-family: "Open Sans";
 }
 
-.sorting-options a[data-selected] {
-    font-weight: bold;
-    color: #48C7E6;
+.sorting-options button{
+  background: none;
+  border: none;
+  color: #555;
+  font-size: 1em;
+  text-align: left;
+  padding: 0;
+  cursor: pointer;
+}
+
+.sorting-options button:first-of-type{
+  margin-left: 75px;
+}
+
+.sorting-options button[data-selected]{
+  color: #48C7E6;
+}
+
+.vertical-seperator{
+    border-right: 2px solid #777;
+    margin: 0 12px 0 10px;
+    width: 2px;
 }
 
 .pagination-container {
@@ -357,6 +376,7 @@ svg.percent-bar rect + text {
     background-color: #000;
     border-radius: 5px;
     margin-bottom: @baseLine / 2;
+    overflow: hidden;
 }
 
 .edge {
@@ -396,6 +416,10 @@ svg.percent-bar rect + text {
             .span_narrow(12);
             margin-top: 10px;
         }
+    }
+
+    .profile-main{
+        margin-top: 50px;
     }
 
     .container {
@@ -515,10 +539,28 @@ svg.percent-bar rect + text {
             margin: 10px 0 0 0;
             overflow: hidden;
         }
+    }
 
-        .sorting-options a {
-            padding: 0;
+    .pagination-container {
+        .float-left;
+        margin-top: 10px;
+        
+        .pagination{
+            .float-left;
         }
+    }
+
+    .sorting-options button:first-of-type{
+        margin-top: 20px;
+        margin-left: -3px;
+    }
+
+    .sorting-options button{
+      margin-left: -3px;
+    }
+
+    .profile-main{
+        margin-top: 50px;
     }
 
     .container {
@@ -535,8 +577,7 @@ svg.percent-bar rect + text {
         }
 
         .website-list-table thead tr th:nth-child(3),
-        .website-list-table tbody tr td:nth-child(3),
-        .sorting-options a:nth-of-type(3){
+        .website-list-table tbody tr td:nth-child(3){
             display: none;
         }
 
@@ -572,6 +613,15 @@ svg.percent-bar rect + text {
         figure {
             width: auto;
             margin: 0;
+        }
+    }
+
+    .database #secondary{
+        padding-top: 20px;
+        padding-bottom: 20px;
+
+        h2{
+            line-height: 35px;
         }
     }
 
