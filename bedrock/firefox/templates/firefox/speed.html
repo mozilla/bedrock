@@ -84,9 +84,13 @@
     </div>
 
     <p id="followup">
+    <em>
+    {% trans %}
+        New Firefox is faster, free (as always), crashes less and protects  your privacy more.
+    {% endtrans %}
+    </em>
     {% trans url=url('firefox.new') %}
-        <em>New Firefox is faster, free (as always), crashes less and protects
-        your privacy more.</em> <a href="{{ url }}">Upgrading</a> takes less
+        <a href="{{ url }}">Upgrading</a> takes less
         than a minute and you won’t lose your history or bookmarks. Hooray!
     {% endtrans %}
     </p>
