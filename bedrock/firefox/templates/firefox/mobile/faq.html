@@ -64,10 +64,10 @@
           and above. <a href="https://support.mozilla.org/kb/will-firefox-work-my-mobile-device">Visit our list of supported platforms and devices</a>.</dd>
         {% endtrans %}
 
-        {% trans %}
+        {% trans url=settings.GOOGLE_PLAY_FIREFOX_LINK %}
           <dt>Is Firefox available in my language?</dt>
           <dd>Firefox is currently available in more than 10 languages and
-          we're working on adding more. Check the <a href="https://play.google.com/store/apps/details?id=org.mozilla.firefox">Google Play Store</a>
+          we're working on adding more. Check the <a href="{{ url }}">Google Play Store</a>
           to see if yours is supported.</dd>
         {% endtrans %}
 

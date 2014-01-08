@@ -200,14 +200,13 @@ def download_firefox(ctx, build='release', small=False, icon=True,
                            'download_link': download_link,
                            'download_link_direct': download_link_direct})
     if mobile is not False:
+        android_link = settings.GOOGLE_PLAY_FIREFOX_LINK
+
         if build == 'aurora':
             android_link = download_urls['aurora-mobile']
-        elif build == 'beta':
-            android_link = ('https://play.google.com/store/apps/details?'
-                            'id=org.mozilla.firefox_beta')
-        else:
-            android_link = ('https://play.google.com/store/apps/details?'
-                            'id=org.mozilla.firefox')
+        if build == 'beta':
+            android_link = android_link.replace('org.mozilla.firefox',
+                                                'org.mozilla.firefox_beta')
 
         builds.append({'os': 'os_android',
                        'os_pretty': 'Android',
