@@ -25,10 +25,13 @@
 
     <p>
     {% trans feedback='https://input.mozilla.org/feedback',
-        bugzilla='https://bugzilla.mozilla.org/' %}
+        bugzilla='https://bugzilla.mozilla.org/',
+        buglist='link-to-bugzilla-search' %}
       As always, you&#146;re encouraged to
       <a href="{{ feedback }}">tell us what you think</a>,
       or <a href="{{ bugzilla }}">file a bug in Bugzilla</a>.
+      If interested, please see the <a href="{{ buglist }}">complete list of changes</a>
+      in this release.
     {% endtrans %}
     </p>
   </header>
@@ -37,37 +40,78 @@
     <article class="main-column">
       <section class="notes-section" id="new-features">
         <h3>{{ _('New Features') }}</h3>
-        <ul class="section-items">
+        <ul class="section-items tagged">
           {% for note in new_features %}
-            <li>
-              <small>{{ note.tag.text }}</small>
-              <p>{{ note.html|safe }}</p>
-            </li>
+          <li {% if not note.tag.text %}class="untagged"{% endif %}>
+            <p>
+            {% if note.tag.text %}
+              <b class="tag tag-{{ note.tag.text.lower() }}">{{ note.tag.text }}</b>
+            {% endif %}
+              {{ note.html|safe }}
+            </p>
+          </li>
           {% endfor %}
         </ul>
       </section>
 
       <section class="notes-section" id="known-issues">
         <h3>{{ _('Known Issues') }}</h3>
-        <ul class="section-items">
+        <ul class="section-items tagged">
           {% for note in known_issues %}
             <li>
-              <small>{{ _('UNRESOLVED') }}</small>
-              <p>{{ note.html|safe }}</p>
-              {% if not note.fixed_in_version is none %}
-                <small>{{ _('Unresolved in v{version_number}')|f(version_number=major_version) }}</small>
-                <small>
-                  <a href="{{ url('firefox.releasenotes', '{major_version}.0'|f(major_version=note.fixed_in_version)) }}">
-                    {{ _('Resolved in v{version_number}')|f(version_number=note.fixed_in_version) }}
-                  </a>
-                </small>
-              {% endif %}
+              <p>
+                <b class="tag tag-unresolved">{{ _('unresolved') }}</b>
+                {{ note.html|safe }}
+              </p>
+            {% if not note.fixed_in_version is none %}
+              <p class="note">
+                <a href="{{ url('firefox.releasenotes', '{major_version}.0'|f(major_version=note.fixed_in_version)) }}">
+                  {{ _('Resolved in v{version_number}')|f(version_number=note.fixed_in_version) }}
+                </a>
+              </p>
+            {% endif %}
             </li>
           {% endfor %}
         </ul>
       </section>
     </article>
-    <aside id="sidebar" class="sidebar"></aside>
+
+  {% block sidebar %}
+    <aside id="sidebar" class="sidebar">
+      <section id="try">
+        <h3>{{ _('Try Firefox') }}</h3>
+        <ol>
+          <li class="try1"><a href="/firefox/26.0/system-requirements/">{{ _('Check') }}</a></li>
+          <li class="try2"><a href="/firefox/">{{ _('Download') }}</a></li>
+          <li class="try3"><a href="https://support.mozilla.org/kb/Installing%20Firefox">{{ _('Install') }}</a></li>
+          <li class="try4"><a href="https://addons.mozilla.org/firefox/">{{ _('Customize') }}</a></li>
+        </ol>
+      </section>
+
+      <section id="get-involved">
+        <h3>{{ _('Want to get involved?') }}</h3>
+        <p>{{ _('Did you know that most of the content in Firefox Support was written by volunteers?') }}<br>
+        <a href="{{ url('mozorg.contribute') }}">{{ _('Find out more') }}</a></p>
+      </section>
+
+      <section id="problems">
+        <h3>{{ _('Having Problems?') }}</h3>
+        <ol>
+          <li><a href="http://support.mozilla.org/">{{ _('Search for answers on the Firefox Support page') }}</a></li>
+          <li><a href="#knownissues">{{ _('Look at the known issues list and see if we already know about the problem') }}</a></li>
+          <li><a href="https://bugzilla.mozilla.org/enter_bug.cgi">{{ _('If you can’t find reference to your issue, please consider filing a technical bug report') }}</a></li>
+        </ol>
+      </section>
+
+
+      <section id="other">
+        <h3>{{ _('Other Resources') }}</h3>
+        <p><a href="https://developer.mozilla.org/docs/Mozilla/Firefox/Releases/{{ major_version }}">{{ _('Developer Information') }}</a></p>
+        <p><a href="https://blog.mozilla.com/futurereleases/">{{ _('Future of Firefox Blog') }}</a></p>
+      </section>
+    </aside>
+  {% endblock %}
+
   </div>
 {% endblock %}
 
