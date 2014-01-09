@@ -105,8 +105,7 @@ class TestDownloadButtons(TestCase):
         self.check_desktop_links(links[:3])
 
         # Check that last link is Android
-        eq_(pq(links[3]).attr('href'),
-            'https://play.google.com/store/apps/details?id=org.mozilla.firefox')
+        eq_(pq(links[3]).attr('href'), settings.GOOGLE_PLAY_FIREFOX_LINK)
 
     def test_button(self, small=False):
         rf = RequestFactory()

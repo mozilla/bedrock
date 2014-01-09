@@ -905,3 +905,9 @@ TABZILLA_INFOBAR_OPTIONS = 'translation'
 
 # Optimize.ly project code for base template JS snippet
 OPTIMIZELY_PROJECT_ID = None
+
+# Link to Firefox for Android on the Google Play store with Google Analytics
+# campaign parameters
+GOOGLE_PLAY_FIREFOX_LINK = ('https://play.google.com/store/apps/details?'
+                            'id=org.mozilla.firefox&utm_source=mozilla&'
+                            'utm_medium=Referral&utm_campaign=mozilla-org')
