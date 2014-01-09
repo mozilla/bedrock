@@ -90,6 +90,16 @@ class RestModelClient(RestClient):
                 url = data.pop(field.name, None)
                 if url:
                     data[field.name] = self.hypermodel(url, field.rel.to, save)
+
+        # ManyToManyFields
+        for field in serializer.Meta.model._meta.many_to_many:
+            urls = data.pop(field.name, None)
+            if urls:
+                data[field.name] = [
+                    self.hypermodel(url, field.rel.to, save)
+                    for url in urls
+                ]
+
         instance = serializer.restore_object(data)
         if save:
             serializer.save_object(instance, modified=modified)
@@ -134,11 +144,9 @@ class RestModelClient(RestClient):
 
 class RNAModelClient(RestModelClient):
     model_map = {
-        'channels': models.Channel,
         'notes': models.Note,
-        'products': models.Product,
         'releases': models.Release,
-        'tags': models.Tag}
+    }
 
 
 class LegacyRNAModelClient(RNAModelClient):

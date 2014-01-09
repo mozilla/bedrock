@@ -7,7 +7,16 @@ from django.contrib import admin
 from . import models
 
 
-admin.site.register(models.Channel)
-admin.site.register(models.Product)
-admin.site.register(models.Tag)
-admin.site.register(models.Note)
+class NoteAdmin(admin.ModelAdmin):
+    list_display = ('bug', 'tag', 'html')
+    list_display_links = ('html',)
+    filter_horizontal = ('releases',)
+
+
+class ReleaseAdmin(admin.ModelAdmin):
+    list_display = ('version', 'product', 'channel', 'is_public',
+                    'release_date', 'text')
+
+
+admin.site.register(models.Note, NoteAdmin)
+admin.site.register(models.Release, ReleaseAdmin)
