@@ -40,7 +40,7 @@
     >>
     <span class="site"></span>
     <h1 class="site site-title"></h1>
-    {{_('Server location')}}: <span id="country"></span>
+    {{_('Server location')}}: <span id="country" data-message="{{_('(Unable to find server location)')}}"></span>
   </div>
 
   <div class="span4">
@@ -65,17 +65,16 @@
                 <h4 class="blue-text all-cap"><span class="num-sites"></span> {{_('connected websites')}}</h4>
             </div>
             <div class="span8 float-left">
-                <div class="inline-label all-cap">{{_('Sort By')}}:</div>
-                <div class="sorting-options">
-                  <a data-sort="alphabetically">{{_('alphabetically')}}</a>
-                  <span class="option-divider">|</span>
-                  <a data-sort="connections" data-selected>{{_('connections')}}</a>
-                </div>
+              <fieldset class="sorting-options">
+                <legend class="inline-label">{{_('Sort By')}}:</legend>
+                  <button data-sort="alphabetically">{{_('alphabetically')}}</button>
+                  <span class="vertical-seperator"></span>
+                  <button data-sort="connections" data-selected>{{_('connections')}}</button>
+              </fieldset>
                 <div class="pagination-container">
                   <div class="row-range">{{_('viewing')}}
                       <span class="row-start"></span> - <span class="row-end"></span> {{_('of <span class="num-sites"></span> sites')}} <i><span class="site"></span></i>
                   </div>
-                  <br/>
                   <div class="pagination">
                   </div>
                 </div>
@@ -84,19 +83,36 @@
                 <table class="website-list-table">
                     <thead class="all-cap">
                         <tr>
-                            <th class="fifty-percent">{{_('Website')}}</th>
-                            <th class="fifty-percent">{{_('Connections between')}} <br/><span class="site"></span></th>
+                            <th scope="col" class="fifty-percent">{{_('Website')}}</th>
+                            <th scope="col" class="fifty-percent">{{_('Connections between')}} <br/><span class="site"></span></th>
                         </tr>
                     </thead>
                     <tbody>
+                      <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+                      <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+                      <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+                      <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+                      <tr><td colspan='2' class='cannot-find-data'>{{_('Cannot find any matching data in the database.')}}</td></tr>
+                      <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+                      <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+                      <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+                      <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+                      <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
                     </tbody>
                 </table>
+                {% trans %}
+                  <p>
+                    <small>Data shown here is based on connections initiated in the past <span id="website-list-time-range"></span> hours.</small>
+                  </p>
+                {% endtrans %}
             </div>
         </div>
         <div id="loading">
           <div>
-            <img src="{{ media('img/lightbeam/loader.gif') }}" alt="Loading"><br/>
-            <span>{{_('Loading…')}}</span>
+              <img src="{{ media('img/lightbeam/loader.gif') }}" alt="{{_('Loading')}}"><br/>
+            {% trans %}
+              <span data-message="This is taking longer than expected. <br/>Please reload the page or check back later. <br/>Thanks!">Loading...</span>
+            {% endtrans %}
           </div>
         </div>
     </div>
