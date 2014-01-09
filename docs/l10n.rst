@@ -137,6 +137,18 @@ a `trans` block.
 Note that it also allows variable substitution by passing variables
 into the block and using template variables to apply them.
 
+A general good practice is to enclose short strings in l10n calls (trans blocks or gettext wrapper). If you have a paragraph with several sentences, it is better to wrap each sentence in its own call than the whole paragraph. That makes it more digestable for localizers and avoids having a whole paragraph invalidated for a change to one sentence only.
+
+Example:
+
+.. code-block:: jinja
+
+    <p>
+    {{_('As a result, more countries and mobile phone operators will be selling Firefox in the future.')}}
+    {{_('Our operator partners will distribute the phones through a variety of locally-specific channels.')}}
+    </p>
+
+
 .. _which-lang:
 
 Which .lang file should it use?
