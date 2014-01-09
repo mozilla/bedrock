@@ -9,14 +9,15 @@
 {% block contact_entry %}
   <div id="entry-container">
     <section class="entry entry-space" id="london" data-tab="spaces">
-      <div class="card vcard">
+      <div itemscope itemtype="http://schema.org/Organization" class="card vcard">
         <h2 class="fn">{{ _('London') }}</h2>
-        <p class="adr">
-        {# L10n: Addresses are marked up with hCard microformat. See http://microformats.org/wiki/h-card #}
+        <meta itemprop="name" content="{{ _('Mozilla, London') }}">
+        <p itemprop="address" itemscope itemtype="http://schema.org/PostalAddress" class="adr">
+        {# L10n: Addresses are marked up with hCard microformat and Schema.org. See http://microformats.org/wiki/h-card and http://schema.org/PostalAddress #}
         {% trans %}
-          <span class="street-address">101 St Martin‘s Lane</span>, <span class="extended-address">3rd Floor</span><br>
-          <span class="locality">London</span> <span class="postal-code">WC2N 4AZ</span><br>
-          <abbr class="country-name" title="United Kingdom">UK</abbr>
+          <span itemprop="streetAddress" class="street-address">101 St Martin‘s Lane, 3rd Floor</span><br>
+          <span itemprop="addressLocality" class="locality">London</span> <span itemprop="postalCode" class="postal-code">WC2N 4AZ</span><br>
+          <abbr itemprop="addressCountry" class="country-name" title="United Kingdom">UK</abbr>
         {% endtrans %}
         </p>
 
