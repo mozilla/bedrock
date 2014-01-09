@@ -14,16 +14,6 @@ from . import clients, fields, filters, models, serializers, views
 from .management.commands import rnasync
 
 
-class AdminTest(TestCase):
-    @patch('django.contrib.admin.site.register')
-    def test_register(self, mock_register):
-        import rna.rna.admin  # NOQA
-        mock_register.assert_any_call(models.Channel)
-        mock_register.assert_any_call(models.Product)
-        mock_register.assert_any_call(models.Tag)
-        mock_register.assert_any_call(models.Note)
-
-
 class TimeStampedModelTest(TestCase):
     @patch('rna.rna.models.models.Model.save')
     def test_default_modified(self, mock_super_save):
@@ -42,24 +32,6 @@ class TimeStampedModelTest(TestCase):
         mock_super_save.assert_called_once_with(db='test')
 
 
-class ChannelTest(TestCase):
-    def test_unicode(self):
-        """
-        Should equal name
-        """
-        channel = models.Channel(name='test')
-        eq_(unicode(channel), 'test')
-
-
-class ProductTest(TestCase):
-    def test_unicode(self):
-        """
-        Should equal name
-        """
-        product = models.Product(name='test')
-        eq_(unicode(product), 'test')
-
-
 class NoteTest(TestCase):
     def test_unicode(self):
         """
@@ -68,14 +40,34 @@ class NoteTest(TestCase):
         note = models.Note(html='test')
         eq_(unicode(note), 'test')
 
+    def test_is_known_issue_for_not_known(self):
+        """
+        Should be False if is_known_issue is False.
+        """
+        note = models.Note(is_known_issue=False)
+        release = Mock(spec=models.Release())
+        eq_(note.is_known_issue_for(release), False)
 
-class TagTest(TestCase):
-    def test_unicode(self):
+    def test_is_known_issue_for_wrong_release(self):
         """
-        Should equal text
+        Should be True if is_known_issue is True but fixed_in_release
+        doesn't match given release.
         """
-        tag = models.Tag(text='test')
-        eq_(unicode(tag), 'test')
+        fixed_release = Mock(spec=models.Release())
+        release = Mock(spec=models.Release())
+        note = models.Note(is_known_issue=True,
+                           fixed_in_release=fixed_release)
+        eq_(note.is_known_issue_for(release), True)
+
+    def test_is_known_issue_for(self):
+        """
+        Should be False if is_known_issue is True and fixed_in_release
+        matches the given release.
+        """
+        release = Mock(spec=models.Release())
+        note = models.Note(is_known_issue=True,
+                           fixed_in_release=release)
+        eq_(note.is_known_issue_for(release), False)
 
 
 class ReleaseTest(TestCase):
@@ -83,8 +75,28 @@ class ReleaseTest(TestCase):
         """
         Should equal name
         """
-        release = models.Release(text='test')
-        eq_(unicode(release), 'test')
+        release = models.Release(product=models.Release.FIREFOX,
+                                 channel=models.Release.RELEASE,
+                                 version='12.0.1')
+        eq_(unicode(release), 'Firefox v12.0.1 Release')
+
+    def test_notes(self):
+        """
+        Should split notes into new features and known issues.
+        """
+        new_feature_1 = Mock(**{'is_known_issue_for.return_value': False})
+        new_feature_2 = Mock(**{'is_known_issue_for.return_value': False})
+        known_issue_1 = Mock(**{'is_known_issue_for.return_value': True})
+        known_issue_2 = Mock(**{'is_known_issue_for.return_value': True})
+
+        with patch.object(models.Release, 'note_set') as note_set:
+            release = models.Release()
+            note_set.all.return_value = [new_feature_1, new_feature_2,
+                                         known_issue_1, known_issue_2]
+            new_features, known_issues = release.notes()
+
+        eq_(set(new_features), set([new_feature_1, new_feature_2]))
+        eq_(set(known_issues), set([known_issue_1, known_issue_2]))
 
 
 class ISO8601DateTimeFieldTest(TestCase):
@@ -433,24 +445,46 @@ class RestModelClientTest(TestCase):
         """
         Should return instance from serializer.restore_object
         Should remove url field from data
-        Should use hypermodel method on FK fields
+        Should use hypermodel method on FK and M2M fields
         """
         mock_fk_field = Mock(spec=models.models.ForeignKey)
         mock_fk_field.name = 'fk'
         mock_fk_field.rel = Mock(to='to')
+
         mock_fk_field_not_in_data = Mock(spec=models.models.ForeignKey)
         mock_fk_field_not_in_data.name = 'no data'
-        fields = [mock_fk_field, 'non_fk_field', mock_fk_field_not_in_data]
-        mock_serializer = Mock()
-        mock_serializer.Meta.model._meta.fields = fields
-        data = {'url': 'http://remove.me', 'fk': 'http://thedu.de'}
 
+        mock_m2m_field = Mock(spec=models.models.ManyToManyField)
+        mock_m2m_field.name = 'm2m'
+        mock_m2m_field.rel = Mock(to='to2')
+
+        mock_serializer = Mock()
+        mock_serializer.Meta.model._meta.fields = [
+            mock_fk_field,
+            'non_fk_field',
+            mock_fk_field_not_in_data
+        ]
+        mock_serializer.Meta.model._meta.many_to_many = [mock_m2m_field]
+
+        data = {
+            'url': 'http://remove.me',
+            'fk': 'http://thedu.de',
+            'm2m': ['http://example.com/foo', 'http://example.com/bar'],
+        }
         rc = clients.RestModelClient()
         instance = rc.restore(mock_serializer, data)
+
         eq_(instance, mock_serializer.restore_object.return_value)
-        mock_hypermodel.assert_called_once_with('http://thedu.de', 'to', False)
-        mock_serializer.restore_object.assert_called_once_with(
-            {'fk': mock_hypermodel.return_value})
+
+        mock_hypermodel.assert_any_call('http://thedu.de', 'to', False)
+        mock_hypermodel.assert_any_call('http://example.com/foo', 'to2', False)
+        mock_hypermodel.assert_any_call('http://example.com/bar', 'to2', False)
+
+        hyper_return = mock_hypermodel.return_value
+        mock_serializer.restore_object.assert_called_with({
+            'fk': hyper_return,
+            'm2m': [hyper_return, hyper_return],
+        })
         eq_(mock_serializer.save_object.called, 0)
 
     @patch('rna.rna.clients.RestModelClient.hypermodel')
@@ -460,6 +494,7 @@ class RestModelClientTest(TestCase):
         """
         mock_serializer = Mock()
         mock_serializer.Meta.model._meta.fields = []
+        mock_serializer.Meta.model._meta.many_to_many = []
 
         rc = clients.RestModelClient()
         instance = rc.restore(mock_serializer, {}, save=True, modified=True)
@@ -708,11 +743,8 @@ class URLsTest(TestCase):
     @patch('rest_framework.routers.DefaultRouter.urls')
     def test_urls(self, mock_urls, mock_register):
         from . import urls
-        mock_register.assert_any_call('channels', views.ChannelViewSet)
         mock_register.assert_any_call('notes', views.NoteViewSet)
-        mock_register.assert_any_call('products', views.ProductViewSet)
         mock_register.assert_any_call('releases', views.ReleaseViewSet)
-        mock_register.assert_any_call('tags', views.TagViewSet)
         eq_(urls.urlpatterns, mock_urls)
 
 

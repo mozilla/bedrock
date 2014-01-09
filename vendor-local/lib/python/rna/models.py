@@ -27,60 +27,87 @@ class TimeStampedModel(models.Model):
         super(TimeStampedModel, self).save(*args, **kwargs)
 
 
-class Channel(TimeStampedModel):
-    name = models.CharField(unique=True, max_length=255)
+class Release(TimeStampedModel):
+    NIGHTLY = 0
+    AURORA = 1
+    BETA = 2
+    RELEASE = 3
+    CHANNELS = (
+        (NIGHTLY, 'Nightly'),
+        (AURORA, 'Aurora'),
+        (BETA, 'Beta'),
+        (RELEASE, 'Release'),
+    )
 
-    def __unicode__(self):
-        return self.name
+    FIREFOX = 0
+    FENNEC = 1
+    ESR = 2
+    PRODUCTS = (
+        (FIREFOX, 'Firefox'),
+        (FENNEC, 'Firefox for Android'),
+        (ESR, 'Firefox Extended Support Release'),
+    )
 
-
-class Product(TimeStampedModel):
-    name = models.CharField(unique=True, max_length=255)
+    product = models.IntegerField(choices=PRODUCTS)
+    channel = models.IntegerField(choices=CHANNELS)
+    version = models.CharField(max_length=255)
+    release_date = models.DateTimeField()
     text = models.TextField(blank=True)
+    is_public = models.BooleanField(default=False)
+
+    def notes(self):
+        """
+        Retrieve a list of Note instances that should be shown for this
+        release, grouped as either new features or known issues.
+        """
+        notes = self.note_set.all()
+
+        new_features = (note for note in notes if
+                        not note.is_known_issue_for(self))
+        known_issues = (note for note in notes if
+                        note.is_known_issue_for(self))
+
+        return new_features, known_issues
 
     def __unicode__(self):
-        return self.name
-
-
-class Tag(TimeStampedModel):
-    text = models.TextField()
-    sort_num = models.IntegerField(null=True, blank=True)
+        return '{product} v{version} {channel}'.format(
+            product=self.get_product_display(),
+            version=self.version,
+            channel=self.get_channel_display()
+        )
 
     class Meta:
-        ordering = ('sort_num',)
-
-    def __unicode__(self):
-        return self.text
+        ordering = ('product', '-version', 'channel')
 
 
 class Note(TimeStampedModel):
+    NEW = 0
+    CHANGED = 1
+    HTML5 = 2
+    FIXED = 3
+    DEVELOPER = 4
+    TAGS = (
+        (NEW, 'New'),
+        (CHANGED, 'Changed'),
+        (HTML5, 'HTML5'),
+        (FIXED, 'Fixed'),
+        (DEVELOPER, 'Developer'),
+    )
+
     bug = models.IntegerField(null=True, blank=True)
     html = models.TextField(blank=True)
-    first_version = models.IntegerField(null=True, blank=True)
-    first_channel = models.ForeignKey(
-        Channel, null=True, blank=True, related_name='first_channel_notes')
-    fixed_in_version = models.IntegerField(null=True, blank=True)
-    fixed_in_channel = models.ForeignKey(
-        Channel, null=True, blank=True, related_name='fixed_in_channel_notes')
-    tag = models.ForeignKey(Tag, null=True, blank=True)
-    product = models.ForeignKey(Product, null=True, blank=True)
+    releases = models.ManyToManyField(Release, blank=True)
+    is_known_issue = models.BooleanField(default=False)
+    fixed_in_release = models.ForeignKey(Release, null=True, blank=True,
+                                         related_name='fixed_note_set')
+    tag = models.IntegerField(null=True, choices=TAGS)
     sort_num = models.IntegerField(null=True, blank=True)
-    fixed_in_subversion = models.IntegerField(null=True, blank=True)
+
+    def is_known_issue_for(self, release):
+        return self.is_known_issue and self.fixed_in_release != release
 
     class Meta:
         ordering = ('sort_num',)
 
     def __unicode__(self):
         return self.html
-
-
-class Release(TimeStampedModel):
-    product = models.ForeignKey(Product)
-    channel = models.ForeignKey(Channel)
-    version = models.IntegerField()
-    sub_version = models.IntegerField()
-    release_date = models.DateTimeField()
-    text = models.TextField(blank=True)
-
-    def __unicode__(self):
-        return self.text

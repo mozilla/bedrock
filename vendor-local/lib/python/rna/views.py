@@ -7,18 +7,6 @@ from rest_framework.viewsets import ModelViewSet
 from . import models
 
 
-class ChannelViewSet(ModelViewSet):
-    model = models.Channel
-
-
-class ProductViewSet(ModelViewSet):
-    model = models.Product
-
-
-class TagViewSet(ModelViewSet):
-    model = models.Tag
-
-
 class NoteViewSet(ModelViewSet):
     model = models.Note
 
