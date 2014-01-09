@@ -9,16 +9,16 @@
 {% block contact_entry %}
   <div id="entry-container">
     <section class="entry entry-space" id="beijing" data-tab="spaces">
-      <div class="card vcard">
+      <div itemscope itemtype="http://schema.org/Organization" class="card vcard">
         <h2 class="fn">{{ _('Beijing') }}</h2>
-        <p class="adr">
-        {# L10n: Addresses are marked up with hCard microformat. See http://microformats.org/wiki/h-card #}
+        <meta itemprop="name" content="{{ _('Mozilla, Beijing') }}">
+        <p itemprop="address" itemscope itemtype="http://schema.org/PostalAddress" class="adr">
+        {# L10n: Addresses are marked up with hCard microformat and Schema.org. See http://microformats.org/wiki/h-card and http://schema.org/PostalAddress #}
         {% trans %}
           <span class="org">Mozilla Online Ltd.</span><br>
-          <span class="extended-address">International Club Office Tower 800A</span><br>
-          <span class="street-address">21 Jian Guo Men Wai Avenue</span><br>
-          <abbr class="region">Chaoyang District</abbr>, <span class="locality">Beijing</span> <span class="postal-code">100020</span><br>
-          <span class="country-name">China</span>
+          <span itemprop="streetAddress" class="street-address">International Club Office Tower 800A <br>21 Jian Guo Men Wai Avenue</span><br>
+          <abbr itemprop="addressRegion" class="region">Chaoyang District</abbr>, <span itemprop="addressLocality" class="locality">Beijing</span> <span itemprop="postalCode" class="postal-code">100020</span><br>
+          <span itemprop="addressCountry" class="country-name">China</span>
         {% endtrans %}
         </p>
 
