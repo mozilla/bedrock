@@ -14,24 +14,4 @@
     gaTrack(['_trackEvent', 'first run interaction', action, 'First Run Video']);
   });
 
-
-  // Show the download survey to 1% of visitors
-  var $survey_content = $('#survey-wrapper').show().detach();
-
-  if ($survey_content.length > 0) {
-    var surveyProbability = 0.01;
-    var showSurvey = (Math.random() < surveyProbability) ? 'yes' : 'no';
-
-    if (showSurvey === 'yes') {
-      $('p.survey').show();
-      $('#launch-survey').on('click', function(e) {
-        e.preventDefault();
-        Mozilla.Modal.createModal(this, $survey_content, {
-          allowScroll: false
-        });
-      });
-    }
-
-  }
-
 })(window.jQuery);
