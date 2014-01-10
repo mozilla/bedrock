@@ -27,12 +27,23 @@
         <dl class="faq">
 
           <dt>{{_('What is Firefox OS?')}}</dt>
-          <dd>{{_('Backed by some of the biggest names in the industry, Firefox OS is a new open operating system for smartphones developed by Mozilla. Built entirely using HTML5 and other open Web standards, Firefox OS is free from the rules and restrictions of existing proprietary platforms.')}}</dd>
+          <dd>
+          {{_('Backed by some of the biggest names in the industry, Firefox OS is a new open operating system for smartphones developed by Mozilla.')}}
+          {{_('Built entirely using HTML5 and other open Web standards, Firefox OS is free from the rules and restrictions of existing proprietary platforms.')}}
+          </dd>
 
           <dt>{{_('How is Firefox OS different from other operating systems?')}}</dt>
           <dd>
-            <p>{{_('Firefox OS is the only operating system with Adaptive App Search. While every other phone today is static, giving you the exact same apps each time you turn it on, Firefox OS is always changing to offer exactly the apps you need at any moment in your life. It adapts so you can live every moment to its fullest.')}}</p>
-            <p>{{_('Firefox OS is brought to you by Mozilla, a global nonprofit organization that emphasizes principle over profit. We believe that the Web is a shared public resource to be cared for, not a commodity to be sold. We work with a worldwide community to create open source products like Mozilla Firefox and to innovate for the benefit of the individual and the betterment of the Web. The result is great products built by passionate people and better choices for everyone.')}}</p>
+            <p>
+            {{_('Firefox OS is the only operating system with Adaptive App Search.')}}
+            {{_('While every other phone today is static, giving you the exact same apps each time you turn it on, Firefox OS is always changing to offer exactly the apps you need at any moment in your life.')}}
+            {{_('It adapts so you can live every moment to its fullest.')}}
+            </p>
+            <p>
+            {{_('Firefox OS is brought to you by Mozilla, a global nonprofit organization that emphasizes principle over profit.')}}
+            {{_('We believe that the Web is a shared public resource to be cared for, not a commodity to be sold.')}}
+            {{_('We work with a worldwide community to create open source products like Mozilla Firefox and to innovate for the benefit of the individual and the betterment of the Web.')}}
+            {{_('The result is great products built by passionate people and better choices for everyone.')}}</p>
           </dd>
 
         </dl>
@@ -65,24 +76,32 @@
                <li>{{_('Italy with TIM')}}</li>
                <li>{{_('Uruguay with Movistar')}}</li>
             </ul>
-            <p>{{_('To date, 17 Operators spanning the globe have committed to distributing Firefox OS devices: América Móvil, China Unicom, Deutsche Telekom, Etisalat, Hutchison Three Group, KDDI, Korea Telecom, MegaFon, Qtel, SingTel, Smart, Sprint, Telecom Italia Group, Telefónica, Telenor, TMN and VimpelCom.')}}</p>
-            <p>{{_('As a result, more countries and mobile phone operators will be selling Firefox in the future. Our operator partners will distribute the phones through a variety of locally-specific channels.')}}</p>
+            <p>
+            {{_('To date, 17 Operators spanning the globe have committed to distributing Firefox OS devices:')}}
+            {{_('América Móvil, China Unicom, Deutsche Telekom, Etisalat, Hutchison Three Group, KDDI, Korea Telecom, MegaFon, Qtel, SingTel, Smart, Sprint, Telecom Italia Group, Telefónica, Telenor, TMN and VimpelCom.')}}</p>
+            <p>
+            {{_('As a result, more countries and mobile phone operators will be selling Firefox in the future.')}}
+            {{_('Our operator partners will distribute the phones through a variety of locally-specific channels.')}}</p>
           </dd>
 
           <dt>{{_('What will be the price of the phone?')}}</dt>
           <dd>{{_('Pricing is not set by Mozilla and will be established by our operator and manufacturer partners based on local market dynamics.')}}</dd>
 
           <dt>{{_('What apps will be available on Firefox OS?')}}</dt>
-          <dd>{{_('The growing list includes leading apps like Facebook, Twitter, Nokia HERE maps, Cut the Rope, and Time Out. Many more are being made available every day.')}}</dd>
+          <dd>
+          {{_('The growing list includes leading apps like Facebook, Twitter, Nokia HERE maps, Cut the Rope, and Time Out.')}}
+          {{_('Many more are being made available every day.')}}</dd>
 
           <dt>{{_('Is Firefox OS available in my language?')}}</dt>
-          <dd>{{_('Firefox OS is currently available in Spanish, Polish, English, Italian, Portuguese, German, Serbian, Hungarian and Greek. We’re working on adding more languages all the time.')}}</dd>
+          <dd>
+          {{_('Firefox OS is currently available in Spanish, Polish, English, Italian, Portuguese, German, Serbian, Hungarian and Greek.')}}
+          {{_('We’re working on adding more languages all the time.')}}</dd>
 
         </dl>
       </div>
     </li>
     <li class="expander">
-      <h2 class="expander-header">{{_('Using Firefox')}}</h2>
+      <h2 class="expander-header">{{_('Using Firefox OS')}}</h2>
       <div class="expander-content">
         <dl class="faq">
 
@@ -148,21 +167,20 @@
     <li class="expander">
       <h2 class="expander-header">{{_('Privacy and Security')}}</h2>
       <div class="expander-content">
-        <dl class="faq">
-          <p>{% trans url='https://support.mozilla.org/kb/configure-mobile-privacy-and-security-settings' %}
-          Mozilla was the first to implement the Do Not Track privacy feature. Firefox also features customizable security settings to manage passwords, history, private data, cookies, site options and add-ons. <a href="{{url}}">Learn more.</a>
-          {% endtrans %}</p>
-        </dl>
+          <p>
+          {{_('Mozilla was the first to implement the Do Not Track privacy feature.')}}
+          {% trans url='https://support.mozilla.org/kb/configure-mobile-privacy-and-security-settings' %}
+          Firefox also features customizable security settings to manage passwords, history, private data, cookies, site options and add-ons. <a href="{{url}}">Learn more.</a>
+          {% endtrans %}
+          </p>
       </div>
     </li>
     <li class="expander">
       <h2 class="expander-header">{{_('Developer Questions')}}</h2>
       <div class="expander-content">
-        <dl class="faq">
           <p>{% trans url='https://developer.mozilla.org/docs/Mozilla/Firefox_OS' %}
           Are you a developer? Have questions? <a href="{{url}}">Learn more at the Mozilla Developer Network.</a>
           {% endtrans %}</p>
-        </dl>
       </div>
     </li>
   </ul>
