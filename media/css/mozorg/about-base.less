@@ -29,36 +29,12 @@
     background: #fff;
     border-bottom: 1px solid #ddd;
 
-    .title-banner {
-        .open-sans-light;
-        min-width: 420px;
+    .title-shadow-box {
         min-height: 80px;
-        padding: 20px;
-        font-size: 48px;
-        letter-spacing: -2px;
-        color: #fff;
-        text-shadow: none;
-        background-color: #b30406;
-        background-color: rgba(179,4,6,.95);
-        margin: -60px 80px 40px 10px;
-        position: relative;
-        float: left;
 
         & + p {
             clear: left;
         }
-    }
-
-    .title-banner:after {
-        content: "";
-        display: block;
-        width: 100%;
-        padding: 0;
-        height: 40px;
-        position: absolute;
-        bottom: -40px;
-        left: 0;
-        background: url(/media/img/mission/title-banner-shadow.png) no-repeat;
     }
 
     .intro {
@@ -153,19 +129,6 @@
     #main-content {
         margin-bottom: @baseLine;
 
-        .title-banner {
-            min-width: 240px;
-            max-width: 285px;
-            font-size: 26px;
-            letter-spacing: -.5px;
-            margin: -25px 0 @baseLine;
-            overflow: hidden;
-        }
-
-        .title-banner:after {
-            display: none;
-        }
-
         .intro {
             width: auto;
             font-size: 1em;
@@ -194,13 +157,9 @@
     }
 
     #main-content {
-        .title-banner {
+        .title-shadow-box {
             min-width: 380px;
             margin: -25px 0 40px;
-        }
-
-        .title-banner:after {
-            display: block;
         }
 
         .intro {

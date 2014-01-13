@@ -1,6 +1,6 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
  # License, v. 2.0. If a copy of the MPL was not distributed with this
- # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {# firstrun for nightlies #}
 
@@ -41,7 +41,7 @@
 
     <h2>{{ _('Links in video') }}</h2>
     <ul class="unstyled">
-      <li><a href="http://widget.mibbit.com/?server=irc.mozilla.org&channel=%23testday">{{ _('Attend a Test Day every Friday on #testday') }}</a></li>
+      <li><a href="http://widget.mibbit.com/?server=irc.mozilla.org&amp;channel=%23testday">{{ _('Attend a Test Day every Friday on #testday') }}</a></li>
       <li><a href="{{ url('firefox.channel')|urlparams(hash='aurora') }}">{{ _('Download Firefox Aurora') }}</a></li>
       <li><a href="https://input.mozilla.org/feedback">{{ _('Submit feedback') }}</a></li>
       <li><a href="https://bugzilla.mozilla.org/enter_bug.cgi?product=Firefox">{{ _('Report bugs in Bugzilla') }}</a></li>

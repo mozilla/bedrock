@@ -1,10 +1,9 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
-# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% extends "base-resp.html" %}
 
-{% block page_title_prefix %}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
 
 {% block extrahead %}
@@ -16,7 +15,7 @@
 {% set navigation_bar = [
     (url('foundation.index'), 'index', 'The Mozilla Foundation'),
     (url('foundation.about'), 'about', 'About the Foundation'),
-    (url('foundation.annualreport.2011'), 'report', 'Annual Report'),
+    (url('foundation.annualreport'), 'report', 'Annual Report'),
     ('https://careers.mozilla.org/', 'careers', 'Careers'),
     ('https://sendto.mozilla.org/', 'donate', 'Donate'),
     (url('foundation.licensing'), 'licensing', 'Licensing & Trademarks'),

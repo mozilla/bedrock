@@ -3,6 +3,7 @@ src/feedparser/feedparser
 src/django-recaptcha
 src/django-dnt
 src/django-statsd
+src/django-waffle
 src/pystatsd
 packages/requests
 packages/certifi

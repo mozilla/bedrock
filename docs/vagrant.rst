@@ -90,7 +90,21 @@ Build The Environment
         If you didn't, you can load all the submodules with ``git
         submodule update --init --recursive``.
 
-#. **Using SVN Checkout Mozilla.com PHP repository.**
+#. **Using SVN Checkout The Locale Repository. (Optional)**
+
+      If you would like to see localized versions of the site you will need to 
+      checkout the locale directory to the root of the bedrock directory you just cloned.
+
+      Clone the repository locally::
+      
+      ~$ cd bedrock
+      ~bedrock-legacy/bedrock$ svn checkout https://svn.mozilla.org/projects/mozilla.com/trunk/locales/ locale
+
+      .. note::
+
+        You can read more details about how to localize content :ref:`here<l10n>`.     
+
+#. **Using SVN Checkout Mozilla.com PHP Repository.**
 
     Mozilla.com PHP is hosted on `<https://svn.mozilla.org/projects/mozilla.com/trunk>`_.
 

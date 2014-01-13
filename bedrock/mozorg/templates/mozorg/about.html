@@ -1,6 +1,6 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
  # License, v. 2.0. If a copy of the MPL was not distributed with this
- # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% extends "mozorg/base-resp.html" %}
 
@@ -24,17 +24,9 @@
 
 <article id="main-content">
 
-  <h1 class="title-banner">{{ _('Get to know Mozilla') }}</h1>
+  <h1 class="title-shadow-box">{{ _('Get to know Mozilla') }}</h1>
 
-  <p class="intro">
-    {# Note: This conditional is in place until the new en-US string can be translated. We
-       need to remove it in the future once l10n has caught up. #}
-    {% if request.locale.startswith('en-') %}
-      {{ _('Learn more about our projects, products and principles designed to help people take control and explore the full potential of their lives online.') }}
-    {% else %}
-      {{ _('Whether you want to learn more about who we are, how to be a part of Mozilla or just where to find us, you’ve come to the right place.') }}
-    {% endif %}
-  </p>
+  <p class="intro">{{ _('Learn more about our projects, products and principles designed to help people take control and explore the full potential of their lives online.') }}</p>
 
   <ul class="links">
     <li>
@@ -54,7 +46,7 @@
       <p>{{ _('Logos, copy rules, visual assets and more') }}</p>
     </li>
     <li>
-      <h4><a href="{{ php_url('/about/contact') }}">{{ _('Locations & contacts') }}</a></h4>
+      <h4><a href="{{ url('mozorg.contact.spaces.spaces-landing') }}">{{ _('Locations & contacts') }}</a></h4>
       <p>{{ _('Addresses, emails, support and feedback forms') }}</p>
     </li>
   </ul>
@@ -74,7 +66,7 @@
     </li>
     <li>
       <h4><a href="{{ php_url('/privacy/') }}">{{ _('Privacy center') }}</a></h4>
-      <p>{{ _('Policies used to run the Mozilla community') }}</p>
+      <p>{{ _('How Mozilla handles your personal information') }}</p>
     </li>
     <li>
       <h4><a href="{{ php_url('/about/partnerships') }}">{{ _('Mozilla partnerships') }}</a></h4>

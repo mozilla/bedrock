@@ -1,0 +1,42 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/about-base.html" %}
+	
+{% block page_title %}{{ _('Mozilla CA Certificate Policy') }}{% endblock %}
+{% block body_class %}sand{% endblock %}
+
+{% block extrahead %}
+    {{ css('security-group') }}
+{% endblock %}
+
+{% block article %}
+  <h1 class="title-banner">{{ _('Mozilla CA Certificate Policy') }}</h1>
+  <h3>{{ _('Version 2.2') }}</h3>
+  <p>{{ _('When distributing binary and source code versions of Firefox, Thunderbird, and other Mozilla-related software products, Mozilla may include with such software a default set of X.509v3 certificates for various Certification Authorities (CAs). The certificates included by default have their "trust bits" set for various purposes, so that the software in question can use the CA certificates to verify certificates for SSL servers, S/MIME email users, and digitally-signed code objects without having to ask users for further permission or information.') }}</p>
+
+  <p>{{ _('This is the official Mozilla policy for CA certificates that are distributed with Mozilla software products. This policy consists of the following three sections:') }}</p>
+
+  <ol>
+    <li>
+      <a href="{{ url('mozorg.about.governance.policies.security.certs.inclusion') }}">{{ _('Applying for Inclusion of Root Certificates in Mozilla Products') }}</a>
+      <p>{{ _('This section describes the obligations of Certification Authorities applying for inclusion of their root certificates in Mozilla Products. This includes considerations that are taken into account such as the CA’s publicly available documentation about their policies, and audits of the CA’s operations in support of the documented policies.') }}</p>
+    </li>
+    <li> 
+      <a href="{{ url('mozorg.about.governance.policies.security.certs.maintenance') }}">{{ _('Maintaining Confidence in Included Root Certificates') }}</a>
+      <p>{{ _('This section describes the obligations of Certification Authorities for maintaining confidence in their root certificates that are included in Mozilla Products. This includes regular auditing of the CA’s policies and practices; conforming to current CA industry standards and recommended best practices; and making changes to included root certificates.') }}</p>
+    </li> 
+      
+    <li> 
+      <a href="{{ url('mozorg.about.governance.policies.security.certs.enforcement') }}">{{ _('Enforcing the Mozilla CA Certificate Policy') }}</a>
+      <p>{{ _('This section describes the steps that Mozilla may take in order to enforce this policy. This includes evaluation of security concerns, and removing or disabling a root certificate.') }}</p>
+    </li>
+  </ol>
+  <p>{{ _('This policy applies only to software products distributed by Mozilla, including the Mozilla Foundation and its subsidiaries.  Other entities distributing such software are free to adopt their own policies. In particular, under the terms of the relevant Mozilla license(s) distributors of such software are permitted to add or delete CA certificates in the versions that they distribute, and are also permitted to modify the values of the "trust bits" on CA certificates in the default CA certificate set. As with other software modifications, by making such changes a distributor may affect its ability to use Mozilla trademarks in connection with its versions of the software; see the <a href="%s">Mozilla trademark policy</a> for more information.')|format(url('foundation.trademarks.index')) }}</p>
+
+  <p>{{ _('Please contact Mozilla at <a href="mailto:certificates@mozilla.org">certificates@mozilla.org</a> for more information about this policy and answers to related questions.') }}</p>
+
+<p>{{ _('We reserve the right to change this policy in the future. We will do so only after consulting with the public Mozilla community, in order to ensure that all views are taken into account.') }}</p>
+
+{% endblock %}

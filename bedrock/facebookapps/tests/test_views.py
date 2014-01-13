@@ -7,7 +7,6 @@
 import urllib
 
 from django.conf import settings
-from django.test.client import Client
 
 from funfactory.urlresolvers import reverse
 from mock import patch
@@ -22,7 +21,6 @@ from bedrock.facebookapps import tests
 class TestTabRedirect(tests.TestCase):
     def setUp(self):
         self.tab_url = '//www.facebook.com/some-namespace/app_123456789'
-        self.client = Client()
 
     def create_response(self, js_redirect=False, method='get', data={}):
         kwargs = {'redirect_type': 'js'} if js_redirect else None
@@ -69,9 +67,6 @@ class TestTabRedirect(tests.TestCase):
 
 
 class TestDownloadTab(tests.TestCase):
-    def setUp(self):
-        self.client = Client()
-
     def create_response(self):
         with self.activate('en-US'):
             url = reverse('facebookapps.downloadtab')

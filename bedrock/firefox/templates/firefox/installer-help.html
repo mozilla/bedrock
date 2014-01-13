@@ -1,6 +1,6 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
  # License, v. 2.0. If a copy of the MPL was not distributed with this
- # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% extends "/firefox/base-resp.html" %}
 
@@ -29,6 +29,21 @@
       <h3>{{ _('Need help installing?') }}</h3>
       <p><a href="https://support.mozilla.org/kb/install-firefox-windows">{{ _('Visit support.mozilla.org') }}</a></p>
     </aside>
+
+{# Hide the survey until further notice. See bug 860873
+    {% if request.locale in ['en-US', 'en-GB'] %}
+    <aside class="help survey">
+      <h3>Problems installing Firefox?</h3>
+      <p>Help us improve by <a id="launch-survey" role="button" href="http://www.surveygizmo.com/s3/1481123/Stub-installer-fallback-page-form">taking a brief survey</a>.</p>
+
+      <div id="survey-wrapper" class="modal-content">
+        <div class="content">
+          <iframe src="//www.surveygizmo.com/s3/iframe/1481123/6a2c7cc6da18" frameborder="0" width="100%" height="500"></iframe>
+        </div>
+      </div>
+    </aside>
+    {% endif %}
+#}
   </div>
 
   <div class="channels">
@@ -53,3 +68,7 @@
  </div>
 
 {% endblock %}
+
+{% block js %}
+  {{ js('installer_help') }}
+{% endblock  %}

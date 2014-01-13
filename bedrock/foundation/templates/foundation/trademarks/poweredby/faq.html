@@ -1,6 +1,6 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
-# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% extends "foundation/base-resp.html" %}
 
@@ -60,7 +60,7 @@
 
     <dt id="other">{{ _("Why weren't other Mozilla technologies included in this program?") }}</dt>
     <dd>
-      <p>{% trans contact=php_url('/about/contact') %}We decided to start this program with a
+      <p>{% trans contact=url('mozorg.contact.spaces.spaces-landing') %}We decided to start this program with a
         limited set of technologies and to include additional parts of the
         Mozilla codebase as the need arises.  If there is a technology that that
         you would like added to the program,

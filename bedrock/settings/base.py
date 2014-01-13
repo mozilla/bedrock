@@ -8,12 +8,13 @@ from django.utils.functional import lazy
 
 from funfactory.settings_base import *  # noqa
 
-# No database yet. Override in local.py.
-# Need at least this for Django to run.
+# Production uses MySQL, but Sqlite should be sufficient for local development.
+# Our CI server tests against MySQL.
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.dummy',
-    },
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'bedrock.db',
+    }
 }
 
 # Override in local.py for memcached.
@@ -40,7 +41,7 @@ PROD_LANGUAGES = ('ach', 'af', 'ak', 'an', 'ar', 'as', 'ast', 'az', 'be', 'bg',
                   'nn-NO', 'nso', 'oc', 'or', 'pa-IN', 'pl', 'pt-BR', 'pt-PT',
                   'rm', 'ro', 'ru', 'sah', 'si', 'sk', 'sl', 'son', 'sq', 'sr',
                   'sv-SE', 'sw', 'ta', 'ta-LK', 'te', 'th', 'tr', 'uk',
-                  'ur', 'vi', 'wo', 'zh-CN', 'zh-TW', 'zu')
+                  'ur', 'vi', 'wo', 'xh', 'zh-CN', 'zh-TW', 'zu')
 DEV_LANGUAGES = list(DEV_LANGUAGES) + ['en-US']
 
 FEED_CACHE = 3900
@@ -128,6 +129,17 @@ MINIFY_BUNDLES = {
         'newsletter': (
             'css/newsletter/newsletter.less',
         ),
+        'contact-spaces': (
+            'css/libs/mapbox.css',
+            'css/libs/magnific-popup.css',
+            'css/mozorg/contact-spaces.less',
+        ),
+        'contact-spaces-ie8': (
+            'css/libs/mapbox.ie.css',
+        ),
+        'contact-spaces-ie7': (
+            'css/mozorg/contact-spaces-ie7.less',
+        ),
         'contribute': (
             'css/mozorg/contribute.less',
             'css/sandstone/video-resp.less',
@@ -187,6 +199,7 @@ MINIFY_BUNDLES = {
         ),
         'firefox_firstrun': (
             'css/sandstone/video.less',
+            'css/base/mozilla-modal.less',
             'css/firefox/firstrun.less',
         ),
         'nightly_firstrun': (
@@ -207,8 +220,9 @@ MINIFY_BUNDLES = {
         ),
         'firefox_geolocation': (
             'css/base/mozilla-expanders.less',
-            'css/firefox/geolocation.less',
-            'css/jquery/nyroModal.css'
+            'css/base/mozilla-modal.less',
+            'css/libs/mapbox.css',
+            'css/firefox/geolocation.less'
         ),
         'firefox_happy': (
             'css/firefox/happy.less',
@@ -221,6 +235,8 @@ MINIFY_BUNDLES = {
             'css/firefox/organizations.less',
         ),
         'firefox_os': (
+            'css/base/mozilla-modal.less',
+            'css/libs/jquery.pageslide.css',
             'css/firefox/os/firefox-os.less',
         ),
         'firefox_os_ie': (
@@ -239,10 +255,6 @@ MINIFY_BUNDLES = {
             'css/firefox/technology.less',
             'css/firefox/technology-demos.css',
         ),
-        'firefox_updates': (
-            'css/base/mozilla-expanders.less',
-            'css/firefox/update.less',
-        ),
         'firefox_whatsnew': (
             'css/sandstone/video.less',
             'css/firefox/whatsnew.less',
@@ -255,29 +267,25 @@ MINIFY_BUNDLES = {
             'css/firefox/releasenotes.less',
         ),
         'installer_help': (
+            'css/base/mozilla-modal.less',
             'css/firefox/template-resp.less',
             'css/firefox/installer-help.less',
         ),
         'home': (
             'css/mozorg/home.less',
             'css/mozorg/home-promo.less',
-            'js/libs/video-js/video-js.css',
-            'js/libs/video-js/video-js-sandstone.css',
         ),
-        'home-b': (
-            'css/mozorg/home-b.less',
+        'home-ie9': (
+            'css/mozorg/home-ie9.less',
         ),
-        'home-b-ie9': (
-            'css/mozorg/home-b-ie9.less',
+        'home-ie8': (
+            'css/mozorg/home-ie8.less',
         ),
-        'home-b-ie8': (
-            'css/mozorg/home-b-ie8.less',
+        'home-ie': (
+            'css/mozorg/home-ie.less',
         ),
-        'home-b-ie': (
-            'css/mozorg/home-b-ie.less',
-        ),
-        'marketplace': (
-            'css/marketplace/marketplace.less',
+        'legal_fraud_report': (
+            'css/legal/fraud-report.less',
         ),
         'mission': (
             'css/sandstone/video-resp.less',
@@ -312,7 +320,10 @@ MINIFY_BUNDLES = {
             'css/mozorg/products.less',
         ),
         'projects_mozilla_based': (
-            'css/mozorg/projects-mozilla-based.less',
+            'css/mozorg/projects/mozilla-based.less',
+        ),
+        'projects-calendar': (
+            'css/mozorg/projects/calendar.less',
         ),
         'research': (
             'css/research/research.less',
@@ -351,7 +362,12 @@ MINIFY_BUNDLES = {
         'annual_2011': (
             'css/foundation/annual2011.less',
         ),
+        'annual_2012': (
+            'css/base/mozilla-modal.less',
+            'css/foundation/annual2012.less',
+        ),
         'partners': (
+            'css/base/mozilla-modal.less',
             'css/libs/jquery.pageslide.css',
             'css/firefox/partners.less',
         ),
@@ -374,6 +390,9 @@ MINIFY_BUNDLES = {
             'js/lightbeam/ui.js',
             'js/libs/jquery.validate.js',
         ),
+        'projects-calendar': (
+            'js/mozorg/calendar.js',
+        ),
         'common': (
             'js/libs/jquery-1.7.1.min.js',
             'js/base/global.js',
@@ -388,6 +407,16 @@ MINIFY_BUNDLES = {
             'js/base/footer-email-form.js',
             'js/base/mozilla-input-placeholder.js',
             'js/base/mozilla-image-helper.js',
+        ),
+        'contact-spaces': (
+            'js/libs/mapbox.js',
+            'js/libs/jquery.history.js',
+            'js/mozorg/contact-data.js',
+            'js/libs/jquery.magnific-popup.min.js',
+            'js/mozorg/contact-spaces.js',
+        ),
+        'contact-spaces-ie7': (
+            'js/mozorg/contact-spaces-ie7.js',
         ),
         'contribute': (
             'js/libs/jquery.sequence.js',
@@ -447,6 +476,7 @@ MINIFY_BUNDLES = {
             'js/firefox/features.js',
         ),
         'firefox_firstrun': (
+            'js/base/mozilla-modal.js',
             'js/firefox/firstrun/firstrun.js',
         ),
         'firefox_firstrun_new_a': (
@@ -500,9 +530,6 @@ MINIFY_BUNDLES = {
         'firefox_tech': (
             'js/firefox/technology/tech.js',
         ),
-        'firefox_update': (
-            'js/firefox/update.js',
-        ),
         'firefox_sms': (
             'js/firefox/sms.js',
             'js/libs/socialshare.min.js',
@@ -511,24 +538,25 @@ MINIFY_BUNDLES = {
             'js/firefox/whatsnew-fxos.js',
         ),
         'geolocation': (
-            'js/libs/jquery.nyroModal.pack.js',
+            'js/libs/mapbox.js',
             'js/base/mozilla-expanders.js',
             'js/firefox/geolocation-demo.js',
+            'js/base/mozilla-modal.js',
         ),
         'home': (
-            'js/base/mozilla-pager.js',
-            'js/libs/video-js/video.dev.js',
-            'js/mozorg/home.js',
-        ),
-        'home-b': (
+            'js/libs/jquery.ellipsis.min.js',
             'js/libs/jquery.cycle2.min.js',
             'js/libs/jquery.cycle2.carousel.min.js',
-            'js/mozorg/home-b.js',
+            'js/mozorg/home.js',
         ),
-        'marketplace': (
-            'js/base/nav-main-resp.js',
-            'js/base/mozilla-pager.js',
-            'js/marketplace/marketplace.js',
+        'installer_help': (
+            'js/base/mozilla-modal.js',
+            'js/firefox/installer-help.js',
+        ),
+        'legal_fraud_report': (
+            'js/libs/jquery.validate.js',
+            'js/legal/fraud-report.js',
+            'js/base/mozilla-input-placeholder.js',
         ),
         'mozorg-resp': (
             'js/libs/jquery-1.7.1.min.js',
@@ -559,6 +587,11 @@ MINIFY_BUNDLES = {
         'privacy-firefoxos': (
             'js/privacy_firefoxos.js',
         ),
+        'products': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/mozorg/products.js',
+        ),
         'styleguide': (
             'js/styleguide/styleguide.js',
         ),
@@ -576,10 +609,15 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.jcarousel.min.js',
             'js/foundation/annual2011.js',
         ),
+        'annual_2012': (
+            'js/base/mozilla-modal.js',
+            'js/foundation/annual2012.js',
+        ),
         'partners': (
             'js/libs/modernizr.custom.shiv-load.js',
             'js/base/mozilla-input-placeholder.js',
             'js/base/mozilla-pager.js',
+            'js/base/mozilla-modal.js',
             'js/firefox/partners.js',
         ),
         'partners_common': (
@@ -627,6 +665,8 @@ DOMAIN_METHODS = {
             'tower.extract_tower_template'),
         ('%s/**/templates/**.js' % PROJECT_MODULE,
             'tower.extract_tower_template'),
+        ('%s/**/templates/**.jsonp' % PROJECT_MODULE,
+            'tower.extract_tower_template'),
     ],
 }
 
@@ -651,7 +691,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'bedrock.mozorg.middleware.CacheMiddleware',
-    'bedrock.newsletter.middleware.NewsletterMiddleware',
     'dnt.middleware.DoNotTrackMiddleware',
     'lib.l10n_utils.middleware.FixLangFileTranslationsMiddleware',
 ))
@@ -662,10 +701,13 @@ INSTALLED_APPS = get_apps(exclude=(
     'django.contrib.sessions',
     'django.contrib.staticfiles',
     'session_csrf',
+    'djcelery',
 ), append=(
     # Local apps
     'jingo_minify',
     'django_statsd',
+    'waffle',
+    'south',
 
     # Django contrib apps
     'django_sha2',  # Load after auth to monkey-patch it.
@@ -679,7 +721,6 @@ INSTALLED_APPS = get_apps(exclude=(
     '%s.foundation' % PROJECT_MODULE,
     '%s.grants' % PROJECT_MODULE,
     '%s.legal' % PROJECT_MODULE,
-    '%s.marketplace' % PROJECT_MODULE,
     '%s.mozorg' % PROJECT_MODULE,
     '%s.newsletter' % PROJECT_MODULE,
     '%s.persona' % PROJECT_MODULE,
@@ -720,8 +761,6 @@ FEEDS = {
     'mozilla': 'https://blog.mozilla.org/feed/'
 }
 
-GMAP_API_KEY = ''
-
 BASKET_URL = 'http://basket.mozilla.com'
 
 # This prefixes /b/ on all URLs generated by `reverse` so that links
@@ -753,7 +792,7 @@ RECAPTCHA_PUBLIC_KEY = ''
 RECAPTCHA_PRIVATE_KEY = ''
 RECAPTCHA_USE_SSL = True
 
-TEST_RUNNER = 'test_utils.runner.NoDBTestSuiterunner'
+TEST_RUNNER = 'test_utils.runner.RadicalTestSuiteRunner'
 
 # Use a message storage mechanism that doesn't need a database.
 # This can be changed to use session once we do add a database.
@@ -838,9 +877,37 @@ PRESS_BLOGS = {
 
 MOBILIZER_LOCALE_LINK = {
     'en-US': 'https://wiki.mozilla.org/FirefoxOS/Community/Mobilizers',
-    'hu': 'https://wiki.mozilla.org/Mobilizers/MobilizerHungary/',
+    'hu': 'https://www.facebook.com/groups/mobilizerhungary/',
     'pt-BR': 'https://wiki.mozilla.org/Mobilizers/MobilizerBrasil/',
     'pl': 'https://wiki.mozilla.org/Mobilizers/MobilizerPolska/',
     'gr': 'https://wiki.mozilla.org/Mobilizer/MobilizerGreece/',
     'cs': 'https://wiki.mozilla.org/Mobilizer/MobilizerCzechRepublic/'
 }
+
+DONATE_LOCALE_LINK = {
+    'de': 'https://sendto.mozilla.org/page/contribute/EOYFR2013-webDE',
+    'en-US': 'https://sendto.mozilla.org/page/contribute/EOYFR2013-tabzilla',
+    'fr': 'https://sendto.mozilla.org/page/contribute/EOYFR2013-webFR',
+    'pt-BR': 'https://sendto.mozilla.org/page/contribute/EOYFR2013-webPTBR',
+}
+
+# Official Firefox Twitter accounts
+FIREFOX_TWITTER_ACCOUNTS = {
+    'en-US': 'https://twitter.com/firefox',
+    'es-ES': 'https://twitter.com/firefox_es',
+    'pt-BR': 'https://twitter.com/firefoxbrasil',
+}
+
+# Mapbox token for spaces and communities pages
+MAPBOX_TOKEN = 'examples.map-9ijuk24y'
+
+TABZILLA_INFOBAR_OPTIONS = 'translation'
+
+# Optimize.ly project code for base template JS snippet
+OPTIMIZELY_PROJECT_ID = None
+
+# Link to Firefox for Android on the Google Play store with Google Analytics
+# campaign parameters
+GOOGLE_PLAY_FIREFOX_LINK = ('https://play.google.com/store/apps/details?'
+                            'id=org.mozilla.firefox&utm_source=mozilla&'
+                            'utm_medium=Referral&utm_campaign=mozilla-org')

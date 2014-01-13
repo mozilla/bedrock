@@ -18,11 +18,6 @@
     if (isFirefox()) {
         var latestFirefoxVersion = $html.attr('data-latest-firefox');
         latestFirefoxVersion = parseInt(latestFirefoxVersion.split('.')[0], 10);
-        latestFirefoxVersion--; // subtract one since a silent update may be
-                                // complete and the user hasn't restarted their
-                                // browser. This will be removed once there's
-                                // a way to get the current version directly
-                                // from the browser
 
         if (isFirefoxUpToDate(latestFirefoxVersion + '')) {
             $html.addClass('firefox-latest');
@@ -76,8 +71,9 @@
         var $thankYou = $('.thankyou');
         var hash_change = ('onhashchange' in window);
 
-        // Add external link tracking
-        $(document).on('click', 'a', function(e) {
+        // Add external link tracking, excluding links in Tabzilla that will be
+        // logged in tabzilla.js
+        $('#outer-wrapper').on('click', 'a', function(e) {
             // only track off-site links and don't track download.mozilla.org links
             if (this.hostname && this.hostname !== location.hostname && this.hostname !== 'download.mozilla.org') {
                 var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);

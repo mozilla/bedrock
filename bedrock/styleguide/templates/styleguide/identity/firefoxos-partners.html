@@ -1,6 +1,6 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
  # License, v. 2.0. If a copy of the MPL was not distributed with this
- # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% extends "styleguide/base.html" %}
 
@@ -25,11 +25,6 @@
       non-commercial use, please visit our <a href="{{ url2 }}">community page</a>.
       {% endtrans %}
     </p>
-    <p>
-      {% trans url1='https://assets.mozillalabs.com/Brands-Logos/Firefox%20OS/brand-guideline/FirefoxOS_BrandGuidelines_EN.pdf' %} 
-      For more information, download the <a href="{{ url1 }}">Firefox OS brand guidelines (pdf)</a>.
-      {% endtrans %}
-    </p>
   </div>
 </section>
 
@@ -49,11 +44,11 @@
     <div class="container">
       <div class="split the-look">
         {{ _('"The Look"') }}
-        <img src="{{ media('/img/styleguide/identity/firefoxos/partners-thelook.png?2013-06') }}" alt="">
+        <img src="{{ media('/img/styleguide/identity/firefoxos/partners-thelook.png?2013-06') }}" alt="The Look">
       </div>
       <div class="split">
         {{ _('"The Swoop"') }}
-        <img src="{{ media('/img/styleguide/identity/firefoxos/partners-theswoop.png?2013-06') }}" alt="">
+        <img src="{{ media('/img/styleguide/identity/firefoxos/partners-theswoop.png?2013-06') }}" alt="The Swoop">
       </div>
     </div>
   </div>
@@ -77,6 +72,7 @@
       <img class="based-on wordmark" src="{{ media('/img/styleguide/identity/firefoxos/partners-based-on-wordmark.png?2013-06') }}" alt="{{ _('Based on wordmark') }}">
 
       <div class="download">
+        <h4>Downloads</h4>
         <h5>{{ _('Color') }}</h5>
         <ul class="button-list">
           <li><a href="https://assets.mozillalabs.com/Projects/Firefox%20OS/Engagement/Unlicensed/firefox-os_unlicensed-based-on-square-red_CMYK.eps" class="button-sand">EPS</a></li>

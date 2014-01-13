@@ -1,6 +1,6 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
-# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% extends "mozorg/about-base.html" %}
 
@@ -15,29 +15,9 @@
 
 <h1 class="title-banner">{{ _('IDN-enabled TLDs') }}</h1>
 
-<p>{{ _('This is a list of top-level domains (TLDs) for which software from the Mozilla project displays Internationalized Domain Names (IDNs). It may not exactly match your product, depending on which version you have; search “about:config” for “IDN.whitelist” to see the list in your copy.') }}</p>
-
 <p><strong>{% trans url='https://wiki.mozilla.org/IDN_Display_Algorithm' %}
-Please note that the mechanism by which Firefox makes these decisions is due to change. <a href="{{ url }}">This document</a> has the details. Note in particular the section marked “Transition”, which defines the new requirement for registries seeking inclusion on the list in the period before the new algorithm is implemented in Firefox.
+This document is of historical interest only. Firefox now uses <a href="{{ url }}">an algorithm</a> to decide which IDNs to display. The whitelist mechanism still remains in the product for backwards compatibility, but the whitelist of domains is no longer updated.
 {% endtrans %}</strong></p>
-
-<p>{{ _('In the absence of an entry in the list, a domain will still work, but it is rendered in its Punycode form instead of in native form. This helps to keep confusingly similar domains from being displayed when rendered for the user.') }}</p>
-
-<h2>{{ _('To Add/Update a TLD') }}</h2>
-
-<p>{% trans url='https://bugzilla.mozilla.org/enter_bug.cgi?product=Core&amp;component=Networking:+Domain+Lists&amp;short_desc=Add+TLD+[YOURTLD]+to+IDN+whitelist&amp;comment=TLD:+[YOURTLD]%0ARegistry+URL:+[URL+of+NIC]%0AIDN+Policy+URL:[URL+of+Policy]%0ACharacter+Table+URL:+[URL+of+Characters]%0A%0A&lt;Description+of+Homographs+not+being+possible+or+link+to+document+that+explains&gt;%0A%0ASincerely,%0A-Official+NIC+Representative+for+TLD+[As+much+contact+info+as+possible]&amp;cc=gerv@mozilla.org' %}
-Any registry which wishes the Foundation to update their information or enable IDN display for their TLD should <a href="{{ url }}">submit a bug</a>, providing the following:
-{% endtrans %}
-
-<ul>
-<li>{{ _('the TLD(s) being submitted for addition or modification, and') }}</li>
-<li>{{ _('a link to their registry home page, and') }}</li>
-<li>{% trans url='https://wiki.mozilla.org/IDN_Display_Algorithm' %}
-a link to their policy page, with an explanation of how their policy is equally or more restrictive than the one set out in the <a href="{{ url }}">algorithm document</a>, and{% endtrans %}</li>
-<li>{{ _('Their name, and role within the TLD Registry, with contact information for further correspondance or clarifications') }}</li>
-</ul>
-  
-<p>Anyone who has evidence that a registry is not following their published policies, or that the policy has changed to permit the situation prohibited above should <a href="http://www.mozilla.org/security/#For_Developers">contact the Mozilla security group</a>.</p>
 
 <h2>{{ _('ASCII Country Code or Generic/Sponsored Top Level Domains') }}</h2>
 
@@ -194,7 +174,7 @@ a link to their policy page, with an explanation of how their policy is equally 
   </tr>
   <tr>
     <td>.lt</td>
-    <td><a href="http://www.domreg.lt/public?pg=&sp=&loc=en">{{ _('Registry') }}</a></td>
+    <td><a href="http://www.domreg.lt/public?pg=&amp;sp=&amp;loc=en">{{ _('Registry') }}</a></td>
     <td><a href="http://www.domreg.lt/public?pg=8A7FB6&amp;sp=idn&amp;loc=en">{{ _('Policy') }}</a></td>
     <td><a href="http://www.domreg.lt/static/doc/public/idn_symbols-en.pdf">{{ _('Character List') }}</a></td>
   </tr>
@@ -414,17 +394,6 @@ a link to their policy page, with an explanation of how their policy is equally 
     <td>{{ _('(JET Guidelines') }})</td>
   </tr>
 
-<!--
-  <tr>
-    <td></td>
-    <td><a href="">{{ _('Registry') }}</a></td>
-    <td><a href="">{{ _('Policy') }}</a></td>
-  </tr>
--->
-
 </table>
-    
-<h2 id="testing">{{ _('Testing') }}</h2>
 
-<p class="testing">{{ _('To enable IDN for a particular TLD for testing purposes, go to the URL <tt>about:config</tt> in Firefox 1.1 or above and add a boolean pref called "network.IDN.whitelist.tld", where "tld" is the TLD, and set it to "true". <em>This procedure is not recommended for users as it may expose them to security risk.') }}</em></p>
 {% endblock %}

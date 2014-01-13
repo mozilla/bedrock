@@ -1,10 +1,11 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
  # License, v. 2.0. If a copy of the MPL was not distributed with this
- # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% extends "/firefox/base-resp.html" %}
 
-{% block page_title %}Geolocation in Firefox{% endblock %}
+{% block page_title %}{{ _('Geolocation in Firefox') }}{% endblock %}
+{% block page_desc %}{{ _('Firefox can tell websites where you’re located so you can find info that’s more relevant and more useful.') }}{% endblock %}
 {% block body_id %}geolocation{% endblock %}
 
 {% block site_css %}
@@ -18,116 +19,202 @@
 {% block content %}
 
 <div id="main-feature">
-  <h1>Location-Aware Browsing</h1>
-  <p>Firefox can tell websites where you’re located so you can find info
-  that’s more relevant and more useful. It’s about making the Web smarter
-  &ndash; and is done in a way that totally respects your privacy.
-  <a href="#geo-demo" id="try-geolocation" style="display:none">Give it a try!</a></p>
+  <h1>{{ _('Location-Aware Browsing') }}</h1>
+  <p>
+  {% trans url='#geo-demo', id='try-geolocation', style='display:none' %}
+    Firefox can tell websites where you’re located so you can find info
+    that’s more relevant and more useful. It’s about making the Web smarter
+    &ndash; and is done in a way that totally respects your privacy.
+    <a href="{{ url }}" id="{{ id }}" style="{{ style }}">Give it a try!</a>
+  {% endtrans %}
+  </p>
 </div>
 
-<div id="main-content">
+<div id="main-content" data-mapbox="{{ settings.MAPBOX_TOKEN }}">
 
 <div class="main-column">
 
-<h3>Frequently asked <span>Questions</span></h3>
+<h3>{{ _('Frequently asked Questions') }}</h3>
 
 <div class="expander expander-odd">
-  <h4 class="expander-header">What is Location-Aware Browsing?</h4>
+  <h4 class="expander-header">{{ _('What is Location-Aware Browsing?') }}</h4>
   <div class="expander-content">
-    <p>Websites that use location-aware browsing will ask where you are in order to bring you more relevant information, or to save you time while searching. Let’s say you’re looking for a pizza restaurant in your area. A website will be able to ask you to share your location so that simply searching for “pizza” will bring you the answers you need... no further information or extra typing required.</p>
-    <p>Or, if you’re mapping out directions to get somewhere, the website will know where you’re starting from so all you have to do is tell it where you want to go.</p>
-    <p>This service is totally optional &ndash; Firefox doesn’t share your location without your permission &ndash; and is done with the utmost respect for your privacy. And, like all elements of Firefox, it’s being created using open standards to ease adoption by Web developers.</p>
+    <p>
+    {% trans %}
+      Websites that use location-aware browsing will ask where you are in
+      order to bring you more relevant information, or to save you time while
+      searching. Let’s say you’re looking for a pizza restaurant in your area.
+      A website will be able to ask you to share your location so that simply
+      searching for “pizza” will bring you the answers you need... no further
+      information or extra typing required.
+    {% endtrans %}
+    </p>
+    <p>{{ _('Or, if you’re mapping out directions to get somewhere, the website will know where you’re starting from so all you have to do is tell it where you want to go.') }}</p>
+    <p>
+    {% trans %}
+      This service is totally optional &ndash; Firefox doesn’t share your
+      location without your permission &ndash; and is done with the utmost
+      respect for your privacy. And, like all elements of Firefox, it’s being
+      created using open standards to ease adoption by Web developers.
+    {% endtrans %}
+    </p>
   </div>
 </div>
 <div class="expander expander-even">
-  <h4 class="expander-header">How does it work?</h4>
+  <h4 class="expander-header">{{ _('How does it work?') }}</h4>
   <div class="expander-content">
-    <p>When you visit a location-aware website, Firefox will ask you if you want to share your location.</p>
-    <p>If you consent, Firefox gathers information about nearby wireless access points and your computer’s IP address. Then Firefox sends this information to the default geolocation service provider, Google Location Services, to get an estimate of your location. That location estimate is then shared with the requesting website.</p>
-    <p>If you say that you do not consent, Firefox will not do anything.</p>
+    <p>{{ _('When you visit a location-aware website, Firefox will ask you if you want to share your location.') }}</p>
+    <p>
+    {% trans %}
+      If you consent, Firefox gathers information about nearby wireless access
+      points and your computer’s IP address. Then Firefox sends this
+      information to the default geolocation service provider, Google Location
+      Services, to get an estimate of your location. That location estimate is
+      then shared with the requesting website.
+    {% endtrans %}
+    </p>
+    <p>{{ _('If you say that you do not consent, Firefox will not do anything.') }}</p>
   </div>
 </div>
 <div class="expander expander-odd">
-  <h4 class="expander-header">How accurate are the locations?</h4>
+  <h4 class="expander-header">{{ _('How accurate are the locations?') }}</h4>
   <div class="expander-content">
-    <p>Accuracy varies greatly from location to location.  In some places, our service providers may be able to provide a location to within a few meters.  However, in other areas it might be much more than that.  All locations returned by our service providers are estimates only and we do not guarantee the accuracy of the locations provided.  Please do not use this information for emergencies. Always use common sense.</p>
+    <p>
+    {% trans %}
+      Accuracy varies greatly from location to location.  In some places, our
+      service providers may be able to provide a location to within a few
+      meters. However, in other areas it might be much more than that.  All
+      locations returned by our service providers are estimates only and we do
+      not guarantee the accuracy of the locations provided.  Please do not use
+      this information for emergencies. Always use common sense.
+    {% endtrans %}
+    </p>
   </div>
 </div>
 <div class="expander expander-even">
-  <h4 class="expander-header">What information is being sent, and to whom? How is my privacy protected?</h4>
+  <h4 class="expander-header">
+  {% trans %}
+    What information is being sent, and to whom? How is my privacy protected?
+  {% endtrans %}
+  </h4>
   <div class="expander-content">
-    <p>Your privacy is extremely important to us, and Firefox never shares your location without your permission. When you visit a page that requests your information, you’ll be asked before any information is shared with the requesting website and our third-party service provider.</p>
-    <p>By default, Firefox uses Google Location Services to determine your location by sending:</p>
+    <p>
+    {% trans %}
+      Your privacy is extremely important to us, and Firefox never shares your
+      location without your permission. When you visit a page that requests
+      your information, you’ll be asked before any information is shared with
+      the requesting website and our third-party service provider.
+    {% endtrans %}
+    </p>
+    <p>{{ _('By default, Firefox uses Google Location Services to determine your location by sending:') }}</p>
     <ul>
-      <li>your computer’s IP address,</li>
-      <li>information about the nearby wireless access points, and</li>
-      <li>a random client identifier, which is assigned by Google, that expires every 2 weeks.</li>
+      <li>{{ _('your computer’s IP address,') }}</li>
+      <li>{{ _('information about the nearby wireless access points, and') }}</li>
+      <li>{{ _('a random client identifier, which is assigned by Google, that expires every 2 weeks.') }}</li>
     </ul>
-    <p>For a complete description of information collected and used by Firefox, please see the <a href="{{ php_url('/legal/privacy/firefox.html') }}">Firefox Privacy Policy</a>.</p>
-    <p>Google Location Services then returns your estimated geolocation (e.g., latitude and longitude).  For a complete description of information collected and used by Google, please see the <a href="https://www.google.com/privacy/lsf.html" class="external">Google Geolocation Privacy Policy</a>.</p>
-    <p>The information is exchanged over an encrypted connection to protect your privacy. Once Firefox has your location information, it passes it to the website that requested it. At no time is the name or location of the website you are visiting, or are any cookies, ever shared with Google Location Services.</p>
-    <p>Neither Mozilla or Google will ever use the information collected by Google Location Services to identify or spy on you.</p>
-    <p>For information about what the requesting website does with your location information, please refer to that website's privacy policy.</p>
-    <p>For more information about your privacy, you should also read:</p>
+    <p>
+    {% trans url=php_url('/legal/privacy/firefox.html') %}
+      For a complete description of information collected and used by Firefox,
+      please see the <a href="{{ url }}">Firefox Privacy Policy</a>.
+    {% endtrans %}
+    </p>
+    <p>
+    {% trans url='https://www.google.com/privacy/lsf.html', class='external' %}
+      Google Location Services then returns your estimated geolocation (e.g.,
+      latitude and longitude).  For a complete description of information
+      collected and used by Google, please see the
+      <a href="{{ url }}" class="{{ class }}">Google Geolocation Privacy
+      Policy</a>.
+    {% endtrans %}
+    </p>
+    <p>
+    {% trans %}
+      The information is exchanged over an encrypted connection to protect your
+      privacy. Once Firefox has your location information, it passes it to the
+      website that requested it. At no time is the name or location of the
+      website you are visiting, or are any cookies, ever shared with Google
+      Location Services.
+    {% endtrans %}
+    </p>
+    <p>{{ _('Neither Mozilla or Google will ever use the information collected by Google Location Services to identify or spy on you.') }}</p>
+    <p>{{ _('For information about what the requesting website does with your location information, please refer to that website’s privacy policy.') }}</p>
+    <p>{{ _('For more information about your privacy, you should also read:') }}</p>
     <ul>
-      <li><a href="{{ php_url('/legal/privacy/firefox.html') }}">Mozilla Firefox privacy policy</a></li>
-      <li><a href="https://www.google.com/privacy/lsf.html" class="external">Google privacy policy</a></li>
+      <li><a href="{{ php_url('/legal/privacy/firefox.html') }}">{{ _('Mozilla Firefox privacy policy') }}</a></li>
+      <li><a href="https://www.google.com/privacy/lsf.html" class="external">{{ _('Google privacy policy') }}</a></li>
     </ul>
   </div>
 </div>
 <div class="expander expander-odd">
-  <h4 class="expander-header">Am I being tracked as I browse the web?</h4>
+  <h4 class="expander-header">{{ _('Am I being tracked as I browse the web?') }}</h4>
   <div class="expander-content">
-    <p>No. Firefox only requests a location when a website makes a request, and only shares your location when the user has approved the request. Firefox does not track or remember your location as you browse.</p>
+    <p>
+    {% trans %}
+      No. Firefox only requests a location when a website makes a request, and
+      only shares your location when the user has approved the request.
+      Firefox does not track or remember your location as you browse.
+    {% endtrans %}
+    </p>
   </div>
 </div>
 <div class="expander expander-even" id="undo-permission">
-  <h4 class="expander-header">How do I undo a permission granted to a site?</h4>
+  <h4 class="expander-header">{{ _('How do I undo a permission granted to a site?') }}</h4>
   <div class="expander-content">
-    <p>If you've given Firefox permission to always give your location to a site and later change your mind, you can easily revoke that permission. Here's how:</p>
+    <p>
+    {% trans %}
+      If you've given Firefox permission to always give your location to a site
+      and later change your mind, you can easily revoke that permission. Here's
+      how:
+    {% endtrans %}
+    </p>
     <ul>
-      <li>Navigate to the site to which you've given permission</li>
-      <li>Go to the <em>Tools</em> menu, then select <em>Page Info</em></li>
-      <li>Select the <em>Permissions</em> tab</li>
-      <li>Change the setting for <em>Share Location</em></li>
+      <li>{{ _('Navigate to the site to which you’ve given permission') }}</li>
+      <li>{{ _('Go to the <em>Tools</em> menu, then select <em>Page Info</em>') }}</li>
+      <li>{{ _('Select the <em>Permissions</em> tab') }}</li>
+      <li>{{ _('Change the setting for <em>Share Location</em>') }}</li>
     </ul>
   </div>
 </div>
 <div class="expander expander-odd">
-  <h4 class="expander-header">How do I clear the “random client identification number”?</h4>
+  <h4 class="expander-header">{{ _('How do I clear the “random client identification number”?') }}</h4>
   <div class="expander-content">
     <ul>
-      <li>Go to the <em>Tools</em> menu, then select <em>Clear Recent History</em></li>
-      <li>Click the <em>Details</em> arrow</li>
-      <li>Ensure that <em>Cookies</em> is selected</li>
-      <li>Click on <em>Clear Now</em></li>
+      <li>{{ _('Go to the <em>Tools</em> menu, then select <em>Clear Recent History</em>') }}</li>
+      <li>{{ _('Click the <em>Details</em> arrow') }}</li>
+      <li>{{ _('Ensure that <em>Cookies</em> is selected') }}</li>
+      <li>{{ _('Click on <em>Clear Now</em>') }}</li>
     </ul>
   </div>
 </div>
 <div class="expander expander-even">
-  <h4 class="expander-header">How do I turn off Location-Aware Browsing permanently?</h4>
+  <h4 class="expander-header">{{ _('How do I turn off Location-Aware Browsing permanently?') }}</h4>
   <div class="expander-content">
-    <p>Location-Aware Browsing is always opt-in in Firefox. No location information is ever sent without your permission. If you wish to disable the feature completely, please follow this set of steps:</p>
+    <p>
+    {% trans %}
+      Location-Aware Browsing is always opt-in in Firefox. No location
+      information is ever sent without your permission. If you wish to disable
+      the feature completely, please follow this set of steps:
+    {% endtrans %}
+    </p>
     <ul>
-      <li>In the URL bar, type <code>about:config</code></li>
-      <li>Type <code>geo.enabled</code></li>
-      <li>Double click on the <em>geo.enabled</em> preference</li>
-      <li>Location-Aware Browsing is now disabled</li>
+      <li>{{ _('In the URL bar, type <code>about:config</code>') }}</li>
+      <li>{{ _('Type <code>geo.enabled</code>') }}</li>
+      <li>{{ _('Double click on the <em>geo.enabled</em> preference') }}</li>
+      <li>{{ _('Location-Aware Browsing is now disabled') }}</li>
     </ul>
   </div>
 </div>
 
-<div id="geo-demo" style="display:none">
-  <div id="map_canvas"></div>
-  <button id="locateButton" type="button">Where am I?</button>
-  <img id="geo-busy" src="{{ MEDIA_URL }}img/ajax_loading.gif" alt="busy"/>
-  <p id="geodemo-error">Oops! An error occurred while trying to determine your position.</p>
+<div style="display:none">
+  <div id="geo-demo">
+    <div id="map_canvas"></div>
+    <button id="locateButton" type="button">{{ _('Where am I?') }}</button>
+    <img id="geo-busy" src="{{ MEDIA_URL }}img/ajax_loading.gif" alt="busy"/>
+    <p id="geodemo-error">{{ _('Oops! An error occurred while trying to determine your position.') }}</p>
+  </div>
 </div>
-
 </div>
 
 </div> <!-- end #main -->
-
-<script src="//maps.googleapis.com/maps/api/js?sensor=true&amp;key={{ gmap_api_key }}"></script>
 
 {% endblock %}

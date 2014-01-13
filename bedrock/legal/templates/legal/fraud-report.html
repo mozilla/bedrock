@@ -1,0 +1,206 @@
+{% extends "base-resp.html" %}
+
+{% block page_title %}{{_('Violating Website Report')}}{% endblock %}
+{% block body_id %}legal_fraude_report_index-page{% endblock %}
+{% block body_class %}sand{% endblock %}
+
+{% block site_css %}
+  {{ css('legal_fraud_report') }}
+{% endblock %}
+
+{% block content %}
+
+<main role="main" id="main-content">
+  <header class="main-header">
+    {# L10n: The line break below is for visual formatting only #}
+    <h1 class="title-shadow-box">{{_('Protect the Fox<br> (and More!)')}}</h1>
+  </header><!-- /header -->
+
+  <div class="container">
+    <h2 class="secondary-title">{{ _('Help us safeguard Mozilla’s trademarks by reporting misuse.') }}</h2>
+    <div class="main-column">
+      <p>
+      {% trans %}
+        The Firefox name or logo on a product or webpage tells you that you
+        are getting a free, high quality, open source browser that has
+        been tested and released by Mozilla. In order to make sure others
+        are not using our trademarks to mislead users into downloading
+        malware, paying for the software, or providing personal
+        information, we need your help.
+      {% endtrans %}
+      </p>
+      <p>
+        <strong>{{ _('Please use this form to report any websites or mobile app stores that are:') }}</strong>
+      </p>
+      <ol>
+        <li>
+          {{ _('Distributing harmful products under Mozilla brands such as Firefox.') }}
+        </li>
+        <li>
+          {{ _('Charging for Firefox, Thunderbird, or any of the Mozilla products.') }}
+        </li>
+        <li>
+        {% trans %}
+          Collecting personal information as a condition to download any
+          of the Mozilla software (registration requirement).
+        {% endtrans %}
+        </li>
+        <li>
+        {% trans %}
+          Using the Mozilla trademarks to mislead the public into
+          thinking the site is an official Mozilla site or sponsored by
+          Mozilla.
+        {% endtrans %}
+        </li>
+        <li>
+        {% trans %}
+          Distributing modified versions of Firefox, or any of our
+          Mozilla software, and still using the trademark. Note: anyone
+          may modify Mozilla software, but once modified, it may no
+          longer use Mozilla trademark(s) (e.g. be called Firefox)
+          without a license.
+        {% endtrans %}
+        </li>
+        <li>
+        {% trans url=url('foundation.trademarks.index') %}
+          Using the Mozilla trademarks (including logos) in any other way
+          that violates our <a href="{{ url }}">Trademark Policy</a>
+          (e.g. trademark is modified or used for commercial purposes).
+        {% endtrans %}
+        </li>
+      </ol>
+
+      <p>
+      {% trans url1=url('foundation.trademarks.faq'), url2='http://www.spreadfirefox.com/' %}
+        While the uses of our trademarks described above are not allowed,
+        there are lots of ways our community members can use our
+        trademarks without requesting permission. For more information,
+        please review our <a href="{{ url1 }}">Trademark FAQs</a>
+        or visit <a href="{{ url2 }}">Spreadfirefox.com</a>.
+      {% endtrans %}
+      </p>
+
+      <p>
+      {% trans url=url('privacy.index') %}
+        Once you have reported a website or mobile app, we will analyze it
+        and, if necessary, take the appropriate action. If you would like
+        to provide your email address so that we can follow up with you if
+        we have questions, there is an optional email address field in the
+        form below. We will only use your email address in connection with
+        this report. Please see our <a href="{{ url }}">privacy policy</a>
+        for more information.
+      {% endtrans %}
+      </p>
+
+      <p>
+      {% trans url1='mailto:trademarks@mozilla.com',
+               url2=url('mozorg.contact.spaces.spaces-landing'),
+               url3='http://www.google.com/safebrowsing/report_badware/' %}
+
+        This form is only for reporting websites that misuse Mozilla
+        trademarks. If you need to contact us about a different trademark
+        matter, please instead send an
+        <a href="{{ url1 }}">email</a>. If you need to
+        contact Mozilla about anything else, please visit our
+        <a href="{{ url2 }}">Contacts page</a>
+        for the right way to do so. If you have concerns about non-Mozilla
+        sites engaging in bad activities unrelated to Mozilla trademarks,
+        please don’t use this form and instead contact the owner of that
+        website directly. If you are reporting a site distributing malware
+        or engaged in phishing, please also report the site to the
+        <a href="{{ url3 }}">Google Safe Browsing Team</a>.
+      {% endtrans %}
+      </p>
+
+      <p>{{ _('Thank you for your help!') }}</p>
+    </div><!--/.main-column-->
+
+    <section class="sidebar">
+      <h3>{{ _('Fraud Report') }}</h3>
+      {% if not form_submitted or (form_submitted and form_error) %}
+        {% if form_error %}
+          <div class="tooltip">
+            {{ _('An error has occurred with your submission. Please review your information and try again.') }}
+          </div>
+        {% endif %}
+
+        <form action="{{ secure_url('legal.fraud-report') }}" method="post" name="reportForm" id="reportForm" enctype="multipart/form-data">
+          <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
+          <div class="field required" id="url">
+            {{ form.input_url.errors }}
+            <label for="input_url" >{{ _('URL') }}</label>
+            {{ form.input_url }}
+            <div class="field-note">{{ _('The URL of the violating website. e.g. http://offendingsite.com/') }}</div>
+          </div>
+
+          <div class="field required" id="category">
+            {{ form.input_category.errors }}
+            <label for="input_category">{{ _('Category') }}</label>
+            {{ form.input_category }}
+          </div>
+
+          <div class="field required" id="product">
+            {{ form.input_product.errors }}
+            <label for="input_product">{{ _('Product') }}</label>
+            {{ form.input_product }}
+          </div>
+
+          <div class="field" id="specific_product">
+            {{ form.input_specific_product.errors }}
+            <label for="input_specific_product">{{ _('Name a more specific product, if needed') }}</label>
+            {{ form.input_specific_product }}
+          </div>
+
+          <div class="field" id="details">
+            {{ form.input_details.errors }}
+            <label for="input_details">{{ _('Please provide additional details') }}</label>
+            {{ form.input_details }}
+          </div>
+
+          <div class="field" id="attachment">
+            {{ form.input_attachment.errors }}
+            <label for="input_attachment">{{ _('Attachment') }}</label>
+            {{ form.input_attachment }}
+            <div class="field-note">{{ _('Maximum file size is 5 MB.') }}</div>
+          </div>
+
+          <div class="field" id="attachment_desc">
+            {{ form.input_attachment_desc.errors }}
+            <label for="input_attachment_desc">{{ _('Attachment Description') }}</label>
+            {{ form.input_attachment_desc }}
+            <div class="field-note">{{ _('Please describe what you are attaching.') }}</div>
+          </div>
+
+          <div class="field" id="email">
+            {{ form.input_email.errors }}
+            <label for="input_email">{{ _('Email address (optional)') }}</label>
+            {{ form.input_email }}
+            <div class="field-note">
+            {% trans url=url('privacy.index') %}
+              If you choose to provide it, your email address will only be
+              used to contact you about this report. Please see our
+              <a href="{{ url }}">Privacy Policy</a> for more information.
+            {% endtrans %}
+            </div>
+          </div>
+
+          <button type="submit" name="submit_form" class="button">{{ _('Send Report') }}</button>
+
+          {{ form.superpriority }}
+        </form>
+      {% else %}
+        <h2>{{ _('Your report has been sent.') }}</h2>
+        <p>{{ _('Thank you for your help. It’s our community that makes us great.') }}</p>
+      {% endif %}
+    </section><!--/.sidebar-->
+  </div><!--/.container-->
+</main>
+
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{% block js %}
+  {{ js('legal_fraud_report') }}
+{% endblock  %}

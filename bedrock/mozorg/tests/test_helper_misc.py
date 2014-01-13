@@ -3,7 +3,7 @@ import os.path
 from mock import patch
 
 from django.conf import settings
-from django.test.client import Client, RequestFactory
+from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
 import basket
@@ -20,11 +20,24 @@ TEST_FILES_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                'test_files')
 TEST_L10N_IMG_PATH = os.path.join(TEST_FILES_ROOT, 'media', 'img', 'l10n')
 
+TEST_DONATE_LOCALE_LINK = {
+    'de': 'https://sendto.mozilla.org/page/contribute/EOYFR2013-webDE',
+    'en-US': 'https://sendto.mozilla.org/page/contribute/EOYFR2013-tabzilla',
+    'fr': 'https://sendto.mozilla.org/page/contribute/EOYFR2013-webFR',
+    'pt-BR': 'https://sendto.mozilla.org/page/contribute/EOYFR2013-webPTBR',
+}
+
+TEST_FIREFOX_TWITTER_ACCOUNTS = {
+    'en-US': 'https://twitter.com/firefox',
+    'es-ES': 'https://twitter.com/firefox_es',
+    'pt-BR': 'https://twitter.com/firefoxbrasil',
+}
+
 
 # Where should this function go?
-def render(s, context={}):
+def render(s, context=None):
     t = jingo.env.from_string(s)
-    return t.render(context)
+    return t.render(context or {})
 
 
 @patch('django.conf.settings.LANGUAGE_CODE', 'en-US')
@@ -181,9 +194,6 @@ class TestVideoTag(TestCase):
 
 @patch.object(settings, 'ROOT_URLCONF', 'bedrock.mozorg.tests.urls')
 class TestNewsletterFunction(TestCase):
-    def setUp(self):
-        self.client = Client()
-
     def test_get_form(self):
         response = self.client.get('/en-US/base/')
         doc = pq(response.content)
@@ -341,6 +351,85 @@ class TestPressBlogUrl(TestCase):
     def test_press_blog_url_other_locale(self):
         """No blog for locale, fallback to default press blog"""
         eq_(self._render('oc'), 'https://blog.mozilla.org/press/')
+
+
+@override_settings(DONATE_LOCALE_LINK=TEST_DONATE_LOCALE_LINK)
+class TestDonateUrl(TestCase):
+    rf = RequestFactory()
+
+    def _render(self, locale):
+        req = self.rf.get('/')
+        req.locale = locale
+        return render('{{ donate_url() }}', {'request': req})
+
+    def test_donate_url_no_locale(self):
+        """No locale, fallback to default page"""
+        eq_(self._render(''),
+            'https://sendto.mozilla.org/page/contribute/EOYFR2013-tabzilla')
+
+    def test_donate_url_english(self):
+        """en-US locale, default page"""
+        eq_(self._render('en-US'),
+            'https://sendto.mozilla.org/page/contribute/EOYFR2013-tabzilla')
+
+    def test_donate_url_spanish(self):
+        """de locale, a localed page"""
+        eq_(self._render('de'),
+            'https://sendto.mozilla.org/page/contribute/EOYFR2013-webDE')
+
+    def test_donate_url_french(self):
+        """fr locale, a localed page"""
+        eq_(self._render('fr'),
+            'https://sendto.mozilla.org/page/contribute/EOYFR2013-webFR')
+
+    def test_donate_url_portuguese(self):
+        """pt-BR locale, a localed page"""
+        eq_(self._render('pt-BR'),
+            'https://sendto.mozilla.org/page/contribute/EOYFR2013-webPTBR')
+
+    def test_donate_url_other_locale(self):
+        """No page for locale, fallback to default page"""
+        eq_(self._render('es-AR'),
+            'https://sendto.mozilla.org/page/contribute/EOYFR2013-tabzilla')
+        eq_(self._render('es-CL'),
+            'https://sendto.mozilla.org/page/contribute/EOYFR2013-tabzilla')
+        eq_(self._render('es-MX'),
+            'https://sendto.mozilla.org/page/contribute/EOYFR2013-tabzilla')
+        eq_(self._render('pt-PT'),
+            'https://sendto.mozilla.org/page/contribute/EOYFR2013-tabzilla')
+
+
+@override_settings(FIREFOX_TWITTER_ACCOUNTS=TEST_FIREFOX_TWITTER_ACCOUNTS)
+class TestFirefoxTwitterUrl(TestCase):
+    rf = RequestFactory()
+
+    def _render(self, locale):
+        req = self.rf.get('/')
+        req.locale = locale
+        return render('{{ firefox_twitter_url() }}', {'request': req})
+
+    def test_firefox_twitter_url_no_locale(self):
+        """No locale, fallback to default account"""
+        eq_(self._render(''), 'https://twitter.com/firefox')
+
+    def test_firefox_twitter_url_english(self):
+        """en-US locale, default account"""
+        eq_(self._render('en-US'), 'https://twitter.com/firefox')
+
+    def test_firefox_twitter_url_spanish(self):
+        """es-ES locale, a local account"""
+        eq_(self._render('es-ES'), 'https://twitter.com/firefox_es')
+
+    def test_firefox_twitter_url_portuguese(self):
+        """pt-BR locale, a local account"""
+        eq_(self._render('pt-BR'), 'https://twitter.com/firefoxbrasil')
+
+    def test_firefox_twitter_url_other_locale(self):
+        """No account for locale, fallback to default account"""
+        eq_(self._render('es-AR'), 'https://twitter.com/firefox')
+        eq_(self._render('es-CL'), 'https://twitter.com/firefox')
+        eq_(self._render('es-MX'), 'https://twitter.com/firefox')
+        eq_(self._render('pt-PT'), 'https://twitter.com/firefox')
 
 
 class TestHighResImg(TestCase):

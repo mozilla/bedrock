@@ -1,10 +1,11 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
  # License, v. 2.0. If a copy of the MPL was not distributed with this
- # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% extends "/firefox/base-resp.html" %}
 
-{% block page_title %}Frequently Asked Questions{% endblock %}
+{% block page_title %}{{ _('Frequently Asked Questions') }}{% endblock %}
+{% block page_desc %}{{ _('Firefox for Android is built on the same technology platform as Firefox for the desktop, making it fast, easy to use and secure.') }}{% endblock %}
 {% block body_id %}mobile-faq{% endblock %}
 
 {% block site_css %}
@@ -60,13 +61,13 @@
         {% trans %}
           <dt>Is Firefox available for my platform or device?</dt>
           <dd>Firefox for Android works with Android phones version 2.2 (Froyo)
-          and above. <a href="/firefox/mobile/platforms">Visit our list of supported platforms and devices</a>.</dd>
+          and above. <a href="https://support.mozilla.org/kb/will-firefox-work-my-mobile-device">Visit our list of supported platforms and devices</a>.</dd>
         {% endtrans %}
 
-        {% trans %}
+        {% trans url=settings.GOOGLE_PLAY_FIREFOX_LINK %}
           <dt>Is Firefox available in my language?</dt>
           <dd>Firefox is currently available in more than 10 languages and
-          we're working on adding more. Check the <a href="https://play.google.com/store/apps/details?id=org.mozilla.firefox">Google Play Store</a>
+          we're working on adding more. Check the <a href="{{ url }}">Google Play Store</a>
           to see if yours is supported.</dd>
         {% endtrans %}
 
@@ -136,7 +137,7 @@
           {% endtrans %}
 
           {% trans %}
-          <dt>What does the Awesome Screen do?
+          <dt>What does the Awesome Screen do?</dt>
           <dd>The Awesome Screen gets you to where you want to go quickly
           with less typing by giving you a list of your most often visited
           sites along with the ability to browse through your bookmarks,

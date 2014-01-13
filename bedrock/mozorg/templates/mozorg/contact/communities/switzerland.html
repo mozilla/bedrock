@@ -1,0 +1,37 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/contact/contact-base.html" %}
+
+{% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Switzerland') }}{% endblock %}
+
+{% block contact_entry %}
+  <div id="entry-container">
+    <section class="entry entry-community" id="switzerland" data-tab="communities">
+      <div class="card">
+        <h2>{{ _('Switzerland') }}</h2>
+
+        <ul class="extra">
+          <li><a href="http://www.mozilla.de/" class="website">www.mozilla.de</a></li>
+          <li><a href="https://lists.mozilla.org/listinfo/community-switzerland" class="email">{{ _('Mailing list') }}</a></li>
+          <li><a href="https://www.mozilla-hispano.org/foro/viewforum.php?f=6" class="email">{{ _('Forum') }}</a></li>
+          <li><a href="https://twitter.com/MozillaCH" class="twitter">@MozillaCH</a></li>
+          <li><a href="irc://irc.mozilla.org/mozilla.de" class="irc">IRC: #mozilla.de</a></li>
+        </ul>
+
+        <figure class="feature-img">
+          <img src="//api.tiles.mapbox.com/v3/{{ settings.MAPBOX_TOKEN }}/8.30,46.89,6/380x250.png" alt="">
+        </figure>
+      </div>
+
+      <section class="gallery">
+        <h3>{{ _('Photo gallery') }}</h3>
+        <ul class="gallery-list">
+          <li class="gallery-image"><a href="{{ media('img/contact/pictures/switzerland-01.jpg') }}"><img src="{{ media('img/contact/pictures/switzerland-01-th.jpg') }}" alt="1"></a></li>
+        </ul>
+      </section>
+
+    </section>
+  </div>
+{% endblock %}

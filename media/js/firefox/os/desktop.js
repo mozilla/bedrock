@@ -222,7 +222,10 @@
       $signup_content = $('#email-form-content').detach();
     }
 
-    Mozilla.Modal.createModal(this, $signup_content, { onDestroy: reattachSignupContent, allowScroll: true });
+    Mozilla.Modal.createModal(this, $signup_content, {
+        allowScroll: !isSmallViewport,
+        title: '<img src="/media/img/firefox/os/logo/firefox-os-white.png" alt="mozilla" />'
+    });
 
     //track GA event for newsletter CTA
     trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'click', cta]);
@@ -231,10 +234,6 @@
   $('#sign-up-form-close').on('click', function() {
     Mozilla.Modal.closeModal();
   });
-
-  function reattachSignupContent() {
-    $('#email-form-wrapper').append($signup_content);
-  }
 
   // reallly primative validation e.g a@a
   // matches built-in validation in Firefox
@@ -303,27 +302,42 @@
       $get_phone_content = $('#get-phone').detach();
     }
 
-    Mozilla.Modal.createModal(this, $get_phone_content, { onDestroy: reattachGetPhoneContent, allowScroll: true });
+    Mozilla.Modal.createModal(this, $get_phone_content, {
+        allowScroll: !isSmallViewport,
+        title: '<img src="/media/img/firefox/os/logo/firefox-os-white.png" alt="mozilla" />'
+    });
 
     //track GA event for get a phone CTA
     trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'click', 'Get a Phone']);
   });
 
-  var reattachGetPhoneContent = function() {
-    $('#get-phone-wrapper').append($get_phone_content);
-  };
-
   // toggle sticky masthead when tabzilla is opened/closed
   $tabzilla.on('click', function () {
     var $tab = $('#tabzilla-panel');
-
-    $('#masthead .wrapper').toggleClass('stuck');
+    var $wrapper = $('#masthead .wrapper');
 
     //if we're on mobile then masthead position is relative
     if ($w.width() < 760) { return; }
 
     if ($tab.hasClass('open')) {
       $tab.css('height', 0);
+      $wrapper.addClass('stuck');
+    } else {
+      $wrapper.removeClass('stuck');
+    }
+  });
+
+  // Support for an information bar of Tabzilla
+  $(document).on('infobar-showing', '#tabzilla-panel', function () {
+    var $wrapper = $('#masthead .wrapper');
+    if ($wrapper.hasClass('scroll')) {
+      $(this).stop(true); // Do not show the bar when scrolled down
+    } else {
+      $wrapper.removeClass('stuck');
+    }
+  }).on('infobar-hidden', '#tabzilla-panel', function () {
+    if (!$(this).hasClass('open')) {
+      $('#masthead .wrapper').addClass('stuck');
     }
   });
 
@@ -342,14 +356,14 @@
     if (direction === 'down') {
       // if tabzilla is open then close if we start to scroll
       if ($tab.hasClass('open')) {
-        $tab.css('height', 0);
         $tabzilla.trigger('click');
       }
       $tabzilla.fadeOut('fast');
       $btn.fadeIn();
       $wrapper.animate({backgroundColor: '#fff'}, 'fast');
       $current.promise().done(function () {
-        $wrapper.addClass('scroll');
+        $tab.css('height', 0);
+        $wrapper.addClass('scroll stuck');
       });
       $('#masthead ul li a').animate({color: '#0096DD'}, 'fast');
 
@@ -361,6 +375,13 @@
         $wrapper.removeClass('scroll');
       });
       $('#masthead ul li a').animate({color: '##484848'}, 'fast');
+      // Support for an information bar of Tabzilla
+      var $infobar = $('#tabzilla-infobar').css('height', 'auto');
+      if ($infobar.length) {
+        $tab.animate({'height': $infobar.height()}, 200, function () {
+          $(this).trigger('infobar-shown');
+        }).trigger('infobar-showing');
+      }
     }
   }, { offset: -1 });
 

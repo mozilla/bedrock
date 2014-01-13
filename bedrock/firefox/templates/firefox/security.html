@@ -1,10 +1,11 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
  # License, v. 2.0. If a copy of the MPL was not distributed with this
- # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% extends "/firefox/base.html" %}
 
-{% block page_title %}Safe Web Browsing{% endblock %}
+{% block page_title %}{{ _('Safe Web Browsing') }}{% endblock %}
+{% block page_desc %}{{ _('Worried about online security? We’ve got your back. Firefox helps keep you safe. Protect your privacy, browse securly and stay in control with Firefox. It’s part of our mission.') }}{% endblock %}
 {% block body_id %}firefox-security{% endblock %}
 
 {% block site_css %}
@@ -15,49 +16,78 @@
 
 
 <div id="main-feature" class="stacked">
-  <h1>Firefox Helps You <span class="large">Stay Safe</span></h1>
+  <h1>{{ _('Firefox Helps You <span class="%s">Stay Safe</span>')|format('large') }}</h1>
   {{ download_firefox(small=True) }}
 </div>
 
 <nav class="menu-bar billboard">
   <ul>
-    <li><a href="#privacy">Protect Your Privacy</a></li>
-    <li><a href="#secure">Browse with Security</a></li>
-    <li><a href="#control">Stay in Control</a></li>
-    <li><a href="#mission">Part of Our Mission</a></li>
+    <li><a href="#privacy">{{ _('Protect Your Privacy') }}</a></li>
+    <li><a href="#secure">{{ _('Browse with Security') }}</a></li>
+    <li><a href="#control">{{ _('Stay in Control') }}</a></li>
+    <li><a href="#mission">{{ _('Part of Our Mission') }}</a></li>
   </ul>
 </nav>
 
 <section id="privacy" class="billboard">
 <div class="row">
   <div class="span3">
-    <h2>Protect Your Privacy</h2>
-    <p>When you browse, you leave a trail of data that potentially contains all sorts of personal information. We believe this info belongs to you and you alone (and least of all to overzealous advertisers), and have built in features to ensure that’s the case.</p>
-    <p class="top-link"><a href="#main-feature">Return to Top</a></p>
+    <h2>{{ _('Protect Your Privacy') }}</h2>
+    <p>
+    {% trans %}
+      When you browse, you leave a trail of data that potentially contains all
+      sorts of personal information. We believe this info belongs to you and
+      you alone (and least of all to overzealous advertisers), and have built
+      in features to ensure that’s the case.
+    {% endtrans %}
+    </p>
+    <p class="top-link"><a href="#main-feature">{{ _('Return to Top') }}</a></p>
   </div>
   <div class="section-image span4">
-     {{ platform_img('img/firefox/security/screenshot-privacy.jpg', {'alt': 'Private Browsing screenshot'}) }}
+     {{ platform_img('img/firefox/security/screenshot-privacy.jpg', {'alt': _('Private Browsing screenshot')}) }}
   </div>
   <ul class="section-list span3">
     <li>
-      <h4>Do Not Track</h4>
-      <p>Many sites track your online behavior and sell that data to advertisers. Firefox lets you tell sites that you want to opt out of behavioral tracking. <a href="https://support.mozilla.org/kb/how-do-i-stop-websites-tracking-me">Learn how</a>.</p>
+      <h4>{{ _('Do Not Track') }}</h4>
+      <p>
+      {% trans url='https://support.mozilla.org/kb/how-do-i-stop-websites-tracking-me' %}
+        Many sites track your online behavior and sell that data to
+        advertisers. Firefox lets you tell sites that you want to opt out of
+        behavioral tracking. <a href="{{ url }}">Learn how</a>.
+      {% endtrans %}
+      </p>
     </li>
     <li>
-      <h4>Private Browsing</h4>
-      <p>Sometimes it’s nice to go undercover, so turn this feature on and protect your browsing history. <a href="https://support.mozilla.org/kb/Private%20Browsing">Learn how</a>.</p>
+      <h4>{{ _('Private Browsing') }}</h4>
+      <p>
+      {% trans url='https://support.mozilla.org/kb/Private%20Browsing' %}
+        Sometimes it’s nice to go undercover, so turn this feature on and
+        protect your browsing history. <a href="{{ url }}">Learn how</a>.
+      {% endtrans %}
+      </p>
     </li>
     <li>
-      <h4>Clear Recent History</h4>
-      <p>Clear all your private data or just your most recent activity with a few quick clicks. <a href="https://support.mozilla.org/kb/Clear%20Recent%20History">Learn how</a>.</p>
+      <h4>{{ _('Clear Recent History') }}</h4>
+      <p>
+      {% trans url='https://support.mozilla.org/kb/Clear%20Recent%20History' %}
+        Clear all your private data or just your most recent activity with a
+        few quick clicks. <a href="{{ url }}">Learn how</a>.
+      {% endtrans %}
+      </p>
     </li>
     <li>
-      <h4>Forget This Site</h4>
-      <p>Having second thoughts about having visited a certain site? Remove every trace of ever having been there! <a href="https://support.mozilla.org/kb/Clear%20Recent%20History#w_how-do-i-remove-a-single-website-from-my-history">Learn how</a>.</p>
+      <h4>{{ _('Forget This Site') }}</h4>
+      <p>
+      {% trans url='https://support.mozilla.org/kb/Clear%20Recent%20History#w_how-do-i-remove-a-single-website-from-my-history' %}
+        Having second thoughts about having visited a certain site? Remove
+        every trace of ever having been there!
+        <a href="{{ url }}">Learn how</a>.
+      {% endtrans %}
+      </p>
     </li>
     <li>
-      <h4>Content Security Policy</h4>
-      <p>Firefox lets sites explicitly tell it which content is legitimate, thus protecting you from cross-site scripting attacks.</p>
+      <h4>{{ _('Content Security Policy') }}</h4>
+      <p>F{{ _('irefox lets sites explicitly tell it which content is legitimate, thus protecting you from cross-site scripting attacks.') }}</p>
     </li>
   </ul>
 </div>
@@ -66,29 +96,42 @@
 <section id="secure" class="billboard">
 <div class="row">
   <div class="span3">
-    <h3>Browse With Security</h3>
-    <p>Whether it’s buying a gift, paying your bills or simply signing in to Facebook, it’s important keep your personal info out of the hands of any online bad guys who might be snooping around. Fortunately, Firefox is packed with advanced security features to help you stay safe.</p>
-    <p class="top-link"><a href="#main-feature">Return to Top</a></p>
+    <h3>{{ _('Browse With Security') }}</h3>
+    <p>
+    {% trans %}
+      Whether it’s buying a gift, paying your bills or simply signing in to
+      Facebook, it’s important keep your personal info out of the hands of any
+      online bad guys who might be snooping around. Fortunately, Firefox is
+      packed with advanced security features to help you stay safe.
+    {% endtrans %}
+    </p>
+    <p class="top-link"><a href="#main-feature">{{ _('Return to Top') }}</a></p>
   </div>
   <div class="section-image span4">
-     {{ platform_img('img/firefox/security/screenshot-anti-malware.jpg', {'alt': 'Anti-Malware screenshot'}) }}
+     {{ platform_img('img/firefox/security/screenshot-anti-malware.jpg', {'alt': _('Anti-Malware screenshot')}) }}
   </div>
   <ul class="section-list span3">
     <li>
-      <h4>Instant Website ID</h4>
-      <p>A color-coded system makes it easy to check on suspicious sites and avoid Web forgeries. <a href="https://support.mozilla.org/kb/Site%20Identity%20Button">Learn more</a>.</p>
+      <h4>{{ _('Instant Website ID') }}</h4>
+      <p>
+      {% trans url='https://support.mozilla.org/kb/Site%20Identity%20Button' %}
+        A color-coded system makes it easy to check on suspicious sites and
+        avoid Web forgeries.
+        <a href="{{ urll }}">Learn more</a>.
+      {% endtrans %}
+      </p>
     </li>
     <li>
-      <h4>Anti-Phishing & Anti-Malware</h4>
-      <p>Firefox protects you from trojan horses and spyware, and warns you away from fraudulent sites.</p>
+      <h4>{{ _('Anti-Phishing &amp; Anti-Malware') }}</h4>
+      <p>{{ _('Firefox protects you from trojan horses and spyware, and warns you away from fraudulent sites.') }}</p>
     </li>
     <li>
-      <h4>Secure Software Installation</h4>
-      <p>A secure connection is required before you can install add-ons and other 3rd party software.</p>
+      <h4>{{ _('Secure Software Installation') }}</h4>
+      <p>{{ _('A secure connection is required before you can install add-ons and other 3rd party software.') }}</p>
     </li>
     <li>
-      <h4>Anti-Virus Integration</h4>
-      <p>Firefox integrates elegantly with your computer’s anti-virus software whenever you download.</p>
+      <h4>{{ _('Anti-Virus Integration') }}</h4>
+      <p>{{ _('Firefox integrates elegantly with your computer’s anti-virus software whenever you download.') }}</p>
     </li>
   </ul>
 </div>
@@ -97,25 +140,35 @@
 <section id="control" class="billboard">
 <div class="row">
   <div class="span3">
-    <h3>Stay In <span>Control</span></h3>
-    <p>The online world is always changing, which is why we give you easy-to-use tools to let you adapt and make smart choices as you go.</p>
-    <p class="top-link"><a href="#main-feature">Return to Top</a></p>
+    <h3>{{ _('Stay In <span>Control</span>') }}</h3>
+    <p>{{ _('The online world is always changing, which is why we give you easy-to-use tools to let you adapt and make smart choices as you go.') }}</p>
+    <p class="top-link"><a href="#main-feature">{{ _('Return to Top') }}</a></p>
   </div>
   <div class="section-image span4">
-     {{ platform_img('img/firefox/security/screenshot-plugins.jpg', {'alt': 'Plugins screenshot'}) }}
+     {{ platform_img('img/firefox/security/screenshot-plugins.jpg', {'alt': _('Plugins screenshot')}) }}
   </div>
   <ul class="section-list span3">
     <li>
-      <h4>Plugin Check</h4>
-      <p>Outdated 3rd party plugins can be a major risk, so we made it easy to find out what to update. <a href="/en-US/plugincheck/">Check your plugins.</a></p>
+      <h4>{{ _('Plugin Check') }}</h4>
+      <p>
+      {% trans url=url('mozorg.plugincheck') %}
+        Outdated 3rd party plugins can be a major risk, so we made it easy to
+        find out what to update. <a href="{{ url }}">Check your plugins.</a>
+      {% endtrans %}
+      </p>
     </li>
     <li>
-      <h4>Parental Controls</h4>
-      <p>Enforce parental control settings you’ve entered on Windows 7 to stop unwanted downloads and more.</p>
+      <h4>{{ _('Parental Controls') }}</h4>
+      <p>{{ _('Enforce parental control settings you’ve entered on Windows 7 to stop unwanted downloads and more.') }}</p>
     </li>
     <li>
-      <h4>Customized Security Settings</h4>
-      <p>Control the level of scrutiny you’d like Firefox to give a site with a variety of customized settings. <a href="https://support.mozilla.org/kb/Options%20window%20-%20Security%20panel">Learn how</a>.</p>
+      <h4>{{ _('Customized Security Settings') }}</h4>
+      <p>
+      {% trans url='https://support.mozilla.org/kb/Options%20window%20-%20Security%20panel' %}
+        Control the level of scrutiny you’d like Firefox to give a site with a
+        variety of customized settings. <a href="{{ url }}">Learn how</a>.
+      {% endtrans %}
+      </p>
     </li>
   </ul>
 </div>
@@ -124,21 +177,40 @@
 <section id="mission" class="billboard">
 <div class="row">
   <div class="span3">
-    <h3>It’s Part of Our <span>Mission</span></h3>
-    <p>Mozilla is a non-profit organization with the goal of making the Web better for everyone. We’re not trying to make money off our users – we just want you to have the best possible experience online, and that includes keeping you and your personal information safe and private.</p>
-    <p class="top-link"><a href="#main-feature">Return to Top</a></p>
+    <h3>{{ _('It’s Part of Our <span>Mission</span>') }}</h3>
+    <p>
+    {% trans %}
+      Mozilla is a non-profit organization with the goal of making the Web
+      better for everyone. We’re not trying to make money off our users – we
+      just want you to have the best possible experience online, and that
+      includes keeping you and your personal information safe and private.
+    {% endtrans %}
+    </p>
+    <p class="top-link"><a href="#main-feature">{{ _('Return to Top') }}</a></p>
   </div>
   <div class="section-image span4">
-    <img alt="Communtity icon" src="{{ media('img/firefox/security/community.png') }}">
+    <img alt="{{ _('Communtity icon') }}" src="{{ media('img/firefox/security/community.png') }}">
   </div>
   <ul class="section-list span3">
     <li>
-      <h4>Commitment to Your Privacy</h4>
-      <p>Firefox adheres to a strict privacy policy that prevents us from tracking who you are or what you do online. <a href="/en-US/legal/privacy/firefox.html">Read the policy.</a></p>
+      <h4>{{ _('Commitment to Your Privacy') }}</h4>
+      <p>
+      {% trans url='/en-US/legal/privacy/firefox.html' %}
+        Firefox adheres to a strict privacy policy that prevents us from
+        tracking who you are or what you do online.
+        <a href="{{ url }}">Read the policy.</a>
+      {% endtrans %}
+      </p>
     </li>
     <li>
-      <h4>The Mission Matters</h4>
-      <p>Our mission guides the way we make Firefox, meaning we always make decisions based on your needs first. <a href="{{ url('mozorg.mission') }}">Learn more.</a></p>
+      <h4>{{ _('The Mission Matters') }}</h4>
+      <p>
+      {% trans url=url('mozorg.mission') %}
+        Our mission guides the way we make Firefox, meaning we always make
+        decisions based on your needs first.
+        <a href="{{ url }}">Learn more.</a>
+      {% endtrans %}
+      </p>
     </li>
   </ul>
 </div>

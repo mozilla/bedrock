@@ -1,23 +1,25 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
  # License, v. 2.0. If a copy of the MPL was not distributed with this
- # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% set_lang_files "lightbeam/lightbeam" %}
 {% extends "base-resp.html" %}
 
 {% block page_title %}{{_('Lightbeam for Firefox')}}{% endblock %}
+{% block page_desc %}{{_('Lightbeam visualizes the relationships between the sites you visit and the third party sites that are active on those pages.')}}{% endblock %}
 {% block body_id %}lightbeam{% endblock %}
 {% block body_class %}sky about{% endblock %}
-{% block page_favicon %}{{ media('img/lightbeam/favicon.png') }}{% endblock %}
+{% block page_image %}{{ media('img/lightbeam/lightbeam_logo-wordmark_500x156.png') }}?2013-11{% endblock %}
+{% block page_favicon %}{{ media('img/lightbeam/favicon.png') }}?2013-11{% endblock %}
 {% block site_header_logo %}
-  <h2><a href="{{ url('lightbeam.lightbeam') }}"><img src="{{ media('img/lightbeam/lightbeam_logo-wordmark_500x156.png') }}" class="ligthbeam-wordmark"></a></h2>
+  <h2><a href="{{ url('lightbeam.lightbeam') }}"><img src="{{ media('img/lightbeam/lightbeam_logo-wordmark_500x156.png') }}?2013-11" class="ligthbeam-wordmark"></a></h2>
 {% endblock %}
 {% block site_header_nav %}
   <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
   <nav id="nav-main" role="navigation">
     <ul id="nav-main-menu">
-      <li><a href="{{ url('lightbeam.lightbeam') }}">Home</a></li>
-      <li><b>About</b></li>
+      <li><a href="{{ url('lightbeam.lightbeam') }}">{{_('Home')}}</a></li>
+      <li><b>{{_('About')}}</b></li>
   </ul>
   </nav>
 {% endblock %}
@@ -32,7 +34,7 @@
 
 {% block content %}
 
-<section id="primary" class="container text-center">
+<section id="primary" class="container">
   <h1 class="page-slogan">{{_('About Lightbeam')}}</h1>
 </section>
 
@@ -53,14 +55,13 @@
     </p>
   </div>
   <div class="span5">
-    <img src="{{ media('img/lightbeam/Lightbeam-AMOScreenshot1_anon.jpg') }}" alt="">
+    <img src="{{ media('img/lightbeam/Lightbeam-AMOScreenshot1_anon.jpg') }}?2013-11" alt="">
   </div>
-
 </section>
 
 <section class="container">
   <div class="span6">
-    <img src="{{ media('img/lightbeam/Lightbeam-meet-firefox.png') }}" alt="">
+    <img src="{{ media('img/lightbeam/Lightbeam-meet-firefox.png') }}?2013-11" alt="">
   </div>
   <div class="span6">
     <h2>{{_('The origins of Lightbeam')}}</h2>
@@ -79,22 +80,22 @@
   </div>
 </section>
 
-<section class="container">
-  <div class="span6">
+<div class="container">
+  <section class="span6">
     <h2>{{_('Policy and the larger tracking narrative')}}</h2>
     <p>
       {{_('At Mozilla, we believe that everyone should have the tools to make their own decisions about their online privacy and who collects data on them.')}} {{_('With the Lightbeam add-on and database server, we are providing a valuable (and open) community research platform that aims to raise awareness, promote analysis and, ultimately, affect policy change in the areas of tracking and privacy.')}} {{_('Lightbeam is one step in a larger, concerted effort by Mozilla and its partners to provide Web users with greater control and transparency of their personal data.')}}
     </p>
-  </div>
-  <div class="span6">
+  </section>
+  <section class="span6">
     <h2>{{_('Learn more about online tracking and privacy')}}</h2>
     <p>
       {{_('The <a href="%s">Mozilla Foundation</a> is a non-profit organization that promotes the values of an open Web to the broader world. The larger Mozilla community sees the growing relevance of online privacy and is supporting several initiatives that tackle the issue in various ways.')|format(url('foundation.index'))}}
       <a href="http://stopwatching.us">stopwatching.us</a><br>
       <a href="{{ url('firefox.dnt') }}">www.mozilla.org/dnt/</a>
     </p>
-  </div>
-</section>
+  </section>
+</div>
 
 <section class="container">
   <div class="span6">
@@ -104,20 +105,20 @@
     </p>
   </div>
   <div class="span6">
-    <img src="{{ media('img/lightbeam/Lightbeam-list-view.jpg') }}" alt="">
+    <img src="{{ media('img/lightbeam/Lightbeam-list-view.jpg') }}?2013-11" alt="">
   </div>
 </section>
 
-<section class="container">
+<section class="container partners">
   <h2>{{_('Partners of Lightbeam')}}</h2>
   <div class="span6">
-    <img src="{{ media('img/lightbeam/Lightbeam_partners_fordfoundation.png') }}" alt="Ford Foundation" class="partner-logo">
+    <img src="{{ media('img/lightbeam/Lightbeam_partners_fordfoundation.png') }}?2013-11" alt="Ford Foundation" class="partner-logo">
     <p>
       {{_('The <a href="%s">Ford Foundation</a> is a non-profit organization that focuses on the mission of advancing human welfare.')|format('http://www.fordfoundation.org/')}} {{_('They provide support for companies and institutions devoted to strengthening democratic values, reducing poverty and social injustice, supporting human achievement and fostering international co-operation.')}}
     </p>
   </div>
   <div class="span6">
-    <img src="{{ media('img/lightbeam/Lightbeam_partners_ecuad.png') }}" alt="SIM Centre" class="partner-logo">
+    <img src="{{ media('img/lightbeam/Lightbeam_partners_ecuad.png') }}?2013-11" alt="SIM Centre" class="partner-logo">
     <p>
       {{_('The <a href="%s">Social + Interactive Media (SIM) Centre</a> at Emily Carr University of Art + Design supports a wide range of projects in design and media, giving companies direct access to the innovative thinking, design skills and research expertise of British Columbia’s most creative faculty and students.')|format('http://www.simcentre.ca/')}}
     </p>

@@ -1,11 +1,11 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
  # License, v. 2.0. If a copy of the MPL was not distributed with this
- # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% extends "mozorg/base-resp.html" %}
 
-{% block page_title_prefix %}{% endblock %}
 {% block page_title %}{{ _('Mozilla Products — Built by us, for the Web') }}{% endblock %}
+{% block page_desc %}{{ _('Our dedication to driving the Web forward and keeping it open to everyone extends through everything we do.') }}{% endblock %}
 {% block body_id %}products-page{% endblock %}
 
 {% block extrahead %}
@@ -21,136 +21,146 @@
 
 <nav id="products-nav" class="menu-bar billboard">
   <ul>
-    <li><a href="#products">{{ _('Products') }}</a></li>
-    <li><a href="#innovations">{{ _('Innovations') }}</a></li>
-    <li><a href="#tools">{{ _('Tools') }}</a></li>
-    <li><a href="#platforms">{{ _('Platforms') }}</a></li>
+    <li><a href="#firefox">Firefox</a></li>
+    <li><a href="#mozilla">Mozilla</a></li>
+    <li><a href="#developers">{{ _('Developers') }}</a></li>
   </ul>
 </nav>
 
-<section id="products" class="billboard products">
-  <h1>{{ _('Products') }}</h1>
+<section id="firefox" class="billboard products">
+  <h1>Firefox</h1>
   <ul>
     <li>
-      <a href="{{ php_url('/firefox/') }}">
-        <img src="{{ media('/img/products/badge-firefox.jpg?2013-06') }}" alt="" />
-        <h3>{{ _('Firefox') }}</h3>
-        <p>{{ _('The free, non-profit browser for desktop and mobile.') }}</p>
+      <a href="{{ url('firefox.features') }}">
+        <img src="{{ media('/img/products/badge-firefox.jpg?2013-06') }}" alt="">
+        <h3>{{ _('Desktop') }}</h3>
+        <p>{{ _('The free, non-profit browser for your desktop.') }}</p>
+      </a>
+    </li>
+    <li>
+      <a href="{{ url('firefox.mobile.features') }}">
+        <img src="{{ media('/img/products/badge-android.jpg') }}" alt="">
+        <h3>Android</h3>
+        <p>{{ _('The fast, smart, safe choice for Android browsing.') }}</p>
       </a>
     </li>
     <li>
       <a href="{{ url('firefox.os.index') }}">
-        <img src="{{ media('/img/products/badge-firefoxos.jpg?2013-06') }}" alt="" />
-        <h3>{{ _('Firefox OS') }}</h3>
+        <img src="{{ media('/img/products/badge-firefoxos.jpg?2013-06') }}" alt="">
+        <h3>{{ _('OS') }}</h3>
         <p>{{ _('An open operating system for mobile devices.') }}</p>
       </a>
     </li>
     <li>
-      <a href="{{ url('marketplace.marketplace') }}">
-        <img src="{{ media('/img/products/badge-marketplace.jpg?2013-06') }}" alt="" />
-        <h3>{{ _('Marketplace') }}</h3>
+      <a href="https://marketplace.firefox.com/">
+        <img src="{{ media('/img/products/badge-marketplace.jpg?2013-06') }}" alt="">
+        <h3>Marketplace</h3>
         <p>{{ _('A creation and distribution platform for apps.') }}</p>
       </a>
     </li>
+  </ul>
+</section>
+
+<section id="mozilla" class="billboard products">
+  <h1>Mozilla</h1>
+  <ul>
     <li>
       <a href="{{ url('persona.persona') }}">
-        <img src="{{ media('/img/products/badge-persona.jpg') }}" alt="" />
-        <h3>{{ _('Persona') }}</h3>
+        <img src="{{ media('/img/products/badge-persona.jpg') }}" alt="">
+        <h3>Persona</h3>
         <p>{{ _('A better way to sign in to websites.') }}</p>
+      </a>
+    </li>
+    <li>
+      <a href="https://webmaker.org">
+        <img src="{{ media('/img/products/badge-webmaker.jpg') }}" alt="">
+        <h3>Webmaker</h3>
+        <p>{{ _('Make something amazing with the Web.') }}</p>
+      </a>
+    </li>
+    <li>
+      <a href="https://openbadges.org">
+        <img src="{{ media('/img/products/badge-openbadges.png') }}" alt="">
+        <h3>Open Badges</h3>
+        <p>{{ _('A new standard to recognize and verify learning.') }}</p>
+      </a>
+    </li>
+    <li>
+      <a href="https://mozillalabs.com/">
+        <img src="{{ media('/img/products/badge-labs.jpg') }}" alt="">
+        <h3>Labs</h3>
+        <p>{{ _('New ways to explore, experiment and innovate.') }}</p>
+      </a>
+    </li>
+    <li>
+      <a href="https://webfwd.org/">
+        <img src="{{ media('/img/products/badge-webfwd.jpg') }}" alt="">
+        <h3>WebFWD</h3>
+        <p>{{ _('Our community-driven innovation accelerator.') }}</p>
       </a>
     </li>
     <li>
       <a href="{{ php_url('/thunderbird/') }}">
         <img src="{{ media('/img/products/badge-thunderbird.jpg') }}" alt="" />
-        <h3>{{ _('Thunderbird') }}</h3>
+        <h3>Thunderbird</h3>
         <p>{{ _('Safe, fast and easy email.') }}</p>
       </a>
     </li>
-    <li>
-      <a href="https://webmaker.org">
-        <img src="{{ media('/img/products/badge-webmaker.jpg') }}" alt="" />
-        <h3>{{ _('Webmaker') }}</h3>
-        <p>{{ _('Make something amazing with the Web.') }}</p>
-      </a>
-    </li>
   </ul>
+
+  <div class="links">
+    <a href="{{ url('mozorg.projects.mozilla-based') }}" class="link-flat">{{ _('All Mozilla-based Products') }}</a>
+  </div>
 </section>
 
-<section id="innovations" class="billboard products">
-  <h1>{{ _('Innovations') }}</h1>
+<section id="developers" class="billboard products">
+  <h1>{{ _('Developers') }}</h1>
   <ul>
-    <li>
-      <a href="https://webfwd.org/">
-        <img src="{{ media('/img/products/badge-webfwd.jpg') }}" alt="" />
-        <h3>{{ _('WebFWD') }}</h3>
-        <p>{{ _('Our community-driven innovation accelerator.') }}</p>
-      </a>
-    </li>
-    <li>
-      <a href="https://mozillalabs.com/">
-        <img src="{{ media('/img/products/badge-labs.jpg') }}" alt="" />
-        <h3>{{ _('Labs') }}</h3>
-        <p>{{ _('New ways to explore, experiment and innovate.') }}</p>
-      </a>
-    </li>
-  </ul>
-</section>
-
-<section id="tools" class="billboard products">
-  <h1>{{ _('Tools') }}</h1>
-  <ul>
-    <li>
-      <a href="https://developer.mozilla.org/Tools/">
-        <img src="{{ media('/img/products/badge-tools.jpg') }}" alt="" />
-        <h3>{{ _('Firefox Developer Tools') }}</h3>
-        <p>{{ _('A collection of tools built in to Firefox.') }}</p>
-      </a>
-    </li>
     <li>
       <a href="http://www.bugzilla.org/">
-        <img src="{{ media('/img/products/badge-bugzilla.jpg') }}" alt="" />
-        <h3>{{ _('Bugzilla') }}</h3>
+        <img src="{{ media('/img/products/badge-bugzilla.jpg') }}" alt="">
+        <h3>Bugzilla</h3>
         <p>{{ _('A bug tracking system to help manage software development.') }}</p>
       </a>
     </li>
     <li>
       <a href="http://getfirebug.com/">
-        <img src="{{ media('/img/products/badge-firebug.jpg') }}" alt="" />
-        <h3>{{ _('Firebug') }}</h3>
+        <img src="{{ media('/img/products/badge-firebug.jpg') }}" alt="">
+        <h3>Firebug</h3>
         <p>{{ _('Inspect, debug, analyze and more inside your browser.') }}</p>
       </a>
     </li>
-  </ul>
-</section>
-
-<section id="platforms" class="billboard products">
-  <h1>{{ _('Platforms') }}</h1>
-  <ul>
     <li>
-      <a href="https://developer.mozilla.org/Gecko">
-        <img src="{{ media('/img/products/badge-gecko.jpg') }}" alt="" />
-        <h3>{{ _('Gecko') }}</h3>
+      <a href="https://developer.mozilla.org/docs/Mozilla/Projects/XULRunner">
+        <img src="{{ media('/img/products/badge-xulrunner.jpg') }}" alt="">
+        <h3>XUL Runner</h3>
+        <p>{{ _('An environment for XUL-based applications.') }}</p>
+      </a>
+    </li>
+    <li>
+      <a href="https://developer.mozilla.org/docs/Mozilla/Gecko">
+        <img src="{{ media('/img/products/badge-gecko.jpg') }}" alt="">
+        <h3>Gecko</h3>
         <p>{{ _('The layout engine that drives Firefox.') }}</p>
       </a>
     </li>
     <li>
-      <a href="https://developer.mozilla.org/XULRunner">
-        <img src="{{ media('/img/products/badge-xulrunner.jpg') }}" alt="" />
-        <h3>{{ _('XUL Runner') }}</h3>
-        <p>{{ _('An environment for XUL-based applications.') }}</p>
+      <a href="https://developer.mozilla.org/Apps/Reference">
+        <img src="{{ media('/img/products/badge-api.jpg') }}" alt="">
+        <h3>{{ _('Firefox APIs') }}</h3>
+        <p>{{ _('The foundations for building a Firefox OS app.') }}</p>
       </a>
     </li>
-    <li id="reserved">
-      <img src="{{ media('/img/products/badge-reserved.jpg') }}" alt="" />
-      <p>{{ _('Reserved&nbsp;for future&nbsp;products.') }}</p>
-    </li>
   </ul>
+
+  <div class="links">
+    <a href="https://developer.mozilla.org/docs/Tools" class="link-flat">{{ _('All Developer Tools') }}</a>
+    <a href="https://developer.mozilla.org" class="link-flat">{{ _('Mozilla Developer Network') }}</a>
+  </div>
 </section>
 
-<p id="more-projects">
-  {% trans link=url('mozorg.projects.mozilla-based') %}
-  See even <a href="{{link}}">more awesome software</a> based on Mozilla technologies.
-  {% endtrans %}
-</p>
+{% endblock %}
 
+{% block js %}
+  {{ js('products') }}
 {% endblock %}

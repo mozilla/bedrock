@@ -1,10 +1,11 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
  # License, v. 2.0. If a copy of the MPL was not distributed with this
- # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% extends "/firefox/base-resp.html" %}
 
-{% block page_title %}Get More From Your Firefox — Mobile, Add-ons & Other Stuff{% endblock %}
+{% block page_title %}{{ _('Get More From Your Firefox — Mobile, Add-ons & Other Stuff') }}{% endblock %}
+{% block page_desc %}{{ _('Get the latest version of Firefox. It’s fast, flexible and secure.') }}{% endblock %}
 {% block body_id %}firefox-fx{% endblock %}
 
 {% block site_css %}
@@ -40,7 +41,7 @@
       </section>
       <ul class="sub-features">
         <li id="playstore-mobile">
-          <a class="mobile-link" href="https://market.android.com/details?id=org.mozilla.firefox">
+          <a class="mobile-link" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}">
             <h3>Get Firefox for Android</h3>
             <span class="link">{{_('Get the mobile browser that\'s got your back for free from Google Play&nbsp;»')}}</span>
           </a>
@@ -93,7 +94,7 @@
           <li id="android-promo"><div class="wrap">
             <h4>{{ _('Get Firefox for Android')}}</h4><span class="icon"></span>
             <p>{{ _('Get the mobile browser that’s got your back free from the ') }}
-            <a href="https://market.android.com/details?id=org.mozilla.firefox">{{ _('Google Play Store&nbsp;»') }}</a></p>
+            <a href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}">{{ _('Google Play Store&nbsp;»') }}</a></p>
           </div></li>
         </ul>
       </section>
@@ -114,7 +115,7 @@
             <a class="link" href="{{ url('firefox.customize') }}">{{ _('Customize your Firefox with add-ons&nbsp;»') }}</a>
           </li>
           <li id="playstore">
-            <a class="link" href="https://market.android.com/details?id=org.mozilla.firefox">{{ _('Get Firefox for Android free from the Google Play Store&nbsp;»') }}</a>
+            <a class="link" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}">{{ _('Get Firefox for Android free from the Google Play Store&nbsp;»') }}</a>
           </li>
         </ul>
       </section>

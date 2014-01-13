@@ -14,6 +14,9 @@ fi
 cd $WORKSPACE
 VENV=$WORKSPACE/venv
 
+DB_HOST="localhost"
+DB_USER="hudson"
+
 echo "Starting build on executor $EXECUTOR_NUMBER..."
 
 # Make sure there's no old pyc files around.
@@ -40,18 +43,29 @@ pip install -q -r requirements/compiled.txt
 pip install -q -r requirements/dev.txt
 
 cat > bedrock/settings/local.py <<SETTINGS
+# flake8: noqa
+
 import logging
 
 ROOT_URLCONF = 'bedrock.urls'
 LOG_LEVEL = logging.ERROR
 
-ADMINS = ('foo@bar.com',)
+ADMINS = ('thedude@example.com',)
 MANAGERS = ADMINS
 
+# Database name has to be set because of sphinx
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.dummy',
-    },
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': '${DB_HOST}',
+        'NAME': '${JOB_NAME}',
+        'USER': 'hudson',
+        'PASSWORD': '',
+        'OPTIONS': {'init_command': 'SET storage_engine=InnoDB'},
+        'TEST_NAME': 'test_${JOB_NAME}',
+        'TEST_CHARSET': 'utf8',
+        'TEST_COLLATION': 'utf8_general_ci',
+    }
 }
 
 HMAC_KEYS = {
@@ -62,17 +76,22 @@ HMAC_KEYS = {
 # signal which Django's test client uses to save away the contexts for your
 # test to look at later.
 TEMPLATE_DEBUG = True
+NOSE_ARGS = ['--with-xunit']
+
 SETTINGS
 
+echo "Creating database if we need it..."
+echo "CREATE DATABASE IF NOT EXISTS \`${JOB_NAME}\`"|mysql -u $DB_USER -h $DB_HOST
+
 echo "Update product_details"
-./manage.py update_product_details
+python manage.py update_product_details
 
 echo "Check PEP-8"
-flake8 bedrock
+flake8 bedrock lib
 
 echo "Starting tests..."
 export FORCE_DB=1
-coverage run manage.py test --noinput --with-xunit
+coverage run manage.py test --noinput
 coverage xml $(find bedrock lib -name '*.py')
 
 echo "FIN"

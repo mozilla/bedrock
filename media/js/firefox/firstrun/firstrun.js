@@ -13,4 +13,5 @@
 
     gaTrack(['_trackEvent', 'first run interaction', action, 'First Run Video']);
   });
+
 })(window.jQuery);

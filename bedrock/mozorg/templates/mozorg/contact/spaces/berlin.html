@@ -1,0 +1,34 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/contact/contact-base.html" %}
+
+{% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Berlin') }}{% endblock %}
+
+{% block contact_entry %}
+  <div id="entry-container">
+    <section class="entry entry-space" id="berlin" data-tab="spaces">
+      <div itemscope itemtype="http://schema.org/Organization" class="card vcard">
+        {# L10n: This span around the Mozilla name is presentational. It's included in the string in case some locales need to change the order. #}
+        <h2 itemprop="name" class="fn org">{{ _('<span>Mozilla</span> Berlin') }}</h2>
+        <p itemprop="address" itemscope itemtype="http://schema.org/PostalAddress" class="adr">
+        {# L10n: Addresses are marked up with hCard microformat and Schema.org. See http://microformats.org/wiki/h-card and http://schema.org/PostalAddress #}
+        {% trans %}
+          <span itemprop="streetAddress" class="street-address">MZ Denmark ApS <br>Rungestrasse 22 - 24</span><br>
+          <span itemprop="addressLocality" class="locality">Berlin</span> <span itemprop="postalCode" class="postal-code">100020</span><br>
+          <span itemprop="addressCountry" class="country-name">Germany</span>
+        {% endtrans %}
+        </p>
+
+        <ul class="extra">
+          <li><a href="https://wiki.mozilla.org/People:MozSpaces_Guidelines:Berlin" class="book">{{ _('Space operations guide') }}</a></li>
+        </ul>
+
+        <figure class="feature-img">
+          <img src="//api.tiles.mapbox.com/v3/{{ settings.MAPBOX_TOKEN }}/url-{{ 'mozorg.cdn.mozilla.net/media/img/contact/moz-map-pin.png'|urlencode }}(13.418735,52.512408)/13.418735,52.512408,16/460x250.png" alt="">
+        </figure>
+      </div>
+    </section>
+  </div>
+{% endblock %}

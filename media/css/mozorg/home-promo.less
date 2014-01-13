@@ -1,692 +1,599 @@
 @import "../sandstone/lib.less";
 
-/* {{{ Open Sans Extra Bold Italic for Firefox OS promo */
+/****************************************************************************/
+// Mozilla Mission
+#panel-mission {
+    background: #b30406 url(/media/img/home/panel/mission/bg-mission-mosaic.png) -50px -80px no-repeat;
+    background: url(/media/img/home/panel/mission/bg-mission-mosaic.png) -50px -80px no-repeat,
+                #b30406 url(/media/img/home/panel/mission/bg-mission-cubes.png) repeat;
 
-@font-face {
-    font-family: 'Open Sans ExtraBoldItalic';
-    src: url('/media/fonts/OpenSans-ExtraBoldItalic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('/media/fonts/OpenSans-ExtraBoldItalic-webfont.woff') format('woff'),
-         url('/media/fonts/OpenSans-ExtraBoldItalic-webfont.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-/* }}} */
-/* {{{ Vollkorn font for Firefox Flicks promo */
-
-@font-face {
-    font-family: 'VollkornRegular';
-    src: url('/media/fonts/Vollkorn-Regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('/media/fonts/Vollkorn-Regular-webfont.woff') format('woff'),
-         url('/media/fonts/Vollkorn-Regular-webfont.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'VollkornBold';
-    src: url('/media/fonts/Vollkorn-Bold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('/media/fonts/Vollkorn-Bold-webfont.woff') format('woff'),
-         url('/media/fonts/Vollkorn-Bold-webfont.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-/* }}} */
-/* {{{ Default styles for main promos */
-
-.no-js {
-    .pager-page {
-        margin-bottom:24px;
-    }
-    .pager-tabs {
-       display: none;
-    }
-}
-
-.pager-page {
-    background-position: 0 0;
-    background-repeat: no-repeat;
-    display: none;
-    position: relative;
-    a {
+    .panel-title i {
         display: block;
-        height: 265px;
-        padding: 0;
-        position: relative;
-        width: 100%;
-        border-bottom: 1px solid #ddd;
-        &:hover,
-        &:active {
-            text-decoration: none;
-        }
     }
-    .content {
-        width: 60%;
-        margin-left: 0;
-        padding: 0 0 @baseLine 30px;
-        position: relative;
-    }
-    h3 {
-        padding-top: @baseLine * 2;
-        margin-bottom: @baseLine / 2;
-        font-size: 64px;
-        letter-spacing: -1px;
-        color: #fff;
-        text-shadow: none;
-    }
-    h4 {
-        color: #fff;
-        float: none;
-        font-size: 28px;
-        margin-bottom: @baseLine;
-        text-decoration: none;
-        text-shadow: none;
-        width: 50%;
-    }
-    p {
-        color: #fff;
-        text-shadow: none;
-        margin: 0;
-    }
-    .go:after {
-        content: "\00A0\00BB"; /* nbsp raquo */
-    }
-    img {
+}
+
+.wide #panel-mission .panel-title {
+    background: #821117;
+    background: rgba(185, 24, 26, .8);
+    background: -webkit-linear-gradient(bottom, rgba(185, 24, 26, .8) 65%, rgba(185, 24, 26, 0) 100%);
+    background:         linear-gradient(to top, rgba(185, 24, 26, .8) 65%, rgba(185, 24, 26, 0) 100%);
+}
+
+
+
+/****************************************************************************/
+// Lightbeam
+#panel-lightbeam {
+    background: #424f5a url(/media/img/home/panel/lightbeam/logo-lightbeam.png) -80px 20px no-repeat;
+    background: url(/media/img/home/panel/lightbeam/logo-lightbeam.png) -80px 20px no-repeat,
+                #424f5a url(/media/img/home/panel/lightbeam/bg-lightbeam.jpg) 0 0 no-repeat;
+
+    .panel-title i {
         display: block;
-        background: @textColorPrimary;
-        width: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
     }
-}
-.loaded .pager-with-hidden-class .pager-page,
-.default-page{
-    display:block;
-}
 
-.pager-tabs {
-    text-align: center;
-    clear: both;
-    padding-top: 6px;
-    li {
-        display: inline;
-        list-style-type: none;
-        margin: 0;
-        a {
-            color: rgba(0,0,0,0.2);
-            .inline-block();
-            text-indent: 100%;
-            white-space: nowrap;
-            overflow: hidden;
-            background: rgb(100,100,100);
-            background: rgba(0,0,0,0.2);
-            height: 10px;
-            width: 10px;
-            margin: 6px;
-            border-radius: 10px;
-            &.selected {
-                background: rgb(20,20,20);
-                background: rgba(0,0,0,0.5);
-            }
-            &:hover,
-            &:focus,
-            &:active {
-                text-decoration: none;
-                span {
-                    background: rgb(20,20,20);
-                    background: rgba(0,0,0,0.5);
-                }
-            }
-        }
+    &.expanded {
+        background-position: -50px 20px;
+        background-position: -50px 20px, 0 0;
+    }
+
+    &.compressed {
+        background-position: -120px 20px;
+        background-position: -120px 20px, 0 0;
+    }
+
+    .go {
+        color: @linkBlue;
     }
 }
 
-/* }}} */
-/* {{{ Specific styles for main promos, added in the order they appear */
+.wide #panel-lightbeam .panel-title {
+    background: #424f5a;
+    background: rgba(66, 79, 90, .8);
+    background: -webkit-linear-gradient(bottom, rgba(66, 79, 90, .95) 50%, rgba(66, 79, 90, .8) 65%, rgba(66, 79, 90, 0) 100%);
+    background:         linear-gradient(to top, rgba(66, 79, 90, .95) 50%, rgba(66, 79, 90, .8) 65%, rgba(66, 79, 90, 0) 100%);
+}
 
-#promo-fxos a,
-#page-promo-fxos a {
-    background-image: url('/media/img/home/promo/fxos/1000.png');
-    .content {
-        width: 80%;
+
+
+/****************************************************************************/
+// Firefox OS
+#panel-fxos {
+    background: #0095dd url(/media/img/home/panel/firefoxos/firefoxos-fox.png?04-11-13) -100px -100px no-repeat;
+
+    &.expanded {
+        background-position: -60px -100px;
     }
-    h3 {
-        font-family: Open Sans ExtraBoldItalic;
-        text-transform: uppercase;
-        letter-spacing: -4px;
-        font-size: 90px;
-        padding-top: 30px;
-        margin-bottom: 20px;
-        font-weight: normal;
-    }
-    h4 {
-        width: 70%;
-        font-size: 20px;
-        line-height: 1.3;
+
+    &.compressed {
+        background-position: -140px -100px;
     }
 }
 
-.loaded {
-    #promo-makerparty a,
-    #page-promo-makerparty a {
-        background-image: url('/media/img/home/promo/makerparty/1000.jpg');
-        .content {
-            width: 50%;
+.wide #panel-fxos .panel-title {
+    background: #0095dd;
+    background: rgba(0, 84, 160, .8);
+    background: -webkit-linear-gradient(bottom, rgba(0, 84, 160, .8) 65%, rgba(0, 84, 160, 0) 100%);
+    background:         linear-gradient(to top, rgba(0, 84, 160, .8) 65%, rgba(0, 84, 160, 0) 100%);
+}
+
+
+
+/****************************************************************************/
+// MDN
+#panel-mdn {
+    background: #0062a9 url(/media/img/home/panel/mdn/logo-mdn.png) -25px 40px no-repeat;
+    background: url(/media/img/home/panel/mdn/logo-mdn.svg) -25px 40px no-repeat,
+                #0062a9 url(/media/img/home/panel/mdn/bg-grid.png?01-09-14);
+
+    .panel-content {
+        color: #fff;
+
+        .go {
             color: #fff;
         }
-        h3 {
-            font-size: 30px;
-            .open-sans;
-        }
-        h4 {
-            width: auto;
-            font-size: 20px;
-            line-height: 1.4;
-            .open-sans;
-        }
-        .go {
-            color: #d14d32;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: .5px;
-            display: inline-block;
-            padding: .25em 20px;
-            border-radius: 3px;
-            .box-shadow(0 1px 2px rgba(0,0,0,.2));
-            background: #ffe600;
-            #gradient.vertical(#ffe600, #f6de01);
-            &:hover,
-            &:focus {
-                color: #c1361a;
-                background: #feee57;
-                #gradient.vertical(#feee57, #f6e546);
-            }
-        }
     }
 
-    #promo-flickswinners,
-    #page-promo-flickswinners {
-        position: relative;
-        .content {
-            width: 60%;
-            padding-left: 60px;
-            padding-top: 24px;
-            h3 {
-                font-size: 30px;
-                font-family: VollkornBold;
-                line-height: 1;
-            }
-            h4 {
-                color: #ff592c;
-                font-size: 16px;
-                letter-spacing: normal;
-                line-height: 1.3;
-                .open-sans;
-                margin-bottom: 10px;
-            }
-            .go {
-                color: #1f9ee5;
-                font-family: VollkornRegular;
-                font-size: 16px;
-            }
-        }
-        .container {
-            background: #212a2f url('/media/img/home/promo/flickswinners/1000.jpg') 0 0 repeat-x;
-            position: relative;
-            border-bottom: 1px solid #ddd;
-            width: 100%;
-            padding: 0;
-            a.go {
-                display: inline;
-                border: none;
-                width: auto;
-                height: auto;
-                position: absolute;
-                bottom: 20px;
-                left: 20px;
+    &.expanded {
+        background-position: 25px 40px;
+        background-position: 25px 40px, 0 0;
+    }
 
-            }
-        }
-        .video-container {
-            position: absolute;
-            z-index: 99;
-        }
-        .video-close {
+    &.compressed {
+        background-position: -110px 40px;
+        background-position: -110px 40px, 0 0;
+    }
+}
+
+.wide #panel-mdn .panel-title {
+    color: #444;
+    background: #fff;
+    background: rgba(255, 255, 255, .8);
+    background: -webkit-linear-gradient(bottom, #fff 50%, rgba(255, 255, 255, .8) 65%, rgba(255, 255, 255, 0) 100%);
+    background:         linear-gradient(to top, #fff 50%, rgba(255, 255, 255, .8) 65%, rgba(255, 255, 255, 0) 100%);
+}
+
+
+
+/****************************************************************************/
+// Mozilla Festival
+#panel-mozfest {
+    background: #ced3d3 url(/media/img/home/panel/mozfest/logo-mozfest-big.png) -110px -15px no-repeat;
+    background: url(/media/img/home/panel/mozfest/logo-mozfest-big.png) -110px -15px no-repeat,
+                #04364b url(/media/img/home/panel/mozfest/bg-mosaic.jpg);
+
+    .panel-title {
+        color: #04364b;
+        text-shadow: 0 1px 0 #fff;
+
+        i {
             display: block;
-            width: 20px;
-            height: 20px;
-            line-height: 20px;
-            font-size: 24px;
-            color: rgb(200,200,200);
-            color: rgba(200,200,200,0.5);
-            text-align: center;
-            font-weight: bold;
-            position: absolute;
-            z-index: 99;
-            right: 10px;
-            top: 20px;
-            cursor: pointer;
-            border: 0;
-            background: none;
-            padding: 0; // Override default button padding
-            font-family: inherit; // Override browser button font family
-            &:hover,
-            &:active,
-            &:focus {
-                color: rgb(250,250,250);
-                color: rgba(200,200,200,0.8);
-            }
-        }
-        img {
-            .span(5);
-            margin: 0;
-            position: absolute;
-            top: 25px;
-            right: 30px;
-            left: auto;
-            height: auto;
-            z-index: 99;
-            cursor: pointer;
-            &:focus {
-                outline: 1px dotted #fff;
-            }
-        }
-        h3 {
-            font-size: 46px
-        }
-        h4 {
-            width: 70%;
+            color: #cb1b1d;
         }
     }
-    #promo-flicks-overlay {
-        display: none;
-        z-index: 100;
-        background: #000;
-        background: rgba(0,0,0,0.75);
+
+    .panel-content {
         color: #fff;
-        position: absolute;
-        text-align: center;
+        background: transparent url(/media/img/home/panel/mozfest/bg-content.png?04-11-13) 230px 0 no-repeat;
 
-        .video-visit {
-            .inline-block;
-            margin-top: 40px;
-            margin-bottom: 40px;
-            font-size: 32px;
-            .open-sans-light;
-            height: auto;
-            border: 0;
-            &:hover,
-            &:focus,
-            &:active {
-                text-decoration: underline;
-            }
+        h3 {
+            color: #ff3946;
         }
 
-        .share-links {
-            li {
-                .inline-block;
-                margin-right: 20px;
-                a {
-                    .inline-block;
-                    height: auto;
-                    border: 0;
-                    padding: 5px 10px 5px 36px;
-                    background: url(/media/img/home/video-overlay-icons.png) 0 center no-repeat;
-                    text-decoration: none;
-                    text-align: left;
-                    &.share-twitter {
-                        background-position: -400px center;
-                    }
-                }
-                a:hover,
-                a:focus,
-                a:active {
-                    text-decoration: underline;
-                }
-            }
-        }
-
-        .video-replay,
-        .video-continue {
-            opacity: 0.8;
-            cursor: pointer;
-            margin-top: 40px;
-            .inline-block;
-            padding: 40px 10px 10px 10px;
-            min-width: 120px;
-            position: relative;
-            color: #ccc;
-            &:after {
-                content: " ";
-                display: block;
-                position: absolute;
-                top: 0;
-                left: 46px;
-                margin: 0 auto;
-                background: url(/media/img/home/video-overlay-icons.png) -800px center no-repeat;
-                height: 34px;
-                width: 38px;
-            }
-            &:hover {
-                opacity: 1;
-            }
+        .go {
+            color: #21aed9;
         }
     }
 
-    #promo-android a,
-    #page-promo-android a {
-        background-image: url('/media/img/home/promo/android/1000.jpg?2013-06');
-        .content {
-            width: auto;
-        }
+    &.expanded {
+        background-position: -80px -15px;
+        background-position: -80px -15px, 0 0;
+    }
+
+    &.compressed {
+        background-position: -170px -15px;
+        background-position: -170px -15px, 0 0;
     }
 }
 
-/* }}} */
-/* {{{ Tablet  Layout: 768px */
+.wide #panel-mozfest .panel-title {
+    background: #ced3d3;
+    background: rgba(206, 211, 211, .8);
+    background: -webkit-linear-gradient(bottom, rgba(206, 211, 211, .95) 50%, rgba(206, 211, 211, .85) 65%, rgba(206, 211, 211, 0) 100%);
+    background:         linear-gradient(to top, rgba(206, 211, 211, .95) 50%, rgba(206, 211, 211, .85) 65%, rgba(206, 211, 211, 0) 100%);
+}
 
-@media only screen and (min-width: @widthTablet) and (max-width: @widthDesktop) {
-    .pager-page {
-        .container {
-            height: 198px;
-        }
-        .content {
-            width: 60%;
-        }
+
+
+/****************************************************************************/
+// Webmaker
+#panel-webmaker {
+    background: #e1ebed url(/media/img/home/panel/webmaker/logo-webmaker.png) -95px 15px no-repeat;
+
+    .panel-title {
+        color: #c93833;
+    }
+
+    .panel-content {
+        color: #12ab86;
+
         h3 {
-            font-size: 38px;
-            letter-spacing: -1px;
-            padding-top: @baseLine;
-            width: auto;
+            color: #c93833;
         }
-        h4 {
-            font-size: 20px;
+
+        .go {
+            color: #0090bc;
         }
     }
 
-    #promo-fxos a,
-    #page-promo-fxos a {
-        background-image: url('/media/img/home/promo/fxos/760.png');
-        h3 {
-            font-size: 70px;
-            padding-top: 20px;
-            margin-bottom: 10px;
-        }
-        h4 {
-            font-size: 16px;
-        }
+    &.expanded {
+        background-position: -40px 15px;
     }
-    .loaded {
-        #promo-makerparty a,
-        #page-promo-makerparty a {
-            background-image: url('/media/img/home/promo/makerparty/760.jpg');
-            .content {
-                h3 {
-                    font-size: 26px;
-                }
-                h4 {
-                    font-size: 16px;
-                }
-            }
-        }
-        #promo-flickswinners,
-        #page-promo-flickswinners {
-            .container {
-                background-image: url('/media/img/home/promo/flickswinners/760.jpg');
-            }
-            .content {
-                padding-left: 40px;
-                width: 55%;
-                h3 {
-                    font-size: 26px;
-                    margin-bottom: 8px;
-                }
-                h4 {
-                    font-size: 14px;
-                    width: 100%;
-                    margin-bottom: 8px;
-                }
-            }
-        }
-        #promo-android a,
-        #page-promo-android a {
-            background-image: url('/media/img/home/promo/android/760.jpg?2013-06');
-        }
+
+    &.compressed {
+        background-position: -150px 15px;
     }
 }
 
-/* }}} */
-/* {{{ General Mobile Layout: 320-480px */
-
-@media only screen and (max-width: @widthTablet) {
-    .loaded .pager-page,
-    .pager-page {
-        .container {
-            width: auto;
-            height: auto;
-        }
-        h3 {
-            font-size: 32px;
-            letter-spacing: -0.5px;
-            padding-top: @baseLine;
-        }
-        h4 {
-            font-size: 20px;
-            width: auto;
-            margin-bottom: @baseLine / 2;
-        }
-        .content {
-            padding-left: @gridGutterWidth;
-            padding-right: @gridGutterWidth;
-            margin: 0;
-            background: #fff;
-            width: auto;
-            float: none;
-        }
-        h4,
-        h3 {
-            margin-bottom: @baseLine / 3;
-            color: @textColorPrimary;
-        }
-        p {
-            color: @textColorPrimary;
-        }
-    }
-
-    .pager-tabs li a {
-        margin-left: 15px;
-        margin-right: 15px;
-        height: 20px;
-        width: 20px;
-        border-radius: 20px;
-    }
-    .loaded {
-        #promo-makerparty,
-        #page-promo-makerparty {
-            .content {
-                width: auto;
-                color: @textColorPrimary;
-                h3 {
-                    font-size: 24px;
-                    .open-sans-light;
-                }
-                h4 {
-                    font-size: 18px;
-                    .open-sans-light;
-                }
-                .go {
-                    border: 1px solid #e4ce00;
-                }
-            }
-        }
-        #promo-flickswinners,
-        #page-promo-flickswinners {
-            padding-top: 180px;
-            img {
-                top: 0;
-                left: 0;
-                width: auto;
-                float: none;
-            }
-            .container {
-                background-image: none;
-                position: static;
-            }
-            .content {
-                float: none;
-                margin: 0;
-                width: auto;
-                position: static;
-                padding-left: 20px;
-                padding-top: 0;
-                h3 {
-                    font-size: 24px;
-                    .open-sans-light;
-                    width: auto;
-                    float: none;
-                    .hidden {
-                        height: auto;
-                        width: auto;
-                        margin: 0 0 .25em;
-                        clip: auto;
-                        position: static !important;
-                        display: block;
-                        font-style: normal;
-                    }
-                }
-                h4 {
-                    font-size: 18px;
-                    .open-sans-light;
-                    width: auto;
-                    float: none;
-                    color: @textColorPrimary;
-                }
-                .go {
-                    color: @textColorPrimary;
-                }
-            }
-        }
-        #promo-flicks-overlay {
-            .video-visit {
-                margin-top: 10px;
-                margin-bottom: 10px;
-                font-size: 18px;
-                .open-sans-light;
-            }
-
-            .share-links {
-                margin-bottom: 5px;
-            }
-
-            .video-replay,
-            .video-continue {
-                margin-top: 10px;
-            }
-        }
-    }
+.wide #panel-webmaker .panel-title {
+    background: #e1ebed;
+    background: rgba(225, 235, 237, .8);
+    background: -webkit-linear-gradient(bottom, rgba(225, 235, 237, .8) 65%, rgba(225, 235, 237, 0) 100%);
+    background:         linear-gradient(to top, rgba(225, 235, 237, .8) 65%, rgba(225, 235, 237, 0) 100%);
 }
 
-/* }}} */
-/* {{{ Specific Mobile Layout: 480px */
 
+/****************************************************************************/
+// @High resolution images for @retina-type displays
+// Desktop
+@media (-webkit-min-device-pixel-ratio: 1.5),
+       (                min-resolution: 1.5dppx),
+       (                min-resolution: 144dpi) {
+
+    #panel-lightbeam {
+        background-image: url(/media/img/home/panel/lightbeam/logo-lightbeam-hires.png);
+        background-image: url(/media/img/home/panel/lightbeam/logo-lightbeam-hires.png),
+                          url(/media/img/home/panel/lightbeam/bg-lightbeam.jpg);
+        background-size: 340px 340px;
+        background-size: 340px 340px, auto auto;
+    }
+
+    #panel-fxos {
+        background-image: url(/media/img/home/panel/firefoxos/firefoxos-fox-hires.png);
+        background-size: 335px 468px;
+    }
+
+    #panel-mozfest {
+        background-image: url(/media/img/home/panel/mozfest/logo-mozfest-big-hires.png);
+        background-image: url(/media/img/home/panel/mozfest/logo-mozfest-big-hires.png),
+                          url(/media/img/home/panel/mozfest/bg-mosaic.jpg);
+        background-size: 360px 360px;
+        background-size: 360px 360px, auto auto;
+    }
+
+}
+
+
+
+/****************************************************************************/
+// @Tablet Layout: 760px
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+
+    // Mozilla Mission
+    #panel-mission {
+        background-position: -80px -50px;
+        background-position: -80px -50px, 0 0;
+
+        &.expanded,
+        &.compressed {
+            background-position: -120px -50px;
+            background-position: -120px -50px, 0 0;
+        }
+    }
+
+    // Lightbeam
+    #panel-lightbeam {
+        background-image: url(/media/img/home/panel/lightbeam/logo-lightbeam-md.png);
+        background-image: url(/media/img/home/panel/lightbeam/logo-lightbeam-md.png),
+                          url(/media/img/home/panel/lightbeam/bg-lightbeam.jpg);
+        background-position: -50px 20px;
+        background-position: -50px 20px, 0 0;
+
+        &.expanded {
+            background-position: -90px 20px;
+            background-position: -90px 20px, 0 0;
+        }
+
+        &.compressed {
+            background-position: -120px 20px;
+            background-position: -120px 20px, 0 0;
+        }
+    }
+
+    // Firefox OS
+    #panel-fxos {
+        background-image: url(/media/img/home/panel/firefoxos/firefoxos-fox-md.png?04-11-13);
+        background-position: -115px -70px;
+
+        &.expanded {
+            background-position: -95px -70px;
+        }
+        &.compressed {
+            background-position: -135px -70px;
+        }
+    }
+
+    // MDN
+    #panel-mdn {
+        background-position: -90px 40px;
+        background-position: -90px 40px, 0 0;
+
+        &.expanded {
+            background-position: -60px 40px;
+            background-position: -60px 40px, 0 0;
+        }
+
+        &.compressed {
+            background-position: -130px 40px;
+            background-position: -130px 40px, 0 0;
+        }
+    }
+
+    // Mozilla Festival
+    #panel-mozfest .panel-content {
+        background-position: 140px 0;
+    }
+
+    // Webmaker
+    #panel-webmaker {
+        background-image: url(/media/img/home/panel/webmaker/logo-webmaker-md.png);
+        background-position: -80px 25px;
+
+        &.expanded {
+            background-position: -100px 25px;
+        }
+
+        &.compressed {
+            background-position: -130px 25px;
+        }
+    }
+
+}
+
+/****************************************************************************/
+// @High resolution images for @retina-type displays
+// Tablet
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) and (                min-resolution: 1.5dppx),
+       only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) and (                min-resolution: 144dpi) {
+
+    #panel-fxos {
+        background-image: url(/media/img/home/panel/firefoxos/firefoxos-fox-md-hires.png);
+        background-size: 290px 390px;
+    }
+
+    #panel-lightbeam {
+        background-image: url(/media/img/home/panel/lightbeam/logo-lightbeam-md-hires.png);
+        background-image: url(/media/img/home/panel/lightbeam/logo-lightbeam-md-hires.png),
+                          url(/media/img/home/panel/lightbeam/bg-lightbeam.jpg);
+        background-size: 275px 275px;
+        background-size: 275px 275px, auto auto;
+    }
+
+}
+
+
+
+/****************************************************************************/
+// @Mobile layout: 320px
+@media only screen and (max-width: @breakTablet) {
+
+    // Mozilla Mission
+    #panel-mission {
+        background-image: url(/media/img/home/panel/mission/bg-mission-mosaic-sm.png);
+        background-image: url(/media/img/home/panel/mission/bg-mission-mosaic-sm.png),
+                          url(/media/img/home/panel/mission/bg-mission-cubes.png);
+        background-position: -122px -45px;
+        background-position: -122px -45px, 0 0;
+
+        &.expanded {
+            background-position: -122px -20px;
+            background-position: -122px -20px, 0 0;
+        }
+    }
+
+
+    // Lightbeam
+    #panel-lightbeam {
+        background-image: url(/media/img/home/panel/lightbeam/logo-lightbeam-sm.png);
+        background-image: url(/media/img/home/panel/lightbeam/logo-lightbeam-sm.png),
+                          url(/media/img/home/panel/lightbeam/bg-lightbeam.jpg);
+        background-position: -50px -50px;
+        background-position: -50px -50px, 0 0;
+
+        &.expanded {
+            background-position: -50px 20px;
+            background-position: -50px 20px, 0 0;
+        }
+
+        &.compressed {
+            background-position: -50px -65px;
+            background-position: -50px -65px, 0 0;
+        }
+    }
+
+
+    // Firefox OS
+    #panel-fxos {
+        background-image: url(/media/img/home/panel/firefoxos/firefoxos-fox-sm.png?04-11-13);
+        background-position: -85px -95px;
+
+        &.expanded {
+            background-position: -85px -30px;
+        }
+
+        &.compressed {
+            background-position: -85px -110px;
+        }
+    }
+
+    // MDN
+    #panel-mdn {
+        background-image: url(/media/img/home/panel/mdn/logo-mdn-sm.png);
+        background-image: url(/media/img/home/panel/mdn/logo-mdn.svg),
+                          url(/media/img/home/panel/mdn/bg-grid.png?01-09-14);
+        background-position: -20px -10px;
+        background-position: -20px -10px, -350px 0;
+        background-size: 120px 105px, auto auto;
+
+        &.expanded {
+            background-position: -20px 25px;
+            background-position: -20px 25px, -350px 0;
+        }
+
+        &.compressed {
+            background-position: -20px -15px;
+            background-position: -20px -15px, -350px 0;
+        }
+
+        .panel-title i {
+            color: inherit;
+        }
+    }
+
+    // Mozilla Festival
+    #panel-mozfest {
+        background-image: url(/media/img/home/panel/mozfest/logo-mozfest-sm.png);
+        background-image: url(/media/img/home/panel/mozfest/logo-mozfest-sm.png),
+                          url(/media/img/home/panel/mozfest/bg-mosaic.jpg);
+        background-position: -60px -35px;
+        background-position: -60px -35px, 0 0;
+
+        .panel-content {
+            background-position: 70px 0;
+        }
+
+        .panel-title i {
+            color: inherit;
+        }
+
+        &.expanded {
+            background-position: -60px 20px;
+            background-position: -60px 20px, 0 0;
+        }
+
+        &.compressed {
+            background-position: -60px -40px;
+            background-position: -60px -40px, 0 0;
+        }
+    }
+
+    // Webmaker
+    #panel-webmaker {
+        background-image: url(/media/img/home/panel/webmaker/logo-webmaker-sm.png);
+        background-position: -50px -40px;
+
+        &.expanded {
+            background-position: -50px 10px;
+        }
+
+        &.compressed {
+            background-position: -50px -60px;
+        }
+    }
+
+}
+
+
+
+/****************************************************************************/
+// @Wide @mobile layout: 480px
 @media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
-    .pager-page a,
-    .loaded .pager-page a {
-        padding-top: 116px;
+
+    // Mozilla Mission
+    #panel-mission {
+        background-position: -80px -45px;
+        background-position: -80px -45px, 0 0;
+
+        &.expanded {
+            background-position: -80px -20px;
+            background-position: -80px -20px, 0 0;
+        }
     }
 
-    #promo-fxos a,
-    #page-promo-fxos a {
-        background-image: url('/media/img/home/promo/fxos/440.png');
-        .content {
-            width: auto;
-            h3 {
-                font-size: 30px;
-                letter-spacing: -1px;
-                padding-top: 20px;
-                margin-bottom: 5px;
-            }
-            h4 {
-                width: auto;
-                line-height: 1.2;
-            }
+    // Lightbeam
+    #panel-lightbeam {
+        background-image: url(/media/img/home/panel/lightbeam/logo-lightbeam-sm.png);
+        background-image: url(/media/img/home/panel/lightbeam/logo-lightbeam-sm.png),
+                          url(/media/img/home/panel/lightbeam/bg-lightbeam.jpg);
+        background-position: -10px -50px;
+        background-position: -10px -50px, 0 0;
+
+        &.expanded {
+            background-position: -10px 20px;
+            background-position: -10px 20px, 0 0;
+        }
+
+        &.compressed {
+            background-position: -10px -65px;
+            background-position: -10px -65px, 0 0;
         }
     }
-    .loaded {
-        #promo-makerparty a,
-        #page-promo-makerparty a {
-            background-image: url('/media/img/home/promo/makerparty/440.jpg');
-            .content {
-                width: auto;
-            }
+
+    // Firefox OS
+    #panel-fxos {
+        background-position: -40px -95px;
+
+        &.expanded {
+            background-position: -40px -30px;
         }
-        #promo-flickswinners,
-        #page-promo-flickswinners {
-            padding-top: 248px;
+
+        &.compressed {
+            background-position: -40px -110px;
         }
-        #promo-android a,
-        #page-promo-android a {
-            background-image: url('/media/img/home/promo/android/440.jpg?2013-06');
-            .content {
-                width: auto;
-            }
+    }
+
+    //MDN
+    #panel-mdn {
+        background-position: 10px -20px;
+        background-position: 10px -20px, -250px 0;
+        background-size: 130px 115px, auto auto;
+
+        &.expanded {
+            background-position: 10px 25px;
+            background-position: 10px 25px, -250px 0;
+        }
+
+        &.compressed {
+            background-position: 10px -25px;
+            background-position: 10px -25px, -250px 0;
+        }
+    }
+
+    // Mozilla Festival
+    #panel-mozfest {
+        background-position: -15px -35px;
+        background-position: -15px -35px, 0 0;
+
+        .panel-content {
+            background-position: 110px 0;
+        }
+
+        .panel-title i {
+            color: inherit;
+        }
+
+        &.expanded {
+            background-position: -15px 20px;
+            background-position: -15px 20px, 0 0;
+        }
+
+        &.compressed {
+            background-position: -15px -40px;
+            background-position: -15px -40px, 0 0;
+        }
+    }
+
+    // Webmaker
+    #panel-webmaker {
+        background-position: -15px -40px;
+
+        &.expanded {
+            background-position: -15px 10px;
+        }
+
+        &.compressed {
+            background-position: -15px -60px;
         }
     }
 }
 
-/* }}} */
-/* {{{ Specific Mobile Layout: 320px */
+/****************************************************************************/
+// @High resolution images for @retina-type displays
+// Mobile
+@media only screen and (max-width: @breakTablet) and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (max-width: @breakTablet) and (                min-resolution: 1.5dppx),
+       only screen and (max-width: @breakTablet) and (                min-resolution: 144dpi) {
 
-@media only screen and (max-width: @breakMobileLandscape) {
-    .pager-page a,
-    .loaded .pager-page a {
-        padding-top: 84px;
+    #panel-lightbeam {
+        background-image: url(/media/img/home/panel/lightbeam/logo-lightbeam-sm-hires.png);
+        background-image: url(/media/img/home/panel/lightbeam/logo-lightbeam-sm-hires.png),
+                          url(/media/img/home/panel/lightbeam/bg-lightbeam.jpg);
+        background-size: 158px 158px;
+        background-size: 158px 158px, auto auto;
     }
-    #promo-fxos a,
-    #page-promo-fxos a {
-        background-image: url('/media/img/home/promo/fxos/320.png');
-        .content {
-            width: auto;
-            h3 {
-                font-size: 24px;
-                letter-spacing: -1px;
-                padding-top: 20px;
-                margin-bottom: 5px;
-            }
-            h4 {
-                font-size: 18px;
-                width: auto;
-                line-height: 1.3;
-                letter-spacing: normal;
-            }
-        }
+
+    #panel-fxos {
+        background-image: url(/media/img/home/panel/firefoxos/firefoxos-fox-sm-hires.png);
+        background-size: 190px 246px;
     }
-    .loaded {
-        #promo-makerparty a,
-        #page-promo-makerparty a {
-            background-image: url('/media/img/home/promo/makerparty/320.jpg');
-            .content {
-                width: auto;
-                color: @textColorPrimary;
-            }
-        }
-        #promo-flickswinners,
-        #page-promo-flickswinners {
-            .container {
-                background-image: url('/media/img/home/promo/flickswinners/320.jpg');
-            }
-            .content {
-                width: auto;
-                color: @textColorPrimary;
-            }
-        }
-        #promo-android a,
-        #page-promo-android a {
-            background-image: url('/media/img/home/promo/android/320.jpg?2013-06');
-        }
+
+    #panel-mozfest {
+        background-image: url(/media/img/home/panel/mozfest/logo-mozfest-sm-hires.png);
+        background-image: url(/media/img/home/panel/mozfest/logo-mozfest-sm-hires.png),
+                          url(/media/img/home/panel/mozfest/bg-mosaic.jpg);
+        background-size: 170px 170px;
+        background-size: 170px 170px, auto auto;
     }
+
 }
-
-/* }}} */

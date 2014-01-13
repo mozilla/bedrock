@@ -1,10 +1,11 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
  # License, v. 2.0. If a copy of the MPL was not distributed with this
- # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% extends "/firefox/base.html" %}
 
-{% block page_title %}Customize Your Browser{% endblock %}
+{% block page_title %}{{ _('Customize Your Browser') }}{% endblock %}
+{% block page_desc %}{{ _('Customize the Firefox Web browser any way you like. There are easy ways to personalize like add-ons, themes, plugins and more.') }}{% endblock %}
 {% block body_id %}firefox-customize{% endblock %}
 
 {% block site_css %}
@@ -21,13 +22,17 @@
 <div id="main-feature">
   <div class="row">
   <hgroup class="stacked">
-    <h1>Easy Ways To <span class="large">Personalize</span></h1>
-    <h4>When it comes to browsing, one size doesn’t fit all—customize Firefox pretty much any way you like!</h4>
+    <h1>{{ _('Easy Ways To <span class="large">Personalize</span>') }}</h1>
+    <h4>{{ _('When it comes to browsing, one size doesn’t fit all—customize Firefox pretty much any way you like!') }}</h4>
   </hgroup>
 
   <aside id="go-mobile">
-    <h5>Go Mobile</h5>
-    <p>Get add-ons on your mobile, too! Just <a href="https://addons.mozilla.org/en-US/mobile/?browse=featured">visit the mobile add-ons page</a> on your Android device to search and install.</p>
+    <h5>{{ _('Go Mobile') }}</h5>
+    <p>
+    {% trans url='https://addons.mozilla.org/mobile/?browse=featured' %}
+      Get add-ons on your mobile, too! Just <a href="{{ url }}">visit the mobile add-ons page</a> on your Android device to search and install.
+    {% endtrans %}
+    </p>
   </aside>
 
   {{ download_firefox(small=True) }}
@@ -37,31 +42,36 @@
 
 <nav class="menu-bar billboard">
   <ul>
-    <li><a href="#style">Add Style: <span>Themes</span></a></li>
-    <li><a href="#addons">Customize: <span>Add-ons</span></a></li>
-    <li><a href="#plugins">Make It Work: <span>Plugins</span></a></li>
-    <li><a href="#interface">Adapt Your <span>Interface</span></a></li>
-    <li><a href="#sync">Stay In <span>Sync</span></a></li>
+    <li><a href="#style">{{ _('Add Style: <span>Themes</span>') }}</a></li>
+    <li><a href="#addons">{{ _('Customize: <span>Add-ons</span>') }}</a></li>
+    <li><a href="#plugins">{{ _('Make It Work: <span>Plugins</span>') }}</a></li>
+    <li><a href="#interface">{{ _('Adapt Your <span>Interface</span>') }}</a></li>
+    <li><a href="#sync">{{ _('Stay In <span>Sync</span>') }}</a></li>
   </ul>
 </nav>
 
 <section class="billboard" id="style">
   <div class="row">
     <div class="span3">
-      <h3>Add Style: <span>Themes</span></h3>
-      <p>Make Firefox match your style! Choose from thousands of <a href="https://addons.mozilla.org/firefox/themes/">Themes</a> designed by users around the world, or <a href="https://addons.mozilla.org/developers/docs/themes">create one yourself</a>. With a single click you can dress up your browser however you want.</p>
+      <h3>{{ _('Add Style: <span>Themes</span>') }}</h3>
+      <p>
+      {% trans url1='https://addons.mozilla.org/firefox/themes/',
+          url2='https://addons.mozilla.org/developers/docs/themes' %}
+        Make Firefox match your style! Choose from thousands of <a href="{{ url1 }}">Themes</a> designed by users around the world, or <a href="{{ url2 }}">create one yourself</a>. With a single click you can dress up your browser however you want.
+      {% endtrans %}
+      </p>
     </div>
     <div id="persona-previews" class="span7">
-      <div id="try-on"><p>Roll over to try, click to apply</p></div>
+      <div id="try-on"><p>{{ _('Roll over to try, click to apply') }}</p></div>
       <div class="persona-previewer persona-previewer-random">
         <div class="persona-previewer-content">
-          <div id="persona-tattoo" class="persona-visible"><img src="{{ media('img/firefox/customize/personas-tattoo.png') }}" width="344" height="174" alt="preview" /></div>
-          <div id="persona-endless"><img src="{{ media('img/firefox/customize/personas-endless.png') }}" width="344" height="174" alt="preview" /></div>
-          <div id="persona-kanagawa"><img src="{{ media('img/firefox/customize/personas-kanagawa.png') }}" width="344" height="174" alt="preview" /></div>
+          <div id="persona-tattoo" class="persona-visible"><img src="{{ media('img/firefox/customize/personas-tattoo.png') }}" width="344" height="174" alt="{{ _('preview') }}" /></div>
+          <div id="persona-endless"><img src="{{ media('img/firefox/customize/personas-endless.png') }}" width="344" height="174" alt="{{ _('preview') }}" /></div>
+          <div id="persona-kanagawa"><img src="{{ media('img/firefox/customize/personas-kanagawa.png') }}" width="344" height="174" alt="{{ _('preview') }}" /></div>
 
-          <div id="persona-retronotes"><img src="{{ media('img/firefox/customize/personas-retronotes.png') }}" width="344" height="174" alt="preview" /></div>
-          <div id="persona-bobmarley"><img src="{{ media('img/firefox/customize/personas-bobmarley.png') }}" width="344" height="174" alt="preview" /></div>
-          <div id="persona-sunset"><img src="{{ media('img/firefox/customize/personas-sunset.png') }}" width="344" height="174" alt="preview" /></div>
+          <div id="persona-retronotes"><img src="{{ media('img/firefox/customize/personas-retronotes.png') }}" width="344" height="174" alt="{{ _('preview') }}" /></div>
+          <div id="persona-bobmarley"><img src="{{ media('img/firefox/customize/personas-bobmarley.png') }}" width="344" height="174" alt="{{ _('preview') }}" /></div>
+          <div id="persona-sunset"><img src="{{ media('img/firefox/customize/personas-sunset.png') }}" width="344" height="174" alt="{{ _('preview') }}" /></div>
         </div>
         <ul class="persona-previewer-tabs">
           <li><a href="https://addons.mozilla.org/firefox/addon/japanese-tattoo/"><img src="//getpersonas.cdn.mozilla.net/static/1/0/7610/preview.jpg" width="138" height="46" alt="Japanese Tattoo" /></a></li>
@@ -72,7 +82,7 @@
           <li><a href="https://addons.mozilla.org/firefox/addon/sunset-over-water/"><img src="//getpersonas.cdn.mozilla.net/static/6/9/64769/preview.jpg" width="138" height="46" alt="Sunset Over Water" /></a></li>
         </ul>
       </div>
-      <p id="see-all-personas"><a href="https://addons.mozilla.org/firefox/complete-themes/" class="feature arrow">See all 180,000+  »</a></p>
+      <p id="see-all-personas"><a href="https://addons.mozilla.org/firefox/complete-themes/" class="feature arrow">{{ _('See all 180,000+') }}  »</a></p>
     </div>
   </div>
 </section>
@@ -80,21 +90,29 @@
 
 
 <section class="billboard" id="addons">
-<div class="row">
-  <div class="span3">
-    <h3>Customize: <span>Add-ons</span></h3>
-    <p>Many of the most popular add-ons are extensions, little extras you download to add more bells & whistles to Firefox. Compare prices, check the weather, listen to music, update your Facebook profile – all built right into the browser! There are thousands to choose from, but <a href="https://addons.mozilla.org/firefox/extensions/?sort=featured">here are a few of our favorites</a>.</p>
-  </div>
-  <div id="addons-feature" class="span7">
-    <div id="addons-video" class="mozilla-video-control mozilla-video-shadow">
-      {{ video('FF%20576%20h264%20v6.webm',
-               'FF%20576%20h264%20v6.theora.ogv',
-               'FF%20576%20h264%20v6.mp4',
-               h=349, w=620,
-               prefix='//videos-cdn.mozilla.net/serv/marketing/696470/',
-               poster=media('img/firefox/video/poster-addons.jpg')) }}
+  <div class="row">
+    <div class="span3">
+      <h3>{{ _('Customize: <span>Add-ons</span>') }}</h3>
+      <p>
+      {% trans url='https://addons.mozilla.org/firefox/extensions/?sort=featured' %}
+        Many of the most popular add-ons are extensions, little extras you download to add more bells & whistles to Firefox. Compare prices, check the weather, listen to music, update your Facebook profile – all built right into the browser! There are thousands to choose from, but <a href="{{ url }}">here are a few of our favorites</a>.
+      {% endtrans %}
+      </p>
     </div>
-    <p id="builder-link">Are you a web developer? <a href="https://addons.mozilla.org/en-US/developers/builder">Learn how to make fantastic, restartless add-ons.</a></p>
+    <div id="addons-feature" class="span7">
+      <div id="addons-video" class="mozilla-video-control mozilla-video-shadow">
+        {{ video('FF%20576%20h264%20v6.webm',
+                 'FF%20576%20h264%20v6.theora.ogv',
+                 'FF%20576%20h264%20v6.mp4',
+                 h=349, w=620,
+                 prefix='//videos-cdn.mozilla.net/serv/marketing/696470/',
+                poster=media('img/firefox/video/poster-addons.jpg')) }}
+      </div>
+      <p id="builder-link">
+      {% trans url='https://addons.mozilla.org/developers/builder' %}
+        Are you a web developer? <a href="{{ url }}">Learn how to make fantastic, restartless add-ons.</a>
+      {% endtrans %}
+      </p>
     </div>
   </div>
 </section>
@@ -102,11 +120,15 @@
 <section class="billboard" id="plugins">
 <div class="row">
   <div class="span3">
-    <h3>Make It Work: <span>Plugins</span></h3>
-    <p>Plugins are small bits of third-party software built by companies like Adobe Systems or Apple to power videos, animation and games (examples include Flash Player or Quicktime). They can cause browser crashes or pose security risks when they get out of date, so we’ve built an easy tool to help you stay current. <a href="/en-US/plugincheck/">Check your plugins.</a></p>
+    <h3>{{ _('Make It Work: <span>Plugins</span>') }}</h3>
+    <p>
+    {% trans url1=url('mozorg.plugincheck') %}
+      Plugins are small bits of third-party software built by companies like Adobe Systems or Apple to power videos, animation and games (examples include Flash Player or Quicktime). They can cause browser crashes or pose security risks when they get out of date, so we’ve built an easy tool to help you stay current. <a href="{{ url1 }}">Check your plugins.</a>
+    {% endtrans %}
+    </p>
   </div>
   <div class="span7">
-     {{ platform_img('img/firefox/customize/make-it-work.png?2013-06', {'alt': 'Make It Work: Plugins'}) }}
+     {{ platform_img('img/firefox/customize/make-it-work.png?2013-06', {'alt': _('Make It Work: Plugins')}) }}
   </div>
 </div>
 </section>
@@ -114,31 +136,40 @@
 <section class="billboard" id="interface">
 <div class="row">
   <div class="span3">
-    <h3>Adapt Your <span>Interface</span></h3>
-    <p>The Firefox interface has been designed by a team of experts and tested by a community of millions of users around the world to make sure your browsing is as easy and intuitive as possible.</p>
-    <p>But, everyone has their own specific needs, and you can always adjust the interface to be exactly the way you like it: re-arrange, organize, add or remove buttons or fields to change your browsing experience however you want. <a href="https://support.mozilla.org/kb/How%20to%20customize%20the%20toolbar">Learn more.</a></p>
+    <h3>{{ _('Adapt Your <span>Interface</span>') }}</h3>
+    <p>{{ _('The Firefox interface has been designed by a team of experts and tested by a community of millions of users around the world to make sure your browsing is as easy and intuitive as possible.') }}</p>
+    <p>
+    {% trans url='https://support.mozilla.org/kb/How%20to%20customize%20the%20toolbar' %}
+      But, everyone has their own specific needs, and you can always adjust the interface to be exactly the way you like it: re-arrange, organize, add or remove buttons or fields to change your browsing experience however you want. <a href="{{ url }}">Learn more.</a>
+    {% endtrans %}
+    </p>
   </div>
   <div class="span7">
-     {{ platform_img('img/firefox/customize/adapt-your-interface.png', {'alt': 'Adapt Your Interface'}) }}
+     {{ platform_img('img/firefox/customize/adapt-your-interface.png', {'alt': _('Adapt Your Interface')}) }}
   </div>
 </div>
 </section>
 
 <section class="billboard" id="sync">
-<div class="row">
-  <div class="span3">
-    <h3>Stay In <span>Sync</span></h3>
-    <p>Sync seamlessly connects your desktop and mobile Firefoxes, so you can access your browsing history, passwords, bookmarks and even open tabs no matter which device you use.</p>
-    <p>Now you can surf the Web on your desktop, get up in the middle of browsing and have your open tabs ready and waiting on your mobile, just as you left them. Your browsing will never be the same! <a href="/en-US/mobile/sync/">Learn more.</a></p>
-  </div>
-  <div class="span7">
-    <div id="video-player" class="mozilla-video-control">
+  <div class="row">
+    <div class="span3">
+      <h3>{{ _('Stay In <span>Sync</span>') }}</h3>
+      <p>{{ _('Sync seamlessly connects your desktop and mobile Firefoxes, so you can access your browsing history, passwords, bookmarks and even open tabs no matter which device you use.') }}</p>
+      <p>
+      {% trans url=php_url('/mobile/sync/') %}
+        Now you can surf the Web on your desktop, get up in the middle of browsing and have your open tabs ready and waiting on your mobile, just as you left them. Your browsing will never be the same! <a href="{{ url }}">Learn more.</a>
+      {% endtrans %}
+      </p>
+    </div>
+    <div class="span7">
+      <div id="video-player" class="mozilla-video-control">
       {{ video('FoxySync640.webm',
                'FoxySync640.theora.ogv',
                'FoxySync640.mp4',
                h=349, w=620,
                prefix='//videos-cdn.mozilla.net/serv/marketing/firefox4/',
                poster=media('img/firefox/video/poster-fx4-sync.jpg')) }}
+      </div>
     </div>
   </div>
 </section>

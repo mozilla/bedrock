@@ -1,28 +1,30 @@
-{% from "macros.html" import email_newsletter_form, mozorg_newsletter_form with context %}
-
+{% from "macros.html" import mozorg_newsletter_form with context %}
 {% set_lang_files "main" %}
 <!doctype html>
 {# Note the "windows" class, without javascript platform-specific
      assets default to windows #}
 <html class="windows no-js" lang="{{ LANG }}" dir="{{ DIR }}"{% block html_attrs %}{% endblock %}>
   <head>
+    <meta charset="utf-8">{# Note: Must be within first 512 bytes of page #}
+<!--
+{% include "includes/careers-teaser.html" %}
+-->
     {% block ga_experiments %}{% endblock %}
-    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% block extra_meta %}{% endblock %}
 
     {% block shared_meta %}
     {#- Please sync this block with the base.html template.
         Because of blocks, we cannot use an include here. -#}
-    <title>{% block page_title_full %}{% block page_title_prefix %}Mozilla — {% endblock %}{% block page_title %}{% endblock %}{% endblock page_title_full %}{% block page_title_suffix %} — Mozilla{% endblock %}</title>
-    <meta name="description" content="{% block page_desc %}{% endblock %}">
+    <title>{% filter striptags %}{% block page_title_full %}{% block page_title_prefix %}{% endblock %}{% block page_title %}{% endblock %}{% endblock page_title_full %}{% block page_title_suffix %} — Mozilla{% endblock %}{% endfilter %}</title>
+    <meta name="description" content="{% filter striptags %}{% block page_desc %}{% endblock %}{% endfilter %}">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="{{ _('Mozilla') }}">
     <meta property="og:locale" content="{{ LANG|replace("-", "_") }}">
     <meta property="og:url" content="{{ settings.CANONICAL_URL + '/' + LANG + canonical_path }}">
     <meta property="og:image" content="{% filter absolute_url %}{% block page_image %}{{ media('img/mozorg/mozilla-256.jpg') }}{% endblock %}{% endfilter %}">
-    <meta property="og:title" content="{{ self.page_title_full() }}">
-    <meta property="og:description" content="{{ self.page_desc() }}">
+    <meta property="og:title" content="{{ self.page_title_full()|striptags }}">
+    <meta property="og:description" content="{{ self.page_desc()|striptags }}">
     <meta property="fb:page_id" content="{% block facebook_id %}262134952380{# facebook.com/mozilla #}{% endblock %}">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@{% block twitter_id %}mozilla{% endblock %}">
@@ -45,9 +47,36 @@
       {{ css('responsive') }}
     {% endblock %}
 
+    {% if LANG in ['ar', 'fa'] %}
+    {# bug 958321 #}
+      <style type="text/css">
+        @font-face {
+          font-family: 'Droid Arabic Naskh';
+          src: url({{ media('fonts/DroidNaskh-Regular.eot?#iefix') }}) format('embedded-opentype'),
+               url({{ media('fonts/DroidNaskh-Regular.woff') }}) format('woff'),
+               url({{ media('fonts/DroidNaskh-Regular.ttf') }}) format('truetype');
+          font-style: normal;
+          font-weight: normal;
+        }
+
+        @font-face {
+          font-family: 'Droid Arabic Naskh';
+          src: url({{ media('/fonts/DroidNaskh-Bold.eot?#iefix') }}) format('embedded-opentype'),
+               url({{ media('/fonts/DroidNaskh-Bold.woff') }}) format('woff'),
+               url({{ media('/fonts/DroidNaskh-Bold.ttf') }}) format('truetype');
+          font-style: normal;
+          font-weight: bold;
+        }
+      </style>
+    {% endif %}
+
     {% block extrahead %}{% endblock %}
 
     {{ js('site') }}
+
+    {% block optimizely %}
+      {% include 'includes/optimizely.html' %}
+    {% endblock %}
 
     {% block js_pretrack %}{# include JavaScript that must be run pre GA tracking here #}{% endblock %}
     {% block google_analytics %}
@@ -56,13 +85,13 @@
   </head>
 
   <body id="{% block body_id %}{% endblock %}" class="html-{{ DIR }} {% block body_class %}{% endblock %}"{% block body_attrs %}{% endblock %}>
-    <div id="strings" {% block string_data %}{% endblock %}></div>
+    <div id="strings" data-global-close="{{ _('Close') }}" {% block string_data %}{% endblock %}></div>
     <div id="outer-wrapper">
     <div id="wrapper">
 
     {% block site_header %}
       <header id="masthead">
-        <a href="{{ url('mozorg.home') }}" id="tabzilla">{{ _('Mozilla') }}</a>
+        <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{{ settings.TABZILLA_INFOBAR_OPTIONS }}">{{ _('Mozilla') }}</a>
         {% block site_header_nav %}
         <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
         <nav id="nav-main" role="navigation">
@@ -127,16 +156,19 @@
               </p>
           </div>
           <ul class="footer-nav">
-            <li><a href="{{ php_url('/about/contact.html#map-mountain_view') }}">{{_('Contact Us')}}</a></li>
+            <li><a href="{{ url('mozorg.contact.spaces.spaces-landing') }}">{{_('Contact Us')}}</a></li>
             <li><a href="{{ url('mozorg.partnerships') }}">{{_('Partner with Us')}}</a></li>
+            <li><a href="{{ donate_url() }}?source=mozillaorg_footer&amp;amount=20" class="donate">{{ _('Donate') }}</a></li>
             <li><a href="{{ url('privacy.index') }}">{{_('Privacy Policy')}}</a></li>
             <li><a href="{{ php_url('/about/legal.html') }}">{{_('Legal Notices')}}</a></li>
             <li><a href="{{ php_url('/legal/fraud-report/index.html') }}">{{_('Report Trademark Abuse')}}</a></li>
           </ul>
           {% block social %}
           <ul class="footer-nav">
-            <li><a href="https://twitter.com/firefox">{{_('Twitter')}}</a></li>
-            <li><a href="https://facebook.com/Firefox">{{_('Facebook')}}</a></li>
+            <li><a href="https://twitter.com/mozilla">{{_('Mozilla on Twitter')}}</a></li>
+            <li><a href="{{ firefox_twitter_url() }}">{{_('Firefox on Twitter')}}</a></li>
+            <li><a href="https://www.facebook.com/mozilla">{{_('Mozilla on Facebook')}}</a></li>
+            <li><a href="https://www.facebook.com/Firefox">{{_('Firefox on Facebook')}}</a></li>
             <li><a href="https://affiliates.mozilla.org/">{{_('Firefox Affiliates')}}</a></li>
           </ul>
           {% endblock %}

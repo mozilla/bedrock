@@ -4,16 +4,18 @@
 import mock
 
 from bedrock.mozorg.tests import TestCase
+from bedrock.newsletter.forms import (
+    BooleanRadioRenderer, ManageSubscriptionsForm,
+    NewsletterFooterForm, NewsletterForm, UnlabeledTableCellRadios,
+)
+from bedrock.newsletter.tests import newsletters
 
-from ..forms import (BooleanRadioRenderer, ManageSubscriptionsForm,
-                     NewsletterFooterForm, NewsletterForm,
-                     UnlabeledTableCellRadios
-                     )
-from .test_views import newsletters
+
+newsletters_mock = mock.Mock()
+newsletters_mock.return_value = newsletters
 
 
 class TestRenderers(TestCase):
-
     def test_radios(self):
         """Test radio button renderer"""
         choices = ((123, "NAME_A"), (245, "NAME_2"))
@@ -100,12 +102,11 @@ class TestManageSubscriptionsForm(TestCase):
         self.assertEqual('pt', form.initial['lang'])
 
 
+@mock.patch('bedrock.newsletter.utils.get_newsletters', newsletters_mock)
 class TestNewsletterForm(TestCase):
-    @mock.patch('bedrock.newsletter.utils.get_newsletters')
-    def test_form(self, get_newsletters):
+    def test_form(self):
         """test NewsletterForm"""
         # not much to test, but at least construct one
-        get_newsletters.return_value = newsletters
         title = "Newsletter title"
         newsletter = 'newsletter-a'
         initial = {
@@ -122,122 +123,99 @@ class TestNewsletterForm(TestCase):
         self.assertTrue(form.is_valid())
         self.assertEqual(title, form.cleaned_data['title'])
 
-    @mock.patch('bedrock.newsletter.utils.get_newsletters')
-    def test_invalid_newsletter(self, get_newsletters):
-        """Should raise a validation error for an invalid newsletter."""
-        get_newsletters.return_value = newsletters
-        data = {
-            'newsletter': 'mozilla-and-you',
-            'email': 'dude@example.com',
-            'lang': 'en',
-            'privacy': 'Y',
-            'fmt': 'H',
-        }
-        form = NewsletterFooterForm('en-US', data=data)
-        self.assertTrue(form.is_valid())
-
-        data['newsletter'] = 'does-not-exist'
-        form = NewsletterFooterForm('en-US', data=data)
-        self.assertFalse(form.is_valid())
-        self.assertEqual(form.errors['newsletter'][0], 'does-not-exist is not '
-                                                       'a valid newsletter')
-
-    @mock.patch('bedrock.newsletter.utils.get_newsletters')
-    def test_multiple_newsletters(self, get_newsletters):
+    def test_multiple_newsletters(self):
         """Should allow to subscribe to multiple newsletters at a time."""
-        get_newsletters.return_value = newsletters
         data = {
-            'newsletter': 'mozilla-and-you,beta',
             'email': 'dude@example.com',
             'lang': 'en',
             'privacy': 'Y',
             'fmt': 'H',
         }
-        form = NewsletterFooterForm('en-US', data=data.copy())
+        form = NewsletterFooterForm('mozilla-and-you,beta', 'en-US', data=data.copy())
         self.assertTrue(form.is_valid())
+        self.assertEqual(form.newsletters, 'mozilla-and-you,beta')
 
         # whitespace shouldn't matter
-        data['newsletter'] = 'mozilla-and-you ,  beta  '
-        form = NewsletterFooterForm('en-US', data=data.copy())
+        form = NewsletterFooterForm('mozilla-and-you , beta ', 'en-US', data=data.copy())
         self.assertTrue(form.is_valid())
-        self.assertEqual(form.cleaned_data['newsletter'],
-                         'mozilla-and-you,beta')
-
-    @mock.patch('bedrock.newsletter.utils.get_newsletters')
-    def test_multiple_newsletters_invalid(self, get_newsletters):
-        """Should throw error if any newsletter is invalid."""
-        get_newsletters.return_value = newsletters
-        data = {
-            'newsletter': 'mozilla-and-you,beta-DUDE',
-            'email': 'dude@example.com',
-            'privacy': 'Y',
-            'fmt': 'H',
-        }
-        form = NewsletterFooterForm('en-US', data=data.copy())
-        self.assertFalse(form.is_valid())
-        self.assertEqual(form.errors['newsletter'][0], 'beta-DUDE is not '
-                                                       'a valid newsletter')
+        self.assertEqual(form.newsletters, 'mozilla-and-you,beta')
 
 
+@mock.patch('bedrock.newsletter.utils.get_newsletters', newsletters_mock)
 class TestNewsletterFooterForm(TestCase):
-    @mock.patch('bedrock.newsletter.utils.get_newsletters')
-    def test_form(self, get_newsletters):
+    newsletter_name = 'mozilla-and-you'
+
+    def test_form(self):
         """Form works normally"""
-        get_newsletters.return_value = newsletters
-        newsletter = u"mozilla-and-you"
         data = {
             'email': 'foo@example.com',
             'lang': 'fr',
-            'newsletter': newsletter,
             'privacy': True,
             'fmt': 'H',
         }
-        form = NewsletterFooterForm(locale='en-US', data=data)
+        form = NewsletterFooterForm(self.newsletter_name, locale='en-US', data=data)
         self.assertTrue(form.is_valid(), form.errors)
         cleaned_data = form.cleaned_data
         self.assertEqual(data['fmt'], cleaned_data['fmt'])
         self.assertEqual(data['lang'], cleaned_data['lang'])
 
     def test_country_default(self):
-        """country defaults based on the locale"""
-        form = NewsletterFooterForm(locale='fr')
-        self.assertEqual('fr', form.fields['country'].initial)
-        form = NewsletterFooterForm(locale='pt-BR')
+        """country defaults based on the locale.
+
+        But only for country based locales (e.g. pt-BR)"""
+        form = NewsletterFooterForm(self.newsletter_name, locale='fr')
+        self.assertEqual('', form.fields['country'].initial)
+        form = NewsletterFooterForm(self.newsletter_name, locale='pt-BR')
         self.assertEqual('br', form.fields['country'].initial)
+        form = NewsletterFooterForm(self.newsletter_name, locale='zh-TW')
+        self.assertEqual('tw', form.fields['country'].initial)
+
+    def test_lang_choices_per_newsletter(self):
+        """Lang choices should be based on the newsletter."""
+        form = NewsletterFooterForm('beta', 'en-US')
+        choices = [lang[0] for lang in form.fields['lang'].choices]
+        self.assertEqual(choices, ['en'])
+
+        form = NewsletterFooterForm('join-mozilla', 'en-US')
+        choices = [lang[0] for lang in form.fields['lang'].choices]
+        self.assertEqual(choices, ['en', 'es'])
+
+    def test_lang_choices_multiple_newsletters(self):
+        """Lang choices should be based on all newsletters."""
+        form = NewsletterFooterForm('join-mozilla,firefox-tips', 'en-US')
+        choices = [lang[0] for lang in form.fields['lang'].choices]
+        self.assertEqual(choices, ['de', 'en', 'es', 'fr', 'pt', 'ru'])
 
     def test_lang_default(self):
         """lang defaults based on the locale"""
-        form = NewsletterFooterForm(locale='pt-BR')
+        form = NewsletterFooterForm(self.newsletter_name, locale='pt-BR')
         self.assertEqual('pt', form.fields['lang'].initial)
 
-    @mock.patch('bedrock.newsletter.utils.get_newsletters')
-    def test_lang_not_required(self, get_newsletters):
+    def test_lang_default_not_supported(self):
+        """lang defaults to blank if not supported by newsletter."""
+        form = NewsletterFooterForm('beta', locale='pt-BR')
+        self.assertEqual('', form.fields['lang'].initial)
+
+    def test_lang_not_required(self):
         """lang not required since field not always displayed"""
-        get_newsletters.return_value = newsletters
-        newsletter = u"mozilla-and-you"
         data = {
             'email': 'foo@example.com',
-            'newsletter': newsletter,
             'privacy': True,
             'fmt': 'H',
         }
-        form = NewsletterFooterForm(locale='en-US', data=data)
+        form = NewsletterFooterForm(self.newsletter_name, locale='en-US', data=data)
         self.assertTrue(form.is_valid(), form.errors)
         # Form returns '' for lang, so we don't accidentally change the user's
         # preferred language thinking they entered something here that they
         # didn't.
         self.assertEqual(u'', form.cleaned_data['lang'])
 
-    @mock.patch('bedrock.newsletter.utils.get_newsletters')
-    def test_privacy_required(self, get_newsletters):
+    def test_privacy_required(self):
         """they have to check the privacy box"""
-        get_newsletters.return_value = newsletters
-        newsletter = u"mozilla-and-you"
         data = {
             'email': 'foo@example.com',
-            'newsletter': newsletter,
             'privacy': False,
             'fmt': 'H',
         }
-        form = NewsletterFooterForm(locale='en-US', data=data)
+        form = NewsletterFooterForm(self.newsletter_name, locale='en-US', data=data)
         self.assertIn('privacy', form.errors)

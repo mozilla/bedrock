@@ -1,7 +1,7 @@
 // Fonts and color
 
 @baseFontSize:      14px;
-@baseFontFamily:    'Open Sans', sans-serif;
+@baseFontFamily:    'Open Sans', 'Droid Arabic Naskh', sans-serif;
 @baseLine:          20px;
 @smallFontSize:     12px;
 @largeFontSize:     16px;
@@ -27,11 +27,11 @@
 @buttonBlueDark: #277ac1;
 
 .open-sans() {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans', 'Droid Arabic Naskh', sans-serif;
 }
 
 .open-sans-light() {
-    font-family: 'Open Sans Light', sans-serif;
+    font-family: 'Open Sans Light', 'Droid Arabic Naskh', sans-serif;
     font-weight: normal;
 }
 
@@ -335,7 +335,7 @@
 }
 
 .required-star() {
-    content: "*";
+    content: " *";
     font-size: @smallFontSize;
     font-weight: bold;
     color: @linkRed;
@@ -351,4 +351,11 @@
     clip: rect(0 0 0 0);
     padding: 0;
     border: 0;
+}
+
+// not the most up to date method, but works in IE7
+.image-replaced {
+    text-indent: 110%; // extra 10% to account for fancy fonts that may overhang
+    white-space: nowrap;
+    overflow: hidden;
 }

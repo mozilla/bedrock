@@ -32,6 +32,17 @@ function init_download_links() {
     $('.download-list').attr('role', 'presentation');
 }
 
+// Replace Google Play links on Android devices to let them open
+// the native Play Store app
+function init_android_download_links() {
+    if (site.platform === 'android') {
+        $('a[href^="https://play.google.com/store/apps/"]').each(function() {
+            $(this).attr('href', $(this).attr('href')
+                .replace('https://play.google.com/store/apps/', 'market://'));
+        });
+    }
+}
+
 // language switcher
 
 function init_lang_switcher() {
@@ -90,6 +101,7 @@ function init_platform_imgs() {
 
 $(document).ready(function() {
     init_download_links();
+    init_android_download_links();
     init_lang_switcher();
     $(window).on('load', function () {
         $('html').addClass('loaded');
@@ -115,7 +127,11 @@ function getFirefoxMasterVersion(userAgent) {
 function isFirefox(userAgent) {
     var ua = userAgent || navigator.userAgent;
     // camino UA string contains 'like Firefox'
-    return ((/\sFirefox/).test(ua) && !(/like Firefox/i).test(ua));
+    return (
+        (/\sFirefox/).test(ua) &&
+        !(/like Firefox/i).test(ua) &&
+        !(/SeaMonkey/i).test(ua)
+    );
 }
 
 function isFirefoxUpToDate(latest, esr) {
@@ -186,6 +202,8 @@ function gaTrack(eventArray, callback) {
         };
     }
     if (typeof(window._gaq) === 'object') {
+        // send event to GA
+        window._gaq.push(eventArray);
         // Only set up timer and hitCallback if a callback exists.
         if (hasCallback) {
             // Failsafe - be sure we do the callback in a half-second
@@ -194,20 +212,10 @@ function gaTrack(eventArray, callback) {
 
             // But ordinarily, we get GA to call us back immediately after
             // it finishes sending our things.
-            window._gaq.push(
-                // https://developers.google.com/analytics/devguides/collection/analyticsjs/advanced#hitCallback
-                // This is called AFTER GA has sent all pending data:
-
-                // hitCallback is undocumented in ga.js, but the assumption is that it
-                // will fire after the *next* track event, and not *all* pending track events.
-
-                // If hitCallback continues to cause problems, we should be able to safely
-                // remove it and use only the setTimeout technique.
-                ['_set', 'hitCallback', gaCallback]
-            );
+            // https://developers.google.com/analytics/devguides/collection/gajs/#PushingFunctions
+            // This is called after GA has sent the current pending data:
+            window._gaq.push(gaCallback);
         }
-        // send event to GA
-        window._gaq.push(eventArray);
     } else {
         // GA disabled or blocked or something, make sure we still
         // call the caller's callback:

@@ -2,7 +2,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import "sandstone/lib.less";
+@import "sandstone/sandstone-resp.less";
 
 #wrapper {
   width: 100%;
@@ -17,43 +17,9 @@
 }
 
 #main-content {
-  display: block;
+  .callout-content;
   margin: 100px auto @baseLine;
-  padding-left: @gridGutterWidth;
-  padding-right: @gridGutterWidth;
   position: relative;
-  .clearfix;
-  @shadow: 0 0 0 1px #fff inset;
-  .box-shadow(@shadow);
-  background: #fff;
-  border-bottom: 1px solid #ddd;
-
-  .title-banner {
-    font-weight: 100;
-    width: 420px;
-    padding: 20px;
-    font-size: 48px;
-    letter-spacing: -2px;
-    color: #fff;
-    text-shadow: none;
-    background: #b30406;
-    background: rgba(179,4,6,.95);
-    margin: -60px 10px 40px;
-    position: relative;
-    float: left;
-  }
-
-  .title-banner:after {
-    content: "";
-    display: block;
-    width: 100%;
-    padding: 0;
-    height: 40px;
-    position: absolute;
-    bottom: -40px;
-    left: 0;
-    background: url(../img/mission/title-banner-shadow.png) no-repeat;
-  }
 
   .container {
     clear: left;
@@ -70,34 +36,34 @@
 }
 
 @-webkit-keyframes hinge {
-  0% { -webkit-transform: rotate(0); -webkit-transform-origin: top left; -webkit-animation-timing-function: ease-in-out; }  
-  20%, 60% { -webkit-transform: rotate(80deg); -webkit-transform-origin: top left; -webkit-animation-timing-function: ease-in-out; }  
-  40% { -webkit-transform: rotate(60deg); -webkit-transform-origin: top left; -webkit-animation-timing-function: ease-in-out; } 
-  80% { -webkit-transform: rotate(60deg) translateY(0); opacity: 1; -webkit-transform-origin: top left; -webkit-animation-timing-function: ease-in-out; } 
+  0% { -webkit-transform: rotate(0); -webkit-transform-origin: top left; -webkit-animation-timing-function: ease-in-out; }
+  20%, 60% { -webkit-transform: rotate(80deg); -webkit-transform-origin: top left; -webkit-animation-timing-function: ease-in-out; }
+  40% { -webkit-transform: rotate(60deg); -webkit-transform-origin: top left; -webkit-animation-timing-function: ease-in-out; }
+  80% { -webkit-transform: rotate(60deg) translateY(0); opacity: 1; -webkit-transform-origin: top left; -webkit-animation-timing-function: ease-in-out; }
   100% { -webkit-transform: translateY(700px); opacity: 0; }
 }
 
 @-moz-keyframes hinge {
-  0% { -moz-transform: rotate(0); -moz-transform-origin: top left; -moz-animation-timing-function: ease-in-out; } 
-  20%, 60% { -moz-transform: rotate(80deg); -moz-transform-origin: top left; -moz-animation-timing-function: ease-in-out; } 
-  40% { -moz-transform: rotate(60deg); -moz-transform-origin: top left; -moz-animation-timing-function: ease-in-out; }  
-  80% { -moz-transform: rotate(60deg) translateY(0); opacity: 1; -moz-transform-origin: top left; -moz-animation-timing-function: ease-in-out; }  
+  0% { -moz-transform: rotate(0); -moz-transform-origin: top left; -moz-animation-timing-function: ease-in-out; }
+  20%, 60% { -moz-transform: rotate(80deg); -moz-transform-origin: top left; -moz-animation-timing-function: ease-in-out; }
+  40% { -moz-transform: rotate(60deg); -moz-transform-origin: top left; -moz-animation-timing-function: ease-in-out; }
+  80% { -moz-transform: rotate(60deg) translateY(0); opacity: 1; -moz-transform-origin: top left; -moz-animation-timing-function: ease-in-out; }
   100% { -moz-transform: translateY(700px); opacity: 0; }
 }
 
 @-o-keyframes hinge {
-  0% { -o-transform: rotate(0); -o-transform-origin: top left; -o-animation-timing-function: ease-in-out; } 
-  20%, 60% { -o-transform: rotate(80deg); -o-transform-origin: top left; -o-animation-timing-function: ease-in-out; } 
-  40% { -o-transform: rotate(60deg); -o-transform-origin: top left; -o-animation-timing-function: ease-in-out; }  
-  80% { -o-transform: rotate(60deg) translateY(0); opacity: 1; -o-transform-origin: top left; -o-animation-timing-function: ease-in-out; }  
+  0% { -o-transform: rotate(0); -o-transform-origin: top left; -o-animation-timing-function: ease-in-out; }
+  20%, 60% { -o-transform: rotate(80deg); -o-transform-origin: top left; -o-animation-timing-function: ease-in-out; }
+  40% { -o-transform: rotate(60deg); -o-transform-origin: top left; -o-animation-timing-function: ease-in-out; }
+  80% { -o-transform: rotate(60deg) translateY(0); opacity: 1; -o-transform-origin: top left; -o-animation-timing-function: ease-in-out; }
   100% { -o-transform: translateY(700px); opacity: 0; }
 }
 
 @keyframes hinge {
-  0% { transform: rotate(0); transform-origin: top left; animation-timing-function: ease-in-out; }  
-  20%, 60% { transform: rotate(80deg); transform-origin: top left; animation-timing-function: ease-in-out; }  
-  40% { transform: rotate(60deg); transform-origin: top left; animation-timing-function: ease-in-out; } 
-  80% { transform: rotate(60deg) translateY(0); opacity: 1; transform-origin: top left; animation-timing-function: ease-in-out; } 
+  0% { transform: rotate(0); transform-origin: top left; animation-timing-function: ease-in-out; }
+  20%, 60% { transform: rotate(80deg); transform-origin: top left; animation-timing-function: ease-in-out; }
+  40% { transform: rotate(60deg); transform-origin: top left; animation-timing-function: ease-in-out; }
+  80% { transform: rotate(60deg) translateY(0); opacity: 1; transform-origin: top left; animation-timing-function: ease-in-out; }
   100% { transform: translateY(700px); opacity: 0; }
 }
 
@@ -110,18 +76,15 @@
 
 /* Tablet Layout: 760px */
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
-  
   #masthead,
   #main-content,
   .billboard {
     width: @widthTablet - (@gridGutterWidth * 2);
   }
-
 }
 
 /* Mobile layout: 320px */
 @media only screen and (max-width: @breakTablet) {
-
   #masthead,
   #main-content,
   .billboard {
@@ -135,22 +98,11 @@
 
   #main-content {
     margin-top: 30px;
-    .title-banner {
-      width: 240px;
-      font-size: 28px;
-      letter-spacing: -.5px;
-      margin: -25px 0 @baseLine;
-    }
-
-    .title-banner:after {
-      display: none;
-    }
 
     .lede {
       font-size: 20px;
     }
   }
-
 }
 
 /* Wide mobile layout: 480px; */
@@ -161,17 +113,4 @@
   .billboard {
     width: @widthMobileLandscape - @gridGutterWidth;
   }
-
-  #main-content {
-    .title-banner {
-      width: 380px;
-      margin: -25px 0 40px;
-    }
-
-    .title-banner:after {
-      display: block;
-    }
-
-  }
-
 }

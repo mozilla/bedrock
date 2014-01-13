@@ -1,6 +1,6 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
  # License, v. 2.0. If a copy of the MPL was not distributed with this
- # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% extends "base.html" %}
 
@@ -9,7 +9,6 @@
 {% block body_class %}sky{% endblock %}
 
 {% block page_title_prefix %}{{ _('Mozilla Firefox Web Browser') }} — {% endblock %}
-{% block page_desc %}{{ _('Mozilla Firefox, free web browser, is created by a global non-profit dedicated to putting individuals in control &amp; shaping the future of the web for the public good.') }}{% endblock %}
 {% block page_image %}{{ media('img/firefox/firefox-256.jpg') }}{% endblock %}
 {% block page_favicon %}{{ media('img/firefox/favicon.ico?2013-08') }}{% endblock %}
 
@@ -69,9 +68,9 @@
         <li><a href="/en-US/about/participate/" tabindex="-1">{{ _('Participate') }}</a></li>
         <li><a href="https://blog.mozilla.org/press/" tabindex="-1">{{ _('Press Center') }}</a></li>
         <li><a href="/en-US/firefox/brand/" tabindex="-1">{{ _('Brand Toolkit') }}</a></li>
-        <li><a href="/en-US/about/careers.html" tabindex="-1">{{ _('Careers') }}</a></li>
+        <li><a href="https://careers.mozilla.org" tabindex="-1">{{ _('Careers') }}</a></li>
         <li><a href="/en-US/about/partnerships.html" tabindex="-1">{{ _('Partnerships') }}</a></li>
-        <li class="last"><a href="/en-US/about/contact.html" tabindex="-1">{{ _('Contact Us') }}</a></li>
+        <li class="last"><a href="{{ url('mozorg.contact.spaces.spaces-landing') }}" tabindex="-1">{{ _('Contact Us') }}</a></li>
       </ul>
     </li>
   </ul>
@@ -79,7 +78,7 @@
 {% endblock %}
 
 {% block site_header_logo %}
-<h2><img src="{{ media('img/firefox/template/header-logo.png?2013-06') }}" alt="Mozilla Firefox" height="70" width="185" data-inverse-src="{{media('img/firefox/template/header-logo-inverse.png?2013-06') }}"></h2>
+<h2><a href="{{ url('firefox') }}"><img src="{{ media('img/firefox/template/header-logo.png?2013-06') }}" alt="Mozilla Firefox" height="70" width="185" data-inverse-src="{{media('img/firefox/template/header-logo-inverse.png?2013-06') }}"></a></h2>
 {% endblock %}
 
 {% block site_js %}

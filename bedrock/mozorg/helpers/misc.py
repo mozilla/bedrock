@@ -175,10 +175,10 @@ def video(*args, **kwargs):
     HTML5 Video tag helper.
 
     Accepted kwargs:
-    prefix, w, h, autoplay, poster
+    prefix, w, h, autoplay, poster, preload, id
 
     Use like this:
-    {{ video('http://example.com/myvid.mp4', http://example.com/myvid.webm',
+    {{ video('http://example.com/myvid.mp4', 'http://example.com/myvid.webm',
              poster='http://example.com/myvid.jpg',
              w=640, h=360) }}
 
@@ -216,6 +216,8 @@ def video(*args, **kwargs):
         'w': 640,
         'h': 360,
         'autoplay': False,
+        'preload': False,
+        'id': 'htmlPlayer'
     }
 
     # Flash fallback, if mp4 file on Mozilla Videos CDN.
@@ -268,6 +270,84 @@ def press_blog_url(ctx):
         locale = 'en-US'
 
     return settings.PRESS_BLOG_ROOT + settings.PRESS_BLOGS[locale]
+
+
+@jingo.register.function
+@jinja2.contextfunction
+def donate_url(ctx):
+    """Output a link to the donation page taking locales into account.
+
+    Uses the locale from the current request. Checks to see if we have
+    a donation page that match this locale, returns the localized page
+    url or falls back to the US page url if not.
+
+    Examples
+    ========
+
+    In Template
+    -----------
+
+        {{ donate_url() }}
+
+    For en-US this would output:
+
+        https://sendto.mozilla.org/page/contribute/EOYFR2013-tabzilla
+
+    For de this would output:
+
+        https://sendto.mozilla.org/page/contribute/EOYFR2013-webDE
+
+    For fr this would output:
+
+        https://sendto.mozilla.org/page/contribute/EOYFR2013-webFR
+
+    For pt-BR this would output:
+
+        https://sendto.mozilla.org/page/contribute/EOYFR2013-webPTBR
+
+    """
+    locale = getattr(ctx['request'], 'locale', 'en-US')
+    if locale not in settings.DONATE_LOCALE_LINK:
+        locale = 'en-US'
+
+    return settings.DONATE_LOCALE_LINK[locale]
+
+
+@jingo.register.function
+@jinja2.contextfunction
+def firefox_twitter_url(ctx):
+    """Output a link to Twitter taking locales into account.
+
+    Uses the locale from the current request. Checks to see if we have
+    a Twitter account that match this locale, returns the localized account
+    url or falls back to the US account url if not.
+
+    Examples
+    ========
+
+    In Template
+    -----------
+
+        {{ firefox_twitter_url() }}
+
+    For en-US this would output:
+
+        https://twitter.com/firefox
+
+    For es-ES this would output:
+
+        https://twitter.com/firefox_es
+
+    For pt-BR this would output:
+
+        https://twitter.com/firefoxbrasil
+
+    """
+    locale = getattr(ctx['request'], 'locale', 'en-US')
+    if locale not in settings.FIREFOX_TWITTER_ACCOUNTS:
+        locale = 'en-US'
+
+    return settings.FIREFOX_TWITTER_ACCOUNTS[locale]
 
 
 @jingo.register.filter

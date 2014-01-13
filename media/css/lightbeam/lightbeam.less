@@ -15,7 +15,7 @@ h1.large {
 }
 
 .lightbeam-home #primary {
-    padding-top: @baseLine * 2;
+    padding: @baseLine * 2 @baseLine 0 @baseLine;
     @shadow: 0 1px 1px rgba(0, 0, 0, .1), 0 0 0 1px #fff;
     overflow: hidden;
 
@@ -28,7 +28,6 @@ h1.large {
     }
 
     img {
-        display: block;
         .span(6);
         float: right;
         margin-bottom: @baseLine;
@@ -60,12 +59,15 @@ h1.large {
     }
 }
 
-.three-points {
-    margin-top: -30px;
+.lightbeam-home .container {
     img {
         display: block;
         margin: 0 auto;
     }
+}
+
+.three-points {
+    margin-top: -30px;
     h4 {
         text-align: center;
     }
@@ -76,6 +78,27 @@ h1.large {
     padding-top: @baseLine;
     padding-bottom: @baseLine;
     margin-bottom: @baseLine * 2;
+}
+
+.about {
+    #primary {
+        padding-top: @baseLine * 2;
+        text-align: center;
+    }
+    .container {
+        padding-top: 0;
+        margin-bottom: 0;
+        img {
+            margin-top: @baseLine;
+        }
+    }
+    h2 {
+        margin-top: @baseLine;
+    }
+}
+
+.partners h2 {
+    padding-left: 12px;
 }
 
 .span3 {
@@ -148,7 +171,6 @@ h1.large {
 .float-right {
     float: right;
 }
-
 
 /* Database Page & Profile Page */
 
@@ -359,7 +381,8 @@ svg.percent-bar rect + text {
     .about .span5,
     .about .span6,
     .about .span7 {
-        width: auto;
+        width: 100%;
+        margin: 0;
     }
 
     .profile {
@@ -384,8 +407,9 @@ svg.percent-bar rect + text {
             margin: 0;
         }
 
-        img {
-            width: 100%;
+        .partner-logo {
+            width: 380px;
+            margin: 0 auto;
         }
 
         #loading img {
@@ -394,8 +418,8 @@ svg.percent-bar rect + text {
     }
 
     .lightbeam-home #primary {
-        padding: 0;
-        margin: -20px 0 @baseLine * 2 0;
+        padding: 0 @baseLine;
+        margin: -20px 0 @baseLine 0;
 
         section {
             float: none;
@@ -414,9 +438,33 @@ svg.percent-bar rect + text {
     }
 
     .lightbeam-home #secondary {
+        padding-top: 0;
         figure {
             width: 320px;
             margin: 0 @gridGutterWidth;
+        }
+    }
+
+    .about .container {
+        img {
+            display: block;
+            margin: @baseLine auto;
+        }
+    }
+
+    .partners h2 {
+        padding-left: 0;
+    }
+
+    .three-points {
+        .visualize,
+        .analyze {
+            width: 340px;
+        }
+        .contribute {
+            width: 340px;
+            padding-left: 190px;
+            padding-right: 190px;
         }
     }
 }
@@ -438,6 +486,8 @@ svg.percent-bar rect + text {
         .span7,
         .span8 {
             width: auto;
+            margin: 0;
+            float: none;
         }
 
         #primary .button {
@@ -474,14 +524,11 @@ svg.percent-bar rect + text {
 
     .container {
         width: span-all();
+        padding: 0 @baseLine;
 
         .centered-span3 {
             width: auto;
             margin: 0;
-        }
-
-        img {
-            width: 100%;
         }
 
         #loading img {
@@ -501,8 +548,7 @@ svg.percent-bar rect + text {
     }
 
     .lightbeam-home #primary {
-        padding: 0;
-        margin: -20px 0 @baseLine * 2 0;
+        margin: -20px 0 @baseLine 0;
 
         .button {
             margin: @baseLine * 2 auto;
@@ -511,6 +557,7 @@ svg.percent-bar rect + text {
         section {
             float: none;
             width: auto;
+            margin: 0;
         }
 
         img {
@@ -526,6 +573,21 @@ svg.percent-bar rect + text {
         }
         figure {
             width: auto;
+            margin: 0;
         }
+    }
+
+    .three-points {
+        margin-top: -60px;
+    }
+
+    .about .container {
+        img {
+            width: 100%;
+        }
+    }
+
+    .partners h2 {
+        padding-left: 0;
     }
 }

@@ -1,10 +1,11 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
  # License, v. 2.0. If a copy of the MPL was not distributed with this
- # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% extends "firefox/base-resp.html" %}
 
 {% block page_title %}{{ _('Mozilla Firefox Mobile Browser') }}{% endblock %}
+{% block page_desc %}{{ _('All the awesomeness of Firefox, packed into a mobile device.') }}{% endblock %}
 {% block body_id %}mobile-features{% endblock %}
 
 {% block site_css %}
@@ -49,13 +50,13 @@
   <div class="col2">
     <section id="smart">
       <h2>{{_('Smart')}}</h2>
-      <p class="icon html5"><span class="img"></span>{{_('Experience the unlimited possibilities of the mobile Web with full support for HTML5 and Web APIs. <a class="more" href="%s">Learn more</a>')|format('https://developer.mozilla.org/en-US/docs/HTML/HTML5')}}</p>
+      <p class="icon html5"><span class="img"></span>{{_('Experience the unlimited possibilities of the mobile Web with full support for HTML5 and Web APIs. <a class="more" href="%s">Learn more</a>')|format('https://developer.mozilla.org/docs/HTML/HTML5')}}</p>
       <p class="icon sync"><span class="img"></span>{{_('<a href="%s">Sync</a> your desktop history, bookmarks and passwords to all your devices for a painless browsing experience on mobile.')|format('https://support.mozilla.org/kb/how-do-i-set-up-firefox-sync')}}</p>
       <p class="icon addons"><span class="img"></span>{{_('Personalize features and functionality with add-ons. <a class="more" href="%s">Get add-ons</a>')|format('https://addons.mozilla.org/android/')}}</p>
     </section>
 
     <section id="get">
-      <p>{{_('Get Firefox for Android free from <a href="%s">Google Play</a>')|format('https://market.android.com/details?id=org.mozilla.firefox')}}</a></p>
+      <p>{{_('Get Firefox for Android free from <a href="%s">Google Play</a>')|format(settings.GOOGLE_PLAY_FIREFOX_LINK)}}</a></p>
     </section>
   </div>
 

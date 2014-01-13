@@ -5,7 +5,7 @@
 
 from django.conf import settings
 from django.core import mail
-from django.test.client import Client, RequestFactory
+from django.test.client import RequestFactory
 from django.test.utils import override_settings
 from django.utils import simplejson
 
@@ -31,37 +31,6 @@ class TestHome(TestCase):
         self.view = views.HomeTestView.as_view()
         self.rf = RequestFactory()
 
-    def _test_view_template(self, resp_mock, template, qs=None, locale='en-US'):
-        args = ['/en-US/']
-        if qs is not None:
-            args.append(qs)
-        req = self.rf.get(*args)
-        req.locale = locale
-        self.view(req)
-        resp_mock.assert_called_once_with(req, template, ANY)
-        resp_mock.reset_mock()
-
-    def test_uses_default_template(self, resp_mock):
-        """Home page should render the default template with no QS."""
-        self._test_view_template(resp_mock, 'mozorg/home.html')
-
-    def test_uses_default_template_other_qs(self, resp_mock):
-        """Home page should render the default template with wrong QS."""
-        self._test_view_template(resp_mock, 'mozorg/home.html', {'a': 1})
-        self._test_view_template(resp_mock, 'mozorg/home.html', {'v': 42})
-        self._test_view_template(resp_mock, 'mozorg/home.html', {'v': 'Abide'})
-        self._test_view_template(resp_mock, 'mozorg/home.html', {'v': '1234'})
-
-    def test_uses_test_template(self, resp_mock):
-        """Home page should render the test template with the right QS."""
-        self._test_view_template(resp_mock, 'mozorg/home-b1.html', {'v': 1})
-        self._test_view_template(resp_mock, 'mozorg/home-b2.html', {'v': 2})
-
-    def test_uses_new_template_for_other_locales(self, resp_mock):
-        """Should render the new template for locales not in test."""
-        self._test_view_template(resp_mock, 'mozorg/home-b2.html', locale='xx')
-        self._test_view_template(resp_mock, 'mozorg/home-b2.html', {'v': 2}, locale='xx')
-
     @override_settings(MOBILIZER_LOCALE_LINK={'es-ES': 'El Dudarino', 'de': 'Herr Dude'})
     def test_gets_right_mobilizer_url(self, resp_mock):
         """Home page should get correct mobilizer link for locale."""
@@ -80,11 +49,15 @@ class TestHome(TestCase):
         ctx = resp_mock.call_args[0][2]
         self.assertEqual(ctx['mobilizer_link'], 'His Dudeness')
 
+    def test_can_post(self, resp_mock):
+        """Home page must accept post for newsletter signup."""
+        req = self.rf.post('/')
+        self.view(req)
+        # would return 405 before calling render otherwise
+        resp_mock.assert_called_once_with(req, ['mozorg/home.html'], ANY)
+
 
 class TestViews(TestCase):
-    def setUp(self):
-        self.client = Client()
-
     def test_hacks_newsletter_frames_allow(self):
         """
         Bedrock pages get the 'x-frame-options: DENY' header by default.
@@ -123,7 +96,6 @@ class TestUniversityAmbassadors(TestCase):
         mock_subscribe.return_value = {'token': 'token-example',
                                        'status': 'ok',
                                        'created': 'True'}
-        c = Client()
         data = {'email': u'dude@example.com',
                 'country': 'gr',
                 'fmt': 'H',
@@ -148,7 +120,7 @@ class TestUniversityAmbassadors(TestCase):
                         'STUDENTS_CITY': data['city'],
                         'STUDENTS_ALLOW_SHARE': 'N'}
         with self.activate('en-US'):
-            c.post(reverse('mozorg.contribute_university_ambassadors'), data)
+            self.client.post(reverse('mozorg.contribute_university_ambassadors'), data)
         mock_subscribe.assert_called_with(
             data['email'], ['ambassadors', 'about-mozilla'], format=u'H',
             country=u'gr', source_url=u'',
@@ -162,7 +134,6 @@ class TestUniversityAmbassadors(TestCase):
 @patch.object(l10n_utils.dotlang, 'lang_file_is_active', lambda *x: True)
 class TestContribute(TestCase):
     def setUp(self):
-        self.client = Client()
         with self.activate('en-US'):
             self.url_en = reverse('mozorg.contribute')
         with self.activate('pt-BR'):
@@ -356,12 +327,18 @@ class TestRobots(TestCase):
 
     @override_settings(SITE_URL='https://www.mozilla.org')
     def test_robots_no_redirect(self):
-        response = Client().get('/robots.txt')
+        response = self.client.get('/robots.txt')
         self.assertEqual(response.status_code, 200)
         self.assertFalse(response.context_data['disallow_all'])
         self.assertEqual(response.get('Content-Type'), 'text/plain')
 
 
+# prevent view from calling to salesforce.com
+post_mock = Mock()
+status_mock = post_mock.return_value.status_code = 200
+
+
+@patch('bedrock.mozorg.views.requests.post', post_mock)
 class TestProcessPartnershipForm(TestCase):
     def setUp(self):
         self.factory = RequestFactory()

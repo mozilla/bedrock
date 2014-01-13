@@ -21,8 +21,7 @@ from lib.l10n_utils.dotlang import _, _lazy
 from commonware.decorators import xframe_allow
 from funfactory.urlresolvers import reverse
 
-from .forms import (EmailForm, ManageSubscriptionsForm, NewsletterForm,
-                    NewsletterFooterForm)
+from .forms import (EmailForm, ManageSubscriptionsForm, NewsletterForm)
 # Cannot use short "from . import utils" because we need to mock
 # utils.get_newsletters in our tests
 from bedrock.newsletter import utils
@@ -334,6 +333,9 @@ def updated(request):
 
     # Token might also have been passed (on remove_all only)
     token = request.REQUEST.get('token', None)
+    # token must be a UUID
+    if token is not None and not UUID_REGEX.match(token):
+        token = None
 
     # Say thank you unless we're saying something more specific
     if not unsub:
@@ -365,41 +367,6 @@ def updated(request):
     return l10n_utils.render(request,
                              'newsletter/updated.html',
                              context)
-
-
-def one_newsletter_signup(request, template_name):
-    success = False
-
-    # not in a footer, but we use the same form
-    form = NewsletterFooterForm(request.locale, request.POST or None)
-
-    if form.is_valid():
-        data = form.cleaned_data
-        request.newsletter_lang = data.get('lang', 'en') or 'en'
-        kwargs = {
-            'format': data['fmt'],
-        }
-        # add optional data
-        kwargs.update(dict((k, data[k]) for k in ['country',
-                                                  'lang',
-                                                  'source_url']
-                           if data[k]))
-        try:
-            basket.subscribe(data['email'], data['newsletter'],
-                             **kwargs)
-        except basket.BasketException:
-            log.exception("Error subscribing %s to newsletter %s" %
-                          (data['email'], data['newsletter']))
-            form.errors['__all__'] = form.error_class([general_error])
-        else:
-            success = True
-
-    request.newsletter_form = form
-    request.newsletter_success = success
-
-    return l10n_utils.render(request,
-                             template_name,
-                             {})
 
 
 @never_cache

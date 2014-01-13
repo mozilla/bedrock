@@ -1,0 +1,133 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+body.noscroll {
+  overflow: hidden;
+}
+
+#modal {
+    background: #354b5d;
+    background: rgba(53, 75, 93, 0.8);
+    width: 100%;
+    height: 101%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 9999999;
+    overflow: auto;
+
+    .window {
+        padding: 20px;
+        color: #333;
+
+        .inner {
+            position: relative;
+            @shadow: 0 1px 22px rgba(0, 0, 0, 0.8);
+            .box-shadow(@shadow);
+
+            header {
+                display: block;
+                background: #0095dd;
+                padding: 10px @baseLine;
+                height: 38px;
+                font-size: 26px;
+                color: #fff;
+                .open-sans-light;
+                .transition;
+            }
+
+            #modal-close {
+                position: fixed;
+                z-index: 99;
+                position: absolute;
+                top: 9px;
+                right: 9px;
+                cursor: pointer;
+
+                a {
+                    color: #fff;
+                    vertical-align: middle;
+                    padding: 0 3px;
+                }
+
+                .button {
+                    padding: 0;
+                    min-width: 34px;
+                    font-size: 30px;
+                    vertical-align: middle;
+                }
+
+                &:hover {
+                    a {
+                        text-decoration: underline;
+                    }
+                }
+            }
+
+            .overlay-contents {
+                background: #fff;
+                padding: @baseLine;
+                margin: 0 auto;
+                img {
+                    max-width: 100%;
+                }
+            }
+        }
+    }
+}
+
+/* Tweaks for RTL locales */
+html[dir="rtl"] {
+    #modal .window .inner #modal-close {
+        right: auto;
+        left: 9px;
+        text-align: left;
+    }
+}
+
+@media only screen and (min-width: @breakDesktop) {
+    #modal .inner {
+        width: @widthDesktop;
+        margin: 60px auto;
+        .footer {
+            .clearfix();
+            padding-left: 30px;
+            padding-right: 30px;
+            div {
+                padding: 0;
+                .span(4);
+                &:first-child {
+                    margin-left: 0;
+                }
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+    #modal .inner {
+        .span_narrow(12);
+        float: none;
+        margin: 60px auto;
+    }
+}
+
+@media only screen and (max-width: @breakTablet) {
+    #modal .window {
+        margin: 0 auto;
+
+        .inner header {
+            // remove left/right padding so the .image-replaced works as expected
+            padding: 10px 0;
+            .image-replaced;
+        }
+    }
+}

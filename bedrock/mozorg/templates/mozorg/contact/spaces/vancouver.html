@@ -1,0 +1,36 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/contact/contact-base.html" %}
+
+{% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Vancouver') }}{% endblock %}
+
+{% block contact_entry %}
+  <div id="entry-container">
+    <section class="entry entry-space" id="vancouver" data-tab="spaces">
+      <div itemscope itemtype="http://schema.org/Organization" class="card vcard">
+        {# L10n: This span around the Mozilla name is presentational. It's included in the string in case some locales need to change the order. #}
+        <h2 itemprop="name" class="fn org">{{ _('<span>Mozilla</span> Vancouver') }}</h2>
+        <p itemprop="address" itemscope itemtype="http://schema.org/PostalAddress" class="adr">
+        {# L10n: Addresses are marked up with hCard microformat and Schema.org. See http://microformats.org/wiki/h-card and http://schema.org/PostalAddress #}
+        {% trans %}
+          <span itemprop="streetAddress" class="street-address">163 W Hastings St, Suite 209</span><br>
+          <span itemprop="addressLocality" class="locality">Vancouver</span>, <abbr title="British Columbia" itemprop="addressRegion" class="region">BC</abbr> <span itemprop="postalCode" class="postal-code">V6B 1H5</span><br>
+          <span itemprop="addressCountry" class="country-name">Canada</span>
+        {% endtrans %}
+        </p>
+
+        <ul class="extra">
+          <li><a href="http://bc.mozillacanada.org/" class="website">bc.mozillacanada.org</a></li>
+          <li><a href="irc://irc.mozilla.org/vancouver" class="irc">IRC: #vancouver</a></li>
+          <li><a href="https://wiki.mozilla.org/People:MozSpaces_Guidelines:Toronto" class="book">{{ _('Space operations guide') }}</a></li>
+        </ul>
+
+        <figure class="feature-img">
+          <img src="//api.tiles.mapbox.com/v3/{{ settings.MAPBOX_TOKEN }}/url-{{ 'mozorg.cdn.mozilla.net/media/img/contact/moz-map-pin.png'|urlencode }}(-123.1091763,49.2824945)/-123.1091763,49.2824945,16/460x250.png" alt="">
+        </figure>
+      </div>
+    </section>
+  </div>
+{% endblock %}

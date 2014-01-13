@@ -1,6 +1,6 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
  # License, v. 2.0. If a copy of the MPL was not distributed with this
- # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% extends "mozorg/base-resp.html" %}
 
@@ -59,7 +59,7 @@
   <img src="{{ media('/img/mozorg/partnerships/icon-marketplace.png') }}" alt="{{ _('Firefox Marketplace icon') }}" class="icon" />
   <h3>{{ _('Firefox Marketplace') }}</h3>
   <p>
-    {% trans url1=url('marketplace.marketplace') %}
+    {% trans url1='https://marketplace.firefox.com/developers/' %}
     Content providers and developers can reach Web users on desktop and mobile and have their apps promoted to
     hundreds of millions of users. <a href="{{ url1 }}">Learn more about apps and the
     Firefox Marketplace »</a>

@@ -6,6 +6,7 @@ import re
 from datetime import datetime
 
 from django.conf import settings
+from django.core.urlresolvers import reverse
 
 from bedrock.mozorg.util import get_fb_like_locale
 from lib.l10n_utils import get_locale
@@ -35,6 +36,11 @@ def funnelcake_param(request):
     context = {}
 
     if fc_id and FC_RE.match(fc_id):
+        # special case for installer-help page
+        # bug 933852
+        installer_help_url = reverse('firefox.installer-help')
+        if installer_help_url in request.path_info:
+            fc_id = str(int(fc_id) + 1)
         context['funnelcake_id'] = fc_id
 
     return context

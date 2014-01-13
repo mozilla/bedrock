@@ -43,6 +43,7 @@ def hacks_newsletter(request):
 
 @csrf_exempt
 def contribute(request, template, return_to_form):
+    newsletter_id = 'about-mozilla'
     has_contribute_form = (request.method == 'POST' and
                            'contribute-form' in request.POST)
 
@@ -69,15 +70,15 @@ def contribute(request, template, return_to_form):
         form = ContributeForm()
 
     if has_newsletter_form:
-        newsletter_form = NewsletterFooterForm(locale,
-                                         request.POST,
-                                         prefix='newsletter')
+        newsletter_form = NewsletterFooterForm(newsletter_id, locale,
+                                               request.POST,
+                                               prefix='newsletter')
         if newsletter_form.is_valid():
             data = newsletter_form.cleaned_data
 
             try:
                 basket.subscribe(data['email'],
-                                 'about-mozilla',
+                                 newsletter_id,
                                  format=data['fmt'],
                                  country=data['country'])
                 newsletter_success = True
@@ -88,7 +89,7 @@ def contribute(request, template, return_to_form):
                 )
                 newsletter_form.errors['__all__'] = msg
     else:
-        newsletter_form = NewsletterFooterForm(locale, prefix='newsletter')
+        newsletter_form = NewsletterFooterForm(newsletter_id, locale, prefix='newsletter')
 
     return l10n_utils.render(request,
                              template,
@@ -230,30 +231,22 @@ class Robots(TemplateView):
 
 class HomeTestView(TemplateView):
     """Home page view that will use a different template for a QS."""
-    old_home_locales = ['en-US']
+    template_name = 'mozorg/home.html'
+
+    def post(self, request, *args, **kwargs):
+        # required for newsletter form post that is handled in newsletter/helpers.py
+        return self.get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         ctx = super(HomeTestView, self).get_context_data(**kwargs)
-        ctx['has_contribute'] = lang_file_is_active('mozorg/contribute',
-                                                    l10n_utils.get_locale(self.request))
+        ctx['has_contribute'] = lang_file_is_active('mozorg/contribute')
         locale = l10n_utils.get_locale(self.request)
         locale = locale if locale in settings.MOBILIZER_LOCALE_LINK else 'en-US'
         ctx['mobilizer_link'] = settings.MOBILIZER_LOCALE_LINK[locale]
-        return ctx
 
-    def get_template_names(self):
-        locale = l10n_utils.get_locale(self.request)
-        if locale in self.old_home_locales:
-            version = self.request.GET.get('v', 0)
-            if version == '1':
-                template = 'mozorg/home-b1.html'
-            elif version == '2':
-                template = 'mozorg/home-b2.html'
-            else:
-                template = 'mozorg/home.html'
-        else:
-            template = 'mozorg/home-b2.html'
-        return template
+        ctx['show_search'] = self.request.GET.get('s', 0)
+
+        return ctx
 
     def render_to_response(self, context, **response_kwargs):
         return l10n_utils.render(self.request,

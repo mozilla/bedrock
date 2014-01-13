@@ -103,6 +103,15 @@
     outline:none;
 }
 
+/* Tabzilla still must use content-box model to preserve layout */
+#tabzilla-panel *,
+#tabzilla-panel *:before,
+#tabzilla-panel *:after {
+    -webkit-box-sizing: content-box;
+       -moz-box-sizing: content-box;
+            box-sizing: content-box;
+}
+
 #tabzilla-contents {
     width: 960px;
     margin: 0 auto;
@@ -219,6 +228,20 @@
     display: block;
     padding: .4em 20px .4em 0;
     outline: 0;
+
+    &.donate {
+        color: rgb(175,50,50); // @linkRed in sandstone/lib.less
+        &:after {
+            content: " ";
+            width: 12px;
+            height: 10px;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAYAAAH3K49sAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDoyREMxNTU2NTU0QUMxMUUzOUY4NUE3MkQzQjY2QkQ0NiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDoyREMxNTU2NjU0QUMxMUUzOUY4NUE3MkQzQjY2QkQ0NiI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjJEQzE1NTYzNTRBQzExRTM5Rjg1QTcyRDNCNjZCRDQ2IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjJEQzE1NTY0NTRBQzExRTM5Rjg1QTcyRDNCNjZCRDQ2Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Sq/oBwAAAM5JREFUeNpi3GioxwAEi5kYICAJIIAYgCIxIN4dgABiBLJYgYxfIHGAAAJxYoD0EiC2AEkvBuL/QHwcxGGE6mYECCCQMk0g4xoDGgCpug7EXmjibAABBLNlNxC7ArExEAcCcTkLzGokGgTMQUbdZ8AEc0ASSmiCB0FuhnmOEaqzC4gdQAIAAcYI9f4BILZH0gVSdBSIY9BMswQ5ygJNMQgoQjE6WAay+gRIJwNhAHKrMsytJ6Du9cKhkA3qh/9MaJLboRploR5lhCr8DVMAAFQEJaGmZBr7AAAAAElFTkSuQmCC');
+            background-size: 12px 10px;
+            background-repeat: no-repeat;
+            background-position: right center;
+            padding-left: 16px;
+        }
+    }
 }
 
 #tabzilla-panel a,
@@ -288,6 +311,49 @@
 
 #tabzilla-panel #tabzilla-nav ul li#tabzilla-search input::-webkit-input-placeholder { color: #ddd; }
 #tabzilla-panel #tabzilla-nav ul li#tabzilla-search input:-moz-placeholder           { color: #ddd; }
+
+#tabzilla-infobar {
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    width: 940px;
+    font-size: 12px;
+    line-height: 1.5;
+
+    div {
+        padding: 5px 0;
+    }
+
+    p {
+        display: inline;
+        margin: 0 10px 0 0;
+    }
+
+    ul {
+        display: inline;
+        margin: 0;
+    }
+
+    li {
+        display: inline;
+        margin: 0 10px 0 0;
+        white-space: nowrap;
+        list-style-type: none;
+    }
+
+    button {
+        background-color: #f1f8ff;
+        border: 1px solid darken(#f1f8ff, 10%);
+        cursor: pointer;
+        border-radius: 3px;
+
+        &:hover,
+        &:focus {
+            background-color: darken(#f1f8ff, 3%);
+            border-color: darken(#f1f8ff, 13%);
+        }
+    }
+}
 
 // Firefox Flicks Promo
 
@@ -369,6 +435,20 @@ html[lang=ru] {
     }
 }
 
+
+
+@media (-webkit-min-device-pixel-ratio: 1.5),
+       (                min-resolution: 1.5dppx),
+       (                min-resolution: 144dpi) {
+
+    // high res heart icon
+    #tabzilla-panel #tabzilla-nav a.donate:after {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAUCAYAAAERuZaYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDoyNjYxRDI1MTRFNDIxMUUzQkU5RkQyMkVEMjBCMTNBMSIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDoyNjYxRDI1MjRFNDIxMUUzQkU5RkQyMkVEMjBCMTNBMSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjI2NjFEMjRGNEU0MjExRTNCRTlGRDIyRUQyMEIxM0ExIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjI2NjFEMjUwNEU0MjExRTNCRTlGRDIyRUQyMEIxM0ExIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+75uWVQAAAX5JREFUeNpiXG9kxAAFoSxAwhiIz4B4TEB8FooZAQKIEahMCci4B5IBKbsL0wRSxghlMwIEEEhZKJCxigENgFStBuL3aOKMAAHECLU/FKoABMAWgSz5z4AJwpgYsIN7yC6BAZB9Z2E6YJIgHwmBGAABBLP8HRALIunqhNLlaCYJgRzVgaYYXSEMgNR0gKyuwOJvbACkpgLmViGoe9/jUMgI8wMLmqQQlD4DpU3QdQMEECNyjEOj9CySvDE0BlbDTDdGMo0BKSjRY8eECYtCBhzReIaJgQRAsmIhItUKMUHD04SAQpD8eyakBGSCR+FZdDeDBJRxKcQWi/egfngHpVGSAUCAIcegMTRFuqAZsAeIZyHlKVhsp+FQWwFzDcwld6HJABtwQTLkHh51MLVnoOqUmaCuVSIyekhR18FEZD4jB4CjvhMtPKkBQOZ1wpJKGCyhUepaqDlh2NKhEJmWwAwVQk632DImKZZgNZSYXA+zBJtGfHIkFSnIruskJegAGb9TY9kNOFkAAAAASUVORK5CYII=');
+        background-size: 12px 10px;
+    }
+
+}
+
 @media only screen and (min-width: 720px) and (max-width: 979px) {
 
     #tabzilla-contents {
@@ -390,6 +470,10 @@ html[lang=ru] {
         margin-bottom: 40px;
     }
 
+    #tabzilla-infobar {
+        position: static;
+        width: 90%;
+    }
 }
 
 @media only screen and (max-width: 719px) {
@@ -508,4 +592,12 @@ html[lang=ru] {
         box-sizing: border-box;
     }
 
+    #tabzilla-infobar {
+        position: static;
+        width: auto;
+
+        div {
+            padding: 10px 20px;
+        }
+    }
 }

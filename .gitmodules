@@ -16,3 +16,6 @@
 [submodule "vendor-local/src/pystatsd"]
 	path = vendor-local/src/pystatsd
 	url = git://github.com/jsocol/pystatsd.git
+[submodule "vendor-local/src/django-waffle"]
+	path = vendor-local/src/django-waffle
+	url = https://github.com/jsocol/django-waffle.git

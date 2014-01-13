@@ -1,10 +1,11 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
  # License, v. 2.0. If a copy of the MPL was not distributed with this
- # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% extends "/firefox/base.html" %}
 
-{% block page_title %}Built with Cutting-Edge Technology{% endblock %}
+{% block page_title %}{{ _('Built with Cutting-Edge Technology') }}{% endblock %}
+{% block page_desc %}{{ _('The Firefox Web browser contains powerful new innovations that change the way you build the Web. It’s built on open technology like HTML5, CSS, Modern APIs and more.') }}{% endblock %}
 {% block body_id %}firefox-technology{% endblock %}
 
 {% block site_css %}
@@ -17,16 +18,16 @@
 <div id="main-feature">
   <div class="row">
   <hgroup class="stacked">
-    <h1>Built on Open <span class="large">Technology</span></h1>
-    <h4>Powerful new innovations that change the way you build the Web</h4>
+    <h1>{{ _('Built on Open <span class="%s">Technology</span>')|format('large') }}</h1>
+    <h4>{{ _('Powerful new innovations that change the way you build the Web') }}</h4>
   </hgroup>
 
   <aside id="more-info">
-    <h5>More Useful Info</h5>
+    <h5>{{ _('More Useful Info') }}</h5>
     <ul>
-      <li><a href="https://developer.mozilla.org/demos">Demo Studio</a></li>
-      <li><a href="{{ url('firefox.performance') }}">Easy Customization</a></li>
-      <li><a href="https://developer.mozilla.org/">Mozilla Developer Network</a></li>
+      <li><a href="https://developer.mozilla.org/demos">{{ _('Demo Studio') }}</a></li>
+      <li><a href="{{ url('firefox.performance') }}">{{ _('Easy Customization') }}</a></li>
+      <li><a href="https://developer.mozilla.org/">{{ _('Mozilla Developer Network') }}</a></li>
     </ul>
   </aside>
 
@@ -37,12 +38,12 @@
 
 <nav class="menu-bar billboard">
   <ul>
-    <li><a href="#tools">Developer <span>Tools</span></a></li>
-    <li><a href="#html5">Innovating <span>With HTML5</span></a></li>
-    <li><a href="#css">Beautifying <span>With CSS</span></a></li>
-    <li><a href="#apis">Modern <span>APIs</span></a></li>
-    <li><a href="#svg">Enhanced <span>SVG</span></a></li>
-    <li><a href="#security">Advanced <span>Security</span></a></li>
+    <li><a href="#tools">{{ _('Developer <span>Tools</span>') }}</a></li>
+    <li><a href="#html5">{{ _('Innovating <span>With HTML5</span>') }}</a></li>
+    <li><a href="#css">{{ _('Beautifying <span>With CSS</span>') }}</a></li>
+    <li><a href="#apis">{{ _('Modern <span>APIs</span>') }}</a></li>
+    <li><a href="#svg">{{ _('Enhanced <span>SVG</span>') }}</a></li>
+    <li><a href="#security">{{ _('Advanced <span>Security</span>') }}</a></li>
   </ul>
 </nav>
 
@@ -51,86 +52,152 @@
 
 <article id="tools" class="article container divider">
 
-<p class="top-link"><a href="#main-feature">Return to Top</a></p>
+<p class="top-link"><a href="#main-feature">{{ _('Return to Top') }}</a></p>
 
-<div class="click-star"><span>Roll over each blurb to see examples.</span></div>
+<div class="click-star"><span>{{ _('Roll over each blurb to see examples.') }}</span></div>
 
 <div class="intro">
-    <h1>Developer <span>Tools</span></h1>
-    <p>Ever wonder what makes the Web work? Want to tinker with design and code? Firefox Developer Tools let you look under the hood of any Web page so you can debug, optimize and experiment with the Web.</p>
+    <h1>{{ _('Developer Tools') }}</h1>
+    <p>
+    {% trans %}
+        Ever wonder what makes the Web work? Want to tinker with design and
+        code? Firefox Developer Tools let you look under the hood of any Web
+        page so you can debug, optimize and experiment with the Web.
+    {% endtrans %}
+    </p>
 </div>
 
 <article>
     <div class="demo">
-        <img src="{{ media('img/firefox/technology/tools-style-editor.png') }}" alt="Style Editor screenshot" />
+        <img src="{{ media('img/firefox/technology/tools-style-editor.png') }}" alt="{{ _('Style Editor screenshot') }}" />
     </div>
-    <h1>Style Editor</h1>
-    <p>The Style Editor makes it easy to experiment with, revise and test changes to the appearance of Web pages. Edit the design of any page and see your changes instantly as you modify the stylesheet. Try it out from the Web Developer menu.</p>
+    <h1>{{ _('Style Editor') }}</h1>
+    <p>
+    {% trans %}
+        The Style Editor makes it easy to experiment with, revise and test
+        changes to the appearance of Web pages. Edit the design of any page
+        and see your changes instantly as you modify the stylesheet. Try it
+        out from the Web Developer menu.
+    {% endtrans %}
+    </p>
 </article>
 
 <article>
     <div class="demo">
-        <img src="{{ media('img/firefox/technology/tools-debugger.png') }}" alt="Debugger screenshot" />
+        <img src="{{ media('img/firefox/technology/tools-debugger.png') }}" alt="{{ _('Debugger screenshot') }}" />
     </div>
-    <h1>Debugger</h1>
-    <p>Quickly hunt down problems in your JavaScript code as you pause, play and watch script execution by setting breakpoints in the source editor. All of the scripts are listed in a menu and you can jump to a file by typing part of its name. It also supports remote debugging for Firefox OS and Firefox for Android.</p>
+    <h1>{{ _('Debugger') }}</h1>
+    <p>
+    {% trans %}
+        Quickly hunt down problems in your JavaScript code as you pause, play
+        and watch script execution by setting breakpoints in the source editor.
+        All of the scripts are listed in a menu and you can jump to a file by
+        typing part of its name. It also supports remote debugging for Firefox
+        OS and Firefox for Android.
+    {% endtrans %}
+    </p>
 </article>
 
 <article>
     <div class="demo">
-        <img src="{{ media('img/firefox/technology/tools-mobile.png?2013-06') }}" alt="Mobile developer tools screenshot" />
+        <img src="{{ media('img/firefox/technology/tools-mobile.png?2013-06') }}" alt="{{ _('Mobile developer tools screenshot') }}" />
     </div>
-    <h1>Mobile developer tools</h1>
-    <p>Our Responsive Design View tool makes it easy to resize the page you’re viewing to see what it would look like on any screen, all from the comfort of your desktop. You can also troubleshoot JavaScript running on your mobile with the Debugger. Connect to Firefox for Android or Firefox OS and use your desktop monitor to debug your mobile device.</p>
+    <h1>{{ _('Mobile developer tools') }}</h1>
+    <p>
+    {% trans %}
+        Our Responsive Design View tool makes it easy to resize the page
+        you’re viewing to see what it would look like on any screen, all from
+        the comfort of your desktop. You can also troubleshoot JavaScript
+        running on your mobile with the Debugger. Connect to Firefox for
+        Android or Firefox OS and use your desktop monitor to debug your
+        mobile device.
+    {% endtrans %}
+    </p>
 </article>
 
 <article>
     <div class="demo">
-        <img src="{{ media('img/firefox/technology/tools-developer-toolbar.png?2013-06') }}" alt="Developer Toolbar screenshot" />
+        <img src="{{ media('img/firefox/technology/tools-developer-toolbar.png?2013-06') }}" alt="{{ _('Developer Toolbar screenshot') }}" />
     </div>
-    <h1>Developer Toolbar</h1>
-    <p>Fast, easy and intuitive, the Developer Toolbar saves you time when working on Web development. It provides easy keyboard control over a variety of tools and automatically completes commands and parameters as you type. Find it in the Web Developer menu or hit shift+F2.</p>
+    <h1>{{ _('Developer Toolbar') }}</h1>
+    <p>
+    {% trans %}
+        Fast, easy and intuitive, the Developer Toolbar saves you time when
+        working on Web development. It provides easy keyboard control over a
+        variety of tools and automatically completes commands and parameters
+        as you type. Find it in the Web Developer menu or hit shift+F2.
+    {% endtrans %}
+    </p>
 </article>
 
 <article class="hasdemo">
     <div class="demo">
-        <img src="{{ media('img/firefox/technology/tools-console.png?2013-06') }}" alt="Web Console screenshot" />
+        <img src="{{ media('img/firefox/technology/tools-console.png?2013-06') }}" alt="{{ _('Web Console screenshot') }}" />
     </div>
-    <h1>Web Console</h1>
-    <p>Watch the events occurring within your Web pages. Web Console lets you see logging messages from your JavaScript code, JavaScript and CSS errors and network activity. Search and filter to find just the events you need to look at. Plus, you can directly interact with and explore your page via JavaScript.</p>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/en/Using_the_Web_Console">learn more</a>
+    <h1>{{ _('Web Console') }}</h1>
+    <p>
+    {% trans %}
+        Watch the events occurring within your Web pages. Web Console lets you
+        see logging messages from your JavaScript code, JavaScript and CSS
+        errors and network activity. Search and filter to find just the events
+        you need to look at. Plus, you can directly interact with and explore
+        your page via JavaScript.
+    {% endtrans %}
+    </p>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/Using_the_Web_Console">{{ _('learn more') }}</a>
 </article>
 
 <article>
     <div class="demo">
-        <img src="{{ media('img/firefox/technology/tools-inspector.png') }}" alt="Page Inspector screenshot" />
+        <img src="{{ media('img/firefox/technology/tools-inspector.png') }}" alt="{{ _('Page Inspector screenshot') }}" />
     </div>
-    <h1>Page Inspector</h1>
-    <p>Peek right into the styling of any Web page by visually selecting the page element that you’re interested in. Simply right-click on any part of the page and select “Inspect Element;” choose Inspect from the Web Developer menu; or use the handy ctrl-shift-I (cmd-shift-I on Mac) keyboard shortcut. (Try it out on this very page!)</p>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/en/Tools/Inspector">learn more</a>
+    <h1>{{ _('Page Inspector') }}</h1>
+    <p>
+    {% trans %}
+        Peek right into the styling of any Web page by visually selecting the
+        page element that you’re interested in. Simply right-click on any part
+        of the page and select “Inspect Element;” choose Inspect from the Web
+        Developer menu; or use the handy ctrl-shift-I (cmd-shift-I on Mac)
+        keyboard shortcut. (Try it out on this very page!)
+    {% endtrans %}
+    </p>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/Tools/Inspector">{{ _('learn more') }}</a>
 </article>
 
 <article>
     <div class="demo">
-        <img src="{{ media('img/firefox/technology/tools-scratchpad.png') }}" alt="Scratchpad screenshot" />
+        <img src="{{ media('img/firefox/technology/tools-scratchpad.png') }}" alt="{{ _('Scratchpad screenshot') }}" />
     </div>
-    <h1>Scratchpad</h1>
-    <p>The browser is a fantastic place to experiment with JavaScript and Scratchpad lets you write code that can interact directly with the contents of a Web page. Scratchpad makes it easy to experiment with your ideas and then copy the results into your usual website development tools. It’s also fun for tinkering on top of pages.</p>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/en/Tools/Scratchpad">learn more</a>
+    <h1>{{ _('Scratchpad') }}</h1>
+    <p>
+    {% trans %}
+        The browser is a fantastic place to experiment with JavaScript and
+        Scratchpad lets you write code that can interact directly with the
+        contents of a Web page. Scratchpad makes it easy to experiment with
+        your ideas and then copy the results into your usual website
+        development tools. It’s also fun for tinkering on top of pages.
+    {% endtrans %}
+    </p>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/Tools/Scratchpad">{{ _('learn more') }}</a>
 </article>
 
 <article>
-    <h1>Firebug</h1>
-    <p>The <a href="https://addons.mozilla.org/en-US/firefox/addon/firebug/">Firebug</a> add-on that web developers everywhere depend on is compatible with the latest version of Firefox.</p>
-    <a class="learn" title="documentation" href="http://www.getfirebug.com/">learn more</a>
+    <h1>{{ _('Firebug') }}</h1>
+    <p>
+    {% trans url='https://addons.mozilla.org/firefox/addon/firebug/' %}
+        The <a href="{{ url }}">Firebug</a> add-on that web developers
+        everywhere depend on is compatible with the latest version of Firefox.
+    {% endtrans %}
+    </p>
+    <a class="learn" title="{{ _('documentation') }}" href="http://www.getfirebug.com/">{{ _('learn more') }}</a>
 </article>
 
 <article id="tools-more">
-    <h1>More Development Resources</h1>
+    <h1>{{ _('More Development Resources') }}</h1>
     <ul>
-        <li>Follow our <a href="https://blog.mozilla.org/devtools">development blog</a></li>
-        <li>Follow our <a href="https://hacks.mozilla.org/category/developer-tools/">beta releases and tips blog</a></li>
-        <li>Join a passionate community of developers learning and teaching through demos and documentation at <a href="https://developer.mozilla.org/">developer.mozilla.org</a></li>
+        <li>{{ _('Follow our <a href="%s">development blog</a>')|format('https://blog.mozilla.org/devtools') }}</li>
+        <li>{{ _('Follow our <a href="%s">beta releases and tips blog</a>')|format('https://hacks.mozilla.org/category/developer-tools/') }}</li>
+        <li>{{ _('Join a passionate community of developers learning and teaching through demos and documentation at <a href="%s">developer.mozilla.org</a>')|format('https://developer.mozilla.org/') }}</li>
     </ul>
 </article>
 
@@ -139,69 +206,125 @@
 
 <article id="html5" class="article container divider">
 
-<p class="top-link"><a href="#main-feature">Return to Top</a></p>
+<p class="top-link"><a href="#main-feature">{{ _('Return to Top') }}</a></p>
 
-<div class="click-star"><span>Roll over each blurb to see examples.</span></div>
+<div class="click-star"><span>{{ _('Roll over each blurb to see examples.') }}</span></div>
 
 <div class="intro">
-    <h1>Innovating With <span>HTML5</span></h1>
-    <p>Firefox has always had excellent support for HTML5, and the latest version builds on that history with even more advanced features.</p>
+    <h1>{{ _('Innovating With <span>HTML5</span>') }}</h1>
+    <p>{{ _('Firefox has always had excellent support for HTML5, and the latest version builds on that history with even more advanced features.') }}</p>
 </div>
 
 <article id="formdemo" class="hasademo xxxie">
-    <h1>Forms</h1>
+    <h1>{{ _('Forms') }}</h1>
     <div class="demo">
         <form>
-            <h4>Dear Mozilla,</h4><p>My name is <input pattern="....*" placeholder="yourname">. I think this demo is <input placeholder="awesome?">.</p>
-            <p>By the way, I want to tell you that you should <input placeholder="...">.</p>
-            <p><button onclick="return submitForm();">Send</button></p>
+            <h4>{{ _('Dear Mozilla,') }}</h4>
+            <p>
+            {% trans pattern='....*', placeholder1='yourname', placeholder2='awesome?' %}
+                My name is <input pattern="{{ pattern }}" placeholder="{{ placeholder1 }}">.
+                I think this demo is <input placeholder="{{ placeholder2 }}">.
+            {% endtrans %}
+            </p>
+            <p>{{ _('By the way, I want to tell you that you should <input placeholder="%s">.')|format('...') }}</p>
+            <p><button onclick="return submitForm();">{{ _('Send') }}</button></p>
         </form>
-        <p>Submited! Thank you.</p>
+        <p>{{ _('Submitted! Thank you.') }}</p>
     </div>
-    <p>Firefox implements HTML5 forms, and supports new input types, data list support, new input attributes like autofocus and placeholder, decoupled forms, form options, validation mechanisms, constraint validation and new CSS selectors to bind them all together. For more detailed information, <a href="https://hacks.mozilla.org/">visit our Hacks site</a>.</p>
-    <a class="close" title="close" href="#close">close</a>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/en/HTML/HTML5/Forms_in_HTML5">learn more</a>
+    <p>
+    {% trans url='https://hacks.mozilla.org/' %}
+        Firefox implements HTML5 forms, and supports new input types, data list
+        support, new input attributes like autofocus and placeholder, decoupled
+        forms, form options, validation mechanisms, constraint validation and
+        new CSS selectors to bind them all together. For more detailed
+        information, <a href="{{ url }}">visit our Hacks site</a>.
+    {% endtrans %}
+    </p>
+    <a class="close" title="{{ _('close') }}" href="#close">{{ _('close') }}</a>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/HTML/HTML5/Forms_in_HTML5">{{ _('learn more') }}</a>
 </article>
 
 <article class="hasademo">
-    <h1>Parser</h1>
+    <h1>{{ _('Parser') }}</h1>
     <div class="demo parser">
         <svg viewBox="0 0 200 100"><path stroke-width="1" stroke-dasharray="3,3" stroke="black" fill="none" d="M20 80L60 20L100 80L140 20L180 80"/><circle cx="20" cy="80" r="15" fill="none" stroke="#000"> <animate attributeName="cx" repeatDur="indefinite" values="0; 160; 0" dur="16s" accumulate="none" additive="sum" fill="freeze"/> <animate attributeName="cy" repeatDur="indefinite" values="80; 20; 80; 20; 80" dur="8s" accumulate="none" fill="freeze"/> </circle> </svg>
         <math> <mrow> <mi>x</mi> <mo>=</mo> <mfrac> <mrow> <mrow> <mo>-</mo> <mi>b</mi> </mrow> <mo>&PlusMinus;</mo> <msqrt> <mrow> <msup> <mi>b</mi> <mn>2</mn> </msup> <mo>-</mo> <mrow> <mn>4</mn> <mo>&InvisibleTimes;</mo> <mi>a</mi> <mo>&InvisibleTimes;</mo> <mi>c</mi> </mrow> </mrow> </msqrt> </mrow> <mrow> <mn>2</mn> <mo>&InvisibleTimes;</mo> <mi>a</mi> </mrow> </mfrac> </mrow> </math>
 
     </div>
-    <p>Firefox includes an HTML5-ready parser which brings <a href="https://hacks.mozilla.org/2010/05/firefox-4-the-html5-parser-inline-svg-speed-and-more/">new capabilities</a> like <a href="https://developer.mozilla.org/en/svg_in_html_introduction">inline SVG</a>, and also improves performance by running the parsing algorithm on its own processor. This brings the Firefox parser algorithm closer to the standard and lays the foundation for consistent parsing across browsers.</p>
-    <a class="close" title="close" href="#close">close</a>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/en/HTML/HTML5/HTML5_Parser">learn more</a>
+    <p>
+    {% trans url1='https://hacks.mozilla.org/2010/05/firefox-4-the-html5-parser-inline-svg-speed-and-more/',
+            url2='https://developer.mozilla.org/en/svg_in_html_introduction' %}
+        Firefox includes an HTML5-ready parser which brings
+        <a href="{{ url1 }}">new capabilities</a> like
+        <a href="{{ url2 }}">inline SVG</a>, and also improves performance by
+        running the parsing algorithm on its own processor. This brings the
+        Firefox parser algorithm closer to the standard and lays the foundation
+        for consistent parsing across browsers.
+    {% endtrans %}
+    </p>
+    <a class="close" title="{{ _('close') }}" href="#close">{{ _('close') }}</a>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/HTML/HTML5/HTML5_Parser">{{ _('learn more') }}</a>
 </article>
 
 
 <article class="hasademo">
-    <h1>WebM</h1>
+    <h1>{{ _('WebM') }}</h1>
     <div class="demo">
         <video preload="auto" width="160" src="//videos-cdn.mozilla.net/serv/firefoxlive/meetthecubs.webm" onmouseover="this.play()" onmouseout="this.pause()"></video>
     </div>
-    <p>Firefox supports WebM, the new royalty-free format for video on the Web. It works on YouTube if you join their <a href="http://www.youtube.com/html5">HTML5 beta</a>, and works with embedded YouTube videos if you use their new <a href="http://apiblog.youtube.com/2010/07/new-way-to-embed-youtube-videos.html">iframe embedding API</a>. Join the beta and see an example at the bottom of <a href="http://apiblog.youtube.com/2010/07/new-way-to-embed-youtube-videos.html">this post</a>.</p>
-    <a class="close" title="close" href="#close">close</a>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/En/Using_audio_and_video_in_Firefox">learn more</a>
+    <p>
+    {% trans url1='http://www.youtube.com/html5',
+            url2='http://apiblog.youtube.com/2010/07/new-way-to-embed-youtube-videos.html',
+            url3='http://apiblog.youtube.com/2010/07/new-way-to-embed-youtube-videos.html' %}
+        Firefox supports WebM, the new royalty-free format for video on the
+        Web. It works on YouTube if you join their <a href="{{ url1 }}">HTML5
+        beta</a>, and works with embedded YouTube videos if you use their
+        new <a href="{{ url2 }}">iframe embedding API</a>. Join the beta and
+        see an example at the bottom of <a href="{{ url3 }}">this post</a>.
+    {% endtrans %}
+    </p>
+    <a class="close" title="{{ _('close') }}" href="#close">{{ _('close') }}</a>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/En/Using_audio_and_video_in_Firefox">{{ _('learn more') }}</a>
 </article>
 
 <article>
-    <h1>Video Buffer API</h1>
-    <p>With support for the <a href="https://hacks.mozilla.org/2010/08/html5-video-buffered-property-available-in-firefox-4/">buffered attribute</a> for HTML5 video, Web pages with video can now give an accurate measure of how much video has been buffered rather than an approximation based on the download rate and current position in the stream.</p>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/En/Using_audio_and_video_in_Firefox">learn more</a>
+    <h1>{{ _('Video Buffer API') }}</h1>
+    <p>
+    {% trans url='https://hacks.mozilla.org/2010/08/html5-video-buffered-property-available-in-firefox-4/' %}
+        With support for the <a href="{{ url }}">buffered attribute</a> for
+        HTML5 video, Web pages with video can now give an accurate measure of
+        how much video has been buffered rather than an approximation based
+        on the download rate and current position in the stream.
+    {% endtrans %}
+    </p>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/En/Using_audio_and_video_in_Firefox">{{ _('learn more') }}</a>
 </article>
 
 <article>
-    <h1>Video “Preload” Support</h1>
-    <p>The “autobuffer" attribute for video has been replaced with the new “preload” attribute. This attribute gives developers control over how videos are pre-buffered if they’re included on a page rather than the binary on/off system that was included in Firefox 3.5.</p>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/En/Using_audio_and_video_in_Firefox">learn more</a>
+    <h1>{{ _('Video “Preload” Support') }}</h1>
+    <p>
+    {% trans %}
+        The “autobuffer" attribute for video has been replaced with the new
+        “preload” attribute. This attribute gives developers control over how
+        videos are pre-buffered if they’re included on a page rather than the
+        binary on/off system that was included in Firefox 3.5.
+    {% endtrans %}
+    </p>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/En/Using_audio_and_video_in_Firefox">{{ _('learn more') }}</a>
 </article>
 
 <article>
-    <h1>History pushState and replaceState</h1>
-    <p>Firefox supports the <a href="https://developer.mozilla.org/en/DOM/Manipulating_the_browser_history">HTML5 pushState and replaceState history modification calls</a>, allowing developers to create or modify the browser navigation history. These are helpful for applications that might want to generate history entries using the hash after the URL (useful for HTML-based slides, for example).</p>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/en/DOM/Manipulating_the_browser_history">learn more</a>
+    <h1>{{ _('History pushState and replaceState') }}</h1>
+    <p>
+    {% trans url='https://developer.mozilla.org/en/DOM/Manipulating_the_browser_history' %}
+        Firefox supports the <a href="{{ url }}">HTML5 pushState and
+        replaceState history modification calls</a>, allowing developers to
+        create or modify the browser navigation history. These are helpful for
+        applications that might want to generate history entries using the
+        hash after the URL (useful for HTML-based slides, for example).
+    {% endtrans %}
+    </p>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/DOM/Manipulating_the_browser_history">{{ _('learn more') }}</a>
 </article>
 
 </article>
@@ -209,68 +332,87 @@
 
 <article id="css" class="article container divider">
 
-<p class="top-link"><a href="#main-feature">Return to Top</a></p>
+<p class="top-link"><a href="#main-feature">{{ _('Return to Top') }}</a></p>
 
-<div class="click-star"><span>Roll over each blurb to see examples.</span></div>
+<div class="click-star"><span>{{ _('Roll over each blurb to see examples.') }}</span></div>
 
 <div class="intro">
-    <h1>Beautifying With <span>CSS</span></h1>
-    <p>Firefox is chock full of new CSS properties and promotions from the private CSS namespace into the final namespace due to the maturation of some of these standards.</p>
+    <h1>{{ _('Beautifying With <span>CSS</span>') }}</h1>
+    <p>{{ _('Firefox is chock full of new CSS properties and promotions from the private CSS namespace into the final namespace due to the maturation of some of these standards.') }}</p>
 </div>
 
 <article class="hasademo xxxie">
-    <h1>CSS Transitions</h1>
+    <h1>{{ _('CSS Transitions') }}</h1>
     <div class="demo" id="transitiondemo"><span>❖✪</span></div>
-    <p>Firefox includes support for CSS transitions. Since the spec is still early, these are still –moz prefixed extensions.</p>
-    <a class="close" title="close" href="#close">close</a>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/en/CSS/CSS_transitions">learn more</a>
+    <p>F{{ _('irefox includes support for CSS transitions. Since the spec is still early, these are still –moz prefixed extensions.') }}</p>
+    <a class="close" title="{{ _('close') }}" href="#close">{{ _('close') }}</a>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/CSS/CSS_transitions">{{ _('learn more') }}</a>
 </article>
 
 <article class="hasademo">
-    <h1>CSS Animations</h1>
+    <h1>{{ _('CSS Animations') }}</h1>
     <div class="demo" id="animationdemo"><span>♥</span></div>
-    <p>Firefox 5 supports CSS Animations: a way to define CSS keyframes to create complex animations.</p>
-    <a class="close" title="close" href="#close">close</a>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/en/CSS/CSS_animations">learn more</a>
+    <p>{{ _('Firefox 5 supports CSS Animations: a way to define CSS keyframes to create complex animations.') }}</p>
+    <a class="close" title="{{ _('close') }}" href="#close">{{ _('close') }}</a>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/CSS/CSS_animations">{{ _('learn more') }}</a>
 </article>
 
 <article>
     <h1>-moz-calc()</h1>
-    <p>Firefox supports an early version of calc that’s private-namespaced as –moz-calc. This allows developers to use simple expressions anywhere they can use a length, making CSS page layouts much simpler (no more divs for spacing!).</p>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/en/CSS/-moz-calc">learn more</a>
+    <p>
+    {% trans %}
+        Firefox supports an early version of calc that’s private-namespaced as
+        –moz-calc. This allows developers to use simple expressions anywhere
+        they can use a length, making CSS page layouts much simpler (no more
+        divs for spacing!).
+    {% endtrans %}
+    </p>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/CSS/-moz-calc">{{ _('learn more') }}</a>
 </article>
 
 <article>
     <h1>-moz-any()</h1>
-    <p>Firefox has added an extremely useful new CSS extension: -moz-any() selector grouping. This allows providing alternatives between combinators rather than having to repeat the entire selector for one different piece.</p>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/en/CSS/-moz-any">learn more</a>
+    <p>
+    {% trans %}
+        Firefox has added an extremely useful new CSS extension: -moz-any()
+        selector grouping. This allows providing alternatives between
+        combinators rather than having to repeat the entire selector for one
+        different piece.
+    {% endtrans %}
+    </p>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/CSS/-moz-any">{{ _('learn more') }}</a>
 </article>
 
 
 <article id="mozelementdemo">
     <h1>-moz-element()</h1>
-    <p>The –moz-element is an extension to the background-image property that lets you use any element as the background for another element.</p>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/en/CSS/-moz-element">learn more</a>
+    <p>{{ _('The –moz-element is an extension to the background-image property that lets you use any element as the background for another element.') }}</p>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/CSS/-moz-element">{{ _('learn more') }}</a>
 </article>
 
 <article>
     <h1>-moz-placeholder</h1>
-    <p>The :-moz-placeholder changes the attributes of the background text that’s a placeholder in an HTML5 form. Web developers can change the color or other attribute of the placeholder text.
-</p>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/en/CSS/%3A-moz-placeholder">learn more</a>
+    <p>
+    {% trans %}
+        The :-moz-placeholder changes the attributes of the background text
+        that’s a placeholder in an HTML5 form. Web developers can change the
+        color or other attribute of the placeholder text.
+    {% endtrans %}
+    </p>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/CSS/%3A-moz-placeholder">{{ _('learn more') }}</a>
 </article>
 
 <article class="hasademo" id="radiusdemo">
-    <h1>Border Radius</h1>
-    <p>The border-radius attribute is now supported, replacing the old -moz-border-radius version.</p>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/en/CSS/border-radius">learn more</a>
+    <h1>{{ _('Border Radius') }}</h1>
+    <p>{{ _('The border-radius attribute is now supported, replacing the old -moz-border-radius version.') }}</p>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/CSS/border-radius">{{ _('learn more') }}</a>
 </article>
 
 
 <article id="boxshadowdemo" class="hasademo">
     <h1>box-shadow</h1>
-    <p>box-shadow has replaced -moz-box-shadow.</p>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/en/CSS/box-shadow">learn more</a>
+    <p>{{ _('box-shadow has replaced -moz-box-shadow.') }}</p>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/CSS/box-shadow">{{ _('learn more') }}</a>
 </article>
 
 
@@ -290,150 +432,249 @@
         <tr><td style="font-size: 85%;" class="salt">&amp; modeste avec <span class="ss05">ça</span></td></tr>
     </tbody></table>
     </div>
-    <p>Firefox includes support for <a href="https://hacks.mozilla.org/2010/11/firefox-4-font-feature-support/">exposing much more of the capabilities of TrueType fonts</a> with the <a href="https://developer.mozilla.org/en/CSS/-moz-font-feature-settings">-moz-font-feature-settings</a> property. It’s possible to take advantage of all kinds of font capabilities — kerning, ligatures, alternates, real small caps and stylistic sets, to name just a few.</p>
-    <a class="close" title="close" href="#close">close</a>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/en/CSS/-moz-font-feature-settings">learn more</a>
+    <p>
+    {% trans url1='https://hacks.mozilla.org/2010/11/firefox-4-font-feature-support/',
+            url2='https://developer.mozilla.org/en/CSS/-moz-font-feature-settings' %}
+        Firefox includes support for <a href="{{ url1 }}">exposing much more of
+        the capabilities of TrueType fonts</a> with the
+        <a href="{{ url2 }}">-moz-font-feature-settings</a> property. It’s
+        possible to take advantage of all kinds of font capabilities — kerning,
+        ligatures, alternates, real small caps and stylistic sets, to name
+        just a few.
+    {% endtrans %}
+    </p>
+    <a class="close" title="{{ _('close') }}" href="#close">{{ _('close') }}</a>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/CSS/-moz-font-feature-settings">{{ _('learn more') }}</a>
 </article>
 
 <article>
-    <h1>Consistent CSS Units</h1>
-    <p>We’ve changed our handling of pixel sizes to match Internet Explorer, Safari and Chrome so that 1 inch always equals 96 pixels.</p>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/en/CSS-2_Quick_Reference/Units#CSS_units_and_dots-per-inch">learn more</a>
+    <h1>{{ _('Consistent CSS Units') }}</h1>
+    <p>{{ _('We’ve changed our handling of pixel sizes to match Internet Explorer, Safari and Chrome so that 1 inch always equals 96 pixels.') }}</p>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/CSS-2_Quick_Reference/Units#CSS_units_and_dots-per-inch">{{ _('learn more') }}</a>
 </article>
 
 <article>
-    <h1>Physical CSS Unit Support</h1>
-    <p>Firefox introduces a new CSS unit called mozmm for the rare instance where you actually want a physical size to be used.</p>
-    <a class="learn" title="documentation" href="http://weblogs.mozillazine.org/roc/archives/2010/08/css_units_chang.html">learn more</a>
+    <h1>{{ _('Physical CSS Unit Support') }}</h1>
+    <p>{{ _('Firefox introduces a new CSS unit called mozmm for the rare instance where you actually want a physical size to be used.') }}</p>
+    <a class="learn" title="{{ _('documentation') }}" href="http://weblogs.mozillazine.org/roc/archives/2010/08/css_units_chang.html">{{ _('learn more') }}</a>
 </article>
 
 <article>
     <h1>device-pixel-ratio</h1>
-    <p>The -moz-device-pixel-ratio media query gives you the number of device pixels per CSS pixel.</p>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/En/CSS/Media_queries#-moz-device-pixel-ratio">learn more</a>
+    <p>{{ _('The -moz-device-pixel-ratio media query gives you the number of device pixels per CSS pixel.') }}</p>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/En/CSS/Media_queries#-moz-device-pixel-ratio">{{ _('learn more') }}</a>
 </article>
 
 <article>
     <h1>-moz-tab-size</h1>
-    <p>The -moz-tab-size property lets you specify the width in space characters of how to render a tab character (U+0009) when rendering text.</p>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/en/CSS/-moz-tab-size">learn more</a>
+    <p>{{ _('The -moz-tab-size property lets you specify the width in space characters of how to render a tab character (U+0009) when rendering text.') }}</p>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/CSS/-moz-tab-size">{{ _('learn more') }}</a>
 </article>
 
 <article>
     <h1>-moz-focusring</h1>
-    <p>Firefox’s CSS pseudo-selector, -moz-focusring, lets you specify the appearance of an element when it’s focused and when it would have a focus ring drawn around it. Different operating systems have different conventions for when to draw a focus ring or not, and this lets you control the look of form controls while maintaining platform conventions.</p>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/en/CSS/%3A-moz-focusring">learn more</a>
+    <p>
+    {% trans %}
+        Firefox’s CSS pseudo-selector, -moz-focusring, lets you specify the
+        appearance of an element when it’s focused and when it would have a
+        focus ring drawn around it. Different operating systems have
+        different conventions for when to draw a focus ring or not, and this
+        lets you control the look of form controls while maintaining
+        platform conventions.
+    {% endtrans %}
+    </p>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/CSS/%3A-moz-focusring">{{ _('learn more') }}</a>
 </article>
 
 <article>
     <h1>-moz-image-rect</h1>
-    <p>The new -moz-image-rect lets you use a sub-rectangle of an image as part of a <a href="https://developer.mozilla.org/en/CSS/background">background</a> or <a href="https://developer.mozilla.org/en/CSS/background-image">background-image</a>.</p>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/en/CSS/-moz-image-rect">learn more</a>
+    <p>
+    {% trans url1='https://developer.mozilla.org/en/CSS/background',
+            url2='https://developer.mozilla.org/en/CSS/background-image' %}
+        The new -moz-image-rect lets you use a sub-rectangle of an image as
+        part of a <a href="{{ url1 }}">background</a> or
+        <a href="{{ url2 }}">background-image</a>.
+    {% endtrans %}
+    </p>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/CSS/-moz-image-rect">{{ _('learn more') }}</a>
 </article>
 
 <article>
-    <h1>Resizable Text Areas</h1>
-    <p>Text areas are resizable by default. You can disable that with the new resize CSS property.</p>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/en/CSS/resize">learn more</a>
+    <h1>{{ _('Resizable Text Areas') }}</h1>
+    <p>
+    {% trans %}
+        Text areas are resizable by default. You can disable that with the new
+        resize CSS property.
+    {% endtrans %}
+    </p>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/CSS/resize">{{ _('learn more') }}</a>
 </article>
 
 </article>
 
 <article id="apis" class="article container divider">
 
-<p class="top-link"><a href="#main-feature">Return to Top</a></p>
+<p class="top-link"><a href="#main-feature">{{ _('Return to Top') }}</a></p>
 
-<div class="click-star"><span>Roll over each blurb to see examples.</span></div>
+<div class="click-star"><span>{{ _('Roll over each blurb to see examples.') }}</span></div>
 
 <div class="intro">
-    <h1>Modern <span>APIs</span></h1>
-    <p>Firefox implements new standard APIs to find out what’s going on in your browser and provide more ways that you can add interactivity (online and offline) to your web pages.</p>
+    <h1>{{ _('Modern <span>APIs</span>') }}</h1>
+    <p>{{ _('Firefox implements new standard APIs to find out what’s going on in your browser and provide more ways that you can add interactivity (online and offline) to your web pages.') }}</p>
 </div>
 
 <article>
     <h1>window.matchMedia</h1>
-    <p>Firefox supports a JavaScript equivalent to CSS3 <a href="https://developer.mozilla.org/En/CSS/Media_queries">media queries</a>, which allows Web pages to adapt to the media/device they are displayed on. Different information about the media is available, such as screen width, resolution and orientation.</p>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/en/DOM/window.matchMedia">learn more</a>
+    <p>
+    {% trans url='https://developer.mozilla.org/En/CSS/Media_queries' %}
+        Firefox supports a JavaScript equivalent to CSS3
+        <a href="{{ url }}">media queries</a>, which allows Web pages to adapt
+        to the media/device they are displayed on. Different information about
+        the media is available, such as screen width, resolution and
+        orientation.
+    {% endtrans %}
+    </p>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/DOM/window.matchMedia">{{ _('learn more') }}</a>
 </article>
 
 <article>
-    <h1>WebSockets</h1>
-    <p>Firefox supports a way to maintain two-way communications with a server. WebSockets make it possible to create real-time messaging applications and HTML5 games on the Web.</p>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/en/WebSockets">learn more</a>
+    <h1>{{ _('WebSockets') }}</h1>
+    <p>
+    {% trans %}
+        Firefox supports a way to maintain two-way communications with a
+        server. WebSockets make it possible to create real-time messaging
+        applications and HTML5 games on the Web.
+    {% endtrans %}
+    </p>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/WebSockets">{{ _('learn more') }}</a>
 </article>
 
 <article>
-    <h1>Server Sent Events</h1>
-    <p>Server Sent Events enable a server to push messages to the browser, which can then be detected as events in the Web page.</p>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/en/Server_Sent_Events">learn more</a>
+    <h1>{{ _('Server Sent Events') }}</h1>
+    <p>{{ _('Server Sent Events enable a server to push messages to the browser, which can then be detected as events in the Web page.') }}</p>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/Server_Sent_Events">{{ _('learn more') }}</a>
 </article>
 
 <article>
-    <h1>ECMAScript 5</h1>
-    <p>ECMAScript 5 is the new version of the JavaScript language, which includes new features and API like Strict Mode and the JSON API.</p>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/Special:Tags?tag=ECMAScript5">learn more</a>
+    <h1>{{ _('ECMAScript 5') }}</h1>
+    <p>{{ _('ECMAScript 5 is the new version of the JavaScript language, which includes new features and API like Strict Mode and the JSON API.') }}</p>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/Special:Tags?tag=ECMAScript5">{{ _('learn more') }}</a>
 </article>
 
 
 <article id="webgldemo" class="hasademo experimental xxxie">
-    <h1>WebGL</h1>
+    <h1>{{ _('WebGL') }}</h1>
     <script src="{{ media('js/firefox/technology/sylvester.js') }}"></script>
     <script src="{{ media('js/firefox/technology/glUtils.js') }}"></script>
     <script src="{{ media('js/firefox/technology/gldemo.js') }}"></script>
     <div class="demo">
         <canvas onmouseout="stopTeaPot()" onmouseover="startTeaPot()" height="200" width="300"></canvas>
     </div>
-    <p>Canvas 3D. WebGL brings 3D graphics to the Web by introducing an API that closely conforms to OpenGL ES 2.0 and can be used in HTML5 canvas elements.</p>
-    <a class="close" title="close" href="#close">close</a>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/en/WebGL">learn more</a>
+    <p>{{ _('Canvas 3D. WebGL brings 3D graphics to the Web by introducing an API that closely conforms to OpenGL ES 2.0 and can be used in HTML5 canvas elements.') }}</p>
+    <a class="close" title="{{ _('close') }}" href="#close">{{ _('close') }}</a>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/WebGL">{{ _('learn more') }}</a>
 </article>
 
 <article>
-    <h1>Support for .click() to the File Upload Control</h1>
-    <p>Firefox can call .click() on a hidden file control to bring up the platform file upload widget, meaning you can build your own instead of exposing the (ugly) file upload control. If you combine this with the new <a href="https://developer.mozilla.org/en/Using_files_from_web_applications">File APIs</a> and <a href="https://developer.mozilla.org/En/XMLHttpRequest/Using_XMLHttpRequest#Monitoring_progress">progress events</a> you’ll have a recipe for a very nice file upload experience.</p>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/en/using_files_from_web_applications#Using_hidden_file_input_elements_using_the_click%28%29_method">learn more</a>
+    <h1>{{ _('Support for .click() to the File Upload Control') }}</h1>
+    <p>
+    {% trans url1='https://developer.mozilla.org/en/Using_files_from_web_applications',
+            url2='https://developer.mozilla.org/En/XMLHttpRequest/Using_XMLHttpRequest#Monitoring_progress' %}
+        Firefox can call .click() on a hidden file control to bring up the
+        platform file upload widget, meaning you can build your own instead
+        of exposing the (ugly) file upload control. If you combine this with
+        the new <a href="{{ url1 }}">File APIs</a> and
+        <a href="{{ url2 }}">progress events</a> you’ll have a recipe for a
+        very nice file upload experience.
+    {% endtrans %}
+    </p>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/using_files_from_web_applications#Using_hidden_file_input_elements_using_the_click%28%29_method">{{ _('learn more') }}</a>
 </article>
 
 <article>
-    <h1>Support for .slice in the File API</h1>
-    <p>Firefox supports the Blob API and the .slice APIs that come with it. This can help people who want to process parts of large File objects from JavaScript without having to load the whole file into the memory. People who reliably upload large files can use some server and JS code to split a large file into sections and upload chunks, including re-retrying failed sections, or even uploading several sections, in parallel.</p>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/en/DOM/Blob">learn more</a>
+    <h1>{{ _('Support for .slice in the File API') }}</h1>
+    <p>
+    {% trans %}
+        Firefox supports the Blob API and the .slice APIs that come with it.
+        This can help people who want to process parts of large File objects
+        from JavaScript without having to load the whole file into the memory.
+        People who reliably upload large files can use some server and JS code
+        to split a large file into sections and upload chunks, including
+        re-retrying failed sections, or even uploading several sections, in
+        parallel.
+    {% endtrans %}
+    </p>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/DOM/Blob">{{ _('learn more') }}</a>
 </article>
 
 <article>
-    <h1>Support for File API URLs</h1>
-    <p>Firefox supports the .url attribute for the File API, meaning objects from a File API can be used for images, video, HTML or other URL-powered objects.</p>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/en/Using_files_from_web_applications">learn more</a>
+    <h1>{{ _('Support for File API URLs') }}</h1>
+    <p>{{ _('Firefox supports the .url attribute for the File API, meaning objects from a File API can be used for images, video, HTML or other URL-powered objects.') }}</p>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/Using_files_from_web_applications">{{ _('learn more') }}</a>
 </article>
 
 <article>
-    <h1>Touch and Multi-Touch Events</h1>
-    <p>Firefox supports both touch and multi-touch events, exposed to the DOM. Support for this functionality is available on Windows 7 systems.</p>
-    <a class="learn" title="documentation" href="https://hacks.mozilla.org/2010/08/firefox4-beta3/">learn more</a>
+    <h1>{{ _('Touch and Multi-Touch Events') }}</h1>
+    <p>
+    {% trans %}
+        Firefox supports both touch and multi-touch events, exposed to the DOM.
+        Support for this functionality is available on Windows 7 systems.
+    {% endtrans %}
+    </p>
+    <a class="learn" title="{{ _('documentation') }}" href="https://hacks.mozilla.org/2010/08/firefox4-beta3/">{{ _('learn more') }}</a>
 </article>
 
 <article>
-    <h1>Detect Click-to-Touch</h1>
-    <p>Firefox can tell if a mouse or finger generated an event with the <a href="https://developer.mozilla.org/en/DOM/event.mozInputSource">mozInputSource</a> property. This is useful with the touch and multi-touch events and makes it possible to build apps that treat touch and mouse input differently.</p>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/en/DOM/event.mozInputSource">learn more</a>
+    <h1>{{ _('Detect Click-to-Touch') }}</h1>
+    <p>
+    {% trans url='https://developer.mozilla.org/en/DOM/event.mozInputSource' %}
+        Firefox can tell if a mouse or finger generated an event with the
+        <a href="{{ url }}">mozInputSource</a> property. This is useful with
+        the touch and multi-touch events and makes it possible to build apps
+        that treat touch and mouse input differently.
+    {% endtrans %}
+    </p>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/DOM/event.mozInputSource">{{ _('learn more') }}</a>
 </article>
 
 <article>
-    <h1>IndexedDB</h1>
-    <p>Firefox includes an early version of <a href="http://www.w3.org/TR/IndexedDB/">IndexedDB</a>. This emerging standard for local storage is still undergoing change and will be private-prefixed until it’s stable. <a href="https://developer.mozilla.org/en/IndexedDB/IndexedDB_primer">IndexedDB primer</a> provides an overview of using the IndexedDB API.</p>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/en/IndexedDB">learn more</a>
+    <h1>{{ _('IndexedDB') }}</h1>
+    <p>
+    {% trans url1='http://www.w3.org/TR/IndexedDB/',
+            url2='https://developer.mozilla.org/en/IndexedDB/IndexedDB_primer' %}
+        Firefox includes an early version of
+        <a href="{{ url1 }}">IndexedDB</a>. This emerging standard for local
+        storage is still undergoing change and will be private-prefixed until
+        it’s stable. <a href="{{ url2 }}">IndexedDB primer</a> provides an overview of
+        using the IndexedDB API.
+    {% endtrans %}
+    </p>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/IndexedDB">{{ _('learn more') }}</a>
 </article>
 
 <article>
-    <h1>FormData</h1>
-    <p>Firefox includes support for the new <a href="https://hacks.mozilla.org/2010/07/firefox-4-formdata-and-the-new-file-url-object/">FormData</a> object, which makes it easier to interact with HTML forms. It also enables some new capabilities, like making it easy to upload a file as part of a form accessed via the File API.</p>
-    <a class="learn" title="documentation" href="https://hacks.mozilla.org/2010/07/firefox-4-formdata-and-the-new-file-url-object/">learn more</a>
+    <h1>{{ _('FormData') }}</h1>
+    <p>
+    {% trans url='https://hacks.mozilla.org/2010/07/firefox-4-formdata-and-the-new-file-url-object/' %}
+        Firefox includes support for the new <a href="{{ url1 }}">FormData</a>
+        object, which makes it easier to interact with HTML forms. It also
+        enables some new capabilities, like making it easy to upload a file as
+        part of a form accessed via the File API.
+    {% endtrans %}
+    </p>
+    <a class="learn" title="{{ _('documentation') }}" href="https://hacks.mozilla.org/2010/07/firefox-4-formdata-and-the-new-file-url-object/">{{ _('learn more') }}</a>
 </article>
 
 <article>
-    <h1>Get a Canvas as a File Object</h1>
-    <p>Firefox makes Canvas accessible as a file object for uploads and other purposes. You can now use the mozGetAsFile() method <a href="https://developer.mozilla.org/en/DOM/HTMLCanvasElement">on a canvas</a> and it will return an image file.</p>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/en/DOM/HTMLCanvasElement">learn more</a>
+    <h1>{{ _('Get a Canvas as a File Object') }}</h1>
+    <p>
+    {% trans url='https://developer.mozilla.org/en/DOM/HTMLCanvasElement' %}
+        Firefox makes Canvas accessible as a file object for uploads and other
+        purposes. You can now use the mozGetAsFile() method
+        <a href="{{ url }}">on a canvas</a> and it will return an image file.
+    {% endtrans %}
+    </p>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/DOM/HTMLCanvasElement">{{ _('learn more') }}</a>
 </article>
 
 <article id="audiodemo" class="hasademo experimental xxxie">
@@ -446,85 +687,122 @@
     <script src="{{ media('js/firefox/technology/main.js') }}"></script>
     <audio id="grappes" src="{{ media('img/firefox/technology/track.ogg') }}" preload="auto"></audio>
 
-    <h1>Audio Sampling and Generation API</h1>
+    <h1>{{ _('Audio Sampling and Generation API') }}</h1>
     <div class="demo">
         <canvas onmouseout="stopProcessingAudio()" onmouseover="startProcessingAudio()" id="audiocube" data-processing-sources="{{ media('js/firefox/technology/anim.pde') }}" style="image-rendering: optimizespeed ! important;" width="128" height="128"></canvas>
     </div>
-    <p>The Firefox Audio Data API allows developers to read, modify and write data from audio and video elements.</p>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/en/Introducing_the_Audio_API_Extension">learn more</a>
+    <p>{{ _('The Firefox Audio Data API allows developers to read, modify and write data from audio and video elements.') }}</p>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/Introducing_the_Audio_API_Extension">{{ _('learn more') }}</a>
 </article>
 
 </article>
 
 <article id="svg" class="article container divider">
 
-<p class="top-link"><a href="#main-feature">Return to Top</a></p>
+<p class="top-link"><a href="#main-feature">{{ _('Return to Top') }}</a></p>
 
 <div class="intro">
-    <h1>Enhanced <span>SVG</span></h1>
-    <p>Firefox expands its support for <abbr title="Scalable Vector Graphics">SVG</abbr> to let you use line graphics in even more creative ways.</p>
+    <h1>{{ _('Enhanced <span>SVG</span>') }}</h1>
+    <p>
+    {% trans title=_('Scalable Vector Graphics') %}
+        Firefox expands its support for <abbr title="{{ title }}">SVG</abbr>
+        to let you use line graphics in even more creative ways.
+    {% endtrans %}
+    </p>
 </div>
 
 <article>
-    <h1>SVG Animation and SMIL</h1>
-    <p>Now you can animate SVG with SMIL in Firefox.</p>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/en/SVG/SVG_animation_with_SMIL ">learn more</a>
+    <h1>{{ _('SVG Animation and SMIL') }}</h1>
+    <p>{{ _('Now you can animate SVG with SMIL in Firefox.') }}</p>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/SVG/SVG_animation_with_SMIL ">{{ _('learn more') }}</a>
 </article>
 
 <article>
-    <h1>SVG As Images and CSS Backgrounds</h1>
-    <p>SVG can now be used <a href="https://developer.mozilla.org/en/HTML/element/img#Supported_Image_Formats">in &lt;img&gt; tags</a> as well as <a href="https://developer.mozilla.org/en/CSS/background-image#Syntax">background images in CSS</a>. SMIL animations are also supported.</p>
-    <img src="{{ media('img/firefox/technology/lion.svg') }}" alt="Lion SVG image example">
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/en/CSS/background-image#Syntax">learn more</a>
+    <h1>{{ _('SVG As Images and CSS Backgrounds') }}</h1>
+    <p>
+    {% trans url1='https://developer.mozilla.org/en/HTML/element/img#Supported_Image_Formats',
+            url2='https://developer.mozilla.org/en/CSS/background-image#Syntax' %}
+        SVG can now be used <a href="{{ url1 }}">in &lt;img&gt; tags</a> as
+        well as <a href="{{ url2 }}">background images in CSS</a>. SMIL
+        animations are also supported.
+    {% endtrans %}
+    </p>
+    <img src="{{ media('img/firefox/technology/lion.svg') }}" alt="{{ _('Lion SVG image example') }}">
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/CSS/background-image#Syntax">{{ _('learn more') }}</a>
 </article>
 
 </article>
 
 <article id="security" class="article container divider">
 
-<p class="top-link"><a href="#main-feature">Return to Top</a></p>
+<p class="top-link"><a href="#main-feature">{{ _('Return to Top') }}</a></p>
 
 <div class="intro">
-    <h1>Advanced <span>Security</span></h1>
-    <p>Firefox supports a huge number of new security enhancements to help Web developers and protect users.</p>
+    <h1>{{ _('Advanced <span>Security</span>') }}</h1>
+    <p>{{ _('Firefox supports a huge number of new security enhancements to help Web developers and protect users.') }}</p>
 </div>
 
 <article>
-    <h1>Content Security Policy</h1>
-    <p>Content Security Policy (CSP) is a set of tools developers can use to help prevent a few different classes of attacks. In particular, it offers tools to mitigate cross-site scripting attacks, click-jacking and packet sniffing attacks. When a rule is violated, Firefox can send back information about that violation to the website, helping improve security for other browsers too.</p>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/en/Security/CSP">learn more</a>
+    <h1>{{ _('Content Security Policy') }}</h1>
+    <p>
+    {% trans %}
+        Content Security Policy (CSP) is a set of tools developers can use to
+        help prevent a few different classes of attacks. In particular, it
+        offers tools to mitigate cross-site scripting attacks, click-jacking
+        and packet sniffing attacks. When a rule is violated, Firefox can send
+        back information about that violation to the website, helping improve
+        security for other browsers too.
+    {% endtrans %}
+    </p>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/Security/CSP">{{ _('learn more') }}</a>
 </article>
 
 <article>
-    <h1>X-Frame-Options</h1>
-    <p>Firefox supports the X-Frame-Options header, one defense against clickjacking. This response header is supported by other browsers as well.</p>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/en/The_X-FRAME-OPTIONS_response_header">learn more</a>
+    <h1>{{ _('X-Frame-Options') }}</h1>
+    <p>
+    {% trans %}
+        Firefox supports the X-Frame-Options header, one defense against
+        clickjacking. This response header is supported by other browsers as
+        well.
+    {% endtrans %}
+    </p>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/The_X-FRAME-OPTIONS_response_header">{{ _('learn more') }}</a>
 </article>
 
 <article>
-    <h1>HSTS (ForceHTTPS)</h1>
-    <p>Firefox supports the HTTP Strict Transport Security (HSTS) headers. These headers can be used to tell the browser that it should never, ever contact a site over unencrypted HTTP.</p>
-    <a class="learn" title="documentation" href="http://tools.ietf.org/html/draft-hodges-strict-transport-sec-02">learn more</a>
+    <h1>{{ _('HSTS (ForceHTTPS)') }}</h1>
+    <p>
+    {% trans %}
+        Firefox supports the HTTP Strict Transport Security (HSTS) headers.
+        These headers can be used to tell the browser that it should never,
+        ever contact a site over unencrypted HTTP.
+    {% endtrans %}
+    </p>
+    <a class="learn" title="{{ _('documentation') }}" href="http://tools.ietf.org/html/draft-hodges-strict-transport-sec-02">{{ _('learn more') }}</a>
 </article>
 
 <article>
-    <h1>CORS Improvements</h1>
-    <p>Firefox fixes bugs in the CORS implementation.</p>
-    <a class="learn" title="documentation" href="https://developer.mozilla.org/en/http_access_control">learn more</a>
+    <h1>{{ _('CORS Improvements') }}</h1>
+    <p>{{ _('Firefox fixes bugs in the CORS implementation.') }}</p>
+    <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/http_access_control">{{ _('learn more') }}</a>
 </article>
 
 <article>
-    <h1>:visited changes</h1>
-    <p>Firefox includes the changes required to help improve your privacy online by <a href="https://hacks.mozilla.org/2010/03/privacy-related-changes-coming-to-css-vistited/">closing a decade-old hole in CSS rules that let any website query your browsing history</a>. These changes have also been picked up by WebKit-based browsers.</p>
-    <a class="learn" title="documentation" href="https://hacks.mozilla.org/2010/03/privacy-related-changes-coming-to-css-vistited/">learn more</a>
+    <h1>{{ _(':visited changes') }}</h1>
+    <p>
+    {% trans url='https://hacks.mozilla.org/2010/03/privacy-related-changes-coming-to-css-vistited/' %}
+        Firefox includes the changes required to help improve your privacy
+        online by <a href="{{ url }}">closing a decade-old hole in CSS rules
+        that let any website query your browsing history</a>. These changes
+        have also been picked up by WebKit-based browsers.
+    {% endtrans %}
+    </p>
+    <a class="learn" title="{{ _('documentation') }}" href="https://hacks.mozilla.org/2010/03/privacy-related-changes-coming-to-css-vistited/">{{ _('learn more') }}</a>
 </article>
-
 
 </article>
 
 </section>
-
-
 
 </div><!-- end #wall div -->
 

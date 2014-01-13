@@ -56,6 +56,30 @@ describe("global.js", function() {
 
   });
 
+  describe("init_android_download_links", function () {
+
+    beforeEach(function () {
+      // Pretend we're on Android
+      window.site = {
+        platform: 'android'
+      };
+      //create an HTML fixture to test against
+      $('<a class="download-link" href="https://play.google.com/store/apps/details?id=org.mozilla.firefox">foo</a>').appendTo('body');
+    });
+
+    afterEach(function(){
+      // Tidy up after each test
+      window.site = null;
+      $('.download-link').remove();
+    });
+
+    it("should set a URL with the market scheme", function () {
+      init_android_download_links();
+      expect($('.download-link').attr('href')).toEqual('market://details?id=org.mozilla.firefox');
+    });
+
+  });
+
   describe("init_platform_imgs", function () {
 
     beforeEach(function () {
@@ -134,6 +158,12 @@ describe("global.js", function() {
       var result = isFirefox(ua);
       expect(result).not.toBeTruthy();
     });
+
+    it("should not consider SeaMonkey to be Firefox", function() {
+      var ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:25.0) Gecko/20100101 Firefox/25.0 SeaMonkey/2.22.1';
+      var result = isFirefox(ua);
+      expect(result).not.toBeTruthy();
+    });
   });
 
   describe("isFirefoxUpToDate", function () {
@@ -207,6 +237,19 @@ describe("global.js", function() {
       gaTrack(['_trackEvent', 'GA event test', 'test', 'test'], callback);
       clock.tick(600); // must be longer than callback timeout (500ms) in gaTrack
       expect(callback).toHaveBeenCalled();
+    });
+
+    it("should not fire a callback twice", function () {
+      /* For our callback use a jasmine spy, then we can easily test
+       * to make sure it gets called once gaTrack has finished executing */
+      var callback = jasmine.createSpy();
+      gaTrack(['_trackEvent', 'GA event test', 'test', 'test'], callback);
+      clock.tick(600); // must be longer than callback timeout (500ms) in gaTrack
+      expect(callback.callCount).toEqual(1);
+      // The callback should not be executed by subsequent GA events
+      gaTrack(['_trackEvent', 'GA event test', 'test', 'test']);
+      clock.tick(600); // must be longer than callback timeout (500ms) in gaTrack
+      expect(callback.callCount).toEqual(1);
     });
 
     it("should still fire a callback if window._gaq is undefined", function () {

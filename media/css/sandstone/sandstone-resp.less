@@ -7,6 +7,14 @@
 
 html { background: #fff; }
 
+// Locales with jointed scripts should always have normal letter-spacing
+html[lang='ar'] *,
+html[lang='fa'] *,
+html[lang='hi-IN'] *,
+html[lang='bn-IN'] * {
+    letter-spacing: normal !important;
+}
+
 body {
     font-size: @baseFontSize;
     line-height: 1.5;
@@ -28,7 +36,7 @@ body {
     position: relative;
 }
 
-#strings { /* An arbitrary container for translatable strings to use in in scripts */
+#strings { /* An arbitrary container for translatable strings to use in scripts */
     display: none;
 }
 
@@ -266,7 +274,7 @@ input[type=text] {
     border-width: 1px;
     @shadow: 0 1px rgba(255,255,255,0.5);
     font-size: @smallFontSize;
-    .open-sans;
+    font-family: inherit;
     padding: (@baseLine / 5)  (@baseLine / 2);
     .border-radius(3px);
     .box-shadow(@shadow);
@@ -504,6 +512,21 @@ label.error {
     position: relative;
     .clearfix;
 }
+
+// White content box, often used with .title-shadow-box
+// See /about/powered-by for example.
+.callout-content {
+    .clearfix;
+    display: block;
+    @shadow: 0 0 0 1px #fff inset;
+    .box-shadow(@shadow);
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    margin: 0 auto @baseLine;
+    padding-left: @gridGutterWidth;
+    padding-right: @gridGutterWidth;
+}
+
 /* }}} */
 /* {{{ Header Nav */
 #masthead {
@@ -519,6 +542,10 @@ label.error {
         text-transform: uppercase;
         font-size: 13px;
         .open-sans;
+
+        ul {
+            margin-bottom: 0;
+        }
 
         li {
             .inline-block;
@@ -552,6 +579,12 @@ label.error {
 
 }
 
+.html-rtl #tabzilla,
+.html-rtl #masthead nav {
+    float: left;
+}
+
+
 #masthead .toggle {
     display: none; /* Hidden in non-mobile views */
 }
@@ -579,6 +612,36 @@ label.error {
 
     }
 
+}
+
+/* }}} */
+/* {{{ Headers/Titles */
+
+.title-shadow-box {
+    .open-sans-light;
+    width: 420px;
+    padding: 20px;
+    font-size: 48px;
+    letter-spacing: -2px;
+    color: #fff;
+    text-shadow: none;
+    background-color: #b30406;
+    background-color: rgba(179,4,6,.95);
+    margin: -60px 10px 40px;
+    position: relative;
+    float: left;
+}
+
+.title-shadow-box:after {
+    content: "";
+    display: block;
+    width: 100%;
+    padding: 0;
+    height: 40px;
+    position: absolute;
+    bottom: -40px;
+    left: 0;
+    background: url(/media/img/mission/title-banner-shadow.png) no-repeat;
 }
 
 /* }}} */
@@ -655,6 +718,12 @@ nav.menu-bar {
             .open-sans-light;
         }
     }
+}
+
+.html-rtl .table caption,
+.html-rtl .table th,
+.html-rtl .table td {
+    text-align: right;
 }
 
 /* }}} */
@@ -952,7 +1021,7 @@ nav.menu-bar {
 
 
     #masthead {
-        
+
         .toggle {
             display: block;
             width: 32px;
@@ -1067,6 +1136,13 @@ nav.menu-bar {
         }
     }
 
+    .title-shadow-box {
+        width: 340px;
+        font-size: 28px;
+        letter-spacing: -.5px;
+        margin: -25px 0 @baseLine;
+    }
+
     #footer-email-form, #newsletter-form {
         h3,
         .form-contents,
@@ -1162,9 +1238,9 @@ nav.menu-bar {
         position: absolute;
         z-index: 99;
         width: 200px;
-        margin: 15px 0 0 -10px;
+        margin: 20px 0 0 -20px;
         left: -999em;
-        top: 35px;
+        top: 30px;
         overflow: visible;
         .border-radius(10px);
         .box-shadow(0 1px 3px 0 rgba(0,0,0,.5));
@@ -1189,6 +1265,25 @@ nav.menu-bar {
         position: absolute;
         left: 12px;
         top: -10px;
+    }
+
+    .html-rtl #masthead nav {
+        float: right;
+    }
+
+    .html-rtl #masthead .toggle {
+        left: auto;
+        right: 10px;
+    }
+
+    .html-rtl #nav-main-menu {
+        margin-left: 0;
+        margin-right: -20px;
+    }
+
+    .html-rtl #nav-main-menu:before {
+        left: auto;
+        right: 12px;
     }
 
     #about {
@@ -1249,6 +1344,16 @@ nav.menu-bar {
 
 }
 /* }}} */
+
+@media only screen and (max-width: @breakMobileLandscape) {
+    .title-shadow-box {
+        width: 240px;
+    }
+
+    .title-shadow-box:after {
+        display: none;
+    }
+}
 
 // Don't display the dynamic platform images when js is disabled
 // because the ones in the noscript tag will be shown

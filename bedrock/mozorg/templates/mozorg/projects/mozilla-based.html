@@ -1,6 +1,5 @@
 {% extends "mozorg/base-resp.html" %}
 
-{% block page_title_prefix %}{% endblock %}
 {% block page_title %}{{ _('Featured Mozilla-Based Applications') }}{% endblock %}
 {% block body_id %}projects{% endblock %}
 
@@ -20,7 +19,7 @@
 
 <div id="main-feature">
   <h1>{{ _('Featured Mozilla-Based Applications') }}</h1>
-  <p>{{ _('<p>These are some of the applications being built by individuals and organizations using <a href="%(url1)s">Mozilla technologies</a>. If you would like to suggest other applications to feature here, please <a href="%(url2)s">let us know</a>.')|format(url1='/projects/technologies.html', url2=php_url('/about/contact.html')) }}</p>
+  <p>{{ _('<p>These are some of the applications being built by individuals and organizations using <a href="%(url1)s">Mozilla technologies</a>. If you would like to suggest other applications to feature here, please <a href="%(url2)s">let us know</a>.')|format(url1='/projects/technologies.html', url2=url('mozorg.contact.spaces.spaces-landing')) }}</p>
 </div>
 
 <ul id="featured" class="billboard">

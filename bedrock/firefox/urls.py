@@ -3,7 +3,6 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from django.conf.urls.defaults import *  # noqa
-from django.conf import settings
 
 from bedrock.firefox import version_re
 from bedrock.redirects.util import redirect
@@ -11,7 +10,7 @@ from bedrock.mozorg.util import page
 import views
 
 
-latest_re = r'^firefox(?:/(%s))?/%s/$'
+latest_re = r'^firefox(?:/(?P<fx_version>%s))?/%s/$'
 firstrun_re = latest_re % (version_re, 'firstrun')
 whatsnew_re = latest_re % (version_re, 'whatsnew')
 
@@ -25,11 +24,11 @@ urlpatterns = patterns('',
     page('firefox/customize', 'firefox/customize.html'),
     page('firefox/features', 'firefox/features.html'),
     page('firefox/fx', 'firefox/fx.html'),
-    page('firefox/geolocation', 'firefox/geolocation.html',
-         gmap_api_key=settings.GMAP_API_KEY),
+    page('firefox/geolocation', 'firefox/geolocation.html'),
     page('firefox/happy', 'firefox/happy.html'),
     url('^(?P<product>(firefox|mobile))/((?P<channel>(aurora|beta))/)?notes/$',
         views.latest_notes, name='firefox.latest.notes'),
+    url('^firefox/latest/releasenotes/$', views.latest_notes),
     url('^firefox/system-requirements',
         views.latest_sysreq, name='firefox.latest.sysreq'),
     page('firefox/memory', 'firefox/memory.html'),
@@ -50,7 +49,6 @@ urlpatterns = patterns('',
         name='firefox.installer-help'),
     page('firefox/speed', 'firefox/speed.html'),
     page('firefox/technology', 'firefox/technology.html'),
-    page('firefox/update', 'firefox/update.html'),
 
     page('firefox/unsupported/warning', 'firefox/unsupported/warning.html'),
     page('firefox/unsupported/EOL', 'firefox/unsupported/EOL.html'),
@@ -68,8 +66,10 @@ urlpatterns = patterns('',
     url('^firefox/$', views.fx_home_redirect, name='firefox'),
 
     page('firefox/os', 'firefox/os/index.html'),
+    page('firefox/os/releases', 'firefox/os/releases.html'),
 
     # firefox/os/notes/ should redirect to the latest version; update this in /redirects/urls.py
     page('firefox/os/notes/1.0.1', 'firefox/os/notes-1.0.1.html'),
     page('firefox/os/notes/1.1', 'firefox/os/notes-1.1.html'),
+    page('firefox/os/notes/1.2', 'firefox/os/notes-1.2.html'),
 )

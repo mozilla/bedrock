@@ -1,0 +1,197 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+// Special styling for IE9 (and some for IE8)
+
+// Titles without gradients don't need as much space
+.wide .panel .panel-title {
+    padding-top: 20px;
+}
+
+// IE9 supports rgba() but not transitions, so we'll lose the dimming effect.
+.panel-inner,
+.compressed .panel-inner {
+    background-color: transparent;
+}
+
+
+.wide {
+    // IE9 doesn't support transitions so don't move the backgrounds.
+
+    // Mozilla Mission
+    #panel-mission.expanded,
+    #panel-mission.compressed {
+        background-position: -50px -80px, 0 0;
+    }
+
+    // Lightbeam
+    #panel-lightbeam.expanded,
+    #panel-lightbeam.compressed {
+        background-position: -80px 20px, 0 0;
+    }
+
+    // Firefox OS
+    #panel-fxos.expanded,
+    #panel-fxos.compressed {
+        background-position: -100px -100px;
+    }
+
+    // MDN
+    #panel-mdn.expanded,
+    #panel-mdn.compressed {
+        background-position: -25px 40px, 0 0;
+    }
+
+    // Mozfest
+    #panel-mozfest.expanded,
+    #panel-mozfest.compressed {
+        background-position: -110px -15px, 0 0;
+    }
+
+    // Webmaker
+    #panel-webmaker.expanded,
+    #panel-webmaker.compressed {
+        background-position: -95px 15px;
+    }
+}
+
+// @Tablet Layout: 760px
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+
+    .wide {
+        // Mozilla Mission
+        #panel-mission,
+        #panel-mission.expanded,
+        #panel-mission.compressed {
+            background-position: -120px -50px, 0 0;
+        }
+
+        // Lightbeam
+        #panel-lightbeam,
+        #panel-lightbeam.expanded,
+        #panel-lightbeam.compressed {
+            background-position: -90px 20px, 0 0;
+        }
+
+        // Firefox OS
+        #panel-fxos,
+        #panel-fxos.expanded,
+        #panel-fxos.compressed {
+            background-position: -95px -70px;
+        }
+
+        // MDN
+        #panel-mdn,
+        #panel-mdn.expanded,
+        #panel-mdn.compressed {
+            background-position: -90px 40px, 0 0;
+        }
+
+        // Webmaker
+        #panel-webmaker,
+        #panel-webmaker.expanded,
+        #panel-webmaker.compressed {
+            background-position: -100px 25px;
+        }
+
+    }
+
+}
+
+// @Mobile layout: 320px
+@media only screen and (max-width: @breakTablet) {
+
+    // Mozilla Mission
+    #panel-mission,
+    #panel-mission.expanded,
+    #panel-mission.compressed {
+        background-position: -122px -30px, 0 0;
+    }
+
+    // Lightbeam
+    #panel-lightbeam,
+    #panel-lightbeam.expanded,
+    #panel-lightbeam.compressed {
+        background-position: -50px -50px, 0 0;
+    }
+
+    // Firefox OS
+    #panel-fxos,
+    #panel-fxos.expanded,
+    #panel-fxos.compressed {
+        background-position: -100px -100px;
+    }
+
+    // MDN
+    #panel-mdn,
+    #panel-mdn.expanded,
+    #panel-mdn-compressed {
+        background-position: -20px -10px, -350px 0;
+    }
+
+    // Mozfest
+    #panel-mozfest,
+    #panel-mozfest.expanded,
+    #panel-mozfest.compressed {
+        background-position: -60px -20px, 0 0;
+    }
+
+    // Webmaker
+    #panel-webmaker,
+    #panel-webmaker.expanded,
+    #panel-webmaker.compressed {
+        background-position: -50px -40px;
+    }
+
+}
+
+// @Wide @mobile layout: 480px
+@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+
+    // Mozilla Mission
+    #panel-mission,
+    #panel-mission.expanded,
+    #panel-mission.compressed {
+        background-position: -80px -30px, 0 0;
+    }
+
+    // Lightbeam
+    #panel-lightbeam,
+    #panel-lightbeam.expanded,
+    #panel-lightbeam.compressed {
+        background-position: -10px -50px, 0 0;
+    }
+
+    // Firefox OS
+    #panel-fxos,
+    #panel-fxos.expanded,
+    #panel-fxos.compressed {
+        background-position: -70px -85px;
+    }
+
+    // MDN
+    #panel-mdn,
+    #panel-mdn.expanded,
+    #panel-mdn.compressed {
+        background-position: 10px -20px, -250px 0;
+    }
+
+    // Mozfest
+    #panel-mozfest,
+    #panel-mozfest.expanded,
+    #panel-mozfest.compressed {
+        background-position: -15px -20px, 0 0;
+    }
+
+    // Webmaker
+    #panel-webmaker,
+    #panel-webmaker.expanded,
+    #panel-webmaker.compressed {
+        background-position: -15px -40px;
+    }
+
+}
+

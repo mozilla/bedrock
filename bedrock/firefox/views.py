@@ -189,9 +189,15 @@ def releases_index(request):
     minor_releases = firefox_details.firefox_history_stability_releases
 
     for release in major_releases:
-        releases[float(re.findall(r'^\d+\.\d+', release)[0])] = {
+        major_verion = float(re.findall(r'^\d+\.\d+', release)[0])
+        # The version numbering scheme of Firefox changes sometimes. The second
+        # number has not been used since Firefox 4, then reintroduced with
+        # Firefox ESR 24 (Bug 870540). On this index page, 24.1.x should be
+        # fallen under 24.0. This patter is a tricky part.
+        major_pattern = r'^' + re.escape(('%s' if major_verion < 4 else '%g') % round(major_verion, 1))
+        releases[major_verion] = {
             'major': release,
-            'minor': sorted(filter(lambda x: re.findall(r'^' + re.escape(release), x),
+            'minor': sorted(filter(lambda x: re.findall(major_pattern, x),
                                    minor_releases),
                             key=lambda x: int(re.findall(r'\d+$', x)[0]))
         }
@@ -200,7 +206,7 @@ def releases_index(request):
                              {'releases': sorted(releases.items(), reverse=True)})
 
 
-def latest_notes(request, product, channel='release'):
+def latest_notes(request, product='firefox', channel='release'):
     version = get_latest_version(product, channel)
     path = [
         product,
@@ -236,6 +242,10 @@ class LatestFxView(TemplateView):
     @vary_on_headers('User-Agent')
     def dispatch(self, *args, **kwargs):
         return super(LatestFxView, self).dispatch(*args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        # required for newsletter form post that is handled in newsletter/helpers.py
+        return self.get(request, *args, **kwargs)
 
     def redirect_to(self):
         """
@@ -294,7 +304,7 @@ class FirstrunView(LatestFxView):
 
 class WhatsnewView(LatestFxView):
     # Locales targeted for FxOS
-    fxos_locales = ['pl']
+    fxos_locales = []
 
     locales_with_video = {
         'en-US': 'american',
@@ -313,14 +323,17 @@ class WhatsnewView(LatestFxView):
 
         locale = l10n_utils.get_locale(self.request)
 
-        if (locale not in self.fxos_locales):
+        if locale not in self.fxos_locales:
             ctx['locales_with_video'] = self.locales_with_video
 
         return ctx
 
     def get_template_names(self):
+        version = self.kwargs.get('fx_version')
         locale = l10n_utils.get_locale(self.request)
-        if locale in self.fxos_locales:
+        if version == '29.0a1':
+            template = 'firefox/whatsnew-nightly-29.html'
+        elif locale in self.fxos_locales:
             template = 'firefox/whatsnew-fxos.html'
         else:
             template = 'firefox/whatsnew.html'

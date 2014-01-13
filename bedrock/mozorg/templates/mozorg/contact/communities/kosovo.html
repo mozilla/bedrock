@@ -1,0 +1,25 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/contact/contact-base.html" %}
+
+{% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Kosovo') }}{% endblock %}
+
+{% block contact_entry %}
+  <div id="entry-container">
+    <section class="entry entry-community" id="kosovo" data-tab="communities">
+      <div class="card">
+        <h2>{{ _('Kosovo') }}</h2>
+
+        <ul class="extra">
+          <li><a href="http://www.mozilla-kosovo.org/" class="website">www.mozilla-kosovo.org</a></li>
+        </ul>
+
+        <figure class="feature-img">
+          <img src="//api.tiles.mapbox.com/v3/{{ settings.MAPBOX_TOKEN }}/20.83,42.45,7/380x250.png" alt="">
+        </figure>
+      </div>
+    </section>
+  </div>
+{% endblock %}

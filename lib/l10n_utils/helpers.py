@@ -7,7 +7,7 @@ import jinja2
 
 from django.conf import settings
 
-from dotlang import translate
+from dotlang import translate, lang_file_has_tag
 
 
 def install_lang_files(ctx):
@@ -62,3 +62,11 @@ _ = gettext
 def js_escape(string):
     import json
     return json.dumps(string)[1:-1]
+
+
+@jingo.register.function
+@jinja2.contextfunction
+def l10n_has_tag(ctx, tag, langfile=None):
+    """Return boolean whether the given lang file has the given tag."""
+    langfile = langfile or ctx.get('langfile')
+    return lang_file_has_tag(langfile, tag=tag)

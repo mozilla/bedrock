@@ -39,7 +39,6 @@
 @localShadowActive:    @localShadowBottom, @localShadowBottomInset, @localShadowBorderInset, @localShadowActiveInset;
 
 #form,
-#overlay,
 .partner-article {
     .button {
         display: block;
@@ -451,6 +450,8 @@
     display: none;
 }
 
+.sf-form.completed { display: none; }
+
 .form-results {
     display: none;
 }
@@ -465,6 +466,13 @@
 }
 
 .js #form {
+    .field label {
+        display: none;
+    }
+}
+
+.js #pageslide #form {
+    position: relative;
     text-shadow: 1px 1px #000;
     color: #fff;
     h3 {
@@ -473,18 +481,9 @@
     label {
         color: #fff;
     }
-    .field label {
-        display: none;
-    }
 }
 
 #form {
-    &.overlay-contents {
-        background: none;
-    }
-    .close { display: none; }
-    padding-top: 50px;
-    padding-bottom: 20px;
     p {
         font-size: 16px;
     }
@@ -504,6 +503,28 @@
     select,
     textarea {
         width: 240px;
+    }
+
+    select {
+        width: 100%;
+    }
+
+    .footer-field input {
+        width: 218px;
+    }
+
+    #pageslider-close {
+        display: none;
+    }
+}
+
+#pageslide #form {
+    padding-top: 50px;
+    padding-bottom: 20px;
+
+    input[type="text"],
+    select,
+    textarea {
         background: #191b1e;
         color: #888;
         padding: 8px;
@@ -513,14 +534,6 @@
         border-width: 0 0 1px 0;
         @shadow: 0 0 3px rgba(0,0,0,0.3) inset;
         .box-shadow(@shadow);
-    }
-
-    select {
-        width : 100%;
-    }
-
-    .footer-field input {
-        width: 218px;
     }
 
     input.error {
@@ -536,17 +549,15 @@
         font-weight: bold;
         text-transform: uppercase;
     }
+
+    #pageslider-close {
+        display: block;
+    }
 }
 
 .overlay-contents {
     padding: 0 100px;
     .clearfix();
-    background: #fff;
-    margin: 0 auto;
-    .border-radius(4px);
-    img {
-        max-width: 100%;
-    }
     .footer {
         background: #f2f2f2;
         color: #8b8b8b;
@@ -664,64 +675,10 @@
 }
 
 /* }}} */
-/* {{{ Full window overlay */
-
-.close {
-  display: inline;
-  position: absolute;
-  top: 5px;
-  right: 20px;
-  color: #ccc;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 12px;
-  font-weight: bold;
-  text-transform: uppercase;
-  padding: 5px 28px 5px 5px;
-  cursor: pointer;
-  border: 0;
-  .border-radius(6px);
-  background: rgb(0,0,0) url(/media/img/firefox/partners/closex.png) right center no-repeat;
-  background: rgba(0,0,0,0.6) url(/media/img/firefox/partners/closex.png) right center no-repeat;
-}
-
-.close:hover,
-.close:focus {
-  text-decoration: underline;
-  color: #eee;
-}
-
-body.noscroll {
-  overflow: hidden;
-}
-#modal {
-  background: #444;
-  background: rgba(0, 0, 0, 0.9);
-  width: 100%;
-  height: 101%;
-  position: fixed;
-  top: 0;
-  right: auto;
-  bottom: auto;
-  left: 0;
-  z-index: 9999999;
-  overflow: auto;
-}
-#modal .inner {
-  margin: 40px auto;
-  padding: 0 20px;
-  color: #f3f3f3;
-}
-#modal .close {
-  position: fixed;
-  z-index: 99;
-}
-
-/* }}} */
 /* {{{  Desktop Layout */
 @media only screen and (min-width: @widthDesktop) {
     @import "partners/desktop.less";
     #form,
-    #overlay,
     .partner-article {
         .button {
             .inline-block();
@@ -756,30 +713,6 @@ body.noscroll {
 /* }}} */
 /* {{{ Responsive Grid */
 
-/* Desktop Layout */
-@media only screen and (min-width: @breakDesktop) {
-    #modal .inner {
-        width: @widthDesktop;
-        margin: 60px auto;
-        .footer {
-            .clearfix();
-            padding-left: 30px;
-            padding-right: 30px;
-            div {
-                padding: 0;
-                .span(4);
-                &:first-child {
-                    margin-left: 0;
-                }
-                &:last-child {
-                    margin-right: 0;
-                }
-            }
-        }
-    }
-}
-
-
 /* Tablet Layout */
 @media only screen and (min-width: @breakTablet) {
 
@@ -803,8 +736,25 @@ body.noscroll {
     }
 
     .close {
-        top: 25px;
-        right: 25px;
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        color: #fff;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 16px;
+        padding: 5px 28px 5px 5px;
+        cursor: pointer;
+        border: 0;
+        background: url(/media/img/firefox/partners/modal-close.png) right top no-repeat;
+        height: 32px;
+        padding-right: 40px;
+
+        &:hover,
+        &:focus {
+            color: rgba(255, 255, 255, 0.8);
+            background-position: right -32px;
+        }
     }
 
     .partner-article .article-content .intro h4 {
@@ -866,13 +816,6 @@ body.noscroll {
             font-size: 48px;
         }
     }
-
-    #modal .inner {
-        .span_narrow(12);
-        float: none;
-        margin: 60px auto;
-    }
-
 }
 
 
@@ -892,8 +835,12 @@ body.noscroll {
     #masthead {
         margin-left: -(@widthMobile / 2);
     }
-}
 
+    #modal video {
+        width: 100%;
+        height: auto;
+    }
+}
 
 /* Wide Mobile Layout: 480px */
 @media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {

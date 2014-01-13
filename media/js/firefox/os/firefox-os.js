@@ -46,6 +46,42 @@
         }
       ]
     },
+    "gr": {
+      "partner": [
+        {
+          "name": "Cosmote",
+          "url": "http://www.cosmote.gr/cosmoportal/cosmote.portal?_nfpb=true&_pageLabel=HDV&sku=20290038&s=0"
+        }
+      ]
+    },
+    "hu": {
+      "partner": [
+        {
+          "name": "T-Mobile",
+          "url": "https://webshop.t-mobile.hu/webapp/wcs/stores/ProductDisplay?catalogId=2001&storeId=2001&langId=-11&productId=644566"
+        },
+        {
+          "name": "Telenor",
+          "url": "http://www.telenor.hu/mobiltelefon/alcatel/one-touch-fire"
+        }
+      ]
+    },
+    "it": {
+      "partner": [
+        {
+          "name": "TIM",
+          "url": "http://www.tim.it/prodotti/alcatel-one-touch-fire-mozilla-orange"
+        }
+      ]
+    },
+    "me": {
+      "partner": [
+        {
+          "name": "Telenor",
+          "url": "http://www.telenor.me/sr/Privatni-korisnici/Uredjaji/Mobilni-telefoni/Alcatel/OT_Fire"
+        }
+      ]
+    },
     "mx": {
       "partner": [
         {
@@ -67,6 +103,14 @@
         {
           "name": "T-Mobile",
           "url": "http://www.t-mobile.pl/pl/firefox"
+        }
+      ]
+    },
+    "rs": {
+      "partner": [
+        {
+          "name": "Telenor",
+          "url": "https://www.telenor.rs/sr/Privatni-korisnici/webshop/Mobilni-telefoni/Alcatel/One_Touch_Fire"
         }
       ]
     },
@@ -98,7 +142,7 @@
 
     if (PARTNER_DATA.hasOwnProperty(COUNTRY_CODE)) {
 
-      // show get phone call to actions
+      // show get phone calls to action
       $('#primary-cta-phone').fadeIn();
       $('#primary-cta-signup').addClass('visibility', 'hidden');
       $('#secondary-cta-phone').css('display', 'inline-block');
@@ -114,7 +158,8 @@
         var index = i === 1 ? 'last' : '';
         links += '<a class="' + data.name.toLowerCase() + ' ' + index + '" href="' + data.url + '">' + data.name + '</a>';
       });
-      $('#provider-links').html(links);
+      // add country class as an extra style hook and inject the links
+      $('#provider-links').addClass(COUNTRY_CODE).html(links);
 
       // setup GA event tracking on telecom provider exit links
       $('#provider-links a').on('click', trackProviderExit);
@@ -195,10 +240,7 @@
 
         if (hasCallback) {
           timer = setTimeout(gaCallback, 500);
-          window._gaq.push(
-            ['_set', 'hitCallback', gaCallback],
-            eventsArray
-          );
+          window._gaq.push(eventsArray, gaCallback);
         } else {
           window._gaq.push(eventsArray);
         }

@@ -47,6 +47,9 @@ urlpatterns = patterns('',
     redirect(r'^foundation/identity-guidelines/mozilla-foundation.html', 'styleguide.identity.mozilla-branding'),
     redirect(r'^foundation/identity-guidelines/thunderbird.html', 'styleguide.identity.thunderbird-logo'),
 
+    # Bug 945474 - delete Marketplace marketing product page and redirect
+    redirect(r'^apps/$', 'https://marketplace.firefox.com/'),
+
     # Bug 800467 /apps/partners -> marketplace.firefox.com/developers
     redirect(r'apps/partners/$', 'https://marketplace.firefox.com/developers/'),
 
@@ -76,7 +79,14 @@ urlpatterns = patterns('',
     # Bug 867773 - Redirect the Persona "Developer FAQ" link to MDN
     redirect(r'^persona/developer-faq/$', 'https://developer.mozilla.org/persona'),
 
-    # Bug 912101 - For now we'll hard-code a redirect to 1.1
+    # Bug 912101 - For now we'll hard-code a redirect to 1.2
     # In the future this should automatically go to the latest version's notes
-    redirect(r'^firefox/os/notes/$', '/firefox/os/notes/1.1/'),
+    redirect(r'^firefox/os/notes/$', '/firefox/os/notes/1.2/'),
+
+    # Bug 896585 - Send /contact/ to the spaces landing
+    redirect(r'^contact/$', '/contact/spaces/'),
+
+    # Bug 944213 /foundation/annualreport/ -> /foundation/annualreport/20xx/
+    redirect(r'^foundation/annualreport/$', 'foundation.annualreport.2012.index',
+             name='foundation.annualreport'),
 )

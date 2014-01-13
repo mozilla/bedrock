@@ -2,7 +2,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import "../sandstone/lib.less";
+@import "../sandstone/sandstone-resp.less";
 
 #wrapper {
   width: 100%;
@@ -17,44 +17,10 @@
 }
 
 #main-content {
-  display: block;
-  margin: 100px auto @baseLine;
-  padding-left: @gridGutterWidth;
-  padding-right: @gridGutterWidth;
+  .callout-content;
+  margin-top: 100px;
   position: relative;
-  .clearfix;
   .open-sans;
-  @shadow: 0 0 0 1px #fff inset;
-  .box-shadow(@shadow);
-  background: #fff;
-  border-bottom: 1px solid #ddd;
-
-  .title-banner {
-    .open-sans-light;
-    width: 420px;
-    padding: 20px;
-    font-size: 48px;
-    letter-spacing: -2px;
-    color: #fff;
-    text-shadow: none;
-    background: #b30406;
-    background: rgba(179,4,6,.95);
-    margin: -60px 10px 40px;
-    position: relative;
-    float: left;
-  }
-
-  .title-banner:after {
-    content: "";
-    display: block;
-    width: 100%;
-    padding: 0;
-    height: 40px;
-    position: absolute;
-    bottom: -40px;
-    left: 0;
-    background: url(../img/mission/title-banner-shadow.png) no-repeat;
-  }
 
   .main {
     .span(6);
@@ -96,10 +62,8 @@ ul.links {
   }
 }
 
-
 /* Tablet Layout: 760px */
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
-
   #masthead,
   #main-content,
   .billboard {
@@ -119,12 +83,10 @@ ul.links {
     .span_narrow(3);
     margin: (@baseLine/2) 5px;
   }
-
 }
 
 /* Mobile layout: 320px */
 @media only screen and (max-width: @breakTablet) {
-
   #masthead,
   #main-content,
   .billboard {
@@ -138,16 +100,6 @@ ul.links {
 
   #main-content {
     margin-top: 30px;
-    .title-banner {
-      width: 240px;
-      font-size: 28px;
-      letter-spacing: -.5px;
-      margin: -25px 0 @baseLine;
-    }
-
-    .title-banner:after {
-      display: none;
-    }
 
     .lede {
       font-size: 20px;
@@ -169,28 +121,13 @@ ul.links {
       margin: (@baseLine/2) 5px;
     }
   }
-
 }
 
 /* Wide mobile layout: 480px; */
 @media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
-
   #masthead,
   #main-content,
   .billboard {
     width: @widthMobileLandscape - @gridGutterWidth;
   }
-
-  #main-content {
-    .title-banner {
-      width: 380px;
-      margin: -25px 0 40px;
-    }
-
-    .title-banner:after {
-      display: block;
-    }
-
-  }
-
 }

@@ -1,20 +1,15 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
  # License, v. 2.0. If a copy of the MPL was not distributed with this
- # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% extends "firefox/base-resp.html" %}
 
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}{{_('Firefox OS — The Adaptive Phone — Great Smartphone Features, Apps and More')}}{% endblock %}
-{% block page_desc %}{{_('Firefox OS — The Adaptive Phone — Great Smartphone Features, Apps and More')}}{% endblock %}
+{% block page_desc %}{{_('Firefox OS smartphones give you great adaptive features and apps that let you live every moment to its fullest and build a brighter future for the Web.')}}{% endblock %}
 
 {% block body_id %}firefox-os{% endblock %}
 {% block body_class %}firefox-os{% endblock %}
-
-{% block string_data %}
-  {# L10n: This is the label for a button that closes a modal dialog #}
-  data-close="{{ _('Close') }}"
-{% endblock %}
 
 {% block site_css %}
   {{ css('firefox_os') }}
@@ -31,7 +26,7 @@
   <header id="masthead">
     <div class="wrapper stuck">
       <div class="inner">
-        <a href="{{ url('mozorg.home') }}" id="tabzilla">Mozilla</a>
+        <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{{ settings.TABZILLA_INFOBAR_OPTIONS }}">{{ _('Mozilla') }}</a>
 
         {% block site_header_logo %}
         <h2 id="ffos-main-logo"><a href="#masthead" class="nav"><img src="{{ MEDIA_URL }}img/firefox/os/logo/firefox-os.png" alt="Firefox OS"></a></h2>
@@ -408,11 +403,6 @@
 
 <div id="get-phone-wrapper">
   <div id="get-phone" class="modal-content">
-    <header>
-      <img src="{{ MEDIA_URL }}img/firefox/os/logo/firefox-os-white.png" alt="mozilla">
-      <button type="button" class="close"><span class="close-text">{{ _('Close') }}</span></button>
-    </header>
-
     <div class="content">
       <h2>{{_('We work with a number of providers to offer Firefox OS on a variety of devices.')}}</h2>
 
@@ -433,10 +423,6 @@
 {% block email_form %}
   <div id="email-form-wrapper">
     <div id="email-form-content" class="modal-content">
-      <header>
-        <img src="{{ MEDIA_URL }}img/firefox/os/logo/firefox-os-white.png" alt="mozilla">
-        <button type="button" class="close"><span class="close-text">{{ _('Close') }}</span></button>
-      </header>
       <div class="content">
         <div id="footer-email-thanks">
           <h3>{{ _('Thanks! Please check your inbox to confirm your subscription.') }}</h3>

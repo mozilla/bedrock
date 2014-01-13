@@ -1,11 +1,12 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
  # License, v. 2.0. If a copy of the MPL was not distributed with this
- # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% extends "/firefox/base.html" %}
 
 {# L10n: This is the string for the <title> tag on the page. #}
 {% block page_title %}{{_('Download Firefox Aurora or Beta &amp; Help Determine the Next Firefox')}}{% endblock %}
+{% block page_desc %}{{ _('Download and test Firefox future releases. Experience the newest innovations with the Aurora or Beta builds.') }}{% endblock %}
 {% block body_id %}channel{% endblock %}
 
 {% block site_css %}

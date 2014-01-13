@@ -1,0 +1,30 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/contact/contact-base.html" %}
+
+{% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Taipei') }}{% endblock %}
+
+{% block contact_entry %}
+  <div id="entry-container">
+    <section class="entry entry-space" id="taipei" data-tab="spaces">
+      <div itemscope itemtype="http://schema.org/Organization" class="card vcard">
+        {# L10n: This span around the Mozilla name is presentational. It's included in the string in case some locales need to change the order. #}
+        <h2 itemprop="name" class="fn org">{{ _('<span>Mozilla</span> Taipei') }}</h2>
+        <p itemprop="address" itemscope itemtype="http://schema.org/PostalAddress" class="adr">
+        {# L10n: Addresses are marked up with hCard microformat and Schema.org. See http://microformats.org/wiki/h-card and http://schema.org/PostalAddress #}
+        {% trans %}
+          <span itemprop="streetAddress" class="street-address">4F-A1, No. 106, Sec. 5, Xinyi Rd, Xinyi Dist.</span><br>
+          <span itemprop="addressLocality" class="locality">Taipei City</span> <span itemprop="postalCode" class="postal-code">11047</span><br>
+          <span itemprop="addressCountry" class="country-name">Taiwan</span>
+        {% endtrans %}
+        </p>
+
+        <figure class="feature-img">
+          <img src="//api.tiles.mapbox.com/v3/{{ settings.MAPBOX_TOKEN }}/url-{{ 'mozorg.cdn.mozilla.net/media/img/contact/moz-map-pin.png'|urlencode }}(121.56705,25.03265)/121.56705,25.03265,16/460x250.png?2013-12" alt="">
+        </figure>
+      </div>
+    </section>
+  </div>
+{% endblock %}

@@ -4,44 +4,44 @@
 
 $(document).ready(function() {
     var map = null;
-    var overlay = null;
+    var circle = null;
 
     var geodemo = {
         initialize: function() {
-            map = new google.maps.Map(document.getElementById("map_canvas"), {
-                center: new google.maps.LatLng(37.41, -122.08),
-                zoom: 1,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            });
+            if (!map) {
+                var token = $('#main-content').data('mapbox');
+                map = L.mapbox.map('map_canvas', token);
+            }
+            map.setView([37.41, -122.08], 1);
+
+            $('#locateButton').siblings('img').hide();
+            $('#geodemo-error').hide();
         },
 
         handleSuccess: function(position) {
-            var center = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
             $('#locateButton').siblings('img').hide();
+            
+            var center = [position.coords.latitude, position.coords.longitude];
+            var radius = position.coords.accuracy;
             var zoomLevel = 14;
 
-            if (position.coords.accuracy > 500) {
+            if (radius > 500) {
                 zoomLevel = 10;
             }
 
-            map.setCenter(center);
-            map.setZoom(zoomLevel);
+            map.setView(center, zoomLevel);
 
-            if (overlay) {
-                overlay.setMap(null);
-                overlay = null;
+            if (circle) {
+                map.removeLayer(circle);
             }
 
-            overlay = new google.maps.Circle({
-                center: center,
-                radius: position.coords.accuracy,
-                fillColor: '#0000ff',
-                fillOpacity: 0.2,
-                strokeColor: '#0000ff',
-                strokeOpacity: 1,
-                strokeWeight: 1
-            });
-            overlay.setMap(map);
+            circle = L.circle(center, radius, {
+                color: '#00f',
+                weight: 1,
+                opacity: 1,
+                fillColor: '#00f',
+                fillOpacity: 0.2
+            }).addTo(map);
         },
 
         handleError: function(error) {
@@ -57,18 +57,15 @@ $(document).ready(function() {
     };
 
     if (!navigator.geolocation) return true; // Fx 3.5+ only
-    $('#try-geolocation')
-        .nyroModal({
-            minWidth: 510,
-            minHeight: 400,
-            processHandler: function() {
-                $('#geodemo-error, #geo-busy').hide();
-            },
-            endShowContent: function() {
-                geodemo.initialize();
-            }
-        })
-        .show();
+    var that = this;
+
+    $('#try-geolocation').show();
+
+    $('#try-geolocation').click(function (e) {
+        e.preventDefault();
+        Mozilla.Modal.createModal(this, $('#geo-demo'), { onCreate: geodemo.initialize });
+    });
+
     $('#locateButton').click(function() {
         geodemo.locateMeOnMap();
     });

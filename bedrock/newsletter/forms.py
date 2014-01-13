@@ -2,22 +2,44 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
+from operator import itemgetter
 
 from django import forms
 from django.core.exceptions import ValidationError
 from django.forms import widgets
 from django.utils.safestring import mark_safe
 
-from bedrock.mozorg.forms import (
-    FORMATS, EmailInput, PrivacyWidget,
-    SideRadios, get_lang_choices
-)
 from product_details import product_details
-from tower import ugettext as _
 
-# Cannot use short "from . import utils" because we need to mock
-# utils.get_newsletters in our tests
+from bedrock.mozorg.forms import (FORMATS, EmailInput, PrivacyWidget,
+                                  SideRadios, strip_parenthetical)
 from bedrock.newsletter import utils
+from lib.l10n_utils.dotlang import _, _lazy
+
+
+def get_lang_choices(newsletters=None):
+    """
+     Return a localized list of choices for language.
+
+     List looks like: [[lang_code, lang_name], [lang_code, lang_name], ...]
+
+     :param newsletters: Either a comma separated string or a list of newsletter ids.
+    """
+    lang_choices = []
+    languages = utils.get_languages_for_newsletters(newsletters)
+
+    for lang in languages:
+        if lang in product_details.languages:
+            lang_name = product_details.languages[lang]['native']
+        else:
+            try:
+                locale = [loc for loc in product_details.languages.keys()
+                          if loc.startswith(lang)][0]
+            except IndexError:
+                continue
+            lang_name = product_details.languages[locale]['native']
+        lang_choices.append([lang, strip_parenthetical(lang_name)])
+    return sorted(lang_choices, key=itemgetter(1))
 
 
 def newsletter_title(newsletter):
@@ -100,7 +122,7 @@ class ManageSubscriptionsForm(forms.Form):
 
     def __init__(self, locale, *args, **kwargs):
         regions = product_details.get_regions(locale)
-        regions = sorted(regions.iteritems(), key=lambda x: x[1])
+        regions = sorted(regions.iteritems(), key=itemgetter(1))
         lang_choices = get_lang_choices()
         languages = [x[0] for x in lang_choices]
 
@@ -178,7 +200,6 @@ class NewsletterFooterForm(forms.Form):
     footer of a page (see newsletters/middleware.py) but sometimes
     on a dedicated page.
     """
-    newsletter = forms.CharField(widget=forms.HiddenInput)
     email = forms.EmailField(widget=EmailInput(attrs={'required': 'required'}))
     fmt = forms.ChoiceField(widget=forms.RadioSelect(renderer=SideRadios),
                             choices=FORMATS,
@@ -186,14 +207,19 @@ class NewsletterFooterForm(forms.Form):
     privacy = forms.BooleanField(widget=PrivacyWidget)
     source_url = forms.URLField(verify_exists=False, required=False)
 
-    def __init__(self, locale, *args, **kwargs):
+    def __init__(self, newsletters, locale, *args, **kwargs):
         regions = product_details.get_regions(locale)
-        regions = sorted(regions.iteritems(), key=lambda x: x[1])
+        regions = sorted(regions.iteritems(), key=itemgetter(1))
 
-        lang = country = locale.lower()
+        self.newsletters = newsletters.replace(' ', '')
+
+        lang = locale.lower()
         if '-' in lang:
             lang, country = lang.split('-', 1)
-        lang_choices = get_lang_choices()
+        else:
+            country = ''
+            regions.insert(0, ('', _lazy('Select country')))
+        lang_choices = get_lang_choices(self.newsletters)
         languages = [x[0] for x in lang_choices]
         if lang not in languages:
             # The lang from their locale is not one that our newsletters
@@ -201,30 +227,24 @@ class NewsletterFooterForm(forms.Form):
             # choice, to force the user to pick one of the languages that
             # we do support.
             lang = ''
-            lang_choices.insert(0, (lang, lang))
+            lang_choices.insert(0, ('', _lazy('Available Languages')))
 
         super(NewsletterFooterForm, self).__init__(*args, **kwargs)
-        self.fields['country'] = forms.ChoiceField(choices=regions,
+
+        required_args = {
+            'required': 'required',
+            'aria-required': 'true',
+        }
+        country_widget = widgets.Select(attrs=required_args)
+        self.fields['country'] = forms.ChoiceField(widget=country_widget,
+                                                   choices=regions,
                                                    initial=country,
                                                    required=False)
-        select_widget = widgets.Select(attrs={'required': 'required'})
-        self.fields['lang'] = forms.TypedChoiceField(widget=select_widget,
+        lang_widget = widgets.Select(attrs=required_args)
+        self.fields['lang'] = forms.TypedChoiceField(widget=lang_widget,
                                                      choices=lang_choices,
                                                      initial=lang,
-                                                     required=False,
-                                                     empty_value='')
-
-    def clean_newsletter(self):
-        # We didn't want to have to look up the list of valid newsletters
-        # until we actually had a form submitted
-        newsletter = self.cleaned_data.get('newsletter', None)
-        if newsletter:
-            newsletters = newsletter.replace(' ', '').split(',')
-            valid_newsletters = utils.get_newsletters().keys()
-            for nl in newsletters:
-                if nl not in valid_newsletters:
-                    raise ValidationError("%s is not a valid newsletter" % nl)
-            return ','.join(newsletters)
+                                                     required=False)
 
 
 class EmailForm(forms.Form):

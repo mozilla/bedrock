@@ -12,5 +12,6 @@ LANG_FILES = [
     'walter',
 ]
 
+
 def do_translate():
     return _(u"I'm The Dude, so that's what you call me, man.")

@@ -13,14 +13,12 @@ of terms and example values for them:
 * locale: a string in the form of 'en-US'
 """
 
-from distutils.version import StrictVersion
-
 from django.conf import settings
 
 import jingo
 import jinja2
-from product_details import product_details
 
+from bedrock.firefox.firefox_details import firefox_details, mobile_details
 from lib.l10n_utils import get_locale
 
 
@@ -34,53 +32,24 @@ download_urls = {
     'aurora-mobile': 'https://ftp.mozilla.org/pub/mozilla.org/mobile/'
                      'nightly/latest-mozilla-aurora-android/en-US/'
                      'fennec-%s.en-US.android-arm.apk' %
-                     product_details.mobile_details['alpha_version'],
+                     mobile_details.latest_version('aurora'),
 }
 
 
-def _latest_pre_version(locale, version):
-    builds = product_details.firefox_primary_builds
-    vers = product_details.firefox_versions[version]
+def latest_version(locale, channel='release'):
+    """Return build info for a locale and channel.
 
-    if locale in builds and vers in builds[locale]:
-        return vers, builds[locale][vers]
+    :param locale: locale string of the build
+    :param channel: channel of the build: release, beta, or aurora
+    :return: dict or None
+    """
+    all_builds = (firefox_details.firefox_primary_builds,
+                  firefox_details.firefox_beta_builds)
+    version = firefox_details.latest_version(channel)
 
-
-def latest_aurora_version(locale):
-    return _latest_pre_version(locale, 'FIREFOX_AURORA')
-
-
-def latest_beta_version(locale):
-    return _latest_pre_version(locale, 'LATEST_FIREFOX_DEVEL_VERSION')
-
-
-def latest_version(locale):
-    fx_versions = product_details.firefox_versions
-    beta_vers = fx_versions['FIREFOX_AURORA']
-    aurora_vers = fx_versions['LATEST_FIREFOX_DEVEL_VERSION']
-    esr_vers = fx_versions['FIREFOX_ESR']
-
-    def _check_builds(builds):
-        if locale in builds and isinstance(builds[locale], dict):
-            greatest = None
-
-            for version, info in builds[locale].items():
-                match = (version != beta_vers and
-                         version != aurora_vers and
-                         version != esr_vers and
-                         info)
-                if match:
-                    if not greatest:
-                        greatest = version
-                    elif StrictVersion(version) > StrictVersion(greatest):
-                            greatest = version
-
-            if greatest:
-                return greatest, builds[locale][greatest]
-            return None
-
-    return (_check_builds(product_details.firefox_primary_builds) or
-            _check_builds(product_details.firefox_beta_builds))
+    for builds in all_builds:
+        if locale in builds and version in builds[locale]:
+            return version, builds[locale][version]
 
 
 def make_aurora_link(product, version, platform, locale,
@@ -175,15 +144,12 @@ def download_firefox(ctx, build='release', small=False, icon=True,
     funnelcake_id = ctx.get('funnelcake_id', False)
     dom_id = dom_id or 'download-button-%s-%s' % (platform, build)
 
-    def latest(locale):
-        if build == 'aurora':
-            return latest_aurora_version(locale)
-        elif build == 'beta':
-            return latest_beta_version(locale)
-        else:
-            return latest_version(locale)
-
-    version, platforms = latest(locale) or latest('en-US')
+    l_version = latest_version(locale, build)
+    if l_version:
+        version, platforms = l_version
+    else:
+        locale = 'en-US'
+        version, platforms = latest_version('en-US', build)
 
     # Gather data about the build for each platform
     builds = []
@@ -234,21 +200,20 @@ def download_firefox(ctx, build='release', small=False, icon=True,
                            'download_link': download_link,
                            'download_link_direct': download_link_direct})
     if mobile is not False:
+        android_link = settings.GOOGLE_PLAY_FIREFOX_LINK
+
         if build == 'aurora':
             android_link = download_urls['aurora-mobile']
-        elif build == 'beta':
-            android_link = ('https://play.google.com/store/apps/details?'
-                            'id=org.mozilla.firefox_beta')
-        else:
-            android_link = ('https://play.google.com/store/apps/details?'
-                            'id=org.mozilla.firefox')
+        if build == 'beta':
+            android_link = android_link.replace('org.mozilla.firefox',
+                                                'org.mozilla.firefox_beta')
 
         builds.append({'os': 'os_android',
                        'os_pretty': 'Android',
                        'download_link': android_link})
 
     # Get the native name for current locale
-    langs = product_details.languages
+    langs = firefox_details.languages
     locale_name = langs[locale]['native'] if locale in langs else locale
 
     data = {

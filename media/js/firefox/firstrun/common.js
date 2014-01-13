@@ -93,4 +93,5 @@
       video_closing = false;
     }
   });
+
 })(window.jQuery);
