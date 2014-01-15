@@ -2,8 +2,9 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from math import floor
 import time
+from datetime import datetime
+from math import floor
 
 from django.conf import settings
 from django.test import RequestFactory
@@ -16,6 +17,23 @@ from nose.tools import eq_, ok_
 
 from bedrock.mozorg.tests import TestCase
 from bedrock.tabzilla.middleware import TabzillaLocaleURLMiddleware
+from bedrock.tabzilla.views import template_last_modified
+
+
+@patch('bedrock.tabzilla.views.os.path.getmtime')
+@patch('bedrock.tabzilla.views.loader.get_template')
+class LastModifiedTests(TestCase):
+    def test_youngest_file_wins(self, template_mock, mtime_mock):
+        tmpl_name = 'the_dude_is_a_template.html'
+        template_mock.return_value.filename = tmpl_name
+        mtimes = [1378762234.0, 1378762235.0]
+        mtime_mock.side_effect = mtimes
+        func = template_last_modified(tmpl_name)
+        datestamp = func({})
+        self.assertEqual(datestamp, datetime.fromtimestamp(max(mtimes)))
+        mtime_mock.assert_any_call(tmpl_name)
+        langfile = '{0}/locale/en-US/tabzilla/tabzilla.lang'.format(settings.ROOT)
+        mtime_mock.assert_any_call(langfile)
 
 
 class TabzillaViewTests(TestCase):

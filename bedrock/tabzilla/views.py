@@ -2,8 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import os
-
+import os.path
 from datetime import datetime
 
 from django.conf import settings
@@ -21,13 +20,13 @@ def template_last_modified(template):
         locale = l10n_utils.get_locale(request)
 
         tmpl_file = loader.get_template(template).filename
-        template_time = os.stat(tmpl_file).st_mtime
+        template_time = os.path.getmtime(tmpl_file)
 
         try:
             lang_file = 'tabzilla/tabzilla'
             rel_path = os.path.join('locale', locale, '%s.lang' % lang_file)
             abs_path = os.path.join(settings.ROOT, rel_path)
-            lang_time = os.stat(abs_path).st_mtime
+            lang_time = os.path.getmtime(abs_path)
         except OSError:
             lang_time = 0
 
