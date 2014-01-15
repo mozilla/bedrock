@@ -24,6 +24,6 @@ Babel>=0.9.4
 -e git://github.com/clouserw/tower.git#egg=tower
 -e git://github.com/fwenzel/django-mozilla-product-details#egg=django-mozilla-product-details
 
-python-memcached==1.45
+python-memcached==1.53
 
 django-statsd-mozilla==0.3.5
