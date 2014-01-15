@@ -137,7 +137,8 @@ def handle_form(request, form):
                     pass
             else:
                 try:
-                    basket.subscribe(data['email'], 'about-mozilla')
+                    basket.subscribe(data['email'], 'about-mozilla',
+                                     source_url=request.build_absolute_uri())
                 except basket.BasketException:
                     pass
 

@@ -5,12 +5,13 @@
 import logging
 
 import basket
+import basket.errors
 import jingo
 import jinja2
 
 from lib.l10n_utils import get_locale
-from lib.l10n_utils.dotlang import _lazy
 from bedrock.newsletter.forms import NewsletterFooterForm
+from bedrock.newsletter.views import invalid_email_address, general_error
 
 
 log = logging.getLogger(__name__)
@@ -52,12 +53,13 @@ def email_newsletter_form(ctx, newsletters='mozilla-and-you', title=None,
             try:
                 basket.subscribe(data['email'], form.newsletters,
                                  **kwargs)
-            except basket.BasketException:
-                log.exception("Error subscribing %s to newsletter %s" %
-                              (data['email'], newsletters))
-                msg = _lazy("We are sorry, but there was a problem "
-                            "with our system. Please try again later!")
-                form.errors['__all__'] = form.error_class([msg])
+            except basket.BasketException as e:
+                if e.code == basket.errors.BASKET_INVALID_EMAIL:
+                    form.errors['email'] = form.error_class([invalid_email_address])
+                else:
+                    log.exception("Error subscribing %s to newsletter %s" %
+                                  (data['email'], form.newsletters))
+                    form.errors['__all__'] = form.error_class([general_error])
             else:
                 success = True
 
