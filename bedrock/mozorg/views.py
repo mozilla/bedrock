@@ -244,8 +244,6 @@ class HomeTestView(TemplateView):
         locale = locale if locale in settings.MOBILIZER_LOCALE_LINK else 'en-US'
         ctx['mobilizer_link'] = settings.MOBILIZER_LOCALE_LINK[locale]
 
-        ctx['show_search'] = self.request.GET.get('s', 0)
-
         return ctx
 
     def render_to_response(self, context, **response_kwargs):

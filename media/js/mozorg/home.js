@@ -10,21 +10,6 @@
     var wideMode = false;
     var hasMediaQueries = (typeof matchMedia !== 'undefined');
 
-    // Track home page search
-    $('#nav-search-form').on('submit', function(e) {
-        e.preventDefault();
-
-        var $form = $(this);
-        var keyword = $form.find('#q-homenav').val();
-
-        $form.unbind('submit');
-
-        gaTrack(
-            ['_trackEvent', 'Homepage Interactions', 'outside tabz search', keyword],
-            function (){ $form.submit(); }
-        );
-    });
-
     // If the browser supports media queries, check the width onload and onresize.
     // If not, just lock it in permanent wideMode.
     if (hasMediaQueries) {
