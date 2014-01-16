@@ -17,7 +17,8 @@ whatsnew_re = latest_re % (version_re, 'whatsnew')
 
 urlpatterns = patterns('',
     redirect(r'^firefox/$', 'firefox.new', name='firefox'),
-    url(r'^firefox/all/$', views.all_downloads, name='firefox.all'),
+    url(r'^firefox/(?:(?P<channel>beta|aurora|organizations)/)?all/$',
+        views.all_downloads, name='firefox.all'),
     page('firefox/central', 'firefox/central.html'),
     page('firefox/channel', 'firefox/channel.html'),
     redirect('^firefox/channel/android/$', 'firefox.channel'),

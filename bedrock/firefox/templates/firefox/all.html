@@ -2,25 +2,40 @@
 
 {% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
 
-{% block page_title %}{{ _('Download Firefox in your language') }}{% endblock %}
-{% block page_desc %}{{ _('Firefox is available in more than %s languages thanks to the contributions of Mozilla community members from around the world.')|format('80') }}{% endblock %}
+{% block page_title %}{{ _('Download %s in your language')|format(channel_name) }}{% endblock %}
 {% block body_id %}firefox-all{% endblock %}
+
+{% block page_desc %}
+  {% if channel == 'beta' %}
+    {{ _('Download Firefox Beta in your language and experience cutting edge features before they make it to final release. Provide feedback to help us refine and polish the next version of Firefox.') }}
+  {% elif channel == 'aurora' %}
+    {{ _('Download Firefox Aurora in your language to experience the newest features and innovations in an unstable environment even before they go to Beta. Give us feedback that will determine what makes it to Final Release and help shape the future of Firefox.') }}
+  {% elif channel == 'esr' %}
+    {{ _('Firefox ESR is intended for groups who deploy and maintain the desktop environment in large organizations. <a href="%s">Learn more.</a>')|format(url('firefox.organizations.organizations')) }}
+  {% else %}
+    {{ _('Firefox is available in more than %s languages thanks to the contributions of Mozilla community members from around the world.')|format('80') }}
+  {% endif %}
+{% endblock %}
+
+{% block body_class -%}
+  sky firefox-all-{{ channel }} {% if channel == 'aurora' %}space{% endif %}
+{% endblock %}
 
 {% block site_css %}
   {{ css('firefox_all') }}
 {% endblock %}
 
-{% block breadcrumbs %}
-  <nav class="breadcrumbs">
-    <a href="{{ url('mozorg.home') }}">{{_('Home')}}</a> >
-    <a href="/firefox/">{{_('Firefox')}}</a> >
-    <span>{{_('Languages')}}</span>
-  </nav>
+{% block site_header_logo %}
+  {% if channel == 'aurora' %}
+    <h2><a href="{{ url('firefox') }}"><img alt="Mozilla Firefox" height="70" width="185" src="{{media('img/firefox/template/header-logo-inverse.png?2013-06') }}"></a></h2>
+  {% else %}
+    {{ super() }}
+  {% endif %}
 {% endblock %}
 
 {% block content %}
   <hgroup id="main-feature">
-    <h1>{{_('Download Firefox in your language')}}</h1>
+    <h1>{{ self.page_title()  }}</h1>
     <h2>{{ self.page_desc() }}</h2>
     <p><a class="sysreq" href="{{ url('firefox.latest.sysreq') }}">{{ _('Check the system requirements') }}</a></p>
   </hgroup>

@@ -151,13 +151,29 @@ def dnt(request):
     return response
 
 
-def all_downloads(request):
-    version = get_latest_version()
+def all_downloads(request, channel):
+    if channel is None:
+        channel = 'release'
+
+    if channel == 'organizations':
+        channel = 'esr'
+
+    version = get_latest_version('firefox', channel)
     query = request.GET.get('q')
+
+    channel_names = {
+        'release': _('Firefox'),
+        'beta': _('Firefox Beta'),
+        'aurora': _('Firefox Aurora'),
+        'esr': _('Firefox Extended Support Release'),
+    }
+
     return l10n_utils.render(request, 'firefox/all.html', {
         'full_builds': firefox_details.get_filtered_full_builds(version, query),
         'test_builds': firefox_details.get_filtered_test_builds(version, query),
         'query': query,
+        'channel': channel,
+        'channel_name': channel_names[channel],
     })
 
 

@@ -8,16 +8,14 @@
 
 #main-feature {
     h1 {
-        font-size: 64px;
         .span-all;
         margin-bottom: @baseLine;
     }
     h2 {
         font-size: 24px;
         letter-spacing: -0.25px;
-        .span(10);
         line-height: 1.1;
-        float: none;
+        .span-all();
     }
     p {
         .span-all();
@@ -26,6 +24,16 @@
         a.sysreq:after {
             content: "\00A0\00BB";
         }
+    }
+}
+
+.firefox-all-release #main-feature {
+    h1 {
+        font-size: 64px;
+    }
+    h2 {
+        .span(10);
+        float: none;
     }
 }
 
