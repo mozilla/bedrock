@@ -911,3 +911,6 @@ OPTIMIZELY_PROJECT_ID = None
 GOOGLE_PLAY_FIREFOX_LINK = ('https://play.google.com/store/apps/details?'
                             'id=org.mozilla.firefox&utm_source=mozilla&'
                             'utm_medium=Referral&utm_campaign=mozilla-org')
+
+# Use bedrock Gruntfile.js for live reload
+USE_GRUNT_LIVERELOAD = False

@@ -27,3 +27,4 @@ venv
 .vagrant
 *.db
 james.ini
+node_modules

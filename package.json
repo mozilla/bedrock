@@ -1,0 +1,26 @@
+{
+  "name": "bedrock",
+  "version": "0.1.0",
+  "description": "Making mozilla.org awesome, one pebble at a time",
+  "private": true,
+  "scripts": {},
+  "dependencies": {
+    "less": "~1.4.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mozilla/bedrock.git"
+  },
+  "author": "Mozilla",
+  "license": "MPL",
+  "bugs": {
+    "url": "https://bugzilla.mozilla.org/"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-cli": "~0.1.11",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-jshint": "~0.8.0",
+    "grunt-contrib-less": "~0.9.0"
+  }
+}

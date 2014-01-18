@@ -29,5 +29,6 @@ Contents
    l10n
    coding
    contribute
+   grunt
    newsletters
    tabzilla
