@@ -17,6 +17,15 @@
         letter-spacing: -0.25px;
         .span(10);
         line-height: 1.1;
+        float: none;
+    }
+    p {
+        .span-all();
+        margin-top: @baseLine;
+
+        a.sysreq:after {
+            content: "\00A0\00BB";
+        }
     }
 }
 
@@ -144,6 +153,9 @@
             font-size: 18px;
             letter-spacing: normal;
             .span-all();
+        }
+        p {
+            margin-top: @baseLine / 2;
         }
     }
 
