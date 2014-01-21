@@ -75,8 +75,8 @@ class ReleaseTest(TestCase):
         """
         Should equal name
         """
-        release = models.Release(product=models.Release.FIREFOX,
-                                 channel=models.Release.RELEASE,
+        release = models.Release(product='Firefox',
+                                 channel='Release',
                                  version='12.0.1')
         eq_(unicode(release), 'Firefox v12.0.1 Release')
 

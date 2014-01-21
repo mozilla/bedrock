@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% extends "firefox/fxos-base.html" %}
+{% extends "firefox/base-resp.html" %}
 
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}{{ _('Firefox — {version} Notes')|f(version=version) }}{% endblock %}
@@ -42,10 +42,10 @@
         <h3>{{ _('New Features') }}</h3>
         <ul class="section-items tagged">
           {% for note in new_features %}
-          <li {% if not note.tag.text %}class="untagged"{% endif %}>
+          <li {% if not note.tag %}class="untagged"{% endif %}>
             <p>
-            {% if note.tag.text %}
-              <b class="tag tag-{{ note.tag.text.lower() }}">{{ note.tag.text }}</b>
+            {% if note.tag %}
+              <b class="tag tag-{{ note.tag.lower() }}">{{ note.tag }}</b>
             {% endif %}
               {{ note.html|safe }}
             </p>
@@ -63,10 +63,10 @@
                 <b class="tag tag-unresolved">{{ _('unresolved') }}</b>
                 {{ note.html|safe }}
               </p>
-            {% if not note.fixed_in_version is none %}
+            {% if note.fixed_in_release %}
               <p class="note">
-                <a href="{{ url('firefox.releasenotes', '{major_version}.0'|f(major_version=note.fixed_in_version)) }}">
-                  {{ _('Resolved in v{version_number}')|f(version_number=note.fixed_in_version) }}
+                <a href="{{ url('firefox.releasenotes', note.fixed_in_release.version) }}">
+                  {{ _('Resolved in') + ' ' + note.fixed_in_release.version }}
                 </a>
               </p>
             {% endif %}

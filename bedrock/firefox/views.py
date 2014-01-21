@@ -335,43 +335,19 @@ class WhatsnewView(LatestFxView):
         return template
 
 
-def release_notes(request, version):
+def release_notes(request, version, channel='Release', product='Firefox'):
     """Release Notes for desktop Firefox."""
-    # Major version is the 18 in 18.0.5.
-    major_version = int(version.split('.', 1)[0])
 
-    # Minor version is the 5 in 18.0.5.
-    try:
-        minor_version = int(version.split('.', 2)[3])
-    except IndexError:
-        minor_version = 0
+    if len(version.split('.')) == 2:
+        version += '.0'
+    release = get_object_or_404(Release, version=version,
+                                channel=channel, product=product)
 
-    release = get_object_or_404(Release, version=major_version, sub_version=minor_version,
-                                channel__name='Release', product__name='Firefox')
-
-    # Valid notes must have started on or before this version, and must
-    # have been fixed on or after this version, or be unresolved.
-    fixed_by_this_version = (
-        Q(first_version__lte=major_version) &
-        (Q(fixed_in_version__isnull=True) | Q(fixed_in_version__gte=major_version))
-    )
-
-    notes = (Note.objects
-             .filter(fixed_by_this_version | Q(fixed_in_version=major_version),
-                     Q(product__name='Firefox') | Q(product__name__isnull=True))
-             .order_by('tag__sort_num', '-sort_num'))
-
-    # Split notes into New Features (Fixed in this version) and Known
-    # Issues.
-    new_features = [note for note in notes if note.fixed_in_version == major_version]
-    known_issues = [note for note in notes if
-                    note.fixed_in_version is None or note.fixed_in_version > major_version]
-
-    return l10n_utils.render(request, 'firefox/releases/notes.html', {
-        'major_version': major_version,
-        'minor_version': minor_version,
-        'version': version,
-        'release': release,
-        'new_features': new_features,
-        'known_issues': known_issues,
-    })
+    new_features, known_issues = release.notes()
+    return l10n_utils.render(
+        request, 'firefox/releases/notes.html', {
+            'version': version,
+            'major_version': version.split('.', 1)[0],
+            'release': release,
+            'new_features': new_features,
+            'known_issues': known_issues})

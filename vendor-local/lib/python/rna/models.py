@@ -28,28 +28,13 @@ class TimeStampedModel(models.Model):
 
 
 class Release(TimeStampedModel):
-    NIGHTLY = 0
-    AURORA = 1
-    BETA = 2
-    RELEASE = 3
-    CHANNELS = (
-        (NIGHTLY, 'Nightly'),
-        (AURORA, 'Aurora'),
-        (BETA, 'Beta'),
-        (RELEASE, 'Release'),
-    )
+    CHANNELS = [(x, x) for x in ('Nightly', 'Aurora', 'Beta', 'Release')]
+    PRODUCTS = [(x, x) for x in
+                ('Firefox', 'Firefox for Android',
+                 'Firefox Extended Support Release', 'Firefox OS')]
 
-    FIREFOX = 0
-    FENNEC = 1
-    ESR = 2
-    PRODUCTS = (
-        (FIREFOX, 'Firefox'),
-        (FENNEC, 'Firefox for Android'),
-        (ESR, 'Firefox Extended Support Release'),
-    )
-
-    product = models.IntegerField(choices=PRODUCTS)
-    channel = models.IntegerField(choices=CHANNELS)
+    product = models.CharField(max_length=255, choices=PRODUCTS)
+    channel = models.CharField(max_length=255, choices=CHANNELS)
     version = models.CharField(max_length=255)
     release_date = models.DateTimeField()
     text = models.TextField(blank=True)
@@ -71,28 +56,15 @@ class Release(TimeStampedModel):
 
     def __unicode__(self):
         return '{product} v{version} {channel}'.format(
-            product=self.get_product_display(),
-            version=self.version,
-            channel=self.get_channel_display()
-        )
+            product=self.product, version=self.version, channel=self.channel)
 
     class Meta:
+        #TODO: see if this has a significant performance impact
         ordering = ('product', '-version', 'channel')
 
 
 class Note(TimeStampedModel):
-    NEW = 0
-    CHANGED = 1
-    HTML5 = 2
-    FIXED = 3
-    DEVELOPER = 4
-    TAGS = (
-        (NEW, 'New'),
-        (CHANGED, 'Changed'),
-        (HTML5, 'HTML5'),
-        (FIXED, 'Fixed'),
-        (DEVELOPER, 'Developer'),
-    )
+    TAGS = [(x, x) for x in ('New', 'Changed', 'HTML5', 'Fixed', 'Developer')]
 
     bug = models.IntegerField(null=True, blank=True)
     html = models.TextField(blank=True)
@@ -100,7 +72,7 @@ class Note(TimeStampedModel):
     is_known_issue = models.BooleanField(default=False)
     fixed_in_release = models.ForeignKey(Release, null=True, blank=True,
                                          related_name='fixed_note_set')
-    tag = models.IntegerField(null=True, choices=TAGS)
+    tag = models.CharField(max_length=255, blank=True, choices=TAGS)
     sort_num = models.IntegerField(null=True, blank=True)
 
     def is_known_issue_for(self, release):
