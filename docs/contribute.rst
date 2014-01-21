@@ -8,6 +8,11 @@
 How to contribute
 =================
 
+Before diving into code it might be worth reading through the
+:ref:`Developing on Bedrock<coding>` documentation, which contains
+useful information and links to our coding guidelines for Python, Django,
+JavaScript and CSS.
+
 Git workflow
 ------------
 When you want to start contributing, you should create a branch from master.
@@ -59,6 +64,25 @@ then you should be working on a common topic branch.
 Once your code has been positively reviewed, it will be deployed shortly after.
 So if you want feedback on your code but it's not ready to be deployed, you
 should note it in the pull request.
+
+Squashing your commits
+----------------------
+
+Should your pull request contain more than one commit, sometimes we may ask you
+to squash them into a single commit before merging. You can do this with `git
+rebase`.
+
+As an example, let's say your pull request contains two commits. To squash them
+into a single commit, you can follow these instructions:
+
+    git rebase -i HEAD~2
+
+You will then get an editor with your two commits listed. Change the second
+commit from `pick` to `fixup`, then save and close. You should then be able to
+verify that you only have one commit now with `git log`.
+
+To push to GitHub again, because you "altered the history" of the repo by merging
+the two commits into one, you'll have to `git push -f` instead of just `git push`.
 
 Getting a new Bedrock page online
 ---------------------------------

@@ -96,7 +96,7 @@ Bedrock comes with a function for doing this automatically::
 
     from bedrock.mozorg.util import handle_newsletter
     from django.views.decorators.csrf import csrf_exempt
-    
+
     @csrf_exempt
     def view(request):
         ctx = handle_newsletter(request)
@@ -116,3 +116,15 @@ Python and Django Style
 
 See the `Mozilla Coding Standards
 <http://mozweb.readthedocs.org/en/latest/coding.html>`_.
+
+JavaScript Style
+----------------
+
+See the `Mozilla JS Style Guide
+<http://mozweb.readthedocs.org/en/latest/js-style.html>`_.
+
+CSS Style
+---------
+
+See the `Mozilla CSS Style Guide
+<http://mozweb.readthedocs.org/en/latest/css-style.html>`_.
