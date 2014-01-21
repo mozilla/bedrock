@@ -86,9 +86,11 @@ DOWNLOADTAB.classes.App = (function (singleton) {
         // Pull Firefox download link from the download button and add to
         // the 'click here' link.
         // TODO: Remove and generate link in bedrock.
-        $('#direct-download-link').attr(
-            'href', $('.download-list .os_' + site.platform + ' .download-link').attr('href')
-        );
+        var active_download_link = $('.download-list li:visible .download-link');
+        $('#direct-download-link').attr({
+            'href': active_download_link.attr('href'),
+            'data-channel': active_download_link.data('channel')
+        });
 
         $('#direct-download-link, .download-link').on('click', function(event) {
             var $activeScene;

@@ -5,7 +5,6 @@
 ;(function($, Modernizr, _gaq, site) {
     'use strict';
 
-    var isIELT9 = (site.platform === 'windows' && $.browser.msie && $.browser.version < 9);
     var path_parts = window.location.pathname.split('/');
     var query_str = window.location.search ? window.location.search + '&' : '?';
     var referrer = path_parts[path_parts.length - 2];
@@ -27,7 +26,7 @@
     }
 
     // scene2 install images are unique for IE < 9
-    if (isIELT9) {
+    if (window.site.isIELT9) {
         $html.addClass('winIE8');
     }
 
@@ -74,8 +73,10 @@
         // Add external link tracking, excluding links in Tabzilla that will be
         // logged in tabzilla.js
         $('#outer-wrapper').on('click', 'a', function(e) {
-            // only track off-site links and don't track download.mozilla.org links
-            if (this.hostname && this.hostname !== location.hostname && this.hostname !== 'download.mozilla.org') {
+            // only track off-site links and don't track download links which are
+            // tracked by global.js
+            if (this.hostname && this.hostname !== location.hostname &&
+                    !$(this).data('channel') && !$(this).data('type')) {
                 var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
                 var href = this.href;
                 var callback = function() {
@@ -134,58 +135,13 @@
         // Pull download link from the download button and add to the
         // 'click here' link.
         // TODO: Remove and generate link in bedrock.
-        $('#direct-download-link').attr(
-            'href', $('.download-list li:visible .download-link').attr('href')
-        );
+        var active_download_link = $('.download-list li:visible .download-link');
+        $('#direct-download-link').attr({
+            'href': active_download_link.attr('href'),
+            'data-channel': active_download_link.data('channel')
+        });
 
-        $stage.on('click', '#direct-download-link, .download-link', function(e) {
-            e.preventDefault();
-            var url = $(e.currentTarget).attr('href');
-
-            // An iframe can not be used here to trigger the download because
-            // it will be blocked by Chrome if the download link redirects
-            // to a HTTP URI and we are on HTTPS.
-            function track_and_redirect(url, virtual_url) {
-                // Delay to initiate download is required to allow animation
-                // to finish loading in IE. If delay is removed, the DOM will
-                // unload before the animation completes and the page will
-                // stop in a half-animated state.
-                window.setTimeout(
-                    function() {
-                        gaTrack(
-                            ['_trackPageview', virtual_url],
-                            function() { window.location.href = url; }
-                        );
-                    },
-                    500
-                );
-            }
-
-            // we must use a popup to trigger download for IE6/7/8 as the
-            // delay sending the page view tracking in track_and_redirect()
-            // triggers the IE security blocker. Sigh.
-            function track_and_popup(url, virtual_url) {
-                // popup must go before tracking to prevent timeouts that
-                // cause the security blocker.
-                window.open(url, 'download_window', 'toolbar=0,location=no,directories=0,status=0,scrollbars=0,resizeable=0,width=1,height=1,top=0,left=0');
-                gaTrack(['_trackPageview', virtual_url]);
-            }
-
-            if (isIELT9) {
-                // We do a popup for IE < 9 users when they click the download button
-                // on scene1. If they are going straight to scene2 on page load, we
-                // still need to use the regular track_and_redirect() function because
-                // the popup will be blocked and then the download will also be blocked
-                // in the popup.
-                if (window.location.hash === '#download-fx') {
-                    track_and_redirect(url, virtual_url);
-                } else {
-                    track_and_popup(url, virtual_url);
-                }
-            } else {
-                track_and_redirect(url, virtual_url);
-            }
-
+        $stage.on('click', '.download-link', function(e) {
             if ($stage.data('scene') !== 2) {
                 if (hash_change) {
                     window.location.hash = '#download-fx';
@@ -235,5 +191,32 @@
             }
         });
     });
+
+    // Override the standard tracking function in global.js
+    window.track_download_link = function (event, cmd, url) {
+        event.preventDefault();
+
+        // We do a popup for IE < 9 users when they click the download button
+        // on scene1. If they are going straight to scene2 on page load, we
+        // still need to use the regular track_and_redirect() function because
+        // the popup will be blocked and then the download will also be blocked
+        // in the popup.
+        if (window.site.isIELT9 && window.location.hash !== '#download-fx') {
+            track_and_popup(event, cmd, url);
+        } else {
+            // Delay to initiate download is required to allow animation
+            // to finish loading in IE. If delay is removed, the DOM will
+            // unload before the animation completes and the page will
+            // stop in a half-animated state.
+            window.setTimeout(function() {
+                track_and_redirect(event, cmd, url);
+            }, 500);
+        }
+
+        // Log a virtual PV on /firefox/new/ for backward compatibility.
+        // Once we confirm the event tracking works well, we can remove
+        // the following code.
+        gaTrack(['_trackPageview', virtual_url]);
+    };
 
 })(window.jQuery, window.Modernizr, window._gaq, window.site);

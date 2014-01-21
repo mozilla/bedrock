@@ -212,20 +212,4 @@
         gaTrack(['_trackEvent', 'Get Involved Interactions','clicks', 'Get Involved Button'], callback);
     });
 
-    // Track Firefox downloads
-    $('.download-link').on('click', function(e) {
-        e.preventDefault();
-        var href = this.href;
-        var callback = function() {
-            window.location = href;
-        };
-        var platform;
-        if ($(this).parents('li').hasClass('os_android')) {
-            platform = 'Firefox for Android';
-        } else {
-            platform = 'Firefox Desktop';
-        }
-        gaTrack(['_trackEvent', 'Firefox Downloads', 'download click', platform], callback);
-    });
-
 })(window.jQuery);

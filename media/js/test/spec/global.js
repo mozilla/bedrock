@@ -6,52 +6,57 @@
 
 describe("global.js", function() {
 
-  describe("trigger_ie_download", function () {
-
-    it("should call window.open for internet explorer", function () {
-
-      // Let's pretend to be IE just for this individual test
-      var appVersion = '5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0)';
-
-      /* Wrap window.open with a stub function, since all we need 
-       * to know is that window.open gets called. We do not need 
-       * window.open to execute to satisfy the test. We can also
-       * spy on this stub to see if it gets called successfully. */
-      window.open = sinon.stub();
-      trigger_ie_download('foo', appVersion);
-      expect(window.open.called).toBeTruthy();
-    });
-
-    it("should not window.open for other browsers", function () {
-
-      // Let's pretend to be a non IE browser
-      var appVersion = '5.0 (Macintosh)';
-
-      window.open = sinon.stub();
-      trigger_ie_download('foo', appVersion);
-      expect(window.open.called).not.toBeTruthy();
-    });
-
-  });
-
   describe("init_download_links", function () {
 
     /* Append an HTML fixture to the document body 
      * for each test in the scope of this suite */
     beforeEach(function () {
-      $('<a class="download-link" data-direct-link="bar">foo</a>').appendTo('body');
+      $('<div class="download-button"><ul class="download-list">'
+        + '<li><a class="download-link" data-channel="release" data-direct-link="bar">foo</a></li></ul>'
+        + '<small class="download-other"><a href="/en-US/firefox/all" data-type="all">Systems &amp; Languages</a></small>'
+        + '</div>').appendTo('body');
+
+      window.site = {};
+      track_and_popup = sinon.stub();
+      track_and_redirect = sinon.stub();
+      init_download_links();
     });
 
     /* Then after each test remove the fixture */
     afterEach(function() {
-      $('.download-link').remove();
+      $('.download-button').remove();
+
+      delete window.site;
     });
 
-    it("should call trigger_ie_download when clicked", function () {
-      trigger_ie_download = sinon.stub();
-      init_download_links();
+    it("should call track_and_popup when a download button is clicked on IE", function () {
+      // Pretend we're on IE
+      window.site.isIE = true;
       $('.download-link').trigger('click');
-      expect(trigger_ie_download.called).toBeTruthy();
+      expect(track_and_popup.called).toBeTruthy();
+      expect(track_and_redirect.called).toBeFalsy();
+    });
+
+    it("should call track_and_redirect when a download button is clicked on non-IE browsers", function () {
+      // Pretend we're on a non-IE browser
+      window.site.isIE = false;
+      $('.download-link').trigger('click');
+      expect(track_and_popup.called).toBeFalsy();
+      expect(track_and_redirect.called).toBeTruthy();
+    });
+
+    it("should call track_and_redirect when an ancillary link is clicked", function () {
+      // Pretend we're on IE
+      window.site.isIE = true;
+      $('.download-other a').trigger('click');
+      expect(track_and_popup.called).toBeFalsy();
+      expect(track_and_redirect.callCount).toEqual(1);
+
+      // Pretend we're on a non-IE browser
+      window.site.isIE = false;
+      $('.download-other a').trigger('click');
+      expect(track_and_popup.called).toBeFalsy();
+      expect(track_and_redirect.callCount).toEqual(2);
     });
 
   });

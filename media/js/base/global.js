@@ -5,30 +5,65 @@
 
 // download buttons
 
-/**
- * A special function for IE.  Without this hack there is no prompt to download after they click.  sigh.
- * bug 393263
- *
- * @param string direct link to download URL
- */
-function trigger_ie_download(link, appVersion) {
-    var version = appVersion || navigator.appVersion;
-    // Only open if we got a link and this is IE.
-    if (link && version.indexOf('MSIE') !== -1) {
-        window.open(link, 'download_window', 'toolbar=0,location=no,directories=0,status=0,scrollbars=0,resizeable=0,width=1,height=1,top=0,left=0');
-        window.focus();
-    }
-}
-
-// attach an event to all the download buttons to trigger the special
-// ie functionality if on ie
+// Activate GA event tracking on download buttons
 function init_download_links() {
-    $('.download-link').each(function() {
-        var $el = $(this);
-        $el.click(function() {
-            trigger_ie_download($el.data('direct-link'));
-        });
+    'use strict';
+
+    var channels = {
+        'release': 'Firefox',
+        'beta': 'Firefox Beta',
+        'aurora': 'Firefox Aurora',
+        'nightly': 'Firefox Nightly',
+        'esr': 'Firefox ESR'
+    };
+    var ancillaryLinks = {
+        'all': 'Systems & Languages',
+        'devices': 'Supported Devices',
+        'notes': 'What’s New',
+        'privacy': 'Privacy Policy'
+    };
+
+    $('.download-button').on('click', 'a', function(event) {
+        var isDownloadLink = $(this).hasClass('download-link') ||
+                             $(this).hasClass('button-green');
+        var cmd = ['_trackEvent'];
+        var newTab = (this.target === '_blank' || event.metaKey || event.ctrlKey);
+
+        if (isDownloadLink) {
+            var direct_link = $(this).data('direct-link');
+            var url = (window.site.isIE && direct_link) ? direct_link : this.href;
+            var product_name = channels[$(this).data('channel')];
+
+            if ($(this).parent().hasClass('os_android')) {
+                product_name += ' for Android';
+            }
+
+            cmd.push('Firefox Downloads', 'click', product_name);
+            track_download_link(event, cmd, url);
+        } else {
+            cmd.push('Firefox Links Under DL Button', 'click',
+                     ancillaryLinks[$(this).data('type')]);
+
+            if (newTab) {
+                gaTrack(cmd);
+            } else {
+                track_and_redirect(event, cmd, this.href);
+            }
+        }
     });
+
+    $('#direct-download-link').on('click', function(event) {
+        var cmd = [
+            '_trackEvent',
+            'Firefox Downloads',
+            // Detect if the download is triggered manually or automatically
+            (event.originalEvent) ? 'click' : 'auto',
+            channels[$(this).data('channel')]
+        ];
+
+        track_and_redirect(event, cmd, this.href);
+    });
+
     $('.download-list').attr('role', 'presentation');
 }
 
@@ -223,4 +258,32 @@ function gaTrack(eventArray, callback) {
             callback();
         }
     }
+}
+
+// Track a download link. IEs need a popup as explained below. This function may
+// be overridden in some cases, e.g. /firefox/new/
+function track_download_link(event, cmd, url) {
+    if (window.site.isIE) {
+        track_and_popup(event, cmd, url);
+        window.focus();
+    } else {
+        track_and_redirect(event, cmd, url);
+    }
+}
+
+// We must use a popup to trigger download for IE as the delay sending the page
+// view tracking in track_and_redirect() triggers the IE security blocker. Sigh.
+function track_and_popup(event, cmd, url) {
+    // Popup must go before tracking to prevent timeouts that
+    // cause the security blocker.
+    window.open(url, 'download_window', 'toolbar=0,location=no,directories=0,status=0,scrollbars=0,resizeable=0,width=1,height=1,top=0,left=0');
+    gaTrack(cmd);
+}
+
+// An iframe can not be used here to trigger the download because it will be
+// blocked by Chrome if the download link redirects to a HTTP URI and we are on
+// HTTPS.
+function track_and_redirect(event, cmd, url) {
+    event.preventDefault();
+    gaTrack(cmd, function() { window.location = url; });
 }

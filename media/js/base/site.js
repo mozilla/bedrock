@@ -3,9 +3,9 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 (function () {
     'use strict';
+    var ua = navigator.userAgent;
+    var pf = navigator.platform;
     function getPlatform() {
-        var ua = navigator.userAgent,
-            pf = navigator.platform;
         if (/Win(16|9[x58]|NT( [1234]| 5\.0| [^0-9]|[^ -]|$))/.test(ua) ||
                 /Windows ([MC]E|9[x58]|3\.1|4\.10|NT( [1234]| 5\.0| [^0-9]|[^ ]|$))/.test(ua) ||
                 /Windows_95/.test(ua)) {
@@ -81,7 +81,11 @@
         // to avoid lots of flickering
         var h = document.documentElement;
         window.site = {
-            platform : getPlatform()
+            platform : getPlatform(),
+            // Detect IEs. Note that `MSIE` is not included in IE11+ UA strings.
+            // We treat IE11+ as regular browsers (for now)
+            isIE: /MSIE/.test(ua),
+            isIELT9: /MSIE\s[0-8]\.\d+/.test(ua)
         };
         if (window.site.platform !== 'windows') {
             h.className = h.className.replace("windows", window.site.platform);
