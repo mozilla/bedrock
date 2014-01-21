@@ -302,24 +302,24 @@ class WebToLeadForm(forms.Form):
         )
 
 
-class ContributeUniversityAmbassadorForm(forms.Form):
+class ContributeStudentAmbassadorForm(forms.Form):
     first_name = forms.CharField(max_length=50)
     last_name = forms.CharField(max_length=50)
     email = forms.EmailField(max_length=100)
-    current_status = forms.ChoiceField(
-        choices=(('', _lazy('Current Status')),
+    status = forms.ChoiceField(
+        choices=(('', ''),
                  ('student', _lazy('Student')), ('teacher', _lazy('Teacher')),
                  ('administrator', _lazy('Administrator')),
                  ('other', _lazy('Other'))))
     school = forms.CharField(max_length=100)
-    expected_graduation_year = forms.ChoiceField(
+    grad_year = forms.ChoiceField(
         required=False,
         choices=([('', _lazy('Expected Graduation Year'))] +
                  [(i, str(i)) for i in range(datetime.now().year,
                                              datetime.now().year + 8)]))
-    area = forms.ChoiceField(
+    major = forms.ChoiceField(
         required=False,
-        choices=[('', _lazy('Area of Study')),
+        choices=[('', ''),
                  ('computer science', _lazy('Computer Science')),
                  ('computer engineering', _lazy('Computer Engineering')),
                  ('engineering', _lazy('Engineering (other)')),
@@ -329,7 +329,7 @@ class ContributeUniversityAmbassadorForm(forms.Form):
                  ('education', _lazy('Education')),
                  ('mathematics', _lazy('Mathematics')),
                  ('other', _lazy('Other'))])
-    area_free_text = forms.CharField(max_length=100, required=False)
+    major_free_text = forms.CharField(max_length=100, required=False)
     city = forms.CharField(max_length=100)
     country = forms.ChoiceField()
     fmt = forms.ChoiceField(widget=forms.RadioSelect(renderer=SideRadios),
@@ -364,31 +364,31 @@ class ContributeUniversityAmbassadorForm(forms.Form):
         required=False,
         widget=widgets.CheckboxInput(),
         label=_lazy(u'About Mozilla: News from the Mozilla Project'))
-    captcha = ReCaptchaField(attrs={'theme': 'clean'})
+    superpriority = forms.BooleanField(widget=HoneyPotWidget, required=False)
     source_url = forms.URLField(verify_exists=False, required=False)
 
     def __init__(self, *args, **kwargs):
         locale = kwargs.get('locale', 'en-US')
-        super(ContributeUniversityAmbassadorForm, self).__init__(*args, **kwargs)
+        super(ContributeStudentAmbassadorForm, self).__init__(*args, **kwargs)
         country_list = product_details.get_regions(locale).items()
         country_list = sorted(country_list, key=lambda country: country[1])
-        country_list.insert(0, ('', _('Country')))
+        country_list.insert(0, ('', ''))
         self.fields['country'].choices = country_list
 
     def clean(self, *args, **kwargs):
-        super(ContributeUniversityAmbassadorForm, self).clean(*args, **kwargs)
-        if (self.cleaned_data.get('current_status', '') == 'student'
-                and not self.cleaned_data.get('expected_graduation_year', '')):
-            self._errors['expected_graduation_year'] = (
+        super(ContributeStudentAmbassadorForm, self).clean(*args, **kwargs)
+        if (self.cleaned_data.get('status', '') == 'student'
+                and not self.cleaned_data.get('grad_year', '')):
+            self._errors['grad_year'] = (
                 self.error_class([_('This field is required.')]))
         return self.cleaned_data
 
-    def clean_expected_graduation_year(self):
-        return self.cleaned_data.get('expected_graduation_year', '')
+    def clean_grad_year(self):
+        return self.cleaned_data.get('grad_year', '')
 
-    def clean_area(self):
-        return self.cleaned_data.get('area_free_field',
-                                     self.cleaned_data['area'])
+    def clean_major(self):
+        return self.cleaned_data.get('major_free_field',
+                                     self.cleaned_data['major'])
 
     def clean_share_information(self):
         if self.cleaned_data.get('share_information', False):
@@ -413,10 +413,10 @@ class ContributeUniversityAmbassadorForm(forms.Form):
         data = {
             'FIRST_NAME': data['first_name'],
             'LAST_NAME': data['last_name'],
-            'STUDENTS_CURRENT_STATUS': data['current_status'],
+            'STUDENTS_CURRENT_STATUS': data['status'],
             'STUDENTS_SCHOOL': data['school'],
-            'STUDENTS_GRAD_YEAR': data['expected_graduation_year'],
-            'STUDENTS_MAJOR': data['area'],
+            'STUDENTS_GRAD_YEAR': data['grad_year'],
+            'STUDENTS_MAJOR': data['major'],
             'COUNTRY_': data['country'],
             'STUDENTS_CITY': data['city'],
             'STUDENTS_ALLOW_SHARE': data['share_information'],

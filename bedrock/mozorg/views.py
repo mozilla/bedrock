@@ -22,7 +22,7 @@ from bedrock.firefox import version_re
 from bedrock.firefox.utils import is_current_or_newer
 from bedrock.mozorg import email_contribute
 from bedrock.mozorg.forms import (ContributeForm,
-                                  ContributeUniversityAmbassadorForm,
+                                  ContributeStudentAmbassadorForm,
                                   WebToLeadForm)
 from bedrock.mozorg.util import hide_contrib_form
 from bedrock.mozorg.util import HttpResponseJSON
@@ -197,9 +197,9 @@ def plugincheck(request, template='mozorg/plugincheck.html'):
     return l10n_utils.render(request, template, data)
 
 
-@csrf_exempt
-def contribute_university_ambassadors(request):
-    form = ContributeUniversityAmbassadorForm(request.POST or None)
+@csrf_protect
+def contribute_studentambassadors_join(request):
+    form = ContributeStudentAmbassadorForm(request.POST or None)
     if form.is_valid():
         try:
             form.save()
@@ -209,10 +209,10 @@ def contribute_university_ambassadors(request):
                    'Please try again later.')])
             form.errors['__all__'] = msg
         else:
-            return redirect('mozorg.contribute_university_ambassadors_thanks')
+            return redirect('mozorg.contribute.studentambassadors.thanks')
     return l10n_utils.render(
         request,
-        'mozorg/contribute_university_ambassadors.html', {'form': form}
+        'mozorg/contribute/studentambassadors/join.html', {'form': form}
     )
 
 
