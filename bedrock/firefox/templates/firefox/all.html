@@ -3,7 +3,7 @@
 {% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
 
 {% block page_title %}{{ _('Download Firefox in your language') }}{% endblock %}
-{% block page_desc %}{{ _('Firefox is available in more than 70 languages thanks to the contributions of Mozilla community members from around the world.') }}{% endblock %}
+{% block page_desc %}{{ _('Firefox is available in more than %s languages thanks to the contributions of Mozilla community members from around the world.')|format('80') }}{% endblock %}
 {% block body_id %}firefox-all{% endblock %}
 
 {% block site_css %}
@@ -21,7 +21,7 @@
 {% block content %}
   <hgroup id="main-feature">
     <h1>{{_('Download Firefox in your language')}}</h1>
-    <h2>{{ _('Firefox is available in more than %s languages thanks to the contributions of Mozilla community members from around the world.')|format('70') }}</h2>
+    <h2>{{ self.page_desc() }}</h2>
     <p><a class="sysreq" href="{{ url('firefox.latest.sysreq') }}">{{ _('Check the system requirements') }}</a></p>
   </hgroup>
 
