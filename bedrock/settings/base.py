@@ -82,7 +82,8 @@ def JINJA_CONFIG():
         'extensions': [
             'lib.l10n_utils.template.i18n', 'jinja2.ext.do', 'jinja2.ext.with_',
             'jinja2.ext.loopcontrols', 'lib.l10n_utils.template.l10n_blocks',
-            'lib.l10n_utils.template.lang_blocks'
+            'lib.l10n_utils.template.lang_blocks',
+            'jingo_markdown.extensions.MarkdownExtension',
         ],
         # Make None in templates render as ''
         'finalize': lambda x: x if x is not None else '',
@@ -758,6 +759,7 @@ INSTALLED_APPS = get_apps(exclude=(
     'djcelery',
 ), append=(
     # Local apps
+    'jingo_markdown',
     'jingo_minify',
     'django_statsd',
     'waffle',
@@ -979,5 +981,7 @@ USE_GRUNT_LIVERELOAD = False
 # Publishing system config
 RNA = {
     'BASE_URL': os.environ.get('RNA_BASE_URL', 'https://nucleus.mozilla.org/rna/'),
-    'LEGACY_API': os.environ.get('RNA_LEGACY_API', False),
+
+    # default False as temporary workaround for bug 973499
+    'VERIFY_SSL_CERT': os.environ.get('VERIFY_SSL_CERT', False),
 }

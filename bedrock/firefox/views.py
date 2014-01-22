@@ -410,32 +410,36 @@ class WhatsnewView(LatestFxView):
         return template
 
 
-def release_notes(request, version, channel='Release', product='Firefox'):
-    if len(version.split('.')) == 2:
-        query_version = version + '.0'
+def fix_fx_version(fx_version):
+    if len(fx_version.split('.')) == 2:
+        return fx_version + '.0'
     else:
-        query_version = version
-    release = get_object_or_404(Release, version=query_version,
-                                channel=channel, product=product)
+        return fx_version
 
+
+def release_notes_template(channel, product):
+    #TODO: if product == 'Firefox OS':
+    #TODO: different templates based on channel with default
+    return 'firefox/releases/notes.html'
+
+
+def release_notes(request, fx_version, channel='Release', product='Firefox'):
+    release = get_object_or_404(Release, version=fix_fx_version(fx_version),
+                                channel=channel, product=product)
     new_features, known_issues = release.notes()
     return l10n_utils.render(
-        request, 'firefox/releases/notes.html', {
-            'version': version,
-            'major_version': version.split('.', 1)[0],
+        request, release_notes_template(channel, product), {
+            'version': fx_version,
+            'major_version': fx_version.split('.', 1)[0],
             'release': release,
             'new_features': new_features,
             'known_issues': known_issues})
 
 
-def system_requirements(request, version, channel='Release',
+def system_requirements(request, fx_version, channel='Release',
                         product='Firefox'):
-    if len(version.split('.')) == 2:
-        query_version = version + '.0'
-    else:
-        query_version = version
-    release = get_object_or_404(Release, version=query_version,
+    release = get_object_or_404(Release, version=fix_fx_version(fx_version),
                                 channel=channel, product=product)
     return l10n_utils.render(
         request, 'firefox/releases/system_requirements.html',
-        {'release': release, 'version': version})
+        {'release': release, 'version': fx_version})

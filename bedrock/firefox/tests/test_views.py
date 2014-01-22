@@ -8,11 +8,10 @@ from nose.tools import eq_
 from rna.models import Release
 
 from bedrock.firefox import views
-from bedrock.firefox.tests import NoteFactory, ProductFactory, ReleaseFactory
 from bedrock.mozorg.tests import TestCase
 
 
-class TestReleaseNotesView(TestCase):
+class TestRNAViews(TestCase):
     def setUp(self):
         self.factory = RequestFactory()
         self.request = self.factory.get('/')
@@ -31,83 +30,40 @@ class TestReleaseNotesView(TestCase):
         """
         return self.mock_render.call_args[0][2]
 
-    def test_missing_minor_version(self):
+    @patch('bedrock.firefox.views.get_object_or_404')
+    def test_release_notes(self, get_object_or_404):
         """
-        If the minor version is missing in the URL, it should default to
-        0.
+        Should use release returned from get_object_or_404 with the
+        correct params and pass the correct context variables and
+        template to l10n_utils.render
         """
-        ReleaseFactory.create(version=18, sub_version=0, channel__name='Release',
-                              product__name='Firefox')
+        mock_release = get_object_or_404.return_value
+        mock_release.notes.return_value = ('mock new_features',
+                                           'mock known_issues')
 
-        views.release_notes(self.request, '18.0')
-        eq_(self.last_ctx['minor_version'], 0)
+        views.release_notes(self.request, '27.0')
+        # Should use fixed version for query
+        get_object_or_404.assert_called_with(
+            Release, version='27.0.0', channel='Release', product='Firefox')
+        # Should use original version for context variable
+        eq_(self.last_ctx['version'], '27.0')
+        eq_(self.last_ctx['major_version'], '27')
+        eq_(self.last_ctx['release'], mock_release)
+        eq_(self.last_ctx['new_features'], 'mock new_features')
+        eq_(self.last_ctx['known_issues'], 'mock known_issues')
+        eq_(self.mock_render.call_args[0][1], 'firefox/releases/notes.html')
 
-    def test_no_release_404(self):
+    @patch('bedrock.firefox.views.get_object_or_404')
+    def test_system_requirements(self, get_object_or_404):
         """
-        Fetch the release using get_object_or_404, so that an Http404 is
-        raised when the release isn't found.
+        Should use release returned from get_object_or_404, with a
+        default channel of Release and default product of Firefox,
+        and pass the version to l10n_utils.render
         """
-        with patch('bedrock.firefox.views.get_object_or_404') as get_object_or_404:
-            views.release_notes(self.request, '18.0')
-            eq_(self.last_ctx['release'], get_object_or_404.return_value)
-            get_object_or_404.assert_called_with(Release, version=18, sub_version=0,
-                                                 channel__name='Release', product__name='Firefox')
-
-    def test_note_first_version_not_fixed(self):
-        """
-        If a note started on or before the current version, and has yet
-        to be fixed, include it in known issues.
-        """
-        product = ProductFactory.create(name='Firefox')
-        ReleaseFactory.create(version=19, sub_version=0, channel__name='Release', product=product)
-        note1 = NoteFactory.create(first_version=18, fixed_in_version=None, product=product)
-        note2 = NoteFactory.create(first_version=19, fixed_in_version=None, product=product)
-
-        views.release_notes(self.request, '19.0')
-        eq_(set([note1, note2]), set(self.last_ctx['known_issues']))
-
-    def test_note_first_version_fixed(self):
-        """
-        If a note started on or before the current version, and was
-        fixed on this version, include it in new features. If it was
-        fixed after this version, include it in known issues.
-        """
-        product = ProductFactory.create(name='Firefox')
-        ReleaseFactory.create(version=19, sub_version=0, channel__name='Release', product=product)
-        note1 = NoteFactory.create(first_version=18, fixed_in_version=19, product=product)
-        note2 = NoteFactory.create(first_version=19, fixed_in_version=19, product=product)
-        note3 = NoteFactory.create(first_version=18, fixed_in_version=20, product=product)
-        note4 = NoteFactory.create(first_version=19, fixed_in_version=20, product=product)
-
-        views.release_notes(self.request, '19.0')
-        eq_(set([note1, note2]), set(self.last_ctx['new_features']))
-        eq_(set([note3, note4]), set(self.last_ctx['known_issues']))
-
-    def test_note_fixed_no_first_version(self):
-        """
-        If a note started has no first version but was fixed in the
-        current version, include it in new features.
-        """
-        product = ProductFactory.create(name='Firefox')
-        ReleaseFactory.create(version=19, sub_version=0, channel__name='Release', product=product)
-        note1 = NoteFactory.create(first_version=None, fixed_in_version=19, product=product)
-
-        views.release_notes(self.request, '19.0')
-        eq_(set([note1]), set(self.last_ctx['new_features']))
-
-    def test_note_fixed_product_name(self):
-        """
-        If a note does has no product or "Firefox" as the product,
-        include it.
-        """
-        product = ProductFactory.create(name='Firefox')
-        ReleaseFactory.create(version=19, sub_version=0, channel__name='Release', product=product)
-        note1 = NoteFactory.create(first_version=None, fixed_in_version=19, product=product)
-        note2 = NoteFactory.create(first_version=None, fixed_in_version=19, product=None)
-
-        # Notes that shouldn't appear.
-        NoteFactory.create(first_version=None, fixed_in_version=19, product__name='Fennec')
-        NoteFactory.create(first_version=None, fixed_in_version=19, product__name='FirefoxOS')
-
-        views.release_notes(self.request, '19.0')
-        eq_(set([note1, note2]), set(self.last_ctx['new_features']))
+        views.system_requirements(self.request, '27.0.1')
+        get_object_or_404.assert_called_with(
+            Release, version='27.0.1', channel='Release', product='Firefox')
+        eq_(self.last_ctx['release'], get_object_or_404.return_value)
+        eq_(self.last_ctx['version'], '27.0.1')
+        eq_(self.mock_render.call_args[0][1],
+            'firefox/releases/system_requirements.html')

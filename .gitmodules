@@ -19,3 +19,24 @@
 [submodule "vendor-local/src/django-waffle"]
 	path = vendor-local/src/django-waffle
 	url = https://github.com/jsocol/django-waffle.git
+[submodule "vendor-local/src/rna"]
+	path = vendor-local/src/rna
+	url = git://github.com/mozilla/rna
+[submodule "vendor-local/src/django-extensions"]
+	path = vendor-local/src/django-extensions
+	url = https://github.com/django-extensions/django-extensions.git
+[submodule "vendor-local/src/django-rest-framework"]
+	path = vendor-local/src/django-rest-framework
+	url = https://github.com/tomchristie/django-rest-framework.git
+[submodule "vendor-local/src/requests"]
+	path = vendor-local/src/requests
+	url = https://github.com/kennethreitz/requests.git
+[submodule "vendor-local/src/Python-Markdown"]
+	path = vendor-local/src/Python-Markdown
+	url = https://github.com/waylan/Python-Markdown.git
+[submodule "vendor-local/src/jingo-markdown"]
+	path = vendor-local/src/jingo-markdown
+	url = https://github.com/monkeywarrior/jingo-markdown.git
+[submodule "vendor-local/src/six"]
+	path = vendor-local/src/six
+	url = https://github.com/kelp404/six.git

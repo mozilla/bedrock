@@ -1,6 +1,0 @@
-README
-six.py
-six.egg-info/PKG-INFO
-six.egg-info/SOURCES.txt
-six.egg-info/dependency_links.txt
-six.egg-info/top_level.txt

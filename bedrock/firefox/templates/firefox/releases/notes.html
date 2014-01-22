@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% extends "firefox/fxos-base.html" %}
+{% extends "firefox/base-resp.html" %}
 
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}{{ _('Firefox — {version} Notes')|f(version=version) }}{% endblock %}
@@ -15,8 +15,6 @@
   {{ css('firefox_releasenotes') }}
 {% endblock %}
 
-{% block extrahead %}{% endblock %}
-
 {% block content %}
   <header id="main-feature">
     <h1>{{ _('Firefox {version} Notes')|f(version=version) }}</h1>
@@ -25,14 +23,23 @@
 
     <p>
     {% trans feedback='https://input.mozilla.org/feedback',
-        bugzilla='https://bugzilla.mozilla.org/',
-        buglist='link-to-bugzilla-search' %}
+        bugzilla='https://bugzilla.mozilla.org/' %}
       As always, you&#146;re encouraged to
       <a href="{{ feedback }}">tell us what you think</a>,
       or <a href="{{ bugzilla }}">file a bug in Bugzilla</a>.
-      If interested, please see the <a href="{{ buglist }}">complete list of changes</a>
-      in this release.
     {% endtrans %}
+    {% if release.bug_search_url %}
+        {% trans bug_search_url=release.bug_search_url %}
+        If interested, please see the <a href="{{ bug_search_url }}">complete list of changes</a>
+        in this release.
+        {% endtrans %}
+    {% elif release.bug_list %}
+    <form action="https://bugzilla.mozilla.org/buglist.cgi" method="post">
+      <input type="hidden" name="limit" value="0">
+      <input type="hidden" name="bug_id" value="{{ release.bug_list }}">
+      <p>{{ _('If interested, please see the <input type="submit" value="complete list of changes"> in this release.') }}</p>
+    </form>
+    {% endif %}
     </p>
   </header>
 
@@ -42,12 +49,12 @@
         <h3>{{ _('New Features') }}</h3>
         <ul class="section-items tagged">
           {% for note in new_features %}
-          <li {% if not note.tag.text %}class="untagged"{% endif %}>
+          <li {% if not note.tag %}class="untagged"{% endif %}>
             <p>
-            {% if note.tag.text %}
-              <b class="tag tag-{{ note.tag.text.lower() }}">{{ note.tag.text }}</b>
+            {% if note.tag %}
+              <b class="tag tag-{{ note.tag.lower() }}">{{ note.tag }}</b>
             {% endif %}
-              {{ note.html|safe }}
+              {{ note.note|markdown|safe }}
             </p>
           </li>
           {% endfor %}
@@ -61,12 +68,12 @@
             <li>
               <p>
                 <b class="tag tag-unresolved">{{ _('unresolved') }}</b>
-                {{ note.html|safe }}
+                {{ note.note|markdown|safe }}
               </p>
-            {% if not note.fixed_in_version is none %}
+            {% if note.fixed_in_release %}
               <p class="note">
-                <a href="{{ url('firefox.releasenotes', '{major_version}.0'|f(major_version=note.fixed_in_version)) }}">
-                  {{ _('Resolved in v{version_number}')|f(version_number=note.fixed_in_version) }}
+                <a href="{{ url('firefox.releasenotes', '{major_version}.0'|f(major_version=note.fixed_in_release.version)) }}">
+                  {{ _('Resolved in v{version_number}')|f(version_number=note.fixed_in_release.version) }}
                 </a>
               </p>
             {% endif %}
@@ -81,8 +88,8 @@
       <section id="try">
         <h3>{{ _('Try Firefox') }}</h3>
         <ol>
-          <li class="try1"><a href="/firefox/26.0/system-requirements/">{{ _('Check') }}</a></li>
-          <li class="try2"><a href="/firefox/">{{ _('Download') }}</a></li>
+          <li class="try1"><a href="{{ url('firefox.system_requirements', version) }}">{{ _('Check') }}</a></li>
+          <li class="try2"><a href="{{ url('firefox') }}">{{ _('Download') }}</a></li>
           <li class="try3"><a href="https://support.mozilla.org/kb/Installing%20Firefox">{{ _('Install') }}</a></li>
           <li class="try4"><a href="https://addons.mozilla.org/firefox/">{{ _('Customize') }}</a></li>
         </ol>
