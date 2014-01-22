@@ -328,9 +328,6 @@ MINIFY_BUNDLES = {
         'research': (
             'css/research/research.less',
         ),
-        'security-group': (
-            'css/mozorg/security-group.less',
-        ),
         'security-tld-idn': (
             'css/mozorg/security-tld-idn.less',
         ),

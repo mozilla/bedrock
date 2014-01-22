@@ -3,13 +3,11 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% extends "mozorg/about-base.html" %}
-	
+
 {% block page_title %}{{ _('Mozilla CA Certificate Policy') }}{% endblock %}
 {% block body_class %}sand{% endblock %}
 
-{% block extrahead %}
-    {{ css('security-group') }}
-{% endblock %}
+{% block extrahead %}{% endblock %}
 
 {% block article %}
   <h1 class="title-banner">{{ _('Mozilla CA Certificate Policy') }}</h1>
@@ -23,12 +21,12 @@
       <a href="{{ url('mozorg.about.governance.policies.security.certs.inclusion') }}">{{ _('Applying for Inclusion of Root Certificates in Mozilla Products') }}</a>
       <p>{{ _('This section describes the obligations of Certification Authorities applying for inclusion of their root certificates in Mozilla Products. This includes considerations that are taken into account such as the CA’s publicly available documentation about their policies, and audits of the CA’s operations in support of the documented policies.') }}</p>
     </li>
-    <li> 
+    <li>
       <a href="{{ url('mozorg.about.governance.policies.security.certs.maintenance') }}">{{ _('Maintaining Confidence in Included Root Certificates') }}</a>
       <p>{{ _('This section describes the obligations of Certification Authorities for maintaining confidence in their root certificates that are included in Mozilla Products. This includes regular auditing of the CA’s policies and practices; conforming to current CA industry standards and recommended best practices; and making changes to included root certificates.') }}</p>
-    </li> 
-      
-    <li> 
+    </li>
+
+    <li>
       <a href="{{ url('mozorg.about.governance.policies.security.certs.enforcement') }}">{{ _('Enforcing the Mozilla CA Certificate Policy') }}</a>
       <p>{{ _('This section describes the steps that Mozilla may take in order to enforce this policy. This includes evaluation of security concerns, and removing or disabling a root certificate.') }}</p>
     </li>
