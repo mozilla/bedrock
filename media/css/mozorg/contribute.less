@@ -37,7 +37,7 @@
             font-weight: bold;
         }
     }
-    
+
     li.row {
         margin-left: 0;
     }
@@ -96,7 +96,7 @@
                 background: #fff;
                 width: 50px;
                 padding: (@gridColumnWidth - 52) / 2;
-                border: 1px solid @borderColor; 
+                border: 1px solid @borderColor;
                 .border-radius;
                 .box-shadow(0 2px 4px rgba(0,0,0,0.1));
                 float: left;
@@ -149,6 +149,37 @@
 
 }
 
+html[dir='rtl'] #contribute  {
+    #opportunities {
+        nav {
+            h5,
+            ul {
+                font-size: @baseFontSize;
+            }
+
+            li {
+                margin: 0 20px 0 0;
+            }
+
+            .button-white {
+                font-size: @baseFontSize;
+            }
+        }
+
+        section {
+            img {
+                float: right;
+                margin: @baseLine 0 @baseLine 10px;
+            }
+
+            h3 {
+                float: right;
+            }
+        }
+    }
+
+}
+
 .js #form-details { display: none; }
 
 /* Tablet Layout: 760px */
@@ -161,18 +192,18 @@
                 img {
                     width: 30px;
                 }
-    
+
                 h3 {
                     .span_narrow(4);
                     margin-top: @baseLine * 1.25;
                 }
-    
+
                 .content {
                     .span_narrow(7);
                     margin-top: @baseLine;
                 }
             }
-            
+
             .location-content {
 
                 h3 {
@@ -208,7 +239,7 @@
                     margin: 0 10px;
                 }
             }
-        
+
             .location-content {
                 li.row {
                     margin: 0 0 (@baseLine * 1.5);
@@ -227,7 +258,7 @@
                     text-align: center;
                 }
             }
-            
+
             nav {
                 h5 {
                     display: block;
@@ -248,6 +279,18 @@
             }
             .field-country select {
                 width: 280px;
+            }
+        }
+    }
+
+    html[dir='rtl'] #contribute  {
+        #opportunities nav {
+            h5 {
+                margin-right: 0;
+            }
+
+            li {
+                margin: 0 0 .25em 3px;
             }
         }
     }
@@ -274,7 +317,7 @@
             }
         }
     }
-    
+
 }
 
 /* Some overrides for the embedded contribute form. */

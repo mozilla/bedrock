@@ -6,7 +6,7 @@
     padding-top: @baseLine;
     padding-bottom: @baseLine;
     margin-bottom: @baseLine * 2;
-    
+
     fieldset,
     .form-row {
         width: (@gridColumnWidth * 10) + (@gridGutterWidth * 9);
@@ -83,6 +83,26 @@
     }
 }
 
+html[dir='rtl'] #help-form {
+    fieldset,
+    .form-column-1,
+    .form-column-2,
+    .form-column-3 {
+        float: right;
+    }
+
+    .field-privacy label {
+        padding-right: 24px;
+        input {
+            right: 0;
+        }
+    }
+
+    .form-submit {
+        float: left;
+    }
+}
+
 #help-form.has-errors {
     border-top: 10px solid #AF3232;
 }
@@ -92,7 +112,7 @@
 
 /* Tablet Layout: 760px */
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
-    
+
     #help-form {
         fieldset,
         .form-row {
@@ -107,7 +127,7 @@
         .form-submit {
             .span_narrow(2);
         }
-        
+
     }
 
 }
@@ -133,6 +153,16 @@
             margin: 0 0 .5em;
         }
 
+    }
+
+    html[dir='rtl'] #help-form {
+        fieldset,
+        .form-column-1,
+        .form-column-2,
+        .form-column-3,
+        .form-submit {
+            float: none;
+        }
     }
 
 }

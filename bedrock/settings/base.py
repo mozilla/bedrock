@@ -782,10 +782,10 @@ LOCALES_WITH_TRANSITION = ['en-US', 'af', 'ar', 'ast', 'be', 'bg',
                            'tr', 'uk', 'vi', 'zh-CN', 'zh-TW']
 
 # Locales showing the 15th Anniversary slideshow on /contribute
-LOCALES_WITH_MOZ15 = ['bg', 'cs', 'de', 'el', 'en-GB', 'en-US', 'es-AR', 'es-CL',
-                      'es-ES', 'es-MX', 'fr', 'fy-NL', 'hr', 'id', 'it', 'lt',
-                      'ms', 'nl', 'pl', 'pt-BR', 'ro', 'ru', 'sl', 'sq', 'sr',
-                      'ta', 'tr', 'zh-CN', 'zh-TW']
+LOCALES_WITH_MOZ15 = ['ar', 'bg', 'cs', 'de', 'el', 'en-GB', 'en-US', 'es-AR',
+                      'es-CL', 'es-ES', 'es-MX', 'fr', 'fy-NL', 'hr', 'id', 'it',
+                      'lt', 'ms', 'nl', 'pl', 'pt-BR', 'ro', 'ru', 'sl', 'sq',
+                      'sr', 'ta', 'tr', 'zh-CN', 'zh-TW']
 
 # reCAPTCHA keys
 RECAPTCHA_PUBLIC_KEY = ''
