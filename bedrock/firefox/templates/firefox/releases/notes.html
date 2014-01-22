@@ -25,14 +25,23 @@
 
     <p>
     {% trans feedback='https://input.mozilla.org/feedback',
-        bugzilla='https://bugzilla.mozilla.org/',
-        buglist='link-to-bugzilla-search' %}
+        bugzilla='https://bugzilla.mozilla.org/' %}
       As always, you&#146;re encouraged to
       <a href="{{ feedback }}">tell us what you think</a>,
       or <a href="{{ bugzilla }}">file a bug in Bugzilla</a>.
-      If interested, please see the <a href="{{ buglist }}">complete list of changes</a>
-      in this release.
     {% endtrans %}
+    {% if release.bug_search_url %}
+        {% trans bug_search_url=release.bug_search_url %}
+        If interested, please see the <a href="{{ bug_search_url }}">complete list of changes</a>
+        in this release.
+        {% endtrans %}
+    {% elif release.bug_list %}
+    <form action="https://bugzilla.mozilla.org/buglist.cgi" method="post">
+      <input type="hidden" name="limit" value="0">
+      <input type="hidden" name="bug_id" value="{{ release.bug_list }}">
+      <p>{{ _('If interested, please see the <input type="submit" value="complete list of changes"> in this release.') }}</p>
+    </form>
+    {% endif %}
     </p>
   </header>
 

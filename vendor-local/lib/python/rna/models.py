@@ -39,6 +39,8 @@ class Release(TimeStampedModel):
     release_date = models.DateTimeField()
     text = models.TextField(blank=True)
     is_public = models.BooleanField(default=False)
+    bug_list = models.TextField(blank=True)
+    bug_search_url = models.CharField(max_length=2000, blank=True)
 
     def notes(self):
         """
