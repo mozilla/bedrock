@@ -7,7 +7,9 @@ import jingo
 
 from commonware.response.decorators import xframe_allow
 
+from django import template
 from django.core.mail import EmailMessage
+from django.http import Http404
 from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_protect
 
@@ -68,6 +70,37 @@ def privacy(request):
     }
 
     return l10n_utils.render(request, 'privacy/index.html', template_vars)
+
+
+@csrf_protect
+def archive(request, archive_name):
+    tpl = 'privacy/archive/' + archive_name.rstrip('/') + '.html'
+
+    # make sure requested template exists
+    try:
+        template.loader.get_template(tpl)
+    except template.TemplateDoesNotExist:
+        raise Http404
+
+    form = PrivacyContactForm()
+
+    form_submitted = False
+    form_error = False
+
+    if request.method == 'POST':
+        form = PrivacyContactForm(request.POST)
+        form_results = submit_form(request, form)
+
+        form_submitted = form_results['form_submitted']
+        form_error = form_results['form_error']
+
+    template_vars = {
+        'form': form,
+        'form_submitted': form_submitted,
+        'form_error': form_error,
+    }
+
+    return l10n_utils.render(request, tpl, template_vars)
 
 
 @xframe_allow
