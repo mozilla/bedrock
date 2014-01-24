@@ -41,6 +41,7 @@ class Release(TimeStampedModel):
     is_public = models.BooleanField(default=False)
     bug_list = models.TextField(blank=True)
     bug_search_url = models.CharField(max_length=2000, blank=True)
+    system_requirements = models.TextField(blank=True)
 
     def notes(self):
         """
