@@ -7,6 +7,8 @@ import feedparser
 from django.conf import settings
 from django.core.cache import cache
 
+from bedrock.mozorg.util import TwitterAPI
+
 
 @cronjobs.register
 def update_feeds():
@@ -15,3 +17,14 @@ def update_feeds():
         # Cache for a year (it will be set by the cron job no matter
         # what on a set interval)
         cache.set('feeds-%s' % name, feed_info, 60 * 60 * 24 * 365)
+
+
+@cronjobs.register
+def update_tweets():
+    for account in settings.TWEETS:
+        try:
+            tweets = TwitterAPI(account).user_timeline(screen_name=account)
+        except:
+            tweets = []
+
+        cache.set('tweets-%s' % account, tweets, 3600)  # Cache for 1 hour

@@ -280,3 +280,66 @@
 {% macro twitter_share_url(url, tweet_text) -%}
   {{ 'https://www.twitter.com/intent/tweet?url=%s&text=%s'|format(url|urlencode, tweet_text|urlencode)|e }}
 {%- endmacro %}
+
+{% macro twitter_follow_button(name, screen_name, show_screen_name=True) -%}
+  {%- if show_screen_name -%}
+    {% set label = _('Follow @%s')|format(screen_name) %}
+  {%- else -%}
+    {% set label = _('Follow') %}
+  {%- endif -%}
+  <a href="https://twitter.com/{{ screen_name }}" title="{{ _('Follow %s on Twitter')|format(name) }}" class="twitter-follow-button">{{ label }}</a>
+{%- endmacro %}
+
+{% macro twitter_timeline_widget(name, screen_name, tweets, heading_level=3) -%}
+  {% set heading_level = heading_level|int(3) %}
+  <article class="twitter-timeline-widget" itemscope itemtype="http://schema.org/Blog">
+    <header itemprop="name">
+      <h{{ heading_level }}>{{ _('Tweets from %s')|format(name) }}</h{{ heading_level }}>
+    </header>
+    {% for _tweet in tweets %}
+      {%- if _tweet.retweeted_status -%}
+        {% set retweet = true %}
+        {% set tweet = _tweet.retweeted_status %}
+      {%- else -%}
+        {% set retweet = false %}
+        {% set tweet = _tweet %}
+      {%- endif -%}
+      <article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+        <header>
+          <h{{ heading_level + 1 }} class="timestamp">
+            <a href="https://twitter.com/{{ tweet.user.screen_name }}/status/{{ tweet.id }}">
+              {{ format_tweet_timestamp(tweet)|safe }}
+            </a>
+          </h{{ heading_level + 1 }}>
+          <div itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a href="https://twitter.com/{{ tweet.user.screen_name }}">
+              <img src="{{ tweet.user.profile_image_url_https }}" alt="" itemprop="image">
+              <span itemprop="name">{{ tweet.user.name }}</span>
+              <span itemprop="alternateName">@{{ tweet.user.screen_name }}</span>
+            </a>
+          </div>
+        </header>
+        <div>
+          <p itemprop="articleBody">{{ format_tweet_body(tweet)|safe }}</p>
+          {% if retweet -%}
+            <p class="retweet-credit">{{ _('Retweeted by <a href="%(url)s">%(name)s</a>')|format(url='https://twitter.com/'+_tweet.user.screen_name, name=_tweet.user.name) }}</p>
+          {% endif -%}
+          {% if tweet.entities.media -%}
+            {% for medium in tweet.entities.media -%}
+              {% if medium.type == 'photo' -%}
+                <p class="media"><a href="{{ medium.expanded_url }}"><img src="{{ medium.media_url_https }}" alt="" itemprop="image"></a></p>
+              {% endif -%}
+            {% endfor -%}
+          {% endif -%}
+        </div>
+        <footer>
+          <ul class="actions">
+            <li><a class="reply" href="https://twitter.com/intent/tweet?in_reply_to={{ tweet.id }}">{{ _('Reply') }}</a></li>
+            <li><a class="retweet" href="https://twitter.com/intent/retweet?tweet_id={{ tweet.id }}">{{ _('Retweet') }}</a></li>
+            <li><a class="favorite" href="https://twitter.com/intent/favorite?tweet_id={{ tweet.id }}">{{ _('Favorite') }}</a></li>
+          </ul>
+        </footer>
+      </article>
+    {% endfor %}
+  </article>
+{%- endmacro %}

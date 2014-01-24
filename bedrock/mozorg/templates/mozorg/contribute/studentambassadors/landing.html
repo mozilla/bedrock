@@ -1,3 +1,4 @@
+{% from "macros.html" import twitter_follow_button, twitter_timeline_widget with context %}
 {% extends "mozorg/base-resp.html" %}
 
 {% block facebook_id %}107747252595375{# facebook.com/Firefox.Student.Ambassadors #}{% endblock %}
@@ -90,6 +91,17 @@
         </section>
       </div>
     </div>
+    {% if tweets|count > 0 %}
+    <div class="row">
+      <div class="col">
+        <section id="sec-twitter">
+          <h2>{{ _('See What We’re Up To') }}</h2>
+          <p>{{ twitter_follow_button(_('Firefox Student Ambassadors'), 'mozstudents', False) }}</p>
+          {{ twitter_timeline_widget(_('Firefox Student Ambassadors'), 'mozstudents', tweets) }}
+        </section>
+      </div>
+    </div>
+    {% endif %}
   </div>
 {% endblock %}
 

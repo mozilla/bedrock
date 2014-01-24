@@ -1,0 +1,178 @@
+@import "../sandstone/lib.less";
+@import "elements.less";
+
+@font-face {
+  font-family: 'Font Awesome';
+  src: url('/media/fonts/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
+       url('/media/fonts/fontawesome-webfont.woff') format('woff'),
+       url('/media/fonts/fontawesome-webfont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.twitter-follow-button {
+  .inline-block;
+  border: 1px solid #CCC;
+  border-radius: 3px;
+  padding: 0 5px;
+  color: #333 !important;
+  .gradient(#EEE, #FFFFFF, #DEDEDE); /* backward compatibility */
+  background: linear-gradient(#FFFFFF, #DEDEDE);
+  font-size: @smallFontSize;
+  line-height: 1.4;
+  font-weight: bold;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+
+  &:hover, &:focus, &:active {
+    .gradient(#D9D9D9, #F8F8F8, #D9D9D9); /* backward compatibility */
+    background: linear-gradient(#F8F8F8, #D9D9D9);
+    text-decoration: none;
+  }
+
+  &:focus {
+    border-color: #0089CB;
+    outline: none;
+  }
+
+  &:active {
+    background-color: #EFEFEF;
+    .inner-shadow(0, 3px, 5px, 0.1);
+  }
+
+  &:before {
+    .inline-block;
+    color: #55ACEE;
+    font-size: @baseFontSize;
+    font-family: 'Font Awesome', sans-serif;
+    vertical-align: middle;
+    content: '\0F099\00A0';
+  }
+}
+
+.twitter-timeline-widget {
+  article {
+    overflow: hidden !important;
+    padding: 10px 10px 10px 68px !important;
+    line-height: @baseLine !important;
+
+    header {
+      .timestamp {
+        float: right;
+        margin: 0 0 0 10px;
+        font-size: @smallFontSize;
+        line-height: @baseLine;
+        letter-spacing: 0;
+
+        a {
+          color: @textColorTertiary;
+        }
+
+        .full {
+          position: absolute;
+          left: -99999px;
+        }
+      }
+    }
+
+    [itemprop="author"] {
+      a {
+        color: inherit;
+
+        &:hover, &:focus, &:active {
+          text-decoration: none;
+
+          [itemprop="name"] {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      img {
+        float: left;
+        margin: 0 0 0 -58px;
+        border-radius: 5px;
+        width: 48px;
+        height: 48px;
+      }
+
+      [itemprop="name"] {
+        font-weight: bold;
+      }
+
+      [itemprop="alternateName"] {
+        font-size: @smallFontSize;
+        color: @textColorTertiary;
+      }
+    }
+
+    div {
+      p {
+        margin: 0 !important;
+        line-height: @baseLine !important;
+      }
+
+      img {
+        margin: 5px 0;
+        width: 100%;
+        vertical-align: top;
+      }
+
+      .retweet-credit {
+        font-size: @smallFontSize;
+        color: @textColorLight;
+
+        &:before {
+          .inline-block;
+          font-family: 'Font Awesome', sans-serif;
+          content: '\0F079\00A0';
+        }
+
+        a {
+          color: inherit;
+        }
+      }
+    }
+
+    footer {
+      overflow: hidden !important;
+
+      .actions {
+        float: right;
+        margin: 0 !important;
+
+        li {
+          .inline-block;
+          margin: 0 0 0 8px !important;
+          padding: 0 !important;
+          font-size: @smallFontSize;
+
+          &:first-child {
+            margin-left: 0 !important;
+          }
+        }
+
+        a {
+          color: @textColorTertiary;
+
+          &:before {
+            .inline-block;
+            font-family: 'Font Awesome', sans-serif;
+          }
+        }
+
+        .reply:before {
+          content: '\0F112\00A0';
+        }
+
+        .retweet:before {
+          content: '\0F079\00A0';
+        }
+
+        .favorite:before {
+          content: '\0F005\00A0';
+        }
+      }
+    }
+  }
+}

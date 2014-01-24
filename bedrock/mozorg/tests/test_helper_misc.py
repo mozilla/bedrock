@@ -1,3 +1,6 @@
+# coding: utf-8
+
+import json
 import os.path
 
 from mock import patch
@@ -12,8 +15,11 @@ from nose.tools import assert_false, eq_, ok_
 from pyquery import PyQuery as pq
 from bedrock.newsletter.tests.test_views import newsletters
 from funfactory.urlresolvers import reverse
+import tweepy
 
 from bedrock.mozorg.tests import TestCase
+from bedrock.mozorg.helpers.misc import (format_tweet_body,
+                                         format_tweet_timestamp)
 
 
 TEST_FILES_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)),
@@ -518,3 +524,34 @@ class TestAbsoluteURLFilter(TestCase):
         expected = 'https:' + self.media_url_prod + self.image_path
         eq_(self._render(self.inline_template), expected)
         eq_(self._render(self.block_template), expected)
+
+
+class TestFormatTweet(TestCase):
+    rf = RequestFactory()
+
+    with open(os.path.join(TEST_FILES_ROOT, 'data', 'tweets.json')) as file:
+        tweets = json.load(file)
+
+    # For test, select and parse a tweet containing a hashtag, mention and URL
+    tweet = tweepy.models.Status.parse(tweepy.api, tweets[5])
+
+    def test_format_tweet_body(self):
+        """Should return a tweet in an HTML format"""
+        # Note that … is a non-ASCII character. That's why the UTF-8 encoding is
+        # specified at the top of the file.
+        expected = (
+            u'Want more information about the <a href="https://twitter.com/'
+            u'mozstudents">@mozstudents</a> program? Sign-up and get a monthly '
+            u'newsletter in your in-box <a href="http://t.co/0thqsyksC3" title='
+            u'"http://www.mozilla.org/en-US/contribute/universityambassadors/">'
+            u'mozilla.org/en-US/contribu…</a> <a href="https://twitter.com/'
+            u'search?q=%23students&amp;src=hash">#students</a>')
+        self.assertEqual(format_tweet_body(self.tweet), expected)
+
+    def test_format_tweet_timestamp(self):
+        """Should return a timestamp in an HTML format"""
+        expected = (
+            u'<time datetime="2014-01-16T19:28:24" title="2014-01-16 19:28" '
+            u'itemprop="dateCreated">16 Jan <span class="full">(2014-01-16 '
+            u'19:28)</span></time>')
+        self.assertEqual(format_tweet_timestamp(self.tweet), expected)
