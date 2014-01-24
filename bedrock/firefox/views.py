@@ -8,7 +8,7 @@ import re
 from django.conf import settings
 from django.db.models import Q
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.views.decorators.vary import vary_on_headers
 from django.views.generic.base import TemplateView
@@ -336,11 +336,11 @@ class WhatsnewView(LatestFxView):
 
 
 def release_notes(request, version, channel='Release', product='Firefox'):
-    """Release Notes for desktop Firefox."""
-
     if len(version.split('.')) == 2:
-        version += '.0'
-    release = get_object_or_404(Release, version=version,
+        query_version = version + '.0'
+    else:
+        query_version = version
+    release = get_object_or_404(Release, version=query_version,
                                 channel=channel, product=product)
 
     new_features, known_issues = release.notes()
@@ -351,3 +351,15 @@ def release_notes(request, version, channel='Release', product='Firefox'):
             'release': release,
             'new_features': new_features,
             'known_issues': known_issues})
+
+
+def system_requirements(request, version, channel='Release',
+                        product='Firefox'):
+    if len(version.split('.')) == 2:
+        query_version = version + '.0'
+    else:
+        query_version = version
+    release = get_object_or_404(Release, version=query_version,
+                                channel=channel, product=product)
+    return render(request, 'firefox/releases/system_requirements.html',
+                  {'release': release, 'version': version})

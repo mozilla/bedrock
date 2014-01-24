@@ -14,6 +14,7 @@ latest_re = r'^firefox(?:/(%s))?/%s/$'
 firstrun_re = latest_re % (version_re, 'firstrun')
 whatsnew_re = latest_re % (version_re, 'whatsnew')
 releasenotes_re = latest_re % (version_re, 'releasenotes')
+sysreq_re = latest_re % (version_re, 'releasenotes/system-requirements')
 
 
 urlpatterns = patterns('',
@@ -73,4 +74,6 @@ urlpatterns = patterns('',
     page('firefox/os/notes/1.1', 'firefox/os/notes-1.1.html'),
 
     url(releasenotes_re, views.release_notes, name='firefox.releasenotes'),
+    url(sysreq_re, views.system_requirements,
+        name='firefox.system_requirements'),
 )
