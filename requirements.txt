@@ -1,0 +1,40 @@
+Babel==1.3
+Django==1.4.5
+GitPython==0.1.7
+Jinja2==2.5.5
+MySQL-python==1.2.3c1
+Pygments==1.6
+Sphinx==1.0.7
+Werkzeug==0.9.4
+amqp==1.3.3
+anyjson==0.3.3
+billiard==3.3.0.11
+celery==3.1.6
+-e git://github.com/jsocol/commonware.git@b5544185b2d24adc1eb512735990752400ce9cbd#egg=commonware-v0.4.2
+django-celery==3.1.1
+-e git://github.com/fwenzel/django-mozilla-product-details@f5a3c3c846fb75e12ad890b22ed5375d5b85ccb4#egg=django_mozilla_product_details-master
+-e git://github.com/jbalogh/django-nose.git@4ffb4fab18957d7c913d7f132dcd27b50a30f447#egg=django_nose-master
+-e git://github.com/fwenzel/django-sha2.git@f4519bf0cc9b1dd7a7d78394fa4aec4504bc86e9#egg=django_sha2-0.4
+django-statsd-mozilla==0.3.5
+docutils==0.11
+feedparser==5.1.3
+flake8==2.0
+itsdangerous==0.23
+-e git://github.com/jbalogh/jingo.git@5e985a5c16e343a30482cc526127a856b1cb45ed#egg=jingo-master
+-e git://github.com/jsocol/jingo-minify.git@46653d6fe953a3deb4f1ffcd99e70762a842f011#egg=jingo_minify-master
+kombu==3.0.7
+lxml==2.3.3
+mccabe==0.2.1
+mock==1.0.1
+nose==1.0.0
+-e git://github.com/mozilla/nuggets.git@4ce86351c940a1985d1357e1f1159379a4d862fe#egg=nuggets-master
+pep8==1.4.6
+pyflakes==0.7.3
+pyquery==1.0
+python-memcached==1.45
+pytz==2013.8
+statsd==2.0.3
+-e git://github.com/jbalogh/test-utils.git@ffccaeda15d7f0477570a6e848bef91f9aa69df9#egg=test_utils-master
+-e git://github.com/clouserw/tower.git@9b3581bb8f6c13d308c35db71acbf7707e63dcb5#egg=tower-master
+translate-toolkit==1.8.0
+wsgiref==0.1.2
