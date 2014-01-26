@@ -20,6 +20,7 @@ urlpatterns = patterns('',
     # Main pages
     (r'^lightbeam/', include('bedrock.lightbeam.urls')),
     (r'^foundation/', include('bedrock.foundation.urls')),
+    (r'^gigabit/', include('bedrock.gigabit.urls')),
     (r'^grants/', include('bedrock.grants.urls')),
     (r'^legal/', include('bedrock.legal.urls')),
     (r'^persona/', include('bedrock.persona.urls')),
