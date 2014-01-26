@@ -1,0 +1,11 @@
+{
+  "name": "studiomofo-bedrock",
+  "dependencies": {
+    "less": "latest"
+  },
+  "engines": {
+    "node": "0.10.17",
+    "npm": "1.2.x"
+  }
+}
+
