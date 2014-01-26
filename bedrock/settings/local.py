@@ -1,0 +1,30 @@
+# This is an example settings_local.py file.
+# Copy it and add your local settings here.
+
+ADMINS = ('foo@bar.com',)
+MANAGERS = ADMINS
+
+DEBUG = TEMPLATE_DEBUG = DEV = True
+LESS_PREPROCESS = True
+
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST = ''
+EMAIL_PORT = 25
+EMAIL_USE_TLS = False
+
+STATSD_HOST = ''
+STATSD_PORT = 8125
+STATSD_PREFIX = 'bedrock'
+STATSD_CLIENT = 'django_statsd.clients.normal'
+
+# Settings for Download Firefox Facebook tab
+#FACEBOOK_PAGE_NAMESPACE = ''
+#FACEBOOK_APP_ID = ''
+
+# Google Apps tracking code
+GA_ACCOUNT_CODE = ''
+
+SESSION_COOKIE_SECURE = False
+
+LESS_BIN='/usr/local/share/npm/bin/lessc'
