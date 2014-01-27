@@ -27,4 +27,4 @@ GA_ACCOUNT_CODE = ''
 
 SESSION_COOKIE_SECURE = False
 
-LESS_BIN='/usr/local/share/npm/bin/lessc'
+LESS_BIN='node_modules/.bin/lessc'
