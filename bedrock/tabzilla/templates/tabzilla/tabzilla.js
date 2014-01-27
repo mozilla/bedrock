@@ -278,7 +278,7 @@ var Tabzilla = (function (Tabzilla) {
             event.preventDefault();
             self.trackEvent(self.onaccept.trackAction || 'accept',
                             self.onaccept.trackLabel,
-                            undefined,
+                            0, false, // A user interaction event
                             self.onaccept.callback);
             self.hide();
         });
@@ -287,7 +287,7 @@ var Tabzilla = (function (Tabzilla) {
             event.preventDefault();
             self.trackEvent(self.oncancel.trackAction || 'cancel',
                             self.oncancel.trackLabel,
-                            undefined,
+                            0, false, // A user interaction event
                             self.oncancel.callback);
             self.hide();
             try {
@@ -298,7 +298,7 @@ var Tabzilla = (function (Tabzilla) {
         panel.trigger('infobar-showing');
         self.trackEvent(self.onshow.trackAction || 'show',
                         self.onshow.trackLabel,
-                        true,
+                        0, true, // An auto-triggered, non-interaction event
                         self.onshow.callback);
 
         if (opened) {
@@ -323,20 +323,17 @@ var Tabzilla = (function (Tabzilla) {
             panel.trigger('infobar-hidden');
         });
     };
-    Infobar.prototype.trackEvent = function (action, label, value, callback) {
+    Infobar.prototype.trackEvent = function (action, label, value,
+                                             nonInteraction, callback) {
         if (typeof(_gaq) !== 'object') {
             return;
         }
 
-        var cmd = ['_trackEvent', 'Tabzilla - ' + this.name, action, label];
-
-        // The optional value will be used to detect if the event is a real
-        // user interaction. Set true for a non-interaction event.
-        if (value !== undefined) {
-            cmd.push(value);
-        }
-
-        window._gaq.push(cmd);
+        // The 5th value and 6th nonInteraction parameters are optional.
+        // See the Google Analytics Developer Guide for details:
+        // https://developers.google.com/analytics/devguides/collection/gajs/eventTrackerGuide
+        window._gaq.push(['_trackEvent', 'Tabzilla - ' + this.name, action,
+                          label, value || 0, nonInteraction || false]);
 
         if (callback) {
             var timer = null;
