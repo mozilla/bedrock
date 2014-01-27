@@ -1,0 +1,40 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "base-resp.html" %}
+
+{% block page_title %}{{_('Gigabit')}}{% endblock %}
+{% block page_desc %}{{_('Gigabit - Description.')}}{% endblock %}
+{% block body_id %}gigabit{% endblock %}
+{% block body_class %}sand gigabit-home{% endblock %}
+{% block page_image %}{{ media('img/gigabit/gigabit_logo-wordmark_500x156.png') }}?2013-11{% endblock %}
+{% block page_favicon %}{{ media('img/gigabit/favicon.png') }}?2013-11{% endblock %}
+{% block site_header_logo %}
+{% endblock %}
+
+{% block extrahead %}
+  {{ css('gigabit') }}
+{% endblock %}
+
+{% block site_header_nav %}
+  <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
+  <nav id="nav-main" role="navigation">
+    <ul id="nav-main-menu">
+      <li><b>{{_('HOME')}}</b></li>
+      <li><a href="//blog.mozilla.org/gigabit/" target="_blank">{{_('BLOG')}}</a></li>
+      <li><a href="{{ url('gigabit.faq') }}">{{_('FAQ')}}</a></li>
+    </ul>
+  </nav>
+{% endblock %}
+
+
+{% block content %}
+
+  <section id="site-title" class="container center">
+    <header class="large">{{ _("Gigabit Community Fund") }}</header>
+    <h3>{{ _("Learn on tomorrow\'s networks") }}</h3>
+  </section>
+
+{% endblock %}
+
