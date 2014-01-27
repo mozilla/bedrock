@@ -8,13 +8,13 @@ describe("global.js", function() {
 
   describe("trigger_ie_download", function () {
 
-    it("should call window.open for internet explorer", function () {
+    it("should open a popup for IE < 11", function () {
 
-      // Let's pretend to be IE just for this individual test
+      // Let's pretend to be IE version 9 just for this individual test
       var appVersion = '5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0)';
 
-      /* Wrap window.open with a stub function, since all we need 
-       * to know is that window.open gets called. We do not need 
+      /* Wrap window.open with a stub function, since all we need
+       * to know is that window.open gets called. We do not need
        * window.open to execute to satisfy the test. We can also
        * spy on this stub to see if it gets called successfully. */
       window.open = sinon.stub();
@@ -22,8 +22,16 @@ describe("global.js", function() {
       expect(window.open.called).toBeTruthy();
     });
 
-    it("should not window.open for other browsers", function () {
+    it("should not open a popup for IE 11", function () {
+      // Let's pretend to be IE version 11
+      var appVersion = '5.0 (Windows NT 6.3; WOW64; Trident/7.0; .NET4.0E; .NET4.0C; .NET CLR 3.5.30729; .NET CLR 2.0.50727; .NET CLR 3.0.30729; rv:11.0) like Gecko';
 
+      window.open = sinon.stub();
+      trigger_ie_download('foo', appVersion);
+      expect(window.open.called).not.toBeTruthy();
+    });
+
+    it("should not open a popup for other browsers", function () {
       // Let's pretend to be a non IE browser
       var appVersion = '5.0 (Macintosh)';
 
@@ -36,7 +44,7 @@ describe("global.js", function() {
 
   describe("init_download_links", function () {
 
-    /* Append an HTML fixture to the document body 
+    /* Append an HTML fixture to the document body
      * for each test in the scope of this suite */
     beforeEach(function () {
       $('<a class="download-link" data-direct-link="bar">foo</a>').appendTo('body');
