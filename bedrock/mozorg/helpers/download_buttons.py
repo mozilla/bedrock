@@ -138,6 +138,9 @@ def download_firefox(ctx, build='release', small=False, icon=True,
             'latest', which bouncer will translate to the funnelcake build.
     :return: The button html.
     """
+
+    print "build = " , build
+
     alt_build = '' if build == 'release' else build
     platform = 'mobile' if mobile else 'desktop'
     locale = locale or get_locale(ctx['request'])
