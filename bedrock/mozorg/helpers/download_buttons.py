@@ -48,7 +48,7 @@ def latest_version(locale, channel='release'):
     version = firefox_details.latest_version(channel)
 
     print "all_builds = " , all_builds
-    print "version = " , version
+    print "version ===== " , version
 
 
     for builds in all_builds:
