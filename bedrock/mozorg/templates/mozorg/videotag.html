@@ -3,6 +3,7 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 <video tabindex="0" id="{{ id }}" controls="controls" {{ 'autoplay' if autoplay }}
+  itemscope itemtype="http://schema.org/VideoObject"
   {% if poster %}
     poster="{{ poster }}"
   {% endif %}
@@ -10,8 +11,14 @@
     preload="{{ preload }}"
   {% endif %}
   width="{{ w }}" height="{{ h }}">
+  <meta itemprop="width" content="{{ w }}" />
+  <meta itemprop="height" content="{{ h }}" />
+  {% if poster %}
+    <meta itemprop="thumbnailUrl" content="{{ poster }}" />
+  {% endif %}
   {% for ft in filetypes %}
     {% if ft in videos %}
+        <meta itemprop="encodingFormat" content="{{ ft }}" />
         <source src="{{ videos[ft] }}" type="{{ mime[ft] }}">
     {% endif %}
   {% endfor %}
