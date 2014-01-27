@@ -310,6 +310,9 @@ MINIFY_BUNDLES = {
         'privacy': (
             'css/privacy/privacy.less',
         ),
+        'privacy-day': (
+            'css/privacy/privacy-day.less',
+        ),
         'fb_privacy': (
             'css/privacy/fb-privacy.less',
         ),
@@ -580,6 +583,9 @@ MINIFY_BUNDLES = {
         'privacy': (
             'js/base/mozilla-pager.js',
             'js/privacy/privacy.js',
+        ),
+        'privacy-day': (
+            'js/privacy/privacy-day.js',
         ),
         'privacy-firefoxos': (
             'js/privacy_firefoxos.js',
