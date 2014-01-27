@@ -427,7 +427,10 @@ var Tabzilla = (function (Tabzilla) {
         $.ajax({ url: '{{ settings.CDN_BASE_URL }}/' + userLang + '/tabzilla/transbar.jsonp',
                  cache: true, crossDomain: true, dataType: 'jsonp',
                  jsonpCallback: "_", success: function (str) {
-            transbar.show(str).attr('lang', userLang);
+            transbar.show(str).attr({
+                'lang': userLang,
+                'dir': ($.inArray(userLang, {{ settings.LANGUAGES_BIDI|list|safe }}) > -1) ? 'rtl' : 'ltr'
+            });
         }});
 
         return true;

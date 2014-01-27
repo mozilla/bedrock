@@ -324,7 +324,7 @@
         padding: 5px 0;
     }
 
-    p {
+    p, li {
         display: inline;
         margin: 0 10px 0 0;
     }
@@ -332,12 +332,6 @@
     ul {
         display: inline;
         margin: 0;
-    }
-
-    li {
-        display: inline;
-        margin: 0 10px 0 0;
-        white-space: nowrap;
         list-style-type: none;
     }
 
@@ -346,12 +340,19 @@
         border: 1px solid darken(#f1f8ff, 10%);
         cursor: pointer;
         border-radius: 3px;
+        white-space: nowrap;
 
         &:hover,
         &:focus {
             background-color: darken(#f1f8ff, 3%);
             border-color: darken(#f1f8ff, 13%);
         }
+    }
+
+    &[dir="rtl"] {
+        p, li {
+            margin: 0 0 0 10px;
+        }        
     }
 }
 
