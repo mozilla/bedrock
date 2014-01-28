@@ -235,7 +235,7 @@ def video(*args, **kwargs):
             data['flash_fallback'] = mp4_url.path
 
     extra_attrs = kwargs.get('extra_attrs', {})
-    attributes = " ".join([jingo.helpers.fe('{}="{}"', k, v)
+    attributes = " ".join([jingo.helpers.fe('{0}="{1}"', k, v)
                            for k, v in extra_attrs.items()])
     data.update(**kwargs)
     data.update(filetypes=filetypes, mime=mime, videos=videos,
