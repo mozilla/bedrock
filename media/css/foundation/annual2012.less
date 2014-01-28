@@ -33,11 +33,25 @@ body {
 	background: url(/media/img/foundation/annualreport/2012/bg-banner-desktop.jpg) center bottom no-repeat;
 
 	h1 {
-		.image-replaced;
 		width: 141px;
 		height: 140px;
 		margin-bottom: 60px;
-		background: url(/media/img/foundation/annualreport/2012/state-of-mozilla.png) left top no-repeat;
+
+		span {
+			display: table-cell;
+			*display: block; /* IE6, IE7 */
+			border-radius: 70px;
+			padding: 20px;
+			width: 101px;
+			height: 100px;
+			color: #352B33;
+			background-color: #FFF;
+			font-size: 20px;
+			line-height: 1.2;
+			font-weight: bold;
+			vertical-align: middle;
+			letter-spacing: 0;
+		}
 	}
 
 	blockquote {
@@ -244,6 +258,17 @@ dl.faq dt {
 	margin-bottom: @baseLine;
 }
 
+html[lang="en-US"] {
+	.banner h1 span {
+		.image-replaced;
+		display: block;
+		border-radius: 0;
+		background: url(/media/img/foundation/annualreport/2012/state-of-mozilla.png) left top no-repeat;
+		background-size: 100% 100%;
+		text-indent: 200%;
+	}
+}
+
 /* Tweaks for RTL locales */
 html[dir="rtl"] {
 	.banner {
@@ -297,9 +322,10 @@ html[dir="rtl"] {
 }
 
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-	.banner h1 {
-		background: url(/media/img/foundation/annualreport/2012/state-of-mozilla-high-res.png) left top no-repeat;
-		background-size: 141px 140px;
+	html[lang="en-US"] {
+		.banner h1 span {
+			background-image: url(/media/img/foundation/annualreport/2012/state-of-mozilla-high-res.png);
+		}
 	}
 
     .videos li a {
@@ -520,12 +546,17 @@ html[dir="rtl"] {
 	}
 
 	.banner {
-		background: url(/media/img/foundation/annualreport/2012/bg-banner-mobile.jpg) right top no-repeat;
+		background: url(/media/img/foundation/annualreport/2012/bg-banner-mobile.jpg) -130px top no-repeat;
 		h1 {
-			width: 90px;
-			height: 90px;
-			background-size: 90px 90px;
 			margin-bottom: 130px;
+			width: 100px;
+			height: 100px;
+			span {
+				padding: 15px;
+				width: 70px;
+				height: 70px;
+				font-size: @baseFontSize;
+			}
 		}
 		blockquote {
 			background: #000;
