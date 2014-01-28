@@ -71,14 +71,10 @@
           <h2>{{ _('See how the new features in Firefox help you browse faster and more efficiently.')}}</h2>
         </hgroup>
         <div id="video-player" class="mozilla-video-control mozilla-video-shadow">
-          <video
-            controls="controls"
-            poster="{{ media('/img/firefox/video/poster-newtab.jpg') }}"
-            height="360"
-            width="640"
-            data-overlay-hidden-text="{{_('Play video')}}">
-            <source src="//videos-cdn.mozilla.net/serv/marketing/Firefox/Firefox%20Tabs_1.webm">
-          </video>
+          {{ video('Firefox%20Tabs_1.webm',
+                   poster=media('/img/firefox/video/poster-newtab.jpg'),
+                   prefix='//videos-cdn.mozilla.net/serv/marketing/Firefox/',
+                   extra_attrs={'data-overlay-hidden-text': _('Play video')}) }}
         </div>
         <ul class="sub-features">
           <li id="new-copy"><div class="wrap">

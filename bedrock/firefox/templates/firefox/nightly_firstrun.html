@@ -27,16 +27,12 @@
 <h1 id="firstrun-header" class="large">{{ _('Firefox Nightlies') }}</h1>
   <div class="main-column">
     <p>{{ _('Thank you for trying a nightly build and helping improve future versions of Firefox. Learn more about how you can get involved with our testing and developer community.') }}</p>
-  
+
     <div id="video-player" class="mozilla-video-control mozilla-video-shadow">
-      <video
-        controls="controls"
-        preload="metadata"
-        poster="{{ media('/img/contribute/nightly_video_poster.jpg') }}"
-        height="360"
-        width="640">
-          <source src="//videos-cdn.mozilla.net/serv/qa/qa-360p-mp4.theora.ogv" type="video/ogg">
-      </video>
+      {{ video('qa-360p-mp4.theora.ogv',
+               prefix='//videos-cdn.mozilla.net/serv/qa/',
+               preload='metadata',
+               poster=media('/img/contribute/nightly_video_poster.jpg')) }}
     </div>
 
     <h2>{{ _('Links in video') }}</h2>
@@ -54,7 +50,7 @@
       <li><a href="https://developer.mozilla.org/en/Crash_reporting">{{ _('Crash reporting') }}</a></li>
       <li><a href="https://litmus.mozilla.org/">{{ _('Run test cases in Litmus') }}</a></li>
     </ul>
-  
+
     <h2>{{ _('Stay in touch') }}</h2>
     <ul class="unstyled">
       <li><a href="https://mail.mozilla.org/listinfo/nightly-testers">{{ _('Subscribe to Nightly-Testers on Desktop mailing list') }}</a></li>

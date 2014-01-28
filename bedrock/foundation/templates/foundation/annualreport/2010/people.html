@@ -28,7 +28,7 @@
       <p>{{ _('Arabic Mozilla') }}</p>
     </div>
     <p>{% trans arabicmozilla="//www.arabicmozilla.org/", inaugural="//pierros.papadeas.gr/?p=253" %}Communities and locales in the Arabic-speaking world experienced inspiring growth this year and came together to form a collective community called <a href="{{ arabicmozilla }}">ArabicMozilla</a>. Participating countries include Egypt, Jordan, Tunisia, Algeria, Lebanon, Palestine, Syria, Morocco and Sudan. In July, Mozilla Jordan hosted the region’s <a href="{{ inaugural }}">inaugural inter-community meetup</a> in Amman.{% endtrans %}</p>
-    
+
     <div class="img-left">
       <img src="{{ media('/img/foundation/annualreport/2010/photo-mozilla-kenya.jpg') }}" width="294" height="198" alt="{{ _('Mozilla Kenya') }}" />
       <p>{{ _('Mozilla Kenya') }}</p>
@@ -62,11 +62,10 @@
 
     <figure class="figure">
       <div class="mozilla-video-control">
-        <video width="640" height="360" controls="controls" poster="{{ media('/img/foundation/annualreport/2010/poster-getinvolved.jpg') }}">
-            <source src="//videos-cdn.mozilla.net/serv/webmademovies/Moz_Doc_0329_GetInvolved_ST.webm" type='video/webm; codecs="vp8, vorbis"' />
-            <source src="//videos-cdn.mozilla.net/serv/webmademovies/Moz_Doc_0329_GetInvolved_ST.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
-            <source src="//videos-cdn.mozilla.net/serv/webmademovies/Moz_Doc_0329_GetInvolved_ST.ogv" type='video/ogg; codecs="theora, vorbis"' />
-        </video>
+        {{ video('Moz_Doc_0329_GetInvolved_ST.webm', 'Moz_Doc_0329_GetInvolved_ST.mp4',
+                 'Moz_Doc_0329_GetInvolved_ST.ogv',
+                 prefix='//videos-cdn.mozilla.net/serv/webmademovies/',
+                 poster=media('/img/foundation/annualreport/2010/poster-getinvolved.jpg')) }}
       </div>
     </figure>
     <div id="video-description">

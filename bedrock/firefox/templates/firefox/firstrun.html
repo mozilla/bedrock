@@ -28,15 +28,11 @@
   <h3>{{ _('See how Firefox keeps the power of the web in your hands:') }}</h3>
 
   <div id="video-player" class="mozilla-video-control mozilla-video-shadow">
-    <video
-      controls="controls"
-      poster="{{ media('/img/firefox/firstrun/video-poster.jpg') }}"
-      height="360"
-      width="640"
-      data-overlay-hidden-text="{{_('Play video')}}"
-      id="firstrun-video">
-      <source src="//videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.webm">
-    </video>
+    {{ video('Mozilla_Firefox_Manifesto_v0.2_640.webm',
+             prefix='//videos-cdn.mozilla.net/brand/',
+             poster=media('/img/firefox/firstrun/video-poster.jpg'),
+             id='firstrun-video',
+             extra_attrs={'data-overlay-hidden-text': _('Play video')}) }}
   </div>
 
 </article>
