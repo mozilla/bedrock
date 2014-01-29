@@ -242,6 +242,13 @@ MINIFY_BUNDLES = {
         'firefox_os_ie': (
             'css/firefox/os/firefox-os-ie.less',
         ),
+        'firefox_os_mwc_2014_preview': (
+            'css/base/mozilla-modal.less',
+            'css/firefox/os/mwc-2014-preview.less',
+        ),
+        'firefox_os_mwc_2014_preview_ie7': (
+            'css/firefox/os/mwc-2014-preview-ie7.less',
+        ),
         'firefox_releases_index': (
             'css/firefox/releases-index.less',
         ),
@@ -517,6 +524,10 @@ MINIFY_BUNDLES = {
         ),
         'firefox_os_ie9': (
             'js/libs/matchMedia.addListener.js',
+        ),
+        'firefox_os_mwc_2014_preview': (
+            'js/base/mozilla-modal.js',
+            'js/firefox/os/mwc-2014-preview.js',
         ),
         'firefox_faq': (
             'js/base/mozilla-expanders.js',

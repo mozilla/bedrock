@@ -72,4 +72,6 @@ urlpatterns = patterns('',
     page('firefox/os/notes/1.0.1', 'firefox/os/notes-1.0.1.html'),
     page('firefox/os/notes/1.1', 'firefox/os/notes-1.1.html'),
     page('firefox/os/notes/1.2', 'firefox/os/notes-1.2.html'),
+
+    page('mwc', 'firefox/os/mwc-2014-preview.html'),
 )
