@@ -7,7 +7,7 @@
     <h4>{{ _('Download Firefox') }} — {{ locale_name|safe }}</h4>
     <ul>
       {% for plat in builds -%}
-        <li><a href="{{ plat.download_link_direct or plat.download_link }}" class="button-green">{{ plat.os_pretty }}</a></li>
+        <li><a href="{{ plat.download_link_direct or plat.download_link }}" data-channel="{{ build or 'release' }}" class="button-green">{{ plat.os_pretty }}</a></li>
       {%- endfor %}
     </ul>
   </div>
@@ -37,8 +37,8 @@
     {% for plat in builds %}
       <li class="{{ plat.os }}">
         <a class="download-link"
-           href="{{ plat.download_link }}"{% if plat.download_link_direct %}
-           data-direct-link="{{ plat.download_link_direct }}"{% endif %}>
+           href="{{ plat.download_link }}" data-channel="{{ build or 'release' }}"
+           {%- if plat.download_link_direct %} data-direct-link="{{ plat.download_link_direct }}"{% endif %}>
           <span class="download-content">
             {% if plat.os == 'os_android' %}
               {% if build == 'beta' %}
@@ -70,25 +70,25 @@
   </ul>
   {% if show_mobile %}
     <small class="download-other os_android">
-      <a href="https://support.mozilla.org/kb/will-firefox-work-my-mobile-device">{{ _('Supported Devices') }}</a> |
+      <a href="https://support.mozilla.org/kb/will-firefox-work-my-mobile-device" data-type="devices">{{ _('Supported Devices') }}</a> |
       {% if build %}
-        <a href="/en-US/mobile/{{ build }}/notes">{{ _('What’s New') }}</a> |
+        <a href="/en-US/mobile/{{ build }}/notes" data-type="notes">{{ _('What’s New') }}</a> |
       {% else %}
-        <a href="/en-US/mobile/notes">{{ _('What’s New') }}</a> |
+        <a href="/en-US/mobile/notes" data-type="notes">{{ _('What’s New') }}</a> |
       {% endif %}
-      <a href="/en-US/legal/privacy/firefox.html">{{ _('Privacy') }}</a>
+      <a href="/en-US/legal/privacy/firefox.html" data-type="privacy">{{ _('Privacy') }}</a>
     </small>
   {% endif %}
   {% if show_desktop %}
     <small class="download-other os_linux os_osx os_windows">
       {% if build %}
-        <a href="/en-US/firefox/all-{{ build }}.html">{{ _('Systems &amp; Languages') }}</a> |
-        <a href="/en-US/firefox/{{ build }}/notes">{{ _('What’s New') }}</a> |
+        <a href="/en-US/firefox/all-{{ build }}.html" data-type="all">{{ _('Systems &amp; Languages') }}</a> |
+        <a href="/en-US/firefox/{{ build }}/notes" data-type="notes">{{ _('What’s New') }}</a> |
       {% else %}
-        <a href="/en-US/firefox/all">{{ _('Systems &amp; Languages') }}</a> |
-        <a href="/en-US/firefox/notes">{{ _('What’s New') }}</a> |
+        <a href="/en-US/firefox/all" data-type="all">{{ _('Systems &amp; Languages') }}</a> |
+        <a href="/en-US/firefox/notes" data-type="notes">{{ _('What’s New') }}</a> |
       {% endif %}
-      <a href="/en-US/legal/privacy/firefox.html">{{ _('Privacy') }}</a>
+      <a href="/en-US/legal/privacy/firefox.html" data-type="privacy">{{ _('Privacy') }}</a>
     </small>
   {% endif %}
 </div>
