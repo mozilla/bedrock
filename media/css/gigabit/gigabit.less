@@ -4,11 +4,86 @@
 
 @import "../sandstone/lib.less";
 
+#gigabit #outer-wrapper,
+#about #outer-wrapper{
+  background: url("/media/img/gigabit/gigabit-bg.png") no-repeat;
+}
+
+a{
+  color: #588fb4;
+}
+
+.span(4){
+  .span(4);
+}
+
+.span8{
+  .span(8);
+}
+
+.span12{
+  .span(12);
+}
+
+.full-width{
+  width: 100%;
+}
+
+h3,
+h4{
+  margin-bottom: 20px;
+}
+
 #site-title{
-    margin-top: 50px;
+    margin-top: 0;
+}
+
+#wordmark{
+  .span-all();
+  img{
+    width: 120px;
+  }
 }
 
 section.container{
-    margin-top: 20px;
-    margin-bottom: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding-top: @gridGutterWidth;
+  padding-bottom: @gridGutterWidth;
 }
+
+#cta-apply{
+  background: #fff;
+  padding-top: 40px;
+  padding-bottom: 40px;
+
+  .span4{
+    text-align: center;
+    .button{
+      padding: 15px 80px;
+    }
+  }
+}
+
+.dates{
+  margin-bottom: 15px;
+}
+
+#partners{
+  background: #fff;
+  padding-top: 30px;
+  padding-bottom: 15px;
+
+  img{
+    margin: 0 15px;
+  }
+
+  a{
+    opacity: 0.5;
+  }
+
+  a:hover{
+    opacity: 1;
+  }
+}
+

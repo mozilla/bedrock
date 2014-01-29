@@ -7,5 +7,5 @@ from bedrock.mozorg.util import page
 
 urlpatterns = patterns('',
     page('', 'gigabit/gigabit.html'),
-    page('faq', 'gigabit/faq.html')
+    page('apply', 'gigabit/apply.html')
 )

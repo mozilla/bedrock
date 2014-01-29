@@ -1,0 +1,92 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "base-resp.html" %}
+
+{% block page_title %}{{_('Gigabit')}}{% endblock %}
+{% block page_desc %}{{_('Gigabit - Description.')}}{% endblock %}
+{% block body_id %}about{% endblock %}
+{% block body_class %}sand gigabit-home{% endblock %}
+{% block page_image %}{{ media('img/gigabit/gigabit_logo-wordmark_500x156.png') }}?2013-11{% endblock %}
+{% block page_favicon %}{{ media('img/gigabit/favicon.png') }}?2013-11{% endblock %}
+{% block site_header_logo %}
+{% endblock %}
+
+{% block extrahead %}
+  {{ css('gigabit') }}
+{% endblock %}
+
+{% block site_header_nav %}
+  <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
+  <nav id="nav-main" role="navigation">
+    <ul id="nav-main-menu">
+      <li><a href="{{ url('gigabit.gigabit') }}">{{_('Home')}}</a></li>
+      <li><b>{{_('Apply')}}</b></li>
+      <li><a href="//blog.mozilla.org/gigabit/" target="_blank">{{_('BLOG')}}</a></li>
+    </ul>
+  </nav>
+{% endblock %}
+
+{% block content %}
+  <div id="wordmark"><img src="{{ media('img/gigabit/gigabit-wordmark.png') }}" alt=""></div>
+
+  <section id="site-title" class="container center">
+    <header class="large">{{ _("Apply") }}</header>
+  </section>
+
+  <section id="cta-apply" class="container">
+    <div class="span12"><h3>{{ _("Apply to the Community Gigabit Fund") }}</h3></div>
+    <div class="span8">
+      {{ _("If you have an idea for a project based in Kansas City or Chattanooga, we welcome your application to the Community Gigabit Fund. Participants are highly encouraged to get in touch with us during the application process -- we'd be pleased to help you create a strong submission.") }}
+    </div>
+    <div class="span4">
+      <a href="" class="button arrow"><span>{{ _(("Apply Now")) }}</span></a>
+    </div>
+  </section>
+
+  <section id="questions" class="container">
+    <div class="span8">
+      <div class="full-width"><h4>{{ _("Questions?") }}</h4></div>
+      <p>
+        {{ _("Our <a href='//wiki.mozilla.org/Gigabit' target='_blank'>wiki</a> is full of helpful information and we encourage you to read through the Gigabit Community Fund’s <a href=''>Terms and Conditions</a> [/terms]. Free to <a href=''>email us</a> gigabit@mozilla.org any time. Don't be shy — we're friendly!") }}
+      </p>
+      <p>
+        {{ _("Submission of new versions will be allowed until the application period closes and the review process begins.") }}
+      </p>
+      <p>
+        {{ _("<a href='//wiki.mozilla.org/Working_open'>Mozilla works open</a>. We will make the content of all submissions publicly viewable. ") }}
+      </p>
+      <p>
+        {{ _("Projects that are awarded funding are encouraged to work open. Funded participants will be expected to create a free GitHub repository that, at minimum, documents their submited proposal. You retain all ownership rights in your submission in the Fund.") }}
+      </p>
+    </div>
+    <div class="span4">
+      <div class="full-width"><h4>{{ _("Dates & Deadlines") }}</h4></div>
+      <div class="full-width dates">
+        {{ _(("The <b>Spring Pilot Period</b> runs from March 18 – June 10, 2014. The deadline for applications is Tuesday, March 11, 2014 at midnight.")) }}
+      </div>
+      <div class="full-width dates">
+        {{ _(("The <b>Summer Pilot Period</b> runs from June 25  – September 16, 2014. The deadline for applications is Tuesday, June 17, 2014 at midnight.")) }}
+      </div>
+      <div class="full-width">
+        {{ _((" Participants are highly encouraged to get in touch with us during the application process -- we'd  be pleased to help you create a strong submission.")) }}
+      </div>
+    </div>
+  </section>
+
+  <section id="partners" class="container">
+    <div class="span12 center">
+      <a href="//www.geni.net/" target="_blank"><img src="{{ media('img/gigabit/geni.png') }}" alt=""></a>
+      <a href="//us-ignite.org/" target="_blank"><img src="{{ media('img/gigabit/ignite.png') }}" alt=""></a>
+      <a href="//developer.mozilla.org/en-US/" target="_blank"><img src="{{ media('img/gigabit/mdn.png') }}" alt=""></a>
+      <a href="//www.nsf.gov/" target="_blank"><img src="{{ media('img/gigabit/NSF.png') }}" alt=""></a>
+      <a href="//webfwd.org/" target="_blank"><img src="{{ media('img/gigabit/webfwd.png') }}" alt=""></a>
+    </div>
+  </section>
+
+  <img src="{{ media('img/styleguide/divider.png') }}" alt="">
+{% endblock %}
+
+{% block email_form %}
+{% endblock %}
