@@ -49,20 +49,18 @@
   <section id="questions" class="container">
     <div class="span8">
       <div class="full-width"><h2>{{ _("Questions?") }}</h2></div>
-      {% trans url='http://mozilla.org' %}
-        <p>
-          Our <a href="{{ url }}" target="_blank">wiki is full of helpful information and we encourage you to read through the Gigabit Community Fund’s Terms and Conditions. Feel free to email us any time. Don't be shy — we're friendly!
-        </p>
-      {% endtrans %}
       <p>
-        {{ _("Our <a href='//wiki.mozilla.org/Gigabit' target='_blank'>wiki</a> is full of helpful information and we encourage you to read through the Gigabit Community Fund’s <a href='' class='missing-link'>Terms and Conditions</a>. Feel free to <a href='mailto:gigabit@mozilla.org'>email us</a> any time. Don't be shy — we're friendly!") }}
-        {{_('<a href="%s">Terms and Conditions</a>.')|format(url('gigabit.terms')) }}
+        {% trans url_wiki='//wiki.mozilla.org/Gigabit', url_terms=url('gigabit.terms'), url_email='mailto:gigabit@mozilla.org' %}
+            Our <a href="{{ url_wiki }}" target="_blank">wiki</a> is full of helpful information and we encourage you to read through the Gigabit Community Fund’s <a href="{{ url_terms }}" target="_blank">Terms and Conditions</a>. Feel free to <a href="{{ url_email }}" target="_blank">email us</a> any time. Don't be shy — we're friendly!
+        {% endtrans %}
       </p>
       <p>
         {{ _("Submission of new versions will be allowed until the application period closes and  the review process begins. The latest submitted version before the deadline will be considered final.") }}
       </p>
       <p>
-        {{_('<a href="%(url)s" target="_blank">Mozilla works open</a>. We will make the content of all submissions publicly viewable.')|format(url='//wiki.mozilla.org/Working_open') }}
+        {% trans url_moz_open='//wiki.mozilla.org/Working_open' %}
+            <a href="{{ url_moz_open }}" target="_blank">Mozilla works open</a>. We will make the content of all submissions publicly viewable.
+        {% endtrans %}
       </p>
       <p>
         {{ _("Projects  that are awarded funding are encouraged to work open. Funded  participants will be expected to create a free GitHub repository that,  at minimum, documents their submitted proposal. You retain all ownership  rights in your submission in the Fund.") }}
