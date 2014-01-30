@@ -148,8 +148,11 @@ MINIFY_BUNDLES = {
         'contribute-page': (
             'css/mozorg/contribute-page.less',
         ),
-        'contribute-university-ambassadors': (
-            'css/mozorg/contribute-ambassadors.less',
+        'contribute-studentambassadors-landing': (
+            'css/mozorg/contribute/studentambassadors/landing.less',
+        ),
+        'contribute-studentambassadors-join': (
+            'css/mozorg/contribute/studentambassadors/join.less',
         ),
         'dnt': (
             'css/base/mozilla-expanders.less',
@@ -429,8 +432,8 @@ MINIFY_BUNDLES = {
             'js/mozorg/contribute-form.js',
             'js/base/mozilla-input-placeholder.js',
         ),
-        'contribute-university-ambassadors': (
-            'js/mozorg/contribute-university-ambassadors.js',
+        'contribute-studentambassadors-join': (
+            'js/mozorg/contribute-studentambassadors-join.js',
             'js/base/mozilla-input-placeholder.js',
         ),
         'existing': (

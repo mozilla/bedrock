@@ -1,0 +1,96 @@
+{% extends "mozorg/base-resp.html" %}
+
+{% block facebook_id %}107747252595375{# facebook.com/Firefox.Student.Ambassadors #}{% endblock %}
+{% block twitter_id %}mozstudents{% endblock %}
+
+{% block page_title %}{{ _('Firefox Student Ambassadors') }}{% endblock %}
+{% block page_desc %}{{ _('Individuals who are passionate about Mozilla and raise awareness about the many benefits of Firefox &amp; other Mozilla products - especially <a href="%s">Firefox&nbsp;OS</a>!') }}{% endblock %}
+{% block page_image %}{{ media('img/contribute/studentambassadors/hero.jpg') }}{% endblock %}
+{% block extrahead %}
+  {{ css('contribute-studentambassadors-landing') }}
+{% endblock %}
+
+{% block body_id %}contribute-studentambassadors-landing{% endblock %}
+{% block body_class %}sky{% endblock %}
+
+{% block site_header_nav %}{% endblock %}
+{% block site_header_logo %}
+  <h2>{{ high_res_img('img/contribute/studentambassadors/logo.png', {'alt': 'Firefox Student Ambassadors', 'width': '323'}) }}</h2>
+{% endblock %}
+
+{% block content %}
+  <div id="main-feature">
+    <div class="row">
+      <header>
+        <h1>{{ self.page_title() }}</h1>
+        <p>{{ self.page_desc()|format(url('firefox.os.index')) }}</p>
+      </header>
+      <div class="callout">
+        <p>{{ _('At this time, new participants are being accepted into the program. To serve as a Firefox Student Ambassador you must be:') }}</p>
+        <ul>
+          <li>{{ _('At least <strong>18 years</strong> of age') }}</li>
+          <li>{{ _('Currently a student, professor, or administrator with a college or university') }}</li>
+        </ul>
+        <p><a href="{{ url('mozorg.contribute.studentambassadors.join') }}" class="button">{{ _('Become a Student Ambassador') }}</a></p>
+      </div>
+    </div>
+  </div>
+  <div id="main-content">
+    <div class="row">
+      <div class="col">
+        <section id="sec-who">
+          <h2>{{ _('Who We Are') }}</h2>
+          <p>
+            {{ _('Creative and resourceful, Student Ambassadors lead campaigns and projects at their colleges and in their communities to encourage others to <a href="%s">contribute</a> to Mozilla (and utilize our products).')|format(url('mozorg.contribute')) }}
+            {{ _('Together, Firefox Student Ambassadors play a large role in helping to improve the global experience of people on the Web.') }}
+          </p>
+        </section>
+      </div>
+      <div class="col">
+        <section id="sec-what">
+          <h2>{{ _('What We Do') }}</h2>
+          <ul>
+            <li>{{ _('<a href="%s">Promote Firefox</a> for Desktop and Android')|format('https://affiliates.mozilla.org/') }}</li>
+            <li>{{ _('Support the successful launch of <a href="%s">Firefox&nbsp;OS</a> in communities (and campuses!) around the world')|format(url('firefox.os.index')) }}</li>
+            <li>{{ _('Educate others about Mozilla’s mission') }}</li>
+            <li>{{ _('Grow the Mozilla Community') }}</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <section id="sec-benefits">
+          <h2>{{ _('Benefits of Joining') }}</h2>
+          <ul>
+            <li>{{ _('Obtain leadership roles on your campus') }}</li>
+            <li>{{ _('Help grow our community (and spread our mission) around the world') }}</li>
+            <li>{{ _('Receive a bunch of cool rewards and recognition opportunities') }}</li>
+            <li>{{ _('Help promote the open web and gain marketing experience') }}</li>
+            <li>{{ _('Potential for a Mozilla internship') }}</li>
+            <li>{{ _('Access to a network of Firefox Student Ambassadors all over the world') }}</li>
+          </ul>
+        </section>
+      </div>
+      <div class="col">
+        <section id="sec-touch">
+          <h2>{{ _('Get in Touch') }}</h2>
+          <ul>
+            <li><a href="https://blog.mozilla.org/studentambassadors/">{{ _('Student Ambassadors Blog') }}</a></li>
+            <li><a href="https://wiki.mozilla.org/StudentAmbassadors">{{ _('Student Ambassadors Wiki') }}</a></li>
+            <li class="twitter"><a href="https://twitter.com/mozstudents">{{ _('Twitter') }}</a></li>
+            <li class="facebook"><a href="https://www.facebook.com/Firefox.Student.Ambassadors">{{ _('Facebook') }}</a></li>
+            <li class="gplus"><a href="https://plus.google.com/107726964966247240749/about">{{ _('Google+') }}</a></li>
+            <li class="email">{{ _('Email: firefoxstudents[at]mozilla.com') }}</li>
+            <li>{{ _('<a href="%s">Find Student Ambassadors</a> in your university or country')|format('https://wiki.mozilla.org/Category:FirefoxClubs') }}</li>
+            <li><a href="{{ url('mozorg.contribute') }}">{{ _('Mozilla Contribute Page') }}</a></li>
+            <li><a href="https://careers.mozilla.org/en-US/university/">{{ _('Mozilla Internships') }}</a></li>
+            <li><a href="https://air.mozilla.org/channels/ambassadors/">{{ _('Air Mozilla') }}</a></li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block email_form %}{% endblock %}
