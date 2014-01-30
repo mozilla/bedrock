@@ -26,3 +26,13 @@ STATSD_CLIENT = 'django_statsd.clients.normal'
 GA_ACCOUNT_CODE = ''
 
 SESSION_COOKIE_SECURE = False
+
+# Twitter apps' consumer key/secret and access token/secret
+TWITTER_APP_KEYS = {
+    'mozstudents': {
+        'CONSUMER_KEY': '',
+        'CONSUMER_SECRET': '',
+        'ACCESS_TOKEN': '',
+        'ACCESS_TOKEN_SECRET': ''
+    },
+}

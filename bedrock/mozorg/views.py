@@ -5,6 +5,7 @@
 import re
 
 from django.conf import settings
+from django.core.cache import cache
 from django.core.context_processors import csrf
 from django.http import HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
@@ -24,8 +25,9 @@ from bedrock.mozorg import email_contribute
 from bedrock.mozorg.forms import (ContributeForm,
                                   ContributeStudentAmbassadorForm,
                                   WebToLeadForm)
-from bedrock.mozorg.util import hide_contrib_form
-from bedrock.mozorg.util import HttpResponseJSON
+from bedrock.mozorg.util import (HttpResponseJSON,
+                                 hide_contrib_form,
+                                 TwitterAPI)
 from bedrock.newsletter.forms import NewsletterFooterForm
 
 
@@ -195,6 +197,25 @@ def plugincheck(request, template='mozorg/plugincheck.html'):
     }
 
     return l10n_utils.render(request, template, data)
+
+
+def contribute_studentambassadors_landing(request):
+    account = 'mozstudents'
+    cache_key = 'tweets-%s' % account
+    tweets = cache.get(cache_key)
+
+    # Tweets are retrieved by a cronjob. This is a fallback:
+    if tweets is None:
+        try:
+            tweets = TwitterAPI(account).user_timeline(screen_name=account)
+        except:
+            tweets = []
+
+        cache.set(cache_key, tweets, 3600)  # Cache for 1 hour
+
+    return l10n_utils.render(request,
+                             'mozorg/contribute/studentambassadors/landing.html',
+                             {'tweets': tweets})
 
 
 @csrf_protect

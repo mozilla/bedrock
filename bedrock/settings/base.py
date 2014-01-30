@@ -149,6 +149,7 @@ MINIFY_BUNDLES = {
             'css/mozorg/contribute-page.less',
         ),
         'contribute-studentambassadors-landing': (
+            'css/libs/twitter.less',
             'css/mozorg/contribute/studentambassadors/landing.less',
         ),
         'contribute-studentambassadors-join': (
@@ -766,6 +767,11 @@ HMAC_KEYS = {
 FEEDS = {
     'mozilla': 'https://blog.mozilla.org/feed/'
 }
+
+# Twitter accounts to retrieve tweets with the API
+TWEETS = (
+    'mozstudents',
+)
 
 BASKET_URL = 'http://basket.mozilla.com'
 

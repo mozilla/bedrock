@@ -156,6 +156,24 @@
   }
 }
 
+#sec-twitter {
+  .twitter-follow-button {
+    float: right;
+    margin: -34px 0 0;
+  }
+
+  .twitter-timeline-widget {
+    clear: both;
+    overflow: auto;
+    height: 25em;
+
+    & > header {
+      position: absolute;
+      left: -99999px;
+    }
+  }
+}
+
 @media only screen and (max-width: @breakDesktop) {
   #main-feature header {
     h1, p {
@@ -237,5 +255,9 @@
       font-size: @largeFontSize;
       font-family: inherit;
     }
+  }
+
+  #sec-twitter .twitter-follow-button {
+    margin: 0;
   }
 }
