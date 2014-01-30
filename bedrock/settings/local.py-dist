@@ -26,3 +26,5 @@ STATSD_CLIENT = 'django_statsd.clients.normal'
 GA_ACCOUNT_CODE = ''
 
 SESSION_COOKIE_SECURE = False
+
+USE_GRUNT_LIVERELOAD = False
