@@ -42,6 +42,7 @@
     </div>
     <div class="span4">
       <a id="apply-button" href="//docs.google.com/a/mozillafoundation.org/forms/d/13MKzQ7NMOgvHLxJBGRlS1Tp6Vg98-_BUH3vG6teGixc/viewform" target="_blank" class="button arrow"><span>{{ _(("Apply Now")) }}</span></a>
+      {{_('<a href="%s" target="_blank" class="tnc-link">Terms and Conditions</a>')|format(url('gigabit.terms')) }}
     </div>
   </section>
 
@@ -50,13 +51,13 @@
       <div class="full-width"><h2>{{ _("Questions?") }}</h2></div>
       <p>
         {{ _("Our <a href='//wiki.mozilla.org/Gigabit' target='_blank'>wiki</a> is full of helpful information and we encourage you to read through the Gigabit Community Fund’s <a href='' class='missing-link'>Terms and Conditions</a>. Feel free to <a href='mailto:gigabit@mozilla.org'>email us</a> any time. Don't be shy — we're friendly!") }}
-        <a href="{{ url('gigabit.terms') }}" class='missing-link' target="_blank">Terms and Conditions</a>
+        {{_('<a href="%s">Terms and Conditions</a>.')|format(url('gigabit.terms')) }}
       </p>
       <p>
         {{ _("Submission of new versions will be allowed until the application period closes and  the review process begins. The latest submitted version before the deadline will be considered final.") }}
       </p>
       <p>
-        {{ _("<a href='//wiki.mozilla.org/Working_open'>Mozilla works open</a>. We will make the content of all submissions publicly viewable. ") }}
+        {{_('<a href="%(url)s" target="_blank">Mozilla works open</a>. We will make the content of all submissions publicly viewable.')|format(url='//wiki.mozilla.org/Working_open') }}
       </p>
       <p>
         {{ _("Projects  that are awarded funding are encouraged to work open. Funded  participants will be expected to create a free GitHub repository that,  at minimum, documents their submitted proposal. You retain all ownership  rights in your submission in the Fund.") }}
