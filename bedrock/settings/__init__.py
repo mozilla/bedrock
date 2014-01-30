@@ -24,3 +24,4 @@ if 'manage.py' not in sys.argv:
 
 
 MEDIA_URL = CDN_BASE_URL + MEDIA_URL
+STATIC_URL = CDN_BASE_URL + STATIC_URL

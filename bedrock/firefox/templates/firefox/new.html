@@ -11,7 +11,7 @@
 
 {% block site_header_nav %}{% endblock %}
 {% block site_header_logo %}
-  <h2><img src="{{ MEDIA_URL }}img/firefox/new/header-firefox.png?2013-06" alt="{{_('Firefox for desktop')}}"></h2>
+  <h2><img src="{{ static('img/firefox/new/header-firefox.png') }}?2013-06" alt="{{_('Firefox for desktop')}}"></h2>
 {% endblock %}
 
 
@@ -91,7 +91,7 @@
   </div>
   <div id="main-feature">
     <div class="row">
-      <img src="{{ media('img/firefox/new/firefox-logo.png?2013-06') }}" alt="Firefox" />
+      <img src="{{ static('img/firefox/new/firefox-logo.png') }}?2013-06" alt="Firefox" />
       <h1 class="large">{{_('Different by design')}}</h1>
     </div>
   </div>
@@ -196,7 +196,7 @@
   <meta itemprop="name" content="{{_('Firefox')}}">
   <meta itemprop="description" content="{% block product_desc %}{{_('Mozilla Firefox, free web browser, is created by a global non-profit dedicated to putting individuals in control &amp; shaping the future of the web for the public good.')}}{% endblock %}">
   <meta itemprop="url" content="{{ settings.CANONICAL_URL }}/firefox/">
-  <meta itemprop="image" content="{% block product_logo %}{{ media('img/firefox/firefox-256.jpg') }}{% endblock %}">
+  <meta itemprop="image" content="{% block product_logo %}{{ static('img/firefox/firefox-256.jpg') }}{% endblock %}">
   <div itemprop="author" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="{{_('Mozilla')}}">
   </div>

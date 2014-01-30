@@ -36,7 +36,7 @@
           {{ download_firefox(mobile=True, small=True, icon=False) }}
         </div>
         <aside id="phone-tablet-image">
-          <img alt="Android Phone and Tablet" src="/media/img/firefox/fx/android-phone-tablet.jpg?2013-06">
+          <img alt="Android Phone and Tablet" src="{{ static('img/firefox/fx/android-phone-tablet.jpg') }}?2013-06">
         </aside>
       </section>
       <ul class="sub-features">
@@ -73,7 +73,7 @@
         <div id="video-player" class="mozilla-video-control mozilla-video-shadow">
           <video
             controls="controls"
-            poster="{{ media('/img/firefox/video/poster-newtab.jpg') }}"
+            poster="{{ static('img/firefox/video/poster-newtab.jpg') }}"
             height="360"
             width="640"
             data-overlay-hidden-text="{{_('Play video')}}">

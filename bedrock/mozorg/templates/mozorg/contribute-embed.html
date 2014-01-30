@@ -14,12 +14,12 @@
     <title>Mozilla — {{_('Get Involved: Volunteer Opportunities at Mozilla')}} — mozilla.org</title>
 
     <!--[if lte IE 8]>
-    <script src="{{ MEDIA_URL }}js/libs/html5shiv.js"></script>
+    <script src="{{ static('js/libs/html5shiv.js') }}"></script>
     <![endif]-->
 
     {{ css('responsive') }}
     {{ css('contribute') }}
-    <link rel="shortcut icon" href="{{ MEDIA_URL }}img/favicon.ico">
+    <link rel="shortcut icon" href="{{ static('img/favicon.ico') }}">
     {{ js('site') }}
 
     {% include 'includes/google-analytics.html' %}

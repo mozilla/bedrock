@@ -5,7 +5,7 @@
 <div id="mosaic" class="ri-grid">
   <ul>
   {% for i in range(1, 67) %}
-    <li><a><img src="{{ media('img/mosaic/' ~ '%03d'|format(i) ~ '.jpg') }}" alt=""></a></li>
+    <li><a><img src="{{ static('img/mosaic/' ~ '%03d'|format(i) ~ '.jpg') }}" alt=""></a></li>
   {% endfor %}
   </ul>
 </div>

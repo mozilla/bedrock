@@ -69,7 +69,7 @@
 
 <article>
     <div class="demo">
-        <img src="{{ media('img/firefox/technology/tools-style-editor.png') }}" alt="{{ _('Style Editor screenshot') }}" />
+        <img src="{{ static('img/firefox/technology/tools-style-editor.png') }}" alt="{{ _('Style Editor screenshot') }}" />
     </div>
     <h1>{{ _('Style Editor') }}</h1>
     <p>
@@ -84,7 +84,7 @@
 
 <article>
     <div class="demo">
-        <img src="{{ media('img/firefox/technology/tools-debugger.png') }}" alt="{{ _('Debugger screenshot') }}" />
+        <img src="{{ static('img/firefox/technology/tools-debugger.png') }}" alt="{{ _('Debugger screenshot') }}" />
     </div>
     <h1>{{ _('Debugger') }}</h1>
     <p>
@@ -100,7 +100,7 @@
 
 <article>
     <div class="demo">
-        <img src="{{ media('img/firefox/technology/tools-mobile.png?2013-06') }}" alt="{{ _('Mobile developer tools screenshot') }}" />
+        <img src="{{ static('img/firefox/technology/tools-mobile.png?2013-06') }}" alt="{{ _('Mobile developer tools screenshot') }}" />
     </div>
     <h1>{{ _('Mobile developer tools') }}</h1>
     <p>
@@ -117,7 +117,7 @@
 
 <article>
     <div class="demo">
-        <img src="{{ media('img/firefox/technology/tools-developer-toolbar.png?2013-06') }}" alt="{{ _('Developer Toolbar screenshot') }}" />
+        <img src="{{ static('img/firefox/technology/tools-developer-toolbar.png') }}?2013-06" alt="{{ _('Developer Toolbar screenshot') }}" />
     </div>
     <h1>{{ _('Developer Toolbar') }}</h1>
     <p>
@@ -132,7 +132,7 @@
 
 <article class="hasdemo">
     <div class="demo">
-        <img src="{{ media('img/firefox/technology/tools-console.png?2013-06') }}" alt="{{ _('Web Console screenshot') }}" />
+        <img src="{{ static('img/firefox/technology/tools-console.png') }}?2013-06" alt="{{ _('Web Console screenshot') }}" />
     </div>
     <h1>{{ _('Web Console') }}</h1>
     <p>
@@ -149,7 +149,7 @@
 
 <article>
     <div class="demo">
-        <img src="{{ media('img/firefox/technology/tools-inspector.png') }}" alt="{{ _('Page Inspector screenshot') }}" />
+        <img src="{{ static('img/firefox/technology/tools-inspector.png') }}" alt="{{ _('Page Inspector screenshot') }}" />
     </div>
     <h1>{{ _('Page Inspector') }}</h1>
     <p>
@@ -166,7 +166,7 @@
 
 <article>
     <div class="demo">
-        <img src="{{ media('img/firefox/technology/tools-scratchpad.png') }}" alt="{{ _('Scratchpad screenshot') }}" />
+        <img src="{{ static('img/firefox/technology/tools-scratchpad.png') }}" alt="{{ _('Scratchpad screenshot') }}" />
     </div>
     <h1>{{ _('Scratchpad') }}</h1>
     <p>
@@ -564,9 +564,9 @@
 
 <article id="webgldemo" class="hasademo experimental xxxie">
     <h1>{{ _('WebGL') }}</h1>
-    <script src="{{ media('js/firefox/technology/sylvester.js') }}"></script>
-    <script src="{{ media('js/firefox/technology/glUtils.js') }}"></script>
-    <script src="{{ media('js/firefox/technology/gldemo.js') }}"></script>
+    <script src="{{ static('js/firefox/technology/sylvester.js') }}"></script>
+    <script src="{{ static('js/firefox/technology/glUtils.js') }}"></script>
+    <script src="{{ static('js/firefox/technology/gldemo.js') }}"></script>
     <div class="demo">
         <canvas onmouseout="stopTeaPot()" onmouseover="startTeaPot()" height="200" width="300"></canvas>
     </div>
@@ -679,17 +679,17 @@
 
 <article id="audiodemo" class="hasademo experimental xxxie">
     <!--[if gte IE 9]>-->
-    <script src="{{ media('js/firefox/technology/processing.js') }}"></script>
+    <script src="{{ static('js/firefox/technology/processing.js') }}"></script>
     <!--<![endif]-->
 
-    <script src="{{ media('js/firefox/technology/beatdetektor.js') }}"></script>
-    <script src="{{ media('js/firefox/technology/dsp.js') }}"></script>
-    <script src="{{ media('js/firefox/technology/main.js') }}"></script>
-    <audio id="grappes" src="{{ media('img/firefox/technology/track.ogg') }}" preload="auto"></audio>
+    <script src="{{ static('js/firefox/technology/beatdetektor.js') }}"></script>
+    <script src="{{ static('js/firefox/technology/dsp.js') }}"></script>
+    <script src="{{ static('js/firefox/technology/main.js') }}"></script>
+    <audio id="grappes" src="{{ static('img/firefox/technology/track.ogg') }}" preload="auto"></audio>
 
     <h1>{{ _('Audio Sampling and Generation API') }}</h1>
     <div class="demo">
-        <canvas onmouseout="stopProcessingAudio()" onmouseover="startProcessingAudio()" id="audiocube" data-processing-sources="{{ media('js/firefox/technology/anim.pde') }}" style="image-rendering: optimizespeed ! important;" width="128" height="128"></canvas>
+        <canvas onmouseout="stopProcessingAudio()" onmouseover="startProcessingAudio()" id="audiocube" data-processing-sources="{{ static('js/firefox/technology/anim.pde') }}" style="image-rendering: optimizespeed ! important;" width="128" height="128"></canvas>
     </div>
     <p>{{ _('The Firefox Audio Data API allows developers to read, modify and write data from audio and video elements.') }}</p>
     <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/Introducing_the_Audio_API_Extension">{{ _('learn more') }}</a>
@@ -727,7 +727,7 @@
         animations are also supported.
     {% endtrans %}
     </p>
-    <img src="{{ media('img/firefox/technology/lion.svg') }}" alt="{{ _('Lion SVG image example') }}">
+    <img src="{{ static('img/firefox/technology/lion.svg') }}" alt="{{ _('Lion SVG image example') }}">
     <a class="learn" title="{{ _('documentation') }}" href="https://developer.mozilla.org/en/CSS/background-image#Syntax">{{ _('learn more') }}</a>
 </article>
 

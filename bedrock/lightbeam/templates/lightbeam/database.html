@@ -9,10 +9,10 @@
 {% block page_desc %}{{_('The data that you contribute to Lightbeam helps us generate a larger understanding of how we collectively interact in the online space.')}}{% endblock %}
 {% block body_id %}lightbeam{% endblock %}
 {% block body_class %}sky database{% endblock %}
-{% block page_image %}{{ media('img/lightbeam/lightbeam_logo-wordmark_500x156.png') }}{% endblock %}
-{% block page_favicon %}{{ media('img/lightbeam/favicon.png') }}{% endblock %}
+{% block page_image %}{{ static('img/lightbeam/lightbeam_logo-wordmark_500x156.png') }}{% endblock %}
+{% block page_favicon %}{{ static('img/lightbeam/favicon.png') }}{% endblock %}
 {% block site_header_logo %}
-  <h2><a href="{{ url('lightbeam.lightbeam') }}"><img src="{{ media('img/lightbeam/lightbeam_logo-wordmark_500x156.png') }}" class="ligthbeam-wordmark"></a></h2>
+  <h2><a href="{{ url('lightbeam.lightbeam') }}"><img src="{{ static('img/lightbeam/lightbeam_logo-wordmark_500x156.png') }}" class="ligthbeam-wordmark"></a></h2>
 {% endblock %}
 {% block site_header_nav %}
   <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
@@ -91,7 +91,7 @@
   </div>
   <div id="loading">
     <div>
-        <img src="{{ media('img/lightbeam/loader.gif') }}" alt="Loading"><br/>
+        <img src="{{ static('img/lightbeam/loader.gif') }}" alt="Loading"><br/>
         <span>{{_('Loading…')}}</span>
     </div>
   </div>
@@ -100,7 +100,7 @@
 <section class="container">
   <h2>{{_('Supported by the Ford Foundation')}}</h2>
   <div class="span6">
-    <img src="{{ media('img/lightbeam/Lightbeam_partners_fordfoundation.png') }}" alt="" class="partner-logo">
+    <img src="{{ static('img/lightbeam/Lightbeam_partners_fordfoundation.png') }}" alt="" class="partner-logo">
     <p>
         {{_('The work at the Ford Foundation focuses on building outreach campaigns to help people understand online data tracking — both the benefits and the issues')}}. <a href="http://www.fordfoundation.org/" target="_blank"> {{_('Learn more')}} »</a>
     </p>

@@ -1,6 +1,6 @@
 {% extends "styleguide/base.html" %}
 
-{% block guide_logo %}{{ media('/img/styleguide/mozilla-dark.png') }}{% endblock %}
+{% block guide_logo %}{{ static('img/styleguide/mozilla-dark.png') }}{% endblock %}
 
 {% block body_class %}
   {{ super() }}
@@ -17,19 +17,19 @@
   <p>There are 2 main types of headers: light and dark. The light headers are used for productivity applications while the dark headers are found on media applications.</p>
   <p>Additionally, settings and system (for example, edit mode) have their own header styling as shown below.</p>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/headers/default.png?2013-09') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/headers/default.png') }}?2013-09" alt="" />
     <figcaption>{{ _('Default header for light applications') }}</figcaption>
   </figure>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/headers/default-dark.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/headers/default-dark.png') }}" alt="" />
     <figcaption>{{ _('Default header for dark applications') }}</figcaption>
   </figure>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/headers/settings.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/headers/settings.png') }}" alt="" />
     <figcaption>{{ _('Settings header') }}</figcaption>
   </figure>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/headers/system.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/headers/system.png') }}" alt="" />
     <figcaption>{{ _('System (edit mode) header') }}</figcaption>
   </figure>
   <p>The edit mode header is a black 95% transparent header that overlays the main app header, subtly revealing the header behind it.</p>
@@ -37,30 +37,30 @@
 
 <section id="elements">
   <h2>Elements of a Header</h2>
-  <img src="{{ media('/img/styleguide/products/firefoxos/headers/header-elements.png') }}" alt="" class="elements" />
+  <img src="{{ static('img/styleguide/products/firefoxos/headers/header-elements.png') }}" alt="" class="elements" />
   <ol>
     <li><strong>The left hand side area</strong> of the header is reserved for very specific actions: the back navigation button, cancel button and drawer display button. This area is darker and separated from the rest of the header by a full length vertical divider.</li>
     <li><strong>The title is always left aligned</strong> while leaving space on the left hand side for the button even in the cases where it is not present.</li>
     <li><strong>The right hand side is reserved for action buttons</strong> which are divided by a shorter vertical divider.</p>
   </ol>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/headers/no-back.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/headers/no-back.png') }}" alt="" />
     <figcaption>{{ _('No back/drawer navigation') }}</figcaption>
   </figure>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/headers/header-action.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/headers/header-action.png') }}" alt="" />
     <figcaption>{{ _('Header with action (drawer navigation)') }}</figcaption>
   </figure>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/headers/text-button.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/headers/text-button.png') }}" alt="" />
     <figcaption>{{ _('Text action button') }}</figcaption>
   </figure>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/headers/subheader-light.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/headers/subheader-light.png') }}" alt="" />
     <figcaption>{{ _('Edit subheader is light') }}</figcaption>
   </figure>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/headers/subheader-dark.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/headers/subheader-dark.png') }}" alt="" />
     <figcaption>{{ _('Settings subheader is dark grey') }}</figcaption>
   </figure>
 </section>
@@ -68,15 +68,15 @@
 <section id="examples">
   <h2>Usage Examples</h2>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/headers/example-light-app.png?2013-09') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/headers/example-light-app.png') }}?2013-09" alt="" />
     <figcaption>{{ _('Light app header (for productivity)') }}</figcaption>
   </figure>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/headers/example-dark-app.png?2013-09') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/headers/example-dark-app.png') }}?2013-09" alt="" />
     <figcaption>{{ _('Dark app header (for media)') }}</figcaption>
   </figure>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/headers/example-settings.png?2013-09') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/headers/example-settings.png') }}?2013-09" alt="" />
     <figcaption>{{ _('Settings header') }}</figcaption>
   </figure>
 </section>
@@ -84,20 +84,20 @@
 <section id="do_dont">
   <h3>Do</h3>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/headers/do-background.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/headers/do-background.png') }}" alt="" />
     <figcaption>{{ _('Change the background color') }}</figcaption>
   </figure>
   <h3>Don't</h3>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/headers/dont-center.png?2013-09') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/headers/dont-center.png') }}?2013-09" alt="" />
     <figcaption>{{ _('Do not center the title') }}</figcaption>
   </figure>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/headers/dont-button.png?2013-09') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/headers/dont-button.png') }}?2013-09" alt="" />
     <figcaption>{{ _('Do not place square buttons on it') }}</figcaption>
   </figure>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/headers/dont-cover.png?2013-09') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/headers/dont-cover.png') }}?2013-09" alt="" />
     <figcaption>{{ _('Do not cover the left hand side button area') }}</figcaption>
   </figure>
 </section>

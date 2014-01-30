@@ -9,8 +9,8 @@
 {% block body_class %}sky{% endblock %}
 
 {% block page_title_prefix %}{{ _('Mozilla Firefox Web Browser') }} — {% endblock %}
-{% block page_image %}{{ media('img/firefox/firefox-256.jpg') }}{% endblock %}
-{% block page_favicon %}{{ media('img/firefox/favicon.ico?2013-08') }}{% endblock %}
+{% block page_image %}{{ static('img/firefox/firefox-256.jpg') }}{% endblock %}
+{% block page_favicon %}{{ static('img/firefox/favicon.ico') }}?2013-08{% endblock %}
 
 {% block facebook_id %}14696440021{# facebook.com/Firefox #}{% endblock %}
 {% block twitter_id %}firefox{% endblock %}
@@ -78,7 +78,7 @@
 {% endblock %}
 
 {% block site_header_logo %}
-<h2><a href="{{ url('firefox') }}"><img src="{{ media('img/firefox/template/header-logo.png?2013-06') }}" alt="Mozilla Firefox" height="70" width="185" data-inverse-src="{{media('img/firefox/template/header-logo-inverse.png?2013-06') }}"></a></h2>
+<h2><a href="{{ url('firefox') }}"><img src="{{ static('img/firefox/template/header-logo.png') }}?2013-06" alt="Mozilla Firefox" height="70" width="185" data-inverse-src="{{ static('img/firefox/template/header-logo-inverse.png') }}?2013-06"></a></h2>
 {% endblock %}
 
 {% block site_js %}

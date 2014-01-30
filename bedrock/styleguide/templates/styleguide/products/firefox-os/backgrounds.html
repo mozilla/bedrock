@@ -1,6 +1,6 @@
 {% extends "styleguide/base.html" %}
 
-{% block guide_logo %}{{ media('/img/styleguide/mozilla-dark.png') }}{% endblock %}
+{% block guide_logo %}{{ static('img/styleguide/mozilla-dark.png') }}{% endblock %}
 
 {% block body_class %}
   {{ super() }}
@@ -29,23 +29,23 @@
 <section id="usage_buttons">
   <h2>Main Screens</h2>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/backgrounds/main-light.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/backgrounds/main-light.png') }}" alt="" />
     <figcaption>{{ _('Light app screen') }}</figcaption>
   </figure>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/backgrounds/main-light-scroll.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/backgrounds/main-light-scroll.png') }}" alt="" />
     <figcaption>{{ _('Light app screen w/ index scroll') }}</figcaption>
   </figure>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/backgrounds/main-light-2nd.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/backgrounds/main-light-2nd.png') }}" alt="" />
     <figcaption>{{ _('Light app 2nd level navigation screen') }}</figcaption>
   </figure>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/backgrounds/main-dark.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/backgrounds/main-dark.png') }}" alt="" />
     <figcaption>{{ _('Dark app screen (gradient)') }}</figcaption>
   </figure>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/backgrounds/main-dark-scroll.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/backgrounds/main-dark-scroll.png') }}" alt="" />
     <figcaption>{{ _('Dark app screen w/ index scroll (gradient)') }}</figcaption>
   </figure>
 </section>
@@ -53,11 +53,11 @@
 <section id="utilitarian_screens">
   <h2>Utilitarian Screens</h2>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/backgrounds/utilitarian-drawer.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/backgrounds/utilitarian-drawer.png') }}" alt="" />
     <figcaption>{{ _('Drawer (textured)') }}</figcaption>
   </figure>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/backgrounds/utilitarian-settings.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/backgrounds/utilitarian-settings.png') }}" alt="" />
     <figcaption>{{ _('Settings') }}</figcaption>
   </figure>
 </section>
@@ -65,20 +65,20 @@
 <section id="usage_examples">
   <h2>Usage Examples</h2>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/backgrounds/example-communication.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/backgrounds/example-communication.png') }}" alt="" />
     <figcaption>{{ _('Communication app <br />Call log (light app)') }}</figcaption>
   </figure>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/backgrounds/example-music.png?2013-09') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/backgrounds/example-music.png') }}?2013-09" alt="" />
     <figcaption>{{ _('Music <br />Albums list (dark app)') }}</figcaption>
   </figure>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/backgrounds/example-mail.png?2013-09') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/backgrounds/example-mail.png') }}?2013-09" alt="" />
     <figcaption>{{ _('Mail settings (utilitarian)') }}</figcaption>
   </figure>
   <h3>Don't</h3>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/backgrounds/example-dont-contrast.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/backgrounds/example-dont-contrast.png') }}" alt="" />
     <figcaption>{{ _('Do not use backgrounds that can reduce contrast or legibility') }}</figcaption>
   </figure>
 </section>

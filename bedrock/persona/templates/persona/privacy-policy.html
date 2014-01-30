@@ -5,7 +5,7 @@
 {% extends "base-resp.html" %}
 
 {% block page_title %}{{ _('Mozilla Persona Terms of Service') }}{% endblock %}
-{% block page_image %}{{ media('img/mozorg/partnerships/icon-persona.png') }}{% endblock %}
+{% block page_image %}{{ static('img/mozorg/partnerships/icon-persona.png') }}{% endblock %}
 
 {% block twitter_id %}MozillaPersona{% endblock %}
 
@@ -13,7 +13,7 @@
 {% block body_class %}sand{% endblock %}
 
 {% block site_header_logo %}
-  <h2><a href="/persona/"><img src="{{ MEDIA_URL }}img/persona/title.png" height="66" width="180" alt="{{ _('Mozilla Persona') }}"></a></h2>
+  <h2><a href="/persona/"><img src="{{ static('img/persona/title.png') }}" height="66" width="180" alt="{{ _('Mozilla Persona') }}"></a></h2>
 {% endblock %}
 {% block site_header_nav %}
   <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>

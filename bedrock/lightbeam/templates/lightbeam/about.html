@@ -9,10 +9,10 @@
 {% block page_desc %}{{_('Lightbeam visualizes the relationships between the sites you visit and the third party sites that are active on those pages.')}}{% endblock %}
 {% block body_id %}lightbeam{% endblock %}
 {% block body_class %}sky about{% endblock %}
-{% block page_image %}{{ media('img/lightbeam/lightbeam_logo-wordmark_500x156.png') }}?2013-11{% endblock %}
-{% block page_favicon %}{{ media('img/lightbeam/favicon.png') }}?2013-11{% endblock %}
+{% block page_image %}{{ static('img/lightbeam/lightbeam_logo-wordmark_500x156.png') }}?2013-11{% endblock %}
+{% block page_favicon %}{{ static('img/lightbeam/favicon.png') }}?2013-11{% endblock %}
 {% block site_header_logo %}
-  <h2><a href="{{ url('lightbeam.lightbeam') }}"><img src="{{ media('img/lightbeam/lightbeam_logo-wordmark_500x156.png') }}?2013-11" class="ligthbeam-wordmark"></a></h2>
+  <h2><a href="{{ url('lightbeam.lightbeam') }}"><img src="{{ static('img/lightbeam/lightbeam_logo-wordmark_500x156.png') }}?2013-11" class="ligthbeam-wordmark"></a></h2>
 {% endblock %}
 {% block site_header_nav %}
   <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
@@ -55,13 +55,13 @@
     </p>
   </div>
   <div class="span5">
-    <img src="{{ media('img/lightbeam/Lightbeam-AMOScreenshot1_anon.jpg') }}?2013-11" alt="">
+    <img src="{{ static('img/lightbeam/Lightbeam-AMOScreenshot1_anon.jpg') }}?2013-11" alt="">
   </div>
 </section>
 
 <section class="container">
   <div class="span6">
-    <img src="{{ media('img/lightbeam/Lightbeam-meet-firefox.png') }}?2013-11" alt="">
+    <img src="{{ static('img/lightbeam/Lightbeam-meet-firefox.png') }}?2013-11" alt="">
   </div>
   <div class="span6">
     <h2>{{_('The origins of Lightbeam')}}</h2>
@@ -105,20 +105,20 @@
     </p>
   </div>
   <div class="span6">
-    <img src="{{ media('img/lightbeam/Lightbeam-list-view.jpg') }}?2013-11" alt="">
+    <img src="{{ static('img/lightbeam/Lightbeam-list-view.jpg') }}?2013-11" alt="">
   </div>
 </section>
 
 <section class="container partners">
   <h2>{{_('Partners of Lightbeam')}}</h2>
   <div class="span6">
-    <img src="{{ media('img/lightbeam/Lightbeam_partners_fordfoundation.png') }}?2013-11" alt="Ford Foundation" class="partner-logo">
+    <img src="{{ static('img/lightbeam/Lightbeam_partners_fordfoundation.png') }}?2013-11" alt="Ford Foundation" class="partner-logo">
     <p>
       {{_('The <a href="%s">Ford Foundation</a> is a non-profit organization that focuses on the mission of advancing human welfare.')|format('http://www.fordfoundation.org/')}} {{_('They provide support for companies and institutions devoted to strengthening democratic values, reducing poverty and social injustice, supporting human achievement and fostering international co-operation.')}}
     </p>
   </div>
   <div class="span6">
-    <img src="{{ media('img/lightbeam/Lightbeam_partners_ecuad.png') }}?2013-11" alt="SIM Centre" class="partner-logo">
+    <img src="{{ static('img/lightbeam/Lightbeam_partners_ecuad.png') }}?2013-11" alt="SIM Centre" class="partner-logo">
     <p>
       {{_('The <a href="%s">Social + Interactive Media (SIM) Centre</a> at Emily Carr University of Art + Design supports a wide range of projects in design and media, giving companies direct access to the innovative thinking, design skills and research expertise of British Columbia’s most creative faculty and students.')|format('http://www.simcentre.ca/')}}
     </p>

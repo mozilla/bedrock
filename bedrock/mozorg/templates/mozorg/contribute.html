@@ -14,7 +14,7 @@
 {% endblock %}
 
 {% if has_moz15 %}
-  {% block page_image %}{{ media('img/contribute/mozilla15/mozilla15-badge.png') }}{% endblock %}
+  {% block page_image %}{{ static('img/contribute/mozilla15/mozilla15-badge.png') }}{% endblock %}
   {% block page_desc %}
     {% trans %}
       Mozilla exists to promote openness, innovation and opportunity on the Internet.
@@ -303,7 +303,7 @@
              'Mozilla_Firefox_Manifesto_v0.2_640.mp4',
              h=360, w=640,
              prefix='//videos-cdn.mozilla.net/brand/',
-             poster=media('img/contribute/poster-brand.jpg')) }}
+             poster=static('img/contribute/poster-brand.jpg')) }}
   </div>
   <p>
     {{_('You don’t have to be a C++ guru (or even know what that means!) to get involved.<br><b>You just have to love the Web.</b>')}}
@@ -341,7 +341,7 @@
 
             <ul class="contribute-options">
               <li class="row">
-                <img src="{{ MEDIA_URL }}img/contribute/sumo.png" alt="" />
+                <img src="{{ static('img/contribute/sumo.png') }}" alt="" />
                 <h3 id="support">{{_('Helping Users')}}</h3>
                 <div class="content">
                   <p>
@@ -352,7 +352,7 @@ Our support process relies on enthusiastic contributors like you to help others 
                 </div>
               </li>
               <li class="row">
-                <img src="{{ MEDIA_URL }}img/contribute/qmo.png" alt="" />
+                <img src="{{ static('img/contribute/qmo.png') }}" alt="" />
                 <h3 id="qa">{{_('Quality Assurance')}}</h3>
                 <div class="content">
                   <p>
@@ -363,7 +363,7 @@ Quality assurance testing is one of the easiest ways to get started with Mozilla
                 </div>
               </li>
               <li class="row">
-                <img src="{{ MEDIA_URL }}img/contribute/dinohead.png" alt="" />
+                <img src="{{ static('img/contribute/dinohead.png') }}" alt="" />
                 <h3 id="coding">{{_('Coding')}}</h3>
                 <div class="content">
                   <p>
@@ -374,7 +374,7 @@ Quality assurance testing is one of the easiest ways to get started with Mozilla
                 </div>
               </li>
               <li class="row">
-                <img src="{{ MEDIA_URL }}img/contribute/firefox.png?2013-06" alt="" />
+                <img src="{{ static('img/contribute/firefox.png') }}" alt="" />
                 <h3 id="marketing">{{_('Spread the Word')}}</h3>
                 <div class="content">
                   <p>
@@ -385,7 +385,7 @@ Help us spread the word about how Firefox and other Mozilla projects are buildin
                 </div>
               </li>
               <li class="row">
-                <img src="{{ media('/img/contribute/localization.png') }}" alt="" />
+                <img src="{{ static('img/contribute/localization.png') }}" alt="" />
                 <h3 id="l10n">{{_('Localization') }}</h3>
                 <div class="content">
                   <p>
@@ -396,7 +396,7 @@ Get involved with Mozilla by making Firefox, Thunderbird and other projects <a h
                 </div>
               </li>
               <li class="row">
-                <img src="{{ media('/img/contribute/web.png') }}" alt="" />
+                <img src="{{ static('img/contribute/web.png') }}" alt="" />
                 <h3 id="webdev">{{_('Web Development') }}</h3>
                 <div class="content">
                   <p>
@@ -407,7 +407,7 @@ Our web sites are open for web developers to hack on.  <a href="{{ webdev_url }}
                 </div>
               </li>
               <li class="row">
-                <img src="{{ media('/img/contribute/addons.png') }}" alt="" />
+                <img src="{{ static('img/contribute/addons.png') }}" alt="" />
                 <h3 id="addons">{{_('Add-ons') }}</h3>
                 <div class="content">
                   <p>
@@ -418,7 +418,7 @@ Mozilla products have a powerful extension system that allows you to make small 
                 </div>
               </li>
               <li class="row">
-                <img src="{{ media('/img/contribute/creativecollective.png') }}" alt="" />
+                <img src="{{ static('img/contribute/creativecollective.png') }}" alt="" />
                 <h3 id="design">{{_('Visual Design') }}</h3>
                 <div class="content">
                   <p>
@@ -429,7 +429,7 @@ We want to make it possible for artists to cover the web and people with designs
                 </div>
               </li>
               <li class="row">
-                <img src="{{ media('/img/contribute/mdn.png') }}" alt="" />
+                <img src="{{ static('img/contribute/mdn.png') }}" alt="" />
                 <h3 id="docs">{{_('Documentation and Writing') }}</h3>
                 <div class="content">
                   <p>
@@ -440,7 +440,7 @@ The Mozilla Developer Network is the hub for information about Mozilla technolog
                 </div>
               </li>
               <li class="row">
-                <img src="{{ media('/img/contribute/webmaker.png') }}" alt="" />
+                <img src="{{ static('img/contribute/webmaker.png') }}" alt="" />
                 <h3 id="education">{{_('Education') }}</h3>
                 <div class="content">
                   <p>
@@ -462,37 +462,37 @@ Help build a generation of webmakers by teaching others how the web works. <a hr
             <ul>
               <li class="row">
                 <a href="/contribute/local/northamerica.html">
-                  <img src="{{ MEDIA_URL }}img/contribute/local/map-th-northamerica.png" alt="">
+                  <img src="{{ static('img/contribute/local/map-th-northamerica.png') }}" alt="">
                   <h3>{{_('US and Canada')}}</h3>
                 </a>
               </li>
               <li class="row">
                 <a href="/contribute/local/europe.html">
-                  <img src="{{ MEDIA_URL }}img/contribute/local/map-th-europe.png" alt="">
+                  <img src="{{ static('img/contribute/local/map-th-europe.png') }}" alt="">
                   <h3>{{_('Europe')}}</h3>
                 </a>
               </li>
               <li class="row">
                 <a href="/contribute/local/latinamerica.html">
-                  <img src="{{ MEDIA_URL }}img/contribute/local/map-th-latinamerica.png" alt="">
+                  <img src="{{ static('img/contribute/local/map-th-latinamerica.png') }}" alt="">
                   <h3>{{_('Latin America')}}</h3>
                 </a>
               </li>
               <li class="row">
                 <a href="/contribute/local/africamideast.html">
-                  <img src="{{ MEDIA_URL }}img/contribute/local/map-th-africamideast.png" alt="">
+                  <img src="{{ static('img/contribute/local/map-th-africamideast.png') }}" alt="">
                   <h3>{{_('Africa and the Middle East')}}</h3>
                 </a>
               </li>
               <li class="row">
                 <a href="/contribute/local/asia.html">
-                  <img src="{{ MEDIA_URL }}img/contribute/local/map-th-asia.png" alt="">
+                  <img src="{{ static('img/contribute/local/map-th-asia.png') }}" alt="">
                   <h3>{{_('Asia and the South Pacific')}}</h3>
                 </a>
               </li>
               <li class="row">
                 <a href="/contribute/local/southpole.html">
-                  <img src="{{ MEDIA_URL }}img/contribute/local/map-th-southpole.png" alt="">
+                  <img src="{{ static('img/contribute/local/map-th-southpole.png') }}" alt="">
                   <h3>{{_('Antarctica')}}</h3>
                 </a>
               </li>

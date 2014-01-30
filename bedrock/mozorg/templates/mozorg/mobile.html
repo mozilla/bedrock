@@ -5,8 +5,8 @@
 {% extends "base-resp.html" %}
 
 {% block page_title %}Mobile{% endblock %}
-{% block page_image %}{{ media('img/firefox/firefox-256.jpg') }}{% endblock %}
-{% block page_favicon %}{{ media('img/firefox/favicon.ico?2013-08') }}{% endblock %}
+{% block page_image %}{{ static('img/firefox/firefox-256.jpg') }}{% endblock %}
+{% block page_favicon %}{{ static('img/firefox/favicon.ico') }}?2013-08{% endblock %}
 
 {% block facebook_id %}14696440021{# facebook.com/Firefox #}{% endblock %}
 {% block twitter_id %}firefox{% endblock %}
@@ -36,7 +36,7 @@
 
     <section id="b2g">
       <h3>Firefox OS</h3>
-      <img src="{{ media('img/mobile/fxos-mobile.png') }}" alt="">
+      <img src="{{ static('img/mobile/fxos-mobile.png') }}" alt="">
       <p>We created Firefox OS to build the Web as the platform for
       mobile devices. That includes implementing new Web standards
       that aren't restricted by the rules of existing proprietary
@@ -49,7 +49,7 @@
 
     <section id="android">
       <h3>Firefox for Android</h3>
-      <img src="{{ media('img/mobile/illo-fxandroidphone.png?2013-06') }}" alt="">
+      <img src="{{ static('img/mobile/illo-fxandroidphone.png') }}?2013-06" alt="">
       <p>Based on the same principles and technologies as our desktop
       browser, Firefox for Android is fast, smart, safe and full
       of innovations that let you type less, browse more and get
@@ -63,7 +63,7 @@
 
     <section id="marketplace">
       <h3>Apps on the Web</h3>
-      <img src="{{ media('img/mobile/illo-marketplace.png') }}" alt="">
+      <img src="{{ static('img/mobile/illo-marketplace.png') }}" alt="">
       <p>We're bringing our core values &ndash; openness, freedom, user
       choice &ndash; to the world of apps and giving developers with
       full control over content, functionality and how apps are

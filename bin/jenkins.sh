@@ -86,6 +86,9 @@ echo "CREATE DATABASE IF NOT EXISTS \`${JOB_NAME}\`"|mysql -u $DB_USER -h $DB_HO
 echo "Update product_details"
 python manage.py update_product_details
 
+echo "collectstatic to workaround a jingo-minify bug"
+python manage.py collectstatic --clear --no-default-ignore --noinput --verbosity=0
+
 echo "Check PEP-8"
 flake8 bedrock lib
 

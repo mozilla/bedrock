@@ -1,6 +1,6 @@
 {% extends "styleguide/base.html" %}
 
-{% block guide_logo %}{{ media('/img/styleguide/mozilla-dark.png?2013-06') }}{% endblock %}
+{% block guide_logo %}{{ static('img/styleguide/mozilla-dark.png') }}?2013-06{% endblock %}
 
 {% block body_class %}
   {{ super() }}
@@ -17,22 +17,22 @@
     <p>A Firefox OS application icon is a <strong>60x60 pixel</strong> image provided in 24-bit <strong>PNG</strong> format. Each of the standard OS application icons is contained within or underlayed with a <strong>58 pixel</strong> diameter circle shape.</p>
 
     <figure class="first">
-      <img src="{{ media('/img/styleguide/products/firefoxos/icon-template.png?2013-06') }}" alt="Icon template" />
+      <img src="{{ static('img/styleguide/products/firefoxos/icon-template.png') }}?2013-06" alt="Icon template" />
       <figcaption>60x60 pixel canvas<br />58 pixel diameter circle</figcaption>
     </figure>
 
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/icon-circle.png?2013-06') }}" alt="Circle container" />
+      <img src="{{ static('img/styleguide/products/firefoxos/icon-circle.png') }}?2013-06" alt="Circle container" />
       <figcaption>Circle container</figcaption>
     </figure>
 
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/icon-object-circle.png?2013-06') }}" alt="Object + circle underlay" />
+      <img src="{{ static('img/styleguide/products/firefoxos/icon-object-circle.png') }}?2013-06" alt="Object + circle underlay" />
       <figcaption>Object + circle underlay</figcaption>
     </figure>
 
     <figure class="last">
-      <img src="{{ media('/img/styleguide/products/firefoxos/icon-object-integrated-circle.png?2013-06') }}" alt="Object integrated with circle" />
+      <img src="{{ static('img/styleguide/products/firefoxos/icon-object-integrated-circle.png') }}?2013-06" alt="Object integrated with circle" />
       <figcaption>Object integrated with circle</figcaption>
     </figure>
 
@@ -43,17 +43,17 @@
     <p>A drop shadow is automatically generated based on the icon’s silhouette shape; <strong>do not</strong> include a drop shadow in the image you provide.</p>
 
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/icon-shadow-correct.png?2013-06') }}" alt="Correct way to provide icon" />
+      <img src="{{ static('img/styleguide/products/firefoxos/icon-shadow-correct.png') }}?2013-06" alt="Correct way to provide icon" />
       <figcaption>Correct way to provide icon</figcaption>
     </figure>
 
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/icon-shadow-automatic.png?2013-06') }}" alt="Automatically generated drop shadow" />
+      <img src="{{ static('img/styleguide/products/firefoxos/icon-shadow-automatic.png') }}?2013-06" alt="Automatically generated drop shadow" />
       <figcaption>Automatically generated drop shadow</figcaption>
     </figure>
 
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/icon-shadow-incorrect.png?2013-06') }}" alt="Incorrect" />
+      <img src="{{ static('img/styleguide/products/firefoxos/icon-shadow-incorrect.png') }}?2013-06" alt="Incorrect" />
       <figcaption>Incorrect</figcaption>
     </figure>
 
@@ -74,15 +74,15 @@
   <div id="do">
     <h3>Do</h3>
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/icon-do-circle.png?2013-06') }}" alt="Circle example" />
+      <img src="{{ static('img/styleguide/products/firefoxos/icon-do-circle.png') }}?2013-06" alt="Circle example" />
       <figcaption>If you use a circle, it should have a diameter of 58 pixels</figcaption>
     </figure>
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/icon-do-rounded-square.png?2013-06') }}" alt="Rounded square example" />
+      <img src="{{ static('img/styleguide/products/firefoxos/icon-do-rounded-square.png') }}?2013-06" alt="Rounded square example" />
       <figcaption>Rounded square 8 pixel radius corners</figcaption>
     </figure>
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/icon-do-square.png?2013-06') }}" alt="Square example" />
+      <img src="{{ static('img/styleguide/products/firefoxos/icon-do-square.png') }}?2013-06" alt="Square example" />
       <figcaption>Square 1 pixel radius corners</figcaption>
     </figure>
   </div>
@@ -90,13 +90,13 @@
   <div id="do-not">
     <h3>Don't</h3>
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/icon-do-not-circle.png?2013-06') }}" alt="Do not do: Circle example" />
+      <img src="{{ static('img/styleguide/products/firefoxos/icon-do-not-circle.png') }}?2013-06" alt="Do not do: Circle example" />
     </figure>
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/icon-do-not-rounded-square.png?2013-06') }}" alt="Do not do: Rounded square example" />
+      <img src="{{ static('img/styleguide/products/firefoxos/icon-do-not-rounded-square.png') }}?2013-06" alt="Do not do: Rounded square example" />
     </figure>
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/icon-do-not-square.png?2013-06') }}" alt="Do not do: Square example" />
+      <img src="{{ static('img/styleguide/products/firefoxos/icon-do-not-square.png') }}?2013-06" alt="Do not do: Square example" />
     </figure>
   </div>
 </section>
@@ -112,19 +112,19 @@ as in the following examples.</p>
   <div id="circle-a">
     <h3>a)</h3>
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/icon-shape-logo.png?2013-06') }}" alt="Your logo/icon" />
+      <img src="{{ static('img/styleguide/products/firefoxos/icon-shape-logo.png') }}?2013-06" alt="Your logo/icon" />
       <figcaption>Your logo/icon</figcaption>
     </figure>
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/icon-shape-cropped.png?2013-06') }}" alt="Cropped" />
+      <img src="{{ static('img/styleguide/products/firefoxos/icon-shape-cropped.png') }}?2013-06" alt="Cropped" />
       <figcaption>Cropped with 58 pixel diameter circle</figcaption>
     </figure>
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/icon-shape-overlay.png?2013-06') }}" alt="Overlay" />
+      <img src="{{ static('img/styleguide/products/firefoxos/icon-shape-overlay.png') }}?2013-06" alt="Overlay" />
       <figcaption>Optional overlay supplied by Mozilla can be applied</figcaption>
     </figure>
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/icon-shape-final.png?2013-06') }}" alt="Final" />
+      <img src="{{ static('img/styleguide/products/firefoxos/icon-shape-final.png') }}?2013-06" alt="Final" />
       <figcaption>Final</figcaption>
     </figure>
   </div>
@@ -132,15 +132,15 @@ as in the following examples.</p>
   <div id="circle-b">
     <h3>b)</h3>
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/icon-icon.png?2013-06') }}" alt="Your logo/icon" />
+      <img src="{{ static('img/styleguide/products/firefoxos/icon-icon.png') }}?2013-06" alt="Your logo/icon" />
       <figcaption>Your logo/icon</figcaption>
     </figure>
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/icon-icon-underlay.png?2013-06') }}" alt="Icon with underlay" />
+      <img src="{{ static('img/styleguide/products/firefoxos/icon-icon-underlay.png') }}?2013-06" alt="Icon with underlay" />
       <figcaption>Add circular underlay provided by Mozilla</figcaption>
     </figure>
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/icon-icon-colors.png?2013-06') }}" alt="Adjust colors" />
+      <img src="{{ static('img/styleguide/products/firefoxos/icon-icon-colors.png') }}?2013-06" alt="Adjust colors" />
       <figcaption>Adjust colors</figcaption>
     </figure>
   </div>
@@ -149,15 +149,15 @@ as in the following examples.</p>
     <h3>c)</h3>
     <p>You can also make the object in front ‘break frame’, extending beyond the circle, as in the following example:</p>
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/icon-break-example.png?2013-06') }}" alt="Your logo/icon" />
+      <img src="{{ static('img/styleguide/products/firefoxos/icon-break-example.png') }}?2013-06" alt="Your logo/icon" />
       <figcaption>Your logo/icon</figcaption>
     </figure>
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/icon-break-underlay.png?2013-06') }}" alt="Underlay" />
+      <img src="{{ static('img/styleguide/products/firefoxos/icon-break-underlay.png') }}?2013-06" alt="Underlay" />
       <figcaption>Add circular underlay provided by Mozilla</figcaption>
     </figure>
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/icon-break-colors.png?2013-06') }}" alt="Adjust colors" />
+      <img src="{{ static('img/styleguide/products/firefoxos/icon-break-colors.png') }}?2013-06" alt="Adjust colors" />
       <figcaption>Adjust colors</figcaption>
     </figure>
   </div>
@@ -167,24 +167,24 @@ as in the following examples.</p>
   <h2>Examples</h2>
   <div>
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/icon-example-a.png?2013-06') }}" alt="Example icon" />
+      <img src="{{ static('img/styleguide/products/firefoxos/icon-example-a.png') }}?2013-06" alt="Example icon" />
     </figure>
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/icon-example-b.png?2013-06') }}" alt="Example icon" />
+      <img src="{{ static('img/styleguide/products/firefoxos/icon-example-b.png') }}?2013-06" alt="Example icon" />
     </figure>
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/icon-example-c.png?2013-06') }}" alt="Example icon" />
+      <img src="{{ static('img/styleguide/products/firefoxos/icon-example-c.png') }}?2013-06" alt="Example icon" />
     </figure>
   </div>
   <div>
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/icon-example-1a.png?2013-06') }}" alt="Example icon" />
+      <img src="{{ static('img/styleguide/products/firefoxos/icon-example-1a.png') }}?2013-06" alt="Example icon" />
     </figure>
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/icon-example-1b.png?2013-06') }}" alt="Example icon" />
+      <img src="{{ static('img/styleguide/products/firefoxos/icon-example-1b.png') }}?2013-06" alt="Example icon" />
     </figure>
     <figure>
-      <img src="{{ media('/img/styleguide/products/firefoxos/icon-example-1c.png?2013-06') }}" alt="Example icon" />
+      <img src="{{ static('img/styleguide/products/firefoxos/icon-example-1c.png') }}?2013-06" alt="Example icon" />
     </figure>
   </div>
 </section>

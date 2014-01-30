@@ -65,13 +65,13 @@
       <div id="try-on"><p>{{ _('Roll over to try, click to apply') }}</p></div>
       <div class="persona-previewer persona-previewer-random">
         <div class="persona-previewer-content">
-          <div id="persona-tattoo" class="persona-visible"><img src="{{ media('img/firefox/customize/personas-tattoo.png') }}" width="344" height="174" alt="{{ _('preview') }}" /></div>
-          <div id="persona-endless"><img src="{{ media('img/firefox/customize/personas-endless.png') }}" width="344" height="174" alt="{{ _('preview') }}" /></div>
-          <div id="persona-kanagawa"><img src="{{ media('img/firefox/customize/personas-kanagawa.png') }}" width="344" height="174" alt="{{ _('preview') }}" /></div>
+          <div id="persona-tattoo" class="persona-visible"><img src="{{ static('img/firefox/customize/personas-tattoo.png') }}" width="344" height="174" alt="{{ _('preview') }}" /></div>
+          <div id="persona-endless"><img src="{{ static('img/firefox/customize/personas-endless.png') }}" width="344" height="174" alt="{{ _('preview') }}" /></div>
+          <div id="persona-kanagawa"><img src="{{ static('img/firefox/customize/personas-kanagawa.png') }}" width="344" height="174" alt="{{ _('preview') }}" /></div>
 
-          <div id="persona-retronotes"><img src="{{ media('img/firefox/customize/personas-retronotes.png') }}" width="344" height="174" alt="{{ _('preview') }}" /></div>
-          <div id="persona-bobmarley"><img src="{{ media('img/firefox/customize/personas-bobmarley.png') }}" width="344" height="174" alt="{{ _('preview') }}" /></div>
-          <div id="persona-sunset"><img src="{{ media('img/firefox/customize/personas-sunset.png') }}" width="344" height="174" alt="{{ _('preview') }}" /></div>
+          <div id="persona-retronotes"><img src="{{ static('img/firefox/customize/personas-retronotes.png') }}" width="344" height="174" alt="{{ _('preview') }}" /></div>
+          <div id="persona-bobmarley"><img src="{{ static('img/firefox/customize/personas-bobmarley.png') }}" width="344" height="174" alt="{{ _('preview') }}" /></div>
+          <div id="persona-sunset"><img src="{{ static('img/firefox/customize/personas-sunset.png') }}" width="344" height="174" alt="{{ _('preview') }}" /></div>
         </div>
         <ul class="persona-previewer-tabs">
           <li><a href="https://addons.mozilla.org/firefox/addon/japanese-tattoo/"><img src="//getpersonas.cdn.mozilla.net/static/1/0/7610/preview.jpg" width="138" height="46" alt="Japanese Tattoo" /></a></li>
@@ -106,7 +106,7 @@
                  'FF%20576%20h264%20v6.mp4',
                  h=349, w=620,
                  prefix='//videos-cdn.mozilla.net/serv/marketing/696470/',
-                poster=media('img/firefox/video/poster-addons.jpg')) }}
+                 poster=static('img/firefox/video/poster-addons.jpg')) }}
       </div>
       <p id="builder-link">
       {% trans url='https://addons.mozilla.org/developers/builder' %}
@@ -168,7 +168,7 @@
                'FoxySync640.mp4',
                h=349, w=620,
                prefix='//videos-cdn.mozilla.net/serv/marketing/firefox4/',
-               poster=media('img/firefox/video/poster-fx4-sync.jpg')) }}
+               poster=static('img/firefox/video/poster-fx4-sync.jpg')) }}
       </div>
     </div>
   </div>

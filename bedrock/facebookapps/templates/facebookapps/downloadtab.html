@@ -26,7 +26,7 @@
 <header id="masthead">
     {% if noscroll %}
         <a href="#" id="logo">
-            <img src="{{ media('img/facebookapps/downloadtab/header-firefox.png') }}" alt="{{ _('Firefox for desktop') }}" width="180">
+            <img src="{{ static('img/facebookapps/downloadtab/header-firefox.png') }}" alt="{{ _('Firefox for desktop') }}" width="180">
         </a>
     {% endif %}
 
@@ -86,7 +86,7 @@
                 <ul id="slider">
                     <li>
                         <h3 class="single-line">{{ _('Love Firefox? Become one of our 14 million fans.') }}</h3>
-                        <img src="{{ media('img/facebookapps/downloadtab/icon_like_with_txt.png') }}" width="133" height="42" alt="{{ _('Like icon') }}" class="like-txt"/>
+                        <img src="{{ static('img/facebookapps/downloadtab/icon_like_with_txt.png') }}" width="133" height="42" alt="{{ _('Like icon') }}" class="like-txt"/>
                     </li>
                     <li class="visuallyhidden">
                         <h3>{{ _('Facebook Messenger for Firefox') }}</h3>
@@ -118,7 +118,7 @@
         data-page-namespace="{{ settings.FACEBOOK_PAGE_NAMESPACE }}"
         data-active-scene="{{ request.GET.get('scene') }}"
         data-tab-redirect-path="{{ url('facebookapps.tab_redirect') }}"
-        data-share-image-path="{{ media('img/facebookapps/downloadtab/sharing-image.jpg') }}"
+        data-share-image-path="{{ static('img/facebookapps/downloadtab/sharing-image.jpg') }}"
         data-is-dev="{{ 'true' if settings.DEV else 'false' }}"
     ></div>
 

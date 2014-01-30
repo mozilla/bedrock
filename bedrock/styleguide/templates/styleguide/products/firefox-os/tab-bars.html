@@ -1,6 +1,6 @@
 {% extends "styleguide/base.html" %}
 
-{% block guide_logo %}{{ media('/img/styleguide/mozilla-dark.png') }}{% endblock %}
+{% block guide_logo %}{{ static('img/styleguide/mozilla-dark.png') }}{% endblock %}
 
 {% block body_class %}
   {{ super() }}
@@ -19,7 +19,7 @@
   <h2>Tab Bar</h2>
   <p>The Tab Bar is a solid black rectangle that is 4 rem in height and sits at the bottom of the screen. Action icons appear within the Tab Bar allowing the user to navigate between different sections of certain apps.</p>
   <p>The maximum amount of action icons on a normal screen device is 5. There are two variations of icon distribution: Equal and Alternate. Equal distribution is used when the Tab Bar contains similar actions, while the alternate groups icons with similar actions together.</p>
-  <img src="{{ media('/img/styleguide/products/firefoxos/tabbar/tabbar.png') }}" alt="" />
+  <img src="{{ static('img/styleguide/products/firefoxos/tabbar/tabbar.png') }}" alt="" />
 </section>
 
 <section id="toolbar">
@@ -28,54 +28,54 @@
   <p>Similar to Tab Bars, the maximum amount of icons to be used on a normal screen device is 5. There are two kinds of icon distribution, equal and alternate. Equal distribution is used when the Toolbar contains similar actions, while the alternate groups icons with similar actions together.</p>
   <figure>
     <h5>Equal Icon Distribution (5 Items)</h5>
-    <img src="{{ media('/img/styleguide/products/firefoxos/tabbar/toolbar-5-idle.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/tabbar/toolbar-5-idle.png') }}" alt="" />
     <figcaption>{{ _('Idle') }}</figcaption>
   </figure>
   <figure>
     <h5>Equal Icon Distribution (4 Items)</h5>
-    <img src="{{ media('/img/styleguide/products/firefoxos/tabbar/toolbar-4-idle.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/tabbar/toolbar-4-idle.png') }}" alt="" />
     <figcaption>{{ _('Idle') }}</figcaption>
   </figure>
   <figure>
     <h5>Equal Icon Distribution (3 Items)</h5>
-    <img src="{{ media('/img/styleguide/products/firefoxos/tabbar/toolbar-3-idle.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/tabbar/toolbar-3-idle.png') }}" alt="" />
     <figcaption>{{ _('Idle') }}</figcaption>
   </figure>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/tabbar/toolbar-5-pressed.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/tabbar/toolbar-5-pressed.png') }}" alt="" />
     <figcaption>{{ _('Pressed') }}</figcaption>
   </figure>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/tabbar/toolbar-4-pressed.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/tabbar/toolbar-4-pressed.png') }}" alt="" />
     <figcaption>{{ _('Pressed') }}</figcaption>
   </figure>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/tabbar/toolbar-3-pressed.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/tabbar/toolbar-3-pressed.png') }}" alt="" />
     <figcaption>{{ _('Pressed') }}</figcaption>
   </figure>
 
   <figure>
     <h5>Alternate Icon Distribution: Example 1</h5>
-    <img src="{{ media('/img/styleguide/products/firefoxos/tabbar/toolbar-icon-idle.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/tabbar/toolbar-icon-idle.png') }}" alt="" />
     <figcaption>{{ _('Idle') }}</figcaption>
   </figure>
   <figure>
     <h5>Alternate Icon Distribution: Example 2</h5>
-    <img src="{{ media('/img/styleguide/products/firefoxos/tabbar/toolbar-icon-idle-alt.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/tabbar/toolbar-icon-idle-alt.png') }}" alt="" />
     <figcaption>{{ _('Idle') }}</figcaption>
   </figure>
   <figure class="newrow">
-    <img src="{{ media('/img/styleguide/products/firefoxos/tabbar/toolbar-icon-pressed.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/tabbar/toolbar-icon-pressed.png') }}" alt="" />
     <figcaption>{{ _('Pressed') }}</figcaption>
   </figure>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/tabbar/toolbar-icon-pressed-alt.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/tabbar/toolbar-icon-pressed-alt.png') }}" alt="" />
     <figcaption>{{ _('Pressed') }}</figcaption>
   </figure>
 
   <figure class="newrow">
     <h5>Toolbar Structure for Alternate Distribution</h5>
-    <img src="{{ media('/img/styleguide/products/firefoxos/tabbar/toolbar-structure.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/tabbar/toolbar-structure.png') }}" alt="" />
   </figure>
 
 
@@ -87,34 +87,34 @@
   <p>Filters can be placed on the top or bottom of the screen, depending on the scenario for use. The selected filter is white and connects with the content on screen. Unselected filters are light grey and appear to sit behind the selected tab.</p>
   <figure>
     <figcaption>{{ _('Top Filters') }}</figcaption>
-    <img src="{{ media('/img/styleguide/products/firefoxos/tabbar/top-filters.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/tabbar/top-filters.png') }}" alt="" />
   </figure>
   <figure>
     <figcaption>{{ _('Bottom Filters (Maximum Amount)') }}</figcaption>
-    <img src="{{ media('/img/styleguide/products/firefoxos/tabbar/bottom-filters.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/tabbar/bottom-filters.png') }}" alt="" />
   </figure>
 </section>
 
 <section id="examples">
   <h2>Usage Examples</h2>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/tabbar/example-3-actions.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/tabbar/example-3-actions.png') }}" alt="" />
     <figcaption>{{ _('Tab Bar with 3 action icons') }}</figcaption>
   </figure>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/tabbar/example-5-actions.png?2013-09') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/tabbar/example-5-actions.png') }}?2013-09" alt="" />
     <figcaption>{{ _('Tab Bar with 5 action icons') }}</figcaption>
   </figure>
   <figure class="newrow">
-    <img src="{{ media('/img/styleguide/products/firefoxos/tabbar/example-top-filters.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/tabbar/example-top-filters.png') }}" alt="" />
     <figcaption>{{ _('Top filters') }}</figcaption>
   </figure>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/tabbar/example-bottom-filters.png') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/tabbar/example-bottom-filters.png') }}" alt="" />
     <figcaption>{{ _('Bottom filters') }}</figcaption>
   </figure>
   <figure>
-    <img src="{{ media('/img/styleguide/products/firefoxos/tabbar/example-normal.png?2013-09') }}" alt="" />
+    <img src="{{ static('img/styleguide/products/firefoxos/tabbar/example-normal.png') }}?2013-09" alt="" />
     <figcaption>{{ _('Toolbar normal distribution') }}</figcaption>
   </figure>
 </section>
