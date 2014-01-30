@@ -27,9 +27,3 @@ venv
 .vagrant
 *.db
 james.ini
-
-# Files used for Heroku builds
-.buildpacks
-package.json
-
-/node_modules/*

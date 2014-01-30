@@ -47,10 +47,6 @@ def latest_version(locale, channel='release'):
                   firefox_details.firefox_beta_builds)
     version = firefox_details.latest_version(channel)
 
-    print "all_builds = " , all_builds
-    print "version ===== " , version
-
-
     for builds in all_builds:
         if locale in builds and version in builds[locale]:
             return version, builds[locale][version]
@@ -142,8 +138,6 @@ def download_firefox(ctx, build='release', small=False, icon=True,
             'latest', which bouncer will translate to the funnelcake build.
     :return: The button html.
     """
-
-    print "build = " , build
 
     alt_build = '' if build == 'release' else build
     platform = 'mobile' if mobile else 'desktop'
