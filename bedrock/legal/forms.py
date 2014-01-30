@@ -16,7 +16,7 @@ FRAUD_REPORT_FILE_SIZE_LIMIT = 5242880  # 5MB
 
 class FraudReportForm(forms.Form):
     input_url = forms.URLField(
-        max_length=40,
+        max_length=512,
         required=True,
         error_messages={
             'required': _lazy(u'Please enter a URL.'),
