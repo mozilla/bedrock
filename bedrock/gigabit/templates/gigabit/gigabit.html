@@ -22,8 +22,8 @@
   <nav id="nav-main" role="navigation">
     <ul id="nav-main-menu">
       <li><b>{{_('Home')}}</b></li>
-      <li><a href="{{ url('gigabit.apply') }}">{{_('APPLY')}}</a></li>
-      <li><a href="//blog.mozilla.org/gigabit/" target="_blank">{{_('BLOG')}}</a></li>
+      <li>{{_('<a href="%s">Apply</a>')|format(url('gigabit.apply')) }}</li>
+      <li>{{ _('<a href="%s" target="_blank">Blog</a>')|format('//blog.mozilla.org/gigabit/') }}</li>
     </ul>
   </nav>
 {% endblock %}
@@ -120,11 +120,13 @@
 
   <section id="partners" class="container">
     <div class="span12 center">
-      <a href="//www.geni.net/" target="_blank"><img src="{{ media('img/gigabit/geni.png') }}" alt=""></a>
-      <a href="//us-ignite.org/" target="_blank"><img src="{{ media('img/gigabit/ignite.png') }}" alt=""></a>
-      <a href="//developer.mozilla.org/en-US/" target="_blank"><img src="{{ media('img/gigabit/mdn.png') }}" alt=""></a>
-      <a href="//www.nsf.gov/" target="_blank"><img src="{{ media('img/gigabit/NSF.png') }}" alt=""></a>
-      <a href="//webfwd.org/" target="_blank"><img src="{{ media('img/gigabit/webfwd.png') }}" alt=""></a>
+      <a href="//www.nsf.gov/" target="_blank"><img src="{{ media('img/gigabit/NSF.png') }}" alt="NSF"></a>
+      <a href="//us-ignite.org/" target="_blank"><img src="{{ media('img/gigabit/ignite.png') }}" alt="US Ignite"></a>
+      <a href="//www.geni.net/" target="_blank"><img src="{{ media('img/gigabit/geni.png') }}" alt="GENI"></a>
+      <a href="//www.kcdigitaldrive.com/" target="_blank"><img src="{{ media('img/gigabit/KC-Digital-Drive.jpg') }}" alt="KC Digital Drive"></a>
+      <a href="//www.chattanooga.gov/" target="_blank"><img src="{{ media('img/gigabit/Chatt-City-Seal.jpg') }}" alt="Chatt City Seal"></a>
+      <a href="///www.kcmo.org/CKCMO/index.htm" target="_blank"><img src="{{ media('img/gigabit/KCMO.png') }}" alt="KC MO"></a>
+      <a href="//www.wycokck.org/" target="_blank"><img src="{{ media('img/gigabit/KC-Unified-Gov.gif') }}" alt="KC Unified Gov"></a>
     </div>
   </section>
 
