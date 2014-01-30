@@ -6,15 +6,23 @@
 
 #gigabit #outer-wrapper,
 #about #outer-wrapper{
-  background: url("/media/img/gigabit/gigabit-bg.png") no-repeat;
+  background: url(/media/img/gigabit/gigabit-bg.png) no-repeat, url(/media/img/sandstone/bg-sand.png) repeat;
 }
 
 a{
   color: #588fb4;
 }
 
-.span(4){
+.span4{
   .span(4);
+}
+
+.span5{
+  .span(5);
+}
+
+.span7{
+  .span(7);
 }
 
 .span8{
@@ -29,9 +37,14 @@ a{
   width: 100%;
 }
 
+h2,
 h3,
 h4{
   margin-bottom: 20px;
+}
+
+.missing-link{
+  background: #F5A925;
 }
 
 #site-title{
@@ -52,6 +65,80 @@ section.container{
   padding-bottom: @gridGutterWidth;
 }
 
+#apply-button{
+  padding: 15px 80px;
+}
+
+#home-banner{
+  background: url("/media/img/gigabit/banner-bg.png") 0 -100px no-repeat;
+  padding-top: 50px;
+  padding-right: 30px;
+  padding-bottom: 70px;
+  padding-left: 30px;
+  width: 100%;
+  color: #fff;
+
+  h1{
+    color: #fff;
+    line-height: 120%;
+  }
+
+  #apply-button{
+    position: relative;
+    top: 120px;
+    left: 30px;
+  }
+}
+
+
+#important-dates table{
+  background: #fff;
+  width: 100%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border: 1px dashed #ccc;
+
+  th {
+    border-bottom: 1px dashed #ccc;
+  }
+
+  td{
+    padding: 5px;
+    font-size: 12px;
+  }
+
+  td:not(:last-child){
+    border-bottom: 1px dashed #ccc;
+  }
+}
+
+#get-involved{
+  .white-box{
+    overflow: hidden;
+    background: #fff;
+    padding: 30px 0;
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
+
+  h4{
+    font-size: 23px;
+  }
+}
+
+#bsd-signup{
+
+  input[type="submit"]{
+    position: relative;
+    top: 35px;
+    left: 50px;
+  }
+}
+
+#email-field{
+    width: 100%;
+  }
+
 #cta-apply{
   background: #fff;
   padding-top: 40px;
@@ -59,9 +146,6 @@ section.container{
 
   .span4{
     text-align: center;
-    .button{
-      padding: 15px 80px;
-    }
   }
 }
 
