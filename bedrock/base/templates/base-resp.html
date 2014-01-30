@@ -16,8 +16,8 @@
     {% block shared_meta %}
     {#- Please sync this block with the base.html template.
         Because of blocks, we cannot use an include here. -#}
-    <title>{% filter striptags %}{% block page_title_full %}{% block page_title_prefix %}{% endblock %}{% block page_title %}{% endblock %}{% endblock page_title_full %}{% block page_title_suffix %} — Mozilla{% endblock %}{% endfilter %}</title>
-    <meta name="description" content="{% filter striptags %}{% block page_desc %}{% endblock %}{% endfilter %}">
+    <title>{% filter striptags|e %}{% block page_title_full %}{% block page_title_prefix %}{% endblock %}{% block page_title %}{% endblock %}{% endblock page_title_full %}{% block page_title_suffix %} — Mozilla{% endblock %}{% endfilter %}</title>
+    <meta name="description" content="{% filter striptags|e %}{% block page_desc %}{% endblock %}{% endfilter %}">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="{{ _('Mozilla') }}">
     <meta property="og:locale" content="{{ LANG|replace("-", "_") }}">
