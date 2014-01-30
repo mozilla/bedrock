@@ -1,0 +1,163 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "base-resp.html" %}
+
+{% block page_title %}{{_('Gigabit')}}{% endblock %}
+{% block page_desc %}{{_('Gigabit - Description.')}}{% endblock %}
+{% block body_id %}gigabit{% endblock %}
+{% block body_class %}sand gigabit-home{% endblock %}
+{% block page_image %}{{ media('img/gigabit/gigabit_logo-wordmark_500x156.png') }}?2013-11{% endblock %}
+{% block page_favicon %}{{ media('img/gigabit/favicon.png') }}?2013-11{% endblock %}
+{% block site_header_logo %}
+{% endblock %}
+
+{% block extrahead %}
+  {{ css('gigabit') }}
+{% endblock %}
+
+{% block site_header_nav %}
+{% endblock %}
+
+{% block content %}
+  <div id="wordmark"><a href="{{ url('gigabit.gigabit') }}"><img src="{{ media('img/gigabit/gigabit-wordmark.png') }}" alt=""></a></div>
+
+  <section id="terms" class="container">
+    <h1>{{_('Mozilla Gigabit Community Fund')}}</h1>
+    <h2>{{_('Rules, Terms and Conditions')}}</h2>
+  </section>
+  <section class="container terms-sections">
+    <h4>{{_('Overview')}}</h4>
+    <p>{{_('Mozilla Foundation (“Mozilla” or “Sponsor”) is a global non-profit organization with a mission to promote openness, innovation and opportunity on the Web.  In cooperation with the United States National Science Foundation (“NSF”), Mozilla presents this Gigabit Community Fund (the “Fund”) to help foster and support the development of applications running on next-generation networks that could improve people’s everyday lives through creating new education and workforce development opportunities.  Proposals submitted to the Gigabit Community Fund may be based on projects funded in the separate Mozilla Ignite Challenge conducted prior to this Gigabit Community Fund, but may also be based on other ideas.  There is no limit other than your imagination.')}}</p>
+  </section>
+  <section class="container terms-sections">
+    <h4>{{_('Submission Period')}}</h4>
+    <p>{{_('The Gigabit Community Fund Request for Proposals (“RFP”) opens on Thursday, February 6, 2014 at 12:00:01 AM U.S. Pacific Time (“PT”), and all proposals for projects must be received by Tuesday, March 11, 2014 at 11:59:59 PM PT to be considered in the first round of the Fund (“Spring pilot period”).  Submissions to be considered for the second round of the Fund (“Summer pilot period”) are due Tuesday, June 17, 2014 at 11:59:59 PM PT.  You are responsible for knowing the time zone and date in your location.  It is recommended not to wait until the last moment to submit a proposal.  Proof of submission is not proof of receipt.  Sponsor’s database computer is the official timekeeping device for the Fund.  Late submissions may be considered in Sponsor’s discretion, but only for any aspect(s) of the Fund that are scheduled to begin at least two weeks after the date of the submission.')}}</p>
+  </section>
+  <section class="container terms-sections">
+    <h4>{{_('Who Can Participate')}}</h4>
+    <p>{{_('Participation is open to individuals, teams of individuals, companies, academic institutions and non-profit organizations (each a “Participant”).  Any individual Participant (including a member of a team or a representative of a company or other organization) must be at least 18 years of age (or the age of majority in his/her place of residence if it is higher than 18).  The Fund is not open to persons or entities in Cuba, Iran, North Korea, Sudan, Syria, the Province of Quebec, or any country subject to embargo by the United States, or any jurisdiction where the Fund would be prohibited or restricted by law.  Fund judges and employees of Mozilla, NSF, and their respective subsidiaries, affiliates, agents and their immediate families and people living in their households, are not eligible to participate.  Sponsor, at its sole discretion, shall determine eligibility of any individual or entity, and may disqualify any Participant at any time for any reason. ')}}</p>
+    <p>{{_('If a project proposal is submitted on behalf of a group of individuals, a company, or any other type of organization (a “Team”), the person making the submission on behalf of the Team (the “Captain”) must:  (a) disclose as part of the initial submission the name of the company or organization, if any, and the names of all individuals participating in the submission and development of the project (“Team Members”);  (b) certify that the Captain has the right to act on behalf of the Team (be it an entity or a group of individuals) and all Team Members;  (c) agree to these Terms and Conditions on behalf of the Team and all Team Members, and  (d) be a legal resident or citizen of the United States or hold a lawfully issued student visa, work permit, or other documentation entitling the Captain to work or receive compensation for work in the United States.  In addition, each Team Member must individually register on the Fund Website and accept these Terms and Conditions during the Fund RFP period.1  Failure to do so may result in disqualification of the submitted project from further consideration for support as part of this Fund. Each Participant or Team must include an organization located in Chattanooga, TN or Kansas City to help run a pilot program in one or both of those locales. Sponsor, at its sole discretion, shall determine eligibility of the local entity and its Team affiliation, and may disqualify any Participant or Team at any time for any reason.')}}</p>
+  </section>
+  <section class="container terms-sections">
+    <h4>{{_('Where to Submit a Proposal for a Project')}}</h4>
+    <p>{{_('During the Fund proposal submission period, register and submit your project proposal online at www.mozilla.org/gigabit/ (the “Fund Website”).  Registration and submissions will be accepted only via the Fund Website.  All registrations and submissions must be in English.  The Participant (or Captain in the case of a Team) must provide a valid email address, which will be the means to communicate with the Participant.')}}</p>
+  </section>
+  <section class="container terms-sections">
+    <h4>{{_('Submission Process')}}</h4>
+    <p>{{_('All sections of the registration and/or submission forms must be completed to be a valid submission into the Fund (“Submission”).  Submissions may be revised until the end of the Fund RFP period with the latest submitted version by a given Participant with a given title being considered final.  All Submissions automatically are deemed to be in final mode at the end of the Fund Term.  Late submissions may be considered in Sponsor’s discretion, and any late Submission is deemed final upon receipt.')}}</p>
+    <p>{{_('LIMIT:  THREE (3) SUBMISSIONS PER PERSON AND PER TEAM.  Subsequent Submissions from the same person, Team or email address will be disqualified.  In the event of a dispute over the identity of any Participant, Captain or Team Member, he/she will be deemed to be the authorized account holder of the e-mail account associated with that person during the registration/submission process on the Fund Website.  “Authorized account holder” is defined as the natural person who is assigned to an e-mail address by an Internet access provider, on-line service provider, or other organization (e.g., business, educational institution, etc.) that is responsible for assigning e-mail addresses for the domain associated with the submitted e-mail address.  In the event two or more Submissions/proposals describe substantially similar projects, the judges’ determination of the qualitatively superior proposal will determine which Submission is considered. ')}}</p>
+    <p>{{_('No responsibility is assumed for: (i) lost, late, incomplete, invalid, illegible, incorrect, inaccurate or misdirected registrations or Submissions, all of which are void;  (ii) failed, partial or garbled computer transmissions; (iii) any failure, problem, or technical malfunction including, but not limited to any telephone or other network or lines, computer online systems, servers or providers, computer equipment, software, email, web browser on account of technical problems, traffic congestion or the Internet or at any web site, any combination thereof, or otherwise, including without limitation injury or damage to your or to any other person\'s computer related to or resulting from participating in or uploading materials for the Fund; or (iv) for any error, human, technical or otherwise that may occur in the processing of Submissions.  Sponsor, at its sole discretion, reserves the right to disqualify any Submission not in compliance with these Terms and Conditions for any reason.')}}</p>
+  </section>
+  <section class="container terms-sections">
+    <h4>{{_('Submission Form Requirements')}}</h4>
+    <p>{{_('Each Fund Participant must clearly and concisely complete all fifteen (15) mandatory sections of the Fund submission form, and may also include optional materials per the 16th section (collectively, a “Fund Proposal”):')}}
+      <ul id="numbered-list">
+        <li>{{_('Project name')}}</li>
+        <li>{{_('Project summary')}}</li>
+        <li>{{_('Project team lead (name & institution)')}}</li>
+        <li>{{_('Project team lead’s email')}}</li>
+        <li>{{_('Pitch video URL')}}</li>
+        <li>{{_('GitHub repository URL:')}}</li>
+        <li>{{_('What problem are you intending to solve?')}}</li>
+        <li>{{_('What will your user learn?')}}</li>
+        <li>{{_('How will assess the project?')}}</li>
+        <li>{{_('What is your project roadmap?')}}</li>
+        <li>{{_('Who is your team (name & institution for each member)?')}}</li>
+        <li>{{_('How  does your project leverage advanced networks?')}}</li>
+        <li>{{_('How will you scale your work after the pilot is finished')}}</li>
+        <li>{{_('What are your Intellectual Property plans?')}}</li>
+        <li>{{_('How can we help?')}}</li>
+        <li>{{_('Optional: Other supporting supporting materials or resources (images, wireframes, prototypes, URLs, YouTube videos, slide casts, etc.) which may help. Illustrations are optional, but wireframes, prototypes or pictures may help the judges understand your Fund Proposal and are invited.')}}</li>
+      </ul>
+    </p>
+    <p>{{_('Submissions and any subsequent communications or postings associated with the Fund may not contain advertisements, commercial endorsements, or any material that is indecent, obscene, hateful, discriminatory, defamatory, slanderous, libelous, unlawful or otherwise inappropriate as determined by Sponsor in its absolute discretion.  Any inappropriate Submissions or material may be disqualified by Sponsor in its absolute discretion.  Each Fund Proposal must also comply with any word limits or other terms or requirements on the Fund Website. ')}}</p>
+  </section>
+  <section class="container terms-sections">
+    <h4>{{_('Fund Judging')}}</h4>
+    <p>{{_('Evaluation of Submissions will occur during the Proposal Review Period as described below.  The decisions of the judges will be final in all instances.')}}</p>
+  </section>
+  <section class="container terms-sections">
+    <h4>{{_('Fund Proposals')}}</h4>
+    <p>{{_('Each Fund Proposal will be screened initially for three mandatory criteria: (a) Does it focus on education or workforce development; (b) Does it leverage next generation networking technologies like high speed and software defined networking; and (c) Feasibility -- i.e., considering the idea only (not the Participant or Team), could the idea be delivered in the time available in the pilot period.  Those Fund Proposals meeting these criteria will be eligible for further review by judges from Mozilla, GENI, NSF, local partners and category-expert reviewers based on the following criteria:')}}
+      <ul id="numbered-list">
+        <li>{{_('<b>Impact</b>: To what degree could this idea provide significant public benefit, by improving people’s lives? To what extent does the project plan to deliver and evaluate a new learning experience in your community? <b>[35%]</b>')}}</li>
+        <li>{{_('<b>Story</b>: Is the potential public benefit articulated in a clear, compelling way that can excite the general public? <b>[25%]</b>')}}</li>
+        <li>{{_('<b>Innovation</b>: To what degree is this project innovative & likely to be implemented by this team? <b>[25%]</b> ')}}</li>
+        <li>{{_('<b>Advanced networks</b>: To what degree does this project leverage advanced communication & networking technologies, like ultra high speed and Software-Defined Networking? To what degree might this app benefit the community of practice around gigabit apps, through open source and standards? <b>[15%]</b> ')}}</li>
+      </ul>
+    </p>
+    <p>{{_('Participants with Fund Proposals selected to advance to the Pilot Phase will be notified via email at the Captain/Participant address submitted with the initial Submission.  If your Fund Proposal is approved, you will be able to log onto the Fund Website to see any comments made by the judges about your Fund Proposal, and to continue your participation in the Pilot Phase of the Challenge.')}}</p>
+    <p>{{_('For any Fund Proposal accepted for continuation into the Pilot Phase, the Participant will be expected to report on progress via the Fund Website per the methods set forth below, and the judging in the Development Phase will be based exclusively on these progress reports: ')}}
+      <ul id="numbered-list">
+        <li>{{_('Keep a project blog, occasionally reporting on progress, challenges, and milestones. Participant will be asked to explore empirical impact metrics on the blog and think about how the Participant knows the app is providing public benefit. Incorporating user experience feedback will required.')}}</li>
+        <li>{{_('Develop, log, and share with the Mozilla team an individualized impact/self assessment plan for each participant in the pilot to measure the learning benefit and positive experience for the end user.')}}</li>
+        <li>{{_('Develop in the open to the extent you are willing. We recommend keeping: (i) a roadmap or issue tracker (a wiki, Pivotal tracker, etc.); and (ii) a code repository (i.e. GitHub, Sourceforge, Google Code).')}}</li>
+        <li>{{_('Once per pilot period, each Participant will have the opportunity to make a 10-15 minute presentation and address questions from the audience during a webinar that Sponsor will facilitate.')}}</li>
+      </ul>
+    </p>
+  </section>
+  <section class="container terms-sections">
+    <h4>{{_('Pilot Phase')}}</h4>
+    <p>{{_('The Pilot Phase of the Challenge is scheduled to begin with the Spring Pilot period on or about Tuesday, March 18, 2014, will last a total of 12 weeks ending on June 10, 2014 and will require all documentation & reporting to be finished by the end of the Spring Pilot period. Progress at each Pilot period will be judged based on whether the Participant, in pursuing its approved Fund Proposal, is working effectively to build something compelling and exciting that clearly exemplifies the opportunities a smart 1 Gbps network presents and provides broad public benefit:  The two Pilot periods are:')}}
+      <ul id="numbered-list">
+        <li>{{_('Sprint Pilot period (12 weeks), scheduled to begin on or about Tuesday, March 18, 2014, ending Tuesday, June 10, 2014')}}</li>
+        <li>{{_('Summer Pilot period (12 weeks), scheduled to begin on or about Tuesday, June 25, 2014 ending Tuesday, September 16, 2014')}}</li>
+      </ul>
+    </p>
+    <p>{{_('At the end of each pilot period, each Participant/Team will have the opportunity to make a 10-minute pitch to share: (i) their progress; (ii) where they are going; and (iii) what they think they need to get to the next step. This will take place in an open webinar format where judges and the general public can make comments and ask questions. These webinars will be archived and available for viewing on the Fund Website.')}}</p>
+    <p>{{_('Fund grant awards will be made available to projects that are deemed worthy and that are making appropriate progress, all as determined by the judges in their absolute discretion.  Failure to receive a grant award after any given pilot period does not preclude eligibility from receiving a grant for a future pilot period.  However, to continue to be considered for grant support in any later pilot period, Participant must continue to post progress reports to show demonstrable progress toward project goals, and the judges reserve the absolute right, in their discretion, to determine which projects, if any, will be considered for funding in any pilot period.')}}</p>
+  </section>
+  <section class="container terms-sections">
+    <h4>{{_('Pilot Grants')}}</h4>
+    <p>{{_('At the beginning of each pilot period, the judges will have ability to award up to a maximum of the amounts of money listed below as grants to support further development of the projects they deem worthy of further support in that round.  The total amount awarded in each pilot round, the number of Submissions/projects to be supported, and the amount of support given to support any particular project are all within the discretion of the judges on how to promote the continued development of worthwhile projects, subject to the maximum amount available to be awarded by the judges in that round as follows:')}}
+      <ul id="numbered-list">
+        <li>{{_('Spring Pilot period – USD $75,000 maximum in total grants available in each city.')}}</li>
+        <li>{{_('Summer Pilot period – USD $75,000 maximum in total grants available in each city.')}}</li>
+      </ul>
+    </p>
+    <p>{{_('Any Participant eligible for a grant award at any given round in the Fund is solely responsible for the payment of any taxes that may arise as a result of acceptance of a development grant and for all other expenses or costs of the Participants project not covered by the grant.  Each grant will be in the form of a single payment to the Participant, regardless whether the Participant is an individual, group of individuals, company or other form of organization.  It is up to any Participant/Team receiving a grant to decide how to allocate and use the grant.  In the case of a Team that is a U.S.-based company or organization, the grant will be payable to the company or organization. All other Team awards will be made in the name of the Captain in the United States.  Grant awards cannot be transferred or substituted.')}}</p>
+  </section>
+  <section class="container terms-sections">
+    <h4>{{_('Legal Rights in Submission')}}</h4>
+    <p>{{_('<u>Participant Certification of Rights in Submission</u>: By entering a Submission, you represent and warrant that: (i) you are able to comply with these terms and conditions and that your Submission is not subject to any conflicting obligations that would prevent or interfere with your compliance with these terms and conditions; (ii) your Submission does not make unauthorized use of or violate in any way any rights of any 3rd party, including but not limited to copyright, trademark, patent, trade secret, or rights of publicity; and (iii) no one else’s permission is required for you to make your Submission in this Fund or to use your Submissions as contemplated under these terms and conditions.  Without limiting the foregoing, you and each member of your Team, if applicable, represent and warrant that you have complied with any requirements of your employer, if applicable, to allow your participation in the Fund, including but not limited to making your Submission and accepting any grant award you may receive.')}}</p>
+    <p>{{_('<u>Usage Rights in Submissions</u>:  You retain all ownership rights in your Submission in the Fund.  However, by participating you acknowledge that your Submission and all subsequent material you submit may become published on the Fund Website, and you further agree that the Sponsor and anyone it designates shall have the unrestricted and non-exclusive right to edit, adapt, publish, copy, display, perform, broadcast, modify, and otherwise use any or all of your Submission and all other materials and information you supply, alone or in combination with other material, in any and all media, whether now known or later discovered, in perpetuity, without restriction of any kind whatsoever, without further compensation to you or anyone else. ')}}</p>
+    <p>{{_('While not required, we encourage all Participants to make their Submissions (as well as any supporting documentation) available to the general public under an open source license such as BSD, Creative Commons Attribution Only, or Mozilla Public License v2. If the type of license has an influence on the likely impact of the Submission, then the judges may take that into consideration in judging the Submission.  You agree to identify in the license for your Submission that the Submission was initially designed and created for the Mozilla Gigabit Community Fund (www.mozilla.org/gigabit/).')}}</p>
+  </section>
+  <section class="container terms-sections">
+    <h4>{{_('General Conditions')}}</h4>
+    <p>{{_('By entering a Submission into the Fund, you are agreeing to these Official Rules of this Fund, and the judging and use of your Submission by Sponsor and its designees as contemplated in these terms and conditions.')}}</p>
+    <p>{{_('Entering a Submission and/or acceptance of any development grant constitutes permission for, and your consent to Sponsor, its agencies, partners or assigns to use the Submission and your name and/or likeness for advertising and promotional purposes, in any media, without further notice, compensation, consideration, review, or consent, except as prohibited by law.')}}</p>
+    <p>{{_('All potential development grant recipients (and Team Members) may be required to sign: (i) a Declaration of Eligibility and Liability release (“Declaration”) releasing the Mozilla Foundation, NSF, and their respective directors, officers, employees, and agents from any and all liability, claims, demands, and causes of action for personal injury or damage, theft, loss, or any other harm suffered in connection with the Fund or the receipt, use or misuse of any development grant, including participation in any travel or other activities; (ii) a publicity release, and (iii) any relevant tax documentation.  Entry into the Fund constitutes each Participant\'s (and Team Members’) agreement to sign and return such documents.  Failure to comply for any reason within seven (7) days following attempted notification may result in disqualification.')}}</p>
+    <p>{{_('Mozilla reserves the right, in its sole discretion, to disqualify any person it reasonably suspects has attempted to undermine the legitimate operation of the Fund by cheating, deception, or other unfair practices, or has tampered with any of Sponsor’s websites, the submission process, the judging process, or has violated these terms and conditions, or has acted in an unsportsmanlike or disruptive manner, or who annoys, abuses, threatens, or harasses Sponsor, its agents, its assigns or any other Participant. ')}}</p>
+  </section>
+  <section class="container terms-sections">
+    <h4>{{_('Limitation of liability/disclaimer')}}</h4>
+    <p>{{_('THE FUND WEBSITE AND ALL CONTENT, SITE FUNCTIONALITY, AND SERVICES PROVIDED BY THE FUND WEBSITE, OR THIRD PARTIES ON BEHALF OF THE SPONSOR ARE SUBJECT TO CHANGE AND PROVIDED BY MOZILLA OR THIRD PARTIES "AS IS" WITHOUT ANY WARRANTY OR CONDITION, AND WITHOUT THE UNDERTAKING OF ANY DUTY, OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, ANY (IF ANY) WARRANTIES OR CONDITIONS OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, AND ANY DUTY (IF ANY) OF WORKMANLIKE EFFORT OR LACK OF NEGLIGENCE. THE DEVELOPMENT CHALLENGE WEBSITE IS PROVIDED: (1) AS IS WITH ALL FAULTS; AND (2) WITHOUT ANY ASSURANCE, OR WARRANTY, CONDITION OR DUTY OF OR REGARDING: FUNCTIONALITY; PRIVACY; SECURITY; ACCURACY; AVAILABILITY; LACK OF: NEGLIGENCE, INTERRUPTION, VIRUSES OR OF OTHER HARMFUL CODE, COMPONENTS OR TRANSMISSIONS. ALSO, THERE IS NO WARRANTY BY MOZILLA OR THIRD PARTIES OF TITLE OR AGAINST INFRINGEMENT OR INTERFERENCE WITH ENJOYMENT OF ANY ASPECT OF THE WEBSITE.')}}</p>
+    <p>{{_('TO THE FULL EXTENT ALLOWED BY LAW, YOU AGREE THAT NEITHER MOZILLA, NOR ANY THIRD PARTIES, WILL BE LIABLE TO YOU OR ANYONE ELSE FOR ANY SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, DAMAGES FOR LOST PROFITS, FOR LOSS OF PRIVACY OR SECURITY, FOR LOSS OF REPUTATION, FOR FAILURE TO MEET ANY DUTY (INCLUDING WITHOUT LIMITATION ANY DUTY OF GOOD FAITH OR LACK OF NEGLIGENCE OR OF WORKMANLIKE EFFORT), OR FOR ANY OTHER SIMILAR DAMAGES WHATSOEVER THAT ARISE OUT OF OR ARE RELATED TO ANY ASPECT OF THE WEBSITE OR TO ANY BREACH OF THESE TERMS AND CONDITIONS (INCLUDING WITHOUT LIMITATION, THE PRIVACY POLICY), EVEN IF WE OR A THIRD PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES AND EVEN IN THE EVENT OF FAULT, TORT (INCLUDING NEGLIGENCE) OR STRICT OR PRODUCTS LIABILITY OR MISREPRESENTATION.')}}</p>
+    <p>{{_('YOU AGREE THAT YOUR EXCLUSIVE REMEDY FOR ANY BREACH OF THESE TERMS AND CONDITIONS (INCLUDING WITHOUT LIMITATION, THE PRIVACY POLICY) AND FOR ANY AGGREGATE DAMAGES DUE YOU (OR OTHERS RELATED TO YOU) BY US OR ANY THIRD PARTIES FOR ANY REASON RELATING TO ANY PART OF THE WEBSITE, WILL BE SUBSTITUTION, CORRECTION OR REPLACEMENT OF ALL OR PART OF THE CONTENT OR SERVICE CAUSING YOUR DAMAGE (IF ANY). The damage exclusions and limitations in these Terms and Conditions are independent and will apply even if any remedy fails of its essential purpose.')}}</p>
+  </section>
+  <section class="container terms-sections">
+    <h4>{{_('Governing Law')}}</h4>
+    <p>{{_('The Fund and the rights and obligations of all Participants and Submissions shall be governed by and construed in accordance with the laws of the State of California. The California courts (state and federal) have sole jurisdiction of any controversies regarding the Fund, and you agree to waive any objections to jurisdiction and venue in those courts and hereby submit to the jurisdiction of those courts. Should any provision of these Terms and Conditions be held to be void, invalid, unenforceable, or illegal by a proper legal authority, the validity and enforceability of the other provisions shall not be affected.')}}</p>
+  </section>
+  <section class="container terms-sections">
+    <h4>{{_('Sponsor')}}</h4>
+    <p>{{_('The sponsor for this Gigabit Community Fund is the Mozilla Foundation, 650 Castro Street, Suite 300, Mountain View, CA 94041-2021 USA, a non-profit foundation acting in cooperation with the United States National Science Foundation to help foster Development to promote the public good.')}}</p>
+  </section>
+  <section class="container terms-sections">
+    <h4>{{_('Privacy')}}</h4>
+    <p>{{_('Mozilla respects your privacy.  Any personally identifiable information submitted in connection with the Fund will be governed by Mozilla’s privacy policy, available at http://www.mozilla.org/about/policies/privacy-policy.html, and will only be used in connection with the administration of the Fund unless you expressly agree otherwise.  As part of such administration, it may be necessary to share information with subcontractors, agents or partners assisting in the administration of the Fund, but any such sharing will be solely for that purpose.  By entering a Submission into the Fund, you are agreeing to the transfer of your personal information and your Submission to the United States where Sponsor and its data processors are located.  If you have any questions about the use of your personal information, please either write to us at the address above or electronically at gigabit@mozilla.org. ')}}</p>
+  </section>
+  <section class="container terms-sections">
+    <h4>{{_('List of Grant Awards')}}</h4>
+    <p>{{_('The development grants awarded for each round of the Fund will be posted on the Fund Website when the awards are made. ')}}</p>
+  </section>
+
+
+
+{% endblock %}
+
+{% block email_form %}
+{% endblock %}

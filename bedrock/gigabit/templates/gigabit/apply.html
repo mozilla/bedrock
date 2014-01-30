@@ -29,7 +29,7 @@
 {% endblock %}
 
 {% block content %}
-  <div id="wordmark"><img src="{{ media('img/gigabit/gigabit-wordmark.png') }}" alt=""></div>
+  <div id="wordmark"><a href="{{ url('gigabit.gigabit') }}"><img src="{{ media('img/gigabit/gigabit-wordmark.png') }}" alt=""></a></div>
 
   <section id="site-title" class="container center">
     <header class="large">{{ _("Apply") }}</header>
@@ -50,6 +50,7 @@
       <div class="full-width"><h2>{{ _("Questions?") }}</h2></div>
       <p>
         {{ _("Our <a href='//wiki.mozilla.org/Gigabit' target='_blank'>wiki</a> is full of helpful information and we encourage you to read through the Gigabit Community Fund’s <a href='' class='missing-link'>Terms and Conditions</a>. Feel free to <a href='mailto:gigabit@mozilla.org'>email us</a> any time. Don't be shy — we're friendly!") }}
+        <a href="{{ url('gigabit.terms') }}" class='missing-link' target="_blank">Terms and Conditions</a>
       </p>
       <p>
         {{ _("Submission of new versions will be allowed until the application period closes and  the review process begins. The latest submitted version before the deadline will be considered final.") }}
