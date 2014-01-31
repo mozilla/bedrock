@@ -105,7 +105,7 @@
         setInitialPageNavState: function () {
             var $entry = $('#entry-container .entry');
             var tab = $entry.data('tab');
-            var id = $entry.attr('id');
+            var id = $entry.prop('id');
 
             //set the current tab navigation item
             $('ul.category-tabs li[data-id="' + tab + '"]').addClass('current');
@@ -179,7 +179,7 @@
          * Generate nav dropdown from list
          */
         initMobileNav: function () {
-            var id = $('#entry-container .entry').attr('id');
+            var id = $('#entry-container .entry').prop('id');
             // Create select form inputs for primary mobile navigation
             $('.nav-category').each(function() {
                 var $this = $(this);
@@ -196,7 +196,7 @@
                         .val($(this).data('id'))
                         .appendTo($select);
                 });
-                $select.attr('id', $(this).attr('id') + '-select');
+                $select.prop('id', $(this).prop('id') + '-select');
             });
 
             // Set the selected item in the mobile nav option menu
@@ -256,14 +256,14 @@
             // update the selected item
             if (state === 'spaces' && id !== 'spaces') {
                 $('#nav-spaces-select').find('option:selected').prop("selected", false);
-                $('#nav-spaces-select option[value="' + id + '"]').attr('selected', 'selected');
+                $('#nav-spaces-select option[value="' + id + '"]').prop('selected', 'selected');
             } else if (state === 'communities' && id !== 'communities') {
                 $('#nav-communities-select').find('option:selected').prop("selected", false);
-                $('#nav-communities-select option[value="' + id + '"]').attr('selected', 'selected');
+                $('#nav-communities-select option[value="' + id + '"]').prop('selected', 'selected');
             } else {
                 $('#nav-communities-select').find('option:selected').prop("selected", false);
                 $('#nav-spaces-select').find('option:selected').prop("selected", false);
-                $('.nav-category-select option[disabled]').attr('selected', 'selected');
+                $('.nav-category-select option[disabled]').prop('selected', 'selected');
             }
             // rebind change listener
             mozMap.bindMobileNavChange();
@@ -692,7 +692,7 @@
             // if the user clicks on a marker that is not related to the current space
             // we need to do push state to update the page content.
             if (markerId !== $itemId) {
-                var url = $('#nav-spaces li[data-id="' + markerId + '"] a').attr('href');
+                var url = $('#nav-spaces li[data-id="' + markerId + '"] a').prop('href');
                 History.pushState({
                     id: markerId,
                     tab: 'spaces'
@@ -714,7 +714,7 @@
             var current = $('#nav-spaces li.current');
             // get the current space id and href based on the nav
             var id = current.data('id');
-            var contentUrl = url || current.attr('href');
+            var contentUrl = url || current.prop('href');
 
             // if the content is already cached display it
             if (contentCache.hasOwnProperty(cacheId)) {
@@ -723,7 +723,7 @@
                 mozMap.doClickMarker(cacheId);
                 // update the page title
                 mozMap.setPageTitle(cacheId);
-            } else if (id === $('section.entry').attr('id')) {
+            } else if (id === $('section.entry').prop('id')) {
                 // if we're already on the right page, just center
                 // the marker
                 mozMap.doClickMarker(id);
@@ -770,7 +770,7 @@
             var current = $('#nav-communities li.current');
             // get the current space id and href based on the nav
             var id = current.data('id');
-            var contentUrl = url || current.attr('href');
+            var contentUrl = url || current.prop('href');
 
             if (contentCache.hasOwnProperty(cacheId)) {
                 // if the content is already cached display it
@@ -778,7 +778,7 @@
                 mozMap.showCommunityRegion(cacheId);
                 // update the page title
                 mozMap.setPageTitle(cacheId);
-            } else if (id === $('section.entry').attr('id')) {
+            } else if (id === $('section.entry').prop('id')) {
                 // if we're already on the right page,
                 // just show the map layer
                 mozMap.showCommunityRegion(id);
@@ -1045,9 +1045,9 @@
                 cache: 'false',
                 success: function(data) {
                     // pull out data we need
-                    var content = $(data).find('section.entry');
+                    var content = $($.parseHTML(data)).find('section.entry');
                     var title = data.match(/<title>(.*?)<\/title>/);
-                    var id = content.attr('id');
+                    var id = content.prop('id');
 
                     // add content to the cache for future retrieval
                     contentCache[id] = content;

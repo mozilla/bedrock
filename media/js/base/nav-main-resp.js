@@ -406,7 +406,7 @@ NavMain.openSmallMenu = function()
         .click(NavMain.handleSubmenuClick);
 
     // focus first item
-    $('#nav-main-menu [tabindex=0]').get(0).focus();
+    $('#nav-main-menu a:first').get(0).focus();
 
     NavMain.smallMenuOpen = true;
 };
