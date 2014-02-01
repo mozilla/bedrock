@@ -21,6 +21,10 @@ class FirefoxDetails(ProductDetails):
             'title': 'Linux',
             'id': 'linux',
         },
+        'Linux 64': {
+            'title': 'Linux 64-bit',
+            'id': 'linux64',
+        },
     }
     channel_map = {
         'aurora': 'FIREFOX_AURORA',
@@ -82,6 +86,13 @@ class FirefoxDetails(ProductDetails):
             for plat in platforms:
                 build_info['platforms'][plat] = {
                     'download_url': self.get_download_url(plat, locale,
+                                                          version),
+                }
+
+            # Append a Linux 64-bit build
+            if 'Linux' in platforms:
+                build_info['platforms']['Linux 64'] = {
+                    'download_url': self.get_download_url('Linux 64', locale,
                                                           version),
                 }
 

@@ -14,7 +14,7 @@
     h2 {
         font-size: 24px;
         letter-spacing: -0.25px;
-        line-height: 1.1;
+        line-height: 1.4;
         .span-all();
     }
     p {
@@ -77,11 +77,15 @@
     table {
         .table;
         width: 100%;
-        thead th:first-child {
-            width: 100%;
+        thead th:not([colspan]) {
+            width: 15%;
         }
         tbody th {
             font-weight: normal;
+        }
+        th,
+        td {
+            padding: 10px 0;
         }
         .unavailable {
             padding-right: @baseLine * 2;
@@ -91,21 +95,45 @@
             text-shadow: 0 -1px #fff;
         }
         .download {
-            padding-right: @baseLine * 2;
             a {
                 display: block;
-                padding: 10px 10px 10px 50px;
+                padding: 10px 10px 10px 45px;
                 background-position: 0 50%;
                 background-repeat: no-repeat;
-                background-image: url(/media/img/firefox/all/download-icons.png);
+                background-image: url(/media/img/firefox/all/download-icons.png?2014-01);
             }
-            &.mac a {
+            &.win64 a {
                 background-position: -300px 50%
             }
             &.linux a {
                 background-position: -600px 50%
             }
+            &.linux64 a {
+                background-position: -900px 50%
+            }
+            &.mac a {
+                background-position: -1200px 50%
+            }
         }
+    }
+}
+
+/* Aurora Download Page */
+.space #main-content table tbody {
+    tr, th, td {
+        border-color: rgba(255,255,255,0.2);
+    }
+}
+
+/* Tablet and Mobile */
+@media only screen and (max-width: @breakDesktop) {
+    #main-content table .download a {
+        overflow: hidden;
+        margin: 0 auto;
+        padding: 0;
+        width: 40px;
+        height: 40px;
+        text-indent: 200%;
     }
 }
 
@@ -143,12 +171,27 @@
         }
     }
 
-    #main-content table .download {
-        padding-right: @baseLine;
+    #main-content table thead th:not([colspan]) {
+        text-align: center;
     }
 
 }
 
+/* Wide mobile layout: 480px; */
+@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+    #main-content table tbody {
+        th {
+            width: 45%;
+        }
+        td[lang] {
+            float: left;
+            width: 45%;
+        }
+        td.download {
+            margin-top: -20px;
+        }
+    }
+}
 
 /* Mobile layout: 320px */
 @media only screen and (max-width: @breakTablet) {
@@ -204,18 +247,21 @@
                 display: none;
             }
             .download {
-                padding-right: @baseLine;
-                a {
-                    max-width: 200px;
-                }
+                float: left;
+            }
+            tr {
+                overflow: hidden;
+                border-top: 1px solid rgba(0, 0, 0, 0.2);
             }
             td,
             th {
                 border: 0;
+            }
+            td {
                 padding: 5px;
             }
-            tr {
-                border-top: 1px solid rgba(0, 0, 0, 0.2);
+            th {
+                padding: 5px 5px 0;
             }
         }
     }
