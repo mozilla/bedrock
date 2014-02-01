@@ -7,7 +7,7 @@
 {% block page_title %}{{_('Gigabit')}}{% endblock %}
 {% block page_desc %}{{_('Gigabit - Description.')}}{% endblock %}
 {% block body_id %}gigabit{% endblock %}
-{% block body_class %}sand gigabit-home{% endblock %}
+{% block body_class %}sand gigabit{% endblock %}
 {% block page_image %}{{ media('img/gigabit/gigabit_logo-wordmark_500x156.png') }}?2013-11{% endblock %}
 {% block page_favicon %}{{ media('img/gigabit/favicon.png') }}?2013-11{% endblock %}
 {% block site_header_logo %}
@@ -30,14 +30,14 @@
 
 
 {% block content %}
-  <div id="wordmark"><a href="{{ url('gigabit.gigabit') }}"><img src="{{ media('img/gigabit/gigabit-wordmark.png') }}" alt=""></a></div>
+  <h1 id="wordmark"><a href="{{ url('gigabit.gigabit') }}"><img src="{{ media('img/gigabit/gigabit-wordmark.png') }}" alt={{_("Mozilla Gigabit Community Fund (go to Home page)")}}></a></h1>
 
-  <section id="site-title" class="container center">
+  <div id="site-title" class="container center">
     <header class="large">{{ _("Gigabit Community Fund") }}</header>
     <h3>{{ _("Learn on tomorrow\'s networks") }}</h3>
-  </section>
+  </div>
 
-  <section id="home-banner" class="container">
+  <div id="home-banner" class="container">
     <div class="span7">
       <h1>{{ _("A Community <br/>Building the Future") }}</h1>
       {{ _("We support innovators connecting local service organizations in Kansas City and Chattanooga with advanced networking and communication technologies.") }}
@@ -46,9 +46,9 @@
       <a id="apply-button" href="//docs.google.com/a/mozillafoundation.org/forms/d/13MKzQ7NMOgvHLxJBGRlS1Tp6Vg98-_BUH3vG6teGixc/viewform" target="_blank" class="button arrow" title={{_("Apply Now. Opens new window.")}}><span>{{ _(("Apply Now")) }}</span></a>
       {{_('<a href="%s" target="_blank" class="tnc-link" title={{_("Terms and Conditions. Opens new window.")}}>Terms and Conditions</a>')|format(url('gigabit.terms')) }}
     </div>
-  </section>
+  </div>
 
-  <section id="about-gigabit" class="container">
+  <div id="about-gigabit" class="container">
     <div class="span8">
       <div class="full-width"><h2>{{ _("What is the Gigabit Community Fund?") }}</h2></div>
       <p>
@@ -77,7 +77,7 @@
         {% endtrans %}
       </p>
     </div>
-    <div id="important-dates" class="span4">
+    <div id="important-dates">
       <div class="full-width"><h2>{{ _("Important Dates") }}</h2></div>
       <table>
         <thead><tr><th><h4>{{ _("March & June") }}</h4></th></tr></thead>
@@ -89,12 +89,12 @@
         </tbody>
       </table>
     </div>
-  </section>
+  </div>
 
-  <section id="get-involved" class="container">
+  <div id="get-involved" class="container">
     <div class="white-box span12 center">
       <h1>{{ _("Get Involved") }}</h1>
-      {{ _("Join  our community to learn more or contribute your ideas. Everyone is welcome: educators, technologists, catalysts…whatever you consider  yourself! The more diversity the better.") }}
+      {{ _("Join our community to learn more or contribute your ideas. Everyone is welcome: educators, technologists, catalysts…whatever you consider  yourself! The more diversity the better.") }}
     </div>
     <div class="span4">
       <h4>{{ _("Connect with the community") }}</h4>
@@ -147,10 +147,10 @@
         </form>
       </p>
     </div>
-  </section>
+  </div>
 
-  <section id="partners" class="container">
-    <div class="span12 center">
+  <div id="partners" class="container center">
+    <div id="partner-logos center">
       <a href="//www.nsf.gov/" target="_blank" title={{_("NSF website. Opens new window.")}}><img src="{{ media('img/gigabit/NSF.png') }}" alt="NSF"></a>
       <a href="//us-ignite.org/" target="_blank" title={{_("US Ignite website. Opens new window.")}}><img src="{{ media('img/gigabit/ignite.png') }}" alt="US Ignite"></a>
       <a href="//www.geni.net/" target="_blank" title={{_("GENI website. Opens new window.")}}><img src="{{ media('img/gigabit/geni.png') }}" alt="GENI"></a>
@@ -159,7 +159,7 @@
       <a href="///www.kcmo.org/CKCMO/index.htm" target="_blank" title={{_("KC MO website. Opens new window.")}}><img src="{{ media('img/gigabit/KCMO.png') }}" alt="KC MO"></a>
       <a href="//www.wycokck.org/" target="_blank" title={{_("KC Unified Gov website. Opens new window.")}}><img src="{{ media('img/gigabit/KC-Unified-Gov.gif') }}" alt="KC Unified Gov"></a>
     </div>
-  </section>
+  </div>
 
 {% endblock %}
 

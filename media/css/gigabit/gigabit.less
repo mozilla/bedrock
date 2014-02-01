@@ -54,14 +54,14 @@ h4{
   }
 }
 
-section.container{
+.gigabit .container{
   margin-top: 30px;
   margin-bottom: 30px;
   padding-top: @gridGutterWidth;
   padding-bottom: @gridGutterWidth;
 }
 
-section.container.terms-sections{
+.gigabit .container.terms-sections{
   margin: 0;
 }
 
@@ -102,6 +102,9 @@ section.container.terms-sections{
 
 }
 
+#important-dates{
+  .span(4);
+}
 
 #important-dates table{
   background: #fff;
@@ -155,13 +158,41 @@ section.container.terms-sections{
   padding-top: 40px;
   padding-bottom: 40px;
 
+  h3{
+    margin-left: 10px;
+  }
+
   .span4{
+    text-align: center;
+  }
+
+  .main{
+    .span(8);
+  }
+
+  .aside{
+    .span(4);
     text-align: center;
   }
 }
 
-.dates{
-  margin-bottom: 15px;
+#questions{
+  .main{
+    .span(8);
+  }
+
+  .aside{
+    .span(4);
+  }
+
+  ul {
+    list-style-type: none;
+  }
+
+  ul li{
+    margin-left: 0;
+    margin-bottom: 15px;
+  }
 }
 
 #partners{
@@ -181,6 +212,10 @@ section.container.terms-sections{
   a:hover{
     opacity: 1;
   }
+
+  #partner-logos{
+    .span(12);
+  }
 }
 
 #numbered-list{
@@ -190,7 +225,10 @@ section.container.terms-sections{
 
 /* {{{ Tablet  Layout: 768px */
 @media only screen and (min-width: @widthTablet) and (max-width: @widthDesktop) {
-  .span4{
+  .span4,
+  #important-dates,
+  #cta-apply .aside,
+  #questions .aside{
     .span_narrow(4);
   }
 
@@ -202,10 +240,13 @@ section.container.terms-sections{
     .span_narrow(7);
   }
 
+  #cta-apply .main,
+  #questions .main,
   .span8{
     .span_narrow(8);
   }
 
+  #partner-logos,
   .span12{
     .span_narrow(12);
   }
@@ -224,7 +265,13 @@ section.container.terms-sections{
   .span6,
   .span7,
   .span8,
-  .span12{
+  .span12,
+  #important-dates,
+  #cta-apply .main,
+  #cta-apply .aside,
+  #questions .main,
+  #questions .aside,
+  #partner-logos{
     width: 100%;
     margin: 0;
   }

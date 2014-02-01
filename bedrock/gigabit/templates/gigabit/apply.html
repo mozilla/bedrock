@@ -7,7 +7,7 @@
 {% block page_title %}{{_('Gigabit')}}{% endblock %}
 {% block page_desc %}{{_('Gigabit - Description.')}}{% endblock %}
 {% block body_id %}about{% endblock %}
-{% block body_class %}sand gigabit-home{% endblock %}
+{% block body_class %}sand gigabit{% endblock %}
 {% block page_image %}{{ media('img/gigabit/gigabit_logo-wordmark_500x156.png') }}?2013-11{% endblock %}
 {% block page_favicon %}{{ media('img/gigabit/favicon.png') }}?2013-11{% endblock %}
 {% block site_header_logo %}
@@ -29,26 +29,29 @@
 {% endblock %}
 
 {% block content %}
-  <div id="wordmark"><a href="{{ url('gigabit.gigabit') }}"><img src="{{ media('img/gigabit/gigabit-wordmark.png') }}" alt=""></a></div>
+  <h1 id="wordmark"><a href="{{ url('gigabit.gigabit') }}"><img src="{{ media('img/gigabit/gigabit-wordmark.png') }}" alt={{_("Mozilla Gigabit Community Fund (go to Home page)")}}></a></h1>
 
-  <section id="site-title" class="container center">
-    <header class="large">{{ _("Apply") }}</header>
-  </section>
+  <main id="site-title" class="container center" role="main">
+    <article>
+      <h1 class="large center">{{ _('Apply') }}</h1>
+    </arcticle>
+  </main>
 
-  <section id="cta-apply" class="container">
-    <div class="span12"><h3>{{ _("Apply to the Gigabit Community Fund") }}</h3></div>
-    <div class="span8">
-      {{ _("If you have an idea for a project based in Kansas City or Chattanooga, we welcome your application to the Gigabit Community Fund. Participants are  highly encouraged to get in touch with us during the application  process -- we want to help you create a strong submission.") }}
-    </div>
-    <div class="span4">
+
+  <div id="cta-apply" class="container">
+    <h3>{{ _("Apply to the Gigabit Community Fund") }}</h3>
+    <p class="main">
+      {{ _("If you have an idea for a project based in Kansas City or Chattanooga, we welcome your application to the Gigabit Community Fund. Participants are  highly encouraged to get in touch with us during the application  process &#8212; we want to help you create a strong submission.") }}
+    </p>
+    <div class="aside">
       <a id="apply-button" href="//docs.google.com/a/mozillafoundation.org/forms/d/13MKzQ7NMOgvHLxJBGRlS1Tp6Vg98-_BUH3vG6teGixc/viewform" target="_blank" class="button arrow" title={{_("Apply Now. Opens new window.")}}><span>{{ _(("Apply Now")) }}</span></a>
       {{_('<a href="%s" target="_blank" class="tnc-link" title={{_("Terms and Conditions. Opens new window.")}}>Terms and Conditions</a>')|format(url('gigabit.terms')) }}
     </div>
-  </section>
+  </div>
 
-  <section id="questions" class="container">
-    <div class="span8">
-      <div class="full-width"><h2>{{ _("Questions?") }}</h2></div>
+  <div id="questions" class="container">
+    <div class="main">
+      <h2>{{ _("Questions?") }}</h2>
       <p>
         {% trans url_wiki='//wiki.mozilla.org/Gigabit', url_terms=url('gigabit.terms'), url_email='mailto:gigabit@mozilla.org' %}
             Our <a href="{{ url_wiki }}" target="_blank" title="Wiki. Opens new window.">wiki</a> is full of helpful information and we encourage you to read through the Gigabit Community Fund’s <a href="{{ url_terms }}" target="_blank">Terms and Conditions</a>. Feel free to <a href="{{ url_email }}" target="_blank" title="Email us. Opens new window.">email us</a> any time. Don't be shy — we're friendly!
@@ -66,22 +69,24 @@
         {{ _("Projects  that are awarded funding are encouraged to work open. Funded  participants will be expected to create a free GitHub repository that,  at minimum, documents their submitted proposal. You retain all ownership  rights in your submission in the Fund.") }}
       </p>
     </div>
-    <div class="span4">
-      <div class="full-width"><h2>{{ _("Dates & Deadlines") }}</h2></div>
-      <div class="full-width dates">
-        {{ _(("The <b>Spring Pilot Period</b> runs from March 18 – June 10, 2014. The deadline for applications is Tuesday, March 11, 2014 at midnight.")) }}
-      </div>
-      <div class="full-width dates">
-        {{ _(("The <b>Summer Pilot Period</b> runs from June 25  – September 16, 2014. The deadline for applications is Tuesday, June 17, 2014 at midnight.")) }}
-      </div>
-      <div class="full-width">
-        {{ _(("Participants are highly encouraged to get in touch with us during the application process -- we'd be pleased to help you create a strong submission.")) }}
-      </div>
+    <div class="aside">
+      <h2>{{ _("Dates &amp; Deadlines") }}</h2>
+      <ul>
+        <li>
+          {{ _(("The <b>Spring Pilot Period</b> runs from March 18 – June 10, 2014. The deadline for applications is Tuesday, March 11, 2014 at midnight.")) }}
+        </li>
+        <li>
+          {{ _(("The <b>Summer Pilot Period</b> runs from June 25  – September 16, 2014. The deadline for applications is Tuesday, June 17, 2014 at midnight.")) }}
+        </li>
+        <li>
+          {{ _(("Participants are highly encouraged to get in touch with us during the application process &#8212; we'd be pleased to help you create a strong submission.")) }}
+        </li>
+      </ul>
     </div>
-  </section>
+  </div>
 
-  <section id="partners" class="container">
-    <div class="span12 center">
+  <div id="partners" class="container center">
+    <div id="partner-logos center">
       <a href="//www.nsf.gov/" target="_blank" title={{_("NSF website. Opens new window.")}}><img src="{{ media('img/gigabit/NSF.png') }}" alt="NSF"></a>
       <a href="//us-ignite.org/" target="_blank" title={{_("US Ignite website. Opens new window.")}}><img src="{{ media('img/gigabit/ignite.png') }}" alt="US Ignite"></a>
       <a href="//www.geni.net/" target="_blank" title={{_("GENI website. Opens new window.")}}><img src="{{ media('img/gigabit/geni.png') }}" alt="GENI"></a>
@@ -90,7 +95,7 @@
       <a href="///www.kcmo.org/CKCMO/index.htm" target="_blank" title={{_("KC MO website. Opens new window.")}}><img src="{{ media('img/gigabit/KCMO.png') }}" alt="KC MO"></a>
       <a href="//www.wycokck.org/" target="_blank" title={{_("KC Unified Gov website. Opens new window.")}}><img src="{{ media('img/gigabit/KC-Unified-Gov.gif') }}" alt="KC Unified Gov"></a>
     </div>
-  </section>
+  </div>
 
 {% endblock %}
 
