@@ -130,6 +130,22 @@ class TestFirefoxDetails(TestCase):
         eq_(len(builds), 1)
         eq_(builds[0]['name_en'], 'Gujarati')
 
+        # with a space
+        builds = firefox_details.get_filtered_full_builds(
+            firefox_details.latest_version('release'),
+            'british english'
+        )
+        eq_(len(builds), 1)
+        eq_(builds[0]['name_en'], 'English (British)')
+
+        # with a comma
+        builds = firefox_details.get_filtered_full_builds(
+            firefox_details.latest_version('release'),
+            u'French, Français'
+        )
+        eq_(len(builds), 1)
+        eq_(builds[0]['name_en'], 'French')
+
     @patch.dict(firefox_details.firefox_versions,
                 LATEST_FIREFOX_VERSION='25.0.2')
     def test_esr_major_versions(self):
