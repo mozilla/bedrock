@@ -42,14 +42,14 @@
   </div>
 
   <div id="home-banner" class="container">
-    <div id="tagline">
+    <div class="main">
       <h1>{{ _("A Community <br/>Building the Future") }}</h1>
       {# L10n: presentational break can be repositioned or omitted as needed for text flow #}
       <p>
         {{ _("We support innovators connecting local service organizations in Kansas City and Chattanooga with advanced networking and communication technologies.") }}
       </p>
     </div>
-    <div>
+    <div class="aside">
       <a id="apply-button" href="//docs.google.com/a/mozillafoundation.org/forms/d/13MKzQ7NMOgvHLxJBGRlS1Tp6Vg98-_BUH3vG6teGixc/viewform" target="_blank" class="button arrow" title={{_("Apply Now. Opens new window.")}}><span>{{ _(("Apply Now")) }}</span></a>
       {{_('<a href="%s" target="_blank" class="tnc-link" title={{_("Terms and Conditions. Opens new window.")}}>Terms and Conditions</a>')|format(url('gigabit.terms')) }}
     </div>

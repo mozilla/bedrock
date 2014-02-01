@@ -37,10 +37,6 @@ h4{
   padding-bottom: @gridGutterWidth;
 }
 
-.gigabit .container.terms-sections{
-  margin: 0;
-}
-
 #apply-button{
   padding: 15px 80px;
 }
@@ -63,20 +59,19 @@ h4{
     line-height: 120%;
   }
 
-  #tagline{
+  .main{
     .span(7);
   }
 
-  #apply-button{
+  .aside{
     position: relative;
     top: 120px;
     left: 30px;
+    text-align: center;
   }
 
   .tnc-link{
     position: relative;
-    top: 120px;
-    left: 90px;
     color: #fff;
   }
 
@@ -216,6 +211,11 @@ h4{
 }
 
 
+#terms .container h4:not(:first-of-type){
+  margin-top: 50px;
+}
+
+
 /* {{{ Tablet  Layout: 768px */
 @media only screen and (min-width: @widthTablet) and (max-width: @widthDesktop) {
   #important-dates,
@@ -226,7 +226,7 @@ h4{
     .span_narrow(4);
   }
 
-  #home-banner #tagline{
+  #home-banner .main{
     .span_narrow(7);
   }
 
@@ -257,22 +257,21 @@ h4{
   #questions .main,
   #questions .aside,
   #partner-logos,
-  #home-banner #tagline,
+  #home-banner .main,
+  #home-banner .aside,
   #get-involved .category{
     width: 100%;
     margin: 0;
   }
 
   #home-banner {
-    padding: 10px 10px 120px 10px;
-    #apply-button{
-      position: absolute;
-      top: 220px;
-    }
-    .tnc-link{
-      position: absolute;
-      top: 270px;
-    }
+    padding: 10px 10px 10px 10px;
+  }
+
+  #home-banner .aside{
+    position: relative;
+    top: 0;
+    left: 0;
   }
 
   #cta-apply #apply-button{
