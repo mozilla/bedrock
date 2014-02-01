@@ -13,30 +13,6 @@ a{
   color: #588fb4;
 }
 
-.span4{
-  .span(4);
-}
-
-.span5{
-  .span(5);
-}
-
-.span7{
-  .span(7);
-}
-
-.span8{
-  .span(8);
-}
-
-.span12{
-  .span(12);
-}
-
-.full-width{
-  width: 100%;
-}
-
 h2,
 h3,
 h4{
@@ -87,6 +63,10 @@ h4{
     line-height: 120%;
   }
 
+  #tagline{
+    .span(7);
+  }
+
   #apply-button{
     position: relative;
     top: 120px;
@@ -100,10 +80,6 @@ h4{
     color: #fff;
   }
 
-}
-
-#important-dates{
-  .span(4);
 }
 
 #important-dates table{
@@ -127,8 +103,24 @@ h4{
   }
 }
 
+#important-dates .dates{
+  background: #fff;
+  width: 100%;
+  padding-top: 15px;
+  border: 1px dashed #ccc;
+
+  h4{
+
+  }
+
+  li{
+    padding: 5px;
+    font-size: 12px;
+  }
+}
+
 #get-involved{
-  .white-box{
+  header{
     overflow: hidden;
     background: #fff;
     padding: 30px 0;
@@ -138,6 +130,10 @@ h4{
 
   h4{
     font-size: 23px;
+  }
+
+  .category{
+    .span(4);
   }
 }
 
@@ -162,10 +158,6 @@ h4{
     margin-left: 10px;
   }
 
-  .span4{
-    text-align: center;
-  }
-
   .main{
     .span(8);
   }
@@ -176,6 +168,7 @@ h4{
   }
 }
 
+#about-gigabit,
 #questions{
   .main{
     .span(8);
@@ -225,29 +218,25 @@ h4{
 
 /* {{{ Tablet  Layout: 768px */
 @media only screen and (min-width: @widthTablet) and (max-width: @widthDesktop) {
-  .span4,
   #important-dates,
   #cta-apply .aside,
-  #questions .aside{
+  #about-gigabit .aside,
+  #questions .aside,
+  #get-involved .category{
     .span_narrow(4);
   }
 
-  .span5{
-    .span_narrow(5);
-  }
-
-  .span7{
+  #home-banner #tagline{
     .span_narrow(7);
   }
 
   #cta-apply .main,
-  #questions .main,
-  .span8{
+  #about-gigabit .main,
+  #questions .main{
     .span_narrow(8);
   }
 
-  #partner-logos,
-  .span12{
+  #partner-logos{
     .span_narrow(12);
   }
 
@@ -260,18 +249,16 @@ h4{
 /* }}} */
 /* {{{ Wide Mobile Layout: 480px */
 @media only screen and (max-width: @widthTablet) {
-  .span4,
-  .span5,
-  .span6,
-  .span7,
-  .span8,
-  .span12,
   #important-dates,
+  #about-gigabit .main,
+  #about-gigabit .aside,
   #cta-apply .main,
   #cta-apply .aside,
   #questions .main,
   #questions .aside,
-  #partner-logos{
+  #partner-logos,
+  #home-banner #tagline,
+  #get-involved .category{
     width: 100%;
     margin: 0;
   }
@@ -290,10 +277,6 @@ h4{
 
   #cta-apply #apply-button{
     margin-top: 20px;
-  }
-
-  #get-involved .white-box{
-
   }
 
   #partners{

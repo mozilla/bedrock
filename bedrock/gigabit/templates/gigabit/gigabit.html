@@ -33,14 +33,21 @@
   <h1 id="wordmark"><a href="{{ url('gigabit.gigabit') }}"><img src="{{ media('img/gigabit/gigabit-wordmark.png') }}" alt={{_("Mozilla Gigabit Community Fund (go to Home page)")}}></a></h1>
 
   <div id="site-title" class="container center">
-    <header class="large">{{ _("Gigabit Community Fund") }}</header>
-    <h3>{{ _("Learn on tomorrow\'s networks") }}</h3>
+    <article>
+      <header>
+        <h2 class="large">{{ _('Gigabit Community Fund') }}</h2>
+        <h3>{{ _('Learn on tomorrow’s networks') }}</h3>
+      </header>
+    </article>
   </div>
 
   <div id="home-banner" class="container">
-    <div class="span7">
+    <div id="tagline">
       <h1>{{ _("A Community <br/>Building the Future") }}</h1>
-      {{ _("We support innovators connecting local service organizations in Kansas City and Chattanooga with advanced networking and communication technologies.") }}
+      {# L10n: presentational break can be repositioned or omitted as needed for text flow #}
+      <p>
+        {{ _("We support innovators connecting local service organizations in Kansas City and Chattanooga with advanced networking and communication technologies.") }}
+      </p>
     </div>
     <div>
       <a id="apply-button" href="//docs.google.com/a/mozillafoundation.org/forms/d/13MKzQ7NMOgvHLxJBGRlS1Tp6Vg98-_BUH3vG6teGixc/viewform" target="_blank" class="button arrow" title={{_("Apply Now. Opens new window.")}}><span>{{ _(("Apply Now")) }}</span></a>
@@ -49,8 +56,8 @@
   </div>
 
   <div id="about-gigabit" class="container">
-    <div class="span8">
-      <div class="full-width"><h2>{{ _("What is the Gigabit Community Fund?") }}</h2></div>
+    <div class="main">
+      <h2>{{ _("What is the Gigabit Community Fund?") }}</h2>
       <p>
         {{ _("Mozilla's  Gigabit Community Fund provides grants and resources for innovators exploring the use of next-generation gigabit technologies in Kansas City and Chattanooga.") }}
       </p>
@@ -77,26 +84,25 @@
         {% endtrans %}
       </p>
     </div>
-    <div id="important-dates">
-      <div class="full-width"><h2>{{ _("Important Dates") }}</h2></div>
-      <table>
-        <thead><tr><th><h4>{{ _("March & June") }}</h4></th></tr></thead>
-        <tbody>
-          <tr><td>{{ _("Mar. 11: Proposals for Spring pilot period due") }}</td></tr>
-          <tr><td>{{ _("Mar. 18: Awards announced") }}</td></tr>
-          <tr><td>{{ _("June 17: Proposals for Summer pilot period due") }}</td></tr>
-          <tr><td>{{ _("June 25: Awards announced") }}</td></tr>
-        </tbody>
-      </table>
+    <div id="important-dates" class="aside">
+      <div class="dates">
+        <h4 class="center">{{ _("March & June") }}</h4>
+        <ul>
+          <li>{{ _("Mar. 11: Proposals for Spring pilot period due") }}</li>
+          <li>{{ _("Mar. 18: Awards announced") }}</li>
+          <li>{{ _("June 17: Proposals for Summer pilot period due") }}</li>
+          <li>{{ _("June 25: Awards announced") }}</li>
+        </ul>
+      </div>
     </div>
   </div>
 
   <div id="get-involved" class="container">
-    <div class="white-box span12 center">
+    <header class="center">
       <h1>{{ _("Get Involved") }}</h1>
       {{ _("Join our community to learn more or contribute your ideas. Everyone is welcome: educators, technologists, catalysts…whatever you consider  yourself! The more diversity the better.") }}
-    </div>
-    <div class="span4">
+    </header>
+    <div class="category">
       <h4>{{ _("Connect with the community") }}</h4>
       <p>
         {% trans url_kansas='//www.google.com/calendar/embed?src=shj2d4103tbgg0duo9jl051rt4@group.calendar.google.com&ctz=America/Los_Angeles', url_chatt='//www.google.com/calendar/embed?src=f4r4mio8er2j2iha55anc5e63o@group.calendar.google.com&ctz=America/Los_Angeles' %}
@@ -109,7 +115,7 @@
         {% endtrans %}
       </p>
     </div>
-    <div class="span4">
+    <div class="category">
       <h4>{{ _("Get social") }}</h4>
       <p>
         {% trans url_blog='//blog.mozilla.org/gigabit/' %}
@@ -127,7 +133,7 @@
         {% endtrans %}
       </p>
     </div>
-    <div class="span4">
+    <div class="category">
       <h4>{{ _("Connect with us online") }}</h4>
       <p>
         {% trans url_email_us='mailto:gigabit@mozilla.org' %}
@@ -136,11 +142,12 @@
       </p>
       <p>{{ _("Receive email updates from Mozilla about the Gigabit Community Fund.") }}
         <form id="bsd-signup" method="POST" action="//sendto.mozilla.org/page/s/gigabit-updates" name="signup">
+          <label for="email-field" class="hidden"></label>
           <input id="email-field" type="email" name="email" />
-          <input type="checkbox" value="1" name="custom-2480" />
+          <input id="pp-agree" type="checkbox" value="1" name="custom-2480" />
           <small>
             {% trans url_pp='//www.mozilla.org/en-US/privacy/policies/websites/' %}
-               I’m okay with you handling this info as you explain in your <a href='{{ url_pp }}' target='_blank' title='Privacy policy. Opens new window.'>privacy policy</a>.
+               <label for="pp-agree">I’m okay with you handling this info as you explain in your <a href='{{ url_pp }}' target='_blank' title='Privacy policy. Opens new window.'>privacy policy</a>.</label>
             {% endtrans %}
           </small>
           <input type="submit" value='{{ _(("Sign Me Up")) }}' class="button" />
