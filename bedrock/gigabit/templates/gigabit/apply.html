@@ -23,7 +23,7 @@
     <ul id="nav-main-menu">
       <li>{{_('<a href="%s">Home</a>')|format(url('gigabit.gigabit')) }}</li>
       <li><b>{{_('Apply')}}</b></li>
-      <li>{{ _('<a href="%s" target="_blank" title="Blog. Opens new window.">Blog</a>')|format('//blog.mozilla.org/gigabit/') }}</li>
+      <li>{{ _('<a href="%s">Blog</a>')|format('//blog.mozilla.org/gigabit/') }}</li>
     </ul>
   </nav>
 {% endblock %}
@@ -41,8 +41,8 @@
           {{ _("If you have an idea for a project based in Kansas City or Chattanooga, we welcome your application to the Gigabit Community Fund. Participants are  highly encouraged to get in touch with us during the application  process &#8212; we want to help you create a strong submission.") }}
         </p>
         <div class="aside">
-          <a id="apply-button" href="//docs.google.com/a/mozillafoundation.org/forms/d/13MKzQ7NMOgvHLxJBGRlS1Tp6Vg98-_BUH3vG6teGixc/viewform" target="_blank" class="button arrow" title={{_('Apply Now. Opens new window.')}}><span>{{ _(('Apply Now')) }}</span></a>
-          {{_('<a href="%s" target="_blank" class="tnc-link" title={{_("Terms and Conditions. Opens new window.")}}>Terms and Conditions</a>')|format(url('gigabit.terms')) }}
+          <a id="apply-button" href="//docs.google.com/a/mozillafoundation.org/forms/d/13MKzQ7NMOgvHLxJBGRlS1Tp6Vg98-_BUH3vG6teGixc/viewform" class="button arrow"><span>{{ _(('Apply Now')) }}</span></a>
+          {{_('<a href="%s" class="tnc-link">Terms and Conditions</a>')|format(url('gigabit.terms')) }}
         </div>
       </div>
 
@@ -51,7 +51,7 @@
           <h2>{{ _("Questions?") }}</h2>
           <p>
             {% trans url_wiki='//wiki.mozilla.org/Gigabit', url_terms=url('gigabit.terms'), url_email='mailto:gigabit@mozilla.org' %}
-                Our <a href="{{ url_wiki }}" target="_blank" title="Wiki. Opens new window.">wiki</a> is full of helpful information and we encourage you to read through the Gigabit Community Fund’s <a href="{{ url_terms }}" target="_blank">Terms and Conditions</a>. Feel free to <a href="{{ url_email }}" target="_blank" title="Email us. Opens new window.">email us</a> any time. Don't be shy — we're friendly!
+                Our <a href="{{ url_wiki }}">wiki</a> is full of helpful information and we encourage you to read through the Gigabit Community Fund’s <a href="{{ url_terms }}">Terms and Conditions</a>. Feel free to <a href="{{ url_email }}">email us</a> any time. Don't be shy — we're friendly!
             {% endtrans %}
           </p>
           <p>
@@ -59,7 +59,7 @@
           </p>
           <p>
             {% trans url_moz_open='//wiki.mozilla.org/Working_open' %}
-                <a href="{{ url_moz_open }}" target="_blank" title="Mozilla works open. Opens new window.">Mozilla works open</a>. We will make the content of all submissions publicly viewable.
+                <a href="{{ url_moz_open }}">Mozilla works open</a>. We will make the content of all submissions publicly viewable.
             {% endtrans %}
           </p>
           <p>
@@ -84,13 +84,13 @@
 
       <div id="partners" class="container center">
         <div id="partner-logos center">
-          <a href="//www.nsf.gov/" target="_blank" title={{_('NSF website. Opens new window.')}}><img src="{{ media('img/gigabit/NSF.png') }}" alt="NSF"></a>
-          <a href="//us-ignite.org/" target="_blank" title={{_('US Ignite website. Opens new window.')}}><img src="{{ media('img/gigabit/ignite.png') }}" alt="US Ignite"></a>
-          <a href="//www.geni.net/" target="_blank" title={{_('GENI website. Opens new window.')}}><img src="{{ media('img/gigabit/geni.png') }}" alt="GENI"></a>
-          <a href="//www.kcdigitaldrive.com/" target="_blank" title={{_('KC Digital Drive website. Opens new window.')}}><img src="{{ media('img/gigabit/KC-Digital-Drive.jpg') }}" alt="KC Digital Drive"></a>
-          <a href="//www.chattanooga.gov/" target="_blank" title={{_('Chatt City Seal website. Opens new window.')}}><img src="{{ media('img/gigabit/Chatt-City-Seal.jpg') }}" alt="Chatt City Seal"></a>
-          <a href="///www.kcmo.org/CKCMO/index.htm" target="_blank" title={{_('KC MO website. Opens new window.')}}><img src="{{ media('img/gigabit/KCMO.png') }}" alt="KC MO"></a>
-          <a href="//www.wycokck.org/" target="_blank" title={{_('KC Unified Gov website. Opens new window.')}}><img src="{{ media('img/gigabit/KC-Unified-Gov.gif') }}" alt="KC Unified Gov"></a>
+          <a href="//www.nsf.gov/"><img src="{{ media('img/gigabit/NSF.png') }}" alt="NSF"></a>
+          <a href="//us-ignite.org/"><img src="{{ media('img/gigabit/ignite.png') }}" alt="US Ignite"></a>
+          <a href="//www.geni.net/"><img src="{{ media('img/gigabit/geni.png') }}" alt="GENI"></a>
+          <a href="//www.kcdigitaldrive.com/"><img src="{{ media('img/gigabit/KC-Digital-Drive.jpg') }}" alt="KC Digital Drive"></a>
+          <a href="//www.chattanooga.gov/"><img src="{{ media('img/gigabit/Chatt-City-Seal.jpg') }}" alt="Chatt City Seal"></a>
+          <a href="///www.kcmo.org/CKCMO/index.htm"><img src="{{ media('img/gigabit/KCMO.png') }}" alt="KC MO"></a>
+          <a href="//www.wycokck.org/"><img src="{{ media('img/gigabit/KC-Unified-Gov.gif') }}" alt="KC Unified Gov"></a>
         </div>
       </div>
     </arcticle>
