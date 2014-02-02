@@ -31,71 +31,70 @@
 {% block content %}
   <h1 id="wordmark"><a href="{{ url('gigabit.gigabit') }}"><img src="{{ media('img/gigabit/gigabit-wordmark.png') }}" alt={{_('Mozilla Gigabit Community Fund (go to Home page)')}}></a></h1>
 
-  <main id="site-title" class="container center" role="main">
+  <main role="main">
     <article>
       <h1 class="large center">{{ _('Apply') }}</h1>
+
+      <div id="cta-apply" class="container">
+        <h3>{{ _("Apply to the Gigabit Community Fund") }}</h3>
+        <p class="main">
+          {{ _("If you have an idea for a project based in Kansas City or Chattanooga, we welcome your application to the Gigabit Community Fund. Participants are  highly encouraged to get in touch with us during the application  process &#8212; we want to help you create a strong submission.") }}
+        </p>
+        <div class="aside">
+          <a id="apply-button" href="//docs.google.com/a/mozillafoundation.org/forms/d/13MKzQ7NMOgvHLxJBGRlS1Tp6Vg98-_BUH3vG6teGixc/viewform" target="_blank" class="button arrow" title={{_('Apply Now. Opens new window.')}}><span>{{ _(('Apply Now')) }}</span></a>
+          {{_('<a href="%s" target="_blank" class="tnc-link" title={{_("Terms and Conditions. Opens new window.")}}>Terms and Conditions</a>')|format(url('gigabit.terms')) }}
+        </div>
+      </div>
+
+      <div id="questions" class="container">
+        <div class="main">
+          <h2>{{ _("Questions?") }}</h2>
+          <p>
+            {% trans url_wiki='//wiki.mozilla.org/Gigabit', url_terms=url('gigabit.terms'), url_email='mailto:gigabit@mozilla.org' %}
+                Our <a href="{{ url_wiki }}" target="_blank" title="Wiki. Opens new window.">wiki</a> is full of helpful information and we encourage you to read through the Gigabit Community Fund’s <a href="{{ url_terms }}" target="_blank">Terms and Conditions</a>. Feel free to <a href="{{ url_email }}" target="_blank" title="Email us. Opens new window.">email us</a> any time. Don't be shy — we're friendly!
+            {% endtrans %}
+          </p>
+          <p>
+            {{ _("Submission of new versions will be allowed until the application period closes and  the review process begins. The latest submitted version before the deadline will be considered final.") }}
+          </p>
+          <p>
+            {% trans url_moz_open='//wiki.mozilla.org/Working_open' %}
+                <a href="{{ url_moz_open }}" target="_blank" title="Mozilla works open. Opens new window.">Mozilla works open</a>. We will make the content of all submissions publicly viewable.
+            {% endtrans %}
+          </p>
+          <p>
+            {{ _("Projects  that are awarded funding are encouraged to work open. Funded  participants will be expected to create a free GitHub repository that,  at minimum, documents their submitted proposal. You retain all ownership  rights in your submission in the Fund.") }}
+          </p>
+        </div>
+        <div class="aside">
+          <h2>{{ _("Dates &amp; Deadlines") }}</h2>
+          <ul>
+            <li>
+              {{ _(("The <b>Spring Pilot Period</b> runs from March 18 – June 10, 2014. The deadline for applications is Tuesday, March 11, 2014 at midnight.")) }}
+            </li>
+            <li>
+              {{ _(("The <b>Summer Pilot Period</b> runs from June 25  – September 16, 2014. The deadline for applications is Tuesday, June 17, 2014 at midnight.")) }}
+            </li>
+            <li>
+              {{ _(("Participants are highly encouraged to get in touch with us during the application process &#8212; we'd be pleased to help you create a strong submission.")) }}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="partners" class="container center">
+        <div id="partner-logos center">
+          <a href="//www.nsf.gov/" target="_blank" title={{_('NSF website. Opens new window.')}}><img src="{{ media('img/gigabit/NSF.png') }}" alt="NSF"></a>
+          <a href="//us-ignite.org/" target="_blank" title={{_('US Ignite website. Opens new window.')}}><img src="{{ media('img/gigabit/ignite.png') }}" alt="US Ignite"></a>
+          <a href="//www.geni.net/" target="_blank" title={{_('GENI website. Opens new window.')}}><img src="{{ media('img/gigabit/geni.png') }}" alt="GENI"></a>
+          <a href="//www.kcdigitaldrive.com/" target="_blank" title={{_('KC Digital Drive website. Opens new window.')}}><img src="{{ media('img/gigabit/KC-Digital-Drive.jpg') }}" alt="KC Digital Drive"></a>
+          <a href="//www.chattanooga.gov/" target="_blank" title={{_('Chatt City Seal website. Opens new window.')}}><img src="{{ media('img/gigabit/Chatt-City-Seal.jpg') }}" alt="Chatt City Seal"></a>
+          <a href="///www.kcmo.org/CKCMO/index.htm" target="_blank" title={{_('KC MO website. Opens new window.')}}><img src="{{ media('img/gigabit/KCMO.png') }}" alt="KC MO"></a>
+          <a href="//www.wycokck.org/" target="_blank" title={{_('KC Unified Gov website. Opens new window.')}}><img src="{{ media('img/gigabit/KC-Unified-Gov.gif') }}" alt="KC Unified Gov"></a>
+        </div>
+      </div>
     </arcticle>
   </main>
-
-
-  <div id="cta-apply" class="container">
-    <h3>{{ _("Apply to the Gigabit Community Fund") }}</h3>
-    <p class="main">
-      {{ _("If you have an idea for a project based in Kansas City or Chattanooga, we welcome your application to the Gigabit Community Fund. Participants are  highly encouraged to get in touch with us during the application  process &#8212; we want to help you create a strong submission.") }}
-    </p>
-    <div class="aside">
-      <a id="apply-button" href="//docs.google.com/a/mozillafoundation.org/forms/d/13MKzQ7NMOgvHLxJBGRlS1Tp6Vg98-_BUH3vG6teGixc/viewform" target="_blank" class="button arrow" title={{_('Apply Now. Opens new window.')}}><span>{{ _(('Apply Now')) }}</span></a>
-      {{_('<a href="%s" target="_blank" class="tnc-link" title={{_("Terms and Conditions. Opens new window.")}}>Terms and Conditions</a>')|format(url('gigabit.terms')) }}
-    </div>
-  </div>
-
-  <div id="questions" class="container">
-    <div class="main">
-      <h2>{{ _("Questions?") }}</h2>
-      <p>
-        {% trans url_wiki='//wiki.mozilla.org/Gigabit', url_terms=url('gigabit.terms'), url_email='mailto:gigabit@mozilla.org' %}
-            Our <a href="{{ url_wiki }}" target="_blank" title="Wiki. Opens new window.">wiki</a> is full of helpful information and we encourage you to read through the Gigabit Community Fund’s <a href="{{ url_terms }}" target="_blank">Terms and Conditions</a>. Feel free to <a href="{{ url_email }}" target="_blank" title="Email us. Opens new window.">email us</a> any time. Don't be shy — we're friendly!
-        {% endtrans %}
-      </p>
-      <p>
-        {{ _("Submission of new versions will be allowed until the application period closes and  the review process begins. The latest submitted version before the deadline will be considered final.") }}
-      </p>
-      <p>
-        {% trans url_moz_open='//wiki.mozilla.org/Working_open' %}
-            <a href="{{ url_moz_open }}" target="_blank" title="Mozilla works open. Opens new window.">Mozilla works open</a>. We will make the content of all submissions publicly viewable.
-        {% endtrans %}
-      </p>
-      <p>
-        {{ _("Projects  that are awarded funding are encouraged to work open. Funded  participants will be expected to create a free GitHub repository that,  at minimum, documents their submitted proposal. You retain all ownership  rights in your submission in the Fund.") }}
-      </p>
-    </div>
-    <div class="aside">
-      <h2>{{ _("Dates &amp; Deadlines") }}</h2>
-      <ul>
-        <li>
-          {{ _(("The <b>Spring Pilot Period</b> runs from March 18 – June 10, 2014. The deadline for applications is Tuesday, March 11, 2014 at midnight.")) }}
-        </li>
-        <li>
-          {{ _(("The <b>Summer Pilot Period</b> runs from June 25  – September 16, 2014. The deadline for applications is Tuesday, June 17, 2014 at midnight.")) }}
-        </li>
-        <li>
-          {{ _(("Participants are highly encouraged to get in touch with us during the application process &#8212; we'd be pleased to help you create a strong submission.")) }}
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  <div id="partners" class="container center">
-    <div id="partner-logos center">
-      <a href="//www.nsf.gov/" target="_blank" title={{_('NSF website. Opens new window.')}}><img src="{{ media('img/gigabit/NSF.png') }}" alt="NSF"></a>
-      <a href="//us-ignite.org/" target="_blank" title={{_('US Ignite website. Opens new window.')}}><img src="{{ media('img/gigabit/ignite.png') }}" alt="US Ignite"></a>
-      <a href="//www.geni.net/" target="_blank" title={{_('GENI website. Opens new window.')}}><img src="{{ media('img/gigabit/geni.png') }}" alt="GENI"></a>
-      <a href="//www.kcdigitaldrive.com/" target="_blank" title={{_('KC Digital Drive website. Opens new window.')}}><img src="{{ media('img/gigabit/KC-Digital-Drive.jpg') }}" alt="KC Digital Drive"></a>
-      <a href="//www.chattanooga.gov/" target="_blank" title={{_('Chatt City Seal website. Opens new window.')}}><img src="{{ media('img/gigabit/Chatt-City-Seal.jpg') }}" alt="Chatt City Seal"></a>
-      <a href="///www.kcmo.org/CKCMO/index.htm" target="_blank" title={{_('KC MO website. Opens new window.')}}><img src="{{ media('img/gigabit/KCMO.png') }}" alt="KC MO"></a>
-      <a href="//www.wycokck.org/" target="_blank" title={{_('KC Unified Gov website. Opens new window.')}}><img src="{{ media('img/gigabit/KC-Unified-Gov.gif') }}" alt="KC Unified Gov"></a>
-    </div>
-  </div>
 
 {% endblock %}
 

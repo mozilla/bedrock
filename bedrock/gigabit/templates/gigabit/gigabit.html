@@ -32,141 +32,139 @@
 {% block content %}
   <h1 id="wordmark"><a href="{{ url('gigabit.gigabit') }}"><img src="{{ media('img/gigabit/gigabit-wordmark.png') }}" alt={{_('Mozilla Gigabit Community Fund (go to Home page)')}}></a></h1>
 
-  <div id="site-title" class="container center">
+  <main role="main">
     <article>
-      <header>
-        <h2 class="large">{{ _('Gigabit Community Fund') }}</h2>
-        <h3>{{ _('Learn on tomorrow’s networks') }}</h3>
-      </header>
-    </article>
-  </div>
+      <h1 class="large center">{{ _('Gigabit Community Fund') }}</h1>
+      <h3 class="center">{{ _('Learn on tomorrow’s networks') }}</h3>
 
-  <div id="home-banner" class="container">
-    <div class="main">
-      <h1>{{ _("A Community <br/>Building the Future") }}</h1>
-      {# L10n: presentational break can be repositioned or omitted as needed for text flow #}
-      <p>
-        {{ _("We support innovators connecting local service organizations in Kansas City and Chattanooga with advanced networking and communication technologies.") }}
-      </p>
-    </div>
-    <div class="aside">
-      <a id="apply-button" href="//docs.google.com/a/mozillafoundation.org/forms/d/13MKzQ7NMOgvHLxJBGRlS1Tp6Vg98-_BUH3vG6teGixc/viewform" target="_blank" class="button arrow" title={{_('Apply Now. Opens new window.')}}><span>{{ _(('Apply Now')) }}</span></a>
-      {{_('<a href="%s" target="_blank" class="tnc-link" title={{_("Terms and Conditions. Opens new window.")}}>Terms and Conditions</a>')|format(url('gigabit.terms')) }}
-    </div>
-  </div>
-
-  <div id="about-gigabit" class="container">
-    <div class="main">
-      <h2>{{ _("What is the Gigabit Community Fund?") }}</h2>
-      <p>
-        {{ _("Mozilla's  Gigabit Community Fund provides grants and resources for innovators exploring the use of next-generation gigabit technologies in Kansas City and Chattanooga.") }}
-      </p>
-      <p>
-        {% trans url_nsf='//www.nsf.gov/', url_us_ignite='//us-ignite.org/', url_google_fibre='//fiber.google.com/about/', url_epb='//www.epb.net/' %}
-          Working in partnership with the <a href='{{ url_nsf }}' target='_blank' title='National Science Foundation. Opens new window.'>National Science Foundation</a> and <a href='{{ url_us_ignite }}' target='_blank' title='US Ignite. Opens new window.'>US Ignite</a>, the Gigabit Community Fund seeks to advance the development, experimentation and implementation of learning and workforce opportunities enhanced by new, super powerful Internet technologies like <a href='{{ url_google_fibre }}' target='_blank' title='Google Fibre. Opens new window.'>Google Fiber</a> and <a href='{{ url_epb }}' target='_blank' title='EPB. Opens new windows'>EPB</a>.
-        {% endtrans %}
-      </p>
-      <p>
-        {{ _("The $300,000 fund will support projects in Kansas City and Chattanooga. As the leading gigabit economies in the US, these communities are becoming ‘living labs’ for experimentation and development of public benefit uses  for these technologies.") }}
-      </p>
-      <p>
-        {{ _("The Fund will invest in projects that are both deployable in the near term, and replicable by individuals and organizations that share goals in  digital learning and making. This ‘community of practice’ includes educators, technologists and community catalysts.") }}
-      </p>
-      <p>
-        {{ _("To receive funding, projects must integrate with a local organization's service offerings in either Kansas City or Chattanooga. They need to have a measurable impact on constituents in these areas, and must demonstrate how emerging gigabit technologies are relevant in people's everyday lives.") }}
-      </p>
-      <p>
-        {{ _("The Gigabit Community Fund will support two 12-week pilot periods in both Kansas City and Chattanooga. In each pilot period, up to 10 projects will be awarded between $5,000 and $30,000.") }}
-      </p>
-      <p>
-        {% trans url_wiki='//wiki.mozilla.org/Gigabit' %}
-          Learn more about Mozilla's Gigabit Community Fund on our <a href='{{ url_wiki }}' target='_blank' title="Wiki. Opens new window.">wiki</a>.
-        {% endtrans %}
-      </p>
-    </div>
-    <div id="important-dates" class="aside">
-      <div class="dates">
-        <h4 class="center">{{ _("March & June") }}</h4>
-        <ul>
-          <li>{{ _("Mar. 11: Proposals for Spring pilot period due") }}</li>
-          <li>{{ _("Mar. 18: Awards announced") }}</li>
-          <li>{{ _("June 17: Proposals for Summer pilot period due") }}</li>
-          <li>{{ _("June 25: Awards announced") }}</li>
-        </ul>
+      <div id="home-banner" class="container">
+        <div class="main">
+          <h1>{{ _("A Community <br/>Building the Future") }}</h1>
+          {# L10n: presentational break can be repositioned or omitted as needed for text flow #}
+          <p>
+            {{ _("We support innovators connecting local service organizations in Kansas City and Chattanooga with advanced networking and communication technologies.") }}
+          </p>
+        </div>
+        <div class="aside">
+          <a id="apply-button" href="//docs.google.com/a/mozillafoundation.org/forms/d/13MKzQ7NMOgvHLxJBGRlS1Tp6Vg98-_BUH3vG6teGixc/viewform" target="_blank" class="button arrow" title={{_('Apply Now. Opens new window.')}}><span>{{ _(('Apply Now')) }}</span></a>
+          {{_('<a href="%s" target="_blank" class="tnc-link" title={{_("Terms and Conditions. Opens new window.")}}>Terms and Conditions</a>')|format(url('gigabit.terms')) }}
+        </div>
       </div>
-    </div>
-  </div>
 
-  <div id="get-involved" class="container">
-    <header class="center">
-      <h1>{{ _("Get Involved") }}</h1>
-      {{ _("Join our community to learn more or contribute your ideas. Everyone is welcome: educators, technologists, catalysts…whatever you consider  yourself! The more diversity the better.") }}
-    </header>
-    <div class="category">
-      <h4>{{ _("Connect with the community") }}</h4>
-      <p>
-        {% trans url_kansas='//www.google.com/calendar/embed?src=shj2d4103tbgg0duo9jl051rt4@group.calendar.google.com&ctz=America/Los_Angeles', url_chatt='//www.google.com/calendar/embed?src=f4r4mio8er2j2iha55anc5e63o@group.calendar.google.com&ctz=America/Los_Angeles' %}
-          Attend an event in <a href='{{ url_kansas }}' target='_blank' title='Kansas City Calendar. Opens new window.'>Kansas City</a> or <a href='{{ url_chatt }}' target='_blank' title='Chattanooga Calendar. Opens new window.'>Chattanooga</a>. Check out a friendly meet-up, code sprint, hack jam or Hive Pop-Up in your city.
-        {% endtrans %}
-      </p>
-      <p>
-        {% trans url_weekly_call='//wiki.mozilla.org/Gigabit' %}
-          Dial in to our <a href='{{ url_weekly_call }}' target='_blank' title='Weekly community call info. Opens new window.'>weekly community call</a>. We meet each week for an hour-long discussion to share ideas, ask questions and find answers.
-        {% endtrans %}
-      </p>
-    </div>
-    <div class="category">
-      <h4>{{ _("Get social") }}</h4>
-      <p>
-        {% trans url_blog='//blog.mozilla.org/gigabit/' %}
-          Catch the latest news on the <a href='{{ url_blog }}' target='_blank' title='Mozilla Gigabit Community Fund blog. Opens new window.'>Mozilla Gigabit Community Fund blog</a>.
-        {% endtrans %}
-      </p>
-      <p>
-        {% trans url_twitter='//twitter.com/MozillaGigabit' %}
-          Find us on Twitter <a href='{{ url_twitter }}' target='_blank' title='MozillaGigabit Twitter page. Opens new window.'>@MozillaGigabit</a>.
-        {% endtrans %}
-      </p>
-      <p>
-        {% trans url_comm_mailing='//minigroup.com/groups/19015' %}
-          Sign up for our <a href='{{ url_comm_mailing }}' target='_blank' title='Community email list. Opens new window.'>community email list</a>.
-        {% endtrans %}
-      </p>
-    </div>
-    <div class="category">
-      <h4>{{ _("Connect with us online") }}</h4>
-      <p>
-        {% trans url_email_us='mailto:gigabit@mozilla.org' %}
-          <a href='{{ url_email_us }}' target='_blank' title='Email us. Opens new window.'>Email us</a>. We are friendly and would love to hear from you.
-        {% endtrans %}
-      </p>
-      <p>{{ _("Receive email updates from Mozilla about the Gigabit Community Fund.") }}
-        <form id="bsd-signup" method="POST" action="//sendto.mozilla.org/page/s/gigabit-updates" name="signup">
-          <label for="email-field" class="hidden"></label>
-          <input id="email-field" type="email" name="email" />
-          <input id="pp-agree" type="checkbox" value="1" name="custom-2480" />
-          <small>
-            {% trans url_pp='//www.mozilla.org/en-US/privacy/policies/websites/' %}
-               <label for="pp-agree">I’m okay with you handling this info as you explain in your <a href='{{ url_pp }}' target='_blank' title='Privacy policy. Opens new window.'>privacy policy</a>.</label>
+      <div id="about-gigabit" class="container">
+        <div class="main">
+          <h2>{{ _("What is the Gigabit Community Fund?") }}</h2>
+          <p>
+            {{ _("Mozilla's  Gigabit Community Fund provides grants and resources for innovators exploring the use of next-generation gigabit technologies in Kansas City and Chattanooga.") }}
+          </p>
+          <p>
+            {% trans url_nsf='//www.nsf.gov/', url_us_ignite='//us-ignite.org/', url_google_fibre='//fiber.google.com/about/', url_epb='//www.epb.net/' %}
+              Working in partnership with the <a href='{{ url_nsf }}' target='_blank' title='National Science Foundation. Opens new window.'>National Science Foundation</a> and <a href='{{ url_us_ignite }}' target='_blank' title='US Ignite. Opens new window.'>US Ignite</a>, the Gigabit Community Fund seeks to advance the development, experimentation and implementation of learning and workforce opportunities enhanced by new, super powerful Internet technologies like <a href='{{ url_google_fibre }}' target='_blank' title='Google Fibre. Opens new window.'>Google Fiber</a> and <a href='{{ url_epb }}' target='_blank' title='EPB. Opens new windows'>EPB</a>.
             {% endtrans %}
-          </small>
-          <input type="submit" value='{{ _(("Sign Me Up")) }}' class="button" />
-        </form>
-      </p>
-    </div>
-  </div>
+          </p>
+          <p>
+            {{ _("The $300,000 fund will support projects in Kansas City and Chattanooga. As the leading gigabit economies in the US, these communities are becoming ‘living labs’ for experimentation and development of public benefit uses  for these technologies.") }}
+          </p>
+          <p>
+            {{ _("The Fund will invest in projects that are both deployable in the near term, and replicable by individuals and organizations that share goals in  digital learning and making. This ‘community of practice’ includes educators, technologists and community catalysts.") }}
+          </p>
+          <p>
+            {{ _("To receive funding, projects must integrate with a local organization's service offerings in either Kansas City or Chattanooga. They need to have a measurable impact on constituents in these areas, and must demonstrate how emerging gigabit technologies are relevant in people's everyday lives.") }}
+          </p>
+          <p>
+            {{ _("The Gigabit Community Fund will support two 12-week pilot periods in both Kansas City and Chattanooga. In each pilot period, up to 10 projects will be awarded between $5,000 and $30,000.") }}
+          </p>
+          <p>
+            {% trans url_wiki='//wiki.mozilla.org/Gigabit' %}
+              Learn more about Mozilla's Gigabit Community Fund on our <a href='{{ url_wiki }}' target='_blank' title="Wiki. Opens new window.">wiki</a>.
+            {% endtrans %}
+          </p>
+        </div>
+        <div id="important-dates" class="aside">
+          <div class="dates">
+            <h4 class="center">{{ _("March & June") }}</h4>
+            <ul>
+              <li>{{ _("Mar. 11: Proposals for Spring pilot period due") }}</li>
+              <li>{{ _("Mar. 18: Awards announced") }}</li>
+              <li>{{ _("June 17: Proposals for Summer pilot period due") }}</li>
+              <li>{{ _("June 25: Awards announced") }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
 
-  <div id="partners" class="container center">
-    <div id="partner-logos center">
-      <a href="//www.nsf.gov/" target="_blank" title={{_('NSF website. Opens new window.')}}><img src="{{ media('img/gigabit/NSF.png') }}" alt="NSF"></a>
-      <a href="//us-ignite.org/" target="_blank" title={{_('US Ignite website. Opens new window.')}}><img src="{{ media('img/gigabit/ignite.png') }}" alt="US Ignite"></a>
-      <a href="//www.geni.net/" target="_blank" title={{_('GENI website. Opens new window.')}}><img src="{{ media('img/gigabit/geni.png') }}" alt="GENI"></a>
-      <a href="//www.kcdigitaldrive.com/" target="_blank" title={{_('KC Digital Drive website. Opens new window.')}}><img src="{{ media('img/gigabit/KC-Digital-Drive.jpg') }}" alt="KC Digital Drive"></a>
-      <a href="//www.chattanooga.gov/" target="_blank" title={{_('Chatt City Seal website. Opens new window.')}}><img src="{{ media('img/gigabit/Chatt-City-Seal.jpg') }}" alt="Chatt City Seal"></a>
-      <a href="///www.kcmo.org/CKCMO/index.htm" target="_blank" title={{_('KC MO website. Opens new window.')}}><img src="{{ media('img/gigabit/KCMO.png') }}" alt="KC MO"></a>
-      <a href="//www.wycokck.org/" target="_blank" title={{_('KC Unified Gov website. Opens new window.')}}><img src="{{ media('img/gigabit/KC-Unified-Gov.gif') }}" alt="KC Unified Gov"></a>
-    </div>
-  </div>
+      <div id="get-involved" class="container">
+        <header class="center">
+          <h1>{{ _("Get Involved") }}</h1>
+          {{ _("Join our community to learn more or contribute your ideas. Everyone is welcome: educators, technologists, catalysts…whatever you consider  yourself! The more diversity the better.") }}
+        </header>
+        <div class="category">
+          <h4>{{ _("Connect with the community") }}</h4>
+          <p>
+            {% trans url_kansas='//www.google.com/calendar/embed?src=shj2d4103tbgg0duo9jl051rt4@group.calendar.google.com&ctz=America/Los_Angeles', url_chatt='//www.google.com/calendar/embed?src=f4r4mio8er2j2iha55anc5e63o@group.calendar.google.com&ctz=America/Los_Angeles' %}
+              Attend an event in <a href='{{ url_kansas }}' target='_blank' title='Kansas City Calendar. Opens new window.'>Kansas City</a> or <a href='{{ url_chatt }}' target='_blank' title='Chattanooga Calendar. Opens new window.'>Chattanooga</a>. Check out a friendly meet-up, code sprint, hack jam or Hive Pop-Up in your city.
+            {% endtrans %}
+          </p>
+          <p>
+            {% trans url_weekly_call='//wiki.mozilla.org/Gigabit' %}
+              Dial in to our <a href='{{ url_weekly_call }}' target='_blank' title='Weekly community call info. Opens new window.'>weekly community call</a>. We meet each week for an hour-long discussion to share ideas, ask questions and find answers.
+            {% endtrans %}
+          </p>
+        </div>
+        <div class="category">
+          <h4>{{ _("Get social") }}</h4>
+          <p>
+            {% trans url_blog='//blog.mozilla.org/gigabit/' %}
+              Catch the latest news on the <a href='{{ url_blog }}' target='_blank' title='Mozilla Gigabit Community Fund blog. Opens new window.'>Mozilla Gigabit Community Fund blog</a>.
+            {% endtrans %}
+          </p>
+          <p>
+            {% trans url_twitter='//twitter.com/MozillaGigabit' %}
+              Find us on Twitter <a href='{{ url_twitter }}' target='_blank' title='MozillaGigabit Twitter page. Opens new window.'>@MozillaGigabit</a>.
+            {% endtrans %}
+          </p>
+          <p>
+            {% trans url_comm_mailing='//minigroup.com/groups/19015' %}
+              Sign up for our <a href='{{ url_comm_mailing }}' target='_blank' title='Community email list. Opens new window.'>community email list</a>.
+            {% endtrans %}
+          </p>
+        </div>
+        <div class="category">
+          <h4>{{ _("Connect with us online") }}</h4>
+          <p>
+            {% trans url_email_us='mailto:gigabit@mozilla.org' %}
+              <a href='{{ url_email_us }}' target='_blank' title='Email us. Opens new window.'>Email us</a>. We are friendly and would love to hear from you.
+            {% endtrans %}
+          </p>
+          <p>{{ _("Receive email updates from Mozilla about the Gigabit Community Fund.") }}
+            <form id="bsd-signup" method="POST" action="//sendto.mozilla.org/page/s/gigabit-updates" name="signup">
+              <label for="email-field" class="hidden"></label>
+              <input id="email-field" type="email" name="email" />
+              <input id="pp-agree" type="checkbox" value="1" name="custom-2480" />
+              <small>
+                {% trans url_pp='//www.mozilla.org/en-US/privacy/policies/websites/' %}
+                   <label for="pp-agree">I’m okay with you handling this info as you explain in your <a href='{{ url_pp }}' target='_blank' title='Privacy policy. Opens new window.'>privacy policy</a>.</label>
+                {% endtrans %}
+              </small>
+              <input type="submit" value='{{ _(("Sign Me Up")) }}' class="button" />
+            </form>
+          </p>
+        </div>
+      </div>
+
+      <div id="partners" class="container center">
+        <div id="partner-logos center">
+          <a href="//www.nsf.gov/" target="_blank" title={{_('NSF website. Opens new window.')}}><img src="{{ media('img/gigabit/NSF.png') }}" alt="NSF"></a>
+          <a href="//us-ignite.org/" target="_blank" title={{_('US Ignite website. Opens new window.')}}><img src="{{ media('img/gigabit/ignite.png') }}" alt="US Ignite"></a>
+          <a href="//www.geni.net/" target="_blank" title={{_('GENI website. Opens new window.')}}><img src="{{ media('img/gigabit/geni.png') }}" alt="GENI"></a>
+          <a href="//www.kcdigitaldrive.com/" target="_blank" title={{_('KC Digital Drive website. Opens new window.')}}><img src="{{ media('img/gigabit/KC-Digital-Drive.jpg') }}" alt="KC Digital Drive"></a>
+          <a href="//www.chattanooga.gov/" target="_blank" title={{_('Chatt City Seal website. Opens new window.')}}><img src="{{ media('img/gigabit/Chatt-City-Seal.jpg') }}" alt="Chatt City Seal"></a>
+          <a href="///www.kcmo.org/CKCMO/index.htm" target="_blank" title={{_('KC MO website. Opens new window.')}}><img src="{{ media('img/gigabit/KCMO.png') }}" alt="KC MO"></a>
+          <a href="//www.wycokck.org/" target="_blank" title={{_('KC Unified Gov website. Opens new window.')}}><img src="{{ media('img/gigabit/KC-Unified-Gov.gif') }}" alt="KC Unified Gov"></a>
+        </div>
+      </div>
+    </article>
+  </main>
 
 {% endblock %}
 
