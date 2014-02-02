@@ -16,7 +16,7 @@ FRAUD_REPORT_FILE_SIZE_LIMIT = 5242880  # 5MB
 
 class FraudReportForm(forms.Form):
     input_url = forms.URLField(
-        max_length=40,
+        max_length=2000,
         required=True,
         error_messages={
             'required': _lazy(u'Please enter a URL.'),
@@ -73,7 +73,7 @@ class FraudReportForm(forms.Form):
         )
     )
     input_specific_product = forms.CharField(
-        max_length=80,
+        max_length=254,
         required=False,
         widget=forms.TextInput(
             attrs={
@@ -96,7 +96,7 @@ class FraudReportForm(forms.Form):
         required=False,
     )
     input_attachment_desc = forms.CharField(
-        max_length=40,
+        max_length=254,
         required=False,
         widget=forms.Textarea(
             attrs={
@@ -107,7 +107,7 @@ class FraudReportForm(forms.Form):
         )
     )
     input_email = forms.EmailField(
-        max_length=80,
+        max_length=254,
         required=False,
         error_messages={
             'invalid': _lazy(u'Please enter a valid email address'),
