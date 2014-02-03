@@ -30,7 +30,7 @@
 
 
 {% block content %}
-  <h1 id="wordmark"><a href="{{ url('gigabit.gigabit') }}"><img src="{{ media('img/gigabit/gigabit-wordmark.png') }}" alt={{_('Mozilla Gigabit Community Fund (go to Home page)')}}></a></h1>
+  <h1 id="wordmark"><img src="{{ media('img/gigabit/gigabit-wordmark.png') }}" alt="{{_('Mozilla Gigabit Community Fund wordmark')}}"></h1>
 
   <main role="main">
     <article>
@@ -138,12 +138,12 @@
           </p>
           <p>{{ _("Receive email updates from Mozilla about the Gigabit Community Fund.") }}
             <form id="bsd-signup" method="POST" action="//sendto.mozilla.org/page/s/gigabit-updates" name="signup">
-              <label for="email-field" class="hidden"></label>
+              <label for="email-field" class="hidden">{{_('Email') }}</label>
               <input id="email-field" type="email" name="email" />
               <input id="pp-agree" type="checkbox" value="1" name="custom-2480" />
               <small>
                 {% trans url_pp='//www.mozilla.org/en-US/privacy/policies/websites/' %}
-                   <label for="pp-agree">I’m okay with you handling this info as you explain in your <a href='{{ url_pp }}' target='_blank' title='Read Mozilla websites privacy policy. Opens new window.'>privacy policy</a>.</label>
+                   <label for="pp-agree">I’m okay with you handling this info as you explain in your <a href='{{ url_pp }}' target="_blank" title="Read Mozilla websites privacy policy. Opens new window.">privacy policy</a>.</label>
                 {% endtrans %}
               </small>
               <input type="submit" value='{{ _(("Sign Me Up")) }}' class="button" />
