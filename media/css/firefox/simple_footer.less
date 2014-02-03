@@ -32,13 +32,14 @@
     .secondary {
         li {
             margin-left: 0;
+            border: dotted @textColorLight;
+            border-width: 0 0 0 1px;
             a, a:link, a:visited {
                 font-size: 12px;
                 color: @textColorLight;
-                border-left: 1px dotted @textColorLight;
             }
-            &:first-child a {
-                border: 0;
+            &:first-child {
+                border-width: 0;
             }
         }
     }
@@ -52,5 +53,12 @@
         select {
             margin: 0 .5em;
         }
+    }
+}
+
+/* RTL support */
+html[dir="rtl"] {
+    #colophon .secondary li:not(:first-child) {
+        border-width: 0 1px 0 0;
     }
 }
