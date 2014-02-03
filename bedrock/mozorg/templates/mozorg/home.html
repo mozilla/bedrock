@@ -89,6 +89,20 @@
       </li>
     {% endif %}
 
+    {% if l10n_has_tag('promo_mwc_2014') or settings.DEV %}
+      <li id="panel-mwc-2014" class="panel" tabindex="0">
+        <h2 class="panel-title">{{ _('Mobile World Congress 2014') }}</h2>
+        <div class="panel-inner">
+          <div class="panel-content">
+            <a href="{{ url('firefox.partners.index') }}">
+              <h3>{{ _('Unleash the future') }}</h3>
+              <p>{{ _('Firefox OS has gone from vision to demo to reality in just two years, bringing openness, accessibility and opportunity to 15 countries so far.') }}</p>
+              <p class="go">{{ _('See what’s next for mobile') }}</p>
+            </a>
+          </div>
+        </div>
+      </li>
+    {% else %}
       <li id="panel-fxos" class="panel" tabindex="0">
         {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
         <h2 class="panel-title">{{ _('<i>Look</i> ahead') }}</h2>
@@ -102,6 +116,7 @@
           </div>
         </div>
       </li>
+    {% endif %}
 
     {% if l10n_has_tag('promo_webmaker') or settings.DEV %}
       <li id="panel-webmaker" class="panel" tabindex="0">
