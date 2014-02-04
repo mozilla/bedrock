@@ -114,12 +114,10 @@
           <h4>{{ _('Listen') }}</h4>
 
           <p>
-            {{ _('We’ll will be giving presentations at our booth and also participating in sponsored MWC sessions.') }}
+            {{ _('We will be giving presentations at our booth and also participating in sponsored MWC sessions.') }}
           </p>
 
-          <small>
-            {{ _('Schedule coming soon') }}
-          </small>
+          <a class="arrow modal-link" href="#schedule">{{ _('See the schedule') }}</a>
         </li>
         <li id="how-learn" class="last">
           <h4>{{ _('Learn') }}</h4>
@@ -189,6 +187,14 @@
         </div>
       </div>
     </section> <!--/#map-->
+
+    <section id="schedule">
+      <div class="container">
+        <h1 class="modal-content-header">{{ _('Firefox at MWC 2014 &ndash; Schedule of Events') }}</h1>
+
+        {% include "/firefox/includes/mwc_2014_schedule.html" %}
+      </div><!--/.container-->
+    </section>
   </div> <!--/#modal-content-->
 </main>
 
