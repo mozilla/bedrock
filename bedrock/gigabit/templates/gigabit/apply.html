@@ -37,12 +37,18 @@
 
       <div id="cta-apply" class="container">
         <h3>{{ _("Apply to the Gigabit Community Fund") }}</h3>
-        <p class="main">
-          {{ _("If you have an idea for a project based in Kansas City or Chattanooga, we welcome your application to the Gigabit Community Fund. Participants are  highly encouraged to get in touch with us during the application  process &#8212; we want to help you create a strong submission.") }}
-        </p>
-        <div class="aside">
-          <a id="apply-button" href="//docs.google.com/a/mozillafoundation.org/forms/d/13MKzQ7NMOgvHLxJBGRlS1Tp6Vg98-_BUH3vG6teGixc/viewform" class="button arrow"><span>{{ _(('Apply Now')) }}</span></a>
-          {{_('<a href="%s" class="tnc-link">Terms and Conditions</a>')|format(url('gigabit.terms')) }}
+        <div class="main">
+          <p>
+            {{ _("<b>We will begin accepting applications in February 2014.</b>") }}
+          </p>
+          <p>
+            {% trans url_announcement='//sendto.mozilla.org/page/s/gigabit-updates', url_twitter='//twitter.com/MozillaGigabit' %}
+              Join our <a href='{{ url_announcement }}'>announcement list</a> or follow <a href='{{ url_twitter }}'>@MozillaGigabit</a> for updates!
+            {% endtrans %}
+          </p>
+          <p>
+            {{ _('If you have an idea for a project based in Kansas City or Chattanooga, we encourage you to get involved in the local Gigabit community  — we want to help you create a strong submission.') }}
+          </p>
         </div>
       </div>
 
@@ -70,10 +76,15 @@
           <h2>{{ _("Dates &amp; Deadlines") }}</h2>
           <ul>
             <li>
-              {{ _(("The <b>Spring Pilot Period</b> runs from March 18 – June 10, 2014. The deadline for applications is Tuesday, March 11, 2014 at midnight.")) }}
+              {{ _(("The <b>Spring Pilot Period</b> runs from March &#8212; June 2014. We will accept applications in February 2014.")) }}
             </li>
             <li>
-              {{ _(("The <b>Summer Pilot Period</b> runs from June 25  – September 16, 2014. The deadline for applications is Tuesday, June 17, 2014 at midnight.")) }}
+              {{ _(("The <b>Summer Pilot Period</b> runs from July &#8212; September 2014. We will accept applications in April 2014.")) }}
+            </li>
+            <li>
+              {% trans url_announcement='//sendto.mozilla.org/page/s/gigabit-updates', url_twitter='//twitter.com/MozillaGigabit' %}
+                Join our <a href='{{ url_announcement }}'>announcement list</a> or follow <a href='{{ url_twitter }}'>@MozillaGigabit</a> for updates!
+              {% endtrans %}
             </li>
             <li>
               {{ _(("Participants are highly encouraged to get in touch with us during the application process &#8212; we'd be pleased to help you create a strong submission.")) }}

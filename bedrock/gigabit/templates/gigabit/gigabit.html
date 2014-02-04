@@ -46,7 +46,7 @@
           </p>
         </div>
         <div class="aside">
-          <a id="apply-button" href="//docs.google.com/a/mozillafoundation.org/forms/d/13MKzQ7NMOgvHLxJBGRlS1Tp6Vg98-_BUH3vG6teGixc/viewform" class="button arrow"><span>{{ _(('Apply Now')) }}</span></a>
+          <a id="apply-button" href="{{ url('gigabit.apply') }}" class="button arrow"><span>{{ _(('Apply')) }}</span></a>
           {{_('<a href="%s"class="tnc-link">Terms and Conditions</a>')|format(url('gigabit.terms')) }}
         </div>
       </div>
@@ -82,12 +82,17 @@
         </div>
         <div id="important-dates" class="aside">
           <div class="dates">
-            <h4 class="center">{{ _("March &amp; June") }}</h4>
+            <h4 class="center">{{ _("Key Dates") }}</h4>
             <ul>
-              <li>{{ _("Mar. 11: Proposals for Spring pilot period due") }}</li>
-              <li>{{ _("Mar. 18: Awards announced") }}</li>
-              <li>{{ _("June 17: Proposals for Summer pilot period due") }}</li>
-              <li>{{ _("June 25: Awards announced") }}</li>
+              <li>{{ _("February 2014: Applications open for Spring pilot period") }}</li>
+              <li>{{ _("March 2014: Spring pilot period begins") }}</li>
+              <li>{{ _("April 2014: applications open for the Summer pilot period") }}</li>
+              <li>{{ _("July 2014: Summer pilot period begins") }}</li>
+              <li>
+                {% trans url_announcement='//sendto.mozilla.org/page/s/gigabit-updates', url_twitter='//twitter.com/MozillaGigabit' %}
+                  Join our <a href='{{ url_announcement }}'>announcement list</a> or follow <a href='{{ url_twitter }}'>@MozillaGigabit</a> for updates!
+                {% endtrans %}
+              </li>
             </ul>
           </div>
         </div>
@@ -130,7 +135,7 @@
           </p>
         </div>
         <div class="category">
-          <h4>{{ _("Connect with us online") }}</h4>
+          <h4>{{ _("Get announcements") }}</h4>
           <p>
             {% trans url_email_us='mailto:gigabit@mozilla.org' %}
               <a href='{{ url_email_us }}'>Email us</a>. We are friendly and would love to hear from you.

@@ -154,12 +154,7 @@ main{
   }
 
   .main{
-    .span(8);
-  }
-
-  .aside{
-    .span(4);
-    text-align: center;
+    .span(12);
   }
 }
 
@@ -180,6 +175,10 @@ main{
   ul li{
     margin-left: 0;
     margin-bottom: 15px;
+  }
+
+  #important-dates ul{
+    padding: 10px;
   }
 }
 
@@ -219,7 +218,6 @@ main{
 /* {{{ Tablet  Layout: 768px */
 @media only screen and (min-width: @widthTablet) and (max-width: @widthDesktop) {
   #important-dates,
-  #cta-apply .aside,
   #about-gigabit .aside,
   #questions .aside,
   #get-involved .category{
@@ -233,7 +231,7 @@ main{
   #cta-apply .main,
   #about-gigabit .main,
   #questions .main{
-    .span_narrow(8);
+    .span_narrow(12);
   }
 
   #partner-logos{
@@ -253,7 +251,6 @@ main{
   #about-gigabit .main,
   #about-gigabit .aside,
   #cta-apply .main,
-  #cta-apply .aside,
   #questions .main,
   #questions .aside,
   #partner-logos,
