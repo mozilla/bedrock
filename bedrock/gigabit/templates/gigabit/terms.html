@@ -1,0 +1,39 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "base-resp.html" %}
+
+{% block page_title %}{{_('Gigabit')}}{% endblock %}
+{% block page_desc %}{{_('Gigabit - Description.')}}{% endblock %}
+{% block body_id %}terms{% endblock %}
+{% block body_class %}sand gigabit{% endblock %}
+{% block page_image %}{{ media('img/gigabit/gigabit_logo-wordmark_500x156.png') }}?2013-11{% endblock %}
+{% block page_favicon %}{{ media('img/gigabit/favicon.png') }}?2013-11{% endblock %}
+{% block site_header_logo %}
+{% endblock %}
+
+{% block extrahead %}
+  {{ css('gigabit') }}
+{% endblock %}
+
+{% block site_header_nav %}
+{% endblock %}
+
+{% block content %}
+  <h1 id="wordmark"><a href="{{ url('gigabit.gigabit') }}"><img src="{{ media('img/gigabit/gigabit-wordmark.png') }}" alt={{_("Mozilla Gigabit Community Fund (go to Home page)")}}></a></h1>
+
+  <main role="main">
+    <article>
+      <div class="container">
+        {% trans url_announcement='//sendto.mozilla.org/page/s/gigabit-updates', url_twitter='//twitter.com/MozillaGigabit' %}
+          <b>We will begin accepting applications in February 2014.</b> Join our <a href='{{ url_announcement }}'>announcement list</a> or follow <a href='{{ url_twitter }}'>@MozillaGigabit</a> for updates!
+        {% endtrans %}
+      </div>
+    </article>
+  </main>
+
+{% endblock %}
+
+{% block email_form %}
+{% endblock %}

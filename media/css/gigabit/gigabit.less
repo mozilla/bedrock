@@ -1,0 +1,284 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+#gigabit #outer-wrapper,
+#about #outer-wrapper{
+  background: url(/media/img/gigabit/gigabit-bg.png) no-repeat, url(/media/img/sandstone/bg-sand.png) repeat;
+}
+
+a{
+  color: #588fb4;
+}
+
+h2,
+h3,
+h4{
+  margin-bottom: 20px;
+}
+
+main{
+    margin-top: 0;
+}
+
+#wordmark{
+  .span-all();
+  img{
+    width: 120px;
+  }
+}
+
+.gigabit .container{
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding-top: @gridGutterWidth;
+  padding-bottom: @gridGutterWidth;
+}
+
+#apply-button{
+  padding: 15px 80px;
+}
+
+.tnc-link{
+  display: block;
+}
+
+#home-banner{
+  background: url("/media/img/gigabit/banner-bg.png") 0 -100px no-repeat;
+  padding-top: 50px;
+  padding-right: 30px;
+  padding-bottom: 70px;
+  padding-left: 30px;
+  width: calc( 100% - 10px );
+  color: #fff;
+
+  h1{
+    color: #fff;
+    line-height: 120%;
+  }
+
+  .main{
+    .span(7);
+  }
+
+  .aside{
+    position: relative;
+    top: 120px;
+    left: 30px;
+    text-align: center;
+  }
+
+  .tnc-link{
+    position: relative;
+    color: #fff;
+  }
+
+}
+
+#important-dates table{
+  background: #fff;
+  width: 100%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border: 1px dashed #ccc;
+
+  th {
+    border-bottom: 1px dashed #ccc;
+  }
+
+  td{
+    padding: 5px;
+    font-size: 12px;
+  }
+
+  td:not(:last-child){
+    border-bottom: 1px dashed #ccc;
+  }
+}
+
+#important-dates .dates{
+  background: #fff;
+  width: 100%;
+  padding-top: 15px;
+  border: 1px dashed #ccc;
+
+  h4{
+
+  }
+
+  li{
+    padding: 5px;
+    font-size: 12px;
+  }
+}
+
+#get-involved{
+  header{
+    overflow: hidden;
+    background: #fff;
+    padding: 30px 0;
+    font-size: 20px;
+    margin-bottom: 40px;
+  }
+
+  h4{
+    font-size: 23px;
+  }
+
+  .category{
+    .span(4);
+  }
+}
+
+#bsd-signup{
+  input[type="submit"]{
+    margin-top: 5px;
+    float: right;
+    padding: 5px 30px;
+  }
+}
+
+#email-field{
+  width: 90%;
+}
+
+#cta-apply{
+  background: #fff;
+  padding-top: 40px;
+  padding-bottom: 40px;
+
+  h3{
+    margin-left: 10px;
+  }
+
+  .main{
+    .span(12);
+  }
+}
+
+#about-gigabit,
+#questions{
+  .main{
+    .span(8);
+  }
+
+  .aside{
+    .span(4);
+  }
+
+  ul {
+    list-style-type: none;
+  }
+
+  ul li{
+    margin-left: 0;
+    margin-bottom: 15px;
+  }
+
+  #important-dates ul{
+    padding: 10px;
+  }
+}
+
+#partners{
+  background: #fff;
+  padding-top: 30px;
+  padding-bottom: 15px;
+
+  img{
+    margin: 0 15px;
+    max-width: 100px;
+  }
+
+  a{
+    opacity: 0.5;
+  }
+
+  a:hover{
+    opacity: 1;
+  }
+
+  #partner-logos{
+    .span(12);
+  }
+}
+
+#numbered-list{
+  list-style-type: decimal;
+}
+
+
+#terms .container h4:not(:first-of-type){
+  margin-top: 50px;
+}
+
+
+/* {{{ Tablet  Layout: 768px */
+@media only screen and (min-width: @widthTablet) and (max-width: @widthDesktop) {
+  #important-dates,
+  #about-gigabit .aside,
+  #questions .aside,
+  #get-involved .category{
+    .span_narrow(4);
+  }
+
+  #home-banner .main{
+    .span_narrow(7);
+  }
+
+  #cta-apply .main,
+  #about-gigabit .main,
+  #questions .main{
+    .span_narrow(12);
+  }
+
+  #partner-logos{
+    .span_narrow(12);
+  }
+
+  #partners img{
+    width: 100px;
+  }
+
+}
+
+/* }}} */
+/* {{{ Wide Mobile Layout: 480px */
+@media only screen and (max-width: @widthTablet) {
+  #important-dates,
+  #about-gigabit .main,
+  #about-gigabit .aside,
+  #cta-apply .main,
+  #questions .main,
+  #questions .aside,
+  #partner-logos,
+  #home-banner .main,
+  #home-banner .aside,
+  #get-involved .category{
+    width: 100%;
+    margin: 0;
+  }
+
+  #home-banner {
+    padding: 10px 10px 10px 10px;
+  }
+
+  #home-banner .aside{
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+
+  #cta-apply #apply-button{
+    margin-top: 20px;
+  }
+
+  #partners{
+    a{
+      width: 100%;
+      display: block;
+    }
+  }
+}
