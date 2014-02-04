@@ -111,6 +111,9 @@ MINIFY_BUNDLES = {
         'foundation': (
             'css/foundation/foundation.less',
         ),
+        'gigabit': (
+            'css/gigabit/gigabit.less',
+        ),
         'grants': (
             'css/grants/grants.less',
         ),
@@ -745,6 +748,7 @@ INSTALLED_APPS = get_apps(exclude=(
     '%s.lightbeam' % PROJECT_MODULE,
     '%s.firefox' % PROJECT_MODULE,
     '%s.foundation' % PROJECT_MODULE,
+    '%s.gigabit' % PROJECT_MODULE,
     '%s.grants' % PROJECT_MODULE,
     '%s.legal' % PROJECT_MODULE,
     '%s.mozorg' % PROJECT_MODULE,
