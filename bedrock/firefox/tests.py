@@ -113,6 +113,12 @@ class TestFirefoxDetails(TestCase):
                              [('product', 'firefox-17.0'),
                               ('os', 'osx'),
                               ('lang', 'pt-BR')])
+        # Linux 64-bit
+        url = firefox_details.get_download_url('Linux 64', 'en-US', '26.0')
+        self.assertListEqual(parse_qsl(urlparse(url).query),
+                             [('product', 'firefox-26.0'),
+                              ('os', 'linux64'),
+                              ('lang', 'en-US')])
 
     def test_filter_builds_by_locale_name(self):
         # search english
@@ -146,6 +152,13 @@ class TestFirefoxDetails(TestCase):
         )
         eq_(len(builds), 1)
         eq_(builds[0]['name_en'], 'French')
+
+    def test_linux64_build(self):
+        builds = firefox_details.get_filtered_full_builds(
+            firefox_details.latest_version('release')
+        )
+        url = builds[0]['platforms']['Linux 64']['download_url']
+        eq_(parse_qsl(urlparse(url).query)[1], ('os', 'linux64'))
 
     @patch.dict(firefox_details.firefox_versions,
                 LATEST_FIREFOX_VERSION='25.0.2')
