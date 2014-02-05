@@ -82,7 +82,7 @@
 
         // Contract the accordion vertically
         contractVert: function() {
-            $('.panel').stop().animate({'height':'4.5em'},700, function() {
+            $('.panel').stop().animate({'height':'5.5em'},700, function() {
                 $('.panel-title').fadeIn(250);
             }).removeClass('expanded compressed');
             $('.panel-content').stop(true,true).fadeOut(500);
