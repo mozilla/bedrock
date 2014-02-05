@@ -5,7 +5,7 @@
 {% extends "base-resp.html" %}
 
 {% block page_title %}{{ _('Firefox OS, Marketplace, Android — Partners') }}{% endblock %}
-{% block page_desc %}{{ _('We’re enabling operators, phone manufacturers and developers to manage, customize and improve relationships with their customers directly through our mobile products: Firefox OS, Firefox Marketplace and Firefox for Android.') }}{% endblock %}
+{% block page_desc %}{{ _('We’re enabling operators, phone manufacturers and developers to manage, customize and improve relationships with their customers directly through our mobile products: <a %(url1)s>Firefox OS</a>, <a %(url2)s>Firefox Marketplace</a> and <a %(url3)s>Firefox for Android</a>.') }}{% endblock %}
 {% block page_image %}{{ media('img/firefox/firefox-256.jpg') }}{% endblock %}
 {% block page_favicon %}{{ media('img/firefox/favicon.ico?2013-08') }}{% endblock %}
 
@@ -83,27 +83,51 @@
     <section class="section-1" data-current="1">
       <div class="phone-shadow visible"></div>
       <div class="article-content">
-        <h2>{{ _('Blaze Your Own Path') }}</h2>
+        <h2>{{ _('Unleash the future') }}</h2>
         <div class="intro">
 
-          <p>{% trans url1='class="nav" href="#os"'|safe, url2='class="nav" href="#marketplace"'|safe, url3='class="nav" href="#android"'|safe %}
-          We’re enabling operators, phone manufacturers and developers to manage, customize and improve relationships with their customers directly through our mobile products: <a {{url1}}>Firefox OS</a>, <a {{url2}}>Firefox Marketplace</a> and <a {{url3}}>Firefox for Android</a>.
-          {% endtrans %}</p>
+          <p>
+            {{ _('In our first year, we’ve brought openness, accessibility and opportunity to 15 countries with 4 hardware partners, 7 operators and 16 launches.') }}
+          {% trans url1='class="nav" href="#os"'|safe, url2='class="nav" href="#marketplace"'|safe, url3='class="nav" href="#android"'|safe %}
+            See what’s next for mobile with <a {{url1}}>Firefox OS</a>, <a {{url2}}>Firefox Marketplace</a>
+            and <a {{url3}}>Firefox for Android</a>.
+          {% endtrans %}
+          </p>
 
           <p class="partner-button"><a href="#form" class="button toggle-form">{{ _('Partner with us') }}</a></p>
 
-          <div id="overview-news">
-            <h3>{{ _('Recent news') }}</h3>
-            <ul>
-              {% if request.locale in locale_os_release_active %}
-              <li><a href="{{ locale_os_release_url }}">{{ _('Mozilla and partners prepare to launch first Firefox OS smartphones') }}</a></li>
-              {% endif %}
-              <li><a href="#mwc-wrapup" class="modal">{{ _('Watch our wrap-up video from Mobile World Congress 2013') }}</a></li>
-              {% if request.locale not in locale_os_release_active %}
-              <li><a href="{{ locale_os_url }}" rel="external">{{ _('Mozilla Announces Global Expansion for Firefox OS') }}</a></li>
-              {% endif %}
-            </ul>
-          </div>
+          <div id="overview-news-links">
+            <div id="overview-news-wrapper">
+              <img src="{{ media('img/firefox/partners/mwc-2014-banner.png') }}" alt="{{ _('Mobile World Congress 2014') }}">
+              <div id="overview-news">
+                <h3>{{ _('Recent news') }}</h3>
+                <ul>
+                {% if request.locale in locale_os_release_active %}
+                  <li><a href="{{ locale_os_release_url }}">{{ _('Mozilla and partners prepare to launch first Firefox OS smartphones') }}</a></li>
+                {% else %}
+                  <li><a href="#mwc-wrapup" class="modal">{{ _('Watch our wrap-up video from Mobile World Congress 2013') }}</a></li>
+                {% endif %}
+                </ul>
+              </div> <!--/#overview-news-->
+            </div> <!--/#overview-news-wrapper-->
+
+            <div id="overview-links">
+              <ul>
+                <li id="overview-video-recap">
+                  {# L10n: Line break below is presentational only #}
+                  <a href="">{{ _('Watch the daily <br>MWC video recap') }}</a>
+                </li>
+                <li id="overview-schedule">
+                  {# L10n: Line break below is presentational only #}
+                  <a href="#schedule" class="modal">{{ _('Fox Den &amp; other <br>MWC events') }}</a>
+                </li>
+                <li id="overview-mwc-tweets">
+                  {# L10n: Line break below is presentational only #}
+                  <a href="https://twitter.com/firefox" rel="external">{{ _('Firefox tweets from <br>MWC in Barcelona') }}</a>
+                </li>
+              </ul>
+            </div> <!--/#overview-links-->
+          </div> <!--/#overview-news-links-->
 
           <div class="partner-logos">
             <div class="pager pager-with-tabs pager-no-history pager-auto-rotate">
@@ -196,6 +220,8 @@
           <p class="narrow">{{ _('Built entirely using HTML5 and other open Web standards, Firefox OS is free from the rules and restrictions of existing proprietary platforms.') }}</p>
           <h4 class="narrow">{{ _('Made by Firefox') }}</h4>
           <p class="narrow">{{ _('For the past 15 years, we’ve been instrumental in innovating and shaping the Web to keep it open and accessible to all. As a result of our efforts, one fifth of all Web activity today happens through Firefox products.') }}</p>
+          {# L10n: Line break below is presentational only #}
+          <a href="">{{ _('View available Firefox OS devices') }}</a>
         </div>
       </div>
     </section>
@@ -348,7 +374,7 @@
     <section id="marketplace-developers" class="section-3" data-pos="3">
       <div class="article-content">
         <div class="intro tween">
-          <h3>{{ _('Developed with developers in mind') }}</h3>
+          <h3>{{ _('Become a Marketplace developer') }}</h3>
           <div class="left">
             <h4>{{ _('Marketplace offers:') }}</h4>
             <ul>
@@ -440,17 +466,8 @@
 
 <div id="overlay">
   <section id="testimonials" class="overlay-contents">
-    <h2>{{ _('Firefox Marketplace — Developer testimonials') }}</h2>
+    <h2 class="overlay-title">{{ _('Firefox Marketplace — Developer testimonials') }}</h2>
     <div class="video-wrapper"><iframe width="640" height="360" src="//www.youtube-nocookie.com/embed/videoseries?list=PLWK3kWTuPoUKFCTRtVkTUXn26PYF311w9" frameborder="0" allowfullscreen></iframe></div>
-  </section>
-  <section id="mwc-wrapup" class="overlay-contents">
-    <h2>{{ _('Firefox at Mobile World Congress 2013') }}</h2>
-    <div class="video-wrapper">
-    {{ video('MWC_2013.mp4',
-             'MWC_2013.webm',
-             prefix='//videos-cdn.mozilla.net/serv/drafts/',
-             poster=media('img/firefox/partners/mwc-wrapup-poster.jpg')) }}
-    </div>
   </section>
   <section id="form" class="overlay-contents{% if form_success %} form-success{% endif %}">
     <div class="form-results">
@@ -535,6 +552,10 @@
       {{ form.superpriority }}
     </form>
     <button id="pageslider-close" type="button" class="modal-close close">{{ _('Close') }}</button>
+  </section>
+  <section id="schedule" class="overlay-contents">
+    <h2 class="overlay-title">{{ _('Firefox at MWC 2014 &ndash; Schedule of Events') }}</h2>
+    {% include "firefox/includes/mwc_2014_schedule.html" %}
   </section>
 </div>
 

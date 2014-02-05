@@ -3,6 +3,16 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 @import "../sandstone/lib.less";
+@import "../firefox/mwc-2014-schedule.less";
+
+@font-face {
+    font-family: 'Open Sans ExtraBoldItalic';
+    src: url('/media/fonts/OpenSans-ExtraBoldItalic-webfont.eot?#iefix-2013') format('embedded-opentype'),
+         url('/media/fonts/OpenSans-ExtraBoldItalic-webfont.woff') format('woff'),
+         url('/media/fonts/OpenSans-ExtraBoldItalic-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 @localBlue:     #43a6e2;
 @localBlueDark: #247ac1;
@@ -308,6 +318,9 @@
         text-align: center;
         margin-top: 20px;
         font-size: 28px;
+        font-family: 'Open Sans ExtraBoldItalic';
+        text-transform: uppercase;
+        text-shadow: none;
     }
     .intro {
         text-align: center;
@@ -316,19 +329,65 @@
                 text-align: left;
                 color: @textColorSecondary;
                 font-weight: bold;
-                font-size: 18px;
+                font-size: 16px;
                 text-transform: uppercase;
-                margin-top: 10px;
             }
             ul {
                 text-align: left;
-                font-size: @smallFontSize;
+                font-size: @baseFontSize;
                 li {
-                    margin-bottom: 5px;
-                    line-height: 1.2;
+                    margin: 0 0 5px;
+                    line-height: 1.4;
+                    list-style-type: none;
                 }
             }
         }
+    }
+}
+
+#overview-news-links a {
+    font-style: italic;
+
+    &:after {
+        content: ' »';
+    }
+}
+
+#overview-news-wrapper {
+    background: url(/media/img/firefox/partners/hr-grey.png) center bottom no-repeat;
+    background-size: 300px;
+    padding: @baseLine 0;
+
+    img {
+        display: none;
+    }
+}
+
+#overview-links {
+    background: url(/media/img/firefox/partners/hr-grey.png) center bottom no-repeat;
+    background-size: 300px;
+    padding: @baseLine 0;
+    li {
+        padding: 5px 0 0 54px;
+        background-image: url(/media/img/firefox/partners/sprite-overview-links.png);
+        background-repeat: no-repeat;
+        min-height: 39px;
+        list-style-type: none;
+        margin: 0 0 @baseLine;
+        text-align: left;
+        br {
+            // line break only needed at tablet+ sizes
+            display: none;
+        }
+    }
+    #overview-fxos-devices {
+        background-position: left top;
+    }
+    #overview-schedule {
+        background-position: left -100px;
+    }
+    #overview-mwc-tweets {
+        background-position: left -200px;
     }
 }
 
@@ -574,6 +633,10 @@
 
 .js .overlay-contents {
     padding: 0;
+
+    .overlay-title {
+        display: none;
+    }
 }
 
 #testimonials,

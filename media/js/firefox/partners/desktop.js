@@ -160,9 +160,9 @@
     });
 
     // re-arrange news, partner button, & links if #overview
-    var $overview_news = $('#overview-news').detach();
-    $('#more-partners').after($overview_news);
-    $overview_news.fadeIn('fast');
+    var $overview_news_links = $('#overview-news-links').detach();
+    $('#more-partners').after($overview_news_links);
+    $overview_news_links.fadeIn('fast');
 
     var $overview_actions= $('#overview .overview-actions').detach();
     $('#overview-news').after($overview_actions);

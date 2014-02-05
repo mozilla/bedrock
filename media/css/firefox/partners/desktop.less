@@ -235,7 +235,7 @@
 /* {{{ Overview Article */
 
 .js #overview {
-    .partner-button, #overview-news {
+    .partner-button, #overview-news-links {
         display: none;
     }
     .partner-button {
@@ -248,21 +248,21 @@
 #overview {
     background: url(/media/img/firefox/partners/overview-bg.png?2013-06) center -15px no-repeat;
     h2 {
-        font-size: 84px;
+        font-size: 80px;
         letter-spacing: -4px;
         .span-all();
-        padding-top: 40px;
-        padding-bottom: 30px;
+        padding-top: 60px;
+        padding-bottom: 10px;
     }
     .intro {
-        margin-top: 20px;
+        margin-top: @baseLine;
         p {
             .open-sans-light;
-            font-size: 17px;
+            font-size: 18px;
             letter-spacing: -0.01em;
         }
         .partner-logos {
-            margin-top: 40px;
+            margin-top: @baseLine;
         }
         #more-partners {
             margin: -30px 0 0 0;
@@ -280,20 +280,55 @@
             float: right;
             margin-bottom: 5px;
         }
-        #overview-news {
-            padding-top: 20px;
-            clear: both;
-            .clearfix();
-            position: relative;
-            h3 {
-                margin: 0 0 5px 0;
-            }
-            ul {
-                margin: 0 0 10px 0;
-            }
+    }
+}
+
+#overview-news-links {
+    padding-top: (@baseLine / 2);
+}
+
+#overview-news-wrapper {
+    background-size: 621px;
+    .clearfix;
+    position: relative;
+
+    img {
+        display: block;
+        float: left;
+        width: 124px;
+    }
+}
+
+#overview-news {
+    float: left;
+    margin-left: @baseLine * 2;
+    width: 456px;
+
+    h3 {
+        margin: 0 0 5px 0;
+    }
+    ul {
+        margin: 0 0 10px 0;
+    }
+}
+
+#overview-links {
+    background: none;
+    padding-top: (@baseLine / 2);
+
+    ul {
+        .clearfix;
+    }
+    li {
+        float: left;
+        width: 146px;
+        padding-top: 0;
+        padding-right: 6px;
+
+        br {
+            display: block;
         }
     }
-
 }
 
 /* }}} */

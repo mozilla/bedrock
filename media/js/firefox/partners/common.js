@@ -54,8 +54,17 @@
         e.preventDefault();
 
         // Extract the target element's ID from the link's href.
-        var elem = $(this).attr('href').replace(/.*?(#.*)/g, '$1');
-        Mozilla.Modal.createModal(this, $(elem));
+        var $elem = $($(this).attr('href').replace(/.*?(#.*)/g, '$1'));
+
+        // Move overlay title into modal header (save vertical space)
+        var opts = {};
+        var $overlay_title = $elem.find('.overlay-title:first');
+
+        if ($overlay_title.length > 0) {
+            opts.title = $overlay_title.text();
+        }
+
+        Mozilla.Modal.createModal(this, $elem, opts);
 
         return false;
     });
@@ -103,7 +112,7 @@
             }
         }
     };
-    
+
     // Load external links in new tab/window
     $('a[rel="external"]').click(function(e){
         e.preventDefault();
