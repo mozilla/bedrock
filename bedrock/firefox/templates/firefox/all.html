@@ -127,7 +127,7 @@
 {% endmacro %}
 
 {% macro build_row(build) %}
-  <tr id="{{ build.locale }}" data-search="{{ build.name_en|lower }} {{ build.name_native|lower }}">
+  <tr id="{{ build.locale }}" data-search="{{ build.name_en|lower }}, {{ build.name_native|lower }}">
     <th scope="row">{{ build.name_en }}</th>
     <td lang="{{ build.locale }}">{{ build.name_native }}</td>
     {{ build_link(build, 'Windows', _('Download for Windows')) }}

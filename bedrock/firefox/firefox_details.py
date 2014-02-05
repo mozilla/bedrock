@@ -1,3 +1,4 @@
+import re
 from operator import itemgetter
 from urllib import urlencode
 
@@ -49,9 +50,9 @@ class FirefoxDetails(ProductDetails):
         return range(10, self.latest_major_version('release'), 7)
 
     def _matches_query(self, info, query):
-        query = query.lower()
-        return (query in info['name_en'].lower() or
-                query in info['name_native'].lower())
+        words = re.split(r',|,?\s+', query.strip().lower())
+        return all((word in info['name_en'].lower() or
+                    word in info['name_native'].lower()) for word in words)
 
     def _get_filtered_builds(self, builds, version, query=None):
         """
