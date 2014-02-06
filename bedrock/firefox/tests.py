@@ -120,6 +120,23 @@ class TestFirefoxDetails(TestCase):
                               ('os', 'linux64'),
                               ('lang', 'en-US')])
 
+    @patch.dict(firefox_details.firefox_versions,
+                FIREFOX_AURORA='28.0a2')
+    def test_get_download_url_aurora(self):
+        """The Aurora version should give us an FTP url."""
+        url = firefox_details.get_download_url('OS X', 'en-US', '28.0a2')
+        self.assertIn('ftp.mozilla.org', url)
+        self.assertIn('latest-mozilla-aurora/firefox-28.0a2.en-US.mac.dmg', url)
+
+    @patch.dict(firefox_details.firefox_versions,
+                FIREFOX_AURORA='28.0a2')
+    def test_get_download_url_aurora_l10n(self):
+        """Aurora non en-US should have a slightly different path."""
+        url = firefox_details.get_download_url('Linux', 'pt-BR', '28.0a2')
+        self.assertIn('ftp.mozilla.org', url)
+        self.assertIn('latest-mozilla-aurora-l10n/firefox-28.0a2.pt-BR.linux-i686.tar.bz2',
+                      url)
+
     def test_filter_builds_by_locale_name(self):
         # search english
         builds = firefox_details.get_filtered_full_builds(
