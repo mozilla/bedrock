@@ -62,6 +62,9 @@ if (typeof Mozilla == 'undefined') {
         // show the door hanger if the tab is visible
         if (!document.hidden) {
             $('.tour-init').trigger('tour-step');
+            // temp workaround if bug 968039 does not make it into Aurora 29
+            // fixes highlight position first time browser is opened.
+            Mozilla.UITour.showHighlight("appMenu");
         }
     };
 
