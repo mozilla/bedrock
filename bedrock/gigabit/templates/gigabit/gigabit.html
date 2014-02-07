@@ -8,7 +8,7 @@
 {% block page_desc %}{{_('Gigabit - Description.')}}{% endblock %}
 {% block body_id %}gigabit{% endblock %}
 {% block body_class %}sand gigabit{% endblock %}
-{% block page_image %}{{ media('img/gigabit/gigabit_logo-wordmark_500x156.png') }}?2013-11{% endblock %}
+{% block page_image %}{{ media('img/gigabit/gigabit-wordmark.png') }}?2013-11{% endblock %}
 {% block page_favicon %}{{ media('img/gigabit/favicon.png') }}?2013-11{% endblock %}
 {% block site_header_logo %}
 {% endblock %}
@@ -23,7 +23,6 @@
     <ul id="nav-main-menu">
       <li><b>{{_('Home')}}</b></li>
       <li>{{_('<a href="%s">Apply</a>')|format(url('gigabit.apply')) }}</li>
-      <li>{{ _('<a href="%s">Blog</a>')|format('//blog.mozilla.org/gigabit/') }}</li>
     </ul>
   </nav>
 {% endblock %}
@@ -122,8 +121,8 @@
         <div class="category">
           <h4>{{ _("Get social") }}</h4>
           <p>
-            {% trans url_blog='//blog.mozilla.org/gigabit/' %}
-              Catch the latest news on the <a href='{{ url_blog }}'>Mozilla Gigabit Community Fund blog</a>.
+            {% trans url_blog='//blog.mozilla.org/blog/2014/02/06/mozilla-gigabit-community-fund-supporting-local-innovation-in-chattanooga-and-kansas-city/' %}
+              Read the official announcement on <a href='{{ url_blog }}'>the Mozilla blog</a>.
             {% endtrans %}
           </p>
           <p>
