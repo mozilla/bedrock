@@ -141,6 +141,25 @@ html.firefox-latest {
     .desktop-latest-links-wrapper {
         display: block;
     }
+
+    #theater-firefox,
+    #stage-firefox {
+        height: auto;
+    }
+
+    #scene1 {
+        position: relative;
+        height: auto;
+    }
+
+    #firefox-screenshot,
+    #scene2 {
+        display: none;
+    }
+
+    #newsletter-latest {
+        display: block;
+    }
 }
 
 html.firefox-old {
@@ -450,6 +469,12 @@ html[lang="uk"] {
     }
 }
 
+/* Newsletter signup shown to up-to-date users */
+#newsletter-latest {
+    display: none;
+    margin: @baseLine * 2 auto @baseLine * 4 auto;
+}
+
 noscript {
     .button-white, .button-white:link, .button-white:visited {
         min-width: 0;
@@ -743,5 +768,15 @@ html[dir="rtl"] {
     }
     .socialshare {
         display: none;
+    }
+
+    #footer-email-form {
+        padding-top: 20px;
+
+        input[type=email],
+        input[type=submit] {
+            .border-box();
+            width: 100%;
+        }
     }
 }
