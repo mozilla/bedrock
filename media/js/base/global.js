@@ -153,8 +153,11 @@ function isFirefoxUpToDate(latest, esr) {
             latestFirefoxVersion <= fx_version);
 }
 
-function isMobile() {
-    return /\sMobile/.test(window.navigator.userAgent);
+// used in bedrock for desktop specific checks like `isFirefox() && !isFirefoxMobile()`
+// reference https://developer.mozilla.org/en-US/docs/Gecko_user_agent_string_reference
+function isFirefoxMobile(userAgent) {
+    var ua = userAgent || navigator.userAgent;
+    return /Mobile|Tablet|Fennec/.test(ua);
 }
 
 // Create text translation function using #strings element.
