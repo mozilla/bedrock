@@ -1,3 +1,7 @@
+{% add_lang_files "firefox/includes/mwc_2014_schedule" %}
+
+<small class="disclaimer">{{ _('Schedule is subject to change.') }}</small>
+
 <div class="schedule-days">
   <section class="schedule-day">
     <h1>
@@ -6,12 +10,6 @@
     </h1>
 
     <ol>
-      <li itemscope itemtype="http://schema.org/Event">
-        <span itemprop="name">{{ _('Morning Media Briefings') }}</span>
-        <div class="timeframe">
-          <time datetime="2014-02-24T09:00" itemprop="startDate">09:00</time> &ndash; <time datetime="2014-02-24T09:55" itemprop="endDate">09:55</time>
-        </div>
-      </li>
       <li itemscope itemtype="http://schema.org/Event">
         <span itemprop="name">{{ _('Firefox OS: Today, Tomorrow and the Next Generation Design Story') }}</span>
         <div class="timeframe">
@@ -37,7 +35,7 @@
         </div>
       </li>
       <li itemscope itemtype="http://schema.org/Event">
-        <span itemprop="name">{{ _('“Delivering Positive Social and Economic Impact Through Open Technology” with Mitchell Baker, Executive Chair of Mozilla') }}</span>
+        <span itemprop="name">{{ _('Delivering Positive Social and Economic Impact Through Open Technology') }}</span>
         <div class="timeframe">
           <time datetime="2014-02-24T14:00" itemprop="startDate">14:00</time> &ndash; <time datetime="2014-02-24T14:45" itemprop="endDate">14:45</time>
         </div>
@@ -52,12 +50,6 @@
         <span itemprop="name">{{ _('Firefox OS for Any Screen Size') }}</span>
         <div class="timeframe">
           <time datetime="2014-02-24T16:00" itemprop="startDate">16:00</time> &ndash; <time datetime="2014-02-24T16:25" itemprop="endDate">16:25</time>
-        </div>
-      </li>
-      <li itemscope itemtype="http://schema.org/Event">
-        <span itemprop="name">{{ _('Afternoon Media Briefings') }}</span>
-        <div class="timeframe">
-          <time datetime="2014-02-24T17:00" itemprop="startDate">17:00</time> &ndash; <time datetime="2014-02-24T17:55" itemprop="endDate">17:55</time>
         </div>
       </li>
       <li itemscope itemtype="http://schema.org/Event">
@@ -77,12 +69,6 @@
 
     <ol>
       <li itemscope itemtype="http://schema.org/Event">
-        <span itemprop="name">{{ _('Morning Media Briefings') }}</span>
-        <div class="timeframe">
-          <time datetime="2014-02-24T09:00" itemprop="startDate">09:00</time> &ndash; <time datetime="2014-02-24T09:55" itemprop="endDate">09:55</time>
-        </div>
-      </li>
-      <li itemscope itemtype="http://schema.org/Event">
         <span itemprop="name">{{ _('Firefox OS: Today, Tomorrow and the Next Generation Design Story') }}</span>
         <div class="timeframe">
           <time datetime="2014-02-24T10:00" itemprop="startDate">10:00</time> &ndash; <time datetime="2014-02-24T10:35" itemprop="endDate">10:35</time>
@@ -107,7 +93,7 @@
         </div>
       </li>
       <li itemscope itemtype="http://schema.org/Event">
-        <span itemprop="name">{{ _('“Advancing the Web” with Brendan Eich, CTO of Mozilla') }}</span>
+        <span itemprop="name">{{ _('Advancing the Web') }}</span>
         <div class="timeframe">
           <time datetime="2014-02-25T14:00" itemprop="startDate">14:00</time> &ndash; <time datetime="2014-02-25T14:45" itemprop="endDate">14:45</time>
         </div>
@@ -122,12 +108,6 @@
         <span itemprop="name">{{ _('Firefox OS for Any Screen Size') }}</span>
         <div class="timeframe">
           <time datetime="2014-02-24T16:00" itemprop="startDate">16:00</time> &ndash; <time datetime="2014-02-24T16:25" itemprop="endDate">16:25</time>
-        </div>
-      </li>
-      <li itemscope itemtype="http://schema.org/Event">
-        <span itemprop="name">{{ _('Afternoon Media Briefings') }}</span>
-        <div class="timeframe">
-          <time datetime="2014-02-24T17:00" itemprop="startDate">17:00</time> &ndash; <time datetime="2014-02-24T17:55" itemprop="endDate">17:55</time>
         </div>
       </li>
       <li itemscope itemtype="http://schema.org/Event">
@@ -147,12 +127,6 @@
 
     <ol>
       <li itemscope itemtype="http://schema.org/Event">
-        <span itemprop="name">{{ _('Morning Media Briefings') }}</span>
-        <div class="timeframe">
-          <time datetime="2014-02-24T09:00" itemprop="startDate">09:00</time> &ndash; <time datetime="2014-02-24T09:55" itemprop="endDate">09:55</time>
-        </div>
-      </li>
-      <li itemscope itemtype="http://schema.org/Event">
         <span itemprop="name">{{ _('Firefox OS: Today, Tomorrow and the Next Generation Design Story') }}</span>
         <div class="timeframe">
           <time datetime="2014-02-24T10:00" itemprop="startDate">10:00</time> &ndash; <time datetime="2014-02-24T10:35" itemprop="endDate">10:35</time>
@@ -177,7 +151,7 @@
         </div>
       </li>
       <li itemscope itemtype="http://schema.org/Event">
-        <span itemprop="name">{{ _('“Delivering Positive Social and Economic Impact Through Open Technology” with Mitchell Baker, Executive Chair of Mozilla') }}</span>
+        <span itemprop="name">{{ _('Delivering Positive Social and Economic Impact Through Open Technology') }}</span>
         <div class="timeframe">
           <time datetime="2014-02-24T14:00" itemprop="startDate">14:00</time> &ndash; <time datetime="2014-02-24T14:45" itemprop="endDate">14:45</time>
         </div>
@@ -185,9 +159,11 @@
       <li itemscope itemtype="http://schema.org/Event">
         <span itemprop="name">{{ _('The Future of Voice Panel Session with Brendan Eich, CTO & SVP Engineering, Mozilla') }}</span>
         <small>
+        {% trans %}
           Conference Village, Hall 4<br>
           Auditorium 2<br>
-          Conference Pass Required
+        {% endtrans %}
+          <strong>{{ _('Conference Pass Required') }}</strong>
         </small>
         <div class="timeframe">
           <time datetime="2014-02-26T14:00" itemprop="startDate">14:00</time> &ndash; <time datetime="2014-02-26T15:30" itemprop="endDate">15:30</time>
@@ -203,12 +179,6 @@
         <span itemprop="name">{{ _('Firefox OS for Any Screen Size') }}</span>
         <div class="timeframe">
           <time datetime="2014-02-24T16:00" itemprop="startDate">16:00</time> &ndash; <time datetime="2014-02-24T16:25" itemprop="endDate">16:25</time>
-        </div>
-      </li>
-      <li itemscope itemtype="http://schema.org/Event">
-        <span itemprop="name">{{ _('Afternoon Media Briefings') }}</span>
-        <div class="timeframe">
-          <time datetime="2014-02-24T17:00" itemprop="startDate">17:00</time> &ndash; <time datetime="2014-02-24T17:55" itemprop="endDate">17:55</time>
         </div>
       </li>
       <li itemscope itemtype="http://schema.org/Event">
@@ -228,12 +198,6 @@
 
     <ol>
       <li itemscope itemtype="http://schema.org/Event">
-        <span itemprop="name">{{ _('Morning Media Briefings') }}</span>
-        <div class="timeframe">
-          <time datetime="2014-02-24T09:00" itemprop="startDate">09:00</time> &ndash; <time datetime="2014-02-24T09:55" itemprop="endDate">09:55</time>
-        </div>
-      </li>
-      <li itemscope itemtype="http://schema.org/Event">
         <span itemprop="name">{{ _('Firefox OS: Today, Tomorrow and the Next Generation Design Story') }}</span>
         <div class="timeframe">
           <time datetime="2014-02-24T10:00" itemprop="startDate">10:00</time> &ndash; <time datetime="2014-02-24T10:35" itemprop="endDate">10:35</time>
@@ -247,7 +211,7 @@
       </li>
       <li itemscope itemtype="http://schema.org/Event">
         <span itemprop="name">{{ _('Privacy Seminar with Alex Fowler, Chief Privacy Officer, Mozilla') }}</span>
-        <small>GSMA Seminar Theatre 2 - CC1</small>
+        <small>{{ _('GSMA Seminar Theatre 2 - CC1') }}</small>
         <div class="timeframe">
           <time datetime="2014-02-27T11:00" itemprop="startDate">11:00</time> &ndash; <time datetime="2014-02-27T13:00" itemprop="endDate">13:00</time>
         </div>
@@ -265,7 +229,7 @@
         </div>
       </li>
       <li itemscope itemtype="http://schema.org/Event">
-        <span itemprop="name">{{ _('“Advancing the Web” with Brendan Eich, CTO of Mozilla') }}</span>
+        <span itemprop="name">{{ _('Advancing the Web') }}</span>
         <div class="timeframe">
           <time datetime="2014-02-27T14:00" itemprop="startDate">14:00</time> &ndash; <time datetime="2014-02-27T14:45" itemprop="endDate">14:45</time>
         </div>
