@@ -2,6 +2,8 @@ import re
 from operator import itemgetter
 from urllib import urlencode
 
+from django.conf import settings
+
 from product_details import ProductDetails
 
 
@@ -137,14 +139,21 @@ class FirefoxDetails(ProductDetails):
         :param product: optional. probably 'firefox'
         :return: string url
         """
+        product_code = [product, version]
+
+        # Force download via SSL
+        if version in settings.FORCE_SSL_DOWNLOAD_VERSIONS:
+            product_code.append('SSL')
+
         if platform == 'OS X' and language == 'ja':
             language = 'ja-JP-mac'
+
         if version == self.latest_version('aurora'):
             return self._get_aurora_download_url(platform, language, version)
 
         return '?'.join([self.download_base_url_direct,
                          urlencode([
-                             ('product', '%s-%s' % (product, version)),
+                             ('product', '-'.join(product_code)),
                              ('os', self.platform_info[platform]['id']),
                              # Order matters, lang must be last for bouncer.
                              ('lang', language),
