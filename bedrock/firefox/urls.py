@@ -13,11 +13,13 @@ import views
 latest_re = r'^firefox(?:/(?P<fx_version>%s))?/%s/$'
 firstrun_re = latest_re % (version_re, 'firstrun')
 whatsnew_re = latest_re % (version_re, 'whatsnew')
+product_re = '(?P<product>firefox|mobile)'
+channel_re = '(?P<channel>beta|aurora|organizations)'
 
 
 urlpatterns = patterns('',
     redirect(r'^firefox/$', 'firefox.new', name='firefox'),
-    url(r'^firefox/(?:(?P<channel>beta|aurora|organizations)/)?all/$',
+    url(r'^firefox/(?:%s/)?all/$' % channel_re,
         views.all_downloads, name='firefox.all'),
     page('firefox/central', 'firefox/central.html'),
     page('firefox/channel', 'firefox/channel.html'),
@@ -27,11 +29,11 @@ urlpatterns = patterns('',
     page('firefox/fx', 'firefox/fx.html'),
     page('firefox/geolocation', 'firefox/geolocation.html'),
     page('firefox/happy', 'firefox/happy.html'),
-    url('^(?P<product>(firefox|mobile))/((?P<channel>(aurora|beta))/)?notes/$',
-        views.latest_notes, name='firefox.latest.notes'),
+    url('^(?:%s)/(?:%s/)?notes/$' % (product_re, channel_re),
+        views.latest_notes, name='firefox.notes'),
     url('^firefox/latest/releasenotes/$', views.latest_notes),
-    url('^firefox/system-requirements',
-        views.latest_sysreq, name='firefox.latest.sysreq'),
+    url('^firefox/(?:%s/)?system-requirements/?$' % channel_re,
+        views.latest_sysreq, name='firefox.sysreq'),
     page('firefox/memory', 'firefox/memory.html'),
     page('firefox/mobile/features', 'firefox/mobile/features.html'),
     page('firefox/mobile/faq', 'firefox/mobile/faq.html'),

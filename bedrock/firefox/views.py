@@ -85,6 +85,9 @@ JS_DESKTOP = get_js_bundle_files('partners_desktop')
 
 
 def get_latest_version(product='firefox', channel='release'):
+    if channel == 'organizations':
+        channel = 'esr'
+
     if product == 'mobile':
         return mobile_details.latest_version(channel)
     else:
@@ -224,23 +227,29 @@ def releases_index(request):
 
 def latest_notes(request, product='firefox', channel='release'):
     version = get_latest_version(product, channel)
-    path = [
-        product,
-        re.sub(r'b\d+$', 'beta', version) if channel == 'beta' else version,
-        'auroranotes' if channel == 'aurora' else 'releasenotes'
-    ]
+
+    if channel == 'beta':
+        version = re.sub(r'b\d+$', 'beta', version)
+    if channel == 'organizations':
+        version = re.sub(r'esr$', '', version)
+
+    dir = 'auroranotes' if channel == 'aurora' else 'releasenotes'
+    path = [product, version, dir]
     locale = getattr(request, 'locale', None)
     if locale:
         path.insert(0, locale)
     return HttpResponseRedirect('/' + '/'.join(path) + '/')
 
 
-def latest_sysreq(request):
-    path = [
-        'firefox',
-        get_latest_version(),
-        'system-requirements'
-    ]
+def latest_sysreq(request, channel='release'):
+    version = get_latest_version('firefox', channel)
+
+    if channel == 'beta':
+        version = re.sub(r'b\d+$', 'beta', version)
+    if channel == 'organizations':
+        version = re.sub(r'^(\d+).+', r'\1.0', version)
+
+    path = ['firefox', version, 'system-requirements']
     locale = getattr(request, 'locale', None)
     if locale:
         path.insert(0, locale)

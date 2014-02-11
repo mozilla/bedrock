@@ -28,9 +28,8 @@
     <div class="unrecognized-download">
       {{ alt_buttons(builds) }}
     </div>
-    {% set requirements_url = php_url('/firefox/' ~ version ~ '/system-requirements/') %}
     <p class="unsupported-download">
-      {{ _('Your system doesn\'t meet the <a href="%(url)s">requirements</a> to run Firefox.')|format(url=requirements_url) }}
+      {{ _('Your system doesn\'t meet the <a href="%(url)s">requirements</a> to run Firefox.')|format(url=product_url('firefox', 'sysreq', build)) }}
     </p>
   {% endif %}
   <ul class="download-list">
@@ -71,23 +70,14 @@
   {% if show_mobile %}
     <small class="download-other os_android">
       <a href="https://support.mozilla.org/kb/will-firefox-work-my-mobile-device">{{ _('Supported Devices') }}</a> |
-      {% if build %}
-        <a href="/en-US/mobile/{{ build }}/notes">{{ _('What’s New') }}</a> |
-      {% else %}
-        <a href="/en-US/mobile/notes">{{ _('What’s New') }}</a> |
-      {% endif %}
+      <a href="{{ product_url('mobile', 'notes', build) }}">{{ _('What’s New') }}</a> |
       <a href="/en-US/legal/privacy/firefox.html">{{ _('Privacy') }}</a>
     </small>
   {% endif %}
   {% if show_desktop %}
     <small class="download-other os_linux os_osx os_windows">
-      {% if build %}
-        <a href="/en-US/firefox/all-{{ build }}.html">{{ _('Systems &amp; Languages') }}</a> |
-        <a href="/en-US/firefox/{{ build }}/notes">{{ _('What’s New') }}</a> |
-      {% else %}
-        <a href="/en-US/firefox/all">{{ _('Systems &amp; Languages') }}</a> |
-        <a href="/en-US/firefox/notes">{{ _('What’s New') }}</a> |
-      {% endif %}
+      <a href="{{ product_url('firefox', 'all', build) }}">{{ _('Systems &amp; Languages') }}</a> |
+      <a href="{{ product_url('firefox', 'notes', build) }}">{{ _('What’s New') }}</a> |
       <a href="/en-US/legal/privacy/firefox.html">{{ _('Privacy') }}</a>
     </small>
   {% endif %}
