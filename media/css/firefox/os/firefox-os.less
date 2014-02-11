@@ -1266,6 +1266,7 @@ html[lang="pl"] {
 // get phone default no-JS styles
 #get-phone {
   padding: @baseLine;
+  width: @widthDesktop - (@gridGutterWidth * 4);
   margin: 0 auto @baseLine auto;
   background: #fff;
   header {
@@ -1393,6 +1394,7 @@ html[lang="pl"] {
 
   #get-phone {
     padding: 0;
+    width: auto;
     .content {
       text-align: center;
       font-size: 20px;
@@ -1689,6 +1691,7 @@ html[lang="en-US"].js {
       width: 400px;
     }
   }
+  #get-phone,
   #footer-email-form {
     width: @widthTablet - (@gridGutterWidth * 4);
   }
@@ -1705,6 +1708,9 @@ html[lang="en-US"].js {
           }
         }
       }
+    }
+    #get-phone {
+      width: auto;
     }
   }
   html[lang="en-US"] {
@@ -1978,6 +1984,9 @@ html[lang="en-US"].js {
   .bg-birthday {
     background: url('/media/img/firefox/os/bg/760/birthday.jpg') no-repeat center center;
   }
+  #get-phone {
+    width: @widthMobileLandscape - (@gridGutterWidth * 3);
+  }
   #footer-email-form {
     width: @widthMobileLandscape - (@gridGutterWidth * 2);
   }
@@ -1991,6 +2000,9 @@ html[lang="en-US"].js {
           border-left: none;
         }
       }
+    }
+    #get-phone {
+      width: auto;
     }
   }
 }
@@ -2190,6 +2202,9 @@ html[lang="en-US"].js {
       margin: 5px 0;
     }
   }
+  #get-phone {
+    width: @widthMobile - (@gridGutterWidth * 3);
+  }
   #footer-email-form {
     width: @widthMobile - (@gridGutterWidth * 2);
   }
@@ -2207,6 +2222,7 @@ html[lang="en-US"].js {
   }
   .js {
     #get-phone {
+      width: auto;
       .content {
         font-size: 16px;
         letter-spacing: 0;
