@@ -86,6 +86,10 @@ def make_download_link(product, build, version, platform, locale,
         'os_osx': 'osx'
     }[platform]
 
+    # Force download via SSL
+    if version in settings.FORCE_SSL_DOWNLOAD_VERSIONS:
+        version += '-SSL'
+
     # stub installer exceptions
     # TODO: NUKE FROM ORBIT!
     stub_langs = settings.STUB_INSTALLER_LOCALES.get(platform, [])

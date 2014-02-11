@@ -395,3 +395,34 @@ class TestDownloadButtons(TestCase):
         url = make_download_link('firefox', 'beta', '20.0b4', 'os_linux',
                                  'es-ES', funnelcake_id='234')
         ok_('product=firefox-20.0b4-f234&' in url)
+
+    @override_settings(FORCE_SSL_DOWNLOAD_VERSIONS=['27.0'])
+    @override_settings(STUB_INSTALLER_LOCALES={'win': _ALL})
+    def test_force_ssl(self):
+        """
+        Button should append 'SSL' to product in download URL, except the
+        Windows stub installers.
+        """
+        url = make_download_link('firefox', 'release', '26.0', 'os_windows',
+                                 'en-US')
+        ok_('product=firefox-stub&' in url)
+
+        url = make_download_link('firefox', 'release', '26.0', 'os_osx',
+                                 'en-US')
+        ok_('product=firefox-26.0&' in url)
+
+        url = make_download_link('firefox', 'release', '26.0', 'os_linux',
+                                 'en-US')
+        ok_('product=firefox-26.0&' in url)
+
+        url = make_download_link('firefox', 'release', '27.0', 'os_windows',
+                                 'en-US')
+        ok_('product=firefox-stub&' in url)
+
+        url = make_download_link('firefox', 'release', '27.0', 'os_osx',
+                                 'en-US')
+        ok_('product=firefox-27.0-SSL&' in url)
+
+        url = make_download_link('firefox', 'release', '27.0', 'os_linux',
+                                 'en-US')
+        ok_('product=firefox-27.0-SSL&' in url)
