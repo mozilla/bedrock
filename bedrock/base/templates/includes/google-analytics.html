@@ -5,6 +5,7 @@ _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
 _gaq.push(['_setAccount', '{{ settings.GA_ACCOUNT_CODE }}']);
 _gaq.push(['_setAllowLinker', true]);
 _gaq.push(['_setAllowAnchor', true]);
+_gaq.push(['_gat._anonymizeIp']);
 _gaq.push(['_trackPageview']);
 
 {% if settings.GA_ACCOUNT_CODE %}
