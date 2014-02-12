@@ -67,6 +67,9 @@
  * @author    Kohei Yoshino <kohei.yoshino@gmail.com>
  */
 
+ // Load mwc 2014 strings from mwc2014_promos.lang only for the locales we target
+{% add_lang_files "mwc2014_promos" %}
+
 var Tabzilla = (function (Tabzilla) {
     'use strict';
     var minimumJQuery = '1.7.1';
@@ -597,6 +600,7 @@ var Tabzilla = (function (Tabzilla) {
       '<div id="tabzilla-panel" class="tabzilla-closed" tabindex="-1">'
     + '  <div id="tabzilla-contents">'
     + '    <div id="tabzilla-promo">'
+    {% if l10n_has_tag('promo_mwc_2014') or settings.DEV %}
     +'      <div class="snippet" id="tabzilla-promo-mwc">'
     + '        <a href="https://www.mozilla.org/firefox/partners/?icn=tabz">'
     + '          <h4>{{ _('Unleash the future')|js_escape }}</h4>'
@@ -604,6 +608,15 @@ var Tabzilla = (function (Tabzilla) {
     + '        </a>'
     + '      </div>'
     + '    </div>'
+    {% else %}
+    +'      <div class="snippet" id="tabzilla-promo-fxos">'
+    + '        <a href="https://www.mozilla.org/firefox/os/?icn=tabz">'
+    + '          <h4>{{ _('Look ahead')|js_escape }}</h4>'
+    + '          <p>{{ _('Learn all about Firefox OS')|js_escape }} »</p>'
+    + '        </a>'
+    + '      </div>'
+    + '    </div>'
+    {% endif %}
     + '    <div id="tabzilla-nav">'
     + '      <ul>'
     + '        <li><h2>Mozilla</h2>'
