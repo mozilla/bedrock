@@ -3,34 +3,51 @@
 * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 ;(function($) {
-  'use strict';
+    'use strict';
 
-  $('.modal-link').on('click', function(e) {
-    e.preventDefault();
+    var $mapContainer = $('#map-container');
 
-    var $content = $($(this).attr('href'));
+    var scrollMap = function() {
+        setTimeout(function() {
+            $mapContainer.animate({
+                scrollLeft: '300px'
+            }, 250, function() {
+                setTimeout(function() {
+                    $mapContainer.animate({
+                        scrollLeft: '0px'
+                    }, 250);
+                }, 350);
+            });
+        }, 500);
+    };
 
-    var create_callback = ($content.attr('id') === 'map') ? scrollMap : null;
+    $('.modal-link').on('click', function(e) {
+        e.preventDefault();
 
-    Mozilla.Modal.createModal(this, $content, {
-        title: $content.find('.modal-content-header:first').text(),
-        onCreate: create_callback
-    });
-  });
+        var href = $(this).attr('href');
 
-  var scrollMap = function() {
-    var $map_container = $('#map-container');
+        var $content = $(href);
 
-    setTimeout(function() {
-        $map_container.animate({
-            scrollLeft: '300px'
-        }, 250, function() {
-            setTimeout(function() {
-                $map_container.animate({
-                    scrollLeft: '0px'
-                }, 250);
-            }, 350);
+        var createCallback = ($content.attr('id') === 'map') ? scrollMap : null;
+
+        Mozilla.Modal.createModal(this, $content, {
+            title: $content.find('.modal-content-header:first').text(),
+            onCreate: createCallback
         });
-    }, 500);
-  };
+
+        gaTrack(['_trackEvent','/mwc/ Interactions','link click', href]);
+    });
+
+    // GA tracking on specific links
+    $('.ga').on('click', function(e) {
+        e.preventDefault();
+
+        var href = this.href;
+
+        var callback = function() {
+            window.location = href;
+        };
+
+        gaTrack(['_trackEvent','/mwc/ Interactions','link click', href], callback);
+    });
 })(window.jQuery);
