@@ -728,6 +728,12 @@ class TestNotesRedirects(TestCase):
         self._test('/firefox/aurora/notes/',
                    '/firefox/24.0a2/auroranotes/')
 
+    @patch.dict(product_details.firefox_versions,
+                FIREFOX_ESR='24.2.0esr')
+    def test_desktop_esr_version(self):
+        self._test('/firefox/organizations/notes/',
+                   '/firefox/24.2.0/releasenotes/')
+
     @patch.dict(product_details.mobile_details,
                 version='22.0')
     def test_mobile_release_version(self):
@@ -749,12 +755,33 @@ class TestNotesRedirects(TestCase):
 
 @patch.object(fx_views, 'firefox_details', firefox_details)
 class TestSysreqRedirect(TestCase):
-    @patch.dict(product_details.firefox_versions,
-                LATEST_FIREFOX_VERSION='22.0')
-    def test_release_version(self):
+    def _test(self, url_from, url_to):
         with self.activate('en-US'):
-            url = '/en-US/firefox/system-requirements.html'
+            url = '/en-US' + url_from
         response = self.client.get(url)
         eq_(response.status_code, 302)
-        eq_(response['Location'],
-            'http://testserver/en-US/firefox/22.0/system-requirements/')
+        eq_(response['Location'], 'http://testserver/en-US' + url_to)
+
+    @patch.dict(product_details.firefox_versions,
+                LATEST_FIREFOX_VERSION='22.0')
+    def test_desktop_release_version(self):
+        self._test('/firefox/system-requirements',
+                   '/firefox/22.0/system-requirements/')
+
+    @patch.dict(product_details.firefox_versions,
+                LATEST_FIREFOX_DEVEL_VERSION='23.0b1')
+    def test_desktop_beta_version(self):
+        self._test('/firefox/beta/system-requirements',
+                   '/firefox/23.0beta/system-requirements/')
+
+    @patch.dict(product_details.firefox_versions,
+                FIREFOX_AURORA='24.0a2')
+    def test_desktop_aurora_version(self):
+        self._test('/firefox/aurora/system-requirements',
+                   '/firefox/24.0a2/system-requirements/')
+
+    @patch.dict(product_details.firefox_versions,
+                FIREFOX_ESR='24.2.0esr')
+    def test_desktop_esr_version(self):
+        self._test('/firefox/organizations/system-requirements',
+                   '/firefox/24.0/system-requirements/')
