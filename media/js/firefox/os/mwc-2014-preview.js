@@ -50,4 +50,15 @@
 
         gaTrack(['_trackEvent','/mwc/ Interactions','link click', href], callback);
     });
+
+    // trigger modal on page load if hash is present
+    switch (window.location.hash) {
+    case '#map':
+        $('#map-link').trigger('click');
+        break;
+    case '#schedule':
+        $('#schedule-link').trigger('click');
+        break;
+    }
+
 })(window.jQuery);
