@@ -2,16 +2,14 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import time
 from functools import wraps
-from hashlib import md5
 
-from django.utils.http import http_date
+from django.utils.cache import patch_response_headers
 
 
 def cache_control_expires(num_hours):
     """
-    Set the appropriate Cache-Control, Expires, and ETag headers for the given
+    Set the appropriate Cache-Control and Expires headers for the given
     number of hours.
     """
     num_seconds = num_hours * 60 * 60
@@ -21,9 +19,7 @@ def cache_control_expires(num_hours):
         @wraps(func)
         def inner(request, *args, **kwargs):
             response = func(request, *args, **kwargs)
-            response['Cache-Control'] = 'max-age=%d' % num_seconds
-            response['Expires'] = http_date(time.time() + num_seconds)
-            response['ETag'] = '"%s"' % md5(response.content).hexdigest()
+            patch_response_headers(response, num_seconds)
             return response
         return inner
     return decorator
