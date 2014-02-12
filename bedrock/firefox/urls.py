@@ -13,6 +13,7 @@ import views
 latest_re = r'^firefox(?:/(?P<fx_version>%s))?/%s/$'
 firstrun_re = latest_re % (version_re, 'firstrun')
 whatsnew_re = latest_re % (version_re, 'whatsnew')
+whatsnew_re_b = latest_re % (version_re, 'whatsnew/b')
 tour_re = latest_re % (version_re, 'tour')
 product_re = '(?P<product>firefox|mobile)'
 channel_re = '(?P<channel>beta|aurora|organizations)'
@@ -65,6 +66,7 @@ urlpatterns = patterns('',
     url('^dnt/$', views.dnt, name='firefox.dnt'),
     url(firstrun_re, views.FirstrunView.as_view(), name='firefox.firstrun'),
     url(whatsnew_re, views.WhatsnewView.as_view(), name='firefox.whatsnew'),
+    url(whatsnew_re_b, views.WhatsnewViewGATest.as_view(), name='firefox.whatsnew.b'),
     url(tour_re, views.TourView.as_view(), name='firefox.tour'),
     url(r'^firefox/partners/$', views.firefox_partners,
         name='firefox.partners.index'),

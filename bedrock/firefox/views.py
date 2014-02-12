@@ -342,7 +342,28 @@ class LatestFxView(TemplateView):
 
 
 class FirstrunView(LatestFxView):
-    template_name = 'firefox/firstrun.html'
+
+    def get(self, request, *args, **kwargs):
+        version = kwargs.get('fx_version')
+        if version == '29.0' and not settings.DEV and not request.is_secure():
+            uri = 'https://{host}{path}'.format(
+                host=request.get_host(),
+                path=request.get_full_path(),
+            )
+            return HttpResponsePermanentRedirect(uri)
+        return super(FirstrunView, self).get(request, *args, **kwargs)
+
+    def get_template_names(self):
+        version = self.kwargs.get('fx_version')
+        locale = l10n_utils.get_locale(self.request)
+
+        if version == '29.0' and locale == 'en-US':
+            template = 'firefox/australis/firstrun-tour.html'
+        else:
+            template = 'firefox/firstrun.html'
+
+        # return a list to conform with original intention
+        return [template]
 
 
 class WhatsnewView(LatestFxView):
@@ -363,7 +384,7 @@ class WhatsnewView(LatestFxView):
 
     def get(self, request, *args, **kwargs):
         version = kwargs.get('fx_version')
-        if version == '29.0a2' and not settings.DEV and not request.is_secure():
+        if version == '29.0' and not settings.DEV and not request.is_secure():
             uri = 'https://{host}{path}'.format(
                 host=request.get_host(),
                 path=request.get_full_path(),
@@ -387,8 +408,8 @@ class WhatsnewView(LatestFxView):
 
         if version == '29.0a1':
             template = 'firefox/whatsnew-nightly-29.html'
-        elif version == '29.0a2':
-            template = 'firefox/whatsnew-aurora-29.html'
+        elif version == '29.0':
+            template = 'firefox/australis/whatsnew-tour-a.html'
         elif locale in self.fxos_locales:
             template = 'firefox/whatsnew-fxos.html'
         else:
@@ -398,8 +419,22 @@ class WhatsnewView(LatestFxView):
         return [template]
 
 
+class WhatsnewViewGATest(LatestFxView):
+
+    template_name = 'firefox/australis/whatsnew-tour-b.html'
+
+    def get(self, request, *args, **kwargs):
+        if not settings.DEV and not request.is_secure():
+            uri = 'https://{host}{path}'.format(
+                host=request.get_host(),
+                path=request.get_full_path(),
+            )
+            return HttpResponsePermanentRedirect(uri)
+        return super(WhatsnewViewGATest, self).get(request, *args, **kwargs)
+
+
 class TourView(LatestFxView):
-    template_name = 'firefox/whatsnew-aurora-29.html'
+    template_name = 'firefox/australis/firstrun-tour.html'
 
     def get(self, request, *args, **kwargs):
         if not settings.DEV and not request.is_secure():

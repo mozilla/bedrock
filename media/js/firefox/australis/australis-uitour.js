@@ -163,21 +163,21 @@ if (typeof Mozilla == 'undefined') {
                 });
         };
 
-	Mozilla.UITour.startUrlbarCapture = function(text, url) {
-		_sendEvent('startUrlbarCapture', {
-			text: text,
-			url: url
-		});
-	};
+    Mozilla.UITour.startUrlbarCapture = function(text, url) {
+        _sendEvent('startUrlbarCapture', {
+            text: text,
+            url: url
+        });
+    };
 
-	Mozilla.UITour.endUrlbarCapture = function() {
-		_sendEvent('endUrlbarCapture');
-	};
+    Mozilla.UITour.endUrlbarCapture = function() {
+        _sendEvent('endUrlbarCapture');
+    };
 
-	Mozilla.UITour.getSyncConfiguration = function(callback) {
-		_sendEvent('getConfiguration', {
-			callbackID: _waitForCallback(callback),
-			configuration: "sync",
-		});
-	};
+    Mozilla.UITour.getConfiguration = function(configName, callback) {
+        _sendEvent('getConfiguration', {
+            callbackID: _waitForCallback(callback),
+            configuration: configName
+        });
+    };
 })();
