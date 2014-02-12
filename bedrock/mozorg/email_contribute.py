@@ -113,7 +113,7 @@ LOCALE_CONTACTS = {
     'ru': ['contribute@mozilla-russia.org'],
     'sl': ['info@mozilla.si'],
     'sq': ['besnik@mozilla-albania.org'],
-    'sr': ['prikljucise@mozilla-srbija.org'],
+    'sr': ['prikljucise@mozilla.rs'],
     'ta': ['vallavan2valluvan@gmail.com'],
     'tr': ['bilgi@mozilla.org.tr'],
     'zh-CN': ['contributor-zh-cn@mozilla.org'],

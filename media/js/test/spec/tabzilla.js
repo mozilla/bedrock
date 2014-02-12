@@ -6,6 +6,9 @@
 
 describe("tabzilla.js", function() {
 
+    // use sinon sandbox so we can stub ajax calls only for these tests.
+    var sandbox;
+
     describe("compareVersion", function () {
 
         it("should return 1 if jQuery does meet the minimum required version", function () {
@@ -43,6 +46,8 @@ describe("tabzilla.js", function() {
         var setup = Tabzilla.setupTransbar;
 
         it('should return false if the user\'s language is the same as the page\'s language', function () {
+
+            $.ajax = sinon.stub();
             // perfect match
             expect(setup('en-US', 'en-US')).toBeFalsy();
             expect(setup('fr', 'fr')).toBeFalsy();
@@ -55,11 +60,15 @@ describe("tabzilla.js", function() {
         });
 
         it('should return false if the page is not localized into the user\'s language', function () {
+
+            $.ajax = sinon.stub();
             expect(setup('en-GB', 'en-US')).toBeFalsy();
             expect(setup('pt-PT', 'en-US')).toBeFalsy();
         });
 
         it('should return true if the page is localized into the user\'s language', function () {
+
+            $.ajax = sinon.stub();
             // perfect match
             expect(setup('en-US', 'fr')).toBeTruthy();
             expect(setup('fr', 'en-US')).toBeTruthy();
@@ -70,12 +79,12 @@ describe("tabzilla.js", function() {
             expect(setup('fr-FR', 'en-US')).toBeTruthy();
             expect(setup('el-GR', 'en-US')).toBeTruthy();
         });
-
     };
 
     describe('setupTransbar – alternate URLs', function () {
 
         beforeEach(function () {
+            sandbox = sinon.sandbox.create();
             $('head').append(
                 '<link rel="alternate" hreflang="el" href="http://www.mozilla.org/el/" title="Ελληνικά">' +
                 '<link rel="alternate" hreflang="en-US" href="http://www.mozilla.org/en-US/" title="English (US)">' +
@@ -87,12 +96,12 @@ describe("tabzilla.js", function() {
         });
 
         testTransbar();
-
     });
 
     describe('setupTransbar – language switcher', function () {
 
         beforeEach(function () {
+            sandbox = sinon.sandbox.create();
             $('body').append(
                 '<select id="language" name="lang" dir="ltr">' +
                 '<option value="el">Ελληνικά</option>' +
@@ -103,15 +112,16 @@ describe("tabzilla.js", function() {
 
         afterEach(function() {
             $('#language').remove();
+            sandbox.restore();
         });
 
         testTransbar();
-
     });
 
     describe('setupTransbar – language switcher with path values', function () {
 
         beforeEach(function () {
+            sandbox = sinon.sandbox.create();
             $('body').append(
                 '<select id="language" class="wiki-l10n" name="next" dir="ltr">' +
                 '<option value="/el/docs/HTML/HTML5">Ελληνικά</option>' +
@@ -122,10 +132,9 @@ describe("tabzilla.js", function() {
 
         afterEach(function() {
             $('#language').remove();
+            sandbox.restore();
         });
 
         testTransbar();
-
     });
-
 });

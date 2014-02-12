@@ -1,3 +1,11 @@
+.disclaimer {
+  display: block;
+  font-size: 16px;
+  .open-sans-light;
+  margin-bottom: @baseLine / 2;
+  font-style: italic;
+}
+
 .schedule-days {
   border: 1px solid #e0e0e0;
   display: table;
@@ -14,7 +22,7 @@
   }
 
   h1 {
-    padding: 14px @baseLine;
+    padding: (@baseLine / 2) @baseLine;
     margin-bottom: @baseLine;
     border-bottom: 1px solid #cccfd1;
     background: #f4f6f6;
@@ -42,23 +50,23 @@
 
   li {
     margin: 0;
-    padding: 0 @baseLine @baseLine;
+    padding: 0 @baseLine 14px;
     list-style-type: none;
-    font-size: 22px;
-    line-height: 24px;
+    font-size: 14px;
+    line-height: 18px;
     .open-sans-light;
     color: @textColorSecondary;
   }
 
   .timeframe {
     margin-top: 4px;
-    font-size: 16px;
-    background: url(/media/img/firefox/os/mwc-2014-preview/sprite-icons.png) left -81px no-repeat;
+    font-size: 12px;
+    background: url(/media/img/firefox/os/mwc-2014-preview/sprite-icons.png) left -85px no-repeat;
     padding-left: @baseLine;
   }
 
   small {
-    font-size: 14px;
+    font-size: 12px;
     display: block;
     margin-top: @baseLine / 2;
   }
@@ -67,10 +75,6 @@
 /* Tablet Layout: 760px */
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
   .schedule-day {
-    li {
-      font-size: 16px;
-      line-height: 20px;
-    }
     .timeframe {
       margin-top: 6px;
     }
@@ -97,11 +101,6 @@
 
     h1 {
       border-top: 1px solid #cccfd1;
-    }
-
-    li {
-      font-size: 16px;
-      line-height: 20px;
     }
   }
 
