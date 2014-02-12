@@ -996,15 +996,30 @@ html, body {
 
 
 
+/* {{{ Japanese specific rules */
 html[lang=ja] {
+	body{
+		font-family: 'Lucida Grande','Droid Sans','DejaVu Sans','Bitstream Vera Sans','ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ','Meiryo,Verdana','ＭＳ Ｐゴシック','MS PGothic','VL Pゴシック','Takao Pゴシック','IPA Pゴシック', 'Open Sans','Droid Arabic Naskh',sans-serif ;
+	}
+
 	#info {
 		h3 > span{
-			display: inline-block;
+				display: inline-block;
+		}
+		ul{
+			li{
+				h4{
+					font-style: normal;
+				}
+			}
 		}
 	}
+
 	#list-platform{
 		.arrow{
 			display: inline-block;
 		}
 	}
+
 }
+/* }}} */
