@@ -1,0 +1,106 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "/firefox/base.html" %}
+
+{% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{ _('Welcome to the new Firefox') }}{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+{% block body_class %}sky{% endblock %}
+
+{% block site_css %}
+  {{ css('firefox_australis_tour') }}
+{% endblock %}
+
+{% block string_data %}{% endblock %}
+
+{% block site_header %}
+  <header id="masthead">
+    <a href="{{ url('mozorg.home') }}" id="tabzilla">Mozilla</a>
+    {% block site_header_nav %}{% endblock %}
+    {% block site_header_logo %}{% endblock %}
+    {% block breadcrumbs %}{% endblock %}
+  </header>
+{% endblock %}
+
+{% block content %}
+  {# begin page content #}
+  <main role="main">
+    <header>
+      <h1>
+        <span class="lead">{{ _('Welcome to the') }}</span>
+        <span class="main">{{ _('new Firefox') }}</span>
+      </h1>
+      <p>{{ _('The fast, flexible browser you can trust.') }}</p>
+    </header>
+    <div class="sync">
+      <section>
+        <h2>{{ _('Keep your Firefox in Sync') }}</h2>
+        <p>{{ _('Instantly make Firefox your own wherever you use it. Access your bookmarks, history, passwords and more from any device.')}}
+        <div class="sync-cta">
+          <button class="button">{{ _('Get started with Sync') }}</button>
+          <small>{{ _('Create an account from the menu') }}</small>
+        </div>
+        <a id="survey-link" href="https://www.surveygizmo.com/s3/1578454/Firefox-29-Beta-Survey" target="_blank" title="{{ _('Opens new window') }}">
+          {{ _('Take a quick survey about the new Firefox') }}
+        </a>
+      </section>
+      <div class="sync-anim">
+        <div class="cloud">
+          <div class="sync-arrows"></div>
+          <div class="checkmark"></div>
+        </div>
+        <div class="device laptop">
+          <div class="inner">
+            <div class="icon logo"></div>
+            <div class="icon history"></div>
+            <div class="icon bookmarks"></div>
+            <div class="icon passwords"></div>
+          </div>
+        </div>
+        <div class="device tablet">
+          <div class="inner">
+            <div class="icon logo"></div>
+            <div class="icon history"></div>
+            <div class="icon bookmarks"></div>
+            <div class="icon passwords"></div>
+          </div>
+        </div>
+        <div class="device phone">
+          <div class="inner">
+            <div class="icon logo"></div>
+            <div class="icon history"></div>
+            <div class="icon bookmarks"></div>
+            <div class="icon passwords"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section class="learn-more billboard">
+      <h3>{{ _('Learn more about the new Firefox') }}</h3>
+      <ul>
+        <li><a href="https://support.mozilla.org/products/firefox" target="_blank" title="{{ _('Opens new window') }}">{{ _('Need help?') }}</a></li>
+        <li><a href="http://www.mozilla.org/privacy/you/">{{ _('Putting your privacy first') }}</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://support.mozilla.org/kb/learn-more-about-the-design-of-new-firefox" target="_blank" title="{{ _('Opens new window') }}">{{ _('Learn about the new design') }}</a></li>
+        <li><a href="https://support.mozilla.org/kb/common-questions-after-updating-to-new-firefox" target="_blank" title="{{ _('Opens new window') }}">{{ _('Frequently asked questions') }}</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://support.mozilla.org/kb/what-happened-to-the-add-on-bar" target="_blank" title="{{ _('Opens new window') }}">{{ _('Where did my add-on bar go?') }}</a></li>
+      </ul>
+    </section>
+  </main>
+  {# end page content #}
+
+  {% block tour_content %}{% endblock %}
+
+  {% block tour_mask %}{% endblock %}
+
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+{% block js %}{% endblock  %}

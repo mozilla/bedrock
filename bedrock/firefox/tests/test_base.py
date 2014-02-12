@@ -441,20 +441,20 @@ class TestWhatsNew(TestCase):
         eq_(template, ['firefox/whatsnew-nightly-29.html'])
 
     @override_settings(DEV=True)
-    def test_fx_nightly_29_australis(self, render_mock):
-        """Should use australis template for 29.0a2."""
+    def test_fx_australis_29(self, render_mock):
+        """Should use australis template for 29.0."""
         req = self.rf.get('/en-US/firefox/whatsnew/')
-        self.view(req, fx_version='29.0a2')
+        self.view(req, fx_version='29.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew-aurora-29.html'])
+        eq_(template, ['firefox/australis/whatsnew-tour-a.html'])
 
     @override_settings(DEV=False)
     def test_fx_australis_secure_redirect(self, render_mock):
-        """Should redirect to https: for 29.0a2."""
+        """Should redirect to https: for 29.0."""
         url = '/en-US/firefox/whatsnew/'
         req = self.rf.get(url)
         with patch.object(req, 'is_secure', return_value=False):
-            resp = self.view(req, fx_version='29.0a2')
+            resp = self.view(req, fx_version='29.0')
         eq_(resp['location'], 'https://testserver' + url)
 
     @override_settings(DEV=True)
@@ -463,7 +463,7 @@ class TestWhatsNew(TestCase):
         url = '/en-US/firefox/whatsnew/'
         req = self.rf.get(url)
         with patch.object(req, 'is_secure', return_value=False):
-            resp = self.view(req, fx_version='29.0a2')
+            resp = self.view(req, fx_version='29.0')
         eq_(resp.status_code, 200)
 
     @override_settings(DEV=True)
@@ -472,7 +472,42 @@ class TestWhatsNew(TestCase):
         url = '/en-US/firefox/whatsnew/'
         req = self.rf.get(url)
         with patch.object(req, 'is_secure', return_value=True):
-            resp = self.view(req, fx_version='29.0a2')
+            resp = self.view(req, fx_version='29.0')
+        eq_(resp.status_code, 200)
+
+
+@patch.object(fx_views.WhatsnewViewGATest, 'redirect_to', none_mock)
+@patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
+class WhatsnewViewGATest(TestCase):
+    def setUp(self):
+        self.view = fx_views.WhatsnewViewGATest.as_view()
+        self.rf = RequestFactory(HTTP_USER_AGENT='Firefox')
+
+    @override_settings(DEV=False)
+    def test_fx_australis_secure_redirect(self, render_mock):
+        """Should redirect to https"""
+        url = '/en-US/firefox/whatsnew/b/'
+        req = self.rf.get(url)
+        with patch.object(req, 'is_secure', return_value=False):
+            resp = self.view(req, fx_version='29.0')
+        eq_(resp['location'], 'https://testserver' + url)
+
+    @override_settings(DEV=True)
+    def test_fx_australis_secure_redirect_not_dev(self, render_mock):
+        """Should not redirect to https: in DEV mode."""
+        url = '/en-US/firefox/whatsnew/b/'
+        req = self.rf.get(url)
+        with patch.object(req, 'is_secure', return_value=False):
+            resp = self.view(req, fx_version='29.0')
+        eq_(resp.status_code, 200)
+
+    @override_settings(DEV=True)
+    def test_fx_australis_secure_redirect_secure(self, render_mock):
+        """Should not redirect to https: when already secure."""
+        url = '/en-US/firefox/whatsnew/b/'
+        req = self.rf.get(url)
+        with patch.object(req, 'is_secure', return_value=True):
+            resp = self.view(req, fx_version='29.0')
         eq_(resp.status_code, 200)
 
 
@@ -489,7 +524,7 @@ class TestTourView(TestCase):
         url = '/en-US/firefox/tour/'
         req = self.rf.get(url)
         with patch.object(req, 'is_secure', return_value=False):
-            resp = self.view(req, fx_version='29.0a2')
+            resp = self.view(req, fx_version='29.0')
         eq_(resp['location'], 'https://testserver' + url)
 
     @override_settings(DEV=True)
@@ -498,7 +533,7 @@ class TestTourView(TestCase):
         url = '/en-US/firefox/tour/'
         req = self.rf.get(url)
         with patch.object(req, 'is_secure', return_value=False):
-            resp = self.view(req, fx_version='29.0a2')
+            resp = self.view(req, fx_version='29.0')
         eq_(resp.status_code, 200)
 
     @override_settings(DEV=True)
@@ -507,7 +542,7 @@ class TestTourView(TestCase):
         url = '/en-US/firefox/tour/'
         req = self.rf.get(url)
         with patch.object(req, 'is_secure', return_value=True):
-            resp = self.view(req, fx_version='29.0a2')
+            resp = self.view(req, fx_version='29.0')
         eq_(resp.status_code, 200)
 
 
@@ -524,6 +559,50 @@ class TestFirstRun(TestCase):
         self.view(req)
         # would return 405 before calling render otherwise
         render_mock.assert_called_once_with(req, ['firefox/firstrun.html'], ANY)
+
+    @override_settings(DEV=True)
+    def test_fx_australis_29(self, render_mock):
+        """Should use australis template for 29.0 en-US only."""
+        req = self.rf.get('/en-US/firefox/firstrun/')
+        self.view(req, fx_version='29.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/australis/firstrun-tour.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_australis_29_other_locales(self, render_mock):
+        """Should use a different template for other locales"""
+        req = self.rf.get('/fr/firefox/firstrun/')
+        req.locale = 'fr'
+        self.view(req, fx_version='29.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/firstrun.html'])
+
+    @override_settings(DEV=False)
+    def test_fx_australis_secure_redirect(self, render_mock):
+        """Should redirect to https: for 29.0."""
+        url = '/en-US/firefox/firstrun/'
+        req = self.rf.get(url)
+        with patch.object(req, 'is_secure', return_value=False):
+            resp = self.view(req, fx_version='29.0')
+        eq_(resp['location'], 'https://testserver' + url)
+
+    @override_settings(DEV=True)
+    def test_fx_australis_secure_redirect_not_dev(self, render_mock):
+        """Should not redirect to https: in DEV mode."""
+        url = '/en-US/firefox/firstrun/'
+        req = self.rf.get(url)
+        with patch.object(req, 'is_secure', return_value=False):
+            resp = self.view(req, fx_version='29.0')
+        eq_(resp.status_code, 200)
+
+    @override_settings(DEV=True)
+    def test_fx_australis_secure_redirect_secure(self, render_mock):
+        """Should not redirect to https: when already secure."""
+        url = '/en-US/firefox/firstrun/'
+        req = self.rf.get(url)
+        with patch.object(req, 'is_secure', return_value=True):
+            resp = self.view(req, fx_version='29.0')
+        eq_(resp.status_code, 200)
 
 
 @patch.object(fx_views, 'firefox_details', firefox_details)
