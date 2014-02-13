@@ -550,17 +550,17 @@ class TestProductURL(TestCase):
     def test_firefox_sysreq(self):
         """Should return a reversed path for the Firefox sysreq page"""
         eq_(self._render('firefox', 'sysreq'),
-            '/en-US/firefox/system-requirements')
+            '/en-US/firefox/system-requirements/')
         eq_(self._render('firefox', 'sysreq', 'release'),
-            '/en-US/firefox/system-requirements')
+            '/en-US/firefox/system-requirements/')
         eq_(self._render('firefox', 'sysreq', 'beta'),
-            '/en-US/firefox/beta/system-requirements')
+            '/en-US/firefox/beta/system-requirements/')
         eq_(self._render('firefox', 'sysreq', 'aurora'),
-            '/en-US/firefox/aurora/system-requirements')
+            '/en-US/firefox/aurora/system-requirements/')
         eq_(self._render('firefox', 'sysreq', 'esr'),
-            '/en-US/firefox/organizations/system-requirements')
+            '/en-US/firefox/organizations/system-requirements/')
         eq_(self._render('firefox', 'sysreq', 'organizations'),
-            '/en-US/firefox/organizations/system-requirements')
+            '/en-US/firefox/organizations/system-requirements/')
 
     def test_firefox_notes(self):
         """Should return a reversed path for the Firefox notes page"""
