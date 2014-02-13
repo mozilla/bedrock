@@ -66,6 +66,7 @@ mozilla.dev.mozilla-org                 For people working on the mozilla.org we
 mozilla.dev.pdf-js                      pdf.js, the PDF renderer written in JS. (Moderated)
 mozilla.dev.platform                    For people working on Mozilla-the-platform.
 mozilla.dev.privacy                     Development of features specifically design to enhance user privacy.
+mozilla.dev.sandbox                     Work on sandboxing technologies.
 mozilla.dev.security                    <a href="../../projects/security/">Security</a> issues such as specific security problems or ideas for making the code as a whole more secure can be discussed here. <a href="#dev-tech-crypto">Cryptography</a>, however, is not within this group's charter. (Moderated)
 mozilla.dev.security.policy             Discussion of security-related policies, governance, and related topics; and responsibility for the Mozilla CA certificate policy. (Moderated)
 mozilla.dev.servo                       For development of servo, a parallelized rendering engine. (Moderated)
@@ -94,7 +95,6 @@ mozilla.addons.user-experience          Improving the user experience for using/
 mozilla.dev.tech.crypto                 For discussions about cryptography, and cryptographic issues surrounding the Mozilla source code. See the <a href="../../projects/security/pki/">PKI</a> project for more info. (Moderated)
 mozilla.dev.tech.crypto.checkins        Join this list if you'd like to be automatically notified of all check-ins to Mozilla's crypto code. (Moderated)
 css?
-mozilla.dev.tech.dom                    For discussions about the <a href="http://www.w3.org/DOM/">Document Object Model</a> (DOM) in Mozilla. For scripting discussions, see the <a href="../../js/scripting/">scripting resources</a> page.
 mozilla.dev.tech.editor                 For discussions about HTML and text editing controls, including the <a href="../../editor/">Composer</a> component, <a href="../../editor/midas-spec.html">rich text editing</a> and text widgets.
 mozilla.dev.tech.electrolysis           For discussions multi-process Firefox. (Moderated)
 mozilla.dev.tech.java                   For discussions about Java: both embedding <abbr title="Java Runtime Environment">JRE</abbr>s in Mozilla and extending Mozilla itself using Java code. Also check out the <a href="#dev-tech-plugins">plug-in forum</a>.
@@ -175,7 +175,6 @@ mozilla.community.croatia               The Mozilla community in Croatia. (Moder
 mozilla.community.denmark               The Mozilla community in Denmark. (Moderated)
 mozilla.community.dutch                 The Mozilla Dutch-speaking community. (Moderated)
 mozilla.community.esperanto             The Mozilla Esperanto-speaking community. (Moderated)
-mozilla.community.europe                The Mozilla community in Europe. (Moderated)
 mozilla.community.german                The Mozilla German-speaking community. (Moderated)
 mozilla.community.ghana                 The Mozilla community in Ghana.
 mozilla.community.greece                The Mozilla community in Greece. (Moderated)
@@ -230,6 +229,7 @@ mozilla.dev.l10n.nativo                 The Mozilla Nativo project (l10n into la
 mozilla.dev.l10n.pt-br                  Brazilian Portuguese localization discussions. (Moderated)
 mozilla.dev.l10n.sk                     Slovak localization discussions.
 mozilla.dev.l10n.sr                     Serbian localization discussions.
+mozilla.dev.l10n.sw                     Swahili localization discussions. (Moderated)
 mozilla.dev.l10n.ta                     Tamil localization discussions. (Moderated)
 mozilla.dev.l10n.web                    For Mozilla website localization co-ordination.
 mozilla.dev.l10n.uk                     Ukranian localization discussions.
@@ -258,10 +258,13 @@ mozilla.community.devderby              The Mozilla monthly Developer Derby for 
 mozilla.community.digital-freedom       Discussion of, and resistance to, laws which work against Mozilla's mission. (Moderated)
 mozilla.community.diversity             A group to plan, build, teach, empower, and grow our diversity skills project-wide. (Moderated)
 mozilla.community.games                 Building games in HTML5. (Moderated)
+mozilla.community.linux                 Users of both Linux and Mozilla software. (Moderated)
 mozilla.community.web-standards         The community of Mozilla people involved in web standards efforts.
+mozilla.cbt.education                   Community Building Team - Education group. (Moderated)
 
 :End-User Support
 
+mozilla.sumo                            Discussion of the SUMO support website http://support.mozilla.org.
 mozilla.support.firefox                 Support for Firefox. But the best place to start is our <a href="https://support.mozilla.com/kb/ask">support website</a>.
 mozilla.support.thunderbird             Support for Thunderbird. But the best place to start is our <a href="https://support.mozillamessaging.com/kb/ask">support website</a>.
 mozilla.support.seamonkey               Support for SeaMonkey, the community-driven continuation of the Mozilla suite.
