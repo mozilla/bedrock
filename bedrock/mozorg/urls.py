@@ -79,6 +79,7 @@ urlpatterns = patterns('',
     page('contact/communities/uruguay', 'mozorg/contact/communities/uruguay.html'),
     page('contact/communities/venezuela', 'mozorg/contact/communities/venezuela.html'),
 
+    page('contact/communities/albania', 'mozorg/contact/communities/albania.html'),
     page('contact/communities/armenia', 'mozorg/contact/communities/armenia.html'),
     page('contact/communities/austria', 'mozorg/contact/communities/austria.html'),
     page('contact/communities/basque', 'mozorg/contact/communities/basque.html'),
