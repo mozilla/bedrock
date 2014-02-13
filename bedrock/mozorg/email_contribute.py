@@ -93,6 +93,7 @@ LOCALE_CONTACTS = {
     'bg': ['community@bgzilla.org'],
     'bn-BD': ['mahayalamkhan@gmail.com'],
     'cs': ['info@mozilla.cz'],
+    'cy': ['firefox@meddal.com'],
     'de': ['contribute@mozilla.de'],
     'el': ['core@mozilla-greece.org'],
     'es-AR': ['participa@mozilla-hispano.org'],
