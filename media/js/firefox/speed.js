@@ -83,6 +83,8 @@ $(document).ready(function() {
 
         if (!isFirefoxUpToDate()) {
             // slow
+            gaTrack(['_trackEvent', '/speed Interactions', 'dial',
+                     'Old Firefox - Sadface', 0, true]);
             setTimeout(function() {
                 stopWaver();
                 rotate(-29.5, 1000, startWaver, 'easeInOutExpo');
@@ -90,6 +92,8 @@ $(document).ready(function() {
             $('#gauge-slow-note').delay(3000).fadeIn('slow');
         } else {
             // fast
+            gaTrack(['_trackEvent', '/speed Interactions', 'dial',
+                     'New Firefox - Yay', 0, true]);
             setTimeout(function() {
                 stopWaver();
                 rotate(-168, 1500, startWaver, 'easeInOutExpo');
