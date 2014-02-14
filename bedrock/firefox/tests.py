@@ -765,23 +765,23 @@ class TestSysreqRedirect(TestCase):
     @patch.dict(product_details.firefox_versions,
                 LATEST_FIREFOX_VERSION='22.0')
     def test_desktop_release_version(self):
-        self._test('/firefox/system-requirements',
+        self._test('/firefox/system-requirements/',
                    '/firefox/22.0/system-requirements/')
 
     @patch.dict(product_details.firefox_versions,
                 LATEST_FIREFOX_DEVEL_VERSION='23.0b1')
     def test_desktop_beta_version(self):
-        self._test('/firefox/beta/system-requirements',
+        self._test('/firefox/beta/system-requirements/',
                    '/firefox/23.0beta/system-requirements/')
 
     @patch.dict(product_details.firefox_versions,
                 FIREFOX_AURORA='24.0a2')
     def test_desktop_aurora_version(self):
-        self._test('/firefox/aurora/system-requirements',
+        self._test('/firefox/aurora/system-requirements/',
                    '/firefox/24.0a2/system-requirements/')
 
     @patch.dict(product_details.firefox_versions,
                 FIREFOX_ESR='24.2.0esr')
     def test_desktop_esr_version(self):
-        self._test('/firefox/organizations/system-requirements',
+        self._test('/firefox/organizations/system-requirements/',
                    '/firefox/24.0/system-requirements/')
