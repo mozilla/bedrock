@@ -2,31 +2,23 @@
     'use strict';
 
     var isMobile = (/Android|Mobile|Tablet|Fennec/i).test(navigator.userAgent);
-    var $survey = $('#survey-link');
     var $giveTry = $('#give-it-a-try');
     var $learnMore = $('#learn-more');
     var $window = $(window);
 
-    // Users who reach the last step of the tour get a different survey
-    // to users who don't complete or didn't start the tour.
+    // Users who reach the last step of the tour get a different cta.
     function updateCTALinks () {
-        $survey.attr('href', 'https://www.surveygizmo.com/s3/1525011/firefox-29a-t');
         $giveTry.hide();
         $learnMore.css('display', 'inline-block');
-    }
-
-    // Open survey link in new window and track click
-    function openSurvey (e) {
-        e.preventDefault();
-        window.open(this.href, '_blank');
-        gaTrack(['_trackEvent', 'whatsnew Page Interactions - New Firefox Tour', 'survey link', this.href]);
     }
 
     // Only run the tour if user is on Firefox 29 for desktop.
     if (window.isFirefox() && !isMobile && window.getFirefoxMasterVersion() >= 29) {
 
-        // add a callback when user finishes tour to swap the survey links
+        // add a callback when user finishes tour to update the cta
+        // id is used for Telemetry
         var tour = new Mozilla.BrowserTour({
+            id: 'australis-tour-aurora-29.0a2',
             onTourComplete: updateCTALinks
         });
 
@@ -46,9 +38,6 @@
 
             // start the by showing the doorhanger.
             tour.init();
-
-            // show the survey link and track clicks
-            $survey.show().on('click', openSurvey);
 
             // show in-page cta to restart the tour
             $giveTry.show().on('click', function (e) {
