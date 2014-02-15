@@ -55,7 +55,7 @@ FUNCTIONAL_AREAS = (
     fa('design',
         _('Visual Design'),
         'Design',
-        ['mnovak@mozilla.com'],
+        ['enoonan@mozilla.com'],
     ),
     fa('documentation',
         _('Documentation and Writing'),
