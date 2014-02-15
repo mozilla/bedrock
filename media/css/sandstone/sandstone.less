@@ -235,6 +235,15 @@ img[data-high-res] {
     display: inline;
 }
 
+/* No italics in CJKT */
+html[lang='ja'],
+html[lang='ko'],
+html[lang|='zh'] {
+    em {
+        font-style: normal;
+    }
+}
+
 /* }}} */
 /* {{{ Forms */
 

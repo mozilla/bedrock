@@ -711,6 +711,18 @@
 
 
 /* }}} */
+/* {{{ Locale specific rules */
+
+/* No italics in CJKT */
+html[lang="ja"],
+html[lang="ko"],
+html[lang|="zh"] {
+    .partner-article .article-content .intro .promos a {
+        font-style: normal;
+    }
+}
+
+/* }}} */
 /* {{{ Responsive Grid */
 
 /* Tablet Layout */

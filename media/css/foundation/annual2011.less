@@ -1165,18 +1165,13 @@ html[lang='sv-SE'] .sus-links ul a.sus-faq {
 }
 
 
-/* No Italic in Chinese */
-html[lang='zh-CN'] body h2,
-html[lang='zh-CN'] body h3,
-html[lang='zh-CN'] body aside.pull,
-html[lang='zh-CN'] body p.pull,
-html[lang='zh-CN'] body .sus-links ul small,
-html[lang='zh-CN'] body p em,
-html[lang='zh-TW'] body h2,
-html[lang='zh-TW'] body h3,
-html[lang='zh-TW'] body aside.pull,
-html[lang='zh-TW'] body p.pull,
-html[lang='zh-TW'] body .sus-links ul small,
-html[lang='zh-TW'] body p em {
-  font-style: normal ;
+/* No italics in CJKT */
+html[lang='ja'],
+html[lang='ko'],
+html[lang|='zh'] {
+  h1, h2, h3, h4, h5, h6,
+  .pull,
+  .sus-links ul small {
+    font-style: normal;
+  }
 }

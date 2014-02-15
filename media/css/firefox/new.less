@@ -481,6 +481,17 @@ noscript {
     }
 }
 
+/* No italics in CJKT */
+html[lang="ja"],
+html[lang="ko"],
+html[lang|="zh"] {
+    .version-message-container,
+    .ready-for-scene2 .thankyou,
+    .ready-for-scene2 .installation li {
+        font-style: normal;
+    }
+}
+
 /* RTL support */
 html[dir="rtl"] {
     .version-message {
