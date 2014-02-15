@@ -20,9 +20,10 @@
   transition: opacity 1s cubic-bezier(.86,.01,.86,.87) .8s, margin-left 2s cubic-bezier(.6,-0.08,.6,1), margin-top 2s cubic-bezier(.6,-0.08,.6,1);
 }
 
-/* No italics in Chinese/Taiwanese */
-.lang-zh-TW,
-.lang-zh-CN {
+/* No italics in CJKT */
+html[lang='ja'],
+html[lang='ko'],
+html[lang|='zh'] {
   #moz15 .cta p,
   #moz15 .message {
     font-style: normal;
