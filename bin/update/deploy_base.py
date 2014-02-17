@@ -43,6 +43,13 @@ def update_locales(ctx):
 
 
 @task
+def update_sitemaps(ctx):
+    with ctx.lcd(settings.SRC_DIR):
+        # lib.sitemaps.management.commands.update_sitemaps()
+        ctx.local("LANG=en_US.UTF-8 python2.6 manage.py update_sitemaps")
+
+
+@task
 def update_assets(ctx):
     management_cmd(ctx, 'compress_assets')
     management_cmd(ctx, 'update_product_details')
@@ -124,6 +131,7 @@ def pre_update(ctx, ref=settings.UPDATE_REF):
 def update(ctx):
     commands['update_assets']()
     commands['update_locales']()
+    commands['update_sitemaps']()
     commands['database']()
     commands['update_revision_file']()
 

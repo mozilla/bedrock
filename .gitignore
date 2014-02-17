@@ -28,3 +28,5 @@ venv
 *.db
 james.ini
 node_modules
+lib/sitemaps/json
+media/sitemaps
