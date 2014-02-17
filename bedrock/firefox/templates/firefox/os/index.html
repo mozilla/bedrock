@@ -407,8 +407,8 @@
       <h2>{{_('We work with a number of providers to offer Firefox OS on a variety of devices.')}}</h2>
 
       <p id="provider-text-nojs">
-        {% trans link="//support.mozilla.org/kb/firefox-os-faq"|safe %}
-        All your questions will be answered <a href="{{link}}">Read our extra helpful FAQ</a>
+        {% trans link=url('firefox.os.faq') %}
+        Please read our FAQ for a <a href="{{link}}">full list of providers in available countries</a>.
         {% endtrans %}
       </p>
       <p id="provider-text-multi">{{_('Choose one from the list below to get a Firefox OS smartphone in your country.')}}</p>
