@@ -13,7 +13,6 @@ all_children = [
         PageNode('Mozilla', path='mozilla', children=(
             PageNode('Branding', path='branding', template='styleguide/identity/mozilla-branding.html'),
             PageNode('Color', path='color', template='styleguide/identity/mozilla-color.html'),
-            PageNode('Innovations', path='innovations', template='styleguide/identity/mozilla-innovations.html'),
         )),
         PageNode('Firefox Family', path='firefox-family', children=(
             PageNode('Overview', path='overview', template='styleguide/identity/firefox-family-overview.html'),
