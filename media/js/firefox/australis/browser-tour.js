@@ -13,6 +13,7 @@ if (typeof Mozilla == 'undefined') {
     function BrowserTour (options) {
 
         this.options = {
+            id: null,
             onTourComplete: null
         };
 
@@ -64,7 +65,9 @@ if (typeof Mozilla == 'undefined') {
             $('.tour-init').trigger('tour-step');
             // temp workaround if bug 968039 does not make it into Aurora 29
             // fixes highlight position first time browser is opened.
-            Mozilla.UITour.showHighlight("appMenu");
+            Mozilla.UITour.showHighlight('appMenu');
+            // Register page id for Telemetry
+            Mozilla.UITour.registerPageID(this.options.id);
         }
     };
 
@@ -568,9 +571,13 @@ if (typeof Mozilla == 'undefined') {
                     that.$progress.find('.progress').attr('aria-valuenow', step);
                 }, 900);
                 gaTrack(['_trackEvent', 'Tour Interaction', 'visibility', 'Return to tour']);
+                // Update page id for Telemetry when returning to tab
+                Mozilla.UITour.registerPageID(this.options.id);
             } else if (!this.tourHasStarted && !this.tourIsPostponed && !this.tourHasFinished) {
                 // if tab is visible and tour has not yet started, show the door hanger.
                 $('.tour-init').trigger('tour-step');
+                // Register page id for Telemetry
+                Mozilla.UITour.registerPageID(this.options.id);
             }
         }
     };
