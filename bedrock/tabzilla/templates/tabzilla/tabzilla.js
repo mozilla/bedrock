@@ -399,6 +399,9 @@ var Tabzilla = (function (Tabzilla) {
             return false;
         }
 
+        // Do not show Chrome's built-in Translation Bar
+        $('head').append('<meta name="google" value="notranslate">');
+
         // Normalize the user language again, based on the language of the site
         userLang = (langLink.length) ? langLink.attr('hreflang')
                                      : langOption.val();
