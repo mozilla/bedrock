@@ -53,18 +53,20 @@ html, body {
   }
 
   ul {
-    margin: 0 0 0 45px;
+    margin: 30px 0 0 45px;
     li {
       margin: 0;
-      padding-right: 40px;
-      line-height: 80px;
+      padding-right: @baseLine * 2;
+      line-height: @baseLine;
       a, a:link, a:visited {
         text-transform: none;
         padding: 0;
       }
     }
     li.last {
+      padding-left: @baseLine * 2;
       padding-right: 0;
+      border-left: 1px dotted #000;
     }
   }
 
@@ -1434,9 +1436,12 @@ html[lang="en-US"].js {
       margin-right: 0;
     }
     ul {
-      margin: 0;
+      margin: 30px 0 0;
       li {
         padding: 0 5px;
+        &.last {
+          padding-left: 20px;
+        }
       }
     }
     h2 {
@@ -1611,7 +1616,10 @@ html[lang="en-US"].js {
   html[lang="en-US"] {
     #masthead {
       ul li {
-        margin: 0 20px;
+        margin: 0 10px;
+        &.last {
+          padding-left: 25px;
+        }
       }
     }
     #get-firefox-os {
@@ -1653,6 +1661,10 @@ html[lang="en-US"].js {
     ul li {
       line-height: 1.5em;
       padding: 0;
+      &.last {
+        padding-left: 0;
+        border-left: 0;
+      }
     }
     .inner {
       width: @widthMobileLandscape  - @gridGutterWidth;
