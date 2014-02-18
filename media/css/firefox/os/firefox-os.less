@@ -2,7 +2,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+
 @import "../../sandstone/sandstone-resp.less";
+@import "get_device.less";
 
 html {
   overflow: auto;
@@ -1263,29 +1265,6 @@ html[lang="pl"] {
   }
 }
 
-// get phone default no-JS styles
-#get-phone {
-  padding: @baseLine;
-  width: @widthDesktop - (@gridGutterWidth * 4);
-  margin: 0 auto @baseLine auto;
-  background: #fff;
-  header {
-    display: none;
-  }
-  h2 {
-    font-size: 26px;
-    color: #666;
-    letter-spacing: -1px;
-    padding-bottom: (@baseLine * 2);
-    margin-bottom: @baseLine;
-  }
-}
-
-#provider-text-multi,
-#provider-text-single {
-  display: none;
-}
-
 // email signup form no-JS styles
 #email-form-content {
   h3 {
@@ -1372,11 +1351,6 @@ html[lang="pl"] {
     }
   }
 
-  // modal to show via CTA button
-  #get-phone-wrapper {
-    display: none;
-  }
-
   .modal-content {
     h2 {
       background: url('/media/img/firefox/os/purchase-hr.png') center bottom no-repeat;
@@ -1385,81 +1359,6 @@ html[lang="pl"] {
     .content {
       color: #666;
       .open-sans-light;
-    }
-
-    #provider-text-nojs { display: none; }
-
-    #provider-text-single { display: block; }
-  }
-
-  #get-phone {
-    padding: 0;
-    width: auto;
-    .content {
-      text-align: center;
-      font-size: 20px;
-      letter-spacing: -1px;
-    }
-    header {
-      display: block;
-    }
-    #provider-links {
-      vertical-align: middle;
-      a {
-        display: inline-block;
-        vertical-align: middle;
-        padding: 60px (@baseLine * 2) 0 (@baseLine * 2);
-        font-size: 17px;
-        &:after {
-          content: " \00BB";
-        }
-      }
-      .movistar {
-        width: 177px;
-        height: 47px;
-        background: transparent url('/media/img/firefox/os/logo/movistar.jpg') top center no-repeat;
-      }
-      .t-mobile {
-        width: 83px;
-        height: 47px;
-        background: transparent url('/media/img/firefox/os/logo/t-mobile.jpg') top center no-repeat;
-      }
-      .congstar {
-        width: 100px; // image is 50px wide, 100px set here for better visual consistency.
-        height: 49px;
-        background: transparent url('/media/img/firefox/os/logo/congstar.jpg') top center no-repeat;
-      }
-      .cosmote {
-        width: 112px;
-        height: 48px;
-        background: transparent url('/media/img/firefox/os/logo/cosmote.png') top center no-repeat;
-      }
-      .vivo {
-        width: 95px;
-        height: 47px;
-        background: transparent url('/media/img/firefox/os/logo/vivo.jpg') top center no-repeat;
-      }
-      .telenor {
-        width: 100px;
-        height: 50px;
-        background: transparent url('/media/img/firefox/os/logo/telenor.jpg') top center no-repeat;
-      }
-      .tim {
-        width: 129px;
-        height: 48px;
-        background: transparent url('/media/img/firefox/os/logo/tim.png') top center no-repeat;
-      }
-      .last {
-        border-left: 1px dashed #666;
-      }
-    }
-    // An alternative logo for T-mobile Hungary
-    #provider-links.hu {
-      .t-mobile {
-        width: 100px;
-        height: 50px;
-        background: transparent url('/media/img/firefox/os/logo/t-mobile-alt.jpg') top center no-repeat;
-      }
     }
   }
 
@@ -1691,7 +1590,6 @@ html[lang="en-US"].js {
       width: 400px;
     }
   }
-  #get-phone,
   #footer-email-form {
     width: @widthTablet - (@gridGutterWidth * 4);
   }
@@ -1708,9 +1606,6 @@ html[lang="en-US"].js {
           }
         }
       }
-    }
-    #get-phone {
-      width: auto;
     }
   }
   html[lang="en-US"] {
@@ -1984,9 +1879,6 @@ html[lang="en-US"].js {
   .bg-birthday {
     background: url('/media/img/firefox/os/bg/760/birthday.jpg') no-repeat center center;
   }
-  #get-phone {
-    width: @widthMobileLandscape - (@gridGutterWidth * 3);
-  }
   #footer-email-form {
     width: @widthMobileLandscape - (@gridGutterWidth * 2);
   }
@@ -2000,9 +1892,6 @@ html[lang="en-US"].js {
           border-left: none;
         }
       }
-    }
-    #get-phone {
-      width: auto;
     }
   }
 }
@@ -2202,9 +2091,6 @@ html[lang="en-US"].js {
       margin: 5px 0;
     }
   }
-  #get-phone {
-    width: @widthMobile - (@gridGutterWidth * 3);
-  }
   #footer-email-form {
     width: @widthMobile - (@gridGutterWidth * 2);
   }
@@ -2219,28 +2105,5 @@ html[lang="en-US"].js {
   }
   .bg-birthday {
     background: url('/media/img/firefox/os/bg/480/birthday.jpg') no-repeat center center;
-  }
-  .js {
-    #get-phone {
-      width: auto;
-      .content {
-        font-size: 16px;
-        letter-spacing: 0;
-      }
-      #provider-links {
-        margin-bottom: 0px;
-        .last {
-          border-left: none;
-        }
-      }
-    }
-    .modal-content {
-      h2 {
-        font-size: 22px;
-        line-height: 26px;
-        margin: 10px;
-        padding-bottom: 30px;
-      }
-    }
   }
 }

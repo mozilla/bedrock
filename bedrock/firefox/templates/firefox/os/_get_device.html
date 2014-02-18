@@ -1,0 +1,16 @@
+<div id="get-device-wrapper">
+  <div id="get-device" class="modal-content">
+    <div class="content">
+      <h2>{{_('We work with a number of providers to offer Firefox OS on a variety of devices.')}}</h2>
+
+      <p id="provider-text-nojs">
+        {% trans link=url('firefox.os.faq') %}
+        Please read our FAQ for a <a href="{{link}}">full list of providers in available countries</a>.
+        {% endtrans %}
+      </p>
+      <p id="provider-text-multi">{{_('Choose one from the list below to get a Firefox OS smartphone in your country.')}}</p>
+      <p id="provider-text-single">{{_('Click on the provider below to get a Firefox OS smartphone in your country.')}}</p>
+      <p id="provider-links"></p>
+    </div>
+  </div>
+</div>
