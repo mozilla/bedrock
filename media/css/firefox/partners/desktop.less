@@ -592,44 +592,6 @@ body #partner-nav {
     }
 }
 
-#overlay-menu {
-    display: block;
-    position: fixed;
-    top: 70px;
-    right: 20px;
-    z-index: 200;
-    border-radius: 3px;
-    .transition(right linear 0.3s);
-    li {
-        width: 40px;
-        border-radius: 3px;
-        padding-left: 14px;
-        background: #515f6a url(/media/img/firefox/partners/menu-icons.png) 0 -910px no-repeat;
-        a {
-            background-position: 50% -790px;
-            border-radius: 0 3px 3px 0;
-            width: 40px;
-            height: 40px;
-        }
-        &.active a { background-position: 50% -850px; }
-    }
-    &.form-open {
-        right: 320px;
-        @shadow: 0 1px rgba(255,255,255,0.8);
-        opacity: 0.9;
-        .box-shadow(@shadow);
-        li {
-            background-position: -46px -910px;
-            @shadow: 1px 2px 2px rgba(0,0,0,0.4) inset, 0 0 0 1px rgba(0,0,0,0.2) inset;
-            .box-shadow(@shadow);
-            a {
-                background-position: 50% -850px;
-                background-color: rgba(255,255,255,0.4);
-            }
-        }
-    }
-}
-
 /* }}} */
 /* {{{ Large Phone */
 
