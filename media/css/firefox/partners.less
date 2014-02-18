@@ -34,6 +34,11 @@
     }
 }
 
+// alternative to using <br> and breaking L10n
+.block-text {
+    display: inline-block;
+}
+
 /* {{{ Buttons */
 
 @localShadowBottom:         0px 2px 0px 0px rgba(0, 0, 0, 0.1);
@@ -266,7 +271,9 @@
         &:last-child a {
             border-radius: 0 3px 3px 0;
         }
-        &.active a {
+        &.active a,
+        &#menu-mwc-map a:hover,
+        &#menu-mwc-schedule a:hover {
             background-color: #15aaff;
         }
         &#menu-overview           a { background-position: 50% 0; }
@@ -277,6 +284,11 @@
         &#menu-marketplace.active a { background-position: 50% -300px; }
         &#menu-android            a { background-position: 50% -360px; }
         &#menu-android.active     a { background-position: 50% -420px; }
+
+        &#menu-mwc-map            a { background-position: 50% -480px; }
+        &#menu-mwc-map:hover      a { background-position: 50% -540px; }
+        &#menu-mwc-schedule       a { background-position: 50% -600px; }
+        &#menu-mwc-schedule:hover a { background-position: 50% -660px; }
     }
 }
 
@@ -389,6 +401,9 @@
             }
         }
     }
+    #overview-video-recap {
+        background-position: left -298px;
+    }
     #overview-fxos-devices {
         background-position: left top;
     }
@@ -396,7 +411,7 @@
         background-position: left -100px;
     }
     #overview-mwc-tweets {
-        background-position: left -200px;
+        background-position: left -195px;
     }
 }
 
@@ -419,6 +434,15 @@
     #os-operators {
         padding-top: @baseLine * 2;
     }
+}
+
+// not specifically tied to the OS section, but that's where it appears
+.fxos-devices-link {
+    display: inline-block;
+    background: url(/media/img/firefox/partners/sprite-overview-links.png) left top no-repeat;
+    padding-left: 58px;
+    min-height: 39px;
+    margin-bottom: @baseLine;
 }
 
 /* }}} */
