@@ -25,6 +25,14 @@ if (typeof Mozilla == 'undefined') {
                 }
             ]
         },
+        'cl': {
+            "partner": [
+                {
+                    'name': 'Movistar',
+                    'url': 'http://www.movistar.cl/equipos/catalogo/producto/847/contrato/'
+                }
+            ]
+        },
         'co': {
             'display': 'Colombia',
             'partner': [

@@ -27,7 +27,10 @@
       <img class="logo" src="{{ MEDIA_URL }}img/firefox/os/mwc-2014-preview/firefox-os.png" alt="{{ _('Firefox OS') }}">
 
       {# L10n: <br> tag below used for formatting only. #}
-      <h1>{{ _('Find Firefox OS <br>near you') }}</h1>
+      <h1 id="page-title-nojs">{{ _('Explore <br>Firefox OS devices') }}</h1>
+
+      {# L10n: <br> tag below used for formatting only. #}
+      <h1 id="page-title-js">{{ _('Find Firefox OS <br>near you') }}</h1>
 
       <form id="form-locations">
         <label for="location">{{ _('Find a device in') }}</label>
@@ -57,10 +60,10 @@
     <div class="container">
       <ul>
         <li>
-          <a href="{{ url('firefox.os.index') }}" class="arrow-link">{{ _('Learn more about Firefox OS') }}</a>
+          <a href="{{ url('firefox.os.index') }}" class="standard-link arrow-link">{{ _('Learn more about Firefox OS') }}</a>
         </li>
         <li>
-          <a href="https://support.mozilla.org/products/firefox-os" class="arrow-link">{{ _('Firefox OS Support') }}</a>
+          <a href="https://support.mozilla.org/products/firefox-os" class="standard-link arrow-link">{{ _('Firefox OS Support') }}</a>
         </li>
       </ul>
     </div>
@@ -123,8 +126,6 @@
 
             <div class="pager-content">
               <div class="device-details features pager-page default-page" id="alcatel_onetouchfire-features">
-                <h1 class="device-details-title">{{ _('Features') }}</h1>
-
                 <div class="feature-group logo-colors">
                   <img src="{{ media('/img/firefox/os/devices/smartphones/alcatel-onetouchfire-logo.png') }}">
 
@@ -322,7 +323,6 @@
 
             <div class="pager-content">
               <div class="device-details pager-page default-page features" id="lg_fireweb-features">
-                <h1 class="device-details-title">{{ _('Features') }}</h1>
 
                 <div class="feature-group logo-colors">
                   <img src="{{ media('/img/firefox/os/devices/smartphones/lg-fireweb-logo.png') }}">
@@ -488,7 +488,6 @@
 
             <div class="pager-content">
               <div class="device-details pager-page default-page features" id="zte_open-features">
-                <h1 class="device-details-title">{{ _('Features') }}</h1>
 
                 <div class="feature-group logo-colors">
                   <img src="{{ media('/img/firefox/os/devices/smartphones/zte-open-logo.png') }}">
@@ -672,13 +671,13 @@
         </header>
         <ul>
           <li>
-            <a href="{{ url('firefox.os.index') }}" class="arrow-link">{{ _('Learn more') }}</a>
+            <a href="{{ url('firefox.os.index') }}" class="standard-link arrow-link">{{ _('Learn more') }}</a>
           </li>
           <li>
-            <a href="https://support.mozilla.org/products/firefox-os" class="arrow-link">{{ _('Need help?') }}</a>
+            <a href="https://support.mozilla.org/products/firefox-os" class="standard-link arrow-link">{{ _('Need help?') }}</a>
           </li>
           <li>
-            <a href="https://developer.mozilla.org/en-US/Firefox_OS" class="arrow-link">{{ _('Build an app') }}</a>
+            <a href="https://developer.mozilla.org/en-US/Firefox_OS" class="standard-link arrow-link">{{ _('Build an app') }}</a>
           </li>
         </ul>
       </aside>

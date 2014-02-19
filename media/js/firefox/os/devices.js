@@ -11,6 +11,7 @@ if (typeof Mozilla == 'undefined') {
     'use strict';
 
     var COUNTRY_CODE = '';
+    var selectedDevice;
 
     var isSmallViewport = $(window).width() < 760;
     var isTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints || navigator.maxTouchPoints || isSmallViewport;
@@ -76,15 +77,21 @@ if (typeof Mozilla == 'undefined') {
     * Track telecom provider link clicks/page exits in Google Analytics
     */
     var trackProviderExit = function(e) {
-        e.preventDefault();
         var $this = $(this);
-        var href = this.href;
+        var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
 
-        var callback = function () {
-            window.location = href;
-        };
+        if (newTab) {
+            gaTrack(['_trackEvent', '/os/devices/ Interactions', 'Get a Phone Overlay Exits', $this.text()]);
+        } else {
+            e.preventDefault();
 
-        trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'Get A Phone Exit', $this.text()], callback);
+            var href = this.href;
+            var callback = (newTab) ? null : function() {
+                window.location = href;
+            };
+
+            gaTrack(['_trackEvent', '/os/devices/ Interactions', 'Get a Phone Overlay Exits', $this.text()], callback);
+        }
     };
 
     /*
@@ -130,6 +137,8 @@ if (typeof Mozilla == 'undefined') {
     $locationSelect.on('change', function(e) {
         COUNTRY_CODE = $locationSelect.val();
         selectDevicesAndSetPartnerContent();
+
+        gaTrack(['_trackEvent', '/os/devices/ Interactions', 'drop-down menu', COUNTRY_CODE]);
     });
 
     // wire up purchase button
@@ -140,6 +149,8 @@ if (typeof Mozilla == 'undefined') {
             allowScroll: false,
             title: '<img src="/media/img/firefox/os/logo/firefox-os-white.png" alt="mozilla" />'
         });
+
+        gaTrack(['_trackEvent', '/os/devices/ Interactions', 'Get a Phone CTA Clicks', COUNTRY_CODE]);
     });
 
     // wire up thumbnail select
@@ -147,7 +158,8 @@ if (typeof Mozilla == 'undefined') {
         e.preventDefault();
 
         var $this = $(this);
-        var $targetDevice = $('#' + $this.data('device'));
+        selectedDevice = $this.data('device');
+        var $targetDevice = $('#' + selectedDevice);
 
         if (!$targetDevice.is(':visible')) {
             $deviceThumbnails.removeClass('selected');
@@ -161,6 +173,8 @@ if (typeof Mozilla == 'undefined') {
                     $targetDevice.parents('.device-detail-list:first').slideDown('fast');
                 }, 200);
             });
+
+            gaTrack(['_trackEvent', '/os/devices/ Interactions', selectedDevice + ' Interactions', 'Open Features']);
         }
     });
 
@@ -173,6 +187,10 @@ if (typeof Mozilla == 'undefined') {
         $(this).parents('.device-detail-list:first').slideUp('normal', function() {
             $deviceDetails.hide();
         });
+
+        gaTrack(['_trackEvent', '/os/devices/ Interactions', selectedDevice + ' Interactions', 'Close Features']);
+
+        selectedDevice = null;
     });
 
     // enable color pickers
@@ -219,5 +237,31 @@ if (typeof Mozilla == 'undefined') {
         } else {
             togglePagers(true);
         }
+    });
+
+    // GA specific interactions
+
+    // track all 'regular' links (non-CTA, non-device)
+    $('.standard-link').on('click', function(e) {
+        var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
+
+        var href = this.href;
+
+        if (newTab) {
+            gaTrack(['_trackEvent', '/os/devices/ Interactions', 'link clicks', href]);
+        } else {
+            e.preventDefault();
+
+            var callback = function() {
+                window.location = href;
+            };
+
+            gaTrack(['_trackEvent', '/os/devices/ Interactions', 'link clicks', href], callback);
+        }
+    });
+
+    // track mozilla pager tab clicks
+    $('.pager-tabs').on('click', 'a', function(e) {
+        gaTrack(['_trackEvent', '/os/devices/ Interactions', selectedDevice + ' Interactions', $(this).text() + ' Tab']);
     });
 })(window.jQuery);

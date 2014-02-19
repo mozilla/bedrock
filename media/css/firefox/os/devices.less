@@ -533,6 +533,7 @@ html, body {
 }
 
 // elements hidden from non-js users
+#page-title-js,
 .device-thumbnails,
 .color-picker,
 #form-locations,
@@ -543,8 +544,13 @@ html, body {
 }
 
 .js {
+	#page-title-js,
 	#form-locations {
 		display: block;
+	}
+
+	#page-title-nojs {
+		display: none;
 	}
 
 	.faq-button {
@@ -844,11 +850,24 @@ html, body {
 				float: none;
 				width: auto;
 				margin: @baseLine @baseLine 0 0;
+
+				// increase color blocks size for easier touch targeting
+				li {
+					width: 25px;
+					height: 25px;
+					margin-right: 15px;
+
+					a {
+						width: 23px;
+						height: 23px;
+					}
+				}
 			}
 		}
 
 		.image {
 			width: 140px;
+			margin-bottom: @baseLine;
 		}
 
 		.stats {
@@ -984,7 +1003,7 @@ html, body {
 			float: none;
 			margin: 0;
 			width: auto;
-			padding: @baseLine 0;
+			padding-top: 0;
 
 			img {
 				float: none;
@@ -1007,7 +1026,7 @@ html, body {
 		.image {
 			float: none;
 			width: auto;
-			margin: 0 (@baseLine * 2);
+			margin: @baseLine (@baseLine * 2) 0;
 		}
 
 		.stats {
