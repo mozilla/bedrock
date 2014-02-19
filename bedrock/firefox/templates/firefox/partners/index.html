@@ -59,8 +59,8 @@
       <li id="menu-android"><a href="#android">{{_('Android')}}</a></li>
     </ul>
     <ul id="mwc-menu" class="menu">
-      <li id="menu-mwc-map"><a href="#map">{{ _('Map') }}</a></li>
-      <li id="menu-mwc-schedule"><a href="#schedule">{{ _('Schedule') }}</a></li>
+      <li id="menu-mwc-map"><a href="#location" class="modal">{{ _('Map') }}</a></li>
+      <li id="menu-mwc-schedule"><a href="#schedule" class="modal">{{ _('Schedule') }}</a></li>
     </ul>
   </nav>
   <ul id="overlay-menu" class="menu">
@@ -560,6 +560,10 @@
   <section id="schedule" class="overlay-contents">
     <h2 class="overlay-title">{{ _('Firefox at MWC 2014 &ndash; Schedule of Events') }}</h2>
     {% include "firefox/includes/mwc_2014_schedule.html" %}
+  </section>
+  <section id="location" class="overlay-contents">
+    <h2 class="overlay-title">{{ _('Firefox at MWC 2014 &ndash; Hall 3, Stand 3C30') }}</h2>
+    {% include "firefox/includes/mwc_2014_map.html" %}
   </section>
 </div>
 

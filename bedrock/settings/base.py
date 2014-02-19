@@ -537,6 +537,7 @@ MINIFY_BUNDLES = {
         ),
         'firefox_os_mwc_2014_preview': (
             'js/base/mozilla-modal.js',
+            'js/firefox/mwc-2014-map.js',
             'js/firefox/os/mwc-2014-preview.js',
         ),
         'firefox_faq': (
@@ -644,6 +645,7 @@ MINIFY_BUNDLES = {
             'js/base/mozilla-input-placeholder.js',
             'js/base/mozilla-pager.js',
             'js/base/mozilla-modal.js',
+            'js/firefox/mwc-2014-map.js',
             'js/firefox/partners.js',
         ),
         'partners_common': (

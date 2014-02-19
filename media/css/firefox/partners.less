@@ -4,6 +4,7 @@
 
 @import "../sandstone/lib.less";
 @import "../firefox/mwc-2014-schedule.less";
+@import "../firefox/mwc-2014-map.less";
 
 @font-face {
     font-family: 'Open Sans ExtraBoldItalic';
@@ -228,7 +229,7 @@
     top: 60px;
     left: 50%;
     width: auto;
-    margin-left: -(@widthMobile / 2);
+    margin-left: -(@widthDesktop / 2);
     padding: 0 10px;
     h3 {
         display: none;
@@ -236,6 +237,7 @@
 }
 
 .menu {
+    float: left;
     padding: 0;
     margin: 0;
     background: #fff;
@@ -248,7 +250,6 @@
         padding: 0;
         margin: 0;
         float: left;
-        width: 25%;
         a {
             display: block;
             width: auto;
@@ -289,6 +290,22 @@
         &#menu-mwc-map:hover      a { background-position: 50% -540px; }
         &#menu-mwc-schedule       a { background-position: 50% -600px; }
         &#menu-mwc-schedule:hover a { background-position: 50% -660px; }
+    }
+}
+
+#partner-menu {
+    width: 680px;
+    margin-right: @baseLine * 3;
+    li {
+        width: 25%;
+    }
+}
+
+
+#mwc-menu {
+    width: 260px;
+    li {
+        width: 50%;
     }
 }
 
@@ -783,6 +800,13 @@
 }
 
 @media only screen and (min-width: 1000px) and (max-width: 1090px)  {
+    body #partner-menu, body #mwc-menu {
+        float: none;
+        width: 38px;
+        li {
+            width: auto;
+        }
+    }
     body #partner-nav {
         left: -3px;
         width: 38px;
@@ -888,7 +912,6 @@
         margin-right: auto;
     }
 
-
     #partner-nav,
     #masthead {
         margin-left: -(@widthTablet / 2);
@@ -905,6 +928,16 @@
         h3 {
             display: none;
         }
+    }
+
+    #partner-menu {
+        width: 500px;
+        margin-right: @baseLine * 2;
+    }
+
+
+    #mwc-menu {
+        width: 220px;
     }
 
     #overview {
@@ -932,6 +965,15 @@
         margin-left: -(@widthMobile / 2);
     }
 
+    #partner-menu {
+        width: 200px;
+        margin-right: @baseLine / 2;
+    }
+
+    #mwc-menu {
+        width: 90px;
+    }
+
     #modal video {
         width: 100%;
         height: auto;
@@ -955,6 +997,14 @@
         margin-left: -(@widthMobileLandscape / 2);
     }
 
+    #partner-menu {
+        width: 280px;
+        margin-right: @baseLine;
+    }
+
+    #mwc-menu {
+        width: 120px;
+    }
 
     #overview {
         h2 {
