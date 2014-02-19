@@ -1,9 +1,25 @@
+.schedule-header {
+  .clearfix;
+}
+
 .disclaimer {
+  float: left;
+  width: 45%;
   display: block;
   font-size: 16px;
   .open-sans-light;
   margin-bottom: @baseLine / 2;
   font-style: italic;
+}
+
+.schedule-register-link {
+  float: right;
+  width: 45%;
+  text-align: right;
+
+  &:after {
+    content: ' »';
+  }
 }
 
 .schedule-days {
@@ -83,6 +99,19 @@
 
 /* Mobile layout: 320px */
 @media only screen and (max-width: @breakMobileLandscape) {
+  .disclaimer {
+    float: none;
+    width: auto;
+  }
+
+  .schedule-register-link {
+    float: none;
+    width: auto;
+    display: inline-block;
+    margin-bottom: @baseLine / 2;
+    text-align: left;
+  }
+
   .schedule-days {
     display: block;
     border: 0;
@@ -111,6 +140,19 @@
 
 /* Mobile layout: 480px */
 @media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+  .disclaimer {
+    float: none;
+    width: auto;
+  }
+
+  .schedule-register-link {
+    float: none;
+    width: auto;
+    display: inline-block;
+    margin-bottom: @baseLine / 2;
+    text-align: left;
+  }
+
   .schedule-days {
     display: block;
     border: 0;
