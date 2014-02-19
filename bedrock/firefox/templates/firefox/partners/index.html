@@ -59,7 +59,7 @@
       <li id="menu-android"><a href="#android">{{_('Android')}}</a></li>
     </ul>
     <ul id="mwc-menu" class="menu">
-      <li id="menu-mwc-map"><a href="#location" class="modal">{{ _('Map') }}</a></li>
+      <li id="menu-mwc-map"><a href="#map" class="modal">{{ _('Map') }}</a></li>
       <li id="menu-mwc-schedule"><a href="#schedule" class="modal">{{ _('Schedule') }}</a></li>
     </ul>
   </nav>
@@ -75,7 +75,7 @@
     <div id="screen-overview" class="screen"><div id="foxtail"></div></div>
     <div id="screen-os" class="screen"></div>
     <div id="screen-marketplace" class="screen"></div>
-    <div class="phone-overlay" class="screen"></div>
+    <div class="phone-overlay"></div>
   </div>
 </div>
 
@@ -342,37 +342,51 @@
               <a href="#form" class="button toggle-form">{{ _('Partner with us') }}</a>
             </p>
           </div>
-          <ul class="logos tween">
-
-            <li><img src="{{ media('img/firefox/partners/logos/light/abril.png') }}" alt="Abril" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/light/accuweather.png') }}" alt="Accuweather.com" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/light/airbnb.png') }}" alt="Airbnb" ></li>
-
-            <li><img src="{{ media('img/firefox/partners/logos/light/bostonglobe.png') }}" alt="Boston Globe" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/light/box.png') }}" alt="Box" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/light/chillingo.png') }}" alt="Chillingo" ></li>
-
-            <li><img src="{{ media('img/firefox/partners/logos/light/ea.png') }}" alt="EA" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/light/disney.png') }}" alt="Disney" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/light/engadget.png') }}" alt="Engadget" ></li>
-
-            <li><img src="{{ media('img/firefox/partners/logos/light/foxnews.png') }}" alt="Fox News" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/light/ebay.png') }}" alt="eBay" ></li>
-
-            <li><img src="{{ media('img/firefox/partners/logos/light/pulse.png') }}" alt="Pulse" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/light/soundcloud.png') }}" alt="Soundcloud" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/light/sportv.png') }}" alt="SporTV" ></li>
-
-            <li><img src="{{ media('img/firefox/partners/logos/light/terra.png') }}" alt="Terra" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/light/timeout.png') }}" alt="Time Out" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/light/twitter.png') }}" alt="Twitter" ></li>
-
-            <li><img src="{{ media('img/firefox/partners/logos/light/wired.png') }}" alt="Wired" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/light/zeptolab.png') }}" alt="Zeptolab" ></li>
-
-          </ul>
-        </div>
-      </div>
+          <div class="marketplace-logos pager pager-with-tabs pager-no-history">
+            <div class="pager-content">
+              <div class="pager-page default-page">
+                <ul class="logos">
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/avg.png') }}" alt="AVG"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/aviary.png') }}" alt="Aviary"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/cut-the-rope.png') }}" alt="Cut The Rope"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/despegar.png') }}" alt="despegar.com"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/disney-wheresmywater.png') }}" alt="Disney - Where's My Water"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/enclave-games.png') }}" alt="Enclave Games"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/ever-nav.png') }}" alt="EverNav"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/fifa.png') }}" alt="FIFA"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/life-rescuer.png') }}" alt="LifeRescuer"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/line.png') }}" alt="Line"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/napster.png') }}" alt="Napster"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/new-york-times.png') }}" alt="New York Times"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/pinterest.png') }}" alt="Pinterest"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/planine-srbije.png') }}" alt="Planine Srbije"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/the-pond.png') }}" alt="The Pond"></li>
+                </ul>
+              </div><!--/.pager-page-->
+              <div class="pager-page">
+                <ul class="logos">
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/rakuten.png') }}" alt="Rakuten"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/recruit.png') }}" alt="Recruit"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/soundcloud.png') }}" alt="SoundCloud"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/surf-time.png') }}" alt="Surf Time"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/timeout.png') }}" alt="TimeOut"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/twitter.png') }}" alt="Twitter"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/urlist.png') }}" alt="Urlist"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/the-weather-channel.png') }}" alt="The Weather Channel"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/wikipedia.png') }}" alt="Wikipedia"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/xe.png') }}" alt="XE"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/yelp.png') }}" alt="Yelp"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/youtube.png') }}" alt="YouTube"></li>
+                </ul>
+              </div>
+            </div><!--/.pager-content-->
+            <ul class="pager-tabs">
+              <li><a href="#p1">●</a></li>
+              <li><a href="#p2">●</a></li>
+            </ul>
+          </div><!--/.pager-->
+        </div><!--/.intro-->
+      </div><!--/.article-content-->
     </section>
     <section id="marketplace-developers" class="section-3" data-pos="3">
       <div class="article-content">
@@ -461,7 +475,7 @@
     </section>
     <div class="phone-container android-phone-container" id="phone-android">
       <div class="phone">
-        <div class="phone-overlay" class="screen"></div>
+        <div class="phone-overlay"></div>
       </div>
     </div>
   </article>
@@ -561,7 +575,7 @@
     <h2 class="overlay-title">{{ _('Firefox at MWC 2014 &ndash; Schedule of Events') }}</h2>
     {% include "firefox/includes/mwc_2014_schedule.html" %}
   </section>
-  <section id="location" class="overlay-contents">
+  <section id="map" class="overlay-contents">
     <h2 class="overlay-title">{{ _('Firefox at MWC 2014 &ndash; Hall 3, Stand 3C30') }}</h2>
     {% include "firefox/includes/mwc_2014_map.html" %}
   </section>

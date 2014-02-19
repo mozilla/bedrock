@@ -66,7 +66,7 @@
         }
 
         // special callback for the map
-        if (target_id === '#location' && typeof(window.scrollMwcMap) === 'function') {
+        if (target_id === '#map' && typeof(window.scrollMwcMap) === 'function') {
             opts.onCreate = window.scrollMwcMap;
         }
 

@@ -113,7 +113,7 @@
     var _handle_hash = function() {
         if (w.location.hash !== '') {
             $article_wrapper.animate({ scrollTop: 0 }, 50, function() {
-                if (w.location.hash === '#location' || w.location.hash === '#schedule') {
+                if (w.location.hash === '#map' || w.location.hash === '#schedule') {
                     $('a.modal[href="' + w.location.hash + '"]:first').trigger('click');
                 } else {
                     $('#partner-nav a[href="' + w.location.hash + '"]').trigger('click');
