@@ -56,19 +56,6 @@
     </div>
   </section>
 
-  <nav id="main-nav">
-    <div class="container">
-      <ul>
-        <li>
-          <a href="{{ url('firefox.os.index') }}" class="standard-link arrow-link">{{ _('Learn more about Firefox OS') }}</a>
-        </li>
-        <li>
-          <a href="https://support.mozilla.org/products/firefox-os" class="standard-link arrow-link">{{ _('Firefox OS Support') }}</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
   <article id="devices">
     <section id="smartphones" class="device-list">
       <div class="container">
@@ -131,8 +118,11 @@
 
                   <em>{{ _('Set your world on fire') }}</em>
 
-                  <div class="color-picker">
+                  {#
+                  Will be implemented when images are provided.
+                  <section class="color-picker">
                     <h4>{{ _('Colors') }}</h4>
+
                     <ul>
                       <li>
                         <a href="" class="alcatel-onetouchfire-orange" data-image="{{ media('/img/firefox/os/devices/smartphones/alcatel-onetouchfire.png') }}" title="{{ _('Firefox Orange') }}"></a>
@@ -144,7 +134,8 @@
                         <a href="" class="alcatel-onetouchfire-white" data-image="{{ media('/img/firefox/os/devices/smartphones/alcatel-onetouchfire-white.png') }}" title="{{ _('White') }}"></a>
                       </li>
                     </ul>
-                  </div>
+                  </section>
+                  #}
                 </div>
 
                 <div class="feature-group image">
@@ -492,6 +483,8 @@
                 <div class="feature-group logo-colors">
                   <img src="{{ media('/img/firefox/os/devices/smartphones/zte-open-logo.png') }}">
 
+                  {#
+                  Will be implemented when images are provided.
                   <section class="color-picker">
                     <h4>{{ _('Colors') }}</h4>
 
@@ -507,6 +500,7 @@
                       </li>
                     </ul>
                   </section>
+                  #}
                 </div>
 
                 <div class="feature-group image">
@@ -671,13 +665,16 @@
         </header>
         <ul>
           <li>
-            <a href="{{ url('firefox.os.index') }}" class="standard-link arrow-link">{{ _('Learn more') }}</a>
+            <a href="{{ url('firefox.os.index') }}" class="standard-link arrow-link">{{ _('Read about the features and mission behind Firefox OS') }}</a>
           </li>
           <li>
-            <a href="https://support.mozilla.org/products/firefox-os" class="standard-link arrow-link">{{ _('Need help?') }}</a>
+            <a href="https://support.mozilla.org/products/firefox-os" class="standard-link arrow-link">{{ _('Get help with your Firefox OS device from Mozilla Support') }}</a>
           </li>
           <li>
-            <a href="https://developer.mozilla.org/en-US/Firefox_OS" class="standard-link arrow-link">{{ _('Build an app') }}</a>
+            <a href="https://developer.mozilla.org/en-US/Firefox_OS" class="standard-link arrow-link">{{ _('See what Firefox OS offers and means for developers') }}</a>
+          </li>
+          <li>
+            <a href="{{ url('firefox.partners.index') }}#marketplace" class="standard-link arrow-link">{{ _('Learn about Firefox OS apps in the Firefox Marketplace') }}</a>
           </li>
         </ul>
       </aside>
