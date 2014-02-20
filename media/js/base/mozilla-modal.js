@@ -9,6 +9,7 @@ Mozilla.Modal = (function(w, $) {
   var open = false;
   var $modal = null;
   var $body = $('body');
+  var $html = $('html');
   var options = {};
   var $d = $(w.document);
   var evtNamespace = 'moz-modal';
@@ -29,6 +30,8 @@ Mozilla.Modal = (function(w, $) {
   */
   var _createModal = function(origin, content, opts) {
     options = opts;
+
+    var isSmallViewport = $(w).width() < 760;
 
     // Make sure modal is closed (if one exists)
     if (open) {
@@ -51,14 +54,14 @@ Mozilla.Modal = (function(w, $) {
         '  </div>' +
         '</div>');
 
+    if ((options && !options.allowScroll) || isSmallViewport) {
+      $html.addClass('noscroll');
+    } else {
+      $html.removeClass('noscroll');
+    }
+
     // Add modal to page
     $body.append($modal);
-
-    if (options && !options.allowScroll) {
-      $body.addClass('noscroll');
-    } else {
-      $body.removeClass('noscroll');
-    }
 
     $_content = content;
     $_contentParent = $_content.parent();
@@ -115,13 +118,13 @@ Mozilla.Modal = (function(w, $) {
     $('#modal').fadeOut('fast', function() {
       $_contentParent.append($_content);
       $(this).remove();
+
+      // allow page to scroll again
+      $html.removeClass('noscroll');
+
+      // restore focus to element that opened the modal
+      $('.modal-origin').focus().removeClass('modal-origin');
     });
-
-    // allow page to scroll again
-    $body.removeClass('noscroll');
-
-    // restore focus to element that opened the modal
-    $('.modal-origin').focus().removeClass('modal-origin');
 
     open = false;
     $modal = null;
