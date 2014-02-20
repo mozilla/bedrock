@@ -170,13 +170,12 @@
 
   <section id="firefox-promo" class="billboard">
     <div class="container">
-      <a href="{{ url('firefox') }}" id="firefox-promo-link">
-        <h3>
-          {{ high_res_img('img/home/firefox-sm.png', {'alt': '', 'width': '105', 'height': '108'}) }}
-          <b>Firefox</b> {{_('Different by&nbsp;design')}}
-        </h3>
-      </a>
-
+      <header>
+        <a href="{{ url('firefox') }}" id="firefox-promo-link">
+          <h3>{{ high_res_img('img/home/firefox-logo-wordmark.png', {'alt': 'Firefox', 'width': '250', 'height': '100'}) }}</h3>
+          <h4><strong>{{_('Different by&nbsp;design')}}</strong></h4>
+        </a>
+      </header>
       {{ download_firefox(small=True, icon=False) }}
     </div>
   </section>
