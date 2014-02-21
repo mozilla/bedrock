@@ -95,7 +95,6 @@
     color: #484848;
     position: relative;
     overflow: hidden;
-    direction: ltr;
     zoom: 1;
 }
 
@@ -116,7 +115,6 @@
     width: 960px;
     margin: 0 auto;
     padding: 0 10px;
-    text-align: left;
     position: relative;
     display:none;
 }
@@ -184,7 +182,6 @@
     font-size: 13px;
     font-weight: bold;
     margin-bottom: .4em;
-    word-wrap: break-word;
 }
 
 #tabzilla-panel #tabzilla-nav h2 {
@@ -407,7 +404,7 @@
     background-color: #226aa7;
     color: #fff;
     font-size: 12px;
-    padding: 20px;
+    padding: 20px 80px 20px 20px;
     height: 170px;
     line-height: 20px;
     h4 {
@@ -415,27 +412,72 @@
         color: #fff;
         font-family: Open Sans ExtraBoldItalic;
         text-transform: uppercase;
-        letter-spacing: -3px;
+        letter-spacing: -.1ex;
         font-weight: normal;
-        font-size: 54px;
-        line-height: 46px;
-        margin-top: 10px;
-        margin-bottom: 20px;
+        font-size: 40px;
+        line-height: 1;
+        margin-bottom: 10px;
     }
     p {
         font-size: 18px;
-        width: 150px;
     }
 }
 
-html[lang=ru] {
-    #tabzilla-promo .snippet#tabzilla-promo-fxos a {
-        h4 {
-            font-size: 40px;
-        }
+html[lang="da"],
+html[lang|="en"],
+html[lang="es-AR"],
+html[lang="es-MX"],
+html[lang="eu"],
+html[lang="hi-IN"],
+html[lang="sl"],
+html[lang="tr"] {
+    #tabzilla-promo .snippet#tabzilla-promo-fxos a h4 {
+        margin: 10px 0 20px;
+        font-size: 54px;
+        line-height: .85;
     }
 }
 
+html[lang="fy-NL"],
+html[lang="hu"],
+html[lang="hy-AM"],
+html[lang="ja"],
+html[lang="ko"],
+html[lang="ku"],
+html[lang="lij"],
+html[lang="mr"],
+html[lang="pa-IN"],
+html[lang="pt-BR"],
+html[lang="sv-SE"],
+html[lang="vi"],
+html[lang|="zh"] {
+    #tabzilla-promo .snippet#tabzilla-promo-fxos a h4 {
+        font-size: 54px;
+    }
+}
+
+html[lang="csb"],
+html[lang="eo"],
+html[lang="gd"],
+html[lang="id"],
+html[lang="ms"],
+html[lang="ru"] {
+    #tabzilla-promo .snippet#tabzilla-promo-fxos a h4 {
+        font-size: 35px;
+    }
+}
+
+html[lang="ml"] {
+    #tabzilla-promo .snippet#tabzilla-promo-fxos a h4 {
+        font-size: 30px;
+    }
+}
+
+html[lang="km"] {
+    #tabzilla-promo .snippet#tabzilla-promo-fxos a h4 {
+        font-family: sans-serif; /* Do not use Open Sans ExtraBoldItalic */
+    }
+}
 
 
 @media (-webkit-min-device-pixel-ratio: 1.5),
