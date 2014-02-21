@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -28,30 +30,57 @@ from lib.l10n_utils.dotlang import _
 
 UA_REGEXP = re.compile(r"Firefox/(%s)" % version_re)
 
-LOCALE_OS_URLS = {
-    'en-US': 'https://blog.mozilla.org/press/2013/02/firefox-os-expansion',
-    'de': 'https://blog.mozilla.org/press-de/?p=760',
-    'it': 'https://blog.mozilla.org/press-it/?p=353',
-    'pl': 'https://blog.mozilla.org/press-pl/?p=407',
-    'fr': 'https://blog.mozilla.org/press-fr/?p=366',
-    'es-ES': 'https://blog.mozilla.org/press-es/?p=340',
-    'en-GB': 'https://blog.mozilla.org/press-uk/?p=471'
-}
-
-LOCALE_OS_RELEASE_URLS = {
-    'de': 'https://blog.mozilla.org/press-de/2013/07/01/'
-          'mozilla-und-partner-machen-sich-bereit-fur-den-ersten-firefox-os-launch/',
-    'en-GB': 'https://blog.mozilla.org/press-uk/2013/07/01/'
-             'mozilla-and-partners-prepare-to-launch-first-firefox-os-smartphones/',
-    'en-US': 'https://blog.mozilla.org/blog/2013/07/01/'
-             'mozilla-and-partners-prepare-to-launch-first-firefox-os-smartphones',
-    'es-ES': 'https://blog.mozilla.org/press-es/?p=482',
-    'fr': 'https://blog.mozilla.org/press-fr/2013/07/01/'
-          'mozilla-et-ses-partenaires-preparent-le-lancement-des-premiers-smartphones-sous-firefox-os/',
-    'it': 'https://blog.mozilla.org/press-it/2013/07/01/'
-          'mozilla-e-i-suoi-partner-si-preparano-al-lancio-dei-primi-smartphone-con-firefox-os/',
-    'pl': 'https://blog.mozilla.org/press-pl/2013/07/01/'
-          'mozilla-wraz-z-partnerami-przygotowuje-sie-do-wprowadzenia-na-rynek-pierwszych-smartfonow-z-firefox-os/',
+LOCALE_HEADLINES = {
+    'de': {
+        'title': u"Firefox OS ist richtungsweisend für die Zukunft des "
+            "mobilen Marktes",
+        'url': 'http://blog.mozilla.org/press-de/2014/02/23/'
+            'firefox-os-ist-richtungsweisend-fur-die-zukunft-des-mobilen-marktes',
+    },
+    'en-GB': {
+        'title': 'Firefox OS Unleashes the Future of Mobile',
+        'url': 'http://blog.mozilla.org/press-uk/2014/02/23/'
+            'firefox-os-unleashes-the-future-of-mobile'
+    },
+    'en-US': {
+        'title': 'Firefox OS Unleashes the Future of Mobile',
+        'url': 'https://blog.mozilla.org/blog/2014/02/23/firefox-os-future/',
+    },
+    'es-AR': {
+        'title': 'Firefox OS te desvela el futuro de lo móvil',
+        'url': 'http://blog.mozilla.org/press-latam/2014/02/23/'
+            'firefox-os-te-desvela-el-futuro-de-lo-movil/',
+    },
+    'es-CL': {
+        'title': 'Firefox OS te desvela el futuro de lo móvil',
+        'url': 'http://blog.mozilla.org/press-latam/2014/02/23/'
+            'firefox-os-te-desvela-el-futuro-de-lo-movil/',
+    },
+    'es-ES': {
+        'title': 'Firefox OS te desvela el futuro de lo móvil',
+        'url': 'http://blog.mozilla.org/press-es/2014/02/23/'
+            'firefox-os-te-desvela-el-futuro-de-lo-movil',
+    },
+    'es-MX': {
+        'title': 'Firefox OS te desvela el futuro de lo móvil',
+        'url': 'http://blog.mozilla.org/press-latam/2014/02/23/'
+            'firefox-os-te-desvela-el-futuro-de-lo-movil/',
+    },
+    'fr': {
+        'title': 'Firefox OS chamboule le futur du mobile',
+        'url': 'http://blog.mozilla.org/press-fr/2014/02/23/'
+            'firefox-os-chamboule-le-futur-du-mobile',
+    },
+    'it': {
+        'title': 'Firefox OS svela il futuro del mobile',
+        'url': 'http://blog.mozilla.org/press-it/2014/02/23/'
+            'firefox-os-svela-il-futuro-del-mobile',
+    },
+    'pt-BR': {
+        'title': 'Firefox OS te desvela el futuro de lo móvil',
+        'url': 'http://blog.mozilla.org/press-br/2014/02/23/'
+            'firefox-os-revela-o-futuro-do-mobile/',
+    },
 }
 
 INSTALLER_CHANNElS = [
@@ -183,15 +212,11 @@ def all_downloads(request, channel):
 @csrf_protect
 def firefox_partners(request):
     # If the current locale isn't in our list, return the en-US value
-    # MWC announcement
-    locale_os_url = LOCALE_OS_URLS.get(request.locale, LOCALE_OS_URLS['en-US'])
-    # Firefox OS 1.0 release
-    locale_os_release_url = LOCALE_OS_RELEASE_URLS.get(request.locale, LOCALE_OS_RELEASE_URLS['en-US'])
+    press_locale = request.locale if (request.locale in LOCALE_HEADLINES) else 'en-US'
 
     template_vars = {
-        'locale_os_url': locale_os_url,
-        'locale_os_release_url': locale_os_release_url,
-        'locale_os_release_active': LOCALE_OS_RELEASE_URLS,
+        'locale_headline_url': LOCALE_HEADLINES[press_locale]['url'],
+        'locale_headline_title': LOCALE_HEADLINES[press_locale]['title'],
         'js_common': JS_COMMON,
         'js_mobile': JS_MOBILE,
         'js_desktop': JS_DESKTOP,
