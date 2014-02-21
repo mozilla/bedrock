@@ -931,7 +931,15 @@ nav.menu-bar {
         }
 
     }
+}
 
+html[dir="rtl"] #colophon {
+    .footer-logo,
+    .footer-nav,
+    .footer-license,
+    .footer-lang {
+        float: right;
+    }
 }
 
 /* }}} */
@@ -998,6 +1006,12 @@ nav.menu-bar {
         .footer-logo {
             float: none;
             margin-bottom: @baseLine;
+        }
+    }
+
+    html[dir="rtl"] #colophon {
+        .footer-logo {
+            float: none;
         }
     }
 
@@ -1184,6 +1198,15 @@ nav.menu-bar {
             width: auto;
             float: none;
             margin-bottom: @baseLine;
+        }
+    }
+
+    html[dir="rtl"] #colophon {
+        .footer-logo,
+        .footer-nav,
+        .footer-license,
+        .footer-lang {
+            float: none;
         }
     }
 

@@ -3,13 +3,13 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% if translations|length > 1 %}
-<form id="lang_form" dir="ltr" method="get" action="#">
+<form id="lang_form" method="get" action="#">
   <label for="language">{{ _('Other languages:') }}</label>
   <select id="language" name="lang" dir="ltr">
     {% for code, label in translations|dictsort -%}
       {# Don't escape the label as it may include entity references
        # like "Português (do&nbsp;Brasil)" (Bug 861149) #}
-      <option value="{{ code }}"{{ code|ifeq(LANG, " selected") }}>{{ label|safe }}</option>
+      <option lang="{{ code }}" value="{{ code }}"{{ code|ifeq(LANG, " selected") }}>{{ label|safe }}</option>
     {% endfor %}
   </select>
   <noscript>
