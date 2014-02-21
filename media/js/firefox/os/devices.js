@@ -37,14 +37,17 @@ if (typeof Mozilla == 'undefined') {
         $deviceThumbnails.removeClass('available');
 
         if (COUNTRY_CODE !== '' && Mozilla.FxOs.Countries.hasOwnProperty(COUNTRY_CODE)) {
-            // make sure country is selected in select box
-            $locationSelect.val(COUNTRY_CODE);
+            // make sure no option is selected
+            $locationSelect.find('option:selected').prop('selected', false);
+
+            // select the current COUNTRY_CODE
+            $locationSelect.find('option[value="' + COUNTRY_CODE + '"]').prop('selected', 'selected');
 
             $purchaseDeviceButton.fadeIn('fast');
 
             for (var device in Mozilla.FxOs.Devices) {
                 if ($.inArray(COUNTRY_CODE, Mozilla.FxOs.Devices[device].countries) > -1) {
-                    $('.device-thumbnail[data-device="' + device + '"]').addClass('available');
+                    $('.device-thumbnail[href="#' + device + '"]').addClass('available');
                 }
             }
 
@@ -114,25 +117,6 @@ if (typeof Mozilla == 'undefined') {
         }
     };
 
-    // tablets are coming!
-    Mozilla.FxOs.Devices = {
-        'alcatel_onetouchfire': {
-            'type': 'smartphone',
-            'display': 'Alcatel One Touch Fire',
-            'countries': ['br', 'co', 'de', 'gr', 'hu', 'me', 'mx', 'pl', 'rs', 'uy', 've']
-        },
-        'zte_open': {
-            'type': 'smartphone',
-            'display': 'ZTE Open',
-            'countries': ['co', 'es', 'mx', 'pe', 'uy', 've']
-        },
-        'lg_fireweb': {
-            'type': 'smartphone',
-            'display': 'LG Fireweb',
-            'countries': ['br']
-        }
-    };
-
     // wire up location select
     $locationSelect.on('change', function(e) {
         COUNTRY_CODE = $locationSelect.val();
@@ -150,15 +134,13 @@ if (typeof Mozilla == 'undefined') {
             title: '<img src="/media/img/firefox/os/logo/firefox-os-white.png" alt="mozilla" />'
         });
 
-        gaTrack(['_trackEvent', '/os/devices/ Interactions', 'Get a Phone CTA Clicks', COUNTRY_CODE]);
+        gaTrack(['_trackEvent', '/os/devices/ Interactions', 'Get a Phone CTA Clicks', (selectedDevice || 'none selected')]);
     });
 
     // wire up thumbnail select
     $('.device-thumbnails').on('click', '.device-thumbnail', function(e) {
-        e.preventDefault();
-
         var $this = $(this);
-        selectedDevice = $this.data('device');
+        selectedDevice = $this.attr('href').replace(/#/gi, '');
         var $targetDevice = $('#' + selectedDevice);
 
         if (!$targetDevice.is(':visible')) {
@@ -238,6 +220,11 @@ if (typeof Mozilla == 'undefined') {
             togglePagers(true);
         }
     });
+
+    // display specific device if in URL hash
+    if (window.location.hash !== '') {
+        $('.device-thumbnail[href="' + window.location.hash + '"]').trigger('click');
+    }
 
     // GA specific interactions
 

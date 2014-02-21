@@ -26,6 +26,7 @@ if (typeof Mozilla == 'undefined') {
             ]
         },
         'cl': {
+            'display': 'Chile',
             "partner": [
                 {
                     'name': 'Movistar',
@@ -153,6 +154,24 @@ if (typeof Mozilla == 'undefined') {
                     'url': 'http://www.movistar.com.ve/movistar_firefox/index.html'
                 }
             ]
+        }
+    };
+
+    Mozilla.FxOs.Devices = {
+        'alcatel_onetouchfire': {
+            'type': 'smartphone',
+            'display': 'Alcatel One Touch Fire',
+            'countries': ['br', 'cl', 'co', 'de', 'gr', 'hu', 'it', 'me', 'mx', 'pl', 'rs', 'uy', 've']
+        },
+        'zte_open': {
+            'type': 'smartphone',
+            'display': 'ZTE Open',
+            'countries': ['co', 'es', 'mx', 'pe', 'uy', 've']
+        },
+        'lg_fireweb': {
+            'type': 'smartphone',
+            'display': 'LG Fireweb',
+            'countries': ['br']
         }
     };
 })(window.jQuery);
