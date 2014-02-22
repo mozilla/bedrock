@@ -38,46 +38,46 @@ LOCALE_HEADLINES = {
             'firefox-os-ist-richtungsweisend-fur-die-zukunft-des-mobilen-marktes',
     },
     'en-GB': {
-        'title': 'Firefox OS Unleashes the Future of Mobile',
+        'title': u'Firefox OS Unleashes the Future of Mobile',
         'url': 'http://blog.mozilla.org/press-uk/2014/02/23/'
             'firefox-os-unleashes-the-future-of-mobile'
     },
     'en-US': {
-        'title': 'Firefox OS Unleashes the Future of Mobile',
+        'title': u'Firefox OS Unleashes the Future of Mobile',
         'url': 'https://blog.mozilla.org/blog/2014/02/23/firefox-os-future/',
     },
     'es-AR': {
-        'title': 'Firefox OS te desvela el futuro de lo móvil',
+        'title': u'Firefox OS te desvela el futuro de lo móvil',
         'url': 'http://blog.mozilla.org/press-latam/2014/02/23/'
             'firefox-os-te-desvela-el-futuro-de-lo-movil/',
     },
     'es-CL': {
-        'title': 'Firefox OS te desvela el futuro de lo móvil',
+        'title': u'Firefox OS te desvela el futuro de lo móvil',
         'url': 'http://blog.mozilla.org/press-latam/2014/02/23/'
             'firefox-os-te-desvela-el-futuro-de-lo-movil/',
     },
     'es-ES': {
-        'title': 'Firefox OS te desvela el futuro de lo móvil',
+        'title': u'Firefox OS te desvela el futuro de lo móvil',
         'url': 'http://blog.mozilla.org/press-es/2014/02/23/'
             'firefox-os-te-desvela-el-futuro-de-lo-movil',
     },
     'es-MX': {
-        'title': 'Firefox OS te desvela el futuro de lo móvil',
+        'title': u'Firefox OS te desvela el futuro de lo móvil',
         'url': 'http://blog.mozilla.org/press-latam/2014/02/23/'
             'firefox-os-te-desvela-el-futuro-de-lo-movil/',
     },
     'fr': {
-        'title': 'Firefox OS chamboule le futur du mobile',
+        'title': u'Firefox OS chamboule le futur du mobile',
         'url': 'http://blog.mozilla.org/press-fr/2014/02/23/'
             'firefox-os-chamboule-le-futur-du-mobile',
     },
     'it': {
-        'title': 'Firefox OS svela il futuro del mobile',
+        'title': u'Firefox OS svela il futuro del mobile',
         'url': 'http://blog.mozilla.org/press-it/2014/02/23/'
             'firefox-os-svela-il-futuro-del-mobile',
     },
     'pt-BR': {
-        'title': 'Firefox OS te desvela el futuro de lo móvil',
+        'title': u'Firefox OS te desvela el futuro de lo móvil',
         'url': 'http://blog.mozilla.org/press-br/2014/02/23/'
             'firefox-os-revela-o-futuro-do-mobile/',
     },
