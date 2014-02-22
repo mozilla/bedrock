@@ -844,13 +844,6 @@ html[lang="el"] {
     .partner-article .article-content .intro h4 {
         font-size: 24px;
     }
-
-    #explore,
-    #overview .intro #more-partners {
-        font-size: 14px;
-        line-height: 1.2;
-        font-family: inherit;
-    }
 }
 
 html[lang="el"],
@@ -861,10 +854,32 @@ html[lang="pt-BR"] {
     }
 }
 
-html[lang="pl"] {
+
+// Cancel use of Journal font for these locales
+html[lang="cs"],
+html[lang="el"],
+html[lang="pl"],
+html[lang="ro"],
+html[lang="sr"] {
     #explore,
     #overview .intro #more-partners {
-        display: none;
+        font-size: 14px;
+        line-height: 1.2;
+        font-family: inherit;
+    }
+}
+
+html[lang|="es"],
+html[lang|="sr"] {
+    #overview h2 {
+        font-size: 70px;
+    }
+}
+
+html[lang="ca"] {
+    #overview-links li {
+        font-size: 13px;
+        line-height: 1.3em;
     }
 }
 
