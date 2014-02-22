@@ -30,6 +30,8 @@ from lib.l10n_utils.dotlang import _
 
 UA_REGEXP = re.compile(r"Firefox/(%s)" % version_re)
 
+LANG_FILES = ['firefox/partners/index']
+
 LOCALE_HEADLINES = {
     'de': {
         'title': u"Firefox OS ist richtungsweisend für die Zukunft des "
@@ -43,7 +45,7 @@ LOCALE_HEADLINES = {
             'firefox-os-unleashes-the-future-of-mobile'
     },
     'en-US': {
-        'title': u'Firefox OS Unleashes the Future of Mobile',
+        'title': _('Firefox OS Unleashes the Future of Mobile'),
         'url': 'https://blog.mozilla.org/blog/2014/02/23/firefox-os-future/',
     },
     'es-AR': {
