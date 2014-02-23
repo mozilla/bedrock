@@ -60,8 +60,7 @@ LOCALE_FXOS_HEADLINES = {
     },
     'es-ES': {
         'title': u'Firefox OS te desvela el futuro de lo móvil',
-        'url': 'http://blog.mozilla.org/press-es/2014/02/23/'
-            'firefox-os-te-desvela-el-futuro-de-lo-movil',
+        'url': 'https://blog.mozilla.org/press/2014/02/firefox-os-future-2/',
     },
     'es-MX': {
         'title': u'Firefox OS te desvela el futuro de lo móvil',
@@ -84,9 +83,9 @@ LOCALE_FXOS_HEADLINES = {
             'firefox-os-uwalnia-przyszlosc-technologii-mobilnej',
     },
     'pt-BR': {
-        'title': u'Firefox OS revela o futuro do mobile',
-        'url': 'http://blog.mozilla.org/press-br/2014/02/23/'
-            'firefox-os-revela-o-futuro-do-mobile/',
+        'title': u'Firefox OS apresenta o futuro dos dispositivos móveis',
+        'url': 'https://blog.mozilla.org/press-br/2014/02/23/'
+            'firefox-os-apresenta-o-futuro-dos-dispositivos-moveis/',
     },
 }
 
