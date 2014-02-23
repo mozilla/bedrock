@@ -46,7 +46,7 @@ LOCALE_HEADLINES = {
     },
     'en-US': {
         'title': _('Firefox OS Unleashes the Future of Mobile'),
-        'url': 'https://blog.mozilla.org/blog/2014/02/23/firefox-os-future/',
+        'url': 'http://blog.mozilla.org/press/2014/02/firefox-os-future-2/',
     },
     'es-AR': {
         'title': u'Firefox OS te desvela el futuro de lo móvil',
