@@ -136,11 +136,9 @@
     });
 
     var _toggle_form = function() {
-        var $menu = $('#overlay-menu');
+        var $pageslide = $('#pageslide');
 
-        $menu.toggleClass('form-open');
-
-        if (!$menu.hasClass('form-open')) {
+        if ($pageslide.is(':visible')) {
             $.pageslide.close();
         } else {
             w.ga_track('form/');
