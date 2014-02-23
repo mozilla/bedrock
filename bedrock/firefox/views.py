@@ -78,8 +78,13 @@ LOCALE_HEADLINES = {
         'url': 'http://blog.mozilla.org/press-it/2014/02/23/'
             'firefox-os-svela-il-futuro-del-mobile',
     },
+    'pl': {
+        'title': u'Firefox OS uwalnia przyszłość technologii mobilnej',
+        'url': 'http://blog.mozilla.org/press-pl/2014/02/23/'
+            'firefox-os-uwalnia-przyszlosc-technologii-mobilnej',
+    },
     'pt-BR': {
-        'title': u'Firefox OS te desvela el futuro de lo móvil',
+        'title': u'Firefox OS revela o futuro do mobile',
         'url': 'http://blog.mozilla.org/press-br/2014/02/23/'
             'firefox-os-revela-o-futuro-do-mobile/',
     },
