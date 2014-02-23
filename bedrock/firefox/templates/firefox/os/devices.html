@@ -1,0 +1,696 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "firefox/base-resp.html" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{_('Firefox OS - Devices &amp; Availability')}}{% endblock %}
+
+{% block body_id %}firefox-os{% endblock %}
+{% block body_class %}firefox-os{% endblock %}
+
+{% block site_header_nav %}{% endblock %}
+{% block site_header_logo %}{% endblock %}
+
+{% block site_css %}
+  {{ css('firefox_os_devices') }}
+  <!--[if lt IE 9]>
+  {{ css('firefox_os_devices_ie') }}
+  <![endif]-->
+{% endblock %}
+
+{% block content %}
+<main role="main">
+  <section id="header">
+    <div class="container">
+      <img class="logo" src="{{ MEDIA_URL }}img/firefox/os/mwc-2014-preview/firefox-os.png" alt="{{ _('Firefox OS') }}">
+
+      <h1>
+        {# L10n: <br> tag below used for formatting only. #}
+        <span id="page-title-js">{{ _('Find Firefox OS <br>near you') }}</span>
+        {# L10n: <br> tag below used for formatting only. #}
+        <span id="page-title-nojs">{{ _('Explore <br>Firefox OS devices') }}</span>
+      </h1>
+
+      <form id="form-locations">
+        <label for="location">{{ _('Find a device in') }}</label>
+        <select name="location" id="location" autocomplete="off">
+          <option value="" selected>{{ _('Select a location') }}</option>
+          {# be nice to populate these via JS, but would make L10n difficult? #}
+          <option value="br">{{ _('Brazil') }}</option>
+          <option value="cl">{{ _('Chile') }}</option>
+          <option value="co">{{ _('Colombia') }}</option>
+          <option value="de">{{ _('Germany') }}</option>
+          <option value="es">{{ _('Spain') }}</option>
+          <option value="gr">{{ _('Greece') }}</option>
+          <option value="hu">{{ _('Hungary') }}</option>
+          <option value="it">{{ _('Italy') }}</option>
+          <option value="me">{{ _('Montenegro') }}</option>
+          <option value="mx">{{ _('Mexico') }}</option>
+          <option value="pe">{{ _('Peru') }}</option>
+          <option value="pl">{{ _('Poland') }}</option>
+          <option value="rs">{{ _('Serbia') }}</option>
+          <option value="uy">{{ _('Uruguay') }}</option>
+          <option value="ve">{{ _('Venezuela') }}</option>
+        </select>
+      </form>
+    </div>
+  </section>
+
+  <article id="devices">
+    <section id="smartphones" class="device-list">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-heading">{{ _('Smartphones') }}</h2>
+          <a href="{{ url('firefox.os.faq') }}" class="faq-button arrow-link button">{{ _('Firefox OS FAQ') }}</a>
+          <a id="purchase-device" href="#" class="purchase-button arrow-link button">{{ _('Get a phone') }}</a>
+        </header>
+
+        {# phone thumbnails #}
+        <ul class="device-thumbnails">
+          <li>
+            <a href="#alcatel_onetouchfire" class="device-thumbnail">
+              <img src="{{ media('/img/firefox/os/devices/smartphones/alcatel-onetouchfire-thumb.png') }}" alt="">
+              <span class="device-name">{{ _('Alcatel One Touch Fire') }}</span>
+              <div class="availability-notice">
+                <span class="is-available">{{ _('Available') }}</span>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="#lg_fireweb" class="device-thumbnail">
+              <img src="{{ media('/img/firefox/os/devices/smartphones/lg-fireweb-thumb.png') }}" alt="">
+              <span class="device-name">{{ _('LG Fireweb') }}</span>
+              <div class="availability-notice">
+                <span class="is-available">{{ _('Available') }}</span>
+              </div>
+            </a>
+          </li>
+          <li class="last">
+            <a href="#zte_open" class="device-thumbnail">
+              <img src="{{ media('/img/firefox/os/devices/smartphones/zte-open-thumb.png') }}" alt="">
+              <span class="device-name">{{ _('ZTE Open') }}</span>
+              <div class="availability-notice">
+                <span class="is-available">{{ _('Available') }}</span>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div><!--/.container-->
+
+      <div class="device-detail-list" id="smartphone-detail-list">
+        <section class="device-detail smartphone-detail" id="alcatel_onetouchfire">
+          <div id="alcatel_onetouchfire-pager" class="container pager pager-with-tabs pager-no-history">
+            <header class="device-detail-header">
+              <h3 class="device-title">{{ _('Alcatel One Touch Fire') }}</h3>
+
+              <ul class="pager-tabs">
+                <li><a href="#p1">{{_('Features')}}</a></li>
+                <li><a href="#p2">{{_('Specifications')}}</a></li>
+              </ul>
+
+              <button class="device-detail-close">{{ _('Close') }}</button>
+            </header>
+
+            <div class="pager-content">
+              <div class="device-details features pager-page default-page" id="alcatel_onetouchfire-features">
+                <div class="feature-group logo-colors">
+                  <img src="{{ media('/img/firefox/os/devices/smartphones/alcatel-onetouchfire-logo.png') }}" alt="{{ _('One Touch Fire') }}">
+
+                  <em>{{ _('Set your world on fire') }}</em>
+
+                  {#
+                  Will be implemented when images are provided.
+                  <section class="color-picker">
+                    <h4>{{ _('Colors') }}</h4>
+
+                    <ul>
+                      <li>
+                        <button class="alcatel-onetouchfire-orange" data-image="{{ media('/img/firefox/os/devices/smartphones/alcatel-onetouchfire.png') }}" title="{{ _('Firefox Orange') }}"></button>
+                      </li>
+                      <li>
+                        <button class="alcatel-onetouchfire-green" data-image="{{ media('/img/firefox/os/devices/smartphones/alcatel-onetouchfire-green.png') }}" title="{{ _('Green') }}"></button>
+                      </li>
+                      <li>
+                        <button href="#" class="alcatel-onetouchfire-white" data-image="{{ media('/img/firefox/os/devices/smartphones/alcatel-onetouchfire-white.png') }}" title="{{ _('White') }}"></button>
+                      </li>
+                    </ul>
+                  </section>
+                  #}
+                </div>
+
+                <div class="feature-group image">
+                  <img src="{{ media('/img/firefox/os/devices/smartphones/alcatel-onetouchfire.png') }}" alt="{{ _('Alcatel One Touch Fire') }}">
+                </div>
+
+                <div class="feature-group stats">
+                  <ul>
+                    <li class="stat-screen">
+                      <strong>{{ _('3.5" HVGA') }}</strong>
+                      {{ _('320 x 480 pixels') }}
+                    </li>
+                    <li class="stat-camera">
+                      <strong>{{ _('3.2MP') }}</strong>
+                      {{ _('Rear Camera') }}
+                    </li>
+                    <li class="stat-storage">
+                      <strong>{{ _('2GB') }}</strong>
+                      {{ _('SD Memory Card') }}
+                    </li>
+                    <li class="stat-battery">
+                      <strong>{{ _('6.7h') }}</strong>
+                      {{ _('Talk Time') }}
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="feature-group availability">
+                  <h5>{{ _('Available in') }}</h5>
+
+                  <ul class="comma-list">
+                    <li>{{ _('Brazil') }}</li>
+                    <li>{{ _('Chile') }}</li>
+                    <li>{{ _('Colombia') }}</li>
+                    <li>{{ _('Germany') }}</li>
+                    <li>{{ _('Greece') }}</li>
+                    <li>{{ _('Hungary') }}</li>
+                    <li>{{ _('Italy') }}</li>
+                    <li>{{ _('Mexico') }}</li>
+                    <li>{{ _('Montenegro') }}</li>
+                    <li>{{ _('Serbia') }}</li>
+                    <li>{{ _('Uruguay') }}</li>
+                    <li>{{ _('Venezuela') }}</li>
+                  </ul>
+
+                  <h5>{{ _('Operators') }}</h5>
+                  <ul class="comma-list">
+                    <li>{{ _('Congstar') }}</li>
+                    <li>{{ _('Cosmote') }}</li>
+                    <li>{{ _('Movistar') }}</li>
+                    <li>{{ _('T-Mobile') }}</li>
+                    <li>{{ _('Telenor') }}</li>
+                    <li>{{ _('TIM') }}</li>
+                    <li>{{ _('Vivo') }}</li>
+                  </ul>
+                </div>
+              </div><!--/.features-->
+
+              <div class="device-details specifications pager-page" id="alcatel_onetouchfire-specifications">
+                <h4 class="device-details-title">{{ _('Specifications') }}</h4>
+
+                <table>
+                  <tr>
+                    <th>{{ _('Screen') }}</th>
+                    <td>
+                      {{ _('3.5” HVGA 320 x 480 pixels, 262K color display') }}
+                      <br>
+                      {{ _('TFT Capacitive touch') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Camera') }}</th>
+                    <td>
+                      {{ _('3.2 MP') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Dimensions') }}</th>
+                    <td>
+                      {{ _('115 x 62.3 x12.2mm') }}
+                      <br>
+                      {{ _('108g (3.81 oz)') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Processor') }}</th>
+                    <td>
+                      {{ _('Qualcomm Snapdragon MSM7227A, 1 GHz CPU') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Memory &amp; RAM') }}</th>
+                    <td>
+                      <dl>
+                        <dt>{{ _('Internal memory') }}</dt>
+                        <dd>{{ _('160 MB, 512 MB ROM, 25 MB RAM') }}</dd>
+
+                        <dt>{{ _('Card slot') }}</dt>
+                        <dd>{{ _('microSD, up to 32 GB, 2 GB included') }}</dd>
+                      </dl>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('GPS') }}</th>
+                    <td>{{ _('GPS / A-GPS') }}</td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Battery') }}</th>
+                    <td>
+                      <dl>
+                        <dt>{{ _('Capacity') }}</dt>
+                        <dd>{{ _('Li-Ion 1400 mAh') }}</dd>
+
+                        <dt>{{ _('Talk time') }}</dt>
+                        <dd>{{ _('up to 6.7h (2G), 3h (3G)') }}</dd>
+
+                        <dt>{{ _('Standby time') }}</dt>
+                        <dd>{{ _('up to 280h (2G)') }}
+                        </dd>
+                      </dl>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Networks') }}</th>
+                    <td>
+                      {{ _('UMTS 900/2100 and 850/1900/2100 - 3G Data up to 7.2Mbps table and 384Kbps UL') }}
+                      <br>
+                      {{ _('GSM (850/900/1800/1900)') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Wireless') }}</th>
+                    <td>
+                      {{ _('Bluetooth v3.0 A2DP') }}
+                      <br>
+                      {{ _('Wi-Fi 802.11 b/g/n') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Ports') }}</th>
+                    <td>
+                      {{ _('Micro USB 2.0 high speed') }}
+                      <br>
+                      {{ _('3.5mm stereo headset jack') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Radio') }}</th>
+                    <td>
+                      {{ _('Stereo FM') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Keyboard') }}</th>
+                    <td>
+                      {{ _('Virtual QWERTY') }}
+                    </td>
+                  </tr>
+                </table>
+              </div><!--/.specifications-->
+            </div><!--/.pager-content-->
+          </div><!--/.container-->
+        </section><!--/#alcatel-onetouchfire-->
+
+        <section class="device-detail smartphone-detail" id="lg_fireweb">
+          <div id="lg_fireweb-pager" class="container pager pager-with-tabs pager-no-history">
+            <header class="device-detail-header">
+              <h3 class="device-title">{{ _('LG Fireweb') }}</h3>
+
+              <ul class="pager-tabs">
+                <li><a href="#p1">{{_('Features')}}</a></li>
+                <li><a href="#p2">{{_('Specifications')}}</a></li>
+              </ul>
+
+              <button class="device-detail-close">{{ _('Close') }}</button>
+            </header>
+
+            <div class="pager-content">
+              <div class="device-details pager-page default-page features" id="lg_fireweb-features">
+
+                <div class="feature-group logo-colors">
+                  <img src="{{ media('/img/firefox/os/devices/smartphones/lg-fireweb-logo.png') }}" alt="{{ _('LG') }}">
+                </div>
+
+                <div class="feature-group image">
+                  <img src="{{ media('/img/firefox/os/devices/smartphones/lg-fireweb.png') }}" alt="{{ _('LG Fireweb') }}">
+                </div>
+
+                <div class="feature-group stats">
+                  <ul>
+                    <li class="stat-screen">
+                      <strong>{{ _('4.0" HVGA') }}</strong>
+                      {{ _('320 x 480 pixels') }}
+                    </li>
+                    <li class="stat-camera">
+                      <strong>{{ _('5.0MP') }}</strong>
+                      {{ _('Rear Camera') }}
+                    </li>
+                    <li class="stat-storage">
+                      <strong>{{ _('2GB') }}</strong>
+                      {{ _('Internal memory') }}
+                    </li>
+                    <li class="stat-battery">
+                      <strong>{{ _('Up to 8h') }}</strong>
+                      {{ _('Talk Time') }}
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="feature-group availability">
+                  <h5>{{ _('Available in') }}</h5>
+
+                  <ul class="comma-list">
+                    <li>{{ _('Brazil') }}</li>
+                  </ul>
+
+                  <h5>{{ _('Operator') }}</h5>
+                  <ul class="comma-list">
+                    <li>{{ _('Vivo') }}</li>
+                  </ul>
+                </div>
+              </div><!--/.features-->
+
+              <div class="device-details pager-page specifications" id="lg_fireweb-specifications">
+                <h4 class="device-details-title">{{ _('Specifications') }}</h4>
+
+                <table>
+                  <tr>
+                    <th>{{ _('Screen') }}</th>
+                    <td>
+                      {{ _('4.0” 320 x 480 pixels, (~144 ppi pixel density)') }}
+                      <br>
+                      {{ _('TFT capacitive touchscreen') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Camera') }}</th>
+                    <td>
+                      {{ _('5MP, LED flash') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Dimensions') }}</th>
+                    <td>
+                      {{ _('113.8 x 66.5 x9mm') }}
+                      <br>
+                      {{ _('122.5 g (4.30 oz)') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Processor') }}</th>
+                    <td>
+                      {{ _('Qualcomm Snapdragon MSM7227A, 1 GHz CPU') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Memory') }}</th>
+                    <td>
+                      <dl>
+                        <dt>{{ _('Internal') }}</dt>
+                        <dd>{{ _('2GB') }}</dd>
+
+                        <dt>{{ _('Card slot') }}</dt>
+                        <dd>{{ _('MicroSD Card: up to 32 GB') }}</dd>
+                      </dl>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('GPS') }}</th>
+                    <td>{{ _('GPS / A-GPS') }}</td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Battery') }}</th>
+                    <td>
+                      <dl>
+                        <dt>{{ _('Capacity') }}</dt>
+                        <dd>{{ _('Li-Ion 1540 mAh') }}</dd>
+
+                        <dt>{{ _('Talk time') }}</dt>
+                        <dd>{{ _('up to 8h (2G), 8h (3G)') }}</dd>
+
+                        <dt>{{ _('Standby time') }}</dt>
+                        <dd>{{ _('up to 744h') }}
+                        </dd>
+                      </dl>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Networks') }}</th>
+                    <td>
+                      {{ _('UMTS 900/2100 and 850/1900/2100 - 3G Data up to 7.2Mbps DL and 384Kbps UL') }}
+                      <br>
+                      {{ _('GSM (850/900/1800/1900)') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Wireless') }}</th>
+                    <td>
+                      {{ _('Bluetooth v3.0') }}
+                      <br>
+                      {{ _('Wi-Fi 802.11 b/g/n') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Ports') }}</th>
+                    <td>
+                      {{ _('Micro USB 2.0 high speed') }}
+                      <br>
+                      {{ _('3.5mm stereo headset jack') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Radio') }}</th>
+                    <td>
+                      {{ _('Stereo FM') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Keyboard') }}</th>
+                    <td>
+                      {{ _('Virtual QWERTY') }}
+                    </td>
+                  </tr>
+                </table>
+              </div><!--/.specifications-->
+            </div><!--/.pager-content-->
+          </div><!--/.container-->
+        </section><!--/#lg-fireweb-->
+
+        <section class="device-detail smartphone-detail" id="zte_open">
+          <div id="zte_open-pager" class="container pager pager-with-tabs pager-no-history">
+            <header class="device-detail-header">
+              <h3 class="device-title">{{ _('ZTE Open') }}</h3>
+
+              <ul class="pager-tabs">
+                <li><a href="#p1">{{_('Features')}}</a></li>
+                <li><a href="#p2">{{_('Specifications')}}</a></li>
+              </ul>
+
+              <button class="device-detail-close">{{ _('Close') }}</button>
+            </header>
+
+            <div class="pager-content">
+              <div class="device-details pager-page default-page features" id="zte_open-features">
+
+                <div class="feature-group logo-colors">
+                  <img src="{{ media('/img/firefox/os/devices/smartphones/zte-open-logo.png') }}" alt="{{ _('ZTE Open') }}">
+
+                  {#
+                  Will be implemented when images are provided.
+                  <section class="color-picker">
+                    <h4>{{ _('Colors') }}</h4>
+
+                    <ul>
+                      <li>
+                        <button class="zte-open-black" data-image="{{ media('/img/firefox/os/devices/smartphones/zte-open.png') }}" title="{{ _('Black') }}"></button>
+                      </li>
+                      <li>
+                        <button class="zte-open-blue" data-image="{{ media('/img/firefox/os/devices/smartphones/zte-open-blue.png') }}" title="{{ _('Blue') }}"></button>
+                      </li>
+                      <li>
+                        <button class="zte-open-orange" data-image="{{ media('/img/firefox/os/devices/smartphones/zte-open-orange.png') }}" title="{{ _('Orange') }}"></button>
+                      </li>
+                    </ul>
+                  </section>
+                  #}
+                </div>
+
+                <div class="feature-group image">
+                  <img src="{{ media('/img/firefox/os/devices/smartphones/zte-open.png') }}" alt="{{ _('ZTE Open') }}">
+                </div>
+
+                <div class="feature-group stats">
+                  <ul>
+                    <li class="stat-screen">
+                      <strong>{{ _('3.5" HVGA') }}</strong>
+                      {{ _('320 x 480 pixels') }}
+                      <br>
+                      {{ _('TFT color display') }}
+                    </li>
+                    <li class="stat-camera">
+                      <strong>{{ _('3MP') }}</strong>
+                      {{ _('Rear Camera') }}
+                    </li>
+                    <li class="stat-storage">
+                      <strong>{{ _('256MB') }}</strong>
+                      {{ _('Internal memory') }}
+                    </li>
+                    <li class="stat-battery">
+                      <strong>{{ _('9hrs') }}</strong>
+                      {{ _('Talk Time') }}
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="feature-group availability">
+                  <h5>{{ _('Available in') }}</h5>
+
+                  <ul class="comma-list">
+                    <li>{{ _('Colombia') }}</li>
+                    <li>{{ _('Mexico') }}</li>
+                    <li>{{ _('Peru') }}</li>
+                    <li>{{ _('Spain') }}</li>
+                    <li>{{ _('Venezuela') }}</li>
+                  </ul>
+
+                  <h5>{{ _('Operator') }}</h5>
+                  <ul class="comma-list">
+                    <li>{{ _('Movistar') }}</li>
+                  </ul>
+                </div>
+              </div><!--/.features-->
+
+              <div class="device-details pager-page specifications" id="zte_open-specifications">
+                <h4 class="device-details-title">{{ _('Specifications') }}</h4>
+
+                <table>
+                  <tr>
+                    <th>{{ _('Screen') }}</th>
+                    <td>
+                      {{ _('3.5” HVGA 320 x 480 pixels, 262K color display') }}
+                      <br>
+                      {{ _('TFT Capacitive touch') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Camera') }}</th>
+                    <td>
+                      {{ _('3 MP (Fixed-focus)') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Dimensions') }}</th>
+                    <td>
+                      {{ _('114 x 62 x 12.5mm') }}
+                      <br>
+                      {{ _('120g (4.2 oz)') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Processor') }}</th>
+                    <td>
+                      {{ _('Qualcomm Snapdragon MSM7225A, 1 GHz CPU') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Memory') }}</th>
+                    <td>
+                      <dl>
+                        <dt>{{ _('Internal memory') }}</dt>
+                        <dd>{{ _('512MB NAND + 256MB RAM') }}</dd>
+
+                        <dt>{{ _('End user memory') }}</dt>
+                        <dd>{{ _('130MB') }}</dd>
+
+                        <dt>{{ _('External storage') }}</dt>
+                        <dd>{{ _('MicroSD Card: up to 32GB') }}</dd>
+                      </dl>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('GPS') }}</th>
+                    <td>{{ _('GPS / A-GPS') }}</td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Battery') }}</th>
+                    <td>
+                      <dl>
+                        <dt>{{ _('Capacity') }}</dt>
+                        <dd>{{ _('1200 mAh') }}</dd>
+
+                        <dt>{{ _('Talk time') }}</dt>
+                        <dd>{{ _('9hrs 20m') }}</dd>
+
+                        <dt>{{ _('Standby time') }}</dt>
+                        <dd>{{ _('176h') }}
+                        </dd>
+                      </dl>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Networks') }}</th>
+                    <td>
+                      {{ _('UMTS/HSDPA/HSPA/HSPA+: MSM7225A: HSPA (7.2 Mbps DL / 5.76 Mbps UL)') }}
+                      <br>
+                      {{ _('GSM 850/900/1800/1900') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Wireless') }}</th>
+                    <td>
+                      {{ _('Bluetooth v2.1') }}
+                      <br>
+                      {{ _('Wi-Fi 802.11 b/g/n') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Ports') }}</th>
+                    <td>
+                      {{ _('Micro USB 2.0 high speed') }}
+                      <br>
+                      {{ _('3.5mm stereo headset jack') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Radio') }}</th>
+                    <td>
+                      {{ _('Stereo FM') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Keyboard') }}</th>
+                    <td>
+                      {{ _('Virtual QWERTY') }}
+                    </td>
+                  </tr>
+                </table>
+              </div><!--/.specifications-->
+            </div><!--/.pager-content-->
+          </div><!--/.container-->
+        </section><!--/#zte-open-->
+      </div><!--/#device-detail-list-->
+    </section><!--/#smartphones-->
+    <div class="container">
+      <aside id="fxos-links">
+        <header class="section-header">
+          <h2 class="section-heading">{{ _('More about Firefox OS') }}</h2>
+        </header>
+        <ul>
+          <li>
+            <a href="{{ url('firefox.os.index') }}" class="standard-link arrow-link">{{ _('Read about the features and mission behind Firefox OS') }}</a>
+          </li>
+          <li>
+            <a href="https://support.mozilla.org/products/firefox-os" class="standard-link arrow-link">{{ _('Get help with your Firefox OS device from Mozilla Support') }}</a>
+          </li>
+          <li>
+            <a href="https://developer.mozilla.org/en-US/Firefox_OS" class="standard-link arrow-link">{{ _('See what Firefox OS offers and means for developers') }}</a>
+          </li>
+          <li>
+            <a href="{{ url('firefox.partners.index') }}#marketplace" class="standard-link arrow-link">{{ _('Learn about Firefox OS apps in the Firefox Marketplace') }}</a>
+          </li>
+        </ul>
+      </aside>
+    </div><!--/.container-->
+  </article><!--/#devices-->
+</main>
+
+{% include '/firefox/os/_get_device.html' %}
+
+{% block email_form %}{% endblock %}
+
+{% endblock %}
+
+{% block js %}
+  {{ js('firefox_os_devices') }}
+{% endblock %}

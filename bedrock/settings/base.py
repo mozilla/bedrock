@@ -245,6 +245,14 @@ MINIFY_BUNDLES = {
         'firefox_os_ie': (
             'css/firefox/os/firefox-os-ie.less',
         ),
+        'firefox_os_devices': (
+            'css/libs/tipsy.css',
+            'css/base/mozilla-modal.less',
+            'css/firefox/os/devices.less',
+        ),
+        'firefox_os_devices_ie': (
+            'css/firefox/os/devices-ie.less',
+        ),
         'firefox_os_mwc_2014_preview': (
             'css/base/mozilla-modal.less',
             'css/firefox/os/mwc-2014-preview.less',
@@ -528,12 +536,22 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.color.js',
             'js/libs/script.js',
             'js/libs/socialshare.min.js',
+            'js/firefox/os/partner_data.js',
             'js/firefox/os/firefox-os.js',
             'js/firefox/os/desktop.js',
             'js/firefox/os/have-it.js',
         ),
         'firefox_os_ie9': (
             'js/libs/matchMedia.addListener.js',
+        ),
+        'firefox_os_devices': (
+            'js/libs/jquery.tipsy.js',
+            'js/base/mozilla-pager.js',
+            'js/base/mozilla-modal.js',
+            'js/libs/matchMedia.js',
+            'js/libs/matchMedia.addListener.js',
+            'js/firefox/os/partner_data.js',
+            'js/firefox/os/devices.js',
         ),
         'firefox_os_mwc_2014_preview': (
             'js/base/mozilla-modal.js',

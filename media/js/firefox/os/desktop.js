@@ -31,7 +31,7 @@
   var $intro_bg_b = $intro_bg_a.clone();
   var intro_bg_index = 0;
   var intro_bgs = ['soccer', 'cafe', 'birthday'];
-  
+
 
   var nav_height = $masthead.height();
 
@@ -73,7 +73,7 @@
 
   /*
   * Rotate intro/adaptive background
-  * 
+  *
   * $bg_a fades in and out, $bg_b simply changes its background image via
   * supplied css_classes param.
   */
@@ -295,11 +295,11 @@
   /*
   * Purchase modal
   */
-  $('a[href="#get-phone"]').on('click', function(e) {
+  $('a[href="#get-device"]').on('click', function(e) {
     e.preventDefault();
 
     if (!$get_phone_content) {
-      $get_phone_content = $('#get-phone').detach();
+      $get_phone_content = $('#get-device').detach();
     }
 
     Mozilla.Modal.createModal(this, $get_phone_content, {
