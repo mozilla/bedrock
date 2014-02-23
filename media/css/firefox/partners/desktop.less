@@ -18,7 +18,6 @@
 /* {{{ Template overrides */
 .js #article-wrapper {
     opacity: 0;
-    height: 2840px;
     overflow: hidden;
     position: relative;
     top: 0px;
@@ -33,8 +32,6 @@
                 url(/media/img/sandstone/grain.png) repeat 0 0,
                 #eee;
     .clearfix();
-    -webkit-box-shadow:  0px -3px 5px 1px rgba(0, 0, 0, 0.3);
-    box-shadow:  0px -3px 5px 1px rgba(0, 0, 0, 0.3);
     section {
         width: 100%;
         padding-top: 0;
@@ -187,10 +184,10 @@
         height: 700px;
         background: url(/media/img/firefox/partners/firefoxos-giantfox-back.png) no-repeat 0 0 ;
         position: absolute;
-        top: 140px;
+        top: 300px;
         left: 50%;
         margin-left: -70px;
-        .transition(all ease 0.6s);
+        .transition(all ease 0.8s);
         .giantfox-foreground {
             position: absolute;
             display: block;
@@ -201,11 +198,14 @@
             background: url(/media/img/firefox/partners/firefoxos-giantfox-front.png) no-repeat 100% 130px;
             z-index: 110;
         }
+        &.up {
+            top: 160px;
+        }
     }
 }
 
 .js .marketplacegiantfox {
-    top: 1600px;
+    top: 1870px;
 }
 
 .marketplacegiantfox {
@@ -226,7 +226,8 @@
         z-index: 112;
         width: 580px;
         height: 240px;
-        margin-left: -40px;
+        margin-left: -30px;
+        margin-top: 15px;
     }
 }
 
@@ -235,7 +236,7 @@
 /* {{{ Overview Article */
 
 .js #overview {
-    .partner-button, #overview-news {
+    .partner-button, #overview-news-links {
         display: none;
     }
     .partner-button {
@@ -248,21 +249,21 @@
 #overview {
     background: url(/media/img/firefox/partners/overview-bg.png?2013-06) center -15px no-repeat;
     h2 {
-        font-size: 84px;
+        font-size: 80px;
         letter-spacing: -4px;
         .span-all();
-        padding-top: 40px;
-        padding-bottom: 30px;
+        padding-top: 60px;
+        padding-bottom: 10px;
     }
     .intro {
-        margin-top: 20px;
+        margin-top: @baseLine;
         p {
             .open-sans-light;
-            font-size: 17px;
+            font-size: 18px;
             letter-spacing: -0.01em;
         }
         .partner-logos {
-            margin-top: 40px;
+            margin-top: @baseLine;
         }
         #more-partners {
             margin: -30px 0 0 0;
@@ -280,20 +281,55 @@
             float: right;
             margin-bottom: 5px;
         }
-        #overview-news {
-            padding-top: 20px;
-            clear: both;
-            .clearfix();
-            position: relative;
-            h3 {
-                margin: 0 0 5px 0;
-            }
-            ul {
-                margin: 0 0 10px 0;
-            }
+    }
+}
+
+#overview-news-links {
+    padding-top: (@baseLine / 2);
+}
+
+#overview-news-wrapper {
+    background-size: 621px;
+    .clearfix;
+    position: relative;
+
+    img {
+        display: block;
+        float: left;
+        width: 124px;
+    }
+}
+
+#overview-news {
+    float: left;
+    margin-left: @baseLine * 2;
+    width: 456px;
+
+    h3 {
+        margin: 0 0 5px 0;
+    }
+    ul {
+        margin: 0 0 10px 0;
+    }
+}
+
+#overview-links {
+    background: none;
+    padding-top: (@baseLine / 2);
+
+    ul {
+        .clearfix;
+    }
+    li {
+        float: left;
+        width: 146px;
+        padding-top: 0;
+        padding-right: 6px;
+
+        br {
+            display: block;
         }
     }
-
 }
 
 /* }}} */
@@ -409,7 +445,7 @@
                 margin: 10px 20px;
             }
         }
-        .logos {
+        .marketplace-logos {
             .span(6);
             margin-left: 0;
             margin-right: 0;
@@ -488,7 +524,7 @@
     .android-dude {
         position: absolute;
         display: block;
-        top: 405px;
+        top: 390px;
         left: -75px;
         width: 231px;
         height: 256px;
@@ -497,7 +533,7 @@
     }
     #android-partner {
         padding-top: 0;
-        background: url(/media/img/firefox/partners/android-partners-bg.png) 50% 200px no-repeat;
+        background: url(/media/img/firefox/partners/android-partners-bg.png?2014-02) 50% 200px no-repeat;
         .intro {
             padding-top: 120px;
             h3 {
@@ -515,9 +551,9 @@
     .android-tablet {
         width: 1021px;
         height: 662px;
-        background: url(/media/img/firefox/partners/android-tablet-frame.png) no-repeat 0 0;
+        background: url(/media/img/firefox/partners/android-tablet-frame.png?2014-02) no-repeat 0 0;
         position: absolute;
-        top: 120px;
+        top: 150px;
         left: 50%;
         margin-left: -40px;
         .transition(all ease 0.6s);
@@ -528,7 +564,7 @@
             right: 127px;
             width: 767px;
             height: 488px;
-            background: url(/media/img/firefox/partners/android-tablet-screen.jpg?2013-06) no-repeat 0 0;
+            background: url(/media/img/firefox/partners/android-tablet-screen.jpg?2014-02) no-repeat 0 0;
         }
     }
 }
@@ -544,6 +580,13 @@ body #partner-nav {
     width: 60px;
     margin-left: auto;
     padding: 0;
+}
+
+body #partner-menu, body #mwc-menu {
+    width: 60px;
+    li {
+        width: auto;
+    }
 }
 
 #explore {
@@ -630,7 +673,7 @@ body #partner-nav {
     #screen-overview {
         display: block;
         background: url(/media/img/firefox/partners/screen-overview.jpg) 0 0 no-repeat;
-        z-index: 3;
+        z-index: 1;
         #foxtail {
             height: 156px;
             width: 156px;
@@ -641,8 +684,8 @@ body #partner-nav {
         }
     }
     #screen-os {
-        background: url(/media/img/firefox/partners/phone-os-screenshots.jpg?2013-06) 0 0 repeat-x;
-        z-index: 2;
+        background: url(/media/img/firefox/partners/phone-os-screenshots.jpg?2014-02) 0 0 repeat-x;
+        z-index: 0;
 
         -moz-animation: os-screenslide 20s ease infinite alternate;
         -webkit-animation: os-screenslide 20s ease infinite alternate;
@@ -685,7 +728,7 @@ body #partner-nav {
 
     #screen-marketplace {
         background: url(/media/img/firefox/partners/phone-marketplace-screenshot.jpg) 0 0 no-repeat;
-        z-index: 1;
+        z-index: 0;
     }
 }
 
@@ -763,13 +806,6 @@ html[lang="el"] {
     .partner-article .article-content .intro h4 {
         font-size: 24px;
     }
-
-    #explore,
-    #overview .intro #more-partners {
-        font-size: 14px;
-        line-height: 1.2;
-        font-family: inherit;
-    }
 }
 
 html[lang="el"],
@@ -780,10 +816,32 @@ html[lang="pt-BR"] {
     }
 }
 
-html[lang="pl"] {
+
+// Cancel use of Journal font for these locales
+html[lang="cs"],
+html[lang="el"],
+html[lang="pl"],
+html[lang="ro"],
+html[lang="sr"] {
     #explore,
     #overview .intro #more-partners {
-        display: none;
+        font-size: 14px;
+        line-height: 1.2;
+        font-family: inherit;
+    }
+}
+
+html[lang|="es"],
+html[lang|="sr"] {
+    #overview h2 {
+        font-size: 70px;
+    }
+}
+
+html[lang="ca"] {
+    #overview-links li {
+        font-size: 13px;
+        line-height: 1.3em;
     }
 }
 

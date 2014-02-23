@@ -54,8 +54,23 @@
         e.preventDefault();
 
         // Extract the target element's ID from the link's href.
-        var elem = $(this).attr('href').replace(/.*?(#.*)/g, '$1');
-        Mozilla.Modal.createModal(this, $(elem));
+        var target_id = $(this).attr('href').replace(/.*?(#.*)/g, '$1');
+        var $elem = $(target_id);
+
+        // Move overlay title into modal header (save vertical space)
+        var opts = {};
+        var $overlay_title = $elem.find('.overlay-title:first');
+
+        if ($overlay_title.length > 0) {
+            opts.title = $overlay_title.text();
+        }
+
+        // special callback for the map
+        if (target_id === '#map' && typeof(window.scrollMwcMap) === 'function') {
+            opts.onCreate = window.scrollMwcMap;
+        }
+
+        Mozilla.Modal.createModal(this, $elem, opts);
 
         return false;
     });

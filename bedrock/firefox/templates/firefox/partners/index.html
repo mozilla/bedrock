@@ -5,7 +5,7 @@
 {% extends "base-resp.html" %}
 
 {% block page_title %}{{ _('Firefox OS, Marketplace, Android — Partners') }}{% endblock %}
-{% block page_desc %}{{ _('We’re enabling operators, phone manufacturers and developers to manage, customize and improve relationships with their customers directly through our mobile products: Firefox OS, Firefox Marketplace and Firefox for Android.') }}{% endblock %}
+{% block page_desc %}{{ _('We’re enabling operators, phone manufacturers and developers to manage, customize and improve relationships with their customers directly through our mobile products: <a %(url1)s>Firefox OS</a>, <a %(url2)s>Firefox Marketplace</a> and <a %(url3)s>Firefox for Android</a>.') }}{% endblock %}
 {% block page_image %}{{ media('img/firefox/firefox-256.jpg') }}{% endblock %}
 {% block page_favicon %}{{ media('img/firefox/favicon.ico?2013-08') }}{% endblock %}
 
@@ -60,6 +60,10 @@
       <li id="menu-marketplace"><a href="#marketplace">{{_('Marketplace')}}</a></li>
       <li id="menu-android"><a href="#android">{{_('Android')}}</a></li>
     </ul>
+    <ul id="mwc-menu" class="menu">
+      <li id="menu-mwc-map"><a href="#map" class="modal">{{ _('Map') }}</a></li>
+      <li id="menu-mwc-schedule"><a href="#schedule" class="modal">{{ _('Schedule') }}</a></li>
+    </ul>
   </nav>
 {% endblock %}
 
@@ -70,7 +74,7 @@
     <div id="screen-overview" class="screen"><div id="foxtail"></div></div>
     <div id="screen-os" class="screen"></div>
     <div id="screen-marketplace" class="screen"></div>
-    <div class="phone-overlay" class="screen"></div>
+    <div class="phone-overlay"></div>
   </div>
 </div>
 
@@ -82,27 +86,50 @@
     <section class="section-1" data-current="1">
       <div class="phone-shadow visible"></div>
       <div class="article-content">
-        <h2>{{ _('Blaze Your Own Path') }}</h2>
+        <h2>{{ _('Unleash the future') }}</h2>
         <div class="intro">
 
-          <p>{% trans url1='class="nav" href="#os"'|safe, url2='class="nav" href="#marketplace"'|safe, url3='class="nav" href="#android"'|safe %}
-          We’re enabling operators, phone manufacturers and developers to manage, customize and improve relationships with their customers directly through our mobile products: <a {{url1}}>Firefox OS</a>, <a {{url2}}>Firefox Marketplace</a> and <a {{url3}}>Firefox for Android</a>.
-          {% endtrans %}</p>
+          <p>
+            {{ _('In our first year, we’ve brought openness, accessibility and opportunity to 15 countries with 4 hardware partners, 7 operators and 16 launches.') }}
+          {% trans url1='class="nav" href="#os"'|safe, url2='class="nav" href="#marketplace"'|safe, url3='class="nav" href="#android"'|safe %}
+            See what’s next for mobile with <a {{url1}}>Firefox OS</a>, <a {{url2}}>Firefox Marketplace</a>
+            and <a {{url3}}>Firefox for Android</a>.
+          {% endtrans %}
+          </p>
 
           <p class="partner-button"><a href="https://mobilepartners.mozilla.org/" class="button">{{ _('Partner with us') }}</a></p>
 
-          <div id="overview-news">
-            <h3>{{ _('Recent news') }}</h3>
-            <ul>
-              {% if request.locale in locale_os_release_active %}
-              <li><a href="{{ locale_os_release_url }}">{{ _('Mozilla and partners prepare to launch first Firefox OS smartphones') }}</a></li>
-              {% endif %}
-              <li><a href="#mwc-wrapup" class="modal">{{ _('Watch our wrap-up video from Mobile World Congress 2013') }}</a></li>
-              {% if request.locale not in locale_os_release_active %}
-              <li><a href="{{ locale_os_url }}" rel="external">{{ _('Mozilla Announces Global Expansion for Firefox OS') }}</a></li>
-              {% endif %}
-            </ul>
-          </div>
+          <div id="overview-news-links">
+            <div id="overview-news-wrapper">
+              <img src="{{ media('img/firefox/partners/mwc-2014-banner.png') }}" alt="{{ _('Mobile World Congress 2014') }}">
+              <div id="overview-news">
+                <h3>{{ _('Recent news') }}</h3>
+                <ul>
+                  <li><a href="{{ locale_headline_url }}">{{ locale_headline_title }}</a></li>
+                </ul>
+              </div> <!--/#overview-news-->
+            </div> <!--/#overview-news-wrapper-->
+
+            <div id="overview-links">
+              <ul>
+                <li id="overview-video-recap">
+                  {# L10n: Line break below is presentational only #}
+                  <a rel="external" href="http://www.youtube.com/playlist?list=PLFlAJDI87Jg2vk3THSt8RBoD7vLG2tnwH">{{ _('Watch the daily <br>MWC video recap') }}</a>
+                </li>
+                <li id="overview-schedule">
+                  {# L10n: Line break below is presentational only #}
+                  <ul>
+                    <li><a href="#schedule" class="modal">{{ _('Fox Den &amp; other <br>MWC events') }}</a></li>
+                    <li><a href="http://www.cvent.com/d/54qpfq" rel="external">{{ _('Register for a session') }}</a></li>
+                  </ul>
+                </li>
+                <li id="overview-mwc-tweets">
+                  {# L10n: Line break below is presentational only #}
+                  <a href="https://twitter.com/firefox" rel="external">{{ _('Firefox tweets from <br>MWC in Barcelona') }}</a>
+                </li>
+              </ul>
+            </div> <!--/#overview-links-->
+          </div> <!--/#overview-news-links-->
 
           <div class="partner-logos">
             <div class="pager pager-with-tabs pager-no-history pager-auto-rotate">
@@ -121,40 +148,35 @@
                     <li><img src="{{ media('img/firefox/partners/logos/light/tcl.png') }}" alt="TCL" ></li>
 
                     <li><img src="{{ media('img/firefox/partners/logos/light/telecomitalia.png') }}" alt="Telecom Italia" ></li>
+                    <li><img src="{{ media('img/firefox/partners/logos/light/huawei.png') }}" alt="Huawei"></li>
                     <li><img src="{{ media('img/firefox/partners/logos/light/chinaunicom.png') }}" alt="China Unicom" ></li>
                     <li><img src="{{ media('img/firefox/partners/logos/light/kddi.png') }}" alt="KDDI" ></li>
-                    <li><img src="{{ media('img/firefox/partners/logos/light/sprint.png') }}" alt="Sprint" ></li>
 
+                    <li><img src="{{ media('img/firefox/partners/logos/light/sprint.png') }}" alt="Sprint" ></li>
                     <li><img src="{{ media('img/firefox/partners/logos/light/singtel.png') }}" alt="SingTel" ></li>
                     <li><img src="{{ media('img/firefox/partners/logos/light/etisalat.png') }}" alt="Etisalat" ></li>
                     <li><img src="{{ media('img/firefox/partners/logos/light/koreatelecom.png') }}" alt="Korea Telecom" ></li>
-                    <li><img src="{{ media('img/firefox/partners/logos/light/vimpelcom.png') }}" alt="VimpelCom" ></li>
-
                   </ul>
                 </div>
                 <div class="pager-page">
                   <ul class="logos">
 
-                    <li><img src="{{ media('img/firefox/partners/logos/light/smartcom.png') }}" alt="SMART Communications" ></li>
-                    <li><img src="{{ media('img/firefox/partners/logos/light/portugaltelecom.png') }}" alt="Portugal Telecom" ></li>
-                    <li><img src="{{ media('img/firefox/partners/logos/light/megafon.png') }}" alt="Megafon" ></li>
-                    <li><img src="{{ media('img/firefox/partners/logos/light/facebook.png') }}" alt="Facebook" ></li>
+                    <li><img src="{{ media('img/firefox/partners/logos/marketplace/twitter.png') }}" alt="Twitter"></li>
+                    <li><img src="{{ media('img/firefox/partners/logos/marketplace/wikipedia.png') }}" alt="Wikipedia"></li>
+                    <li><img src="{{ media('img/firefox/partners/logos/marketplace/disney-wheresmywater.png') }}" alt="Disney - Where's My Water"></li>
+                    <li><img src="{{ media('img/firefox/partners/logos/marketplace/soundcloud.png') }}" alt="SoundCloud"></li>
 
-                    <li><img src="{{ media('img/firefox/partners/logos/light/twitter.png') }}" alt="Twitter" ></li>
-                    <li><img src="{{ media('img/firefox/partners/logos/light/soundcloud.png') }}" alt="SoundCloud" ></li>
-                    <li><img src="{{ media('img/firefox/partners/logos/light/here-com.png') }}" alt="Here.com" ></li>
-                    <li><img src="{{ media('img/firefox/partners/logos/light/box.png') }}" alt="Box" ></li>
+                    <li><img src="{{ media('img/firefox/partners/logos/marketplace/line.png') }}" alt="Line"></li>
+                    <li><img src="{{ media('img/firefox/partners/logos/marketplace/cut-the-rope.png') }}" alt="Cut The Rope"></li>
+                    <li><img src="{{ media('img/firefox/partners/logos/marketplace/pinterest.png') }}" alt="Pinterest"></li>
+                    <li><img src="{{ media('img/firefox/partners/logos/marketplace/yelp.png') }}" alt="Yelp"></li>
 
-                    <li><img src="{{ media('img/firefox/partners/logos/light/ea.png') }}" alt="EA" ></li>
-                    <li><img src="{{ media('img/firefox/partners/logos/light/ebay.png') }}" alt="eBay" ></li>
-                    <li><img src="{{ media('img/firefox/partners/logos/light/cuttherope.png') }}" alt="Cut the Rope" ></li>
-                    <li><img src="{{ media('img/firefox/partners/logos/light/wikipedia.png') }}" alt="Wikipedia" ></li>
+                    <li><img src="{{ media('img/firefox/partners/logos/marketplace/napster.png') }}" alt="Napster"></li>
+                    <li><img src="{{ media('img/firefox/partners/logos/marketplace/youtube.png') }}" alt="YouTube"></li>
+                    <li><img src="{{ media('img/firefox/partners/logos/marketplace/the-weather-channel.png') }}" alt="The Weather Channel"></li>
+                    <li><img src="{{ media('img/firefox/partners/logos/marketplace/new-york-times.png') }}" alt="New York Times"></li>
 
-                    <li><img src="{{ media('img/firefox/partners/logos/light/wired.png') }}" alt="Wired" ></li>
-                    <li><img src="{{ media('img/firefox/partners/logos/light/terra.png') }}" alt="Terra" ></li>
-                    <li><img src="{{ media('img/firefox/partners/logos/light/airbnb.png') }}" alt="Airbnb" ></li>
-                    <li><img src="{{ media('img/firefox/partners/logos/light/disney.png') }}" alt="Disney" ></li>
-
+                    <li></li>{# to keep height from shifting #}
                   </ul>
                 </div>
               </div><!--/pager-content-->
@@ -191,6 +213,7 @@
             url2=url('firefox.os.index') %}
             Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater participation in the value chain. <a {{ url }}>See how you can get involved</a> or <a href="{{ url2 }}">learn more about what it means for consumers</a>.
           {% endtrans %}</p>
+          <a class="fxos-devices-link" href="{{ url('firefox.os.devices') }}">{{ _('View available Firefox OS devices') }}</a>
           <h4 class="narrow">{{ _('Made of the Web') }}</h4>
           <p class="narrow">{{ _('Built entirely using HTML5 and other open Web standards, Firefox OS is free from the rules and restrictions of existing proprietary platforms.') }}</p>
           <h4 class="narrow">{{ _('Made by Firefox') }}</h4>
@@ -311,43 +334,56 @@
               <a href="https://mobilepartners.mozilla.org/" class="button">{{ _('Partner with us') }}</a>
             </p>
           </div>
-          <ul class="logos tween">
-
-            <li><img src="{{ media('img/firefox/partners/logos/light/abril.png') }}" alt="Abril" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/light/accuweather.png') }}" alt="Accuweather.com" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/light/airbnb.png') }}" alt="Airbnb" ></li>
-
-            <li><img src="{{ media('img/firefox/partners/logos/light/bostonglobe.png') }}" alt="Boston Globe" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/light/box.png') }}" alt="Box" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/light/chillingo.png') }}" alt="Chillingo" ></li>
-
-            <li><img src="{{ media('img/firefox/partners/logos/light/ea.png') }}" alt="EA" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/light/disney.png') }}" alt="Disney" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/light/engadget.png') }}" alt="Engadget" ></li>
-
-            <li><img src="{{ media('img/firefox/partners/logos/light/facebook.png') }}" alt="Facebook" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/light/foxnews.png') }}" alt="Fox News" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/light/ebay.png') }}" alt="eBay" ></li>
-
-            <li><img src="{{ media('img/firefox/partners/logos/light/pulse.png') }}" alt="Pulse" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/light/soundcloud.png') }}" alt="Soundcloud" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/light/sportv.png') }}" alt="SporTV" ></li>
-
-            <li><img src="{{ media('img/firefox/partners/logos/light/terra.png') }}" alt="Terra" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/light/timeout.png') }}" alt="Time Out" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/light/twitter.png') }}" alt="Twitter" ></li>
-
-            <li><img src="{{ media('img/firefox/partners/logos/light/wired.png') }}" alt="Wired" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/light/zeptolab.png') }}" alt="Zeptolab" ></li>
-
-          </ul>
-        </div>
-      </div>
+          <div class="marketplace-logos pager pager-with-tabs pager-no-history">
+            <div class="pager-content">
+              <div class="pager-page default-page">
+                <ul class="logos">
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/avg.png') }}" alt="AVG"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/aviary.png') }}" alt="Aviary"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/cut-the-rope.png') }}" alt="Cut The Rope"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/despegar.png') }}" alt="despegar.com"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/disney-wheresmywater.png') }}" alt="Disney - Where's My Water"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/enclave-games.png') }}" alt="Enclave Games"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/ever-nav.png') }}" alt="EverNav"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/fifa.png') }}" alt="FIFA"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/life-rescuer.png') }}" alt="LifeRescuer"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/line.png') }}" alt="Line"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/napster.png') }}" alt="Napster"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/new-york-times.png') }}" alt="New York Times"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/pinterest.png') }}" alt="Pinterest"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/planine-srbije.png') }}" alt="Planine Srbije"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/the-pond.png') }}" alt="The Pond"></li>
+                </ul>
+              </div><!--/.pager-page-->
+              <div class="pager-page">
+                <ul class="logos">
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/rakuten.png') }}" alt="Rakuten"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/recruit.png') }}" alt="Recruit"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/soundcloud.png') }}" alt="SoundCloud"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/surf-time.png') }}" alt="Surf Time"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/timeout.png') }}" alt="TimeOut"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/twitter.png') }}" alt="Twitter"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/urlist.png') }}" alt="Urlist"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/the-weather-channel.png') }}" alt="The Weather Channel"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/wikipedia.png') }}" alt="Wikipedia"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/xe.png') }}" alt="XE"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/yelp.png') }}" alt="Yelp"></li>
+                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/youtube.png') }}" alt="YouTube"></li>
+                </ul>
+              </div>
+            </div><!--/.pager-content-->
+            <ul class="pager-tabs">
+              <li><a href="#p1">●</a></li>
+              <li><a href="#p2">●</a></li>
+            </ul>
+          </div><!--/.pager-->
+        </div><!--/.intro-->
+      </div><!--/.article-content-->
     </section>
     <section id="marketplace-developers" class="section-3" data-pos="3">
       <div class="article-content">
         <div class="intro tween">
-          <h3>{{ _('Developed with developers in mind') }}</h3>
+          <h3>{{ _('Become a Marketplace developer') }}</h3>
           <div class="left">
             <h4>{{ _('Marketplace offers:') }}</h4>
             <ul>
@@ -392,7 +428,8 @@
         <div class="intro tween">
           <h4>{{ _('A superior Web experience') }}</h4>
           <a href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}"><img src="{{ media('img/firefox/partners/google-play.png') }}" alt="{{ _('Get it on Google Play') }}" class="play" /></a>
-          <p>{% trans url='class="view-section" data-section="android-partner" href="#"'|safe %}
+          {# L10n: The line break before the link below is presentational only. #}
+          <p>{% trans url='class="view-section block-text" data-section="android-partner" href="#"'|safe %}
             With high-performance, advanced cross-platform features and the latest in security, our top-rated browser offers an alternative to closed platforms, giving you the flexibility to design, distribute and charge as you see fit. <a {{ url }}>Learn more about partner opportunities.</a>
           {% endtrans %}</p>
           <h4>{{ _('Strengthen customer relationships') }}</h4>
@@ -430,7 +467,7 @@
     </section>
     <div class="phone-container android-phone-container" id="phone-android">
       <div class="phone">
-        <div class="phone-overlay" class="screen"></div>
+        <div class="phone-overlay"></div>
       </div>
     </div>
   </article>
@@ -439,17 +476,8 @@
 
 <div id="overlay">
   <section id="testimonials" class="overlay-contents">
-    <h2>{{ _('Firefox Marketplace — Developer testimonials') }}</h2>
+    <h2 class="overlay-title">{{ _('Firefox Marketplace — Developer testimonials') }}</h2>
     <div class="video-wrapper"><iframe width="640" height="360" src="//www.youtube-nocookie.com/embed/videoseries?list=PLWK3kWTuPoUKFCTRtVkTUXn26PYF311w9" frameborder="0" allowfullscreen></iframe></div>
-  </section>
-  <section id="mwc-wrapup" class="overlay-contents">
-    <h2>{{ _('Firefox at Mobile World Congress 2013') }}</h2>
-    <div class="video-wrapper">
-    {{ video('MWC_2013.mp4',
-             'MWC_2013.webm',
-             prefix='//videos-cdn.mozilla.net/serv/drafts/',
-             poster=media('img/firefox/partners/mwc-wrapup-poster.jpg')) }}
-    </div>
   </section>
   <section id="form" class="overlay-contents{% if form_success %} form-success{% endif %}">
     <div class="form-results">
@@ -460,14 +488,13 @@
     <form action="{{ secure_url('firefox.partners.index') }}" role="dialog" aria-labelledby="get-involved-title" aria-describedby="get-involved-description" method="POST" id="sf-form" class="sf-form{% if form_success %} completed{% endif %}">
       <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
 
-      <!--  ----------------------------------------------------------------------  -->
+      {#
       <!--  NOTE: These fields are optional debugging elements.  Please uncomment   -->
       <!--  these lines if you wish to test in debug mode.                          -->
 
-       <!--input type="hidden" name="debug" value=1-->
-       <!--input type="hidden" name="debugEmail" value=""-->
-
-      <!--  ----------------------------------------------------------------------  -->
+      <!--input type="hidden" name="debug" value=1-->
+      <!--input type="hidden" name="debugEmail" value=""-->
+      #}
 
       <h3 id="get-involved-title">{{ _('Get involved') }}</h3>
       <p id="get-involved-description">{{ _('Contact our business development team to get on board.') }}</p>
@@ -534,6 +561,14 @@
       {{ form.superpriority }}
     </form>
     <button id="pageslider-close" type="button" class="modal-close close">{{ _('Close') }}</button>
+  </section>
+  <section id="schedule" class="overlay-contents">
+    <h2 class="overlay-title">{{ _('Firefox at MWC 2014 &ndash; Schedule of Events') }}</h2>
+    {% include "firefox/includes/mwc_2014_schedule.html" %}
+  </section>
+  <section id="map" class="overlay-contents">
+    <h2 class="overlay-title">{{ _('Firefox at MWC 2014 &ndash; Hall 3, Stand 3C30') }}</h2>
+    {% include "firefox/includes/mwc_2014_map.html" %}
   </section>
 </div>
 

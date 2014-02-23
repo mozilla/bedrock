@@ -181,13 +181,7 @@
       <div class="container">
         <h1 class="modal-content-header">{{ _('Firefox at MWC 2014 &ndash; Hall 3, Stand 3C30') }}</h1>
 
-        <div id="map-menu">
-          <a class="button" href="{{ media('/img/firefox/os/mwc-2014-preview/firefox-mwc-2014-map.pdf?20140210') }}">{{ _('Download PDF') }}</a>
-        </div>
-
-        <div id="map-container">
-          <div id="map-image"></div>
-        </div>
+        {% include "firefox/includes/mwc_2014_map.html" %}
       </div>
     </section> <!--/#map-->
 

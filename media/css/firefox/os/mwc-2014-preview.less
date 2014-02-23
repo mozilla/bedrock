@@ -4,6 +4,7 @@
 
 @import "../../sandstone/sandstone-resp.less";
 @import "../../firefox/mwc-2014-schedule.less";
+@import "../../firefox/mwc-2014-map.less";
 
 @font-face {
     font-family: 'Open Sans ExtraBoldItalic';
@@ -418,43 +419,6 @@ html, body {
   padding: (@baseLine * 2) 0;
 }
 
-#map-container {
-  width: 100%;
-  height: 394px;
-  overflow-x: scroll;
-  overflow-y: hidden;
-
-  // force scrollbar to stay visible on webkit
-  &::-webkit-scrollbar {
-    -webkit-appearance: none;
-  }
-
-  &::-webkit-scrollbar:horizontal {
-    height: 10px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    border-radius: 8px;
-    border: 2px solid white;
-    background-color: rgba(0, 0, 0, 0.5);
-  }
-}
-
-#map-image {
-  background: url(/media/img/firefox/os/mwc-2014-preview/map.png) top left no-repeat;
-  width: 1857px;
-  height: 394px;
-}
-
-#map-menu {
-  .clearfix;
-
-  a {
-    float: right;
-    text-align: right;
-  }
-}
-
 #modal {
   .container {
     width: auto;
@@ -710,16 +674,6 @@ html, body {
     bottom: -150px;
     left: -224px;
   }
-
-  #map-container {
-    height: 268px;
-  }
-
-  #map-image {
-    background: url(/media/img/firefox/os/mwc-2014-preview/map-mobile.png) top left no-repeat;
-    width: 1267px;
-    height: 268;
-  }
 }
 
 /* Mobile layout: 480px */
@@ -858,16 +812,6 @@ html, body {
     top: auto;
     bottom: -200px;
     left: -300px;
-  }
-
-  #map-container {
-    height: 268px;
-  }
-
-  #map-image {
-    background: url(/media/img/firefox/os/mwc-2014-preview/map-mobile.png) top left no-repeat;
-    width: 1267px;
-    height: 268;
   }
 }
 

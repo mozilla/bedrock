@@ -5,22 +5,6 @@
 ;(function($) {
     'use strict';
 
-    var $mapContainer = $('#map-container');
-
-    var scrollMap = function() {
-        setTimeout(function() {
-            $mapContainer.animate({
-                scrollLeft: '300px'
-            }, 250, function() {
-                setTimeout(function() {
-                    $mapContainer.animate({
-                        scrollLeft: '0px'
-                    }, 250);
-                }, 350);
-            });
-        }, 500);
-    };
-
     $('.modal-link').on('click', function(e) {
         e.preventDefault();
 
@@ -28,11 +12,15 @@
 
         var $content = $(href);
 
-        var createCallback = ($content.attr('id') === 'map') ? scrollMap : null;
+        var create_callback;
+
+        if (typeof(window.scrollMwcMap) === 'function') {
+          create_callback = ($content.attr('id') === 'map') ? window.scrollMwcMap : null;
+        }
 
         Mozilla.Modal.createModal(this, $content, {
             title: $content.find('.modal-content-header:first').text(),
-            onCreate: createCallback
+            onCreate: create_callback
         });
 
         gaTrack(['_trackEvent','/mwc/ Interactions','link click', href]);
@@ -60,5 +48,4 @@
         $('#schedule-link').trigger('click');
         break;
     }
-
 })(window.jQuery);
