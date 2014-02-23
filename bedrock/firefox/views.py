@@ -32,7 +32,7 @@ UA_REGEXP = re.compile(r"Firefox/(%s)" % version_re)
 
 LANG_FILES = ['firefox/partners/index']
 
-LOCALE_HEADLINES = {
+LOCALE_FXOS_HEADLINES = {
     'de': {
         'title': u"Firefox OS ist richtungsweisend für die Zukunft des "
             "mobilen Marktes",
@@ -46,7 +46,7 @@ LOCALE_HEADLINES = {
     },
     'en-US': {
         'title': _('Firefox OS Unleashes the Future of Mobile'),
-        'url': 'http://blog.mozilla.org/press/2014/02/firefox-os-future-2/',
+        'url': 'https://blog.mozilla.org/press/2014/02/firefox-os-future-2/',
     },
     'es-AR': {
         'title': u'Firefox OS te desvela el futuro de lo móvil',
@@ -219,11 +219,11 @@ def all_downloads(request, channel):
 @csrf_protect
 def firefox_partners(request):
     # If the current locale isn't in our list, return the en-US value
-    press_locale = request.locale if (request.locale in LOCALE_HEADLINES) else 'en-US'
+    press_locale = request.locale if (request.locale in LOCALE_FXOS_HEADLINES) else 'en-US'
 
     template_vars = {
-        'locale_headline_url': LOCALE_HEADLINES[press_locale]['url'],
-        'locale_headline_title': LOCALE_HEADLINES[press_locale]['title'],
+        'locale_headline_url': LOCALE_FXOS_HEADLINES[press_locale]['url'],
+        'locale_headline_title': LOCALE_FXOS_HEADLINES[press_locale]['title'],
         'js_common': JS_COMMON,
         'js_mobile': JS_MOBILE,
         'js_desktop': JS_DESKTOP,
