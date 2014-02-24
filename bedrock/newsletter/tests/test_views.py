@@ -6,7 +6,7 @@ import uuid
 from django.http import HttpResponse
 from django.test.client import RequestFactory
 
-from basket import BasketException
+from basket import BasketException, errors
 from funfactory.urlresolvers import reverse
 from mock import DEFAULT, Mock, patch
 from nose.tools import eq_, ok_
@@ -452,7 +452,8 @@ class TestConfirmView(TestCase):
     def test_bad_token(self):
         """If the token is bad, we report the appropriate error"""
         with patch('basket.confirm') as confirm:
-            confirm.side_effect = BasketException(status_code=403)
+            confirm.side_effect = BasketException(status_code=403,
+                                                  code=errors.BASKET_UNKNOWN_TOKEN)
             with patch('lib.l10n_utils.render') as mock_render:
                 mock_render.return_value = HttpResponse('')
                 rsp = self.client.get(self.url, follow=True)
@@ -466,7 +467,8 @@ class TestConfirmView(TestCase):
 
 class TestRecoveryView(TestCase):
     def setUp(self):
-        self.url = reverse('newsletter.recovery')
+        with self.activate('en-US'):
+            self.url = reverse('newsletter.recovery')
 
     def test_bad_email(self):
         """Email syntax errors are caught"""
@@ -479,7 +481,8 @@ class TestRecoveryView(TestCase):
     def test_unknown_email(self, mock_basket):
         """Unknown email addresses give helpful error message"""
         data = {'email': 'unknown@example.com'}
-        mock_basket.side_effect = BasketException(status_code=404)
+        mock_basket.side_effect = BasketException(status_code=404,
+                                                  code=errors.BASKET_UNKNOWN_EMAIL)
         rsp = self.client.post(self.url, data)
         self.assertTrue(mock_basket.called)
         self.assertEqual(200, rsp.status_code)

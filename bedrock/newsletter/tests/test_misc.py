@@ -2,7 +2,7 @@ import mock
 
 from django.test.utils import override_settings
 
-from basket import BasketException
+from basket import BasketException, errors
 from bedrock.mozorg.tests import TestCase
 from bedrock.newsletter.utils import get_newsletters, get_languages_for_newsletters
 from bedrock.newsletter.tests import newsletters
@@ -31,7 +31,10 @@ class TestGetNewsletters(TestCase):
     def test_get_newsletters_fallback(self, mock_basket_get_newsletters):
         # if get_newsletters() cannot reach basket, it returns the
         # newsletters from settings
-        mock_basket_get_newsletters.side_effect = BasketException
+        mock_basket_get_newsletters.side_effect = BasketException(
+            'network error',
+            code=errors.BASKET_NETWORK_FAILURE,
+        )
         default_value = mock.Mock()
         with override_settings(DEFAULT_NEWSLETTERS=default_value):
             return_value = get_newsletters()

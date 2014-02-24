@@ -232,7 +232,7 @@ class TestContribute(TestCase):
         self.data.update(interest='coding', newsletter=True)
         self.client.post(self.url_en, self.data)
 
-        mock_subscribe.assert_called_with(self.contact, 'about-mozilla')
+        mock_subscribe.assert_called_with(self.contact, 'about-mozilla', source_url=ANY)
         assert_false(mock_post.called)
 
     @patch.object(ReCaptchaField, 'clean', Mock())
