@@ -62,7 +62,7 @@ Mozilla.Modal = (function(w, $) {
 
     $_content = content;
     $_contentParent = $_content.parent();
-    $('#modal .inner').append($_content);
+    $('#modal-close').before($_content);
     $_content.addClass('overlay-contents');
 
     // close modal on clicking close button or background.
