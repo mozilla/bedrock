@@ -79,8 +79,28 @@ class HoneyPotWidget(widgets.CheckboxInput):
             '</div>' % (honeypot_id, honeypot_txt, honeypot_id))
 
 
+class URLInput(widgets.TextInput):
+    input_type = 'url'
+
+
 class EmailInput(widgets.TextInput):
     input_type = 'email'
+
+
+class DateInput(widgets.DateInput):
+    input_type = 'date'
+
+
+class TimeInput(widgets.TimeInput):
+    input_type = 'time'
+
+
+class TelInput(widgets.TextInput):
+    input_type = 'tel'
+
+
+class NumberInput(widgets.TextInput):
+    input_type = 'number'
 
 
 class ContributeForm(forms.Form):

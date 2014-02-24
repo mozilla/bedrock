@@ -329,6 +329,9 @@ MINIFY_BUNDLES = {
             'css/plugincheck/plugincheck.less',
             'css/plugincheck/qtip.css',
         ),
+        'press_speaker_request': (
+            'css/press/speaker-request.less',
+        ),
         'privacy': (
             'css/privacy/privacy.less',
         ),
@@ -622,6 +625,12 @@ MINIFY_BUNDLES = {
             'js/plugincheck/tmpl/plugincheck.ui.tmpl.js',
             'js/plugincheck/check-plugins.js',
         ),
+        'press_speaker_request': (
+            'js/libs/jquery.validate.js',
+            'js/libs/modernizr.custom.inputtypes.js',
+            'js/press/speaker-request.js',
+            'js/base/mozilla-input-placeholder.js',
+        ),
         'privacy': (
             'js/base/mozilla-pager.js',
             'js/privacy/privacy.js',
@@ -771,6 +780,7 @@ INSTALLED_APPS = get_apps(exclude=(
     '%s.mozorg' % PROJECT_MODULE,
     '%s.newsletter' % PROJECT_MODULE,
     '%s.persona' % PROJECT_MODULE,
+    '%s.press' % PROJECT_MODULE,
     '%s.privacy' % PROJECT_MODULE,
     '%s.redirects' % PROJECT_MODULE,
     '%s.research' % PROJECT_MODULE,
