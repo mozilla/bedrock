@@ -158,7 +158,7 @@ def send(request, data):
     """
     functional_area = FUNCTIONAL_AREAS_DICT[data['interest']]
 
-    from_ = 'contribute-form@mozilla.org'
+    from_ = 'contribute@mozilla.org'
     subject = 'Inquiry about Mozilla %s' % functional_area.subject
     msg = jingo.render_to_string(request, 'mozorg/emails/infos.txt', data)
     headers = {'Reply-To': data['email']}
@@ -185,7 +185,7 @@ def autorespond(request, data):
 
     subject = 'Inquiry about Mozilla %s' % functional_area.subject
     to = [data['email']]
-    from_ = 'contribute-form@mozilla.org'
+    from_ = 'contribute@mozilla.org'
     reply_to = ['contribute@mozilla.org']
     headers = {}
     msg = ''

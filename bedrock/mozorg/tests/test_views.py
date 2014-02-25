@@ -174,7 +174,7 @@ class TestContribute(TestCase):
         eq_(len(mail.outbox), 1)
 
         m = mail.outbox[0]
-        eq_(m.from_email, 'contribute-form@mozilla.org')
+        eq_(m.from_email, 'contribute@mozilla.org')
         eq_(m.to, ['contribute@mozilla.org'])
         eq_(m.cc, ['josh@joshmatthews.net'])
         eq_(m.extra_headers['Reply-To'], self.contact)
@@ -188,13 +188,13 @@ class TestContribute(TestCase):
 
         cc = ['jay@jaygarcia.com', 'rardila@mozilla.com', 'madasan@gmail.com']
         m = mail.outbox[0]
-        eq_(m.from_email, 'contribute-form@mozilla.org')
+        eq_(m.from_email, 'contribute@mozilla.org')
         eq_(m.to, ['contribute@mozilla.org'])
         eq_(m.cc, cc)
         eq_(m.extra_headers['Reply-To'], self.contact)
 
         m = mail.outbox[1]
-        eq_(m.from_email, 'contribute-form@mozilla.org')
+        eq_(m.from_email, 'contribute@mozilla.org')
         eq_(m.to, [self.contact])
         eq_(m.cc, [])
         eq_(m.extra_headers['Reply-To'], ','.join(['contribute@mozilla.org'] +
@@ -261,7 +261,7 @@ class TestContribute(TestCase):
         eq_(len(mail.outbox), 1)
 
         m = mail.outbox[0]
-        eq_(m.from_email, 'contribute-form@mozilla.org')
+        eq_(m.from_email, 'contribute@mozilla.org')
         eq_(m.to, ['contribute@mozilla.org'])
         eq_(m.cc, ['envolva-se-mozilla-brasil@googlegroups.com'])
         eq_(m.extra_headers['Reply-To'], self.contact)
@@ -279,13 +279,13 @@ class TestContribute(TestCase):
 
         cc = ['envolva-se-mozilla-brasil@googlegroups.com']
         m = mail.outbox[0]
-        eq_(m.from_email, 'contribute-form@mozilla.org')
+        eq_(m.from_email, 'contribute@mozilla.org')
         eq_(m.to, ['contribute@mozilla.org'])
         eq_(m.cc, cc)
         eq_(m.extra_headers['Reply-To'], self.contact)
 
         m = mail.outbox[1]
-        eq_(m.from_email, 'contribute-form@mozilla.org')
+        eq_(m.from_email, 'contribute@mozilla.org')
         eq_(m.to, [self.contact])
         eq_(m.cc, [])
         eq_(m.extra_headers['Reply-To'], ','.join(['contribute@mozilla.org'] +
