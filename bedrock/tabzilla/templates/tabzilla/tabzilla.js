@@ -419,7 +419,7 @@ var Tabzilla = (function (Tabzilla) {
             trackLabel: userLang,
             callback: function () {
                 if (langLink.length) {
-                    location.href = langLink.attr('href');
+                    location.href = langLink.attr('href').replace(/^https?\:\/\/[^/]+/, '');
                 } else {
                     langOption.attr('selected', 'selected').get(0).form.submit();
                 }
