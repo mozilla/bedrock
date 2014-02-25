@@ -529,7 +529,6 @@ MINIFY_BUNDLES = {
             'js/firefox/new.js',
         ),
         'firefox_os': (
-            'js/base/mozilla-input-placeholder.js',
             'js/base/mozilla-modal.js',
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.waypoints-sticky.min.js',
@@ -604,7 +603,7 @@ MINIFY_BUNDLES = {
             'js/base/mozilla-input-placeholder.js',
         ),
         'mozorg-resp': (
-            'js/libs/jquery-1.7.1.min.js',
+            'js/libs/jquery-1.11.0.min.js',
             'js/base/global.js',
             'js/base/nav-main-resp.js',
             'js/base/footer-email-form.js',
