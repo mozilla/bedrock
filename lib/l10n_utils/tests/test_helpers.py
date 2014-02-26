@@ -3,7 +3,6 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-import jingo
 from babel.core import UnknownLocaleError
 from mock import patch
 from nose.tools import eq_
@@ -12,27 +11,15 @@ from bedrock.mozorg.tests import TestCase
 from l10n_utils import helpers
 
 
-def render(s, context=None):
-    t = jingo.env.from_string(s)
-    return t.render(context or {})
-
-
+@patch.object(helpers, 'lang_file_has_tag')
 class TestL10nHasTag(TestCase):
-    def test_gets_right_langfile(self):
-        with patch('lib.l10n_utils.helpers.lang_file_has_tag') as lfht_mock:
-            lfht_mock.return_value = True
-            res = render('{{ "nihilist" if l10n_has_tag("abide") }}',
-                         {'langfile': 'dude'})
-            self.assertEqual(res, 'nihilist')
-            lfht_mock.assert_called_with('dude', tag='abide')
+    def test_gets_right_langfile(self, lfht_mock):
+        helpers.l10n_has_tag({'langfile': 'dude'}, 'abide')
+        lfht_mock.assert_called_with('dude', tag='abide')
 
-    def test_override_langfile(self):
-        with patch('lib.l10n_utils.helpers.lang_file_has_tag') as lfht_mock:
-            lfht_mock.return_value = True
-            res = render('{{ "nihilist" if l10n_has_tag("abide", "uli") }}',
-                         {'langfile': 'dude'})
-            self.assertEqual(res, 'nihilist')
-            lfht_mock.assert_called_with('uli', tag='abide')
+    def test_override_langfile(self, lfht_mock):
+        helpers.l10n_has_tag({'langfile': 'dude'}, 'abide', 'uli')
+        lfht_mock.assert_called_with('uli', tag='abide')
 
 
 class TestCurrentLocale(TestCase):
