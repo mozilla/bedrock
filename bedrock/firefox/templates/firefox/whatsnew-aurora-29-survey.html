@@ -1,0 +1,19 @@
+{% extends 'firefox/whatsnew.html' %}
+
+{% block body_class %} {{ super() }} whatsnew29 {% endblock %}
+
+{% block content %}
+  <h1 id="whatsnew-header">{{ _('Firefox Aurora is up to date.') }}</h1>
+  <article id="main-content" class="billboard">
+    <div class="content-column">
+      <h3>{{ _('Now help us make it better.') }}</h3>
+      <p>{{ _('You’ve probably noticed that Firefox has been looking different lately. Features have changed and moved around. It’s all part of our effort to make it easier to use and easier on the eyes.') }}</p>
+      <p>{{ _('And we need your help.') }}
+      <p>{{ _('We created a survey to help us understand how you use Firefox so we can shape it to serve you better. We’d really appreciate it if you took a few minutes to fill it out. Thanks!') }}</p>
+      <p><a href="http://www.surveygizmo.com/s3/1512875/Aurora-Australis-29-Survey" class="button">{{ _('Start the survey') }}</a></p>
+    </div>
+    <div class="image-column">
+      {{ platform_img('img/firefox/whatsnew/australis.png', {'alt': _('New Firefox interface')}) }}
+    </div>
+  </article>
+{% endblock %}

@@ -78,4 +78,7 @@ urlpatterns = patterns('',
 
     page('mwc', 'firefox/os/mwc-2014-preview.html'),
     page('firefox/os/devices', 'firefox/os/devices.html'),
+
+    # temporary URL for Aurora 29 survey
+    page('firefox/aurora/up-to-date', 'firefox/whatsnew-aurora-29-survey.html'),
 )
