@@ -252,6 +252,6 @@ if (typeof Mozilla == 'undefined') {
 
     // track mozilla pager tab clicks
     $('.pager-tabs').on('click', 'a', function(e) {
-        gaTrack(['_trackEvent', '/os/devices/ Interactions', selectedDevice + ' Interactions', $(this).text() + ' Tab']);
+        gaTrack(['_trackEvent', '/os/devices/ Interactions', selectedDevice + ' Interactions', $(this).data('label') + ' Tab']);
     });
 })(window.jQuery);
