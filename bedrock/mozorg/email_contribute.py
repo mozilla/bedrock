@@ -183,7 +183,7 @@ def autorespond(request, data):
     """
     functional_area = FUNCTIONAL_AREAS_DICT[data['interest']]
 
-    subject = 'Inquiry about Mozilla %s' % functional_area.subject
+    subject = _('Welcome to Mozilla!')
     to = [data['email']]
     from_ = 'contribute@mozilla.org'
     reply_to = ['contribute@mozilla.org']
