@@ -57,8 +57,12 @@
 }
 
 /* RTL support */
-html[dir="rtl"] {
-    #colophon .secondary li:not(:first-child) {
+html[dir="rtl"] #colophon {
+    .secondary li:not(:first-child) {
         border-width: 0 1px 0 0;
+    }
+
+    .footer-lang {
+        float: none;
     }
 }
