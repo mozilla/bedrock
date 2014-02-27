@@ -168,7 +168,7 @@ class Command(DataCommand):
         apps_to_freeze = self.calc_frozen_apps(migrations, freeze_list)
         
         # So, what's in this file, then?
-        file_contents = MIGRATION_TEMPLATE % {
+        file_contents = self.get_migration_template() % {
             "forwards": "\n".join(forwards_actions or ["        pass"]),
             "backwards": "\n".join(backwards_actions or ["        pass"]),
             "frozen_models":  freezer.freeze_apps_to_string(apps_to_freeze),
@@ -205,9 +205,12 @@ class Command(DataCommand):
             else:
                 print("%s %s. You can now apply this migration with: ./manage.py migrate %s" % (verb, new_filename, app), file=sys.stderr)
 
+    def get_migration_template(self):
+        return MIGRATION_TEMPLATE
+
 
 MIGRATION_TEMPLATE = """# -*- coding: utf-8 -*-
-import datetime
+from south.utils import datetime_utils as datetime
 from south.db import db
 from south.v2 import SchemaMigration
 from django.db import models
