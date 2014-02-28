@@ -387,6 +387,7 @@ class TestFirefoxPartners(TestCase):
             'mobile': u'',
             '00NU0000002pDJr': [],
             'email': u'thedude@mozilla.com',
+            'lead_source': 'www.mozilla.org/about/partnerships/',
         })
 
     def test_sf_form_csrf_status(self):
