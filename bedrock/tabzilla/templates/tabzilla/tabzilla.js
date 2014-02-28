@@ -603,15 +603,6 @@ var Tabzilla = (function (Tabzilla) {
       '<div id="tabzilla-panel" class="tabzilla-closed" tabindex="-1">'
     + '  <div id="tabzilla-contents">'
     + '    <div id="tabzilla-promo">'
-    {% if l10n_has_tag('promo_mwc_2014') or settings.DEV %}
-    +'      <div class="snippet" id="tabzilla-promo-mwc">'
-    + '        <a href="https://www.mozilla.org/firefox/partners/?icn=tabz">'
-    + '          <h4>{{ _('Unleash the future')|js_escape }}</h4>'
-    + '          <p>{{ _('Mozilla at MWC 2014')|js_escape }} »</p>'
-    + '        </a>'
-    + '      </div>'
-    + '    </div>'
-    {% else %}
     +'      <div class="snippet" id="tabzilla-promo-fxos">'
     + '        <a href="https://www.mozilla.org/firefox/os/?icn=tabz">'
     + '          <h4>{{ _('Look ahead')|js_escape }}</h4>'
@@ -619,7 +610,6 @@ var Tabzilla = (function (Tabzilla) {
     + '        </a>'
     + '      </div>'
     + '    </div>'
-    {% endif %}
     + '    <div id="tabzilla-nav">'
     + '      <ul>'
     + '        <li><h2>Mozilla</h2>'

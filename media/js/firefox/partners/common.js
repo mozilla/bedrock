@@ -129,7 +129,4 @@
             window.open(this.href);
         }
     });
-
-    // set a cookie
-    document.cookie = 'seen_mwc2014=true;expires=Tue, 4 Mar 2014 00:00:01 UTC;path=/';
 })(window, window.jQuery, window.enquire, window.Modernizr, window.trans);
