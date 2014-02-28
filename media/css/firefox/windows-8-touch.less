@@ -1,0 +1,478 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "template-resp.less";
+
+#masthead {
+    position: relative;
+    width: @widthDesktop - @gridGutterWidth * 2;
+    margin: 0 auto;
+    h2 {
+      margin: 0;
+    }
+}
+
+#wrapper {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.help {
+    display: block;
+    position: absolute;
+    top: 50px;
+    right: @gridGutterWidth;
+}
+
+article {
+    h1 {
+        font-size: 48px;
+        line-height: 1.2;
+        margin: @baseLine 0;
+        span {
+            display: block;
+            font-size: 64px;
+        }
+        sup {
+            font-size: 16px;
+        }
+    }
+    h2 {
+        font-size: 32px;
+        line-height: 1.2;
+        margin-bottom: @baseLine;
+    }
+    p {
+        font-size: 16px;
+        margin-bottom: @baseLine;
+    }
+    h3 {
+        font-size: 24px;
+        line-height: 1.3;
+    }
+}
+
+.primary-content {
+    position: relative;
+    overflow: hidden;
+}
+
+.primary-inner {
+    width: @widthDesktop - (@gridGutterWidth * 2);
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 0 @gridGutterWidth;
+    section {
+        float: left;
+        min-height: 600px;
+        width: 500px;
+    }
+    p {
+        max-width: 400px;
+    }
+}
+
+.ribbon {
+  position: relative;
+  color: #6ca52a;
+  padding: 1px 0 0 35px;
+}
+
+.ribbon:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: '';
+    width: 29px;
+    height: 25px;
+    background: url(/media/img/firefox/windows-8-touch/up-to-date-check.png) 0 0 no-repeat;
+}
+
+.tablet {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: 0;
+    img {
+        z-index: 1;
+        width: 976px;
+        height: 597px;
+        max-width: 976px;
+    }
+}
+
+.magnifier {
+    position: absolute;
+    top: 67px;
+    left: 80px;
+    content: '';
+    width: 278px;
+    height: 278px;
+    background: url(/media/img/firefox/windows-8-touch/magnifier.png) 0 0 no-repeat;
+    z-index: 2;
+}
+
+html[lang="en-US"],
+html[lang="en-GB"] {
+  .magnifier:after {
+      position: absolute;
+      bottom: -74px;
+      left: -160px;
+      content: '';
+      width: 224px;
+      height: 98px;
+      background: url(/media/img/firefox/windows-8-touch/dots.png) 0 0 no-repeat;
+  }
+}
+
+.secondary-content {
+    width: @widthDesktop;
+    margin: (@baseLine * 2) auto 0 auto;
+    padding: (@baseLine * 3) 0 0 0;
+    overflow: hidden;
+    background: url(/media/img/firefox/windows-8-touch/separator.png?02-2014) top center no-repeat;
+    ul {
+        position: relative;
+        list-style-type: none;
+        margin: 0 0 0 @gridGutterWidth;
+        padding: 0;
+        li {
+            margin: 0 @gridGutterWidth 0 0;
+            padding: 0;
+            float: left;
+            width: 306px;
+        }
+    }
+}
+
+figcaption {
+    margin-top: @baseLine;
+}
+
+.newsletter-form {
+    width: @widthDesktop - (@gridGutterWidth * 2);
+    margin: (@baseLine * 2) auto (@baseLine * 4) auto;
+    padding: 30px @gridGutterWidth;
+}
+
+#footer-email-form {
+    input[type="email"] {
+        padding: 12px;
+    }
+    .form-submit {
+        float: right;
+        margin: 0;
+        input[type="submit"] {
+            float: right;
+            padding: 12px (@baseLine * 3);
+        }
+    }
+    h3 {
+        margin: 0;
+    }
+}
+
+#colophon {
+    .row {
+        width: @widthDesktop - @gridGutterWidth;
+    }
+}
+
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+
+    #masthead {
+        width: @widthTablet - (@gridGutterWidth * 2);
+    }
+
+    .primary-inner {
+        width: @widthTablet - (@gridGutterWidth * 2);
+    }
+
+    .tablet {
+        left: 65%;
+    }
+
+    .secondary-content {
+        width: @widthTablet;
+        background-size: 100% auto;
+        ul {
+            position: relative;
+            list-style-type: none;
+            margin: 0 0 0 @gridGutterWidth;
+            padding: 0;
+            li {
+                margin: 0 @gridGutterWidth 0 0;
+                padding: 0;
+                float: left;
+                width: 226px;
+            }
+        }
+    }
+
+    figure {
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+
+    .newsletter-form {
+        width: @widthTablet - (@gridGutterWidth * 2);
+    }
+
+    #footer-email-form {
+        .form-submit {
+            input[type="submit"] {
+                padding: 12px @baseLine;
+            }
+        }
+        h3 {
+            padding-top: 0;
+        }
+    }
+
+    #colophon {
+      .row {
+        width: @widthTablet;
+      }
+    }
+}
+
+@media only screen and (min-width: @breakTablet) and (max-width: 856px) {
+
+  .tablet {
+      margin-right: -400px;
+  }
+
+}
+
+@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+
+    #masthead {
+        width: @widthMobileLandscape - @gridGutterWidth;
+        h2 {
+            margin: 0 (@baseLine / 2);
+        }
+    }
+
+    .help {
+        position: static;
+        margin: 0 (@baseLine / 2);
+    }
+
+    article {
+        h1 {
+            font-size: 32px;
+            span {
+                font-size: 48px;
+            }
+        }
+        h2 {
+            font-size: 24px;
+        }
+        p {
+            font-size: 16px;
+        }
+        h3 {
+            font-size: 24px;
+        }
+    }
+
+    .primary-inner {
+        width: @widthMobileLandscape - (@gridGutterWidth * 2);
+        section {
+            min-height: 0;
+            width: 100%;
+            margin-bottom: @baseLine;
+        }
+    }
+
+    .tablet {
+        position: relative;
+        float: none;
+        left: 0;
+        width: @widthMobileLandscape - (@gridGutterWidth * 2);
+        margin: 0 auto;
+        overflow: visible;
+        img {
+          width: 758px;
+          height: auto;
+          max-width: 758px;
+          margin-left: -38px;
+        }
+    }
+
+    .magnifier {
+        position: absolute;
+        top: 53px;
+        left: 20px;
+        content: '';
+        width: 220px;
+        height: 220px;
+        background: url(/media/img/firefox/windows-8-touch/magnifier.png) 0 0 no-repeat;
+        background-size: 100% 100%;
+        z-index: 2;
+    }
+
+    html[lang="en-US"],
+    html[lang="en-GB"] {
+      .magnifier:after {
+          background: none;
+      }
+    }
+
+    .secondary-content {
+        width: @widthMobileLandscape;
+        background: none;
+        margin-top: 0;
+        ul {
+            margin: 0 @gridGutterWidth;
+            li {
+                margin: 0;
+                float: none;
+                width: auto;
+            }
+        }
+    }
+
+    figure {
+        img {
+            display: block;
+        }
+        p {
+            width: auto;
+            margin-bottom: @baseLine * 2;
+        }
+    }
+
+    .newsletter-form {
+        width: @widthMobileLandscape - (@gridGutterWidth * 2);
+    }
+
+    #footer-email-form {
+        .form-contents {
+            margin: 0;
+            input[type="email"] {
+                .border-box;
+                width: 100%;
+                margin-bottom: @baseLine / 2;
+            }
+        }
+        .form-submit {
+            width: 100%;
+            input[type="submit"] {
+                width: 100%;
+            }
+        }
+        h3 {
+            margin-bottom: @baseLine;
+        }
+    }
+
+    #colophon {
+      .row {
+        width: @widthMobileLandscape;
+      }
+    }
+}
+
+@media only screen and (max-width: @breakMobileLandscape) {
+
+    #masthead {
+        width: @widthMobile - @gridGutterWidth;
+        h2 {
+            margin-left: @baseLine;
+        }
+    }
+
+    .help {
+        position: static;
+        margin-left: @baseLine;
+    }
+
+    article {
+        h1 {
+            font-size: 32px;
+            span {
+                font-size: 48px;
+            }
+        }
+        h2 {
+            font-size: 24px;
+        }
+        p {
+            font-size: 16px;
+        }
+        h3 {
+            font-size: 24px;
+        }
+    }
+
+    .primary-inner {
+        width: @widthMobile - (@gridGutterWidth * 2);
+        section {
+            min-height: 0;
+            width: 100%;
+        }
+    }
+
+    .tablet {
+        display: none;
+    }
+
+    .secondary-content {
+        width: @widthMobile;
+        background-size: 100% auto;
+        ul {
+            margin: 0 @gridGutterWidth;
+            li {
+                margin: 0;
+                float: none;
+                width: auto;
+            }
+        }
+        }
+
+    figure {
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        p {
+            width: auto;
+        }
+    }
+
+    .newsletter-form {
+        width: @widthMobile - (@gridGutterWidth * 2);
+    }
+
+    #footer-email-form {
+        .form-contents {
+            margin: 0;
+            input[type="email"] {
+                .border-box;
+                width: 100%;
+                margin-bottom: @baseLine / 2;
+            }
+        }
+        .form-submit {
+            width: 100%;
+            input[type="submit"] {
+                width: 100%;
+            }
+        }
+        h3 {
+            margin-bottom: @baseLine;
+        }
+    }
+
+    #colophon {
+      .row {
+        width: @widthMobile;
+      }
+    }
+
+}

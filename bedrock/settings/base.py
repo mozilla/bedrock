@@ -286,6 +286,9 @@ MINIFY_BUNDLES = {
         'firefox_whatsnew_fxos': (
             'css/firefox/whatsnew-fxos.less',
         ),
+        'firefox_windows_8_touch': (
+            'css/firefox/windows-8-touch.less',
+        ),
         'firefox_releasenotes': (
             'css/firefox/releasenotes.less',
         ),

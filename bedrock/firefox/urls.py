@@ -87,4 +87,6 @@ urlpatterns = patterns('',
     url(releasenotes_re, views.release_notes, name='firefox.releasenotes'),
     url(sysreq_re, views.system_requirements,
         name='firefox.system_requirements'),
+
+    page('firefox/windows-8-touch', 'firefox/windows-8-touch.html'),
 )
