@@ -411,6 +411,21 @@ class TourView(LatestFxView):
         return super(TourView, self).get(request, *args, **kwargs)
 
 
+class Win8TouchView(LatestFxView):
+    template_name='firefox/windows-8-touch.html'
+
+    def render_to_response(self, context, **response_kwargs):
+        redirect_url = self.redirect_to()
+
+        if redirect_url is not None:
+            return HttpResponsePermanentRedirect(redirect_url)
+        else:
+            return l10n_utils.render(self.request,
+                                     self.get_template_names(),
+                                     context,
+                                     **response_kwargs)
+
+
 def fix_fx_version(fx_version):
     if len(fx_version.split('.')) == 2:
         return fx_version + '.0'
