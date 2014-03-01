@@ -175,7 +175,7 @@ Start Your Machine
     directory that contains the Vagrantfile. ::
 
       ~$ cd bedrock
-      ~bedrock-legacy/bedrock$ vagrant up
+      ~bedrock-legacy/bedrock$ vagrant up --provision
 
     .. note::
       The first time you run vagrant a VM image will be downloaded
@@ -253,11 +253,12 @@ Tips & Tricks
 
     Start ::
 
-      ~$ vagrant up
+      ~$ vagrant up --provision
 
     Stop (vagrant is memory intensive - so if you are not using it best to stop it)::
 
       ~$ vagrant halt
+
 
 Troubleshooting
 ---------------------
