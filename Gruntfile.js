@@ -42,6 +42,11 @@ module.exports = function (grunt) {
             html: {
                 files: ['bedrock/**/*.html']
             }
+        },
+        karma: {
+          unit: {
+            configFile: 'media/js/test/karma.conf.js'
+          }
         }
     });
 
@@ -57,8 +62,12 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-karma');
 
     // Default task(s).
     grunt.registerTask('default', ['watch']);
+
+    // Run JS tests in PhantomJS using Karma test runner
+    grunt.registerTask('test', ['karma']);
 
 };

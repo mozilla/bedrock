@@ -28,3 +28,4 @@ venv
 *.db
 james.ini
 node_modules
+/media/js/test/test-results.xml
