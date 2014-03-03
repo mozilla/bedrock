@@ -1,0 +1,404 @@
+[
+  {
+    "country":"Algeria",
+    "filename":"AlgeriaHolidays.ics",
+    "datespan":"2007-2020",
+    "authors":"Imad Tbahriti"
+  },
+  {
+    "country":"Argentina",
+    "filename":"ArgentinaHolidays.ics",
+    "datespan":"2011-2013",
+    "authors":"Hernan Belloni"
+  },
+  {
+    "country":"Australia",
+    "filename":"AustraliaHolidays.ics",
+    "datespan":"2013",
+    "authors":"Jason Stirling"
+  },
+  {
+    "country":"Austria",
+    "filename":"AustrianHolidays.ics",
+    "datespan":"2002-2015",
+    "authors":"Patrick Loschmidt"
+  },
+  {
+    "country":"Basque",
+    "filename":"BasqueHolidays.ics",
+    "datespan":"2010-2012",
+    "authors":"Ander Elortondo"
+  },
+  {
+    "country":"Belgium",
+    "filename":"BelgianHolidays.ics",
+    "datespan":"2011-2022",
+    "authors":"Hubertus Verdonck"
+  },
+  {
+    "country":"Belgium (Dutch)",
+    "filename":"BelgianDutchHolidays.ics",
+    "datespan":"2007-2015",
+    "authors":"Peter Tonoli"
+  },
+  {
+    "country":"Belgium (French)",
+    "filename":"BelgianFrenchHolidays.ics",
+    "datespan":"2007-2015",
+    "authors":"Olivier Bosschem"
+  },
+  {
+    "country":"Bolivia",
+    "filename":"BoliviaHolidays.ics",
+    "datespan":"2010-2020",
+    "authors":"Rebelde Boliche"
+  },
+  {
+    "country":"Brazil",
+    "filename":"BrazilHolidays.ics",
+    "datespan":"2009-2020",
+    "authors":"Henrique Faria"
+  },
+  {
+    "country":"Bulgaria",
+    "filename":"BulgarianHolidays.ics",
+    "datespan":"2009 and beyond",
+    "authors":"Georgi D. Sotirov"
+  },
+  {
+    "country":"Canada",
+    "filename":"CanadaHolidays.ics",
+    "datespan":"2012-2020",
+    "authors":"Sigurd Schmidt"
+  },
+  {
+    "country":"Chile",
+    "filename":"ChileHolidays.ics",
+    "datespan":"2011-2012",
+    "authors":"Emilio Sepulveda, Pablo Olmos de Aguilera Corradini"
+  },
+  {
+    "country":"China",
+    "filename":"ChinaHolidays.ics",
+    "datespan":"2010-2012",
+    "authors":"Pingju"
+  },
+  {
+    "country":"Colombia",
+    "filename":"ColombianHolidays.ics",
+    "datespan":"2000-2020",
+    "authors":"Mauricio Sanchez"
+  },
+  {
+    "country":"Costa Rica",
+    "filename":"CostaRicaHolidays.ics",
+    "datespan":"2012-2020",
+    "authors":"Gerardo Tovar"
+  },
+  {
+    "country":"Croatia",
+    "filename":"CroatiaHolidays.ics",
+    "datespan":"2009-2017",
+    "authors":"Domagoj Debic"
+  },
+  {
+    "country":"Czech",
+    "filename":"CzechHolidays.ics",
+    "datespan":"2007-2015",
+    "authors":"Martin Matula"
+  },
+  {
+    "country":"Denmark",
+    "filename":"DanishHolidays.ics",
+    "datespan":"2006-2015",
+    "authors":"Mads Boserup Lauritsen"
+  },
+  {
+    "country":"England",
+    "filename":"EnglishHolidays.ics",
+    "datespan":"2002-2015",
+    "authors":"Ian Walker"
+  },
+  {
+    "country":"Estonia",
+    "filename":"EstoniaHolidays.ics",
+    "datespan":"2009-2013",
+    "authors":"Merike Sell"
+  },
+  {
+    "country":"Finland (Finnish)",
+    "filename":"FinlandHolidays.ics",
+    "datespan":"2007-2013",
+    "authors":"Magnus Melin"
+  },
+  {
+    "country":"Finland (Swedish)",
+    "filename":"FinlandHolidaysSwedish.ics",
+    "datespan":"2007-2013",
+    "authors":"Magnus Melin"
+  },
+  {
+    "country":"Flanders",
+    "filename":"FlandersHolidays.ics",
+    "datespan":"2011-2021",
+    "authors":"Hubertus Verdonck"
+  },
+  {
+    "country":"France",
+    "filename":"FrenchHolidays.ics",
+    "datespan":"2007-2015",
+    "authors":"Chris Ross"
+  },
+  {
+    "country":"Frisian",
+    "filename":"FrisianHolidays.ics",
+    "datespan":"2009-2015",
+    "authors":"Wim Benes"
+  },
+  {
+    "country":"Germany",
+    "filename":"GermanHolidays.ics",
+    "datespan":"2010-2015",
+    "authors":"Hagen Halbach"
+  },
+  {
+    "country":"Guyana",
+    "filename":"GuyanaHolidays.ics",
+    "datespan":"2013",
+    "authors":"RedSpider"
+  },
+  {
+    "country":"Hong Kong",
+    "filename":"HongKongHolidays.ics",
+    "datespan":"2007-2013",
+    "authors":"Chun Chung Au"
+  },
+  {
+    "country":"Hungary",
+    "filename":"HungarianHolidays.ics",
+    "datespan":"2011-2012",
+    "authors":"Kalman Kemenczy"
+  },
+  {
+    "country":"Iceland",
+    "filename":"IcelandHolidays.ics",
+    "datespan":"2008-2020",
+    "authors":"Kristjan Bjarni Gudmundsson"
+  },
+  {
+    "country":"Indonesia (Bahasa)",
+    "filename":"IndonesianHolidays.ics",
+    "datespan":"2013",
+    "authors":"Tjung Steven"
+  },
+  {
+    "country":"Indonesia (English)",
+    "filename":"IndonesianHolidaysEnglish.ics",
+    "datespan":"2013",
+    "authors":"Tjung Steven"
+  },
+  {
+    "country":"Iran (English)",
+    "filename":"IranHolidays_English.ics",
+    "datespan":"2007-2012",
+    "authors":"Mana Ghavifekr"
+  },
+  {
+    "country":"Iran (Persian)",
+    "filename":"IranHolidays_Persian.ics",
+    "datespan":"2012-2013",
+    "authors":"Mahdi"
+  },
+  {
+    "country":"Italy",
+    "filename":"ItalianHolidays.ics",
+    "datespan":"2000-2030",
+    "authors":"Gianni Luppi/Gianfranco Balza"
+  },
+  {
+    "country":"Japan",
+    "filename":"JapanHolidays.ics",
+    "datespan":"2007-2022",
+    "authors":"Atsushi Sakai"
+  },
+  {
+    "country":"Kenya",
+    "filename":"KenyaHolidays.ics",
+    "datespan":"2007-2015",
+    "authors":"Kevin Warnke"
+  },
+  {
+    "country":"Latvia",
+    "filename":"LatviaHolidays.ics",
+    "datespan":"2009-2014",
+    "authors":"dm"
+  },
+  {
+    "country":"Lithuanian",
+    "filename":"LithuanianHolidays.ics",
+    "datespan":"2012",
+    "authors":"Zai"
+  },
+  {
+    "country":"Luxembourg",
+    "filename":"LuxembourgHolidays.ics",
+    "datespan":"2010-2013",
+    "authors":"Ondra Kotecky"
+  },
+  {
+    "country":"Netherlands",
+    "filename":"DutchHolidays.ics",
+    "datespan":"2011-2018",
+    "authors":"Juuk Slager"
+  },
+  {
+    "country":"New Zealand",
+    "filename":"NewZealandHolidays.ics",
+    "datespan":"2010-2013",
+    "authors":"Pete Griffin"
+  },
+  {
+    "country":"Norway",
+    "filename":"NorwegianHolidays.ics",
+    "datespan":"2009-2013",
+    "authors":"H\u00e5vard Wigtil"
+  },
+  {
+    "country":"Pakistan",
+    "filename":"PakistanHolidays.ics",
+    "datespan":"2007-2020",
+    "authors":"Umar Toseef"
+  },
+  {
+    "country":"Peru",
+    "filename":"PeruHolidays.ics",
+    "datespan":"2008-2013",
+    "authors":"Fernando Bustamante G"
+  },
+  {
+    "country":"Poland",
+    "filename":"PolishHolidays.ics",
+    "datespan":"2009-2020",
+    "authors":"Damian Szczepanik"
+  },
+  {
+    "country":"Portugal",
+    "filename":"PortugalHolidays.ics",
+    "datespan":"2001-2030",
+    "authors":"Nuno Rua"
+  },
+  {
+    "country":"Queensland",
+    "filename":"QueenslandHolidays.ics",
+    "datespan":"2010-2014",
+    "authors":"Alan Kingsley"
+  },
+  {
+    "country":"Russia",
+    "filename":"RussiaHolidays.ics",
+    "datespan":"2010-2020",
+    "authors":"Alexander L. Slovesnik"
+  },
+  {
+    "country":"Romania",
+    "filename":"RomaniaHolidays.ics",
+    "datespan":"2013",
+    "authors":"Budai E. Bogdan"
+  },
+  {
+    "country":"Singapore",
+    "filename":"SingaporeHolidays.ics",
+    "datespan":"2012",
+    "authors":"Gary Kwong"
+  },
+  {
+    "country":"Slovenia",
+    "filename":"SlovenianHolidays.ics",
+    "datespan":"2012-2013",
+    "authors":"Klemen Robnik"
+  },
+  {
+    "country":"Slovakia",
+    "filename":"SlovakHolidays.ics",
+    "datespan":"2009-2015",
+    "authors":"Branislav Rozbora"
+  },
+  {
+    "country":"South Africa",
+    "filename":"SouthAfricaHolidays.ics",
+    "datespan":"2012-2015",
+    "authors":"Malcolm McLean"
+  },
+  {
+    "country":"South Korea",
+    "filename":"SouthKoreaHolidays.ics",
+    "datespan":"2000-2020",
+    "authors":"Marcus Yoo"
+  },
+  {
+    "country":"Spain",
+    "filename":"SpanishHolidays.ics",
+    "datespan":"2007-2013",
+    "authors":"Ricardo Palomares Martinez"
+  },
+  {
+    "country":"Sri Lanka",
+    "filename":"SriLankaHolidays.ics",
+    "datespan":"2013",
+    "authors":"Rukshan Abeyratne"
+  },
+  {
+    "country":"Sweden",
+    "filename":"SwedishHolidays.ics",
+    "datespan":"2000-2020",
+    "authors":"Soren Petersen"
+  },
+  {
+    "country":"Switzerland",
+    "filename":"SwissHolidays.ics",
+    "datespan":"2011-2013",
+    "authors":"tb"
+  },
+  {
+    "country":"Taiwan",
+    "filename":"TaiwanHolidays.ics",
+    "datespan":"2011-2013",
+    "authors":"brli, Irvin, Pin-Guang Chen"
+  },
+  {
+    "country":"Thailand",
+    "filename":"ThaiHolidays.ics",
+    "datespan":"2012-2014",
+    "authors":"Hans Henderson"
+  },
+  {
+    "country":"Turkey",
+    "filename":"TurkeyHolidays.ics",
+    "datespan":"2011-2012",
+    "authors":"Berker Peksag, Jan Bambach"
+  },
+  {
+    "country":"UK",
+    "filename":"UKHolidays.ics",
+    "datespan":"2010-2015",
+    "authors":"Brian Wray, Dave Ewart"
+  },
+  {
+    "country":"Uruguay",
+    "filename":"UruguayHolidays.ics",
+    "datespan":"2011-2021",
+    "authors":"Gonzalo Alvarez"
+  },
+  {
+    "country":"USA",
+    "filename":"USHolidays.ics",
+    "datespan":"2000-2020",
+    "authors":"Marcus Yoo, Rob Craver"
+  },
+  {
+    "country":"Vietnam",
+    "filename":"VietnamHolidays.ics",
+    "datespan":"2009-2013",
+    "authors":"Tri Luu"
+  }
+]
