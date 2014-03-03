@@ -439,3 +439,22 @@ class TestProcessPartnershipForm(TestCase):
             self.assertTrue('email' in resp_data['errors'])
             self.assertEqual(response._headers['content-type'][1],
                              'application/json')
+
+    def test_lead_source(self):
+        """
+        A POST request should include the 'lead_source' field in that call. The
+        value will be defaulted to 'www.mozilla.org/about/partnerships/' if it's
+        not specified.
+        """
+
+        def _req(form_kwargs):
+            with patch('bedrock.mozorg.views.requests.post') as mock:
+                request = self.factory.post(self.url, self.post_data)
+                views.process_partnership_form(request, self.template,
+                                               self.view, {}, form_kwargs)
+            return mock.call_args[0][1]['lead_source']
+
+        eq_(_req(None),
+           'www.mozilla.org/about/partnerships/')
+        eq_(_req({'lead_source': 'www.mozilla.org/firefox/partners/'}),
+           'www.mozilla.org/firefox/partners/')

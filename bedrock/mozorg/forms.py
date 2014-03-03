@@ -307,6 +307,7 @@ class WebToLeadForm(forms.Form):
     def __init__(self, *args, **kwargs):
         interest_set = kwargs.pop('interest_set', 'standard')
         interest_choices = self.interests_fx if (interest_set == 'fx') else self.interests_standard
+        kwargs.pop('lead_source', None)
 
         super(WebToLeadForm, self).__init__(*args, **kwargs)
 

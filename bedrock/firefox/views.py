@@ -229,7 +229,7 @@ def firefox_partners(request):
         'js_desktop': JS_DESKTOP,
     }
 
-    form_kwargs = {'interest_set': 'fx'}
+    form_kwargs = {'interest_set': 'fx', 'lead_source': 'www.mozilla.org/firefox/partners/'}
 
     return process_partnership_form(request, 'firefox/partners/index.html', 'firefox.partners.index', template_vars, form_kwargs)
 
