@@ -64,18 +64,18 @@ class PrivacyWidget(widgets.CheckboxInput):
         )
 
 
-class HoneyPotWidget(widgets.CheckboxInput):
-    """Render a checkbox to (hopefully) trick bots. Will be used on many pages."""
+class HoneyPotWidget(widgets.TextInput):
+    """Render a text field to (hopefully) trick bots. Will be used on many pages."""
 
     def render(self, name, value, attrs=None):
-        honeypot_txt = _(u'Check this box if you are not human.')
+        honeypot_txt = _(u'Leave this field empty.')
         # semi-randomized in case we have more than one per page.
         # this is maybe/probably overthought
-        honeypot_id = 'super-priority-' + str(randrange(1001)) + '-' + str(datetime.now().strftime("%Y%m%d%H%M%S%f"))
+        honeypot_id = 'office-fax-' + str(randrange(1001)) + '-' + str(datetime.now().strftime("%Y%m%d%H%M%S%f"))
         return mark_safe(
             '<div class="super-priority-field">'
-            '<label for="%s" class="super-priority-check-label">%s</label>'
-            '<input type="checkbox" name="superpriority" id="%s">'
+            '<label for="%s">%s</label>'
+            '<input type="text" name="office_fax" id="%s">'
             '</div>' % (honeypot_id, honeypot_txt, honeypot_id))
 
 
@@ -299,7 +299,8 @@ class WebToLeadForm(forms.Form):
             }
         )
     )
-    superpriority = forms.BooleanField(widget=HoneyPotWidget, required=False)
+    # honeypot
+    office_fax = forms.CharField(widget=HoneyPotWidget, required=False)
     # uncomment below to debug salesforce
     # debug = forms.IntegerField(required=False)
     # debugEmail = forms.EmailField(required=False)
@@ -385,7 +386,8 @@ class ContributeStudentAmbassadorForm(forms.Form):
         required=False,
         widget=widgets.CheckboxInput(),
         label=_lazy(u'About Mozilla: News from the Mozilla Project'))
-    superpriority = forms.BooleanField(widget=HoneyPotWidget, required=False)
+    # honeypot
+    office_fax = forms.CharField(widget=HoneyPotWidget, required=False)
     source_url = forms.URLField(required=False)
 
     def __init__(self, *args, **kwargs):
@@ -415,6 +417,13 @@ class ContributeStudentAmbassadorForm(forms.Form):
         if self.cleaned_data.get('share_information', False):
             return 'Y'
         return 'N'
+
+    def clean_office_fax(self):
+        honeypot = self.cleaned_data.pop('office_fax', None)
+
+        if honeypot:
+            raise forms.ValidationError(
+                _('Your submission could not be processed'))
 
     def newsletters(self):
         newsletters = ['ambassadors']

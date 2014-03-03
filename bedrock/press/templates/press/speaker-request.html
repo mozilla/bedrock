@@ -114,6 +114,8 @@
               {{ form.sr_contact_phone }}
             </li>
 
+            {{ form.office_fax }}
+
             <li class="field required">
               {{ form.sr_contact_email.errors }}
               <label for="sr_contact_email">{{ _('Email') }}</label>
@@ -250,8 +252,6 @@
         </fieldset>
 
         <button type="submit" name="submit_form" class="button">{{ _('Submit') }}</button>
-
-        {{ form.superpriority }}
       </form>
     {% else %}
       <h2>{{ _('Your request has been sent.') }}</h2>

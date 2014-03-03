@@ -28,7 +28,7 @@ def submit_form(request, form):
         form_submitted = True
         form_error = False
 
-        honeypot = form.cleaned_data.pop('superpriority')
+        honeypot = form.cleaned_data.pop('office_fax')
 
         if honeypot:
             form_error = True
