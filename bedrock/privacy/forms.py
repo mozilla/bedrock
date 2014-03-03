@@ -48,6 +48,7 @@ class PrivacyContactForm(forms.Form):
                 'rows': '10',
                 'cols': '77'
             }))
-    superpriority = forms.BooleanField(
+    # honeypot
+    office_fax = forms.CharField(
         widget=HoneyPotWidget,
         required=False)

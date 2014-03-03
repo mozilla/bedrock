@@ -523,6 +523,8 @@
         {{ form.phone }}
       </div>
 
+      {{ form.office_fax }}
+
       <div class="field">
         <label for="mobile">{{ _('Mobile') }}</label>
         {{ form.mobile }}
@@ -541,8 +543,6 @@
       <div class="field footer-field">
         <input type="submit" name="submit" value="{{ _('Submit my request') }}" class="button" />
       </div>
-
-      {{ form.superpriority }}
     </form>
     <button id="pageslider-close" type="button" class="modal-close close">{{ _('Close') }}</button>
   </section>

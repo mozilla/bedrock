@@ -78,11 +78,11 @@ class PrivacyFormTest(TestCase):
     def test_honeypot_existence(self):
         res = self.client.get(self.url)
 
-        self.assertIn('superpriority', res.content)
+        self.assertIn('office_fax', res.content)
 
     def test_send_privacy_contact_with_honeypot(self):
         hp_data = self.data.copy()
-        hp_data['superpriority'] = 'on'
+        hp_data['office_fax'] = 'spammer'
 
         res = self.client.post(self.url, hp_data)
 

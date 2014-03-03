@@ -50,6 +50,7 @@
             {{ field_with_attrs(form.email, required='required')|safe }}
             {{ form.email.errors }}
           </div>
+          {{ form.office_fax }}
         </section>
         <section class="school">
           <h3>{{ _('School Information') }}</h3>
@@ -151,7 +152,6 @@
               <span class="title">{{ form.nl_about_mozilla.label }}</span>
             </label>
           </div>
-          {{ form.superpriority }}
         </section>
         <div class="form-submit">
           <input type="submit" class="button" id="form-submit" value="{{_('Sign me up!')}}">

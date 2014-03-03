@@ -70,11 +70,11 @@ class TestFraudReport(TestCase):
 
     def test_view_post_honeypot(self):
         """
-        POST with honeypot checkbox checked should return 200 and
+        POST with honeypot text box filled should return 200 and
         contain general form error message.
         """
 
-        self.data['superpriority'] = True
+        self.data['office_fax'] = 'spammer'
 
         request = self.factory.post(self.url, self.data)
 
@@ -112,9 +112,9 @@ class TestFraudReport(TestCase):
 
     def test_form_honeypot(self):
         """
-        Form with honeypot checkbox checked should not be valid.
+        Form with honeypot text box filled should not be valid.
         """
-        self.data['superpriority'] = True
+        self.data['office_fax'] = 'spammer!'
 
         form = FraudReportForm(self.data)
 

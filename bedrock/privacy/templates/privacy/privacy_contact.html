@@ -29,6 +29,8 @@
         {{ form.sender }}
       </div>
 
+      {{ form.office_fax }}
+
       <div class="field">
         {{ form.comments.errors }}
         <label for="id_comments">{{ _('Your comments:') }}</label><br />
@@ -36,8 +38,6 @@
 
         <input type="submit" class="button" value="{{ _('Send comments') }}" id="contact_privacy_submit" />
       </div>
-
-      {{ form.superpriority }}
     </fieldset>
   </form>
 {% else %}

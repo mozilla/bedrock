@@ -124,7 +124,7 @@ def process_partnership_form(request, template, success_url_name, template_vars=
         if form.is_valid():
             data = form.cleaned_data.copy()
 
-            honeypot = data.pop('superpriority')
+            honeypot = data.pop('office_fax')
 
             if honeypot:
                 msg = 'Visitor invalid'
