@@ -372,6 +372,18 @@
     }
 }
 
+.html-rtl {
+    .newsletter-form {
+        float: left;
+    }
+
+    #footer-email-form {
+        .form-contents,
+        .form-submit {
+            float: none;
+        }
+    }
+}
 
 
 // @Download Firefox promo bar
@@ -565,6 +577,10 @@
 
 }
 
+.html-rtl .extra-contribute {
+    float: right;
+}
+
 .extra-news a:link,
 .extra-news a:visited,
 .extra-contribute a:link,
@@ -647,6 +663,10 @@
     .extra .newsletter-form {
         .span_narrow(5);
         float: right;
+    }
+
+    .html-rtl .extra .newsletter-form {
+        float: left;
     }
 
     #firefox-promo {

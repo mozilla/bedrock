@@ -849,10 +849,24 @@ nav.menu-bar {
         }
         .title {
             display: block;
-            padding-left: 25px;
+            padding: 0 0 0 25px;
         }
     }
+}
 
+.html-rtl {
+    #footer-email-form,
+    #newsletter-form {
+        h3,
+        .form-contents,
+        .form-submit,
+        .field-privacy input {
+            float: right;
+        }
+        .field-privacy .title {
+            padding: 0 25px 0 0;
+        }
+    }
 }
 
 #footer-email-form.thank, #newsletter-form.thank {
@@ -1201,6 +1215,17 @@ html[dir="rtl"] #colophon {
 
         .form-submit {
             margin-top: @baseLine / 2;
+        }
+    }
+
+    .html-rtl {
+        #footer-email-form,
+        #newsletter-form {
+            h3,
+            .form-contents,
+            .form-submit {
+                float: none;
+            }
         }
     }
 
