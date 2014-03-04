@@ -22,7 +22,6 @@ from rna.models import Release
 
 from bedrock.firefox import version_re
 from bedrock.firefox.forms import SMSSendForm
-from bedrock.mozorg.context_processors import funnelcake_param
 from bedrock.mozorg.views import process_partnership_form
 from bedrock.firefox.utils import is_current_or_newer
 from bedrock.firefox.firefox_details import firefox_details, mobile_details
@@ -343,20 +342,7 @@ class LatestFxView(TemplateView):
 
 
 class FirstrunView(LatestFxView):
-    funnelcake_campaign = '25'
-
-    def get_template_names(self):
-        locale = l10n_utils.get_locale(self.request)
-        fc_ctx = funnelcake_param(self.request)
-
-        if (locale == 'en-US' and
-                fc_ctx.get('funnelcake_id', 0) == self.funnelcake_campaign):
-
-            template = 'firefox/firstrun-a.html'
-        else:
-            template = 'firefox/firstrun.html'
-
-        return template
+    template_name = 'firefox/firstrun.html'
 
 
 class WhatsnewView(LatestFxView):
@@ -407,7 +393,9 @@ class WhatsnewView(LatestFxView):
             template = 'firefox/whatsnew-fxos.html'
         else:
             template = 'firefox/whatsnew.html'
-        return template
+
+        # return a list to conform with original intention
+        return [template]
 
 
 def fix_fx_version(fx_version):

@@ -420,7 +420,7 @@ class TestWhatsNew(TestCase):
         req = self.rf.post('/en-US/firefox/whatsnew/')
         self.view(req)
         # would return 405 before calling render otherwise
-        render_mock.assert_called_once_with(req, 'firefox/whatsnew.html', ANY)
+        render_mock.assert_called_once_with(req, ['firefox/whatsnew.html'], ANY)
 
     @patch.object(fx_views.WhatsnewView, 'fxos_locales', ['de'])
     def test_fxos_locales(self, render_mock):
@@ -431,14 +431,14 @@ class TestWhatsNew(TestCase):
         template = render_mock.call_args[0][1]
         ctx = render_mock.call_args[0][2]
         ok_('locales_with_video' not in ctx)
-        eq_(template, 'firefox/whatsnew-fxos.html')
+        eq_(template, ['firefox/whatsnew-fxos.html'])
 
     def test_fx_nightly_29(self, render_mock):
         """Should use special nightly template for 29.0a1."""
         req = self.rf.get('/en-US/firefox/whatsnew/')
         self.view(req, fx_version='29.0a1')
         template = render_mock.call_args[0][1]
-        eq_(template, 'firefox/whatsnew-nightly-29.html')
+        eq_(template, ['firefox/whatsnew-nightly-29.html'])
 
     @override_settings(DEV=True)
     def test_fx_nightly_29_australis(self, render_mock):
@@ -446,7 +446,7 @@ class TestWhatsNew(TestCase):
         req = self.rf.get('/en-US/firefox/whatsnew/')
         self.view(req, fx_version='29.0a2')
         template = render_mock.call_args[0][1]
-        eq_(template, 'firefox/whatsnew-aurora-29.html')
+        eq_(template, ['firefox/whatsnew-aurora-29.html'])
 
     @override_settings(DEV=False)
     def test_fx_australis_secure_redirect(self, render_mock):
@@ -488,7 +488,7 @@ class TestFirstRun(TestCase):
         req = self.rf.post('/en-US/firefox/firstrun/')
         self.view(req)
         # would return 405 before calling render otherwise
-        render_mock.assert_called_once_with(req, 'firefox/firstrun.html', ANY)
+        render_mock.assert_called_once_with(req, ['firefox/firstrun.html'], ANY)
 
 
 @patch.object(fx_views, 'firefox_details', firefox_details)
@@ -635,43 +635,6 @@ class TestFirstrunRedirect(FxVersionRedirectsMixin, TestCase):
         self.url = reverse('firefox.firstrun')
         response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
         self.assertIn(expected, response.content)
-
-    @patch.dict(product_details.firefox_versions,
-            LATEST_FIREFOX_VERSION='16.0')
-    def test_firstrun_alternate(self):
-        """
-        Hitting /firefox/{version}/firstrun/?f={fx_views.FirstrunView.funnelcake_campaign}
-        with latest Fx & en-US locale should render firefox/firstrun/a.html, regardless of
-        {version}. Any other f value or locale should render firefox/firstrun.html.
-        """
-        user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:16.0) '
-                      'Gecko/20100101 Firefox/16.0')
-
-        fc_id = fx_views.FirstrunView.funnelcake_campaign
-        expected = 'Use Themes to change the look of your Firefox just about any way you like.'
-
-        # en-US with proper funnelcake id should give expected content
-        response = self.client.get(self.url + '?f=' + fc_id, HTTP_USER_AGENT=user_agent)
-        self.assertIn(expected, response.content)
-
-        # en-US with improper funnelcake id should not give expected content
-        response = self.client.get(self.url + '?f=0', HTTP_USER_AGENT=user_agent)
-        self.assertNotIn(expected, response.content)
-
-        # en-US with no funnelcake id should not give expected content
-        response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
-        self.assertNotIn(expected, response.content)
-
-        # en-US with proper funnelcake id and no {version} should give expected content
-        self.url = reverse('firefox.firstrun')
-        response = self.client.get(self.url + '?f=' + fc_id, HTTP_USER_AGENT=user_agent)
-        self.assertIn(expected, response.content)
-
-        # es-ES with proper funnelcake id should not give expected content
-        with self.activate('es-ES'):
-            self.url = reverse('firefox.firstrun', args=['16.0'])
-            response = self.client.get(self.url + '?f=' + fc_id, HTTP_USER_AGENT=user_agent)
-            self.assertNotIn(expected, response.content)
 
 
 @patch.object(fx_views, 'firefox_details', firefox_details)
