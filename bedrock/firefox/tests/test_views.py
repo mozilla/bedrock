@@ -51,7 +51,8 @@ class TestRNAViews(TestCase):
         eq_(self.last_ctx['release'], mock_release)
         eq_(self.last_ctx['new_features'], 'mock new_features')
         eq_(self.last_ctx['known_issues'], 'mock known_issues')
-        eq_(self.mock_render.call_args[0][1], 'firefox/releases/notes.html')
+        eq_(self.mock_render.call_args[0][1],
+            'firefox/releases/release-notes.html')
 
     @patch('bedrock.firefox.views.get_object_or_404')
     def test_system_requirements(self, get_object_or_404):
@@ -67,3 +68,19 @@ class TestRNAViews(TestCase):
         eq_(self.last_ctx['version'], '27.0.1')
         eq_(self.mock_render.call_args[0][1],
             'firefox/releases/system_requirements.html')
+
+    def test_release_notes_template(self):
+        eq_(views.release_notes_template('', 'Firefox OS'),
+            'firefox/releases/os-notes.html')
+        eq_(views.release_notes_template('Nightly', 'Firefox'),
+            'firefox/releases/nightly-notes.html')
+        eq_(views.release_notes_template('Aurora', 'Firefox'),
+            'firefox/releases/aurora-notes.html')
+        eq_(views.release_notes_template('Beta', 'Firefox'),
+            'firefox/releases/beta-notes.html')
+        eq_(views.release_notes_template('Release', 'Firefox'),
+            'firefox/releases/release-notes.html')
+        eq_(views.release_notes_template('ESR', 'Firefox'),
+            'firefox/releases/esr-notes.html')
+        eq_(views.release_notes_template('', ''),
+            'firefox/releases/release-notes.html')

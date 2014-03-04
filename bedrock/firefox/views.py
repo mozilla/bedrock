@@ -418,9 +418,10 @@ def fix_fx_version(fx_version):
 
 
 def release_notes_template(channel, product):
-    #TODO: if product == 'Firefox OS':
-    #TODO: different templates based on channel with default
-    return 'firefox/releases/notes.html'
+    if product == 'Firefox OS':
+        return 'firefox/releases/os-notes.html'
+    prefix = dict((c, c.lower()) for c in Release.CHANNELS)
+    return 'firefox/releases/%s-notes.html' % prefix.get(channel, 'release')
 
 
 def release_notes(request, fx_version, channel='Release', product='Firefox'):
