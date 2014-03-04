@@ -66,11 +66,6 @@
   <body id="{% block body_id %}{% endblock %}" class="html-{{ DIR }} {% block body_class %}{% endblock %}"{% block body_attrs %}{% endblock %}>
     <div id="strings" data-global-close="{{ _('Close') }}" {% block string_data %}{% endblock %}></div>
     <div id="outer-wrapper">
-
-    {% block mwc_badge %}
-    <div id="mwc-badge"><a href="/firefox/partners/">{{ _('Mobile World Congress') }}</a></div>
-    {% endblock %}
-
     <div id="wrapper">
 
     {% block site_header %}

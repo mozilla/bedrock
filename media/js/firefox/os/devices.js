@@ -122,7 +122,7 @@ if (typeof Mozilla == 'undefined') {
         COUNTRY_CODE = $locationSelect.val();
         selectDevicesAndSetPartnerContent();
 
-        gaTrack(['_trackEvent', '/os/devices/ Interactions', 'drop-down menu', COUNTRY_CODE]);
+        gaTrack(['_trackEvent', '/os/devices/ Interactions', 'drop-down menu', COUNTRY_CODE, 0, false]);
     });
 
     // wire up purchase button
@@ -200,7 +200,10 @@ if (typeof Mozilla == 'undefined') {
                 COUNTRY_CODE = "";
             }
 
-            selectDevicesAndSetPartnerContent();
+            if (COUNTRY_CODE !== '' && Mozilla.FxOs.Countries.hasOwnProperty(COUNTRY_CODE)) {
+                gaTrack(['_trackEvent', '/os/devices/ Interactions', 'drop-down menu', COUNTRY_CODE, 0, true]);
+                selectDevicesAndSetPartnerContent();
+            }
         });
     }
 
@@ -249,6 +252,6 @@ if (typeof Mozilla == 'undefined') {
 
     // track mozilla pager tab clicks
     $('.pager-tabs').on('click', 'a', function(e) {
-        gaTrack(['_trackEvent', '/os/devices/ Interactions', selectedDevice + ' Interactions', $(this).text() + ' Tab']);
+        gaTrack(['_trackEvent', '/os/devices/ Interactions', selectedDevice + ' Interactions', $(this).data('label') + ' Tab']);
     });
 })(window.jQuery);

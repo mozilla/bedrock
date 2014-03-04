@@ -8,17 +8,17 @@ import json
 import re
 
 from django.conf import settings
-from django.http import (HttpResponsePermanentRedirect,
-                         HttpResponseRedirect)
+from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
+from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.views.decorators.vary import vary_on_headers
 from django.views.generic.base import TemplateView
 
 import basket
-from lib import l10n_utils
-from jingo_minify.helpers import BUILD_ID_JS, BUNDLE_HASHES
 from funfactory.urlresolvers import reverse
-
+from jingo_minify.helpers import BUILD_ID_JS, BUNDLE_HASHES
+from lib import l10n_utils
+from rna.models import Release
 
 from bedrock.firefox import version_re
 from bedrock.firefox.forms import SMSSendForm
@@ -27,6 +27,7 @@ from bedrock.mozorg.views import process_partnership_form
 from bedrock.firefox.utils import is_current_or_newer
 from bedrock.firefox.firefox_details import firefox_details, mobile_details
 from lib.l10n_utils.dotlang import _
+
 
 UA_REGEXP = re.compile(r"Firefox/(%s)" % version_re)
 
@@ -228,7 +229,7 @@ def firefox_partners(request):
         'js_desktop': JS_DESKTOP,
     }
 
-    form_kwargs = {'interest_set': 'fx'}
+    form_kwargs = {'interest_set': 'fx', 'lead_source': 'www.mozilla.org/firefox/partners/'}
 
     return process_partnership_form(request, 'firefox/partners/index.html', 'firefox.partners.index', template_vars, form_kwargs)
 
@@ -407,3 +408,39 @@ class WhatsnewView(LatestFxView):
         else:
             template = 'firefox/whatsnew.html'
         return template
+
+
+def fix_fx_version(fx_version):
+    if len(fx_version.split('.')) == 2:
+        return fx_version + '.0'
+    else:
+        return fx_version
+
+
+def release_notes_template(channel, product):
+    if product == 'Firefox OS':
+        return 'firefox/releases/os-notes.html'
+    prefix = dict((c, c.lower()) for c in Release.CHANNELS)
+    return 'firefox/releases/%s-notes.html' % prefix.get(channel, 'release')
+
+
+def release_notes(request, fx_version, channel='Release', product='Firefox'):
+    release = get_object_or_404(Release, version=fix_fx_version(fx_version),
+                                channel=channel, product=product)
+    new_features, known_issues = release.notes()
+    return l10n_utils.render(
+        request, release_notes_template(channel, product), {
+            'version': fx_version,
+            'major_version': fx_version.split('.', 1)[0],
+            'release': release,
+            'new_features': new_features,
+            'known_issues': known_issues})
+
+
+def system_requirements(request, fx_version, channel='Release',
+                        product='Firefox'):
+    release = get_object_or_404(Release, version=fix_fx_version(fx_version),
+                                channel=channel, product=product)
+    return l10n_utils.render(
+        request, 'firefox/releases/system_requirements.html',
+        {'release': release, 'version': fx_version})

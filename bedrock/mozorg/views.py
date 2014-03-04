@@ -3,6 +3,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import re
+import json
 
 from django.conf import settings
 from django.core.context_processors import csrf
@@ -132,6 +133,7 @@ def process_partnership_form(request, template, success_url_name, template_vars=
                 interest = data.pop('interest')
                 data['00NU0000002pDJr'] = interest
                 data['oid'] = '00DU0000000IrgO'
+                data['lead_source'] = form_kwargs.get('lead_source', 'www.mozilla.org/about/partnerships/')
                 # As we're doing the Salesforce POST in the background here,
                 # `retURL` is never visited/seen by the user. I believe it
                 # is required by Salesforce though, so it should hang around
@@ -214,6 +216,26 @@ def contribute_studentambassadors_join(request):
         request,
         'mozorg/contribute/studentambassadors/join.html', {'form': form}
     )
+
+
+def holiday_calendars(request, template='mozorg/projects/holiday-calendars.html'):
+    """Generate the table of holiday calendars from JSON."""
+    calendars = []
+    json_file = settings.MEDIA_ROOT + '/caldata/calendars.json'
+    with open(json_file) as calendar_data:
+        calendars = json.load(calendar_data)
+
+    letters = set()
+    for calendar in calendars:
+        letters.add(calendar['country'][:1])
+
+    data = {
+        'calendars': sorted(calendars, key=lambda k: k['country']),
+        'letters': sorted(letters),
+        'CALDATA_URL': settings.MEDIA_URL + 'caldata/'
+    }
+
+    return l10n_utils.render(request, template, data)
 
 
 class Robots(TemplateView):

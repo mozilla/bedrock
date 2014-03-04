@@ -86,8 +86,11 @@ class DatabaseOperations(generic.DatabaseOperations):
 
         for field_name, field in fields:
             
+            field = self._field_sanity(field)
+
             # avoid default values in CREATE TABLE statements (#925)
             field._suppress_default = True
+
 
             col = self.column_sql(table_name, field_name, field)
             if not col:
@@ -129,7 +132,7 @@ END;
         self.execute(sequence_sql)
 
     @generic.invalidate_table_constraints
-    def alter_column(self, table_name, name, field, explicit_name=True):
+    def alter_column(self, table_name, name, field, explicit_name=True, ignore_constraints=False):
         
         if self.dry_run:
             if self.debug:
@@ -163,8 +166,8 @@ END;
             params['nullity'] = 'NULL'
 
         sql_templates = [
-            (self.alter_string_set_type, params),
-            (self.alter_string_set_default, params),
+            (self.alter_string_set_type, params, []),
+            (self.alter_string_set_default, params, []),
         ]
         if not field.null and field.has_default():
             # Use default for rows that had nulls. To support the case where
@@ -177,23 +180,29 @@ END;
                 p.update(kw)
                 return p
             sql_templates[:0] = [
-                (self.alter_string_set_type, change_params(nullity='NULL')),
-                (self.alter_string_update_nulls_to_default, change_params(default=self._default_value_workaround(field.get_default()))),
+                (self.alter_string_set_type, change_params(nullity='NULL'),[]),
+                (self.alter_string_update_nulls_to_default, change_params(default="%s"), [field.get_default()]),
             ]
 
-
-        # drop CHECK constraints. Make sure this is executed before the ALTER TABLE statements
-        # generated above, since those statements recreate the constraints we delete here.
-        check_constraints = self._constraints_affecting_columns(table_name, [name], "CHECK")
-        for constraint in check_constraints:
-            self.execute(self.delete_check_sql % {
-                'table': self.quote_name(table_name),
-                'constraint': self.quote_name(constraint),
-            })
-
-        for sql_template, params in sql_templates:
+        if not ignore_constraints:
+            # drop CHECK constraints. Make sure this is executed before the ALTER TABLE statements
+            # generated above, since those statements recreate the constraints we delete here.
+            check_constraints = self._constraints_affecting_columns(table_name, [name], "CHECK")
+            for constraint in check_constraints:
+                self.execute(self.delete_check_sql % {
+                    'table': self.quote_name(table_name),
+                    'constraint': self.quote_name(constraint),
+                })
+            # Drop foreign constraints
             try:
-                self.execute(sql_template % params, print_all_errors=False)
+                self.delete_foreign_key(qn, qn_col)
+            except ValueError:
+                # There weren't any
+                pass
+
+        for sql_template, params, args in sql_templates:
+            try:
+                self.execute(sql_template % params, args, print_all_errors=False)
             except DatabaseError as exc:
                 description = str(exc)
                 # Oracle complains if a column is already NULL/NOT NULL
@@ -210,6 +219,19 @@ END;
                 else:
                     self._print_sql_error(exc, sql_template % params)
                     raise
+
+        if not ignore_constraints:
+            # Add back FK constraints if needed
+            if field.rel: #and self.supports_foreign_keys:
+                self.add_deferred_sql(
+                    self.foreign_key_sql(
+                        qn[1:-1],      # foreign_key_sql uses this as part of constraint name
+                        qn_col[1:-1],  # foreign_key_sql uses this as part of constraint name
+                        field.rel.to._meta.db_table,
+                        field.rel.to._meta.get_field(field.rel.field_name).column
+                    )
+                )
+
 
     def _alter_column_lob_workaround(self, table_name, name, field):
         """
@@ -250,6 +272,7 @@ END;
 
     @generic.invalidate_table_constraints
     def add_column(self, table_name, name, field, keep_default=False):
+        field = self._field_sanity(field)
         sql = self.column_sql(table_name, name, field)
         sql = self.adj_column_sql(sql)
 
@@ -262,9 +285,9 @@ END;
             self.execute(sql)
 
             # Now, drop the default if we need to
-            if not keep_default and field.default is not None:
+            if field.default is not None:
                 field.default = NOT_PROVIDED
-                self.alter_column(table_name, name, field, explicit_name=False)
+                self.alter_column(table_name, name, field, explicit_name=False, ignore_constraints=True)
 
     def delete_column(self, table_name, name):
         return super(DatabaseOperations, self).delete_column(self.quote_name(table_name), name)
@@ -288,7 +311,11 @@ END;
         """
         if isinstance(field, models.BooleanField) and field.has_default():
             field.default = int(field.to_python(field.get_default()))
+        # On Oracle, empty strings are null
+        if isinstance(field, (models.CharField, models.TextField)):
+            field.null = field.empty_strings_allowed
         return field
+
 
     def _default_value_workaround(self, value):
         from datetime import date,time,datetime
