@@ -42,9 +42,8 @@
           <h2>{{ _('Our new, optimized design<br> is just one step away')}}</h2>
           <p class="visual-lead">
             {# L10n: <strong></strong> tag below is for visual styling #}
-            {% trans %}
-              To switch to Touch Mode, open the Firefox Menu and select
-              <strong>“Relaunch in Firefox for Windows 8 Touch.”</strong>
+            {% trans relaunch_menu_item= '<strong>'|safe + _('Relaunch in Firefox for Windows 8 Touch') + '</strong>'|safe %}
+              To switch to Touch Mode, open the Firefox Menu and select "{{ relaunch_menu_item }}".
               Now you’re browsing beautifully.
             {% endtrans %}
           </p>
