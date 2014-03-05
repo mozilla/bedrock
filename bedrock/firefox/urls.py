@@ -16,7 +16,7 @@ whatsnew_re = latest_re % (version_re, 'whatsnew')
 tour_re = latest_re % (version_re, 'tour')
 product_re = '(?P<product>firefox|mobile)'
 channel_re = '(?P<channel>beta|aurora|organizations)'
-releasenotes_re = latest_re % (version_re, 'releasenotes')
+releasenotes_re = latest_re % (version_re, r'(aurora|release)notes')
 sysreq_re = latest_re % (version_re, 'releasenotes/system-requirements')
 
 
@@ -76,9 +76,9 @@ urlpatterns = patterns('',
     page('firefox/os/releases', 'firefox/os/releases.html'),
 
     # firefox/os/notes/ should redirect to the latest version; update this in /redirects/urls.py
-    page('firefox/os/notes/1.0.1', 'firefox/os/notes-1.0.1.html'),
-    page('firefox/os/notes/1.1', 'firefox/os/notes-1.1.html'),
-    page('firefox/os/notes/1.2', 'firefox/os/notes-1.2.html'),
+    url('^firefox/os/notes/(?P<fx_version>%s)/$' % version_re,
+        views.release_notes, {'product': 'Firefox OS'},
+        name='firefox.os.releasenotes'),
 
     page('mwc', 'firefox/os/mwc-2014-preview.html'),
     page('firefox/os/devices', 'firefox/os/devices.html'),

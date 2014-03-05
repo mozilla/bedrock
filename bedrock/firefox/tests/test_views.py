@@ -1,7 +1,9 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
+from django.http import Http404
 from django.test.client import RequestFactory
+from django.test.utils import override_settings
 
 from mock import patch
 from nose.tools import eq_
@@ -44,7 +46,7 @@ class TestRNAViews(TestCase):
         views.release_notes(self.request, '27.0')
         # Should use fixed version for query
         get_object_or_404.assert_called_with(
-            Release, version='27.0.0', channel='Release', product='Firefox')
+            Release, version='27.0', product='Firefox')
         # Should use original version for context variable
         eq_(self.last_ctx['version'], '27.0')
         eq_(self.last_ctx['major_version'], '27')
@@ -63,13 +65,17 @@ class TestRNAViews(TestCase):
         """
         views.system_requirements(self.request, '27.0.1')
         get_object_or_404.assert_called_with(
-            Release, version='27.0.1', channel='Release', product='Firefox')
+            Release, version='27.0.1', product='Firefox')
         eq_(self.last_ctx['release'], get_object_or_404.return_value)
         eq_(self.last_ctx['version'], '27.0.1')
         eq_(self.mock_render.call_args[0][1],
             'firefox/releases/system_requirements.html')
 
     def test_release_notes_template(self):
+        """
+        Should return correct template name based on channel
+        and product
+        """
         eq_(views.release_notes_template('', 'Firefox OS'),
             'firefox/releases/os-notes.html')
         eq_(views.release_notes_template('Nightly', 'Firefox'),
@@ -84,3 +90,23 @@ class TestRNAViews(TestCase):
             'firefox/releases/esr-notes.html')
         eq_(views.release_notes_template('', ''),
             'firefox/releases/release-notes.html')
+
+    @patch('bedrock.firefox.views.get_object_or_404')
+    def test_firefox_os_manual_template(self, get_object_or_404):
+        """
+        Should render from pre-RNA template without querying DB
+        """
+        views.release_notes(self.request, '1.0.1', product='Firefox OS')
+        get_object_or_404.assert_never_called()
+        eq_(self.mock_render.call_args[0][1],
+            'firefox/os/notes-1.0.1.html')
+
+    @override_settings(DEV=False)
+    @patch('bedrock.firefox.views.get_object_or_404')
+    def test_non_public_release(self, get_object_or_404):
+        """
+        Should raise 404 if not release.is_public and not settings.DEV
+        """
+        get_object_or_404.return_value = Release(is_public=False)
+        with self.assertRaises(Http404):
+            views.release_notes(self.request, '42')
