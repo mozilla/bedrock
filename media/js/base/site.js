@@ -82,16 +82,73 @@
 
             return 'other';
         },
-        platform: 'other'
+
+        getArchType: function (ua, pf) {
+            pf = (pf === '') ? '' : pf || navigator.platform;
+            ua = ua || navigator.userAgent;
+
+            var re;
+
+            // IE-specific property
+            if (navigator.cpuClass) {
+                return navigator.cpuClass.toLowerCase();
+            }
+
+            // ARM
+            re = /armv\d+/i;
+            if (re.test(pf) || re.test(ua)) {
+                return RegExp.lastMatch.toLowerCase();
+            }
+
+            // PowerPC
+            re = /PowerPC|PPC/i;
+            if (re.test(pf) || re.test(ua)) {
+                return 'ppc';
+            }
+
+            // We can't detect the type info. It's probably x86 but unsure.
+            // For example, iOS may be running on ARM-based Apple A7 processor
+            return 'x86';
+        },
+
+         getArchSize: function (ua, pf) {
+            pf = (pf === '') ? '' : pf || navigator.platform;
+            ua = ua || navigator.userAgent;
+
+            var re = /x64|x86_64|Win64/i;
+            if (re.test(pf) || re.test(ua)) {
+                return 64;
+            }
+
+            // We can't detect the bit info. It's probably 32 but unsure.
+            // For example, OS X may be running on 64-bit Core i7 processor
+            return 32;
+        },
+
+        platform: 'other',
+        archType: 'x64',
+        archSize: 32
     };
     (function () {
+        var h = document.documentElement;
+
         // if other than 'windows', immediately replace the platform classname on the html-element
         // to avoid lots of flickering
-        var h = document.documentElement;
-        window.site.platform = window.site.getPlatform();
-        if (window.site.platform !== 'windows') {
-            h.className = h.className.replace("windows", window.site.platform);
+        var platform = window.site.platform = window.site.getPlatform();
+        if (platform !== 'windows') {
+            h.className = h.className.replace('windows', platform);
         }
+
+        // Add class to reflect the microprocessor architecture info
+        var archType = window.site.archType = window.site.getArchType();
+        var archSize = window.site.archSize = window.site.getArchSize();
+        if (archType !== 'x86') {
+            h.className = h.className.replace('x86', archType);
+        }
+        if (archSize === 64) {
+            h.className += ' x64';
+        }
+
         // Add class to reflect javascript availability for CSS
         h.className = h.className.replace(/\bno-js\b/, 'js');
     })();

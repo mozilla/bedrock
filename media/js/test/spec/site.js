@@ -47,4 +47,41 @@ describe("site.js", function () {
             expect(window.site.getPlatform('Mozilla/5.0 (Tablet; rv:26.0) Gecko/26.0 Firefox/26.0', '')).toBe('fxos');
         });
     });
+
+    describe("getArchType", function () {
+
+        it("should identify x86", function () {
+            expect(window.site.getArchType('Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident/5.0', 'Win64')).toBe('x86');
+            expect(window.site.getArchType('Mozilla/5.0 (Windows NT 6.3; rv:27.0) Gecko/20100101 Firefox/27.0', 'Win32')).toBe('x86');
+            expect(window.site.getArchType('Mozilla/5.0 (Windows NT 6.3; Trident/7.0; .NET4.0E; .NET4.0C; rv:11.0) like Gecko', 'Win32')).toBe('x86');
+            expect(window.site.getArchType('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:27.0) Gecko/20100101 Firefox/27.0', 'MacIntel')).toBe('x86');
+            expect(window.site.getArchType('Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:27.0) Gecko/20100101 Firefox/27.0', 'Linux x86_64')).toBe('x86');
+            expect(window.site.getArchType('Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:27.0) Gecko/20100101 Firefox/27.0', 'Linux i686')).toBe('x86');
+        });
+
+        it("should identify ARM", function () {
+            expect(window.site.getArchType('Mozilla/5.0 (Android; Mobile; rv:27.0) Gecko/27.0 Firefox/27.0', 'Linux armv7l')).toBe('armv7');
+            expect(window.site.getArchType('Mozilla/5.0 (X11; U; Linux armv6l; en-US; rv:1.9.1b2pre) Gecko/20081116 Fennec/1.0a2pre', 'Linux armv6l')).toBe('armv6');
+        });
+
+        it("should identify PowerPC", function () {
+            expect(window.site.getArchType('Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10.4; en-US; rv:1.9.2.22) Gecko/20110902 Firefox/3.6.22', 'MacPPC')).toBe('ppc');
+        });
+    });
+
+    describe("getArchSize", function () {
+
+        it("should identify 64", function () {
+            expect(window.site.getArchSize('Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident/5.0', 'Win64')).toBe(64);
+            expect(window.site.getArchSize('Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:27.0) Gecko/20100101 Firefox/27.0', 'Linux x86_64')).toBe(64);
+        });
+
+        it("should identify 32", function () {
+            expect(window.site.getArchSize('Mozilla/5.0 (Windows NT 6.3; rv:27.0) Gecko/20100101 Firefox/27.0', 'Win32')).toBe(32);
+            expect(window.site.getArchSize('Mozilla/5.0 (Windows NT 6.3; Trident/7.0; .NET4.0E; .NET4.0C; rv:11.0) like Gecko', 'Win32')).toBe(32);
+            expect(window.site.getArchSize('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:27.0) Gecko/20100101 Firefox/27.0', 'MacIntel')).toBe(32);
+            expect(window.site.getArchSize('Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:27.0) Gecko/20100101 Firefox/27.0', 'Linux i686')).toBe(32);
+            expect(window.site.getArchSize('Mozilla/5.0 (X11; U; Linux armv6l; en-US; rv:1.9.1b2pre) Gecko/20081116 Fennec/1.0a2pre', 'Linux armv6l')).toBe(32);
+        });
+    });
 });

@@ -9,7 +9,7 @@ of terms and example values for them:
 * product: 'firefox' or 'thunderbird'
 * version: 7.0, 8.0b3, 9.0a2
 * build: 'beta', 'aurora', or None (for latest)
-* platform: 'os_windows', 'os_linux', or 'os_osx'
+* platform: 'os_windows', 'os_linux', 'os_linux64', or 'os_osx'
 * locale: a string in the form of 'en-US'
 """
 
@@ -49,7 +49,11 @@ def latest_version(locale, channel='release'):
 
     for builds in all_builds:
         if locale in builds and version in builds[locale]:
-            return version, builds[locale][version]
+            _builds = builds[locale][version]
+            # Append Linux 64-bit build
+            if 'Linux' in _builds:
+                _builds['Linux 64'] = _builds['Linux']
+            return version, _builds
 
 
 def make_aurora_link(product, version, platform, locale,
@@ -60,6 +64,7 @@ def make_aurora_link(product, version, platform, locale,
     filenames = {
         'os_windows': 'win32.installer.exe',
         'os_linux': 'linux-i686.tar.bz2',
+        'os_linux64': 'linux-x86_64.tar.bz2',
         'os_osx': 'mac.dmg'
     }
     if (not force_full_installer and settings.AURORA_STUB_INSTALLER
@@ -83,6 +88,7 @@ def make_download_link(product, build, version, platform, locale,
     platform = {
         'os_windows': 'win',
         'os_linux': 'linux',
+        'os_linux64': 'linux64',
         'os_osx': 'osx'
     }[platform]
 
@@ -159,7 +165,7 @@ def download_firefox(ctx, build='release', small=False, icon=True,
     builds = []
 
     if not mobile:
-        for plat_os in ['Windows', 'Linux', 'OS X']:
+        for plat_os in ['Windows', 'Linux', 'Linux 64', 'OS X']:
             # Fallback to en-US if this plat_os/version isn't available
             # for the current locale
             _locale = locale
@@ -171,7 +177,8 @@ def download_firefox(ctx, build='release', small=False, icon=True,
             plat_os_pretty = {
                 'os_osx': 'Mac OS X',
                 'os_windows': 'Windows',
-                'os_linux': 'Linux'
+                'os_linux': 'Linux',
+                'os_linux64': 'Linux 64-bit',
             }[plat_os]
 
             # And generate all the info
