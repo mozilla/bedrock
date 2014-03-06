@@ -125,6 +125,30 @@ class TestImgL10n(TestCase):
             TEST_L10N_IMG_PATH, 'is', 'dino', 'does-not-exist.png'))
 
 
+class TestRTLImg(TestCase):
+    rf = RequestFactory()
+
+    def _render(self, locale, url):
+        req = self.rf.get('/')
+        req.locale = locale
+        return render("{{{{ rtl_img('{0}') }}}}".format(url),
+                      {'request': req})
+
+    def test_ltr(self):
+        """Should output correct path for the default image."""
+        eq_(self._render('en-US', 'img/firefox/screenshot.png'),
+            settings.MEDIA_URL + 'img/firefox/screenshot.png')
+        eq_(self._render('fr', 'img/firefox/screenshot.png'),
+            settings.MEDIA_URL + 'img/firefox/screenshot.png')
+
+    def test_rtl(self):
+        """Should output correct path for the RTL image."""
+        eq_(self._render('ar', 'img/firefox/screenshot.png'),
+            settings.MEDIA_URL + 'img/firefox/screenshot-rtl.png')
+        eq_(self._render('fa', 'img/firefox/screenshot.png'),
+            settings.MEDIA_URL + 'img/firefox/screenshot-rtl.png')
+
+
 class TestVideoTag(TestCase):
     # Video stubs
     moz_video = 'http://videos.mozilla.org/serv/flux/example.%s'
@@ -260,7 +284,10 @@ class TestPlatformImg(TestCase):
 
     def _render(self, url, optional_attributes=None):
         req = self.rf.get('/')
-        req.locale = 'en-US'
+        if optional_attributes and optional_attributes.get('rtl', False) is True:
+            req.locale = 'ar'
+        else:
+            req.locale = 'en-US'
         return render("{{{{ platform_img('{0}', {1}) }}}}".format(url, optional_attributes),
                       {'request': req})
 
@@ -268,6 +295,12 @@ class TestPlatformImg(TestCase):
         req = self.rf.get('/')
         req.locale = 'en-US'
         return render("{{{{ l10n_img('{0}') }}}}".format(url),
+                      {'request': req})
+
+    def _render_rtl(self, url):
+        req = self.rf.get('/')
+        req.locale = 'ar'
+        return render("{{{{ rtl_img('{0}') }}}}".format(url),
                       {'request': req})
 
     @override_settings(MEDIA_URL='/media/')
@@ -313,6 +346,31 @@ class TestPlatformImg(TestCase):
             u'<img class="platform-img js" src="" data-src="' + l10n_url + '" '
             u'data-test-attr="test"><noscript><img class="platform-img win" '
             u'src="' + l10n_url + '" data-test-attr="test"></noscript>')
+        self.assertEqual(markup, expected)
+
+    @override_settings(MEDIA_URL='/media/')
+    def test_platform_img_with_rtl(self):
+        """Should return expected markup with RTL image path"""
+        rtl_url = self._render_rtl('test.png')
+        markup = self._render('test.png', {'rtl': True})
+        expected = (
+            u'<img class="platform-img js" src="" data-src="' + rtl_url + '" >'
+            u'<noscript><img class="platform-img win" src="' + rtl_url + '" >'
+            u'</noscript>')
+        self.assertEqual(markup, expected)
+
+    @override_settings(MEDIA_URL='/media/')
+    def test_platform_img_with_rtl_and_optional_attributes(self):
+        """
+        Should return expected markup with RTL image path and optional
+        attributes
+        """
+        rtl_url = self._render_rtl('test.png')
+        markup = self._render('test.png', {'rtl': True, 'data-test-attr': 'test'})
+        expected = (
+            u'<img class="platform-img js" src="" data-src="' + rtl_url + '" '
+            u'data-test-attr="test"><noscript><img class="platform-img win" '
+            u'src="' + rtl_url + '" data-test-attr="test"></noscript>')
         self.assertEqual(markup, expected)
 
 
@@ -437,7 +495,10 @@ class TestHighResImg(TestCase):
 
     def _render(self, url, optional_attributes=None):
         req = self.rf.get('/')
-        req.locale = 'en-US'
+        if optional_attributes and optional_attributes.get('rtl', False) is True:
+            req.locale = 'ar'
+        else:
+            req.locale = 'en-US'
         return render("{{{{ high_res_img('{0}', {1}) }}}}".format(url, optional_attributes),
                       {'request': req})
 
@@ -445,6 +506,12 @@ class TestHighResImg(TestCase):
         req = self.rf.get('/')
         req.locale = 'en-US'
         return render("{{{{ l10n_img('{0}') }}}}".format(url),
+                      {'request': req})
+
+    def _render_rtl(self, url):
+        req = self.rf.get('/')
+        req.locale = 'ar'
+        return render("{{{{ rtl_img('{0}') }}}}".format(url),
                       {'request': req})
 
     @override_settings(MEDIA_URL='/media/')
@@ -489,6 +556,30 @@ class TestHighResImg(TestCase):
             u'<img class="js" src="" data-src="' + l10n_url + '" '
             u'data-high-res="true" data-test-attr="test">'
             u'<noscript><img src="' + l10n_url + '" data-test-attr="test">'
+            u'</noscript>')
+        self.assertEqual(markup, expected)
+
+    @override_settings(MEDIA_URL='/media/')
+    def test_high_res_img_with_rtl(self):
+        """Should return expected markup with RTL image path"""
+        rtl_url = self._render_rtl('test.png')
+        markup = self._render('test.png', {'rtl': True})
+        expected = (
+            u'<img class="js" src="" data-src="' + rtl_url + '" '
+            u'data-high-res="true" >'
+            u'<noscript><img src="' + rtl_url + '" >'
+            u'</noscript>')
+        self.assertEqual(markup, expected)
+
+    @override_settings(MEDIA_URL='/media/')
+    def test_high_res_img_with_rtl_and_optional_attributes(self):
+        """Should return expected markup with RTL image path"""
+        rtl_url = self._render_rtl('test.png')
+        markup = self._render('test.png', {'rtl': True, 'data-test-attr': 'test'})
+        expected = (
+            u'<img class="js" src="" data-src="' + rtl_url + '" '
+            u'data-high-res="true" data-test-attr="test">'
+            u'<noscript><img src="' + rtl_url + '" data-test-attr="test">'
             u'</noscript>')
         self.assertEqual(markup, expected)
 

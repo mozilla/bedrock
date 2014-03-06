@@ -318,3 +318,8 @@ You can specify a list of locales to update:
 
     $ ./manage.py l10n_check fr
     $ ./manage.py l10n_check fr de es
+
+Images
+------
+
+Bedrock offers some ways to serve locale-specific or locale-neutral images. See the :ref:`Developing on Bedrock<coding>` documentation for details.
