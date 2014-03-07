@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from django.conf.urls.defaults import *  # noqa
+from django.conf.urls import patterns, url
 
 from bedrock.firefox import version_re
 from bedrock.redirects.util import redirect
@@ -13,8 +13,8 @@ import views
 latest_re = r'^firefox(?:/(?P<fx_version>%s))?/%s/$'
 firstrun_re = latest_re % (version_re, 'firstrun')
 whatsnew_re = latest_re % (version_re, 'whatsnew')
-win8_firstrun_re = latest_re % (version_re, 'firstrun/win8')
-win8_whatsnew_re = latest_re % (version_re, 'whatsnew/win8')
+win8_firstrun_re = latest_re % (version_re, 'win8/firstrun')
+win8_whatsnew_re = latest_re % (version_re, 'win8/whatsnew')
 tour_re = latest_re % (version_re, 'tour')
 product_re = '(?P<product>firefox|mobile)'
 channel_re = '(?P<channel>beta|aurora|organizations)'
