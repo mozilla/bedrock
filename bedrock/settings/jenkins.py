@@ -9,14 +9,13 @@ LOG_LEVEL = logging.ERROR
 ADMINS = ('thedude@example.com',)
 MANAGERS = ADMINS
 
-JENKINS_JOB_NAME = os.getenv('JOB_NAME', '')
-print os.getenv('DB_USER')
+JENKINS_JOB_NAME = os.getenv('JOB_NAME', 'bedrock')
 
 # Database name has to be set because of sphinx
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'HOST': os.getenv('DB_HOST'),
+        'HOST': os.getenv('DB_HOST', 'localhost'),
         'NAME': JENKINS_JOB_NAME,
         'USER': os.getenv('DB_USER'),
         'PASSWORD': '',

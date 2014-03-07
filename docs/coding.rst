@@ -34,12 +34,12 @@ template data as keyword arguments:
 The variable `latest_version` will be available in the template.
 
 Embedding images
---------------------
+----------------
 
 Images should be included on pages using helper functions.
 
 media()
-^^^^^^^^^^^
+^^^^^^^
 For a simple image, the `media()` function is used to generate the image URL. For example::
 
 	<img src="{{ media('img/firefox/new/firefox-logo.png') }}" alt="Firefox" />
@@ -49,7 +49,7 @@ will output an image::
     <img src="/media/img/firefox/new/firefox-logo.png" alt="Firefox">
 
 high_res_img()
-^^^^^^^^^^^
+^^^^^^^^^^^^^^
 For images that include a high-resolution alternative for displays with a high pixel density, use the `high_res_img()` function::
 
     high_res_img('img/firefox/new/firefox-logo.png', {'alt': 'Firefox', 'width': '200', 'height': '100'})

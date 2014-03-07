@@ -159,6 +159,7 @@ Set the ``newsletter_title`` and ``newsletter_id`` variables and override at lea
 the ``page_title`` and ``newsletter_content`` blocks:
 
 .. code-block:: jinja
+
 	{% set newsletter_title = _('Firefox and You') %}
 	{% set newsletter_id = 'mozilla-and-you' %}
 
