@@ -6,6 +6,7 @@ from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.shortcuts import render as django_render
 from django.template import TemplateDoesNotExist
+from django.utils.translation.trans_real import parse_accept_lang_header
 
 from funfactory.urlresolvers import split_path
 
@@ -42,10 +43,18 @@ def render(request, template, context=None, **kwargs):
     # Look for localized template if not default lang.
     if hasattr(request, 'locale') and request.locale != settings.LANGUAGE_CODE:
 
-        # redirect to default lang if locale not active
+        # redirect to one of the user's accept languages or the default language
+        # of the site (en-US) if the current locale not active
         if not template_is_active(template, get_locale(request)):
+            matched = None
+
+            for lang in get_accept_languages(request):
+                if template_is_active(template, lang):
+                    matched = lang
+                    break
+
             return HttpResponseRedirect('/' + '/'.join([
-                settings.LANGUAGE_CODE,
+                matched or settings.LANGUAGE_CODE,
                 split_path(request.get_full_path())[1]
             ]))
 
@@ -61,3 +70,13 @@ def render(request, template, context=None, **kwargs):
 
 def get_locale(request):
     return getattr(request, 'locale', settings.LANGUAGE_CODE)
+
+
+def get_accept_languages(request):
+    try:
+        parsed = parse_accept_lang_header(request.META.get('HTTP_ACCEPT_LANGUAGE', ''))
+        languages = [lang[0] for lang in parsed]
+    except ValueError:  # see https://code.djangoproject.com/ticket/21078
+        languages = []
+
+    return languages

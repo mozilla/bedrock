@@ -193,6 +193,12 @@ var Tabzilla = (function (Tabzilla) {
     var removeCompactModeEvents = function () {
         nav.off('.submenu');
     };
+    Tabzilla.user = {
+        // Expose the user's accept languages in the HTTP Accept-Language
+        // request header, because the navigator.language property is just the
+        // application's locale on some browsers.
+        languages: {{ accept_languages|safe }}
+    };
     Tabzilla.open = function () {
         opened = true;
         panel.toggleClass('open');
@@ -351,92 +357,109 @@ var Tabzilla = (function (Tabzilla) {
     Infobar.prototype.onshow = {};
     Infobar.prototype.onaccept = {};
     Infobar.prototype.oncancel = {};
-    Tabzilla.setupTransbar = function (userLang, pageLang) {
+    Tabzilla.setupTransbar = function (userLangs, pageLang) {
         var transbar = new Infobar('transbar', 'Translation Bar');
-        userLang = userLang || navigator.language || navigator.browserLanguage;
+        userLangs = userLangs || Tabzilla.user.languages;
         pageLang = pageLang || document.documentElement.lang;
 
-        if (transbar.disabled || !userLang || !pageLang) {
+        if (transbar.disabled || !userLangs || !pageLang) {
             return false;
         }
 
-        var userLangLower = userLang.toLowerCase();
-        var userLangShort = userLangLower.split('-')[0];
-        var pageLangLower = pageLang.toLowerCase();
+        var offeredLang;
+        var langLinks = [];
+        var langOptions = [];
 
-        // Compare the user's language and the page's language
-        if (userLangLower === pageLangLower ||
-                // Consider some legacy locales like fr-FR, it-IT or el-GR
-                userLangShort === pageLangLower) {
-            return false;
-        }
-
-        // Normalize the user language in the form of ab or ab-CD
-        userLang = userLang.replace(/^(\w+)(?:-(\w+))?$/, function (m, p1, p2) {
-            return p1.toLowerCase() + ((p2) ? '-' + p2.toUpperCase() : '');
-        });
-
-        // Check the availability of the translated page for the user.
-        // Use an alternate URL in <head> or a language option in <form>
-        var langLink = $([
-            'link[hreflang="' + userLang + '"]',
-            // The user language can be ab-CD while the page language is ab
-            // (Example: fr-FR vs fr, ja-JP vs ja)
-            'link[hreflang="' + userLangShort + '"]'
-            ].join(','));
-        var langOption = $([
-            '#language [value="' + userLang + '"]',
+        // Compare the user's accept languages against the available languages
+        // to find the best language. Use an alternate URL in <head> or a 
+        // language option in <form>
+        $.each(userLangs, function(index, userLang) {
             // Languages in the language switcher are uncapitalized on some
             // sites (AMO, Firefox Flicks)
-            '#language [value="' + userLangLower + '"]',
+            var userLangLower = userLang.toLowerCase();
+
             // The user language can be ab-CD while the page language is ab
             // (Example: fr-FR vs fr, ja-JP vs ja)
-            '#language [value="' + userLangShort + '"]',
-            // Sometimes the value of a language switcher option is the path of
-            // a localized page on some sites (MDN)
-            '#language [value^="/' + userLang + '/"]',
-            '#language [value^="/' + userLangShort + '/"]'
-            ].join(','));
+            var userLangShort = userLangLower.split('-')[0];
 
-        if (!langLink.length && !langOption.length) {
+            var pageLangLower = pageLang.toLowerCase();
+
+            // Compare the user's language and the page's language
+            if (userLangLower === pageLangLower ||
+                    // Consider some legacy locales like fr-FR, it-IT or el-GR
+                    userLangShort === pageLangLower) {
+                // The user is already seeing the page in his/her own language.
+                // No need to show the Translation Bar
+                return false; // Break the loop
+            }
+
+            $.each([userLang, userLangLower, userLangShort], function(index, lang) {
+                var links = $('link[hreflang="' + lang + '"]');
+                var options = $('#language [value="' + lang + '"], \
+                                 #language [value^="/' + lang + '/"]');
+
+                if (!links.length && !options.length) {
+                    return true; // Continue the loop
+                }
+
+                if (links.length) {
+                    langLinks = links;
+                }
+
+                if (options.length) {
+                    langOptions = options;
+                }
+
+                offeredLang = lang;
+                return false; // Break the loop
+            });
+
+            if (offeredLang) {
+                return false; // Break the loop
+            }
+        });
+
+        if (!offeredLang) {
+            // No translation is available for the user
             return false;
         }
 
         // Do not show Chrome's built-in Translation Bar
         $('head').append('<meta name="google" value="notranslate">');
 
-        // Normalize the user language again, based on the language of the site
-        userLang = (langLink.length) ? langLink.attr('hreflang')
-                                     : langOption.val();
+        // Normalize the user language in the form of ab or ab-CD
+        offeredLang = offeredLang.replace(/^(\w+)(?:-(\w+))?$/, function (m, p1, p2) {
+            return p1.toLowerCase() + ((p2) ? '-' + p2.toUpperCase() : '');
+        });
 
         // Log the language of the current page
-        transbar.onshow.trackLabel = transbar.oncancel.trackLabel = userLang;
+        transbar.onshow.trackLabel = transbar.oncancel.trackLabel = offeredLang;
         transbar.oncancel.trackAction = 'hide';
 
         // If the user selects Yes, show the translated page
         transbar.onaccept = {
             trackAction: 'change',
-            trackLabel: userLang,
+            trackLabel: offeredLang,
             callback: function () {
-                if (langLink.length) {
-                    location.href = langLink.attr('href').replace(/^https?\:\/\/[^/]+/, '');
+                if (langLinks.length) {
+                    location.href = langLinks.attr('href').replace(/^https?\:\/\/[^/]+/, '');
                 } else {
-                    langOption.attr('selected', 'selected').get(0).form.submit();
+                    langOptions.attr('selected', 'selected').get(0).form.submit();
                 }
             }
         };
 
         // Fetch the localized strings and show the Translation Bar
-        $.ajax({ url: '{{ settings.CDN_BASE_URL }}/' + userLang + '/tabzilla/transbar.jsonp',
+        $.ajax({ url: '{{ settings.CDN_BASE_URL }}/' + offeredLang + '/tabzilla/transbar.jsonp',
                  cache: true, crossDomain: true, dataType: 'jsonp',
                  jsonpCallback: "_", success: function (str) {
             transbar.show(str).attr({
-                'lang': userLang,
-                'dir': ($.inArray(userLang, {{ settings.LANGUAGES_BIDI|list|safe }}) > -1) ? 'rtl' : 'ltr'
+                'lang': offeredLang,
+                'dir': ($.inArray(offeredLang, {{ settings.LANGUAGES_BIDI|list|safe }}) > -1) ? 'rtl' : 'ltr'
             });
         }});
 
-        return true;
+        return offeredLang;
     };
     var setupGATracking = function () {
         // track tabzilla links in GA
