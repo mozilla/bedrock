@@ -5,7 +5,7 @@
 from urllib import urlencode
 
 from django.core.urlresolvers import NoReverseMatch
-from django.conf.urls.defaults import url
+from django.conf.urls import url
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 
 from funfactory.urlresolvers import reverse

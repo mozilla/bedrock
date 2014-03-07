@@ -6,7 +6,7 @@ import json
 import os
 
 from django.conf import settings
-from django.conf.urls.defaults import url
+from django.conf.urls import url
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 

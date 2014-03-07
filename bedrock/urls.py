@@ -3,9 +3,11 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from django.conf import settings
-from django.conf.urls.defaults import handler404, include, patterns
+from django.conf.urls import handler404, include, patterns
 
 from funfactory.monkeypatches import patch
+
+
 patch()
 
 # Uncomment the next two lines to enable the admin:
