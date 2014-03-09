@@ -8,12 +8,13 @@
 /**
  * A special function for IE.  Without this hack there is no prompt to download after they click.  sigh.
  * bug 393263
- *
+ * Note IE has since removed the 'MSIE' token in version 11. The hack is no longer needed for IE11.
+ * http://msdn.microsoft.com/en-us/library/ie/bg182625%28v=vs.85%29.aspx#uaString
  * @param string direct link to download URL
  */
 function trigger_ie_download(link, appVersion) {
     var version = appVersion || navigator.appVersion;
-    // Only open if we got a link and this is IE.
+    // Only open if we got a link and this is IE < 11.
     if (link && version.indexOf('MSIE') !== -1) {
         window.open(link, 'download_window', 'toolbar=0,location=no,directories=0,status=0,scrollbars=0,resizeable=0,width=1,height=1,top=0,left=0');
         window.focus();
@@ -152,8 +153,11 @@ function isFirefoxUpToDate(latest, esr) {
             latestFirefoxVersion <= fx_version);
 }
 
-function isMobile() {
-    return /\sMobile/.test(window.navigator.userAgent);
+// used in bedrock for desktop specific checks like `isFirefox() && !isFirefoxMobile()`
+// reference https://developer.mozilla.org/en-US/docs/Gecko_user_agent_string_reference
+function isFirefoxMobile(userAgent) {
+    var ua = userAgent || navigator.userAgent;
+    return /Mobile|Tablet|Fennec/.test(ua);
 }
 
 // Create text translation function using #strings element.

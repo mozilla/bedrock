@@ -1,0 +1,142 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "base-resp.html" %}
+
+{% block body_id %}privacy-day{% endblock %}
+
+{% block page_title %}{{ _('We put your privacy first') }}{% endblock %}
+
+{% block extrahead %}
+  {{ css('privacy-day') }}
+{% endblock %}
+
+{% block body_class %}privacy-day{% endblock %}
+
+{% block site_header %}
+  <header id="masthead">
+    <div class="container">
+      <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{{ settings.TABZILLA_INFOBAR_OPTIONS }}">Mozilla</a>
+    {% block site_header_logo %}
+      <h2><a href="{{ url('mozorg.home') }}">{{ high_res_img('img/sandstone/mozilla-wordmark-white.png', {'alt': 'Mozilla', 'width': '170', 'height': '46'}) }}</a></h2>
+    {% endblock %}
+    </div>
+  </header>
+{% endblock %}
+
+{% block content %}
+
+<main role="main">
+  <article id="main-content">
+    <header>
+      <div class="container">
+        <h1>{{ _('We put your privacy first') }}</h1>
+        <div id="download">
+          {{ download_firefox(small=True) }}
+        </div>
+        <p id="principles"><a href="{{ url('privacy.index') }}">{{ _('Explore our privacy principles') }}</a></p>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="intro">
+        <p>
+        {% trans manifesto=url('mozorg.about.manifesto') %}
+          At Mozilla, we have a long history of taking privacy seriously. It’s front and center
+          in every piece of software we make. It's in our <a href="{{ manifesto }}">Manifesto</a>.
+        {% endtrans %}
+        {% trans %}
+          It’s part of our DNA. The Web is an amazing thing and it's at its best when it’s open,
+          transparent and safe for everyone. Here are some of the ways we work to give you a better
+          understanding — and more control — of your privacy online.
+        {% endtrans %}
+        </p>
+      </div>
+
+      <div class="main">
+
+          <div class="block">
+            <h2>{{ _('Privacy Principles') }}</h2>
+            <p>
+            {% trans %}
+              We have six privacy principles that stem from the Mozilla Manifesto and
+              inform how we develop our websites, products and services.
+            {% endtrans %}
+            </p>
+            <p class="go"><a href="{{ url('privacy.index') }}">{{ _('Learn about our privacy principles') }}</a></p>
+          </div>
+
+          <div class="block">
+            <h2>{{ _('Do Not Track') }}</h2>
+            <p>
+            {% trans %}
+              Do Not Track is a feature in Firefox that helps put you in control of the way your
+              information is collected and used online.
+            {% endtrans %}
+            {% trans %}
+              When enabled, Do Not Track will tell advertising networks and websites that you want
+              to opt-out of tracking for purposes like behavioral advertising.
+            {% endtrans %}
+            </p>
+            <p class="go"><a href="https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature">{{ _('Enable Do Not Track in your Firefox today') }}</a></p>
+          </div>
+
+          <div class="block">
+            <h2>Lightbeam</h2>
+            <p>
+            {% trans %}
+              A Firefox add-on, Lightbeam allows you to see the first and hidden third party sites
+              you interact with on the Web. Using interactive visualizations, it’s an innovative way
+              to see who’s tracking you online.
+            {% endtrans %}
+            </p>
+            <p class="go"><a href="{{ url('lightbeam.lightbeam') }}">{{ _('Download Lightbeam and shine a light on who’s watching you') }}</a></p>
+          </div>
+
+          <div class="block">
+            <h2>{{ _('Firefox privacy add-ons') }}</h2>
+            <p>
+            {% trans %}
+              We’ve gathered some of the best Firefox add-ons for privacy &amp; security in one great
+              collection — sorted by featured, top rated and most popular.
+            {% endtrans %}
+            </p>
+            <p class="go"><a href="https://addons.mozilla.org/firefox/extensions/privacy-security/">{{ _('Make your browsing better with privacy add-ons for Firefox') }}</a></p>
+          </div>
+
+          <div class="block">
+            <h2>Webmaker</h2>
+            <p>
+            {% trans %}
+              Help educate others about privacy. Use these free resources and teaching guides
+              from Mozilla Webmaker to empower others.
+            {% endtrans %}
+            </p>
+            <p class="go"><a href="https://webmaker.org/privacy-makes">{{ _('Teach online privacy with Mozilla’s Webmaker') }}</a></p>
+          </div>
+
+          <div class="block">
+            <h2>Firefox</h2>
+            <p>
+            {% trans %}
+              Our award-winning Web browser is packed with advanced security features designed to
+              help you stay safe, and in control, online.
+            {% endtrans %}
+            </p>
+            <p class="go"><a href="{{ url('firefox.new') }}">{{ _('Download Firefox today') }}</a></p>
+          </div>
+
+      </div>
+    </div>
+  </article>
+</main>
+
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{% block js %}
+  {{ js('privacy-day') }}
+{% endblock  %}
+

@@ -30,9 +30,10 @@
     border-bottom: 1px solid #ddd;
 
     .title-shadow-box {
+        margin-right: 490px;
         min-height: 80px;
 
-        & + p {
+        & + * {
             clear: left;
         }
     }
@@ -95,6 +96,9 @@
     }
 
     #main-content {
+        .title-shadow-box {
+            margin-right: 250px;
+        }
 
         .intro {
             .span_narrow(4);
@@ -128,6 +132,10 @@
 
     #main-content {
         margin-bottom: @baseLine;
+
+        .title-shadow-box {
+            margin-right: 0;
+        }
 
         .intro {
             width: auto;

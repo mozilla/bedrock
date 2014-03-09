@@ -44,7 +44,7 @@
 {% if request.locale not in locales_with_video.keys() %}
   <div id="promo-android">
     <a href="{{ mobile_link }}" class="container">
-      <img src="{{ media('img/home/promo/android/1000.jpg') }}" alt="{{ _('Firefox for Android artwork') }}">
+      <img src="{{ media('img/firefox/whatsnew/android-promo.jpg') }}" alt="{{ _('Firefox for Android artwork') }}">
       <div>
         <h3>{{ _('Fast. Smart. Safe.') }}</h3>
         <h4>{{ _('Get the mobile browser that’s got your back.') }}</h4>
@@ -114,7 +114,7 @@
 <section id="colophon" class="billboard">
   <nav>
     <ul class="primary">
-      <li> <a href="{{ php_url('/firefox/notes') }}">{{ _('Release Notes') }}</a></li>
+      <li> <a href="{{ product_url('firefox', 'notes') }}">{{ _('Release Notes') }}</a></li>
       <li><a href="{{ url('firefox.features') }}">{{ _('Firefox Features') }}</a></li>
       <li><a href="https://support.mozilla.org/">{{ _('Firefox Help') }}</a></li>
     </ul>

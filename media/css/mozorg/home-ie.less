@@ -102,7 +102,48 @@
     min-height: 22em;
 }
 
-#firefox-promo .download-button {
-    width: 240px;
+#firefox-promo {
+    .container {
+        overflow: hidden;
+    }
+
+    header {
+        float: left;
+        width: 660px;
+
+        a {
+            display: block;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        h3, h4 {
+            float: left;
+        }
+
+        h4 strong {
+            display: block;
+            margin-top: 0;
+            height: 90px;
+            border-style: solid;
+        }
+    }
+
+    .download-button {
+        float: right;
+    }
 }
 
+.html-rtl #firefox-promo {
+    header {
+        float: right;
+
+        h3, h4 {
+            float: right;
+        }
+    }
+
+    .download-button {
+        float: left;
+    }
+}

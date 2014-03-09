@@ -1,0 +1,114 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "base-resp.html" %}
+
+{% block page_title %}{{_('Gigabit')}}{% endblock %}
+{% block page_desc %}{{_('Gigabit - Description.')}}{% endblock %}
+{% block body_id %}about{% endblock %}
+{% block body_class %}sand gigabit{% endblock %}
+{% block page_image %}{{ media('img/gigabit/gigabit-wordmark.png') }}?2013-11{% endblock %}
+{% block page_favicon %}{{ media('img/gigabit/favicon.png') }}?2013-11{% endblock %}
+{% block site_header_logo %}
+{% endblock %}
+
+{% block extrahead %}
+  {{ css('gigabit') }}
+{% endblock %}
+
+{% block site_header_nav %}
+  <nav id="nav-main" role="navigation">
+    <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
+    <ul id="nav-main-menu">
+      <li>{{_('<a href="%s">Home</a>')|format(url('gigabit.gigabit')) }}</li>
+      <li><b>{{_('Apply')}}</b></li>
+      <li><a href="https://blog.mozilla.org/gigabit/">{{_('Blog')}}</a></li>
+    </ul>
+  </nav>
+{% endblock %}
+
+{% block content %}
+  <h1 id="wordmark"><a href="{{ url('gigabit.gigabit') }}"><img src="{{ media('img/gigabit/gigabit-wordmark.png') }}" alt="{{_('Mozilla Gigabit Community Fund (go to Home page)')}}"></a></h1>
+
+  <main role="main">
+    <article>
+      <h1 class="large center">{{ _('Apply') }}</h1>
+
+      <section id="cta-apply" class="container">
+        <h3>{{ _('Apply to the Gigabit Community Fund') }}</h3>
+        <p><strong>{{ _('We will begin accepting applications in February 2014.') }}</strong></p>
+        <p>
+        {% trans url_announcement='//sendto.mozilla.org/page/s/gigabit-updates', url_twitter='//twitter.com/MozillaGigabit' %}
+          Join our <a href='{{ url_announcement }}'>announcement list</a> or follow <a href='{{ url_twitter }}'>@MozillaGigabit</a> for updates!
+        {% endtrans %}
+        </p>
+        <p>{{ _('If you have an idea for a project based in Kansas City or Chattanooga, we encourage you to get involved in the local Gigabit community — we want to help you create a strong submission.') }}</p>
+      </section>
+
+      <section id="questions" class="container">
+        <div class="main">
+          <h2>{{ _('Questions?') }}</h2>
+
+          <p>
+          {% trans url_wiki='//wiki.mozilla.org/Gigabit', url_terms=url('gigabit.terms'), url_email='mailto:gigabit@mozilla.org' %}
+            Our <a href="{{ url_wiki }}">wiki</a> is full of helpful information and we encourage you to read through the Gigabit Community Fund’s <a href="{{ url_terms }}">Terms and Conditions</a>. Feel free to <a href="{{ url_email }}">email us</a> any time. Don't be shy — we're friendly!
+          {% endtrans %}
+          </p>
+
+          <p>
+            {{ _('Submission of new versions will be allowed until the application period closes and  the review process begins. The latest submitted version before the deadline will be considered final.') }}
+          </p>
+
+          <p>
+          {% trans url_moz_open='//wiki.mozilla.org/Working_open' %}
+            <a href="{{ url_moz_open }}">Mozilla works open</a>. We will make the content of all submissions publicly viewable.
+          {% endtrans %}
+          </p>
+
+          <p>
+            {{ _('Projects  that are awarded funding are encouraged to work open. Funded  participants will be expected to create a free GitHub repository that,  at minimum, documents their submitted proposal. You retain all ownership  rights in your submission in the Fund.') }}
+          </p>
+        </div>
+
+        <div class="aside">
+          <h2>{{ _('Dates &amp; Deadlines') }}</h2>
+          <ul>
+            <li>
+              {{ _(('The <b>Spring Pilot Period</b> runs from March &#8212; June 2014. We will accept applications in February 2014.')) }}
+            </li>
+            <li>
+              {{ _(('The <b>Summer Pilot Period</b> runs from July &#8212; September 2014. We will accept applications in April 2014.')) }}
+            </li>
+            <li>
+              {% trans url_announcement='//sendto.mozilla.org/page/s/gigabit-updates', url_twitter='//twitter.com/MozillaGigabit' %}
+                Join our <a href='{{ url_announcement }}'>announcement list</a> or follow <a href='{{ url_twitter }}'>@MozillaGigabit</a> for updates!
+              {% endtrans %}
+            </li>
+            <li>
+              {{ _(('Participants are highly encouraged to get in touch with us during the application process &#8212; we’d be pleased to help you create a strong submission.')) }}
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <aside id="partners" class="container">
+        <ul class="partner-logos center">
+          <li><a href="http://www.nsf.gov/"><img src="{{ media('img/gigabit/logo-nsf.png') }}" alt="NSF"></a></li>
+          <li><a href="http://us-ignite.org/"><img src="{{ media('img/gigabit/logo-ignite.png') }}" alt="US Ignite"></a></li>
+          <li><a href="http://www.geni.net/"><img src="{{ media('img/gigabit/logo-geni.png') }}" alt="GENI"></a></li>
+          <li><a href="http://www.kcdigitaldrive.com/"><img src="{{ media('img/gigabit/logo-kc-digital-drive.png') }}" alt="KC Digital Drive"></a></li>
+          <li><a href="http://www.chattanooga.gov/"><img src="{{ media('img/gigabit/logo-chatt-city-seal.png') }}" alt="Chatt City Seal"></a></li>
+          <li><a href="http://www.hamiltontn.gov/"><img src="{{ media('img/gigabit/logo-hamilton-county-seal.png') }}" alt="Hamilton County Seal"></a></li>
+          <li><a href="http:///www.kcmo.org/CKCMO/index.htm"><img src="{{ media('img/gigabit/logo-kcmo.png') }}" alt="KC MO"></a></li>
+          <li><a href="http://www.wycokck.org/"><img src="{{ media('img/gigabit/logo-kc-unified-gov.png') }}" alt="KC Unified Gov"></a></li>
+        </ul>
+      </aside>
+
+    </article>
+  </main>
+
+{% endblock %}
+
+{% block email_form %}
+{% endblock %}

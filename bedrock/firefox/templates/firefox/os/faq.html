@@ -61,20 +61,51 @@
           <dd>
             <p>{{_('Firefox OS is available to buy across 14 countries across the globe. You can purchase a device in:')}}</p>
             <ul class="unstyled">
-               <li>{{_('Spain with Movistar')}}</li>
-               <li>{{_('Poland with T-Mobile')}}</li>
-               <li>{{_('Venezuela with Movistar')}}</li>
-               <li>{{_('Colombia with Movistar')}}</li>
-               <li>{{_('Hungary with both Telenor and Telekom')}}</li>
-               <li>{{_('Peru with Movistar')}}</li>
-               <li>{{_('Serbia with Telenor')}}</li>
-               <li>{{_('Montenegro with Telenor')}}</li>
-               <li>{{_('Greece with Cosmote')}}</li>
-               <li>{{_('Germany with Congstar')}}</li>
-               <li>{{_('Brazil with Vivo')}}</li>
-               <li>{{_('Mexico with Movistar')}}</li>
-               <li>{{_('Italy with TIM')}}</li>
-               <li>{{_('Uruguay with Movistar')}}</li>
+              <li>
+                {{_('Brazil with <a href="%s">Vivo</a>')|format('http://www.vivo.com.br/firefox')}}
+              </li>
+              <li>
+                {{_('Chile with <a href="%s">Movistar</a>')|format('http://www.movistar.cl/equipos/catalogo/producto/847/contrato/')}}
+              </li>
+              <li>
+                {{_('Colombia with <a href="%s">Movistar</a>')|format('http://www.movistar.co')}}
+              </li>
+              <li>
+                {{_('Germany with <a href="%s">Congstar</a>')|format('http://aktion.congstar.de/firefox-os')}}
+              </li>
+              <li>
+                {{_('Greece with <a href="%s">Cosmote</a>')|format('http://www.cosmote.gr/cosmoportal/cosmote.portal?_nfpb=true&_pageLabel=HDV&sku=20290038&s=0')}}
+              </li>
+              <li>
+                {{_('Hungary with both <a href="%s">Telenor</a> and <a href="%s">T-Mobile</a>')|format('http://www.telenor.hu/mobiltelefon/alcatel/one-touch-fire', 'https://webshop.t-mobile.hu/webapp/wcs/stores/ProductDisplay?catalogId=2001&storeId=2001&langId=-11&productId=644566')}}
+              </li>
+              <li>
+                {{_('Italy with <a href="%s">TIM</a>')|format('http://www.tim.it/prodotti/alcatel-one-touch-fire-mozilla-orange')}}
+              </li>
+              <li>
+                {{_('Mexico with <a href="%s">Movistar</a>')|format('http://www.movistar.com.mx/firefox')}}
+              </li>
+              <li>
+                {{_('Montenegro with <a href="%s">Telenor</a>')|format('http://www.telenor.me/sr/Privatni-korisnici/Uredjaji/Mobilni-telefoni/Alcatel/OT_Fire')}}
+              </li>
+              <li>
+                {{_('Peru with <a href="%s">Movistar</a>')|format('http://catalogo.movistar.com.pe/zte-open')}}
+              </li>
+              <li>
+                {{_('Poland with <a href="%s">T-Mobile</a>')|format('http://www.t-mobile.pl/pl/firefox')}}
+              </li>
+              <li>
+                {{_('Serbia with <a href="%s">Telenor</a>')|format('https://www.telenor.rs/sr/Privatni-korisnici/webshop/Mobilni-telefoni/Alcatel/One_Touch_Fire')}}
+              </li>
+              <li>
+                {{_('Spain with <a href="%s">Movistar</a>')|format('http://www.movistar.es/firefoxos?aff=aff-firefoxOS1')}}
+              </li>
+              <li>
+                {{_('Uruguay with <a href="%s">Movistar</a>')|format('http://www.firefoxos.movistar.com.uy/')}}
+              </li>
+              <li>
+                {{_('Venezuela with <a href="%s">Movistar</a>')|format('http://www.movistar.com.ve/movistar_firefox/index.html')}}
+              </li>
             </ul>
             <p>
             {{_('To date, 17 Operators spanning the globe have committed to distributing Firefox OS devices:')}}
@@ -108,25 +139,25 @@
           <dt>{{_('How do I…')}}</dt>
           <dd>
             <ul>
-              <li><a href="https://support.mozilla.org/kb/firefox-os-user-guide#w_how-to-make-a-call">
+              <li><a href="https://support.mozilla.org/kb/make-calls-and-access-voicemail-firefox-os">
                 {{_('…make a call?')}}
               </a></li>
-              <li><a href="https://support.mozilla.org/kb/firefox-os-user-guide#w_importing-facebook-sim-contacts">
+              <li><a href="https://support.mozilla.org/kb/import-add-and-manage-contacts-firefox-os">
                 {{_('…import my contacts? ')}}
               </a></li>
-              <li><a href="https://support.mozilla.org/kb/using-messages-application-firefox-os">
+              <li><a href="https://support.mozilla.org/kb/how-to-use-messages-app">
                 {{_('…create and view messages? ')}}
               </a></li>
-              <li><a href="https://support.mozilla.org/kb/firefox-os-user-guide#w_search">
+              <li><a href="https://support.mozilla.org/kb/get-connected-access-wi-fi-and-cellular-networks">
                 {{_('…use the internet?')}}
               </a></li>
-              <li><a href="https://support.mozilla.org/kb/firefox-os-user-guide#w_downloading-and-installing-apps">
+              <li><a href="https://support.mozilla.org/kb/how-download-and-install-apps">
                 {{_('…download and install an app?')}}
               </a></li>
-              <li><a href="https://support.mozilla.org/kb/firefox-os-user-guide#w_pictures-video-music">
+              <li><a href="https://support.mozilla.org/kb/taking-photos-firefox-os">
                 {{_('…take pictures?')}}
               </a></li>
-              <li><a href="https://support.mozilla.org/kb/firefox-os-user-guide#w_composing-and-sending-emails">
+              <li><a href="https://support.mozilla.org/kb/send-and-manage-email">
                 {{_('…compose and send an email?')}}
               </a></li>
             </ul>
@@ -169,7 +200,7 @@
       <div class="expander-content">
           <p>
           {{_('Mozilla was the first to implement the Do Not Track privacy feature.')}}
-          {% trans url='https://support.mozilla.org/kb/configure-mobile-privacy-and-security-settings' %}
+          {% trans url='https://support.mozilla.org/kb/how-turn-do-not-track-feature-firefox-os' %}
           Firefox also features customizable security settings to manage passwords, history, private data, cookies, site options and add-ons. <a href="{{url}}">Learn more.</a>
           {% endtrans %}
           </p>

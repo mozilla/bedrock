@@ -22,7 +22,12 @@ class init {
     package {
         ["git"]:
             ensure => installed;
-    }    
-        
+    }
+
+    # MySQL Client Required For MySQL Installed Via PIP
+    package { "libmysqlclient-dev":
+        ensure => installed;
+    }
+
 }
 

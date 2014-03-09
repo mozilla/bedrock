@@ -16,6 +16,13 @@ html[lang='bn-IN'] * {
     letter-spacing: normal !important;
 }
 
+// No italic for CJKT locales (Bug 973171)
+html[lang='ja'] *,
+html[lang='ko'] *,
+html[lang|='zh'] * {
+    font-style: normal !important;
+}
+
 body {
     font-size: @baseFontSize;
     line-height: @baseLine;
@@ -44,6 +51,11 @@ a {
         color: darken(@linkBlue, 10%);
         text-decoration: underline;
     }
+}
+
+// Add a double-arrow after links
+a.more:after {
+    content: "\00A0\00BB"; /* nbsp raquo */
 }
 
 .sand {
@@ -220,6 +232,19 @@ select[multiple] {
 
 .center {
     text-align: center;
+}
+
+hr {
+    margin: @baseLine 0;
+    border-bottom: 1px dotted @borderColor;
+}
+
+img[data-high-res] {
+    display: none;
+}
+
+.js img[data-high-res] {
+    display: inline;
 }
 
 /* }}} */
@@ -560,10 +585,24 @@ nav.menu-bar {
         }
         .title {
             display: block;
-            padding-left: 25px;
+            padding: 0 0 0 25px;
         }
     }
+}
 
+.html-rtl {
+    #footer-email-form,
+    #newsletter-form {
+        h3,
+        .form-contents,
+        .form-submit,
+        .field-privacy input {
+            float: right;
+        }
+        .field-privacy .title {
+            padding: 0 25px 0 0;
+        }
+    }
 }
 
 #footer-email-form.thank, #newsletter-form.thank {
@@ -637,7 +676,15 @@ nav.menu-bar {
         }
 
     }
+}
 
+html[dir="rtl"] #colophon {
+    .footer-logo,
+    .footer-nav,
+    .footer-license,
+    .footer-lang {
+        float: right;
+    }
 }
 
 /* }}} */

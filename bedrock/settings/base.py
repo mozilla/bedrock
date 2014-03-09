@@ -82,7 +82,8 @@ def JINJA_CONFIG():
         'extensions': [
             'lib.l10n_utils.template.i18n', 'jinja2.ext.do', 'jinja2.ext.with_',
             'jinja2.ext.loopcontrols', 'lib.l10n_utils.template.l10n_blocks',
-            'lib.l10n_utils.template.lang_blocks'
+            'lib.l10n_utils.template.lang_blocks',
+            'jingo_markdown.extensions.MarkdownExtension',
         ],
         # Make None in templates render as ''
         'finalize': lambda x: x if x is not None else '',
@@ -105,11 +106,11 @@ MINIFY_BUNDLES = {
         'about-base': (
             'css/mozorg/about-base.less',
         ),
-        'mobile_overview': (
-            'css/mozorg/mobile.less',
-        ),
         'foundation': (
             'css/foundation/foundation.less',
+        ),
+        'gigabit': (
+            'css/gigabit/gigabit.less',
         ),
         'grants': (
             'css/grants/grants.less',
@@ -148,8 +149,11 @@ MINIFY_BUNDLES = {
         'contribute-page': (
             'css/mozorg/contribute-page.less',
         ),
-        'contribute-university-ambassadors': (
-            'css/mozorg/contribute-ambassadors.less',
+        'contribute-studentambassadors-landing': (
+            'css/mozorg/contribute/studentambassadors/landing.less',
+        ),
+        'contribute-studentambassadors-join': (
+            'css/mozorg/contribute/studentambassadors/join.less',
         ),
         'dnt': (
             'css/base/mozilla-expanders.less',
@@ -206,14 +210,6 @@ MINIFY_BUNDLES = {
             'css/sandstone/video.less',
             'css/firefox/nightly_firstrun.less',
         ),
-        'firefox_firstrun_new_a': (
-            'css/sandstone/video.less',
-            'css/firefox/firstrun/a.less',
-        ),
-        'firefox_firstrun_new_b': (
-            'css/sandstone/video.less',
-            'css/firefox/firstrun/b.less',
-        ),
         'firefox_fx': (
             'css/firefox/fx.less',
             'css/sandstone/video.less',
@@ -242,6 +238,21 @@ MINIFY_BUNDLES = {
         'firefox_os_ie': (
             'css/firefox/os/firefox-os-ie.less',
         ),
+        'firefox_os_devices': (
+            'css/libs/tipsy.css',
+            'css/base/mozilla-modal.less',
+            'css/firefox/os/devices.less',
+        ),
+        'firefox_os_devices_ie': (
+            'css/firefox/os/devices-ie.less',
+        ),
+        'firefox_os_mwc_2014_preview': (
+            'css/base/mozilla-modal.less',
+            'css/firefox/os/mwc-2014-preview.less',
+        ),
+        'firefox_os_mwc_2014_preview_ie7': (
+            'css/firefox/os/mwc-2014-preview-ie7.less',
+        ),
         'firefox_releases_index': (
             'css/firefox/releases-index.less',
         ),
@@ -259,6 +270,10 @@ MINIFY_BUNDLES = {
             'css/sandstone/video.less',
             'css/firefox/whatsnew.less',
             'css/firefox/whatsnew-android.less',
+        ),
+        'firefox_whatsnew_aurora_29': (
+            'css/firefox/australis/australis-ui-tour.less',
+            'css/firefox/australis/aurora-whatsnew.less',
         ),
         'firefox_whatsnew_fxos': (
             'css/firefox/whatsnew-fxos.less',
@@ -307,8 +322,14 @@ MINIFY_BUNDLES = {
             'css/plugincheck/plugincheck.less',
             'css/plugincheck/qtip.css',
         ),
+        'press_speaker_request': (
+            'css/press/speaker-request.less',
+        ),
         'privacy': (
             'css/privacy/privacy.less',
+        ),
+        'privacy-day': (
+            'css/privacy/privacy-day.less',
         ),
         'fb_privacy': (
             'css/privacy/fb-privacy.less',
@@ -327,9 +348,6 @@ MINIFY_BUNDLES = {
         ),
         'research': (
             'css/research/research.less',
-        ),
-        'security-group': (
-            'css/mozorg/security-group.less',
         ),
         'security-tld-idn': (
             'css/mozorg/security-tld-idn.less',
@@ -429,8 +447,8 @@ MINIFY_BUNDLES = {
             'js/mozorg/contribute-form.js',
             'js/base/mozilla-input-placeholder.js',
         ),
-        'contribute-university-ambassadors': (
-            'js/mozorg/contribute-university-ambassadors.js',
+        'contribute-studentambassadors-join': (
+            'js/mozorg/contribute-studentambassadors-join.js',
             'js/base/mozilla-input-placeholder.js',
         ),
         'existing': (
@@ -479,17 +497,6 @@ MINIFY_BUNDLES = {
             'js/base/mozilla-modal.js',
             'js/firefox/firstrun/firstrun.js',
         ),
-        'firefox_firstrun_new_a': (
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/jquery.waypoints-sticky.min.js',
-            'js/base/mozilla-modal.js',
-            'js/firefox/firstrun/common.js',
-            'js/firefox/firstrun/a.js',
-        ),
-        'firefox_firstrun_new_b': (
-            'js/base/mozilla-modal.js',
-            'js/firefox/firstrun/common.js',
-        ),
         'firefox_fx': (
             'js/base/mozilla-pager.js',
             'js/base/mozilla-video-tools.js',
@@ -504,7 +511,6 @@ MINIFY_BUNDLES = {
             'js/firefox/new.js',
         ),
         'firefox_os': (
-            'js/base/mozilla-input-placeholder.js',
             'js/base/mozilla-modal.js',
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.waypoints-sticky.min.js',
@@ -514,12 +520,27 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.color.js',
             'js/libs/script.js',
             'js/libs/socialshare.min.js',
+            'js/firefox/os/partner_data.js',
             'js/firefox/os/firefox-os.js',
             'js/firefox/os/desktop.js',
             'js/firefox/os/have-it.js',
         ),
         'firefox_os_ie9': (
             'js/libs/matchMedia.addListener.js',
+        ),
+        'firefox_os_devices': (
+            'js/libs/jquery.tipsy.js',
+            'js/base/mozilla-pager.js',
+            'js/base/mozilla-modal.js',
+            'js/libs/matchMedia.js',
+            'js/libs/matchMedia.addListener.js',
+            'js/firefox/os/partner_data.js',
+            'js/firefox/os/devices.js',
+        ),
+        'firefox_os_mwc_2014_preview': (
+            'js/base/mozilla-modal.js',
+            'js/firefox/mwc-2014-map.js',
+            'js/firefox/os/mwc-2014-preview.js',
         ),
         'firefox_faq': (
             'js/base/mozilla-expanders.js',
@@ -533,6 +554,11 @@ MINIFY_BUNDLES = {
         'firefox_sms': (
             'js/firefox/sms.js',
             'js/libs/socialshare.min.js',
+        ),
+        'firefox_whatsnew_aurora_29': (
+            'js/firefox/australis/australis-uitour.js',
+            'js/firefox/australis/browser-tour.js',
+            'js/firefox/australis/aurora-whatsnew.js',
         ),
         'firefox_whatsnew_fxos': (
             'js/firefox/whatsnew-fxos.js',
@@ -559,7 +585,7 @@ MINIFY_BUNDLES = {
             'js/base/mozilla-input-placeholder.js',
         ),
         'mozorg-resp': (
-            'js/libs/jquery-1.7.1.min.js',
+            'js/libs/jquery-1.11.0.min.js',
             'js/base/global.js',
             'js/base/nav-main-resp.js',
             'js/base/footer-email-form.js',
@@ -580,9 +606,18 @@ MINIFY_BUNDLES = {
             'js/plugincheck/tmpl/plugincheck.ui.tmpl.js',
             'js/plugincheck/check-plugins.js',
         ),
+        'press_speaker_request': (
+            'js/libs/jquery.validate.js',
+            'js/libs/modernizr.custom.inputtypes.js',
+            'js/press/speaker-request.js',
+            'js/base/mozilla-input-placeholder.js',
+        ),
         'privacy': (
             'js/base/mozilla-pager.js',
             'js/privacy/privacy.js',
+        ),
+        'privacy-day': (
+            'js/privacy/privacy-day.js',
         ),
         'privacy-firefoxos': (
             'js/privacy_firefoxos.js',
@@ -618,6 +653,7 @@ MINIFY_BUNDLES = {
             'js/base/mozilla-input-placeholder.js',
             'js/base/mozilla-pager.js',
             'js/base/mozilla-modal.js',
+            'js/firefox/mwc-2014-map.js',
             'js/firefox/partners.js',
         ),
         'partners_common': (
@@ -630,8 +666,8 @@ MINIFY_BUNDLES = {
         ),
         'partners_desktop': (
             'js/libs/jquery.pageslide.min.js',
+            'js/libs/jquery.waypoints.min.js',
             'js/libs/tweenmax.1.9.7.min.js',
-            'js/libs/superscrollorama-1.0.1.js',
             'js/libs/jquery.spritely-0.6.1.js',
             'js/firefox/partners/desktop.js',
         ),
@@ -704,6 +740,7 @@ INSTALLED_APPS = get_apps(exclude=(
     'djcelery',
 ), append=(
     # Local apps
+    'jingo_markdown',
     'jingo_minify',
     'django_statsd',
     'waffle',
@@ -719,11 +756,13 @@ INSTALLED_APPS = get_apps(exclude=(
     '%s.lightbeam' % PROJECT_MODULE,
     '%s.firefox' % PROJECT_MODULE,
     '%s.foundation' % PROJECT_MODULE,
+    '%s.gigabit' % PROJECT_MODULE,
     '%s.grants' % PROJECT_MODULE,
     '%s.legal' % PROJECT_MODULE,
     '%s.mozorg' % PROJECT_MODULE,
     '%s.newsletter' % PROJECT_MODULE,
     '%s.persona' % PROJECT_MODULE,
+    '%s.press' % PROJECT_MODULE,
     '%s.privacy' % PROJECT_MODULE,
     '%s.redirects' % PROJECT_MODULE,
     '%s.research' % PROJECT_MODULE,
@@ -732,8 +771,10 @@ INSTALLED_APPS = get_apps(exclude=(
     '%s.facebookapps' % PROJECT_MODULE,
 
     # libs
+    'django_extensions',
     'lib.l10n_utils',
     'captcha',
+    'rna',
 ))
 
 LOCALE_PATHS = (
@@ -782,10 +823,10 @@ LOCALES_WITH_TRANSITION = ['en-US', 'af', 'ar', 'ast', 'be', 'bg',
                            'tr', 'uk', 'vi', 'zh-CN', 'zh-TW']
 
 # Locales showing the 15th Anniversary slideshow on /contribute
-LOCALES_WITH_MOZ15 = ['bg', 'cs', 'de', 'el', 'en-GB', 'en-US', 'es-AR', 'es-CL',
-                      'es-ES', 'es-MX', 'fr', 'fy-NL', 'hr', 'id', 'it', 'lt',
-                      'ms', 'nl', 'pl', 'pt-BR', 'ro', 'ru', 'sl', 'sq', 'sr',
-                      'ta', 'tr', 'zh-CN', 'zh-TW']
+LOCALES_WITH_MOZ15 = ['ar', 'bg', 'cs', 'cy', 'de', 'el', 'en-GB', 'en-US', 'es-AR',
+                      'es-CL', 'es-ES', 'es-MX', 'fr', 'fy-NL', 'hr', 'id', 'it',
+                      'lt', 'ms', 'nl', 'pl', 'pt-BR', 'ro', 'ru', 'sl', 'sq',
+                      'sr', 'ta', 'tr', 'zh-CN', 'zh-TW']
 
 # reCAPTCHA keys
 RECAPTCHA_PUBLIC_KEY = ''
@@ -817,6 +858,9 @@ STUB_INSTALLER_LOCALES = {
     'osx': [],
     'linux': [],
 }
+
+# Force download via SSL
+FORCE_SSL_DOWNLOAD_VERSIONS = ['27.0', '27.0.1']
 
 # Google Analytics
 GA_ACCOUNT_CODE = ''
@@ -911,3 +955,14 @@ OPTIMIZELY_PROJECT_ID = None
 GOOGLE_PLAY_FIREFOX_LINK = ('https://play.google.com/store/apps/details?'
                             'id=org.mozilla.firefox&utm_source=mozilla&'
                             'utm_medium=Referral&utm_campaign=mozilla-org')
+
+# Use bedrock Gruntfile.js for live reload
+USE_GRUNT_LIVERELOAD = False
+
+# Publishing system config
+RNA = {
+    'BASE_URL': os.environ.get('RNA_BASE_URL', 'https://nucleus.mozilla.org/rna/'),
+
+    # default False as temporary workaround for bug 973499
+    'VERIFY_SSL_CERT': os.environ.get('VERIFY_SSL_CERT', False),
+}

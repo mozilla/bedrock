@@ -1,0 +1,140 @@
+A new speaker request form has been submitted with the following information:
+
++ Event Name
+{{ sr_event_name|safe|strip_tags }}
+
++ Event URL
+{{ sr_event_url }}
+
++ Date/Time
+{{ sr_event_date }} {{ sr_event_time }}
+
+{% if sr_guest_speaker1 or sr_guest_speaker2 %}
+------------------------------------
+Guest Speaker
+
+{% if sr_guest_speaker1 %}
++ Choice 1
+{{ sr_guest_speaker1|safe|strip_tags }}
+{% endif %}
+{% if sr_guest_speaker2 %}
+
++ Choice 2
+{{ sr_guest_speaker2|safe|strip_tags }}
+{% endif %}
+
+{% endif %}
+------------------------------------
+Contact Information
+
++ Name
+{{ sr_contact_name|safe|strip_tags }}
+{% if sr_contact_title %}
+
++ Title
+{{ sr_contact_title|safe|strip_tags }}
+{% endif %}
+{% if sr_contact_company %}
+
++ Company
+{{ sr_contact_company|safe|strip_tags }}
+{% endif %}
+{% if sr_contact_phone %}
+
++ Phone
+{{ sr_contact_phone }}
+{% endif %}
+
++ Email
+{{ sr_contact_email }}
+{% if sr_contact_company_url %}
+
++ URL
+{{ sr_contact_company_url }}
+{% endif %}
+
+------------------------------------
+Event Details
+
+{% if sr_event_venue %}
++ Venue
+{{ sr_event_venue|safe|strip_tags }}
+{% endif %}
+{% if sr_event_theme %}
+
++ Theme
+{{ sr_event_theme|safe|strip_tags }}
+{% endif %}
+{% if sr_event_goal %}
+
++ Goal
+{{ sr_event_goal|safe|strip_tags }}
+{% endif %}
+{% if sr_event_format %}
+
++ Format
+{{ sr_event_format|safe|strip_tags }}
+{% endif %}
+{% if sr_event_audience_size %}
+
++ Expected Audience Size
+{{ sr_event_audience_size }}
+{% endif %}
+{% if sr_event_audience_demographics %}
+
++ Audience Demographics
+{{ sr_event_audience_demographics|safe|strip_tags }}
+{% endif %}
+{% if sr_event_speakers_confirmed %}
+
++ Confirmed Speakers
+{{ sr_event_speakers_confirmed|safe|strip_tags }}
+{% endif %}
+{% if sr_event_speakers_invited %}
+
++ Invited Speakers
+{{ sr_event_speakers_invited|safe|strip_tags }}
+{% endif %}
+{% if sr_event_speakers_past %}
+
++ Past Speakers
+{{ sr_event_speakers_past|safe|strip_tags }}
+{% endif %}
+{% if sr_event_media_coverage %}
+
++ Media Coverage
+{{ sr_event_media_coverage|safe|strip_tags }}
+{% endif %}
+{% if sr_event_sponsors %}
+
++ Event Sponsors
+{{ sr_event_sponsors|safe|strip_tags }}
+{% endif %}
+{% if sr_event_confirmation_deadline %}
+
++ Confirmation Deadline
+{{ sr_event_confirmation_deadline }}
+{% endif %}
+
+------------------------------------
+Presentation Details
+
+{% if sr_presentation_type %}
++ Type of Presentation
+{{ sr_presentation_type|join(', ') }}
+{% endif %}
+{% if sr_presentation_panelists %}
+
++ Other Panelists
+{{ sr_presentation_panelists|safe|strip_tags }}
+{% endif %}
+{% if sr_presentation_topic %}
+
++ Topic of Presentation
+{{ sr_presentation_topic|safe|strip_tags }}
+{% endif %}
+{% if sr_presentation_length %}
+
++ Expected Length
+{{ sr_presentation_length }}
+{% endif %}

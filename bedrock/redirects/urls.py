@@ -24,6 +24,7 @@ urlpatterns = patterns('',
     redirect(r'^b2g/about', 'firefox.partners.index'),
 
     redirect(r'^contribute/areas.html$', 'mozorg.contribute'),  # Bug 781914
+    redirect(r'^contribute/universityambassadors', 'mozorg.contribute.studentambassadors.landing'),
     redirect(r'^projects/$', 'mozorg.products'),  # Bug 763665
 
     # Bug 792185 Brand Toolkit -> Style Guide

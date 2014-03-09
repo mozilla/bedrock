@@ -1,6 +1,6 @@
-# Django 1.4.5 is also in vendor, but needs to be kept here so packages that
+# Django 1.4.8 is also in vendor, but needs to be kept here so packages that
 # depend on Django do not install a newer version
-Django==1.4.5
+Django==1.4.8
 
 # Templates
 -e git://github.com/jbalogh/jingo.git#egg=jingo
@@ -24,6 +24,9 @@ Babel>=0.9.4
 -e git://github.com/clouserw/tower.git#egg=tower
 -e git://github.com/fwenzel/django-mozilla-product-details#egg=django-mozilla-product-details
 
-python-memcached==1.45
+python-memcached==1.53
 
 django-statsd-mozilla==0.3.5
+
+# Publishing system
+git+git://github.com/mozilla/rna.git@39e9260428560a677f59db8d12dde8073f7fe7a9

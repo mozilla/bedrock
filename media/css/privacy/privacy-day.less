@@ -1,0 +1,244 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+.privacy-day #outer-wrapper {
+    background: #f8f8f8;
+}
+
+// Override sandstone base layout so we can have full-width blocks.
+#wrapper,
+#masthead,
+#main-content {
+    width: 100%;
+    padding: 0;
+}
+
+#masthead {
+    background: #1677b9 url(/media/img/sandstone/grain.png);
+    z-index: 1;
+}
+
+.container {
+    width: (@widthDesktop - (@gridGutterWidth * 2));
+    .clearfix();
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+}
+
+#main-content header {
+    background: #1677b9 url(/media/img/sandstone/grain.png);
+    min-height: 290px;
+    width: 100%;
+
+    .container {
+        background: transparent url(/media/img/privacy/privacy-day-glass.png) 420px top no-repeat;
+        min-height: 280px;
+        padding: 50px 540px 20px 0;
+        width: 400px;
+    }
+
+    h1 {
+        color: #fff;
+        font-size: 4.572em;
+        line-height: 1.175;
+        margin-bottom: 25px;
+        text-shadow: none;
+    }
+
+    .download-button small.download-other a:link,
+    .other .download-button-mobile small.download-other a:link,
+    .android .download-button-desktop small.download-other a:link,
+    .download-button small.download-other a:visited,
+    .other .download-button-mobile small.download-other a:visited,
+    .android .download-button-desktop small.download-other a:visited {
+        color: #ccc;
+    }
+
+}
+
+#principles a {
+    color: #fff;
+    font-size: .857em;
+    text-transform: uppercase;
+    padding: 3px 15px;
+    background: rgba(0, 0, 0, .15);
+    border-radius: 3px;
+
+    &:hover,
+    &:focus,
+    &:active {
+        background: rgba(0, 0, 0, .2);
+    }
+}
+
+.intro {
+    .span(3);
+    padding: 20px;
+    background: #ecedee;
+    margin-top: -25px;
+
+    p {
+        margin-bottom: 0;
+    }
+}
+
+.block {
+    .span(3);
+    margin-bottom: 30px;
+}
+
+.block:nth-child(2n+1) {
+    clear: left;
+}
+
+.block:nth-child(2n+2) {
+    .offset(1);
+}
+
+.go a:after {
+    content: ' »';
+    white-space: nowrap;
+}
+
+.main {
+    width: (@gridColumnWidth * 8) + (@gridGutterWidth * 8);
+    padding-top: 50px;
+    float: right;
+    font-size: .857em;
+
+    h2 {
+        font-size: 2em;
+    }
+
+    .go {
+        font-size: 1.333em;
+    }
+}
+
+/* Tablet Layout: 760px */
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+
+    .container {
+        width: @widthTablet - (@gridGutterWidth * 2);
+    }
+
+    #main-content header {
+        min-height: 200px;
+
+        .container {
+            background-position: 320px top;
+            background-size: 360px 440px;
+            min-height: 240px;
+            padding: 30px 420px 20px 0;
+            width: 280px;
+        }
+
+        h1 {
+            font-size: 3.572em;
+        }
+    }
+
+    .block,
+    .intro {
+        .span_narrow(3);
+    }
+
+    .intro {
+        margin-top: -25px;
+    }
+
+    .block:nth-child(2n+2) {
+        .offset_narrow(1);
+    }
+
+    .main {
+        width: (@gridColumnWidthNarrow * 8) + (@gridGutterWidth * 8);
+    }
+
+}
+
+/* Mobile layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+
+    .container {
+        width: @widthMobile - (@gridGutterWidth * 2);
+    }
+
+    #masthead h2 {
+        display: none;
+    }
+
+    #main-content header {
+        min-height: 0;
+        text-align: center;
+
+        .container {
+            background-image: none;
+            padding: 20px 0 40px;
+            width: @widthMobile - (@gridGutterWidth * 2);
+            min-height: 0;
+        }
+
+        h1 {
+            font-size: 48px;
+        }
+    }
+
+    .intro,
+    .main {
+        width: auto;
+        float: none;
+        margin: 0;
+    }
+
+    .intro {
+        margin-top: -25px;
+    }
+
+    .block {
+        width: auto;
+        margin: 0;
+    }
+
+    .block:nth-child(2n+2) {
+        margin-left: 0;
+    }
+
+    .go {
+        padding-bottom: 30px;
+        margin-bottom: 30px;
+        border-bottom: 1px dotted @borderColor;
+    }
+
+    .block:last-child .go {
+        border-bottom: 0;
+        padding-bottom: 0;
+    }
+
+}
+
+/* Wide mobile layout: 480px; */
+@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+
+    .container {
+        width: @widthMobileLandscape - @gridGutterWidth;
+    }
+
+    #masthead h2 {
+        display: block;
+    }
+
+    .intro,
+    .main {
+        .span-all();
+    }
+
+    .intro {
+        margin-top: -25px;
+    }
+
+}

@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -6,52 +8,85 @@ import json
 import re
 
 from django.conf import settings
-from django.http import (HttpResponsePermanentRedirect,
-                         HttpResponseRedirect)
+from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
+from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.views.decorators.vary import vary_on_headers
 from django.views.generic.base import TemplateView
 
 import basket
-from lib import l10n_utils
-from jingo_minify.helpers import BUILD_ID_JS, BUNDLE_HASHES
 from funfactory.urlresolvers import reverse
-
+from jingo_minify.helpers import BUILD_ID_JS, BUNDLE_HASHES
+from lib import l10n_utils
+from rna.models import Release
 
 from bedrock.firefox import version_re
 from bedrock.firefox.forms import SMSSendForm
-from bedrock.mozorg.context_processors import funnelcake_param
 from bedrock.mozorg.views import process_partnership_form
 from bedrock.firefox.utils import is_current_or_newer
 from bedrock.firefox.firefox_details import firefox_details, mobile_details
 from lib.l10n_utils.dotlang import _
 
+
 UA_REGEXP = re.compile(r"Firefox/(%s)" % version_re)
 
-LOCALE_OS_URLS = {
-    'en-US': 'https://blog.mozilla.org/press/2013/02/firefox-os-expansion',
-    'de': 'https://blog.mozilla.org/press-de/?p=760',
-    'it': 'https://blog.mozilla.org/press-it/?p=353',
-    'pl': 'https://blog.mozilla.org/press-pl/?p=407',
-    'fr': 'https://blog.mozilla.org/press-fr/?p=366',
-    'es-ES': 'https://blog.mozilla.org/press-es/?p=340',
-    'en-GB': 'https://blog.mozilla.org/press-uk/?p=471'
-}
+LANG_FILES = ['firefox/partners/index']
 
-LOCALE_OS_RELEASE_URLS = {
-    'de': 'https://blog.mozilla.org/press-de/2013/07/01/'
-          'mozilla-und-partner-machen-sich-bereit-fur-den-ersten-firefox-os-launch/',
-    'en-GB': 'https://blog.mozilla.org/press-uk/2013/07/01/'
-             'mozilla-and-partners-prepare-to-launch-first-firefox-os-smartphones/',
-    'en-US': 'https://blog.mozilla.org/blog/2013/07/01/'
-             'mozilla-and-partners-prepare-to-launch-first-firefox-os-smartphones',
-    'es-ES': 'https://blog.mozilla.org/press-es/?p=482',
-    'fr': 'https://blog.mozilla.org/press-fr/2013/07/01/'
-          'mozilla-et-ses-partenaires-preparent-le-lancement-des-premiers-smartphones-sous-firefox-os/',
-    'it': 'https://blog.mozilla.org/press-it/2013/07/01/'
-          'mozilla-e-i-suoi-partner-si-preparano-al-lancio-dei-primi-smartphone-con-firefox-os/',
-    'pl': 'https://blog.mozilla.org/press-pl/2013/07/01/'
-          'mozilla-wraz-z-partnerami-przygotowuje-sie-do-wprowadzenia-na-rynek-pierwszych-smartfonow-z-firefox-os/',
+LOCALE_FXOS_HEADLINES = {
+    'de': {
+        'title': u"Firefox OS ist richtungsweisend für die Zukunft des "
+            "mobilen Marktes",
+        'url': 'http://blog.mozilla.org/press-de/2014/02/23/'
+            'firefox-os-ist-richtungsweisend-fur-die-zukunft-des-mobilen-marktes',
+    },
+    'en-GB': {
+        'title': u'Firefox OS Unleashes the Future of Mobile',
+        'url': 'http://blog.mozilla.org/press-uk/2014/02/23/'
+            'firefox-os-unleashes-the-future-of-mobile'
+    },
+    'en-US': {
+        'title': _('Firefox OS Unleashes the Future of Mobile'),
+        'url': 'https://blog.mozilla.org/press/2014/02/firefox-os-future-2/',
+    },
+    'es-AR': {
+        'title': u'Firefox OS te desvela el futuro de lo móvil',
+        'url': 'http://blog.mozilla.org/press-latam/2014/02/23/'
+            'firefox-os-te-desvela-el-futuro-de-lo-movil/',
+    },
+    'es-CL': {
+        'title': u'Firefox OS te desvela el futuro de lo móvil',
+        'url': 'http://blog.mozilla.org/press-latam/2014/02/23/'
+            'firefox-os-te-desvela-el-futuro-de-lo-movil/',
+    },
+    'es-ES': {
+        'title': u'Firefox OS te desvela el futuro de lo móvil',
+        'url': 'https://blog.mozilla.org/press/2014/02/firefox-os-future-2/',
+    },
+    'es-MX': {
+        'title': u'Firefox OS te desvela el futuro de lo móvil',
+        'url': 'http://blog.mozilla.org/press-latam/2014/02/23/'
+            'firefox-os-te-desvela-el-futuro-de-lo-movil/',
+    },
+    'fr': {
+        'title': u'Firefox OS chamboule le futur du mobile',
+        'url': 'http://blog.mozilla.org/press-fr/2014/02/23/'
+            'firefox-os-chamboule-le-futur-du-mobile',
+    },
+    'it': {
+        'title': u'Firefox OS svela il futuro del mobile',
+        'url': 'http://blog.mozilla.org/press-it/2014/02/23/'
+            'firefox-os-svela-il-futuro-del-mobile',
+    },
+    'pl': {
+        'title': u'Firefox OS uwalnia przyszłość technologii mobilnej',
+        'url': 'http://blog.mozilla.org/press-pl/2014/02/23/'
+            'firefox-os-uwalnia-przyszlosc-technologii-mobilnej',
+    },
+    'pt-BR': {
+        'title': u'Firefox OS apresenta o futuro dos dispositivos móveis',
+        'url': 'https://blog.mozilla.org/press-br/2014/02/23/'
+            'firefox-os-apresenta-o-futuro-dos-dispositivos-moveis/',
+    },
 }
 
 INSTALLER_CHANNElS = [
@@ -85,6 +120,9 @@ JS_DESKTOP = get_js_bundle_files('partners_desktop')
 
 
 def get_latest_version(product='firefox', channel='release'):
+    if channel == 'organizations':
+        channel = 'esr'
+
     if product == 'mobile':
         return mobile_details.latest_version(channel)
     else:
@@ -151,34 +189,46 @@ def dnt(request):
     return response
 
 
-def all_downloads(request):
-    version = get_latest_version()
+def all_downloads(request, channel):
+    if channel is None:
+        channel = 'release'
+
+    if channel == 'organizations':
+        channel = 'esr'
+
+    version = get_latest_version('firefox', channel)
     query = request.GET.get('q')
+
+    channel_names = {
+        'release': _('Firefox'),
+        'beta': _('Firefox Beta'),
+        'aurora': _('Firefox Aurora'),
+        'esr': _('Firefox Extended Support Release'),
+    }
+
     return l10n_utils.render(request, 'firefox/all.html', {
         'full_builds': firefox_details.get_filtered_full_builds(version, query),
         'test_builds': firefox_details.get_filtered_test_builds(version, query),
         'query': query,
+        'channel': channel,
+        'channel_name': channel_names[channel],
     })
 
 
 @csrf_protect
 def firefox_partners(request):
     # If the current locale isn't in our list, return the en-US value
-    # MWC announcement
-    locale_os_url = LOCALE_OS_URLS.get(request.locale, LOCALE_OS_URLS['en-US'])
-    # Firefox OS 1.0 release
-    locale_os_release_url = LOCALE_OS_RELEASE_URLS.get(request.locale, LOCALE_OS_RELEASE_URLS['en-US'])
+    press_locale = request.locale if (request.locale in LOCALE_FXOS_HEADLINES) else 'en-US'
 
     template_vars = {
-        'locale_os_url': locale_os_url,
-        'locale_os_release_url': locale_os_release_url,
-        'locale_os_release_active': LOCALE_OS_RELEASE_URLS,
+        'locale_headline_url': LOCALE_FXOS_HEADLINES[press_locale]['url'],
+        'locale_headline_title': LOCALE_FXOS_HEADLINES[press_locale]['title'],
         'js_common': JS_COMMON,
         'js_mobile': JS_MOBILE,
         'js_desktop': JS_DESKTOP,
     }
 
-    form_kwargs = {'interest_set': 'fx'}
+    form_kwargs = {'interest_set': 'fx', 'lead_source': 'www.mozilla.org/firefox/partners/'}
 
     return process_partnership_form(request, 'firefox/partners/index.html', 'firefox.partners.index', template_vars, form_kwargs)
 
@@ -208,23 +258,29 @@ def releases_index(request):
 
 def latest_notes(request, product='firefox', channel='release'):
     version = get_latest_version(product, channel)
-    path = [
-        product,
-        re.sub(r'b\d+$', 'beta', version) if channel == 'beta' else version,
-        'auroranotes' if channel == 'aurora' else 'releasenotes'
-    ]
+
+    if channel == 'beta':
+        version = re.sub(r'b\d+$', 'beta', version)
+    if channel == 'organizations':
+        version = re.sub(r'esr$', '', version)
+
+    dir = 'auroranotes' if channel == 'aurora' else 'releasenotes'
+    path = [product, version, dir]
     locale = getattr(request, 'locale', None)
     if locale:
         path.insert(0, locale)
     return HttpResponseRedirect('/' + '/'.join(path) + '/')
 
 
-def latest_sysreq(request):
-    path = [
-        'firefox',
-        get_latest_version(),
-        'system-requirements'
-    ]
+def latest_sysreq(request, channel='release'):
+    version = get_latest_version('firefox', channel)
+
+    if channel == 'beta':
+        version = re.sub(r'b\d+$', 'beta', version)
+    if channel == 'organizations':
+        version = re.sub(r'^(\d+).+', r'\1.0', version)
+
+    path = ['firefox', version, 'system-requirements']
     locale = getattr(request, 'locale', None)
     if locale:
         path.insert(0, locale)
@@ -286,20 +342,7 @@ class LatestFxView(TemplateView):
 
 
 class FirstrunView(LatestFxView):
-    funnelcake_campaign = '25'
-
-    def get_template_names(self):
-        locale = l10n_utils.get_locale(self.request)
-        fc_ctx = funnelcake_param(self.request)
-
-        if (locale == 'en-US' and
-                fc_ctx.get('funnelcake_id', 0) == self.funnelcake_campaign):
-
-            template = 'firefox/firstrun-a.html'
-        else:
-            template = 'firefox/firstrun.html'
-
-        return template
+    template_name = 'firefox/firstrun.html'
 
 
 class WhatsnewView(LatestFxView):
@@ -318,6 +361,16 @@ class WhatsnewView(LatestFxView):
         'es-MX': 'spanish_final',
     }
 
+    def get(self, request, *args, **kwargs):
+        version = kwargs.get('fx_version')
+        if version == '29.0a2' and not settings.DEV and not request.is_secure():
+            uri = 'https://{host}{path}'.format(
+                host=request.get_host(),
+                path=request.get_full_path(),
+            )
+            return HttpResponsePermanentRedirect(uri)
+        return super(WhatsnewView, self).get(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         ctx = super(WhatsnewView, self).get_context_data(**kwargs)
 
@@ -331,10 +384,64 @@ class WhatsnewView(LatestFxView):
     def get_template_names(self):
         version = self.kwargs.get('fx_version')
         locale = l10n_utils.get_locale(self.request)
+
         if version == '29.0a1':
             template = 'firefox/whatsnew-nightly-29.html'
+        elif version == '29.0a2':
+            template = 'firefox/whatsnew-aurora-29.html'
         elif locale in self.fxos_locales:
             template = 'firefox/whatsnew-fxos.html'
         else:
             template = 'firefox/whatsnew.html'
-        return template
+
+        # return a list to conform with original intention
+        return [template]
+
+
+class TourView(LatestFxView):
+    template_name = 'firefox/whatsnew-aurora-29.html'
+
+    def get(self, request, *args, **kwargs):
+        if not settings.DEV and not request.is_secure():
+            uri = 'https://{host}{path}'.format(
+                host=request.get_host(),
+                path=request.get_full_path(),
+            )
+            return HttpResponsePermanentRedirect(uri)
+        return super(TourView, self).get(request, *args, **kwargs)
+
+
+def fix_fx_version(fx_version):
+    if len(fx_version.split('.')) == 2:
+        return fx_version + '.0'
+    else:
+        return fx_version
+
+
+def release_notes_template(channel, product):
+    if product == 'Firefox OS':
+        return 'firefox/releases/os-notes.html'
+    prefix = dict((c, c.lower()) for c in Release.CHANNELS)
+    return 'firefox/releases/%s-notes.html' % prefix.get(channel, 'release')
+
+
+def release_notes(request, fx_version, channel='Release', product='Firefox'):
+    release = get_object_or_404(Release, version=fix_fx_version(fx_version),
+                                channel=channel, product=product)
+    new_features, known_issues = release.notes()
+    return l10n_utils.render(
+        request, release_notes_template(channel, product), {
+            'version': fx_version,
+            'major_version': fx_version.split('.', 1)[0],
+            'release': release,
+            'new_features': new_features,
+            'known_issues': known_issues})
+
+
+def system_requirements(request, fx_version, channel='Release',
+                        product='Firefox'):
+    release = get_object_or_404(Release, version=fix_fx_version(fx_version),
+                                channel=channel, product=product)
+    return l10n_utils.render(
+        request, 'firefox/releases/system_requirements.html',
+        {'release': release, 'version': fx_version})

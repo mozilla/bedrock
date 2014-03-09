@@ -4,7 +4,7 @@
 
 {% extends "mozorg/base-resp.html" %}
 
-{% add_lang_files "mozorg/home" %}
+{% add_lang_files "mozorg/home" "mwc2014_promos" %}
 
 {% from 'macros.html' import facebook_share_url, twitter_share_url %}
 
@@ -30,26 +30,6 @@
 <!--[if lt IE 8]>
   {{ css('home-ie') }}
 <![endif]-->
-
-  {% if request.locale == 'en-US' %}
-    <!-- Google Analytics Content Experiment code -->
-    <script>function utmx_section(){}function utmx(){}(function(){
-      if (! /[?&]s=1+/.test(window.location.search)){
-        var k='71153379-33',d=document,l=d.location,c=d.cookie;
-        if(l.search.indexOf('utm_expid='+k)>0)return;
-        function f(n){if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.
-        indexOf(';',i);return escape(c.substring(i+n.length+1,j<0?c.
-        length:j))}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;d.write(
-        '<sc'+'ript src="'+'http'+(l.protocol=='https:'?'s://ssl':
-        '://www')+'.google-analytics.com/ga_exp.js?'+'utmxkey='+k+
-        '&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='+new Date().
-        valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
-        '" type="text/javascript" charset="utf-8"><\/sc'+'ript>')
-      }
-    })();
-    </script><script>utmx('url','A/B');</script>
-    <!-- End of Google Analytics Content Experiment code -->
-  {% endif %}
 {% endblock %}
 
 {% block string_data %}
@@ -66,18 +46,6 @@
 <!-- <![endif]-->
 {% endblock %}
 
-{% block site_header_nav %}
-  {% if request.locale == 'en-US' and show_search == '1' %}
-    <form title="{{ _('Search Mozilla sites') }}" role="search" method="get" action="https://www.google.com/cse" id="nav-search-form">
-      <input type="hidden" value="002443141534113389537:ysdmevkkknw" name="cx">
-      <input type="hidden" value="FORID:0" name="cof">
-      <input type="search" placeholder="{{ _('Search') }}" id="q-homenav" name="q" class="site-search">
-      <button type="submit" name="submit-search">{{ _('Search') }}</button>
-    </form>
-  {% endif %}
-  {{ super() }}
-{% endblock %}
-
 {% block site_header_logo %}{% endblock %}
 
 {% block content %}
@@ -91,7 +59,6 @@
 
   <section class="pillars">
     <ul class="accordion">
-
     {% if l10n_has_tag('promo_lightbeam') or settings.DEV %}
       <li id="panel-lightbeam" class="panel" tabindex="0">
         {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
@@ -122,6 +89,20 @@
       </li>
     {% endif %}
 
+    {% if l10n_has_tag('promo_mwc_2014') or settings.DEV %}
+      <li id="panel-mwc-2014" class="panel" tabindex="0">
+        <h2 class="panel-title">{{ _('Mobile World Congress 2014') }}</h2>
+        <div class="panel-inner">
+          <div class="panel-content">
+            <a href="{{ url('firefox.partners.index') }}">
+              <h3>{{ _('Unleash the future') }}</h3>
+              <p>{{ _('Firefox OS has gone from vision to demo to reality in just two years, bringing openness, accessibility and opportunity to 15 countries so far.') }}</p>
+              <p class="go">{{ _('See what’s next for mobile') }}</p>
+            </a>
+          </div>
+        </div>
+      </li>
+    {% else %}
       <li id="panel-fxos" class="panel" tabindex="0">
         {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
         <h2 class="panel-title">{{ _('<i>Look</i> ahead') }}</h2>
@@ -135,6 +116,7 @@
           </div>
         </div>
       </li>
+    {% endif %}
 
     {% if l10n_has_tag('promo_webmaker') or settings.DEV %}
       <li id="panel-webmaker" class="panel" tabindex="0">
@@ -203,13 +185,12 @@
 
   <section id="firefox-promo" class="billboard">
     <div class="container">
-      <a href="{{ url('firefox') }}" id="firefox-promo-link">
-        <h3>
-          {{ high_res_img('img/home/firefox-sm.png', {'alt': '', 'width': '105', 'height': '108'}) }}
-          <b>Firefox</b> {{_('Different by&nbsp;design')}}
-        </h3>
-      </a>
-
+      <header>
+        <a href="{{ url('firefox') }}" id="firefox-promo-link">
+          <h3>{{ high_res_img('img/home/firefox-logo-wordmark.png', {'alt': 'Firefox', 'width': '250', 'height': '100'}) }}</h3>
+          <h4><strong>{{_('Different by&nbsp;design')}}</strong></h4>
+        </a>
+      </header>
       {{ download_firefox(small=True, icon=False) }}
     </div>
   </section>
@@ -229,25 +210,25 @@
         <h2>{{ _('In the news') }}</h2>
         <ul class="hfeed cycle-slideshow" data-cycle-timeout="6000" data-cycle-slides="> .hentry" data-cycle-fx="carousel" data-cycle-carousel-fluid="true" data-cycle-carousel-vertical="true" data-cycle-next=".news-buttons .btn-next" data-cycle-prev=".news-buttons .btn-prev" data-cycle-carousel-visible="1" data-cycle-pause-on-hover="true">
 
-        {% l10n home_news, 20131010 %}
+        {% l10n home_news, 20140223 %}
           <li class="hentry">
             <h3 class="entry-title">
-              <a class="url go" rel="bookmark external" hreflang="en-US" href="{{ url('foundation.annualreport.2012.index') }}">
-                State of Mozilla and 2012 Financial Statements
+              <a class="url go" rel="bookmark external" hreflang="en-US" href="https://blog.mozilla.org/press/2014/02/firefox-os-future-2/">
+                Firefox OS Unleashes the Future of Mobile
               </a>
             </h3>
           </li>
           <li class="hentry">
             <h3 class="entry-title">
-              <a class="url go" rel="bookmark external" hreflang="en-US" href="https://blog.mozilla.org/press/2013/11/firefox-marketplace-shows-the-power-of-the-web-delivers-cross-platform-global-and-local-apps/">
-                Firefox Marketplace Shows the Power of the Web, Delivers Cross-Platform Global and Local Apps
+              <a class="url go" rel="bookmark external" hreflang="en-US" href="https://blog.mozilla.org/press/2014/02/firefox-os-news-2/">
+                Firefox OS Expands to Higher-Performance Devices and Pushes the Boundaries of Entry-Level Smartphones
               </a>
             </h3>
           </li>
           <li class="hentry">
             <h3 class="entry-title">
-              <a class="url go" rel="bookmark external" hreflang="en-US" href="https://blog.mozilla.org/blog/2013/10/09/mozilla-and-partners-to-kick-off-second-round-of-firefox-os-launches/">
-                Mozilla and Partners to Kick off Second Round of Firefox OS Launches in More Markets Around the World
+              <a class="url go" rel="bookmark external" hreflang="en-US" href="https://blog.mozilla.org/press/2014/02/developer-momentum-2/">
+                New Developer Hardware and Tools Show Firefox OS Ecosystem Momentum
               </a>
             </h3>
           </li>

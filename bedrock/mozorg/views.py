@@ -3,6 +3,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import re
+import json
 
 from django.conf import settings
 from django.core.context_processors import csrf
@@ -22,7 +23,7 @@ from bedrock.firefox import version_re
 from bedrock.firefox.utils import is_current_or_newer
 from bedrock.mozorg import email_contribute
 from bedrock.mozorg.forms import (ContributeForm,
-                                  ContributeUniversityAmbassadorForm,
+                                  ContributeStudentAmbassadorForm,
                                   WebToLeadForm)
 from bedrock.mozorg.util import hide_contrib_form
 from bedrock.mozorg.util import HttpResponseJSON
@@ -132,6 +133,7 @@ def process_partnership_form(request, template, success_url_name, template_vars=
                 interest = data.pop('interest')
                 data['00NU0000002pDJr'] = interest
                 data['oid'] = '00DU0000000IrgO'
+                data['lead_source'] = form_kwargs.get('lead_source', 'www.mozilla.org/about/partnerships/')
                 # As we're doing the Salesforce POST in the background here,
                 # `retURL` is never visited/seen by the user. I believe it
                 # is required by Salesforce though, so it should hang around
@@ -197,9 +199,9 @@ def plugincheck(request, template='mozorg/plugincheck.html'):
     return l10n_utils.render(request, template, data)
 
 
-@csrf_exempt
-def contribute_university_ambassadors(request):
-    form = ContributeUniversityAmbassadorForm(request.POST or None)
+@csrf_protect
+def contribute_studentambassadors_join(request):
+    form = ContributeStudentAmbassadorForm(request.POST or None)
     if form.is_valid():
         try:
             form.save()
@@ -209,11 +211,31 @@ def contribute_university_ambassadors(request):
                    'Please try again later.')])
             form.errors['__all__'] = msg
         else:
-            return redirect('mozorg.contribute_university_ambassadors_thanks')
+            return redirect('mozorg.contribute.studentambassadors.thanks')
     return l10n_utils.render(
         request,
-        'mozorg/contribute_university_ambassadors.html', {'form': form}
+        'mozorg/contribute/studentambassadors/join.html', {'form': form}
     )
+
+
+def holiday_calendars(request, template='mozorg/projects/holiday-calendars.html'):
+    """Generate the table of holiday calendars from JSON."""
+    calendars = []
+    json_file = settings.MEDIA_ROOT + '/caldata/calendars.json'
+    with open(json_file) as calendar_data:
+        calendars = json.load(calendar_data)
+
+    letters = set()
+    for calendar in calendars:
+        letters.add(calendar['country'][:1])
+
+    data = {
+        'calendars': sorted(calendars, key=lambda k: k['country']),
+        'letters': sorted(letters),
+        'CALDATA_URL': settings.MEDIA_URL + 'caldata/'
+    }
+
+    return l10n_utils.render(request, template, data)
 
 
 class Robots(TemplateView):
@@ -243,8 +265,6 @@ class HomeTestView(TemplateView):
         locale = l10n_utils.get_locale(self.request)
         locale = locale if locale in settings.MOBILIZER_LOCALE_LINK else 'en-US'
         ctx['mobilizer_link'] = settings.MOBILIZER_LOCALE_LINK[locale]
-
-        ctx['show_search'] = self.request.GET.get('s', 0)
 
         return ctx
 

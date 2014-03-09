@@ -378,3 +378,39 @@ def absolute_url(url):
         prefix = settings.CANONICAL_URL
 
     return prefix + url
+
+
+@jingo.register.function
+def product_url(product, page, channel=None):
+    """
+    Return a product-related URL like /firefox/all/ or /mobile/beta/notes/.
+
+    Examples
+    ========
+
+    In Template
+    -----------
+
+        {{ product_url('firefox', 'all', 'organizations') }}
+        {{ product_url('firefox', 'sysreq', channel) }}
+        {{ product_url('mobile', 'notes') }}
+    """
+
+    app = product
+    kwargs = {}
+
+    if product == 'mobile':
+        app = 'firefox'
+
+    # Tweak the channel name for the naming URL pattern in urls.py
+    if channel == 'release':
+        channel = None
+    if channel == 'esr':
+        channel = 'organizations'
+
+    if channel:
+        kwargs['channel'] = channel
+    if page == 'notes':
+        kwargs['product'] = product
+
+    return reverse('%s.%s' % (app, page), kwargs=kwargs)

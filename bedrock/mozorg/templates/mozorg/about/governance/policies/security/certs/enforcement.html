@@ -3,13 +3,11 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% extends "mozorg/about-base.html" %}
-	
+
 {% block page_title %}{{ _('Mozilla CA Certificate Enforcement Policy') }}{% endblock %}
 {% block body_class %}sand{% endblock %}
 
-{% block extrahead %}
-    {{ css('security-group') }}
-{% endblock %}
+{% block extrahead %}{% endblock %}
 
 {% block article %}
 <h1>{{ _('Mozilla CA Certificate Enforcement Policy') }}</h1>
@@ -29,8 +27,8 @@
   <li>
     <p>{{ _('Mozilla will take any steps we deem appropriate to protect our users if we learn that a CA has knowingly or intentionally mis-issued one or more certificates. This may include, but is not limited to disablement (partially or fully) or removal of all of the CA’s certificates from Mozilla’s products. A certificate that includes domain names that have not been verified according to the <a href="%s"> CA/Browser Forum’s Baseline Requirement #11.1.1 </a> is considered to be mis-issued. A certificate that is intended to be used only as an end entity certificate but includes a keyUsage extension with values keyCertSign and/or cRLSign or a basicConstraints extension with the cA field set to true is considered to be mis-issued.')|format('https://www.cabforum.org/documents.html') }}</p>
   </li>
-  <li> 
-    <p>{{ _('A certificate is disabled by turning off one or more of the three trust bits (Websites, Email, Code Signing). 
+  <li>
+    <p>{{ _('A certificate is disabled by turning off one or more of the three trust bits (Websites, Email, Code Signing).
     Disablement or removal of a certificate may be initiated by submitting a bug report to the mozilla.org Bugzilla system, as described in the <a href="%s">Root Change Process</a> or the <a href="%s">Mozilla Policy for Handling Security Bugs</a>.')|format('https://wiki.mozilla.org/CA:Root_Change_Process', url('mozorg.about.governance.policies.security.certs.policy')) }}</p>
   </li>
   <li>

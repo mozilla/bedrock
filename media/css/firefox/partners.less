@@ -3,6 +3,17 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 @import "../sandstone/lib.less";
+@import "../firefox/mwc-2014-schedule.less";
+@import "../firefox/mwc-2014-map.less";
+
+@font-face {
+    font-family: 'Open Sans ExtraBoldItalic';
+    src: url('/media/fonts/OpenSans-ExtraBoldItalic-webfont.eot?#iefix-2013') format('embedded-opentype'),
+         url('/media/fonts/OpenSans-ExtraBoldItalic-webfont.woff') format('woff'),
+         url('/media/fonts/OpenSans-ExtraBoldItalic-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 @localBlue:     #43a6e2;
 @localBlueDark: #247ac1;
@@ -22,6 +33,11 @@
         color: rgba(0,0,0,0.4);
         margin: 5px 10px;
     }
+}
+
+// alternative to using <br> and breaking L10n
+.block-text {
+    display: inline-block;
 }
 
 /* {{{ Buttons */
@@ -213,7 +229,7 @@
     top: 60px;
     left: 50%;
     width: auto;
-    margin-left: -(@widthMobile / 2);
+    margin-left: -(@widthDesktop / 2);
     padding: 0 10px;
     h3 {
         display: none;
@@ -221,6 +237,7 @@
 }
 
 .menu {
+    float: left;
     padding: 0;
     margin: 0;
     background: #fff;
@@ -233,7 +250,6 @@
         padding: 0;
         margin: 0;
         float: left;
-        width: 25%;
         a {
             display: block;
             width: auto;
@@ -256,7 +272,9 @@
         &:last-child a {
             border-radius: 0 3px 3px 0;
         }
-        &.active a {
+        &.active a,
+        &#menu-mwc-map a:hover,
+        &#menu-mwc-schedule a:hover {
             background-color: #15aaff;
         }
         &#menu-overview           a { background-position: 50% 0; }
@@ -267,11 +285,28 @@
         &#menu-marketplace.active a { background-position: 50% -300px; }
         &#menu-android            a { background-position: 50% -360px; }
         &#menu-android.active     a { background-position: 50% -420px; }
+
+        &#menu-mwc-map            a { background-position: 50% -480px; }
+        &#menu-mwc-map:hover      a { background-position: 50% -540px; }
+        &#menu-mwc-schedule       a { background-position: 50% -600px; }
+        &#menu-mwc-schedule:hover a { background-position: 50% -660px; }
     }
 }
 
-#overlay-menu {
-    display: none;
+#partner-menu {
+    width: 680px;
+    margin-right: @baseLine * 3;
+    li {
+        width: 25%;
+    }
+}
+
+
+#mwc-menu {
+    width: 260px;
+    li {
+        width: 50%;
+    }
 }
 
 /* }}} */
@@ -308,6 +343,9 @@
         text-align: center;
         margin-top: 20px;
         font-size: 28px;
+        font-family: 'Open Sans ExtraBoldItalic';
+        text-transform: uppercase;
+        text-shadow: none;
     }
     .intro {
         text-align: center;
@@ -316,19 +354,78 @@
                 text-align: left;
                 color: @textColorSecondary;
                 font-weight: bold;
-                font-size: 18px;
+                font-size: 16px;
                 text-transform: uppercase;
-                margin-top: 10px;
             }
             ul {
                 text-align: left;
-                font-size: @smallFontSize;
+                font-size: @baseFontSize;
                 li {
-                    margin-bottom: 5px;
-                    line-height: 1.2;
+                    margin: 0 0 5px;
+                    line-height: 1.4;
+                    list-style-type: none;
                 }
             }
         }
+    }
+}
+
+#overview-news-links a {
+    font-style: italic;
+
+    &:after {
+        content: ' »';
+        white-space: nowrap;
+    }
+}
+
+#overview-news-wrapper {
+    background: url(/media/img/firefox/partners/hr-grey.png) center bottom no-repeat;
+    background-size: 300px;
+    padding: @baseLine 0;
+
+    img {
+        display: none;
+    }
+}
+
+#overview-links {
+    background: url(/media/img/firefox/partners/hr-grey.png) center bottom no-repeat;
+    background-size: 300px;
+    padding: @baseLine 0;
+    li {
+        padding: 5px 0 0 54px;
+        background-image: url(/media/img/firefox/partners/sprite-overview-links.png);
+        background-repeat: no-repeat;
+        min-height: 39px;
+        list-style-type: none;
+        margin: 0 0 @baseLine;
+        text-align: left;
+        br {
+            // line break only needed at tablet+ sizes
+            display: none;
+        }
+        ul {
+            margin: 0;
+            padding: 0;
+            li {
+                margin: 0 0 (@baseLine / 4) 0;
+                padding: 0;
+                background-image: none;
+            }
+        }
+    }
+    #overview-video-recap {
+        background-position: left -298px;
+    }
+    #overview-fxos-devices {
+        background-position: left top;
+    }
+    #overview-schedule {
+        background-position: left -100px;
+    }
+    #overview-mwc-tweets {
+        background-position: left -195px;
     }
 }
 
@@ -351,6 +448,15 @@
     #os-operators {
         padding-top: @baseLine * 2;
     }
+}
+
+// not specifically tied to the OS section, but that's where it appears
+.fxos-devices-link {
+    display: inline-block;
+    background: url(/media/img/firefox/partners/sprite-overview-links.png) left top no-repeat;
+    padding-left: 58px;
+    min-height: 39px;
+    margin-bottom: @baseLine;
 }
 
 /* }}} */
@@ -518,6 +624,10 @@
     }
 }
 
+#sf-form:focus {
+    outline: none;
+}
+
 #pageslide #form {
     padding-top: 50px;
     padding-bottom: 20px;
@@ -574,6 +684,10 @@
 
 .js .overlay-contents {
     padding: 0;
+
+    .overlay-title {
+        display: none;
+    }
 }
 
 #testimonials,
@@ -687,6 +801,13 @@
 }
 
 @media only screen and (min-width: 1000px) and (max-width: 1090px)  {
+    body #partner-menu, body #mwc-menu {
+        float: none;
+        width: 38px;
+        li {
+            width: auto;
+        }
+    }
     body #partner-nav {
         left: -3px;
         width: 38px;
@@ -792,7 +913,6 @@
         margin-right: auto;
     }
 
-
     #partner-nav,
     #masthead {
         margin-left: -(@widthTablet / 2);
@@ -809,6 +929,16 @@
         h3 {
             display: none;
         }
+    }
+
+    #partner-menu {
+        width: 500px;
+        margin-right: @baseLine * 2;
+    }
+
+
+    #mwc-menu {
+        width: 220px;
     }
 
     #overview {
@@ -836,6 +966,15 @@
         margin-left: -(@widthMobile / 2);
     }
 
+    #partner-menu {
+        width: 200px;
+        margin-right: @baseLine / 2;
+    }
+
+    #mwc-menu {
+        width: 90px;
+    }
+
     #modal video {
         width: 100%;
         height: auto;
@@ -859,6 +998,14 @@
         margin-left: -(@widthMobileLandscape / 2);
     }
 
+    #partner-menu {
+        width: 280px;
+        margin-right: @baseLine;
+    }
+
+    #mwc-menu {
+        width: 120px;
+    }
 
     #overview {
         h2 {

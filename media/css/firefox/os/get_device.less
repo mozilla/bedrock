@@ -1,0 +1,167 @@
+// get phone default no-JS styles
+#get-device-wrapper {
+  position: relative;
+}
+
+#get-device {
+  padding: @baseLine;
+  width: @widthDesktop - (@gridGutterWidth * 4);
+  margin: 0 auto @baseLine auto;
+  background: #fff;
+  header {
+    display: none;
+  }
+  h2 {
+    font-size: 26px;
+    color: #666;
+    letter-spacing: -1px;
+    padding-bottom: (@baseLine * 2);
+    margin-bottom: @baseLine;
+  }
+}
+
+#provider-text-multi,
+#provider-text-single {
+  display: none;
+}
+
+.js {
+  // modal to show via CTA button
+  #get-device-wrapper {
+    display: none;
+  }
+
+  #get-device {
+    padding: 0;
+    width: auto;
+    .content {
+      text-align: center;
+      font-size: 20px;
+      letter-spacing: -1px;
+    }
+    header {
+      display: block;
+    }
+    #provider-links {
+      vertical-align: middle;
+      a {
+        display: inline-block;
+        vertical-align: middle;
+        padding: 60px (@baseLine * 2) 0 (@baseLine * 2);
+        font-size: 17px;
+        &:after {
+          content: " \00BB";
+        }
+      }
+      .movistar {
+        width: 177px;
+        height: 47px;
+        background: transparent url('/media/img/firefox/os/logo/movistar.jpg') top center no-repeat;
+      }
+      .t-mobile {
+        width: 83px;
+        height: 47px;
+        background: transparent url('/media/img/firefox/os/logo/t-mobile.jpg') top center no-repeat;
+      }
+      .congstar {
+        width: 100px; // image is 50px wide, 100px set here for better visual consistency.
+        height: 49px;
+        background: transparent url('/media/img/firefox/os/logo/congstar.jpg') top center no-repeat;
+      }
+      .cosmote {
+        width: 112px;
+        height: 48px;
+        background: transparent url('/media/img/firefox/os/logo/cosmote.png') top center no-repeat;
+      }
+      .vivo {
+        width: 95px;
+        height: 47px;
+        background: transparent url('/media/img/firefox/os/logo/vivo.jpg') top center no-repeat;
+      }
+      .telenor {
+        width: 100px;
+        height: 50px;
+        background: transparent url('/media/img/firefox/os/logo/telenor.jpg') top center no-repeat;
+      }
+      .tim {
+        width: 129px;
+        height: 48px;
+        background: transparent url('/media/img/firefox/os/logo/tim.png') top center no-repeat;
+      }
+      .last {
+        border-left: 1px dashed #666;
+      }
+    }
+    // An alternative logo for T-mobile Hungary
+    #provider-links.hu {
+      .t-mobile {
+        width: 100px;
+        height: 50px;
+        background: transparent url('/media/img/firefox/os/logo/t-mobile-alt.jpg') top center no-repeat;
+      }
+    }
+  }
+
+  .modal-content {
+    #provider-text-nojs { display: none; }
+
+    #provider-text-single { display: block; }
+  }
+}
+
+/* Tablet Layout: 760px */
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+  #get-device {
+    width: @widthTablet - (@gridGutterWidth * 4);
+  }
+
+  .js {
+    #get-device {
+      width: auto;
+    }
+  }
+}
+
+/* Mobile layout: 480px */
+@media only screen and (max-width: @breakTablet) {
+  #get-device {
+    width: @widthMobileLandscape - (@gridGutterWidth * 3);
+  }
+
+  .js {
+    #get-device {
+      width: auto;
+    }
+  }
+}
+
+/* Mobile layout: 320px */
+@media only screen and (max-width: @breakMobileLandscape) {
+  #get-device {
+    width: @widthMobile - (@gridGutterWidth * 3);
+  }
+
+  .js {
+    #get-device {
+      width: auto;
+      .content {
+        font-size: 16px;
+        letter-spacing: 0;
+      }
+      #provider-links {
+        margin-bottom: 0px;
+        .last {
+          border-left: none;
+        }
+      }
+    }
+    .modal-content {
+      h2 {
+        font-size: 22px;
+        line-height: 26px;
+        margin: 10px;
+        padding-bottom: 30px;
+      }
+    }
+  }
+}

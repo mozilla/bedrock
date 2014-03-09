@@ -8,15 +8,22 @@
 
 #main-feature {
     h1 {
-        font-size: 64px;
         .span-all;
         margin-bottom: @baseLine;
     }
     h2 {
         font-size: 24px;
         letter-spacing: -0.25px;
-        .span(10);
-        line-height: 1.1;
+        line-height: 1.4;
+        .span-all();
+    }
+    p {
+        .span-all();
+        margin-top: @baseLine;
+
+        a.sysreq:after {
+            content: "\00A0\00BB";
+        }
     }
 }
 
@@ -60,11 +67,21 @@
     table {
         .table;
         width: 100%;
-        thead th:first-child {
-            width: 100%;
+        thead {
+            th {
+                white-space: nowrap;
+                &:not([colspan]) {
+                    width: 15%;
+                }
+            }
+            th, td {
+                padding: 10px 0;
+            }
         }
-        tbody th {
-            font-weight: normal;
+        tbody {
+            th, td {
+                padding: 10px 10px 10px 0;
+            }
         }
         .unavailable {
             padding-right: @baseLine * 2;
@@ -74,21 +91,53 @@
             text-shadow: 0 -1px #fff;
         }
         .download {
-            padding-right: @baseLine * 2;
+            padding: 10px 0;
             a {
                 display: block;
-                padding: 10px 10px 10px 50px;
+                padding: 10px 10px 10px 45px;
                 background-position: 0 50%;
                 background-repeat: no-repeat;
-                background-image: url(/media/img/firefox/all/download-icons.png);
+                background-image: url(/media/img/firefox/all/download-icons.png?2014-01);
             }
-            &.mac a {
+            &.win64 a {
                 background-position: -300px 50%
             }
             &.linux a {
                 background-position: -600px 50%
             }
+            &.linux64 a {
+                background-position: -900px 50%
+            }
+            &.mac a {
+                background-position: -1200px 50%
+            }
         }
+    }
+}
+
+/* Aurora Download Page */
+.space #main-content table tbody {
+    tr, th, td {
+        border-color: rgba(255,255,255,0.2);
+    }
+}
+
+/* Desktop */
+@media only screen and (min-width: @breakDesktop) {
+    .firefox-all-release #main-feature h1 {
+        font-size: 64px;
+    }
+}
+
+/* Tablet and Mobile */
+@media only screen and (max-width: @breakDesktop) {
+    #main-content table .download a {
+        overflow: hidden;
+        margin: 0 auto;
+        padding: 0;
+        width: 40px;
+        height: 40px;
+        text-indent: 200%;
     }
 }
 
@@ -126,12 +175,27 @@
         }
     }
 
-    #main-content table .download {
-        padding-right: @baseLine;
+    #main-content table thead th:not([colspan]) {
+        text-align: center;
     }
 
 }
 
+/* Wide mobile layout: 480px; */
+@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+    #main-content table tbody {
+        th {
+            width: 50%;
+        }
+        td[lang] {
+            float: left;
+            width: 50%;
+        }
+        td.download {
+            margin-top: -18px;
+        }
+    }
+}
 
 /* Mobile layout: 320px */
 @media only screen and (max-width: @breakTablet) {
@@ -144,6 +208,9 @@
             font-size: 18px;
             letter-spacing: normal;
             .span-all();
+        }
+        p {
+            margin-top: @baseLine / 2;
         }
     }
 
@@ -184,18 +251,23 @@
                 display: none;
             }
             .download {
-                padding-right: @baseLine;
-                a {
-                    max-width: 200px;
-                }
-            }
-            td,
-            th {
-                border: 0;
-                padding: 5px;
+                float: left;
+                padding: 0;
             }
             tr {
+                overflow: hidden;
                 border-top: 1px solid rgba(0, 0, 0, 0.2);
+            }
+            tbody {
+                th, td {
+                    border: 0;
+                }
+                th {
+                    padding: 5px 0 0;
+                }
+                td {
+                    padding: 0 0 5px;
+                }
             }
         }
     }

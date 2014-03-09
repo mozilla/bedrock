@@ -7,8 +7,8 @@
 // Open Sans Extra Bold Italic for Firefox OS promo
 @font-face {
     font-family: 'Open Sans ExtraBoldItalic';
-    src: url('/media/fonts/OpenSans-ExtraBoldItalic-webfont.eot?#2013');
-    src: url('/media/fonts/OpenSans-ExtraBoldItalic-webfont.eot?#iefix-2013') format('embedded-opentype'),
+    src: url('/media/fonts/OpenSans-ExtraBoldItalic-webfont.eot');
+    src: url('/media/fonts/OpenSans-ExtraBoldItalic-webfont.eot?#iefix') format('embedded-opentype'),
          url('/media/fonts/OpenSans-ExtraBoldItalic-webfont.woff') format('woff'),
          url('/media/fonts/OpenSans-ExtraBoldItalic-webfont.ttf') format('truetype'),
          url('/media/fonts/OpenSans-ExtraBoldItalic-webfont.svg#OpenSansExtraBoldItalic') format('svg');
@@ -18,27 +18,27 @@
 
 @font-face {
     font-family: 'Open Sans Light';
-    src: url('/media/fonts/OpenSans-Light-webfont.eot?#iefix2013') format('embedded-opentype'),
-         url('/media/fonts/OpenSans-Light-webfont.woff?2013') format('woff'),
-         url('/media/fonts/OpenSans-Light-webfont.ttf?2013') format('truetype');
+    src: url('/media/fonts/OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/media/fonts/OpenSans-Light-webfont.woff') format('woff'),
+         url('/media/fonts/OpenSans-Light-webfont.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Open Sans';
-    src: url('/media/fonts/OpenSans-Regular-webfont.eot?#iefix2013') format('embedded-opentype'),
-         url('/media/fonts/OpenSans-Regular-webfont.woff?2013') format('woff'),
-         url('/media/fonts/OpenSans-Regular-webfont.ttf?2013') format('truetype');
+    src: url('/media/fonts/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/media/fonts/OpenSans-Regular-webfont.woff') format('woff'),
+         url('/media/fonts/OpenSans-Regular-webfont.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Open Sans';
-    src: url('/media/fonts/OpenSans-Bold-webfont.eot?#iefix2013') format('embedded-opentype'),
-         url('/media/fonts/OpenSans-Bold-webfont.woff?2013') format('woff'),
-         url('/media/fonts/OpenSans-Bold-webfont.ttf?2013') format('truetype');
+    src: url('/media/fonts/OpenSans-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/media/fonts/OpenSans-Bold-webfont.woff') format('woff'),
+         url('/media/fonts/OpenSans-Bold-webfont.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
 }
@@ -95,7 +95,6 @@
     color: #484848;
     position: relative;
     overflow: hidden;
-    direction: ltr;
     zoom: 1;
 }
 
@@ -116,7 +115,6 @@
     width: 960px;
     margin: 0 auto;
     padding: 0 10px;
-    text-align: left;
     position: relative;
     display:none;
 }
@@ -184,7 +182,6 @@
     font-size: 13px;
     font-weight: bold;
     margin-bottom: .4em;
-    word-wrap: break-word;
 }
 
 #tabzilla-panel #tabzilla-nav h2 {
@@ -324,7 +321,7 @@
         padding: 5px 0;
     }
 
-    p {
+    p, li {
         display: inline;
         margin: 0 10px 0 0;
     }
@@ -332,12 +329,6 @@
     ul {
         display: inline;
         margin: 0;
-    }
-
-    li {
-        display: inline;
-        margin: 0 10px 0 0;
-        white-space: nowrap;
         list-style-type: none;
     }
 
@@ -346,11 +337,18 @@
         border: 1px solid darken(#f1f8ff, 10%);
         cursor: pointer;
         border-radius: 3px;
+        white-space: nowrap;
 
         &:hover,
         &:focus {
             background-color: darken(#f1f8ff, 3%);
             border-color: darken(#f1f8ff, 13%);
+        }
+    }
+
+    &[dir="rtl"] {
+        p, li {
+            margin: 0 0 0 10px;
         }
     }
 }
@@ -400,13 +398,40 @@
 	left: -400px;
 }
 
+#tabzilla-promo .snippet#tabzilla-promo-mwc a {
+    background-image: url('/media/img/tabzilla/promo-mwc-2014.jpg');
+    background-position: 0 0;
+    background-color: #226aa7;
+    color: #fff;
+    font-size: 12px;
+    padding: 5px 10px 10px;
+    height: 200px;
+    line-height: 20px;
+    h4 {
+        text-shadow: none;
+        color: #fff;
+        font-family: Open Sans ExtraBoldItalic;
+        text-transform: uppercase;
+        letter-spacing: -1px;
+        font-weight: normal;
+        font-size: 48px;
+        line-height: 46px;
+        margin-bottom: 30px;
+    }
+    p {
+        font-size: 16px;
+        width: 110px;
+        padding-left: 5px;
+    }
+}
+
 #tabzilla-promo .snippet#tabzilla-promo-fxos a {
     background-image: url('/media/img/tabzilla/promo-fxos.png');
     background-position: 0 0;
     background-color: #226aa7;
     color: #fff;
     font-size: 12px;
-    padding: 20px;
+    padding: 20px 80px 20px 20px;
     height: 170px;
     line-height: 20px;
     h4 {
@@ -414,28 +439,148 @@
         color: #fff;
         font-family: Open Sans ExtraBoldItalic;
         text-transform: uppercase;
-        letter-spacing: -3px;
+        letter-spacing: -.1ex;
         font-weight: normal;
-        font-size: 54px;
-        line-height: 46px;
-        margin-top: 10px;
-        margin-bottom: 20px;
+        font-size: 40px;
+        line-height: 1;
+        margin-bottom: 10px;
     }
     p {
         font-size: 18px;
-        width: 150px;
     }
 }
 
-html[lang=ru] {
-    #tabzilla-promo .snippet#tabzilla-promo-fxos a {
+html[lang="da"],
+html[lang|="en"],
+html[lang="es-AR"],
+html[lang="es-MX"],
+html[lang="eu"],
+html[lang="hi-IN"],
+html[lang="sl"],
+html[lang="tr"] {
+    #tabzilla-promo .snippet#tabzilla-promo-fxos a h4 {
+        margin: 10px 0 20px;
+        font-size: 54px;
+        line-height: .85;
+    }
+}
+
+html[lang="fy-NL"],
+html[lang="hu"],
+html[lang="hy-AM"],
+html[lang="ja"],
+html[lang="ko"],
+html[lang="ku"],
+html[lang="lij"],
+html[lang="mr"],
+html[lang="pa-IN"],
+html[lang="pt-BR"],
+html[lang="sv-SE"],
+html[lang="vi"],
+html[lang|="zh"] {
+    #tabzilla-promo .snippet#tabzilla-promo-fxos a h4 {
+        font-size: 54px;
+    }
+}
+
+html[lang="csb"],
+html[lang="eo"],
+html[lang="gd"],
+html[lang="id"],
+html[lang="ms"],
+html[lang="ru"] {
+    #tabzilla-promo .snippet#tabzilla-promo-fxos a h4 {
+        font-size: 35px;
+    }
+}
+
+html[lang="ml"] {
+    #tabzilla-promo .snippet#tabzilla-promo-fxos a h4 {
+        font-size: 30px;
+    }
+}
+
+html[lang="km"] {
+    #tabzilla-promo .snippet#tabzilla-promo-fxos a h4 {
+        font-family: sans-serif; /* Do not use Open Sans ExtraBoldItalic */
+    }
+}
+
+// MWC 2014 promos
+html[lang='de'] {
+    #tabzilla-promo .snippet#tabzilla-promo-mwc a {
+        h4 {
+            font-size: 38px;
+            line-height: 40px;
+            margin-bottom: 40px;
+        }
+    }
+}
+
+html[lang='el'] {
+    #tabzilla-promo .snippet#tabzilla-promo-mwc a {
+        h4 {
+            font-size: 36px;
+            line-height: 40px;
+            margin-bottom: 40px;
+        }
+    }
+}
+
+html[lang='hu'] {
+    #tabzilla-promo .snippet#tabzilla-promo-mwc a {
+        h4 {
+            font-size: 44px;
+            margin-bottom: 60px;
+        }
+
+        p {
+            width: 120px;
+        }
+    }
+}
+
+html[lang='it'] {
+    #tabzilla-promo .snippet#tabzilla-promo-mwc a {
+        p {
+            width: 115px;
+        }
+    }
+}
+
+html[lang='ja'] {
+    #tabzilla-promo .snippet#tabzilla-promo-mwc a {
+        h4 {
+            font-size: 43px;
+            margin-bottom: 60px;
+        }
+    }
+}
+
+html[lang='sr'],
+html[lang='cs'] {
+    #tabzilla-promo .snippet#tabzilla-promo-mwc a {
+        h4 {
+            font-size: 42px;
+        }
+    }
+}
+
+html[lang|='es'] {
+    #tabzilla-promo .snippet#tabzilla-promo-mwc a {
         h4 {
             font-size: 40px;
         }
     }
 }
 
-
+html[lang|='zh'] {
+    #tabzilla-promo .snippet#tabzilla-promo-mwc a {
+        h4 {
+            margin-bottom: 78px;
+        }
+    }
+}
 
 @media (-webkit-min-device-pixel-ratio: 1.5),
        (                min-resolution: 1.5dppx),

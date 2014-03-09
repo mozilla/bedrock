@@ -24,4 +24,5 @@ urlpatterns = patterns('',
     url(r'^/$', views.privacy, name='privacy.index'),
     url(r'^/policies/firefox-os/$', views.firefoxos, name='privacy.firefoxos'),
     url(r'^/policies/facebook/$', views.facebook, name='privacy/facebook'),
+    page('/you', 'privacy/privacy-day.html'),
 )

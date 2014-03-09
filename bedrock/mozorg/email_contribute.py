@@ -55,7 +55,7 @@ FUNCTIONAL_AREAS = (
     fa('design',
         _('Visual Design'),
         'Design',
-        ['mnovak@mozilla.com'],
+        ['enoonan@mozilla.com'],
     ),
     fa('documentation',
         _('Documentation and Writing'),
@@ -89,9 +89,11 @@ INTEREST_CHOICES = (('', _('Area of interest?')),) + tuple(
 FUNCTIONAL_AREAS_DICT = dict((area.id, area) for area in FUNCTIONAL_AREAS)
 
 LOCALE_CONTACTS = {
+    'ar': ['info@arabicmozilla.org'],
     'bg': ['community@bgzilla.org'],
     'bn-BD': ['mahayalamkhan@gmail.com'],
     'cs': ['info@mozilla.cz'],
+    'cy': ['firefox@meddal.com'],
     'de': ['contribute@mozilla.de'],
     'el': ['core@mozilla-greece.org'],
     'es-AR': ['participa@mozilla-hispano.org'],
@@ -112,7 +114,7 @@ LOCALE_CONTACTS = {
     'ru': ['contribute@mozilla-russia.org'],
     'sl': ['info@mozilla.si'],
     'sq': ['besnik@mozilla-albania.org'],
-    'sr': ['prikljucise@mozilla-srbija.org'],
+    'sr': ['prikljucise@mozilla.rs'],
     'ta': ['vallavan2valluvan@gmail.com'],
     'tr': ['bilgi@mozilla.org.tr'],
     'zh-CN': ['contributor-zh-cn@mozilla.org'],
@@ -137,7 +139,8 @@ def handle_form(request, form):
                     pass
             else:
                 try:
-                    basket.subscribe(data['email'], 'about-mozilla')
+                    basket.subscribe(data['email'], 'about-mozilla',
+                                     source_url=request.build_absolute_uri())
                 except basket.BasketException:
                     pass
 
@@ -155,7 +158,7 @@ def send(request, data):
     """
     functional_area = FUNCTIONAL_AREAS_DICT[data['interest']]
 
-    from_ = 'contribute-form@mozilla.org'
+    from_ = 'contribute@mozilla.org'
     subject = 'Inquiry about Mozilla %s' % functional_area.subject
     msg = jingo.render_to_string(request, 'mozorg/emails/infos.txt', data)
     headers = {'Reply-To': data['email']}
@@ -180,9 +183,9 @@ def autorespond(request, data):
     """
     functional_area = FUNCTIONAL_AREAS_DICT[data['interest']]
 
-    subject = 'Inquiry about Mozilla %s' % functional_area.subject
+    subject = _('Welcome to Mozilla!')
     to = [data['email']]
-    from_ = 'contribute-form@mozilla.org'
+    from_ = 'contribute@mozilla.org'
     reply_to = ['contribute@mozilla.org']
     headers = {}
     msg = ''

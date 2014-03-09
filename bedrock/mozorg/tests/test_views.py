@@ -88,7 +88,7 @@ class TestViews(TestCase):
             ok_('product=firefox-stub-f999999999&' not in resp.content)
 
 
-class TestUniversityAmbassadors(TestCase):
+class TestStudentAmbassadorsJoin(TestCase):
     @patch.object(ReCaptchaField, 'clean', Mock())
     @patch('bedrock.mozorg.forms.request')
     @patch('bedrock.mozorg.forms.basket.subscribe')
@@ -101,26 +101,26 @@ class TestUniversityAmbassadors(TestCase):
                 'fmt': 'H',
                 'first_name': 'foo',
                 'last_name': 'bar',
-                'current_status': 'teacher',
+                'status': 'teacher',
                 'school': 'TuC',
                 'city': 'Chania',
                 'age_confirmation': 'on',
-                'expected_graduation_year': '',
+                'grad_year': '',
                 'nl_about_mozilla': 'on',
-                'area': '',
-                'area_free_text': '',
+                'major': '',
+                'major_free_text': '',
                 'privacy': 'True'}
         request_data = {'FIRST_NAME': data['first_name'],
                         'LAST_NAME': data['last_name'],
-                        'STUDENTS_CURRENT_STATUS': data['current_status'],
+                        'STUDENTS_CURRENT_STATUS': data['status'],
                         'STUDENTS_SCHOOL': data['school'],
-                        'STUDENTS_GRAD_YEAR': data['expected_graduation_year'],
-                        'STUDENTS_MAJOR': data['area'],
+                        'STUDENTS_GRAD_YEAR': data['grad_year'],
+                        'STUDENTS_MAJOR': data['major'],
                         'COUNTRY_': data['country'],
                         'STUDENTS_CITY': data['city'],
                         'STUDENTS_ALLOW_SHARE': 'N'}
         with self.activate('en-US'):
-            self.client.post(reverse('mozorg.contribute_university_ambassadors'), data)
+            self.client.post(reverse('mozorg.contribute.studentambassadors.join'), data)
         mock_subscribe.assert_called_with(
             data['email'], ['ambassadors', 'about-mozilla'], format=u'H',
             country=u'gr', source_url=u'',
@@ -174,7 +174,7 @@ class TestContribute(TestCase):
         eq_(len(mail.outbox), 1)
 
         m = mail.outbox[0]
-        eq_(m.from_email, 'contribute-form@mozilla.org')
+        eq_(m.from_email, 'contribute@mozilla.org')
         eq_(m.to, ['contribute@mozilla.org'])
         eq_(m.cc, ['josh@joshmatthews.net'])
         eq_(m.extra_headers['Reply-To'], self.contact)
@@ -188,13 +188,13 @@ class TestContribute(TestCase):
 
         cc = ['jay@jaygarcia.com', 'rardila@mozilla.com', 'madasan@gmail.com']
         m = mail.outbox[0]
-        eq_(m.from_email, 'contribute-form@mozilla.org')
+        eq_(m.from_email, 'contribute@mozilla.org')
         eq_(m.to, ['contribute@mozilla.org'])
         eq_(m.cc, cc)
         eq_(m.extra_headers['Reply-To'], self.contact)
 
         m = mail.outbox[1]
-        eq_(m.from_email, 'contribute-form@mozilla.org')
+        eq_(m.from_email, 'contribute@mozilla.org')
         eq_(m.to, [self.contact])
         eq_(m.cc, [])
         eq_(m.extra_headers['Reply-To'], ','.join(['contribute@mozilla.org'] +
@@ -232,7 +232,7 @@ class TestContribute(TestCase):
         self.data.update(interest='coding', newsletter=True)
         self.client.post(self.url_en, self.data)
 
-        mock_subscribe.assert_called_with(self.contact, 'about-mozilla')
+        mock_subscribe.assert_called_with(self.contact, 'about-mozilla', source_url=ANY)
         assert_false(mock_post.called)
 
     @patch.object(ReCaptchaField, 'clean', Mock())
@@ -261,7 +261,7 @@ class TestContribute(TestCase):
         eq_(len(mail.outbox), 1)
 
         m = mail.outbox[0]
-        eq_(m.from_email, 'contribute-form@mozilla.org')
+        eq_(m.from_email, 'contribute@mozilla.org')
         eq_(m.to, ['contribute@mozilla.org'])
         eq_(m.cc, ['envolva-se-mozilla-brasil@googlegroups.com'])
         eq_(m.extra_headers['Reply-To'], self.contact)
@@ -279,13 +279,13 @@ class TestContribute(TestCase):
 
         cc = ['envolva-se-mozilla-brasil@googlegroups.com']
         m = mail.outbox[0]
-        eq_(m.from_email, 'contribute-form@mozilla.org')
+        eq_(m.from_email, 'contribute@mozilla.org')
         eq_(m.to, ['contribute@mozilla.org'])
         eq_(m.cc, cc)
         eq_(m.extra_headers['Reply-To'], self.contact)
 
         m = mail.outbox[1]
-        eq_(m.from_email, 'contribute-form@mozilla.org')
+        eq_(m.from_email, 'contribute@mozilla.org')
         eq_(m.to, [self.contact])
         eq_(m.cc, [])
         eq_(m.extra_headers['Reply-To'], ','.join(['contribute@mozilla.org'] +
@@ -439,3 +439,22 @@ class TestProcessPartnershipForm(TestCase):
             self.assertTrue('email' in resp_data['errors'])
             self.assertEqual(response._headers['content-type'][1],
                              'application/json')
+
+    def test_lead_source(self):
+        """
+        A POST request should include the 'lead_source' field in that call. The
+        value will be defaulted to 'www.mozilla.org/about/partnerships/' if it's
+        not specified.
+        """
+
+        def _req(form_kwargs):
+            with patch('bedrock.mozorg.views.requests.post') as mock:
+                request = self.factory.post(self.url, self.post_data)
+                views.process_partnership_form(request, self.template,
+                                               self.view, {}, form_kwargs)
+            return mock.call_args[0][1]['lead_source']
+
+        eq_(_req(None),
+           'www.mozilla.org/about/partnerships/')
+        eq_(_req({'lead_source': 'www.mozilla.org/firefox/partners/'}),
+           'www.mozilla.org/firefox/partners/')

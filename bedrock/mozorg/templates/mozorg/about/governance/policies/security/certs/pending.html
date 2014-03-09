@@ -3,13 +3,11 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% extends "mozorg/about-base.html" %}
-	
+
 {% block page_title %}{{ _('Mozilla Pending CA Certificate List') }}{% endblock %}
 {% block body_class %}sand{% endblock %}
 
-{% block extrahead %}
-    {{ css('security-group') }}
-{% endblock %}
+{% block extrahead %}{% endblock %}
 
 {% block article %}
   <h1 class="title-banner">{{ _('Mozilla Pending CA Certificate List') }}</h1>
@@ -33,7 +31,7 @@
       <th>{{ _('CA Actions Items from Discussion') }}</th>
       <td>{{ _('Requests pending completion of action items resulting from <a href="%s">public discussion</a> are highlighted in yellow.')|format('https://wiki.mozilla.org/CA:How_to_apply#Public_discussion') }}</td>
     </tr>
-  </table> 
+  </table>
 
   <p>{{ _('View the <a href="%s">list of CA certificates that are currently distributed with Mozilla software products</a>.')|format(url('mozorg.about.governance.policies.security.certs.included')) }}</p>
 

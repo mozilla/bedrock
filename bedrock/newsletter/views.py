@@ -14,6 +14,7 @@ from django.utils.safestring import mark_safe
 from django.views.decorators.cache import never_cache
 
 import basket
+import basket.errors
 import commonware.log
 import lib.l10n_utils as l10n_utils
 import requests
@@ -45,6 +46,8 @@ unknown_address_text = _lazy(
     u'This email address is not in our system. Please double check your '
     u'address or <a href="%s">subscribe to our newsletters.</a>')
 
+invalid_email_address = _lazy(u'This is not a valid email address. '
+                              u'Please check the spelling.')
 
 UNSUB_UNSUBSCRIBED_ALL = 1
 UNSUB_REASONS_SUBMITTED = 2
@@ -72,8 +75,7 @@ def confirm(request, token):
         result = basket.confirm(token)
     except basket.BasketException as e:
         log.exception("Exception confirming token %s" % token)
-        if e.status_code == 403:
-            # Basket returns 403 on bad token
+        if e.code == basket.errors.BASKET_UNKNOWN_TOKEN:
             token_error = True
         else:
             # Any other exception
@@ -142,8 +144,8 @@ def existing(request, token=None):
             log.exception("Basket timeout")
             messages.add_message(request, messages.ERROR, general_error)
             return l10n_utils.render(request, 'newsletter/existing.html')
-        except basket.BasketException:
-            log.exception("FAILED to get user from token")
+        except basket.BasketException as e:
+            log.exception("FAILED to get user from token (%s)", e.desc)
         else:
             user_exists = True
 
@@ -384,8 +386,10 @@ def recovery(request):
                 # Try it - basket will return an error if the email is unknown
                 basket.send_recovery_message(email)
             except basket.BasketException as e:
-                # Was it that their email was not known?
-                if e.status_code == 404:
+                # Was it that their email was not known?  Or it could be invalid,
+                # but that doesn't really make a difference.
+                if e.code in (basket.errors.BASKET_UNKNOWN_EMAIL,
+                              basket.errors.BASKET_INVALID_EMAIL):
                     # Tell them, give them a link to go subscribe if they want
                     url = reverse('newsletter.mozilla-and-you')
                     form.errors['email'] = \

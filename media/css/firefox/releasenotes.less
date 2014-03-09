@@ -6,49 +6,64 @@
 @import "template-resp.less";
 
 #main-feature {
-  h1, h2, p {
-    .span(7);
-  }
-  h1 {
-    margin-bottom: .15em;
-  }
-  h2 {
-    font-size: 20px;
-    margin-bottom: .75em;
-  }
-  p {
-    margin-bottom: 1em;
-  }
+    h1,
+    h2,
+    p {
+        .span(7);
+    }
+
+    h1 {
+        margin-bottom: .15em;
+    }
+
+    h2 {
+        font-size: 20px;
+        margin-bottom: .75em;
+    }
+
+    p {
+        margin-bottom: 1em;
+    }
 }
 
-a.go:after {
-  content: " »";
-  white-space: nowrap;
+a.go:after,
+.sidebar a:after {
+    content: " »";
+    white-space: nowrap;
 }
 
 .notes-section {
-    padding: @baseLine @gridGutterWidth;
-    margin: 0 -@gridGutterWidth @baseLine;
-    @shadow: 0 0 0 1px #fff inset;
     .box-shadow(@shadow);
+    @shadow: 0 0 0 1px #fff inset;
     background: #fff;
     border-bottom: 1px solid #ddd;
+    margin: 0 -@gridGutterWidth @baseLine;
+    padding: @baseLine @gridGutterWidth;
 }
 
 .section-items {
     list-style: none;
     margin: 0;
+
     > li {
+        border-top: 1px solid @borderColor;
         margin: 0;
         padding: .714rem 0 .5rem;
-        border-top: 1px solid @borderColor;
         position: relative;
     }
+
     h4 {
         font-size: 18px;
         margin: 0 0 .25em;
     }
+
+    p {
+        margin: 0 0 .25em;
+    }
+
     .note {
+        font-size: 12px;
+        color: @textColorSecondary;
         margin: 0 0 .25em;
     }
 }
@@ -56,77 +71,166 @@ a.go:after {
 .section-items.tagged {
     > li {
         padding-left: 160px;
+
+        &.untagged {
+            padding-left: 0;
+        }
     }
+
     .tag {
-        display: inline-block;
-        padding: 4px 2px 4px 33px;
-        width: 102px;
-        position: absolute;
-        left: 0;
-        top: .714rem;
+        background: #f3f3f3 url(/media/img/firefox/releasenotes/tags.png?03-2014) 0 0 no-repeat;
         border-right: 3px solid #ccc;
-        text-transform: uppercase;
+        box-shadow: 0 1px 1px rgba(0,0,0,0.05), 0 -1px 0 rgba(0,0,0,0.05) inset;
+        display: inline-block;
         font-size: 11px;
         font-style: normal;
         line-height: 14px;
-        background: #f3f3f3 url(/media/img/firefox/releasenotes/tags.png) 0 0 no-repeat;
+        padding: 4px 2px 4px 33px;
+        position: absolute;
+        top: .714rem;
+        left: 0;
         text-shadow: 1px 1px 0 #fff;
-        box-shadow: 0 1px 1px rgba(0,0,0,0.05), 0 -1px 0 rgba(0,0,0,0.05) inset;
+        text-transform: uppercase;
+        width: 102px;
     }
+
     .tag-new {
         background-color: #ffedcf;
         background-position: 0 -50px;
         border-color: #f90;
     }
+
     .tag-changed {
         background-color: #e9cfff;
         background-position: 0 -100px;
         border-color: #8106e0;
     }
+
     .tag-fixed {
         background-color: #f0ffe1;
         background-position: 0 -150px;
         border-color: #5ba622;
     }
+
     .tag-html5 {
         background-color: #f8dfd8;
         background-position: 0 -200px;
         border-color: #d85027;
     }
+
     .tag-resolved {
         background-color: #dcf6ff;
         background-position: 0 -250px;
         border-color: #038fc0;
     }
+
     .tag-unresolved {
         background-color: #ffc8c8;
         background-position: 0 -300px;
         border-color: #c00;
     }
+
     .tag-developer {
         background-color: #e7e7e7;
         background-position: 0 -350px;
         border-color: #999;
     }
+
+    .tag-language {
+        background-color: #c3dbff;
+        background-position: 0 -400px;
+        border-color: #345b97;
+    }
+
+    .tag-feature {
+        background-color: #ffdf9f;
+        background-position: 0 -450px;
+        border-color: #e1732c;
+    }
 }
 
-#sidebar section {
-    border-bottom: 1px dotted @borderColor;
+.sidebar section {
+    border-bottom: 1px dotted darken(@borderColor, 10%);
     margin-bottom: @baseLine;
+
     h3 {
         font-size: 22px;
     }
+}
+
+#try {
+    .box-shadow(@shadow);
+    @shadow: 0 0 0 1px #fff inset;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    margin: 0 -@gridGutterWidth @baseLine;
+    padding: @baseLine @gridGutterWidth;
+
+    ol {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        font-size: 1.125rem;
+        margin: 0;
+        padding: .5em 0 .5em 40px;
+        position: relative;
+
+        &:before {
+            display: block;
+            width: 1.25em;
+            height: 1.5em;
+            padding: 0 .15em;
+            background: #09c;
+            color: #fff;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+            box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+            position: absolute;
+            left: 0;
+            top: 50%;
+            margin-top: -.75em;
+            text-align: center;
+            line-height: 1.5em;
+            vertical-align: middle;
+            border-radius: 50%;
+        }
+
+        &.try1:before {
+            content: '1';
+        }
+        &.try2:before {
+            content: '2';
+        }
+        &.try3:before {
+            content: '3';
+        }
+        &.try4:before {
+            content: '4';
+        }
+    }
+}
+
+#problems li {
+    margin: 0 0 .5em 20px;
+}
+
+#other p + p {
+    margin-top: -.5em;
 }
 
 
 /* Tablet Layout: 760px */
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
 
-  #main-feature {
-    h1, h2, p {
-      .span_narrow(7);
+    #main-feature {
+        h1,
+        h2,
+        p {
+            .span_narrow(7);
+        }
     }
-  }
 
 }
 
@@ -135,23 +239,25 @@ a.go:after {
 @media only screen and (max-width: @breakTablet) {
 
     #main-feature {
-      h1, h2, p {
-        .span-all();
-      }
-    }
-    
-    .section-items {
-        > li {
-             padding-left: 0; 
-        }
-        .tag {
-             position: static;
-             display: block;
-             width: auto;
-             margin: 0 0 .75em;
+        h1,
+        h2,
+        p {
+            .span-all();
         }
     }
 
+    .section-items {
+        > li {
+            padding-left: 0;
+        }
+
+        .tag {
+            position: static;
+            display: block;
+            width: auto;
+            margin: 0 0 .75em;
+        }
+    }
 }
 
 

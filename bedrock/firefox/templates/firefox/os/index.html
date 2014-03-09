@@ -37,13 +37,14 @@
               <ul id="nav-main-menu">
                 <li class="first"><a class="nav" href="#adaptive-wrapper">{{_('The Adaptive Phone')}}</a></li>
                 <li><a class="nav" href="#have-it-all">{{_('The Features')}}</a></li>
-                <li class="last"><a class="nav" href="#mission">{{_('The Mission')}}</a></li>
+                <li><a class="nav" href="#mission">{{_('The Mission')}}</a></li>
+                <li class="last"><a href="{{ url('firefox.os.devices') }}">{{ _('The Devices') }}</a></li>
               </ul>
             </nav>
         {% endblock %}
         <div class="cta-button">
           <a id="secondary-cta-signup" href="#email-form-wrapper" class="button newsletter-signup-toggle">{{_('Sign me up')}}</a>
-          <a id="secondary-cta-phone" href="#get-phone" class="button-green">{{_('Get a phone')}}</a>
+          <a id="secondary-cta-phone" href="#get-device" class="button-green">{{_('Get a phone')}}</a>
         </div>
       </div>
     </div>
@@ -95,7 +96,7 @@
         <h2>{{_('Make every <br>moment count')}}</h2>
         <p>{{_('Your needs change from one moment to the next. That’s why Firefox OS does the same. It gives you the power to live every moment to its fullest and participate in a better world.')}}</p>
         <div id="primary-cta-phone">
-          <p><a class="button-green" href="#get-phone">{{_('Get a Firefox OS smartphone today')}}</a></p>
+          <p><a class="button-green" href="#get-device">{{_('Get a Firefox OS smartphone today')}}</a></p>
           <p class="small">{{_('Sign up for our monthly newsletter and get the latest on Firefox OS')}}</p>
           <a class="button newsletter-signup-toggle" href="#email-form-wrapper">{{_('Sign me up')}}</a>
         </div>
@@ -401,22 +402,8 @@
   </div>
 </div>
 
-<div id="get-phone-wrapper">
-  <div id="get-phone" class="modal-content">
-    <div class="content">
-      <h2>{{_('We work with a number of providers to offer Firefox OS on a variety of devices.')}}</h2>
+{% include '/firefox/os/_get_device.html' %}
 
-      <p id="provider-text-nojs">
-        {% trans link="//support.mozilla.org/kb/firefox-os-faq"|safe %}
-        All your questions will be answered <a href="{{link}}">Read our extra helpful FAQ</a>
-        {% endtrans %}
-      </p>
-      <p id="provider-text-multi">{{_('Choose one from the list below to get a Firefox OS smartphone in your country.')}}</p>
-      <p id="provider-text-single">{{_('Click on the provider below to get a Firefox OS smartphone in your country.')}}</p>
-      <p id="provider-links"></p>
-    </div>
-  </div>
-</div>
 <div id="fb-root"></div>
 {% endblock %}
 
@@ -441,7 +428,7 @@
 {% endblock %}
 
 {% block site_js %}
-  {{ js('mozorg-resp') }}
+  {{ js('firefox-resp') }}
 {% endblock %}
 
 {% block js %}

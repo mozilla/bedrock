@@ -1,0 +1,224 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+.gigabit #outer-wrapper {
+  background: url(/media/img/gigabit/gigabit-bg.png) center top no-repeat,
+              url(/media/img/sandstone/bg-sand.png) repeat;
+}
+
+#wordmark {
+  .span-all();
+  margin-bottom: @baseLine;
+}
+
+.gigabit .container {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding-top: @gridGutterWidth;
+  padding-bottom: @gridGutterWidth;
+}
+
+#apply-button {
+  padding: 15px 80px;
+}
+
+.tnc-link {
+  display: block;
+}
+
+#home-banner {
+  background: url(/media/img/gigabit/banner-bg.jpg) 0 -100px no-repeat;
+  padding: 40px 30px;
+  width: calc( 100% - 10px );
+  color: #fff;
+
+  h1 {
+    color: #fff;
+    line-height: 1.1;
+    .span-all();
+    margin-bottom: .25em;
+  }
+
+  .main {
+    .span(7);
+  }
+
+  .aside {
+    .span(4);
+    text-align: center;
+  }
+
+  a {
+    color: #fff;
+  }
+}
+
+#important-dates {
+  @shadow: 0 0 0 1px #fff inset;
+  .box-shadow(@shadow);
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  padding-top: 15px;
+
+  li {
+    list-style: none;
+    margin: 0 20px 1em;
+    font-size: .857em;
+  }
+
+  p {
+    margin: 0 20px 15px;
+  }
+}
+
+#get-involved {
+  header{
+    margin-bottom: 40px;
+    padding: 30px 20px;
+    @shadow: 0 0 0 1px #fff inset;
+    .box-shadow(@shadow);
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+
+    p {
+      font-size: 1.428em;
+    }
+  }
+
+  h4 {
+    font-size: 24px;
+  }
+
+  .category {
+    .span(4);
+  }
+}
+
+#bsd-signup {
+  input[type='submit'] {
+    padding: 5px 30px;
+  }
+
+  #email-field {
+    width: 90%;
+  }
+
+  label {
+    display: block;
+    margin: 0 0 .5em;
+  }
+
+  .agree {
+    font-size: .857em;
+  }
+}
+
+#cta-apply {
+  @shadow: 0 0 0 1px #fff inset;
+  .box-shadow(@shadow);
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  padding: 20px 30px;
+}
+
+#about-gigabit,
+#questions {
+  .main {
+    .span(8);
+  }
+
+  .aside {
+    .span(4);
+  }
+}
+
+#partners{
+  background: #fff;
+  padding-top: 30px;
+  padding-bottom: 15px;
+
+  a img {
+    opacity: 0.5;
+    max-width: 75px;
+    transition: opacity linear .1s;
+  }
+
+  a:hover img,
+  a:focus img {
+    opacity: 1;
+    transition: opacity linear .1s;
+  }
+
+  .partner-logos li {
+    display: inline;
+    list-style: none;
+    margin: 0 15px 10px;
+    max-width: 100px;
+  }
+}
+
+#numbered-list{
+  list-style-type: decimal;
+}
+
+
+#terms .container h4:not(:first-of-type){
+  margin-top: 50px;
+}
+
+
+/* {{{ Tablet  Layout: 768px */
+@media only screen and (min-width: @widthTablet) and (max-width: @widthDesktop) {
+
+  #get-involved .category {
+    .span_narrow(4);
+  }
+
+  #about-gigabit,
+  #questions {
+    .main {
+      .span_narrow(8);
+    }
+
+    .aside {
+      .span_narrow(4);
+    }
+  }
+
+  #home-banner {
+    .main {
+      .span_narrow(7);
+    }
+    .aside {
+      .span_narrow(4);
+    }
+  }
+
+}
+
+/* }}} */
+/* {{{ Wide Mobile Layout: 480px */
+@media only screen and (max-width: @widthTablet) {
+
+  #about-gigabit .main,
+  #about-gigabit .aside,
+  #questions .main,
+  #questions .aside,
+  #partner-logos,
+  #home-banner .main,
+  #home-banner .aside,
+  #get-involved .category {
+    float: none;
+    margin: 0;
+    width: auto;
+  }
+
+  #home-banner,
+  #cta-apply {
+    padding: 20px;
+  }
+
+}

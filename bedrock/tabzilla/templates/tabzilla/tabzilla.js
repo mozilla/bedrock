@@ -67,6 +67,9 @@
  * @author    Kohei Yoshino <kohei.yoshino@gmail.com>
  */
 
+ // Load mwc 2014 strings from mwc2014_promos.lang only for the locales we target
+{% add_lang_files "mwc2014_promos" %}
+
 var Tabzilla = (function (Tabzilla) {
     'use strict';
     var minimumJQuery = '1.7.1';
@@ -278,7 +281,7 @@ var Tabzilla = (function (Tabzilla) {
             event.preventDefault();
             self.trackEvent(self.onaccept.trackAction || 'accept',
                             self.onaccept.trackLabel,
-                            undefined,
+                            0, false, // A user interaction event
                             self.onaccept.callback);
             self.hide();
         });
@@ -287,7 +290,7 @@ var Tabzilla = (function (Tabzilla) {
             event.preventDefault();
             self.trackEvent(self.oncancel.trackAction || 'cancel',
                             self.oncancel.trackLabel,
-                            undefined,
+                            0, false, // A user interaction event
                             self.oncancel.callback);
             self.hide();
             try {
@@ -298,7 +301,7 @@ var Tabzilla = (function (Tabzilla) {
         panel.trigger('infobar-showing');
         self.trackEvent(self.onshow.trackAction || 'show',
                         self.onshow.trackLabel,
-                        true,
+                        0, true, // An auto-triggered, non-interaction event
                         self.onshow.callback);
 
         if (opened) {
@@ -323,20 +326,17 @@ var Tabzilla = (function (Tabzilla) {
             panel.trigger('infobar-hidden');
         });
     };
-    Infobar.prototype.trackEvent = function (action, label, value, callback) {
+    Infobar.prototype.trackEvent = function (action, label, value,
+                                             nonInteraction, callback) {
         if (typeof(_gaq) !== 'object') {
             return;
         }
 
-        var cmd = ['_trackEvent', 'Tabzilla - ' + this.name, action, label];
-
-        // The optional value will be used to detect if the event is a real
-        // user interaction. Set true for a non-interaction event.
-        if (value !== undefined) {
-            cmd.push(value);
-        }
-
-        window._gaq.push(cmd);
+        // The 5th value and 6th nonInteraction parameters are optional.
+        // See the Google Analytics Developer Guide for details:
+        // https://developers.google.com/analytics/devguides/collection/gajs/eventTrackerGuide
+        window._gaq.push(['_trackEvent', 'Tabzilla - ' + this.name, action,
+                          label, value || 0, nonInteraction || false]);
 
         if (callback) {
             var timer = null;
@@ -402,6 +402,9 @@ var Tabzilla = (function (Tabzilla) {
             return false;
         }
 
+        // Do not show Chrome's built-in Translation Bar
+        $('head').append('<meta name="google" value="notranslate">');
+
         // Normalize the user language again, based on the language of the site
         userLang = (langLink.length) ? langLink.attr('hreflang')
                                      : langOption.val();
@@ -416,7 +419,7 @@ var Tabzilla = (function (Tabzilla) {
             trackLabel: userLang,
             callback: function () {
                 if (langLink.length) {
-                    location.href = langLink.attr('href');
+                    location.href = langLink.attr('href').replace(/^https?\:\/\/[^/]+/, '');
                 } else {
                     langOption.attr('selected', 'selected').get(0).form.submit();
                 }
@@ -427,7 +430,10 @@ var Tabzilla = (function (Tabzilla) {
         $.ajax({ url: '{{ settings.CDN_BASE_URL }}/' + userLang + '/tabzilla/transbar.jsonp',
                  cache: true, crossDomain: true, dataType: 'jsonp',
                  jsonpCallback: "_", success: function (str) {
-            transbar.show(str).attr('lang', userLang);
+            transbar.show(str).attr({
+                'lang': userLang,
+                'dir': ($.inArray(userLang, {{ settings.LANGUAGES_BIDI|list|safe }}) > -1) ? 'rtl' : 'ltr'
+            });
         }});
 
         return true;

@@ -18,7 +18,7 @@ class ViewDecoratorTests(TestCase):
 
     def _test_cache_headers(self, view, hours):
         """
-        Should have appropriate Cache-Control, Expires, and ETag headers.
+        Should have appropriate Cache-Control and Expires headers.
         """
         test_request = self.rf.get('/hi-there-dude/')
         resp = view(test_request)
@@ -28,8 +28,6 @@ class ViewDecoratorTests(TestCase):
         now_date = floor(time.time())
         exp_date = parse_http_date(resp['expires'])
         self.assertAlmostEqual(now_date + num_seconds, exp_date, delta=2)
-
-        self.assertEqual(resp['etag'], views.RESPONSE_ETAG)
 
     def test_cache_headers_48_hours(self):
         """

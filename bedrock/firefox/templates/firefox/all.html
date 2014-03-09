@@ -2,26 +2,42 @@
 
 {% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
 
-{% block page_title %}{{ _('Download Firefox in your language') }}{% endblock %}
-{% block page_desc %}{{ _('Firefox is available in more than 70 languages thanks to the contributions of Mozilla community members from around the world.') }}{% endblock %}
+{% block page_title %}{{ _('Download %s in your language')|format(channel_name) }}{% endblock %}
 {% block body_id %}firefox-all{% endblock %}
+
+{% block page_desc %}
+  {% if channel == 'beta' %}
+    {{ _('Download Firefox Beta in your language and experience cutting edge features before they make it to final release. Provide feedback to help us refine and polish the next version of Firefox.') }}
+  {% elif channel == 'aurora' %}
+    {{ _('Download Firefox Aurora in your language to experience the newest features and innovations in an unstable environment even before they go to Beta. Give us feedback that will determine what makes it to Final Release and help shape the future of Firefox.') }}
+  {% elif channel == 'esr' %}
+    {{ _('Firefox ESR is intended for groups who deploy and maintain the desktop environment in large organizations. <a href="%s">Learn more.</a>')|format(url('firefox.organizations.organizations')) }}
+  {% else %}
+    {{ _('Firefox is available in more than %s languages thanks to the contributions of Mozilla community members from around the world.')|format('80') }}
+  {% endif %}
+{% endblock %}
+
+{% block body_class -%}
+  sky firefox-all-{{ channel }} {% if channel == 'aurora' %}space{% endif %}
+{% endblock %}
 
 {% block site_css %}
   {{ css('firefox_all') }}
 {% endblock %}
 
-{% block breadcrumbs %}
-  <nav class="breadcrumbs">
-    <a href="{{ url('mozorg.home') }}">{{_('Home')}}</a> >
-    <a href="/firefox/">{{_('Firefox')}}</a> >
-    <span>{{_('Languages')}}</span>
-  </nav>
+{% block site_header_logo %}
+  {% if channel == 'aurora' %}
+    <h2><a href="{{ url('firefox') }}"><img alt="Mozilla Firefox" height="70" width="185" src="{{media('img/firefox/template/header-logo-inverse.png?2013-06') }}"></a></h2>
+  {% else %}
+    {{ super() }}
+  {% endif %}
 {% endblock %}
 
 {% block content %}
   <hgroup id="main-feature">
-    <h1>{{_('Download Firefox in your language')}}</h1>
-    <h2>{{ _('Firefox is available in more than %s languages thanks to the contributions of Mozilla community members from around the world.')|format('70') }}</h2>
+    <h1>{{ self.page_title()  }}</h1>
+    <h2>{{ self.page_desc() }}</h2>
+    <p><a class="sysreq" href="{{ product_url('firefox', 'sysreq', channel) }}">{{ _('Check the system requirements') }}</a></p>
   </hgroup>
 
   <form id="language-search" method="get">
@@ -97,6 +113,7 @@
             <th scope="col">{{ _('Windows') }}</th>
             <th scope="col">{{ _('Mac OS X') }}</th>
             <th scope="col">{{ _('Linux') }}</th>
+            <th scope="col">{{ _('Linux 64-bit') }}</th>
           </tr>
         </thead>
         <tbody>
@@ -111,12 +128,13 @@
 {% endmacro %}
 
 {% macro build_row(build) %}
-  <tr id="{{ build.locale }}" data-search="{{ build.name_en|lower }} {{ build.name_native|lower }}">
+  <tr id="{{ build.locale }}" data-search="{{ build.name_en|lower }}, {{ build.name_native|lower }}">
     <th scope="row">{{ build.name_en }}</th>
     <td lang="{{ build.locale }}">{{ build.name_native }}</td>
     {{ build_link(build, 'Windows', _('Download for Windows')) }}
     {{ build_link(build, 'OS X', _('Download for Mac OS X')) }}
     {{ build_link(build, 'Linux', _('Download for Linux')) }}
+    {{ build_link(build, 'Linux 64', _('Download for 64-bit Linux')) }}
   </tr>
 {% endmacro %}
 
@@ -127,7 +145,7 @@
 -->
 {% macro build_link(build, platform, tooltip) %}
   {% if build.platforms[platform] %}
-    <td class="download {% if platform == 'Windows' %}win{% elif platform == 'OS X' %}mac{% elif platform == 'Linux' %}linux{% endif %}"><a href="{{ build.platforms[platform].download_url }}" title="{{ tooltip }}">{{ _('Download') }}</a></td>
+    <td class="download {% if platform == 'Windows' %}win{% elif platform == 'OS X' %}mac{% elif platform == 'Linux' %}linux{% elif platform == 'Linux 64' %}linux64{% endif %}"><a href="{{ build.platforms[platform].download_url }}" title="{{ tooltip }}">{{ _('Download') }}</a></td>
   {% else %}
     <td class="unavailable">{{ _('Not Yet Available') }}</td>
   {% endif %}

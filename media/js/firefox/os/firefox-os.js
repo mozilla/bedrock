@@ -13,134 +13,15 @@
 
   var COUNTRY_CODE = '';
 
-  var PARTNER_DATA = {
-    "br": {
-      "partner": [
-        {
-          "name": "Vivo",
-          "url": "http://www.vivo.com.br/firefox"
-        }
-      ]
-    },
-    "co": {
-      "partner": [
-        {
-          "name": "Movistar",
-          "url": "http://www.movistar.co"
-        }
-      ]
-    },
-    "de": {
-      "partner": [
-        {
-          "name": "congstar",
-          "url": "http://aktion.congstar.de/firefox-os"
-        }
-      ]
-    },
-    "es": {
-      "partner": [
-        {
-          "name": "Movistar",
-          "url": "http://www.movistar.es/firefoxos?aff=aff-firefoxOS1"
-        }
-      ]
-    },
-    "gr": {
-      "partner": [
-        {
-          "name": "Cosmote",
-          "url": "http://www.cosmote.gr/cosmoportal/cosmote.portal?_nfpb=true&_pageLabel=HDV&sku=20290038&s=0"
-        }
-      ]
-    },
-    "hu": {
-      "partner": [
-        {
-          "name": "T-Mobile",
-          "url": "https://webshop.t-mobile.hu/webapp/wcs/stores/ProductDisplay?catalogId=2001&storeId=2001&langId=-11&productId=644566"
-        },
-        {
-          "name": "Telenor",
-          "url": "http://www.telenor.hu/mobiltelefon/alcatel/one-touch-fire"
-        }
-      ]
-    },
-    "it": {
-      "partner": [
-        {
-          "name": "TIM",
-          "url": "http://www.tim.it/prodotti/alcatel-one-touch-fire-mozilla-orange"
-        }
-      ]
-    },
-    "me": {
-      "partner": [
-        {
-          "name": "Telenor",
-          "url": "http://www.telenor.me/sr/Privatni-korisnici/Uredjaji/Mobilni-telefoni/Alcatel/OT_Fire"
-        }
-      ]
-    },
-    "mx": {
-      "partner": [
-        {
-          "name": "Movistar",
-          "url": "http://www.movistar.com.mx/firefox"
-        }
-      ]
-    },
-    "pe": {
-      "partner": [
-        {
-          "name": "Movistar",
-          "url": "http://catalogo.movistar.com.pe/zte-open"
-        }
-      ]
-    },
-    "pl": {
-      "partner": [
-        {
-          "name": "T-Mobile",
-          "url": "http://www.t-mobile.pl/pl/firefox"
-        }
-      ]
-    },
-    "rs": {
-      "partner": [
-        {
-          "name": "Telenor",
-          "url": "https://www.telenor.rs/sr/Privatni-korisnici/webshop/Mobilni-telefoni/Alcatel/One_Touch_Fire"
-        }
-      ]
-    },
-    "uy": {
-      "partner": [
-        {
-          "name": "Movistar",
-          "url": "http://www.firefoxos.movistar.com.uy/"
-        }
-      ]
-    },
-    "ve": {
-      "partner": [
-        {
-          "name": "Movistar",
-          "url": "http://www.movistar.com.ve/movistar_firefox/index.html"
-        }
-      ]
-    }
-  };
-
   /*
    * Set page specific content relating to geo for partner data etc
    */
   function setPartnerContent () {
-    var $getPhoneContent = $('#get-phone-wrapper .content');
+    var $getPhoneContent = $('#get-device-wrapper .content');
     var $providerLinks = $('#provider-links');
     var links = '';
 
-    if (PARTNER_DATA.hasOwnProperty(COUNTRY_CODE)) {
+    if (Mozilla.FxOs.Countries.hasOwnProperty(COUNTRY_CODE)) {
 
       // show get phone calls to action
       $('#primary-cta-phone').fadeIn();
@@ -148,12 +29,12 @@
       $('#secondary-cta-phone').css('display', 'inline-block');
 
       // if country has more than one provider, show the multi intro text
-      if (PARTNER_DATA[COUNTRY_CODE].partner.length > 1) {
+      if (Mozilla.FxOs.Countries[COUNTRY_CODE].partner.length > 1) {
         $('#provider-text-single').hide();
         $('#provider-text-multi').show();
       }
       // show partner specific links on modal etc
-      $.each(PARTNER_DATA[COUNTRY_CODE].partner, function(i, data) {
+      $.each(Mozilla.FxOs.Countries[COUNTRY_CODE].partner, function(i, data) {
         //set data.name, data.url etc
         var index = i === 1 ? 'last' : '';
         links += '<a class="' + data.name.toLowerCase() + ' ' + index + '" href="' + data.url + '">' + data.name + '</a>';

@@ -3,13 +3,11 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% extends "mozorg/about-base.html" %}
-	
+
 {% block page_title %}{{ _('Mozilla CA Certificate Store') }}{% endblock %}
 {% block body_class %}sand{% endblock %}
 
-{% block extrahead %}
-    {{ css('security-group') }}
-{% endblock %}
+{% block extrahead %}{% endblock %}
 
 {% block article %}
   <h1 class="title-banner">{{ _('Mozilla CA Certificate Store') }}</h1>
@@ -21,7 +19,7 @@
   <ul>
     <li><a href="{{ url('mozorg.about.governance.policies.security.certs.policy') }}">{{ _('Mozilla CA Certificate Policy') }}</a>
     <li><a href="https://wiki.mozilla.org/CA:Overview">{{ _('Mozilla CA Certificate Program Overview') }}</a>
-    <li><a href="{{ url('mozorg.about.governance.policies.security.certs.pending') }}">{{ _('List of pending inclusion requests') }}</a> {{ _('— Certification Authorities (CAs) who have applied for inclusion of their certificates into Mozillaʼs CA Certificate Program, and whose applications are pending.') }}</li> 
+    <li><a href="{{ url('mozorg.about.governance.policies.security.certs.pending') }}">{{ _('List of pending inclusion requests') }}</a> {{ _('— Certification Authorities (CAs) who have applied for inclusion of their certificates into Mozillaʼs CA Certificate Program, and whose applications are pending.') }}</li>
     <li><a href="{{ url('mozorg.about.governance.policies.security.certs.included') }}">{{ _('List of included root certificates') }}</a> {{ _('— CA certificates that are incuded in the NSS root certificate store, and distributed with Mozilla software products.') }} </li>
     <li><a href="http://mxr.mozilla.org/mozilla-central/source/security/nss/lib/ckfw/builtins/certdata.txt">{{ _('Source file with all of the included root certificates') }}</a>
   </ul>

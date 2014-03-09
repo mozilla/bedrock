@@ -1,0 +1,33 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "firefox/base-resp.html" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{ _('Firefox — {version} System Requirements')|f(version=version) }}{% endblock %}
+
+{% block body_id %}notes{% endblock %}
+{% block body_class %}fxos-notes sky{% endblock %}
+
+
+{% block site_css %}
+  {{ css('firefox_releasenotes') }}
+{% endblock %}
+
+{% block extrahead %}{% endblock %}
+
+{% block content %}
+  <header id="main-feature">
+    <h1>{{ _('Firefox {version} System Requirements')|f(version=version) }}</h1>
+  </header>
+
+  <div id="main-content">
+    <article class="main-column">
+        {{ release.system_requirements|markdown|safe }}
+    </article>
+  </div>
+  {% block sidebar %}{% endblock %}
+{% endblock %}
+
+{% block js %}{% endblock  %}

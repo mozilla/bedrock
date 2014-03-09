@@ -3,7 +3,7 @@
 <!doctype html>
 {# Note the "windows" class, without javascript platform-specific
      assets default to windows #}
-<html class="windows no-js" lang="{{ LANG }}" dir="{{ DIR }}"{% block html_attrs %}{% endblock %}>
+<html class="windows x86 no-js" lang="{{ LANG }}" dir="{{ DIR }}"{% block html_attrs %}{% endblock %}>
   <head>
     <meta charset="utf-8">{# Note: Must be within first 512 bytes of page #}
 <!--
@@ -16,8 +16,8 @@
     {% block shared_meta %}
     {#- Please sync this block with the base.html template.
         Because of blocks, we cannot use an include here. -#}
-    <title>{% filter striptags %}{% block page_title_full %}{% block page_title_prefix %}{% endblock %}{% block page_title %}{% endblock %}{% endblock page_title_full %}{% block page_title_suffix %} — Mozilla{% endblock %}{% endfilter %}</title>
-    <meta name="description" content="{% filter striptags %}{% block page_desc %}{% endblock %}{% endfilter %}">
+    <title>{% filter striptags|e %}{% block page_title_full %}{% block page_title_prefix %}{% endblock %}{% block page_title %}{% endblock %}{% endblock page_title_full %}{% block page_title_suffix %} — Mozilla{% endblock %}{% endfilter %}</title>
+    <meta name="description" content="{% filter striptags|e %}{% block page_desc %}{% endblock %}{% endfilter %}">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="{{ _('Mozilla') }}">
     <meta property="og:locale" content="{{ LANG|replace("-", "_") }}">
@@ -47,28 +47,7 @@
       {{ css('responsive') }}
     {% endblock %}
 
-    {% if LANG in ['ar', 'fa'] %}
-    {# bug 958321 #}
-      <style type="text/css">
-        @font-face {
-          font-family: 'Droid Arabic Naskh';
-          src: url({{ media('fonts/DroidNaskh-Regular.eot?#iefix') }}) format('embedded-opentype'),
-               url({{ media('fonts/DroidNaskh-Regular.woff') }}) format('woff'),
-               url({{ media('fonts/DroidNaskh-Regular.ttf') }}) format('truetype');
-          font-style: normal;
-          font-weight: normal;
-        }
-
-        @font-face {
-          font-family: 'Droid Arabic Naskh';
-          src: url({{ media('/fonts/DroidNaskh-Bold.eot?#iefix') }}) format('embedded-opentype'),
-               url({{ media('/fonts/DroidNaskh-Bold.woff') }}) format('woff'),
-               url({{ media('/fonts/DroidNaskh-Bold.ttf') }}) format('truetype');
-          font-style: normal;
-          font-weight: bold;
-        }
-      </style>
-    {% endif %}
+    {% include 'includes/locale-font-faces.html' %}
 
     {% block extrahead %}{% endblock %}
 
@@ -91,7 +70,7 @@
 
     {% block site_header %}
       <header id="masthead">
-        <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{{ settings.TABZILLA_INFOBAR_OPTIONS }}">{{ _('Mozilla') }}</a>
+        <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{{ settings.TABZILLA_INFOBAR_OPTIONS }}">Mozilla</a>
         {% block site_header_nav %}
         <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
         <nav id="nav-main" role="navigation">
@@ -195,5 +174,8 @@
       <script src="{{ settings.CDN_BASE_URL }}{{ url('tabzilla') }}?build={{ BUILD_ID_JS }}"></script>
     {% endblock %}
     {% block js %}{% endblock %}
+    {% if settings.USE_GRUNT_LIVERELOAD %}
+      <script src="//localhost:35729/livereload.js"></script>
+    {% endif %}
   </body>
 </html>
