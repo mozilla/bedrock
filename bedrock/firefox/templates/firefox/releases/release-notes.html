@@ -8,57 +8,64 @@
 {% block page_title %}{{ _('Firefox — {version} Notes')|f(version=version) }}{% endblock %}
 
 {% block body_id %}notes{% endblock %}
-{% block body_class %}fxos-notes sky{% endblock %}
-
+{% block body_class %}fx-notes sky{% endblock %}
 
 {% block site_css %}
   {{ css('firefox_releasenotes') }}
 {% endblock %}
 
-{% block content %}
-  <header id="main-feature">
-  {% if equivalent_release_url %}
-    <div id="relnoteswitcher">
-      <h4>View notes for:</h4>
-      <ul>
-      {% if release.product == 'Firefox' %}
-        <li><span>Desktop</span></li>
-        <li><a href="{{ equivalent_release_url }}">Mobile</a></li>
-      {% else %}
-        <li><a href="{{ equivalent_release_url }}">Desktop</a></li>
-        <li><span>Mobile</span></li>
-      {% endif %}
-      </ul>
-    </div>
-  {% endif %}
-    <h1>{{ _('Firefox {version} Notes')|f(version=version) }}</h1>
+{# channel_name is for display purposes where needed.  #}
+{% set channel_name = channel_name|default('Firefox') %}
 
+{% block content %}
+<main role="main">
+  <article id="main-content">
+
+  {% block notes_header %}
+    <header class="notes-head">
+    <h1>{{ _('Firefox {version} Notes')|f(version=version) }}</h1>
     <h2>{{ _('First offered to {channel} channel users on {date}')|f(channel=release.channel, date=release.release_date|l10n_format_date) }}</h2>
 
-    <p>
-    {% trans feedback='https://input.mozilla.org/feedback',
-        bugzilla='https://bugzilla.mozilla.org/' %}
-      As always, you&#146;re encouraged to
-      <a href="{{ feedback }}">tell us what you think</a>,
-      or <a href="{{ bugzilla }}">file a bug in Bugzilla</a>.
-    {% endtrans %}
-    {% if release.bug_search_url %}
-        {% trans bug_search_url=release.bug_search_url %}
-        If interested, please see the <a href="{{ bug_search_url }}">complete list of changes</a>
-        in this release.
-        {% endtrans %}
-    {% elif release.bug_list %}
-    <form action="https://bugzilla.mozilla.org/buglist.cgi" method="post">
-      <input type="hidden" name="limit" value="0">
-      <input type="hidden" name="bug_id" value="{{ release.bug_list }}">
-      <p>{{ _('If interested, please see the <input type="submit" value="complete list of changes"> in this release.') }}</p>
-    </form>
+    {% if equivalent_release_url %}
+      <aside id="platform">
+        <h4>{{ _('View notes for:') }}</h4>
+        <ul>
+        {% if release.product == 'Firefox' %}
+          <li><span>{{ _('Desktop') }}</span></li>
+          <li><a href="{{ equivalent_release_url }}">{{ _('Mobile') }}</a></li>
+        {% else %}
+          <li><a href="{{ equivalent_release_url }}">{{ _('Desktop') }}</a></li>
+          <li><span>{{ _('Mobile') }}</span></li>
+        {% endif %}
+        </ul>
+      </aside>
     {% endif %}
-    </p>
-  </header>
 
-  <div id="main-content">
-    <article class="main-column">
+      <p>
+      {% trans feedback='https://input.mozilla.org/feedback',
+          bugzilla='https://bugzilla.mozilla.org/' %}
+        As always, you’re encouraged to
+        <a href="{{ feedback }}">tell us what you think</a>,
+        or <a href="{{ bugzilla }}">file a bug in Bugzilla</a>.
+      {% endtrans %}
+      {% if release.bug_search_url %}
+          {% trans bug_search_url=release.bug_search_url %}
+          If interested, please see the <a href="{{ bug_search_url }}">complete list of changes</a>
+          in this release.
+          {% endtrans %}
+      {% elif release.bug_list %}
+      <form action="https://bugzilla.mozilla.org/buglist.cgi" method="post">
+        <input type="hidden" name="limit" value="0">
+        <input type="hidden" name="bug_id" value="{{ release.bug_list }}">
+        {# L10n: These three strings form a sentence, with the string 'complete list of changes' as the label for a form button. #}
+        <p>{{ _('If interested, please see the') }} <button type="submit">{{ _('complete list of changes') }}</button> {{ _('in this release.') }}</p>
+      </form>
+      {% endif %}
+      </p>
+    </header>
+  {% endblock %}
+
+    <div class="main-column">
       <section class="notes-section" id="new-features">
         <h3>{{ _('New Features') }}</h3>
         <ul class="section-items tagged">
@@ -95,12 +102,12 @@
           {% endfor %}
         </ul>
       </section>
-    </article>
+    </div>
 
-  {% block sidebar %}
+  {% block notes_sidebar %}
     <aside id="sidebar" class="sidebar">
       <section id="try">
-        <h3>{{ _('Try Firefox') }}</h3>
+        <h3>{{ _('Try %s')|format(channel_name) }}</h3>
         <ol>
           <li class="try1"><a href="{{ url('firefox.system_requirements', version) }}">{{ _('Check') }}</a></li>
           <li class="try2"><a href="{{ url('firefox') }}">{{ _('Download') }}</a></li>
@@ -124,7 +131,6 @@
         </ol>
       </section>
 
-
       <section id="other">
         <h3>{{ _('Other Resources') }}</h3>
         <p><a href="https://developer.mozilla.org/docs/Mozilla/Firefox/Releases/{{ major_version }}">{{ _('Developer Information') }}</a></p>
@@ -133,7 +139,8 @@
     </aside>
   {% endblock %}
 
-  </div>
+  </article>
+</main>
 {% endblock %}
 
 {% block js %}{% endblock  %}

@@ -3,3 +3,11 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
 {% extends "firefox/releases/release-notes.html" %}
+
+{% block body_class %}fx-notes space{% endblock %}
+
+{% set channel_name = 'Aurora' %}
+
+{% block site_header_logo %}
+    <h2><a href="{{ url('firefox') }}"><img alt="Mozilla Firefox" height="70" width="185" src="{{media('img/firefox/template/header-logo-inverse.png?2013-06') }}"></a></h2>
+{% endblock %}
