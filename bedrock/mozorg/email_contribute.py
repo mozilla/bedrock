@@ -20,7 +20,7 @@ FUNCTIONAL_AREAS = (
     fa('support',
         _('Helping Users'),
         'Support',
-        ['jay@jaygarcia.com', 'rardila@mozilla.com', 'madasan@gmail.com'],
+        ['jay@jaygarcia.com', 'mana@mozilla.com'],
     ),
     fa('qa',
         _('Testing and QA'),
