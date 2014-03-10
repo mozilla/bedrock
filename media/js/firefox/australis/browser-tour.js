@@ -63,9 +63,6 @@ if (typeof Mozilla == 'undefined') {
         // show the door hanger if the tab is visible
         if (!document.hidden) {
             $('.tour-init').trigger('tour-step');
-            // temp workaround if bug 968039 does not make it into Aurora 29
-            // fixes highlight position first time browser is opened.
-            Mozilla.UITour.showHighlight('appMenu');
             // Register page id for Telemetry
             Mozilla.UITour.registerPageID(this.options.id);
         }
@@ -89,6 +86,11 @@ if (typeof Mozilla == 'undefined') {
             }
         ];
 
+        // callback to postpone tour if user clicks the (x) button
+        var options = {
+            closeButtonCallback: this.postponeTour.bind(this)
+        };
+
         // show the door-hanger info panel
         $('.tour-init').on('tour-step', function () {
             var icon = Mozilla.ImageHelper.isHighDpi() ? this.dataset.iconHighRes : this.dataset.icon;
@@ -98,7 +100,8 @@ if (typeof Mozilla == 'undefined') {
                 window.trans('title'),
                 window.trans('text'),
                 icon,
-                buttons
+                buttons,
+                options
             );
         });
 
@@ -522,6 +525,10 @@ if (typeof Mozilla == 'undefined') {
         setTimeout(function () {
             that.$tourList.find('li.current .step-target').trigger('tour-step');
             $current.find('h2').focus();
+
+            // temp workaround if bug 968039 does not make it into Aurora 29
+            // fixes highlight position first time browser is opened.
+            Mozilla.UITour.showHighlight('appMenu');
         }, 500);
 
         if (!this.tourIsPostponed) {

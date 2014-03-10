@@ -22,29 +22,19 @@
             onTourComplete: updateCTALinks
         });
 
-        /*
-         * Get Firefox Account Sync configuration.
-         * This will be used to determine conditional messaging.
-         * Note: Sync isn't being used in the first release,
-         * but this callback acts as a useful way to only start
-         * the tour is the API is working!
-         */
-        Mozilla.UITour.getSyncConfiguration(function (config) {
+        // scroll to top of window for mask overlay
+        if ($window.scrollTop() > 0) {
+            $window.scrollTop(0);
+        }
 
-            // scroll to top of window for mask overlay
-            if ($window.scrollTop() > 0) {
-                $window.scrollTop(0);
-            }
+        // start the by showing the doorhanger.
+        tour.init();
 
-            // start the by showing the doorhanger.
-            tour.init();
-
-            // show in-page cta to restart the tour
-            $giveTry.show().on('click', function (e) {
-                e.preventDefault();
-                tour.restartTour();
-                gaTrack(['_trackEvent', 'whatsnew Page Interactions - New Firefox Tour', 'click', 'Give it a try']);
-            });
+        // show in-page cta to restart the tour
+        $giveTry.show().on('click', function (e) {
+            e.preventDefault();
+            tour.restartTour();
+            gaTrack(['_trackEvent', 'whatsnew Page Interactions - New Firefox Tour', 'click', 'Give it a try']);
         });
 
         // track blue post-tour cta button
