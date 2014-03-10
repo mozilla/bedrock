@@ -411,6 +411,10 @@ class TourView(LatestFxView):
         return super(TourView, self).get(request, *args, **kwargs)
 
 
+class Win8TouchView(LatestFxView):
+    template_name = 'firefox/windows-8-touch.html'
+
+
 def fix_fx_version(fx_version):
     if len(fx_version.split('.')) == 2:
         return fx_version + '.0'

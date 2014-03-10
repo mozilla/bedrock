@@ -1,0 +1,91 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "/firefox/base-resp.html" %}
+
+{% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
+
+{% block site_css %}
+  {{ css('firefox_windows_8_touch') }}
+{% endblock %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{ _('Firefox for Windows 8 Touch') }}{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+{% block body_id %}win-8-touch-{{ params.page_id }}{% endblock %}
+
+{% block site_header %}
+  <header id="masthead">
+    <h2>
+      <a href="{{ url('firefox') }}">
+        <img src="{{ media('img/firefox/template/header-logo.png') }}" alt="Mozilla Firefox" height="70" width="185" data-inverse-src="{{media('img/firefox/template/header-logo-inverse.png') }}">
+      </a>
+    </h2>
+    <p class="help">
+      {% trans link="https://support.mozilla.org/products/firefox-windows-8-touch" %}
+        Can't find the menu? <a class="more" href="{{ link }}">Get help at Mozilla Support</a>
+      {% endtrans %}
+    </p>
+  </header>
+{% endblock %}
+
+{% block content %}
+  <article>
+    <div class="primary-content">
+      <div class="primary-inner">
+        <section>
+          <p class="ribbon">{{ _('Hooray! Your Firefox is up to date.') }}</p>
+          {# L10n: <span>, <br> and <em> tags below used for formatting and visual styling. <sup>&reg;</sup> is required after 'Windows' for trademark #}
+          <h1>{{ _('Introducing <span>Firefox <em>for</em><br> Windows<sup>&reg;</sup> 8 Touch</span>') }}</h1>
+          {# L10n: <br> tags below used for formatting only. #}
+          <h2>{{ _('Our new, optimized design<br> is just one step away')}}</h2>
+          <p>
+            {# L10n: <strong></strong> tag below is for visual styling #}
+            {% trans relaunch_menu_item= '<strong>'|safe + _('Relaunch in Firefox for Windows 8 Touch') + '</strong>'|safe %}
+              To switch to Touch Mode, open the Firefox Menu and select "{{ relaunch_menu_item }}".
+              Now you’re browsing beautifully.
+            {% endtrans %}
+          </p>
+          <p>
+            {{ _('And don’t forget to make Firefox your default browser to stay in control online.')}}
+          </p>
+        </section>
+      </div>
+      <div class="tablet">
+        <img src="{{ media('img/firefox/windows-8-touch/tablet-large.png') }}" alt="{{ _('Firefox for Windows 8 Touch screenshot.')}}" />
+      </div>
+    </div>
+    <section class="secondary-content">
+      <ul>
+        <li>
+          <figure>
+            <img src="{{ media('img/firefox/windows-8-touch/thumb-more-web.png') }}" alt="" />
+            <figcaption>
+              <h3>{{ _('More of the Web')}}</h3>
+              <p>{{ _('Enjoy more of your favorite sites thanks to our redesigned toolbars that get out of your way.')}}
+            </figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure>
+            <img src="{{ media('img/firefox/windows-8-touch/thumb-navigation.png') }}" alt="" />
+            <figcaption>
+              <h3>{{ _('Fast and easy navigation')}}</h3>
+              <p>{{ _('Use the tiles and navigation buttons to search, find and get where you’re going quickly and easily.')}}
+            </figcaption>
+        </li>
+        <li>
+          <figure>
+            <img src="{{ media('img/firefox/windows-8-touch/thumb-share.png') }}" alt="" />
+            <figcaption>
+              <h3>{{ _('Sharing made simple')}}</h3>
+              <p>{{ _('Share text, photos or whole Web pages instantly with friends on any of your social networks.')}}
+            </figcaption>
+        </li>
+      </ul>
+    </section>
+  </article>
+{% endblock %}
+
+{% block email_form %}{{ mozorg_newsletter_form() }}{% endblock %}

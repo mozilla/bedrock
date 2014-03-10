@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from django.conf.urls.defaults import *  # noqa
+from django.conf.urls import patterns, url
 
 from bedrock.firefox import version_re
 from bedrock.redirects.util import redirect
@@ -13,6 +13,8 @@ import views
 latest_re = r'^firefox(?:/(?P<fx_version>%s))?/%s/$'
 firstrun_re = latest_re % (version_re, 'firstrun')
 whatsnew_re = latest_re % (version_re, 'whatsnew')
+win8_firstrun_re = latest_re % (version_re, 'win8/firstrun')
+win8_whatsnew_re = latest_re % (version_re, 'win8/whatsnew')
 tour_re = latest_re % (version_re, 'tour')
 product_re = '(?P<product>firefox|mobile)'
 channel_re = '(?P<channel>beta|aurora|organizations)'
@@ -66,6 +68,10 @@ urlpatterns = patterns('',
     url(firstrun_re, views.FirstrunView.as_view(), name='firefox.firstrun'),
     url(whatsnew_re, views.WhatsnewView.as_view(), name='firefox.whatsnew'),
     url(tour_re, views.TourView.as_view(), name='firefox.tour'),
+    url(win8_firstrun_re, views.Win8TouchView.as_view(),
+        kwargs={'page_id': 'firstrun'}, name='firefox.firstrun.win8'),
+    url(win8_whatsnew_re, views.Win8TouchView.as_view(),
+        kwargs={'page_id': 'whatsnew'}, name='firefox.whatsnew.win8'),
     url(r'^firefox/partners/$', views.firefox_partners,
         name='firefox.partners.index'),
 
