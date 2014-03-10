@@ -70,6 +70,38 @@ Add the path to the LESS compiler (found by using `which lessc`) to `bedrock/set
 
     LESS_BIN = '/path/to/lessc'
 
+Run the tests
+-------------
+
+Now that we have everything installed, let's make sure all of our tests pass.
+This will be important during development so that you can easily know when
+you've broken something with a change. You should still have your virtualenv
+activated, so running the tests is as simple as::
+
+    $ ./manage.py test
+
+.. note::
+
+    If your local tests run fine, but when you submit a pull-request our Jenkins
+    (continuous integration service) instance tells you the tests failed, it could
+    be due to the difference in settings between what you have in ``settings/local.py``
+    and what Jenkins uses: ``settings/jenkins.py``. You can run tests as close to Jenkins
+    as possible by doing the following::
+
+        $ JENKINS_HOME=1 ./manage.py test
+
+    This tells Bedrock to use the jenkins settings. This will require you to have a local
+    MySQL database server running and configured correctly, but may help you debug. Alternately
+    you can move your ``settings/local.py`` to a backup, copy ``settings/jenkins.py`` to
+    ``settings/local.py`` and tweak the DB settings yourself to make it work.
+
+.. note::
+
+    Another possible culprit when your tests pass but Jenkins doesn't is that we use Python version
+    2.6 on our servers. We are hoping to upgrade to 2.7 in the future, but so far we're using the
+    default version that ships with :abbr:`RHEL (Red Hat Enterprise Linux)` 6. If you use Python 2.7
+    specific features the tests will fail.
+
 Make it run
 -----------
 

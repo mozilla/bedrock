@@ -4,8 +4,6 @@
 
 # Django settings file for bedrock.
 
-from django.utils.functional import lazy
-
 from funfactory.settings_base import *  # noqa
 
 # Production uses MySQL, but Sqlite should be sufficient for local development.

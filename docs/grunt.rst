@@ -31,7 +31,7 @@ Grunt and Grunt plugins are installed and managed via `npm <https://npmjs.org/>`
 the `Node <http://nodejs.org/>`_ package manager.
 
 In order to get started, you'll want to install Grunt's command line interface
-(CLI) globally. You may need to use sudo (for OSX, *nix, BSD etc) or run your
+(CLI) globally. You may need to use sudo (for OSX, \*nix, BSD etc) or run your
 command shell as Administrator (for Windows) to do this.
 
     npm install -g grunt-cli
