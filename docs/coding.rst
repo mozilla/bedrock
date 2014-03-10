@@ -42,7 +42,7 @@ media()
 ^^^^^^^^^^^
 For a simple image, the `media()` function is used to generate the image URL. For example::
 
-	<img src="{{ media('img/firefox/new/firefox-logo.png') }}" alt="Firefox" />
+    <img src="{{ media('img/firefox/new/firefox-logo.png') }}" alt="Firefox" />
 
 will output an image::
 
@@ -66,7 +66,7 @@ l10n_img()
 ^^^^^^^^^^
 Images that have translatable text can be handled with `l10n_img()`::
 
-	<img src="{{ l10n_img('firefox/os/have-it-all/messages.jpg') }}" />
+    <img src="{{ l10n_img('firefox/os/have-it-all/messages.jpg') }}" />
 
 The images referenced by `l10n_img()` must exist in `media/img/l10n/`, so for above example, the images could include `media/img/l10n/en-US/firefox/os/have-it-all/messages.jpg` and `media/img/l10n/es-ES/firefox/os/have-it-all/messages.jpg`.
 
@@ -128,3 +128,11 @@ CSS Style
 
 See the `Mozilla CSS Style Guide
 <http://mozweb.readthedocs.org/en/latest/css-style.html>`_.
+
+Configuring your code editor
+----------------------------
+
+Bedrock includes an `.editorconfig` file in the root directory that you can
+use with your code editor to help maintain consistent coding styles. Please
+see `editorconfig.org<http://editorconfig.org/>`_. for a list of supported
+editors and available plugins.
