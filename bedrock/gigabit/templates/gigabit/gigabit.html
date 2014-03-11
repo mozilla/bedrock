@@ -85,16 +85,30 @@
 
         <aside id="important-dates" class="aside">
           <h4 class="center">{{ _('Key Dates') }}</h4>
+          <h5>
+            {{ _('Spring Pilot Period') }}
+          </h5>
           <ul>
-            <li><b>{{ _('February 2014') }}</b>: {{ _('Applications open for Spring pilot period') }}</li>
-            <li><b>{{ _('March 2014') }}</b>: {{ _('Spring pilot period begins') }}</li>
-            <li><b>{{ _('April 2014') }}</b>: {{ _('Applications open for the Summer pilot period') }}</li>
-            <li><b>{{ _('July 2014') }}</b>: {{ _('Summer pilot period begins') }}</li>
+            <li><b>{{ _('Applications now open') }}</b></li>
+            <li><b>{{ _('March 28, 2014') }}</b>: {{ _('Deadline to apply') }}</li>
+            <li><b>{{ _('April 14 to July 4, 2014*') }}</b>: {{ _('Spring Pilot period') }}</li>
+          </ul>
+
+          <h5>
+            {{ _('Summer Pilot Period') }}
+          </h5>
+          <ul>
+            <li><b>{{ _('May 19, 2014') }}</b>: {{ _('Applications open') }}</li>
+            <li><b>{{ _('June 20, 2014') }}</b>: {{ _('Deadline to apply ') }}</li>
+            <li><b>{{ _('July 7 to Sept 26, 2014*') }}</b>: {{ _('Summer Pilot period ') }}</li>
           </ul>
           <p>
           {% trans url_announcement='//sendto.mozilla.org/page/s/gigabit-updates', url_twitter='//twitter.com/MozillaGigabit' %}
-            Join our <a href='{{ url_announcement }}'>announcement list</a> or follow <a href='{{ url_twitter }}'>@MozillaGigabit</a> for updates!
+            Join our <a href='{{ url_announcement }}'>announcement list</a> or follow <a href='{{ url_twitter }}'>@MozillaGigabit</a> for updates.
           {% endtrans %}
+          </p>
+          <p>
+            {{ _('*Dates are subject to change') }}
           </p>
         </aside>
       </section>
