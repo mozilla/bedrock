@@ -80,9 +80,9 @@ urlpatterns = patterns('',
     # Bug 867773 - Redirect the Persona "Developer FAQ" link to MDN
     redirect(r'^persona/developer-faq/$', 'https://developer.mozilla.org/persona'),
 
-    # Bug 912101 - For now we'll hard-code a redirect to 1.2
+    # Bug 981176 - For now we'll hard-code a redirect to 1.3
     # In the future this should automatically go to the latest version's notes
-    redirect(r'^firefox/os/notes/$', '/firefox/os/notes/1.2/'),
+    redirect(r'^firefox/os/notes/$', '/firefox/os/notes/1.3/'),
 
     # Bug 896585 - Send /contact/ to the spaces landing
     redirect(r'^contact/$', '/contact/spaces/'),
