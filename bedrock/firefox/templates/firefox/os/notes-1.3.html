@@ -1,0 +1,413 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/fxos-base.html" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{_('Firefox OS 1.3 Notes')}}{% endblock %}
+
+{% block body_id %}notes{% endblock %}
+{% block body_class %}fxos-notes sky{% endblock %}
+
+
+{% block site_css %}
+  {{ css('firefox_releasenotes') }}
+{% endblock %}
+
+{% block extrahead %}
+{% endblock %}
+
+{% block content %}
+  <header id="main-feature">
+    <h1>{{ _('Firefox OS 1.3 Notes') }}</h1>
+
+    <h2>{{ _('First offered to partners for release on March 17, 2014') }}</h2>
+
+    <p>
+    {% trans feedback='https://input.mozilla.org/feedback',
+        bugzilla='https://bugzilla.mozilla.org/' %}
+      As always, you’re encouraged to
+      <a href="{{ feedback }}">tell us what you think</a>,
+      or <a href="{{ bugzilla }}">file a bug in Bugzilla</a>.
+    {% endtrans %}
+    </p>
+  </header>
+
+<div id="main-content">
+  <article class="main-column">
+
+    <section class="notes-section" id="browser">
+      <h3>{{ _('Browser') }}</h3>
+      <ul class="section-items">
+        <li>{{ _('Removal of About page in Browser') }}</li>
+      </ul>
+    </section>
+
+    <section class="notes-section" id="communications">
+      <h3>{{ _('Communications') }}</h3>
+      <ul class="section-items">
+        <li>{{ _('Support MMS message with Subject') }}</li>
+        <li>{{ _('Send MMS message to Email address') }}</li>
+        <li>{{ _('Call Ended message') }}</li>
+        <li>{{ _('DSDS Import contacts from each SIM at a time') }}</li>
+        <li>{{ _('Datastore API Support') }}</li>
+        <li>{{ _('Emergency Call') }}</li>
+        <li>{{ _('Save message draft Meta') }}</li>
+        <li>{{ _('Automatic switch SMS to MMS Send with Subject') }}</li>
+        <li>{{ _('Forward Message feature is not supported') }}</li>
+        <li>{{ _('Delivery Notifications - Read Receipt') }}</li>
+        <li>{{ _('FFOS Does not support the confirmation message popup when you change the PIN1 or unlock PIN1') }}</li>
+        <li>{{ _('Gallery Performance') }}</li>
+        <li>{{ _('MMS/SMS Enhancements bug') }}</li>
+      </ul>
+    </section>
+
+    <section class="notes-section" id="device">
+      <h3>{{ _('Device') }}</h3>
+      <ul class="section-items">
+        <li>{{ _('Multiple Bluetooth file transfers') }}</li>
+        <li>{{ _('BlueDroid porting') }}</li>
+      </ul>
+    </section>
+
+    <section class="notes-section" id="media">
+      <h3>{{ _('Media') }}</h3>
+      <ul class="section-items">
+        <li>{{ _('Access to music controls in notifications tray') }}</li>
+        <li>{{ _('Access to music controls when screen is locked') }}</li>
+        <li>{{ _('Enable continuous autofocus on camera') }}</li>
+        <li>{{ _('Add flash capability to camera') }}</li>
+        <li>{{ _('Arrange content in the gallery app') }}</li>
+        <li>{{ _('Display file information for the content shown in the gallery app') }}</li>
+        <li>{{ _('Multimedia Platform: Use speakerphone with FM radio app') }}</li>
+        <li>{{ _('Email: POP3 support') }}</li>
+      </ul>
+    </section>
+
+    <section class="notes-section" id="graphics-support">
+      <h3>{{ _('Graphics Support') }}</h3>
+      <ul class="section-items">
+        <li>{{ _('Asynchronous Panning/Zooming in Apps and Web Content') }}</li>
+        <li>{{ _('WebGL improvements (gralloc)') }}</li>
+        <li>{{ _('Enable Azure content for b2g') }}</li>
+      </ul>
+    </section>
+
+    <section class="notes-section" id="nfc">
+      <h3>{{ _('NFC') }}</h3>
+      <ul class="section-items">
+        <li>{{ _('NFC Pairing') }}</li>
+        <li>{{ _('NFC: Reading from NFC tags') }}</li>
+        <li>{{ _('NFC API') }}</li>
+      </ul>
+    </section>
+
+    <section class="notes-section" id="performance">
+      <h3>{{ _('Performance') }}</h3>
+      <ul class="section-items">
+        <li>{{ _('Scrolling FPS, Latencies') }}</li>
+      </ul>
+    </section>
+
+    <section class="notes-section" id="ril">
+      <h3>{{ _('RIL') }}</h3>
+      <ul class="section-items">
+        <li>{{ _('RIL: EAP-SIM') }}</li>
+        <li>{{ _('RIL: DSDS Settings') }}</li>
+      </ul>
+    </section>
+
+    <section class="notes-section" id="rtsp">
+      <h3>{{ _('RTSP') }}</h3>
+      <ul class="section-items">
+        <li>{{ _('RTSP: Support RTSP streaming framework') }}</li>
+        <li>{{ _('RTSP: Support RTP/RTCP via UDP/IP and RTSP via TCP/IP') }}</li>
+        <li>{{ _('RTSP: “RTSP-Teardown” message') }}</li>
+        <li>{{ _('RTSP: RTSP support for absolute and relative control URLs') }}</li>
+      </ul>
+    </section>
+
+    <section class="notes-section" id="ux">
+      <h3>{{ _('UX') }}</h3>
+      <ul class="section-items">
+        <li>{{ _('UX: Visual refresh phase 1 Headers') }}</li>
+      </ul>
+    </section>
+
+    <section class="notes-section" id="domapi">
+      <h3>{{ _('DOM/API') }}</h3>
+      <ul class="section-items">
+        <li>
+          {{ _('Multi-SIM support landed in Firefox OS (Dual-SIM-Dual-Standby or DSDS).') }}
+          {{ _('navigator.mozMobileConnection becomes an array of MozMobileConnection instances, i.e. navigator.mozMobileConnections.') }}
+          {{ _('The privileged subset of this API can be used to detect MCC (country) and MNC (carrier).') }}
+        </li>
+        <li>
+        {% trans url1='https://bugzilla.mozilla.org/show_bug.cgi?id=850430' %}
+          Contacts API now uses WebIDL <a href="{{ url1 }}">bug 850430</a>, with associated changes:
+        {% endtrans %}
+          <ul>
+            <li>{{ _('Date properties now handled consistently across the Contacts code.') }}</li>
+            <li>{{ _('mozContacts.remove now accepts a contact ID for removal.') }}</li>
+          </ul>
+        </li>
+        <li>
+        {% trans url1='https://bugzilla.mozilla.org/show_bug.cgi?id=967414',
+                 url2='https://bugzilla.mozilla.org/show_bug.cgi?id=871445' %}
+          The DataStore API has been enabled by default in B2G for certified apps only
+          <a href="{{ url1 }}">bug 967414</a>, and its permissions have been tweaked
+          <a href="{{ url2 }}">bug 871445</a>.
+        {% endtrans %}
+        </li>
+        <li>
+        {% trans url1='https://bugzilla.mozilla.org/show_bug.cgi?id=814637' %}
+          The WebIccManager API, which allows support for multiple sim cards, has been updated:
+          iccChangeEvent has been added using event generator <a href="{{ url1 }}">bug 814637</a>
+        {% endtrans %}
+        </li>
+        <li>
+        {% trans url1='https://bugzilla.mozilla.org/show_bug.cgi?id=933136' %}
+          Callbacks added to NFC: onpeerready and onpeerlost <a href="{{ url1 }}">bug 933136</a>.
+        {% endtrans %}
+        </li>
+        <li>{{ _('New interface added — checkP2PRegistration — plus the ‘ChromeOnly’ interfaces eventListenerWasAdded and eventListenerWasRemoved, to support basic PeerToPeer use cases.') }}</li>
+        <li>
+        {% trans url1='https://bugzilla.mozilla.org/show_bug.cgi?id=959437' %}
+          New interfaces added to MozNfcManager DOM notifyUserAcceptedP2P and notifySendFileStatus
+          <a href="{{ url1 }}">bug 959437</a>
+        {% endtrans %}
+        </li>
+        <li>
+        {% trans url1='https://bugzilla.mozilla.org/show_bug.cgi?id=933093' %}
+          sendFile interface added to MozNFCPeer <a href="{{ url1 }}">bug 933093</a>.
+        {% endtrans %}
+        </li>
+        <li>
+        {% trans url1='https://bugzilla.mozilla.org/show_bug.cgi?id=854753' %}
+          The SpeakerManager API has been implemented, to allow usage such as FM Radio outputting to
+          phone speakers <a href="{{ url1 }}">bug 854753</a>.
+        {% endtrans %}
+        </li>
+        <li>
+        {% trans url1='https://bugzilla.mozilla.org/show_bug.cgi?id=899574' %}
+          Notification.get() added to Notification API to provide a way to get current notification
+          objects <a href="{{ url1 }}">bug 899574</a>.
+        {% endtrans %}
+        </li>
+      </ul>
+    </section>
+
+    <section class="notes-section" id="general-gecko">
+      <h3>{{ _('General Gecko') }}</h3>
+      <ul class="section-items">
+        <li>
+        {% trans url1='https://bugzilla.mozilla.org/show_bug.cgi?id=925437',
+                 url2='https://bugzilla.mozilla.org/show_bug.cgi?id=620935' %}
+          The navigator.onLine and console objects have been implemented in Web Workers
+          <a href="{{ url1 }}">bug 925437</a> and <a href="{{ url2 }}">bug 620935</a>
+        {% endtrans %}
+        </li>
+        <li>
+        {% trans url1='https://bugzilla.mozilla.org/show_bug.cgi?id=929885' %}
+          The web components ShadowRoot stylesheet behaviour has been implemented
+          <a href="{{ url1 }}">bug 929885</a>.
+        {% endtrans %}
+        </li>
+        <li>
+        {% trans url1='https://bugzilla.mozilla.org/show_bug.cgi?id=822898' %}
+          JavaScript Pointer Events have been implemented <a href="{{ url1 }}">bug 822898</a>.
+        {% endtrans %}
+        </li>
+        <li>
+        {% trans url1='https://bugzilla.mozilla.org/show_bug.cgi?id=895091' %}
+          The vtt.js WebVTT JavaScript parser has been added into Gecko <a href="{{ url1 }}">bug 895091</a>.
+        {% endtrans %}
+        {% trans url1='https://bugzilla.mozilla.org/show_bug.cgi?id=893309' %}
+          On a related note, TextTrack now dispatches TrackEvents <a href="{{ url1 }}">bug 893309</a>
+        {% endtrans %}
+        </li>
+        <li>
+        {% trans url1='https://bugzilla.mozilla.org/show_bug.cgi?id=742832' %}
+          getUserMedia now has the ability to share a tab/screen/window as a video stream
+          <a href="{{ url1 }}">bug 742832</a>.
+        {% endtrans %}
+        </li>
+        <li>
+          {{ _('Shared workers are implemented but disabled by default in Gecko 28 (set the dom.workers.sharedWorkers.enabled to true to enable.)') }}
+          {{ _('They are enabled by default in Gecko 29') }}
+        </li>
+        <li>
+        {% trans url1='https://bugzilla.mozilla.org/show_bug.cgi?id=925594' %}
+          WebIDL enum added for for AudioChannel in HTMLMediaElement (see <a href="{{ url1 }}">bug 925594</a>
+        {% endtrans %}
+        </li>
+        <li>
+        {# L10n: <span> tag allows word-break for long strings on small viewports #}
+        {% trans url1='https://bugzilla.mozilla.org/show_bug.cgi?id=884275' %}
+          <span>HTMLVideoElement.canPlayType(‘video/webm’)</span> now reports maybe. <a href="{{ url1 }}">bug 884275</a>
+        {% endtrans %}
+        </li>
+        <li>
+          {{ _('The DocumentFragment.getElementById() method has been implemented.') }}
+        {# L10n: <span> tag allows word-break for long strings on small viewports #}
+        {% trans url1='https://bugzilla.mozilla.org/show_bug.cgi?id=933193' %}
+          E.g. <span>document.createDocumentFragment().getElementById()</span> <a href="{{ url1 }}">bug 933193</a>.
+        {% endtrans %}
+        </li>
+        <li>
+        {% trans url1='https://bugzilla.mozilla.org/show_bug.cgi?id=600117' %}
+          The KeyboardEvent.repeat attribute has been implemented <a href="{{ url1 }}">bug 600117</a>
+        {% endtrans %}
+        </li>
+        <li>
+        {% trans url1='https://bugzilla.mozilla.org/show_bug.cgi?id=819900' %}
+          The File constructor, e.g. new File([“foo”], “foo.txt”) has been implemented.
+          <a href="{{ url1 }}">bug 819900</a>
+        {% endtrans %}
+        </li>
+        <li>
+        {% trans url1='https://bugzilla.mozilla.org/show_bug.cgi?id=757726' %}
+          The navigator.plugins is no more enumerable, for privacy reasons <a href="{{ url1 }}">bug 757726</a>
+        {% endtrans %}
+        </li>
+        <li>
+        {% trans url1='https://bugzilla.mozilla.org/show_bug.cgi?id=943668' %}
+          The two attributes Window.screenX and Window.screenY now return CSS pixels
+          (and no more device pixels) <a href="{{ url1 }}">bug 943668</a>
+        {% endtrans %}
+        </li>
+        <li>
+          {# L10n: <span> tag allows word-break for long strings on small viewports #}
+          {{ _('The two methods <span>CanvasRenderingContext2D.drawSystemFocusRing()</span> and <span>CanvasRenderingContext2D.drawCustomFocusRing()</span> have been implemented.') }}
+        {% trans url1='https://bugzilla.mozilla.org/show_bug.cgi?id=540456' %}
+          The preference canvas.focusring.enabled must be set to true to activate both
+          <a href="{{ url1 }}">bug 540456</a>
+        {% endtrans %}
+        </li>
+        <li>
+        {% trans url1='https://bugzilla.mozilla.org/show_bug.cgi?id=925847' %}
+          The following attributes have been added to NavigatorID: appCodeName and product
+          <a href="{{ url1 }}">bug 925847</a>
+        {% endtrans %}
+        </li>
+        <li>
+        {% trans url1='https://bugzilla.mozilla.org/show_bug.cgi?id=850364' %}
+          Support for the two setRange() methods on the HTMLInputElement interface has been
+          added <a href="{{ url1 }}">bug 850364</a>.
+        {% endtrans %}
+        </li>
+        <li>
+        {% trans url1='https://bugzilla.mozilla.org/show_bug.cgi?id=918940' %}
+          Support for the two setRange() methods on the HTMLTextAreaElement interface has
+          been added <a href="{{ url1 }}">bug 918940</a>
+        {% endtrans %}
+        </li>
+        <li>
+        {% trans url1='https://bugzilla.mozilla.org/show_bug.cgi?id=920633',
+                 url2='https://bugzilla.mozilla.org/show_bug.cgi?id=920800' %}
+          The method getAllKeys() and openKeyCursor() have been added to IDBObjectStore
+          <a href="{{ url1 }}">bug 920633</a> and <a href="{{ url2 }}">bug 920800</a>
+        {% endtrans %}
+        </li>
+        <li>
+        {% trans url1='https://bugzilla.mozilla.org/show_bug.cgi?id=913920' %}
+          The HTMLFormControlsCollection interface has been implemented
+          <a href="{{ url1 }}">bug 913920</a>
+        {% endtrans %}
+        </li>
+        <li>
+        {% trans url1='https://bugzilla.mozilla.org/show_bug.cgi?id=768067' %}
+          The CanvasRenderingContext2D interface supports now the two methods getLineDash()
+          and setLineDash() <a href="{{ url1 }}">bug 768067</a>
+        {% endtrans %}
+        </li>
+        <li>
+        {% trans url1='https://bugzilla.mozilla.org/show_bug.cgi?id=827160' %}
+          The typeMustMatch attribute has been implemented on the HTMLObjectElement
+          interface <a href="{{ url1 }}">bug 827160</a>
+        {% endtrans %}
+        </li>
+        <li>
+        {% trans url1='https://bugzilla.mozilla.org/show_bug.cgi?id=915524' %}
+          The copyFromChannel() and copyToChannel() methods have been added to AudioBuffer
+          <a href="{{ url1 }}">bug 915524</a>
+        {% endtrans %}
+        </li>
+        <li>
+        {% trans url1='https://bugzilla.mozilla.org/show_bug.cgi?id=637248' %}
+          Event.isTrusted() is now unforgeable <a href="{{ url1 }}">bug 637248</a>
+        {% endtrans %}
+        </li>
+        <li>
+        {% trans url1='https://bugzilla.mozilla.org/show_bug.cgi?id=884935' %}
+          The Navigator.vibrate() method has been adapted to match the final specification:
+          It now returns false when the list is too long or has too large entries, instead
+          of throwing <a href="{{ url1 }}">bug 884935</a>
+        {% endtrans %}
+        </li>
+        <li>
+          {{ _('As part of the ongoing effort to standardize global objects, the non-standard stylesheet change event interfaces, including StyleRuleChangeEvent, StyleSheetApplicableStateChangeEvent and StyleSheetChangeEvent, are no longer available from Web content.') }}
+        {% trans url1='https://bugzilla.mozilla.org/show_bug.cgi?id=872934',
+                 url2='https://bugzilla.mozilla.org/show_bug.cgi?id=916871' %}
+          The CSSGroupRuleRuleList interface, the implementation detail of CSSRuleList,
+          has also been removed <a href="{{ url1 }}">bug 872934</a> and
+          <a href="{{ url2 }}">bug 916871</a>
+        {% endtrans %}
+        </li>
+        <li>
+        {% trans url1='https://bugzilla.mozilla.org/show_bug.cgi?id=711180' %}
+          atob now ignores whitespaces <a href="{{ url1 }}">bug 711180</a>
+        {% endtrans %}
+        </li>
+        <li>
+          {{ _('WebGL: MOZ_ prefixed extension strings are deprecated.') }}
+          {{ _('Support for them will be removed in the future.') }}
+          {{ _('Use unprefixed extension string only.') }}
+        {% trans url1='https://bugzilla.mozilla.org/show_bug.cgi?id=924176' %}
+          To get draft extensions, set the webgl.enable-draft-extensions preferences
+          <a href="{{ url1 }}">bug 924176</a>
+        {% endtrans %}
+        </li>
+      </ul>
+    </section>
+
+    <section class="notes-section" id="supported-languages">
+      <h3>{{ _('Supported Languages in 1.3') }}</h3>
+      <ul class="section-items">
+        <li>{{ _('Bulgarian') }}</li>
+        <li>{{ _('Bengali') }}</li>
+        <li>{{ _('Catalan') }}</li>
+        <li>{{ _('Czech') }}</li>
+        <li>{{ _('German') }}</li>
+        <li>{{ _('Greek') }}</li>
+        <li>{{ _('Spanish') }}</li>
+        <li>{{ _('Croatian') }}</li>
+        <li>{{ _('Hungarian') }}</li>
+        <li>{{ _('Italian') }}</li>
+        <li>{{ _('Dutch') }}</li>
+        <li>{{ _('Polish') }}</li>
+        <li>{{ _('Portuguese (Brazil)') }}</li>
+        <li>{{ _('Romanian') }}</li>
+        <li>{{ _('Russian') }}</li>
+        <li>{{ _('Slovak') }}</li>
+        <li>{{ _('Serbian') }}</li>
+        <li>{{ _('Turkish') }}</li>
+        <li>{{ _('Chinese (Traditional)') }}</li>
+      </ul>
+    </section>
+
+  </article>
+
+  <aside id="sidebar" class="sidebar">
+
+    {% include 'firefox/os/_notes_sidebar.html' %}
+
+  </aside>
+
+</div>
+{% endblock %}
+
+{% block js %}
+
+{% endblock  %}
