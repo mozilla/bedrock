@@ -29,7 +29,9 @@ def parse_po(path):
 
     with codecs.open(path, 'r', 'utf-8') as lines:
         def parse_string(s):
-            return s.strip('"').replace('\\"', '"')
+            # remove first and last characters which are "
+            s = s.strip()[1:-1]
+            return s.replace('\\"', '"')
 
         def extract_content(s):
             # strip the first word and quotes

@@ -78,6 +78,12 @@ class TestPOFiles(TestCase):
             u'templates/some_lang_files.html': self.good_messages,
             u'templates/firefox/fx.html': [[None, u'Find out if your device '
                                                   u'is supported &nbsp;»']],
+            u'bedrock/firefox/templates/firefox/os/notes-1.3.html': [[
+                u'For bug 982755',
+                u'The WebIccManager API, which allows support for multiple sim cards, '
+                u'has had updates: iccChangeEvent has been added using using event '
+                u'generator <a href="%(url1)s">bug 814637</a>'
+            ]],
         }
         self.assertDictEqual(msgs, expected)
 
@@ -90,7 +96,7 @@ class TestPOFiles(TestCase):
         langfiles_mock.return_value = ['some_lang_files',
                                        'firefox/fx']
         pot_to_langfiles()
-        append_mock.assert_called_once_with(ANY, self.good_messages)
+        append_mock.assert_called_with(ANY, self.good_messages)
 
     @patch('os.path.exists', TRUE_MOCK)
     @patch('lib.l10n_utils.gettext.codecs')
