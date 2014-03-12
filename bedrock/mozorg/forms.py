@@ -386,7 +386,7 @@ class ContributeStudentAmbassadorForm(forms.Form):
         widget=widgets.CheckboxInput(),
         label=_lazy(u'About Mozilla: News from the Mozilla Project'))
     superpriority = forms.BooleanField(widget=HoneyPotWidget, required=False)
-    source_url = forms.URLField(verify_exists=False, required=False)
+    source_url = forms.URLField(required=False)
 
     def __init__(self, *args, **kwargs):
         locale = kwargs.get('locale', 'en-US')

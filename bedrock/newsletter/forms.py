@@ -205,7 +205,7 @@ class NewsletterFooterForm(forms.Form):
                             choices=FORMATS,
                             initial='H')
     privacy = forms.BooleanField(widget=PrivacyWidget)
-    source_url = forms.URLField(verify_exists=False, required=False)
+    source_url = forms.URLField(required=False)
 
     def __init__(self, newsletters, locale, *args, **kwargs):
         regions = product_details.get_regions(locale)
