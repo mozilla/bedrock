@@ -2,9 +2,9 @@
   <h3>{{ _('Want to get involved?') }}</h3>
   <p>
   {% trans
-    nontech='https://support.mozilla.org/kb/how-contribute-firefox-os-even-if-youre-not-techni' %}
-    Firefox OS is an open web  platform and there are plenty of opportunities to contribute
-    in both technical and <a href="{{ nontech }}" rel="external">non-technical</a> areas.
+    nontech='href="https://support.mozilla.org/kb/how-contribute-firefox-os-even-if-youre-not-techni" rel="external"'|safe %}
+    Firefox OS is an open web platform and there are plenty of opportunities to contribute
+    in both technical and <a {{ nontech }}>non-technical</a> areas.
   {% endtrans %}
   </p>
   <p><a href="{{ url('mozorg.contribute') }}" class="button go">{{ _('Learn more') }}</a></p>
@@ -18,18 +18,19 @@
     <li><a href="https://developer.mozilla.org/Firefox_OS" rel="external">{{ _('All the docs') }}</a></li>
     <li>
     {% trans
-      sim1='https://addons.mozilla.org/firefox/addon/firefox-os-simulator/',
-      sim2='http://people.mozilla.org/~myk/r2d2b2g/' %}
-      Firefox OS Simulators: <a href="{{ sim1 }}" rel="external">One</a>
-      and <a href="{{ sim2 }}" rel="external">Two</a>
+      sim1='href="https://addons.mozilla.org/firefox/addon/firefox-os-simulator/" rel="external"'|safe,
+      sim2='href="http://people.mozilla.org/~myk/r2d2b2g/" rel="external"'|safe %}
+      Firefox OS Simulators: <a {{ sim1 }}>One</a>
+      and <a {{ sim2 }}>Two</a>
     {% endtrans %}
     </li>
     <li><a href="https://developer.mozilla.org/docs/Mozilla/Firefox_OS/Building_and_installing_Firefox_OS">{{ _('Build &amp; Install Firefox OS') }}</a></li>
     <li>
-    {% trans gaiacode='https://github.com/mozilla-b2g/gaia/',
-      geckocode='https://github.com/mozilla/mozilla-central/tree/master/b2g' %}
-      Get the code: <a href="{{ gaiacode }}" rel="external">Gaia</a>
-      and <a href="{{ geckocode }}" rel="external">Gecko</a>
+    {% trans
+      gaiacode='href="https://github.com/mozilla-b2g/gaia/" rel="external"'|safe,
+      geckocode='href="https://github.com/mozilla/gecko-dev/tree/master/b2g" rel="external"'|safe %}
+      Get the code: <a {{ gaiacode }}>Gaia</a>
+      and <a {{ geckocode }}>Gecko</a>
     {% endtrans %}
     </li>
     <li><a href="https://bugzilla.mozilla.org/buglist.cgi?list_id=6785406&amp;resolution=---&amp;query_format=advanced&amp;bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=REOPENED&amp;product=Boot2Gecko" rel="external">{{ _('Known Bugs') }}</a></li>
@@ -39,13 +40,11 @@
 <section id="version">
   <h3>{{ _('How do the version numbers work?') }}</h3>
   <p>
-  {% trans %}
-    Firefox OS has a 4 digit version number: <samp>X.X.X.Y</samp>.
-    The first 2 digits are owned by the Mozilla product team and will denote versions
-    with new features (eg: v1.1, 1.2, etc). The third digit will be incremented with
-    regular version tags (~every 6 weeks) for security updates, and the fourth will
-    be OEM owned.
-  {% endtrans %}
+    {{ _('Firefox OS has a 4 digit version number: <samp>X.X.X.Y</samp>.') }}
+    {{ _('The first 2 digits are owned by the Mozilla product team and will denote versions
+    with new features (e.g.: v1.1, 1.2, etc).') }}
+    {{ _('The third digit will be incremented with regular version tags
+    (~every 6 weeks) for security updates, and the fourth will be OEM owned.') }}
   </p>
 </section>
 
