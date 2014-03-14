@@ -8,7 +8,8 @@ import json
 import re
 
 from django.conf import settings
-from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
+from django.http import (
+    Http404, HttpResponsePermanentRedirect, HttpResponseRedirect)
 from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.views.decorators.vary import vary_on_headers
@@ -411,13 +412,6 @@ class TourView(LatestFxView):
         return super(TourView, self).get(request, *args, **kwargs)
 
 
-def fix_fx_version(fx_version):
-    if len(fx_version.split('.')) == 2:
-        return fx_version + '.0'
-    else:
-        return fx_version
-
-
 def release_notes_template(channel, product):
     if product == 'Firefox OS':
         return 'firefox/releases/os-notes.html'
@@ -425,12 +419,18 @@ def release_notes_template(channel, product):
     return 'firefox/releases/%s-notes.html' % prefix.get(channel, 'release')
 
 
-def release_notes(request, fx_version, channel='Release', product='Firefox'):
-    release = get_object_or_404(Release, version=fix_fx_version(fx_version),
-                                channel=channel, product=product)
+def release_notes(request, fx_version, product='Firefox'):
+    if product == 'Firefox OS' and fx_version in (
+            '1.0.1', '1.1', '1.2', '1.3'):
+        return l10n_utils.render(
+            request, 'firefox/os/notes-%s.html' % fx_version)
+
+    release = get_object_or_404(Release, version=fx_version, product=product)
+    if not release.is_public and not settings.DEV:
+        raise Http404
     new_features, known_issues = release.notes()
     return l10n_utils.render(
-        request, release_notes_template(channel, product), {
+        request, release_notes_template(release.channel, product), {
             'version': fx_version,
             'major_version': fx_version.split('.', 1)[0],
             'release': release,
@@ -438,10 +438,8 @@ def release_notes(request, fx_version, channel='Release', product='Firefox'):
             'known_issues': known_issues})
 
 
-def system_requirements(request, fx_version, channel='Release',
-                        product='Firefox'):
-    release = get_object_or_404(Release, version=fix_fx_version(fx_version),
-                                channel=channel, product=product)
+def system_requirements(request, fx_version, product='Firefox'):
+    release = get_object_or_404(Release, version=fx_version, product=product)
     return l10n_utils.render(
         request, 'firefox/releases/system_requirements.html',
         {'release': release, 'version': fx_version})
