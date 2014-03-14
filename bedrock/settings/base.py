@@ -791,6 +791,7 @@ INSTALLED_APPS = get_apps(exclude=(
     'lib.l10n_utils',
     'captcha',
     'rna',
+    'raven.contrib.django.raven_compat',
 ))
 
 LOCALE_PATHS = (
@@ -978,4 +979,44 @@ RNA = {
 
     # default False as temporary workaround for bug 973499
     'VERIFY_SSL_CERT': os.environ.get('VERIFY_SSL_CERT', False),
+}
+
+LOGGING = {
+    'root': {
+        'level': 'WARNING',
+        'handlers': ['sentry'],
+    },
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(message)s'
+        },
+    },
+    'handlers': {
+        'sentry': {
+            'level': 'ERROR',
+            'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        }
+    },
+    'loggers': {
+        'django.db.backends': {
+            'level': 'ERROR',
+            'handlers': ['console'],
+            'propagate': False,
+        },
+        'raven': {
+            'level': 'WARNING',
+            'handlers': ['console'],
+            'propagate': False,
+        },
+        'sentry.errors': {
+            'level': 'WARNING',
+            'handlers': ['console'],
+            'propagate': False,
+        },
+    },
 }
