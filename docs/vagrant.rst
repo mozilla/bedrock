@@ -142,7 +142,7 @@ Configure The Environment
 
     Set the following values::
 
-      $config['server_name'] = 'local.mozilla.org';
+      $config['server_name'] = 'mozilla.local';
 
       $config['file_root'] = '/srv/legacy';
 
@@ -152,7 +152,7 @@ Configure The Environment
     You will need to add the following to your hosts file (note you may need
     sudo permissions). ::
 
-      192.168.10.55    local.mozilla.org
+      192.168.10.55    mozilla.local
 
     The hosts file can be found in the following directories.
 
@@ -221,11 +221,11 @@ Start Your Machine
     Confirm both bedrock and the legacy PHP site are working by visiting
     these urls. If everything looks right you are good to go!
 
-    http://local.mozilla.org
+    http://mozilla.local
     The mozilla homepage loading from bedrock.
 
 
-    http://local.mozilla.org/en-US/about/legal.html
+    http://mozilla.local/en-US/about/legal.html
     A legacy page loading from PHP
 
     .. note::

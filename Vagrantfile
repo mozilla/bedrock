@@ -8,7 +8,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "precise32"
   config.vm.box_url = "http://people.mozilla.com/~bsternthal/vagrant/precise32.box"
 
-  # Add to /etc/hosts: 192.168.10.55 local.mozilla.org
+  # Add to /etc/hosts: 192.168.10.55 mozilla.local
   config.vm.network :private_network, ip: "192.168.10.55"
 
   # Not sure if really needed but leaving in
