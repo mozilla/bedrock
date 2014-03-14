@@ -18,6 +18,7 @@ patch()
 # the base template page. So we replace it with one that does!
 handler500 = 'lib.bedrock_util.server_error_view'
 
+
 urlpatterns = patterns('',
     # Main pages
     (r'^lightbeam/', include('bedrock.lightbeam.urls')),
