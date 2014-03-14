@@ -927,10 +927,7 @@ MOBILIZER_LOCALE_LINK = {
 }
 
 DONATE_LOCALE_LINK = {
-    'de': 'https://sendto.mozilla.org/page/contribute/EOYFR2013-webDE',
-    'en-US': 'https://sendto.mozilla.org/page/contribute/EOYFR2013-tabzilla',
-    'fr': 'https://sendto.mozilla.org/page/contribute/EOYFR2013-webFR',
-    'pt-BR': 'https://sendto.mozilla.org/page/contribute/EOYFR2013-webPTBR',
+    'en-US': 'https://sendto.mozilla.org/page/contribute/EOYFR2013-newdefault',
 }
 
 # Official Firefox Twitter accounts
