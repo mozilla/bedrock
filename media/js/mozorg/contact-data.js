@@ -30,7 +30,7 @@
             },
             geometry: {
                 type: 'Point',
-                coordinates: [-122.08285, 37.38795]
+                coordinates: [-122.062805, 37.388944]
             }
         }, {
             type: 'Feature',
