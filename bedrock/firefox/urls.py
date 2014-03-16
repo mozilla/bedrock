@@ -18,6 +18,7 @@ tour_re = latest_re % (version_re, 'tour')
 product_re = '(?P<product>firefox|mobile)'
 channel_re = '(?P<channel>beta|aurora|organizations)'
 releasenotes_re = latest_re % (version_re, r'(aurora|release)notes')
+mobile_releasenotes_re = releasenotes_re.replace('firefox', 'mobile')
 sysreq_re = latest_re % (version_re, 'releasenotes/system-requirements')
 
 
@@ -86,6 +87,8 @@ urlpatterns = patterns('',
     page('firefox/os/devices', 'firefox/os/devices.html'),
 
     url(releasenotes_re, views.release_notes, name='firefox.releasenotes'),
+    url(mobile_releasenotes_re, views.release_notes,
+        {'product': 'Firefox for Android'}, name='mobile.releasenotes'),
     url(sysreq_re, views.system_requirements,
         name='firefox.system_requirements'),
 )

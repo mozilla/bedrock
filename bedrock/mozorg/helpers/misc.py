@@ -414,3 +414,14 @@ def product_url(product, page, channel=None):
         kwargs['product'] = product
 
     return reverse('%s.%s' % (app, page), kwargs=kwargs)
+
+
+@jingo.register.function
+def releasenotes_url(release):
+    prefix = 'aurora' if release.channel == 'Aurora' else 'release'
+    if release.product == 'Firefox for Android':
+        return reverse('mobile.releasenotes', args=(release.version, prefix))
+    elif release.product == 'Firefox OS':
+        return reverse('firefox.os.releasenotes', args=[release.version])
+    else:
+        return reverse('firefox.releasenotes', args=(release.version, prefix))
