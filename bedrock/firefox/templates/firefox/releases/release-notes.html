@@ -17,9 +17,23 @@
 
 {% block content %}
   <header id="main-feature">
+  {% if equivalent_release_url %}
+    <div id="relnoteswitcher">
+      <h4>View notes for:</h4>
+      <ul>
+      {% if release.product == 'Firefox' %}
+        <li><span>Desktop</span></li>
+        <li><a href="{{ equivalent_release_url }}">Mobile</a></li>
+      {% else %}
+        <li><a href="{{ equivalent_release_url }}">Desktop</a></li>
+        <li><span>Mobile</span></li>
+      {% endif %}
+      </ul>
+    </div>
+  {% endif %}
     <h1>{{ _('Firefox {version} Notes')|f(version=version) }}</h1>
 
-    <h2>{{ _('First offered to release channel users on {date}')|f(date=release.release_date|l10n_format_date) }}</h2>
+    <h2>{{ _('First offered to {channel} channel users on {date}')|f(channel=release.channel, date=release.release_date|l10n_format_date) }}</h2>
 
     <p>
     {% trans feedback='https://input.mozilla.org/feedback',
@@ -72,7 +86,7 @@
               </p>
             {% if note.fixed_in_release %}
               <p class="note">
-                <a href="{{ url('firefox.releasenotes', '{major_version}.0'|f(major_version=note.fixed_in_release.version)) }}">
+                <a href="{{ releasenotes_url(note.fixed_in_release) }}">
                   {{ _('Resolved in v{version_number}')|f(version_number=note.fixed_in_release.version) }}
                 </a>
               </p>
