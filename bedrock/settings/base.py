@@ -874,7 +874,7 @@ STUB_INSTALLER_LOCALES = {
 }
 
 # Force download via SSL
-FORCE_SSL_DOWNLOAD_VERSIONS = ['27.0', '27.0.1']
+FORCE_SSL_DOWNLOAD_VERSIONS = ['27.0', '27.0.1', '28.0']
 
 # Google Analytics
 GA_ACCOUNT_CODE = ''
