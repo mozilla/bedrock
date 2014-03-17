@@ -4,9 +4,9 @@
      assets default to windows #}
 <html class="windows x86 no-js" lang="{{ LANG }}" dir="{{ DIR }}"{% block html_attrs %}{% endblock %}>
   <head>
-    {% block ga_experiments %}{% endblock %}
-    <meta charset="utf-8">
+    <meta charset="utf-8">{# Note: Must be within first 512 bytes of page #}
 
+    {% block ga_experiments %}{% endblock %}
     {% block extra_meta %}{% endblock %}
 
     {% block shared_meta %}
