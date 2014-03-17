@@ -82,6 +82,7 @@ if (typeof Mozilla == 'undefined') {
             },
             {
                 label: window.trans('start'),
+                style: 'primary',
                 callback: this.startTour.bind(this)
             }
         ];
