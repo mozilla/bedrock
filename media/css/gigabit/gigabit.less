@@ -62,15 +62,18 @@
   background: #fff;
   border-bottom: 1px solid #ddd;
   padding-top: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  .border-box();
+
+  h4 {
+    margin-bottom: 20px;
+  }
 
   li {
     list-style: none;
-    margin: 0 20px 1em;
     font-size: .857em;
-  }
-
-  p {
-    margin: 0 20px 15px;
+    margin-left: 0;
   }
 }
 
@@ -135,6 +138,14 @@
   }
 }
 
+#questions .aside ul {
+  list-style-type: none;
+  li {
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
+}
+
 #partners{
   background: #fff;
   padding-top: 30px;
@@ -160,13 +171,64 @@
   }
 }
 
-#numbered-list{
-  list-style-type: decimal;
-}
-
-
 #terms .container h4:not(:first-of-type){
   margin-top: 50px;
+}
+
+#terms {
+
+  main header {
+    margin-bottom: 40px;
+  }
+
+  .terms-section {
+    margin-bottom: 30px;
+
+    h5 {
+      font-weight: bold;
+      font-family: 'Open Sans','Droid Arabic Naskh','Mplus Fulah Light',sans-serif;
+      margin: 1em 0 5px 0;
+      font-size: 14px;
+      color: #333;
+    }
+  }
+
+  .section-header {
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: underline;
+    display: inline;
+    color: #333;
+    font-family: 'Open Sans','Droid Arabic Naskh','Mplus Fulah Light',sans-serif;
+  }
+
+  .section-header + p {
+    display: inline;
+    margin-left: 1em;
+  }
+
+  p {
+    margin-top: 1em;
+  }
+
+  ol#submission-list {
+    margin-left: 25px;
+  }
+
+  ol.fund-evaluation-list,
+  ol#award-amount-list {
+    list-style-type: none;
+    margin-left: -20px;
+    margin-bottom: 0;
+    counter-reset: item;
+  }
+
+  ol.fund-evaluation-list li:before,
+  ol#award-amount-list li:before {
+   content: "(" counter(item) ") ";
+   counter-increment: item;
+ }
+
 }
 
 
