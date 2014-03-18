@@ -26,6 +26,90 @@
     }
 }
 
+#relnoteswitcher {
+    float: right;
+    overflow: hidden;
+
+    a {
+        color: #fff;
+    }
+
+    h4 {
+        font-size: 15px;
+        margin: 0 0 6px 0;
+        padding: 0;
+    }
+
+    ul {
+        margin: 0;
+        padding: 3px;
+        float: left;
+        box-shadow: 0 3px 3px rgba(126,137,147,0.64) inset, 0 1px rgba(185,197,204,0.64);
+        border-radius: 6px;
+        background: rgb(207,218,230);
+        background: rgba(207,218,230,0.27);
+    }
+
+    li {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        float: left;
+        
+        a {
+            border-bottom: 1px solid rgba(43,58,153,0.55);
+            box-shadow: 0 -2px rgba(0,0,0,0.18) inset;
+            background: rgb(124,169,244); /* Old browsers */
+            #gradient > .vertical-three-colors(#7ca9f4, #4b79c6, 3%, #2e4e99);
+            text-shadow: 0 1px 0 rgba(0,0,0,0.35);
+        }
+
+        span {
+            color: #506aa1;
+            border-bottom: 1px solid #22366d;
+            .box-shadow(0 2px 1 px #0b1b41 inset);
+            background: rgb(26,47,90); /* Old browsers */
+            #gradient > .vertical(rgba(26,47,90,1) 14%, rgba(37,71,144,1) 95%);
+            -moz-border-radius-topright: 6px;
+            -moz-border-radius-bottomright: 6px;
+            border-top-right-radius: 6px;
+            border-bottom-right-radius: 6px;
+            text-shadow: 0 1px rgba(28,54,112,0.34);
+        }
+    }
+
+    li:first-child {
+        padding-right: 1px;
+
+        a,
+        span {
+            .border-radius(0);
+            -webkit-border-top-left-radius: 6px;
+            -webkit-border-bottom-left-radius: 6px;
+            -moz-border-radius-topleft: 6px;
+            -moz-border-radius-bottomleft: 6px;
+            border-top-left-radius: 6px;
+            border-bottom-left-radius: 6px; 
+        }
+    }
+
+    a,
+    span {
+        display: block;
+        padding: 12px 16px;
+        .open-sans;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        -webkit-border-top-right-radius: 6px;
+        -webkit-border-bottom-right-radius: 6px;
+        -moz-border-radius-topright: 6px;
+        -moz-border-radius-bottomright: 6px;
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+    }
+}
+
 a.go:after,
 .sidebar a:after {
     content: " »";
@@ -244,6 +328,11 @@ a.go:after,
         p {
             .span-all();
         }
+    }
+
+    #relnoteswitcher {
+        float: none;
+        margin: 0 10px @baseLine 10px;
     }
 
     .section-items {

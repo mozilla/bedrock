@@ -24,6 +24,7 @@ from rna.models import Release
 from bedrock.firefox import version_re
 from bedrock.firefox.forms import SMSSendForm
 from bedrock.mozorg.views import process_partnership_form
+from bedrock.mozorg.helpers.misc import releasenotes_url
 from bedrock.firefox.utils import is_current_or_newer
 from bedrock.firefox.firefox_details import firefox_details, mobile_details
 from lib.l10n_utils.dotlang import _
@@ -454,6 +455,13 @@ def release_notes_template(channel, product):
     return 'firefox/releases/%s-notes.html' % prefix.get(channel, 'release')
 
 
+def equivalent_release_url(release):
+    equivalent_release = (release.equivalent_android_release() or
+                          release.equivalent_desktop_release())
+    if equivalent_release:
+        return releasenotes_url(equivalent_release)
+
+
 def release_notes(request, fx_version, product='Firefox'):
     if product == 'Firefox OS' and fx_version in (
             '1.0.1', '1.1', '1.2', '1.3'):
@@ -469,6 +477,7 @@ def release_notes(request, fx_version, product='Firefox'):
             'version': fx_version,
             'major_version': fx_version.split('.', 1)[0],
             'release': release,
+            'equivalent_release_url': equivalent_release_url(release),
             'new_features': new_features,
             'known_issues': known_issues})
 

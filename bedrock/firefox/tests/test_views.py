@@ -5,7 +5,7 @@ from django.http import Http404
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
-from mock import patch
+from mock import patch, Mock
 from nose.tools import eq_
 from rna.models import Release
 
@@ -33,7 +33,8 @@ class TestRNAViews(TestCase):
         return self.mock_render.call_args[0][2]
 
     @patch('bedrock.firefox.views.get_object_or_404')
-    def test_release_notes(self, get_object_or_404):
+    @patch('bedrock.firefox.views.equivalent_release_url')
+    def test_release_notes(self, mock_equiv_rel_url, get_object_or_404):
         """
         Should use release returned from get_object_or_404 with the
         correct params and pass the correct context variables and
@@ -55,6 +56,7 @@ class TestRNAViews(TestCase):
         eq_(self.last_ctx['known_issues'], 'mock known_issues')
         eq_(self.mock_render.call_args[0][1],
             'firefox/releases/release-notes.html')
+        mock_equiv_rel_url.assert_called_with(mock_release)
 
     @patch('bedrock.firefox.views.get_object_or_404')
     def test_system_requirements(self, get_object_or_404):
@@ -110,3 +112,37 @@ class TestRNAViews(TestCase):
         get_object_or_404.return_value = Release(is_public=False)
         with self.assertRaises(Http404):
             views.release_notes(self.request, '42')
+
+    @patch('bedrock.firefox.views.releasenotes_url')
+    def test_no_equivalent_release_url(self, mock_releasenotes_url):
+        """
+        Should return None without calling releasenotes_url
+        """
+        release = Mock()
+        release.equivalent_android_release.return_value = None
+        release.equivalent_desktop_release.return_value = None
+        eq_(views.equivalent_release_url(release), None)
+        eq_(mock_releasenotes_url.called, 0)
+
+    @patch('bedrock.firefox.views.releasenotes_url')
+    def test_android_equivalent_release_url(self, mock_releasenotes_url):
+        """
+        Should return the url for the equivalent android release
+        """
+        release = Mock()
+        eq_(views.equivalent_release_url(release),
+            mock_releasenotes_url.return_value)
+        mock_releasenotes_url.assert_called_with(
+            release.equivalent_android_release.return_value)
+
+    @patch('bedrock.firefox.views.releasenotes_url')
+    def test_desktop_equivalent_release_url(self, mock_releasenotes_url):
+        """
+        Should return the url for the equivalent desktop release
+        """
+        release = Mock()
+        release.equivalent_android_release.return_value = None
+        eq_(views.equivalent_release_url(release),
+            mock_releasenotes_url.return_value)
+        mock_releasenotes_url.assert_called_with(
+            release.equivalent_desktop_release.return_value)

@@ -8,12 +8,14 @@ from django.test.utils import override_settings
 
 import basket
 import jingo
+from funfactory.urlresolvers import reverse
 from nose.tools import assert_false, eq_, ok_
 from pyquery import PyQuery as pq
-from bedrock.newsletter.tests.test_views import newsletters
-from funfactory.urlresolvers import reverse
+from rna.models import Release
 
+from bedrock.mozorg.helpers.misc import releasenotes_url
 from bedrock.mozorg.tests import TestCase
+from bedrock.newsletter.tests.test_views import newsletters
 
 
 TEST_FILES_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)),
@@ -587,3 +589,36 @@ class TestProductURL(TestCase):
             '/en-US/mobile/beta/notes/')
         eq_(self._render('mobile', 'notes', 'aurora'),
             '/en-US/mobile/aurora/notes/')
+
+
+class TestReleaseNotesURL(TestCase):
+    @patch('bedrock.mozorg.helpers.misc.reverse')
+    def test_aurora_android_releasenotes_url(self, mock_reverse):
+        """
+        Should return the results of reverse with the correct args
+        """
+        release = Release(
+            channel='Aurora', version='42.0a2', product='Firefox for Android')
+        eq_(releasenotes_url(release), mock_reverse.return_value)
+        mock_reverse.assert_called_with(
+            'mobile.releasenotes', args=('42.0a2', 'aurora'))
+
+    @patch('bedrock.mozorg.helpers.misc.reverse')
+    def test_desktop_releasenotes_url(self, mock_reverse):
+        """
+        Should return the results of reverse with the correct args
+        """
+        release = Release(version='42.0', product='Firefox')
+        eq_(releasenotes_url(release), mock_reverse.return_value)
+        mock_reverse.assert_called_with(
+            'firefox.releasenotes', args=('42.0', 'release'))
+
+    @patch('bedrock.mozorg.helpers.misc.reverse')
+    def test_firefox_os_releasenotes_url(self, mock_reverse):
+        """
+        Should return the results of reverse with the correct args
+        """
+        release = Release(version='42.0', product='Firefox OS')
+        eq_(releasenotes_url(release), mock_reverse.return_value)
+        mock_reverse.assert_called_with(
+            'firefox.os.releasenotes', args=['42.0'])
