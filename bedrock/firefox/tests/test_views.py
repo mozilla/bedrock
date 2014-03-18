@@ -33,21 +33,27 @@ class TestRNAViews(TestCase):
         return self.mock_render.call_args[0][2]
 
     @patch('bedrock.firefox.views.get_object_or_404')
+    def test_get_release_or_404(self, get_object_or_404):
+        eq_(views.get_release_or_404('version', 'product'),
+            get_object_or_404.return_value)
+        get_object_or_404.assert_called_with(
+            Release, version='version', product='product')
+
+    @patch('bedrock.firefox.views.get_release_or_404')
     @patch('bedrock.firefox.views.equivalent_release_url')
-    def test_release_notes(self, mock_equiv_rel_url, get_object_or_404):
+    def test_release_notes(self, mock_equiv_rel_url, get_release_or_404):
         """
-        Should use release returned from get_object_or_404 with the
+        Should use release returned from get_release_or_404 with the
         correct params and pass the correct context variables and
         template to l10n_utils.render
         """
-        mock_release = get_object_or_404.return_value
+        mock_release = get_release_or_404.return_value
         mock_release.notes.return_value = ('mock new_features',
                                            'mock known_issues')
 
         views.release_notes(self.request, '27.0')
         # Should use fixed version for query
-        get_object_or_404.assert_called_with(
-            Release, version='27.0', product='Firefox')
+        get_release_or_404.assert_called_with('27.0', 'Firefox')
         # Should use original version for context variable
         eq_(self.last_ctx['version'], '27.0')
         eq_(self.last_ctx['major_version'], '27')
@@ -58,17 +64,31 @@ class TestRNAViews(TestCase):
             'firefox/releases/release-notes.html')
         mock_equiv_rel_url.assert_called_with(mock_release)
 
-    @patch('bedrock.firefox.views.get_object_or_404')
-    def test_system_requirements(self, get_object_or_404):
+    @patch('bedrock.firefox.views.get_release_or_404')
+    @patch('bedrock.firefox.views.releasenotes_url')
+    def test_release_notes_beta_redirect(self, releasenotes_url,
+                                         get_release_or_404):
         """
-        Should use release returned from get_object_or_404, with a
+        Should redirect to url for beta release
+        """
+        get_release_or_404.side_effect = [Http404, 'mock release']
+        releasenotes_url.return_value = '/firefox/27.0beta/releasenotes/'
+        response = views.release_notes(self.request, '27.0')
+        eq_(response.status_code, 302)
+        eq_(response['location'], '/firefox/27.0beta/releasenotes/')
+        get_release_or_404.assert_called_with('27.0beta', 'Firefox')
+        releasenotes_url.assert_called_with('mock release')
+
+    @patch('bedrock.firefox.views.get_release_or_404')
+    def test_system_requirements(self, get_release_or_404):
+        """
+        Should use release returned from get_release_or_404, with a
         default channel of Release and default product of Firefox,
         and pass the version to l10n_utils.render
         """
         views.system_requirements(self.request, '27.0.1')
-        get_object_or_404.assert_called_with(
-            Release, version='27.0.1', product='Firefox')
-        eq_(self.last_ctx['release'], get_object_or_404.return_value)
+        get_release_or_404.assert_called_with('27.0.1', 'Firefox')
+        eq_(self.last_ctx['release'], get_release_or_404.return_value)
         eq_(self.last_ctx['version'], '27.0.1')
         eq_(self.mock_render.call_args[0][1],
             'firefox/releases/system_requirements.html')
@@ -93,13 +113,13 @@ class TestRNAViews(TestCase):
         eq_(views.release_notes_template('', ''),
             'firefox/releases/release-notes.html')
 
-    @patch('bedrock.firefox.views.get_object_or_404')
-    def test_firefox_os_manual_template(self, get_object_or_404):
+    @patch('bedrock.firefox.views.get_release_or_404')
+    def test_firefox_os_manual_template(self, get_release_or_404):
         """
         Should render from pre-RNA template without querying DB
         """
         views.release_notes(self.request, '1.0.1', product='Firefox OS')
-        get_object_or_404.assert_never_called()
+        get_release_or_404.assert_never_called()
         eq_(self.mock_render.call_args[0][1],
             'firefox/os/notes-1.0.1.html')
 
@@ -111,7 +131,7 @@ class TestRNAViews(TestCase):
         """
         get_object_or_404.return_value = Release(is_public=False)
         with self.assertRaises(Http404):
-            views.release_notes(self.request, '42')
+            views.get_release_or_404('42', 'Firefox')
 
     @patch('bedrock.firefox.views.releasenotes_url')
     def test_no_equivalent_release_url(self, mock_releasenotes_url):
