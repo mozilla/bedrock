@@ -29,19 +29,15 @@
   to use our trademarks on their websites than we might give anyone else.
   {% endtrans %}</p>
 
-  <p>{% trans
-      policy=url('foundation.trademarks.policy'),
-      l10n=url('foundation.trademarks.l10n-policy') %}
+  <p>{% trans policy=url('foundation.trademarks.policy') %}
       This document is meant to be a companion document to the
-  <a href="{{ policy }}">Mozilla Trademark Policy</a> and the
-  <a href="{{ l10n }}">Mozilla Trademark Policy for Localization Projects</a>.
+  <a href="{{ policy }}">Mozilla Trademark Policy</a>.
   {% endtrans %}</p>
 
   <h2>{% trans %}Official mozilla.org Localization Teams{% endtrans %}</h2>
 
-  <p>{% trans policy=url('foundation.trademarks.l10n-policy') %}The provisions in this document apply only to official mozilla.org
-  Localization Teams (a.k.a. L10n teams), as defined in the
-  <a href="{{ policy }}">Mozilla Trademark Policy for Localization Projects</a>.{% endtrans %}</p>
+  <p>{% trans %}The provisions in this document apply only to official mozilla.org
+  Localization Teams (a.k.a. L10n teams).{% endtrans %}</p>
 
   <h2>{% trans %}Translated Versions of Mozilla Web Sites{% endtrans %}</h2>
 
