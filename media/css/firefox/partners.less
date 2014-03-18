@@ -3,8 +3,6 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 @import "../sandstone/lib.less";
-@import "../firefox/mwc-2014-schedule.less";
-@import "../firefox/mwc-2014-map.less";
 
 @font-face {
     font-family: 'Open Sans ExtraBoldItalic';
@@ -221,6 +219,7 @@
 
 #explore {
     display: none;
+    .transition;
 }
 
 #partner-nav {
@@ -231,6 +230,7 @@
     width: auto;
     margin-left: -(@widthDesktop / 2);
     padding: 0 10px;
+    .transition;
     h3 {
         display: none;
     }
@@ -294,8 +294,11 @@
 }
 
 #partner-menu {
+    width: 1000px;
+    /* When used with #mwc-menu (during MWC)
     width: 680px;
     margin-right: @baseLine * 3;
+    */
     li {
         width: 25%;
     }
@@ -393,40 +396,7 @@
     background: url(/media/img/firefox/partners/hr-grey.png) center bottom no-repeat;
     background-size: 300px;
     padding: @baseLine 0;
-    li {
-        padding: 5px 0 0 54px;
-        background-image: url(/media/img/firefox/partners/sprite-overview-links.png);
-        background-repeat: no-repeat;
-        min-height: 39px;
-        list-style-type: none;
-        margin: 0 0 @baseLine;
-        text-align: left;
-        br {
-            // line break only needed at tablet+ sizes
-            display: none;
-        }
-        ul {
-            margin: 0;
-            padding: 0;
-            li {
-                margin: 0 0 (@baseLine / 4) 0;
-                padding: 0;
-                background-image: none;
-            }
-        }
-    }
-    #overview-video-recap {
-        background-position: left -298px;
-    }
-    #overview-fxos-devices {
-        background-position: left top;
-    }
-    #overview-schedule {
-        background-position: left -100px;
-    }
-    #overview-mwc-tweets {
-        background-position: left -195px;
-    }
+    text-align: left;
 }
 
 /* }}} */
@@ -453,9 +423,10 @@
 // not specifically tied to the OS section, but that's where it appears
 .fxos-devices-link {
     display: inline-block;
-    background: url(/media/img/firefox/partners/sprite-overview-links.png) left top no-repeat;
+    background: url(/media/img/firefox/partners/devices-icon.png) left top no-repeat;
     padding-left: 58px;
     min-height: 39px;
+    line-height: 38px;
     margin-bottom: @baseLine;
 }
 
@@ -811,7 +782,6 @@
     body #partner-nav {
         left: -3px;
         width: 38px;
-        .transition();
         &:hover {
             width: 60px;
         }
@@ -932,10 +902,12 @@
     }
 
     #partner-menu {
-        width: 500px;
-        margin-right: @baseLine * 2;
+        width: 740px;
+        /* When used with #mwc-menu (during MWC)
+        //width: 500px;
+        //margin-right: @baseLine * 2;
+        */
     }
-
 
     #mwc-menu {
         width: 220px;
@@ -967,8 +939,11 @@
     }
 
     #partner-menu {
+        width: 300px;
+        /* When used with #mwc-menu (during MWC)
         width: 200px;
         margin-right: @baseLine / 2;
+        */
     }
 
     #mwc-menu {
@@ -999,8 +974,11 @@
     }
 
     #partner-menu {
+        width: 420px;
+        /* When used with #mwc-menu (during MWC)
         width: 280px;
         margin-right: @baseLine;
+        */
     }
 
     #mwc-menu {
