@@ -462,15 +462,25 @@ def equivalent_release_url(release):
         return releasenotes_url(equivalent_release)
 
 
+def get_release_or_404(version, product):
+    release = get_object_or_404(Release, version=version, product=product)
+    if not release.is_public and not settings.DEV:
+        raise Http404
+    return release
+
+
 def release_notes(request, fx_version, product='Firefox'):
     if product == 'Firefox OS' and fx_version in (
             '1.0.1', '1.1', '1.2', '1.3'):
         return l10n_utils.render(
             request, 'firefox/os/notes-%s.html' % fx_version)
 
-    release = get_object_or_404(Release, version=fx_version, product=product)
-    if not release.is_public and not settings.DEV:
-        raise Http404
+    try:
+        release = get_release_or_404(fx_version, product)
+    except Http404:
+        release = get_release_or_404(fx_version + 'beta', product)
+        return HttpResponseRedirect(releasenotes_url(release))
+
     new_features, known_issues = release.notes()
     return l10n_utils.render(
         request, release_notes_template(release.channel, product), {
@@ -483,7 +493,7 @@ def release_notes(request, fx_version, product='Firefox'):
 
 
 def system_requirements(request, fx_version, product='Firefox'):
-    release = get_object_or_404(Release, version=fx_version, product=product)
+    release = get_release_or_404(fx_version, product)
     return l10n_utils.render(
         request, 'firefox/releases/system_requirements.html',
         {'release': release, 'version': fx_version})
