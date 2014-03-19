@@ -32,7 +32,7 @@ CACHES['l10n'] = {
     'LOCATION': 'l10n',
     'TIMEOUT': DOTLANG_CACHE,
     'OPTIONS': {
-        'MAX_ENTRIES': 1000,
+        'MAX_ENTRIES': 5000,
         'CULL_FREQUENCY': 4,  # 1/4 entries deleted if max reached
     }
 }
