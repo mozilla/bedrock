@@ -44,7 +44,7 @@
           <button class="button">{{ _('Get started with Sync') }}</button>
           <small>{{ _('Create an account from the menu') }}</small>
         </div>
-        <a id="survey-link" href="https://www.surveygizmo.com/s3/1578454/Firefox-29-Beta-Survey" target="_blank" title="{{ _('Opens new window') }}">
+        <a id="survey-link" data-id="{{ survey_id }}" href="https://www.surveygizmo.com/s3/1578454/Firefox-29-Beta-Survey?tour={{ survey_id }}" target="_blank" title="{{ _('Opens new window') }}">
           {{ _('Take a quick survey about the new Firefox') }}
         </a>
       </section>
