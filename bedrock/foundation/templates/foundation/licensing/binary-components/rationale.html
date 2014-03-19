@@ -21,22 +21,22 @@
       webgl="https://en.wikipedia.org/wiki/WebGL",
       angle="https://code.google.com/p/angleproject/"
     %}
-      The Microsoft D3D9X DLL is an example of an application of the
+      The Microsoft D3DCompiler DLL is an example of an application of the
       <a href="{{ binary }}">binary components</a> policy. To provide a good
       <a href="{{ webgl }}">WebGL</a> experience to Windows users with
       Intel graphics cards we planned on shipping <a href="{{ angle }}">ANGLE</a>,
-      an open source library,  which translates WebGL/OpenGL to Direct3D 9.
-      However, one of the pieces that ANGLE depends on is the D3D9X library
-      provided by Microsoft. This library is not available in default
-      Windows installs. Microsoft permits either the creation of a
-      2.5-3MB separate installer that all Windows users would need to
-      execute when installing Firefox (which would increase download
-      time and complexity and be a poor user experience), or bundling
-      the required 800k DLL with the product (as we have chosen to do).
-      The Intel graphics cards are estimated to represent 50% of the
-      graphic cards market; thus it’s a relevant portion of users.
-      In addition, the D3D9X library also supports the long term
-      adoption of WebGL as an open standard for 3D rendering on the web.
+      an open source library, which translates WebGL/OpenGL to Direct3D.
+      However, one of the pieces that ANGLE depends on is the D3DCompiler
+      library provided by Microsoft. This library is not available in default
+      Windows installs before Windows 8.1. Microsoft permits either the
+      creation of a separate installer that all Windows users would need to
+      execute when installing Firefox (which would increase download time and
+      complexity and be a poor user experience), or bundling the required DLL
+      with the product (as we have chosen to do). The Intel graphics cards
+      are estimated to represent 50% of the graphic cards market; thus it’s
+      a relevant portion of users. In addition, the D3DCompiler library also
+      supports the long term adoption of WebGL as an open standard for 3D
+      rendering on the web.
       {% endtrans %}
     </p>
 {% endblock article %}
