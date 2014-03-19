@@ -262,9 +262,6 @@ MINIFY_BUNDLES = {
         'firefox_releases_index': (
             'css/firefox/releases-index.less',
         ),
-        'firefox_security': (
-            'css/firefox/security.less',
-        ),
         'firefox_speed': (
             'css/firefox/speed.less',
         ),
