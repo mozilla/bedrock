@@ -148,6 +148,7 @@ MINIFY_BUNDLES = {
             'css/mozorg/contribute-page.less',
         ),
         'contribute-studentambassadors-landing': (
+            'css/base/social-widgets.less',
             'css/mozorg/contribute/studentambassadors/landing.less',
         ),
         'contribute-studentambassadors-join': (
@@ -443,6 +444,9 @@ MINIFY_BUNDLES = {
         'contribute-form': (
             'js/mozorg/contribute-form.js',
             'js/base/mozilla-input-placeholder.js',
+        ),
+        'contribute-studentambassadors-landing': (
+            'js/base/social-widgets.js',
         ),
         'contribute-studentambassadors-join': (
             'js/mozorg/contribute-studentambassadors-join.js',
@@ -814,6 +818,11 @@ HMAC_KEYS = {
 FEEDS = {
     'mozilla': 'https://blog.mozilla.org/feed/'
 }
+
+# Twitter accounts to retrieve tweets with the API
+TWITTER_ACCOUNTS = (
+    'mozstudents',
+)
 
 BASKET_URL = 'http://basket.mozilla.com'
 
