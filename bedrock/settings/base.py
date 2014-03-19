@@ -667,7 +667,6 @@ MINIFY_BUNDLES = {
             'js/base/mozilla-input-placeholder.js',
             'js/base/mozilla-pager.js',
             'js/base/mozilla-modal.js',
-            'js/firefox/mwc-2014-map.js',
             'js/firefox/partners.js',
         ),
         'partners_common': (
