@@ -6,6 +6,7 @@ import re
 import json
 
 from django.conf import settings
+from django.core.cache import cache
 from django.core.context_processors import csrf
 from django.http import HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
@@ -206,6 +207,13 @@ def plugincheck(request, template='mozorg/plugincheck.html'):
     }
 
     return l10n_utils.render(request, template, data)
+
+
+@xframe_allow
+def contribute_studentambassadors_landing(request):
+    return l10n_utils.render(request,
+                             'mozorg/contribute/studentambassadors/landing.html',
+                             {'tweets': cache.get('tweets-mozstudents') or []})
 
 
 @csrf_protect

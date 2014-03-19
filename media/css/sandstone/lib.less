@@ -344,9 +344,35 @@
     overflow: hidden;
 }
 
-// Add chevron character after text (with space)
 .trailing-arrow() {
     &:after {
         content: " »"; /* nbsp raquo */
     }
+}
+
+.multi-column(@width: auto, @count: auto, @gap: normal) {
+  -webkit-column-width: @width;
+     -moz-column-width: @width;
+       -o-column-width: @width;
+          column-width: @width;
+  -webkit-column-count: @count;
+     -moz-column-count: @count;
+       -o-column-count: @count;
+          column-count: @count;
+    -webkit-column-gap: @gap;
+       -moz-column-gap: @gap;
+         -o-column-gap: @gap;
+            column-gap: @gap;
+}
+
+.multi-column-clear {
+  .multi-column(auto, auto, normal);
+}
+
+.multi-column-avoid-break {
+            page-break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+     -moz-column-break-inside: avoid;
+       -o-column-break-inside: avoid;
+          column-break-inside: avoid;
 }
