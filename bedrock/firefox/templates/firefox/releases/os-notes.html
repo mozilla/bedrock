@@ -3,3 +3,102 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
 {% extends "firefox/releases/release-notes.html" %}
+
+{% block page_title %}{{ _('Firefox OS — {version} Notes')|f(version=version) }}{% endblock %}
+
+{% set channel_name = 'Firefox OS' %}
+
+{% block site_header_logo %}
+<h2><a href="{{ url('firefox.os.index') }}"><img src="{{ media('img/firefox/os/template/header-logo.png') }}" alt="Mozilla Firefox OS" height="70" width="220" data-inverse-src="{{media('img/firefox/os/template/header-logo-inverse.png') }}"></a></h2>
+{% endblock %}
+
+{% block notes_header %}
+  <header class="notes-head">
+  <h1>{{ _('Firefox OS {version} Notes')|f(version=version) }}</h1>
+  <h2>{{ _('First offered to partners for release on {date}')|f(channel=release.channel, date=release.release_date|l10n_format_date) }}</h2>
+
+    <p>
+    {% trans feedback='https://input.mozilla.org/feedback',
+        bugzilla='https://bugzilla.mozilla.org/' %}
+      As always, you’re encouraged to
+      <a href="{{ feedback }}">tell us what you think</a>,
+      or <a href="{{ bugzilla }}">file a bug in Bugzilla</a>.
+    {% endtrans %}
+    {% if release.bug_search_url %}
+        {% trans bug_search_url=release.bug_search_url %}
+        If interested, please see the <a href="{{ bug_search_url }}">complete list of changes</a>
+        in this release.
+        {% endtrans %}
+    {% elif release.bug_list %}
+    <form action="https://bugzilla.mozilla.org/buglist.cgi" method="post">
+      <input type="hidden" name="limit" value="0">
+      <input type="hidden" name="bug_id" value="{{ release.bug_list }}">
+      {# L10n: These three strings form a sentence, with the string 'complete list of changes' as the label for a form button. #}
+      <p>{{ _('If interested, please see the') }} <button type="submit">{{ _('complete list of changes') }}</button> {{ _('in this release.') }}</p>
+    </form>
+    {% endif %}
+    </p>
+  </header>
+{% endblock %}
+
+{% block notes_sidebar %}
+  <aside id="sidebar" class="sidebar">
+    <section id="get-involved">
+      <h3>{{ _('Want to get involved?') }}</h3>
+      <p>
+      {% trans
+        nontech='https://support.mozilla.org/kb/how-contribute-firefox-os-even-if-youre-not-techni' %}
+        Firefox OS is an open web  platform and there are plenty of opportunities to contribute
+        in both technical and <a href="{{ nontech }}" rel="external">non-technical</a> areas.
+      {% endtrans %}
+      </p>
+      <p><a href="{{ url('mozorg.contribute') }}" class="button go">{{ _('Learn more') }}</a></p>
+
+    </section>
+
+    <section id="developers">
+      <h3>{{ _('Develop for Firefox OS') }}</h3>
+      <ul>
+        <li><a href="https://marketplace.firefox.com/developers/" rel="external" class="go">{{ _('Start here') }}</a></li>
+        <li><a href="https://developer.mozilla.org/Firefox_OS" rel="external">{{ _('All the docs') }}</a></li>
+        <li>
+        {% trans
+          sim1='https://addons.mozilla.org/firefox/addon/firefox-os-simulator/',
+          sim2='http://people.mozilla.org/~myk/r2d2b2g/' %}
+          Firefox OS Simulators: <a href="{{ sim1 }}" rel="external">One</a>
+          and <a href="{{ sim2 }}" rel="external">Two</a>
+        {% endtrans %}
+        </li>
+        <li><a href="https://developer.mozilla.org/docs/Mozilla/Firefox_OS/Building_and_installing_Firefox_OS">{{ _('Build &amp; Install Firefox OS') }}</a></li>
+        <li>
+        {% trans gaiacode='https://github.com/mozilla-b2g/gaia/',
+          geckocode='https://github.com/mozilla/mozilla-central/tree/master/b2g' %}
+          Get the code: <a href="{{ gaiacode }}" rel="external">Gaia</a>
+          and <a href="{{ geckocode }}" rel="external">Gecko</a>
+        {% endtrans %}
+        </li>
+        <li><a href="https://bugzilla.mozilla.org/buglist.cgi?list_id=6785406&amp;resolution=---&amp;query_format=advanced&amp;bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=REOPENED&amp;product=Boot2Gecko" rel="external">{{ _('Known Bugs') }}</a></li>
+      </ul>
+    </section>
+
+    <section id="version">
+      <h3>{{ _('How do the version numbers work?') }}</h3>
+      <p>
+      {% trans %}
+        Firefox OS has a 4 digit version number: <samp>X.X.X.Y</samp>.
+        The first 2 digits are owned by the Mozilla product team and will denote versions
+        with new features (eg: v1.1, 1.2, etc). The third digit will be incremented with
+        regular version tags (~every 6 weeks) for security updates, and the fourth will
+        be OEM owned.
+      {% endtrans %}
+      </p>
+    </section>
+
+    <section id="other">
+      <h3>{{ _('Other Resources') }}</h3>
+      <ul>
+        <li><a href="{{ url('firefox.partners.index') }}" class="go">{{ _('Partner Information') }}</a></li>
+      </ul>
+    </section>
+  </aside>
+{% endblock %}
