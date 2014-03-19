@@ -13,7 +13,8 @@
 
     // Update surver link for visitors who complete the tour
     window.updateTourSurveyLink = function () {
-        $survey.attr('href', 'https://www.surveygizmo.com/s3/1578504/Firefox-Beta-29-Tour-Survey');
+        var surveyId = $survey.data('id');
+        $survey.attr('href', 'https://www.surveygizmo.com/s3/1578504/Firefox-Beta-29-Tour-Survey?tour=' + surveyId);
     };
 
     // Highlight sync in the app menu and track cta click
