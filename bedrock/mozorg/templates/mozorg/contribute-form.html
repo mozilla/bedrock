@@ -50,18 +50,18 @@
           <h3>{{_('Want to help?')}}</h3>
         </div>
         <div class="form-column-2">
-          <div class="field field-email">
-            {{ field_with_attrs(form.email, placeholder=_('YOUR EMAIL HERE'))|safe }}
-          </div>
-        </div>
-        <div class="form-column-3">
           <div class="field field-interest">
             {{ form.interest|safe }}
           </div>
         </div>
+        <div class="form-column-3 help-form-details">
+          <div class="field field-email">
+            {{ field_with_attrs(form.email, placeholder=_('YOUR EMAIL HERE'))|safe }}
+          </div>
+        </div>
       </div>
 
-      <div class="form-row" id="form-details">
+      <div class="form-row help-form-details">
         <div class="form-column-1">
           <p>{{_('Send us a note and we can get you started right away.')}}</p>
         </div>
@@ -89,7 +89,7 @@
       </div>
     </fieldset>
     <div class="form-submit">
-      <input type="submit" class="button" id="form-submit" value="{{_('Submit&nbsp;»')}}">
+      <input type="submit" class="button" id="form-submit" value="{{_('Submit')}}">
     </div>
   </div>
 </form>

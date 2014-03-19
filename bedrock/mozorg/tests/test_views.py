@@ -155,7 +155,6 @@ class TestContribute(TestCase):
         response = self.client.get(self.url_en)
         doc = pq(response.content)
         ok_(doc('.field-newsletter'))
-        ok_(doc('a[href="#newsletter"]'))
         ok_(doc('#newsletter'))
 
         with self.activate('fr'):
@@ -163,7 +162,6 @@ class TestContribute(TestCase):
         response = self.client.get(url)
         doc = pq(response.content)
         assert_false(doc('.field-NEWSLETTER'))
-        assert_false(doc('a[href="#newsletter"]'))
         assert_false(doc('#newsletter'))
 
     @patch.object(ReCaptchaField, 'clean', Mock())

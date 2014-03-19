@@ -143,7 +143,6 @@ MINIFY_BUNDLES = {
         'contribute': (
             'css/mozorg/contribute.less',
             'css/sandstone/video-resp.less',
-            'css/mozorg/mozilla15.less',
         ),
         'contribute-page': (
             'css/mozorg/contribute-page.less',
@@ -439,11 +438,7 @@ MINIFY_BUNDLES = {
             'js/mozorg/contact-spaces-ie7.js',
         ),
         'contribute': (
-            'js/libs/jquery.sequence.js',
-            'js/mozorg/mozilla15.js',
-            'js/mozorg/contribute-page.js',
-            'js/base/mozilla-pager.js',
-            'js/base/mozilla-video-tools.js',
+            'js/mozorg/contribute-faces.js',
         ),
         'contribute-form': (
             'js/mozorg/contribute-form.js',
@@ -839,12 +834,6 @@ LOCALES_WITH_TRANSITION = ['en-US', 'af', 'ar', 'ast', 'be', 'bg',
                            'rm', 'ro', 'ru', 'si', 'sk', 'sl', 'sq',
                            'sr', 'sv-SE', 'ta', 'ta-LK', 'te', 'th',
                            'tr', 'uk', 'vi', 'zh-CN', 'zh-TW']
-
-# Locales showing the 15th Anniversary slideshow on /contribute
-LOCALES_WITH_MOZ15 = ['ar', 'bg', 'cs', 'cy', 'de', 'el', 'en-GB', 'en-US', 'es-AR',
-                      'es-CL', 'es-ES', 'es-MX', 'fr', 'fy-NL', 'hr', 'id', 'it',
-                      'lt', 'ms', 'nl', 'pl', 'pt-BR', 'ro', 'ru', 'sl', 'sq',
-                      'sr', 'ta', 'tr', 'zh-CN', 'zh-TW']
 
 # reCAPTCHA keys
 RECAPTCHA_PUBLIC_KEY = ''
