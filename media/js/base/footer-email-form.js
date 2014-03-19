@@ -3,11 +3,11 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 $(document).ready(function() {
-  var $submit_button = $('#footer-email-form input[type=submit], #help-form input[type=submit]');
-  var $form_details = $('#form-details');
+  var $submit_button = $('#footer-email-form input[type=submit]');
+  var $form_details = $('#footer-email-form #form-details');
 
   function footer_email_form_show_details(trigger_click) {
-    $('#form-details').slideDown('normal', function() {
+    $form_details.slideDown('normal', function() {
       if (trigger_click) {
         $submit_button.trigger('click');
       }
@@ -16,7 +16,7 @@ $(document).ready(function() {
     $form_details.slideDown();
   }
 
-  $('#id_email, #id_interest, #footer-email-form select, #footer-email-form input').focus(function () {
+  $('#footer-email-form select, #footer-email-form input').focus(function () {
     footer_email_form_show_details(false);
   });
 
@@ -35,8 +35,8 @@ $(document).ready(function() {
   }
 
   function validateForm($form) {
-    var email = $('#id_email').val();
-    var $privacy = $('#id_privacy');
+    var email = $('#footer-email-form #id_email').val();
+    var $privacy = $('#footer-email-form #id_privacy');
 
     return validateEmail(email) && $privacy.is(':checked');
   }

@@ -5,322 +5,173 @@
 @import "../sandstone/lib.less";
 @import "contribute-form.less";
 
-#contribute {
+.page-title {
+    text-align: center;
+}
 
-    h1.large {
-        text-align: center;
-        margin: 0 auto @baseLine auto;
+.tagline {
+    font-size: 24px;
+    text-align: center;
+}
+
+
+// Containers
+main {
+    padding: 0 @gridGutterWidth;
+}
+
+header {
+    margin-bottom: 30px;
+}
+
+.main {
+    .span(7);
+}
+
+.aside {
+    .span(5);
+}
+
+#faces {
+    .clearfix;
+}
+
+#opportunities {
+    clear: both;
+    margin-top: 30px;
+}
+
+// The Video
+#video-stage {
+    position: relative;
+    background: #000;
+    color: #fff;
+    padding: 10px;
+    margin: 0 auto 1em;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,.2);
+    width: 480px;
+    height: 360px;
+    overflow: hidden;
+
+    video {
+        max-width: 100%;
+        height: auto;
     }
 
-    #main-feature {
-        padding-bottom: 0;
-    }
-
-    #welcome-video {
-        max-width: 640px;
-        margin: 0 auto;
-        video {
-            max-width: 640px;
-            width: 100%;
-            height: auto;
-            background: #fff;
-        }
-    }
-
-    #welcome p {
+    // Text caption
+    .caption {
         .open-sans-light;
-        font-size: 22px;
-        line-height: 120%;
-        margin: @baseLine;
+        width: 100%;
+        height: 75%;
+        padding-top: 25%;
+        background: #000;
         text-align: center;
+        font-size: 48px;
+        letter-spacing: -.025em;
+        position: absolute;
+        top: 0;
+        left: 0;
+
         b {
-            font-weight: bold;
+            display: block;
+            font-size: 18px;
+            font-weight: normal;
+            letter-spacing: normal;
+            margin-top: 1em;
+            color: #aaa;
         }
     }
 
-    li.row {
-        margin-left: 0;
+    figcaption {
+        .visually-hidden;
     }
 
-    #opportunities {
-        padding-bottom: @baseLine * 2;
-        .container {
-            padding-left: @gridGutterWidth * 1.5;
-            padding-right: @gridGutterWidth * 1.5;
-        }
-        nav {
-            background: #f0ece3;
-            border: 1px solid rgba(0,0,0,0.03);
-            padding-top: 10px;
-            padding-bottom: 10px;
-            margin: @baseLine auto;
-            @shadow: 0 1px rgba(255,255,255,0.5), 0 0 0 2px rgba(0,0,0,0.01) inset;
-            .box-shadow(@shadow);
-            text-transform: uppercase;
-
-            h5,
-            ul {
-                display: inline;
-                margin: 0;
-                font-size: @baseFontSize * 0.75;
-            }
-
-            li {
-                list-style-type: none;
-                display: inline;
-                .open-sans;
-
-                a.selected {
-                    background: #d7d5d5;
-                    border-color: #bcb9b9;
-                    text-shadow: 0 1px #fff;
-                    @shadow: 0 1px 1px rgba(255,255,255,0.75), 0 1px 3px rgba(0,0,0,0.1) inset;
-                    .box-shadow(@shadow);
-                }
-
-            }
-
-        }
-
-        section {
-            li {
-                list-style-type: none;
-                border-top: 1px dotted @borderColor;
-                .clearfix;
-                &:first-child {
-                    border: 0;
-                }
-            }
-
-            img {
-                background: #fff;
-                width: 50px;
-                padding: (@gridColumnWidth - 52) / 2;
-                border: 1px solid @borderColor;
-                .border-radius;
-                .box-shadow(0 2px 4px rgba(0,0,0,0.1));
-                float: left;
-                margin: @baseLine 10px @baseLine 0;
-            }
-
-            h3 {
-                .span(3);
-                margin-top: @baseLine * 1.25;
-            }
-
-            .content {
-                .span(7);
-                margin-top: @baseLine * 1.25;
-            }
-        }
-
-        .location-content {
-            li.row {
-                float: left;
-                margin-right: @gridGutterWidth;
-                border: 0;
-            }
-
-            img {
-                width: 130px;
-            }
-
-            h3 {
-                width: (@gridColumnWidth * 3) + (@gridGutterWidth * 2);
-                margin: (@baseLine * 2) 0 0 (@gridGutterWidth / 2);
-            }
-        }
+    // Control buttons
+    button {
+        background: transparent;
+        background: rgba(0, 0, 0, 0); // IE9 misbehaves with transparent but is happy with an invisible color. ¯\_(ツ)_/¯
+        border: 0;
+        display: block;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        padding: 10px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        text-indent: 600px;
+        white-space: nowrap;
     }
 
-    #newsletter-form {
-        .field {
-            padding: 6px 0;
-        }
-        .field-email input {
-            width: 280px;
-        }
-        .field-country select {
-            width: 300px;
-        }
-        small {
-            color: @textColorSecondary;
-        }
+    .btn-pause {
+        opacity: 0;
+        -webkit-transition: opacity ease-in .25s;
+        transition: opacity ease-in .25s;
     }
 
+    .btn-pause:hover,
+    .btn-pause:focus {
+        opacity: 1;
+    }
 }
 
-html[dir='rtl'] #contribute  {
-    #opportunities {
-        nav {
-            h5,
-            ul {
-                font-size: @baseFontSize;
-            }
-
-            li {
-                margin: 0 20px 0 0;
-            }
-
-            .button-white {
-                font-size: @baseFontSize;
-            }
-        }
-
-        section {
-            img {
-                float: right;
-                margin: @baseLine 0 @baseLine 10px;
-            }
-
-            h3 {
-                float: right;
-            }
-        }
-    }
-
+// The old video, fallback for some locales
+#welcome {
+    text-align: center;
+    font-size: 18px;
 }
 
-.js #form-details { display: none; }
+#welcome-video {
+    width: 640px;
+    margin: 0 auto 2em;
 
-/* Tablet Layout: 760px */
-@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
-
-
-    #contribute {
-        #opportunities {
-            section {
-                img {
-                    width: 30px;
-                }
-
-                h3 {
-                    .span_narrow(4);
-                    margin-top: @baseLine * 1.25;
-                }
-
-                .content {
-                    .span_narrow(7);
-                    margin-top: @baseLine;
-                }
-            }
-
-            .location-content {
-
-                h3 {
-                    font-size: 1.5em;
-                    width: (@gridColumnWidthNarrow * 3) + (@gridGutterWidth * 2);
-                    margin: (@baseLine * 1.5) 0 0 10px;
-                }
-            }
-
-        }
+    video {
+        max-width: 100%;
+        height: auto;
     }
-
 }
 
-/* Mobile Layout: 320px */
-@media only screen and (max-width: @breakTablet) {
+.signup aside {
+    padding: 20px;
+    margin: 0 0 24px;
+    @shadow: 0 0 0 1px #fff inset;
+    .box-shadow(@shadow);
+    background: #fff;
+    border-bottom: 1px solid #ddd;
 
-    #contribute {
-        #opportunities {
-            .container {
-                padding-left: @gridGutterWidth;
-                padding-right: @gridGutterWidth;
-            }
-            section {
-                img {
-                    float: left;
-                }
-                h3 {
-                    width: auto;
-                }
-                .content {
-                    width: auto;
-                    margin: 0 10px;
-                }
-            }
-
-            .location-content {
-                li.row {
-                    margin: 0 0 (@baseLine * 1.5);
-                    width: 100%;
-                    float: none;
-                }
-                img {
-                    display: block;
-                    float: none;
-                    margin: 0 auto .5em;
-                }
-                h3 {
-                    margin: 0;
-                    width: auto;
-                    float: none;
-                    text-align: center;
-                }
-            }
-
-            nav {
-                h5 {
-                    display: block;
-                    margin: 0 0 .5em;
-                }
-                li {
-                    display: inline;
-                    margin: 0 3px .25em 0;
-                }
-                a {
-                    margin-bottom: .5em;
-                }
-            }
-        }
-        #newsletter-form {
-            .field-email input {
-                width: 260px;
-            }
-            .field-country select {
-                width: 280px;
-            }
-        }
+    .button {
+        width: (@gridColumnWidth * 2) + (@gridGutterWidth);
+        max-width: 100%;
     }
-
-    html[dir='rtl'] #contribute  {
-        #opportunities nav {
-            h5 {
-                margin-right: 0;
-            }
-
-            li {
-                margin: 0 0 .25em 3px;
-            }
-        }
-    }
-
 }
 
-/* Wide Mobile Layout: 480px */
-@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+// Some overrides for the contribute form.
+.signup #help-form {
+    background: transparent none;
+    border: 0;
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
 
-    #contribute {
-        #opportunities .location-content {
-            li.row {
-                margin: 0;
-            }
-            img {
-                float: left;
-                margin: @baseLine (@gridGutterWidth / 2);
-            }
-            h3 {
-                width: (@gridColumnWidthNarrow * 4) + (@gridGutterWidth * 3);
-                float: left;
-                text-align: left;
-                margin: (@baseLine * 1.5) 0 0 10px;
-            }
-        }
+    fieldset,
+    .form-row,
+    .form-column-1,
+    .form-column-2,
+    .form-column-3 {
+        float: none;
+        margin: 0;
+        width: auto;
     }
 
+    .form-submit {
+        width: auto;
+        float: none;
+        margin: 0;
+    }
 }
 
-/* Some overrides for the embedded contribute form. */
 .js .embed #form-details {
     display: block;
 }
@@ -332,4 +183,246 @@ html[dir='rtl'] #contribute  {
 .embed #help-form {
     border: none;
     margin: 0;
+}
+
+#newsletter-form {
+    .field {
+        padding: 5px 0;
+        margin-bottom: 10px;
+    }
+
+    .form-submit {
+        clear: both;
+        float: none;
+        margin: 0;
+        width: auto;
+    }
+}
+
+.js #newsletter-form .form-details {
+    display: none;
+}
+
+// Areas of interest
+.contribute-options {
+    list-style: none;
+
+    li {
+        padding: @baseLine 0;
+        margin: 0;
+        border-top: 1px dotted @borderColor;
+        .clearfix;
+
+        &:first-child {
+            border: 0;
+        }
+    }
+
+    img {
+        background: #fff;
+        width: 50px;
+        padding: (@gridColumnWidth - 52) / 2;
+        border: 1px solid @borderColor;
+        .border-radius;
+        .box-shadow(0 2px 4px rgba(0,0,0,0.1));
+        float: left;
+        margin-right: 10px;
+    }
+
+    h3 {
+        .span(3);
+        margin-bottom: 0;
+    }
+
+    p {
+        .span(8);
+        margin-bottom: 0;
+    }
+}
+
+// By location
+#location {
+    .clearfix;
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px dotted @borderColor;
+
+    ul {
+        margin-top: @baseLine;
+        list-style: none;
+    }
+
+    li {
+        float: left;
+        text-align: center;
+        margin: 0 10px @baseLine;
+        width: 140px;
+    }
+
+    img {
+        border: 2px solid #fff;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+    }
+
+    h3 {
+        font-size: 18px;
+        letter-spacing: normal;
+    }
+}
+
+html[dir='rtl'] {
+    .contribute-options {
+        img {
+            float: right;
+            margin-right: 0;
+            margin-left: 10px;
+        }
+
+        h3 {
+            float: right;
+        }
+    }
+}
+
+// Play button
+.btn-play:before {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -22px;
+    margin-left: -18px;
+    width: 0;
+    height: 0;
+    border: 25px solid transparent;
+    border-left-color: #fff;
+    border-left-color: rgba(255, 255, 255, .65);
+    border-left-width: 38px;
+}
+
+// Pause button
+.btn-pause:before,
+.btn-pause:after {
+    content: " ";
+    display: block;
+    background-color: #fff;
+    background-color: rgba(255, 255, 255, .65);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 40px;
+    width: 15px;
+    margin-top: -20px;
+    margin-left: -18px;
+}
+
+.btn-pause:after {
+    margin-left: 12px;
+}
+
+
+
+/* Tablet Layout: 760px */
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+
+    .main {
+        .span_narrow(7);
+    }
+
+    .aside {
+        .span_narrow(5);
+    }
+
+    #video-stage {
+        height: auto;
+        width: 380px;
+        height: 285px;
+
+        .caption {
+            font-size: 40px;
+        }
+    }
+
+    .contribute-options {
+        img {
+            width: 30px;
+        }
+
+        h3 {
+            .span_narrow(4);
+        }
+
+        p {
+            .span_narrow(7);
+        }
+    }
+
+    #location li {
+        width: 100px;
+    }
+
+}
+
+
+
+/* Mobile Layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+
+    .main,
+    .aside {
+        width: auto;
+        float: none;
+        margin: 0;
+    }
+
+    #video-stage {
+        display: none; // Hiding the video on small screens until we can figure out something better
+        width: 300px;
+        height: 225px;
+        margin: @baseLine auto;
+
+        .caption {
+            font-size: 32px;
+        }
+    }
+
+    #welcome-video {
+        width: 100%;
+        margin: 0 auto 2em;
+    }
+
+    .contribute-options {
+        img {
+            float: left;
+            margin: 0 10px 10px 0;
+        }
+
+        h3 {
+            width: auto;
+            float: none;
+            margin: 0 0 .25em;
+        }
+
+        p {
+            width: auto;
+            float: none;
+            margin: 0 0 1em;
+        }
+    }
+
+    #location li {
+        width: 120px;
+
+        &:nth-child(2n+1) {
+            clear: left;
+        }
+    }
+
+}
+
+/* Wide Mobile Layout: 480px */
+@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+
+
+
 }
