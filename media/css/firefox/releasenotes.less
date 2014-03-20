@@ -4,6 +4,12 @@
 
 @import "template-resp.less";
 
+.space #wrapper {
+    background-repeat: no-repeat;
+    background-position: 0px 180px;
+    background-image: url('/media/img/firefox/releasenotes/aurora_bg_800.png');
+}
+
 .notes-head {
     .clearfix;
     margin-bottom: @baseLine * 2;
@@ -27,6 +33,14 @@
     p {
         margin-bottom: 1em;
     }
+}
+
+.space .notes-head {
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-image: url('/media/img/firefox/releasenotes/aurora_small.png');
+    background-size: 150px auto;
+    padding: 10px 0 0 150px;
 }
 
 #platform {
@@ -334,11 +348,21 @@ article {
 /* Tablet Layout: 760px */
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
 
+    .space #wrapper {
+        background-size: 650px;
+    }
+
     .notes-head {
         h1,
         h2,
         p {
             .span_narrow(7);
+        }
+    }
+
+    .space .notes-head {
+        p {
+            .span_narrow(6);
         }
     }
 
@@ -348,12 +372,21 @@ article {
 /* Mobile Layout: 320px */
 @media only screen and (max-width: @breakTablet) {
 
+    .space #wrapper {
+        background-size: 320px;
+    }
+
     .notes-head {
         h1,
         h2,
         p {
             .span-all();
         }
+    }
+
+    .space .notes-head {
+        background-image: none;
+        padding: 0;
     }
 
     #platform {
