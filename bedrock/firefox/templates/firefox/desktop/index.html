@@ -1,0 +1,97 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "firefox/desktop/desktop-base.html" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{ _("Firefox Web browser — Trusted, Flexible, Fast — There's never been a better time") }}{% endblock %}
+
+{% block site_css %}
+  {{ css('firefox_desktop') }}
+{% endblock %}
+
+{% block site_header_download_button %}{% endblock %}
+
+{% block content %}
+<main role="main" id="main-content">
+  <section id="intro">
+    <div class="container">
+      <h1>
+        {# L10n: Line break below is for wide screen formatting only. #}
+        {{ _('There’s never been a <br class="wide-br">better time for Firefox') }}
+      </h1>
+      <p class="lead">{{ _('Committed to you, your privacy and an open Web.') }}</p>
+
+      {{ high_res_img('img/firefox/desktop/fx-logo-large.png', { 'alt': _('Firefox'), 'width': 255, 'height': 266 })}}
+
+      <div id="overview-intro-download-wrapper">
+        {{ download_firefox(small=True, icon=False, dom_id="intro_download_desktop") }}
+      </div>
+    </div><!--/.container-->
+  </section>
+
+  <section id="trust">
+    <div class="container">
+      <h2>{{ _('Made with a mission to put you first') }}</h2>
+
+      <p class="lead">
+        {{ _('We’ve always designed Firefox to protect and respect your private information.') }}
+      {% trans url1='https://blog.mozilla.org/blog/2013/01/28/privacy-day-2013/' %}
+        That’s why we’re proud to be voted the <a href="{{ url1 }}">Most Trusted Internet Company for Privacy.</a>
+      {% endtrans %}
+      </p>
+
+      {% with show_link=false %}
+        {% include 'firefox/desktop/_trust_badge.html' %}
+      {% endwith %}
+
+      <p>
+        <a class="more" href="{{ url('firefox.desktop.trust') }}">{{ _('Find out what makes Firefox the most trusted browser on the Web') }}</a>
+      </p>
+    </div><!--/.container-->
+  </section>
+
+  <section id="customize">
+    <div class="container">
+      <h2>{{ _('Works the way you do') }}</h2>
+
+      <p class="lead">
+        {{ _('How you use the Web is unique.') }}
+        {{ _('Firefox lets you change it to match.') }}
+        {# L10n: Line break below is for wide screen formatting only. #}
+        {{ _('Remove what you don’t use, keep what you do and put it just about anywhere you want.') }}
+      </p>
+
+      <p class="cta">
+        <a class="more" href="{{ url('firefox.desktop.customize') }}">
+          {# L10n: Line break below is for wide screen formatting only. #}
+          {{ _('Find out what makes Firefox <br class="wide-br">the most flexible browser there is') }}
+        </a>
+      </p>
+    </div><!--/.container-->
+  </section>
+
+  <section id="fast">
+    <div class="container">
+      <h2>{{ _('Faster at what you do most') }}</h2>
+
+      <p class="lead">
+        {# L10n: Line break below is for visual formatting only. #}
+        {{ _('Firefox was named the ”speed king” in independent benchmark and performance tests against other browsers.') }}
+        {{ _('Save time and do just about anything quicker than before.') }}
+      </p>
+
+      {% include 'firefox/desktop/_speed_graph.html' %}
+
+      <p>
+        <a class="more" href="{{ url('firefox.desktop.fast') }}">{{ _('Find out what makes this the fastest Firefox yet') }}</a>
+      </p>
+    </div><!--/.container-->
+  </section>
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js('firefox_desktop_index') }}
+{% endblock %}

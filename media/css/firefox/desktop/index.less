@@ -1,0 +1,103 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../sandstone/lib.less';
+@import 'common.less';
+
+// set nav pointer
+#site-header-logo {
+    .nav-pointer();
+}
+
+#intro {
+    .grainy-sky();
+
+    .container {
+        padding: (@baseLine * 2) 0;
+        min-height: (680px - (@baseLine * 4));
+    }
+
+    h1 {
+        font-size: 60px;
+    }
+
+    .lead {
+        color: @textColorSecondary;
+        font-size: 22px;
+        margin-bottom: @baseLine * 2;
+    }
+
+    img {
+        display: block;
+        margin: 0 auto @baseLine;
+    }
+}
+
+#trust {
+    background: #fcfcfa url(/media/img/firefox/desktop/bg-pixelfox.png) center bottom no-repeat;
+}
+
+#customize {
+    background: #0095dd url(/media/img/firefox/desktop/index/bg-customize.png) center bottom no-repeat;
+
+    .container {
+        .container-dark();
+    }
+
+    .cta {
+        position: absolute;
+        bottom: 60px;
+        left: 80px;
+        width: 500px;
+    }
+}
+
+@media (max-width: @breakDesktop) and (min-width: @breakTablet) {
+    #customize {
+        background-size: 716px 356px;
+
+        .cta {
+            left: 20px;
+            bottom: 50px;
+            width: 440px;
+        }
+    }
+}
+
+@media (max-width: @breakTablet) {
+    // set nav pointer
+    #site-header-logo:after {
+        display: none;
+    }
+
+    #intro {
+        .container {
+            min-height: 0;
+        }
+
+        h1 {
+            font-size: 32px;
+        }
+
+        img {
+            width: 200px;
+            height: auto;
+        }
+    }
+
+    #overview-intro-download-wrapper {
+        display: none;
+    }
+
+    #customize {
+        background: #0095dd;
+
+        .cta {
+            position: relative;
+            bottom: auto;
+            left: auto;
+            width: auto;
+        }
+    }
+}

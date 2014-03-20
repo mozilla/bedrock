@@ -1,0 +1,229 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import 'common.less';
+
+// set nav pointer
+#nav-main-trust {
+    .nav-pointer();
+}
+
+.feature-list {
+    padding-top: @baseLine * 3;
+    h3 {
+       .open-sans;
+       font-size: 18px;
+       text-transform: uppercase;
+    }
+
+    li {
+        .open-sans;
+        font-size: 14px;
+    }
+}
+
+#intro {
+    background: #fcfcfa url(/media/img/firefox/desktop/bg-pixelfox.png) center bottom no-repeat;
+    position: relative;
+    z-index: 1;
+
+    h1 {
+        font-size: 60px;
+    }
+    .lead {
+        font-size: 22px;
+        line-height: 1.3;
+        margin-bottom: @baseLine * 3;
+    }
+}
+
+#safe {
+    .grainy-sky();
+}
+
+#privacy {
+    .lead {
+        font-size: 18px;
+    }
+
+    .feature-list li {
+        background: url(/media/img/firefox/desktop/trust/sprite-privacy.png) center top no-repeat;
+        padding-top: 180px;
+
+        &#privacy-dnt {
+            background-position: 70px top;
+        }
+
+        &#privacy-lightbeam {
+            background-position: -850px top;
+        }
+    }
+}
+
+#safe .feature-list li {
+    background: url(/media/img/firefox/desktop/trust/sprite-safe.png) center top no-repeat;
+    padding-top: 180px;
+
+    &#safe-protection {
+        background-position: 70px top;
+    }
+
+    &#safe-connections {
+        background-position: -850px top;
+    }
+}
+
+#no-worries {
+    background: #5d7489 url(/media/img/firefox/desktop/trust/bg-no-worries.png) center bottom no-repeat;
+    background: url(/media/img/firefox/desktop/trust/bg-no-worries.png) center bottom no-repeat,
+        url(/media/img/firefox/desktop/trust/bg-no-worries-gradient.png) left bottom repeat-x,
+        #5d7489;
+
+    .container {
+        color: #fff;
+        text-shadow: none;
+        padding-top: @baseLine * 3;
+
+        h2 {
+            color: #fff;
+            text-shadow: none;
+        }
+    }
+}
+
+#no-worries-links {
+    margin: (@baseLine * 2) 0 0 480px;
+
+    li {
+        .open-sans;
+        text-align: left;
+        text-transform: uppercase;
+        font-size: 18px;
+        margin: 0 0 @baseLine 0;
+    }
+
+    a {
+        color: @linkYellow;
+    }
+}
+
+/****************************************************************************/
+// @High resolution images for @retina-type displays
+// Desktop
+@media (-webkit-min-device-pixel-ratio: 1.5),
+       (                min-resolution: 1.5dppx),
+       (                min-resolution: 144dpi) {
+
+    #privacy .feature-list li {
+        background-image: url(/media/img/firefox/desktop/trust/sprite-privacy-hires.png);
+        background-size: 1080px 160px;
+    }
+
+    #safe .feature-list li {
+        background-image: url(/media/img/firefox/desktop/trust/sprite-safe-hires.png);
+        background-size: 1080px 160px;
+    }
+}
+
+@media (max-width: @breakDesktop) and (min-width: @breakTablet) {
+    #privacy .feature-list li {
+        &#privacy-dnt {
+            background-position: 35px top;
+        }
+        &#privacy-lightbeam {
+            background-position: -888px top;
+        }
+    }
+
+    #safe .feature-list li {
+        &#safe-protection {
+            background-position: 35px top;
+        }
+        &#safe-connections {
+            background-position: -888px top;
+        }
+    }
+
+    #no-worries-links {
+        margin-left: 350px;
+    }
+}
+
+@media (max-width: @breakTablet) {
+    // unset nav pointer
+    #nav-main-trust:after {
+        display: none;
+    }
+
+    #main-content {
+        .container {
+            padding-top: (@baseLine * 2);
+        }
+    }
+
+    #intro {
+        h1 {
+            font-size: 36px;
+        }
+
+        .lead {
+            font-size: 18px;
+        }
+    }
+
+    #privacy .feature-list li {
+        &#privacy-dnt {
+            background-position: 140px top;
+        }
+        &#privacy-lightbeam {
+            background-position: -780px top;
+        }
+    }
+
+    #safe .feature-list li {
+        &#safe-protection {
+            background-position: 140px top;
+        }
+        &#safe-connections {
+            background-position: -780px top;
+        }
+    }
+
+    #no-worries {
+        background: #5d7489;
+    }
+
+    #no-worries-links {
+        margin-left: 0;
+
+        li {
+            text-align: center;
+            font-size: 16px;
+        }
+    }
+}
+
+@media (max-width: @breakMobileLandscape) {
+    #intro h1 {
+        font-size: 34px;
+    }
+
+    #privacy .feature-list li {
+        &#privacy-dnt {
+            background-position: 70px top;
+        }
+        &#privacy-lightbeam {
+            background-position: -850px top;
+        }
+    }
+
+    #safe .feature-list li {
+        &#safe-protection {
+            background-position: 70px top;
+        }
+        &#safe-connections {
+            background-position: -850px top;
+        }
+    }
+}
