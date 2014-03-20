@@ -185,6 +185,22 @@ MINIFY_BUNDLES = {
             'css/sandstone/video.less',
             'css/firefox/customize.less',
         ),
+        'firefox_desktop': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/desktop/index.less',
+        ),
+        'firefox_desktop_fast': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/desktop/fast.less',
+        ),
+        'firefox_desktop_customize': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/desktop/customize.less',
+        ),
+        'firefox_desktop_trust': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/desktop/trust.less',
+        ),
         'firefox_features': (
             'css/sandstone/video.less',
             'css/firefox/features.less',
@@ -510,6 +526,23 @@ MINIFY_BUNDLES = {
         'firefox_customize': (
             'js/base/mozilla-video-tools.js',
             'js/firefox/customize.js',
+        ),
+        'firefox_desktop_common': (
+            'js/firefox/desktop/common.js',
+        ),
+        'firefox_desktop_customize': (
+            'js/firefox/desktop/common.js',
+            'js/firefox/desktop/customize.js',
+        ),
+        'firefox_desktop_index': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/firefox/desktop/common.js',
+            'js/firefox/desktop/speed-graph.js'
+        ),
+        'firefox_desktop_fast': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/firefox/desktop/common.js',
+            'js/firefox/desktop/speed-graph.js'
         ),
         'firefox_features': (
             'js/base/mozilla-video-tools.js',
