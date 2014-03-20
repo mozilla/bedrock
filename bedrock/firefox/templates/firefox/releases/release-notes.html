@@ -48,18 +48,14 @@
         <a href="{{ feedback }}">tell us what you think</a>,
         or <a href="{{ bugzilla }}">file a bug in Bugzilla</a>.
       {% endtrans %}
-      {% if release.bug_search_url %}
-          {% trans bug_search_url=release.bug_search_url %}
-          If interested, please see the <a href="{{ bug_search_url }}">complete list of changes</a>
-          in this release.
-          {% endtrans %}
-      {% elif release.bug_list %}
+      {% if release.bug_list %}
       <form action="https://bugzilla.mozilla.org/buglist.cgi" method="post">
         <input type="hidden" name="limit" value="0">
         <input type="hidden" name="bug_id" value="{{ release.bug_list }}">
-        {# L10n: These three strings form a sentence, with the string 'complete list of changes' as the label for a form button. #}
-        <p>{{ _('If interested, please see the') }} <button type="submit">{{ _('complete list of changes') }}</button> {{ _('in this release.') }}</p>
+        <p>If interested, please see the <button type="submit">complete list of changes</button> in this release.</p>
       </form>
+      {% else %}
+          If interested, please see the  <a href="{{ release.get_bug_search_url() }}">complete list of changes</a> in this release.
       {% endif %}
       </p>
     </header>
