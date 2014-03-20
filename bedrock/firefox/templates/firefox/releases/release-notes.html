@@ -66,6 +66,7 @@
   {% endblock %}
 
     <div class="main-column">
+      {% if new_features %}
       <section class="notes-section" id="new-features">
         <h3>{{ _('New Features') }}</h3>
         <ul class="section-items tagged">
@@ -81,7 +82,8 @@
           {% endfor %}
         </ul>
       </section>
-
+      {% endif %}
+      {% if known_issues %}
       <section class="notes-section" id="known-issues">
         <h3>{{ _('Known Issues') }}</h3>
         <ul class="section-items tagged">
@@ -102,6 +104,7 @@
           {% endfor %}
         </ul>
       </section>
+      {% endif %}
     </div>
 
   {% block notes_sidebar %}
