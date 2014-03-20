@@ -213,12 +213,18 @@ def video(*args, **kwargs):
 
     # defaults
     data = {
-        'w': 640,
-        'h': 360,
+        'controls': True,
         'autoplay': False,
         'preload': False,
         'id': 'htmlPlayer'
     }
+    if 'controls' in kwargs:
+        data['controls'] = True
+    if 'h' not in kwargs and 'w' not in kwargs:
+        data.update({
+            'w': 640,
+            'h': 360,
+        })
 
     # Flash fallback, if mp4 file on Mozilla Videos CDN.
     data['flash_fallback'] = False
@@ -228,8 +234,12 @@ def video(*args, **kwargs):
                                       'videos-cdn.mozilla.net'):
             data['flash_fallback'] = mp4_url.path
 
+    extra_attrs = kwargs.get('extra_attrs', {})
+    attributes = " ".join([jingo.helpers.fe('{0}="{1}"', k, v)
+                           for k, v in extra_attrs.items()])
     data.update(**kwargs)
-    data.update(filetypes=filetypes, mime=mime, videos=videos)
+    data.update(filetypes=filetypes, mime=mime, videos=videos,
+                attributes=attributes)
 
     return jinja2.Markup(jingo.env.get_template(
         'mozorg/videotag.html').render(data))

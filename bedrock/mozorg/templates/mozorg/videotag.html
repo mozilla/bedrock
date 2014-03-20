@@ -2,16 +2,29 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-<video tabindex="0" id="{{ id }}" controls="controls" {{ 'autoplay' if autoplay }}
+<video tabindex="0" id="{{ id }}" {{ 'controls' if controls }} {{ 'autoplay' if autoplay }}
+  itemscope itemtype="http://schema.org/VideoObject"
   {% if poster %}
     poster="{{ poster }}"
   {% endif %}
   {% if preload %}
     preload="{{ preload }}"
   {% endif %}
-  width="{{ w }}" height="{{ h }}">
+  {% if w %}
+    width="{{ w }}"
+  {% endif %}
+  {% if h %}
+    height="{{ h }}"
+  {% endif %}
+  {{ attributes|safe }}>
+  <meta itemprop="width" content="{{ w }}" />
+  <meta itemprop="height" content="{{ h }}" />
+  {% if poster %}
+    <meta itemprop="thumbnailUrl" content="{{ poster }}" />
+  {% endif %}
   {% for ft in filetypes %}
     {% if ft in videos %}
+        <meta itemprop="encodingFormat" content="{{ ft }}" />
         <source src="{{ videos[ft] }}" type="{{ mime[ft] }}">
     {% endif %}
   {% endfor %}

@@ -69,11 +69,9 @@
 
       <figure class="figure">
         <div class="mozilla-video-control">
-          <video width="640" height="360" controls="controls" preload="metadata">
-            <source src="//videos-cdn.mozilla.net/serv/mobile/meetFFXmobile2-640x360.webm" type="video/webm"/>
-            <source src="//videos-cdn.mozilla.net/serv/mobile/meetFFXmobile2-640x360.theora.ogv" type="video/ogg"/>
-            <source src="//videos-cdn.mozilla.net/serv/mobile/meetFFXmobile2-640x360.mp4" type="video/mp4"/>
-          </video>
+          {{ video('meetFFXmobile2-640x360.webm', 'meetFFXmobile2-640x360.theora.ogv',
+                   'meetFFXmobile2-640x360.mp4', preload='metadata',
+                   prefix='//videos-cdn.mozilla.net/serv/mobile/') }}
         </div>
       </figure>
       <div class="video-description">
@@ -118,10 +116,9 @@
 
       <figure class="figure">
         <div class="mozilla-video-control">
-          <video width="640" height="360" controls="controls" preload="metadata">
-            <source src="//videos-cdn.mozilla.net/labs/openwebapps/openwebapps.webm" type="video/webm"/>
-            <source src="//videos-cdn.mozilla.net/labs/openwebapps/openwebapps.ogv" type="video/ogg"/>
-          </video>
+          {{ video('openwebapps.webm', 'openwebapps.ogv',
+                   preload='metadata',
+                   prefix='//videos-cdn.mozilla.net/labs/openwebapps/') }}
         </div>
       </figure>
       <div class="video-description">
@@ -158,11 +155,9 @@
 
       <figure class="figure">
         <div class="mozilla-video-control">
-          <video width="640" height="360" controls="controls" preload="metadata">
-            <source src="//videos-cdn.mozilla.net/serv/firefox4beta/syncvideo5final640x360.webm" type="video/webm"/>
-            <source src="//videos-cdn.mozilla.net/serv/firefox4beta/syncvideo5final640x3%23161DA3.ogv" type="video/ogg"/>
-            <source src="//videos-cdn.mozilla.net/serv/firefox4beta/syncvideo5final640x360.mp4" type="video/mp4"/>
-          </video>
+          {{ video('syncvideo5final640x360.webm', 'syncvideo5final640x3%23161DA3.ogv',
+                   'syncvideo5final640x360.mp4', preload='metadata',
+                   prefix='//videos-cdn.mozilla.net/serv/firefox4beta/') }}
         </div>
       </figure>
       <div class="video-description">

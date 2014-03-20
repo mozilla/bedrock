@@ -270,7 +270,11 @@
 <article class="hasademo">
     <h1>{{ _('WebM') }}</h1>
     <div class="demo">
-        <video preload="auto" width="160" src="//videos-cdn.mozilla.net/serv/firefoxlive/meetthecubs.webm" onmouseover="this.play()" onmouseout="this.pause()"></video>
+        {{ video('meetthecubs.webm', w='160', preload='auto',
+                 prefix='//videos-cdn.mozilla.net/serv/firefoxlive/',
+                 controls=False,
+                 extra_attrs={'onmouseover': 'this.play()',
+                              'onmouseout': 'this.pause()'}) }}
     </div>
     <p>
     {% trans url1='http://www.youtube.com/html5',
