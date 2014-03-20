@@ -1,0 +1,148 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "firefox/desktop/desktop-base.html" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{ _("Firefox — Designed to protect your privacy — The most trusted browser on the Web") }}{% endblock %}
+
+{% block site_css %}
+  {{ css('firefox_desktop_trust') }}
+{% endblock %}
+
+{% block body_id %}firefox-desktop-trust{% endblock %}
+
+{% block content %}
+<main role="main" id="main-content">
+  <section id="intro">
+    <div class="container">
+      <h1>{{ _('Trust isn’t made. It’s earned.') }}</h1>
+      <p class="lead">
+        {# L10n: Line break below is for wide screen formatting only. #}
+        {{ _('We build Firefox with a mission to put you first, above all else.<br class="wide-br">') }}
+        {{ _('We do it to keep you in control.') }}
+        {# L10n: Line break below is for wide screen formatting only. #}
+        {{ _('We do it so you can browse without worry.<br class="wide-br">') }}
+        {{ _('And we do it because no one else will.') }}
+      </p>
+
+      {% include 'firefox/desktop/_trust_badge.html' %}
+    </div>
+  </section>
+
+  <section id="privacy">
+    <div class="container">
+      <h2>{{ _('Designed to protect your privacy') }}</h2>
+
+      <p class="lead">
+        {# L10n: Line break below is for wide screen formatting only. #}
+        {{ _('We believe your personal information belongs only to you.<br class="wide-br">') }}
+        {{ _('That’s why Firefox is filled with features to ensure that’s the case.') }}
+      </p>
+
+      <ul class="feature-list">
+        <li id="privacy-dnt">
+          <h3>{{ _('Do Not Track') }}</h3>
+
+          <p>
+            {{ _('A Firefox innovation, Do Not Track lets you indicate a preference about the way your personal info is collected and used online.') }}
+          </p>
+
+          <a class="more" href="{{ url('firefox.dnt') }}">{{ _('Learn more about Do Not Track') }}</a>
+        </li>
+        <li id="privacy-browsing">
+          <h3>{{ _('Private browsing') }}</h3>
+
+          <p>
+            {{ _('Sometimes it’s nice to go undercover.') }}
+            {{ _('Turn this feature on to protect your browsing history from others.') }}
+          </p>
+
+          <a class="more" href="https://support.mozilla.org/kb/private-browsing-browse-web-without-saving-info">{{ _('Learn how to open a private window') }}</a>
+        </li>
+        <li id="privacy-lightbeam" class="last">
+          <h3>{{ _('Lightbeam') }}</h3>
+
+          <p>
+            {{ _('See who’s watching you online.') }}
+            {{ _('The Lightbeam add-on exposes the first and third party sites you interact with as you browse.') }}
+          </p>
+
+          <a class="more" href="{{ url('lightbeam.lightbeam') }}">{{ _('Shine a light on the Web with Lightbeam') }}</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <section id="safe">
+    <div class="container">
+      <h2>{{ _('Keeping you safe across the Web') }}</h2>
+
+      <p class="lead">
+        {{ _('Firefox lets you learn more about the sites you visit and helps keep you secure online.') }}
+      </p>
+
+      <ul class="feature-list">
+        <li id="safe-connections">
+          <h3>{{ _('Secure connections') }}</h3>
+
+          <p>
+            {{ _('Use instant Website ID to to make sure a site is what it claims to be and to check if your connection to it is secure.') }}
+          </p>
+
+          <a class="more" href="https://support.mozilla.org/kb/how-do-i-tell-if-my-connection-is-secure">{{ _('Learn more') }}</a>
+        </li>
+        <li id="safe-protection">
+          <h3>{{ _('World class protection') }}</h3>
+
+          <p>
+            {{ _('Anti-phishing & anti-malware features protect you from trojan horses and spyware and warn you about potentially fraudulent sites.') }}
+          </p>
+
+          <a class="more" href="https://support.mozilla.org/kb/how-does-phishing-and-malware-protection-work">{{ _('Learn more') }}</a>
+        </li>
+        <li id="safe-updates" class="last">
+          <h3>{{ _('Automatic security updates') }}</h3>
+
+          <p>
+            {{ _('Firefox updates automatically to make sure you always have the latest and greatest security fixes.') }}
+          </p>
+
+          <a class="more" href="https://support.mozilla.org/kb/update-firefox-latest-version">{{ _('Learn more') }}</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <section id="no-worries">
+    <div class="container">
+      <h2>{{ _('Browse without worry') }}</h2>
+
+      <p class="lead">
+        {# L10n: Line break below is for visual formatting only. #}
+        {{ _('Learn more about why your privacy and security are so important <br class="wide-br">and what you can do to protect yourself online.') }}
+      </p>
+
+      <ul id="no-worries-links">
+        <li>
+          <a href="http://www.mozilla.org/privacy/you/">{{ _('Privacy & you') }}</a>
+        </li>
+        <li>
+          <a href="https://support.mozilla.org/kb/how-stay-safe-web">{{ _('How to stay safe online') }}</a>
+        </li>
+        <li>
+          <a href="https://support.mozilla.org/products/firefox/privacy-and-security">{{ _('Privacy & security FAQ') }}</a>
+        </li>
+        <li>
+          <a href="https://addons.mozilla.org/firefox/extensions/privacy-security/">{{ _('Privacy & security add-ons') }}</a>
+        </li>
+        <li>
+          <a href="https://blog.mozilla.org/privacy/">{{ _('Privacy blog') }}</a>
+        </li>
+        <li>
+          <a href="https://blog.mozilla.org/security/">{{ _('Security blog') }}</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+</main>
+{% endblock %}
