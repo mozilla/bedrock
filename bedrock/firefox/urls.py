@@ -57,7 +57,6 @@ urlpatterns = patterns('',
     url(r'^firefox/installer-help/$', views.installer_help,
         name='firefox.installer-help'),
     page('firefox/speed', 'firefox/speed.html'),
-    page('firefox/technology', 'firefox/technology.html'),
 
     page('firefox/unsupported/warning', 'firefox/unsupported/warning.html'),
     page('firefox/unsupported/EOL', 'firefox/unsupported/EOL.html'),
