@@ -1,0 +1,74 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "firefox/desktop/desktop-base.html" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{ _('Firefox — The "speed king" - The fastest browser on the Web') }}{% endblock %}
+
+{% block site_css %}
+  {{ css('firefox_desktop_fast') }}
+{% endblock %}
+
+{% block body_id %}firefox-desktop-fast{% endblock %}
+
+{% block content %}
+<main role="main" id="main-content">
+  <section id="intro">
+    <div class="container">
+      <h1>{{ _('Faster than ever') }}</h1>
+      <p class="lead">
+        {{ _('This is the fastest Firefox yet.') }}
+        {# L10n: Line break below is for wide screen formatting only. #}
+        {{ _('It excels at both technical benchmarks <br class="wide-br">and the everyday tasks that you do most.') }}
+      </p>
+
+      {% include 'firefox/desktop/_speed_graph.html' %}
+
+      <h3>{{ _('The “speed king”') }}</h3>
+
+      <p>
+      {# L10n: Line break below is for wide screen formatting only. #}
+      {% trans url1='http://www.tomshardware.com/reviews/chrome-27-firefox-21-opera-next,3534.html' %}
+        Firefox outperformed other browsers in recent independent tests to be named <br class="wide-br">the <a href="{{ url1 }}">“speed king.”</a>
+      {% endtrans %}
+        {{ _('So you can browse with confidence with the fastest on the Web.') }}
+      </p>
+    </div>
+  </section>
+
+  <section id="cutting-edge">
+    <div class="container">
+      <h2>{{ _('Cutting-edge speed') }}</h2>
+
+      <p class="lead">
+        {{ _('If you enjoy games, you can now play some of your favorites right on the Web without sacrificing speed or overall performance.') }}
+        {{ _('Firefox is leading the charge in online gaming as part of our efforts to make every aspect of your browsing experience faster.') }}
+      </p>
+
+      <a class="more" href="https://blog.mozilla.org/javascript/2014/01/23/the-monkeys-in-2013/">
+        {# L10n: Line break below is for wide screen formatting only. #}
+        {{ _('Learn more about how we’re <br class="wide-br">pushing the limits of speed') }}
+      </a>
+    </div>
+  </section>
+
+  <section id="feel">
+    <div class="container">
+      <h2>{{ _('Speed you can feel') }}</h2>
+
+      <p class="lead">
+        {{ _('We optimize Firefox for the way you use the Web.') }}
+        {# L10n: Line breaks below are for wide screen formatting only. #}
+        {{ _('So things like opening or switching <br class="wide-br">between tabs and getting results from the Awesome Bar happen faster than ever.<br class="wide-br">') }}
+        {{ _('Get where you need to go as quickly and easily as possible.') }}
+      </p>
+    </div>
+  </section>
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js('firefox_desktop_fast') }}
+{% endblock %}

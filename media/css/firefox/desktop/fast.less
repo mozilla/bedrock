@@ -1,0 +1,104 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import 'common.less';
+
+// set nav pointer
+#nav-main-fast {
+    .nav-pointer();
+}
+
+#main-content .container {
+    font-size: 18px;
+}
+
+#intro {
+    .grainy-sky();
+
+    h3 {
+        font-size: 18px;
+        text-transform: uppercase;
+        .open-sans;
+    }
+
+    .lead {
+        font-size: 22px;
+    }
+}
+
+#cutting-edge {
+    background: #43505b;
+    background: url(/media/img/firefox/desktop/fast/bg-cutting-edge-knight.png) center center no-repeat,
+        #43505b url(/media/img/firefox/desktop/fast/bg-cutting-edge.jpg) center center no-repeat;
+
+    .container {
+        .container-dark();
+
+        text-align: left;
+        width: 440px;
+        padding-left: 480px;
+        padding-right: @baseLine;
+    }
+}
+
+#feel {
+    background: #e9e6de url(/media/img/firefox/desktop/fast/bg-feel.png) bottom center no-repeat;
+}
+
+@media (max-width: @breakDesktop) and (min-width: @breakTablet) {
+    #feel {
+        background-size: 700px 288px;
+    }
+
+    #cutting-edge {
+        background: #43505b;
+        background: url(/media/img/firefox/desktop/fast/bg-cutting-edge-knight.png) -300px center no-repeat,
+            #43505b url(/media/img/firefox/desktop/fast/bg-cutting-edge.jpg) center center no-repeat;
+
+        .container {
+            width: 380px;
+            padding-left: 320px;
+
+            h2 {
+                font-size: 38px;
+            }
+        }
+    }
+}
+
+@media (max-width: @breakTablet) {
+    // unset nav pointer
+    #nav-main-fast:after {
+        display: none;
+    }
+
+    #main-content .container {
+        font-size: 16px;
+    }
+
+    #intro .lead {
+        font-size: 16px;
+    }
+
+    #cutting-edge {
+        background: #43505b;
+
+        .container {
+            width: @breakMobileLandscape - (@baseLine * 2);
+            padding-left: 0;
+            padding-right: 0;
+            text-align: center;
+        }
+    }
+
+    #feel {
+        background-image: none;
+    }
+}
+
+@media (max-width: @breakMobileLandscape) {
+    #cutting-edge .container {
+        width: @breakMobile - @baseLine;
+    }
+}
