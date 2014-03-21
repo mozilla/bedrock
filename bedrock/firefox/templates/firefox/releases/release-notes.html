@@ -5,7 +5,7 @@
 {% extends "firefox/base-resp.html" %}
 
 {% block page_title_prefix %}{% endblock %}
-{% block page_title %}{{ _('Firefox — {version} Notes')|f(version=version) }}{% endblock %}
+{% block page_title %}{{ _('Firefox — {channel} Notes')|f(channel=channel_name) }}{% endblock %}
 
 {% block body_id %}notes{% endblock %}
 {% block body_class %}fx-notes sky{% endblock %}
@@ -15,7 +15,7 @@
 {% endblock %}
 
 {# channel_name is for display purposes where needed.  #}
-{% set channel_name = channel_name|default('Firefox') %}
+{% set channel_name = channel_name|default('') %}
 
 {% block content %}
 <main role="main">
@@ -23,7 +23,7 @@
 
   {% block notes_header %}
     <header class="notes-head">
-    <h1>{{ _('Firefox {version} Notes')|f(version=version) }}</h1>
+    <h1>{{ _('Firefox {channel} Notes')|f(channel=channel_name) }}</h1>
     <h2>{{ _('First offered to {channel} channel users on {date}')|f(channel=release.channel, date=release.release_date|l10n_format_date) }}</h2>
 
     {% if equivalent_release_url %}
@@ -106,7 +106,7 @@
   {% block notes_sidebar %}
     <aside id="sidebar" class="sidebar">
       <section id="try">
-        <h3>{{ _('Try %s')|format(channel_name) }}</h3>
+        <h3>{{ _('Try Firefox %s')|format(channel_name) }}</h3>
         <ol>
           <li class="try1"><a href="{{ url('firefox.system_requirements', version) }}">{{ _('Check') }}</a></li>
           <li class="try2"><a href="{{ url('firefox') }}">{{ _('Download') }}</a></li>
