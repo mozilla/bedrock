@@ -23,41 +23,45 @@
 {% block site_header_logo %}{% endblock %}
 
 {% block content %}
-<main id="main-content" role="main">
-<h1 id="firstrun-header" class="large">{{ _('Firefox Nightlies') }}</h1>
-  <div class="main-column">
-    <h2>{{ _('Thank you.') }}</h2>
+<div id="firstrun-header">
+  <h1>{{ _('Firefox Nightlies') }}</h1>
+  <h3>
+    {{ _('Thank you.') }}
+    {{ _('By using a nightly build, you’re helping make Firefox better.') }}
+  </h3>
+</div>
 
-     <h3>{{ _('By using a nightly build, you’re helping make Firefox better.') }}</h3>
-
-    <h3>{{ _('Learn more about Firefox and Mozilla:') }}</h3>
+<main id="main-content" class="billboard primary" role="main">
+  <div class="column">
+    <h4>{{ _('Learn more about Firefox and Mozilla') }}</h4>
     <ul class="unstyled">
-        <li><a href="https://www.mozilla.org/manifesto/">{{ _('Read the Mozilla manifesto, our vision for a free and open Web.') }}</a></li>
-        <li><a href="https://www.mozilla.org/en-US/firefox/29.0a2/whatsnew/">{{ _('Take a tour of the new Australis User Interface.') }}</a></li>
-        <li><a href="https://mozillians.org/">{{ _('Join Mozillians.org for Mozilla news and community updates.') }}</a></li>
+        <li><a href="https://www.mozilla.org/manifesto/">{{ _('Read the Mozilla manifesto, our vision for a free and open Web') }}</a></li>
+        <li><a href="https://www.mozilla.org/en-US/firefox/29.0a2/whatsnew/">{{ _('Take a tour of the new Australis User Interface') }}</a></li>
+        <li><a href="https://mozillians.org/">{{ _('Join Mozillians.org for Mozilla news and community updates') }}</a></li>
     </ul>
-
-    <h2>{{ _('Hack on Firefox with us:') }}</h2>
+  </div>
+  <div class="column">
+    <h4>{{ _('Hack on Firefox with us') }}</h4>
     <ul class="unstyled">
-        <li><a href="http://www.whatcanidoformozilla.org">{{ _('Find out how you can help at WhatCanIDoForMozilla.org.')}}</a></li>
-        <li><a href="https://bugzilla.mozilla.org/createaccount.cgi">{{ _('Sign up for a Bugzilla account.') }}</a></li>
-        <li><a href="https://developer.mozilla.org/en-US/docs/Simple_Firefox_build">{{ _('Set up your development environment to build Firefox.') }}</a></li>
-        <li><a href="http://codefirefox.com/">{{ _('Learn about the next steps at CodeFirefox.') }}</a></li>
+        <li><a href="http://www.whatcanidoformozilla.org">{{ _('Find out how you can help at WhatCanIDoForMozilla.org')}}</a></li>
+        <li><a href="https://bugzilla.mozilla.org/createaccount.cgi">{{ _('Sign up for a Bugzilla account') }}</a></li>
+        <li><a href="https://developer.mozilla.org/docs/Simple_Firefox_build">{{ _('Set up your development environment to build Firefox') }}</a></li>
+        <li><a href="http://codefirefox.com/">{{ _('Learn about the next steps at CodeFirefox') }}</a></li>
     </ul>
-
-    <h2>{{ _('Join the Mozilla community:') }}</h2>
+  </div>
+  <div class="column">
+    <h4>{{ _('Join the Mozilla community') }}</h4>
     <ul class="unstyled">
-      <li><a href="http://reps.mozilla.org/">{{ _('Learn about upcoming Mozilla events in your area.') }}</a></li>  
+      <li><a href="http://reps.mozilla.org/">{{ _('Learn about upcoming Mozilla events in your area') }}</a></li>  
       <li><a href="http://planet.mozilla.org/">{{ _('Take a drink from the firehose! Get all the latest Mozilla news at Planet Mozilla.') }}</a></li>  
-      <li><a href="https://quality.mozilla.org/docs/qmo-community/get-involved/">{{ _('Help make Firefox better with the Mozilla QA team.') }}</a></li>
+      <li><a href="https://quality.mozilla.org/docs/qmo-community/get-involved/">{{ _('Help make Firefox better with the Mozilla QA team') }}</a></li>
     </ul>
-
-    <h3>{{ _('Help us build the Web the world needs.') }}</h3>
-
   </div>
 
-
 </main> <!-- main-content -->
+
+<h3 class="feature-note">{{ _('Help us build the Web the world needs.') }}</h3>
+
 
 {% endblock %}
 

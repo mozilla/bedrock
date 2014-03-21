@@ -11,17 +11,12 @@
     background: url(/media/img/firefox/firstrun/logo-nightly.png?2013-11) 0 0 no-repeat;
     position: relative;
     z-index: 10;
+    h3 {
+        font-size: 24px;
+    }
 }
 
 #main-content {
-    text-align: left;
-    video {
-      max-width: 100%;
-      height: auto;
-    }
-    #video-player {
-      margin: 0 auto 1.5em;
-    }
     a,
     a:link,
     a:visited {
@@ -32,15 +27,26 @@
     a:focus {
         color: #0095DD;
     }
+    .column {
+        .span(4);
+        &:first-child {
+            margin-left: 0;
+        }
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+    h4 {
+        font-size: 18px;
+    }
+    li {
+        margin-bottom: 0.2em;
+    }
 }
 
-.main-column {
-    .span(8);
-}
-
-.sidebar {
-    .span(3);
-    .offset(1);
+.feature-note {
+    text-align: center;
+    margin: (@baseLine * 2) auto;
 }
 
 #colophon {
@@ -86,30 +92,33 @@
 
 /* Tablet Layout: 760px */
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
-    .main-column {
-        .span_narrow(8);
-    }
-    .sidebar {
-        .span_narrow(3);
-        .offset_narrow(1);
+    #main-content {
+        .column {
+            .span_narrow(4);
+            &:first-child {
+                margin-left: 0;
+            }
+            &:last-child {
+                margin-right: 0;
+            }
+        }
     }
 }
 
 /* Mobile Layout: 320px */
 @media only screen and (max-width: @breakTablet) {
     #firstrun-header {
-        
+        background-position: top center;
+        padding: 130px 0 0 0;
+        text-align: center;
     }
 
-    .main-column {
-        width: auto;
-        float: none;
-        margin: 0 auto 1em;
-    }
-    .sidebar {
-        width: auto;
-        float: none;
-        margin: 0 auto 1em;
+    #main-content {
+        .column,
+        .column:first-child,
+        .column:last-child {
+            .span-all();
+        }
     }
     #colophon {
         width: auto;
