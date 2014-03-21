@@ -56,48 +56,6 @@ function init_lang_switcher() {
     });
 }
 
-// platform images
-
-function init_platform_imgs() {
-    function has_platform(platforms, platform) {
-        for (var i = 0; i < platforms.length; i++) {
-            if (platforms[i] === platform && site.platform === platform) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    $('.platform-img').each(function() {
-        var suffix = '';
-        var $img = $(this);
-        var default_platforms = ['osx', 'oldmac', 'linux'];
-        var additional_platforms;
-        var platforms = default_platforms;
-
-        // use 'data-additional-platforms' to specify other supported platforms
-        // beyond the defaults
-        if ($img.data('additional-platforms')) {
-            additional_platforms = $img.data('additional-platforms').split(' ');
-            platforms = default_platforms.concat(additional_platforms);
-        }
-
-        if (has_platform(platforms, 'osx') || has_platform(platforms, 'oldmac')) {
-            suffix = '-mac';
-        } else if (has_platform(platforms, site.platform)) {
-            suffix = '-' + site.platform;
-        }
-
-        var orig_src = $img.data('src');
-        var i = orig_src.lastIndexOf('.');
-        var base = orig_src.substring(0, i);
-        var ext = orig_src.substring(i);
-        this.src = base + suffix + ext;
-        $img.addClass(site.platform);
-    });
-}
-
 // init
 
 $(document).ready(function() {

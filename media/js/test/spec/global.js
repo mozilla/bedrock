@@ -87,34 +87,6 @@ describe("global.js", function() {
 
     });
 
-    describe("init_platform_imgs", function () {
-
-        beforeEach(function () {
-            // Pretend we're on osx for each test
-            window.site = {
-                platform: 'osx'
-            };
-            //create an HTML fixture to test against
-            $('<img class="platform-img js" data-src="foo/bar.jpg" src="">').appendTo('body');
-        });
-
-        afterEach(function(){
-            // Tidy up after each test
-            window.site = null;
-            $('.platform-img').remove();
-        });
-
-        it("should set platform specific src file", function () {
-            init_platform_imgs();
-            expect($('.platform-img').attr('src')).toEqual('foo/bar-mac.jpg');
-        });
-
-        it("should set platform specific css class", function () {
-            init_platform_imgs();
-            expect($('.platform-img').hasClass('osx')).toBeTruthy();
-        });
-    });
-
     describe("getFirefoxMasterVersion", function () {
 
         it("should return the firefox master version number", function () {
