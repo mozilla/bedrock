@@ -13,10 +13,12 @@ module.exports = function(config) {
             '../base/site.js',
             '../base/global.js',
             '../base/mozilla-form-helper.js',
+            '../base/mozilla-image-helper.js',
             'http://localhost:8000/tabzilla/tabzilla.js?build=dev',
             'spec/site.js',
             'spec/global.js',
             'spec/mozilla-form-helper.js',
+            'spec/mozilla-image-helper.js',
             'spec/tabzilla.js',
             {
                 pattern: '../../../node_modules/sinon/pkg/sinon.js',
@@ -47,7 +49,7 @@ module.exports = function(config) {
 
         // level of logging
         // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-        logLevel: LOG_INFO,
+        //logLevel: console.LOG_INFO,
 
         // enable / disable watching file and executing tests whenever any file changes
         autoWatch: true,
