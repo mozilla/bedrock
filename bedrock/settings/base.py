@@ -279,6 +279,9 @@ MINIFY_BUNDLES = {
         'firefox_releasenotes': (
             'css/firefox/releasenotes.less',
         ),
+        'firefox_sync': (
+            'css/firefox/sync.less',
+        ),
         'installer_help': (
             'css/base/mozilla-modal.less',
             'css/firefox/template-resp.less',
