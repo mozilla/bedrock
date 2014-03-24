@@ -42,6 +42,7 @@
     {% endif %}
 
       <p>
+        {{ _('Check out "What’s New" and "Known Issues" for this version of Firefox below.') }}
       {% trans feedback='https://input.mozilla.org/feedback',
           bugzilla='https://bugzilla.mozilla.org/' %}
         As always, you’re encouraged to
@@ -57,6 +58,7 @@
       {% else %}
           If interested, please see the  <a href="{{ release.get_bug_search_url() }}">complete list of changes</a> in this release.
       {% endif %}
+        {{ release.text|markdown|safe }}
       </p>
     </header>
   {% endblock %}
