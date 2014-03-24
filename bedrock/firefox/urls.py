@@ -86,9 +86,6 @@ urlpatterns = patterns('',
     page('mwc', 'firefox/os/mwc-2014-preview.html'),
     page('firefox/os/devices', 'firefox/os/devices.html'),
 
-    # temporary URL for Aurora 29 survey
-    page('firefox/aurora/up-to-date', 'firefox/whatsnew-aurora-29-survey.html'),
-
     url(releasenotes_re, views.release_notes, name='firefox.releasenotes'),
     url(mobile_releasenotes_re, views.release_notes,
         {'product': 'Firefox for Android'}, name='mobile.releasenotes'),
