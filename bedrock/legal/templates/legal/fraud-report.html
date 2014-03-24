@@ -140,6 +140,8 @@
             {{ form.input_category }}
           </div>
 
+          {{ form.office_fax }}
+
           <div class="field required" id="product">
             {{ form.input_product.errors }}
             <label for="input_product">{{ _('Product') }}</label>
@@ -186,8 +188,6 @@
           </div>
 
           <button type="submit" name="submit_form" class="button">{{ _('Send Report') }}</button>
-
-          {{ form.superpriority }}
         </form>
       {% else %}
         <h2>{{ _('Your report has been sent.') }}</h2>
