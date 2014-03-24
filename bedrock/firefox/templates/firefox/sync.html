@@ -1,0 +1,46 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "/firefox/base-resp.html" %}
+
+{% block page_title %}{{ _('Keep Your Firefox in Sync') }}{% endblock %}
+{% block body_id %}firefox-sync{% endblock %}
+
+{% block extrahead %}
+  {{ css('firefox_sync') }}
+{% endblock %}
+
+{% block content %}
+
+<div class="intro container">
+  <h1>{{ self.page_title() }}</h1>
+  <p>{{ _('Instantly make Firefox your own wherever you use it. Seamlessly sync your bookmarks, history, passwords and more and access them from any device.') }}</p>
+</div>
+
+<div class="main-content billboard">
+  <div class="primary">
+    <h4>{{ _('Get started with Sync. It’s fast, safe and easy:') }}</h4>
+    <ol>
+      <li>{% trans url='https://support.mozilla.org/kb/learn-more-about-the-design-of-new-firefox#w_a-handy-new-menu' %}
+        Open the <a href="{{ url }}">menu</a> menu in the top right of Firefox and select “Sign in to Sync.”
+      {% endtrans %}</li>
+      <li>{{ _('Click “Get started” in the tab that opens.') }}</li>
+      <li>{{ _('Enter an email address and password to “Create a Firefox Account.”') }}</li>
+      <li>{{ _('Click “Next” to get a verification sent to your email.') }}</li>
+    </ol>
+    <p>{{ _('Check your email and click the verification link.') }}</p>
+    <p>{{ _('You’re all set! Firefox will automatically sync in the background from now on.') }}</p>
+    <ul class="unstyled">
+      <li><a href="https://support.mozilla.org/kb/how-do-i-set-up-firefox-sync">{{ _('Get more detailed instructions.') }}</a></li>
+      <li><a href="https://support.mozilla.org/kb/how-to-update-to-the-new-firefox-sync">{{ _('Using an older version of Sync?') }}</a></li>
+    </ul>
+  </div>
+  <div class="android">
+    <h4>{{ _('Have an Android phone or tablet?') }}</h4>
+    <p>{{ _('Download Firefox for Android to sync between your desktop and mobile devices.') }}</p>
+    <p><a class="button" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}">{{ _('Get it free from Google Play') }}</a></p>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,106 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+#wrapper:before {
+    content: " ";
+    background: url(/media/img/firefox/sync/sync.png) no-repeat;
+    background-size: contain;
+    position: absolute;
+    top: 80px;
+    right: 100px;
+    height: 250px;
+    width: 250px;
+    z-index: 2;
+}
+
+.intro {
+    .span(8);
+    margin-bottom: (@baseLine);
+    p {
+        font-size: @largeFontSize;
+    }
+}
+
+.main-content {
+    clear: both;
+    h4 {
+        font-size: 20px;
+    }
+}
+
+.primary {
+    .span(8);
+}
+
+.android {
+    .span(4);
+    padding-top: 40px;
+    .button {
+        .trailing-arrow();
+    }
+}
+
+.newsletter-form {
+    clear: both;
+}
+
+/* Tablet Layout: 760px */
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+
+    #wrapper:before {
+        top: 120px;
+        right: 20px;
+        height: 175px;
+        width: 175px;
+        z-index: 2;
+    }
+
+    .intro {
+        .span_narrow(8);
+        h1 {
+            font-size: 42px;
+        }
+        p {
+            font-size: @baseFontSize;
+        }
+    }
+
+    .primary {
+        .span_narrow(8);
+    }
+
+    .android {
+        padding-top: 0;
+        .span_narrow(4);
+    }
+}
+
+/* Mobile layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+
+    #wrapper:before {
+        content: "";
+        background: none;
+    }
+
+    .intro {
+        .span-all();
+        p {
+            font-size: @baseFontSize;
+        }
+    }
+
+
+    .primary {
+        .span-all();
+    }
+
+    .android {
+        padding-top: 0;
+        .span-all();
+    }
+
+}
