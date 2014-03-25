@@ -469,6 +469,17 @@ def get_release_or_404(version, product):
     return release
 
 
+def get_download_url(channel='Release'):
+    if channel == 'Aurora':
+        # TODO: use reverse once bug 987517 is resolved
+        return '/firefox/aurora/'
+    elif channel == 'Beta':
+        # TODO: use reverse once bug 752644 is resolved
+        return '/firefox/beta/'
+    else:
+        return reverse('firefox')
+
+
 def release_notes(request, fx_version, product='Firefox'):
     if product == 'Firefox OS' and fx_version in (
             '1.0.1', '1.1', '1.2', '1.3'):
@@ -485,7 +496,7 @@ def release_notes(request, fx_version, product='Firefox'):
     return l10n_utils.render(
         request, release_notes_template(release.channel, product), {
             'version': fx_version,
-            'major_version': fx_version.split('.', 1)[0],
+            'download_url': get_download_url(release.channel),
             'release': release,
             'equivalent_release_url': equivalent_release_url(release),
             'new_features': new_features,
