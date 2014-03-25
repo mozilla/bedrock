@@ -106,7 +106,8 @@
       <section id="try">
         <h3>{{ _('Try Firefox %s')|format(channel_name) }}</h3>
         <ol>
-          <li class="try1"><a href="{{ url('firefox.system_requirements', version) }}">{{ _('Check') }}</a></li>
+          {% set check_url = 'https://support.mozilla.org/en-US/kb/will-firefox-work-my-mobile-device' if release.product == 'Firefox for Android' else url('firefox.system_requirements', version) %}
+          <li class="try1"><a href="{{ check_url }}">{{ _('Check') }}</a></li>
           <li class="try2"><a href="{{ url('firefox') }}">{{ _('Download') }}</a></li>
           <li class="try3"><a href="https://support.mozilla.org/kb/Installing%20Firefox">{{ _('Install') }}</a></li>
           <li class="try4"><a href="https://addons.mozilla.org/firefox/">{{ _('Customize') }}</a></li>
