@@ -71,7 +71,6 @@ if (typeof Mozilla == 'undefined') {
         var that = this;
         var $p = this.$maskInner.find('p');
         var $main = this.$maskInner.find('.main');
-        var $menu = this.$maskInner.find('.menu');
         var words = $p.text().split(' ');
         var delay = $('body').hasClass('html-ltr') ? 110 : 0;
         var $tempEl = $('<div>');
@@ -92,7 +91,6 @@ if (typeof Mozilla == 'undefined') {
         // title animates in.
         $main.one('animationend', function () {
             $p.addClass('in');
-            $menu.delay(words.length * delay).fadeIn('slow');
         });
 
         setTimeout(function () {
@@ -109,27 +107,6 @@ if (typeof Mozilla == 'undefined') {
 
         // Register page id for Telemetry
         Mozilla.UITour.registerPageID(this.options.id);
-
-        // if for some reason animationend didn't fire
-        // make sure the menu is visible
-        setTimeout(function () {
-            if (!$menu.is(':visible') && !that.tourHasStarted) {
-                $menu.stop().fadeIn();
-            }
-        }, 7000);
-
-        // firstrun tour uses in-page buttons insterad of door-hanger
-        $('#start-tour-btn').one('click', $.proxy(function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            this.startTour();
-        }, this));
-
-        $('#postpone-tour-btn').one('click', $.proxy(function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            this.postponeTour();
-        }, this));
     };
 
     /*
