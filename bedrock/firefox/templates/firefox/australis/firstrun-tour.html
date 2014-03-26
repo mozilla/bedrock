@@ -15,6 +15,14 @@ data-open="{{ _('Open tour') }}"
 data-close="{{ _('Close tour') }}"
 {# L10n: This is the label for a button that proceeds to the next step of the tour #}
 data-next="{{ _('Next') }}"
+{# L10n: This is the label for a button that starts the tour #}
+data-start="{{ _('Let’s go') }}"
+{# L10n: This is the label for a button that delays starting the tour #}
+data-later="{{ _('Not now') }}"
+{# L10n: This is the title for a door-hanger menu that shows in the browser chrome #}
+data-title="{{ _('See what’s new') }}"
+{# L10n: This is the text for a door-hanger menu that shows in the browser chrome #}
+data-text="{{ _('It’s the fastest, most flexible Firefox ever.') }}"
 {# L10n: This is the text for a call to action that appears in the web page #}
 data-later-cta="{{ _('Take the tour to explore the latest design and features') }}"
 {# L10n: This is the label that represents tour step one of four #}
@@ -96,6 +104,7 @@ data-step4="{{ _('4/4') }}"
         </li>
       </ul>
       <div class="compact-title"></div>
+      <div class="tour-init" data-target="appMenu" data-icon="{{ MEDIA_URL }}img/firefox/australis/logo.png?2014-03" data-icon-high-res="{{ MEDIA_URL }}img/firefox/australis/logo-high-res.png?2014-03"></div>
       <div class="cta">
         <button type="button" aria-controls="ui-tour">{{ _('Start browsing') }}</button>
       </div>
@@ -119,10 +128,6 @@ data-step4="{{ _('4/4') }}"
           <span class="main">{{ _('new Firefox') }}</span>
         </h1>
         <p>{{ _('The fast, flexible browser you can trust.') }}</p>
-        <div class="menu">
-          <button id="start-tour-btn" class="button-green">{{ _('Take a tour') }}</button>
-          <button id="postpone-tour-btn">{{ _('Not now') }}</button>
-        </div>
       </div>
     </div>
   </div>
