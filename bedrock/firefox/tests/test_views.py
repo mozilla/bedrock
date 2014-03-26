@@ -56,7 +56,6 @@ class TestRNAViews(TestCase):
         get_release_or_404.assert_called_with('27.0', 'Firefox')
         # Should use original version for context variable
         eq_(self.last_ctx['version'], '27.0')
-        eq_(self.last_ctx['major_version'], '27')
         eq_(self.last_ctx['release'], mock_release)
         eq_(self.last_ctx['new_features'], 'mock new_features')
         eq_(self.last_ctx['known_issues'], 'mock known_issues')
