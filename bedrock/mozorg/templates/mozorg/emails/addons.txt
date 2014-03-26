@@ -1,71 +1,11 @@
-Thank you for your interest in Firefox Add-ons. It's easy to start contributing--whether by leaving a review of your favorite add-on, designing a theme, or creating an add-on, your efforts matter!
+Thank you for your interest in Add-ons. Whether you're technical or not at all, there's a contribution opportunity for you. It's easy to get started, and your efforts are appreciated!
 
-If you are new to add-ons, here are some things you can do at https://addons.mozilla.org:
+Please check our Wiki page for the most up-to-date information on contribution opportunities: https://wiki.mozilla.org/Marketplace/Contributing/Addons
 
-============================
-REVIEW YOUR FAVORITE ADD-ONS
-============================
+From reviewing your favorite add-ons, to creating a lightweight theme, to developing an add-on or reviewing submissions, there's something for every skill level.
 
-Search for your favorite add-on at https://addons.mozilla.org. On the add-on's detail page, scroll down to the Reviews section and leave a comment for the developer.
-
-====================
-CREATE A COLLECTION
-====================
-
-Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others. Get started here:
-https://addons.mozilla.org/firefox/collections/
-
-===============
-CREATE A THEME
-===============
-
-Background Themes let you personalize the look of your Firefox. To create your own, start here:
-https://addons.mozilla.org/developers/docs/themes
-
----
-
-If you are a more technical contributor, here are some things you can do:
-
-=================
-CREATE AN ADD-ON
-=================
-
-To get started, take a look at the Add-ons Developer Hub. It contains documentation, tools and information on how to get in touch with other developers:
-https://addons.mozilla.org/developers/
-
-Builder & SDK: The quickest and easiest way to create add-ons:
-https://addons.mozilla.org/en-US/developers/builder
-
-XUL School: A comprehensive tutorial for more advanced developers:
-https://developer.mozilla.org/en/XUL_School
-
-You can post questions and connect with other add-ons developers in the Add-ons Forum:
-https://forums.mozilla.org/addons/
-
-=================
-HELP TEST ADD-ONS
-=================
-
-If you are interested in testing add-ons, you can join the quality team:
-http://quality.mozilla.org/
-
-It's also helpful to install the Add-ons Compatibility Reporter and use it to let us know when an add-on is not working properly:
-https://addons.mozilla.org/firefox/addon/add-on-compatibility-reporter
-
-======================
-HELP ADD-ON DEVELOPERS
-======================
-
-If you're already familiar with add-on development or you think you're a good technical writer, help us improve the documentation for add-on developers: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons
-
-You can also help by translating these docs to a different language (pro tip: try replacing the en-US part of the link above to your native language code).
-
-===========
-QUESTIONS?
-===========
-
-If you have any additional questions, please feel free to email us!
+If you have any questions, please feel free to email us!
 
 Regards,
 Amy Tsay
-Add-ons Community Manager
+Community Manager
