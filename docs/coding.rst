@@ -134,5 +134,5 @@ Configuring your code editor
 
 Bedrock includes an `.editorconfig` file in the root directory that you can
 use with your code editor to help maintain consistent coding styles. Please
-see `editorconfig.org<http://editorconfig.org/>`_. for a list of supported
+see `editorconfig.org <http://editorconfig.org/>`_. for a list of supported
 editors and available plugins.
