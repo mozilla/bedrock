@@ -343,3 +343,10 @@
     white-space: nowrap;
     overflow: hidden;
 }
+
+// Add chevron character after text (with space)
+.trailing-arrow() {
+    &:after {
+        content: " »"; /* nbsp raquo */
+    }
+}
