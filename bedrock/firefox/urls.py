@@ -19,7 +19,7 @@ product_re = '(?P<product>firefox|mobile)'
 channel_re = '(?P<channel>beta|aurora|organizations)'
 releasenotes_re = latest_re % (version_re, r'(aurora|release)notes')
 mobile_releasenotes_re = releasenotes_re.replace('firefox', 'mobile')
-sysreq_re = latest_re % (version_re, 'releasenotes/system-requirements')
+sysreq_re = latest_re % (version_re, 'system-requirements')
 
 
 urlpatterns = patterns('',
