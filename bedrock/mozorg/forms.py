@@ -15,7 +15,6 @@ from django.utils.safestring import mark_safe
 import basket
 from basket.base import request
 
-from captcha.fields import ReCaptchaField
 from lib.l10n_utils.dotlang import _
 from lib.l10n_utils.dotlang import _lazy
 from product_details import product_details
@@ -113,7 +112,8 @@ class ContributeForm(forms.Form):
     comments = forms.CharField(
         widget=forms.widgets.Textarea(attrs={'rows': '4',
                                              'cols': '30'}))
-    captcha = ReCaptchaField(attrs={'theme': 'clean'})
+    # honeypot
+    office_fax = forms.CharField(widget=HoneyPotWidget, required=False)
 
 
 class WebToLeadForm(forms.Form):
