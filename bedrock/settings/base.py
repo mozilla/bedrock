@@ -99,6 +99,7 @@ MINIFY_BUNDLES = {
             'css/csrf-failure.less',
         ),
         'about': (
+            'css/sandstone/video-resp.less',
             'css/mozorg/about.less',
         ),
         'about-base': (
