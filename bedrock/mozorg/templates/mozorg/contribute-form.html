@@ -36,10 +36,6 @@
     {% if form.comments.errors %}
     <li>{{_('Please tell us more about your interests.')}}</li>
     {% endif %}
-
-    {% if form.captcha.errors %}
-    <li>{{_('Your CAPTCHA response did not match. Please try again.')}}</li>
-    {% endif %}
   </ul>
   {% endif %}
   <div id="form-content"
@@ -65,6 +61,9 @@
         <div class="form-column-1">
           <p>{{_('Send us a note and we can get you started right away.')}}</p>
         </div>
+
+        {{ form.office_fax }}
+
         <div class="form-column-2">
           <div class="field field-comments">
             {{ field_with_attrs(form.comments, placeholder=_('Hi, I’m interested in…'))|safe }}
@@ -82,9 +81,6 @@
               </label>
             </div>
           {% endif %}
-          <div class="field field-captcha">
-            {{ form.captcha }}
-          </div>
         </div>
       </div>
     </fieldset>
