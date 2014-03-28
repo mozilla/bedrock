@@ -62,11 +62,21 @@ def contribute(request, template, return_to_form):
     # same page. Please change this.
     if has_contribute_form:
         form = ContributeForm(request.POST)
-        contribute_success = email_contribute.handle_form(request, form)
-        if contribute_success:
-            # If form was submitted successfully, return a new, empty
-            # one.
-            form = ContributeForm()
+
+        if (form.is_valid()):
+            data = form.cleaned_data.copy()
+
+            honeypot = data.pop('office_fax')
+
+            if not honeypot:
+                contribute_success = email_contribute.handle_form(request, form)
+                if contribute_success:
+                    # If form was submitted successfully, return a new, empty
+                    # one.
+                    form = ContributeForm()
+            else:
+                # send back a clean form if honeypot was filled in
+                form = ContributeForm()
     else:
         form = ContributeForm()
 
