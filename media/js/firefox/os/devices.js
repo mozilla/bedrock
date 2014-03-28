@@ -140,6 +140,7 @@ if (typeof Mozilla == 'undefined') {
     // wire up thumbnail select
     $('.device-thumbnails').on('click', '.device-thumbnail', function(e) {
         var $this = $(this);
+
         selectedDevice = $this.attr('href').replace(/#/gi, '');
         var $targetDevice = $('#' + selectedDevice);
 
@@ -147,7 +148,7 @@ if (typeof Mozilla == 'undefined') {
             $deviceThumbnails.removeClass('selected');
             $this.addClass('selected');
 
-            $deviceDetailLists.slideUp('normal', function() {
+            $deviceDetailLists.slideUp('fast', function() {
                 setTimeout(function() {
                     $deviceDetails.hide();
                     $targetDevice.show();
@@ -166,7 +167,7 @@ if (typeof Mozilla == 'undefined') {
 
         $deviceThumbnails.removeClass('selected');
 
-        $(this).parents('.device-detail-list:first').slideUp('normal', function() {
+        $(this).parents('.device-detail-list:first').slideUp('fast', function() {
             $deviceDetails.hide();
         });
 
@@ -175,6 +176,8 @@ if (typeof Mozilla == 'undefined') {
         selectedDevice = null;
     });
 
+    /*
+    Color pickers disabled until image assets are available
     // enable color pickers
     $('.color-picker').on('click', 'a', function(e) {
         e.preventDefault();
@@ -190,6 +193,7 @@ if (typeof Mozilla == 'undefined') {
     if (!isTouch) {
         $('.color-picker a').tipsy();
     }
+    */
 
     // only if coming from /firefox/os/, detect country
     if (/firefox\/os\/$/.test(document.referrer)) {
