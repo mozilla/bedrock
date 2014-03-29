@@ -11,6 +11,7 @@ from django.conf import settings
 from django.http import (
     Http404, HttpResponsePermanentRedirect, HttpResponseRedirect)
 from django.shortcuts import get_object_or_404
+from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.views.decorators.vary import vary_on_headers
 from django.views.generic.base import TemplateView
@@ -480,6 +481,7 @@ def get_download_url(channel='Release'):
         return reverse('firefox')
 
 
+@cache_page(15 * 60)
 def release_notes(request, fx_version, product='Firefox'):
     if product == 'Firefox OS' and fx_version in (
             '1.0.1', '1.1', '1.2', '1.3'):
@@ -503,6 +505,7 @@ def release_notes(request, fx_version, product='Firefox'):
             'known_issues': known_issues})
 
 
+@cache_page(15 * 60)
 def system_requirements(request, fx_version, product='Firefox'):
     release = get_release_or_404(fx_version, product)
     return l10n_utils.render(
