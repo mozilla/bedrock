@@ -36,13 +36,27 @@ Mozilla.ImageHelper.is_high_dpi = null;
 
 Mozilla.ImageHelper.initPlatformImages = function() {
     $('.platform-img').each(function() {
-        var suffix = '';
         var $img = $(this);
+        var suffix = '';
+        var platforms;
+        var additional_platforms;
+
+        // special handling for mac
         if (site.platform === 'osx' || site.platform === 'oldmac') {
             suffix = '-mac';
-        }
-        else if (site.platform === 'linux') {
-            suffix = '-linux';
+        } else {
+            platforms = ['linux']; // linux is supported by default
+
+            // use 'data-additional-platforms' to specify other supported platforms
+            // beyond the defaults
+            if ($img.data('additional-platforms')) {
+                additional_platforms = $img.data('additional-platforms').split(' ');
+                platforms = platforms.concat(additional_platforms);
+            }
+
+            if ($.inArray(site.platform, platforms) > -1) {
+                suffix = '-' + site.platform;
+            }
         }
 
         var orig_src = $img.data('src');
@@ -72,7 +86,6 @@ Mozilla.ImageHelper.initHighResImages = function() {
         if (Mozilla.ImageHelper.isHighDpi()) {
             src = Mozilla.ImageHelper.convertUrlToHighRes(src);
         }
-
         this.src = src;
     });
 };
