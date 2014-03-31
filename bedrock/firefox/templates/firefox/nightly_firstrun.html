@@ -23,71 +23,47 @@
 {% block site_header_logo %}{% endblock %}
 
 {% block content %}
-<main id="main-content" role="main">
-<h1 id="firstrun-header" class="large">{{ _('Firefox Nightlies') }}</h1>
-  <div class="main-column">
-    <p>{{ _('Thank you for trying a nightly build and helping improve future versions of Firefox. Learn more about how you can get involved with our testing and developer community.') }}</p>
-  
-    <div id="video-player" class="mozilla-video-control mozilla-video-shadow">
-      <video
-        controls="controls"
-        preload="metadata"
-        poster="{{ media('/img/contribute/nightly_video_poster.jpg') }}"
-        height="360"
-        width="640">
-          <source src="//videos-cdn.mozilla.net/serv/qa/qa-360p-mp4.theora.ogv" type="video/ogg">
-      </video>
+
+<main role="main">
+  <div id="firstrun-header">
+    <h1>{{ _('Firefox Nightlies') }}</h1>
+    <h2>
+      {{ _('Thank you.') }}
+      {{ _('By using a nightly build, you’re helping make Firefox better.') }}
+    </h2>
+  </div>
+  <div class="billboard primary">
+    <div class="column">
+      <h4>{{ _('Learn more about Firefox and Mozilla') }}</h4>
+      <ul class="unstyled">
+          <li><a href="{{ url('mozorg.about.manifesto') }}">{{ _('Read the Mozilla manifesto, our vision for a free and open Web') }}</a></li>
+          <li><a href="{{ url('firefox.tour') }}">{{ _('Take a tour of the new Australis User Interface') }}</a></li>
+          <li><a href="https://mozillians.org/">{{ _('Join Mozillians.org for Mozilla news and community updates') }}</a></li>
+      </ul>
     </div>
-
-    <h2>{{ _('Links in video') }}</h2>
-    <ul class="unstyled">
-      <li><a href="http://widget.mibbit.com/?server=irc.mozilla.org&amp;channel=%23testday">{{ _('Attend a Test Day every Friday on #testday') }}</a></li>
-      <li><a href="{{ url('firefox.channel')|urlparams(hash='aurora') }}">{{ _('Download Firefox Aurora') }}</a></li>
-      <li><a href="https://input.mozilla.org/feedback">{{ _('Submit feedback') }}</a></li>
-      <li><a href="https://bugzilla.mozilla.org/enter_bug.cgi?product=Firefox">{{ _('Report bugs in Bugzilla') }}</a></li>
-      <li><a href="https://wiki.mozilla.org/Performance/Telemetry">{{ _('Submit performance data') }}</a></li>
-    </ul>
-
-    <h2>{{ _('More ways to test') }}</h2>
-    <ul class="unstyled">
-      <li><a href="https://wiki.mozilla.org/Bugmasters/Projects#Nightly_build_bug_team">{{ _('Nightly build bug team - Test and reproduce newly reported bugs') }}</a></li>
-      <li><a href="https://developer.mozilla.org/en/Crash_reporting">{{ _('Crash reporting') }}</a></li>
-      <li><a href="https://litmus.mozilla.org/">{{ _('Run test cases in Litmus') }}</a></li>
-    </ul>
-  
-    <h2>{{ _('Stay in touch') }}</h2>
-    <ul class="unstyled">
-      <li><a href="https://mail.mozilla.org/listinfo/nightly-testers">{{ _('Subscribe to Nightly-Testers on Desktop mailing list') }}</a></li>
-      <li><a href="https://mail.mozilla.org/listinfo/android-mobile-nightly-testers">{{ _('Subscribe to Nightly-Testers on Android mailing list') }}</a></li>
-    </ul>
-
-    <h2>{{ _('Useful add-ons') }}</h2>
-    <ul class="unstyled">
-      <li><a href="https://addons.mozilla.org/firefox/addon/nightly-tester-tools/">{{ _('Nightly Tester Tools') }}</a></li>
-      <li><a href="https://addons.mozilla.org/firefox/addon/add-on-compatibility-reporter/">{{ _('Add-on Compatibility Reporter') }}</a></li>
-      <li><a href="https://addons.mozilla.org/firefox/addon/mozmill/">{{ _('MozMill') }}</a></li>
-    </ul>
-
-    <h2>{{ _('Other resources') }}</h2>
-    <ul class="unstyled">
-      <li><a href="http://hg.mozilla.org/mozilla-central/pushloghtml?startdate=48+hours+ago&amp;enddate=now">{{ _('Last 48 hours of check-ins') }}</a></li>
-      <li><a href="http://www.squarefree.com/burningedge/" rel="external">{{ _('The Burning Edge blog') }}</a></li>
-      <li><a href="http://forums.mozillazine.org/viewforum.php?f=23">{{ _('Firefox Builds forum') }}</a></li>
-      <li><a href="https://wiki.mozilla.org/Releases">{{ _('Release information') }}</a></li>
-      <li><a href="https://wiki.mozilla.org/Features/Release_Tracking">{{ _('Firefox Flight Tracking') }}</a></li>
-    </ul>
+    <div class="column">
+      <h4>{{ _('Hack on Firefox with us') }}</h4>
+      <ul class="unstyled">
+          <li><a href="http://www.whatcanidoformozilla.org">{{ _('Find out how you can help at WhatCanIDoForMozilla.org')}}</a></li>
+          <li><a href="https://bugzilla.mozilla.org/createaccount.cgi">{{ _('Sign up for a Bugzilla account') }}</a></li>
+          <li><a href="https://developer.mozilla.org/docs/Simple_Firefox_build">{{ _('Set up your development environment to build Firefox') }}</a></li>
+          <li><a href="http://codefirefox.com/">{{ _('Learn about the next steps at CodeFirefox') }}</a></li>
+      </ul>
+    </div>
+    <div class="column">
+      <h4>{{ _('Join the Mozilla community') }}</h4>
+      <ul class="unstyled">
+        <li><a href="http://reps.mozilla.org/">{{ _('Learn about upcoming Mozilla events in your area') }}</a></li>  
+        <li><a href="http://planet.mozilla.org/">{{ _('Take a drink from the firehose! Get all the latest Mozilla news at Planet Mozilla.') }}</a></li>  
+        <li><a href="https://quality.mozilla.org/docs/qmo-community/get-involved/">{{ _('Help make Firefox better with the Mozilla QA team') }}</a></li>
+      </ul>
+    </div>
   </div>
 
-  <aside class="sidebar">
-    <ul class="nav">
-      <li><a href="{{ url('mozorg.contribute') }}">{{ _('Get involved') }}</a></li>
-      <li><a href="{{ url('mozorg.contribute')|urlparams(hash='interest') }}">{{ _('By area of interest') }}</a></li>
-      <li><a href="{{ url('mozorg.contribute')|urlparams(hash='location') }}">{{ _('By location') }}</a></li>
-      <li><a href="{{ url('mozorg.contribute')|urlparams(hash='newsletter') }}">{{ _('Contributor newsletter') }}</a></li>
-    </ul>
-  </aside>
+</main>
 
-</main> <!-- main-content -->
+<h3 class="feature-note">{{ _('Help us build the Web the world needs.') }}</h3>
+
 
 {% endblock %}
 
