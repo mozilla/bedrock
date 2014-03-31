@@ -11,12 +11,12 @@
     background: url(/media/img/firefox/firstrun/logo-nightly.png?2013-11) 0 0 no-repeat;
     position: relative;
     z-index: 10;
-    h3 {
+    h2 {
         font-size: 24px;
     }
 }
 
-#main-content {
+main {
     a,
     a:link,
     a:visited {
@@ -92,7 +92,7 @@
 
 /* Tablet Layout: 760px */
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
-    #main-content {
+    main {
         .column {
             .span_narrow(4);
             &:first-child {
@@ -113,7 +113,7 @@
         text-align: center;
     }
 
-    #main-content {
+    main {
         .column,
         .column:first-child,
         .column:last-child {
