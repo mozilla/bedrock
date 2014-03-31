@@ -44,6 +44,9 @@
 {% endtrans %}
 </p>
 
+<h4>{{ _('Where can I download Mozilla Firefox ESR?') }}</h4>
+<p>{{ _('You can download Mozilla Firefox ESR <a href="%s">here</a>.')|format(product_url('firefox', 'all', 'esr')) }}</p>
+
 <h4>{{ _('What does the Mozilla Firefox ESR life cycle look like?') }}</h4>
 <p>
 {% trans %}
@@ -167,8 +170,5 @@
 	computers.
 {% endtrans %}
 </p>
-
-<h4>{{ _('Where can I download Mozilla Firefox ESR?') }}</h4>
-<p>{{ _('You can download Mozilla Firefox ESR <a href="%s">here</a>.')|format(product_url('firefox', 'all', 'esr')) }}</p>
 
 {% endblock %}
