@@ -32,7 +32,7 @@ CREATED:20130521T143417Z
 LAST-MODIFIED:20130521T144002Z
 DTSTAMP:20130521T144002Z
 UID:2dd849e8-e244-42bd-afd2-255eefa9144e
-SUMMARY:Pâcques - congé férié
+SUMMARY:Pâques - congé férié
 DTSTART;VALUE=DATE:20130329
 DTEND;VALUE=DATE:20130330
 DESCRIPTION:Source: Revenu Québec - http://www.revenuquebec.ca/fr/nous_joindre/entreprises/feries.aspx
@@ -45,7 +45,7 @@ CREATED:20130521T143417Z
 LAST-MODIFIED:20130521T144008Z
 DTSTAMP:20130521T144008Z
 UID:7172a0b7-f13d-433b-907a-26dd66676d43
-SUMMARY:Pâcques - congé férié
+SUMMARY:Pâques - congé férié
 DTSTART;VALUE=DATE:20130401
 DTEND;VALUE=DATE:20130402
 DESCRIPTION:Source: Revenu Québec - http://www.revenuquebec.ca/fr/nous_joindre/entreprises/feries.aspx
@@ -162,7 +162,7 @@ CREATED:20130521T143417Z
 LAST-MODIFIED:20130521T144516Z
 DTSTAMP:20130521T144516Z
 UID:e69aa64a-f9d4-409c-b0ec-06e9ab3ff7ac
-SUMMARY:Joue de l'An - congé férié
+SUMMARY:Jour de l'An - congé férié
 DTSTART;VALUE=DATE:20131231
 DTEND;VALUE=DATE:20140101
 DESCRIPTION:Source: Revenu Québec - http://www.revenuquebec.ca/fr/nous_joindre/entreprises/feries.aspx
@@ -175,7 +175,7 @@ CREATED:20130521T143417Z
 LAST-MODIFIED:20130521T144529Z
 DTSTAMP:20130521T144529Z
 UID:72dfdf8b-5615-437f-9654-9ae5dc3ab31e
-SUMMARY:Joue de l'An - congé férié
+SUMMARY:Jour de l'An - congé férié
 DTSTART;VALUE=DATE:20140101
 DTEND;VALUE=DATE:20140102
 DESCRIPTION:Source: Revenu Québec - http://www.revenuquebec.ca/fr/nous_joindre/entreprises/feries.aspx
@@ -188,7 +188,7 @@ CREATED:20130521T143417Z
 LAST-MODIFIED:20130521T144531Z
 DTSTAMP:20130521T144531Z
 UID:f50a25d4-0f71-4289-a4a1-5cd79125f0ac
-SUMMARY:Joue de l'An - congé férié
+SUMMARY:Jour de l'An - congé férié
 DTSTART;VALUE=DATE:20140102
 DTEND;VALUE=DATE:20140103
 DESCRIPTION:Source: Revenu Québec - http://www.revenuquebec.ca/fr/nous_joindre/entreprises/feries.aspx
@@ -201,7 +201,7 @@ CREATED:20130521T143417Z
 LAST-MODIFIED:20130521T144610Z
 DTSTAMP:20130521T144610Z
 UID:db9bd1b1-8acb-4d92-b04d-32ccc7d2733d
-SUMMARY:Pâcques - congé férié
+SUMMARY:Pâques - congé férié
 DTSTART;VALUE=DATE:20140418
 DTEND;VALUE=DATE:20140419
 DESCRIPTION:Source: Revenu Québec - http://www.revenuquebec.ca/fr/nous_joindre/entreprises/feries.aspx
@@ -214,7 +214,7 @@ CREATED:20130521T143417Z
 LAST-MODIFIED:20130521T144614Z
 DTSTAMP:20130521T144614Z
 UID:85e7bef9-db3b-43fc-9406-df59e439ebcf
-SUMMARY:Pâcques - congé férié
+SUMMARY:Pâques - congé férié
 DTSTART;VALUE=DATE:20140421
 DTEND;VALUE=DATE:20140422
 DESCRIPTION:Source: Revenu Québec - http://www.revenuquebec.ca/fr/nous_joindre/entreprises/feries.aspx
