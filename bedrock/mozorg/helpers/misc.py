@@ -225,7 +225,7 @@ def video(*args, **kwargs):
     if 'mp4' in videos:
         mp4_url = urlparse.urlparse(videos['mp4'])
         if mp4_url.netloc.lower() in ('videos.mozilla.org',
-                                      'videos-cdn.mozilla.net'):
+                                      'videos.cdn.mozilla.net'):
             data['flash_fallback'] = mp4_url.path
 
     data.update(**kwargs)
