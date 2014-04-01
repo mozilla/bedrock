@@ -29,18 +29,13 @@
     h4 {
         font-size: 20px;
     }
-}
-
-.primary {
-    .span(8);
-}
-
-.android {
-    .span(4);
-    padding-top: 40px;
-    .button {
-        .trailing-arrow();
+    .contents {
+        .span-all();
     }
+}
+
+.android-link {
+    .trailing-arrow();
 }
 
 .newsletter-form {
@@ -68,14 +63,6 @@
         }
     }
 
-    .primary {
-        .span_narrow(8);
-    }
-
-    .android {
-        padding-top: 0;
-        .span_narrow(4);
-    }
 }
 
 /* Mobile layout: 320px */
@@ -91,16 +78,6 @@
         p {
             font-size: @baseFontSize;
         }
-    }
-
-
-    .primary {
-        .span-all();
-    }
-
-    .android {
-        padding-top: 0;
-        .span-all();
     }
 
 }
