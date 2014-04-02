@@ -154,7 +154,7 @@ MINIFY_BUNDLES = {
             'css/mozorg/contribute/studentambassadors/join.less',
         ),
         'dnt': (
-            'css/base/mozilla-expanders.less',
+            'css/base/mozilla-accordion.less',
             'css/firefox/dnt.less',
         ),
         'firefox': (
@@ -201,7 +201,7 @@ MINIFY_BUNDLES = {
         'firefox_faq': (
             'css/firefox/faq.less',
             'css/firefox/template-resp.less',
-            'css/base/mozilla-expanders.less',
+            'css/base/mozilla-accordion.less',
         ),
         'firefox_firstrun': (
             'css/sandstone/video.less',
@@ -217,7 +217,7 @@ MINIFY_BUNDLES = {
             'css/sandstone/video.less',
         ),
         'firefox_geolocation': (
-            'css/base/mozilla-expanders.less',
+            'css/base/mozilla-accordion.less',
             'css/base/mozilla-modal.less',
             'css/libs/mapbox.css',
             'css/firefox/geolocation.less'
@@ -307,8 +307,8 @@ MINIFY_BUNDLES = {
             'css/sandstone/video-resp.less',
             'css/mozorg/mission.less',
         ),
-        'mozilla_expanders': (
-            'css/base/mozilla-expanders.less',
+        'mozilla_accordion': (
+            'css/base/mozilla-accordion.less',
         ),
         'partnerships': (
             'css/mozorg/partnerships.less',
@@ -451,8 +451,8 @@ MINIFY_BUNDLES = {
         'existing': (
             'js/newsletter/existing.js',
         ),
-        'expanders': (
-            'js/base/mozilla-expanders.js',
+        'accordion': (
+            'js/base/mozilla-accordion.js',
         ),
         'firefox': (
             'js/libs/jquery-1.7.1.min.js',
@@ -561,7 +561,7 @@ MINIFY_BUNDLES = {
             'js/firefox/os/mwc-2014-preview.js',
         ),
         'firefox_faq': (
-            'js/base/mozilla-expanders.js',
+            'js/base/mozilla-accordion.js',
         ),
         'firefox_speed': (
             'js/firefox/speed.js',
@@ -578,7 +578,7 @@ MINIFY_BUNDLES = {
         ),
         'geolocation': (
             'js/libs/mapbox.js',
-            'js/base/mozilla-expanders.js',
+            'js/base/mozilla-accordion.js',
             'js/firefox/geolocation-demo.js',
             'js/base/mozilla-modal.js',
         ),
