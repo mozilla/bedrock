@@ -34,11 +34,12 @@
 
 <div class="main-column">
 
-<h3>{{ _('Frequently asked Questions') }}</h3>
+<section id="faq" class="accordion zebra" role="tablist" aria-multiselectable="true">
+<h2>{{ _('Frequently asked Questions') }}</h2>
 
-<div class="expander expander-odd">
-  <h4 class="expander-header">{{ _('What is Location-Aware Browsing?') }}</h4>
-  <div class="expander-content">
+<section>
+  <h3 role="tab" aria-expanded="false">{{ _('What is Location-Aware Browsing?') }}</h3>
+  <div role="tabpanel">
     <p>
     {% trans %}
       Websites that use location-aware browsing will ask where you are in
@@ -59,10 +60,11 @@
     {% endtrans %}
     </p>
   </div>
-</div>
-<div class="expander expander-even">
-  <h4 class="expander-header">{{ _('How does it work?') }}</h4>
-  <div class="expander-content">
+</section>
+
+<section>
+  <h3 role="tab" aria-expanded="false">{{ _('How does it work?') }}</h3>
+  <div role="tabpanel">
     <p>{{ _('When you visit a location-aware website, Firefox will ask you if you want to share your location.') }}</p>
     <p>
     {% trans %}
@@ -75,10 +77,11 @@
     </p>
     <p>{{ _('If you say that you do not consent, Firefox will not do anything.') }}</p>
   </div>
-</div>
-<div class="expander expander-odd">
-  <h4 class="expander-header">{{ _('How accurate are the locations?') }}</h4>
-  <div class="expander-content">
+</section>
+
+<section>
+  <h3 role="tab" aria-expanded="false">{{ _('How accurate are the locations?') }}</h3>
+  <div role="tabpanel">
     <p>
     {% trans %}
       Accuracy varies greatly from location to location.  In some places, our
@@ -90,14 +93,15 @@
     {% endtrans %}
     </p>
   </div>
-</div>
-<div class="expander expander-even">
-  <h4 class="expander-header">
+</section>
+
+<section>
+  <h3 role="tab" aria-expanded="false">
   {% trans %}
     What information is being sent, and to whom? How is my privacy protected?
   {% endtrans %}
-  </h4>
-  <div class="expander-content">
+  </h3>
+  <div role="tabpanel">
     <p>
     {% trans %}
       Your privacy is extremely important to us, and Firefox never shares your
@@ -144,10 +148,11 @@
       <li><a href="https://www.google.com/privacy/lsf.html" class="external">{{ _('Google privacy policy') }}</a></li>
     </ul>
   </div>
-</div>
-<div class="expander expander-odd">
-  <h4 class="expander-header">{{ _('Am I being tracked as I browse the web?') }}</h4>
-  <div class="expander-content">
+</section>
+
+<section>
+  <h3 role="tab" aria-expanded="false">{{ _('Am I being tracked as I browse the web?') }}</h3>
+  <div role="tabpanel">
     <p>
     {% trans %}
       No. Firefox only requests a location when a website makes a request, and
@@ -156,10 +161,11 @@
     {% endtrans %}
     </p>
   </div>
-</div>
-<div class="expander expander-even" id="undo-permission">
-  <h4 class="expander-header">{{ _('How do I undo a permission granted to a site?') }}</h4>
-  <div class="expander-content">
+</section>
+
+<section id="undo-permission">
+  <h3 role="tab" aria-expanded="false">{{ _('How do I undo a permission granted to a site?') }}</h3>
+  <div role="tabpanel">
     <p>
     {% trans %}
       If you've given Firefox permission to always give your location to a site
@@ -174,10 +180,11 @@
       <li>{{ _('Change the setting for <em>Share Location</em>') }}</li>
     </ul>
   </div>
-</div>
-<div class="expander expander-odd">
-  <h4 class="expander-header">{{ _('How do I clear the “random client identification number”?') }}</h4>
-  <div class="expander-content">
+</section>
+
+<section>
+  <h3 role="tab" aria-expanded="false">{{ _('How do I clear the “random client identification number”?') }}</h3>
+  <div role="tabpanel">
     <ul>
       <li>{{ _('Go to the <em>Tools</em> menu, then select <em>Clear Recent History</em>') }}</li>
       <li>{{ _('Click the <em>Details</em> arrow') }}</li>
@@ -185,10 +192,11 @@
       <li>{{ _('Click on <em>Clear Now</em>') }}</li>
     </ul>
   </div>
-</div>
-<div class="expander expander-even">
-  <h4 class="expander-header">{{ _('How do I turn off Location-Aware Browsing permanently?') }}</h4>
-  <div class="expander-content">
+</section>
+
+<section>
+  <h3 role="tab" aria-expanded="false">{{ _('How do I turn off Location-Aware Browsing permanently?') }}</h3>
+  <div role="tabpanel">
     <p>
     {% trans %}
       Location-Aware Browsing is always opt-in in Firefox. No location
@@ -203,7 +211,9 @@
       <li>{{ _('Location-Aware Browsing is now disabled') }}</li>
     </ul>
   </div>
-</div>
+</section>
+
+</section><!-- end #faq -->
 
 <div style="display:none">
   <div id="geo-demo">
