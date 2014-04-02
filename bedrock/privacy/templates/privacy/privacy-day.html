@@ -17,7 +17,7 @@
 {% block site_header %}
   <header id="masthead">
     <div class="container">
-      <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{{ settings.TABZILLA_INFOBAR_OPTIONS }}">Mozilla</a>
+      <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{{ settings.TABZILLA_INFOBAR }}">Mozilla</a>
     {% block site_header_logo %}
       <h2><a href="{{ url('mozorg.home') }}">{{ high_res_img('img/sandstone/mozilla-wordmark-white.png', {'alt': 'Mozilla', 'width': '170', 'height': '46'}) }}</a></h2>
     {% endblock %}

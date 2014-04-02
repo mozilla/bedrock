@@ -9,5 +9,6 @@ import views
 
 urlpatterns = patterns('',
     url(r'^tabzilla\.js$', views.tabzilla_js, name='tabzilla'),
-    url(r'^transbar\.jsonp$', views.transbar_jsonp, name='transbar'),
+    url(r'^transbar\.jsonp$', views.transbar_jsonp, name='tabzilla.transbar'),
+    url(r'^updatebar\.js$', views.updatebar_js, name='tabzilla.updatebar'),
 )

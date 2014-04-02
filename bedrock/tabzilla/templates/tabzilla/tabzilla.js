@@ -244,7 +244,7 @@ var Tabzilla = (function (Tabzilla) {
         }
         return 0;
     };
-    var Infobar = function (id, name) {
+    Tabzilla.Infobar = function (id, name) {
         this.id = id;
         this.name = name;
         this.disabled = false;
@@ -262,7 +262,7 @@ var Tabzilla = (function (Tabzilla) {
             this.disabled = true;
         }
     };
-    Infobar.prototype.show = function (str) {
+    Tabzilla.Infobar.prototype.show = function (str) {
         // A infobar can be disabled by pref.
         // And check the existence of another infobar again
         if (this.disabled || $('#tabzilla-infobar').length) {
@@ -298,6 +298,11 @@ var Tabzilla = (function (Tabzilla) {
             } catch (ex) {}
         });
 
+        // The panel may not exist in test environments
+        if (!panel) {
+            return bar;
+        }
+
         panel.trigger('infobar-showing');
         self.trackEvent(self.onshow.trackAction || 'show',
                         self.onshow.trackLabel,
@@ -315,7 +320,12 @@ var Tabzilla = (function (Tabzilla) {
 
         return bar;
     };
-    Infobar.prototype.hide = function () {
+    Tabzilla.Infobar.prototype.hide = function () {
+        // The panel may not exist in test environments
+        if (!panel) {
+            return;
+        }
+
         var self = this;
         var target = (opened) ? self.element : panel;
 
@@ -326,8 +336,8 @@ var Tabzilla = (function (Tabzilla) {
             panel.trigger('infobar-hidden');
         });
     };
-    Infobar.prototype.trackEvent = function (action, label, value,
-                                             nonInteraction, callback) {
+    Tabzilla.Infobar.prototype.trackEvent = function (action, label, value,
+                                                      nonInteraction, callback) {
         if (typeof(_gaq) !== 'object') {
             return;
         }
@@ -348,11 +358,12 @@ var Tabzilla = (function (Tabzilla) {
             window._gaq.push(_callback);
         }
     };
-    Infobar.prototype.onshow = {};
-    Infobar.prototype.onaccept = {};
-    Infobar.prototype.oncancel = {};
-    Tabzilla.setupTransbar = function (userLang, pageLang) {
-        var transbar = new Infobar('transbar', 'Translation Bar');
+    Tabzilla.Infobar.prototype.onshow = {};
+    Tabzilla.Infobar.prototype.onaccept = {};
+    Tabzilla.Infobar.prototype.oncancel = {};
+    Tabzilla.Infobar.items = {};
+    Tabzilla.Infobar.items.translation = function (userLang, pageLang) {
+        var transbar = new Tabzilla.Infobar('transbar', 'Translation Bar');
         userLang = userLang || navigator.language || navigator.browserLanguage;
         pageLang = pageLang || document.documentElement.lang;
 
@@ -554,12 +565,8 @@ var Tabzilla = (function (Tabzilla) {
             }
         });
 
-        // Information Bars in order of priority
-        var infobars = {
-            translation: Tabzilla.setupTransbar
-        };
         $.each((tab.data('infobar') || '').split(' '), function (index, value) {
-            var setup = infobars[value];
+            var setup = Tabzilla.Infobar.items[value];
             if (setup) {
                 setup.call();
             }

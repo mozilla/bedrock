@@ -43,7 +43,7 @@ describe("tabzilla.js", function() {
 
     var testTransbar = function () {
 
-        var setup = Tabzilla.setupTransbar;
+        var setup = Tabzilla.Infobar.items.translation;
 
         it('should return false if the user\'s language is the same as the page\'s language', function () {
 
@@ -81,7 +81,7 @@ describe("tabzilla.js", function() {
         });
     };
 
-    describe('setupTransbar – alternate URLs', function () {
+    describe('Infobar.items.translation – alternate URLs', function () {
 
         beforeEach(function () {
             sandbox = sinon.sandbox.create();
@@ -98,7 +98,7 @@ describe("tabzilla.js", function() {
         testTransbar();
     });
 
-    describe('setupTransbar – language switcher', function () {
+    describe('Infobar.items.translation – language switcher', function () {
 
         beforeEach(function () {
             sandbox = sinon.sandbox.create();
@@ -118,7 +118,7 @@ describe("tabzilla.js", function() {
         testTransbar();
     });
 
-    describe('setupTransbar – language switcher with path values', function () {
+    describe('Infobar.items.translation – language switcher with path values', function () {
 
         beforeEach(function () {
             sandbox = sinon.sandbox.create();
