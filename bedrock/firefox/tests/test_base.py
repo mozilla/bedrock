@@ -218,7 +218,7 @@ class TestFirefoxDetails(TestCase):
                 LATEST_FIREFOX_VERSION='25.0.2')
     def test_esr_major_versions(self):
         """ESR versions should be dynamic based on latest"""
-        eq_(firefox_details.esr_major_versions, [24])
+        eq_(firefox_details.esr_major_versions, [10, 17, 24])
 
     @patch.dict(firefox_details.firefox_versions,
                 LATEST_FIREFOX_VERSION='Phoenix')
@@ -664,16 +664,22 @@ class FxVersionRedirectsMixin(object):
         eq_(response['Vary'], 'User-Agent')
 
     @patch.dict(product_details.firefox_versions,
-                LATEST_FIREFOX_VERSION='25.0')
+                LATEST_FIREFOX_VERSION='18.0')
     @patch('bedrock.mozorg.helpers.download_buttons.latest_version',
-           return_value=('25.0', GOOD_PLATS))
+           return_value=('18.0', GOOD_PLATS))
     def test_esr_firefox(self, latest_mock):
         """
         Currently released ESR firefoxen should not redirect. At present
-        that is 24.0.x.
+        that is 10.0.x, 17.0.x and 24.x.x.
         """
-        user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:24.0) '
-                      'Gecko/20100101 Firefox/24.0')
+        user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:10.0.12) '
+                      'Gecko/20111101 Firefox/10.0.12')
+        response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
+        eq_(response.status_code, 200)
+        eq_(response['Vary'], 'User-Agent')
+
+        user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:17.0) '
+                      'Gecko/20100101 Firefox/17.0')
         response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
         eq_(response.status_code, 200)
         eq_(response['Vary'], 'User-Agent')
