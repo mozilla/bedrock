@@ -4,11 +4,14 @@
 
 {% extends "/firefox/base-resp.html" %}
 
-{% block page_title %}{{ _('Keep Your Firefox in Sync') }}{% endblock %}
+{% block page_title %}{{ _('Keep your Firefox in sync') }}{% endblock %}
 {% block body_id %}firefox-sync{% endblock %}
 
 {% block extrahead %}
   {{ css('firefox_sync') }}
+  <!--[if gt IE 9]><!-->
+    {{ css('firefox_sync_anim') }}
+  <!--<![endif]-->
 {% endblock %}
 
 {% block content %}
@@ -17,6 +20,8 @@
   <h1>{{ self.page_title() }}</h1>
   <p>{{ _('Instantly make Firefox your own wherever you use it. Seamlessly sync your bookmarks, history, passwords and more and access them from any device.') }}</p>
 </div>
+
+{% include 'firefox/includes/sync-animation.html' %}
 
 <div class="main-content billboard">
   <div class="contents">
@@ -41,4 +46,8 @@
   </div>
 </div>
 
+{% endblock %}
+
+{% block js %}
+  {{ js('firefox_sync') }}
 {% endblock %}
