@@ -60,7 +60,7 @@ class FirefoxDetails(ProductDetails):
 
     @property
     def esr_major_versions(self):
-        return range(24, self.latest_major_version('release'), 7)
+        return range(10, self.latest_major_version('release'), 7)
 
     def _matches_query(self, info, query):
         words = re.split(r',|,?\s+', query.strip().lower())
