@@ -2,6 +2,7 @@ import urlparse
 from os import path
 
 from django.conf import settings
+from django.utils import translation
 
 import jingo
 import jinja2
@@ -114,6 +115,58 @@ def l10n_img(ctx, url):
 
 
 @jingo.register.function
+@jinja2.contextfunction
+def rtl_img(ctx, url):
+    """Output the url to a RTL-oriented image.
+
+    Uses the locale from the current request. Checks to see if the locale is
+    RTL, and falls back to the default LTR image if not.
+
+    Examples
+    ========
+
+    In Template
+    -----------
+
+        {{ rtl_img('firefox/screenshot.png') }}
+
+    For en-US this would output:
+
+        {{ MEDIA_URL }}img/firefox/screenshot.png
+
+    For ar this would output:
+
+        {{ MEDIA_URL }}img/firefox/screenshot-rtl.png
+
+    In the Filesystem
+    -----------------
+
+    Put files in folders like the following::
+
+        $ROOT/media/img/firefox/screenshot.png
+        $ROOT/media/img/firefox/screenshot-rtl.png
+
+    If you use the RTL option of platform_img(), those files are also required::
+
+        $ROOT/media/img/firefox/screenshot-rtl-linux.png
+        $ROOT/media/img/firefox/screenshot-rtl-mac.png
+        $ROOT/media/img/firefox/screenshot-rtl-win.png
+
+    If you use the RTL option of high_res_img(), this file is also required::
+
+        $ROOT/media/img/firefox/screenshot-rtl-high-res.png
+
+    """
+    translation.activate(getattr(ctx['request'], 'locale', 'en-US'))
+
+    if translation.get_language_bidi():
+        root, ext = path.splitext(url)
+        url = root + '-rtl' + ext
+
+    return media(url)
+
+
+@jingo.register.function
 def field_with_attrs(bfield, **kwargs):
     """Allows templates to dynamically add html attributes to bound
     fields from django forms"""
@@ -126,6 +179,8 @@ def field_with_attrs(bfield, **kwargs):
 def platform_img(ctx, url, optional_attributes=None):
     if (optional_attributes and optional_attributes.pop('l10n', False) is True):
         url = l10n_img(ctx, url)
+    elif (optional_attributes and optional_attributes.pop('rtl', False) is True):
+        url = rtl_img(ctx, url)
     else:
         url = media(url)
 
@@ -150,6 +205,8 @@ def platform_img(ctx, url, optional_attributes=None):
 def high_res_img(ctx, url, optional_attributes=None):
     if (optional_attributes and optional_attributes.pop('l10n', False) is True):
         url = l10n_img(ctx, url)
+    elif (optional_attributes and optional_attributes.pop('rtl', False) is True):
+        url = rtl_img(ctx, url)
     else:
         url = media(url)
 
