@@ -60,3 +60,9 @@ def transbar_jsonp(request):
     resp = _resp(request, 'tabzilla/transbar.jsonp', 'application/javascript')
     resp['Access-Control-Allow-Origin'] = '*'
     return resp
+
+
+@cache_control_expires(12)
+@last_modified(template_last_modified('tabzilla/updatebar.js'))
+def updatebar_js(request):
+    return _resp(request, 'tabzilla/updatebar.js', 'text/javascript')

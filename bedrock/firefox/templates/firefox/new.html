@@ -9,6 +9,9 @@
 {% block page_desc %}{{_('Download Mozilla Firefox, a free Web browser. Firefox is created by a global non-profit dedicated to putting individuals in control online. Get Firefox today!')}}{% endblock %}
 {% block body_id %}firefox-new{% endblock %}
 
+{#- Override the infobar options not to do a version check -#}
+{% block tabzilla_infobar %}translation{% endblock %}
+
 {% block site_header_nav %}{% endblock %}
 {% block site_header_logo %}
   <h2><img src="{{ MEDIA_URL }}img/firefox/new/header-firefox.png?2013-06" alt="{{_('Firefox for desktop')}}"></h2>

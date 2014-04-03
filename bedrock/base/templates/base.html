@@ -65,7 +65,7 @@
 
     {% block site_header %}
       <header id="masthead">
-        <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{{ settings.TABZILLA_INFOBAR_OPTIONS }}">Mozilla</a>
+        <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{% block tabzilla_infobar %}{{ settings.TABZILLA_INFOBAR }}{% endblock %}">{{ _('Mozilla') }}</a>
 
         {% block site_header_nav %}
         <nav id="nav-main" role="navigation">
@@ -158,6 +158,7 @@
     {% endblock %}
     {% block tabzilla_js %}
       <script src="{{ settings.CDN_BASE_URL }}{{ url('tabzilla') }}?build={{ BUILD_ID_JS }}"></script>
+      <script src="{{ settings.CDN_BASE_URL }}{{ url('tabzilla.updatebar') }}?build={{ BUILD_ID_JS }}"></script>
     {% endblock %}
     {% block js %}{% endblock %}
     {% if settings.USE_GRUNT_LIVERELOAD %}
