@@ -158,20 +158,35 @@ if (typeof Mozilla == 'undefined') {
     };
 
     Mozilla.FxOs.Devices = {
+        'alcatel_onetouchc': {
+            'type': 'smartphone',
+            'display': 'Alcatel Once Touch C',
+            'countries': []
+        },
         'alcatel_onetouchfire': {
             'type': 'smartphone',
             'display': 'Alcatel One Touch Fire',
             'countries': ['br', 'cl', 'co', 'de', 'gr', 'hu', 'it', 'me', 'mx', 'pl', 'rs', 'uy', 've']
+        },
+        'huawei_y300': {
+            'type': 'smartphone',
+            'display': 'Huawei Y300',
+            'countries': ['mx']
+        },
+        'lg_fireweb': {
+            'type': 'smartphone',
+            'display': 'LG Fireweb',
+            'countries': ['br']
         },
         'zte_open': {
             'type': 'smartphone',
             'display': 'ZTE Open',
             'countries': ['co', 'es', 'mx', 'pe', 'uy', 've']
         },
-        'lg_fireweb': {
+        'zte_openc': {
             'type': 'smartphone',
-            'display': 'LG Fireweb',
-            'countries': ['br']
+            'display': 'ZTE Open C',
+            'countries': []
         }
     };
 })(window.jQuery);

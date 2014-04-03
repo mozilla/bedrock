@@ -101,10 +101,8 @@ html, body {
 }
 
 .section-header {
-    border-bottom: 1px dotted #6f7375;
     padding-bottom: @baseLine / 2;
     .clearfix;
-    margin-bottom: @baseLine;
 }
 
 .section-heading {
@@ -115,8 +113,9 @@ html, body {
 }
 
 .device-thumbnails {
+    border-top: 1px dotted #6f7375;
     margin: 0 0 (@baseLine / 2) 0;
-    padding: 0;
+    padding: @baseLine 0 0;
     .clearfix;
 
     li {
@@ -172,16 +171,25 @@ html, body {
             .availability-notice {
                 height: 24px;
                 padding-top: 6px;
+                text-align: center;
+                text-transform: none;
+                font-size: 14px;
+                .open-sans-light;
                 overflow: hidden;
 
                 .is-available {
                     display: none;
                     background: url(/media/img/firefox/os/devices/available.png) left center no-repeat;
                     padding-left: @baseLine;
-                    text-align: center;
-                    text-transform: none;
                     color: @textColorSecondary;
-                    font-size: 14px;
+                }
+
+                .coming-soon {
+                    display: inline-block;
+                    background: url(/media/img/firefox/os/devices/coming-soon.png) left center no-repeat;
+                    padding-left: @baseLine;
+                    font-style: italic;
+                    color: #999;
                 }
             }
 
@@ -198,6 +206,7 @@ html, body {
     background: #c8d0d6;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.2);
     padding: 36px 0 @baseLine;
+    margin-bottom: @baseLine;
 }
 
 .device-detail-header {
@@ -693,9 +702,7 @@ html, body {
     }
 
     .device-list {
-        .container {
-            padding-bottom: 0;
-        }
+        padding-bottom: 0;
 
         .button {
             padding: 7px 14px;
@@ -728,7 +735,7 @@ html, body {
             .availability-notice {
                 padding-top: 4px;
 
-                .is-available {
+                .is-available, .coming-soon {
                     width: 20px;
                     padding: 0;
                     .image-replaced;
