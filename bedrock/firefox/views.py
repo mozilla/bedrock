@@ -483,8 +483,7 @@ def get_download_url(channel='Release'):
 
 @cache_page(15 * 60)
 def release_notes(request, fx_version, product='Firefox'):
-    if product == 'Firefox OS' and fx_version in (
-            '1.0.1', '1.1', '1.2', '1.3'):
+    if product == 'Firefox OS' and fx_version in ('1.0.1', '1.1', '1.2'):
         return l10n_utils.render(
             request, 'firefox/os/notes-%s.html' % fx_version)
 
