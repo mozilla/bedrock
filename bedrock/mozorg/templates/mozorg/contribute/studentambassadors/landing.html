@@ -1,3 +1,4 @@
+{% from "macros.html" import twitter_timeline_widget with context %}
 {% extends "mozorg/base-resp.html" %}
 
 {% block facebook_id %}107747252595375{# facebook.com/Firefox.Student.Ambassadors #}{% endblock %}
@@ -90,7 +91,18 @@
         </section>
       </div>
     </div>
+{% if tweets %}
+    <div class="row">
+      <div class="col-full">
+        {{ twitter_timeline_widget(title=_('See What We’re Up To'), heading_level=2, max_length=6) }}
+      </div>
+    </div>
+{% endif %}
   </div>
 {% endblock %}
 
 {% block email_form %}{% endblock %}
+
+{% block js %}
+  {{ js('contribute-studentambassadors-landing') }}
+{% endblock %}
