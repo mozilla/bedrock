@@ -35,6 +35,7 @@ urlpatterns = patterns('',
     page('about/governance/policies/security-group/certs/policy/enforcement', 'mozorg/about/governance/policies/security/certs/enforcement.html'),
     page('about/governance/policies/security-group/certs/policy/maintenance', 'mozorg/about/governance/policies/security/certs/maintenance.html'),
     page('about/governance/policies/security-group/certs/policy/inclusion', 'mozorg/about/governance/policies/security/certs/inclusion.html'),
+    page('about/governance/policies/security/plugin-whitelist-policy', 'mozorg/about/governance/policies/security/plugin-whitelist-policy.html'),
     page('about/governance/organizations', 'mozorg/about/governance/organizations.html'),
     page('about/governance/policies/participation', 'mozorg/about/governance/policies/participation.html'),
 

@@ -1,0 +1,122 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/about-base.html" %}
+
+{% block page_title %}{{ _('Plugin Whitelist Policy') }}{% endblock %}
+{% block body_id %}about-governance-organizations{% endblock %}
+
+{% block article %}
+
+<h1 class="title-shadow-box">{{ _('Plugin Whitelist Policy') }}</h1>
+<h2>{{ _('Version 1.0') }}</h2>
+
+<p>
+    {% trans %}
+    To improve the  stability and performance of Firefox, and to safeguard the security of our users, 
+    Mozilla will block plugins by default, rather than automatically activating them. To ease with this transition, 
+    and to support plugin and site authors making good faith effoerts to move away from NPAPI-based plugins, we will 
+    implement a whitelist that exempts certain plugins from default blocking, if their authors satisfy specified requirements.
+    {% endtrans %}
+</p>
+
+<p>
+    {% trans %}
+    Though we believe that plugins are today both largely unnecessary and costly to the user experience, many of our users and developers still rely on a relatively small number of them for critical functions. We also recognize that authors need some time to adjust to web-based replacements. We therefore invite such plugin authors to apply for a short-term exemption to our plugin blocking policy.
+    {% endtrans %}
+</p>
+
+<p>
+    {% trans %}
+    This is the official Mozilla policy for whitelisting plugins. This policy consists of the following five sections:
+    {% endtrans %}
+</p>
+
+<ol>
+    <li>
+        <b>
+            {% trans %}
+            Plugins blocked by default:
+            {% endtrans %}
+        </b>
+        {% trans %}
+        Plugins will soon be blocked by default in Firefox. We will provide users with the choice of activating any and all plugins that we block as they come across pages that use them.
+        {% endtrans %}
+    </li>
+    <br>
+    <li>
+        <b>
+            {% trans %}
+            Applying for inclusion on the plugin whitelist:
+            {% endtrans %}
+        </b>
+        {% trans 
+            bugzilla_template='href=http://mzl.la/1kkrDAU' %}
+        Plugin authors may apply for inclusion on a whitelist that will exempt their plugin from being blocked by default by filing a request in the Bugzilla system using this <a {{ bugzilla_template }}>template</a>. Each required field on the template must be completed before your application will be considered. Most importantly, the application must describe a credible plan the applicant is pursuing to migrate away from NPAPI-based plugins. Mozilla will evaluate the application and should it be accepted, the plugin will be whitelisted for 4 Firefox releases (for a total of 30 weeks 6 weeks in the Beta channel and 24 weeks on our general release channel). Inclusion in the whitelist will be at Mozilla’s sole discretion. Whitelist membership can be withdrawn at any time if we deem it to be in the best interest of our users.
+        {% endtrans %}
+    </li>
+     <br>
+    <li>
+        <b>
+            {% trans %}
+            Application window:
+            {% endtrans %}
+        </b>
+        {% trans %}
+        The initial application window will be open until March 31st, 2014. Any application received prior to the end of this period will be reviewed and considered before plugins are blocked by default in Firefox. Applications received after this date will be processed as soon as a team of reviewers can get to them and, if accepted, added to the whitelist as soon as possible.
+        {% endtrans %}
+    </li>
+     <br>
+    <li>
+        <b>
+            {% trans %}
+            Re-application:
+            {% endtrans %}
+        </b>
+        {% trans %}
+        At the close of the 30 week grace period granted to all first time applicants, plugin authors can re-apply for inclusion on the whitelist for another 24 weeks (successful re-applicants will not need to spend time on the Beta channel). Re-applications must be received 30 days prior to the close of the whitelisted period to guarantee continuous whitelisting.
+        {% endtrans %}
+    </li>
+     <br>
+    <li>
+        <b>
+            {% trans %}
+            Quality assurance:
+            {% endtrans %}
+        </b>
+        {% trans %}
+        Plugin authors who are whitelisted are responsible for performing QA tests on our Beta Channel
+        {% endtrans %}
+    </li>
+     <br>
+    <li>
+        <b>
+            {% trans %}
+            Blocking for Security and Stability Issues:
+            {% endtrans %}
+        </b>
+        {% trans 
+            blocklisting_policy='href=https://wiki.mozilla.org/Blocklisting' %}
+         Insecure plugins or plugins with serious stability issues will still be blocked according to the Mozilla <a {{ blocklisting_policy}}>
+         addon blocklisting policy</a>.
+        {% endtrans %}
+    </li>
+</ol>
+
+<p>
+    {% trans 
+        whitelist_email='href=mailto:pluginwhitelist@mozilla.com' %}
+    Please contact Mozilla at <a {{ whitelist_email }}>pluginwhitelist@mozilla.com</a> for more information about this policy and answers to related questions.
+    {% endtrans %}
+</p>
+
+<p>
+    {% trans %}
+    We reserve the right to change this policy in the future. We will do so only after consulting with the public Mozilla community, in order to ensure that all views are taken into account.
+    {% endtrans %}
+</p>
+
+
+
+{% endblock %}
