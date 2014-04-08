@@ -1,0 +1,83 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "privacy/base-resp.html" %}
+
+{% block page_title %}Mozilla Firefox Privacy Policy — Archived, October 2006{% endblock %}
+
+{% block body_id %}firefox-archived{% endblock %}
+
+{% block article %}
+  <article class="section-content" itemscope itemtype="http://schema.org/Article">
+    <header>
+      <img class="logo" src="/media/img/privacy/logo-firefox.png" alt="">
+      <h1 itemprop="name">Mozilla Firefox Privacy Policy</h1>
+      <p class="meta"><time datetime="2006-10" itemprop="dateModified">Archived, October 2006</time></p>
+      <p itemprop="description">We're working hard to protect your privacy while delivering products and services that bring you the performance and protection you desire in your personal computing. This privacy policy explains how Mozilla Corporation ("Mozilla"), a wholly-owned subsidiary of the non-profit Mozilla Foundation, collects and uses information about users of the official Mozilla Firefox&reg; web browser ("Firefox"). It does not apply to other Mozilla websites, products or services.</p>
+    </header>
+    <div itemprop="articleBody">
+      <section>
+        <h2>Types of Information</h2>
+        <p>As with most Internet web browsers, Firefox sends certain information to the websites that you visit. This information falls into three categories:</p>
+        <section>
+          <h3>Personally-Identifying Information</h3>
+          <p>"Personally-Identifying Information" means information that, without the aid of additional information, can be directly associated with a specific person or entity including but not limited to a name, phone number or email address. Except as described below, Mozilla does not collect or require end-users of Firefox to furnish Personally-Identifying Information.</p>
+        </section>
+        <section>
+          <h3>Non-Personally-Identifying Information</h3>
+          <p>"Non-Personally-Identifying Information" means information that cannot be directly associated with a specific person or entity. Non-Personally-Identifying Information includes but is not limited to your computer's configuration and the version of Firefox you use.</p>
+        </section>
+        <section>
+          <h3>Potentially Personally-Identifying Information</h3>
+          <p>"Potentially Personally-Identifying Information" means information that is Non-Personally-Identifying Information in and of itself but that could be used in conjunction with other information to personally identify you. For example, Uniform Resource Locators ("URLs") (the addresses of web pages) and Internet Protocol ("IP") addresses (the addresses of computers on the internet), which are Non-Personally-Identifying Information in and of themselves, could be Personally-Identifying Information when combined with internet service provider ("ISP") records.</p>
+        </section>
+      </section>
+      <section>
+        <h2>Information Firefox Sends to Websites</h2>
+        <p>Like most web browsers, Firefox sends information to the websites you visit, including (1) Non-Personally-Identifying Information of the type that web browsers typically make available, such as the type of browser you are using, your language preference, the referring site, and the date and time of your visit; and (2) Potentially Personally-Identifying Information such as your IP address. This information may be logged on the websites you visit. What information is logged and how that information is used depends on the policies of each of the websites you visit.</p>
+        <p>Each website determines its own privacy policy for the distribution and use of this Non-Personally-Identifying Information and Potentially-Personally-Identifying Information. If you are concerned about how a website will use this information, check out its privacy policy. To find out more about how Mozilla uses this information on its own websites, see the <a href="{{ url('privacy.notices.websites') }}">Mozilla Privacy Policy</a>.</p>
+      </section>
+      <section>
+        <h2>Interactive Product Features</h2>
+        <section>
+          <h3>Crash-Reporting Feature</h3>
+          <p>Firefox's crash-reporting feature "Talkback" sends a report to Mozilla when Firefox crashes. Mozilla uses the information in the reports to diagnose and correct the problems in Firefox that caused the crash. Although Talkback starts automatically after Firefox crashes, it does not send information to Mozilla until you explicitly authorize it to do so. By default, Talkback sends a variety of Non-Personally-Identifying Information to Mozilla, including the stack trace (a detailed description of which parts of the Firefox code were active at the time of the crash) and the type of computer you are using. In addition, Personally-Identifying Information and Potentially Personally-Identifying Information are also collected including your IP address, your computer's name, and the processes you were running at the time of the crash. You can selectively disable the sending of this information. Additionally, you have the option to include the URL of the site you were visiting when Firefox crashed, a comment, and your email address in the report. Mozilla makes Non-Personally-Identifying Information and Potentially Personally-Identifying Information in Talkback reports available to the public. You may view these reports online at <a href="http://talkback-public.mozilla.org/">http://talkback-public.mozilla.org/</a>. To safeguard your privacy, Mozilla makes the Personally-Identifying Information in the reports available only to its employees, contractors, and selected contributors who signed confidentiality agreements that prohibit them from using or disclosing your Personally-Identifying Information other than for internal Mozilla purposes.</p>
+        </section>
+        <section>
+          <h3>Report Broken Web Site Feature</h3>
+          <p>Firefox's Report Broken Web Site feature lets you notify Mozilla when a website you visit improperly appears or incorrectly functions. The feature sends the URL of the broken website to Mozilla. You may also choose to send your email address and a description of the problem. This feature also sends a variety of Non-Personally-Identifying Information to Mozilla, including but not limited to the version of Firefox you are using and your language preference. Except for your email address, Mozilla makes all of this information public. This feature does not send information to Mozilla until you explicitly authorize Firefox to do so. To prevent this public release of Personally-Identifying and Potentially-Personally-Identifying Information, don't report a website if the website's URL contains your Personally-Identifying and Potentially-Personally-Identifying Information, and don't include personal information in your description of the problem. To prevent the release of any information, don't use this feature to report a broken website.</p>
+        </section>
+        <section>
+          <h3>Report Web Forgery Feature</h3>
+          <p>Firefox's Report Web Forgery feature lets you report suspected web forgeries to Mozilla and its third party service provider(s) for the Phishing Protection feature when you encounter a suspected malicious "phishing" or fraudulent website that is impersonating a legitimate website. This feature sends your comments about the suspected fraudulent website to Mozilla and its third-party provider(s), as well as the same information that the browser sends when you visit a website. Each of our third-party providers are under licensing agreements with Mozilla and will not release Potentially-Personally-Identifying Information to the public. These third party providers only use this information in conjunction with the Phishing Protection service they are providing. In addition, each third-party provider has its own privacy policy that is linked to the online form where you report a potential Web Forgery. To prevent the third party provider from obtaining this information, don't use this feature to report a Web Forgery. (Also see "Phishing Protection Feature" below.)</p>
+        </section>
+        <section>
+          <h3>Automated Update Service</h3>
+          <p>Firefox's automatic update feature periodically checks to see if an updated version of Firefox is available from Mozilla. This feature sends Non-Personally-Identifying Information to Mozilla, including the version of Firefox you are using, a list of the add-ons you have installed, and your language preference. This feature also sends Potentially Personally-Identifying Information to Mozilla in the form of a cookie named "aus" that contains a unique numeric value to distinguish individual Firefox installs. Mozilla uses this Non-Personally-Identifying Information and Potentially Personally-Identifying Information to provide you with updated versions of Firefox and to understand the usage patterns of Firefox users. We use this information to improve our products and services and to support decision making regarding feature and capacity planning. We do not collect or track any Personally-Identifying Information or any information about the Web sites you visit, and we do not release the raw information we obtain from this feature to the public. We may release reports containing aggregate data so that our global community can make better product and design decisions. To prevent Mozilla from obtaining this information, you can turn this feature off in Firefox's preferences. For information about changing your preferences, go to our <a href="/support/firefox/options">help page</a>.</p>
+        </section>
+      </section>
+      <section>
+        <h2>Phishing Protection Feature</h2>
+        <p>The Firefox phishing protection feature displays a warning if the website you are visiting is suspected of impersonating a legitimate website. Firefox lets you select various levels of phishing protection, and different information is transmitted by Firefox depending on the level you choose.</p>
+        <p>By default, Firefox checks the web pages that you visit against a list of suspected web forgeries (a "blacklist") that is downloaded to your hard drive at regularly scheduled intervals (<em>e.g.,</em> approximately twice per hour), the rate of frequency may change from time to time. If there is a match, Firefox displays a "Suspected Web Forgery" alert. Each time Firefox checks in with the third party provider to download a new blacklist, Non-Personally-Identifying Information and Potentially Personally-Identifying Information, such as the information that the browser sends every time you visit a website as well as the version number of the blacklist on your system, is sent to the third party provider. In order to safeguard your privacy, Firefox will not transmit the URL of web pages that you visit in this default mode to anyone.</p>
+        <p>Alternately, you can check the web pages you visit against an online list that is provided by a third party service. When you select this option, Firefox sends the URL of the web page, in addition to your IP address and other Non-Personally-Identifying Information, to the selected third party service provider. Firefox displays a warning if the third party service provider returns with a response indicating that the URL you are accessing is a suspected web forgery.</p>
+        <p>Finally, if you take any action in response to a phishing protection warning message, the selected phishing protection service provider may record that action and the URL of the page, and a cookie may be placed on your computer. While it is possible that a URL sent to your service provider may itself contain Personally-Identifying Information, Mozilla's third party service providers have entered into a written agreement with Mozilla not to use Personally-Identifying Information for purposes other than to enhance and maintain their service. These third party service providers may inform you about additional notices regarding their applicable privacy policies.</p>
+        <p>You may completely turn off the phishing protection feature in Firefox's preferences. If you do this, none of the information discussed here will be downloaded to your hard drive or sent to any third party service provider. For information about changing your preferences, go to our <a href="/support/firefox/options">help page</a>.</p>
+        <p>Please note that we're not yelling at you in this paragraph. Our lawyers have advised us that we need to make sure this information is conspicuous so you'll read it. THE PHISHING PROTECTION FEATURE IS PROVIDED "AS IS" AND FOR YOUR INFORMATION AS ADVICE AND GUIDANCE ONLY. MOZILLA DOES NOT GUARANTEE THAT THE PHISHING PROTECTION FEATURE WILL PREVENT YOU FROM BEING DECEIVED BY A MALICIOUS WEBSITE AND WE STRONGLY RECOMMEND THAT YOU CONTINUE TO BE VIGILANT WHILE ONLINE, PARTICULARLY WHEN FOLLOWING LINKS SENT TO YOU IN E-MAIL. THE <a href="{{ url('legal.eula') }}">MOZILLA FIREFOX END USER LICENSE SOFTWARE AGREEMENT</a> DESCRIBES THIS IN MORE DETAIL.</p>
+      </section>
+      <section>
+        <h2>Cookies</h2>
+        <p>A cookie is a small string of information that a website stores on your computer and that web browsers make available to that website each time you return. Firefox stores cookies on your computer when requested to do so by websites. A website uses cookies to help identify and track visitors, the use of the website, and visitors' website access preferences across multiple requests and visits. It is possible to include Personally-Identifying Information, or references to such information, in cookies, thereby enabling websites to track the online movements of particular individuals. To prevent Firefox from sending cookies to specific websites, configure Firefox to prompt you when a website wants to set a cookie. To prevent Firefox from sending cookies to any website, configure it to disable cookies. For information about changing these preferences, go to our <a href="/support/firefox/options">help page</a>.</p>
+      </section>
+      <section>
+        <h2>Privacy Policy Changes</h2>
+        <p>Mozilla may change the Firefox Privacy Policy from time to time. Any and all changes will be reflected on this page. When Mozilla changes this policy in a material way a notice will be posted on the website at <a href="{{ url('mozorg.home') }}">www.mozilla.org</a>. Substantive changes may also be announced through the standard mechanisms by which Mozilla communicates with its users and community, including Mozilla's "mozilla-announce" mailing list. It is your responsibility to ensure that you understand the terms of this Privacy Policy. You should periodically check this page for any changes to the current policy.</p>
+      </section>
+      <section>
+        <h2>For More Information</h2>
+        <p>If you have questions about this privacy policy, please contact Mozilla at: <a href="mailto:privacy@mozilla.com">privacy@mozilla.com</a>.</p>
+      </section>
+    </div>
+  </article>
+{% endblock %}

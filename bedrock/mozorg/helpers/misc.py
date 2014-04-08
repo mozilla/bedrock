@@ -425,3 +425,25 @@ def releasenotes_url(release):
         return reverse('firefox.os.releasenotes', args=[release.version])
     else:
         return reverse('firefox.releasenotes', args=(release.version, prefix))
+
+
+@jingo.register.filter
+def htmlattr(_list, **kwargs):
+    """
+    Assign an attribute to elements, like jQuery's attr function. The _list
+    argument is a BeautifulSoup iterable object. Note that such a code doesn't
+    work in a Jinja2 template:
+
+        {% set body.p['id'] = 'great' %}
+        {% set body.p['class'] = 'awesome' %}
+
+    Instead, use this htmlattr function like
+
+        {{ body.p|htmlattr(id='great', class='awesome') }}
+
+    """
+    for tag in _list:
+        for attr, value in kwargs.iteritems():
+            tag[attr] = value
+
+    return _list
