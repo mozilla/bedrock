@@ -48,6 +48,23 @@
       <h1 class="large">{{_('Check Your Plugins')}}</h1>
       <p class="preamble">{{_('Keeping your plugins up to date helps Firefox run safely and smoothly.')}}</p>
   </header>
+
+{% if l10n_has_tag('java_notice') or settings.DEV %}
+  <aside class="notice">
+    <p>
+    {% trans %}
+      We are aware of a problem detecting current versions of the Java plugin and
+      misreporting them as vulnerable.
+    {% endtrans %}
+    {% trans download='https://www.java.com/download/' %}
+      We’re working to correct this error. In the
+      meantime, you can <a href="{{ download }}">visit the Java website</a> to
+      download the latest version.
+    {% endtrans %}
+    </p>
+  </aside>
+{% endif %}
+
   <section class="plugin-status-container billboard">
       <h2>{{_('Plugin Status')}}</h2>
       <ul>
