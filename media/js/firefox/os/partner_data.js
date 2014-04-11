@@ -168,15 +168,15 @@ if (typeof Mozilla == 'undefined') {
             'display': 'Alcatel One Touch Fire',
             'countries': ['br', 'cl', 'co', 'de', 'gr', 'hu', 'it', 'me', 'mx', 'pl', 'rs', 'uy', 've']
         },
-        'huawei_y300': {
+        'huawei_y300-2': {
             'type': 'smartphone',
-            'display': 'Huawei Y300',
+            'display': 'Huawei Y300II',
             'countries': ['mx']
         },
         'lg_fireweb': {
             'type': 'smartphone',
             'display': 'LG Fireweb',
-            'countries': ['br']
+            'countries': ['br', 'uy']
         },
         'zte_open': {
             'type': 'smartphone',
