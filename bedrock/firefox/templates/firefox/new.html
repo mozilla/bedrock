@@ -20,29 +20,8 @@
 
   {% if request.locale == 'en-US' %}
     <!-- Google Analytics Content Experiment code -->
-    <script>
-    // targeted refactor of getPlatform() in site.js
-    // check for supported version of windows
-    function isWin() {
-        var ua = navigator.userAgent,
-            pf = navigator.platform;
-        if (
-          !(/Win(16|9[x58]|NT( [1234]| 5\.0| [^0-9]|[^ -]|$))/.test(ua) ||
-                /Windows ([MC]E|9[x58]|3\.1|4\.10|NT( [1234]| 5\.0| [^0-9]|[^ ]|$))/.test(ua) ||
-                /Windows_95/.test(ua))
-          && !(ua.indexOf("MSIE 6.0") !== -1 &&
-                ua.indexOf("Windows NT 5.1") !== -1 &&
-                ua.indexOf("SV1") === -1)
-          && (pf.indexOf("Win32") !== -1 ||
-                pf.indexOf("Win64") !== -1)
-          ) {
-            return true;
-        }
-
-        return false;
-    }
-    function utmx_section(){}function utmx(){}(function(){
-    if (! /[?&]f=[0-9]+/.test(window.location.search) && isWin()){
+    <script>function utmx_section(){}function utmx(){}(function(){
+    if (! /[?&]f=[0-9]+/.test(window.location.search)){
     var k='71153379-28',d=document,l=d.location,c=d.cookie;
     if(l.search.indexOf('utm_expid='+k)>0)return;
     function f(n){if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.
