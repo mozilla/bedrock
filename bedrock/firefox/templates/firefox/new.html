@@ -16,6 +16,8 @@
 
 
 {% block extrahead %}
+  {{ css('firefox_new') }}
+
   {% if request.locale == 'en-US' %}
     <!-- Google Analytics Content Experiment code -->
     <script>
@@ -55,10 +57,6 @@
     </script><script>utmx('url','A/B');</script>
     <!-- End of Google Analytics Content Experiment code -->
   {% endif %}
-{% endblock %}
-
-{% block site_css %}
-  {{ css('firefox_new') }}
 {% endblock %}
 
 {% block js_pretrack %}

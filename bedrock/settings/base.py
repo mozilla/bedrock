@@ -126,6 +126,9 @@ MINIFY_BUNDLES = {
         'responsive': (
             'css/sandstone/sandstone-resp.less',
         ),
+        'oldIE': (
+            'css/sandstone/oldIE.less',
+        ),
         'newsletter': (
             'css/newsletter/newsletter.less',
         ),
