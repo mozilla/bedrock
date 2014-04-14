@@ -52,6 +52,18 @@
     clear: both;
 }
 
+/* RTL support */
+html[dir="rtl"] {
+    #wrapper:before {
+        left: 85px;
+        right: auto;
+    }
+
+    .intro {
+        float: right;
+    }
+}
+
 /* Tablet Layout: 760px */
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
 
