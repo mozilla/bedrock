@@ -94,7 +94,7 @@ several codebases run the site, see :ref:`How a Request is Handled <merge>`.
 
 4. Configure Apache to allow the site to run with a Directory and VirtualHost directive:
    This could go in the main Apache configuration file, or
-   on Ubuntu, you might put this in ``/etc/apache2/sites-available/mozilla.com``.
+   on Ubuntu, you might put this in ``/etc/apache2/sites-available/mozilla.com.conf``.
 
 ::
 
