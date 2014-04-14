@@ -286,6 +286,9 @@ MINIFY_BUNDLES = {
         'firefox_sync': (
             'css/firefox/sync.less',
         ),
+        'firefox_sync_anim': (
+            'css/firefox/sync-animation.less',
+        ),
         'installer_help': (
             'css/base/mozilla-modal.less',
             'css/firefox/template-resp.less',
@@ -572,6 +575,9 @@ MINIFY_BUNDLES = {
         ),
         'firefox_speed': (
             'js/firefox/speed.js',
+        ),
+        'firefox_sync': (
+            'js/firefox/sync.js',
         ),
         'firefox_tech': (
             'js/firefox/technology/tech.js',
