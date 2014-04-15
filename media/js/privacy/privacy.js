@@ -77,4 +77,21 @@ $(function() {
             }).appendTo(($tab.find(':last-child').length) ? $tab.find(':last-child') : $tab);
         });
     });
+
+    // Support location hashes, including the following Firefox in-product
+    // links: #health-report, #telemetry and #crash-reporter
+    $(window).on('load hashchange', function (event) {
+        if (location.hash && $(location.hash).length) {
+            var $tabpanel = $(location.hash).parents('[role="tabpanel"]');
+
+            if ($tabpanel.length) {
+                var $tab = $('[aria-controls="' + $tabpanel.attr('id') + '"]');
+
+                if ($tab && $tab.attr('aria-expaned') === 'false') {
+                    $tab.click(); // Expand accordion
+                    $(location.hash).get(0).scrollIntoView();
+                }
+            }
+        }
+    });
 });

@@ -29,4 +29,5 @@ urlpatterns = patterns('',
     page('/archive/firefox/2012-12', 'privacy/archive/firefox-2012-12.html'),
     page('/archive/firefox/2013-05', 'privacy/archive/firefox-2013-05.html'),
     page('/archive/firefox/third-party', 'privacy/archive/firefox-third-party.html'),
+    page('/archive/websites/2013-08', 'privacy/archive/websites-2013-08.html'),
 )
