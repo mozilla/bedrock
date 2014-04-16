@@ -14,7 +14,28 @@
 </dl>
 
 <small id="speed-citation">
-{% trans url1='http://www.tomshardware.com/reviews/chrome-27-firefox-21-opera-next,3534.html' %}
-  * Based on <a href="{{ url1 }}">Tom’s Hardware Web Browser Grand Prix XVI</a> results.
-{% endtrans %}
+{% if request.locale == 'fr' %}
+
+  {% trans url1='http://www.tomshardware.fr/articles/test-navigateurs-chrome-firefox-opera,2-64.html' %}
+    * Based on <a href="{{ url1 }}">Tom’s Hardware Web Browser Grand Prix XVI</a> results.
+  {% endtrans %}
+
+{% elif request.locale == 'it' %}
+
+  {% trans url1='http://www.tomshw.it/cont/articolo/chrome-27-firefox-22-ie10-e-opera-next-lotta-per-la-supremazia/47278/1.html' %}
+    * Based on <a href="{{ url1 }}">Tom’s Hardware Web Browser Grand Prix XVI</a> results.
+  {% endtrans %}
+
+{% elif request.locale == 'ru' %}
+
+  {% trans url1='http://www.thg.ru/software/luchshiy_brauzer_dlya_windows/' %}
+    * Based on <a href="{{ url1 }}">Tom’s Hardware Web Browser Grand Prix XVI</a> results.
+  {% endtrans %}
+
+{% else %}
+
+  {% trans url1='http://www.tomshardware.com/reviews/chrome-27-firefox-21-opera-next,3534.html' %}
+    * Based on <a href="{{ url1 }}">Tom’s Hardware Web Browser Grand Prix XVI</a> results.
+  {% endtrans %}
+{% endif %}
 </small>
