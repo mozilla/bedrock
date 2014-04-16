@@ -14,7 +14,14 @@
 </dl>
 
 <small id="speed-citation">
-{% trans url1='http://www.tomshardware.com/reviews/chrome-27-firefox-21-opera-next,3534.html' %}
+{% set l10n_url={
+  'fr': 'http://www.tomshardware.fr/articles/test-navigateurs-chrome-firefox-opera,2-64.html',
+  'it': 'http://www.tomshw.it/cont/articolo/chrome-27-firefox-22-ie10-e-opera-next-lotta-per-la-supremazia/47278/1.html',
+  'ru': 'http://www.thg.ru/software/luchshiy_brauzer_dlya_windows/'} %}
+{# L10n: Line break below is for wide screen formatting only. #}
+{% trans url1=l10n_url.get(
+    request.locale,
+    'http://www.tomshardware.com/reviews/chrome-27-firefox-21-opera-next,3534.html') %}
   * Based on <a href="{{ url1 }}">Tom’s Hardware Web Browser Grand Prix XVI</a> results.
 {% endtrans %}
 </small>
