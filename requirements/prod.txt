@@ -12,6 +12,9 @@ GitPython==0.1.7
 -e git://github.com/mozilla/nuggets.git#egg=nuggets
 -e git://github.com/kurtmckee/feedparser#egg=feedparser
 -e git://github.com/tweepy/tweepy.git#egg=tweepy
+-e git://github.com/waylan/Python-Markdown.git#egg=Python-Markdown
+-e git://github.com/aleray/mdx_outline.git#egg=mdx_outline
+beautifulsoup4
 
 # Security
 -e git://github.com/fwenzel/django-sha2.git#egg=django-sha2

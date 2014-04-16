@@ -54,8 +54,8 @@ urlpatterns = patterns('',
     # Bug 800467 /apps/partners -> marketplace.firefox.com/developers
     redirect(r'apps/partners/$', 'https://marketplace.firefox.com/developers/'),
 
-    # Bug 815527 /m/privacy.html -> /legal/privacy/firefox.html
-    redirect(r'^m/privacy.html$', '/legal/privacy/firefox.html'),
+    # Bug 815527 /m/privacy.html -> /privacy/firefox/
+    redirect(r'^m/privacy.html$', 'privacy.notices.firefox'),
 
     # Bug 821047 /about/mission.html -> /mission/
     redirect(r'^about/mission.html$', '/mission/'),

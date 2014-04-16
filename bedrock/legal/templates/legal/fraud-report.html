@@ -81,7 +81,7 @@
       </p>
 
       <p>
-      {% trans url=url('privacy.index') %}
+      {% trans url=url('privacy') %}
         Once you have reported a website or mobile app, we will analyze it
         and, if necessary, take the appropriate action. If you would like
         to provide your email address so that we can follow up with you if
@@ -179,7 +179,7 @@
             <label for="input_email">{{ _('Email address (optional)') }}</label>
             {{ form.input_email }}
             <div class="field-note">
-            {% trans url=url('privacy.index') %}
+            {% trans url=url('privacy') %}
               If you choose to provide it, your email address will only be
               used to contact you about this report. Please see our
               <a href="{{ url }}">Privacy Policy</a> for more information.

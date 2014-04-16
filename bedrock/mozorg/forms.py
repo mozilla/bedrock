@@ -11,6 +11,7 @@ from random import randrange
 from django import forms
 from django.forms import widgets
 from django.utils.safestring import mark_safe
+from django.core.urlresolvers import reverse
 
 import basket
 from basket.base import request
@@ -59,7 +60,7 @@ class PrivacyWidget(widgets.CheckboxInput):
             '%s '
             '<span class="title">%s</span></label>'
             % (attrs['id'], input_txt,
-               policy_txt % '/en-US/privacy-policy')
+               policy_txt % reverse('privacy'))
         )
 
 

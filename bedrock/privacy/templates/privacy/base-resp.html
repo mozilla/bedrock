@@ -1,0 +1,49 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "base-resp.html" %}
+
+{% block extrahead %}
+  {{ css('privacy') }}
+{% endblock %}
+
+{% block body_class %}sand{% endblock %}
+
+{% block string_data %}
+  data-tabpanel-open-text="{{ _('Learn More') }}"
+  data-tabpanel-close-text="{{ _('Show Less') }}"
+{% endblock %}
+
+{% block breadcrumbs %}
+  <nav class="breadcrumbs">
+    <a href="{{ url('mozorg.home') }}">{{ _('Home') }}</a> &gt;
+    <a href="{{ url('privacy') }}">{{ _('Mozilla Privacy') }}</a> &gt;
+  </nav>
+{% endblock %}
+
+{% block content %}
+  {% block main_feature %}{% endblock %}
+  {% block menu_bar %}{% endblock %}
+  <main id="main-content">
+    <div class="main-column">
+      {% block article %}{% endblock %}
+    </div>
+    {% block sidebar %}
+      <aside class="sidebar">
+        {% block side_nav %}
+          <nav>
+            <h2><a href="{{ url('privacy') }}">Back to Mozilla Privacy Policy</a></h2>
+          </nav>
+        {% endblock %}
+        {% block side_extra %}{% endblock %}
+      </aside>
+    {% endblock %}
+  </main>
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{% block js %}
+  {{ js('privacy') }}
+{% endblock %}

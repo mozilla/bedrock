@@ -1,3 +1,4 @@
+packages/beautifulsoup4
 packages/certifi
 packages/chardet
 packages/python-memcached
@@ -17,3 +18,5 @@ src/requests
 src/rna
 src/six
 src/tweepy
+src/mdx_outline
+src/legal-docs

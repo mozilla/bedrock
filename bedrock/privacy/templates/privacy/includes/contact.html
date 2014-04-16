@@ -1,0 +1,43 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% if not form_submitted or (form_submitted and form_error) %}
+  <form name="contact_privacy" id="contact_privacy" action="{{ secure_url() }}#contactus" method="post">
+    {{ csrf() }}
+
+    <fieldset>
+      <legend><span>{{ _('Please use this form to send us your questions, concerns or thoughts related to privacy at Mozilla.') }}</span></legend>
+
+      {% if form_error %}
+        <p class="tooltip error">
+        {% trans %}
+          Your request could not be completed. Please try again.
+        {% endtrans %}
+        </p>
+      {% endif %}
+
+      <div class="field">
+        {{ form.sender.errors }}
+        <label for="id_sender">{{ _('Your email:') }}</label>
+        {{ form.sender }}
+      </div>
+
+      {{ form.office_fax }}
+
+      <div class="field">
+        {{ form.comments.errors }}
+        <label for="id_comments">{{ _('Your comments:') }}</label>
+        {{ form.comments }}
+
+        <input type="submit" class="button" value="{{ _('Send comments') }}" id="contact_privacy_submit" />
+      </div>
+    </fieldset>
+  </form>
+{% else %}
+  <p class="success" data-submission-state="{{ form_submitted }}">
+  {% trans %}
+    <strong>Thank you</strong> for sending us your questions or comments. A member of the privacy team will be in contact shortly.
+  {% endtrans %}
+  </p>
+{% endif %}

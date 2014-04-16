@@ -1,0 +1,40 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "privacy/base-resp.html" %}
+
+{% block page_title %}{{ _('Outdated Policies') }}{% endblock %}
+
+{% block body_id %}archives{% endblock %}
+
+{% block article %}
+  <article class="section-content" itemscope itemtype="http://schema.org/Article">
+    <header>
+      <h1 class="title-shadow-box" itemprop="name">{{ _('Outdated Policies') }}</h1>
+    </header>
+    <section>
+      <h2>{{ _('Firefox Browser') }}</h2>
+      <ul>
+        <li><a href="{{ url('privacy.archive.firefox-2006-10') }}"><time datetime="2006-10">{{ _('October 2006') }}</time></a></li>
+        <li><a href="{{ url('privacy.archive.firefox-2008-06') }}"><time datetime="2008-06">{{ _('June 2008') }}</time></a></li>
+        <li><a href="{{ url('privacy.archive.firefox-2009-01') }}"><time datetime="2009-01">{{ _('January 2009') }}</time></a></li>
+        <li><a href="{{ url('privacy.archive.firefox-2009-09') }}"><time datetime="2009-09">{{ _('September 2009') }}</time></a></li>
+        <li><a href="{{ url('privacy.archive.firefox-2010-01') }}"><time datetime="2010-01">{{ _('January 2010') }}</time></a></li>
+        <li><a href="{{ url('privacy.archive.firefox-2010-12') }}"><time datetime="2010-12">{{ _('December 2010') }}</time></a></li>
+        <li><a href="{{ url('privacy.archive.firefox-2011-06') }}"><time datetime="2011-06">{{ _('June 2011') }}</time></a></li>
+        <li><a href="{{ url('privacy.archive.firefox-2012-06') }}"><time datetime="2012-06">{{ _('June 2012') }}</time></a></li>
+        <li><a href="{{ url('privacy.archive.firefox-2012-09') }}"><time datetime="2012-09">{{ _('September 2012') }}</time></a></li>
+        <li><a href="{{ url('privacy.archive.firefox-2012-12') }}"><time datetime="2012-12">{{ _('December 2012') }}</time></a></li>
+        <li><a href="{{ url('privacy.archive.firefox-2013-05') }}"><time datetime="2013-05">{{ _('May 2013') }}</time></a></li>
+        <li><a href="{{ url('privacy.archive.firefox-third-party') }}">{{ _('Third-Party Service Providers') }}</a></li>
+      </ul>
+    </section>
+    <section>
+      <h2>{{ _('Mozilla Websites') }}</h2>
+      <ul>
+        <li><a href="{{ url('privacy.archive.websites-2013-08') }}"><time datetime="2013-08">{{ _('August 2013') }}</time></a></li>
+      </ul>
+    </section>
+  </article>
+{% endblock %}

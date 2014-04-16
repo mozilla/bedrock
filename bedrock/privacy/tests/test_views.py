@@ -14,16 +14,14 @@ class PrivacyFormTest(TestCase):
     def setUp(self):
         self.contact = 'foo@bar.com'
         with self.activate('en-US'):
-            self.url = reverse('privacy.index')
+            self.url = reverse('privacy')
         self.data = {
-            'name': 'Tester',
             'sender': self.contact,
             'comments': 'It works!',
         }
         self.bad_data = {
-            'name': '',
-            'sender': self.contact,
-            'comments': 'Forgot your name!'
+            'sender': '',
+            'comments': 'Forgot your email!'
         }
         mail.outbox = []
 
@@ -44,33 +42,13 @@ class PrivacyFormTest(TestCase):
         eq_(outbox.from_email, self.contact)
 
         # Verify recipient
-        eq_(outbox.to, ['privacy@mozilla.com'])
-
-    def test_send_privacy_contact_firefoxos(self):
-        response = self.client.post(reverse('privacy.firefoxos'), self.data)
-
-        # Ensure we are redirected after successful form submission.
-        eq_(response.status_code, 302)
-        eq_(response['Location'], 'http://testserver/en-US/privacy/policies/firefox-os/?submitted=True')
-
-        # Test that message has been sent.
-        eq_(len(mail.outbox), 1)
-
-        outbox = mail.outbox[0]
-        # Verify that it has the correct subject
-        eq_(outbox.subject, 'Message sent from Privacy Hub')
-
-        # Verify sender
-        eq_(outbox.from_email, self.contact)
-
-        # Verify recipient
-        eq_(outbox.to, ['privacy@mozilla.com'])
+        eq_(outbox.to, ['yourprivacyis#1@mozilla.com'])
 
     def test_send_privacy_contact_invalid_data(self):
-        response = self.client.post(reverse('privacy.index'), self.bad_data)
+        response = self.client.post(reverse('privacy'), self.bad_data)
 
         eq_(response.status_code, 200)
-        self.assertIn('This field is required, please enter your name.', response.content)
+        self.assertIn('This field is required, please enter your email address.', response.content)
 
         # Test that message was not sent.
         eq_(len(mail.outbox), 0)

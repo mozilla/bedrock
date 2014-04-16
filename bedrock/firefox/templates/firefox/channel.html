@@ -66,7 +66,7 @@
       </div>
       <p class="more"><a href="{{ php_url('/mobile/aurora/') }}">{{_('Learn more about Firefox Aurora')}}</a></p>
       <p class="warning">
-        {% trans link=php_url('/legal/privacy/firefox.html#telemetry') %}
+        {% trans link=url('privacy.notices.firefox') + '#telemetry' %}
           Firefox Aurora automatically sends feedback to Mozilla. <a href="{{ link }}">Learn more</a>.
         {% endtrans %}
       </p>

@@ -46,3 +46,9 @@
 [submodule "vendor-local/src/tweepy"]
 	path = vendor-local/src/tweepy
 	url = https://github.com/tweepy/tweepy.git
+[submodule "vendor-local/src/mdx_outline"]
+	path = vendor-local/src/mdx_outline
+	url = https://github.com/aleray/mdx_outline.git
+[submodule "vendor-local/src/legal-docs"]
+	path = vendor-local/src/legal-docs
+	url = https://github.com/mozilla/legal-docs.git

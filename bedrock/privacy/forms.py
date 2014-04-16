@@ -17,15 +17,6 @@ class EmailInput(widgets.TextInput):
 
 
 class PrivacyContactForm(forms.Form):
-    name = forms.CharField(
-        required=True,
-        error_messages={
-            'required': _('This field is required, please enter your name.')
-        },
-        widget=forms.TextInput(
-            attrs={
-                'required': 'required'
-            }))
     sender = forms.EmailField(
         required=True,
         error_messages={

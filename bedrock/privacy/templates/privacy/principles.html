@@ -1,0 +1,83 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "privacy/base-resp.html" %}
+
+{% block page_title %}{{ _('Our Privacy Principles') }}{% endblock %}
+{% block page_desc %}{{ _('Mozilla is an open source project with a mission to improve your Internet experience. This is a driving force behind our privacy practices.') }}{% endblock %}
+
+{% block body_id %}privacy-principles{% endblock %}
+
+{% block article %}
+  <article class="section-content" itemscope itemtype="http://schema.org/Article">
+    <header>
+      <h1 class="title-shadow-box" itemprop="name">{{ _('Our Privacy Principles') }}</h1>
+      <p itemprop="description">
+        {%- trans link=url('mozorg.about.manifesto') -%}
+          The following six privacy principles stem from <a href="{{ link }}">Mozilla’s
+          Manifesto</a> and inform you how we develop our websites, products and services. Read our
+          specific privacy notices and Mozilla Privacy Policy for more details:
+        {%- endtrans -%}
+      </p>
+    </header>
+    <div itemprop="articleBody">
+      <ol>
+        <li>
+          <h2>{{ _('No Surprises') }}</h2>
+          <p>
+            {%- trans -%}
+              Only use and share information about our users for their benefit and as spelled out in
+              our notices.
+            {%- endtrans -%}
+          </p>
+        </li>
+        <li>
+          <h2>{{ _('Real Choices') }}</h2>
+          <p>
+            {%- trans -%}
+              Educate users whenever we collect any personal information and give them a choice
+              whenever possible.
+            {%- endtrans -%}
+          </p>
+        </li>
+        <li>
+          <h2>{{ _('Sensible Settings') }}</h2>
+          <p>
+            {%- trans -%}
+              Establish default settings that balance safety and user experience appropriately.
+            {%- endtrans -%}
+          </p>
+        </li>
+        <li>
+          <h2>{{ _('Limited Data') }}</h2>
+          <p>
+            {%- trans -%}
+              Collect and retain the least amount of user information necessary. Try to share
+              anonymous aggregate data whenever possible, and then only when it benefits the web,
+              users or developers.
+            {%- endtrans -%}
+          </p>
+        </li>
+        <li>
+          <h2>{{ _('User Control') }}</h2>
+          <p>
+            {%- trans -%}
+              Do not disclose personal user experience without the user’s consent. Innovate, develop
+              and advocate for privacy enhancements that put users in control of their online
+              experiences.
+            {%- endtrans -%}
+          </p>
+        </li>
+        <li>
+          <h2>{{ _('Trusted Third Parties') }}</h2>
+          <p>
+            {%- trans -%}
+              Make privacy a factor in selecting and interacting with partners.
+            {%- endtrans -%}
+          </p>
+        </li>
+      </ol>
+    </div>
+  </article>
+{% endblock %}

@@ -117,9 +117,9 @@
       <li>{{ _('a random client identifier, which is assigned by Google, that expires every 2 weeks.') }}</li>
     </ul>
     <p>
-    {% trans url=php_url('/legal/privacy/firefox.html') %}
+    {% trans url=url('privacy.notices.firefox') %}
       For a complete description of information collected and used by Firefox,
-      please see the <a href="{{ url }}">Firefox Privacy Policy</a>.
+      please see the <a href="{{ url }}">Firefox Privacy Notice</a>.
     {% endtrans %}
     </p>
     <p>
@@ -144,7 +144,7 @@
     <p>{{ _('For information about what the requesting website does with your location information, please refer to that website’s privacy policy.') }}</p>
     <p>{{ _('For more information about your privacy, you should also read:') }}</p>
     <ul>
-      <li><a href="{{ php_url('/legal/privacy/firefox.html') }}">{{ _('Mozilla Firefox privacy policy') }}</a></li>
+      <li><a href="{{ url('privacy.notices.firefox') }}">{{ _('Mozilla Firefox Privacy Notice') }}</a></li>
       <li><a href="https://www.google.com/privacy/lsf.html" class="external">{{ _('Google privacy policy') }}</a></li>
     </ul>
   </div>

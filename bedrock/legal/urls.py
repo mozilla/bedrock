@@ -9,5 +9,6 @@ from bedrock.legal import views
 
 urlpatterns = patterns('',
     page('eula', 'legal/eula.html'),
+    page('firefox', 'legal/firefox.html'),
     url('^fraud-report/$', views.fraud_report, name='legal.fraud-report'),
 )
