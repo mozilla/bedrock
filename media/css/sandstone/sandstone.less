@@ -653,33 +653,73 @@ nav.menu-bar {
         color: darken(@linkBlue, 10%);
     }
 
-    p {
+    h1 {
         margin-bottom: @baseLine / 2;
+        font-size: @baseFontSize;
     }
 
-    .footer-logo,
-    .footer-license,
-    .footer-lang {
-        .span(2);
+    p, ul {
+        margin-bottom: @baseLine / 2;
+        line-height: 1.5;
     }
 
-    .footer-nav {
-        .span(2);
-        .open-sans;
+    li {
+        margin: 0;
+        list-style-type: none;
+    }
+
+    .col {
+        float: left;
+        margin-left: 24px;
+        width: 282px;
+
+        & > *:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .col-2 ul {
+        overflow: hidden;
 
         li {
-            list-style-type: none;
-            margin: 0 0 2px 0;
+            float: left;
+
+            &.wrap:before {
+                content: "\00A0\00B7\00A0"; /* &nbsp;&middot;&nbsp; */
+            }
+
+            &.clear {
+                clear: both;
+            } 
+        }
+    }
+
+    .links-social li {
+        ul {
+            display: inline;
+            margin: 0;
         }
 
+        li {
+            display: inline;
+
+            &:before {
+                content: "\00B7\00A0"; /* &middot;&nbsp; */
+            }
+
+            &:first-child:before {
+                content: "";
+            }
+
+            span {
+                .visually-hidden; /* for a11y */
+            }
+        }
     }
 }
 
-html[dir="rtl"] #colophon {
-    .footer-logo,
-    .footer-nav,
-    .footer-license,
-    .footer-lang {
+.html-rtl #colophon {
+    .col, .col-2 ul li {
         float: right;
     }
 }

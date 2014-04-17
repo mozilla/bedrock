@@ -134,50 +134,7 @@
     </div><!-- close #wrapper -->
 
     {% block site_footer %}
-      <footer id="colophon" class="{% block footer_class %}{% endblock %}">
-      <div class="row">
-
-          <div class="footer-logo">
-              <a href="{{ php_url('/') }}"><img src="{{ media('img/sandstone/footer-mozilla.png') }}" alt="mozilla"></a>
-          </div>
-
-          <div class="footer-license">
-              <p>
-                {% trans url=url('foundation.licensing.website-content') %}
-                Portions of this content are ©1998–{{ current_year }} by individual
-                mozilla.org contributors. Content available under
-                a <a href="{{ url }}">Creative Commons license</a>.
-                {% endtrans %}
-              </p>
-              <p>
-                <a href="{{ url('mozorg.contribute_page') }}">{{_('Contribute to this page')}}</a>
-              </p>
-          </div>
-          <ul class="footer-nav">
-            <li><a href="{{ url('mozorg.contact.spaces.spaces-landing') }}">{{_('Contact Us')}}</a></li>
-            <li><a href="{{ url('mozorg.partnerships') }}">{{_('Partner with Us')}}</a></li>
-            <li><a href="{{ donate_url() }}?source=mozillaorg_footer" class="donate">{{ _('Donate') }}</a></li>
-            <li><a href="{{ url('privacy') }}">{{_('Privacy Policy')}}</a></li>
-            <li><a href="{{ php_url('/about/legal.html') }}">{{_('Legal Notices')}}</a></li>
-            <li><a href="{{ php_url('/legal/fraud-report/index.html') }}">{{_('Report Trademark Abuse')}}</a></li>
-          </ul>
-          {% block social %}
-          <ul class="footer-nav">
-            <li><a href="https://twitter.com/mozilla">{{_('Mozilla on Twitter')}}</a></li>
-            <li><a href="{{ firefox_twitter_url() }}">{{_('Firefox on Twitter')}}</a></li>
-            <li><a href="https://www.facebook.com/mozilla">{{_('Mozilla on Facebook')}}</a></li>
-            <li><a href="https://www.facebook.com/Firefox">{{_('Firefox on Facebook')}}</a></li>
-            <li><a href="https://affiliates.mozilla.org/">{{_('Firefox Affiliates')}}</a></li>
-          </ul>
-          {% endblock %}
-          {% block lang_switcher %}
-          <div class="footer-lang">
-            {% include 'includes/lang_switcher.html' %}
-          </div>
-          {% endblock %}
-
-      </div>
-      </footer>
+      {% include 'includes/site-footer.html' %}
     {% endblock %}
 
     </div><!-- close #outer-wrapper -->
