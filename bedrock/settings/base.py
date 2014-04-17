@@ -186,6 +186,7 @@ MINIFY_BUNDLES = {
         ),
         'firefox_desktop': (
             'css/sandstone/sandstone-resp.less',
+            'css/firefox/desktop/intro-anim.less',
             'css/firefox/desktop/index.less',
         ),
         'firefox_desktop_fast': (
@@ -527,7 +528,8 @@ MINIFY_BUNDLES = {
         'firefox_desktop_index': (
             'js/libs/jquery.waypoints.min.js',
             'js/firefox/desktop/common.js',
-            'js/firefox/desktop/speed-graph.js'
+            'js/firefox/desktop/speed-graph.js',
+            'js/firefox/desktop/intro-anim.js',
         ),
         'firefox_features': (
             'js/base/mozilla-video-tools.js',
