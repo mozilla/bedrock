@@ -96,10 +96,6 @@ def make_download_link(product, build, version, platform, locale,
         'os_osx': 'osx'
     }[platform]
 
-    # Force download via SSL
-    if version in settings.FORCE_SSL_DOWNLOAD_VERSIONS:
-        version += '-SSL'
-
     # stub installer exceptions
     # TODO: NUKE FROM ORBIT!
     stub_langs = settings.STUB_INSTALLER_LOCALES.get(platform, [])
@@ -110,6 +106,10 @@ def make_download_link(product, build, version, platform, locale,
             suffix = 'latest'
 
         version = ('beta-' if build == 'beta' else '') + suffix
+    elif not funnelcake_id:
+        # Force download via SSL. Stub installers are always downloaded via SSL.
+        # Funnelcakes may not be ready for SSL download
+        version += '-SSL'
 
     # append funnelcake id to version if we have one
     if funnelcake_id:
