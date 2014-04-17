@@ -141,6 +141,12 @@ describe("global.js", function() {
             var result = isFirefox(ua);
             expect(result).not.toBeTruthy();
         });
+
+        it("should not consider Iceweasel to be Firefox", function() {
+            var ua = 'Mozilla/5.0 (X11; Linux x86_64; rv:17.0) Gecko/20121202 Firefox/17.0 Iceweasel/17.0.1';
+            var result = isFirefox(ua);
+            expect(result).not.toBeTruthy();
+        });
     });
 
     describe("isFirefoxMobile", function () {
