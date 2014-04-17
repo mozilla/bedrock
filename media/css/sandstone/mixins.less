@@ -165,6 +165,18 @@
     .box-shadow(@shadow);
 }
 
+// Hide visually, but not to screen readers
+.visually-hidden() {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    padding: 0;
+    border: 0;
+}
+
 .hidden {
   position: absolute;
   left: -999em;

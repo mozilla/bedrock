@@ -1,0 +1,50 @@
+      <footer id="colophon" class="{% block footer_class %}{% endblock %}">
+        <nav class="row">
+          <div class="col col-1">
+            <h1 class="logo"><a href="{{ url('mozorg.home') }}"><img src="{{ media('img/sandstone/footer-mozilla.png') }}" alt="Mozilla"></a></h1>
+            <p class="license">
+              {%- trans url=url('foundation.licensing.website-content') -%}
+              Portions of this content are ©1998–{{ current_year }} by individual
+              mozilla.org contributors. Content available under
+              a <a href="{{ url }}">Creative Commons license</a>.
+              {%- endtrans -%}
+            </p>
+          </div>
+          <div class="col col-2">
+            <ul class="links-join">
+              <li><a href="{{ url('mozorg.contact.spaces.spaces-landing') }}">{{ _('Contact Us') }}</a></li>
+              <li class="wrap"><a href="{{ url('mozorg.partnerships') }}">{{ _('Partner with Us' ) }}</a></li>
+              <li class="clear"><a href="{{ donate_url() }}?source=mozillaorg_footer" class="donate">{{ _('Donate') }}</a></li>
+              <li class="wrap"><a href="https://affiliates.mozilla.org/">{{ _('Firefox Affiliates') }}</a></li>
+              <li class="clear"><a href="{{ url('mozorg.contribute_page') }}">{{ _('Contribute to this page') }}</a></li>
+            </ul>
+            <ul class="links-legal">
+              <li><a href="{{ url('privacy') }}">{{ _('Privacy Policy') }}</a></li>
+              <li class="wrap"><a href="{{ php_url('/about/legal.html') }}">{{ _('Legal Notices') }}</a></li>
+              <li class="clear"><a href="{{ url('legal.fraud-report') }}">{{ _('Report Trademark Abuse') }}</a></li>
+            </ul>
+          </div>
+          <div class="col col-3">
+            <ul class="links-social">
+              <li>
+                {{ _('Mozilla:') }}
+                <ul>
+                  <li><a href="https://twitter.com/mozilla">{{ _('Twitter') }}<span> (@mozilla)</span></a></li>
+                  <li><a href="https://www.facebook.com/mozilla">{{ _('Facebook') }}<span> (Mozilla)</span></a></li>
+                </ul>
+              </li>
+              <li>
+                {{ _('Firefox:') }}
+                <ul>
+                  <li><a href="{{ firefox_twitter_url() }}">{{ _('Twitter') }}<span> (@firefox)</span></a></li>
+                  <li><a href="https://www.facebook.com/Firefox">{{ _('Facebook') }}<span> (Firefox)</span></a></li>
+                  <li><a href="https://www.youtube.com/firefoxchannel">{{ _('YouTube') }}<span> (firefoxchannel)</span></a></li>
+                </ul>
+              </li>
+            </ul>
+            <div class="lang-switcher">
+              {% include 'includes/lang_switcher.html' %}
+            </div>
+          </div>
+        </nav>
+      </footer>
