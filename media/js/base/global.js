@@ -89,6 +89,7 @@ function isFirefox(userAgent) {
     return (
         (/\sFirefox/).test(ua) &&
         !(/like Firefox/i).test(ua) &&
+        !(/Iceweasel/i).test(ua) &&
         !(/SeaMonkey/i).test(ua)
     );
 }
