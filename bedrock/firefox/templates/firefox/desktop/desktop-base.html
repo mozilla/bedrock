@@ -1,0 +1,61 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "firefox/base-resp.html" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{% endblock %}
+
+{% block body_id %}firefox-desktop{% endblock %}
+{% block body_class %}firefox-desktop{% endblock %}
+
+{% block extrahead %}
+  <script src="{{ media('/js/libs/modernizr.custom.cssanimations.js') }}"></script>
+{% endblock %}
+
+{% block site_header %}
+  <header id="masthead">
+    <div class="container">
+      <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{{ settings.TABZILLA_INFOBAR_OPTIONS }}">Mozilla</a>
+
+      <div id="masthead-logo-nav">
+      {% block site_header_logo %}
+        <a id="site-header-logo" href="{{ url('firefox.desktop.index') }}"><img src="{{ MEDIA_URL }}img/firefox/desktop/firefox-header.png" alt="Firefox"></a>
+      {% endblock %}
+      {% block site_header_nav %}
+        <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
+        <nav id="nav-main" role="navigation">
+          <ul id="nav-main-menu">
+            <li><a id="nav-main-trust" href="{{ url('firefox.desktop.trust') }}">{{ _('Trusted') }}</a></li>
+            <li><a id="nav-main-customize" href="{{ url('firefox.desktop.customize') }}">{{ _('Flexible') }}</a></li>
+            <li><a id="nav-main-fast" href="{{ url('firefox.desktop.fast') }}">{{ _('Fast') }}</a></li>
+          </ul>
+        </nav>
+      {% endblock %}
+      {% block site_header_download_button %}
+        <a href="{{ url('firefox.new') }}" class="button button-green" id="masthead-download-firefox">{{ _('Download') }}</a>
+      {% endblock %}
+      </div>
+    </div>
+  </header>
+{% endblock %}
+
+{% block content %}{% endblock %}
+
+{% block email_form %}
+  <div id="subscribe-download-wrapper">
+    <div class="container">
+      <div id="subscribe-wrapper" class="columned">
+        {{ email_newsletter_form(title=_('Get Firefox news')) }}
+      </div>
+      <div id="download-wrapper">
+        {{ download_firefox() }}
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block js %}
+  {{ js('firefox_desktop_common') }}
+{% endblock %}

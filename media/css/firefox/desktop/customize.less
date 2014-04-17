@@ -1,0 +1,582 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import 'common.less';
+
+// set nav pointer
+#nav-main-customize {
+    .nav-pointer();
+}
+
+#intro {
+    .grainy-sky();
+
+    .container {
+        background: url(/media/img/firefox/desktop/customize/bg-intro.png) center bottom no-repeat;
+        min-height: 300px;
+        font-size: 22px;
+    }
+}
+
+#designed {
+    .container {
+        overflow: visible;
+        min-height: 400px;
+        font-size: 18px;
+    }
+
+    #designed-desktop {
+        position: absolute;
+        right: -20px;
+        top: -34px;
+    }
+
+    #designed-copy {
+        float: left;
+        width: 380px;
+        text-align: left;
+    }
+
+    #designed-mobile {
+        display: none;
+    }
+}
+
+#customize {
+    background: #d0cbbd;
+
+    .container {
+        min-height: 300px;
+        padding-bottom: 0;
+        overflow: visible;
+    }
+}
+
+#customizer-list li {
+    margin-bottom: @baseLine;
+
+    a {
+        position: relative;
+        display: block;
+        background: url(/media/img/firefox/desktop/customize/sprite-customizers.png) -290px top no-repeat;
+        padding-top: 180px;
+        text-transform: uppercase;
+        color: #4e4f53;
+        font-size: 18px;
+        text-shadow: none;
+        .open-sans;
+
+        &:hover, &.selected {
+            background-position: -290px -438px;
+        }
+
+        &#customize-themes {
+            background-position: 70px top;
+            &:hover, &.selected {
+                background-position: 70px -438px;
+            }
+        }
+
+        &#customize-awesomebar {
+            background-position: -654px top;
+            &:hover, &.selected {
+                background-position: -654px -438px;
+            }
+        }
+    }
+}
+
+#main-content .customizer {
+    background: #e9e6de;
+
+    .container {
+        min-height: 440px;
+        padding-bottom: 0;
+        font-size: 16px;
+    }
+
+    .next {
+        display: none;
+    }
+}
+
+.customizer-visual {
+    position: absolute;
+    bottom: 0;
+
+    img {
+        display: block;
+    }
+}
+
+#themes {
+    .customizer-visual {
+        margin: (@baseLine * 2) auto 0;
+    }
+
+    #themes-thumbs {
+        display: none;
+    }
+}
+
+#add-ons {
+    .container {
+        text-align: left;
+    }
+
+    ul {
+        list-style-type: disc;
+    }
+
+    .customizer-copy {
+        width: 400px;
+        float: left;
+    }
+
+    .customizer-visual {
+        right: -460px;
+    }
+}
+
+#sync {
+    .grainy-sky();
+
+    img {
+        display: block;
+        margin: @baseLine auto;
+    }
+
+    .container {
+        font-size: 18px;
+    }
+
+    .button {
+        padding: 12px 30px;
+        line-height: 1.5;
+        border-radius: .5em;
+
+        span {
+            float: left;
+            width: 23px;
+            height: 23px;
+            margin-right: 10px;
+            background: url(/media/img/firefox/desktop/customize/sync-arrows-button.png) left center no-repeat;
+        }
+    }
+
+    .more {
+        font-size: 14px;
+    }
+}
+
+.js {
+    #customize {
+        z-index: 2;
+        position: relative;
+    }
+
+    #customizer-list {
+        &:after {
+            clear: both;
+            visibility: visible;
+            content: '';
+            display: block;
+            position: absolute;
+            bottom: -20px;
+            left: 125px;
+            width: 0;
+            height: 0;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-top: 20px solid #d0cbbd;
+            .transition();
+        }
+
+        &.add-ons:after {
+            left: 445px;
+        }
+
+        &.awesome-bar:after {
+            left: 765px;
+        }
+    }
+
+    #customizers-wrapper {
+        position: relative;
+        background: #e9e6de;
+        height: 500px;
+        z-index: 1;
+    }
+
+    #main-content .customizer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        overflow: hidden;
+        display: none;
+
+        &.active {
+            display: block;
+        }
+
+        .container {
+            text-align: left;
+            overflow: visible;
+        }
+
+        .next {
+            display: block;
+            height: 21px;
+            position: absolute;
+            top: 50px;
+            right: 14px;
+            display: block;
+            color: @textColorSecondary;
+            opacity: .6;
+            text-transform: uppercase;
+            .open-sans;
+            z-index: 2;
+
+            &:after {
+                position: absolute;
+                display: inline-block;
+                content: '';
+                background: url(/media/img/firefox/desktop/customize/next-arrow.png) center right no-repeat;
+                width: 14px;
+                height: 21px;
+                padding-left: 10px;
+            }
+        }
+    }
+
+    .customizer-visual {
+        z-index: 1;
+    }
+
+    #themes {
+        .customizer-copy {
+            width: 460px;
+            float: left;
+        }
+
+        #themes-thumbs {
+            display: block;
+            margin: @baseLine 0 0;
+            .clearfix();
+
+            li {
+                float: left;
+                width: 190px;
+                height: 68px;
+                overflow: hidden;
+                margin: 0 @baseLine @baseLine 0;
+
+                a {
+                    display: block;
+                    width: 182px;
+                    height: 60px;
+                    border-radius: 4px;
+                    border: 4px solid transparent;
+                    .transition();
+
+                    &.selected {
+                        border-color: #fe8207;
+                    }
+                }
+            }
+        }
+
+        .customizer-visual {
+            right: -460px;
+        }
+    }
+
+    #awesome-bar {
+        .customizer-copy {
+            width: 460px;
+            float: left;
+        }
+
+        .customizer-visual {
+            right: -460px;
+        }
+    }
+}
+
+.js[dir="rtl"] #main-content .customizer .next:after {
+    background: url(/media/img/firefox/desktop/customize/next-arrow-rtl.png) center left no-repeat;
+    padding-left: 0;
+    padding-right: 10px;
+}
+
+/****************************************************************************/
+// @High resolution images for @retina-type displays
+// Desktop
+@media (-webkit-min-device-pixel-ratio: 1.5),
+       (                min-resolution: 1.5dppx),
+       (                min-resolution: 144dpi) {
+
+    #customize .feature-list li a {
+        background-image: url(/media/img/firefox/desktop/customize/sprite-customizers-hires.png);
+        background-size: 1080px 600px;
+    }
+}
+
+@media (max-width: @breakDesktop) and (min-width: @breakTablet) {
+    #intro .container {
+        background-size: 720px 98px;
+        font-size: 18px;
+    }
+
+    #designed {
+        img {
+            width: 387px;
+            height: auto;
+            right: -22px;
+            top: -30px;
+        }
+
+        .container {
+            min-height: 320px;
+        }
+
+        #designed-copy {
+            width: 330px;
+
+            h2 {
+                font-size: 38px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+        }
+    }
+
+    #customizer-list li a {
+        background-position: -328px top;
+
+        &:hover, &.selected {
+            background-position: -328px -438px;
+        }
+
+        &#customize-themes {
+            background-position: 32px top;
+
+            &:hover, &.selected {
+                background-position: 32px -438px;
+            }
+        }
+
+        &#customize-awesomebar {
+            background-position: -688px top;
+
+            &:hover, &.selected {
+                background-position: -688px -438px;
+            }
+        }
+    }
+
+    .js {
+        #customizer-list {
+            &:after {
+                left: 88px;
+            }
+
+            &.add-ons:after {
+                left: 334px;
+            }
+
+            &.awesome-bar:after {
+                left: 580px;
+            }
+        }
+
+        #themes {
+            .customizer-copy {
+                width: 360px;
+            }
+
+            #themes-thumbs li {
+                width: 160px;
+                height: 58px;
+
+                a {
+                    width: 152px;
+                    height: 50px;
+                }
+            }
+
+            .customizer-visual {
+                right: -580px;
+            }
+        }
+
+        #add-ons {
+            .customizer-copy {
+                width: 360px;
+            }
+
+            .customizer-visual {
+                right: -580px;
+                bottom: -60px;
+            }
+        }
+
+        #awesome-bar {
+            .customizer-copy {
+                width: 360px;
+            }
+
+            .customizer-visual {
+                right: -580px;
+            }
+        }
+    }
+}
+
+@media (max-width: @breakTablet) {
+    // unset nav pointer
+    #nav-main-customize:after {
+        display: none;
+    }
+
+    #intro .container {
+        background-image: none;
+        min-height: 0;
+        font-size: 18px;
+    }
+
+    #designed {
+        .container {
+            min-height: 0;
+        }
+
+        #designed-copy {
+            width: auto;
+            text-align: center;
+        }
+
+        #designed-desktop {
+            display: none;
+        }
+
+        #designed-mobile {
+            display: block;
+            margin: (@baseLine * 2) auto 0;
+        }
+    }
+
+    #customize {
+        display: none;
+    }
+
+    #main-content .customizer .container {
+        min-height: 0;
+        padding-top: 180px;
+        padding-bottom: @baseLine * 2;
+        background-image: url(/media/img/firefox/desktop/customize/sprite-customizers.png);
+        background-repeat: no-repeat;
+    }
+
+    .customizer-visual {
+        display: none;
+    }
+
+    #themes {
+        padding-top: @baseLine * 2;
+
+        .container {
+            background-position: 139px -438px;
+        }
+    }
+
+    #add-ons {
+        .container {
+            background-position: -220px -438px;
+        }
+
+        .customizer-copy {
+            width: auto;
+        }
+
+        ul {
+            list-style-type: none;
+
+            li {
+                margin-left: 0;
+            }
+        }
+    }
+
+    #awesome-bar .container {
+        background-position: -579px -438px;
+    }
+
+    .js {
+        #customizers-wrapper {
+            height: auto;
+        }
+
+        #main-content .customizer {
+            position: relative;
+            display: block;
+
+            .next {
+                display: none;
+            }
+
+            .container {
+                text-align: center;
+            }
+        }
+
+        #themes {
+            .customizer-copy {
+                width: auto;
+            }
+
+            .more {
+                display: inline-block;
+                margin: 0 @baseLine 0 0;
+            }
+
+            #themes-thumbs {
+                display: none;
+            }
+        }
+
+        #awesome-bar .customizer-copy {
+            width: auto;
+        }
+    }
+}
+
+/****************************************************************************/
+// @High resolution images for @retina-type displays
+// Mobile
+@media only screen and (max-width: @breakTablet) and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (max-width: @breakTablet) and (                min-resolution: 1.5dppx),
+       only screen and (max-width: @breakTablet) and (                min-resolution: 144dpi) {
+
+    #main-content .customizer .container {
+        background-image: url(/media/img/firefox/desktop/customize/sprite-customizers-hires.png);
+        background-size: 1080px 600px;
+    }
+}
+
+@media (max-width: @breakMobileLandscape) {
+    #themes .container {
+        background-position: 69px -438px;
+    }
+
+    #add-ons .container {
+        background-position: -291px -438px;
+    }
+
+    #awesome-bar .container {
+        background-position: -651px -438px;
+    }
+}
