@@ -17,17 +17,18 @@
 <main role="main" id="main-content">
   <section id="intro">
     <div class="container">
-      <h1>
-        {# L10n: Line break below is for wide screen formatting only. #}
-        {{ _('There’s never been a <br class="wide-br">better time for Firefox') }}
-      </h1>
-      <p class="lead">{{ _('Committed to you, your privacy and an open Web.') }}</p>
+      <div class="intro-content">
+        <h1>
+          {# L10n: Line break below is for wide screen formatting only. #}
+          {{ _('There’s never been a <br class="wide-br">better time for Firefox') }}
+        </h1>
+        <p class="lead">{{ _('Committed to you, your privacy and an open Web.') }}</p>
 
-      {{ high_res_img('img/firefox/desktop/fx-logo-large.png', { 'alt': _('Firefox'), 'width': 255, 'height': 266 })}}
-
-      <div id="overview-intro-download-wrapper">
-        {{ download_firefox(small=True, icon=False, dom_id="intro_download_desktop") }}
+        <div id="overview-intro-download-wrapper">
+          {{ download_firefox(small=True, icon=False, dom_id="intro_download_desktop") }}
+        </div>
       </div>
+      {% include 'firefox/desktop/includes/intro-anim.html' %}
     </div><!--/.container-->
   </section>
 
