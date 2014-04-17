@@ -17,18 +17,21 @@
 <main role="main" id="main-content">
   <section id="intro">
     <div class="container">
-      <h1>
-      {%- if LANG in ['en-GB', 'en-US', 'en-ZA'] -%}
-        {# L10n: Line break below is for wide screen formatting only. #}
-        {{ _('Committed to you, <br class="wide-br">your privacy and <br class="wide-br">an open Web') }}
-      {%- else -%}
-        {{_ ('Committed to you, your privacy and an open Web') }}
-      {%- endif -%}
-      </h1>
+      <div class="intro-content">
+        <h1>
+        {%- if LANG in ['en-GB', 'en-US', 'en-ZA'] -%}
+          {# L10n: Line break below is for wide screen formatting only. #}
+          {{ _('Committed to you, <br class="wide-br">your privacy and <br class="wide-br">an open Web') }}
+        {%- else -%}
+          {{_ ('Committed to you, your privacy and an open Web') }}
+        {%- endif -%}
+        </h1>
 
-      <div id="overview-intro-download-wrapper">
-        {{ download_firefox(dom_id="intro_download_desktop") }}
+        <div id="overview-intro-download-wrapper">
+          {{ download_firefox(small=True, icon=False, dom_id="intro_download_desktop") }}
+        </div>
       </div>
+      {% include 'firefox/desktop/includes/intro-anim.html' %}
     </div><!--/.container-->
   </section>
 
