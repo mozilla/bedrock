@@ -18,15 +18,16 @@
   <section id="intro">
     <div class="container">
       <h1>
+      {%- if LANG in ['en-GB', 'en-US', 'en-ZA'] -%}
         {# L10n: Line break below is for wide screen formatting only. #}
-        {{ _('There’s never been a <br class="wide-br">better time for Firefox') }}
+        {{ _('Committed to you, <br class="wide-br">your privacy and <br class="wide-br">an open Web') }}
+      {%- else -%}
+        {{_ ('Committed to you, your privacy and an open Web') }}
+      {%- endif -%}
       </h1>
-      <p class="lead">{{ _('Committed to you, your privacy and an open Web.') }}</p>
-
-      {{ high_res_img('img/firefox/desktop/fx-logo-large.png', { 'alt': _('Firefox'), 'width': 255, 'height': 266 })}}
 
       <div id="overview-intro-download-wrapper">
-        {{ download_firefox(small=True, icon=False, dom_id="intro_download_desktop") }}
+        {{ download_firefox(dom_id="intro_download_desktop") }}
       </div>
     </div><!--/.container-->
   </section>
