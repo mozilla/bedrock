@@ -69,8 +69,7 @@
 .latest-links-wrapper {
     display: none;
     padding-top: 13px;
-    width: 280px;
-    float: left;
+    text-align: center;
     ul {
         margin: 0;
         li {
@@ -83,6 +82,7 @@
 }
 
 .download-button-wrapper {
+    margin: 0 auto;
     width: 280px;
 }
 
@@ -222,12 +222,13 @@ html.android {
 
     .download-button-wrapper {
         display: none;
+        width: 250px;
+        margin: 0 auto;
+        text-align: center;
+
         &.android {
             display: block;
             margin-top: 22px;
-            .download-link {
-                margin-left: 54px;
-            }
         }
     }
 }
@@ -256,55 +257,21 @@ html.fxos {
 
 #main-feature {
     margin-top: 14px;
-    padding-bottom: 18px;
+    padding-bottom: 30px;
     h1.large {
+        margin: 12px 50px;
         text-align: center;
-        font-size: 72px;
+        font-size: 60px;
         span { white-space: nowrap; }
     }
     img { display: none; }
 }
 
-#features {
-    float: left;
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    .clearfix;
-    li {
-        float: left;
-        width: 190px;
-        height: 89px;
-        text-align: center;
-        padding: 28px 20px 0 0;
-        margin-left: 0;
-        font-size: 24px;
-        letter-spacing: -1px;
-        line-height: 100%;
-        color: @textColorSecondary;
-        .open-sans-light;
-        background: url(/media/img/firefox/new/features-divider.png) right top no-repeat;
-        &:last-child {
-            background: none;
-        }
-    }
+html[lang|="en"] #main-feature h1.large span:first-child {
+    display: inline-block;
+    width: 100%;
 }
 
-// l10n CSS tweaks. When editing, make sure to update tablet and mobile
-// as well.
-html[lang="hy-AM"],
-html[lang="it"],
-html[lang="gd"],
-html[lang="mk"],
-html[lang="my"],
-html[lang="ru"],
-html[lang="uk"] {
-    #features li {
-        font-size: 20px;
-    }
-}
-
- .download-button-wrapper { float: left; }
 .download-button-wrapper.android {
     display: none;
 }
@@ -324,13 +291,14 @@ html[lang="uk"] {
     }
 
     .installation {
-        margin: 12px auto 0;
+        margin: 12px 10px 0;
         padding: 0;
         display: block;
         list-style-type: none;
         .clearfix;
         li {
             .span(4);
+            *display: inline;
             overflow: hidden;
             text-align: left;
             font-size: 12px;
@@ -489,14 +457,6 @@ html[dir="rtl"] {
             background-image: url(/media/img/firefox/new/teardrop-arrow-rtl.png);
         }
     }
-
-    #features {
-        float: right;
-    }
-
-    .latest-links-wrapper {
-        float: left;
-    }
 }
 
 /* Tablet Layout: 760px */
@@ -509,29 +469,9 @@ html[dir="rtl"] {
         height: 360px;
     }
 
-    #features {
-        margin: 0;
-        li {
-            width: 125px;
-            font-size: 18px;
-            padding-top: 32px;
-            height: 85px;
-        }
-    }
-
-    // l10n tweaks
-    html[lang="hy-AM"],
-    html[lang="it"],
-    html[lang="gd"],
-    html[lang="mk"],
-    html[lang="my"],
-    html[lang="ru"],
-    html[lang="uk"] {
-        #features li {
-            .open-sans();
-            font-size: @smallFontSize;
-            letter-spacing: normal;
-        }
+    #main-feature h1.large {
+        margin: 12px 0;
+        font-size: 55px;
     }
 
     #firefox-screenshot {
@@ -543,6 +483,7 @@ html[dir="rtl"] {
             margin: 0 40px;
         }
         .installation {
+            margin: 12px 20px 0;
             li {
                 .span_narrow(4);
                 .screen {
@@ -553,11 +494,6 @@ html[dir="rtl"] {
                 &.install3 .screen { background-position: 0 -234px; }
             }
         }
-    }
-    .android #features li {
-        font-size: 24px;
-        padding-top: 28px;
-        height: 89px;
     }
     .socialshare {
         display: block;
@@ -591,7 +527,13 @@ html[dir="rtl"] {
     }
     #masthead h2 { display: none; }
     .theater, .stage, .scene {
-        height: 310px;
+        height: 450px;
+    }
+    .stage.scene2 {
+        bottom: -450px;
+    }
+    #scene2 {
+        top: -450px;
     }
     .version-message-container {
         padding: 0 20px 20px;
@@ -606,17 +548,13 @@ html[dir="rtl"] {
             margin: 0 auto;
         }
         h1.large {
-            float: left;
-            width: 180px;
-            margin-left: 20px;
+            margin: 12px 0;
             font-size: 36px;
             letter-spacing: -1px;
-            padding-top: 12px;
-            text-align: left;
         }
         img {
-            float: left;
             display: block;
+            margin: 0 auto;
         }
     }
 
@@ -629,52 +567,7 @@ html[dir="rtl"] {
         }
     }
 
-    #features {
-        margin: 0 auto 20px;
-        float: none;
-        width: auto;
-        padding: 0;
-        li {
-            width: 96px;
-            height: auto;
-            padding: 10px 2px;
-            font-size: @smallFontSize;
-            .open-sans();
-            letter-spacing: normal;
-            background: none;
-        }
-    }
-
-    // l10n tweaks
-    html[lang="hy-AM"],
-    html[lang="it"],
-    html[lang="gd"],
-    html[lang="mk"],
-    html[lang="my"],
-    html[lang="ru"],
-    html[lang="uk"] {
-        #features li {
-            display: block;
-            width: auto;
-            float: none;
-            padding: 0 4px 20px 4px;
-            font-size: @smallFontSize;
-            .open-sans();
-            letter-spacing: normal;
-            background: url(/media/img/firefox/new/features-divider-horizontal.png) center bottom no-repeat;
-        }
-    }
-
-    html[dir="rtl"] {
-        #features,
-        .latest-links-wrapper {
-            float: none;
-        }
-    }
-
     .latest-links-wrapper {
-        float: none;
-        width: auto;
         margin: 0 10px;
         padding: 0;
     }
@@ -695,15 +588,9 @@ html[dir="rtl"] {
             display: none;
         }
 
-        .download-button-wrapper.android .download-link {
-            margin-left: 0;
-        }
-
-        .download-button-wrapper {
-            float: none;
-            text-align: center;
-            width: 250px;
-            margin: 0 auto;
+        .stage,
+        .theater {
+            height: 200px;
         }
 
         &.firefox-latest .android-latest-links-wrapper {
@@ -720,7 +607,7 @@ html[dir="rtl"] {
     html.ios {
         .stage,
         .theater {
-            height: 250px;
+            height: 200px;
         }
 
         .ios-links-wrapper {
@@ -729,7 +616,6 @@ html[dir="rtl"] {
     }
 
     .download-button-wrapper {
-        float: none;
         text-align: center;
         .download-button {
             text-align: center;
