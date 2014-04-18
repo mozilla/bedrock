@@ -256,48 +256,96 @@
     }
 
     #feel .animation-wrapper.animate {
-        // 1. tabs animations
+        ////// 1. TABS
+
+        // slide up background behind the "+" that opens a new tab
         @-webkit-keyframes feel-newtab-bg-in {
             100% { top: 0; }
         }
 
+        @keyframes feel-newtab-bg-in {
+            100% { top: 0; }
+        }
+
+        // slide down background behind the "+" that opens a new tab
         @-webkit-keyframes feel-newtab-bg-out {
             0% { top: 0; }
             99.9% { top: 0; }
             100% { top: 35px; }
         }
 
+        @keyframes feel-newtab-bg-out {
+            0% { top: 0; }
+            99.9% { top: 0; }
+            100% { top: 35px; }
+        }
+
+        // slide all tab area content over to the right
         @-webkit-keyframes feel-tabs-in {
             100% { left: 296px; }
         }
 
+        @keyframes feel-tabs-in {
+            100% { left: 296px; }
+        }
+
+        // close "x" to the left of the tabs
         @-webkit-keyframes feel-tabclose-in {
             100% { opacity: 1; }
         }
 
+        @keyframes feel-tabclose-in {
+            100% { opacity: 1; }
+        }
+
+        // orange close "x" that expands and fades out
         @-webkit-keyframes feel-tabclose-orange {
-            30% {
-                opacity: 1;
-            }
+            30% { opacity: 1; }
             50% {
                 opacity: 1;
                 -webkit-transform: scale3d(1.5, 1.5, 0);
             }
-            99.9% {
-                opacity: 1;
-            }
+            99.9% { opacity: 1; }
             100% {
                 opacity: 0;
                 -webkit-transform: scale3d(1.5, 1.5, 0);
             }
         }
 
+        @keyframes feel-tabclose-orange {
+            30% { opacity: 1; }
+            50% {
+                opacity: 1;
+                -webkit-transform: scale3d(1.5, 1.5, 0);
+                transform: scale3d(1.5, 1.5, 0);
+            }
+            99.9% { opacity: 1; }
+            100% {
+                opacity: 0;
+                -webkit-transform: scale3d(1.5, 1.5, 0);
+                transform: scale3d(1.5, 1.5, 0);
+            }
+        }
+
+        // slide all tab area content back to the left
         @-webkit-keyframes feel-tabs-out {
             0% { left: 332px; }
             100% { left: 65px; }
         }
 
+        @keyframes feel-tabs-out {
+            0% { left: 332px; }
+            100% { left: 65px; }
+        }
+
+        // hide the close "x" on the left side of the tabs
         @-webkit-keyframes feel-tabclose-out {
+            0% { opacity: 1; }
+            99.9% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        @keyframes feel-tabclose-out {
             0% { opacity: 1; }
             99.9% { opacity: 1; }
             100% { opacity: 0; }
@@ -325,7 +373,9 @@
             .animation(feel-tabclose-orange 0.4s ease 5.8s 1 normal forwards);
         }
 
-        // 2. awesomebar animations
+        ////// 2. AWESOMEBAR
+
+        // show url in the awesomebar
         @-webkit-keyframes feel-awesomebar-url-in {
             33% { width: 0; }
             33.1% { width: 13px; }
@@ -335,16 +385,38 @@
             100% { width: 87px; }
         }
 
+        @keyframes feel-awesomebar-url-in {
+            33% { width: 0; }
+            33.1% { width: 13px; }
+            66% { width: 13px; }
+            66.1% { width: 22px; }
+            99.9% { width: 22px; }
+            100% { width: 87px; }
+        }
+
+        // show the highlight over the url in the awesomebar
         @-webkit-keyframes feel-awesomebar-url-highlight-in {
             99.9% { opacity: 0; }
             100% { opacity: 1; }
         }
 
+        @keyframes feel-awesomebar-url-highlight-in {
+            99.9% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        // show the suggestions under the awesomebar
         @-webkit-keyframes feel-awesomebar-suggestions-in {
             99.9% { opacity: 0; }
             100% { opacity: 1 }
         }
 
+        @keyframes feel-awesomebar-suggestions-in {
+            99.9% { opacity: 0; }
+            100% { opacity: 1 }
+        }
+
+        // show the highlight over the suggestions
         @-webkit-keyframes feel-awesomebar-suggestions-highlight-in {
             49.9% { opacity: 0; }
             50% { opacity: 1; }
@@ -358,25 +430,65 @@
             }
         }
 
+        @keyframes feel-awesomebar-suggestions-highlight-in {
+            49.9% { opacity: 0; }
+            50% { opacity: 1; }
+            99.9% {
+                top: 36px;
+                opacity: 1;
+            }
+            100% {
+                top: 68px;
+                opacity: 1;
+            }
+        }
+
+        // hide the highlight over the suggestions
         @-webkit-keyframes feel-awesomebar-suggestions-highlight-out {
             0% { opacity: 1; }
             99.9% { opacity: 1; }
             100% { opacity: 0; }
         }
 
+        @keyframes feel-awesomebar-suggestions-highlight-out {
+            0% { opacity: 1; }
+            99.9% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        // hide the suggestions under the awesomebar
         @-webkit-keyframes feel-awesomebar-suggestions-out {
             0% { opacity: 1; }
             99.9% { opacity: 1; }
             100% { opacity: 0; }
         }
 
+        @keyframes feel-awesomebar-suggestions-out {
+            0% { opacity: 1; }
+            99.9% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        // hide the highlight over the url in the awesomebar
         @-webkit-keyframes feel-awesomebar-url-highlight-out {
             0% { opacity: 1; }
             99.9% { opacity: 1; }
             100% { opacity: 0; }
         }
 
+        @keyframes feel-awesomebar-url-highlight-out {
+            0% { opacity: 1; }
+            99.9% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        // hide the url in the awesomebar
         @-webkit-keyframes feel-awesomebar-url-out {
+            99.9% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        @keyframes feel-awesomebar-url-out {
             99.9% { opacity: 1; }
             100% { opacity: 0; }
         }
@@ -405,13 +517,27 @@
             .animation(@animations);
         }
 
-        // 3. pages animations
+        ////// 3. PAGES
+
+        // display mozilla.org page
         @-webkit-keyframes feel-page2-in {
             99.9% { opacity: 0; }
             100% { opacity: 1; }
         }
 
+        @keyframes feel-page2-in {
+            99.9% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        // hide mozilla.org page
         @-webkit-keyframes feel-page2-out {
+            0% { opacity: 1; }
+            99.9% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        @keyframes feel-page2-out {
             0% { opacity: 1; }
             99.9% { opacity: 1; }
             100% { opacity: 0; }
@@ -423,48 +549,91 @@
             .animation(@animations);
         }
 
-        // 4. icons animations
+        ////// 4. ICONS
+
+        // show the orange static star
         @-webkit-keyframes feel-star-orange-in {
             99.9% { opacity: 0; }
             100% { opacity: 1; }
         }
 
+        @keyframes feel-star-orange-in {
+            99.9% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        // show the orange star that moves
         @-webkit-keyframes feel-star-orange-hopper-in {
-            1% {
-                opacity: 0.8;
-            }
+            1% { opacity: 0.8; }
             100% {
                 opacity: 0.8;
                 left: 730px;
             }
         }
 
-        @-webkit-keyframes feel-star-orange-hopper-out {
-            0% {
-                opacity: 0.8;
-            }
+        @keyframes feel-star-orange-hopper-in {
+            1% { opacity: 0.8; }
             100% {
-                opacity: 0;
+                opacity: 0.8;
+                left: 730px;
             }
         }
 
+        // hide the orange star that moves
+        @-webkit-keyframes feel-star-orange-hopper-out {
+            0% { opacity: 0.8; }
+            100% { opacity: 0; }
+        }
+
+        @keyframes feel-star-orange-hopper-out {
+            0% { opacity: 0.8; }
+            100% { opacity: 0; }
+        }
+
+        // pulse/grow the bookmarks icon
         @-webkit-keyframes feel-bookmarks {
             50% {
                 -webkit-transform: scale3d(1.2, 1.2, 0);
+                transform: scale3d(1.2, 1.2, 0);
             }
         }
 
+        @keyframes feel-bookmarks {
+            50% {
+                -webkit-transform: scale3d(1.2, 1.2, 0);
+                transform: scale3d(1.2, 1.2, 0);
+            }
+        }
+
+        // hide the static orange star
         @-webkit-keyframes feel-star-orange-out {
             0% { opacity: 1; }
             99.9% { opacity: 1; }
             100% { opacity: 0; }
         }
 
+        @keyframes feel-star-orange-out {
+            0% { opacity: 1; }
+            99.9% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        // briefly display solid blue star icon
         @-webkit-keyframes feel-star-filled {
             1% { opacity: 1; }
             100% {
                 opacity: 0;
                 -webkit-transform: scale3d(0.2, 0.2, 0);
+                transform: scale3d(0.2, 0.2, 0);
+            }
+        }
+
+        @keyframes feel-star-filled {
+            1% { opacity: 1; }
+            100% {
+                opacity: 0;
+                -webkit-transform: scale3d(0.2, 0.2, 0);
+                transform: scale3d(0.2, 0.2, 0);
             }
         }
 
@@ -491,10 +660,6 @@
 }
 
 @media (max-width: @breakDesktop) and (min-width: @breakTablet) {
-    #feel {
-        background-size: 700px 288px;
-    }
-
     #cutting-edge {
         background: #43505b;
         background: url(/media/img/firefox/desktop/fast/bg-cutting-edge-knight.png) -300px center no-repeat,
@@ -506,6 +671,25 @@
 
             h2 {
                 font-size: 38px;
+            }
+        }
+    }
+
+    #feel .container {
+        min-height: 0;
+        padding-bottom: 0;
+    }
+
+    .cssanimations {
+        #feel .animation-wrapper {
+            position: relative;
+
+            .fallback {
+                display: block;
+            }
+
+            .animation {
+                display: none;
             }
         }
     }
@@ -536,8 +720,22 @@
         }
     }
 
-    #feel {
-        background-image: none;
+    #feel .container {
+        padding-bottom: 0;
+    }
+
+    .cssanimations {
+        #feel .animation-wrapper {
+            position: relative;
+
+            .fallback {
+                display: block;
+            }
+
+            .animation {
+                display: none;
+            }
+        }
     }
 }
 
