@@ -2,10 +2,17 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+var FirefoxDesktop = window.FirefoxDesktop || {};
+
 (function($) {
     'use strict';
 
-    $('#animate-feel').click(function() {
-        $('#feel-animation').toggleClass('animate');
-    });
+    if (!FirefoxDesktop.isSmallViewport) {
+        $('#feel').waypoint(function(dir) {
+            $('#feel-animation').addClass('animate');
+        }, {
+            triggerOnce: true,
+            offset: 50
+        });
+    }
 })(window.jQuery);

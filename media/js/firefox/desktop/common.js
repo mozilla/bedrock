@@ -2,8 +2,12 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+var FirefoxDesktop = window.FirefoxDesktop || {};
+
 (function($) {
     var $masthead_download_firefox = $('#masthead-download-firefox');
+
+    FirefoxDesktop.isSmallViewport = $(window).width() < 760;
 
     // if Firefox
     if (isFirefox()) {
