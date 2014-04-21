@@ -23,11 +23,22 @@
         {{ _('It’s easier than ever to personalize Firefox and make it work the way you do.<br class="wide-br">') }}
         {{ _('No other browser gives you so much choice and flexibility.') }}
       </p>
-    </div>
+
+      <div class="animation-wrapper" id="flexible-top-animation">
+        <img src="{{ media('/img/firefox/desktop/customize/animations/flexible-top-fallback.png') }}" class="fallback">
+
+        <div class="stage">
+          <div id="browser-customize-orange"></div>
+          <div id="browser-toolbar-outline"></div>
+          <div id="browser-toolbar-print"></div>
+          <div id="browser-toolbar-after" class="browser-toolbar"></div>
+          <div id="browser-toolbar-before" class="browser-toolbar"></div>
+        </div>{# /.stage #}
+      </div>{# /.animation-wrapper #}
+    </div>{# /.container #}
   </section>
   <section id="designed">
     <div class="container">
-      <img id="designed-desktop" src="{{ media('/img/firefox/desktop/customize/customize-panel.png') }}" alt="{{ _('Customize Firefox') }}">
       <div id="designed-copy">
         <h2>{{ _('Designed to <br class="wide-br">be redesigned') }}</h2>
 
@@ -39,7 +50,59 @@
 
         {{ high_res_img('img/firefox/desktop/customize/designed-redesigned.png', { 'alt': _('Customize Firefox'), 'id': 'designed-mobile'}) }}
       </div>
-    </div>
+      <div class="animation-wrapper" id="flexible-bottom-animation">
+        <img src="{{ media('/img/firefox/desktop/customize/animations/flexible-bottom-fallback.png') }}" class="fallback">
+
+        <div class="stage">
+          <div id="panel-start">
+            <div class="icon panel-icon-print"></div>
+            <div class="icon panel-icon-settings"></div>
+            <div class="icon panel-icon-fullscreen"></div>
+            <div class="icon panel-icon-search"></div>
+            <div class="icon panel-icon-addons"></div>
+            <div id="panel-start-footer-on"></div>
+            <div id="panel-start-footer"></div>
+          </div>
+          <div id="panel-edit-stage">
+            <div id="panel-edit-wrapper">
+              <div id="panel-edit">
+                <div id="panel-edit-print" class="icon panel-icon-print"></div>
+                <div id="panel-edit-settings" class="icon panel-icon-settings"></div>
+                <div id="panel-edit-fullscreen" class="icon panel-icon-fullscreen"></div>
+                <div id="panel-edit-search" class="icon panel-icon-search"></div>
+                <div id="panel-edit-addons" class="icon panel-icon-addons"></div>
+                <div id="panel-edit-empty1" class="panel-icon-empty icon"></div>
+                <div id="panel-edit-empty2" class="panel-icon-empty icon"></div>
+                <div id="panel-edit-empty3" class="panel-icon-empty icon"></div>
+                <div id="panel-edit-empty4" class="panel-icon-empty icon"></div>
+                <div id="panel-edit-footer"></div>
+              </div>
+            </div>
+            <div id="panel-edit-extras">
+              <div id="panel-edit-openfile" class="icon panel-icon-openfile"></div>
+              <div id="panel-edit-history" class="icon panel-icon-history"></div>
+              <div id="panel-edit-email" class="icon panel-icon-email"></div>
+              <div id="panel-edit-subscribe" class="icon panel-icon-subscribe"></div>
+              <div id="panel-edit-encoding" class="icon panel-icon-encoding"></div>
+              <div id="panel-edit-tabgroups" class="icon panel-icon-tabgroups"></div>
+            </div>
+          </div>
+          <div id="panel-end">
+            <div id="panel-end-settings" class="icon panel-icon-settings"></div>
+            <div id="panel-end-fullscreen" class="icon panel-icon-fullscreen"></div>
+            <div id="panel-end-search" class="icon panel-icon-search"></div>
+            <div id="panel-end-addons" class="icon panel-icon-addons"></div>
+            <div id="panel-end-history" class="icon panel-icon-history"></div>
+            <div id="panel-end-footer">
+              <a href="#" id="flexible-replay">
+                <span>{{ _('Replay') }}</span>
+                <div id="panel-end-replay"></div>
+              </a>
+            </div>
+          </div>
+        </div>{# /.stage #}
+      </div>{# /.animation-wrapper #}
+    </div>{# /.container #}
   </section>
   <section id="customize">
     <div class="container">

@@ -512,6 +512,7 @@ MINIFY_BUNDLES = {
             'js/firefox/desktop/common.js',
         ),
         'firefox_desktop_customize': (
+            'js/libs/jquery.waypoints.min.js',
             'js/firefox/desktop/common.js',
             'js/firefox/desktop/customize.js',
         ),
@@ -526,6 +527,7 @@ MINIFY_BUNDLES = {
             'js/firefox/desktop/common.js',
             'js/firefox/desktop/speed-graph.js',
             'js/firefox/desktop/intro-anim.js',
+            'js/firefox/desktop/index.js',
         ),
         'firefox_features': (
             'js/base/mozilla-video-tools.js',
