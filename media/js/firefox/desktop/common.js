@@ -7,21 +7,25 @@ var FirefoxDesktop = window.FirefoxDesktop || {};
 (function($) {
     var $masthead_download_firefox = $('#masthead-download-firefox');
 
+    FirefoxDesktop.isDesktopViewport = $(window).width() >= 1000;
     FirefoxDesktop.isSmallViewport = $(window).width() < 760;
 
-    // if Firefox
-    if (isFirefox()) {
-        // hide the top nav download button
-        $masthead_download_firefox.hide();
-        $('#download-wrapper').hide();
-        $('#subscribe-wrapper').removeClass('columned');
-        $('#overview-intro-download-wrapper').hide();
+    // if not Firefox
+    if (!isFirefox()) {
+        // show the top nav download button
+        $masthead_download_firefox.fadeIn('fast');
 
         // hide the footer download button and extend email form to full width
+        $('#download-wrapper').show();
+        $('#subscribe-wrapper').addClass('columned');
 
-    // if not IE and not Firefox, top nav download button can link directly
-    // to scene 2 of /firefox/new/
-    } else if (!isFirefox() && navigator.appVersion.indexOf('MSIE') === -1) {
-        $masthead_download_firefox.attr('href', $masthead_download_firefox.attr('href') + '#download-fx');
+        // show the download button on the overview page intro section
+        $('#overview-intro-download-wrapper').fadeIn('fast');
+
+        // if not IE, top nav download button can link directly to scene 2 of
+        // /firefox/new/
+        if (navigator.appVersion.indexOf('MSIE') === -1) {
+            $masthead_download_firefox.attr('href', $masthead_download_firefox.attr('href') + '#download-fx');
+        }
     }
 })(window.jQuery);

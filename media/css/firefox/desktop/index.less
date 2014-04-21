@@ -31,6 +31,10 @@
     }
 }
 
+#overview-intro-download-wrapper {
+    display: none;
+}
+
 #trust {
     background: #fcfcfa url(/media/img/firefox/desktop/bg-pixelfox.png) center bottom no-repeat;
 }
@@ -84,7 +88,9 @@
     }
 
     #overview-intro-download-wrapper {
-        display: none;
+        // js displays the button for non fx browsers, so this needs to be
+        // important to override the generated inline style
+        display: none !important;
     }
 
     #customize {
