@@ -9,6 +9,16 @@
     .nav-pointer();
 }
 
+// animation defaults
+.fallback {
+    display: block;
+    margin: 0 auto;
+}
+
+.stage {
+    display: none;
+}
+
 #main-content .container {
     font-size: 18px;
 }
@@ -48,14 +58,6 @@
     .animation-wrapper {
         position: absolute;
         bottom: 0;
-
-        .fallback {
-            display: block;
-        }
-
-        .animation {
-            display: none;
-        }
     }
 }
 
@@ -65,7 +67,7 @@
             display: none;
         }
 
-        .animation {
+        .stage {
             display: block;
             position: relative;
             width: 919px;

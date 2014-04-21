@@ -114,6 +114,7 @@
 }
 
 #masthead-download-firefox {
+    display: none;
     float: right;
     margin-top: 10px;
     font-weight: normal;
@@ -523,6 +524,10 @@ html[lang="en-US"], html[lang="en-UK"] {
     }
 }
 
+#download-wrapper {
+    display: none;
+}
+
 /* }}} */
 
 @media (max-width: @breakDesktop) and (min-width: @breakTablet) {
@@ -633,7 +638,9 @@ html[lang="en-US"], html[lang="en-UK"] {
     }
 
     #masthead-download-firefox, #download-wrapper {
-        display: none;
+        // js displays the buttons for non fx browsers, so this needs to be
+        // important to override the generated inline style
+        display: none !important;
     }
 
     #main-content .container {
