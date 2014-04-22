@@ -63,6 +63,7 @@ mozilla.mdn.drivers                     Release coordination for the Mozilla Dev
 mozilla.dev.media                       Development of Mozilla's media support (audio and video). (Moderated)
 metro                                   For work on porting Firefox to the Metro environment of Windows 8.
 mozilla.dev.mozilla-org                 For people working on the mozilla.org website.
+mozilla.dev.mozjpeg                     The Mozilla enhanced version of libjpeg. (Moderated)
 mozilla.dev.pdf-js                      pdf.js, the PDF renderer written in JS. (Moderated)
 mozilla.dev.platform                    For people working on Mozilla-the-platform.
 mozilla.dev.privacy                     Development of features specifically design to enhance user privacy.
@@ -84,6 +85,7 @@ mozilla.dev.developer-tools             For development of tools for web develop
 mozilla.tools.bmo                       Development of bugzilla.mozilla.org, Mozilla's installation of the Bugzilla software. (Moderated)
 mozilla.tools.elmo                      Development of web apps for localization (l10n). (Moderated)
 mozilla.tools.l10n                      Development of tools for l10n. (Moderated)
+mozilla.tools.wiki                      The team working on the Mozilla wiki(s).
 mozilla.tools.pulse                     The Pulse tool for event-driven notifications.
 mozilla.tools.puppetagain               The <a href="https://wiki.mozilla.org/ReleaseEngineering/PuppetAgain">PuppetAgain</a> deployment automation tool. (Moderated)
 mozilla.tools.socorro                   The Socorro crash-reporting system.
@@ -185,6 +187,7 @@ mozilla.community.india.dev             Development work on the web presence of 
 mozilla.community.indonesia             The Mozilla community in Indonesia. (Moderated)
 mozilla.community.ireland               The Mozilla community in Ireland. (Moderated)
 mozilla.community.kenya                 The Mozilla community in Kenya.
+mozilla.community.lithuania             The Mozilla community in Lithuania.
 mozilla.community.malaysia              The Mozilla community in Malaysia. (Moderated)
 mozilla.community.mexico                The Mozilla community in Mexico.
 mozilla.community.mongolia              The Mozilla community in Mongolia. (Moderated)
@@ -218,7 +221,6 @@ mozilla.webapps.pt-br                   Web application development in Brazilian
 mozilla.dev.l10n.announce               Announcements about new localization projects and important updates to the existing ones.  If you want to subscribe to only one localization-related newsgroup, make it this one (low volume, high signal-to-noise ratio).
 mozilla.dev.l10n.new-locales            For people willing to start a new localization team (a new locale). Connect with other speakers of your language and get help from other community members. (Moderated)
 mozilla.dev.l10n.cs                     Czech localization discussions.
-mozilla.dev.l10n.de                     German localization discussions.
 mozilla.dev.l10n.fa                     Persian localization discussions.
 mozilla.dev.l10n.in                     Indian localization discussions.
 mozilla.dev.l10n.km                     Khmer localization discussions. (Moderated)
