@@ -27,7 +27,7 @@
             $designed_stage.addClass('resetting');
 
             // After opacity transition completes, reset animations by removing
-            // 'animate' class, the restore opacity by removing the 'resetting'
+            // 'animate' class, then restore opacity by removing the 'resetting'
             // class.
             setTimeout(function() {
                 $intro_animation.removeClass('animate');

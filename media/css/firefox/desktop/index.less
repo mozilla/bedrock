@@ -54,6 +54,8 @@
 
     .container {
         .container-dark();
+        min-height: 0;
+        padding-bottom: 0;
     }
 
     .cta {
@@ -80,11 +82,6 @@
     }
 
     #customize {
-        .container {
-            min-height: 0;
-            padding-bottom: 0;
-        }
-
         .animation-wrapper {
             margin-top: @baseLine * 2;
 
@@ -246,23 +243,48 @@
         }
 
         #panel-footer-ok {
-            z-index: 3;
+            z-index: 2;
             background-position: -640px -600px;
         }
 
         #panel-footer-on {
-            z-index: 2;
+            z-index: 1;
             background-position: -380px -600px;
         }
 
         #panel-footer {
-            z-index: 1;
+            z-index: 3;
             opacity: 1;
             background-position: -120px -600px;
+            text-align: right;
+            font-size: 14px;
+
+            a {
+                display: inline-block;
+                margin: 15px 10px 0 0;
+                color: #ff7200;
+                text-shadow: none;
+                .clearfix();
+            }
+
+            span {
+                float: right;
+            }
         }
 
         #flexible-replay {
             opacity: 0;
+        }
+
+        #panel-replay {
+            opacity: 1;
+            background-position: -100px -600px;
+            width: 13px;
+            height: 13px;
+            display: inline;
+            position: relative;
+            float: right;
+            margin: 5px 5px 0 0;
         }
 
         //// 3. AVAILABLE ICONS
@@ -363,16 +385,16 @@
 
         #toolbar-outline {
             @animations: toolbar-outline-in 0.2s ease 1.9s 1 normal forwards,
-                         toolbar-outline-out 0.2s ease 7s 1 normal forwards;
+                         toolbar-outline-out 0.2s ease 5.3s 1 normal forwards;
             .animation(@animations);
         }
 
         #toolbar-before {
-            .animation(toolbar-before 0.1s ease 3.2s 1 normal forwards);
+            .animation(toolbar-before 0.1s ease 3.4s 1 normal forwards);
         }
 
         #toolbar-after {
-            .animation(toolbar-after 0.1s ease 3.2s 1 normal forwards);
+            .animation(toolbar-after 0.1s ease 3.4s 1 normal forwards);
         }
 
         #toolbar-print {
@@ -385,6 +407,10 @@
                 -webkit-transform: translateY(0);
                 transform: translateY(0);
             }
+        }
+
+        @-webkit-keyframes panel-footer-out {
+            100% { opacity: 0; }
         }
 
         @-webkit-keyframes panel-footer-on-in {
@@ -548,14 +574,35 @@
             100% { opacity: 0; }
         }
 
+        @-webkit-keyframes panel-footer-in {
+            100% { opacity: 1; }
+        }
+
         @-webkit-keyframes available-icons-out {
             100% { opacity: 0; }
+        }
+
+        @-webkit-keyframes flexible-replay {
+            100% { opacity: 1; }
+        }
+
+        @-webkit-keyframes panel-replay {
+            100% {
+                -webkit-transform: rotateZ(720deg);
+                transform: rotateZ(720deg);
+            }
         }
 
         #panel {
             @animations: panel-in 0.3s ease 0.6s 1 normal forwards,
                          panel-slide-left 0.3s ease 1.8s 1 normal forwards,
                          panel-slide-right 0.3s ease 5.3s 1 normal forwards;
+            .animation(@animations);
+        }
+
+        #panel-footer {
+            @animations: panel-footer-out 0.1s linear 1.3s 1 normal forwards,
+                         panel-footer-in 0.1s linear 5.3s 1 normal forwards;
             .animation(@animations);
         }
 
@@ -626,6 +673,14 @@
         #panel-icon-addons {
             .animation(panel-icon-addons 0.3s ease 3.4s 1 normal forwards);
         }
+
+        #flexible-replay {
+            .animation(flexible-replay 0.2s ease 5.4s 1 normal forwards);
+        }
+
+        #panel-replay {
+            .animation(panel-replay 0.7s linear 6s 1 normal forwards);
+        }
     }
 }
 
@@ -637,6 +692,16 @@
             left: 20px;
             bottom: 50px;
             width: 440px;
+        }
+    }
+
+    .cssanimations {
+        .fallback {
+            display: block;
+        }
+
+        .stage {
+            display: none;
         }
     }
 }
@@ -669,7 +734,15 @@
     }
 
     #customize {
-        background: #0095dd;
+        .animation-wrapper {
+            .fallback {
+                display: block;
+            }
+
+            .stage {
+                display: none;
+            }
+        }
 
         .cta {
             position: relative;

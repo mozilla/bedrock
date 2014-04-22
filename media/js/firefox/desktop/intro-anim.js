@@ -15,11 +15,12 @@
         return (div.firstChild && div.firstChild.namespaceURI) == 'http://www.w3.org/2000/svg';
     }
 
-    if (isIE || isTrident || isOldOpera || !supportsInlineSVG()) {
-        // use fallback browser image
-        $('body').addClass('no-svg-anim');
-    } else {
-        $('body').addClass('svg-anim');
-    }
-
+    setTimeout(function() {
+        if (isIE || isTrident || isOldOpera || !supportsInlineSVG()) {
+            // use fallback browser image
+            $('body').addClass('no-svg-anim');
+        } else {
+            $('body').addClass('svg-anim');
+        }
+    }, 750);
 })(window.jQuery);

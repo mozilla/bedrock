@@ -67,8 +67,6 @@
         {{ _('Remove what you don’t use, keep what you do and put it just about anywhere you want.') }}
       </p>
 
-      <button id="animateit">Animate!</button>
-
       <div class="animation-wrapper" id="flexible-animation">
         <img src="{{ media('/img/firefox/desktop/index/animations/flexible-fallback.png') }}" class="fallback">
 
@@ -95,7 +93,7 @@
               <div class="panel-footer" id="panel-footer">
                 <a href="#" id="flexible-replay">
                   <span>{{ _('Replay') }}</span>
-                  <div id="panel-end-replay"></div>
+                  <div id="panel-replay"></div>
                 </a>
               </div>
             </div>{# /#panel #}
@@ -111,14 +109,13 @@
             <div id="available-icon-tabgroups" class="icon"></div>
           </div>{# /#panel-extras #}
         </div>{# /.stage #}
+        <p class="cta">
+          <a class="more" href="{{ url('firefox.desktop.customize') }}">
+            {# L10n: Line break below is for wide screen formatting only. #}
+            {{ _('Find out what makes Firefox <br class="wide-br">the most flexible browser there is') }}
+          </a>
+        </p>
       </div>{# /.animation-wrapper #}
-
-      <!--<p class="cta">
-        <a class="more" href="{{ url('firefox.desktop.customize') }}">
-          {# L10n: Line break below is for wide screen formatting only. #}
-          {{ _('Find out what makes Firefox <br class="wide-br">the most flexible browser there is') }}
-        </a>
-      </p>-->
     </div><!--/.container-->
   </section>
 
