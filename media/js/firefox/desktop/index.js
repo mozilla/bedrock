@@ -5,45 +5,35 @@
  var FirefoxDesktop = window.FirefoxDesktop || {};
 
 (function($) {
-    $('#animateit').click(function(e) {
-        e.preventDefault();
-
-        $('#customize .animation-wrapper').toggleClass('animate');
-    });
-
     var $customize_stage = $('#customize .stage');
-    var $customize_animation = $('#intro .animation-wrapper');
+    var $customize_animation = $('#customize .animation-wrapper');
 
     // animations only run on full desktop sized viewport
     if (FirefoxDesktop.isDesktopViewport) {
-        // initiate animation just after page load.
-        setTimeout(function() {
-            $intro_animation.addClass('animate');
-            $designed_animation.addClass('animate');
-        }, 750);
+        $('#customize').waypoint(function() {
+            $customize_animation.addClass('animate');
+        }, {
+            triggerOnce: true,
+            offset: 50
+        });
 
         $('#flexible-replay').on('click', function(e) {
             e.preventDefault();
 
-            // Fade out stages with opacity transition.
-            $intro_stage.addClass('resetting');
-            $designed_stage.addClass('resetting');
+            // Fade out stage with opacity transition.
+            $customize_stage.addClass('resetting');
 
-            // After opacity transition completes, reset animations by removing
-            // 'animate' class, the restore opacity by removing the 'resetting'
+            // After opacity transition completes, reset animation by removing
+            // 'animate' class, then restore opacity by removing the 'resetting'
             // class.
             setTimeout(function() {
-                $intro_animation.removeClass('animate');
-                $intro_stage.removeClass('resetting');
+                $customize_animation.removeClass('animate');
+                $customize_stage.removeClass('resetting');
 
-                $designed_animation.removeClass('animate');
-                $designed_stage.removeClass('resetting');
-
-                // After opacity has been restored, trigger the animations
+                // After opacity has been restored, trigger the animation
                 // again by adding the 'animate' class.
                 setTimeout(function() {
-                    $intro_animation.addClass('animate');
-                    $designed_animation.addClass('animate');
+                    $customize_animation.addClass('animate');
                 }, 200);
             }, 200);
         });

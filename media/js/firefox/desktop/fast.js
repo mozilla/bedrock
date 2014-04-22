@@ -7,9 +7,25 @@ var FirefoxDesktop = window.FirefoxDesktop || {};
 (function($) {
     'use strict';
 
+    var $feel_animation;
+    var loopAnimation;
+
     if (!FirefoxDesktop.isSmallViewport) {
+        $feel_animation = $('#feel-animation');
+
+        loopAnimation = function() {
+            setInterval(function() {
+                $feel_animation.removeClass('animate');
+
+                setTimeout(function() {
+                    $feel_animation.addClass('animate');
+                }, 100);
+            }, 8800);
+        };
+
         $('#feel').waypoint(function(dir) {
-            $('#feel-animation').addClass('animate');
+            $feel_animation.addClass('animate');
+            loopAnimation();
         }, {
             triggerOnce: true,
             offset: 50
