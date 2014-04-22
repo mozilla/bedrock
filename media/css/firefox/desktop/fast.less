@@ -53,11 +53,15 @@
 }
 
 #feel {
-    background: #e9e6de;// url(/media/img/firefox/desktop/fast/bg-feel.png) bottom center no-repeat;
+    background: #e9e6de;
+
+    .container {
+        min-height: 0;
+        padding-bottom: 0;
+    }
 
     .animation-wrapper {
-        position: absolute;
-        bottom: 0;
+        padding-top: @baseLine;
     }
 }
 
