@@ -27,11 +27,13 @@
 }
 
 .sync-anim {
+    position: relative;
     float: right;
     height: 190px;
-    width: 420px;
-    margin: (@baseLine * 2) auto -40px auto;
-    background-image: url(/media/img/firefox/sync/composite.png);
+    width: 390px;
+    margin: (@baseLine * 2) @baseLine -40px 0;
+    background-image: url('/media/img/firefox/sync/composite.png?04-2014');
+    z-index: 1;
 }
 
 .main-content {
@@ -104,6 +106,7 @@ html[dir="rtl"] {
     }
 
     .sync-anim {
+        float: none;
         margin: 0 auto @baseLine auto;
     }
 
