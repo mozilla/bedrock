@@ -67,12 +67,58 @@
         {{ _('Remove what you don’t use, keep what you do and put it just about anywhere you want.') }}
       </p>
 
-      <p class="cta">
+      <button id="animateit">Animate!</button>
+
+      <div class="animation-wrapper" id="flexible-animation">
+        <img src="{{ media('/img/firefox/desktop/index/animations/flexible-fallback.png') }}" class="fallback">
+
+        <div class="stage">
+          <div id="toolbar">
+            <div id="toolbar-customize-orange"></div>
+            <div id="toolbar-outline"></div>
+            <div id="toolbar-print"></div>
+            <div id="toolbar-after" class="toolbar"></div>
+            <div id="toolbar-before" class="toolbar"></div>
+          </div>
+          <div id="panel-wrapper">
+            <div id="panel">
+              <div class="icon" id="panel-icon-print"></div>
+              <div class="icon" id="panel-icon-settings"></div>
+              <div class="icon" id="panel-icon-fullscreen"></div>
+              <div class="icon" id="panel-icon-search"></div>
+              <div class="icon" id="panel-icon-addons"></div>
+              <div class="icon icon-history" id="panel-icon-history"></div>
+              <div class="icon" id="panel-icon-empty"></div>
+
+              <div class="panel-footer" id="panel-footer-ok"></div>
+              <div class="panel-footer" id="panel-footer-on"></div>
+              <div class="panel-footer" id="panel-footer">
+                <a href="#" id="flexible-replay">
+                  <span>{{ _('Replay') }}</span>
+                  <div id="panel-end-replay"></div>
+                </a>
+              </div>
+            </div>{# /#panel #}
+          </div>{# /#panel-wrapper #}
+          <div id="available-icons">
+            <div id="available-left-group">
+              <div id="available-icon-openfile" class="icon"></div>
+              <div id="available-icon-email" class="icon"></div>
+              <div id="available-icon-subscribe" class="icon"></div>
+              <div id="available-icon-encoding" class="icon"></div>
+            </div>
+            <div id="available-icon-history" class="icon icon-history"></div>
+            <div id="available-icon-tabgroups" class="icon"></div>
+          </div>{# /#panel-extras #}
+        </div>{# /.stage #}
+      </div>{# /.animation-wrapper #}
+
+      <!--<p class="cta">
         <a class="more" href="{{ url('firefox.desktop.customize') }}">
           {# L10n: Line break below is for wide screen formatting only. #}
           {{ _('Find out what makes Firefox <br class="wide-br">the most flexible browser there is') }}
         </a>
-      </p>
+      </p>-->
     </div><!--/.container-->
   </section>
 
