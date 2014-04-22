@@ -13,6 +13,12 @@
 #intro {
     .grainy-sky();
 
+    .container {
+        position: relative;
+        padding: (@baseLine * 2) 0 0 0;
+        min-height: 0;
+    }
+
     h1 {
         font-size: 64px;
         margin-bottom: @baseLine * 2;
@@ -22,11 +28,6 @@
         color: @textColorSecondary;
         font-size: 22px;
         margin-bottom: @baseLine * 2;
-    }
-
-    img {
-        display: block;
-        margin: 0 auto @baseLine;
     }
 }
 
