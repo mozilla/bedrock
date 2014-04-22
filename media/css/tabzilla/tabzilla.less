@@ -1,3 +1,5 @@
+@import "../sandstone/lib.less";
+
 // IE does not like file-relative (e.g. '../fonts/*') URLs due to our
 // redirects. Always use domain-relative urls like the font URLs below.
 
@@ -555,6 +557,128 @@ html[lang|='zh'] {
     #tabzilla-promo .snippet#tabzilla-promo-mwc a {
         h4 {
             margin-bottom: 78px;
+        }
+    }
+}
+
+// The Web We Want Promo
+
+#tabzilla-promo .snippet#tabzilla-promo-webwewant a {
+    padding: 25px 20px;
+    width: 260px;
+    height: 160px;
+    color: #fff;
+    background-color: #1c7aab;
+    background-image: url("/media/img/tabzilla/promo-webwewant.jpg");
+    background-position: 0 0;
+    text-shadow: 0 0 2px #000;
+    font-size: 12px;
+    line-height: 20px;
+    h4 {
+        margin-bottom: 10px;
+        color: #fff;
+        text-shadow: inherit;
+        font-size: 36px;
+        line-height: 1;
+        .open-sans-light;
+        font-weight: normal;
+        text-transform: uppercase;
+        letter-spacing: -.1ex;
+    }
+    p {
+        margin: 0 80px 0 0;
+        font-size: 18px;
+        &:after {
+            content: "\00A0\00BB"; /* nbsp raquo */
+        }
+    }
+}
+
+html[lang="ar"],
+html[lang="de"],
+html[lang="gd"],
+html[lang="he"],
+html[lang="id"],
+html[lang="kk"],
+html[lang="ml"],
+html[lang="vi"],
+html[lang="xh"] {
+    #tabzilla-promo .snippet#tabzilla-promo-webwewant a h4 {
+        font-size: 32px;
+    }
+}
+
+html[lang="be"],
+html[lang="bg"],
+html[lang="cs"],
+html[lang="eo"],
+html[lang="es-AR"],
+html[lang="es-ES"],
+html[lang="et"],
+html[lang="eu"],
+html[lang="fy-NL"],
+html[lang="gl"],
+html[lang="hu"],
+html[lang="it"],
+html[lang="ko"],
+html[lang="lt"],
+html[lang="nl"],
+html[lang="pa-IN"],
+html[lang="pt-PT"],
+html[lang="rm"],
+html[lang="sl"],
+html[lang="te"],
+html[lang="uk"],
+html[lang="zh-CN"] {
+    #tabzilla-promo .snippet#tabzilla-promo-webwewant a h4 {
+        font-size: 40px;
+    }
+}
+
+html[lang="as"],
+html[lang="hr"],
+html[lang="pl"],
+html[lang="ro"],
+html[lang="sk"],
+html[lang="sq"],
+html[lang="sr"],
+html[lang="zh-TW"] {
+    #tabzilla-promo .snippet#tabzilla-promo-webwewant a h4 {
+        font-size: 44px;
+    }
+}
+
+html[lang="ar"],
+html[lang="fa"] {
+    #tabzilla-promo .snippet#tabzilla-promo-webwewant a h4 {
+        line-height: 1.2;
+    }
+}
+
+html[lang="km"],
+html[lang="mr"] {
+    #tabzilla-promo .snippet#tabzilla-promo-webwewant a h4 {
+        line-height: 1.4;
+    }
+}
+
+html[lang="kk"] {
+    #tabzilla-promo .snippet#tabzilla-promo-webwewant a p {
+        font-size: 16px;
+    }
+}
+
+html[lang="te"] {
+    #tabzilla-promo .snippet#tabzilla-promo-webwewant a p {
+        line-height: 1.4;
+    }
+}
+
+html[dir="rtl"] {
+    #tabzilla-promo .snippet#tabzilla-promo-webwewant a {
+        background-image: url("/media/img/tabzilla/promo-webwewant-reversed.jpg");
+        p {
+            margin: 0 0 0 80px;
         }
     }
 }
