@@ -40,13 +40,14 @@ $(function() {
     var panel_close_text = window.trans('tabpanel-close-text');
 
     // Accordion widgets in the highlight box
-    $('#main-content .accordion').each(function() {
+    $('#main-content .accordion').each(function(accordionIndex) {
         $(this).attr({
           'role': 'tablist',
           'aria-multiselectable': 'true'
-        }).find('[role="tab"]').each(function() {
+        }).find('[role="tab"]').each(function(tabIndex) {
             var expanded = false;
-            var id = this.id || $(this).parent().attr('id');
+            var id = this.id || $(this).parent().attr('id')
+                             || 'accordion-' + accordionIndex + '-tab-' + tabIndex;
             var $tab = $(this).attr({
               'tabindex': '-1',
               'aria-controls': id + '-tabpanel',

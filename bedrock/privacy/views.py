@@ -94,6 +94,12 @@ def firefox_os_notices(request):
 
 
 @cache_page(60 * 60)  # cache for 1 hour
+def firefox_cloud_notices(request):
+    return l10n_utils.render(request, 'privacy/notices/firefox-cloud.html',
+                             {'doc': load_legal_doc(request, 'firefox_cloud_services_PrivacyNotice')})
+
+
+@cache_page(60 * 60)  # cache for 1 hour
 def websites_notices(request):
     return l10n_utils.render(request, 'privacy/notices/websites.html',
                              {'doc': load_legal_doc(request, 'websites_privacy_notice')})
