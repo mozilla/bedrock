@@ -72,6 +72,21 @@
         background-position: -95px 15px;
     }
 
+    // The Web We Want (Australis)
+    #panel-webwewant,
+    #panel-webwewant.expanded,
+    #panel-webwewant.compressed {
+        background-position: -90px top;
+
+        .aurora {
+            background-position: 0 bottom;
+
+            &:after {
+                background-position: 20px 60px;
+            }
+        }
+    }
+
     // IE8 doesn't do gradients or rgba() so it gets solid, opaque colors.
     #panel-mission .panel-title {
         background: #821117;
@@ -87,5 +102,9 @@
 
     #panel-mozfest .panel-title {
         background: #ced3d3;
+    }
+
+    #panel-webwewant .panel-title {
+        background: #253741;
     }
 }
