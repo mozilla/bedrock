@@ -216,10 +216,6 @@ MINIFY_BUNDLES = {
             'css/sandstone/video.less',
             'css/firefox/nightly_firstrun.less',
         ),
-        'firefox_fx': (
-            'css/firefox/fx.less',
-            'css/sandstone/video.less',
-        ),
         'firefox_geolocation': (
             'css/base/mozilla-accordion.less',
             'css/base/mozilla-modal.less',
@@ -521,11 +517,6 @@ MINIFY_BUNDLES = {
         'firefox_firstrun': (
             'js/base/mozilla-modal.js',
             'js/firefox/firstrun/firstrun.js',
-        ),
-        'firefox_fx': (
-            'js/base/mozilla-pager.js',
-            'js/base/mozilla-video-tools.js',
-            'js/firefox/fx.js',
         ),
         'firefox_happy': (
             'js/firefox/happy.js',
