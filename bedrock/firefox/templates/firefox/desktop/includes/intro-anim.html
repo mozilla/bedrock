@@ -1,5 +1,6 @@
 <div class="intro-firefox-logo"></div>
 <div id="intro-svg-anim" role="presentation">
+  <!--[if gt IE 9]><!-->
   <div class="svg-wrapper intro-browser">
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 998 450" preserveAspectRatio="xMinYMin meet">
       <path class="browser-outer" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke-opacity="1" fill-opacity="0" d="M445.0062607506216,1C447.13769942474363,1,992.786,1,992.786,1C995.113,1,997,2.439,997,4.214C997,4.214,996.76,445.787,996.76,445.787C996.76,447.56199999999995,994.873,449.001,992.5459999999999,449.001C992.5459999999999,449.001,5.455,449.001,5.455,449.001C3.1270000000000002,449.001,1.2409999999999997,447.56199999999995,1.2409999999999997,445.787C1.2409999999999997,445.787,1,4.214,1,4.214C1,2.439,2.887,1,5.214,1C5.214,1,445,1,445,1" stroke="#5d7489" fill="#5d7489"></path>
@@ -82,7 +83,7 @@
     <div class="tab-close-button tab-icon">
       <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 324 324" preserveAspectRatio="xMinYMin meet">
         <path fill-rule="evenodd" clip-rule="evenodd" fill="#5D7489" d="M241.5,210l-32,32l-48-49l-49,49l-31-32l48-48l-48-48l32-32l48,48
-          l48-48l32,32l-48,48L241.5,210z"/></path>
+          l48-48l32,32l-48,48L241.5,210z"></path>
       </svg>
     </div>
     <div class="tab-new-button tab-icon">
@@ -91,5 +92,6 @@
       </svg>
     </div>
   </div>
+  <!--<![endif]-->
 </div>
 <img id="intro-svg-anim-fallback" src="{{ MEDIA_URL }}img/firefox/desktop/fallback.png" />
