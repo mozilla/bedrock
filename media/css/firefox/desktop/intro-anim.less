@@ -1030,20 +1030,44 @@
 }
 
 @media (max-width: @breakTablet) {
-    #intro-svg-anim,
-    #intro-svg-anim-fallback {
-        display: none !important;
+    #intro-svg-anim {
+        display: none;
     }
-    #intro {
-        .intro-firefox-logo {
+    #intro .intro-content {
+        opacity: 1;
+        padding-bottom: @baseLine * 3;
+    }
+    #intro-svg-anim-fallback {
+        display: block;
+        width: 100%;
+        height: auto;
+        bottom: 0;
+        margin-bottom: -70px;
+    }
+    .svg-anim,
+    .no-svg-anim {
+        #intro-svg-anim {
             display: none;
         }
-        .intro-content {
-            opacity: 1;
-            padding-bottom: @baseLine;
-            -webkit-animation: none;
-            animation: none;
+        #intro-svg-anim-fallback {
+            display: block;
+        }
+        #intro {
+            .intro-firefox-logo {
+                display: none;
+            }
+            .intro-content {
+                -webkit-animation: none;
+                animation: none;
+            }
         }
     }
+}
 
+@media (max-width: @breakMobileLandscape) {
+    #intro {
+        #intro-svg-anim-fallback {
+            margin-bottom: -30px;
+        }
+    }
 }
