@@ -305,8 +305,8 @@
       <section class="terms-section">
         <h4 class="section-header">Privacy:</h4>
         <p>
-        {% trans url_privacy='http://www.mozilla.org/about/policies/privacy-policy.html', url_email='mailto:gigabit@mozilla.org' %}
-          Mozilla respects your privacy. Any personally identifiable information submitted in connection with the Fund will be governed by Mozilla’s privacy policy, available at <a href="{{ url_privacy }}">http://www.mozilla.org/about/policies/privacy-policy.html</a>, and will only be used in connection with the administration of the Fund unless you expressly agree otherwise.  As part of such administration, it may be necessary to share information with subcontractors, agents or partners assisting in the administration of the Fund, but any such sharing will be solely for that purpose.  If you have any questions about the use of your personal information, please write to us at the address above or email us at <a href="{{ url_email }}">gigabit@mozilla.org</a>.
+        {% trans url_privacy=url('privacy'), url_email='mailto:gigabit@mozilla.org' %}
+          Mozilla respects your privacy. Any personally identifiable information submitted in connection with the Fund will be governed by Mozilla’s privacy policy, available at <a href="{{ url_privacy }}">http://www.mozilla.org/privacy/</a>, and will only be used in connection with the administration of the Fund unless you expressly agree otherwise. As part of such administration, it may be necessary to share information with subcontractors, agents or partners assisting in the administration of the Fund, but any such sharing will be solely for that purpose. If you have any questions about the use of your personal information, please write to us at the address above or email us at <a href="{{ url_email }}">gigabit@mozilla.org</a>.
         {% endtrans %}
         </p>
       </section>
