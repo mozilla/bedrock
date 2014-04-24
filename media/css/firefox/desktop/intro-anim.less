@@ -252,6 +252,9 @@
         display: none;
     }
     #intro {
+        .container {
+            overflow: hidden;
+        }
         .intro-content {
             opacity: 1;
             -webkit-animation: none;
@@ -395,11 +398,16 @@
     #intro-svg-anim-fallback {
         display: none;
     }
-    #intro .intro-content {
-        opacity: 1;
-        padding-bottom: @baseLine * 2;
-        -webkit-animation: none;
-        animation: none;
+    #intro {
+        .container {
+            overflow: hidden;
+        }
+        .intro-content {
+            opacity: 1;
+            padding-bottom: @baseLine * 2;
+            -webkit-animation: none;
+            animation: none;
+        }
     }
 }
 
