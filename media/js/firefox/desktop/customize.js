@@ -46,6 +46,16 @@
         });
     }
 
+    if (!FirefoxDesktop.isSmallViewport) {
+        // fire sync animation when scrolled to
+        $('#sync').waypoint(function() {
+            Mozilla.syncAnimation();
+        }, {
+            triggerOnce: true,
+            offset: 50
+        });
+    }
+
     // customize icons section
     var $customizer_list = $('#customizer-list');
 
