@@ -67,6 +67,12 @@
     }
 }
 
+html[dir="rtl"] {
+    #designed #designed-copy {
+        text-align: right;
+    }
+}
+
 #customize {
     background: #d0cbbd;
 
@@ -185,13 +191,21 @@
             float: left;
             width: 23px;
             height: 23px;
-            margin-right: 10px;
+            margin: 0 10px 0 0;
             background: url(/media/img/firefox/desktop/customize/sync-arrows-button.png) left center no-repeat;
         }
     }
 
     .more {
         font-size: 14px;
+    }
+}
+
+html[dir="rtl"] {
+    #sync .button span {
+        float: right;
+        margin: 0 0 0 10px;
+        background-position: right center;
     }
 }
 
@@ -271,7 +285,7 @@
                 background: url(/media/img/firefox/desktop/customize/next-arrow.png) right center no-repeat;
                 width: 14px;
                 height: 21px;
-                padding-left: 10px;
+                padding: 0 0 0 10px;
             }
         }
     }
@@ -282,7 +296,7 @@
 
     #themes {
         .customizer-copy {
-            width: 460px;
+            width: 420px;
             float: left;
         }
 
@@ -325,7 +339,7 @@
 
     #awesome-bar {
         .customizer-copy {
-            width: 460px;
+            width: 420px;
             float: left;
         }
 
@@ -343,10 +357,41 @@
     z-index: 1;
 }
 
-.js[dir="rtl"] #main-content .customizer .next:after {
-    background: url(/media/img/firefox/desktop/customize/next-arrow-rtl.png) left center no-repeat;
-    padding-left: 0;
-    padding-right: 10px;
+.js[dir="rtl"] {
+    #customizer-list {
+        &:after {
+            left: 765px;
+        }
+
+        &.add-ons:after {
+            left: 445px;
+        }
+
+        &.awesome-bar:after {
+            left: 125px;
+        }
+    }
+
+    #main-content .customizer {
+        .container {
+            text-align: right;
+        }
+
+        .next {
+            right: auto;
+            left: 14px;
+
+            &:after {
+                background: url(/media/img/firefox/desktop/customize/next-arrow-rtl.png) left center no-repeat;
+                padding: 0 10px 0 0;
+            }
+        }
+    }
+
+    #themes #themes-thumbs li {
+        float: right;
+        margin: 0 0 @baseLine @baseLine;
+    }
 }
 
 .cssanimations {
@@ -1267,6 +1312,7 @@
         overflow: hidden;
         background: #bcc5d1;
         .transition(background-color 0.2s ease);
+        direction: ltr; /* Avoid layout issues in RTL locales */
 
         div {
             position: absolute;
@@ -1795,6 +1841,22 @@
             background-image: url(/media/img/firefox/desktop/customize/sprite-customizers.png);
         }
     }
+
+    .js[dir="rtl"] {
+        #customizer-list {
+            &:after {
+                left: 580px;
+            }
+
+            &.add-ons:after {
+                left: 334px;
+            }
+
+            &.awesome-bar:after {
+                left: 88px;
+            }
+        }
+    }
 }
 
 @media (max-width: @breakTablet) {
@@ -1932,6 +1994,18 @@
     .sync-anim {
         display: none;
     }
+
+    html[dir="rtl"] {
+        #designed #designed-copy {
+            text-align: center;
+        }
+    }
+
+    .js[dir="rtl"] {
+        #main-content .customizer .container {
+            text-align: center;
+        }
+    }
 }
 
 /****************************************************************************/
@@ -1962,5 +2036,9 @@
 
     #awesome-bar .container {
         background-position: -651px -438px;
+    }
+
+    #designed #designed-mobile {
+        width: 100%;
     }
 }
