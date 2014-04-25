@@ -14,8 +14,9 @@
 
 {% block breadcrumbs %}
   <nav class="breadcrumbs">
-    <a href="{{ url('mozorg.home') }}">{{_('Home')}}</a> >
-    <a href="{{ url('firefox.partners.index') }}#android">{{_('Mobile')}}</a> >
+    <a href="{{ url('mozorg.home') }}">{{_('Home')}}</a> &gt;
+    <a href="{{ url('firefox') }}">{{_('Firefox')}}</a> &gt;
+    <a href="{{ url('firefox.android.index') }}">{{_('Mobile')}}</a> &gt;
     <span>{{_('FAQ')}}</span>
   </nav>
 {% endblock %}
