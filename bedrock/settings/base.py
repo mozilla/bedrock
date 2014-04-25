@@ -268,10 +268,6 @@ MINIFY_BUNDLES = {
         'firefox_speed': (
             'css/firefox/speed.less',
         ),
-        'firefox_technology': (
-            'css/firefox/technology.less',
-            'css/firefox/technology-demos.css',
-        ),
         'firefox_whatsnew': (
             'css/sandstone/video.less',
             'css/firefox/whatsnew.less',
@@ -573,12 +569,15 @@ MINIFY_BUNDLES = {
         'firefox_speed': (
             'js/firefox/speed.js',
         ),
+<<<<<<< HEAD
         'firefox_sync': (
             'js/firefox/sync.js',
         ),
         'firefox_tech': (
             'js/firefox/technology/tech.js',
         ),
+=======
+>>>>>>> Bug 979660 - [australis] redirect /firefox/technology to MDN
         'firefox_sms': (
             'js/firefox/sms.js',
             'js/libs/socialshare.min.js',
