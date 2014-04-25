@@ -23,7 +23,7 @@ var FirefoxDesktop = window.FirefoxDesktop || {};
             }, 8800);
         };
 
-        $('#feel').waypoint(function(dir) {
+        $('#feel').waypoint(function() {
             $feel_animation.addClass('animate');
             loopAnimation();
         }, {

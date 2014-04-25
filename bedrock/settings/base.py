@@ -200,6 +200,7 @@ MINIFY_BUNDLES = {
         'firefox_desktop_customize': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/desktop/customize.less',
+            'css/firefox/sync-animation.less',
         ),
         'firefox_desktop_trust': (
             'css/sandstone/sandstone-resp.less',
@@ -536,6 +537,7 @@ MINIFY_BUNDLES = {
         ),
         'firefox_desktop_customize': (
             'js/libs/jquery.waypoints.min.js',
+            'js/firefox/sync-animation.js',
             'js/firefox/desktop/common.js',
             'js/firefox/desktop/customize.js',
         ),
@@ -612,6 +614,7 @@ MINIFY_BUNDLES = {
             'js/firefox/speed.js',
         ),
         'firefox_sync': (
+            'js/firefox/sync-animation.js',
             'js/firefox/sync.js',
         ),
         'firefox_tech': (

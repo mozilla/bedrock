@@ -5,28 +5,6 @@
 ;(function($) {
     'use strict';
 
-    function syncAnimation () {
-        var $syncAnim = $('.sync-anim');
-        var $laptop = $syncAnim.find('.laptop');
-        var $laptopScreen = $laptop.find('.inner');
-        var $phone = $syncAnim.find('.phone');
-        var $arrows = $laptop.find('.arrows');
-
-        $syncAnim.addClass('on');
-
-        $arrows.one('webkitAnimationStart MSAnimationStart animationstart', function () {
-            $laptopScreen.addClass('faded');
-        });
-
-        $arrows.one('webkitAnimationEnd MSAnimationEnd animationend', function () {
-            $laptopScreen.removeClass('faded');
-        });
-
-        $phone.one('webkitAnimationEnd MSAnimationEnd animationend', '.passwords', function () {
-            $syncAnim.addClass('complete');
-        });
-    }
-
-    setTimeout(syncAnimation, 1000);
+    setTimeout(Mozilla.syncAnimation, 1000);
 
 })(window.jQuery);

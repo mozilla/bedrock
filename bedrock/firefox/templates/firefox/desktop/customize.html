@@ -110,13 +110,41 @@
 
       <ul class="feature-list" id="customizer-list">
         <li>
-          <a class="show-customizer selected" id="customize-themes" href="#themes">{{ _('Themes') }}</a>
+          <a class="show-customizer selected" id="customize-themes" href="#themes">
+            <div class="stage">
+              <div class="circle-mask"></div>
+              <div id="brush"></div>
+              <div class="paint" id="paint-blue"></div>
+              <div class="paint" id="paint-red"></div>
+              <div class="paint" id="paint-orange"></div>
+            </div>
+            {{ _('Themes') }}
+          </a>
         </li>
         <li>
-          <a class="show-customizer" id="customize-addons" href="#add-ons">{{ _('Add-ons') }}</a>
+          <a class="show-customizer" id="customize-addons" href="#add-ons">
+            <div class="stage">
+              <div class="circle-mask"></div>
+              <div id="puzzle-pieces">
+                <div id="puzzle-off"></div>
+                <div id="puzzle-on"></div>
+              </div>
+            </div>
+            {{ _('Add-ons') }}
+          </a>
         </li>
         <li class="last">
-          <a class="show-customizer" id="customize-awesomebar" href="#awesome-bar">{{ _('Awesome Bar') }}</a>
+          <a class="show-customizer" id="customize-awesomebar" href="#awesome-bar">
+            <div class="stage">
+              <div class="circle-mask"></div>
+              <div id="awesomebar-on" class="awesomebar-icon"></div>
+              <div id="slat1" class="slat"></div>
+              <div id="slat2" class="slat"></div>
+              <div id="slat3" class="slat"></div>
+              <div id="awesomebar-off" class="awesomebar-icon"></div>
+            </div>
+            {{ _('Awesome Bar') }}
+          </a>
         </li>
       </ul>
     </div>
@@ -217,7 +245,7 @@
         {{ _('Access your bookmarks, history, passwords and more from any device to <br class="wide-br">make Firefox your own wherever you use it.') }}
       </p>
 
-      <img src="{{ media('/img/firefox/desktop/customize/sync.png') }}">
+      {% include 'firefox/includes/sync-animation.html' %}
 
       <a class="button" href="http://www.mozilla.org/mobile/sync/"><span></span>{{ _('Learn more about Sync') }}</a>
       <br>
