@@ -94,7 +94,7 @@
             <div id="panel-end-addons" class="icon panel-icon-addons"></div>
             <div id="panel-end-history" class="icon panel-icon-history"></div>
             <div id="panel-end-footer">
-              <a href="#" id="flexible-replay">
+              <a role="button" href="#" id="flexible-replay">
                 <span>{{ _('Replay') }}</span>
                 <div id="panel-end-replay"></div>
               </a>
@@ -108,21 +108,49 @@
     <div class="container">
       <h2>{{ _('More ways to customize') }}</h2>
 
-      <ul class="feature-list" id="customizer-list">
+      <ul class="feature-list" id="customizer-list" role="tablist">
         <li>
-          <a class="show-customizer selected" id="customize-themes" href="#themes">{{ _('Themes') }}</a>
+          <a class="show-customizer selected" id="customize-themes" href="#themes">
+            <div class="stage">
+              <div class="circle-mask"></div>
+              <div id="brush"></div>
+              <div class="paint" id="paint-blue"></div>
+              <div class="paint" id="paint-red"></div>
+              <div class="paint" id="paint-orange"></div>
+            </div>
+            {{ _('Themes') }}
+          </a>
         </li>
         <li>
-          <a class="show-customizer" id="customize-addons" href="#add-ons">{{ _('Add-ons') }}</a>
+          <a class="show-customizer" id="customize-addons" href="#add-ons">
+            <div class="stage">
+              <div class="circle-mask"></div>
+              <div id="puzzle-pieces">
+                <div id="puzzle-off"></div>
+                <div id="puzzle-on"></div>
+              </div>
+            </div>
+            {{ _('Add-ons') }}
+          </a>
         </li>
         <li class="last">
-          <a class="show-customizer" id="customize-awesomebar" href="#awesome-bar">{{ _('Awesome Bar') }}</a>
+          <a class="show-customizer" id="customize-awesomebar" href="#awesome-bar">
+            <div class="stage">
+              <div class="circle-mask"></div>
+              <div id="awesomebar-on" class="awesomebar-icon"></div>
+              <div id="slat1" class="slat"></div>
+              <div id="slat2" class="slat"></div>
+              <div id="slat3" class="slat"></div>
+              <div id="awesomebar-off" class="awesomebar-icon"></div>
+            </div>
+            {{ _('Awesome Bar') }}
+          </a>
         </li>
       </ul>
     </div>
   </section>
   <div id="customizers-wrapper">
-    <section class="customizer active" id="themes">
+    <section class="customizer active" id="themes" role="tabpanel" aria-labelledby="customize-themes">
       <div class="container">
         <div class="customizer-copy">
           <h3>{{ _('Themes') }}</h3>
@@ -134,16 +162,16 @@
 
           <ul id="themes-thumbs">
             <li>
-              <a href="#" id="theme-yellow"><img src="{{ media('/img/firefox/desktop/customize/theme-thumb-yellow.png') }}"></a>
+              <a href="#" role="button" id="theme-yellow"><img src="{{ media('/img/firefox/desktop/customize/theme-thumb-yellow.png') }}"></a>
             </li>
             <li>
-              <a href="#" id="theme-green"><img src="{{ media('/img/firefox/desktop/customize/theme-thumb-green.png') }}"></a>
+              <a href="#" role="button" id="theme-green"><img src="{{ media('/img/firefox/desktop/customize/theme-thumb-green.png') }}"></a>
             </li>
             <li>
-              <a href="#" id="theme-blue"><img src="{{ media('/img/firefox/desktop/customize/theme-thumb-blue.png') }}"></a>
+              <a href="#" role="button" id="theme-blue"><img src="{{ media('/img/firefox/desktop/customize/theme-thumb-blue.png') }}"></a>
             </li>
             <li>
-              <a href="#" class="selected" id="theme-red"><img src="{{ media('/img/firefox/desktop/customize/theme-thumb-red.png') }}"></a>
+              <a href="#" role="button" class="selected" id="theme-red"><img src="{{ media('/img/firefox/desktop/customize/theme-thumb-red.png') }}"></a>
             </li>
           </ul>
 
@@ -152,19 +180,19 @@
           <a class="more" href="https://support.mozilla.org/en-US/kb/use-themes-change-look-of-firefox">{{ _('Learn more') }}</a>
         </div>
 
-        <a class="next show-customizer" href="#add-ons">{{ _('Next') }}</a>
+        <a class="next show-customizer" href="#add-ons" role="button">{{ _('Next') }}</a>
 
         <div class="customizer-visual">
           <img id="theme-demo" src="{{ media('/img/firefox/desktop/customize/theme-red.png') }}">
         </div>
       </div>
     </section>
-    <section class="customizer" id="add-ons">
+    <section class="customizer" id="add-ons" role="tabpanel" aria-labelledby="customize-addons">
       <div class="container">
         <div class="customizer-copy">
           <h3>{{ _('Add-ons') }}</h3>
 
-          <a class="next show-customizer" href="#awesome-bar">{{ _('Next') }}</a>
+          <a class="next show-customizer" href="#awesome-bar" role="button">{{ _('Next') }}</a>
 
           <p class="lead">
             {{ _('Add-ons are like apps that you install to add features to Firefox.') }}
@@ -187,12 +215,12 @@
         </div>
       </div>
     </section>
-    <section class="customizer" id="awesome-bar">
+    <section class="customizer" id="awesome-bar" role="tabpanel" aria-labelledby="customize-awesomebar">
       <div class="container">
         <div class="customizer-copy">
           <h3>{{ _('Awesome Bar') }}</h3>
 
-          <a class="next show-customizer" href="#themes">{{ _('Next') }}</a>
+          <a class="next show-customizer" href="#themes" role="button">{{ _('Next') }}</a>
 
           <p class="lead">
             {{ _('The Awesome Bar learns as you browse to make your version of Firefox unique.') }}
@@ -217,7 +245,7 @@
         {{ _('Access your bookmarks, history, passwords and more from any device to <br class="wide-br">make Firefox your own wherever you use it.') }}
       </p>
 
-      <img src="{{ media('/img/firefox/desktop/customize/sync.png') }}">
+      {% include 'firefox/includes/sync-animation.html' %}
 
       <a class="button" href="http://www.mozilla.org/mobile/sync/"><span></span>{{ _('Learn more about Sync') }}</a>
       <br>

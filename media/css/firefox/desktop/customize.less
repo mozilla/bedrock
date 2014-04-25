@@ -173,6 +173,7 @@
 
     .container {
         font-size: 18px;
+        min-height: 0;
     }
 
     .button {
@@ -303,7 +304,12 @@
                     height: 60px;
                     border-radius: 4px;
                     border: 4px solid transparent;
-                    .transition();
+                    .transition(all 0.2s ease);
+
+                    &:hover, &:focus {
+                        border-color: #fff;
+                        border-color: rgba(255, 255, 255, 0.7);
+                    }
 
                     &.selected {
                         border-color: #fe8207;
@@ -327,6 +333,14 @@
             right: -460px;
         }
     }
+}
+
+.sync-anim {
+    height: 190px;
+    width: 390px;
+    margin: 0 auto @baseLine * 2;
+    background-image: url('/media/img/firefox/sync/composite.png?04-2014');
+    z-index: 1;
 }
 
 .js[dir="rtl"] #main-content .customizer .next:after {
@@ -629,6 +643,8 @@
             }
         }
 
+        // parent selector required here to override 'opacity: 1;' in the
+        // nested selector above.
         #panel-start #panel-start-footer-on {
             z-index: 2;
             opacity: 0;
@@ -1237,6 +1253,390 @@
             .animation(panel-end-replay 0.7s linear 8.4s 1 normal forwards);
         }
     }
+
+    #customizer-list li a {
+        padding-top: 0;
+        background-image: none;
+    }
+
+    // customizers general
+    #customize .stage {
+        position: relative;
+        width: 300px;
+        height: 180px;
+        overflow: hidden;
+        background: #bcc5d1;
+        .transition(background-color 0.2s ease);
+
+        div {
+            position: absolute;
+        }
+    }
+
+    .circle-mask {
+        z-index: 10;
+        top: -100px;
+        left: -32px;
+        width: 164px;
+        height: 164px;
+        border-radius: 50%;
+        border: 100px solid #d0cbbd;
+        box-shadow: inset 0 0 0 2px #fff;
+    }
+
+    #customize .show-customizer {
+        &:hover, &.selected {
+            .stage {
+                background: #f3ce44;
+            }
+        }
+    }
+
+    #customize-themes {
+        @-webkit-keyframes brush {
+            30% {
+                -webkit-transform: translateY(134px);
+                transform: translateY(134px);
+            }
+            30.1% {
+                -webkit-transform: translateY(134px);
+                transform: translateY(134px);
+            }
+            30.2% {
+                -webkit-transform: rotateZ(-25deg) translate3d(-16px, 122px, 0);
+                transform: rotateZ(-25deg) translate3d(-16px, 122px, 0);
+            }
+            66% {
+                -webkit-transform: rotateZ(-25deg) translate3d(-16px, -138px, 0);
+                transform: rotateZ(-25deg) translate3d(-16px, -138px, 0);
+            }
+            66.1% {
+                -webkit-transform: rotateZ(-25deg) translate3d(-16px, -138px, 0);
+                transform: rotateZ(-25deg) translate3d(-16px, -138px, 0);
+            }
+            66.2% {
+                -webkit-transform: rotateZ(-65deg) translate3d(5px, -138px, 0);
+                transform: rotateZ(-65deg) translate3d(5px, -138px, 0);
+            }
+            100% {
+                -webkit-transform: rotateZ(-65deg) translate3d(5px, 35px, 0);
+                transform: rotateZ(-65deg) translate3d(5px, 35px, 0);
+            }
+        }
+        @keyframes brush {
+            30% {
+                -webkit-transform: translateY(134px);
+                transform: translateY(134px);
+            }
+            30.1% {
+                -webkit-transform: translateY(134px);
+                transform: translateY(134px);
+            }
+            30.2% {
+                -webkit-transform: rotateZ(-25deg) translate3d(-16px, 122px, 0);
+                transform: rotateZ(-25deg) translate3d(-16px, 122px, 0);
+            }
+            66% {
+                -webkit-transform: rotateZ(-25deg) translate3d(-16px, -138px, 0);
+                transform: rotateZ(-25deg) translate3d(-16px, -138px, 0);
+            }
+            66.1% {
+                -webkit-transform: rotateZ(-25deg) translate3d(-16px, -138px, 0);
+                transform: rotateZ(-25deg) translate3d(-16px, -138px, 0);
+            }
+            66.2% {
+                -webkit-transform: rotateZ(-65deg) translate3d(5px, -138px, 0);
+                transform: rotateZ(-65deg) translate3d(5px, -138px, 0);
+            }
+            100% {
+                -webkit-transform: rotateZ(-65deg) translate3d(5px, 35px, 0);
+                transform: rotateZ(-65deg) translate3d(5px, 35px, 0);
+            }
+        }
+
+        @-webkit-keyframes paint-blue {
+            100% { height: 120px; }
+        }
+        @keyframes paint-blue {
+            100% { height: 120px; }
+        }
+
+        @-webkit-keyframes paint-red {
+            100% {
+                -webkit-transform: rotateZ(-25deg) translate3d(82px, 41px, 0);
+                transform: rotateZ(-25deg) translate3d(82px, 41px, 0);
+            }
+        }
+        @keyframes paint-red {
+            100% {
+                -webkit-transform: rotateZ(-25deg) translate3d(82px, 41px, 0);
+                transform: rotateZ(-25deg) translate3d(82px, 41px, 0);
+            }
+        }
+
+        @-webkit-keyframes paint-orange {
+            100% {
+                -webkit-transform: rotateZ(-65deg) translate3d(14px, 75px, 0);
+                transform: rotateZ(-65deg) translate3d(14px, 75px, 0);
+            }
+        }
+        @keyframes paint-orange {
+            100% {
+                -webkit-transform: rotateZ(-65deg) translate3d(14px, 75px, 0);
+                transform: rotateZ(-65deg) translate3d(14px, 75px, 0);
+            }
+        }
+
+        #brush {
+            z-index: 4;
+            top: 40px;
+            left: 105px;
+            background: url(/media/img/firefox/desktop/customize/animations/customizers-icons-sprite.png) left top no-repeat;
+            width: 103px;
+            height: 95px;
+        }
+
+        .paint {
+            width: 93px;
+        }
+
+        #paint-blue {
+            z-index: 1;
+            top: 42px;
+            left: 106px;
+            background: #0194db;
+            height: 0;
+        }
+
+        #paint-red {
+            z-index: 2;
+            background: #ba3c32;
+            height: 170px;
+            -webkit-transform: rotateZ(-25deg) translate3d(82px, 210px, 0);
+            transform: rotateZ(-25deg) translate3d(82px, 210px, 0);
+        }
+
+        #paint-orange {
+            z-index: 3;
+            background: #ec7f1d;
+            height: 100px;
+            -webkit-transform: rotateZ(-65deg) translate3d(14px, -24px, 0);
+            transform: rotateZ(-65deg) translate3d(14px, -24px, 0);
+        }
+
+        // activate animations on hover
+        &:hover {
+            #brush {
+                .animation(brush 1.2s ease 0.1s 1 normal forwards;);
+            }
+            #paint-blue {
+                .animation(paint-blue 0.3s ease 0.1s 1 normal forwards);
+            }
+
+            #paint-red {
+                .animation(paint-red 0.4s ease 0.4s 1 normal forwards);
+            }
+
+            #paint-orange {
+                .animation(paint-orange 0.3s ease 1s 1 normal forwards);
+            }
+        }
+    }
+
+    #customize-addons {
+        @-webkit-keyframes puzzle-off {
+            100% { opacity: 0; }
+        }
+        @keyframes puzzle-off {
+            100% { opacity: 0; }
+        }
+
+        @-webkit-keyframes puzzle-on {
+            10% {
+                opacity: 1;
+                -webkit-transform: rotateZ(180deg) translateZ(80px);
+                transform: rotateZ(180deg) translateZ(80px);
+            }
+            20% {
+                opacity: 1;
+                -webkit-transform: rotateZ(180deg) translateZ(80px);
+                transform: rotateZ(180deg) translateZ(80px);
+            }
+            100% {
+                opacity: 1;
+                -webkit-transform: rotateZ(0) translate3d(-3px, 12px, 0);
+                transform: rotateZ(0) translate3d(-3px, 12px, 0);
+            }
+        }
+        @keyframes puzzle-on {
+            10% {
+                opacity: 1;
+                -webkit-transform: rotateZ(180deg) translateZ(80px);
+                transform: rotateZ(180deg) translateZ(80px);
+            }
+            20% {
+                opacity: 1;
+                -webkit-transform: rotateZ(180deg) translateZ(80px);
+                transform: rotateZ(180deg) translateZ(80px);
+            }
+            100% {
+                opacity: 1;
+                -webkit-transform: rotateZ(0) translate3d(-3px, 12px, 0);
+                transform: rotateZ(0) translate3d(-3px, 12px, 0);
+            }
+        }
+
+        // this wrapper is required for perspective
+        #puzzle-pieces {
+            width: 181px;
+            height: 181px;
+            -webkit-perspective: 500px;
+            perspective: 500px;
+        }
+
+        #puzzle-off {
+            z-index: 1;
+            background: url(/media/img/firefox/desktop/customize/animations/customizers-icons-sprite.png) -120px top no-repeat;
+            width: 90px;
+            height: 87px;
+            left: 113px;
+            top: 35px;
+        }
+
+        #puzzle-on {
+            opacity: 0;
+            z-index: 2;
+            background: url(/media/img/firefox/desktop/customize/animations/customizers-icons-sprite.png) -220px top no-repeat;
+            width: 181px;
+            height: 181px;
+            left: 57px;
+            top: -13px;
+            -webkit-transform: rotateZ(180deg) translateZ(80px);
+            transform: rotateZ(180deg) translateZ(80px);
+        }
+
+        // activate animations on hover
+        &:hover {
+            #puzzle-off {
+                .animation(puzzle-off 0.1s ease 0.1s 1 normal forwards);
+            }
+            #puzzle-on {
+                .animation(puzzle-on 0.5s ease 0.1s 1 normal forwards);
+            }
+        }
+    }
+
+    #customize-awesomebar {
+        @-webkit-keyframes awesomebar-on {
+            100% { opacity: 1; }
+        }
+        @keyframes awesomebar-on {
+            100% { opacity: 1; }
+        }
+
+        @-webkit-keyframes slat1 {
+            100% {
+                -webkit-transform: translateY(5px);
+                transform: translateY(5px);
+                opacity: 0.7;
+            }
+        }
+        @keyframes slat1 {
+            100% {
+                -webkit-transform: translateY(5px);
+                transform: translateY(5px);
+                opacity: 0.7;
+            }
+        }
+
+        @-webkit-keyframes slat2 {
+            100% {
+                -webkit-transform: translateY(5px);
+                transform: translateY(5px);
+                opacity: 0.5;
+            }
+        }
+        @keyframes slat2 {
+            100% {
+                -webkit-transform: translateY(5px);
+                transform: translateY(5px);
+                opacity: 0.5;
+            }
+        }
+
+        @-webkit-keyframes slat3 {
+            100% {
+                -webkit-transform: translateY(5px);
+                transform: translateY(5px);
+                opacity: 0.3;
+            }
+        }
+        @keyframes slat3 {
+            100% {
+                -webkit-transform: translateY(5px);
+                transform: translateY(5px);
+                opacity: 0.3;
+            }
+        }
+
+        .awesomebar-icon {
+            width: 148px;
+            height: 43px;
+            top: 36px;
+            left: 58px;
+            background: url(/media/img/firefox/desktop/customize/animations/customizers-icons-sprite.png) 0 -190px no-repeat;
+        }
+
+        .slat {
+            z-index: 2;
+            opacity: 0;
+            height: 30px;
+            width: 148px;
+            left: 58px;
+            background: #fff;
+        }
+
+        #awesomebar-off {
+            z-index: 1;
+        }
+
+        #awesomebar-on {
+            z-index: 2;
+            opacity: 0;
+            background-position: -160px -190px;
+        }
+
+        #slat1 {
+            top: 77px;
+        }
+
+        #slat2 {
+            top: 110px;
+        }
+
+        #slat3 {
+            top: 143px;
+        }
+
+        // activate animations on hover
+        &:hover {
+            #awesomebar-on {
+                .animation(awesomebar-on 0.2s ease 0.1s 1 normal forwards);
+            }
+
+            #slat1 {
+                .animation(slat1 0.3s ease 0.2s 1 normal forwards);
+            }
+
+            #slat2 {
+                .animation(slat2 0.3s ease 0.4s 1 normal forwards);
+            }
+
+            #slat3 {
+                .animation(slat3 0.3s ease 0.6s 1 normal forwards);
+            }
+        }
+    }
 }
 
 /****************************************************************************/
@@ -1390,8 +1790,9 @@
             transform: translateY(0);
         }
 
-        #designed .animation-wrapper {
-
+        #customizer-list li a {
+            padding-top: 180px;
+            background-image: url(/media/img/firefox/desktop/customize/sprite-customizers.png);
         }
     }
 }
@@ -1429,6 +1830,7 @@
         }
 
         #designed-copy {
+            float: none;
             width: auto;
             text-align: center;
         }
@@ -1525,6 +1927,10 @@
         #awesome-bar .customizer-copy {
             width: auto;
         }
+    }
+
+    .sync-anim {
+        display: none;
     }
 }
 

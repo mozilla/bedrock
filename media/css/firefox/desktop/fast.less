@@ -38,7 +38,7 @@
 }
 
 #cutting-edge {
-    background: #43505b;
+    background: #43505b url(/media/img/firefox/desktop/fast/bg-cutting-edge-knight.png) center center no-repeat;
     background: url(/media/img/firefox/desktop/fast/bg-cutting-edge-knight.png) center center no-repeat,
         #43505b url(/media/img/firefox/desktop/fast/bg-cutting-edge.jpg) center center no-repeat;
 
@@ -276,23 +276,29 @@
         // slide down background behind the "+" that opens a new tab
         @-webkit-keyframes feel-newtab-bg-out {
             0% { top: 0; }
-            99.9% { top: 0; }
+            99.9% { top : 0; }
             100% { top: 35px; }
         }
 
         @keyframes feel-newtab-bg-out {
             0% { top: 0; }
-            99.9% { top: 0; }
+            99.9% { top : 0; }
             100% { top: 35px; }
         }
 
         // slide all tab area content over to the right
         @-webkit-keyframes feel-tabs-in {
-            100% { left: 296px; }
+            100% {
+                -webkit-transform: translateX(231px);
+                transform: translateX(231px);
+            }
         }
 
         @keyframes feel-tabs-in {
-            100% { left: 296px; }
+            100% {
+                -webkit-transform: translateX(231px);
+                transform: translateX(231px);
+            }
         }
 
         // close "x" to the left of the tabs
@@ -310,11 +316,13 @@
             50% {
                 opacity: 1;
                 -webkit-transform: scale3d(1.5, 1.5, 0);
+                transform: scale3d(1.5, 1.5, 0);
             }
             99.9% { opacity: 1; }
             100% {
                 opacity: 0;
                 -webkit-transform: scale3d(1.5, 1.5, 0);
+                transform: scale3d(1.5, 1.5, 0);
             }
         }
 
@@ -335,13 +343,25 @@
 
         // slide all tab area content back to the left
         @-webkit-keyframes feel-tabs-out {
-            0% { left: 332px; }
-            100% { left: 65px; }
+            0% {
+                -webkit-transform: translateX(231px);
+                transform: translateX(231px);
+            }
+            100% {
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+            }
         }
 
         @keyframes feel-tabs-out {
-            0% { left: 332px; }
-            100% { left: 65px; }
+            0% {
+                -webkit-transform: translateX(231px);
+                transform: translateX(231px);
+            }
+            100% {
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+            }
         }
 
         // hide the close "x" on the left side of the tabs
@@ -427,11 +447,13 @@
             49.9% { opacity: 0; }
             50% { opacity: 1; }
             99.9% {
-                top: 36px;
+                -webkit-transform: translateY(0);
+                transform: translateY(0);
                 opacity: 1;
             }
             100% {
-                top: 68px;
+                -webkit-transform: translateY(32px);
+                transform: translateY(32px);
                 opacity: 1;
             }
         }
@@ -440,11 +462,13 @@
             49.9% { opacity: 0; }
             50% { opacity: 1; }
             99.9% {
-                top: 36px;
+                -webkit-transform: translateY(0);
+                transform: translateY(0);
                 opacity: 1;
             }
             100% {
-                top: 68px;
+                -webkit-transform: translateY(32px);
+                transform: translateY(32px);
                 opacity: 1;
             }
         }
@@ -573,7 +597,8 @@
             1% { opacity: 0.8; }
             100% {
                 opacity: 0.8;
-                left: 730px;
+                -webkit-transform: translateX(33px);
+                transform: translateX(33px);
             }
         }
 
@@ -581,7 +606,8 @@
             1% { opacity: 0.8; }
             100% {
                 opacity: 0.8;
-                left: 730px;
+                -webkit-transform: translateX(33px);
+                transform: translateX(33px);
             }
         }
 
@@ -694,7 +720,7 @@
                 display: block;
             }
 
-            .animation {
+            .stage {
                 display: none;
             }
         }
@@ -738,7 +764,7 @@
                 display: block;
             }
 
-            .animation {
+            .stage {
                 display: none;
             }
         }

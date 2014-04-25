@@ -2,15 +2,15 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-var FirefoxDesktop = window.FirefoxDesktop || {};
-
 (function($) {
     'use strict';
+
+    var isDesktopViewport = $(window).width() >= 1000;
 
     var $feel_animation;
     var loopAnimation;
 
-    if (!FirefoxDesktop.isSmallViewport) {
+    if (isDesktopViewport) {
         $feel_animation = $('#feel-animation');
 
         loopAnimation = function() {
@@ -23,7 +23,7 @@ var FirefoxDesktop = window.FirefoxDesktop || {};
             }, 8800);
         };
 
-        $('#feel').waypoint(function(dir) {
+        $('#feel').waypoint(function() {
             $feel_animation.addClass('animate');
             loopAnimation();
         }, {
