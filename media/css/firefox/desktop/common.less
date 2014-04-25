@@ -59,7 +59,7 @@
         margin-top: 6px;
 
         li {
-            margin-right: @baseLine * 3;
+            margin: 0 @baseLine*3 0 0;
 
             a {
                 display: inline-block;
@@ -67,6 +67,16 @@
                 height: 36px;
                 padding: 12px 0 0;
             }
+        }
+    }
+}
+
+html[dir="rtl"] {
+    #masthead nav {
+        float: right;
+
+        li {
+            margin: 0 0 0 @baseLine*3;
         }
     }
 }
@@ -105,7 +115,7 @@
 #site-header-logo {
     float: left;
     width: 140px;
-    margin-right: 100px;
+    margin: 0 100px 0 0;
 }
 
 #masthead-logo-nav {
@@ -121,6 +131,17 @@
     font-size: 16px;
     padding: 8px 30px;
     border-radius: .4em;
+}
+
+html[dir="rtl"] {
+    #site-header-logo {
+        float: right;
+        margin: 0 0 0 100px;
+    }
+
+    #masthead-download-firefox {
+        float: left;
+    }
 }
 
 .container {
@@ -177,6 +198,17 @@ section .container {
 
         &.last {
             margin-right: 0;
+        }
+    }
+}
+
+html[dir="rtl"] {
+    .feature-list li {
+        float: right;
+        margin: 0 0 0 @baseLine;
+
+        &.last {
+            margin-left: 0;
         }
     }
 }
@@ -307,7 +339,7 @@ html[lang="en-US"], html[lang="en-UK"] {
         font-size: @baseFontSize;
         line-height: 40px;
         background: url(/media/img/firefox/desktop/sprite-browser-logos.png) right top no-repeat;
-        padding-right: 70px;
+        padding: 0 70px 0 0;
         letter-spacing: 0;
     }
 
@@ -343,9 +375,11 @@ html[lang="en-US"], html[lang="en-UK"] {
     .score {
         display: inline-block;
         height: 40px;
-        padding-right: 10px;
-        border-right: 1px solid #000;
-        border-right: 1px solid rgba(0, 0, 0, .2);
+        padding: 0 10px;
+        border-width: 0 1px 0 0;
+        border-style: solid;
+        border-color: #000;
+        border-color: rgba(0, 0, 0, .2);
         line-height: 40px;
         color: #fff;
         font-size: 16px;
@@ -377,8 +411,55 @@ html[lang="en-US"], html[lang="en-UK"] {
 #speed-citation {
     display: block;
     text-align: left;
-    padding-left: 280px;
+    padding: 0 0 0 280px;
     margin-bottom: (@baseLine * 3);
+}
+
+html[dir="rtl"] {
+    #speed-graph {
+        dt {
+            float: right;
+            text-align: left;
+            padding: 0 0 0 70px;
+        }
+
+        #speed-fx {
+            background-position: left 0;
+        }
+
+        #speed-opera-next {
+            background-position: left -60px;
+        }
+
+        #speed-chrome {
+            background-position: left -120px;
+        }
+
+        #speed-ie10 {
+            background-position: left -180px;
+        }
+
+        #speed-opera {
+            background-position: left -240px;
+        }
+
+        dd {
+            margin: 0 280px 10px 0;
+
+            div {
+                text-align: left;
+            }
+        }
+
+        .score {
+            border-width: 0 0 0 1px;
+        }
+    }
+
+    #speed-citation {
+        text-align: right;
+        padding: 0 280px 0 0;
+    }
 }
 
 /* }}} */
@@ -512,7 +593,7 @@ html[lang="en-US"], html[lang="en-UK"] {
 #subscribe-wrapper.columned {
     float: left;
     width: 400px;
-    margin-right: @baseLine * 4;
+    margin: 0 @baseLine*4 0 0;
 
     .billboard {
         padding-left: 0;
@@ -526,6 +607,17 @@ html[lang="en-US"], html[lang="en-UK"] {
         &:hover {
             color: #fff;
         }
+    }
+}
+
+html[dir="rtl"] {
+    #subscribe-download-wrapper h3 {
+        float: none;
+    }
+
+    #subscribe-wrapper.columned {
+        float: right;
+        margin: 0 0 0 @baseLine*4;
     }
 }
 
@@ -550,10 +642,10 @@ html[lang="en-US"], html[lang="en-UK"] {
         width: 100%;
 
         nav {
-            margin-right: 10px;
+            margin: 6px 10px 0;
 
             li {
-                margin-right: 30px;
+                margin: 0 30px 0 0;
             }
         }
     }
@@ -567,7 +659,7 @@ html[lang="en-US"], html[lang="en-UK"] {
     }
 
     #site-header-logo {
-        margin-right: 30px;
+        margin: 0 30px 0 0;
     }
 
     .feature-list li {
@@ -582,12 +674,12 @@ html[lang="en-US"], html[lang="en-UK"] {
         }
 
         dd {
-            margin-left: 230px;
+            margin: 0 0 10px 230px;
         }
     }
 
     #speed-citation {
-        padding-left: 230px;
+        padding: 0 0 0 230px;
     }
 
     #subscribe-download-wrapper {
@@ -598,7 +690,7 @@ html[lang="en-US"], html[lang="en-UK"] {
 
     #subscribe-wrapper.columned {
         width: 320px;
-        margin-right: 60px;
+        margin: 0 60px 0 0;
 
         .billboard {
             width: auto;
@@ -607,6 +699,25 @@ html[lang="en-US"], html[lang="en-UK"] {
 
     #footer-email-form h3 {
         padding-top: 0;
+    }
+
+    html[dir="rtl"] {
+        #masthead nav li,
+        #site-header-logo {
+            margin: 0 0 0 30px;
+        }
+
+        #speed-graph dd {
+            margin: 0 230px 10px 0;
+        }
+
+        #speed-citation {
+            padding: 0 230px 0 0;
+        }
+
+        #subscribe-wrapper.columned {
+            margin: 0 0 0 60px;
+        }
     }
 }
 
@@ -639,7 +750,7 @@ html[lang="en-US"], html[lang="en-UK"] {
         position: relative;
         left: 60px;
         float: none;
-        margin-right: 0;
+        margin: 0;
     }
 
     #masthead-download-firefox, #download-wrapper {
@@ -679,12 +790,12 @@ html[lang="en-US"], html[lang="en-UK"] {
         }
 
         dd {
-            margin-left: 90px;
+            margin: 0 0 10px 90px;
         }
     }
 
     #speed-citation {
-        padding-left: 90px;
+        padding: 0 0 0 90px;
     }
 
     #subscribe-wrapper.columned {
@@ -700,6 +811,28 @@ html[lang="en-US"], html[lang="en-UK"] {
     .wide-br {
         display: none;
     }
+
+    html[dir="rtl"] {
+        #site-header-logo {
+            right: 60px;
+            float: none;
+            margin: 0;
+        }
+
+        .feature-list li {
+            float: none;
+            width: auto;
+            margin: 0 0 (@baseLine * 2);
+        }
+
+        #speed-graph dd {
+            margin: 0 90px 10px 0;
+        }
+
+        #speed-citation {
+            padding: 0 90px 0 0;
+        }
+    }
 }
 
 @media (max-width: @breakMobileLandscape) {
@@ -707,19 +840,44 @@ html[lang="en-US"], html[lang="en-UK"] {
         width: @breakMobile - @baseLine;
     }
 
+    #trust-badge {
+        width: 280px;
+
+        &:after {
+            margin-left: -140px;
+            width: 280px;
+        }
+    }
+
     #speed-graph {
         width: 300px;
 
         dt {
-            padding-right: 50px;
+            padding: 0 50px 0 0;
         }
 
         dd {
-            margin-left: 70px;
+            margin: 0 0 10px 70px;
         }
     }
 
     #speed-citation {
-        padding-left: 70px;
+        padding: 0 0 0 70px;
+    }
+
+    html[dir="rtl"] {
+        #speed-graph {
+            dt {
+                padding: 0 0 0 50px;
+            }
+
+            dd {
+                margin: 0 70px 10px 0;
+            }
+        }
+
+        #speed-citation {
+            padding: 0 70px 0 0;
+        }
     }
 }
