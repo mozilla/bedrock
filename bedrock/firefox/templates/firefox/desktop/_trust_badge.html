@@ -1,0 +1,11 @@
+{% add_lang_files "firefox/desktop/trust" %}
+
+<div id="trust-badge">
+  <div id="trust-badge-content">
+    {{ _('<span id="trust-line1">Most trusted</span> <span id="trust-line2">internet company</span> <span id="trust-line3">for privacy</span>') }}
+
+  {% if show_link != false %}
+    <a class="more" href="https://blog.mozilla.org/blog/2013/01/28/privacy-day-2013/">{{ _('Learn more') }}</a>
+  {% endif %}
+  </div>
+</div>
