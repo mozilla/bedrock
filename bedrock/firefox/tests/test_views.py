@@ -33,11 +33,22 @@ class TestRNAViews(TestCase):
         return self.mock_render.call_args[0][2]
 
     @patch('bedrock.firefox.views.get_object_or_404')
-    def test_get_release_or_404(self, get_object_or_404):
+    @patch('bedrock.firefox.views.Q')
+    def test_get_release_or_404(self, Q, get_object_or_404):
         eq_(views.get_release_or_404('version', 'product'),
             get_object_or_404.return_value)
         get_object_or_404.assert_called_with(
-            Release, version='version', product='product')
+            Release, Q.return_value, version='version')
+        Q.assert_called_with(product='product')
+
+    @patch('bedrock.firefox.views.get_object_or_404')
+    @patch('bedrock.firefox.views.Q')
+    def test_get_release_or_404_esr(self, Q, get_object_or_404):
+        eq_(views.get_release_or_404('24.5.0', 'Firefox'),
+            get_object_or_404.return_value)
+        Q.assert_any_call(product='Firefox')
+        Q.assert_any_call(product='Firefox Extended Support Release')
+        Q.__or__.assert_called()
 
     @patch('bedrock.firefox.views.get_release_or_404')
     @patch('bedrock.firefox.views.equivalent_release_url')
