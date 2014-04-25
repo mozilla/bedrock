@@ -8,6 +8,7 @@ import json
 import re
 
 from django.conf import settings
+from django.db.models import Q
 from django.http import (
     Http404, HttpResponsePermanentRedirect, HttpResponseRedirect)
 from django.shortcuts import get_object_or_404
@@ -464,7 +465,12 @@ def equivalent_release_url(release):
 
 
 def get_release_or_404(version, product):
-    release = get_object_or_404(Release, version=version, product=product)
+    if product == 'Firefox' and len(version.split('.')) == 3:
+        product_query = Q(product='Firefox') | Q(
+            product='Firefox Extended Support Release')
+    else:
+        product_query = Q(product=product)
+    release = get_object_or_404(Release, product_query, version=version)
     if not release.is_public and not settings.DEV:
         raise Http404
     return release
