@@ -2,9 +2,12 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
- var FirefoxDesktop = window.FirefoxDesktop || {};
-
 (function($) {
+    'use strict';
+
+    var isDesktopViewport = $(window).width() >= 1000;
+    var isSmallViewport = $(window).width() < 760;
+
     var $intro_stage = $('#intro .stage');
     var $designed_stage = $('#designed .stage');
 
@@ -12,7 +15,7 @@
     var $designed_animation = $('#designed .animation-wrapper');
 
     // animations only run on full desktop sized viewport
-    if (FirefoxDesktop.isDesktopViewport) {
+    if (isDesktopViewport) {
         // initiate animation just after page load.
         setTimeout(function() {
             $intro_animation.addClass('animate');
@@ -46,7 +49,7 @@
         });
     }
 
-    if (!FirefoxDesktop.isSmallViewport) {
+    if (!isSmallViewport) {
         // fire sync animation when scrolled to
         $('#sync').waypoint(function() {
             Mozilla.syncAnimation();

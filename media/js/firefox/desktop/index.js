@@ -2,14 +2,16 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
- var FirefoxDesktop = window.FirefoxDesktop || {};
-
 (function($) {
+    'use strict';
+
+    var isDesktopViewport = $(window).width() >= 1000;
+
     var $customize_stage = $('#customize .stage');
     var $customize_animation = $('#customize .animation-wrapper');
 
     // animations only run on full desktop sized viewport
-    if (FirefoxDesktop.isDesktopViewport) {
+    if (isDesktopViewport) {
         $('#customize').waypoint(function() {
             $customize_animation.addClass('animate');
         }, {

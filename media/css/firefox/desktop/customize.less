@@ -303,7 +303,12 @@
                     height: 60px;
                     border-radius: 4px;
                     border: 4px solid transparent;
-                    .transition();
+                    .transition(all 0.2s ease);
+
+                    &:hover, &:focus {
+                        border-color: #fff;
+                        border-color: rgba(255, 255, 255, 0.7);
+                    }
 
                     &.selected {
                         border-color: #fe8207;
@@ -637,6 +642,8 @@
             }
         }
 
+        // parent selector required here to override 'opacity: 1;' in the
+        // nested selector above.
         #panel-start #panel-start-footer-on {
             z-index: 2;
             opacity: 0;
@@ -1820,6 +1827,7 @@
         }
 
         #designed-copy {
+            float: none;
             width: auto;
             text-align: center;
         }
