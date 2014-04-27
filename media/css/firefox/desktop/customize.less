@@ -1386,24 +1386,6 @@
             }
         }
 
-        &:hover {
-            #brush {
-                .animation(brush 1.2s ease 0.1s 1 normal forwards;);
-            }
-
-            #paint-blue {
-                .animation(paint-blue 0.3s ease 0.1s 1 normal forwards);
-            }
-
-            #paint-red {
-                .animation(paint-red 0.4s ease 0.4s 1 normal forwards);
-            }
-
-            #paint-orange {
-                .animation(paint-orange 0.3s ease 1s 1 normal forwards);
-            }
-        }
-
         #brush {
             z-index: 4;
             top: 40px;
@@ -1439,6 +1421,24 @@
             height: 100px;
             -webkit-transform: rotateZ(-65deg) translate3d(14px, -24px, 0);
             transform: rotateZ(-65deg) translate3d(14px, -24px, 0);
+        }
+
+        // activate animations on hover
+        &:hover {
+            #brush {
+                .animation(brush 1.2s ease 0.1s 1 normal forwards;);
+            }
+            #paint-blue {
+                .animation(paint-blue 0.3s ease 0.1s 1 normal forwards);
+            }
+
+            #paint-red {
+                .animation(paint-red 0.4s ease 0.4s 1 normal forwards);
+            }
+
+            #paint-orange {
+                .animation(paint-orange 0.3s ease 1s 1 normal forwards);
+            }
         }
     }
 
@@ -1514,6 +1514,7 @@
             transform: rotateZ(180deg) scale3d(1, 1, 1) translateZ(80px);
         }
 
+        // activate animations on hover
         &:hover {
             #puzzle-off {
                 .animation(puzzle-off 0.1s ease 0.1s 1 normal forwards);
@@ -1616,6 +1617,7 @@
             top: 143px;
         }
 
+        // activate animations on hover
         &:hover {
             #awesomebar-on {
                 .animation(awesomebar-on 0.2s ease 0.1s 1 normal forwards);
