@@ -185,7 +185,7 @@ def windows_billboards(req):
 
 
 def fx_home_redirect(request):
-    return HttpResponseRedirect(reverse('firefox.fx'))
+    return HttpResponseRedirect(reverse('firefox.new'))
 
 
 def dnt(request):

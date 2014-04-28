@@ -18,7 +18,7 @@
 
 {% block content %}
 {% if request.locale.startswith('en') %}
-  {% set mobile_link = url('firefox.fx') + '#mobile' %}
+  {% set mobile_link = url('firefox.partners.index') + '#android' %}
 {% else %}
   {% set mobile_link = php_url('/mobile/') %}
 {% endif %}
