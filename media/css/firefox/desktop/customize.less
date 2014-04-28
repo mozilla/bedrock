@@ -173,6 +173,7 @@
 
     .container {
         font-size: 18px;
+        min-height: 0;
     }
 
     .button {
@@ -337,7 +338,7 @@
 .sync-anim {
     height: 190px;
     width: 390px;
-    margin: 0 auto @baseLine;
+    margin: 0 auto @baseLine * 2;
     background-image: url('/media/img/firefox/sync/composite.png?04-2014');
     z-index: 1;
 }
@@ -1453,35 +1454,35 @@
         @-webkit-keyframes puzzle-on {
             10% {
                 opacity: 1;
-                -webkit-transform: rotateZ(180deg) scale3d(1, 1, 1) translateZ(80px);
-                transform: rotateZ(180deg) scale3d(1, 1, 1) translateZ(80px);
+                -webkit-transform: rotateZ(180deg) translateZ(80px);
+                transform: rotateZ(180deg) translateZ(80px);
             }
             20% {
                 opacity: 1;
-                -webkit-transform: rotateZ(180deg) scale3d(1, 1, 1) translateZ(80px);
-                transform: rotateZ(180deg) scale3d(1, 1, 1) translateZ(80px);
+                -webkit-transform: rotateZ(180deg) translateZ(80px);
+                transform: rotateZ(180deg) translateZ(80px);
             }
             100% {
                 opacity: 1;
-                -webkit-transform: rotateZ(0) scale3d(1, 1, 1) translate3d(-3px, 12px, 0);
-                transform: rotateZ(0) scale3d(1, 1, 1) translate3d(-3px, 12px, 0);
+                -webkit-transform: rotateZ(0) translate3d(-3px, 12px, 0);
+                transform: rotateZ(0) translate3d(-3px, 12px, 0);
             }
         }
         @keyframes puzzle-on {
             10% {
                 opacity: 1;
-                -webkit-transform: rotateZ(180deg) scale3d(1, 1, 1) translateZ(80px);
-                transform: rotateZ(180deg) scale3d(1, 1, 1) translateZ(80px);
+                -webkit-transform: rotateZ(180deg) translateZ(80px);
+                transform: rotateZ(180deg) translateZ(80px);
             }
             20% {
                 opacity: 1;
-                -webkit-transform: rotateZ(180deg) scale3d(1, 1, 1) translateZ(80px);
-                transform: rotateZ(180deg) scale3d(1, 1, 1) translateZ(80px);
+                -webkit-transform: rotateZ(180deg) translateZ(80px);
+                transform: rotateZ(180deg) translateZ(80px);
             }
             100% {
                 opacity: 1;
-                -webkit-transform: rotateZ(0) scale3d(1, 1, 1) translate3d(-3px, 12px, 0);
-                transform: rotateZ(0) scale3d(1, 1, 1) translate3d(-3px, 12px, 0);
+                -webkit-transform: rotateZ(0) translate3d(-3px, 12px, 0);
+                transform: rotateZ(0) translate3d(-3px, 12px, 0);
             }
         }
 
@@ -1510,8 +1511,8 @@
             height: 181px;
             left: 57px;
             top: -13px;
-            -webkit-transform: rotateZ(180deg) scale3d(1, 1, 1) translateZ(80px);
-            transform: rotateZ(180deg) scale3d(1, 1, 1) translateZ(80px);
+            -webkit-transform: rotateZ(180deg) translateZ(80px);
+            transform: rotateZ(180deg) translateZ(80px);
         }
 
         // activate animations on hover
