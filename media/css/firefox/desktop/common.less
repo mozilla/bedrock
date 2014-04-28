@@ -102,11 +102,10 @@ html[dir="rtl"] {
 // force dl button links to be white in blue bg footer
 #subscribe-download-wrapper .download-button small.download-other {
     color: #fff;
-    color: rgba(255, 255, 255, .5);
 
-    a:link {
+    a:link, a:visited {
         color: #fff;
-        color: rgba(255, 255, 255, .5);
+        text-decoration: underline;
     }
 }
 
@@ -602,7 +601,7 @@ html[dir="rtl"] {
 
     a {
         color: #fff;
-        color: rgba(255, 255, 255, .5);
+        text-decoration: underline;
 
         &:hover {
             color: #fff;
@@ -733,12 +732,17 @@ html[dir="rtl"] {
 
         .toggle {
             position: absolute;
+            left: 10px;
         }
 
         nav {
             margin: 0;
             padding: 0;
             float: none;
+
+            li a {
+                height: auto;
+            }
         }
     }
 
@@ -747,7 +751,7 @@ html[dir="rtl"] {
     }
 
     #nav-main-menu {
-        margin-left: 0;
+        margin-left: -8px;
     }
 
     #site-header-logo {

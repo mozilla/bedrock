@@ -25,7 +25,7 @@
       </p>
 
       <div class="animation-wrapper" id="flexible-top-animation">
-        <img src="{{ media('/img/firefox/desktop/customize/animations/flexible-top-fallback.png') }}" class="fallback">
+        <img src="{{ media('/img/firefox/desktop/customize/animations/flexible-top-fallback.png') }}" class="fallback" alt="">
 
         <div class="stage">
           <div id="browser-customize-orange"></div>
@@ -40,6 +40,7 @@
   <section id="designed">
     <div class="container">
       <div id="designed-copy">
+        {# L10n: Line break below is for wide screen formatting only. #}
         <h2>{{ _('Designed to <br class="wide-br">be redesigned') }}</h2>
 
         <p>
@@ -48,10 +49,10 @@
           {{ _('Keep your favorite features — add-ons, private browsing, Sync and more — one quick click away.') }}
         </p>
 
-        {{ high_res_img('img/firefox/desktop/customize/designed-redesigned.png', { 'alt': _('Customize Firefox'), 'id': 'designed-mobile'}) }}
+        {{ high_res_img('img/firefox/desktop/customize/designed-redesigned.png', { 'alt': '', 'id': 'designed-mobile'}) }}
       </div>
       <div class="animation-wrapper" id="flexible-bottom-animation">
-        <img src="{{ media('/img/firefox/desktop/customize/animations/flexible-bottom-fallback.png') }}" class="fallback">
+        <img src="{{ media('/img/firefox/desktop/customize/animations/flexible-bottom-fallback.png') }}" class="fallback" alt="">
 
         <div class="stage">
           <div id="panel-start">
@@ -160,6 +161,7 @@
             {{ _('Choose from thousands of themes and dress up your browser with a single click.') }}
           </p>
 
+          {# TODO: add alt attributes to images below. #}
           <ul id="themes-thumbs">
             <li>
               <a href="#" role="button" id="theme-yellow"><img src="{{ media('/img/firefox/desktop/customize/theme-thumb-yellow.png') }}"></a>
@@ -183,7 +185,8 @@
         <a class="next show-customizer" href="#add-ons" role="button">{{ _('Next') }}</a>
 
         <div class="customizer-visual">
-          <img id="theme-demo" src="{{ media('/img/firefox/desktop/customize/theme-red.png') }}">
+          {# TODO: add alt value below. #}
+          <img id="theme-demo" src="{{ media('/img/firefox/desktop/customize/theme-red.png') }}" alt="">
         </div>
       </div>
     </section>
@@ -231,7 +234,8 @@
         </div>
 
         <div class="customizer-visual">
-          <img src="{{ media('/img/firefox/desktop/customize/awesome-bar.png') }}">
+          {# TODO: add alt value below. #}
+          <img src="{{ media('/img/firefox/desktop/customize/awesome-bar.png') }}" alt="">
         </div>
       </div>
     </section>

@@ -27,9 +27,9 @@
         <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
         <nav id="nav-main" role="navigation">
           <ul id="nav-main-menu">
-            <li><a id="nav-main-trust" href="{{ url('firefox.desktop.trust') }}">{{ _('Trusted') }}</a></li>
+            <li class="first"><a id="nav-main-trust" href="{{ url('firefox.desktop.trust') }}">{{ _('Trusted') }}</a></li>
             <li><a id="nav-main-customize" href="{{ url('firefox.desktop.customize') }}">{{ _('Flexible') }}</a></li>
-            <li><a id="nav-main-fast" href="{{ url('firefox.desktop.fast') }}">{{ _('Fast') }}</a></li>
+            <li class="last"><a id="nav-main-fast" href="{{ url('firefox.desktop.fast') }}">{{ _('Fast') }}</a></li>
           </ul>
         </nav>
       {% endblock %}

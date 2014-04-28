@@ -192,7 +192,6 @@ MINIFY_BUNDLES = {
         'firefox_desktop_customize': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/desktop/customize.less',
-            'css/firefox/sync-animation.less',
         ),
         'firefox_desktop_trust': (
             'css/sandstone/sandstone-resp.less',
