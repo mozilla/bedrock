@@ -2,20 +2,44 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% extends "/firefox/base.html" %}
+{% extends "firefox/base.html" %}
+
+{% set_lang_files "firefox/australis/firefox_tour" %}
 
 {% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
 
-{% block page_title_prefix %}{% endblock %}
-{% block page_title %}{{ _('Welcome to the new Firefox') }}{% endblock %}
-{% block page_title_suffix %}{% endblock %}
 {% block body_class %}sky{% endblock %}
 
-{% block site_css %}
-  {{ css('firefox_australis_tour') }}
-{% endblock %}
+{% block site_css %}{% endblock %}
 
-{% block string_data %}{% endblock %}
+{% block string_data %}
+{# L10n: This is the label for a button that opens the tour modal dialog #}
+data-open="{{ _('Open tour') }}"
+{# L10n: This is the label for a button that closes the tour modal dialog #}
+data-close="{{ _('Close tour') }}"
+{# L10n: This is the label for a button that proceeds to the next step of the tour #}
+data-next="{{ _('Next') }}"
+{# L10n: This is the label for a button that starts the tour #}
+data-start="{{ _('Let’s go') }}"
+{# L10n: This is the label for a button that delays starting the tour #}
+data-later="{{ _('Not now') }}"
+{# L10n: This is the title for a door-hanger menu that shows in the browser chrome #}
+data-title="{{ _('See what’s new') }}"
+{# L10n: This is the text for a door-hanger menu that shows in the browser chrome #}
+data-text="{{ _('It’s the fastest, most flexible Firefox ever.') }}"
+{# L10n: This is the text for a call to action that appears in the web page #}
+data-later-cta="{{ _('Take the tour to see what’s new') }}"
+{# L10n: This is the label that represents tour step one of four #}
+data-step1="{{ _('1/4') }}"
+{# L10n: This is the label that represents tour step two of four #}
+data-step2="{{ _('2/4') }}"
+{# L10n: This is the label that represents tour step three of four #}
+data-step3="{{ _('3/4') }}"
+{# L10n: This is the label that represents tour step four of four #}
+data-step4="{{ _('4/4') }}"
+{# This data attribute is just for testing purposes and should not be localized #}
+data-has-tour="True"
+{% endblock %}
 
 {% block site_header %}
   <header id="masthead">
@@ -27,80 +51,43 @@
 {% endblock %}
 
 {% block content %}
-  {# begin page content #}
-  <main role="main">
-    <header>
-      <h1>
-        <span class="lead">{{ _('Welcome to the') }}</span>
-        <span class="main">{{ _('new Firefox') }}</span>
-      </h1>
-      <p>{{ _('The fast, flexible browser you can trust.') }}</p>
-    </header>
-    <div class="sync">
-      <section>
-        <h2>{{ _('Keep your Firefox in Sync') }}</h2>
-        <p>{{ _('Instantly make Firefox your own wherever you use it. Access your bookmarks, history, passwords and more from any device.')}}
-        <div class="sync-cta">
-          <button class="button">{{ _('Get started with Sync') }}</button>
-          <small>{{ _('Create an account from the menu') }}</small>
+  <article>
+    {% block main_heading %}{% endblock %}
+    <div class="main-container">
+      <section class="sync">
+        <div class="inner-container">
+          {% block sync_content %}{% endblock %}
         </div>
-        <a id="survey-link" data-id="{{ survey_id }}" href="https://www.surveygizmo.com/s3/1578454/Firefox-29-Beta-Survey?tour={{ survey_id }}" target="_blank" title="{{ _('Opens new window') }}">
-          {{ _('Take a quick survey about the new Firefox') }}
-        </a>
       </section>
-      <div class="sync-anim">
-        <div class="cloud">
-          <div class="sync-arrows"></div>
-          <div class="checkmark"></div>
-        </div>
-        <div class="device laptop">
-          <div class="inner">
-            <div class="icon logo"></div>
-            <div class="icon history"></div>
-            <div class="icon bookmarks"></div>
-            <div class="icon passwords"></div>
+      <section class="share separator">
+        <div class="inner-container">
+          <header>
+            <h2>{{ _('What kind of Web do you want?') }}</h2>
+            <p>{{ _('When you use Firefox, you help shape the future of the Web.')}}</p>
+          </header>
+          <div class="share-icons">
+            <div class="disc heart"></div>
+            <div class="disc eye"></div>
+            <div class="disc check"></div>
+          </div>
+          <div class="share-cta">
+            <a href="https://webwewant.mozilla.org" class="button more" target="_blank" title="{{ _('Opens new window') }}">
+              {{ _('Share your vision') }}
+            </a>
           </div>
         </div>
-        <div class="device tablet">
-          <div class="inner">
-            <div class="icon logo"></div>
-            <div class="icon history"></div>
-            <div class="icon bookmarks"></div>
-            <div class="icon passwords"></div>
-          </div>
-        </div>
-        <div class="device phone">
-          <div class="inner">
-            <div class="icon logo"></div>
-            <div class="icon history"></div>
-            <div class="icon bookmarks"></div>
-            <div class="icon passwords"></div>
-          </div>
-        </div>
-      </div>
+        <div class="rays red"></div>
+        <div class="rays green"></div>
+      </section>
     </div>
-    <section class="learn-more billboard">
-      <h3>{{ _('Learn more about the new Firefox') }}</h3>
-      <ul>
-        <li><a href="https://support.mozilla.org/products/firefox" target="_blank" title="{{ _('Opens new window') }}">{{ _('Need help?') }}</a></li>
-        <li><a href="http://www.mozilla.org/privacy/you/">{{ _('Putting your privacy first') }}</a></li>
-      </ul>
-      <ul>
-        <li><a href="https://support.mozilla.org/kb/learn-more-about-the-design-of-new-firefox" target="_blank" title="{{ _('Opens new window') }}">{{ _('Learn about the new design') }}</a></li>
-        <li><a href="https://support.mozilla.org/kb/common-questions-after-updating-to-new-firefox" target="_blank" title="{{ _('Opens new window') }}">{{ _('Frequently asked questions') }}</a></li>
-      </ul>
-      <ul>
-        <li><a href="https://support.mozilla.org/kb/what-happened-to-the-add-on-bar" target="_blank" title="{{ _('Opens new window') }}">{{ _('Where did my add-on bar go?') }}</a></li>
-      </ul>
-    </section>
-  </main>
-  {# end page content #}
-
+    <aside class="separator">
+      {% block aside_content %}{% endblock %}
+    </aside>
+  </article>
   {% block tour_content %}{% endblock %}
-
   {% block tour_mask %}{% endblock %}
-
 {% endblock %}
 
+{% block site_footer %}{% endblock %}
 {% block email_form %}{% endblock %}
-{% block js %}{% endblock  %}
+{% block js %}{% endblock %}

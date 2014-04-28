@@ -1,0 +1,82 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+.main-container {
+    display: table;
+    border-spacing: 20px;
+    p {
+        width: 70%;
+        margin: 20px auto;
+    }
+}
+
+.sync {
+    display: table-cell;
+    padding: 20px;
+    width: 50%;
+}
+
+.hide-sync {
+    width: 50%;
+    margin: 0 auto 20px auto;
+    .sync {
+        display: none;
+    }
+}
+
+.share {
+    display: table-cell;
+    padding-top: 20px;
+    width: 50%;
+    background: #006ba2 url(/media/img/firefox/australis/glow/glow-bg.png) top left no-repeat;
+    overflow: hidden;
+    .inner-container {
+        margin: 0 20px;
+        z-index: 3;
+        transform: translate3d(0px, 0px, 0px);
+    }
+}
+
+.share-icons {
+    .disc {
+        &.heart {
+            top: 0;
+            left: 50%;
+            margin-left: -58px;
+            z-index: 3;
+        }
+        &.eye {
+            top: 96px;
+            right: 97px;
+            z-index: 2;
+        }
+        &.check {
+            top: 96px;
+            left: 97px;
+            z-index: 1;
+        }
+    }
+}
+
+.rays {
+    width: 461px;
+    height: 419px;
+    margin-top: -419px;
+    background-image: url(/media/img/firefox/australis/glow/parallel-rays-sprite.png);
+    background-repeat: no-repeat;
+    &.red {
+        z-index: 2;
+        background-position: center top;
+        &.on {
+            animation: wobble 2s infinite;
+        }
+    }
+    &.green {
+        z-index: 1;
+        background-position: center bottom;
+        &.on {
+            animation: bobble 4s infinite;
+        }
+    }
+}

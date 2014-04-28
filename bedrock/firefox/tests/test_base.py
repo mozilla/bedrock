@@ -446,7 +446,7 @@ class TestWhatsNew(TestCase):
         req = self.rf.get('/en-US/firefox/whatsnew/')
         self.view(req, fx_version='29.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/australis/whatsnew-tour-a.html'])
+        eq_(template, ['firefox/australis/whatsnew-tour.html'])
 
     @override_settings(DEV=False)
     def test_fx_australis_secure_redirect(self, render_mock):
@@ -476,47 +476,20 @@ class TestWhatsNew(TestCase):
         eq_(resp.status_code, 200)
 
 
-@patch.object(fx_views.WhatsnewViewGATest, 'redirect_to', none_mock)
-@patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
-class WhatsnewViewGATest(TestCase):
-    def setUp(self):
-        self.view = fx_views.WhatsnewViewGATest.as_view()
-        self.rf = RequestFactory(HTTP_USER_AGENT='Firefox')
-
-    @override_settings(DEV=False)
-    def test_fx_australis_secure_redirect(self, render_mock):
-        """Should redirect to https"""
-        url = '/en-US/firefox/whatsnew/b/'
-        req = self.rf.get(url)
-        with patch.object(req, 'is_secure', return_value=False):
-            resp = self.view(req, fx_version='29.0')
-        eq_(resp['location'], 'https://testserver' + url)
-
-    @override_settings(DEV=True)
-    def test_fx_australis_secure_redirect_not_dev(self, render_mock):
-        """Should not redirect to https: in DEV mode."""
-        url = '/en-US/firefox/whatsnew/b/'
-        req = self.rf.get(url)
-        with patch.object(req, 'is_secure', return_value=False):
-            resp = self.view(req, fx_version='29.0')
-        eq_(resp.status_code, 200)
-
-    @override_settings(DEV=True)
-    def test_fx_australis_secure_redirect_secure(self, render_mock):
-        """Should not redirect to https: when already secure."""
-        url = '/en-US/firefox/whatsnew/b/'
-        req = self.rf.get(url)
-        with patch.object(req, 'is_secure', return_value=True):
-            resp = self.view(req, fx_version='29.0')
-        eq_(resp.status_code, 200)
-
-
 @patch.object(fx_views.TourView, 'redirect_to', none_mock)
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
 class TestTourView(TestCase):
     def setUp(self):
         self.view = fx_views.TourView.as_view()
         self.rf = RequestFactory(HTTP_USER_AGENT='Firefox')
+
+    @override_settings(DEV=True)
+    def test_fx_tour_template(self, render_mock):
+        """Should use firstrun tour template"""
+        req = self.rf.get('/en-US/firefox/tour/')
+        self.view(req, fx_version='29.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/australis/firstrun-tour.html'])
 
     @override_settings(DEV=False)
     def test_fx_australis_secure_redirect(self, render_mock):
@@ -553,33 +526,26 @@ class TestFirstRun(TestCase):
         self.view = fx_views.FirstrunView.as_view()
         self.rf = RequestFactory()
 
+    @override_settings(DEV=True)
     def test_can_post(self, render_mock):
         """Home page must accept post for newsletter signup."""
         req = self.rf.post('/en-US/firefox/firstrun/')
         self.view(req)
         # would return 405 before calling render otherwise
-        render_mock.assert_called_once_with(req, ['firefox/firstrun.html'], ANY)
+        render_mock.assert_called_once_with(req,
+            ['firefox/australis/firstrun-tour.html'], ANY)
 
     @override_settings(DEV=True)
     def test_fx_australis_29(self, render_mock):
-        """Should use australis template for 29.0 en-US only."""
+        """Should use firstrun tour template"""
         req = self.rf.get('/en-US/firefox/firstrun/')
         self.view(req, fx_version='29.0')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/australis/firstrun-tour.html'])
 
-    @override_settings(DEV=True)
-    def test_fx_australis_29_other_locales(self, render_mock):
-        """Should use a different template for other locales"""
-        req = self.rf.get('/fr/firefox/firstrun/')
-        req.locale = 'fr'
-        self.view(req, fx_version='29.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun.html'])
-
     @override_settings(DEV=False)
     def test_fx_australis_secure_redirect(self, render_mock):
-        """Should redirect to https: for 29.0."""
+        """Should redirect to https:"""
         url = '/en-US/firefox/firstrun/'
         req = self.rf.get(url)
         with patch.object(req, 'is_secure', return_value=False):
@@ -607,6 +573,7 @@ class TestFirstRun(TestCase):
 
 @patch.object(fx_views, 'firefox_details', firefox_details)
 class FxVersionRedirectsMixin(object):
+    @override_settings(DEV=True)  # avoid https redirects
     def assert_ua_redirects_to(self, ua, url_name, status_code=301):
         response = self.client.get(self.url, HTTP_USER_AGENT=ua)
         eq_(response.status_code, status_code)
@@ -649,6 +616,7 @@ class FxVersionRedirectsMixin(object):
                       'Gecko/20100101 Firefox/13.0')
         self.assert_ua_redirects_to(user_agent, 'firefox.new')
 
+    @override_settings(DEV=True)
     @patch.dict(product_details.firefox_versions,
                 LATEST_FIREFOX_VERSION='13.0.5')
     @patch('bedrock.mozorg.helpers.download_buttons.latest_version',
@@ -663,6 +631,7 @@ class FxVersionRedirectsMixin(object):
         eq_(response.status_code, 200)
         eq_(response['Vary'], 'User-Agent')
 
+    @override_settings(DEV=True)
     @patch.dict(product_details.firefox_versions,
                 LATEST_FIREFOX_VERSION='25.0')
     @patch('bedrock.mozorg.helpers.download_buttons.latest_version',
@@ -678,6 +647,7 @@ class FxVersionRedirectsMixin(object):
         eq_(response.status_code, 200)
         eq_(response['Vary'], 'User-Agent')
 
+    @override_settings(DEV=True)
     @patch.dict(product_details.firefox_versions,
                 LATEST_FIREFOX_VERSION='16.0')
     @patch('bedrock.mozorg.helpers.download_buttons.latest_version',
@@ -692,6 +662,7 @@ class FxVersionRedirectsMixin(object):
         eq_(response.status_code, 200)
         eq_(response['Vary'], 'User-Agent')
 
+    @override_settings(DEV=True)
     @patch.dict(product_details.firefox_versions,
                 LATEST_FIREFOX_VERSION='16.0')
     @patch('bedrock.mozorg.helpers.download_buttons.latest_version',
@@ -712,37 +683,93 @@ class TestWhatsnewRedirect(FxVersionRedirectsMixin, TestCase):
         with self.activate('en-US'):
             self.url = reverse('firefox.whatsnew', args=['13.0'])
 
+    @override_settings(DEV=True)
+    @patch.dict(product_details.firefox_versions,
+                LATEST_FIREFOX_VERSION='16.0')
+    def test_whatsnew_tour(self):
+        """
+        Hitting /firefox/29.0/whatsnew/?f=30 with en-US locale should render
+        firefox/australis/whatsnew-no-tour.html. Hitting en-US locale with
+        f=31 should render firefox/australis/whatsnew-tour.html. Any other
+        f value or locale should render whatsnew-tour.html.
+        """
+        user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:29.0) '
+                      'Gecko/20100101 Firefox/29.0')
+
+        expected = 'data-has-tour="True"'
+        self.url = reverse('firefox.whatsnew', args=['29.0'])
+
+        # en-US with funnelcake id 30 should not give a tour
+        response = self.client.get(self.url + '?f=30', HTTP_USER_AGENT=user_agent)
+        self.assertNotIn(expected, response.content)
+
+        # en-US with funnelcake id 31 should give a tour
+        response = self.client.get(self.url + '?f=31', HTTP_USER_AGENT=user_agent)
+        self.assertIn(expected, response.content)
+
+        # en-US with improper funnelcake id should still give a tour
+        response = self.client.get(self.url + '?f=0', HTTP_USER_AGENT=user_agent)
+        self.assertIn(expected, response.content)
+
+        # en-US with no funnelcake id should still give a tour
+        response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
+        self.assertIn(expected, response.content)
+
+        with self.activate('de'):
+            self.url = reverse('firefox.whatsnew', args=['29.0'])
+            # de with proper funnelcake id should still get a tour
+            response = self.client.get(self.url + '?f=30', HTTP_USER_AGENT=user_agent)
+            self.assertIn(expected, response.content)
+            # de with no funnelcake id should still get a tour
+            response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
+            self.assertIn(expected, response.content)
+
 
 class TestFirstrunRedirect(FxVersionRedirectsMixin, TestCase):
     def setUp(self):
         with self.activate('en-US'):
             self.url = reverse('firefox.firstrun', args=['13.0'])
 
+    @override_settings(DEV=True)
     @patch.dict(product_details.firefox_versions,
                 LATEST_FIREFOX_VERSION='16.0')
-    def test_firstrun_standard(self):
+    def test_firstrun_tour(self):
         """
-        Hitting /firefox/{version}/firstrun/ with latest Fx should render
-        firefox/firstrun.html, regardless of {version}.
+        Hitting /firefox/29.0/firstrun/?f=30 with en-US locale should render
+        firefox/australis/firstrun-no-tour.html. Hitting en-US locale with
+        f=31 should render firefox/australis/firstrun-tour.html. Any other
+        f value or locale should render firstrun-tour.html.
         """
-        user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:16.0) '
-                      'Gecko/20100101 Firefox/16.0')
+        user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:29.0) '
+                      'Gecko/20100101 Firefox/29.0')
 
-        expected = 'See how Firefox keeps the power of the web in your hands'
+        expected = 'data-has-tour="True"'
+        self.url = reverse('firefox.firstrun', args=['29.0'])
 
-        # TODO: use assertTemplateUsed in place of assertIn when available?
-        # jinja may get in the way though...
+        # en-US with funnelcake id 30 should not give a tour
+        response = self.client.get(self.url + '?f=30', HTTP_USER_AGENT=user_agent)
+        self.assertNotIn(expected, response.content)
 
+        # en-US with funnelcake id 31 should give a tour
+        response = self.client.get(self.url + '?f=31', HTTP_USER_AGENT=user_agent)
+        self.assertIn(expected, response.content)
+
+        # en-US with improper funnelcake id should still give a tour
+        response = self.client.get(self.url + '?f=0', HTTP_USER_AGENT=user_agent)
+        self.assertIn(expected, response.content)
+
+        # en-US with no funnelcake id should still give a tour
         response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
         self.assertIn(expected, response.content)
 
-        self.url = reverse('firefox.firstrun', args=['24.0'])
-        response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
-        self.assertIn(expected, response.content)
-
-        self.url = reverse('firefox.firstrun')
-        response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
-        self.assertIn(expected, response.content)
+        with self.activate('de'):
+            self.url = reverse('firefox.firstrun', args=['29.0'])
+            # de with proper funnelcake id should still get a tour
+            response = self.client.get(self.url + '?f=30', HTTP_USER_AGENT=user_agent)
+            self.assertIn(expected, response.content)
+            # de with no funnelcake id should still get a tour
+            response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
+            self.assertIn(expected, response.content)
 
 
 @patch.object(fx_views, 'firefox_details', firefox_details)
