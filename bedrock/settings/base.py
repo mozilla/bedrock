@@ -180,10 +180,6 @@ MINIFY_BUNDLES = {
             'css/sandstone/video.less',
             'css/firefox/central.less',
         ),
-        'firefox_customize': (
-            'css/sandstone/video.less',
-            'css/firefox/customize.less',
-        ),
         'firefox_desktop': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/desktop/intro-anim.less',
@@ -508,10 +504,6 @@ MINIFY_BUNDLES = {
         'firefox_channel': (
             'js/base/mozilla-pager.js',
             'js/firefox/channel.js',
-        ),
-        'firefox_customize': (
-            'js/base/mozilla-video-tools.js',
-            'js/firefox/customize.js',
         ),
         'firefox_desktop_common': (
             'js/firefox/desktop/common.js',
