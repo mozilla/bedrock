@@ -176,10 +176,6 @@ MINIFY_BUNDLES = {
         'firefox_channel': (
             'css/firefox/channel.less',
         ),
-        'firefox_central': (
-            'css/sandstone/video.less',
-            'css/firefox/central.less',
-        ),
         'firefox_desktop': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/desktop/intro-anim.less',
@@ -490,11 +486,6 @@ MINIFY_BUNDLES = {
             'js/base/footer-email-form.js',
             'js/base/mozilla-input-placeholder.js',
             'js/base/mozilla-image-helper.js',
-        ),
-        'firefox_central': (
-            'js/base/mozilla-video-tools.js',
-            'js/firefox/central.js',
-            'js/base/mozilla-pager.js',
         ),
         'firefox_channel': (
             'js/base/mozilla-pager.js',
