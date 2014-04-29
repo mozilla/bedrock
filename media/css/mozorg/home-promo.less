@@ -203,6 +203,68 @@
 }
 
 
+
+/****************************************************************************/
+// The Web We Want (Australis)
+#panel-webwewant {
+    background: #006ea8 url(/media/img/home/panel/webwewant/bg-australis-map.jpg) -160px top no-repeat;
+
+    .panel-title i {
+        display: block;
+    }
+
+    .aurora {
+        background: url(/media/img/home/panel/webwewant/bg-aurora.png) left bottom repeat-x;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        .transition(background-position 2s ease-in-out);
+
+        &:after {
+            content: '';
+            background: url(/media/img/home/panel/webwewant/webwewant-icons.png) 3px 60px no-repeat;
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            .transition(background-position .5s ease-in-out);
+        }
+    }
+
+    &.expanded {
+        background-position: -60px top;
+
+        .aurora {
+            background-position: -800px bottom;
+            .transition(background-position 120s ease-out);
+
+            &:after {
+                background-position: 30px 60px;
+            }
+        }
+    }
+
+    &.compressed {
+        background-position: -140px bottom;
+
+        .aurora:after {
+            background-position: -40px 60px;
+        }
+    }
+}
+
+.wide #panel-webwewant .panel-title {
+    background: #253741;
+    background: rgba(39, 50, 56, .8);
+    background: -webkit-linear-gradient(bottom, rgba(39, 50, 56, .8) 65%, rgba(39, 50, 56, 0) 100%);
+    background:         linear-gradient(to top, rgba(39, 50, 56, .8) 65%, rgba(39, 50, 56, 0) 100%);
+}
+
+
 /****************************************************************************/
 // @High resolution images for @retina-type displays
 // Desktop
@@ -315,6 +377,32 @@
 
         &.compressed {
             background-position: -130px 25px;
+        }
+    }
+
+    // The Web We Want (Australis)
+    #panel-webwewant {
+        background-position: -160px top;
+
+        .aurora:after {
+            background-size: 167px 160px;
+            background-position: 8px 60px;
+        }
+
+        &.expanded {
+            background-position: -60px top;
+
+            .aurora:after {
+                background-position: 20px 60px;
+            }
+        }
+
+        &.compressed {
+            background-position: -260px top;
+
+            .aurora:after {
+                background-position: -30px 60px;
+            }
         }
     }
 
@@ -461,6 +549,32 @@
         }
     }
 
+    // The Web We Want (Australis)
+    #panel-webwewant {
+        background-position: -160px 90%;
+
+        .aurora:after {
+            background-position: -6px -10px;
+            background-size: 110px 105px;
+        }
+
+        &.compressed {
+            background-position: -160px 100%;
+
+            .aurora:after {
+                background-position: -6px -30px;
+            }
+        }
+
+        &.expanded {
+            background-position: -160px 90%;
+
+            .aurora:after {
+                background-position: -6px 20px;
+            }
+        }
+    }
+
 }
 
 
@@ -565,6 +679,27 @@
             background-position: -15px -60px;
         }
     }
+
+    // The Web We Want (Australis)
+    #panel-webwewant {
+        .aurora:after {
+            background-position: 8px -20px;
+            background-size: 140px 134px;
+        }
+
+        &.expanded {
+            .aurora:after {
+                background-position: 8px 20px;
+            }
+        }
+
+        &.compressed {
+            .aurora:after {
+                background-position: 8px -35px;
+            }
+        }
+    }
+
 }
 
 /****************************************************************************/
