@@ -64,7 +64,7 @@ _ = gettext
 @jingo.register.filter
 def js_escape(string):
     import json
-    return json.dumps(string)[1:-1]
+    return json.dumps(string)[1:-1].replace('&nbsp;', '\\u00A0')
 
 
 @jingo.register.function
