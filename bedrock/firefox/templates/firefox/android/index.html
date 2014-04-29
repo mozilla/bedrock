@@ -4,8 +4,8 @@
 
 {% extends "firefox/base-resp.html" %}
 
-{% block page_title %}{{ _('Mozilla Firefox Mobile Browser') }}{% endblock %}
-{% block page_desc %}{{ _('All the awesomeness of Firefox, packed into a mobile device.') }}{% endblock %}
+{% block page_title %}{{ _('Firefox for Android') }}{% endblock %}
+{% block page_desc %}{{ _('Get the mobile browser that′s got your back') }}{% endblock %}
 {% block body_id %}mobile-features{% endblock %}
 
 {% block site_css %}
@@ -14,9 +14,9 @@
 
 {% block breadcrumbs %}
   <nav class="breadcrumbs">
-    <a href="{{ url('mozorg.home') }}">{{_('Home')}}</a> >
-    <a href="{{ url('firefox') }}#mobile">{{_('Mobile')}}</a> >
-    <span>{{_('Features')}}</span>
+    <a href="{{ url('mozorg.home') }}">{{_('Home')}}</a> &gt;
+    <a href="{{ url('firefox') }}">{{_('Firefox')}}</a> &gt;
+    <span>{{_('Mobile')}}</span>
   </nav>
 {% endblock %}
 
@@ -25,8 +25,8 @@
 <div id="main-feature">
   {{ download_firefox(mobile=True, small=True) }}
   <hgroup>
-    <h1 class="large">{{_('Mobile features')}}</h1>
-    <h2>{{_('All the awesomeness of Firefox, packed into a mobile device.')}}</h2>
+    <h1 class="large">{{_('Firefox for Android')}}</h1>
+    <h2>{{_('Get the mobile browser that′s got your back')}}</h2>
   </hgroup>
 </div>
 

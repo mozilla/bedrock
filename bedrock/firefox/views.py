@@ -167,8 +167,8 @@ def sms_send(request):
             form.errors['__all__'] = msg
         else:
             return HttpResponseRedirect(
-                reverse('firefox.mobile.sms-thankyou'))
-    return l10n_utils.render(request, 'firefox/mobile/sms-send.html',
+                reverse('firefox.android.sms-thankyou'))
+    return l10n_utils.render(request, 'firefox/android/sms-send.html',
                              {'sms_form': form})
 
 
