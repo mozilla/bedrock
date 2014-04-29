@@ -180,9 +180,22 @@ MINIFY_BUNDLES = {
             'css/sandstone/video.less',
             'css/firefox/central.less',
         ),
-        'firefox_customize': (
-            'css/sandstone/video.less',
-            'css/firefox/customize.less',
+        'firefox_desktop': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/desktop/intro-anim.less',
+            'css/firefox/desktop/index.less',
+        ),
+        'firefox_desktop_fast': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/desktop/fast.less',
+        ),
+        'firefox_desktop_customize': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/desktop/customize.less',
+        ),
+        'firefox_desktop_trust': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/desktop/trust.less',
         ),
         'firefox_features': (
             'css/sandstone/video.less',
@@ -487,9 +500,27 @@ MINIFY_BUNDLES = {
             'js/base/mozilla-pager.js',
             'js/firefox/channel.js',
         ),
-        'firefox_customize': (
-            'js/base/mozilla-video-tools.js',
-            'js/firefox/customize.js',
+        'firefox_desktop_common': (
+            'js/firefox/desktop/common.js',
+        ),
+        'firefox_desktop_customize': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/firefox/sync-animation.js',
+            'js/firefox/desktop/common.js',
+            'js/firefox/desktop/customize.js',
+        ),
+        'firefox_desktop_fast': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/firefox/desktop/common.js',
+            'js/firefox/desktop/speed-graph.js',
+            'js/firefox/desktop/fast.js',
+        ),
+        'firefox_desktop_index': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/firefox/desktop/common.js',
+            'js/firefox/desktop/speed-graph.js',
+            'js/firefox/desktop/intro-anim.js',
+            'js/firefox/desktop/index.js',
         ),
         'firefox_features': (
             'js/base/mozilla-video-tools.js',
@@ -546,6 +577,7 @@ MINIFY_BUNDLES = {
             'js/firefox/speed.js',
         ),
         'firefox_sync': (
+            'js/firefox/sync-animation.js',
             'js/firefox/sync.js',
         ),
         'firefox_tech': (
