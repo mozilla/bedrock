@@ -38,6 +38,9 @@
                     $customize_animation.addClass('animate');
                 }, 200);
             }, 200);
+
+            // GA tracking
+            gaTrack(['_trackEvent', 'firefox/desktop/ Interactions', 'replay link']);
         });
     }
 })(window.jQuery);
