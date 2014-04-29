@@ -176,10 +176,6 @@ MINIFY_BUNDLES = {
         'firefox_channel': (
             'css/firefox/channel.less',
         ),
-        'firefox_central': (
-            'css/sandstone/video.less',
-            'css/firefox/central.less',
-        ),
         'firefox_desktop': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/desktop/intro-anim.less',
@@ -196,10 +192,6 @@ MINIFY_BUNDLES = {
         'firefox_desktop_trust': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/desktop/trust.less',
-        ),
-        'firefox_features': (
-            'css/sandstone/video.less',
-            'css/firefox/features.less',
         ),
         'mobile_features': (
             'css/firefox/template-resp.less',
@@ -267,15 +259,8 @@ MINIFY_BUNDLES = {
         'firefox_releases_index': (
             'css/firefox/releases-index.less',
         ),
-        'firefox_security': (
-            'css/firefox/security.less',
-        ),
         'firefox_speed': (
             'css/firefox/speed.less',
-        ),
-        'firefox_technology': (
-            'css/firefox/technology.less',
-            'css/firefox/technology-demos.css',
         ),
         'firefox_tour': (
             'css/firefox/australis/australis-ui-tour.less',
@@ -491,11 +476,6 @@ MINIFY_BUNDLES = {
             'js/base/mozilla-input-placeholder.js',
             'js/base/mozilla-image-helper.js',
         ),
-        'firefox_central': (
-            'js/base/mozilla-video-tools.js',
-            'js/firefox/central.js',
-            'js/base/mozilla-pager.js',
-        ),
         'firefox_channel': (
             'js/base/mozilla-pager.js',
             'js/firefox/channel.js',
@@ -521,10 +501,6 @@ MINIFY_BUNDLES = {
             'js/firefox/desktop/speed-graph.js',
             'js/firefox/desktop/intro-anim.js',
             'js/firefox/desktop/index.js',
-        ),
-        'firefox_features': (
-            'js/base/mozilla-video-tools.js',
-            'js/firefox/features.js',
         ),
         'firefox_firstrun': (
             'js/base/mozilla-modal.js',
@@ -579,9 +555,6 @@ MINIFY_BUNDLES = {
         'firefox_sync': (
             'js/firefox/sync-animation.js',
             'js/firefox/sync.js',
-        ),
-        'firefox_tech': (
-            'js/firefox/technology/tech.js',
         ),
         'firefox_tour_whatsnew': (
             'js/libs/jquery.waypoints.min.js',
