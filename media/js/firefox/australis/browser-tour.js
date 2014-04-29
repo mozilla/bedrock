@@ -502,11 +502,10 @@ if (typeof Mozilla == 'undefined') {
         this.tourHasStarted = false;
         this.tourHasFinished = true;
 
-        this.$mask.one('transitionend', this.onCloseTour.bind(this));
-
         this.$cta.fadeOut('fast', $.proxy(function () {
             this.$tour.removeClass('in');
             this.$mask.addClass('out');
+            setTimeout(this.onCloseTour.bind(this), 600);
         }, this));
     };
 

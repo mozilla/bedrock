@@ -6,21 +6,22 @@
     //Only run the tour if user is on Firefox 29 for desktop.
     if (window.isFirefox() && !window.isFirefoxMobile() && window.getFirefoxMasterVersion() >= 29) {
 
-        // if user has submitted newsletter don't show the tour again
-        if (window.location.hash !== '#footer-email-form') {
-            // add a callback when user finishes tour to update the cta
-            // id is used for Telemetry
-            var tour = new Mozilla.BrowserTour({
-                id: 'australis-tour-firstrun-29-release'
-            });
-
-            tour.init();
-        }
-
-        // if user has Sync already, don't show the page prommo
+        // Query if the UITour API is working before we start the tour
         Mozilla.UITour.getConfiguration('sync', function (config) {
             var visible = '';
 
+            // if user has submitted newsletter don't show the tour again
+            if (window.location.hash !== '#footer-email-form') {
+                // add a callback when user finishes tour to update the cta
+                // id is used for Telemetry
+                var tour = new Mozilla.BrowserTour({
+                    id: 'australis-tour-firstrun-29-release'
+                });
+
+                tour.init();
+            }
+
+            // if user has Sync already, don't show the page prommo
             if (config.setup === false) {
                 $('.sync-cta').show();
                 visible = 'YES';
