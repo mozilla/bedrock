@@ -69,7 +69,13 @@
   <div id="main-feature">
     <div class="row">
       <img src="{{ media('img/firefox/new/firefox-logo.png?2013-06') }}" alt="Firefox" />
-      <h1 class="large">{{_('Different by design')}}</h1>
+      <h1 class="large">
+        {%- if LANG in ['en-GB', 'en-US', 'en-ZA'] -%}
+          <span>Committed to you,</span> <span>your privacy</span> <span>and an open Web</span>
+        {%- else -%}
+          {{_('Committed to you, your privacy and an open Web')}}
+        {%- endif -%}
+      </h1>
     </div>
   </div>
 
@@ -77,12 +83,6 @@
     <div class="stage" id="stage-firefox">
       <div class="scene" id="scene1">
         <div class="container" id="features-download">
-          <ul id="features">
-            <li>{{_('Proudly<br />non-profit')}}</li>
-            <li>{{_('Innovating<br />for you')}}</li>
-            <li>{{_('Fast, flexible,<br />secure')}}</li>
-          </ul>
-
           <div class="desktop download-button-wrapper">
             {{ download_firefox(force_direct=true) }}
           </div>
