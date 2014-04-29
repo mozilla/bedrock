@@ -244,6 +244,29 @@ var Tabzilla = (function (Tabzilla) {
         }
         return 0;
     };
+    // Changing this pref name causes the easter egg to reappear, requires a
+    // fresh disable. Might be handy if or when the message is changed.
+    Tabzilla.EASTER_EGG_PREF_NAME = 'tabzilla.showEasterEgg.careersTeaser';
+    Tabzilla.disableEasterEgg = function () {
+        try {
+            localStorage.setItem(this.EASTER_EGG_PREF_NAME, 'false');
+        } catch (ex) {}
+    };
+    Tabzilla.enableEasterEgg = function () {
+        try {
+            localStorage.setItem(this.EASTER_EGG_PREF_NAME, 'true');
+        } catch (ex) {}
+    };
+    Tabzilla.shouldShowEasterEgg = function () {
+        try {
+            return (localStorage.getItem(this.EASTER_EGG_PREF_NAME) !== 'false');
+        } catch (ex) {
+            // HACK: If there's an exception in getting a localStorage item,
+            // then the support is probably not there. Err on the side of not
+            // showing the easter egg, since it can't be turned off.
+            return false;
+        }
+    };
     var Infobar = function (id, name) {
         this.id = id;
         this.name = name;
@@ -571,8 +594,8 @@ var Tabzilla = (function (Tabzilla) {
         $(window).load(function() {
             try {
                 // Try to only show on stage and production environments.
-                if (/mozill|webmaker|allizom|firefox/.exec(location.hostname)) {
-                    console.log("{% filter js_escape|safe %}{% include "includes/careers-teaser.html" %}{% endfilter %}");
+                if (Tabzilla.shouldShowEasterEgg()) {
+                    console.log("{% filter js_escape|safe %}{% include "includes/careers-teaser.html" %}{% include "includes/tabzilla-console-footer.html" %}{% endfilter %}");
                 }
             } catch(e) {}
         });
