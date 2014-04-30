@@ -263,6 +263,18 @@ class TestDownloadButtons(TestCase):
             ok_('lang=fr' not in pq(link).attr('href'))
             ok_('lang=en-US' in pq(link).attr('href'))
 
+    def test_download_japanese(self):
+        """Should have the ja-JP-mac locale for the Japanese Mac version"""
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'ja'
+        doc = pq(render("{{ download_firefox() }}",
+                        {'request': get_request}))
+
+        ok_(doc('.download-list .os_windows a').attr('href').endswith('os=win&lang=ja'))
+        ok_(doc('.download-list .os_linux a').attr('href').endswith('os=linux&lang=ja'))
+        ok_(doc('.download-list .os_osx a').attr('href').endswith('os=osx&lang=ja-JP-mac'))
+
     def test_download_transition_link_contains_locale(self):
         """
         "transition" download links should include the locale in the path as

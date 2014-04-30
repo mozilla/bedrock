@@ -172,6 +172,10 @@ def download_firefox(ctx, build='release', small=False, icon=True,
             if plat_os not in platforms:
                 _locale = 'en-US'
 
+            # Special case for the Japanese version for Mac
+            if plat_os == 'OS X' and _locale == 'ja':
+                _locale = 'ja-JP-mac'
+
             # Normalize the platform os name
             plat_os = 'os_%s' % plat_os.lower().replace(' ', '')
             plat_os_pretty = {
