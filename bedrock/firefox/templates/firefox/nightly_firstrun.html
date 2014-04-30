@@ -60,17 +60,18 @@
     </div>
   </div>
 
- {% if l10n_has_tag('promo_community') or settings.DEV and request.locale != 'en-US' %}
- {% l10n promo_community %}
-  <div class="billboard">
-      <h3>Learn more about your local Mozilla community</h3>
-      <ul class="unstyled">
+  {% if not request.locale.startswith('en') %}
+   {% if l10n_has_tag('promo_community') or settings.DEV %}
+     {% l10n promo_community %}
+      <div class="billboard">
+        <h3>Learn more about your local Mozilla community</h3>
+        <ul class="unstyled">
           <li><a href="http://www.example.com">Meet our community</a></li>
-      </ul>
-  </div>
-  {% endl10n %}
+        </ul>
+      </div>
+      {% endl10n %}
+    {% endif %}
   {% endif %}
-
 </main>
 
 <h3 class="feature-note">{{ _('Help us build the Web the world needs.') }}</h3>
