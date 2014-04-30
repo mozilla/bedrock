@@ -363,10 +363,13 @@ class FirstrunView(LatestFxView):
         fc_ctx = funnelcake_param(self.request)
         f = fc_ctx.get('funnelcake_id', 0)
 
-        if version == '29.0' and locale == 'en-US' and f == '30':
-            template = 'firefox/australis/firstrun-no-tour.html'
+        if version == '29.0':
+            if locale == 'en-US' and f == '30':
+                template = 'firefox/australis/firstrun-no-tour.html'
+            else:
+                template = 'firefox/australis/firstrun-tour.html'
         else:
-            template = 'firefox/australis/firstrun-tour.html'
+            template = 'firefox/firstrun.html'
 
         # return a list to conform with original intention
         return [template]
