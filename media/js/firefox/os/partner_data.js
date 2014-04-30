@@ -106,7 +106,7 @@ if (typeof Mozilla == 'undefined') {
             'partner': [
                 {
                     'name': 'Movistar',
-                    'url': 'http://www.movistar.com.mx/firefox'
+                    'url': 'https://www.movistar.com.mx/catalogo'
                 }
             ]
         },
