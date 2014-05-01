@@ -20,19 +20,18 @@
         padding-bottom: 140px;
         z-index: 2;
     }
+}
 
-    .intro-firefox-logo {
-        display: none;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 512px;
-        height: 532px;
-        margin-top: -256px;
-        margin-left: -256px;
-        opacity: 0;
-        background-image: url(/media/img/firefox/desktop/index/animations/firefox-logo.png);
-    }
+#intro-firefox-logo {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 512px;
+    height: 532px;
+    margin-top: -256px;
+    margin-left: -256px;
+    opacity: 0;
 }
 
 #intro-svg-anim-fallback {
@@ -46,23 +45,21 @@
 }
 
 .svg-anim {
-    #intro {
-        .intro-content {
-            -webkit-animation: fade-in 1s ease-in-out;
-            -webkit-animation-fill-mode: forwards;
-            -webkit-animation-delay: 5.1s;
-            animation: fade-in 1s ease-in-out;
-            animation-fill-mode: forwards;
-            animation-delay: 5.1s;
-        }
+    #intro .intro-content {
+        -webkit-animation: fade-in 1s ease-in-out;
+        -webkit-animation-fill-mode: forwards;
+        -webkit-animation-delay: 5.1s;
+        animation: fade-in 1s ease-in-out;
+        animation-fill-mode: forwards;
+        animation-delay: 5.1s;
+    }
 
-        .intro-firefox-logo {
-            display: block;
-            -webkit-animation: logo-zoom 1.4s ease-in-out;
-            -webkit-animation-fill-mode: forwards;
-            animation: logo-zoom 1.4s ease-in-out;
-            animation-fill-mode: forwards;
-        }
+    #intro-firefox-logo {
+        display: block;
+        -webkit-animation: logo-zoom 1.4s ease-in-out;
+        -webkit-animation-fill-mode: forwards;
+        animation: logo-zoom 1.4s ease-in-out;
+        animation-fill-mode: forwards;
     }
 
     #intro-svg-anim {
@@ -259,9 +256,9 @@
             -webkit-animation: none;
             animation: none;
         }
-        .intro-firefox-logo {
-            display: none;
-        }
+    }
+    #intro-firefox-logo {
+        display: none;
     }
     #intro-svg-anim-fallback {
         display: block;
@@ -1060,13 +1057,13 @@
             display: block;
         }
         #intro {
-            .intro-firefox-logo {
-                display: none;
-            }
             .intro-content {
                 -webkit-animation: none;
                 animation: none;
             }
+        }
+        #intro-firefox-logo {
+            display: none;
         }
     }
 }
