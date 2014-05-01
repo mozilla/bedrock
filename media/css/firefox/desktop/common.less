@@ -486,9 +486,7 @@ html[dir="rtl"] {
         }
 
         #speed-fx-rank {
-            // use throw away variable to get past comma issue
-            @animation: expandFxRank 0.7s ease-out 0s 1 normal forwards, colorFxRank 0.3s ease-in 0.9s 1 normal forwards;
-            .animation(@animation);
+            .animation(expandFxRank 1s ease-out 0s 1 normal forwards);
         }
         #speed-opera-next-rank {
             .animation(expandOperaNextRank 0.6s ease-out 0s 1 normal forwards);
@@ -514,19 +512,25 @@ html[dir="rtl"] {
 }
 
 @-webkit-keyframes expandFxRank {
-    100% { width: 98%; }
+    70% {
+        width: 98%;
+        background-color: #bcc6d1;
+    }
+    100% {
+        width: 98%;
+        background-color: #ff7f00;
+    }
 }
 
 @keyframes expandFxRank {
-    100% { width: 98%; }
-}
-
-@-webkit-keyframes colorFxRank {
-    100% { background: #ff7f00; }
-}
-
-@keyframes colorFxRank {
-    100% { background: #ff7f00; }
+    70% {
+        width: 98%;
+        background-color: #bcc6d1;
+    }
+    100% {
+        width: 98%;
+        background-color: #ff7f00;
+    }
 }
 
 @-webkit-keyframes expandOperaNextRank {
