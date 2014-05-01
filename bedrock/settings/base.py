@@ -223,9 +223,6 @@ MINIFY_BUNDLES = {
             'css/libs/mapbox.css',
             'css/firefox/geolocation.less'
         ),
-        'firefox_happy': (
-            'css/firefox/happy.less',
-        ),
         'firefox_new': (
             'css/libs/socialshare/socialshare.less',
             'css/firefox/new.less',
@@ -258,9 +255,6 @@ MINIFY_BUNDLES = {
         ),
         'firefox_releases_index': (
             'css/firefox/releases-index.less',
-        ),
-        'firefox_speed': (
-            'css/firefox/speed.less',
         ),
         'firefox_tour': (
             'css/firefox/australis/australis-ui-tour.less',
@@ -506,9 +500,6 @@ MINIFY_BUNDLES = {
             'js/base/mozilla-modal.js',
             'js/firefox/firstrun/firstrun.js',
         ),
-        'firefox_happy': (
-            'js/firefox/happy.js',
-        ),
         'firefox_new': (
             'js/libs/socialshare.min.js',
             'js/libs/modernizr.custom.csstransitions.js',
@@ -548,9 +539,6 @@ MINIFY_BUNDLES = {
         ),
         'firefox_faq': (
             'js/base/mozilla-accordion.js',
-        ),
-        'firefox_speed': (
-            'js/firefox/speed.js',
         ),
         'firefox_sync': (
             'js/firefox/sync-animation.js',
