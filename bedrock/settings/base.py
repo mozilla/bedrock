@@ -284,6 +284,9 @@ MINIFY_BUNDLES = {
             'css/firefox/template-resp.less',
             'css/firefox/installer-help.less',
         ),
+        'history-slides': (
+            'css/mozorg/history-slides.less',
+        ),
         'home': (
             'css/mozorg/home.less',
             'css/mozorg/home-promo.less',
@@ -586,6 +589,10 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.cycle2.min.js',
             'js/libs/jquery.cycle2.carousel.min.js',
             'js/mozorg/home.js',
+        ),
+        'history-slides': (
+            'js/libs/jquery.sequence.js',
+            'js/mozorg/history-slides.js',
         ),
         'installer_help': (
             'js/base/mozilla-modal.js',
