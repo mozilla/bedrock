@@ -8,6 +8,7 @@
     var isIE = /MSIE/.test(navigator.userAgent);
     var isTrident = /Trident/.test(navigator.userAgent);
     var isOldOpera= /Presto/.test(navigator.userAgent);
+    var $logo = $('#intro-firefox-logo');
 
     function supportsInlineSVG () {
         var div = document.createElement('div');
@@ -15,12 +16,28 @@
         return (div.firstChild && div.firstChild.namespaceURI) == 'http://www.w3.org/2000/svg';
     }
 
-    setTimeout(function() {
-        if (isIE || isTrident || isOldOpera || !supportsInlineSVG()) {
-            // use fallback browser image
-            $('body').addClass('no-svg-anim');
-        } else {
+    if (isIE || isTrident || isOldOpera || !supportsInlineSVG()) {
+        // use fallback browser image
+        $('body').addClass('no-svg-anim');
+    } else {
+
+        // listen for the load event on Firefox logo image
+        // before starting the animation.
+        $logo.one('load', function () {
             $('body').addClass('svg-anim');
-        }
-    }, 750);
+        }).each(function () {
+            // if the image is already loaded or cached,
+            // call the load event handler.
+            if (this.complete) {
+                $(this).load();
+            }
+        });
+
+        // if there's an error loading the image,
+        // run the animation anyway
+        $logo.one('error', function () {
+            $('body').addClass('svg-anim');
+        });
+    }
+
 })(window.jQuery);
