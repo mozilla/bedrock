@@ -105,7 +105,7 @@ LOCALE_CONTACTS = {
     'hr': ['contribute@mozilla-hr.org'],
     'id': ['info@mozilla.web.id'],
     'it': ['collabora@mozillaitalia.org'],
-    'lt': ['prisijunk@mozilla.lt'],
+    'lt': ['labas@mozilla.lt'],
     'ms': ['community@mozilla.my'],
     'nl': ['contribute@mozilla-nl.org'],
     'pl': ['chcepomoc@aviary.pl'],
