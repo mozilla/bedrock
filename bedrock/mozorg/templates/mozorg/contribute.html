@@ -138,9 +138,22 @@
         <img src="{{ media('/img/contribute/qmo.png') }}" alt="">
         <h3>{{_('Quality Assurance')}}</h3>
         <p>
-        {% trans qa_bugs_url='https://quality.mozilla.org/teams/desktop-firefox/', qa_web_url='https://quality.mozilla.org/teams/web-qa/', qa_url='https://quality.mozilla.org/' %}
+        {% if l10n_has_tag('contribute_mayupdates') or settings.DEV %}
+          {% trans %}
+          Quality Assurance testing is one of the easiest ways to get started with Mozilla and is a great way to get familiar with our code and tools.
+          {% endtrans %}
+          {% trans oneanddone_url='https://oneanddone.mozilla.org',
+            desktopfx_url='https://wiki.mozilla.org/QA/Desktop_Firefox/GetInvolved',
+            websites_url='https://quality.mozilla.org/docs/webqa/manual-testing/',
+            testday_url='https://quality.mozilla.org/category/events/',
+            qateams_url='https://quality.mozilla.org/teams/' %}
+          <a href="{{ oneanddone_url }}">Pick a task from One and Done</a> to get started, work on <a href="{{ desktopfx_url }}">Desktop Firefox</a>, <a href="{{ websites_url }}">test Mozilla web sites</a>, <a href="{{ testday_url }}">join us for a Test Day</a>, or <a href="{{ qateams_url }}">learn more about other testing opportunities</a>.
+          {% endtrans %}
+        {% else %}
+          {% trans qa_bugs_url='https://quality.mozilla.org/teams/desktop-firefox/', qa_web_url='https://quality.mozilla.org/teams/web-qa/', qa_url='https://quality.mozilla.org/' %}
           Quality assurance testing is one of the easiest ways to get started with Mozilla and is a great way to get familiar with our code and tools. Help us <a href="{{ qa_bugs_url }}">hunt down bugs</a> in Firefox, <a href="{{ qa_web_url }}">test Mozilla web sites</a> or learn more about <a href="{{ qa_url }}">other testing opportunities</a>.
-        {% endtrans %}
+          {% endtrans %}
+        {% endif %}
         </p>
       </li>
 
@@ -184,13 +197,31 @@
         </p>
       </li>
 
+    {% if l10n_has_tag('contribute_mayupdates') or settings.DEV %}
+      <li id="markeplace">
+        <img src="{{ media('/img/contribute/marketplace.png') }}" alt="">
+        <h3>{{ _('Firefox Marketplace') }}</h3>
+        <p>
+          {% trans marketplace_url='https://marketplace.firefox.com', mktcontrib_url='https://wiki.mozilla.org/Marketplace/Contributing/Apps' %}
+            <a href="{{ marketplace_url }}">Firefox Marketplace</a> provides content – games, music, social apps and more – built with HTML5 standards and open source values. With <a href="{{ mktcontrib_url }}">contribution opportunities</a> at every skill level, it’s easy to make an impact!
+          {% endtrans %}
+        </p>
+      </li>
+    {% endif %}
+
       <li id="addons">
         <img src="{{ media('/img/contribute/addons.png') }}" alt="">
         <h3>{{_('Add-ons') }}</h3>
         <p>
-        {% trans addons_url='https://addons.mozilla.org/developers/docs/getting-started', addons_wiki='https://wiki.mozilla.org/AMO:Editors/Applying' %}
+        {% if l10n_has_tag('contribute_mayupdates') or settings.DEV %}
+          {% trans addons_url='https://addons.mozilla.org/developers/docs/getting-started', addons_wiki='https://wiki.mozilla.org/Marketplace/Contributing/Addons' %}
+          Add-ons are what make Firefox the most extensible and customizable browser available. Get started <a href="{{ addons_url }}">building an add-on</a>, and <a href="{{ addons_wiki }}">learn more about the different ways you can contribute</a>.
+          {% endtrans %}
+        {% else %}
+          {% trans addons_url='https://addons.mozilla.org/developers/docs/getting-started', addons_wiki='https://wiki.mozilla.org/Marketplace/Contributing/Addons' %}
           Mozilla products have a powerful extension system that allows you to make small tweaks or major additions. Learn more about how to <a href="{{ addons_url }}">build an add-on</a>.  For experienced developers, find out how to <a href="{{ addons_wiki }}">become an AMO editor</a>.
-        {% endtrans %}
+          {% endtrans %}
+        {% endif %}
         </p>
       </li>
 
