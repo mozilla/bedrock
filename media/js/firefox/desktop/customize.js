@@ -46,6 +46,9 @@
                     $designed_animation.addClass('animate');
                 }, 200);
             }, 200);
+
+            // GA tracking
+            gaTrack(['_trackEvent', 'firefox/desktop/ Interactions', 'replay link']);
         });
     }
 
@@ -101,6 +104,15 @@
             // display specified customizer
             $next.fadeIn('fast').addClass('active');
         }
+
+        var ga_type = $this.hasClass('next') ? 'Next Link' : 'Icon';
+
+        // capitalize event name
+        var ga_event = $this.attr('href').replace('#', '');
+        ga_event = ga_event.charAt(0).toUpperCase() + ga_event.slice(1);
+
+        // GA tracking
+        gaTrack(['_trackEvent', 'firefox/desktop/ Interactions', ga_event, ga_type]);
     });
 
     // handle clicks on theme thumbnails
@@ -116,9 +128,23 @@
         $this.addClass('selected');
 
         // figure out new image src
-        var new_src = $theme_demo.attr('src').replace(/(.*)theme-.*\.png/gi, "$1" + $this.attr('id') + '.png');
+        var new_src = $theme_demo.attr('src').replace(/(.*)theme-.*\.png/gi, "$1" + $this.prop('id') + '.png');
 
         // update image with new src
         $theme_demo.attr('src', new_src);
+
+        // GA tracking
+        gaTrack(['_trackEvent', 'firefox/desktop/ Interactions', 'Themes', $this.prop('id').replace('#', '')]);
+    });
+
+    // GA tracking
+    $('#sync-button').on('click', function(e) {
+        e.preventDefault();
+
+        var href = this.href;
+
+        gaTrack(['_trackEvent', 'firefox/desktop/ Interactions', 'button click', 'Sync CTA'], function() {
+            window.location = href;
+        });
     });
 })(window.jQuery);

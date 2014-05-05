@@ -496,6 +496,10 @@ MINIFY_BUNDLES = {
             'js/firefox/desktop/intro-anim.js',
             'js/firefox/desktop/index.js',
         ),
+        'firefox_desktop_trust': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/firefox/desktop/common.js',
+        ),
         'firefox_firstrun': (
             'js/base/mozilla-modal.js',
             'js/firefox/firstrun/firstrun.js',

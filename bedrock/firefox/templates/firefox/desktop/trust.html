@@ -31,7 +31,7 @@
     </div>
   </section>
 
-  <section id="privacy">
+  <section id="privacy" class="ga-section" data-ga-label="Designed to protect your privacy">
     <div class="container">
       <h2>{{ _('Designed to protect your privacy') }}</h2>
 
@@ -59,7 +59,7 @@
             {{ _('Turn this feature on to protect your browsing history from others.') }}
           </p>
 
-          <a class="more" href="https://support.mozilla.org/kb/private-browsing-browse-web-without-saving-info">{{ _('Learn how to open a private window') }}</a>
+          <a class="more" rel="external" href="https://support.mozilla.org/kb/private-browsing-browse-web-without-saving-info">{{ _('Learn how to open a private window') }}</a>
         </li>
         <li id="privacy-lightbeam" class="last">
           <h3>{{ _('Lightbeam') }}</h3>
@@ -74,7 +74,7 @@
       </ul>
     </div>
   </section>
-  <section id="safe">
+  <section id="safe" class="ga-section" data-ga-label="Keeping you safe across the Web">
     <div class="container">
       <h2>{{ _('Keeping you safe across the Web') }}</h2>
 
@@ -90,7 +90,7 @@
             {{ _('Use instant Website ID to make sure a site is what it claims to be and to check if your connection to it is secure.') }}
           </p>
 
-          <a class="more" href="https://support.mozilla.org/kb/how-do-i-tell-if-my-connection-is-secure">{{ _('Learn more') }}</a>
+          <a class="more" rel="external" href="https://support.mozilla.org/kb/how-do-i-tell-if-my-connection-is-secure">{{ _('Learn more') }}</a>
         </li>
         <li id="safe-protection">
           <h3>{{ _('World class protection') }}</h3>
@@ -99,7 +99,7 @@
             {{ _('Anti-phishing & anti-malware features protect you from trojan horses and spyware and warn you about potentially fraudulent sites.') }}
           </p>
 
-          <a class="more" href="https://support.mozilla.org/kb/how-does-phishing-and-malware-protection-work">{{ _('Learn more') }}</a>
+          <a class="more" rel="external" href="https://support.mozilla.org/kb/how-does-phishing-and-malware-protection-work">{{ _('Learn more') }}</a>
         </li>
         <li id="safe-updates" class="last">
           <h3>{{ _('Automatic security updates') }}</h3>
@@ -108,12 +108,12 @@
             {{ _('Firefox updates automatically to make sure you always have the latest and greatest security fixes.') }}
           </p>
 
-          <a class="more" href="https://support.mozilla.org/kb/update-firefox-latest-version">{{ _('Learn more') }}</a>
+          <a class="more" rel="external" href="https://support.mozilla.org/kb/update-firefox-latest-version">{{ _('Learn more') }}</a>
         </li>
       </ul>
     </div>
   </section>
-  <section id="no-worries">
+  <section id="no-worries" class="ga-section" data-ga-label="Browse without worry">
     <div class="container">
       <h2>{{ _('Browse without worry') }}</h2>
 
@@ -127,22 +127,26 @@
           <a href="http://www.mozilla.org/privacy/you/">{{ _('Privacy & you') }}</a>
         </li>
         <li>
-          <a href="https://support.mozilla.org/kb/how-stay-safe-web">{{ _('How to stay safe online') }}</a>
+          <a rel="external" href="https://support.mozilla.org/kb/how-stay-safe-web">{{ _('How to stay safe online') }}</a>
         </li>
         <li>
-          <a href="https://support.mozilla.org/products/firefox/privacy-and-security">{{ _('Privacy & security FAQ') }}</a>
+          <a rel="external" href="https://support.mozilla.org/products/firefox/privacy-and-security">{{ _('Privacy & security FAQ') }}</a>
         </li>
         <li>
-          <a href="https://addons.mozilla.org/firefox/extensions/privacy-security/">{{ _('Privacy & security add-ons') }}</a>
+          <a rel="external" href="https://addons.mozilla.org/firefox/extensions/privacy-security/">{{ _('Privacy & security add-ons') }}</a>
         </li>
         <li>
-          <a href="https://blog.mozilla.org/privacy/">{{ _('Privacy blog') }}</a>
+          <a rel="external" href="https://blog.mozilla.org/privacy/">{{ _('Privacy blog') }}</a>
         </li>
         <li>
-          <a href="https://blog.mozilla.org/security/">{{ _('Security blog') }}</a>
+          <a rel="external" href="https://blog.mozilla.org/security/">{{ _('Security blog') }}</a>
         </li>
       </ul>
     </div>
   </section>
 </main>
+{% endblock %}
+
+{% block js %}
+  {{ js('firefox_desktop_trust') }}
 {% endblock %}

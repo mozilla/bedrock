@@ -28,7 +28,7 @@
 
       <h3>{{ _('The “speed king”') }}</h3>
 
-      <p>
+      <p class="ga-track-links">
         {% set l10n_url={
           'fr': 'http://www.tomshardware.fr/articles/test-navigateurs-chrome-firefox-opera,2-64.html',
           'it': 'http://www.tomshw.it/cont/articolo/chrome-27-firefox-22-ie10-e-opera-next-lotta-per-la-supremazia/47278/1.html',
@@ -44,7 +44,7 @@
     </div>
   </section>
 
-  <section id="cutting-edge">
+  <section id="cutting-edge" class="ga-section" data-ga-label="Cutting-edge speed">
     <div class="container">
       <h2>{{ _('Cutting-edge speed') }}</h2>
 
@@ -53,14 +53,14 @@
         {{ _('Firefox is leading the charge in online gaming as part of our efforts to make every aspect of your browsing experience faster.') }}
       </p>
 
-      <a class="more" href="https://blog.mozilla.org/javascript/2014/01/23/the-monkeys-in-2013/">
+      <a class="more" rel="external" href="https://blog.mozilla.org/javascript/2014/01/23/the-monkeys-in-2013/">
         {# L10n: Line break below is for wide screen formatting only. #}
         {{ _('Learn more about how we’re <br class="wide-br">pushing the limits of speed') }}
       </a>
     </div>
   </section>
 
-  <section id="feel">
+  <section id="feel" class="ga-section" data-ga-label="Speed you can feel">
     <div class="container">
       <h2>{{ _('Speed you can feel') }}</h2>
 
