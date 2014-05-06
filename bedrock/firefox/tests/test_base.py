@@ -415,6 +415,7 @@ class TestWhatsNew(TestCase):
         self.view = fx_views.WhatsnewView.as_view()
         self.rf = RequestFactory(HTTP_USER_AGENT='Firefox')
 
+    @override_settings(DEV=True)
     def test_can_post(self, render_mock):
         """Home page must accept post for newsletter signup."""
         req = self.rf.post('/en-US/firefox/whatsnew/')
@@ -423,6 +424,7 @@ class TestWhatsNew(TestCase):
         render_mock.assert_called_once_with(req, ['firefox/whatsnew.html'], ANY)
 
     @patch.object(fx_views.WhatsnewView, 'fxos_locales', ['de'])
+    @override_settings(DEV=True)
     def test_fxos_locales(self, render_mock):
         """Should use a different template for fxos locales."""
         req = self.rf.get('/de/firefox/whatsnew/')
@@ -433,6 +435,7 @@ class TestWhatsNew(TestCase):
         ok_('locales_with_video' not in ctx)
         eq_(template, ['firefox/whatsnew-fxos.html'])
 
+    @override_settings(DEV=True)
     def test_fx_nightly_29(self, render_mock):
         """Should use special nightly template for 29.0a1."""
         req = self.rf.get('/en-US/firefox/whatsnew/')
@@ -445,6 +448,14 @@ class TestWhatsNew(TestCase):
         """Should use australis template for 29.0."""
         req = self.rf.get('/en-US/firefox/whatsnew/')
         self.view(req, fx_version='29.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/australis/whatsnew-tour.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_australis_29_0_1(self, render_mock):
+        """Should use australis template for 29.0.1"""
+        req = self.rf.get('/en-US/firefox/whatsnew/')
+        self.view(req, fx_version='29.0.1')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/australis/whatsnew-tour.html'])
 
