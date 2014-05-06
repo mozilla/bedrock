@@ -363,8 +363,11 @@ class FirstrunView(LatestFxView):
         fc_ctx = funnelcake_param(self.request)
         f = fc_ctx.get('funnelcake_id', 0)
 
-        if version == '29.0' and locale == 'en-US' and f == '30':
-            template = 'firefox/australis/firstrun-no-tour.html'
+        if (version == '29.0' or version == '29.0.1') and locale == 'en-US':
+            if f == '30':
+                template = 'firefox/australis/firstrun-no-tour.html'
+            else:
+                template = 'firefox/australis/firstrun-tour.html'
         else:
             template = 'firefox/australis/firstrun-tour.html'
 
@@ -389,8 +392,7 @@ class WhatsnewView(LatestFxView):
     }
 
     def get(self, request, *args, **kwargs):
-        version = kwargs.get('fx_version')
-        if version == '29.0' and not settings.DEV and not request.is_secure():
+        if not settings.DEV and not request.is_secure():
             uri = 'https://{host}{path}'.format(
                 host=request.get_host(),
                 path=request.get_full_path(),
@@ -414,12 +416,12 @@ class WhatsnewView(LatestFxView):
         fc_ctx = funnelcake_param(self.request)
         f = fc_ctx.get('funnelcake_id', 0)
 
-        if version == '29.0' and locale == 'en-US':
+        if (version == '29.0' or version == '29.0.1') and locale == 'en-US':
             if f == '30':
                 template = 'firefox/australis/whatsnew-no-tour.html'
             else:
                 template = 'firefox/australis/whatsnew-tour.html'
-        elif version == '29.0':
+        elif version == '29.0' or version == '29.0.1':
             # non en-US locales always get the tour
             template = 'firefox/australis/whatsnew-tour.html'
         elif version == '29.0a1':
