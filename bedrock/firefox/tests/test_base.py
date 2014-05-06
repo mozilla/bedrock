@@ -691,8 +691,11 @@ class FxVersionRedirectsMixin(object):
 
 class TestWhatsnewRedirect(FxVersionRedirectsMixin, TestCase):
     def setUp(self):
-        with self.activate('en-US'):
-            self.url = reverse('firefox.whatsnew', args=['13.0'])
+        self.user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:29.0) '
+                      'Gecko/20100101 Firefox/29.0')
+
+        self.expected = 'data-has-tour="True"'
+        self.url = reverse('firefox.whatsnew', args=['29.0'])
 
     @override_settings(DEV=True)
     @patch.dict(product_details.firefox_versions,
@@ -704,36 +707,41 @@ class TestWhatsnewRedirect(FxVersionRedirectsMixin, TestCase):
         f=31 should render firefox/australis/whatsnew-tour.html. Any other
         f value or locale should render whatsnew-tour.html.
         """
-        user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:29.0) '
-                      'Gecko/20100101 Firefox/29.0')
-
-        expected = 'data-has-tour="True"'
-        self.url = reverse('firefox.whatsnew', args=['29.0'])
 
         # en-US with funnelcake id 30 should not give a tour
-        response = self.client.get(self.url + '?f=30', HTTP_USER_AGENT=user_agent)
-        self.assertNotIn(expected, response.content)
+        response = self.client.get(self.url + '?f=30', HTTP_USER_AGENT=self.user_agent)
+        self.assertNotIn(self.expected, response.content)
 
         # en-US with funnelcake id 31 should give a tour
-        response = self.client.get(self.url + '?f=31', HTTP_USER_AGENT=user_agent)
-        self.assertIn(expected, response.content)
+        response = self.client.get(self.url + '?f=31', HTTP_USER_AGENT=self.user_agent)
+        self.assertIn(self.expected, response.content)
 
         # en-US with improper funnelcake id should still give a tour
-        response = self.client.get(self.url + '?f=0', HTTP_USER_AGENT=user_agent)
-        self.assertIn(expected, response.content)
+        response = self.client.get(self.url + '?f=0', HTTP_USER_AGENT=self.user_agent)
+        self.assertIn(self.expected, response.content)
 
         # en-US with no funnelcake id should still give a tour
-        response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
-        self.assertIn(expected, response.content)
+        response = self.client.get(self.url, HTTP_USER_AGENT=self.user_agent)
+        self.assertIn(self.expected, response.content)
 
         with self.activate('de'):
             self.url = reverse('firefox.whatsnew', args=['29.0'])
             # de with proper funnelcake id should still get a tour
-            response = self.client.get(self.url + '?f=30', HTTP_USER_AGENT=user_agent)
-            self.assertIn(expected, response.content)
+            response = self.client.get(self.url + '?f=30', HTTP_USER_AGENT=self.user_agent)
+            self.assertIn(self.expected, response.content)
             # de with no funnelcake id should still get a tour
-            response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
-            self.assertIn(expected, response.content)
+            response = self.client.get(self.url, HTTP_USER_AGENT=self.user_agent)
+            self.assertIn(self.expected, response.content)
+
+    @override_settings(DEV=True)
+    def test_whatsnew_no_tour_from_29(self):
+        """Should not show tour if upgrading from 29.0."""
+        # sanity check that it should show for other values of "oldversion"
+        response = self.client.get(self.url + '?oldversion=28.0', HTTP_USER_AGENT=self.user_agent)
+        self.assertIn(self.expected, response.content)
+
+        response = self.client.get(self.url + '?oldversion=29.0', HTTP_USER_AGENT=self.user_agent)
+        self.assertNotIn(self.expected, response.content)
 
 
 class TestFirstrunRedirect(FxVersionRedirectsMixin, TestCase):
