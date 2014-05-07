@@ -189,6 +189,11 @@ MINIFY_BUNDLES = {
             'css/sandstone/sandstone-resp.less',
             'css/firefox/desktop/customize.less',
         ),
+        'firefox_desktop_tips': (
+            'css/sandstone/sandstone-resp.less',
+            'css/libs/socialshare/socialshare.less',
+            'css/firefox/desktop/tips.less',
+        ),
         'firefox_desktop_trust': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/desktop/trust.less',
@@ -498,6 +503,11 @@ MINIFY_BUNDLES = {
             'js/firefox/desktop/speed-graph.js',
             'js/firefox/desktop/intro-anim.js',
             'js/firefox/desktop/index.js',
+        ),
+        'firefox_desktop_tips': (
+            'js/base/mozilla-pager.js',
+            'js/libs/socialshare.min.js',
+            'js/firefox/desktop/tips.js',
         ),
         'firefox_desktop_trust': (
             'js/libs/jquery.waypoints.min.js',
