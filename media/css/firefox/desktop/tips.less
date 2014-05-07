@@ -1,0 +1,188 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../sandstone/lib.less';
+
+/* {{{ Template overrides */
+
+#outer-wrapper {
+    background: #fff;
+}
+
+#wrapper {
+    width: 100%;
+}
+
+#masthead {
+    background: @linkBlue;
+    box-shadow: inset 0 12px 38px 0px rgba(0, 0, 0, 0.1);
+
+    h1, h2 {
+        color: #fff;
+        text-shadow: 0 1px 0 rgba(72, 72, 72, 0.3);
+    }
+}
+
+#main-content {
+    background: #f8f8f8;
+    padding-top: @baseLine;
+}
+
+#colophon {
+    background: #eeeeee url(/media/img/sandstone/grain.png) repeat;
+    background: url(/media/img/sandstone/bg-gradient-sky.png) repeat-x 0 0,
+                url(/media/img/sandstone/grain.png) repeat 0 0,
+                #eeeeee;
+}
+
+/* }}} */
+
+.container {
+    position: relative;
+    width: 940px;
+    margin: 0 auto;
+}
+
+#tips-nav {
+    display: none;
+}
+
+.tip {
+    position: relative;
+    z-index: 1;
+    margin-bottom: @baseLine * 2;
+
+    .clearfix();
+}
+
+.tip-copy {
+    float: right;
+    width: 300px - (@baseLine * 2);
+    margin-left: 40px;
+    padding: 30px @baseLine 0;
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.6;
+    color: @textColorTertiary;
+    .open-sans-light();
+
+    h3 {
+        font-size: 30px;
+    }
+
+    hr {
+        width: 140px;
+        margin: 0 auto @baseLine;
+    }
+
+    h4 {
+        font-size: 20px;
+    }
+
+    a {
+        // force line break
+        &:before {
+            content: '';
+            display: block;
+        }
+
+        .trailing-arrow();
+    }
+}
+
+.tip-media {
+    position: relative;
+    float: left;
+    width: 600px;
+    height: 500px;
+    z-index: 1;
+    overflow: hidden;
+
+    // inner rounded shadows
+    &:before {
+        content: '';
+        position: absolute;
+        z-index: 2;
+        box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+        width: 20px;
+        height: 60%;
+        bottom: 20%;
+        top: 20%;
+        left: -20px;
+        border-radius: 100%;
+    }
+
+    &:after {
+        content: '';
+        position: absolute;
+        z-index: 2;
+        box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+        width: 20px;
+        height: 60%;
+        bottom: 20%;
+        top: 20%;
+        right: -20px;
+        border-radius: 100%;
+    }
+}
+
+.ordinal {
+    display: block;
+    width: 46px;
+    height: 46px;
+    margin: 0 auto 30px;
+    background: #ff7200;
+    color: #fff;
+    .open-sans-light();
+    font-size: 34px;
+    line-height: 46px;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.js {
+    #tips-nav {
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 45px;
+        z-index: 2;
+        width: 300px;
+
+        a.inactive {
+            color: #ccc;
+            cursor: default;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+
+    #tip-prev {
+        float: left;
+
+        &:before {
+            content: '« ';
+        }
+    }
+
+    #tip-next {
+        float: right;
+        text-align: right;
+
+        &:after {
+            content: ' »';
+        }
+    }
+
+    #tips-wrapper {
+        min-height: 500px;
+    }
+
+    .tip {
+        display: none;
+        margin-bottom: 0;
+    }
+}

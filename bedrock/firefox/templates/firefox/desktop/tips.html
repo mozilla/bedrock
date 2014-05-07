@@ -1,0 +1,169 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "firefox/base-resp.html" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{ _("The best of the latest Firefox") }}{% endblock %}
+
+{% block body_id %}firefox-desktop-tips{% endblock %}
+{% block body_class %}firefox-desktop-tips{% endblock %}
+
+{% block site_css %}
+  {{ css('firefox_desktop_tips') }}
+{% endblock %}
+
+{% block site_header %}
+  <header id="masthead">
+    <div class="container">
+      <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{{ settings.TABZILLA_INFOBAR_OPTIONS }}">Mozilla</a>
+
+      <h1>{{ _('The best of the latest Firefox') }}</h1>
+      <h2>{{ _('5 top tips, tricks and time-saving tools') }}</h2>
+
+      <nav>
+        <ol>
+          <li><a href="#bookmarks">{{ _('Bookmarks') }}</a></li>
+          <li><a href="#simplify">{{ _('Simplify') }}</a></li>
+          <li><a href="#arrange">{{ _('Arrange') }}</a></li>
+          <li><a href="#sync">{{ _('Sync') }}</a></li>
+          <li><a href="#addons">{{ _('Add-ons') }}</a></li>
+        </ol>
+      </nav>
+  </header>
+{% endblock %}
+
+{% block content %}
+<main role="main" id="main-content">
+  <div class="container pager">
+
+    <div id="tips-nav">
+      <a href="" id="tip-prev">{{ _('back') }}</a>
+      <a href="" id="tip-next">{{ _('next') }}</a>
+    </div>
+
+    <div id="tips-wrapper" class="pager-content">
+      <div class="tip pager-page default-page" id="bookmarks">
+        <div class="tip-copy">
+          <div class="ordinal">{{ _('1') }}</div>
+
+          <h3>{{ _('Click the star') }}</h3>
+          <p>
+            {{ _('Watch the star jump so you know your bookmark has been added.') }}
+            ({{ _('Try it! It’s fun!') }})
+          </p>
+
+          <hr>
+
+          <h4>{{ _('How to:') }}</h4>
+          <p>
+            {{ _('Click the star to add bookmarks and manage them from the same spot.') }}
+            <a href="">{{ _('Learn more') }}</a>
+          </p>
+        </div>{# /.tip-copy #}
+        <figure class="tip-media"></figure>
+      </div>
+
+      <div class="tip pager-page" id="simplify">
+        <div class="tip-copy">
+          <div class="ordinal">{{ _('2') }}</div>
+
+          <h3>{{ _('Simplify your life') }}</h3>
+          <p>
+            {{ _('Go to your happy place.') }}
+            {{ _('Remove the buttons you don’t use so you can find the ones you do.') }}
+          </p>
+
+          <h4>{{ _('How to:') }}</h4>
+          <p>
+            {{ _('Open the menu, select “<strong>Customize</strong>” and drag any button out of the toolbar.') }}
+            <a href="">{{ _('Learn more') }}</a>
+          </p>
+        </div>
+        <figure class="tip-media">
+
+        </figure>
+      </div>
+
+      <div class="tip" id="arrange">
+        <div class="tip-copy">
+          <div class="ordinal">{{ _('3') }}</div>
+
+          <h3>{{ _('Add your faves') }}</h3>
+          <p>
+            {{ _('Play favorites with the features you use most and arrange them for fast, easy access.') }}
+          </p>
+
+          <h4>{{ _('How to:') }}</h4>
+          <p>
+            {{ _('Open the menu, select “<strong>Customize</strong>” and drag any button into the toolbar or menu.') }}
+            <a href="">{{ _('Learn more') }}</a>
+          </p>
+        </div>
+        <figure class="tip-media">
+
+        </figure>
+      </div>
+
+      <div class="tip" id="sync">
+        <div class="tip-copy">
+          <div class="ordinal">{{ _('4') }}</div>
+
+          <h3>{{ _('Stay in Sync') }}</h3>
+          <p>
+            {{ _('Use Sync to magically access your open tabs, passwords and more from any device.') }}
+          </p>
+
+          <h4>{{ _('How to:') }}</h4>
+          <p>
+            {{ _('Choose “<strong>Sign in to Sync</strong>” from the menu and make Firefox your own wherever you use it.') }}
+            <a href="">{{ _('Learn more') }}</a>
+          </p>
+        </div>
+        <figure class="tip-media">
+
+        </figure>
+      </div>
+
+      <div class="tip" id="addons">
+        <div class="tip-copy">
+          <div class="ordinal">{{ _('5') }}</div>
+
+          <h3>{{ _('Free your add-ons') }}</h3>
+          <p>
+            {{ _('Keep those special, favorite add-ons in your menu so they’re visible and easily within reach.') }}
+          </p>
+
+          <h4>{{ _('How to:') }}</h4>
+          <p>
+            {{ _('Select “<strong>Customize</strong>” from the menu and drag in the add-ons you want.') }}
+            <a href="">{{ _('Learn more') }}</a>
+          </p>
+        </div>
+        <figure class="tip-media">
+
+        </figure>
+      </div>
+    </div>{# /#tips-wrapper #}
+  </div>{# /.container #}
+</main>
+
+<section class="container">
+  <h3>{{ _('Get Firefox') }}</h3>
+  {{ download_firefox(small=True, icon=False, dom_id="intro_download_desktop") }}
+
+  <h3>{{ _('Congratulations') }}</h3>
+  <p>
+    {{ _('You’re an expert!') }}
+    {{ _('Now help your friends master Firefox.') }}
+  </p>
+</section>
+{% endblock %}
+
+{% block email_form %}
+{% endblock %}
+
+{% block js %}
+  {{ js('firefox_desktop_tips') }}
+{% endblock %}
