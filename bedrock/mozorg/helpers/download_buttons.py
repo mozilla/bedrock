@@ -21,18 +21,22 @@ import jinja2
 from bedrock.firefox.firefox_details import firefox_details, mobile_details
 from lib.l10n_utils import get_locale
 
+nightly_desktop = ('https://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/'
+                   'latest-mozilla-aurora')
+nightly_android = ('https://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/'
+                   'latest-mozilla-aurora-android')
 
 download_urls = {
     'transition': '/{locale}/products/download.html',
     'direct': 'https://download.mozilla.org/',
-    'aurora': 'https://ftp.mozilla.org/pub/mozilla.org/firefox/'
-              'nightly/latest-mozilla-aurora',
-    'aurora-l10n': 'https://ftp.mozilla.org/pub/mozilla.org/firefox/'
-                   'nightly/latest-mozilla-aurora-l10n',
-    'aurora-mobile': 'https://ftp.mozilla.org/pub/mozilla.org/mobile/'
-                     'nightly/latest-mozilla-aurora-android/en-US/'
-                     'fennec-%s.en-US.android-arm.apk' %
-                     mobile_details.latest_version('aurora'),
+    'aurora': nightly_desktop,
+    'aurora-l10n': nightly_desktop + '-l10n',
+    'aurora-android-armv7': nightly_android + '/en-US/'
+                            'fennec-%s.en-US.android-arm.apk',
+    'aurora-android-armv6': nightly_android + '-armv6/'
+                            'fennec-%s.multi.android-arm-armv6.apk',
+    'aurora-android-x86': nightly_android + '-x86/'
+                          'fennec-%s.multi.android-i386.apk',
 }
 
 
@@ -217,15 +221,27 @@ def download_firefox(ctx, build='release', small=False, icon=True,
     if mobile is not False:
         android_link = settings.GOOGLE_PLAY_FIREFOX_LINK
 
-        if build == 'aurora':
-            android_link = download_urls['aurora-mobile']
         if build == 'beta':
             android_link = android_link.replace('org.mozilla.firefox',
                                                 'org.mozilla.firefox_beta')
 
-        builds.append({'os': 'os_android',
-                       'os_pretty': 'Android',
-                       'download_link': android_link})
+        if build == 'aurora':
+            for arch_pretty in ['ARMv7', 'ARMv6', 'x86']:
+                arch = arch_pretty.lower()
+                link = (download_urls['aurora-android-%s' % arch] %
+                        mobile_details.latest_version('aurora'))
+
+                builds.append({'os': 'os_android',
+                               'os_pretty': 'Android',
+                               'os_arch_pretty': 'Android %s' % arch_pretty,
+                               'arch': arch,
+                               'arch_pretty': arch_pretty,
+                               'download_link': link})
+
+        if build != 'aurora':
+            builds.append({'os': 'os_android',
+                           'os_pretty': 'Android',
+                           'download_link': android_link})
 
     # Get the native name for current locale
     langs = firefox_details.languages

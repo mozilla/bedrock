@@ -263,6 +263,7 @@
 
 .download-button {
     .inline-block;
+    vertical-align: top;
     ul {
         margin: 0;
         li {
@@ -588,6 +589,28 @@
             margin-right: 0;
         }
     }
+}
+
+// Android architecture detection
+
+.download-button .download-list .os_android.armv6,
+.download-button .download-list .os_android.x86,
+.download-button .download-other.os_android .armv7,
+.android.armv6 .download-button .download-list .os_android.armv7,
+.android.armv6 .download-button .download-other.os_android .armv6,
+.android.x86 .download-button .download-list .os_android.armv7,
+.android.x86 .download-button .download-other.os_android .x86 {
+    display: none !important;
+}
+
+.android.armv6 .download-button .download-list .os_android.armv6,
+.android.x86 .download-button .download-list .os_android.x86 {
+    display: block !important;
+}
+
+.android.armv6 .download-button .download-other.os_android .armv7,
+.android.x86 .download-button .download-other.os_android .armv7 {
+    display: inline !important;
 }
 
 /* {{{ l10n tweaks */

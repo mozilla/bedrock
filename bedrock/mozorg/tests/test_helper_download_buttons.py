@@ -275,6 +275,53 @@ class TestDownloadButtons(TestCase):
         ok_(doc('.download-list .os_linux a').attr('href').endswith('os=linux&lang=ja'))
         ok_(doc('.download-list .os_osx a').attr('href').endswith('os=osx&lang=ja-JP-mac'))
 
+    def test_aurora_mobile(self):
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'en-US'
+        doc = pq(render("{{ download_firefox('aurora', mobile=True) }}",
+                        {'request': get_request}))
+
+        list = doc('.download-list li')
+        eq_(list.length, 3)
+        eq_(pq(list[0]).attr('class'), 'os_android armv7')
+        eq_(pq(list[1]).attr('class'), 'os_android armv6')
+        eq_(pq(list[2]).attr('class'), 'os_android x86')
+
+        list = doc('.download-other .arch')
+        eq_(list.length, 3)
+        eq_(pq(list[0]).attr('class'), 'arch armv7')
+        eq_(pq(list[1]).attr('class'), 'arch armv6')
+        eq_(pq(list[2]).attr('class'), 'arch x86')
+
+    def test_beta_mobile(self):
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'en-US'
+        doc = pq(render("{{ download_firefox('beta', mobile=True) }}",
+                        {'request': get_request}))
+
+        list = doc('.download-list li')
+        eq_(list.length, 1)
+        eq_(pq(list[0]).attr('class'), 'os_android')
+
+        list = doc('.download-other .arch')
+        eq_(list.length, 0)
+
+    def test_firefox_mobile(self):
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'en-US'
+        doc = pq(render("{{ download_firefox(mobile=True) }}",
+                        {'request': get_request}))
+
+        list = doc('.download-list li')
+        eq_(list.length, 1)
+        eq_(pq(list[0]).attr('class'), 'os_android')
+
+        list = doc('.download-other .arch')
+        eq_(list.length, 0)
+
     def test_download_transition_link_contains_locale(self):
         """
         "transition" download links should include the locale in the path as
