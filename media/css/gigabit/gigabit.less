@@ -187,7 +187,7 @@
     h5 {
       font-weight: bold;
       font-family: 'Open Sans','Droid Arabic Naskh','Mplus Fulah Light',sans-serif;
-      margin: 1em 0 5px 0;
+      margin: 1em 0 1em 0;
       font-size: 14px;
       color: #333;
     }
@@ -202,7 +202,7 @@
     font-family: 'Open Sans','Droid Arabic Naskh','Mplus Fulah Light',sans-serif;
   }
 
-  .section-header + p {
+  .section-header + p:not(.new-line-opening-p) {
     display: inline;
     margin-left: 1em;
   }
@@ -223,11 +223,30 @@
     counter-reset: item;
   }
 
+  ol.lower-alpha-list {
+    list-style-type: none;
+    margin-left: -20px;
+    margin-bottom: 0;
+    counter-reset: list;
+  }
+
   ol.fund-evaluation-list li:before,
   ol#award-amount-list li:before {
-   content: "(" counter(item) ") ";
-   counter-increment: item;
- }
+    counter-increment: item;
+    content: "(" counter(item) ") ";
+  }
+
+  ol.lower-alpha-list li:before {
+    counter-increment: list;
+    content: "(" counter(list, lower-alpha) ") ";
+  }
+
+  ol.fund-evaluation-list li,
+  ol.lower-alpha-list li,
+  ol#fund-reporting-list li,
+  ol#award-amount-list li {
+    margin-bottom: 1em;
+  }
 
 }
 
