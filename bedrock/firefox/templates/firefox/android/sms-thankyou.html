@@ -1,6 +1,6 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
  # License, v. 2.0. If a copy of the MPL was not distributed with this
- # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. - #}
 
 {% extends "firefox/android/sms-base.html" %}
 
@@ -19,14 +19,11 @@
   <div id="sms-sent">
 
     <div id="video-player" class="mozilla-video-control mozilla-video-shadow">
-      <video
-        controls="controls"
-        poster="{{ media('/img/firefox/mobile/poster-fxandroid.jpg') }}"
-        height="304"
-        width="540"
-        data-overlay-hidden-text="{{_('Play video')}}">
-        <source src="//videos.cdn.mozilla.net/serv/marketing/fxforandroid/10-07-12_firefox_for_android_american-640x360 Video Sharing.webm">
-      </video>
+      {{ video('10-07-12_firefox_for_android_american-640x360 Video Sharing.webm',
+               h=304, w=540,
+               poster=media('/img/firefox/mobile/poster-fxandroid.jpg'),
+               extra_attrs={'data-overlay-hidden-text': _('Play video')},
+               prefix='//videos-cdn.mozilla.net/serv/marketing/fxforandroid/') }}
     </div>
 
     <div class="share">
