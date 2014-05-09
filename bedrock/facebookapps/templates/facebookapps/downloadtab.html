@@ -26,7 +26,7 @@
 <header id="masthead">
     {% if noscroll %}
         <a href="#" id="logo">
-            <img src="{{ media('img/facebookapps/downloadtab/header-firefox.png') }}" alt="{{ _('Firefox for desktop') }}" width="180">
+            <img src="{{ media('img/facebookapps/downloadtab/header-firefox.png?05-2014') }}" alt="{{ _('Firefox for desktop') }}" width="180">
         </a>
     {% endif %}
 
@@ -60,14 +60,17 @@
 
             <ol class="installation">
                 <li id="install1">
+                    <span class="screen"></span>
                     <span class="install-win">{{ _('Start the process by clicking Run.') }}</span>
                     {{ _('Your download should begin automatically. If not, <a id="{link_id}" href="{download_url}">click here</a>. It could take a few minutes, but it’s worth the wait.')|fe(link_id='direct-download-link', download_url='#download_url') }}
                 </li>
                 <li id="install2">
+                    <span class="screen"></span>
                     <span class="install-osx">{{ _('When prompted, drag the Firefox icon onto the image of your Applications folder.') }}</span>
                     <span class="install-win">{{ _('Click Run to launch the Mozilla Firefox setup wizard. Then, just follow the steps (we’ve made the process as painless as possible).') }}</span>
                 </li>
                 <li id="install3">
+                    <span class="screen"></span>
                     <span class="install-osx">{{ _('Drag the Firefox icon from the Applications folder into the dock. Then, just click on Firefox whenever you want to use the Web!') }}</span>
                     <span class="install-win">{{ _('Now you’re ready to leap boldly into a new era of Web surfing. Double-click on the Firefox icon whenever you want to go online.') }}</span>
                 </li>
@@ -118,7 +121,7 @@
         data-page-namespace="{{ settings.FACEBOOK_PAGE_NAMESPACE }}"
         data-active-scene="{{ request.GET.get('scene') }}"
         data-tab-redirect-path="{{ url('facebookapps.tab_redirect') }}"
-        data-share-image-path="{{ media('img/facebookapps/downloadtab/sharing-image.jpg') }}"
+        data-share-image-path="{{ media('img/facebookapps/downloadtab/sharing-image.jpg?05-2014') }}"
         data-is-dev="{{ 'true' if settings.DEV else 'false' }}"
     ></div>
 
