@@ -90,6 +90,14 @@ $(function() {
         return 'https://www.google.com/search?q=' + encodeURI(window.trans('googleSearchq') + ' ' + pluginName);
     },
     buildObject = function(data) {
+
+        // The v3 bit will kick in once we flip the navigator.plugins switch
+        // to no longer be enumarable
+        if (data.pluginDetectVersion === 'v3') {
+            displayPlugins(data.plugins);
+            return;
+        }
+
         var plugin = data.pluginInfo.raw,
             url = data.url,
             currentPlugin = {},
@@ -164,6 +172,52 @@ $(function() {
         var pfsStatus = $('#pfs-status');
         pfsStatus.empty();
     };
+
+    function displayPlugins(pluginList) {
+
+        var mediaURL = 'manual/img/app-icons/';
+
+        for (var i = 0; i < pluginList.length; i++) {
+            var currentPlugin = {};
+            var plugin = pluginList[i];
+
+            if(plugin.status === 'vulnerable') {
+                currentPlugin.vulnerablePlugins = {
+                    'icon': mediaURL + iconFor(plugin.name),
+                    'plugin_name': plugin.name,
+                    'plugin_detail': plugin.description,
+                    'plugin_status': 'vulnerable',
+                    'button_update': 'Update Now',
+                    'img_alt_txt': 'Plugin icon',
+                    'url': plugin.url
+                };
+
+            } else if(plugin.status === 'outdated') {
+                currentPlugin.outdatedPlugins = {
+                    'icon': mediaURL + iconFor(plugin.name),
+                    'plugin_name': plugin.name,
+                    'plugin_detail': plugin.description,
+                    'plugin_status': 'vulnerable',
+                    'button_update': 'Update Now',
+                    'img_alt_txt': 'Plugin icon',
+                    'url': plugin.url
+                };
+            } else if(plugin.status === 'latest' || plugin.status === 'newer') {
+                currentPlugin.upToDatePlugins = {
+                    'icon': mediaURL + iconFor(plugin.name),
+                    'plugin_name': plugin.name,
+                    'plugin_detail': plugin.description,
+                    'plugin_status': plugin.version,
+                    'button_uptodate': 'Up To Date',
+                    'img_alt_txt': 'Plugin icon',
+                    'url': plugin.url
+                };
+            }
+
+            showPlugin(currentPlugin);
+        }
+        pluginCheckComplete();
+    }
 
     checkPlugins('https://plugins.mozilla.org/pfs/v2', buildObject, pluginCheckComplete);
 });
