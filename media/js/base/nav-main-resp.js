@@ -72,8 +72,16 @@ NavMain.mainMenuItems = null;
  */
 NavMain.mainMenuLinks = null;
 
+/**
+ * Main menu mobile toggle button
+ *
+ * @var jQuery
+ */
+NavMain.toggleButton = null;
+
 NavMain.init = function()
 {
+    NavMain.toggleButton = $('#masthead .toggle');
     NavMain.mainMenuItems = $('#nav-main .has-submenus > li');
     NavMain.mainMenuLinks = $('#nav-main ul > li > [tabindex="0"]');
 
@@ -97,6 +105,8 @@ NavMain.init = function()
             if (e.keyCode == 13 || e.keyCode == 32) {
                 e.preventDefault();
                 NavMain.toggleSmallMenu();
+            } else if (e.keyCode == 27 && NavMain.smallMenuOpen) {
+                NavMain.closeSmallMenu();
             }
         });
 
@@ -171,6 +181,9 @@ NavMain.initSubmenu = function(menu_idx)
         $(this).keydown(function(e) {
             var target;
             switch (e.keyCode) {
+                case 27: // Esc
+                    NavMain.handleEscKeypress(e);
+                    break;
                 case 33: // Page Up
                 case 36: // Home
                     target = menuItems.first();
@@ -267,7 +280,7 @@ NavMain.leaveSmallMode = function()
     $('#outer-wrapper').off('click.mobile-nav', NavMain.handleDocumentClick);
     $('a, input, textarea, button, :focus').off('focus.mobile-nav', NavMain.handleDocumentFocus);
 
-    $('#masthead .toggle').removeClass('open');
+    NavMain.toggleButton.removeClass('open').attr('aria-expanded', false);
 
     // reset submenus
     $('#nav-main-menu > li > .submenu')
@@ -377,6 +390,15 @@ NavMain.handleToggleKeypress = function(e)
     }
 };
 
+NavMain.handleEscKeypress = function(e)
+{
+    if (e.keyCode == 27 && NavMain.smallMenuOpen) {
+        NavMain.closeSmallMenu();
+        // Set focus back to the menu button
+        NavMain.toggleButton.focus();
+    }
+}
+
 NavMain.toggleSmallMenu = function()
 {
     if (NavMain.smallMenuOpen) {
@@ -396,15 +418,15 @@ NavMain.openSmallMenu = function()
         .slideDown(150)
         .removeAttr('aria-hidden');
 
-    $('#masthead .toggle').addClass('open');
+    NavMain.toggleButton.addClass('open').attr('aria-expanded', true);
 
     // add click handler and set submenu class on submenus
     NavMain.mainMenuLinks
         .addClass('submenu-item')
-        .click(NavMain.handleSubmenuClick);
+        .on('click', NavMain.handleSubmenuClick)
+        .on('keydown', NavMain.handleSubmenuKeypress);
 
-    // focus first item
-    $('#nav-main-menu a:first').get(0).focus();
+    $('#nav-main-menu > li > a').on('keydown', NavMain.handleEscKeypress);
 
     NavMain.smallMenuOpen = true;
 };
@@ -419,12 +441,15 @@ NavMain.closeSmallMenu = function()
         .slideUp(100)
         .attr('aria-hidden', 'true');
 
-    $('#masthead .toggle').removeClass('open');
+    NavMain.toggleButton.removeClass('open').attr('aria-expanded', false);
 
     // remove submenu click handler and CSS class
     NavMain.mainMenuLinks
         .addClass('submenu-item')
-        .unbind('click', NavMain.handleSubmenuClick);
+        .off('click', NavMain.handleSubmenuClick)
+        .off('keydown', NavMain.handleSubmenuKeypress);
+
+    $('#nav-main-menu > li > a').off('keydown', NavMain.handleEscKeypress);
 
     if (NavMain.currentSmallSubmenu) {
         NavMain.closeSmallSubmenu(NavMain.currentSmallSubmenu);
@@ -439,6 +464,15 @@ NavMain.handleSubmenuClick = function(e)
     e.preventDefault();
     var menu = $(this).siblings('.submenu');
     NavMain.openSmallSubmenu(menu);
+};
+
+NavMain.handleSubmenuKeypress = function(e)
+{
+    if (e.keyCode == 13 || e.keyCode == 32) {
+        e.preventDefault();
+        var menu = $(this).siblings('.submenu');
+        NavMain.openSmallSubmenu(menu);
+    }
 };
 
 NavMain.openSmallSubmenu = function(menu)

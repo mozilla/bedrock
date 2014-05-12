@@ -19,7 +19,7 @@
 
 {% block site_header_nav %}
   <nav id="nav-main" role="navigation">
-    <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
+    <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{_('Menu')}}</span>
     <ul id="nav-main-menu">
       <li>{{_('<a href="%s">Home</a>')|format(url('gigabit.gigabit')) }}</li>
       <li><b>{{_('Apply')}}</b></li>

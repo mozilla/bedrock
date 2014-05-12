@@ -24,8 +24,8 @@
         <a id="site-header-logo" href="{{ url('firefox.desktop.index') }}"><img src="{{ MEDIA_URL }}img/firefox/desktop/firefox-header.png" alt="Firefox"></a>
       {% endblock %}
       {% block site_header_nav %}
-        <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
         <nav id="nav-main" role="navigation">
+          <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{_('Menu')}}</span>
           <ul id="nav-main-menu">
             <li class="first"><a id="nav-main-trust" href="{{ url('firefox.desktop.trust') }}">{{ _('Trusted') }}</a></li>
             <li><a id="nav-main-customize" href="{{ url('firefox.desktop.customize') }}">{{ _('Flexible') }}</a></li>
