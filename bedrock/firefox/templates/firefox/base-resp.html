@@ -41,13 +41,13 @@
         <li class="last"><a href="{{ url('firefox.android.faq') }}" tabindex="-1">{{_('FAQ')}}</a></li>
       </ul>
     </li>
-    <li id="nav-main-releases" class=""><a href="/en-US/firefox/channel/" tabindex="0" aria-owns="nav-main-releases-submenu" aria-haspopup="true">{{_('Releases')}}</a>
+    <li id="nav-main-releases" class=""><a href="{{ url('firefox.channel') }}" tabindex="0" aria-owns="nav-main-releases-submenu" aria-haspopup="true">{{_('Releases')}}</a>
       <ul aria-expanded="false" id="nav-main-releases-submenu" class="submenu">
-        <li class="first"><a href="/en-US/firefox/channel/" tabindex="-1">{{_('Overview')}}</a></li>
-        <li><a href="/en-US/firefox/aurora/" tabindex="-1">{{_('Firefox Aurora')}}</a></li>
-        <li><a href="/beta/" tabindex="-1">{{_('Firefox Beta')}}</a></li>
-        <li><a href="/en-US/firefox/" tabindex="-1">{{_('Firefox')}}</a></li>
-        <li class="last"><a href="/en-US/firefox/organizations/" tabindex="-1">{{_('Firefox for Organizations')}}</a></li>
+        <li class="first"><a href="{{ url('firefox.channel') }}" tabindex="-1">{{_('Overview')}}</a></li>
+        <li><a href="{{ url('firefox.channel') }}#aurora" tabindex="-1">{{_('Firefox Aurora')}}</a></li>
+        <li><a href="{{ url('firefox.channel') }}#beta" tabindex="-1">{{_('Firefox Beta')}}</a></li>
+        <li><a href="{{ url('firefox') }}" tabindex="-1">{{_('Firefox')}}</a></li>
+        <li class="last"><a href="{{ url('firefox.organizations.organizations') }}" tabindex="-1">{{_('Firefox for Organizations')}}</a></li>
       </ul>
     </li>
     <li id="nav-main-addons"><a href="https://addons.mozilla.org/" tabindex="0" aria-owns="nav-main-addons-submenu" aria-haspopup="true">{{_('Add-ons')}}</a>
