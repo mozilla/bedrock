@@ -191,6 +191,7 @@ MINIFY_BUNDLES = {
         ),
         'firefox_desktop_tips': (
             'css/sandstone/sandstone-resp.less',
+            'css/libs/socialshare/socialshare.less',
             'css/firefox/desktop/tips.less',
         ),
         'firefox_desktop_trust': (
@@ -502,6 +503,7 @@ MINIFY_BUNDLES = {
         ),
         'firefox_desktop_tips': (
             'js/base/mozilla-pager.js',
+            'js/libs/socialshare.min.js',
             'js/firefox/desktop/tips.js',
         ),
         'firefox_desktop_trust': (

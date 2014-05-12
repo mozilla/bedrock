@@ -17,18 +17,23 @@
 {% block site_header %}
   <header id="masthead">
     <div class="container">
-      <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{{ settings.TABZILLA_INFOBAR_OPTIONS }}">Mozilla</a>
+      <div id="tabzilla-share-wrapper">
+        <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{{ settings.TABZILLA_INFOBAR_OPTIONS }}">Mozilla</a>
+        {% include 'firefox/includes/social-share.html' %}
+      </div>
+
+      {{ high_res_img('img/firefox/desktop/tips/firefox-logo.png', { 'alt': 'Firefox', 'id': 'page-header-logo' }) }}
 
       <h1>{{ _('The best of the latest Firefox') }}</h1>
       <h2>{{ _('5 top tips, tricks and time-saving tools') }}</h2>
 
-      <nav>
+      <nav id="tips-nav-direct">
         <ol>
-          <li><a href="#bookmarks">{{ _('Bookmarks') }}</a></li>
-          <li><a href="#simplify">{{ _('Simplify') }}</a></li>
-          <li><a href="#arrange">{{ _('Arrange') }}</a></li>
-          <li><a href="#sync">{{ _('Sync') }}</a></li>
-          <li><a href="#addons">{{ _('Add-ons') }}</a></li>
+          <li><a href="#bookmarks"><span>{{ _('1') }}</span> {{ _('Bookmarks') }}</a></li>
+          <li><a href="#simplify"><span>{{ _('2') }}</span> {{ _('Simplify') }}</a></li>
+          <li><a href="#arrange"><span>{{ _('3') }}</span> {{ _('Arrange') }}</a></li>
+          <li><a href="#sync"><span>{{ _('4') }}</span> {{ _('Sync') }}</a></li>
+          <li><a href="#addons"><span>{{ _('5') }}</span> {{ _('Add-ons') }}</a></li>
         </ol>
       </nav>
   </header>
@@ -38,7 +43,7 @@
 <main role="main" id="main-content">
   <div class="container pager">
 
-    <div id="tips-nav">
+    <div id="tips-nav-prev-next">
       <a href="" id="tip-prev">{{ _('back') }}</a>
       <a href="" id="tip-next">{{ _('next') }}</a>
     </div>
@@ -54,15 +59,19 @@
             ({{ _('Try it! It’s fun!') }})
           </p>
 
-          <hr>
+          <div class="tip-copy-how">
+            <hr>
 
-          <h4>{{ _('How to:') }}</h4>
-          <p>
-            {{ _('Click the star to add bookmarks and manage them from the same spot.') }}
-            <a href="">{{ _('Learn more') }}</a>
-          </p>
+            <h4>{{ _('How to:') }}</h4>
+            <p>
+              {{ _('Click the star to add bookmarks and manage them from the same spot.') }}
+              <a href="">{{ _('Learn more') }}</a>
+            </p>
+          </div>{# /.tip-copy-how #}
         </div>{# /.tip-copy #}
-        <figure class="tip-media"></figure>
+        <figure class="tip-media">
+          <img src="{{ media('img/firefox/desktop/tips/puppy.gif') }}">
+        </figure>
       </div>
 
       <div class="tip pager-page" id="simplify">
@@ -75,14 +84,18 @@
             {{ _('Remove the buttons you don’t use so you can find the ones you do.') }}
           </p>
 
-          <h4>{{ _('How to:') }}</h4>
-          <p>
-            {{ _('Open the menu, select “<strong>Customize</strong>” and drag any button out of the toolbar.') }}
-            <a href="">{{ _('Learn more') }}</a>
-          </p>
+          <div class="tip-copy-how">
+            <hr>
+
+            <h4>{{ _('How to:') }}</h4>
+            <p>
+              {{ _('Open the menu, select “<strong>Customize</strong>” and drag any button out of the toolbar.') }}
+              <a href="">{{ _('Learn more') }}</a>
+            </p>
+          </div>{# /.tip-copy-how #}
         </div>
         <figure class="tip-media">
-
+          <img src="{{ media('img/firefox/desktop/tips/puppy.gif') }}">
         </figure>
       </div>
 
@@ -95,14 +108,18 @@
             {{ _('Play favorites with the features you use most and arrange them for fast, easy access.') }}
           </p>
 
-          <h4>{{ _('How to:') }}</h4>
-          <p>
-            {{ _('Open the menu, select “<strong>Customize</strong>” and drag any button into the toolbar or menu.') }}
-            <a href="">{{ _('Learn more') }}</a>
-          </p>
+          <div class="tip-copy-how">
+            <hr>
+
+            <h4>{{ _('How to:') }}</h4>
+            <p>
+              {{ _('Open the menu, select “<strong>Customize</strong>” and drag any button into the toolbar or menu.') }}
+              <a href="">{{ _('Learn more') }}</a>
+            </p>
+          </div>{# /.tip-copy-how #}
         </div>
         <figure class="tip-media">
-
+          <img src="{{ media('img/firefox/desktop/tips/puppy.gif') }}">
         </figure>
       </div>
 
@@ -115,14 +132,18 @@
             {{ _('Use Sync to magically access your open tabs, passwords and more from any device.') }}
           </p>
 
-          <h4>{{ _('How to:') }}</h4>
-          <p>
-            {{ _('Choose “<strong>Sign in to Sync</strong>” from the menu and make Firefox your own wherever you use it.') }}
-            <a href="">{{ _('Learn more') }}</a>
-          </p>
+          <div class="tip-copy-how">
+            <hr>
+
+            <h4>{{ _('How to:') }}</h4>
+            <p>
+              {{ _('Choose “<strong>Sign in to Sync</strong>” from the menu and make Firefox your own wherever you use it.') }}
+              <a href="">{{ _('Learn more') }}</a>
+            </p>
+          </div>{# /.tip-copy-how #}
         </div>
         <figure class="tip-media">
-
+          <img src="{{ media('img/firefox/desktop/tips/puppy.gif') }}">
         </figure>
       </div>
 
@@ -135,29 +156,44 @@
             {{ _('Keep those special, favorite add-ons in your menu so they’re visible and easily within reach.') }}
           </p>
 
-          <h4>{{ _('How to:') }}</h4>
-          <p>
-            {{ _('Select “<strong>Customize</strong>” from the menu and drag in the add-ons you want.') }}
-            <a href="">{{ _('Learn more') }}</a>
-          </p>
+          <div class="tip-copy-how">
+            <hr>
+
+            <h4>{{ _('How to:') }}</h4>
+            <p>
+              {{ _('Select “<strong>Customize</strong>” from the menu and drag in the add-ons you want.') }}
+              <a href="">{{ _('Learn more') }}</a>
+            </p>
+          </div>{# /.tip-copy-how #}
         </div>
         <figure class="tip-media">
-
+          <img src="{{ media('img/firefox/desktop/tips/puppy.gif') }}">
         </figure>
       </div>
     </div>{# /#tips-wrapper #}
   </div>{# /.container #}
 </main>
 
-<section class="container">
-  <h3>{{ _('Get Firefox') }}</h3>
-  {{ download_firefox(small=True, icon=False, dom_id="intro_download_desktop") }}
+<section class="container" id="footer">
+  <div id="footer-download">
+    <h3>{{ _('Get Firefox') }}</h3>
+    {{ download_firefox(small=True, icon=False) }}
+  </div>
 
-  <h3>{{ _('Congratulations') }}</h3>
-  <p>
-    {{ _('You’re an expert!') }}
-    {{ _('Now help your friends master Firefox.') }}
-  </p>
+  <div id="footer-share">
+    <h3>{{ _('Congratulations') }}</h3>
+    <p>
+      {{ _('You’re an expert!') }}
+      {{ _('Now help your friends master Firefox.') }}
+    </p>
+    <div class="share-wrapper">
+      {% include 'firefox/includes/social-share.html' %}
+    </div>
+  </div>
+
+  <div id="footer-mobile">
+
+  </div>
 </section>
 {% endblock %}
 
