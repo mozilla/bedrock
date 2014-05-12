@@ -180,6 +180,13 @@
   .box-shadow(@shadow);
 }
 
+// not the most up to date method, but works in IE7
+.image-replaced {
+    text-indent: 120%; // extra 20% to account for fancy fonts that may overhang
+    white-space: nowrap;
+    overflow: hidden;
+}
+
 // Add chevron character after text (with space)
 .trailing-arrow() {
     &:after {

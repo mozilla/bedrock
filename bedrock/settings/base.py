@@ -506,6 +506,7 @@ MINIFY_BUNDLES = {
         ),
         'firefox_desktop_tips': (
             'js/base/mozilla-pager.js',
+            'js/libs/hammer.1.1.2.min.js',
             'js/libs/socialshare.min.js',
             'js/firefox/desktop/tips.js',
         ),
