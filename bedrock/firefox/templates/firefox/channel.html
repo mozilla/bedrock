@@ -18,9 +18,9 @@
 <div id="main-content" class="pager pager-with-tabs pager-cleartype-fix">
 
   <ul id="toggler-container" class="pager-tabs">
-    <li id="beta-link"><a href="{{ php_url('/firefox/beta/') }}"><img src="{{ media('/img/firefox/channel/toggler-beta.png?2013-06') }}" id="toggler-logo-beta" /></a></li>
-    <li id="firefox-link"><a href="{{ php_url('/firefox/') }}"><img src="{{ media('/img/firefox/channel/toggler-firefox.png?2013-06') }}" id="toggler-logo-firefox" /></a></li>
-    <li id="aurora-link"><a href="{{ php_url('/firefox/aurora/') }}"><img src="{{ media('/img/firefox/channel/toggler-aurora.png?2013-06') }}" id="toggler-logo-aurora" /></a></li>
+    <li id="beta-link"><a href="#beta"><img src="{{ media('/img/firefox/channel/toggler-beta.png?2013-06') }}" alt="Firefox Beta" id="toggler-logo-beta" /></a></li>
+    <li id="firefox-link"><a href="#firefox"><img src="{{ media('/img/firefox/channel/toggler-firefox.png?2013-06') }}" alt="Firefox" id="toggler-logo-firefox" /></a></li>
+    <li id="aurora-link"><a href="#aurora"><img src="{{ media('/img/firefox/channel/toggler-aurora.png?2013-06') }}" alt="Firefox Aurora" id="toggler-logo-aurora" /></a></li>
   </ul>
 
   <a href="#" id="carousel-left"></a>
@@ -38,7 +38,6 @@
       <div class="download-box mobile" id="beta-mobile">
         {{ download_firefox('beta', icon=False, mobile=True, small=True) }}
       </div>
-      <p class="more"><a href="{{ php_url('/firefox/beta/') }}">{{_('Learn more about Firefox Beta')}}</a></p>
     </div>
 
     <div id="firefox" class="pager-page">
@@ -64,7 +63,6 @@
       <div class="download-box mobile" id="aurora-mobile">
         {{ download_firefox('aurora', icon=False, mobile=True, small=True) }}
       </div>
-      <p class="more"><a href="{{ php_url('/mobile/aurora/') }}">{{_('Learn more about Firefox Aurora')}}</a></p>
       <p class="warning">
         {% trans link=url('privacy.notices.firefox') + '#telemetry' %}
           Firefox Aurora automatically sends feedback to Mozilla. <a href="{{ link }}">Learn more</a>.

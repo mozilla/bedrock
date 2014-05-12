@@ -470,11 +470,9 @@ def get_release_or_404(version, product):
 
 def get_download_url(channel='Release'):
     if channel == 'Aurora':
-        # TODO: use reverse once bug 987517 is resolved
-        return '/firefox/aurora/'
+        return reverse('firefox.channel') + '#aurora'
     elif channel == 'Beta':
-        # TODO: use reverse once bug 752644 is resolved
-        return '/firefox/beta/'
+        return reverse('firefox.channel') + '#beta'
     else:
         return reverse('firefox')
 
