@@ -22,7 +22,7 @@
         {% include 'firefox/includes/social-share.html' %}
       </div>
 
-      {{ high_res_img('img/firefox/desktop/tips/firefox-logo.png', { 'alt': 'Firefox', 'id': 'page-header-logo' }) }}
+      <img src="{{ media('/img/firefox/desktop/tips/firefox-logo-mobile.png') }}" alt="Firefox" id="page-header-logo">
 
       <h1>{{ _('The best of the latest Firefox') }}</h1>
       <h2>{{ _('5 top tips, tricks and time-saving tools') }}</h2>
@@ -192,7 +192,10 @@
   </div>
 
   <div id="footer-mobile">
-
+    <ul>
+      <li><a href="{{ url('firefox.desktop.index') }}">{{ _('Firefox Features') }}</a></li>
+      <li><a href="https://support.mozilla.org/products/firefox">{{ _('Firefox Help') }}</a></li>
+    </ul>
   </div>
 </section>
 {% endblock %}

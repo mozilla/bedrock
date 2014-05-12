@@ -21,8 +21,10 @@
                 inset 0 -46px 0 0 #2f7bbc;
 
     h1, h2 {
+        position: relative;
         color: #fff;
         text-shadow: 0 1px 0 rgba(72, 72, 72, 0.3);
+        z-index: 2;
     }
 
     h1 {
@@ -85,11 +87,16 @@
 }
 
 #page-header-logo {
+    .border-box();
     position: absolute;
+    z-index: 1;
     top: 50px;
     left: -54px;
     width: 216px;
     height: 225px;
+    padding-left: 216px;
+    overflow: hidden;
+    background: url(/media/img/firefox/desktop/tips/firefox-logo.png) left top no-repeat;
 }
 
 #masthead #tips-nav-direct {
@@ -269,6 +276,10 @@ html[lang='en-US'] #masthead #tips-nav-direct li a span:after {
     }
 }
 
+#footer-mobile {
+    display: none;
+}
+
 .socialshare > div > a {
     background: none;
     padding-left: 0;
@@ -427,6 +438,11 @@ html[dir='rtl'] {
             background-image: url(/media/img/firefox/desktop/tips/sprite-tabs-high-res.png);
             background-size: 180px 84px;
         }
+
+        #page-header-logo {
+            background-image: url(/media/img/firefox/desktop/tips/firefox-logo-high-res.png);
+            background-size: 216px 225px;
+        }
 }
 
 /****************************************************************************/
@@ -464,7 +480,8 @@ html[dir='rtl'] {
     #page-header-logo {
         top: 28px;
         width: 190px;
-        height: auto;
+        height: 198px;
+        background-size: 190px 198px;
     }
 
     #tips-nav-direct {
@@ -527,7 +544,17 @@ html[dir='rtl'] {
     html[dir='rtl'] {
         #masthead {
             h1, h2 {
-                margin-right: 140px;
+                margin-right: 162px;
+            }
+        }
+
+        &.js {
+            #tip-prev {
+                background-position: -60px top;
+            }
+
+            #tip-next {
+                background-position: left top;
             }
         }
     }
@@ -549,13 +576,39 @@ html[dir='rtl'] {
 /****************************************************************************/
 // @Wide mobile Layout: 480px
 @media (max-width: @breakTablet) {
+    #wrapper {
+        padding-bottom: @baseLine;
+    }
+
     #main-content {
         padding-top: 0;
     }
 
     #masthead {
         box-shadow: inset 0 12px 38px 0px rgba(0, 0, 0, 0.1),
-                    inset 0 -24px 0 0 #2f7bbc;
+                    inset 0 -16px 0 0 #2f7bbc;
+
+        padding-bottom: 12px;
+
+        h1 {
+            font-size: 30px;
+            margin-left: 138px;
+            padding-top: 30px;
+        }
+
+        h2 {
+            font-size: 20px;
+            margin: 0 0 10px 138px;
+        }
+    }
+
+    #page-header-logo {
+        top: 62px;
+        left: 0;
+        width: 136px;
+        height: 142px;
+        padding-left: 0;
+        background: none;
     }
 
     .container {
@@ -589,8 +642,31 @@ html[dir='rtl'] {
         margin: 0 auto;
     }
 
+    #footer {
+        padding: @baseLine 0 0;
+    }
+
     #footer-download, #footer-share {
         display: none;
+    }
+
+    #footer-mobile {
+        display: block;
+        .clearfix();
+
+        li {
+            .border-box();
+            float: left;
+            width: 50%;
+            padding: 0 (@baseLine / 2);
+            margin: 0;
+            text-align: center;
+            list-style-type: none;
+        }
+
+        a {
+            .trailing-arrow();
+        }
     }
 
     .js {
@@ -626,6 +702,37 @@ html[dir='rtl'] {
             min-height: 500px;
         }
     }
+
+    html[dir='rtl'] {
+        #masthead {
+            h1, h2 {
+                margin-right: 138px;
+            }
+        }
+
+        #page-header-logo {
+            right: 0;
+        }
+
+        .tip-media {
+            float: none;
+        }
+
+        &.js {
+            #tips-nav-prev-next {
+                left: 10px;
+                right: auto;
+            }
+
+            #tip-prev {
+                background-position: -60px top;
+            }
+
+            #tip-next {
+                background-position: left top;
+            }
+        }
+    }
 }
 
 /****************************************************************************/
@@ -635,8 +742,131 @@ html[dir='rtl'] {
        only screen and (max-width: @breakTablet) and (                min-resolution: 1.5dppx),
        only screen and (max-width: @breakTablet) and (                min-resolution: 144dpi) {
 
+    #page-header-logo {
+        padding-left: 136px;
+        background: url(/media/img/firefox/desktop/tips/firefox-logo-mobile-high-res.png) left top no-repeat;
+        background-size: 136px 142px;
+    }
+
     .js #tips-nav-prev-next a {
         background-image: url(/media/img/firefox/desktop/tips/sprite-arrows-high-res.png);
         background-size: 120px 60px;
+    }
+}
+
+@media (max-width: @breakMobileLandscape) {
+    #main-content, #masthead {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    #masthead {
+        box-shadow: inset 0 12px 38px 0px rgba(0, 0, 0, 0.1),
+                    inset 0 -8px 6px -4px #2f7bbc;
+        padding-bottom: 0;
+        overflow: hidden;
+
+        h1, h2 {
+            margin-left: 0;
+            text-align: center;
+        }
+    }
+
+    .container {
+        width: @breakMobile - @baseLine;
+    }
+
+    #page-header-logo {
+        opacity: .5;
+        width: 300px;
+        height: 312px;
+        padding-left: 300px;
+        left: 50%;
+        top: auto;
+        bottom: -228px; // 210px
+        margin-left: -150px;
+        background: url(/media/img/firefox/desktop/tips/firefox-logo.png) left top no-repeat;
+        background-size: 300px 312px;
+        .animation(phoenix 2s ease 1.3s 1 normal forwards);
+    }
+
+    .tip-copy {
+        width: 300px;
+    }
+
+    .tip-media {
+        width: 300px;
+        height: 250px;
+    }
+
+    .js {
+        #tips-nav-prev-next {
+            width: 300px;
+            top: 24px;
+            left: 10px;
+            right: auto;
+        }
+
+        #tips-wrapper {
+            min-height: 420px;
+        }
+    }
+
+    html[dir='rtl'] {
+        #masthead {
+            h1, h2 {
+                margin-right: 0;
+            }
+        }
+
+        #page-header-logo {
+            left: 50%;
+            right: auto;
+        }
+    }
+}
+
+/****************************************************************************/
+// @High resolution images for @retina-type displays
+// Tablet
+@media only screen and (max-width: @breakMobileLandscape) and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (max-width: @breakMobileLandscape) and (                min-resolution: 1.5dppx),
+       only screen and (max-width: @breakMobileLandscape) and (                min-resolution: 144dpi) {
+
+    #page-header-logo {
+        background-image: url(/media/img/firefox/desktop/tips/firefox-logo-high-res.png);
+        background-size: 300px 312px;
+    }
+}
+
+@-webkit-keyframes phoenix {
+    50% {
+        -webkit-transform: translateY(-16px);
+        transform: translateY(-16px);
+        opacity: .6;
+    }
+    70% {
+        opacity: .8;
+    }
+    100% {
+        -webkit-transform: translateY(-16px);
+        transform: translateY(-16px);
+        opacity: .5;
+    }
+}
+
+@keyframes phoenix {
+    40% {
+        -webkit-transform: translateY(-16px);
+        transform: translateY(-16px);
+        opacity: .6;
+    }
+    70% {
+        opacity: .8;
+    }
+    100% {
+        -webkit-transform: translateY(-16px);
+        transform: translateY(-16px);
+        opacity: .4;
     }
 }
