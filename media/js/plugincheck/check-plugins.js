@@ -34,6 +34,7 @@ $(function() {
             return 'default.png';
         }
     };
+    var mediaURL = window.trans('media-url') + 'img/plugincheck/app-icons/';
 
     var showPlugin = function(data) {
         var vulnerablePluginsSection = $('#sec-plugin-vulnerable'),
@@ -101,7 +102,6 @@ $(function() {
         var plugin = data.pluginInfo.raw,
             url = data.url,
             currentPlugin = {},
-            mediaURL = window.trans('media-url') + 'img/plugincheck/app-icons/',
             vulnerableStatusArray = ['should_disable', 'vulnerable', 'maybe_vulnerable',
                                     'outdated', 'maybe_outdated'];
 
@@ -174,8 +174,6 @@ $(function() {
     };
 
     function displayPlugins(pluginList) {
-
-        var mediaURL = 'manual/img/app-icons/';
 
         for (var i = 0; i < pluginList.length; i++) {
             var currentPlugin = {};
