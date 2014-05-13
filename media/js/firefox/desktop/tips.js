@@ -8,6 +8,8 @@
     var $tipPrev = $('#tip-prev');
     var $tipNext = $('#tip-next');
     var $tipsNavDirect = $('#tips-nav-direct');
+    var $tipsNavDots = $('#tips-nav-dots');
+    var $window = $(window);
 
     // mozilla pager stuff must be in doc ready wrapper
     $(function() {
@@ -29,6 +31,12 @@
             } else {
                 $tipNext.removeClass('inactive');
                 $tipPrev.removeClass('inactive');
+            }
+
+            // update dots (visible on mobile only)
+            if ($window.width() <= 760) {
+                $tipsNavDots.find('span').removeClass('active');
+                $tipsNavDots.find('span[data-tip="' + pager.currentPage.id + '"]').addClass('active');
             }
         };
 

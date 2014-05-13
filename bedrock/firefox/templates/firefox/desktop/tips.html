@@ -44,8 +44,17 @@
   <div class="container pager">
 
     <div id="tips-nav-prev-next">
-      <a href="" id="tip-prev">{{ _('back') }}</a>
-      <a href="" id="tip-next">{{ _('next') }}</a>
+      <a role="button" href="#" id="tip-prev">{{ _('back') }}</a>
+
+      <div id="tips-nav-dots">
+        <span data-tip="bookmarks">{{ _('1') }}</span>
+        <span data-tip="simplify">{{ _('2') }}</span>
+        <span data-tip="arrange">{{ _('3') }}</span>
+        <span data-tip="sync">{{ _('4') }}</span>
+        <span data-tip="addons">{{ _('5') }}</span>
+      </div>
+
+      <a role="button" href="#" id="tip-next">{{ _('next') }}</a>
     </div>
 
     <div id="tips-wrapper" class="pager-content">
@@ -194,7 +203,7 @@
   <div id="footer-mobile">
     <ul>
       <li><a href="{{ url('firefox.desktop.index') }}">{{ _('Firefox Features') }}</a></li>
-      <li><a href="https://support.mozilla.org/products/firefox">{{ _('Firefox Help') }}</a></li>
+      <li><a rel="external" href="https://support.mozilla.org/products/firefox">{{ _('Firefox Help') }}</a></li>
     </ul>
   </div>
 </section>

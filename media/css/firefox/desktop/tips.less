@@ -339,6 +339,10 @@ html[lang='en-US'] #masthead #tips-nav-direct li a span:after {
         }
     }
 
+    #tips-nav-dots {
+        display: none;
+    }
+
     #tip-prev {
         float: left;
 
@@ -620,6 +624,7 @@ html[dir='rtl'] {
     }
 
     .tip-copy {
+        float: none;
         width: 440px;
         margin: 0;
         padding: 0;
@@ -672,7 +677,7 @@ html[dir='rtl'] {
     .js {
         #tips-nav-prev-next {
             width: 440px;
-            top: 24px;
+            top: 20px;
             left: 10px;
             right: auto;
 
@@ -690,6 +695,40 @@ html[dir='rtl'] {
             }
         }
 
+        #tips-nav-dots {
+            display: block;
+            position: absolute;
+            width: 200px;
+            overflow: hidden;
+            margin: 12px 120px 0;
+            .clearfix();
+
+            span {
+                display: block;
+                float: left;
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                background: lighten(#dfe5e8, 2%);
+                color: lighten(#dfe5e8, 2%);
+                margin: 10px 10px 0;
+                text-align: center;
+                font-size: 1px;
+                .transition(all .2s ease);
+
+                &.active {
+                    width: 36px;
+                    height: 36px;
+                    background: #ff7200;
+                    color: #fff;
+                    .open-sans-light();
+                    font-size: 24px;
+                    line-height: 36px;
+                    margin-top: 0;
+                }
+            }
+        }
+
         #tip-prev {
             background-position: left top;
         }
@@ -700,6 +739,14 @@ html[dir='rtl'] {
 
         #tips-wrapper {
             min-height: 500px;
+        }
+
+        .ordinal {
+            display: none;
+        }
+
+        .tip-copy {
+            padding: 68px 0 0;
         }
     }
 
@@ -722,6 +769,10 @@ html[dir='rtl'] {
             #tips-nav-prev-next {
                 left: 10px;
                 right: auto;
+            }
+
+            #tips-nav-dots span {
+                float: right;
             }
 
             #tip-prev {
@@ -805,6 +856,16 @@ html[dir='rtl'] {
             top: 24px;
             left: 10px;
             right: auto;
+        }
+
+        #tips-nav-dots {
+            width: 150px;
+            margin: 12px 75px 0;
+
+            span {
+                margin-left: 5px;
+                margin-right: 5px;
+            }
         }
 
         #tips-wrapper {
