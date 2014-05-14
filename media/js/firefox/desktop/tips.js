@@ -2,14 +2,13 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-;(function($) {
+;(function($, Hammer) {
     'use strict';
 
     var $tipPrev = $('#tip-prev');
     var $tipNext = $('#tip-next');
     var $tipsNavDirect = $('#tips-nav-direct');
     var $tipsNavDots = $('#tips-nav-dots');
-    var $window = $(window);
 
     // mozilla pager stuff must be in doc ready wrapper
     $(function() {
@@ -34,10 +33,8 @@
             }
 
             // update dots (visible on mobile only)
-            if ($window.width() <= 760) {
-                $tipsNavDots.find('span').removeClass('active');
-                $tipsNavDots.find('span[data-tip="' + pager.currentPage.id + '"]').addClass('active');
-            }
+            $tipsNavDots.find('span').removeClass('active');
+            $tipsNavDots.find('span[data-tip="' + pager.currentPage.id + '"]').addClass('active');
         };
 
         // update nav links based on page visible on load (using URL hash)
@@ -83,5 +80,20 @@
                 updateNavLinks();
             }
         });
+
+        // handle swipe
+        new Hammer($('#tips-wrapper')[0], {
+            swipeVelocityX: 0.4
+        }).on('swipeleft swiperight', function(e) {
+            e.gesture.preventDefault();
+
+            if (e.gesture.direction === 'right' && pager.currentPage.index > 0) {
+                pager.prevPageWithAnimation();
+            } else if (e.gesture.direction === 'left' && pager.currentPage.index < (pager.pages.length - 1)) {
+                pager.nextPageWithAnimation();
+            }
+
+            updateNavLinks();
+        });
     });
-})(window.jQuery);
+})(window.jQuery, window.Hammer);
