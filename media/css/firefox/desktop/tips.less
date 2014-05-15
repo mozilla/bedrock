@@ -65,7 +65,7 @@
     .clearfix();
 
     .socialshare {
-        float: right;
+        float: left;
         margin: 12px 12px 0 0;
     }
 
@@ -263,13 +263,13 @@ html[lang='en-US'] #masthead #tips-nav-direct li a span:after {
 
 #footer-download {
     float: left;
-    width: 450px;
-    margin-right: @baseLine;
+    width: 470px;
 }
 
 #footer-share {
     float: left;
-    width: 470px;
+    width: 450px;
+    margin-right: @baseLine;
 
     p {
         margin-bottom: @baseLine / 2;
@@ -482,10 +482,12 @@ html[dir='rtl'] {
     }
 
     #page-header-logo {
-        top: 28px;
-        width: 190px;
-        height: 198px;
-        background-size: 190px 198px;
+        top: 46px;
+        left: -26px;
+        width: 170px;
+        height: 178px;
+        padding-left: 170px;
+        background-size: 170px 178px;
     }
 
     #tips-nav-direct {
@@ -672,6 +674,10 @@ html[dir='rtl'] {
         a {
             .trailing-arrow();
         }
+    }
+
+    .socialshare {
+        display: none;
     }
 
     .js {

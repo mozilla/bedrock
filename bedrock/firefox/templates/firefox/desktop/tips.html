@@ -184,11 +184,6 @@
 </main>
 
 <section class="container" id="footer">
-  <div id="footer-download">
-    <h3>{{ _('Get Firefox') }}</h3>
-    {{ download_firefox(small=True, icon=False) }}
-  </div>
-
   <div id="footer-share">
     <h3>{{ _('Congratulations') }}</h3>
     <p>
@@ -198,6 +193,11 @@
     <div class="share-wrapper">
       {% include 'firefox/includes/social-share.html' %}
     </div>
+  </div>
+
+  <div id="footer-download">
+    <h3>{{ _('Get Firefox') }}</h3>
+    {{ download_firefox(small=True, icon=False) }}
   </div>
 
   <div id="footer-mobile">
