@@ -465,7 +465,7 @@
         height: 200px;
         width: 363px;
         margin-left: 1750px;
-        padding: 80px 105px 0 35px;
+        padding: 60px 105px 20px 35px;
         top: 41px;
     }
 
@@ -572,7 +572,11 @@
     }
 }
 
-// Fixes for specific locales */
+// Fact @02 Fixes for specific locales
+[lang^='en'] .on #fact02 .message {
+    padding: 80px 105px 0 35px;
+}
+
 [lang='ro'] .on #fact02 .message {
     padding: 45px 105px 35px 35px;
 }
@@ -993,11 +997,9 @@
 }
 
 // Fact @06 Fixes for specific locales
-[lang='lt'] .on #fact06 .message {
-    padding: 25px 130px 15px 50px;
-}
-
-[lang='pl'] .on #fact06 .message {
+[lang='lt'] .on #fact06 .message,
+[lang='pl'] .on #fact06 .message,
+[lang='sr'] .on #fact06 .message {
     padding: 25px 130px 15px 50px;
 }
 
@@ -1409,6 +1411,7 @@
 }
 
 // Fact @10 Fixes for specific locales
+[lang^='es'] .on #fact10 .message,
 [lang='it'] .on #fact10 .message {
     padding: 30px 40px 26px 40px;
 }
@@ -1852,6 +1855,10 @@
         width: 375px;
     }
 
+    .message p {
+        padding-right: 30px;
+    }
+
     .block1 {
         background-position: -552px 0;
         height: 204px;
@@ -1998,12 +2005,14 @@
 }
 
 // Fact @14 Fixes for specific locales
-[lang='ru'] .on #fact14 .message {
+[lang='ru'] .on #fact14 .message,
+[lang='sq'] .on #fact14 .message,
+[lang='ta'] .on #fact14 .message {
     padding: 20px 50px 10px 30px;
 }
 
-[lang='ta'] .on #fact14 .message {
-    padding: 20px 50px 10px 30px;
+[lang^='en'] .on #fact14 .message p {
+    padding-right: 0;
 }
 
 
