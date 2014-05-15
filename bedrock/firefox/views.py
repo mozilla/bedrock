@@ -358,12 +358,11 @@ class FirstrunView(LatestFxView):
         return super(FirstrunView, self).get(request, *args, **kwargs)
 
     def get_template_names(self):
-        version = self.kwargs.get('fx_version')
         locale = l10n_utils.get_locale(self.request)
         fc_ctx = funnelcake_param(self.request)
         f = fc_ctx.get('funnelcake_id', 0)
 
-        if version == '29.0' and locale == 'en-US' and f == '30':
+        if f == '30' and locale == 'en-US':
             template = 'firefox/australis/firstrun-no-tour.html'
         else:
             template = 'firefox/australis/firstrun-tour.html'
@@ -389,8 +388,7 @@ class WhatsnewView(LatestFxView):
     }
 
     def get(self, request, *args, **kwargs):
-        version = kwargs.get('fx_version')
-        if version == '29.0' and not settings.DEV and not request.is_secure():
+        if not settings.DEV and not request.is_secure():
             uri = 'https://{host}{path}'.format(
                 host=request.get_host(),
                 path=request.get_full_path(),
@@ -409,21 +407,19 @@ class WhatsnewView(LatestFxView):
         return ctx
 
     def get_template_names(self):
-        version = self.kwargs.get('fx_version')
+        version = self.kwargs.get('fx_version') or ''
         locale = l10n_utils.get_locale(self.request)
         fc_ctx = funnelcake_param(self.request)
         f = fc_ctx.get('funnelcake_id', 0)
+        oldversion = self.request.GET.get('oldversion', '')
 
-        if version == '29.0' and locale == 'en-US':
-            if f == '30':
-                template = 'firefox/australis/whatsnew-no-tour.html'
-            else:
-                template = 'firefox/australis/whatsnew-tour.html'
-        elif version == '29.0':
-            # non en-US locales always get the tour
-            template = 'firefox/australis/whatsnew-tour.html'
+        if oldversion == '29.0' or (f == '30' and locale == 'en-US'):
+            template = 'firefox/australis/whatsnew-no-tour.html'
         elif version == '29.0a1':
             template = 'firefox/whatsnew-nightly-29.html'
+        elif version.startswith('29.'):
+            # non en-US locales always get the tour
+            template = 'firefox/australis/whatsnew-tour.html'
         elif locale in self.fxos_locales:
             template = 'firefox/whatsnew-fxos.html'
         else:
@@ -474,11 +470,9 @@ def get_release_or_404(version, product):
 
 def get_download_url(channel='Release'):
     if channel == 'Aurora':
-        # TODO: use reverse once bug 987517 is resolved
-        return '/firefox/aurora/'
+        return reverse('firefox.channel') + '#aurora'
     elif channel == 'Beta':
-        # TODO: use reverse once bug 752644 is resolved
-        return '/firefox/beta/'
+        return reverse('firefox.channel') + '#beta'
     else:
         return reverse('firefox')
 

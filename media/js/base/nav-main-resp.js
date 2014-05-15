@@ -239,9 +239,8 @@ NavMain.enterSmallMode = function()
 	.css('display', 'none')
 	.attr('aria-hidden');
 
-    $(document).click(NavMain.handleDocumentClick);
-    $('a, input, textarea, button, :focus')
-        .focus(NavMain.handleDocumentFocus);
+    $('#outer-wrapper').on('click.mobile-nav', NavMain.handleDocumentClick);
+    $('a, input, textarea, button, :focus').on('focus.mobile-nav', NavMain.handleDocumentFocus);
 
     $('#nav-main-menu, #nav-main-menu .submenu')
 	.attr('aria-hidden', 'true');
@@ -265,9 +264,8 @@ NavMain.leaveSmallMode = function()
 	.css('display', '')
 	.removeAttr('aria-hidden');
 
-    $(document).unbind('click', NavMain.handleDocumentClick);
-    $('a, input, textarea, button, :focus')
-        .unbind('focus', NavMain.handleDocumentFocus);
+    $('#outer-wrapper').off('click.mobile-nav', NavMain.handleDocumentClick);
+    $('a, input, textarea, button, :focus').off('focus.mobile-nav', NavMain.handleDocumentFocus);
 
     $('#masthead .toggle').removeClass('open');
 

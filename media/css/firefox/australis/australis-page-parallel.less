@@ -4,6 +4,8 @@
 
 .main-container {
     display: table;
+    width: 50%;
+    margin: 0 auto 20px auto;
     border-spacing: 20px;
     p {
         width: 70%;
@@ -18,15 +20,16 @@
 }
 
 .hide-sync {
-    width: 50%;
-    margin: 0 auto 20px auto;
     .sync {
         display: none;
+    }
+    .share {
+        display: table-cell;
     }
 }
 
 .share {
-    display: table-cell;
+    display: none;
     padding-top: 20px;
     width: 50%;
     background: #006ba2 url(/media/img/firefox/australis/glow/glow-bg.png) top left no-repeat;
@@ -35,6 +38,22 @@
         margin: 0 20px;
         z-index: 3;
         transform: translate3d(0px, 0px, 0px);
+    }
+}
+
+.no-js {
+    .main-container {
+        width: 100%;
+    }
+    .sync,
+    .share {
+        display: table-cell;
+    }
+    .sync-anim {
+        background-image: url('/media/img/firefox/sync/composite.png?05-2014');
+        .device {
+            display: none;
+        }
     }
 }
 

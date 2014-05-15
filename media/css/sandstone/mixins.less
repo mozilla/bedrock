@@ -2,7 +2,6 @@
 // http://creativecommons.org/licenses/by/3.0/
 
 .border-radius(@radius: 0.25em) {
-  -moz-border-radius: @radius;
   border-radius: @radius;
 }
 
@@ -13,23 +12,16 @@
 }
 
 .box-shadow(@shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.1)) {
-  -webkit-box-shadow: @shadow;
-  -moz-box-shadow: @shadow;
   box-shadow: @shadow;
 }
 
 .transition(@transition: all linear .25s) {
   -webkit-transition: @transition;
-  -moz-transition: @transition;
-  -o-transition: @transition;
-  -ms-transition: @transition;
   transition: @transition;
 }
 
 .transform(@transform) {
   -webkit-transform: @transform;
-  -moz-transform: @transform;
-  -o-transform: @transform;
   -ms-transform: @transform;
   transform: @transform;
 }

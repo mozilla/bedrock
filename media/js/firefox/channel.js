@@ -11,14 +11,6 @@ $(document).ready(function() {
 
     function redirect(a) {
         var href = a.href;
-
-        if (href.indexOf('#beta') != -1) {
-            window.location = '/firefox/beta/';
-        } else if (href.indexOf('#aurora') != -1) {
-            window.location = '/firefox/aurora/';
-        } else if (href.indexOf('#firefox') != -1) {
-            window.location = '/firefox/';
-        }
     }
 
     pager.$container.bind('changePage', function(e, tab) {

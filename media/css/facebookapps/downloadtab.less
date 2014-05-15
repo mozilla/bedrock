@@ -41,7 +41,7 @@
     z-index: 1;
 
     padding-bottom: 430px;
-    background: url(/media/img/facebookapps/downloadtab/firefox.png) no-repeat 50% 100%;
+    background: url('/media/img/facebookapps/downloadtab/firefox.png?05-2014') no-repeat 50% 100%;
     color: @textColorSecondary;
 
     .noscroll & {
@@ -53,12 +53,27 @@
     .on-scene1 & {
         background-position: 50% 100%;
     }
-    .windows .on-scene1.noscroll &, .linux .on-scene1.noscroll & {
-        background-image: url(/media/img/facebookapps/downloadtab/browser-win.png);
+    .windows .on-scene1.noscroll & {
+        background-image: url('/media/img/facebookapps/downloadtab/browser-win.png?05-2014');
+    }
+    .linux .on-scene1.noscroll & {
+        background-image: url('/media/img/facebookapps/downloadtab/browser-linux.png?05-2014');
     }
     .osx .on-scene1.noscroll & {
-        background-image: url(/media/img/facebookapps/downloadtab/browser-mac.png);
+        background-image: url('/media/img/facebookapps/downloadtab/browser-mac.png?05-2014');
     }
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.5),
+       (                min-resolution: 1.5dppx),
+       (                min-resolution: 144dpi) {
+    #wrapper {
+        .osx .on-scene1.noscroll & {
+            background-image: url('/media/img/facebookapps/downloadtab/browser-mac-high-res.png');
+            background-size: 750px 191px;
+        }
+    }
+
 }
 
 
@@ -250,13 +265,10 @@ h2 {
 
     li {
         position: relative;
-
         float: left;
         margin-right: 30px;
-        padding: 150px 0 0 0;
+        padding: 0;
         width: 175px;
-
-        background-repeat: no-repeat;
         color: @textColorTertiary;
         font-size: 12px;
         text-align: left;
@@ -273,7 +285,21 @@ h2 {
             background: url(/media/img/facebookapps/downloadtab/steps-installation.png);
             content: ' ';
         }
+
+        .screen {
+            display: block;
+            width: 175px;
+            height: 88px;
+            background-size: 100%;
+            background-color: transparent;
+            background-repeat: no-repeat;
+            background-position: 0 0;
+        }
     }
+
+    #install2 .screen { background-position: 0 -94px; }
+    #install3 .screen { background-position: 0 -189px; }
+
     #install1:after { background-position: 0 0 }
     #install2:after { background-position: 0 50% }
     #install3 {
@@ -283,23 +309,40 @@ h2 {
 }
 
 .osx {
-    #install1 { background-image: url(/media/img/facebookapps/downloadtab/install1-mac.png); }
-    #install2 { background-image: url(/media/img/facebookapps/downloadtab/install2-mac.png); }
-    #install3 { background-image: url(/media/img/facebookapps/downloadtab/install3-mac.png); }
+    #install1 .screen,
+    #install2 .screen,
+    #install3 .screen {
+        background-image: url(/media/img/facebookapps/downloadtab/install-mac.jpg);
+    }
 }
 
 .windows {
-    #install1 { background-image: url(/media/img/facebookapps/downloadtab/install1-win.png); }
-    #install2 { background-image: url(/media/img/facebookapps/downloadtab/install2-win.png); }
-    #install3 { background-image: url(/media/img/facebookapps/downloadtab/install3-win.png); }
+    #install1 .screen,
+    #install2 .screen,
+    #install3 .screen {
+        background-image: url(/media/img/facebookapps/downloadtab/install-win.jpg);
+    }
 }
 
-.winIE8 #install1 {
-    background-image: url(/media/img/facebookapps/downloadtab/install1-winIE8.png);
+.winIE8 {
+    #install1 .screen,
+    #install2 .screen,
+    #install3 .screen {
+        background-image: url(/media/img/facebookapps/downloadtab/install-winIE8.jpg);
+    }
 }
 
 .osx .install-win { display: none; }
 .windows .install-osx { display: none; }
+
+.linux {
+    .installation {
+        display: none;
+    }
+    #scene2 .button {
+        margin: 40px 0 100px 0;
+    }
+}
 
 //
 // Scene 3: Get involved

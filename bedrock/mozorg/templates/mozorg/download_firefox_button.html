@@ -7,7 +7,7 @@
     <h4>{{ _('Download Firefox') }} — {{ locale_name|safe }}</h4>
     <ul>
       {% for plat in builds -%}
-        <li><a href="{{ plat.download_link_direct or plat.download_link }}" class="button-green">{{ plat.os_pretty }}</a></li>
+        <li><a href="{{ plat.download_link_direct or plat.download_link }}" class="button-green">{{ plat.os_arch_pretty or plat.os_pretty }}</a></li>
       {%- endfor %}
     </ul>
   </div>
@@ -34,7 +34,7 @@
   {% endif %}
   <ul class="download-list">
     {% for plat in builds %}
-      <li class="{{ plat.os }}">
+      <li class="{{ plat.os }}{% if plat.arch %} {{ plat.arch }}{% endif %}">
         <a class="download-link"
            href="{{ plat.download_link }}"{% if plat.download_link_direct %}
            data-direct-link="{{ plat.download_link_direct }}"{% endif %}>
@@ -43,7 +43,7 @@
               {% if build == 'beta' %}
                 <strong class="download-title">{{ _('<span>Firefox Beta</span> for Android') }}</strong>
               {% elif build == 'aurora' %}
-                <strong class="download-title">{{ _('<span>Firefox Aurora</span> for Android') }}</strong>
+                <strong class="download-title">{{ _('<span>Firefox Aurora</span> for Android') }} {{ plat.arch_pretty }}</strong>
               {% else %}
                 <strong class="download-title">{{ _('<span>Firefox</span> for Android') }}</strong>
               {% endif %}
@@ -69,7 +69,15 @@
   </ul>
   {% if show_mobile %}
     <small class="download-other os_android">
-      <a href="https://support.mozilla.org/kb/will-firefox-work-my-mobile-device">{{ _('Supported Devices') }}</a> |
+      {% if build == 'aurora' -%}
+        {% for plat in builds -%}
+          {% if plat.os == 'os_android' -%}
+            <span class="arch {{ plat.arch }}"><a href="{{ plat.download_link }}">{{ plat.arch_pretty }}</a> |</span>
+          {% endif -%}
+        {% endfor -%}
+      {% endif -%}
+      <a href="https://support.mozilla.org/kb/will-firefox-work-my-mobile-device">{{ _('Supported Devices') }}</a>
+      {%- if build == 'aurora' %}<br>{% else %} |{% endif %}
       <a href="{{ product_url('mobile', 'notes', build) }}">{{ _('What’s New') }}</a> |
       <a href="{{ url('privacy.notices.firefox') }}">{{ _('Privacy') }}</a>
     </small>

@@ -12,13 +12,7 @@
   {{ css('mobile_features') }}
 {% endblock %}
 
-{% block breadcrumbs %}
-  <nav class="breadcrumbs">
-    <a href="{{ url('mozorg.home') }}">{{_('Home')}}</a> &gt;
-    <a href="{{ url('firefox') }}">{{_('Firefox')}}</a> &gt;
-    <span>{{_('Mobile')}}</span>
-  </nav>
-{% endblock %}
+{% block site_header_nav %}{% endblock %}
 
 {% block content %}
 

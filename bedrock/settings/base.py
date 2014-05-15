@@ -30,7 +30,7 @@ LANGUAGE_CODE = 'en-US'
 # Accepted locales
 PROD_LANGUAGES = ('ach', 'af', 'ak', 'an', 'ar', 'as', 'ast', 'az', 'be', 'bg',
                   'bn-BD', 'bn-IN', 'br', 'bs', 'ca', 'cs', 'csb', 'cy',
-                  'da', 'de', 'el', 'en-GB', 'en-US', 'en-ZA', 'eo', 'es-AR',
+                  'da', 'de', 'dsb', 'el', 'en-GB', 'en-US', 'en-ZA', 'eo', 'es-AR',
                   'es-CL', 'es-ES', 'es-MX', 'et', 'eu', 'fa', 'ff', 'fi', 'fr',
                   'fy-NL', 'ga-IE', 'gd', 'gl', 'gu-IN', 'he', 'hi-IN', 'hr',
                   'hsb', 'hu', 'hy-AM', 'id', 'is', 'it', 'ja', 'ja-JP-mac',
@@ -288,6 +288,9 @@ MINIFY_BUNDLES = {
             'css/base/mozilla-modal.less',
             'css/firefox/template-resp.less',
             'css/firefox/installer-help.less',
+        ),
+        'history-slides': (
+            'css/mozorg/history-slides.less',
         ),
         'home': (
             'css/mozorg/home.less',
@@ -598,6 +601,10 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.cycle2.carousel.min.js',
             'js/mozorg/home.js',
         ),
+        'history-slides': (
+            'js/libs/jquery.sequence.js',
+            'js/mozorg/history-slides.js',
+        ),
         'installer_help': (
             'js/base/mozilla-modal.js',
             'js/firefox/installer-help.js',
@@ -878,7 +885,7 @@ STUB_INSTALLER_LOCALES = {
 }
 
 # Force download via SSL
-FORCE_SSL_DOWNLOAD_VERSIONS = ['27.0', '27.0.1', '28.0', '29.0']
+FORCE_SSL_DOWNLOAD_VERSIONS = ['27.0', '27.0.1', '28.0', '29.0', '29.0.1']
 
 # Google Analytics
 GA_ACCOUNT_CODE = ''
@@ -958,7 +965,7 @@ FIREFOX_TWITTER_ACCOUNTS = {
 }
 
 # Mapbox token for spaces and communities pages
-MAPBOX_TOKEN = 'examples.map-9ijuk24y'
+MAPBOX_TOKEN = 'examples.map-i86nkdio'
 
 TABZILLA_INFOBAR_OPTIONS = 'translation'
 

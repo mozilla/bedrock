@@ -22,7 +22,7 @@
 
 {% block content %}
   <h1 id="wordmark">
-    <a href="{{ url('gigabit.gigabit') }}"><img src="{{ media('img/gigabit/gigabit-wordmark.png') }}" alt={{ _('Mozilla Gigabit Community Fund (go to Home page)') }}></a>
+    <a href="{{ url('gigabit.gigabit') }}"><img src="{{ media('img/gigabit/gigabit-wordmark.png') }}" alt="{{ _('Mozilla Gigabit Community Fund (go to Home page)') }}"></a>
   </h1>
 
   <main role="main">
@@ -47,7 +47,7 @@
         <h4 class="section-header">Submission Period:</h4>
         <p>
         {% trans %}
-          The Gigabit Community Fund Spring (“Spring Pilot Period”) Request for Proposals (“RFP”) opens on Wednesday, February 26, 2014 at 12:00:01 AM U.S. Pacific Time (“PT”), and all proposals for projects must be received by Friday, March 28, 2014 at 11:59:59 PM PT to be considered in the first round of the Fund (“Spring Pilot Period”).  Submissions to be considered for the second round of the Fund (“Summer Pilot Period”) open on Monday, May 12, 2014 at 12:00:01 AM U.S. Pacific Time (“PT”), and are due Friday, June 13, 2014 at 11:59:59 PM PT. Late submissions may be considered at Sponsor’s discretion.
+          The Gigabit Community Fund Spring (“Spring Pilot Period”) Request for Proposals (“RFP”) opens on Wednesday, February 26, 2014 at 12:00:01 AM U.S. Pacific Time (“PT”), and all proposals for projects must be received by Friday, March 28, 2014 at 11:59:59 PM PT to be considered in the first round of the Fund (“Spring Pilot Period”).  Submissions to be considered for the second round of the Fund (“Summer Pilot Period”) open on Monday, May 12, 2014 at 12:00:01 AM U.S. Pacific Time (“PT”), and are due Friday, June 13, 2014 at 11:59:59 PM PT. Late submissions may be considered at Sponsor’s discretion
         {% endtrans %}
         </p>
       </section>
@@ -70,13 +70,17 @@
         <h4 class="section-header">Submission Process:</h4>
         <p>
         {% trans url_website=url('gigabit.gigabit') %}
-          Registration and submissions will be accepted during the submission period via the Fund <a href="{{ url_website }}">website</a>.   All registrations and submissions must be in English. By registering and providing an email address, Applicant agrees to receive email communications from Sponsor related to the Fund. <br />
+          Registration and submissions will be accepted during the submission period via the Fund <a href="{{ url_website }}">website</a>.   All registrations and submissions must be in English. By registering and providing an email address, Applicant agrees to receive email communications from Sponsor related to the Fund.
+        {% endtrans %}
+        </p>
+        <p>
+        {% trans %}
           All sections of the registration and/or submission forms must be completed to be a valid submission into the Fund (“Submission”).  Late submissions may be considered at Sponsor’s discretion. All submissions are final upon entry.
         {% endtrans %}
         </p>
         <p>
-        {% trans url_website=url('gigabit.gigabit') %}
-          LIMIT THREE (3) SUBMISSIONS PER APPLICANT.  Any subsequent Submissions from the same Applicant or email address will be disqualified.  In the event of a dispute over the identity of an Applicant, he/she will be deemed to be the account holder of the email account associated with that person during the registration/submission process on the Fund <a href="{{ url_website }}">website</a>. In the event two or more Submissions/proposals describe substantially similar projects, the evaluator’s determination of the qualitatively superior proposal will determine which Submission is considered.
+        {% trans %}
+          LIMIT THREE (3) SUBMISSIONS PER APPLICANT.  Any subsequent Submissions from the same Applicant or email address will be disqualified.  In the event of a dispute over the identity of an Applicant, he/she will be deemed to be the account holder of the email account associated with that person during the registration/submission process on the Fund website. In the event two or more Submissions/proposals describe substantially similar projects, the evaluator’s determination of the qualitatively superior proposal will determine which Submission is considered.
         {% endtrans %}
         </p>
         <p>
@@ -89,8 +93,8 @@
       <section class="terms-section">
         <h4 class="section-header">Submission Form Requirements:</h4>
         <p>
-        {% trans %}
-          Each Fund Applicant must clearly and concisely compile all of the following mandatory sections of the Fund submission components, to be saved and submitted in a PDF that is no larger than 10 MB, and uploaded with the official submission form. Applicants may also include optional materials in the submission document as noted below. Collectively, this constitutes a “Fund Proposal.”
+        {% trans url_proposal_template='https://docs.google.com/a/mozillafoundation.org/document/d/1JWCABAhvvRw3gqbGwBqRvdjh2wu3pwYhPKAISJB0Zak/edit' %}
+          Each Fund Applicant must clearly and concisely compile all of the following mandatory sections of the Fund submission components (<a href="{{ url_proposal_template }}">proposal template</a>), to be saved and submitted in a PDF that is no larger than 10 MB, and uploaded with the official <u>submission form</u>. Applicants may also include optional materials in the submission document as noted below. Collectively, this constitutes a “Fund Proposal.”
         {% endtrans %}
         </p>
         <ol id="submission-list">
@@ -103,15 +107,16 @@
           <li>{{ _('Phone Number of Project Lead Contact') }}</li>
           <li>{{ _('Who is your team? (Name, organization, and 50 word bio for each team member)') }}</li>
           <li>{{ _('Project Overview (limit 500 words)') }}</li>
+          <li>{{ _('Describe where and how your project pilot will take place in a classroom or other learning environment. (limit 300 words)') }}</li>
+          <li>{{ _('What will the learning or training outcomes be for pilot participants? (limit 300 words)') }}</li>
           <li>{{ _('What community challenge in workforce development or education does your project help solve? (limit 150 words)') }}</li>
           <li>{{ _('How does your project take advantage of the gigabit network in Chattanooga or Kansas City? (limit 150 words)') }}</li>
-          <li>{{ _('Who is your target audience for this project?  What will they learn? (limit 150 words)') }}</li>
           <li>{{ _('What specific metrics and/or evaluation will you use to assess the impact of your project? (limit 300 words)') }}</li>
           <li>{{ _('Brief project timeline (Note that the pilot period is 12 weeks.)') }}</li>
           <li>{{ _('Mozilla works in the open.  How will you document and share your project progress with the community? (limit 150 words)') }}</li>
           <li>{{ _('List any and all key partners and/or collaborators with whom you are pursuing or actively working, including the nature of the relationship, notable organizational differences and similarities, and the purpose of the relationship to your project. (limit 300 words)') }}</li>
           <li>{{ _('How will you continue your project at the end of the pilot period?  (limit 150 words)') }}</li>
-          <li>{{ _('How can we help make your project successful if funded? (limit 150 words)') }}</li>
+          <li>{{ _('What risks or challenges might affect the overall outcome of your project?  How could Mozilla help make your project successful if funded? (limit 300 words)') }}</li>
           <li>{{ _('Requested funding amount (Grants will range from $5K-30K, and each project budget will be unique to the project’s requirements.)') }}</li>
           <li>{{ _('Project budget detailing how funds will be used and how/if other funding will be brought to bear') }}</li>
           <li>{{ _('Optional: Other supporting materials or resources which may help the evaluators understand your Fund Proposal (include any applicable links in list form (i.e. pitch video, GitHub repository URL, images, wireframes, prototypes, YouTube videos, slide decks, etc.) - limit 5 links)') }}</li>
@@ -131,10 +136,36 @@
       <section class="terms-section">
         <h4 class="section-header">Fund Evaluation:</h4>
         <p>
-        {% trans %}
-          Evaluation of Submissions will occur during the Proposal Review Period as described below.  The decisions of the evaluators will be final in all instances. <br />
-          Each Fund Proposal will be initially screened for three mandatory criteria: (a) Will the project be piloted in the Chattanooga, TN or Kansas City, MO metropolitan region; (b) Does the project focus on education or workforce development; and (c) Does it leverage next generation networking technologies like ultra high speed networking and software-defined networking. Those Fund Proposals meeting these criteria will be eligible for further review by a panel of local evaluators and representatives from Mozilla and NSF, and may include additional category-expert reviewers based on the following entry criteria:
-        {% endtrans %}
+          {% trans %}
+          Evaluation of Submissions will occur during the Proposal Review Period as described below.  The decisions of the evaluators will be final in all instances.
+          {% endtrans %}
+        </p>
+        <p>
+          {% trans %}
+          Each Fund Proposal will be initially screened for three mandatory criteria:
+          {% endtrans %}
+        </p>
+        <ol class="lower-alpha-list">
+          <li>
+            {% trans %}
+              Will the project be piloted in the Chattanooga, TN or Kansas City, MO metropolitan region;
+            {% endtrans %}
+          </li>
+          <li>
+            {% trans %}
+              Does the project focus on education or workforce development; and
+            {% endtrans %}
+          </li>
+          <li>
+            {% trans %}
+              Does it leverage next generation networking technologies like ultra high speed networking and software-defined networking.
+              {% endtrans %}
+          </li>
+        </ol>
+        <p>
+          {% trans %}
+          Those Fund Proposals meeting these criteria will be eligible for further review by a panel of local evaluators and representatives from Mozilla and NSF, and may include additional category-expert reviewers based on the following entry criteria:
+          {% endtrans %}
         </p>
         <h5>{{ _('Intellectual Merit (50%)') }}</h5>
         <ol class="fund-evaluation-list">
@@ -191,7 +222,7 @@
       <!-- section divider ===  -->
       <section class="terms-section">
         <h4 class="section-header">Fund Reporting:</h4>
-        <p>
+        <p class="new-line-opening-p">
         {% trans %}
           Applicants whose Fund Proposals are selected for funding will be expected to report on progress per the methods set forth below:
         {% endtrans %}
@@ -217,7 +248,7 @@
       <!-- section divider ===  -->
       <section class="terms-section">
         <h4 class="section-header">{{ _('Award Amounts:') }}</h4>
-        <p>
+        <p class="new-line-opening-p">
         {% trans %}
         At the beginning of each pilot period, the evaluators will have the ability to award up to a maximum of the amounts of money listed below as grants to support the development of selected projects. The total amount awarded in each pilot round, the number of Submissions/projects to be supported, and the amount of support given to support any particular project are all within the discretion of the evaluators, subject to the maximum amount available to be awarded by the evaluators in that round as follows:
         {% endtrans %}
@@ -225,7 +256,7 @@
         <ol id="award-amount-list">
           <li>
             {% trans %}
-            Spring Pilot Period (April 21, 2014 - July 11, 2014) – USD $75,000 maximum in total grants available in each city.
+            Spring Pilot Period (April 28, 2014 - July 18, 2014) – USD $75,000 maximum in total grants available in each city.
             {% endtrans %}
           </li>
           <li>
@@ -236,8 +267,16 @@
         </ol>
         <p>
           {% trans %}
-          Both funded and non-funded Proposals submitted in the Spring Pilot Period may be eligible for resubmission during the Summer Pilot Period. <br />
-          Any Applicant whose proposal is awarded funding and who accepts the award will be required to sign a grant agreement with Mozilla Foundation. <br />
+          Both funded and non-funded Proposals submitted in the Spring Pilot Period may be eligible for resubmission during the Summer Pilot Period.
+          {% endtrans %}
+        </p>
+        <p>
+          {% trans %}
+          Any Applicant whose proposal is awarded funding and who accepts the award will be required to sign a grant agreement with Mozilla Foundation.
+          {% endtrans %}
+        </p>
+        <p>
+          {% trans %}
           Any Applicant eligible for a grant award at any given round in the Fund is solely responsible for the payment of any taxes that may arise as a result of acceptance of the grant and for all other expenses or costs of the Applicants’ project not covered by the grant.  Each grant will be in the form of a single payment to the grantee. Grant awards cannot be transferred or substituted.
           {% endtrans %}
         </p>
@@ -256,7 +295,11 @@
         <h4 class="section-header">Usage Rights in Submission:</h4>
         <p>
         {% trans url_gigabit=url('gigabit.gigabit') %}
-          You retain all ownership rights in your Submission in the Fund.  However, by participating you acknowledge that your Submission and all subsequent material you submit may become published on the Fund <a href="{{ url_gigabit }}">website</a>, and you further agree that the Sponsor and anyone it designates shall have the unrestricted and non-exclusive right to edit, adapt, publish, copy, display, perform, broadcast, modify, and otherwise use any or all of your Submission and all other materials and information you supply, alone or in combination with other material, in any and all media, whether now known or later discovered, in perpetuity, without restriction of any kind whatsoever, without further compensation to you or anyone else. <br />
+          You retain all ownership rights in your Submission in the Fund.  However, by participating you acknowledge that your Submission and all subsequent material you submit may become published on the Fund <a href="{{ url_gigabit }}">website</a>, and you further agree that the Sponsor and anyone it designates shall have the unrestricted and non-exclusive right to edit, adapt, publish, copy, display, perform, broadcast, modify, and otherwise use any or all of your Submission and all other materials and information you supply, alone or in combination with other material, in any and all media, whether now known or later discovered, in perpetuity, without restriction of any kind whatsoever, without further compensation to you or anyone else.
+        {% endtrans %}
+        </p>
+        <p>
+        {% trans %}
           While not required, we encourage all Applicants to make their Submissions (as well as any supporting documentation) available to the general public under an open source license such as BSD, Creative Commons Attribution Only, or Mozilla Public License v2. If the type of license has an influence on the likely impact of the Submission, then the evaluators may take that into consideration in reviewing the Submission.  You agree to identify in the license for your Submission that the Submission was initially designed and created for the Mozilla Gigabit Community Fund (www.mozilla.org/gigabit/).
         {% endtrans %}
         </p>
@@ -266,8 +309,16 @@
         <h4 class="section-header">General Conditions:</h4>
         <p>
         {% trans %}
-          By entering a Submission into the Fund, you are agreeing to these Terms, and the review and use of your Submission by Sponsor and its designees as contemplated in these Terms, which includes consent to Sponsor, its agencies, partners or assigns to use the Submission and your name and/or likeness for advertising and promotional purposes, in any media, without further notice, compensation, consideration, review, or consent, except as prohibited by law. <br />
-          By entering a Submission into the Fund, you further release and hold harmless the Mozilla Foundation, NSF, and their respective directors, officers, employees, and agents from any and all liability, claims, demands, and causes of action for personal injury or damage, theft, loss, or any other harm suffered in connection with the Fund or the receipt, use or misuse of any development grant, including participation in any travel or other activities. <br />
+          By entering a Submission into the Fund, you are agreeing to these Terms, and the review and use of your Submission by Sponsor and its designees as contemplated in these Terms, which includes consent to Sponsor, its agencies, partners or assigns to use the Submission and your name and/or likeness for advertising and promotional purposes, in any media, without further notice, compensation, consideration, review, or consent, except as prohibited by law.
+        {% endtrans %}
+        </p>
+        <p>
+        {% trans %}
+          By entering a Submission into the Fund, you further release and hold harmless the Mozilla Foundation, NSF, and their respective directors, officers, employees, and agents from any and all liability, claims, demands, and causes of action for personal injury or damage, theft, loss, or any other harm suffered in connection with the Fund or the receipt, use or misuse of any development grant, including participation in any travel or other activities.
+        {% endtrans %}
+        </p>
+        <p>
+        {% trans %}
           Mozilla reserves the right, in its sole discretion, to disqualify any person it reasonably suspects has attempted to undermine the legitimate operation of the Fund by cheating, deception, or other unfair practices, or has tampered with any of Sponsor’s websites, the submission process, the review process, or has violated these Terms, or has acted in an unsportsmanlike or disruptive manner, or who annoys, abuses, threatens, or harasses Sponsor, its agents, its assigns or any other Applicant.
         {% endtrans %}
         </p>
@@ -277,8 +328,16 @@
         <h4 class="section-header">Limitation of liability/disclaimer:</h4>
         <p>
         {% trans %}
-          ALL CONTENT LOCATED AT OR AVAILABLE FROM THE FUND WEBSITE IS PROVIDED "AS IS," AND MOZILLA OR THIRD PARTIES MAKE NO REPRESENTATIONS, EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, AND ANY DUTY (IF ANY) OF WORKMANLIKE EFFORT OR LACK OF NEGLIGENCE. THE FUND WEBSITE IS PROVIDED: (1) AS IS WITH ALL FAULTS; AND (2) WITHOUT ANY ASSURANCE, OR WARRANTY, CONDITION OR DUTY OF OR REGARDING: FUNCTIONALITY; PRIVACY; SECURITY; ACCURACY; AVAILABILITY; LACK OF: NEGLIGENCE, INTERRUPTION, VIRUSES OR OF OTHER HARMFUL CODE, COMPONENTS OR TRANSMISSIONS. ALSO, THERE IS NO WARRANTY BY MOZILLA OR THIRD PARTIES OF TITLE OR AGAINST INFRINGEMENT OR INTERFERENCE WITH ENJOYMENT OF ANY ASPECT OF THE WEBSITE. <br />
-          TO THE FULL EXTENT ALLOWED BY LAW, YOU AGREE THAT NEITHER MOZILLA, NOR ANY THIRD PARTIES, WILL BE LIABLE TO YOU OR ANYONE ELSE FOR ANY SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, DAMAGES FOR LOST PROFITS, FOR LOSS OF PRIVACY OR SECURITY, FOR LOSS OF REPUTATION, FOR FAILURE TO MEET ANY DUTY (INCLUDING WITHOUT LIMITATION ANY DUTY OF GOOD FAITH OR LACK OF NEGLIGENCE OR OF WORKMANLIKE EFFORT), OR FOR ANY OTHER SIMILAR DAMAGES WHATSOEVER THAT ARISE OUT OF OR ARE RELATED TO ANY ASPECT OF THE WEBSITE OR TO ANY BREACH OF THESE TERMS (INCLUDING WITHOUT LIMITATION, THE PRIVACY POLICY), EVEN IF WE OR A THIRD PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES AND EVEN IN THE EVENT OF FAULT, TORT (INCLUDING NEGLIGENCE) OR STRICT OR PRODUCTS LIABILITY OR MISREPRESENTATION. <br />
+          ALL CONTENT LOCATED AT OR AVAILABLE FROM THE FUND WEBSITE IS PROVIDED "AS IS," AND MOZILLA OR THIRD PARTIES MAKE NO REPRESENTATIONS, EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, AND ANY DUTY (IF ANY) OF WORKMANLIKE EFFORT OR LACK OF NEGLIGENCE. THE FUND WEBSITE IS PROVIDED: (1) AS IS WITH ALL FAULTS; AND (2) WITHOUT ANY ASSURANCE, OR WARRANTY, CONDITION OR DUTY OF OR REGARDING: FUNCTIONALITY; PRIVACY; SECURITY; ACCURACY; AVAILABILITY; LACK OF: NEGLIGENCE, INTERRUPTION, VIRUSES OR OF OTHER HARMFUL CODE, COMPONENTS OR TRANSMISSIONS. ALSO, THERE IS NO WARRANTY BY MOZILLA OR THIRD PARTIES OF TITLE OR AGAINST INFRINGEMENT OR INTERFERENCE WITH ENJOYMENT OF ANY ASPECT OF THE WEBSITE.
+        {% endtrans %}
+        </p>
+        <p>
+        {% trans %}
+          TO THE FULL EXTENT ALLOWED BY LAW, YOU AGREE THAT NEITHER MOZILLA, NOR ANY THIRD PARTIES, WILL BE LIABLE TO YOU OR ANYONE ELSE FOR ANY SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, DAMAGES FOR LOST PROFITS, FOR LOSS OF PRIVACY OR SECURITY, FOR LOSS OF REPUTATION, FOR FAILURE TO MEET ANY DUTY (INCLUDING WITHOUT LIMITATION ANY DUTY OF GOOD FAITH OR LACK OF NEGLIGENCE OR OF WORKMANLIKE EFFORT), OR FOR ANY OTHER SIMILAR DAMAGES WHATSOEVER THAT ARISE OUT OF OR ARE RELATED TO ANY ASPECT OF THE WEBSITE OR TO ANY BREACH OF THESE TERMS (INCLUDING WITHOUT LIMITATION, THE PRIVACY POLICY), EVEN IF WE OR A THIRD PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES AND EVEN IN THE EVENT OF FAULT, TORT (INCLUDING NEGLIGENCE) OR STRICT OR PRODUCTS LIABILITY OR MISREPRESENTATION.
+        {% endtrans %}
+        </p>
+        <p>
+        {% trans %}
           YOU AGREE THAT YOUR EXCLUSIVE REMEDY FOR ANY BREACH OF THESE TERMS (INCLUDING WITHOUT LIMITATION, THE PRIVACY POLICY) AND FOR ANY AGGREGATE DAMAGES DUE YOU (OR OTHERS RELATED TO YOU) BY US OR ANY THIRD PARTIES FOR ANY REASON RELATING TO ANY PART OF THE WEBSITE, WILL BE SUBSTITUTION, CORRECTION OR REPLACEMENT OF ALL OR PART OF THE CONTENT OR SERVICE CAUSING YOUR DAMAGE (IF ANY). The damage exclusions and limitations in these Terms are independent and will apply even if any remedy fails of its essential purpose. <br />
         {% endtrans %}
         </p>
@@ -305,8 +364,8 @@
       <section class="terms-section">
         <h4 class="section-header">Privacy:</h4>
         <p>
-        {% trans url_privacy=url('privacy'), url_email='mailto:gigabit@mozilla.org' %}
-          Mozilla respects your privacy. Any personally identifiable information submitted in connection with the Fund will be governed by Mozilla’s privacy policy, available at <a href="{{ url_privacy }}">http://www.mozilla.org/privacy/</a>, and will only be used in connection with the administration of the Fund unless you expressly agree otherwise. As part of such administration, it may be necessary to share information with subcontractors, agents or partners assisting in the administration of the Fund, but any such sharing will be solely for that purpose. If you have any questions about the use of your personal information, please write to us at the address above or email us at <a href="{{ url_email }}">gigabit@mozilla.org</a>.
+        {% trans url_privacy=url('privacy.notices.websites'), url_email='mailto:gigabit@mozilla.org' %}
+          Mozilla respects your privacy.  Any personally identifiable information submitted in connection with the Fund will be governed by Mozilla’s privacy policy, available at <a href="{{ url_privacy }}">www.mozilla.org/privacy/websites/</a>, and will only be used in connection with the administration of the Fund unless you expressly agree otherwise.  As part of such administration, it may be necessary to share information with subcontractors, agents or partners assisting in the administration of the Fund, but any such sharing will be solely for that purpose.  If you have any questions about the use of your personal information, please write to us at the address above or email us at <a href="{{ url_email }}">gigabit@mozilla.org</a>.
         {% endtrans %}
         </p>
       </section>

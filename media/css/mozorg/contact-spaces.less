@@ -650,9 +650,13 @@
 // @Mobile layout: 320px
 @media only screen and (max-width: @breakTablet) {
 
-    #masthead,
     .container,
     .billboard {
+        width: @widthMobile - (@gridGutterWidth * 2);
+    }
+
+    #masthead,
+    .newsletter-form {
         width: @widthMobile - @gridGutterWidth;
     }
 
