@@ -259,6 +259,18 @@ html[lang='en-US'] #masthead #tips-nav-direct li a span:after {
 #footer {
     .clearfix();
     padding-top: @baseLine * 2;
+
+    &.hide-download {
+        #footer-download {
+            display: none;
+        }
+
+        #footer-share {
+            float: none;
+            width: auto;
+            margin-right: 0;
+        }
+    }
 }
 
 #footer-download {
