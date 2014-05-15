@@ -76,6 +76,11 @@
               {{ note.note|markdown|safe }}
           </li>
           {% endfor %}
+          {% if release.product == 'Firefox' %}
+          <li class="untagged" id="note-devnotes">
+            <p><a href="https://developer.mozilla.org/docs/Mozilla/Firefox/Releases/{{ release.major_version() }}">{{ _('Developer Information') }}</a></p>
+          </li>
+          {% endif %}
         </ul>
       </section>
       {% endif %}
