@@ -15,36 +15,79 @@
 }
 
 .intro {
-    float: left;
-    width: 500px;
-    margin: @baseLine 0 0 10px;
+    width: @widthDesktop - (@gridGutterWidth * 4);
+    margin: @baseLine auto;
+    text-align: center;
     h1 {
+        font-size: 64px;
         line-height: 1.2;
     }
     p {
-        font-size: @largeFontSize;
+        .open-sans-light;
+        font-size: 22px;
+        line-height: 1.4;
+        margin: 0 0 (@baseLine / 2);
     }
 }
 
 .sync-anim {
     position: relative;
-    float: right;
     height: 190px;
     width: 390px;
-    margin: (@baseLine * 2) @baseLine -40px 0;
+    margin: @baseLine auto;
     background-image: url('/media/img/firefox/sync/composite.png?04-2014');
-    z-index: 1;
 }
 
 .main-content {
     clear: both;
-    h4 {
-        font-size: 20px;
+    margin-top: @baseLine;
+    h2 {
+        font-size: 24px;
+        line-height: 1.2;
+        padding-right: @baseLine;
     }
-    .contents {
-        .span-all();
+    article {
+        overflow: hidden;
+        header {
+            .span(3);
+        }
+        section {
+            .span(5);
+        }
+        aside {
+            .span(4);
+        }
+        &.primary {
+            padding-bottom: @baseLine;
+            border-bottom: 1px dotted @textColorLight;
+        }
+        &.secondary {
+            padding-top: @baseLine;
+        }
+    }
+
+    a:link,
+    a:visited {
+        color: @linkBlue;
+    }
+
+    a:hover,
+    a:active,
+    a:focus {
+        color: @linkBlueHover;
+    }
+
+    a.menu:before {
+        content:'\2630 ';
+    }
+
+    strong {
+        font-weight: normal;
+        color: #D55631;
     }
 }
+
+
 
 .android-link {
     .trailing-arrow();
@@ -64,6 +107,23 @@ html[dir="rtl"] {
     .intro {
         float: right;
     }
+
+    .main-content {
+        h2 {
+            padding-right: 0;
+            padding-left: @baseLine;
+        }
+        article {
+            header,
+            section,
+            aside {
+                float: right;
+            }
+            ol {
+                margin-right: 20px;
+            }
+        }
+    }
 }
 
 /* Tablet Layout: 760px */
@@ -78,20 +138,39 @@ html[dir="rtl"] {
     }
 
     .intro {
-        width: 280px;
-        margin-bottom: @baseLine;
+        width: @widthTablet - (@gridGutterWidth * 4);
         h1 {
             font-size: 42px;
         }
         p {
-            font-size: @baseFontSize;
+            font-size: @largeFontSize;
         }
     }
 
+    .main-content article {
+        section {
+            .span(6);
+        }
+        aside {
+            .span(6);
+            margin-left: 250px;
+        }
+
+    }
+
+    html[dir="rtl"] {
+        .main-content article {
+            aside {
+                float: left;
+                margin-left: 10px;
+                margin-right: 250px;
+            }
+        }
+    }
 }
 
 /* Mobile layout: 480px */
-@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+@media only screen and (max-width: @breakTablet) {
 
     #wrapper:before {
         content: "";
@@ -100,8 +179,12 @@ html[dir="rtl"] {
 
     .intro {
         .span-all();
+        padding-bottom: 0;
+        h1 {
+            font-size: 36px;
+        }
         p {
-            font-size: @baseFontSize;
+            font-size: @largeFontSize;
         }
     }
 
@@ -110,25 +193,33 @@ html[dir="rtl"] {
         margin: 0 auto @baseLine auto;
     }
 
+    .main-content {
+        article {
+            header,
+            section,
+            aside {
+                .span-all();
+            }
+        }
+    }
+
+    html[dir="rtl"] {
+        .intro {
+            float: none;
+        }
+        .main-content {
+            aside {
+                float: none;
+                text-align: right;
+            }
+        }
+    }
 }
 
 /* Mobile layout: 320px */
 @media only screen and (max-width: @breakMobileLandscape) {
 
-    #wrapper:before {
-        content: "";
-        background: none;
-    }
-
-    .intro {
-        .span-all();
-        p {
-            font-size: @baseFontSize;
-        }
-    }
-
     .sync-anim {
         display: none;
     }
-
 }
