@@ -449,7 +449,7 @@ class TestWhatsNew(TestCase):
         req = self.rf.get('/en-US/firefox/whatsnew/')
         self.view(req, fx_version='29.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/australis/whatsnew-tour.html'])
+        eq_(template, ['firefox/australis/whatsnew-no-tour.html'])
 
     @override_settings(DEV=True)
     def test_fx_australis_29_0_1(self, render_mock):
@@ -457,7 +457,23 @@ class TestWhatsNew(TestCase):
         req = self.rf.get('/en-US/firefox/whatsnew/')
         self.view(req, fx_version='29.0.1')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/australis/whatsnew-tour.html'])
+        eq_(template, ['firefox/australis/whatsnew-no-tour.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_30(self, render_mock):
+        """Should use australis template for 30.0."""
+        req = self.rf.get('/en-US/firefox/whatsnew/')
+        self.view(req, fx_version='30.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/australis/whatsnew-no-tour.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_31(self, render_mock):
+        """Should use australis template for 31.0."""
+        req = self.rf.get('/en-US/firefox/whatsnew/')
+        self.view(req, fx_version='31.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/australis/whatsnew-no-tour.html'])
 
     @override_settings(DEV=False)
     def test_fx_australis_secure_redirect(self, render_mock):
@@ -705,42 +721,65 @@ class TestWhatsnewRedirect(FxVersionRedirectsMixin, TestCase):
         Hitting /firefox/29.0/whatsnew/?f=30 with en-US locale should render
         firefox/australis/whatsnew-no-tour.html. Hitting en-US locale with
         f=31 should render firefox/australis/whatsnew-tour.html. Any other
-        f value or locale should render whatsnew-tour.html.
+        f value or locale should not show the tour.
         """
 
         # en-US with funnelcake id 30 should not give a tour
         response = self.client.get(self.url + '?f=30', HTTP_USER_AGENT=self.user_agent)
         self.assertNotIn(self.expected, response.content)
 
+        # en-US with funnelcake id 30 plus oldversion should not get a tour
+        response = self.client.get(self.url + '?f=30&oldversion=28.0',
+                                   HTTP_USER_AGENT=self.user_agent)
+        self.assertNotIn(self.expected, response.content)
+
         # en-US with funnelcake id 31 should give a tour
         response = self.client.get(self.url + '?f=31', HTTP_USER_AGENT=self.user_agent)
         self.assertIn(self.expected, response.content)
 
-        # en-US with improper funnelcake id should still give a tour
+        # en-US with improper funnelcake id should not give a tour
         response = self.client.get(self.url + '?f=0', HTTP_USER_AGENT=self.user_agent)
-        self.assertIn(self.expected, response.content)
+        self.assertNotIn(self.expected, response.content)
 
-        # en-US with no funnelcake id should still give a tour
+        # en-US with no funnelcake id should not give a tour
         response = self.client.get(self.url, HTTP_USER_AGENT=self.user_agent)
-        self.assertIn(self.expected, response.content)
+        self.assertNotIn(self.expected, response.content)
 
         with self.activate('de'):
             self.url = reverse('firefox.whatsnew', args=['29.0'])
-            # de with proper funnelcake id should still get a tour
-            response = self.client.get(self.url + '?f=30', HTTP_USER_AGENT=self.user_agent)
-            self.assertIn(self.expected, response.content)
-            # de with no funnelcake id should still get a tour
-            response = self.client.get(self.url, HTTP_USER_AGENT=self.user_agent)
-            self.assertIn(self.expected, response.content)
+            # de with funnelcake id 31 should not get a tour
+            response = self.client.get(self.url + '?f=31', HTTP_USER_AGENT=self.user_agent)
+            self.assertNotIn(self.expected, response.content)
 
     @override_settings(DEV=True)
-    def test_whatsnew_no_tour_from_29(self):
-        """Should not show tour if upgrading from 29.0."""
+    @patch.dict(product_details.firefox_versions,
+                LATEST_FIREFOX_VERSION='16.0')
+    def test_whatsnew_tour_oldversion(self):
+        """Should not show tour if upgrading from 29.0 onwards."""
         # sanity check that it should show for other values of "oldversion"
         response = self.client.get(self.url + '?oldversion=28.0', HTTP_USER_AGENT=self.user_agent)
         self.assertIn(self.expected, response.content)
 
+        response = self.client.get(self.url + '?oldversion=27.0.1', HTTP_USER_AGENT=self.user_agent)
+        self.assertIn(self.expected, response.content)
+
+        response = self.client.get(self.url + '?oldversion=4.0', HTTP_USER_AGENT=self.user_agent)
+        self.assertIn(self.expected, response.content)
+
         response = self.client.get(self.url + '?oldversion=29.0', HTTP_USER_AGENT=self.user_agent)
+        self.assertNotIn(self.expected, response.content)
+
+        response = self.client.get(self.url + '?oldversion=29.0.1', HTTP_USER_AGENT=self.user_agent)
+        self.assertNotIn(self.expected, response.content)
+
+        response = self.client.get(self.url + '?oldversion=30.0', HTTP_USER_AGENT=self.user_agent)
+        self.assertNotIn(self.expected, response.content)
+
+        response = self.client.get(self.url + '?oldversion=31.0', HTTP_USER_AGENT=self.user_agent)
+        self.assertNotIn(self.expected, response.content)
+
+        # if there's no oldversion parameter, show no tour
+        response = self.client.get(self.url, HTTP_USER_AGENT=self.user_agent)
         self.assertNotIn(self.expected, response.content)
 
 

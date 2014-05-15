@@ -292,6 +292,15 @@ def latest_sysreq(request, channel='release'):
     return HttpResponseRedirect('/' + '/'.join(path) + '/')
 
 
+def show_whatsnew_tour(oldversion):
+    match = re.match(r'\d{1,2}', oldversion)
+    if match:
+        num_oldversion = int(match.group(0))
+        return num_oldversion < 29
+
+    return False
+
+
 class LatestFxView(TemplateView):
     """
     Base class to be extended by views that require visitor to be
@@ -412,14 +421,23 @@ class WhatsnewView(LatestFxView):
         fc_ctx = funnelcake_param(self.request)
         f = fc_ctx.get('funnelcake_id', 0)
         oldversion = self.request.GET.get('oldversion', '')
+        versions = ('29.', '30.', '31.')
 
-        if oldversion == '29.0' or (f == '30' and locale == 'en-US'):
-            template = 'firefox/australis/whatsnew-no-tour.html'
-        elif version == '29.0a1':
+        if version == '29.0a1':
             template = 'firefox/whatsnew-nightly-29.html'
-        elif version.startswith('29.'):
-            # non en-US locales always get the tour
-            template = 'firefox/australis/whatsnew-tour.html'
+        elif version.startswith(versions):
+            if locale == 'en-US' and f == '31':
+                # funnelcake build 31 should always get the tour
+                template = 'firefox/australis/whatsnew-tour.html'
+            elif locale == 'en-US' and f == '30':
+                # funnelcake build 30 should not get the tour
+                template = 'firefox/australis/whatsnew-no-tour.html'
+            elif show_whatsnew_tour(oldversion):
+                # updating from pre-29 version
+                template = 'firefox/australis/whatsnew-tour.html'
+            else:
+                # default is no tour
+                template = 'firefox/australis/whatsnew-no-tour.html'
         elif locale in self.fxos_locales:
             template = 'firefox/whatsnew-fxos.html'
         else:
