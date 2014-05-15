@@ -107,6 +107,10 @@ if (typeof Mozilla == 'undefined') {
                 {
                     'name': 'Movistar',
                     'url': 'https://www.movistar.com.mx/catalogo'
+                },
+                {
+                    'name': 'Telcel',
+                    'url': 'http://holatelcel.com/alcatel-onetouch-fire-el-primer-telcel-con-firefox-os'
                 }
             ]
         },
