@@ -12,7 +12,6 @@ from django.db.models import Q
 from django.http import (
     Http404, HttpResponsePermanentRedirect, HttpResponseRedirect)
 from django.shortcuts import get_object_or_404
-from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.views.decorators.vary import vary_on_headers
 from django.views.generic.base import TemplateView
@@ -26,6 +25,7 @@ from rna.models import Release
 from bedrock.firefox import version_re
 from bedrock.firefox.forms import SMSSendForm
 from bedrock.mozorg.context_processors import funnelcake_param
+from bedrock.mozorg.decorators import cache_control_expires
 from bedrock.mozorg.views import process_partnership_form
 from bedrock.mozorg.helpers.misc import releasenotes_url
 from bedrock.firefox.utils import is_current_or_newer
@@ -477,7 +477,7 @@ def get_download_url(channel='Release'):
         return reverse('firefox')
 
 
-@cache_page(15 * 60)
+@cache_control_expires(1)
 def release_notes(request, fx_version, product='Firefox'):
     if product == 'Firefox OS' and fx_version in ('1.0.1', '1.1', '1.2'):
         return l10n_utils.render(
@@ -500,7 +500,7 @@ def release_notes(request, fx_version, product='Firefox'):
             'known_issues': known_issues})
 
 
-@cache_page(15 * 60)
+@cache_control_expires(1)
 def system_requirements(request, fx_version, product='Firefox'):
     release = get_release_or_404(fx_version, product)
     return l10n_utils.render(
