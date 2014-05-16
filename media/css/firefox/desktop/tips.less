@@ -29,14 +29,14 @@
 
     h1 {
         font-size: 54px;
-        margin: 0 0 14px 162px;
-        padding-top: @baseLine * 2;
+        margin: 0 0 14px 0;
+        padding-top: 24px;
     }
 
     h2 {
         font-size: 24px;
         padding: 0;
-        margin: 0 0 30px 162px;
+        margin: 0 0 30px 0;
     }
 }
 
@@ -61,82 +61,88 @@
     margin: 0 auto;
 }
 
-#tabzilla-share-wrapper {
+#heading-logo-wrapper {
     .clearfix();
-
-    .socialshare {
-        float: left;
-        margin: 12px 12px 0 0;
-    }
-
-    .socialshare > div > a {
-        background: transparent url(/media/img/firefox/desktop/tips/sprite-socialshare.png) left 6px no-repeat;
-        padding-left: 16px;
-        color: #fff;
-        text-transform: uppercase;
-
-        span {
-            border-bottom: 0;
-            font-size: 12px;
-        }
-    }
-
-    .socialshare.open > div > a:after {
-        background-color: rgba(255, 255, 255, .6);
-    }
+    padding-top: 34px;
 }
 
 #page-header-logo {
     .border-box();
-    position: absolute;
-    z-index: 1;
-    top: 50px;
-    left: -54px;
-    width: 216px;
-    height: 225px;
-    padding-left: 216px;
+    float: left;
+    width: 136px;
+    height: 142px;
+    padding-left: 136px;
+    margin: 0 @baseLine 0 0;
     overflow: hidden;
     background: url(/media/img/firefox/desktop/tips/firefox-logo.png) left top no-repeat;
 }
 
-#masthead #tips-nav-direct {
-    width: 826px;
-    height: 40px;
-    margin: 0;
-    overflow: hidden;
-    .clearfix();
+#masthead {
+    #share-nav-wrapper {
+        .clearfix();
 
-    li {
-        float: left;
-        width: 180px;
-        height: 40px;
-        margin-left: -20px;
-        display: table;
-
-        &:first-child {
-            margin-left: 0;
+        .socialshare {
+            float: left;
+            width: 108px;
+            margin: 12px 6px 0 0;
         }
 
-        a {
-            height: 40px;
-            width: 120px;
-            background: url(/media/img/firefox/desktop/tips/sprite-tabs.png) left -84px no-repeat;
-            text-align: center;
+        .socialshare > div > a {
+            background: transparent url(/media/img/firefox/desktop/tips/sprite-socialshare.png) left 6px no-repeat;
+            padding-left: 16px;
             color: #fff;
-            font-size: 12px;
-            line-height: 1.2;
-            padding: 0 30px;
-            display: table-cell;
-            vertical-align: middle;
+            text-transform: uppercase;
 
-            &:hover {
-                background-position: left top;
-                text-decoration: none;
+            span {
+                border-bottom: 0;
+                font-size: 12px;
+            }
+        }
+
+        .socialshare.open > div > a:after {
+            background-color: rgba(255, 255, 255, .6);
+        }
+    }
+
+    #tips-nav-direct {
+        width: 826px;
+        height: 40px;
+        margin: 0;
+        overflow: hidden;
+        .clearfix();
+
+        li {
+            float: left;
+            width: 180px;
+            height: 40px;
+            margin-left: -20px;
+            display: table;
+
+            &:first-child {
+                margin-left: 0;
             }
 
-            &.selected {
-                background-position: left -42px;
-                color: @textColorSecondary;
+            a {
+                height: 40px;
+                width: 120px;
+                background: url(/media/img/firefox/desktop/tips/sprite-tabs.png) left -84px no-repeat;
+                text-align: center;
+                color: #fff;
+                font-size: 12px;
+                line-height: 1.2;
+                padding: 0 30px;
+                display: table-cell;
+                vertical-align: middle;
+
+                &:hover {
+                    background-position: left top;
+                    text-decoration: none;
+                }
+
+                &.selected {
+                    background-position: left -42px;
+                    color: @textColorSecondary;
+                }
             }
         }
     }
@@ -386,9 +392,8 @@ html[lang='en-US'] #masthead #tips-nav-direct li a span:after {
 
 html[dir='rtl'] {
     #masthead {
-        h1, h2 {
-            margin-left: 0;
-            margin-right: 162px;
+        #share-nav-wrapper .socialshare {
+            float: right;
         }
 
         #tips-nav-direct {
@@ -408,11 +413,6 @@ html[dir='rtl'] {
 
     #tabzilla-share-wrapper .socialshare {
         float: left;
-    }
-
-    #page-header-logo {
-        right: -54px;
-        left: auto;
     }
 
     .tip-copy {
@@ -457,7 +457,7 @@ html[dir='rtl'] {
 
         #page-header-logo {
             background-image: url(/media/img/firefox/desktop/tips/firefox-logo-high-res.png);
-            background-size: 216px 225px;
+            background-size: 136px 142px;
         }
 }
 
@@ -474,32 +474,28 @@ html[dir='rtl'] {
         width: 100%;
         padding: 0;
         box-shadow: inset 0 12px 38px 0px rgba(0, 0, 0, 0.1),
-                    inset 0 -24px 0 0 #2f7bbc;
+                    inset 0 -30px 0 0 #2f7bbc;
 
         h1 {
             font-size: 44px;
-            padding-top: @baseLine;
-            margin-left: 140px;
         }
 
         h2 {
             font-size: 22px;
-            margin-left: 140px;
-            margin-bottom: 50px;
+        }
+
+        #share-nav-wrapper {
+            margin: -20px 156px 0 0;
+
+            .socialshare {
+                margin-top: 6px;
+                padding-bottom: 5px;
+            }
         }
     }
 
     .container {
         width: @breakTablet - (@baseLine * 2);
-    }
-
-    #page-header-logo {
-        top: 46px;
-        left: -26px;
-        width: 170px;
-        height: 178px;
-        padding-left: 170px;
-        background-size: 170px 178px;
     }
 
     #tips-nav-direct {
@@ -560,12 +556,6 @@ html[dir='rtl'] {
     }
 
     html[dir='rtl'] {
-        #masthead {
-            h1, h2 {
-                margin-right: 162px;
-            }
-        }
-
         &.js {
             #tip-prev {
                 background-position: -60px top;
@@ -608,23 +598,23 @@ html[dir='rtl'] {
 
         padding-bottom: 12px;
 
+        .container {
+            padding-bottom: 0;
+        }
+
         h1 {
             font-size: 30px;
-            margin-left: 138px;
             padding-top: 30px;
         }
 
         h2 {
             font-size: 20px;
-            margin: 0 0 10px 138px;
+            margin: 0 0 10px 0;
         }
     }
 
     #page-header-logo {
-        top: 62px;
-        left: 0;
-        width: 136px;
-        height: 142px;
+        margin-top: 18px;
         padding-left: 0;
         background: none;
     }
@@ -769,16 +759,6 @@ html[dir='rtl'] {
     }
 
     html[dir='rtl'] {
-        #masthead {
-            h1, h2 {
-                margin-right: 138px;
-            }
-        }
-
-        #page-header-logo {
-            right: 0;
-        }
-
         .tip-media {
             float: none;
         }
@@ -813,7 +793,7 @@ html[dir='rtl'] {
 
     #page-header-logo {
         padding-left: 136px;
-        background: url(/media/img/firefox/desktop/tips/firefox-logo-mobile-high-res.png) left top no-repeat;
+        background: url(/media/img/firefox/desktop/tips/firefox-logo-high-res.png) left top no-repeat;
         background-size: 136px 142px;
     }
 
@@ -846,15 +826,16 @@ html[dir='rtl'] {
     }
 
     #page-header-logo {
+        position: absolute;
         opacity: .5;
         width: 300px;
         height: 312px;
         padding-left: 300px;
         left: 50%;
         top: auto;
-        bottom: -228px; // 210px
+        bottom: -228px;
         margin-left: -150px;
-        background: url(/media/img/firefox/desktop/tips/firefox-logo.png) left top no-repeat;
+        background: url(/media/img/firefox/desktop/tips/firefox-logo-high-res.png) left top no-repeat;
         background-size: 300px 312px;
         .animation(phoenix 2s ease 1.3s 1 normal forwards);
     }
@@ -889,32 +870,6 @@ html[dir='rtl'] {
         #tips-wrapper {
             min-height: 420px;
         }
-    }
-
-    html[dir='rtl'] {
-        #masthead {
-            h1, h2 {
-                margin-right: 0;
-            }
-        }
-
-        #page-header-logo {
-            left: 50%;
-            right: auto;
-        }
-    }
-}
-
-/****************************************************************************/
-// @High resolution images for @retina-type displays
-// Tablet
-@media only screen and (max-width: @breakMobileLandscape) and (-webkit-min-device-pixel-ratio: 1.5),
-       only screen and (max-width: @breakMobileLandscape) and (                min-resolution: 1.5dppx),
-       only screen and (max-width: @breakMobileLandscape) and (                min-resolution: 144dpi) {
-
-    #page-header-logo {
-        background-image: url(/media/img/firefox/desktop/tips/firefox-logo-high-res.png);
-        background-size: 300px 312px;
     }
 }
 

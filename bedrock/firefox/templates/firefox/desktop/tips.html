@@ -17,25 +17,27 @@
 {% block site_header %}
   <header id="masthead">
     <div class="container">
-      <div id="tabzilla-share-wrapper">
-        <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{{ settings.TABZILLA_INFOBAR_OPTIONS }}">Mozilla</a>
-        {% include 'firefox/includes/social-share.html' %}
+      <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{{ settings.TABZILLA_INFOBAR_OPTIONS }}">Mozilla</a>
+
+      <div id="heading-logo-wrapper">
+        <img src="{{ media('/img/firefox/desktop/tips/firefox-logo.png') }}" alt="Firefox" id="page-header-logo">
+
+        <h1>{{ _('The best of the latest Firefox') }}</h1>
+        <h2>{{ _('5 top tips, tricks and time-saving tools') }}</h2>
       </div>
 
-      <img src="{{ media('/img/firefox/desktop/tips/firefox-logo-mobile.png') }}" alt="Firefox" id="page-header-logo">
-
-      <h1>{{ _('The best of the latest Firefox') }}</h1>
-      <h2>{{ _('5 top tips, tricks and time-saving tools') }}</h2>
-
-      <nav id="tips-nav-direct">
-        <ol>
-          <li><a href="#bookmarks"><span>{{ _('1') }}</span> {{ _('Bookmarks') }}</a></li>
-          <li><a href="#simplify"><span>{{ _('2') }}</span> {{ _('Simplify') }}</a></li>
-          <li><a href="#arrange"><span>{{ _('3') }}</span> {{ _('Arrange') }}</a></li>
-          <li><a href="#sync"><span>{{ _('4') }}</span> {{ _('Sync') }}</a></li>
-          <li><a href="#addons"><span>{{ _('5') }}</span> {{ _('Add-ons') }}</a></li>
-        </ol>
-      </nav>
+      <div id="share-nav-wrapper">
+        {% include 'firefox/includes/social-share.html' %}
+        <nav id="tips-nav-direct">
+          <ol>
+            <li><a href="#bookmarks"><span>{{ _('1') }}</span> {{ _('Bookmarks') }}</a></li>
+            <li><a href="#simplify"><span>{{ _('2') }}</span> {{ _('Simplify') }}</a></li>
+            <li><a href="#arrange"><span>{{ _('3') }}</span> {{ _('Arrange') }}</a></li>
+            <li><a href="#sync"><span>{{ _('4') }}</span> {{ _('Sync') }}</a></li>
+            <li><a href="#addons"><span>{{ _('5') }}</span> {{ _('Add-ons') }}</a></li>
+          </ol>
+        </nav>
+      </div>
   </header>
 {% endblock %}
 
