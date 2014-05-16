@@ -20,6 +20,11 @@
 
     // mozilla pager stuff must be in doc ready wrapper
     $(function() {
+        // GA tracking on page load
+        // Google doesn't recognize hash by default
+        var currentURL = window.location.protocol + '//' + window.location.host + window.location.pathname + window.location.hash;
+        gaTrack(['_trackEvent','/desktop/tips/ Interactions','page load', currentURL, 0, true]);
+
         var pager = Mozilla.Pager.rootPagers[0];
 
         // updates nav links based on current page index
@@ -70,6 +75,9 @@
             pager.setPageWithAnimation(pager.pages[selectedPageIndex]);
 
             updateNavLinks();
+
+            // GA tracking
+            gaTrack(['_trackEvent', '/desktop/tips/ Interactions', 'tab clicks to', $this.attr('href')]);
         });
 
         // handle next/prev nav clicks
@@ -77,15 +85,20 @@
             e.preventDefault();
 
             var $this = $(this);
+            var isPrev = $this.prop('id') === 'tip-prev';
 
             if (!$this.hasClass('inactive')) {
-                if ($this.prop('id') === 'tip-prev') {
+                if (isPrev) {
                     pager.prevPageWithAnimation();
                 } else {
                     pager.nextPageWithAnimation();
                 }
 
                 updateNavLinks();
+
+                // GA tracking
+                var gaAction = (isPrev) ? 'prev link to' : 'next link to';
+                gaTrack(['_trackEvent', '/desktop/tips/ Interactions', gaAction, '#' + pager.currentPage.id]);
             }
         });
 
@@ -102,6 +115,34 @@
             }
 
             updateNavLinks();
+        });
+
+        // GA tracking
+        $('.share-button').on('click', function() {
+            // determine position
+            var pos = ($(this).closest('.share-wrapper').prop('id') === 'share-nav-wrapper') ? 'top' : 'bottom';
+
+            gaTrack(['_trackEvent','/desktop/tips/ Interactions','Social Share', 'share drop-down ' + pos]);
+        });
+
+        $('a[rel="external"]').on('click', function(e) {
+            e.preventDefault();
+
+            var href = this.href;
+
+            gaTrack(['_trackEvent', '/desktop/tips/ Interactions', 'outbound link', href], function() {
+                window.location = href;
+            });
+        });
+
+        $('#footer-download .download-link').on('click', function(e) {
+            e.preventDefault();
+
+            var href = this.href;
+
+            gaTrack(['_trackEvent', 'Firefox Downloads', 'download click', 'Firefox for Desktop'], function() {
+                window.location = href;
+            });
         });
     });
 })(window.jQuery, window.Hammer);
