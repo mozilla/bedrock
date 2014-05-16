@@ -20,6 +20,7 @@ class TestRNAViews(TestCase):
 
         self.render_patch = patch('bedrock.firefox.views.l10n_utils.render')
         self.mock_render = self.render_patch.start()
+        self.mock_render.return_value.has_header.return_value = False
 
     def tearDown(self):
         self.render_patch.stop()
