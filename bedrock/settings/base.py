@@ -300,6 +300,9 @@ MINIFY_BUNDLES = {
         'home-ie': (
             'css/mozorg/home-ie.less',
         ),
+        'legal-eula': (
+            'css/legal/eula.less',
+        ),
         'legal_fraud_report': (
             'css/legal/fraud-report.less',
         ),
