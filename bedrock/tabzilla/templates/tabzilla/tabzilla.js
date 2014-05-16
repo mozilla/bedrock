@@ -563,6 +563,7 @@ var Tabzilla = (function (Tabzilla) {
             if (event.which === 27) {
                 event.preventDefault();
                 Tabzilla.close();
+                tab.focus();
             }
         });
 
