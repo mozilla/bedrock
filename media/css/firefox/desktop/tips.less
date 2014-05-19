@@ -16,6 +16,30 @@
 
 #masthead {
     z-index: 2;
+}
+
+#main-content {
+    padding: 0;
+}
+
+#colophon {
+    background: #dfe6eb;
+
+    .logo a {
+        background: url(/media/img/sandstone/footer-mozilla-dark.png);
+    }
+}
+
+/* }}} */
+
+.container {
+    position: relative;
+    width: 940px;
+    margin: 0 auto;
+}
+
+#page-header {
+    margin-top: -44px;
     background: @linkBlue;
     box-shadow: inset 0 12px 38px 0px rgba(0, 0, 0, 0.1),
                 inset 0 -46px 0 0 #2f7bbc;
@@ -40,27 +64,6 @@
     }
 }
 
-#main-content {
-    background: #f8f8f8;
-    padding-top: @baseLine;
-}
-
-#colophon {
-    background: #dfe6eb;
-
-    .logo a {
-        background: url(/media/img/sandstone/footer-mozilla-dark.png);
-    }
-}
-
-/* }}} */
-
-.container {
-    position: relative;
-    width: 940px;
-    margin: 0 auto;
-}
-
 #heading-logo-wrapper {
     .clearfix();
     padding-top: 34px;
@@ -77,78 +80,82 @@
     background: url(/media/img/firefox/desktop/tips/firefox-logo.png) left top no-repeat;
 }
 
-#masthead {
-    #share-nav-wrapper {
-        .clearfix();
+#page-content {
+    background: #f8f8f8;
+    padding: 0 0 48px 0;
+}
 
-        .socialshare {
-            float: left;
-            width: 108px;
-            margin: 12px 6px 0 0;
-        }
+#tips-nav-direct {
+    width: 826px;
+    height: 40px;
+    margin: 0;
+    overflow: hidden;
+    .clearfix();
 
-        .socialshare > div > a {
-            background: transparent url(/media/img/firefox/desktop/tips/sprite-socialshare.png) left 6px no-repeat;
-            padding-left: 16px;
-            color: #fff;
-            text-transform: uppercase;
-
-            span {
-                border-bottom: 0;
-                font-size: 12px;
-            }
-        }
-
-        .socialshare.open > div > a:after {
-            background-color: rgba(255, 255, 255, .6);
-        }
-    }
-
-    #tips-nav-direct {
-        width: 826px;
+    li {
+        float: left;
+        width: 180px;
         height: 40px;
-        margin: 0;
-        overflow: hidden;
-        .clearfix();
+        margin-left: -20px;
+        display: table;
 
-        li {
-            float: left;
-            width: 180px;
+        &:first-child {
+            margin-left: 0;
+        }
+
+        a {
             height: 40px;
-            margin-left: -20px;
-            display: table;
+            width: 120px;
+            background: url(/media/img/firefox/desktop/tips/sprite-tabs.png) left -84px no-repeat;
+            text-align: center;
+            color: #fff;
+            font-size: 12px;
+            text-transform: uppercase;
+            line-height: 1.2;
+            padding: 0 30px;
+            display: table-cell;
+            vertical-align: middle;
 
-            &:first-child {
-                margin-left: 0;
+            &:hover {
+                background-position: left top;
+                text-decoration: none;
             }
 
-            a {
-                height: 40px;
-                width: 120px;
-                background: url(/media/img/firefox/desktop/tips/sprite-tabs.png) left -84px no-repeat;
-                text-align: center;
-                color: #fff;
-                font-size: 12px;
-                line-height: 1.2;
-                padding: 0 30px;
-                display: table-cell;
-                vertical-align: middle;
-
-                &:hover {
-                    background-position: left top;
-                    text-decoration: none;
-                }
-
-                &.selected {
-                    background-position: left -42px;
-                    color: @textColorSecondary;
-                }
+            &.selected {
+                background-position: left -42px;
+                color: @textColorSecondary;
             }
         }
     }
 }
 
-html[lang='en-US'] #masthead #tips-nav-direct li a span:after {
+#share-nav-wrapper {
+    .clearfix();
+
+    .socialshare {
+        float: left;
+        width: 108px;
+        margin: 12px 6px 0 0;
+    }
+
+    .socialshare > div > a {
+        background: transparent url(/media/img/firefox/desktop/tips/sprite-socialshare.png) left 6px no-repeat;
+        padding-left: 16px;
+        color: #fff;
+        text-transform: uppercase;
+
+        span {
+            border-bottom: 0;
+            font-size: 12px;
+        }
+    }
+
+    .socialshare.open > div > a:after {
+        background-color: rgba(255, 255, 255, .6);
+    }
+}
+
+html[lang^='en'] #tips-nav-direct li a span:after {
     content: '.';
 }
 
@@ -157,7 +164,7 @@ html[lang='en-US'] #masthead #tips-nav-direct li a span:after {
 }
 
 #tips-wrapper {
-    padding-top: 30px;
+    padding-top: 50px;
 }
 
 .tip {
@@ -262,6 +269,10 @@ html[lang='en-US'] #masthead #tips-nav-direct li a span:after {
     text-align: center;
 }
 
+#page-footer {
+    background: #fff;
+}
+
 #footer {
     .clearfix();
     padding-top: @baseLine * 2;
@@ -305,6 +316,7 @@ html[lang='en-US'] #masthead #tips-nav-direct li a span:after {
 
     &:after {
         background-image: url(/media/img/firefox/desktop/tips/sprite-socialshare.png);
+        background-repeat: no-repeat;
         background-position: 4px -19px;
         top: 0;
     }
@@ -339,15 +351,15 @@ html[lang='en-US'] #masthead #tips-nav-direct li a span:after {
         display: block;
         position: absolute;
         right: 20px;
-        top: 75px;
+        top: 95px;
         z-index: 2;
         width: 300px;
 
-        a {
+        button {
             .transition(color .2s ease);
         }
 
-        a.inactive {
+        button:disabled {
             color: #ccc;
             cursor: default;
 
@@ -391,22 +403,26 @@ html[lang='en-US'] #masthead #tips-nav-direct li a span:after {
 /* {{{ RTL overrides */
 
 html[dir='rtl'] {
-    #masthead {
-        #share-nav-wrapper .socialshare {
+    #page-header-logo {
+        float: right;
+        margin-right: 0;
+        margin-left: @baseLine;
+    }
+
+    #share-nav-wrapper .socialshare {
+        float: right;
+    }
+
+    #tips-nav-direct {
+        float: left;
+
+        li {
             float: right;
-        }
+            margin-left: 0;
+            margin-right: -20px;
 
-        #tips-nav-direct {
-            float: left;
-
-            li {
-                float: right;
-                margin-left: 0;
-                margin-right: -20px;
-
-                &:first-child {
-                    margin-right: 0;
-                }
+            &:first-child {
+                margin-right: 0;
             }
         }
     }
@@ -446,7 +462,7 @@ html[dir='rtl'] {
        (                min-resolution: 1.5dppx),
        (                min-resolution: 144dpi) {
 
-        #masthead #tips-nav-direct li a {
+        #tips-nav-direct li a {
             background-image: url(/media/img/firefox/desktop/tips/sprite-tabs-high-res.png);
             background-size: 180px 84px;
         }
@@ -469,6 +485,9 @@ html[dir='rtl'] {
     #masthead {
         width: 100%;
         padding: 0;
+    }
+
+    #page-header {
         box-shadow: inset 0 12px 38px 0px rgba(0, 0, 0, 0.1),
                     inset 0 -30px 0 0 #2f7bbc;
 
@@ -515,16 +534,17 @@ html[dir='rtl'] {
         height: 385px;
     }
 
-    #footer-download, #footer-share {
+    #footer-download,
+    #footer-share {
         width: 350px;
     }
 
     .js {
         #tips-nav-prev-next {
             width: 220px;
-            top: 24px;
+            top: 44px;
 
-            a {
+            button {
                 width: 60px;
                 height: 60px;
                 background-image: url(/media/img/firefox/desktop/tips/sprite-arrows.png);
@@ -571,7 +591,7 @@ html[dir='rtl'] {
        only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) and (                min-resolution: 1.5dppx),
        only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) and (                min-resolution: 144dpi) {
 
-    .js #tips-nav-prev-next a {
+    .js #tips-nav-prev-next button {
         background-image: url(/media/img/firefox/desktop/tips/sprite-arrows-high-res.png);
         background-size: 120px 60px;
     }
@@ -589,14 +609,16 @@ html[dir='rtl'] {
     }
 
     #masthead {
-        box-shadow: inset 0 12px 38px 0px rgba(0, 0, 0, 0.1),
-                    inset 0 -16px 0 0 #2f7bbc;
-
-        padding-bottom: 12px;
+        padding-bottom: 0;
 
         .container {
             padding-bottom: 0;
         }
+    }
+
+    #page-header {
+        box-shadow: inset 0 12px 38px 0px rgba(0, 0, 0, 0.1),
+                    inset 0 -16px 0 0 #2f7bbc;
 
         h1 {
             font-size: 30px;
@@ -607,6 +629,10 @@ html[dir='rtl'] {
             font-size: 20px;
             margin: 0 0 10px 0;
         }
+
+        .container {
+            padding-bottom: 10px;
+        }
     }
 
     #page-header-logo {
@@ -615,12 +641,20 @@ html[dir='rtl'] {
         background: none;
     }
 
+    #page-content {
+        padding-bottom: 20px;
+    }
+
     .container {
         width: @breakMobileLandscape - (@baseLine * 2);
     }
 
     #tips-nav-direct {
         display: none;
+    }
+
+    #tips-wrapper {
+        padding-top: 30px;
     }
 
     .tip-copy {
@@ -685,7 +719,7 @@ html[dir='rtl'] {
             left: 10px;
             right: auto;
 
-            a {
+            button {
                 width: 60px;
                 height: 60px;
                 background-image: url(/media/img/firefox/desktop/tips/sprite-arrows.png);
@@ -793,7 +827,7 @@ html[dir='rtl'] {
         background-size: 136px 142px;
     }
 
-    .js #tips-nav-prev-next a {
+    .js #tips-nav-prev-next button {
         background-image: url(/media/img/firefox/desktop/tips/sprite-arrows-high-res.png);
         background-size: 120px 60px;
     }
@@ -805,7 +839,8 @@ html[dir='rtl'] {
         padding-right: 0;
     }
 
-    #masthead {
+    #page-header {
+        width: 100%;
         box-shadow: inset 0 12px 38px 0px rgba(0, 0, 0, 0.1),
                     inset 0 -8px 6px -4px #2f7bbc;
         padding-bottom: 0;
@@ -814,6 +849,10 @@ html[dir='rtl'] {
         h1, h2 {
             margin-left: 0;
             text-align: center;
+        }
+
+        .container {
+            padding-bottom: 0;
         }
     }
 
@@ -865,6 +904,13 @@ html[dir='rtl'] {
 
         #tips-wrapper {
             min-height: 420px;
+        }
+    }
+
+    html[dir='rtl'] {
+        #page-header-logo {
+            float: none;
+            margin: 0 0 0 -150px;
         }
     }
 }

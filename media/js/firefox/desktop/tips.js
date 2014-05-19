@@ -35,14 +35,14 @@
 
             // update next/prev links
             if (pager.currentPage.index === 0) {
-                $tipPrev.addClass('inactive');
-                $tipNext.removeClass('inactive');
+                $tipPrev.prop('disabled', true);
+                $tipNext.prop('disabled', false);
             } else if (pager.currentPage.index === (pager.pages.length - 1)) {
-                $tipNext.addClass('inactive');
-                $tipPrev.removeClass('inactive');
+                $tipNext.prop('disabled', true);
+                $tipPrev.prop('disabled', false);
             } else {
-                $tipNext.removeClass('inactive');
-                $tipPrev.removeClass('inactive');
+                $tipNext.prop('disabled', false);
+                $tipPrev.prop('disabled', false);
             }
 
             // update dots (visible on mobile only)
@@ -66,7 +66,6 @@
             for (var i = 0; i < pager.pages.length; i++) {
                 if (pager.pages[i].id === selectedPageId) {
                     selectedPageIndex = i;
-
                     break;
                 }
             }
@@ -81,13 +80,13 @@
         });
 
         // handle next/prev nav clicks
-        $('#tips-nav-prev-next').on('click', 'a', function(e) {
+        $('#tips-nav-prev-next').on('click', 'button', function(e) {
             e.preventDefault();
 
             var $this = $(this);
             var isPrev = $this.prop('id') === 'tip-prev';
 
-            if (!$this.hasClass('inactive')) {
+            if (!$this.is(':disabled')) {
                 if (isPrev) {
                     pager.prevPageWithAnimation();
                 } else {
