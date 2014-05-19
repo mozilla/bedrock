@@ -12,6 +12,16 @@
 
 {% block body_id %}firstrun{% endblock %}
 
+{% block doorhanger_title %}
+  {% if l10n_has_tag('new_doorhanger') or settings.DEV %}
+    {# L10n: This is the title for a door-hanger menu that shows in the browser chrome #}
+    data-title="{{ _('Take a quick tour') }}"
+  {% else %}
+    {# L10n: This is the title for a door-hanger menu that shows in the browser chrome #}
+    data-title="{{ _('See what’s new') }}"
+  {% endif %}
+{% endblock %}
+
 {% block site_css %}
   {{ css('firefox_tour') }}
 {% endblock %}

@@ -12,6 +12,11 @@
 
 {% block body_id %}whatsnew{% endblock %}
 
+{% block doorhanger_title %}
+  {# L10n: This is the title for a door-hanger menu that shows in the browser chrome #}
+  data-title="{{ _('See what’s new') }}"
+{% endblock %}
+
 {% block site_css %}
   {{ css('firefox_tour') }}
 {% endblock %}

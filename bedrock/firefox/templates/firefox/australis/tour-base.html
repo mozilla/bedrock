@@ -23,8 +23,6 @@ data-next="{{ _('Next') }}"
 data-start="{{ _('Let’s go') }}"
 {# L10n: This is the label for a button that delays starting the tour #}
 data-later="{{ _('Not now') }}"
-{# L10n: This is the title for a door-hanger menu that shows in the browser chrome #}
-data-title="{{ _('See what’s new') }}"
 {# L10n: This is the text for a door-hanger menu that shows in the browser chrome #}
 data-text="{{ _('It’s the fastest, most flexible Firefox ever.') }}"
 {# L10n: This is the text for a call to action that appears in the web page #}
@@ -39,6 +37,7 @@ data-step3="{{ _('3/4') }}"
 data-step4="{{ _('4/4') }}"
 {# This data attribute is just for testing purposes and should not be localized #}
 data-has-tour="True"
+{% block doorhanger_title %}{% endblock %}
 {% endblock %}
 
 {% block site_header %}
