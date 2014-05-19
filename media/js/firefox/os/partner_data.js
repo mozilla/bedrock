@@ -15,6 +15,13 @@ if (typeof Mozilla == 'undefined') {
         Mozilla.FxOs = {};
     }
 
+    /*
+    List of countries where phones are available.
+
+    If partner entry has 'developer_only' set to true, that partner should only
+    be available on developer facing pages (/firefox/os/devices/). Currently
+    used for ZTE Open C eBay links.
+    */
     Mozilla.FxOs.Countries = {
         'br': {
             'display': 'Brazil',
@@ -49,6 +56,11 @@ if (typeof Mozilla == 'undefined') {
                 {
                     'name': 'congstar',
                     'url': 'http://aktion.congstar.de/firefox-os'
+                },
+                {
+                    'name': 'eBay',
+                    'url': 'http://www.ebay.de/itm/eBay-Exklusiv-ZTE-OPEN-C-Neuesten-Firefox-OS-DualCore-1-2-GHz-4-0-3G-Smartphone-/131151681046?ssPageName=STRK:MESE:IT',
+                    'developer_only': true
                 }
             ]
         },
@@ -141,6 +153,36 @@ if (typeof Mozilla == 'undefined') {
                 }
             ]
         },
+        'ru': {
+            'display': 'Russia',
+            'partner': [
+                {
+                    'name': 'eBay',
+                    'url': 'http://www.ebay.com/itm/eBay-Exclusive-ZTE-OPEN-C-Dual-Core-4-Latest-Firefox-OS-3G-Unlocked-Smartphone-/111326263156?ssPageName=STRK:MESE:IT',
+                    'developer_only': true
+                }
+            ]
+        },
+        'uk': {
+            'display': 'United Kingdom',
+            'partner': [
+                {
+                    'name': 'eBay',
+                    'url': 'http://item.ebay.co.uk/171301269724',
+                    'developer_only': true
+                }
+            ]
+        },
+        'us': {
+            'display': 'United States',
+            'partner': [
+                {
+                    'name': 'United States',
+                    'url': 'http://item.ebay.com/291125433026',
+                    'developer_only': true
+                }
+            ]
+        },
         'uy': {
             'display': 'Uruguay',
             'partner': [
@@ -190,7 +232,7 @@ if (typeof Mozilla == 'undefined') {
         'zte_openc': {
             'type': 'smartphone',
             'display': 'ZTE Open C',
-            'countries': []
+            'countries': ['de', 'ru', 'uk', 'us']
         }
     };
 })(window.jQuery);
