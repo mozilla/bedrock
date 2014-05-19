@@ -38,6 +38,18 @@
       <div class="download-box mobile" id="beta-mobile">
         {{ download_firefox('beta', icon=False, mobile=True, small=True) }}
       </div>
+      {% if l10n_has_tag('telemetry_notice') or settings.DEV %}
+        <p class="warning">
+        {% trans link=url('privacy.notices.firefox') + '#telemetry' %}
+          Firefox Beta automatically sends feedback to Mozilla. <a href="{{ link }}">Learn more</a>.
+        {% endtrans %}
+        </p>
+        <p class="info">
+        {% trans feedback='https://input.mozilla.com/feedback' %}
+          <a href="{{ feedback }}">Give us feedback</a> to help us put the final tweaks on performance and functionality in a stable environment.
+        {% endtrans %}
+        </p>
+      {% endif %}
     </div>
 
     <div id="firefox" class="pager-page">
@@ -68,6 +80,13 @@
           Firefox Aurora automatically sends feedback to Mozilla. <a href="{{ link }}">Learn more</a>.
         {% endtrans %}
       </p>
+      {% if l10n_has_tag('telemetry_notice') or settings.DEV %}
+        <p class="info">
+        {% trans feedback='https://input.mozilla.com/feedback' %}
+          Test performance in an experimental environment, file bugs and <a href="{{ feedback }}">help us determine what makes it to Beta</a>.
+        {% endtrans %}
+        </p>
+      {% endif %}
     </div>
 
   </div>
