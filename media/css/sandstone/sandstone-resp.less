@@ -64,6 +64,28 @@ a.more {
     .trailing-arrow();
 }
 
+// Make a button look like an anchor
+.link-button {
+    border: none;
+    background: transparent;
+    color: @linkBlue;
+    font-size: @baseFontSize;
+    padding: 0;
+    margin: 0;
+    line-height: 1.5;
+    .open-sans();
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: underline;
+        color: darken(@linkBlue, 10%);
+    }
+
+    &:focus {
+        outline: 0;
+    }
+}
+
 .sand #outer-wrapper {
     background: #f5f1e8 url(/media/img/sandstone/bg-gradient-sand.png) repeat-x;
     background: url(/media/img/sandstone/bg-gradient-sand.png) repeat-x,
@@ -925,6 +947,14 @@ nav.menu-bar {
     li {
         margin: 0;
         list-style-type: none;
+    }
+
+    .logo a {
+        .image-replaced();
+        display: inline-block;
+        background: url(/media/img/sandstone/footer-mozilla.png) left top no-repeat;
+        width: 93px;
+        height: 24px;
     }
 
     .row {

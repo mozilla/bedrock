@@ -1,0 +1,948 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../sandstone/lib.less';
+
+/* {{{ Template overrides */
+
+#outer-wrapper {
+    background: #fff;
+}
+
+#wrapper {
+    width: 100%;
+}
+
+#masthead {
+    z-index: 2;
+}
+
+#main-content {
+    padding: 0;
+}
+
+#colophon {
+    background: #dfe6eb;
+
+    .logo a {
+        background: url(/media/img/sandstone/footer-mozilla-dark.png);
+    }
+}
+
+/* }}} */
+
+.container {
+    position: relative;
+    width: 940px;
+    margin: 0 auto;
+}
+
+#page-header {
+    margin-top: -44px;
+    background: @linkBlue;
+    box-shadow: inset 0 12px 38px 0px rgba(0, 0, 0, 0.1),
+                inset 0 -46px 0 0 #2f7bbc;
+
+    h1, h2 {
+        position: relative;
+        color: #fff;
+        text-shadow: 0 1px 0 rgba(72, 72, 72, 0.3);
+        z-index: 2;
+    }
+
+    h1 {
+        font-size: 54px;
+        margin: 0 0 14px 0;
+        padding-top: 24px;
+    }
+
+    h2 {
+        font-size: 24px;
+        padding: 0;
+        margin: 0 0 30px 0;
+    }
+}
+
+#heading-logo-wrapper {
+    .clearfix();
+    padding-top: 34px;
+}
+
+#page-header-logo {
+    .border-box();
+    float: left;
+    width: 136px;
+    height: 142px;
+    padding-left: 136px;
+    margin: 0 @baseLine 0 0;
+    overflow: hidden;
+    background: url(/media/img/firefox/desktop/tips/firefox-logo.png) left top no-repeat;
+}
+
+#page-content {
+    background: #f8f8f8;
+    padding: 0 0 48px 0;
+}
+
+#tips-nav-direct {
+    width: 826px;
+    height: 40px;
+    margin: 0;
+    overflow: hidden;
+    .clearfix();
+
+    li {
+        float: left;
+        width: 180px;
+        height: 40px;
+        margin-left: -20px;
+        display: table;
+
+        &:first-child {
+            margin-left: 0;
+        }
+
+        a {
+            height: 40px;
+            width: 120px;
+            background: url(/media/img/firefox/desktop/tips/sprite-tabs.png) left -84px no-repeat;
+            text-align: center;
+            color: #fff;
+            font-size: 12px;
+            text-transform: uppercase;
+            line-height: 1.2;
+            padding: 0 30px;
+            display: table-cell;
+            vertical-align: middle;
+
+            &:hover {
+                background-position: left top;
+                text-decoration: none;
+            }
+
+            &.selected {
+                background-position: left -42px;
+                color: @textColorSecondary;
+            }
+        }
+    }
+}
+
+#share-nav-wrapper {
+    .clearfix();
+
+    .socialshare {
+        float: left;
+        width: 108px;
+        margin: 12px 6px 0 0;
+    }
+
+    .socialshare > div > a {
+        background: transparent url(/media/img/firefox/desktop/tips/sprite-socialshare.png) left 6px no-repeat;
+        padding-left: 16px;
+        color: #fff;
+        text-transform: uppercase;
+
+        span {
+            border-bottom: 0;
+            font-size: 12px;
+        }
+    }
+
+    .socialshare.open > div > a:after {
+        background-color: rgba(255, 255, 255, .6);
+    }
+}
+
+html[lang^='en'] #tips-nav-direct li a span:after {
+    content: '.';
+}
+
+#tips-nav-prev-next {
+    display: none;
+}
+
+#tips-wrapper {
+    padding-top: 50px;
+}
+
+.tip {
+    position: relative;
+    z-index: 1;
+    margin-bottom: @baseLine * 2;
+
+    .clearfix();
+}
+
+.tip-copy {
+    float: right;
+    width: 300px - (@baseLine * 2);
+    margin-left: 40px;
+    padding: 30px @baseLine 0;
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.6;
+    color: @textColorTertiary;
+    .open-sans-light();
+
+    h3 {
+        font-size: 30px;
+    }
+
+    hr {
+        width: 140px;
+        margin: 0 auto @baseLine;
+    }
+
+    h4 {
+        font-size: 20px;
+    }
+
+    strong {
+        color: #ff7200;
+    }
+
+    a {
+        // force line break
+        &:before {
+            content: '';
+            display: block;
+        }
+
+        .trailing-arrow();
+    }
+}
+
+.tip-media {
+    position: relative;
+    float: left;
+    width: 600px;
+    height: 500px;
+    z-index: 1;
+    overflow: hidden;
+
+    // inner rounded shadows
+    &:before {
+        content: '';
+        position: absolute;
+        z-index: 2;
+        box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+        width: 20px;
+        height: 60%;
+        bottom: 20%;
+        top: 20%;
+        left: -20px;
+        border-radius: 100%;
+    }
+
+    &:after {
+        content: '';
+        position: absolute;
+        z-index: 2;
+        box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+        width: 20px;
+        height: 60%;
+        bottom: 20%;
+        top: 20%;
+        right: -20px;
+        border-radius: 100%;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.ordinal {
+    display: block;
+    width: 46px;
+    height: 46px;
+    margin: 0 auto 30px;
+    background: #ff7200;
+    color: #fff;
+    .open-sans-light();
+    font-size: 34px;
+    line-height: 46px;
+    border-radius: 50%;
+    text-align: center;
+}
+
+#page-footer {
+    background: #fff;
+}
+
+#footer {
+    .clearfix();
+    padding-top: @baseLine * 2;
+
+    &.hide-download {
+        #footer-download {
+            display: none;
+        }
+
+        #footer-share {
+            float: none;
+            width: auto;
+            margin-right: 0;
+        }
+    }
+}
+
+#footer-download {
+    float: left;
+    width: 470px;
+}
+
+#footer-share {
+    float: left;
+    width: 450px;
+    margin-right: @baseLine;
+
+    p {
+        margin-bottom: @baseLine / 2;
+    }
+}
+
+#footer-mobile {
+    display: none;
+}
+
+.socialshare > div > a {
+    background: none;
+    padding-left: 0;
+    color: @linkBlue;
+
+    &:after {
+        background-image: url(/media/img/firefox/desktop/tips/sprite-socialshare.png);
+        background-repeat: no-repeat;
+        background-position: 4px -19px;
+        top: 0;
+    }
+
+    &:hover, &:focus {
+        color: @linkBlue;
+
+        &:after {
+            background-position: 4px -19px;
+        }
+
+        span {
+            border-color: @linkBlue;
+        }
+    }
+}
+
+.socialshare.open > div > a {
+    color: @linkBlueHover;
+
+    &:after {
+        background-position: 5px -42px;
+    }
+
+    span {
+        border-color: @linkBlueHover;
+    }
+}
+
+.js {
+    #tips-nav-prev-next {
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 95px;
+        z-index: 2;
+        width: 300px;
+
+        button {
+            .transition(color .2s ease);
+        }
+
+        button:disabled {
+            color: #ccc;
+            cursor: default;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+
+    #tips-nav-dots {
+        display: none;
+    }
+
+    #tip-prev {
+        float: left;
+
+        &:before {
+            content: '« ';
+        }
+    }
+
+    #tip-next {
+        float: right;
+        text-align: right;
+
+        &:after {
+            content: ' »';
+        }
+    }
+
+    #tips-wrapper {
+        min-height: 500px;
+    }
+
+    .tip {
+        display: none;
+        margin-bottom: 0;
+    }
+}
+
+/* {{{ RTL overrides */
+
+html[dir='rtl'] {
+    #page-header-logo {
+        float: right;
+        margin-right: 0;
+        margin-left: @baseLine;
+    }
+
+    #share-nav-wrapper .socialshare {
+        float: right;
+    }
+
+    #tips-nav-direct {
+        float: left;
+
+        li {
+            float: right;
+            margin-left: 0;
+            margin-right: -20px;
+
+            &:first-child {
+                margin-right: 0;
+            }
+        }
+    }
+
+    .tip-copy {
+        float: left;
+        margin-left: 0;
+        margin-right: @baseLine * 2;
+    }
+
+    .tip-media {
+        float: right;
+    }
+
+    &.js {
+        #tips-nav-prev-next {
+            right: auto;
+            left: 20px;
+        }
+
+        #tip-prev {
+            float: right;
+        }
+
+        #tip-next {
+            float: left;
+        }
+    }
+}
+
+/* }}} */
+
+/****************************************************************************/
+// @High resolution images for @retina-type displays
+// Desktop
+@media (-webkit-min-device-pixel-ratio: 1.5),
+       (                min-resolution: 1.5dppx),
+       (                min-resolution: 144dpi) {
+
+        #tips-nav-direct li a {
+            background-image: url(/media/img/firefox/desktop/tips/sprite-tabs-high-res.png);
+            background-size: 180px 84px;
+        }
+
+        #page-header-logo {
+            background-image: url(/media/img/firefox/desktop/tips/firefox-logo-high-res.png);
+            background-size: 136px 142px;
+        }
+}
+
+/****************************************************************************/
+// @Tablet Layout: 760px
+@media (max-width: @breakDesktop) and (min-width: @breakTablet) {
+    #main-content {
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    #masthead {
+        width: 100%;
+        padding: 0;
+    }
+
+    #page-header {
+        box-shadow: inset 0 12px 38px 0px rgba(0, 0, 0, 0.1),
+                    inset 0 -30px 0 0 #2f7bbc;
+
+        h1 {
+            font-size: 44px;
+        }
+
+        h2 {
+            font-size: 22px;
+        }
+
+        #share-nav-wrapper {
+            margin: -20px 156px 0 0;
+
+            .socialshare {
+                margin-top: 6px;
+                padding-bottom: 5px;
+            }
+        }
+    }
+
+    .container {
+        width: @breakTablet - (@baseLine * 2);
+    }
+
+    #tips-nav-direct {
+        display: none;
+    }
+
+    .tip-copy {
+        width: 220px;
+        margin-left: @baseLine * 2;
+        padding: 0;
+        font-size: @baseFontSize;
+        line-height: 1.4;
+
+        h3 {
+            font-size: 24px;
+        }
+    }
+
+    .tip-media {
+        width: 460px;
+        height: 385px;
+    }
+
+    #footer-download,
+    #footer-share {
+        width: 350px;
+    }
+
+    .js {
+        #tips-nav-prev-next {
+            width: 220px;
+            top: 44px;
+
+            button {
+                width: 60px;
+                height: 60px;
+                background-image: url(/media/img/firefox/desktop/tips/sprite-arrows.png);
+                background-repeat: no-repeat;
+                overflow: hidden;
+                .image-replaced();
+
+                &.inactive {
+                    opacity: .4;
+                }
+            }
+        }
+
+        #tip-prev {
+            background-position: left top;
+        }
+
+        #tip-next {
+            background-position: -60px top;
+        }
+
+        #tips-wrapper {
+            min-height: 385px;
+        }
+    }
+
+    html[dir='rtl'] {
+        &.js {
+            #tip-prev {
+                background-position: -60px top;
+            }
+
+            #tip-next {
+                background-position: left top;
+            }
+        }
+    }
+}
+
+/****************************************************************************/
+// @High resolution images for @retina-type displays
+// Tablet
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) and (                min-resolution: 1.5dppx),
+       only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) and (                min-resolution: 144dpi) {
+
+    .js #tips-nav-prev-next button {
+        background-image: url(/media/img/firefox/desktop/tips/sprite-arrows-high-res.png);
+        background-size: 120px 60px;
+    }
+}
+
+/****************************************************************************/
+// @Wide mobile Layout: 480px
+@media (max-width: @breakTablet) {
+    #wrapper {
+        padding-bottom: @baseLine;
+    }
+
+    #main-content {
+        padding-top: 0;
+    }
+
+    #masthead {
+        padding-bottom: 0;
+
+        .container {
+            padding-bottom: 0;
+        }
+    }
+
+    #page-header {
+        box-shadow: inset 0 12px 38px 0px rgba(0, 0, 0, 0.1),
+                    inset 0 -16px 0 0 #2f7bbc;
+
+        h1 {
+            font-size: 30px;
+            padding-top: 30px;
+        }
+
+        h2 {
+            font-size: 20px;
+            margin: 0 0 10px 0;
+        }
+
+        .container {
+            padding-bottom: 10px;
+        }
+    }
+
+    #page-header-logo {
+        margin-top: 18px;
+        padding-left: 0;
+        background: none;
+    }
+
+    #page-content {
+        padding-bottom: 20px;
+    }
+
+    .container {
+        width: @breakMobileLandscape - (@baseLine * 2);
+    }
+
+    #tips-nav-direct {
+        display: none;
+    }
+
+    #tips-wrapper {
+        padding-top: 30px;
+    }
+
+    .tip-copy {
+        float: none;
+        width: 440px;
+        margin: 0;
+        padding: 0;
+        font-size: @baseFontSize;
+        line-height: 1.4;
+
+        h3 {
+            font-size: 24px;
+        }
+    }
+
+    .tip-copy-how {
+        display: none;
+    }
+
+    .tip-media {
+        float: none;
+        width: 400px;
+        height: 335px;
+        margin: 0 auto;
+    }
+
+    #footer {
+        padding: @baseLine 0 0;
+    }
+
+    #footer-download, #footer-share {
+        display: none;
+    }
+
+    #footer-mobile {
+        display: block;
+        .clearfix();
+
+        li {
+            .border-box();
+            float: left;
+            width: 50%;
+            padding: 0 (@baseLine / 2);
+            margin: 0;
+            text-align: center;
+            list-style-type: none;
+        }
+
+        a {
+            .trailing-arrow();
+        }
+    }
+
+    .socialshare {
+        display: none;
+    }
+
+    .js {
+        #tips-nav-prev-next {
+            width: 440px;
+            top: 20px;
+            left: 10px;
+            right: auto;
+
+            button {
+                width: 60px;
+                height: 60px;
+                background-image: url(/media/img/firefox/desktop/tips/sprite-arrows.png);
+                background-repeat: no-repeat;
+                overflow: hidden;
+                .image-replaced();
+
+                &.inactive {
+                    opacity: .4;
+                }
+            }
+        }
+
+        #tips-nav-dots {
+            display: block;
+            position: absolute;
+            width: 200px;
+            overflow: hidden;
+            margin: 12px 120px 0;
+            .clearfix();
+
+            span {
+                display: block;
+                float: left;
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                background: lighten(#dfe5e8, 2%);
+                color: lighten(#dfe5e8, 2%);
+                margin: 10px 10px 0;
+                text-align: center;
+                font-size: 1px;
+                .transition(all .2s ease);
+
+                &.active {
+                    width: 36px;
+                    height: 36px;
+                    background: #ff7200;
+                    color: #fff;
+                    .open-sans-light();
+                    font-size: 24px;
+                    line-height: 36px;
+                    margin-top: 0;
+                }
+            }
+        }
+
+        #tip-prev {
+            background-position: left top;
+        }
+
+        #tip-next {
+            background-position: -60px top;
+        }
+
+        #tips-wrapper {
+            min-height: 500px;
+        }
+
+        .ordinal {
+            display: none;
+        }
+
+        .tip-copy {
+            padding: 68px 0 0;
+        }
+    }
+
+    html[dir='rtl'] {
+        .tip-media {
+            float: none;
+        }
+
+        &.js {
+            #tips-nav-prev-next {
+                left: 10px;
+                right: auto;
+            }
+
+            #tips-nav-dots span {
+                float: right;
+            }
+
+            #tip-prev {
+                background-position: -60px top;
+            }
+
+            #tip-next {
+                background-position: left top;
+            }
+        }
+    }
+}
+
+/****************************************************************************/
+// @High resolution images for @retina-type displays
+// Tablet
+@media only screen and (max-width: @breakTablet) and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (max-width: @breakTablet) and (                min-resolution: 1.5dppx),
+       only screen and (max-width: @breakTablet) and (                min-resolution: 144dpi) {
+
+    #page-header-logo {
+        padding-left: 136px;
+        background: url(/media/img/firefox/desktop/tips/firefox-logo-high-res.png) left top no-repeat;
+        background-size: 136px 142px;
+    }
+
+    .js #tips-nav-prev-next button {
+        background-image: url(/media/img/firefox/desktop/tips/sprite-arrows-high-res.png);
+        background-size: 120px 60px;
+    }
+}
+
+@media (max-width: @breakMobileLandscape) {
+    #main-content, #masthead {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    #page-header {
+        width: 100%;
+        box-shadow: inset 0 12px 38px 0px rgba(0, 0, 0, 0.1),
+                    inset 0 -8px 6px -4px #2f7bbc;
+        padding-bottom: 0;
+        overflow: hidden;
+
+        h1, h2 {
+            margin-left: 0;
+            text-align: center;
+        }
+
+        .container {
+            padding-bottom: 0;
+        }
+    }
+
+    .container {
+        width: @breakMobile - @baseLine;
+    }
+
+    #page-header-logo {
+        position: absolute;
+        opacity: .5;
+        width: 300px;
+        height: 312px;
+        padding-left: 300px;
+        left: 50%;
+        top: auto;
+        bottom: -228px;
+        margin-left: -150px;
+        background: url(/media/img/firefox/desktop/tips/firefox-logo-high-res.png) left top no-repeat;
+        background-size: 300px 312px;
+        .animation(phoenix 2s ease 1.3s 1 normal forwards);
+    }
+
+    .tip-copy {
+        width: 300px;
+    }
+
+    .tip-media {
+        width: 300px;
+        height: 250px;
+    }
+
+    .js {
+        #tips-nav-prev-next {
+            width: 300px;
+            top: 24px;
+            left: 10px;
+            right: auto;
+        }
+
+        #tips-nav-dots {
+            width: 150px;
+            margin: 12px 75px 0;
+
+            span {
+                margin-left: 5px;
+                margin-right: 5px;
+            }
+        }
+
+        #tips-wrapper {
+            min-height: 420px;
+        }
+    }
+
+    html[dir='rtl'] {
+        #page-header-logo {
+            float: none;
+            margin: 0 0 0 -150px;
+        }
+    }
+}
+
+@-webkit-keyframes phoenix {
+    50% {
+        -webkit-transform: translateY(-16px);
+        transform: translateY(-16px);
+        opacity: .6;
+    }
+    70% {
+        opacity: .8;
+    }
+    100% {
+        -webkit-transform: translateY(-16px);
+        transform: translateY(-16px);
+        opacity: .5;
+    }
+}
+
+@keyframes phoenix {
+    40% {
+        -webkit-transform: translateY(-16px);
+        transform: translateY(-16px);
+        opacity: .6;
+    }
+    70% {
+        opacity: .8;
+    }
+    100% {
+        -webkit-transform: translateY(-16px);
+        transform: translateY(-16px);
+        opacity: .5;
+    }
+}
