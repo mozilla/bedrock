@@ -80,6 +80,37 @@
 
 
 /****************************************************************************/
+// Firefox Desktop
+#panel-fxdesktop {
+    background: #c22b00 url(/media/img/home/panel/fxdesktop/firefox-logo.png) -70px 20px no-repeat;
+    background: url(/media/img/home/panel/fxdesktop/firefox-logo.png) -70px 20px no-repeat,
+                #c22b00 url(/media/img/home/panel/fxdesktop/background.jpg) no-repeat;
+
+    &.expanded {
+        background-position: -45px 20px;
+        background-position: -45px 20px, 0 0;
+    }
+
+    &.compressed {
+        background-position: -95px 20px;
+        background-position: -95px 20px, 0 0;
+    }
+}
+
+.wide #panel-fxdesktop .panel-title {
+    background: #611600;
+    background: rgba(97, 22, 0, .8);
+    background: -webkit-linear-gradient(bottom, rgba(97, 22, 0, .95) 50%, rgba(97, 22, 0, .8) 65%, rgba(97, 22, 0, 0) 100%);
+    background:         linear-gradient(to top, rgba(97, 22, 0, .95) 50%, rgba(97, 22, 0, .8) 65%, rgba(97, 22, 0, 0) 100%);
+
+    i {
+        display: block;
+    }
+}
+
+
+
+/****************************************************************************/
 // MDN
 #panel-mdn {
     background: #0062a9 url(/media/img/home/panel/mdn/logo-mdn.png) -25px 40px no-repeat;
@@ -285,6 +316,14 @@
         background-size: 335px 468px;
     }
 
+    #panel-fxdesktop {
+        background-image: url(/media/img/home/panel/fxdesktop/firefox-logo-hires.png);
+        background-image: url(/media/img/home/panel/fxdesktop/firefox-logo-hires.png),
+                          url(/media/img/home/panel/fxdesktop/background.jpg);
+        background-size: 325px 335px;
+        background-size: 325px 335px, auto auto;
+    }
+
     #panel-mozfest {
         background-image: url(/media/img/home/panel/mozfest/logo-mozfest-big-hires.png);
         background-image: url(/media/img/home/panel/mozfest/logo-mozfest-big-hires.png),
@@ -342,6 +381,24 @@
         }
         &.compressed {
             background-position: -135px -70px;
+        }
+    }
+
+    // Firefox Desktop
+    #panel-fxdesktop {
+        background-size: 265px 273px;
+        background-size: 265px 273px, auto;
+        background-position: -50px 30px;
+        background-position: -50px 30px, 0 0;
+
+        &.expanded {
+            background-position: -85px 30px;
+            background-position: -85px 30px, 0 0;
+        }
+
+        &.compressed {
+            background-position: -90px 30px;
+            background-position: -90px 30px, 0 0;
         }
     }
 
@@ -481,6 +538,27 @@
 
         &.compressed {
             background-position: -85px -110px;
+        }
+    }
+
+    // Firefox Desktop
+    #panel-fxdesktop {
+        background-image: url(/media/img/home/panel/fxdesktop/firefox-logo-sm.png);
+        background-image: url(/media/img/home/panel/fxdesktop/firefox-logo-sm.png),
+                          url(/media/img/home/panel/fxdesktop/background.jpg);
+        background-size: 120px 123px;
+        background-size: 120px 123px, auto auto;
+        background-position: -20px -20px;
+        background-position: -20px -20px, 0 0;
+
+        &.expanded {
+            background-position: -20px 20px;
+            background-position: -20px 20px, 0 0;
+        }
+
+        &.compressed {
+            background-position: -20px -30px;
+            background-position: -20px -30px, 0 0;
         }
     }
 
@@ -626,6 +704,24 @@
         }
     }
 
+    // Firefox Desktop
+    #panel-fxdesktop {
+        background-size: auto auto;
+        background-size: auto auto, auto auto;
+        background-position: -30px -20px;
+        background-position: -30px -20px, 0 0;
+
+        &.expanded {
+            background-position: -30px 20px;
+            background-position: -30px 20px, 0 0;
+        }
+
+        &.compressed {
+            background-position: -30px -30px;
+            background-position: -30px -30px, 0 0;
+        }
+    }
+
     //MDN
     #panel-mdn {
         background-position: 10px -20px;
@@ -722,12 +818,34 @@
         background-size: 190px 246px;
     }
 
+    #panel-fxdesktop {
+        background-image: url(/media/img/home/panel/fxdesktop/firefox-logo.png);
+        background-image: url(/media/img/home/panel/fxdesktop/firefox-logo.png),
+                          url(/media/img/home/panel/fxdesktop/background.jpg);
+        background-size: 120px 123px;
+        background-size: 120px 123px, auto auto;
+    }
+
     #panel-mozfest {
         background-image: url(/media/img/home/panel/mozfest/logo-mozfest-sm-hires.png);
         background-image: url(/media/img/home/panel/mozfest/logo-mozfest-sm-hires.png),
                           url(/media/img/home/panel/mozfest/bg-mosaic.jpg);
         background-size: 170px 170px;
         background-size: 170px 170px, auto auto;
+    }
+
+}
+
+/****************************************************************************/
+// @High resolution images for @retina-type displays
+// Mobile Landscape
+@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) and (                min-resolution: 1.5dppx),
+       only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) and (                min-resolution: 144dpi) {
+
+    #panel-fxdesktop {
+        background-size: 180px 185px;
+        background-size: 180px 185px, auto auto;
     }
 
 }

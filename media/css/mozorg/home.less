@@ -163,6 +163,8 @@
     min-height: 0;
     overflow: hidden;
     box-shadow: -6px 0 10px -4px rgba(0, 0, 0, .5);
+    position: relative;
+    z-index: 6;
 
     &:first-child {
         box-shadow: none;
@@ -181,18 +183,18 @@
     font-size: 18px;
     line-height: 1.2;
     font-weight: bold;
-    letter-spacing: -.025em;
     text-align: center;
     text-shadow: 0 1px 0 rgba(0, 0, 0, .15);
     text-transform: uppercase;
+    letter-spacing: -.025em;
+    height: 80px;
+    width: 220px;
     margin: 0;
     padding: 40px 15px 0;
     position: absolute;
     bottom: 0;
-    left: 0;
+    left: -5px;
     z-index: 6;
-    width: 218px;
-    height: 80px;
 
     i {
         font-style: normal;
@@ -622,7 +624,7 @@
 
     .panel-title {
         font-size: 16px;
-        width: 155px;
+        width: 160px;
     }
 
     .wide .panel-content {

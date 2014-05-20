@@ -104,6 +104,22 @@
     {% endif %}
 
 
+  {% if l10n_has_tag('promo_fxdesktop') or settings.DEV %}
+    <li id="panel-fxdesktop" class="panel" tabindex="0">
+      {# L10n: This is the label seen when the panel is collapsed so it may need to be altered to fit a limited space. The active phrase should be wrapped in <i></i> tags. #}
+      <h2 class="panel-title">{{ _('<i>Try the best</i> Firefox yet') }}</h2>
+      <div class="panel-inner">
+        <div class="panel-content">
+          <a href="{{ url('firefox.desktop.index') }}">
+            {# L10n: This is the headline seen when the panel is open so it can be longer than the panel label. #}
+            <h3>{{ _('Try the best Firefox yet') }}</h3>
+            <p>{{ _('Learn more about the free desktop browser that’s committed to you, your privacy and an open Web.') }}</p>
+            <p class="go">{{ _('See what’s new') }}</p>
+          </a>
+        </div>
+      </div>
+    </li>
+  {% else %}
     <li id="panel-fxos" class="panel" tabindex="0">
       {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
       <h2 class="panel-title">{{ _('<i>Look</i> ahead') }}</h2>
@@ -117,6 +133,7 @@
         </div>
       </div>
     </li>
+  {% endif %}
 
     {% if l10n_has_tag('promo_webmaker') or settings.DEV %}
       <li id="panel-webmaker" class="panel" tabindex="0">
