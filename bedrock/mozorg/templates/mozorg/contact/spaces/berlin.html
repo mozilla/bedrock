@@ -15,13 +15,12 @@
         <p itemprop="address" itemscope itemtype="http://schema.org/PostalAddress" class="adr">
         {# L10n: Addresses are marked up with hCard microformat and Schema.org. See http://microformats.org/wiki/h-card and http://schema.org/PostalAddress #}
         {% trans %}
-          <span itemprop="streetAddress" class="street-address">MZ Denmark ApS <br>Rungestraße 22-24</span><br>
-          <span itemprop="postalCode" class="postal-code">10179</span>
+          <span itemprop="streetAddress" class="street-address">Haus 10, Treppe 6 <br>Voltastr. 5</span><br>
+          <span itemprop="postalCode" class="postal-code">13355</span>
           <span itemprop="addressLocality" class="locality">Berlin</span><br>
           <span itemprop="addressCountry" class="country-name">Germany</span>
         {% endtrans %}
         </p>
-
 
         <figure class="feature-img">
           <img src="//api.tiles.mapbox.com/v3/{{ settings.MAPBOX_TOKEN }}/url-{{ 'mozorg.cdn.mozilla.net/media/img/contact/moz-map-pin.png'|urlencode }}(13.418735,52.512408)/13.418735,52.512408,16/460x250.png" alt="">
