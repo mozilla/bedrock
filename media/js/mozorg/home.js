@@ -38,12 +38,23 @@
 
         // Adjust the news headlines
         $('.extra-news a').each(function () {
-            var title = $(this).attr('title');
+            var $this = $(this);
+            var title = $this.attr('title');
+
             if (!title) {
-                title = $.trim($(this).text());
-                $(this).attr('title', title);
+                title = $.trim($this.text());
             }
-            $(this).text(title).ellipsis({ row: 3 });
+
+            $this.text(title).ellipsis({
+                row: 3,
+                callback: function () {
+                    var text = $.trim($this.text());
+
+                    if (text.match('[.]{3}$')) {
+                        $this.attr('title', title);
+                    }
+                }
+            });
         });
     }
 
