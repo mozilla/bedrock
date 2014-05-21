@@ -44,7 +44,6 @@
           <option value="cl">{{ _('Chile') }}</option>
           <option value="co">{{ _('Colombia') }}</option>
           <option value="de">{{ _('Germany') }}</option>
-          <option value="es">{{ _('Spain') }}</option>
           <option value="gr">{{ _('Greece') }}</option>
           <option value="hu">{{ _('Hungary') }}</option>
           <option value="it">{{ _('Italy') }}</option>
@@ -52,7 +51,11 @@
           <option value="mx">{{ _('Mexico') }}</option>
           <option value="pe">{{ _('Peru') }}</option>
           <option value="pl">{{ _('Poland') }}</option>
+          <option value="ru">{{ _('Russia') }}</option>
           <option value="rs">{{ _('Serbia') }}</option>
+          <option value="es">{{ _('Spain') }}</option>
+          <option value="gb">{{ _('United Kingdom') }}</option>
+          <option value="us">{{ _('United States') }}</option>
           <option value="uy">{{ _('Uruguay') }}</option>
           <option value="ve">{{ _('Venezuela') }}</option>
         </select>
@@ -266,8 +269,7 @@
                         <dd>{{ _('Up to 6.7 h (2G), 3 h (3G)') }}</dd>
 
                         <dt>{{ _('Standby time') }}</dt>
-                        <dd>{{ _('Up to 280 h (2G)') }}
-                        </dd>
+                        <dd>{{ _('Up to 280 h (2G)') }}</dd>
                       </dl>
                     </td>
                   </tr>
@@ -433,8 +435,7 @@
                         <dd>{{ _('Up to 8 h (2G), 8 h (3G)') }}</dd>
 
                         <dt>{{ _('Standby time') }}</dt>
-                        <dd>{{ _('Up to 744 h') }}
-                        </dd>
+                        <dd>{{ _('Up to 744 h') }}</dd>
                       </dl>
                     </td>
                   </tr>
@@ -624,8 +625,7 @@
                         <dd>{{ _('9 h 20 m') }}</dd>
 
                         <dt>{{ _('Standby time') }}</dt>
-                        <dd>{{ _('176 h') }}
-                        </dd>
+                        <dd>{{ _('176 h') }}</dd>
                       </dl>
                     </td>
                   </tr>
@@ -688,10 +688,10 @@
           </li>
           <li class="last">
             <a href="#zte_openc" class="device-thumbnail device-coming-soon">
-              <img src="{{ media('/img/firefox/os/devices/smartphones/coming-soon-thumb.png') }}" alt="">
+              <img src="{{ media('/img/firefox/os/devices/smartphones/zte-openc-thumb.png') }}" alt="">
               <span class="device-name">{{ _('ZTE Open C') }}</span>
               <div class="availability-notice">
-                <span class="coming-soon">{{ _('Coming Soon (mid-2014)') }}</span>
+                <span class="is-available">{{ _('Available') }}</span>
               </div>
             </a>
           </li>
@@ -808,8 +808,7 @@
                         <dd>{{ _('Up to 5.3 h') }}</dd>
 
                         <dt>{{ _('Standby time') }}</dt>
-                        <dd>{{ _('Up to 350 h') }}
-                        </dd>
+                        <dd>{{ _('Up to 350 h') }}</dd>
                       </dl>
                     </td>
                   </tr>
@@ -847,6 +846,7 @@
 
               <ul class="pager-tabs">
                 <li><a href="#p1" data-label="Features">{{_('Features')}}</a></li>
+
               </ul>
 
               <button class="device-detail-close">{{ _('Close') }}</button>
@@ -890,6 +890,7 @@
 
               <ul class="pager-tabs">
                 <li><a href="#p1" data-label="Features">{{_('Features')}}</a></li>
+                <li><a href="#p2" data-label="Specifications">{{_('Specifications')}}</a></li>
               </ul>
 
               <button class="device-detail-close">{{ _('Close') }}</button>
@@ -901,7 +902,7 @@
                 </div>
 
                 <div class="feature-group image">
-                  <img src="{{ media('/img/firefox/os/devices/smartphones/coming-soon.png') }}" alt="{{ _('ZTE Open C') }}">
+                  <img src="{{ media('/img/firefox/os/devices/smartphones/zte-openc.png') }}" alt="{{ _('ZTE Open C') }}">
                 </div>
 
                 <div class="feature-group stats">
@@ -911,7 +912,7 @@
                       {{ _('480 x 800 pixels') }}
                     </li>
                     <li class="stat-camera">
-                      <strong>{{ _('2.0 MP') }}</strong>
+                      <strong>{{ _('3.0 MP') }}</strong>
                       {{ _('Rear camera') }}
                     </li>
                     <li class="stat-storage">
@@ -921,8 +922,69 @@
                 </div>
 
                 <div class="feature-group availability">
+                  <h5>{{ _('Available in') }}</h5>
+
+                  <ul class="comma-list">
+                    <li>{{ _('Germany') }}</li>
+                    <li>{{ _('Russia') }}</li>
+                    <li>{{ _('United Kingdom') }}</li>
+                    <li>{{ _('United States') }}</li>
+                  </ul>
                 </div>
               </div><!--/.features-->
+              <div class="device-details specifications pager-page" id="zte_openc-specifications">
+                <h4 class="device-details-title">{{ _('Specifications') }}</h4>
+
+                <table>
+                  <tr>
+                    <th>{{ _('Screen') }}</th>
+                    <td>
+                      {{ _('4.0” WVGA 800 x 400 pixels') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Camera') }}</th>
+                    <td>
+                      {{ _('3.0 MP') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Processor') }}</th>
+                    <td>
+                      {{ _('Qualcomm Snapdragon 200 processor with dual-core CPU at speeds of up to 1.2 GHz per core') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Memory') }}</th>
+                    <td>
+                      <dl>
+                        <dt>{{ _('ROM') }} *</dt>
+                        <dd>{{ _('4 GB') }}</dd>
+
+                        <dt>{{ _('RAM') }}</dt>
+                        <dd>{{ _('512 MB') }}</dd>
+                      </dl>
+
+                      <small>* {{ memory_disclaimer }}</small>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Battery') }}</th>
+                    <td>
+                      <dl>
+                        <dt>{{ _('Capacity') }}</dt>
+                        <dd>{{ _('1400 mAh') }}</dd>
+                      </dl>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Networks') }}</th>
+                    <td>
+                      {{ _('GPRS/WCDMA/HSPA+') }}
+                    </td>
+                  </tr>
+                </table>
+              </div><!--/.specifications-->
             </div><!--/.pager-content-->
           </div><!--/.container-->
         </section><!--/#zte_openc-->
