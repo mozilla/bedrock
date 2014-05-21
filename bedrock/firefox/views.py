@@ -507,7 +507,8 @@ def release_notes(request, fx_version, product='Firefox'):
         release = get_release_or_404(fx_version + 'beta', product)
         return HttpResponseRedirect(releasenotes_url(release))
 
-    new_features, known_issues = release.notes()
+    new_features, known_issues = release.notes(public_only=not settings.DEV)
+
     return l10n_utils.render(
         request, release_notes_template(release.channel, product), {
             'version': fx_version,
