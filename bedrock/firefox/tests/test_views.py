@@ -51,17 +51,19 @@ class TestRNAViews(TestCase):
         Q.assert_any_call(product='Firefox Extended Support Release')
         Q.__or__.assert_called()
 
+    @override_settings(DEV=True)
     @patch('bedrock.firefox.views.get_release_or_404')
     @patch('bedrock.firefox.views.equivalent_release_url')
-    def test_release_notes(self, mock_equiv_rel_url, get_release_or_404):
+    def test_release_notes_dev(self, mock_equiv_rel_url, get_release_or_404):
         """
         Should use release returned from get_release_or_404 with the
         correct params and pass the correct context variables and
-        template to l10n_utils.render
+        template to l10n_utils.render. Should not filter notes.
         """
         mock_release = get_release_or_404.return_value
-        mock_release.notes.return_value = ('mock new_features',
-                                           'mock known_issues')
+        mock_release.notes.return_value = (
+            [Release(id=1, is_public=True), Release(id=2, is_public=False)],
+            [Release(id=3, is_public=True), Release(id=4, is_public=False)])
 
         views.release_notes(self.request, '27.0')
         # Should use fixed version for query
@@ -69,8 +71,34 @@ class TestRNAViews(TestCase):
         # Should use original version for context variable
         eq_(self.last_ctx['version'], '27.0')
         eq_(self.last_ctx['release'], mock_release)
-        eq_(self.last_ctx['new_features'], 'mock new_features')
-        eq_(self.last_ctx['known_issues'], 'mock known_issues')
+        eq_(self.last_ctx['new_features'], [Release(id=1), Release(id=2)])
+        eq_(self.last_ctx['known_issues'], [Release(id=3), Release(id=4)])
+        eq_(self.mock_render.call_args[0][1],
+            'firefox/releases/release-notes.html')
+        mock_equiv_rel_url.assert_called_with(mock_release)
+
+    @override_settings(DEV=False)
+    @patch('bedrock.firefox.views.get_release_or_404')
+    @patch('bedrock.firefox.views.equivalent_release_url')
+    def test_release_notes_prod(self, mock_equiv_rel_url, get_release_or_404):
+        """
+        Should use release returned from get_release_or_404 with the
+        correct params and pass the correct context variables and
+        template to l10n_utils.render. Should filter notes based on is_public.
+        """
+        mock_release = get_release_or_404.return_value
+        mock_release.notes.return_value = (
+            [Release(id=1, is_public=True), Release(id=2, is_public=False)],
+            [Release(id=3, is_public=True), Release(id=4, is_public=False)])
+
+        views.release_notes(self.request, '27.0')
+        # Should use fixed version for query
+        get_release_or_404.assert_called_with('27.0', 'Firefox')
+        # Should use original version for context variable
+        eq_(self.last_ctx['version'], '27.0')
+        eq_(self.last_ctx['release'], mock_release)
+        eq_(self.last_ctx['new_features'], [Release(id=1)])
+        eq_(self.last_ctx['known_issues'], [Release(id=3)])
         eq_(self.mock_render.call_args[0][1],
             'firefox/releases/release-notes.html')
         mock_equiv_rel_url.assert_called_with(mock_release)

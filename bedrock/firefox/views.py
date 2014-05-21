@@ -508,6 +508,10 @@ def release_notes(request, fx_version, product='Firefox'):
         return HttpResponseRedirect(releasenotes_url(release))
 
     new_features, known_issues = release.notes()
+    if not settings.DEV:
+        new_features = [n for n in new_features if n.is_public]
+        known_issues = [n for n in known_issues if n.is_public]
+
     return l10n_utils.render(
         request, release_notes_template(release.channel, product), {
             'version': fx_version,
