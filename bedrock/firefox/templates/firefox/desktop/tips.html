@@ -147,7 +147,11 @@
 
             <h3>{{ _('Stay in Sync') }}</h3>
             <p>
+            {% if l10n_has_tag('sync_device_note') or settings.DEV %}
+              {{ _('Use Sync to magically access your open tabs, passwords and more wherever you use Firefox.') }}
+            {% else %}
               {{ _('Use Sync to magically access your open tabs, passwords and more from any device.') }}
+            {% endif %}
             </p>
 
             <div class="tip-copy-how">
