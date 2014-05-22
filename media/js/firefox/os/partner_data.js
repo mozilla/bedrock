@@ -136,7 +136,7 @@ if (typeof Mozilla == 'undefined') {
                 },
                 {
                     'name': 'Telcel',
-                    'url': 'http://holatelcel.com/alcatel-onetouch-fire-el-primer-telcel-con-firefox-os'
+                    'url': 'http://www.telcel.com/portal/equipos/begin.do?idEquipo=3618'
                 }
             ]
         },
