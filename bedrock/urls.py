@@ -19,7 +19,8 @@ patch()
 handler500 = 'lib.bedrock_util.server_error_view'
 
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     # Main pages
     (r'^lightbeam/', include('bedrock.lightbeam.urls')),
     (r'^foundation/', include('bedrock.foundation.urls')),
@@ -38,10 +39,12 @@ urlpatterns = patterns('',
     (r'', include('bedrock.research.urls')),
 
     # L10n example.
-    (r'^l10n_example/', include('bedrock.l10n_example.urls')),
+    (r'^l10n_example/',
+     include('bedrock.l10n_example.urls')),
 
     # Facebook Apps
-    (r'^facebookapps/', include('bedrock.facebookapps.urls')),
+    (r'^facebookapps/',
+     include('bedrock.facebookapps.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
@@ -50,13 +53,13 @@ urlpatterns = patterns('',
     # (r'^admin/', include(admin.site.urls)),
 )
 
-## In DEBUG mode, serve media files through Django.
+# In DEBUG mode, serve media files through Django.
 if settings.DEBUG:
     # Remove leading and trailing slashes so the regex matches.
     media_url = settings.MEDIA_URL.lstrip('/').rstrip('/')
-    urlpatterns += patterns('',
+    urlpatterns += patterns(
+        '',
         (r'^%s/(?P<path>.*)$' % media_url, 'django.views.static.serve',
          {'document_root': settings.MEDIA_ROOT}),
         (r'^404/$', handler404),
-        (r'^500/$', handler500),
-    )
+        (r'^500/$', handler500))
