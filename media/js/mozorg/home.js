@@ -62,13 +62,14 @@
         // Expand the accordion horizontally
         expandHorz: function(panel) {
             $('.panel-title').stop(true,true).fadeOut(200);
-            panel.stop().removeClass('compressed').addClass('expanded').animate({'width':'64%'},700);
+            panel.stop().removeClass('compressed').addClass('expanded').animate({'width':'64%'}, 700, function() {
+                track_accordion('open', ($('.panel').index(panel) + 1), panel.attr('id'));
+            });
             $('.panel-content', panel).stop(true,true).delay(400).fadeIn(400);
             panel.siblings('.panel').stop().removeClass('expanded').addClass('compressed').animate({'width':'12%'},700);
             panel.siblings('.panel').find('.panel-content').stop(true,true).fadeOut(400, function() {
                 $(this).delay(500).removeAttr('style');
             });
-            track_accordion('open', ($('.panel').index(panel) + 1), panel.attr('id'));
         },
 
         // Contract the accordion horizontally
@@ -82,13 +83,14 @@
         // Expand the accordion vertically
         expandVert: function(panel) {
             $('.panel-title').stop(true,true).fadeOut(200);
-            panel.stop().removeClass('compressed').addClass('expanded').animate({'height':'22em'},700);
+            panel.stop().removeClass('compressed').addClass('expanded').animate({'height':'22em'},700, function() {
+                track_accordion('open', ($('.panel').index(panel) + 1), panel.attr('id'));
+            });
             panel.siblings('.panel').stop().removeClass('expanded').addClass('compressed').animate({'height':'3em'},700);
             $('.panel-content', panel).stop(true,true).delay(400).fadeIn(400);
             panel.siblings('.panel').find('.panel-content').stop(true,true).fadeOut(400, function() {
                 $(this).delay(500).removeAttr('style');
             });
-            track_accordion('open', ($('.panel').index(panel) + 1), panel.attr('id'));
         },
 
         // Contract the accordion vertically
