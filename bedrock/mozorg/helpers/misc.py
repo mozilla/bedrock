@@ -205,7 +205,7 @@ def video(*args, **kwargs):
             continue
         if ext not in filetypes:
             continue
-        videos[ext] = (v if not 'prefix' in kwargs else
+        videos[ext] = (v if 'prefix' not in kwargs else
                        urlparse.urljoin(kwargs['prefix'], v))
 
     if not videos:

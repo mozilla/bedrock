@@ -31,12 +31,12 @@ download_urls = {
     'direct': 'https://download.mozilla.org/',
     'aurora': nightly_desktop,
     'aurora-l10n': nightly_desktop + '-l10n',
-    'aurora-android-armv7': nightly_android + '/en-US/'
-                            'fennec-%s.en-US.android-arm.apk',
-    'aurora-android-armv6': nightly_android + '-armv6/'
-                            'fennec-%s.multi.android-arm-armv6.apk',
-    'aurora-android-x86': nightly_android + '-x86/'
-                          'fennec-%s.multi.android-i386.apk',
+    'aurora-android-armv7': nightly_android + (
+        '/en-US/fennec-%s.en-US.android-arm.apk'),
+    'aurora-android-armv6': nightly_android + (
+        '-armv6/fennec-%s.multi.android-arm-armv6.apk'),
+    'aurora-android-x86': nightly_android + (
+        '-x86/fennec-%s.multi.android-i386.apk'),
 }
 
 

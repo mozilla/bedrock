@@ -40,14 +40,15 @@ LANG_FILES = ['firefox/partners/index']
 LOCALE_FXOS_HEADLINES = {
     'de': {
         'title': u"Firefox OS ist richtungsweisend für die Zukunft des "
-            "mobilen Marktes",
+                 u"mobilen Marktes",
         'url': 'http://blog.mozilla.org/press-de/2014/02/23/'
-            'firefox-os-ist-richtungsweisend-fur-die-zukunft-des-mobilen-marktes',
+               'firefox-os-ist-richtungsweisend-fur-die-zukunft-des-mobilen-'
+               'marktes',
     },
     'en-GB': {
         'title': u'Firefox OS Unleashes the Future of Mobile',
         'url': 'http://blog.mozilla.org/press-uk/2014/02/23/'
-            'firefox-os-unleashes-the-future-of-mobile'
+               'firefox-os-unleashes-the-future-of-mobile'
     },
     'en-US': {
         'title': _('Firefox OS Unleashes the Future of Mobile'),
@@ -56,12 +57,12 @@ LOCALE_FXOS_HEADLINES = {
     'es-AR': {
         'title': u'Firefox OS te desvela el futuro de lo móvil',
         'url': 'http://blog.mozilla.org/press-latam/2014/02/23/'
-            'firefox-os-te-desvela-el-futuro-de-lo-movil/',
+               'firefox-os-te-desvela-el-futuro-de-lo-movil/',
     },
     'es-CL': {
         'title': u'Firefox OS te desvela el futuro de lo móvil',
         'url': 'http://blog.mozilla.org/press-latam/2014/02/23/'
-            'firefox-os-te-desvela-el-futuro-de-lo-movil/',
+               'firefox-os-te-desvela-el-futuro-de-lo-movil/',
     },
     'es-ES': {
         'title': u'Firefox OS te desvela el futuro de lo móvil',
@@ -70,27 +71,27 @@ LOCALE_FXOS_HEADLINES = {
     'es-MX': {
         'title': u'Firefox OS te desvela el futuro de lo móvil',
         'url': 'http://blog.mozilla.org/press-latam/2014/02/23/'
-            'firefox-os-te-desvela-el-futuro-de-lo-movil/',
+               'firefox-os-te-desvela-el-futuro-de-lo-movil/',
     },
     'fr': {
         'title': u'Firefox OS chamboule le futur du mobile',
         'url': 'http://blog.mozilla.org/press-fr/2014/02/23/'
-            'firefox-os-chamboule-le-futur-du-mobile',
+               'firefox-os-chamboule-le-futur-du-mobile',
     },
     'it': {
         'title': u'Firefox OS svela il futuro del mobile',
         'url': 'http://blog.mozilla.org/press-it/2014/02/23/'
-            'firefox-os-svela-il-futuro-del-mobile',
+               'firefox-os-svela-il-futuro-del-mobile',
     },
     'pl': {
         'title': u'Firefox OS uwalnia przyszłość technologii mobilnej',
         'url': 'http://blog.mozilla.org/press-pl/2014/02/23/'
-            'firefox-os-uwalnia-przyszlosc-technologii-mobilnej',
+               'firefox-os-uwalnia-przyszlosc-technologii-mobilnej',
     },
     'pt-BR': {
         'title': u'Firefox OS apresenta o futuro dos dispositivos móveis',
         'url': 'https://blog.mozilla.org/press-br/2014/02/23/'
-            'firefox-os-apresenta-o-futuro-dos-dispositivos-moveis/',
+               'firefox-os-apresenta-o-futuro-dos-dispositivos-moveis/',
     },
 }
 
@@ -98,7 +99,7 @@ INSTALLER_CHANNElS = [
     'release',
     'beta',
     'aurora',
-    #'nightly',  # soon
+    # 'nightly',  # soon
 ]
 
 
@@ -223,7 +224,8 @@ def all_downloads(request, channel):
 @csrf_protect
 def firefox_partners(request):
     # If the current locale isn't in our list, return the en-US value
-    press_locale = request.locale if (request.locale in LOCALE_FXOS_HEADLINES) else 'en-US'
+    press_locale = request.locale if (
+        request.locale in LOCALE_FXOS_HEADLINES) else 'en-US'
 
     template_vars = {
         'locale_headline_url': LOCALE_FXOS_HEADLINES[press_locale]['url'],
@@ -233,9 +235,12 @@ def firefox_partners(request):
         'js_desktop': JS_DESKTOP,
     }
 
-    form_kwargs = {'interest_set': 'fx', 'lead_source': 'www.mozilla.org/firefox/partners/'}
+    form_kwargs = {
+        'interest_set': 'fx',
+        'lead_source': 'www.mozilla.org/firefox/partners/'}
 
-    return process_partnership_form(request, 'firefox/partners/index.html', 'firefox.partners.index', template_vars, form_kwargs)
+    return process_partnership_form(
+        request, 'firefox/partners/index.html', 'firefox.partners.index', template_vars, form_kwargs)
 
 
 def releases_index(request):
@@ -249,7 +254,9 @@ def releases_index(request):
         # number has not been used since Firefox 4, then reintroduced with
         # Firefox ESR 24 (Bug 870540). On this index page, 24.1.x should be
         # fallen under 24.0. This patter is a tricky part.
-        major_pattern = r'^' + re.escape(('%s' if major_verion < 4 else '%g') % round(major_verion, 1))
+        major_pattern = r'^' + \
+            re.escape(
+                ('%s' if major_verion < 4 else '%g') % round(major_verion, 1))
         releases[major_verion] = {
             'major': release,
             'minor': sorted(filter(lambda x: re.findall(major_pattern, x),
@@ -302,6 +309,7 @@ def show_whatsnew_tour(oldversion):
 
 
 class LatestFxView(TemplateView):
+
     """
     Base class to be extended by views that require visitor to be
     using latest version of Firefox. Classes extending this class must
@@ -314,7 +322,8 @@ class LatestFxView(TemplateView):
         return super(LatestFxView, self).dispatch(*args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        # required for newsletter form post that is handled in newsletter/helpers.py
+        # required for newsletter form post that is handled in
+        # newsletter/helpers.py
         return self.get(request, *args, **kwargs)
 
     def redirect_to(self):
@@ -329,7 +338,7 @@ class LatestFxView(TemplateView):
         query = '?' + query if query else ''
 
         user_agent = self.request.META.get('HTTP_USER_AGENT', '')
-        if not 'Firefox' in user_agent:
+        if 'Firefox' not in user_agent:
             return reverse('firefox.new') + query
             # TODO : Where to redirect bug 757206
 

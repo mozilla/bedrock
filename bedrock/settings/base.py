@@ -821,10 +821,10 @@ TEMPLATE_CONTEXT_PROCESSORS = get_template_context_processors(append=(
     'jingo_minify.helpers.build_ids',
 ))
 
-## Auth
+# Auth
 PWD_ALGORITHM = 'bcrypt'
 HMAC_KEYS = {
-    #'2011-01-01': 'cheesecake',
+    # '2011-01-01': 'cheesecake',
 }
 
 FEEDS = {
@@ -921,7 +921,8 @@ FACEBOOK_LIKE_LOCALES = ['af_ZA', 'ar_AR', 'az_AZ', 'be_BY', 'bg_BG',
 # and app ID settings in local settings.
 def facebook_tab_url_lazy():
     from django.conf import settings
-    return '//www.facebook.com/{page}/app_{id}'.format(page=settings.FACEBOOK_PAGE_NAMESPACE, id=settings.FACEBOOK_APP_ID)
+    return '//www.facebook.com/{page}/app_{id}'.format(
+        page=settings.FACEBOOK_PAGE_NAMESPACE, id=settings.FACEBOOK_APP_ID)
 FACEBOOK_TAB_URL = lazy(facebook_tab_url_lazy, str)()
 
 # Prefix for media. No trailing slash.
