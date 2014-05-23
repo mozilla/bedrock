@@ -265,7 +265,7 @@ MINIFY_BUNDLES = {
             'css/firefox/australis/australis-ui-tour.less',
             'css/firefox/australis/australis-page-common.less',
             'css/firefox/sync-animation.less',
-            'css/firefox/australis/australis-page-parallel.less',
+            'css/firefox/australis/australis-page-stacked.less',
         ),
         'firefox_whatsnew': (
             'css/sandstone/video.less',

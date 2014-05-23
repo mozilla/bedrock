@@ -4,8 +4,14 @@
 
 @import "../../sandstone/sandstone.less";
 
+html,
+body {
+    height: 100%;
+}
+
 #outer-wrapper {
     overflow: hidden;
+    min-height: 100%;
 }
 
 #wrapper {
@@ -381,7 +387,7 @@ footer[role="contentinfo"] {
 html[dir="rtl"] {
     .sync button:before {
         margin-left: 0;
-         margin-right: -30px;
+        margin-right: -30px;
     }
 }
 

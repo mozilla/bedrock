@@ -1,0 +1,175 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+.main-container {
+    display: table;
+    width: 100%;
+    margin: 0 auto 20px auto;
+    border-spacing: 20px;
+    p {
+        width: 80%;
+        margin: 20px auto;
+    }
+}
+
+.sync {
+    display: table-row;
+    padding: 20px;
+    width: 100%;
+    header {
+        margin-top: 30px;
+    }
+    .inner-container {
+        padding: 20px;
+        overflow: hidden;
+    }
+}
+
+.sync-content {
+    float: left;
+    width: 440px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.sync-anim-wrapper {
+    position: relative;
+    float: right;
+    width: 440px;
+    margin: 20px 0 20px 0;
+}
+
+.sync-anim {
+    margin: 0 auto;
+}
+
+.sync-cta {
+    margin-bottom: 20px;
+}
+
+.hide-sync {
+    .sync {
+        display: none;
+    }
+    .share {
+        display: table-row;
+    }
+}
+
+.share {
+    display: none;
+    padding-top: 20px;
+    width: 100%;
+    background: #006ba2 url(/media/img/firefox/australis/glow/glow-bg-wide.png) top left no-repeat;
+    overflow: hidden;
+    .inner-container {
+        position: relative;
+        padding: 20px;
+        overflow: hidden;
+    }
+}
+
+.share-content {
+    float: right;
+    width: 440px;
+    text-align: center;
+    header {
+        margin-top: 30px;
+    }
+    .button {
+        margin-bottom: 20px;
+    }
+    z-index: 3;
+    transform: translate3d(0, 0, 0);
+}
+
+.no-js {
+    .main-container {
+        width: 100%;
+    }
+    .sync,
+    .share {
+        display: table-row;
+    }
+    .sync-anim {
+        background: url('/media/img/firefox/sync/composite.png?05-2014') top center no-repeat;
+        .device {
+            display: none;
+        }
+    }
+}
+
+.share-icons {
+    float: left;
+    width: 440px;
+    .disc {
+        top: 60px;
+        &.heart {
+            left: 150px;
+        }
+        &.eye {
+            left: 300px;
+        }
+        &.check {
+            left: 0;
+        }
+    }
+    z-index: 3;
+    transform: translate3d(0, 0, 0);
+}
+
+.rays {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 940px;
+    height: 251px;
+    background-image: url(/media/img/firefox/australis/glow/stacked-rays-sprite.png);
+    background-repeat: no-repeat;
+    &.red {
+        z-index: 2;
+        background-position: center top;
+        &.on {
+            animation: wobble 2s infinite;
+        }
+    }
+    &.green {
+        z-index: 1;
+        background-position: center bottom;
+        &.on {
+            animation: bobble 4s infinite;
+        }
+    }
+}
+
+.learn-more {
+    margin: 40px auto 170px auto;
+}
+
+html[dir="rtl"] {
+    .sync-content {
+        float: right;
+    }
+    .sync-anim-wrapper {
+        float: left;
+    }
+    .share-content {
+        float: left;
+    }
+    .share-icons {
+        float: right;
+        .disc {
+            left: auto;
+            &.heart {
+                right: 150px;
+            }
+            &.eye {
+                right: 300px;
+            }
+            &.check {
+                right: 0;
+            }
+        }
+    }
+}
