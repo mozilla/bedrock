@@ -38,6 +38,12 @@ if [ ! -d "$WORKSPACE/vendor" ]; then
     exit 1
 fi
 
+if [ -d "$WORKSPACE/locale" ]; then
+    svn up locale
+else
+    svn checkout https://svn.mozilla.org/projects/mozilla.com/trunk/locales/ locale
+fi
+
 . $VENV/bin/activate
 pip install -q -r requirements/compiled.txt
 pip install -q -r requirements/dev.txt
