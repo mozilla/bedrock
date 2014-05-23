@@ -27,11 +27,31 @@
 
         var pager = Mozilla.Pager.rootPagers[0];
 
+        // sets the current pager tab based on the url hash
+        function setCurrentPage () {
+            var currentHash = window.location.hash.replace(/#/, '') + '-tip';
+            if (window.location.hash !== '') {
+                // loop through all pages, find page with matching id
+                for (var i = 0; i < pager.pages.length; i++) {
+                    if (pager.pages[i].id === currentHash) {
+                        pager.setPage(pager.pages[i]);
+                        break;
+                    }
+                }
+            }
+        }
+
+        // set the initial page content
+        setCurrentPage();
+        $('#page-content').css('visibility', 'visible');
+
         // updates nav links based on current page index
         var updateNavLinks = function() {
+            var current = pager.currentPage.id.replace('-tip', '');
+
             // update direct nav links
             $tipsNavDirect.find('a').removeClass('selected');
-            $tipsNavDirect.find('a[href="#' + pager.currentPage.id + '"]').addClass('selected');
+            $tipsNavDirect.find('a[href="#' + current + '"]').addClass('selected');
 
             // update next/prev links
             if (pager.currentPage.index === 0) {
@@ -47,7 +67,7 @@
 
             // update dots (visible on mobile only)
             $tipsNavDots.find('span').removeClass('active');
-            $tipsNavDots.find('span[data-tip="' + pager.currentPage.id + '"]').addClass('active');
+            $tipsNavDots.find('span[data-tip="' + current + '"]').addClass('active');
         };
 
         // update nav links based on page visible on load (using URL hash)
@@ -59,7 +79,7 @@
 
             var $this = $(this);
 
-            var selectedPageId = $this.attr('href').replace(/#/, '');
+            var selectedPageId = $this.attr('href').replace('#', '') + '-tip';
             var selectedPageIndex;
 
             // loop through all pages, find page with matching id
@@ -74,6 +94,8 @@
             pager.setPageWithAnimation(pager.pages[selectedPageIndex]);
 
             updateNavLinks();
+
+            window.location.hash = $this.attr('href').replace('#', '');
 
             // GA tracking
             gaTrack(['_trackEvent', '/desktop/tips/ Interactions', 'tab clicks to', $this.attr('href')]);
@@ -94,6 +116,8 @@
                 }
 
                 updateNavLinks();
+
+                window.location.hash = pager.currentPage.id.replace('-tip', '');
 
                 // GA tracking
                 var gaAction = (isPrev) ? 'prev link to' : 'next link to';
