@@ -5,12 +5,12 @@
 @import "../sandstone/lib.less";
 
 @font-face {
-    font-family: 'Open Sans ExtraBoldItalic';
+    font-family: 'Open Sans Extrabold';
     src: url('/media/fonts/OpenSans-ExtraBoldItalic-webfont.eot?#iefix-2013') format('embedded-opentype'),
          url('/media/fonts/OpenSans-ExtraBoldItalic-webfont.woff') format('woff'),
          url('/media/fonts/OpenSans-ExtraBoldItalic-webfont.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+    font-weight: 800;
+    font-style: italic;
 }
 
 @localBlue:     #43a6e2;
@@ -346,7 +346,8 @@
         text-align: center;
         margin-top: 20px;
         font-size: 28px;
-        font-family: 'Open Sans ExtraBoldItalic';
+        .open-sans-extrabold;
+        font-style: italic;
         text-transform: uppercase;
         text-shadow: none;
     }
@@ -832,7 +833,7 @@
         right: 0;
 
         color: #fff;
-        font-family: 'Open Sans', sans-serif;
+        .open-sans;
         font-size: 16px;
         padding: 5px 28px 5px 5px;
         cursor: pointer;

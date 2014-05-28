@@ -1,7 +1,11 @@
 // Fonts and color
 
+// The custom X-LocaleSpecific font family is defined with a @font-face rule in
+// locale-specific stylesheets which can be found at /media/css/l10n/. See
+// /docs/l10n.rst for details.
+@baseFontFamily:    'Open Sans', X-LocaleSpecific, sans-serif;
+
 @baseFontSize:      14px;
-@baseFontFamily:    'Open Sans', 'Droid Arabic Naskh', 'Mplus Fulah', sans-serif;
 @baseLine:          20px;
 @smallFontSize:     12px;
 @largeFontSize:     16px;
@@ -27,12 +31,17 @@
 @buttonBlueDark: #277ac1;
 
 .open-sans() {
-    font-family: 'Open Sans', 'Droid Arabic Naskh', 'Mplus Fulah', sans-serif;
+    font-family: @baseFontFamily;
 }
 
 .open-sans-light() {
-    font-family: 'Open Sans Light', 'Droid Arabic Naskh', 'Mplus Fulah Light', sans-serif;
+    font-family: 'Open Sans Light', X-LocaleSpecific-Light, @baseFontFamily;
     font-weight: normal;
+}
+
+.open-sans-extrabold() {
+    font-family: 'Open Sans Extrabold', X-LocaleSpecific-Extrabold, @baseFontFamily;
+    font-weight: 800;
 }
 
 // Button shadows

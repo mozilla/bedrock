@@ -8,21 +8,6 @@
 
 html { background: #fff; }
 
-// Locales with jointed scripts should always have normal letter-spacing
-html[lang='ar'] *,
-html[lang='fa'] *,
-html[lang='hi-IN'] *,
-html[lang='bn-IN'] * {
-    letter-spacing: normal !important;
-}
-
-// No italic for CJKT locales (Bug 973171)
-html[lang='ja'] *,
-html[lang='ko'] *,
-html[lang|='zh'] * {
-    font-style: normal !important;
-}
-
 body {
     font-size: @baseFontSize;
     line-height: @baseLine;

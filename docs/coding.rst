@@ -129,6 +129,10 @@ CSS Style
 See the `Mozilla CSS Style Guide
 <http://mozweb.readthedocs.org/en/latest/css-style.html>`_.
 
+Use the ``.open-sans``, ``.open-sans-light`` and ``.open-sans-extrabold`` mixins
+to specify font families to allow using international fonts. See the :ref:
+`CSS<l10n>` section in the l10n doc for details.
+
 Configuring your code editor
 ----------------------------
 

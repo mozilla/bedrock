@@ -1,0 +1,5 @@
+/* Bug 973171 */
+
+* {
+  font-style: normal !important;
+}

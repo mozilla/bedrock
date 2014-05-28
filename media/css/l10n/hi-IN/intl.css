@@ -1,0 +1,5 @@
+/* Bug 944269 */
+
+* {
+  letter-spacing: normal !important;
+}
