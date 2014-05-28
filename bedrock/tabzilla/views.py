@@ -9,6 +9,7 @@ from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.template import loader
 from django.views.decorators.http import last_modified
+from django.views.decorators.vary import vary_on_headers
 
 from lib import l10n_utils
 
@@ -35,8 +36,8 @@ def template_last_modified(template):
     return inner_last_modified
 
 
-def _resp(request, path, ctype):
-    resp = l10n_utils.render(request, path, content_type=ctype)
+def _resp(request, path, ctype, context=None):
+    resp = l10n_utils.render(request, path, context, content_type=ctype)
 
     is_enabled = not settings.TEMPLATE_DEBUG and settings.CDN_BASE_URL
     if is_enabled and isinstance(resp, HttpResponseRedirect):
@@ -50,8 +51,10 @@ def _resp(request, path, ctype):
 
 @cache_control_expires(12)
 @last_modified(template_last_modified('tabzilla/tabzilla.js'))
+@vary_on_headers('Accept-Language')
 def tabzilla_js(request):
-    return _resp(request, 'tabzilla/tabzilla.js', 'text/javascript')
+    return _resp(request, 'tabzilla/tabzilla.js', 'text/javascript',
+                 {'accept_languages': l10n_utils.get_accept_languages(request)})
 
 
 @cache_control_expires(12)
