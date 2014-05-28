@@ -151,7 +151,7 @@
         e.preventDefault();
         var href = this.href;
         gaTrack(
-            ['_trackEvent', '/contribute Page Interactions', 'exit link'],
+            ['_trackEvent', '/contribute Page Interactions', 'exit link', href],
             function() { window.location = href; }
         );
     });
