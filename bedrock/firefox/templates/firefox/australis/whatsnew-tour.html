@@ -141,17 +141,19 @@
 {% endblock %}
 
 {% block sync_content %}
+  <div class="sync-content">
     <header>
       <h2>{{ _('Keep your Firefox in Sync') }}</h2>
       <p>{{ _('Access your bookmarks, passwords and more from any device.')}}</p>
     </header>
-    {% include 'firefox/includes/sync-animation.html' %}
-    <div class="sync-content">
-      <div class="sync-cta">
-        <button class="button">{{ _('Get started with Sync') }}</button>
-        <small>{{ _('Create an account from the menu panel') }}</small>
-      </div>
+    <div class="sync-cta">
+      <button class="button">{{ _('Get started with Sync') }}</button>
+      <small>{{ _('Create an account from the menu panel') }}</small>
     </div>
+  </div>
+  <div class="sync-anim-wrapper">
+    {% include 'firefox/includes/sync-animation.html' %}
+  </div>
 {% endblock %}
 
 {% block aside_content %}

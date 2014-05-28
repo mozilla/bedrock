@@ -53,7 +53,7 @@
         }
     }, {
         triggerOnce: true,
-        offset: -100
+        offset: -20
     });
 
     function syncAnimation () {
