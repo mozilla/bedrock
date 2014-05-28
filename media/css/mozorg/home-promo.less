@@ -296,6 +296,51 @@
 }
 
 
+
+/****************************************************************************/
+// World Cup 2014
+#panel-worldcup2014 {
+    background: #3191c4 url(/media/img/home/panel/worldcup2014/bg-flat.png) no-repeat;
+    background: url(/media/img/home/panel/worldcup2014/bg-player.png) 450px -10px no-repeat,
+                #3191c4 url(/media/img/home/panel/worldcup2014/bg-stripes.png) no-repeat;
+
+    .ball {
+        background: url(/media/img/home/panel/worldcup2014/bg-ball.svg) no-repeat;
+        background-size: 370px 370px;
+        position: absolute;
+        left: -150px;
+        top: -20px;
+        width: 370px;
+        height: 370px;
+        -webkit-transition: -webkit-transform .7s ease-in-out,
+                            left .7s ease-in-out;
+                transition: transform .7s ease-in-out,
+                            left .7s ease-in-out;
+    }
+
+    &.expanded {
+        background-position: 350px -10px, 0 0;
+
+        .ball {
+            .transform(rotate(20deg));
+            left: -100px;
+        }
+    }
+
+    &.compressed .ball {
+        left: -160px;
+    }
+}
+
+.wide #panel-worldcup2014 .panel-title {
+    background: #2c4721;
+    background: rgba(0, 0, 0, .8);
+    background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, .55) 65%, rgba(0, 0, 0, 0) 100%);
+    background:         linear-gradient(to top, rgba(0, 0, 0, .55) 65%, rgba(0, 0, 0, 0) 100%);
+}
+
+
+
 /****************************************************************************/
 // @High resolution images for @retina-type displays
 // Desktop
@@ -460,6 +505,31 @@
             .aurora:after {
                 background-position: -30px 60px;
             }
+        }
+    }
+
+    // World Cup 2014
+    #panel-worldcup2014 {
+
+        .ball {
+            left: -130px;
+            top: -20px;
+            width: 350px;
+            height: 350px;
+            background-size: 350px 350px;
+        }
+
+        &.expanded {
+            background-position: 240px -10px, 0 0;
+
+            .ball {
+                left: -170px;
+                .transform(rotate(-40deg));
+            }
+        }
+
+        &.compressed .ball {
+            left: -180px;
         }
     }
 
@@ -653,6 +723,39 @@
         }
     }
 
+    // World Cup 2014
+    #panel-worldcup2014 {
+        background-size: 180px 294px, auto auto;
+        background-position: 320px -10px, 0 -30px;
+
+        .ball {
+            left: -60px;
+            top: -50px;
+            width: 160px;
+            height: 160px;
+            background-size: 160px 160px;
+            -webkit-transition: -webkit-transform .7s ease-in-out,
+                                top .7s ease-in-out;
+                    transition: transform .7s ease-in-out,
+                                top .7s ease-in-out;
+        }
+
+        &.expanded {
+            background-position: 120px -10px, 0 -30px;
+
+            .ball {
+                left: -60px;
+                top: -20px;
+                .transform(rotate(-40deg));
+            }
+        }
+
+        &.compressed .ball {
+            top: -60px;
+            left: -60px;
+        }
+    }
+
 }
 
 
@@ -793,6 +896,39 @@
             .aurora:after {
                 background-position: 8px -35px;
             }
+        }
+    }
+
+    // World Cup 2014
+    #panel-worldcup2014 {
+        background-size: 180px 294px, auto auto;
+        background-position: 460px -10px, 0 -30px;
+
+        .ball {
+            left: -50px;
+            top: -90px;
+            width: 200px;
+            height: 200px;
+            background-size: 200px 200px;
+            -webkit-transition: top .7s ease-in-out,
+                                -webkit-transform .7s ease-in-out;;
+                    transition: top .7s ease-in-out,
+                                transform .7s ease-in-out;
+        }
+
+        &.expanded {
+            background-position: 220px -10px, 0 -30px;
+
+            .ball {
+                left: -50px;
+                top: -20px;
+                .transform(rotate(-40deg));
+            }
+        }
+
+        &.compressed .ball {
+            top: -120px;
+            left: -50px;
         }
     }
 
