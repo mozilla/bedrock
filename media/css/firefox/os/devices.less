@@ -146,22 +146,24 @@ html, body {
             &:hover,
             &.selected {
                 text-decoration: none;
-                background: #dadfe3;
-                box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1);
+                background: #dee4e8;
+                box-shadow: inset 0 -4px 2px -1px #dee4e8,
+                            inset 0 0 4px rgba(0, 0, 0, 0.1),
+                            0 1px 0 0 rgba(255, 255, 255, 0.6);
             }
 
             &:after {
                 position: absolute;
                 left: 50%;
-                bottom: -23px;
-                margin-left: -18px;
+                bottom: -25px;
+                margin-left: -14px;
                 content: '';
-                background: url(/media/img/firefox/os/devices/device-thumbnail-selected-triangle.png) center center no-repeat;
-                width: 36px;
+                background: url(/media/img/firefox/os/devices/device-thumbnail-selected-triangle.png?05-2014) center center no-repeat;
+                width: 28px;
                 height: 26px;
                 display: block;
                 opacity: 0;
-                .transition(opacity 0.4s ease-in);
+                .transition(opacity 0.3s ease-in);
             }
 
             &.selected:after {
