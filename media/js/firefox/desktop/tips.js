@@ -6,7 +6,7 @@
     'use strict';
 
     var $html = $('html');
-
+    var $window = $(window);
     var $tipPrev = $('#tip-prev');
     var $tipNext = $('#tip-next');
     var $tipsNavDirect = $('#tips-nav-direct');
@@ -28,21 +28,34 @@
         var pager = Mozilla.Pager.rootPagers[0];
 
         // sets the current pager tab based on the url hash
-        function setCurrentPage () {
+        function setCurrentPage (noAnim) {
             var currentHash = window.location.hash.replace(/#/, '') + '-tip';
+            var page = pager.pages[0];
+
+            if (pager.currentPage.id === currentHash) {
+                // if hashchange has fired from a click, do nothing
+                return;
+            }
+
             if (window.location.hash !== '') {
                 // loop through all pages, find page with matching id
                 for (var i = 0; i < pager.pages.length; i++) {
                     if (pager.pages[i].id === currentHash) {
-                        pager.setPage(pager.pages[i]);
+                        page = pager.pages[i];
                         break;
                     }
                 }
             }
+
+            if (noAnim) {
+                pager.setPage(page);
+            } else {
+                pager.setPageWithAnimation(page);
+            }
         }
 
         // set the initial page content
-        setCurrentPage();
+        setCurrentPage(true);
         $('#page-content').css('visibility', 'visible');
 
         // updates nav links based on current page index
@@ -73,6 +86,15 @@
         // update nav links based on page visible on load (using URL hash)
         updateNavLinks();
 
+        // handle hash change events
+        function onHashChange () {
+            setCurrentPage();
+            updateNavLinks();
+        }
+
+        // listen for hash changes
+        $window.on('hashchange', onHashChange);
+
         // handle top nav clicks
         $tipsNavDirect.on('click', 'a', function(e) {
             e.preventDefault();
@@ -92,8 +114,6 @@
 
             // set page with animation
             pager.setPageWithAnimation(pager.pages[selectedPageIndex]);
-
-            updateNavLinks();
 
             window.location.hash = $this.attr('href').replace('#', '');
 
@@ -115,8 +135,6 @@
                     pager.nextPageWithAnimation();
                 }
 
-                updateNavLinks();
-
                 window.location.hash = pager.currentPage.id.replace('-tip', '');
 
                 // GA tracking
@@ -137,7 +155,7 @@
                 pager.nextPageWithAnimation();
             }
 
-            updateNavLinks();
+            window.location.hash = pager.currentPage.id.replace('-tip', '');
         });
 
         // GA tracking
