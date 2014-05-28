@@ -116,13 +116,13 @@
     });
 
     // handle clicks on theme thumbnails
-    $themes_thumbs.on('click', 'a', function(e) {
+    $themes_thumbs.on('click', 'button', function(e) {
         e.preventDefault();
 
         var $this = $(this);
 
         // de-select all
-        $themes_thumbs.find('a').removeClass('selected');
+        $themes_thumbs.find('button').removeClass('selected');
 
         // select clicked
         $this.addClass('selected');

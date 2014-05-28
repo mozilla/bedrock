@@ -305,30 +305,53 @@ html[dir="rtl"] {
             margin: @baseLine 0 0;
             .clearfix();
 
-            li {
+            button {
                 float: left;
+                display: block;
                 width: 190px;
                 height: 68px;
-                overflow: hidden;
                 margin: 0 @baseLine @baseLine 0;
+                border-radius: 4px;
+                background-position: top left;
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+                background-color: transparent;
+                border: 4px solid transparent;
+                text-indent: -99em;
+                overflow: hidden;
+                .transition(border-color 0.2s ease);
 
-                a {
-                    display: block;
-                    width: 182px;
-                    height: 60px;
-                    border-radius: 4px;
-                    border: 4px solid transparent;
-                    .transition(all 0.2s ease);
-
-                    &:hover, &:focus {
-                        border-color: #fff;
-                        border-color: rgba(255, 255, 255, 0.7);
-                    }
-
-                    &.selected {
-                        border-color: #fe8207;
-                    }
+                &:hover,
+                &:focus {
+                    outline: none;
+                    cursor: pointer;
+                    border-color: #fff;
+                    border-color: rgba(255, 255, 255, 0.7);
                 }
+
+                &.selected {
+                    border-color: #fe8207;
+                }
+
+                &::-moz-focus-inner {
+                  border: 0;
+                }
+            }
+
+            #theme-yellow {
+                background-image: url(/media/img/firefox/desktop/customize/theme-thumb-yellow.png);
+            }
+
+            #theme-green {
+                background-image: url(/media/img/firefox/desktop/customize/theme-thumb-green.png);
+            }
+
+            #theme-blue {
+                background-image: url(/media/img/firefox/desktop/customize/theme-thumb-blue.png);
+            }
+
+            #theme-red {
+                background-image: url(/media/img/firefox/desktop/customize/theme-thumb-red.png);
             }
         }
 
@@ -388,7 +411,7 @@ html[dir="rtl"] {
         }
     }
 
-    #themes #themes-thumbs li {
+    #themes #themes-thumbs button{
         float: right;
         margin: 0 0 @baseLine @baseLine;
     }
@@ -1787,14 +1810,10 @@ html[dir="rtl"] {
                 width: 360px;
             }
 
-            #themes-thumbs li {
-                width: 160px;
-                height: 58px;
-
-                a {
-                    width: 152px;
-                    height: 50px;
-                }
+            #themes-thumbs button {
+                width: 152px;
+                height: 50px;
+                background-size: 144px 42px;
             }
 
             .customizer-visual {

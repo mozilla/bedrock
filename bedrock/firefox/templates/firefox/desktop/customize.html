@@ -161,21 +161,12 @@
             {{ _('Choose from thousands of themes and dress up your browser with a single click.') }}
           </p>
 
-          {# TODO: add alt attributes to images below. #}
-          <ul id="themes-thumbs">
-            <li>
-              <a href="#" role="button" id="theme-yellow"><img src="{{ media('/img/firefox/desktop/customize/theme-thumb-yellow.png') }}"></a>
-            </li>
-            <li>
-              <a href="#" role="button" id="theme-green"><img src="{{ media('/img/firefox/desktop/customize/theme-thumb-green.png') }}"></a>
-            </li>
-            <li>
-              <a href="#" role="button" id="theme-blue"><img src="{{ media('/img/firefox/desktop/customize/theme-thumb-blue.png') }}"></a>
-            </li>
-            <li>
-              <a href="#" role="button" class="selected" id="theme-red"><img src="{{ media('/img/firefox/desktop/customize/theme-thumb-red.png') }}"></a>
-            </li>
-          </ul>
+          <div id="themes-thumbs">
+            <button type="button" aria-controls="theme-demo" id="theme-yellow">{{ _('Preview yellow theme') }}</button>
+            <button type="button" aria-controls="theme-demo" id="theme-green">{{ _('Preview green theme') }}</button>
+            <button type="button" aria-controls="theme-demo" id="theme-blue">{{ _('Preview blue theme') }}</button>
+            <button type="button" aria-controls="theme-demo" id="theme-red" class="selected">{{ _('Preview red theme') }}</button>
+          </div>
 
           <a class="more" rel="external" href="https://addons.mozilla.org/firefox/themes/">{{ _('Try it now') }}</a>
           <br>
@@ -185,8 +176,7 @@
         <a class="next show-customizer" href="#add-ons" role="button">{{ _('Next') }}</a>
 
         <div class="customizer-visual">
-          {# TODO: add alt value below. #}
-          <img id="theme-demo" src="{{ media('/img/firefox/desktop/customize/theme-red.png') }}" alt="">
+          <img id="theme-demo" src="{{ media('/img/firefox/desktop/customize/theme-red.png') }}" alt="{{ _('Preview of the currently selected theme') }}">
         </div>
       </div>
     </section>
@@ -214,7 +204,7 @@
         </div><!--/.customizer-copy-->
 
         <div class="customizer-visual">
-          <img src="{{ media('/img/firefox/desktop/customize/add-ons.png') }}">
+          <img src="{{ media('/img/firefox/desktop/customize/add-ons.png') }}" alt="">
         </div>
       </div>
     </section>
@@ -234,8 +224,7 @@
         </div>
 
         <div class="customizer-visual">
-          {# TODO: add alt value below. #}
-          <img src="{{ media('/img/firefox/desktop/customize/awesome-bar.png') }}" alt="">
+          <img src="{{ media('/img/firefox/desktop/customize/awesome-bar.png') }}" alt="{{ _('Firefox Awesome Bar') }}">
         </div>
       </div>
     </section>
