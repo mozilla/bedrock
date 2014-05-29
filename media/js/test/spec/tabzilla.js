@@ -48,36 +48,37 @@ describe("tabzilla.js", function() {
         it('should return false if the user\'s language is the same as the page\'s language', function () {
 
             $.ajax = sinon.stub();
-            // perfect match
-            expect(setup('en-US', 'en-US')).toBeFalsy();
-            expect(setup('fr', 'fr')).toBeFalsy();
-            // lower or upper case
-            expect(setup('en-us', 'en-US')).toBeFalsy();
-            expect(setup('EN-US', 'en-US')).toBeFalsy();
+            expect(setup(['en-US'], 'en-US')).toBeFalsy();
+            expect(setup(['en'], 'en-US')).toBeFalsy();
+            expect(setup(['en-US', 'en', 'fr'], 'en-US')).toBeFalsy();
+            expect(setup(['fr', 'de'], 'fr')).toBeFalsy();
+            expect(setup(['de', 'fr', 'en'], 'fr')).toBeFalsy();
+            expect(setup(['ja', 'pt-PT', 'el', 'fr', 'en'], 'el')).toBeFalsy();
             // obsolete ab-XX
-            expect(setup('fr-FR', 'fr')).toBeFalsy();
-            expect(setup('el-GR', 'el')).toBeFalsy();
+            expect(setup(['fr-FR'], 'fr')).toBeFalsy();
+            expect(setup(['el-GR'], 'el')).toBeFalsy();
         });
 
         it('should return false if the page is not localized into the user\'s language', function () {
 
             $.ajax = sinon.stub();
-            expect(setup('en-GB', 'en-US')).toBeFalsy();
-            expect(setup('pt-PT', 'en-US')).toBeFalsy();
+            expect(setup(['en-GB'], 'en-US')).toBeFalsy();
+            expect(setup(['en-GB', 'en'], 'en-US')).toBeFalsy();
+            expect(setup(['pt-PT', 'pt'], 'fr')).toBeFalsy();
         });
 
         it('should return true if the page is localized into the user\'s language', function () {
 
             $.ajax = sinon.stub();
-            // perfect match
-            expect(setup('en-US', 'fr')).toBeTruthy();
-            expect(setup('fr', 'en-US')).toBeTruthy();
-            // lower or upper case
-            expect(setup('en-us', 'fr')).toBeTruthy();
-            expect(setup('EN-US', 'fr')).toBeTruthy();
+            expect(setup(['en-US'], 'fr')).toEqual('en-US');
+            expect(setup(['en-US', 'en'], 'fr')).toEqual('en-US');
+            expect(setup(['fr'], 'el')).toEqual('fr');
+            expect(setup(['ar', 'fr'], 'el')).toEqual('fr');
+            expect(setup(['de', 'fr', 'en'], 'en-US')).toEqual('fr');
+            expect(setup(['de', 'el', 'fr', 'en-US'], 'fr')).toEqual('el');
             // obsolete ab-XX
-            expect(setup('fr-FR', 'en-US')).toBeTruthy();
-            expect(setup('el-GR', 'en-US')).toBeTruthy();
+            expect(setup(['fr-FR'], 'en-US')).toEqual('fr');
+            expect(setup(['el-GR'], 'fr')).toEqual('el');
         });
     };
 
