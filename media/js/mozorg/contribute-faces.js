@@ -103,9 +103,11 @@
 
         if (!$facesVid[0].paused) { // If the video is not paused
             $facesVid[0].pause();
+            gaTrack(['_trackEvent', '/contribute Page Interactions', 'pause', 'Get Involved video']);
             paused = true;
         } else if ($caption.is(':hidden') && $facesVid[0].paused) { // If the video is paused and caption is hidden
             $facesVid[0].play();
+            gaTrack(['_trackEvent', '/contribute Page Interactions', 'play', 'Get Involved video']);
             paused = false;
         }
 
