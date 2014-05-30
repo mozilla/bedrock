@@ -18,8 +18,8 @@
     <ul>
       <li>{{ _('If you typed in the address, check your spelling. Could just be a typo.') }}</li>
       <li>
-      {% trans bugzilla='href="https://bugzilla.mozilla.org/enter_bug.cgi?product=www.mozilla.org"' %}
-        If you’ve found an issue with one of our websites, we’d appreciate it if you could report the problem in Bugzilla, our <a {{ bugzilla }}>bug tracker</a>. One of our developers will take a look at it as soon as possible.
+      {% trans bugzilla='https://bugzilla.mozilla.org/enter_bug.cgi?product=www.mozilla.org' %}
+        If you’ve found an issue with one of our websites, we’d appreciate it if you could report the problem in Bugzilla, our <a href="{{ bugzilla }}">bug tracker</a>. One of our developers will take a look at it as soon as possible.
       {% endtrans %}
       </li>
       <li>{{ _('If you followed a link, it’s probably broken.') }}</li>
