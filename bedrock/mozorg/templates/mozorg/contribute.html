@@ -249,9 +249,19 @@
         <img src="{{ media('/img/contribute/webmaker.png') }}" alt="">
         <h3>{{_('Education') }}</h3>
         <p>
-        {% trans moz_webmaker='https://webmaker.org/', webmaker='https://webmaker.org/events/' %}
+      {% if l10n_has_tag('webmaker_update') or settings.DEV %}
+        {% trans webmaker='https://webmaker.org/',
+            webmaker_tools='https://webmaker.org/tools/',
+            webmaker_resources='https://webmaker.org/resources/',
+            webmaker_events='https://events.webmaker.org' %}
+          Interested in helping others understand how the Web works? <a href="{{ webmaker }}">Mozilla Webmaker</a> is a global community dedicated to sharing digital skills using <a href="{{ webmaker_tools }}">free tools</a>, <a href="{{ webmaker_resources }}">teaching resources</a> and <a href="{{ webmaker_events }}">community events</a>.
+        {% endtrans %}
+      {% else %}
+        {% trans moz_webmaker='https://webmaker.org/',
+            webmaker='https://events.webmaker.org/' %}
           Help build a generation of webmakers by teaching others how the web works. <a href="{{ moz_webmaker }} ">Explore what the Mozilla Webmaker project is all about</a> or get started teaching others by <a href="{{ webmaker }}">setting up an event in your community today</a>.
         {% endtrans %}
+      {% endif %}
         </p>
       </li>
     </ul>
