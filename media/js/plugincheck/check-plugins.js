@@ -115,6 +115,7 @@ $(function() {
                 'plugin_name': plugin.name,
                 'plugin_detail': plugin.description,
                 'plugin_status': window.trans('vulnerable'),
+                'plugin_version': plugin.version,
                 'button_research': window.trans('button_research'),
                 'img_alt_txt': window.trans('icon_alt_txt'),
                 'url': unknownPluginUrl(plugin.name)
@@ -128,6 +129,7 @@ $(function() {
                     'plugin_name': plugin.name,
                     'plugin_detail': plugin.description,
                     'plugin_status': window.trans('vulnerable'),
+                    'plugin_version': plugin.version,
                     'button_update': window.trans('button_update'),
                     'img_alt_txt': window.trans('icon_alt_txt'),
                     'url': url
@@ -139,6 +141,7 @@ $(function() {
                     'plugin_name': plugin.name,
                     'plugin_detail': plugin.description,
                     'plugin_status': window.trans('vulnerable'),
+                    'plugin_version': plugin.version,
                     'button_update': window.trans('button_update'),
                     'img_alt_txt': window.trans('icon_alt_txt'),
                     'url': url
@@ -149,6 +152,7 @@ $(function() {
                     'plugin_name': plugin.name,
                     'plugin_detail': plugin.description,
                     'plugin_status': window.trans('unknown'),
+                    'plugin_version': plugin.version,
                     'button_research': window.trans('button_research'),
                     'img_alt_txt': window.trans('icon_alt_txt'),
                     'url': unknownPluginUrl(plugin.name)
@@ -158,7 +162,8 @@ $(function() {
                     'icon': mediaURL + iconFor(plugin.name),
                     'plugin_name': plugin.name,
                     'plugin_detail': plugin.description,
-                    'plugin_status': plugin.version,
+                    'plugin_status': window.trans('button_uptodate'),
+                    'plugin_version': plugin.version,
                     'button_uptodate': window.trans('button_uptodate'),
                     'img_alt_txt': window.trans('icon_alt_txt'),
                     'url': url
@@ -185,6 +190,7 @@ $(function() {
                     'plugin_name': plugin.name,
                     'plugin_detail': plugin.description,
                     'plugin_status': window.trans('vulnerable'),
+                    'plugin_version': plugin.version,
                     'button_update': window.trans('button_update'),
                     'img_alt_txt': window.trans('icon_alt_txt'),
                     'url': plugin.url
@@ -196,6 +202,7 @@ $(function() {
                     'plugin_name': plugin.name,
                     'plugin_detail': plugin.description,
                     'plugin_status': window.trans('vulnerable'),
+                    'plugin_version': plugin.version,
                     'button_update': window.trans('button_update'),
                     'img_alt_txt': window.trans('icon_alt_txt'),
                     'url': plugin.url
@@ -205,7 +212,8 @@ $(function() {
                     'icon': mediaURL + iconFor(plugin.name),
                     'plugin_name': plugin.name,
                     'plugin_detail': plugin.description,
-                    'plugin_status': plugin.version,
+                    'plugin_status': window.trans('button_uptodate'),
+                    'plugin_version': plugin.version,
                     'button_uptodate': window.trans('button_uptodate'),
                     'img_alt_txt': window.trans('icon_alt_txt'),
                     'url': plugin.url
