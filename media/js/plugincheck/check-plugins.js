@@ -184,9 +184,9 @@ $(function() {
                     'icon': mediaURL + iconFor(plugin.name),
                     'plugin_name': plugin.name,
                     'plugin_detail': plugin.description,
-                    'plugin_status': 'vulnerable',
-                    'button_update': 'Update Now',
-                    'img_alt_txt': 'Plugin icon',
+                    'plugin_status': window.trans('vulnerable'),
+                    'button_update': window.trans('button_update'),
+                    'img_alt_txt': window.trans('icon_alt_txt'),
                     'url': plugin.url
                 };
 
@@ -195,9 +195,9 @@ $(function() {
                     'icon': mediaURL + iconFor(plugin.name),
                     'plugin_name': plugin.name,
                     'plugin_detail': plugin.description,
-                    'plugin_status': 'vulnerable',
-                    'button_update': 'Update Now',
-                    'img_alt_txt': 'Plugin icon',
+                    'plugin_status': window.trans('vulnerable'),
+                    'button_update': window.trans('button_update'),
+                    'img_alt_txt': window.trans('icon_alt_txt'),
                     'url': plugin.url
                 };
             } else if(plugin.status === 'latest' || plugin.status === 'newer') {
@@ -206,8 +206,8 @@ $(function() {
                     'plugin_name': plugin.name,
                     'plugin_detail': plugin.description,
                     'plugin_status': plugin.version,
-                    'button_uptodate': 'Up To Date',
-                    'img_alt_txt': 'Plugin icon',
+                    'button_uptodate': window.trans('button_uptodate'),
+                    'img_alt_txt': window.trans('icon_alt_txt'),
                     'url': plugin.url
                 };
             }
