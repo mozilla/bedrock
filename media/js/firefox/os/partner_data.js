@@ -144,8 +144,12 @@ if (typeof Mozilla == 'undefined') {
             'display': 'Peru',
             'partner': [
                 {
-                    'name': 'Movistar',
+                    'name': 'ZTE Open',
                     'url': 'http://catalogo.movistar.com.pe/zte-open'
+                },
+                {
+                    'name': 'Alcatel Fire OT',
+                    'url': 'http://catalogo.movistar.com.pe/alcatel-fire-ot-4012'
                 }
             ]
         },
@@ -216,7 +220,7 @@ if (typeof Mozilla == 'undefined') {
         'alcatel_onetouchfire': {
             'type': 'smartphone',
             'display': 'Alcatel One Touch Fire',
-            'countries': ['br', 'cl', 'co', 'de', 'gr', 'hu', 'it', 'me', 'mx', 'pl', 'rs', 'uy', 've']
+            'countries': ['br', 'cl', 'co', 'de', 'gr', 'hu', 'it', 'me', 'mx', 'pe', 'pl', 'rs', 'uy', 've']
         },
         'huawei_y300-2': {
             'type': 'smartphone',

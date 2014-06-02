@@ -63,7 +63,9 @@ if (typeof Mozilla == 'undefined') {
             $.each(Mozilla.FxOs.Countries[COUNTRY_CODE].partner, function(i, data) {
                 //set data.name, data.url etc
                 var index = i === 1 ? 'last' : '';
-                links += '<a class="' + data.name.toLowerCase() + ' ' + index + '" href="' + data.url + '">' + data.name + '</a>';
+                var filename = data.name.toLowerCase().replace(/\s+/g, '-');
+
+                links += '<a class="' + filename + ' ' + index + '" href="' + data.url + '">' + data.name + '</a>';
             });
 
             // add country class as an extra style hook and inject the links
