@@ -83,7 +83,13 @@
               <h4>{{ _('How to:') }}</h4>
               <p>
                 {{ _('Click the star to add bookmarks and manage them from the same spot.') }}
-                <a href="https://support.mozilla.org/kb/use-bookmarks-to-save-and-organize-websites">{{ _('Learn more') }}</a>
+                <a href="https://support.mozilla.org/kb/use-bookmarks-to-save-and-organize-websites">
+                {% if l10n_has_tag('sync_device_note') or settings.DEV %}
+                  {{ _('Learn more about bookmarks') }}
+                {% else %}
+                  {{ _('Learn more') }}
+                {% endif %}
+                </a>
               </p>
             </div>{# /.tip-copy-how #}
           </div>{# /.tip-copy #}
@@ -108,7 +114,13 @@
               <h4>{{ _('How to:') }}</h4>
               <p>
                 {{ _('Open the menu, select “<strong>Customize</strong>” and drag any button out of the toolbar.') }}
-                <a rel="external" href="https://support.mozilla.org/kb/customize-firefox-controls-buttons-and-toolbars">{{ _('Learn more') }}</a>
+                <a rel="external" href="https://support.mozilla.org/kb/customize-firefox-controls-buttons-and-toolbars">
+                {% if l10n_has_tag('sync_device_note') or settings.DEV %}
+                  {{ _('Learn more about customizing') }}
+                {% else %}
+                  {{ _('Learn more') }}
+                {% endif %}
+                </a>
               </p>
             </div>{# /.tip-copy-how #}
           </div>
@@ -132,7 +144,13 @@
               <h4>{{ _('How to:') }}</h4>
               <p>
                 {{ _('Open the menu, select “<strong>Customize</strong>” and drag any button into the toolbar or menu.') }}
-                <a rel="external" href="https://support.mozilla.org/kb/customize-firefox-controls-buttons-and-toolbars">{{ _('Learn more') }}</a>
+                <a rel="external" href="https://support.mozilla.org/kb/customize-firefox-controls-buttons-and-toolbars">
+                {% if l10n_has_tag('sync_device_note') or settings.DEV %}
+                  {{ _('Learn more about customizing') }}
+                {% else %}
+                  {{ _('Learn more') }}
+                {% endif %}
+                </a>
               </p>
             </div>{# /.tip-copy-how #}
           </div>
@@ -160,7 +178,13 @@
               <h4>{{ _('How to:') }}</h4>
               <p>
                 {{ _('Choose “<strong>Sign in to Sync</strong>” from the menu and make Firefox your own wherever you use it.') }}
-                <a rel="external" href="https://support.mozilla.org/kb/how-do-i-set-up-firefox-sync">{{ _('Learn more') }}</a>
+                <a rel="external" href="https://support.mozilla.org/kb/how-do-i-set-up-firefox-sync">
+                {% if l10n_has_tag('sync_device_note') or settings.DEV %}
+                  {{ _('Learn more about Sync') }}
+                {% else %}
+                  {{ _('Learn more') }}
+                {% endif %}
+                </a>
               </p>
             </div>{# /.tip-copy-how #}
           </div>
@@ -184,7 +208,13 @@
               <h4>{{ _('How to:') }}</h4>
               <p>
                 {{ _('Select “<strong>Customize</strong>” from the menu and drag in the add-ons you want.') }}
-                <a rel="external" href="https://support.mozilla.org/kb/find-and-install-add-ons-add-features-to-firefox">{{ _('Learn more') }}</a>
+                <a rel="external" href="https://support.mozilla.org/kb/find-and-install-add-ons-add-features-to-firefox">
+                {% if l10n_has_tag('sync_device_note') or settings.DEV %}
+                  {{ _('Learn more about add-ons') }}
+                {% else %}
+                  {{ _('Learn more') }}
+                {% endif %}
+                </a>
               </p>
             </div>{# /.tip-copy-how #}
           </div>
