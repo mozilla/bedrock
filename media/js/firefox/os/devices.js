@@ -24,6 +24,8 @@ if (typeof Mozilla == 'undefined') {
 
     var $pagerPages = $('.pager-page');
 
+    var $providerLinks = $('#provider-links');
+
     // create namespace
     if (typeof Mozilla.FxOs == 'undefined') {
         Mozilla.FxOs = {};
@@ -68,11 +70,13 @@ if (typeof Mozilla == 'undefined') {
                 links += '<a class="' + filename + ' ' + index + '" href="' + data.url + '">' + data.name + '</a>';
             });
 
-            // add country class as an extra style hook and inject the links
-            $('#provider-links').addClass(COUNTRY_CODE).html(links);
+            // remove current country class
+            var currentCountry = $providerLinks.data('country');
 
-            // setup GA event tracking on telecom provider exit links
-            $('#provider-links a').on('click', trackProviderExit);
+            $providerLinks.removeClass(currentCountry);
+
+            // add country class as an extra style hook and inject the links
+            $providerLinks.data('country', COUNTRY_CODE).addClass(COUNTRY_CODE).html(links);
         } else {
             $purchaseDeviceButton.fadeOut('fast');
         }
@@ -98,6 +102,9 @@ if (typeof Mozilla == 'undefined') {
             gaTrack(['_trackEvent', '/os/devices/ Interactions', 'Get a Phone Overlay Exits', $this.text()], callback);
         }
     };
+
+    // setup GA event tracking on telecom provider exit links
+    $providerLinks.on('click', 'a', trackProviderExit);
 
     /*
     * Disable/enable mozilla-pagers.js
