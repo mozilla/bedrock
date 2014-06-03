@@ -147,7 +147,7 @@
       {{ js('common-resp') }}
     {% endblock %}
     {% block tabzilla_js %}
-      <script src="{{ settings.CDN_BASE_URL }}{{ url('tabzilla') }}?build={{ BUILD_ID_JS }}"></script>
+      <script src="{{ url('tabzilla') }}?build={{ BUILD_ID_JS }}"></script>
     {% endblock %}
     {% block js %}{% endblock %}
     {% if settings.USE_GRUNT_LIVERELOAD %}
