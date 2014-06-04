@@ -132,12 +132,12 @@
       </div> <!-- /#scene1 -->
 
       <div class="scene" id="scene2">
+        <div class="share-wrapper">
+          {% include 'firefox/includes/social-share.html' %}
+        </div>
         <div class="thankyou" tabindex="0">
           {{_("Thanks for downloading Firefox!")}}
           {{_("As a non-profit, we’re free to innovate on your behalf without any pressure to compromise. You’re going to love the difference.")}}
-          <div class="share-wrapper">
-            {% include 'firefox/includes/social-share.html' %}
-          </div>
         </div>
 
         <ol class="installation">

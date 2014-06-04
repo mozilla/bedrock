@@ -107,7 +107,7 @@
                 $stage.addClass('stage-no-anim');
             }
 
-            var CSSbottom = (scene === 2) ? '-400px' : 0;
+            var CSSbottom = (scene === 2) ? '-420px' : 0;
             $stage.data('scene', scene);
             $('.scene').css('visibility', 'visible');
             if (!Modernizr.csstransitions && animate) {
