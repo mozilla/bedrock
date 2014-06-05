@@ -205,24 +205,18 @@
         );
     });
 
-    // Track news clicks
-    $('.extra-news a').on('click', function(e) {
+    // Track news & contribute clicks
+    $('.extra-news a, .extra-contribute a, .engage a').on('click', function(e) {
         e.preventDefault();
-        var href = this.href;
-        var callback = function() {
-            window.location = href;
-        };
-        gaTrack(['_trackEvent', 'Mozilla in the News Interactions','click', href], callback);
-    });
 
-    // Track contribute clicks
-    $('.extra-contribute a, .engage a').on('click', function(e) {
-        e.preventDefault();
         var href = this.href;
         var callback = function() {
             window.location = href;
         };
-        gaTrack(['_trackEvent', 'Get Involved Interactions','clicks', 'Get Involved Button'], callback);
+
+        var action = (/external/.test($(this).attr('rel'))) ? 'outbound link' : 'click';
+
+        gaTrack(['_trackEvent', 'Homepage Interactions', action, href], callback);
     });
 
     // Track Firefox downloads
