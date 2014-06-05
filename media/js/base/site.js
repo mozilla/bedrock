@@ -56,7 +56,7 @@
             if (pf.indexOf("MacPPC") !== -1) {
                 return 'oldmac';
             }
-            if (/Mac OS X 10.[0-5]/.test(ua)) {
+            if (/Mac OS X 10.[0-5]\D/.test(ua)) {
                 return 'oldmac';
             }
             if (pf.indexOf('iPhone') !== -1 ||
