@@ -184,7 +184,7 @@ class TestContribute(TestCase):
         self.client.post(self.url_en, self.data)
         eq_(len(mail.outbox), 2)
 
-        cc = ['jay@jaygarcia.com', 'mana@mozilla.com']
+        cc = ['mana@mozilla.com']
         m = mail.outbox[0]
         eq_(m.from_email, 'contribute@mozilla.org')
         eq_(m.to, ['contribute@mozilla.org'])

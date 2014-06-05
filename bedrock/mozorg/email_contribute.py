@@ -20,7 +20,7 @@ FUNCTIONAL_AREAS = (
     fa('support',
         _('Helping Users'),
         'Support',
-        ['jay@jaygarcia.com', 'mana@mozilla.com'],
+        ['mana@mozilla.com'],
     ),
     fa('qa',
         _('Testing and QA'),
@@ -80,12 +80,12 @@ FUNCTIONAL_AREAS = (
     fa('suggestions',
         _('I have a suggestion for Firefox'),
         'Firefox Suggestions',
-        ['jay@jaygarcia.com'],
+        [],
     ),
     fa('issues',
         _('I need help with a Firefox issue'),
         'Firefox issue',
-        ['jay@jaygarcia.com'],
+        [],
     ),
 )
 
