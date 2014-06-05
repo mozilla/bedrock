@@ -418,14 +418,14 @@ MINIFY_BUNDLES = {
             'js/mozorg/calendar.js',
         ),
         'common': (
-            'js/libs/jquery-1.7.1.min.js',
+            'js/libs/jquery-1.11.0.min.js',
             'js/base/global.js',
             'js/base/footer-email-form.js',
             'js/base/mozilla-input-placeholder.js',
             'js/base/mozilla-image-helper.js',
         ),
         'common-resp': (
-            'js/libs/jquery-1.7.1.min.js',
+            'js/libs/jquery-1.11.0.min.js',
             'js/base/global.js',
             'js/base/nav-main-resp.js',
             'js/base/footer-email-form.js',
@@ -463,7 +463,7 @@ MINIFY_BUNDLES = {
             'js/base/mozilla-accordion.js',
         ),
         'firefox': (
-            'js/libs/jquery-1.7.1.min.js',
+            'js/libs/jquery-1.11.0.min.js',
             'js/base/global.js',
             'js/base/nav-main.js',
             'js/base/footer-email-form.js',
@@ -474,7 +474,7 @@ MINIFY_BUNDLES = {
             'js/firefox/firefox-language-search.js',
         ),
         'firefox-resp': (
-            'js/libs/jquery-1.7.1.min.js',
+            'js/libs/jquery-1.11.0.min.js',
             'js/base/global.js',
             'js/base/nav-main-resp.js',
             'js/base/footer-email-form.js',
@@ -696,11 +696,11 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.pageslide.min.js',
             'js/libs/jquery.waypoints.min.js',
             'js/libs/tweenmax.1.9.7.min.js',
-            'js/libs/jquery.spritely-0.6.1.js',
+            'js/libs/jquery.spritely-0.6.7.js',
             'js/firefox/partners/desktop.js',
         ),
         'facebookapps_redirect': (
-            'js/libs/jquery-1.7.1.min.js',
+            'js/libs/jquery-1.11.0.min.js',
             'js/facebookapps/redirect.js',
         ),
         'facebookapps_downloadtab': (

@@ -5,7 +5,7 @@
 ;(function($, Modernizr, _gaq, site) {
     'use strict';
 
-    var isIELT9 = (site.platform === 'windows' && $.browser.msie && $.browser.version < 9);
+    var isIELT9 = (site.platform === 'windows' && /MSIE\s[1-8]\./.test(navigator.userAgent));
     var path_parts = window.location.pathname.split('/');
     var query_str = window.location.search ? window.location.search + '&' : '?';
     var referrer = path_parts[path_parts.length - 2];

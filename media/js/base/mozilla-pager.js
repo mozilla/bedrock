@@ -699,7 +699,7 @@ Mozilla.Pager.prototype.fadeInPage = function(duration)
     var that = this;
     this.$pageContainer.animate({ opacity: 1 }, duration,
         'pagerFadeOut', function() {
-            if (that.cleartypeFix && $.browser.msie) {
+            if (that.cleartypeFix && navigator.userAgent.indexOf('MSIE') !== -1) {
                 this.style.removeAttribute('filter');
             }
         });

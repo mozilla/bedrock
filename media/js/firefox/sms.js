@@ -234,8 +234,7 @@ Mozilla.VideoPlayer = function(id, sources, flv_url, autoplay, extra_content)
 
 Mozilla.VideoPlayer.height = 385;
 Mozilla.VideoPlayer.width = 640;
-Mozilla.VideoPlayer.ie6 =
-    ($.browser.msie && parseInt($.browser.version, 10) <= 6);
+Mozilla.VideoPlayer.ie6 = /MSIE\s[1-6]\./.test(navigator.userAgent);
 
 Mozilla.VideoPlayer.close_text = 'Close';
 
