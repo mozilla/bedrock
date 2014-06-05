@@ -6,8 +6,8 @@ import re
 import json
 
 from django.conf import settings
-from django.core.cache import cache
 from django.core.context_processors import csrf
+from django.db.utils import DatabaseError
 from django.http import HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.views.generic.base import TemplateView
@@ -26,6 +26,7 @@ from bedrock.mozorg import email_contribute
 from bedrock.mozorg.forms import (ContributeForm,
                                   ContributeStudentAmbassadorForm,
                                   WebToLeadForm)
+from bedrock.mozorg.models import TwitterCache
 from bedrock.mozorg.util import hide_contrib_form
 from bedrock.mozorg.util import HttpResponseJSON
 from bedrock.newsletter.forms import NewsletterFooterForm
@@ -211,9 +212,13 @@ def plugincheck(request, template='mozorg/plugincheck.html'):
 
 @xframe_allow
 def contribute_studentambassadors_landing(request):
+    try:
+        tweets = TwitterCache.objects.get(account='mozstudents').tweets
+    except (TwitterCache.DoesNotExist, DatabaseError):
+        tweets = []
     return l10n_utils.render(request,
                              'mozorg/contribute/studentambassadors/landing.html',
-                             {'tweets': cache.get('tweets-mozstudents') or []})
+                             {'tweets': tweets})
 
 
 @csrf_protect

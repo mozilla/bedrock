@@ -7,6 +7,7 @@ import feedparser
 from django.conf import settings
 from django.core.cache import cache
 
+from bedrock.mozorg.models import TwitterCache
 from bedrock.mozorg.util import TwitterAPI
 
 
@@ -24,9 +25,12 @@ def update_tweets():
     for account in settings.TWITTER_ACCOUNTS:
         try:
             tweets = TwitterAPI(account).user_timeline(screen_name=account)
-        except:
-            tweets = []
+        except Exception:
+            tweets = None
 
-        # Cache for a year (it will be set by the cron job no matter
-        # what on a set interval)
-        cache.set('tweets-%s' % account, tweets, 60 * 60 * 24 * 365)
+        if tweets:
+            account_cache, created = TwitterCache.objects.get_or_create(
+                account=account, defaults={'tweets': tweets})
+            if not created:
+                account_cache.tweets = tweets
+                account_cache.save()
