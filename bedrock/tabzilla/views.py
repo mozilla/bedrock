@@ -8,6 +8,7 @@ from datetime import datetime
 from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.template import loader
+from django.views.decorators.cache import cache_control
 from django.views.decorators.http import last_modified
 from django.views.decorators.vary import vary_on_headers
 
@@ -49,6 +50,7 @@ def _resp(request, path, ctype, context=None):
     return resp
 
 
+@cache_control(private=True)
 @cache_control_expires(12)
 @last_modified(template_last_modified('tabzilla/tabzilla.js'))
 @vary_on_headers('Accept-Language')
