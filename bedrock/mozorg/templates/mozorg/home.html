@@ -252,7 +252,7 @@
         {% endl10n %}
 
         </ul>
-        <p class="control"><a href="{{ press_blog_url() }}" class="go">{{ _('See all news') }}</a></p>
+        <p class="control"><a rel="external" href="{{ press_blog_url() }}" class="go">{{ _('See all news') }}</a></p>
       </section>
 
     {% elif request.locale in ['hu','pt-BR'] %}
@@ -261,7 +261,8 @@
         <h2>{{ _('Get involved') }}</h2>
         <p>
           {{_('Help launch Firefox OS in your country.')}}
-          <a href="{{ mobilizer_link }}">{{_('Become a Mobilizer today.')}}</a>
+          {# Assuming all mobilizer_link's are external. #}
+          <a rel="external" href="{{ mobilizer_link }}">{{_('Become a Mobilizer today.')}}</a>
         </p>
       </section>
 
@@ -281,7 +282,7 @@
         <p>
         {% trans link_l10n='https://l10n.mozilla.org' %}
           Thanks to our global community, Mozilla products and websites are available in over 70 languages.
-          <a href="{{ link_l10n }}">Help translate them into yours</a>.
+          <a rel="external" href="{{ link_l10n }}">Help translate them into yours</a>.
         {% endtrans %}
         </p>
       </section>
