@@ -971,7 +971,7 @@ FIREFOX_TWITTER_ACCOUNTS = {
 # Mapbox token for spaces and communities pages
 MAPBOX_TOKEN = 'examples.map-i86nkdio'
 
-TABZILLA_INFOBAR_OPTIONS = 'translation'
+# TABZILLA_INFOBAR_OPTIONS = 'translation'
 
 # Optimize.ly project code for base template JS snippet
 OPTIMIZELY_PROJECT_ID = None
