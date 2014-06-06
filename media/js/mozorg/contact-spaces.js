@@ -3,7 +3,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 (function($) {
-    "use strict";
+    'use strict';
 
     var wideMode = true;
 
@@ -45,10 +45,6 @@
             mozMap.initResizeHandler();
             //initialize map and center.
             map = L.mapbox.map('map').setView([28, 0], 2);
-            // add open street map attribution
-            map.attributionControl.addAttribution(
-                '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            );
             // load mozilla custom map tiles
             var mapLayer = L.mapbox.tileLayer(token,{
                 detectRetina: true
@@ -255,14 +251,14 @@
             mozMap.unBindMobileNavChange();
             // update the selected item
             if (state === 'spaces' && id !== 'spaces') {
-                $('#nav-spaces-select').find('option:selected').prop("selected", false);
+                $('#nav-spaces-select').find('option:selected').prop('selected', false);
                 $('#nav-spaces-select option[value="' + id + '"]').prop('selected', 'selected');
             } else if (state === 'communities' && id !== 'communities') {
-                $('#nav-communities-select').find('option:selected').prop("selected", false);
+                $('#nav-communities-select').find('option:selected').prop('selected', false);
                 $('#nav-communities-select option[value="' + id + '"]').prop('selected', 'selected');
             } else {
-                $('#nav-communities-select').find('option:selected').prop("selected", false);
-                $('#nav-spaces-select').find('option:selected').prop("selected", false);
+                $('#nav-communities-select').find('option:selected').prop('selected', false);
+                $('#nav-spaces-select').find('option:selected').prop('selected', false);
                 $('.nav-category-select option[disabled]').prop('selected', 'selected');
             }
             // rebind change listener
@@ -514,10 +510,10 @@
         },
 
         /*
-         * Programatically finds a marker and clicks it
+         * Programatically pan to a given marker
          * Param: @id marker string identifier
          */
-        doClickMarker: function (id) {
+        panToMarker: function (id) {
             // if we're on the landing page zoom out to show all markers.
             if (id === 'spaces') {
                 map.setView([28, 0], 2);
@@ -526,7 +522,9 @@
             // else find the right marker and fire a click.
             map.markerLayer.eachLayer(function (marker) {
                 if (marker.feature.properties.id === id) {
-                    marker.fireEvent('click');
+                    map.setView(marker.getLatLng(), 12, {
+                        animate: true
+                    });
                     return;
                 }
             });
@@ -699,11 +697,6 @@
                 }, document.title, url);
                 return;
             }
-
-            // pan to center the marker on the map
-            map.setView(e.layer.getLatLng(), 12, {
-                animate: true
-            });
         },
 
         /*
@@ -719,14 +712,13 @@
             // if the content is already cached display it
             if (contentCache.hasOwnProperty(cacheId)) {
                 $('#entry-container').html(contentCache[cacheId]);
-                // programatically find the right marker and click it
-                mozMap.doClickMarker(cacheId);
+                // pan to the new marker
+                mozMap.panToMarker(cacheId);
                 // update the page title
                 mozMap.setPageTitle(cacheId);
             } else if (id === $('section.entry').prop('id')) {
-                // if we're already on the right page, just center
-                // the marker
-                mozMap.doClickMarker(id);
+                // pan to the new marker
+                mozMap.panToMarker(id);
             } else {
                 $('#entry-container').empty();
                 // request content via ajax
@@ -1057,8 +1049,8 @@
 
                     // update the page title
                     mozMap.setPageTitle(id);
-                    // programatically find the right marker and click it
-                    mozMap.doClickMarker(id);
+                    // pan to the new marker
+                    mozMap.panToMarker(id);
                     // show the corresponding community region
                     mozMap.showCommunityRegion(id);
                 }
