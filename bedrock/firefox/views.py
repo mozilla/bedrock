@@ -430,6 +430,9 @@ class WhatsnewView(LatestFxView):
         fc_ctx = funnelcake_param(self.request)
         f = fc_ctx.get('funnelcake_id', 0)
         oldversion = self.request.GET.get('oldversion', '')
+        # old versions of Firefox sent a prefixed version
+        if oldversion.startswith('rv:'):
+            oldversion = oldversion[3:]
         versions = ('29.', '30.', '31.')
 
         if version == '29.0a1':
