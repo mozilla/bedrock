@@ -170,6 +170,9 @@ MINIFY_BUNDLES = {
         'firefox_unsupported': (
             'css/firefox/unsupported.less',
         ),
+        'firefox_unsupported_systems': (
+            'css/firefox/unsupported-systems.less',
+        ),
         'firefox-resp': (
             'css/firefox/template-resp.less',
         ),
