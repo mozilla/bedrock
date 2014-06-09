@@ -13,7 +13,7 @@
         }]);
     };
 
-    if (($.browser.msie && parseInt($.browser.version, 10) < 9)) {
+    if (/MSIE\s[1-8]\./.test(navigator.userAgent)) {
         _load_mobile();
     } else {
         enquire.register("screen and (max-width: 999px)", {

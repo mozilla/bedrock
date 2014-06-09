@@ -93,21 +93,21 @@
         // if cc is in the country option list, select it
         // remove the default selection first
         if (countrySelection.length !== 0) {
-            $('#id_country option:selected').removeAttr('selected');
-            countrySelection.attr('selected', 'selected');
+            $('#id_country option:selected').prop('selected', false);
+            countrySelection.prop('selected', true);
         }
 
         // for ve and co set the default language to es
         // other countries auto select based on cc
         switch(COUNTRY_CODE) {
         case 've':
-            $('#id_lang option[value="es"]').attr('selected', 'selected');
+            $('#id_lang option[value="es"]').prop('selected', true);
             break;
         case 'co':
-            $('#id_lang option[value="es"]').attr('selected', 'selected');
+            $('#id_lang option[value="es"]').prop('selected', true);
             break;
         default:
-            $('#id_lang option[value="' + COUNTRY_CODE + '"]').attr('selected', 'selected');
+            $('#id_lang option[value="' + COUNTRY_CODE + '"]').prop('selected', true);
         }
     }
 

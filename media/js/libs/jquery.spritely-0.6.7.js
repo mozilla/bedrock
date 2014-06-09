@@ -1,5 +1,5 @@
 /*
- * jQuery spritely 0.6.1
+ * jQuery spritely 0.6.7
  * http://spritely.net/
  *
  * Documentation:
@@ -8,60 +8,12 @@
  * Copyright 2010-2011, Peter Chater, Artlogic Media Ltd, http://www.artlogic.net/
  * Dual licensed under the MIT or GPL Version 2 licenses.
  *
- * Change history:
- * Version 0.6.1
- *   - added some refinements from Gary hussey (http://bossninja.com/). Thanks Gary.
- *     spritely now correctly clears timeouts/intervals when destroying sprites.
- *   - added a goToFrame() method so you can set the current frame at any point.
- *   - fixed the .spStop method where the 'last FPS' value was not being set, and the user specified FPS being ignore when .spStart was called.
- * Version 0.6
- *   - added events to the .sprite() method: on_first_frame, on_last_frame, on_frame:
- *     $('#sprite').sprite({
- *         fps: 9, 
- *         no_of_frames: 24, 
- *         on_first_frame: function(obj) {
- *             obj.spState(1); // change to state 1 (first row) on frame 1
- *         }, 
- *         on_last_frame: function(obj) {
- *             obj.spStop(); // stop the animation on the last frame
- *         },
- *         on_frame: {
- *             8: function(obj) {
- *                 obj.spState(2); // change to state 2 (row 2) on frame 8
- *             },
- *             16: function(obj) {
- *                 obj.spState(3); // change to state 3 (row 3) on frame 16
- *             }
- *         }
- *     });
- *   - added start_at_frame: $('#sprite').sprite({fps: 9, no_of_frames: 24, start_at_frame: 8});
- * Version 0.5
- *   - added a 'destroy()' method which will stop the element's sprite behaviour, without actually removing the element. Example: $('#my_sprite').destroy()
- * Version 0.4
- *   - add up/down for 'pan' method. <ricky.hewitt@artlogic.net>
- *   - added 'dir' option for Sprites. This means a Sprite can be played in reverse.
- *   - removed alert message regarding jQuery.draggable (now uses console.log, if available) <ricky.hewitt@artlogic.net>
- * Version 0.3b
- *   - added lockTo method for locking sprites to background images. $('#sprite').lockTo('#background, {'left': 380, 'top': -60, 'bg_img_width': 1110});
- * Version 0.2.1
- *   - animate function will stop cycling after play_frames has completed
- * Version 0.2 beta
- *   - added isDraggable method (requires jquery-ui) $('#sprite').sprite().isDraggable({start: null, stop: function() {alert('Ouch! You dropped me!')});
- *   - sprites may be set to play a limited number of frames when instantiated, e.g. $('#sprite').sprite({fps: 9, no_of_frames: 3, play_frames: 30})
- *   - sprite speed may be controlled at any point by setting the frames-per-second $('#sprite').fps(20);
- *   - sprites with multiple rows of frames may have there 'state' changed, e.g. to make the second row of frames
- *     active, use: $('#sprite').spState(2); - to return to the first row, use $('#sprite').spState(1);
- *   - background element speed may be controlled at any point with .spSpeed(), e.g. $('#bg1').spSpeed(10)
- *   - background elements may be set to a depth where 100 is the viewer (up close) and 0 is the horizon, e.g.:
- *     $('#bg1').pan({fps: 30, speed: 2, dir: 'left', depth: 30});
- *     $('#bg2').pan({fps: 30, speed: 3, dir: 'left', depth: 70});
- *     relative speed of backgrounds may now be set in a single action with $('#bg1, #bg2').spRelSpeed(20);
- *     which will make elements closer to the horizon (lower depths) move slower than closer elements (higher depths)
  */
 
 (function($) {
     $._spritely = {
         // shared methods and variables used by spritely plugin
+        instances: {},
         animate: function(options) {
             var el = $(options.el);
             var el_id = el.attr('id');
@@ -69,10 +21,12 @@
                 return this;
             }
             options = $.extend(options, $._spritely.instances[el_id] || {});
-            if (options.play_frames && !$._spritely.instances[el_id]['remaining_frames']) {
-                $._spritely.instances[el_id]['remaining_frames'] = options.play_frames + 1;
-            }
             if (options.type == 'sprite' && options.fps) {
+                if (options.play_frames && !$._spritely.instances[el_id]['remaining_frames']) {
+                    $._spritely.instances[el_id]['remaining_frames'] = options.play_frames + 1;
+                } else if (options.do_once && !$._spritely.instances[el_id]['remaining_frames']) {
+                    $._spritely.instances[el_id]['remaining_frames'] = options.no_of_frames;
+                }
                 var frames;
                 var animate = function(el) {
                     var w = options.width, h = options.height;
@@ -126,7 +80,7 @@
                     if ($._spritely.instances[el_id]['remaining_frames'] == 0) {
                         $._spritely.instances[el_id]['remaining_frames'] = -1;
                         delete $._spritely.instances[el_id]['remaining_frames'];
-                        return;
+                        return this;
                     } else {
                         animate(el);
                     }
@@ -135,35 +89,75 @@
                 }
             } else if (options.type == 'pan') {
                 if (!$._spritely.instances[el_id]['_stopped']) {
-                                        if (options.dir == 'up') {
-                                            $._spritely.instances[el_id]['l'] = $._spritely.getBgX(el).replace('px', '');
-                                            $._spritely.instances[el_id]['t'] = ($._spritely.instances[el_id]['t'] - (options.speed || 1)) || 0;
-                                        }
-                                        else if (options.dir == 'down') {
-                                            $._spritely.instances[el_id]['l'] = $._spritely.getBgX(el).replace('px', '');
-                                            $._spritely.instances[el_id]['t'] = ($._spritely.instances[el_id]['t'] + (options.speed || 1)) || 0;
-                                        }
-                    else if (options.dir == 'left') {
-                        $._spritely.instances[el_id]['l'] = ($._spritely.instances[el_id]['l'] - (options.speed || 1)) || 0;
-                                                $._spritely.instances[el_id]['t'] = $._spritely.getBgY(el).replace('px', '');
-                    } else {
-                        $._spritely.instances[el_id]['l'] = ($._spritely.instances[el_id]['l'] + (options.speed || 1)) || 0;
-                                                $._spritely.instances[el_id]['t'] = $._spritely.getBgY(el).replace('px', '');
+
+                    // As we pan, reduce the offset to the smallest possible
+                    // value to ease the load on the browser. This step is
+                    // skipped if the image hasn't loaded yet.
+                    var speed = options.speed || 1,
+                        start_x = $._spritely.instances[el_id]['l'] || parseInt($._spritely.getBgX(el).replace('px', ''), 10) || 0,
+                        start_y = $._spritely.instances[el_id]['t'] || parseInt($._spritely.getBgY(el).replace('px', ''), 10) || 0;
+
+                    if (options.do_once && !$._spritely.instances[el_id].remaining_frames || $._spritely.instances[el_id].remaining_frames <= 0) {
+                        switch(options.dir) {
+                            case 'up':
+                            case 'down':
+                                $._spritely.instances[el_id].remaining_frames = Math.floor((options.img_height || 0) / speed);
+                                break;
+                            case 'left':
+                            case 'right':
+                                $._spritely.instances[el_id].remaining_frames = Math.floor((options.img_width || 0) / speed);
+                                break;
+                        }
+                        $._spritely.instances[el_id].remaining_frames++;
+                    } else if (options.do_once) {
+                        $._spritely.instances[el_id].remaining_frames--;
                     }
 
-                                        // When assembling the background-position string, care must be taken
-                                        // to ensure correct formatting.. <ricky.hewitt@artlogic.net>
-                                        var bg_left = $._spritely.instances[el_id]['l'].toString();
-                                        if (bg_left.indexOf('%') == -1) {
-                                            bg_left += 'px ';
-                                        } else { bg_left += ' '; }
+                    switch (options.dir) {
 
-                                        var bg_top = $._spritely.instances[el_id]['t'].toString();
-                                        if (bg_top.indexOf('%') == -1) {
-                                            bg_top += 'px ';
-                                        } else { bg_top += ' '; }
+                        case 'up':
+                            speed *= -1;
+                        case 'down':
+                            if (!$._spritely.instances[el_id]['l'])
+                                $._spritely.instances[el_id]['l'] = start_x;
+                            $._spritely.instances[el_id]['t'] = start_y + speed;
+                            if (options.img_height)
+                                $._spritely.instances[el_id]['t'] %= options.img_height;
+                            break;
+
+                        case 'left':
+                            speed *= -1;
+                        case 'right':
+                            if (!$._spritely.instances[el_id]['t'])
+                                $._spritely.instances[el_id]['t'] = start_y;
+                            $._spritely.instances[el_id]['l'] = start_x + speed;
+                            if (options.img_width)
+                                $._spritely.instances[el_id]['l'] %= options.img_width;
+                            break;
+
+                    }
+
+                    // When assembling the background-position string, care must be taken
+                    // to ensure correct formatting.
+                    var bg_left = $._spritely.instances[el_id]['l'].toString();
+                    if (bg_left.indexOf('%') == -1) {
+                        bg_left += 'px ';
+                    } else {
+                        bg_left += ' ';
+                    }
+
+                    var bg_top = $._spritely.instances[el_id]['t'].toString();
+                    if (bg_top.indexOf('%') == -1) {
+                        bg_top += 'px ';
+                    } else {
+                        bg_top += ' ';
+                    }
 
                     $(el).css('background-position', bg_left + bg_top);
+
+                    if (options.do_once && !$._spritely.instances[el_id].remaining_frames) {
+                        return this;
+                    }
                 }
             }
             $._spritely.instances[el_id]['options'] = options;
@@ -174,25 +168,26 @@
         randomIntBetween: function(lower, higher) {
             return parseInt(rand_no = Math.floor((higher - (lower - 1)) * Math.random()) + lower);
         },
-        getBgY: function(el) {
-            if ($.browser.msie) {
-                // fixme - the background-position property does not work
-                // correctly in IE so we have to hack it here... Not ideal
-                // especially as $.browser is depricated
-                var bgY = $(el).css('background-position-y') || '0';
-            } else {
-                var bgY = ($(el).css('background-position') || ' ').split(' ')[1];
+        getBgUseXY: (function() {
+            try {
+                return typeof $('body').css('background-position-x') == 'string';
+            } catch(e) {
+                return false;
             }
-            return bgY;
+        })(),
+        getBgY: function(el) {
+            if ($._spritely.getBgUseXY) {
+                return $(el).css('background-position-y') || '0';
+            } else {
+                return ($(el).css('background-position') || ' ').split(' ')[1];
+            }
         },
         getBgX: function(el) {
-            if ($.browser.msie) {
-                // see note, above
-                var bgX = $(el).css('background-position-x') || '0';
+            if ($._spritely.getBgUseXY) {
+                return $(el).css('background-position-x') || '0';
             } else {
-                var bgX = ($(el).css('background-position') || ' ').split(' ')[0];
+                return ($(el).css('background-position') || ' ').split(' ')[0];
             }
-            return bgX;
         },
         get_rel_pos: function(pos, w) {
             // return the position of an item relative to a background
@@ -208,47 +203,101 @@
                 }
             }
             return r;
+        },
+
+        _spStrip: function(s, chars) {
+            // Strip any character in 'chars' from the beginning or end of
+            // 'str'. Like Python's .strip() method, or jQuery's $.trim()
+            // function (but allowing you to specify the characters).
+            while (s.length) {
+                var i, sr, nos = false, noe = false;
+                for (i=0;i<chars.length;i++) {
+                    var ss = s.slice(0, 1);
+                    sr = s.slice(1);
+                    if (chars.indexOf(ss) > -1)
+                        s = sr;
+                    else
+                        nos = true;
+                }
+                for (i=0;i<chars.length;i++) {
+                    var se = s.slice(-1);
+                    sr = s.slice(0, -1);
+                    if (chars.indexOf(se) > -1)
+                        s = sr;
+                    else
+                        noe = true;
+                }
+                if (nos && noe)
+                    return s;
+            }
+            return '';
         }
     };
     $.fn.extend({
+
         spritely: function(options) {
-            var options = $.extend({
-                type: 'sprite',
-                do_once: false,
-                width: null,
-                height: null,
-                fps: 12,
-                no_of_frames: 2,
-                stop_after: null
-            }, options || {});
-            var el_id = $(this).attr('id');
-            if (!$._spritely.instances) {
-                $._spritely.instances = {};
-            }
-            if (!$._spritely.instances[el_id]) {
-                if (options.start_at_frame) {
-                    $._spritely.instances[el_id] = {current_frame: options.start_at_frame - 1};
-                } else {
-                    $._spritely.instances[el_id] = {current_frame: -1};
+
+            var $this = $(this),
+                el_id = $this.attr('id'),
+
+                options = $.extend({
+                    type: 'sprite',
+                    do_once: false,
+                    width: null,
+                    height: null,
+                    img_width: 0,
+                    img_height: 0,
+                    fps: 12,
+                    no_of_frames: 2,
+                    play_frames: 0
+                }, options || {}),
+
+                background_image = (new Image()),
+                background_image_src = $._spritely._spStrip($this.css('background-image') || '', 'url("); ');
+
+                if (!$._spritely.instances[el_id]) {
+                    if (options.start_at_frame) {
+                        $._spritely.instances[el_id] = {current_frame: options.start_at_frame - 1};
+                    } else {
+                        $._spritely.instances[el_id] = {current_frame: -1};
+                    }
                 }
+
+                $._spritely.instances[el_id]['type'] = options.type;
+                $._spritely.instances[el_id]['depth'] = options.depth;
+
+                options.el = $this;
+                options.width = options.width || $this.width() || 100;
+                options.height = options.height || $this.height() || 100;
+
+            background_image.onload = function() {
+
+                options.img_width = background_image.width;
+                options.img_height = background_image.height;
+
+                options.img = background_image;
+                var get_rate = function() {
+                    return parseInt(1000 / options.fps);
+                }
+
+                if (!options.do_once) {
+                    setTimeout(function() {
+                        $._spritely.animate(options);
+                    }, get_rate(options.fps));
+                } else {
+                    setTimeout(function() {
+                        $._spritely.animate(options);
+                    }, 0);
+                }
+
             }
-            $._spritely.instances[el_id]['type'] = options.type;
-            $._spritely.instances[el_id]['depth'] = options.depth;
-            options.el = this;
-            options.width = options.width || $(this).width() || 100;
-            options.height = options.height || $(this).height() || 100;
-            var get_rate = function() {
-                return parseInt(1000 / options.fps);
-            }
-            if (!options.do_once) {
-                window.setTimeout(function() {
-                    $._spritely.animate(options);
-                }, get_rate(options.fps));
-            } else {
-                $._spritely.animate(options);
-            }
-            return this; // so we can chain events
+
+            background_image.src = background_image_src;
+
+            return this;
+
         },
+
         sprite: function(options) {
             var options = $.extend({
                 type: 'sprite',
@@ -409,20 +458,21 @@
             return $._spritely.instances[el_id][prop_name];
         },
         spStop: function(bool) {
-            $(this).each(function() {
-                var el_id = $(this).attr('id');
+            this.each(function() {
+                var $this = $(this),
+                    el_id = $this.attr('id');
                 if ($._spritely.instances[el_id]['options']['fps']) {
                     $._spritely.instances[el_id]['_last_fps'] = $._spritely.instances[el_id]['options']['fps'];
                 }
+                if ($._spritely.instances[el_id]['type'] == 'sprite') {
+                    $this.spSet('fps', 0);
+                }
                 $._spritely.instances[el_id]['_stopped'] = true;
                 $._spritely.instances[el_id]['_stopped_f1'] = bool;
-                if ($._spritely.instances[el_id]['type'] == 'sprite') {
-                    $(this).spSet('fps', 0);
-                }
                 if (bool) {
                     // set background image position to 0
                     var bp_top = $._spritely.getBgY($(this));
-                    $(this).css('background-position', '0 ' + bp_top);
+                    $this.css('background-position', '0 ' + bp_top);
                 }
             });
             return this;
@@ -526,7 +576,7 @@
             var el = $(this);
             var el_id = $(this).attr('id');
             if ($._spritely.instances[el_id] && $._spritely.instances[el_id]['timeout']){
-                window.clearInterval($._spritely.instances[el_id]['timeout']);
+                window.clearTimeout($._spritely.instances[el_id]['timeout']);
             }
             if ($._spritely.instances[el_id] && $._spritely.instances[el_id]['interval']) {
                 window.clearInterval($._spritely.instances[el_id]['interval']);
@@ -539,4 +589,4 @@
 // Stop IE6 re-loading background images continuously
 try {
   document.execCommand("BackgroundImageCache", false, true);
-} catch(err) {} 
+} catch(err) {}
