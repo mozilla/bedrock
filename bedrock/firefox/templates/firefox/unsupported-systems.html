@@ -1,0 +1,44 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "/firefox/base-resp.html" %}
+
+{% block page_title %}{{ _('Unsupported Systems') }}{% endblock %}
+{% block page_desc %}{{ _('We’re sorry to report this, but your computer does not meet the minimum system requirements to run this version.') }}{% endblock %}
+
+{% block extrahead %}
+  {{ css('firefox_unsupported_systems') }}
+{% endblock %}
+
+{% block content %}
+
+<div id="main-feature">
+  <h1>{{ _('Thanks for choosing Firefox!') }}</h1>
+  <h2>{{_('We’re sorry to report this, but your computer does not meet the minimum system requirements to run this version.')}}</h2>
+</div>
+
+<div id="main-content" class="billboard">
+
+  <div class="help-feature">
+    <h3>Need <span>Help?</span></h3>
+    <p>Our Support page has plenty of answers, including full instructions for downloading and installing Firefox and a live chat feature to guide you through any tricky spots.</p>
+    <a class="blocklevel" href="https://support.mozilla.org/products/firefox">Visit Firefox Support</a>
+  </div>
+
+  <div class="systems-feature">
+    <h4>For more information on supported systems</h4>
+    <a class="blocklevel" href="{{ url('firefox.sysreq') }}">View System Requirements</a>
+  </div>
+
+</div>
+
+<div class="other-browsers container">
+  <p>To make your computer more secure, we recommend upgrading your operating system to a newer version as soon as possible (plus, you’ll be able to use Firefox!). But, if you can’t do so, here are some alternate browsers that should be compatible with your current system:</p>
+  <ul>
+    <li><a href="http://www.opera.com/">Opera</a> for Windows 95 and above and Mac OS 10.3 and above</li>
+    <li><a href="http://www.icab.de/">iCab</a> for Mac OS 10.3 and above</li>
+  </ul>
+</div>
+
+{% endblock %}
