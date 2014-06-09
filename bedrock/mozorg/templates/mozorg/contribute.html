@@ -264,6 +264,19 @@
       {% endif %}
         </p>
       </li>
+
+    {% if l10n_has_tag('contribute_fellowship') or settings.DEV %}
+      <li id="fellowship">
+        <img src="{{ media('/img/contribute/fellowship.png') }}" alt="">
+        <h3>{{ _('Fellowships') }}</h3>
+        <p>
+          {% trans fellowship='http://opennews.org/fellowships/' %}
+            Interested in shaping the future of the open Web? Knight-Mozilla’s <a href="{{ fellowship }}">OpenNews Fellowship program</a> matches emerging digital leaders with journalism opportunities to build the open Web for everyone.
+          {% endtrans %}
+        </p>
+      </li>
+    {% endif %}
+
     </ul>
   </section>
 
