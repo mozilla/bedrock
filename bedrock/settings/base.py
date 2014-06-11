@@ -133,12 +133,9 @@ MINIFY_BUNDLES = {
             'css/newsletter/newsletter.less',
         ),
         'contact-spaces': (
-            'css/libs/mapbox.css',
+            'css/libs/mapbox-1.6.3.css',
             'css/libs/magnific-popup.css',
             'css/mozorg/contact-spaces.less',
-        ),
-        'contact-spaces-ie8': (
-            'css/libs/mapbox.ie.css',
         ),
         'contact-spaces-ie7': (
             'css/mozorg/contact-spaces-ie7.less',
@@ -228,7 +225,7 @@ MINIFY_BUNDLES = {
         'firefox_geolocation': (
             'css/base/mozilla-accordion.less',
             'css/base/mozilla-modal.less',
-            'css/libs/mapbox.css',
+            'css/libs/mapbox-1.6.3.css',
             'css/firefox/geolocation.less'
         ),
         'firefox_new': (
@@ -436,7 +433,7 @@ MINIFY_BUNDLES = {
             'js/base/mozilla-image-helper.js',
         ),
         'contact-spaces': (
-            'js/libs/mapbox.js',
+            'js/libs/mapbox-1.6.3.js',
             'js/libs/jquery.history.js',
             'js/mozorg/contact-data.js',
             'js/libs/jquery.magnific-popup.min.js',
@@ -596,7 +593,7 @@ MINIFY_BUNDLES = {
             'js/firefox/whatsnew-fxos.js',
         ),
         'geolocation': (
-            'js/libs/mapbox.js',
+            'js/libs/mapbox-1.6.3.js',
             'js/base/mozilla-accordion.js',
             'js/firefox/geolocation-demo.js',
             'js/base/mozilla-modal.js',
