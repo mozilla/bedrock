@@ -15,7 +15,7 @@
 
 {% block content %}
 
-<div id="main-content" class="pager pager-with-tabs pager-cleartype-fix">
+<div id="main-content" class="pager pager-with-tabs pager-cleartype-fix pager-auto-init">
 
   <ul id="toggler-container" class="pager-tabs">
     <li id="beta-link"><a href="#beta"><img src="{{ media('/img/firefox/channel/toggler-beta.png?2013-06') }}" alt="Firefox Beta" id="toggler-logo-beta" /></a></li>
@@ -23,8 +23,8 @@
     <li id="aurora-link"><a href="#aurora"><img src="{{ media('/img/firefox/channel/toggler-aurora.png?2013-06') }}" alt="Firefox Aurora" id="toggler-logo-aurora" /></a></li>
   </ul>
 
-  <a href="#" id="carousel-left"></a>
-  <a href="#" id="carousel-right"></a>
+  <a href="#" id="carousel-left" aria-hidden="true"></a>
+  <a href="#" id="carousel-right" aria-hidden="true"></a>
 
   <div class="pager-content">
 

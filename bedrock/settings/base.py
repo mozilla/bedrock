@@ -371,6 +371,9 @@ MINIFY_BUNDLES = {
             'css/styleguide/communications.less',
             'css/styleguide/products-firefox-os.less',
         ),
+        'styleguide-docs-mozilla-pager': (
+            'css/styleguide/docs/mozilla-pager.less',
+        ),
         'tabzilla': (
             'css/tabzilla/tabzilla.less',
         ),
@@ -620,9 +623,6 @@ MINIFY_BUNDLES = {
         'nightly-firstrun': (
             'js/firefox/firstrun/nightly-firstrun.js',
         ),
-        'pager': (
-            'js/base/mozilla-pager.js',
-        ),
         'partnerships': (
             'js/libs/jquery.validate.js',
             'js/base/mozilla-form-helper.js',
@@ -654,6 +654,10 @@ MINIFY_BUNDLES = {
         ),
         'styleguide': (
             'js/styleguide/styleguide.js',
+        ),
+        'styleguide-docs-mozilla-pager': (
+            'js/base/mozilla-pager.js',
+            'js/styleguide/docs/mozilla-pager.js',
         ),
         'video': (
             'js/base/mozilla-video-tools.js',

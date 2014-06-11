@@ -3,7 +3,7 @@
 * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 // create namespace
-if (typeof Mozilla == 'undefined') {
+if (typeof Mozilla === 'undefined') {
     var Mozilla = {};
 }
 
@@ -13,8 +13,9 @@ if (typeof Mozilla == 'undefined') {
     var COUNTRY_CODE = '';
     var selectedDevice;
 
-    var isSmallViewport = $(window).width() < 760;
-    var isTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints || navigator.maxTouchPoints || isSmallViewport;
+    // Will be used when color pickers are activated
+    //var isSmallViewport = $(window).width() < 760;
+    //var isTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints || navigator.maxTouchPoints || isSmallViewport;
 
     var $purchaseDeviceButton = $('#purchase-device');
     var $locationSelect = $('#location');
@@ -22,12 +23,10 @@ if (typeof Mozilla == 'undefined') {
     var $deviceDetailLists = $('.device-detail-list');
     var $deviceDetails = $('.device-detail');
 
-    var $pagerPages = $('.pager-page');
-
     var $providerLinks = $('#provider-links');
 
     // create namespace
-    if (typeof Mozilla.FxOs == 'undefined') {
+    if (typeof Mozilla.FxOs === 'undefined') {
         Mozilla.FxOs = {};
     }
 
@@ -111,23 +110,14 @@ if (typeof Mozilla == 'undefined') {
     */
     var togglePagers = function(enable) {
         if (enable) {
-            $pagerPages.each(function(i, page) {
-                var $page = $(page);
-
-                $page.attr('style', $page.data('oldstyle')).data('oldstyle', '');
-            });
+            Mozilla.Pager.createPagers();
         } else {
-            $pagerPages.each(function(i, page) {
-                var $page = $(page);
-                $page.data('oldstyle', $page.attr('style'));
-
-                $page.attr('style', '');
-            });
+            Mozilla.Pager.destroyPagers();
         }
     };
 
     // wire up location select
-    $locationSelect.on('change', function(e) {
+    $locationSelect.on('change', function() {
         COUNTRY_CODE = $locationSelect.val();
         selectDevicesAndSetPartnerContent();
 
@@ -147,7 +137,7 @@ if (typeof Mozilla == 'undefined') {
     });
 
     // wire up thumbnail select
-    $('.device-thumbnails').on('click', '.device-thumbnail', function(e) {
+    $('.device-thumbnails').on('click', '.device-thumbnail', function() {
         var $this = $(this);
 
         selectedDevice = $this.attr('href').replace(/#/gi, '');
@@ -210,7 +200,7 @@ if (typeof Mozilla == 'undefined') {
             try {
                 COUNTRY_CODE = geoip_country_code().toLowerCase();
             } catch (e) {
-                COUNTRY_CODE = "";
+                COUNTRY_CODE = '';
             }
 
             if (COUNTRY_CODE !== '' && Mozilla.FxOs.Countries.hasOwnProperty(COUNTRY_CODE)) {
@@ -224,8 +214,8 @@ if (typeof Mozilla == 'undefined') {
     var queryIsMobile = matchMedia('(max-width: 480px)');
 
     setTimeout(function() {
-        if (queryIsMobile.matches) {
-            togglePagers(false);
+        if (!queryIsMobile.matches) {
+            togglePagers(true);
         }
     }, 500);
 
@@ -264,7 +254,7 @@ if (typeof Mozilla == 'undefined') {
     });
 
     // track mozilla pager tab clicks
-    $('.pager-tabs').on('click', 'a', function(e) {
+    $('.pager-tabs').on('click', 'a', function() {
         gaTrack(['_trackEvent', '/os/devices/ Interactions', selectedDevice + ' Interactions', $(this).data('label') + ' Tab']);
     });
 })(window.jQuery);

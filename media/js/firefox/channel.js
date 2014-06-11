@@ -6,7 +6,7 @@ $(document).ready(function() {
     var $logo = $('#masthead h2 img');
     var logoOriginalSrc = $logo.attr('src');
 
-    var pager = Mozilla.Pager.rootPagers[0];
+    var pager = Mozilla.Pager.pagers[0];
     var selected_href = false;
 
     function redirect(a) {
