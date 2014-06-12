@@ -2,8 +2,6 @@ import re
 from operator import itemgetter
 from urllib import urlencode
 
-from django.conf import settings
-
 from product_details import ProductDetails
 
 
@@ -139,12 +137,6 @@ class FirefoxDetails(ProductDetails):
         :param product: optional. probably 'firefox'
         :return: string url
         """
-        product_code = [product, version]
-
-        # Force download via SSL
-        if version in settings.FORCE_SSL_DOWNLOAD_VERSIONS:
-            product_code.append('SSL')
-
         if platform == 'OS X' and language == 'ja':
             language = 'ja-JP-mac'
 
@@ -153,7 +145,7 @@ class FirefoxDetails(ProductDetails):
 
         return '?'.join([self.download_base_url_direct,
                          urlencode([
-                             ('product', '-'.join(product_code)),
+                             ('product', '-'.join([product, version, 'SSL'])),
                              ('os', self.platform_info[platform]['id']),
                              # Order matters, lang must be last for bouncer.
                              ('lang', language),

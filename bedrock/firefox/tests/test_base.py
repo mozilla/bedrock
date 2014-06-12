@@ -108,15 +108,15 @@ class TestInstallerHelp(TestCase):
 class TestFirefoxDetails(TestCase):
 
     def test_get_download_url(self):
-        url = firefox_details.get_download_url('OS X', 'pt-BR', '17.0')
+        url = firefox_details.get_download_url('OS X', 'pt-BR', '17.0.1')
         self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-17.0'),
+                             [('product', 'firefox-17.0.1-SSL'),
                               ('os', 'osx'),
                               ('lang', 'pt-BR')])
         # Linux 64-bit
-        url = firefox_details.get_download_url('Linux 64', 'en-US', '26.0')
+        url = firefox_details.get_download_url('Linux 64', 'en-US', '17.0.1')
         self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-26.0'),
+                             [('product', 'firefox-17.0.1-SSL'),
                               ('os', 'linux64'),
                               ('lang', 'en-US')])
 
@@ -137,37 +137,28 @@ class TestFirefoxDetails(TestCase):
         self.assertIn('latest-mozilla-aurora-l10n/firefox-28.0a2.pt-BR.linux-i686.tar.bz2',
                       url)
 
-    @override_settings(FORCE_SSL_DOWNLOAD_VERSIONS=['27.0'])
     @override_settings(STUB_INSTALLER_LOCALES={'win': settings.STUB_INSTALLER_ALL})
     def get_download_url_ssl(self):
         """
-        SSL-enabled links should be used for the specific verions, except the
-        Windows stub installers.
+        SSL-enabled links should always be used except Windows stub installers.
         """
 
-        # SSL-enabled links won't be used for 26.0
-        url = firefox_details.get_download_url('OS X', 'pt-BR', '26.0')
-        self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-26.0'),
-                              ('os', 'osx'),
-                              ('lang', 'pt-BR')])
-
-        # SSL-enabled links won't be used for 27.0 Windows builds (but SSL
-        # download is enabled by default for stub installers)
+        # SSL-enabled links won't be used for Windows builds (but SSL download
+        # is enabled by default for stub installers)
         url = firefox_details.get_download_url('Windows', 'pt-BR', '27.0')
         self.assertListEqual(parse_qsl(urlparse(url).query),
                              [('product', 'firefox-27.0'),
                               ('os', 'win'),
                               ('lang', 'pt-BR')])
 
-        # SSL-enabled links will be used for 27.0 OS X builds
+        # SSL-enabled links will be used for OS X builds
         url = firefox_details.get_download_url('OS X', 'pt-BR', '27.0')
         self.assertListEqual(parse_qsl(urlparse(url).query),
                              [('product', 'firefox-27.0-SSL'),
                               ('os', 'osx'),
                               ('lang', 'pt-BR')])
 
-        # SSL-enabled links will be used for 27.0 Linux builds
+        # SSL-enabled links will be used for Linux builds
         url = firefox_details.get_download_url('Linux', 'pt-BR', '27.0')
         self.assertListEqual(parse_qsl(urlparse(url).query),
                              [('product', 'firefox-27.0-SSL'),
