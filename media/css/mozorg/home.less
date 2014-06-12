@@ -87,29 +87,18 @@
 }
 
 // Adjustments for some locales
-.lang-bg,
-.lang-de,
-.lang-el,
-.lang-es-ES,
-.lang-fr,
-.lang-it,
-.lang-mk {
+[lang='bg'],
+[lang='de'],
+[lang='el'],
+[lang='fr'],
+[lang='it'],
+[lang='mk'],
+[lang^='es'] {
     .mission .tagline {
         font-size: 42px;
     }
 }
 
-.engage {
-    display: none; // hide this for now
-    margin: 0;
-
-    .button {
-        border-radius: 6px;
-        font-size: 16px;
-        padding: 10px 20px;
-        text-transform: uppercase;
-    }
-}
 
 
 // @Accordion
@@ -741,15 +730,13 @@
     }
 
     // Adjustments for some locales
-    .lang-bg,
-    .lang-it,
-    .lang-fr,
-    .lang-de,
-    .lang-el,
-    .lang-es-ES,
-    .lang-es-MX,
-    .lang-es-CL,
-    .lang-es-AR {
+    [lang='bg'],
+    [lang='de'],
+    [lang='el'],
+    [lang='fr'],
+    [lang='it'],
+    [lang='mk'],
+    [lang^='es'] {
         .mission .tagline {
             font-size: 24px;
         }

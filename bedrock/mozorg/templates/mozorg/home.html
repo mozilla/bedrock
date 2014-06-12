@@ -54,11 +54,12 @@
     {# L10n: The Mozilla wordmark appears inline as part of this headline, so it reads as "We are Mozilla." #}
     <h1>{{ _('We are %(mozilla_wordmark)s') | format(mozilla_wordmark=high_res_img('img/home/mozilla-wordmark-red.png', {'alt': 'Mozilla', 'width': '258', 'height': '70'})|safe) }}</h1>
     <p class="tagline">{{ _('Doing good is part of our code') }}</p>
-    <p class="engage"><a href="{{ url('mozorg.contribute') }}" class="button go">{{ _('Get involved') }}</a></p>
   </header>
 
   <section class="pillars">
     <ul class="accordion">
+
+{# Position 1: "Shape Environments" #}
     {% if l10n_has_tag('promo_webwewant') or settings.DEV %}
       <li id="panel-webwewant" class="panel" tabindex="0">
         <h2 class="panel-title">{{ _('The Web needs you') }}</h2>
@@ -103,69 +104,58 @@
       </li>
     {% endif %}
 
-
-  {% if l10n_has_tag('promo_fxdesktop') or settings.DEV %}
-    <li id="panel-fxdesktop" class="panel" tabindex="0">
-      {# L10n: This is the label seen when the panel is collapsed so it may need to be altered to fit a limited space. The active phrase should be wrapped in <i></i> tags. #}
-      <h2 class="panel-title">{{ _('<i>Try the best</i> Firefox yet') }}</h2>
-      <div class="panel-inner">
-        <div class="panel-content">
-          <a href="{{ url('firefox.desktop.index') }}">
-            {# L10n: This is the headline seen when the panel is open so it can be longer than the panel label. #}
-            <h3>{{ _('Try the best Firefox yet') }}</h3>
-            <p>{{ _('Learn more about the free desktop browser that’s committed to you, your privacy and an open Web.') }}</p>
-            <p class="go">{{ _('See what’s new') }}</p>
-          </a>
-        </div>
-      </div>
-    </li>
-  {% else %}
-    <li id="panel-fxos" class="panel" tabindex="0">
-      {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
-      <h2 class="panel-title">{{ _('<i>Look</i> ahead') }}</h2>
-      <div class="panel-inner">
-        <div class="panel-content">
-          <a href="{{ url('firefox.os.index') }}">
-            <h3>{{ _('Look ahead') }}</h3>
-            <p>{{ _('We‘re bringing more people to the Web in more ways and from more places than ever before.') }}</p>
-            <p class="go">{{ _('Learn more about Firefox OS') }}</p>
-          </a>
-        </div>
-      </div>
-    </li>
-  {% endif %}
-
-    {% if l10n_has_tag('promo_webmaker') or settings.DEV %}
-      <li id="panel-webmaker" class="panel" tabindex="0">
+{# Position 2: "Build Products" #}
+    {% if l10n_has_tag('promo_worldcup2014') or settings.DEV %}
+      <li id="panel-worldcup2014" class="panel" tabindex="0">
         {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
-        <h2 class="panel-title">{{ _('<i>Learn</i> the Web') }}</h2>
+        <h2 class="panel-title">{{ _('Football <i>fanatic?</i>') }}</h2>
+        <div class="ball"></div>
         <div class="panel-inner">
           <div class="panel-content">
-            <a href="https://webmaker.org" rel="external">
-              <h3>{{ _('We teach the Web') }}</h3>
-              <p>{{ _('Let‘s explore, tinker and create together to build a Web that‘s open and made by everyone.') }}</p>
-              <p class="go">{{ _('Become a Webmaker') }}</p>
+          {% if request.locale in ['pt-BR','es-ES','es-CL','es-AR','es-MX','id','de','fr','it'] %}
+            <a href="https://activations.cdn.mozilla.net/{{ LANG }}/goal.html?utm_source=mozcarousel&amp;utm_medium=banner&amp;utm_content=goalcom{{ LANG }}&amp;utm_campaign=WC2014">
+          {% else %}
+            <a href="https://activations.cdn.mozilla.net/en-US/goal.html?utm_source=mozcarousel&amp;utm_medium=banner&amp;utm_content=goalcomen-US&amp;utm_campaign=WC2014" hreflang="en-US">
+          {% endif %}
+              <h3>{{ _('Football fanatic?') }}</h3>
+              <p>{{ _('Firefox lets you keep up with all the action in Brazil.') }}</p>
+              <p class="go">{{ _('Activate the Goal.com sidebar') }}</p>
+            </a>
+          </div>
+        </div>
+      </li>
+    {% elif l10n_has_tag('promo_fxdesktop') %}
+      <li id="panel-fxdesktop" class="panel" tabindex="0">
+        {# L10n: This is the label seen when the panel is collapsed so it may need to be altered to fit a limited space. The active phrase should be wrapped in <i></i> tags. #}
+        <h2 class="panel-title">{{ _('<i>Try the best</i> Firefox yet') }}</h2>
+        <div class="panel-inner">
+          <div class="panel-content">
+            <a href="{{ url('firefox.desktop.index') }}">
+              {# L10n: This is the headline seen when the panel is open so it can be longer than the panel label. #}
+              <h3>{{ _('Try the best Firefox yet') }}</h3>
+              <p>{{ _('Learn more about the free desktop browser that’s committed to you, your privacy and an open Web.') }}</p>
+              <p class="go">{{ _('See what’s new') }}</p>
             </a>
           </div>
         </div>
       </li>
     {% else %}
-      <li id="panel-mozfest" class="panel" tabindex="0">
+      <li id="panel-fxos" class="panel" tabindex="0">
         {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
-        <h2 class="panel-title">{{ _('<i>Forge</i> the future') }}</h2>
+        <h2 class="panel-title">{{ _('<i>Look</i> ahead') }}</h2>
         <div class="panel-inner">
           <div class="panel-content">
-            <a href="https://mozillafestival.org">
-              {# L10n: This <br> is strictly for visual formatting; translations can omit or reposition as needed. #}
-              <h3>{{ _('Forge the future<br> of the Web') }}</h3>
-              <p>{{ _('Learn from some of the most passionate thinkers and inventors from around the world.') }}</p>
-              <p class="go">{{ _('Come to the Mozilla Festival') }}</p>
+            <a href="{{ url('firefox.os.index') }}">
+              <h3>{{ _('Look ahead') }}</h3>
+              <p>{{ _('We‘re bringing more people to the Web in more ways and from more places than ever before.') }}</p>
+              <p class="go">{{ _('Learn more about Firefox OS') }}</p>
             </a>
           </div>
         </div>
       </li>
     {% endif %}
 
+{# Position 3: "Enable Community" #}
     {% if l10n_has_tag('promo_new_mdn') or settings.DEV %}
       <li id="panel-mdn" class="panel" tabindex="0">
         {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
@@ -197,6 +187,39 @@
         </div>
       </li>
     {% endif %}
+
+{# Position 4: "Teach the Web" #}
+    {% if l10n_has_tag('promo_webmaker') or settings.DEV %}
+      <li id="panel-webmaker" class="panel" tabindex="0">
+        {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
+        <h2 class="panel-title">{{ _('<i>Learn</i> the Web') }}</h2>
+        <div class="panel-inner">
+          <div class="panel-content">
+            <a href="https://webmaker.org" rel="external">
+              <h3>{{ _('We teach the Web') }}</h3>
+              <p>{{ _('Let‘s explore, tinker and create together to build a Web that‘s open and made by everyone.') }}</p>
+              <p class="go">{{ _('Become a Webmaker') }}</p>
+            </a>
+          </div>
+        </div>
+      </li>
+    {% else %}
+      <li id="panel-mozfest" class="panel" tabindex="0">
+        {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
+        <h2 class="panel-title">{{ _('<i>Forge</i> the future') }}</h2>
+        <div class="panel-inner">
+          <div class="panel-content">
+            <a href="https://mozillafestival.org">
+              {# L10n: This <br> is strictly for visual formatting; translations can omit or reposition as needed. #}
+              <h3>{{ _('Forge the future<br> of the Web') }}</h3>
+              <p>{{ _('Learn from some of the most passionate thinkers and inventors from around the world.') }}</p>
+              <p class="go">{{ _('Come to the Mozilla Festival') }}</p>
+            </a>
+          </div>
+        </div>
+      </li>
+    {% endif %}
+
     </ul>
   </section>
 
