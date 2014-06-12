@@ -475,6 +475,14 @@ class TestWhatsNew(TestCase):
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/australis/whatsnew-no-tour.html'])
 
+    @override_settings(DEV=True)
+    def test_rv_prefix(self, render_mock):
+        """Prefixed oldversion shouldn't impact version sniffing."""
+        req = self.rf.get('/en-US/firefox/whatsnew/?oldversion=rv:10.0')
+        self.view(req, fx_version='30.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/australis/whatsnew-tour.html'])
+
     @override_settings(DEV=False)
     def test_fx_australis_secure_redirect(self, render_mock):
         """Should redirect to https: for 29.0."""
@@ -764,6 +772,9 @@ class TestWhatsnewRedirect(FxVersionRedirectsMixin, TestCase):
         self.assertIn(self.expected, response.content)
 
         response = self.client.get(self.url + '?oldversion=4.0', HTTP_USER_AGENT=self.user_agent)
+        self.assertIn(self.expected, response.content)
+
+        response = self.client.get(self.url + '?oldversion=rv:10.0', HTTP_USER_AGENT=self.user_agent)
         self.assertIn(self.expected, response.content)
 
         response = self.client.get(self.url + '?oldversion=29.0', HTTP_USER_AGENT=self.user_agent)
