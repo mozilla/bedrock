@@ -45,6 +45,16 @@
     font-style: normal;
 }
 
+// Montserrat used in the World Cup 2014 promo
+@font-face {
+    font-family: 'Montserrat';
+    src: url('/media/fonts/Montserrat-Bold.eot?#iefix') format('embedded-opentype'),
+         url('/media/fonts/Montserrat-Bold.woff') format('woff'),
+         url('/media/fonts/Montserrat-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
 
 // Tab
 
@@ -359,7 +369,6 @@ html[dir='rtl'] #tabzilla {
     }
 }
 
-// Firefox Flicks Promo
 
 #tabzilla-promo .snippet {
     padding: 0;
@@ -390,19 +399,7 @@ html[dir='rtl'] #tabzilla {
     font-family: inherit;
 }
 
-#tabzilla-promo .snippet#tabzilla-promo-flicks a {
-    padding: 40px 35px;
-    background-color: #212a2f;
-    background-image: url('/media/img/tabzilla/promo-flicks.jpg');
-    background-position: 0 100%;
-    overflow: hidden;
-}
-
-#tabzilla-promo .snippet#tabzilla-promo-flicks a h4,
-#tabzilla-promo .snippet#tabzilla-promo-flicks a p {
-	position: relative;
-	left: -400px;
-}
+// Firefox OS promo
 
 #tabzilla-promo .snippet#tabzilla-promo-fxos a {
     background-image: url('/media/img/tabzilla/promo-fxos.png');
@@ -482,82 +479,6 @@ html[lang="ml"] {
 html[lang="km"] {
     #tabzilla-promo .snippet#tabzilla-promo-fxos a h4 {
         font-family: sans-serif; /* Do not use Open Sans ExtraBoldItalic */
-    }
-}
-
-// MWC 2014 promos
-html[lang='de'] {
-    #tabzilla-promo .snippet#tabzilla-promo-mwc a {
-        h4 {
-            font-size: 38px;
-            line-height: 40px;
-            margin-bottom: 40px;
-        }
-    }
-}
-
-html[lang='el'] {
-    #tabzilla-promo .snippet#tabzilla-promo-mwc a {
-        h4 {
-            font-size: 36px;
-            line-height: 40px;
-            margin-bottom: 40px;
-        }
-    }
-}
-
-html[lang='hu'] {
-    #tabzilla-promo .snippet#tabzilla-promo-mwc a {
-        h4 {
-            font-size: 44px;
-            margin-bottom: 60px;
-        }
-
-        p {
-            width: 120px;
-        }
-    }
-}
-
-html[lang='it'] {
-    #tabzilla-promo .snippet#tabzilla-promo-mwc a {
-        p {
-            width: 115px;
-        }
-    }
-}
-
-html[lang='ja'] {
-    #tabzilla-promo .snippet#tabzilla-promo-mwc a {
-        h4 {
-            font-size: 43px;
-            margin-bottom: 60px;
-        }
-    }
-}
-
-html[lang='sr'],
-html[lang='cs'] {
-    #tabzilla-promo .snippet#tabzilla-promo-mwc a {
-        h4 {
-            font-size: 42px;
-        }
-    }
-}
-
-html[lang|='es'] {
-    #tabzilla-promo .snippet#tabzilla-promo-mwc a {
-        h4 {
-            font-size: 40px;
-        }
-    }
-}
-
-html[lang|='zh'] {
-    #tabzilla-promo .snippet#tabzilla-promo-mwc a {
-        h4 {
-            margin-bottom: 78px;
-        }
     }
 }
 
@@ -678,6 +599,59 @@ html[dir="rtl"] {
         background-image: url("/media/img/tabzilla/promo-webwewant-reversed.jpg");
         p {
             margin: 0 0 0 80px;
+        }
+    }
+}
+
+// World Cup 2014 Promo
+
+#tabzilla-promo .snippet#tabzilla-promo-worldcup2014 a {
+    background: #3191c4 url(/media/img/tabzilla/promo-worldcup2014.jpg) no-repeat;
+    width: 180px;
+    height: 140px;
+    padding: 60px 90px 10px 30px;
+    color: #fff;
+
+    h4 {
+        color: #fff;
+        font: bold 28px/1 'Montserrat', 'Open Sans', sans-serif;
+        letter-spacing: -.025em;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+        text-transform: uppercase;
+        margin: 0 0 8px;
+    }
+
+    .button {
+        text-align: left;
+
+        &:after {
+            content: "\00A0\00BB"; /* nbsp raquo */
+        }
+    }
+}
+
+[lang='pl'],
+[lang='sr'] {
+    #tabzilla-promo .snippet#tabzilla-promo-worldcup2014 a h4 {
+        font-size: 24px;
+    }
+}
+
+[lang='fr'],
+[lang='el'] {
+    #tabzilla-promo .snippet#tabzilla-promo-worldcup2014 a h4 {
+        font-size: 22px;
+    }
+}
+
+[lang='de'],
+[lang='da'] {
+    #tabzilla-promo .snippet#tabzilla-promo-worldcup2014 a {
+        padding-top: 110px;
+        height: 90px;
+
+        h4 {
+            font-size: 18px;
         }
     }
 }
