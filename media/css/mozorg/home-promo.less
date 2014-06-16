@@ -342,6 +342,35 @@
 
 
 /****************************************************************************/
+// Net Neutrality
+#panel-netneutrality {
+    background: #666 url(/media/img/home/panel/netneutrality/bg-flat.jpg) no-repeat;
+    background: url(/media/img/home/panel/netneutrality/protect-net-neutrality.png) 50px 60px no-repeat,
+                url(/media/img/home/panel/netneutrality/bg-lanes.png) -660px 0 no-repeat,
+                #666 url(/media/img/home/panel/netneutrality/bg-gradient.png) repeat-x;
+
+    &.expanded {
+        background-position: 0 0;
+        background-position: 80px 60px, -540px 0, 0 0;
+    }
+
+    &.compressed {
+        background-position: 0 0;
+        background-position: 10px 60px, -700px 0, 0 0;
+    }
+
+}
+
+.wide #panel-netneutrality .panel-title {
+    background: #444;
+    background: rgba(0, 0, 0, .8);
+    background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, .8) 65%, rgba(0, 0, 0, 0) 100%);
+    background:         linear-gradient(to top, rgba(0, 0, 0, .8) 65%, rgba(0, 0, 0, 0) 100%);
+}
+
+
+
+/****************************************************************************/
 // @High resolution images for @retina-type displays
 // Desktop
 @media (-webkit-min-device-pixel-ratio: 1.5),
@@ -375,6 +404,13 @@
                           url(/media/img/home/panel/mozfest/bg-mosaic.jpg);
         background-size: 360px 360px;
         background-size: 360px 360px, auto auto;
+    }
+
+    #panel-netneutrality {
+        background-image: url(/media/img/home/panel/netneutrality/protect-net-neutrality-hires.png),
+                          url(/media/img/home/panel/netneutrality/bg-lanes.png),
+                          url(/media/img/home/panel/netneutrality/bg-gradient.png);
+        background-size: 140px 190px, auto auto, auto auto;
     }
 
 }
@@ -530,6 +566,22 @@
 
         &.compressed .ball {
             left: -180px;
+        }
+    }
+
+    // Net Neutrality
+    #panel-netneutrality {
+        background-position: 0 0;
+        background-position: 20px 60px, -690px 0, 0 0;
+
+        &.expanded {
+            background-position: 0 0;
+            background-position: 40px 60px, -580px 0, 0 0;
+        }
+
+        &.compressed {
+            background-position: 0 0;
+            background-position: -10px 60px, -700px 0, 0 0;
         }
     }
 
@@ -756,6 +808,23 @@
         }
     }
 
+    // Net Neutrality
+    #panel-netneutrality {
+        background-position: 0 0;
+        background-position: 12px -40px, -640px -40px, 0 0;
+        background-size: 90px 122px, auto auto, auto auto;
+
+        &.expanded {
+            background-position: 0 0;
+            background-position: 12px 20px, -640px 0, 0 0;
+        }
+
+        &.compressed {
+            background-position: 0 0;
+            background-position: 12px -50px, -640px -80px, 0 0;
+        }
+    }
+
 }
 
 
@@ -932,6 +1001,23 @@
         }
     }
 
+    // Net Neutrality
+    #panel-netneutrality {
+        background-position: 0 0;
+        background-position: 15px -100px, -640px -40px, 0 0;
+        background-size: auto auto;
+
+        &.expanded {
+            background-position: 0 0;
+            background-position: 15px 20px, -640px 0, 0 0;
+        }
+
+        &.compressed {
+            background-position: 0 0;
+            background-position: 15px -120px, -640px -80px, 0 0;
+        }
+    }
+
 }
 
 /****************************************************************************/
@@ -982,6 +1068,11 @@
     #panel-fxdesktop {
         background-size: 180px 185px;
         background-size: 180px 185px, auto auto;
+    }
+
+    #panel-netneutrality {
+        background-size: auto auto;
+        background-size: 140px 190px, auto auto, auto auto;
     }
 
 }

@@ -19,9 +19,8 @@
 }
 
 // Add a double-arrow after 'go' links
-.go:after {
-    content: ' »';
-    white-space: nowrap;
+.go {
+    .trailing-arrow();
 }
 
 // A few styles for non-JS browsers
@@ -184,15 +183,12 @@
     bottom: 0;
     left: -5px;
     z-index: 6;
+    .trailing-arrow();
 
     i {
         font-style: normal;
     }
 
-    &:after {
-        content: ' »';
-        white-space: nowrap;
-    }
 }
 
 // An inner wrapper mostly useful as an overlay for background effects.
