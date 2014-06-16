@@ -131,6 +131,38 @@ class TestStudentAmbassadorsJoin(TestCase):
                                         data=request_data)
 
 
+class TestContributeStudentAmbassadorsLanding(TestCase):
+    def setUp(self):
+        self.rf = RequestFactory()
+        self.get_req = self.rf.get('/')
+        self.no_exist = views.TwitterCache.DoesNotExist()
+
+    @patch.object(views.l10n_utils, 'render')
+    @patch.object(views.TwitterCache, 'objects')
+    def test_db_exception_works(self, mock_manager, mock_render):
+        """View should function properly without the DB."""
+        mock_manager.get.side_effect = views.DatabaseError
+        views.contribute_studentambassadors_landing(self.get_req)
+        mock_render.assert_called_with(ANY, ANY, {'tweets': []})
+
+    @patch.object(views.l10n_utils, 'render')
+    @patch.object(views.TwitterCache, 'objects')
+    def test_no_db_row_works(self, mock_manager, mock_render):
+        """View should function properly without data in the DB."""
+        mock_manager.get.side_effect = views.TwitterCache.DoesNotExist
+        views.contribute_studentambassadors_landing(self.get_req)
+        mock_render.assert_called_with(ANY, ANY, {'tweets': []})
+
+    @patch.object(views.l10n_utils, 'render')
+    @patch.object(views.TwitterCache, 'objects')
+    def test_db_cache_works(self, mock_manager, mock_render):
+        """View should use info returned by DB."""
+        good_val = 'The Dude tweets, man.'
+        mock_manager.get.return_value.tweets = good_val
+        views.contribute_studentambassadors_landing(self.get_req)
+        mock_render.assert_called_with(ANY, ANY, {'tweets': good_val})
+
+
 @patch.object(l10n_utils.dotlang, 'lang_file_is_active', lambda *x: True)
 class TestContribute(TestCase):
     def setUp(self):
