@@ -15,7 +15,7 @@
                 // add a callback when user finishes tour to update the cta
                 // id is used for Telemetry
                 var tour = new Mozilla.BrowserTour({
-                    id: 'australis-tour-firstrun-29-release'
+                    id: $('#tour-page').data('telemetry')
                 });
 
                 tour.init();

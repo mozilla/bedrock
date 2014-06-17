@@ -12,6 +12,8 @@
 
 {% block body_id %}whatsnew{% endblock %}
 
+{% block telemetry_id %}australis-tour-whatsnew-29-release{% endblock %}
+
 {% block doorhanger_title %}
   {# L10n: This is the title for a door-hanger menu that shows in the browser chrome #}
   data-title="{{ _('See what’s new') }}"
@@ -22,7 +24,7 @@
 {% endblock %}
 
 {% block js %}
-  {{ js('firefox_tour_whatsnew') }}
+  {{ js('firefox_tour') }}
 {% endblock %}
 
 {% block main_heading %}
