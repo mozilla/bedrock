@@ -1,0 +1,30 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends 'foundation/base-resp.html' %}
+
+{% block page_title %}{{ _('Certificate of Second Amendment to the Bylaws of Mozilla Corporation') }}{% endblock %}
+
+{% block article_title %}
+  <h1 class="page-title">{{ self.page_title() }}</h1>
+{% endblock %}
+
+{% block article %}
+<p>{{ _('The undersigned certify that:') }}</p>
+
+<ol>
+  <li><p>{{ _('They are the president and the secretary, respectively, of M.F. Technologies, a California corporation.') }}</p></li>
+  <li><p>{{ _('Article 1. of the Articles of Incorporation is amended to read as follows: "The name of the Corporation is Mozilla Corporation (the "Corporation")."') }}</p></li>
+  <li><p>{{ _('The foregoing amendment of Articles of Incorporation has been duly approved by the board of directors.') }}</p></li>
+  <li><p>{{ _('The foregoing amendment of Articles of Incorporation has been duly approved by the required vote of shareholders in accordance with Section 902, California Corporations Code. The total number of outstanding shares of the corporation is 1,000 shares of Common Stock. The number of shares voting in favor of the amendment equaled or exceeded the vote required. The percentage vote required was more than 50%.') }}</p></li>
+</ol>
+
+<p>{{ _('We further declare under penalty of perjury under the laws of the State of California that the matters set forth in this certificate are true and correct of our own knowledge.') }}</p>
+
+<p>{{ _('DATE: August 2, 2005') }}</p>
+
+<p>{{ _('Mitchell Baker, President') }}</p>
+
+<p>{{ _('Christopher Blizzard, Secretary') }}</p>
+{% endblock %}
