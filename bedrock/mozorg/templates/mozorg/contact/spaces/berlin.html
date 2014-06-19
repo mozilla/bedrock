@@ -26,6 +26,13 @@
           <img src="//api.tiles.mapbox.com/v3/{{ settings.MAPBOX_TOKEN }}/url-{{ 'mozorg.cdn.mozilla.net/media/img/contact/moz-map-pin.png'|urlencode }}(13.38935,52.54175)/13.38935,52.54175,16/460x250.png" alt="">
         </figure>
       </div>
+
+      <p><em>
+      {{ _('This Mozilla Space is not a support center.') }}
+      {% trans link_sumo='https://support.mozilla.org/' %}
+        Need help with Firefox? <a href="{{ link_sumo }}" class="go">Get it on our support site</a>
+      {% endtrans %}
+      </em></p>
     </section>
   </div>
 {% endblock %}
