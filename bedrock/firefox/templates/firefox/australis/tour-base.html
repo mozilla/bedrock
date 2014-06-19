@@ -50,7 +50,7 @@ data-has-tour="True"
 {% endblock %}
 
 {% block content %}
-  <article>
+  <article id="tour-page" data-telemetry="{% block telemetry_id %}{% endblock %}">
     {% block main_heading %}{% endblock %}
     <div class="main-container">
       <section class="sync">

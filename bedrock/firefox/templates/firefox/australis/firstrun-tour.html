@@ -12,6 +12,8 @@
 
 {% block body_id %}firstrun{% endblock %}
 
+{% block telemetry_id %}australis-tour-firstrun-29-release{% endblock %}
+
 {% block doorhanger_title %}
   {% if l10n_has_tag('new_doorhanger') or settings.DEV %}
     {# L10n: This is the title for a door-hanger menu that shows in the browser chrome #}
@@ -27,7 +29,7 @@
 {% endblock %}
 
 {% block js %}
-  {{ js('firefox_tour_firstrun') }}
+  {{ js('firefox_tour') }}
 {% endblock %}
 
 {% block main_heading %}

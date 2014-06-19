@@ -565,19 +565,12 @@ MINIFY_BUNDLES = {
             'js/firefox/sync-animation.js',
             'js/firefox/sync.js',
         ),
-        'firefox_tour_whatsnew': (
+        'firefox_tour': (
             'js/libs/jquery.waypoints.min.js',
             'js/firefox/australis/australis-uitour.js',
             'js/firefox/australis/browser-tour.js',
             'js/firefox/australis/common.js',
-            'js/firefox/australis/whatsnew.js',
-        ),
-        'firefox_tour_firstrun': (
-            'js/libs/jquery.waypoints.min.js',
-            'js/firefox/australis/australis-uitour.js',
-            'js/firefox/australis/browser-tour.js',
-            'js/firefox/australis/common.js',
-            'js/firefox/australis/firstrun.js',
+            'js/firefox/australis/tour.js',
         ),
         'firefox_tour_none': (
             'js/libs/jquery.waypoints.min.js',

@@ -4,7 +4,7 @@
     // Mozilla.UITour should run on Firefox 29 and above for Desktop only.
     if (window.isFirefox() && !window.isFirefoxMobile() && window.getFirefoxMasterVersion() >= 29) {
         // Register page id for Telemetry
-        Mozilla.UITour.registerPageID('australis-29-release-no-tour');
+        Mozilla.UITour.registerPageID($('#tour-page').data('telemetry'));
 
         // if user has Sync already, don't show the page prommo
         Mozilla.UITour.getConfiguration('sync', function (config) {

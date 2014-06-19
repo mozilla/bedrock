@@ -460,7 +460,7 @@ class WhatsnewView(LatestFxView):
 
 
 class TourView(LatestFxView):
-    template_name = 'firefox/australis/firstrun-tour.html'
+    template_name = 'firefox/australis/help-menu-tour.html'
 
     def get(self, request, *args, **kwargs):
         if not settings.DEV and not request.is_secure():
