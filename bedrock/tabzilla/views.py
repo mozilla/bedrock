@@ -8,6 +8,7 @@ from datetime import datetime
 from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.template import loader
+from django.views.decorators.gzip import gzip_page
 from django.views.decorators.http import last_modified
 from django.views.decorators.vary import vary_on_headers
 
@@ -52,6 +53,7 @@ def _resp(request, path, ctype, context=None):
 @cache_control_expires(12)
 @last_modified(template_last_modified('tabzilla/tabzilla.js'))
 @vary_on_headers('Accept-Language')
+@gzip_page
 def tabzilla_js(request):
     return _resp(request, 'tabzilla/tabzilla.js', 'text/javascript',
                  {'accept_languages': l10n_utils.get_accept_languages(request)})
