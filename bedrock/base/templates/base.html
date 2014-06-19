@@ -79,7 +79,7 @@
     {% endblock %}
   </head>
 
-  <body id="{% block body_id %}{% endblock %}" class="html-{{ DIR }} {% block body_class %}{% endblock %}"{% block body_attrs %}{% endblock %}>
+  <body {% if self.body_id() %}id="{% block body_id %}{% endblock %}" {% endif %}class="html-{{ DIR }} {% block body_class %}{% endblock %}"{% block body_attrs %}{% endblock %}>
     <div id="strings" data-global-close="{{ _('Close') }}" {% block string_data %}{% endblock %}></div>
     <div id="outer-wrapper">
     <div id="wrapper">
