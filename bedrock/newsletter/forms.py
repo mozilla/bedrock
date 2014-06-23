@@ -2,6 +2,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
+import re
 from operator import itemgetter
 
 from django import forms
@@ -15,6 +16,20 @@ from bedrock.mozorg.forms import (FORMATS, EmailInput, PrivacyWidget,
                                   SideRadios, strip_parenthetical)
 from bedrock.newsletter import utils
 from lib.l10n_utils.dotlang import _, _lazy
+
+
+_newsletters_re = re.compile(r'^[\w,-]+$')
+
+
+def validate_newsletters(newsletters):
+    if not newsletters:
+        raise ValidationError('No Newsletter Provided')
+
+    newsletters = newsletters.replace(' ', '')
+    if not _newsletters_re.match(newsletters):
+        raise ValidationError('Invalid Newsletter')
+
+    return newsletters
 
 
 def get_lang_choices(newsletters=None):
@@ -206,12 +221,19 @@ class NewsletterFooterForm(forms.Form):
                             initial='H')
     privacy = forms.BooleanField(widget=PrivacyWidget)
     source_url = forms.URLField(required=False)
+    newsletters = forms.CharField(widget=forms.HiddenInput,
+                                  required=True,
+                                  max_length=100)
 
-    def __init__(self, newsletters, locale, *args, **kwargs):
+    # has to take a newsletters argument so it can figure
+    # out which languages to list in the form.
+    def __init__(self, newsletters, locale, data=None, *args, **kwargs):
         regions = product_details.get_regions(locale)
         regions = sorted(regions.iteritems(), key=itemgetter(1))
 
-        self.newsletters = newsletters.replace(' ', '')
+        newsletters = validate_newsletters(newsletters)
+        if data and 'newsletters' not in data:
+            data['newsletters'] = newsletters
 
         lang = locale.lower()
         if '-' in lang:
@@ -219,7 +241,7 @@ class NewsletterFooterForm(forms.Form):
         else:
             country = ''
             regions.insert(0, ('', _lazy('Select country')))
-        lang_choices = get_lang_choices(self.newsletters)
+        lang_choices = get_lang_choices(newsletters)
         languages = [x[0] for x in lang_choices]
         if lang not in languages:
             # The lang from their locale is not one that our newsletters
@@ -229,7 +251,7 @@ class NewsletterFooterForm(forms.Form):
             lang = ''
             lang_choices.insert(0, ('', _lazy('Available Languages')))
 
-        super(NewsletterFooterForm, self).__init__(*args, **kwargs)
+        super(NewsletterFooterForm, self).__init__(data, *args, **kwargs)
 
         required_args = {
             'required': 'required',
@@ -245,6 +267,10 @@ class NewsletterFooterForm(forms.Form):
                                                      choices=lang_choices,
                                                      initial=lang,
                                                      required=False)
+        self.fields['newsletters'].initial = newsletters
+
+    def clean_newsletters(self):
+        return validate_newsletters(self.cleaned_data['newsletters'])
 
 
 class EmailForm(forms.Form):

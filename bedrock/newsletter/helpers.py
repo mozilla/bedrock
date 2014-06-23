@@ -4,14 +4,11 @@
 
 import logging
 
-import basket
-import basket.errors
 import jingo
 import jinja2
 
 from lib.l10n_utils import get_locale
 from bedrock.newsletter.forms import NewsletterFooterForm
-from bedrock.newsletter.views import invalid_email_address, general_error
 
 
 log = logging.getLogger(__name__)
@@ -24,6 +21,15 @@ def email_newsletter_form(ctx, newsletters='mozilla-and-you', title=None,
                           use_thankyou=True, footer=True, process_form=True):
     request = ctx['request']
     context = ctx.get_all()
+
+    success = bool(ctx.get('success'))
+    if success and not use_thankyou:
+        return
+
+    form = ctx.get('newsletter_form', None)
+    if not form:
+        form = NewsletterFooterForm(newsletters, get_locale(request))
+
     context.update(dict(
         id=newsletters,
         title=title,
@@ -31,40 +37,9 @@ def email_newsletter_form(ctx, newsletters='mozilla-and-you', title=None,
         include_language=include_language,
         use_thankyou=use_thankyou,
         footer=footer,
+        form=form,
+        success=success,
     ))
-    success = False
-    form = NewsletterFooterForm(newsletters, get_locale(request),
-                                request.POST or None)
 
-    if process_form and request.method == 'POST':
-        if form.is_valid():
-            data = form.cleaned_data
-
-            # If data['lang'] is set, pass it to the template.
-            # If it's None, empty, or nonexistent, pass 'en'.
-            context['lang'] = data.get('lang', 'en').strip() or 'en'
-
-            kwargs = {'format': data['fmt']}
-            # add optional data
-            kwargs.update(dict((k, data[k]) for k in ['country',
-                                                      'lang',
-                                                      'source_url']
-                               if data[k]))
-            try:
-                basket.subscribe(data['email'], form.newsletters,
-                                 **kwargs)
-            except basket.BasketException as e:
-                if e.code == basket.errors.BASKET_INVALID_EMAIL:
-                    form.errors['email'] = form.error_class([invalid_email_address])
-                else:
-                    log.exception("Error subscribing %s to newsletter %s" %
-                                  (data['email'], form.newsletters))
-                    form.errors['__all__'] = form.error_class([general_error])
-            else:
-                success = True
-
-    request.newsletter_success = success
-    context.update(dict(form=form, success=success))
     html = jingo.render_to_string(request, 'newsletter/includes/form.html', context)
-    if not (success and not use_thankyou):
-        return jinja2.Markup(html)
+    return jinja2.Markup(html)

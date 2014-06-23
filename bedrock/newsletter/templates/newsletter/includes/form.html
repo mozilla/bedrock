@@ -2,6 +2,16 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
+{% macro email_form_thankyou() %}
+  <h3>{{ _('Thanks! Please check your inbox to confirm your subscription.') }}</h3>
+  <p>
+    {% trans %}
+      You'll receive an email from mozilla@e.mozilla.org to confirm your subscription.
+      If you don't see it, check your spam filter. You must confirm your subscription to receive our newsletter.
+    {% endtrans %}
+  </p>
+{% endmacro %}
+
 {% if not success %}
   {% if form.errors %}
     <div id="footer-email-errors">
@@ -21,16 +31,15 @@
         {% endif %}
       </ul>
     </div>
+  {% else %}
+    <div id="footer-email-errors" class="hidden">
+      <ul class="errorlist"></ul>
+    </div>
   {% endif %}
 
-  <form class="billboard newsletter-form{% if form.errors %} has-errors{% endif %}"
-    {% if footer %}
-        id="footer-email-form" action="{{ secure_url() }}#footer-email-form"
-    {% else %}
-        id="newsletter-form" action="{{ secure_url() }}"
-    {% endif %}
-        method="post">
-    <input type="hidden" name="newsletter" value="{{ id }}">
+  <form class="billboard newsletter-form{% if footer %} footer-newsletter-form{% endif %}{% if form.errors %} has-errors{% endif %}"
+        id="newsletter-form" action="{{ url('newsletter.subscribe') }}" method="post">
+    {{ form.newsletters|safe }}
     <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
 
     {% if footer %}
@@ -71,14 +80,11 @@
       </p>
     </div>
   </form>
+  <div id="newsletter-form-thankyou" class="thank billboard newsletter-form">
+    {{ email_form_thankyou() }}
+  </div>
 {% elif use_thankyou %}
-  <div id="footer-email-form" class="thank billboard newsletter-form">
-    <h3>{{ _('Thanks! Please check your inbox to confirm your subscription.') }}</h3>
-    <p>
-      {% trans %}
-        You'll receive an email from mozilla@e.mozilla.org to confirm your subscription.
-        If you don't see it, check your spam filter. You must confirm your subscription to receive our newsletter.
-      {% endtrans %}
-    </p>
+  <div id="newsletter-form" class="thank billboard newsletter-form footer-newsletter-form">
+    {{ email_form_thankyou() }}
   </div>
 {% endif %}

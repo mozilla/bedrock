@@ -22,9 +22,10 @@ from lib.l10n_utils.dotlang import _, _lazy
 from commonware.decorators import xframe_allow
 from funfactory.urlresolvers import reverse
 
-from .forms import (EmailForm, ManageSubscriptionsForm, NewsletterForm)
+from .forms import (EmailForm, ManageSubscriptionsForm, NewsletterForm, NewsletterFooterForm)
 # Cannot use short "from . import utils" because we need to mock
 # utils.get_newsletters in our tests
+from bedrock.mozorg.util import HttpResponseJSON
 from bedrock.newsletter import utils
 
 
@@ -391,7 +392,7 @@ def recovery(request):
                 if e.code in (basket.errors.BASKET_UNKNOWN_EMAIL,
                               basket.errors.BASKET_INVALID_EMAIL):
                     # Tell them, give them a link to go subscribe if they want
-                    url = reverse('newsletter.mozilla-and-you')
+                    url = reverse('newsletter.subscribe')
                     form.errors['email'] = \
                         form.error_class([unknown_address_text % url])
                 else:
@@ -416,3 +417,60 @@ def recovery(request):
         {
             'form': form,
         })
+
+
+def newsletter_subscribe(request):
+    if request.method == 'POST':
+        newsletters = request.POST.get('newsletters', None)
+        form = NewsletterFooterForm(newsletters,
+                                    l10n_utils.get_locale(request),
+                                    request.POST)
+        errors = []
+        if form.is_valid():
+            data = form.cleaned_data
+
+            kwargs = {'format': data['fmt']}
+            # add optional data
+            kwargs.update(dict((k, data[k]) for k in ['country',
+                                                      'lang',
+                                                      'source_url']
+                               if data[k]))
+            try:
+                basket.subscribe(data['email'], data['newsletters'],
+                                 **kwargs)
+            except basket.BasketException as e:
+                if e.code == basket.errors.BASKET_INVALID_EMAIL:
+                    errors.append(unicode(invalid_email_address))
+                else:
+                    log.exception("Error subscribing %s to newsletter %s" %
+                                  (data['email'], form.newsletters))
+                    errors.append(unicode(general_error))
+
+        else:
+            if 'email' in form.errors:
+                errors.append(_('Please enter a valid email address'))
+            if 'privacy' in form.errors:
+                errors.append(_('You must agree to the privacy policy'))
+            for fieldname in ('fmt', 'lang', 'country'):
+                if fieldname in form.errors:
+                    errors.extend(form.errors[fieldname])
+
+        if request.is_ajax():
+            # return JSON
+            if errors:
+                resp = {
+                    'success': False,
+                    'errors': errors,
+                }
+            else:
+                resp = {'success': True}
+
+            return HttpResponseJSON(resp)
+        else:
+            ctx = {'newsletter_form': form}
+            if not errors:
+                ctx['success'] = True
+
+            return l10n_utils.render(request, 'newsletter/mozilla-and-you.html', ctx)
+
+    return l10n_utils.render(request, 'newsletter/mozilla-and-you.html')
