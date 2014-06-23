@@ -1,6 +1,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
+import json
 import uuid
 
 from django.http import HttpResponse
@@ -10,10 +11,12 @@ from basket import BasketException, errors
 from funfactory.urlresolvers import reverse
 from mock import DEFAULT, Mock, patch
 from nose.tools import eq_, ok_
+from pyquery import PyQuery as pq
 
 from bedrock.mozorg.tests import TestCase
 from bedrock.newsletter.tests import newsletters
-from bedrock.newsletter.views import unknown_address_text, recovery_text, updated
+from bedrock.newsletter.views import (newsletter_subscribe, recovery_text,
+                                      unknown_address_text, updated)
 
 
 cache_mock = Mock()
@@ -488,7 +491,7 @@ class TestRecoveryView(TestCase):
         self.assertEqual(200, rsp.status_code)
         form = rsp.context['form']
         expected_error = unknown_address_text % \
-            reverse('newsletter.mozilla-and-you')
+            reverse('newsletter.subscribe')
         self.assertIn(expected_error, form.errors['email'])
 
     @patch('django.contrib.messages.add_message', autospec=True)
@@ -508,3 +511,89 @@ class TestRecoveryView(TestCase):
         self.assertEqual(1, add_msg.call_count,
                          msg=repr(add_msg.call_args_list))
         self.assertIn(recovery_text, add_msg.call_args[0])
+
+
+class TestNewsletterSubscribe(TestCase):
+    def setUp(self):
+        self.rf = RequestFactory()
+
+    def ajax_request(self, data):
+        return self.request(data, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+
+    def request(self, data=None, **kwargs):
+        if data:
+            req = self.rf.post('/', data, **kwargs)
+        else:
+            req = self.rf.get('/', **kwargs)
+
+        return newsletter_subscribe(req)
+
+    def test_returns_ajax_errors(self):
+        """Incomplete data should return specific errors in JSON"""
+        data = {
+            'newsletters': 'flintstones',
+            'email': 'fred@example.com',
+            'fmt': 'H',
+        }
+        resp = self.ajax_request(data)
+        resp_data = json.loads(resp.content)
+        self.assertFalse(resp_data['success'])
+        self.assertEqual(len(resp_data['errors']), 1)
+        self.assertIn('privacy', resp_data['errors'][0])
+
+    @patch('bedrock.newsletter.views.basket')
+    def test_returns_ajax_success(self, basket_mock):
+        """Good post should return success JSON"""
+        data = {
+            'newsletters': 'flintstones',
+            'email': 'fred@example.com',
+            'fmt': 'H',
+            'privacy': True,
+        }
+        resp = self.ajax_request(data)
+        resp_data = json.loads(resp.content)
+        self.assertDictEqual(resp_data, {'success': True})
+        basket_mock.subscribe.assert_called_with('fred@example.com', 'flintstones',
+                                                 format='H')
+
+    def test_shows_normal_form(self):
+        """A normal GET should show the form."""
+        resp = self.request()
+        doc = pq(resp.content)
+        self.assertTrue(doc('#newsletter-form'))
+        self.assertTrue(doc('input[value="mozilla-and-you"]'))
+
+    @patch('bedrock.newsletter.views.basket')
+    def test_returns_success(self, basket_mock):
+        """Good non-ajax post should return thank-you page."""
+        data = {
+            'newsletters': 'flintstones',
+            'email': 'fred@example.com',
+            'fmt': 'H',
+            'privacy': True,
+        }
+        resp = self.request(data)
+        doc = pq(resp.content)
+        self.assertFalse(doc('#footer_email_submit'))
+        self.assertFalse(doc('input[value="mozilla-and-you"]'))
+        self.assertTrue(doc('#email-form').hasClass('thank'))
+        basket_mock.subscribe.assert_called_with('fred@example.com', 'flintstones',
+                                                 format='H')
+
+    @patch('bedrock.newsletter.views.basket')
+    def test_returns_failure(self, basket_mock):
+        """Bad non-ajax post should return form with errors."""
+        data = {
+            'newsletters': 'flintstones',
+            'email': 'fred@example.com',
+            'fmt': 'H',
+        }
+        resp = self.request(data)
+        doc = pq(resp.content)
+        self.assertTrue(doc('#newsletter-form'))
+        self.assertFalse(doc('input[value="mozilla-and-you"]'))
+        self.assertTrue(doc('input[value="flintstones"]'))
+        self.assertFalse(doc('#email-form').hasClass('thank'))
+        self.assertTrue(doc('.field-privacy').hasClass('form-field-error'))
+        self.assertIn('privacy', doc('#footer-email-errors .errorlist li').eq(0).text())
+        self.assertFalse(basket_mock.subscribe.called)

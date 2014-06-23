@@ -6,16 +6,14 @@ from django.conf import settings
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
-import basket
 import jingo
 from funfactory.urlresolvers import reverse
-from nose.tools import assert_false, eq_, ok_
+from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 from rna.models import Release
 
 from bedrock.mozorg.helpers.misc import releasenotes_url
 from bedrock.mozorg.tests import TestCase
-from bedrock.newsletter.tests.test_views import newsletters
 
 
 TEST_FILES_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)),
@@ -235,69 +233,6 @@ class TestVideoTag(TestCase):
         doc = pq(render("{{ video%s }}" % str(tuple(videos))))
 
         eq_(doc('video object').length, 0)
-
-
-@patch.object(settings, 'ROOT_URLCONF', 'bedrock.mozorg.tests.urls')
-class TestNewsletterFunction(TestCase):
-    def test_get_form(self):
-        response = self.client.get('/en-US/base/')
-        doc = pq(response.content)
-        assert_false(doc('#footer-email-errors'))
-        ok_(doc('form#footer-email-form'))
-
-    @patch('bedrock.newsletter.utils.get_newsletters')
-    @patch.object(basket, 'subscribe')
-    def test_post_correct_form(self, sub_mock, get_newsletters):
-        get_newsletters.return_value = newsletters
-        data = {
-            'newsletter-footer': 'Y',
-            'newsletter': 'mozilla-and-you',
-            'email': 'foo@bar.com',
-            'country': 'us',
-            'lang': 'en',
-            'fmt': 'H',
-            'privacy': 'Y',
-            'source_url': 'http://allizom.com/en-US/base/',
-        }
-        response = self.client.post('/en-US/base/', data)
-        doc = pq(response.content)
-        assert_false(doc('form#footer-email-form'))
-        ok_(doc('div#footer-email-form.thank'))
-        sub_mock.assert_called_with(
-            'foo@bar.com', 'mozilla-and-you',
-            format='H', country='us', lang='en',
-            source_url='http://allizom.com/en-US/base/')
-
-    @patch('bedrock.newsletter.utils.get_newsletters')
-    @patch.object(basket, 'subscribe')
-    def test_post_form_country_url_not_required(self, sub_mock,
-                                                get_newsletters):
-        """
-        Form should successfully post without country or src url.
-        """
-        get_newsletters.return_value = newsletters
-        data = {
-            'newsletter-footer': 'Y',
-            'newsletter': 'mozilla-and-you',
-            'email': 'foo@bar.com',
-            'lang': 'en',
-            'fmt': 'H',
-            'privacy': 'Y',
-        }
-        response = self.client.post('/en-US/base/', data)
-        doc = pq(response.content)
-        assert_false(doc('form#footer-email-form'))
-        ok_(doc('div#footer-email-form.thank'))
-        sub_mock.assert_called_with('foo@bar.com', 'mozilla-and-you',
-                                    format='H', lang='en')
-
-    @patch('bedrock.newsletter.utils.get_newsletters')
-    def test_post_wrong_form(self, get_newsletters):
-        get_newsletters.return_value = newsletters
-        response = self.client.post('/en-US/base/', {'newsletter-footer': 'Y'})
-        doc = pq(response.content)
-        ok_(doc('#footer-email-errors'))
-        ok_(doc('#footer-email-form.has-errors'))
 
 
 class TestPlatformImg(TestCase):
