@@ -747,8 +747,12 @@
             // if the layer exists clear the map and add it.
             if (layers.hasOwnProperty(region)) {
                 mozMap.clearCommunityLayers();
-                communityLayers.addLayer(layers[region]);
                 mozMap.fitRegionToLayer(region);
+                // mapbox needs a small timeout after zooming
+                // the region before adding the community layer
+                setTimeout(function () {
+                    communityLayers.addLayer(layers[region]);
+                }, 50);
             }
 
             mozMap.highlightLegend(region);
