@@ -3,20 +3,36 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 @import "template-resp.less";
+@import '../sandstone/lib.less';
+
+html {
+    background: #002e52;
+}
+
+h1,
+h2,
+h3,
+h4,
+#colophon {
+    color: white;
+}
+
+.sky #outer-wrapper {
+    background: url(/media/img/firefox/firstrun/grain.png?2014-06) repeat-x,
+                url(/media/img/firefox/firstrun/background-nightly.jpg?2014-06) no-repeat top center,
+                linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%,rgba(0, 0, 0, 1) 580px),
+                #003357;
+}
 
 #firstrun-header {
-    margin: 0 0 -15px 0;
-    padding: 20px 0 40px 150px;
-    min-height: 140px;
-    background: url(/media/img/firefox/firstrun/logo-nightly.png?2013-11) 0 0 no-repeat;
-    position: relative;
-    z-index: 10;
-    h2 {
-        font-size: 24px;
-    }
+    margin: 0;
+    padding-top: 240px;
+    background: url(/media/img/firefox/firstrun/logo-nightly.png?2014-06) no-repeat 50% 30px;
+    text-align: center;
 }
 
 main {
+    margin: 0 30px;
     a,
     a:link,
     a:visited {
@@ -27,80 +43,149 @@ main {
     a:focus {
         color: #0095DD;
     }
-    .column {
-        .span(4);
-        &:first-child {
-            margin-left: 0;
-        }
-        &:last-child {
-            margin-right: 0;
-        }
+
+    h1 {
+        .open-sans();
+        font-size: 48px;
+        text-shadow: 0 2px 0 rgba(0, 0, 0, .15);
+    }
+    h2 {
+        .open-sans();
+        font-size: 20px;
+        letter-spacing: 0;
+        color: #79d8ff;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, .15);
     }
     h4 {
-        font-size: 18px;
+        font-size: 29px;
+        text-transform: uppercase;
     }
-    li {
-        margin-bottom: 0.2em;
-    }
-}
 
-.feature-note {
-    text-align: center;
-    margin: (@baseLine * 2) auto;
-}
-
-#colophon {
-    width: 100%;
-    text-align: center;
-    nav {
-        ul {
-            margin-bottom: @baseLine / 2;
-        }
-        li {
-            display: inline;
-            a,
-            a:link,
-            a:visited {
-            .inline-block;
-            .open-sans-light;
-            padding: 2px 12px;
-            border-left: 1px dotted @borderColor;
-            color: @textColorPrimary;
-            }
-            &:first-child a {
-            border: 0;
-            }
-        }
-        .primary {
-            font-family: @baseFontFamily;
-            font-size: @baseFontSize;
-            a:after {
-            content: " »";
-            color: #2983c8;
-            }
-        }
-        .secondary {
-            font-size: 11px;
-            a,
-            a:link,
-            a:visited {
-            color: @textColorTertiary;
-            }
-        }
-    }
-}
-
-/* Tablet Layout: 760px */
-@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
-    main {
-        .column {
-            .span_narrow(4);
-            &:first-child {
-                margin-left: 0;
-            }
+    #nightly-box {
+        margin-top: 45px;
+        text-align: center;
+        .blue-box {
+            display: inline-block;
+            vertical-align: top;
+            height: 100%;
+            width: 238px;
+            padding: 19px 30px 30px 30px;
+            margin-right: 15px;
             &:last-child {
                 margin-right: 0;
             }
+            &.localize .title {
+                background: url(/media/img/firefox/firstrun/localize.png?2014-06) no-repeat top center;
+            }
+            &.code .title {
+                background: url(/media/img/firefox/firstrun/code.png?2014-06) no-repeat top center;
+            }
+            &.test .title {
+                background: url(/media/img/firefox/firstrun/test.png?2014-06) no-repeat top center;
+            }
+            .title {
+                padding-top: 85px;
+            }
+        }
+        .content {
+            border-top: 1px dotted #24375b;
+            margin-top: 10px;
+            padding-top: 30px;
+        }
+        a.button {
+            color: white;
+            font-size: 16px;
+            font-weight: normal;
+            text-transform: uppercase;
+            width: 100%;
+            padding: 15px 0;
+            border-radius: 7px;
+        }
+    }
+
+    .blue-box {
+        background: rgba(133, 156, 238, .15);
+        box-shadow: inset 0 0 8px 0 #11253e;
+        border: 1px solid #1b335b;
+        margin-bottom: 20px;
+        padding: 30px;
+        &.badge {
+            padding: 0 30px 0 150px;
+            background: url(/media/img/firefox/firstrun/nightly-badge.png?2014-06) no-repeat 60px 50%, rgba(133, 156, 238, .15);
+        }
+        h3 {
+            font-size: 20px;
+            line-height: 1.4em;
+        }
+    }
+
+    #nightly-box .description,
+    .blue-box.badge a,
+    .blue-box.l10n a {
+        font-size: 16px;
+        color: #79d8ff;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, .15);
+    }
+    .blue-box.l10n {
+        font-size: 16px;
+        color: white;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, .15);
+    }
+    #nightly-box .blue-box a.button,
+    .blue-box.badge a {
+        .trailing-arrow();
+    }
+}
+
+#colophon {
+    padding-top: 120px;
+    background: black;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(13, 40, 70, 1) 100%);
+}
+
+html[dir="rtl"] {
+    #nightly-box .blue-box {
+        margin-right: 0;
+        margin-left: 15px;
+        &:last-child {
+            margin-left: 0;
+        }
+    }
+    .blue-box.badge {
+        padding: 0 150px 0 30px;
+        background: url(/media/img/firefox/firstrun/nightly-badge.png?2014-06) no-repeat right 60px bottom 50%, rgba(133, 156, 238, .15);
+    }
+}
+
+
+/* Tablet Layout: 760px */
+@media only screen and (max-width: @breakDesktop) {
+    main {
+        .wide-br {
+            display: none;
+        }
+        h1 {
+            font-size: 37px;
+        }
+        #nightly-box .blue-box {
+            margin-right: 0;
+            margin-left: 0;
+            width: auto;
+            display: block;
+        }
+        .blue-box.badge {
+            padding: 0 30px 0 120px;
+            background-position: left 30px bottom 50%;
+        }
+    }
+    html[dir="rtl"] {
+        #nightly-box .blue-box {
+            margin-right: 0;
+            margin-left: 0;
+        }
+        .blue-box.badge {
+            padding: 0 120px 0 30px;
+            background-position: right 30px bottom 50%;
         }
     }
 }
@@ -109,40 +194,11 @@ main {
 @media only screen and (max-width: @breakTablet) {
     #firstrun-header {
         background-position: top center;
-        padding: 130px 0 0 0;
-        text-align: center;
+        padding: 180px 0 0;
     }
-
-    main {
-        .column,
-        .column:first-child,
-        .column:last-child {
-            .span-all();
-        }
-    }
-    #colophon {
-        width: auto;
-        text-align: left;
-        nav {
-            width: @widthMobile;
-            margin: 0 auto;
-            li {
-                display: block;
-                margin-left: 0;
-                a,
-                a:link,
-                a:visited {
-                    border-left: 0;
-                    padding-left: 0;
-                }
-            }
-        }
-    }
-}
-
-/* Wide Mobile Layout: 480px */
-@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
-    #colophon nav {
-        width: @widthMobileLandscape;
+    html[dir="rtl"] main .blue-box.badge,
+    main .blue-box.badge {
+        padding: 90px 30px 0 30px;
+        background-position: right 50% top 15px;
     }
 }

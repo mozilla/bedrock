@@ -617,6 +617,9 @@ MINIFY_BUNDLES = {
             'js/base/footer-email-form.js',
             'js/base/mozilla-image-helper.js',
         ),
+        'nightly-firstrun': (
+            'js/firefox/firstrun/nightly-firstrun.js',
+        ),
         'pager': (
             'js/base/mozilla-pager.js',
         ),
