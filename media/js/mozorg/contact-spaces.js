@@ -23,6 +23,7 @@
     var asiaSouthPacific;
     var antarctica;
     var africaMiddleEast;
+    var balkans;
     var hispano;
     var francophone;
     var arabic;
@@ -814,6 +815,8 @@
             case 'arabic':
                 map.setView([20, 10], 2);
                 break;
+            case 'balkans':
+                map.setView([50, 20], 3);
             }
         },
 
@@ -858,6 +861,9 @@
             arabic = L.geoJson(window.mozArabic, {
                 style: mozMap.styleLayer('white', '#f79937', 0.1, 'none', 2)
             });
+            balkans = L.geoJson(window.mozBalkans, {
+                style: mozMap.styleLayer('white', "#7022a8", 0.1, 'none', 2)
+            });
 
             // create an empty layer group and add it to the map
             communityLayers = new L.FeatureGroup();
@@ -873,7 +879,8 @@
                 'africa': africaMiddleEast,
                 'hispano': hispano,
                 'francophone': francophone,
-                'arabic': arabic
+                'arabic': arabic,
+                'balkans': balkans
             };
         },
 
