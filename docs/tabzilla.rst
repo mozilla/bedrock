@@ -79,4 +79,12 @@ Adding the Translation Bar extension to Tabzilla requires:
 
     <a href="https://www.mozilla.org/" id="tabzilla" data-infobar="translation">mozilla</a>
 
+The Translation Bar relies on ``Tabzilla.user.languages`` and this data can be used for other purposes. In your JavaScript code:
+
+    if (Tabzilla.user.languages) {
+        doSomething(Tabzilla.user.languages);
+    } else {
+        Tabzilla.detectUserLang(doSomething);
+    }
+
 .. note:: Though the Translation Bar is currently implemented as an extension of Tabzilla, it might be moved to a standalone language utility in the future.

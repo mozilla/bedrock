@@ -193,12 +193,21 @@ var Tabzilla = (function (Tabzilla) {
     var removeCompactModeEvents = function () {
         nav.off('.submenu');
     };
-    Tabzilla.user = {
+    Tabzilla.user = {};
+    Tabzilla.detectUserLang = function (callback) {
         // Expose the user's accept languages in the HTTP Accept-Language
         // request header, because the navigator.language property is just the
         // application's locale on some browsers and the new navigator.languages
         // property is not widely implemented yet.
-        languages: {{ accept_languages|safe }}
+        $.ajax({ url: '/en-US/tabzilla/userlang.jsonp',
+                 cache: true, crossDomain: true, dataType: 'jsonp',
+                 jsonpCallback: "_", success: function (data) {
+            var lang = Tabzilla.user.languages = data.languages;
+
+            if (typeof callback === 'function') {
+                callback(lang);
+            }
+        }});
     };
     Tabzilla.open = function () {
         opened = true;
@@ -605,7 +614,9 @@ var Tabzilla = (function (Tabzilla) {
 
         // Information Bars in order of priority
         var infobars = {
-            translation: Tabzilla.setupTransbar
+            translation: function () {
+                Tabzilla.detectUserLang(Tabzilla.setupTransbar);
+            }
         };
         $.each((tab.data('infobar') || '').split(' '), function (index, value) {
             var setup = infobars[value];

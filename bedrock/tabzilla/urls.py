@@ -10,4 +10,5 @@ import views
 urlpatterns = patterns('',
     url(r'^tabzilla\.js$', views.tabzilla_js, name='tabzilla'),
     url(r'^transbar\.jsonp$', views.transbar_jsonp, name='transbar'),
+    url(r'^userlang\.jsonp$', views.userlang_jsonp, name='userlang'),
 )

@@ -2,12 +2,14 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import json
 import os.path
 from datetime import datetime
 
 from django.conf import settings
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
+from django.views.decorators.cache import cache_control
 from django.views.decorators.http import last_modified
 from django.views.decorators.vary import vary_on_headers
 
@@ -51,10 +53,8 @@ def _resp(request, path, ctype, context=None):
 
 @cache_control_expires(12)
 @last_modified(template_last_modified('tabzilla/tabzilla.js'))
-@vary_on_headers('Accept-Language')
 def tabzilla_js(request):
-    return _resp(request, 'tabzilla/tabzilla.js', 'text/javascript',
-                 {'accept_languages': l10n_utils.get_accept_languages(request)})
+    return _resp(request, 'tabzilla/tabzilla.js', 'text/javascript')
 
 
 @cache_control_expires(12)
@@ -62,4 +62,18 @@ def tabzilla_js(request):
 def transbar_jsonp(request):
     resp = _resp(request, 'tabzilla/transbar.jsonp', 'application/javascript')
     resp['Access-Control-Allow-Origin'] = '*'
+    return resp
+
+
+@cache_control(private=True)
+@cache_control_expires(12)
+@vary_on_headers('Accept-Language')
+def userlang_jsonp(request):
+    data = {
+        'languages': l10n_utils.get_accept_languages(request)
+    }
+    resp = HttpResponse('_({0});'.format(json.dumps(data)),
+                        content_type='application/javascript')
+    resp['Access-Control-Allow-Origin'] = '*'
+
     return resp
