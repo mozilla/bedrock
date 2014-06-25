@@ -10,6 +10,7 @@
     var $tipPrev = $('#tip-prev');
     var $tipNext = $('#tip-next');
     var $tipsNavDirect = $('#tips-nav-direct');
+    var $tipsTabLinks = $tipsNavDirect.find('a');
     var $tipsNavDots = $('#tips-nav-dots');
 
     // only show download button for users on desktop platforms, using either a non-Firefox browser
@@ -25,7 +26,7 @@
         var currentURL = window.location.protocol + '//' + window.location.host + window.location.pathname + window.location.hash;
         gaTrack(['_trackEvent','/desktop/tips/ Interactions','page load', currentURL, 0, true]);
 
-        var pager = Mozilla.Pager.rootPagers[0];
+        var pager = Mozilla.Pager.pagers[0];
 
         // sets the current pager tab based on the url hash
         function setCurrentPage (noAnim) {
@@ -63,8 +64,8 @@
             var current = pager.currentPage.id.replace('-tip', '');
 
             // update direct nav links
-            $tipsNavDirect.find('a').removeClass('selected');
-            $tipsNavDirect.find('a[href="#' + current + '"]').addClass('selected');
+            $tipsTabLinks.removeClass('selected').attr('aria-selected', 'false');
+            $tipsNavDirect.find('a[href="#' + current + '"]').addClass('selected').attr('aria-selected', 'true');
 
             // update next/prev links
             if (pager.currentPage.index === 0) {

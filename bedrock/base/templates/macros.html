@@ -11,14 +11,14 @@
 
     <div class="form-contents">
       <div class="field field-email">
-        <label for="id_email" class="hidden">{{ _('Email') }}</label>
+        <label for="id_email" class="visually-hidden">{{ _('Email') }}</label>
         <input name="email" type="email" id="id_email" value="" required aria-required="true" placeholder="{{ _('YOUR EMAIL HERE') }}">
       </div>
 
       <div id="form-details">
         <!-- This is bad, but a quick fix because we are pushing live in an hour -->
         <div class="field field-country">
-          <label for="country" class="hidden">{{ _('Country') }}</label>
+          <label for="country" class="visually-hidden">{{ _('Country') }}</label>
           <select id="country" name="country">
             <option value=""></option>
             <option value="AF">Afghanistan</option>

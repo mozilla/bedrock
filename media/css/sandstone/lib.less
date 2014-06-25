@@ -298,8 +298,11 @@
     color: @linkRed;
 }
 
+/****************************************************************************/
+// Classes used to hide content from users. Choose wisely!
+
 // Hide visually, but not to screen readers
-.visually-hidden() {
+.visually-hidden {
     position: absolute!important;
     height: 1px;
     width: 1px;
@@ -309,6 +312,13 @@
     padding: 0;
     border: 0;
 }
+
+// Hide visually & from screen readers
+.hidden {
+    display: none;
+}
+
+/****************************************************************************/
 
 // not the most up to date method, but works in IE7
 .image-replaced {
@@ -320,6 +330,13 @@
 .trailing-arrow() {
     &:after {
         content: "\00A0\00BB"; /* nbsp raquo */
+        white-space: nowrap;
+    }
+}
+
+.leading-arrow() {
+    &:before {
+        content: "« "; /* laquo nbsp */
         white-space: nowrap;
     }
 }

@@ -38,12 +38,22 @@
       <div id="share-nav-wrapper" class="share-wrapper">
         {% include 'firefox/includes/social-share.html' %}
         <nav id="tips-nav-direct">
-          <ol>
-            <li><a href="#bookmarks"><span>{{ _('1') }}</span> {{ _('Bookmarks') }}</a></li>
-            <li><a href="#simplify"><span>{{ _('2') }}</span> {{ _('Simplify') }}</a></li>
-            <li><a href="#arrange"><span>{{ _('3') }}</span> {{ _('Arrange') }}</a></li>
-            <li><a href="#sync"><span>{{ _('4') }}</span> {{ _('Sync') }}</a></li>
-            <li><a href="#addons"><span>{{ _('5') }}</span> {{ _('Add-ons') }}</a></li>
+          <ol role="tablist">
+            <li role="presentation">
+              <a role="tab" aria-controls="bookmarks-tip" aria-selected="true" href="#bookmarks" id="tab-bookmarks"><span>{{ _('1') }}</span> {{ _('Bookmarks') }}</a>
+            </li>
+            <li role="presentation">
+              <a role="tab" aria-controls="simplify-tip" aria-selected="false" href="#simplify" id="tab-simplify"><span>{{ _('2') }}</span> {{ _('Simplify') }}</a>
+            </li>
+            <li role="presentation">
+              <a role="tab" aria-controls="arrange-tip" aria-selected="false" href="#arrange" id="tab-arrange"><span>{{ _('3') }}</span> {{ _('Arrange') }}</a>
+            </li>
+            <li role="presentation">
+              <a role="tab" aria-controls="sync-tip" aria-selected="false" href="#sync" id="tab-sync"><span>{{ _('4') }}</span> {{ _('Sync') }}</a>
+            </li>
+            <li role="presentation">
+              <a role="tab" aria-controls="addons-tip" aria-selected="false" href="#addons" id="tab-addons"><span>{{ _('5') }}</span> {{ _('Add-ons') }}</a>
+            </li>
           </ol>
         </nav>
       </div>{# /#share-nav-wrapper #}
@@ -51,9 +61,9 @@
   </div>{# /#page-header #}
 
   <div id="page-content">
-    <div class="container pager pager-no-history">
+    <div class="container pager pager-no-history pager-auto-init">
       <div id="tips-nav-prev-next">
-        <button class="link-button" id="tip-prev">{{ _('back') }}</button>
+        <button class="link-button" id="tip-prev" aria-controls="tips-wrapper">{{ _('back') }}</button>
 
         <div id="tips-nav-dots">
           <span data-tip="bookmarks">{{ _('1') }}</span>
@@ -63,11 +73,11 @@
           <span data-tip="addons">{{ _('5') }}</span>
         </div>
 
-        <button class="link-button" type="button" id="tip-next">{{ _('next') }}</button>
+        <button class="link-button" type="button" id="tip-next" aria-controls="tips-wrapper">{{ _('next') }}</button>
       </div>
 
       <div id="tips-wrapper" class="pager-content">
-        <div class="tip pager-page default-page" id="bookmarks-tip">
+        <div class="tip pager-page default-page" id="bookmarks-tip" role="tabpanel" aria-labelledby="tab-bookmarks">
           <div class="tip-copy">
             <div class="ordinal">{{ _('1') }}</div>
 
@@ -98,7 +108,7 @@
           </figure>
         </div>
 
-        <div class="tip pager-page" id="simplify-tip">
+        <div class="tip pager-page" id="simplify-tip" role="tabpanel" aria-labelledby="tab-simplify">
           <div class="tip-copy">
             <div class="ordinal">{{ _('2') }}</div>
 
@@ -129,7 +139,7 @@
           </figure>
         </div>
 
-        <div class="tip" id="arrange-tip">
+        <div class="tip pager-page" id="arrange-tip" role="tabpanel" aria-labelledby="tab-arrange">
           <div class="tip-copy">
             <div class="ordinal">{{ _('3') }}</div>
 
@@ -159,7 +169,7 @@
           </figure>
         </div>
 
-        <div class="tip" id="sync-tip">
+        <div class="tip pager-page" id="sync-tip" role="tabpanel" aria-labelledby="tab-sync">
           <div class="tip-copy">
             <div class="ordinal">{{ _('4') }}</div>
 
@@ -193,7 +203,7 @@
           </figure>
         </div>
 
-        <div class="tip" id="addons-tip">
+        <div class="tip pager-page" id="addons-tip" role="tabpanel" aria-labelledby="tab-addons">
           <div class="tip-copy">
             <div class="ordinal">{{ _('5') }}</div>
 
