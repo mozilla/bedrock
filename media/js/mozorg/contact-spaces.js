@@ -928,7 +928,7 @@
         splitLabelLayer: function () {
             topPane = map._createPane('leaflet-top-pane', map.getPanes().mapPane);
             // this custom map layer only contains country names, no map!
-            topLayer = L.mapbox.tileLayer('mozilla-webprod.map-f1uagdlz', {
+            topLayer = L.mapbox.tileLayer('mozilla-webprod.ijaelnfn', {
                 detectRetina: true
             });
             topLayer.on('ready', function() {
