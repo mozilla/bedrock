@@ -9,6 +9,7 @@ import views
 urlpatterns = patterns('',
     url('^$', views.HomeTestView.as_view(), name='mozorg.home'),
     page('about/manifesto', 'mozorg/about/manifesto.html'),
+    page('about/manifesto/details', 'mozorg/about/manifesto-details.html'),
     page('about', 'mozorg/about.html'),
     page('book', 'mozorg/book.html'),
     url('^about/partnerships/$', views.partnerships, name='mozorg.partnerships'),

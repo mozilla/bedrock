@@ -2,82 +2,332 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "mozorg/about-base.html" %}
+{% if not settings.DEV and not l10n_has_tag('manifesto_landing') %}
+  {#- Show the old page if the landing page is not localized yet -#}
+  {% include 'mozorg/about/manifesto-details.html' %}
+{% else %}
+  {#- Show the redesigned landing page -#}
+
+{% from 'macros.html' import twitter_share_url with context %}
+{% extends 'mozorg/base-resp.html' %}
 
 {% block page_title %}{{ _('The Mozilla Manifesto') }}{% endblock %}
-{% block body_id %}about-manifesto{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+{% block page_desc %}{{ _('These are the principles that guide our mission to promote openness, innovation & opportunity on the Web.') }}{% endblock %}
 
-{% block article %}
-  <h1 class="title-shadow-box">{{ _('The Mozilla Manifesto') }}</h1>
-  <h2 id="introduction">{{_('Introduction')}}</h2>
+{% block body_id %}manifesto-landing{% endblock %}
 
-  <p>
-    {{_('The Internet is becoming an increasingly important part of our lives.')}}
-  </p>
+{% block string_data %}
+  data-principle-read-more='{{ _('See more…') }}'
+  data-principle-nav-prev='{{ _('Previous principle') }}'
+  data-principle-nav-next='{{ _('Next principle') }}'
+{% endblock %}
 
-  <p>
-    {{_('The Mozilla project is a global community of people who believe that openness, innovation, and opportunity are key to the continued health of the Internet. We have worked together since 1998 to ensure that the Internet is developed in a way that benefits everyone. We are best known for creating the Mozilla Firefox web browser.')}}
-  </p>
+{% block extrahead %}
+  {{ css('manifesto') }}
+{% endblock %}
 
-  <p>{{_('The Mozilla project uses a community-based approach to create world-class open source software and to develop new types of collaborative activities. We create communities of people involved in making the Internet experience better for all of us.')}} </p>
+{% block site_header_logo %}{% endblock %}
 
-  <p>
-    {{_('As a result of these efforts, we have distilled a set of principles that we believe are critical for the Internet to continue to benefit the public good as well as commercial aspects of life. We set out these principles below.')}}
-  </p>
+{% set twitter_share_shorten_url = {
+  '01': '1o4BGY1',
+  '02': '1o4Cmwi',
+  '03': '1pHvACg',
+  '04': '1olpxj7',
+  '05': 'V8O1SM',
+  '06': 'TArZa0',
+  '07': '1mRltrl',
+  '08': 'TMI1Ox',
+  '09': '1xcEisc',
+  '10': '1z5HIPk',
+  'custom': '1iRxjCi',
+} %}
 
-  <p>
-    {{_('The goals for the Manifesto are to:')}}
-  </p>
+{% macro twitter_link(content_id, text, hashtag = '#mozmanifesto') -%}
+  {{ twitter_share_url('http://mzl.la/' + twitter_share_shorten_url[content_id], text|truncate(102, False, '…') + ' ' + hashtag) }}
+{%- endmacro %}
 
-  <ol>
-    <li>{{_('articulate a vision for the Internet that Mozilla participants want the Mozilla Foundation to pursue;')}} </li>
-    <li>{{_('speak to people whether or not they have a technical background;')}}</li>
-    <li>{{_('make Mozilla contributors proud of what we\'re doing and motivate us to continue; and')}}</li>
-    <li>{{_('provide a framework for other people to advance this vision of the Internet.')}}</li>
-  </ol>
+{% block content %}
 
-  <p>
-    {{_('These principles will not come to life on their own. People are needed to make the Internet open and participatory - people acting as individuals, working together in groups, and leading others. The Mozilla Foundation is committed to advancing the principles set out in the Mozilla Manifesto. We invite others to join us and make the Internet an ever better place for everyone.')}}
-  </p>
-
-  <h2 id="principles">{{_('Principles')}}</h2>
-  <ol>
-    <li>{{_('The Internet is an integral part of modern life—a key component in education, communication, collaboration, business, entertainment and society as a whole.')}} </li>
-    <li>{{_('The Internet is a global public resource that must remain open and accessible.')}}</li>
-    <li>{{_('The Internet must enrich the lives of individual human beings.')}}</li>
-    <li>{{_('Individuals’ security and privacy on the Internet are fundamental and must not be treated as optional.')}}</li>
-    <li>{{_('Individuals must have the ability to shape the Internet and their own experiences on the Internet.')}}</li>
-    <li>{{_('The effectiveness of the Internet as a public resource depends upon interoperability (protocols, data formats, content), innovation and decentralized participation worldwide.')}}</li>
-    <li>{{_('Free and open source software promotes the development of the Internet as a public resource.')}}</li>
-    <li>{{_('Transparent community-based processes promote participation, accountability and trust.')}}</li>
-    <li>{{_('Commercial involvement in the development of the Internet brings many benefits; a balance between commercial profit and public benefit is critical.')}}</li>
-    <li>{{_('Magnifying the public benefit aspects of the Internet is an important goal, worthy of time, attention and commitment.')}}</li>
-  </ol>
-
-  <h2>{{_('Advancing the Mozilla Manifesto')}}</h2>
-
-  <p>{{_('There are many different ways of advancing the principles of the Mozilla Manifesto. We welcome a broad range of activities, and anticipate the same creativity that Mozilla participants have shown in other areas of the project. For individuals not deeply involved in the Mozilla project, one basic and very effective way to support the Manifesto is to use Mozilla Firefox and other products that embody the principles of the Manifesto.')}} </p>
-
-  <h3>{{_('Mozilla Foundation Pledge')}}</h3>
-
-  <p>{{_('The Mozilla Foundation pledges to support the Mozilla Manifesto in its activities. Specifically, we will:')}}</p>
-
-  <ul>
-    <li>{{_('build and enable open-source technologies and communities that support the Manifesto’s principles;')}}</li>
-    <li>{{_('build and deliver great consumer products that support the Manifesto’s principles;')}}</li>
-    <li>{{_('use the Mozilla assets (intellectual property such as copyrights and trademarks, infrastructure, funds, and reputation) to keep the Internet an open platform;')}}</li>
-    <li>{{_('promote models for creating economic value for the public benefit; and')}}</li>
-    <li>{{_('promote the Mozilla Manifesto principles in public discourse and within the Internet industry.')}}</li>
-  </ul>
-
-  <p>
-    {{_('Some Foundation activities—currently the creation, delivery and promotion of consumer products—are conducted primarily through the Mozilla Foundation’s wholly owned subsidiary, the Mozilla Corporation.')}}
-  </p>
-
-  <h3>{{_('Invitation')}}</h3>
-
-  <p>
-    {{_('The Mozilla Foundation invites all others who support the principles of the Mozilla Manifesto to join with us, and to find new ways to make this vision of the Internet a reality.')}}
-  </p>
+<main role="main">
+  <article role="article" itemscope itemtype="http://schema.org/Article">
+    <header id="main-feature">
+      <h1 itemprop="name">{{ self.page_title() }}</h1>
+      <p itemprop="description">{{ self.page_desc() }}</p>
+    </header>
+    <div id="main-content">
+      <div id="main-content-inner">
+        <section id="sec-principles" itemprop="articleBody">
+          <header>
+            <h2>{{ _('<strong>Our 10</strong> Principles') }}</h2>
+            <aside class="share-wrapper">
+              <div class="socialshare" data-type="small-bubbles" data-label="{{ _('Share this') }}" data-fb-lang="{{ facebook_locale }}"></div>
+            </aside>
+          </header>
+          <div id="principles">
+            <section class="principle" id="principle-01">
+              <header>
+                <h3><span>{{ _('01') }}</span> {{ _('The Internet is an integral part of modern life—a key component in education, communication, collaboration, business, entertainment and society as a whole.') }}</h3>
+              </header>
+              <div>
+                <section>
+                  <h4>{{ _('Learn more') }}</h4>
+                  <ul class="resources">
+                    <li><a href="http://www.openbadges.org/">{{ _('Use Open Badges to share your skills and interests') }}</a></li>
+                    <li><a href="http://mozillascience.org/">{{ _('Explore how the Web impacts science') }}</a></li>
+                    <li><a href="http://opennews.org/getinvolved.html">{{ _('Learn about open source code in journalism') }}</a></li>
+                  </ul>
+                  <ul class="videos">
+                    <li><a href="https://www.youtube.com/watch?v=blnKhjlxJlM"><img src="{{ media('img/mozorg/about/manifesto/videos/blnKhjlxJlM.jpg') }}" alt=""> {{ _('Making to learn in the digital world') }}</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=HgLLq7ybDtc"><img src="{{ media('img/mozorg/about/manifesto/videos/HgLLq7ybDtc.jpg') }}" alt=""> {{ _('Open Badges') }}</a></li>
+                  </ul>
+                </section>
+                <footer>
+                  <p class="share"><a class="tweet" href="{{ twitter_link('01', _('The Internet is an integral part of modern life—a key component in education, communication, collaboration, business, entertainment and society as a whole.')) }}">{{ _('Tweet this') }}</a></p>
+                </footer>
+              </div>
+            </section>
+            <section class="principle" id="principle-02">
+              <header>
+                <h3><span>{{ _('02') }}</span> {{ _('The Internet is a global public resource that must remain open and accessible.') }}</h3>
+              </header>
+              <div>
+                <section>
+                  <h4>{{ _('Learn more') }}</h4>
+                  <ul class="resources">
+                    <li><a href="https://blog.mozilla.org/netpolicy/">{{ _('Read about open Internet policy initiatives and developments') }}</a></li>
+                    <li><a href="https://webmaker.org/resources/literacy/weblit-OpenPractices">{{ _('Explore how to help keep the Web open') }}</a></li>
+                  </ul>
+                  <ul class="videos">
+                    <li><a href="https://www.youtube.com/watch?v=Pzj-h7gzn_c"><img src="{{ media('img/mozorg/about/manifesto/videos/Pzj-h7gzn_c.jpg') }}" alt=""> {{ _('Mozilla story') }}</a></li>
+                  </ul>
+                  <blockquote>
+                    <p>{{ _('You don’t have to make a case for open. You have to make a case for not open.') }}</p>
+                    <footer><cite>{# L10n: VP stands for Vice President #}{{ _('<span>Johnathan Nightingale,</span> <span>VP Firefox</span>') }}</cite></footer>
+                  </blockquote>
+                </section>
+                <footer>
+                  <p class="share"><a class="tweet" href="{{ twitter_link('02', _('The Internet is a global public resource that must remain open and accessible.')) }}">{{ _('Tweet this') }}</a></p>
+                </footer>
+              </div>
+            </section>
+            <section class="principle" id="principle-03">
+              <header>
+                <h3><span>{{ _('03') }}</span> {{ _('The Internet must enrich the lives of individual human beings.') }}</h3>
+              </header>
+              <div>
+                <section>
+                  <h4>{{ _('Learn more') }}</h4>
+                  <ul class="resources">
+                    <li><a href="https://blog.mozilla.org/blog/2014/04/09/firefox-os-and-medic-mobile-use-the-web-to-connect-the-world-to-healthcare/">{{ _('See how the Web can connect the world to healthcare') }}</a></li>
+                    <li><a href="https://webmaker.org/resources/literacy/weblit-Infrastructure">{{ _('Explore how the Web works') }}</a></li>
+                  </ul>
+                  <ul class="videos">
+                    <li><a href="https://www.youtube.com/watch?v=FOad5yki-dU"><img src="{{ media('img/mozorg/about/manifesto/videos/FOad5yki-dU.jpg') }}" alt=""> {{ _('Medic Mobile') }}</a></li>
+                  </ul>
+                </section>
+                <footer>
+                  <p class="share"><a class="tweet" href="{{ twitter_link('03', _('The Internet must enrich the lives of individual human beings.')) }}">{{ _('Tweet this') }}</a></p>
+                </footer>
+              </div>
+            </section>
+            <section class="principle" id="principle-04">
+              <header>
+                <h3><span>{{ _('04') }}</span> {{ _('Individuals’ security and privacy on the Internet are fundamental and must not be treated as optional.') }}</h3>
+              </header>
+              <div>
+                <section>
+                  <h4>{{ _('Learn more') }}</h4>
+                  <ul class="resources">
+                    <li><a href="{{ url('privacy.privacy-day') }}">{{ _('See how Mozilla works to put your privacy first') }}</a></li>
+                    <li><a href="https://blog.mozilla.org/privacy/">{{ _('Read about developments in privacy and data safety') }}</a></li>
+                    <li><a href="https://webmaker.org/resources/literacy/weblit-Security">{{ _('Learn more about how to protect yourself online') }}</a></li>
+                  </ul>
+                  <ul class="videos">
+                    <li><a href="https://www.youtube.com/watch?v=Xm5i5kbIXzc"><img src="{{ media('img/mozorg/about/manifesto/videos/Xm5i5kbIXzc.jpg') }}" alt=""> {{ _('The Web We Want: An Open Letter') }}</a></li>
+                  </ul>
+                </section>
+                <footer>
+                  <p class="share"><a class="tweet" href="{{ twitter_link('04', _('Individuals’ security and privacy on the Internet are fundamental and must not be treated as optional.')) }}">{{ _('Tweet this') }}</a></p>
+                </footer>
+              </div>
+            </section>
+            <section class="principle" id="principle-05">
+              <header>
+                <h3><span>{{ _('05') }}</span> {{ _('Individuals must have the ability to shape the Internet and their own experiences on it.') }}</h3>
+              </header>
+              <div>
+                <section>
+                  <h4>{{ _('Learn more') }}</h4>
+                  <ul class="resources">
+                    <li><a href="https://webmaker.org/teach">{{ _('Use these free tools to teach the Web') }}</a></li>
+                    <li><a href="https://webmaker.org/resources/literacy/weblit-Composing">{{ _('Learn about creating and curating content for the Web') }}</a></li>
+                  </ul>
+                  <ul class="videos">
+                    <li><a href="https://www.youtube.com/watch?v=N71JmJZc3F4"><img src="{{ media('img/mozorg/about/manifesto/videos/N71JmJZc3F4.jpg') }}" alt=""> {{ _('Teaching the Web') }}</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=lqMzBoiRr30"><img src="{{ media('img/mozorg/about/manifesto/videos/lqMzBoiRr30.jpg') }}" alt=""> {{ _('Meet the Webmakers') }}</a></li>
+                  </ul>
+                </section>
+                <footer>
+                  <p class="share"><a class="tweet" href="{{ twitter_link('05', _('Individuals must have the ability to shape the Internet and their own experiences on it.')) }}">{{ _('Tweet this') }}</a></p>
+                </footer>
+              </div>
+            </section>
+            <section class="principle" id="principle-06">
+              <header>
+                <h3><span>{{ _('06') }}</span> {{ _('The effectiveness of the Internet as a public resource depends upon interoperability (protocols, data formats, content), innovation and decentralized participation worldwide.') }}</h3>
+              </header>
+              <div>
+                <section>
+                  <h4>{{ _('Learn more') }}</h4>
+                  <ul class="resources">
+                    <li><a href="http://ascendproject.org/">{{ _('Add new voices to open source technology') }}</a></li>
+                    <li><a href="{{ url('firefox.dnt') }}">{{ _('Set your Do Not Track preference') }}</a></li>
+                    <li><a href="https://webmaker.org/resources/literacy/weblit-WebMechanics">{{ _('Understand the Web ecosystem') }}</a></li>
+                  </ul>
+                  <ul class="videos">
+                    <li><a href="https://www.youtube.com/watch?v=Xrh2FN1y8CY"><img src="{{ media('img/mozorg/about/manifesto/videos/Xrh2FN1y8CY.jpg') }}" alt=""> {{ _('Who is Mozilla?') }}</a></li>
+                  </ul>
+                </section>
+                <footer>
+                  <p class="share"><a class="tweet" href="{{ twitter_link('06', _('The effectiveness of the Internet as a public resource depends upon interoperability (protocols, data formats, content), innovation and decentralized participation worldwide.')) }}">{{ _('Tweet this') }}</a></p>
+                </footer>
+              </div>
+            </section>
+            <section class="principle" id="principle-07">
+              <header>
+                <h3><span>{{ _('07') }}</span> {{ _('Free and open source software promotes the development of the Internet as a public resource.') }}</h3>
+              </header>
+              <div>
+                <section>
+                  <h4>{{ _('Learn more') }}</h4>
+                  <ul class="resources">
+                    <li><a href="https://webmaker.org/resources/literacy/weblit-OpenPractices">{{ _('Explore how open practices keep the Web accessible') }}</a></li>
+                    <li><a href="https://webmaker.org/resources/literacy/weblit-Remix">{{ _('Learn how to remix content to create something new') }}</a></li>
+                    <li><a href="https://webmaker.org/resources/literacy/weblit-CodingScripting">{{ _('Learn how to maximize the interactive potential of the Web') }}</a></li>
+                  </ul>
+                  <ul class="videos">
+                    <li><a href="https://www.youtube.com/watch?v=a6cc43X2zH8"><img src="{{ media('img/mozorg/about/manifesto/videos/a6cc43X2zH8.jpg') }}" alt=""> {{ _('Contributing to Open Source Software') }}</a></li>
+                  </ul>
+                </section>
+                <footer>
+                  <p class="share"><a class="tweet" href="{{ twitter_link('07', _('Free and open source software promotes the development of the Internet as a public resource.')) }}">{{ _('Tweet this') }}</a></p>
+                </footer>
+              </div>
+            </section>
+            <section class="principle" id="principle-08">
+              <header>
+                <h3><span>{{ _('08') }}</span> {{ _('Transparent community-based processes promote participation, accountability and trust.') }}</h3>
+              </header>
+              <div>
+                <section>
+                  <h4>{{ _('Learn more') }}</h4>
+                  <ul class="resources">
+                    <li><a href="https://groups.google.com/forum/#!forum/mozilla.governance">{{ _('Participate in our governance forum') }}</a></li>
+                    <li>{{ _('Join us as a <a href="%(volunteer)s">volunteer</a> or <a href="%(ambassador)s">student ambassador</a>')|format(volunteer=url('mozorg.contribute'), ambassador=url('mozorg.contribute.studentambassadors.landing')) }}</li>
+                    <li><a href="https://webmaker.org/resources/literacy/weblit-Community">{{ _('Learn how to collaborate online') }}</a></li>
+                  </ul>
+                  <ul class="videos">
+                    <li><a href="https://www.youtube.com/watch?v=LuyBGkbzTjs"><img src="{{ media('img/mozorg/about/manifesto/videos/LuyBGkbzTjs.jpg') }}" alt=""> {{ _('I am a Mozillian') }}</a></li>
+                  </ul>
+                </section>
+                <footer>
+                  <p class="share"><a class="tweet" href="{{ twitter_link('08', _('Transparent community-based processes promote participation, accountability and trust.')) }}">{{ _('Tweet this') }}</a></p>
+                </footer>
+              </div>
+            </section>
+            <section class="principle" id="principle-09">
+              <header>
+                <h3><span>{{ _('09') }}</span> {{ _('Commercial involvement in the development of the Internet brings many benefits; a balance between commercial profit and public benefit is critical.') }}</h3>
+              </header>
+              <div>
+                <section>
+                  <h4>{{ _('Learn more') }}</h4>
+                  <ul class="resources">
+                    <li><a href="{{ url('lightbeam.lightbeam') }}">{{ _('Visualize who you interact with on the Web with Lightbeam') }}</a></li>
+                    <li><a href="{{ url('firefox.os.index') }}">{{ _('See how Firefox phones seek to balance the mobile ecosystem') }}</a></li>
+                    <li><a href="https://webmaker.org/resources/literacy/weblit-Sharing">{{ _('Learn about creating Web resources with others') }}</a></li>
+                  </ul>
+                  <ul class="videos">
+                    <li><a href="https://www.youtube.com/watch?v=PvqGy9wz_wA"><img src="{{ media('img/mozorg/about/manifesto/videos/PvqGy9wz_wA.jpg') }}" alt=""> {{ _('Lightbeam for Firefox') }}</a></li>
+                  </ul>
+                </section>
+                <footer>
+                  <p class="share"><a class="tweet" href="{{ twitter_link('09', _('Commercial involvement in the development of the Internet brings many benefits; a balance between commercial profit and public benefit is critical.')) }}">{{ _('Tweet this') }}</a></p>
+                </footer>
+              </div>
+            </section>
+            <section class="principle" id="principle-10">
+              <header>
+                <h3><span>{{ _('10') }}</span> {{ _('Magnifying the public benefit aspects of the Internet is an important goal, worthy of time, attention and commitment.') }}</h3>
+              </header>
+              <div>
+                <section>
+                  <h4>{{ _('Learn more') }}</h4>
+                  <ul class="resources">
+                    <li><a href="http://party.webmaker.org/">{{ _('Host or join a Maker Party') }}</a></li>
+                    <li><a href="https://webmaker.org/resources/literacy/weblit-Collaborating">{{ _('Learn how to build online collaboration skills') }}</a></li>
+                  </ul>
+                  <ul class="videos">
+                    <li><a href="https://www.youtube.com/watch?v=SqEQCU_pvKs"><img src="{{ media('img/mozorg/about/manifesto/videos/SqEQCU_pvKs.jpg') }}" alt=""> {{ _('What is MozFest?') }}</a></li>
+                  </ul>
+                </section>
+                <footer>
+                  <p class="share"><a class="tweet" href="{{ twitter_link('10', _('Magnifying the public benefit aspects of the Internet is an important goal, worthy of time, attention and commitment.')) }}">{{ _('Tweet this') }}</a></p>
+                </footer>
+              </div>
+            </section>
+          </div>
+          <footer>
+            <p><a href="{{ url('mozorg.about.manifesto-details') }}">{{ _('Read the entire manifesto') }}</a></p>
+          </footer>
+        </section>
+        <section id="sec-tell">
+          <h2>{{ _('Tell your friends') }}</h2>
+          <div class="outer">
+            <textarea maxlength="102">{{ _('I support Mozilla because… #mozmanifesto') }}</textarea>
+            <p class="share"><a class="tweet" href="{{ twitter_link('custom', _('I support Mozilla because… #mozmanifesto'), '') }}">{{ _('Tweet this') }}</a></p>
+          </div>
+        </section>
+        <section id="sec-learn">
+          <h2>{{ _('Learn more about…') }}</h2>
+          <ul>
+            <li><a href="{{ donate_url() }}?source=mozillaorg_manifesto">{{ _('Donating to Mozilla') }}</a></li>
+            <li><a href="{{ url('mozorg.about.history') }}">{{ _('Our history') }}</a></li>
+            <li><a href="{{ url('mozorg.mission') }}">{{ _('Our mission') }}</a></li>
+          </ul>
+        </section>
+        <section id="sec-newsletter">
+          {{ email_newsletter_form() }}
+        </section>
+      </div>
+      <div id="mosaic-group-1" class="ri-grid">
+        <ul>
+        {% for i in range(1, 37)|list|shuffle %}
+          <li><a><img data-src="{{ media('img/mozorg/about/manifesto/mosaic/' ~ '%03d'|format(i) ~ '.jpg') }}" alt=""></a></li>
+        {% endfor %}
+        </ul>
+      </div>
+      <div id="mosaic-group-2" class="ri-grid">
+        <ul>
+        {# The grid needs 34 + extra images to rotate. That's why there are some duplicated images. #}
+        {% for i in range(33, 69)|list|shuffle %}
+          <li><a><img data-src="{{ media('img/mozorg/about/manifesto/mosaic/' ~ '%03d'|format(i) ~ '.jpg') }}" alt=""></a></li>
+        {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </article>
+</main>
 
 {% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{% block js %}
+  {{ js('manifesto') }}
+  {{ js('mosaic') }}
+{% endblock %}
+
+  {#- End the redesigned landing page -#}
+{% endif %}

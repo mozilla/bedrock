@@ -311,6 +311,11 @@ MINIFY_BUNDLES = {
         'legal_fraud_report': (
             'css/legal/fraud-report.less',
         ),
+        'manifesto': (
+            'css/base/mozilla-modal.less',
+            'css/libs/socialshare/socialshare.less',
+            'css/mozorg/manifesto.less',
+        ),
         'mission': (
             'css/sandstone/video-resp.less',
             'css/mozorg/mission.less',
@@ -612,6 +617,12 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.validate.js',
             'js/legal/fraud-report.js',
             'js/base/mozilla-input-placeholder.js',
+        ),
+        'manifesto': (
+            'js/base/mozilla-modal.js',
+            'js/libs/matchMedia.addListener.js',
+            'js/libs/socialshare.min.js',
+            'js/mozorg/manifesto.js',
         ),
         'mozorg-resp': (
             'js/libs/jquery-1.11.0.min.js',
