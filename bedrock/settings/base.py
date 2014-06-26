@@ -109,6 +109,9 @@ MINIFY_BUNDLES = {
         'credits-faq': (
             'css/mozorg/credits-faq.less',
         ),
+        'about-forums': (
+            'css/mozorg/about-forums.less',
+        ),
         'foundation': (
             'css/foundation/foundation.less',
         ),
