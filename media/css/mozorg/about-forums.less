@@ -1,0 +1,89 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+// Over-ride sandstone column widths for wide table content
+
+.main-column {
+    .span(9);
+}
+
+.sidebar {
+    .span(3);
+}
+
+.lead-content {
+    margin-right: (@gridColumnWidth + @gridGutterWidth);
+}
+
+.main-column img {
+    vertical-align: middle;
+}
+
+.main-column .toc {
+    margin: (@baseLine * 2) 0;
+}
+
+.main-column .table {
+    font-size: @smallFontSize;
+    margin-bottom: (@baseLine * 2);
+    th,
+    td {
+        vertical-align: top;
+        padding-right: 5px;
+    }
+    th sup {
+        font-size: 10px;
+        .open-sans-light();
+        vertical-align: baseline;
+        color: @textColorLight;
+        margin-left: 2px;
+        a {
+            color: @textColorLight;
+        }
+    }
+}
+
+
+/* Tablet Layout: 760px */
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+
+    .main-column {
+        .span_narrow(9);
+    }
+
+    .sidebar {
+        .span_narrow(3);
+    }
+
+}
+
+
+/* Mobile Layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+
+    .main-column,
+    .sidebar {
+        padding-left: 0;
+        padding-right: 0;
+        .span-all();
+    }
+
+    .lead-content {
+        margin-right: auto;
+    }
+
+    .table {
+        th,
+        td {
+            display: block;
+            padding-bottom: 0;
+        }
+        td {
+            border: 0;
+        }
+    }
+
+}
