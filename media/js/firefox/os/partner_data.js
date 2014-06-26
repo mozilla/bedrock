@@ -240,7 +240,7 @@ if (typeof Mozilla == 'undefined') {
         'zte_openc': {
             'type': 'smartphone',
             'display': 'ZTE Open C',
-            'countries': ['de', 'ru', 'gb', 'us']
+            'countries': ['de', 'ru', 'gb', 'us', 'uy']
         }
     };
 })(window.jQuery);
