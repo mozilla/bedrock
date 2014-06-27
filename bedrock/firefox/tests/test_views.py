@@ -5,12 +5,26 @@ from django.http import Http404
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
+from funfactory.urlresolvers import reverse
 from mock import patch, Mock
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 from rna.models import Release
 
 from bedrock.firefox import views
 from bedrock.mozorg.tests import TestCase
+
+
+class TestFirefoxNew(TestCase):
+    def test_frames_allow(self):
+        """
+        Bedrock pages get the 'x-frame-options: DENY' header by default.
+        The firefox/new page needs to be framable for things like stumbleupon.
+        Bug 1004598.
+        """
+        with self.activate('en-US'):
+            resp = self.client.get(reverse('firefox.new'))
+
+        ok_('x-frame-options' not in resp)
 
 
 class TestRNAViews(TestCase):
