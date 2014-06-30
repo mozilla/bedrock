@@ -1,0 +1,5 @@
+/* Bug 854756 */
+
+* {
+  text-transform: none !important;
+}
