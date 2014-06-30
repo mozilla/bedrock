@@ -401,6 +401,34 @@
     100% { background-position: 0 264px; }
 }
 
+
+/****************************************************************************/
+// SUMO
+#panel-sumo {
+    background: #7b8d9b url(/media/img/home/panel/sumo/sumo-superfox-flat.jpg) -50px 0 no-repeat;
+    background: url(/media/img/home/panel/sumo/sumo-superfox.png) -80px -10px no-repeat,
+                #7b8d9b url(/media/img/home/panel/sumo/bg-gradient.jpg) repeat-x;
+
+    &.expanded {
+        background-position: 0 0;
+        background-position: -5px -10px, 0 0;
+    }
+
+    &.compressed {
+        background-position: 0 0;
+        background-position: -165px -10px, 0 0;
+    }
+}
+
+.wide #panel-sumo .panel-title {
+    background: #71808b;
+    background: rgba(113, 128, 139, .65);
+    background: -webkit-linear-gradient(bottom, rgba(113, 128, 139, .95) 50%, rgba(113, 128, 139, .65) 65%, rgba(113, 128, 139, 0) 100%);
+    background:         linear-gradient(to top, rgba(113, 128, 139, .95) 50%, rgba(113, 128, 139, .65) 65%, rgba(113, 128, 139, 0) 100%);
+}
+
+
+
 /****************************************************************************/
 // @High resolution images for @retina-type displays
 // Desktop
@@ -447,6 +475,12 @@
     #panel-makerparty .confetti:after {
         background-image: url(/media/img/home/panel/makerparty/logo-makerparty-hires.png);
         background-size: 268px 308px;
+    }
+
+    #panel-sumo {
+        background-image: url(/media/img/home/panel/sumo/sumo-superfox-hires.png),
+                          url(/media/img/home/panel/sumo/bg-gradient.jpg);
+        background-size: 295px 355px, auto auto;
     }
 
 }
@@ -605,6 +639,20 @@
 
     #panel-makerparty.expanded .confetti:after {
         background-position: 0 25px;
+    }
+
+    // SUMO
+    #panel-sumo {
+        background-position: -110px -10px, 0 0;
+
+        &.expanded {
+            background-position: -90px -10px, 0 0;
+        }
+
+        &.compressed {
+            background-position: 0 0;
+            background-position: -165px -10px, 0 0;
+        }
     }
 
 }
@@ -828,6 +876,20 @@
         background-position: -15px -40px;
     }
 
+    // SUMO
+    #panel-sumo {
+        background: url(/media/img/home/panel/sumo/sumo-superfox-small.png) -45px -10px no-repeat,
+                    url(/media/img/home/panel/sumo/bg-gradient.jpg) 0 0 repeat-x;
+
+        &.expanded {
+            background-position: -45px 10px, 0 0;
+        }
+
+        &.compressed {
+            background-position: -45px -30px, 0 0;
+        }
+    }
+
 }
 
 
@@ -1000,6 +1062,20 @@
 
     #panel-makerparty.compressed .confetti:after {
         background-position: -15px -65px;
+    }
+
+    // SUMO
+    #panel-sumo {
+        background: url(/media/img/home/panel/sumo/sumo-superfox-small.png) -5px -20px no-repeat,
+                    url(/media/img/home/panel/sumo/bg-gradient.jpg) 0 0 repeat-x;
+
+        &.expanded {
+            background-position: -5px 10px, 0 0;
+        }
+
+        &.compressed {
+            background-position: -5px -30px, 0 0;
+        }
     }
 
 }
