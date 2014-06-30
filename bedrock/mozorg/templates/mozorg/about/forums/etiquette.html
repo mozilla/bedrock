@@ -1,0 +1,237 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/about-base.html" %}
+
+{% block page_title %}{{ _('Mozilla Forum Etiquette') }}{% endblock %}
+{% block body_id %}about-forum-etiquette{% endblock %}
+
+{% block page_css %}
+  {{ css('about-forums') }}
+{% endblock %}
+
+{% block article %}
+<h1 class="title-shadow-box">{{ self.page_title() }}</h1>
+
+
+<h2 id="ground-rules">Ground Rules</h2>
+
+<p>
+{{ _('There are a few ground rules for participation in  <a href="%s">forums</a> hosted by mozilla.org.')|format(url('mozorg.about.forums.forums')) }}
+{{ _('Please respect these rules, and each other.') }}
+</p>
+
+<dl>
+  <dt>{{ _('Be civil.') }}</dt>
+
+  <dd>
+    <p>
+    {{ _('No personal attacks.') }}
+    {{ _('Do not feel compelled to defend your honor in public.') }}
+    {{ _('Posts containing personal attacks may be <a href="%s">removed from the news server</a>.')|format(url('mozorg.about.forums.cancellation')) }}
+    </p>
+  </dd>
+
+  <dt>{{ _('Stay on topic.') }}</dt>
+
+  <dd>
+    <p>
+    {{ _('Most of these groups are high-traffic and read by busy people, so please pay attention to the topic of your messages, and check that it still relates to the charter of the forum to which you are posting.') }}
+    {{ _('Off-topic discussion not taken to private email, <a href="%(general)s">mozilla.general</a>, or any place where it is not considered off-topic, by someone who knows they should be taking it elsewhere, is <a href="%(cancellation)s">eligible for removal</a> from the news server.')|format(general=url('mozorg.about.forums.forums'), cancellation=url('mozorg.about.forums.cancellation')) }}
+    <!-- TODO: Add "#general" to general url -->
+    </p>
+
+  </dd>
+
+  <dt>{{ _('Be kind to newcomers.') }}</dt>
+
+  <dd>
+    <p>
+    {{ _('Newcomers may be annoying.') }}
+    {{ _('They ask the wrong questions, including ones that seem obvious (or whose answers seem easy to find).') }}
+    {{ _('But lots of valued contributors started out this way, and treating newcomers kindly makes them more likely to turn into the valuable community members we all know and love (and cut some slack when they mess up).') }}
+    </p>
+
+    <p>{{ _('So while you don’t have to humor them or suffer them gladly, and it’s fine to point out when they make mistakes, point newcomers in the right direction in addition to turning them away from the wrong ones, and be kind to them in the process of correcting their transgressions.') }}</p>
+  </dd>
+
+  <dt>{{ _('Let sleeping dogs lie.') }}</dt>
+
+  <dd>
+    <p>{{ _('It’s tempting to revisit controversial decisions you disagree with, but it’s rarely productive to do so, since it almost always results in the same heated, lengthy, and time/energy draining discussions leading to the same conclusion that was reached in the last round.') }}</p>
+
+    <p>{{ _('Therefore, for issues already raised, discussed, and decided upon, reopen the discussion only if you have significant new information that would reasonably prompt reconsideration of the original decision.') }}</p>
+  </dd>
+
+  <dt>{{ _('No crossposting.') }}</dt>
+
+  <dd>
+    <p>{{ _('It is almost never appropriate to send the same message to two mailing lists or newsgroups.') }}
+    {{ _('Please don’t do it.') }}
+    {{ _('Or, if you must, make sure you set the Followup-To and Reply-To fields to ensure that replies go only to one, not to both.') }}</p>
+
+    <table class="table">
+    <caption>{{ _('example:') }}</caption>
+
+    <tr>
+      <th>{{ _('Newsgroup:') }}</th>
+      <td>{{ _('mozilla.dev.apps.seamonkey') }}</td>
+    </tr>
+    <tr>
+      <th>{{ _('Newsgroup:') }}</th>
+      <td>{{ _('mozilla.dev.apps.firefox') }}</td>
+    </tr>
+    <tr>
+      <th>{{ _('FollowUp-To:') }}</th>
+      <td>{{ _('mozilla.dev.apps.firefox') }}</td>
+    </tr>
+    <tr>
+      <th>{{ _('Reply-To:') }}</th>
+      <td>{{ _('dev-apps-firefox&#64;lists.mozilla.org') }}</td>
+    </tr>
+    <tr>
+      <th>{{ _('Subject:') }}</th>
+      <td>{{ _('XPFE browser?') }}</td>
+    </tr>
+    </table>
+
+    <p>{{ _('It is never appropriate to send the same message to two forums when one of those forums has <q>general</q> in its name.') }}</p>
+
+  </dd>
+
+  <dt>{{ _('No advocacy.') }}</dt>
+
+  <dd>
+    <p>
+    {{ _('These groups are for discussions about the Mozilla source code.') }}
+    {{ _('As such, discussions about which operating system is better, or whether one toolkit is better than another, or whether Microsoft is the root of all evil, are <strong>not relevant</strong>.') }}
+    {{ _('There are many forums for discussing such issues on Usenet; please have such discussions <a href="%s">there</a>
+        instead of on the Mozilla forums.')|format('http://groups.google.com/groups?as_ugroup=*advocacy*') }}
+    {{ _('Might we recommend:') }}
+    </p>
+
+    <ul>
+      <li><a href="news://comp.infosystems.www.advocacy">comp.infosystems.www.advocacy</a></li>
+      <li><a href="news://comp.os.linux.advocacy">comp.os.linux.advocacy</a></li>
+      <li><a href="news://comp.os.ms-windows.advocacy">comp.os.ms-windows.advocacy</a></li>
+      <li><a href="news://comp.os.os2.advocacy">comp.os.os2.advocacy</a></li>
+      <li><a href="news://comp.sys.amiga.advocacy">comp.sys.amiga.advocacy</a></li>
+      <li><a href="news://comp.sys.be.advocacy">comp.sys.be.advocacy</a></li>
+      <li><a href="news://comp.sys.mac.advocacy">comp.sys.mac.advocacy</a></li>
+      <li><a href="news://comp.unix.advocacy">comp.unix.advocacy</a></li>
+      <li><a href="news://comp.lang.java.advocacy">comp.lang.java.advocacy</a></li>
+      <li><a href="news://alt.netscape.sucks">alt.netscape.sucks</a></li>
+      <li><a href="news://alt.fan.mozilla">alt.fan.mozilla</a></li>
+      <li><a href="news://gnu.misc.discuss">gnu.misc.discuss</a></li>
+    </ul>
+  </dd>
+
+  <dt>{{ _('Ignore spammers.') }}</dt>
+
+  <dd>
+    <p>
+    {{ _('Spam is a blight upon the face of the net.') }}
+    {{ _('Nobody likes it.') }}
+    {{ _('However, it is hard to avoid.') }}
+    {{ _('Despite our best efforts, you will occasionally see spam on the Mozilla mailing lists and newsgroups.') }} {{ _('If you feel the need to flame the spammer, do not CC the list.') }}
+    {{ _('Complaining about spam in public increases noise, but not signal.') }}
+    {{ _('It may make you feel better, but it doesn’t help.') }}
+    {{ _('(For info on fighting spam effectively, check out <a href="%s">spam.abuse.net</a>.)')|format('http://spam.abuse.net/') }}
+    </p>
+
+  </dd>
+
+  <dt>{{ _('No large attachments.') }}</dt>
+
+  <dd>
+    <p>
+    {{ _('Do not send binary attachments, including screen shots, and especially including screen shots of textual dialog boxes.') }}
+    {{ _('Many people read these messages through slow network connections; try to be respectful of them.') }}
+    {{ _('If you have a large file that you would like to distribute, put it on a Web page and announce the URL instead of attaching it.') }}
+    </p>
+  </dd>
+
+  <dt>{{ _('Trim your follow-ups.') }}</dt>
+
+  <dd>
+    <p>
+    {{ _('Do not quote the entire content of the message to which you are replying.') }}
+    {{ _('Include only as much as is necessary for context.') }}
+    {{ _('Remember that if someone wants to read the original message, they can; it is easily accessible.') }}
+    {{ _('A good rule of thumb is, don’t include more quoted text than new text.') }}
+    </p>
+    
+    <p>
+      {{ _('There is always a need for some trimming - either a salutation, a signature, some blank lines or whatever.') }}
+      {{ _('If you are doing no trimming whatsoever of the quoted text, then you aren’t trimming enough.') }}
+    </p>
+  </dd>
+
+  <dt>{{ _('Top-posting vs bottom-posting.') }}</dt>
+
+  <dd>
+    <p>
+      {{ _('Some people like to put reply after the quoted text, some like it the other way around, and still some prefer interspersed style.') }}
+      {{ _('Debates about which posting style is better have led to many flame wars in the forums.') }}
+      {{ _('To keep forum discussion friendly, please do <strong>interspersion with trimming</strong> (see above for trimming rules).') }}
+      {{ _('For a simple reply, this is equivalent <strong>bottom-posting</strong>.') }}
+      {{ _('So, remove extraneous material, and place your comments in logical order, after the text you are commenting upon.') }}
+      {{ _('The only exceptions are the accessibility forums, which are top-posting.') }}
+    </p>
+  </dd>
+
+  <dt>{{ _('Post HTML at your own risk.') }}</dt>
+
+  <dd>
+    <p>
+    {{ _('Keep in mind that not everyone uses mail or news readers that can easily display HTML messages.') }}
+    {{ _('Consequently, you will reach a larger audience if you post in plain-text.') }}
+    {{ _('Many people simply ignore HTML messages, because it takes a nontrivial amount of effort to read them.') }}
+    </p>
+  </dd>
+
+  <dt>{{ _('Report bugs in Bugzilla, not in the Mozilla forums.') }}</dt>
+
+  <dd>
+    <p>
+    {{ _('If you encounter a bug with Mozilla, please take the time to <a href="%s">file a report</a> in Bugzilla about it.')|format('https://developer.mozilla.org/docs/Mozilla/QA/Bug_writing_guidelines') }}
+    {{ _('Mozilla developers do not all have time to follow all the Mozilla-related forums on a regular basis, and if you just post a bug report to a newsgroup or mailing list then it may not reach anyone who can actually do anything about the bug.') }}
+    {{ _('By reporting the bug through Bugzilla you ensure that it will receive a higher level of attention, and will be tracked along with other bugs.') }}
+    Please{{ _(' also read the <a href="%s">Bugzilla etiquette page</a>.')|format('https://bugzilla.mozilla.org/page.cgi?id=etiquette.html') }}
+    </p>
+
+  </dd>
+
+  <dt>{{ _('Identify your subject matter.') }}</dt>
+
+  <dd>
+    <p>
+    {{ _('Not everyone has time reading all forum postings.') }}
+    {{ _('To ensure that your message reach the right people at timely manner, identify your subject matter clearly in the subject line.') }}
+    {{ _('Subjects like a <q>question</q> and <q>Mozilla problem</q> are not very helpful.') }}
+    </p>
+
+  </dd>
+
+  <dt>{{ _('No <q>unsubscribe</q> messages.') }}</dt>
+
+  <dd>
+    <p>
+      {{ _('Unfortunately, this bears repeating.') }}
+      {{ _('Find out more about unsubscribing in the <a href="%s">Mailing Lists</a> section.')|format('mozorg.about.forums.forums') }}
+      <!-- TODO: find best way to format URL like: /about/forums/#Mailing-Lists -->
+    </p>
+  </dd>
+
+  <dt>{{ _('No <q>test</q> messages.') }}</dt>
+
+  <dd>
+    <p>
+    {{ _('Please do not send test messages to the newsgroups except to <a href="%s">mozilla.test</a>.')|format('mozorg.about.forums.forums') }}
+    <!-- TODO: add #test to this link -->
+    </p>
+  </dd>
+</dl>
+
+{% endblock %}
