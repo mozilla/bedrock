@@ -20,7 +20,7 @@ from bedrock.newsletter.tests.test_views import newsletters
 
 TEST_FILES_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                'test_files')
-TEST_L10N_IMG_PATH = os.path.join(TEST_FILES_ROOT, 'media', 'img', 'l10n')
+TEST_L10N_MEDIA_PATH = os.path.join(TEST_FILES_ROOT, 'media', '%s', 'l10n')
 
 TEST_DONATE_LOCALE_LINK = {
     'de': 'https://sendto.mozilla.org/page/contribute/EOYFR2013-webDE',
@@ -73,7 +73,7 @@ class TestSecureURL(TestCase):
         self._test('', 'https://' + self.host + self.test_path, True)
 
 
-@patch('bedrock.mozorg.helpers.misc.L10N_IMG_PATH', TEST_L10N_IMG_PATH)
+@patch('bedrock.mozorg.helpers.misc.L10N_MEDIA_PATH', TEST_L10N_MEDIA_PATH)
 @patch('django.conf.settings.LANGUAGE_CODE', 'en-US')
 class TestImgL10n(TestCase):
     rf = RequestFactory()
@@ -124,7 +124,50 @@ class TestImgL10n(TestCase):
 
         self._render('is', 'dino/does-not-exist.png')
         exists_mock.assert_called_once_with(os.path.join(
-            TEST_L10N_IMG_PATH, 'is', 'dino', 'does-not-exist.png'))
+            TEST_L10N_MEDIA_PATH % 'img', 'is', 'dino', 'does-not-exist.png'))
+
+
+@patch('bedrock.mozorg.helpers.misc.L10N_MEDIA_PATH', TEST_L10N_MEDIA_PATH)
+class TestL10nCSS(TestCase):
+    rf = RequestFactory()
+    media_url_dev = '/media/'
+    media_url_prod = '//mozorg.cdn.mozilla.net/media/'
+    cdn_url = '//mozorg.cdn.mozilla.net'
+    markup = ('<link rel="stylesheet" media="screen,projection,tv" href='
+              '"%scss/l10n/%s/intl.css">')
+
+    def _render(self, locale):
+        req = self.rf.get('/')
+        req.locale = locale
+        return render('{{ l10n_css() }}', {'request': req})
+
+    @override_settings(DEV=True)
+    @override_settings(MEDIA_URL=media_url_dev)
+    def test_dev_when_css_file_exists(self):
+        """Should output a path to the CSS file if exists."""
+        eq_(self._render('de'), self.markup % (self.media_url_dev, 'de'))
+        eq_(self._render('es-ES'), self.markup % (self.media_url_dev, 'es-ES'))
+
+    @override_settings(DEV=True)
+    @override_settings(MEDIA_URL=media_url_dev)
+    def test_dev_when_css_file_missing(self):
+        """Should output nothing if the CSS file is missing."""
+        eq_(self._render('en-US'), '')
+        eq_(self._render('fr'), '')
+
+    @override_settings(DEV=False)
+    @override_settings(MEDIA_URL=media_url_prod)
+    def test_prod_when_css_file_exists(self):
+        """Should output a path to the CSS file if exists."""
+        eq_(self._render('de'), self.markup % (self.media_url_prod, 'de'))
+        eq_(self._render('es-ES'), self.markup % (self.media_url_prod, 'es-ES'))
+
+    @override_settings(DEV=False)
+    @override_settings(MEDIA_URL=media_url_prod)
+    def test_prod_when_css_file_missing(self):
+        """Should output nothing if the CSS file is missing."""
+        eq_(self._render('en-US'), '')
+        eq_(self._render('fr'), '')
 
 
 class TestVideoTag(TestCase):

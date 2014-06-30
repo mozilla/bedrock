@@ -1,0 +1,17 @@
+/* Bug 776967 */
+
+@font-face {
+  font-family: X-LocaleSpecific-Light;
+  font-weight: normal;
+  src: url('/media/fonts/l10n/mplus-2c-light-fulah-subset.eot?#iefix') format('embedded-opentype'),
+       url('/media/fonts/l10n/mplus-2c-light-fulah-subset.woff') format('woff'),
+       url('/media/fonts/l10n/mplus-2c-light-fulah-subset.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: X-LocaleSpecific;
+  font-weight: normal;
+  src: url('/media/fonts/l10n/mplus-2c-regular-fulah-subset.eot?#iefix') format('embedded-opentype'),
+       url('/media/fonts/l10n/mplus-2c-regular-fulah-subset.woff') format('woff'),
+       url('/media/fonts/l10n/mplus-2c-regular-fulah-subset.ttf') format('truetype');
+}

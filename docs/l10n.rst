@@ -318,3 +318,91 @@ You can specify a list of locales to update:
 
     $ ./manage.py l10n_check fr
     $ ./manage.py l10n_check fr de es
+
+CSS
+---
+
+If a localized page needs some locale-specific style tweaks, you can add the
+style rules to the page's stylesheet like this:
+
+    html[lang="it"] {
+      #features li {
+        font-size: 20px;
+      }
+    }
+
+    html[dir="rtl"] {
+      #features {
+        float: right;
+      }
+    }
+
+If a locale needs site-wide style tweaks, font settings in particular, you can
+add the rules to ``/media/css/l10n/{{LANG}}/intl.css``. Pages on Bedrock
+automatically includes the CSS in the base templates with the `l10n_css` helper
+function. The CSS may also be loaded directly from other Mozilla sites with such
+a URL: ``//mozorg.cdn.mozilla.net/media/css/l10n/{{LANG}}/intl.css``.
+
+*Open Sans*, the default font on mozilla.org, doesn't offer non-Latin glyphs.
+``intl.css`` can have ``@font-face`` rules to define locale-specific fonts using
+custom font families as below:
+
+* *X-LocaleSpecific-Light*: Used in combination with *Open Sans Light*. The font
+  can come in 2 weights: normal and optionally bold
+* *X-LocaleSpecific*: Used in combination with *Open Sans Regular*. The font can
+  come in 2 weights: normal and optionally bold
+* *X-LocaleSpecific-Extrabold*: Used in combination with *Open Sans Extrabold*.
+  The font weight is 800 only
+
+Here's an example of ``intl.css``:
+
+    @font-face {
+      font-family: X-LocaleSpecific-Light;
+      font-weight: normal;
+      src: local(mplus-2p-light), local(Meiryo);
+    }
+
+    @font-face {
+      font-family: X-LocaleSpecific-Light;
+      font-weight: bold;
+      src: local(mplus-2p-medium), local(Meiryo-Bold);
+    }
+
+    @font-face {
+      font-family: X-LocaleSpecific;
+      font-weight: normal;
+      src: local(mplus-2p-regular), local(Meiryo);
+    }
+
+    @font-face {
+      font-family: X-LocaleSpecific;
+      font-weight: bold;
+      src: local(mplus-2p-bold), local(Meiryo-Bold);
+    }
+
+    @font-face {
+      font-family: X-LocaleSpecific-Extrabold;
+      font-weight: 800;
+      src: local(mplus-2p-black), local(Meiryo-Bold);
+    }
+
+Localizers can specify locale-specific fonts in one of the following ways:
+
+* Choose best-looking fonts widely used on major platforms, and specify those
+with the ``src: local(name)`` syntax
+* Find a best-looking free Web font, add the font files to ``/media/fonts/``,
+and specify those with the ``src: url(path)`` syntax
+* Create a custom Web font to complement missing glyphs in *Open Sans*, add the
+font files to ``/media/fonts/``, and specify those with the ``src: url(path)``
+syntax. The `M+ font family
+<http://mplus-fonts.sourceforge.jp/mplus-outline-fonts/index-en.html>`_ offers
+various international glyphs and looks similar to *Open Sans*. You can create a
+subset of the *M+ 2c* font using a tool found on the Web. See `Bug 776967
+<https://bugzilla.mozilla.org/show_bug.cgi?id=776967>`_ for the Fulah (ff)
+locale's example.
+
+Developers should use the ``.open-sans`` mixin instead of ``font-family: 'Open
+Sans'`` to specify the default font family in CSS. This mixin has both *Open
+Sans* and *X-LocaleSpecific* so locale-specific fonts, if defined, will be
+applied to localized pages. The variant mixins, ``.open-sans-light`` and
+``.open-sans-extrabold``, are also available.

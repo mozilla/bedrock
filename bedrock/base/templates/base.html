@@ -35,6 +35,8 @@
     {% include 'includes/canonical-url.html' %}
     {% endblock shared_meta %}
 
+    {{ l10n_css() }}
+
     {% block tabzilla_css %}
       {{ css('tabzilla') }}
     {% endblock %}
@@ -62,8 +64,6 @@
     {% block extrahead %}
       {# Extra header stuff (scripts, styles, metadata, etc) seen by all browsers. Use the 'page_css' block for CSS you want to hide from IE7 and lower. #}
     {% endblock %}
-
-    {% include 'includes/locale-font-faces.html' %}
 
     {% block favicon %}<link rel="shortcut icon" href="{{ media('img/favicon.ico') }}">{% endblock %}
 

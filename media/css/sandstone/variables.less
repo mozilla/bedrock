@@ -40,8 +40,12 @@
 
 @borderColor: #d6d6d6;
 
+// The custom X-LocaleSpecific font family is defined with a @font-face rule in
+// locale-specific stylesheets which can be found at /media/css/l10n/. See
+// /docs/l10n.rst for details.
+@baseFontFamily:    'Open Sans', X-LocaleSpecific, sans-serif;
+
 @baseFontSize:      14px;
-@baseFontFamily:    'Open Sans', sans-serif;
 @baseLine:          20px;
 @smallFontSize:     12px;
 
@@ -52,13 +56,18 @@
 @gridRowWidth:            (@gridColumns * @gridColumnWidth) + (@gridGutterWidth * (@gridColumns - 1));
 
 
-.open-sans {
-    font-family: 'Open Sans', sans-serif;
+.open-sans() {
+    font-family: @baseFontFamily;
 }
 
-.open-sans-light {
-    font-family: 'Open Sans Light', sans-serif;
+.open-sans-light() {
+    font-family: 'Open Sans Light', X-LocaleSpecific-Light, @baseFontFamily;
     font-weight: normal;
+}
+
+.open-sans-extrabold() {
+    font-family: 'Open Sans Extrabold', X-LocaleSpecific-Extrabold, @baseFontFamily;
+    font-weight: 800;
 }
 
 .clearfix {

@@ -9,12 +9,12 @@ from funfactory.settings_base import path as base_path
 from funfactory.urlresolvers import reverse
 
 
-L10N_IMG_PATH = base_path('media', 'img', 'l10n')
+L10N_MEDIA_PATH = base_path('media', '%s', 'l10n')
 
 
-def _l10n_media_exists(locale, url):
+def _l10n_media_exists(type, locale, url):
     """ checks if a localized media file exists for the locale """
-    return path.exists(path.join(L10N_IMG_PATH, locale, url))
+    return path.exists(path.join(L10N_MEDIA_PATH % type, locale, url))
 
 
 @jingo.register.function
@@ -103,14 +103,56 @@ def l10n_img(ctx, url):
         locale = settings.LANGUAGE_CODE
 
     # We use the same localized screenshots for all Spanishes
-    if locale.startswith('es') and not _l10n_media_exists(locale, url):
+    if locale.startswith('es') and not _l10n_media_exists('img', locale, url):
         locale = 'es-ES'
 
     if locale != settings.LANGUAGE_CODE:
-        if not _l10n_media_exists(locale, url):
+        if not _l10n_media_exists('img', locale, url):
             locale = settings.LANGUAGE_CODE
 
     return media(path.join('img', 'l10n', locale, url))
+
+
+@jingo.register.function
+@jinja2.contextfunction
+def l10n_css(ctx):
+    """
+    Output the URL to a locale-specific stylesheet if exists.
+
+    Examples
+    ========
+
+    In Template
+    -----------
+
+        {{ l10n_css() }}
+
+    For a locale that has locale-specific stylesheet, this would output:
+
+        <link rel="stylesheet" media="screen,projection,tv"
+              href="{{ MEDIA_URL }}css/l10n/{{ LANG }}/intl.css">
+
+    For a locale that doesn't have any locale-specific stylesheet, this would
+    output nothing.
+
+    In the Filesystem
+    -----------------
+
+    Put files in folders like the following::
+
+        $ROOT/media/css/l10n/en-US/intl.css
+        $ROOT/media/css/l10n/fr/intl.css
+
+    """
+    locale = getattr(ctx['request'], 'locale', 'en-US')
+
+    if _l10n_media_exists('css', locale, 'intl.css'):
+        markup = ('<link rel="stylesheet" media="screen,projection,tv" href='
+                  '"%s">' % media(path.join('css', 'l10n', locale, 'intl.css')))
+    else:
+        markup = ''
+
+    return jinja2.Markup(markup)
 
 
 @jingo.register.function
