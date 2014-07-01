@@ -3,43 +3,34 @@
 @font-face {
   font-family: X-LocaleSpecific;
   font-weight: normal;
-  src: /* All */
-       /* OS X */
+  src: /* OS X */
        local(FZLTXHB--B51-0), /* = Lantinghei TC Extralight */
        /* Windows */
        local('Microsoft JhengHei Light'),
        /* Linux */
-       local(DroidSansFallbackFull)
-       /* Android */
-       ;
+       local(DroidSansFallbackFull);
 }
 
 @font-face {
   font-family: X-LocaleSpecific;
   font-weight: bold;
-  src: /* All */
-       /* OS X */
+  src: /* OS X */
        local(FZLTZHB--B51-0), /* = Lantinghei TC Demibold */
        /* Windows */
        local('Microsoft JhengHei Bold'),
        /* Linux */
-       local(DroidSansFallbackFull)
-       /* Android */
-       ;
+       local(DroidSansFallbackFull);
 }
 
 @font-face {
   font-family: X-LocaleSpecific-Extrabold;
   font-weight: 800;
-  src: /* All */
-       /* OS X */
+  src: /* OS X */
        local(FZLTTHB--B51-0), /* = Lantinghei TC Heavy */
        /* Windows */
        local('Microsoft JhengHei Bold'),
        /* Linux */
-       local(DroidSansFallbackFull)
-       /* Android */
-       ;
+       local(DroidSansFallbackFull);
 }
 
 /* Bug 973171 */
