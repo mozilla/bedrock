@@ -1,0 +1,51 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+<!-- -*- coding: utf-8 -*- -->
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Our Contributors</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <style type="text/css">
+    html {
+      background-color: #FFFFFF;
+    }
+
+    body {
+      color: #000000;
+    }
+
+    h1 {
+      text-align: center;
+    }
+  </style>
+  <link rel="stylesheet" href="chrome://global/skin/about.css" type="text/css">
+</head>
+
+<body id="aboutPageContainer" class="aboutPageWideContainer">
+
+<h1>Our Contributors</h1>
+
+<p>We would like to thank our contributors, whose efforts over many years have made this software what it is.</p>
+
+{% for letter, names in credits_names.iteritems() %}
+<h2><a name="{{ letter }}">{{ letter }}</a></h2>
+<p>
+{{ ',\n'.join(names) }}
+</p>
+{% else %}
+  <h2>Oops</h2>
+  <p>An error has occurred. The contributors list has failed to load. We are looking into it. Thank you for your patience.</p>
+{% endfor %}
+<hr>
+
+{# Use absolute URLs here; relative ones do not work when the page is accessed as "about:credits" #}
+<p>
+  This is a list of people who have "made a significant investment of time, with useful results,
+  into <a href="{{ secure_url('mozorg.home') }}">Mozilla project</a>-governed activities". Any such
+  contributors who wish to be added to the list should <a href="https://docs.google.com/forms/d/1rwLVzr1Fql9ZtAKkG_z5jcRczn2uy84zqwBX9gX52OY/viewform">fill in this form</a>.
+  There is a <a href="{{ secure_url('mozorg.credits-faq') }}">FAQ</a> about this process.
+</p>
+</body>
+</html>
