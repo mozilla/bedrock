@@ -1,0 +1,41 @@
+/* Bug 991516 */
+
+@font-face {
+  font-family: X-LocaleSpecific-Light;
+  font-weight: normal;
+  src: url('/media/fonts/l10n/az/mplus-2c-light-az-subset.eot?#iefix') format('embedded-opentype'),
+       url('/media/fonts/l10n/az/mplus-2c-light-az-subset.woff') format('woff'),
+       url('/media/fonts/l10n/az/mplus-2c-light-az-subset.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: X-LocaleSpecific-Light;
+  font-weight: bold;
+  src: url('/media/fonts/l10n/az/mplus-2c-medium-az-subset.eot?#iefix') format('embedded-opentype'),
+       url('/media/fonts/l10n/az/mplus-2c-medium-az-subset.woff') format('woff'),
+       url('/media/fonts/l10n/az/mplus-2c-medium-az-subset.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: X-LocaleSpecific;
+  font-weight: normal;
+  src: url('/media/fonts/l10n/az/mplus-2c-regular-az-subset.eot?#iefix') format('embedded-opentype'),
+       url('/media/fonts/l10n/az/mplus-2c-regular-az-subset.woff') format('woff'),
+       url('/media/fonts/l10n/az/mplus-2c-regular-az-subset.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: X-LocaleSpecific;
+  font-weight: bold;
+  src: url('/media/fonts/l10n/az/mplus-2c-bold-az-subset.eot?#iefix') format('embedded-opentype'),
+       url('/media/fonts/l10n/az/mplus-2c-bold-az-subset.woff') format('woff'),
+       url('/media/fonts/l10n/az/mplus-2c-bold-az-subset.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: X-LocaleSpecific-Extrabold;
+  font-weight: 800;
+  src: url('/media/fonts/l10n/az/mplus-2c-black-az-subset.eot?#iefix') format('embedded-opentype'),
+       url('/media/fonts/l10n/az/mplus-2c-black-az-subset.woff') format('woff'),
+       url('/media/fonts/l10n/az/mplus-2c-black-az-subset.ttf') format('truetype');
+}
