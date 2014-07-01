@@ -955,7 +955,7 @@ MOBILIZER_LOCALE_LINK = {
 }
 
 DONATE_LOCALE_LINK = {
-    'en-US': 'https://sendto.mozilla.org/page/contribute/EOYFR2013-newdefault',
+    'en-US': 'https://sendto.mozilla.org/page/contribute/Give-Now',
 }
 
 # Official Firefox Twitter accounts
