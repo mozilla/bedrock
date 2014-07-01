@@ -29,3 +29,4 @@ venv
 james.ini
 node_modules
 /media/js/test/test-results.xml
+bedrock/externalfiles/files_cache

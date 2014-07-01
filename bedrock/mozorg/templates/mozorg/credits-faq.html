@@ -1,0 +1,47 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+{% extends "mozorg/base-resp.html" %}
+
+{% block page_title %}Credits FAQ{% endblock %}
+{% block body_id %}credits-faq{% endblock %}
+{% block body_class %}sand{% endblock %}
+
+{% block content %}
+
+<h1>Credits FAQ</h1>
+
+<p>The appropriate giving of credit can be a controversial subject in free software projects. At Mozilla, for our code products, we do it with a <a href="{{ url('mozorg.credits') }}">single global credits list</a>.</p>
+
+<p>This document explains a bit about how we process applications. The overarching principle is that as far as possible everyone who applies to be included should be treated equally, no matter in what way they contributed, or who they work for.</p>
+
+<h2>Who is eligible?</h2>
+
+<p>The agreed criteria, as posted at the bottom of <a href="{{ url('mozorg.credits') }}">about:credits</a>, is people who have "made a significant investment of time, with useful results, into Mozilla project-governed activities".</p>
+
+<h2>What are 'Mozilla project-governed activities'?</h2>
+
+<p>Anything relating to the products in which the credits list appears, and over which the Mozilla organization has direct oversight. So that would include writing code which is checked in to our repositories, quality assurance for our builds, documentation, official localizations, user experience and visual design, and marketing and support through official channels.</p>
+
+<p>Not included would be running independent websites, writing addons, creating personas, installing our products for or promoting them to your friends, and support through unofficial channels.</p>
+
+<p>The edges are fuzzy, but they would be wherever you drew the line. One aim of these criteria is to keep the size of the list manageable.</p>
+
+<h2>What is a 'significant investment of time'?</h2>
+
+<p>We want to make sure that being on the list actually means something, which means in turn that you do actually have to have done something in order to get on it. There is not a hard and fast rule here, because of the widely varying nature of people's contributions. If you think you have invested a significant amount of time, apply and see if we agree. :-)</p>
+
+<h2>How do I get added?</h2>
+
+<p>See the bottom of <a href="{{ url('mozorg.credits') }}">about:credits</a>, and click the email link there. Remember to include a citation.</p>
+
+<p>It is possible to nominate someone else for inclusion, but we encourage people to nominate themselves. There are several good reasons for this - they can confirm they are not the same Dave Jones who is already on there, they can tell us (for more complex names) how they like to be sorted, and they can write their own citation. So if you know someone who you think should be on the list, tell them about it.</p>
+
+<h2>Why do I need to include a citation?</h2>
+
+<p>It's a good way for us to know what you're claiming to have done, and a good way for you to summarise your contribution for the world to see. If you think your citation seems a bit weak, perhaps that's a clue you should wait a little longer before applying :-) It appears in the checkin comment when your name is added. Usually, each name gets its own checkin.</p>
+
+<h2>When will I get added, and how do I know?</h2>
+
+<p>Additions are normally done in batches, a few months apart. You will receive an email when your name is added, or requesting more information if there has been a problem with your application (e.g. additional verification is needed). When you have been added, you will see your name and citation in <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/credits/index.html?view=log">the log</a>.</p>
+{% endblock %}
