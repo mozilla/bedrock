@@ -33,7 +33,7 @@
       {# L10n: This description applies to Firefox Beta #}
       <h3>{{_('The latest features in a more stable environment')}}</h3>
       <div class="download-box" id="beta-desktop">
-        {{ download_firefox('beta', icon=False, small=True) }}
+        {{ download_firefox('beta', icon=False, small=True, force_direct=True) }}
       </div>
       <div class="download-box mobile" id="beta-mobile">
         {{ download_firefox('beta', icon=False, mobile=True, small=True) }}
@@ -57,7 +57,7 @@
       {# L10n: This description applies to Firefox on the Release channel #}
       <h3>{{_('Tried, tested and used by millions around the world')}}</h3>
       <div class="download-box" id="firefox-desktop">
-        {{ download_firefox(icon=False, small=True) }}
+        {{ download_firefox(icon=False, small=True, force_direct=True) }}
       </div>
       <div class="download-box mobile" id="firefox-mobile">
         {{ download_firefox(icon=False, mobile=True, small=True) }}
