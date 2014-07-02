@@ -137,26 +137,33 @@ if (typeof Mozilla === 'undefined') {
     });
 
     // wire up thumbnail select
-    $('.device-thumbnails').on('click', '.device-thumbnail', function() {
+    $('.device-thumbnails').on('click', '.device-thumbnail', function(e) {
         var $this = $(this);
 
-        selectedDevice = $this.attr('href').replace(/#/gi, '');
-        var $targetDevice = $('#' + selectedDevice);
+        // make sure device has specs (coming soon devices may not have specs)
+        var hasSpecs = $this.data('specs') !== false;
 
-        if (!$targetDevice.is(':visible')) {
-            $deviceThumbnails.removeClass('selected');
-            $this.addClass('selected');
+        if (hasSpecs) {
+            selectedDevice = $this.attr('href').replace(/#/gi, '');
+            var $targetDevice = $('#' + selectedDevice);
 
-            $deviceDetailLists.slideUp('fast', function() {
-                setTimeout(function() {
-                    $deviceDetails.hide();
-                    $targetDevice.show();
+            if (!$targetDevice.is(':visible')) {
+                $deviceThumbnails.removeClass('selected');
+                $this.addClass('selected');
 
-                    $targetDevice.parents('.device-detail-list:first').slideDown('fast');
-                }, 200);
-            });
+                $deviceDetailLists.slideUp('fast', function() {
+                    setTimeout(function() {
+                        $deviceDetails.hide();
+                        $targetDevice.show();
 
-            gaTrack(['_trackEvent', '/os/devices/ Interactions', selectedDevice + ' Interactions', 'Open Features']);
+                        $targetDevice.parents('.device-detail-list:first').slideDown('fast');
+                    }, 200);
+                });
+
+                gaTrack(['_trackEvent', '/os/devices/ Interactions', selectedDevice + ' Interactions', 'Open Features']);
+            }
+        } else {
+            e.preventDefault();
         }
     });
 
