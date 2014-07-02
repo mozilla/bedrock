@@ -118,26 +118,7 @@
     {% endif %}
 
 {# Position 2: "Build Products" #}
-    {% if l10n_has_tag('promo_worldcup2014') or settings.DEV %}
-      <li id="panel-worldcup2014" class="panel" tabindex="0">
-        {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
-        <h2 class="panel-title">{{ _('Football <i>fanatic?</i>') }}</h2>
-        <div class="ball"></div>
-        <div class="panel-inner">
-          <div class="panel-content">
-          {% if request.locale in ['pt-BR','es-ES','es-CL','es-AR','es-MX','id','de','fr','it'] %}
-            <a href="https://activations.cdn.mozilla.net/{{ LANG }}/goal.html?utm_source=mozcarousel&amp;utm_medium=banner&amp;utm_content=goalcom{{ LANG }}&amp;utm_campaign=WC2014">
-          {% else %}
-            <a href="https://activations.cdn.mozilla.net/en-US/goal.html?utm_source=mozcarousel&amp;utm_medium=banner&amp;utm_content=goalcomen-US&amp;utm_campaign=WC2014" hreflang="en-US">
-          {% endif %}
-              <h3>{{ _('Football fanatic?') }}</h3>
-              <p>{{ _('Firefox lets you keep up with all the action in Brazil.') }}</p>
-              <p class="go">{{ _('Activate the Goal.com sidebar') }}</p>
-            </a>
-          </div>
-        </div>
-      </li>
-    {% elif l10n_has_tag('promo_fxdesktop') %}
+    {% if l10n_has_tag('promo_fxdesktop') or settings.DEV %}
       <li id="panel-fxdesktop" class="panel" tabindex="0">
         {# L10n: This is the label seen when the panel is collapsed so it may need to be altered to fit a limited space. The active phrase should be wrapped in <i></i> tags. #}
         <h2 class="panel-title">{{ _('<i>Try the best</i> Firefox yet') }}</h2>

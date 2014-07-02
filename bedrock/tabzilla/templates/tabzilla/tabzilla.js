@@ -652,15 +652,11 @@ var Tabzilla = (function (Tabzilla) {
       '<div id="tabzilla-panel" class="tabzilla-closed" tabindex="-1">'
     + '  <div id="tabzilla-contents">'
     + '    <div id="tabzilla-promo">'
-{% if l10n_has_tag('promo_worldcup2014_tabzilla') or settings.DEV %}
-    + '      <div class="snippet" id="tabzilla-promo-worldcup2014">'
-    {% if request.locale in ['pt-BR','es-ES','es-CL','es-AR','es-MX','id','de','fr','it'] %}
-    +'         <a href="https://activations.cdn.mozilla.net/{{ LANG }}/goal.html?icn=tabz&amp;utm_source=tabzilla&amp;utm_medium=banner&amp;utm_content=goalcom{{ LANG }}&amp;utm_campaign=WC2014">'
-    {% else %}
-    +'         <a href="https://activations.cdn.mozilla.net/en-US/goal.html?icn=tabz&amp;utm_source=tabzilla&amp;utm_medium=banner&amp;utm_content=goalcomen-US&amp;utm_campaign=WC2014" hreflang="en-US">'
-    {% endif %}
-    + '          <h4>{{ _('Football fanatic?')|js_escape }}</h4>'
-    + '          <p><b class="button">{{ _('Activate the Goal.com sidebar')|js_escape }}</b></p>'
+{% if l10n_has_tag('promo_webwewant') or settings.DEV %}
+    + '      <div class="snippet" id="tabzilla-promo-webwewant">'
+    + '        <a href="https://webwewant.mozilla.org/?icn=tabz">'
+    + '          <h4>{{ _('What kind of Web do you want?')|js_escape }}</h4>'
+    + '          <p>{{ _('Share your vision')|js_escape }}</p>'
     + '        </a>'
     + '      </div>'
 {% else %}
