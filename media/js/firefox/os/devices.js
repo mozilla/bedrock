@@ -229,7 +229,16 @@ if (typeof Mozilla === 'undefined') {
 
     // display specific device if in URL hash
     if (window.location.hash !== '') {
-        $('.device-thumbnail[href="' + window.location.hash + '"]').trigger('click');
+        setTimeout(function() {
+            var $deviceThumb = $('.device-thumbnail[href="' + window.location.hash + '"]');
+
+            if ($deviceThumb.length) {
+                $deviceThumb.trigger('click');
+                $('html, body').animate({
+                    scrollTop: $deviceThumb.offset().top
+                }, 600);
+            }
+        }, 500);
     }
 
     // GA specific interactions

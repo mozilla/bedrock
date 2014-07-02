@@ -241,6 +241,11 @@ if (typeof Mozilla == 'undefined') {
             'type': 'smartphone',
             'display': 'ZTE Open C',
             'countries': ['de', 'ru', 'gb', 'us', 'uy']
+        },
+        'zte_open2': {
+            'type': 'smartphone',
+            'display': 'ZTE Open II',
+            'countries': ['pe']
         }
     };
 })(window.jQuery);
