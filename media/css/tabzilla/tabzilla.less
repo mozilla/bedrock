@@ -47,16 +47,6 @@
     font-style: normal;
 }
 
-// Montserrat used in the World Cup 2014 promo
-@font-face {
-    font-family: 'Montserrat';
-    src: url('/media/fonts/Montserrat-Bold.eot?#iefix') format('embedded-opentype'),
-         url('/media/fonts/Montserrat-Bold.woff') format('woff'),
-         url('/media/fonts/Montserrat-Bold.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-}
-
 
 // Tab
 
@@ -601,59 +591,6 @@ html[dir="rtl"] {
         background-image: url("/media/img/tabzilla/promo-webwewant-reversed.jpg");
         p {
             margin: 0 0 0 80px;
-        }
-    }
-}
-
-// World Cup 2014 Promo
-
-#tabzilla-promo .snippet#tabzilla-promo-worldcup2014 a {
-    background: #3191c4 url(/media/img/tabzilla/promo-worldcup2014.jpg) no-repeat;
-    width: 180px;
-    height: 140px;
-    padding: 60px 90px 10px 30px;
-    color: #fff;
-
-    h4 {
-        color: #fff;
-        font: bold 28px/1 'Montserrat', 'Open Sans', sans-serif;
-        letter-spacing: -.025em;
-        text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
-        text-transform: uppercase;
-        margin: 0 0 8px;
-    }
-
-    .button {
-        text-align: left;
-
-        &:after {
-            content: "\00A0\00BB"; /* nbsp raquo */
-        }
-    }
-}
-
-[lang='pl'],
-[lang='sr'] {
-    #tabzilla-promo .snippet#tabzilla-promo-worldcup2014 a h4 {
-        font-size: 24px;
-    }
-}
-
-[lang='fr'],
-[lang='el'] {
-    #tabzilla-promo .snippet#tabzilla-promo-worldcup2014 a h4 {
-        font-size: 22px;
-    }
-}
-
-[lang='de'],
-[lang='da'] {
-    #tabzilla-promo .snippet#tabzilla-promo-worldcup2014 a {
-        padding-top: 110px;
-        height: 90px;
-
-        h4 {
-            font-size: 18px;
         }
     }
 }
