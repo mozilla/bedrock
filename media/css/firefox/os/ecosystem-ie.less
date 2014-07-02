@@ -1,0 +1,215 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../../sandstone/sandstone-resp.less";
+
+@font-face {
+    font-family: 'Fira SemiBold';
+    src: url('/media/fonts/FiraSans-SemiBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Fira UltraLightItalic';
+    src: url('/media/fonts/FiraSans-UltraLightItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@textGrey: #4d4e53;
+
+#outer-wrapper {
+    background: #fff url(/media/img/sandstone/grain.png) repeat;
+    background: url(/media/img/sandstone/grain.png) repeat 0 0,
+                #fff;
+}
+
+#wrapper {
+    width: auto;
+    padding-bottom: 0;
+    overflow: hidden;
+}
+
+#masthead {
+    position: relative;
+    width: auto;
+    left: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#page-header {
+    position: relative;
+    width: 301px;
+    height: 91px;
+    background: url(/media/img/firefox/os/ecosystem/sprite-fxos-logo.png) left top no-repeat;
+    .image-replaced();
+}
+
+.fxos-logo {
+    display: block;
+    margin-left: 102px;
+    width: 199px;
+    height: 91px;
+    background: url(/media/img/firefox/os/ecosystem/sprite-fxos-logo.png) left -96px no-repeat;
+}
+
+#intro-desktop {
+    display: none;
+}
+
+#intro-mobile {
+    display: block;
+}
+
+#contents {
+    font-size: @largeFontSize;
+
+    .copy-heading {
+        font: 44px/1.1 'Fira UltraLightItalic';
+        text-shadow: none;
+        margin-bottom: @baseLine;
+    }
+}
+
+.js {
+    #main-content {
+        padding-top: @baseLine * 2;
+    }
+
+    #outer-wrapper {
+        background: #fff;
+    }
+
+    #wrapper {
+        position: relative;
+    }
+
+    #nav-button-wrapper, #phone, #fox-tail {
+        display: none;
+    }
+
+    #contents {
+        margin-left: 0;
+
+        .pager-page {
+            opacity: 1;
+            padding: @baseLine * 2;
+            background: #0ea0db;
+            margin-bottom: @baseLine * 2;
+
+            a {
+                color: #fff;
+                text-decoration: underline;
+            }
+        }
+
+        #intro {
+            background: transparent;
+        }
+
+        .copy-heading {
+            cursor: pointer;
+            color: #fff;
+            padding-right: 84px;
+            position: relative;
+
+            &:after {
+                position: absolute;
+                right: 0;
+                top: 0;
+                content: '';
+                width: 64px;
+                height: 64px;
+                background-image: url(/media/img/firefox/os/ecosystem/sprite-icons.png);
+                background-repeat: no-repeat;
+                background-position: right 100px;
+            }
+
+            &:focus {
+                outline: #fff solid 2px;
+                outline: rgba(255, 255, 255, 0.4) solid 2px;
+            }
+        }
+
+        .heading-intro {
+            color: @textGrey;
+            cursor: default;
+        }
+
+        .heading-os:after {
+            background-position: right -1031px;
+        }
+
+        .heading-users:after {
+            background-position: right -6px;
+        }
+
+        .heading-services:after {
+            background-position: right -120px;
+        }
+
+        .heading-community:after {
+            background-position: right -232px;
+        }
+
+        .heading-apps:after {
+            background-position: right -348px;
+        }
+
+        .heading-marketplace:after {
+            background-position: right -462px;
+        }
+
+        .heading-channel:after {
+            background-position: right -575px;
+        }
+
+        .heading-developers:after {
+            background-position: right -690px;
+        }
+
+        .heading-operators:after {
+            background-position: right -804px;
+        }
+
+        .heading-m-commerce:after {
+            background-position: right -917px;
+        }
+
+        .heading-chipsets:after {
+            background-position: right -1145px;
+        }
+
+        .heading-handsets:after {
+            background-position: right -1261px;
+        }
+
+        .copy-column {
+            float: none;
+            width: auto;
+            margin-right: 0;
+
+            &.copy-wide {
+                width: auto;
+            }
+        }
+
+        .copy-body {
+            color: #fff;
+        }
+
+        .media {
+            width: 500px;
+            height: auto;
+            float: none;
+            margin: (@baseLine * 2) auto 0;
+        }
+
+        p {
+            margin-left: 0;
+        }
+    }
+}

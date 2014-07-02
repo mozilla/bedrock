@@ -42,8 +42,7 @@ All pagers have the following default behaviors:
 Pager options
 -------------
 
-Each pager can be individually configured through classes on the
-container ``pager`` element:
+Each pager can be individually configured through classes on the container ``pager`` element:
 
 ``pager-auto-init``
     Instructs the library to initialize the pager on ``$(document).ready()``.
@@ -137,6 +136,11 @@ You can also initialize a single pager by creating a new ``Mozilla.Pager`` objec
         var delayedPager = new Mozilla.Pager($('#delayed-pager'));
     </script>
 
+When creating a single pager using the ``new`` keyword, you can supply an optional second parameter. This parameter should be an object literal containing any of the following key/value pairs:
+
+- ``onCreate`` : specifies a function that will execute after the pager has been created.
+- ``afterPageChanged`` : specifies a function that will execute after the current page has changed.
+
 Once initialized, the ``pager-initialized`` class is applied to each ``pager`` element.
 
 If a pager does not have an ``id`` specified, the library will provide one during initialization in the form of ``mozilla-pager-X``, where ``X`` represents the new pager's creation order.
@@ -198,6 +202,35 @@ All pagers have a ``pages`` array containing ``Mozilla.Page`` objects::
     for (var i = 0; i < my_pager_pages.length; i++) {
         console.log(my_pager_pages[i]);
     }
+
+You can also access a page by its id using the ``findPageById()`` function. Returns a ``Mozilla.Page`` object on success, ``null`` on failure::
+
+    <div class="pager" id="delayed-pager">
+        <div class="pager-content">
+            <div class="pager-page" id="team">
+                <p>Team copy...</p>
+            </div>
+            <div class="pager-page" id="process">
+                <p>Process copy...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var my_pager = new Mozilla.Pager(document.querySelector('#my-pager'));
+
+        var info_page = my_pager.findPageById('process');
+
+        console.log(info_page);
+    </script>
+
+Finally, you can access the current page using the ``currentPage`` property::
+
+    var my_pager = new Mozilla.Pager(document.querySelector('#my-pager'));
+
+    var current_page = my_pager.currentPage;
+
+    console.log(current_page);
 
 Changing pages
 ^^^^^^^^^^^^^^

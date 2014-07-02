@@ -75,6 +75,7 @@ urlpatterns = patterns('',
 
     page('mwc', 'firefox/os/mwc-2014-preview.html'),
     page('firefox/os/devices', 'firefox/os/devices.html'),
+    page('firefox/os/ecosystem', 'firefox/os/ecosystem.html'),
 
     page('firefox/independent', 'firefox/independent.html'),
 

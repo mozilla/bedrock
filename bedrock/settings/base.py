@@ -272,6 +272,12 @@ MINIFY_BUNDLES = {
         'firefox_os_ie': (
             'css/firefox/os/firefox-os-ie.less',
         ),
+        'firefox_os_ecosystem': (
+            'css/firefox/os/ecosystem.less',
+        ),
+        'firefox_os_ecosystem_ie': (
+            'css/firefox/os/ecosystem-ie.less',
+        ),
         'firefox_os_devices': (
             'css/libs/tipsy.css',
             'css/base/mozilla-modal.less',
@@ -655,6 +661,15 @@ MINIFY_BUNDLES = {
         ),
         'firefox_os_ie9': (
             'js/libs/matchMedia.addListener.js',
+        ),
+        'firefox_os_ecosystem': (
+            'js/base/mozilla-pager.js',
+            'js/libs/matchMedia.js',
+            'js/libs/matchMedia.addListener.js',
+            'js/firefox/os/ecosystem.js',
+        ),
+        'firefox_os_ecosystem_ie': (
+            'js/firefox/os/ecosystem-ie.js',
         ),
         'firefox_os_devices': (
             'js/libs/jquery.tipsy.js',

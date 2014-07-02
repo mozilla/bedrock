@@ -26,6 +26,36 @@ describe('mozilla-pager.js', function () {
             var pager = new Mozilla.Pager($('#pager'));
             expect(pager.currentPage.id).toEqual('page2');
         });
+
+        it('should find a page by id', function () {
+            var pager = new Mozilla.Pager($('#pager'));
+            expect(pager.findPageById('page1')).toBeTruthy();
+            expect(pager.findPageById('fake_page')).toBeFalsy();
+        });
+
+        it('should execute onCreate callback', function () {
+            this.onCreateCallback = function() {};
+
+            spyOn(this, 'onCreateCallback');
+            var pager = new Mozilla.Pager($('#pager'), {
+                onCreate: this.onCreateCallback
+            });
+
+            expect(this.onCreateCallback).toHaveBeenCalled();
+        });
+
+        it('should execute afterPageChanged callback', function () {
+            this.afterPageChangedCallback = function() {};
+
+            spyOn(this, 'afterPageChangedCallback');
+            var pager = new Mozilla.Pager($('#pager'), {
+                afterPageChanged: this.afterPageChangedCallback
+            });
+
+            pager.setPage(pager.pages[0]);
+            expect(pager.currentPage.id).toEqual('page1');
+            expect(this.afterPageChangedCallback).toHaveBeenCalled();
+        });
     });
 
     describe('Mozilla.Pager auto rotate', function () {

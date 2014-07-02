@@ -61,7 +61,7 @@ if (typeof Mozilla === 'undefined') {
  * @param jQuery Object $container - jQuery representation of element
  *          containing the pager.
  */
-Mozilla.Pager = function($container) {
+Mozilla.Pager = function($container, options) {
     'use strict';
 
     this.$container = $container;
@@ -100,6 +100,9 @@ Mozilla.Pager = function($container) {
     this.previousPage = null;
     this.currentPage  = null;
     this.animatingOut = false;
+
+    // all implementors to supply a custom callback fired after the page has changed
+    this.afterPageChanged = null;
 
     this.randomStartPage = this.$container.hasClass('pager-random');
 
@@ -247,6 +250,17 @@ Mozilla.Pager = function($container) {
     // Make sure hash monitoring is active (if needed).
     if (this.history) {
         Mozilla.Pager.initHashMonitor();
+    }
+
+    // check optional options param
+    if (options) {
+        if (typeof options.onCreate === 'function') {
+            options.onCreate();
+        }
+
+        if (typeof options.afterPageChanged === 'function') {
+            this.afterPageChanged = options.afterPageChanged;
+        }
     }
 
     return this;
@@ -647,6 +661,19 @@ Mozilla.Pager.prototype.addPage = function(page) {
 };
 
 // }}}
+// {{{ findPageById()
+
+Mozilla.Pager.prototype.findPageById = function(pageId) {
+    'use strict';
+
+    var page = $.grep(this.pages, function(page) {
+        return page.id === pageId;
+    });
+
+    return page.length > 0 ? page[0] : null;
+};
+
+// }}}
 // {{{ update()
 
 Mozilla.Pager.prototype.update = function() {
@@ -752,6 +779,10 @@ Mozilla.Pager.prototype.setPage = function(page) {
         this.currentPage = page;
         this.currentPage.show();
         this.update();
+
+        if (typeof this.afterPageChanged === 'function') {
+            this.afterPageChanged();
+        }
     }
 };
 
@@ -762,7 +793,6 @@ Mozilla.Pager.prototype.setPageWithAnimation = function(page, duration) {
     'use strict';
 
     if (this.currentPage !== page) {
-
         this.updateLocation(page);
 
         // deselect last selected page (not necessarily previous page)
@@ -803,6 +833,10 @@ Mozilla.Pager.prototype.setPageWithAnimation = function(page, duration) {
         } else {
             // always set current page so the correct page fades in
             this.currentPage = page;
+
+            if (typeof this.afterPageChanged === 'function') {
+                this.afterPageChanged();
+            }
         }
 
         this.update();
@@ -826,7 +860,13 @@ Mozilla.Pager.prototype.fadeInPage = function(duration) {
 
     this.animatingOut = false;
 
-    this.$pageContainer.animate({ opacity: 1 }, duration, 'pagerFadeOut');
+    var that = this;
+
+    this.$pageContainer.animate({ opacity: 1 }, duration, 'pagerFadeOut', function() {
+        if (typeof that.afterPageChanged === 'function') {
+            that.afterPageChanged();
+        }
+    });
 };
 
 // }}}
@@ -974,18 +1014,20 @@ Mozilla.Page.prototype.show = function() {
 
 // }}}
 
+// add easing functions
+$.extend($.easing, {
+    'pagerFadeIn':  function (x, t, b, c, d) {
+        'use strict';
+        return c * (t /= d) * t + b;
+    },
+    'pagerFadeOut': function (x, t, b, c, d) {
+        'use strict';
+        return -c * (t /= d) * (t - 2) + b;
+    }
+});
+
 $(document).ready(function() {
     'use strict';
-
-    // add easing functions
-    $.extend($.easing, {
-        'pagerFadeIn':  function (x, t, b, c, d) {
-            return c * (t /= d) * t + b;
-        },
-        'pagerFadeOut': function (x, t, b, c, d) {
-            return -c * (t /= d) * (t - 2) + b;
-        }
-    });
 
     Mozilla.Pager.createPagers(true);
 });
