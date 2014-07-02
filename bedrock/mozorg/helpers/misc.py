@@ -1,3 +1,4 @@
+import random
 import urlparse
 from os import path
 
@@ -488,4 +489,11 @@ def htmlattr(_list, **kwargs):
         for attr, value in kwargs.iteritems():
             tag[attr] = value
 
+    return _list
+
+
+@jingo.register.filter
+def shuffle(_list):
+    """Return a shuffled list"""
+    random.shuffle(_list)
     return _list
