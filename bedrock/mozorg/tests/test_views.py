@@ -197,19 +197,6 @@ class TestContribute(TestCase):
         assert_false(doc('#newsletter'))
 
     @patch.object(ReCaptchaField, 'clean', Mock())
-    def test_no_autoresponse(self):
-        """Test contacts for functional area without autoresponses"""
-        self.data.update(interest='coding')
-        self.client.post(self.url_en, self.data)
-        eq_(len(mail.outbox), 1)
-
-        m = mail.outbox[0]
-        eq_(m.from_email, 'contribute@mozilla.org')
-        eq_(m.to, ['contribute@mozilla.org'])
-        eq_(m.cc, ['josh@joshmatthews.net'])
-        eq_(m.extra_headers['Reply-To'], self.contact)
-
-    @patch.object(ReCaptchaField, 'clean', Mock())
     def test_with_autoresponse(self):
         """Test contacts for functional area with autoresponses"""
         self.data.update(interest='support')
@@ -341,7 +328,7 @@ class TestContribute(TestCase):
         EXPECTED = u"J'adore Citröns &  so there"
         self.data.update(comments=STRING)
         self.client.post(self.url_en, self.data)
-        eq_(len(mail.outbox), 1)
+        eq_(len(mail.outbox), 2)
         m = mail.outbox[0]
         self.assertIn(EXPECTED, m.body)
 
