@@ -11,7 +11,8 @@ from mock import patch
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
-from l10n_utils import render, get_accept_languages
+
+from lib import l10n_utils
 
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test_files')
@@ -48,7 +49,7 @@ class TestRender(TestCase):
         request = RequestFactory().get(path)
         request.META['HTTP_ACCEPT_LANGUAGE'] = accept_lang
         request.locale = locale
-        response = render(request, template)
+        response = l10n_utils.render(request, template)
 
         if status == 302:
             self.assertEqual(response.status_code, 302)
@@ -65,21 +66,29 @@ class TestRender(TestCase):
         self._test(path, template, 'en-US', 'en-us,en;q=0.5',
                    200)
         # en-GB is activated on /firefox/new/
-        self._test(path, template, 'en-GB', 'en-gb,en;q=0.5',
-                   200)
-        # fr-FR should be treated as fr
-        self._test(path, template, 'fr-FR', 'fr-fr',
-                   302, '/fr/firefox/new/')
-        # Should fallback to the user's second preferred language
-        self._test(path, template, 'zu', 'zu,fr;q=0.7,en;q=0.3',
-                   302, '/fr/firefox/new/')
+        with patch.object(l10n_utils, 'template_is_active') as active_mock:
+            active_mock.return_value = True
+            self._test(path, template, 'en-GB', 'en-gb,en;q=0.5',
+                       200)
+
+            active_mock.reset_mock()
+            active_mock.side_effect = [False, True]
+            # fr-FR should be treated as fr
+            self._test(path, template, 'fr-FR', 'fr-fr',
+                       302, '/fr/firefox/new/')
+
+            active_mock.reset_mock()
+            active_mock.side_effect = [False, False, True]
+            # Should fallback to the user's second preferred language
+            self._test(path, template, 'zu', 'zu,fr;q=0.7,en;q=0.3',
+                       302, '/fr/firefox/new/')
 
 
 class TestGetAcceptLanguages(TestCase):
     def _test(self, accept_lang, list):
         request = RequestFactory().get('/')
         request.META['HTTP_ACCEPT_LANGUAGE'] = accept_lang
-        self.assertEqual(get_accept_languages(request), list)
+        self.assertEqual(l10n_utils.get_accept_languages(request), list)
 
     def test_valid_lang_codes(self):
         """

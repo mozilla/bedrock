@@ -51,7 +51,7 @@ def render(request, template, context=None, **kwargs):
             matched = None
 
             for lang in get_accept_languages(request):
-                if (template_is_active(template, lang)):
+                if template_is_active(template, lang):
                     matched = lang
                     break
 
