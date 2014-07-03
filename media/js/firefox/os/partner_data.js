@@ -232,6 +232,11 @@ if (typeof Mozilla == 'undefined') {
             'display': 'LG Fireweb',
             'countries': ['br', 'uy']
         },
+        'tarako': {
+            'type': 'smartphone',
+            'display': 'Tarako',
+            'countries': []
+        },
         'zte_open': {
             'type': 'smartphone',
             'display': 'ZTE Open',
