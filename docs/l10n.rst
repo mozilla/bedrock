@@ -319,6 +319,18 @@ You can specify a list of locales to update:
     $ ./manage.py l10n_check fr
     $ ./manage.py l10n_check fr de es
 
+Currency
+--------
+
+When dealing with currency, make a separate gettext wrapper, placing the amount
+inside a variable. You should also include a comment describing the intent. For
+example:
+
+.. code-block:: jinja
+
+    {# L10n: Inserts a sum in US dollars, e.g. '$100'. Adapt the string in your translation for your locale conventions if needed, ex: %(sum)s US$ #}
+    {{ _('$%(sum)s')|format(sum='15') }}
+
 CSS
 ---
 
