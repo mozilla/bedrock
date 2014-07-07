@@ -6,7 +6,7 @@
 @import '../sandstone/lib.less';
 
 html {
-    background: #002e52;
+    background: #0c2745;
 }
 
 h1,
@@ -56,10 +56,6 @@ main {
         color: #79d8ff;
         text-shadow: 0 1px 0 rgba(0, 0, 0, .15);
     }
-    h4 {
-        font-size: 29px;
-        text-transform: uppercase;
-    }
 
     #nightly-box {
         margin-top: 45px;
@@ -85,6 +81,10 @@ main {
             }
             .title {
                 padding-top: 85px;
+            }
+            h4 {
+                font-size: 29px;
+                text-transform: uppercase;
             }
         }
         .content {
@@ -112,6 +112,10 @@ main {
         &.badge {
             padding: 0 30px 0 150px;
             background: url(/media/img/firefox/firstrun/nightly-badge.png?2014-06) no-repeat 60px 50%, rgba(133, 156, 238, .15);
+            h3 {
+                display: inline-block;
+                margin: 20px 0 5px 0;
+            }
         }
         h3 {
             font-size: 20px;
@@ -130,6 +134,13 @@ main {
         font-size: 16px;
         color: white;
         text-shadow: 0 1px 0 rgba(0, 0, 0, .15);
+        h4 {
+            font-size: 20px;
+        }
+        h5,
+        h6 {
+            color: white;
+        }
     }
     #nightly-box .blue-box a.button,
     .blue-box.badge a {
