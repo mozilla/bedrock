@@ -1,0 +1,11 @@
+Hi,
+I'm Josh, one of many Firefox developers. Glad to hear from you! Feel free to have a look at http://whatcanidoformozilla.org/#!/progornoprog/proglang if you're interested in joining a particular project or team. Meanwhile, I'll tell you about some general opportunities for writing code for Firefox.
+
+To get started with the codebase, have a look at http://developer.mozilla.org/En/Introduction.
+
+If you need any help, you can obtain it on IRC. I recommend visiting #introduction, which is specifically for newcomers. See http://irc.mozilla.org for how to access it.
+
+Feel free to contact me anytime if you're having any problems! I'm jdm on IRC, or just josh@joshmatthews.net.
+
+Happy hacking,
+Josh
