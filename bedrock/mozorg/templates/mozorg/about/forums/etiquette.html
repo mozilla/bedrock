@@ -38,8 +38,7 @@
   <dd>
     <p>
     {{ _('Most of these groups are high-traffic and read by busy people, so please pay attention to the topic of your messages, and check that it still relates to the charter of the forum to which you are posting.') }}
-    {{ _('Off-topic discussion not taken to private email, <a href="%(general)s">mozilla.general</a>, or any place where it is not considered off-topic, by someone who knows they should be taking it elsewhere, is <a href="%(cancellation)s">eligible for removal</a> from the news server.')|format(general=url('mozorg.about.forums.forums'), cancellation=url('mozorg.about.forums.cancellation')) }}
-    <!-- TODO: Add "#general" to general url -->
+    {{ _('Off-topic discussion not taken to private email, <a href="%(general)s">mozilla.general</a>, or any place where it is not considered off-topic, by someone who knows they should be taking it elsewhere, is <a href="%(cancellation)s">eligible for removal</a> from the news server.')|format(general=url('mozorg.about.forums.forums') + '#general', cancellation=url('mozorg.about.forums.cancellation')) }}
     </p>
 
   </dd>
@@ -106,8 +105,7 @@
     <p>
     {{ _('These groups are for discussions about the Mozilla source code.') }}
     {{ _('As such, discussions about which operating system is better, or whether one toolkit is better than another, or whether Microsoft is the root of all evil, are <strong>not relevant</strong>.') }}
-    {{ _('There are many forums for discussing such issues on Usenet; please have such discussions <a href="%s">there</a>
-        instead of on the Mozilla forums.')|format('http://groups.google.com/groups?as_ugroup=*advocacy*') }}
+    {{ _('There are many <a href="%s">forums for discussing such issues on Usenet</a>; please have such discussions there instead of on the Mozilla forums.')|format('http://groups.google.com/groups?as_ugroup=*advocacy*') }}
     {{ _('Might we recommend:') }}
     </p>
 
@@ -219,8 +217,7 @@
   <dd>
     <p>
       {{ _('Unfortunately, this bears repeating.') }}
-      {{ _('Find out more about unsubscribing in the <a href="%s">Mailing Lists</a> section.')|format('mozorg.about.forums.forums') }}
-      <!-- TODO: find best way to format URL like: /about/forums/#Mailing-Lists -->
+      {{ _('Find out more about unsubscribing in the <a href="%s">Mailing Lists</a> section.')|format(url('mozorg.about.forums.forums') + '#Mailing-Lists') }}
     </p>
   </dd>
 
@@ -228,8 +225,7 @@
 
   <dd>
     <p>
-    {{ _('Please do not send test messages to the newsgroups except to <a href="%s">mozilla.test</a>.')|format('mozorg.about.forums.forums') }}
-    <!-- TODO: add #test to this link -->
+    {{ _('Please do not send test messages to the newsgroups except to <a href="%s">mozilla.test</a>.')|format(url('mozorg.about.forums.forums') + '#test') }}
     </p>
   </dd>
 </dl>
