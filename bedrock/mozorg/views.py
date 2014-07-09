@@ -24,7 +24,7 @@ from lib.l10n_utils.dotlang import _, lang_file_is_active
 from bedrock.firefox import version_re
 from bedrock.firefox.utils import is_current_or_newer
 from bedrock.mozorg import email_contribute
-from bedrock.mozorg.credits import get_credits, get_credits_last_modified_datetime
+from bedrock.mozorg.credits import credits_file
 from bedrock.mozorg.decorators import cache_control_expires
 from bedrock.mozorg.forms import (ContributeForm,
                                   ContributeStudentAmbassadorForm,
@@ -264,11 +264,11 @@ def holiday_calendars(request, template='mozorg/projects/holiday-calendars.html'
 
 
 @cache_control_expires(2)
-@last_modified(lambda x: get_credits_last_modified_datetime())
+@last_modified(credits_file.last_modified_callback)
 @require_safe
 def credits_view(request):
     """Display the names of our contributors."""
-    ctx = {'credits_names': get_credits()}
+    ctx = {'credits': credits_file}
     # not translated
     return django_render(request, 'mozorg/credits.html', ctx)
 

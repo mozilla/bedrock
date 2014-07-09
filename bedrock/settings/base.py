@@ -812,6 +812,7 @@ INSTALLED_APPS = get_apps(exclude=(
     '%s.styleguide' % PROJECT_MODULE,
     '%s.tabzilla' % PROJECT_MODULE,
     '%s.facebookapps' % PROJECT_MODULE,
+    '%s.svnfiles' % PROJECT_MODULE,
 
     # libs
     'django_extensions',
@@ -905,10 +906,13 @@ STUB_INSTALLER_LOCALES = {
 # Google Analytics
 GA_ACCOUNT_CODE = ''
 
-# Credits
-CREDITS_NAMES_URL = 'https://svn.mozilla.org/projects/mozilla.org/trunk/credits/names.csv'
-CREDITS_NAMES_FILE = path('bedrock', 'mozorg', 'names.csv')
-CREDITS_NAMES_UPDATED_FILE = CREDITS_NAMES_FILE + '.updated.txt'
+# Files from SVN
+SVN_FILES = {
+    'credits': {
+        'url': 'https://svn.mozilla.org/projects/mozilla.org/trunk/credits/names.csv',
+        'name': 'credits.csv',
+    },
+}
 
 FACEBOOK_LOCALES = ['en-US', 'es-ES', 'pt-BR', 'id', 'de']
 FACEBOOK_PAGE_NAMESPACE = 'DUMMY_PAGE_NAMESPACE'

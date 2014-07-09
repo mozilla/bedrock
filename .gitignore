@@ -29,5 +29,4 @@ venv
 james.ini
 node_modules
 /media/js/test/test-results.xml
-bedrock/mozorg/names.csv
-bedrock/mozorg/names.csv.updated.txt
+bedrock/svnfiles/files_cache

@@ -46,7 +46,7 @@ def update_locales(ctx):
 def update_assets(ctx):
     management_cmd(ctx, 'compress_assets')
     management_cmd(ctx, 'update_product_details')
-    management_cmd(ctx, 'cron update_credits')
+    management_cmd(ctx, 'cron update_svnfiles')
 
 
 @task
