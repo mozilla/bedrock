@@ -60,6 +60,10 @@ Check out the latest product-details::
 
 This pulls in version information for Mozilla products like Firefox.
 
+Next get the data files for certain pages (so far /credits/ and /about/forums/)::
+
+    $ ./manage.py update_externalfiles
+
 Lastly, you need to install `node` and the `less` package. Soon you won't need this for local development but currently it compiles the LESS CSS code on the server-side::
 
     $ npm -g install less

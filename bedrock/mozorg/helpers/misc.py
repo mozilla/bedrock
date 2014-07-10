@@ -3,6 +3,7 @@ import urlparse
 from os import path
 
 from django.conf import settings
+from django.template.defaultfilters import slugify as django_slugify
 
 import jingo
 import jinja2
@@ -497,3 +498,13 @@ def shuffle(_list):
     """Return a shuffled list"""
     random.shuffle(_list)
     return _list
+
+
+@jingo.register.filter
+def slugify(text):
+    """
+    Converts to lowercase, removes non-word characters (alphanumerics and
+    underscores) and converts spaces to hyphens. Also strips leading and
+    trailing whitespace.
+    """
+    return django_slugify(text)
