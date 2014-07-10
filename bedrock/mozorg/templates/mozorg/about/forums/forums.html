@@ -69,21 +69,29 @@
     <colgroup><col class="name" /><col /><col class="subscribe" /></colgroup>
     {% for forum in forums_list %}
       <tr id="{{ forum.dashed }}">
-        <th>
-          {{ forum.id }}<sup><small>(<a href="#{{ forum.dashed }}">#</a>)</small></sup>
-        </th>
         <td>
-          {{ forum.description|safe }}
+          <table>
+            <tr>
+              <th>
+                {{ forum.id }}<sup><small>(<a href="#{{ forum.dashed }}">#</a>)</small></sup>
+              </th>
+            </tr>
+            <tr>
+              <td>
+                {{ forum.description|safe }}
+              </td>
+            </tr>
+          </table>
         </td>
         <td>
           <ul class="subscribe">
-          {% if forum.id.startswith('mozilla.') %}
-            <li>{{ _('Mailing List:') }} <a href="https://lists.mozilla.org/listinfo/{{ forum.dashed }}">{{ forum.dashed }}&#64;lists.mozilla.org</a></li>
-            <li>{{ _('Newsgroup:') }} <a href="news://news.mozilla.org/{{ forum.id }}">{{ forum.id }}</a></li>
-            <li>{{ _('Web:') }} <a href="http://groups.google.com/group/{{ forum.id }}/topics">Google Groups</a></li>
-          {% else %}
-            <li>{{ _('Mailing List:') }} <a href='https://mail.mozilla.org/listinfo/{{ forum.dashed }}'>{{ forum.dashed }}&#64;mozilla.org</a></li>
-          {% endif %}
+            {% if forum.id.startswith('mozilla.') %}
+              <li>{{ _('Mailing List:') }} <a href="https://lists.mozilla.org/listinfo/{{ forum.dashed }}">{{ forum.dashed }}&#64;lists.mozilla.org</a></li>
+              <li>{{ _('Newsgroup:') }} <a href="news://news.mozilla.org/{{ forum.id }}">{{ forum.id }}</a></li>
+              <li>{{ _('Web:') }} <a href="http://groups.google.com/group/{{ forum.id }}/topics">Google Groups</a></li>
+            {% else %}
+              <li>{{ _('Mailing List:') }} <a href='https://mail.mozilla.org/listinfo/{{ forum.dashed }}'>{{ forum.dashed }}&#64;mozilla.org</a></li>
+            {% endif %}
           </ul>
         </td>
       </tr>
