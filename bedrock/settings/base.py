@@ -915,6 +915,10 @@ SVN_FILES = {
         'url': 'https://svn.mozilla.org/projects/mozilla.org/trunk/credits/names.csv',
         'name': 'credits.csv',
     },
+    'forums': {
+        'url': 'https://svn.mozilla.org/projects/mozilla.org/trunk/about/forums/raw-ng-list.txt',
+        'name': 'forums.txt',
+    },
 }
 
 FACEBOOK_LOCALES = ['en-US', 'es-ES', 'pt-BR', 'id', 'de']
