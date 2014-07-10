@@ -277,6 +277,18 @@
       </li>
     {% endif %}
 
+    {% if l10n_has_tag('hiveglobal') or settings.DEV %}
+      <li id="hivenetworks">
+        <img src="{{ media('/img/contribute/hive.png') }}" alt="">
+        <h3>{{ _('Hive Networks') }}</h3>
+        <p>
+          {% trans hivenetworks='http://hivelearningnetworks.org' %}
+            <a href="{{ hivenetworks }}">Hive Learning Networks</a> are a growing constellation of communities around the globe that are championing digital skills and web literacy through connected learning. <a href="{{ hivenetworks }}">Learn more</a> about how to start a Hive in your community.
+          {% endtrans %}
+        </p>
+      </li>
+    {% endif %}
+
     </ul>
   </section>
 
