@@ -62,7 +62,6 @@ mozilla.dev.mdn                         Code development for the Mozilla Develop
 mozilla.mdn.drivers                     Release coordination for the Mozilla Developer Network (MDN) platform. (Moderated)
 mozilla.dev.media                       Development of Mozilla's media support (audio and video). (Moderated)
 metro                                   For work on porting Firefox to the Metro environment of Windows 8.
-mozilla.dev.mozilla-org                 For people working on the mozilla.org website.
 mozilla.dev.mozjpeg                     The Mozilla enhanced version of libjpeg. (Moderated)
 mozilla.dev.pdf-js                      pdf.js, the PDF renderer written in JS. (Moderated)
 mozilla.dev.platform                    For people working on Mozilla-the-platform.
@@ -80,7 +79,6 @@ mozilla.dev.tree-management             For discussion about general development
 mozilla.dev.tree-management.tracemonkey For management of the separate tracemonkey tree
 mozilla.dev.usability                   For discussions on <a href="../../projects/ui/">user interface</a> and usability issues, including future directions, cross-platform consistency, and so on. (Moderated)
 mozilla.dev.webapi                      For development of new Web APIs to enhance the web platform. (Moderated)
-mozilla.dev.webdev                      Mozilla's web development team. (Moderated)
 mozilla.dev.developer-tools             For development of tools for web developers inside Firefox and other Mozilla products. (Moderated)
 mozilla.tools.bmo                       Development of bugzilla.mozilla.org, Mozilla's installation of the Bugzilla software. (Moderated)
 mozilla.tools.elmo                      Development of web apps for localization (l10n). (Moderated)
@@ -119,7 +117,6 @@ mozilla.dev.tech.xpcom                  This forum is for discussions about the 
 mozilla.dev.tech.xpinstall              For discussions about <a href="../../projects/xpinstall/">installation</a> related technology in Mozilla including packaging and updating.
 mozilla.dev.tech.xslt                   For discussions of use of the <a href="http://www.w3.org/TR/xslt">XSL Transformations</a> language in the Mozilla layout engine.
 mozilla.dev.tech.xul                    For discussion about the XML-based User-interface Language (XUL).
-mozilla.community.local-sites           For development of local Mozilla community websites. (Moderated)
 mozilla.dev.ports.os2                   For discussions about <a href="../../ports/os2/">porting Mozilla to OS/2</a>.
 
 :Quality Assurance
@@ -139,6 +136,9 @@ mozilla.addons.chromebug                Development of Chromebug, a chrome debug
 :Web Development
 
 mozilla.webapps                         Web application development (HTML5) for Firefox OS and the Open Web. (Moderated)
+mozilla.dev.webdev                      Mozilla's web development team. (Moderated)
+mozilla.dev.mozilla-org                 For people working on the mozilla.org website.
+mozilla.community.local-sites           For development of local Mozilla community websites. (Moderated)
 
 :Mozilla Initiatives
 
