@@ -6,6 +6,13 @@
 
 // Over-ride sandstone column widths for wide table content
 
+.forum-group .top {
+    float: right;
+    color: @textColorLight;
+    font-size: @smallFontSize;
+    text-transform: uppercase;
+}
+
 .forums {
     font-size: @smallFontSize;
     & > li {
@@ -43,6 +50,11 @@
         margin: 0;
     }
 }
+
+#main-content .forums ul {
+    margin: 0;
+}
+
 
 .main-column {
     .span(9);

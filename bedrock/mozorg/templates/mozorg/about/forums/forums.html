@@ -61,113 +61,120 @@
 <!--BEGIN_LIST-->
 
 {% for title, forums_list in forums.ordered.iteritems() %}
-  <h2 id="{{ title|slugify }}">{{ title }}</h2>
 
-  <p>{{ _('Please read the <a href="%s">Mozilla forum etiquette</a> document for posting rules and conventions.')|format(url('mozorg.about.forums.etiquette')) }}</p>
+  <section id="{{ title|slugify }}" class="forum-group">
+    <a href="#" class="top">{{ _('Back to top') }}</a>
 
-  <ul class="forums">
-    {% for forum in forums_list %}
-      <li id="{{ forum.dashed }}">
-        <div class="summary">
-          <h4>{{ forum.id }}<a href="#{{ forum.dashed }}">#</a></h4>
-          <p class="description">{{ forum.description|safe }}</p>
-        </div>
-        <ul class="subscribe">
-          {% if forum.id.startswith('mozilla.') %}
-            <li>{{ _('Mailing List:') }} <a href="https://lists.mozilla.org/listinfo/{{ forum.dashed }}">{{ forum.dashed }}&#64;lists.mozilla.org</a></li>
-            <li>{{ _('Newsgroup:') }} <a href="news://news.mozilla.org/{{ forum.id }}">{{ forum.id }}</a></li>
-            <li>{{ _('Web:') }} <a href="http://groups.google.com/group/{{ forum.id }}/topics">Google Groups</a></li>
-          {% else %}
-            <li>{{ _('Mailing List:') }} <a href='https://mail.mozilla.org/listinfo/{{ forum.dashed }}'>{{ forum.dashed }}&#64;mozilla.org</a></li>
-          {% endif %}
-        </ul>
-      </li>
-    {% endfor %}
-  </ul>
+    <h2>{{ title }}</h2>
+
+    <p>{{ _('Please read the <a href="%s">Mozilla forum etiquette</a> document for posting rules and conventions.')|format(url('mozorg.about.forums.etiquette')) }}</p>
+
+    <ul class="forums">
+      {% for forum in forums_list %}
+        <li id="{{ forum.dashed }}">
+          <div class="summary">
+            <h4>{{ forum.id }}<a href="#{{ forum.dashed }}">#</a></h4>
+            <p class="description">{{ forum.description|safe }}</p>
+          </div>
+          <ul class="subscribe">
+            {% if forum.id.startswith('mozilla.') %}
+              <li>{{ _('Mailing List:') }} <a href="https://lists.mozilla.org/listinfo/{{ forum.dashed }}">{{ forum.dashed }}&#64;lists.mozilla.org</a></li>
+              <li>{{ _('Newsgroup:') }} <a href="news://news.mozilla.org/{{ forum.id }}">{{ forum.id }}</a></li>
+              <li>{{ _('Web:') }} <a href="http://groups.google.com/group/{{ forum.id }}/topics">Google Groups</a></li>
+            {% else %}
+              <li>{{ _('Mailing List:') }} <a href='https://mail.mozilla.org/listinfo/{{ forum.dashed }}'>{{ forum.dashed }}&#64;mozilla.org</a></li>
+            {% endif %}
+          </ul>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
 {% endfor %}
 
 <!--END_LIST-->
 
-<h2 id="mozilla-labs">{{ _('Mozilla Labs') }}</h2>
+<section id="mozilla-labs" class="forum-group">
+  <a href="#" class="top">{{ _('Back to top') }}</a>
+  <h2>{{ _('Mozilla Labs') }}</h2>
 
-<p>
-{{ _('These forums are only available as Google Groups.') }}
-{{ _('Please read the <a href="%s">Mozilla forum etiquette</a> document for posting rules and conventions.')|format(url('mozorg.about.forums.etiquette')) }}
-</p>
+  <p>
+  {{ _('These forums are only available as Google Groups.') }}
+  {{ _('Please read the <a href="%s">Mozilla forum etiquette</a> document for posting rules and conventions.')|format(url('mozorg.about.forums.etiquette')) }}
+  </p>
 
-<ul class="forums">
-  <li id="labs">
-    <div class="summary">
-      <h4>mozilla.labs<a href="#labs">#</a></h4>
-      <p class="description">{{ _('General labs discussion') }}</p>
-    </div>
-    <ul class="subscribe">
-      <li>{{ _('Web:') }} <a href="http://groups.google.com/group/mozilla-labs">Google Groups</a></li>
-    </ul>
-  </li>
+  <ul class="forums">
+    <li id="labs">
+      <div class="summary">
+        <h4>mozilla.labs<a href="#labs">#</a></h4>
+        <p class="description">{{ _('General labs discussion') }}</p>
+      </div>
+      <ul class="subscribe">
+        <li>{{ _('Web:') }} <a href="http://groups.google.com/group/mozilla-labs">Google Groups</a></li>
+      </ul>
+    </li>
 
-  <li id="labs-skywriter">
-    <div class="summary">
-      <h4>mozilla.labs.skywriter<a href="#labs-skywriter">#</a></h4>
-      <p class="description">{{ _('Skywriter online code editor') }}</p>
-    </div>
-    <ul class="subscribe">
-      <li>{{ _('Web:') }} <a href="http://groups.google.com/group/skywriter">Google Groups</a></li>
-    </ul>
-  </li>
+    <li id="labs-skywriter">
+      <div class="summary">
+        <h4>mozilla.labs.skywriter<a href="#labs-skywriter">#</a></h4>
+        <p class="description">{{ _('Skywriter online code editor') }}</p>
+      </div>
+      <ul class="subscribe">
+        <li>{{ _('Web:') }} <a href="http://groups.google.com/group/skywriter">Google Groups</a></li>
+      </ul>
+    </li>
 
-  <li id="labs-concept-series">
-    <div class="summary">
-      <h4>mozilla.labs.concept-series<a href="#labs-concept-series">#</a></h4>
-      <p class="description">{{ _('Concept Series') }}</p>
-    </div>
-    <ul class="subscribe">
-      <li>{{ _('Web:') }} <a href="http://groups.google.com/group/mozilla-labs-concept-series">Google Groups</a></li>
-    </ul>
-  </li>
+    <li id="labs-concept-series">
+      <div class="summary">
+        <h4>mozilla.labs.concept-series<a href="#labs-concept-series">#</a></h4>
+        <p class="description">{{ _('Concept Series') }}</p>
+      </div>
+      <ul class="subscribe">
+        <li>{{ _('Web:') }} <a href="http://groups.google.com/group/mozilla-labs-concept-series">Google Groups</a></li>
+      </ul>
+    </li>
 
-  <li id="labs-jetpack">
-    <div class="summary">
-      <h4>mozilla.labs.jetpack<a href="#labs-jetpack">#</a></h4>
-      <p class="description">{{ _('Jetpack extension API') }}</p>
-    </div>
-    <ul class="subscribe">
-      <li>{{ _('Web:') }} <a href="http://groups.google.com/group/mozilla-labs-jetpack">Google Groups</a></li>
-    </ul>
-  </li>
+    <li id="labs-jetpack">
+      <div class="summary">
+        <h4>mozilla.labs.jetpack<a href="#labs-jetpack">#</a></h4>
+        <p class="description">{{ _('Jetpack extension API') }}</p>
+      </div>
+      <ul class="subscribe">
+        <li>{{ _('Web:') }} <a href="http://groups.google.com/group/mozilla-labs-jetpack">Google Groups</a></li>
+      </ul>
+    </li>
 
-  <li id="labs-personas">
-    <div class="summary">
-      <h4>mozilla.labs.personas<a href="#labs-personas">#</a></h4>
-      <p class="description">{{ _('Personas lightweight browser customization framework') }}</p>
-    </div>
-    <ul class="subscribe">
-      <li>{{ _('Web:') }} <a href="https://forums.mozilla.org/addons/viewforum.php?f=30">Mozilla Add-ons Forum</a></li>
-    </ul>
-  </li>
+    <li id="labs-personas">
+      <div class="summary">
+        <h4>mozilla.labs.personas<a href="#labs-personas">#</a></h4>
+        <p class="description">{{ _('Personas lightweight browser customization framework') }}</p>
+      </div>
+      <ul class="subscribe">
+        <li>{{ _('Web:') }} <a href="https://forums.mozilla.org/addons/viewforum.php?f=30">Mozilla Add-ons Forum</a></li>
+      </ul>
+    </li>
 
-  <li id="labs-testpilot">
-    <div class="summary">
-      <h4>mozilla.labs.testpilot<a href="#labs-testpilot">#</a></h4>
-      <p class="description">{{ _('TestPilot user interaction testing framework') }}</p>
-    </div>
-    <ul class="subscribe">
-      <li>{{ _('Web:') }} <a href="http://groups.google.com/group/mozilla-labs-testpilot">Google Groups</a></li>
-    </ul>
-  </li>
+    <li id="labs-testpilot">
+      <div class="summary">
+        <h4>mozilla.labs.testpilot<a href="#labs-testpilot">#</a></h4>
+        <p class="description">{{ _('TestPilot user interaction testing framework') }}</p>
+      </div>
+      <ul class="subscribe">
+        <li>{{ _('Web:') }} <a href="http://groups.google.com/group/mozilla-labs-testpilot">Google Groups</a></li>
+      </ul>
+    </li>
 
-  <li id="labs-weave">
-    <div class="summary">
-      <h4>mozilla.labs.weave<a href="#labs-weave">#</a></h4>
-      <p class="description">{{ _('Weave browser sync') }}</p>
-    </div>
-    <ul class="subscribe">
-      <li>{{ _('Web:') }} <a href="http://groups.google.com/group/mozilla-labs-weave">Google Groups</a></li>
-    </ul>
-  </li>
+    <li id="labs-weave">
+      <div class="summary">
+        <h4>mozilla.labs.weave<a href="#labs-weave">#</a></h4>
+        <p class="description">{{ _('Weave browser sync') }}</p>
+      </div>
+      <ul class="subscribe">
+        <li>{{ _('Web:') }} <a href="http://groups.google.com/group/mozilla-labs-weave">Google Groups</a></li>
+      </ul>
+    </li>
 
-</ul>
-
+  </ul>
+</section>
 
 
 <h2 id="chat">{{ _('Realtime Chat') }}</h2>
