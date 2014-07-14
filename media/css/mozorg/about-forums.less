@@ -6,6 +6,44 @@
 
 // Over-ride sandstone column widths for wide table content
 
+.forums {
+    font-size: @smallFontSize;
+    & > li {
+        list-style-type: none;
+        border-top: 1px dotted @borderColor;
+        padding: 10px 0;
+        margin: 0;
+        .clearfix();
+    }
+    .summary {
+        .span(5);
+        margin-left: 0;
+    }
+    .subscribe {
+        .span(4);
+        margin-right: 0;
+        color: @textColorTertiary;
+    }
+    h4 {
+        position: relative;
+        letter-spacing: 0;
+        margin: 0 .5em 0 0;
+        .open-sans();
+        font-size: @largeFontSize;
+        font-weight: bold;
+        a {
+            position: absolute;
+            top: 0;
+            left: -1em;
+            font-size: 12px;
+            color: #ccc;
+        }
+    }
+    .description {
+        margin: 0;
+    }
+}
+
 .main-column {
     .span(9);
 }
@@ -70,6 +108,14 @@
         .span_narrow(3);
     }
 
+    .forums {
+        .summary,
+        .subscribe {
+            .span-all();
+            margin: 0;
+        }
+    }
+
 }
 
 
@@ -81,6 +127,14 @@
         padding-left: 0;
         padding-right: 0;
         .span-all();
+    }
+
+    .forums {
+        .summary,
+        .subscribe {
+            .span-all();
+            margin: 0;
+        }
     }
 
     .lead-content {
