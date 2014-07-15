@@ -55,6 +55,7 @@ SUPPORTED_NONLOCALES += [
     'webmaker',
     'gameon',
     'robots.txt',
+    'credits',
 ]
 
 ALLOWED_HOSTS = [
@@ -104,6 +105,12 @@ MINIFY_BUNDLES = {
         ),
         'about-base': (
             'css/mozorg/about-base.less',
+        ),
+        'credits-faq': (
+            'css/mozorg/credits-faq.less',
+        ),
+        'about-forums': (
+            'css/mozorg/about-forums.less',
         ),
         'foundation': (
             'css/foundation/foundation.less',
@@ -808,6 +815,7 @@ INSTALLED_APPS = get_apps(exclude=(
     '%s.styleguide' % PROJECT_MODULE,
     '%s.tabzilla' % PROJECT_MODULE,
     '%s.facebookapps' % PROJECT_MODULE,
+    '%s.svnfiles' % PROJECT_MODULE,
 
     # libs
     'django_extensions',
@@ -900,6 +908,18 @@ STUB_INSTALLER_LOCALES = {
 
 # Google Analytics
 GA_ACCOUNT_CODE = ''
+
+# Files from SVN
+SVN_FILES = {
+    'credits': {
+        'url': 'https://svn.mozilla.org/projects/mozilla.org/trunk/credits/names.csv',
+        'name': 'credits.csv',
+    },
+    'forums': {
+        'url': 'https://svn.mozilla.org/projects/mozilla.org/trunk/about/forums/raw-ng-list.txt',
+        'name': 'forums.txt',
+    },
+}
 
 FACEBOOK_LOCALES = ['en-US', 'es-ES', 'pt-BR', 'id', 'de']
 FACEBOOK_PAGE_NAMESPACE = 'DUMMY_PAGE_NAMESPACE'

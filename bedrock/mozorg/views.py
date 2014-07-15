@@ -10,8 +10,9 @@ from django.core.context_processors import csrf
 from django.db.utils import DatabaseError
 from django.http import HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from django.views.decorators.http import last_modified, require_safe
 from django.views.generic.base import TemplateView
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render as django_render
 
 import basket
 import requests
@@ -23,9 +24,12 @@ from lib.l10n_utils.dotlang import _, lang_file_is_active
 from bedrock.firefox import version_re
 from bedrock.firefox.utils import is_current_or_newer
 from bedrock.mozorg import email_contribute
+from bedrock.mozorg.credits import credits_file
+from bedrock.mozorg.decorators import cache_control_expires
 from bedrock.mozorg.forms import (ContributeForm,
                                   ContributeStudentAmbassadorForm,
                                   WebToLeadForm)
+from bedrock.mozorg.forums import forums_file
 from bedrock.mozorg.models import TwitterCache
 from bedrock.mozorg.util import hide_contrib_form
 from bedrock.mozorg.util import HttpResponseJSON
@@ -258,6 +262,25 @@ def holiday_calendars(request, template='mozorg/projects/holiday-calendars.html'
     }
 
     return l10n_utils.render(request, template, data)
+
+
+@cache_control_expires(2)
+@last_modified(credits_file.last_modified_callback)
+@require_safe
+def credits_view(request):
+    """Display the names of our contributors."""
+    ctx = {'credits': credits_file}
+    # not translated
+    return django_render(request, 'mozorg/credits.html', ctx)
+
+
+@cache_control_expires(2)
+@last_modified(forums_file.last_modified_callback)
+@require_safe
+def forums_view(request):
+    """Display our mailing lists and newsgroups."""
+    ctx = {'forums': forums_file}
+    return l10n_utils.render(request, 'mozorg/about/forums/forums.html', ctx)
 
 
 class Robots(TemplateView):
