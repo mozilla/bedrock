@@ -329,7 +329,9 @@ if (typeof Mozilla == 'undefined') {
         } else {
             Mozilla.UITour.hideMenu('appMenu');
         }
-        $stepTarget.delay(100).trigger('tour-step');
+        setTimeout(function () {
+            $stepTarget.trigger('tour-step');
+        }, 200);
     };
 
     /*
