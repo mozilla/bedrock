@@ -4,8 +4,6 @@ Joining our L10n effort is easy. Within five easy steps you can start contributi
 
 http://wiki.mozilla.org/L10n:Contribute
 
-Could you also please provide me with some additional information about yourself, such as languages you speak, country you live in, and technical background?
-
 You can also visit the following wiki pages to learn the details of how we localize.
 
 A good description of the whole process:
