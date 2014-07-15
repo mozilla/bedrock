@@ -197,10 +197,6 @@ if (typeof Mozilla == 'undefined') {
                 {
                     'name': 'Movistar',
                     'url': 'http://www.firefoxos.movistar.com.uy/'
-                },
-                {
-                    'name': 'ZTE Open C',
-                    'url': 'http://www.movistar.com.uy/Particulares/Equipos.aspx?IdPlan=PLKI41&IdEquipo=259'
                 }
             ]
         },
