@@ -5,32 +5,12 @@
 ;(function($) {
     'use strict';
 
-    $('.test a').on('click', function(e) {
+    $('#nightly-box a').on('click', function(e) {
         e.preventDefault();
 
         var href = this.href;
 
-        gaTrack(['_trackEvent', 'Nightly Firstrun Interactions', 'button click', 'Start Testing'], function() {
-            window.location = href;
-        });
-    });
-
-    $('.code a').on('click', function(e) {
-        e.preventDefault();
-
-        var href = this.href;
-
-        gaTrack(['_trackEvent', 'Nightly Firstrun Interactions', 'button click', 'Start Coding'], function() {
-            window.location = href;
-        });
-    });
-
-    $('.localize a').on('click', function(e) {
-        e.preventDefault();
-
-        var href = this.href;
-
-        gaTrack(['_trackEvent', 'Nightly Firstrun Interactions', 'button click', 'Start Localizing'], function() {
+        gaTrack(['_trackEvent', 'Nightly Firstrun Interactions', 'button click', href], function() {
             window.location = href;
         });
     });
