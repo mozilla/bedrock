@@ -325,6 +325,81 @@
 }
 
 
+/****************************************************************************/
+// Maker Party
+#panel-makerparty {
+    background: #ffe600 url(/media/img/home/panel/makerparty/bg-tile.png) 0 20px repeat;
+    background: #ffe600 radial-gradient(rgba(255, 255, 255, 0) 75%, rgba(255, 255, 255, .75) 100%) no-repeat;
+
+    .panel-title {
+        color: #2a4d50;
+    }
+
+    .confetti {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: url(/media/img/home/panel/makerparty/bg-tile.png) 0 20px repeat;
+        .transition(background-position .7s ease-in-out);
+
+        &:after {
+            background: url(/media/img/home/panel/makerparty/logo-makerparty.png) -30px 25px no-repeat;
+            content: '';
+            display: block;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            .transition(background-position .5s ease-in-out);
+        }
+    }
+
+    .panel-content {
+        color: #008e94;
+
+        h3 {
+            color: #2a4d50;
+        }
+
+        .go {
+            color: #cf3835;
+        }
+    }
+
+    &.expanded .confetti {
+        .transition(none);
+        -webkit-animation: confetti 14s linear infinite;
+                animation: confetti 14s linear infinite;
+
+        &:after {
+            background-position: 20px 25px;
+        }
+    }
+
+    &.compressed .confetti:after {
+        background-position: -50px 25px;
+    }
+}
+
+.wide #panel-makerparty .panel-title {
+    background: #fff;
+    background: rgba(255, 255, 255, .65);
+    background: -webkit-linear-gradient(bottom, rgba(255, 255, 255, .95) 0, rgba(255, 255, 255, .65) 65%, rgba(255, 255, 255, 0) 100%);
+    background:         linear-gradient(to top, rgba(255, 255, 255, .95) 0, rgba(255, 255, 255, .65) 65%, rgba(255, 255, 255, 0) 100%);
+}
+
+@-webkit-keyframes confetti {
+    0%   { background-position: 0 20px; }
+    100% { background-position: 0 264px; }
+}
+
+@keyframes confetti {
+    0%   { background-position: 0 20px; }
+    100% { background-position: 0 264px; }
+}
 
 /****************************************************************************/
 // @High resolution images for @retina-type displays
@@ -367,6 +442,11 @@
                           url(/media/img/home/panel/netneutrality/bg-lanes.png),
                           url(/media/img/home/panel/netneutrality/bg-gradient.png);
         background-size: 140px 190px, auto auto, auto auto;
+    }
+
+    #panel-makerparty .confetti:after {
+        background-image: url(/media/img/home/panel/makerparty/logo-makerparty-hires.png);
+        background-size: 268px 308px;
     }
 
 }
@@ -515,6 +595,16 @@
             background-position: 0 0;
             background-position: -10px 60px, -700px 0, 0 0;
         }
+    }
+
+    // Maker Party
+    #panel-makerparty .confetti:after {
+        background-size: 190px 220px;
+        background-position: -15px 25px;
+    }
+
+    #panel-makerparty.expanded .confetti:after {
+        background-position: 0 25px;
     }
 
 }
@@ -724,6 +814,20 @@
         }
     }
 
+    // Maker Party
+    #panel-makerparty .confetti:after {
+        background-position: -15px -30px;
+        background-size: 125px 144px;
+    }
+
+    #panel-makerparty.expanded .confetti:after {
+        background-position: -15px 20px;
+    }
+
+    #panel-makerparty.compressed .confetti:after {
+        background-position: -15px -40px;
+    }
+
 }
 
 
@@ -882,6 +986,20 @@
             background-position: 0 0;
             background-position: 15px -120px, -640px -80px, 0 0;
         }
+    }
+
+    // Maker Party
+    #panel-makerparty .confetti:after {
+        background-position: -15px -48px;
+        background-size: 165px 190px;
+    }
+
+    #panel-makerparty.expanded .confetti:after {
+        background-position: -15px 20px;
+    }
+
+    #panel-makerparty.compressed .confetti:after {
+        background-position: -15px -65px;
     }
 
 }

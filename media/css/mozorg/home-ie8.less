@@ -100,6 +100,12 @@
         }
     }
 
+    #panel-makerparty .confetti:after,
+    #panel-makerparty.expanded .confetti:after,
+    #panel-makerparty.compressed .confetti:after {
+        background-position: -10px 25px;
+    }
+
     // IE8 doesn't do gradients or rgba() so it gets solid, opaque colors.
     #panel-mission .panel-title {
         background: #821117;
@@ -131,6 +137,10 @@
 
     #panel-netneutrality .panel-title {
         background: #444;
+    }
+
+    #panel-makerparty .panel-title {
+        background: #fff;
     }
 
 }
