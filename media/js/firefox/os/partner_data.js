@@ -87,6 +87,15 @@ if (typeof Mozilla == 'undefined') {
                 }
             ]
         },
+        'fr': {
+            'display': 'France',
+            'partner': [
+                {
+                    'name': 'ZTE France',
+                    'url': 'http://www.ztefrance.com/firefox-open-c.php'
+                }
+            ]
+        },
         'gr': {
             'display': 'Greece',
             'partner': [
@@ -240,7 +249,7 @@ if (typeof Mozilla == 'undefined') {
         'zte_openc': {
             'type': 'smartphone',
             'display': 'ZTE Open C',
-            'countries': ['de', 'ru', 'gb', 'us', 'uy']
+            'countries': ['de', 'fr', 'gb', 'ru', 'us', 'uy']
         },
         'zte_open2': {
             'type': 'smartphone',
