@@ -3,6 +3,8 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from django.conf.urls import patterns, url
+from django.views.generic import TemplateView
+
 from util import page
 import views
 
@@ -13,7 +15,8 @@ urlpatterns = patterns('',
     page('about', 'mozorg/about.html'),
     page('book', 'mozorg/book.html'),
     url('^credits/$', views.credits_view, name='mozorg.credits'),
-    page('credits/faq', 'mozorg/credits-faq.html'),
+    url('^credits/faq/$', TemplateView.as_view(template_name='mozorg/credits-faq.html'),
+        name='mozorg.credits-faq'),
     url('^about/partnerships/$', views.partnerships, name='mozorg.partnerships'),
     page('about/partnerships/distribution', 'mozorg/partnerships-distribution.html'),
     page('about/history', 'mozorg/about/history.html'),
@@ -21,7 +24,8 @@ urlpatterns = patterns('',
     page('products', 'mozorg/products.html'),
     page('about/mozilla-based', 'mozorg/projects/mozilla-based.html'),
     page('projects/calendar', 'mozorg/projects/calendar.html'),
-    url('^projects/calendar/holidays/$', views.holiday_calendars, name='mozorg.projects.holiday_calendars'),
+    url('^projects/calendar/holidays/$', views.holiday_calendars,
+        name='mozorg.projects.holiday_calendars'),
     page('button', 'mozorg/button.html'),
     page('mission', 'mozorg/mission.html'),
     page('ITU', 'mozorg/itu.html'),
