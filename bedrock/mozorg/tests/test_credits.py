@@ -82,3 +82,8 @@ class TestCredits(TestCase):
         good_names['L'] = ['Bunny Lebowski', 'Jeffrey Lebowski', 'Maude Lebowski']
         good_names['S'] = ['Walter Sobchak']
         self.assertEqual(self.credits_file.ordered, good_names)
+
+    def test_no_credits_file_empty(self):
+        """Should return empty dict if no file found instead of raising error."""
+        self.credits_file.readlines = Mock(side_effect=IOError)
+        self.assertEqual(self.credits_file.ordered, {})

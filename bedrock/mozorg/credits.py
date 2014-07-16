@@ -25,6 +25,9 @@ class CreditsFile(ExternalFile):
         :return: OrderedDict
         """
         ordered_names = OrderedDict()
+        rows = self.rows
+        if rows is None:
+            return {}
         for name, sortkey in self.rows:
             letter = sortkey[0]
             if letter not in ordered_names:
@@ -43,7 +46,11 @@ class CreditsFile(ExternalFile):
         :return: list of lists
         """
         names = []
-        for row in csv.reader(self.readlines()):
+        try:
+            lines = self.readlines()
+        except IOError:
+            return None
+        for row in csv.reader(lines):
             if len(row) == 1:
                 name = sortkey = row[0]
             elif len(row) == 2:
