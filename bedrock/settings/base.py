@@ -628,9 +628,11 @@ MINIFY_BUNDLES = {
         ),
         'manifesto': (
             'js/base/mozilla-modal.js',
-            'js/libs/matchMedia.addListener.js',
             'js/libs/socialshare.min.js',
             'js/mozorg/manifesto.js',
+        ),
+        'manifesto_ie9': (
+            'js/libs/matchMedia.addListener.js',
         ),
         'mozorg-resp': (
             'js/libs/jquery-1.11.0.min.js',
