@@ -153,12 +153,8 @@ if (typeof Mozilla == 'undefined') {
             'display': 'Peru',
             'partner': [
                 {
-                    'name': 'ZTE Open',
-                    'url': 'http://catalogo.movistar.com.pe/zte-open'
-                },
-                {
-                    'name': 'Alcatel Fire OT',
-                    'url': 'http://catalogo.movistar.com.pe/alcatel-fire-ot-4012'
+                    'name': 'Movistar',
+                    'url': 'http://movistarfirefoxos.pe/'
                 }
             ]
         },
