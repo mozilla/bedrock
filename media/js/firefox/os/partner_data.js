@@ -254,7 +254,7 @@ if (typeof Mozilla == 'undefined') {
         'zte_open2': {
             'type': 'smartphone',
             'display': 'ZTE Open II',
-            'countries': ['pe']
+            'countries': ['co', 'pe']
         }
     };
 })(window.jQuery);
