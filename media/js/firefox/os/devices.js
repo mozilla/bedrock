@@ -33,11 +33,15 @@ if (typeof Mozilla === 'undefined') {
     // select available devices & set modal partner content based on chosen/detected location
     var selectDevicesAndSetPartnerContent = function() {
         var links = '';
+        var partnersLength = 0;
 
         // de-select all devices
         $deviceThumbnails.removeClass('available');
 
         if (COUNTRY_CODE !== '' && Mozilla.FxOs.Countries.hasOwnProperty(COUNTRY_CODE)) {
+
+            partnersLength = Mozilla.FxOs.Countries[COUNTRY_CODE].partner.length;
+
             // make sure no option is selected
             $locationSelect.find('option:selected').prop('selected', false);
 
@@ -55,7 +59,7 @@ if (typeof Mozilla === 'undefined') {
             // set up partner modal contents
 
             // if country has more than one provider, show the multi intro text
-            if (Mozilla.FxOs.Countries[COUNTRY_CODE].partner.length > 1) {
+            if (partnersLength > 1) {
                 $('#provider-text-single').hide();
                 $('#provider-text-multi').show();
             }
@@ -63,7 +67,7 @@ if (typeof Mozilla === 'undefined') {
             // show partner specific links on modal etc
             $.each(Mozilla.FxOs.Countries[COUNTRY_CODE].partner, function(i, data) {
                 //set data.name, data.url etc
-                var index = i === 1 ? 'last' : '';
+                var index = i === partnersLength - 1 ? 'last' : '';
                 var filename = data.name.toLowerCase().replace(/\s+/g, '-');
 
                 links += '<a class="' + filename + ' ' + index + '" href="' + data.url + '">' + data.name + '</a>';

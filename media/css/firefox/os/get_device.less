@@ -44,11 +44,13 @@
     }
     #provider-links {
       vertical-align: middle;
+      margin-top: @baseLine * 2;
       a {
         display: inline-block;
         vertical-align: middle;
         padding: 60px (@baseLine * 2) 0 (@baseLine * 2);
         font-size: 17px;
+        border-right: 1px dashed #666;
         &:after {
           content: " \00BB";
         }
@@ -104,25 +106,29 @@
         background: transparent url('/media/img/firefox/os/logo/zte.png') top center no-repeat;
       }
       .last {
-        border-left: 1px dashed #666;
+        border-right: none;
       }
     }
     // An alternative logos and link text for specific countries
     #provider-links {
+      &.de {
+        .alcatel-one-touch-fire,
+        .alcatel-one-touch-fire-e {
+          width: 100px;
+          height: 49px;
+          background: transparent url('/media/img/firefox/os/logo/congstar.jpg') top center no-repeat;
+        }
+        .zte-open-c {
+          width: 110px;
+          height: 48px;
+          background: transparent url('/media/img/firefox/os/logo/ebay.jpg') top center no-repeat;
+        }
+      }
       &.hu {
         .t-mobile {
           width: 100px;
           height: 50px;
           background: transparent url('/media/img/firefox/os/logo/t-mobile-alt.jpg') top center no-repeat;
-        }
-      }
-
-      &.pe {
-        .alcatel-fire-ot,
-        .zte-open {
-          width: 177px;
-          height: 47px;
-          background: transparent url('/media/img/firefox/os/logo/movistar.jpg') top center no-repeat;
         }
       }
       &.uy {
@@ -164,6 +170,19 @@
   .js {
     #get-device {
       width: auto;
+
+      #provider-links {
+        a {
+          display: block;
+          margin: @baseLine auto 0;
+          padding-bottom: @baseLine;
+          border-right: none;
+          border-bottom: 1px dashed #666;
+          &.last {
+            border-bottom: none;
+          }
+        }
+      }
     }
   }
 }
@@ -175,19 +194,6 @@
   }
 
   .js {
-    #get-device {
-      width: auto;
-      .content {
-        font-size: 16px;
-        letter-spacing: 0;
-      }
-      #provider-links {
-        margin-bottom: 0px;
-        .last {
-          border-left: none;
-        }
-      }
-    }
     .modal-content {
       h2 {
         font-size: 22px;

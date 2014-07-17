@@ -46,7 +46,7 @@
             // show partner specific links on modal etc
             $.each(partners_available, function(i, data) {
                 //set data.name, data.url etc
-                var index = i === 1 ? 'last' : '';
+                var index = i === partners_available.length - 1 ? 'last' : '';
                 var filename = data.name.toLowerCase().replace(/\s+/g, '-');
 
                 links += '<a class="' + filename + ' ' + index + '" href="' + data.url + '">' + data.name + '</a>';
