@@ -453,8 +453,10 @@
 .card .extra a.flickr:before { content: '\e801'; } /* '' */
 
 
-// @Gallery
-.gallery {
+// @Gallery - for a gallery of thumbnail images
+// @Media - for large, single images or videos (not a thumbnail gallery)
+.gallery,
+.media {
     .box-shadow(0 1px 0 rgba(0, 0, 0, .1));
     .clearfix;
     background: @lightGray;
@@ -462,7 +464,7 @@
     padding: 20px 20px 0;
 
     h3 {
-        font-size: @largeFontSize;
+        font-size: 18px;
         .open-sans;
         font-weight: normal;
         letter-spacing: normal;
@@ -491,6 +493,15 @@
     }
 }
 
+.media img,
+.media video,
+.media iframe {
+    background: #fff;
+    border: 1px solid #fff;
+    margin: 0 auto 1.5em;
+    max-width: 100%;
+    height: auto;
+}
 
 
 // @Category meta info

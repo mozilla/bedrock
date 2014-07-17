@@ -38,6 +38,26 @@
         Need help with Firefox? <a href="{{ link_sumo }}" class="go">Get it on our support site</a>
       {% endtrans %}
       </em></p>
+
+      <section class="media" id="mv-sphere-video">
+        <h3>{{ _('Creating in the Open') }}</h3>
+        <p>{{ _('What do you do when you have a giant sphere in the middle of the office? Watch artist Andrew Shoultz paint it and talk about his process and inspiration.') }}</p>
+
+        <video controls preload="metadata" poster="{{ media('img/contact/poster-sphere.jpg') }}">
+          <source src="//videos.cdn.mozilla.net/uploads/drafts/Creating_in_the%20Open.webm" type="video/webm">
+          <source src="//videos.cdn.mozilla.net/uploads/drafts/Creating_in_the%20Open.mp4" type="video/mp4">
+          <figure>
+            <img src="{{ media('img/contact/poster-sphere.jpg') }}" alt="">
+            <figcaption>
+          {% trans link_webm='//videos.cdn.mozilla.net/uploads/drafts/Creating_in_the%20Open.webm',
+                   link_mp4='//videos.cdn.mozilla.net/uploads/drafts/Creating_in_the%20Open.mp4' %}
+            Download this video in <a href="{{ link_webm }}">WebM</a> or <a href="{{ link_mp4 }}">MP4</a>.
+          {% endtrans %}
+            <figcaption>
+          </figure>
+        </video>
+      </section>
+
     </section>
   </div>
 {% endblock %}
