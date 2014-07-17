@@ -58,11 +58,15 @@ if (typeof Mozilla == 'undefined') {
             'display': 'Germany',
             'partner': [
                 {
-                    'name': 'congstar',
+                    'name': 'Alcatel One Touch Fire',
                     'url': 'http://aktion.congstar.de/firefox-os'
                 },
                 {
-                    'name': 'eBay',
+                    'name': 'Alcatel One Touch Fire E',
+                    'url': 'http://www.congstar.de/handy/alcatel-one-touch-fire-e-orange/'
+                },
+                {
+                    'name': 'ZTE Open C',
                     'url': 'http://www.ebay.de/itm/eBay-Exklusiv-ZTE-OPEN-C-Neuesten-Firefox-OS-DualCore-1-2-GHz-4-0-3G-Smartphone-/131151681046?ssPageName=STRK:MESE:IT',
                     'developer_only': true
                 }
@@ -226,6 +230,11 @@ if (typeof Mozilla == 'undefined') {
             'type': 'smartphone',
             'display': 'Alcatel One Touch Fire',
             'countries': ['br', 'cl', 'co', 'de', 'gr', 'hu', 'it', 'me', 'mx', 'pe', 'pl', 'rs', 'uy', 've']
+        },
+        'alcatel_onetouchfiree': {
+            'type': 'smartphone',
+            'display': 'Alcatel One Touch Fire E',
+            'countries': ['de']
         },
         'huawei_y300-2': {
             'type': 'smartphone',
