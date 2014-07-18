@@ -22,10 +22,12 @@ UPDATED_FILE = '{0}.updated.txt'
 
 class ExternalFile(object):
     def __init__(self, file_id):
-        fileinfo = settings.EXTERNAL_FILES.get(file_id, None)
-        if fileinfo is None:
-            raise ValueError('No SVN file with the {0} ID.'.format(file_id))
+        try:
+            fileinfo = settings.EXTERNAL_FILES[file_id]
+        except KeyError:
+            raise ValueError('No external file with the {0} ID.'.format(file_id))
 
+        self.file_id = file_id
         self.url = fileinfo['url']
         self.name = fileinfo.get('name', basename(self.url))
         self.updated_name = UPDATED_FILE.format(self.name)
@@ -63,6 +65,34 @@ class ExternalFile(object):
         """
         return self.last_modified_datetime
 
+    def validate_resp(self, resp):
+        """
+        Validate the response from the server, returning the content.
+        :param contents: requests.Response
+        :return: str or None
+        :raises: ValueError
+        """
+        if resp.status_code == 304:
+            log.info('{0} already up-to-date.'.format(self.name))
+            return None
+
+        if resp.status_code == 200:
+            content = resp.text
+            if not content:
+                raise ValueError('No content returned')
+
+            if hasattr(self, 'validate_content'):
+                return self.validate_content(content)
+
+            return content
+
+        if resp.status_code == 404:
+            raise ValueError('File not found (404): ' + self.name)
+
+        raise ValueError('Unknown error occurred updating {0} ({1}): {2}'.format(self.name,
+                                                                                 resp.status_code,
+                                                                                 resp.text))
+
     def read(self):
         with open(self.file_path, 'rb') as fh:
             return fh.read()
@@ -78,32 +108,26 @@ class ExternalFile(object):
             if self.last_modified:
                 headers['if-modified-since'] = self.last_modified
 
-        try:
-            resp = requests.get(self.url, headers=headers, verify=True)
-        except requests.RequestException:
-            log.exception('Error connecting to %s' % self.url)
-            return
+        resp = requests.get(self.url, headers=headers, verify=True)
+        content = self.validate_resp(resp)
 
-        if resp.status_code == 304:
-            log.info('{0} already up-to-date.'.format(self.name))
+        if content is None:
+            # up-to-date
+            return None
 
-        elif resp.status_code == 200:
-            # make sure cache dir exists
-            if not exists(FILES_PATH):
-                try:
-                    mkdir(FILES_PATH, 0777)
-                except OSError:
-                    pass
+        # make sure cache dir exists
+        if not exists(FILES_PATH):
+            try:
+                mkdir(FILES_PATH, 0777)
+            except OSError:
+                # already exists
+                pass
 
-            with codecs.open(self.file_path, 'wb', 'utf8') as fh:
-                fh.write(resp.text)
+        with codecs.open(self.file_path, 'wb', 'utf8') as fh:
+            fh.write(content)
 
-            with open(self.updated_file_path, 'wb') as lu_fh:
-                lu_fh.write(resp.headers['last-modified'])
+        with open(self.updated_file_path, 'wb') as lu_fh:
+            lu_fh.write(resp.headers['last-modified'])
 
-            log.info('Successfully updated {0}.'.format(self.name))
-
-        else:
-            log.error('Unknown error occurred updating {0} ({1}): {2}'.format(self.name,
-                                                                              resp.status_code,
-                                                                              resp.text))
+        log.info('Successfully updated {0}.'.format(self.name))
+        return True
