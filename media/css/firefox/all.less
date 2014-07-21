@@ -57,10 +57,10 @@
 }
 
 #main-content {
-    #localized {
+    .localized {
         .span-all();
     }
-    #localized-testing {
+    .localized-testing {
         .span-all();
         margin-top: @baseLine * 2;
     }
@@ -110,6 +110,52 @@
             }
             &.mac a {
                 background-position: -1200px 50%
+            }
+        }
+    }
+}
+
+/* Mozilla pager */
+.pager-tabs-wrapper {
+    position: absolute;
+    top: 3px;
+    right: 24px;
+    z-index: 2;
+    font-size: 16px;
+    .clearfix();
+
+    .pager-tabs, .pager-title {
+        float: left;
+    }
+
+    .pager-title {
+        padding-right: @baseLine/2;
+
+        &:after {
+            content: ':';
+        }
+    }
+
+    li {
+        float: left;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+
+        &:first-child:after {
+            content: '| ';
+        }
+    }
+
+    a {
+        padding: 0 7px;
+
+        &.selected {
+            color: #000;
+            cursor: default;
+
+            &:hover {
+                text-decoration: none;
             }
         }
     }
@@ -194,6 +240,12 @@
         td.download {
             margin-top: -18px;
         }
+    }
+
+    .pager-tabs-wrapper {
+        position: relative;
+        top: auto;
+        right: auto;
     }
 }
 

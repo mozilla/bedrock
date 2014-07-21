@@ -213,6 +213,7 @@ def all_downloads(request, channel):
     }
 
     context = {
+        'full_builds_version': version.split('.', 1)[0],
         'full_builds': firefox_details.get_filtered_full_builds(version, query),
         'test_builds': firefox_details.get_filtered_test_builds(version, query),
         'query': query,
@@ -223,6 +224,7 @@ def all_downloads(request, channel):
     if channel == 'esr':
         next_version = get_latest_version('firefox', 'esr_next')
         if next_version:
+            context['full_builds_next_version'] = next_version.split('.', 1)[0]
             context['full_builds_next'] = firefox_details.get_filtered_full_builds(next_version,
                                                                                    query)
             context['test_builds_next'] = firefox_details.get_filtered_test_builds(next_version,
