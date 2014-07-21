@@ -212,13 +212,22 @@ def all_downloads(request, channel):
         'esr': _('Firefox Extended Support Release'),
     }
 
-    return l10n_utils.render(request, 'firefox/all.html', {
+    context = {
         'full_builds': firefox_details.get_filtered_full_builds(version, query),
         'test_builds': firefox_details.get_filtered_test_builds(version, query),
         'query': query,
         'channel': channel,
-        'channel_name': channel_names[channel],
-    })
+        'channel_name': channel_names[channel]
+    }
+
+    if channel == 'esr':
+        next_version = get_latest_version('firefox', 'esr_next')
+        if next_version:
+            context['full_builds_next'] = firefox_details.get_filtered_full_builds(next_version,
+                                                                                   query)
+            context['test_builds_next'] = firefox_details.get_filtered_test_builds(next_version,
+                                                                                   query)
+    return l10n_utils.render(request, 'firefox/all.html', context)
 
 
 @csrf_protect
