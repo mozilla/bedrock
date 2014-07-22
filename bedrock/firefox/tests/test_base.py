@@ -206,13 +206,21 @@ class TestFirefoxDetails(TestCase):
         eq_(parse_qsl(urlparse(url).query)[1], ('os', 'linux64'))
 
     @patch.dict(firefox_details.firefox_versions,
-                LATEST_FIREFOX_VERSION='25.0.2')
+                FIREFOX_ESR='24.2')
     def test_esr_major_versions(self):
-        """ESR versions should be dynamic based on latest"""
+        """ESR versions should be dynamic based on data."""
         eq_(firefox_details.esr_major_versions, [24])
 
     @patch.dict(firefox_details.firefox_versions,
-                LATEST_FIREFOX_VERSION='Phoenix')
+                FIREFOX_ESR='24.6.0',
+                FIREFOX_ESR_NEXT='31.0.0')
+    def test_esr_major_versions_prev(self):
+        """ESR versions should show previous when available."""
+        eq_(firefox_details.esr_major_versions, [24, 31])
+
+    @patch.dict(firefox_details.firefox_versions,
+                LATEST_FIREFOX_VERSION='Phoenix',
+                FIREFOX_ESR='Albuquerque')
     def test_esr_major_versions_no_latest(self):
         """ESR versions should not blow up if current version is broken."""
         eq_(firefox_details.esr_major_versions, [])
@@ -659,7 +667,8 @@ class FxVersionRedirectsMixin(object):
 
     @override_settings(DEV=True)
     @patch.dict(product_details.firefox_versions,
-                LATEST_FIREFOX_VERSION='25.0')
+                LATEST_FIREFOX_VERSION='25.0',
+                FIREFOX_ESR='24.1')
     @patch('bedrock.mozorg.helpers.download_buttons.latest_version',
            return_value=('25.0', GOOD_PLATS))
     def test_esr_firefox(self, latest_mock):

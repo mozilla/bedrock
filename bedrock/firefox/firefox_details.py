@@ -38,6 +38,7 @@ class FirefoxDetails(ProductDetails):
         'aurora': 'FIREFOX_AURORA',
         'beta': 'LATEST_FIREFOX_DEVEL_VERSION',
         'esr': 'FIREFOX_ESR',
+        'esr_next': 'FIREFOX_ESR_NEXT',
         'release': 'LATEST_FIREFOX_VERSION',
     }
 
@@ -46,11 +47,17 @@ class FirefoxDetails(ProductDetails):
 
     def latest_version(self, channel):
         version = self.channel_map.get(channel, 'LATEST_FIREFOX_VERSION')
-        return self.firefox_versions[version]
+        try:
+            return self.firefox_versions[version]
+        except KeyError:
+            return None
 
     def latest_major_version(self, channel):
         """Return latest major version as an int."""
         lv = self.latest_version(channel)
+        if lv is None:
+            return 0
+
         try:
             return int(lv.split('.')[0])
         except ValueError:
@@ -58,7 +65,13 @@ class FirefoxDetails(ProductDetails):
 
     @property
     def esr_major_versions(self):
-        return range(24, self.latest_major_version('release'), 7)
+        versions = []
+        for version in ('esr', 'esr_next'):
+            version_int = self.latest_major_version(version)
+            if version_int:
+                versions.append(version_int)
+
+        return versions
 
     def _matches_query(self, info, query):
         words = re.split(r',|,?\s+', query.strip().lower())

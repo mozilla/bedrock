@@ -483,6 +483,7 @@ MINIFY_BUNDLES = {
             'js/base/mozilla-image-helper.js',
         ),
         'firefox_all': (
+            'js/base/mozilla-pager.js',
             'js/firefox/firefox-language-search.js',
         ),
         'firefox-resp': (
