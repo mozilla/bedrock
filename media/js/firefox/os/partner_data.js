@@ -221,15 +221,15 @@ if (typeof Mozilla == 'undefined') {
     };
 
     Mozilla.FxOs.Devices = {
-        'alcatel_onetouchc': {
-            'type': 'smartphone',
-            'display': 'Alcatel Once Touch C',
-            'countries': []
-        },
         'alcatel_onetouchfire': {
             'type': 'smartphone',
             'display': 'Alcatel One Touch Fire',
             'countries': ['br', 'cl', 'co', 'de', 'gr', 'hu', 'it', 'me', 'mx', 'pe', 'pl', 'rs', 'uy', 've']
+        },
+        'alcatel_onetouchfirec': {
+            'type': 'smartphone',
+            'display': 'Alcatel One Touch Fire C',
+            'countries': []
         },
         'alcatel_onetouchfiree': {
             'type': 'smartphone',
