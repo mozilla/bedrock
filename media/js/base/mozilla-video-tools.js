@@ -126,16 +126,27 @@ Mozilla.VideoControl.prototype.drawControl = function()
   this.control.click(function(event) {
     event.preventDefault();
 
-    if (that.semaphore || !that.videoCanPlay()) {
+    if (that.semaphore) {
       return;
     }
 
-    that.semaphore = true;
-    // rewind the video
-    if (that._video.ended) {
-      that._video.currentTime = 0;
+    // if the video has not already started loading
+    // trigger load manually
+    if (that._video.readyState === 1) {
+      that._video.load();
     }
-    that._video.play();
+
+    setTimeout(function () {
+      if (that.videoCanPlay()) {
+        // rewind the video
+        if (that._video.ended) {
+          that._video.currentTime = 0;
+        }
+        that._video.play();
+        that.semaphore = true;
+      }
+    }, 100);
+
   });
 
   this.container.append(this.control);
