@@ -36,27 +36,26 @@
       <h1 class="large center">{{ _('Apply') }}</h1>
 
       <section id="cta-apply" class="container">
-        <h3><strong>{{ _('Apply to the Gigabit Community Fund') }}</strong></h3>
-        <p>{{ _('Do you have an idea for using next-generation gigabit technologies for education or workforce development in Kansas City or Chattanooga?') }}</p>
-        <p><strong>{{ _('The Summer Pilot Period application window opens May 12.') }}</strong></p>
-        <p>{{ _('Applying is fast and easy.') }}</p>
-        <ol>
-          <li>
-            {{ _('Prepare your fund proposal using this <a href="%s">template</a>')|format('https://docs.google.com/a/mozillafoundation.org/document/d/1JWCABAhvvRw3gqbGwBqRvdjh2wu3pwYhPKAISJB0Zak/edit') }}
+        <h3><strong>{{ _('Applications are now closed.') }}</strong></h3>
+        <p>{{ _('What's happening in…') }}</p>
+        <ul class="no-bullet">
+          <li>{% trans url_chat='//wiki.mozilla.org/Webmaker/HiveChattanooga' %}
+              <a href='{{ url_chat }}'>Chattanooga</a>
+              {% endtrans %}
           </li>
-          <li>
-            {{ _('Save your fund proposal as a PDF (no larger than 10MB)') }}
-          </li>
-          <li>
-            {{ _('<a href="%s">Get started</a> at the application dashboard to submit your proposal')|format('http://gigabitfund22014.istart.org/') }}
-          </li>
-        </ol>
-
-        <p>{{ _('Proposals must be received by <b>Friday, June 13, 2014 at 11:59:59 PM PT.</b>  ') }}</p>
+          <li>{% trans url_kansas='//wiki.mozilla.org/Webmaker/HiveKansasCity' %}
+              <a href='{{ url_kansas }}'>Kansas City</a>
+              {% endtrans %}</li>
+        </ul>
+        <p>
+          {% trans url_announcement='//sendto.mozilla.org/page/s/gigabit-updates', url_twitter='//twitter.com/MozillaGigabit' %}
+            Join our <a href='{{ url_announcement }}'>announcement list</a> or follow <a href='{{ url_twitter }}'>@MozillaGigabit</a> for updates.
+          {% endtrans %}
+        </p>
       </section>
 
       <section id="questions" class="container">
-        <div class="main">
+        <div>
           <h2>{{ _('Questions?') }}</h2>
 
           <p>
@@ -88,15 +87,6 @@
            We encourage you to get involved in your <a href="{{ url_local }}">local Gigabit community</a> — here you’ll find resources to create a strong submission.
           {% endtrans %}
           </p>
-        </div>
-
-        <div class="aside">
-          <h2>{{ _('Dates &amp; Deadlines') }}</h2>
-          <ul>
-            <li>
-              {{ _(('The <b>Summer Pilot Period</b> Opens May 12, 2014. Deadline: June 13, 2014.')) }}
-            </li>
-          </ul>
         </div>
       </section>
 
