@@ -110,8 +110,8 @@
   {
     "country":"Czech",
     "filename":"CzechHolidays.ics",
-    "datespan":"2007-2015",
-    "authors":"Martin Matula"
+    "datespan":"2007-2020",
+    "authors":"Martin Matula, Matěj Cepl"
   },
   {
     "country":"Denmark",
@@ -180,6 +180,11 @@
     "authors":"RedSpider"
   },
   {
+    "country":"Haiti",
+    "filename":"HaitiHolidays.ics",
+    "authors":" Sheila Laplanche"
+  },
+  {
     "country":"Hong Kong",
     "filename":"HongKongHolidays.ics",
     "datespan":"2007-2013",
@@ -198,8 +203,14 @@
     "authors":"Kristjan Bjarni Gudmundsson"
   },
   {
-    "country":"India (English)",
-    "filename":"IndiaHolidaysEnglish.ics",
+    "country":"Ireland",
+    "filename":"IrelandHolidays2014-2021.ics",
+    "datespan":"2014-2021",
+    "authors":"Tom Condon"
+  },
+  {
+    "country":"India",
+    "filename":"IndiaHolidays.ics",
     "datespan":"2014",
     "authors":"Seshu Parvataneni"
   },
@@ -262,6 +273,11 @@
     "filename":"LuxembourgHolidays.ics",
     "datespan":"2010-2013",
     "authors":"Ondra Kotecky"
+  },
+  {
+    "country":"Morocco",
+    "filename":"MoroccoHolidays.ics",
+    "authors": "Tarik El Maniani"
   },
   {
     "country":"Netherlands",
