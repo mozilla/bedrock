@@ -63,7 +63,7 @@ if (typeof Mozilla == 'undefined') {
                 },
                 {
                     'name': 'Alcatel One Touch Fire E',
-                    'url': 'http://www.congstar.de/handy/alcatel-one-touch-fire-e-orange/'
+                    'url': 'http://www.congstar.de/handy/alcatel-one-touch-fire-e-braun/'
                 },
                 {
                     'name': 'ZTE Open C',
