@@ -66,6 +66,11 @@ if (typeof Mozilla == 'undefined') {
                     'url': 'http://www.congstar.de/handy/alcatel-one-touch-fire-e-braun/'
                 },
                 {
+                    'name': 'Alcatel One Touch Fire E',
+                    'url': 'http://www.o2online.de/handy/alcatel-onetouch-fire-e/',
+                    'carrier': 'o2'
+                },
+                {
                     'name': 'ZTE Open C',
                     'url': 'http://www.ebay.de/itm/eBay-Exklusiv-ZTE-OPEN-C-Neuesten-Firefox-OS-DualCore-1-2-GHz-4-0-3G-Smartphone-/131151681046?ssPageName=STRK:MESE:IT',
                     'developer_only': true
