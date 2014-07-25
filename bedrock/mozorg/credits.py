@@ -13,8 +13,15 @@ from bedrock.externalfiles import ExternalFile
 
 
 class CreditsFile(ExternalFile):
-    def __init__(self):
-        super(CreditsFile, self).__init__('credits')
+    def validate_content(self, content):
+        rows = list(csv.reader(content.strip().encode('utf8').split('\n')))
+        if len(rows) < 2200:  # it's 2273 as of now
+            raise ValueError('Much smaller file than expected. {0} rows.'.format(len(rows)))
+
+        if len(rows[0]) != 2 or len(rows[-1]) != 2:
+            raise ValueError('CSV Content corrupted.')
+
+        return content
 
     @cached_property
     def ordered(self):
@@ -54,6 +61,3 @@ class CreditsFile(ExternalFile):
             names.append([name.decode('utf8'), sortkey.upper()])
 
         return sorted(names, key=itemgetter(1))
-
-
-credits_file = CreditsFile()

@@ -911,6 +911,7 @@ GA_ACCOUNT_CODE = ''
 EXTERNAL_FILES = {
     'credits': {
         'url': 'https://svn.mozilla.org/projects/mozilla.org/trunk/credits/names.csv',
+        'type': 'bedrock.mozorg.credits.CreditsFile',
         'name': 'credits.csv',
     },
 }

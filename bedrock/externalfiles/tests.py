@@ -6,10 +6,11 @@ from datetime import datetime
 
 from django.conf import settings
 
-from mock import patch
+from mock import Mock, patch
 
 from bedrock import externalfiles
 from bedrock.mozorg.tests import TestCase
+import requests
 
 
 class TestExternalFile(TestCase):
@@ -63,3 +64,59 @@ class TestExternalFile(TestCase):
         """Should return None with bad date string."""
         open_mock.return_value.__enter__.return_value.read.return_value = 'The Dude abides.'
         self.assertIsNone(externalfiles.ExternalFile('test').last_modified_datetime)
+
+    @patch.object(externalfiles, 'requests')
+    def test_update_adds_headers(self, requests_mock):
+        """Should add proper modified headers when possible."""
+        requests_mock.get.side_effect = requests.RequestException
+        ef = externalfiles.ExternalFile('test')
+        modified_str = 'Willlllmaaaaaaa!!'
+        ef.last_modified = modified_str
+        try:
+            ef.update()
+        except requests.RequestException:
+            pass
+        requests_mock.get.called_once_with(settings.EXTERNAL_FILES['test']['url'],
+                                           headers={'if-modified-since': modified_str},
+                                           verify=True)
+
+    @patch.object(externalfiles, 'requests')
+    def test_update_force_not_add_headers(self, requests_mock):
+        """Should not add proper modified headers when force is True."""
+        requests_mock.get.side_effect = requests.RequestException
+        ef = externalfiles.ExternalFile('test')
+        ef.last_modified = 'YabbaDabbaDooo!!'
+        try:
+            ef.update(force=True)
+        except requests.RequestException:
+            pass
+        requests_mock.get.called_once_with(settings.EXTERNAL_FILES['test']['url'], headers={},
+                                           verify=True)
+
+    def test_validate_resp_200(self):
+        """Should return the content for a successful request."""
+        response = Mock(status_code=200, text='Huge Success')
+        ef = externalfiles.ExternalFile('test')
+        self.assertEqual(ef.validate_resp(response), 'Huge Success')
+
+    def test_validate_resp_304(self):
+        """Should return None if the URL is up-to-date."""
+        response = Mock(status_code=304)
+        ef = externalfiles.ExternalFile('test')
+        self.assertIsNone(ef.validate_resp(response))
+
+    def test_validate_resp_404(self):
+        """Should raise an exception for a missing file."""
+        response = Mock(status_code=404)
+        ef = externalfiles.ExternalFile('test')
+        with self.assertRaisesMessage(ValueError, 'File not found (404): ' + ef.name):
+            ef.validate_resp(response)
+
+    def test_validate_resp_500(self):
+        """Should raise an exception for all other codes."""
+        response = Mock(status_code=500)
+        ef = externalfiles.ExternalFile('test')
+        with self.assertRaises(ValueError) as e:
+            ef.validate_resp(response)
+
+        self.assertTrue(e.exception.message.startswith('Unknown error'))

@@ -24,7 +24,7 @@ from lib.l10n_utils.dotlang import _, lang_file_is_active
 from bedrock.firefox import version_re
 from bedrock.firefox.utils import is_current_or_newer
 from bedrock.mozorg import email_contribute
-from bedrock.mozorg.credits import credits_file
+from bedrock.mozorg.credits import CreditsFile
 from bedrock.mozorg.decorators import cache_control_expires
 from bedrock.mozorg.forms import (ContributeForm,
                                   ContributeStudentAmbassadorForm,
@@ -33,6 +33,9 @@ from bedrock.mozorg.models import TwitterCache
 from bedrock.mozorg.util import hide_contrib_form
 from bedrock.mozorg.util import HttpResponseJSON
 from bedrock.newsletter.forms import NewsletterFooterForm
+
+
+credits_file = CreditsFile('credits')
 
 
 def csrf_failure(request, reason=''):
