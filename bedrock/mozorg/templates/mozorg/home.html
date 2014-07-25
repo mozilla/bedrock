@@ -183,16 +183,19 @@
     {% endif %}
 
 {# Position 4: "Teach the Web" #}
-    {% if l10n_has_tag('promo_makerparty') or settings.DEV %}
+    {#
+    New Webmaker Party promo below. Will likely be used in the near future.
+
+    if l10n_has_tag('promo_makerparty') or settings.DEV
       <li id="panel-makerparty" class="panel" tabindex="0">
-        {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
-        {# L10n: This <br> is strictly for visual formatting; translations can omit or reposition as needed. #}
+        { L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. }
+        { L10n: This <br> is strictly for visual formatting; translations can omit or reposition as needed. }
         <h2 class="panel-title">{{ _('<i>Join</i> our <br>Maker Party') }}</h2>
         <div class="confetti"></div>
         <div class="panel-inner">
           <div class="panel-content">
             <a href="https://party.webmaker.org" rel="external">
-              {# L10n: This <br> is strictly for visual formatting; translations can omit or reposition as needed. #}
+              { L10n: This <br> is strictly for visual formatting; translations can omit or reposition as needed. }
               <h3>{{ _('Join our global <br>Maker Party') }}</h3>
               <p>{{ _('From July to September, help us teach, learn and make the Web at hands-on community events.') }}</p>
               <p class="go">{{ _('Learn about events near you') }}</p>
@@ -200,7 +203,8 @@
           </div>
         </div>
       </li>
-    {% elif l10n_has_tag('promo_webmaker') %}
+    #}
+    {% if l10n_has_tag('promo_webmaker') or settings.DEV %}
       <li id="panel-webmaker" class="panel" tabindex="0">
         {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
         <h2 class="panel-title">{{ _('<i>Learn</i> the Web') }}</h2>
