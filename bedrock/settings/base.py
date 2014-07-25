@@ -109,6 +109,9 @@ MINIFY_BUNDLES = {
         'credits-faq': (
             'css/mozorg/credits-faq.less',
         ),
+        'about-forums': (
+            'css/mozorg/about-forums.less',
+        ),
         'foundation': (
             'css/foundation/foundation.less',
         ),
@@ -913,6 +916,11 @@ EXTERNAL_FILES = {
         'url': 'https://svn.mozilla.org/projects/mozilla.org/trunk/credits/names.csv',
         'type': 'bedrock.mozorg.credits.CreditsFile',
         'name': 'credits.csv',
+    },
+    'forums': {
+        'url': 'https://svn.mozilla.org/projects/mozilla.org/trunk/about/forums/raw-ng-list.txt',
+        'type': 'bedrock.mozorg.forums.ForumsFile',
+        'name': 'forums.txt',
     },
 }
 

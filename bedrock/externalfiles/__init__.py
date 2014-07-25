@@ -68,7 +68,7 @@ class ExternalFile(object):
     def validate_resp(self, resp):
         """
         Validate the response from the server, returning the content.
-        :param contents: requests.Response
+        :param resp: requests.Response
         :return: str or None
         :raises: ValueError
         """
