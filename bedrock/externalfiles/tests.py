@@ -119,4 +119,4 @@ class TestExternalFile(TestCase):
         with self.assertRaises(ValueError) as e:
             ef.validate_resp(response)
 
-        self.assertTrue(e.exception.message.startswith('Unknown error'))
+        self.assertTrue(str(e.exception).startswith('Unknown error'))
