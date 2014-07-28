@@ -142,6 +142,7 @@ MINIFY_BUNDLES = {
         'contact-spaces': (
             'css/libs/mapbox-1.6.3.css',
             'css/libs/magnific-popup.css',
+            'css/base/mozilla-video-poster.less',
             'css/mozorg/contact-spaces.less',
         ),
         'contact-spaces-ie7': (
@@ -452,6 +453,7 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.history.js',
             'js/mozorg/contact-data.js',
             'js/libs/jquery.magnific-popup.min.js',
+            'js/base/mozilla-video-poster.js',
             'js/mozorg/contact-spaces.js',
         ),
         'contact-spaces-ie7': (
