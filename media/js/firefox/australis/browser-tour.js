@@ -707,9 +707,6 @@ if (typeof Mozilla == 'undefined') {
         var that = this;
         $current.find('h2').focus();
         setTimeout(function () {
-            // temp workaround if bug 968039 does not make it into Aurora 29
-            // fixes highlight position first time browser is opened.
-            Mozilla.UITour.showHighlight('appMenu', 'wobble');
             that.showHighlight();
         }, 100);
     };
