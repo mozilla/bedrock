@@ -26,7 +26,6 @@ def unwrap_signed_request(request):
     try:
         encoded_signed_request = request.REQUEST['signed_request']
     except KeyError:
-        log.exception('signed_request not set')
         return {}
 
     encoded_string_data = encoded_signed_request.partition('.')[2]
