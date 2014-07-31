@@ -47,6 +47,11 @@ if (typeof Mozilla == 'undefined') {
             'display': 'Huawei Y300II',
             'countries': ['mx']
         },
+        'intex_cloudfx': {
+            'type': 'smartphone',
+            'display': 'Intex Cloud FX',
+            'countries': ['in']
+        },
         'lg_fireweb': {
             'type': 'smartphone',
             'display': 'LG Fireweb',
