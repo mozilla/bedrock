@@ -43,7 +43,9 @@
 
       <p>
         {{ _('Check out "What’s New" and "Known Issues" for this version of Firefox below.') }}
-      {% trans feedback='https://input.mozilla.org/feedback',
+      {% trans feedback='https://input.mozilla.org/feedback/android/' + release.version + '?utm_source=releasenotes'
+          if release.product == 'Firefox for Android'
+          else 'https://input.mozilla.org/feedback/firefox/' + release.version + '?utm_source=releasenotes',
           bugzilla='https://bugzilla.mozilla.org/' %}
         As always, you’re encouraged to
         <a href="{{ feedback }}">tell us what you think</a>,
