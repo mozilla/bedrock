@@ -17,11 +17,11 @@ Adding the universal tab to a site requires:
 
     <a href="https://www.mozilla.org/" id="tabzilla">mozilla</a>
 
-2. Include the tabzilla.css CSS file either as a CSS include or built in to your minified styles::
+2. Include the tabzilla CSS by adding the following tag inside the ``<head>`` of your template::
 
     <link href="//mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" rel="stylesheet" />
 
-3. Include the tabzilla.js file in your template (preferably in the footer)::
+3. Include the tabzilla.js file in your template (preferably just before the ``</body>``)::
 
     <script src="//mozorg.cdn.mozilla.net/tabzilla/tabzilla.js"></script>
 
