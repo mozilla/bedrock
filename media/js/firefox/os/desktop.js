@@ -105,10 +105,15 @@
         // filter prop is applied via style attribte.
         // update the filter string to change the bg
         var cur_filter = $bg_a.css('filter');
-        var new_filter = cur_filter.replace(rotate_bg_re, new_bg);
 
-        // update bg_a classes and filter property
-        $bg_a.attr('class', css_classes).css('filter', new_filter);
+        if (cur_filter) {
+            var new_filter = cur_filter.replace(rotate_bg_re, new_bg);
+
+            // update bg_a classes and filter property
+            $bg_a.attr('class', css_classes).css('filter', new_filter);
+        } else {
+            $bg_a.attr('class', css_classes);
+        }
 
         $bg_a.fadeIn(300);
       } else {
