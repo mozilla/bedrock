@@ -887,20 +887,6 @@ BASKET_URL = 'http://basket.mozilla.com'
 # work on the dev site while we have a mix of Python/PHP
 FORCE_SLASH_B = False
 
-# Locals with transitional download pages
-LOCALES_WITH_TRANSITION = ['en-US', 'af', 'ar', 'ast', 'be', 'bg',
-                           'bn-BD', 'bn-IN', 'ca', 'cs', 'cy', 'da',
-                           'de', 'el', 'eo', 'es-AR', 'es-CL', 'es-ES',
-                           'es-MX', 'et', 'eu', 'fa', 'fi', 'fr',
-                           'fy-NL', 'ga-IE', 'gd', 'gl', 'gu-IN',
-                           'he', 'hi-IN', 'hr', 'hu', 'hy-AM', 'id',
-                           'is', 'it', 'ja', 'kk', 'kn', 'ko', 'ku',
-                           'lt', 'lv', 'mk', 'ml', 'mr', 'nb-NO',
-                           'nl', 'or', 'pa-IN', 'pl', 'pt-BR', 'pt-PT',
-                           'rm', 'ro', 'ru', 'si', 'sk', 'sl', 'sq',
-                           'sr', 'sv-SE', 'ta', 'ta-LK', 'te', 'th',
-                           'tr', 'uk', 'vi', 'zh-CN', 'zh-TW']
-
 # reCAPTCHA keys
 RECAPTCHA_PUBLIC_KEY = ''
 RECAPTCHA_PRIVATE_KEY = ''
