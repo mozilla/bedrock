@@ -32,15 +32,15 @@ the `Node <http://nodejs.org/>`_ package manager.
 
 In order to get started, you'll want to install Grunt's command line interface
 (CLI) globally. You may need to use sudo (for OSX, \*nix, BSD etc) or run your
-command shell as Administrator (for Windows) to do this.
+command shell as Administrator (for Windows) to do this::
 
     npm install -g grunt-cli
 
-You may also want to install JSHint globally using:
+You may also want to install JSHint globally using::
 
     npm install -g jshint
 
-Finally, install the dependencies that the bedrock Gruntfile needs:
+Finally, install the dependencies that the bedrock Gruntfile needs::
 
     npm install
 
@@ -48,18 +48,18 @@ Finally, install the dependencies that the bedrock Gruntfile needs:
 Usage
 -----
 
-To start the grunt task runner, simply run:
+To start the grunt task runner, simply run::
 
     grunt
 
-To enable live-reload in the browser you must set `USE_GRUNT_LIVERELOAD` to
-`True` in `bedrock/settings/local.py`
+To enable live-reload in the browser you must set ``USE_GRUNT_LIVERELOAD`` to
+``True`` in ``bedrock/settings/local.py``::
 
     USE_GRUNT_LIVERELOAD = True
 
-In the root directory you will also find a `.jshintrc-dist` file which contains
+In the root directory you will also find a ``.jshintrc-dist`` file which contains
 a basic set of defaults for running JSHint. If you wish to use these defaults
-with Grunt then copy the contents to a local `.jshintrc` file:
+with Grunt then copy the contents to a local ``.jshintrc`` file::
 
 	cp .jshintrc-dist .jshintrc
 
@@ -71,7 +71,11 @@ Bedrock has a suite of JavaScript unit tests written using `Jasmine <http://pivo
 and `Sinon <http://sinonjs.org/>`_. You can run these tests on the command line using
 `Karma <http://karma-runner.github.io>`_ test runner and `PhantomJS <http://phantomjs.org/>`_.
 
-To perform a single run of the test suite, type the following command:
+To perform a single run of the test suite, type the following command::
 
 	grunt test
+
+.. note::
+
+    The Tabzilla tests require that you have your local bedrock development server running on port 8000.
 

@@ -33,4 +33,4 @@ Contents
    grunt
    newsletters
    tabzilla
-   ui-tour
+   uitour
