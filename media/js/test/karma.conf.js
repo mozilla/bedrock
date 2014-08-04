@@ -14,11 +14,13 @@ module.exports = function(config) {
             '../base/global.js',
             '../base/mozilla-form-helper.js',
             '../base/mozilla-image-helper.js',
+            '../base/mozilla-pager.js',
             'http://localhost:8000/tabzilla/tabzilla.js?build=dev',
             'spec/site.js',
             'spec/global.js',
             'spec/mozilla-form-helper.js',
             'spec/mozilla-image-helper.js',
+            'spec/mozilla-pager.js',
             'spec/tabzilla.js',
             {
                 pattern: '../../../node_modules/sinon/pkg/sinon.js',
