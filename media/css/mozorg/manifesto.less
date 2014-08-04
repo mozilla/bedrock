@@ -42,7 +42,7 @@
     margin: 0 auto;
     padding: 20px;
     width: 420px;
-    min-height: 2660px;
+    min-height: 2820px;
     background: #FFF;
 
     & > section:not(:first-of-type) {
@@ -123,8 +123,12 @@
 }
 
 .socialshare > div > a {
-    &,
+    background-repeat: no-repeat;
+    background-image: url(/media/img/mozorg/about/manifesto/social/sprite.png);
+
     &:after {
+        background-repeat: no-repeat;
+        background-position: 4px -45px;
         background-image: url(/media/img/mozorg/about/manifesto/social/sprite.png);
     }
 
@@ -184,7 +188,8 @@
     padding: 20px 20px 20px 90px;
     color: #FFF;
     pointer-events: auto;
-    transition: opacity .5s;
+    -webkit-transition: opacity .5s, border .5s;
+    transition: opacity .5s, border .5s;
 
     h3 {
         position: relative;
@@ -206,7 +211,7 @@
             line-height: 1;
             font-style: normal;
             font-weight: bold;
-            transition: opacity .3s;
+            .transition(opacity .3s);
         }
     }
 
@@ -230,14 +235,7 @@
         border-width: 0 0 1px;
         border-style: solid;
         color: #FFF;
-        transition: all .3s;
-
-        /* There are 2 links in #principle-08. A raquo should be appended only to the last one */
-        &:last-child:after {
-            position: absolute;
-            content: "\00A0\00BB"; /* nbsp raquo */
-            transition: opacity .3s;
-        }
+        .transition(all .3s);
     }
 
     a:link,
@@ -262,6 +260,7 @@
 
         &:last-child:after {
             opacity: .6;
+            -webkit-transition-delay: .3s;
             transition-delay: .3s;
         }
     }
@@ -394,27 +393,27 @@
 
         a {
             color: #484848;
+            border-bottom: 1px dotted #484848;
 
             &:hover,
             &:focus,
             &:active {
                 color: #00A0DB;
+                text-decoration: none;
+                border-bottom: 1px dotted #00A0DB;
             }
         }
     }
 }
 
 #sec-learn {
+    text-align: center;
+    ul {
+        list-style-position: inside;
+    }
     li {
-        margin: 0;
-        font-style: italic;
-        text-align: center;
-        list-style-type: none;
-
-        a:before {
-            display: inline-block;
-            content: "\00B7\00A0"; /* middot nbsp */
-        }
+        margin: 0 auto;
+        color: #0096DD;
     }
 }
 
@@ -484,7 +483,7 @@
     position: absolute;
     top: 0;
     width: 320px;
-    height: 2880px;
+    height: 3060px;
 
     ul li {
         margin: 0 20px 20px 0;
@@ -514,12 +513,12 @@
         margin-left: auto; /* IE6-8 */
         width: 780px;
         box-shadow: 0 2px 6px rgba(0, 0, 0, .5);
-        -webkit-animation: popup .1s ease-out;
-        animation: popup .1s ease-out;
+        -webkit-animation: popup .2s ease-out;
+        animation: popup .2s ease-out;
 
         #modal-close {
             opacity: .5;
-            transition: opacity .3s;
+            .transition(opacity .3s);
 
             &:hover,
             &:focus,
@@ -583,6 +582,12 @@
                     display: none;
                 }
             }
+
+            &:hover,
+            &:focus,
+            &:active {
+                border: 5px solid transparent;
+            }
         }
 
         nav {
@@ -604,7 +609,7 @@
                 text-indent: 100px; /* Hide the label */
                 white-space: nowrap;
                 cursor: pointer;
-                transition: all .3s;
+                .transition(all .3s);
 
                 &:hover,
                 &:focus,
@@ -662,17 +667,17 @@ html.js {
     }
 
     .principle {
+        border: 5px solid transparent;
         header {
             margin-bottom: 20px;
 
             .more {
+                display: none;
                 position: absolute;
                 bottom: 10px;
                 right: 10px;
                 margin: 0;
-                opacity: 0;
                 font-style: italic;
-                transition: opacity .3s;
 
                 &:after {
                     content: "\00A0\00BB"; /* nbsp raquo */
@@ -683,14 +688,11 @@ html.js {
         &:hover,
         &:focus,
         &:active {
+            border: 5px solid #333;
+            border: 5px solid rgba(0, 0, 0, 0.2);
             header {
                 span {
                     opacity: .5;
-                }
-
-                .more {
-                    opacity: 1;
-                    transition-delay: .3s;
                 }
             }
         }
@@ -704,30 +706,57 @@ html.js {
 /* Animations */
 
 @-webkit-keyframes popup {
-    from { transform: scale(.7); }
-    to   { transform: scale(1); }
+    from {
+        -webkit-transform: scale(.7);
+        transform: scale(.7);
+    }
+    to {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
 }
+
 @keyframes popup {
-    from { transform: scale(.7); }
-    to   { transform: scale(1); }
+    from {
+        transform: scale(.7);
+    }
+    to {
+        transform: scale(1);
+    }
 }
 
 @-webkit-keyframes bouncer-left {
-    from { left: 10px; }
-    to   { left: 5px; }
+    from {
+        left: 10px;
+    }
+    to {
+        left: 5px;
+    }
 }
 @keyframes bouncer-left {
-    from { left: 10px; }
-    to   { left: 5px; }
+    from {
+        left: 10px;
+    }
+    to {
+        left: 5px;
+    }
 }
 
 @-webkit-keyframes bouncer-right {
-    from { right: 10px; }
-    to   { right: 5px; }
+    from {
+        right: 10px;
+    }
+    to {
+        right: 5px;
+    }
 }
 @keyframes bouncer-right {
-    from { right: 10px; }
-    to   { right: 5px; }
+    from {
+        right: 10px;
+    }
+    to {
+        right: 5px;
+    }
 }
 
 /* L10n */
@@ -881,6 +910,14 @@ html[dir="rtl"] {
     #mosaic-group-2 {
         right: -210px;
     }
+
+    html.js {
+        .principle header {
+            .more {
+                display: block;
+            }
+        }
+    }
 }
 
 /* Mobile */
@@ -909,6 +946,14 @@ html[dir="rtl"] {
     .ri-grid,
     .ri-grid.loaded {
         display: none;
+    }
+
+    html.js {
+        .principle header {
+            .more {
+                display: block;
+            }
+        }
     }
 }
 

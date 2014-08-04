@@ -185,14 +185,14 @@ $(function() {
         });
 
         $('.ri-grid').gridrotator({
-            rows: 17,
+            rows: 18,
             columns: 2,
             animType: 'fadeInOut',
             animSpeed: 1000,
             interval: 1000,
             step: 1,
             w480: {
-                rows: 17,
+                rows: 18,
                 columns: 2
             }
         }).addClass('loaded');
