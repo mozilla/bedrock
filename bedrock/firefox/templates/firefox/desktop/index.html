@@ -5,7 +5,13 @@
 {% extends "firefox/desktop/desktop-base.html" %}
 
 {% block page_title_prefix %}{% endblock %}
-{% block page_title %}{{ _("Firefox Web browser — Trusted, Flexible, Fast — There's never been a better time") }}{% endblock %}
+{% block page_title %}
+  {% if l10n_has_tag('home_title_update') or settings.DEV %}
+    {{ _("Firefox Web browser — Trusted, Flexible, Fast — Committed to you, your privacy and an open Web") }}
+  {% else %}
+    {{ _("Firefox Web browser — Trusted, Flexible, Fast — There's never been a better time") }}
+  {% endif %}
+{% endblock %}
 
 {% block site_css %}
   {{ css('firefox_desktop') }}
