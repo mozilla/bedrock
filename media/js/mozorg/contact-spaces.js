@@ -93,6 +93,10 @@
                 gallery: { enabled: true },
                 type: 'image'
             });
+
+            // init HTML5 video poster helper
+            var video = new Mozilla.videoPosterHelper('#page-content');
+            video.init();
         },
 
         /*
@@ -170,6 +174,14 @@
                 // close any photo galleries that may have been open
                 $.magnificPopup.close();
             });
+
+            // If pushState is emulated (html4 browsers) and we have a hash (a '#' in the url)
+            // trigger the statechange event
+            if (History.emulated.pushState && History.getHash()) {
+                $(document).ready(function() {
+                    History.Adapter.trigger(window, 'statechange');
+                });
+            }
         },
 
         /*

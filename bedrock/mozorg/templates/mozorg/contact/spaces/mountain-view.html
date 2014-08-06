@@ -43,19 +43,22 @@
         <h3>{{ _('Creating in the Open') }}</h3>
         <p>{{ _('What do you do when you have a giant sphere in the middle of the office? Watch artist Andrew Shoultz paint it and talk about his process and inspiration.') }}</p>
 
-        <video controls preload="metadata" poster="{{ media('img/contact/poster-sphere.jpg') }}">
-          <source src="//videos.cdn.mozilla.net/uploads/drafts/Creating_in_the%20Open.webm" type="video/webm">
-          <source src="//videos.cdn.mozilla.net/uploads/drafts/Creating_in_the%20Open.mp4" type="video/mp4">
-          <figure>
-            <img src="{{ media('img/contact/poster-sphere.jpg') }}" alt="">
-            <figcaption>
-          {% trans link_webm='//videos.cdn.mozilla.net/uploads/drafts/Creating_in_the%20Open.webm',
-                   link_mp4='//videos.cdn.mozilla.net/uploads/drafts/Creating_in_the%20Open.mp4' %}
-            Download this video in <a href="{{ link_webm }}">WebM</a> or <a href="{{ link_mp4 }}">MP4</a>.
-          {% endtrans %}
-            <figcaption>
-          </figure>
-        </video>
+        <div class="moz-video-container">
+          <button class="moz-video-button" type="button" aria-controls="spaces-video">{{ _('Play video') }}</button>
+          <video id="spaces-video" poster="{{ media('img/contact/poster-sphere.jpg') }}" controls preload="metadata">
+            <source src="//videos.cdn.mozilla.net/uploads/drafts/Creating_in_the%20Open.webm" type="video/webm">
+            <source src="//videos.cdn.mozilla.net/uploads/drafts/Creating_in_the%20Open.mp4" type="video/mp4">
+            <figure>
+              <img src="{{ media('img/contact/poster-sphere.jpg') }}" alt="">
+              <figcaption>
+            {% trans link_webm='//videos.cdn.mozilla.net/uploads/drafts/Creating_in_the%20Open.webm',
+                     link_mp4='//videos.cdn.mozilla.net/uploads/drafts/Creating_in_the%20Open.mp4' %}
+              Download this video in <a href="{{ link_webm }}">WebM</a> or <a href="{{ link_mp4 }}">MP4</a>.
+            {% endtrans %}
+              </figcaption>
+            </figure>
+          </video>
+        </div>
       </section>
 
     </section>
