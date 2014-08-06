@@ -1,0 +1,36 @@
+{% extends "security/base.html" %}
+
+{% block page_title %}{{ advisory.title|striptags }}{% endblock %}
+
+{% block article %}
+  <article class="section-content" itemscope itemtype="http://schema.org/Article">
+    <header>
+      <h1 itemprop="name">{{ advisory.title|safe }}</h1>
+    </header>
+    <div itemprop="articleBody">
+
+      <dl>
+        <dt>Fixed in</dt>
+        <dd>
+          <ul>
+            {% for prodver in advisory.fixed_in.all() %}
+              <li>{{ prodver.name }}</li>
+            {% endfor %}
+          </ul>
+        </dd>
+        <dt>Products:</dt>
+        <dd>
+          <ul>
+            {% for prod in advisory.products %}
+              <li>{{ prod }}</li>
+            {% endfor %}
+          </ul>
+        </dd>
+        <dt>Impact:</dt>
+        <dd class="{{ advisory.impact_class }}">{{ advisory.impact }}</dd>
+      </dl>
+
+      {{ advisory.html|safe }}
+    </div>
+  </article>
+{% endblock %}

@@ -14,4 +14,5 @@ urlpatterns = patterns('',
     page('some-lang-files', 'some_lang_files.html'),
     page('state-of-mozilla', 'state_of_mozilla.html'),
     page('firefox/new', 'firefox/new.html'),
+    page('non-locale/test', 'non-locale/test.html'),
 )

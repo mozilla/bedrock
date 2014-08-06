@@ -32,6 +32,7 @@ urlpatterns = patterns(
     (r'^privacy', include('bedrock.privacy.urls')),
     (r'^styleguide/', include('bedrock.styleguide.urls')),
     (r'^tabzilla/', include('bedrock.tabzilla.urls')),
+    (r'^security/', include('bedrock.security.urls')),
     (r'', include('bedrock.firefox.urls')),
     (r'', include('bedrock.mozorg.urls')),
     (r'', include('bedrock.newsletter.urls')),
