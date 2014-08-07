@@ -8,10 +8,12 @@
 
         // if user has Sync already, don't show the page prommo
         Mozilla.UITour.getConfiguration('sync', function (config) {
+            var $syncButton = $('.sync-cta').find('.button');
             var visible = '';
 
             if (config.setup === false) {
-                $('.sync-cta').show();
+                $syncButton.attr('role', 'button');
+                $syncButton.addClass('menu-cta');
                 visible = 'YES';
             } else if (config.setup === true) {
                 // Hide Sync section in post tour-page
