@@ -10,24 +10,19 @@ $(function () {
     var $submit_button = $('.footer-newsletter-form input[type=submit]');
     var $form_details = $('.footer-newsletter-form #form-details');
 
-    function footer_email_form_show_details(trigger_click) {
-        $form_details.slideDown('normal', function () {
-            if (trigger_click) {
-                $submit_button.trigger('click');
-            }
-        });
-
-        $form_details.slideDown();
+    function footer_email_form_show_details() {
+        if (!$form_details.is(':visible')) {
+            $form_details.velocity('slideDown', 'ease-in-out');
+        }
     }
 
-    $('.footer-newsletter-form select, .footer-newsletter-form input').focus(function () {
-        footer_email_form_show_details(false);
-    });
+    $('.footer-newsletter-form select, .footer-newsletter-form input')
+        .on('focus', footer_email_form_show_details);
 
-    $submit_button.click(function (e) {
+    $submit_button.on('click', function (e) {
         if (!$form_details.is(':visible')) {
             e.preventDefault();
-            footer_email_form_show_details(true);
+            footer_email_form_show_details();
         }
     });
 
@@ -88,6 +83,7 @@ $(function () {
         var $errors = $('#footer-email-errors');
         var $errorlist = $errors.find('ul.errorlist');
         var $submitbutton = $('#footer_email_submit');
+        var animation_interval;
         $errors.hide();
         $errorlist.empty();
         var old_submit_html = $submitbutton.val();
@@ -100,16 +96,18 @@ $(function () {
             'dataType': 'json'
         }).done(function (data) {
             if (data.success) {
-                $self.hide();
-                $('#newsletter-form-thankyou').show();
+                var noqueue = {queue: false};
+                $self.velocity('slideUp', noqueue).velocity('fadeOut', noqueue);
+                $('#newsletter-form-thankyou').velocity('slideDown', noqueue).velocity('fadeIn', noqueue);
+                window.clearInterval(animation_interval);
             }
             else if (data.errors) {
                 for (var i = 0; i < data.errors.length; i++) {
                     $errorlist.append('<li>' + data.errors[i] + '</li>');
                 }
                 $errors.show();
+                enable_form();
             }
-            enable_form();
         }).fail(function () {
             // shouldn't need l10n. This should almost never happen.
             $errorlist.append('<li>An unknown error occurred. Please try again later</li>');
@@ -119,12 +117,16 @@ $(function () {
 
         function disable_form() {
             $self.find('input,select').prop('disabled', true);
-            $submitbutton.val('...');
+            $submitbutton.val('.');
+            animation_interval = window.setInterval(function() {
+                $submitbutton.val($submitbutton.val() + '.');
+            }, 500);
         }
 
         function enable_form() {
             $self.find('input,select').prop('disabled', false);
             $submitbutton.val(old_submit_html);
+            window.clearInterval(animation_interval);
         }
     });
 });
