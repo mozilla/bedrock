@@ -2,11 +2,9 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-(function ($) {
-
-"use strict";
-
 $(function () {
+    "use strict";
+
     var $submit_button = $('.footer-newsletter-form input[type=submit]');
     var $form_details = $('.footer-newsletter-form #form-details');
 
@@ -87,6 +85,21 @@ $(function () {
         $errors.hide();
         $errorlist.empty();
         var old_submit_html = $submitbutton.val();
+        var spinner = new Spinner({
+            lines: 12, // The number of lines to draw
+            length: 4, // The length of each line
+            width: 2, // The line thickness
+            radius: 4, // The radius of the inner circle
+            corners: 0, // Corner roundness (0..1)
+            rotate: 0, // The rotation offset
+            direction: 1, // 1: clockwise, -1: counterclockwise
+            color: '#000', // #rgb or #rrggbb or array of colors
+            speed: 1, // Rounds per second
+            trail: 60, // Afterglow percentage
+            shadow: false, // Whether to render a shadow
+            hwaccel: true, // Whether to use hardware acceleration
+        });
+        var $spinnerTarget = $('#newsletter-spinner');
         // have to collect data before disabling inputs
         var data = $self.serialize();
         disable_form();
@@ -97,9 +110,11 @@ $(function () {
         }).done(function (data) {
             if (data.success) {
                 var noqueue = {queue: false};
-                $self.velocity('slideUp', noqueue).velocity('fadeOut', noqueue);
+                // enable_form to cancel interval and enable form elements.
+                // if page is refreshed and form elements are disabled,
+                // they will be disabled after refresh.
+                $self.velocity('slideUp', noqueue).velocity('fadeOut', noqueue, enable_form);
                 $('#newsletter-form-thankyou').velocity('slideDown', noqueue).velocity('fadeIn', noqueue);
-                window.clearInterval(animation_interval);
             }
             else if (data.errors) {
                 for (var i = 0; i < data.errors.length; i++) {
@@ -117,18 +132,15 @@ $(function () {
 
         function disable_form() {
             $self.find('input,select').prop('disabled', true);
-            $submitbutton.val('.');
-            animation_interval = window.setInterval(function() {
-                $submitbutton.val($submitbutton.val() + '.');
-            }, 500);
+            $submitbutton.addClass('insensitive');
+            spinner.spin($spinnerTarget.show()[0]);
         }
 
         function enable_form() {
             $self.find('input,select').prop('disabled', false);
-            $submitbutton.val(old_submit_html);
-            window.clearInterval(animation_interval);
+            $submitbutton.removeClass('insensitive');
+            spinner.stop();
+            $spinnerTarget.hide();
         }
     });
 });
-
-})(jQuery);
