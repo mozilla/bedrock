@@ -28,6 +28,8 @@
         e.preventDefault();
         e.stopPropagation();
         Mozilla.UITour.showHighlight('accountStatus', 'wobble');
+        // temp fix for Bug 1049130
+        Mozilla.UITour.showHighlight('accountStatus', 'wobble');
 
         // hide app menu when user clicks anywhere on the page
         $(document.body).one('click', function () {
@@ -73,7 +75,7 @@
     }
 
     // show sync in menu when user clicks cta
-    $('.sync-cta button').on('click', showSyncInMenu);
+    $('.sync-cta').on('click', '.menu-cta', showSyncInMenu);
 
     // track learn more links on click
     $('.learn-more a').on('click', trackLearnMoreLinks);

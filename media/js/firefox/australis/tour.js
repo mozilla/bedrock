@@ -8,6 +8,7 @@
 
         // Query if the UITour API is working before we start the tour
         Mozilla.UITour.getConfiguration('sync', function (config) {
+            var $syncButton = $('.sync-cta').find('.button');
             var visible = '';
 
             // if user has submitted newsletter don't show the tour again
@@ -23,7 +24,8 @@
 
             // if user has Sync already, don't show the page prommo
             if (config.setup === false) {
-                $('.sync-cta').show();
+                $syncButton.attr('role', 'button');
+                $syncButton.addClass('menu-cta');
                 visible = 'YES';
             } else if (config.setup === true) {
                 // Hide Sync section in post tour-page

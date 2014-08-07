@@ -145,8 +145,7 @@ header[role="banner"],
     overflow: hidden;
     background: #f7f7f7;
     text-align: center;
-    button {
-        display: block;
+    .button {
         position: relative;
         .open-sans-light;
         font-size: 18px;
@@ -164,6 +163,8 @@ header[role="banner"],
         }
     }
     small {
+        display: block;
+        margin-top: .5em;
         font-style: italic;
         color: #949899;
     }
@@ -171,10 +172,6 @@ header[role="banner"],
 
 .sync-anim {
     margin: 40px auto;
-}
-
-.sync-cta {
-    display: none;
 }
 
 .share {
