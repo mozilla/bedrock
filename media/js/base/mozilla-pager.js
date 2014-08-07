@@ -425,6 +425,7 @@ Mozilla.Pager.updateHashMonitor = function() {
         // If no pager with history exists, stop hash monitoring.
         if (!shouldMonitor) {
             $(window).off('hashchange.' + Mozilla.Pager.EVENT_NAMESPACE);
+            Mozilla.Pager.monitoringHash = false;
         }
     }
 };
