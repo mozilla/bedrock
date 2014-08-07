@@ -68,7 +68,7 @@ if (typeof Mozilla === 'undefined') {
             $.each(Mozilla.FxOs.Countries[COUNTRY_CODE].partner, function(i, data) {
                 //set data.name, data.url etc
                 var index = i === partnersLength - 1 ? ' last' : '';
-                var filename = data.name.toLowerCase().replace(/\s+/g, '-');
+                var filename = data.name.toLowerCase().replace(/\s+|\./g, '-');
                 var carrier = (data.carrier) ? ' ' + data.carrier : '';
 
                 links += '<a class="' + filename + carrier + index + '" href="' + data.url + '">' + data.name + '</a>';

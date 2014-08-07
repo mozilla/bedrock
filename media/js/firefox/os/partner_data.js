@@ -102,6 +102,14 @@ if (typeof Mozilla == 'undefined') {
                 {
                     'name': 'ZTE France',
                     'url': 'http://www.ztefrance.com/firefox-open-c.php'
+                },
+                {
+                    'name': 'LDLC',
+                    'url': 'http://www.ldlc.com/fiche/PB00171571.html#53302f3f2a970'
+                },
+                {
+                    'name': 'E.Leclerc',
+                    'url': 'http://www.leclercmobile.fr/telephones-mobiles/notre-gamme/mobiles/Zte_Open-C.aspx'
                 }
             ]
         },
