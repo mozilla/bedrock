@@ -150,7 +150,21 @@
     {% endif %}
 
 {# Position 3: "Enable Community" #}
-    {% if l10n_has_tag('promo_new_mdn') or settings.DEV %}
+    {% if l10n_has_tag('promo_sumo') or settings.DEV %}
+      <li id="panel-sumo" class="panel" tabindex="0">
+        {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
+        <h2 class="panel-title">{{ _('<i>Help</i> Mozilla users') }}</h2>
+        <div class="panel-inner">
+          <div class="panel-content">
+            <a href="https://support.mozilla.org/">
+              <h3>{{ _('We need your help') }}</h3>
+              <p>{{ _('Learn about the ways you can help millions of users get the most out of their favorite browser.') }}</p>
+              <p class="go">{{ _('Join our support team') }}</p>
+            </a>
+          </div>
+        </div>
+      </li>
+    {% elif l10n_has_tag('promo_new_mdn') %}
       <li id="panel-mdn" class="panel" tabindex="0">
         {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
         <h2 class="panel-title">{{ _('<i>See</i> the new MDN') }}</h2>
