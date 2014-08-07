@@ -33,8 +33,6 @@ download_urls = {
     'aurora-l10n': nightly_desktop + '-l10n',
     'aurora-android-armv7': nightly_android + (
         '/en-US/fennec-%s.en-US.android-arm.apk'),
-    'aurora-android-armv6': nightly_android + (
-        '-armv6/fennec-%s.multi.android-arm-armv6.apk'),
     'aurora-android-x86': nightly_android + (
         '-x86/fennec-%s.multi.android-i386.apk'),
 }
@@ -226,7 +224,7 @@ def download_firefox(ctx, build='release', small=False, icon=True,
                                                 'org.mozilla.firefox_beta')
 
         if build == 'aurora':
-            for arch_pretty in ['ARMv7', 'ARMv6', 'x86']:
+            for arch_pretty in ['ARMv7', 'x86']:
                 arch = arch_pretty.lower()
                 link = (download_urls['aurora-android-%s' % arch] %
                         mobile_details.latest_version('aurora'))
