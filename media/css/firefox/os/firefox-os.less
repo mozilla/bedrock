@@ -1300,6 +1300,11 @@ html[lang="pl"] {
   margin: 0 auto;
 }
 
+#newsletter-form-thankyou {
+    border: none;
+    box-shadow: none;
+}
+
 // JS specific styles for signup and get phone modal content
 .js {
   #signup-toggle-icon {
@@ -1595,11 +1600,10 @@ html[lang="en-US"].js {
       width: 400px;
     }
   }
-  .footer-newsletter-form {
-    width: @widthTablet - (@gridGutterWidth * 4);
-  }
-  #footer-email-errors {
-    width: @widthTablet;
+  .footer-newsletter-form,
+  #footer-email-errors,
+  #newsletter-form-thankyou {
+    width: @widthTablet - (@gridGutterWidth * 6);
   }
   .js {
     #get-firefox-os.scroller-on {
@@ -1895,7 +1899,7 @@ html[lang="en-US"].js {
     width: @widthMobileLandscape - (@gridGutterWidth * 2);
   }
   #footer-email-errors {
-    width: @widthMobileLandscape - @gridGutterWidth;
+    width: auto;
   }
   .js {
     .modal-content {
@@ -2107,7 +2111,7 @@ html[lang="en-US"].js {
     width: @widthMobile - (@gridGutterWidth * 2);
   }
   #footer-email-errors {
-    width: @widthMobile - @gridGutterWidth;
+    width: auto;
   }
   .bg-soccer {
     background: url('/media/img/firefox/os/bg/480/soccer.jpg') no-repeat center center;

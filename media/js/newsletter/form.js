@@ -10,7 +10,7 @@ $(function () {
 
     function footer_email_form_show_details() {
         if (!$form_details.is(':visible')) {
-            $form_details.velocity('slideDown', 'ease-in-out');
+            $form_details.slideDown('normal');
         }
     }
 
@@ -32,13 +32,15 @@ $(function () {
     }
 
     function validateForm($form) {
-        var email = $('.footer-newsletter-form #id_email').val();
-        var $privacy = $('.footer-newsletter-form #id_privacy');
-
+        var email = $form.find('#id_email').val();
+        var $privacy = $form.find('#id_privacy');
         return validateEmail(email) && $privacy.is(':checked');
     }
 
-    $('.newsletter-form').on('submit', function track_form_submit(e) {
+    /*
+     * Mozorg newsletter submit does not use ajax as it goes to sendto.mozilla.org
+     */
+    $('#mozorg-newsletter-form').on('submit', function track_form_submit(e) {
         var $form = $(this);
 
         // If the browser has native validation, we know the input is valid
@@ -74,7 +76,9 @@ $(function () {
         // Else, just let the form submit.
     });
 
-    // ajax newsletter forms
+    /*
+     * Standard newsletter form uses ajax submission
+     */
     $('#newsletter-form').on('submit', function (e) {
         var $self = $(this);
         e.preventDefault();
@@ -82,9 +86,8 @@ $(function () {
         var $errorlist = $errors.find('ul.errorlist');
         var $submitbutton = $('#footer_email_submit');
         var animation_interval;
-        $errors.hide();
-        $errorlist.empty();
         var old_submit_html = $submitbutton.val();
+        var $spinnerTarget = $('#newsletter-spinner');
         var spinner = new Spinner({
             lines: 12, // The number of lines to draw
             length: 4, // The length of each line
@@ -97,26 +100,40 @@ $(function () {
             speed: 1, // Rounds per second
             trail: 60, // Afterglow percentage
             shadow: false, // Whether to render a shadow
-            hwaccel: true, // Whether to use hardware acceleration
+            hwaccel: true // Whether to use hardware acceleration
         });
-        var $spinnerTarget = $('#newsletter-spinner');
+
+        $errors.hide();
+        $errorlist.empty();
+
         // have to collect data before disabling inputs
         var data = $self.serialize();
         disable_form();
+
         $.ajax($self.attr('action'), {
             'method': 'post',
             'data': data,
             'dataType': 'json'
         }).done(function (data) {
             if (data.success) {
-                var noqueue = {queue: false};
+                var $thanks = $('#newsletter-form-thankyou');
+                var formHeight = $self.css('height');
+
+                // set the min-height of the thank you message
+                // to the height of the form to stop page height
+                // jumping on success
+                $thanks.css('min-height', formHeight);
+                $self.hide();
+
                 // enable_form to cancel interval and enable form elements.
                 // if page is refreshed and form elements are disabled,
                 // they will be disabled after refresh.
-                $self.velocity('slideUp', noqueue).velocity('fadeOut', noqueue, enable_form);
-                $('#newsletter-form-thankyou').velocity('slideDown', noqueue).velocity('fadeIn', noqueue);
-            }
-            else if (data.errors) {
+                enable_form();
+
+                // show the thank you message
+                $thanks.show();
+
+            } else if (data.errors) {
                 for (var i = 0; i < data.errors.length; i++) {
                     $errorlist.append('<li>' + data.errors[i] + '</li>');
                 }
@@ -128,15 +145,18 @@ $(function () {
             $errorlist.append('<li>An unknown error occurred. Please try again later</li>');
             $errors.show();
             enable_form();
+            $self.removeClass('loading');
         });
 
         function disable_form() {
+            $self.addClass('loading');
             $self.find('input,select').prop('disabled', true);
             $submitbutton.addClass('insensitive');
             spinner.spin($spinnerTarget.show()[0]);
         }
 
         function enable_form() {
+            $self.removeClass('loading');
             $self.find('input,select').prop('disabled', false);
             $submitbutton.removeClass('insensitive');
             spinner.stop();

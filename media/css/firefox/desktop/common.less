@@ -87,16 +87,27 @@ html[dir="rtl"] {
     z-index: 1;
 }
 
-.footer-newsletter-form {
+#newsletter-form,
+#newsletter-form-thankyou {
     background: transparent;
     border-bottom: none;
     box-shadow: none;
     padding: 0;
 
+    a:link,
+    a:visited {
+        color: #fff;
+    }
+
     #subscribe-wrapper.columned .form-contents {
         float: none;
         width: auto;
     }
+}
+
+//override JS inline color style for spin.js
+#newsletter-spinner .spinner > div > div {
+    background-color: #fff !important;
 }
 
 // force dl button links to be white in blue bg footer

@@ -5,8 +5,8 @@
 {% macro mozorg_newsletter_form() %}
   {# Note: This form differs from the email_newsletter_form() that appears on most pages;
     The global form submits to bedrock, this one submits to sendto.mozilla.org #}
-<aside class="billboard footer-newsletter-form newsletter-form">
-  <form id="mozorg-newsletter-form" method="post" action="https://sendto.mozilla.org/page/s/sign-up-for-mozilla">
+<aside>
+  <form id="mozorg-newsletter-form" class="billboard footer-newsletter-form newsletter-form" method="post" action="https://sendto.mozilla.org/page/s/sign-up-for-mozilla">
     <h3>{{ _('Get Mozilla updates') }}</h3>
 
     <div class="form-contents">
