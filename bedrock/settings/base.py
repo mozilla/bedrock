@@ -439,7 +439,6 @@ MINIFY_BUNDLES = {
         ),
         'common': (
             'js/libs/jquery-1.11.0.min.js',
-            'js/libs/jquery.velocity.min.js',
             'js/libs/spin.min.js',
             'js/base/global.js',
             'js/newsletter/form.js',
@@ -448,7 +447,6 @@ MINIFY_BUNDLES = {
         ),
         'common-resp': (
             'js/libs/jquery-1.11.0.min.js',
-            'js/libs/jquery.velocity.min.js',
             'js/libs/spin.min.js',
             'js/base/global.js',
             'js/newsletter/form.js',
@@ -489,7 +487,6 @@ MINIFY_BUNDLES = {
         ),
         'firefox': (
             'js/libs/jquery-1.11.0.min.js',
-            'js/libs/jquery.velocity.min.js',
             'js/libs/spin.min.js',
             'js/base/global.js',
             'js/newsletter/form.js',
@@ -503,7 +500,6 @@ MINIFY_BUNDLES = {
         ),
         'firefox-resp': (
             'js/libs/jquery-1.11.0.min.js',
-            'js/libs/jquery.velocity.min.js',
             'js/libs/spin.min.js',
             'js/base/global.js',
             'js/newsletter/form.js',
@@ -650,7 +646,6 @@ MINIFY_BUNDLES = {
         ),
         'mozorg-resp': (
             'js/libs/jquery-1.11.0.min.js',
-            'js/libs/jquery.velocity.min.js',
             'js/libs/spin.min.js',
             'js/base/global.js',
             'js/newsletter/form.js',
@@ -754,7 +749,6 @@ MINIFY_BUNDLES = {
         ),
         'newsletter_form': (
             'js/libs/jquery-1.11.0.min.js',
-            'js/libs/jquery.velocity.min.js',
             'js/libs/spin.min.js',
             'js/newsletter/form.js',
         ),

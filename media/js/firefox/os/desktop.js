@@ -240,63 +240,6 @@
     Mozilla.Modal.closeModal();
   });
 
-  // reallly primative validation e.g a@a
-  // matches built-in validation in Firefox
-  function validateEmail(elementValue) {
-    var emailPattern = /\S+@\S+/;
-    return emailPattern.test(elementValue);
-  }
-
-  function validateForm() {
-    var $form = $('#footer-email-form');
-    var email = $('#id_email').val();
-    var $privacy = $('#id_privacy');
-
-    if ('checkValidity' in $form) {
-      // do native form validation
-      return $form.checkValidity();
-    }
-    return validateEmail(email) && $privacy.is(':checked');
-  }
-
-  $(document).ready(function() {
-    // turn off default newsletter JS (from footer-email-form.js) and wire up our own
-    $('.newsletter-form').off('submit').on('submit', function(e) {
-      e.preventDefault();
-
-      if (validateForm()) {
-        var $form = $(this);
-
-        $.ajax({
-          url: $form.attr('action'),
-          data: $form.serialize(),
-          type: 'POST',
-          success: function(data) {
-            $('#footer-email-form').fadeOut('fast', function() {
-              $('#footer-email-thanks').fadeIn('fast');
-              setTimeout(function() {
-                Mozilla.Modal.closeModal();
-              }, 3000);
-            });
-          },
-          error: function() {
-            // ??
-          }
-        });
-
-        //track GA event for newsletter signup
-        trackGAEvent(['_trackEvent', 'Newsletter Registration', 'submit', $form.find('input[name="newsletter"]').val()]);
-      } else {
-        //highlight the required fields
-        if (validateEmail($('#id_email').val())) {
-          $('input[required]:not([type=email])').addClass('error');
-        } else {
-          $('input[required]:not(:checked)').addClass('error');
-        }
-      }
-    });
-  });
-
   /*
   * Purchase modal
   */

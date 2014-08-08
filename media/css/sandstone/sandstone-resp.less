@@ -2,6 +2,7 @@
 @import "reset.less";
 @import "fonts.less";
 @import "buttons.less";
+@import "animations.less";
 
 /* {{{ Basic Colors, Text, Links */
 
@@ -843,6 +844,15 @@ nav.menu-bar {
             padding: 0 0 0 25px;
         }
     }
+
+    &.loading {
+        h3,
+        .form-contents,
+        .form-submit {
+            .transition(opacity .2s ease-in-out);
+            opacity: 0.2;
+        }
+    }
 }
 
 .html-rtl {
@@ -860,14 +870,17 @@ nav.menu-bar {
 }
 
 .newsletter-form.thank {
+    overflow: hidden;
     h3 {
         width: auto;
         margin: auto;
         padding: 0;
         float: none;
+        .animation(sand-bounce-down 0.7s ease-in 0.2s 1 normal both);
     }
     p {
         margin-top: @baseLine;
+        .animation(sand-fade-in 0.5s ease-in 0.8s 1 normal both);
     }
 }
 .js {
@@ -896,9 +909,12 @@ nav.menu-bar {
 }
 
 #newsletter-spinner {
-    display: inline-block;
-    position: relative;
-    color: white;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
 /* }}} */

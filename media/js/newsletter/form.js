@@ -3,88 +3,109 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 $(function () {
-    "use strict";
+    'use strict';
 
-    var $submit_button = $('.footer-newsletter-form input[type=submit]');
-    var $form_details = $('.footer-newsletter-form #form-details');
+    /*
+     * Expand footer email form on input focus or submit if details aren't visible
+     */
+    function initFooterEmailForm () {
+        var $submitButton = $('.footer-newsletter-form input[type=submit]');
+        var $formDetails = $('.footer-newsletter-form #form-details');
 
-    function footer_email_form_show_details() {
-        if (!$form_details.is(':visible')) {
-            $form_details.velocity('slideDown', 'ease-in-out');
+        function footerEmailFormShowDetails() {
+            if (!$formDetails.is(':visible')) {
+                $formDetails.slideDown('normal');
+            }
         }
+
+        $('.footer-newsletter-form').on('focus', 'select, input', footerEmailFormShowDetails);
+
+        $submitButton.on('click', function (e) {
+            if (!$formDetails.is(':visible')) {
+                e.preventDefault();
+                footerEmailFormShowDetails();
+            }
+        });
     }
 
-    $('.footer-newsletter-form select, .footer-newsletter-form input')
-        .on('focus', footer_email_form_show_details);
+    initFooterEmailForm();
 
-    $submit_button.on('click', function (e) {
-        if (!$form_details.is(':visible')) {
-            e.preventDefault();
-            footer_email_form_show_details();
-        }
-    });
-
-    // reallly primative validation e.g a@a
-    // matches built-in validation in Firefox
-    function validateEmail(elementValue) {
+    /*
+     * Reallly primative validation e.g a@a matches built-in validation in Firefox
+     * @param string email
+     */
+    function validateEmail (email) {
         var emailPattern = /\S+@\S+/;
-        return emailPattern.test(elementValue);
+        return emailPattern.test(email);
     }
 
-    function validateForm($form) {
-        var email = $('.footer-newsletter-form #id_email').val();
-        var $privacy = $('.footer-newsletter-form #id_privacy');
-
+    /*
+     * Validate required form fields are met
+     * @param jQuery form object
+     */
+    function validateForm ($form) {
+        var email = $form.find('#id_email').val();
+        var $privacy = $form.find('#id_privacy');
         return validateEmail(email) && $privacy.is(':checked');
     }
 
-    $('.newsletter-form').on('submit', function track_form_submit(e) {
-        var $form = $(this);
+    /*
+     * Get the newsletter name for tracking in GA
+     * @param jQuery form object
+     */
+    function getNewsletterName ($form) {
+        var $input = $form.children('input[name=newsletters]');
+
+        // If there's a name=newsletter input field, we can get the newsletter
+        // from that. If not, assume we've got one of the forms that subscribes
+        // to the foundation newsletter.
+        if ($input.length === 0) {
+            return "Registered for Firefox Updates";
+        }
+        return $input.val();
+    }
+
+    /*
+     * Mozorg newsletter submit does not use ajax as it goes to sendto.mozilla.org
+     */
+    $('#mozorg-newsletter-form').on('submit', function (e) {
+        var $self = $(this);
+        var newsletter;
 
         // If the browser has native validation, we know the input is valid
         // because this submit handler won't even be invoked until the input
         // validates.
-        if (('checkValidity' in $form) || validateForm($form)) {
+        if (('checkValidity' in $self) || validateForm($self)) {
 
-            // If there's a name=newsletter input field, we can get the newsletter
-            // from that. If not, assume we've got one of the forms that subscribes
-            // to the foundation newsletter.
-            var $input = $form.children('input[name=newsletters]');
-            var newsletter;
-            if ($input.length === 0) {
-                newsletter = "Registered for Firefox Updates";
-            } else {
-                newsletter = $input.val();
-            }
+            newsletter = getNewsletterName($self);
 
             if (typeof(gaTrack) === 'function' && newsletter !== '') {
                 // Need to wait to submit, until after we're sure we've sent
                 // the tracking event to GA.
                 e.preventDefault();
                 e.stopImmediatePropagation();
-                $form.unbind('submit', track_form_submit);
-                gaTrack(
-                    ['_trackEvent', 'Newsletter Registration', 'submit', newsletter],
-                    function () {
-                        $form.trigger('submit');
-                    }
-                );
+                $self.off('submit');
+                gaTrack(['_trackEvent', 'Newsletter Registration', 'submit', newsletter], function () {
+                    $self.submit();
+                });
             }
         }
         // Else, just let the form submit.
     });
 
-    // ajax newsletter forms
+    /*
+     * Standard newsletter form uses ajax submission
+     */
     $('#newsletter-form').on('submit', function (e) {
-        var $self = $(this);
         e.preventDefault();
+
+        var $self = $(this);
         var $errors = $('#footer-email-errors');
         var $errorlist = $errors.find('ul.errorlist');
         var $submitbutton = $('#footer_email_submit');
         var animation_interval;
-        $errors.hide();
-        $errorlist.empty();
         var old_submit_html = $submitbutton.val();
+        var $spinnerTarget = $('#newsletter-spinner');
         var spinner = new Spinner({
             lines: 12, // The number of lines to draw
             length: 4, // The length of each line
@@ -97,26 +118,44 @@ $(function () {
             speed: 1, // Rounds per second
             trail: 60, // Afterglow percentage
             shadow: false, // Whether to render a shadow
-            hwaccel: true, // Whether to use hardware acceleration
+            hwaccel: true // Whether to use hardware acceleration
         });
-        var $spinnerTarget = $('#newsletter-spinner');
+
+        $errors.hide();
+        $errorlist.empty();
+
         // have to collect data before disabling inputs
         var data = $self.serialize();
         disable_form();
+
         $.ajax($self.attr('action'), {
             'method': 'post',
             'data': data,
             'dataType': 'json'
         }).done(function (data) {
             if (data.success) {
-                var noqueue = {queue: false};
+                var $thanks = $('#newsletter-form-thankyou');
+                var formHeight = $self.css('height');
+
+                // set the min-height of the thank you message
+                // to the height of the form to stop page height
+                // jumping on success
+                $thanks.css('min-height', formHeight);
+                $self.hide();
+
                 // enable_form to cancel interval and enable form elements.
                 // if page is refreshed and form elements are disabled,
                 // they will be disabled after refresh.
-                $self.velocity('slideUp', noqueue).velocity('fadeOut', noqueue, enable_form);
-                $('#newsletter-form-thankyou').velocity('slideDown', noqueue).velocity('fadeIn', noqueue);
-            }
-            else if (data.errors) {
+                enable_form();
+
+                // show the thank you message
+                $thanks.show();
+
+                // track signup in GA
+                var newsletter = getNewsletterName($self);
+                gaTrack(['_trackEvent', 'Newsletter Registration', 'submit', newsletter]);
+
+            } else if (data.errors) {
                 for (var i = 0; i < data.errors.length; i++) {
                     $errorlist.append('<li>' + data.errors[i] + '</li>');
                 }
@@ -128,15 +167,18 @@ $(function () {
             $errorlist.append('<li>An unknown error occurred. Please try again later</li>');
             $errors.show();
             enable_form();
+            $self.removeClass('loading');
         });
 
         function disable_form() {
+            $self.addClass('loading');
             $self.find('input,select').prop('disabled', true);
             $submitbutton.addClass('insensitive');
             spinner.spin($spinnerTarget.show()[0]);
         }
 
         function enable_form() {
+            $self.removeClass('loading');
             $self.find('input,select').prop('disabled', false);
             $submitbutton.removeClass('insensitive');
             spinner.stop();

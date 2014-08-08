@@ -74,12 +74,13 @@
     <div class="form-submit">
       <input type="submit" id="footer_email_submit"
              value="{{ _('Sign me up') }} »" class="button">
-      <div id="newsletter-spinner" class="hidden">LOADING</div>
 
       <p class="form-details">
         <small>{{ _('We will only send you Mozilla-related information.') }}</small>
       </p>
     </div>
+
+    <div id="newsletter-spinner" class="hidden"></div>
   </form>
   <div id="newsletter-form-thankyou" class="thank billboard newsletter-form">
     {{ email_form_thankyou() }}

@@ -332,15 +332,23 @@ header[role="banner"],
         padding: .4em 1em;
         font-size: 18px;
     }
-    &.thank {
-        h3 {
-            margin-bottom: @baseLine;
-        }
-    }
 }
 
-#whatsnew .footer-newsletter-form {
-    margin: @baseLine auto 170px auto;
+#newsletter-form-thankyou {
+    padding: @baseLine;
+    width: 940px;
+}
+
+#footer-email-errors .errorlist {
+    padding: (@baseLine / 2) @baseLine;
+    width: 940px;
+}
+
+#whatsnew {
+    .footer-newsletter-form,
+    #newsletter-form-thankyou {
+        margin: @baseLine auto 170px auto;
+    }
 }
 
 footer[role="contentinfo"] {
