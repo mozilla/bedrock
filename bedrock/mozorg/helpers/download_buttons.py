@@ -27,7 +27,7 @@ nightly_android = ('https://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/'
                    'latest-mozilla-aurora-android')
 
 download_urls = {
-    'transition': '/{locale}/firefox/new/#download-fx',
+    'transition': '/firefox/new/#download-fx',
     'direct': 'https://download.mozilla.org/',
     'aurora': nightly_desktop,
     'aurora-l10n': nightly_desktop + '-l10n',
@@ -115,9 +115,9 @@ def make_download_link(product, build, version, platform, locale,
     if funnelcake_id:
         version = '{vers}-f{fc}'.format(vers=version, fc=funnelcake_id)
 
-    # Figure out the base url. certain locales have a transitional
-    # thankyou-style page (most do)
-    if force_direct or locale not in settings.LOCALES_WITH_TRANSITION:
+    # Check if direct download link has been requested
+    # (bypassing the transition page)
+    if force_direct:
         # build a direct download link
         tmpl = '?'.join([download_urls['direct'],
                         'product={prod}-{vers}&os={plat}&lang={locale}'])
