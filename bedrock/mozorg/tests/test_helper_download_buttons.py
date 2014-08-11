@@ -320,17 +320,6 @@ class TestDownloadButtons(TestCase):
         list = doc('.download-other .arch')
         eq_(list.length, 0)
 
-    def test_download_transition_link_contains_locale(self):
-        """
-        "transition" download links should include the locale in the path as
-        well as the query string.
-        """
-        locale = settings.LOCALES_WITH_TRANSITION[0]
-        url = make_download_link('firefox', 'release', '19.0', 'os_osx', locale)
-        good_url = ('/{locale}/products/download.html?product=firefox-19.0-SSL&'
-                    'os=osx&lang={locale}').format(locale=locale)
-        eq_(url, good_url)
-
     @override_settings(STUB_INSTALLER_LOCALES={'win': ['en-us']})
     def test_force_funnelcake(self):
         """
