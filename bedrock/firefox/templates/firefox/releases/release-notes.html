@@ -5,7 +5,7 @@
 {% extends "firefox/base-resp.html" %}
 
 {% block page_title_prefix %}{% endblock %}
-{% block page_title %}{{ _('Firefox — {channel} Notes')|f(channel=channel_name) }}{% endblock %}
+{% block page_title %}{{ _('Firefox — {channel} Notes ({version})')|f(channel=channel_name, version=release.version) }}{% endblock %}
 
 {% block body_id %}notes{% endblock %}
 {% block body_class %}fx-notes sky{% endblock %}
@@ -24,7 +24,7 @@
   {% block notes_header %}
     <header class="notes-head">
     <h1>{{ _('Firefox {channel} Notes')|f(channel=channel_name) }}</h1>
-    <h2>{{ _('First offered to {channel} channel users on {date}')|f(channel=release.channel, date=release.release_date|l10n_format_date) }}</h2>
+    <h2>{{ _('Version {version}, first offered to {channel} channel users on {date}')|f(channel=release.channel, date=release.release_date|l10n_format_date, version=release.version) }}</h2>
 
     {% if equivalent_release_url %}
       <aside id="platform">
