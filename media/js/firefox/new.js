@@ -20,7 +20,9 @@
         latestFirefoxVersion = parseInt(latestFirefoxVersion.split('.')[0], 10);
 
         if (isFirefoxUpToDate(latestFirefoxVersion + '')) {
-            $html.addClass('firefox-latest');
+            if (window.location.hash !== '#download-fx') {
+                $html.addClass('firefox-latest');
+            }
         } else {
             $html.addClass('firefox-old');
         }
@@ -58,8 +60,7 @@
     // conditions in which scene2 should not be shown, even when the
     // #download-fx hash is set
     var no_scene2 = (
-           $html.hasClass('firefox-latest')
-        || site.platform === 'other'    // no download available
+           site.platform === 'other'    // no download available
         || site.platform === 'ios'      // unsupported platform
         || site.platform === 'fxos'     // no download available
         || site.platform === 'android'  // download goes to Play Store
@@ -220,8 +221,7 @@
             // initiate download/scene2 if coming directly to #download-fx
             if (window.location.hash === '#download-fx') {
                 if (no_scene2) {
-                    // if using latest Firefox or an unsupported platform just
-                    // try to drop the URL hash
+                    // if using an unsupported platform just try to drop the URL hash
                     if (window.history && window.history.replaceState) {
                         var uri = window.location.href.split('#')[0];
                         window.history.replaceState({}, '', uri);

@@ -124,7 +124,7 @@ def make_download_link(product, build, version, platform, locale,
                            plat=platform, locale=locale)
     else:
         # build a link to the transition page
-        return download_urls['transition'].format(locale=locale)
+        return download_urls['transition']
 
 
 @jingo.register.function
