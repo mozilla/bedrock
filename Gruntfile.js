@@ -47,7 +47,8 @@ module.exports = function (grunt) {
           unit: {
             configFile: 'media/js/test/karma.conf.js'
           }
-        }
+        },
+        clean: ['media/css/**/*.less.css']
     });
 
     // Update the config to only build the changed files.
@@ -59,6 +60,7 @@ module.exports = function (grunt) {
         grunt.config(['jshint', 'development'], [filepath]);
     });
 
+    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
