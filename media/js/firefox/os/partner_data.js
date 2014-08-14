@@ -203,6 +203,15 @@ if (typeof Mozilla == 'undefined') {
                 }
             ]
         },
+        'sv': {
+            'display': 'El Salvador',
+            'partner': [
+                {
+                    'name': 'Movistar',
+                    'url': 'http://www.movistar.com.sv/sv/root/catalogo/telefono.php?terminal=183'
+                }
+            ]
+        },
         'us': {
             'display': 'United States',
             'partner': [
@@ -272,7 +281,7 @@ if (typeof Mozilla == 'undefined') {
         'zte_open2': {
             'type': 'smartphone',
             'display': 'ZTE Open II',
-            'countries': ['co', 'pe']
+            'countries': ['co', 'pe', 'sv']
         }
     };
 })(window.jQuery);
