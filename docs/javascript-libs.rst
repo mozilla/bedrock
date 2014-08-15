@@ -11,3 +11,4 @@ JavaScript Libraries
 .. _with mozillapager:
 
 - :ref:`mozilla-pager.js<mozillapager>`
+- :ref:`mozilla-accordion.js<mozillaaccordion>`

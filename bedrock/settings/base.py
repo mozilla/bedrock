@@ -384,6 +384,10 @@ MINIFY_BUNDLES = {
             'css/styleguide/communications.less',
             'css/styleguide/products-firefox-os.less',
         ),
+        'styleguide-docs-mozilla-accordion': (
+            'css/base/mozilla-accordion.less',
+            'css/sandstone/sandstone-resp.less',
+        ),
         'styleguide-docs-mozilla-pager': (
             'css/styleguide/docs/mozilla-pager.less',
         ),
@@ -677,6 +681,9 @@ MINIFY_BUNDLES = {
         ),
         'styleguide': (
             'js/styleguide/styleguide.js',
+        ),
+        'styleguide-docs-mozilla-accordion': (
+            'js/base/mozilla-accordion.js',
         ),
         'styleguide-docs-mozilla-pager': (
             'js/base/mozilla-pager.js',

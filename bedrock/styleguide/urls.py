@@ -97,6 +97,8 @@ if settings.DEV:
         PageNode('Docs', path='docs', children=(
             PageNode('Mozilla Pager JS', path='mozilla-pager',
                     template='styleguide/docs/mozilla-pager.html'),
+            PageNode('Mozilla Accordion JS', path='mozilla-accordion',
+                    template='styleguide/docs/mozilla-accordion.html'),
         )),
     ))
 

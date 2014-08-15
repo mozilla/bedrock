@@ -30,10 +30,10 @@
 
 <div id="main-content">
 
-  <div id="faq" class="accordion zebra" role="tablist" aria-multiselectable="true">
+  <div id="faq" class="accordion zebra">
     <section>
-      <h2 role="tab" aria-expanded="false">{{_('About Firefox for Android')}}</h2>
-      <div role="tabpanel">
+      <h2 data-accordion-role="tab">{{_('About Firefox for Android')}}</h2>
+      <div data-accordion-role="tabpanel">
         <dl class="faq">
 
         {% trans %}
@@ -81,8 +81,8 @@
       </div>
     </section>
     <section>
-      <h2 role="tab" aria-expanded="false">{{_('Downloading Firefox')}}</h2>
-      <div role="tabpanel">
+      <h2 data-accordion-role="tab">{{_('Downloading Firefox')}}</h2>
+      <div data-accordion-role="tabpanel">
         <dl class="faq">
         {% trans %}
           <dt>Where can I download Firefox for Android?</dt>
@@ -97,8 +97,8 @@
       </div>
     </section>
     <section>
-      <h2 role="tab" aria-expanded="false">{{_('Using Firefox')}}</h2>
-      <div role="tabpanel">
+      <h2 data-accordion-role="tab">{{_('Using Firefox')}}</h2>
+      <div data-accordion-role="tabpanel">
         <dl class="faq">
         {% trans %}
           <dt>How do I&hellip;</dt>
@@ -127,8 +127,8 @@
       </div>
     </section>
     <section>
-      <h2 role="tab" aria-expanded="false">{{_('Features')}}</h2>
-      <div role="tabpanel">
+      <h2 data-accordion-role="tab">{{_('Features')}}</h2>
+      <div data-accordion-role="tabpanel">
         <dl class="faq">
           {% trans %}
           <dt>How do I use the start page?</dt>
@@ -163,8 +163,8 @@
       </div>
     </section>
     <section>
-      <h2 role="tab" aria-expanded="false">{{_('Privacy and Security')}}</h2>
-      <div role="tabpanel">
+      <h2 data-accordion-role="tab">{{_('Privacy and Security')}}</h2>
+      <div data-accordion-role="tabpanel">
         <dl class="faq">
 
           {% trans %}
@@ -195,8 +195,8 @@
       </div>
     </section>
     <section>
-      <h2 role="tab" aria-expanded="false">{{_('Developer Questions')}}</h2>
-      <div role="tabpanel">
+      <h2 data-accordion-role="tab">{{_('Developer Questions')}}</h2>
+      <div data-accordion-role="tabpanel">
       {% trans %}
         <p>Are you a developer with questions? <a href="https://developer.mozilla.org/en/Mozilla/Firefox_for_Android">Learn more on Mozilla's Developer Network</a></p>
       {% endtrans %}
