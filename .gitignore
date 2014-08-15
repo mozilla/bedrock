@@ -3,6 +3,7 @@ settings/local.py
 */settings/local.py
 *.py[co]
 *.sw[po]
+.c9
 .coverage
 .jshintrc
 pip-log.txt

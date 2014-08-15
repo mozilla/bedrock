@@ -9,6 +9,8 @@ from .base import *  # noqa
 if os.getenv('JENKINS_HOME', False):
     from .jenkins import *  # noqa
 else:
+    if os.getenv('C9_USER'):
+        from .c9 import *  # noqa
     try:
         from .local import *  # noqa
     except ImportError as exc:
