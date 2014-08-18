@@ -554,7 +554,6 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.color.js',
             'js/libs/script.js',
             'js/libs/socialshare.min.js',
-            'js/firefox/os/partner_data.js',
             'js/firefox/os/firefox-os.js',
             'js/firefox/os/desktop.js',
             'js/firefox/os/have-it.js',

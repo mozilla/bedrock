@@ -22,6 +22,8 @@ if (typeof Mozilla === 'undefined') {
     var $deviceThumbnails = $('.device-thumbnail');
     var $deviceDetailLists = $('.device-detail-list');
     var $deviceDetails = $('.device-detail');
+    var $providerTextSingle = $('#provider-text-single');
+    var $providerTextMulti = $('#provider-text-multi');
 
     var $providerLinks = $('#provider-links');
 
@@ -32,15 +34,23 @@ if (typeof Mozilla === 'undefined') {
 
     // select available devices & set modal partner content based on chosen/detected location
     var selectDevicesAndSetPartnerContent = function() {
-        var links = '';
-        var partnersLength = 0;
+        var $provider = $providerLinks.find('.provider[data-country="' + COUNTRY_CODE + '"]');
 
         // de-select all devices
         $deviceThumbnails.removeClass('available');
 
-        if (COUNTRY_CODE !== '' && Mozilla.FxOs.Countries.hasOwnProperty(COUNTRY_CODE)) {
+        if (COUNTRY_CODE !== '' && $provider.length > 0) {
 
-            partnersLength = Mozilla.FxOs.Countries[COUNTRY_CODE].partner.length;
+            // make sure all provider links are hidden
+            $providerLinks.find('.provider').hide();
+
+            if ($provider.find('li').length > 1) {
+                $providerTextSingle.hide();
+                $providerTextMulti.show();
+            } else {
+                $providerTextSingle.show();
+                $providerTextMulti.hide();
+            }
 
             // make sure no option is selected
             $locationSelect.find('option:selected').prop('selected', false);
@@ -56,31 +66,8 @@ if (typeof Mozilla === 'undefined') {
                 }
             }
 
-            // set up partner modal contents
-
-            // if country has more than one provider, show the multi intro text
-            if (partnersLength > 1) {
-                $('#provider-text-single').hide();
-                $('#provider-text-multi').show();
-            }
-
-            // show partner specific links on modal etc
-            $.each(Mozilla.FxOs.Countries[COUNTRY_CODE].partner, function(i, data) {
-                //set data.name, data.url etc
-                var index = i === partnersLength - 1 ? ' last' : '';
-                var filename = data.name.toLowerCase().replace(/\s+|\./g, '-');
-                var carrier = (data.carrier) ? ' ' + data.carrier : '';
-
-                links += '<a class="' + filename + carrier + index + '" href="' + data.url + '">' + data.name + '</a>';
-            });
-
-            // remove current country class
-            var currentCountry = $providerLinks.data('country');
-
-            $providerLinks.removeClass(currentCountry);
-
-            // add country class as an extra style hook and inject the links
-            $providerLinks.data('country', COUNTRY_CODE).addClass(COUNTRY_CODE).html(links);
+            // show the provider applicable for the user country.
+            $provider.show();
         } else {
             $purchaseDeviceButton.fadeOut('fast');
         }
@@ -209,13 +196,17 @@ if (typeof Mozilla === 'undefined') {
     // only if coming from /firefox/os/, detect country
     if (/firefox\/os\/$/.test(document.referrer)) {
         $.getScript('//geo.mozilla.org/country.js', function() {
+            var $provider;
+
             try {
                 COUNTRY_CODE = geoip_country_code().toLowerCase();
             } catch (e) {
                 COUNTRY_CODE = '';
             }
 
-            if (COUNTRY_CODE !== '' && Mozilla.FxOs.Countries.hasOwnProperty(COUNTRY_CODE)) {
+            $provider = $providerLinks.find('.provider[data-country="' + COUNTRY_CODE + '"]');
+
+            if (COUNTRY_CODE !== '' && $provider.length > 0) {
                 gaTrack(['_trackEvent', '/os/devices/ Interactions', 'drop-down menu', COUNTRY_CODE, 0, true]);
                 selectDevicesAndSetPartnerContent();
             }

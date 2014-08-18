@@ -17,44 +17,30 @@
     * Set page specific content relating to geo for partner data etc
     */
     function setPartnerContent () {
-        var links = '';
-        var partners_available = [];
+        var $provider = $('#provider-links').find('.provider[data-country="' + COUNTRY_CODE + '"]');
+        var $links;
 
-        if (Mozilla.FxOs.Countries.hasOwnProperty(COUNTRY_CODE)) {
+        if (COUNTRY_CODE !== '' && $provider.length > 0) {
             // make sure there are consumer-focused (non 'developer_only') partners
             // available in the current country
-            $.each(Mozilla.FxOs.Countries[COUNTRY_CODE].partner, function(i, data) {
-                if (!data.developer_only) {
-                    partners_available.push(data);
-                }
-            });
+            $links = $provider.find('li').not('.developer-only');
         }
 
         // if there are partners available, update UI
-        if (partners_available.length > 0) {
+        if ($links && $links.length > 0) {
             // show get phone calls to action
             $('#primary-cta-phone').fadeIn();
             $('#primary-cta-signup').addClass('visibility', 'hidden');
             $('#secondary-cta-phone').css('display', 'inline-block');
 
             // if country has more than one provider, show the multi intro text
-            if (partners_available.length > 1) {
+            if ($links.length > 1) {
                 $('#provider-text-single').hide();
                 $('#provider-text-multi').show();
             }
 
-            // show partner specific links on modal etc
-            $.each(partners_available, function(i, data) {
-                //set data.name, data.url etc
-                var index = i === partners_available.length - 1 ? ' last' : '';
-                var filename = data.name.toLowerCase().replace(/\s+|\./g, '-');
-                var carrier = (data.carrier) ? ' ' + data.carrier : '';
-
-                links += '<a class="' + filename + carrier + index + '" href="' + data.url + '">' + data.name + '</a>';
-            });
-
-            // add country class as an extra style hook and inject the links
-            $('#provider-links').addClass(COUNTRY_CODE).html(links);
+            // show the provider applicable for the user country.
+            $provider.show();
 
             // setup GA event tracking on telecom provider exit links
             $('#provider-links a').on('click', trackProviderExit);
@@ -119,7 +105,7 @@
         try {
             COUNTRY_CODE = geoip_country_code().toLowerCase();
         } catch (e) {
-            COUNTRY_CODE = "";
+            COUNTRY_CODE = '';
         }
     }
 
