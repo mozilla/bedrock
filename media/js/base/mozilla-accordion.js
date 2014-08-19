@@ -40,10 +40,18 @@ if (typeof Mozilla === 'undefined') {
 }
 
 Mozilla.Accordion = function Accordion (index, $accordion) {
+    'use strict';
+
     var accordionId = this.id = $accordion.attr('id') ||
                                 'moz-accordion-' + (index + 1);
     var sections = this.sections = [];
     var state = this.loadState() || {};
+
+    // add ARIA attributes
+    $accordion.attr({
+        'role': 'tablist',
+        'aria-multiselectable': 'true'
+    });
 
     function Section (index, $header) {
         var section = this;
@@ -63,12 +71,16 @@ Mozilla.Accordion = function Accordion (index, $accordion) {
 
         // Get the panel
         if (panelId) {
-            this.$panel = $('#' + panelId).attr('aria-labelledby', headerId);
+            this.$panel = $('#' + panelId).attr({
+                'aria-labelledby': headerId,
+                'role': 'tabpanel'
+            });
         } else {
             panelId = this.id + '-panel';
             $header.attr('aria-controls', panelId);
-            this.$panel = $header.next('[role="tabpanel"]').attr({
+            this.$panel = $header.siblings('[data-accordion-role="tabpanel"]:first').attr({
                 'id': panelId,
+                'role': 'tabpanel',
                 'aria-labelledby': headerId
             });
         }
@@ -76,7 +88,9 @@ Mozilla.Accordion = function Accordion (index, $accordion) {
         // Activate the header
         this.$header = $header.attr({
             'tabindex': '0',
-            'aria-selected': 'false'
+            'aria-selected': 'false',
+            'aria-expanded': 'false',
+            'role': 'tab'
         });
 
         $header.on('focus blur', function(event) {
@@ -196,6 +210,16 @@ Mozilla.Accordion = function Accordion (index, $accordion) {
                 }
             }
         });
+
+        if (interaction) {
+            // Google Analytics event tracking
+            gaTrack([
+                '_trackEvent',
+                location.pathname + ' Accordion Interactions',
+                'Collapse',
+                section.$header.text()
+            ]);
+        }
     };
 
     Section.prototype.toggle = function(animation, interaction) {
@@ -206,25 +230,31 @@ Mozilla.Accordion = function Accordion (index, $accordion) {
         }
     };
 
-    // Find the header elements from child or grandchild nodes
-    $('> [role="tab"], > * > [role="tab"]', $accordion).each(function(index) {
+    // Find the header elements from grandchild nodes
+    $('> * > [data-accordion-role="tab"]', $accordion).each(function(index) {
         sections.push(new Section(index, $(this)));
     });
 };
 
 Mozilla.Accordion.prototype.expandAll = function(animation, interaction) {
+    'use strict';
+
     $.each(this.sections, function(index, section) {
         section.expand(animation, interaction);
     });
 };
 
 Mozilla.Accordion.prototype.collapseAll = function(animation, interaction) {
+    'use strict';
+
     $.each(this.sections, function(index, section) {
         section.collapse(animation, interaction);
     });
 };
 
 Mozilla.Accordion.prototype.loadState = function() {
+    'use strict';
+
     var itemId = location.pathname + '#' + this.id;
 
     try {
@@ -236,6 +266,8 @@ Mozilla.Accordion.prototype.loadState = function() {
 };
 
 Mozilla.Accordion.prototype.saveState = function() {
+    'use strict';
+
     var state = {};
     var itemId = location.pathname + '#' + this.id;
 
@@ -251,6 +283,8 @@ Mozilla.Accordion.prototype.saveState = function() {
 };
 
 $(function() {
+    'use strict';
+
     // Discard old browsers, notably IE6 and IE7, where CSS attribute selectors
     // are not properly supported. The content looks plain but is totally
     // accessible.

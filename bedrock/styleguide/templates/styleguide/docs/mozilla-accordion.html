@@ -1,0 +1,67 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/base-resp.html" %}
+
+{% block page_title %}{{ _('mozilla-accordion.js example') }}{% endblock %}
+{% block body_id %}mozilla-accordion{% endblock %}
+{% block body_class %}sand{% endblock %}
+
+{% block site_css %}
+  {{ css('styleguide-docs-mozilla-accordion') }}
+{% endblock %}
+
+{% block content %}
+<article id="main-content">
+  <h1>{{ _('mozilla-accordion.js Example') }}</h1>
+
+  <section class="accordion example" id="example1">
+    <h2>{{ _('Basic accordion') }}</h2>
+
+    <section>
+      <h4 data-accordion-role="tab">{{ _('Section 1') }}</h4>
+
+      <div data-accordion-role="tabpanel">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec
+          odio vel metus vestibulum tempus. Integer imperdiet mollis pulvinar.
+          Praesent consectetur sagittis lacus, quis gravida mauris imperdiet in.
+          Fusce pretium, mi et tempus lobortis, lectus nunc mollis risus, sit amet
+          tempor eros eros eget nisl. Etiam quis placerat augue.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h4 data-accordion-role="tab">{{ _('Section 2') }}</h4>
+
+      <div data-accordion-role="tabpanel">
+        <p>
+          Donec dapibus odio et pulvinar tristique. In a tristique tortor. Sed at
+          metus elit. Etiam commodo lobortis ligula auctor porta. Vivamus imperdiet,
+          dolor non pretium tempor, neque lectus pharetra tellus, at volutpat orci
+          velit at tellus. Curabitur in molestie ipsum. Maecenas imperdiet magna sed
+          aliquam tincidunt.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h4 data-accordion-role="tab">{{ _('Section 3') }}</h4>
+
+      <div data-accordion-role="tabpanel">
+        <p>
+          Ut vitae consectetur mauris, a scelerisque quam. Vestibulum mi nibh,
+          porttitor et tellus vitae, rhoncus cursus sapien. Sed posuere leo neque,
+          vel dapibus ligula rhoncus et. Integer vehicula rhoncus volutpat.
+        </p>
+      </div>
+    </section>
+  </section>
+</article>
+{% endblock %}
+
+{% block js %}
+  {{ js('styleguide-docs-mozilla-accordion') }}
+{% endblock %}

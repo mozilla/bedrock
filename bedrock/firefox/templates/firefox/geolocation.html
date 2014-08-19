@@ -34,12 +34,12 @@
 
 <div class="main-column">
 
-<section id="faq" class="accordion zebra" role="tablist" aria-multiselectable="true">
+<section id="faq" class="accordion zebra">
 <h2>{{ _('Frequently asked Questions') }}</h2>
 
 <section>
-  <h3 role="tab" aria-expanded="false">{{ _('What is Location-Aware Browsing?') }}</h3>
-  <div role="tabpanel">
+  <h3 data-accordion-role="tab">{{ _('What is Location-Aware Browsing?') }}</h3>
+  <div data-accordion-role="tabpanel">
     <p>
     {% trans %}
       Websites that use location-aware browsing will ask where you are in
@@ -63,8 +63,8 @@
 </section>
 
 <section>
-  <h3 role="tab" aria-expanded="false">{{ _('How does it work?') }}</h3>
-  <div role="tabpanel">
+  <h3 data-accordion-role="tab">{{ _('How does it work?') }}</h3>
+  <div data-accordion-role="tabpanel">
     <p>{{ _('When you visit a location-aware website, Firefox will ask you if you want to share your location.') }}</p>
     <p>
     {% trans %}
@@ -80,8 +80,8 @@
 </section>
 
 <section>
-  <h3 role="tab" aria-expanded="false">{{ _('How accurate are the locations?') }}</h3>
-  <div role="tabpanel">
+  <h3 data-accordion-role="tab">{{ _('How accurate are the locations?') }}</h3>
+  <div data-accordion-role="tabpanel">
     <p>
     {% trans %}
       Accuracy varies greatly from location to location.  In some places, our
@@ -96,12 +96,12 @@
 </section>
 
 <section>
-  <h3 role="tab" aria-expanded="false">
+  <h3 data-accordion-role="tab">
   {% trans %}
     What information is being sent, and to whom? How is my privacy protected?
   {% endtrans %}
   </h3>
-  <div role="tabpanel">
+  <div data-accordion-role="tabpanel">
     <p>
     {% trans %}
       Your privacy is extremely important to us, and Firefox never shares your
@@ -151,8 +151,8 @@
 </section>
 
 <section>
-  <h3 role="tab" aria-expanded="false">{{ _('Am I being tracked as I browse the web?') }}</h3>
-  <div role="tabpanel">
+  <h3 data-accordion-role="tab">{{ _('Am I being tracked as I browse the web?') }}</h3>
+  <div data-accordion-role="tabpanel">
     <p>
     {% trans %}
       No. Firefox only requests a location when a website makes a request, and
@@ -164,8 +164,8 @@
 </section>
 
 <section id="undo-permission">
-  <h3 role="tab" aria-expanded="false">{{ _('How do I undo a permission granted to a site?') }}</h3>
-  <div role="tabpanel">
+  <h3 data-accordion-role="tab">{{ _('How do I undo a permission granted to a site?') }}</h3>
+  <div data-accordion-role="tabpanel">
     <p>
     {% trans %}
       If you've given Firefox permission to always give your location to a site
@@ -183,8 +183,8 @@
 </section>
 
 <section>
-  <h3 role="tab" aria-expanded="false">{{ _('How do I turn off Location-Aware Browsing permanently?') }}</h3>
-  <div role="tabpanel">
+  <h3 data-accordion-role="tab">{{ _('How do I turn off Location-Aware Browsing permanently?') }}</h3>
+  <div data-accordion-role="tabpanel">
     <p>
     {% trans %}
       Location-Aware Browsing is always opt-in in Firefox. No location

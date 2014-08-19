@@ -29,7 +29,7 @@ Contents
    php
    l10n
    coding
-   jslibs
+   javascript-libs
    contribute
    grunt
    newsletters

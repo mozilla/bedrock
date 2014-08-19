@@ -5,7 +5,7 @@
 @import "../sandstone/lib.less";
 
 .accordion {
-  [role="tab"] {
+  [data-accordion-role="tab"] {
     overflow: hidden;
     margin: 0;
     outline: 0;
@@ -13,13 +13,13 @@
     text-shadow: 1px 1px 0 rgba(255,255,255,.75);
   }
 
-  [role="tabpanel"] {
+  [data-accordion-role="tabpanel"] {
     overflow: hidden;
     padding: 0 20px;
   }
 
   &.activated {
-    [role="tab"] {
+    [data-accordion-role="tab"] {
       padding: 15px 15px 15px 45px;
       cursor: pointer;
 
@@ -64,7 +64,7 @@
       }
     }
 
-    [role="tabpanel"] {
+    [data-accordion-role="tabpanel"] {
       padding: 0 15px 15px 45px;
 
       &[aria-hidden="true"] {

@@ -61,12 +61,12 @@
 {% endtrans %}
 </p>
 
-<section id="faq" class="accordion zebra" role="tablist" aria-multiselectable="true">
+<section id="faq" class="accordion zebra">
 <h2>{{ _('Frequently Asked <span>Questions</span>') }}</h2>
 
 <section>
-  <h3 role="tab" aria-expanded="false">{{ _('What is Do Not Track?') }}</h3>
-  <div role="tabpanel">
+  <h3 data-accordion-role="tab">{{ _('What is Do Not Track?') }}</h3>
+  <div data-accordion-role="tabpanel">
     <p>
       {% trans %}
         Do Not Track is a step toward putting you in control of the way your
@@ -80,8 +80,8 @@
 </section>
 
 <section>
-  <h3 role="tab" aria-expanded="false">{{ _('Is Do Not Track available on Firefox for Android?') }}</h3>
-  <div role="tabpanel">
+  <h3 data-accordion-role="tab">{{ _('Is Do Not Track available on Firefox for Android?') }}</h3>
+  <div data-accordion-role="tabpanel">
     <p>
       {% trans %}
         Yes. Firefox for Android is the first mobile Web browser to offer
@@ -95,8 +95,8 @@
 </section>
 
 <section>
-  <h3 role="tab" aria-expanded="false">{{ _('Does Do Not Track block ads?') }}</h3>
-  <div role="tabpanel">
+  <h3 data-accordion-role="tab">{{ _('Does Do Not Track block ads?') }}</h3>
+  <div data-accordion-role="tabpanel">
     <p>
       {% trans %}
         No, you will still see ads with Do Not Track enabled. However, Do Not Track
@@ -110,8 +110,8 @@
 </section>
 
 <section>
-  <h3 role="tab" aria-expanded="false">{{ _('How does Do Not Track work with other privacy tools?') }}</h3>
-  <div role="tabpanel">
+  <h3 data-accordion-role="tab">{{ _('How does Do Not Track work with other privacy tools?') }}</h3>
+  <div data-accordion-role="tabpanel">
     <p>
       {% trans url=url('firefox.desktop.trust') %}
         Do Not Track is one of many privacy solutions. Do Not Track does not replace your
@@ -124,8 +124,8 @@
 </section>
 
 <section>
-  <h3 role="tab" aria-expanded="false">{{ _('Will Do Not Track affect the rest of my Web experience?') }}</h3>
-  <div role="tabpanel">
+  <h3 data-accordion-role="tab">{{ _('Will Do Not Track affect the rest of my Web experience?') }}</h3>
+  <div data-accordion-role="tabpanel">
     <p>
     {% trans %}
       Do Not Track may interfere with some personalized services you enjoy. For example,
@@ -139,8 +139,8 @@
 </section>
 
 <section>
-  <h3 role="tab" aria-expanded="false">{{ _('How do I enable Do Not Track in Firefox?') }}</h3>
-  <div role="tabpanel">
+  <h3 data-accordion-role="tab">{{ _('How do I enable Do Not Track in Firefox?') }}</h3>
+  <div data-accordion-role="tabpanel">
     <p>
       {% trans id='platform-note' %}
         This feature is not enabled by default. You can find the Do Not Track
@@ -166,8 +166,8 @@
 </section>
 
 <section>
-  <h3 role="tab" aria-expanded="false">{{ _('Will companies honor my Do Not Track preference?') }}</h3>
-  <div role="tabpanel">
+  <h3 data-accordion-role="tab">{{ _('Will companies honor my Do Not Track preference?') }}</h3>
+  <div data-accordion-role="tabpanel">
     <p>
     {% trans %}
       Companies are starting to support Do Not Track, but you may not notice any changes
@@ -179,8 +179,8 @@
 </section>
 
 <section>
-  <h3 role="tab" aria-expanded="false">{{ _('Where can I learn more?') }}</h3>
-  <div role="tabpanel">{{ _('Other interesting work about Do Not Track and online privacy:') }}
+  <h3 data-accordion-role="tab">{{ _('Where can I learn more?') }}</h3>
+  <div data-accordion-role="tabpanel">{{ _('Other interesting work about Do Not Track and online privacy:') }}
     <ul style='list-style-position:inside'>
       <li>
         {{ _('<a href="%s">Private browsing</a> in Firefox &#8212; limits saving data about which sites and pages you have visited online')|format('https://support.mozilla.org/en-US/kb/Private%20Browsing') }}
