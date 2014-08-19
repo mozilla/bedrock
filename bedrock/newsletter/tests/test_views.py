@@ -7,7 +7,7 @@ import uuid
 from django.http import HttpResponse
 from django.test.client import RequestFactory
 
-from basket import BasketException, errors
+import basket
 from funfactory.urlresolvers import reverse
 from mock import DEFAULT, Mock, patch
 from nose.tools import eq_, ok_
@@ -15,8 +15,14 @@ from pyquery import PyQuery as pq
 
 from bedrock.mozorg.tests import TestCase
 from bedrock.newsletter.tests import newsletters
-from bedrock.newsletter.views import (newsletter_subscribe, recovery_text,
-                                      unknown_address_text, updated)
+from bedrock.newsletter.views import (
+    general_error,
+    invalid_email_address,
+    newsletter_subscribe,
+    recovery_text,
+    unknown_address_text,
+    updated,
+)
 
 
 cache_mock = Mock()
@@ -187,7 +193,7 @@ class TestExistingNewsletterView(TestCase):
             with patch('lib.l10n_utils.render') as render:
                 render.return_value = HttpResponse('')
                 with patch('django.contrib.messages.add_message') as add_msg:
-                    basket_patches['user'].side_effect = BasketException
+                    basket_patches['user'].side_effect = basket.BasketException
                     rsp = self.client.get(url)
         # Should have given a message
         self.assertEqual(1, add_msg.call_count,
@@ -222,7 +228,7 @@ class TestExistingNewsletterView(TestCase):
             with patch('lib.l10n_utils.render') as render:
                 render.return_value = HttpResponse('')
                 with patch('django.contrib.messages.add_message') as add_msg:
-                    basket_patches['user'].side_effect = BasketException
+                    basket_patches['user'].side_effect = basket.BasketException
                     rsp = self.client.post(url, self.data)
         # Shouldn't call basket except for the attempt to find the user
         self.assertEqual(0, basket_patches['update_user'].call_count)
@@ -441,7 +447,7 @@ class TestConfirmView(TestCase):
     def test_basket_down(self):
         """If basket is down, we report the appropriate error"""
         with patch('basket.confirm') as confirm:
-            confirm.side_effect = BasketException()
+            confirm.side_effect = basket.BasketException()
             with patch('lib.l10n_utils.render') as mock_render:
                 mock_render.return_value = HttpResponse('')
                 rsp = self.client.get(self.url, follow=True)
@@ -455,8 +461,8 @@ class TestConfirmView(TestCase):
     def test_bad_token(self):
         """If the token is bad, we report the appropriate error"""
         with patch('basket.confirm') as confirm:
-            confirm.side_effect = BasketException(status_code=403,
-                                                  code=errors.BASKET_UNKNOWN_TOKEN)
+            confirm.side_effect = basket.BasketException(status_code=403,
+                                                         code=basket.errors.BASKET_UNKNOWN_TOKEN)
             with patch('lib.l10n_utils.render') as mock_render:
                 mock_render.return_value = HttpResponse('')
                 rsp = self.client.get(self.url, follow=True)
@@ -484,8 +490,8 @@ class TestRecoveryView(TestCase):
     def test_unknown_email(self, mock_basket):
         """Unknown email addresses give helpful error message"""
         data = {'email': 'unknown@example.com'}
-        mock_basket.side_effect = BasketException(status_code=404,
-                                                  code=errors.BASKET_UNKNOWN_EMAIL)
+        mock_basket.side_effect = basket.BasketException(status_code=404,
+                                                  code=basket.errors.BASKET_UNKNOWN_EMAIL)
         rsp = self.client.post(self.url, data)
         self.assertTrue(mock_basket.called)
         self.assertEqual(200, rsp.status_code)
@@ -528,7 +534,8 @@ class TestNewsletterSubscribe(TestCase):
 
         return newsletter_subscribe(req)
 
-    def test_returns_ajax_errors(self):
+    @patch('bedrock.newsletter.views.basket')
+    def test_returns_ajax_errors(self, basket_mock):
         """Incomplete data should return specific errors in JSON"""
         data = {
             'newsletters': 'flintstones',
@@ -540,6 +547,7 @@ class TestNewsletterSubscribe(TestCase):
         self.assertFalse(resp_data['success'])
         self.assertEqual(len(resp_data['errors']), 1)
         self.assertIn('privacy', resp_data['errors'][0])
+        self.assertFalse(basket_mock.called)
 
     @patch('bedrock.newsletter.views.basket')
     def test_returns_ajax_success(self, basket_mock):
@@ -555,6 +563,38 @@ class TestNewsletterSubscribe(TestCase):
         self.assertDictEqual(resp_data, {'success': True})
         basket_mock.subscribe.assert_called_with('fred@example.com', 'flintstones',
                                                  format='H')
+
+    @patch.object(basket, 'subscribe')
+    def test_returns_ajax_invalid_email(self, subscribe_mock):
+        """Invalid email AJAX post should return proper error."""
+        subscribe_mock.side_effect = basket.BasketException(
+            code=basket.errors.BASKET_INVALID_EMAIL)
+        data = {
+            'newsletters': 'flintstones',
+            'email': 'fred@example.com',
+            'fmt': 'H',
+            'privacy': True,
+        }
+        resp = self.ajax_request(data)
+        resp_data = json.loads(resp.content)
+        self.assertFalse(resp_data['success'])
+        self.assertEqual(resp_data['errors'][0], unicode(invalid_email_address))
+
+    @patch.object(basket, 'subscribe')
+    def test_returns_ajax_basket_error(self, subscribe_mock):
+        """Basket error AJAX post should return proper error."""
+        subscribe_mock.side_effect = basket.BasketException(
+            code=basket.errors.BASKET_NETWORK_FAILURE)
+        data = {
+            'newsletters': 'flintstones',
+            'email': 'fred@example.com',
+            'fmt': 'H',
+            'privacy': True,
+        }
+        resp = self.ajax_request(data)
+        resp_data = json.loads(resp.content)
+        self.assertFalse(resp_data['success'])
+        self.assertEqual(resp_data['errors'][0], unicode(general_error))
 
     def test_shows_normal_form(self):
         """A normal GET should show the form."""

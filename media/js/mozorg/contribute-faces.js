@@ -131,7 +131,7 @@
         $form.unbind('submit');
 
         gaTrack(
-            ['_trackEvent', '/contribute Page Interactions', 'Want to Help Form - Area of Interest', $('#id_interest')[0].value],
+            ['_trackEvent', '/contribute Page Interactions', 'Want to Help Form - Area of Interest', $('#id_contribute-interest')[0].value],
             function() { $form.submit(); }
         );
     });

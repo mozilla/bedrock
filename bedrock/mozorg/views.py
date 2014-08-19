@@ -54,70 +54,31 @@ def hacks_newsletter(request):
 
 @csrf_exempt
 def contribute(request, template, return_to_form):
-    newsletter_id = 'about-mozilla'
-    has_contribute_form = (request.method == 'POST' and
-                           'contribute-form' in request.POST)
-
-    has_newsletter_form = (request.method == 'POST' and
-                           'newsletter-form' in request.POST)
-
-    locale = getattr(request, 'locale', 'en-US')
+    newsletter_form = NewsletterFooterForm('about-mozilla', l10n_utils.get_locale(request))
 
     contribute_success = False
-    newsletter_success = False
 
-    # This is ugly, but we need to handle two forms. I would love if
-    # these forms could post to separate pages and get redirected
-    # back, but we're forced to keep the error/success workflow on the
-    # same page. Please change this.
-    if has_contribute_form:
-        form = ContributeForm(request.POST)
+    form = ContributeForm(request.POST or None, auto_id=u'id_contribute-%s')
+    if form.is_valid():
+        data = form.cleaned_data.copy()
 
-        if (form.is_valid()):
-            data = form.cleaned_data.copy()
+        honeypot = data.pop('office_fax')
 
-            honeypot = data.pop('office_fax')
-
-            if not honeypot:
-                contribute_success = email_contribute.handle_form(request, form)
-                if contribute_success:
-                    # If form was submitted successfully, return a new, empty
-                    # one.
-                    form = ContributeForm()
-            else:
-                # send back a clean form if honeypot was filled in
+        if not honeypot:
+            contribute_success = email_contribute.handle_form(request, form)
+            if contribute_success:
+                # If form was submitted successfully, return a new, empty
+                # one.
                 form = ContributeForm()
-    else:
-        form = ContributeForm()
-
-    if has_newsletter_form:
-        newsletter_form = NewsletterFooterForm(newsletter_id, locale,
-                                               request.POST,
-                                               prefix='newsletter')
-        if newsletter_form.is_valid():
-            data = newsletter_form.cleaned_data
-
-            try:
-                basket.subscribe(data['email'],
-                                 newsletter_id,
-                                 format=data['fmt'],
-                                 country=data['country'])
-                newsletter_success = True
-            except basket.BasketException:
-                msg = newsletter_form.error_class(
-                    [_('We apologize, but an error occurred in our system. '
-                       'Please try again later.')]
-                )
-                newsletter_form.errors['__all__'] = msg
-    else:
-        newsletter_form = NewsletterFooterForm(newsletter_id, locale, prefix='newsletter')
+        else:
+            # send back a clean form if honeypot was filled in
+            form = ContributeForm()
 
     return l10n_utils.render(request,
                              template,
                              {'form': form,
-                              'contribute_success': contribute_success,
                               'newsletter_form': newsletter_form,
-                              'newsletter_success': newsletter_success,
+                              'contribute_success': contribute_success,
                               'return_to_form': return_to_form,
                               'hide_form': hide_contrib_form(request.locale)})
 

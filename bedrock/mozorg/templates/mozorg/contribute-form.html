@@ -75,7 +75,7 @@
           </div>
           {% if LANG.startswith('en') %}
             <div class="field field-newsletter">
-              <label for="id_newsletter">
+              <label for="{{ form.newsletter.id_for_label }}">
                 {{ form.newsletter|safe }}
                 {{_('I’d like to receive regular contribution news by email')}}
               </label>

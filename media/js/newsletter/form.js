@@ -103,8 +103,6 @@ $(function () {
         var $errors = $('#footer-email-errors');
         var $errorlist = $errors.find('ul.errorlist');
         var $submitbutton = $('#footer_email_submit');
-        var animation_interval;
-        var old_submit_html = $submitbutton.val();
         var $spinnerTarget = $('#newsletter-spinner');
         var spinner = new Spinner({
             lines: 12, // The number of lines to draw

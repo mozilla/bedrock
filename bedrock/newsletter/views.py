@@ -443,7 +443,7 @@ def newsletter_subscribe(request):
                     errors.append(unicode(invalid_email_address))
                 else:
                     log.exception("Error subscribing %s to newsletter %s" %
-                                  (data['email'], form.newsletters))
+                                  (data['email'], data['newsletters']))
                     errors.append(unicode(general_error))
 
         else:
