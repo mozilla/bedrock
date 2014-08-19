@@ -3,6 +3,7 @@ packages/certifi
 packages/chardet
 packages/python-memcached
 src/basket-client
+packages/PyYAML/lib
 src/feedparser/feedparser
 src/django-extensions
 src/django-recaptcha
