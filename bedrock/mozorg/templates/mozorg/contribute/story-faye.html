@@ -1,0 +1,80 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/contribute/stories-base.html" %}
+
+{% block page_title %}{{_('Mozillian Stories')}} : Faye {% endblock %}
+
+{% block story_content %}
+  <h2 class="story-title">
+    {# L10n: These <b>s are for formatting so we can style the name and country. #}
+    {{ _('Hi, I’m <b class="name">Faye</b>, a Mozillian in <b class="country">the Philippines</b>') }}
+  </h2>
+
+  <div class="story-intro">
+    <img class="photo" src="{{ media('img/contribute/person-faye.jpg') }}" alt="">
+    <p>
+    {% trans %}
+      I went to my first local Mozilla event in 2011 and was inspired to do more
+      by all the amazing people I met and got to know. And now, I am the Mozilla
+      Philippines Community Manager.
+    {% endtrans %}
+    </p>
+  </div>
+
+  <div class="story-areas">
+    <h3>{{ _('I’m currently helping with:') }}</h3>
+    <ul>
+      <li>{{ _('Webmaker') }}</li>
+      <li>{{ _('WoMoz') }}</li>
+      <li>{{ _('Firefox Student Ambassadors') }}</li>
+      <li>{{ _('Community Building') }}</li>
+    </ul>
+  </div>
+
+  <ul class="story-links">
+    <li><a href="https://twitter.com/fayetandog" class="twitter">@fayetandog</a></li>
+    <li><a href="https://www.facebook.com/fayetandog" class="facebook">Facebook</a></li>
+    <li><a href="http://fayetandog.com/" class="website">fayetandog.com</a></li>
+  </ul>
+
+  <div class="story-more">
+    <p>
+    {% trans %}
+      My passion is for organizing local Webmaker and WoMoz (Women in Mozilla)
+      community events where I can train others and help them develop their skills.
+      I also help out with the Firefox Student Ambassadors program and Community
+      Building.
+    {% endtrans %}
+    </p>
+
+    <p>
+    {% trans %}
+      My favorite part of being a Mozillian is the global community. I like to
+      think of us as a “family” where we accept each other openly and are free
+      to speak our minds while we work together.
+    {% endtrans %}
+    </p>
+  </div>
+{% endblock %}
+
+{% block stories_list %}
+  <ul class="stories">
+    <li class="person hcard">
+      <h3 class="fn given-name">Rubén</h3>
+      <p class="meta">{{ _('Spain &middot; Activism') }}</p>
+      <a href="{{ url('mozorg.contribute.story-ruben') }}" class="url">{{ _('Read his story') }} <img src="{{ media('img/contribute/person-ruben.jpg') }}" alt=""></a>
+    </li>
+    <li class="person hcard">
+      <h3 class="fn given-name">Shreyas</h3>
+      <p class="meta">{{ _('India &middot; Teaching') }}</p>
+      <a href="{{ url('mozorg.contribute.story-shreyas') }}" class="url">{{ _('Read his story') }} <img src="{{ media('img/contribute/person-shreyas.jpg') }}" alt=""></a>
+    </li>
+    <li class="person hcard">
+      <h3 class="fn given-name">Michael</h3>
+      <p class="meta">{{ _('Switzerland &middot; Coding') }}</p>
+      <a href="{{ url('mozorg.contribute.story-michael') }}" class="url">{{ _('Read his story') }} <img src="{{ media('img/contribute/person-michael.jpg') }}" alt=""></a>
+    </li>
+  </ul>
+{% endblock %}

@@ -1,0 +1,280 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/contribute/contribute-base.html" %}
+
+{% block body_id %}inquiry{% endblock %}
+
+{% block page_title %}{{_('Get Involved: Volunteer Opportunities at Mozilla')}}{% endblock %}
+
+{% block contrib_nav_cta %}{% endblock %}
+{% block contrib_country_form %}{% endblock %}
+
+{% block contrib_title %}
+    <div class="container">
+      <h1 class="page-title">{{ _('To get started, tell us what interests you.') }}</h1>
+      <p class="section-tagline">{{ _('Choose one for now. You can always contribute to other areas later.') }}</p>
+    </div>
+{% endblock %}
+
+{% block contrib_content %}
+  <section class="section inquiry">
+    <div class="container">
+      <form class="inquiry-form" id="inquiry-form" method="GET" action="{{ url('mozorg.contribute.thankyou') }}">
+
+      <fieldset class="categories">
+        <ul class="option-list">
+          <li class="option">
+            <label for="category-coding">
+              <input type="radio" name="category" id="category-coding" value="coding" required>
+              <span class="label-text">{{ _('Coding') }}</span>
+              <a class="info" href="#info-coding">{{ _('More about coding') }}</a>
+            </label>
+          </li>
+          <li class="option">
+            <label for="category-testing">
+              <input type="radio" name="category" id="category-testing" value="testing" required>
+              <span class="label-text">{{ _('Testing') }}</span>
+              <a class="info" href="#info-testing">{{ _('More about testing') }}</a>
+            </label>
+          </li>
+          <li class="option">
+            <label for="category-writing">
+              <input type="radio" name="category" id="category-writing" value="writing" required>
+              <span class="label-text">{{ _('Writing') }}</span>
+              <a class="info" href="#info-writing">{{ _('More about writing') }}</a>
+            </label>
+          </li>
+          <li class="option">
+            <label for="category-teaching">
+              <input type="radio" name="category" id="category-teaching" value="teaching" required>
+              <span class="label-text">{{ _('Teaching') }}</span>
+              <a class="info" href="#info-teaching">{{ _('More about teaching') }}</a>
+            </label>
+          </li>
+          <li class="option">
+            <label for="category-helping">
+              <input type="radio" name="category" id="category-helping" value="helping" required>
+              <span class="label-text">{{ _('Helping') }}</span>
+              <a class="info" href="#info-helping">{{ _('More about helping') }}</a>
+            </label>
+          </li>
+          <li class="option">
+            <label for="category-translating">
+              <input type="radio" name="category" id="category-translating" value="translating" required>
+              <span class="label-text">{{ _('Translating') }}</span>
+              <a class="info" href="#info-localization">{{ _('More about translating') }}</a>
+            </label>
+          </li>
+          <li class="option">
+            <label for="category-activism">
+              <input type="radio" name="category" id="category-activism" value="advocacy" required>
+              <span class="label-text">{{ _('Activism') }}</span>
+              <a class="info" href="#info-activism">{{ _('More about activism') }}</a>
+            </label>
+          </li>
+          <li class="option">
+            <label for="category-dontknow">
+              <input type="radio" name="category" id="category-dontknow" value="dontknow" required>
+              <span class="label-text">{{ _('I don’t know') }}</span>
+              <a class="info" href="#info-dontknow">{{ _('More about how you can contribute') }}</a>
+            </label>
+          </li>
+        </ul>
+      </fieldset>
+
+      <fieldset class="areas">
+        <h2 class="section-title">{{ _('What particular area?') }}</h2>
+
+        <p class="area" id="area-coding">
+          <label for="select-area-coding">{{ _('What would you like to code?') }}</label>
+          <span class="select">
+            <select id="select-area-coding" name="area-coding">
+              <option value="" selected disabled>-- {{ _('select') }} --</option>
+              <option value="coding-firefox">{{ _('Firefox') }}</option>
+              <option value="coding-firefoxos">{{ _('Firefox OS') }}</option>
+              <option value="coding-websites">{{ _('Websites') }}</option>
+              <option value="coding-addons">{{ _('Firefox add-ons') }}</option>
+              <option value="coding-marketplace">{{ _('HTML5 apps') }}</option>
+              <option value="coding-webcompat">{{ _('Diagnosing Web compatibility issues') }}</option>
+              <option value="coding-cloud">{{ _('Online services') }}</option>
+            </select>
+          </span>
+        </p>
+
+        <p class="area" id="area-testing">
+          <label for="select-area-testing">{{ _('What would you like to test?') }}</label>
+          <span class="select">
+            <select id="select-area-testing" name="area-testing">
+              <option value="" selected disabled>-- {{ _('select') }} --</option>
+              <option value="testing-firefox">{{ _('Firefox and Firefox OS') }}</option>
+              <option value="testing-addons">{{ _('Firefox add-ons') }}</option>
+              <option value="testing-marketplace">{{ _('HTML5 apps') }}</option>
+              <option value="testing-websites">{{ _('Websites') }}</option>
+              <option value="testing-webcompat">{{ _('Web compatibility') }}</option>
+            </select>
+          </span>
+        </p>
+
+        <p class="area" id="area-translating">
+          <label for="select-area-translating">{{ _('What would you like to translate?') }}</label>
+          <span class="select">
+            <select id="select-area-translating" name="area-translating">
+              <option value="" selected disabled>-- {{ _('select') }} --</option>
+              <option value="translating-products">{{ _('Products') }}</option>
+              <option value="translating-websites">{{ _('Websites') }}</option>
+              <option value="translating-tools">{{ _('I’d like to work on localization tools') }}</option>
+            </select>
+          </span>
+        </p>
+
+        <p class="area" id="area-writing">
+          <label for="select-area-writing">{{ _('What would you like to write?') }}</label>
+          <span class="select">
+            <select id="select-area-writing" name="area-writing">
+              <option value="" selected disabled>-- {{ _('select') }} --</option>
+              <option value="writing-social">{{ _('Social media') }}</option>
+              <option value="writing-journalism">{{ _('Journalism') }}</option>
+              <option value="writing-techusers">{{ _('Technical docs for users') }}</option>
+              <option value="writing-techdevs">{{ _('Technical docs for developers') }}</option>
+              <option value="writing-addons">{{ _('Technical docs for Firefox add-ons') }}</option>
+              <option value="writing-marketplace">{{ _('Technical docs for HTML5 apps') }}</option>
+            </select>
+          </span>
+        </p>
+
+        <p class="area" id="area-teaching">
+          <label for="select-area-teaching">{{ _('What would you like to teach?') }}</label>
+          <span class="select">
+            <select id="select-area-teaching" name="area-teaching">
+              <option value="" selected disabled>-- {{ _('select') }} --</option>
+              <option value="teaching-webmaker">{{ _('Teach the Web (Webmaker)') }}</option>
+              <option value="teaching-fellowships">{{ _('Open News fellowships') }}</option>
+              <option value="teaching-hive">{{ _('Hive - Community based digital education') }}</option>
+              <option value="teaching-science">{{ _('Open Web science research') }}</option>
+            </select>
+          </span>
+        </p>
+      </fieldset>
+
+      <fieldset class="personal">
+        <h2 class="section-title">{{ _('Now tell us a little about yourself:') }}</h2>
+        <ul>
+          <li>
+            <label for="person-name">{{ _('Name') }}</label>
+            <input type="text" id="person-name" name="name" required>
+          </li>
+          <li>
+            <label for="person-email">{{ _('Email address') }}</label>
+            <input type="email" id="person-email" name="email" required>
+          </li>
+          <li>
+            <label for="person-country">{{ _('Country') }}</label>
+            <span class="select">
+              <select name="country" id="person-country" required>
+                <option value="" disabled selected>-- {{ _('select') }} --</option>
+                <option value="ar">Albania</option>
+                <option value="br">Brazil</option>
+                <option value="cz">Czech Republic</option>
+                <option value="dk">Denmark</option>
+                <option value="ec">Ecuador</option>
+                <option value="fi">Finland</option>
+                <option value="ga">Guatamala</option>
+                <option value="hu">Hungary</option>
+                <option value="id">Indonesia</option>
+                <option value="jp">Japan</option>
+                <option value="kl">Kuala Lumpur</option>
+                <option value="etc">and so on</option>
+              </select>
+            </span>
+          </li>
+          <li class="form-message">
+            <label for="person-message">{{ _('Why do you want to be a Mozilla volunteer?') }} <i>{{ _('(Optional)') }}</i></label>
+            <textarea id="person-message" cols="60" rows="4" name="message"></textarea>
+          </li>
+          <li class="form-agree">
+            <label class="inline" for="submit-agree">
+              <input type="checkbox" id="submit-agree" name="agree" required>
+              {% trans privacy=url('privacy') %}
+              I’m okay with Mozilla handling my info as explained in <a href="{{ privacy }}">this Privacy Policy</a>
+              {% endtrans %}
+            </label>
+          </li>
+        </ul>
+      </fieldset>
+
+      <fieldset class="submit">
+        <p class="form-newsletter">
+          <label class="inline" for="submit-newsletter">
+            <input type="checkbox" id="submit-newsletter" name="newsletter">
+            {{ _('Sign me up for community updates') }}
+            {% if not LANG.startswith('en') %}{{ _('(English)') }}{% endif %}
+          </label>
+        </p>
+
+        <button type="submit">{{ _('Start contributing') }}</button>
+      </fieldset>
+    </form>
+
+    <aside class="category-info">
+      <h2>{{ _('Where would you like to get started?') }}</h2>
+
+      <div class="info-content" id="info-coding">
+        <h3>{{ _('Coding') }}</h3>
+        <p>{{ _('Contribute code to a whole range of Mozilla products, including Firefox and Firefox OS.') }}</p>
+      </div>
+
+      <div class="info-content" id="info-testing">
+        <h3>{{ _('Testing') }}</h3>
+        <p>{{ _('Help make the Mozilla products you use — and love — even better.') }}</p>
+      </div>
+
+      <div class="info-content" id="info-writing">
+        <h3>{{ _('Writing') }}</h3>
+        <p>{{ _('Lend your voice to Mozilla — from blogging and social media to providing technical documents for users and developers.') }}</p>
+      </div>
+
+      <div class="info-content" id="info-teaching">
+        <h3>{{ _('Teaching') }}</h3>
+        <p>{{ _('Share your skills with a community that’s eager to learn. Take advantage of our free tools, teaching resources and events.') }}</p>
+      </div>
+
+      <div class="info-content" id="info-helping">
+        <h3>{{ _('Helping') }}</h3>
+        <p>{{ _('Provide support to users who need it and help everyone get the most out of their Mozilla products.') }}</p>
+      </div>
+
+      <div class="info-content" id="info-localization">
+        <h3>{{ _('Translating') }}</h3>
+        <p>{{ _('Help make Mozilla stuff available in other languages. Translate everything from newsletters and websites to copy for Firefox and Firefox OS.') }}</p>
+      </div>
+
+      <div class="info-content" id="info-activism">
+        <h3>{{ _('Activism') }}</h3>
+        <p>{{ _('Get involved with our opportunities to support freedom, security and privacy on the open Web.') }}</p>
+      </div>
+
+      <div class="info-content" id="info-dontknow">
+        <h3>{{ _('I don’t know') }}</h3>
+        <p>{{ _('Not sure how you want to help? No problem. We can find the appropriate contribution activity for you.') }}</p>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<section class="section next-steps">
+  <div class="container">
+  <ol class="steps">
+    <li class="step1">{{ _('Choose what interests you and tell us how you’d like to help') }}</li>
+    <li class="step2">{{ _('Stand by for an email that will connect you to the Mozilla community') }}</li>
+    <li class="step3">{{ _('Create your Mozillians account and share your contributions with the world') }}</li>
+  </ol>
+  </div>
+</section>
+
+{% endblock contrib_content %}
+
+{% block contrib_footer %}{% endblock %}
+

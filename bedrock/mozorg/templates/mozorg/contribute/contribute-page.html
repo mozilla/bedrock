@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "base-resp.html" %}
+{% extends "mozorg/base-resp.html" %}
 
 {% block page_title %}{{_('Contribute to our sites')}}{% endblock %}
 {% block body_id %}contribute-page{% endblock %}
@@ -28,7 +28,7 @@
 
 </section>
 
-{% include "mozorg/contribute-form.html" %}
+{% include "mozorg/contribute/contribute-form.html" %}
 
 {% endblock %}
 {% block email_form %}{% endblock %}

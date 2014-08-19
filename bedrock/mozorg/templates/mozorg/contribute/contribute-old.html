@@ -1,22 +1,21 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
-{% extends "mozorg/base-resp.html" %}
 
-{% from "newsletter/includes/macros.html" import email_form_thankyou with context %}
+{% extends "mozorg/contribute/contribute-base.html" %}
 
-{% add_lang_files "mozorg/15years" %}
+{% add_lang_files "mozorg/contribute" %}
 
-{% block page_title %}{{_('Get Involved: Volunteer Opportunities at Mozilla')}}{% endblock %}
-{% block body_id %}contribute{% endblock %}
+{% block page_title %}
+    {{ _('Get Involved: Volunteer Opportunities at Mozilla') }}
+{% endblock %}
 
-{% block site_css %}
-  {{ super() }}
-  {{ css('contribute') }}
+{% block page_css %}
+  {{ css('contribute-old') }}
 {% endblock %}
 
 {% block js %}
-  {{ js('contribute') }}
+  {{ js('contribute-faces') }}
   {{ js('contribute-form') }}
 {% endblock %}
 
@@ -27,10 +26,12 @@
   data-button-pause='{{_('Pause video')}}'
 {% endblock %}
 
-{% block content %}
-<main role="main">
+{% block contrib_head %}{% endblock %}
+{% block contrib_nav_cta %}{% endblock %}
+{% block contrib_page_title %}{% endblock %}
 
-{% if l10n_has_tag('contribute_faces') or settings.DEV %}
+{% block contrib_content %}
+
   <section id="faces">
     <header>
       <h1 class="page-title large">{{_('Get Involved')}}</h1>
@@ -55,7 +56,7 @@
 
     {% if not hide_form %}
       <aside id="contribute-form">
-      {% include "mozorg/contribute-form.html" %}
+      {% include "mozorg/contribute/contribute-form.html" %}
       </aside>
     {% endif %}
 
@@ -86,36 +87,13 @@
     </div>
   </section>
 
-{% else %}
-  <h1 id="main-feature" class="large">{{_('Get Involved')}}</h1>
-
-  <section id="welcome" class="container">
-    <div id="welcome-video" class="mozilla-video-control mozilla-video-shadow">
-      {{ video('Mozilla_Firefox_Manifesto_v0.2_640.webm',
-               'Mozilla_Firefox_Manifesto_v0.2_640.theora.ogv',
-               'Mozilla_Firefox_Manifesto_v0.2_640.mp4',
-               h=360, w=640,
-               prefix='//videos.cdn.mozilla.net/brand/',
-               poster=media('img/contribute/poster-brand.jpg')) }}
-    </div>
-    <p>
-      {{_('You don’t have to be a C++ guru (or even know what that means!) to get involved.<br><b>You just have to love the Web.</b>')}}
-    </p>
-  </section>
-
-  {% if not hide_form %}
-    {% include "mozorg/contribute-form.html" %}
-  {% endif %}
-
-{% endif %}
-
   <section id="opportunities">
 
     <h2>{{_('Find an opportunity')}}</h2>
 
     <ul class="contribute-options">
       <li id="support">
-        <img src="{{ media('/img/contribute/sumo.png') }}" alt="">
+        <img src="{{ media('/img/contribute/logos/sumo.png') }}" alt="">
         <h3>{{_('Helping Users')}}</h3>
         <p>
         {% trans fx_support_url='https://support.mozilla.org/get-involved', tb_support_url='https://support.mozilla.org/get-involved' %}
@@ -125,7 +103,7 @@
       </li>
 
       <li id="qa">
-        <img src="{{ media('/img/contribute/qmo.png') }}" alt="">
+        <img src="{{ media('/img/contribute/logos/qmo.png') }}" alt="">
         <h3>{{_('Quality Assurance')}}</h3>
         <p>
         {% if l10n_has_tag('contribute_mayupdates') or settings.DEV %}
@@ -148,7 +126,7 @@
       </li>
 
       <li id="coding">
-        <img src="{{ media('/img/contribute/dinohead.png') }}" alt="">
+        <img src="{{ media('/img/contribute/logos/dinohead.png') }}" alt="">
         <h3>{{_('Coding')}}</h3>
         <p>
         {% trans dev_intro_url='https://developer.mozilla.org/docs/Introduction', what_url='http://www.whatcanidoformozilla.org/' %}
@@ -158,7 +136,7 @@
       </li>
 
       <li id="marketing">
-        <img src="{{ media('/img/contribute/firefox.png?2013-06') }}" alt="">
+        <img src="{{ media('/img/contribute/logos/firefox.png') }}" alt="">
         <h3>{{_('Spread the Word')}}</h3>
         <p>
         {% trans affiliates_url='https://affiliates.mozilla.org', marketing_url='https://wiki.mozilla.org/MarketingGuide' %}
@@ -168,7 +146,7 @@
       </li>
 
       <li id="l10n">
-        <img src="{{ media('/img/contribute/localization.png') }}" alt="">
+        <img src="{{ media('/img/contribute/logos/localization.png') }}" alt="">
         <h3>{{_('Localization') }}</h3>
         <p>
         {% trans l10n_url='https://wiki.mozilla.org/L10n', l10n_web_url='https://wiki.mozilla.org/L10n:Web_parts' %}
@@ -178,7 +156,7 @@
       </li>
 
       <li id="webdev">
-        <img src="{{ media('/img/contribute/web.png') }}" alt="">
+        <img src="{{ media('/img/contribute/logos/web.png') }}" alt="">
         <h3>{{_('Web Development') }}</h3>
         <p>
         {% trans webdev_url='https://wiki.mozilla.org/Webdev/GetInvolved', gaia_url='https://developer.mozilla.org/docs/Mozilla/Firefox_OS/Platform/Gaia/Hacking' %}
@@ -189,7 +167,7 @@
 
     {% if l10n_has_tag('contribute_mayupdates') or settings.DEV %}
       <li id="markeplace">
-        <img src="{{ media('/img/contribute/marketplace.png') }}" alt="">
+        <img src="{{ media('/img/contribute/logos/marketplace.png') }}" alt="">
         <h3>{{ _('Firefox Marketplace') }}</h3>
         <p>
           {% trans marketplace_url='https://marketplace.firefox.com', mktcontrib_url='https://wiki.mozilla.org/Marketplace/Contributing/Apps' %}
@@ -200,7 +178,7 @@
     {% endif %}
 
       <li id="addons">
-        <img src="{{ media('/img/contribute/addons.png') }}" alt="">
+        <img src="{{ media('/img/contribute/logos/addons.png') }}" alt="">
         <h3>{{_('Add-ons') }}</h3>
         <p>
         {% if l10n_has_tag('contribute_mayupdates') or settings.DEV %}
@@ -216,7 +194,7 @@
       </li>
 
       <li id="design">
-      <img src="{{ media('/img/contribute/creativecollective.png') }}" alt="">
+      <img src="{{ media('/img/contribute/logos/creativecollective.png') }}" alt="">
       <h3>{{_('Visual Design') }}</h3>
       <p>
       {% trans creative_url='https://blog.mozilla.org/creative/' %}
@@ -226,7 +204,7 @@
       </li>
 
       <li id="docs">
-        <img src="{{ media('/img/contribute/mdn.png?03-2014') }}" alt="">
+        <img src="{{ media('/img/contribute/logos/mdn.png') }}" alt="">
         <h3>{{_('Documentation and Writing') }}</h3>
         <p>
         {% trans dev_url='https://developer.mozilla.org/docs/MDN/Getting_started' %}
@@ -236,7 +214,7 @@
       </li>
 
       <li id="education">
-        <img src="{{ media('/img/contribute/webmaker.png') }}" alt="">
+        <img src="{{ media('/img/contribute/logos/webmaker.png') }}" alt="">
         <h3>{{_('Education') }}</h3>
         <p>
       {% if l10n_has_tag('webmaker_update') or settings.DEV %}
@@ -257,7 +235,7 @@
 
     {% if l10n_has_tag('contribute_fellowship') or settings.DEV %}
       <li id="fellowship">
-        <img src="{{ media('/img/contribute/fellowship.png') }}" alt="">
+        <img src="{{ media('/img/contribute/logos/fellowship.png') }}" alt="">
         <h3>{{ _('Fellowships') }}</h3>
         <p>
           {% trans fellowship='http://opennews.org/fellowships/' %}
@@ -269,7 +247,7 @@
 
     {% if l10n_has_tag('hiveglobal') or settings.DEV %}
       <li id="hivenetworks">
-        <img src="{{ media('/img/contribute/hive.png') }}" alt="">
+        <img src="{{ media('/img/contribute/logos/hive.png') }}" alt="">
         <h3>{{ _('Hive Networks') }}</h3>
         <p>
           {% trans hivenetworks='http://hivelearningnetworks.org' %}
@@ -324,7 +302,7 @@
       </li>
     </ul>
   </section>
-</main>
-{% endblock %}
 
-{% block email_form %}{% endblock %}
+{% endblock contrib_content %}
+{% block contrib_footer %}{% endblock %}
+
