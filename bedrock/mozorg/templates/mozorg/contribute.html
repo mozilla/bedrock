@@ -64,12 +64,12 @@
         <div id="footer-email-errors" class="hidden">
           <ul class="errorlist"></ul>
         </div>
-        <form action="{{ url('newsletter.subscribe') }}" method="post" id="newsletter-form">
+        <form id="newsletter-form" class="newsletter-form footer-newsletter-form" action="{{ url('newsletter.subscribe') }}" method="post">
           {{ newsletter_form.newsletters|safe }}
           <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
           <p>{{_('Sign up for a weekly newsletter that is full of community news and contribution opportunities.')}}</p>
           <div class="field field-email">{{ field_with_attrs(newsletter_form.email, placeholder=_('YOUR EMAIL HERE'))|safe }}</div>
-          <div class="form-details">
+          <div id="form-details">
             <div class="field field-country">{{ newsletter_form.country|safe }}</div>
             <div class="field field-format">{{ newsletter_form.fmt|safe }}</div>
             <div class="field field-privacy">{{ newsletter_form.privacy|safe }}</div>
@@ -78,7 +78,7 @@
           <div class="field form-submit"><input id="footer_email_submit" name="test-submit" type="submit" value="{{_('Subscribe')}}" class="button"></div>
           <div id="newsletter-spinner" class="hidden"></div>
         </form>
-        <div id="newsletter-form-thankyou" class="thank billboard newsletter-form">
+        <div id="newsletter-form-thankyou" class="thank newsletter-form">
           {{ email_form_thankyou() }}
         </div>
       </aside>

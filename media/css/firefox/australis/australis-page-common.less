@@ -334,21 +334,22 @@ header[role="banner"],
     }
 }
 
-#newsletter-form-thankyou {
+.newsletter-form.thank {
     padding: @baseLine;
-    width: 940px;
-}
-
-#footer-email-errors .errorlist {
-    padding: (@baseLine / 2) @baseLine;
+    margin: (@baseLine * 2) auto;
     width: 940px;
 }
 
 #whatsnew {
     .footer-newsletter-form,
-    #newsletter-form-thankyou {
+    .newsletter-form.thank {
         margin: @baseLine auto 170px auto;
     }
+}
+
+#footer-email-errors .errorlist {
+    padding: (@baseLine / 2) @baseLine;
+    width: 940px;
 }
 
 footer[role="contentinfo"] {

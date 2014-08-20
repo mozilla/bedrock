@@ -1278,10 +1278,6 @@ html[lang="pl"] {
   }
 }
 
-#footer-email-thanks {
-  display: none;
-}
-
 .footer-newsletter-form {
   width: @widthDesktop - (@gridGutterWidth * 4);
   margin: 0 auto @baseLine auto;
@@ -1294,14 +1290,14 @@ html[lang="pl"] {
   }
 }
 
+.newsletter-form.thank {
+  border: none;
+  box-shadow: none;
+}
+
 #footer-email-errors {
   width: @widthDesktop - (@gridGutterWidth * 2);
   margin: 0 auto;
-}
-
-#newsletter-form-thankyou {
-    border: none;
-    box-shadow: none;
 }
 
 // JS specific styles for signup and get phone modal content
@@ -1601,7 +1597,7 @@ html[lang="en-US"].js {
   }
   .footer-newsletter-form,
   #footer-email-errors,
-  #newsletter-form-thankyou {
+  .newsletter-form.thank {
     width: @widthTablet - (@gridGutterWidth * 6);
   }
   .js {

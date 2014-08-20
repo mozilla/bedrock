@@ -408,16 +408,6 @@
   <div id="email-form-wrapper">
     <div id="email-form-content" class="modal-content">
       <div class="content">
-        <div id="footer-email-thanks">
-          <h3>{{ _('Thanks! Please check your inbox to confirm your subscription.') }}</h3>
-          <p>
-            {% trans %}
-              You'll receive an email from mozilla@e.mozilla.org to confirm your subscription.
-              If you don't see it, check your spam filter. You must confirm your subscription to receive our newsletter.
-            {% endtrans %}
-          </p>
-        </div>
-
         {{ email_newsletter_form('mozilla-and-you,os', _('Sign up for our monthly newsletter')) }}
       </div>
     </div>

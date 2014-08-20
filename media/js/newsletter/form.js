@@ -123,12 +123,12 @@ $(function () {
         $errorlist.empty();
 
         // have to collect data before disabling inputs
-        var data = $self.serialize();
+        var formData = $self.serialize();
         disable_form();
 
         $.ajax($self.attr('action'), {
             'method': 'post',
-            'data': data,
+            'data': formData,
             'dataType': 'json'
         }).done(function (data) {
             if (data.success) {
@@ -165,7 +165,6 @@ $(function () {
             $errorlist.append('<li>An unknown error occurred. Please try again later</li>');
             $errors.show();
             enable_form();
-            $self.removeClass('loading');
         });
 
         function disable_form() {
