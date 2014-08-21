@@ -3,7 +3,6 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from django.conf.urls import patterns, url
-from django.views.generic import TemplateView
 
 from util import page
 import views
@@ -15,8 +14,7 @@ urlpatterns = patterns('',
     page('about', 'mozorg/about.html'),
     page('book', 'mozorg/book.html'),
     url('^credits/$', views.credits_view, name='mozorg.credits'),
-    url('^credits/faq/$', TemplateView.as_view(template_name='mozorg/credits-faq.html'),
-        name='mozorg.credits-faq'),
+    page('credits/faq', 'mozorg/credits-faq.html'),
     url('^about/partnerships/$', views.partnerships, name='mozorg.partnerships'),
     page('about/partnerships/distribution', 'mozorg/partnerships-distribution.html'),
     page('about/history', 'mozorg/about/history.html'),

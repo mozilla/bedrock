@@ -83,6 +83,11 @@ class TestRender(TestCase):
             self._test(path, template, 'zu', 'zu,fr;q=0.7,en;q=0.3',
                        302, '/fr/firefox/new/')
 
+    @override_settings(SUPPORTED_NONLOCALES=['non-locale'])
+    def test_supported_nonlocales(self):
+        resp = self.client.get('/non-locale/test/')
+        self.assertEqual(resp.status_code, 200)
+
 
 class TestGetAcceptLanguages(TestCase):
     def _test(self, accept_lang, list):

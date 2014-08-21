@@ -56,6 +56,7 @@ SUPPORTED_NONLOCALES += [
     'gameon',
     'robots.txt',
     'credits',
+    'security',
 ]
 
 ALLOWED_HOSTS = [
@@ -349,6 +350,9 @@ MINIFY_BUNDLES = {
         ),
         'privacy': (
             'css/privacy/privacy.less',
+        ),
+        'security': (
+            'css/security/security.less',
         ),
         'privacy-day': (
             'css/privacy/privacy-day.less',
@@ -837,6 +841,7 @@ INSTALLED_APPS = get_apps(exclude=(
     '%s.tabzilla' % PROJECT_MODULE,
     '%s.facebookapps' % PROJECT_MODULE,
     '%s.externalfiles' % PROJECT_MODULE,
+    '%s.security' % PROJECT_MODULE,
 
     # libs
     'django_extensions',
@@ -1043,6 +1048,9 @@ RNA = {
     # default False as temporary workaround for bug 973499
     'VERIFY_SSL_CERT': os.environ.get('VERIFY_SSL_CERT', False),
 }
+
+MOFO_SECURITY_ADVISORIES_PATH = path('mofo_security_advisories')
+MOFO_SECURITY_ADVISORIES_REPO = 'https://github.com/mozilla/foundation-security-advisories.git'
 
 LOGGING = {
     'root': {

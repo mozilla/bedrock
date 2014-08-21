@@ -1,0 +1,129 @@
+{% extends "security/base.html" %}
+
+{% block page_title %}Mozilla Security Bug Bounty Program{% endblock %}
+
+{% block article %}
+  <article class="section-content" itemscope itemtype="http://schema.org/Article">
+    <header>
+      <h1 itemprop="name">Bug Bounty Program</h1>
+    </header>
+    <div itemprop="articleBody">
+      <h2>Introduction</h2>
+
+      <p>The Mozilla Security Bug Bounty Program is designed to encourage
+        security research in Mozilla software and to reward those who help us create
+        the safest Internet clients in existence.</p>
+
+      <p>Many thanks to <a href="http://en.wikipedia.org/wiki/Linspire">Linspire</a>
+        and <a href="http://www.markshuttleworth.com/">Mark Shuttleworth</a>, who
+        provided start-up funding for this endeavor.</p>
+
+      <h2>General Bounty Guidelines</h2>
+
+      <p>Mozilla will pay a bounty for certain client and service security bugs,
+        as detailed below. All security bugs must follow the following general
+        criteria to be eligible:</p>
+
+      <ul>
+        <li>Security bug must be original and previously unreported.</li>
+        <li>Security bug must be a remote exploit.</li>
+        <li>Submitter must not be the author of the buggy code nor otherwise involved
+          in its
+          contribution to the Mozilla project (such as by providing check-in
+          reviews).
+        </li>
+        <li>Employees of the Mozilla Foundation and its subsidiaries are
+          ineligible.
+        </li>
+      </ul>
+
+      <p>If you found the security bug as part of your job (in other words, while
+        being
+        paid to work on Mozilla code) then we would appreciate your not applying
+        for the bounty. Our funds are limited and we would like this program to
+        focus on people who are not otherwise paid to work on the Mozilla project.</p>
+      <p>Mozilla reserves the right to not give a bounty payment if we believe
+        the actions of the reporter have endangered the security of Mozilla's end
+        users.</p>
+      <p>If two or more people report the bug together the
+        reward will be divided among them. </p>
+
+      <h2>Client Reward Guidelines</h2>
+
+      <p>The bounty for valid critical client security bugs will be $3000 (US) cash
+        reward and a Mozilla T-shirt. The bounty will be awarded for
+        <a href="https://wiki.mozilla.org/Security_Severity_Ratings">sec-critical and
+          sec-high</a> severity security bugs that meet the following criteria:</p>
+
+      <ul>
+        <li>Security bug is present in the most recent main development (i.e.,
+          Aurora, Beta or EarlyBird, and nightly mozilla-central releases) or released
+          versions of Firefox, Thunderbird, Firefox for Android, or in Mozilla services
+          which could compromise users of those products, as released by Mozilla
+          Corporation.
+        </li>
+        <li>Security bugs in or caused by additional 3rd-party software (e.g.
+          plugins, extensions) are excluded from the Bug Bounty program.
+        </li>
+      </ul>
+
+      <p>More information about this program can be found in the
+        <a href="{{ url('security.bug-bounty-faq') }}">Client Security
+          Bug Bounty Program FAQ.</a>
+
+      <h2>Web Application and Services Reward Guidelines</h2>
+
+      <p>The bounty for valid web applications or services related security bugs,
+        we are giving a range starting at $500 (US) for high severity and, in some
+        cases,
+        may pay up to $3000 (US) for extraordinary or critical vulnerabilities.
+        We will also include a Mozilla T-shirt. The bounty will be awarded for
+        <a
+          href="https://wiki.mozilla.org/WebAppSec/Web_App_Severity_Ratings#
+      Web_Application_Severity_Ratings_Table">
+          sec-critical and sec-high</a> security bugs that meet the following
+        criteria:</p>
+
+      <ul>
+        <li>Security bug is present in the web properties outlined in the
+          <a href="{{ url('security.bug-bounty-faq-webapp') }}">Web Application Security Bounty
+            FAQ.</a></li>
+        <li>Security bug is on the list of sites which part of the bounty.
+          See the <a href="{{ url('security.bug-bounty-faq-webapp') }}#eligible-bugs">eligible bugs</a>
+            section of the <a href="{{ url('security.bug-bounty-faq-webapp') }}">Web Application Security
+              Bounty FAQ</a>
+            for the list of sites which is included under the bounty.</li>
+      </ul>
+
+      <p>More information about this program can be found in the
+        <a href="{{ url('security.bug-bounty-faq-webapp') }}">Web Application Security Bounty
+          FAQ.</a></p>
+
+      <h2>Process</h2>
+
+      <p>Please <a href="https://bugzilla.mozilla.org/enter_bug.cgi">file a bug</a> describing the
+        security bug; be sure to check the box near the bottom of the entry
+        form that marks this bug report as confidential. We encourage you
+        to attach a "proof of concept" testcase or link to the bug report that
+        demonstrates the vulnerability. While not required, such a testcase will
+        help us judge submissions more quickly and accurately.</p>
+
+      <p>Notify the
+        <a
+          href="mailto:security@mozilla.org?subject=Security%20Bug%20Bounty:&lt;DESCRIPTION&gt;">
+          Mozilla Security Group</a> by email and include the number of the bug you filed
+        and a brief summary. If you cannot file a bug include the full details
+        in the email and attach any proof of concept testcases or links.
+        Mozilla Foundation staff and the Mozilla Security Group will consider
+        your submission for the Security Bug Bounty and will contact you.</p>
+
+      <p>We ask that you be available to provide further information on the bug
+        as needed, and invite you to work together with Mozilla engineers in
+        reproducing, diagnosing, and fixing the bug. As part of this process we
+        will provide you full access to participate in our internal discussions
+        about the bug; for more information read our <a
+          href="{{ url('mozorg.about.governance.policies.security.bugs') }}">policy</a>
+        for handling security bugs.</p>
+     </div>
+  </article>
+{% endblock %}

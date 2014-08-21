@@ -12,7 +12,7 @@ def cache_control_expires(num_hours):
     Set the appropriate Cache-Control and Expires headers for the given
     number of hours.
     """
-    num_seconds = num_hours * 60 * 60
+    num_seconds = int(num_hours * 60 * 60)
 
     def decorator(func):
 

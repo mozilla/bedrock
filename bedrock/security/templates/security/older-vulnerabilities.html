@@ -1,0 +1,1545 @@
+{% extends "security/base.html" %}
+
+{% block page_title %}Older Vulnerabilities in Mozilla Products{% endblock %}
+
+{% block article %}
+  <h2>Older Vulnerabilities in Mozilla Products</h2>
+  <p>This page archives security announcements made for older versions of
+    Mozilla projects. Please see the active <a href="{{ url('security.known-vulnerabilities') }}">
+      Known Vulnerabilities</a> page for more recent security advisories.</p>
+
+  <ul>
+    <li><a href="#firefox0.10.1">Fixed in Firefox Preview Release update (0.10.1)</a></li>
+    <li><a href="#mozilla1.7.3">Fixed in Firefox Preview Release, Mozilla 1.7.3, Thunderbird
+      0.8</a></li>
+    <li><a href="#mozilla1.7.2">Fixed in Mozilla 1.7.2/Firefox 0.9.3/Thunderbird 0.7.3</a></li>
+    <li><a href="#mozilla1.7.1">Fixed in Mozilla 1.7.1/Firefox 0.9.2/Thunderbird 0.7.2</a></li>
+    <li><a href="#mozilla1.7">Fixed in Mozilla 1.7/Firefox 0.9/Thunderbird 0.7</a></li>
+    <li><a href="#mozilla1.6">Fixed in Mozilla 1.6</a></li>
+    <li><a href="#nov-2003">November 2003 Update</a></li>
+    <li><a href="#jul-2003">July 2003 Update</a></li>
+    <li><a href="#feb-2003">February 2003 Update</a></li>
+    <li><a href="#dec-2002">Updates up to December 2002</a></li>
+  </ul>
+
+  <h3 id="firefox0.10.1">Fixed in Firefox Preview Release update (0.10.1)</h3>
+
+  <table class="table">
+    <tbody>
+    <tr>
+      <th>#</th>
+      <th>Title</th>
+      <th>Severity / Risk</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Reported by</th>
+      <th>Date Fixed</th>
+    </tr>
+
+    <tr class="high">
+      <td>94</td>
+      <td class="bugtitle">Downloading link deletes files</td>
+      <td>high / high</td>
+      <td>dataloss</td>
+      <td class="bugdesc">
+        Firefox simplifies the task of saving files by automatically using a
+        filename based on the original link. A specific link format triggers
+        a bug in this feature and can cause the deletion of files in the
+        download directory. An attacker would need to convince a victim to
+        click the "Save" button to download a file from their site.<br>
+
+        <strong>Workaround:</strong> Cancel unexpected file save prompts and any from
+        untrusted sites. When saving files, right-click on the link and select
+        "Save link as" from the context menu.
+      </td>
+      <td>Alex Vincent</td>
+      <td><em>2004-09-29</em></td>
+    </tr>
+    </tbody>
+  </table>
+
+
+  <h3 id="mozilla1.7.3">Fixed in Firefox Preview Release, Mozilla 1.7.3, Thunderbird 0.8</h3>
+
+  <table class="table">
+    <tbody>
+    <tr>
+      <th>#</th>
+      <th>Title</th>
+      <th>Severity / Risk</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Reported by</th>
+      <th>Date Fixed</th>
+    </tr>
+
+    <tr class="high">
+      <td>93</td>
+      <td class="bugtitle">
+        "Send page" heap overrun
+        (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=258005">258005</a>)
+      </td>
+      <td>critical / moderate</td>
+      <td>remote execution</td>
+      <td class="bugdesc">
+        The "send page" function can overrun the heap on very long links. With
+        compelling content that people will want to forward to all their friends
+        and the right link this could be used to execute arbitrary code.
+      </td>
+      <td>Georgi Guninski</td>
+      <td><em>2004-09-07</em></td>
+    </tr>
+
+    <tr class="moderate">
+      <td>92</td>
+      <td class="bugtitle">
+        javascript clipboard access
+        (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=257523">257523</a>)
+      </td>
+      <td>moderate / high</td>
+      <td>clipboard leak</td>
+      <td class="bugdesc">
+        Untrusted javascript code can read and write to the clipboard,
+        stealing any sensitive data the user might have copied.
+        <strong>Workaround:</strong> disable javascript
+      </td>
+      <td>Wladimir Palant</td>
+      <td><em>2004-09-01</em></td>
+    </tr>
+
+    <tr class="moderate">
+      <td>91</td>
+      <td class="bugtitle">
+        Privilege request confusion
+        (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=253942">253942</a>)
+      </td>
+      <td>critical / low</td>
+      <td>remote execution</td>
+      <td class="bugdesc">
+        Signed scripts requesting enhanced abilities could construct the request
+        in a way that led to a confusing grant dialog, possibly fooling the user
+        into thinking the privilege requested was inconsequential while actually
+        obtaining explicit permission to run and install software.
+        <strong>Workaround:</strong> Never grant enhanced abilities of any kind to
+        untrusted web pages.
+      </td>
+      <td>Jesse Ruderman</td>
+      <td><em>2004-09-01</em></td>
+    </tr>
+
+    <tr class="critical">
+      <td>90</td>
+      <td class="bugtitle">
+        Buffer overflow when displaying VCard
+        (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=257314">257314</a>)
+      </td>
+      <td>critical / high</td>
+      <td>remote execution</td>
+      <td class="bugdesc">
+        A stack buffer overrun in VCard display routines could be exploited
+        to run arbitrary code supplied by the attacker.
+        <strong>Workaround:</strong> Disable in-line display of attachments, don't open
+        VCard attachments.
+      </td>
+      <td>Georgi Guninski</td>
+      <td><em>2004-08-30</em></td>
+    </tr>
+
+    <tr class="critical">
+      <td>89</td>
+      <td class="bugtitle">
+        BMP integer overflow
+        (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=255067">255067</a>)
+      </td>
+      <td>critical / high</td>
+      <td>heap overrun</td>
+      <td class="bugdesc">
+        extremely wide BMP images trigger an integer overflow, leading to
+        heap overruns that are potentially exploitable to run arbitrary code.
+        <strong>Workaround:</strong> Disable images.
+      </td>
+      <td>Gael Delalleau</td>
+      <td><em>2004-08-27</em></td>
+    </tr>
+
+    <tr class="high">
+      <td>88</td>
+      <td class="bugtitle">
+        javascript: link dragging
+        (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=250862">250862</a>)
+      </td>
+      <td>critical / moderate</td>
+      <td>cross-domain scripting, possibly remote execution</td>
+      <td class="bugdesc">
+        javascript; links dragged onto another frame or page allows an attacker to
+        steal or modify sensitive information from other sites.
+        The user could be convinced to drag obscurred links in the context of a
+        game or even a fake scrollbar. If the user could be convinced to drag
+        two links in sequence into a separate window (not frame) the attacker
+        would be able to run arbitrary programs.
+      </td>
+      <td>Jesse Ruderman</td>
+      <td><em>2004-08-26</em></td>
+    </tr>
+
+    <tr class="critical">
+      <td>87</td>
+      <td class="bugtitle">
+        non-ascii hostname heap overrun
+        (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=256316">256316</a>)
+      </td>
+      <td>critical / high</td>
+      <td>remote execution</td>
+      <td class="bugdesc">
+        A link with a non-ascii hostname can cause a heap buffer overrun that
+        could potentially be exploited to run arbitrary programs.
+      </td>
+      <td>Mats Palmgren, Gael Delalleau</td>
+      <td><em>2004-08-24</em></td>
+    </tr>
+
+    <tr class="high">
+      <td>86</td>
+      <td class="bugtitle">
+        Malicious POP3 server III
+        (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=245066">245066</a>,
+        <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=226669">226669</a>)
+      </td>
+      <td>critical / moderate</td>
+      <td>remote execution</td>
+      <td class="bugdesc">
+        Responses from a malicious POP3 mail server can trigger heap overruns
+        that can be exploited to run arbitrary code.
+      </td>
+      <td>Gael Delalleau</td>
+      <td><em>2004-08-17</em></td>
+    </tr>
+
+    <tr class="">
+      <td>85</td>
+      <td class="bugtitle">
+        Wrong file permissions after installing on Linux
+        (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=231083">231083</a>,
+        <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=235781">235781</a>)
+      </td>
+      <td>moderate / low</td>
+      <td>local exploit</td>
+      <td class="bugdesc">
+        The Linux installers could create files world readable and writable,
+        allowing another local user to replace them with malicious versions.
+        <strong>Workaround:</strong> chmod the installed files
+      </td>
+      <td>Daniel Koukola, Andrew Schultz</td>
+      <td><em>2004-08-16</em></td>
+    </tr>
+
+    <tr class="">
+      <td>84</td>
+      <td class="bugtitle">
+        Wrong file permissions in linux archive
+        (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=254303">254303</a>)
+      </td>
+      <td>moderate / low</td>
+      <td>local exploit</td>
+      <td class="bugdesc">
+        File permissions and owner were set wrong in the Linux install .tar.gz
+        archives. If unpacked with an option to ignore the user's umask setting
+        (or with a permissive umask) the resulting files could be secretly
+        replaced with malicious versions by any other user on the system.
+        <strong>Workaround:</strong> chmod and chown the files after unpacking.
+      </td>
+      <td>Harald Milz</td>
+      <td><em>2004-08-16</em></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <h3 id="mozilla1.7.2">Fixed in Mozilla 1.7.2/Firefox 0.9.3/Thunderbird 0.7.3</h3>
+  <table class="table">
+    <tbody>
+    <tr>
+      <th>#</th>
+      <th>Title</th>
+      <th>Severity / Risk</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Reported by</th>
+      <th>Date Fixed</th>
+    </tr>
+    <tr class="critical">
+      <td>83</td>
+      <td class="bugtitle">
+        buffer and integer overflows in libpng
+        (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=251381">251381</a>)
+      </td>
+      <td>critical / high</td>
+      <td>remote execution</td>
+      <td class="bugdesc">
+        Multiple flaws in libpng were announced, the worst of which could lead
+        to remote code execution via buffer overflow.
+        <a href="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CAN-2004-0597">CAN-2004-0597</a>,
+        <a href="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CAN-2004-0598">CAN-2004-0598</a>,
+        <a href="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CAN-2004-0599">CAN-2004-0599</a>
+      </td>
+      <td>Chris Evans</td>
+      <td><em>2004-08-03</em></td>
+    </tr>
+    <tr class="moderate">
+      <td>82</td>
+      <td class="bugtitle">
+        lock icon and certificate spoof with onunload document.write
+        (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=253121">253121</a>)
+      </td>
+      <td>moderate / moderate</td>
+      <td>spoof</td>
+      <td class="bugdesc">
+        The lock icon and certificate from a previous secure site can persist
+        if a page is re-written using an onunload handler. Combined with redirects
+        this could be used to spoof secure sites. The location bar, if shown,
+        displays the true URL.
+        <a href="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CAN-2004-0763">CAN-2004-0763</a>
+      </td>
+      <td>Emmanouel Kellinis</td>
+      <td><em>2004-07-27</em></td>
+    </tr>
+    <tr class="critical">
+      <td>81</td>
+      <td class="bugtitle">
+        Malicious certificates can permanently break HTTPS/SSL
+        (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=249004">249004</a>)
+      </td>
+      <td>critical / high</td>
+      <td>persistent DOS</td>
+      <td class="bugdesc">
+        Malicious email certificates
+        could mask built-in Certificate Authority (CA) certificates.
+        Once imported anything signed by the masked CA would not validate,
+        which could be used to permanently block all SSL (https:) sites
+        with certs issued by that CA.
+        <a href="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CAN-2004-0758">CAN-2004-0758</a>
+      </td>
+      <td>Marcel Boesch</td>
+      <td><em>2004-07-27</em></td>
+    </tr>
+    </tbody>
+  </table>
+  <h3 id="mozilla1.7.1">Fixed in Mozilla 1.7.1/Firefox 0.9.2/Thunderbird 0.7.2</h3>
+  <table class="table">
+    <tbody>
+    <tr>
+      <th>#</th>
+      <th>Title</th>
+      <th>Severity / Risk</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Reported by</th>
+      <th>Date Fixed</th>
+    </tr>
+    <tr class="critical">
+      <td>80</td>
+      <td class="bugtitle">
+        Windows shell: protocol handler
+        (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=250180">250180</a>)
+      </td>
+      <td>critical / high</td>
+      <td>remote execution</td>
+      <td class="bugdesc">
+        shell: URLs were passed to windows for handling which could result
+        in launching programs. This could theoretically be combined with an
+        unpatched exploit in some default windows filetype handler to run
+        arbitrary code
+      </td>
+      <td>Keith McCanless</td>
+      <td><em>2004-07-07</em></td>
+    </tr>
+    </tbody>
+  </table>
+  <h3 id="mozilla1.7">Fixed in Mozilla 1.7/Firefox 0.9/Thunderbird 0.7</h3>
+  <table class="table">
+  <tbody>
+  <tr>
+    <th>#</th>
+    <th>Title</th>
+    <th>Severity / Risk</th>
+    <th>Type</th>
+    <th>Description</th>
+    <th>Reported by</th>
+    <th>Date Fixed</th>
+  </tr>
+  <tr class="moderate">
+    <td>79</td>
+    <td class="bugtitle">
+      Spoof contents of framed site
+      (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=246448">246448</a>)
+    </td>
+    <td>moderate / moderate</td>
+    <td>spoof</td>
+    <td class="bugdesc">
+      The contents of a frames within a document could be replaced by an
+      attacker with a reference to that window, while leaving the address
+      in the location bar. On a secure site the lock icon would change
+      to broken, but otherwise it could be a successful spoof.
+    </td>
+    <td>Jesse Ruderman</td>
+    <td><em>2004-06-16</em></td>
+  </tr>
+  <tr class="critical">
+    <td>78</td>
+    <td class="bugtitle">
+      security dialog popup
+      (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=162020">162020</a>)
+    </td>
+    <td>critical / high</td>
+    <td>remote code execution</td>
+    <td class="bugdesc">
+      An attacker who could lure users into clicking in particular places,
+      or typing specific text, could cause a security permission or
+      software installation dialog to pop up under the user's mouse click,
+      clicking on the grant (or install) button.
+    </td>
+    <td>Jesse Ruderman</td>
+    <td><em>2004-06-05</em></td>
+  </tr>
+  <tr>
+    <td>77</td>
+    <td class="bugtitle">
+      Untrusted content displayed with "chrome" flag
+      (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=244965">244965</a>)
+    </td>
+    <td>moderate / low</td>
+    <td>spoof</td>
+    <td class="bugdesc">
+      Untrusted web content can open windows with the "chrome" style.
+      This suppresses the normal browser frame and makes spoofed
+      dialogs easy (such as the master password dialog). Affects Mozilla 1.6
+      through 1.7rc2.
+    </td>
+    <td>James Ross</td>
+    <td><em>2004-06-02</em></td>
+  </tr>
+  <tr class="moderate">
+    <td>76</td>
+    <td class="bugtitle">
+      POP3 mail server heap overrun
+      (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=229374">229374</a>)
+    </td>
+    <td>critical / low</td>
+    <td>heap overrun</td>
+    <td class="bugdesc">
+      A variant of bug 157644 (see #27 below), malicious POP server could
+      overwrite memory and execute arbitrary code.
+    </td>
+    <td>zen parse</td>
+    <td><em>2004-05-29</em></td>
+  </tr>
+  <tr class="critical">
+    <td>75</td>
+    <td class="bugtitle">
+      Mac remote code execution via help: and disk:
+      (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=243699">243699</a>)
+    </td>
+    <td>critical / high</td>
+    <td>remote code execution</td>
+    <td class="bugdesc">
+      lixlpixel reported vulnerabilities in the help: and disk: URI schemes
+      in some versions of Mac OS X. Web content could access those schemes
+      through Mozilla.<br>
+      <strong>Workaround:</strong> install the latest OS patches.
+    </td>
+    <td>Mike Calmus</td>
+    <td><em>2004-05-17</em></td>
+  </tr>
+  <tr>
+    <td>74</td>
+    <td class="bugtitle">
+      PNG out-of-bounds read
+      (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=242915">242915</a>)
+    </td>
+    <td>minor / low</td>
+    <td>DOS</td>
+    <td class="bugdesc">
+      The libpng project announced a bug that could be exploited as
+      a denial of service attack. See
+      <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CAN-2004-0421">
+        CAN-2004-0421</a>
+    </td>
+    <td>Glenn Randers-Pehrson</td>
+    <td><em>2004-05-07</em></td>
+  </tr>
+  <tr class="high">
+    <td>73</td>
+    <td class="bugtitle">
+      automatic file upload
+      (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=241924">241924</a>)
+    </td>
+    <td>high / moderate</td>
+    <td>file access</td>
+    <td class="bugdesc">
+      Regression in Mozilla 1.7-beta only: file upload control value can be
+      pre-filled using document.write() and innerHTML, allowing attacker to
+      programmatically submit the form and capture a file at a known location.
+      <br><strong>Workaround:</strong> disable Javascript
+    </td>
+    <td>Met - Martin Hassman</td>
+    <td><em>2004-04-28</em></td>
+  </tr>
+  <tr class="high">
+    <td>72</td>
+    <td class="bugtitle">
+      SSL Certificate Spoof
+      (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=240053">240053</a>)
+    </td>
+    <td>high / high</td>
+    <td>spoof</td>
+    <td class="bugdesc">
+      A malicious page can use redirects to turn on the SSL lock icon and
+      appear secure. This could be used to further phishing scams.
+    </td>
+    <td>Tolga Tarhan</td>
+    <td><em>2004-04-10</em></td>
+  </tr>
+  <tr class="moderate">
+    <td>71</td>
+    <td class="bugtitle">
+      Stealing secure HTTP Auth passwords via DNS spoof
+      (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=226278">226278</a>)
+    </td>
+    <td>high / low</td>
+    <td>password theft</td>
+    <td class="bugdesc">
+      HTTP auth passwords were cached by site and port but did not store whether
+      the protocol used was secure (SSL) or not. An attacker who could spoof
+      your DNS could wait until you authenticate to a secure site then
+      redirect a later connection to that site and port during that session
+      to a non-SSL machine under their control, thus stealing the secure password.
+    </td>
+    <td>Christopher Nebergall</td>
+    <td><em>2004-04-07</em></td>
+  </tr>
+  <tr>
+    <td>70</td>
+    <td class="bugtitle">
+      non-FQDN cert name matching is insecure
+      (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=234058">234058</a>)
+    </td>
+    <td>minor / low</td>
+    <td>spoof</td>
+    <td class="bugdesc">
+      A non-FQDN URI hostname can match part of a cert name w/out a warning
+      dialog. Could be used for spoofing if an attacker had control of machines
+      on your default DNS search path.
+    </td>
+    <td>Tim Dierks</td>
+    <td><em>2004-04-07</em></td>
+  </tr>
+  <tr class="high">
+    <td>69</td>
+    <td class="bugtitle">
+      remote access to local files through Liveconnect
+      (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=239122">239122</a>)
+    </td>
+    <td>high / high</td>
+    <td>remote reading</td>
+    <td class="bugdesc">
+      Mozilla 1.7beta allowed remote web pages to read local files
+      in known locations using Liveconnect (requires Java; 1.7alpha
+      and earlier are safe)
+    </td>
+    <td>Darin Fisher</td>
+    <td><em>2004-04-05</em></td>
+  </tr>
+  <tr>
+    <td>68</td>
+    <td class="bugtitle">
+      redefine focus()/blur() on another window
+      (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=86028">86028</a>)
+    </td>
+    <td>minor / low</td>
+    <td>DOS</td>
+    <td class="bugdesc">
+      Attacker can replace some functions on windows he opened. Replaced
+      functions run in the attacker's domain so can't steal data, but could
+      interfere with the operation of the other window.
+    </td>
+    <td>Jesse Ruderman</td>
+    <td><em>2004-03-25</em></td>
+  </tr>
+  <tr class="critical">
+    <td>67</td>
+    <td class="bugtitle">
+      SOAPParameter overflow
+      (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=236618">236618</a>)
+    </td>
+    <td>critical / high</td>
+    <td>remote code execution</td>
+    <td class="bugdesc">
+      An integer overflow passing a large js array to the SOAPParameter
+      constructor results in a controlled overwriting of the heap, which
+      can be exploited to run arbitary code of the attacker's choice.
+      <br><strong>Workaround:</strong> disable Javascript
+    </td>
+    <td>zen parse / iDEFENSE</td>
+    <td><em>2004-03-08</em></td>
+  </tr>
+  <tr>
+    <td>66</td>
+    <td class="bugtitle">
+      drag into file upload control
+      (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=206859">206859</a>)
+    </td>
+    <td>high / low</td>
+    <td>file access</td>
+    <td class="bugdesc">
+      A clever attacker might be able to trick a user into dragging disguised
+      text into an obscured file upload control, resulting in the capture
+      of a user's file at a known location.
+    </td>
+    <td>Jesse Ruderman</td>
+    <td><em>2004-02-11</em></td>
+  </tr>
+  </tbody>
+  </table>
+
+  <h3 id="mozilla1.6">Fixed in Mozilla 1.6</h3>
+  <table class="table">
+    <tbody>
+    <tr>
+      <th>#</th>
+      <th>Title</th>
+      <th>Severity / Risk</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Reported by</th>
+      <th>Date Fixed</th>
+    </tr>
+    <tr>
+      <td>65</td>
+      <td class="bugtitle">
+        %00 status bar spoof
+        (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=228176">228176</a>)
+      </td>
+      <td>minor / low</td>
+      <td>spoof</td>
+      <td class="bugdesc">
+        %00 in an href truncates the status bar display when you mouse over
+        the link. This could be used to further phishing scams in mail where
+        Javascript is disabled and the status bar might be trusted more than
+        in normal web content.
+      </td>
+      <td><a href="http://secunia.com/advisories/10419/">Secunia</a></td>
+      <td><em>2004-01-06</em></td>
+    </tr>
+    <tr class="moderate">
+      <td>64</td>
+      <td class="bugtitle">
+        Cross-domain exploit on zombie document with event handlers
+        (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=227417">227417</a>)
+      </td>
+      <td>moderate / low</td>
+      <td>same-origin violation</td>
+      <td class="bugdesc">
+        During page transition it was possible to run event handlers from
+        the old page in the context of the new page. This has been
+        demonstrated to allow cookie stealing, and potentially
+        any sensitive account information displayed by the new site.
+      </td>
+      <td><a href="http://www.sandblad.com/security/advisories/">Andreas Sandblad</a></td>
+      <td><em>2003-12-03</em></td>
+    </tr>
+    </tbody>
+  </table>
+  <h3 id="nov-2003">November 2003 Update</h3>
+  <table class="table">
+    <tbody>
+    <tr>
+      <th>#</th>
+      <th>Type</th>
+      <th>Fixed</th>
+      <th>Milestones Affected</th>
+      <th>Severity</th>
+      <th>Description</th>
+      <th>Bug Number(s)</th>
+      <th>Workarounds</th>
+      <th>Date Fixed</th>
+    </tr>
+    <tr>
+      <td>63</td>
+      <td>heap overflow</td>
+      <td>1.5 1.4.2</td>
+      <td>through 1.4</td>
+      <td>Run arbitrary code</td>
+      <td>Malicious PPM image can cause a heap overrun, possibly allowing
+        execution of arbitrary code
+      </td>
+      <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=220721">220721</a></td>
+      <td>Disable images</td>
+      <td><em>2003-12-16</em></td>
+    </tr>
+    <tr>
+      <td>62</td>
+      <td>JavaScript</td>
+      <td>1.5, 1.4.1</td>
+      <td>M1 to 1.4</td>
+      <td>Run arbitrary code</td>
+      <td>Script.prototype.freeze/thaw could allow an attacker to run arbitrary
+        code your computer.
+      </td>
+      <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=221526">221526</a></td>
+      <td>Disable JavaScript</td>
+      <td><em>2003-10-07</em></td>
+    </tr>
+    <tr>
+      <td>61</td>
+      <td>Running Executables</td>
+      <td>1.5 1.4.2</td>
+      <td valign="top">M1 to 1.4.1</td>
+      <td valign="top">*.hta files could be executed on Windows</td>
+      <td valign="top">*.hta files were not treated as executable, and
+        could be used to gain full access to a user's system
+      </td>
+      <td valign="top">
+        <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=220257">220257</a>
+      </td>
+      <td valign="top">Don't open *.hta or application/hta files</td>
+      <td valign="top"><em>2003-09-29</em></td>
+    </tr>
+    <tr>
+      <td valign="top">60</td>
+      <td valign="top">Networking<br>
+      </td>
+      <td style="vertical-align: top;">1.5 1.4.2</td>
+      <td valign="top">M1 to 1.4.1</td>
+      <td valign="top">Reading passwords</td>
+      <td valign="top">A malicious website could gain access to a user's
+        authentication credentials to a proxy server.
+      </td>
+      <td valign="top">
+        <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=220122">220122</a>
+      </td>
+      <td valign="top">None</td>
+      <td valign="top"><em>2003-09-24</em></td>
+    </tr>
+    <tr>
+      <td>59</td>
+      <td>JavaScript</td>
+      <td style="vertical-align: top;">firebird 0.7</td>
+      <td>Firebird 0.6</td>
+      <td>Run arbitrary code</td>
+      <td>A website could gain chrome privileges by overriding the setter of a
+        property on an HTML link, if the user could be convinced to click on it.
+      </td>
+      <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=217195">217195</a></td>
+      <td>Disable JavaScript</td>
+      <td><em>2003-09-23</em></td>
+    </tr>
+    <tr>
+      <td>58</td>
+      <td>Mail</td>
+      <td style="vertical-align: top;">1.5</td>
+      <td>M1 to 1.4</td>
+      <td>Storing passwords on disk</td>
+      <td>POP3 account passwords are saved to disk even when the user explicitly
+        requests them not to be.
+      </td>
+      <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=217625">217625</a></td>
+      <td>Disable Password Manager</td>
+      <td>2003-08-28</td>
+    </tr>
+    <tr>
+      <td valign="top">57</td>
+      <td valign="top">Cookies</td>
+      <td style="vertical-align: top;">1.5 1.4.1</td>
+      <td valign="top">M1 to 1.4</td>
+      <td valign="top">Read cookies set by another path</td>
+      <td valign="top">By requesting a cookie with a path containing the escape
+        sequence "%2E%2E", a malicious web site would be able to read cookies
+        from different paths.
+      </td>
+      <td valign="top">
+        <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=213012">213012</a></td>
+      <td valign="top">Disable Cookies</td>
+      <td valign="top"><em>2003-07-28</em></td>
+    </tr>
+    <tr>
+      <td valign="top">56</td>
+      <td valign="top">JavaScript</td>
+      <td style="vertical-align: top;">1.4</td>
+      <td valign="top">M1 to 1.3</td>
+      <td valign="top">Determine whether a variable exists on a different domain</td>
+      <td valign="top">Cross-domain variable detection is possible using scopes (eval,
+        with)
+      </td>
+      <td valign="top">
+        <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=158049">158049</a></td>
+      <td>Disable JavaScript</td>
+      <td><em>2003-06-02</em></td>
+    </tr>
+    <tr>
+      <td valign="top">55</td>
+      <td valign="top">JavaScript</td>
+      <td style="vertical-align: top;">1.4</td>
+      <td valign="top">M1 to 1.3</td>
+      <td valign="top">Cross-domain scripting</td>
+      <td valign="top">Executing custom setters or getters on a different domain is
+        possible.
+      </td>
+      <td valign="top">
+        <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=92773">92773</a>
+      </td>
+      <td valign="top">Disable JavaScript</td>
+      <td valign="top"><em>2003-03-06</em></td>
+    </tr>
+    <tr>
+      <td>54</td>
+      <td>DOM</td>
+      <td style="vertical-align: top;">1.4</td>
+      <td>M1 to 1.3</td>
+      <td>Determine whether a URL was visited</td>
+      <td>A website can use history.goURL to determine whether a URL was previously visited
+      </td>
+      <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=163549">163549</a></td>
+      <td>Disable JavaScript</td>
+      <td><em>2003-02-25</em></td>
+    </tr>
+    <tr>
+      <td>53</td>
+      <td>Cookies</td>
+      <td style="vertical-align: top;">1.3</td>
+      <td>M1 to 1.2</td>
+      <td>Read cookies set by another path</td>
+      <td>Cookies set to path "abc" were able to be read by a page with path "abcd"</td>
+      <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=155114">155114</a></td>
+      <td>Disable Cookies</td>
+      <td><em>2002-08-11</em></td>
+    </tr>
+    </tbody>
+  </table>
+  <br>
+  <h3 id="jul-2003">July 2003 Update</h3>
+  <br>
+  <table class="table">
+  <colgroup>
+    <col class="vuln_number">
+    <col class="vuln_type">
+    <col
+      class="vuln_builds">
+    <col class="vuln_severity">
+    <col class="vuln_desc">
+    <col
+      class="vuln_bugid">
+    <col class="vuln_workaround">
+    <col
+      class="vuln_fixdate">
+  </colgroup>
+  <tbody>
+  <tr>
+    <th>#</th>
+    <th>Type</th>
+    <th>Milestones Affected</th>
+    <th>Severity</th>
+    <th>Description</th>
+    <th>Bug Number(s)</th>
+    <th>Workarounds</th>
+    <th>Date Fixed</th>
+  </tr>
+  <tr>
+    <td>52</td>
+    <td>DOM</td>
+    <td>M1 to 1.3</td>
+    <td>Read local JavaScript files</td>
+    <td>XUL script can read local JavaScript files</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=180748">180748</a></td>
+    <td>Disable JavaScript</td>
+    <td><em>2003-06-02</em></td>
+  </tr>
+  <tr>
+    <td>51</td>
+    <td>DOM</td>
+    <td>M1 to 1.3</td>
+    <td>Executing arbitrary JavaScript on a page</td>
+    <td>IMG tags can be misused to load and run arbitrary JavaScript on a page</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=195201">195201</a></td>
+    <td>Disable JavaScript</td>
+    <td><em>2003-05-29</em></td>
+  </tr>
+  <tr>
+    <td>50</td>
+    <td>XBL</td>
+    <td>M1 to 1.3</td>
+    <td>Read local files</td>
+    <td> A bug in XBL handling, and the feature that external applications
+      create files with known names in well-known locations can be exploited
+      to read local files
+    </td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=200691">200691</a></td>
+    <td>Disable JavaScript</td>
+    <td><em>2003-05-01</em></td>
+  </tr>
+  <tr>
+    <td>49</td>
+    <td>DOM</td>
+    <td>M1 to 1.3</td>
+    <td>Read data from third-party site</td>
+    <td>document.domain can be set improperly to gain access to third-party site</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=204682">204682</a></td>
+    <td>Disable JavaScript</td>
+    <td><em>2003-05-09</em></td>
+  </tr>
+  <tr>
+    <td>48</td>
+    <td>DOM</td>
+    <td>M1 to 1.3</td>
+    <td>Track URLs as they are visited</td>
+    <td>javascript: URL return values are converted to strings without security checks</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=202994">202994</a></td>
+    <td>Disable JavaScript</td>
+    <td><em>2003-05-02</em></td>
+  </tr>
+  <tr>
+    <td>47</td>
+    <td>XUL</td>
+    <td>M1 to 1.3</td>
+    <td>Reading XML files from known locations</td>
+    <td>XUL overlays can be loaded from third-party sites</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=159450">159450</a></td>
+    <td>None</td>
+    <td><em>2003-05-02</em></td>
+  </tr>
+  <tr>
+    <td>46</td>
+    <td>Spoofing</td>
+    <td>M1 to 1.3</td>
+    <td>Reading passwords</td>
+    <td>HTTP authentication password prompt could be confused for the
+      mail server password prompt
+    </td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=51631">51631</a></td>
+    <td>Memorize the real mail server password prompt and do not enter
+      your password if the dialog is not exactly the same
+    </td>
+    <td><em>2003-04-25</em></td>
+  </tr>
+  <tr>
+    <td>45</td>
+    <td>Buffer Overrun</td>
+    <td>M1 to 1.3</td>
+    <td>Run arbitrary code</td>
+    <td>Reading a maliciously crafted email could cause an exploitable buffer overrun</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=202546">202546</a></td>
+    <td>None</td>
+    <td><em>2003-04-25</em></td>
+  </tr>
+  <tr>
+    <td>44</td>
+    <td>Buffer Overrun</td>
+    <td>M1 to 1.3</td>
+    <td>Run arbitrary code</td>
+    <td>Reading a maliciously crafted email could cause an exploitable buffer overrun</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=201547">201547</a></td>
+    <td>None</td>
+    <td><em>2003-04-23</em></td>
+  </tr>
+  <tr>
+    <td>43</td>
+    <td>DOM</td>
+    <td>M1 to 1.3</td>
+    <td>Read data from third-party sites</td>
+    <td>Clicking a javascript: links as a page is loading can cause the
+      JavaScript to execute with wrong privileges which can enable reading
+      data from third-party sites
+    </td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=201839">201839</a></td>
+    <td>Disable JavaScript</td>
+    <td><em>2003-04-18</em></td>
+  </tr>
+  <tr>
+    <td>42</td>
+    <td>DOM</td>
+    <td>M1 to 1.3</td>
+    <td>Read data from third-party sites</td>
+    <td>It's possible to read small amounts of data from pages from other
+      hosts using the find() command; extremely slow and difficult in practice
+    </td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=118657">118657</a></td>
+    <td>Disable JavaScript</td>
+    <td><em>2003-04-18</em></td>
+  </tr>
+  <tr>
+    <td>41</td>
+    <td>DOM</td>
+    <td>M1 to 1.3</td>
+    <td>Read data from third-party sites</td>
+    <td>A malicious script can steal data from third-party sites using event handlers</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=201132">201132</a></td>
+    <td>Disable JavaScript</td>
+    <td><em>2003-04-17</em></td>
+  </tr>
+  <tr>
+    <td>40</td>
+    <td>Java</td>
+    <td>M1 to 1.3</td>
+    <td>Read local files</td>
+    <td>When Sun JRE is installed on the system, Java applets can read local files</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=59767">59767</a></td>
+    <td>Disable Java</td>
+    <td><em>2003-04-03</em></td>
+  </tr>
+  <tr>
+    <td>39</td>
+    <td>Buffer Overrun</td>
+    <td>M1 to 1.3</td>
+    <td>Run arbitrary code</td>
+    <td> When Sun JRE 1.4.1 and earlier is installed on the system it may be
+      possible to cause an exploitable buffer overrun calling from JavaScript
+      into Java
+    </td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=183092">183092</a></td>
+    <td>Disable Java</td>
+    <td><em>2003-03-31</em></td>
+  </tr>
+  <tr>
+    <td>38</td>
+    <td>DOM</td>
+    <td>M1 to 1.3</td>
+    <td>Reading limited data from 3rd-party websites</td>
+    <td> Getters/setters on script-defined properties in third-party pages
+      can be read by scripts which allows limited data stealing
+    </td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=92773">92773</a></td>
+    <td>Disable JavaScript</td>
+    <td><em>2003-03-06</em></td>
+  </tr>
+  <tr>
+    <td>37</td>
+    <td>IRC/Mail</td>
+    <td>0.8 to 1.2</td>
+    <td>Make user send faked mail without knowing</td>
+    <td> The IRC protocol could be used to trick an SMTP server into sending
+      mail in the user's name; works only if Chatzilla installed
+    </td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=190532">190532</a></td>
+    <td>None</td>
+    <td><em>2003-02-04</em></td>
+  </tr>
+  <tr>
+    <td>36</td>
+    <td>Spoofing</td>
+    <td>M1 to 1.2</td>
+    <td>URLbar can display incorrect address</td>
+    <td> The HTTP 305 redirect command could be used by an attacker to spoof
+      other sites' pages; only works when browsing through a proxy
+    </td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=187996">187996</a></td>
+    <td> Do not use proxy, or Check the Page Info dialog and lock icon before
+      entering sensitive data on a web page
+    </td>
+    <td><em>2003-01-28</em></td>
+  </tr>
+  <tr>
+    <td>35</td>
+    <td>Configurable Security Policies</td>
+    <td>M1 to 1.2</td>
+    <td>Optional Configurable Security Policies can be bypassed</td>
+    <td> Using a username section in URL it is possible to bypass the
+      user-created, optional configurable security policies
+    </td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=189799">189799</a></td>
+    <td>Do not add or change configurable security policies; the defaults are safe</td>
+    <td><em>2003-01-24</em></td>
+  </tr>
+  <tr>
+    <td>34</td>
+    <td>Spoofing</td>
+    <td>M1 to 1.0.1/1.2</td>
+    <td>URLbar can display incorrect address</td>
+    <td>XUL can be used to make the URL bar display an incorrect address</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=171274">171274</a></td>
+    <td>Check the Page Info dialog and lock icon before entering sensitive
+      data on a web page
+    </td>
+    <td><em>2003-01-10</em></td>
+  </tr>
+  <tr>
+    <td>33</td>
+    <td>Networking</td>
+    <td>M1 to 1.2</td>
+    <td>On some platforms use old cached data</td>
+    <td> Some non-tier1 platforms (BeOS) do not truncate cache files properly
+      which could result in a page that is a mix of old and new, which could
+      result in unwanted purchases
+    </td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=162588">162588</a></td>
+    <td>Clear cache before going to a page you have visited before</td>
+    <td><em>2002-12-18</em></td>
+  </tr>
+  <tr>
+    <td>32</td>
+    <td>XSLT</td>
+    <td>0.8 to 1.2</td>
+    <td>Reading XSLT files from known locations within a firewall</td>
+    <td>An XML file can load an XSLT stylesheet from a different host</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=165532">165532</a></td>
+    <td>Disable XSLT</td>
+    <td><em>2002-12-03</em></td>
+  </tr>
+  <tr>
+    <td>31</td>
+    <td>DOM</td>
+    <td>M1 to 1.0.1/1.1</td>
+    <td>Arbitrarily modify or read another document</td>
+    <td> A script that calls document.write while another page is loading can
+      steal data from a third-party site
+    </td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=91043">91043</a></td>
+    <td>Disable JavaScript</td>
+    <td><em>2002-11-14</em></td>
+  </tr>
+  </tbody>
+  </table>
+  <br>
+  <h3 id="feb-2003">February 2003 Update</h3>
+  <br>
+  <table class="table">
+    <colgroup>
+      <col class="vuln_number">
+      <col class="vuln_type">
+      <col
+        class="vuln_builds">
+      <col class="vuln_severity">
+      <col class="vuln_desc">
+      <col
+        class="vuln_bugid">
+      <col class="vuln_workaround">
+      <col
+        class="vuln_fixdate">
+    </colgroup>
+    <tbody>
+    <tr>
+      <th>#</th>
+      <th>Type</th>
+      <th>Milestones Affected</th>
+      <th>Severity</th>
+      <th>Description</th>
+      <th>Bug Number(s)</th>
+      <th>Workarounds</th>
+      <th>Date Fixed</th>
+    </tr>
+    <tr>
+      <td>30</td>
+      <td>Mail</td>
+      <td>M1 to 1.2</td>
+      <td>Run arbitrary code</td>
+      <td> Upon receiving a malicious email message, double-clicking an attachment
+        could allow an attacker to run arbitrary code.
+      </td>
+      <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=191817">191817</a></td>
+      <td>Do not open attachments from untrusted sources</td>
+      <td><em>2003-02-06</em></td>
+    </tr>
+    <tr>
+      <td>29</td>
+      <td>Networking</td>
+      <td>0.9.1 to 1.2</td>
+      <td>Reading files from known locations within a firewall</td>
+      <td> By sending a "305 Redirect" message in response to a request, a
+        malicious Web server can read files from within a firewall.
+      </td>
+      <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=187996">187996</a></td>
+      <td>None</td>
+      <td><em>2003-01-28</em></td>
+    </tr>
+    <tr>
+      <td>28</td>
+      <td>Networking</td>
+      <td>M1 to 1.2</td>
+      <td>Run arbitrary code</td>
+      <td>Following a link to a maliciously crafted .jar archive file could
+        allow an attacker to run arbitrary code.
+      </td>
+      <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=164695">164695</a></td>
+      <td>None</td>
+      <td><em>2002-10-30</em></td>
+    </tr>
+    <tr>
+      <td>27</td>
+      <td>Mail</td>
+      <td>M1 to 1.2</td>
+      <td>Run arbitrary code</td>
+      <td>Connecting to a maliciously modified POP3 mail server could allow
+        an attacker to run arbitrary code your computer.
+      </td>
+      <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=157644">157644</a></td>
+      <td>Do not connect to untrusted POP3 mail servers</td>
+      <td><em>2002-10-21</em></td>
+    </tr>
+    <tr>
+      <td>26</td>
+      <td>Spoofing</td>
+      <td>0.9.9 to 1.2</td>
+      <td>Mistaking a malicious website for a legitimate one</td>
+      <td>wyciwyg:// URLs may be used to "spoof" the URL bar, causing it
+        to display an incorrect URL
+      </td>
+      <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=159659">159659</a></td>
+      <td>Check the Page Info dialog and lock icon before entering sensitive
+        data on a web page
+      </td>
+      <td><em>2002-09-20</em></td>
+    </tr>
+    </tbody>
+  </table>
+  <br>
+  <h3 id="dec-2002">Updates up to December 2002</h3>
+  <br>
+  <table class="table">
+  <colgroup>
+    <col class="vuln_number">
+    <col class="vuln_type">
+    <col
+      class="vuln_builds">
+    <col class="vuln_severity">
+    <col class="vuln_desc">
+    <col
+      class="vuln_bugid">
+    <col class="vuln_workaround">
+    <col
+      class="vuln_fixdate">
+  </colgroup>
+  <tbody>
+  <tr>
+    <th>#</th>
+    <th>Type</th>
+    <th>Milestones Affected</th>
+    <th>Severity</th>
+    <th>Description</th>
+    <th>Bug Number(s)</th>
+    <th>Workarounds</th>
+    <th>Date Fixed</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>DOM</td>
+    <td>Through 1.0 RC1</td>
+    <td>Local File Read</td>
+    <td>If a user visits a web site maintained by a hostile attacker,
+      the attacker's web site can cause Mozilla to be redirected to a
+      local file (or files) on the user's system in a way that allows the
+      attacker to read file contents.
+    </td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=141061">141061</a></td>
+    <td>Disable JavaScript</td>
+    <td>1-May-2002</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>DOM</td>
+    <td>Through 0.9.5</td>
+    <td> Read User Input (keystrokes)</td>
+    <td>If a user visits a web site maintained by a hostile attacker,
+      the attacker's page can eavesdrop on keyboard events occurring
+      in other windows.
+    </td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=18553">18553</a></td>
+    <td> Disable JavaScript</td>
+    <td> 4-Oct-2001</td>
+  </tr>
+  <tr>
+    <td> 3</td>
+    <td> Cookies</td>
+    <td> Through 1.0.1</td>
+    <td> Read cookies set by another site</td>
+    <td>Various attacks involving the insertion of illegal characters
+      into cookie data can cause other cookies set by a legitimate
+      server to be sent to an attacker's server. Some of these attacks
+      work only when browsing through a proxy server.
+    </td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=104495">104495</a>,
+      <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=146094">146094</a></td>
+    <td> Disable Cookies</td>
+    <td> 22-May-2002</td>
+  </tr>
+  <tr>
+    <td> 4</td>
+    <td> Script Insertion</td>
+    <td> Through 1.0.1</td>
+    <td> Run arbitrary code</td>
+    <td>Various attacks involving the introduction of malicious scripts
+      into dialogs that display information about the current page. When
+      scripts from thes pages are inserted into dialogs, the scripts run
+      with full system privileges.
+    </td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=143420">143420</a>,<br>
+      <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=144704">144704</a>,<br>
+      <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=149777">149777</a>,<br>
+      <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=123383">123383</a>
+    </td>
+    <td> Do not click on "javascript:" links in dialogs, or bookmark them</td>
+    <td> 21-May-2002</td>
+  </tr>
+  <tr>
+    <td> 5</td>
+    <td> DOM</td>
+    <td> Through 0.9.5</td>
+    <td> Modify browser settings</td>
+    <td>A malicious Web page can create key events which are interpreted
+      by the browser as menu commands.
+    </td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=108104">108104</a></td>
+    <td> Disable JavaScript</td>
+    <td> 11-Mar-2002</td>
+  </tr>
+  <tr>
+    <td> 6</td>
+    <td> Networking</td>
+    <td> Through 1.0.1</td>
+    <td> Modify or delete mail</td>
+    <td>A malicious Web page or mail message can contain an imap:// URL
+      which can be used to issue arbitrary commands to an IMAP mail server
+    </td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=127702">127702</a></td>
+    <td> Disable JavaScript and do not click on imap: links</td>
+    <td> 20-May-2002</td>
+  </tr>
+  <tr>
+    <td> 7</td>
+    <td> Buffer Overrun</td>
+    <td> Through 1.0.1</td>
+    <td> Run arbitrary code</td>
+    <td>Attaching a specially formatted file to a message can cause an
+      exploitable buffer overrun
+    </td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=140133">140133</a></td>
+    <td> Do not attach files of unknown content to mail/news messages</td>
+    <td> 25-Apr-2002</td>
+  </tr>
+  <tr>
+    <td> 8</td>
+    <td> Networking</td>
+    <td> Through 1.0.1</td>
+    <td> Denial of Access to Mail Account</td>
+    <td> Downloading a malicious email message can cause all future POP
+      message downloads to fail, effectively denying access to a POP
+      mail account until the malicious message ie removed by other means.
+    </td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=144228">144228</a></td>
+    <td> Do not use POP mail</td>
+    <td> 5-Jun-2002</td>
+  </tr>
+  <tr>
+    <td> 9</td>
+    <td> Buffer Overrun</td>
+    <td> Through 1.0.1</td>
+    <td> Run arbitrary code</td>
+    <td>Viewing several types of malformed image files from a malicious
+      web page could cause exploitable heap corruption
+    </td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=155222">155222</a>,
+      <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=157989">157989</a>
+    </td>
+    <td> Turn off images</td>
+    <td> 10-Jul-2002</td>
+  </tr>
+  <tr>
+    <td> 10</td>
+    <td> DOM</td>
+    <td> Through 1.0.1</td>
+    <td> Modify arbitrary files</td>
+    <td>Viewing a malicious page could cause an install operation to
+      occur when the space bar is pressed.
+    </td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=161721">161721</a></td>
+    <td> Disable JavaScript</td>
+    <td> 8-Aug-2002</td>
+  </tr>
+  <tr>
+    <td> 11</td>
+    <td> DOM</td>
+    <td> Through 1.0.2, 1.2</td>
+    <td> Tracking of browsing</td>
+    <td>A malicious page can determine the URL of the page visited after it</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=145579">145579</a></td>
+    <td> Disable JavaScript</td>
+    <td> 17-Sep-2002</td>
+  </tr>
+  <tr>
+    <td> 12</td>
+    <td> DOM</td>
+    <td> Through 1.0.1</td>
+    <td> Reading data from 3rd-party websites</td>
+    <td>A malicious page can read data from a third-party webpage
+      (perhaps inside a firewall) using the XMLSerializer interface
+    </td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=147754">147754</a></td>
+    <td> Disable JavaScript</td>
+    <td> 14-Jun-2002</td>
+  </tr>
+  <tr>
+    <td>13</td>
+    <td>DOM</td>
+    <td>0.9.6 to 1.0.1/1.2</td>
+    <td>Reading data from 3rd-party websites</td>
+    <td>A malicious page can read data from a third-party webpage
+      using the DOM TreeWalker interface
+    </td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=156452">156452</a></td>
+    <td>Disable JavaScript</td>
+    <td>1-Aug-2002</td>
+  </tr>
+  <tr>
+    <td>14</td>
+    <td>DOM</td>
+    <td>0.9.5 to 1.0.1/1.2</td>
+    <td>Reading data from 3rd-party websites</td>
+    <td>A malicious page can read data from a third-party webpage
+      (perhaps inside a firewall) using the XMLSerializer interface
+    </td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=169982">169982</a>
+      <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=147754">147754</a>
+    </td>
+    <td>Disable JavaScript</td>
+    <td>30-Sep-2002</td>
+  </tr>
+  <tr>
+    <td>15</td>
+    <td>Networking</td>
+    <td>M17 to 1.0.1/1.2</td>
+    <td>Deleting local files / run arbitrary code</td>
+    <td>Visiting a malicious URL with the vbscript: or vnd: protocol
+      exposes Windows security problems and could be used to run arbitrary code.
+    </td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=161357">161357</a>,
+      <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=163648">163648</a>
+    </td>
+    <td>Disable JavaScript, do not visit vbscript: or vnd: URLs from
+      untrusted sources
+    </td>
+    <td>10-Oct-2002</td>
+  </tr>
+  <tr>
+    <td>16</td>
+    <td>Networking</td>
+    <td>0.9.7 to 1.0.1/1.2</td>
+    <td>Minor - saving sensitive data locally</td>
+    <td>A webpage created by a document.write command in a script on
+      a secure page is stored in the browser cache even though the
+      original page is not. This could cause private information to
+      be saved on the local disk (the information is not accessible
+      by a third party on the network)
+    </td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=151478">151478</a></td>
+    <td>Disable JavaScript</td>
+    <td>21-Oct-2002</td>
+  </tr>
+  <tr>
+    <td>17</td>
+    <td>DOM</td>
+    <td>M1 to 1.0.1/1.2</td>
+    <td>Reading data from 3rd-party websites</td>
+    <td>A malicious Java applet can read data from a third-party webpage</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=168316">168316</a></td>
+    <td>Disable Java</td>
+    <td>29-Oct-2002</td>
+  </tr>
+  <tr>
+    <td>18</td>
+    <td>Networking</td>
+    <td>M1 to 1.0.1/1.2</td>
+    <td>Reading passwords</td>
+    <td>"Princeton Attack" DNS spoofing can be used to steal passwords.
+      The exploit requires many preconditions and is probably impractical
+      for real use.
+    </td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=162520">162520</a></td>
+    <td>Do not store passwords</td>
+    <td>30-Oct-2002</td>
+  </tr>
+  <tr>
+    <td>19</td>
+    <td>Spoofing</td>
+    <td>M1 to 1.0.1/1.2</td>
+    <td>Incorrect URL in URL bar</td>
+    <td>A malicious page can display a misleading URL in the browser URL bar</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=171274">171274</a></td>
+    <td>None</td>
+    <td>4-Nov-2002</td>
+  </tr>
+  <tr>
+    <td>20</td>
+    <td>DOM</td>
+    <td>0.9.7 to 1.0.1/1.2</td>
+    <td>Reading data from 3rd-party websites</td>
+    <td>A mailcious page can insert scripts or other content into a
+      3rd-party page and read or modify information.
+    </td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=91043">91043</a></td>
+    <td>Disable JavaScript</td>
+    <td>14-Nov-2002</td>
+  </tr>
+  <tr>
+    <td>21</td>
+    <td>XSLT</td>
+    <td>0.9.1 to 1.0.1/1.2</td>
+    <td>Reading XML files from 3rd party sites</td>
+    <td>A malicious page can read XML data from third-party websites
+      using the XSLT processor
+    </td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=113351">113351</a></td>
+    <td>Disable JavaScript</td>
+    <td>14-Jun-2002</td>
+  </tr>
+  <tr>
+    <td>22</td>
+    <td>Password Mgr</td>
+    <td>M1 to 1.0.1/1.2</td>
+    <td>Reading passwords</td>
+    <td>A malicious page can use a specially crafted javascript: URL
+      to steal passwords the user has stored for other sites
+    </td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=159484">159484</a></td>
+    <td>Disable JavaScript</td>
+    <td>30-Jul-2002</td>
+  </tr>
+  <tr>
+    <td>23</td>
+    <td>DOM/Forms</td>
+    <td>M1 to 1.0.1/1.2</td>
+    <td>Reading local files from known locations</td>
+    <td>Using a specially crafted form element name, a malicious
+      page can set the value of a file upload form control, causing
+      a file to be uploaded from the user's disk.
+    </td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=162409">162409</a></td>
+    <td>Disable JavaScript</td>
+    <td>14-Aug-2002</td>
+  </tr>
+  <tr>
+    <td>24</td>
+    <td>DOM/Forms</td>
+    <td>M1 to 1.0.1/1.2</td>
+    <td>Reading local files from known locations</td>
+    <td>Using a specially crafted event object, a malicious page can
+      set the value of a file upload form control, causing a file to
+      be uploaded from the user's disk.
+    </td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=164086">164086</a>,
+      <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=164023">164023</a>,
+      <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=163598">163598</a>
+    </td>
+    <td>Disable JavaScript</td>
+    <td>28-Aug-2002</td>
+  </tr>
+  <tr>
+    <td>25</td>
+    <td>HTML</td>
+    <td>M1 to 1.0.1/1.2</td>
+    <td>Loss of browser preferences</td>
+    <td>A malicious page can corrupt the Mozilla preferences file,
+      causing user settings to be lost
+    </td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=143459">143459</a></td>
+    <td>None</td>
+    <td>13-Sep-2002</td>
+  </tr>
+  </tbody>
+  </table>
+{% endblock %}
