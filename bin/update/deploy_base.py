@@ -124,9 +124,9 @@ def pre_update(ctx, ref=settings.UPDATE_REF):
 
 @task
 def update(ctx):
+    commands['database']()
     commands['update_assets']()
     commands['update_locales']()
-    commands['database']()
     commands['update_revision_file']()
 
 
