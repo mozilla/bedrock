@@ -119,11 +119,6 @@
         }
     });
 
-    $('#newsletter-form input, #newsletter-form select').focus(function() {
-        $('#newsletter-form .form-details').slideDown();
-    });
-
-
     // Track interest form submissions
     $('#help-form').on('submit', function(e) {
         e.preventDefault();
@@ -131,19 +126,7 @@
         $form.unbind('submit');
 
         gaTrack(
-            ['_trackEvent', '/contribute Page Interactions', 'Want to Help Form - Area of Interest', $('#id_interest')[0].value],
-            function() { $form.submit(); }
-        );
-    });
-
-    // Track newsletter form submissions
-    $('#newsletter-form').on('submit', function(e) {
-        e.preventDefault();
-        var $form = $(this);
-        $form.unbind('submit');
-
-        gaTrack(
-            ['_trackEvent', '/contribute Page Interactions', 'submit', 'Newsletter Registration'],
+            ['_trackEvent', '/contribute Page Interactions', 'Want to Help Form - Area of Interest', $('#id_contribute-interest')[0].value],
             function() { $form.submit(); }
         );
     });

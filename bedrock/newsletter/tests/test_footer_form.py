@@ -11,7 +11,7 @@ from bedrock.mozorg.tests import TestCase
 @patch('lib.l10n_utils.template_is_active', lambda *x: True)
 class TestNewsletterFooter(TestCase):
     def setUp(self):
-        self.view_name = 'newsletter.mozilla-and-you'
+        self.view_name = 'newsletter.subscribe'
 
     def test_country_selected(self):
         """

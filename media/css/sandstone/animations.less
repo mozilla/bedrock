@@ -1,0 +1,73 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@-webkit-keyframes sand-bounce-down {
+    0%, 60%, 75%, 90%, 100% {
+        -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+        transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -500px, 0);
+        transform: translate3d(0, -500px, 0);
+    }
+    60% {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 25px, 0);
+        transform: translate3d(0, 25px, 0);
+    }
+    75% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+    90% {
+        -webkit-transform: translate3d(0, 5px, 0);
+        transform: translate3d(0, 5px, 0);
+    }
+    100% {
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+@keyframes sand-bounce-down {
+    0%, 60%, 75%, 90%, 100% {
+        transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+    0% {
+        opacity: 0;
+        transform: translate3d(0, -500px, 0);
+    }
+    60% {
+        opacity: 1;
+        transform: translate3d(0, 25px, 0);
+    }
+    75% {
+        transform: translate3d(0, 0, 0);
+    }
+    90% {
+        transform: translate3d(0, 5px, 0);
+    }
+    100% {
+        transform: none;
+    }
+}
+
+@-webkit-keyframes sand-fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes sand-fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

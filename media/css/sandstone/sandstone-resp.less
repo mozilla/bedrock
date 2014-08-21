@@ -2,6 +2,7 @@
 @import "reset.less";
 @import "fonts.less";
 @import "buttons.less";
+@import "animations.less";
 
 /* {{{ Basic Colors, Text, Links */
 
@@ -805,8 +806,7 @@ nav.menu-bar {
 /* }}} */
 /* {{{ Footer Email Form */
 
-#footer-email-form,
-#newsletter-form {
+.newsletter-form {
     margin-bottom: 0;
 
     h3 {
@@ -844,11 +844,19 @@ nav.menu-bar {
             padding: 0 0 0 25px;
         }
     }
+
+    &.loading {
+        h3,
+        .form-contents,
+        .form-submit {
+            .transition(opacity .2s ease-in-out);
+            opacity: 0.2;
+        }
+    }
 }
 
 .html-rtl {
-    #footer-email-form,
-    #newsletter-form {
+    .newsletter-form {
         h3,
         .form-contents,
         .form-submit,
@@ -861,15 +869,19 @@ nav.menu-bar {
     }
 }
 
-#footer-email-form.thank, #newsletter-form.thank {
+.newsletter-form.thank {
+    display: none;
+    overflow: hidden;
     h3 {
         width: auto;
         margin: auto;
         padding: 0;
         float: none;
+        .animation(sand-bounce-down 0.7s ease-in 0.2s 1 normal both);
     }
     p {
         margin-top: @baseLine;
+        .animation(sand-fade-in 0.5s ease-in 0.8s 1 normal both);
     }
 }
 .js {
@@ -893,6 +905,14 @@ nav.menu-bar {
     padding-bottom: @baseLine / 2;
 }
 
+#newsletter-spinner {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
 
 /* }}} */
 /* {{{ Footer */
@@ -1032,7 +1052,7 @@ nav.menu-bar {
         .offset_narrow(1);
     }
 
-    #footer-email-form, #newsletter-form {
+    .footer-newsletter-form, #newsletter-form {
         h3 {
             .span_narrow(4);
             padding-top: 4px;
@@ -1243,7 +1263,7 @@ nav.menu-bar {
         margin: -25px 0 @baseLine;
     }
 
-    #footer-email-form, #newsletter-form {
+    .footer-newsletter-form, #newsletter-form {
         h3,
         .form-contents,
         .form-submit {
@@ -1258,7 +1278,7 @@ nav.menu-bar {
     }
 
     .html-rtl {
-        #footer-email-form,
+        .footer-newsletter-form,
         #newsletter-form {
             h3,
             .form-contents,

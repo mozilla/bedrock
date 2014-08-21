@@ -317,7 +317,7 @@ header[role="banner"],
     }
 }
 
-#footer-email-form {
+.footer-newsletter-form {
     width: 940px;
     padding: @baseLine;
     margin: (@baseLine * 2) auto;
@@ -332,15 +332,24 @@ header[role="banner"],
         padding: .4em 1em;
         font-size: 18px;
     }
-    &.thank {
-        h3 {
-            margin-bottom: @baseLine;
-        }
+}
+
+.newsletter-form.thank {
+    padding: @baseLine;
+    margin: (@baseLine * 2) auto;
+    width: 940px;
+}
+
+#whatsnew {
+    .footer-newsletter-form,
+    .newsletter-form.thank {
+        margin: @baseLine auto 170px auto;
     }
 }
 
-#whatsnew #footer-email-form {
-    margin: @baseLine auto 170px auto;
+#footer-email-errors .errorlist {
+    padding: (@baseLine / 2) @baseLine;
+    width: 940px;
 }
 
 footer[role="contentinfo"] {

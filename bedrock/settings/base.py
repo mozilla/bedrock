@@ -439,16 +439,18 @@ MINIFY_BUNDLES = {
         ),
         'common': (
             'js/libs/jquery-1.11.0.min.js',
+            'js/libs/spin.min.js',
             'js/base/global.js',
-            'js/base/footer-email-form.js',
+            'js/newsletter/form.js',
             'js/base/mozilla-input-placeholder.js',
             'js/base/mozilla-image-helper.js',
         ),
         'common-resp': (
             'js/libs/jquery-1.11.0.min.js',
+            'js/libs/spin.min.js',
             'js/base/global.js',
+            'js/newsletter/form.js',
             'js/base/nav-main-resp.js',
-            'js/base/footer-email-form.js',
             'js/base/mozilla-input-placeholder.js',
             'js/base/mozilla-image-helper.js',
         ),
@@ -485,9 +487,10 @@ MINIFY_BUNDLES = {
         ),
         'firefox': (
             'js/libs/jquery-1.11.0.min.js',
+            'js/libs/spin.min.js',
             'js/base/global.js',
+            'js/newsletter/form.js',
             'js/base/nav-main.js',
-            'js/base/footer-email-form.js',
             'js/base/mozilla-input-placeholder.js',
             'js/base/mozilla-image-helper.js',
         ),
@@ -497,9 +500,10 @@ MINIFY_BUNDLES = {
         ),
         'firefox-resp': (
             'js/libs/jquery-1.11.0.min.js',
+            'js/libs/spin.min.js',
             'js/base/global.js',
+            'js/newsletter/form.js',
             'js/base/nav-main-resp.js',
-            'js/base/footer-email-form.js',
             'js/base/mozilla-input-placeholder.js',
             'js/base/mozilla-image-helper.js',
         ),
@@ -641,9 +645,10 @@ MINIFY_BUNDLES = {
         ),
         'mozorg-resp': (
             'js/libs/jquery-1.11.0.min.js',
+            'js/libs/spin.min.js',
             'js/base/global.js',
+            'js/newsletter/form.js',
             'js/base/nav-main-resp.js',
-            'js/base/footer-email-form.js',
             'js/base/mozilla-image-helper.js',
         ),
         'nightly-firstrun': (
@@ -740,6 +745,11 @@ MINIFY_BUNDLES = {
             'js/facebookapps/Slider.js',
             'js/facebookapps/App.js',
             'js/facebookapps/downloadtab.js',
+        ),
+        'newsletter_form': (
+            'js/libs/jquery-1.11.0.min.js',
+            'js/libs/spin.min.js',
+            'js/newsletter/form.js',
         ),
     }
 }

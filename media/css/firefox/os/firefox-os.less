@@ -1283,11 +1283,7 @@ html[lang="pl"] {
   }
 }
 
-#footer-email-thanks {
-  display: none;
-}
-
-#footer-email-form {
+.footer-newsletter-form {
   width: @widthDesktop - (@gridGutterWidth * 4);
   margin: 0 auto @baseLine auto;
   background: #fff;
@@ -1297,6 +1293,11 @@ html[lang="pl"] {
     color: #47b8e4;
     text-decoration: underline;
   }
+}
+
+.newsletter-form.thank {
+  border: none;
+  box-shadow: none;
 }
 
 #footer-email-errors {
@@ -1342,7 +1343,7 @@ html[lang="pl"] {
     }
   }
 
-  #footer-email-form {
+  .footer-newsletter-form {
     width: 100%;
     background: transparent;
     margin: 0 auto;
@@ -1599,11 +1600,10 @@ html[lang="en-US"].js {
       width: 400px;
     }
   }
-  #footer-email-form {
-    width: @widthTablet - (@gridGutterWidth * 4);
-  }
-  #footer-email-errors {
-    width: @widthTablet;
+  .footer-newsletter-form,
+  #footer-email-errors,
+  .newsletter-form.thank {
+    width: @widthTablet - (@gridGutterWidth * 6);
   }
   .js {
     #get-firefox-os.scroller-on {
@@ -1895,11 +1895,11 @@ html[lang="en-US"].js {
   .bg-birthday {
     background: url('/media/img/firefox/os/bg/760/birthday.jpg') no-repeat center center;
   }
-  #footer-email-form {
+  .footer-newsletter-form {
     width: @widthMobileLandscape - (@gridGutterWidth * 2);
   }
   #footer-email-errors {
-    width: @widthMobileLandscape - @gridGutterWidth;
+    width: auto;
   }
 }
 
@@ -2098,11 +2098,11 @@ html[lang="en-US"].js {
       margin: 5px 0;
     }
   }
-  #footer-email-form {
+  .footer-newsletter-form {
     width: @widthMobile - (@gridGutterWidth * 2);
   }
   #footer-email-errors {
-    width: @widthMobile - @gridGutterWidth;
+    width: auto;
   }
   .bg-soccer {
     background: url('/media/img/firefox/os/bg/480/soccer.jpg') no-repeat center center;

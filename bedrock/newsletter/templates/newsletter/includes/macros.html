@@ -1,0 +1,13 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% macro email_form_thankyou() %}
+  <h3>{{ _('Thanks! Please check your inbox to confirm your subscription.') }}</h3>
+  <p>
+    {% trans %}
+      You'll receive an email from mozilla@e.mozilla.org to confirm your subscription.
+      If you don't see it, check your spam filter. You must confirm your subscription to receive our newsletter.
+    {% endtrans %}
+  </p>
+{% endmacro %}

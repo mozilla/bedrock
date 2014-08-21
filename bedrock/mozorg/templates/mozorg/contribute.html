@@ -1,10 +1,11 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+{% extends "mozorg/base-resp.html" %}
+
+{% from "newsletter/includes/macros.html" import email_form_thankyou with context %}
 
 {% add_lang_files "mozorg/15years" %}
-
-{% extends "mozorg/base-resp.html" %}
 
 {% block page_title %}{{_('Get Involved: Volunteer Opportunities at Mozilla')}}{% endblock %}
 {% block body_id %}contribute{% endblock %}
@@ -60,39 +61,28 @@
 
     {% if LANG.startswith('en') %}
       <aside id="newsletter">
-        {% if not newsletter_success %}
-          <form action="{{ secure_url() }}#newsletter" method="post" id="newsletter-form">
-            <input type="hidden" name="newsletter-form" value="Y">
-            <p>{{_('Sign up for a weekly newsletter that is full of community news and contribution opportunities.')}}</p>
-            {% if newsletter_form.errors %}
-              {{ newsletter_form.non_field_errors()|safe }}
-
-              <ul class="errorlist">
-                {% if newsletter_form.email.errors %}
-                <li>{{_('Please enter a valid email address.')}}</li>
-                {% endif %}
-
-                {% if newsletter_form.privacy.errors %}
-                <li>{{_('You must agree to the privacy policy.')}}</li>
-                {% endif %}
-              </ul>
-            {% endif %}
-
-            <div class="field field-email">{{ field_with_attrs(newsletter_form.email, placeholder=_('YOUR EMAIL HERE'))|safe }}</div>
-            <div class="form-details">
-              <div class="field field-country">{{ newsletter_form.country|safe }}</div>
-              <div class="field field-format">{{ newsletter_form.fmt|safe }}</div>
-              <div class="field field-privacy">{{ newsletter_form.privacy|safe }}</div>
-              <p><small>{{_('We will only send you Mozilla-related information.')}}</small></p>
-            </div>
-            <div class="field form-submit"><input name="test-submit" type="submit" value="{{_('Subscribe')}}" class="button"></div>
-          </form>
-        {% else %}
-        <h4>{{_('Thank you!')}}</h4>
-        {% endif %}
+        <div id="footer-email-errors" class="hidden">
+          <ul class="errorlist"></ul>
+        </div>
+        <form id="newsletter-form" class="newsletter-form footer-newsletter-form" action="{{ url('newsletter.subscribe') }}" method="post">
+          {{ newsletter_form.newsletters|safe }}
+          <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
+          <p>{{_('Sign up for a weekly newsletter that is full of community news and contribution opportunities.')}}</p>
+          <div class="field field-email">{{ field_with_attrs(newsletter_form.email, placeholder=_('YOUR EMAIL HERE'))|safe }}</div>
+          <div id="form-details">
+            <div class="field field-country">{{ newsletter_form.country|safe }}</div>
+            <div class="field field-format">{{ newsletter_form.fmt|safe }}</div>
+            <div class="field field-privacy">{{ newsletter_form.privacy|safe }}</div>
+            <p><small>{{_('We will only send you Mozilla-related information.')}}</small></p>
+          </div>
+          <div class="field form-submit"><input id="footer_email_submit" name="test-submit" type="submit" value="{{_('Subscribe')}}" class="button"></div>
+          <div id="newsletter-spinner" class="hidden"></div>
+        </form>
+        <div id="newsletter-form-thankyou" class="thank newsletter-form">
+          {{ email_form_thankyou() }}
+        </div>
       </aside>
     {% endif %}
-
     </div>
   </section>
 

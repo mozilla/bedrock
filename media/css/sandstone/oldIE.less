@@ -532,7 +532,7 @@ img {
 
 
 // Our standard footer email form
-#footer-email-form {
+.footer-newsletter-form {
     padding-top: @baseLine;
     padding-bottom: @baseLine;
     margin-bottom: 0;
@@ -576,11 +576,14 @@ img {
     }
 }
 
-#footer-email-form.thank h3 {
-    width: auto;
-    margin: auto;
-    padding: 0;
-    float: none;
+.footer-newsletter-form.thank {
+    display: none;
+    h3 {
+        width: auto;
+        margin: auto;
+        padding: 0;
+        float: none;
+    }
 }
 
 .js {
