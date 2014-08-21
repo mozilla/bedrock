@@ -450,6 +450,47 @@
 }
 
 
+// Simple style (no icon, no links, only subtitle ("Free download") visible)
+
+.download-button.download-button-simple {
+    .download-link {
+        margin-left: 0;
+        width: 240px;
+
+        .download-content {
+            background-image: none;
+            padding: @baseLine (@baseLine * 2);
+            margin-left: 0;
+            margin-bottom: 0;
+            min-height: 0;
+            color: #fff;
+            text-align: center;
+        }
+
+        .download-title, .download-lang {
+            display: none;
+        }
+
+        .download-subtitle {
+            font-size: 20px;
+        }
+    }
+
+    &.download-button-small {
+        .download-link {
+            width: 210px;
+
+            .download-content {
+                padding: (@baseLine / 2) @baseLine;
+            }
+
+            .download-subtitle {
+                font-size: @largeFontSize;
+            }
+        }
+    }
+}
+
 // OS detection
 
 .download-button .os_linux,

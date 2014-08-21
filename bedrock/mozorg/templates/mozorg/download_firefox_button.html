@@ -19,6 +19,7 @@
 {% set download_class = download_class ~ ' download-button-desktop' if not show_mobile else download_class %}
 {% set download_class = download_class ~ ' download-button-small' if small else download_class %}
 {% set download_class = download_class ~ ' download-button-noicon' if not icon else download_class %}
+{% set download_class = download_class ~ ' download-button-simple' if simple else download_class %}
 
 <div id="{{ id }}" class="{{ download_class }}">
   {% if show_desktop %}
@@ -29,7 +30,7 @@
       {{ alt_buttons(builds) }}
     </div>
     <p class="unsupported-download">
-      {{ _('Your system doesn\'t meet the <a href="%(url)s">requirements</a> to run Firefox.')|format(url=product_url('firefox', 'sysreq', build)) }}
+      {{ _("Your system doesn't meet the <a href=\"%(url)s\">requirements</a> to run Firefox.")|format(url=product_url('firefox', 'sysreq', build)) }}
     </p>
   {% endif %}
   <ul class="download-list">
@@ -83,7 +84,7 @@
     </small>
   {% endif %}
   {% if show_desktop %}
-    <small class="download-other os_linux os_linux64 os_osx os_windows">
+    <small class="download-other download-other-desktop os_linux os_linux64 os_osx os_windows"{% if simple %} style="display: none !important;"{% endif %}>
       <a href="{{ product_url('firefox', 'all', build) }}">{{ _('Systems &amp; Languages') }}</a> |
       <a href="{{ product_url('firefox', 'notes', build) }}">{{ _('What’s New') }}</a> |
       <a href="{{ url('privacy.notices.firefox') }}">{{ _('Privacy') }}</a>

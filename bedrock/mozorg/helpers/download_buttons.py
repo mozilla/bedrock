@@ -129,7 +129,7 @@ def make_download_link(product, build, version, platform, locale,
 @jingo.register.function
 @jinja2.contextfunction
 def download_firefox(ctx, build='release', small=False, icon=True,
-                     mobile=None, dom_id=None, locale=None,
+                     mobile=None, dom_id=None, locale=None, simple=False,
                      force_direct=False, force_full_installer=False,
                      force_funnelcake=False):
     """ Output a "download firefox" button.
@@ -143,6 +143,9 @@ def download_firefox(ctx, build='release', small=False, icon=True,
             is appropriate for the user's system.
     :param dom_id: Use this string as the id attr on the element.
     :param locale: The locale of the download. Default to locale of request.
+    :param simple: Display button with text only if True. Will not display
+            icon or privacy/what's new/systems & languages links. Can be used
+            in conjunction with 'small'.
     :param force_direct: Force the download URL to be direct.
     :param force_full_installer: Force the installer download to not be
             the stub installer (for aurora).
@@ -252,6 +255,7 @@ def download_firefox(ctx, build='release', small=False, icon=True,
         'builds': builds,
         'id': dom_id,
         'small': small,
+        'simple': simple,
         'build': alt_build,
         'show_mobile': mobile is not False,
         'show_desktop': mobile is not True,

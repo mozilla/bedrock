@@ -71,6 +71,12 @@
         var $thankYou = $('.thankyou');
         var hash_change = ('onhashchange' in window);
 
+        // if desktop with download available, re-locate dl button links
+        if (!no_scene2) {
+            var $downloadButtonLinks = $('.download-button-wrapper .download-other-desktop').detach();
+            $downloadButtonLinks.css('display', 'block').insertBefore('#firefox-screenshot');
+        }
+
         // Add external link tracking, excluding links in Tabzilla that will be
         // logged in tabzilla.js
         $('#outer-wrapper').on('click', 'a', function(e) {
