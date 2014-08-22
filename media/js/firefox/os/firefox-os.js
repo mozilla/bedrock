@@ -13,12 +13,36 @@
 
     var COUNTRY_CODE = '';
 
+    var $document = $(document);
+    var $window = $(window);
+    var $langContainer = $('#lang-panel-container');
+    var $langButtonOpen = $('#open-lang-panel');
+    var $langPanel = $('#lang-panel');
+    var langTimer;
+
+    var sessionLangPrefName = 'firefox.os.india-lang';
+
     /*
     * Set page specific content relating to geo for partner data etc
     */
     function setPartnerContent () {
         var $provider = $('#provider-links').find('.provider[data-country="' + COUNTRY_CODE + '"]');
         var $links;
+
+        // show language content selector if user is in india visiting the en-US/en-GB page
+        if (COUNTRY_CODE.toLowerCase() === 'in' && /en-US|en-GB/.test($('html').attr('lang'))) {
+            var suppressLangContentSelector = false;
+
+            // if user has already selected en-IN, don't bug them a second time
+            try {
+                if (sessionStorage.getItem(sessionLangPrefName) === 'en-IN') {
+                    suppressLangContentSelector = true;
+                    setEnInLocale();
+                }
+            } catch (ex) {}
+
+            initLangContentSelector(suppressLangContentSelector);
+        }
 
         if (COUNTRY_CODE !== '' && $provider.length > 0) {
             // make sure there are consumer-focused (non 'developer_only') partners
@@ -53,6 +77,93 @@
             $('#primary-cta-signup').fadeIn();
             $('#primary-cta-phone').addClass('visibility', 'hidden');
             $('#secondary-cta-signup').css('display', 'inline-block');
+        }
+    }
+
+    /*
+     * Init language content selector
+     * Only applicable to en-US visitors in India
+     */
+    function initLangContentSelector (suppressSelector) {
+        //show the panel on init
+        $langContainer.fadeIn(function () {
+            if (!suppressSelector) {
+                $langButtonOpen.focus();
+                toggleLangContentSelector();
+            }
+        });
+
+        $langButtonOpen.on('click', toggleLangContentSelector);
+    }
+
+    /*
+     * Sets page lang to en-IN and displays India specific content
+     */
+    function setEnInLocale () {
+        $('html').attr('lang', 'en-IN');
+        $('.india-show').show();
+        $('.india-hide').hide();
+    }
+
+    /*
+     * Toggle language content selector visibility
+     */
+    function toggleLangContentSelector () {
+        clearTimeout(langTimer);
+
+        if ($langPanel.hasClass('visible')) {
+            $langPanel.removeClass('visible');
+
+            // wait for CSS transition to complete before hiding
+            langTimer = setTimeout(function() {
+                $langPanel.hide();
+                $langButtonOpen.attr('aria-expanded', false);
+                $langButtonOpen.focus();
+            }, 300);
+
+            // remove listeners for performance boostingness
+            $document.off('click.lang-panel');
+            $window.off('scroll.lang-panel');
+        } else {
+            $langPanel.show();
+            $langButtonOpen.attr('aria-expanded', true);
+            langTimer = setTimeout(function () {
+                $langPanel.addClass('visible');
+
+                // hide panel when clicking outside in document
+                $document.on('click.lang-panel', function (e) {
+                    var $target = $(e.target);
+
+                    if (!$target.parents().is('#lang-panel') || $target.attr('id') === 'close-lang-panel') {
+                        toggleLangContentSelector();
+                    } else {
+                        e.preventDefault();
+
+                        var language = $target.data('lang');
+
+                        // if selecting English, swap content and remain on page
+                        if (language === 'English') {
+                            setEnInLocale();
+
+                            toggleLangContentSelector();
+
+                            // save choice in session so as to not bug user a second time
+                            try {
+                                sessionStorage.setItem(sessionLangPrefName, 'en-IN');
+                            } catch (ex) {}
+                        }
+
+                        gaTrack(['_trackEvent', 'FxOs Consumer Page', 'Indian Language Selection', language], function() {
+                            if (language !== 'English') {
+                                window.location = $target.attr('href');
+                            }
+                        });
+                    }
+                });
+
+                // hide panel on scroll
+                $window.on('scroll.lang-panel', toggleLangContentSelector);
+            }, 50);
         }
     }
 

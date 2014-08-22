@@ -313,7 +313,7 @@
         $tab.css('height', 0);
         $wrapper.addClass('scroll stuck');
       });
-      $('#masthead ul li a').animate({color: '#0096DD'}, 'fast');
+      $('#nav-main ul li a').animate({color: '#0096DD'}, 'fast');
 
     } else {
       $btn.fadeOut('fast');
@@ -322,7 +322,7 @@
       $current.promise().done(function () {
         $wrapper.removeClass('scroll');
       });
-      $('#masthead ul li a').animate({color: '##484848'}, 'fast');
+      $('#nav-main ul li a').animate({color: '##484848'}, 'fast');
       // Support for an information bar of Tabzilla
       var $infobar = $('#tabzilla-infobar').css('height', 'auto');
       if ($infobar.length) {
