@@ -2,15 +2,13 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import json
 import os.path
 from datetime import datetime
 
 from django.conf import settings
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.template import loader
 from django.views.decorators.http import last_modified
-from django.views.decorators.vary import vary_on_headers
 
 from lib import l10n_utils
 
@@ -61,17 +59,4 @@ def tabzilla_js(request):
 def transbar_jsonp(request):
     resp = _resp(request, 'tabzilla/transbar.jsonp', 'application/javascript')
     resp['Access-Control-Allow-Origin'] = '*'
-    return resp
-
-
-@cache_control_expires(24 * 30)
-@vary_on_headers('Accept-Language')
-def userlang_jsonp(request):
-    data = {
-        'languages': l10n_utils.get_accept_languages(request)
-    }
-    resp = HttpResponse('_({0});'.format(json.dumps(data)),
-                        content_type='application/javascript')
-    resp['Access-Control-Allow-Origin'] = '*'
-
     return resp

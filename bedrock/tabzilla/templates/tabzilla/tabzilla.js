@@ -193,22 +193,6 @@ var Tabzilla = (function (Tabzilla) {
     var removeCompactModeEvents = function () {
         nav.off('.submenu');
     };
-    Tabzilla.user = {};
-    Tabzilla.detectUserLang = function (callback) {
-        // Expose the user's accept languages in the HTTP Accept-Language
-        // request header, because the navigator.language property is just the
-        // application's locale on some browsers and the new navigator.languages
-        // property is not widely implemented yet.
-        $.ajax({ url: '/en-US/tabzilla/userlang.jsonp',
-                 cache: true, crossDomain: true, dataType: 'jsonp',
-                 jsonpCallback: "_", success: function (data) {
-            var lang = Tabzilla.user.languages = data.languages;
-
-            if (typeof callback === 'function') {
-                callback(lang);
-            }
-        }});
-    };
     Tabzilla.open = function () {
         opened = true;
         panel.toggleClass('open');
@@ -392,7 +376,12 @@ var Tabzilla = (function (Tabzilla) {
     Infobar.prototype.oncancel = {};
     Tabzilla.setupTransbar = function (userLangs, pageLang) {
         var transbar = new Infobar('transbar', 'Translation Bar');
-        userLangs = userLangs || Tabzilla.user.languages;
+
+        // Note that navigator.language doesn't always work because it's just
+        // the application's locale on some browsers. navigator.languages has
+        // not been widely implemented yet, but the new property provides an
+        // array of the user's accept languages that we'd like to see.
+        userLangs = userLangs || navigator.languages;
         pageLang = pageLang || document.documentElement.lang;
 
         if (transbar.disabled || !userLangs || !pageLang) {
@@ -614,9 +603,7 @@ var Tabzilla = (function (Tabzilla) {
 
         // Information Bars in order of priority
         var infobars = {
-            translation: function () {
-                Tabzilla.detectUserLang(Tabzilla.setupTransbar);
-            }
+            translation: Tabzilla.setupTransbar
         };
         $.each((tab.data('infobar') || '').split(' '), function (index, value) {
             var setup = infobars[value];
