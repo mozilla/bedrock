@@ -1,50 +1,34 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-
-from os import path
 import re
-import StringIO
-
-import jingo
-import markdown as md
-from bs4 import BeautifulSoup
-
-from commonware.response.decorators import xframe_allow
 
 from django.core.mail import EmailMessage
 from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_protect
 
+import jingo
+from commonware.response.decorators import xframe_allow
+from bs4 import BeautifulSoup
+
 from lib import l10n_utils
-from funfactory.settings_base import path as base_path
-from forms import PrivacyContactForm
+from .forms import PrivacyContactForm
+
+from bedrock.legal_docs.views import LegalDocView, load_legal_doc
 
 
-LEGAL_DOCS_PATH = base_path('vendor-local', 'src', 'legal-docs')
+HN_PATTERN = re.compile(r'^h(\d)$')
+HREF_PATTERN = re.compile(r'^https?\:\/\/www\.mozilla\.org')
 
 
-def load_legal_doc(request, doc_name):
+def process_legal_doc(content):
     """
     Load a static Markdown file and return the document as a BeautifulSoup
     object for easier manipulation.
+
+    :param content: HTML Content of the legal doc.
     """
-    locale = l10n_utils.get_locale(request)
-    source = path.join(LEGAL_DOCS_PATH, doc_name, locale + '.md')
-    output = StringIO.StringIO()
-
-    if not path.exists(source):
-        source = path.join(LEGAL_DOCS_PATH, doc_name, 'en-US.md')
-
-    # Parse the Markdown file
-    md.markdownFromFile(input=source, output=output,
-                        extensions=['attr_list', 'outline(wrapper_cls=)'])
-    content = output.getvalue().decode('utf8')
-    output.close()
-
     soup = BeautifulSoup(content)
-    hn_pattern = re.compile(r'^h(\d)$')
-    href_pattern = re.compile(r'^https?\:\/\/www\.mozilla\.org')
 
     # Manipulate the markup
     for section in soup.find_all('section'):
@@ -57,7 +41,7 @@ def load_legal_doc(request, doc_name):
 
         # Append elements to <header> or <div>
         for tag in section.children:
-            match = hn_pattern.match(tag.name)
+            match = HN_PATTERN.match(tag.name)
             if match:
                 header.append(tag)
                 level = int(match.group(1))
@@ -74,42 +58,39 @@ def load_legal_doc(request, doc_name):
             div.extract()
 
     # Convert the site's full URLs to absolute paths
-    for link in soup.find_all(href=href_pattern):
-        link['href'] = href_pattern.sub('', link['href'])
+    for link in soup.find_all(href=HREF_PATTERN):
+        link['href'] = HREF_PATTERN.sub('', link['href'])
 
-    # Return the HTML flagment as a BeautifulSoup object
+    # Return the HTML fragment as a BeautifulSoup object
     return soup
 
 
-@cache_page(60 * 60)  # cache for 1 hour
-def firefox_notices(request):
-    return l10n_utils.render(request, 'privacy/notices/firefox.html',
-                             {'doc': load_legal_doc(request, 'firefox_privacy_notice')})
+class PrivacyDocView(LegalDocView):
+    def get_legal_doc(self):
+        doc = super(PrivacyDocView, self).get_legal_doc()
+        return process_legal_doc(doc)
 
 
-@cache_page(60 * 60)  # cache for 1 hour
-def firefox_os_notices(request):
-    return l10n_utils.render(request, 'privacy/notices/firefox-os.html',
-                             {'doc': load_legal_doc(request, 'firefox_os_privacy_notice')})
+firefox_notices = PrivacyDocView.as_view(
+    template_name='privacy/notices/firefox.html',
+    legal_doc_name='firefox_privacy_notice')
 
+firefox_os_notices = PrivacyDocView.as_view(
+    template_name='privacy/notices/firefox-os.html',
+    legal_doc_name='firefox_os_privacy_notice')
 
-@cache_page(60 * 60)  # cache for 1 hour
-def firefox_cloud_notices(request):
-    return l10n_utils.render(request, 'privacy/notices/firefox-cloud.html',
-                             {'doc': load_legal_doc(request, 'firefox_cloud_services_PrivacyNotice')})
+firefox_cloud_notices = PrivacyDocView.as_view(
+    template_name='privacy/notices/firefox-cloud.html',
+    legal_doc_name='firefox_cloud_services_PrivacyNotice')
 
+websites_notices = PrivacyDocView.as_view(
+    template_name='privacy/notices/websites.html',
+    legal_doc_name='websites_privacy_notice')
 
-@cache_page(60 * 60)  # cache for 1 hour
-def websites_notices(request):
-    return l10n_utils.render(request, 'privacy/notices/websites.html',
-                             {'doc': load_legal_doc(request, 'websites_privacy_notice')})
-
-
-@cache_page(60 * 60)  # cache for 1 hour
-@xframe_allow
-def facebook_notices(request):
-    return l10n_utils.render(request, 'privacy/notices/facebook.html',
-                             {'doc': load_legal_doc(request, 'facebook_privacy_info')})
+facebook_notices = PrivacyDocView.as_view(
+    template_name='privacy/notices/facebook.html',
+    legal_doc_name='facebook_privacy_info')
+facebook_notices = xframe_allow(facebook_notices)
 
 
 def submit_form(request, form):
@@ -157,7 +138,9 @@ def privacy(request):
         'form': form,
         'form_submitted': form_submitted,
         'form_error': form_error,
-        'doc': load_legal_doc(request, 'mozilla_privacy_policy'),
+        'doc': process_legal_doc(load_legal_doc('mozilla_privacy_policy',
+                                                l10n_utils.get_locale(request))
+        ),
     }
 
     return l10n_utils.render(request, 'privacy/index.html', template_vars)
