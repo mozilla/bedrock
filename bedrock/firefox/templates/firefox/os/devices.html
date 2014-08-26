@@ -1166,7 +1166,13 @@
                       <strong>{{ _('5.0 MP') }}</strong>
                       {{ _('Rear camera, VGA Front camera') }}
                     </li>
+                    <li class="stat-storage">
+                      <strong>{{ _('4 GB') }}</strong>
+                      {{ _('Internal memory') }} *
+                    </li>
                   </ul>
+
+                  <small>* {{ memory_disclaimer }}</small>
                 </div>
 
                 <div class="feature-group availability">
@@ -1201,7 +1207,21 @@
                   <tr>
                     <th>{{ _('Processor') }}</th>
                     <td>
-                      {{ _('Dual core 1.2 GHz') }}
+                      {{ _('QCT 8210 dual core 1.2 GHz') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Memory') }}</th>
+                    <td>
+                      <dl>
+                        <dt>{{ _('ROM') }} *</dt>
+                        <dd>{{ _('4 GB') }}</dd>
+
+                        <dt>{{ _('RAM') }}</dt>
+                        <dd>{{ _('512 MB') }}</dd>
+                      </dl>
+
+                      <small>* {{ memory_disclaimer }}</small>
                     </td>
                   </tr>
                 </table>
