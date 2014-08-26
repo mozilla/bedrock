@@ -1,0 +1,225 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+#wrapper:before {
+    content: " ";
+    position: absolute;
+    top: 80px;
+    right: 85px;
+    height: 250px;
+    width: 250px;
+    z-index: 2;
+}
+
+.intro {
+    width: @widthDesktop - (@gridGutterWidth * 4);
+    margin: @baseLine auto;
+    text-align: center;
+    h1 {
+        font-size: 64px;
+        line-height: 1.2;
+    }
+    p {
+        .open-sans-light;
+        font-size: 22px;
+        line-height: 1.4;
+        margin: 0 0 (@baseLine / 2);
+    }
+}
+
+.sync-anim {
+    position: relative;
+    height: 190px;
+    width: 390px;
+    margin: @baseLine auto;
+    background-image: url('/media/img/firefox/sync/composite.png?04-2014');
+}
+
+.main-content {
+    clear: both;
+    margin-top: @baseLine;
+    h2 {
+        font-size: 24px;
+        line-height: 1.2;
+        padding-right: @baseLine;
+    }
+    article {
+        overflow: hidden;
+        header {
+            .span(3);
+        }
+        section {
+            .span(5);
+        }
+        aside {
+            .span(4);
+        }
+        &.primary {
+            padding-bottom: @baseLine;
+            border-bottom: 1px dotted @textColorLight;
+        }
+        &.secondary {
+            padding-top: @baseLine;
+        }
+    }
+
+    a:link,
+    a:visited {
+        color: @linkBlue;
+    }
+
+    a:hover,
+    a:active,
+    a:focus {
+        color: @linkBlueHover;
+    }
+
+    a.menu:before {
+        content:'\2630 ';
+    }
+
+    strong {
+        font-weight: normal;
+        color: #D55631;
+    }
+}
+
+
+
+.android-link {
+    .trailing-arrow();
+}
+
+.newsletter-form {
+    clear: both;
+}
+
+/* RTL support */
+html[dir="rtl"] {
+    #wrapper:before {
+        left: 85px;
+        right: auto;
+    }
+
+    .intro {
+        float: right;
+    }
+
+    .main-content {
+        h2 {
+            padding-right: 0;
+            padding-left: @baseLine;
+        }
+        article {
+            header,
+            section,
+            aside {
+                float: right;
+            }
+            ol {
+                margin-right: 20px;
+            }
+        }
+    }
+}
+
+/* Tablet Layout: 760px */
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+
+    #wrapper:before {
+        top: 120px;
+        right: 20px;
+        height: 175px;
+        width: 175px;
+        z-index: 2;
+    }
+
+    .intro {
+        width: @widthTablet - (@gridGutterWidth * 4);
+        h1 {
+            font-size: 42px;
+        }
+        p {
+            font-size: @largeFontSize;
+        }
+    }
+
+    .main-content article {
+        section {
+            .span(6);
+        }
+        aside {
+            .span(6);
+            margin-left: 250px;
+        }
+
+    }
+
+    html[dir="rtl"] {
+        .main-content article {
+            aside {
+                float: left;
+                margin-left: 10px;
+                margin-right: 250px;
+            }
+        }
+    }
+}
+
+/* Mobile layout: 480px */
+@media only screen and (max-width: @breakTablet) {
+
+    #wrapper:before {
+        content: "";
+        background: none;
+    }
+
+    .intro {
+        .span-all();
+        padding-bottom: 0;
+        h1 {
+            font-size: 36px;
+        }
+        p {
+            font-size: @largeFontSize;
+        }
+    }
+
+    .sync-anim {
+        float: none;
+        margin: 0 auto @baseLine auto;
+    }
+
+    .main-content {
+        article {
+            header,
+            section,
+            aside {
+                .span-all();
+            }
+        }
+    }
+
+    html[dir="rtl"] {
+        .intro {
+            float: none;
+        }
+        .main-content {
+            aside {
+                float: none;
+                text-align: right;
+            }
+        }
+    }
+}
+
+/* Mobile layout: 320px */
+@media only screen and (max-width: @breakMobileLandscape) {
+
+    .sync-anim {
+        display: none;
+    }
+}

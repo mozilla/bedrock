@@ -2,81 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "/firefox/base-resp.html" %}
-
-{% block page_title %}{{ _('Keep your Firefox in sync') }}{% endblock %}
-{% block body_id %}firefox-sync{% endblock %}
-
-{% block extrahead %}
-  {{ css('firefox_sync') }}
-  <!--[if gt IE 9]><!-->
-    {{ css('firefox_sync_anim') }}
-  <!--<![endif]-->
-{% endblock %}
-
-{% block content %}
-{% include 'firefox/includes/sync-animation.html' %}
-<header role="banner" class="intro container">
-  <h1>{{ self.page_title() }}</h1>
-  <p>{{ _('Instantly make Firefox your own wherever you use it. Seamlessly sync your bookmarks, history, passwords and more and access them from any device.') }}</p>
-</header>
-
-<div class="main-content billboard">
-  <article class="primary">
-    <header>
-      <h2>{{ _('Get started with Sync. It’s fast, safe and easy:') }}</h2>
-    </header>
-    <section>
-      <ol>
-        {% if l10n_has_tag('sync_new_markup') or settings.DEV %}
-          <li>{% trans url='https://support.mozilla.org/kb/learn-more-about-the-design-of-new-firefox' %}
-            Open the <a class="menu" href="{{ url }}#w_a-handy-new-menu">menu</a> in the top right of Firefox and select “<strong>Sign in to Sync.</strong>”
-          {% endtrans %}</li>
-          {# L10n: <strong> tags below used for font color formatting. #}
-          <li>{{ _('Click “<strong>Get started</strong>” in the tab that opens.') }}</li>
-          <li>{{ _('Enter an email address and password to “<strong>Create a Firefox Account.</strong>”') }}</li>
-          <li>{{ _('Click “<strong>Next</strong>” to get a verification sent to your email.') }}</li>
-        {% else %}
-          <li>{% trans url='https://support.mozilla.org/kb/learn-more-about-the-design-of-new-firefox' %}
-            Open the <a href="{{ url }}#w_a-handy-new-menu">menu</a> in the top right of Firefox and select “Sign in to Sync.”
-          {% endtrans %}</li>
-          <li>{{ _('Click “Get started” in the tab that opens.') }}</li>
-          <li>{{ _('Enter an email address and password to “Create a Firefox Account.”') }}</li>
-          <li>{{ _('Click “Next” to get a verification sent to your email.') }}</li>
-        {% endif %}
-      </ol>
-      <p>{{ _('Check your email and click the verification link.') }}</p>
-      <p>{{ _('You’re all set! Firefox will automatically sync in the background from now on.') }}</p>
-    </section>
-    <aside role="complimentary">
-      <ul class="unstyled">
-        <li><a class="more" href="https://support.mozilla.org/kb/how-do-i-set-up-firefox-sync">{{ _('Get more detailed instructions.') }}</a></li>
-        <li><a class="more" href="https://support.mozilla.org/kb/how-to-update-to-the-new-firefox-sync">{{ _('Using an older version of Sync?') }}</a></li>
-      </ul>
-    </aside>
-  </article>
-  <article class="secondary">
-    <header>
-      <h2>{{ _('Have an Android phone or tablet?') }}</h2>
-    </header>
-    <section>
-      <p>
-      {% if l10n_has_tag('sync_new_markup') or settings.DEV %}
-        {% trans url=settings.GOOGLE_PLAY_FIREFOX_LINK %}
-          <a href="{{ url }}">Download Firefox for Android</a> to sync between your desktop and mobile devices.
-        {% endtrans %}
-      {% else %}
-        {{ _('Download Firefox for Android to sync between your desktop and mobile devices.') }}
-      {% endif %}
-      </p>
-    </section>
-    <aside role="complimentary">
-      {{ download_firefox(force_direct=True, mobile=True, small=True) }}
-    </aside>
-  </article>
-</div>
-{% endblock %}
-
-{% block js %}
-  {{ js('firefox_sync') }}
-{% endblock %}
+{% if l10n_has_tag('firefox_sync_redesign') or settings.DEV %}
+  {% include 'firefox/sync-new.html' %}
+{% else %}
+  {% include 'firefox/sync-old.html' %}
+{% endif %}
