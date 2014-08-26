@@ -40,7 +40,7 @@ if (typeof Mozilla == 'undefined') {
         'alcatel_onetouchfiree': {
             'type': 'smartphone',
             'display': 'Alcatel One Touch Fire E',
-            'countries': ['de']
+            'countries': ['cz', 'de']
         },
         'huawei_y300-2': {
             'type': 'smartphone',
