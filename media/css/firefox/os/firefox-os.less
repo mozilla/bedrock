@@ -651,8 +651,7 @@ section p, header p {
 }
 
 // sprites (dotted lines/plus) should essentially only show for English language pages
-html[lang="en-US"] #get-firefox-os,
-html[lang="en-IN"] #get-firefox-os {
+html[lang="en-US"] #get-firefox-os {
   #adapt-features .content {
     top: 105px;
   }
@@ -777,7 +776,7 @@ html[lang="en-IN"] #get-firefox-os {
 }
 
 // hack for en-US visitors in India
-html[lang='en-IN'], html[lang='ta'] {
+html[lang='en-US'].en-IN {
   .phone-wrapper .screen {
     background-image: url('/media/img/firefox/os/phone/screens-en-in.jpg?2013-09');
   }
@@ -786,6 +785,12 @@ html[lang='en-IN'], html[lang='ta'] {
 html[lang='hi-IN'] {
   .phone-wrapper .screen {
     background-image: url('/media/img/firefox/os/phone/screens-hi-in.jpg');
+  }
+}
+
+html[lang='ta'] {
+  .phone-wrapper .screen {
+    background-image: url('/media/img/firefox/os/phone/screens-ta.jpg');
   }
 }
 
@@ -1529,7 +1534,7 @@ html[lang="pl"] {
 }
 
 // get sprites (dotted lines) to sit on top of phone
-html[lang="en-US"].js, html[lang="en-IN"].js {
+html[lang="en-US"].js {
   #get-firefox-os {
     .adapt-feature-sprite {
       display: block;
@@ -1751,7 +1756,7 @@ html[lang="en-US"].js, html[lang="en-IN"].js {
       }
     }
   }
-  html[lang="en-US"], html[lang="en-IN"] {
+  html[lang="en-US"] {
     #masthead {
       ul li {
         margin: 0 10px;
@@ -1899,8 +1904,8 @@ html[lang="en-US"].js, html[lang="en-IN"].js {
       display: none;
     }
   }
-  // content top pos for en-US/en-IN only
-  html[lang="en-US"], html[lang="en-IN"] {
+  // content top pos for en-US only
+  html[lang="en-US"] {
     #get-firefox-os {
       .content {
         left: 80px;
@@ -2125,12 +2130,10 @@ html[lang="en-US"].js, html[lang="en-IN"].js {
       }
     }
   }
-  // content top pos for en-US/en-IN only
-  html[lang="en-US"], html[lang="en-IN"] {
-    #get-firefox-os {
-      .content {
-        left: 65px;
-      }
+  // content top pos for en-US only
+  html[lang="en-US"] #get-firefox-os {
+    .content {
+      left: 65px;
     }
   }
   #have-it-all {
