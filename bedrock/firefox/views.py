@@ -444,7 +444,7 @@ class WhatsnewView(LatestFxView):
         # old versions of Firefox sent a prefixed version
         if oldversion.startswith('rv:'):
             oldversion = oldversion[3:]
-        versions = ('29.', '30.', '31.')
+        versions = ('29.', '30.', '31.', '32.', '33.')
 
         if version == '29.0a1':
             template = 'firefox/whatsnew-nightly-29.html'
