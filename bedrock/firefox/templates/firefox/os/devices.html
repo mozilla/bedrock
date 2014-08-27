@@ -687,11 +687,11 @@
             </a>
           </li>
           <li>
-            <a href="#alcatel_onetouchfirec" class="device-thumbnail device-coming-soon">
+            <a href="#alcatel_onetouchfirec" class="device-thumbnail">
               <img src="{{ media('/img/firefox/os/devices/smartphones/alcatel-onetouchfirec-thumb.png') }}" alt="">
               <span class="device-name">{{ _('Alcatel One Touch Fire C') }}</span>
               <div class="availability-notice">
-                <span class="coming-soon">{{ _('Coming Soon (mid-2014)') }}</span>
+                <span class="is-available">{{ _('Available') }}</span>
               </div>
             </a>
           </li>
@@ -855,7 +855,6 @@
 
               <ul class="pager-tabs">
                 <li><a href="#p1" data-label="Features">{{_('Features')}}</a></li>
-
               </ul>
 
               <button class="device-detail-close">{{ _('Close') }}</button>
@@ -887,6 +886,18 @@
                 </div>
 
                 <div class="feature-group availability">
+                  <h5>{{ _('Available in') }}</h5>
+
+                  <ul class="comma-list">
+                    <li>{{ _('Peru') }}</li>
+                    <li>{{ _('Spain') }}</li>
+                  </ul>
+
+                  <h5>{{ _('Operator') }}</h5>
+
+                  <ul class="comma-list">
+                    <li>{{ _('Movistar') }}</li>
+                  </ul>
                 </div>
               </div>{#--/.features--#}
             </div>{#--/.pager-content--#}
