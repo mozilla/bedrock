@@ -73,7 +73,7 @@
         var hash_change = ('onhashchange' in window);
 
         // if desktop with download available, re-locate dl button links
-        if (!no_scene2) {
+        if (!no_scene2 && $('.download-button-wrapper:visible').length > 0) {
             var $downloadButtonLinks = $('.download-button-wrapper .download-other-desktop').detach();
             $downloadButtonLinks.css('display', 'block').insertBefore('#firefox-screenshot');
         }
