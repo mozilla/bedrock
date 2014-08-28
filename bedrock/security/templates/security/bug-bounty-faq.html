@@ -2,10 +2,18 @@
 
 {% block page_title %}Mozilla Security Bug Bounty Program{% endblock %}
 
+{% block breadcrumbs %}
+  <nav class="breadcrumbs">
+    <a href="{{ url('mozorg.home') }}">{{ _('Home') }}</a> &gt;
+    <a href="{{ url('security.index') }}">{{ _('Mozilla Security') }}</a> &gt;
+    <a href="{{ url('security.bug-bounty') }}">{{ _(' Bug Bounty ') }}</a> &gt;
+  </nav>
+{% endblock %}
+
 {% block article %}
   <article class="section-content" itemscope itemtype="http://schema.org/Article">
     <header>
-      <h1 itemprop="name">Bug Bounty Program FAQ</h1>
+      <h1 itemprop="name" class="title-shadow-box">Bug Bounty Program FAQ</h1>
     </header>
     <div itemprop="articleBody">
       <p>This FAQ attempts to answer various questions about the Mozilla
@@ -72,7 +80,7 @@
 
       <h2>General questions</h2>
 
-      <dl class="qandaset">
+      <dl class="faq">
         <dt class="question" id="why">Why is the Mozilla Foundation doing
           this?</dt>
 
@@ -98,7 +106,7 @@
 
       <h2>Eligible software</h2>
 
-      <dl class="qandaset">
+      <dl class="faq">
         <dt class="question" id="other-products">Can I get the bug
           bounty reward if I discover a bug in Camino, Galeon, K-Meleon, Netscape
           7, Mozilla Suite, SeaMonkey, or other products based on Mozilla code?</dt>
@@ -191,7 +199,7 @@
 
       <h2>Eligible bugs</h2>
 
-      <dl class="qandaset">
+      <dl class="faq">
         <dt class="question" id="eligible-bugs">What types of security bugs are
           eligible?</dt>
 
@@ -229,7 +237,7 @@
 
       <h2>Bug reporting, etc.</h2>
 
-      <dl class="qandaset">
+      <dl class="faq">
         <dt class="question" id="already-published">I've already
           published information about the bug, and didn't go through the Mozilla
           bug process; can I still get a reward?</dt>

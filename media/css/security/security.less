@@ -4,67 +4,138 @@
 
 @import "../sandstone/sandstone-resp.less";
 
-// IMPACT LEVELS
-.critical {
-    background-color: #FF8080;
+// Security impact levels
+
+.section-content {
+    .level-item {
+        position: relative;
+        margin: 0;
+        list-style-type: none;
+        border-top: 1px solid @borderColor;
+        padding: .714rem 0 .5rem;
+        padding-left: 100px;
+    }
 }
-.high {
-    background-color: #FFC080;
+
+.level {
+    background: #f3f3f3;
+    border-right: 3px solid #ccc;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.05), 0 -1px 0 rgba(0,0,0,0.05) inset;
+    color: @textColorPrimary;
+    display: inline-block;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 14px;
+    padding: 4px 2px 4px 4px;
+    position: absolute;
+    top: .714rem;
+    left: 0;
+    text-shadow: 1px 1px 0 #fff;
+    text-transform: uppercase;
+    width: 80px;
+    &.critical {
+        background-color: #ffc8c8;
+        border-color: #c00;
+    }
+    &.high {
+        background-color: #e9cfff;
+        border-color: #8106e0;
+    }
+    &.moderate {
+        background-color: #ffedcf;
+        border-color: #f90;
+    }
+    // none for .level.low
 }
-.moderate {
-    background-color: #FFFF80;
+
+.advisory {
+    .title-shadow-box {
+        font-size: 32px;
+        letter-spacing: normal;
+    }
 }
-// none for .low
 
 li:target {
     background-color: lighten(@linkSkyBlue, 25%);
 }
+
+
+// Advisory Summary
+
+.summary {
+    .clearfix();
+    dt {
+        float: left;
+        text-transform: uppercase;
+        font-size: @largeFontSize;
+        letter-spacing: normal;
+        color: @textColorTertiary;
+        clear: left;
+        text-align: right;
+        width: 100px;
+        padding: 10px;
+        margin: 0;
+        line-height: 1.3;
+    }
+    dd {
+        padding: 10px 10px 10px 120px;
+        border-top: 1px dotted @borderColor;
+        margin: 0;
+        position: relative;
+        .level {
+            left: 120px;
+        }
+    }
+    ul {
+        margin: 0;
+    }
+}
+
 
 #outer-wrapper {
   overflow: hidden; /* Fix the layout on IE */
 }
 
 #masthead {
-  margin: 0 auto;
+    margin: 0 auto;
 }
 
 #main-content {
-  margin-top: 50px;
-  padding: 0;
+    margin-top: 50px;
+    padding: 0;
 }
 
 .main-column {
-  float: left;
-  margin: 0;
-  padding: 0;
-  width: (@gridColumnWidth * 9) + (@gridGutterWidth * 9);
+    float: left;
+    margin: 0;
+    padding: 0;
+    width: (@gridColumnWidth * 9) + (@gridGutterWidth * 9);
 
-  section, article {
-    padding: 25px;
-  }
+    section,
+    article {
+        padding: 25px;
+    }
 
-  article {
-    header {
-      .logo {
-        position: relative;
-        float: right;
-        margin: -80px -20px 0 0;
-        vertical-align: top;
-      }
-
-      p {
-        clear: both;
-        margin: 1em 0;
-      }
-
-      .meta {
-        color: @textColorTertiary;
-        font-style: italic;
-      }
-
-      & + * {
-        clear: both;
-      }
+    article {
+        header {
+       .logo {
+           position: relative;
+           float: right;
+           margin: -80px -20px 0 0;
+           vertical-align: top;
+       }
+       p {
+           clear: both;
+           margin: 1em 0;
+       }
+       .meta {
+           color: @textColorTertiary;
+           font-style: italic;
+       }
+       & + * {
+         clear: both;
+       }
     }
 
     section {
@@ -76,49 +147,47 @@ li:target {
       }
     }
 
-    .highlight {
-      margin: 15px 0;
-      padding: 15px;
-      color: @textColorPrimary;
-      background-color: #f9fafb;
-      box-shadow: 1px 1px 2px #999;
-      line-height: 1.5;
-
-      h2, h3, h4 {
-        line-height: 1.3;
-      }
-
-      h4 {
-        font-size: 20px;
-      }
-
-      hr {
-        margin: 20px auto;
-        border-bottom: 1px solid #ccc;
-        width: 80%;
-      }
-
-      [tabindex] {
-        outline: 0;
-      }
-
-      [role="tab"] {
-        &[aria-expaned] {
-          cursor: pointer;
-        }
-
-        a {
-          margin: 0 .5em;
-        }
-      }
-
-      [aria-hidden="true"] {
-        display: none;
-      }
-    }
-  }  
+  }
 }
 
+
+.section-content {
+    section {
+        .span(8);
+        clear: both;
+    }
+    .intro {
+        clear: both;
+        font-size: 1.2em;
+        margin-bottom: 20px;
+    }
+    .links {
+        .clearfix();
+        clear: right;
+        .span(4);
+
+        li {
+            list-style-type: none;
+            margin: 0 0 @baseLine;
+            padding-bottom: 10px;
+            background: url(/media/img/mission/thin-stripe.png) center bottom repeat-x;
+            min-height: @baseLine * 4;
+        }
+
+        h4 {
+            margin-bottom: @baseLine / 6;
+            a:after {
+                content: " »";
+                .open-sans-light;
+            }
+        }
+
+        p {
+            font-size: .857em;
+            margin-bottom: @baseLine / 2;
+        }
+    }
+}
 .sidebar {
   float: left;
   margin: 0;
@@ -129,241 +198,17 @@ li:target {
     padding: 25px 25px 0;
   }
 
-  section section {
-    padding: 0;
-  }
-
-  nav h2 {
-    font-size: 20px;
-  }
 }
 
 .section-content {
-  margin-bottom: @gridGutterWidth;
-  padding: @gridGutterWidth;
-  background-color: #fff;
-  @shadow: 0 0 0 1px #fff inset;
-  .box-shadow(@shadow);
-
-  p, ul {
-    margin: 1em 0;
-  }
-
-  li {
-    margin: .5em 0 0 1.5em;
-  }
-}
-
-#side-principles a:after {
-  content: "\00A0\00BB"; /* nbsp raquo */
-}
-
-#side-notices nav {
-  padding: 0;
-
-  ul {
-    margin: 0;
-  }
-
-  li {
-    padding: 5px 0;
-    font-size: @baseFontSize;
-    .open-sans;
-
-    &:last-of-type {
-      border-width: 0;
-    }
-
-    a {
-      padding: 12px 0 12px 48px;
-      background-image: url(/media/img/privacy/icons.png);
-      background-repeat: no-repeat;
-    }
-
-    &.policy-firefox a,
-    &.policy-firefox-os a,
-    &.policy-firefox-cloud a {
-      background-position: left -40px;
-    }
-
-    &.policy-marketplace a {
-      background-position: left -80px;
-    }
-
-    &.policy-persona a {
-      background-position: left -120px;
-    }
-  }
-}
-
-#side-archives h2 a {
-  .open-sans;
-  font-size: @baseFontSize;
-  letter-spacing: normal;
-}
-
-
-/* Landing Page */
-
-#privacy-landing {
-  #main-content {
-    margin-top: 0;
-  }
-
-  #contact {
-    header {
-      float: left;
-      width: 250px;
-    }
-
-    form {
-      display: block;
-      margin-left: 275px;
-
-      legend {
-        font-size: 20px;
-        line-height: 1.3;
-
-        /* A hack for IEs */
-        &, & span {
-          display: block;
-          width: 95%;
-          white-space: normal;
-        }
-      }
-
-      input,
-      textarea {
-        .border-box;
-        margin-bottom: 15px;
-        width: 100%;
-        *width: 95%; /* IE6, IE7 */
-      }
-    }
-  }
-}
-
-/* Principles Page */
-
-#privacy-principles {
-  .main-column {
-    margin: 0;
-
-    li {
-      /* Style the list counters */
-      color: @textColorSecondary;
-      font-size: 32px;
-      .open-sans-light;
-    }
-
-    p {
-      /* And reset the style for the child node */
-      color: @textColorPrimary;
-      font-size: @baseFontSize;
-      .open-sans;
-    }
-  }
-}
-
-/* Firefox Browser Privacy Notice Page */
-
-#firefox-notice {
-  .main-column .highlight h3 {
-    margin-top: @baseLine;
-  }
-}
-
-/* I18N */
-
-html[dir="rtl"] {
-  .main-column,
-  .sidebar {
-    float: right;
-  }
-
-  .main-column article header .logo {
-    float: left;
-    margin: -80px 0 0 -20px;
-  }
-
-  .section-content li {
-    margin: .5em 1.5em 0 0;
-  }
-
-  .title-shadow-box {
-    float: right;
-    margin-right: 0;
-  }
-
-  #side-notices nav li {
-    a {
-      padding: 12px 48px 12px 0;
-    }
-
-    &.policy-websites a {
-      background-position: right 0;
-    }
-
-    &.policy-firefox a,
-    &.policy-firefox-os a {
-      background-position: right -40px;
-    }
-
-    &.policy-marketplace a {
-      background-position: right -80px;
-    }
-
-    &.policy-persona a {
-      background-position: right -120px;
-    }
-  }
-
-  #side-archives li {
-    margin: 0 20px 0 0;
-  }
-
-  #privacy-landing #contact {
-    header {
-      float: right;
-    }
-
-    form {
-      margin: 0 275px 0 0;
-    }
-  }
-
-  #privacy-principles .main-column li {
-    float: right;
-    margin: 30px 65px 0 30px;
-  }
+    margin-bottom: @gridGutterWidth;
+    padding: @gridGutterWidth;
+    background-color: #fff;
+    @shadow: 0 0 0 1px #fff inset;
+    .box-shadow(@shadow);
 }
 
 /* Tablet & Mobile */
-
-@media only screen and (max-width: @breakDesktop) {
-  #privacy-landing #contact {
-    header {
-      float: none;
-      width: auto;
-    }
-
-    form {
-      margin: 0;
-    }
-  }
-
-  html[dir="rtl"] {
-    #privacy-landing #contact {
-      header {
-        float: none;
-      }
-
-      form {
-        margin: 0;
-      }
-    }
-  }
-}
 
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
   #main-content {
@@ -382,14 +227,6 @@ html[dir="rtl"] {
     width: (@gridColumnWidthNarrow * 4) + (@gridGutterWidth * 6);
   }
 
-  #privacy-principles .main-column li {
-    .span_narrow(5);
-    margin: 30px 10px 0 65px;
-  }
-
-  html[dir="rtl"] #privacy-principles .main-column li {
-    margin: 30px 65px 0 10px;
-  }
 }
 
 @media only screen and (max-width: @breakTablet) {
@@ -430,27 +267,6 @@ html[dir="rtl"] {
     margin: 15px -15px;
   }
 
-  #privacy-principles .main-column {
-    header {
-      width: auto;
-    }
-
-    li {
-      float: none;
-      margin: 30px 0 0 40px;
-      width: auto;
-      font-size: 24px;
-    }
-
-    h2 {
-      font-size: 24px;
-    }
-
-    p {
-      font-size: @baseFontSize;
-    }
-  }
-
   html[dir="rtl"] {
     .main-column article header {
       .logo {
@@ -463,11 +279,19 @@ html[dir="rtl"] {
         }
       }
     }
-
-    #privacy-principles .main-column li {
-      margin: 30px 40px 0 0;
-    }
   }
+
+}
+
+
+@media only screen and (max-width: @breakTablet) {
+
+    .advisory {
+        .title-shadow-box {
+            font-size: 28px;
+        }
+    }
+
 }
 
 @media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
@@ -477,21 +301,5 @@ html[dir="rtl"] {
 
   #masthead {
     width: @breakMobileLandscape - (@gridGutterWidth * 3);
-  }
-}
-
-@media only screen and (max-width: @breakMobileLandscape) {
-  /* Bug 980659: Avoid a title overflow in Germany */
-  html[lang="de"] #fxos-notice {
-    .main-column article header {
-      .logo {
-        float: none;
-
-        & + h1,
-        & + h1 + .meta {
-          margin-left: 0;
-        }
-      }
-    }
   }
 }
