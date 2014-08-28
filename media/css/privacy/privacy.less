@@ -150,7 +150,10 @@
   }
 
   li {
+    display: table;
     padding: 5px 0;
+    width: 100%;
+    height: 40px;
     font-size: @baseFontSize;
     .open-sans;
 
@@ -159,9 +162,12 @@
     }
 
     a {
-      padding: 12px 0 12px 48px;
+      display: table-cell;
+      padding: 0 0 0 48px;
       background-image: url(/media/img/privacy/icons.png);
       background-repeat: no-repeat;
+      line-height: 1.2;
+      vertical-align: middle;
     }
 
     &.policy-firefox a,
@@ -281,7 +287,7 @@ html[dir="rtl"] {
 
   #side-notices nav li {
     a {
-      padding: 12px 48px 12px 0;
+      padding: 0 48px 0 0;
     }
 
     &.policy-websites a {
