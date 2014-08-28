@@ -70,7 +70,7 @@ if (typeof Mozilla == 'undefined') {
         'zte_open2': {
             'type': 'smartphone',
             'display': 'ZTE Open II',
-            'countries': ['co', 'pe', 'sv']
+            'countries': ['co', 'pa', 'pe', 'sv']
         }
     };
 })(window.jQuery);
