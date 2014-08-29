@@ -37,7 +37,7 @@
             try {
                 if (sessionStorage.getItem(sessionLangPrefName) === 'en-IN') {
                     suppressLangContentSelector = true;
-                    setEnInLocale();
+                    setEnInContent();
                 }
             } catch (ex) {}
 
@@ -97,10 +97,10 @@
     }
 
     /*
-     * Sets page lang to en-IN and displays India specific content
+     * Directs page to show India specific content while still in en-US locale
      */
-    function setEnInLocale () {
-        $('html').attr('lang', 'en-IN');
+    function setEnInContent () {
+        $('html').addClass('en-IN');
         $('.india-show').show();
         $('.india-hide').hide();
     }
@@ -143,7 +143,7 @@
 
                         // if selecting English, swap content and remain on page
                         if (language === 'English') {
-                            setEnInLocale();
+                            setEnInContent();
 
                             toggleLangContentSelector();
 
