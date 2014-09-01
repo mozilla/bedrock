@@ -1,0 +1,154 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../../sandstone/lib.less";
+@import "home-grid.less";
+
+#outer-wrapper {
+    min-width: @widthSquareGrid_6;
+}
+
+.mission {
+    background: #c13832;
+}
+
+.promo-grid-wrapper {
+    width: @widthSquareGrid_6;
+    margin: 0 auto;
+}
+
+.faces-grid-inner {
+    width: @widthSquareGrid_6;
+    left: 0;
+    margin-left: @baseLine;
+    background: url(/media/img/home/voices/mosaic-background.jpg?17-09-2014) -10px 0 repeat;
+}
+
+.promo-large-landscape,
+.promo-large-portrait {
+
+    h2 {
+
+        &.go:after {
+            width: 40px;
+            height: 40px;
+            font-family: inherit;
+            text-indent: 0;
+            content: '';
+            border: none;
+            background-image: url(/media/img/home/voices/promos/go-sprite.png?08-09-2014);
+            background-position: 0 0;
+            background-repeat: no-repeat;
+        }
+    }
+
+}
+
+/****************************************************************************/
+// Firefox Download
+.promo-small-landscape.firefox-download {
+
+    h2.go:after {
+        width: 40px;
+        height: 40px;
+        font-family: inherit;
+        content: '';
+        border: none;
+        background-image: url(/media/img/home/voices/promos/go-sprite.png?08-09-2014);
+        background-position: 0 -84px;
+        background-repeat: no-repeat;
+    }
+
+    &.show {
+        .secondary {
+            visibility: visible;
+        }
+    }
+}
+
+/****************************************************************************/
+// Twitter
+.promo-small-landscape.twt {
+
+    .twt-account:before {
+        font-family: inherit;
+        content: '';
+        width: 40px;
+        height: 40px;
+        border: none;
+        text-indent: 0;
+        background-image: url(/media/img/home/voices/promos/social/twt-sprite.png);
+        background-position: 0 0;
+        background-repeat: no-repeat;
+    }
+
+    .twt-reply {
+        top: 50px;
+        background-image: url(/media/img/home/voices/promos/social/twt-sprite.png);
+        background-position: 0 -42px;
+        background-repeat: no-repeat;
+
+        &:before {
+            font-family: inherit;
+            content: '';
+        }
+    }
+
+    .twt-rt {
+        top: 80px;
+        background-image: url(/media/img/home/voices/promos/social/twt-sprite.png);
+        background-position: 0 -74px;
+        background-repeat: no-repeat;
+
+        &:before {
+            font-family: inherit;
+            content: '';
+        }
+    }
+
+    a:link,
+    a:visited {
+        color: #fff;
+    }
+}
+
+/****************************************************************************/
+// Firefox Sync
+.promo-large-portrait.sync {
+
+    h2 {
+
+        &.go:after {
+            border: none;
+            color: #4f6861;
+            background-position: 0 -42px;
+        }
+    }
+}
+
+#community ul li .stat {
+
+    &:before {
+        top: 10px;
+        font-family: inherit;
+        background: url(/media/img/home/voices/community-icon-sprite.png) no-repeat 0 0;
+    }
+
+    &.organizations:before {
+        content: '';
+        background-position: 0 -44px;
+    }
+
+    &.contributors:before {
+        content: '';
+        height: 49px;
+        background-position: 0 -88px;
+    }
+
+    &.countries:before {
+        content: '';
+        left: 10px;
+        background-position: 0 0;
+    }
+}
