@@ -142,7 +142,7 @@ class TestHome(TestCase):
         req = self.rf.post('/')
         self.view(req)
         # would return 405 before calling render otherwise
-        resp_mock.assert_called_once_with(req, ['mozorg/home.html'], ANY)
+        resp_mock.assert_called_once_with(req, ['mozorg/home/index.html'], ANY)
 
 
 class TestViews(TestCase):
