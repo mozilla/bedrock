@@ -139,7 +139,10 @@ def TwitterAPI(account):
     https://dev.twitter.com/docs/api/1.1
     http://pythonhosted.org/tweepy/html/
     """
-    keys = settings.TWITTER_APP_KEYS[account]
+    if account in settings.TWITTER_APP_KEYS:
+        keys = settings.TWITTER_APP_KEYS[account]
+    else:
+        keys = settings.TWITTER_APP_KEYS['default']
     auth = tweepy.OAuthHandler(keys['CONSUMER_KEY'], keys['CONSUMER_SECRET'])
     auth.set_access_token(keys['ACCESS_TOKEN'], keys['ACCESS_TOKEN_SECRET'])
 

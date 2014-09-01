@@ -1,0 +1,9 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% if l10n_has_tag('homepage_2015') or settings.DEV %}
+  {% include 'mozorg/home/home-new.html' %}
+{% else %}
+  {% include 'mozorg/home.html' %}
+{% endif %}
