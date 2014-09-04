@@ -58,12 +58,13 @@ if (typeof Mozilla === 'undefined') {
 /**
  * Pager widget
  *
- * @param DOMElement container
+ * @param jQuery Object $container - jQuery representation of element
+ *          containing the pager.
  */
-Mozilla.Pager = function(container) {
+Mozilla.Pager = function($container) {
     'use strict';
 
-    this.$container = $(container);
+    this.$container = $container;
 
     // If the potential pager has already been initialized, just return
     // a reference to the existing pager object.
@@ -284,8 +285,10 @@ Mozilla.Pager.createPagers = function(autoOnly) {
 
     // Find all pagers that have not been initialized.
     $('.pager').not('.pager-initialized').each(function(i, pagerNode) {
-        if ((autoOnly && $(pagerNode).hasClass('pager-auto-init')) || !autoOnly) {
-            new Mozilla.Pager(pagerNode);
+        var $pagerNode = $(pagerNode);
+
+        if ((autoOnly && $pagerNode.hasClass('pager-auto-init')) || !autoOnly) {
+            new Mozilla.Pager($pagerNode);
         }
     });
 };
