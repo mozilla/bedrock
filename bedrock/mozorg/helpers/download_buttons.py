@@ -27,7 +27,7 @@ nightly_android = ('https://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/'
                    'latest-mozilla-aurora-android')
 
 download_urls = {
-    'transition': '/firefox/new/#download-fx',
+    'transition': '/firefox/new/?scene=2#download-fx',
     'direct': 'https://download.mozilla.org/',
     'aurora': nightly_desktop,
     'aurora-l10n': nightly_desktop + '-l10n',
