@@ -68,6 +68,9 @@
       .billboard .field-format input {
         display: inline;
       }
+      .hidden {
+        display: none;
+      }
 
     </style>
   </head>
@@ -77,5 +80,6 @@
       {# set target without invalidating already translated strings. #}
       document.getElementsByTagName('a')[0].target = '_top';
     </script>
+    {{ js('newsletter_form') }}
   </body>
 </html>

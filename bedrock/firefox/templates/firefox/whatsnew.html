@@ -18,7 +18,7 @@
 
 {% block content %}
 {% if request.locale.startswith('en') %}
-  {% set mobile_link = url('firefox.fx') + '#mobile' %}
+  {% set mobile_link = url('firefox.android.index') %}
 {% else %}
   {% set mobile_link = php_url('/mobile/') %}
 {% endif %}
@@ -94,7 +94,7 @@
       height="360"
       width="640"
       data-overlay-hidden-text="{{_('Play video')}}">
-      <source src="//videos-cdn.mozilla.net/serv/marketing/fxforandroid/10-07-12_firefox_for_android_{{ locales_with_video[request.locale] }}-640x360 Video Sharing.webm">
+      <source src="//videos.cdn.mozilla.net/serv/marketing/fxforandroid/10-07-12_firefox_for_android_{{ locales_with_video[request.locale] }}-640x360 Video Sharing.webm">
     </video>
   </div>
   </div>
@@ -115,11 +115,11 @@
   <nav>
     <ul class="primary">
       <li> <a href="{{ product_url('firefox', 'notes') }}">{{ _('Release Notes') }}</a></li>
-      <li><a href="{{ url('firefox.features') }}">{{ _('Firefox Features') }}</a></li>
+      <li><a href="{{ url('firefox.desktop.index') }}">{{ _('Firefox Features') }}</a></li>
       <li><a href="https://support.mozilla.org/">{{ _('Firefox Help') }}</a></li>
     </ul>
     <ul class="secondary">
-      <li><a href="{{ php_url('/privacy-policy.html') }}">{{ _('Privacy Policy') }}</a></li>
+      <li><a href="{{ url('privacy') }}">{{ _('Privacy Policy') }}</a></li>
       <li><a href="{{ php_url('/about/legal.html') }}">{{ _('Legal Notices') }}</a></li>
     </ul>
   </nav>

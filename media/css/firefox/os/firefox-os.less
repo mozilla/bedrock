@@ -2,7 +2,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-
 @import "../../sandstone/sandstone-resp.less";
 @import "get_device.less";
 
@@ -101,7 +100,7 @@ html, body {
     }
     .curr:before,
     .curr:after {
-      top: 100%;
+      top: 50px;
       border: solid transparent;
       content: " ";
       height: 0;
@@ -144,6 +143,108 @@ html, body {
     top: 0;
     left: 0;
   }
+}
+
+#lang-panel-container {
+    display: none;
+    position: relative;
+    float: left;
+    width: 44px;
+    height: 44px;
+    margin: 29px 0 0 @gridGutterWidth;
+
+    button {
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+}
+
+#open-lang-panel {
+    width: 37px;
+    height: 21px;
+    .image-replaced();
+    background: url(/media/img/firefox/os/icon-lang-select.png) center center no-repeat;
+}
+
+#lang-panel {
+    display: none;
+    position: absolute;
+    top: 32px;
+    left: 0;
+    width: 200px;
+    padding: @baseLine (@baseLine / 2) (@baseLine / 2);
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    .transition(opacity .3s ease-in-out);
+
+    // triangle common
+    &:before, &:after {
+      position: absolute;
+      content: '';
+      width: 0;
+      height: 0;
+      display: block;
+      border-style: solid;
+      border-color: transparent;
+      border-top: 0;
+    }
+
+    // triangle stroke
+    &:before {
+      top: -8px;
+      left: 24px;
+      border-bottom-color: rgba(0, 0, 0, 0.1);
+      border-width: 8px;
+    }
+
+    // triangle fill
+    &:after {
+      top: -7px;
+      left: 25px;
+      border-bottom-color: #fff;
+      border-width: 7px;
+    }
+
+    &.visible {
+        opacity: 1;
+    }
+
+    p {
+        font-size: 14px;
+        &:focus {
+            outline: none;
+        }
+    }
+
+    #lang-panel-options {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        li {
+            display: inline-block;
+            margin: 0;
+            padding: 0 (@gridGutterWidth / 2);
+            border-right: 1px dotted #000;
+
+            &.last {
+                border: none;
+            }
+        }
+    }
+}
+
+#close-lang-panel {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  width: 15px;
+  height: 15px;
+  overflow: hidden;
+  .image-replaced();
+  background: url(/media/img/firefox/os/icon-close.png) center center no-repeat;
 }
 
 h2 {
@@ -269,7 +370,7 @@ section p, header p {
       right: 28px;
 
       a {
-        font-family: 'Open Sans Light', sans-serif;
+        .open-sans-light;
         font-size: 16px;
         font-weight: normal;
       }
@@ -290,6 +391,11 @@ section p, header p {
       }
     }
   }
+}
+
+//developer only phones should only display on /firefox/os/devices
+#provider-links .developer-only {
+    display: none;
 }
 
 //get phone modals are JS dependent, so hide by default
@@ -544,7 +650,7 @@ section p, header p {
   }
 }
 
-// sprites (dotted lines/plus) should essentially only show for en-US
+// sprites (dotted lines/plus) should essentially only show for English language pages
 html[lang="en-US"] #get-firefox-os {
   #adapt-features .content {
     top: 105px;
@@ -669,6 +775,25 @@ html[lang="en-US"] #get-firefox-os {
   }
 }
 
+// hack for en-US visitors in India
+html[lang='en-US'].en-IN {
+  .phone-wrapper .screen {
+    background-image: url('/media/img/firefox/os/phone/screens-en-in.jpg?2013-09');
+  }
+}
+
+html[lang='hi-IN'] {
+  .phone-wrapper .screen {
+    background-image: url('/media/img/firefox/os/phone/screens-hi-in.jpg');
+  }
+}
+
+html[lang='ta'] {
+  .phone-wrapper .screen {
+    background-image: url('/media/img/firefox/os/phone/screens-ta.jpg');
+  }
+}
+
 html[lang^="es"] {
   .phone-wrapper .screen {
     background-image: url('/media/img/firefox/os/phone/screens-es-es.jpg?2013-09');
@@ -785,7 +910,7 @@ html[lang="el"] {
         margin: 0 auto;
         float: left;
         background-color: transparent;
-        background-image: url('/media/img/firefox/os/have-it-all/app-icons.png');
+        background-image: url('/media/img/firefox/os/have-it-all/app-icons.png?2014-07');
       }
       .curr {
         .transition(text-shadow 0.2s linear);
@@ -813,6 +938,10 @@ html[lang="el"] {
       }
       .marketplace {
         background-position: -250px 0px;
+        background-repeat: no-repeat;
+      }
+      .settings {
+        background-position: -300px 0px;
         background-repeat: no-repeat;
       }
     }
@@ -940,7 +1069,7 @@ html[lang="el"] {
     width: 62px;
     height: 65px;
     margin: 0 auto;
-    background: url('/media/img/firefox/os/have-it-all/content-icons.png') no-repeat top left;
+    background: url('/media/img/firefox/os/have-it-all/content-icons.png?2014-07') no-repeat top left;
   }
   .contacts {
     background-position: 0 -114px;
@@ -1002,6 +1131,11 @@ html[lang="el"] {
     width: 62px;
     height: 64px;
   }
+  .settings {
+    background-position: 0 -1369px;
+    width: 62px;
+    height: 64px;
+  }
 }
 
 html[lang=hu] {
@@ -1051,6 +1185,14 @@ html[lang=hu] {
       }
       img {
         position: absolute;
+      }
+      // specifically added to address conditional content for India
+      .app-image-wrapper {
+        height: 450px;
+
+        img {
+          position: relative;
+        }
       }
       .app {
         padding-top: 0;
@@ -1279,11 +1421,7 @@ html[lang="pl"] {
   }
 }
 
-#footer-email-thanks {
-  display: none;
-}
-
-#footer-email-form {
+.footer-newsletter-form {
   width: @widthDesktop - (@gridGutterWidth * 4);
   margin: 0 auto @baseLine auto;
   background: #fff;
@@ -1293,6 +1431,11 @@ html[lang="pl"] {
     color: #47b8e4;
     text-decoration: underline;
   }
+}
+
+.newsletter-form.thank {
+  border: none;
+  box-shadow: none;
 }
 
 #footer-email-errors {
@@ -1338,7 +1481,7 @@ html[lang="pl"] {
     }
   }
 
-  #footer-email-form {
+  .footer-newsletter-form {
     width: 100%;
     background: transparent;
     margin: 0 auto;
@@ -1402,6 +1545,7 @@ html[lang="en-US"].js {
     z-index: 10;
     display: block;
     left: 370px;
+    -webkit-backface-visibility: hidden;
   }
   #adapt-feature-sprite-blue-line {
     top: 164px;
@@ -1595,11 +1739,10 @@ html[lang="en-US"].js {
       width: 400px;
     }
   }
-  #footer-email-form {
-    width: @widthTablet - (@gridGutterWidth * 4);
-  }
-  #footer-email-errors {
-    width: @widthTablet;
+  .footer-newsletter-form,
+  #footer-email-errors,
+  .newsletter-form.thank {
+    width: @widthTablet - (@gridGutterWidth * 6);
   }
   .js {
     #get-firefox-os.scroller-on {
@@ -1626,6 +1769,9 @@ html[lang="en-US"].js {
       #adaptive-wrapper.scroller-on {
         #adapt-feature-sprite-plus {
           display: none;
+        }
+        ul .discover.active {
+          margin-top: 0;
         }
       }
       #adapt-feature-sprite-plus {
@@ -1685,6 +1831,9 @@ html[lang="en-US"].js {
     #signup-toggle-icon {
       display: none;
     }
+  }
+  #lang-panel-container {
+    margin: 10px 0px 0px 20px;
   }
   #side-nav, #secondary-masthead {
     display: none;
@@ -1803,6 +1952,13 @@ html[lang="en-US"].js {
         top: auto;
         margin: @baseLine 0 0 0;
       }
+      // added for India specific content
+      .app.app-image-wrapper {
+        width: 300px;
+        height: 450px;
+        margin-left: auto;
+        margin-right: auto;
+      }
       #social .right {
         display: none;
         visibility: hidden;
@@ -1891,20 +2047,11 @@ html[lang="en-US"].js {
   .bg-birthday {
     background: url('/media/img/firefox/os/bg/760/birthday.jpg') no-repeat center center;
   }
-  #footer-email-form {
+  .footer-newsletter-form {
     width: @widthMobileLandscape - (@gridGutterWidth * 2);
   }
   #footer-email-errors {
-    width: @widthMobileLandscape - @gridGutterWidth;
-  }
-  .js {
-    .modal-content {
-      #provider-links {
-        .last {
-          border-left: none;
-        }
-      }
-    }
+    width: auto;
   }
 }
 
@@ -1939,6 +2086,9 @@ html[lang="en-US"].js {
     .wrapper.stuck {
       position: relative; //override fixed position for mobile
     }
+  }
+  #lang-panel-container {
+    margin: 10px 0px 0px 20px;
   }
   #signup-toggle-icon {
     display: none;
@@ -1981,11 +2131,9 @@ html[lang="en-US"].js {
     }
   }
   // content top pos for en-US only
-  html[lang="en-US"] {
-    #get-firefox-os {
-      .content {
-        left: 65px;
-      }
+  html[lang="en-US"] #get-firefox-os {
+    .content {
+      left: 65px;
     }
   }
   #have-it-all {
@@ -2103,11 +2251,11 @@ html[lang="en-US"].js {
       margin: 5px 0;
     }
   }
-  #footer-email-form {
+  .footer-newsletter-form {
     width: @widthMobile - (@gridGutterWidth * 2);
   }
   #footer-email-errors {
-    width: @widthMobile - @gridGutterWidth;
+    width: auto;
   }
   .bg-soccer {
     background: url('/media/img/firefox/os/bg/480/soccer.jpg') no-repeat center center;

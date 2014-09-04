@@ -1,0 +1,97 @@
+/* Bug 993702 */
+
+@font-face {
+  font-family: X-LocaleSpecific-Light;
+  font-weight: normal;
+  src: /* All */
+       local(mplus-2p-light),
+       local(KozGoPro-Light),
+       /* OS X */
+       local(RyoGothicPlusN-Light),
+       local(HiraKakuPro-W3),
+       /* Windows */
+       local(Meiryo),
+       local(MS-PGothic),
+       /* Linux */
+       local('VL PGothic regular'),
+       local('TakaoPGothic Regular'),
+       local('IPA P Gothic');
+}
+
+@font-face {
+  font-family: X-LocaleSpecific-Light;
+  font-weight: bold;
+  src: /* All */
+       local(mplus-2p-medium),
+       local(KozGoPro-Medium),
+       /* OS X */
+       local(RyoGothicPlusN-Medium),
+       local(HiraKakuPro-W6),
+       /* Windows */
+       local(Meiryo-Bold),
+       local(MS-PGothic),
+       /* Linux */
+       local('VL PGothic regular'),
+       local('TakaoPGothic Regular'),
+       local('IPA P Gothic');
+}
+
+@font-face {
+  font-family: X-LocaleSpecific;
+  font-weight: normal;
+  src: /* All */
+       local(mplus-2p-regular),
+       local(KozGoPro-Regular),
+       /* OS X */
+       local(RyoGothicPlusN-Regular),
+       local(HiraKakuPro-W3),
+       /* Windows */
+       local(Meiryo),
+       local(MS-PGothic),
+       /* Linux */
+       local('VL PGothic regular'),
+       local('TakaoPGothic Regular'),
+       local('IPA P Gothic');
+}
+
+@font-face {
+  font-family: X-LocaleSpecific;
+  font-weight: bold;
+  src: /* All */
+       local(mplus-2p-bold),
+       local(KozGoPro-Bold),
+       /* OS X */
+       local(RyoGothicPlusN-Bold),
+       local(HiraKakuPro-W6),
+       /* Windows */
+       local(Meiryo-Bold),
+       local(MS-PGothic),
+       /* Linux */
+       local('VL PGothic regular'),
+       local('TakaoPGothic Regular'),
+       local('IPA P Gothic');
+}
+
+@font-face {
+  font-family: X-LocaleSpecific-Extrabold;
+  font-weight: 800;
+  src: /* All */
+       local(mplus-2p-black),
+       local(KozGoPro-Heavy),
+       /* OS X */
+       local(RyoGothicPlusN-Heavy),
+       local(HiraKakuPro-W6),
+       /* Windows */
+       local(Meiryo-Bold),
+       local(MS-PGothic),
+       /* Linux */
+       local('VL PGothic regular'),
+       local('TakaoPGothic Regular'),
+       local('IPA P Gothic');
+}
+
+/* Bug 973171 */
+
+* {
+  font-style: normal !important;
+}

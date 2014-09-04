@@ -158,8 +158,18 @@ p.more a:after {
     content: ' »';
 }
 
-.warning {
+.warning,
+.info {
+    width: 70%;
     color: @textColorSecondary;
+}
+
+.warning {
+    margin: (@baseLine * 2) auto @baseLine;
+}
+
+.info {
+    margin: @baseLine auto;
 }
 
 .space {
@@ -169,8 +179,13 @@ p.more a:after {
     .pager-page h3 {
         color: @textColorSpaceYellow;
     }
-    .warning {
+    .warning,
+    .info {
         color: #888;
+
+        a {
+            color: @linkSpacePurple;
+        }
     }
 
 }

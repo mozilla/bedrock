@@ -1,0 +1,57 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/android/sms-base.html" %}
+
+{% block content %}
+
+<div id="main-feature">
+  <hgroup>
+    <h1 class="large">{{_('Get Firefox for Android')}}</h1>
+    <h2>{{_('Fast. Smart. Safe.')}}</h2>
+  </hgroup>
+</div>
+
+<div id="main-content">
+  <form id="sms-send" method="post" action="{{ secure_url() }}">
+    <h2>
+    {# L10n: The line break in this headline is for visual formatting only #}
+    {% trans %}
+      Send yourself a text message <br>to download it from Google Play.
+    {% endtrans %}
+    </h2>
+    <p class="note">{{ _('SMS service available in the U.S. only') }}</p>
+
+    <p class="input{% if sms_form.errors %} error{% endif %}">
+      {% if sms_form.errors %}
+        <strong class="tooltip error">{{ sms_form.number.errors[0]|safe }}{{ sms_form.non_field_errors()[0] }}</strong>
+      {% endif %}
+      <label for="number">{{ _('Enter your 10-digit phone number') }}</label>
+      <input type="tel"
+             maxlength="14"
+             id="number"
+             name="number"
+             placeholder="{{ _('Enter your 10-digit phone number') }}"
+             value="{{ sms_form.number.value() }}"
+             required>
+    </p>
+    <p class="submit">
+      <button type="submit" class="button arrow"><span>{{ _('Send me the link') }}</span></button>
+    </p>
+
+    <div class="subscribe">
+      <label for="sms-sub">
+        <input type="checkbox" id="sms-sub" name="optin" value="yes">
+        {{ _("I'd like to receive SMS updates about Firefox for Android and other Mozilla products.") }}
+      </label>
+      <p class="footnote">{{ _('Message and data rates may apply. Text FFSTOP to 36698 to stop (a confirmation message will be sent).') }}</p>
+    </div>
+
+    <p class="also"><a href="http://mzl.la/OgZo6k" rel="external">{{ _('Also available as a free download from Google Play') }}</a></p>
+  </form>
+</div>
+
+{{ super() }}
+
+{% endblock %}

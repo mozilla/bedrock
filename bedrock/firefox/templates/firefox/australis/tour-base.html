@@ -1,0 +1,94 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "firefox/base.html" %}
+
+{% set_lang_files "firefox/australis/firefox_tour" %}
+
+{% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
+
+{% block body_class %}sky{% endblock %}
+
+{% block site_css %}{% endblock %}
+
+{% block string_data %}
+{# L10n: This is the label for a button that opens the tour modal dialog #}
+data-open="{{ _('Open tour') }}"
+{# L10n: This is the label for a button that closes the tour modal dialog #}
+data-close="{{ _('Close tour') }}"
+{# L10n: This is the label for a button that proceeds to the next step of the tour #}
+data-next="{{ _('Next') }}"
+{# L10n: This is the label for a button that starts the tour #}
+data-start="{{ _('Let’s go') }}"
+{# L10n: This is the label for a button that delays starting the tour #}
+data-later="{{ _('Not now') }}"
+{# L10n: This is the text for a door-hanger menu that shows in the browser chrome #}
+data-text="{{ _('It’s the fastest, most flexible Firefox ever.') }}"
+{# L10n: This is the text for a call to action that appears in the web page #}
+data-later-cta="{{ _('Take the tour to see what’s new') }}"
+{# L10n: This is the label that represents tour step one of four #}
+data-step1="{{ _('1/4') }}"
+{# L10n: This is the label that represents tour step two of four #}
+data-step2="{{ _('2/4') }}"
+{# L10n: This is the label that represents tour step three of four #}
+data-step3="{{ _('3/4') }}"
+{# L10n: This is the label that represents tour step four of four #}
+data-step4="{{ _('4/4') }}"
+{# This data attribute is just for testing purposes and should not be localized #}
+data-has-tour="True"
+{% block doorhanger_title %}{% endblock %}
+{% endblock %}
+
+{% block site_header %}
+  <header id="masthead">
+    <a href="{{ url('mozorg.home') }}" id="tabzilla">Mozilla</a>
+    {% block site_header_nav %}{% endblock %}
+    {% block site_header_logo %}{% endblock %}
+    {% block breadcrumbs %}{% endblock %}
+  </header>
+{% endblock %}
+
+{% block content %}
+  <article id="tour-page" data-telemetry="{% block telemetry_id %}{% endblock %}">
+    {% block main_heading %}{% endblock %}
+    <div class="main-container">
+      <section class="sync">
+        <div class="inner-container">
+          {% block sync_content %}{% endblock %}
+        </div>
+      </section>
+      <section class="share separator">
+        <div class="inner-container">
+          <div class="share-icons">
+            <div class="disc heart"></div>
+            <div class="disc eye"></div>
+            <div class="disc check"></div>
+          </div>
+          <div class="share-content">
+            <header>
+              <h2>{{ _('What kind of Web do you want?') }}</h2>
+              <p>{{ _('When you use Firefox, you help shape the future of the Web.')}}</p>
+            </header>
+            <div class="share-cta">
+              <a href="https://webwewant.mozilla.org/#video" class="button more" target="_blank" title="{{ _('Opens new window') }}">
+                {{ _('Share your vision') }}
+              </a>
+            </div>
+          </div>
+          <div class="rays red"></div>
+          <div class="rays green"></div>
+        </div>
+      </section>
+    </div>
+    <aside class="separator">
+      {% block aside_content %}{% endblock %}
+    </aside>
+  </article>
+  {% block tour_content %}{% endblock %}
+  {% block tour_mask %}{% endblock %}
+{% endblock %}
+
+{% block site_footer %}{% endblock %}
+{% block email_form %}{% endblock %}
+{% block js %}{% endblock %}

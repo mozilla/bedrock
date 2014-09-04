@@ -21,18 +21,20 @@ import jinja2
 from bedrock.firefox.firefox_details import firefox_details, mobile_details
 from lib.l10n_utils import get_locale
 
+nightly_desktop = ('https://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/'
+                   'latest-mozilla-aurora')
+nightly_android = ('https://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/'
+                   'latest-mozilla-aurora-android')
 
 download_urls = {
     'transition': '/{locale}/products/download.html',
     'direct': 'https://download.mozilla.org/',
-    'aurora': 'https://ftp.mozilla.org/pub/mozilla.org/firefox/'
-              'nightly/latest-mozilla-aurora',
-    'aurora-l10n': 'https://ftp.mozilla.org/pub/mozilla.org/firefox/'
-                   'nightly/latest-mozilla-aurora-l10n',
-    'aurora-mobile': 'https://ftp.mozilla.org/pub/mozilla.org/mobile/'
-                     'nightly/latest-mozilla-aurora-android/en-US/'
-                     'fennec-%s.en-US.android-arm.apk' %
-                     mobile_details.latest_version('aurora'),
+    'aurora': nightly_desktop,
+    'aurora-l10n': nightly_desktop + '-l10n',
+    'aurora-android-armv7': nightly_android + (
+        '/en-US/fennec-%s.en-US.android-arm.apk'),
+    'aurora-android-x86': nightly_android + (
+        '-x86/fennec-%s.multi.android-i386.apk'),
 }
 
 
@@ -92,10 +94,6 @@ def make_download_link(product, build, version, platform, locale,
         'os_osx': 'osx'
     }[platform]
 
-    # Force download via SSL
-    if version in settings.FORCE_SSL_DOWNLOAD_VERSIONS:
-        version += '-SSL'
-
     # stub installer exceptions
     # TODO: NUKE FROM ORBIT!
     stub_langs = settings.STUB_INSTALLER_LOCALES.get(platform, [])
@@ -106,6 +104,10 @@ def make_download_link(product, build, version, platform, locale,
             suffix = 'latest'
 
         version = ('beta-' if build == 'beta' else '') + suffix
+    elif not funnelcake_id:
+        # Force download via SSL. Stub installers are always downloaded via SSL.
+        # Funnelcakes may not be ready for SSL download
+        version += '-SSL'
 
     # append funnelcake id to version if we have one
     if funnelcake_id:
@@ -127,7 +129,7 @@ def make_download_link(product, build, version, platform, locale,
 @jingo.register.function
 @jinja2.contextfunction
 def download_firefox(ctx, build='release', small=False, icon=True,
-                     mobile=None, dom_id=None, locale=None,
+                     mobile=None, dom_id=None, locale=None, simple=False,
                      force_direct=False, force_full_installer=False,
                      force_funnelcake=False):
     """ Output a "download firefox" button.
@@ -141,6 +143,9 @@ def download_firefox(ctx, build='release', small=False, icon=True,
             is appropriate for the user's system.
     :param dom_id: Use this string as the id attr on the element.
     :param locale: The locale of the download. Default to locale of request.
+    :param simple: Display button with text only if True. Will not display
+            icon or privacy/what's new/systems & languages links. Can be used
+            in conjunction with 'small'.
     :param force_direct: Force the download URL to be direct.
     :param force_full_installer: Force the installer download to not be
             the stub installer (for aurora).
@@ -171,6 +176,10 @@ def download_firefox(ctx, build='release', small=False, icon=True,
             _locale = locale
             if plat_os not in platforms:
                 _locale = 'en-US'
+
+            # Special case for the Japanese version for Mac
+            if plat_os == 'OS X' and _locale == 'ja':
+                _locale = 'ja-JP-mac'
 
             # Normalize the platform os name
             plat_os = 'os_%s' % plat_os.lower().replace(' ', '')
@@ -213,15 +222,27 @@ def download_firefox(ctx, build='release', small=False, icon=True,
     if mobile is not False:
         android_link = settings.GOOGLE_PLAY_FIREFOX_LINK
 
-        if build == 'aurora':
-            android_link = download_urls['aurora-mobile']
         if build == 'beta':
             android_link = android_link.replace('org.mozilla.firefox',
                                                 'org.mozilla.firefox_beta')
 
-        builds.append({'os': 'os_android',
-                       'os_pretty': 'Android',
-                       'download_link': android_link})
+        if build == 'aurora':
+            for arch_pretty in ['ARMv7', 'x86']:
+                arch = arch_pretty.lower()
+                link = (download_urls['aurora-android-%s' % arch] %
+                        mobile_details.latest_version('aurora'))
+
+                builds.append({'os': 'os_android',
+                               'os_pretty': 'Android',
+                               'os_arch_pretty': 'Android %s' % arch_pretty,
+                               'arch': arch,
+                               'arch_pretty': arch_pretty,
+                               'download_link': link})
+
+        if build != 'aurora':
+            builds.append({'os': 'os_android',
+                           'os_pretty': 'Android',
+                           'download_link': android_link})
 
     # Get the native name for current locale
     langs = firefox_details.languages
@@ -234,6 +255,7 @@ def download_firefox(ctx, build='release', small=False, icon=True,
         'builds': builds,
         'id': dom_id,
         'small': small,
+        'simple': simple,
         'build': alt_build,
         'show_mobile': mobile is not False,
         'show_desktop': mobile is not True,

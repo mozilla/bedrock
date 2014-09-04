@@ -1,0 +1,40 @@
+/* Bug 795396 */
+
+@font-face {
+  font-family: X-LocaleSpecific;
+  font-weight: normal;
+  src: /* OS X */
+       local(FZLTXHB--B51-0), /* = Lantinghei TC Extralight */
+       /* Windows */
+       local('Microsoft JhengHei Light'),
+       /* Linux */
+       local(DroidSansFallbackFull);
+}
+
+@font-face {
+  font-family: X-LocaleSpecific;
+  font-weight: bold;
+  src: /* OS X */
+       local(FZLTZHB--B51-0), /* = Lantinghei TC Demibold */
+       /* Windows */
+       local('Microsoft JhengHei Bold'),
+       /* Linux */
+       local(DroidSansFallbackFull);
+}
+
+@font-face {
+  font-family: X-LocaleSpecific-Extrabold;
+  font-weight: 800;
+  src: /* OS X */
+       local(FZLTTHB--B51-0), /* = Lantinghei TC Heavy */
+       /* Windows */
+       local('Microsoft JhengHei Bold'),
+       /* Linux */
+       local(DroidSansFallbackFull);
+}
+
+/* Bug 973171 */
+
+* {
+  font-style: normal !important;
+}

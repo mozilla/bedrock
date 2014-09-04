@@ -1,0 +1,171 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "firefox/australis/tour-base.html" %}
+
+{% set_lang_files "firefox/australis/firefox_tour" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{ _('Welcome to Firefox') }}{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+
+{% block body_id %}firstrun{% endblock %}
+
+{% block telemetry_id %}australis-tour-firstrun-29-release{% endblock %}
+
+{% block doorhanger_title %}
+  {% if l10n_has_tag('new_doorhanger') or settings.DEV %}
+    {# L10n: This is the title for a door-hanger menu that shows in the browser chrome #}
+    data-title="{{ _('Take a quick tour') }}"
+  {% else %}
+    {# L10n: This is the title for a door-hanger menu that shows in the browser chrome #}
+    data-title="{{ _('See what’s new') }}"
+  {% endif %}
+{% endblock %}
+
+{% block site_css %}
+  {{ css('firefox_tour') }}
+{% endblock %}
+
+{% block js %}
+  {{ js('firefox_tour') }}
+{% endblock %}
+
+{% block main_heading %}
+  <header role="banner">
+    <div class="logo"></div>
+    <div class="stage">
+      <h1>{{ _('Welcome to Firefox') }}</h1>
+      <p>{{ _('Committed to you, your privacy and an open Web.') }}</p>
+    </div>
+  </header>
+{% endblock %}
+
+{% block tour_content %}
+  <div id="ui-tour" tabindex="-1" aria-expanded="false">
+    <div class="tour-inner">
+      <div id="tour-progress" class="progress-step">
+        <div class="logo"></div>
+        <span class="step"></span>
+        <div class="progress" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="4">
+          <span class="indicator"></span>
+        </div>
+      </div>
+      <ul class="ui-tour-list">
+        <li class="tour-step current app-menu visible" data-step="1" data-tip-next="{{ _('<span>Next:</span> Customize') }}">
+          <div class="tour-item">
+            {# L10n: <br> tag below used for formatting only. #}
+            <h2 class="tour-highlight step-target" data-target="appMenu" data-effect="wobble">
+              {{ _('It starts with the new,<br> intuitive menu') }}
+            </h2>
+            <ul class="tour-highlight step-target" data-target="appMenu" data-effect="wobble">
+              <li>{{ _('The features you use most, all in one place') }}</li>
+              <li>{{ _('Grouped together for quick, easy access') }}</li>
+              <li><a href="#" role="button" class="more">{{ _('Learn how to customize your Firefox') }}</a></li>
+            </ul>
+          </div>
+          {{ high_res_img('img/firefox/australis/diag-menu-bar.jpg?03-2014', {'alt': _('The features you use most, all in one place'), 'width': '300', 'height': '188'}) }}
+        </li>
+        <li class="tour-step app-menu" data-step="2" data-tip-prev="{{ _('<span>Previous:</span> Menu') }}" data-tip-next="{{ _('<span>Next:</span> Add-ons') }}">
+          <div class="tour-item">
+            {# L10n: <br> tag below used for formatting only. #}
+            <h2 class="tour-highlight step-target" data-target="customize" data-effect="wobble">
+              {{ _('Designed so you can<br> make it your own') }}
+            </h2>
+            <ul>
+              <li>{{ _('How you use the Web is unique') }}</li>
+              <li>{{ _('Move or remove any button to match') }}</li>
+              <li><a href="#" role="button" class="more">{{ _('Add features and styles with add-ons') }}</a></li>
+            </ul>
+          </div>
+          {{ high_res_img('img/firefox/australis/diag-customize.jpg?03-2014', {'alt': _('Learn how to customize your Firefox'), 'width': '300', 'height': '188'}) }}
+        </li>
+        <li class="tour-step app-menu" data-step="3" data-tip-prev="{{ _('<span>Previous:</span> Customize') }}" data-tip-next="{{ _('<span>Next:</span> Bookmarks') }}">
+          <div class="tour-item">
+            {# L10n: <br> tag below used for formatting only. #}
+            <h2 class="tour-highlight step-target" data-target="addons" data-effect="wobble">
+              {{ _('Thousands of ways to<br> make Firefox do more') }}
+            </h2>
+            <ul>
+              <li>{{ _('Helps you do just about anything online') }}</li>
+              <li>{{ _('Easy to find, use and manage') }}</li>
+              <li><a href="#" role="button" class="more">{{ _('Use the star to create bookmarks') }}</a></li>
+            </ul>
+          </div>
+          {{ high_res_img('img/firefox/australis/diag-addons.jpg?03-2014', {'alt': _('Add features and styles with add-ons'), 'width': '300', 'height': '188'}) }}
+        </li>
+        <li class="tour-step" data-step="4" data-tip-prev="{{ _('<span>Previous:</span> Add-ons') }}">
+          <div class="tour-item">
+            {# L10n: <br> tag below used for formatting only. #}
+            <h2 class="tour-highlight step-target" data-target="bookmarks" data-effect="wobble">
+              {{ _('Your favorite sites<br> are closer than ever') }}
+            </h2>
+            <ul>
+              <li>{{ _('Add and view bookmarks from the same spot') }}</li>
+              <li>{{ _('Save sites with a single click') }}</li>
+              <li id="sync-link"><a href="#" role="button" class="more">{{ _('Enjoy seamless browsing between devices with Sync') }}</a></li>
+            </ul>
+          </div>
+          {{ high_res_img('img/firefox/australis/diag-bookmarks.jpg?03-2014', {'alt': _('Use the star to create bookmarks'), 'width': '300', 'height': '188'}) }}
+        </li>
+      </ul>
+      <div class="compact-title"></div>
+      <div class="tour-init" data-target="appMenu" data-icon="{{ MEDIA_URL }}img/firefox/australis/logo.png?2014-03" data-icon-high-res="{{ MEDIA_URL }}img/firefox/australis/logo-high-res.png?2014-03"></div>
+      <div class="cta">
+        <button type="button" aria-controls="ui-tour">{{ _('Start browsing') }}</button>
+      </div>
+      <div class="tour-tip"></div>
+      <div class="ui-tour-controls" aria-controls="ui-tour tour-content tour-progress">
+        <button class="step prev">{{ _('Previous') }}</button>
+        <button class="step next">{{ _('Next') }}</button>
+        <button class="close">{{ _('Close') }}</button>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block tour_mask %}
+  <div id="ui-tour-mask" tabindex="-1">
+    <div class="mask-inner">
+      <div class="logo"></div>
+      <div class="stage">
+        <h1>{{ _('Welcome to Firefox') }}</h1>
+        <p>{{ _('Committed to you, your privacy and an open Web.') }}</p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block sync_content %}
+  <div class="sync-content">
+    <header>
+      <h2>{{ _('Have Firefox on another device?') }}</h2>
+      <p>{{ _('You don’t have to start over. Access your history, bookmarks and more.')}}</p>
+    </header>
+    <div class="sync-cta">
+      <a href="{{ url('firefox.sync') }}" class="button">{{ _('Get started with Sync') }}</a>
+      <small>{{ _('Create an account from the menu panel') }}</small>
+    </div>
+  </div>
+  <div class="sync-anim-wrapper">
+    {% include 'firefox/includes/sync-animation.html' %}
+  </div>
+{% endblock %}
+
+{% block aside_content %}
+  {{ email_newsletter_form() }}
+{% endblock %}
+
+{% block site_footer %}
+  <footer role="contentinfo">
+    <ul>
+      <li><a href="{{ url('firefox.desktop.index') }}" class="more">{{ _('Firefox Features') }}</a></li>
+      <li><a href="https://support.mozilla.org/products/firefox" class="more">{{ _('Firefox Help') }}</a></li>
+    </ul>
+    <ul>
+      <li><a href="{{ php_url('/about/legal.html') }}">{{ _('Legal Notices') }}</a></li>
+      <li><a href="{{ url('privacy') }}">{{ _('Privacy Policy') }}</a></li>
+    </ul>
+  </footer>
+{% endblock %}

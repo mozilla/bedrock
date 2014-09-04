@@ -4,8 +4,6 @@
 
 # Django settings file for bedrock.
 
-from django.utils.functional import lazy
-
 from funfactory.settings_base import *  # noqa
 
 # Production uses MySQL, but Sqlite should be sufficient for local development.
@@ -32,16 +30,16 @@ LANGUAGE_CODE = 'en-US'
 # Accepted locales
 PROD_LANGUAGES = ('ach', 'af', 'ak', 'an', 'ar', 'as', 'ast', 'az', 'be', 'bg',
                   'bn-BD', 'bn-IN', 'br', 'bs', 'ca', 'cs', 'csb', 'cy',
-                  'da', 'de', 'el', 'en-GB', 'en-US', 'en-ZA', 'eo', 'es-AR',
+                  'da', 'de', 'dsb', 'el', 'en-GB', 'en-US', 'en-ZA', 'eo', 'es-AR',
                   'es-CL', 'es-ES', 'es-MX', 'et', 'eu', 'fa', 'ff', 'fi', 'fr',
                   'fy-NL', 'ga-IE', 'gd', 'gl', 'gu-IN', 'he', 'hi-IN', 'hr',
-                  'hu', 'hy-AM', 'id', 'is', 'it', 'ja', 'ja-JP-mac',
+                  'hsb', 'hu', 'hy-AM', 'id', 'is', 'it', 'ja', 'ja-JP-mac',
                   'ka', 'kk', 'km', 'kn', 'ko', 'ku', 'lg', 'lij', 'lt', 'lv',
                   'mai', 'mk', 'ml', 'mn', 'mr', 'ms', 'my', 'nb-NO', 'nl',
                   'nn-NO', 'nso', 'oc', 'or', 'pa-IN', 'pl', 'pt-BR', 'pt-PT',
                   'rm', 'ro', 'ru', 'sah', 'si', 'sk', 'sl', 'son', 'sq', 'sr',
-                  'sv-SE', 'sw', 'ta', 'ta-LK', 'te', 'th', 'tr', 'uk',
-                  'ur', 'vi', 'wo', 'xh', 'zh-CN', 'zh-TW', 'zu')
+                  'sv-SE', 'sw', 'ta', 'ta-LK', 'te', 'th', 'tr', 'uk', 'ur',
+                  'uz', 'vi', 'wo', 'xh', 'zh-CN', 'zh-TW', 'zu')
 DEV_LANGUAGES = list(DEV_LANGUAGES) + ['en-US']
 
 FEED_CACHE = 3900
@@ -57,6 +55,8 @@ SUPPORTED_NONLOCALES += [
     'webmaker',
     'gameon',
     'robots.txt',
+    'credits',
+    'security',
 ]
 
 ALLOWED_HOSTS = [
@@ -101,10 +101,17 @@ MINIFY_BUNDLES = {
             'css/csrf-failure.less',
         ),
         'about': (
+            'css/sandstone/video-resp.less',
             'css/mozorg/about.less',
         ),
         'about-base': (
             'css/mozorg/about-base.less',
+        ),
+        'credits-faq': (
+            'css/mozorg/credits-faq.less',
+        ),
+        'about-forums': (
+            'css/mozorg/about-forums.less',
         ),
         'foundation': (
             'css/foundation/foundation.less',
@@ -127,16 +134,17 @@ MINIFY_BUNDLES = {
         'responsive': (
             'css/sandstone/sandstone-resp.less',
         ),
+        'oldIE': (
+            'css/sandstone/oldIE.less',
+        ),
         'newsletter': (
             'css/newsletter/newsletter.less',
         ),
         'contact-spaces': (
-            'css/libs/mapbox.css',
+            'css/libs/mapbox-1.6.3.css',
             'css/libs/magnific-popup.css',
+            'css/base/mozilla-video-poster.less',
             'css/mozorg/contact-spaces.less',
-        ),
-        'contact-spaces-ie8': (
-            'css/libs/mapbox.ie.css',
         ),
         'contact-spaces-ie7': (
             'css/mozorg/contact-spaces-ie7.less',
@@ -144,19 +152,19 @@ MINIFY_BUNDLES = {
         'contribute': (
             'css/mozorg/contribute.less',
             'css/sandstone/video-resp.less',
-            'css/mozorg/mozilla15.less',
         ),
         'contribute-page': (
             'css/mozorg/contribute-page.less',
         ),
         'contribute-studentambassadors-landing': (
+            'css/base/social-widgets.less',
             'css/mozorg/contribute/studentambassadors/landing.less',
         ),
         'contribute-studentambassadors-join': (
             'css/mozorg/contribute/studentambassadors/join.less',
         ),
         'dnt': (
-            'css/base/mozilla-expanders.less',
+            'css/base/mozilla-accordion.less',
             'css/firefox/dnt.less',
         ),
         'firefox': (
@@ -168,23 +176,36 @@ MINIFY_BUNDLES = {
         'firefox_unsupported': (
             'css/firefox/unsupported.less',
         ),
+        'firefox_unsupported_systems': (
+            'css/firefox/unsupported-systems.less',
+        ),
         'firefox-resp': (
             'css/firefox/template-resp.less',
         ),
         'firefox_channel': (
             'css/firefox/channel.less',
         ),
-        'firefox_central': (
-            'css/sandstone/video.less',
-            'css/firefox/central.less',
+        'firefox_desktop': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/desktop/intro-anim.less',
+            'css/firefox/desktop/index.less',
         ),
-        'firefox_customize': (
-            'css/sandstone/video.less',
-            'css/firefox/customize.less',
+        'firefox_desktop_fast': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/desktop/fast.less',
         ),
-        'firefox_features': (
-            'css/sandstone/video.less',
-            'css/firefox/features.less',
+        'firefox_desktop_customize': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/desktop/customize.less',
+        ),
+        'firefox_desktop_tips': (
+            'css/sandstone/sandstone-resp.less',
+            'css/libs/socialshare/socialshare.less',
+            'css/firefox/desktop/tips.less',
+        ),
+        'firefox_desktop_trust': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/desktop/trust.less',
         ),
         'mobile_features': (
             'css/firefox/template-resp.less',
@@ -199,7 +220,7 @@ MINIFY_BUNDLES = {
         'firefox_faq': (
             'css/firefox/faq.less',
             'css/firefox/template-resp.less',
-            'css/base/mozilla-expanders.less',
+            'css/base/mozilla-accordion.less',
         ),
         'firefox_firstrun': (
             'css/sandstone/video.less',
@@ -210,18 +231,11 @@ MINIFY_BUNDLES = {
             'css/sandstone/video.less',
             'css/firefox/nightly_firstrun.less',
         ),
-        'firefox_fx': (
-            'css/firefox/fx.less',
-            'css/sandstone/video.less',
-        ),
         'firefox_geolocation': (
-            'css/base/mozilla-expanders.less',
+            'css/base/mozilla-accordion.less',
             'css/base/mozilla-modal.less',
-            'css/libs/mapbox.css',
+            'css/libs/mapbox-1.6.3.css',
             'css/firefox/geolocation.less'
-        ),
-        'firefox_happy': (
-            'css/firefox/happy.less',
         ),
         'firefox_new': (
             'css/libs/socialshare/socialshare.less',
@@ -256,24 +270,16 @@ MINIFY_BUNDLES = {
         'firefox_releases_index': (
             'css/firefox/releases-index.less',
         ),
-        'firefox_security': (
-            'css/firefox/security.less',
-        ),
-        'firefox_speed': (
-            'css/firefox/speed.less',
-        ),
-        'firefox_technology': (
-            'css/firefox/technology.less',
-            'css/firefox/technology-demos.css',
+        'firefox_tour': (
+            'css/firefox/australis/australis-ui-tour.less',
+            'css/firefox/australis/australis-page-common.less',
+            'css/firefox/sync-animation.less',
+            'css/firefox/australis/australis-page-stacked.less',
         ),
         'firefox_whatsnew': (
             'css/sandstone/video.less',
             'css/firefox/whatsnew.less',
             'css/firefox/whatsnew-android.less',
-        ),
-        'firefox_whatsnew_aurora_29': (
-            'css/firefox/australis/australis-ui-tour.less',
-            'css/firefox/australis/aurora-whatsnew.less',
         ),
         'firefox_whatsnew_fxos': (
             'css/firefox/whatsnew-fxos.less',
@@ -281,10 +287,19 @@ MINIFY_BUNDLES = {
         'firefox_releasenotes': (
             'css/firefox/releasenotes.less',
         ),
+        'firefox_sync': (
+            'css/firefox/sync.less',
+        ),
+        'firefox_sync_anim': (
+            'css/firefox/sync-animation.less',
+        ),
         'installer_help': (
             'css/base/mozilla-modal.less',
             'css/firefox/template-resp.less',
             'css/firefox/installer-help.less',
+        ),
+        'history-slides': (
+            'css/mozorg/history-slides.less',
         ),
         'home': (
             'css/mozorg/home.less',
@@ -299,15 +314,23 @@ MINIFY_BUNDLES = {
         'home-ie': (
             'css/mozorg/home-ie.less',
         ),
+        'legal-eula': (
+            'css/legal/eula.less',
+        ),
         'legal_fraud_report': (
             'css/legal/fraud-report.less',
+        ),
+        'manifesto': (
+            'css/base/mozilla-modal.less',
+            'css/libs/socialshare/socialshare.less',
+            'css/mozorg/manifesto.less',
         ),
         'mission': (
             'css/sandstone/video-resp.less',
             'css/mozorg/mission.less',
         ),
-        'mozilla_expanders': (
-            'css/base/mozilla-expanders.less',
+        'mozilla_accordion': (
+            'css/base/mozilla-accordion.less',
         ),
         'partnerships': (
             'css/mozorg/partnerships.less',
@@ -328,14 +351,14 @@ MINIFY_BUNDLES = {
         'privacy': (
             'css/privacy/privacy.less',
         ),
+        'security': (
+            'css/security/security.less',
+        ),
         'privacy-day': (
             'css/privacy/privacy-day.less',
         ),
         'fb_privacy': (
             'css/privacy/fb-privacy.less',
-        ),
-        'web-privacy': (
-            'css/privacy/web-privacy.less',
         ),
         'products': (
             'css/mozorg/products.less',
@@ -364,6 +387,13 @@ MINIFY_BUNDLES = {
             'css/styleguide/identity-webmaker.less',
             'css/styleguide/communications.less',
             'css/styleguide/products-firefox-os.less',
+        ),
+        'styleguide-docs-mozilla-accordion': (
+            'css/base/mozilla-accordion.less',
+            'css/sandstone/sandstone-resp.less',
+        ),
+        'styleguide-docs-mozilla-pager': (
+            'css/styleguide/docs/mozilla-pager.less',
         ),
         'tabzilla': (
             'css/tabzilla/tabzilla.less',
@@ -412,40 +442,42 @@ MINIFY_BUNDLES = {
             'js/mozorg/calendar.js',
         ),
         'common': (
-            'js/libs/jquery-1.7.1.min.js',
+            'js/libs/jquery-1.11.0.min.js',
+            'js/libs/spin.min.js',
             'js/base/global.js',
-            'js/base/footer-email-form.js',
+            'js/newsletter/form.js',
             'js/base/mozilla-input-placeholder.js',
             'js/base/mozilla-image-helper.js',
         ),
         'common-resp': (
-            'js/libs/jquery-1.7.1.min.js',
+            'js/libs/jquery-1.11.0.min.js',
+            'js/libs/spin.min.js',
             'js/base/global.js',
+            'js/newsletter/form.js',
             'js/base/nav-main-resp.js',
-            'js/base/footer-email-form.js',
             'js/base/mozilla-input-placeholder.js',
             'js/base/mozilla-image-helper.js',
         ),
         'contact-spaces': (
-            'js/libs/mapbox.js',
+            'js/libs/mapbox-1.6.3.js',
             'js/libs/jquery.history.js',
             'js/mozorg/contact-data.js',
             'js/libs/jquery.magnific-popup.min.js',
+            'js/base/mozilla-video-poster.js',
             'js/mozorg/contact-spaces.js',
         ),
         'contact-spaces-ie7': (
             'js/mozorg/contact-spaces-ie7.js',
         ),
         'contribute': (
-            'js/libs/jquery.sequence.js',
-            'js/mozorg/mozilla15.js',
-            'js/mozorg/contribute-page.js',
-            'js/base/mozilla-pager.js',
-            'js/base/mozilla-video-tools.js',
+            'js/mozorg/contribute-faces.js',
         ),
         'contribute-form': (
             'js/mozorg/contribute-form.js',
             'js/base/mozilla-input-placeholder.js',
+        ),
+        'contribute-studentambassadors-landing': (
+            'js/base/social-widgets.js',
         ),
         'contribute-studentambassadors-join': (
             'js/mozorg/contribute-studentambassadors-join.js',
@@ -454,56 +486,70 @@ MINIFY_BUNDLES = {
         'existing': (
             'js/newsletter/existing.js',
         ),
-        'expanders': (
-            'js/base/mozilla-expanders.js',
+        'accordion': (
+            'js/base/mozilla-accordion.js',
         ),
         'firefox': (
-            'js/libs/jquery-1.7.1.min.js',
+            'js/libs/jquery-1.11.0.min.js',
+            'js/libs/spin.min.js',
             'js/base/global.js',
+            'js/newsletter/form.js',
             'js/base/nav-main.js',
-            'js/base/footer-email-form.js',
             'js/base/mozilla-input-placeholder.js',
             'js/base/mozilla-image-helper.js',
         ),
         'firefox_all': (
+            'js/base/mozilla-pager.js',
             'js/firefox/firefox-language-search.js',
         ),
         'firefox-resp': (
-            'js/libs/jquery-1.7.1.min.js',
+            'js/libs/jquery-1.11.0.min.js',
+            'js/libs/spin.min.js',
             'js/base/global.js',
+            'js/newsletter/form.js',
             'js/base/nav-main-resp.js',
-            'js/base/footer-email-form.js',
             'js/base/mozilla-input-placeholder.js',
             'js/base/mozilla-image-helper.js',
-        ),
-        'firefox_central': (
-            'js/base/mozilla-video-tools.js',
-            'js/firefox/central.js',
-            'js/base/mozilla-pager.js',
         ),
         'firefox_channel': (
             'js/base/mozilla-pager.js',
             'js/firefox/channel.js',
         ),
-        'firefox_customize': (
-            'js/base/mozilla-video-tools.js',
-            'js/firefox/customize.js',
+        'firefox_desktop_common': (
+            'js/firefox/desktop/common.js',
         ),
-        'firefox_features': (
-            'js/base/mozilla-video-tools.js',
-            'js/firefox/features.js',
+        'firefox_desktop_customize': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/firefox/sync-animation.js',
+            'js/firefox/desktop/common.js',
+            'js/firefox/desktop/customize.js',
+        ),
+        'firefox_desktop_fast': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/firefox/desktop/common.js',
+            'js/firefox/desktop/speed-graph.js',
+            'js/firefox/desktop/fast.js',
+        ),
+        'firefox_desktop_index': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/firefox/desktop/common.js',
+            'js/firefox/desktop/speed-graph.js',
+            'js/firefox/desktop/intro-anim.js',
+            'js/firefox/desktop/index.js',
+        ),
+        'firefox_desktop_tips': (
+            'js/base/mozilla-pager.js',
+            'js/libs/hammer.1.1.2.min.js',
+            'js/libs/socialshare.min.js',
+            'js/firefox/desktop/tips.js',
+        ),
+        'firefox_desktop_trust': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/firefox/desktop/common.js',
         ),
         'firefox_firstrun': (
             'js/base/mozilla-modal.js',
             'js/firefox/firstrun/firstrun.js',
-        ),
-        'firefox_fx': (
-            'js/base/mozilla-pager.js',
-            'js/base/mozilla-video-tools.js',
-            'js/firefox/fx.js',
-        ),
-        'firefox_happy': (
-            'js/firefox/happy.js',
         ),
         'firefox_new': (
             'js/libs/socialshare.min.js',
@@ -520,7 +566,6 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.color.js',
             'js/libs/script.js',
             'js/libs/socialshare.min.js',
-            'js/firefox/os/partner_data.js',
             'js/firefox/os/firefox-os.js',
             'js/firefox/os/desktop.js',
             'js/firefox/os/have-it.js',
@@ -543,29 +588,35 @@ MINIFY_BUNDLES = {
             'js/firefox/os/mwc-2014-preview.js',
         ),
         'firefox_faq': (
-            'js/base/mozilla-expanders.js',
+            'js/base/mozilla-accordion.js',
         ),
-        'firefox_speed': (
-            'js/firefox/speed.js',
+        'firefox_sync': (
+            'js/firefox/sync-animation.js',
+            'js/firefox/sync.js',
         ),
-        'firefox_tech': (
-            'js/firefox/technology/tech.js',
+        'firefox_tour': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/firefox/australis/australis-uitour.js',
+            'js/firefox/australis/browser-tour.js',
+            'js/firefox/australis/common.js',
+            'js/firefox/australis/tour.js',
+        ),
+        'firefox_tour_none': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/firefox/australis/australis-uitour.js',
+            'js/firefox/australis/common.js',
+            'js/firefox/australis/no-tour.js',
         ),
         'firefox_sms': (
             'js/firefox/sms.js',
             'js/libs/socialshare.min.js',
         ),
-        'firefox_whatsnew_aurora_29': (
-            'js/firefox/australis/australis-uitour.js',
-            'js/firefox/australis/browser-tour.js',
-            'js/firefox/australis/aurora-whatsnew.js',
-        ),
         'firefox_whatsnew_fxos': (
             'js/firefox/whatsnew-fxos.js',
         ),
         'geolocation': (
-            'js/libs/mapbox.js',
-            'js/base/mozilla-expanders.js',
+            'js/libs/mapbox-1.6.3.js',
+            'js/base/mozilla-accordion.js',
             'js/firefox/geolocation-demo.js',
             'js/base/mozilla-modal.js',
         ),
@@ -574,6 +625,10 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.cycle2.min.js',
             'js/libs/jquery.cycle2.carousel.min.js',
             'js/mozorg/home.js',
+        ),
+        'history-slides': (
+            'js/libs/jquery.sequence.js',
+            'js/mozorg/history-slides.js',
         ),
         'installer_help': (
             'js/base/mozilla-modal.js',
@@ -584,15 +639,24 @@ MINIFY_BUNDLES = {
             'js/legal/fraud-report.js',
             'js/base/mozilla-input-placeholder.js',
         ),
+        'manifesto': (
+            'js/base/mozilla-modal.js',
+            'js/libs/socialshare.min.js',
+            'js/mozorg/manifesto.js',
+        ),
+        'manifesto_ie9': (
+            'js/libs/matchMedia.addListener.js',
+        ),
         'mozorg-resp': (
             'js/libs/jquery-1.11.0.min.js',
+            'js/libs/spin.min.js',
             'js/base/global.js',
+            'js/newsletter/form.js',
             'js/base/nav-main-resp.js',
-            'js/base/footer-email-form.js',
             'js/base/mozilla-image-helper.js',
         ),
-        'pager': (
-            'js/base/mozilla-pager.js',
+        'nightly-firstrun': (
+            'js/firefox/firstrun/nightly-firstrun.js',
         ),
         'partnerships': (
             'js/libs/jquery.validate.js',
@@ -613,14 +677,10 @@ MINIFY_BUNDLES = {
             'js/base/mozilla-input-placeholder.js',
         ),
         'privacy': (
-            'js/base/mozilla-pager.js',
             'js/privacy/privacy.js',
         ),
         'privacy-day': (
             'js/privacy/privacy-day.js',
-        ),
-        'privacy-firefoxos': (
-            'js/privacy_firefoxos.js',
         ),
         'products': (
             'js/libs/jquery.waypoints.min.js',
@@ -629,6 +689,13 @@ MINIFY_BUNDLES = {
         ),
         'styleguide': (
             'js/styleguide/styleguide.js',
+        ),
+        'styleguide-docs-mozilla-accordion': (
+            'js/base/mozilla-accordion.js',
+        ),
+        'styleguide-docs-mozilla-pager': (
+            'js/base/mozilla-pager.js',
+            'js/styleguide/docs/mozilla-pager.js',
         ),
         'video': (
             'js/base/mozilla-video-tools.js',
@@ -653,7 +720,6 @@ MINIFY_BUNDLES = {
             'js/base/mozilla-input-placeholder.js',
             'js/base/mozilla-pager.js',
             'js/base/mozilla-modal.js',
-            'js/firefox/mwc-2014-map.js',
             'js/firefox/partners.js',
         ),
         'partners_common': (
@@ -668,11 +734,11 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.pageslide.min.js',
             'js/libs/jquery.waypoints.min.js',
             'js/libs/tweenmax.1.9.7.min.js',
-            'js/libs/jquery.spritely-0.6.1.js',
+            'js/libs/jquery.spritely-0.6.7.js',
             'js/firefox/partners/desktop.js',
         ),
         'facebookapps_redirect': (
-            'js/libs/jquery-1.7.1.min.js',
+            'js/libs/jquery-1.11.0.min.js',
             'js/facebookapps/redirect.js',
         ),
         'facebookapps_downloadtab': (
@@ -683,6 +749,11 @@ MINIFY_BUNDLES = {
             'js/facebookapps/Slider.js',
             'js/facebookapps/App.js',
             'js/facebookapps/downloadtab.js',
+        ),
+        'newsletter_form': (
+            'js/libs/jquery-1.11.0.min.js',
+            'js/libs/spin.min.js',
+            'js/newsletter/form.js',
         ),
     }
 }
@@ -769,12 +840,15 @@ INSTALLED_APPS = get_apps(exclude=(
     '%s.styleguide' % PROJECT_MODULE,
     '%s.tabzilla' % PROJECT_MODULE,
     '%s.facebookapps' % PROJECT_MODULE,
+    '%s.externalfiles' % PROJECT_MODULE,
+    '%s.security' % PROJECT_MODULE,
 
     # libs
     'django_extensions',
     'lib.l10n_utils',
     'captcha',
     'rna',
+    'raven.contrib.django.raven_compat',
 ))
 
 LOCALE_PATHS = (
@@ -792,15 +866,20 @@ TEMPLATE_CONTEXT_PROCESSORS = get_template_context_processors(append=(
     'jingo_minify.helpers.build_ids',
 ))
 
-## Auth
+# Auth
 PWD_ALGORITHM = 'bcrypt'
 HMAC_KEYS = {
-    #'2011-01-01': 'cheesecake',
+    # '2011-01-01': 'cheesecake',
 }
 
 FEEDS = {
     'mozilla': 'https://blog.mozilla.org/feed/'
 }
+
+# Twitter accounts to retrieve tweets with the API
+TWITTER_ACCOUNTS = (
+    'mozstudents',
+)
 
 BASKET_URL = 'http://basket.mozilla.com'
 
@@ -821,12 +900,6 @@ LOCALES_WITH_TRANSITION = ['en-US', 'af', 'ar', 'ast', 'be', 'bg',
                            'rm', 'ro', 'ru', 'si', 'sk', 'sl', 'sq',
                            'sr', 'sv-SE', 'ta', 'ta-LK', 'te', 'th',
                            'tr', 'uk', 'vi', 'zh-CN', 'zh-TW']
-
-# Locales showing the 15th Anniversary slideshow on /contribute
-LOCALES_WITH_MOZ15 = ['ar', 'bg', 'cs', 'cy', 'de', 'el', 'en-GB', 'en-US', 'es-AR',
-                      'es-CL', 'es-ES', 'es-MX', 'fr', 'fy-NL', 'hr', 'id', 'it',
-                      'lt', 'ms', 'nl', 'pl', 'pt-BR', 'ro', 'ru', 'sl', 'sq',
-                      'sr', 'ta', 'tr', 'zh-CN', 'zh-TW']
 
 # reCAPTCHA keys
 RECAPTCHA_PUBLIC_KEY = ''
@@ -859,11 +932,22 @@ STUB_INSTALLER_LOCALES = {
     'linux': [],
 }
 
-# Force download via SSL
-FORCE_SSL_DOWNLOAD_VERSIONS = ['27.0', '27.0.1']
-
 # Google Analytics
 GA_ACCOUNT_CODE = ''
+
+# Files from The Web[tm]
+EXTERNAL_FILES = {
+    'credits': {
+        'url': 'https://svn.mozilla.org/projects/mozilla.org/trunk/credits/names.csv',
+        'type': 'bedrock.mozorg.credits.CreditsFile',
+        'name': 'credits.csv',
+    },
+    'forums': {
+        'url': 'https://svn.mozilla.org/projects/mozilla.org/trunk/about/forums/raw-ng-list.txt',
+        'type': 'bedrock.mozorg.forums.ForumsFile',
+        'name': 'forums.txt',
+    },
+}
 
 FACEBOOK_LOCALES = ['en-US', 'es-ES', 'pt-BR', 'id', 'de']
 FACEBOOK_PAGE_NAMESPACE = 'DUMMY_PAGE_NAMESPACE'
@@ -893,7 +977,8 @@ FACEBOOK_LIKE_LOCALES = ['af_ZA', 'ar_AR', 'az_AZ', 'be_BY', 'bg_BG',
 # and app ID settings in local settings.
 def facebook_tab_url_lazy():
     from django.conf import settings
-    return '//www.facebook.com/{page}/app_{id}'.format(page=settings.FACEBOOK_PAGE_NAMESPACE, id=settings.FACEBOOK_APP_ID)
+    return '//www.facebook.com/{page}/app_{id}'.format(
+        page=settings.FACEBOOK_PAGE_NAMESPACE, id=settings.FACEBOOK_APP_ID)
 FACEBOOK_TAB_URL = lazy(facebook_tab_url_lazy, str)()
 
 # Prefix for media. No trailing slash.
@@ -929,10 +1014,7 @@ MOBILIZER_LOCALE_LINK = {
 }
 
 DONATE_LOCALE_LINK = {
-    'de': 'https://sendto.mozilla.org/page/contribute/EOYFR2013-webDE',
-    'en-US': 'https://sendto.mozilla.org/page/contribute/EOYFR2013-tabzilla',
-    'fr': 'https://sendto.mozilla.org/page/contribute/EOYFR2013-webFR',
-    'pt-BR': 'https://sendto.mozilla.org/page/contribute/EOYFR2013-webPTBR',
+    'en-US': 'https://sendto.mozilla.org/page/contribute/Give-Now',
 }
 
 # Official Firefox Twitter accounts
@@ -943,7 +1025,7 @@ FIREFOX_TWITTER_ACCOUNTS = {
 }
 
 # Mapbox token for spaces and communities pages
-MAPBOX_TOKEN = 'examples.map-9ijuk24y'
+MAPBOX_TOKEN = 'examples.map-i86nkdio'
 
 TABZILLA_INFOBAR_OPTIONS = 'translation'
 
@@ -965,4 +1047,47 @@ RNA = {
 
     # default False as temporary workaround for bug 973499
     'VERIFY_SSL_CERT': os.environ.get('VERIFY_SSL_CERT', False),
+}
+
+MOFO_SECURITY_ADVISORIES_PATH = path('mofo_security_advisories')
+MOFO_SECURITY_ADVISORIES_REPO = 'https://github.com/mozilla/foundation-security-advisories.git'
+
+LOGGING = {
+    'root': {
+        'level': 'WARNING',
+        'handlers': ['sentry'],
+    },
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(message)s'
+        },
+    },
+    'handlers': {
+        'sentry': {
+            'level': 'ERROR',
+            'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        }
+    },
+    'loggers': {
+        'django.db.backends': {
+            'level': 'ERROR',
+            'handlers': ['console'],
+            'propagate': False,
+        },
+        'raven': {
+            'level': 'WARNING',
+            'handlers': ['console'],
+            'propagate': False,
+        },
+        'sentry.errors': {
+            'level': 'WARNING',
+            'handlers': ['console'],
+            'propagate': False,
+        },
+    },
 }

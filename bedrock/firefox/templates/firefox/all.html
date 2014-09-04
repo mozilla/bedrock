@@ -34,11 +34,11 @@
 {% endblock %}
 
 {% block content %}
-  <hgroup id="main-feature">
+  <header id="main-feature">
     <h1>{{ self.page_title()  }}</h1>
     <h2>{{ self.page_desc() }}</h2>
     <p><a class="sysreq" href="{{ product_url('firefox', 'sysreq', channel) }}">{{ _('Check the system requirements') }}</a></p>
-  </hgroup>
+  </header>
 
   <form id="language-search" method="get">
     <div class="search-column">
@@ -74,20 +74,52 @@
     {% endif %}
   </form>
 
-  <div id="main-content">
-    <div id="localized">
-      {{ build_table(full_builds,
-                      _('Fully localized versions')) }}
+  <main id="main-content" role="main" class="pager pager-with-tabs pager-no-history">
+  {% if full_builds_next %}
+    <div class="pager-tabs-wrapper">
+      <span class="pager-title">{{ _('Show') }}</span>
+      <ul class="pager-tabs">
+        <li><a href="#builds-next">Firefox {{ full_builds_next_version }}</a></li>
+        <li><a href="#builds">Firefox {{ full_builds_version }}</a></li>
+      </ul>
     </div>
+  {% endif %}
+    <section class="pager-content">
 
-    {% if test_builds %}
-      <div id="localized-testing">
-        {{ build_table(test_builds,
-                        _('Localized versions in testing'),
-                        _('These localizations aren’t final. We’re waiting for more feedback from the community to perfect them.')) }}
-      </div>
+    {# ESR_NEXT (newest ESR) builds should be listed first, if available. #}
+    {% if full_builds_next %}
+      <div class="esr-builds-table pager-page" id="builds-next">
+        <div class="localized">
+          {{ build_table(full_builds_next,
+                         _('Fully localized versions')) }}
+        </div>
+
+        {% if test_builds_next %}
+          <div class="localized-testing">
+            {{ build_table(test_builds_next,
+                           _('Localized versions in testing'),
+                           _('These localizations aren’t final. We’re waiting for more feedback from the community to perfect them.')) }}
+          </div>
+        {% endif %}
+      </div> {#-- /#builds-next --#}
     {% endif %}
-  </div>
+
+      <div class="esr-builds-table pager-page" id="builds">
+        <div class="localized">
+          {{ build_table(full_builds,
+                         _('Fully localized versions')) }}
+        </div>
+
+      {% if test_builds %}
+        <div class="localized-testing">
+          {{ build_table(test_builds,
+                         _('Localized versions in testing'),
+                         _('These localizations aren’t final. We’re waiting for more feedback from the community to perfect them.')) }}
+        </div>
+      {% endif %}
+      </div> {#-- /builds --#}
+    </section>
+  </main>
 {% endblock %}
 
 {% block js %}

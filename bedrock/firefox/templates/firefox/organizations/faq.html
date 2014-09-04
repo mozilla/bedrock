@@ -44,6 +44,9 @@
 {% endtrans %}
 </p>
 
+<h4>{{ _('Where can I download Mozilla Firefox ESR?') }}</h4>
+<p>{{ _('You can <a href="%s">download Mozilla Firefox ESR here</a>.')|format(product_url('firefox', 'all', 'esr')) }}</p>
+
 <h4>{{ _('What does the Mozilla Firefox ESR life cycle look like?') }}</h4>
 <p>
 {% trans %}
@@ -55,7 +58,7 @@
 {% endtrans %}
 </p>
 
-<p><img src="{{ media('/img/firefox/organizations/release-overview.png') }}" alt="{{ _('Firefox ESR Release Overview') }}" id="release-overview" /></p>
+<p><a href="{{ media('/img/firefox/organizations/release-overview.png?201406') }}"><img src="{{ media('/img/firefox/organizations/release-overview.png?201406') }}" alt="{{ _('Firefox ESR Release Overview') }}" id="release-overview" /></a></p>
 
 <p>
 {% trans %}
@@ -167,8 +170,5 @@
 	computers.
 {% endtrans %}
 </p>
-
-<h4>{{ _('Where can I download Mozilla Firefox ESR?') }}</h4>
-<p>{{ _('You can download Mozilla Firefox ESR <a href="%s">here</a>.')|format(product_url('firefox', 'all', 'esr')) }}</p>
 
 {% endblock %}

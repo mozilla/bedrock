@@ -1,0 +1,4 @@
+#!/bin/bash
+cd /home/ubuntu/workspace
+echo Public URL: http://$C9_HOSTNAME
+./manage.py runserver $C9_IP:$C9_PORT

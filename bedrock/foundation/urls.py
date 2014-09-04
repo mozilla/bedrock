@@ -16,6 +16,13 @@ urlpatterns = patterns('',
     page('documents/mozilla-2007-financial-faq', 'foundation/documents/mozilla-2007-financial-faq.html'),
     page('documents/mozilla-2008-financial-faq', 'foundation/documents/mozilla-2008-financial-faq.html'),
 
+    # ported from PHP in Bug 960689
+    page('documents/bylaws-amendment-1', 'foundation/documents/bylaws-amendment-1.html'),
+    page('documents/bylaws-amendment-2', 'foundation/documents/bylaws-amendment-2.html'),
+    page('documents/articles-of-incorporation', 'foundation/documents/articles-of-incorporation.html'),
+    page('documents/articles-of-incorporation/amendment', 'foundation/documents/articles-of-incorporation-amendment.html'),
+    page('documents/bylaws', 'foundation/documents/bylaws.html'),
+
     # was https://www.mozilla.org/foundation/annualreport/2009/
     page('annualreport/2009', 'foundation/annualreport/2009/index.html'),
     # was .html
@@ -59,7 +66,6 @@ urlpatterns = patterns('',
     page('trademarks/policy', 'foundation/trademarks/policy.html'),
     page('trademarks/list', 'foundation/trademarks/list.html'),
     page('trademarks/faq', 'foundation/trademarks/faq.html'),
-    page('trademarks/l10n-policy', 'foundation/trademarks/l10n-policy.html'),
     page('trademarks/l10n-website-policy', 'foundation/trademarks/l10n-website-policy.html'),
     page('trademarks/distribution-policy', 'foundation/trademarks/distribution-policy.html'),
     page('trademarks/community-edition-permitted-changes', 'foundation/trademarks/community-edition-permitted-changes.html'),

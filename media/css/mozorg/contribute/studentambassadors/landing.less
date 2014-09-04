@@ -64,7 +64,7 @@
 
     p {
       font-size: 150%;
-      font-family: 'Open Sans Light', sans-serif;
+      .open-sans-light;
     }
   }
 
@@ -98,13 +98,17 @@
     .span(6)
   }
 
+  .col-full {
+    margin: 0 @gridGutterWidth/2;
+  }
+
   section {
     margin-top: 50px;
   }
 
   h2 {
     font-size: 150%;
-    font-family: 'Open Sans Light', sans-serif;
+    .open-sans-light;
     font-weight: bold;
     letter-spacing: 0;
     text-transform: uppercase;
@@ -152,6 +156,16 @@
 
     &.email:before {
       content: '\0f0e0';
+    }
+  }
+}
+
+#twitter-timeline-widget {
+  .tweets {
+    .multi-column(auto, 2, 20px);
+
+    article {
+      .multi-column-avoid-break;
     }
   }
 }
@@ -214,6 +228,12 @@
 
   #main-content section {
     margin-top: 40px;
+  }
+
+  #twitter-timeline-widget {
+    .tweets {
+      .multi-column-clear;
+    }
   }
 }
 

@@ -39,18 +39,25 @@ if (typeof Mozilla == 'undefined') {
         this.$body = $('body');
         this.$doc = $(document);
         this.$tour = $('#ui-tour').detach().show();
-        this.$mask = $('<div id="ui-tour-mask"><div class="mask-inner"></div></div>');
+        this.$mask = $('#ui-tour-mask').detach().show();
+        this.$maskInner = this.$mask.find('.mask-inner');
 
-        // clone the page header and show the mask
-        this.$mask.find('.mask-inner').html($('header h1').clone());
         this.$body.append(this.$mask).append(this.$tour).addClass('noscroll');
+
+        this.$mask.focus();
 
         this.$tourList = $('.ui-tour-list');
         this.$prevButton = $('button.prev');
         this.$nextButton = $('button.next');
         this.$closeButton = $('button.close');
         this.$progress = $('.progress-step');
+        this.$progressStep = this.$progress.find('.step');
+        this.$progressMeter = this.$progress.find('.progress');
         this.$compactTitle = $('.compact-title');
+        this.$tourTip = $('.tour-tip');
+        this.$tourControls = $('.ui-tour-controls');
+        this.$cta = $('.cta');
+        this.$inTourLinks = this.$tourList.find('a.more');
 
         // bind UITour event listeners
         this.bindEvents();
@@ -58,17 +65,46 @@ if (typeof Mozilla == 'undefined') {
 
     /*
      * Show the initial door-hanger menu that begins the tour
+     * and display the 'splash screen' animation.
      */
     BrowserTour.prototype.init = function () {
-        // show the door hanger if the tab is visible
-        if (!document.hidden) {
-            $('.tour-init').trigger('tour-step');
-            // temp workaround if bug 968039 does not make it into Aurora 29
-            // fixes highlight position first time browser is opened.
-            Mozilla.UITour.showHighlight('appMenu');
-            // Register page id for Telemetry
-            Mozilla.UITour.registerPageID(this.options.id);
-        }
+        var that = this;
+        var $p = this.$maskInner.find('p');
+        var $main = this.$maskInner.find('.main');
+        var words = $p.text().split(' ');
+        var delay = $('body').hasClass('html-ltr') ? 100 : 0;
+        var $tempEl = $('<div>');
+
+        // wrap each word in a <span> with an incremental
+        // transition-delay value.
+        $p.empty().show();
+        $.each(words, function(i, word) {
+            var $span = $('<span>').text(word + ' ');
+            $span.css({
+                'transition-delay': (i * delay) + 'ms'
+            });
+            $tempEl.append($span);
+        });
+        $p.html($tempEl.html());
+
+        setTimeout(function () {
+            // animate the mask welcome message
+            that.$maskInner.addClass('in');
+
+            setTimeout(function () {
+                $p.addClass('in');
+            }, 1000);
+
+            // show the door hanger if the tab is visible
+            if (!document.hidden) {
+                // trigger the door hanger for whatsnew
+                $('.tour-init').trigger('tour-step');
+            }
+
+        }, 1000);
+
+        // Register page id for Telemetry
+        Mozilla.UITour.registerPageID(this.options.id);
     };
 
     /*
@@ -85,9 +121,15 @@ if (typeof Mozilla == 'undefined') {
             },
             {
                 label: window.trans('start'),
+                style: 'primary',
                 callback: this.startTour.bind(this)
             }
         ];
+
+        // callback to postpone tour if user clicks the (x) button
+        var options = {
+            closeButtonCallback: this.postponeTour.bind(this)
+        };
 
         // show the door-hanger info panel
         $('.tour-init').on('tour-step', function () {
@@ -98,13 +140,14 @@ if (typeof Mozilla == 'undefined') {
                 window.trans('title'),
                 window.trans('text'),
                 icon,
-                buttons
+                buttons,
+                options
             );
         });
 
         // show a hightlighted target feature in the browser UI
         $('.tour-highlight').on('tour-step', function () {
-            Mozilla.UITour.showHighlight(this.dataset.target);
+            Mozilla.UITour.showHighlight(this.dataset.target, this.dataset.effect);
         });
 
         // show a targeted menu panel in the browser UI
@@ -116,11 +159,18 @@ if (typeof Mozilla == 'undefined') {
         this.$doc.on('visibilitychange', this.handleVisibilityChange.bind(this));
 
         // carousel event handlers
-        this.$doc.on('transitionend', '.ui-tour-list li.current', this.onTourStep.bind(this));
+        this.$tour.on('transitionend', '.ui-tour-list li.current', this.onTourStep.bind(this));
         this.$closeButton.on('click', this.closeTour.bind(this));
         this.$mask.on('click', this.closeTour.bind(this));
         $('.cta button').on('click', this.closeTour.bind(this));
         $('button.step').on('click', this.onStepClick.bind(this));
+
+        // show tooltips on prev/next buttons
+        this.$tourControls.on('mouseenter focus', 'button.step', this.onStepHover.bind(this));
+        this.$tourControls.on('mouseleave blur', 'button.step', this.offStepHover.bind(this));
+
+        // alternate tour has in-step links to advance section
+        this.$inTourLinks.on('click', this.onTourLinkClick.bind(this));
 
         // prevent focusing out of mask while initially visible
         this.$doc.on('focus.ui-tour', 'body', $.proxy(function(e) {
@@ -140,17 +190,70 @@ if (typeof Mozilla == 'undefined') {
     };
 
     /*
+     *Alternate version of the tour has in-step links to advance sections
+     */
+    BrowserTour.prototype.onTourLinkClick = function (e) {
+        var $current = this.$tourList.find('li.current');
+        var step = $current.data('step');
+        e.preventDefault();
+
+        if (this.tourIsAnimating || !this.tourIsVisible) {
+            return;
+        }
+
+        this.$tour.focus();
+
+        if ($current.is(':last-child')) {
+            this.doCloseTour();
+        } else {
+            this.goToTourStep('next');
+            step += 1;
+            gaTrack(['_trackEvent', 'Tour Interaction', 'link click to', 'Step ' + step]);
+        }
+    };
+
+    /*
+     * Shows tooltips for next/prev steps when mouseenter or focus is applied to button
+    */
+    BrowserTour.prototype.onStepHover = function (e) {
+        e.preventDefault();
+        var $button = $(e.target);
+        var $current = this.$tourList.find('li.current');
+        var tipText;
+
+        // if the tour is compact do nothing
+        if ($button.hasClass('up')) {
+            return;
+        }
+
+        tipText = $button.hasClass('prev') ? $current.data('tipPrev') : $current.data('tipNext');
+
+        if (tipText) {
+            this.$tourTip.html(tipText).addClass('show-tip');
+        }
+    };
+
+    /*
+     * Hide tooltips on mouseleave or blur
+     */
+    BrowserTour.prototype.offStepHover = function (e) {
+        e.preventDefault();
+        this.$tourTip.removeClass('show-tip');
+    };
+
+    /*
      * Postpone the tour until later.
      * Close the tour and display sign-post cta top right corner.
      */
     BrowserTour.prototype.postponeTour = function () {
         this.tourIsPostponed = true;
         var $cta = $('<button class="floating-cta"></button>');
-        $cta.text(window.trans('laterCta'));
+        $cta.html(window.trans('laterCta'));
         this.$body.append($cta);
         $('.floating-cta').one('click', $.proxy(function (e) {
             e.preventDefault();
             this.restartTour();
+            this.setCustomGAVariable();
             gaTrack(['_trackEvent', 'Tour Interaction', 'click', 'Signpost CTA']);
         }, this));
 
@@ -174,7 +277,6 @@ if (typeof Mozilla == 'undefined') {
                 that.$mask.removeClass('out');
                 that.startTour();
             }, 50);
-
         } else {
             this.expandTour();
         }
@@ -216,6 +318,23 @@ if (typeof Mozilla == 'undefined') {
     };
 
     /*
+     * Shows current tour step highlight item
+     */
+    BrowserTour.prototype.showHighlight = function () {
+        var $current = this.$tourList.find('li.current');
+        var $stepTarget = $current.find('.step-target');
+
+        if ($current.hasClass('app-menu')) {
+            Mozilla.UITour.showMenu('appMenu');
+        } else {
+            Mozilla.UITour.hideMenu('appMenu');
+        }
+        setTimeout(function () {
+            $stepTarget.trigger('tour-step');
+        }, 200);
+    };
+
+    /*
      * Triggers the current step tour highlight / interaction
      * Called on `transitionend` event after carousel item animates
      */
@@ -223,18 +342,16 @@ if (typeof Mozilla == 'undefined') {
         if (e.originalEvent.propertyName === 'transform') {
             var $current = this.$tourList.find('li.current');
             var step = $current.data('step');
-            this.tourIsAnimating = false;
-            Mozilla.UITour.hideInfo();
-            Mozilla.UITour.hideHighlight();
-            $current.find('.step-target').delay(100).trigger('tour-step');
-            this.$progress.find('.step').text(window.trans('step' + step));
-            this.$progress.find('.progress').attr('aria-valuenow', step);
-            this.$tourList.find('.tour-step').not('.current').removeClass('visible');
+            var tipText;
 
-            // hide menu panel when not needed as it has super-sticky special powers
-            if (!$current.hasClass('app-menu')) {
-                Mozilla.UITour.hideMenu('appMenu');
-            }
+            this.tourIsAnimating = false;
+            Mozilla.UITour.hideHighlight();
+
+            this.showHighlight();
+
+            this.$progressStep.html(window.trans('step' + step));
+            this.$progressMeter.attr('aria-valuenow', step);
+            this.$tourList.find('.tour-step').not('.current').removeClass('visible');
 
             // update the button states
             this.updateControls();
@@ -242,12 +359,27 @@ if (typeof Mozilla == 'undefined') {
             // set focus on the header of current slide
             $current.find('h2').focus();
 
-            // fire callback when reaching the last tour step.
             if ($current.is(':last-child')) {
+                // fire callback when reaching the last tour step.
                 this.onTourComplete();
+                // show green cta for the last step
+                this.$cta.removeAttr('disabled').fadeIn();
             }
 
-            gaTrack(['_trackEvent', 'Tour Interaction', 'click', 'Step ' + step]);
+            // if user still has hover/focus over a button show the tooltip
+            if ($('button.next:hover').length) {
+                tipText = $current.data('tipNext');
+                if (tipText) {
+                    this.$tourTip.html(tipText);
+                    this.$tourTip.addClass('show-tip');
+                }
+            } else if ($('button.prev:hover').length) {
+                tipText = $current.data('tipPrev');
+                if (tipText) {
+                    this.$tourTip.html(tipText);
+                    this.$tourTip.addClass('show-tip');
+                }
+            }
         }
     };
 
@@ -257,6 +389,8 @@ if (typeof Mozilla == 'undefined') {
     BrowserTour.prototype.onStepClick = function (e) {
         e.preventDefault();
         var $button = $(e.target);
+        var $current = this.$tourList.find('li.current');
+        var step = $current.data('step');
 
         // if the tour is compact do nothing
         // as uses it's own handler
@@ -266,6 +400,14 @@ if (typeof Mozilla == 'undefined') {
 
         var trans = $button.hasClass('prev') ? 'prev' : 'next';
         this.goToTourStep(trans);
+
+        if (trans === 'prev') {
+            step -= 1;
+        } else {
+            step += 1;
+        }
+
+        gaTrack(['_trackEvent', 'Tour Interaction', 'arrow click to', 'Step ' + step]);
     };
 
     /*
@@ -282,8 +424,15 @@ if (typeof Mozilla == 'undefined') {
 
         this.tourIsAnimating = true;
 
+        this.$tourTip.removeClass('show-tip');
+
         // disable tour control buttons while animating
         $('.ui-tour-controls button').attr('disabled', 'disabled');
+
+        // if we're moving back from the last step, hide green cta
+        if ($current.is(':last-child')) {
+            this.$cta.attr('disabled', 'disabled').fadeOut();
+        }
 
         // animate in/out the correct tour panel
         if (trans === 'prev') {
@@ -294,6 +443,7 @@ if (typeof Mozilla == 'undefined') {
             setTimeout(function () {
                 $prev.addClass('current');
             }, 50);
+
         } else if (trans === 'next') {
             $current.removeClass('current prev-out').addClass('next-out');
             $next = $current.next().addClass('visible');
@@ -315,8 +465,8 @@ if (typeof Mozilla == 'undefined') {
         $current.addClass('current visible');
         $('.ui-tour-list .tour-step:gt(' + step + ')').addClass('prev-out');
         $('.ui-tour-list .tour-step:lt(' + step + ')').addClass('next-out');
-        this.$progress.find('.step').text(window.trans('step' + step));
-        this.$progress.find('.progress').attr('aria-valuenow', step);
+        this.$progressStep.html(window.trans('step' + step));
+        this.$progressMeter.attr('aria-valuenow', step);
 
         this.updateControls();
     };
@@ -354,13 +504,15 @@ if (typeof Mozilla == 'undefined') {
         this.tourHasStarted = false;
         this.tourHasFinished = true;
 
-        this.$tour.removeClass('in');
-        this.$mask.find('.mask-inner').addClass('out');
-        this.$mask.addClass('out');
-        this.$mask.one('transitionend', this.onCloseTour.bind(this));
+        this.$cta.fadeOut('fast', $.proxy(function () {
+            this.$tour.removeClass('in');
+            this.$mask.addClass('out');
+            setTimeout(this.onCloseTour.bind(this), 600);
+        }, this));
     };
 
     BrowserTour.prototype.onCloseTour = function () {
+        this.$mask.find('.mask-inner').addClass('out');
         this.$mask.hide();
         this.$body.removeClass('noscroll');
         // unbind ui-tour focus and keyboard event listeners
@@ -392,24 +544,23 @@ if (typeof Mozilla == 'undefined') {
 
         // fade out the mask so user can interact with the page
         this.$mask.addClass('out');
-        this.$mask.one('transitionend', this.onCompactTour.bind(this));
+
+        setTimeout(this.onCompactTour.bind(this), 600);
 
         gaTrack(['_trackEvent', 'Tour Interaction', 'click', 'Compact tour']);
     };
 
-    BrowserTour.prototype.onCompactTour = function (e) {
+    BrowserTour.prototype.onCompactTour = function () {
         var title;
-        if (e.originalEvent.propertyName === 'opacity') {
-            title = this.$tourList.find('li.current h2').text();
-            this.$mask.hide();
-            this.$body.removeClass('noscroll');
+        title = this.$tourList.find('li.current h2').text();
+        this.$mask.hide();
+        this.$body.removeClass('noscroll');
 
-            // fade in the compact modal content
-            this.$compactTitle.html('<h2>' + title + '</h2>').fadeIn();
-            this.$progress.addClass('compact').fadeIn($.proxy(function () {
-                this.tourIsAnimating = false;
-            }, this));
-        }
+        // fade in the compact modal content
+        this.$compactTitle.html('<h2>' + title + '</h2>').fadeIn();
+        this.$progress.addClass('compact').fadeIn($.proxy(function () {
+            this.tourIsAnimating = false;
+        }, this));
     };
 
     /*
@@ -423,6 +574,9 @@ if (typeof Mozilla == 'undefined') {
             return;
         }
 
+        Mozilla.UITour.hideHighlight();
+        Mozilla.UITour.hideMenu('appMenu');
+
         this.tourIsVisible = true;
         this.tourIsAnimating = true;
         this.$tour.removeClass('compact').addClass('in').focus();
@@ -435,25 +589,24 @@ if (typeof Mozilla == 'undefined') {
         this.$closeButton.fadeIn('fast');
 
         this.$mask.show();
+
+        setTimeout(this.onTourExpand.bind(this), 600);
+
         setTimeout(function () {
             that.$mask.removeClass('out');
         }, 50);
 
-        this.$mask.one('transitionend', this.onTourExpand.bind(this));
-
         gaTrack(['_trackEvent', 'Tour Interaction', 'click', 'Expand tour']);
     };
 
-    BrowserTour.prototype.onTourExpand = function (e) {
-        if (e.originalEvent.propertyName === 'opacity') {
-            this.$body.addClass('noscroll');
-            this.$tourList.find('li.current .step-target').trigger('tour-step');
-            this.$progress.removeClass('compact').fadeIn('slow');
-            this.$tourList.find('li.current').find('h2').focus();
-            this.$tourList.fadeIn('slow', $.proxy(function () {
-                this.tourIsAnimating = false;
-            }, this));
-        }
+    BrowserTour.prototype.onTourExpand = function () {
+        this.$body.addClass('noscroll');
+        this.showHighlight();
+        this.$progress.removeClass('compact').fadeIn('slow');
+        this.$tourList.find('li.current').find('h2').focus();
+        this.$tourList.fadeIn('slow', $.proxy(function () {
+            this.tourIsAnimating = false;
+        }, this));
     };
 
     /*
@@ -465,7 +618,7 @@ if (typeof Mozilla == 'undefined') {
 
         if (this.tourIsVisible && !this.tourIsAnimating) {
 
-            switch (e.keyCode) {
+            switch (e.which) {
             // esc minimizes the tour
             case 27:
                 this.closeTour();
@@ -487,6 +640,22 @@ if (typeof Mozilla == 'undefined') {
     };
 
     /*
+     * Set custom GA variable so we know if the tour is taken for the first time
+     * The custom var should only be set if cookies are enabled.
+     */
+    BrowserTour.prototype.setCustomGAVariable = function () {
+        var firstTime = 'True';
+        try {
+            if (localStorage.getItem(this.options.id) === 'taken') {
+                firstTime = 'False';
+            } else {
+                localStorage.setItem(this.options.id, 'taken');
+            }
+            gaTrack(['_setCustomVar', 5, 'First Time Taking Firefox Tour', firstTime, 2]);
+        } catch (e) {}
+    };
+
+    /*
      * Starts the tour and animates the carousel up from bottom of viewport
      */
     BrowserTour.prototype.startTour = function () {
@@ -496,14 +665,15 @@ if (typeof Mozilla == 'undefined') {
         var $current = this.$tourList.find('li.current');
         var step = $current.data('step');
 
-        this.$progress.find('.step').text(window.trans('step' + step));
+        this.$progressStep.html(window.trans('step' + step));
+
+        // fade out the inner mask messaging that's shown the the page loads
+        this.$maskInner.addClass('out');
+
         this.$tour.addClass('in').focus();
         this.$tour.attr('aria-expanded', true);
         this.tourIsVisible = true;
         this.tourHasStarted = true;
-
-        // fade out the inner mask messaging that's shown the the page loads
-        this.$mask.find('.mask-inner').addClass('out');
 
         Mozilla.UITour.hideInfo();
 
@@ -511,25 +681,34 @@ if (typeof Mozilla == 'undefined') {
         this.$tour.on('keyup.ui-tour', this.onKeyUp.bind(this));
 
         // prevent focusing out of modal while open
-        this.$doc.off('focus.ui-tour').on('focus.ui-tour', 'body', function(e) {
+        this.$doc.off('focus.ui-tour', 'body').on('focus.ui-tour', 'body', function(e) {
             if (that.tourIsVisible && !that.$tour[0].contains(e.target)) {
                 e.stopPropagation();
                 that.$tour.focus();
             }
         });
 
-        // show the first tour step
-        setTimeout(function () {
-            that.$tourList.find('li.current .step-target').trigger('tour-step');
-            $current.find('h2').focus();
-        }, 500);
+        setTimeout(this.onStartTour.bind(this), 600);
 
         if (!this.tourIsPostponed) {
+            this.setCustomGAVariable();
             gaTrack(['_trackEvent', 'Tour Interaction', 'click', 'Lets go']);
         } else {
             this.tourIsPostponed = false;
         }
 
+    };
+
+    /*
+     * When the tour finishes animating in from bottom, trigger the tour step
+     */
+    BrowserTour.prototype.onStartTour = function () {
+        var $current = this.$tourList.find('li.current');
+        var that = this;
+        $current.find('h2').focus();
+        setTimeout(function () {
+            that.showHighlight();
+        }, 100);
     };
 
     /*
@@ -566,9 +745,11 @@ if (typeof Mozilla == 'undefined') {
             // if tab is visible and tour is open, show the current step.
             if (this.tourIsVisible) {
                 this.highlightTimer = setTimeout(function () {
-                    $current.find('.step-target').trigger('tour-step');
-                    that.$progress.find('.step').text(window.trans('step' + step));
-                    that.$progress.find('.progress').attr('aria-valuenow', step);
+                    if (that.tourIsVisible) {
+                        that.showHighlight();
+                        that.$progress.find('.step').html(window.trans('step' + step));
+                        that.$progress.find('.progress').attr('aria-valuenow', step);
+                    }
                 }, 900);
                 gaTrack(['_trackEvent', 'Tour Interaction', 'visibility', 'Return to tour']);
                 // Update page id for Telemetry when returning to tab

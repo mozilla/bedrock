@@ -3,25 +3,11 @@
 @import "reset.less";
 @import "fonts.less";
 @import "buttons.less";
+@import "animations.less";
 
 /* {{{ Basic Colors, Text, Links */
 
 html { background: #fff; }
-
-// Locales with jointed scripts should always have normal letter-spacing
-html[lang='ar'] *,
-html[lang='fa'] *,
-html[lang='hi-IN'] *,
-html[lang='bn-IN'] * {
-    letter-spacing: normal !important;
-}
-
-// No italic for CJKT locales (Bug 973171)
-html[lang='ja'] *,
-html[lang='ko'] *,
-html[lang|='zh'] * {
-    font-style: normal !important;
-}
 
 body {
     font-size: @baseFontSize;
@@ -54,24 +40,44 @@ a {
 }
 
 // Add a double-arrow after links
-a.more:after {
-    content: "\00A0\00BB"; /* nbsp raquo */
+a.more {
+    .trailing-arrow();
 }
 
-.sand {
-    #outer-wrapper {
-        background: #f5f1e8 url(/media/img/sandstone/bg-sand.png) repeat;
-        background: url(/media/img/sandstone/bg-gradient-sand.png) repeat-x 0 0,
-                    url(/media/img/sandstone/bg-sand.png) repeat 0 0,
-                    #f5f1e8;
+// Make a button look like an anchor
+.link-button {
+    border: none;
+    background: transparent;
+    color: @linkBlue;
+    font-size: @baseFontSize;
+    padding: 0;
+    margin: 0;
+    line-height: 1.5;
+    .open-sans();
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: underline;
+        color: darken(@linkBlue, 10%);
     }
+
+    &:focus {
+        outline: 0;
+    }
+}
+
+.sand #outer-wrapper {
+    background: #f5f1e8 url(/media/img/sandstone/bg-gradient-sand.png) repeat-x;
+    background: url(/media/img/sandstone/bg-gradient-sand.png) repeat-x,
+                url(/media/img/sandstone/bg-sand.png) repeat,
+                #f5f1e8;
 }
 
 .sky {
     #outer-wrapper {
-        background: #eee url(/media/img/sandstone/grain.png) repeat;
-        background: url(/media/img/sandstone/bg-gradient-sky.png) repeat-x 0 0,
-                    url(/media/img/sandstone/grain.png) repeat 0 0,
+        background: #eee url(/media/img/sandstone/bg-gradient-sky.png) repeat-x;
+        background: url(/media/img/sandstone/bg-gradient-sky.png) repeat-x,
+                    url(/media/img/sandstone/grain.png) repeat,
                     #eee;
     }
 
@@ -83,16 +89,13 @@ a.more:after {
             color: darken(@linkSkyBlue, 10%);
         }
     }
-
 }
 
 .space {
     color: #fff;
 
-    #wrapper {
-        background-color: #04020b;
-        background-image: url(/media/img/sandstone/bg-space.png);
-        background-repeat: repeat-x;
+    #outer-wrapper {
+        background: #04020b url(/media/img/sandstone/bg-space.png) repeat-x;
     }
 
     a {
@@ -124,6 +127,10 @@ a.more:after {
         }
     }
 
+}
+
+html[dir='rtl'] #masthead nav {
+    float: left;
 }
 
 h1, h2, h3, h4, h5, h6, .huge, .large {
@@ -219,15 +226,6 @@ dl dd {
 code {
     color: @textColorTertiary;
     font-size: 14px;
-}
-
-select {
-    height: 1.5em;
-    line-height: 1.5;
-}
-
-select[multiple] {
-    height: auto;
 }
 
 .center {
@@ -552,7 +550,7 @@ nav.menu-bar {
 /* }}} */
 /* {{{ Footer Email Form */
 
-#footer-email-form, #newsletter-form {
+.footer-newsletter-form, #newsletter-form {
     padding-top: @baseLine;
     padding-bottom: @baseLine;
     margin-bottom: 0;
@@ -588,10 +586,19 @@ nav.menu-bar {
             padding: 0 0 0 25px;
         }
     }
+
+    &.loading {
+        h3,
+        .form-contents,
+        .form-submit {
+            .transition(opacity .2s ease-in-out);
+            opacity: 0.2;
+        }
+    }
 }
 
 .html-rtl {
-    #footer-email-form,
+    .footer-newsletter-form,
     #newsletter-form {
         h3,
         .form-contents,
@@ -605,12 +612,19 @@ nav.menu-bar {
     }
 }
 
-#footer-email-form.thank, #newsletter-form.thank {
+.newsletter-form.thank {
+    display: none;
+    overflow: hidden;
     h3 {
         width: auto;
         margin: auto;
         padding: 0;
         float: none;
+        .animation(sand-bounce-down 0.7s ease-in 0.2s 1 normal both);
+    }
+    p {
+        margin-top: @baseLine;
+        .animation(sand-fade-in 0.5s ease-in 0.8s 1 normal both);
     }
 }
 .js {
@@ -634,6 +648,14 @@ nav.menu-bar {
     padding-bottom: @baseLine / 2;
 }
 
+#newsletter-spinner {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
 
 /* }}} */
 /* {{{ Footer */
@@ -643,6 +665,13 @@ nav.menu-bar {
     padding: 48px 0;
     font-size: 14px;
     line-height: 18px;
+    background: #fff;
+    width: 100%;
+
+    .row {
+        width: 960px;
+        margin: 0 auto;
+    }
 
     a,
     a:link,
@@ -656,33 +685,81 @@ nav.menu-bar {
         color: darken(@linkBlue, 10%);
     }
 
-    p {
+    h1 {
         margin-bottom: @baseLine / 2;
+        font-size: @baseFontSize;
     }
 
-    .footer-logo,
-    .footer-license,
-    .footer-lang {
-        .span(2);
+    p, ul {
+        margin-bottom: @baseLine / 2;
+        line-height: 1.5;
     }
 
-    .footer-nav {
-        .span(2);
-        .open-sans;
+    li {
+        margin: 0;
+        list-style-type: none;
+    }
+
+    .col {
+        float: left;
+        margin-left: 24px;
+        width: 282px;
+
+        & > *:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .logo a {
+        .image-replaced();
+        display: inline-block;
+        background: url(/media/img/sandstone/footer-mozilla.png) left top no-repeat;
+        width: 93px;
+        height: 24px;
+    }
+
+    .col-2 ul {
+        overflow: hidden;
 
         li {
-            list-style-type: none;
-            margin: 0 0 2px 0;
+            float: left;
+
+            &.wrap:before {
+                content: "\00A0\00B7\00A0"; /* &nbsp;&middot;&nbsp; */
+            }
+
+            &.clear {
+                clear: both;
+            }
+        }
+    }
+
+    .links-social li {
+        ul {
+            display: inline;
+            margin: 0;
         }
 
+        li {
+            display: inline;
+
+            &:before {
+                content: "\00B7\00A0"; /* &middot;&nbsp; */
+            }
+
+            &:first-child:before {
+                content: "";
+            }
+
+            span {
+                .visually-hidden; /* for a11y */
+            }
+        }
     }
 }
 
-html[dir="rtl"] #colophon {
-    .footer-logo,
-    .footer-nav,
-    .footer-license,
-    .footer-lang {
+.html-rtl #colophon {
+    .col, .col-2 ul li {
         float: right;
     }
 }

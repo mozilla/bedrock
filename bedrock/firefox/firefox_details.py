@@ -2,8 +2,6 @@ import re
 from operator import itemgetter
 from urllib import urlencode
 
-from django.conf import settings
-
 from product_details import ProductDetails
 
 
@@ -40,6 +38,7 @@ class FirefoxDetails(ProductDetails):
         'aurora': 'FIREFOX_AURORA',
         'beta': 'LATEST_FIREFOX_DEVEL_VERSION',
         'esr': 'FIREFOX_ESR',
+        'esr_next': 'FIREFOX_ESR_NEXT',
         'release': 'LATEST_FIREFOX_VERSION',
     }
 
@@ -48,11 +47,17 @@ class FirefoxDetails(ProductDetails):
 
     def latest_version(self, channel):
         version = self.channel_map.get(channel, 'LATEST_FIREFOX_VERSION')
-        return self.firefox_versions[version]
+        try:
+            return self.firefox_versions[version]
+        except KeyError:
+            return None
 
     def latest_major_version(self, channel):
         """Return latest major version as an int."""
         lv = self.latest_version(channel)
+        if lv is None:
+            return 0
+
         try:
             return int(lv.split('.')[0])
         except ValueError:
@@ -60,7 +65,13 @@ class FirefoxDetails(ProductDetails):
 
     @property
     def esr_major_versions(self):
-        return range(10, self.latest_major_version('release'), 7)
+        versions = []
+        for version in ('esr', 'esr_next'):
+            version_int = self.latest_major_version(version)
+            if version_int:
+                versions.append(version_int)
+
+        return versions
 
     def _matches_query(self, info, query):
         words = re.split(r',|,?\s+', query.strip().lower())
@@ -139,12 +150,6 @@ class FirefoxDetails(ProductDetails):
         :param product: optional. probably 'firefox'
         :return: string url
         """
-        product_code = [product, version]
-
-        # Force download via SSL
-        if version in settings.FORCE_SSL_DOWNLOAD_VERSIONS:
-            product_code.append('SSL')
-
         if platform == 'OS X' and language == 'ja':
             language = 'ja-JP-mac'
 
@@ -153,7 +158,7 @@ class FirefoxDetails(ProductDetails):
 
         return '?'.join([self.download_base_url_direct,
                          urlencode([
-                             ('product', '-'.join(product_code)),
+                             ('product', '-'.join([product, version, 'SSL'])),
                              ('os', self.platform_info[platform]['id']),
                              # Order matters, lang must be last for bouncer.
                              ('lang', language),

@@ -18,6 +18,7 @@ from bedrock.mozorg.tests import TestCase
 
 
 class TestSpeakerRequest(TestCase):
+
     def setUp(self):
         self.factory = RequestFactory()
         self.view = press_views.SpeakerRequestView.as_view()
@@ -70,11 +71,11 @@ class TestSpeakerRequest(TestCase):
 
     def test_view_post_honeypot(self):
         """
-        POST with honeypot checkbox checked should return 200 and
+        POST with honeypot text box filled should return 200 and
         contain general form error message.
         """
 
-        self.data['superpriority'] = True
+        self.data['office_fax'] = 'spammer'
 
         request = self.factory.post(self.url, self.data)
 
@@ -112,9 +113,9 @@ class TestSpeakerRequest(TestCase):
 
     def test_form_honeypot(self):
         """
-        Form with honeypot checkbox checked should not be valid.
+        Form with honeypot text box filled should not be valid.
         """
-        self.data['superpriority'] = True
+        self.data['office_fax'] = 'spammer'
 
         form = SpeakerRequestForm(self.data)
 
@@ -125,9 +126,12 @@ class TestSpeakerRequest(TestCase):
         Form should be valid when attachment under/at size limit.
         """
         # attachment within size limit
-        mock_attachment = Mock(_size=press_forms.SPEAKER_REQUEST_FILE_SIZE_LIMIT)
+        mock_attachment = Mock(
+            _size=press_forms.SPEAKER_REQUEST_FILE_SIZE_LIMIT)
 
-        form = SpeakerRequestForm(self.data, {'sr_attachment': mock_attachment})
+        form = SpeakerRequestForm(
+            self.data, {
+                'sr_attachment': mock_attachment})
 
         # make sure form is valid
         ok_(form.is_valid())
@@ -141,7 +145,9 @@ class TestSpeakerRequest(TestCase):
         mock_attachment = Mock(
             _size=(press_forms.SPEAKER_REQUEST_FILE_SIZE_LIMIT + 1))
 
-        form = SpeakerRequestForm(self.data, {'sr_attachment': mock_attachment})
+        form = SpeakerRequestForm(
+            self.data, {
+                'sr_attachment': mock_attachment})
 
         # make sure form is not valid
         ok_(not form.is_valid())
@@ -149,7 +155,8 @@ class TestSpeakerRequest(TestCase):
         # make sure attachment errors are in form
         self.assertIn('sr_attachment', form.errors)
 
-    @patch('bedrock.press.views.jingo.render_to_string', return_value='jingo rendered')
+    @patch('bedrock.press.views.jingo.render_to_string',
+           return_value='jingo rendered')
     @patch('bedrock.press.views.EmailMessage')
     def test_email(self, mock_email_message, mock_render_to_string):
         """
@@ -176,9 +183,11 @@ class TestSpeakerRequest(TestCase):
             press_views.SPEAKER_REQUEST_EMAIL_FROM,
             press_views.SPEAKER_REQUEST_EMAIL_TO)
 
-    @patch('bedrock.press.views.jingo.render_to_string', return_value='jingo rendered')
+    @patch('bedrock.press.views.jingo.render_to_string',
+           return_value='jingo rendered')
     @patch('bedrock.press.views.EmailMessage')
-    def test_email_with_attachement(self, mock_email_message, mock_render_to_string):
+    def test_email_with_attachement(
+            self, mock_email_message, mock_render_to_string):
         """
         Make sure email is sent with attachment.
         """
@@ -188,9 +197,6 @@ class TestSpeakerRequest(TestCase):
 
         # make sure name attribute is treated as string
         mock_attachment.name = 'img.jpg'
-
-        #form = SpeakerRequestForm(self.data, {'sr_attachment': mock_attachment})
-        #self.data['sr_attachment'] = mock_attachment
 
         # create POST request
         request = self.factory.post(self.url, self.data)

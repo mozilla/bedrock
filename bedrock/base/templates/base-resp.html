@@ -6,9 +6,11 @@
 <html class="windows x86 no-js" lang="{{ LANG }}" dir="{{ DIR }}"{% block html_attrs %}{% endblock %}>
   <head>
     <meta charset="utf-8">{# Note: Must be within first 512 bytes of page #}
+
 <!--
 {% include "includes/careers-teaser.html" %}
 -->
+
     {% block ga_experiments %}{% endblock %}
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% block extra_meta %}{% endblock %}
@@ -21,7 +23,7 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="{{ _('Mozilla') }}">
     <meta property="og:locale" content="{{ LANG|replace("-", "_") }}">
-    <meta property="og:url" content="{{ settings.CANONICAL_URL + '/' + LANG + canonical_path }}">
+    <meta property="og:url" content="{% block canonical_url %}{{ settings.CANONICAL_URL + '/' + LANG + canonical_path }}{% endblock %}">
     <meta property="og:image" content="{% filter absolute_url %}{% block page_image %}{{ media('img/mozorg/mozilla-256.jpg') }}{% endblock %}{% endfilter %}">
     <meta property="og:title" content="{{ self.page_title_full()|striptags }}">
     <meta property="og:description" content="{{ self.page_desc()|striptags }}">
@@ -35,21 +37,37 @@
     {% include 'includes/canonical-url.html' %}
     {% endblock shared_meta %}
 
+    {{ l10n_css() }}
+
     {% block tabzilla_css %}
       {{ css('tabzilla') }}
     {% endblock %}
 
     <!--[if lte IE 8]>
-    <script src="{{ MEDIA_URL }}js/libs/html5shiv.js"></script>
+      {# Only needed for IE before v9 #}
+      <script src="{{ media('js/libs/html5shiv.js') }}"></script>
     <![endif]-->
 
+    <!--[if lte IE 7]>
+      {# Basic styles, only for IE7 and lower #}
+      {{ css('oldIE') }}
+    <![endif]-->
+
+    <!--[if !lte IE 7]><!-->
+    {# Global styles, hidden from IE7 and lower #}
     {% block site_css %}
       {{ css('responsive') }}
     {% endblock %}
 
-    {% include 'includes/locale-font-faces.html' %}
+    {# Page-specific styles, hidden from IE7 and lower #}
+    {% block page_css %}{% endblock %}
+    <!--<![endif]-->
 
-    {% block extrahead %}{% endblock %}
+    {% block extrahead %}
+      {# Extra header stuff (scripts, styles, metadata, etc) seen by all browsers. Use the 'page_css' block for CSS you want to hide from IE7 and lower. #}
+    {% endblock %}
+
+    {% block favicon %}<link rel="shortcut icon" href="{{ media('img/favicon.ico') }}">{% endblock %}
 
     {{ js('site') }}
 
@@ -63,17 +81,22 @@
     {% endblock %}
   </head>
 
-  <body id="{% block body_id %}{% endblock %}" class="html-{{ DIR }} {% block body_class %}{% endblock %}"{% block body_attrs %}{% endblock %}>
-    <div id="strings" data-global-close="{{ _('Close') }}" {% block string_data %}{% endblock %}></div>
+  <body {% if self.body_id() %}id="{% block body_id %}{% endblock %}" {% endif %}class="html-{{ DIR }} {% block body_class %}{% endblock %}"{% block body_attrs %}{% endblock %}>
+    <div id="strings"
+      data-global-close="{{ _('Close') }}"
+      data-global-next="{{ _('Next') }}"
+      data-global-previous="{{ _('Previous') }}"
+      {% block string_data %}{% endblock %}></div>
     <div id="outer-wrapper">
     <div id="wrapper">
 
     {% block site_header %}
       <header id="masthead">
         <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{{ settings.TABZILLA_INFOBAR_OPTIONS }}">Mozilla</a>
+
         {% block site_header_nav %}
-        <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
         <nav id="nav-main" role="navigation">
+          <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{_('Menu')}}</span>
           <ul id="nav-main-menu">
             <li class="first mission-item"><a href="{{ url('mozorg.mission') }}">{{_('Mission')}}</a></li>
             <li class="about-item"><a href="{{ url('mozorg.about') }}">{{_('About')}}</a></li>
@@ -115,50 +138,7 @@
     </div><!-- close #wrapper -->
 
     {% block site_footer %}
-      <footer id="colophon" class="{% block footer_class %}{% endblock %}">
-      <div class="row">
-
-          <div class="footer-logo">
-              <a href="{{ php_url('/') }}"><img src="{{ media('img/sandstone/footer-mozilla.png') }}" alt="mozilla"></a>
-          </div>
-
-          <div class="footer-license">
-              <p>
-                {% trans url=url('foundation.licensing.website-content') %}
-                Portions of this content are ©1998–{{ current_year }} by individual
-                mozilla.org contributors. Content available under
-                a <a href="{{ url }}">Creative Commons license</a>.
-                {% endtrans %}
-              </p>
-              <p>
-                <a href="{{ url('mozorg.contribute_page') }}">{{_('Contribute to this page')}}</a>
-              </p>
-          </div>
-          <ul class="footer-nav">
-            <li><a href="{{ url('mozorg.contact.spaces.spaces-landing') }}">{{_('Contact Us')}}</a></li>
-            <li><a href="{{ url('mozorg.partnerships') }}">{{_('Partner with Us')}}</a></li>
-            <li><a href="{{ donate_url() }}?source=mozillaorg_footer&amp;amount=20" class="donate">{{ _('Donate') }}</a></li>
-            <li><a href="{{ url('privacy.index') }}">{{_('Privacy Policy')}}</a></li>
-            <li><a href="{{ php_url('/about/legal.html') }}">{{_('Legal Notices')}}</a></li>
-            <li><a href="{{ php_url('/legal/fraud-report/index.html') }}">{{_('Report Trademark Abuse')}}</a></li>
-          </ul>
-          {% block social %}
-          <ul class="footer-nav">
-            <li><a href="https://twitter.com/mozilla">{{_('Mozilla on Twitter')}}</a></li>
-            <li><a href="{{ firefox_twitter_url() }}">{{_('Firefox on Twitter')}}</a></li>
-            <li><a href="https://www.facebook.com/mozilla">{{_('Mozilla on Facebook')}}</a></li>
-            <li><a href="https://www.facebook.com/Firefox">{{_('Firefox on Facebook')}}</a></li>
-            <li><a href="https://affiliates.mozilla.org/">{{_('Firefox Affiliates')}}</a></li>
-          </ul>
-          {% endblock %}
-          {% block lang_switcher %}
-          <div class="footer-lang">
-            {% include 'includes/lang_switcher.html' %}
-          </div>
-          {% endblock %}
-
-      </div>
-      </footer>
+      {% include 'includes/site-footer.html' %}
     {% endblock %}
 
     </div><!-- close #outer-wrapper -->

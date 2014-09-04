@@ -3,7 +3,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 (function($) {
-    "use strict";
+    'use strict';
 
     var wideMode = true;
 
@@ -23,6 +23,7 @@
     var asiaSouthPacific;
     var antarctica;
     var africaMiddleEast;
+    var balkans;
     var hispano;
     var francophone;
     var arabic;
@@ -45,10 +46,6 @@
             mozMap.initResizeHandler();
             //initialize map and center.
             map = L.mapbox.map('map').setView([28, 0], 2);
-            // add open street map attribution
-            map.attributionControl.addAttribution(
-                '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            );
             // load mozilla custom map tiles
             var mapLayer = L.mapbox.tileLayer(token,{
                 detectRetina: true
@@ -96,6 +93,10 @@
                 gallery: { enabled: true },
                 type: 'image'
             });
+
+            // init HTML5 video poster helper
+            var video = new Mozilla.videoPosterHelper('#page-content');
+            video.init();
         },
 
         /*
@@ -173,6 +174,14 @@
                 // close any photo galleries that may have been open
                 $.magnificPopup.close();
             });
+
+            // If pushState is emulated (html4 browsers) and we have a hash (a '#' in the url)
+            // trigger the statechange event
+            if (History.emulated.pushState && History.getHash()) {
+                $(document).ready(function() {
+                    History.Adapter.trigger(window, 'statechange');
+                });
+            }
         },
 
         /*
@@ -255,14 +264,14 @@
             mozMap.unBindMobileNavChange();
             // update the selected item
             if (state === 'spaces' && id !== 'spaces') {
-                $('#nav-spaces-select').find('option:selected').prop("selected", false);
+                $('#nav-spaces-select').find('option:selected').prop('selected', false);
                 $('#nav-spaces-select option[value="' + id + '"]').prop('selected', 'selected');
             } else if (state === 'communities' && id !== 'communities') {
-                $('#nav-communities-select').find('option:selected').prop("selected", false);
+                $('#nav-communities-select').find('option:selected').prop('selected', false);
                 $('#nav-communities-select option[value="' + id + '"]').prop('selected', 'selected');
             } else {
-                $('#nav-communities-select').find('option:selected').prop("selected", false);
-                $('#nav-spaces-select').find('option:selected').prop("selected", false);
+                $('#nav-communities-select').find('option:selected').prop('selected', false);
+                $('#nav-spaces-select').find('option:selected').prop('selected', false);
                 $('.nav-category-select option[disabled]').prop('selected', 'selected');
             }
             // rebind change listener
@@ -514,10 +523,10 @@
         },
 
         /*
-         * Programatically finds a marker and clicks it
+         * Programatically pan to a given marker
          * Param: @id marker string identifier
          */
-        doClickMarker: function (id) {
+        panToMarker: function (id) {
             // if we're on the landing page zoom out to show all markers.
             if (id === 'spaces') {
                 map.setView([28, 0], 2);
@@ -526,7 +535,9 @@
             // else find the right marker and fire a click.
             map.markerLayer.eachLayer(function (marker) {
                 if (marker.feature.properties.id === id) {
-                    marker.fireEvent('click');
+                    map.setView(marker.getLatLng(), 12, {
+                        animate: true
+                    });
                     return;
                 }
             });
@@ -699,11 +710,6 @@
                 }, document.title, url);
                 return;
             }
-
-            // pan to center the marker on the map
-            map.setView(e.layer.getLatLng(), 12, {
-                animate: true
-            });
         },
 
         /*
@@ -719,14 +725,13 @@
             // if the content is already cached display it
             if (contentCache.hasOwnProperty(cacheId)) {
                 $('#entry-container').html(contentCache[cacheId]);
-                // programatically find the right marker and click it
-                mozMap.doClickMarker(cacheId);
+                // pan to the new marker
+                mozMap.panToMarker(cacheId);
                 // update the page title
                 mozMap.setPageTitle(cacheId);
             } else if (id === $('section.entry').prop('id')) {
-                // if we're already on the right page, just center
-                // the marker
-                mozMap.doClickMarker(id);
+                // pan to the new marker
+                mozMap.panToMarker(id);
             } else {
                 $('#entry-container').empty();
                 // request content via ajax
@@ -755,8 +760,12 @@
             // if the layer exists clear the map and add it.
             if (layers.hasOwnProperty(region)) {
                 mozMap.clearCommunityLayers();
-                communityLayers.addLayer(layers[region]);
                 mozMap.fitRegionToLayer(region);
+                // mapbox needs a small timeout after zooming
+                // the region before adding the community layer
+                setTimeout(function () {
+                    communityLayers.addLayer(layers[region]);
+                }, 50);
             }
 
             mozMap.highlightLegend(region);
@@ -818,6 +827,8 @@
             case 'arabic':
                 map.setView([20, 10], 2);
                 break;
+            case 'balkans':
+                map.setView([50, 20], 3);
             }
         },
 
@@ -862,6 +873,9 @@
             arabic = L.geoJson(window.mozArabic, {
                 style: mozMap.styleLayer('white', '#f79937', 0.1, 'none', 2)
             });
+            balkans = L.geoJson(window.mozBalkans, {
+                style: mozMap.styleLayer('white', "#7022a8", 0.1, 'none', 2)
+            });
 
             // create an empty layer group and add it to the map
             communityLayers = new L.FeatureGroup();
@@ -877,7 +891,8 @@
                 'africa': africaMiddleEast,
                 'hispano': hispano,
                 'francophone': francophone,
-                'arabic': arabic
+                'arabic': arabic,
+                'balkans': balkans
             };
         },
 
@@ -936,7 +951,7 @@
         splitLabelLayer: function () {
             topPane = map._createPane('leaflet-top-pane', map.getPanes().mapPane);
             // this custom map layer only contains country names, no map!
-            topLayer = L.mapbox.tileLayer('mozilla-webprod.map-f1uagdlz', {
+            topLayer = L.mapbox.tileLayer('mozilla-webprod.ijaelnfn', {
                 detectRetina: true
             });
             topLayer.on('ready', function() {
@@ -1057,8 +1072,8 @@
 
                     // update the page title
                     mozMap.setPageTitle(id);
-                    // programatically find the right marker and click it
-                    mozMap.doClickMarker(id);
+                    // pan to the new marker
+                    mozMap.panToMarker(id);
                     // show the corresponding community region
                     mozMap.showCommunityRegion(id);
                 }

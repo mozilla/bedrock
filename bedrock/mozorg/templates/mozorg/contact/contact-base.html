@@ -10,9 +10,6 @@
 
 {% block extrahead %}
   {{ css('contact-spaces') }}
-  <!--[if IE 8]>
-    {{ css('contact-spaces-ie8') }}
-  <![endif]-->
   <!--[if lte IE 7]>
     {{ css('contact-spaces-ie7') }}
   <![endif]-->
@@ -72,6 +69,9 @@
         </li>
         <li data-id="francophone">
           <a href="{{ url('mozorg.contact.communities.francophone') }}">{{ _('Francophone') }}</a>
+        </li>
+        <li data-id="balkans">
+          <a href="{{ url('mozorg.contact.communities.balkans') }}">{{ _('Balkans') }}</a>
         </li>
         <li data-id="hispano">
           <a href="{{ url('mozorg.contact.communities.hispano') }}">{{ _('Hispano') }}</a>
@@ -250,6 +250,9 @@
             <li data-id="macedonia">
               <a href="{{ url('mozorg.contact.communities.macedonia') }}">{{ _('Macedonia') }}</a>
             </li>
+            <li data-id="montenegro">
+              <a href="{{ url('mozorg.contact.communities.montenegro') }}">{{ _('Montenegro') }}</a>
+            </li>
             <li data-id="the-netherlands">
               <a href="{{ url('mozorg.contact.communities.the-netherlands') }}">{{ _('The Netherlands') }}</a>
             </li>
@@ -279,6 +282,9 @@
             </li>
             <li data-id="spain">
               <a href="{{ url('mozorg.contact.communities.spain') }}">{{ _('Spain') }}</a>
+            </li>
+            <li data-id="sweden">
+              <a href="{{ url('mozorg.contact.communities.sweden') }}">{{ _('Sweden') }}</a>
             </li>
             <li data-id="switzerland">
               <a href="{{ url('mozorg.contact.communities.switzerland') }}">{{ _('Switzerland') }}</a>
@@ -333,6 +339,9 @@
             <li data-id="nepal">
               <a href="{{ url('mozorg.contact.communities.nepal') }}">{{ _('Nepal') }}</a>
             </li>
+            <li data-id="pakistan">
+              <a href="{{ url('mozorg.contact.communities.pakistan') }}">{{ _('Pakistan') }}</a>
+            </li>
             <li data-id="philippines">
               <a href="{{ url('mozorg.contact.communities.philippines') }}">{{ _('Philippines') }}</a>
             </li>
@@ -374,6 +383,9 @@
             <li data-id="israel">
               <a href="{{ url('mozorg.contact.communities.israel') }}">{{ _('Israel') }}</a>
             </li>
+            <li data-id="ivory-coast">
+              <a href="{{ url('mozorg.contact.communities.ivory-coast') }}">{{ _('Ivory Coast') }}</a>
+            </li>
             <li data-id="jordan">
               <a href="{{ url('mozorg.contact.communities.jordan') }}">{{ _('Jordan') }}</a>
             </li>
@@ -402,6 +414,9 @@
         </li>
         <li data-id="arabic" class="region pseudo">
           <a href="{{ url('mozorg.contact.communities.arabic') }}">{{ _('Arabic') }}</a>
+        </li>
+        <li data-id="balkans" class="region pseudo">
+          <a href="{{ url('mozorg.contact.communities.balkans') }}">{{ _('Balkans') }}</a>
         </li>
         <li data-id="francophone" class="region pseudo">
           <a href="{{ url('mozorg.contact.communities.francophone') }}">{{ _('Francophone') }}</a>
@@ -472,7 +487,6 @@
       <h4>{{ _('Questions &amp; feedback') }}</h4>
       <ul>
         <li><a href="https://support.mozilla.org/">{{ _('Get support') }}</a></li>
-        <li><a href="{{ press_blog_url() }}">{{ _('Press inquiries') }}</a></li>
         <li><a href="{{ url('foundation.licensing') }}">{{ _('Browser distribution &amp; licensing') }}</a></li>
         <li><a href="https://input.mozilla.org/feedback">{{ _('Firefox feedback') }}</a></li>
         <li><a href="https://support.mozilla.org/kb/websites-look-wrong-or-appear-differently">{{ _('Report a broken site') }}</a></li>

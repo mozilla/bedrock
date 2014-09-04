@@ -23,12 +23,15 @@ Contents
 .. toctree::
    :maxdepth: 2
 
+   quickstart
    install
    vagrant
    php
    l10n
    coding
+   javascript-libs
    contribute
    grunt
    newsletters
    tabzilla
+   uitour

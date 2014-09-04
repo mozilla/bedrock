@@ -19,9 +19,8 @@
 }
 
 // Add a double-arrow after 'go' links
-.go:after {
-    content: ' »';
-    white-space: nowrap;
+.go {
+    .trailing-arrow();
 }
 
 // A few styles for non-JS browsers
@@ -87,29 +86,18 @@
 }
 
 // Adjustments for some locales
-.lang-bg,
-.lang-de,
-.lang-el,
-.lang-es-ES,
-.lang-fr,
-.lang-it,
-.lang-mk {
+[lang='bg'],
+[lang='de'],
+[lang='el'],
+[lang='fr'],
+[lang='it'],
+[lang='mk'],
+[lang^='es'] {
     .mission .tagline {
         font-size: 42px;
     }
 }
 
-.engage {
-    display: none; // hide this for now
-    margin: 0;
-
-    .button {
-        border-radius: 6px;
-        font-size: 16px;
-        padding: 10px 20px;
-        text-transform: uppercase;
-    }
-}
 
 
 // @Accordion
@@ -163,6 +151,8 @@
     min-height: 0;
     overflow: hidden;
     box-shadow: -6px 0 10px -4px rgba(0, 0, 0, .5);
+    position: relative;
+    z-index: 6;
 
     &:first-child {
         box-shadow: none;
@@ -181,26 +171,24 @@
     font-size: 18px;
     line-height: 1.2;
     font-weight: bold;
-    letter-spacing: -.025em;
     text-align: center;
     text-shadow: 0 1px 0 rgba(0, 0, 0, .15);
     text-transform: uppercase;
+    letter-spacing: -.025em;
+    height: 80px;
+    width: 220px;
     margin: 0;
     padding: 40px 15px 0;
     position: absolute;
     bottom: 0;
-    left: 0;
-    width: 218px;
-    height: 80px;
+    left: -5px;
+    z-index: 6;
+    .trailing-arrow();
 
     i {
         font-style: normal;
     }
 
-    &:after {
-        content: ' »';
-        white-space: nowrap;
-    }
 }
 
 // An inner wrapper mostly useful as an overlay for background effects.
@@ -328,19 +316,29 @@
     }
 }
 
-
+#newsletter-container {
+    .span(4);
+    float: right;
+}
 
 // @Newsletter form
 .newsletter-form {
-    .span(4);
-    float: right;
+    width: auto;
     background: transparent;
     padding: 0;
     border: 0;
     box-shadow: none;
 }
 
-#footer-email-form {
+#footer-email-errors {
+    width: auto;
+
+    .errorlist {
+        margin-bottom: @baseLine;
+    }
+}
+
+.footer-newsletter-form {
     h3 {
         font-size: 34px;
         margin: 0 0 .75em;
@@ -372,12 +370,24 @@
     }
 }
 
+//override JS inline color style for spin.js
+#newsletter-spinner .spinner > div > div {
+    background-color: #fff !important;
+}
+
+.newsletter-form.thank {
+    h3 {
+        color: #fff;
+        text-shadow: none;
+    }
+}
+
 .html-rtl {
-    .newsletter-form {
+    #newsletter-container {
         float: left;
     }
 
-    #footer-email-form {
+    .footer-newsletter-form {
         .form-contents,
         .form-submit {
             float: none;
@@ -604,7 +614,6 @@
 
     #masthead,
     .container,
-    .newsletter-form,
     .mission,
     .pillars {
         width: (@widthTablet - (@gridGutterWidth * 2));
@@ -621,7 +630,7 @@
 
     .panel-title {
         font-size: 16px;
-        width: 155px;
+        width: 160px;
     }
 
     .wide .panel-content {
@@ -660,12 +669,12 @@
         }
     }
 
-    .extra .newsletter-form {
+    #newsletter-container {
         .span_narrow(5);
         float: right;
     }
 
-    .html-rtl .extra .newsletter-form {
+    .html-rtl  #newsletter-container {
         float: left;
     }
 
@@ -694,7 +703,7 @@
         .download-button,
         .download-link {
             width: 250px;
-        } 
+        }
     }
 
 }
@@ -707,7 +716,6 @@
 
     #masthead,
     .container,
-    .newsletter-form,
     .pillars {
         width: (@widthMobile - @gridGutterWidth);
     }
@@ -738,15 +746,13 @@
     }
 
     // Adjustments for some locales
-    .lang-bg,
-    .lang-it,
-    .lang-fr,
-    .lang-de,
-    .lang-el,
-    .lang-es-ES,
-    .lang-es-MX,
-    .lang-es-CL,
-    .lang-es-AR {
+    [lang='bg'],
+    [lang='de'],
+    [lang='el'],
+    [lang='fr'],
+    [lang='it'],
+    [lang='mk'],
+    [lang^='es'] {
         .mission .tagline {
             font-size: 24px;
         }
@@ -786,9 +792,10 @@
     }
 
     .panel-title {
-        position: static;
         width: auto;
         height: auto;
+        bottom: auto;
+        right: 0;
         padding: .75em 35px .75em 40%;
         min-height: 3em;
         text-align: left;
@@ -837,7 +844,7 @@
         margin: 0 10px @baseLine;
     }
 
-    .extra .newsletter-form {
+    #newsletter-container {
         width: auto;
         float: none;
         margin: 0 10px @baseLine;

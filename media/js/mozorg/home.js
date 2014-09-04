@@ -38,12 +38,23 @@
 
         // Adjust the news headlines
         $('.extra-news a').each(function () {
-            var title = $(this).attr('title');
+            var $this = $(this);
+            var title = $this.attr('title');
+
             if (!title) {
-                title = $.trim($(this).text());
-                $(this).attr('title', title);
+                title = $.trim($this.text());
             }
-            $(this).text(title).ellipsis({ row: 3 });
+
+            $this.text(title).ellipsis({
+                row: 3,
+                callback: function () {
+                    var text = $.trim($this.text());
+
+                    if (text.match('[.]{3}$')) {
+                        $this.attr('title', title);
+                    }
+                }
+            });
         });
     }
 
@@ -51,13 +62,14 @@
         // Expand the accordion horizontally
         expandHorz: function(panel) {
             $('.panel-title').stop(true,true).fadeOut(200);
-            panel.stop().removeClass('compressed').addClass('expanded').animate({'width':'64%'},700);
+            panel.stop().removeClass('compressed').addClass('expanded').animate({'width':'64%'}, 700, function() {
+                track_accordion('open', ($('.panel').index(panel) + 1), panel.attr('id'));
+            });
             $('.panel-content', panel).stop(true,true).delay(400).fadeIn(400);
             panel.siblings('.panel').stop().removeClass('expanded').addClass('compressed').animate({'width':'12%'},700);
             panel.siblings('.panel').find('.panel-content').stop(true,true).fadeOut(400, function() {
                 $(this).delay(500).removeAttr('style');
             });
-            track_accordion('open', ($('.panel').index(panel) + 1), panel.attr('id'));
         },
 
         // Contract the accordion horizontally
@@ -71,13 +83,14 @@
         // Expand the accordion vertically
         expandVert: function(panel) {
             $('.panel-title').stop(true,true).fadeOut(200);
-            panel.stop().removeClass('compressed').addClass('expanded').animate({'height':'22em'},700);
+            panel.stop().removeClass('compressed').addClass('expanded').animate({'height':'22em'},700, function() {
+                track_accordion('open', ($('.panel').index(panel) + 1), panel.attr('id'));
+            });
             panel.siblings('.panel').stop().removeClass('expanded').addClass('compressed').animate({'height':'3em'},700);
             $('.panel-content', panel).stop(true,true).delay(400).fadeIn(400);
             panel.siblings('.panel').find('.panel-content').stop(true,true).fadeOut(400, function() {
                 $(this).delay(500).removeAttr('style');
             });
-            track_accordion('open', ($('.panel').index(panel) + 1), panel.attr('id'));
         },
 
         // Contract the accordion vertically
@@ -192,24 +205,18 @@
         );
     });
 
-    // Track news clicks
-    $('.extra-news a').on('click', function(e) {
+    // Track news & contribute clicks
+    $('.extra-news a, .extra-contribute a, .engage a').on('click', function(e) {
         e.preventDefault();
-        var href = this.href;
-        var callback = function() {
-            window.location = href;
-        };
-        gaTrack(['_trackEvent', 'Mozilla in the News Interactions','click', href], callback);
-    });
 
-    // Track contribute clicks
-    $('.extra-contribute a, .engage a').on('click', function(e) {
-        e.preventDefault();
         var href = this.href;
         var callback = function() {
             window.location = href;
         };
-        gaTrack(['_trackEvent', 'Get Involved Interactions','clicks', 'Get Involved Button'], callback);
+
+        var action = (/external/.test($(this).attr('rel'))) ? 'outbound link' : 'click';
+
+        gaTrack(['_trackEvent', 'Homepage Interactions', action, href], callback);
     });
 
     // Track Firefox downloads

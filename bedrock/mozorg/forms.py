@@ -11,11 +11,11 @@ from random import randrange
 from django import forms
 from django.forms import widgets
 from django.utils.safestring import mark_safe
+from django.core.urlresolvers import reverse
 
 import basket
 from basket.base import request
 
-from captcha.fields import ReCaptchaField
 from lib.l10n_utils.dotlang import _
 from lib.l10n_utils.dotlang import _lazy
 from product_details import product_details
@@ -60,22 +60,22 @@ class PrivacyWidget(widgets.CheckboxInput):
             '%s '
             '<span class="title">%s</span></label>'
             % (attrs['id'], input_txt,
-               policy_txt % '/en-US/privacy-policy')
+               policy_txt % reverse('privacy'))
         )
 
 
-class HoneyPotWidget(widgets.CheckboxInput):
-    """Render a checkbox to (hopefully) trick bots. Will be used on many pages."""
+class HoneyPotWidget(widgets.TextInput):
+    """Render a text field to (hopefully) trick bots. Will be used on many pages."""
 
     def render(self, name, value, attrs=None):
-        honeypot_txt = _(u'Check this box if you are not human.')
+        honeypot_txt = _(u'Leave this field empty.')
         # semi-randomized in case we have more than one per page.
         # this is maybe/probably overthought
-        honeypot_id = 'super-priority-' + str(randrange(1001)) + '-' + str(datetime.now().strftime("%Y%m%d%H%M%S%f"))
+        honeypot_id = 'office-fax-' + str(randrange(1001)) + '-' + str(datetime.now().strftime("%Y%m%d%H%M%S%f"))
         return mark_safe(
             '<div class="super-priority-field">'
-            '<label for="%s" class="super-priority-check-label">%s</label>'
-            '<input type="checkbox" name="superpriority" id="%s">'
+            '<label for="%s">%s</label>'
+            '<input type="text" name="office_fax" id="%s">'
             '</div>' % (honeypot_id, honeypot_txt, honeypot_id))
 
 
@@ -111,10 +111,10 @@ class ContributeForm(forms.Form):
         choices=INTEREST_CHOICES,
         widget=forms.Select(attrs={'required': 'required'}))
     comments = forms.CharField(
-        widget=forms.widgets.Textarea(attrs={'required': 'required',
-                                             'rows': '4',
+        widget=forms.widgets.Textarea(attrs={'rows': '4',
                                              'cols': '30'}))
-    captcha = ReCaptchaField(attrs={'theme': 'clean'})
+    # honeypot
+    office_fax = forms.CharField(widget=HoneyPotWidget, required=False)
 
 
 class WebToLeadForm(forms.Form):
@@ -299,7 +299,8 @@ class WebToLeadForm(forms.Form):
             }
         )
     )
-    superpriority = forms.BooleanField(widget=HoneyPotWidget, required=False)
+    # honeypot
+    office_fax = forms.CharField(widget=HoneyPotWidget, required=False)
     # uncomment below to debug salesforce
     # debug = forms.IntegerField(required=False)
     # debugEmail = forms.EmailField(required=False)
@@ -385,8 +386,9 @@ class ContributeStudentAmbassadorForm(forms.Form):
         required=False,
         widget=widgets.CheckboxInput(),
         label=_lazy(u'About Mozilla: News from the Mozilla Project'))
-    superpriority = forms.BooleanField(widget=HoneyPotWidget, required=False)
-    source_url = forms.URLField(verify_exists=False, required=False)
+    # honeypot
+    office_fax = forms.CharField(widget=HoneyPotWidget, required=False)
+    source_url = forms.URLField(required=False)
 
     def __init__(self, *args, **kwargs):
         locale = kwargs.get('locale', 'en-US')
@@ -415,6 +417,13 @@ class ContributeStudentAmbassadorForm(forms.Form):
         if self.cleaned_data.get('share_information', False):
             return 'Y'
         return 'N'
+
+    def clean_office_fax(self):
+        honeypot = self.cleaned_data.pop('office_fax', None)
+
+        if honeypot:
+            raise forms.ValidationError(
+                _('Your submission could not be processed'))
 
     def newsletters(self):
         newsletters = ['ambassadors']

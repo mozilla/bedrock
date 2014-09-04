@@ -6,10 +6,11 @@ import json
 import os
 
 from django.conf import settings
-from django.conf.urls.defaults import url
+from django.conf.urls import url
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
+import tweepy
 import commonware.log
 from lib import l10n_utils
 from lib.l10n_utils.dotlang import lang_file_has_tag
@@ -122,3 +123,17 @@ def get_fb_like_locale(request_locale):
             lang = 'en_US'
 
     return lang
+
+
+def TwitterAPI(account):
+    """
+    Connect to the Twitter REST API using the Tweepy library.
+
+    https://dev.twitter.com/docs/api/1.1
+    http://pythonhosted.org/tweepy/html/
+    """
+    keys = settings.TWITTER_APP_KEYS[account]
+    auth = tweepy.OAuthHandler(keys['CONSUMER_KEY'], keys['CONSUMER_SECRET'])
+    auth.set_access_token(keys['ACCESS_TOKEN'], keys['ACCESS_TOKEN_SECRET'])
+
+    return tweepy.API(auth)

@@ -3,7 +3,6 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 from django.conf.urls import patterns, url
 
-from bedrock.mozorg.util import page
 from bedrock.newsletter import views
 
 # A UUID looks like: f81d4fae-7dec-11d0-a765-00a0c91e6bf6
@@ -43,6 +42,8 @@ urlpatterns = patterns('',  # noqa
         views.hacks_newsletter,
         name='mozorg.hacks_newsletter'),
 
-    # Page to subscribe to 'mozilla-and-you' newsletter
-    page('newsletter', 'newsletter/mozilla-and-you.html'),
+    # Receives POSTs from all subscribe forms
+    url('^newsletter/$',
+        views.newsletter_subscribe,
+        name='newsletter.subscribe'),
 )

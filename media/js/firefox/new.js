@@ -5,7 +5,7 @@
 ;(function($, Modernizr, _gaq, site) {
     'use strict';
 
-    var isIELT9 = (site.platform === 'windows' && $.browser.msie && $.browser.version < 9);
+    var isIELT9 = (site.platform === 'windows' && /MSIE\s[1-8]\./.test(navigator.userAgent));
     var path_parts = window.location.pathname.split('/');
     var query_str = window.location.search ? window.location.search + '&' : '?';
     var referrer = path_parts[path_parts.length - 2];
@@ -71,6 +71,12 @@
         var $thankYou = $('.thankyou');
         var hash_change = ('onhashchange' in window);
 
+        // if desktop with download available, re-locate dl button links
+        if (!no_scene2) {
+            var $downloadButtonLinks = $('.download-button-wrapper .download-other-desktop').detach();
+            $downloadButtonLinks.css('display', 'block').insertBefore('#firefox-screenshot');
+        }
+
         // Add external link tracking, excluding links in Tabzilla that will be
         // logged in tabzilla.js
         $('#outer-wrapper').on('click', 'a', function(e) {
@@ -107,7 +113,7 @@
                 $stage.addClass('stage-no-anim');
             }
 
-            var CSSbottom = (scene === 2) ? '-400px' : 0;
+            var CSSbottom = (scene === 2) ? '-420px' : 0;
             $stage.data('scene', scene);
             $('.scene').css('visibility', 'visible');
             if (!Modernizr.csstransitions && animate) {

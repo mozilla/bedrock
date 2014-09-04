@@ -16,13 +16,13 @@
   <h2><a href="/persona/"><img src="{{ MEDIA_URL }}img/persona/title.png" height="66" width="180" alt="{{ _('Mozilla Persona') }}"></a></h2>
 {% endblock %}
 {% block site_header_nav %}
-  <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
   <nav id="nav-main" role="navigation">
-  <ul id="nav-main-menu">
-      <li><a href="/persona/">{{ _('Home') }}</a></li>
-      <li><a href="/persona/about/">{{ _('About') }}</a></li>
-      <li><a href="https://developer.mozilla.org/persona">{{ _('Developer Docs') }}</a></li>
-  </ul>
+    <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{_('Menu')}}</span>
+    <ul id="nav-main-menu">
+        <li><a href="/persona/">{{ _('Home') }}</a></li>
+        <li><a href="/persona/about/">{{ _('About') }}</a></li>
+        <li><a href="https://developer.mozilla.org/persona">{{ _('Developer Docs') }}</a></li>
+    </ul>
   </nav>
 {% endblock %}
 
@@ -57,7 +57,7 @@
     </li>
     <li>
       {{ _('You are responsible for the third party software or APIs that you use or have developed to access the Mozilla Persona Service. The Mozilla Persona service are provided “as is” and there are no warranties of any kind.') }}
-	</li>
+    </li>
     <li>
       {{ _('There are significant limits on Mozilla’s liability for any damages arising from your use of the Mozilla Persona service.') }}
     </li>

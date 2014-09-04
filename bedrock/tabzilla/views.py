@@ -35,8 +35,8 @@ def template_last_modified(template):
     return inner_last_modified
 
 
-def _resp(request, path, ctype):
-    resp = l10n_utils.render(request, path, content_type=ctype)
+def _resp(request, path, ctype, context=None):
+    resp = l10n_utils.render(request, path, context, content_type=ctype)
 
     is_enabled = not settings.TEMPLATE_DEBUG and settings.CDN_BASE_URL
     if is_enabled and isinstance(resp, HttpResponseRedirect):

@@ -56,48 +56,6 @@ function init_lang_switcher() {
     });
 }
 
-// platform images
-
-function init_platform_imgs() {
-    function has_platform(platforms, platform) {
-        for (var i = 0; i < platforms.length; i++) {
-            if (platforms[i] === platform && site.platform === platform) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    $('.platform-img').each(function() {
-        var suffix = '';
-        var $img = $(this);
-        var default_platforms = ['osx', 'oldmac', 'linux'];
-        var additional_platforms;
-        var platforms = default_platforms;
-
-        // use 'data-additional-platforms' to specify other supported platforms
-        // beyond the defaults
-        if ($img.data('additional-platforms')) {
-            additional_platforms = $img.data('additional-platforms').split(' ');
-            platforms = default_platforms.concat(additional_platforms);
-        }
-
-        if (has_platform(platforms, 'osx') || has_platform(platforms, 'oldmac')) {
-            suffix = '-mac';
-        } else if (has_platform(platforms, site.platform)) {
-            suffix = '-' + site.platform;
-        }
-
-        var orig_src = $img.data('src');
-        var i = orig_src.lastIndexOf('.');
-        var base = orig_src.substring(0, i);
-        var ext = orig_src.substring(i);
-        this.src = base + suffix + ext;
-        $img.addClass(site.platform);
-    });
-}
-
 // init
 
 $(document).ready(function() {
@@ -131,6 +89,7 @@ function isFirefox(userAgent) {
     return (
         (/\sFirefox/).test(ua) &&
         !(/like Firefox/i).test(ua) &&
+        !(/Iceweasel/i).test(ua) &&
         !(/SeaMonkey/i).test(ua)
     );
 }
@@ -194,31 +153,16 @@ function gaTrack(eventArray, callback) {
     //      $(thing).on('submit', handler);
     // });
 
-    var timer = null;
     var hasCallback = typeof(callback) === 'function';
-    var gaCallback;
 
-    // Only build new function if callback exists.
-    if (hasCallback) {
-        gaCallback = function() {
-            clearTimeout(timer);
-            callback();
-        };
-    }
     if (typeof(window._gaq) === 'object') {
         // send event to GA
         window._gaq.push(eventArray);
         // Only set up timer and hitCallback if a callback exists.
         if (hasCallback) {
-            // Failsafe - be sure we do the callback in a half-second
-            // even if GA isn't able to send in our trackEvent.
-            timer = setTimeout(gaCallback, 500);
-
-            // But ordinarily, we get GA to call us back immediately after
-            // it finishes sending our things.
-            // https://developers.google.com/analytics/devguides/collection/gajs/#PushingFunctions
-            // This is called after GA has sent the current pending data:
-            window._gaq.push(gaCallback);
+            // Need a timeout in order for __utm.gif request to complete in
+            // order to register the GA event, before excecuting the callback.
+            setTimeout(callback, 600);
         }
     } else {
         // GA disabled or blocked or something, make sure we still

@@ -9,22 +9,22 @@
 {% block page_desc %}{{ _('Download and test Firefox future releases. Experience the newest innovations with the Aurora or Beta builds.') }}{% endblock %}
 {% block body_id %}channel{% endblock %}
 
-{% block site_css %}
+{% block extrahead %}
   {{ css('firefox_channel') }}
 {% endblock %}
 
 {% block content %}
 
-<div id="main-content" class="pager pager-with-tabs pager-cleartype-fix">
+<div id="main-content" class="pager pager-with-tabs pager-cleartype-fix pager-auto-init">
 
   <ul id="toggler-container" class="pager-tabs">
-    <li id="beta-link"><a href="{{ php_url('/firefox/beta/') }}"><img src="{{ media('/img/firefox/channel/toggler-beta.png?2013-06') }}" id="toggler-logo-beta" /></a></li>
-    <li id="firefox-link"><a href="{{ php_url('/firefox/') }}"><img src="{{ media('/img/firefox/channel/toggler-firefox.png?2013-06') }}" id="toggler-logo-firefox" /></a></li>
-    <li id="aurora-link"><a href="{{ php_url('/firefox/aurora/') }}"><img src="{{ media('/img/firefox/channel/toggler-aurora.png?2013-06') }}" id="toggler-logo-aurora" /></a></li>
+    <li id="beta-link"><a href="#beta"><img src="{{ media('/img/firefox/channel/toggler-beta.png?2013-06') }}" alt="Firefox Beta" id="toggler-logo-beta" /></a></li>
+    <li id="firefox-link"><a href="#firefox"><img src="{{ media('/img/firefox/channel/toggler-firefox.png?2013-06') }}" alt="Firefox" id="toggler-logo-firefox" /></a></li>
+    <li id="aurora-link"><a href="#aurora"><img src="{{ media('/img/firefox/channel/toggler-aurora.png?2013-06') }}" alt="Firefox Aurora" id="toggler-logo-aurora" /></a></li>
   </ul>
 
-  <a href="#" id="carousel-left"></a>
-  <a href="#" id="carousel-right"></a>
+  <a href="#" id="carousel-left" aria-hidden="true"></a>
+  <a href="#" id="carousel-right" aria-hidden="true"></a>
 
   <div class="pager-content">
 
@@ -33,12 +33,23 @@
       {# L10n: This description applies to Firefox Beta #}
       <h3>{{_('The latest features in a more stable environment')}}</h3>
       <div class="download-box" id="beta-desktop">
-        {{ download_firefox('beta', icon=False, small=True) }}
+        {{ download_firefox('beta', icon=False, small=True, force_direct=True) }}
       </div>
       <div class="download-box mobile" id="beta-mobile">
         {{ download_firefox('beta', icon=False, mobile=True, small=True) }}
       </div>
-      <p class="more"><a href="{{ php_url('/firefox/beta/') }}">{{_('Learn more about Firefox Beta')}}</a></p>
+      {% if l10n_has_tag('telemetry_notice') or settings.DEV %}
+        <p class="warning">
+        {% trans link=url('privacy.notices.firefox') + '#telemetry' %}
+          Firefox Beta automatically sends feedback to Mozilla. <a href="{{ link }}">Learn more</a>.
+        {% endtrans %}
+        </p>
+        <p class="info">
+        {% trans feedback='https://input.mozilla.com/feedback' %}
+          <a href="{{ feedback }}">Give us feedback</a> to help us put the final tweaks on performance and functionality in a stable environment.
+        {% endtrans %}
+        </p>
+      {% endif %}
     </div>
 
     <div id="firefox" class="pager-page">
@@ -46,7 +57,7 @@
       {# L10n: This description applies to Firefox on the Release channel #}
       <h3>{{_('Tried, tested and used by millions around the world')}}</h3>
       <div class="download-box" id="firefox-desktop">
-        {{ download_firefox(icon=False, small=True) }}
+        {{ download_firefox(icon=False, small=True, force_direct=True) }}
       </div>
       <div class="download-box mobile" id="firefox-mobile">
         {{ download_firefox(icon=False, mobile=True, small=True) }}
@@ -64,12 +75,18 @@
       <div class="download-box mobile" id="aurora-mobile">
         {{ download_firefox('aurora', icon=False, mobile=True, small=True) }}
       </div>
-      <p class="more"><a href="{{ php_url('/mobile/aurora/') }}">{{_('Learn more about Firefox Aurora')}}</a></p>
       <p class="warning">
-        {% trans link=php_url('/legal/privacy/firefox.html#telemetry') %}
+        {% trans link=url('privacy.notices.firefox') + '#telemetry' %}
           Firefox Aurora automatically sends feedback to Mozilla. <a href="{{ link }}">Learn more</a>.
         {% endtrans %}
       </p>
+      {% if l10n_has_tag('telemetry_notice') or settings.DEV %}
+        <p class="info">
+        {% trans feedback='https://input.mozilla.com/feedback' %}
+          Test performance in an experimental environment, file bugs and <a href="{{ feedback }}">help us determine what makes it to Beta</a>.
+        {% endtrans %}
+        </p>
+      {% endif %}
     </div>
 
   </div>

@@ -1,0 +1,29 @@
+{% extends "security/base.html" %}
+
+{% block page_title %}Mozilla Foundation Secuirty Advisories{% endblock %}
+
+{% block article %}
+  <article class="section-content" itemscope itemtype="http://schema.org/Article">
+    <header>
+      <h1 itemprop="name">Mozilla Foundation Security Advisories</h1>
+    </header>
+    <div itemprop="articleBody">
+
+      {% include "security/partials/impact_key.html" %}
+
+      <ul>
+        {% for version in product_versions %}
+          <li id="{{ version.slug }}">Fixed in {{ version.name }} <a href="#{{ version.slug }}">#</a>
+          <ul>
+          {% for advisory in version.advisories.all() %}
+            <li><a class="{{ advisory.impact_class }}"
+                   href="{{ advisory.get_absolute_url() }}">{{ advisory.id }}</a>: {{ advisory.title|safe }}
+            </li>
+          {% endfor %}
+          </ul>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </article>
+{% endblock %}

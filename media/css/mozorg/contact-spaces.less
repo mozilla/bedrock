@@ -18,9 +18,8 @@
 @lightBeige: #f3f1ea;
 
 // Add a double-arrow after 'go' links
-.go:after {
-    content: ' »';
-    white-space: nowrap;
+.go {
+   .trailing-arrow();
 }
 
 // General @layout
@@ -60,6 +59,12 @@
 
 .billboard {
     width: @widthDesktop - (@gridGutterWidth * 2);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#footer-email-errors {
+    width: @widthDesktop;
     margin-left: auto;
     margin-right: auto;
 }
@@ -312,6 +317,11 @@
     outline: 2px solid #f79937; // orange
 }
 
+#nav-communities li[data-id='balkans'] > a:before,
+.legend li[data-id='balkans'] > a:before {
+    outline: 2px solid #7022a8; // purple
+}
+
 #nav-communities li[data-id='francophone'] > a:before,
 .legend li[data-id='francophone'] > a:before {
     outline: 2px solid #3b73c5; // dark blue
@@ -454,8 +464,10 @@
 .card .extra a.flickr:before { content: '\e801'; } /* '' */
 
 
-// @Gallery
-.gallery {
+// @Gallery - for a gallery of thumbnail images
+// @Media - for large, single images or videos (not a thumbnail gallery)
+.gallery,
+.media {
     .box-shadow(0 1px 0 rgba(0, 0, 0, .1));
     .clearfix;
     background: @lightGray;
@@ -463,7 +475,7 @@
     padding: 20px 20px 0;
 
     h3 {
-        font-size: @largeFontSize;
+        font-size: 18px;
         .open-sans;
         font-weight: normal;
         letter-spacing: normal;
@@ -484,11 +496,30 @@
 
     img {
         border: 1px solid #fff;
+        .transition(border-color .1s ease-in);
     }
 
     a:hover img,
     a:focus img {
         border-color: @linkBlueHover;
+    }
+}
+
+.media img,
+.media video,
+.media iframe {
+    background: #fff;
+    border: 1px solid #fff;
+    margin: 0 auto 1.5em;
+    max-width: 100%;
+    height: auto;
+}
+
+.js {
+    #mv-sphere-video {
+        .moz-video-button {
+            background-image: url(/media/img/contact/poster-sphere.jpg);
+        }
     }
 }
 
@@ -579,6 +610,10 @@
         width: @widthTablet - (@gridGutterWidth * 2);
     }
 
+    #footer-email-errors {
+        width: @widthTablet;
+    }
+
     .page-head {
         padding-top: 20px;
 
@@ -642,6 +677,11 @@
         .span_narrow(6);
     }
 
+    .leaflet-control-attribution {
+        width: 216px;
+        text-align: right;
+    }
+
 }
 
 
@@ -650,9 +690,17 @@
 // @Mobile layout: 320px
 @media only screen and (max-width: @breakTablet) {
 
-    #masthead,
     .container,
     .billboard {
+        width: @widthMobile - (@gridGutterWidth * 2);
+    }
+
+    #footer-email-errors {
+        width: @widthMobile;
+    }
+
+    #masthead,
+    .newsletter-form {
         width: @widthMobile - @gridGutterWidth;
     }
 
@@ -797,6 +845,10 @@
     .container,
     .billboard {
         width: @widthMobileLandscape - @gridGutterWidth;
+    }
+
+    #footer-email-errors {
+        width: @widthMobileLandscape;
     }
 
     .entry-space .card {

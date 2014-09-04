@@ -1,7 +1,9 @@
+packages/beautifulsoup4
 packages/certifi
 packages/chardet
 packages/python-memcached
 src/basket-client
+packages/PyYAML/lib
 src/feedparser/feedparser
 src/django-extensions
 src/django-recaptcha
@@ -12,6 +14,10 @@ src/django-waffle
 src/jingo-markdown
 src/pystatsd
 src/Python-Markdown
+src/raven
 src/requests
 src/rna
 src/six
+src/tweepy
+src/mdx_outline
+src/legal-docs

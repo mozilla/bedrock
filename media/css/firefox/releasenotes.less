@@ -2,10 +2,18 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-//@import "../sandstone/lib.less";
 @import "template-resp.less";
 
-#main-feature {
+.space #wrapper {
+    background-repeat: no-repeat;
+    background-position: 0px 180px;
+    background-image: url('/media/img/firefox/releasenotes/aurora_bg_800.png');
+}
+
+.notes-head {
+    .clearfix;
+    margin-bottom: @baseLine * 2;
+
     h1,
     h2,
     p {
@@ -17,7 +25,8 @@
     }
 
     h2 {
-        font-size: 20px;
+        font-size: 1.428em;
+        letter-spacing: normal;
         margin-bottom: .75em;
     }
 
@@ -26,10 +35,108 @@
     }
 }
 
+.space .notes-head {
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-image: url('/media/img/firefox/releasenotes/aurora_small.png');
+    background-size: 150px auto;
+    padding: 10px 0 0 150px;
+}
+
+#platform {
+    float: right;
+    overflow: hidden;
+
+    a {
+        color: #fff;
+    }
+
+    h4 {
+        font-size: 15px;
+        margin: 0 0 6px 0;
+        padding: 0;
+    }
+
+    ul {
+        margin: 0;
+        padding: 3px;
+        float: left;
+        box-shadow: 0 3px 3px rgba(126, 137, 147, .5) inset,
+                    0 1px rgba(185, 197, 204, .5);
+        border-radius: 9px;
+        background: #b1becc;
+        background: rgba(207, 218, 230, .25);
+    }
+
+    li {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        float: left;
+    }
+
+    a {
+        border-bottom: 1px solid rgba(43, 58, 153, .5);
+        box-shadow: 0 -2px rgba(0, 0, 0, .2) inset;
+        #gradient > .vertical-three-colors(#7ca9f4, #4b79c6, 3%, #2e4e99);
+        text-shadow: 0 1px 0 rgba(0, 0, 0, .35);
+    }
+
+    span {
+        color: #506aa1;
+        border-bottom: 1px solid #22366d;
+        .box-shadow(0 2px 1 px #0b1b41 inset);
+        #gradient > .vertical(#1a2f5a 14%, #254d90 95%);
+        border-radius: 0 6px 6px 0;
+        text-shadow: 0 1px rgba(28, 54, 112, .35);
+    }
+
+    li:first-child {
+        padding-right: 1px;
+
+        a,
+        span {
+            border-radius: 6px 0 0 6px;
+        }
+    }
+
+    a,
+    span {
+        display: block;
+        padding: 12px 16px;
+        .open-sans;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        border-radius: 0 6px 6px 0;
+    }
+}
+
+.space #platform {
+    ul {
+        box-shadow: 0 0 10px rgba(72, 23, 95, .35) inset,
+                    0 -1px 0 rgba(134, 80, 168, .5) inset;
+    }
+
+    a {
+        #gradient > .vertical-three-colors(#f2a279, #f28047, 3%, #c63);
+    }
+
+    span {
+        color: #d79676;
+        #gradient > .vertical(#7b3816 14%, #ac5022 95%);
+    }
+
+}
+
 a.go:after,
 .sidebar a:after {
     content: " »";
     white-space: nowrap;
+}
+
+article {
+    .clearfix;
 }
 
 .notes-section {
@@ -39,6 +146,14 @@ a.go:after,
     border-bottom: 1px solid #ddd;
     margin: 0 -@gridGutterWidth @baseLine;
     padding: @baseLine @gridGutterWidth;
+}
+
+.space .notes-section {
+    background: #303;
+    background: rgba(40, 6, 57, .25);
+    border: 1px solid rgba(80, 27, 91, .5);
+    box-shadow: 0 0 10px rgba(72, 23, 95, .36) inset,
+                0 -1px 0 rgba(134, 80, 168, .5) inset;
 }
 
 .section-items {
@@ -68,6 +183,10 @@ a.go:after,
     }
 }
 
+.space .section-items > li {
+    border-top-color: #522853;
+}
+
 .section-items.tagged {
     > li {
         padding-left: 160px;
@@ -81,6 +200,7 @@ a.go:after,
         background: #f3f3f3 url(/media/img/firefox/releasenotes/tags.png?03-2014) 0 0 no-repeat;
         border-right: 3px solid #ccc;
         box-shadow: 0 1px 1px rgba(0,0,0,0.05), 0 -1px 0 rgba(0,0,0,0.05) inset;
+        color: @textColorPrimary;
         display: inline-block;
         font-size: 11px;
         font-style: normal;
@@ -135,18 +255,6 @@ a.go:after,
         background-position: 0 -350px;
         border-color: #999;
     }
-
-    .tag-language {
-        background-color: #c3dbff;
-        background-position: 0 -400px;
-        border-color: #345b97;
-    }
-
-    .tag-feature {
-        background-color: #ffdf9f;
-        background-position: 0 -450px;
-        border-color: #e1732c;
-    }
 }
 
 .sidebar section {
@@ -156,6 +264,10 @@ a.go:after,
     h3 {
         font-size: 22px;
     }
+}
+
+.space .sidebar section {
+    border-bottom-color: #522853;
 }
 
 #try {
@@ -212,6 +324,18 @@ a.go:after,
     }
 }
 
+.space #try {
+    background: #003;
+    background: rgba(165, 165, 165, .08);
+    border: 1px solid rgba(80, 80, 80, .25);
+    box-shadow: 0 0 10px rgba(100, 100, 100, .36) inset,
+                0 -1px 0 rgba(153, 153, 153, .25) inset;
+
+    li:before {
+        background: #c63;
+    }
+}
+
 #problems li {
     margin: 0 0 .5em 20px;
 }
@@ -224,11 +348,21 @@ a.go:after,
 /* Tablet Layout: 760px */
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
 
-    #main-feature {
+    .space #wrapper {
+        background-size: 650px;
+    }
+
+    .notes-head {
         h1,
         h2,
         p {
             .span_narrow(7);
+        }
+    }
+
+    .space .notes-head {
+        p {
+            .span_narrow(6);
         }
     }
 
@@ -238,7 +372,11 @@ a.go:after,
 /* Mobile Layout: 320px */
 @media only screen and (max-width: @breakTablet) {
 
-    #main-feature {
+    .space #wrapper {
+        background-size: 320px;
+    }
+
+    .notes-head {
         h1,
         h2,
         p {
@@ -246,9 +384,22 @@ a.go:after,
         }
     }
 
+    .space .notes-head {
+        background-image: none;
+        padding: 0;
+    }
+
+    #platform {
+        float: none;
+        margin: @baseLine 10px;
+    }
+
     .section-items {
         > li {
             padding-left: 0;
+            span {
+                word-break: break-all;
+            }
         }
 
         .tag {
@@ -259,11 +410,3 @@ a.go:after,
         }
     }
 }
-
-
-/* Wide Mobile Layout: 480px */
-@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
-
-}
-
-/* }}} */

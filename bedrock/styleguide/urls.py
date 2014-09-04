@@ -91,9 +91,15 @@ all_children = [
 ]
 
 if settings.DEV:
-    all_children.append(
+    all_children.extend((
         PageNode('All Buttons', path='all-download-buttons',
                  template='styleguide/websites/sandstone-all-download-buttons.html'),
-    )
+        PageNode('Docs', path='docs', children=(
+            PageNode('Mozilla Pager JS', path='mozilla-pager',
+                    template='styleguide/docs/mozilla-pager.html'),
+            PageNode('Mozilla Accordion JS', path='mozilla-accordion',
+                    template='styleguide/docs/mozilla-accordion.html'),
+        )),
+    ))
 
 urlpatterns = PageRoot('Home', children=tuple(all_children)).as_urlpatterns()

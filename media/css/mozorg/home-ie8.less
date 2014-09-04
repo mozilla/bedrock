@@ -42,34 +42,76 @@
     }
 
     // IE8 doesn't support transitions so don't move the backgrounds.
+
+    // Mozilla Mission
     #panel-mission.expanded,
     #panel-mission.compressed {
         background-position: -50px -80px;
     }
 
+    // Lightbeam
     #panel-lightbeam.expanded,
     #panel-lightbeam.compressed {
         background-position: -80px 20px;
     }
 
+    // Firefox OS
     #panel-fxos.expanded,
     #panel-fxos.compressed {
         background-position: -100px -100px;
     }
 
+    // Firefox Desktop
+    #panel-fxdesktop.expanded,
+    #panel-fxdesktop.compressed {
+        background-position: -70px 20px;
+    }
+
+    // MDN
     #panel-mdn.expanded,
     #panel-mdn.compressed {
         background-position: -25px 40px;
     }
 
+    // Mozfest
     #panel-mozfest.expanded,
     #panel-mozfest.compressed {
         background-position: -110px -15px;
     }
 
+    // Webmaker
     #panel-webmaker.expanded,
     #panel-webmaker.compressed {
         background-position: -95px 15px;
+    }
+
+    // The Web We Want (Australis)
+    #panel-webwewant,
+    #panel-webwewant.expanded,
+    #panel-webwewant.compressed {
+        background-position: -90px top;
+
+        .aurora {
+            background-position: 0 bottom;
+
+            &:after {
+                background-position: 20px 60px;
+            }
+        }
+    }
+
+    // Maker Party
+    #panel-makerparty .confetti:after,
+    #panel-makerparty.expanded .confetti:after,
+    #panel-makerparty.compressed .confetti:after {
+        background-position: -10px 25px;
+    }
+
+    // SUMO
+    #panel-sumo,
+    #panel-sumo.expanded,
+    #panel-sumo.compressed {
+        background-position: -50px 0;
     }
 
     // IE8 doesn't do gradients or rgba() so it gets solid, opaque colors.
@@ -81,6 +123,10 @@
         background: #0095dd;
     }
 
+    #panel-fxdesktop .panel-title {
+        background: #611600;
+    }
+
     #panel-mdn .panel-title {
         background: #fff;
     }
@@ -88,4 +134,21 @@
     #panel-mozfest .panel-title {
         background: #ced3d3;
     }
+
+    #panel-webwewant .panel-title {
+        background: #253741;
+    }
+
+    #panel-worldcup2014 .panel-title {
+        background: #2c4721;
+    }
+
+    #panel-netneutrality .panel-title {
+        background: #444;
+    }
+
+    #panel-makerparty .panel-title {
+        background: #fff;
+    }
+
 }

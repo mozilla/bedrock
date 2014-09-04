@@ -1,7 +1,9 @@
+import random
 import urlparse
 from os import path
 
 from django.conf import settings
+from django.template.defaultfilters import slugify as django_slugify
 
 import jingo
 import jinja2
@@ -9,12 +11,12 @@ from funfactory.settings_base import path as base_path
 from funfactory.urlresolvers import reverse
 
 
-L10N_IMG_PATH = base_path('media', 'img', 'l10n')
+L10N_MEDIA_PATH = base_path('media', '%s', 'l10n')
 
 
-def _l10n_media_exists(locale, url):
+def _l10n_media_exists(type, locale, url):
     """ checks if a localized media file exists for the locale """
-    return path.exists(path.join(L10N_IMG_PATH, locale, url))
+    return path.exists(path.join(L10N_MEDIA_PATH % type, locale, url))
 
 
 @jingo.register.function
@@ -103,14 +105,56 @@ def l10n_img(ctx, url):
         locale = settings.LANGUAGE_CODE
 
     # We use the same localized screenshots for all Spanishes
-    if locale.startswith('es') and not _l10n_media_exists(locale, url):
+    if locale.startswith('es') and not _l10n_media_exists('img', locale, url):
         locale = 'es-ES'
 
     if locale != settings.LANGUAGE_CODE:
-        if not _l10n_media_exists(locale, url):
+        if not _l10n_media_exists('img', locale, url):
             locale = settings.LANGUAGE_CODE
 
     return media(path.join('img', 'l10n', locale, url))
+
+
+@jingo.register.function
+@jinja2.contextfunction
+def l10n_css(ctx):
+    """
+    Output the URL to a locale-specific stylesheet if exists.
+
+    Examples
+    ========
+
+    In Template
+    -----------
+
+        {{ l10n_css() }}
+
+    For a locale that has locale-specific stylesheet, this would output:
+
+        <link rel="stylesheet" media="screen,projection,tv"
+              href="{{ MEDIA_URL }}css/l10n/{{ LANG }}/intl.css">
+
+    For a locale that doesn't have any locale-specific stylesheet, this would
+    output nothing.
+
+    In the Filesystem
+    -----------------
+
+    Put files in folders like the following::
+
+        $ROOT/media/css/l10n/en-US/intl.css
+        $ROOT/media/css/l10n/fr/intl.css
+
+    """
+    locale = getattr(ctx['request'], 'locale', 'en-US')
+
+    if _l10n_media_exists('css', locale, 'intl.css'):
+        markup = ('<link rel="stylesheet" media="screen,projection,tv" href='
+                  '"%s">' % media(path.join('css', 'l10n', locale, 'intl.css')))
+    else:
+        markup = ''
+
+    return jinja2.Markup(markup)
 
 
 @jingo.register.function
@@ -205,7 +249,7 @@ def video(*args, **kwargs):
             continue
         if ext not in filetypes:
             continue
-        videos[ext] = (v if not 'prefix' in kwargs else
+        videos[ext] = (v if 'prefix' not in kwargs else
                        urlparse.urljoin(kwargs['prefix'], v))
 
     if not videos:
@@ -225,7 +269,7 @@ def video(*args, **kwargs):
     if 'mp4' in videos:
         mp4_url = urlparse.urlparse(videos['mp4'])
         if mp4_url.netloc.lower() in ('videos.mozilla.org',
-                                      'videos-cdn.mozilla.net'):
+                                      'videos.cdn.mozilla.net'):
             data['flash_fallback'] = mp4_url.path
 
     data.update(**kwargs)
@@ -414,3 +458,53 @@ def product_url(product, page, channel=None):
         kwargs['product'] = product
 
     return reverse('%s.%s' % (app, page), kwargs=kwargs)
+
+
+@jingo.register.function
+def releasenotes_url(release):
+    prefix = 'aurora' if release.channel == 'Aurora' else 'release'
+    if release.product == 'Firefox for Android':
+        return reverse('mobile.releasenotes', args=(release.version, prefix))
+    elif release.product == 'Firefox OS':
+        return reverse('firefox.os.releasenotes', args=[release.version])
+    else:
+        return reverse('firefox.releasenotes', args=(release.version, prefix))
+
+
+@jingo.register.filter
+def htmlattr(_list, **kwargs):
+    """
+    Assign an attribute to elements, like jQuery's attr function. The _list
+    argument is a BeautifulSoup iterable object. Note that such a code doesn't
+    work in a Jinja2 template:
+
+        {% set body.p['id'] = 'great' %}
+        {% set body.p['class'] = 'awesome' %}
+
+    Instead, use this htmlattr function like
+
+        {{ body.p|htmlattr(id='great', class='awesome') }}
+
+    """
+    for tag in _list:
+        for attr, value in kwargs.iteritems():
+            tag[attr] = value
+
+    return _list
+
+
+@jingo.register.filter
+def shuffle(_list):
+    """Return a shuffled list"""
+    random.shuffle(_list)
+    return _list
+
+
+@jingo.register.filter
+def slugify(text):
+    """
+    Converts to lowercase, removes non-word characters (alphanumerics and
+    underscores) and converts spaces to hyphens. Also strips leading and
+    trailing whitespace.
+    """
+    return django_slugify(text)

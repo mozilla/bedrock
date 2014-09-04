@@ -1,0 +1,46 @@
+@import '../../sandstone/sandstone-resp.less';
+
+.example {
+    margin: (@baseLine * 2) 0;
+}
+
+.pager {
+    background: #fff;
+    padding: @baseLine;
+}
+
+.pager-nav {
+    margin-bottom: @baseLine;
+
+    button {
+        .link-button();
+
+        &.pager-prev {
+            .leading-arrow();
+        }
+
+        &.pager-next {
+            .trailing-arrow();
+        }
+
+        &:disabled {
+            color: @textColorLight;
+            &:hover {
+                text-decoration: none;
+                cursor: default;
+            }
+        }
+    }
+}
+
+.pager-nav-links-wrapper {
+    display: inline;
+    margin: 0 (@baseLine / 2);
+}
+
+.pager-nav-divider {
+    margin: 0 (@baseLine / 4);
+    &:after {
+        content: '|';
+    }
+}

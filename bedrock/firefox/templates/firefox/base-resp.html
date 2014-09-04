@@ -22,32 +22,32 @@
 {% endblock %}
 
 {% block site_header_nav %}
-<span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
 <nav id="nav-main" role="navigation">
+  <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{_('Menu')}}</span>
   <ul id="nav-main-menu" class="has-submenus">
-    <li class="first" id="nav-main-features"><a href="{{ url('firefox.fx') }}#desktop" tabindex="0" aria-owns="nav-main-features-submenu" aria-haspopup="true">{{_('Desktop')}}</a>
+    <li class="first" id="nav-main-features"><a href="{{ url('firefox.desktop.index') }}" tabindex="0" aria-owns="nav-main-features-submenu" aria-haspopup="true">{{_('Desktop')}}</a>
       <ul aria-expanded="false" id="nav-main-features-submenu" class="submenu">
-        <li class="first"><a href="{{ url('firefox.features') }}" tabindex="-1">{{_('Features')}}</a></li>
-        <li><a href="{{ url('firefox.customize') }}" tabindex="-1">{{_('Customize')}}</a></li>
-        <li><a href="{{ url('firefox.performance') }}" tabindex="-1">{{_('Performance')}}</a></li>
-        <li><a href="{{ url('firefox.technology') }}" tabindex="-1">{{_('Technology')}}</a></li>
-        <li class="last"><a href="{{ url('firefox.security') }}" tabindex="-1">{{_('Privacy &amp; Security')}}</a></li>
+        <li class="first"><a href="{{ url('firefox.desktop.index') }}" tabindex="-1">{{_('Features')}}</a></li>
+        <li><a href="{{ url('firefox.desktop.customize') }}" tabindex="-1">{{_('Customize')}}</a></li>
+        <li><a href="{{ url('firefox.desktop.fast') }}" tabindex="-1">{{_('Performance')}}</a></li>
+        <li><a href="https://developer.mozilla.org/docs/Tools" tabindex="-1">{{_('Technology')}}</a></li>
+        <li class="last"><a href="{{ url('firefox.desktop.trust') }}" tabindex="-1">{{_('Privacy &amp; Security')}}</a></li>
       </ul>
     </li>
-    <li id="nav-main-mobile"><a href="{{ url('firefox.fx') }}" tabindex="0" aria-owns="nav-main-mobile-submenu" aria-haspopup="true">{{_('Mobile')}}</a>
+    <li id="nav-main-mobile"><a href="{{ url('firefox.android.index') }}" tabindex="0" aria-owns="nav-main-mobile-submenu" aria-haspopup="true">{{_('Mobile')}}</a>
       <ul aria-expanded="false" id="nav-main-mobile-submenu" class="submenu">
-        <li class="first"><a href="{{ url('firefox.mobile.features') }}" tabindex="-1">{{_('Features')}}</a></li>
-        <li><a href="https://addons.mozilla.org/en-US/mobile/?browse=featured" tabindex="-1">{{_('Customize')}}</a></li>
-        <li class="last"><a href="{{ url('firefox.mobile.faq') }}" tabindex="-1">{{_('FAQ')}}</a></li>
+        <li class="first"><a href="{{ url('firefox.android.index') }}" tabindex="-1">{{_('Features')}}</a></li>
+        <li><a href="https://addons.mozilla.org/android/" tabindex="-1">{{_('Customize')}}</a></li>
+        <li class="last"><a href="{{ url('firefox.android.faq') }}" tabindex="-1">{{_('FAQ')}}</a></li>
       </ul>
     </li>
-    <li id="nav-main-releases" class=""><a href="/en-US/firefox/channel/" tabindex="0" aria-owns="nav-main-releases-submenu" aria-haspopup="true">{{_('Releases')}}</a>
+    <li id="nav-main-releases" class=""><a href="{{ url('firefox.channel') }}" tabindex="0" aria-owns="nav-main-releases-submenu" aria-haspopup="true">{{_('Releases')}}</a>
       <ul aria-expanded="false" id="nav-main-releases-submenu" class="submenu">
-        <li class="first"><a href="/en-US/firefox/channel/" tabindex="-1">{{_('Overview')}}</a></li>
-        <li><a href="/en-US/firefox/aurora/" tabindex="-1">{{_('Firefox Aurora')}}</a></li>
-        <li><a href="/beta/" tabindex="-1">{{_('Firefox Beta')}}</a></li>
-        <li><a href="/en-US/firefox/" tabindex="-1">{{_('Firefox')}}</a></li>
-        <li class="last"><a href="/en-US/firefox/organizations/" tabindex="-1">{{_('Firefox for Organizations')}}</a></li>
+        <li class="first"><a href="{{ url('firefox.channel') }}" tabindex="-1">{{_('Overview')}}</a></li>
+        <li><a href="{{ url('firefox.channel') }}#aurora" tabindex="-1">{{_('Firefox Aurora')}}</a></li>
+        <li><a href="{{ url('firefox.channel') }}#beta" tabindex="-1">{{_('Firefox Beta')}}</a></li>
+        <li><a href="{{ url('firefox') }}" tabindex="-1">{{_('Firefox')}}</a></li>
+        <li class="last"><a href="{{ url('firefox.organizations.organizations') }}" tabindex="-1">{{_('Firefox for Organizations')}}</a></li>
       </ul>
     </li>
     <li id="nav-main-addons"><a href="https://addons.mozilla.org/" tabindex="0" aria-owns="nav-main-addons-submenu" aria-haspopup="true">{{_('Add-ons')}}</a>

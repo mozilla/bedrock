@@ -1,552 +1,330 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+{% extends "mozorg/base-resp.html" %}
+
+{% from "newsletter/includes/macros.html" import email_form_thankyou with context %}
 
 {% add_lang_files "mozorg/15years" %}
-
-{% extends "mozorg/base-resp.html" %}
 
 {% block page_title %}{{_('Get Involved: Volunteer Opportunities at Mozilla')}}{% endblock %}
 {% block body_id %}contribute{% endblock %}
 
-{% block extrahead %}
+{% block site_css %}
+  {{ super() }}
   {{ css('contribute') }}
 {% endblock %}
 
-{% if has_moz15 %}
-  {% block page_image %}{{ media('img/contribute/mozilla15/mozilla15-badge.png') }}{% endblock %}
-  {% block page_desc %}
-    {% trans %}
-      Mozilla exists to promote openness, innovation and opportunity on the Internet.
-    {% endtrans %}
-    {% trans %}
-      We’ve been doing it for 15 years and the following 15 facts offer a look at who
-      we are, including some of our biggest achievements and milestones. But in some
-      ways we’re just getting started, exploring new technology, entering new areas
-      and reaching new users every day.
-    {% endtrans %}
-  {% endblock %}
-{% endif %}
-
 {% block js %}
   {{ js('contribute') }}
+  {{ js('contribute-form') }}
+{% endblock %}
+
+{% block string_data %}
+  {# L10n: Used as a label for a button that plays a video. #}
+  data-button-play='{{_('Play video')}}'
+  {# L10n: Used as a label for a button that pauses a video. #}
+  data-button-pause='{{_('Pause video')}}'
 {% endblock %}
 
 {% block content %}
+<main role="main">
 
-{% if has_moz15 %}
+{% if l10n_has_tag('contribute_faces') or settings.DEV %}
+  <section id="faces">
+    <header>
+      <h1 class="page-title large">{{_('Get Involved')}}</h1>
+      <h2 class="tagline">{{ _('The success of our mission depends on participation from people like you.') }}</h2>
+    </header>
 
-<article id="moz15">
-  <header>
-    <h1 class="title">{{ _('<strong>15 years</strong> of a better Web') }}</h1>
-    <p class="intro">
-    {% trans %}
-      Mozilla exists to promote openness, innovation and opportunity on the Internet.
-    {% endtrans %}
-    {% trans %}
-      We’ve been doing it for 15 years and the following 15 facts offer a look at who
-      we are, including some of our biggest achievements and milestones. But in some
-      ways we’re just getting started, exploring new technology, entering new areas
-      and reaching new users every day.
-    {% endtrans %}
-    </p>
-  </header>
+    <div class="main">
+      <p>{{ _('Proudly non-profit, Mozilla makes products like Firefox with a mission to keep the power of the Web in the hands of users everywhere.') }}</p>
 
-  <div id="slideshow-stage">
-
-    <div id="slideshow">
-      <div class="slide-control">
-        <button class="prev">{{ _('Previous') }}</button>
-        <button class="next">{{ _('Next') }}</button>
-      </div>
-      <ul class="sequence-canvas slides">
-        <li id="fact01" class="slide">
-          <span class="number">01</span>
-          <div class="message">
-          <p>
-          {% trans %}
-            The Mozilla Project launched at Netscape on March 31, 1998, to offer choice to users and drive innovation on the Web.
-          {% endtrans %}
-          </p>
-          </div>
-          <span class="block1"></span>
-          <span class="block2"></span>
-          <span class="back"></span>
-        </li>
-
-        <li id="fact02" class="slide">
-          <span class="number">02</span>
-          <div class="message">
-          <p>
-          {% trans %}
-            Proudly non-profit, Mozilla makes products like Firefox with a mission to keep the power of the Web in the hands of users everywhere.
-          {% endtrans %}
-          </p>
-          </div>
-          <span class="block1"></span>
-          <span class="block2"></span>
-          <span class="block3"></span>
-          <span class="logo"></span>
-          <span class="back"></span>
-        </li>
-
-        <li id="fact03" class="slide">
-          <span class="number">03</span>
-          <div class="message">
-          <p>
-          {# L10N: "The New York Times" is the proper name of an English publication and should not be translated. #}
-          {% trans %}
-            More than 10,000 contributors expressed their support for our mission by paying for a full-page ad in <cite>The New York Times</cite> on the day Firefox 1.0 launched in 2004.
-          {% endtrans %}
-          </p>
-          </div>
-          <span class="block1"></span>
-          <span class="back"></span>
-        </li>
-
-        <li id="fact04" class="slide">
-          <span class="number">04</span>
-          <div class="message">
-          <p>
-          {% trans %}
-            Today Mozilla has contributors on every continent, including Antarctica (where Firefox is used by 80% of people).
-          {% endtrans %}
-          </p>
-          </div>
-          <span class="block1"></span>
-          <span class="back"></span>
-        </li>
-
-        <li id="fact05" class="slide">
-          <span class="number">05</span>
-          <div class="message">
-          <p>
-          {% trans %}
-            Firefox Add-Ons allow you to customize and take control of your Web experience. Over 3 billion of them have been downloaded by users so far.
-          {% endtrans %}
-          </p>
-          </div>
-          <span class="block1"></span>
-          <span class="block2"></span>
-          <span class="block3"></span>
-          <span class="back"></span>
-        </li>
-
-        <li id="fact06" class="slide">
-          <span class="number">06 <span class="keyhole"></span></span>
-          <div class="message">
-          <p>
-          {% trans %}
-            Mozilla is leading the way in online privacy with browser innovations like Do Not Track and Lightbeam that give users greater control of their personal data.
-          {% endtrans %}
-          </p>
-          </div>
-          <span class="block1"></span>
-          <span class="back"></span>
-        </li>
-
-        <li id="fact07" class="slide">
-          <span class="number">07</span>
-          <div class="message">
-          <p>
-          {% trans %}
-            Our global community has helped translate Firefox into over 70 languages, making the browser available to more than 90% of the world's population.
-          {% endtrans %}
-          </p>
-          </div>
-          <span class="block1"></span>
-          <span class="back"></span>
-        </li>
-
-        <li id="fact08" class="slide">
-          <span class="number">08</span>
-          <div class="message">
-          <p>
-          {% trans %}
-            In 2008, 8,002,530 people chose Firefox in a single day to set a Guinness World Record for “Most Downloads of a Software Application in 24 Hours.”
-          {% endtrans %}
-          </p>
-          </div>
-          <span class="block1"></span>
-          <span class="block2"></span>
-          <span class="back"></span>
-        </li>
-
-        <li id="fact09" class="slide">
-          <span class="number">09</span>
-          <div class="message">
-          <p>
-          {% trans %}
-            The Mozilla Festival is our largest annual event, bringing together hundreds of creative minds to realize the full power and potential of the Web.
-          {% endtrans %}
-          </p>
-          </div>
-          <span class="block1"></span>
-          <span class="block2"></span>
-          <span class="logo"><span></span></span>
-          <span class="back"></span>
-        </li>
-
-        <li id="fact10" class="slide">
-          <span class="number">10</span>
-          <div class="message">
-          <p>
-          {% trans %}
-            Mozilla Webmaker works to create a more Web-literate planet, providing tools and projects to help people take greater control of their online lives.
-          {% endtrans %}
-          </p>
-          </div>
-          <span class="block1"></span>
-          <span class="block2"></span>
-          <span class="back"></span>
-        </li>
-
-        <li id="fact11" class="slide">
-          <span class="number">11</span>
-          <div class="message">
-          <p>
-          {% trans %}
-            The Mozilla WebFWD program helps open source innovators and entrepreneurs create products and solutions that empower users to push the Web forward.
-          {% endtrans %}
-          </p>
-          </div>
-          <span class="block1"></span>
-          <span class="logo"></span>
-          <span class="back"></span>
-        </li>
-
-        <li id="fact12" class="slide">
-          <span class="number">12</span>
-          <div class="message">
-          <p>
-          {% trans %}
-            The Mozilla Developer Network is a community-driven Web resource that provides the best documentation, tutorials and tools available to more than 2 million visitors each month.
-          {% endtrans %}
-          </p>
-          </div>
-          <span class="block1"></span>
-          <span class="block2"></span>
-          <span class="stars"></span>
-          <span class="rocket"></span>
-          <span class="back"></span>
-        </li>
-
-        <li id="fact13" class="slide">
-          <span class="number">13</span>
-          <div class="message">
-          <p>
-          {% trans %}
-            Mozilla works to care for and preserve the Web as a shared public resource for the benefit of everyone.
-          {% endtrans %}
-          </p>
-          </div>
-          <span class="block1"></span>
-          <span class="back"></span>
-        </li>
-
-        <li id="fact14" class="slide">
-          <span class="number">14</span>
-          <div class="message">
-          <p>
-          {% trans %}
-            In 2013, Mozilla is launching Firefox OS to unleash the full power of the Web on smartphones and once again offer control and choice to a new generation of people coming online.
-          {% endtrans %}
-          </p>
-          </div>
-          <span class="block1"></span>
-          <span class="block2"></span>
-          <span class="shadow"></span>
-          <span class="phone"></span>
-          <span class="fox"></span>
-          <span class="back"></span>
-        </li>
-
-        <li id="fact15" class="slide">
-          <span class="number">15</span>
-          <div class="message">
-          <p>
-          {% trans %}
-            The work Mozilla does is made possible thanks to tens of thousands of individual donors and volunteers — people like you who believe the Web should remain open and accessible to all.
-          {% endtrans %}
-          </p>
-          </div>
-          <span class="block1"></span>
-          <span class="block2"></span>
-          <span class="back"></span>
-        </li>
-
-      </ul>
+      <figure id="video-stage" data-video-path="https://videos.cdn.mozilla.net/uploads/bedrock/">
+        <video id="faces-video" preload="auto">
+          <source src="https://videos.cdn.mozilla.net/uploads/bedrock/contribute-faces001.webm" type="video/webm">
+          <source src="https://videos.cdn.mozilla.net/uploads/bedrock/contribute-faces001.mp4" type="video/mp4">
+          <img src="{{ media('img/contribute/faces-poster.jpg') }}" alt="">
+        </video>
+        <p class="caption">{{ _('We are Mozillians') }} <br> <b>{{ _('#IamaMozillian') }}</b></p>
+        <figcaption>{{ _('This video shows members of the worldwide Mozilla community.') }}</figcaption>
+      </figure>
     </div>
 
-  </div>
+    <div class="signup aside">
 
-  <div class="cta">
-    <h2>{{ _('The success of our mission depends on participation from people like you.') }}</h2>
-    <p>
-    {% trans %}
-      Find out how you can get involved or support Mozilla to help make a difference
-      in the lives of users everywhere for the next 15 years — and beyond.
-    {% endtrans %}
-    </p>
-  </div>
+    {% if not hide_form %}
+      <aside id="contribute-form">
+      {% include "mozorg/contribute-form.html" %}
+      </aside>
+    {% endif %}
 
-</article>
+    {% if LANG.startswith('en') %}
+      <aside id="newsletter">
+        <div id="footer-email-errors" class="hidden">
+          <ul class="errorlist"></ul>
+        </div>
+        <form id="newsletter-form" class="newsletter-form footer-newsletter-form" action="{{ url('newsletter.subscribe') }}" method="post">
+          {{ newsletter_form.newsletters|safe }}
+          <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
+          <p>{{_('Sign up for a weekly newsletter that is full of community news and contribution opportunities.')}}</p>
+          <div class="field field-email">{{ field_with_attrs(newsletter_form.email, placeholder=_('YOUR EMAIL HERE'))|safe }}</div>
+          <div id="form-details">
+            <div class="field field-country">{{ newsletter_form.country|safe }}</div>
+            <div class="field field-format">{{ newsletter_form.fmt|safe }}</div>
+            <div class="field field-privacy">{{ newsletter_form.privacy|safe }}</div>
+            <p><small>{{_('We will only send you Mozilla-related information.')}}</small></p>
+          </div>
+          <div class="field form-submit"><input id="footer_email_submit" name="test-submit" type="submit" value="{{_('Subscribe')}}" class="button"></div>
+          <div id="newsletter-spinner" class="hidden"></div>
+        </form>
+        <div id="newsletter-form-thankyou" class="thank newsletter-form">
+          {{ email_form_thankyou() }}
+        </div>
+      </aside>
+    {% endif %}
+    </div>
+  </section>
 
 {% else %}
+  <h1 id="main-feature" class="large">{{_('Get Involved')}}</h1>
 
-<h1 id="main-feature" class="large">{{_('Get Involved')}}</h1>
+  <section id="welcome" class="container">
+    <div id="welcome-video" class="mozilla-video-control mozilla-video-shadow">
+      {{ video('Mozilla_Firefox_Manifesto_v0.2_640.webm',
+               'Mozilla_Firefox_Manifesto_v0.2_640.theora.ogv',
+               'Mozilla_Firefox_Manifesto_v0.2_640.mp4',
+               h=360, w=640,
+               prefix='//videos.cdn.mozilla.net/brand/',
+               poster=media('img/contribute/poster-brand.jpg')) }}
+    </div>
+    <p>
+      {{_('You don’t have to be a C++ guru (or even know what that means!) to get involved.<br><b>You just have to love the Web.</b>')}}
+    </p>
+  </section>
 
-<section id="welcome" class="container">
-  <div id="welcome-video" class="mozilla-video-control mozilla-video-shadow">
-    {{ video('Mozilla_Firefox_Manifesto_v0.2_640.webm',
-             'Mozilla_Firefox_Manifesto_v0.2_640.theora.ogv',
-             'Mozilla_Firefox_Manifesto_v0.2_640.mp4',
-             h=360, w=640,
-             prefix='//videos-cdn.mozilla.net/brand/',
-             poster=media('img/contribute/poster-brand.jpg')) }}
-  </div>
-  <p>
-    {{_('You don’t have to be a C++ guru (or even know what that means!) to get involved.<br><b>You just have to love the Web.</b>')}}
-  </p>
-</section>
+  {% if not hide_form %}
+    {% include "mozorg/contribute-form.html" %}
+  {% endif %}
 
-{% endif %}
-
-{% if not hide_form %}
-  {% include "mozorg/contribute-form.html" %}
 {% endif %}
 
   <section id="opportunities">
 
-    <h1 class="container">{{_('Find an opportunity')}}</h1>
+    <h2>{{_('Find an opportunity')}}</h2>
 
-    <div class="pager pager-with-tabs">
+    <ul class="contribute-options">
+      <li id="support">
+        <img src="{{ media('/img/contribute/sumo.png') }}" alt="">
+        <h3>{{_('Helping Users')}}</h3>
+        <p>
+        {% trans fx_support_url='https://support.mozilla.org/get-involved', tb_support_url='https://support.mozilla.org/get-involved' %}
+          Our support process relies on enthusiastic contributors like you to help others get the most out of Mozilla products. Find out more about <a href="{{ fx_support_url }}">how to help Firefox users</a> and <a href="{{ tb_support_url }}">how to help Thunderbird users</a>.
+        {% endtrans %}
+        </p>
+      </li>
 
-      <nav class="container">
-        <h5>{{_('Sort By:')}}</h5>
-        <ul class="pager-tabs">
-          <li><a href="#interest" class="button-white">{{_('Interest')}}</a></li>
-          <li><a href="#location" class="button-white">{{_('Location')}}</a></li>
-          {% if LANG.startswith('en') %}<li><a href="#newsletter" class="button-white">{{_('Newsletter')}}</a></li>{% endif %}
-        </ul>
-      </nav>
-
-      <div class="pager-content container">
-
-        <div class="interest-content default-page" id="interest">
-          <script>// <![CDATA[
-          document.getElementById('interest').id = 'page-interest';
-          // ]]></script>
-          <section>
-
-            <ul class="contribute-options">
-              <li class="row">
-                <img src="{{ MEDIA_URL }}img/contribute/sumo.png" alt="" />
-                <h3 id="support">{{_('Helping Users')}}</h3>
-                <div class="content">
-                  <p>
-{% trans fx_support_url='https://support.mozilla.org/get-involved', tb_support_url='https://support.mozilla.org/get-involved' %}
-Our support process relies on enthusiastic contributors like you to help others get the most out of Mozilla products. Find out more about <a href="{{ fx_support_url }}">how to help Firefox users</a> and <a href="{{ tb_support_url }}">how to help Thunderbird users</a>.
-{% endtrans %}
-                  </p>
-                </div>
-              </li>
-              <li class="row">
-                <img src="{{ MEDIA_URL }}img/contribute/qmo.png" alt="" />
-                <h3 id="qa">{{_('Quality Assurance')}}</h3>
-                <div class="content">
-                  <p>
-{% trans qa_bugs_url='https://quality.mozilla.org/teams/desktop-firefox/', qa_web_url='https://quality.mozilla.org/teams/web-qa/', qa_url='https://quality.mozilla.org/' %}
-Quality assurance testing is one of the easiest ways to get started with Mozilla and is a great way to get familiar with our code and tools. Help us <a href="{{ qa_bugs_url }}">hunt down bugs</a> in Firefox, <a href="{{ qa_web_url }}">test Mozilla web sites</a> or learn more about <a href="{{ qa_url }}">other testing opportunities</a>.
-{% endtrans %}
-                </p>
-                </div>
-              </li>
-              <li class="row">
-                <img src="{{ MEDIA_URL }}img/contribute/dinohead.png" alt="" />
-                <h3 id="coding">{{_('Coding')}}</h3>
-                <div class="content">
-                  <p>
-{% trans dev_intro_url='https://developer.mozilla.org/docs/Introduction', what_url='http://www.whatcanidoformozilla.org/' %}
-<a href="{{ dev_intro_url }}">Developers can help</a> Mozilla by adding new features, making our technology smaller and faster and making development easier for others.  Tell us <a href="{{ what_url }}">your favorite programming language</a> and we'll find the project for you.
-{% endtrans %}
-                  </p>
-                </div>
-              </li>
-              <li class="row">
-                <img src="{{ MEDIA_URL }}img/contribute/firefox.png?2013-06" alt="" />
-                <h3 id="marketing">{{_('Spread the Word')}}</h3>
-                <div class="content">
-                  <p>
-{% trans affiliates_url='https://affiliates.mozilla.org', marketing_url='https://wiki.mozilla.org/MarketingGuide' %}
-Help us spread the word about how Firefox and other Mozilla projects are building a better Internet. Share Firefox with the world by <a href="{{ affiliates_url }}">becoming an Affiliate</a> and then check out our <a href="{{ marketing_url }}">Marketing Guide</a> for more ways to get involved.
-{% endtrans %}
-                  </p>
-                </div>
-              </li>
-              <li class="row">
-                <img src="{{ media('/img/contribute/localization.png') }}" alt="" />
-                <h3 id="l10n">{{_('Localization') }}</h3>
-                <div class="content">
-                  <p>
-{% trans l10n_url='https://wiki.mozilla.org/L10n', l10n_web_url='https://wiki.mozilla.org/L10n:Web_parts' %}
-Get involved with Mozilla by making Firefox, Thunderbird and other projects <a href="{{ l10n_url }}">available in your language</a>. Also help us tell the world about how Mozilla is building a better Internet by <a href="{{ l10n_web_url }}">translating content</a> on our web sites.
-{% endtrans %}
-                  </p>
-                </div>
-              </li>
-              <li class="row">
-                <img src="{{ media('/img/contribute/web.png') }}" alt="" />
-                <h3 id="webdev">{{_('Web Development') }}</h3>
-                <div class="content">
-                  <p>
-{% trans webdev_url='https://wiki.mozilla.org/Webdev/GetInvolved', gaia_url='https://developer.mozilla.org/docs/Mozilla/Firefox_OS/Platform/Gaia/Hacking' %}
-Our web sites are open for web developers to hack on.  <a href="{{ webdev_url }}">Find a web site project</a> to get started on.  Your web skills can also be used to <a href="{{ gaia_url }}">help us build our new Firefox OS</a>.
-{% endtrans %}
-                  </p>
-                </div>
-              </li>
-              <li class="row">
-                <img src="{{ media('/img/contribute/addons.png') }}" alt="" />
-                <h3 id="addons">{{_('Add-ons') }}</h3>
-                <div class="content">
-                  <p>
-{% trans addons_url='https://addons.mozilla.org/developers/docs/getting-started', addons_wiki='https://wiki.mozilla.org/AMO:Editors/Applying' %}
-Mozilla products have a powerful extension system that allows you to make small tweaks or major additions.  Learn more about how to <a href="{{ addons_url }}">build an add-on</a>.  For experienced developers, find out how to <a href="{{ addons_wiki }}">become an AMO editor</a>.
-{% endtrans %}
-                  </p>
-                </div>
-              </li>
-              <li class="row">
-                <img src="{{ media('/img/contribute/creativecollective.png') }}" alt="" />
-                <h3 id="design">{{_('Visual Design') }}</h3>
-                <div class="content">
-                  <p>
-{% trans creative_url='https://blog.mozilla.org/creative/' %}
-We want to make it possible for artists to cover the web and people with designs inspired by Mozilla.   Check out the <a href="{{ creative_url }}">Creative team blog</a> for more information about how to take part.
-{% endtrans %}
-                  </p>
-                </div>
-              </li>
-              <li class="row">
-                <img src="{{ media('/img/contribute/mdn.png') }}" alt="" />
-                <h3 id="docs">{{_('Documentation and Writing') }}</h3>
-                <div class="content">
-                  <p>
-{% trans dev_url='https://developer.mozilla.org/docs/Project:How_to_Help' %}
-The Mozilla Developer Network is the hub for information about Mozilla technologies. Help <a href="{{ dev_url }}">make our documentation better</a> by writing new content, correcting existing material or translating content into new languages.
-{% endtrans %}
-                  </p>
-                </div>
-              </li>
-              <li class="row">
-                <img src="{{ media('/img/contribute/webmaker.png') }}" alt="" />
-                <h3 id="education">{{_('Education') }}</h3>
-                <div class="content">
-                  <p>
-{% trans moz_webmaker='https://webmaker.org/', webmaker='https://webmaker.org/events/' %}
-Help build a generation of webmakers by teaching others how the web works. <a href="{{ moz_webmaker }} ">Explore what the Mozilla Webmaker project is all about</a> or get started teaching others by <a href="{{ webmaker }}">setting up an event in your community today</a>.
-{% endtrans %}
-                  </p>
-                </div>
-              </li>
-            </ul>
-          </section>
-        </div>
-
-        <div class="location-content" id="location">
-          <script>// <![CDATA[
-          document.getElementById('location').id = 'page-location';
-          // ]]></script>
-          <section>
-            <ul>
-              <li class="row">
-                <a href="/contribute/local/northamerica.html">
-                  <img src="{{ MEDIA_URL }}img/contribute/local/map-th-northamerica.png" alt="">
-                  <h3>{{_('US and Canada')}}</h3>
-                </a>
-              </li>
-              <li class="row">
-                <a href="/contribute/local/europe.html">
-                  <img src="{{ MEDIA_URL }}img/contribute/local/map-th-europe.png" alt="">
-                  <h3>{{_('Europe')}}</h3>
-                </a>
-              </li>
-              <li class="row">
-                <a href="/contribute/local/latinamerica.html">
-                  <img src="{{ MEDIA_URL }}img/contribute/local/map-th-latinamerica.png" alt="">
-                  <h3>{{_('Latin America')}}</h3>
-                </a>
-              </li>
-              <li class="row">
-                <a href="/contribute/local/africamideast.html">
-                  <img src="{{ MEDIA_URL }}img/contribute/local/map-th-africamideast.png" alt="">
-                  <h3>{{_('Africa and the Middle East')}}</h3>
-                </a>
-              </li>
-              <li class="row">
-                <a href="/contribute/local/asia.html">
-                  <img src="{{ MEDIA_URL }}img/contribute/local/map-th-asia.png" alt="">
-                  <h3>{{_('Asia and the South Pacific')}}</h3>
-                </a>
-              </li>
-              <li class="row">
-                <a href="/contribute/local/southpole.html">
-                  <img src="{{ MEDIA_URL }}img/contribute/local/map-th-southpole.png" alt="">
-                  <h3>{{_('Antarctica')}}</h3>
-                </a>
-              </li>
-            </ul>
-          </section>
-        </div>
-
-
-
-        {% if LANG.startswith('en') %}
-          <div class="newsletter-content" id="newsletter">
-            <script>// <![CDATA[
-            document.getElementById('newsletter').id = 'page-newsletter';
-            // ]]></script>
-            <section>
-              {% if not newsletter_success %}
-                <form action="{{ secure_url() }}#newsletter" method="post" id="newsletter-form">
-                  <input type="hidden" name="newsletter-form" value="Y" />
-                  <p>{{_('Sign up for a weekly newsletter that is full of community news and contribution opportunities.')}}</p>
-                  {% if newsletter_form.errors %}
-                    {{ newsletter_form.non_field_errors()|safe }}
-
-                    <ul class="errorlist">
-                      {% if newsletter_form.email.errors %}
-                      <li>{{_('Please enter a valid email address.')}}</li>
-                      {% endif %}
-
-                      {% if newsletter_form.privacy.errors %}
-                      <li>{{_('You must agree to the privacy policy.')}}</li>
-                      {% endif %}
-                    </ul>
-                  {% endif %}
-
-                  <div class="field field-email">{{ field_with_attrs(newsletter_form.email, placeholder=_('YOUR EMAIL HERE'))|safe }}</div>
-                  <div class="field field-country">{{ newsletter_form.country|safe }}</div>
-                  <div class="field field-format">{{ newsletter_form.fmt|safe }}</div>
-                  <div class="field field-privacy">{{ newsletter_form.privacy|safe }}</div>
-                  <div class="field field-submit"><input name="test-submit" type="submit" value="{{_('Subscribe')}}" class="button-blue" /></div>
-                  <small>{{_('We will only send you Mozilla-related information.')}}</small>
-                </form>
-              {% else %}
-              <h4>{{_('Thank you!')}}</h4>
-              {% endif %}
-            </section>
-          </div>
+      <li id="qa">
+        <img src="{{ media('/img/contribute/qmo.png') }}" alt="">
+        <h3>{{_('Quality Assurance')}}</h3>
+        <p>
+        {% if l10n_has_tag('contribute_mayupdates') or settings.DEV %}
+          {% trans %}
+          Quality Assurance testing is one of the easiest ways to get started with Mozilla and is a great way to get familiar with our code and tools.
+          {% endtrans %}
+          {% trans oneanddone_url='https://oneanddone.mozilla.org',
+            desktopfx_url='https://wiki.mozilla.org/QA/Desktop_Firefox/GetInvolved',
+            websites_url='https://quality.mozilla.org/docs/webqa/manual-testing/',
+            testday_url='https://quality.mozilla.org/category/events/',
+            qateams_url='https://quality.mozilla.org/teams/' %}
+          <a href="{{ oneanddone_url }}">Pick a task from One and Done</a> to get started, work on <a href="{{ desktopfx_url }}">Desktop Firefox</a>, <a href="{{ websites_url }}">test Mozilla web sites</a>, <a href="{{ testday_url }}">join us for a Test Day</a>, or <a href="{{ qateams_url }}">learn more about other testing opportunities</a>.
+          {% endtrans %}
+        {% else %}
+          {% trans qa_bugs_url='https://quality.mozilla.org/teams/desktop-firefox/', qa_web_url='https://quality.mozilla.org/teams/web-qa/', qa_url='https://quality.mozilla.org/' %}
+          Quality assurance testing is one of the easiest ways to get started with Mozilla and is a great way to get familiar with our code and tools. Help us <a href="{{ qa_bugs_url }}">hunt down bugs</a> in Firefox, <a href="{{ qa_web_url }}">test Mozilla web sites</a> or learn more about <a href="{{ qa_url }}">other testing opportunities</a>.
+          {% endtrans %}
         {% endif %}
+        </p>
+      </li>
 
-      </div>
+      <li id="coding">
+        <img src="{{ media('/img/contribute/dinohead.png') }}" alt="">
+        <h3>{{_('Coding')}}</h3>
+        <p>
+        {% trans dev_intro_url='https://developer.mozilla.org/docs/Introduction', what_url='http://www.whatcanidoformozilla.org/' %}
+          <a href="{{ dev_intro_url }}">Developers can help</a> Mozilla by adding new features, making our technology smaller and faster and making development easier for others. Tell us <a href="{{ what_url }}">your favorite programming language</a> and we'll find the project for you.
+        {% endtrans %}
+        </p>
+      </li>
 
-    </div>
+      <li id="marketing">
+        <img src="{{ media('/img/contribute/firefox.png?2013-06') }}" alt="">
+        <h3>{{_('Spread the Word')}}</h3>
+        <p>
+        {% trans affiliates_url='https://affiliates.mozilla.org', marketing_url='https://wiki.mozilla.org/MarketingGuide' %}
+          Help us spread the word about how Firefox and other Mozilla projects are building a better Internet. Share Firefox with the world by <a href="{{ affiliates_url }}">becoming an Affiliate</a> and then check out our <a href="{{ marketing_url }}">Marketing Guide</a> for more ways to get involved.
+        {% endtrans %}
+        </p>
+      </li>
 
+      <li id="l10n">
+        <img src="{{ media('/img/contribute/localization.png') }}" alt="">
+        <h3>{{_('Localization') }}</h3>
+        <p>
+        {% trans l10n_url='https://wiki.mozilla.org/L10n', l10n_web_url='https://wiki.mozilla.org/L10n:Web_parts' %}
+          Get involved with Mozilla by making Firefox, Thunderbird and other projects <a href="{{ l10n_url }}">available in your language</a>. Also help us tell the world about how Mozilla is building a better Internet by <a href="{{ l10n_web_url }}">translating content</a> on our web sites.
+        {% endtrans %}
+        </p>
+      </li>
 
+      <li id="webdev">
+        <img src="{{ media('/img/contribute/web.png') }}" alt="">
+        <h3>{{_('Web Development') }}</h3>
+        <p>
+        {% trans webdev_url='https://wiki.mozilla.org/Webdev/GetInvolved', gaia_url='https://developer.mozilla.org/docs/Mozilla/Firefox_OS/Platform/Gaia/Hacking' %}
+        Our web sites are open for web developers to hack on. <a href="{{ webdev_url }}">Find a web site project</a> to get started on. Your web skills can also be used to <a href="{{ gaia_url }}">help us build our new Firefox OS</a>.
+        {% endtrans %}
+        </p>
+      </li>
+
+    {% if l10n_has_tag('contribute_mayupdates') or settings.DEV %}
+      <li id="markeplace">
+        <img src="{{ media('/img/contribute/marketplace.png') }}" alt="">
+        <h3>{{ _('Firefox Marketplace') }}</h3>
+        <p>
+          {% trans marketplace_url='https://marketplace.firefox.com', mktcontrib_url='https://wiki.mozilla.org/Marketplace/Contributing/Apps' %}
+            <a href="{{ marketplace_url }}">Firefox Marketplace</a> provides content – games, music, social apps and more – built with HTML5 standards and open source values. With <a href="{{ mktcontrib_url }}">contribution opportunities</a> at every skill level, it’s easy to make an impact!
+          {% endtrans %}
+        </p>
+      </li>
+    {% endif %}
+
+      <li id="addons">
+        <img src="{{ media('/img/contribute/addons.png') }}" alt="">
+        <h3>{{_('Add-ons') }}</h3>
+        <p>
+        {% if l10n_has_tag('contribute_mayupdates') or settings.DEV %}
+          {% trans addons_url='https://addons.mozilla.org/developers/docs/getting-started', addons_wiki='https://wiki.mozilla.org/Marketplace/Contributing/Addons' %}
+          Add-ons are what make Firefox the most extensible and customizable browser available. Get started <a href="{{ addons_url }}">building an add-on</a>, and <a href="{{ addons_wiki }}">learn more about the different ways you can contribute</a>.
+          {% endtrans %}
+        {% else %}
+          {% trans addons_url='https://addons.mozilla.org/developers/docs/getting-started', addons_wiki='https://wiki.mozilla.org/Marketplace/Contributing/Addons' %}
+          Mozilla products have a powerful extension system that allows you to make small tweaks or major additions. Learn more about how to <a href="{{ addons_url }}">build an add-on</a>.  For experienced developers, find out how to <a href="{{ addons_wiki }}">become an AMO editor</a>.
+          {% endtrans %}
+        {% endif %}
+        </p>
+      </li>
+
+      <li id="design">
+      <img src="{{ media('/img/contribute/creativecollective.png') }}" alt="">
+      <h3>{{_('Visual Design') }}</h3>
+      <p>
+      {% trans creative_url='https://blog.mozilla.org/creative/' %}
+        We want to make it possible for artists to cover the web and people with designs inspired by Mozilla. Check out the <a href="{{ creative_url }}">Creative team blog</a> for more information about how to take part.
+      {% endtrans %}
+      </p>
+      </li>
+
+      <li id="docs">
+        <img src="{{ media('/img/contribute/mdn.png?03-2014') }}" alt="">
+        <h3>{{_('Documentation and Writing') }}</h3>
+        <p>
+        {% trans dev_url='https://developer.mozilla.org/docs/MDN/Getting_started' %}
+        The Mozilla Developer Network is the hub for information about Mozilla technologies. Help <a href="{{ dev_url }}">make our documentation better</a> by writing new content, correcting existing material or translating content into new languages.
+        {% endtrans %}
+        </p>
+      </li>
+
+      <li id="education">
+        <img src="{{ media('/img/contribute/webmaker.png') }}" alt="">
+        <h3>{{_('Education') }}</h3>
+        <p>
+      {% if l10n_has_tag('webmaker_update') or settings.DEV %}
+        {% trans webmaker='https://webmaker.org/',
+            webmaker_tools='https://webmaker.org/tools/',
+            webmaker_resources='https://webmaker.org/resources/',
+            webmaker_events='https://events.webmaker.org' %}
+          Interested in helping others understand how the Web works? <a href="{{ webmaker }}">Mozilla Webmaker</a> is a global community dedicated to sharing digital skills using <a href="{{ webmaker_tools }}">free tools</a>, <a href="{{ webmaker_resources }}">teaching resources</a> and <a href="{{ webmaker_events }}">community events</a>.
+        {% endtrans %}
+      {% else %}
+        {% trans moz_webmaker='https://webmaker.org/',
+            webmaker='https://events.webmaker.org/' %}
+          Help build a generation of webmakers by teaching others how the web works. <a href="{{ moz_webmaker }} ">Explore what the Mozilla Webmaker project is all about</a> or get started teaching others by <a href="{{ webmaker }}">setting up an event in your community today</a>.
+        {% endtrans %}
+      {% endif %}
+        </p>
+      </li>
+
+    {% if l10n_has_tag('contribute_fellowship') or settings.DEV %}
+      <li id="fellowship">
+        <img src="{{ media('/img/contribute/fellowship.png') }}" alt="">
+        <h3>{{ _('Fellowships') }}</h3>
+        <p>
+          {% trans fellowship='http://opennews.org/fellowships/' %}
+            Interested in shaping the future of the open Web? Knight-Mozilla’s <a href="{{ fellowship }}">OpenNews Fellowship program</a> matches emerging digital leaders with journalism opportunities to build the open Web for everyone.
+          {% endtrans %}
+        </p>
+      </li>
+    {% endif %}
+
+    {% if l10n_has_tag('hiveglobal') or settings.DEV %}
+      <li id="hivenetworks">
+        <img src="{{ media('/img/contribute/hive.png') }}" alt="">
+        <h3>{{ _('Hive Networks') }}</h3>
+        <p>
+          {% trans hivenetworks='http://hivelearningnetworks.org' %}
+            <a href="{{ hivenetworks }}">Hive Learning Networks</a> are a growing constellation of communities around the globe that are championing digital skills and web literacy through connected learning. <a href="{{ hivenetworks }}">Learn more</a> about how to start a Hive in your community.
+          {% endtrans %}
+        </p>
+      </li>
+    {% endif %}
+
+    </ul>
   </section>
 
+  <section id="location">
+    <h2>{{_('Find Mozillians near you')}}</h2>
+
+    <ul class="locations">
+      <li>
+        <a href="{{ url('mozorg.contact.communities.north-america') }}">
+          <img src="{{ media('/img/contribute/local/map-th-northamerica.png?03-2014') }}" alt="">
+          <h3>{{_('US and Canada')}}</h3>
+        </a>
+      </li>
+      <li>
+        <a href="{{ url('mozorg.contact.communities.europe') }}">
+          <img src="{{ media('/img/contribute/local/map-th-europe.png?03-2014') }}" alt="">
+          <h3>{{_('Europe')}}</h3>
+        </a>
+      </li>
+      <li>
+        <a href="{{ url('mozorg.contact.communities.latin-america') }}">
+          <img src="{{ media('/img/contribute/local/map-th-latinamerica.png?03-2014') }}" alt="">
+          <h3>{{_('Latin America')}}</h3>
+        </a>
+      </li>
+      <li>
+        <a href="{{ url('mozorg.contact.communities.africa-middle-east') }}">
+          <img src="{{ media('/img/contribute/local/map-th-africamideast.png?03-2014') }}" alt="">
+          <h3>{{_('Africa and the Middle East')}}</h3>
+        </a>
+      </li>
+      <li>
+        <a href="{{ url('mozorg.contact.communities.asia-south-pacific') }}">
+          <img src="{{ media('/img/contribute/local/map-th-asia.png?03-2014') }}" alt="">
+          <h3>{{_('Asia and the South Pacific')}}</h3>
+        </a>
+      </li>
+      <li>
+        <a href="{{ url('mozorg.contact.communities.antarctica') }}">
+          <img src="{{ media('/img/contribute/local/map-th-southpole.png?03-2014') }}" alt="">
+          <h3>{{_('Antarctica')}}</h3>
+        </a>
+      </li>
+    </ul>
+  </section>
+</main>
 {% endblock %}
 
 {% block email_form %}{% endblock %}

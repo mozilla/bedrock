@@ -341,7 +341,6 @@ class TestDotlang(TestCase):
         # test the case when LANG_FILES is a list
         lang_files_list = ['maude', 'bunny', 'uli']
         _lazy(trans_str, lang_files=lang_files_list).__unicode__()
-        print lang_files_list
         call_lang_files = lang_files_list + settings.DOTLANG_FILES
         trans_patch.assert_called_with(trans_str, call_lang_files)
 

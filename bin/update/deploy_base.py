@@ -46,6 +46,7 @@ def update_locales(ctx):
 def update_assets(ctx):
     management_cmd(ctx, 'compress_assets')
     management_cmd(ctx, 'update_product_details')
+    management_cmd(ctx, 'update_externalfiles')
 
 
 @task
@@ -122,9 +123,9 @@ def pre_update(ctx, ref=settings.UPDATE_REF):
 
 @task
 def update(ctx):
+    commands['database']()
     commands['update_assets']()
     commands['update_locales']()
-    commands['database']()
     commands['update_revision_file']()
 
 
@@ -142,7 +143,7 @@ def update_bedrock(ctx, tag):
     commands['update']()
 
 
-## utility functions ##
+# utility functions #
 # shamelessly stolen from https://github.com/mythmon/chief-james/
 
 

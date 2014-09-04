@@ -16,31 +16,12 @@
 
 
 {% block extrahead %}
+  {{ css('firefox_new') }}
+
   {% if request.locale == 'en-US' %}
     <!-- Google Analytics Content Experiment code -->
-    <script>
-    // targeted refactor of getPlatform() in site.js
-    // check for supported version of windows
-    function isWin() {
-        var ua = navigator.userAgent,
-            pf = navigator.platform;
-        if (
-          !(/Win(16|9[x58]|NT( [1234]| 5\.0| [^0-9]|[^ -]|$))/.test(ua) ||
-                /Windows ([MC]E|9[x58]|3\.1|4\.10|NT( [1234]| 5\.0| [^0-9]|[^ ]|$))/.test(ua) ||
-                /Windows_95/.test(ua))
-          && !(ua.indexOf("MSIE 6.0") !== -1 &&
-                ua.indexOf("Windows NT 5.1") !== -1 &&
-                ua.indexOf("SV1") === -1)
-          && (pf.indexOf("Win32") !== -1 ||
-                pf.indexOf("Win64") !== -1)
-          ) {
-            return true;
-        }
-
-        return false;
-    }
-    function utmx_section(){}function utmx(){}(function(){
-    if (! /[?&]f=[0-9]+/.test(window.location.search) && isWin()){
+    <script>function utmx_section(){}function utmx(){}(function(){
+    if (! /[?&]f=[0-9]+/.test(window.location.search)){
     var k='71153379-28',d=document,l=d.location,c=d.cookie;
     if(l.search.indexOf('utm_expid='+k)>0)return;
     function f(n){if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.
@@ -57,12 +38,8 @@
   {% endif %}
 {% endblock %}
 
-{% block site_css %}
-  {{ css('firefox_new') }}
-{% endblock %}
-
 {% block js_pretrack %}
-  {{ js('common-resp') }}
+  {{ js('firefox-resp') }}
   {{ js('firefox_new') }}
 {% endblock %}
 
@@ -92,7 +69,13 @@
   <div id="main-feature">
     <div class="row">
       <img src="{{ media('img/firefox/new/firefox-logo.png?2013-06') }}" alt="Firefox" />
-      <h1 class="large">{{_('Different by design')}}</h1>
+      <h1 class="large">
+        {%- if LANG in ['en-GB', 'en-US', 'en-ZA'] -%}
+          <span>Committed to you,</span> <span>your privacy</span> <span>and an open Web</span>
+        {%- else -%}
+          {{_('Committed to you, your privacy and an open Web')}}
+        {%- endif -%}
+      </h1>
     </div>
   </div>
 
@@ -100,14 +83,8 @@
     <div class="stage" id="stage-firefox">
       <div class="scene" id="scene1">
         <div class="container" id="features-download">
-          <ul id="features">
-            <li>{{_('Proudly<br />non-profit')}}</li>
-            <li>{{_('Innovating<br />for you')}}</li>
-            <li>{{_('Fast, flexible,<br />secure')}}</li>
-          </ul>
-
           <div class="desktop download-button-wrapper">
-            {{ download_firefox(force_direct=true) }}
+            {{ download_firefox(force_direct=true, simple=true) }}
           </div>
           <div class="mobile download-button-wrapper">
             {{ download_firefox(mobile=True) }}
@@ -117,33 +94,43 @@
           </div>
           <div class="desktop-latest-links-wrapper latest-links-wrapper">
             <ul>
-              <li><a href="{{ url('firefox.central') }}">{{_('Learn more about Firefox for desktop')}}</a></li>
+              <li><a href="{{ url('firefox.desktop.index') }}">{{_('Learn more about Firefox for desktop')}}</a></li>
               <li><a href="https://support.mozilla.org/products/firefox">{{_('Need help?')}}</a></li>
-              <li><a href="{{ url('firefox.fx') }}">{{_('Looking for mobile?')}}</a></li>
+              {% if l10n_has_tag('mobile_links') or settings.DEV %}
+              <li><a href="{{settings.GOOGLE_PLAY_FIREFOX_LINK }}">{{_('Get Firefox on your Android device')}}</a></li>
+              <li><a href="{{ url('firefox.os.index') }}">{{_('Learn about Firefox OS')}}</a></li>
+              {% endif %}
               <li><a href="{{ url('firefox.all') }}">{{_('Download a fresh copy')}}</a></li>
             </ul>
           </div>
           <div class="android-latest-links-wrapper latest-links-wrapper">
             <ul>
-              <li><a href="{{ url('firefox.mobile.features') }}">{{_('Learn more about Firefox for Mobile')}}</a></li>
+              <li><a href="{{ url('firefox.android.index') }}">{{_('Learn more about Firefox for Mobile')}}</a></li>
             </ul>
           </div>
           <div class="fxos-latest-links-wrapper latest-links-wrapper">
             <ul>
-              <li><a href="{{ url('firefox.os.index') }}">{{_('Learn more about Firefox OS?')}}</a></li>
-              <li><a href="{{ url('firefox.fx') }}">{{_('Discover all the ways to take Firefox on the go')}}</a></li>
+              <li><a href="{{ url('firefox.os.index') }}">{{_('Learn about Firefox OS')}}</a></li>
+              <li><a href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}">{{_('Discover all the ways to take Firefox on the go')}}</a></li>
             </ul>
           </div>
           <div class="ios-links-wrapper latest-links-wrapper">
             <ul>
-              <li><a href="{{ url('firefox.fx') }}">{{_('Looking for mobile?')}}</a></li>
+              {% if l10n_has_tag('mobile_links') or settings.DEV %}
+              <li>
+                <a href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}">{{_('Get Firefox on your Android device')}}</a>
+              </li>
+              <li>
+                <a href="{{ url('firefox.os.index') }}">{{_('Learn about Firefox OS')}}</a>
+              </li>
+              {% endif %}
               <li><a href="https://support.mozilla.org/kb/is-firefox-available-iphone-or-ipad">{{_('Why don’t we offer an iOS version?')}}</a></li>
             </ul>
           </div>
         </div>
 
         <div class="desktop" id="firefox-screenshot">
-          {{ platform_img('img/firefox/new/browser.png?2013-08-27', {'alt': _('Firefox screenshot'), 'data-additional-platforms': 'android ios'}) }}
+          {{ platform_img('img/firefox/new/browser.png?2014-04-29', {'alt': _('Firefox screenshot'), 'data-additional-platforms': 'android ios', 'data-high-res': 'true'}) }}
         </div>
 
         <div id="newsletter-latest">
@@ -152,12 +139,12 @@
       </div> <!-- /#scene1 -->
 
       <div class="scene" id="scene2">
+        <div class="share-wrapper">
+          {% include 'firefox/includes/social-share.html' %}
+        </div>
         <div class="thankyou" tabindex="0">
           {{_("Thanks for downloading Firefox!")}}
           {{_("As a non-profit, we’re free to innovate on your behalf without any pressure to compromise. You’re going to love the difference.")}}
-          <div class="share-wrapper">
-            {% include 'firefox/includes/social-share.html' %}
-          </div>
         </div>
 
         <ol class="installation">

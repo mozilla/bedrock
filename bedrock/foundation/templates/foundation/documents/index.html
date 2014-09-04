@@ -9,7 +9,7 @@
 {% set body_id = "documents" %}
 
 {% block article_title %}
-<h1 class="page-title">{{ _('Mozilla Foundation Documents') }}</h1>
+  <h1 class="page-title">{{ self.page_title() }}</h1>
 {% endblock %}
 
 {% block article %}
@@ -144,6 +144,14 @@
         <li><a href="{{ url('foundation.annualreport.2011faq') }}">{{ _('Mozilla 2011 financial FAQ') }}</a></li>
         <li><a href="http://static.mozilla.com/moco/en-US/pdf/Mozilla%20Foundation%20-%202011%20Public%20Disclosure%20990.pdf">{{ _('2011 IRS Form 990 for the Mozilla Foundation (8.6mb)') }}</a></li>
         <li><a href="http://static.mozilla.com/moco/en-US/pdf/Mozilla%20Foundation%20and%20Subsidiaries%202011%20Audited%20Financial%20Statement.pdf">{{ _('2011 audited financial statement for the Mozilla Foundation') }}</a></li>
+      </ul>
+    </li>
+    <li>{{ _('2012 filings and related documents') }}
+      <ul>
+        <li>{{ _('2012 annual report:') }} <q><a href="{{ url('foundation.annualreport.2012.index') }}">{{ _('State of Mozilla 2012') }}</a></q></li>
+        <li><a href="{{ url('foundation.annualreport.2012.faq') }}">{{ _('Mozilla 2012 financial FAQ') }}</a></li>
+        <li><a href="https://static.mozilla.com/moco/en-US/pdf/2012_Mozilla_Form_990-Public_Disclosure.pdf">{{ _('2012 IRS Form 990 for the Mozilla Foundation') }}</a></li>
+        <li><a href="https://static.mozilla.com/moco/en-US/pdf/Mozilla_Audited_Financials_2012.pdf">{{ _('2012 audited financial statement for the Mozilla Foundation') }}</a></li>
       </ul>
     </li>
   </ul>

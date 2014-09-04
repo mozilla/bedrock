@@ -61,10 +61,12 @@
 {% endtrans %}
 </p>
 
-<h3 id="faq">{{ _('Frequently Asked <span>Questions</span>') }}</h3>
-<div class="expander expander-even expander-first">
-  <h4 class="expander-header">{{ _('What is Do Not Track?') }}</h4>
-  <div class="expander-content">
+<section id="faq" class="accordion zebra">
+<h2>{{ _('Frequently Asked <span>Questions</span>') }}</h2>
+
+<section>
+  <h3 data-accordion-role="tab">{{ _('What is Do Not Track?') }}</h3>
+  <div data-accordion-role="tabpanel">
     <p>
       {% trans %}
         Do Not Track is a step toward putting you in control of the way your
@@ -75,11 +77,11 @@
       {% endtrans %}
     </p>
   </div>
-</div>
+</section>
 
-<div class="expander expander-odd">
-  <h4 class="expander-header">{{ _('Is Do Not Track available on Firefox for Android?') }}</h4>
-  <div class="expander-content">
+<section>
+  <h3 data-accordion-role="tab">{{ _('Is Do Not Track available on Firefox for Android?') }}</h3>
+  <div data-accordion-role="tabpanel">
     <p>
       {% trans %}
         Yes. Firefox for Android is the first mobile Web browser to offer
@@ -90,11 +92,11 @@
       {% endtrans %}
     </p>
   </div>
-</div>
+</section>
 
-<div class="expander expander-even">
-  <h4 class="expander-header">{{ _('Does Do Not Track block ads?') }}</h4>
-  <div class="expander-content">
+<section>
+  <h3 data-accordion-role="tab">{{ _('Does Do Not Track block ads?') }}</h3>
+  <div data-accordion-role="tabpanel">
     <p>
       {% trans %}
         No, you will still see ads with Do Not Track enabled. However, Do Not Track
@@ -105,13 +107,13 @@
       {% endtrans %}
     </p>
   </div>
-</div>
+</section>
 
-<div class="expander expander-odd">
-  <h4 class="expander-header">{{ _('How does Do Not Track work with other privacy tools?') }}</h4>
-  <div class="expander-content">
+<section>
+  <h3 data-accordion-role="tab">{{ _('How does Do Not Track work with other privacy tools?') }}</h3>
+  <div data-accordion-role="tabpanel">
     <p>
-      {% trans url=url('firefox.security') %}
+      {% trans url=url('firefox.desktop.trust') %}
         Do Not Track is one of many privacy solutions. Do Not Track does not replace your
         anti-virus software, will not encrypt data, and is not a security mechanism. There are
         several other <a href="{{ url }}">privacy and
@@ -119,11 +121,11 @@
       {% endtrans %}
     </p>
   </div>
-</div>
+</section>
 
-<div class="expander expander-even">
-  <h4 class="expander-header">{{ _('Will Do Not Track affect the rest of my Web experience?') }}</h4>
-  <div class="expander-content">
+<section>
+  <h3 data-accordion-role="tab">{{ _('Will Do Not Track affect the rest of my Web experience?') }}</h3>
+  <div data-accordion-role="tabpanel">
     <p>
     {% trans %}
       Do Not Track may interfere with some personalized services you enjoy. For example,
@@ -134,11 +136,11 @@
     {% endtrans %}
     </p>
   </div>
-</div>
+</section>
 
-<div class="expander expander-odd">
-  <h4 class="expander-header">{{ _('How do I enable Do Not Track in Firefox?') }}</h4>
-  <div class="expander-content">
+<section>
+  <h3 data-accordion-role="tab">{{ _('How do I enable Do Not Track in Firefox?') }}</h3>
+  <div data-accordion-role="tabpanel">
     <p>
       {% trans id='platform-note' %}
         This feature is not enabled by default. You can find the Do Not Track
@@ -161,11 +163,11 @@
     {% endtrans %}
     </p>
   </div>
-</div>
+</section>
 
-<div class="expander expander-even">
-  <h4 class="expander-header">{{ _('Will companies honor my Do Not Track preference?') }}</h4>
-  <div class="expander-content">
+<section>
+  <h3 data-accordion-role="tab">{{ _('Will companies honor my Do Not Track preference?') }}</h3>
+  <div data-accordion-role="tabpanel">
     <p>
     {% trans %}
       Companies are starting to support Do Not Track, but you may not notice any changes
@@ -174,11 +176,11 @@
     {% endtrans %}
     </p>
   </div>
-</div>
+</section>
 
-<div class="expander expander-odd">
-  <h4 class="expander-header">{{ _('Where can I learn more?') }}</h4>
-  <div class="expander-content">{{ _('Other interesting work about Do Not Track and online privacy:') }}
+<section>
+  <h3 data-accordion-role="tab">{{ _('Where can I learn more?') }}</h3>
+  <div data-accordion-role="tabpanel">{{ _('Other interesting work about Do Not Track and online privacy:') }}
     <ul style='list-style-position:inside'>
       <li>
         {{ _('<a href="%s">Private browsing</a> in Firefox &#8212; limits saving data about which sites and pages you have visited online')|format('https://support.mozilla.org/en-US/kb/Private%20Browsing') }}
@@ -220,7 +222,9 @@
       </li>
     </ul>
   </div>
-</div>
+</section>
+
+</section><!-- end #faq -->
 
 </article>
 
@@ -261,7 +265,7 @@
 {% endblock %}
 
 {% block js %}
-{{ js('expanders') }}
+{{ js('accordion') }}
 {% endblock %}
 
 {% block email_form %}{% endblock %}

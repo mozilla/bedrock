@@ -9,7 +9,7 @@
         font-size: 24px;
         letter-spacing: -0.25px;
         margin-bottom: 0;
-        font-family: 'Open Sans Light', sans-serif;
+        .open-sans-light;
         font-weight: normal;
         margin-bottom:0;
         line-height: 100%;
@@ -34,6 +34,17 @@
     left: 0;
 }
 
+.notice {
+    padding: 20px;
+    background: #ffe;
+    border: 1px solid #ccc;
+    margin: 0 0 20px;
+
+    p {
+        margin: 0;
+    }
+}
+
 .billboard {
     table {
         width: 100%;
@@ -47,7 +58,7 @@
         tbody th {
             font-size: 18px;
             font-weight: normal;
-            font-family: 'Open Sans Light',sans-serif;
+            .open-sans-light;
         }
     }
 }
@@ -201,7 +212,7 @@
 #sec-plugin-uptodate {
     display: none;
 }
-#footer-email-form {
+.footer-newsletter-form {
     padding: 40px 20px;
 }
 
@@ -249,7 +260,7 @@
         margin: 0 0 @baseLine;
     }
 
-    #footer-email-form {
+    .footer-newsletter-form {
         padding-bottom: 20px;
     }
 }

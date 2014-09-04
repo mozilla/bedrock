@@ -40,6 +40,7 @@ describe("site.js", function () {
 
         it("should identify OSX", function () {
             expect(window.site.getPlatform('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:30.0) Gecko/20100101 Firefox/30.0', 'foo')).toBe('osx');
+            expect(window.site.getPlatform('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10) AppleWebKit/538.10.3 (KHTML, like Gecko) Chrome/21.0.1180.89 Safari/537.1', 'foo')).toBe('osx');
         });
 
         it("should identify Firefox OS", function () {

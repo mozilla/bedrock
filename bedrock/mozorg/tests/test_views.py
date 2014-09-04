@@ -131,6 +131,38 @@ class TestStudentAmbassadorsJoin(TestCase):
                                         data=request_data)
 
 
+class TestContributeStudentAmbassadorsLanding(TestCase):
+    def setUp(self):
+        self.rf = RequestFactory()
+        self.get_req = self.rf.get('/')
+        self.no_exist = views.TwitterCache.DoesNotExist()
+
+    @patch.object(views.l10n_utils, 'render')
+    @patch.object(views.TwitterCache, 'objects')
+    def test_db_exception_works(self, mock_manager, mock_render):
+        """View should function properly without the DB."""
+        mock_manager.get.side_effect = views.DatabaseError
+        views.contribute_studentambassadors_landing(self.get_req)
+        mock_render.assert_called_with(ANY, ANY, {'tweets': []})
+
+    @patch.object(views.l10n_utils, 'render')
+    @patch.object(views.TwitterCache, 'objects')
+    def test_no_db_row_works(self, mock_manager, mock_render):
+        """View should function properly without data in the DB."""
+        mock_manager.get.side_effect = views.TwitterCache.DoesNotExist
+        views.contribute_studentambassadors_landing(self.get_req)
+        mock_render.assert_called_with(ANY, ANY, {'tweets': []})
+
+    @patch.object(views.l10n_utils, 'render')
+    @patch.object(views.TwitterCache, 'objects')
+    def test_db_cache_works(self, mock_manager, mock_render):
+        """View should use info returned by DB."""
+        good_val = 'The Dude tweets, man.'
+        mock_manager.get.return_value.tweets = good_val
+        views.contribute_studentambassadors_landing(self.get_req)
+        mock_render.assert_called_with(ANY, ANY, {'tweets': good_val})
+
+
 @patch.object(l10n_utils.dotlang, 'lang_file_is_active', lambda *x: True)
 class TestContribute(TestCase):
     def setUp(self):
@@ -155,7 +187,6 @@ class TestContribute(TestCase):
         response = self.client.get(self.url_en)
         doc = pq(response.content)
         ok_(doc('.field-newsletter'))
-        ok_(doc('a[href="#newsletter"]'))
         ok_(doc('#newsletter'))
 
         with self.activate('fr'):
@@ -163,21 +194,7 @@ class TestContribute(TestCase):
         response = self.client.get(url)
         doc = pq(response.content)
         assert_false(doc('.field-NEWSLETTER'))
-        assert_false(doc('a[href="#newsletter"]'))
         assert_false(doc('#newsletter'))
-
-    @patch.object(ReCaptchaField, 'clean', Mock())
-    def test_no_autoresponse(self):
-        """Test contacts for functional area without autoresponses"""
-        self.data.update(interest='coding')
-        self.client.post(self.url_en, self.data)
-        eq_(len(mail.outbox), 1)
-
-        m = mail.outbox[0]
-        eq_(m.from_email, 'contribute@mozilla.org')
-        eq_(m.to, ['contribute@mozilla.org'])
-        eq_(m.cc, ['josh@joshmatthews.net'])
-        eq_(m.extra_headers['Reply-To'], self.contact)
 
     @patch.object(ReCaptchaField, 'clean', Mock())
     def test_with_autoresponse(self):
@@ -186,7 +203,7 @@ class TestContribute(TestCase):
         self.client.post(self.url_en, self.data)
         eq_(len(mail.outbox), 2)
 
-        cc = ['jay@jaygarcia.com', 'rardila@mozilla.com', 'madasan@gmail.com']
+        cc = ['mana@mozilla.com']
         m = mail.outbox[0]
         eq_(m.from_email, 'contribute@mozilla.org')
         eq_(m.to, ['contribute@mozilla.org'])
@@ -311,7 +328,7 @@ class TestContribute(TestCase):
         EXPECTED = u"J'adore Citröns &  so there"
         self.data.update(comments=STRING)
         self.client.post(self.url_en, self.data)
-        eq_(len(mail.outbox), 1)
+        eq_(len(mail.outbox), 2)
         m = mail.outbox[0]
         self.assertIn(EXPECTED, m.body)
 

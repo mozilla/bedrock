@@ -17,7 +17,7 @@ import re
 from functools import partial
 
 from django.conf import settings
-from django.core.cache import cache
+from django.core.cache import get_cache
 from django.utils import translation
 from django.utils.functional import lazy
 
@@ -29,9 +29,8 @@ from product_details import product_details
 FORMAT_IDENTIFIER_RE = re.compile(r"""(%
                                       (?:\((\w+)\))? # Mapping key
                                       s)""", re.VERBOSE)
-
-
 TAG_REGEX = re.compile(r"^## (\w+) ##")
+cache = get_cache('l10n')
 
 
 def parse(path, skip_untranslated=True, extract_comments=False):

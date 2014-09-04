@@ -21,6 +21,10 @@
   padding-bottom: @gridGutterWidth;
 }
 
+.no-bullet {
+  list-style: none;
+}
+
 #apply-button {
   padding: 15px 80px;
 }
@@ -62,15 +66,17 @@
   background: #fff;
   border-bottom: 1px solid #ddd;
   padding-top: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  .border-box();
+
+  h4 {
+    margin-bottom: 20px;
+  }
 
   li {
     list-style: none;
-    margin: 0 20px 1em;
-    font-size: .857em;
-  }
-
-  p {
-    margin: 0 20px 15px;
+    margin-left: 0;
   }
 }
 
@@ -135,6 +141,14 @@
   }
 }
 
+#questions .aside ul {
+  list-style-type: none;
+  li {
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
+}
+
 #partners{
   background: #fff;
   padding-top: 30px;
@@ -160,13 +174,83 @@
   }
 }
 
-#numbered-list{
-  list-style-type: decimal;
-}
-
-
 #terms .container h4:not(:first-of-type){
   margin-top: 50px;
+}
+
+#terms {
+
+  main header {
+    margin-bottom: 40px;
+  }
+
+  .terms-section {
+    margin-bottom: 30px;
+
+    h5 {
+      font-weight: bold;
+      .open-sans;
+      margin: 1em 0 1em 0;
+      font-size: 14px;
+      color: #333;
+    }
+  }
+
+  .section-header {
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: underline;
+    display: inline;
+    color: #333;
+    .open-sans;
+  }
+
+  .section-header + p:not(.new-line-opening-p) {
+    display: inline;
+    margin-left: 1em;
+  }
+
+  p {
+    margin-top: 1em;
+  }
+
+  ol#submission-list {
+    margin-left: 25px;
+  }
+
+  ol.fund-evaluation-list,
+  ol#award-amount-list {
+    list-style-type: none;
+    margin-left: -20px;
+    margin-bottom: 0;
+    counter-reset: item;
+  }
+
+  ol.lower-alpha-list {
+    list-style-type: none;
+    margin-left: -20px;
+    margin-bottom: 0;
+    counter-reset: list;
+  }
+
+  ol.fund-evaluation-list li:before,
+  ol#award-amount-list li:before {
+    counter-increment: item;
+    content: "(" counter(item) ") ";
+  }
+
+  ol.lower-alpha-list li:before {
+    counter-increment: list;
+    content: "(" counter(list, lower-alpha) ") ";
+  }
+
+  ol.fund-evaluation-list li,
+  ol.lower-alpha-list li,
+  ol#fund-reporting-list li,
+  ol#award-amount-list li {
+    margin-bottom: 1em;
+  }
+
 }
 
 

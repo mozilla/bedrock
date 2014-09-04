@@ -58,6 +58,9 @@ if (typeof Mozilla == 'undefined') {
 
     Mozilla.UITour.DEFAULT_THEME_CYCLE_DELAY = 10 * 1000;
 
+    Mozilla.UITour.CONFIGNAME_SYNC = "sync";
+    Mozilla.UITour.CONFIGNAME_AVAILABLETARGETS = "availableTargets";
+
     Mozilla.UITour.registerPageID = function(pageID) {
         _sendEvent('registerPageID', {
             pageID: pageID
@@ -75,7 +78,7 @@ if (typeof Mozilla == 'undefined') {
         _sendEvent('hideHighlight');
     };
 
-    Mozilla.UITour.showInfo = function(target, title, text, icon, buttons) {
+    Mozilla.UITour.showInfo = function(target, title, text, icon, buttons, options) {
         var buttonData = [];
         if (Array.isArray(buttons)) {
             for (var i = 0; i < buttons.length; i++) {
@@ -88,12 +91,20 @@ if (typeof Mozilla == 'undefined') {
             }
         }
 
+        var closeButtonCallbackID, targetCallbackID;
+        if (options && options.closeButtonCallback)
+            closeButtonCallbackID = _waitForCallback(options.closeButtonCallback);
+        if (options && options.targetCallback)
+            targetCallbackID = _waitForCallback(options.targetCallback);
+
         _sendEvent('showInfo', {
             target: target,
             title: title,
             text: text,
             icon: icon,
-            buttons: buttonData
+            buttons: buttonData,
+            closeButtonCallbackID: closeButtonCallbackID,
+            targetCallbackID: targetCallbackID
         });
     };
 
@@ -169,10 +180,10 @@ if (typeof Mozilla == 'undefined') {
         _sendEvent('endUrlbarCapture');
     };
 
-    Mozilla.UITour.getSyncConfiguration = function(callback) {
+    Mozilla.UITour.getConfiguration = function(configName, callback) {
         _sendEvent('getConfiguration', {
             callbackID: _waitForCallback(callback),
-            configuration: "sync",
+            configuration: configName
         });
     };
 })();

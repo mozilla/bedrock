@@ -244,6 +244,29 @@ var Tabzilla = (function (Tabzilla) {
         }
         return 0;
     };
+    // Changing this pref name causes the easter egg to reappear, requires a
+    // fresh disable. Might be handy if or when the message is changed.
+    Tabzilla.EASTER_EGG_PREF_NAME = 'tabzilla.showEasterEgg.careersTeaser';
+    Tabzilla.disableEasterEgg = function () {
+        try {
+            localStorage.setItem(this.EASTER_EGG_PREF_NAME, 'false');
+        } catch (ex) {}
+    };
+    Tabzilla.enableEasterEgg = function () {
+        try {
+            localStorage.setItem(this.EASTER_EGG_PREF_NAME, 'true');
+        } catch (ex) {}
+    };
+    Tabzilla.shouldShowEasterEgg = function () {
+        try {
+            return (localStorage.getItem(this.EASTER_EGG_PREF_NAME) !== 'false');
+        } catch (ex) {
+            // HACK: If there's an exception in getting a localStorage item,
+            // then the support is probably not there. Err on the side of not
+            // showing the easter egg, since it can't be turned off.
+            return false;
+        }
+    };
     var Infobar = function (id, name) {
         this.id = id;
         this.name = name;
@@ -351,92 +374,115 @@ var Tabzilla = (function (Tabzilla) {
     Infobar.prototype.onshow = {};
     Infobar.prototype.onaccept = {};
     Infobar.prototype.oncancel = {};
-    Tabzilla.setupTransbar = function (userLang, pageLang) {
+    Tabzilla.setupTransbar = function (userLangs, pageLang) {
         var transbar = new Infobar('transbar', 'Translation Bar');
-        userLang = userLang || navigator.language || navigator.browserLanguage;
+
+        // Note that navigator.language doesn't always work because it's just
+        // the application's locale on some browsers. navigator.languages has
+        // not been widely implemented yet, but the new property provides an
+        // array of the user's accept languages that we'd like to see.
+        userLangs = userLangs || navigator.languages;
         pageLang = pageLang || document.documentElement.lang;
 
-        if (transbar.disabled || !userLang || !pageLang) {
+        if (transbar.disabled || !userLangs || !pageLang) {
             return false;
         }
 
-        var userLangLower = userLang.toLowerCase();
-        var userLangShort = userLangLower.split('-')[0];
-        var pageLangLower = pageLang.toLowerCase();
+        var offeredLang;
+        var langLinks = [];
+        var langOptions = [];
 
-        // Compare the user's language and the page's language
-        if (userLangLower === pageLangLower ||
-                // Consider some legacy locales like fr-FR, it-IT or el-GR
-                userLangShort === pageLangLower) {
-            return false;
-        }
-
-        // Normalize the user language in the form of ab or ab-CD
-        userLang = userLang.replace(/^(\w+)(?:-(\w+))?$/, function (m, p1, p2) {
-            return p1.toLowerCase() + ((p2) ? '-' + p2.toUpperCase() : '');
-        });
-
-        // Check the availability of the translated page for the user.
-        // Use an alternate URL in <head> or a language option in <form>
-        var langLink = $([
-            'link[hreflang="' + userLang + '"]',
-            // The user language can be ab-CD while the page language is ab
-            // (Example: fr-FR vs fr, ja-JP vs ja)
-            'link[hreflang="' + userLangShort + '"]'
-            ].join(','));
-        var langOption = $([
-            '#language [value="' + userLang + '"]',
+        // Compare the user's accept languages against the available languages
+        // to find the best language. Use an alternate URL in <head> or a
+        // language option in <form>
+        $.each(userLangs, function(index, userLang) {
             // Languages in the language switcher are uncapitalized on some
             // sites (AMO, Firefox Flicks)
-            '#language [value="' + userLangLower + '"]',
+            var userLangLower = userLang.toLowerCase();
+
             // The user language can be ab-CD while the page language is ab
             // (Example: fr-FR vs fr, ja-JP vs ja)
-            '#language [value="' + userLangShort + '"]',
-            // Sometimes the value of a language switcher option is the path of
-            // a localized page on some sites (MDN)
-            '#language [value^="/' + userLang + '/"]',
-            '#language [value^="/' + userLangShort + '/"]'
-            ].join(','));
+            var userLangShort = userLangLower.split('-')[0];
 
-        if (!langLink.length && !langOption.length) {
+            // Compare in lower case
+            var pageLangLower = pageLang.toLowerCase();
+
+            // Compare the user's language and the page's language
+            if (userLangLower === pageLangLower ||
+                    // Consider some legacy locales like fr-FR, it-IT or el-GR
+                    userLangShort === pageLangLower) {
+                // The user is already seeing the page in his/her own language.
+                // No need to show the Translation Bar
+                return false; // Break the loop
+            }
+
+            $.each([userLang, userLangLower, userLangShort], function(index, lang) {
+                var links = $('link[hreflang="' + lang + '"]');
+                var options = $('#language [value="' + lang + '"], \
+                                 #language [value^="/' + lang + '/"]');
+
+                if (!links.length && !options.length) {
+                    return true; // Continue the loop
+                }
+
+                if (links.length) {
+                    langLinks = links;
+                }
+
+                if (options.length) {
+                    langOptions = options;
+                }
+
+                offeredLang = lang;
+                return false; // Break the loop
+            });
+
+            if (offeredLang) {
+                return false; // Break the loop
+            }
+        });
+
+        if (!offeredLang) {
+            // No translation is available for the user
             return false;
         }
 
         // Do not show Chrome's built-in Translation Bar
         $('head').append('<meta name="google" value="notranslate">');
 
-        // Normalize the user language again, based on the language of the site
-        userLang = (langLink.length) ? langLink.attr('hreflang')
-                                     : langOption.val();
+        // Normalize the user language in the form of ab or ab-CD
+        offeredLang = offeredLang.replace(/^(\w+)(?:-(\w+))?$/, function (m, p1, p2) {
+            return p1.toLowerCase() + ((p2) ? '-' + p2.toUpperCase() : '');
+        });
 
         // Log the language of the current page
-        transbar.onshow.trackLabel = transbar.oncancel.trackLabel = userLang;
+        transbar.onshow.trackLabel = transbar.oncancel.trackLabel = offeredLang;
         transbar.oncancel.trackAction = 'hide';
 
         // If the user selects Yes, show the translated page
         transbar.onaccept = {
             trackAction: 'change',
-            trackLabel: userLang,
+            trackLabel: offeredLang,
             callback: function () {
-                if (langLink.length) {
-                    location.href = langLink.attr('href').replace(/^https?\:\/\/[^/]+/, '');
+                if (langLinks.length) {
+                    location.href = langLinks.attr('href').replace(/^https?\:\/\/[^/]+/, '');
                 } else {
-                    langOption.attr('selected', 'selected').get(0).form.submit();
+                    langOptions.attr('selected', 'selected').get(0).form.submit();
                 }
             }
         };
 
         // Fetch the localized strings and show the Translation Bar
-        $.ajax({ url: '{{ settings.CDN_BASE_URL }}/' + userLang + '/tabzilla/transbar.jsonp',
+        $.ajax({ url: '{{ settings.CDN_BASE_URL }}/' + offeredLang + '/tabzilla/transbar.jsonp',
                  cache: true, crossDomain: true, dataType: 'jsonp',
                  jsonpCallback: "_", success: function (str) {
             transbar.show(str).attr({
-                'lang': userLang,
-                'dir': ($.inArray(userLang, {{ settings.LANGUAGES_BIDI|list|safe }}) > -1) ? 'rtl' : 'ltr'
+                'lang': offeredLang,
+                'dir': ($.inArray(offeredLang, {{ settings.LANGUAGES_BIDI|list|safe }}) > -1) ? 'rtl' : 'ltr'
             });
         }});
 
-        return true;
+        return offeredLang;
     };
     var setupGATracking = function () {
         // track tabzilla links in GA
@@ -540,6 +586,7 @@ var Tabzilla = (function (Tabzilla) {
             if (event.which === 27) {
                 event.preventDefault();
                 Tabzilla.close();
+                tab.focus();
             }
         });
 
@@ -571,8 +618,8 @@ var Tabzilla = (function (Tabzilla) {
         $(window).load(function() {
             try {
                 // Try to only show on stage and production environments.
-                if (/mozill|webmaker|allizom|firefox/.exec(location.hostname)) {
-                    console.log("{% filter js_escape|safe %}{% include "includes/careers-teaser.html" %}{% endfilter %}");
+                if (Tabzilla.shouldShowEasterEgg()) {
+                    console.log("{% filter js_escape|safe %}{% include "includes/careers-teaser.html" %}{% include "includes/tabzilla-console-footer.html" %}{% endfilter %}");
                 }
             } catch(e) {}
         });
@@ -603,12 +650,21 @@ var Tabzilla = (function (Tabzilla) {
       '<div id="tabzilla-panel" class="tabzilla-closed" tabindex="-1">'
     + '  <div id="tabzilla-contents">'
     + '    <div id="tabzilla-promo">'
-    +'      <div class="snippet" id="tabzilla-promo-fxos">'
+{% if l10n_has_tag('promo_webwewant') or settings.DEV %}
+    + '      <div class="snippet" id="tabzilla-promo-webwewant">'
+    + '        <a href="https://webwewant.mozilla.org/?icn=tabz">'
+    + '          <h4>{{ _('What kind of Web do you want?')|js_escape }}</h4>'
+    + '          <p>{{ _('Share your vision')|js_escape }}</p>'
+    + '        </a>'
+    + '      </div>'
+{% else %}
+    + '      <div class="snippet" id="tabzilla-promo-fxos">'
     + '        <a href="https://www.mozilla.org/firefox/os/?icn=tabz">'
     + '          <h4>{{ _('Look ahead')|js_escape }}</h4>'
     + '          <p>{{ _('Learn all about Firefox OS')|js_escape }} »</p>'
     + '        </a>'
     + '      </div>'
+{% endif %}
     + '    </div>'
     + '    <div id="tabzilla-nav">'
     + '      <ul>'
@@ -635,8 +691,6 @@ var Tabzilla = (function (Tabzilla) {
     + '        <li><h2>{{ _('Innovations')|js_escape }}</h2>'
     + '          <div>'
     + '            <ul>'
-    + '              <li><a href="https://webfwd.org/?icn=tabz">WebFWD</a></li>'
-    + '              <li><a href="https://mozillalabs.com/?icn=tabz">Labs</a></li>'
     + '              <li><a href="https://webmaker.org/?icn=tabz">Webmaker</a></li>'
     + '              <li><a href="https://www.mozilla.org/research/?icn=tabz">Research</a></li>'
     + '            </ul>'
@@ -646,15 +700,15 @@ var Tabzilla = (function (Tabzilla) {
     + '          <div>'
     + '            <ul>'
     + '              <li><a href="https://www.mozilla.org/contribute/?icn=tabz">{{ _('Volunteer')|js_escape }}</a></li>'
-    + '              <li><a href="https://www.mozilla.org/en-US/about/careers.html?icn=tabz">{{ _('Careers')|js_escape }}</a></li>'
+    + '              <li><a href="https://careers.mozilla.org/?icn=tabz">{{ _('Careers')|js_escape }}</a></li>'
     + '              <li><a href="https://www.mozilla.org/en-US/about/mozilla-spaces/?icn=tabz">{{ _('Find us')|js_escape }}</a></li>'
-    + '              <li><a href="{{ donate_url() }}?icn=tabz&amp;source=tabzilla_donate&amp;amount=20" class="donate">{{ _('Donate')|js_escape }}</a></li>'
+    + '              <li><a href="{{ donate_url() }}?icn=tabz&amp;source=mozillaorg_default_tabzillaTXT" class="donate">{{ _('Donate')|js_escape }}</a></li>'
     + '              <li><a href="https://www.mozilla.org/about/partnerships/?icn=tabz">{{ _('Partner')|js_escape }}</a></li>'
     + '            </ul>'
     + '          </div>'
     + '        </li>'
     + '        <li id="tabzilla-search">'
-    + '          <a href="https://www.mozilla.org/community/directory.html?icn=tabz">{{ _('Website Directory')|js_escape }}</a>'
+    + '          <a href="https://wiki.mozilla.org/Websites/Directory?icn=tabz">{{ _('Website Directory')|js_escape }}</a>'
     + '          <form title="{{ _('Search Mozilla sites')|js_escape }}" role="search" action="https://www.google.com/cse">'
     + '            <input type="hidden" value="002443141534113389537:ysdmevkkknw" name="cx">'
     + '            <input type="hidden" value="FORID:0" name="cof">'

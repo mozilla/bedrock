@@ -6,7 +6,7 @@
 
 {% block page_title %}{{_('Gigabit')}}{% endblock %}
 {% block page_desc %}{{_('Gigabit - Description.')}}{% endblock %}
-{% block body_id %}about{% endblock %}
+{% block body_id %}apply{% endblock %}
 {% block body_class %}sand gigabit{% endblock %}
 {% block page_image %}{{ media('img/gigabit/gigabit-wordmark.png') }}?2013-11{% endblock %}
 {% block page_favicon %}{{ media('img/gigabit/favicon.png') }}?2013-11{% endblock %}
@@ -19,7 +19,7 @@
 
 {% block site_header_nav %}
   <nav id="nav-main" role="navigation">
-    <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
+    <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{_('Menu')}}</span>
     <ul id="nav-main-menu">
       <li>{{_('<a href="%s">Home</a>')|format(url('gigabit.gigabit')) }}</li>
       <li><b>{{_('Apply')}}</b></li>
@@ -36,59 +36,57 @@
       <h1 class="large center">{{ _('Apply') }}</h1>
 
       <section id="cta-apply" class="container">
-        <h3>{{ _('Apply to the Gigabit Community Fund') }}</h3>
-        <p><strong>{{ _('We will begin accepting applications in February 2014.') }}</strong></p>
+        <h3><strong>{{ _('Applications are now closed.') }}</strong></h3>
+        <p>{{ _('What’s happening in…') }}</p>
+        <ul class="no-bullet">
+          <li>{% trans url_chat='//wiki.mozilla.org/Webmaker/HiveChattanooga' %}
+              <a href='{{ url_chat }}'>Chattanooga</a>
+              {% endtrans %}
+          </li>
+          <li>{% trans url_kansas='//wiki.mozilla.org/Webmaker/HiveKansasCity' %}
+              <a href='{{ url_kansas }}'>Kansas City</a>
+              {% endtrans %}</li>
+        </ul>
         <p>
-        {% trans url_announcement='//sendto.mozilla.org/page/s/gigabit-updates', url_twitter='//twitter.com/MozillaGigabit' %}
-          Join our <a href='{{ url_announcement }}'>announcement list</a> or follow <a href='{{ url_twitter }}'>@MozillaGigabit</a> for updates!
-        {% endtrans %}
+          {% trans url_announcement='//sendto.mozilla.org/page/s/gigabit-updates', url_twitter='//twitter.com/MozillaGigabit' %}
+            Join our <a href='{{ url_announcement }}'>announcement list</a> or follow <a href='{{ url_twitter }}'>@MozillaGigabit</a> for updates.
+          {% endtrans %}
         </p>
-        <p>{{ _('If you have an idea for a project based in Kansas City or Chattanooga, we encourage you to get involved in the local Gigabit community — we want to help you create a strong submission.') }}</p>
       </section>
 
       <section id="questions" class="container">
-        <div class="main">
+        <div>
           <h2>{{ _('Questions?') }}</h2>
 
           <p>
-          {% trans url_wiki='//wiki.mozilla.org/Gigabit', url_terms=url('gigabit.terms'), url_email='mailto:gigabit@mozilla.org' %}
-            Our <a href="{{ url_wiki }}">wiki</a> is full of helpful information and we encourage you to read through the Gigabit Community Fund’s <a href="{{ url_terms }}">Terms and Conditions</a>. Feel free to <a href="{{ url_email }}">email us</a> any time. Don't be shy — we're friendly!
+          {% trans url_wiki='//wiki.mozilla.org/Gigabit', url_terms=url('gigabit.terms') %}
+            Our <a href="{{ url_wiki }}">wiki</a> is full of helpful information and we encourage you to read the Gigabit Community Fund’s <a href="{{ url_terms }}">Rules, Terms, and Conditions</a>.
           {% endtrans %}
           </p>
 
           <p>
-            {{ _('Submission of new versions will be allowed until the application period closes and  the review process begins. The latest submitted version before the deadline will be considered final.') }}
+          {% trans url_email='mailto:gigabit@mozilla.org' %}
+           Feel free to <a href="{{ url_email }}">email us</a> any time. Don't be shy — we're friendly!
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans url_announcement='https://sendto.mozilla.org/page/s/gigabit-updates', url_twitter='https://twitter.com/MozillaGigabit' %}
+           Join our <a href="{{ url_announcement }}">announcement list</a> or follow <a href="{{ url_twitter }}">@MozillaGigabit</a> for updates on the Gigabit Community Fund.
+          {% endtrans %}
           </p>
 
           <p>
           {% trans url_moz_open='//wiki.mozilla.org/Working_open' %}
-            <a href="{{ url_moz_open }}">Mozilla works open</a>. We will make the content of all submissions publicly viewable.
+            <a href="{{ url_moz_open }}">Mozilla works open</a>. We will make the content of all submissions publicly viewable. Projects that are awarded funding are encouraged to work open. Funded participants will be expected to create a free GitHub repository that, at minimum, documents their submitted proposal. You retain all ownership rights in your submission in the Fund.
           {% endtrans %}
           </p>
 
           <p>
-            {{ _('Projects  that are awarded funding are encouraged to work open. Funded  participants will be expected to create a free GitHub repository that,  at minimum, documents their submitted proposal. You retain all ownership  rights in your submission in the Fund.') }}
+          {% trans url_local='https://wiki.mozilla.org/Gigabit' %}
+           We encourage you to get involved in your <a href="{{ url_local }}">local Gigabit community</a> — here you’ll find resources to create a strong submission.
+          {% endtrans %}
           </p>
-        </div>
-
-        <div class="aside">
-          <h2>{{ _('Dates &amp; Deadlines') }}</h2>
-          <ul>
-            <li>
-              {{ _(('The <b>Spring Pilot Period</b> runs from March &#8212; June 2014. We will accept applications in February 2014.')) }}
-            </li>
-            <li>
-              {{ _(('The <b>Summer Pilot Period</b> runs from July &#8212; September 2014. We will accept applications in April 2014.')) }}
-            </li>
-            <li>
-              {% trans url_announcement='//sendto.mozilla.org/page/s/gigabit-updates', url_twitter='//twitter.com/MozillaGigabit' %}
-                Join our <a href='{{ url_announcement }}'>announcement list</a> or follow <a href='{{ url_twitter }}'>@MozillaGigabit</a> for updates!
-              {% endtrans %}
-            </li>
-            <li>
-              {{ _(('Participants are highly encouraged to get in touch with us during the application process &#8212; we’d be pleased to help you create a strong submission.')) }}
-            </li>
-          </ul>
         </div>
       </section>
 

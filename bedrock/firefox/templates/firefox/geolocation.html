@@ -34,11 +34,12 @@
 
 <div class="main-column">
 
-<h3>{{ _('Frequently asked Questions') }}</h3>
+<section id="faq" class="accordion zebra">
+<h2>{{ _('Frequently asked Questions') }}</h2>
 
-<div class="expander expander-odd">
-  <h4 class="expander-header">{{ _('What is Location-Aware Browsing?') }}</h4>
-  <div class="expander-content">
+<section>
+  <h3 data-accordion-role="tab">{{ _('What is Location-Aware Browsing?') }}</h3>
+  <div data-accordion-role="tabpanel">
     <p>
     {% trans %}
       Websites that use location-aware browsing will ask where you are in
@@ -59,10 +60,11 @@
     {% endtrans %}
     </p>
   </div>
-</div>
-<div class="expander expander-even">
-  <h4 class="expander-header">{{ _('How does it work?') }}</h4>
-  <div class="expander-content">
+</section>
+
+<section>
+  <h3 data-accordion-role="tab">{{ _('How does it work?') }}</h3>
+  <div data-accordion-role="tabpanel">
     <p>{{ _('When you visit a location-aware website, Firefox will ask you if you want to share your location.') }}</p>
     <p>
     {% trans %}
@@ -75,10 +77,11 @@
     </p>
     <p>{{ _('If you say that you do not consent, Firefox will not do anything.') }}</p>
   </div>
-</div>
-<div class="expander expander-odd">
-  <h4 class="expander-header">{{ _('How accurate are the locations?') }}</h4>
-  <div class="expander-content">
+</section>
+
+<section>
+  <h3 data-accordion-role="tab">{{ _('How accurate are the locations?') }}</h3>
+  <div data-accordion-role="tabpanel">
     <p>
     {% trans %}
       Accuracy varies greatly from location to location.  In some places, our
@@ -90,14 +93,15 @@
     {% endtrans %}
     </p>
   </div>
-</div>
-<div class="expander expander-even">
-  <h4 class="expander-header">
+</section>
+
+<section>
+  <h3 data-accordion-role="tab">
   {% trans %}
     What information is being sent, and to whom? How is my privacy protected?
   {% endtrans %}
-  </h4>
-  <div class="expander-content">
+  </h3>
+  <div data-accordion-role="tabpanel">
     <p>
     {% trans %}
       Your privacy is extremely important to us, and Firefox never shares your
@@ -113,9 +117,9 @@
       <li>{{ _('a random client identifier, which is assigned by Google, that expires every 2 weeks.') }}</li>
     </ul>
     <p>
-    {% trans url=php_url('/legal/privacy/firefox.html') %}
+    {% trans url=url('privacy.notices.firefox') %}
       For a complete description of information collected and used by Firefox,
-      please see the <a href="{{ url }}">Firefox Privacy Policy</a>.
+      please see the <a href="{{ url }}">Firefox Privacy Notice</a>.
     {% endtrans %}
     </p>
     <p>
@@ -140,14 +144,15 @@
     <p>{{ _('For information about what the requesting website does with your location information, please refer to that website’s privacy policy.') }}</p>
     <p>{{ _('For more information about your privacy, you should also read:') }}</p>
     <ul>
-      <li><a href="{{ php_url('/legal/privacy/firefox.html') }}">{{ _('Mozilla Firefox privacy policy') }}</a></li>
+      <li><a href="{{ url('privacy.notices.firefox') }}">{{ _('Mozilla Firefox Privacy Notice') }}</a></li>
       <li><a href="https://www.google.com/privacy/lsf.html" class="external">{{ _('Google privacy policy') }}</a></li>
     </ul>
   </div>
-</div>
-<div class="expander expander-odd">
-  <h4 class="expander-header">{{ _('Am I being tracked as I browse the web?') }}</h4>
-  <div class="expander-content">
+</section>
+
+<section>
+  <h3 data-accordion-role="tab">{{ _('Am I being tracked as I browse the web?') }}</h3>
+  <div data-accordion-role="tabpanel">
     <p>
     {% trans %}
       No. Firefox only requests a location when a website makes a request, and
@@ -156,10 +161,11 @@
     {% endtrans %}
     </p>
   </div>
-</div>
-<div class="expander expander-even" id="undo-permission">
-  <h4 class="expander-header">{{ _('How do I undo a permission granted to a site?') }}</h4>
-  <div class="expander-content">
+</section>
+
+<section id="undo-permission">
+  <h3 data-accordion-role="tab">{{ _('How do I undo a permission granted to a site?') }}</h3>
+  <div data-accordion-role="tabpanel">
     <p>
     {% trans %}
       If you've given Firefox permission to always give your location to a site
@@ -174,21 +180,11 @@
       <li>{{ _('Change the setting for <em>Share Location</em>') }}</li>
     </ul>
   </div>
-</div>
-<div class="expander expander-odd">
-  <h4 class="expander-header">{{ _('How do I clear the “random client identification number”?') }}</h4>
-  <div class="expander-content">
-    <ul>
-      <li>{{ _('Go to the <em>Tools</em> menu, then select <em>Clear Recent History</em>') }}</li>
-      <li>{{ _('Click the <em>Details</em> arrow') }}</li>
-      <li>{{ _('Ensure that <em>Cookies</em> is selected') }}</li>
-      <li>{{ _('Click on <em>Clear Now</em>') }}</li>
-    </ul>
-  </div>
-</div>
-<div class="expander expander-even">
-  <h4 class="expander-header">{{ _('How do I turn off Location-Aware Browsing permanently?') }}</h4>
-  <div class="expander-content">
+</section>
+
+<section>
+  <h3 data-accordion-role="tab">{{ _('How do I turn off Location-Aware Browsing permanently?') }}</h3>
+  <div data-accordion-role="tabpanel">
     <p>
     {% trans %}
       Location-Aware Browsing is always opt-in in Firefox. No location
@@ -203,7 +199,9 @@
       <li>{{ _('Location-Aware Browsing is now disabled') }}</li>
     </ul>
   </div>
-</div>
+</section>
+
+</section><!-- end #faq -->
 
 <div style="display:none">
   <div id="geo-demo">

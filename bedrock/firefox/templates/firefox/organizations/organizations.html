@@ -61,6 +61,10 @@
 
   <aside id="sidebar" class="sidebar">
 
+    <div id="download">
+      <p><a class="button" href="{{ product_url('firefox', 'all', 'esr') }}">{{ _('Download Mozilla Firefox ESR') }}</a></p>
+    </div>
+
     <div id="alternate-download">
       <h4>{{ _('Not from an organization?') }}</h4>
       <p>{{ _('If you’re looking for Firefox for personal use, please visit our <a href="%s">Firefox</a> page.')|format(url('firefox')) }}</p>

@@ -1,0 +1,47 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "base-resp.html" %}
+
+{% block extrahead %}
+  {{ css('security') }}
+{% endblock %}
+
+{% block body_class %}sand{% endblock %}
+
+{% block breadcrumbs %}
+  <nav class="breadcrumbs">
+    <a href="{{ url('mozorg.home') }}">{{ _('Home') }}</a> &gt;
+    <a href="{{ url('security.index') }}">{{ _('Mozilla Security') }}</a> &gt;
+  </nav>
+{% endblock %}
+
+{% block content %}
+  {% block main_feature %}{% endblock %}
+  {% block menu_bar %}{% endblock %}
+  <main id="main-content">
+    <div class="main-column">
+      {% block article %}{% endblock %}
+    </div>
+    {% block sidebar %}
+      <aside class="sidebar">
+        {% block side_nav %}
+          <nav>
+            <ul>
+              <li><a href="{{ url('security.index') }}">Security Center</a></li>
+              <li><a href="{{ url('security.advisories') }}">Security Advisories</a></li>
+              <li><a href="{{ url('security.known-vulnerabilities') }}">Known Vulnerabilities</a></li>
+              <li><a href="{{ url('security.bug-bounty') }}">Bug Bounty</a></li>
+              <li><a href="http://blog.mozilla.com/security/">Security Blog</a></li>
+            </ul>
+          </nav>
+        {% endblock %}
+        {% block side_extra %}
+        {% endblock %}
+      </aside>
+    {% endblock %}
+  </main>
+{% endblock %}
+
+{% block email_form %}{% endblock %}

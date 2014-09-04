@@ -3,6 +3,7 @@ settings/local.py
 */settings/local.py
 *.py[co]
 *.sw[po]
+.c9
 .coverage
 .jshintrc
 pip-log.txt
@@ -29,3 +30,5 @@ venv
 james.ini
 node_modules
 /media/js/test/test-results.xml
+bedrock/externalfiles/files_cache
+mofo_security_advisories

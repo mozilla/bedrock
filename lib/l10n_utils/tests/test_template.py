@@ -134,4 +134,4 @@ class TestNoLocale(TestCase):
         request = Mock(spec=object)
         # Note: no .locale on request
         # Should not cause an exception
-        render(request, None)
+        render(request, '500.html')

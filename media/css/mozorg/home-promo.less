@@ -78,25 +78,34 @@
 }
 
 
+
 /****************************************************************************/
-// MWC 2014
-#panel-mwc-2014 {
-    background: #0095dd url(/media/img/home/panel/firefoxos/firefoxos-mwc.png) -150px 6px no-repeat;
+// Firefox Desktop
+#panel-fxdesktop {
+    background: #c22b00 url(/media/img/home/panel/fxdesktop/firefox-logo.png) -70px 20px no-repeat;
+    background: url(/media/img/home/panel/fxdesktop/firefox-logo.png) -70px 20px no-repeat,
+                #c22b00 url(/media/img/home/panel/fxdesktop/background.jpg) no-repeat;
 
     &.expanded {
-        background-position: -80px 6px;
+        background-position: -45px 20px;
+        background-position: -45px 20px, 0 0;
     }
 
     &.compressed {
-        background-position: -190px 6px;
+        background-position: -95px 20px;
+        background-position: -95px 20px, 0 0;
     }
 }
 
-.wide #panel-mwc-2014 .panel-title {
-    background: #0095dd;
-    background: rgba(0, 84, 160, .8);
-    background: -webkit-linear-gradient(bottom, rgba(0, 84, 160, .8) 65%, rgba(0, 84, 160, 0) 100%);
-    background:         linear-gradient(to top, rgba(0, 84, 160, .8) 65%, rgba(0, 84, 160, 0) 100%);
+.wide #panel-fxdesktop .panel-title {
+    background: #611600;
+    background: rgba(97, 22, 0, .8);
+    background: -webkit-linear-gradient(bottom, rgba(97, 22, 0, .95) 50%, rgba(97, 22, 0, .8) 65%, rgba(97, 22, 0, 0) 100%);
+    background:         linear-gradient(to top, rgba(97, 22, 0, .95) 50%, rgba(97, 22, 0, .8) 65%, rgba(97, 22, 0, 0) 100%);
+
+    i {
+        display: block;
+    }
 }
 
 
@@ -225,6 +234,201 @@
 }
 
 
+
+/****************************************************************************/
+// The Web We Want (Australis)
+#panel-webwewant {
+    background: #006ea8 url(/media/img/home/panel/webwewant/bg-australis-map.jpg) -160px top no-repeat;
+
+    .panel-title i {
+        display: block;
+    }
+
+    .aurora {
+        background: url(/media/img/home/panel/webwewant/bg-aurora.png) left bottom repeat-x;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        .transition(background-position 2s ease-in-out);
+
+        &:after {
+            content: '';
+            background: url(/media/img/home/panel/webwewant/webwewant-icons.png) 3px 60px no-repeat;
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            .transition(background-position .5s ease-in-out);
+        }
+    }
+
+    &.expanded {
+        background-position: -60px top;
+
+        .aurora {
+            background-position: -800px bottom;
+            .transition(background-position 120s ease-out);
+
+            &:after {
+                background-position: 30px 60px;
+            }
+        }
+    }
+
+    &.compressed {
+        background-position: -140px bottom;
+
+        .aurora:after {
+            background-position: -40px 60px;
+        }
+    }
+}
+
+.wide #panel-webwewant .panel-title {
+    background: #253741;
+    background: rgba(39, 50, 56, .8);
+    background: -webkit-linear-gradient(bottom, rgba(39, 50, 56, .8) 65%, rgba(39, 50, 56, 0) 100%);
+    background:         linear-gradient(to top, rgba(39, 50, 56, .8) 65%, rgba(39, 50, 56, 0) 100%);
+}
+
+
+
+/****************************************************************************/
+// Net Neutrality
+#panel-netneutrality {
+    background: #666 url(/media/img/home/panel/netneutrality/bg-flat.jpg) no-repeat;
+    background: url(/media/img/home/panel/netneutrality/protect-net-neutrality.png) 50px 60px no-repeat,
+                url(/media/img/home/panel/netneutrality/bg-lanes.png) -660px 0 no-repeat,
+                #666 url(/media/img/home/panel/netneutrality/bg-gradient.png) repeat-x;
+
+    &.expanded {
+        background-position: 0 0;
+        background-position: 80px 60px, -540px 0, 0 0;
+    }
+
+    &.compressed {
+        background-position: 0 0;
+        background-position: 10px 60px, -700px 0, 0 0;
+    }
+
+}
+
+.wide #panel-netneutrality .panel-title {
+    background: #444;
+    background: rgba(0, 0, 0, .8);
+    background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, .8) 65%, rgba(0, 0, 0, 0) 100%);
+    background:         linear-gradient(to top, rgba(0, 0, 0, .8) 65%, rgba(0, 0, 0, 0) 100%);
+}
+
+
+/****************************************************************************/
+// Maker Party
+#panel-makerparty {
+    background: #ffe600 url(/media/img/home/panel/makerparty/bg-tile.png) 0 20px repeat;
+    background: #ffe600 radial-gradient(rgba(255, 255, 255, 0) 75%, rgba(255, 255, 255, .75) 100%) no-repeat;
+
+    .panel-title {
+        color: #2a4d50;
+    }
+
+    .confetti {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: url(/media/img/home/panel/makerparty/bg-tile.png) 0 20px repeat;
+        .transition(background-position .7s ease-in-out);
+
+        &:after {
+            background: url(/media/img/home/panel/makerparty/logo-makerparty.png) -30px 25px no-repeat;
+            content: '';
+            display: block;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            .transition(background-position .5s ease-in-out);
+        }
+    }
+
+    .panel-content {
+        color: #008e94;
+
+        h3 {
+            color: #2a4d50;
+        }
+
+        .go {
+            color: #cf3835;
+        }
+    }
+
+    &.expanded .confetti {
+        .transition(none);
+        -webkit-animation: confetti 14s linear infinite;
+                animation: confetti 14s linear infinite;
+
+        &:after {
+            background-position: 20px 25px;
+        }
+    }
+
+    &.compressed .confetti:after {
+        background-position: -50px 25px;
+    }
+}
+
+.wide #panel-makerparty .panel-title {
+    background: #fff;
+    background: rgba(255, 255, 255, .65);
+    background: -webkit-linear-gradient(bottom, rgba(255, 255, 255, .95) 0, rgba(255, 255, 255, .65) 65%, rgba(255, 255, 255, 0) 100%);
+    background:         linear-gradient(to top, rgba(255, 255, 255, .95) 0, rgba(255, 255, 255, .65) 65%, rgba(255, 255, 255, 0) 100%);
+}
+
+@-webkit-keyframes confetti {
+    0%   { background-position: 0 20px; }
+    100% { background-position: 0 264px; }
+}
+
+@keyframes confetti {
+    0%   { background-position: 0 20px; }
+    100% { background-position: 0 264px; }
+}
+
+
+/****************************************************************************/
+// SUMO
+#panel-sumo {
+    background: #7b8d9b url(/media/img/home/panel/sumo/sumo-superfox-flat.jpg) -50px 0 no-repeat;
+    background: url(/media/img/home/panel/sumo/sumo-superfox.png) -80px -10px no-repeat,
+                #7b8d9b url(/media/img/home/panel/sumo/bg-gradient.jpg) repeat-x;
+
+    &.expanded {
+        background-position: 0 0;
+        background-position: -5px -10px, 0 0;
+    }
+
+    &.compressed {
+        background-position: 0 0;
+        background-position: -165px -10px, 0 0;
+    }
+}
+
+.wide #panel-sumo .panel-title {
+    background: #71808b;
+    background: rgba(113, 128, 139, .65);
+    background: -webkit-linear-gradient(bottom, rgba(113, 128, 139, .95) 50%, rgba(113, 128, 139, .65) 65%, rgba(113, 128, 139, 0) 100%);
+    background:         linear-gradient(to top, rgba(113, 128, 139, .95) 50%, rgba(113, 128, 139, .65) 65%, rgba(113, 128, 139, 0) 100%);
+}
+
+
+
 /****************************************************************************/
 // @High resolution images for @retina-type displays
 // Desktop
@@ -245,9 +449,12 @@
         background-size: 335px 468px;
     }
 
-    #panel-mwc-2014 {
-        background-image: url(/media/img/home/panel/firefoxos/firefoxos-mwc-hires.png);
-        background-size: 376px 336px;
+    #panel-fxdesktop {
+        background-image: url(/media/img/home/panel/fxdesktop/firefox-logo-hires.png);
+        background-image: url(/media/img/home/panel/fxdesktop/firefox-logo-hires.png),
+                          url(/media/img/home/panel/fxdesktop/background.jpg);
+        background-size: 325px 335px;
+        background-size: 325px 335px, auto auto;
     }
 
     #panel-mozfest {
@@ -256,6 +463,24 @@
                           url(/media/img/home/panel/mozfest/bg-mosaic.jpg);
         background-size: 360px 360px;
         background-size: 360px 360px, auto auto;
+    }
+
+    #panel-netneutrality {
+        background-image: url(/media/img/home/panel/netneutrality/protect-net-neutrality-hires.png),
+                          url(/media/img/home/panel/netneutrality/bg-lanes.png),
+                          url(/media/img/home/panel/netneutrality/bg-gradient.png);
+        background-size: 140px 190px, auto auto, auto auto;
+    }
+
+    #panel-makerparty .confetti:after {
+        background-image: url(/media/img/home/panel/makerparty/logo-makerparty-hires.png);
+        background-size: 268px 308px;
+    }
+
+    #panel-sumo {
+        background-image: url(/media/img/home/panel/sumo/sumo-superfox-hires.png),
+                          url(/media/img/home/panel/sumo/bg-gradient.jpg);
+        background-size: 295px 355px, auto auto;
     }
 
 }
@@ -310,17 +535,21 @@
         }
     }
 
-    // MWC 2014
-    #panel-mwc-2014 {
-        background-image: url(/media/img/home/panel/firefoxos/firefoxos-mwc.png);
-        background-position: -120px 15px;
-        background-size: 300px 268px;
+    // Firefox Desktop
+    #panel-fxdesktop {
+        background-size: 265px 273px;
+        background-size: 265px 273px, auto;
+        background-position: -50px 30px;
+        background-position: -50px 30px, 0 0;
 
         &.expanded {
-            background-position: -55px 15px;
+            background-position: -85px 30px;
+            background-position: -85px 30px, 0 0;
         }
+
         &.compressed {
-            background-position: -145px 15px;
+            background-position: -90px 30px;
+            background-position: -90px 30px, 0 0;
         }
     }
 
@@ -359,6 +588,73 @@
         }
     }
 
+    // The Web We Want (Australis)
+    #panel-webwewant {
+        background-position: -160px top;
+
+        .aurora:after {
+            background-size: 167px 160px;
+            background-position: 8px 60px;
+        }
+
+        &.expanded {
+            background-position: -60px top;
+
+            .aurora:after {
+                background-position: 20px 60px;
+            }
+        }
+
+        &.compressed {
+            background-position: -260px top;
+
+            .aurora:after {
+                background-position: -30px 60px;
+            }
+        }
+    }
+
+
+    // Net Neutrality
+    #panel-netneutrality {
+        background-position: 0 0;
+        background-position: 20px 60px, -690px 0, 0 0;
+
+        &.expanded {
+            background-position: 0 0;
+            background-position: 40px 60px, -580px 0, 0 0;
+        }
+
+        &.compressed {
+            background-position: 0 0;
+            background-position: -10px 60px, -700px 0, 0 0;
+        }
+    }
+
+    // Maker Party
+    #panel-makerparty .confetti:after {
+        background-size: 190px 220px;
+        background-position: -15px 25px;
+    }
+
+    #panel-makerparty.expanded .confetti:after {
+        background-position: 0 25px;
+    }
+
+    // SUMO
+    #panel-sumo {
+        background-position: -110px -10px, 0 0;
+
+        &.expanded {
+            background-position: -90px -10px, 0 0;
+        }
+
+        &.compressed {
+            background-position: 0 0;
+            background-position: -165px -10px, 0 0;
+        }
+    }
+
 }
 
 /****************************************************************************/
@@ -371,10 +667,6 @@
     #panel-fxos {
         background-image: url(/media/img/home/panel/firefoxos/firefoxos-fox-md-hires.png);
         background-size: 290px 390px;
-    }
-
-    #panel-mwc-2014 {
-        background-image: url(/media/img/home/panel/firefoxos/firefoxos-mwc-hires.png);
     }
 
     #panel-lightbeam {
@@ -441,17 +733,24 @@
         }
     }
 
-    // MWC 2014
-    #panel-mwc-2014 {
-        background-image: url(/media/img/home/panel/firefoxos/firefoxos-mwc-sm.png);
-        background-position: -80px -55px;
+    // Firefox Desktop
+    #panel-fxdesktop {
+        background-image: url(/media/img/home/panel/fxdesktop/firefox-logo-sm.png);
+        background-image: url(/media/img/home/panel/fxdesktop/firefox-logo-sm.png),
+                          url(/media/img/home/panel/fxdesktop/background.jpg);
+        background-size: 120px 123px;
+        background-size: 120px 123px, auto auto;
+        background-position: -20px -20px;
+        background-position: -20px -20px, 0 0;
 
         &.expanded {
-            background-position: -80px 20px;
+            background-position: -20px 20px;
+            background-position: -20px 20px, 0 0;
         }
 
         &.compressed {
-            background-position: -80px -70px;
+            background-position: -20px -30px;
+            background-position: -20px -30px, 0 0;
         }
     }
 
@@ -520,6 +819,77 @@
         }
     }
 
+    // The Web We Want (Australis)
+    #panel-webwewant {
+        background-position: -160px 90%;
+
+        .aurora:after {
+            background-position: -6px -10px;
+            background-size: 110px 105px;
+        }
+
+        &.compressed {
+            background-position: -160px 100%;
+
+            .aurora:after {
+                background-position: -6px -30px;
+            }
+        }
+
+        &.expanded {
+            background-position: -160px 90%;
+
+            .aurora:after {
+                background-position: -6px 20px;
+            }
+        }
+    }
+
+    // Net Neutrality
+    #panel-netneutrality {
+        background-position: 0 0;
+        background-position: 12px -40px, -640px -40px, 0 0;
+        background-size: 90px 122px, auto auto, auto auto;
+
+        &.expanded {
+            background-position: 0 0;
+            background-position: 12px 20px, -640px 0, 0 0;
+        }
+
+        &.compressed {
+            background-position: 0 0;
+            background-position: 12px -50px, -640px -80px, 0 0;
+        }
+    }
+
+    // Maker Party
+    #panel-makerparty .confetti:after {
+        background-position: -15px -30px;
+        background-size: 125px 144px;
+    }
+
+    #panel-makerparty.expanded .confetti:after {
+        background-position: -15px 20px;
+    }
+
+    #panel-makerparty.compressed .confetti:after {
+        background-position: -15px -40px;
+    }
+
+    // SUMO
+    #panel-sumo {
+        background: url(/media/img/home/panel/sumo/sumo-superfox-small.png) -45px -10px no-repeat,
+                    url(/media/img/home/panel/sumo/bg-gradient.jpg) 0 0 repeat-x;
+
+        &.expanded {
+            background-position: -45px 10px, 0 0;
+        }
+
+        &.compressed {
+            background-position: -45px -30px, 0 0;
+        }
+    }
+
 }
 
 
@@ -571,16 +941,21 @@
         }
     }
 
-    // MWC 2014
-    #panel-mwc-2014 {
-        background-position: -60px -55px;
+    // Firefox Desktop
+    #panel-fxdesktop {
+        background-size: auto auto;
+        background-size: auto auto, auto auto;
+        background-position: -30px -20px;
+        background-position: -30px -20px, 0 0;
 
         &.expanded {
-            background-position: -60px 20px;
+            background-position: -30px 20px;
+            background-position: -30px 20px, 0 0;
         }
 
         &.compressed {
-            background-position: -60px -70px;
+            background-position: -30px -30px;
+            background-position: -30px -30px, 0 0;
         }
     }
 
@@ -637,6 +1012,72 @@
             background-position: -15px -60px;
         }
     }
+
+    // The Web We Want (Australis)
+    #panel-webwewant {
+        .aurora:after {
+            background-position: 8px -20px;
+            background-size: 140px 134px;
+        }
+
+        &.expanded {
+            .aurora:after {
+                background-position: 8px 20px;
+            }
+        }
+
+        &.compressed {
+            .aurora:after {
+                background-position: 8px -35px;
+            }
+        }
+    }
+
+    // Net Neutrality
+    #panel-netneutrality {
+        background-position: 0 0;
+        background-position: 15px -100px, -640px -40px, 0 0;
+        background-size: auto auto;
+
+        &.expanded {
+            background-position: 0 0;
+            background-position: 15px 20px, -640px 0, 0 0;
+        }
+
+        &.compressed {
+            background-position: 0 0;
+            background-position: 15px -120px, -640px -80px, 0 0;
+        }
+    }
+
+    // Maker Party
+    #panel-makerparty .confetti:after {
+        background-position: -15px -48px;
+        background-size: 165px 190px;
+    }
+
+    #panel-makerparty.expanded .confetti:after {
+        background-position: -15px 20px;
+    }
+
+    #panel-makerparty.compressed .confetti:after {
+        background-position: -15px -65px;
+    }
+
+    // SUMO
+    #panel-sumo {
+        background: url(/media/img/home/panel/sumo/sumo-superfox-small.png) -5px -20px no-repeat,
+                    url(/media/img/home/panel/sumo/bg-gradient.jpg) 0 0 repeat-x;
+
+        &.expanded {
+            background-position: -5px 10px, 0 0;
+        }
+
+        &.compressed {
+            background-position: -5px -30px, 0 0;
+        }
+    }
+
 }
 
 /****************************************************************************/
@@ -659,9 +1100,12 @@
         background-size: 190px 246px;
     }
 
-    #panel-mwc-2014 {
-        background-image: url(/media/img/home/panel/firefoxos/firefoxos-mwc-sm-hires.png);
-        background-size: 220px 197px;
+    #panel-fxdesktop {
+        background-image: url(/media/img/home/panel/fxdesktop/firefox-logo.png);
+        background-image: url(/media/img/home/panel/fxdesktop/firefox-logo.png),
+                          url(/media/img/home/panel/fxdesktop/background.jpg);
+        background-size: 120px 123px;
+        background-size: 120px 123px, auto auto;
     }
 
     #panel-mozfest {
@@ -670,6 +1114,25 @@
                           url(/media/img/home/panel/mozfest/bg-mosaic.jpg);
         background-size: 170px 170px;
         background-size: 170px 170px, auto auto;
+    }
+
+}
+
+/****************************************************************************/
+// @High resolution images for @retina-type displays
+// Mobile Landscape
+@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) and (                min-resolution: 1.5dppx),
+       only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) and (                min-resolution: 144dpi) {
+
+    #panel-fxdesktop {
+        background-size: 180px 185px;
+        background-size: 180px 185px, auto auto;
+    }
+
+    #panel-netneutrality {
+        background-size: auto auto;
+        background-size: 140px 190px, auto auto, auto auto;
     }
 
 }

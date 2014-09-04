@@ -230,7 +230,7 @@ class SpeakerRequestForm(forms.Form):
     )
 
     # honeypot
-    superpriority = forms.BooleanField(widget=HoneyPotWidget, required=False)
+    office_fax = forms.CharField(widget=HoneyPotWidget, required=False)
 
     def clean_sr_attachment(self):
         cleaned_data = super(SpeakerRequestForm, self).clean()
@@ -243,9 +243,9 @@ class SpeakerRequestForm(forms.Form):
 
         return attachment
 
-    def clean_superpriority(self):
+    def clean_office_fax(self):
         cleaned_data = super(SpeakerRequestForm, self).clean()
-        honeypot = cleaned_data.pop('superpriority', None)
+        honeypot = cleaned_data.pop('office_fax', None)
 
         if honeypot:
             raise forms.ValidationError(

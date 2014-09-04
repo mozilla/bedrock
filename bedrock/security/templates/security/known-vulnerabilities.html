@@ -1,0 +1,73 @@
+{% extends "security/base.html" %}
+
+{% block page_title %}Known Vulnerabilities in Mozilla Products{% endblock %}
+
+{% block article %}
+  <article class="section-content" itemscope itemtype="http://schema.org/Article">
+    <header>
+      <h1 itemprop="name">Known Vulnerabilities in Mozilla Products</h1>
+    </header>
+    <div itemprop="articleBody">
+      <p>The links below list security vulnerabilities known to affect
+        particular versions of Mozilla products and instructions on what users
+        can do to protect themselves. The lists will be added to when new security
+        problems are found. For a complete list not sorted by product or version
+        please see the <a href="{{ url('security.advisories') }}">
+          Mozilla Foundation Security Advisories</a>.</p>
+
+      <p>Please read
+        <a href="{{ url('mozorg.about.governance.policies.security.bugs') }}">
+          Mozilla.org's security bug policy</a> for information on how we handle
+        security bugs. If you have found a security problem which is not on this
+        list and has not already been filed as a bug in
+        <a href="https://bugzilla.mozilla.org/query.cgi">Bugzilla</a>,
+        or if you find errors or inconsistencies in this list, please
+        <a href="mailto:security@mozilla.org">mail us</a>.
+        If needed our PGP key can be found on the main
+        <a href="{{ url('security.index') }}#pgpkey">security</a> page.</p>
+
+      <h2>Product Advisories</h2>
+      <ul>
+        <li><a href="{{ url('security.product-advisories', slug='firefox') }}">Firefox</a></li>
+        <li><a href="{{ url('security.product-advisories', slug='firefox-esr') }}">Firefox ESR</a></li>
+        <li><a href="{{ url('security.product-advisories', slug='thunderbird') }}">Thunderbird</a></li>
+        <li><a href="{{ url('security.product-advisories', slug='thunderbird-esr') }}">Thunderbird ESR</a></li>
+        <li><a href="{{ url('security.product-advisories', slug='seamonkey') }}">SeaMonkey</a></li>
+      </ul>
+
+      <h2>Advisories for older products</h2>
+
+      <h3>Firefox</h3>
+      <ul>
+        <li><a href="{{ url('security.product-version-advisories', slug='firefox-3.6') }}">Firefox 3.6</a></li>
+        <li><a href="{{ url('security.product-version-advisories', slug='firefox-3.5') }}">Firefox 3.5</a></li>
+        <li><a href="{{ url('security.product-version-advisories', slug='firefox-3.0') }}">Firefox 3.0</a></li>
+        <li><a href="{{ url('security.product-version-advisories', slug='firefox-2.0') }}">Firefox 2.0</a></li>
+        <li><a href="{{ url('security.product-version-advisories', slug='firefox-1.5') }}">Firefox 1.5</a></li>
+        <li><a href="{{ url('security.product-version-advisories', slug='firefox-1.0') }}">Firefox 1.0</a></li>
+      </ul>
+
+      <h3>Thunderbird</h3>
+      <ul>
+        <li><a href="{{ url('security.product-version-advisories', slug='thunderbird-3.1') }}">Thunderbird 3.1</a></li>
+        <li><a href="{{ url('security.product-version-advisories', slug='thunderbird-3.0') }}">Thunderbird 3.0</a></li>
+        <li><a href="{{ url('security.product-version-advisories', slug='thunderbird-2.0') }}">Thunderbird 2.0</a></li>
+        <li><a href="{{ url('security.product-version-advisories', slug='thunderbird-1.5') }}">Thunderbird 1.5</a></li>
+        <li><a href="{{ url('security.product-version-advisories', slug='thunderbird-1.0') }}">Thunderbird 1.0</a></li>
+      </ul>
+
+      <h3>SeaMonkey</h3>
+      <ul>
+        <li><a href="{{ url('security.product-version-advisories', slug='seamonkey-2.0') }}">SeaMonkey 2.0</a></li>
+        <li><a href="{{ url('security.product-version-advisories', slug='seamonkey-1.1') }}">SeaMonkey 1.1</a></li>
+        <li><a href="{{ url('security.product-version-advisories', slug='seamonkey-1.0') }}">SeaMonkey 1.0</a></li>
+      </ul>
+
+      <h3>Older</h3>
+      <ul>
+        <li><a href="{{ url('security.product-advisories', slug='mozilla-suite') }}">Mozilla Suite 1.7</a></li>
+        <li><a href="{{ url('security.older-vulnerabilities') }}">Older vulnerabilities</a></li>
+      </ul>
+    </div>
+  </article>
+{% endblock %}

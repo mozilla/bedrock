@@ -7,7 +7,7 @@
     <h4>{{ _('Download Firefox') }} — {{ locale_name|safe }}</h4>
     <ul>
       {% for plat in builds -%}
-        <li><a href="{{ plat.download_link_direct or plat.download_link }}" class="button-green">{{ plat.os_pretty }}</a></li>
+        <li><a href="{{ plat.download_link_direct or plat.download_link }}" class="button-green">{{ plat.os_arch_pretty or plat.os_pretty }}</a></li>
       {%- endfor %}
     </ul>
   </div>
@@ -19,6 +19,7 @@
 {% set download_class = download_class ~ ' download-button-desktop' if not show_mobile else download_class %}
 {% set download_class = download_class ~ ' download-button-small' if small else download_class %}
 {% set download_class = download_class ~ ' download-button-noicon' if not icon else download_class %}
+{% set download_class = download_class ~ ' download-button-simple' if simple else download_class %}
 
 <div id="{{ id }}" class="{{ download_class }}">
   {% if show_desktop %}
@@ -29,12 +30,12 @@
       {{ alt_buttons(builds) }}
     </div>
     <p class="unsupported-download">
-      {{ _('Your system doesn\'t meet the <a href="%(url)s">requirements</a> to run Firefox.')|format(url=product_url('firefox', 'sysreq', build)) }}
+      {{ _("Your system doesn't meet the <a href=\"%(url)s\">requirements</a> to run Firefox.")|format(url=product_url('firefox', 'sysreq', build)) }}
     </p>
   {% endif %}
   <ul class="download-list">
     {% for plat in builds %}
-      <li class="{{ plat.os }}">
+      <li class="{{ plat.os }}{% if plat.arch %} {{ plat.arch }}{% endif %}">
         <a class="download-link"
            href="{{ plat.download_link }}"{% if plat.download_link_direct %}
            data-direct-link="{{ plat.download_link_direct }}"{% endif %}>
@@ -43,7 +44,7 @@
               {% if build == 'beta' %}
                 <strong class="download-title">{{ _('<span>Firefox Beta</span> for Android') }}</strong>
               {% elif build == 'aurora' %}
-                <strong class="download-title">{{ _('<span>Firefox Aurora</span> for Android') }}</strong>
+                <strong class="download-title">{{ _('<span>Firefox Aurora</span> for Android') }} {{ plat.arch_pretty }}</strong>
               {% else %}
                 <strong class="download-title">{{ _('<span>Firefox</span> for Android') }}</strong>
               {% endif %}
@@ -69,16 +70,24 @@
   </ul>
   {% if show_mobile %}
     <small class="download-other os_android">
-      <a href="https://support.mozilla.org/kb/will-firefox-work-my-mobile-device">{{ _('Supported Devices') }}</a> |
+      {% if build == 'aurora' -%}
+        {% for plat in builds -%}
+          {% if plat.os == 'os_android' -%}
+            <span class="arch {{ plat.arch }}"><a href="{{ plat.download_link }}">{{ plat.arch_pretty }}</a> |</span>
+          {% endif -%}
+        {% endfor -%}
+      {% endif -%}
+      <a href="https://support.mozilla.org/kb/will-firefox-work-my-mobile-device">{{ _('Supported Devices') }}</a>
+      {%- if build == 'aurora' %}<br>{% else %} |{% endif %}
       <a href="{{ product_url('mobile', 'notes', build) }}">{{ _('What’s New') }}</a> |
-      <a href="/en-US/legal/privacy/firefox.html">{{ _('Privacy') }}</a>
+      <a href="{{ url('privacy.notices.firefox') }}">{{ _('Privacy') }}</a>
     </small>
   {% endif %}
   {% if show_desktop %}
-    <small class="download-other os_linux os_linux64 os_osx os_windows">
+    <small class="download-other download-other-desktop os_linux os_linux64 os_osx os_windows"{% if simple %} style="display: none !important;"{% endif %}>
       <a href="{{ product_url('firefox', 'all', build) }}">{{ _('Systems &amp; Languages') }}</a> |
       <a href="{{ product_url('firefox', 'notes', build) }}">{{ _('What’s New') }}</a> |
-      <a href="/en-US/legal/privacy/firefox.html">{{ _('Privacy') }}</a>
+      <a href="{{ url('privacy.notices.firefox') }}">{{ _('Privacy') }}</a>
     </small>
   {% endif %}
 </div>

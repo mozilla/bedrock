@@ -1,0 +1,20 @@
+#!/bin/bash
+git submodule update --init --recursive
+sudo apt-get update
+sudo apt-get install -y libmysqlclient-dev libxml2-dev libxslt1-dev python-dev
+sudo pip install -r requirements/dev.txt
+sudo pip uninstall -y django  # included as submodule, we do not want the one installed by django-nose requirements
+sudo pip install ipython # highly recommended, but not required so not in requirements/dev.txt
+# default npm install -g destination in c9 is in /home/ubuntu/.nvm/v0.10.28/
+npm install -g less
+npm install -g grunt-cli
+npm install -g jshint
+npm install
+cp bedrock/settings/local.py-dist bedrock/settings/local.py
+./manage.py update_product_details
+./manage.py update_externalfiles
+./manage.py update_security_advisories
+mysql-ctl start
+./manage.py syncdb --migrate --noinput
+./manage.py rnasync
+svn checkout https://svn.mozilla.org/projects/mozilla.com/trunk/locales/ locale

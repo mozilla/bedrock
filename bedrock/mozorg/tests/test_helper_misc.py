@@ -6,19 +6,19 @@ from django.conf import settings
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
-import basket
 import jingo
-from nose.tools import assert_false, eq_, ok_
-from pyquery import PyQuery as pq
-from bedrock.newsletter.tests.test_views import newsletters
 from funfactory.urlresolvers import reverse
+from nose.tools import eq_, ok_
+from pyquery import PyQuery as pq
+from rna.models import Release
 
+from bedrock.mozorg.helpers.misc import releasenotes_url
 from bedrock.mozorg.tests import TestCase
 
 
 TEST_FILES_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                'test_files')
-TEST_L10N_IMG_PATH = os.path.join(TEST_FILES_ROOT, 'media', 'img', 'l10n')
+TEST_L10N_MEDIA_PATH = os.path.join(TEST_FILES_ROOT, 'media', '%s', 'l10n')
 
 TEST_DONATE_LOCALE_LINK = {
     'de': 'https://sendto.mozilla.org/page/contribute/EOYFR2013-webDE',
@@ -71,7 +71,7 @@ class TestSecureURL(TestCase):
         self._test('', 'https://' + self.host + self.test_path, True)
 
 
-@patch('bedrock.mozorg.helpers.misc.L10N_IMG_PATH', TEST_L10N_IMG_PATH)
+@patch('bedrock.mozorg.helpers.misc.L10N_MEDIA_PATH', TEST_L10N_MEDIA_PATH)
 @patch('django.conf.settings.LANGUAGE_CODE', 'en-US')
 class TestImgL10n(TestCase):
     rf = RequestFactory()
@@ -122,7 +122,50 @@ class TestImgL10n(TestCase):
 
         self._render('is', 'dino/does-not-exist.png')
         exists_mock.assert_called_once_with(os.path.join(
-            TEST_L10N_IMG_PATH, 'is', 'dino', 'does-not-exist.png'))
+            TEST_L10N_MEDIA_PATH % 'img', 'is', 'dino', 'does-not-exist.png'))
+
+
+@patch('bedrock.mozorg.helpers.misc.L10N_MEDIA_PATH', TEST_L10N_MEDIA_PATH)
+class TestL10nCSS(TestCase):
+    rf = RequestFactory()
+    media_url_dev = '/media/'
+    media_url_prod = '//mozorg.cdn.mozilla.net/media/'
+    cdn_url = '//mozorg.cdn.mozilla.net'
+    markup = ('<link rel="stylesheet" media="screen,projection,tv" href='
+              '"%scss/l10n/%s/intl.css">')
+
+    def _render(self, locale):
+        req = self.rf.get('/')
+        req.locale = locale
+        return render('{{ l10n_css() }}', {'request': req})
+
+    @override_settings(DEV=True)
+    @override_settings(MEDIA_URL=media_url_dev)
+    def test_dev_when_css_file_exists(self):
+        """Should output a path to the CSS file if exists."""
+        eq_(self._render('de'), self.markup % (self.media_url_dev, 'de'))
+        eq_(self._render('es-ES'), self.markup % (self.media_url_dev, 'es-ES'))
+
+    @override_settings(DEV=True)
+    @override_settings(MEDIA_URL=media_url_dev)
+    def test_dev_when_css_file_missing(self):
+        """Should output nothing if the CSS file is missing."""
+        eq_(self._render('en-US'), '')
+        eq_(self._render('fr'), '')
+
+    @override_settings(DEV=False)
+    @override_settings(MEDIA_URL=media_url_prod)
+    def test_prod_when_css_file_exists(self):
+        """Should output a path to the CSS file if exists."""
+        eq_(self._render('de'), self.markup % (self.media_url_prod, 'de'))
+        eq_(self._render('es-ES'), self.markup % (self.media_url_prod, 'es-ES'))
+
+    @override_settings(DEV=False)
+    @override_settings(MEDIA_URL=media_url_prod)
+    def test_prod_when_css_file_missing(self):
+        """Should output nothing if the CSS file is missing."""
+        eq_(self._render('en-US'), '')
+        eq_(self._render('fr'), '')
 
 
 class TestVideoTag(TestCase):
@@ -190,69 +233,6 @@ class TestVideoTag(TestCase):
         doc = pq(render("{{ video%s }}" % str(tuple(videos))))
 
         eq_(doc('video object').length, 0)
-
-
-@patch.object(settings, 'ROOT_URLCONF', 'bedrock.mozorg.tests.urls')
-class TestNewsletterFunction(TestCase):
-    def test_get_form(self):
-        response = self.client.get('/en-US/base/')
-        doc = pq(response.content)
-        assert_false(doc('#footer-email-errors'))
-        ok_(doc('form#footer-email-form'))
-
-    @patch('bedrock.newsletter.utils.get_newsletters')
-    @patch.object(basket, 'subscribe')
-    def test_post_correct_form(self, sub_mock, get_newsletters):
-        get_newsletters.return_value = newsletters
-        data = {
-            'newsletter-footer': 'Y',
-            'newsletter': 'mozilla-and-you',
-            'email': 'foo@bar.com',
-            'country': 'us',
-            'lang': 'en',
-            'fmt': 'H',
-            'privacy': 'Y',
-            'source_url': 'http://allizom.com/en-US/base/',
-        }
-        response = self.client.post('/en-US/base/', data)
-        doc = pq(response.content)
-        assert_false(doc('form#footer-email-form'))
-        ok_(doc('div#footer-email-form.thank'))
-        sub_mock.assert_called_with(
-            'foo@bar.com', 'mozilla-and-you',
-            format='H', country='us', lang='en',
-            source_url='http://allizom.com/en-US/base/')
-
-    @patch('bedrock.newsletter.utils.get_newsletters')
-    @patch.object(basket, 'subscribe')
-    def test_post_form_country_url_not_required(self, sub_mock,
-                                                get_newsletters):
-        """
-        Form should successfully post without country or src url.
-        """
-        get_newsletters.return_value = newsletters
-        data = {
-            'newsletter-footer': 'Y',
-            'newsletter': 'mozilla-and-you',
-            'email': 'foo@bar.com',
-            'lang': 'en',
-            'fmt': 'H',
-            'privacy': 'Y',
-        }
-        response = self.client.post('/en-US/base/', data)
-        doc = pq(response.content)
-        assert_false(doc('form#footer-email-form'))
-        ok_(doc('div#footer-email-form.thank'))
-        sub_mock.assert_called_with('foo@bar.com', 'mozilla-and-you',
-                                    format='H', lang='en')
-
-    @patch('bedrock.newsletter.utils.get_newsletters')
-    def test_post_wrong_form(self, get_newsletters):
-        get_newsletters.return_value = newsletters
-        response = self.client.post('/en-US/base/', {'newsletter-footer': 'Y'})
-        doc = pq(response.content)
-        ok_(doc('#footer-email-errors'))
-        ok_(doc('#footer-email-form.has-errors'))
 
 
 class TestPlatformImg(TestCase):
@@ -587,3 +567,36 @@ class TestProductURL(TestCase):
             '/en-US/mobile/beta/notes/')
         eq_(self._render('mobile', 'notes', 'aurora'),
             '/en-US/mobile/aurora/notes/')
+
+
+class TestReleaseNotesURL(TestCase):
+    @patch('bedrock.mozorg.helpers.misc.reverse')
+    def test_aurora_android_releasenotes_url(self, mock_reverse):
+        """
+        Should return the results of reverse with the correct args
+        """
+        release = Release(
+            channel='Aurora', version='42.0a2', product='Firefox for Android')
+        eq_(releasenotes_url(release), mock_reverse.return_value)
+        mock_reverse.assert_called_with(
+            'mobile.releasenotes', args=('42.0a2', 'aurora'))
+
+    @patch('bedrock.mozorg.helpers.misc.reverse')
+    def test_desktop_releasenotes_url(self, mock_reverse):
+        """
+        Should return the results of reverse with the correct args
+        """
+        release = Release(version='42.0', product='Firefox')
+        eq_(releasenotes_url(release), mock_reverse.return_value)
+        mock_reverse.assert_called_with(
+            'firefox.releasenotes', args=('42.0', 'release'))
+
+    @patch('bedrock.mozorg.helpers.misc.reverse')
+    def test_firefox_os_releasenotes_url(self, mock_reverse):
+        """
+        Should return the results of reverse with the correct args
+        """
+        release = Release(version='42.0', product='Firefox OS')
+        eq_(releasenotes_url(release), mock_reverse.return_value)
+        mock_reverse.assert_called_with(
+            'firefox.os.releasenotes', args=['42.0'])

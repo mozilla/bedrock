@@ -1,0 +1,216 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/about-base.html" %}
+
+{% block page_title %}{{ _('Forums') }}{% endblock %}
+{% block body_id %}about-forums{% endblock %}
+
+{% block page_css %}
+  {{ css('about-forums') }}
+{% endblock %}
+
+{% block article %}
+<h1 class="title-shadow-box">{{ self.page_title() }}</h1>
+
+<section class="lead-content">
+
+  <p>
+  {{ _('Mozilla has forums to enable communication among the Mozilla community.') }}
+  {{ _('They are set up so they can be read as newsgroups, mailing lists or web groups - so it’s convenient for everyone to take part.') }}
+  {{ _('Note that you only need to subscribe via one access method; if you aren’t sure, use the “mailing list” method.') }}
+  </p>
+
+  <p>
+  {{ _('If you think a new Mozilla discussion forum is needed, <a
+    href="%s">file a bug</a> (pick ‘Standard Discussion Forum’) and we’ll get right on it.')|format('https://bugzilla.mozilla.org/form.mozlist') }}
+  {{ _('It’s not a complicated process.') }}
+  {{ _('Please don’t just go and set up a plain Google Group or similar thing, as not everyone finds it convenient to read groups on the web.') }}
+  </p>
+
+  <p>
+  {{ _('Mozilla newsgroups are sponsored by <a href="%s">Giganews Newsgroups</a>, to whom we are very grateful.')|format('http://www.giganews.com/') }}
+  <a href="http://www.giganews.com/"><img src="{{ media('img/mozorg/about/giganews.png') }}" alt="" height="25" width="89" /></a>
+  </p>
+
+  <form method="get" action="https://groups.google.com/groups">
+  <a href="http://www.google.com/"><img
+       src="https://www.google.com/logos/Logo_25wht.gif"
+       width="75" height="32" alt="Google" /></a>
+     <input type="text" name="as_q" maxlength="256" value="" />
+       <input type="hidden" name="hl" value="en" />
+       <input type="hidden" name="lr" value="" />
+       <input type="hidden" name="as_ugroup" value="mozilla.*" />
+       <input type="submit" name="btnG" value="{{ _('Search Forums') }}" class="button" />
+  </form>
+
+  <nav class="toc">
+    <h3>{{ _('Categories:') }}</h3>
+    <ul>
+      {% for title in forums.ordered.keys() %}
+        <li><a href="#{{ title|slugify }}">{{ title }}</a></li>
+      {% endfor %}
+      <li><a href="#mozilla-labs">{{ _('Mozilla Labs') }}</a></li>
+      <li><a href="#chat">{{ _('Realtime Chat') }}</a></li>
+    </ul>
+  </nav>
+
+</section>
+
+<!--BEGIN_LIST-->
+
+{% for title, forums_list in forums.ordered.iteritems() %}
+
+  <section id="{{ title|slugify }}" class="forum-group">
+    <a href="#" class="top">{{ _('Back to top') }}</a>
+
+    <h2>{{ title }}</h2>
+
+    <p>{{ _('Please read the <a href="%s">Mozilla forum etiquette</a> document for posting rules and conventions.')|format(url('mozorg.about.forums.etiquette')) }}</p>
+
+    <ul class="forums">
+      {% for forum in forums_list %}
+        <li id="{{ forum.dashed }}">
+          <div class="summary">
+            <h4>{{ forum.id }}<a href="#{{ forum.dashed }}">#</a></h4>
+            <p class="description">{{ forum.description|safe }}</p>
+          </div>
+          <ul class="subscribe">
+            {% if forum.id.startswith('mozilla.') %}
+              <li>{{ _('Mailing List:') }} <a href="https://lists.mozilla.org/listinfo/{{ forum.dashed }}">{{ forum.dashed }}&#64;lists.mozilla.org</a></li>
+              <li>{{ _('Newsgroup:') }} <a href="news://news.mozilla.org/{{ forum.id }}">{{ forum.id }}</a></li>
+              <li>{{ _('Web:') }} <a href="http://groups.google.com/group/{{ forum.id }}/topics">Google Groups</a></li>
+            {% else %}
+              <li>{{ _('Mailing List:') }} <a href='https://mail.mozilla.org/listinfo/{{ forum.dashed }}'>{{ forum.dashed }}&#64;mozilla.org</a></li>
+            {% endif %}
+          </ul>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endfor %}
+
+<!--END_LIST-->
+
+<section id="mozilla-labs" class="forum-group">
+  <a href="#" class="top">{{ _('Back to top') }}</a>
+  <h2>{{ _('Mozilla Labs') }}</h2>
+
+  <p>
+  {{ _('These forums are only available as Google Groups.') }}
+  {{ _('Please read the <a href="%s">Mozilla forum etiquette</a> document for posting rules and conventions.')|format(url('mozorg.about.forums.etiquette')) }}
+  </p>
+
+  <ul class="forums">
+    <li id="labs">
+      <div class="summary">
+        <h4>mozilla.labs<a href="#labs">#</a></h4>
+        <p class="description">{{ _('General labs discussion') }}</p>
+      </div>
+      <ul class="subscribe">
+        <li>{{ _('Web:') }} <a href="http://groups.google.com/group/mozilla-labs">Google Groups</a></li>
+      </ul>
+    </li>
+
+    <li id="labs-skywriter">
+      <div class="summary">
+        <h4>mozilla.labs.skywriter<a href="#labs-skywriter">#</a></h4>
+        <p class="description">{{ _('Skywriter online code editor') }}</p>
+      </div>
+      <ul class="subscribe">
+        <li>{{ _('Web:') }} <a href="http://groups.google.com/group/skywriter">Google Groups</a></li>
+      </ul>
+    </li>
+
+    <li id="labs-concept-series">
+      <div class="summary">
+        <h4>mozilla.labs.concept-series<a href="#labs-concept-series">#</a></h4>
+        <p class="description">{{ _('Concept Series') }}</p>
+      </div>
+      <ul class="subscribe">
+        <li>{{ _('Web:') }} <a href="http://groups.google.com/group/mozilla-labs-concept-series">Google Groups</a></li>
+      </ul>
+    </li>
+
+    <li id="labs-jetpack">
+      <div class="summary">
+        <h4>mozilla.labs.jetpack<a href="#labs-jetpack">#</a></h4>
+        <p class="description">{{ _('Jetpack extension API') }}</p>
+      </div>
+      <ul class="subscribe">
+        <li>{{ _('Web:') }} <a href="http://groups.google.com/group/mozilla-labs-jetpack">Google Groups</a></li>
+      </ul>
+    </li>
+
+    <li id="labs-personas">
+      <div class="summary">
+        <h4>mozilla.labs.personas<a href="#labs-personas">#</a></h4>
+        <p class="description">{{ _('Personas lightweight browser customization framework') }}</p>
+      </div>
+      <ul class="subscribe">
+        <li>{{ _('Web:') }} <a href="https://forums.mozilla.org/addons/viewforum.php?f=30">Mozilla Add-ons Forum</a></li>
+      </ul>
+    </li>
+
+    <li id="labs-testpilot">
+      <div class="summary">
+        <h4>mozilla.labs.testpilot<a href="#labs-testpilot">#</a></h4>
+        <p class="description">{{ _('TestPilot user interaction testing framework') }}</p>
+      </div>
+      <ul class="subscribe">
+        <li>{{ _('Web:') }} <a href="http://groups.google.com/group/mozilla-labs-testpilot">Google Groups</a></li>
+      </ul>
+    </li>
+
+    <li id="labs-weave">
+      <div class="summary">
+        <h4>mozilla.labs.weave<a href="#labs-weave">#</a></h4>
+        <p class="description">{{ _('Weave browser sync') }}</p>
+      </div>
+      <ul class="subscribe">
+        <li>{{ _('Web:') }} <a href="http://groups.google.com/group/mozilla-labs-weave">Google Groups</a></li>
+      </ul>
+    </li>
+
+  </ul>
+</section>
+
+
+<h2 id="chat">{{ _('Realtime Chat') }}</h2>
+
+<p>
+{{ _('You can talk to people in the community in real time by logging on <a href="%(irc_url)s">Mozilla’s chat server</a>
+with an <a href="%(irchelp_url)s">IRC</a> client.')|format(irc_url='https://wiki.mozilla.org/IRC', irchelp_url='http://www.irchelp.org/') }}
+{{ _('<strong>Please</strong> read the <abbr title="Message Of The Day">/motd</abbr>.') }}
+</p>
+
+<h2 id="guidelines">{{ _('Usage Guidelines') }}</h2>
+
+<h3 id="newsgroups">{{ _('Newsgroups') }}</h3>
+
+<p>
+{{ _('Giganews is sponsoring free access to the Mozilla Development Forums’ Usenet hierarchy "mozilla.*".') }}
+{{ _('Please respect the parts of their <a href="%s">Acceptable Use Policy</a> which are relevant to non-Giganews subscribers.')|format('http://www.giganews.com/legal/aup.html') }}
+{{ _('Use <b>news.mozilla.org</b> as the news server address in your news client.') }}
+{{ _('You will not need to use any authentication information.') }}
+</p>
+
+<p>{{ _('The mozilla.* hierarchy is a <b>local</b> news hierarchy only available through news.mozilla.org and is not propagated to other Usenet servers.  This is by design, in order to both help eliminate spam and provide slower lag time between posts and replies without having to wait for propagation.  Please do not mirror our newsgroups elsewhere without providing a disclaimer that people should use news.mozilla.org to post.') }}</p>
+
+<h3 id="Mailing-Lists">{{ _('Mailing Lists') }}</h3>
+
+<p>
+{{ _('Unsubscribing from mailing lists requires passwords. Passwords are mailed to you every month.') }}
+{{ _('You can also subscribe, unsubscribe and change your preferences with the web interface at %s.')|format('<a href="https://lists.mozilla.org/">lists.mozilla.org</a>'|safe) }}
+</p>
+
+<p>
+{{ _('If you have trouble unsubscribing, it is likely you are now using a different e-mail address than the one with which you subscribed.') }}
+{{ _('If you can’t work it out, send mail to %s.')|format('<a href="mailto:list&#45;admin&#64;mozilla.org">list-admin&#64;mozilla.org</a>'|safe) }}
+{{ _('<em>Do not</em> mail the list.') }}
+</p>
+
+<p>{{ _('<strong>Do not</strong> send <q>unsubscribe</q> messages to the mailing lists.') }}</p>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "firefox/australis/firstrun-tour.html" %}
+
+{% set_lang_files "firefox/australis/firefox_tour" %}
+
+{% block telemetry_id %}australis-29-release-no-tour{% endblock %}
+
+{% block js %}
+  {{ js('firefox_tour_none') }}
+{% endblock %}
+
+{% block string_data %}{% endblock %}
+{% block tour_content %}{% endblock %}
+{% block tour_mask %}{% endblock %}

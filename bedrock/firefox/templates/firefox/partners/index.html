@@ -39,8 +39,8 @@
   <header id="masthead">
     <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{{ settings.TABZILLA_INFOBAR_OPTIONS }}">{{ _('Mozilla') }}</a>
     {% block site_header_nav %}
-    <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">{{_('Menu')}}</span>
     <nav id="nav-main" role="navigation">
+      <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{_('Menu')}}</span>
       <ul id="nav-main-menu">
         <li class="first"><a href="#os">{{_('Firefox OS')}}</a></li>
         <li><a href="#marketplace">{{_('Marketplace')}}</a></li>
@@ -58,10 +58,12 @@
       <li id="menu-marketplace"><a href="#marketplace">{{_('Marketplace')}}</a></li>
       <li id="menu-android"><a href="#android">{{_('Android')}}</a></li>
     </ul>
+    {# Save for probable re-use during MWC 2015
     <ul id="mwc-menu" class="menu">
       <li id="menu-mwc-map"><a href="#map" class="modal">{{ _('Map') }}</a></li>
       <li id="menu-mwc-schedule"><a href="#schedule" class="modal">{{ _('Schedule') }}</a></li>
     </ul>
+    #}
   </nav>
 {% endblock %}
 
@@ -109,28 +111,12 @@
             </div> <!--/#overview-news-wrapper-->
 
             <div id="overview-links">
-              <ul>
-                <li id="overview-video-recap">
-                  {# L10n: Line break below is presentational only #}
-                  <a rel="external" href="http://www.youtube.com/playlist?list=PLFlAJDI87Jg2vk3THSt8RBoD7vLG2tnwH">{{ _('Watch the daily <br>MWC video recap') }}</a>
-                </li>
-                <li id="overview-schedule">
-                  {# L10n: Line break below is presentational only #}
-                  <ul>
-                    <li><a href="#schedule" class="modal">{{ _('Fox Den &amp; other <br>MWC events') }}</a></li>
-                    <li><a href="http://www.cvent.com/d/54qpfq" rel="external">{{ _('Register for a session') }}</a></li>
-                  </ul>
-                </li>
-                <li id="overview-mwc-tweets">
-                  {# L10n: Line break below is presentational only #}
-                  <a href="https://twitter.com/firefox" rel="external">{{ _('Firefox tweets from <br>MWC in Barcelona') }}</a>
-                </li>
-              </ul>
+              <a class="fxos-devices-link" href="{{ url('firefox.os.devices') }}">{{ _('View available Firefox OS devices') }}</a>
             </div> <!--/#overview-links-->
           </div> <!--/#overview-news-links-->
 
           <div class="partner-logos">
-            <div class="pager pager-with-tabs pager-no-history pager-auto-rotate">
+            <div class="pager pager-with-tabs pager-no-history pager-auto-rotate pager-auto-init">
               <div class="pager-content">
                 <div class="pager-page default-page">
                   <ul class="logos">
@@ -332,7 +318,7 @@
               <a href="https://mobilepartners.mozilla.org/" class="button">{{ _('Partner with us') }}</a>
             </p>
           </div>
-          <div class="marketplace-logos pager pager-with-tabs pager-no-history">
+          <div class="marketplace-logos pager pager-with-tabs pager-no-history pager-auto-init">
             <div class="pager-content">
               <div class="pager-page default-page">
                 <ul class="logos">
@@ -399,7 +385,7 @@
             </div>
             <div>
               <h4>{{ _('Have an app?') }}</h4>
-              <a href="https://developer.mozilla.org/docs/Apps/Publishing/Submitting_an_app" rel="external">{{ _('Submit it to the Firefox Marketplace today') }}</a>
+              <a href="https://developer.mozilla.org/docs/Apps/Publishing/Submitting_an_app" rel="external">{{ _('Submit it to Firefox Marketplace today') }}</a>
             </div>
           </div>
         </div>
@@ -537,6 +523,8 @@
         {{ form.phone }}
       </div>
 
+      {{ form.office_fax }}
+
       <div class="field">
         <label for="mobile">{{ _('Mobile') }}</label>
         {{ form.mobile }}
@@ -555,18 +543,8 @@
       <div class="field footer-field">
         <input type="submit" name="submit" value="{{ _('Submit my request') }}" class="button" />
       </div>
-
-      {{ form.superpriority }}
     </form>
     <button id="pageslider-close" type="button" class="modal-close close">{{ _('Close') }}</button>
-  </section>
-  <section id="schedule" class="overlay-contents">
-    <h2 class="overlay-title">{{ _('Firefox at MWC 2014 &ndash; Schedule of Events') }}</h2>
-    {% include "firefox/includes/mwc_2014_schedule.html" %}
-  </section>
-  <section id="map" class="overlay-contents">
-    <h2 class="overlay-title">{{ _('Firefox at MWC 2014 &ndash; Hall 3, Stand 3C30') }}</h2>
-    {% include "firefox/includes/mwc_2014_map.html" %}
   </section>
 </div>
 

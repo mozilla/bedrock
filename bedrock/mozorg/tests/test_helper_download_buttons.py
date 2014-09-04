@@ -263,14 +263,71 @@ class TestDownloadButtons(TestCase):
             ok_('lang=fr' not in pq(link).attr('href'))
             ok_('lang=en-US' in pq(link).attr('href'))
 
+    def test_download_japanese(self):
+        """Should have the ja-JP-mac locale for the Japanese Mac version"""
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'ja'
+        doc = pq(render("{{ download_firefox() }}",
+                        {'request': get_request}))
+
+        ok_(doc('.download-list .os_windows a').attr('href').endswith('os=win&lang=ja'))
+        ok_(doc('.download-list .os_linux a').attr('href').endswith('os=linux&lang=ja'))
+        ok_(doc('.download-list .os_osx a').attr('href').endswith('os=osx&lang=ja-JP-mac'))
+
+    def test_aurora_mobile(self):
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'en-US'
+        doc = pq(render("{{ download_firefox('aurora', mobile=True) }}",
+                        {'request': get_request}))
+
+        list = doc('.download-list li')
+        eq_(list.length, 2)
+        eq_(pq(list[0]).attr('class'), 'os_android armv7')
+        eq_(pq(list[1]).attr('class'), 'os_android x86')
+
+        list = doc('.download-other .arch')
+        eq_(list.length, 2)
+        eq_(pq(list[0]).attr('class'), 'arch armv7')
+        eq_(pq(list[1]).attr('class'), 'arch x86')
+
+    def test_beta_mobile(self):
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'en-US'
+        doc = pq(render("{{ download_firefox('beta', mobile=True) }}",
+                        {'request': get_request}))
+
+        list = doc('.download-list li')
+        eq_(list.length, 1)
+        eq_(pq(list[0]).attr('class'), 'os_android')
+
+        list = doc('.download-other .arch')
+        eq_(list.length, 0)
+
+    def test_firefox_mobile(self):
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'en-US'
+        doc = pq(render("{{ download_firefox(mobile=True) }}",
+                        {'request': get_request}))
+
+        list = doc('.download-list li')
+        eq_(list.length, 1)
+        eq_(pq(list[0]).attr('class'), 'os_android')
+
+        list = doc('.download-other .arch')
+        eq_(list.length, 0)
+
     def test_download_transition_link_contains_locale(self):
         """
         "transition" download links should include the locale in the path as
         well as the query string.
         """
         locale = settings.LOCALES_WITH_TRANSITION[0]
-        url = make_download_link('firefox', 'release', 19.0, 'os_osx', locale)
-        good_url = ('/{locale}/products/download.html?product=firefox-19.0&'
+        url = make_download_link('firefox', 'release', '19.0', 'os_osx', locale)
+        good_url = ('/{locale}/products/download.html?product=firefox-19.0-SSL&'
                     'os=osx&lang={locale}').format(locale=locale)
         eq_(url, good_url)
 
@@ -281,7 +338,7 @@ class TestDownloadButtons(TestCase):
         for en-US windows release downloads, and 'firefox-beta-latest' for
         beta.
         """
-        url = make_download_link('firefox', 'release', 19.0, 'os_windows',
+        url = make_download_link('firefox', 'release', '19.0', 'os_windows',
                                  'en-US', force_funnelcake=True)
         ok_('product=firefox-latest&' in url)
 
@@ -294,7 +351,7 @@ class TestDownloadButtons(TestCase):
         """
         Ensure that force_funnelcake doesn't affect non configured locale urls
         """
-        url = make_download_link('firefox', 'release', 19.0, 'os_osx',
+        url = make_download_link('firefox', 'release', '19.0', 'os_osx',
                                  'en-US', force_funnelcake=True)
         ok_('product=firefox-latest&' not in url)
 
@@ -309,7 +366,7 @@ class TestDownloadButtons(TestCase):
         for configured locale release downloads, and 'firefox-beta-latest' for
         beta.
         """
-        url = make_download_link('firefox', 'release', 19.0, 'os_windows',
+        url = make_download_link('firefox', 'release', '19.0', 'os_windows',
                                  'en-US', force_full_installer=True)
         ok_('product=firefox-latest&' in url)
 
@@ -322,7 +379,7 @@ class TestDownloadButtons(TestCase):
         """
         Ensure that force_full_installer doesn't affect non configured locales
         """
-        url = make_download_link('firefox', 'release', 19.0, 'os_osx',
+        url = make_download_link('firefox', 'release', '19.0', 'os_osx',
                                  'en-US', force_full_installer=True)
         ok_('product=firefox-latest&' not in url)
 
@@ -334,15 +391,15 @@ class TestDownloadButtons(TestCase):
         'win': ['en-us'], 'osx': ['fr', 'de'], 'linux': []})
     def test_stub_installer(self):
         """Button should give stub for builds in the setting always."""
-        url = make_download_link('firefox', 'release', 19.0, 'os_windows',
+        url = make_download_link('firefox', 'release', '19.0', 'os_windows',
                                  'en-US')
         ok_('product=firefox-stub&' in url)
 
-        url = make_download_link('firefox', 'release', 19.0, 'os_osx',
+        url = make_download_link('firefox', 'release', '19.0', 'os_osx',
                                  'fr')
         ok_('product=firefox-stub&' in url)
 
-        url = make_download_link('firefox', 'release', 19.0, 'os_osx',
+        url = make_download_link('firefox', 'release', '19.0', 'os_osx',
                                  'de')
         ok_('product=firefox-stub&' in url)
 
@@ -353,15 +410,15 @@ class TestDownloadButtons(TestCase):
     @override_settings(STUB_INSTALLER_LOCALES={'win': _ALL})
     def test_stub_installer_all(self):
         """Button should give stub for all langs when ALL is set."""
-        url = make_download_link('firefox', 'release', 19.0, 'os_windows',
+        url = make_download_link('firefox', 'release', '19.0', 'os_windows',
                                  'en-US')
         ok_('product=firefox-stub&' in url)
 
-        url = make_download_link('firefox', 'release', 19.0, 'os_windows',
+        url = make_download_link('firefox', 'release', '19.0', 'os_windows',
                                  'fr')
         ok_('product=firefox-stub&' in url)
 
-        url = make_download_link('firefox', 'release', 19.0, 'os_windows',
+        url = make_download_link('firefox', 'release', '19.0', 'os_windows',
                                  'de')
         ok_('product=firefox-stub&' in url)
 
@@ -374,7 +431,7 @@ class TestDownloadButtons(TestCase):
         """
         Ensure that builds not in the setting don't get stub.
         """
-        url = make_download_link('firefox', 'release', 19.0, 'os_osx',
+        url = make_download_link('firefox', 'release', '19.0', 'os_osx',
                                  'en-US')
         ok_('product=firefox-stub&' not in url)
 
@@ -385,15 +442,15 @@ class TestDownloadButtons(TestCase):
     @override_settings(STUB_INSTALLER_LOCALES={'win': _ALL})
     def test_funnelcake_id(self):
         """Button should append funnelcake ID to product in download URL."""
-        url = make_download_link('firefox', 'release', 19.0, 'os_windows',
+        url = make_download_link('firefox', 'release', '19.0', 'os_windows',
                                  'en-US', funnelcake_id='2')
         ok_('product=firefox-stub-f2&' in url)
 
-        url = make_download_link('firefox', 'release', 19.0, 'os_windows',
+        url = make_download_link('firefox', 'release', '19.0', 'os_windows',
                                  'fr', funnelcake_id='2')
         ok_('product=firefox-stub-f2&' in url)
 
-        url = make_download_link('firefox', 'release', 19.0, 'os_osx',
+        url = make_download_link('firefox', 'release', '19.0', 'os_osx',
                                  'de', funnelcake_id='23')
         ok_('product=firefox-19.0-f23&' in url)
 
@@ -401,38 +458,30 @@ class TestDownloadButtons(TestCase):
                                  'es-ES', funnelcake_id='234')
         ok_('product=firefox-20.0b4-f234&' in url)
 
-    @override_settings(FORCE_SSL_DOWNLOAD_VERSIONS=['27.0'])
     @override_settings(STUB_INSTALLER_LOCALES={'win': _ALL})
     def test_force_ssl(self):
         """
         Button should append 'SSL' to product in download URL, except the
         Windows stub installers.
         """
-        url = make_download_link('firefox', 'release', '26.0', 'os_windows',
-                                 'en-US')
+        url = mkln('firefox', 'release', '27.0', 'os_windows', 'en-US')
         ok_('product=firefox-stub&' in url)
 
-        url = make_download_link('firefox', 'release', '26.0', 'os_osx',
-                                 'en-US')
-        ok_('product=firefox-26.0&' in url)
-
-        url = make_download_link('firefox', 'release', '26.0', 'os_linux',
-                                 'en-US')
-        ok_('product=firefox-26.0&' in url)
-
-        url = make_download_link('firefox', 'release', '27.0', 'os_windows',
-                                 'en-US')
-        ok_('product=firefox-stub&' in url)
-
-        url = make_download_link('firefox', 'release', '27.0', 'os_osx',
-                                 'en-US')
+        url = mkln('firefox', 'release', '27.0', 'os_osx', 'en-US')
         ok_('product=firefox-27.0-SSL&' in url)
 
-        url = make_download_link('firefox', 'release', '27.0', 'os_linux',
-                                 'en-US')
+        url = mkln('firefox', 'release', '27.0', 'os_linux', 'en-US')
         ok_('product=firefox-27.0-SSL&' in url)
 
-    @override_settings(FORCE_SSL_DOWNLOAD_VERSIONS=['27.0'])
+        url = mkln('firefox', 'beta', '28.0b4', 'os_windows', 'en-US')
+        ok_('product=firefox-beta-stub&' in url)
+
+        url = mkln('firefox', 'beta', '28.0b4', 'os_osx', 'en-US')
+        ok_('product=firefox-28.0b4-SSL&' in url)
+
+        url = mkln('firefox', 'beta', '28.0b4', 'os_linux', 'en-US')
+        ok_('product=firefox-28.0b4-SSL&' in url)
+
     def test_linux64(self):
         """Button should give a linux64 build for all locales."""
         url = mkln('firefox', 'release', '27.0', 'os_linux64', 'en-US')
@@ -442,10 +491,10 @@ class TestDownloadButtons(TestCase):
         ok_('product=firefox-27.0-SSL&os=linux64&lang=fr' in url)
 
         url = mkln('firefox', 'beta', '28.0b4', 'os_linux64', 'en-US')
-        ok_('product=firefox-28.0b4&os=linux64&lang=en-US' in url)
+        ok_('product=firefox-28.0b4-SSL&os=linux64&lang=en-US' in url)
 
         url = mkln('firefox', 'beta', '28.0b4', 'os_linux64', 'de')
-        ok_('product=firefox-28.0b4&os=linux64&lang=de' in url)
+        ok_('product=firefox-28.0b4-SSL&os=linux64&lang=de' in url)
 
         url = mkln('firefox', 'aurora', '29.0a2', 'os_linux64', 'en-US')
         eq_(url, AURORA_DIR + '/firefox-29.0a2.en-US.linux-x86_64.tar.bz2')

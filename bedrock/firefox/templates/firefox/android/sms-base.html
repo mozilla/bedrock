@@ -1,0 +1,29 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/base-resp.html" %}
+
+{% block page_title %}{{ _('Get Firefox for Android') }}{% endblock %}
+{% block page_desc %}{{ _('Send yourself a text message to download Firefox for Android from Google Play.') }}{% endblock %}
+
+{% block body_id %}mobile-sms{% endblock %}
+
+{% block site_css %}
+  {{ css('firefox_sms') }}
+{% endblock %}
+
+{% block site_header_nav %}{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{% block js %}
+    {{ js('firefox_sms') }}
+{% endblock %}
+
+{% block content %}
+<aside class="more">
+  <p><a href="https://support.mozilla.org/kb/will-firefox-work-my-mobile-device">{{ _('Find out if your device is supported') }}</a></p>
+  <p><a href="{{ url('firefox.android.index') }}">{{ _('Learn more about Firefox for Android') }}</a></p>
+</aside>
+{% endblock %}

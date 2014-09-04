@@ -36,10 +36,6 @@
     {% if form.comments.errors %}
     <li>{{_('Please tell us more about your interests.')}}</li>
     {% endif %}
-
-    {% if form.captcha.errors %}
-    <li>{{_('Your CAPTCHA response did not match. Please try again.')}}</li>
-    {% endif %}
   </ul>
   {% endif %}
   <div id="form-content"
@@ -50,21 +46,24 @@
           <h3>{{_('Want to help?')}}</h3>
         </div>
         <div class="form-column-2">
-          <div class="field field-email">
-            {{ field_with_attrs(form.email, placeholder=_('YOUR EMAIL HERE'))|safe }}
-          </div>
-        </div>
-        <div class="form-column-3">
           <div class="field field-interest">
             {{ form.interest|safe }}
           </div>
         </div>
+        <div class="form-column-3 help-form-details">
+          <div class="field field-email">
+            {{ field_with_attrs(form.email, placeholder=_('YOUR EMAIL HERE'))|safe }}
+          </div>
+        </div>
       </div>
 
-      <div class="form-row" id="form-details">
+      <div class="form-row help-form-details">
         <div class="form-column-1">
           <p>{{_('Send us a note and we can get you started right away.')}}</p>
         </div>
+
+        {{ form.office_fax }}
+
         <div class="form-column-2">
           <div class="field field-comments">
             {{ field_with_attrs(form.comments, placeholder=_('Hi, I’m interested in…'))|safe }}
@@ -76,20 +75,17 @@
           </div>
           {% if LANG.startswith('en') %}
             <div class="field field-newsletter">
-              <label for="id_newsletter">
+              <label for="{{ form.newsletter.id_for_label }}">
                 {{ form.newsletter|safe }}
                 {{_('I’d like to receive regular contribution news by email')}}
               </label>
             </div>
           {% endif %}
-          <div class="field field-captcha">
-            {{ form.captcha }}
-          </div>
         </div>
       </div>
     </fieldset>
     <div class="form-submit">
-      <input type="submit" class="button" id="form-submit" value="{{_('Submit&nbsp;»')}}">
+      <input type="submit" class="button" id="form-submit" value="{{_('Submit')}}">
     </div>
   </div>
 </form>

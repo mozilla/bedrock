@@ -105,10 +105,15 @@
         // filter prop is applied via style attribte.
         // update the filter string to change the bg
         var cur_filter = $bg_a.css('filter');
-        var new_filter = cur_filter.replace(rotate_bg_re, new_bg);
 
-        // update bg_a classes and filter property
-        $bg_a.attr('class', css_classes).css('filter', new_filter);
+        if (cur_filter) {
+            var new_filter = cur_filter.replace(rotate_bg_re, new_bg);
+
+            // update bg_a classes and filter property
+            $bg_a.attr('class', css_classes).css('filter', new_filter);
+        } else {
+            $bg_a.attr('class', css_classes);
+        }
 
         $bg_a.fadeIn(300);
       } else {
@@ -235,63 +240,6 @@
     Mozilla.Modal.closeModal();
   });
 
-  // reallly primative validation e.g a@a
-  // matches built-in validation in Firefox
-  function validateEmail(elementValue) {
-    var emailPattern = /\S+@\S+/;
-    return emailPattern.test(elementValue);
-  }
-
-  function validateForm() {
-    var $form = $('#footer-email-form');
-    var email = $('#id_email').val();
-    var $privacy = $('#id_privacy');
-
-    if ('checkValidity' in $form) {
-      // do native form validation
-      return $form.checkValidity();
-    }
-    return validateEmail(email) && $privacy.is(':checked');
-  }
-
-  $(document).ready(function() {
-    // turn off default newsletter JS (from footer-email-form.js) and wire up our own
-    $('.newsletter-form').off('submit').on('submit', function(e) {
-      e.preventDefault();
-
-      if (validateForm()) {
-        var $form = $(this);
-
-        $.ajax({
-          url: $form.attr('action'),
-          data: $form.serialize(),
-          type: 'POST',
-          success: function(data) {
-            $('#footer-email-form').fadeOut('fast', function() {
-              $('#footer-email-thanks').fadeIn('fast');
-              setTimeout(function() {
-                Mozilla.Modal.closeModal();
-              }, 3000);
-            });
-          },
-          error: function() {
-            // ??
-          }
-        });
-
-        //track GA event for newsletter signup
-        trackGAEvent(['_trackEvent', 'Newsletter Registration', 'submit', $form.find('input[name="newsletter"]').val()]);
-      } else {
-        //highlight the required fields
-        if (validateEmail($('#id_email').val())) {
-          $('input[required]:not([type=email])').addClass('error');
-        } else {
-          $('input[required]:not(:checked)').addClass('error');
-        }
-      }
-    });
-  });
-
   /*
   * Purchase modal
   */
@@ -365,7 +313,7 @@
         $tab.css('height', 0);
         $wrapper.addClass('scroll stuck');
       });
-      $('#masthead ul li a').animate({color: '#0096DD'}, 'fast');
+      $('#nav-main ul li a').animate({color: '#0096DD'}, 'fast');
 
     } else {
       $btn.fadeOut('fast');
@@ -374,7 +322,7 @@
       $current.promise().done(function () {
         $wrapper.removeClass('scroll');
       });
-      $('#masthead ul li a').animate({color: '##484848'}, 'fast');
+      $('#nav-main ul li a').animate({color: '##484848'}, 'fast');
       // Support for an information bar of Tabzilla
       var $infobar = $('#tabzilla-infobar').css('height', 'auto');
       if ($infobar.length) {

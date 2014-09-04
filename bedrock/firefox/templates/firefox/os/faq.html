@@ -20,10 +20,10 @@
 
 <div id="main-content">
 
-  <ul class="expander-list">
-    <li class="expander">
-      <h2 class="expander-header">{{_('About Firefox OS')}}</h2>
-      <div class="expander-content">
+  <div id="faq" class="accordion zebra">
+    <section>
+      <h2 data-accordion-role="tab">{{_('About Firefox OS')}}</h2>
+      <div data-accordion-role="tabpanel">
         <dl class="faq">
 
           <dt>{{_('What is Firefox OS?')}}</dt>
@@ -48,10 +48,10 @@
 
         </dl>
       </div>
-    </li>
-    <li class="expander">
-      <h2 class="expander-header">{{_('Buying Firefox OS')}}</h2>
-      <div class="expander-content">
+    </section>
+    <section>
+      <h2 data-accordion-role="tab">{{_('Buying Firefox OS')}}</h2>
+      <div data-accordion-role="tabpanel">
         <dl class="faq">
 
           <dt>{{_('What phones will Firefox OS be available on?')}}</dt>
@@ -130,10 +130,10 @@
 
         </dl>
       </div>
-    </li>
-    <li class="expander">
-      <h2 class="expander-header">{{_('Using Firefox OS')}}</h2>
-      <div class="expander-content">
+    </section>
+    <section>
+      <h2 data-accordion-role="tab">{{_('Using Firefox OS')}}</h2>
+      <div data-accordion-role="tabpanel">
         <dl class="faq">
 
           <dt>{{_('How do I…')}}</dt>
@@ -165,10 +165,10 @@
 
         </dl>
       </div>
-    </li>
-    <li class="expander">
-      <h2 class="expander-header">{{_('Features')}}</h2>
-      <div class="expander-content">
+    </section>
+    <section>
+      <h2 data-accordion-role="tab">{{_('Features')}}</h2>
+      <div data-accordion-role="tabpanel">
         <dl class="faq">
 
           <dt>{{_('Adaptive App Search')}}</dt>
@@ -181,8 +181,7 @@
           <dd>{{_('The fast, smart, safe way to get the best of the Web.')}}</dd>
 
           <dt>{{_('Deep integration with social media')}}</dt>
-          <dd>{{_('Full access to every Twitter and Facebook update from wherever you are.
-')}}</dd>
+          <dd>{{_('Full access to every Twitter and Facebook update from wherever you are.')}}</dd>
 
           <dt>{{_('Camera')}}</dt>
           <dd>{{_('With built-in style filters for fun, creative shots.')}}</dd>
@@ -194,10 +193,10 @@
           <dd>{{_('Includes directions, traffic and local transit information.')}}</dd>
         </dl>
       </div>
-    </li>
-    <li class="expander">
-      <h2 class="expander-header">{{_('Privacy and Security')}}</h2>
-      <div class="expander-content">
+    </section>
+    <section>
+      <h2 data-accordion-role="tab">{{_('Privacy and Security')}}</h2>
+      <div data-accordion-role="tabpanel">
           <p>
           {{_('Mozilla was the first to implement the Do Not Track privacy feature.')}}
           {% trans url='https://support.mozilla.org/kb/how-turn-do-not-track-feature-firefox-os' %}
@@ -205,16 +204,16 @@
           {% endtrans %}
           </p>
       </div>
-    </li>
-    <li class="expander">
-      <h2 class="expander-header">{{_('Developer Questions')}}</h2>
-      <div class="expander-content">
+    </section>
+    <section>
+      <h2 data-accordion-role="tab">{{_('Developer Questions')}}</h2>
+      <div data-accordion-role="tabpanel">
           <p>{% trans url='https://developer.mozilla.org/docs/Mozilla/Firefox_OS' %}
           Are you a developer? Have questions? <a href="{{url}}">Learn more at the Mozilla Developer Network.</a>
           {% endtrans %}</p>
       </div>
-    </li>
-  </ul>
+    </section>
+  </div>
 
 </div>
 

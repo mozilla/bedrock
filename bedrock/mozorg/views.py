@@ -7,10 +7,12 @@ import json
 
 from django.conf import settings
 from django.core.context_processors import csrf
+from django.db.utils import DatabaseError
 from django.http import HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from django.views.decorators.http import last_modified, require_safe
 from django.views.generic.base import TemplateView
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render as django_render
 
 import basket
 import requests
@@ -22,12 +24,20 @@ from lib.l10n_utils.dotlang import _, lang_file_is_active
 from bedrock.firefox import version_re
 from bedrock.firefox.utils import is_current_or_newer
 from bedrock.mozorg import email_contribute
+from bedrock.mozorg.credits import CreditsFile
+from bedrock.mozorg.decorators import cache_control_expires
 from bedrock.mozorg.forms import (ContributeForm,
                                   ContributeStudentAmbassadorForm,
                                   WebToLeadForm)
+from bedrock.mozorg.forums import ForumsFile
+from bedrock.mozorg.models import TwitterCache
 from bedrock.mozorg.util import hide_contrib_form
 from bedrock.mozorg.util import HttpResponseJSON
 from bedrock.newsletter.forms import NewsletterFooterForm
+
+
+credits_file = CreditsFile('credits')
+forums_file = ForumsFile('forums')
 
 
 def csrf_failure(request, reason=''):
@@ -44,63 +54,33 @@ def hacks_newsletter(request):
 
 @csrf_exempt
 def contribute(request, template, return_to_form):
-    newsletter_id = 'about-mozilla'
-    has_contribute_form = (request.method == 'POST' and
-                           'contribute-form' in request.POST)
-
-    has_newsletter_form = (request.method == 'POST' and
-                           'newsletter-form' in request.POST)
-
-    locale = getattr(request, 'locale', 'en-US')
+    newsletter_form = NewsletterFooterForm('about-mozilla', l10n_utils.get_locale(request))
 
     contribute_success = False
-    newsletter_success = False
 
-    # This is ugly, but we need to handle two forms. I would love if
-    # these forms could post to separate pages and get redirected
-    # back, but we're forced to keep the error/success workflow on the
-    # same page. Please change this.
-    if has_contribute_form:
-        form = ContributeForm(request.POST)
-        contribute_success = email_contribute.handle_form(request, form)
-        if contribute_success:
-            # If form was submitted successfully, return a new, empty
-            # one.
+    form = ContributeForm(request.POST or None, auto_id=u'id_contribute-%s')
+    if form.is_valid():
+        data = form.cleaned_data.copy()
+
+        honeypot = data.pop('office_fax')
+
+        if not honeypot:
+            contribute_success = email_contribute.handle_form(request, form)
+            if contribute_success:
+                # If form was submitted successfully, return a new, empty
+                # one.
+                form = ContributeForm()
+        else:
+            # send back a clean form if honeypot was filled in
             form = ContributeForm()
-    else:
-        form = ContributeForm()
-
-    if has_newsletter_form:
-        newsletter_form = NewsletterFooterForm(newsletter_id, locale,
-                                               request.POST,
-                                               prefix='newsletter')
-        if newsletter_form.is_valid():
-            data = newsletter_form.cleaned_data
-
-            try:
-                basket.subscribe(data['email'],
-                                 newsletter_id,
-                                 format=data['fmt'],
-                                 country=data['country'])
-                newsletter_success = True
-            except basket.BasketException:
-                msg = newsletter_form.error_class(
-                    [_('We apologize, but an error occurred in our system. '
-                       'Please try again later.')]
-                )
-                newsletter_form.errors['__all__'] = msg
-    else:
-        newsletter_form = NewsletterFooterForm(newsletter_id, locale, prefix='newsletter')
 
     return l10n_utils.render(request,
                              template,
                              {'form': form,
-                              'contribute_success': contribute_success,
                               'newsletter_form': newsletter_form,
-                              'newsletter_success': newsletter_success,
+                              'contribute_success': contribute_success,
                               'return_to_form': return_to_form,
-                              'hide_form': hide_contrib_form(request.locale),
-                              'has_moz15': locale in settings.LOCALES_WITH_MOZ15})
+                              'hide_form': hide_contrib_form(request.locale)})
 
 
 @xframe_allow
@@ -124,7 +104,7 @@ def process_partnership_form(request, template, success_url_name, template_vars=
         if form.is_valid():
             data = form.cleaned_data.copy()
 
-            honeypot = data.pop('superpriority')
+            honeypot = data.pop('office_fax')
 
             if honeypot:
                 msg = 'Visitor invalid'
@@ -199,6 +179,17 @@ def plugincheck(request, template='mozorg/plugincheck.html'):
     return l10n_utils.render(request, template, data)
 
 
+@xframe_allow
+def contribute_studentambassadors_landing(request):
+    try:
+        tweets = TwitterCache.objects.get(account='mozstudents').tweets
+    except (TwitterCache.DoesNotExist, DatabaseError):
+        tweets = []
+    return l10n_utils.render(request,
+                             'mozorg/contribute/studentambassadors/landing.html',
+                             {'tweets': tweets})
+
+
 @csrf_protect
 def contribute_studentambassadors_join(request):
     form = ContributeStudentAmbassadorForm(request.POST or None)
@@ -236,6 +227,25 @@ def holiday_calendars(request, template='mozorg/projects/holiday-calendars.html'
     }
 
     return l10n_utils.render(request, template, data)
+
+
+@cache_control_expires(2)
+@last_modified(credits_file.last_modified_callback)
+@require_safe
+def credits_view(request):
+    """Display the names of our contributors."""
+    ctx = {'credits': credits_file}
+    # not translated
+    return django_render(request, 'mozorg/credits.html', ctx)
+
+
+@cache_control_expires(2)
+@last_modified(forums_file.last_modified_callback)
+@require_safe
+def forums_view(request):
+    """Display our mailing lists and newsgroups."""
+    ctx = {'forums': forums_file}
+    return l10n_utils.render(request, 'mozorg/about/forums/forums.html', ctx)
 
 
 class Robots(TemplateView):

@@ -1,0 +1,33 @@
+# EditorConfig is awesome: http://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+# Unix-style newlines with a newline ending every file
+[*]
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+
+[*.py]
+indent_size = 4
+
+[*.js]
+indent_size = 4
+
+[*.json]
+indent_size = 4
+
+[*.css]
+indent_size = 4
+
+[*.less]
+indent_size = 4
+
+[*.html]
+indent_size = 2
+
+# Matches the exact files package.json and .travis.yml
+[{package.json, .travis.yml}]
+indent_size = 2

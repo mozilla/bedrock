@@ -54,12 +54,40 @@
     {# L10n: The Mozilla wordmark appears inline as part of this headline, so it reads as "We are Mozilla." #}
     <h1>{{ _('We are %(mozilla_wordmark)s') | format(mozilla_wordmark=high_res_img('img/home/mozilla-wordmark-red.png', {'alt': 'Mozilla', 'width': '258', 'height': '70'})|safe) }}</h1>
     <p class="tagline">{{ _('Doing good is part of our code') }}</p>
-    <p class="engage"><a href="{{ url('mozorg.contribute') }}" class="button go">{{ _('Get involved') }}</a></p>
   </header>
 
   <section class="pillars">
     <ul class="accordion">
-    {% if l10n_has_tag('promo_lightbeam') or settings.DEV %}
+
+{# Position 1: "Shape Environments" #}
+    {% if request.locale == 'en-US' or settings.DEV %}
+      <li id="panel-netneutrality" class="panel" tabindex="0">
+        <h2 class="panel-title">{{ _('Protect net neutrality') }}</h2>
+        <div class="panel-inner">
+          <div class="panel-content">
+            <a href="https://sendto.mozilla.org/page/s/protect-net-neutrality" rel="external">
+              <h3>{{ _('Stand with Mozilla') }}</h3>
+              <p>{{ _('Tell U.S. Congress to protect a level playing field on the open Web, now and forever.') }}</p>
+              <p class="go">{{ _('Write to your legislator') }}</p>
+            </a>
+          </div>
+        </div>
+      </li>
+    {% elif l10n_has_tag('promo_webwewant') or settings.DEV %}
+      <li id="panel-webwewant" class="panel" tabindex="0">
+        <h2 class="panel-title">{{ _('The Web needs you') }}</h2>
+        <div class="aurora"></div>
+        <div class="panel-inner">
+          <div class="panel-content">
+            <a href="https://webwewant.mozilla.org/#video" rel="external">
+              <h3>{{ _('What kind of Web do you want?') }}</h3>
+              <p>{{ _('Tell us what matters most to you and help shape the future of the Web.') }}</p>
+              <p class="go">{{ _('Share your vision') }}</p>
+            </a>
+          </div>
+        </div>
+      </li>
+    {% elif l10n_has_tag('promo_lightbeam') %}
       <li id="panel-lightbeam" class="panel" tabindex="0">
         {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
         <h2 class="panel-title">{{ _('<i>Watch</i> the watchers') }}</h2>
@@ -89,15 +117,18 @@
       </li>
     {% endif %}
 
-    {% if l10n_has_tag('promo_mwc_2014') or settings.DEV %}
-      <li id="panel-mwc-2014" class="panel" tabindex="0">
-        <h2 class="panel-title">{{ _('Mobile World Congress 2014') }}</h2>
+{# Position 2: "Build Products" #}
+    {% if l10n_has_tag('promo_fxdesktop') or settings.DEV %}
+      <li id="panel-fxdesktop" class="panel" tabindex="0">
+        {# L10n: This is the label seen when the panel is collapsed so it may need to be altered to fit a limited space. The active phrase should be wrapped in <i></i> tags. #}
+        <h2 class="panel-title">{{ _('<i>Try the best</i> Firefox yet') }}</h2>
         <div class="panel-inner">
           <div class="panel-content">
-            <a href="{{ url('firefox.partners.index') }}">
-              <h3>{{ _('Unleash the future') }}</h3>
-              <p>{{ _('Firefox OS has gone from vision to demo to reality in just two years, bringing openness, accessibility and opportunity to 15 countries so far.') }}</p>
-              <p class="go">{{ _('See what’s next for mobile') }}</p>
+            <a href="{{ url('firefox.desktop.index') }}">
+              {# L10n: This is the headline seen when the panel is open so it can be longer than the panel label. #}
+              <h3>{{ _('Try the best Firefox yet') }}</h3>
+              <p>{{ _('Learn more about the free desktop browser that’s committed to you, your privacy and an open Web.') }}</p>
+              <p class="go">{{ _('See what’s new') }}</p>
             </a>
           </div>
         </div>
@@ -118,6 +149,75 @@
       </li>
     {% endif %}
 
+{# Position 3: "Enable Community" #}
+    {% if l10n_has_tag('promo_sumo') or settings.DEV %}
+      <li id="panel-sumo" class="panel" tabindex="0">
+        {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
+        <h2 class="panel-title">{{ _('<i>Help</i> Mozilla users') }}</h2>
+        <div class="panel-inner">
+          <div class="panel-content">
+            <a href="https://support.mozilla.org/get-involved/">
+              <h3>{{ _('We need your help') }}</h3>
+              <p>{{ _('Learn about the ways you can help millions of users get the most out of their favorite browser.') }}</p>
+              <p class="go">{{ _('Join our support team') }}</p>
+            </a>
+          </div>
+        </div>
+      </li>
+    {% elif l10n_has_tag('promo_new_mdn') %}
+      <li id="panel-mdn" class="panel" tabindex="0">
+        {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
+        <h2 class="panel-title">{{ _('<i>See</i> the new MDN') }}</h2>
+        <div class="panel-inner">
+          <div class="panel-content">
+            <a href="https://developer.mozilla.org/">
+              {# L10n: This <br> is strictly for visual formatting; translations can omit or reposition as needed. #}
+              <h3>{{ _('See what’s new <br>for developers') }}</h3>
+              <p>{{ _('Our community hub for docs, demos and other resources just got a brand new look.') }}</p>
+              <p class="go">{{ _('Visit the Mozilla Developer Network') }}</p>
+            </a>
+          </div>
+        </div>
+      </li>
+    {% else %}
+      <li id="panel-mdn" class="panel" tabindex="0">
+        {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
+        <h2 class="panel-title">{{ _('<i>Join</i> our community') }}</h2>
+        <div class="panel-inner">
+          <div class="panel-content">
+            <a href="https://developer.mozilla.org/">
+              {# L10n: This <br> is strictly for visual formatting; translations can omit or reposition as needed. #}
+              <h3>{{ _('Join our<br> developer community') }}</h3>
+              <p>{{ _('Get docs and demos, tools and tutorials and everything related to the Open Web.') }}</p>
+              <p class="go">{{ _('Visit the Mozilla Developer Network') }}</p>
+            </a>
+          </div>
+        </div>
+      </li>
+    {% endif %}
+
+{# Position 4: "Teach the Web" #}
+    {#
+    New Webmaker Party promo below. Will likely be used in the near future.
+
+    if l10n_has_tag('promo_makerparty') or settings.DEV
+      <li id="panel-makerparty" class="panel" tabindex="0">
+        { L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. }
+        { L10n: This <br> is strictly for visual formatting; translations can omit or reposition as needed. }
+        <h2 class="panel-title">{{ _('<i>Join</i> our <br>Maker Party') }}</h2>
+        <div class="confetti"></div>
+        <div class="panel-inner">
+          <div class="panel-content">
+            <a href="https://party.webmaker.org" rel="external">
+              { L10n: This <br> is strictly for visual formatting; translations can omit or reposition as needed. }
+              <h3>{{ _('Join our global <br>Maker Party') }}</h3>
+              <p>{{ _('From July to September, help us teach, learn and make the Web at hands-on community events.') }}</p>
+              <p class="go">{{ _('Learn about events near you') }}</p>
+            </a>
+          </div>
+        </div>
+      </li>
+    #}
     {% if l10n_has_tag('promo_webmaker') or settings.DEV %}
       <li id="panel-webmaker" class="panel" tabindex="0">
         {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
@@ -149,37 +249,6 @@
       </li>
     {% endif %}
 
-    {% if l10n_has_tag('promo_new_mdn') or settings.DEV %}
-      <li id="panel-mdn" class="panel" tabindex="0">
-        {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
-        <h2 class="panel-title">{{ _('<i>See</i> the new MDN') }}</h2>
-        <div class="panel-inner">
-          <div class="panel-content">
-            <a href="https://developer.mozilla.org/">
-              {# L10n: This <br> is strictly for visual formatting; translations can omit or reposition as needed. #}
-              <h3>{{ _('See what’s new <br>for developers') }}</h3>
-              <p>{{ _('Our community hub for docs, demos and other resources just got a brand new look.') }}</p>
-              <p class="go">{{ _('Visit the Mozilla Developer Network') }}</p>
-            </a>
-          </div>
-        </div>
-      </li>
-    {% else %}
-      <li id="panel-mdn" class="panel" tabindex="0">
-        {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
-        <h2 class="panel-title">{{ _('<i>Join</i> our community') }}</h2>
-        <div class="panel-inner">
-          <div class="panel-content">
-            <a href="https://developer.mozilla.org/">
-              {# L10n: This <br> is strictly for visual formatting; translations can omit or reposition as needed. #}
-              <h3>{{ _('Join our<br> developer community') }}</h3>
-              <p>{{ _('Get docs and demos, tools and tutorials and everything related to the Open Web.') }}</p>
-              <p class="go">{{ _('Visit the Mozilla Developer Network') }}</p>
-            </a>
-          </div>
-        </div>
-      </li>
-    {% endif %}
     </ul>
   </section>
 
@@ -198,19 +267,35 @@
   <section class="extra">
     <div class="container">
 
+    <div id="newsletter-container">
       {% if request.locale != 'en-US' %}
         {{ email_newsletter_form() }}
       {% else %}
         {{ mozorg_newsletter_form() }}
       {% endif %}
+    </div>
 
     {% if request.locale in settings.PRESS_BLOGS %}
 
       <section class="extra-news">
         <h2>{{ _('In the news') }}</h2>
-        <ul class="hfeed cycle-slideshow" data-cycle-timeout="6000" data-cycle-slides="> .hentry" data-cycle-fx="carousel" data-cycle-carousel-fluid="true" data-cycle-carousel-vertical="true" data-cycle-next=".news-buttons .btn-next" data-cycle-prev=".news-buttons .btn-prev" data-cycle-carousel-visible="1" data-cycle-pause-on-hover="true">
+        <ul class="hfeed cycle-slideshow" data-cycle-timeout="6000" data-cycle-slides="> .hentry" data-cycle-fx="carousel" data-cycle-carousel-fluid="true" data-cycle-carousel-vertical="true" data-cycle-next=".news-buttons .btn-next" data-cycle-prev=".news-buttons .btn-prev" data-cycle-carousel-visible="1" data-cycle-pause-on-hover="true" data-cycle-log="false">
 
-        {% l10n home_news, 20140223 %}
+        {% l10n home_news, 20140429 %}
+          <li class="hentry">
+            <h3 class="entry-title">
+              <a class="url go" rel="bookmark external" hreflang="en-US" href="http://blog.mozilla.org/press/2014/04/mozilla-introduces-the-most-customizable-firefox-ever-with-an-elegant-new-design">
+                Mozilla Introduces the Most Customizable Firefox Ever with an Elegant New Design
+              </a>
+            </h3>
+          </li>
+          <li class="hentry">
+            <h3 class="entry-title">
+              <a class="url go" rel="bookmark external" hreflang="en-US" href="http://blog.mozilla.org/press/2014/04/firefox-for-android-is-more-customizable-than-ever">
+                Firefox for Android is More Customizable Than Ever
+              </a>
+            </h3>
+          </li>
           <li class="hentry">
             <h3 class="entry-title">
               <a class="url go" rel="bookmark external" hreflang="en-US" href="https://blog.mozilla.org/press/2014/02/firefox-os-future-2/">
@@ -218,24 +303,10 @@
               </a>
             </h3>
           </li>
-          <li class="hentry">
-            <h3 class="entry-title">
-              <a class="url go" rel="bookmark external" hreflang="en-US" href="https://blog.mozilla.org/press/2014/02/firefox-os-news-2/">
-                Firefox OS Expands to Higher-Performance Devices and Pushes the Boundaries of Entry-Level Smartphones
-              </a>
-            </h3>
-          </li>
-          <li class="hentry">
-            <h3 class="entry-title">
-              <a class="url go" rel="bookmark external" hreflang="en-US" href="https://blog.mozilla.org/press/2014/02/developer-momentum-2/">
-                New Developer Hardware and Tools Show Firefox OS Ecosystem Momentum
-              </a>
-            </h3>
-          </li>
         {% endl10n %}
 
         </ul>
-        <p class="control"><a href="{{ press_blog_url() }}" class="go">{{ _('See all news') }}</a></p>
+        <p class="control"><a rel="external" href="{{ press_blog_url() }}" class="go">{{ _('See all news') }}</a></p>
       </section>
 
     {% elif request.locale in ['hu','pt-BR'] %}
@@ -244,7 +315,8 @@
         <h2>{{ _('Get involved') }}</h2>
         <p>
           {{_('Help launch Firefox OS in your country.')}}
-          <a href="{{ mobilizer_link }}">{{_('Become a Mobilizer today.')}}</a>
+          {# Assuming all mobilizer_link's are external. #}
+          <a rel="external" href="{{ mobilizer_link }}">{{_('Become a Mobilizer today.')}}</a>
         </p>
       </section>
 
@@ -264,7 +336,7 @@
         <p>
         {% trans link_l10n='https://l10n.mozilla.org' %}
           Thanks to our global community, Mozilla products and websites are available in over 70 languages.
-          <a href="{{ link_l10n }}">Help translate them into yours</a>.
+          <a rel="external" href="{{ link_l10n }}">Help translate them into yours</a>.
         {% endtrans %}
         </p>
       </section>

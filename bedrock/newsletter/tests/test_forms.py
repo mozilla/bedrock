@@ -125,20 +125,21 @@ class TestNewsletterForm(TestCase):
 
     def test_multiple_newsletters(self):
         """Should allow to subscribe to multiple newsletters at a time."""
+        newsletters = 'mozilla-and-you,beta'
         data = {
             'email': 'dude@example.com',
             'lang': 'en',
             'privacy': 'Y',
             'fmt': 'H',
         }
-        form = NewsletterFooterForm('mozilla-and-you,beta', 'en-US', data=data.copy())
+        form = NewsletterFooterForm(newsletters, 'en-US', data=data.copy())
         self.assertTrue(form.is_valid())
-        self.assertEqual(form.newsletters, 'mozilla-and-you,beta')
+        self.assertEqual(form.cleaned_data['newsletters'], newsletters)
 
         # whitespace shouldn't matter
         form = NewsletterFooterForm('mozilla-and-you , beta ', 'en-US', data=data.copy())
         self.assertTrue(form.is_valid())
-        self.assertEqual(form.newsletters, 'mozilla-and-you,beta')
+        self.assertEqual(form.cleaned_data['newsletters'], newsletters)
 
 
 @mock.patch('bedrock.newsletter.utils.get_newsletters', newsletters_mock)
@@ -153,7 +154,7 @@ class TestNewsletterFooterForm(TestCase):
             'privacy': True,
             'fmt': 'H',
         }
-        form = NewsletterFooterForm(self.newsletter_name, locale='en-US', data=data)
+        form = NewsletterFooterForm(self.newsletter_name, locale='en-US', data=data.copy())
         self.assertTrue(form.is_valid(), form.errors)
         cleaned_data = form.cleaned_data
         self.assertEqual(data['fmt'], cleaned_data['fmt'])
@@ -203,7 +204,7 @@ class TestNewsletterFooterForm(TestCase):
             'privacy': True,
             'fmt': 'H',
         }
-        form = NewsletterFooterForm(self.newsletter_name, locale='en-US', data=data)
+        form = NewsletterFooterForm(self.newsletter_name, locale='en-US', data=data.copy())
         self.assertTrue(form.is_valid(), form.errors)
         # Form returns '' for lang, so we don't accidentally change the user's
         # preferred language thinking they entered something here that they

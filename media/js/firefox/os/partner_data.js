@@ -15,163 +15,62 @@ if (typeof Mozilla == 'undefined') {
         Mozilla.FxOs = {};
     }
 
-    Mozilla.FxOs.Countries = {
-        'br': {
-            'display': 'Brazil',
-            'partner': [
-                {
-                    'name': 'Vivo',
-                    'url': 'http://www.vivo.com.br/firefox'
-                }
-            ]
-        },
-        'cl': {
-            'display': 'Chile',
-            "partner": [
-                {
-                    'name': 'Movistar',
-                    'url': 'http://www.movistar.cl/equipos/catalogo/producto/847/contrato/'
-                }
-            ]
-        },
-        'co': {
-            'display': 'Colombia',
-            'partner': [
-                {
-                    'name': 'Movistar',
-                    'url': 'http://www.movistar.co'
-                }
-            ]
-        },
-        'de': {
-            'display': 'Germany',
-            'partner': [
-                {
-                    'name': 'congstar',
-                    'url': 'http://aktion.congstar.de/firefox-os'
-                }
-            ]
-        },
-        'es': {
-            'display': 'Spain',
-            'partner': [
-                {
-                    'name': 'Movistar',
-                    'url': 'http://www.movistar.es/firefoxos?aff=aff-firefoxOS1'
-                }
-            ]
-        },
-        'gr': {
-            'display': 'Greece',
-            'partner': [
-                {
-                    'name': 'Cosmote',
-                    'url': 'http://www.cosmote.gr/cosmoportal/cosmote.portal?_nfpb=true&_pageLabel=HDV&sku=20290038&s=0'
-                }
-            ]
-        },
-        'hu': {
-            'display': 'Hungary',
-            'partner': [
-                {
-                    'name': 'T-Mobile',
-                    'url': 'https://webshop.t-mobile.hu/webapp/wcs/stores/ProductDisplay?catalogId=2001&storeId=2001&langId=-11&productId=644566'
-                },
-                {
-                    'name': 'Telenor',
-                    'url': 'http://www.telenor.hu/mobiltelefon/alcatel/one-touch-fire'
-                }
-            ]
-        },
-        'it': {
-            'display': 'Italy',
-            'partner': [
-                {
-                    'name': 'TIM',
-                    'url': 'http://www.tim.it/prodotti/alcatel-one-touch-fire-mozilla-orange'
-                }
-            ]
-        },
-        'me': {
-            'display': 'Montenegro',
-            'partner': [
-                {
-                    'name': 'Telenor',
-                    'url': 'http://www.telenor.me/sr/Privatni-korisnici/Uredjaji/Mobilni-telefoni/Alcatel/OT_Fire'
-                }
-            ]
-        },
-        'mx': {
-            'display': 'Mexico',
-            'partner': [
-                {
-                    'name': 'Movistar',
-                    'url': 'http://www.movistar.com.mx/firefox'
-                }
-            ]
-        },
-        'pe': {
-            'display': 'Peru',
-            'partner': [
-                {
-                    'name': 'Movistar',
-                    'url': 'http://catalogo.movistar.com.pe/zte-open'
-                }
-            ]
-        },
-        'pl': {
-            'display': 'Poland',
-            'partner': [
-                {
-                    'name': 'T-Mobile',
-                    'url': 'http://www.t-mobile.pl/pl/firefox'
-                }
-            ]
-        },
-        'rs': {
-            'display': 'Serbia',
-            'partner': [
-                {
-                    'name': 'Telenor',
-                    'url': 'https://www.telenor.rs/sr/Privatni-korisnici/webshop/Mobilni-telefoni/Alcatel/One_Touch_Fire'
-                }
-            ]
-        },
-        'uy': {
-            'display': 'Uruguay',
-            'partner': [
-                {
-                    'name': 'Movistar',
-                    'url': 'http://www.firefoxos.movistar.com.uy/'
-                }
-            ]
-        },
-        've': {
-            'display': 'Venezuela',
-            'partner': [
-                {
-                    'name': 'Movistar',
-                    'url': 'http://www.movistar.com.ve/movistar_firefox/index.html'
-                }
-            ]
-        }
-    };
+    /*
+    List of countries where phones are available.
+
+    If partner entry has 'developer_only' set to true, that partner should only
+    be available on developer facing pages (/firefox/os/devices/). Currently
+    used for ZTE Open C eBay links.
+
+    Full list of ISO_3166-1 country codes is available here
+    for reference: http://en.wikipedia.org/wiki/ISO_3166-1
+    */
 
     Mozilla.FxOs.Devices = {
         'alcatel_onetouchfire': {
             'type': 'smartphone',
             'display': 'Alcatel One Touch Fire',
-            'countries': ['br', 'cl', 'co', 'de', 'gr', 'hu', 'it', 'me', 'mx', 'pl', 'rs', 'uy', 've']
+            'countries': ['br', 'cl', 'co', 'de', 'gr', 'hu', 'it', 'me', 'mx', 'pe', 'pl', 'rs', 'uy', 've']
+        },
+        'alcatel_onetouchfirec': {
+            'type': 'smartphone',
+            'display': 'Alcatel One Touch Fire C',
+            'countries': ['es', 'pe']
+        },
+        'alcatel_onetouchfiree': {
+            'type': 'smartphone',
+            'display': 'Alcatel One Touch Fire E',
+            'countries': ['cz', 'de']
+        },
+        'huawei_y300-2': {
+            'type': 'smartphone',
+            'display': 'Huawei Y300II',
+            'countries': ['mx']
+        },
+        'intex_cloudfx': {
+            'type': 'smartphone',
+            'display': 'Intex Cloud FX',
+            'countries': ['in']
+        },
+        'lg_fireweb': {
+            'type': 'smartphone',
+            'display': 'LG Fireweb',
+            'countries': ['br', 'uy']
         },
         'zte_open': {
             'type': 'smartphone',
             'display': 'ZTE Open',
             'countries': ['co', 'es', 'mx', 'pe', 'uy', 've']
         },
-        'lg_fireweb': {
+        'zte_openc': {
             'type': 'smartphone',
-            'display': 'LG Fireweb',
-            'countries': ['br']
+            'display': 'ZTE Open C',
+            'countries': ['be', 'ch', 'de', 'fr', 'gb', 'lu', 'ru', 'us', 'uy']
+        },
+        'zte_open2': {
+            'type': 'smartphone',
+            'display': 'ZTE Open II',
+            'countries': ['co', 'pa', 'pe', 'sv']
         }
     };
 })(window.jQuery);

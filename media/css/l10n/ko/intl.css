@@ -1,0 +1,52 @@
+/* Bug 993704 */
+
+@font-face {
+  font-family: X-LocaleSpecific-Light;
+  font-weight: normal;
+  src: /* OS X */
+       local(AppleSDGothicNeo-UltraLight),
+       /* Windows */
+       local('Malgun Gothic');
+}
+
+@font-face {
+  font-family: X-LocaleSpecific-Light;
+  font-weight: bold;
+  src: /* OS X */
+       local(AppleSDGothicNeo-SemiBold),
+       /* Windows */
+       local('Malgun Gothic Bold');
+}
+
+@font-face {
+  font-family: X-LocaleSpecific;
+  font-weight: normal;
+  src: /* OS X */
+       local(AppleSDGothicNeo-Regular),
+       /* Windows */
+       local('Malgun Gothic');
+}
+
+@font-face {
+  font-family: X-LocaleSpecific;
+  font-weight: bold;
+  src: /* OS X */
+       local(AppleSDGothicNeo-Bold),
+       /* Windows */
+       local('Malgun Gothic Bold');
+}
+
+@font-face {
+  font-family: X-LocaleSpecific-Extrabold;
+  font-weight: 800;
+  src: /* OS X */
+       local(AppleSDGothicNeo-Heavy),
+       /* Windows */
+       local('Malgun Gothic Bold');
+}
+
+/* Bug 973171 */
+
+* {
+  font-style: normal !important;
+}

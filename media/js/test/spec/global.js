@@ -87,34 +87,6 @@ describe("global.js", function() {
 
     });
 
-    describe("init_platform_imgs", function () {
-
-        beforeEach(function () {
-            // Pretend we're on osx for each test
-            window.site = {
-                platform: 'osx'
-            };
-            //create an HTML fixture to test against
-            $('<img class="platform-img js" data-src="foo/bar.jpg" src="">').appendTo('body');
-        });
-
-        afterEach(function(){
-            // Tidy up after each test
-            window.site = null;
-            $('.platform-img').remove();
-        });
-
-        it("should set platform specific src file", function () {
-            init_platform_imgs();
-            expect($('.platform-img').attr('src')).toEqual('foo/bar-mac.jpg');
-        });
-
-        it("should set platform specific css class", function () {
-            init_platform_imgs();
-            expect($('.platform-img').hasClass('osx')).toBeTruthy();
-        });
-    });
-
     describe("getFirefoxMasterVersion", function () {
 
         it("should return the firefox master version number", function () {
@@ -166,6 +138,12 @@ describe("global.js", function() {
 
         it("should not consider SeaMonkey to be Firefox", function() {
             var ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:25.0) Gecko/20100101 Firefox/25.0 SeaMonkey/2.22.1';
+            var result = isFirefox(ua);
+            expect(result).not.toBeTruthy();
+        });
+
+        it("should not consider Iceweasel to be Firefox", function() {
+            var ua = 'Mozilla/5.0 (X11; Linux x86_64; rv:17.0) Gecko/20121202 Firefox/17.0 Iceweasel/17.0.1';
             var result = isFirefox(ua);
             expect(result).not.toBeTruthy();
         });
@@ -280,20 +258,18 @@ describe("global.js", function() {
              * to make sure it gets called once gaTrack has finished executing */
             var callback = jasmine.createSpy();
             gaTrack(['_trackEvent', 'GA event test', 'test', 'test'], callback);
-            clock.tick(600); // must be longer than callback timeout (500ms) in gaTrack
+            clock.tick(700); // must be longer than callback timeout (600ms) in gaTrack
             expect(callback).toHaveBeenCalled();
         });
 
         it("should not fire a callback twice", function () {
-            /* For our callback use a jasmine spy, then we can easily test
-             * to make sure it gets called once gaTrack has finished executing */
             var callback = jasmine.createSpy();
             gaTrack(['_trackEvent', 'GA event test', 'test', 'test'], callback);
-            clock.tick(600); // must be longer than callback timeout (500ms) in gaTrack
+            clock.tick(700); // must be longer than callback timeout (600ms) in gaTrack
             expect(callback.callCount).toEqual(1);
             // The callback should not be executed by subsequent GA events
             gaTrack(['_trackEvent', 'GA event test', 'test', 'test']);
-            clock.tick(600); // must be longer than callback timeout (500ms) in gaTrack
+            clock.tick(700); // must be longer than callback timeout (600ms) in gaTrack
             expect(callback.callCount).toEqual(1);
         });
 

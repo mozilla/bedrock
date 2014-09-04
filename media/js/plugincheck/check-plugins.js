@@ -34,6 +34,7 @@ $(function() {
             return 'default.png';
         }
     };
+    var mediaURL = window.trans('media-url') + 'img/plugincheck/app-icons/';
 
     var showPlugin = function(data) {
         var vulnerablePluginsSection = $('#sec-plugin-vulnerable'),
@@ -90,10 +91,17 @@ $(function() {
         return 'https://www.google.com/search?q=' + encodeURI(window.trans('googleSearchq') + ' ' + pluginName);
     },
     buildObject = function(data) {
+
+        // The v3 bit will kick in once we flip the navigator.plugins switch
+        // to no longer be enumarable
+        if (data.pluginDetectVersion === 'v3') {
+            displayPlugins(data.plugins);
+            return;
+        }
+
         var plugin = data.pluginInfo.raw,
             url = data.url,
             currentPlugin = {},
-            mediaURL = window.trans('media-url') + 'img/plugincheck/app-icons/',
             vulnerableStatusArray = ['should_disable', 'vulnerable', 'maybe_vulnerable',
                                     'outdated', 'maybe_outdated'];
 
@@ -107,6 +115,7 @@ $(function() {
                 'plugin_name': plugin.name,
                 'plugin_detail': plugin.description,
                 'plugin_status': window.trans('vulnerable'),
+                'plugin_version': plugin.version,
                 'button_research': window.trans('button_research'),
                 'img_alt_txt': window.trans('icon_alt_txt'),
                 'url': unknownPluginUrl(plugin.name)
@@ -120,6 +129,7 @@ $(function() {
                     'plugin_name': plugin.name,
                     'plugin_detail': plugin.description,
                     'plugin_status': window.trans('vulnerable'),
+                    'plugin_version': plugin.version,
                     'button_update': window.trans('button_update'),
                     'img_alt_txt': window.trans('icon_alt_txt'),
                     'url': url
@@ -131,6 +141,7 @@ $(function() {
                     'plugin_name': plugin.name,
                     'plugin_detail': plugin.description,
                     'plugin_status': window.trans('vulnerable'),
+                    'plugin_version': plugin.version,
                     'button_update': window.trans('button_update'),
                     'img_alt_txt': window.trans('icon_alt_txt'),
                     'url': url
@@ -141,6 +152,7 @@ $(function() {
                     'plugin_name': plugin.name,
                     'plugin_detail': plugin.description,
                     'plugin_status': window.trans('unknown'),
+                    'plugin_version': plugin.version,
                     'button_research': window.trans('button_research'),
                     'img_alt_txt': window.trans('icon_alt_txt'),
                     'url': unknownPluginUrl(plugin.name)
@@ -150,7 +162,8 @@ $(function() {
                     'icon': mediaURL + iconFor(plugin.name),
                     'plugin_name': plugin.name,
                     'plugin_detail': plugin.description,
-                    'plugin_status': plugin.version,
+                    'plugin_status': window.trans('button_uptodate'),
+                    'plugin_version': plugin.version,
                     'button_uptodate': window.trans('button_uptodate'),
                     'img_alt_txt': window.trans('icon_alt_txt'),
                     'url': url
@@ -164,6 +177,53 @@ $(function() {
         var pfsStatus = $('#pfs-status');
         pfsStatus.empty();
     };
+
+    function displayPlugins(pluginList) {
+
+        for (var i = 0; i < pluginList.length; i++) {
+            var currentPlugin = {};
+            var plugin = pluginList[i];
+
+            if(plugin.status === 'vulnerable') {
+                currentPlugin.vulnerablePlugins = {
+                    'icon': mediaURL + iconFor(plugin.name),
+                    'plugin_name': plugin.name,
+                    'plugin_detail': plugin.description,
+                    'plugin_status': window.trans('vulnerable'),
+                    'plugin_version': plugin.version,
+                    'button_update': window.trans('button_update'),
+                    'img_alt_txt': window.trans('icon_alt_txt'),
+                    'url': plugin.url
+                };
+
+            } else if(plugin.status === 'outdated') {
+                currentPlugin.outdatedPlugins = {
+                    'icon': mediaURL + iconFor(plugin.name),
+                    'plugin_name': plugin.name,
+                    'plugin_detail': plugin.description,
+                    'plugin_status': window.trans('vulnerable'),
+                    'plugin_version': plugin.version,
+                    'button_update': window.trans('button_update'),
+                    'img_alt_txt': window.trans('icon_alt_txt'),
+                    'url': plugin.url
+                };
+            } else if(plugin.status === 'latest' || plugin.status === 'newer') {
+                currentPlugin.upToDatePlugins = {
+                    'icon': mediaURL + iconFor(plugin.name),
+                    'plugin_name': plugin.name,
+                    'plugin_detail': plugin.description,
+                    'plugin_status': window.trans('button_uptodate'),
+                    'plugin_version': plugin.version,
+                    'button_uptodate': window.trans('button_uptodate'),
+                    'img_alt_txt': window.trans('icon_alt_txt'),
+                    'url': plugin.url
+                };
+            }
+
+            showPlugin(currentPlugin);
+        }
+        pluginCheckComplete();
+    }
 
     checkPlugins('https://plugins.mozilla.org/pfs/v2', buildObject, pluginCheckComplete);
 });

@@ -5,20 +5,20 @@
 {% macro mozorg_newsletter_form() %}
   {# Note: This form differs from the email_newsletter_form() that appears on most pages;
     The global form submits to bedrock, this one submits to sendto.mozilla.org #}
-<aside class="billboard newsletter-form">
-  <form id="footer-email-form" method="post" action="https://sendto.mozilla.org/page/s/sign-up-for-mozilla">
+<aside>
+  <form id="mozorg-newsletter-form" class="billboard footer-newsletter-form newsletter-form" method="post" action="https://sendto.mozilla.org/page/s/sign-up-for-mozilla">
     <h3>{{ _('Get Mozilla updates') }}</h3>
 
     <div class="form-contents">
       <div class="field field-email">
-        <label for="id_email" class="hidden">{{ _('Email') }}</label>
+        <label for="id_email" class="visually-hidden">{{ _('Email') }}</label>
         <input name="email" type="email" id="id_email" value="" required aria-required="true" placeholder="{{ _('YOUR EMAIL HERE') }}">
       </div>
 
       <div id="form-details">
         <!-- This is bad, but a quick fix because we are pushing live in an hour -->
         <div class="field field-country">
-          <label for="country" class="hidden">{{ _('Country') }}</label>
+          <label for="country" class="visually-hidden">{{ _('Country') }}</label>
           <select id="country" name="country">
             <option value=""></option>
             <option value="AF">Afghanistan</option>
@@ -258,7 +258,7 @@
         <div class="field field-privacy">
           <label for="id_privacy" class="privacy-check-label">
             <input required aria-required="true" type="checkbox" name="custom-314" id="id_privacy" />
-            <span class="title">{{ _('I’m okay with Mozilla handling my info as explained in <a href="%s">this Privacy Policy</a>')|format('/en-US/privacy-policy') }}</span>
+            <span class="title">{{ _('I’m okay with Mozilla handling my info as explained in <a href="%s">this Privacy Policy</a>')|format(url('privacy')) }}</span>
           </label>
         </div>
       </div>
@@ -279,4 +279,80 @@
 
 {% macro twitter_share_url(url, tweet_text) -%}
   {{ 'https://www.twitter.com/intent/tweet?url=%s&text=%s'|format(url|urlencode, tweet_text|urlencode)|e }}
+{%- endmacro %}
+
+{% macro twitter_follow_button(account_name, account_id, show_account_id=True) -%}
+  {%- if show_account_id -%}
+    {% set label = _('Follow @%s')|format(account_id) %}
+  {%- else -%}
+    {% set label = _('Follow') %}
+  {%- endif -%}
+  <a href="https://twitter.com/{{ account_id }}" title="{{ _('Follow %s on Twitter')|format(account_name) }}" class="twitter-follow-button">{{ label }}</a>
+{%- endmacro %}
+
+{% macro twitter_timeline_widget(title='', heading_level=3, max_length=0) -%}
+  {% if tweets -%}
+    <section id="twitter-timeline-widget" itemscope itemtype="http://schema.org/Blog">
+      <header>
+        <h{{ heading_level }} itemprop="name">
+          {%- if title -%}
+            {{ title }}
+          {%- else -%}
+            {{ _('Twitter Timeline of %s')|format(tweets[0].user.name) }}
+          {%- endif -%}
+        </h{{ heading_level }}>
+        <p>{{ twitter_follow_button(tweets[0].user.name, tweets[0].user.screen_name, False) }}</p>
+      </header>
+      <div class="tweets">
+      {% for _tweet in tweets %}
+        {%- if _tweet.retweeted_status -%}
+          {% set retweet = true %}
+          {% set tweet = _tweet.retweeted_status %}
+        {%- else -%}
+          {% set retweet = false %}
+          {% set tweet = _tweet %}
+        {%- endif -%}
+        <article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          <header>
+            <h{{ heading_level + 1 }} class="timestamp">
+              <a href="https://twitter.com/{{ tweet.user.screen_name }}/status/{{ tweet.id }}" class="post">
+                {{ format_tweet_timestamp(tweet)|safe }}
+              </a>
+            </h{{ heading_level + 1 }}>
+            <div itemprop="author" itemscope itemtype="http://schema.org/Person">
+              <a href="https://twitter.com/{{ tweet.user.screen_name }}" class="author">
+                <img src="{{ tweet.user.profile_image_url_https }}" alt="" itemprop="image">
+                <span itemprop="name">{{ tweet.user.name }}</span>
+                <span itemprop="alternateName">@{{ tweet.user.screen_name }}</span>
+              </a>
+            </div>
+          </header>
+          <div>
+            <p itemprop="articleBody">{{ format_tweet_body(tweet)|safe }}</p>
+            {% if retweet -%}
+              <p class="retweet-credit">{{ _('Retweeted by %s')|format('<a href="%s" class="credit">%s</a>'|format('https://twitter.com/'+_tweet.user.screen_name, _tweet.user.name)|safe) }}</p>
+            {% endif -%}
+            {% if tweet.entities.media -%}
+              {% for medium in tweet.entities.media -%}
+                {% if medium.type == 'photo' -%}
+                  <p class="media"><a href="{{ medium.expanded_url }}" class="image"><img src="{{ medium.media_url_https }}" alt="" itemprop="image"></a></p>
+                {% endif -%}
+              {% endfor -%}
+            {% endif -%}
+          </div>
+          <footer>
+            <ul class="actions">
+              <li><a class="reply" href="https://twitter.com/intent/tweet?in_reply_to={{ tweet.id }}">{{ _('Reply') }}</a></li>
+              <li><a class="retweet" href="https://twitter.com/intent/retweet?tweet_id={{ tweet.id }}">{{ _('Retweet') }}</a></li>
+              <li><a class="favorite" href="https://twitter.com/intent/favorite?tweet_id={{ tweet.id }}">{{ _('Favorite') }}</a></li>
+            </ul>
+          </footer>
+        </article>
+        {% if max_length > 0 and loop.index == max_length -%}
+          {% break %}
+        {% endif -%}
+      {% endfor %}
+      </div>
+    {% endif -%}
+  </section>
 {%- endmacro %}
