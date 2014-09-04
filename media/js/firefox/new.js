@@ -20,7 +20,14 @@
         latestFirefoxVersion = parseInt(latestFirefoxVersion.split('.')[0], 10);
 
         if (isFirefoxUpToDate(latestFirefoxVersion + '')) {
-            $html.addClass('firefox-latest');
+            if (window.location.hash !== '#download-fx') {
+                // the firefox-latest class prevents the download from triggering
+                // and scene 2 from showing, which we want if the user lands on
+                // /firefox/new/ but if the user visits /firefox/new/#download-fx
+                // (from a download button) then we want them to see the same scene 2
+                // as non-firefox users and initiate a download
+                $html.addClass('firefox-latest');
+            }
         } else {
             $html.addClass('firefox-old');
         }
@@ -58,8 +65,7 @@
     // conditions in which scene2 should not be shown, even when the
     // #download-fx hash is set
     var no_scene2 = (
-           $html.hasClass('firefox-latest')
-        || site.platform === 'other'    // no download available
+           site.platform === 'other'    // no download available
         || site.platform === 'ios'      // unsupported platform
         || site.platform === 'fxos'     // no download available
         || site.platform === 'android'  // download goes to Play Store
@@ -72,7 +78,7 @@
         var hash_change = ('onhashchange' in window);
 
         // if desktop with download available, re-locate dl button links
-        if (!no_scene2) {
+        if (!no_scene2 && $('.download-button-wrapper:visible').length > 0) {
             var $downloadButtonLinks = $('.download-button-wrapper .download-other-desktop').detach();
             $downloadButtonLinks.css('display', 'block').insertBefore('#firefox-screenshot');
         }
@@ -183,7 +189,7 @@
                 // still need to use the regular track_and_redirect() function because
                 // the popup will be blocked and then the download will also be blocked
                 // in the popup.
-                if (window.location.hash === '#download-fx') {
+                if (window.location.hash === '#download-fx' || window.location.search === '?scene=2') {
                     track_and_redirect(url, virtual_url);
                 } else {
                     track_and_popup(url, virtual_url);
@@ -217,11 +223,13 @@
             // so as not to block the loading of other images.
             $('body').addClass('ready-for-scene2');
 
-            // initiate download/scene2 if coming directly to #download-fx
-            if (window.location.hash === '#download-fx') {
+            // initiate download/scene2 if coming directly to #download-fx and/or ?scene=2
+            // some older browsers will not preserve the #download-fx when they are redirected
+            // so we use a url parameter, but we don't want to use a url param when the user
+            // clicks the download button on /firefox/new/ because that can trigger an unecessary page load
+            if (window.location.hash === '#download-fx' || window.location.search === '?scene=2') {
                 if (no_scene2) {
-                    // if using latest Firefox or an unsupported platform just
-                    // try to drop the URL hash
+                    // if using an unsupported platform just try to drop the URL hash
                     if (window.history && window.history.replaceState) {
                         var uri = window.location.href.split('#')[0];
                         window.history.replaceState({}, '', uri);
