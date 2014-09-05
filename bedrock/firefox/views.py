@@ -531,11 +531,16 @@ def release_notes(request, fx_version, product='Firefox'):
         return HttpResponseRedirect(releasenotes_url(release))
 
     new_features, known_issues = release.notes(public_only=not settings.DEV)
+    
+    if release.product == 'Firefox for Android':
+        download_url = 'https://play.google.com/store/apps/details?id=org.mozilla.firefox'
+    else:
+        download_url = get_download_url(release.channel)
 
     return l10n_utils.render(
         request, release_notes_template(release.channel, product), {
             'version': fx_version,
-            'download_url': get_download_url(release.channel),
+            'download_url': download_url,
             'release': release,
             'equivalent_release_url': equivalent_release_url(release),
             'new_features': new_features,
