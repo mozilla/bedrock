@@ -126,6 +126,35 @@ def make_download_link(product, build, version, platform, locale,
                        plat=platform, locale=locale)
 
 
+def android_builds(build, builds=None):
+    builds = builds or []
+    android_link = settings.GOOGLE_PLAY_FIREFOX_LINK
+
+    if build == 'beta':
+        android_link = android_link.replace('org.mozilla.firefox',
+                                            'org.mozilla.firefox_beta')
+
+    if build == 'aurora':
+        for arch_pretty in ['ARMv7', 'x86']:
+            arch = arch_pretty.lower()
+            link = (download_urls['aurora-android-%s' % arch] %
+                    mobile_details.latest_version('aurora'))
+
+            builds.append({'os': 'os_android',
+                           'os_pretty': 'Android',
+                           'os_arch_pretty': 'Android %s' % arch_pretty,
+                           'arch': arch,
+                           'arch_pretty': arch_pretty,
+                           'download_link': link})
+
+    if build != 'aurora':
+        builds.append({'os': 'os_android',
+                       'os_pretty': 'Android',
+                       'download_link': android_link})
+
+    return builds
+
+
 @jingo.register.function
 @jinja2.contextfunction
 def download_firefox(ctx, build='release', small=False, icon=True,
@@ -220,29 +249,7 @@ def download_firefox(ctx, build='release', small=False, icon=True,
                            'download_link': download_link,
                            'download_link_direct': download_link_direct})
     if mobile is not False:
-        android_link = settings.GOOGLE_PLAY_FIREFOX_LINK
-
-        if build == 'beta':
-            android_link = android_link.replace('org.mozilla.firefox',
-                                                'org.mozilla.firefox_beta')
-
-        if build == 'aurora':
-            for arch_pretty in ['ARMv7', 'x86']:
-                arch = arch_pretty.lower()
-                link = (download_urls['aurora-android-%s' % arch] %
-                        mobile_details.latest_version('aurora'))
-
-                builds.append({'os': 'os_android',
-                               'os_pretty': 'Android',
-                               'os_arch_pretty': 'Android %s' % arch_pretty,
-                               'arch': arch,
-                               'arch_pretty': arch_pretty,
-                               'download_link': link})
-
-        if build != 'aurora':
-            builds.append({'os': 'os_android',
-                           'os_pretty': 'Android',
-                           'download_link': android_link})
+        builds = android_builds(build, builds)
 
     # Get the native name for current locale
     langs = firefox_details.languages

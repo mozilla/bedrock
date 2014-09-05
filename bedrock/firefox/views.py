@@ -28,6 +28,7 @@ from bedrock.mozorg.context_processors import funnelcake_param
 from bedrock.mozorg.decorators import cache_control_expires
 from bedrock.mozorg.views import process_partnership_form
 from bedrock.mozorg.helpers.misc import releasenotes_url
+from bedrock.mozorg.helpers.download_buttons import android_builds
 from bedrock.firefox.utils import is_current_or_newer
 from bedrock.firefox.firefox_details import firefox_details, mobile_details
 from lib.l10n_utils.dotlang import _
@@ -509,13 +510,16 @@ def get_release_or_404(version, product):
     return release
 
 
-def get_download_url(channel='Release'):
-    if channel == 'Aurora':
-        return reverse('firefox.channel') + '#aurora'
-    elif channel == 'Beta':
-        return reverse('firefox.channel') + '#beta'
+def get_download_url(release):
+    if release.product == 'Firefox for Android':
+        return android_builds(release.channel)[0]['download_link']
     else:
-        return reverse('firefox')
+        if release.channel == 'Aurora':
+            return reverse('firefox.channel') + '#aurora'
+        elif release.channel == 'Beta':
+            return reverse('firefox.channel') + '#beta'
+        else:
+            return reverse('firefox')
 
 
 @cache_control_expires(1)
@@ -535,7 +539,7 @@ def release_notes(request, fx_version, product='Firefox'):
     return l10n_utils.render(
         request, release_notes_template(release.channel, product), {
             'version': fx_version,
-            'download_url': get_download_url(release.channel),
+            'download_url': get_download_url(release),
             'release': release,
             'equivalent_release_url': equivalent_release_url(release),
             'new_features': new_features,

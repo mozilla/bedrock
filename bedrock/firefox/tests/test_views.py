@@ -191,3 +191,15 @@ class TestRNAViews(TestCase):
             mock_releasenotes_url.return_value)
         mock_releasenotes_url.assert_called_with(
             release.equivalent_desktop_release.return_value)
+
+    @patch('bedrock.firefox.views.android_builds')
+    def test_get_download_url_android(self, mock_android_builds):
+        """
+        Shoud return the download link for the release.channel from
+        android_builds
+        """
+        mock_android_builds.return_value = [{'download_link': '/download'}]
+        release = Mock(product='Firefox for Android')
+        link = views.get_download_url(release)
+        eq_(link, '/download')
+        mock_android_builds.assert_called_with(release.channel)
