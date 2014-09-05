@@ -81,7 +81,7 @@ Mozilla.ImageHelper.initPlatformImages = function() {
 // {{{ initHighResImages()
 
 Mozilla.ImageHelper.initHighResImages = function() {
-    $('img[src=""][data-src][data-high-res="true"]').each(function() {
+    $('img[data-src][data-high-res="true"]').each(function() {
         var src = $(this).data('src');
         if (Mozilla.ImageHelper.isHighDpi()) {
             src = Mozilla.ImageHelper.convertUrlToHighRes(src);
