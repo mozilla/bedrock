@@ -39,6 +39,7 @@ def update_code(ctx, tag):
         ctx.local("git checkout -f %s" % tag)
         ctx.local("git submodule sync")
         ctx.local("git submodule update --init --recursive")
+        ctx.local("find . -name '*.pyc' -delete")
 
 
 @task
@@ -52,6 +53,7 @@ def update_assets(ctx):
     management_cmd(ctx, 'compress_assets')
     management_cmd(ctx, 'update_product_details')
     management_cmd(ctx, 'update_externalfiles')
+    management_cmd(ctx, 'collectstatic --noinput')
 
 
 @task

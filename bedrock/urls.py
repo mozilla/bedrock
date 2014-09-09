@@ -4,15 +4,13 @@
 
 from django.conf import settings
 from django.conf.urls import handler404, include, patterns
+from django.contrib import admin
 
 from funfactory.monkeypatches import patch
 
 
 patch()
-
-# Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
+admin.autodiscover()
 
 # The default django 500 handler doesn't run the ContextProcessors, which breaks
 # the base template page. So we replace it with one that does!
@@ -21,6 +19,9 @@ handler500 = 'lib.bedrock_util.server_error_view'
 
 urlpatterns = patterns(
     '',
+    # authenticated urls
+    (r'^admin/', include(admin.site.urls)),
+    (r'^rna/', include('rna.urls')),
     # Main pages
     (r'^lightbeam/', include('bedrock.lightbeam.urls')),
     (r'^foundation/', include('bedrock.foundation.urls')),
@@ -52,9 +53,6 @@ urlpatterns = patterns(
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
-    # (r'^admin/', include(admin.site.urls)),
 )
 
 # In DEBUG mode, serve media files through Django.

@@ -63,12 +63,14 @@ DOTLANG_FILES = ['main', 'download_button', 'newsletter']
 # matches the first url component (e.g. mozilla.org/gameon/)
 SUPPORTED_NONLOCALES += [
     # from redirects.urls
+    'admin',
+    'contribute.json',
+    'credits',
+    'gameon',
+    'rna',
+    'robots.txt',
     'telemetry',
     'webmaker',
-    'gameon',
-    'robots.txt',
-    'credits',
-    'contribute.json',
 ]
 
 ALLOWED_HOSTS = [
@@ -102,7 +104,12 @@ def JINJA_CONFIG():
         'auto_reload': True,
     }
 
+STATIC_URL = '/static/'
+STATIC_ROOT = path('static')
+
 JINGO_MINIFY_USE_STATIC = False
+JINGO_EXCLUDE_APPS = (
+    'admin', 'registration', 'rest_framework', 'rna', 'waffle')
 CACHEBUST_IMGS = False
 
 # Bundles is a dictionary of two dictionaries, css and js, which list css files
@@ -1049,24 +1056,29 @@ MIDDLEWARE_CLASSES = (
     'bedrock.mozorg.middleware.CacheMiddleware',
     'dnt.middleware.DoNotTrackMiddleware',
     'lib.l10n_utils.middleware.FixLangFileTranslationsMiddleware',
+    'bedrock.mozorg.middleware.ConditionalAuthMiddleware',
 ))
+
+AUTHENTICATED_URL_PREFIXES = ('/admin/', '/rna/')
 
 INSTALLED_APPS = get_apps(exclude=(
     'compressor',
     'django_browserid',
     'django.contrib.sessions',
-    'django.contrib.staticfiles',
     'session_csrf',
     'djcelery',
 ), append=(
-    # Local apps
+    # third-party apps
     'jingo_markdown',
     'jingo_minify',
     'django_statsd',
+    'pagedown',
+    'rest_framework',
     'waffle',
     'south',
 
     # Django contrib apps
+    'django.contrib.admin',
     'django_sha2',  # Load after auth to monkey-patch it.
     'django.contrib.contenttypes',
     'django.contrib.messages',
@@ -1101,6 +1113,8 @@ INSTALLED_APPS = get_apps(exclude=(
     'captcha',
     'rna',
 ))
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 
 LOCALE_PATHS = (
     path('locale'),
@@ -1425,4 +1439,25 @@ LOGGING = {
             'propagate': False,
         },
     },
+}
+
+PASSWORD_HASHERS = ['django.contrib.auth.hashers.PBKDF2PasswordHasher']
+
+REST_FRAMEWORK = {
+    # Use hyperlinked styles by default.
+    # Only used if the `serializer_class` attribute is not set on a view.
+    'DEFAULT_MODEL_SERIALIZER_CLASS':
+        'rna.serializers.HyperlinkedModelSerializerWithPkField',
+
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+    ),
+
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+
+    'DEFAULT_FILTER_BACKENDS': ('rna.filters.TimestampedFilterBackend',)
 }
