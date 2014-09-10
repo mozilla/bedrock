@@ -1,0 +1,44 @@
+{
+    "name": "Bedrock",
+    "description": "The app powering www.mozilla.org.",
+    "repository": {
+        "url": "https://github.com/mozilla/bedrock",
+        "license": "MPL2",
+        "tests": "https://ci.mozilla.org/job/bedrock/"
+    },
+    "participate": {
+        "home": "https://wiki.mozilla.org/Mozilla.org",
+        "docs": "http://bedrock.readthedocs.org/",
+        "mailing-list": "https://www.mozilla.org/about/forums/#dev-mozilla-org",
+        "irc": "irc://irc.mozilla.org/#www",
+        "irc-contacts": [
+            "pmac",
+            "jgmize",
+            "craigcook",
+            "malexis",
+            "cmore"
+        ]
+    },
+    "bugs": {
+        "list": "https://bugzilla.mozilla.org/buglist.cgi?query_format=advanced&bug_status=UNCONFIRMED&bug_status=NEW&product=www.mozilla.org",
+        "report": "https://bugzilla.mozilla.org/enter_bug.cgi?product=www.mozilla.org&component=Bedrock",
+        "mentored": "https://bugzilla.mozilla.org/buglist.cgi?f1=bug_mentor&o1=isnotempty&query_format=advanced&bug_status=NEW&product=www.mozilla.org&list_id=10866041"
+    },
+    "urls": {
+        "prod": "https://www.mozilla.org",
+        "stage": "https://www.allizom.org",
+        "dev": "https://www-dev.allizom.org",
+        "demo1": "https://www-demo1.allizom.org",
+        "demo2": "https://www-demo2.allizom.org",
+        "demo3": "https://www-demo3.allizom.org",
+        "demo4": "https://www-demo4.allizom.org",
+        "demo5": "https://www-demo5.allizom.org"
+    },
+    "keywords": [
+        "python",
+        "less-css",
+        "django",
+        "html5",
+        "jquery"
+    ]
+}

@@ -57,6 +57,7 @@ SUPPORTED_NONLOCALES += [
     'robots.txt',
     'credits',
     'security',
+    'contribute.json',
 ]
 
 ALLOWED_HOSTS = [
