@@ -68,7 +68,7 @@ def page(name, tmpl, decorators=None, **kwargs):
         # skip l10n if path exempt
         name_prefix = name.partition('/')[0]
         if name_prefix in settings.SUPPORTED_NONLOCALES:
-            return django_render(request, tmpl, **kwargs)
+            return django_render(request, tmpl, kwargs)
 
         return l10n_utils.render(request, tmpl, kwargs)
 

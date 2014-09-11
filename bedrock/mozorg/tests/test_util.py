@@ -64,15 +64,17 @@ class TestPageUtil(TestCase):
     @override_settings(SUPPORTED_NONLOCALES=['dude'])
     def test_locale_redirect_exclusion(self, l10n_mock, djrender_mock):
         """A url with a prefix in SUPPORTED_NONLOCALES should use normal render."""
-        url = page('dude/abides', 'dude/abides.html')
+        url = page('dude/abides', 'dude/abides.html', donny='alive')
         url.callback(Mock())
         ok_(not l10n_mock.render.called)
-        djrender_mock.assert_called_with(ANY, 'dude/abides.html', urlname='dude.abides')
+        djrender_mock.assert_called_with(ANY, 'dude/abides.html', {'urlname': 'dude.abides',
+                                                                   'donny': 'alive'})
 
     @override_settings(SUPPORTED_NONLOCALES=['dude'])
     def test_locale_redirect_non_exclusion(self, l10n_mock, djrender_mock):
         """A url with a prefix not in SUPPORTED_NONLOCALES should use l10n render."""
-        url = page('walter/abides', 'walter/abides.html')
+        url = page('walter/abides', 'walter/abides.html', donny='ashes')
         url.callback(Mock())
         ok_(not djrender_mock.called)
-        l10n_mock.render.assert_called_with(ANY, 'walter/abides.html', {'urlname': 'walter.abides'})
+        l10n_mock.render.assert_called_with(ANY, 'walter/abides.html', {'urlname': 'walter.abides',
+                                                                        'donny': 'ashes'})
