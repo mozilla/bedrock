@@ -8,10 +8,11 @@ import os
 
 from django.test.utils import override_settings
 
+from mock import patch, ANY, Mock
 from nose.tools import ok_, eq_
 
 from bedrock.mozorg.tests import TestCase
-from bedrock.mozorg.util import hide_contrib_form, get_fb_like_locale
+from bedrock.mozorg.util import hide_contrib_form, get_fb_like_locale, page
 
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test_files')
@@ -55,3 +56,23 @@ class TestGetFacebookLikeLocale(TestCase):
         Return the default en_US when locale isn't supported.
         """
         eq_(get_fb_like_locale('zz-ZZ'), 'en_US')
+
+
+@patch('bedrock.mozorg.util.django_render')
+@patch('bedrock.mozorg.util.l10n_utils')
+class TestPageUtil(TestCase):
+    @override_settings(SUPPORTED_NONLOCALES=['dude'])
+    def test_locale_redirect_exclusion(self, l10n_mock, djrender_mock):
+        """A url with a prefix in SUPPORTED_NONLOCALES should use normal render."""
+        url = page('dude/abides', 'dude/abides.html')
+        url.callback(Mock())
+        ok_(not l10n_mock.render.called)
+        djrender_mock.assert_called_with(ANY, 'dude/abides.html', urlname='dude.abides')
+
+    @override_settings(SUPPORTED_NONLOCALES=['dude'])
+    def test_locale_redirect_non_exclusion(self, l10n_mock, djrender_mock):
+        """A url with a prefix not in SUPPORTED_NONLOCALES should use l10n render."""
+        url = page('walter/abides', 'walter/abides.html')
+        url.callback(Mock())
+        ok_(not djrender_mock.called)
+        l10n_mock.render.assert_called_with(ANY, 'walter/abides.html', {'urlname': 'walter.abides'})

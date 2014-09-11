@@ -8,6 +8,7 @@ import os
 from django.conf import settings
 from django.conf.urls import url
 from django.http import HttpResponse
+from django.shortcuts import render as django_render
 from django.views.decorators.csrf import csrf_exempt
 
 import tweepy
@@ -52,7 +53,7 @@ def page(name, tmpl, decorators=None, **kwargs):
 
     # Set the name of the view to the template path replaced with dots
     (base, ext) = os.path.splitext(tmpl)
-    name = base.replace('/', '.')
+    view_name = base.replace('/', '.')
 
     # we don't have a caching backend yet, so no csrf (it's just a
     # newsletter form anyway)
@@ -61,12 +62,18 @@ def page(name, tmpl, decorators=None, **kwargs):
         if newrelic:
             # Name this in New Relic to differentiate pages
             newrelic.agent.set_transaction_name(
-                'mozorg.util.page:' + name.replace('.', '_'))
-        kwargs.setdefault('urlname', name)
+                'mozorg.util.page:' + view_name.replace('.', '_'))
+        kwargs.setdefault('urlname', view_name)
+
+        # skip l10n if path exempt
+        name_prefix = name.partition('/')[0]
+        if name_prefix in settings.SUPPORTED_NONLOCALES:
+            return django_render(request, tmpl, **kwargs)
+
         return l10n_utils.render(request, tmpl, kwargs)
 
     # This is for graphite so that we can differentiate pages
-    _view.page_name = name
+    _view.page_name = view_name
 
     # Apply decorators
     if decorators:
@@ -83,7 +90,7 @@ def page(name, tmpl, decorators=None, **kwargs):
                 log.exception('decorators not iterable or does not contain '
                               'callable items')
 
-    return url(pattern, _view, name=name)
+    return url(pattern, _view, name=view_name)
 
 
 def hide_contrib_form(lang):
