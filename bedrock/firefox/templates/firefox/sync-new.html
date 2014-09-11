@@ -1,0 +1,209 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "/firefox/base-resp.html" %}
+
+{% block page_title %}{{ _('Keep your Firefox in sync') }}{% endblock %}
+{% block body_id %}firefox-sync{% endblock %}
+{% block body_class %}
+  {{ super() }}
+  state-default
+{% endblock %}
+
+{% block extrahead %}
+  {{ css('firefox_sync') }}
+  <!--[if gt IE 9]><!-->
+    {{ css('firefox_sync_anim') }}
+  <!--<![endif]-->
+{% endblock %}
+
+{% block content %}
+{% include 'firefox/includes/sync-animation.html' %}
+<header role="banner" class="intro container">
+  <div class="show-fx-31-signed-in">
+    <h1>{{ _('Ready, Set, Sync') }}</h1>
+    <p>
+      {{ _('You’re signed up and ready to access <em>your</em> Firefox anywhere, anytime.') }}
+    </p>
+  </div>
+  <div class="show-fx-31-signed-out show-fx-29-30 show-fx-28-older show-fx-android show-not-fx show-default">
+    <h1>{{ _('Take your Web with you') }}</h1>
+    <p>
+      {{ _('Sync Firefox wherever you use it to access your bookmarks, passwords, tabs and more from any smartphone, tablet or computer.') }}
+    </p>
+  </div>
+</header>
+
+<section class="primary">
+  <div class="inner-wrapper">
+    <div class="container">
+
+    {# Warning Text #}
+      <div class="show-fx-29-30 warning">
+        <p>
+          {{ _('It looks like you’re running an older version of Firefox.') }}
+        </p>
+      </div>
+
+      <div class="show-fx-28-older warning">
+        <p>
+          {{ _('The new version of Sync only works with the latest version of Firefox') }}
+        </p>
+      </div>
+
+      <div class="show-not-fx warning">
+        <p>
+          {{ _('Sync is just one of the great features you’ll only get with Firefox. Discover them all!') }}
+        </p>
+      </div>
+
+      {# Primary Buttons #}
+
+      <div class="buttons">
+        <div class="show-fx-31-signed-in">
+          <a href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" class="sync-button green" id="cta-android">
+            {{ _('Download Firefox for Android') }}
+          </a>
+          <p class="button-footer">
+            <a href="https://support.mozilla.org/kb/how-do-i-set-up-firefox-sync" class="ga-link">
+              {{ _('Need help?') }}
+            </a>
+        </div>
+
+        <div class="show-fx-31-signed-out">
+          <button class="sync-button" id="cta-sync">
+            {{ _('Get started with Sync') }}
+          </button>
+        </div>
+
+        <div class="show-fx-29-30">
+          <a href="https://support.mozilla.org/kb/update-firefox-latest-version" class="sync-button" id="cta-update">
+            {{ _('Update your Firefox') }}
+          </a>
+        </div>
+
+        <div class="show-fx-28-older">
+          <a href="{{ url('firefox.new') }}?scene=2#download-fx" class="sync-button green" id="cta-firefox">
+            {{ _('Download Firefox') }}
+          </a>
+        </div>
+
+        <div class="show-not-fx">
+          {{ download_firefox() }}
+        </div>
+      </div>
+
+      {# Instructions #}
+
+      <div class="show-fx-29-30 show-default instructions">
+        <h3>{{ _('Get started with Sync in four easy steps:') }}</h3>
+        <section>
+          <ol>
+            <li>{% trans url='https://support.mozilla.org/kb/learn-more-about-the-design-of-new-firefox' %}
+              Open the <a class="menu ga-link" href="{{ url }}#w_a-handy-new-menu">menu</a> in the top right of Firefox and select “<strong>Sign in to Sync.</strong>”
+            {% endtrans %}</li>
+            {# L10n: <strong> tags below used for font color formatting. #}
+            <li>{{ _('Click “<strong>Get started</strong>” in the tab that opens.') }}</li>
+            <li>{{ _('Enter an email address and password to “<strong>Create a Firefox Account.</strong>”') }}</li>
+            <li>{{ _('Click “<strong>Next</strong>” to get a verification sent to your email.') }}</li>
+          </ol>
+          <p>{{ _('After you check your email and click the verification link, you’ll be all set! Firefox will automatically sync in the background from then on.') }}</p>
+        </section>
+        <aside role="complimentary">
+          <ul class="unstyled">
+            <li><a class="more ga-link" href="https://support.mozilla.org/kb/how-do-i-set-up-firefox-sync">{{ _('Get more detailed instructions.') }}</a></li>
+            <li><a class="more ga-link" href="https://support.mozilla.org/kb/how-to-update-to-the-new-firefox-sync">{{ _('Using an older version of Sync?') }}</a></li>
+          </ul>
+        </aside>
+      </div>
+
+      <div class="show-fx-28-older instructions">
+        <ul class="unstyled">
+          <li><a class="more ga-link" href="https://support.mozilla.org/kb/how-do-i-set-up-firefox-sync">{{ _('Get more detailed instructions.') }}</a></li>
+          <li><a class="more ga-link" href="https://support.mozilla.org/kb/how-to-update-to-the-new-firefox-sync">{{ _('Using an older version of Sync?') }}</a></li>
+        </ul>
+      </div>
+
+
+      <div class="show-fx-android instructions">
+        <h3>{{ _('How to set up Sync in five easy steps:') }}</h3>
+        <section>
+          <ol>
+              {# L10n: <strong> tags below used for font color formatting. #}
+              <li>{{ _('Tap the <strong>Menu</strong> button (either below the screen or at the top right corner of the browser).') }}</li>
+              <li>{{ _('Select <strong>Settings</strong> (you may need to tap <strong>More</strong> first).') }}</li>
+              <li>{{ _('Tap <strong>Sync</strong> and then <strong>Get Started</strong>.') }}</li>
+              <li>{{ _('The <strong>Create a Firefox Account page</strong> will open in a new tab.') }}</li>
+              <li>{{ _('Fill out the form and click <strong>Next</strong>.') }}</li>
+          </ol>
+          <p>{{ _('After you check your email and click the verification link, you’ll be ready to go! Don’t forget to connect all your other devices to get the most of Sync.') }}</p>
+        </section>
+        <aside role="complimentary">
+          <ul class="unstyled">
+            <li><a class="more ga-link" href="https://support.mozilla.org/kb/how-do-i-set-up-firefox-sync">{{ _('Get more detailed instructions.') }}</a></li>
+            <li><a class="more ga-link" href="https://support.mozilla.org/kb/how-to-update-to-the-new-firefox-sync">{{ _('Using an older version of Sync?') }}</a></li>
+          </ul>
+        </aside>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="secondary">
+  <div class="inner-wrapper">
+    <div class="container">
+      <header>
+        <h2>{{ _('Sync a little. Sync a lot.') }}</h2>
+        <p>
+          {{ _('You choose what parts of your Firefox you want to sync and where you want to sync them. Take your open tabs on your daily commute. Access your bookmarks at work. Whatever, whenever, everywhere.') }}
+        </p>
+      </header>
+      <div class="features">
+        <div class="feature-home">
+          <h3>{{ _('At home') }}</h3>
+          <p>
+            {{ _('Move from your desk to the couch without skipping a beat. Access your open tabs on your smartphone, or keeping browsing your bookmarks right on your tablet.') }}
+          </p>
+        </div>
+        <div class="feature-work">
+          <h3>{{ _('At work') }}</h3>
+          <p>
+            {{ _('Stay connected to all of your important information. Sync the passwords and bookmarks that you might need to access at any time. Just like Firefox, it’s safe as can be.') }}
+          </p>
+        </div>
+        <div class="feature-go">
+          <h3>{{ _('On the go') }}</h3>
+          <p>
+            {{ _('Keep up with your favorite sites, or finish that story you started at home — wherever you go. With Sync, it’s never been easier.') }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="inner-wrapper">
+    <div class="container">
+      <header>
+        <h3>{{ _('Have an <b>Android smartphone</b> or <b>tablet</b>?') }}</h3>
+        <a href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" class="sync-button green" id="cta-android-footer">
+          {{ _('DOWNLOAD FIREFOX FOR ANDROID') }}
+        </a>
+      </header>
+      <aside>
+        <p>
+          {{ _('To get the full Sync experience, take your Web with you everywhere you use Firefox. Connect your smartphone, tablet, computer and laptop.') }}
+        </p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block js %}
+  {{ js('firefox_sync') }}
+{% endblock %}
