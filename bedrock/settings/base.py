@@ -491,6 +491,7 @@ MINIFY_BUNDLES = {
         ),
         'accordion': (
             'js/base/mozilla-accordion.js',
+            'js/base/mozilla-accordion-gatrack.js',
         ),
         'firefox': (
             'js/libs/jquery-1.11.0.min.js',
@@ -592,6 +593,7 @@ MINIFY_BUNDLES = {
         ),
         'firefox_faq': (
             'js/base/mozilla-accordion.js',
+            'js/base/mozilla-accordion-gatrack.js',
         ),
         'firefox_sync': (
             'js/firefox/sync-animation.js',
@@ -625,6 +627,7 @@ MINIFY_BUNDLES = {
         'geolocation': (
             'js/libs/mapbox-1.6.3.js',
             'js/base/mozilla-accordion.js',
+            'js/base/mozilla-accordion-gatrack.js',
             'js/firefox/geolocation-demo.js',
             'js/base/mozilla-modal.js',
         ),
@@ -700,6 +703,7 @@ MINIFY_BUNDLES = {
         ),
         'styleguide-docs-mozilla-accordion': (
             'js/base/mozilla-accordion.js',
+            'js/styleguide/docs/mozilla-accordion.js',
         ),
         'styleguide-docs-mozilla-pager': (
             'js/base/mozilla-pager.js',

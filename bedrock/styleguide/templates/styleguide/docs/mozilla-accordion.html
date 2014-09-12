@@ -16,8 +16,8 @@
 <article id="main-content">
   <h1>{{ _('mozilla-accordion.js Example') }}</h1>
 
-  <section class="accordion example" id="example1">
-    <h2>{{ _('Basic accordion') }}</h2>
+  <section class="accordion accordion-auto-init example">
+    <h2>{{ _('Automatically initialized accordion') }}</h2>
 
     <section>
       <h4 data-accordion-role="tab">{{ _('Section 1') }}</h4>
@@ -55,6 +55,57 @@
           Ut vitae consectetur mauris, a scelerisque quam. Vestibulum mi nibh,
           porttitor et tellus vitae, rhoncus cursus sapien. Sed posuere leo neque,
           vel dapibus ligula rhoncus et. Integer vehicula rhoncus volutpat.
+        </p>
+      </div>
+    </section>
+  </section>
+
+  <hr>
+
+  <section class="accordion example" id="example2">
+    <h2>{{ _('Programmatically initialized accordion') }}</h2>
+
+    <button type="button" id="accordion2-enable">{{ _('Enable Accordion') }}</button>
+    <button type="button" id="accordion2-disable">{{ _('Disable Accordion') }}</button>
+
+    <p>
+      {{ _("View your browser's console to see expand/collapse callbacks in action.") }}
+    </p>
+
+    <section>
+      <h4 data-accordion-role="tab">{{ _('Section A') }}</h4>
+
+      <div data-accordion-role="tabpanel">
+        <p>
+          Cupcake ipsum dolor. Sit amet gummies pie sweet roll chocolate bar
+          tiramisu pastry icing. Cupcake gummi bears chocolate caramels halvah
+          pastry. Tart wafer sugar plum dessert powder ice cream soufflé lollipop
+          candy.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h4 data-accordion-role="tab">{{ _('Section B') }}</h4>
+
+      <div data-accordion-role="tabpanel">
+        <p>
+          Marshmallow candy canes marshmallow gummi bears bonbon pie halvah
+          cheesecake. Topping cake applicake biscuit chocolate cupcake pudding
+          muffin fruitcake. Chocolate cake soufflé sesame snaps.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h4 data-accordion-role="tab">{{ _('Section C') }}</h4>
+
+      <div data-accordion-role="tabpanel">
+        <p>
+          Gingerbread soufflé macaroon apple pie gingerbread chocolate cake marzipan
+          gummies bonbon. Lemon drops candy jelly beans fruitcake gummies chupa chups
+          cake. Candy soufflé candy ice cream pudding pastry caramels chocolate. Oat
+          cake caramels macaroon cupcake cotton candy pie dessert marzipan sweet roll.
         </p>
       </div>
     </section>

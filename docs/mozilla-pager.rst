@@ -10,6 +10,8 @@ Mozilla Pager
 
 `mozilla-pager.js` converts a section of markup into a tabbed or carousel interface. At minimum, each pager requires the following HTML elements:
 
+**`mozilla-pager.js` requires jQuery 1.11.0 or later.**
+
 - A container with the class ``pager``, which contains,
     - A container with the class ``pager-content``, which contains,
         - Multiple containers with the class ``pager-page``.
@@ -125,14 +127,14 @@ You can initialize new pagers in bulk by calling the ``createPagers`` method::
 
 This call will initialize all un-initialized pagers.
 
-You can also initialize a single pager by creating a new ``Mozilla.Pager`` object, passing a reference to the ``pager`` element::
+You can also initialize a single pager by creating a new ``Mozilla.Pager`` object, passing in the ``.pager`` element as a jQuery object::
 
     <div class="pager" id="delayed-pager">
         <!-- additional pager markup here -->
     </div>
 
     <script>
-        var delayedPager = new Mozilla.Pager(document.querySelector('#delayed-pager'));
+        var delayedPager = new Mozilla.Pager($('#delayed-pager'));
     </script>
 
 Once initialized, the ``pager-initialized`` class is applied to each ``pager`` element.
@@ -168,9 +170,9 @@ Pagers can be destroyed by passing the pager's ``id`` to the ``Mozilla.Pagers.de
     <button id="destroy-pager">Destroy Pager</button>
 
     <script>
-        var delayed_pager = new Mozilla.Pager(document.querySelector('#delayed-pager'));
+        var delayed_pager = new Mozilla.Pager($('#delayed-pager'));
 
-        document.querySelector('#destroy-pager').addEventListener('click', function(e) {
+        $('#destroy-pager').on('click', function(e) {
             Mozilla.Pager.destroyPagerById('delayed-pager');
         });
     </script>
@@ -188,7 +190,7 @@ Accessing pages
 
 All pagers have a ``pages`` array containing ``Mozilla.Page`` objects::
 
-    var my_pager = new Mozilla.Pager(document.querySelector('#my-pager'));
+    var my_pager = new Mozilla.Pager($('#my-pager'));
 
     var my_pager_pages = my_pager.pages;
 
@@ -198,28 +200,28 @@ All pagers have a ``pages`` array containing ``Mozilla.Page`` objects::
     }
 
 Changing pages
-^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^
 
 A pager's currently displayed page can be set through a variety of methods:
 
 ``nextPageWithAnimation``
     Moves the pager to the next page in the set. Will loop back to the first page if currently on the last page. Optionally takes a numeric ``duration`` (in milliseconts) parameter::
 
-        var my_pager = new Mozilla.Pager(document.querySelector('#my-pager'));
+        var my_pager = new Mozilla.Pager($('#my-pager'));
 
         my_pager.nextPageWithAnimation();
 
 ``prevPageWithAnimation``
     Moves the pager to the previous page in the set. Will loop back to the last page if currently on the first page. Optionally takes a numeric ``duration`` (in milliseconds) parameter::
 
-        var my_pager = new Mozilla.Pager(document.querySelector('#my-pager'));
+        var my_pager = new Mozilla.Pager($('#my-pager'));
 
         my_pager.prevPageWithAnimation(400);
 
 ``setPage``
     Sets the current page to the passed ``Mozilla.Page`` object::
 
-        var my_pager = new Mozilla.Pager(document.querySelector('#my-pager'));
+        var my_pager = new Mozilla.Pager($('#my-pager'));
 
         var my_pager_pages = my_pager.pages;
 
@@ -229,7 +231,7 @@ A pager's currently displayed page can be set through a variety of methods:
 ``setPageWithAnimation``
     Same as ``setPage``, but with fade in/fade out animations. Takes an optional numeric ``duration`` (in milliseconds) parameter::
 
-        var my_pager = new Mozilla.Pager(document.querySelector('#my-pager'));
+        var my_pager = new Mozilla.Pager($('#my-pager'));
 
         var my_pager_pages = my_pager.pages;
 
