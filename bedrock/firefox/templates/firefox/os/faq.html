@@ -55,10 +55,24 @@
         <dl class="faq">
 
           <dt>{{_('What phones will Firefox OS be available on?')}}</dt>
-          <dd>{{_('You can purchase Firefox OS on a ZTE Open, LG Fireweb or an Alcatel One Touch device.')}}</dd>
-
+          {% if l10n_has_tag('firefox_os_faq_updates') or settings.DEV %}
+            <dd>
+              {% trans link=url('firefox.os.devices') %}
+              To see a full list of available Firefox OS phones, please visit the <a href="{{ link }}">devices page</a>.
+              {% endtrans %}
+            </dd>
+          {% else %}
+            <dd>{{_('You can purchase Firefox OS on a ZTE Open, LG Fireweb or an Alcatel One Touch device.')}}</dd>
+          {% endif %}
           <dt>{{_('Where can I buy Firefox OS?')}}</dt>
           <dd>
+          {% if l10n_has_tag('firefox_os_faq_updates') or settings.DEV %}
+            <p>
+              {% trans link=url('firefox.os.devices') %}
+              To purchase a Firefox OS phone, please visit the <a href="{{ link }}">devices page</a> and select your available country.
+              {% endtrans %}
+            </p>
+          {% else %}
             <p>{{_('Firefox OS is available to buy across 14 countries across the globe. You can purchase a device in:')}}</p>
             <ul class="unstyled">
               <li>
@@ -74,10 +88,10 @@
                 {{_('Germany with <a href="%s">Congstar</a>')|format('http://aktion.congstar.de/firefox-os')}}
               </li>
               <li>
-                {{_('Greece with <a href="%s">Cosmote</a>')|format('http://www.cosmote.gr/cosmoportal/cosmote.portal?_nfpb=true&_pageLabel=HDV&sku=20290038&s=0')}}
+                {{_('Greece with <a href="%s">Cosmote</a>')|format('http://www.cosmote.gr/cosmoportal/cosmote.portal?_nfpb=true&amp;_pageLabel=HDV&amp;sku=20290038&amp;s=0')}}
               </li>
               <li>
-                {{_('Hungary with both <a href="%s">Telenor</a> and <a href="%s">T-Mobile</a>')|format('http://www.telenor.hu/mobiltelefon/alcatel/one-touch-fire', 'https://webshop.t-mobile.hu/webapp/wcs/stores/ProductDisplay?catalogId=2001&storeId=2001&langId=-11&productId=644566')}}
+                {{_('Hungary with both <a href="%s">Telenor</a> and <a href="%s">T-Mobile</a>')|format('http://www.telenor.hu/mobiltelefon/alcatel/one-touch-fire', 'https://webshop.t-mobile.hu/webapp/wcs/stores/ProductDisplay?catalogId=2001&amp;storeId=2001&amp;langId=-11&amp;productId=644566')}}
               </li>
               <li>
                 {{_('Italy with <a href="%s">TIM</a>')|format('http://www.tim.it/prodotti/alcatel-one-touch-fire-mozilla-orange')}}
@@ -113,6 +127,7 @@
             <p>
             {{_('As a result, more countries and mobile phone operators will be selling Firefox OS in the future.')}}
             {{_('Our operator partners will distribute the phones through a variety of locally-specific channels.')}}</p>
+          {% endif %}
           </dd>
 
           <dt>{{_('What will be the price of the phone?')}}</dt>
