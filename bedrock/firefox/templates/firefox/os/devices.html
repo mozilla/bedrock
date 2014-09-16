@@ -1399,6 +1399,15 @@
               </div>
             </a>
           </li>
+          <li>
+            <a href="#gofoxf15" class="device-thumbnail">
+              <img src="{{ media('/img/firefox/os/devices/smartphones/gofoxf15-thumb.png') }}" alt="">
+              <span class="device-name">{{ _('GoFox F15') }}</span>
+              <div class="availability-notice">
+                <span class="coming-soon">{{ _('Coming Soon') }}</span>
+              </div>
+            </a>
+          </li>
         </ul>
       </div>
 
@@ -1538,8 +1547,117 @@
             </div>{#--/.pager-content--#}
           </div>{#--/.container--#}
         </section>{#--/#spice_fireonemifx1--#}
+
+        <section class="device-detail smartphone-detail" id="gofoxf15">
+          <div id="gofoxf15-pager" class="container pager pager-with-tabs pager-no-history">
+            <header class="device-detail-header">
+              <h3 class="device-title">{{ _('GoFox F15') }}</h3>
+
+              <ul class="pager-tabs">
+                <li><a href="#p1" data-label="Features">{{_('Features')}}</a></li>
+                <li><a href="#p2" data-label="Specifications">{{_('Specifications')}}</a></li>
+              </ul>
+
+              <button class="device-detail-close">{{ _('Close') }}</button>
+            </header>
+
+            <div class="pager-content">
+              <div class="device-details features pager-page default-page" id="gofoxf15-features">
+                <div class="feature-group logo-colors">
+                </div>
+
+                <div class="feature-group image">
+                  <img src="{{ media('/img/firefox/os/devices/smartphones/gofoxf15.png') }}" alt="{{ _('GoFox F15') }}">
+                </div>
+
+                <div class="feature-group stats">
+                  <ul>
+                    <li class="stat-screen">
+                      <strong>{{ _('3.5" HVGA') }}</strong>
+                      <br>
+                    </li>
+                    <li class="stat-camera">
+                      <strong>{{ _('3.2 MP') }}</strong>
+                      {{ _('Rear camera') }}
+                    </li>
+                    <li class="stat-storage">
+                      <strong>{{ _('512 MB') }}</strong>
+                      {{ _('Internal memory') }} *
+                    </li>
+                  </ul>
+
+                  <small>* {{ memory_disclaimer }}</small>
+                </div>
+
+                <div class="feature-group availability">
+                  <h5>{{ _('Available in') }}</h5>
+
+                  <ul class="comma-list">
+                    <li>{{ _('Bangladesh') }}</li>
+                  </ul>
+
+                  <h5>{{ _('Operator') }}</h5>
+                  <ul class="comma-list">
+                    <li>{{ _('Grameenphone') }}</li>
+                  </ul>
+                </div>
+              </div>{#--/.features--#}
+              <div class="device-details specifications pager-page" id="gofoxf15-specifications">
+                <h4 class="device-details-title">{{ _('Specifications') }}</h4>
+
+                <table>
+                  <tr>
+                    <th>{{ _('Screen') }}</th>
+                    <td>
+                      {{ _('3.5" TFT HVGA') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Camera') }}</th>
+                    <td>
+                      {{ _('3.2 MP rear, 0.3 MP front') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Processor') }}</th>
+                    <td>
+                      {{ _('1.0 GHz') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Memory') }}</th>
+                    <td>
+                      <dl>
+                        <dt>{{ _('ROM') }} *</dt>
+                        <dd>{{ _('512 MB') }}</dd>
+
+                        <dt>{{ _('RAM') }}</dt>
+                        <dd>{{ _('512 MB') }}</dd>
+                      </dl>
+
+                      <small>* {{ memory_disclaimer }}</small>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Networks') }}</th>
+                    <td>
+                      {{ _('3G/EDGE') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Wireless') }}</th>
+                    <td>
+                      {{ _('Wi-Fi') }}
+                    </td>
+                  </tr>
+                </table>
+              </div>{#--/.specifications--#}
+            </div>{#--/.pager-content--#}
+          </div>{#--/.container--#}
+        </section>{#--/#gofoxf15--#}
       </div>{#--/.device-detail-list--#}
     </section>{#--/#smartphones--#}
+
     <div class="container">
       <aside id="fxos-links">
         <header class="section-header">
