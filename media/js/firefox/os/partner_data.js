@@ -42,11 +42,6 @@ if (typeof Mozilla == 'undefined') {
             'display': 'Alcatel One Touch Fire E',
             'countries': ['cz', 'de', 'pl']
         },
-        'gofoxf15': {
-            'type': 'smartphone',
-            'display': 'GoFox F15',
-            'countries': ['bd']
-        },
         'huawei_y300-2': {
             'type': 'smartphone',
             'display': 'Huawei Y300II',
