@@ -1,6 +1,10 @@
 $(function() {
     'use strict';
 
+    // For Adobe Reader we need a more complex match as, depending on the browser,
+    // it can report the name as either Adobe Reader or Adobe Acrobat.
+    // TODO: The below should be moved out into Perfidies.
+    var readerPattern = /Adobe \b(Reader|Acrobat)\b.*/g;
     var iconFor = function (pluginName) {
         if (pluginName.indexOf('Flash') >= 0) {
             return 'icon-flash.png';
@@ -24,7 +28,7 @@ $(function() {
             return 'icon-shockwave.png';
         } else if (pluginName.indexOf('RealPlayer') >= 0) {
             return 'icon-real.png';
-        } else if (pluginName.indexOf('Adobe Acrobat') >= 0) {
+        } else if (readerPattern.test(pluginName)) {
             return 'icon-acrobat.png';
         } else if (pluginName.indexOf('Office Live') >= 0) {
             return 'icon-officelive.png';
@@ -140,9 +144,9 @@ $(function() {
                     'icon': mediaURL + iconFor(plugin.name),
                     'plugin_name': plugin.name,
                     'plugin_detail': plugin.description,
-                    'plugin_status': window.trans('vulnerable'),
+                    'plugin_status': window.trans('outdated'),
                     'plugin_version': plugin.version,
-                    'button_update': window.trans('button_update'),
+                    'button_update': window.trans('button_outdated'),
                     'img_alt_txt': window.trans('icon_alt_txt'),
                     'url': url
                 };
@@ -201,9 +205,9 @@ $(function() {
                     'icon': mediaURL + iconFor(plugin.name),
                     'plugin_name': plugin.name,
                     'plugin_detail': plugin.description,
-                    'plugin_status': window.trans('vulnerable'),
+                    'plugin_status': window.trans('outdated'),
                     'plugin_version': plugin.version,
-                    'button_update': window.trans('button_update'),
+                    'button_update': window.trans('button_outdated'),
                     'img_alt_txt': window.trans('icon_alt_txt'),
                     'url': plugin.url
                 };

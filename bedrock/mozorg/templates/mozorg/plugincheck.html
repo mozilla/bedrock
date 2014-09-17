@@ -15,8 +15,11 @@
 {% block body_class %}sky{% endblock %}
 
 {% block string_data %}
-  {# L10n: This is a button telling the user to update their plugin #}
+  {# L10n: This is a button used with vulnerable plugins, telling the user to update their plugin urgently #}
   data-button_update="{{ _('Update Now') }}"
+
+  {# L10n: This is a button, used with outdated plugins, telling the user to update their plugin #}
+  data-button_outdated="{{ _('Update') }}"
 
   {# L10n: This is a button informing the user of an unknown plugin and provides a URL to research the status of the plugin #}
   data-button_research="{{ _('Research') }}"
@@ -29,6 +32,9 @@
 
   {# L10n: This is the string used to indicate that the plugin is unknown #}
   data-unknown="{{ _('unknown') }}"
+
+  {# L10n: This is the string used to indicate that the plugin is outdated #}
+  data-outdated="{{ _('Out Of Date') }}"
 
   {# L10n: This is the string used to indicate that the plugin is vulnerable #}
   data-vulnerable="{{ _('vulnerable') }}"
