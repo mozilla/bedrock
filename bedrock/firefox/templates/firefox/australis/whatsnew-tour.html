@@ -44,82 +44,84 @@
 
 {% block tour_content %}
   <div id="ui-tour" tabindex="-1" aria-expanded="false">
-    <div class="tour-inner">
-      <div id="tour-progress" class="progress-step">
-        <div class="logo"></div>
-        <span class="step"></span>
-        <div class="progress" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="4">
-          <span class="indicator"></span>
+    <div class="cta">
+      <button type="button" aria-controls="ui-tour">{{ _('Start browsing') }}</button>
+    </div>
+    <div class="tour-tip"></div>
+    <div class="ui-tour-controls">
+      <button class="step prev" aria-controls="tour-steps tour-progress">{{ _('Previous') }}</button>
+      <button class="step next" aria-controls="tour-steps tour-progress">{{ _('Next') }}</button>
+      <button class="close" aria-controls="tour-steps tour-progress">{{ _('Close') }}</button>
+    </div>
+    <div class="tour-background">
+      <div class="tour-inner">
+        <div id="tour-progress" class="progress-step">
+          <div class="logo"></div>
+          <span class="step"></span>
+          <div class="progress" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="4">
+            <span class="indicator"></span>
+          </div>
         </div>
-      </div>
-      <ul class="ui-tour-list">
-        <li class="tour-step current app-menu visible" data-step="1" data-tip-next="{{ _('<span>Next:</span> Customize') }}">
-          <div class="tour-item">
-            {# L10n: <br> tag below used for formatting only. #}
-            <h2 class="tour-highlight step-target" data-target="appMenu" data-effect="wobble">
-              {{ _('It starts with the redesigned,<br> intuitive menu') }}
-            </h2>
-            <ul class="tour-highlight step-target" data-target="appMenu" data-effect="wobble">
-              <li>{{ _('Your favorite features, all in one place') }}</li>
-              <li>{{ _('Grouped together for quick, easy access') }}</li>
-              <li><a href="#" role="button" class="more">{{ _('Learn how to customize your Firefox') }}</a></li>
-            </ul>
-          </div>
-          {{ high_res_img('img/firefox/australis/diag-menu-bar.jpg?03-2014', {'alt': _('Your favorite features, all in one place'), 'width': '300', 'height': '188'}) }}
-        </li>
-        <li class="tour-step app-menu" data-step="2" data-tip-prev="{{ _('<span>Previous:</span> Menu') }}" data-tip-next="{{ _('<span>Next:</span> Add-ons') }}">
-          <div class="tour-item">
-            {# L10n: <br> tag below used for formatting only. #}
-            <h2 class="tour-highlight step-target" data-target="customize" data-effect="wobble">
-              {{ _('Designed so you can<br> make it your own') }}
-            </h2>
-            <ul>
-              <li>{{ _('How you use Firefox is unique') }}</li>
-              <li>{{ _('Move or remove any button to match') }}</li>
-              <li><a href="#" role="button" class="more">{{ _('Add features and styles with add-ons') }}</a></li>
-            </ul>
-          </div>
-          {{ high_res_img('img/firefox/australis/diag-customize.jpg?03-2014', {'alt': _('Learn how to customize your Firefox'), 'width': '300', 'height': '188'}) }}
-        </li>
-        <li class="tour-step app-menu" data-step="3" data-tip-prev="{{ _('<span>Previous:</span> Customize') }}" data-tip-next="{{ _('<span>Next:</span> Bookmarks') }}">
-          <div class="tour-item">
-            {# L10n: <br> tag below used for formatting only. #}
-            <h2 class="tour-highlight step-target" data-target="addons" data-effect="wobble">
-              {{ _('Thousands of ways to<br> make Firefox do more') }}
-            </h2>
-            <ul>
-              <li>{{ _('Helps you do just about anything online') }}</li>
-              <li>{{ _('Now easier to find, use and manage') }}</li>
-              <li><a href="#" role="button" class="more">{{ _('Use the star to create bookmarks') }}</a></li>
-            </ul>
-          </div>
-          {{ high_res_img('img/firefox/australis/diag-addons.jpg?03-2014', {'alt': _('Add features and styles with add-ons'), 'width': '300', 'height': '188'}) }}
-        </li>
-        <li class="tour-step" data-step="4" data-tip-prev="{{ _('<span>Previous:</span> Add-ons') }}">
-          <div class="tour-item">
-            {# L10n: <br> tag below used for formatting only. #}
-            <h2 class="tour-highlight step-target" data-target="bookmarks" data-effect="wobble">
-              {{ _('Your favorite sites are<br> closer than ever') }}
-            </h2>
-            <ul>
-              <li>{{ _('Add and view bookmarks from a new location') }}</li>
-              <li>{{ _('Save sites with a single click') }}</li>
-              <li id="sync-link"><a href="#" role="button" class="more">{{ _('Enjoy seamless browsing between devices with Sync') }}</a></li>
-            </ul>
-          </div>
-          {{ high_res_img('img/firefox/australis/diag-bookmarks.jpg?03-2014', {'alt': _('Use the star to create bookmarks'), 'width': '300', 'height': '188'}) }}
-        </li>
-      </ul>
-      <div class="compact-title"></div>
-      <div class="tour-init" data-target="appMenu" data-icon="{{ MEDIA_URL }}img/firefox/australis/logo.png?2014-03" data-icon-high-res="{{ MEDIA_URL }}img/firefox/australis/logo-high-res.png?2014-03"></div>
-      <div class="cta">
-        <button type="button" aria-controls="ui-tour">{{ _('Start browsing') }}</button>
-      </div>
-      <div class="tour-tip"></div>
-      <div class="ui-tour-controls" aria-controls="ui-tour tour-content tour-progress">
-        <button class="step prev">{{ _('Previous') }}</button>
-        <button class="step next">{{ _('Next') }}</button>
-        <button class="close">{{ _('Close') }}</button>
+        <ul id="tour-steps" class="ui-tour-list">
+          <li class="tour-step current app-menu visible" data-step="1" data-tip-next="{{ _('<span>Next:</span> Customize') }}">
+            <div class="tour-item">
+              {# L10n: <br> tag below used for formatting only. #}
+              <h2 class="tour-highlight step-target" data-target="appMenu" data-effect="wobble">
+                {{ _('It starts with the redesigned,<br> intuitive menu') }}
+              </h2>
+              <ul class="tour-highlight step-target" data-target="appMenu" data-effect="wobble">
+                <li>{{ _('Your favorite features, all in one place') }}</li>
+                <li>{{ _('Grouped together for quick, easy access') }}</li>
+                <li><a href="#" role="button" class="more">{{ _('Learn how to customize your Firefox') }}</a></li>
+              </ul>
+            </div>
+            {{ high_res_img('img/firefox/australis/diag-menu-bar.jpg?03-2014', {'alt': _('Your favorite features, all in one place'), 'width': '300', 'height': '188'}) }}
+          </li>
+          <li class="tour-step app-menu" data-step="2" data-tip-prev="{{ _('<span>Previous:</span> Menu') }}" data-tip-next="{{ _('<span>Next:</span> Add-ons') }}">
+            <div class="tour-item">
+              {# L10n: <br> tag below used for formatting only. #}
+              <h2 class="tour-highlight step-target" data-target="customize" data-effect="wobble">
+                {{ _('Designed so you can<br> make it your own') }}
+              </h2>
+              <ul>
+                <li>{{ _('How you use Firefox is unique') }}</li>
+                <li>{{ _('Move or remove any button to match') }}</li>
+                <li><a href="#" role="button" class="more">{{ _('Add features and styles with add-ons') }}</a></li>
+              </ul>
+            </div>
+            {{ high_res_img('img/firefox/australis/diag-customize.jpg?03-2014', {'alt': _('Learn how to customize your Firefox'), 'width': '300', 'height': '188'}) }}
+          </li>
+          <li class="tour-step app-menu" data-step="3" data-tip-prev="{{ _('<span>Previous:</span> Customize') }}" data-tip-next="{{ _('<span>Next:</span> Bookmarks') }}">
+            <div class="tour-item">
+              {# L10n: <br> tag below used for formatting only. #}
+              <h2 class="tour-highlight step-target" data-target="addons" data-effect="wobble">
+                {{ _('Thousands of ways to<br> make Firefox do more') }}
+              </h2>
+              <ul>
+                <li>{{ _('Helps you do just about anything online') }}</li>
+                <li>{{ _('Now easier to find, use and manage') }}</li>
+                <li><a href="#" role="button" class="more">{{ _('Use the star to create bookmarks') }}</a></li>
+              </ul>
+            </div>
+            {{ high_res_img('img/firefox/australis/diag-addons.jpg?03-2014', {'alt': _('Add features and styles with add-ons'), 'width': '300', 'height': '188'}) }}
+          </li>
+          <li class="tour-step" data-step="4" data-tip-prev="{{ _('<span>Previous:</span> Add-ons') }}">
+            <div class="tour-item">
+              {# L10n: <br> tag below used for formatting only. #}
+              <h2 class="tour-highlight step-target" data-target="bookmarks" data-effect="wobble">
+                {{ _('Your favorite sites are<br> closer than ever') }}
+              </h2>
+              <ul>
+                <li>{{ _('Add and view bookmarks from a new location') }}</li>
+                <li>{{ _('Save sites with a single click') }}</li>
+                <li id="sync-link"><a href="#" role="button" class="more">{{ _('Enjoy seamless browsing between devices with Sync') }}</a></li>
+              </ul>
+            </div>
+            {{ high_res_img('img/firefox/australis/diag-bookmarks.jpg?03-2014', {'alt': _('Use the star to create bookmarks'), 'width': '300', 'height': '188'}) }}
+          </li>
+        </ul>
+        <div class="compact-title"></div>
+        <div class="tour-init" data-target="appMenu" data-icon="{{ MEDIA_URL }}img/firefox/australis/logo.png?2014-03" data-icon-high-res="{{ MEDIA_URL }}img/firefox/australis/logo-high-res.png?2014-03"></div>
       </div>
     </div>
   </div>
