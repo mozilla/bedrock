@@ -40,6 +40,7 @@
         <select name="location" id="location" autocomplete="off">
           <option value="" selected>{{ _('Select a location') }}</option>
           {# be nice to populate these via JS, but would make L10n difficult? #}
+          <option value="bd">{{ _('Bangladesh') }}</option>
           <option value="be">{{ _('Belgium') }}</option>
           <option value="br">{{ _('Brazil') }}</option>
           <option value="cl">{{ _('Chile') }}</option>
@@ -1214,6 +1215,7 @@
                   <h5>{{ _('Operators') }}</h5>
                   <ul class="comma-list">
                     <li>{{ _('Congstar') }}</li>
+                    <li>{{ _('O2') }}</li>
                     <li>{{ _('T-Mobile') }}</li>
                   </ul>
                 </div>
@@ -1404,7 +1406,7 @@
               <img src="{{ media('/img/firefox/os/devices/smartphones/gofoxf15-thumb.png') }}" alt="">
               <span class="device-name">{{ _('GoFox F15') }}</span>
               <div class="availability-notice">
-                <span class="coming-soon">{{ _('Coming Soon') }}</span>
+                <span class="is-available">{{ _('Available') }}</span>
               </div>
             </a>
           </li>
