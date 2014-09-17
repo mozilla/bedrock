@@ -72,6 +72,11 @@ if (typeof Mozilla == 'undefined') {
             'display': 'Symphony GoFox F15',
             'countries': ['bd']
         },
+        'zen_105fire': {
+            'type': 'smartphone',
+            'display': 'Zen 105 Fire',
+            'countries': ['in']
+        },
         'zte_open': {
             'type': 'smartphone',
             'display': 'ZTE Open',
