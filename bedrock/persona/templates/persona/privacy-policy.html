@@ -13,14 +13,14 @@
 {% block body_class %}sand{% endblock %}
 
 {% block site_header_logo %}
-  <h2><a href="/persona/"><img src="{{ MEDIA_URL }}img/persona/title.png" height="66" width="180" alt="{{ _('Mozilla Persona') }}"></a></h2>
+  <h2><a href="{{ url('persona.persona') }}"><img src="{{ MEDIA_URL }}img/persona/title.png" height="66" width="180" alt="{{ _('Mozilla Persona') }}"></a></h2>
 {% endblock %}
 {% block site_header_nav %}
   <nav id="nav-main" role="navigation">
     <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{_('Menu')}}</span>
     <ul id="nav-main-menu">
-      <li><a href="/persona/">{{ _('Home') }}</a></li>
-      <li><a href="/persona/about/">{{ _('About') }}</a></li>
+      <li><a href="{{ url('persona.persona') }}">{{ _('Home') }}</a></li>
+      <li><a href="{{ url('persona.about') }}">{{ _('About') }}</a></li>
       <li><a href="https://developer.mozilla.org/persona">{{ _('Developer Docs') }}</a></li>
     </ul>
   </nav>
@@ -32,8 +32,8 @@
 
 {% block breadcrumbs %}
   <nav class="breadcrumbs">
-    <a href="/">{{ _('Home') }}</a> >
-    <a href="/persona/">{{ _('Mozilla Persona') }}</a> >
+    <a href="{{ url('mozorg.home') }}">{{ _('Home') }}</a> >
+    <a href="{{ url('persona.persona') }}">{{ _('Mozilla Persona') }}</a> >
     <span>{{ _('Privacy Policy') }}</span>
   </nav>
 {% endblock %}
@@ -143,11 +143,11 @@
 
   <nav>
     <ul>
-      <li><a href="/persona/">{{ _('Persona') }}</a></li>
-      <li><a href="/persona/about/">{{ _('About') }}</a></li>
+      <li><a href="{{ url('persona.persona') }}">{{ _('Persona') }}</a></li>
+      <li><a href="{{ url('persona.about') }}">{{ _('About') }}</a></li>
       <li><a href="https://developer.mozilla.org/persona">{{ _('Developer Docs') }}</a></li>
       <li><b>{{ _('Privacy') }}</b></li>
-      <li><a href="/persona/terms-of-service/">{{ _('Terms of Service') }}</a></li>
+      <li><a href="{{ url('persona.terms-of-service') }}">{{ _('Terms of Service') }}</a></li>
     </ul>
   </nav>
 

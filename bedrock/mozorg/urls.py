@@ -47,7 +47,6 @@ urlpatterns = patterns('',
     page('about/governance/policies/security/plugin-whitelist-policy', 'mozorg/about/governance/policies/security/plugin-whitelist-policy.html'),
     page('about/governance/organizations', 'mozorg/about/governance/organizations.html'),
     page('about/governance/policies/participation', 'mozorg/about/governance/policies/participation.html'),
-    page('about/legal', 'mozorg/about/legal.html'),
 
     page('contact/spaces', 'mozorg/contact/spaces/spaces-landing.html'),
     page('contact/spaces/mountain-view', 'mozorg/contact/spaces/mountain-view.html'),

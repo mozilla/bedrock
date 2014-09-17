@@ -48,7 +48,7 @@ class TestFraudReport(TestCase):
         response = legal_views.fraud_report(request)
 
         eq_(response.status_code, 302)
-        eq_(response['Location'], '/en-US/legal/fraud-report/?submitted=True')
+        eq_(response['Location'], '/en-US/about/legal/fraud-report/?submitted=True')
 
     def test_view_post_missing_data(self):
         """
