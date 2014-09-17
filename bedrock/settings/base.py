@@ -229,7 +229,6 @@ MINIFY_BUNDLES = {
             'css/firefox/firstrun.less',
         ),
         'nightly_firstrun': (
-            'css/sandstone/video.less',
             'css/firefox/nightly_firstrun.less',
         ),
         'firefox_geolocation': (
