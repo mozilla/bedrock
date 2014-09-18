@@ -2,10 +2,18 @@
 
 {% block page_title %}Mozilla Web Application Security Bug Bounty FAQ{% endblock %}
 
+{% block breadcrumbs %}
+  <nav class="breadcrumbs">
+    <a href="{{ url('mozorg.home') }}">{{ _('Home') }}</a> &gt;
+    <a href="{{ url('security.index') }}">{{ _('Mozilla Security') }}</a> &gt;
+    <a href="{{ url('security.bug-bounty') }}">{{ _(' Bug Bounty ') }}</a> &gt;
+  </nav>
+{% endblock %}
+
 {% block article %}
   <article class="section-content" itemscope itemtype="http://schema.org/Article">
     <header>
-      <h1 itemprop="name">Web Application Security Bug Bounty FAQ</h1>
+      <h1 itemprop="name" class="title-shadow-box">Web Application Security Bug Bounty FAQ</h1>
     </header>
     <div itemprop="articleBody">
       <p>This FAQ attempts to answer various questions about how the
@@ -52,7 +60,7 @@
           bug bounty reward?</a></li>
       </ul>
       <h2>General questions</h2>
-      <dl class="qandaset">
+      <dl class="faq">
         <dt class="question" id="why">Why do we include web applications
           as part of our security Bug Bounty Program?</dt>
         <dd class="answer">
@@ -99,7 +107,7 @@
       </dl>
   
       <h2>Eligible bugs</h2>
-      <dl class="qandaset">
+      <dl class="faq">
         <dt class="question" id="eligible-bugs">Which domains and web applications
           will be considered to be part of the bug bounty?</dt>
         <dd class="answer">
@@ -139,7 +147,7 @@
             policy.</p>
         </dd>
       </dl>
-      <dl class="qandaset">
+      <dl class="faq">
         <dt class="question" id="issues">What types of issues will be considered
           as part of the bounty program?</dt>
         <dd class="answer">
@@ -167,7 +175,7 @@
       </dl>
   
       <h2>Bug reporting</h2>
-      <dl class="qandaset">
+      <dl class="faq">
         <dt class="question" id="what-next">Once I have found a
           vulnerability, what next?</dt>
         <dd class="answer">

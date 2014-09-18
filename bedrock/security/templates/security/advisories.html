@@ -1,25 +1,26 @@
 {% extends "security/base.html" %}
 
 {% block page_title %}Mozilla Foundation Secuirty Advisories{% endblock %}
+{% set body_id = "advisories" %}
 
 {% block article %}
   <article class="section-content" itemscope itemtype="http://schema.org/Article">
     <header>
-      <h1 itemprop="name">Mozilla Foundation Security Advisories</h1>
+      <h1 itemprop="name" class="title-shadow-box">Mozilla Foundation Security Advisories</h1>
     </header>
     <div itemprop="articleBody">
 
       {% include "security/partials/impact_key.html" %}
 
-      <ul>
-        {% for group in advisories|groupby('announced')|reverse %}
-          <li>{{ group.grouper|datetime }}<ul>
-            {% for advisory in group.list %}
-              <li><a class="{{ advisory.impact_class }}" href="{{ advisory.get_absolute_url() }}">{{ advisory.id }}</a>: {{ advisory.title|safe }}</li>
-            {% endfor %}
-          </ul></li>
-        {% endfor %}
-      </ul>
+      {% for group in advisories|groupby('announced')|reverse %}
+        <h2>{{ group.grouper|datetime }}</h2>
+        <ul>
+          {% for advisory in group.list %}
+            <li class="level-item">
+              <a class="level {{ advisory.impact_class }}" href="{{ advisory.get_absolute_url() }}">{{ advisory.id }}</a> {{ advisory.title|safe }}</li>
+          {% endfor %}
+        </ul>
+      {% endfor %}
     </div>
   </article>
 {% endblock %}

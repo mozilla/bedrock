@@ -8,6 +8,14 @@
   {{ css('security') }}
 {% endblock %}
 
+{% set navigation_bar = [
+    (url('security.index'), 'security-index', 'Mozilla Security'),
+    (url('security.advisories'), 'advisories', 'Security Advisories'),
+    (url('security.known-vulnerabilities'), 'known-vulnerabilities', 'Known Vulnerabilities'),
+    (url('security.bug-bounty'), 'bug-bounty', 'Bug Bounty'),
+    ('https://blog.mozilla.com/security/', 'blog', 'Security Blog'),
+] %}
+
 {% block body_class %}sand{% endblock %}
 
 {% block breadcrumbs %}
@@ -29,11 +37,15 @@
         {% block side_nav %}
           <nav>
             <ul>
-              <li><a href="{{ url('security.index') }}">Security Center</a></li>
-              <li><a href="{{ url('security.advisories') }}">Security Advisories</a></li>
-              <li><a href="{{ url('security.known-vulnerabilities') }}">Known Vulnerabilities</a></li>
-              <li><a href="{{ url('security.bug-bounty') }}">Bug Bounty</a></li>
-              <li><a href="http://blog.mozilla.com/security/">Security Blog</a></li>
+            {% for href, id, caption in navigation_bar %}
+              <li>
+              {% if id == body_id %}
+                <b>{{ caption|e }}</b>
+              {% else %}
+                <a href="{{ href|e }}">{{ caption|e }}</a>
+              {% endif %}
+              </li>
+            {% endfor %}
             </ul>
           </nav>
         {% endblock %}

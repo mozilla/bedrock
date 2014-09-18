@@ -6,26 +6,19 @@
 
 {% block page_title_suffix %}{% endblock %}
 {% block page_title %}{{ _('Mozilla Security') }}{% endblock %}
+{% set body_id = "security-index" %}
 
 {% block breadcrumbs %}{% endblock %}
 
 {% block body_id %}security-landing{% endblock %}
 
-{% block main_feature %}
-  <hgroup id="main-feature" class="center">
-    <h1 class="large">{{ _('Mozilla Security') }}</h1>
-  </hgroup>
-{% endblock %}
-
-{% block side_nav %}{% endblock %}
-
 {% block article %}
   <article class="section-content" itemscope itemtype="http://schema.org/Article">
     <header>
-      <h1 itemprop="name">Security Center</h1>
+      <h1 itemprop="name" class="title-shadow-box">Mozilla Security</h1>
     </header>
     <div itemprop="articleBody">
-      <p>Whether you're using the Web or checking your email, you care about
+      <p class="intro">Whether you’re using the Web or checking your email, you care about
         your security and privacy. In the Mozilla project
         <a href="{{ url('security.advisories') }}">we understand the importance of security</a>.
         Here you will find alerts and announcements on security and privacy
@@ -33,88 +26,94 @@
         more information about how we maintain and enhance the security of our
         products, and useful links for Web developers.</p>
 
-      <p>On this page:</p>
-
-      <ul class="toc">
-        <li><a href="#Security_Updates">Security Updates</a></li>
-        <li><a href="#Tips_for_secure_browsing">Tips for Secure Browsing</a></li>
-        <li><a href="#Tips_for_using_email_securely">Tips for Using Email Securely</a></li>
-        <li><a href="#For_Developers">For Developers: Contacting Mozilla</a>
-          (our <a href="#pgpkey">PGP key</a>)
+      <ul class="links">
+        <li>
+          <h4><a href="{{ url('security.advisories') }}">
+            Mozilla Foundation Security Advisories
+          </a></h4>
+          for all products
+        </li>
+        <li>
+          <h4><a href="{{ url('security.known-vulnerabilities') }}">
+            Known vulnerabilities
+          </a></h4>
+          listed by product
         </li>
       </ul>
-
-      <h2 id="Security_Updates">Security Updates</h2>
-
-      <ul>
-        <li><a href="{{ url('security.advisories') }}">
-          Mozilla Foundation Security Advisories</a> for all products
+      <ul class="links">
+        <li>
+          <h4>
+            <a href="http://blog.mozilla.com/">The Mozilla Blog
+          </a></h4>
+          announces all of our releases
         </li>
-        <li><a href="{{ url('security.known-vulnerabilities') }}">
-          Known vulnerabilities</a> listed by product
-        </li>
-        <li><a href="http://blog.mozilla.com/">The Mozilla Blog</a> announces
-          all of our releases.
-        </li>
-        <li><a href="http://blog.mozilla.com/security/">The Mozilla Security Blog</a>
+        <li>
+          <h4><a href="http://blog.mozilla.com/security/">
+            The Mozilla Security Blog
+          </a></h4>
           features security-related articles about Mozilla products.
         </li>
       </ul>
 
-      <p>The latest security updates will be delivered to most users
-        automatically. Users who have turned off automatic updates can use the
-        "Check for Updates..." item on the Help menu. If the menu item is disabled
-        your account does not have sufficient privileges to update Firefox--contact
-        the person who installed Firefox on your machine. Additional help is also
-        available through our <a href="http://support.mozilla.com/">Community
-          Support</a> site.</p>
+      <section id="updates">
+        <p>The latest security updates will be delivered to most users
+          automatically. Users who have turned off automatic updates can use the
+          "Check for Updates..." item on the Help menu. If the menu item is disabled
+          your account does not have sufficient privileges to update Firefox--contact
+          the person who installed Firefox on your machine. Additional help is also
+          available through our <a href="https://support.mozilla.org/">Community
+            Support</a> site.</p>
+      </section>
+      <section id="browsing">
+        <h2 id="Tips_for_secure_browsing">Tips for Secure Browsing</h2>
 
+        <ul>
+          <li>Always use the most current version of your
+            <a href="/firefox/">browser</a>.
+          </li>
+          <li>Check for the "lock" icon on the status bar that shows that you
+            are on a secured web site. Also check that the URL begins with
+            "https" in the location bar when making transactions online.
+          </li>
+          <li>In the Tools menu of Firefox, Tools &gt; Options... &gt; Privacy,
+            you can clear your information with one click of a button. This
+            is especially useful when using a computer in a public location.
+          </li>
+          <li>Perform transactions (like shopping or submitting personal
+            information) at sites that are well established and that are familiar
+            to you. If you're not familiar with a site, make sure that the
+            site has a privacy policy and information about the site's security
+            measures.
+          </li>
+        </ul>
+      </section>
 
-      <h2 id="Tips_for_secure_browsing">Tips for Secure Browsing</h2>
+      <section id="email">
+        <h2 id="Tips_for_using_email_securely">Tips for Using Email Securely</h2>
 
-      <ul>
-        <li>Always use the most current version of your
-          <a href="/firefox/">browser</a>.
-        </li>
-        <li>Check for the "lock" icon on the status bar that shows that you
-          are on a secured web site. Also check that the URL begins with
-          "https" in the location bar when making transactions online.
-        </li>
-        <li>In the Tools menu of Firefox, Tools &gt; Options... &gt; Privacy,
-          you can clear your information with one click of a button. This
-          is especially useful when using a computer in a public location.
-        </li>
-        <li>Perform transactions (like shopping or submitting personal
-          information) at sites that are well established and that are familiar
-          to you. If you're not familiar with a site, make sure that the
-          site has a privacy policy and information about the site's security
-          measures.
-        </li>
-      </ul>
+        <ul>
+          <li>Be aware that it is extremely easy for someone to forge an email
+            message to make it appear as if the message has been sent by your bank,
+            a software vendor (e.g., Microsoft), or another entity with whom you do
+            business. If a message requests that you send your password or other
+            private information, or asks that you run or install an attached file,
+            then it is very likely that the message is not legitimate. When in
+            doubt, just mark the message as "junk" and delete it.
+          </li>
+          <li>Be cautious when clicking on links sent to you in email messages.
+            If you do click on such a link, double-check the name of the site as
+            shown in the location bar of the browser, and be especially careful if
+            the site name displayed is an IP address (e.g., "192.168.25.75")
+            instead of a domain name (e.g., "www.example.com"); in the former case
+            it is very likely the site is not legitimate. Don't enter any personal
+            information into forms displayed at such a site, and if you have any
+            concerns whatsoever about your security, just close the browser window.
+          </li>
+        </ul>
+      </section>
 
-      <h2 id="Tips_for_using_email_securely">Tips for Using Email Securely</h2>
-
-      <ul>
-        <li>Be aware that it is extremely easy for someone to forge an email
-          message to make it appear as if the message has been sent by your bank,
-          a software vendor (e.g., Microsoft), or another entity with whom you do
-          business. If a message requests that you send your password or other
-          private information, or asks that you run or install an attached file,
-          then it is very likely that the message is not legitimate. When in
-          doubt, just mark the message as "junk" and delete it.
-        </li>
-        <li>Be cautious when clicking on links sent to you in email messages.
-          If you do click on such a link, double-check the name of the site as
-          shown in the location bar of the browser, and be especially careful if
-          the site name displayed is an IP address (e.g., "192.168.25.75")
-          instead of a domain name (e.g., "www.example.com"); in the former case
-          it is very likely the site is not legitimate. Don't enter any personal
-          information into forms displayed at such a site, and if you have any
-          concerns whatsoever about your security, just close the browser window.
-        </li>
-      </ul>
-
-      <h2 id="For_Developers">For Developers: Contacting Mozilla</h2>
+      <section id="developers">
+        <h2 id="For_Developers">For Developers: Contacting Mozilla</h2>
 
       <p>Report security-related bugs and learn more about how we secure our
         products:</p>
@@ -149,13 +148,14 @@
           and capabilities in our products.
         </li>
       </ul>
+    </section>
 
       <p>Press Contact: send mail to <em>press</em> at <em>mozilla dot com</em>.</p>
 
       <p id="pgpkey">The PGP key for security@mozilla.org can be used to send encrypted mail
         or to verify responses received from that address.</p>
 
-<pre>
+<pre class="pgp-key">
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 Version: GnuPG v1
 

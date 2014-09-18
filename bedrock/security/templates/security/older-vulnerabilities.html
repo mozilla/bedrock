@@ -1,10 +1,14 @@
 {% extends "security/base.html" %}
 
-{% block page_title %}Older Vulnerabilities in Mozilla Products{% endblock %}
+{% block page_title %}{{ _('Older Vulnerabilities in Mozilla Products') }}{% endblock %}
 
 {% block article %}
-  <h2>Older Vulnerabilities in Mozilla Products</h2>
-  <p>This page archives security announcements made for older versions of
+  <article class="section-content" itemscope itemtype="http://schema.org/Article">
+    <header>
+      <h1 itemprop="name" class="title-shadow-box">{{ self.page_title() }}</h1>
+    </header>
+    <div itemprop="articleBody">
+    <p class="intro">This page archives security announcements made for older versions of
     Mozilla projects. Please see the active <a href="{{ url('security.known-vulnerabilities') }}">
       Known Vulnerabilities</a> page for more recent security advisories.</p>
 
@@ -1542,4 +1546,6 @@
   </tr>
   </tbody>
   </table>
+  </div>
+</article>
 {% endblock %}
