@@ -151,10 +151,10 @@ class FirefoxDetails(ProductDetails):
         :return: string url
         """
         # Bug 1069545
-        # Have to serve OS X 32.0.1 until Apple whitelists 32.0.2 :/
+        # Have to serve OS X 32.0 until Apple whitelists 32.0.2 :/
         # TODO: REMOVE ME WHEN APPLE DOES THEIR JOB
-        if platform == 'OS X' and version == '32.0.2':
-            version = '32.0.1'
+        if platform == 'OS X' and version.startswith('32.0.'):
+            version = '32.0'
 
         if platform == 'OS X' and language == 'ja':
             language = 'ja-JP-mac'
