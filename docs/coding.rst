@@ -111,23 +111,13 @@ Make sure to namespace your templates by putting them in a directory
 named after your app, so instead of templates/template.html they would
 be in templates/blog/template.html if `blog` was the name of your app.
 
-Python and Django Style
------------------------
+Coding Style Guides
+-------------------
 
-See the `Mozilla Coding Standards
-<http://mozweb.readthedocs.org/en/latest/coding.html>`_.
-
-JavaScript Style
-----------------
-
-See the `Mozilla JS Style Guide
-<http://mozweb.readthedocs.org/en/latest/js-style.html>`_.
-
-CSS Style
----------
-
-See the `Mozilla CSS Style Guide
-<http://mozweb.readthedocs.org/en/latest/css-style.html>`_.
+* `Mozilla Python Style Guide <http://mozweb.readthedocs.org/en/latest/reference/python-style.html>`_
+* `Mozilla HTML Style Guide <http://mozweb.readthedocs.org/en/latest/reference/html-style.html>`_
+* `Mozilla JS Style Guide <http://mozweb.readthedocs.org/en/latest/reference/js-style.html>`_
+* `Mozilla CSS Style Guide <http://mozweb.readthedocs.org/en/latest/reference/css-style.html>`_
 
 Use the ``.open-sans``, ``.open-sans-light`` and ``.open-sans-extrabold`` mixins
 to specify font families to allow using international fonts. See the :ref:
