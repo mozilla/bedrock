@@ -66,7 +66,7 @@ def page(name, tmpl, decorators=None, **kwargs):
         kwargs.setdefault('urlname', view_name)
 
         # skip l10n if path exempt
-        name_prefix = request.path.split('/', 2)[1]
+        name_prefix = request.path_info.split('/', 2)[1]
         if name_prefix in settings.SUPPORTED_NONLOCALES:
             return django_render(request, tmpl, kwargs)
 
