@@ -21,6 +21,20 @@
       <h2>{{ advisory.title|safe }}</h2>
 
       <dl class="summary">
+        {% if advisory.announced %}
+          <dt>Announced</dt>
+          <dd>{{ advisory.announced|datetime }}</dd>
+        {% endif %}
+        {% if advisory.reporter %}
+          <dt>Reporter</dt>
+          <dd>{{ advisory.reporter }}</dd>
+        {% endif %}
+        {% if 'risk' in advisory.extra_data %}
+          <dt>Risk</dt>
+          <dd>{{ advisory.extra_data.risk }}</dd>
+        {% endif %}
+        <dt>Impact</dt>
+        <dd><span class="level {{ advisory.impact_class }}">{{ advisory.impact }}</span></dd>
         <dt>Fixed in</dt>
         <dd>
           <ul>
@@ -37,8 +51,16 @@
             {% endfor %}
           </ul>
         </dd>
-        <dt>Impact</dt>
-        <dd><span class="level {{ advisory.impact_class }}">{{ advisory.impact }}</span></dd>
+        {% if 'vulnerable' in advisory.extra_data %}
+          <dt>Vulnerable</dt>
+          <dd>
+            <ul>
+              {% for prod in advisory.extra_data.vulnerable %}
+                <li>{{ prod }}</li>
+              {% endfor %}
+            </ul>
+          </dd>
+        {% endif %}
       </dl>
 
       {{ advisory.html|safe }}
