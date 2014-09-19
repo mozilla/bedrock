@@ -186,6 +186,10 @@ MINIFY_BUNDLES = {
         'firefox_channel': (
             'css/firefox/channel.less',
         ),
+        'firefox-dashboard': (
+            'css/base/mozilla-accordion.less',
+            'css/firefox/dashboard.less',
+        ),
         'firefox_desktop': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/desktop/intro-anim.less',
