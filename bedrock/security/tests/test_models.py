@@ -12,8 +12,10 @@ class TestModels(TestCase):
         pv2 = Product.objects.create(name='Firefox 24.0')
         pv0 = Product.objects.create(name='Fennec 24.0')
         pv1 = Product.objects.create(name='Firefox 23.0')
-        pvs = [pv2, pv0, pv3, pv1]
-        self.assertListEqual([pv0, pv1, pv2, pv3], sorted(pvs))
+        pv4 = Product.objects.create(name='Firefox 25')
+        pv5 = Product.objects.create(name='Firefox 22')
+        pvs = [pv2, pv0, pv3, pv1, pv4, pv5]
+        self.assertListEqual([pv0, pv5, pv1, pv2, pv3, pv4], sorted(pvs))
 
     def test_product_version_slug(self):
         """Slug should include the version."""
