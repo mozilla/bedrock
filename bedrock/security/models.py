@@ -28,6 +28,8 @@ class Product(models.Model):
     @property
     def name_tuple(self):
         name, vers = self.name.rsplit(None, 1)
+        if '.' not in vers:
+            vers += '.0'
         return name, Version(vers)
 
     @property
