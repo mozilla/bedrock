@@ -34,12 +34,6 @@
                  */
                 return 'oldwin';
             }
-            if (ua.indexOf("MSIE 6.0") !== -1 &&
-                    ua.indexOf("Windows NT 5.1") !== -1 &&
-                    ua.indexOf("SV1") === -1) {
-                // Windows XP SP1
-                return 'oldwin';
-            }
             if (pf.indexOf("Win32") !== -1 ||
                     pf.indexOf("Win64") !== -1) {
                 return 'windows';
