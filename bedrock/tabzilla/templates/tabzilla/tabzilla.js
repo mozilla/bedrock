@@ -650,21 +650,12 @@ var Tabzilla = (function (Tabzilla) {
       '<div id="tabzilla-panel" class="tabzilla-closed" tabindex="-1">'
     + '  <div id="tabzilla-contents">'
     + '    <div id="tabzilla-promo">'
-{% if l10n_has_tag('promo_webwewant') or settings.DEV %}
-    + '      <div class="snippet" id="tabzilla-promo-webwewant">'
-    + '        <a href="https://webwewant.mozilla.org/?icn=tabz">'
-    + '          <h4>{{ _('What kind of Web do you want?')|js_escape }}</h4>'
-    + '          <p>{{ _('Share your vision')|js_escape }}</p>'
-    + '        </a>'
-    + '      </div>'
-{% else %}
     + '      <div class="snippet" id="tabzilla-promo-fxos">'
     + '        <a href="https://www.mozilla.org/firefox/os/?icn=tabz">'
     + '          <h4>{{ _('Look ahead')|js_escape }}</h4>'
     + '          <p>{{ _('Learn all about Firefox OS')|js_escape }} »</p>'
     + '        </a>'
     + '      </div>'
-{% endif %}
     + '    </div>'
     + '    <div id="tabzilla-nav">'
     + '      <ul>'
