@@ -1,0 +1,100 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "/firefox/dashboard-base.html" %}
+
+{# The contents of the page_title block appears in the:
+   1. HTML page title
+   3. Breadcrumbs ("Home > Title")
+   3. Page title (large headline) 
+#}
+{% block page_title %}{{ _('Lorem ipsum dolor sit amet') }}{% endblock %}
+
+
+{# The contents of the dashboard_intro block appears at the top of the page
+   below the page title. Paragraphs should be wrapped like this:
+      <p>{% trans %}
+        Paragraph contents go here.
+      {% endtrans %}</p>
+
+   If the paragraph includes a link, the URL should be speparate to simplify localization:
+      <p>{% trans url='https://www.example.com/' %}
+         Paragraph <a href="{{ url }}">contents</a> go here.
+       {% endtrans %}</p>
+
+#}
+{% block dashboard_intro %}
+
+<p>{% trans %}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur.
+{% endtrans %}</p>
+
+<p>{% trans %}
+Pellentesque auctor nisi id magna consequat sagittis. Curabitur dapibus enim sit amet elit pharetra tincidunt feugiat nisl imperdiet. Ut convallis libero in urna ultrices accumsan. Donec sed odio eros. Donec viverra mi quis quam pulvinar at malesuada arcu rhoncus.
+{% endtrans %}</p>
+
+{% endblock %}
+
+
+{# The contents of the dashboard_faq block appears below the intro. For each question/answer
+   use the following format:
+
+    <section>
+      <h3 data-accordion-role="tab">{{ _('Question title goes here?') }}</h3>
+      <div data-accordion-role="tabpanel">
+        <p>
+          {% trans %}
+            Question answer goes here.
+          {% endtrans %}
+        </p>
+      </div>
+    </section>
+
+#}
+
+{% block dashboard_faq %}
+<section id="faq" class="accordion accordion-auto-init zebra">
+<h2>{{ _('Lorem ipsum dolor sit amet') }}</h2>
+
+<section>
+  <h3 data-accordion-role="tab">{{ _('Suspendisse lectus leo?') }}</h3>
+  <div data-accordion-role="tabpanel">
+    <p>
+      {% trans %}
+        Suspendisse lectus leo, consectetur in tempor sit amet, placerat quis neque. Etiam luctus porttitor lorem, sed suscipit est rutrum non. Curabitur lobortis nisl a enim congue semper. Aenean commodo ultrices imperdiet. Vestibulum ut justo vel sapien venenatis tincidunt. Phasellus eget dolor sit amet ipsum dapibus condimentum vitae quis lectus. Aliquam ut massa in turpis dapibus convallis. Praesent elit lacus, vestibulum at malesuada et, ornare et est. Ut augue nunc, sodales ut euismod non, adipiscing vitae orci.
+      {% endtrans %}
+    </p>
+  </div>
+</section>
+
+<section>
+  <h3 data-accordion-role="tab">{{ _('Adipiscing vitae orci?') }}</h3>
+  <div data-accordion-role="tabpanel">
+    <p>
+      {% trans %}
+        Suspendisse lectus leo, consectetur in tempor sit amet, placerat quis neque. Etiam luctus porttitor lorem, sed suscipit est rutrum non. Curabitur lobortis nisl a enim congue semper. Aenean commodo ultrices imperdiet. Vestibulum ut justo vel sapien venenatis tincidunt. Phasellus eget dolor sit amet ipsum dapibus condimentum vitae quis lectus. Aliquam ut massa in turpis dapibus convallis. Praesent elit lacus, vestibulum at malesuada et, ornare et est. Ut augue nunc, sodales ut euismod non, adipiscing vitae orci.
+      {% endtrans %}
+    </p>
+  </div>
+</section>
+
+</section><!-- end #faq -->
+{% endblock %}
+
+
+
+{# The contents of the dashboard_sidebar block appears in a right-column in desktop browsers
+   and below the rest of the page contents in mobile browsers.
+#}
+
+{% block dashboard_sidebar %}
+
+<h4>{{ _('Lorem ipsum dolor sit amet') }}</h4>
+<p>
+  {% trans %}
+  Suspendisse lectus leo, consectetur in tempor sit amet, placerat quis neque. Etiam luctus porttitor lorem, sed suscipit est rutrum non. Curabitur lobortis nisl a enim congue semper. Aenean commodo ultrices imperdiet. Vestibulum ut justo vel sapien venenatis tincidunt. Phasellus eget dolor sit amet ipsum dapibus condimentum vitae quis lectus. Aliquam ut massa in turpis dapibus convallis. Praesent elit lacus, vestibulum at malesuada et, ornare et est. Ut augue nunc, sodales ut euismod non, adipiscing vitae orci.
+  {% endtrans %}
+</p>
+
+{% endblock %}
