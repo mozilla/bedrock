@@ -27,10 +27,15 @@ class Product(models.Model):
 
     @property
     def name_tuple(self):
-        name, vers = self.name.rsplit(None, 1)
+        product, vers = self.name.rsplit(None, 1)
         if '.' not in vers:
             vers += '.0'
-        return name, Version(vers)
+        return product, Version(vers)
+
+    @property
+    def html_id(self):
+        """Conform to the IDs from the old page so old URL anchors work."""
+        return self.slug.replace('-', '')
 
     @property
     def version(self):
@@ -45,9 +50,11 @@ class Product(models.Model):
 
     def save(self, force_insert=False, force_update=False,
              using=None, update_fields=None):
-        self.product = self.name_tuple[0]
-        self.product_slug = slugify(self.product)
-        self.slug = '{0}-{1}'.format(self.product_slug, self.version)
+        # do not use self.name_tuple because don't want ".0" on versions.
+        product, vers = self.name.rsplit(None, 1)
+        self.product = product
+        self.product_slug = slugify(product)
+        self.slug = '{0}-{1}'.format(self.product_slug, vers)
         super(Product, self).save(force_insert, force_update,
                                   using, update_fields)
 

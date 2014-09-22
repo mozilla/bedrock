@@ -4,6 +4,7 @@
 from django.test import RequestFactory
 
 from mock import patch, Mock
+from nose.tools import eq_
 from product_details.version_compare import Version
 
 from bedrock.mozorg.tests import TestCase
@@ -109,6 +110,8 @@ class TestLastModified(TestCase):
                          for i in range(1, 5)]
         # make sure the one with no point version is included
         advisories_29.append(self.new_advisory(fixed_in=['Firefox 29.0']))
+        # make sure the one outside of 29.0 isn't included
+        self.new_advisory(fixed_in=['Firefox 29.1'])
         req = self.rf.get('/')
         req.resolver_match = Mock()
         req.resolver_match.url_name = 'security.product-version-advisories'
@@ -118,3 +121,18 @@ class TestLastModified(TestCase):
         self.assertEqual(advisories_30[1], qs.get())
         qs = latest_queryset(req, {'slug': 'firefox-29.0'})
         self.assertListEqual(advisories_29, list(qs.order_by('year', 'order')))
+
+
+class TestKVRedirects(TestCase):
+    def _test_names(self, url_component, expected):
+        path = '/security/known-vulnerabilities/{0}.html'.format(url_component)
+        resp = self.client.get(path)
+        eq_(resp.status_code, 301)
+        eq_(expected, resp['Location'].split('/')[-2])
+
+    def test_correct_redirects(self):
+        self._test_names('firefox', 'firefox')
+        self._test_names('firefoxESR', 'firefox-esr')
+        self._test_names('firefox20', 'firefox-2.0')
+        self._test_names('thunderbird15', 'thunderbird-1.5')
+        self._test_names('suite17', 'mozilla-suite')

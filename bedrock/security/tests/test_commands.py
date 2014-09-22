@@ -9,10 +9,14 @@ from bedrock.security.management.commands import update_security_advisories
 
 class TestUpdateSecurityAdvisories(TestCase):
     def test_fix_product_name(self):
-        """Should fix SeaMonkey and nothing else."""
+        """Should fix SeaMonkey and strip '.0' from names."""
         eq_(update_security_advisories.fix_product_name('Seamonkey 2.2'),
             'SeaMonkey 2.2')
         eq_(update_security_advisories.fix_product_name('Firefox 2.2'),
             'Firefox 2.2')
         eq_(update_security_advisories.fix_product_name('fredflintstone 2.2'),
             'fredflintstone 2.2')
+        eq_(update_security_advisories.fix_product_name('Firefox 32.0'),
+            'Firefox 32')
+        eq_(update_security_advisories.fix_product_name('Firefox 32.0.1'),
+            'Firefox 32.0.1')
