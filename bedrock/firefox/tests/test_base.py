@@ -284,6 +284,18 @@ class TestFirefoxAll(TestCase):
         num_builds += len(firefox_details.get_filtered_test_builds(release))
         eq_(len(doc('tr[data-search]')), num_builds)
 
+    def test_no_locale_details(self):
+        """
+        When a localized build has been added to the Firefox details while the
+        locale details are not updated yet, the filtered build list should not
+        include the localized build.
+        """
+        release = firefox_details.latest_version('release')
+        builds = firefox_details.get_filtered_full_builds(release)
+        ok_('uz' in firefox_details.firefox_primary_builds)
+        ok_('uz' not in firefox_details.languages)
+        eq_(len([build for build in builds if build['locale'] == 'uz']), 0)
+
 
 class TestFirefoxPartners(TestCase):
     @patch('bedrock.firefox.views.settings.DEBUG', True)

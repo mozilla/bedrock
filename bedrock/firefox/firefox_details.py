@@ -89,6 +89,9 @@ class FirefoxDetails(ProductDetails):
         """
         f_builds = []
         for locale, build in builds.iteritems():
+            if locale not in self.languages:
+                continue
+
             build_info = {
                 'locale': locale,
                 'name_en': self.languages[locale]['English'],
