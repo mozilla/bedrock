@@ -1,0 +1,64 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "legal/base-resp.html" %}
+
+{% block page_title %}{{ _('Legal') }}{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block body_id %}legal-landing{% endblock %}
+
+{% block main_feature %}
+  <h1 id="main-feature" class="center large">{{ self.page_title() }}</h1>
+{% endblock %}
+
+{% block article %}
+
+  <section class="section-content section-terms">
+    <h2>{{ _('Terms') }}</h2>
+    <ul class="icon-list">
+      <li class="terms-websites"><a href="{{ url('legal.terms.mozilla') }}"><span>{{ _('Our Websites') }}</span></a></li>
+      <li class="terms-firefox"><a href="{{ url('legal.terms.services') }}"><span>{{ _('Firefox Services') }}</span></a></li>
+      <li class="terms-webmaker"><a href="https://webmaker.org/terms"><span>{{ _('Webmaker') }}</span></a></li>
+      <li class="terms-marketplace"><a href="https://marketplace.firefox.com/terms-of-use"><span>{{ _('Firefox Marketplace') }}</span></a></li>
+    </ul>
+  </section>
+
+  <section class="section-content section-terms">
+    <h2>{{ _('Privacy & trademarks') }}</h2>
+    <ul class="icon-list">
+      <li><a href="{{ url('privacy') }}"><span>{{ _('Privacy Notices and Policy') }}</span></a></li>
+      <li><a href="{{ url('foundation.trademarks.policy' ) }}"><span>{{ _('Trademark Policy') }}</span></a></li>
+    </ul>
+  </section>
+
+  <section class="section-content section-terms">
+    <h2>{{ _('Downloadable software notices') }}</h2>
+    <ul class="icon-list">
+      <li class="terms-firefox"><a href="{{ url('legal.terms.firefox') }}"><span>{{ _('Firefox') }}</span></a></li>
+      <li class="terms-thunderbird"><a href="{{ url('legal.terms.thunderbird') }}"><span>{{ _('Thunderbird') }}</span></a></li>
+    </ul>
+  </section>
+
+{% endblock %}
+
+{% block side_nav %}{% endblock %}
+
+{% block side_extra %}
+  <section id="side-involved">
+    <h3>{{ _('Get involved') }}</h3>
+    <p>{{ _('Special thanks to all of you who help report abuses of Mozilla marks, participate in governance forums, give feedback on our localizations & legal terms, and contribute your skills to the success of the Mozilla project.') }}</p>
+    <a href="{{ url('mozorg.contribute') }}">{{ _('Get involved!') }}</a>
+  </section>
+  <section>
+    <h3>{{ _('Protect the Fox') }}</h3>
+    <p><a href="{{ url('legal.fraud-report') }} ">{{ _('Help us protect our users by reporting abuse of Mozilla Trademarks.') }}</a></p>
+  </section>
+  <section>
+    <h3>{{ _('Takedown requests') }}</h3>
+    <p><a href="{{ url('legal.report-abuse') }}">{{ _('Report abuse of your copyrights and trademarks.') }}</a></p>
+  </section>
+
+{% endblock %}

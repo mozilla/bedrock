@@ -115,4 +115,11 @@ urlpatterns = patterns(
     redirect(r'^foundation/annualreport/$',
              'foundation.annualreport.2012.index',
              name='foundation.annualreport'),
+
+    # Bug 997577 - /legal/ -> /about/legal/
+    redirect(r'^legal/fraud-report/$', '/about/legal/fraud-report/'),
+    redirect(r'^legal/eula/$', '/about/legal/eula/'),
+    redirect(r'^legal/eula/firefox-2/$', '/about/legal/eula/firefox-2/'),
+    redirect(r'^legal/eula/firefox-3/$', '/about/legal/eula/firefox-3/'),
+
 )

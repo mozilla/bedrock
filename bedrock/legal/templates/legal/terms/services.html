@@ -1,0 +1,20 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "legal/docs-base.html" %}
+
+{% block page_title %}{{ _('Firefox Cloud Services: Terms of Service') }}{% endblock %}
+
+{% block article %}
+
+  <article class="section-content" itemscope itemtype="http://schema.org/Article">
+    <header>
+      <h1 class="title-shadow-box">{{ self.page_title() }}</h1>
+    </header>
+    <div itemprop="articleBody" class="article-body">
+      {{ doc|safe }}
+    </div>
+  </article>
+
+{% endblock %}
