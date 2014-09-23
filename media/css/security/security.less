@@ -34,20 +34,20 @@
     padding: 4px 2px 4px 4px;
     top: .714rem;
     left: 0;
-    text-shadow: 1px 1px 0 #fff;
+    text-shadow: 1px 1px 0 rgba(255,255,255,.5);
     text-transform: uppercase;
     width: 80px;
     &.critical {
-        background-color: #ffc8c8;
-        border-color: #c00;
+        background-color: #ff8080;
+        border-color: #ff2020;
     }
     &.high {
-        background-color: #e9cfff;
-        border-color: #8106e0;
+        background-color: #ffc080;
+        border-color: #ff6c20;
     }
     &.moderate {
-        background-color: #ffedcf;
-        border-color: #f90;
+        background-color: #fcf580;
+        border-color: #f6e120;
     }
     // none for .level.low
 }
@@ -95,6 +95,25 @@ li:target {
     }
 }
 
+p.note {
+    border-color: @borderColor;
+    border-style: dotted;
+    border-width: 1px 0;
+    color: @textColorTertiary;
+    background: #f1f1f1;
+    padding: @baseLine;
+}
+
+.level-heading {
+    position: relative;
+    .anchor {
+        position: absolute;
+        left: -1em;
+        font-size: @baseFontSize;
+        color: @textColorLight;
+        vertical-align: middle;
+    }
+}
 
 #outer-wrapper {
   overflow: hidden; /* Fix the layout on IE */
@@ -211,6 +230,15 @@ li:target {
     .box-shadow(@shadow);
 }
 
+#older-vulnerabilities {
+    .main-column {
+        .span-all();
+        .table {
+            background: #fff;
+        }
+    }
+}
+
 /* Tablet & Mobile */
 
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
@@ -229,6 +257,10 @@ li:target {
     margin: 0;
     width: (@gridColumnWidthNarrow * 4) + (@gridGutterWidth * 6);
   }
+
+    #older-vulnerabilities .main-column {
+        .span-all();
+    }
 
 }
 
