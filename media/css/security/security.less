@@ -230,6 +230,15 @@ p.note {
     .box-shadow(@shadow);
 }
 
+#older-vulnerabilities {
+    .main-column {
+        .span-all();
+        .table {
+            background: #fff;
+        }
+    }
+}
+
 /* Tablet & Mobile */
 
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
@@ -248,6 +257,10 @@ p.note {
     margin: 0;
     width: (@gridColumnWidthNarrow * 4) + (@gridGutterWidth * 6);
   }
+
+    #older-vulnerabilities .main-column {
+        .span-all();
+    }
 
 }
 
