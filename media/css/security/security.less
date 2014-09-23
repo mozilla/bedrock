@@ -104,6 +104,17 @@ p.note {
     padding: @baseLine;
 }
 
+.level-heading {
+    position: relative;
+    .anchor {
+        position: absolute;
+        left: -1em;
+        font-size: @baseFontSize;
+        color: @textColorLight;
+        vertical-align: middle;
+    }
+}
+
 #outer-wrapper {
   overflow: hidden; /* Fix the layout on IE */
 }

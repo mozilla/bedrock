@@ -13,7 +13,8 @@
 
       {% for version in product_versions %}
         <h3 id="{{ version.slug }}" class="level-heading">
-          Fixed in {{ version.name }} <a class="anchor" href="#{{ version.slug }}">#</a>
+          <a class="anchor" href="#{{ version.slug }}">#</a>
+          Fixed in {{ version.name }}
         </h3>
         <ul>
         {% for advisory in version.advisories.all() %}
