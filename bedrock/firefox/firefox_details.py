@@ -143,6 +143,12 @@ class FirefoxDetails(ProductDetails):
         return self._get_filtered_builds(self.firefox_beta_builds,
                                          version, query)
 
+    @property
+    def osx_is_behind(self):
+        latest_version = self.latest_version('release')
+        osx_vers = self.get_osx_approved_version(latest_version)
+        return latest_version != osx_vers
+
     def get_osx_approved_version(self, version):
         # Bug 1069545
         release_whitelist = settings.FIREFOX_OSX_APPROVED_VERSION

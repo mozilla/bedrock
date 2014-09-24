@@ -249,6 +249,19 @@ class TestFirefoxDetails(TestCase):
         eq_(firefox_details.get_osx_approved_version('29.0.4'), '29.0.4')
         eq_(firefox_details.get_osx_approved_version('31.0.4'), '31.0.4')
 
+    @override_settings(FIREFOX_OSX_APPROVED_VERSION='30.0.2')
+    def test_osx_is_behind(self):
+        """Should return true if the OSX pinned version and latest release don't match."""
+        with patch.dict(firefox_details.firefox_versions, LATEST_FIREFOX_VERSION='30.0.2'):
+            ok_(not firefox_details.osx_is_behind)
+
+        # different major version should be OK
+        with patch.dict(firefox_details.firefox_versions, LATEST_FIREFOX_VERSION='31.0.2'):
+            ok_(not firefox_details.osx_is_behind)
+
+        with patch.dict(firefox_details.firefox_versions, LATEST_FIREFOX_VERSION='30.0.3'):
+            ok_(firefox_details.osx_is_behind)
+
 
 @patch.object(fx_views, 'mobile_details', mobile_details)
 class TestMobileDetails(TestCase):

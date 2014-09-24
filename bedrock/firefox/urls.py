@@ -6,6 +6,7 @@ from django.conf.urls import patterns, url
 from commonware.response.decorators import xframe_allow
 
 from bedrock.firefox import version_re
+from bedrock.firefox.firefox_details import firefox_details
 from bedrock.redirects.util import redirect
 from bedrock.mozorg.util import page
 import views
@@ -48,7 +49,8 @@ urlpatterns = patterns('',
     page('firefox/sync', 'firefox/sync.html'),
     page('firefox/tiles', 'firefox/tiles.html'),
     page('firefox/unsupported-systems', 'firefox/unsupported-systems.html'),
-    page('firefox/new', 'firefox/new.html', decorators=xframe_allow),
+    page('firefox/new', 'firefox/new.html', decorators=xframe_allow,
+         osx_is_behind=firefox_details.osx_is_behind),
     page('firefox/organizations/faq', 'firefox/organizations/faq.html'),
     page('firefox/organizations', 'firefox/organizations/organizations.html'),
     page('firefox/nightly/firstrun', 'firefox/nightly_firstrun.html'),
