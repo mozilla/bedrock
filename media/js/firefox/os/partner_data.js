@@ -57,6 +57,11 @@ if (typeof Mozilla == 'undefined') {
             'display': 'LG Fireweb',
             'countries': ['br', 'uy']
         },
+        'spice_fireonemifx1': {
+            'type': 'smartphone',
+            'display': 'Spice Fire One MI FX1',
+            'countries': ['in']
+        },
         'symphony_gofoxf15': {
             'type': 'smartphone',
             'display': 'Symphony GoFox F15',
