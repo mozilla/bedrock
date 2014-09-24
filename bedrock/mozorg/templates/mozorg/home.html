@@ -60,34 +60,7 @@
     <ul class="accordion">
 
 {# Position 1: "Shape Environments" #}
-    {% if request.locale == 'en-US' or settings.DEV %}
-      <li id="panel-netneutrality" class="panel" tabindex="0">
-        <h2 class="panel-title">{{ _('Protect net neutrality') }}</h2>
-        <div class="panel-inner">
-          <div class="panel-content">
-            <a href="https://sendto.mozilla.org/page/s/protect-net-neutrality" rel="external">
-              <h3>{{ _('Stand with Mozilla') }}</h3>
-              <p>{{ _('Tell U.S. Congress to protect a level playing field on the open Web, now and forever.') }}</p>
-              <p class="go">{{ _('Write to your legislator') }}</p>
-            </a>
-          </div>
-        </div>
-      </li>
-    {% elif l10n_has_tag('promo_webwewant') or settings.DEV %}
-      <li id="panel-webwewant" class="panel" tabindex="0">
-        <h2 class="panel-title">{{ _('The Web needs you') }}</h2>
-        <div class="aurora"></div>
-        <div class="panel-inner">
-          <div class="panel-content">
-            <a href="https://webwewant.mozilla.org/#video" rel="external">
-              <h3>{{ _('What kind of Web do you want?') }}</h3>
-              <p>{{ _('Tell us what matters most to you and help shape the future of the Web.') }}</p>
-              <p class="go">{{ _('Share your vision') }}</p>
-            </a>
-          </div>
-        </div>
-      </li>
-    {% elif l10n_has_tag('promo_lightbeam') %}
+    {% if l10n_has_tag('promo_lightbeam') or settings.DEV %}
       <li id="panel-lightbeam" class="panel" tabindex="0">
         {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
         <h2 class="panel-title">{{ _('<i>Watch</i> the watchers') }}</h2>
