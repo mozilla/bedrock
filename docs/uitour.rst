@@ -17,8 +17,8 @@ as opening menu panels and highlighting the position of buttons in the toolbar.
 It is supported in Firefox 29 onward.
 
 For security reasons ``Mozilla.UITour`` will only work on white-listed domains and
-over a secure connection. The white-listed domains are https://www.mozilla.org
-and https://support.mozilla.org.
+over a secure connection. The white-listed domains are https://www.mozilla.org and
+https://support.mozilla.org and the special about:home page.
 
 The ``Mozilla.UITour`` library is currently maintained in a external `GiHub Repo`_.
 
