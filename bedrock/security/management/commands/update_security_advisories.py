@@ -38,6 +38,9 @@ def fix_product_name(name):
     if 'seamonkey' in name.lower():
         name = SM_RE.sub('SeaMonkey', name, 1)
 
+    if name.endswith('.0'):
+        name = name[:-2]
+
     return name
 
 
@@ -186,6 +189,11 @@ class Command(NoArgsCommand):
                     dest='no_git',
                     default=False,
                     help='No update, just import files (implies --force)'),
+        make_option('--clear-db',
+                    action='store_true',
+                    dest='clear_db',
+                    default=False,
+                    help='Clear all security advisory data before update (implies --force)'),
     )
 
     def get_lock(self):
@@ -208,13 +216,19 @@ class Command(NoArgsCommand):
         quiet = options['quiet']
         force = options['force']
         no_git = options['no_git']
-        if no_git:
+        clear_db = options['clear_db']
+        if no_git or clear_db:
             force = True
         cloned = False
 
         def printout(msg, ending=None):
             if not quiet:
                 self.stdout.write(msg, ending=ending)
+
+        if clear_db:
+            printout('Clearing all security advisories.')
+            SecurityAdvisory.objects.all().delete()
+            Product.objects.all().delete()
 
         if not no_git:
             if not os.path.exists(ADVISORIES_PATH):

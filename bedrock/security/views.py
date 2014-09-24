@@ -1,6 +1,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
+import re
 
 from django.db.models import Q
 from django.utils.decorators import method_decorator
@@ -39,8 +40,11 @@ def latest_queryset(request, kwargs):
         slug = kwargs.get('slug')
         qfilter = Q(fixed_in__slug__startswith=slug + '.')
         dots = slug.count('.')
-        if dots == 1:
-            # minor version. add exact match.
+        if dots < 2:
+            # add exact match if not point release
+            if slug.endswith('.0'):
+                # stip trailing .0 as products are stored without them
+                slug = slug[:-2]
             qfilter |= Q(fixed_in__slug__exact=slug)
         return SecurityAdvisory.objects.filter(qfilter)
 
@@ -120,8 +124,11 @@ class ProductVersionView(ListView):
         slug = self.kwargs['slug']
         qfilter = Q(slug__startswith=slug + '.')
         dots = slug.count('.')
-        if dots == 1:
-            # minor version. add exact match.
+        if dots < 2:
+            # add exact match if not point release
+            if slug.endswith('.0'):
+                # stip trailing .0 as products are stored without them
+                slug = slug[:-2]
             qfilter |= Q(slug__exact=slug)
         versions = Product.objects.filter(qfilter)
         return sorted(versions, reverse=True)
@@ -141,3 +148,24 @@ class OldAdvisoriesView(CachedRedirectView):
 class OldAdvisoriesListView(CachedRedirectView):
     def get_redirect_url(self, **kwargs):
         return reverse('security.advisories')
+
+
+class KVRedirectsView(CachedRedirectView):
+    prod_ver_re = re.compile('(\w+)(\d{2})$')
+
+    def get_redirect_url(self, *args, **kwargs):
+        url_component = kwargs['filename']
+        if url_component == 'suite17':
+            return reverse('security.product-advisories', kwargs={'slug': 'mozilla-suite'})
+
+        match = self.prod_ver_re.match(url_component)
+        if match:
+            product, version = match.groups()
+            slug = '{0}-{1}.{2}'.format(product, *version)
+            return reverse('security.product-version-advisories', kwargs={'slug': slug})
+
+        if url_component.endswith('ESR'):
+            return reverse('security.product-advisories',
+                           kwargs={'slug': url_component[:-3] + '-esr'})
+
+        return reverse('security.product-advisories', kwargs={'slug': url_component})
