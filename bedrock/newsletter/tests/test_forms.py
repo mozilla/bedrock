@@ -131,6 +131,7 @@ class TestNewsletterForm(TestCase):
             'lang': 'en',
             'privacy': 'Y',
             'fmt': 'H',
+            'newsletters': newsletters,
         }
         form = NewsletterFooterForm(newsletters, 'en-US', data=data.copy())
         self.assertTrue(form.is_valid())
@@ -153,6 +154,7 @@ class TestNewsletterFooterForm(TestCase):
             'lang': 'fr',
             'privacy': True,
             'fmt': 'H',
+            'newsletters': self.newsletter_name,
         }
         form = NewsletterFooterForm(self.newsletter_name, locale='en-US', data=data.copy())
         self.assertTrue(form.is_valid(), form.errors)
@@ -203,6 +205,7 @@ class TestNewsletterFooterForm(TestCase):
             'email': 'foo@example.com',
             'privacy': True,
             'fmt': 'H',
+            'newsletters': self.newsletter_name,
         }
         form = NewsletterFooterForm(self.newsletter_name, locale='en-US', data=data.copy())
         self.assertTrue(form.is_valid(), form.errors)
@@ -217,6 +220,39 @@ class TestNewsletterFooterForm(TestCase):
             'email': 'foo@example.com',
             'privacy': False,
             'fmt': 'H',
+            'newsletters': self.newsletter_name,
         }
         form = NewsletterFooterForm(self.newsletter_name, locale='en-US', data=data)
+        self.assertFalse(form.is_valid())
         self.assertIn('privacy', form.errors)
+
+    def test_invalid_newsletter_is_error(self):
+        """Invalid newsletter should not raise exception. Bug 1072302.
+
+        Instead, an invalid newsletter name should manifest as a normal
+        form error.
+        """
+        data = {
+            'email': 'fred@example.com',
+            'lang': 'fr',
+            'privacy': True,
+            'fmt': 'H',
+            'newsletters': '',
+        }
+        form = NewsletterFooterForm('', locale='en-US', data=data.copy())
+        self.assertFalse(form.is_valid())
+        self.assertIn('newsletters', form.errors)
+        self.assertEqual(form.errors['newsletters'], [u'This field is required.'])
+
+        invalid_newsletter = '!nv@l1d'
+        data = {
+            'email': 'fred@example.com',
+            'lang': 'fr',
+            'privacy': True,
+            'fmt': 'H',
+            'newsletters': invalid_newsletter,
+        }
+        form = NewsletterFooterForm(invalid_newsletter, locale='en-US', data=data.copy())
+        self.assertFalse(form.is_valid())
+        self.assertIn('newsletters', form.errors)
+        self.assertEqual(form.errors['newsletters'], [u'Invalid Newsletter'])
