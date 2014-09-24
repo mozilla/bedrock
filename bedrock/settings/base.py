@@ -76,6 +76,10 @@ TEMPLATE_DIRS = (
     path('locale'),
 )
 
+# Bug 1069545
+# Pin Fx OSX release because Apple approval reasons
+FIREFOX_OSX_APPROVED_VERSION = '32.0.2'
+
 
 # has to stay a callable because tower expects that.
 def JINJA_CONFIG():
