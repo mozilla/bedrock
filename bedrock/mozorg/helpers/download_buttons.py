@@ -172,6 +172,12 @@ def download_firefox(ctx, build='release', small=False, icon=True,
 
     if not mobile:
         for plat_os in ['Windows', 'Linux', 'Linux 64', 'OS X']:
+            # Bug 1069545
+            # Have to serve OS X 32.0.2 until Apple whitelists 32.0.3 :/
+            # TODO: REMOVE ME WHEN APPLE DOES THEIR JOB
+            if plat_os == 'OS X':
+                version = firefox_details.get_osx_approved_version(version)
+
             # Fallback to en-US if this plat_os/version isn't available
             # for the current locale
             _locale = locale

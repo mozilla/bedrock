@@ -2,6 +2,8 @@ import re
 from operator import itemgetter
 from urllib import urlencode
 
+from django.conf import settings
+
 from product_details import ProductDetails
 
 
@@ -141,6 +143,15 @@ class FirefoxDetails(ProductDetails):
         return self._get_filtered_builds(self.firefox_beta_builds,
                                          version, query)
 
+    def get_osx_approved_version(self, version):
+        # Bug 1069545
+        release_whitelist = settings.FIREFOX_OSX_APPROVED_VERSION
+        whitelist_major_vers = '.'.join(release_whitelist.split('.')[:2])
+        if version.startswith(whitelist_major_vers):
+            return release_whitelist
+
+        return version
+
     def get_download_url(self, platform, language, version, product='firefox'):
         """
         Get direct download url for the product.
@@ -150,6 +161,12 @@ class FirefoxDetails(ProductDetails):
         :param product: optional. probably 'firefox'
         :return: string url
         """
+        # Bug 1069545
+        # Have to serve OS X 32.0.2 until Apple whitelists 32.0.3 :/
+        # TODO: REMOVE ME WHEN APPLE DOES THEIR JOB
+        if platform == 'OS X':
+            version = self.get_osx_approved_version(version)
+
         if platform == 'OS X' and language == 'ja':
             language = 'ja-JP-mac'
 
