@@ -27,7 +27,6 @@
     */
     function setPartnerContent () {
         var $provider = $('#provider-links').find('.provider[data-country="' + COUNTRY_CODE + '"]');
-        var $links;
 
         // show language content selector if user is in india visiting the en-US/en-GB page
         if (COUNTRY_CODE.toLowerCase() === 'in' && /en-US|en-GB/.test($('html').attr('lang'))) {
@@ -44,21 +43,15 @@
             initLangContentSelector(suppressLangContentSelector);
         }
 
-        if (COUNTRY_CODE !== '' && $provider.length > 0) {
-            // make sure there are consumer-focused (non 'developer_only') partners
-            // available in the current country
-            $links = $provider.find('li').not('.developer-only');
-        }
-
         // if there are partners available, update UI
-        if ($links && $links.length > 0) {
+        if (COUNTRY_CODE !== '' && $provider.length > 0) {
             // show get phone calls to action
             $('#primary-cta-phone').fadeIn();
             $('#primary-cta-signup').addClass('visibility', 'hidden');
             $('#secondary-cta-phone').css('display', 'inline-block');
 
             // if country has more than one provider, show the multi intro text
-            if ($links.length > 1) {
+            if ($provider.find('li').length > 1) {
                 $('#provider-text-single').hide();
                 $('#provider-text-multi').show();
             }
@@ -70,7 +63,7 @@
             $('#provider-links a').on('click', trackProviderExit);
 
             // persistent pencil icon is distracting/obtrusive on small screens
-            if ($(window).width() > 480) {
+            if ($window.width() > 480) {
                 $('#signup-toggle-icon').fadeIn();
             }
         } else {
