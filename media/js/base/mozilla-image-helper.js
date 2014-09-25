@@ -70,7 +70,7 @@ Mozilla.ImageHelper.initPlatformImages = function() {
         }
 
         this.src = src;
-
+        $img.attr('data-processed', 'true');
         $img.addClass(site.platform);
     });
 };
@@ -81,12 +81,14 @@ Mozilla.ImageHelper.initPlatformImages = function() {
 // {{{ initHighResImages()
 
 Mozilla.ImageHelper.initHighResImages = function() {
-    $('img[data-src][data-high-res="true"]').each(function() {
-        var src = $(this).data('src');
+    $('img[data-src][data-high-res="true"][data-processed="false"]').each(function() {
+        var $img = $(this);
+        var src = $img.data('src');
         if (Mozilla.ImageHelper.isHighDpi()) {
             src = Mozilla.ImageHelper.convertUrlToHighRes(src);
         }
         this.src = src;
+        $img.attr('data-processed', 'true');
     });
 };
 
