@@ -63,7 +63,7 @@ urlpatterns = patterns('',
     page('firefox/unsupported/details', 'firefox/unsupported/details.html'),
 
     url(r'^firefox/unsupported/win/$', views.windows_billboards),
-    url('^dnt/$', views.dnt, name='firefox.dnt'),
+    url('^firefox/dnt/$', views.dnt, name='firefox.dnt'),
     url(firstrun_re, views.FirstrunView.as_view(), name='firefox.firstrun'),
     url(whatsnew_re, views.WhatsnewView.as_view(), name='firefox.whatsnew'),
     url(tour_re, views.TourView.as_view(), name='firefox.tour'),

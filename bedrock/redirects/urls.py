@@ -122,4 +122,7 @@ urlpatterns = patterns(
     redirect(r'^legal/eula/firefox-2/$', '/about/legal/eula/firefox-2/'),
     redirect(r'^legal/eula/firefox-3/$', '/about/legal/eula/firefox-3/'),
 
+    # Bug 1073269 /dnt/ -> /firefox/dnt/
+    redirect(r'^dnt/$', 'firefox.dnt'),
+
 )
