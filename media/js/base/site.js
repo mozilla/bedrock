@@ -41,10 +41,7 @@
             if (/android/i.test(ua)) {
                 return 'android';
             }
-            if (/armv[6-7]l/.test(pf)) {
-                return 'android';
-            }
-            if (pf.indexOf("Linux") !== -1) {
+            if (/linux/i.test(pf) || /linux/i.test(ua)) {
                 return 'linux';
             }
             if (pf.indexOf("MacPPC") !== -1) {
@@ -138,6 +135,10 @@
         var archSize = window.site.archSize = window.site.getArchSize();
         if (archType !== 'x86') {
             h.className = h.className.replace('x86', archType);
+
+            if (/armv\d+/.test(archType)) {
+                h.className += ' arm';
+            }
         }
         if (archSize === 64) {
             h.className += ' x64';

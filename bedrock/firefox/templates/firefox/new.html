@@ -69,6 +69,9 @@
         <a href="https://support.mozilla.org/kb/update-firefox-latest-version">{{_('Update to stay fast and safe.')}}</a>
       </div>
     </div>
+    <div id="version-message-desktop-unsupported" class="version-message">
+      {{ _("Your system doesn't meet the <a href=\"%(url)s\">requirements</a> to run Firefox.")|format(url=product_url('firefox', 'sysreq')) }}
+    </div>
   </div>
   <div id="main-feature">
     <div class="row">
