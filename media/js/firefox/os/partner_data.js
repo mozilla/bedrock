@@ -30,12 +30,12 @@ if (typeof Mozilla == 'undefined') {
         'alcatel_onetouchfire': {
             'type': 'smartphone',
             'display': 'Alcatel One Touch Fire',
-            'countries': ['br', 'cl', 'co', 'de', 'gr', 'hu', 'it', 'me', 'mx', 'pe', 'pl', 'rs', 'uy', 've']
+            'countries': ['br', 'cl', 'co', 'de', 'gr', 'hu', 'it', 'me', 'mx', 'pe', 'pl', 'rs', 've']
         },
         'alcatel_onetouchfirec': {
             'type': 'smartphone',
             'display': 'Alcatel One Touch Fire C',
-            'countries': ['es', 'gr', 'mk', 'pe']
+            'countries': ['es', 'gr', 'mk', 'pe', 'uy']
         },
         'alcatel_onetouchfiree': {
             'type': 'smartphone',
@@ -70,7 +70,7 @@ if (typeof Mozilla == 'undefined') {
         'zte_open': {
             'type': 'smartphone',
             'display': 'ZTE Open',
-            'countries': ['co', 'es', 'mx', 'pe', 'uy', 've']
+            'countries': ['co', 'es', 'mx', 'pe', 've']
         },
         'zte_openc': {
             'type': 'smartphone',
@@ -80,7 +80,7 @@ if (typeof Mozilla == 'undefined') {
         'zte_open2': {
             'type': 'smartphone',
             'display': 'ZTE Open II',
-            'countries': ['co', 'gt', 'ni', 'pa', 'pe', 'sv']
+            'countries': ['co', 'gt', 'ni', 'pa', 'pe', 'sv', 'uy']
         }
     };
 })(window.jQuery);
