@@ -3,6 +3,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 @import '../../sandstone/lib.less';
+@import '../menu-resp.less';
 
 /* {{{ Template overrides */
 
@@ -15,7 +16,15 @@
 }
 
 #masthead {
-    z-index: 2;
+    z-index: 3;
+
+    nav > ul > li {
+        & > a,
+        & > a:link,
+        & > a:visited {
+            color: #fff;
+        }
+    }
 }
 
 #main-content {
@@ -609,6 +618,14 @@ html[dir='rtl'] {
 
     #masthead {
         padding-bottom: 0;
+
+        nav > ul > li {
+            & > a,
+            & > a:link,
+            & > a:visited {
+                color: @textColorSecondary;
+            }
+        }
 
         .container {
             padding-bottom: 0;

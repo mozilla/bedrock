@@ -56,7 +56,7 @@ urlpatterns = patterns(
     redirect(r'^firefox/brand/downloads/$', 'styleguide.home'),
 
     # Bug 1071318
-    redirect(r'^firefox/mobile/$', 'firefox'),
+    redirect(r'^firefox/mobile/$', 'firefox.android.index'),
 
     # Bug 804810 Identity Guidelines -> Style Guide
     redirect(r'^foundation/identity-guidelines/index.html', 'styleguide.home'),

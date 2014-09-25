@@ -20,6 +20,10 @@
   <header id="masthead">
     <div class="container">
       <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{{ settings.TABZILLA_INFOBAR_OPTIONS }}">Mozilla</a>
+
+      {% block site_header_nav %}
+        {% include 'firefox/includes/top-menu.html' %}
+      {% endblock %}
     </div>
   </header>
 {% endblock %}

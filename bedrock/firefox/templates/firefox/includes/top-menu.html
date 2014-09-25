@@ -1,0 +1,28 @@
+<nav id="nav-main" role="navigation">
+  <span id="nav-main-toggle" class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{_('Menu')}}</span>
+  <ul id="nav-main-menu" class="has-submenus">
+    <li class="first" id="nav-main-features"><a href="{{ url('firefox.new') }}" tabindex="0" aria-owns="nav-main-features-submenu" aria-haspopup="true">{{_('Firefox')}}</a>
+      <ul aria-expanded="false" id="nav-main-features-submenu" class="submenu">
+        <li class="first"><a href="{{ url('firefox.desktop.index') }}" tabindex="-1">{{_('Desktop')}}</a></li>
+        <li><a href="{{ url('firefox.android.index') }}" tabindex="-1">{{_('Android')}}</a></li>
+        <li>
+          <hr>{# <hr> before first sub/minor link #}
+          <a class="sublink" href="{{ url('firefox.sync') }}" tabindex="-1">{{ _('Sync') }}</a>
+        </li>
+      </ul>
+    </li>
+    <li id="nav-main-addons"><a rel="external" href="https://addons.mozilla.org/" tabindex="0" aria-owns="nav-main-addons-submenu" aria-haspopup="true">{{_('Add-ons')}}</a>
+      <ul aria-expanded="false" id="nav-main-addons-submenu" class="submenu">
+        <li class="first"><a href="https://addons.mozilla.org/firefox/" tabindex="-1">{{_('Desktop Add-ons')}}</a></li>
+        <li><a href="https://addons.mozilla.org/android/" tabindex="-1">{{_('Android Add-ons')}}</a></li>
+        <li class="last"><a href="https://addons.mozilla.org/firefox/themes/" tabindex="-1">{{_('Themes')}}</a></li>
+      </ul>
+    </li>
+    <li id="nav-main-support"><a rel="external" href="https://support.mozilla.org/" tabindex="0" aria-owns="nav-main-support-submenu" aria-haspopup="true">{{_('Support')}}</a>
+      <ul aria-expanded="false" id="nav-main-support-submenu" class="submenu">
+        <li class="first"><a href="https://support.mozilla.org/products/firefox" tabindex="-1">{{_('Desktop Support')}}</a></li>
+        <li class="last"><a href="https://support.mozilla.org/products/mobile" tabindex="-1">{{_('Android Support')}}</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
