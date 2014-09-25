@@ -4,6 +4,7 @@
 
 {% extends "/firefox/base-resp.html" %}
 
+{% block page_title_prefix %}{% endblock %}
 {% block page_title %}{% endblock %}
 
 {% block site_css %}
@@ -37,11 +38,13 @@
 
   </article>
 
+  {% block dashboard_sidebar %}
   <div class="sidebar">
     <div class="sidebar-inset">
-      {% block dashboard_sidebar %}{% endblock %}
+      {% block dashboard_sidebar_contents %}{% endblock %}
     </div>
   </div>
+  {% endblock %}
 
 </div>
 
