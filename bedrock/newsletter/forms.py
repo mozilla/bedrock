@@ -231,9 +231,12 @@ class NewsletterFooterForm(forms.Form):
         regions = product_details.get_regions(locale)
         regions = sorted(regions.iteritems(), key=itemgetter(1))
 
-        newsletters = validate_newsletters(newsletters)
-        if data and 'newsletters' not in data:
-            data['newsletters'] = newsletters
+        try:
+            newsletters = validate_newsletters(newsletters)
+        except ValidationError:
+            # replace with most common good newsletter
+            # form validation will work with submitted data
+            newsletters = 'mozilla-and-you'
 
         lang = locale.lower()
         if '-' in lang:
