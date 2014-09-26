@@ -5,6 +5,7 @@
 from django.conf import settings
 
 from bedrock.mozorg.hierarchy import PageNode, PageRoot
+from bedrock.mozorg.util import page
 
 
 all_children = [
@@ -103,3 +104,5 @@ if settings.DEV:
     ))
 
 urlpatterns = PageRoot('Home', children=tuple(all_children)).as_urlpatterns()
+
+urlpatterns += [page('identity/mozilla/logo-prototype', 'styleguide/identity/logo-prototype.html')]

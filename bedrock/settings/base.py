@@ -734,6 +734,15 @@ MINIFY_BUNDLES = {
             'js/base/mozilla-modal.js',
             'js/foundation/annual2012.js',
         ),
+        'logo-prototype': (
+            'js/styleguide/logo-prototype/vendor/raf.polyfill.js',
+            'js/styleguide/logo-prototype/vendor/tween.js',
+            'js/styleguide/logo-prototype/vendor/lodash.compat.min.js',
+            'js/styleguide/logo-prototype/vendor/perlin.js',
+            'js/styleguide/logo-prototype/vendor/dat.gui.js',
+            'js/libs/jquery-1.11.0.min.js',
+            'js/styleguide/logo-prototype/clock-data.js',
+        ),
         'partners': (
             'js/libs/modernizr.custom.shiv-load.js',
             'js/base/mozilla-input-placeholder.js',
