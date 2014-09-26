@@ -23,8 +23,7 @@ steps:
 4. Once your workspace is ready, click the "Start Editing" button
 5. In the bash shell, run the command ``bin/install-c9``
 
-Once the ``install-c9`` script completes, you can use the ``bin/runserver-c9``
-script to launch the django development server, which will be accessible on a
+Once the ``install-c9`` script completes, you can click the Run Project button to launch the django development server, which will be accessible on a
 public URL similar to ``http://bedrock-c9-username.c9.io``
 
 
