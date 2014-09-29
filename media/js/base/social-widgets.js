@@ -32,7 +32,7 @@ $(function() {
       'media': 'Media Link Exit',
       'reply': 'Reply',
       'retweet': 'Retweet',
-      'favorite': 'Favorite',
+      'favorite': 'Favorite'
     }[$(this).attr('class')] || 'General Link Exit')]);
   });
 });
