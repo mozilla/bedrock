@@ -1,4 +1,4 @@
-/* 
+/*
  * For reference read the Jasmine and Sinon docs
  * Jasmine docs: http://pivotal.github.io/jasmine/
  * Sinon docs: http://sinonjs.org/docs/
@@ -12,7 +12,7 @@ describe('mozilla-image-helper.js', function() {
             window.site = {
                 platform: 'other'
             };
-            $('<img class="platform-img js" data-src="browser.png" data-additional-platforms="android ios">').appendTo('body');
+            $('<img class="platform-img js" data-processed="false" data-src="browser.png" data-additional-platforms="android ios">').appendTo('body');
         });
 
         afterEach(function(){
@@ -55,6 +55,14 @@ describe('mozilla-image-helper.js', function() {
             expect($('.platform-img').hasClass('android')).toBeTruthy();
         });
 
+        it('should flag that image src has been processed', function () {
+            var $img = $('.platform-img');
+            window.site.platform = 'windows';
+            expect($img.attr('data-processed')).toEqual('false');
+            Mozilla.ImageHelper.initPlatformImages();
+            expect($img.attr('data-processed')).toEqual('true');
+        });
+
         describe('high-res platform images', function () {
 
             var stub;
@@ -63,7 +71,7 @@ describe('mozilla-image-helper.js', function() {
                 window.site = {
                     platform: 'other'
                 };
-                $('<img id="high-res-img" class="platform-img js" data-high-res="true" data-src="browser.png" data-additional-platforms="android ios">').appendTo('body');
+                $('<img id="high-res-img" class="platform-img js" data-processed="false" data-high-res="true" data-src="browser.png" data-additional-platforms="android ios">').appendTo('body');
             });
 
             afterEach(function(){
@@ -99,7 +107,7 @@ describe('mozilla-image-helper.js', function() {
         var stub;
 
         beforeEach(function () {
-            $('<img id="high-res-img" class="js" data-src="browser.png" src="" data-high-res="true">').appendTo('body');
+            $('<img id="high-res-img" class="js" data-processed="false" data-src="browser.png" data-high-res="true">').appendTo('body');
         });
 
         afterEach(function(){
@@ -121,6 +129,27 @@ describe('mozilla-image-helper.js', function() {
             });
             Mozilla.ImageHelper.initHighResImages();
             expect($('#high-res-img').attr('src')).toEqual('browser.png');
+        });
+
+        it('should flag that image src has been processed', function () {
+            var $img = $('#high-res-img');
+            stub = sinon.stub(Mozilla.ImageHelper, 'isHighDpi', function () {
+                return true;
+            });
+            expect($img.attr('data-processed')).toEqual('false');
+            Mozilla.ImageHelper.initHighResImages();
+            expect($img.attr('data-processed')).toEqual('true');
+        });
+
+        it('should not change the src of an image that is already processed', function () {
+            var $img = $('#high-res-img');
+            stub = sinon.stub(Mozilla.ImageHelper, 'isHighDpi', function () {
+                return true;
+            });
+            $img.attr('src', 'foo.png');
+            $img.attr('data-processed', 'true');
+            Mozilla.ImageHelper.initHighResImages();
+            expect($img.attr('src')).toEqual('foo.png');
         });
     });
 

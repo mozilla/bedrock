@@ -182,7 +182,7 @@ def platform_img(ctx, url, optional_attributes=None):
     # Don't download any image until the javascript sets it based on
     # data-src so we can do platform detection. If no js, show the
     # windows version.
-    markup = ('<img class="platform-img js" src="" data-src="%s" %s>'
+    markup = ('<img class="platform-img js" src="" data-processed="false" data-src="%s" %s>'
               '<noscript><img class="platform-img win" src="%s" %s></noscript>'
               % (url, attrs, url, attrs))
 
@@ -206,7 +206,7 @@ def high_res_img(ctx, url, optional_attributes=None):
     # Don't download any image until the javascript sets it based on
     # data-src so we can do high-dpi detection. If no js, show the
     # normal-res version.
-    markup = ('<img class="js" src="" data-src="%s" data-high-res="true" %s>'
+    markup = ('<img class="js" src="" data-processed="false" data-src="%s" data-high-res="true" %s>'
               '<noscript><img src="%s" %s></noscript>'
               % (url, attrs, url, attrs))
 

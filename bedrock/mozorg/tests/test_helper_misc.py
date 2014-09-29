@@ -255,7 +255,7 @@ class TestPlatformImg(TestCase):
         """Should return expected markup without optional attributes"""
         markup = self._render('test.png')
         expected = (
-            u'<img class="platform-img js" src="" data-src="/media/test.png" >'
+            u'<img class="platform-img js" src="" data-processed="false" data-src="/media/test.png" >'
             u'<noscript><img class="platform-img win" src="/media/test.png" >'
             u'</noscript>')
         self.assertEqual(markup, expected)
@@ -265,7 +265,7 @@ class TestPlatformImg(TestCase):
         """Should return expected markup with optional attributes"""
         markup = self._render('test.png', {'data-test-attr': 'test'})
         expected = (
-            u'<img class="platform-img js" src="" data-src="/media/test.png" '
+            u'<img class="platform-img js" src="" data-processed="false" data-src="/media/test.png" '
             u'data-test-attr="test"><noscript><img class="platform-img win" '
             u'src="/media/test.png" data-test-attr="test"></noscript>')
         self.assertEqual(markup, expected)
@@ -276,7 +276,7 @@ class TestPlatformImg(TestCase):
         l10n_url = self._render_l10n('test.png')
         markup = self._render('test.png', {'l10n': True})
         expected = (
-            u'<img class="platform-img js" src="" data-src="' + l10n_url + '" >'
+            u'<img class="platform-img js" src="" data-processed="false" data-src="' + l10n_url + '" >'
             u'<noscript><img class="platform-img win" src="' + l10n_url + '" >'
             u'</noscript>')
         self.assertEqual(markup, expected)
@@ -290,7 +290,7 @@ class TestPlatformImg(TestCase):
         l10n_url = self._render_l10n('test.png')
         markup = self._render('test.png', {'l10n': True, 'data-test-attr': 'test'})
         expected = (
-            u'<img class="platform-img js" src="" data-src="' + l10n_url + '" '
+            u'<img class="platform-img js" src="" data-processed="false" data-src="' + l10n_url + '" '
             u'data-test-attr="test"><noscript><img class="platform-img win" '
             u'src="' + l10n_url + '" data-test-attr="test"></noscript>')
         self.assertEqual(markup, expected)
@@ -432,7 +432,7 @@ class TestHighResImg(TestCase):
         """Should return expected markup without optional attributes"""
         markup = self._render('test.png')
         expected = (
-            u'<img class="js" src="" data-src="/media/test.png" '
+            u'<img class="js" src="" data-processed="false" data-src="/media/test.png" '
             u'data-high-res="true" >'
             u'<noscript><img src="/media/test.png" ></noscript>')
         self.assertEqual(markup, expected)
@@ -442,7 +442,7 @@ class TestHighResImg(TestCase):
         """Should return expected markup with optional attributes"""
         markup = self._render('test.png', {'data-test-attr': 'test'})
         expected = (
-            u'<img class="js" src="" data-src="/media/test.png" '
+            u'<img class="js" src="" data-processed="false" data-src="/media/test.png" '
             u'data-high-res="true" data-test-attr="test">'
             u'<noscript><img src="/media/test.png" data-test-attr="test">'
             u'</noscript>')
@@ -454,7 +454,7 @@ class TestHighResImg(TestCase):
         l10n_url = self._render_l10n('test.png')
         markup = self._render('test.png', {'l10n': True})
         expected = (
-            u'<img class="js" src="" data-src="' + l10n_url + '" '
+            u'<img class="js" src="" data-processed="false" data-src="' + l10n_url + '" '
             u'data-high-res="true" >'
             u'<noscript><img src="' + l10n_url + '" >'
             u'</noscript>')
@@ -466,7 +466,7 @@ class TestHighResImg(TestCase):
         l10n_url = self._render_l10n('test.png')
         markup = self._render('test.png', {'l10n': True, 'data-test-attr': 'test'})
         expected = (
-            u'<img class="js" src="" data-src="' + l10n_url + '" '
+            u'<img class="js" src="" data-processed="false" data-src="' + l10n_url + '" '
             u'data-high-res="true" data-test-attr="test">'
             u'<noscript><img src="' + l10n_url + '" data-test-attr="test">'
             u'</noscript>')
