@@ -103,6 +103,12 @@ INSTALLER_CHANNElS = [
     # 'nightly',  # soon
 ]
 
+SUPPORT_URLS = {
+    'Firefox for Android': 'https://support.mozilla.org/products/mobile',
+    'Firefox OS': 'https://support.mozilla.org/products/firefox-os',
+    'Firefox': 'https://support.mozilla.org/products/firefox'
+}
+
 
 def get_js_bundle_files(bundle):
     """
@@ -540,6 +546,7 @@ def release_notes(request, fx_version, product='Firefox'):
         request, release_notes_template(release.channel, product), {
             'version': fx_version,
             'download_url': get_download_url(release),
+            'support_url': SUPPORT_URLS.get(product, 'https://support.mozilla.org/'),
             'release': release,
             'equivalent_release_url': equivalent_release_url(release),
             'new_features': new_features,

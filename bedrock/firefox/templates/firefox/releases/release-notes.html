@@ -125,7 +125,7 @@
       <section id="problems">
         <h3>{{ _('Having Problems?') }}</h3>
         <ol>
-          <li><a href="http://support.mozilla.org/">{{ _('Search for answers on the Firefox Support page') }}</a></li>
+          <li><a href="{{ support_url }}">{{ _('Search for answers on the Firefox Support page') }}</a></li>
           {% if known_issues %}
           <li><a href="#known-issues">{{ _('Look at the known issues list and see if we already know about the problem') }}</a></li>
           {% endif %}
