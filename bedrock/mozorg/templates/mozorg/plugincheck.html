@@ -139,7 +139,13 @@
       <h3>{{_('Which Plugins do I have?')}}</h3>
       <p>{{_('We automatically detected your plugins above, to view your installed plugins in Firefox follow these steps:')}}</p>
       <ol>
-        <li>{{_('Open the Tools menu.')}}</li>
+        <li>
+            {% if l10n_has_tag('plugin_updated_content') or settings.DEV %}
+              {{_('Open the <span class="menu">menu</span>.')}}
+            {% else %}
+              {{_('Open the Tools menu.')}}
+            {% endif %}
+        </li>
         <li>{{_('Choose Add-ons.')}}</li>
         <li>{{_('Click the plugins tab.')}}</li>
       </ol>
@@ -148,11 +154,29 @@
       <h3>{{_('How do I disable a plugin?')}}</h3>
       <p>{{_('In Firefox:')}}</p>
       <ol>
-        <li>{{_('Open the Tools menu.')}}</li>
+        <li>
+          {% if l10n_has_tag('plugin_updated_content') or settings.DEV %}
+            {{_('Open the <span class="menu">menu</span>.')}}
+          {% else %}
+            {{_('Open the Tools menu.')}}
+          {% endif %}
+        </li>
         <li>{{_('Choose Add-ons.')}}</li>
         <li>{{_('Click the plugins tab.')}}</li>
-        <li>{{_('Click on a plugin in the list.')}}</li>
-        <li>{{_('Click the Disable button.')}}</li>
+        <li>
+            {% if l10n_has_tag('plugin_updated_content') or settings.DEV %}
+              {{_('Click on the drop down next to the plugin you wish to disable.')}}
+            {% else %}
+              {{_('Click on a plugin in the list.')}}
+            {% endif %}
+        </li>
+        <li>
+            {% if l10n_has_tag('plugin_updated_content') or settings.DEV %}
+              {{_('Select "Never Activate" from the available choices.')}}
+            {% else %}
+              {{_('Click the Disable button.')}}
+            {% endif %}
+        </li>
       </ol>
       <p class="small">
           {% if l10n_has_tag('plugin_disable_warning') or settings.DEV %}
