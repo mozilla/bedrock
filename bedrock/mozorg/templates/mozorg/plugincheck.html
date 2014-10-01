@@ -12,6 +12,8 @@
   {{ css('plugincheck') }}
 {% endblock %}
 
+{% block html_attrs %}{{ super() }} data-latest-firefox="{{ latest_firefox_version }}" data-esr-versions="{{ esr_firefox_versions }}"{% endblock %}
+
 {% block body_class %}sky{% endblock %}
 
 {% block string_data %}
@@ -42,14 +44,19 @@
 {% block content %}
 <main role="main">
   <header id="main-feature">
-      {% if not is_latest %}
       {{ download_firefox(small=True) }}
-      {% endif %}
       <h1 class="large">{{_('Check Your Plugins')}}</h1>
       <p class="preamble">{{_('Keeping your plugins up to date helps Firefox run safely and smoothly.')}}</p>
   </header>
 
   <section class="plugin-status-container billboard">
+      <div class="version-message-container">
+        <h2>{{_('Looks like you’re using an older version of Firefox.')}}</h2>
+        <div class="desktop download-button-wrapper">
+          {{ download_firefox(simple=true) }}
+        </div>
+      </div>
+
       <h2>{{_('Plugin Status')}}</h2>
       <ul>
         <li id="exploder">{{_('Plugin Check <strong>support for Internet Explorer is limited</strong>. Also use Tools &gt; Manage Addons')}}</li>
@@ -57,6 +64,7 @@
         <li>{{_('Step 2: Complete all recommended updates before restarting your browser.')}}</li>
       </ul>
       <p id="pfs-status"></p>
+
       <div id="sec-plugin-vulnerable">
         <table class="table status">
           <caption>{{_('Potentially vulnerable plugins')}}</caption>

@@ -5,6 +5,15 @@
 
 #main-feature {
     padding-bottom: 68px;
+    &> .download-button {
+        display: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        &~ h1.large{
+            max-width: 700px;
+        }
+    }
     .preamble {
         font-size: 24px;
         letter-spacing: -0.25px;
@@ -16,22 +25,16 @@
         text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.75);
         color: rgb(72, 72, 72);
     }
-    .download-button ~ h1.large{
-        max-width: 700px;
+}
+.html-rtl {
+    #main-feature > .download-button {
+        right: auto;
+        left: 0;
     }
 }
 .billboard {
     padding-top: 42px;
     padding-bottom: 0;
-}
-.download-button {
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-.html-rtl .download-button {
-    right: auto;
-    left: 0;
 }
 
 .notice {
@@ -60,6 +63,19 @@
             font-weight: normal;
             .open-sans-light;
         }
+    }
+}
+.version-message-container {
+    display: none;
+    h2 {
+        font-size: 24px;
+        letter-spacing: 0;
+    }
+    .download-button-wrapper {
+        margin: 1rem 0 40px 0;
+    }
+    .download-button-small.download-link {
+        margin-left: 30px;
     }
 }
 .plugin-status-container {
@@ -226,11 +242,10 @@
 
 /* Tablet Layout: 760px */
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
-    .download-button {
+    #main-feature > .download-button {
         position: relative;
         margin-top: 20px;
     }
-
     .moz-support {
         width: (@gridColumnWidthNarrow * 10) + (@gridGutterWidth * 9);
     }
@@ -245,11 +260,10 @@
 
 /* Mobile Layout: 320px */
 @media only screen and (max-width: @breakTablet) {
-    .download-button {
+    #main-feature > .download-button {
         position: relative;
         margin-top: 20px;
     }
-
     .moz-support {
         width: auto;
         text-align: center;
@@ -275,7 +289,7 @@
 
 /* Wide Mobile Layout: 480px */
 @media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
-    .download-button {
+    #main-feature > .download-button {
         position: relative;
         margin-top: 20px;
     }

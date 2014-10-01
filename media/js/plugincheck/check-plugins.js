@@ -1,6 +1,19 @@
 $(function() {
     'use strict';
 
+    var nonFxDownload = $('#main-feature > .download-button');
+    var outdatedFx = $('.version-message-container');
+
+    // show main download button to non Fx traffic
+    if(!isFirefox()) {
+        nonFxDownload.css('display', 'inline-block');
+    }
+
+    // show for outdated Fx versions
+    if (isFirefox() &&  !isFirefoxUpToDate()) {
+        outdatedFx.show();
+    }
+
     var iconFor = function (pluginName) {
         if (pluginName.indexOf('Flash') >= 0) {
             return 'icon-flash.png';
