@@ -982,6 +982,8 @@ INSTALLED_APPS = get_apps(exclude=(
     '%s.externalfiles' % PROJECT_MODULE,
     '%s.security' % PROJECT_MODULE,
     '%s.events' % PROJECT_MODULE,
+    '%s.releasenotes' % PROJECT_MODULE,
+    '%s.thunderbird' % PROJECT_MODULE,
 
     # libs
     'django_extensions',

@@ -8,10 +8,7 @@ import json
 import re
 
 from django.conf import settings
-from django.db.models import Q
-from django.http import (
-    Http404, HttpResponsePermanentRedirect, HttpResponseRedirect)
-from django.shortcuts import get_object_or_404
+from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.views.decorators.vary import vary_on_headers
 from django.views.generic.base import TemplateView
@@ -20,14 +17,10 @@ import basket
 from funfactory.urlresolvers import reverse
 from jingo_minify.helpers import BUILD_ID_JS, BUNDLE_HASHES
 from lib import l10n_utils
-from rna.models import Release
 
-from bedrock.firefox import version_re
+from bedrock.releasenotes import version_re
 from bedrock.firefox.forms import SMSSendForm
-from bedrock.mozorg.decorators import cache_control_expires
 from bedrock.mozorg.views import process_partnership_form
-from bedrock.mozorg.helpers.misc import releasenotes_url
-from bedrock.mozorg.helpers.download_buttons import android_builds
 from bedrock.firefox.firefox_details import firefox_details, mobile_details
 from lib.l10n_utils.dotlang import _
 from product_details.version_compare import Version
@@ -101,12 +94,6 @@ INSTALLER_CHANNElS = [
     'aurora',
     # 'nightly',  # soon
 ]
-
-SUPPORT_URLS = {
-    'Firefox for Android': 'https://support.mozilla.org/products/mobile',
-    'Firefox OS': 'https://support.mozilla.org/products/firefox-os',
-    'Firefox': 'https://support.mozilla.org/products/firefox'
-}
 
 
 def get_js_bundle_files(bundle):
@@ -260,62 +247,6 @@ def firefox_partners(request):
         request, 'firefox/partners/index.html', 'firefox.partners.index', template_vars, form_kwargs)
 
 
-def releases_index(request):
-    releases = {}
-    major_releases = firefox_details.firefox_history_major_releases
-    minor_releases = firefox_details.firefox_history_stability_releases
-
-    for release in major_releases:
-        major_verion = float(re.findall(r'^\d+\.\d+', release)[0])
-        # The version numbering scheme of Firefox changes sometimes. The second
-        # number has not been used since Firefox 4, then reintroduced with
-        # Firefox ESR 24 (Bug 870540). On this index page, 24.1.x should be
-        # fallen under 24.0. This patter is a tricky part.
-        major_pattern = r'^' + \
-            re.escape(
-                ('%s' if major_verion < 4 else '%g') % round(major_verion, 1))
-        releases[major_verion] = {
-            'major': release,
-            'minor': sorted(filter(lambda x: re.findall(major_pattern, x),
-                                   minor_releases),
-                            key=lambda x: int(re.findall(r'\d+$', x)[0]))
-        }
-
-    return l10n_utils.render(request, 'firefox/releases/index.html',
-                             {'releases': sorted(releases.items(), reverse=True)})
-
-
-def latest_notes(request, product='firefox', channel='release'):
-    version = get_latest_version(product, channel)
-
-    if channel == 'beta':
-        version = re.sub(r'b\d+$', 'beta', version)
-    if channel == 'organizations':
-        version = re.sub(r'esr$', '', version)
-
-    dir = 'auroranotes' if channel == 'aurora' else 'releasenotes'
-    path = [product, version, dir]
-    locale = getattr(request, 'locale', None)
-    if locale:
-        path.insert(0, locale)
-    return HttpResponseRedirect('/' + '/'.join(path) + '/')
-
-
-def latest_sysreq(request, channel='release'):
-    version = get_latest_version('firefox', channel)
-
-    if channel == 'beta':
-        version = re.sub(r'b\d+$', 'beta', version)
-    if channel == 'organizations':
-        version = re.sub(r'^(\d+).+', r'\1.0', version)
-
-    path = ['firefox', version, 'system-requirements']
-    locale = getattr(request, 'locale', None)
-    if locale:
-        path.insert(0, locale)
-    return HttpResponseRedirect('/' + '/'.join(path) + '/')
-
-
 def show_devbrowser_firstrun(version):
     match = re.match(r'\d{1,2}', version)
     if match:
@@ -401,7 +332,7 @@ class FirstrunView(LatestFxView):
         return super(FirstrunView, self).get(request, *args, **kwargs)
 
     def get_template_names(self):
-        version = self.kwargs.get('fx_version') or ''
+        version = self.kwargs.get('version') or ''
 
         if show_devbrowser_firstrun(version):
             template = 'firefox/dev-firstrun.html'
@@ -448,7 +379,7 @@ class WhatsnewView(LatestFxView):
         return ctx
 
     def get_template_names(self):
-        version = self.kwargs.get('fx_version') or ''
+        version = self.kwargs.get('version') or ''
         locale = l10n_utils.get_locale(self.request)
         oldversion = self.request.GET.get('oldversion', '')
         # old versions of Firefox sent a prefixed version
@@ -487,7 +418,7 @@ class TourView(LatestFxView):
         return super(TourView, self).get(request, *args, **kwargs)
 
     def get_template_names(self):
-        version = self.kwargs.get('fx_version') or ''
+        version = self.kwargs.get('version') or ''
 
         if show_devbrowser_firstrun(version):
             template = 'firefox/dev-firstrun.html'
@@ -496,77 +427,3 @@ class TourView(LatestFxView):
 
         # return a list to conform with original intention
         return [template]
-
-
-def release_notes_template(channel, product, version=None):
-    if product == 'Firefox OS':
-        return 'firefox/releases/os-notes.html'
-    prefix = dict((c, c.lower()) for c in Release.CHANNELS)
-    if product == 'Firefox' and channel == 'Aurora' and version >= 35:
-        return 'firefox/releases/dev-browser-notes.html'
-    return 'firefox/releases/%s-notes.html' % prefix.get(channel, 'release')
-
-
-def equivalent_release_url(release):
-    equivalent_release = (release.equivalent_android_release() or
-                          release.equivalent_desktop_release())
-    if equivalent_release:
-        return releasenotes_url(equivalent_release)
-
-
-def get_release_or_404(version, product):
-    if product == 'Firefox' and len(version.split('.')) == 3:
-        product_query = Q(product='Firefox') | Q(
-            product='Firefox Extended Support Release')
-    else:
-        product_query = Q(product=product)
-    release = get_object_or_404(Release, product_query, version=version)
-    if not release.is_public and not settings.DEV:
-        raise Http404
-    return release
-
-
-def get_download_url(release):
-    if release.product == 'Firefox for Android':
-        return android_builds(release.channel)[0]['download_link']
-    else:
-        if release.channel == 'Aurora':
-            return reverse('firefox.channel') + '#aurora'
-        elif release.channel == 'Beta':
-            return reverse('firefox.channel') + '#beta'
-        else:
-            return reverse('firefox')
-
-
-@cache_control_expires(1)
-def release_notes(request, fx_version, product='Firefox'):
-    if product == 'Firefox OS' and fx_version in ('1.0.1', '1.1', '1.2'):
-        return l10n_utils.render(
-            request, 'firefox/os/notes-%s.html' % fx_version)
-
-    try:
-        release = get_release_or_404(fx_version, product)
-    except Http404:
-        release = get_release_or_404(fx_version + 'beta', product)
-        return HttpResponseRedirect(releasenotes_url(release))
-
-    new_features, known_issues = release.notes(public_only=not settings.DEV)
-
-    return l10n_utils.render(
-        request, release_notes_template(release.channel, product,
-                                        int(release.major_version())), {
-            'version': fx_version,
-            'download_url': get_download_url(release),
-            'support_url': SUPPORT_URLS.get(product, 'https://support.mozilla.org/'),
-            'release': release,
-            'equivalent_release_url': equivalent_release_url(release),
-            'new_features': new_features,
-            'known_issues': known_issues})
-
-
-@cache_control_expires(1)
-def system_requirements(request, fx_version, product='Firefox'):
-    release = get_release_or_404(fx_version, product)
-    return l10n_utils.render(
-        request, 'firefox/releases/system_requirements.html',
-        {'release': release, 'version': fx_version})
