@@ -23,6 +23,8 @@ CACHES = {
     }
 }
 
+USE_TZ = True
+
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-US'
@@ -870,6 +872,7 @@ INSTALLED_APPS = get_apps(exclude=(
     '%s.facebookapps' % PROJECT_MODULE,
     '%s.externalfiles' % PROJECT_MODULE,
     '%s.security' % PROJECT_MODULE,
+    '%s.events' % PROJECT_MODULE,
 
     # libs
     'django_extensions',
@@ -903,6 +906,7 @@ HMAC_KEYS = {
 FEEDS = {
     'mozilla': 'https://blog.mozilla.org/feed/'
 }
+REPS_ICAL_FEED = 'https://reps.mozilla.org/events/period/future/ical/'
 
 # Twitter accounts to retrieve tweets with the API
 TWITTER_ACCOUNTS = (
