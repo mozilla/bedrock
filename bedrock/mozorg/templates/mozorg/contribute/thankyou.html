@@ -14,14 +14,23 @@
   <div class="container">
     <h1 class="page-title">{{ _('Thanks!') }}</h1>
     <p class="section-tagline">
-      <span class="category-coding">{{ _('We’re thrilled to see that you’re interested in coding and can’t wait to get you started.') }}></span>
-      <span class="category-testing">{{ _('We’re thrilled to see that you’re interested in testing and can’t wait to get you started.') }}</span>
-      <span class="category-writing">{{ _('We’re thrilled to see that you’re interested in writing and can’t wait to get you started.') }}</span>
-      <span class="category-teaching">{{ _('We’re thrilled to see that you’re interested in teaching and can’t wait to get you started.') }}</span>
-      <span class="category-helping">{{ _('We’re thrilled to see that you’re interested in helping and can’t wait to get you started.') }}</span>
-      <span class="category-translating">{{ _('We’re thrilled to see that you’re interested in translating and can’t wait to get you started.') }}</span>
-      <span class="category-activism">{{ _('We’re thrilled to see that you’re interested in activism and can’t wait to get you started.') }}</span>
-      <span class="category-dontknow">{{ _('We’re thrilled to see that you’re interested in volunteering and can’t wait to get you started.') }}</span>
+      {% if category == 'coding' %}
+        <span class="category-coding">{{ _('We’re thrilled to see that you’re interested in coding and can’t wait to get you started.') }}</span>
+      {% elif category == 'testing' %}
+        <span class="category-testing">{{ _('We’re thrilled to see that you’re interested in testing and can’t wait to get you started.') }}</span>
+      {% elif category == 'writing' %}
+        <span class="category-writing">{{ _('We’re thrilled to see that you’re interested in writing and can’t wait to get you started.') }}</span>
+      {% elif category == 'teaching' %}
+        <span class="category-teaching">{{ _('We’re thrilled to see that you’re interested in teaching and can’t wait to get you started.') }}</span>
+      {% elif category == 'helping' %}
+        <span class="category-helping">{{ _('We’re thrilled to see that you’re interested in helping and can’t wait to get you started.') }}</span>
+      {% elif category == 'translating' %}
+        <span class="category-translating">{{ _('We’re thrilled to see that you’re interested in translating and can’t wait to get you started.') }}</span>
+      {% elif category == 'activism' %}
+        <span class="category-activism">{{ _('We’re thrilled to see that you’re interested in activism and can’t wait to get you started.') }}</span>
+      {% else %}{# dontknow or anything else #}
+        <span class="category-dontknow">{{ _('We’re thrilled to see that you’re interested in volunteering and can’t wait to get you started.') }}</span>
+      {% endif %}
       {{ _('Keep an eye on your inbox for an important message from us.') }}
     </p>
   </div>

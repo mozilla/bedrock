@@ -25,6 +25,93 @@ from lib import l10n_utils
 _ALL = settings.STUB_INSTALLER_ALL
 
 
+class TestContributeSignup(TestCase):
+    def setUp(self):
+        self.rf = RequestFactory()
+
+    @patch('lib.l10n_utils.render')
+    def test_thankyou_get_proper_context(self, render_mock):
+        """category added to context from querystring on thankyou."""
+        view = views.ContributeSignupThankyou.as_view()
+
+        req = self.rf.get('/thankyou/?c=thedude')
+        view(req)
+        render_mock.assert_called_with(req, [views.ContributeSignupThankyou.template_name],
+                                       {'category': 'thedude', 'view': ANY})
+
+        # too long
+        req = self.rf.get('/thankyou/?c=thisismuchtoolongtogetintocontext')
+        view(req)
+        render_mock.assert_called_with(req, [views.ContributeSignupThankyou.template_name],
+                                       {'view': ANY})
+
+        # bad characters
+        req = self.rf.get('/thankyou/?c=this-is-bad')
+        view(req)
+        render_mock.assert_called_with(req, [views.ContributeSignupThankyou.template_name],
+                                       {'view': ANY})
+
+    @patch.object(views, 'basket')
+    def test_send_to_basket(self, basket_mock):
+        req = self.rf.post('/', {
+            'name': 'The Dude',
+            'email': 'dude@example.com',
+            'privacy': 'Yes',
+            'category': 'dontknow',
+            'country': 'us',
+        })
+        req.locale = 'en-US'
+        resp = views.ContributeSignup.as_view()(req)
+        self.assertEqual(resp.status_code, 302)
+        self.assertTrue(resp['location'].endswith('?c=dontknow'))
+        basket_mock.request.assert_called_with('post', 'get-involved', {
+            'name': 'The Dude',
+            'email': 'dude@example.com',
+            'interest_id': 'dontknow',
+            'lang': 'en-US',
+            'country': 'us',
+            'subscribe': False,
+            'message': '',
+            'source_url': 'http://testserver/',
+        })
+
+    @patch.object(views, 'basket')
+    def test_invalid_form_no_basket(self, basket_mock):
+        # 'coding' requires area_coding field.
+        req = self.rf.post('/', {
+            'name': 'The Dude',
+            'email': 'dude@example.com',
+            'privacy': 'Yes',
+            'category': 'coding',
+            'country': 'us',
+        })
+        resp = views.ContributeSignup.as_view()(req)
+        self.assertEqual(resp.status_code, 200)
+        self.assertFalse(basket_mock.called)
+
+        # 'privacy' required
+        req = self.rf.post('/', {
+            'name': 'The Dude',
+            'email': 'dude@example.com',
+            'category': 'dontknow',
+            'country': 'us',
+        })
+        resp = views.ContributeSignup.as_view()(req)
+        self.assertEqual(resp.status_code, 200)
+        self.assertFalse(basket_mock.called)
+
+        # 'email' required
+        req = self.rf.post('/', {
+            'name': 'The Dude',
+            'privacy': 'Yes',
+            'category': 'dontknow',
+            'country': 'us',
+        })
+        resp = views.ContributeSignup.as_view()(req)
+        self.assertEqual(resp.status_code, 200)
+        self.assertFalse(basket_mock.called)
+
+
 @patch('bedrock.mozorg.views.l10n_utils.render')
 class TestHome(TestCase):
     def setUp(self):

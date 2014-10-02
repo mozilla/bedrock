@@ -21,7 +21,24 @@
 {% block contrib_content %}
   <section class="section inquiry">
     <div class="container">
-      <form class="inquiry-form" id="inquiry-form" method="GET" action="{{ url('mozorg.contribute.thankyou') }}">
+      <form class="inquiry-form" id="inquiry-form" method="post" action="{{ url('mozorg.contribute.signup') }}">
+        {% if form.errors %}
+          {{ form.non_field_errors()|safe }}
+
+          <ul class="errorlist">
+            {% if form.email.errors %}
+              <li>{{_('Please enter a valid email address.')}}</li>
+            {% endif %}
+
+            {% if form.privacy.errors %}
+              <li>{{_('You must agree to the privacy policy.')}}</li>
+            {% endif %}
+
+            {% if form.category.errors %}
+              <li>{{_('Please select an area of interest.')}}</li>
+            {% endif %}
+          </ul>
+        {% endif %}
 
       <fieldset class="categories">
         <ul class="option-list">
@@ -69,7 +86,7 @@
           </li>
           <li class="option">
             <label for="category-activism">
-              <input type="radio" name="category" id="category-activism" value="advocacy" required>
+              <input type="radio" name="category" id="category-activism" value="activism" required>
               <span class="label-text">{{ _('Activism') }}</span>
               <a class="info" href="#info-activism">{{ _('More about activism') }}</a>
             </label>
@@ -90,70 +107,40 @@
         <p class="area" id="area-coding">
           <label for="select-area-coding">{{ _('What would you like to code?') }}</label>
           <span class="select">
-            <select id="select-area-coding" name="area-coding">
-              <option value="" selected disabled>-- {{ _('select') }} --</option>
-              <option value="coding-firefox">{{ _('Firefox') }}</option>
-              <option value="coding-firefoxos">{{ _('Firefox OS') }}</option>
-              <option value="coding-websites">{{ _('Websites') }}</option>
-              <option value="coding-addons">{{ _('Firefox add-ons') }}</option>
-              <option value="coding-marketplace">{{ _('HTML5 apps') }}</option>
-              <option value="coding-webcompat">{{ _('Diagnosing Web compatibility issues') }}</option>
-              <option value="coding-cloud">{{ _('Online services') }}</option>
-            </select>
+            {{ form.area_coding }}
+            {{ form.area_coding.errors }}
           </span>
         </p>
 
         <p class="area" id="area-testing">
           <label for="select-area-testing">{{ _('What would you like to test?') }}</label>
           <span class="select">
-            <select id="select-area-testing" name="area-testing">
-              <option value="" selected disabled>-- {{ _('select') }} --</option>
-              <option value="testing-firefox">{{ _('Firefox and Firefox OS') }}</option>
-              <option value="testing-addons">{{ _('Firefox add-ons') }}</option>
-              <option value="testing-marketplace">{{ _('HTML5 apps') }}</option>
-              <option value="testing-websites">{{ _('Websites') }}</option>
-              <option value="testing-webcompat">{{ _('Web compatibility') }}</option>
-            </select>
+            {{ form.area_testing }}
+            {{ form.area_testing.errors }}
           </span>
         </p>
 
         <p class="area" id="area-translating">
           <label for="select-area-translating">{{ _('What would you like to translate?') }}</label>
           <span class="select">
-            <select id="select-area-translating" name="area-translating">
-              <option value="" selected disabled>-- {{ _('select') }} --</option>
-              <option value="translating-products">{{ _('Products') }}</option>
-              <option value="translating-websites">{{ _('Websites') }}</option>
-              <option value="translating-tools">{{ _('I’d like to work on localization tools') }}</option>
-            </select>
+            {{ form.area_translating }}
+            {{ form.area_translating.errors }}
           </span>
         </p>
 
         <p class="area" id="area-writing">
           <label for="select-area-writing">{{ _('What would you like to write?') }}</label>
           <span class="select">
-            <select id="select-area-writing" name="area-writing">
-              <option value="" selected disabled>-- {{ _('select') }} --</option>
-              <option value="writing-social">{{ _('Social media') }}</option>
-              <option value="writing-journalism">{{ _('Journalism') }}</option>
-              <option value="writing-techusers">{{ _('Technical docs for users') }}</option>
-              <option value="writing-techdevs">{{ _('Technical docs for developers') }}</option>
-              <option value="writing-addons">{{ _('Technical docs for Firefox add-ons') }}</option>
-              <option value="writing-marketplace">{{ _('Technical docs for HTML5 apps') }}</option>
-            </select>
+            {{ form.area_writing }}
+            {{ form.area_writing.errors }}
           </span>
         </p>
 
         <p class="area" id="area-teaching">
           <label for="select-area-teaching">{{ _('What would you like to teach?') }}</label>
           <span class="select">
-            <select id="select-area-teaching" name="area-teaching">
-              <option value="" selected disabled>-- {{ _('select') }} --</option>
-              <option value="teaching-webmaker">{{ _('Teach the Web (Webmaker)') }}</option>
-              <option value="teaching-fellowships">{{ _('Open News fellowships') }}</option>
-              <option value="teaching-hive">{{ _('Hive - Community based digital education') }}</option>
-              <option value="teaching-science">{{ _('Open Web science research') }}</option>
-            </select>
+            {{ form.area_teaching }}
+            {{ form.area_teaching.errors }}
           </span>
         </p>
       </fieldset>
@@ -163,30 +150,19 @@
         <ul>
           <li>
             <label for="person-name">{{ _('Name') }}</label>
-            <input type="text" id="person-name" name="name" required>
+            {{ form.name }}
+            {{ form.name.errors }}
           </li>
           <li>
             <label for="person-email">{{ _('Email address') }}</label>
-            <input type="email" id="person-email" name="email" required>
+            {{ form.email }}
+            {{ form.email.errors }}
           </li>
           <li>
             <label for="person-country">{{ _('Country') }}</label>
             <span class="select">
-              <select name="country" id="person-country" required>
-                <option value="" disabled selected>-- {{ _('select') }} --</option>
-                <option value="ar">Albania</option>
-                <option value="br">Brazil</option>
-                <option value="cz">Czech Republic</option>
-                <option value="dk">Denmark</option>
-                <option value="ec">Ecuador</option>
-                <option value="fi">Finland</option>
-                <option value="ga">Guatamala</option>
-                <option value="hu">Hungary</option>
-                <option value="id">Indonesia</option>
-                <option value="jp">Japan</option>
-                <option value="kl">Kuala Lumpur</option>
-                <option value="etc">and so on</option>
-              </select>
+              {{ form.country }}
+              {{ form.country.errors }}
             </span>
           </li>
           <li class="form-message">
@@ -194,8 +170,9 @@
             <textarea id="person-message" cols="60" rows="4" name="message"></textarea>
           </li>
           <li class="form-agree">
-            <label class="inline" for="submit-agree">
-              <input type="checkbox" id="submit-agree" name="agree" required>
+            <label class="inline" for="id_privacy">
+              {{ form.privacy }}
+              {{ form.privacy.errors }}
               {% trans privacy=url('privacy') %}
               I’m okay with Mozilla handling my info as explained in <a href="{{ privacy }}">this Privacy Policy</a>
               {% endtrans %}
@@ -206,8 +183,9 @@
 
       <fieldset class="submit">
         <p class="form-newsletter">
-          <label class="inline" for="submit-newsletter">
-            <input type="checkbox" id="submit-newsletter" name="newsletter">
+          <label class="inline" for="id_newsletter">
+            {{ form.newsletter }}
+            {{ form.newsletter.errors }}
             {{ _('Sign me up for community updates') }}
             {% if not LANG.startswith('en') %}{{ _('(English)') }}{% endif %}
           </label>

@@ -143,7 +143,7 @@
       <div class="extra-newsletter">
         <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
         <h3>{{ _('Get community updates') }} {% if not LANG.startswith('en') %}{{ _('(English)') }}{% endif %}</h3>
-        <p>newsletter form goes here</p>
+        {{ email_newsletter_form(newsletters='about-mozilla', include_title=False) }}
       </div>
     {% endblock %}
 

@@ -18,7 +18,8 @@ log = logging.getLogger(__name__)
 @jinja2.contextfunction
 def email_newsletter_form(ctx, newsletters='mozilla-and-you', title=None,
                           include_country=True, include_language=True,
-                          use_thankyou=True, footer=True, process_form=True):
+                          use_thankyou=True, footer=True, process_form=True,
+                          include_title=None):
     request = ctx['request']
     context = ctx.get_all()
 
@@ -37,6 +38,7 @@ def email_newsletter_form(ctx, newsletters='mozilla-and-you', title=None,
         include_language=include_language,
         use_thankyou=use_thankyou,
         footer=footer,
+        include_title=include_title if include_title is not None else footer,
         form=form,
         success=success,
     ))

@@ -3,6 +3,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
+from operator import itemgetter
 
 import re
 from datetime import datetime
@@ -101,6 +102,107 @@ class TelInput(widgets.TextInput):
 
 class NumberInput(widgets.TextInput):
     input_type = 'number'
+
+
+class L10nSelect(forms.Select):
+    def render_option(self, selected_choices, option_value, option_label):
+        if option_value == '':
+            option_label = u'-- {0} --'.format(_('select'))
+        return super(L10nSelect, self).render_option(selected_choices, option_value, option_label)
+
+
+class ContributeSignupForm(forms.Form):
+    empty_choice = ('', '')
+    category_choices = (
+        ('coding', _lazy('Coding')),
+        ('testing', _lazy('Testing')),
+        ('writing', _lazy('Writing')),
+        ('teaching', _lazy('Teaching')),
+        ('helping', _lazy('Helping')),
+        ('translating', _lazy('Translating')),
+        ('activism', _lazy('Activism')),
+        ('dontknow', _lazy('I don’t know')),
+    )
+    coding_choices = (
+        empty_choice,
+        ('coding-firefox', _lazy('Firefox')),
+        ('coding-firefoxos', _lazy('Firefox OS')),
+        ('coding-websites', _lazy('Websites')),
+        ('coding-addons', _lazy('Firefox add-ons')),
+        ('coding-marketplace', _lazy('HTML5 apps')),
+        ('coding-webcompat', _lazy('Diagnosing Web compatibility issues')),
+        ('coding-cloud', _lazy('Online services')),
+    )
+    testing_choices = (
+        empty_choice,
+        ('testing-firefox', _lazy('Firefox and Firefox OS')),
+        ('testing-addons', _lazy('Firefox add-ons')),
+        ('testing-marketplace', _lazy('HTML5 apps')),
+        ('testing-websites', _lazy('Websites')),
+        ('testing-webcompat', _lazy('Web compatibility')),
+    )
+    translating_choices = (
+        empty_choice,
+        ('translating-products', _lazy('Products')),
+        ('translating-websites', _lazy('Websites')),
+        ('translating-tools', _lazy(u'I’d like to work on localization tools')),
+    )
+    writing_choices = (
+        empty_choice,
+        ('writing-social', _lazy('Social media')),
+        ('writing-journalism', _lazy('Journalism')),
+        ('writing-techusers', _lazy('Technical docs for users')),
+        ('writing-techdevs', _lazy('Technical docs for developers')),
+        ('writing-addons', _lazy('Technical docs for Firefox add-ons')),
+        ('writing-marketplace', _lazy('Technical docs for HTML5 apps')),
+    )
+    teaching_choices = (
+        empty_choice,
+        ('teaching-webmaker', _lazy('Teach the Web (Webmaker)')),
+        ('teaching-fellowships', _lazy('Open News fellowships')),
+        ('teaching-hive', _lazy('Hive - Community based digital education')),
+        ('teaching-science', _lazy('Open Web science research')),
+    )
+
+    email = forms.EmailField(widget=EmailInput(attrs={'required': 'required'}))
+    privacy = forms.BooleanField(widget=PrivacyWidget)
+    category = forms.ChoiceField(choices=category_choices, widget=L10nSelect)
+    area_coding = forms.ChoiceField(choices=coding_choices, required=False, widget=L10nSelect)
+    area_testing = forms.ChoiceField(choices=testing_choices, required=False, widget=L10nSelect)
+    area_translating = forms.ChoiceField(choices=translating_choices, required=False,
+                                         widget=L10nSelect)
+    area_writing = forms.ChoiceField(choices=writing_choices, required=False, widget=L10nSelect)
+    area_teaching = forms.ChoiceField(choices=teaching_choices, required=False, widget=L10nSelect)
+    name = forms.CharField()
+    message = forms.CharField(widget=forms.Textarea, required=False)
+    newsletter = forms.BooleanField(required=False)
+
+    def __init__(self, locale, *args, **kwargs):
+        regions = product_details.get_regions(locale)
+        regions = sorted(regions.iteritems(), key=itemgetter(1))
+        lang = locale.lower()
+        if '-' in lang:
+            lang, country = lang.split('-', 1)
+        else:
+            country = ''
+            regions.insert(0, self.empty_choice)
+        super(ContributeSignupForm, self).__init__(*args, **kwargs)
+        self.locale = locale
+        self.fields['country'] = forms.ChoiceField(choices=regions, initial=country,
+                                                   widget=L10nSelect)
+
+    def clean(self):
+        cleaned_data = super(ContributeSignupForm, self).clean()
+        category = cleaned_data.get('category')
+        # only bother if category was supplied
+        if category:
+            area_name = 'area_' + category
+            if area_name in cleaned_data and not cleaned_data[area_name]:
+                required_message = self.fields[area_name].error_messages['required']
+                self._errors[area_name] = self.error_class([required_message])
+                del cleaned_data[area_name]
+
+        return cleaned_data
 
 
 class ContributeForm(forms.Form):
