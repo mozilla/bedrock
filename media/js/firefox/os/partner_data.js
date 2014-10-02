@@ -37,6 +37,11 @@ if (typeof Mozilla == 'undefined') {
             'display': 'Alcatel One Touch Fire C',
             'countries': ['es', 'gr', 'mk', 'pe', 'uy']
         },
+        'alcatel_onetouchfirec2g': {
+            'type': 'smartphone',
+            'display': 'Alcatel One Touch Fire C 2G',
+            'countries': []
+        },
         'alcatel_onetouchfiree': {
             'type': 'smartphone',
             'display': 'Alcatel One Touch Fire E',
