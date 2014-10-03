@@ -2,7 +2,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import re
 import json
 
 from django.conf import settings
@@ -21,8 +20,6 @@ from commonware.decorators import xframe_allow
 from funfactory.urlresolvers import reverse
 from lib.l10n_utils.dotlang import _, lang_file_is_active
 
-from bedrock.firefox import version_re
-from bedrock.firefox.utils import is_current_or_newer
 from bedrock.mozorg import email_contribute
 from bedrock.mozorg.credits import CreditsFile
 from bedrock.mozorg.decorators import cache_control_expires
@@ -161,22 +158,9 @@ def partnerships(request):
 
 def plugincheck(request, template='mozorg/plugincheck.html'):
     """
-    Determine whether the current UA is the latest Firefox,
-    passes the result to the template and renders the
-    specified template.
+    Renders the plugncheck template.
     """
-    user_agent = request.META.get('HTTP_USER_AGENT', '')
-    user_version = "0"
-    ua_regexp = r"Firefox/(%s)" % version_re
-    match = re.search(ua_regexp, user_agent)
-    if match:
-        user_version = match.group(1)
-
-    data = {
-        'is_latest': is_current_or_newer(user_version)
-    }
-
-    return l10n_utils.render(request, template, data)
+    return l10n_utils.render(request, template)
 
 
 @xframe_allow
