@@ -1,4 +1,4 @@
-# -*- coding: utf8 -*-
+# -*- coding: utf-8 -*-
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -54,7 +54,7 @@ class TestHome(TestCase):
         req = self.rf.post('/')
         self.view(req)
         # would return 405 before calling render otherwise
-        resp_mock.assert_called_once_with(req, ['mozorg/home/index.html'], ANY)
+        resp_mock.assert_called_once_with(req, ['mozorg/home.html'], ANY)
 
 
 class TestViews(TestCase):
