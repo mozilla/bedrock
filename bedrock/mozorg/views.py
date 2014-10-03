@@ -16,10 +16,12 @@ from django.shortcuts import redirect, render as django_render
 
 import basket
 import requests
+import waffle
 from lib import l10n_utils
 from commonware.decorators import xframe_allow
 from funfactory.urlresolvers import reverse
-from lib.l10n_utils.dotlang import _, lang_file_is_active
+from lib.l10n_utils.dotlang import (
+    _, get_lang_path, lang_file_has_tag, lang_file_is_active)
 
 from bedrock.firefox import version_re
 from bedrock.firefox.utils import is_current_or_newer
@@ -263,8 +265,7 @@ class Robots(TemplateView):
 
 class HomeTestView(TemplateView):
     """Home page view that will use a different template for a QS."""
-
-    template_name = 'mozorg/home/index.html'
+    template_name = 'mozorg/home.html'
 
     def post(self, request, *args, **kwargs):
         # required for newsletter form post that is handled in newsletter/helpers.py
@@ -274,16 +275,6 @@ class HomeTestView(TemplateView):
         ctx = super(HomeTestView, self).get_context_data(**kwargs)
         ctx['has_contribute'] = lang_file_is_active('mozorg/contribute')
         locale = l10n_utils.get_locale(self.request)
-
-        if locale in settings.HOMEPAGE_TWITTER_ACCOUNTS:
-            account = settings.HOMEPAGE_TWITTER_ACCOUNTS[locale]
-            try:
-                ctx['tweets'] = TwitterCache.objects.get(account=account).tweets
-            except (TwitterCache.DoesNotExist, DatabaseError):
-                ctx['tweets'] = []
-        else:
-            ctx['tweets'] = []
-
         locale = locale if locale in settings.MOBILIZER_LOCALE_LINK else 'en-US'
         ctx['mobilizer_link'] = settings.MOBILIZER_LOCALE_LINK[locale]
 
@@ -294,3 +285,32 @@ class HomeTestView(TemplateView):
                                  self.get_template_names(),
                                  context,
                                  **response_kwargs)
+
+
+def home_tweets(locale):
+    account = settings.HOMEPAGE_TWITTER_ACCOUNTS.get(locale)
+    if account:
+        try:
+            return TwitterCache.objects.get(account=account).tweets
+        except (TwitterCache.DoesNotExist, DatabaseError):
+            pass  # TODO: see if we should catch other errors
+    return []
+
+
+def new_home(request):
+    locale = l10n_utils.get_locale(request)
+    return l10n_utils.render(
+        request, 'mozorg/home/home-new.html', {
+            'has_contribute': lang_file_is_active('mozorg/contribute'),
+            'tweets': home_tweets(locale),
+            'mobilizer_link': settings.MOBILIZER_LOCALE_LINK.get(
+                locale, settings.MOBILIZER_LOCALE_LINK['en-US'])})
+
+
+def home(request):
+    if waffle.switch_is_active('homepage_2015') and (
+            lang_file_has_tag(get_lang_path('mozorg/home/home-new.html'),
+                              'homepage_2015') or settings.DEV):
+        return new_home(request)
+    else:
+        return HomeTestView.as_view()(request)
