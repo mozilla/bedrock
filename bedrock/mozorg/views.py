@@ -267,17 +267,12 @@ class HomeTestView(TemplateView):
     """Home page view that will use a different template for a QS."""
     template_name = 'mozorg/home.html'
 
-    def post(self, request, *args, **kwargs):
-        # required for newsletter form post that is handled in newsletter/helpers.py
-        return self.get(request, *args, **kwargs)
-
     def get_context_data(self, **kwargs):
         ctx = super(HomeTestView, self).get_context_data(**kwargs)
         ctx['has_contribute'] = lang_file_is_active('mozorg/contribute')
         locale = l10n_utils.get_locale(self.request)
         locale = locale if locale in settings.MOBILIZER_LOCALE_LINK else 'en-US'
         ctx['mobilizer_link'] = settings.MOBILIZER_LOCALE_LINK[locale]
-
         return ctx
 
     def render_to_response(self, context, **response_kwargs):

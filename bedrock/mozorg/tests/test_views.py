@@ -49,13 +49,6 @@ class TestHome(TestCase):
         ctx = resp_mock.call_args[0][2]
         self.assertEqual(ctx['mobilizer_link'], 'His Dudeness')
 
-    def test_can_post(self, resp_mock):
-        """Home page must accept post for newsletter signup."""
-        req = self.rf.post('/')
-        self.view(req)
-        # would return 405 before calling render otherwise
-        resp_mock.assert_called_once_with(req, ['mozorg/home.html'], ANY)
-
 
 class TestViews(TestCase):
     def test_hacks_newsletter_frames_allow(self):
