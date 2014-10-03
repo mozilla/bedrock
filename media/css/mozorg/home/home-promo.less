@@ -39,7 +39,7 @@
     width: @widthSquareGrid_8 - (@gridGutterWidth * 2);
     overflow: hidden;
     z-index: -1;
-    background: none;
+    background: #fff;
 }
 
 .promo-grid {
@@ -57,7 +57,7 @@
         color: #fff;
         overflow: hidden;
         opacity: 1;
-        .transition(opacity .5s ease-in-out);
+        .transition(opacity .3s ease-in-out);
     }
 
     #promo-1 {
@@ -1451,7 +1451,7 @@
 // Promo faces background grid should not be loaded at smallest viewport size
 @media only screen and (min-width: (@widthSquareGrid_3)) {
     .faces-grid-inner {
-        background: url(/media/img/home/voices/mosaic-background.jpg?17-09-2014) -10px 0 repeat;
+        background: #fff url(/media/img/home/voices/mosaic-background.jpg?03-10-2014) -10px 0 repeat;
     }
 }
 
