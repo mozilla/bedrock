@@ -8,7 +8,7 @@ from util import page
 import views
 
 urlpatterns = patterns('',
-    url('^$', views.HomeTestView.as_view(), name='mozorg.home'),
+    url('^$', views.home, name='mozorg.home'),
     page('about/manifesto', 'mozorg/about/manifesto.html'),
     page('about/manifesto/details', 'mozorg/about/manifesto-details.html'),
     page('about', 'mozorg/about.html'),

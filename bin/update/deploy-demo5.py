@@ -1,5 +1,5 @@
 """
-Deployment for Bedrock on www-demo1.allizom.org.
+Deployment for Bedrock on www-demo5.allizom.org.
 
 Requires commander (https://github.com/oremj/commander) which is installed on
 the systems that need it.

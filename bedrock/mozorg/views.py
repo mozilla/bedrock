@@ -32,6 +32,7 @@ from bedrock.mozorg.models import TwitterCache
 from bedrock.mozorg.util import hide_contrib_form
 from bedrock.mozorg.util import HttpResponseJSON
 from bedrock.newsletter.forms import NewsletterFooterForm
+from bedrock.openstandard.utils import categorized_articles
 
 
 credits_file = CreditsFile('credits')
@@ -326,28 +327,42 @@ class Robots(TemplateView):
 
 class HomeTestView(l10n_utils.LangFilesMixin, TemplateView):
     """Home page view that will use a different template for a QS."""
-
-    template_name = 'mozorg/home/index.html'
-
-    def post(self, request, *args, **kwargs):
-        # required for newsletter form post that is handled in newsletter/helpers.py
-        return self.get(request, *args, **kwargs)
+    template_name = 'mozorg/home.html'
 
     def get_context_data(self, **kwargs):
         ctx = super(HomeTestView, self).get_context_data(**kwargs)
         ctx['has_contribute'] = lang_file_is_active('mozorg/contribute')
         locale = l10n_utils.get_locale(self.request)
-
-        if locale in settings.HOMEPAGE_TWITTER_ACCOUNTS:
-            account = settings.HOMEPAGE_TWITTER_ACCOUNTS[locale]
-            try:
-                ctx['tweets'] = TwitterCache.objects.get(account=account).tweets
-            except (TwitterCache.DoesNotExist, DatabaseError):
-                ctx['tweets'] = []
-        else:
-            ctx['tweets'] = []
-
         locale = locale if locale in settings.MOBILIZER_LOCALE_LINK else 'en-US'
         ctx['mobilizer_link'] = settings.MOBILIZER_LOCALE_LINK[locale]
-
         return ctx
+
+
+def home_tweets(locale):
+    account = settings.HOMEPAGE_TWITTER_ACCOUNTS.get(locale)
+    if account:
+        try:
+            return TwitterCache.objects.get(account=account).tweets
+        except (TwitterCache.DoesNotExist, DatabaseError):
+            pass  # TODO: see if we should catch other errors
+    return []
+
+
+def new_home(request, locale=None):
+    locale = locale or l10n_utils.get_locale(request)
+    return l10n_utils.render(
+        request, 'mozorg/home/home-new.html', {
+            'has_contribute': lang_file_is_active('mozorg/contribute'),
+            'tweets': home_tweets(locale),
+            'categorized_articles': categorized_articles(),
+            'mobilizer_link': settings.MOBILIZER_LOCALE_LINK.get(
+                locale, settings.MOBILIZER_LOCALE_LINK['en-US'])})
+
+
+def home(request):
+    locale = l10n_utils.get_locale(request)
+    new_template = 'mozorg/home/home-new.html'
+    if l10n_utils.template_is_active(new_template, locale) or settings.DEV:
+        return new_home(request, locale=locale)
+    else:
+        return HomeTestView.as_view()(request)
