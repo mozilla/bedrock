@@ -1,4 +1,4 @@
-# -*- coding: utf8 -*-
+# -*- coding: utf-8 -*-
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -48,13 +48,6 @@ class TestHome(TestCase):
         self.view(req)
         ctx = resp_mock.call_args[0][2]
         self.assertEqual(ctx['mobilizer_link'], 'His Dudeness')
-
-    def test_can_post(self, resp_mock):
-        """Home page must accept post for newsletter signup."""
-        req = self.rf.post('/')
-        self.view(req)
-        # would return 405 before calling render otherwise
-        resp_mock.assert_called_once_with(req, ['mozorg/home/index.html'], ANY)
 
 
 class TestViews(TestCase):

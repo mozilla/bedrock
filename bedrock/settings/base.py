@@ -881,6 +881,7 @@ INSTALLED_APPS = get_apps(exclude=(
     '%s.legal' % PROJECT_MODULE,
     '%s.mozorg' % PROJECT_MODULE,
     '%s.newsletter' % PROJECT_MODULE,
+    '%s.openstandard' % PROJECT_MODULE,
     '%s.persona' % PROJECT_MODULE,
     '%s.press' % PROJECT_MODULE,
     '%s.privacy' % PROJECT_MODULE,
