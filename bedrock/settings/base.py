@@ -1065,7 +1065,10 @@ FIREFOX_TWITTER_ACCOUNTS = {
 # Twitter accounts to display on homepage per locale
 HOMEPAGE_TWITTER_ACCOUNTS = {
     'en-US': 'firefox',
+    'es-AR': 'firefox_es',
+    'es-CL': 'firefox_es',
     'es-ES': 'firefox_es',
+    'es-MX': 'firefox_es',
     'pt-BR': 'firefoxbrasil',
 }
 

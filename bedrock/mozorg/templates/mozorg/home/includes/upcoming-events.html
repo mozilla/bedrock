@@ -7,22 +7,26 @@
     <h2>{{ _('Upcoming events') }}</h2>
 
     <div class="inner-container">
-      <a href="https://reps.mozilla.org/e/open-source-comes-to-campus-city-college-of-san-francisco/" class="featured-event">
-        <div class="event-map">
+      <div class="featured-event">
+        <a href="https://reps.mozilla.org/e/open-source-comes-to-campus-city-college-of-san-francisco/" class="event-map">
           <time datetime="13-09-2014">
             <abbr class="date-month" title="September">Sep</abbr>
             <span class="date-day">13</span>
           </time>
           <img src="{{ media('img/home/voices/mapsmall.png') }}" alt="">
-        </div>
+        </a>
 
         <div class="event-detail">
           <h3 class="next">{{ _('Next event') }}</h3>
-          <h4>Open Source Comes to Campus: City College of San Francisco</h4>
+          <a href="https://reps.mozilla.org/e/open-source-comes-to-campus-city-college-of-san-francisco/">
+            <h4>Open Source Comes to Campus: City College of San Francisco</h4>
+          </a>
           <time class="event-info" datetime="13-09-2014">September 13, 2014</time>
-          <p class="event-info location">CCSF Ocean Campus Batmale Hall , San Francisco, California, United States</p>
+          <span class="event-info location">
+            <p>CCSF Ocean Campus Batmale Hall , San Francisco, California, United States</p>
+          </span>
         </div>
-      </a>
+      </div>
 
       <ul class="events-list">
         <li>
@@ -33,7 +37,9 @@
             </time>
             <div class="event-detail">
               <h3>Hive India at Maker Faire New York 2014</h3>
-              <p class="event-info location">New York Hall Of Science, Corona, New York, United States</p>
+              <span class="event-info location">
+                <p>New York Hall Of Science, Corona, New York, United States</p>
+              </span>
             </div>
           </a>
         </li>
@@ -45,7 +51,9 @@
             </time>
             <div class="event-detail">
               <h3>Google Summer of Code</h3>
-              <p class="event-info location">Marriott and Hilton, San Jose, California, United States</p>
+              <span class="event-info location">
+                <p>Marriott and Hilton, San Jose, California, United States</p>
+              </span>
             </div>
           </a>
         </li>
@@ -57,7 +65,9 @@
             </time>
             <div class="event-detail">
               <h3>Initiation to Maker Parties in Utah</h3>
-              <p class="event-info location">Harmons, Draper, Utah, United States</p>
+              <span class="event-info location">
+                <p>Harmons, Draper, Utah, United States</p>
+              </span>
             </div>
           </a>
         </li>

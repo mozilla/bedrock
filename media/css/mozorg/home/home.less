@@ -165,6 +165,10 @@ h1, h2, h3, h4, h5, h6 {
             color: #fff;
         }
 
+        .download-subtitle {
+            text-shadow: none;
+        }
+
         .unsupported-download {
             a:link,
             a:visited {
@@ -313,6 +317,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .event-map {
+        display: block;
         position: relative;
         float: left;
         width: 248px;
@@ -355,10 +360,25 @@ h1, h2, h3, h4, h5, h6 {
         font-family: 'FA-Icons-Home';
         width: 1.5em;
         text-align: center;
+        color: #b1b1ad;
     }
 
-    .event-info.location:before {
-        content: '\f041\00a0';
+    .event-info.location {
+        display: block;
+        position: relative;
+        margin-top: 5px;
+
+        &:before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            content: '\f041\00a0';
+        }
+
+        p {
+            float: left;
+            margin-left: 20px;
+        }
     }
 
     time.event-info:before {
@@ -399,13 +419,21 @@ h1, h2, h3, h4, h5, h6 {
                 color: #b1b1ad;
                 font-size: 20px;
             }
+
+            .event-info.location {
+                &:before {
+                    font-size: 20px;
+                }
+                p {
+                    margin-left: 29px;
+                }
+            }
         }
 
-        &:hover,
-        &:active,
-        &:focus {
+        a:hover,
+        a:active,
+        a:focus {
             text-decoration: none;
-
             h4 {
                 text-decoration: underline;
             }
@@ -481,7 +509,6 @@ h1, h2, h3, h4, h5, h6 {
             }
 
             p {
-                margin-top: 5px;
                 color: #b1b1ad;
             }
 

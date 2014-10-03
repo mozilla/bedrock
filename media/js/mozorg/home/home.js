@@ -84,9 +84,7 @@ $(function () {
 
     function initFacesGrid() {
         // add stagger class to increment transition delay
-        $promos.addClass('stagger');
-        // show each promo
-        $promoItems.addClass('reveal');
+        $promos.addClass('stagger reveal');
         // remove stagger class once set to reset transition delay
         setTimeout(function () {
             $promos.removeClass('stagger');
@@ -102,7 +100,7 @@ $(function () {
             // at the bottom right of the container
             // if text overflows as opposed to truncating
             // the tweet content
-            $tweet.addClass('ellipsis');
+            $tweet.find('.ellipsis').show();
         }
     }
 

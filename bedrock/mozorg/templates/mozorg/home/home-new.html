@@ -56,19 +56,19 @@
   data-nov-long="{{_('November')}}"
   data-dec-long="{{_('December')}}"
 
-  {# L10n: abbreviations for months of the year  #}
-  data-jan-short="{{_('Jan')}}"
-  data-feb-short="{{_('Feb')}}"
-  data-mar-short="{{_('Mar')}}"
-  data-apr-short="{{_('Apr')}}"
-  data-may-short="{{_('May')}}"
-  data-jun-short="{{_('Jun')}}"
-  data-jul-short="{{_('Jul')}}"
-  data-aug-short="{{_('Aug')}}"
-  data-sep-short="{{_('Sep')}}"
-  data-oct-short="{{_('Oct')}}"
-  data-nov-short="{{_('Nov')}}"
-  data-dec-short="{{_('Dec')}}"
+  {# L10n: abbreviations for months of the year #}
+  data-jan-short="{{_('jan')}}"
+  data-feb-short="{{_('feb')}}"
+  data-mar-short="{{_('mar')}}"
+  data-apr-short="{{_('apr')}}"
+  data-may-short="{{_('may')}}"
+  data-jun-short="{{_('jun')}}"
+  data-jul-short="{{_('jul')}}"
+  data-aug-short="{{_('aug')}}"
+  data-sep-short="{{_('sep')}}"
+  data-oct-short="{{_('oct')}}"
+  data-nov-short="{{_('nov')}}"
+  data-dec-short="{{_('dec')}}"
 {% endblock %}
 
 {# Note: Each color face links to the contribute landing page,
@@ -236,9 +236,10 @@
             <div class="twt-container">
               <p class="twt-text" id="twt-body">
                 {{ format_tweet_body(tweet)|safe }}
+                <span class="ellipsis" title="{{ tweet.text|safe }}"></span>
               </p>
               <div class="twt-actions">
-                <a href="https://twitter.com/{{ tweet.user.screen_name }}/status/{{ tweet.id }}" class="twt-account"></a>
+                <a href="https://twitter.com/{{ tweet.user.screen_name }}" class="twt-account" title="{{ tweet.user.name }}"></a>
                 <a href="https://twitter.com/intent/tweet?in_reply_to={{ tweet.id }}" class="twt-reply" title="{{ _('Reply') }}">{{ _('Reply') }}</a>
                 <a href="https://twitter.com/intent/retweet?tweet_id={{ tweet.id }}" class="twt-rt" title="{{ _('Retweet') }}">{{ _('Retweet') }}</a>
               </div>
