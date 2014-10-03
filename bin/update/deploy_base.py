@@ -122,10 +122,17 @@ def pre_update(ctx, ref=settings.UPDATE_REF):
 
 
 @task
+def cronjobs(ctx):
+    management_cmd(ctx, 'cron update_tweets')
+    management_cmd(ctx, 'cron update_openstandard')
+
+
+@task
 def update(ctx):
     commands['database']()
     commands['update_assets']()
     commands['update_locales']()
+    commands['cronjobs']()
     commands['update_revision_file']()
 
 
