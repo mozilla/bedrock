@@ -239,19 +239,35 @@
   .main-column {
     margin: 0;
 
+    ul {
+      margin-bottom: @baseLine * 2;
+    }
     li {
-      /* Style the list counters */
-      color: @textColorSecondary;
-      font-size: 32px;
-      .open-sans-light;
+      margin-top: 0;
+      margin-bottom: .2em;
+      font-size: @largeFontSize;
+    }
+    ol {
+      li {
+        /* Style the list counters */
+        color: @textColorTertiary;
+        font-size: 32px;
+        .open-sans-light;
+      }
     }
 
     p {
       /* And reset the style for the child node */
       color: @textColorPrimary;
-      font-size: @baseFontSize;
+      font-size: @largeFontSize;
       .open-sans;
+      margin-top: auto;
     }
+
+    h2 {
+      margin-bottom: 5px;
+    }
+
   }
 }
 
@@ -322,10 +338,6 @@ html[dir="rtl"] {
     }
   }
 
-  #privacy-principles .main-column li {
-    float: right;
-    margin: 30px 65px 0 30px;
-  }
 }
 
 /* Tablet & Mobile */
@@ -372,14 +384,6 @@ html[dir="rtl"] {
     width: (@gridColumnWidthNarrow * 4) + (@gridGutterWidth * 6);
   }
 
-  #privacy-principles .main-column li {
-    .span_narrow(5);
-    margin: 30px 10px 0 65px;
-  }
-
-  html[dir="rtl"] #privacy-principles .main-column li {
-    margin: 30px 65px 0 10px;
-  }
 }
 
 @media only screen and (max-width: @breakTablet) {
@@ -425,20 +429,11 @@ html[dir="rtl"] {
       width: auto;
     }
 
-    li {
-      float: none;
-      margin: 30px 0 0 40px;
-      width: auto;
-      font-size: 24px;
-    }
-
+    ol li,
     h2 {
       font-size: 24px;
     }
 
-    p {
-      font-size: @baseFontSize;
-    }
   }
 
   html[dir="rtl"] {
