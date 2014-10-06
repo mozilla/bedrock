@@ -6,6 +6,7 @@ import jingo
 import jinja2
 from babel.core import Locale, UnknownLocaleError
 from babel.dates import format_date
+from babel.numbers import format_number
 
 from django.conf import settings
 from django.utils.translation import get_language
@@ -94,3 +95,14 @@ def l10n_format_date(date, format='long'):
     """
     locale = current_locale()
     return format_date(date, locale=locale, format=format)
+
+
+
+@jingo.register.filter
+def l10n_format_number(number):
+    """
+    Formats a number according to the current locale. Wraps around
+    babel.numbers.format_number.
+    """
+    locale = current_locale()
+    return format_number(number, locale=locale)
