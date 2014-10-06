@@ -29,7 +29,7 @@ from product_details import product_details
 FORMAT_IDENTIFIER_RE = re.compile(r"""(%
                                       (?:\((\w+)\))? # Mapping key
                                       s)""", re.VERBOSE)
-TAG_REGEX = re.compile(r"^## (\w+) ##")
+TAG_REGEX = re.compile(r"^## ([\w-]+) ##")
 cache = get_cache('l10n')
 
 
