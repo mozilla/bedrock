@@ -88,21 +88,22 @@ def current_locale():
 
 
 @jingo.register.filter
-def l10n_format_date(date, format='long'):
+@jinja2.contextfunction
+def l10n_format_date(ctx, date, format='long'):
     """
     Formats a date according to the current locale. Wraps around
     babel.dates.format_date.
     """
-    locale = current_locale()
-    return format_date(date, locale=locale, format=format)
-
+    lang = ctx['LANG'].split('-')[0]
+    return format_date(date, locale=lang, format=format)
 
 
 @jingo.register.filter
-def l10n_format_number(number):
+@jinja2.contextfunction
+def l10n_format_number(ctx, number):
     """
     Formats a number according to the current locale. Wraps around
     babel.numbers.format_number.
     """
-    locale = current_locale()
-    return format_number(number, locale=locale)
+    lang = ctx['LANG'].split('-')[0]
+    return format_number(number, locale=lang)
