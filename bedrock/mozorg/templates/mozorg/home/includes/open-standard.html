@@ -1,0 +1,64 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{# Open Standard module is en-US only, so strings are not localized #}
+<section class="module" id="open-standard">
+  <div class="container">
+    <header class="os-header">
+      <h2>{{ high_res_img('img/home/voices/tos-wordmark.png', {'alt': 'The Open Standard, Published by Mozilla', 'width': '620'}) }}</h2>
+      <p>{{ _('Discover more about open systems and their power to connect people and drive innovation.') }}</p>
+    </header>
+    <div class="os-content">
+      <div class="os-filter">
+        <h3>{{ _('View articles by topic') }}</h3>
+        <div class="os-category-buttons">
+          <button type="button" id="os-live-btn" aria-controls="os-live">{{ _('Live') }}</button>
+          <button type="button" id="os-learn-btn" aria-controls="os-learn">{{ _('Learn') }}</button>
+          <button type="button" id="os-innovate-btn" aria-controls="os-innovate">{{ _('Innovate') }}</button>
+          <button type="button" id="os-engage-btn" aria-controls="os-engage">{{ _('Engage') }}</button>
+          <button type="button" id="os-opinion-btn" aria-controls="os-opinion">{{ _('Opinion') }}</button>
+        </div>
+        <select id="os-category-select">
+          <option value="os-live">{{ _('Live') }}</option>
+          <option value="os-learn">{{ _('Learn') }}</option>
+          <option value="os-innovate">{{ _('Innovate') }}</option>
+          <option value="os-engage">{{ _('Engage') }}</option>
+          <option value="os-opinion">{{ _('Opinion') }}</option>
+        </select>
+      </div>
+      {% for category in ('live', 'learn', 'innovate', 'engage', 'opinion') %}
+      <div class="os-container" id="os-{{category}}">
+        <ul class="os-headlines">
+	  {% for article in categorized_articles.get(category, []) %}
+          <li role="presentation">
+            <a href="#" aria-controls="os-{{category}}-article-{{ loop.counter }}">
+              <h3>{{ article.title }}</h3>
+              <time>{{ article.published|datetime }}</time>
+            </a>
+          </li>
+	  {% endfor %}
+        </ul>
+        <div class="os-article-container">
+	  {% for article in categorized_articles.get('live', []) %}
+          <article class="os-article" id="os-{{category}}-article-{{ loop.counter }}">
+	    <h3>{{ article.title }}</h3>
+            <p class="meta">
+              <time>{{ article.published|datetime }}</time> <span class="tag">Innovate</span> Written by {{ article.author }}
+            </p>
+	    {% if article.image %}
+            <div class="article-img">
+              <img src="{{ article.image.get_absolute_url() }}" alt="{{ article.image.alt }}">
+            </div>
+	    {% endif %}
+            <p>{{ article.summary }}</p>
+            <a class="more" href="{{ article.link }}">Read more</a>
+          </article>
+	  {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <a class="more-large" href="https://openstandard.mozilla.org/">{{ _('Read more articles') }}</a>
+  </div>
+</section>

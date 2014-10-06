@@ -321,6 +321,16 @@ MINIFY_BUNDLES = {
         'home-ie': (
             'css/mozorg/home-ie.less',
         ),
+        'home-2015': (
+            'css/mozorg/home/home.less',
+            'css/mozorg/home/home-promo.less',
+        ),
+        'home-2015-open-standard': (
+            'css/mozorg/home/home-open-standard.less',
+        ),
+        'home-2015-ie8': (
+            'css/mozorg/home/home-ie8.less',
+        ),
         'legal': (
             'css/legal/legal.less',
         ),
@@ -644,6 +654,17 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.cycle2.carousel.min.js',
             'js/mozorg/home.js',
         ),
+        'home-2015': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/mozorg/home/home.js',
+            'js/mozorg/home/scroll-prompt.js',
+        ),
+        'home-2015-open-standard': (
+            'js/mozorg/home/open-standard.js',
+        ),
+        'home-2015-ie9': (
+            'js/libs/matchMedia.addListener.js',
+        ),
         'history-slides': (
             'js/libs/jquery.sequence.js',
             'js/mozorg/history-slides.js',
@@ -860,6 +881,7 @@ INSTALLED_APPS = get_apps(exclude=(
     '%s.legal' % PROJECT_MODULE,
     '%s.mozorg' % PROJECT_MODULE,
     '%s.newsletter' % PROJECT_MODULE,
+    '%s.openstandard' % PROJECT_MODULE,
     '%s.persona' % PROJECT_MODULE,
     '%s.press' % PROJECT_MODULE,
     '%s.privacy' % PROJECT_MODULE,
@@ -906,6 +928,9 @@ FEEDS = {
 
 # Twitter accounts to retrieve tweets with the API
 TWITTER_ACCOUNTS = (
+    'firefox',
+    'firefox_es',
+    'firefoxbrasil',
     'mozstudents',
 )
 
@@ -1036,6 +1061,13 @@ FIREFOX_TWITTER_ACCOUNTS = {
     'en-US': 'https://twitter.com/firefox',
     'es-ES': 'https://twitter.com/firefox_es',
     'pt-BR': 'https://twitter.com/firefoxbrasil',
+}
+
+# Twitter accounts to display on homepage per locale
+HOMEPAGE_TWITTER_ACCOUNTS = {
+    'en-US': 'firefox',
+    'es-ES': 'firefox_es',
+    'pt-BR': 'firefoxbrasil',
 }
 
 # Mapbox token for spaces and communities pages

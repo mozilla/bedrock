@@ -31,7 +31,7 @@ USE_GRUNT_LIVERELOAD = False
 
 # Twitter apps' consumer key/secret and access token/secret
 TWITTER_APP_KEYS = {
-    'mozstudents': {
+    'default': {
         'CONSUMER_KEY': '',
         'CONSUMER_SECRET': '',
         'ACCESS_TOKEN': '',
