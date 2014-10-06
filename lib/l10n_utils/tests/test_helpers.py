@@ -58,3 +58,13 @@ class TestL10nFormatDate(TestCase):
             format_date.return_value)
         format_date.assert_called_with(
             'somedate', locale=current_locale.return_value, format='long')
+
+
+class TestL10nFormatNumber(TestCase):
+    @patch('l10n_utils.helpers.current_locale')
+    @patch('l10n_utils.helpers.format_number')
+    def test_success(self, format_number, current_locale):
+        eq_(helpers.l10n_format_number(10000),
+            format_number.return_value)
+        format_number.assert_called_with(
+            10000, locale=current_locale.return_value)
