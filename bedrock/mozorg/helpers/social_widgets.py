@@ -1,6 +1,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
+from __future__ import unicode_literals
 
 from datetime import datetime
 import urllib
@@ -26,15 +27,16 @@ def format_tweet_body(tweet):
     for hashtags in entities['hashtags']:
         hash = hashtags['text']
         text = text.replace('#' + hash,
-                            ('<a href="https://twitter.com/search?q=%s&amp;src=hash" class="hash">#%s</a>'
-                             % ('%23' + urllib.quote(hash), hash)))
+                            ('<a href="https://twitter.com/search?q=%s&amp;src=hash"'
+                             ' class="hash">#%s</a>' % ('%23' + urllib.quote(hash.encode('utf8')),
+                                                        hash)))
 
     # Mentions (@someone)
     for user in entities['user_mentions']:
         name = user['screen_name']
         text = text.replace('@' + name,
                             ('<a href="https://twitter.com/%s" class="mention">@%s</a>'
-                             % (urllib.quote(name), name)))
+                             % (urllib.quote(name.encode('utf8')), name)))
 
     # URLs
     for url in entities['urls']:
@@ -47,7 +49,8 @@ def format_tweet_body(tweet):
         for medium in entities['media']:
             text = text.replace(medium['url'],
                                 ('<a href="%s" title="%s" class="media">%s</a>'
-                                 % (medium['url'], medium['expanded_url'], medium['display_url'])))
+                                 % (medium['url'], medium['expanded_url'],
+                                    medium['display_url'])))
 
     return text
 
