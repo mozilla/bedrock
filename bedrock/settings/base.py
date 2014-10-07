@@ -111,6 +111,9 @@ MINIFY_BUNDLES = {
         'credits-faq': (
             'css/mozorg/credits-faq.less',
         ),
+        'commit-access-policy': (
+            'css/mozorg/commit-access-policy.less',
+        ),
         'about-forums': (
             'css/mozorg/about-forums.less',
         ),
