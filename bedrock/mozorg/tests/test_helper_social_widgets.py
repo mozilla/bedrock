@@ -32,15 +32,16 @@ class TestFormatTweet(TestCase):
         """Should return a tweet in an HTML format"""
         # Note that … is a non-ASCII character. That's why the UTF-8 encoding is
         # specified at the top of the file.
+        actual = format_tweet_body(self.tweet)
         expected = (
             u'Want more information about the <a href="https://twitter.com/'
             u'mozstudents" class="mention">@mozstudents</a> program? Sign-up '
             u'and get a monthly newsletter in your in-box <a href="http://t.co/'
             u'0thqsyksC3" title="http://www.mozilla.org/en-US/contribute/'
             u'universityambassadors/">mozilla.org/en-US/contribu…</a> <a href='
-            u'"https://twitter.com/search?q=%23students&amp;src=hash" class='
-            u'"hash">#students</a>')
-        self.assertEqual(format_tweet_body(self.tweet), expected)
+            u'"https://twitter.com/search?q=%23oto%C3%B1o&amp;src=hash" class='
+            u'"hash">#otoño</a>')
+        self.assertEqual(actual, expected)
 
     def test_format_tweet_timestamp(self):
         """Should return a timestamp in an HTML format"""
