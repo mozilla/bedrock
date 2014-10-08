@@ -34,6 +34,8 @@
     <meta name="twitter:app:name:googleplay" content="{% block android_app_name %}{{ _('Firefox') }}{% endblock %}">
     <meta name="twitter:app:id:googleplay" content="{% block android_app_id %}org.mozilla.firefox{% endblock %}">
     <link rel="shortcut icon" href="{% block page_favicon %}{{ media('img/favicon.ico') }}{% endblock %}">
+    <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="{{ media('img/favicon/apple-touch-icon-180x180.png') }}">
+    <link rel="icon" type="image/png" sizes="196x196" href="{{ media('img/favicon/favicon-196x196.png') }}">
     {% include 'includes/canonical-url.html' %}
     {% endblock shared_meta %}
 
