@@ -24,7 +24,6 @@
       <form class="inquiry-form" id="inquiry-form" method="post" action="{{ url('mozorg.contribute.signup') }}">
         {% if form.errors %}
           {{ form.non_field_errors()|safe }}
-
           <ul class="errorlist">
             {% if form.email.errors %}
               <li>{{_('Please enter a valid email address.')}}</li>
@@ -104,45 +103,55 @@
       <fieldset class="areas">
         <h2 class="section-title">{{ _('What particular area?') }}</h2>
 
-        <p class="area" id="area-coding">
-          <label for="select-area-coding">{{ _('What would you like to code?') }}</label>
-          <span class="select">
-            {{ form.area_coding }}
-            {{ form.area_coding.errors }}
-          </span>
-        </p>
+        <div class="area" id="area-coding">
+          <p>
+            <label for="select-area-coding">{{ _('What would you like to code?') }}</label>
+            <span class="select">
+              {{ form.area_coding }}
+            </span>
+          </p>
+          {{ form.area_coding.errors }}
+        </div>
 
-        <p class="area" id="area-testing">
-          <label for="select-area-testing">{{ _('What would you like to test?') }}</label>
-          <span class="select">
-            {{ form.area_testing }}
-            {{ form.area_testing.errors }}
-          </span>
-        </p>
+        <div class="area" id="area-testing">
+          <p>
+            <label for="select-area-testing">{{ _('What would you like to test?') }}</label>
+            <span class="select">
+              {{ form.area_testing }}
+            </span>
+          </p>
+          {{ form.area_testing.errors }}
+        </div>
 
-        <p class="area" id="area-translating">
-          <label for="select-area-translating">{{ _('What would you like to translate?') }}</label>
-          <span class="select">
-            {{ form.area_translating }}
-            {{ form.area_translating.errors }}
-          </span>
-        </p>
+        <div class="area" id="area-translating">
+          <p>
+            <label for="select-area-translating">{{ _('What would you like to translate?') }}</label>
+            <span class="select">
+              {{ form.area_translating }}
+            </span>
+          </p>
+          {{ form.area_translating.errors }}
+        </div>
 
-        <p class="area" id="area-writing">
-          <label for="select-area-writing">{{ _('What would you like to write?') }}</label>
-          <span class="select">
-            {{ form.area_writing }}
-            {{ form.area_writing.errors }}
-          </span>
-        </p>
+        <div class="area" id="area-writing">
+          <p>
+            <label for="select-area-writing">{{ _('What would you like to write?') }}</label>
+            <span class="select">
+              {{ form.area_writing }}
+            </span>
+          </p>
+          {{ form.area_writing.errors }}
+        </div>
 
-        <p class="area" id="area-teaching">
-          <label for="select-area-teaching">{{ _('What would you like to teach?') }}</label>
-          <span class="select">
-            {{ form.area_teaching }}
-            {{ form.area_teaching.errors }}
-          </span>
-        </p>
+        <div class="area" id="area-teaching">
+          <p>
+            <label for="select-area-teaching">{{ _('What would you like to teach?') }}</label>
+            <span class="select">
+              {{ form.area_teaching }}
+            </span>
+          </p>
+          {{ form.area_teaching.errors }}
+        </div>
       </fieldset>
 
       <fieldset class="personal">
@@ -162,21 +171,16 @@
             <label for="person-country">{{ _('Country') }}</label>
             <span class="select">
               {{ form.country }}
-              {{ form.country.errors }}
             </span>
+            {{ form.country.errors }}
           </li>
           <li class="form-message">
             <label for="person-message">{{ _('Why do you want to be a Mozilla volunteer?') }} <i>{{ _('(Optional)') }}</i></label>
             <textarea id="person-message" cols="60" rows="4" name="message"></textarea>
           </li>
           <li class="form-agree">
-            <label class="inline" for="id_privacy">
-              {{ form.privacy }}
-              {{ form.privacy.errors }}
-              {% trans privacy=url('privacy') %}
-              I’m okay with Mozilla handling my info as explained in <a href="{{ privacy }}">this Privacy Policy</a>
-              {% endtrans %}
-            </label>
+            {{ form.privacy }}
+            {{ form.privacy.errors }}
           </li>
         </ul>
       </fieldset>

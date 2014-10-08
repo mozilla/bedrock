@@ -180,16 +180,10 @@ class ContributeSignupForm(forms.Form):
     def __init__(self, locale, *args, **kwargs):
         regions = product_details.get_regions(locale)
         regions = sorted(regions.iteritems(), key=itemgetter(1))
-        lang = locale.lower()
-        if '-' in lang:
-            lang, country = lang.split('-', 1)
-        else:
-            country = ''
-            regions.insert(0, self.empty_choice)
+        regions.insert(0, self.empty_choice)
         super(ContributeSignupForm, self).__init__(*args, **kwargs)
         self.locale = locale
-        self.fields['country'] = forms.ChoiceField(choices=regions, initial=country,
-                                                   widget=L10nSelect)
+        self.fields['country'] = forms.ChoiceField(choices=regions, widget=L10nSelect)
 
     def clean(self):
         cleaned_data = super(ContributeSignupForm, self).clean()

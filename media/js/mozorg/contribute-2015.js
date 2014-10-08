@@ -43,18 +43,6 @@
         }, 400);
     };
 
-    // Style selected option, unstyle previously selected
-    $('#inquiry-form .option input').on('change', function() {
-        $('#inquiry-form .option label').removeClass('selected');
-        $(this).parents('label').addClass('selected');
-    });
-
-    // Style option labels when the option gets focus
-    $('#inquiry-form .option input').on('focus', function() {
-        $('#inquiry-form .option label').removeClass('hover');
-        $(this).parents('label').addClass('hover');
-    });
-
     // Show 'other ways to contribute' block on thankyou page
     $('.cta-other a').on('click', function(e) {
         e.preventDefault();
@@ -63,20 +51,15 @@
         });
     });
 
-    // Style the selected option if one is selected when the page loads
-    $('#inquiry-form .option input:checked').parents('label').addClass('selected');
-
-    $('#inquiry-form input[name="category"]').on('change', function(){
-        var $this = $(this);
-
+    var select_category = function(category) {
         // Style the selected option (reset all of them first to unstyle previous selection)
         $('#inquiry-form .option label').removeClass('selected');
-        $this.parents('label').addClass('selected');
+        category.parents('label').addClass('selected');
 
         // Get all the area IDs
         var areas = $('#inquiry-form .area').map(function(index){ return this.id; });
         // Get the area for the selected category
-        var categoryarea = 'area-' + $this.attr('value');
+        var categoryarea = 'area-' + category.attr('value');
 
         // Show the followup question for categories that have one
         if ($.inArray(categoryarea, areas) !== -1) {
@@ -92,8 +75,25 @@
                 $('.area:visible').find('select').prop('selectedIndex', 0);
             });
         }
+    };
+
+    $('#inquiry-form input[name="category"]').on('change', function(){
+        var $this = $(this);
+        select_category($this);
     });
 
+    // If a category is checked at pageload, do the selection stuff
+    if ( $('#inquiry-form input[name="category"]:checked').length > 0 ) {
+        select_category($('#inquiry-form input[name="category"]:checked'));
+    }
+
+    // Style option labels when the option gets focus
+    $('#inquiry-form .option input').on('focus', function() {
+        $('#inquiry-form .option label').removeClass('hover');
+        $(this).parents('label').addClass('hover');
+    });
+
+    // Show the specific area for the selected category
     var show_area = function(categoryarea) {
         // Get the ID of the previously selected area
         var oldarea = $('.area:visible').attr('id');
@@ -138,124 +138,5 @@
     $('#inquiry-form .info').on('click', function(e) {
         e.preventDefault();
     });
-
-
-
-/* // Info modal with navigation. Might need this later...
-
-    var ltr = document.dir === 'ltr';
-
-    // Set up the modal navigation
-    var modal_paging = function(direction) {
-        // get the current blurb
-        var $current = $('.info-content:visible');
-        var action;
-
-        if (direction === 1) {
-            action = 'modal next';
-            // Fade out the current blurb
-            $current.fadeOut('fast', function(){
-                // Get the next blurb and fade it in; it becomes the new current blurb.
-                $current = $current.next('.info-content').length ? $current.next('.info-content').fadeIn() : $current.siblings('.info-content:first').fadeIn();
-                // Reset the nav
-                $('.category-nav .current').removeClass('current');
-                // Highlight the new current blurb's icon
-                $('.category-nav a[href="#' + $current.attr('id') + '"]').addClass('current');
-            });
-        } else {
-            action = 'modal prev';
-            // Fade out the current blurb
-            $current.fadeOut('fast', function(){
-                // Get the previous blurb and fade it in; it becomes the new current blurb.
-                $current = $current.prev('.info-content').length ? $current.prev('.info-content').fadeIn() : $current.siblings('.info-content:last').fadeIn();
-                // Reset the nav
-                $('.category-nav .current').removeClass('current');
-                // Highlight the new current blurb's icon
-                $('.category-nav a[href="#' + $current.attr('id') + '"]').addClass('current');
-            });
-        }
-    };
-
-    // Set up the modal
-    $('#inquiry-form .info').on('click', function(e) {
-        e.preventDefault();
-
-        var $this = $(this);
-        var target = $(this).attr('href').replace( /.*?(#.*)/g, "$1" );// Extract the target element's ID from the link's href.
-
-        Mozilla.Modal.createModal(this, $('.category-info'), {
-            title: $('.category-info h2').text(),
-            'onCreate': function () {
-                // Hide all blurbs to reset
-                $('.info-content').hide();
-                // Show the target blurb
-                $(target).show();
-
-                // Reset the nav
-                $('.category-nav .current').removeClass('current');
-                // Highlight the target blurb's icon
-                $('.category-nav a[href="' + target + '"]').addClass('current');
-
-                // Add the prev/next buttons
-                var $paging = $('<nav class="modal-nav" role="presentation"></nav>').insertBefore('#modal-close');
-                $('<button class="button-prev" aria-controls="modal"></button>')
-                    .text(window.trans('global-previous')).appendTo($paging);
-                $('<button class="button-next" aria-controls="modal"></button>')
-                    .text(window.trans('global-next')).appendTo($paging);
-
-                $paging.on('click', 'button', function() {
-                    modal_paging($(this).hasClass('button-prev') ? -1 : 1);
-                });
-            }
-        });
-    });
-
-    $('.category-nav a').on('click', function(e){
-        e.preventDefault();
-
-        // get the current blurb
-        var $current = $('.info-content:visible');
-
-        var $this = $(this);
-        var target = $(this).attr('href').replace( /.*?(#.*)/g, "$1" );// Extract the target element's ID from the link's href.
-
-        // Hide all blurbs to reset
-        $current.fadeOut('fast', function(){
-            // Show the target blurb
-            $(target).fadeIn();
-        });
-
-        // Reset the nav
-        $('.category-nav a').removeClass('current');
-        // Highlight the new current blurb's icon
-        $this.addClass('current');
-    });
-
-    // Set up keyboard shortcuts for the modal
-    $(document).on('keydown', '#modal', function(event) {
-        var direction = 0;
-
-        switch (event.keyCode) {
-            case 37: // Left arrow
-                direction = ltr ? -1 : 1;
-                break;
-            case 38: // Up arrow
-                direction = -1;
-                break;
-            case 39: // Right arrow
-                direction = ltr ? 1 : -1;
-                break;
-            case 40: // Down arrow
-                direction = 1;
-                break;
-        }
-
-        if (direction) {
-            event.preventDefault();
-            nav_modal(direction);
-        }
-    });
-*/
-
 
 })(window.jQuery);

@@ -47,7 +47,15 @@
         </div>
         <h2 class="section-title">{{ _('In the meantime&hellip;') }}</h2>
         <p class="section-tagline">{{ _('You can create your Mozillians account now to connect with fellow Mozillians.' ) }}</p>
-        <p class="cta-mozillians"><a href="https://mozillians.org/?source=contribute">{{ _('Yes, create my Mozillians account') }} *</a></p>
+        <p class="cta-mozillians">
+          {% if settings.DEV %}
+          <a href="https://mozillians-dev.allizom.org/?source=contribute">
+          {% else %}
+          <a href="https://mozillians.org/?source=contribute">
+          {% endif %}
+            {{ _('Yes, create my Mozillians account') }} *
+          </a>
+        </p>
         <p class="note">* {{ _('You will be asked to sign in before proceeding') }}</p>
 
         <div class="cta-other">
