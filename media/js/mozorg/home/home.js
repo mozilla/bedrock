@@ -6,52 +6,45 @@ $(function () {
     'use strict';
 
     var $promos = $('.promo-grid');
-    var $promoItems = $('.promo-grid .item');
+    var $promoLarge = $('.promo-large-landscape, .promo-large-portrait');
+    var $downloadPromo = $('.promo-small-landscape.firefox-download');
+    var hasTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints || navigator.maxTouchPoints;
 
     function initFirefoxDownloadPromo() {
-        var $downloadPromo = $('.firefox-download');
-
-        $downloadPromo.on('mouseenter focusin', function () {
-            $downloadPromo.addClass('show');
-        });
-
-        $downloadPromo.on('mouseleave focusout', function () {
-            $downloadPromo.removeClass('show');
-        });
-
         // show download button small links
-        $('.firefox-download .download-other-desktop').show();
+        $downloadPromo.find('.download-other-desktop').show();
     }
 
-    initFirefoxDownloadPromo();
-
-    function initPromoHoverOver() {
-        var $promoLarge = $('.promo-large-landscape, .promo-large-portrait');
+    /*
+     * For non-touch devices promos are transitioned on hover
+     */
+    function initPromoHover() {
         var scrollTimeout;
 
-        $promoLarge.on('mousemove', function() {
+        function showCurrentHover() {
             var $this = $(this);
-            // for slightly less jank css transitions are only triggered
-            // when the user is not scrolling
             if (!$promos.hasClass('scroll') && !$this.hasClass('show')) {
                 $this.addClass('show');
             }
-        });
+        }
 
-        $promoLarge.on('mouseleave', function() {
+        function showCurrent() {
+            var $this = $(this);
+            if (!$this.hasClass('show')) {
+                $this.addClass('show');
+            }
+        }
+
+        function hideCurrent() {
             var $this = $(this);
             if ($this.hasClass('show')) {
                 $this.removeClass('show');
             }
-        });
+        }
 
-        $promoLarge.on('mousedown focus', function(e) {
-            var $this = $(this);
-            if (!$this.hasClass('show')) {
-                e.preventDefault();
-                $this.addClass('show');
-            }
-        });
+        $promoLarge.on('mousemove', showCurrentHover);
+        $promoLarge.on('mouseleave', hideCurrent);
+        $promoLarge.on('focus', showCurrent);
 
         // when the inner link loses focus, hide the secondary content again
         // assumes a single link in the panel
@@ -62,6 +55,11 @@ $(function () {
             }
         });
 
+        $downloadPromo.on('mouseenter focusin', showCurrent);
+        $downloadPromo.on('mouseleave focusout', hideCurrent);
+
+        // don't animate hover transitions on large promos
+        // while the user is scrolling
         $(window).on('scroll', function() {
             clearTimeout(scrollTimeout);
             if (!$promos.hasClass('scroll')) {
@@ -74,9 +72,107 @@ $(function () {
         });
     }
 
+    /*
+     * For touch devices promos are transitioned on click
+     */
+    function initPromoTouch() {
+        var showTimeout;
+
+        function hideLargePromo() {
+            var $this = $promos.find('.promo-large-landscape.show-touch, .promo-large-portrait.show-touch');
+            var $primary;
+            var $secondary;
+
+            if ($this.length > 0) {
+                $primary = $this.find('.primary');
+                $secondary = $this.find('.secondary');
+
+                setTimeout(function() {
+                    $this.find('a.panel-link').css('visibility', 'hidden');
+                    $secondary.removeClass('fadein');
+                    $secondary.css('visibility', 'hidden');
+                    $primary.css('visibility', 'visible');
+                    $primary.removeClass('fadeout');
+                    $this.removeClass('show-touch');
+                }, 300);
+            }
+        }
+
+        function hideFirefoxDownloadPromo() {
+            if ($downloadPromo.hasClass('show-touch')) {
+                $downloadPromo.find('.secondary').removeClass('fadein');
+
+                setTimeout(function() {
+                    $downloadPromo.find('.secondary').css('visibility', 'hidden');
+                    $downloadPromo.find('.primary').removeClass('out');
+                    $downloadPromo.removeClass('show-touch');
+                }, 300);
+            }
+        }
+
+        $promoLarge.on('click focus', function(e) {
+
+            var $this = $(this);
+            var $primary;
+            var $secondary;
+
+            if (!$this.hasClass('show-touch')) {
+                e.preventDefault();
+
+                $primary = $this.find('.primary');
+                $secondary = $this.find('.secondary');
+
+                //hide any previous promo
+                hideLargePromo();
+                hideFirefoxDownloadPromo();
+
+                clearTimeout(showTimeout);
+                $this.addClass('show-touch');
+                $primary.addClass('fadeout');
+                $this.find('a.panel-link').css('visibility', 'visible');
+
+                showTimeout = setTimeout(function() {
+                    $primary.css('visibility', 'hidden');
+                    $secondary.css('visibility', 'visible');
+                    $secondary.addClass('fadein');
+                }, 300);
+            }
+        });
+
+        $('.promo-large-landscape > a, .promo-large-portrait > a').on('blur', function() {
+            var $this = $(this).parent();
+            if ($this.hasClass('show-touch')) {
+                hideLargePromo();
+            }
+        });
+
+        $downloadPromo.on('click focus', function(e) {
+            var $primary;
+            var $secondary;
+
+            if (!$downloadPromo.hasClass('show-touch')) {
+                e.preventDefault();
+
+                $primary = $downloadPromo.find('.primary');
+                $secondary = $downloadPromo.find('.secondary');
+
+                // hide any previous promo
+                hideLargePromo();
+
+                clearTimeout(showTimeout);
+                $downloadPromo.addClass('show-touch');
+                $primary.addClass('out');
+
+                showTimeout = setTimeout(function() {
+                    $secondary.css('visibility', 'visible').addClass('fadein');
+                }, 300);
+            }
+        });
+    }
+
     function initFacesGrid() {
         // There's currently a bug in Safari 7 when using multiple transition-delay times, which causes
-        // the occasional flicker when the promos fade in. So for now they don't get the staggered effect.
+        // the occasional flicker when the promos fade in. So for now they don't get the staggered effect :(
         var isSafari = navigator.userAgent.indexOf('Safari') !== -1 && navigator.userAgent.indexOf('Chrome') === -1;
 
         if (isSafari) {
@@ -104,8 +200,16 @@ $(function () {
         }
     }
 
+    initFirefoxDownloadPromo();
     initEllipsis();
     initFacesGrid();
-    initPromoHoverOver();
 
+    // for touch devices we assume clicks/taps for promo interaction
+    if (hasTouch) {
+        $promos.addClass('has-touch');
+        initPromoTouch();
+    } else {
+        // for non-touch devices we use hover
+        initPromoHover();
+    }
 });

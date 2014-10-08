@@ -145,7 +145,7 @@
         <li id="promo-5" class="item promo-small-landscape firefox-download" tabindex="0">
           <div class="primary">
             <h2 class="go">{{ _('Download Firefox') }}</h2>
-            <img src="{{ media('img/home/voices/promos/download-firefox/firefox-logo.png') }}" alt="">
+            <img width="176" height="184" src="{{ media('img/home/voices/promos/download-firefox/firefox-logo.png') }}" alt="">
           </div>
           <div class="secondary">
             {{ download_firefox(simple=true) }}
@@ -183,27 +183,15 @@
             </div>
           </a>
         </li>
-        {% if LANG in ['en-US'] %}
-          <li id="promo-11" class="item promo-large-landscape gear-store" tabindex="0" data-name="Official Mozilla gear is here">
-            <h2 class="primary go">{{ _('Official Mozilla gear is here') }}</h2>
-            <a class="panel-link" href="https://gear.mozilla.org/">
-              <div class="secondary">
-                <h3>{{ _('Merch with a mission. <br>Products with a purpose. <br>Goods that do good.') }}</h3>
-                <p class="more">{{ _('Get your Mozilla gear') }}</p>
-              </div>
-            </a>
-          </li>
-        {% else %}
-          <li id="promo-11" class="item promo-large-landscape support" tabindex="0" data-name="Help Mozilla users">
-            <h2 class="primary go">{{ _('Help Mozilla users') }}</h2>
-            <a class="panel-link" href="https://support.mozilla.org/get-involved">
-              <div class="secondary">
-                <h3>{{ _('Help millions <br>get the most from their <br>favorite browser.') }}</h3>
-                <p class="more">{{ _('Join our support team') }}</p>
-              </div>
-            </a>
-          </li>
-        {% endif %}
+        <li id="promo-11" class="item promo-large-landscape support" tabindex="0" data-name="Help Mozilla users">
+          <h2 class="primary go">{{ _('Help Mozilla users') }}</h2>
+          <a class="panel-link" href="https://support.mozilla.org/get-involved">
+            <div class="secondary">
+              <h3>{{ _('Help millions <br>get the most from their <br>favorite browser.') }}</h3>
+              <p class="more">{{ _('Join our support team') }}</p>
+            </div>
+          </a>
+        </li>
         <li id="promo-12" class="item promo-face">
           {{ promo_face(4) }}
         </li>
@@ -260,7 +248,7 @@
     <div class="container">
       <ul>
         <li>
-          <span class="stat contributors">8,722</span>
+          <span class="stat contributors">10,554</span>
           {# L10n: This label is preceeded by a numeric count before the translation. #}
           {# L10n: Line break below is for visual formatting only. #}
           <span>{{ _('active Mozillians <br>worldwide') }}</span>
@@ -272,7 +260,7 @@
           <span>{{ _('upcoming events <br>around the globe') }}</span>
         </li>
         <li>
-          <span class="stat countries">80</span>
+          <span class="stat countries">87</span>
           {# L10n: This label is preceeded by a numeric count before the translation. #}
           {# L10n: Line break below is for visual formatting only. #}
           <span>{{ _('languages and counting, <br>on every continent') }}</span>

@@ -177,6 +177,10 @@
             cursor: pointer;
         }
 
+        &:focus p.more {
+            border-color: #fff;
+        }
+
         z-index: 2;
     }
 
@@ -316,6 +320,46 @@
     }
 }
 
+.promo-grid.has-touch {
+    .promo-large-landscape,
+    .promo-large-portrait {
+        z-index: 0;
+
+        a.panel-link {
+            -webkit-transition: border .3s ease-in-out;
+                    transition: border .3s ease-in-out;
+        }
+
+        .primary {
+            -webkit-transition: opacity .3s ease-in-out;
+                    transition: opacity .3s ease-in-out;
+
+            &.fadeout {
+                opacity: 0;
+            }
+        }
+
+        .secondary {
+            -webkit-transition: opacity .3s ease-in-out;
+                    transition: opacity .3s ease-in-out;
+
+            &.fadein {
+                opacity: 1;
+            }
+        }
+
+        &.show-touch {
+            a.panel-link {
+                border: 5px solid rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
 .promo-large-portrait {
     position: relative;
     width: 300px;
@@ -410,7 +454,7 @@
     .face {
         width: 100%;
         height: 100%;
-        background-image: url(/media/img/home/voices/faces-color-sprite.jpg?08-09-2014);
+        background-image: none;
         background-position: top left;
         background-repeat: no-repeat;
         -webkit-transition: -webkit-transform .2s linear;
@@ -515,10 +559,11 @@
             }
 
             .download-subtitle {
-                font-size: 16px;
+                font-size: 14px;
                 margin: 0;
                 text-align: center;
                 text-shadow: none;
+                text-transform: uppercase;
             }
 
             &:hover,
@@ -529,8 +574,12 @@
 
         .download-other {
             margin-top: 11px;
-            color: #4c781c;
             font-size: 10px;
+            text-align: center;
+        }
+
+        .download-other {
+            color: #4c781c;
 
             a:link,
             a:visited {
@@ -542,6 +591,21 @@
             a:hover,
             a:focus {
                 color: #fff;
+            }
+        }
+
+        .unsupported-download {
+            color: #4c781c;
+
+            a:link,
+            a:visited {
+                color: #fff;
+            }
+
+            a:active,
+            a:hover,
+            a:focus {
+                text-decoration: underline;
             }
         }
 
@@ -630,10 +694,10 @@
 .lang-en-ZA {
     .promo-small-landscape.firefox-download {
         .secondary .download-link .download-subtitle {
-            font-size: 20px;
+            font-size: 18px;
         }
         .secondary .os_android .download-link .download-subtitle {
-            font-size: 16px;
+            font-size: 14px;
         }
     }
 }
@@ -658,6 +722,32 @@
             &:hover,
             &:focus {
                 border: 5px solid rgba(0, 0, 0, 0.1);
+            }
+        }
+    }
+}
+
+.promo-grid.has-touch {
+    .promo-small-landscape.firefox-download {
+        &.show-touch {
+
+            .primary.out {
+                h2 {
+                    left: -300px;
+                }
+
+                img {
+                    right: -200px;
+                }
+            }
+
+            .secondary {
+                -webkit-transition: border .3s ease-in-out, opacity .3s ease-in-out;
+                        transition: border .3s ease-in-out, opacity .3s ease-in-out;
+
+                &.fadein {
+                    opacity: 1;
+                }
             }
         }
     }
@@ -771,22 +861,6 @@
 }
 
 /****************************************************************************/
-// Mozilla Gear Store
-.promo-large-landscape.gear-store {
-    background: #e55525;
-
-    h2 {
-        padding: 100px @baseLine 0 @baseLine;
-        margin-top: @baseLine * 2;
-        background-image: url(/media/img/home/voices/promos/gear-store/gear.png);
-        background-position: top center;
-        background-repeat: no-repeat;
-        -webkit-background-size: 75px 80px;
-                background-size: 75px 80px;
-    }
-}
-
-/****************************************************************************/
 // Webmaker
 .promo-large-landscape.webmaker {
     background: #e14164;
@@ -815,7 +889,17 @@
 /****************************************************************************/
 // Support
 .promo-large-landscape.support {
-    background: #9b6d96;
+    background: #e55525;
+
+    h2 {
+        padding: 100px @baseLine 0 @baseLine;
+        margin-top: @baseLine * 2;
+        background-image: url(/media/img/home/voices/promos/sumo/sumo.png);
+        background-position: top center;
+        background-repeat: no-repeat;
+        -webkit-background-size: 94px 94px;
+                background-size: 94px 94px;
+    }
 }
 
 /****************************************************************************/
@@ -1295,6 +1379,12 @@
     }
 }
 
+@media only screen and (min-width: (@widthSquareGrid_4)) {
+    .promo-face .face {
+        background-image: url(/media/img/home/voices/faces-color-sprite.jpg?08-09-2014);
+    }
+}
+
 @media only screen and (max-width: (@widthSquareGrid_4 - 1)) {
 
     .promo-grid-inner {
@@ -1528,12 +1618,12 @@
         }
     }
 
-    // Mozilla Gear Store
-    .promo-large-landscape.gear-store {
+    // Support
+    .promo-large-landscape.support {
         h2 {
-            background-image: url(/media/img/home/voices/promos/gear-store/gear-high-res.png);
-            -webkit-background-size: 75px 80px;
-                    background-size: 75px 80px;
+            background-image: url(/media/img/home/voices/promos/sumo/sumo-high-res.png);
+            -webkit-background-size: 94px 94px;
+                    background-size: 94px 94px;
         }
     }
 

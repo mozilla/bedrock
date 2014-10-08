@@ -41,9 +41,9 @@ $(function () {
 
         // only show the prompt on medium sized viewports if the user
         // does not start to scroll for after 5 seconds.
-        if (isMediumViewport && !$window.scrollTop() > 0) {
+        if (isMediumViewport && $window.scrollTop() === 0) {
             promptTimeout = setTimeout(function () {
-                if (!$window.scrollTop() > 0) {
+                if ($window.scrollTop() === 0) {
                     $scrollPrompt.fadeIn();
                     $scrollPrompt.on('click', scrollToPromos);
                     $window.one('scroll.prompt', destroyScrollPrompt);
