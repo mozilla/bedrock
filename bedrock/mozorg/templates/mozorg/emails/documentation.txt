@@ -1,19 +1,14 @@
-Thanks for your interest in helping with Mozilla's documentation and other writing activities. There are several ways you can help:
+Hi!
 
-Write Firefox Knowledge Base articles
-http://support.mozilla.com/en-US/kb/improve-knowledge-base
+I'm Janet Swisher, Community Manager for the Mozilla Developer Network (MDN, https://developer.mozilla.org). MDN's mission is simple: to provide complete, accurate, and helpful documentation for developers who use or create web technologies, whether it's supported by Mozilla-built software or not. If it's an open technology exposed to the Web, we want to document it. 
 
-Write Thunderbird Knowledge Base articles
-http://support.mozillamessaging.com/en-US/kb/improve-knowledge-base
+Our focus is documentation for developers by developers. Whether you prefer to work with code, or with words, or with both, whether you're a seasoned veteran programmer or a fresh beginner &mdash; there are ways you can help! We need help with writing, editing, and translating articles, creating example code, and much more.
 
-Help with Mozilla Developer Network docs
-http://developer.mozilla.org/Project:en/How_to_Help 
+Please see the MDN Getting Started page (https://developer.mozilla.org/docs/MDN/Getting_started) for instructions on how to create an account, pick a task, and start helping. 
 
-Write about Mozilla-related topics on Wikipedia
-https://en.wikipedia.org/wiki/Wikipedia:WikiProject_Mozilla
+Please let me know if you have questions!
 
-Thanks again for your interest and let me know if you have any questions about how to get started.
-
-Janet Swisher, jswisher@mozilla.com
-Technical Writer/Community Steward
+Regards,
+Janet Swisher
+Community Manager
 Mozilla Developer Network, https://developer.mozilla.org
