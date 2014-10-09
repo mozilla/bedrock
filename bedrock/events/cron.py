@@ -12,5 +12,7 @@ from bedrock.events.models import Event
 
 @cronjobs.register
 def update_reps_ical():
-    resp = requests.get(settings.REPS_ICAL_FEED)
+    # TODO get dependencies for TLS SNI installed on servers
+    # see http://bugzil.la/1080571
+    resp = requests.get(settings.REPS_ICAL_FEED, verify=False)
     Event.objects.sync_with_ical(resp.text)
