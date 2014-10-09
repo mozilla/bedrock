@@ -13,9 +13,6 @@ from bedrock.events.countries import country_to_continent
 
 
 class EventQuerySet(QuerySet):
-    def future_count(self):
-        return self.future().count()
-
     def future(self):
         return self.filter(start_time__gt=datetime.utcnow()).order_by('start_time')
 
@@ -24,8 +21,8 @@ class EventManager(models.Manager):
     def get_query_set(self):
         return EventQuerySet(self.model, using=self._db)
 
-    def next_upcoming(self, count=1):
-        return self.get_query_set().next_upcoming(count)
+    def future(self):
+        return self.get_query_set().future()
 
     def sync_with_ical(self, ical_feed):
         """
