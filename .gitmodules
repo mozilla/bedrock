@@ -52,3 +52,6 @@
 [submodule "vendor-local/src/legal-docs"]
 	path = vendor-local/src/legal-docs
 	url = https://github.com/mozilla/legal-docs.git
+[submodule "vendor-local/src/icalendar"]
+	path = vendor-local/src/icalendar
+	url = git://github.com/collective/icalendar.git

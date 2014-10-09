@@ -1,0 +1,277 @@
+BEGIN:VCALENDAR
+PRODID:-//reps.mozilla.com Events//
+VERSION:2.0
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:https://reps.mozilla.org@2930
+CLASS:PUBLIC
+DTSTAMP:20141007T184543
+DTSTART;TZID=Asia/Manila:20141129T020000
+DTEND;TZID=Asia/Manila:20141129T120000
+LOCATION:Alphaland Southgate Tower\, Makati City\, Philippines
+SUMMARY:DevCon Summit 2014
+DESCRIPTION:DevCon Summit is a whole day conference that aims to bring tog
+ ether over 500-800 professionals\, students\, educators and enthusiasts fr
+ om all over the Philippines to showcase the latest trends and opportunitie
+ s in the IT industry. \n\nThis year’s summit highlights local and intern
+ ational master developers as they share the trends\, best practices and ho
+ w to get ahead of their game.
+URL:https://reps.mozilla.org/e/devcon-summit-2014/
+SEQUENCE:3
+X-COORDINATES-LAT:14.5402965393
+X-COORDINATES-LON:121.017373681
+X-COUNTRY-CODE:ph
+END:VEVENT
+BEGIN:VEVENT
+UID:https://reps.mozilla.org@845
+CLASS:PUBLIC
+DTSTAMP:20141007T184543
+DTSTART;TZID=Asia/Kolkata:20141129T043000
+DTEND;TZID=Asia/Kolkata:20141129T113000
+LOCATION:TBD\, Kalyani\, India
+SUMMARY:Kalyani Hackathon: Webmaker &amp; Localization
+DESCRIPTION:Webmaker Hackathon session in Kalyani is to spread Web Literac
+ y and building Mozilla community in Kalyani West Bengal.\n\nBuilding bette
+ r Web with Webmaker tools like Thimble\, Popcorn.\n\nSession on Mozilla Mi
+ ssion &amp; its Products\, How to get involve in Mozilla Projects.\n\nIntroduc
+ tion and need of FOSS.\n\nSession on Mozilla WebFWD for Entrepreneurs
+URL:https://reps.mozilla.org/e/kalyani-hackathon-webmaker-localization/
+SEQUENCE:17
+X-COORDINATES-LAT:22.9747519314
+X-COORDINATES-LON:88.4342765808
+X-COUNTRY-CODE:in
+END:VEVENT
+BEGIN:VEVENT
+UID:https://reps.mozilla.org@2877
+CLASS:PUBLIC
+DTSTAMP:20141007T184543
+DTSTART;TZID=Europe/Berlin:20141129T080000
+DTEND;TZID=Europe/Berlin:20141129T170000
+LOCATION:to be defined\, Frankfurt am Main\, Frankfurt\, Germany
+SUMMARY:Firefox OS App Day Frankfurt 2014
+DESCRIPTION:Firefox OS App Day in Frankfurt. We will begin with some intro
+ ductory talks in the morning (What is Mozilla?\, What is Firefox OS?\, How
+  do I develop Firefox OS Apps?) and continue with Hacking our own Firefox
+ OS apps.\n\n\nDevelop HTML5 Web Apps for an open marketplace!
+URL:https://reps.mozilla.org/e/firefox-os-app-day-frankfurt-2014/
+SEQUENCE:4
+X-COORDINATES-LAT:50.1065886506
+X-COORDINATES-LON:8.6627426144
+X-COUNTRY-CODE:de
+END:VEVENT
+BEGIN:VEVENT
+UID:https://reps.mozilla.org@2436
+CLASS:PUBLIC
+DTSTAMP:20141007T184543
+DTSTART;TZID=Asia/Kolkata:20141207T040000
+DTEND;TZID=Asia/Kolkata:20141207T110000
+LOCATION:TBD\, Malappuram\, India
+SUMMARY:Firefox Student Ambassador Meetup - Malabar
+DESCRIPTION:The event will be a gathering of FSA&#39;s who are interested to c
+ ontribute   as   well as interested to Share things about Mozilla . Mostly
+  FSA&#39;s in   and   around of Kerala will be joining the event. It is expect
+ ed to   have  100+  FSA&#39;s at the event. The event mainly aims to educate F
+ SA&#39;s   clearly  with  the much needed \, &#34; What is Mozilla \, it&#39;s Mission
+  \, and   it&#39;s  various  products \, projects and initiatives &#34;.
+URL:https://reps.mozilla.org/e/firefox-student-ambassador-meetup-malabar/
+SEQUENCE:5
+X-COORDINATES-LAT:11.0469604303
+X-COORDINATES-LON:76.0871429555
+X-COUNTRY-CODE:in
+END:VEVENT
+BEGIN:VEVENT
+UID:https://reps.mozilla.org@2437
+CLASS:PUBLIC
+DTSTAMP:20141007T184543
+DTSTART;TZID=Asia/Kolkata:20141214T040000
+DTEND;TZID=Asia/Kolkata:20141214T110000
+LOCATION:TBD\, Ernakulam\, India
+SUMMARY:Firefox Student Ambassador Meetup - Kochi
+DESCRIPTION:The event will be a gathering of FSA&#39;s who are interested to c
+ ontribute   as   well as interested to Share things about Mozilla . Mostly
+  FSA&#39;s in   and   around of Kerala will be joining the event. It is expect
+ ed to   have  100+  FSA&#39;s at the event. The event mainly aims to educate F
+ SA&#39;s   clearly  with  the much needed \, &#34; What is Mozilla \, it&#39;s Mission
+  \, and   it&#39;s  various  products \, projects and initiatives &#34;.
+URL:https://reps.mozilla.org/e/firefox-student-ambassador-meetup-kochi/
+SEQUENCE:6
+X-COORDINATES-LAT:9.97550061992
+X-COORDINATES-LON:76.3123169169
+X-COUNTRY-CODE:in
+END:VEVENT
+BEGIN:VEVENT
+UID:https://reps.mozilla.org@2438
+CLASS:PUBLIC
+DTSTAMP:20141007T184543
+DTSTART;TZID=Asia/Kolkata:20141221T040000
+DTEND;TZID=Asia/Kolkata:20141221T110000
+LOCATION:TBD\, Thiruvananthapuram\, India
+SUMMARY:Firefox Student Ambassador Meetup - Thiruvananthapuram
+DESCRIPTION:The event will be a gathering of FSA&#39;s who are interested to c
+ ontribute   as   well as interested to Share things about Mozilla . Mostly
+  FSA&#39;s in   and   around of Kerala will be joining the event. It is expect
+ ed to   have  100+  FSA&#39;s at the event. The event mainly aims to educate F
+ SA&#39;s   clearly  with  the much needed \, &#34; What is Mozilla \, it&#39;s Mission
+  \, and   it&#39;s  various  products \, projects and initiatives &#34;.
+URL:https://reps.mozilla.org/e/firefox-student-ambassador-meetup-thiruvana
+ nthapuram/
+SEQUENCE:8
+X-COORDINATES-LAT:8.49908470028
+X-COORDINATES-LON:76.9753418863
+X-COUNTRY-CODE:in
+END:VEVENT
+BEGIN:VEVENT
+UID:https://reps.mozilla.org@2932
+CLASS:PUBLIC
+DTSTAMP:20141007T184543
+DTSTART;TZID=Asia/Kolkata:20141227T033000
+DTEND;TZID=Asia/Kolkata:20141228T103000
+LOCATION:Goa\, TBD\, Madgaon\, India
+SUMMARY:Grow Goa
+DESCRIPTION:A 2 day event aimed at building and reinforcing a community in
+  Goa.\nThe event will help Mozillians gain and improve their skills in lea
+ dership\, collaboration\, community building and contribution\, all while
+ helping to expand the Mozilla community.\nThe event will be a new session
+ type which would be based on dividing the lot into small interest based gr
+ oups.
+URL:https://reps.mozilla.org/e/grow-goa/
+SEQUENCE:3
+X-COORDINATES-LAT:15.3358007754
+X-COORDINATES-LON:73.99505639
+X-COUNTRY-CODE:in
+END:VEVENT
+BEGIN:VEVENT
+UID:https://reps.mozilla.org@2530
+CLASS:PUBLIC
+DTSTAMP:20141007T184543
+DTSTART;TZID=Asia/Manila:20150110T060000
+DTEND;TZID=Asia/Manila:20150110T090000
+LOCATION:Cavite State University-Imus Campus\, Imus\, Philippines
+SUMMARY:Firefox OS Workshop Cavite State University (Imus Campus)
+DESCRIPTION:The Mozilla Philippines Community in cooperation with the Cavi
+ te State University (Imus Campus) will be conducting a Firefox OS Workshop
+ .\n\nLearn how easy it is to create Firefox OS Apps using tools readily av
+ ailable for free. Test your apps using the Firefox OS Simulator prior to d
+ eployment on an actual device.
+URL:https://reps.mozilla.org/e/firefox-os-workshop-cavite-state-university
+ -imus-campus/
+SEQUENCE:3
+X-COORDINATES-LAT:14.4213250081
+X-COORDINATES-LON:120.938552851
+X-COUNTRY-CODE:ph
+END:VEVENT
+BEGIN:VEVENT
+UID:https://reps.mozilla.org@2933
+CLASS:PUBLIC
+DTSTAMP:20141007T184543
+DTSTART;TZID=Africa/Abidjan:20150110T090000
+DTEND;TZID=Africa/Abidjan:20150111T160000
+LOCATION:Ahmedabad\, Ahmedabad\, India
+SUMMARY:Hive India Makerfest&#39;15 Ahmedabad
+DESCRIPTION:Hive India in collaboration with Makerfest&#39;15.
+URL:https://reps.mozilla.org/e/hive-india-makerfest15-ahmedabad/
+SEQUENCE:1
+X-COORDINATES-LAT:22.470686109
+X-COORDINATES-LON:72.1910092235
+X-COUNTRY-CODE:in
+END:VEVENT
+BEGIN:VEVENT
+UID:https://reps.mozilla.org@2876
+CLASS:PUBLIC
+DTSTAMP:20141007T184543
+DTSTART;TZID=Europe/Brussels:20150131T090000
+DTEND;TZID=Europe/Brussels:20150202T180000
+LOCATION:ULB Campus Solbosch\, Brussels\, Belgium
+SUMMARY:FOSDEM 2015
+DESCRIPTION:FOSDEM (Free and Open Source Software Developers&#39; European Mee
+ ting) is a free event offering open source communities a place to meet\, s
+ hare ideas and collaborate. It is renowned for being highly developer-orie
+ nted and brings together 5000+ geeks from all over the world. No registrat
+ ion necessary.
+URL:https://reps.mozilla.org/e/fosdem-2015/
+SEQUENCE:5
+X-COORDINATES-LAT:50.8129832158
+X-COORDINATES-LON:4.38198423246
+X-COUNTRY-CODE:be
+END:VEVENT
+BEGIN:VEVENT
+UID:https://reps.mozilla.org@2921
+CLASS:PUBLIC
+DTSTAMP:20141007T184543
+DTSTART;TZID=America/Sao_Paulo:20150203T140000
+DTEND;TZID=America/Sao_Paulo:20150208T140000
+LOCATION:Centro de Exposições Imigrante\, Vila Mariana\, Brazil
+SUMMARY:Campus Party 2015
+DESCRIPTION:Campus Party is considered by many the largest technology even
+ t in the world. It has hundreds of activities going on during its five day
+ s schedule. There are two areas on the event\, the expo area with stands f
+ rom many companies and the arena where the &#34;campuseros&#34; stay with the five
+  stages\, workshop areas and tables. Only campuseros can enter and stay at
+  the arena. The arena has 24/7 schedule and the campuseros stay at tents t
+ here. This year there will be 8.000 campuseros there.
+URL:https://reps.mozilla.org/e/campus-party-2015/
+SEQUENCE:1
+X-COORDINATES-LAT:-23.6445147799
+X-COORDINATES-LON:-46.6295619607
+X-COUNTRY-CODE:br
+END:VEVENT
+BEGIN:VEVENT
+UID:https://reps.mozilla.org@1763
+CLASS:PUBLIC
+DTSTAMP:20141007T184543
+DTSTART;TZID=Asia/Dhaka:20150220T040000
+DTEND;TZID=Asia/Dhaka:20150220T110000
+LOCATION:Dhaka\, Dhaka\, Bangladesh
+SUMMARY:The web in your language - International Mother Language Day 2014
+ celebration.
+DESCRIPTION:We&#39;ve been at the brink of 100% l10n milestone for major Mozil
+ la Product\, with exception of infrequent strings updates from various eng
+ ineering teams. It&#39;s time to shift the focus of localization into a differ
+ ent angel\, a paradigm shift indeed for bn_BD locale. Increasing awareness
+  and uses of technology in Mother tongue. Training various Mozilla Localiz
+ ation tools and process and uses of technique to keep translation consiste
+ nce and the process of standardization throughout Mozilla Projects.
+URL:https://reps.mozilla.org/e/the-web-in-your-language-international-moth
+ er-language-day-2014-celebration/
+SEQUENCE:2
+X-COORDINATES-LAT:23.7040562681
+X-COORDINATES-LON:90.3299559653
+X-COUNTRY-CODE:bd
+END:VEVENT
+BEGIN:VEVENT
+UID:https://reps.mozilla.org@2715
+CLASS:PUBLIC
+DTSTAMP:20141007T184543
+DTSTART;TZID=Europe/Stockholm:20150515T070000
+DTEND;TZID=Europe/Stockholm:20150517T160000
+LOCATION:TBD\, Kópavogur\, Iceland
+SUMMARY:Nordic Community Meetup
+DESCRIPTION:Community building meetup for all Mozillians and anyone else i
+ nterested in the open web! We&#39;ll be focusing on localization\, how to get
+ involved\, and community organization.
+URL:https://reps.mozilla.org/e/nordic-community-meetup/
+SEQUENCE:2
+X-COORDINATES-LAT:64.1165978468
+X-COORDINATES-LON:-21.8923187256
+X-COUNTRY-CODE:is
+END:VEVENT
+BEGIN:VEVENT
+UID:https://reps.mozilla.org@2936
+CLASS:PUBLIC
+DTSTAMP:20141007T184543
+DTSTART;TZID=Asia/Dili:20151104T000000
+DTEND;TZID=Asia/Dili:20151104T090000
+LOCATION:Desh Bhagat University\, Chandigarh\, India
+SUMMARY:Maker Faire @ DB University
+DESCRIPTION:Maker Faire is a Complete Maker Festival cum Community Buildin
+ g Event.The Event Goes around Community Building\,Web Making and Firefox O
+ S Campaign. This kind of Event is Intended to be the First one In Punjab w
+ hich Concentrates on People from all types of background. It also got a Va
+ ried Range of Activities for Newbies to Technical Experts.
+URL:https://reps.mozilla.org/e/maker-faire-db-university/
+SEQUENCE:6
+X-COORDINATES-LAT:30.7363773309
+X-COORDINATES-LON:76.7812045
+X-COUNTRY-CODE:in
+END:VEVENT
+END:VCALENDAR

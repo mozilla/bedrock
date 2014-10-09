@@ -2,6 +2,7 @@ packages/beautifulsoup4
 packages/certifi
 packages/chardet
 packages/python-memcached
+packages/pytz
 src/basket-client
 packages/PyYAML/lib
 src/feedparser/feedparser
@@ -21,3 +22,4 @@ src/six
 src/tweepy
 src/mdx_outline
 src/legal-docs
+src/icalendar/src
