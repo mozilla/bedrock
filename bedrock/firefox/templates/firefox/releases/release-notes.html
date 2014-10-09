@@ -111,7 +111,11 @@
           {% set check_url = 'https://support.mozilla.org/en-US/kb/will-firefox-work-my-mobile-device' if release.product == 'Firefox for Android' else url('firefox.system_requirements', version) %}
           <li class="try1"><a href="{{ check_url }}">{{ _('Check') }}</a></li>
           <li class="try2"><a href="{{ download_url }}">{{ _('Download') }}</a></li>
-          <li class="try3"><a href="https://support.mozilla.org/kb/Installing%20Firefox">{{ _('Install') }}</a></li>
+          {% if release.product == 'Firefox for Android' %}
+          <li class="try3"><a href="https://support.mozilla.org/products/mobile/download-and-install">{{ _('Install') }}</a></li>
+          {% else %}
+          <li class="try3"><a href="https://support.mozilla.org/products/firefox/download-and-install">{{ _('Install') }}</a></li>
+          {% endif %}
           <li class="try4"><a href="https://addons.mozilla.org/firefox/">{{ _('Customize') }}</a></li>
         </ol>
       </section>
