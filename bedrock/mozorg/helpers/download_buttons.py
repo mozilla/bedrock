@@ -18,6 +18,8 @@ from django.conf import settings
 import jingo
 import jinja2
 
+from bedrock.firefox.utils import (is_current_or_newer, is_firefox,
+    firefox_version)
 from bedrock.firefox.firefox_details import firefox_details, mobile_details
 from lib.l10n_utils import get_locale
 
@@ -161,7 +163,7 @@ def android_builds(build, builds=None):
 def download_firefox(ctx, build='release', small=False, icon=True,
                      mobile=None, dom_id=None, locale=None, simple=False,
                      force_direct=False, force_full_installer=False,
-                     force_funnelcake=False):
+                     force_funnelcake=False, check_old_fx=False):
     """ Output a "download firefox" button.
 
     :param ctx: context from calling template.
@@ -181,6 +183,9 @@ def download_firefox(ctx, build='release', small=False, icon=True,
             the stub installer (for aurora).
     :param force_funnelcake: Force the download version for en-US Windows to be
             'latest', which bouncer will translate to the funnelcake build.
+    :param check_old_fx: Checks to see if the user is on an old version of
+            Firefox and, if true, changes the button text from 'Free Download'
+            to 'Update your Firefox'.
     :return: The button html.
     """
     alt_build = '' if build == 'release' else build
@@ -256,6 +261,16 @@ def download_firefox(ctx, build='release', small=False, icon=True,
     langs = firefox_details.languages
     locale_name = langs[locale]['native'] if locale in langs else locale
 
+    # Check for out of date Fx users
+    isOldFx = False
+
+    if (check_old_fx):
+        user_agent = ctx['request'].META.get('HTTP_USER_AGENT', '')
+        user_version = firefox_version(user_agent)
+
+        if is_firefox(user_agent) and not is_current_or_newer(user_version):
+            isOldFx = True
+
     data = {
         'locale_name': locale_name,
         'version': version,
@@ -268,6 +283,7 @@ def download_firefox(ctx, build='release', small=False, icon=True,
         'show_mobile': mobile is not False,
         'show_desktop': mobile is not True,
         'icon': icon,
+        'isOldFx': isOldFx,
     }
 
     html = jingo.render_to_string(ctx['request'],
