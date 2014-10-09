@@ -85,80 +85,17 @@
         <tr>
           <th scope="col">{{ _('Date') }}</th>
           <th scope="col" class="event-name">{{ _('Event') }}</th>
-          <th scope="col">{{ _('City') }}</th>
-          <th scope="col">{{ _('Country') }}</th>
+          <th scope="col">{{ _('Location') }}</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td><time datetime="2014-07-17">17 July, 2014</time></td>
-          <th class="event-name" scope="row"><a href="#">Hack the Web</a></th>
-          <td>Bucharest</td>
-          <td>Romania</td>
-        </tr>
-
-        <tr>
-          <td><time datetime="2014-07-17">17 July, 2014</time></td>
-          <th class="event-name" scope="row"><a href="#">Maker Party</a></th>
-          <td>Berlin</td>
-          <td>Germany</td>
-        </tr>
-
-        <tr>
-          <td><time datetime="2014-07-30">30 July, 2014</time></td>
-          <th class="event-name" scope="row"><a href="#">QMO Test Day</a></th>
-          <td>Mountain View</td>
-          <td>USA</td>
-        </tr>
-
-        <tr>
-          <td><time datetime="2014-08-06">6</time>-<time datetime="2014-08-08">8 August, 2014</time></td>
-          <th class="event-name" scope="row"><a href="#">MozCamp Asia</a></th>
-          <td>Singapore</td>
-          <td>Singapore</td>
-        </tr>
-
-        <tr>
-          <td><time datetime="2014-07-30">10 August, 2014</time></td>
-          <th class="event-name" scope="row"><a href="#">Firefox OS apps hacking</a></th>
-          <td>Madrid</td>
-          <td>Spain</td>
-        </tr>
-
-        <tr>
-          <td><time datetime="2014-07-17">17 July, 2014</time></td>
-          <th class="event-name" scope="row"><a href="#">Hack the Web</a></th>
-          <td>Bucharest</td>
-          <td>Romania</td>
-        </tr>
-
-        <tr>
-          <td><time datetime="2014-07-17">17 July, 2014</time></td>
-          <th class="event-name" scope="row"><a href="#">Maker Party</a></th>
-          <td>Berlin</td>
-          <td>Germany</td>
-        </tr>
-
-        <tr>
-          <td><time datetime="2014-07-30">30 July, 2014</time></td>
-          <th class="event-name" scope="row"><a href="#">QMO Test Day</a></th>
-          <td>Mountain View</td>
-          <td>USA</td>
-        </tr>
-
-        <tr>
-          <td><time datetime="2014-08-06">6</time>-<time datetime="2014-08-08">8 August, 2014</time></td>
-          <th class="event-name" scope="row"><a href="#">MozCamp Asia</a></th>
-          <td>Singapore</td>
-          <td>Singapore</td>
-        </tr>
-
-        <tr>
-          <td><time datetime="2014-07-30">10 August, 2014</time></td>
-          <th class="event-name" scope="row"><a href="#">Firefox OS apps hacking</a></th>
-          <td>Madrid</td>
-          <td>Spain</td>
-        </tr>
+        {% for event in future_events() %}
+          <tr>
+            <td><time datetime="{{ event.start_time.isoformat() }}">{{ event.start_time|l10n_format_date }}</time></td>
+            <th class="event-name" scope="row"><a href="{{ event.url }}">{{ event.title|safe }}</a></th>
+            <td>{{ event.location|safe }}</td>
+          </tr>
+        {% endfor %}
       </tbody>
     </table>
 

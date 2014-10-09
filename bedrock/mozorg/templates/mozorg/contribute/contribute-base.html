@@ -8,6 +8,10 @@
 
 {% add_lang_files "mozorg/contribute" %}
 
+{% set num_events = events_count() %}
+{% set num_mozillians = 10554 %}
+{% set num_langs = 87 %}
+
 {% block body_class %}{{ super() }} contribute{% endblock %}
 
 {% block page_css %}
@@ -93,11 +97,11 @@
       {% block contrib_stats %}
       <ul class="head-stats">
         {# L10n: This label accompanies a numeric count. The number appears first so phrase translations accordingly. #}
-        <li class="stat-worldwide"><strong>10,554</strong> {{ _('active Mozillians worldwide') }}</li>
+        <li class="stat-worldwide"><strong>{{ num_mozillians|l10n_format_number }}</strong> {{ _('active Mozillians worldwide') }}</li>
         {# L10n: This label accompanies a numeric count. The number appears first so phrase translations accordingly. #}
-        <li class="stat-events"><strong>154</strong> {{ _('upcoming events around the globe') }}</li>
+        <li class="stat-events"><strong>{{ num_events|l10n_format_number }}</strong> {{ _('upcoming events around the globe') }}</li>
         {# L10n: This label accompanies a numeric count. The number appears first so phrase translations accordingly. The phrase "and counting" means there are always more being added; not sure how that idiom might translate so do your best :) #}
-        <li class="stat-local"><strong>87</strong> {{ _('languages and counting, on every continent') }}</li>
+        <li class="stat-local"><strong>{{ num_langs|l10n_format_number }}</strong> {{ _('languages and counting, on every continent') }}</li>
       </ul>
       {% endblock contrib_stats %}
     </div>
@@ -115,10 +119,11 @@
 
       <div class="extra-event">
         <h3>{{ _('Upcoming event') }}</h3>
-        <a class="event-link" href="#">
-          <time class="event-date" datetime="28-09-2014"><abbr>Oct</abbr> <span class="date-day">28</span></time>
-          <h4 class="event-title">Translating Firefox OS</h4>
-          <p class="event-info"><span class="event-venue">Caixaforum</span> &middot; <span class="event-location">Madrid, Spain</span></p>
+        {% set upcoming_event = next_event() %}
+        <a class="event-link" href="{{ upcoming_event.url }}">
+          <time class="event-date" datetime="{{ upcoming_event.start_time.isoformat() }}">{{ _(upcoming_event.month_abbr) }} <span class="date-day">{{ upcoming_event.day_of_month }}</span></time>
+          <h4 class="event-title">{{ upcoming_event.title }}</h4>
+          <p class="event-info"><span class="event-location">{{ upcoming_event.location }}</span></p>
         </a>
         <p class="events-all"><a href="{{ url('mozorg.contribute.events') }}">{{ _('See all events') }}</a></p>
       </div>
