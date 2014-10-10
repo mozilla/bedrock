@@ -139,4 +139,43 @@
         e.preventDefault();
     });
 
+    var $window = $(window);
+    var $document = $(document);
+    var $body = $('body');
+    var $navList = $('#contribute-nav-menu');
+
+    // Trigger the .thin-mode class on <body> when the screen is thinner than
+    // 768 pixels.
+    $window.resize(function() {
+        clearTimeout(this.resizeTimeoutId);
+        this.resizeTimeoutId = setTimeout(doneResizing, 200);
+    });
+
+    function doneResizing() {
+        if ($window.width() < 768) {
+            $body.addClass('thin-mode');
+            $navList.attr('aria-hidden', 'true').hide();
+        } else {
+            $body.removeClass('thin-mode');
+            $navList.removeAttr('aria-hidden').show();
+        }
+    }
+    $(doneResizing);  // Call once when done loading the page to initialize.
+
+    // Show/hide the navigation in small viewports
+    $document.on('click', 'body.thin-mode .contribute-nav .toggle', expandPageNav);
+    $document.on('click', 'body.thin-mode .toggle.open', collapsePageNav);
+    $document.on('mouseleave', 'body.thin-mode .contribute-nav', collapsePageNav);
+
+    function expandPageNav() {
+        $navList.slideDown('fast').removeAttr('aria-hidden').attr('aria-expanded', 'true');
+        $("#page-nav .toggle").addClass("open");
+    }
+
+    function collapsePageNav() {
+        $navList.slideUp('fast').attr('aria-hidden', 'true').removeAttr('aria-expanded');
+        $("#page-nav .toggle").removeClass("open");
+    }
+
+
 })(window.jQuery);

@@ -114,13 +114,28 @@
       <h2 class="section-title">{{ _('Not ready to dive in just yet?') }}</h2>
       <p class="section-tagline">{{ _('Here are a few other ways you can support Mozilla right now.') }}</p>
       <ul class="other-actions">
-        <li><a href="https://sendto.mozilla.org/page/contribute/Give-Now?source=mozillaorg_default_footer&amp;ref=volunteer_getinvolvedpage201410&amp;utm_campaign=volunteer_getinvolvedpage201410&amp;utm_source=newsletter-mofo&amp;utm_medium=referral" class="other-donate">{{ _('Donate to Mozilla') }}</a></li>
-        <li><a href="{{ url('mozorg.about.manifesto') }}" class="other-read">{{ _('Read our Manifesto') }}</a></li>
-        {# Hide until gear store is online }
-        <li><a href="https://gear.mozilla.org" class="other-shop">{{ _('Buy a Mozilla t-shirt') }}</a></li>
-        { // end hiding #}
-        <li><a href="https://www.facebook.com/mozilla" class="other-facebook">{{ _('Like us on Facebook') }}</a></li>
-        <li><a href="https://twitter.com/mozilla" class="other-twitter">{{ _('Follow us on Twitter') }}</a></li>
+        <li>
+          <a href="https://sendto.mozilla.org/page/contribute/Give-Now?source=mozillaorg_default_footer&amp;ref=volunteer_getinvolvedpage201410&amp;utm_campaign=volunteer_getinvolvedpage201410&amp;utm_source=newsletter-mofo&amp;utm_medium=referral" class="other-donate">{{ _('Donate to Mozilla') }}</a>
+        </li>
+        <li>
+          <a href="{{ url('firefox') }}" class="other-download">{{ _('Download Firefox') }}</a>
+        </li>
+        {# Hide this link for now
+        <li>
+          <a href="{{ url('mozorg.about.manifesto') }}" class="other-read">{{ _('Read our Manifesto') }}</a>
+        </li>
+        #}
+        {# Hide this link for now
+        <li>
+          <a href="https://gear.mozilla.org" class="other-shop">{{ _('Buy a Mozilla t-shirt') }}</a>
+        </li>
+        #}
+        <li>
+          <a href="https://www.facebook.com/mozilla" class="other-facebook">{{ _('Like us on Facebook') }}</a>
+        </li>
+        <li>
+          <a href="https://twitter.com/mozilla" class="other-twitter">{{ _('Follow us on Twitter') }}</a>
+        </li>
       </ul>
     </div>
   </section>
