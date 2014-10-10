@@ -14,3 +14,4 @@ def database(ctx):
         # only ever run this one on demo and dev.
         ctx.local("python2.6 manage.py bedrock_truncate_database --yes-i-am-sure")
         ctx.local("python2.6 manage.py syncdb --migrate --noinput")
+        ctx.local("python2.6 manage.py rnasync")
