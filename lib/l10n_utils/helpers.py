@@ -76,34 +76,39 @@ def l10n_has_tag(ctx, tag, langfile=None):
     return lang_file_has_tag(langfile, tag=tag)
 
 
+def get_locale(lang):
+    """Return a babel Locale object for lang. defaults to LANGUAGE_CODE."""
+    try:
+        return Locale.parse(lang, sep='-')
+    except (UnknownLocaleError, ValueError):
+        return Locale(*settings.LANGUAGE_CODE.split('-'))
+
+
 def current_locale():
     """
     Return the current Locale object (from Babel). Defaults to locale
     based on settings.LANGUAGE_CODE if locale does not exist.
     """
-    try:
-        return Locale.parse(get_language(), sep='-')
-    except (UnknownLocaleError, ValueError):
-        return Locale(*settings.LANGUAGE_CODE.split('-'))
+    return get_locale(get_language())
 
 
 @jingo.register.filter
-@jinja2.contextfunction
+@jinja2.contextfilter
 def l10n_format_date(ctx, date, format='long'):
     """
     Formats a date according to the current locale. Wraps around
     babel.dates.format_date.
     """
-    lang = ctx['LANG'].split('-')[0]
+    lang = get_locale(ctx['LANG'])
     return format_date(date, locale=lang, format=format)
 
 
 @jingo.register.filter
-@jinja2.contextfunction
+@jinja2.contextfilter
 def l10n_format_number(ctx, number):
     """
     Formats a number according to the current locale. Wraps around
     babel.numbers.format_number.
     """
-    lang = ctx['LANG'].split('-')[0]
+    lang = get_locale(ctx['LANG'])
     return format_number(number, locale=lang)

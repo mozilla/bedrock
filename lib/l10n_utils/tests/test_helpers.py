@@ -3,7 +3,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-from babel.core import UnknownLocaleError
+from babel.core import UnknownLocaleError, Locale
 from mock import patch
 from nose.tools import eq_
 
@@ -54,31 +54,35 @@ class TestL10nFormat(TestCase):
     @patch('l10n_utils.helpers.format_date')
     def test_format_date(self, format_date):
         ctx = {'LANG': 'de'}
+        locale = Locale('de')
         eq_(helpers.l10n_format_date(ctx, 'somedate', format='long'),
             format_date.return_value)
         format_date.assert_called_with(
-            'somedate', locale=ctx['LANG'], format='long')
+            'somedate', locale=locale, format='long')
 
     @patch('l10n_utils.helpers.format_date')
     def test_format_date_hyphenated_locale(self, format_date):
         ctx = {'LANG': 'en-US'}
+        locale = Locale('en', 'US')
         eq_(helpers.l10n_format_date(ctx, 'somedate', format='long'),
             format_date.return_value)
         format_date.assert_called_with(
-            'somedate', locale='en', format='long')
+            'somedate', locale=locale, format='long')
 
     @patch('l10n_utils.helpers.format_number')
     def test_format_number(self, format_number):
         ctx = {'LANG': 'de'}
+        locale = Locale('de')
         eq_(helpers.l10n_format_number(ctx, 10000),
             format_number.return_value)
         format_number.assert_called_with(
-            10000, locale=ctx['LANG'])
+            10000, locale=locale)
 
     @patch('l10n_utils.helpers.format_number')
     def test_format_number_hyphenated_locale(self, format_number):
         ctx = {'LANG': 'pt-BR'}
+        locale = Locale('pt', 'BR')
         eq_(helpers.l10n_format_number(ctx, 10000),
             format_number.return_value)
         format_number.assert_called_with(
-            10000, locale='pt')
+            10000, locale=locale)
