@@ -48,3 +48,7 @@ def funnelcake_param(request):
 
 def facebook_locale(request):
     return {'facebook_locale': get_fb_like_locale(get_locale(request))}
+
+
+def contrib_numbers(request):
+    return settings.CONTRIBUTE_NUMBERS

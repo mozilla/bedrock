@@ -890,6 +890,7 @@ TEMPLATE_CONTEXT_PROCESSORS = get_template_context_processors(append=(
     'django.core.context_processors.csrf',
     'django.contrib.messages.context_processors.messages',
     'bedrock.mozorg.context_processors.canonical_path',
+    'bedrock.mozorg.context_processors.contrib_numbers',
     'bedrock.mozorg.context_processors.current_year',
     'bedrock.mozorg.context_processors.funnelcake_param',
     'bedrock.mozorg.context_processors.facebook_locale',
@@ -912,6 +913,13 @@ REPS_ICAL_FEED = 'https://reps.mozilla.org/events/period/future/ical/'
 TWITTER_ACCOUNTS = (
     'mozstudents',
 )
+
+# Contribute numbers
+# TODO: automate these
+CONTRIBUTE_NUMBERS = {
+    'num_mozillians': 10554,
+    'num_languages': 87,
+}
 
 BASKET_URL = 'http://basket.mozilla.com'
 
