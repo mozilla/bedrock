@@ -50,11 +50,35 @@ class TestCurrentLocale(TestCase):
         Locale.parse.assert_called_with(get_language.return_value, sep='-')
 
 
-class TestL10nFormatDate(TestCase):
-    @patch('l10n_utils.helpers.current_locale')
+class TestL10nFormat(TestCase):
     @patch('l10n_utils.helpers.format_date')
-    def test_success(self, format_date, current_locale):
-        eq_(helpers.l10n_format_date('somedate', format='long'),
+    def test_format_date(self, format_date):
+        ctx = {'LANG': 'de'}
+        eq_(helpers.l10n_format_date(ctx, 'somedate', format='long'),
             format_date.return_value)
         format_date.assert_called_with(
-            'somedate', locale=current_locale.return_value, format='long')
+            'somedate', locale=ctx['LANG'], format='long')
+
+    @patch('l10n_utils.helpers.format_date')
+    def test_format_date_hyphenated_locale(self, format_date):
+        ctx = {'LANG': 'en-US'}
+        eq_(helpers.l10n_format_date(ctx, 'somedate', format='long'),
+            format_date.return_value)
+        format_date.assert_called_with(
+            'somedate', locale='en', format='long')
+
+    @patch('l10n_utils.helpers.format_number')
+    def test_format_number(self, format_number):
+        ctx = {'LANG': 'de'}
+        eq_(helpers.l10n_format_number(ctx, 10000),
+            format_number.return_value)
+        format_number.assert_called_with(
+            10000, locale=ctx['LANG'])
+
+    @patch('l10n_utils.helpers.format_number')
+    def test_format_number_hyphenated_locale(self, format_number):
+        ctx = {'LANG': 'pt-BR'}
+        eq_(helpers.l10n_format_number(ctx, 10000),
+            format_number.return_value)
+        format_number.assert_called_with(
+            10000, locale='pt')
