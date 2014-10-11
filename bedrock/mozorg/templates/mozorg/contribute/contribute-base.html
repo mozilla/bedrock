@@ -118,13 +118,15 @@
     <div class="container">
 
       <div class="extra-event">
+	{% set upcoming_event = next_event() %}
+	{% if upcoming_event %}
         <h3>{{ _('Upcoming event') }}</h3>
-        {% set upcoming_event = next_event() %}
         <a class="event-link" href="{{ upcoming_event.url }}">
           <time class="event-date" datetime="{{ upcoming_event.start_time.isoformat() }}">{{ _(upcoming_event.month_abbr) }} <span class="date-day">{{ upcoming_event.day_of_month }}</span></time>
           <h4 class="event-title">{{ upcoming_event.title }}</h4>
           <p class="event-info"><span class="event-location">{{ upcoming_event.location }}</span></p>
         </a>
+	{% endif %}
         <p class="events-all"><a href="{{ url('mozorg.contribute.events') }}">{{ _('See all events') }}</a></p>
       </div>
 
