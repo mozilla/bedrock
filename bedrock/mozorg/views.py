@@ -73,6 +73,7 @@ class ContributeSignup(l10n_utils.LangFilesMixin, FormView):
             'country': data['country'],
             'message': data['message'],
             'subscribe': data['newsletter'],
+            'format': data['format'],
             'lang': form.locale,
         }
         if 'area_' + self.category in data:

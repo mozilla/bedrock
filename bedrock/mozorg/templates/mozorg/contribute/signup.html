@@ -180,14 +180,11 @@
           </li>
           <li class="form-format">
             <span class="label">
-            {% if l10n_has_tag('contribute_2015') or settings.DEV %}
-              {{ _('Email format') }}
-            {% else %}
               {{ _('Format') }}
-            {% endif %}
             </span>
-            <label for="format-text" class="inline"><input type="radio" id="format-text" name="format" value="text" required> {{ _('Text') }}</label>
-            <label for="format-html" class="inline"><input type="radio" id="format-html" name="format" value="html" required> {{ _('HTML') }}</label>
+            {% for radio in form.format %}
+              <label class="inline">{{ radio.tag() }} {{ radio.choice_label }}</label>
+            {% endfor %}
           </li>
           <li class="form-agree">
             {{ form.privacy }}

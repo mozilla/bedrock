@@ -176,6 +176,10 @@ class ContributeSignupForm(forms.Form):
     name = forms.CharField()
     message = forms.CharField(widget=forms.Textarea, required=False)
     newsletter = forms.BooleanField(required=False)
+    format = forms.ChoiceField(widget=forms.RadioSelect(attrs={'required': 'required'}), choices=(
+        ('H', _lazy('HTML')),
+        ('T', _lazy('Text')),
+    ))
 
     def __init__(self, locale, *args, **kwargs):
         regions = product_details.get_regions(locale)

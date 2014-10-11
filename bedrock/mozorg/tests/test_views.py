@@ -59,6 +59,7 @@ class TestContributeSignup(TestCase):
             'privacy': 'Yes',
             'category': 'dontknow',
             'country': 'us',
+            'format': 'T',
         })
         req.locale = 'en-US'
         resp = views.ContributeSignup.as_view()(req)
@@ -73,6 +74,7 @@ class TestContributeSignup(TestCase):
             'subscribe': False,
             'message': '',
             'source_url': 'http://testserver/',
+            'format': 'T',
         })
 
     @patch.object(views, 'basket')

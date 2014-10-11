@@ -83,7 +83,7 @@
     <table class="events-table">
       <thead>
         <tr>
-          <th scope="col">{{ _('Date') }}</th>
+          <th scope="col" class="event-date">{{ _('Date') }}</th>
           <th scope="col" class="event-name">{{ _('Event') }}</th>
           <th scope="col">{{ _('Location') }}</th>
         </tr>
@@ -91,7 +91,7 @@
       <tbody>
         {% for event in future_events() %}
           <tr>
-            <td><time datetime="{{ event.start_time.isoformat() }}">{{ event.start_time|l10n_format_date }}</time></td>
+            <td class="event-date"><time datetime="{{ event.start_time.isoformat() }}">{{ event.start_time|l10n_format_date }}</time></td>
             <th class="event-name" scope="row"><a href="{{ event.url }}">{{ event.title|safe }}</a></th>
             <td>{{ event.location|safe }}</td>
           </tr>

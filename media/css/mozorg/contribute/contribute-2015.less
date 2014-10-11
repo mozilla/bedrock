@@ -308,29 +308,36 @@ textarea:focus {
 
     li {
         .span(2);
-        list-style: none;
-        display: inline-block;
-        text-align: center;
+        display: block;
         font-weight: bold;
-        text-transform: uppercase;
         line-height: 1.1;
-        text-shadow: 0 1px 0 rgba(0, 0, 0, .1);
+        list-style: none;
+        min-height: 40px;
         position: relative;
+        text-align: center;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, .1);
+        text-transform: uppercase;
+        vertical-align: bottom;
     }
 
     a {
-        padding: 10px;
-        display: block;
-        color: #e29fa0;
         border-radius: 3px;
+        box-sizing: border-box;
+        color: #e29fa0;
+        display: block;
+        padding: 10px;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
         .transition(all .15s ease-in-out);
 
         &:hover,
         &:focus,
         &:active {
-            color: #fff;
             background-color: lighten(@mozillared, 10%);
             background-color: rgba(255, 255, 255, .1);
+            color: #fff;
             text-decoration: none;
         }
     }
@@ -340,8 +347,12 @@ textarea:focus {
 
         a {
             .button-flat;
+            border-radius: 6px;
             margin-top: 10px;
             background-color: darken(@mozillared, 10%);
+            bottom: 10px;
+            left: 10px;
+            width: auto;
         }
     }
 }
@@ -354,6 +365,7 @@ textarea:focus {
 
     a {
         color: #fff;
+        bottom: 10px;
     }
 
     &:after {
@@ -1429,6 +1441,10 @@ textarea:focus {
 
     tbody tr:nth-child(even) {
         background: #f8f8f8;
+    }
+
+    .event-date {
+        width: 20%;
     }
 
     .event-name {
