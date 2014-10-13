@@ -112,6 +112,7 @@ class L10nSelect(forms.Select):
 
 
 class ContributeSignupForm(forms.Form):
+    required_attr = {'required': 'required'}
     empty_choice = ('', '')
     category_choices = (
         ('coding', _lazy('Coding')),
@@ -121,7 +122,7 @@ class ContributeSignupForm(forms.Form):
         ('helping', _lazy('Helping')),
         ('translating', _lazy('Translating')),
         ('activism', _lazy('Activism')),
-        ('dontknow', _lazy('I don’t know')),
+        ('dontknow', _lazy(u'I don’t know')),
     )
     coding_choices = (
         empty_choice,
@@ -164,19 +165,20 @@ class ContributeSignupForm(forms.Form):
         ('teaching-science', _lazy('Open Web science research')),
     )
 
-    email = forms.EmailField(widget=EmailInput(attrs={'required': 'required'}))
+    email = forms.EmailField(widget=EmailInput(attrs=required_attr))
     privacy = forms.BooleanField(widget=PrivacyWidget)
-    category = forms.ChoiceField(choices=category_choices, widget=L10nSelect)
+    category = forms.ChoiceField(choices=category_choices,
+                                 widget=forms.RadioSelect(attrs=required_attr))
     area_coding = forms.ChoiceField(choices=coding_choices, required=False, widget=L10nSelect)
     area_testing = forms.ChoiceField(choices=testing_choices, required=False, widget=L10nSelect)
     area_translating = forms.ChoiceField(choices=translating_choices, required=False,
                                          widget=L10nSelect)
     area_writing = forms.ChoiceField(choices=writing_choices, required=False, widget=L10nSelect)
     area_teaching = forms.ChoiceField(choices=teaching_choices, required=False, widget=L10nSelect)
-    name = forms.CharField()
+    name = forms.CharField(widget=forms.TextInput(attrs=required_attr))
     message = forms.CharField(widget=forms.Textarea, required=False)
     newsletter = forms.BooleanField(required=False)
-    format = forms.ChoiceField(widget=forms.RadioSelect(attrs={'required': 'required'}), choices=(
+    format = forms.ChoiceField(widget=forms.RadioSelect(attrs=required_attr), choices=(
         ('H', _lazy('HTML')),
         ('T', _lazy('Text')),
     ))

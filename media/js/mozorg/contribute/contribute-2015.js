@@ -136,8 +136,9 @@
     });
 
     // If a category is checked at pageload, do the selection stuff
-    if ( $('#inquiry-form input[name="category"]:checked').length > 0 ) {
-        select_category($('#inquiry-form input[name="category"]:checked'));
+    var $category_checked = $('#inquiry-form input[name="category"]:checked');
+    if ( $category_checked.length > 0 ) {
+        select_category($category_checked);
     }
 
     // Style option labels when the option gets focus

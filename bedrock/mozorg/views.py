@@ -55,6 +55,20 @@ class ContributeSignup(l10n_utils.LangFilesMixin, FormView):
     form_class = ContributeSignupForm
     category = None
 
+    def get_context_data(self, **kwargs):
+        cxt = super(ContributeSignup, self).get_context_data(**kwargs)
+        cxt['category_info'] = {
+            'coding': _('More about coding'),
+            'testing': _('More about testing'),
+            'writing': _('More about writing'),
+            'teaching': _('More about teaching'),
+            'helping': _('More about helping'),
+            'translating': _('More about translating'),
+            'activism': _('More about activism'),
+            'dontknow': _('More about how you can contribute'),
+        }
+        return cxt
+
     def get_form_kwargs(self):
         kwargs = super(ContributeSignup, self).get_form_kwargs()
         kwargs['locale'] = l10n_utils.get_locale(self.request)
