@@ -5,7 +5,55 @@
 ;(function($) {
     'use strict';
 
-    // Add a more/less toggle on story pages
+    var $window = $(window);
+    var $document = $(document);
+    var $body = $('body');
+    var $navList = $('#contribute-nav-menu');
+
+    var wideMode = false;
+    var hasMediaQueries = (typeof matchMedia !== 'undefined');
+
+    // If the browser supports media queries, check the width onload and onresize.
+    // If not, just lock it in permanent wideMode.
+    if (hasMediaQueries) {
+        checkWidth();
+        $window.on('resize', function() {
+            clearTimeout(this.resizeTimeout);
+            this.resizeTimeout = setTimeout(checkWidth, 200);
+        });
+    } else {
+        wideMode = true;
+        $body.removeClass('thin').addClass('wide');
+    }
+
+    function checkWidth() {
+        if (window.matchMedia('screen and (min-width: 761px)').matches) {
+            wideMode = true;
+            $body.removeClass('thin').addClass('wide');
+            $navList.removeAttr('aria-hidden').show();
+        } else {
+            wideMode = false;
+            $body.removeClass('wide').addClass('thin');
+            $navList.attr('aria-hidden', 'true').hide();
+        }
+    }
+
+    // Show/hide the navigation in small viewports
+    $document.on('click', 'body.thin .contribute-nav .toggle', expandPageNav);
+    $document.on('click', 'body.thin .toggle.open', collapsePageNav);
+    $document.on('mouseleave', 'body.thin .contribute-nav', collapsePageNav);
+
+    function expandPageNav() {
+        $navList.slideDown('fast').removeAttr('aria-hidden').attr('aria-expanded', 'true');
+        $("#page-nav .toggle").addClass("open");
+    }
+
+    function collapsePageNav() {
+        $navList.slideUp('fast').attr('aria-hidden', 'true').removeAttr('aria-expanded');
+        $("#page-nav .toggle").removeClass("open");
+    }
+
+    // Add a more/less toggle on story pages when needed
     if ($('.story-more').length > 0) {
         var $more_toggle = $('<div class="more-toggle"><button>' + window.trans('more') + '</button></div>');
         $more_toggle.insertAfter('.story-more');
@@ -41,6 +89,10 @@
         setTimeout(function() {
             $('#modal video:first')[0].play();
         }, 400);
+        // Track when the video ends
+        $('#modal video:first').on('ended', function(){
+            gaTrack(['_trackEvent', '/contribute Interactions', 'Video Interactions', 'Video ended']);
+        });
     };
 
     // Show 'other ways to contribute' block on thankyou page
@@ -51,6 +103,7 @@
         });
     });
 
+    // Do stuff when a category is selected on the signup form
     var select_category = function(category) {
         // Style the selected option (reset all of them first to unstyle previous selection)
         $('#inquiry-form .option label').removeClass('selected');
@@ -101,12 +154,20 @@
         if ($('#'+oldarea).length > 0) {
             $('#'+oldarea).fadeOut('fast', function(){
                 $('#'+categoryarea).fadeIn('fast', function(){
+                    $('html, body').animate({
+                        scrollTop: $(this).offset().top -60
+                    }, 300);
                     $(this).find('select').attr('required', true).focus();
                 });
                 $('#'+oldarea).find('select').prop('selectedIndex', 0).attr('required', false);
             });
         } else {
-            $('#'+categoryarea).fadeIn('fast');
+            $('#'+categoryarea).fadeIn('fast', function(){
+                $('html, body').animate({
+                    scrollTop: $(this).offset().top -60
+                }, 300);
+            });
+
         }
     };
 
@@ -120,7 +181,8 @@
     });
 
     // Info tooltips
-    $('#inquiry-form .info').on('mouseenter focus', function() {
+    $('#inquiry-form .info').on('mouseenter focus click', function(e) {
+        e.preventDefault();
         var $this = $(this);
         // Get the target element's ID from the link's href.
         var target = $(this).attr('href').replace( /.*?(#.*)/g, "$1" );
@@ -135,47 +197,6 @@
         });
     });
 
-    $('#inquiry-form .info').on('click', function(e) {
-        e.preventDefault();
-    });
-
-    var $window = $(window);
-    var $document = $(document);
-    var $body = $('body');
-    var $navList = $('#contribute-nav-menu');
-
-    // Trigger the .thin-mode class on <body> when the screen is thinner than
-    // 768 pixels.
-    $window.resize(function() {
-        clearTimeout(this.resizeTimeoutId);
-        this.resizeTimeoutId = setTimeout(doneResizing, 200);
-    });
-
-    function doneResizing() {
-        if ($window.width() < 768) {
-            $body.addClass('thin-mode');
-            $navList.attr('aria-hidden', 'true').hide();
-        } else {
-            $body.removeClass('thin-mode');
-            $navList.removeAttr('aria-hidden').show();
-        }
-    }
-    $(doneResizing);  // Call once when done loading the page to initialize.
-
-    // Show/hide the navigation in small viewports
-    $document.on('click', 'body.thin-mode .contribute-nav .toggle', expandPageNav);
-    $document.on('click', 'body.thin-mode .toggle.open', collapsePageNav);
-    $document.on('mouseleave', 'body.thin-mode .contribute-nav', collapsePageNav);
-
-    function expandPageNav() {
-        $navList.slideDown('fast').removeAttr('aria-hidden').attr('aria-expanded', 'true');
-        $("#page-nav .toggle").addClass("open");
-    }
-
-    function collapsePageNav() {
-        $navList.slideUp('fast').attr('aria-hidden', 'true').removeAttr('aria-expanded');
-        $("#page-nav .toggle").removeClass("open");
-    }
 
 
 })(window.jQuery);

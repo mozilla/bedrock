@@ -217,7 +217,7 @@ textarea:focus {
 
 #tabzilla {
     position: absolute;
-    right: 23px;
+    right: 0;
     z-index: 999;
 }
 
@@ -740,6 +740,10 @@ textarea:focus {
         .span(3);
         margin-bottom: 20px;
         text-align: center;
+
+        &:nth-child(even) {
+            clear: right;
+        }
     }
 
     a {
@@ -957,6 +961,7 @@ textarea:focus {
         label {
             display: block;
             font-size: 32px;
+            line-height: 1.1;
             .open-sans-light;
             letter-spacing: -.01em;
             margin: 0 0 .5em;
@@ -1188,7 +1193,7 @@ textarea:focus {
             font-family: 'Font Awesome';
             font-size: 14px;
             line-height: 22px;
-            text-indent: 1px;
+            text-indent: 0;
             height: 20px;
             width: 20px;
             position: absolute;
@@ -1357,100 +1362,6 @@ textarea:focus {
     }
 }
 
-/*-------------------------------------------------------------------------*/
-// @Events
-#map {
-    background: rgba(149, 211, 241, .5);
-    width: 100%;
-    height: 380px;
-}
-
-.attribution {
-    clear: both;
-    font-size: 12px;
-    margin: 20px 10px -20px;
-    color: #666;
-}
-
-.events-list {
-    background: #fff;
-    text-align: left;
-}
-
-.events-head {
-    .clearfix;
-    margin: 0 0 30px;
-}
-
-#events-filter {
-    margin: 0 -10px;
-
-    legend {
-        padding-left: 10px;
-    }
-
-    p {
-        .span(4);
-    }
-
-    label,
-    .label {
-        display: block;
-        margin: 0 0 .25em;
-    }
-
-    input[type='text'],
-    input[type='search'] {
-        background: @lightbeige;
-        border-radius: 6px;
-        border: 2px solid @darkbeige;
-        font-size: inherit;
-        padding: .5em 2%;
-        width: 95%;
-    }
-
-    .form-submit {
-        padding-top: 1.5em;
-        button {
-            font-size: 14px;
-            width: 100%;
-        }
-    }
-}
-
-.events-table {
-    border-collapse: collapse;
-    width: 100%;
-    margin: 0 auto 40px;
-
-    td,
-    th {
-        text-align: left;
-        padding: 10px;
-    }
-
-    thead th {
-        text-transform: uppercase;
-        font-size: 12px;
-        background: #edebe4;
-    }
-
-    tbody th {
-        font-weight: normal;
-    }
-
-    tbody tr:nth-child(even) {
-        background: #f8f8f8;
-    }
-
-    .event-date {
-        width: 20%;
-    }
-
-    .event-name {
-        width: 40%;
-    }
-}
 
 
 /*-------------------------------------------------------------------------*/
@@ -1560,6 +1471,104 @@ textarea:focus {
         bottom: 225px;
         font-weight: bold;
         color: @linkBlue;
+    }
+}
+
+
+
+/*-------------------------------------------------------------------------*/
+// @Events
+#map {
+    background: rgba(149, 211, 241, .5);
+    width: 100%;
+    height: 380px;
+}
+
+.attribution {
+    clear: both;
+    font-size: 12px;
+    margin: 20px 10px -20px;
+    color: #666;
+}
+
+.events-list {
+    background: #fff;
+    text-align: left;
+}
+
+.events-head {
+    .clearfix;
+    margin: 0 0 30px;
+}
+
+#events-filter {
+    margin: 0 -10px;
+
+    legend {
+        padding-left: 10px;
+    }
+
+    p {
+        .span(4);
+    }
+
+    label,
+    .label {
+        display: block;
+        margin: 0 0 .25em;
+    }
+
+    input[type='text'],
+    input[type='search'] {
+        background: @lightbeige;
+        border-radius: 6px;
+        border: 2px solid @darkbeige;
+        font-size: inherit;
+        padding: .5em 2%;
+        width: 95%;
+    }
+
+    .form-submit {
+        padding-top: 1.5em;
+        button {
+            font-size: 14px;
+            width: 100%;
+        }
+    }
+}
+
+.events-table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0 auto 40px;
+
+    td,
+    th {
+        text-align: left;
+        vertical-align: top;
+        padding: 10px;
+    }
+
+    thead th {
+        text-transform: uppercase;
+        font-size: 12px;
+        background: #edebe4;
+    }
+
+    tbody th {
+        font-weight: normal;
+    }
+
+    tbody tr:nth-child(even) {
+        background: #f8f8f8;
+    }
+
+    .event-date {
+        width: 20%;
+    }
+
+    .event-name {
+        width: 40%;
     }
 }
 
@@ -1905,7 +1914,7 @@ textarea:focus {
     }
 
     #tabzilla {
-        right: 0;
+        right: -10px;
     }
 
     .section .container {
@@ -1960,6 +1969,7 @@ textarea:focus {
     }
 
     #contribute-nav-menu {
+        display: none;
         width: 160px;
         background: @mozillared;
         padding: 0 5px 5px;
@@ -2129,6 +2139,148 @@ textarea:focus {
         margin-bottom: 30px;
     }
 
+    .events-table {
+        thead {
+            display: none;
+        }
+
+        th,
+        td {
+            display: block;
+            padding: .25em 10px;
+        }
+
+        .event-date,
+        .event-name {
+            width: auto;
+        }
+
+        tr {
+            display: block;
+            margin: 0 0 20px;
+        }
+
+        tbody .event-name {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        tbody .event-date {
+            font-size: 12px;
+        }
+    }
+
+    .story-main .container {
+        font-size: inherit;
+    }
+
+    .story-intro,
+    .story-areas,
+    .story-links {
+        width: auto;
+        float: none;
+    }
+
+    .story-intro .photo {
+        width: 180px;
+        height: 180px;
+        border-width: 5px;
+        top: -100px;
+        margin-left: -95px;
+    }
+
+    .story-title {
+        font-size: 32px;
+        margin: 90px 0 20px;
+    }
+
+
+    .inquiry-form {
+        .section-title {
+            margin-left: 0;
+        }
+
+        .areas {
+            margin: 0 0 20px;
+
+            label {
+                font-size: 24px;
+            }
+        }
+
+        .personal {
+            li,
+            .form-message,
+            .form-agree,
+            .form-format,
+            .form-newsletter {
+                width: auto;
+                float: none;
+                margin: 0 0 20px;
+            }
+        }
+
+        .submit button {
+            padding: 10px 20px;
+            width: 260px;
+            margin-left: -130px;
+        }
+    }
+
+    .option-list {
+        .option {
+            width: auto;
+            float: none;
+            margin: 0 0 10px;
+            padding: 10px 0 10px 80px;
+            min-height: 30px;
+            text-align: left;
+
+            .area {
+                background: pink;
+            }
+        }
+
+        label:before {
+            font-size: 26px;
+            width: 30px;
+            height: 30px;
+            border-width: 3px;
+            left: -55px;
+            top: -10px;
+            margin: 0;
+            line-height: 30px;
+            text-align: center;
+        }
+
+        .info:after {
+            text-align: center;
+        }
+
+        .tooltip {
+            left: -70px;
+        }
+    }
+
+    #thankyou {
+        .page-head {
+            padding-bottom: 0;
+        }
+
+        .page-title,
+        .section-tagline {
+            margin: 0 0 20px;
+        }
+    }
+
+    .confirm-body {
+        padding-left: 0;
+    }
+
+    .mozillians-profile {
+        display: none;
+    }
+
 }
 
 
@@ -2145,7 +2297,7 @@ textarea:focus {
 }
 
 
-// Smaller images at certain breakpoints
+// Change images at certain breakpoints
 @media only screen and (max-width: 960px) {
 
     .slide-one {

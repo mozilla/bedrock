@@ -414,10 +414,6 @@ MINIFY_BUNDLES = {
             'css/base/mozilla-modal.less',
             'css/mozorg/contribute/contribute-2015.less',
         ),
-        'contribute-2015-map': (
-            'css/libs/mapbox-1.6.3.css',
-            'css/mozorg/contribute/contribute-2015.less',
-        ),
         'video': (
             'css/sandstone/video.less',
         ),
@@ -490,17 +486,17 @@ MINIFY_BUNDLES = {
             'js/mozorg/contact-spaces-ie7.js',
         ),
         'contribute-faces': (
-            'js/mozorg/contribute-faces.js',
+            'js/mozorg/contribute/contribute-faces.js',
         ),
         'contribute-form': (
-            'js/mozorg/contribute-form.js',
+            'js/mozorg/contribute/contribute-form.js',
             'js/base/mozilla-input-placeholder.js',
         ),
         'contribute-studentambassadors-landing': (
             'js/base/social-widgets.js',
         ),
         'contribute-studentambassadors-join': (
-            'js/mozorg/contribute-studentambassadors-join.js',
+            'js/mozorg/contribute/contribute-studentambassadors-join.js',
             'js/base/mozilla-input-placeholder.js',
         ),
         'existing': (
@@ -730,13 +726,11 @@ MINIFY_BUNDLES = {
             'js/base/mozilla-video-tools.js',
         ),
         'contribute-2015': (
+            'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.cycle2.min.js',
             'js/base/mozilla-modal.js',
-            'js/mozorg/contribute-2015.js',
-        ),
-        'contribute-2015-map': (
-            'js/libs/mapbox-1.6.3.js',
-            'js/mozorg/contribute-2015-map.js',
+            'js/mozorg/contribute/contribute-2015-ga.js',
+            'js/mozorg/contribute/contribute-2015.js',
         ),
         'mosaic': (
             'js/libs/modernizr.custom.26887.js',

@@ -36,20 +36,20 @@
         <nav class="contribute-nav">
           <span class="toggle" role="button" aria-controls="contribute-nav-menu" tabindex="0">{{ _('Menu') }}</span>
           <ul id="contribute-nav-menu">
-            <li class="nav-landing"><a href="{{ url('mozorg.contribute') }}">
+            <li class="nav-landing"><a href="{{ url('mozorg.contribute') }}" data-label="Why volunteer">
               {# L10n: this br is for formatting, omit or reposition as needed #}
               {{ _('Why<br> volunteer') }}
             </a></li>
-            <li class="nav-events"><a href="{{ url('mozorg.contribute.events') }}">
+            <li class="nav-events"><a href="{{ url('mozorg.contribute.events') }}" data-label="Find an event">
               {# L10n: this br is for formatting, omit or reposition as needed #}
               {{ _('Find<br> an event') }}
             </a></li>
-            <li class="nav-stories"><a href="{{ url('mozorg.contribute.stories') }}">
+            <li class="nav-stories"><a href="{{ url('mozorg.contribute.stories') }}" data-label="Meet Mozillians">
               {# L10n: this br is for formatting, omit or reposition as needed #}
               {{ _('Meet<br> Mozillians') }}
             </a></li>
             {% block contrib_nav_cta %}
-            <li class="nav-cta"><a href="{{ url('mozorg.contribute.signup') }}">{{ _('Get involved') }}</a></li>
+            <li class="nav-cta"><a href="{{ url('mozorg.contribute.signup') }}" data-label="Get involved" data-position="CTA button click - nav">{{ _('Get involved') }}</a></li>
             {% endblock contrib_nav_cta %}
           </ul>
         </nav>
