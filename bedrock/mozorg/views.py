@@ -101,11 +101,15 @@ class ContributeSignup(l10n_utils.LangFilesMixin, FormView):
     def form_valid(self, form):
         try:
             basket.request('post', 'get-involved', self.get_basket_data(form))
-        except basket.BasketException:
-            msg = form.error_class(
-                [_('We apologize, but an error occurred in our system. '
-                   'Please try again later.')])
-            form.errors['__all__'] = msg
+        except basket.BasketException as e:
+            if e.code == basket.errors.BASKET_INVALID_EMAIL:
+                msg = _(u'Whoops! Be sure to enter a valid email address.')
+                field = 'email'
+            else:
+                msg = _(u'We apologize, but an error occurred in our system. '
+                        u'Please try again later.')
+                field = '__all__'
+            form.errors[field] = form.error_class([msg])
             return self.form_invalid(form)
 
         return super(ContributeSignup, self).form_valid(form)

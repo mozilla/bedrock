@@ -59,7 +59,7 @@
         <p class="note">* {{ _('You will be asked to sign in before proceeding') }}</p>
 
         <div class="cta-other">
-          <p><a href="#other" role="button" aria-controls="other">{{ _('No thanks, I’ll just wait for the email') }}</a></p>
+          <p><button type="button">{{ _('No thanks, I’ll just wait for the email') }}</button></p>
         </div>
         <aside id="other">
           <h3>{{ _('Here are a few other ways you can support Mozilla right now.') }}</h3>
@@ -81,10 +81,10 @@
             </li>
             #}
             <li>
-              <a href="https://www.facebook.com/mozilla" class="other-facebook" data-label="Like us on Facebook">{{ _('Like us on Facebook') }}</a>
+              <a href="https://www.facebook.com/mozilla" class="other-facebook" data-label="Like us on Facebook" rel="external">{{ _('Like us on Facebook') }}</a>
             </li>
             <li>
-              <a href="https://twitter.com/mozilla" class="other-twitter" data-label="Follow us on Twitter">{{ _('Follow us on Twitter') }}</a>
+              <a href="https://twitter.com/mozilla" class="other-twitter" data-label="Follow us on Twitter" rel="external">{{ _('Follow us on Twitter') }}</a>
             </li>
           </ul>
         </aside>

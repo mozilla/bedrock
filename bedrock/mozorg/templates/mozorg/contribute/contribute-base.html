@@ -16,7 +16,6 @@
 
 {% block js %}
   {{ js('contribute-2015') }}
-  {{ js('contribute-form') }}
 {% endblock %}
 
 {% if l10n_has_tag('contribute-2015') or settings.DEV %}
@@ -117,7 +116,7 @@
         {% set upcoming_event = next_event() %}
         {% if upcoming_event %}
           <h3>{{ _('Upcoming event') }}</h3>
-          <a class="event-link" href="{{ upcoming_event.url }}">
+          <a class="event-link" href="{{ upcoming_event.url }}" rel="external">
             <time class="event-date" datetime="{{ upcoming_event.start_time.isoformat() }}">{{ _(upcoming_event.month_abbr) }} <span class="date-day">{{ upcoming_event.day_of_month }}</span></time>
             <h4 class="event-title">{{ upcoming_event.title|safe }}</h4>
             <p class="event-info"><span class="event-location">{{ upcoming_event.location|safe }}</span></p>
@@ -130,15 +129,15 @@
         <h3>{{ _('Communicate') }}</h3>
         <ul>
           <li><a href="{{ url('mozorg.contact.communities.communities-landing') }}">{{ _('Mozilla communities') }}</a></li>
-          <li><a href="/about/forums/">{{ _('Mailing lists') }}</a></li>
-          <li><a href="https://wiki.mozilla.org/IRC">{{ _('IRC channels') }}</a></li>
+          <li><a href="{{ url('mozorg.about.forums.forums') }}">{{ _('Mailing lists') }}</a></li>
+          <li><a href="https://wiki.mozilla.org/IRC" rel="external">{{ _('IRC channels') }}</a></li>
         </ul>
 
         <h3>{{ _('More links') }}</h3>
         <ul>
-          <li><a href="https://feedback.mozilla.org">{{ _('Submit Firefox feedback') }}</a></li>
-          <li><a href="https://careers.mozilla.org">{{ _('Explore Mozilla careers') }}</a></li>
-          <li><a href="https://support.mozilla.org">{{ _('Get help with Firefox') }}</a></li>
+          <li><a href="https://feedback.mozilla.org" rel="external">{{ _('Submit Firefox feedback') }}</a></li>
+          <li><a href="https://careers.mozilla.org" rel="external">{{ _('Explore Mozilla careers') }}</a></li>
+          <li><a href="https://support.mozilla.org" rel="external">{{ _('Get help with Firefox') }}</a></li>
         </ul>
       </div>
 

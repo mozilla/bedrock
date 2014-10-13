@@ -8,6 +8,11 @@
     {{ _('Volunteer Opportunities at Mozilla') }}
 {% endblock %}
 
+{% block js %}
+  {{ js('contribute-2015-landing') }}
+  {{ js('contribute-2015') }}
+{% endblock %}
+
 {% block body_id %}landing{% endblock %}
 
 {% block contrib_nav_cta %}{% endblock %}
@@ -55,7 +60,11 @@
           organizers, activists and more — who help shape the Web every day.
         {% endtrans %}
         </p>
-        <p class="cta"><a class="video-play" href="//videos.cdn.mozilla.net/uploads/mozillaorg/Mozilla_2014_i_am.webm" data-element-id="video-iamamozillian" data-linktype="Video text link">{{ _('See our community in action') }}</a></p>
+        <p class="mission-cta">
+          <a class="video-play" href="//videos.cdn.mozilla.net/uploads/mozillaorg/Mozilla_2014_i_am.webm" data-element-id="video-iamamozillian" data-linktype="Video text link">
+            {{ _('See our community in action') }}
+          </a>
+        </p>
       </div>
 
       <div class="mission-video">

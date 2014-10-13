@@ -726,11 +726,13 @@ MINIFY_BUNDLES = {
             'js/base/mozilla-video-tools.js',
         ),
         'contribute-2015': (
+            'js/mozorg/contribute/contribute-2015-ga.js',
+            'js/mozorg/contribute/contribute-2015.js',
+        ),
+        'contribute-2015-landing': (
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.cycle2.min.js',
             'js/base/mozilla-modal.js',
-            'js/mozorg/contribute/contribute-2015-ga.js',
-            'js/mozorg/contribute/contribute-2015.js',
         ),
         'mosaic': (
             'js/libs/modernizr.custom.26887.js',

@@ -66,7 +66,7 @@ textarea {
     background: @lightbeige;
     border-radius: 6px;
     border: 2px solid @darkbeige;
-    font-size: 16px;
+    font-size: @largeFontSize;
     padding: .5em 8px;
     width: 100%;
     -webkit-box-sizing: border-box;
@@ -89,18 +89,20 @@ textarea:focus {
     overflow: hidden;
     width: auto;
     max-width: 100%;
+    padding: .35em 8px;
     -webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
             box-sizing: border-box;
     .transition(border-color .2s ease);
 
     select {
-        font-size: inherit;
+        background: none;
+        border: none;
+        font-size: @largeFontSize;
         font-family: inherit;
         width: 100%;
-        padding: .425em 20% .425em 6px;
+        padding: 0 20% 0 0;
         outline: none;
-        line-height: 1.2;
         text-overflow: '';
         -webkit-appearance: none;
            -moz-appearance: window;
@@ -131,7 +133,8 @@ textarea:focus {
         position: absolute;
         top: 0;
         right: 0;
-        bottom: 0;z-index: 1;
+        bottom: 0;
+        z-index: 1;
         text-align: center;
     }
 }
@@ -143,7 +146,7 @@ textarea:focus {
 
     select {
         outline: 0;
-        .box-shadow(none);
+        box-shadow: none;
 
         &:-moz-focusring {
             color: transparent;
@@ -277,7 +280,7 @@ textarea:focus {
     }
 
     .select select {
-        font-size: 12px;
+        font-size: @smallFontSize;
     }
 }
 
@@ -490,7 +493,7 @@ textarea:focus {
 .landing-mission {
     .mission-content {
         .span(6);
-        font-size: 16px;
+        font-size: @largeFontSize;
         margin-top: 20px;
         text-align: center;
 
@@ -498,7 +501,7 @@ textarea:focus {
             font-size: 28px;
         }
 
-        .cta {
+        .mission-cta {
             text-align: center;
             text-transform: uppercase;
             font-weight: bold;
@@ -509,7 +512,7 @@ textarea:focus {
                 content: '\f01d'; /* play circle */
                 margin-right: 8px;
                 font-weight: normal;
-                font-size: 16px;
+                font-size: @largeFontSize;
                 text-decoration: none;
             }
         }
@@ -605,7 +608,6 @@ textarea:focus {
 
         a {
             .button-hollow;
-            .trailing-arrow;
             width: 160px;
             border-color: @darkbeige;
 
@@ -665,7 +667,7 @@ textarea:focus {
         background-position: center top;
 
         &:after {
-            content: '\f178'; // long arrow
+            content: '\f178'; // long right arrow
             font-family: 'Font Awesome';
             font-size: 45px;
             color: @darkbeige;
@@ -701,6 +703,8 @@ textarea:focus {
     }
 }
 
+
+
 /*-------------------------------------------------------------------------*/
 // Not ready?
 .landing-notready {
@@ -725,10 +729,8 @@ textarea:focus {
         a {
             border-color: #fff;
             color: #fff;
-            padding-left: 30px;
         }
     }
-
 }
 
 .other-actions {
@@ -741,8 +743,8 @@ textarea:focus {
         margin-bottom: 20px;
         text-align: center;
 
-        &:nth-child(even) {
-            clear: right;
+        &:nth-child(2n+1) {
+            clear: left;
         }
     }
 
@@ -752,22 +754,20 @@ textarea:focus {
         line-height: 1.2;
         display: block;
 
+        &:before {
+            font-family: 'Font Awesome';
+            font-weight: normal;
+            margin: 0 10px 0 -10px;
+            display: inline-block;
+            line-height: 1;
+        }
+
         &:hover,
         &:focus,
         &:active {
             border-color: lighten(@linkBlue, 5%);
         }
     }
-}
-
-
-.other-actions a:before,
-.extra-actions a:before {
-    font-family: 'Font Awesome';
-    font-weight: normal;
-    margin: 0 10px 0 -10px;
-    display: inline-block;
-    line-height: 1;
 }
 
 .other-donate:before {
@@ -800,12 +800,20 @@ textarea:focus {
 // Extras
 .contrib-extra {
     .clearfix;
+
+    .billboard {
+        width: auto;
+        background: transparent;
+        padding: 0;
+        margin: 0;
+        border: 0;
+        box-shadow: none;
+    }
 }
 
 .extra-event,
 .extra-links,
-.extra-newsletter,
-.extra-actions {
+.extra-newsletter {
     .span(4);
     text-align: left;
 }
@@ -887,7 +895,7 @@ textarea:focus {
 .extra-links li,
 .extra-actions li {
     list-style: none;
-    font-size: 16px;
+    font-size: @largeFontSize;
     margin: 0 0 .5em;
     padding: 0;
 
@@ -907,6 +915,7 @@ textarea:focus {
 }
 
 #newsletter-form {
+    width: auto;
     background: transparent;
     padding: 0;
     border: 0;
@@ -924,6 +933,12 @@ textarea:focus {
         box-shadow: none;
         text-shadow: none;
     }
+}
+
+.thank h3 {
+    font-size: @largeFontSize;
+    letter-spacing: normal;
+    font-weight: bold;
 }
 
 /*-------------------------------------------------------------------------*/
@@ -987,7 +1002,7 @@ textarea:focus {
         .label {
             display: block;
             margin: 0 0 .25em;
-            font-size: 16px;
+            font-size: @largeFontSize;
         }
 
         label.inline,
@@ -1002,18 +1017,21 @@ textarea:focus {
         }
 
         .form-agree {
-            .span-all();
+            width: auto;
             clear: both;
-            margin-bottom: 20px;
+            float: none;
+            margin: 0 10px 20px;
 
             label {
-                font-size: 14px;
+                font-size: @baseFontSize;
             }
         }
 
         .form-format {
-            .span-all();
-            margin-bottom: 20px;
+            width: auto;
+            clear: both;
+            float: none;
+            margin: 0 10px 20px;
 
             .label {
                 display: inline;
@@ -1022,12 +1040,15 @@ textarea:focus {
 
             label {
                 margin-right: 10px;
-                font-size: 14px;
+                font-size: @baseFontSize;
             }
         }
 
         .form-newsletter {
-            .span-all();
+            width: auto;
+            clear: both;
+            float: none;
+            margin: 0 10px 20px;
             text-align: center;
         }
 
@@ -1058,11 +1079,12 @@ textarea:focus {
     input[type='checkbox'] {
         width: 16px;
         height: 16px;
-        font-size: 16px;
+        font-size: @largeFontSize;
     }
 
     .errorlist {
-        margin: .25em 0;
+        margin: 0;
+        padding: .25em 0;
         color: @mozillared;
 
         li {
@@ -1083,7 +1105,7 @@ textarea:focus {
         .span(3);
         padding: 205px 0 1.4em;
         margin-bottom: 20px;
-        font-size: 16px;
+        font-size: @largeFontSize;
         line-height: 1.2;
         text-align: center;
         position: relative;
@@ -1102,28 +1124,24 @@ textarea:focus {
         display: block;
 
         &:before {
+            background-color: transparent;
+            border: 5px solid @mozillared;
+            color: @mozillared;
+            cursor: pointer;
+            display: block;
             font-family: 'Font Awesome';
             font-size: 80px;
-            text-align: center;
             line-height: 155px;
-            display: block;
-            width: 150px;
+            text-align: center;
             height: 150px;
+            width: 150px;
+            margin-left: -85px;
             padding: 5px;
             position: absolute;
             left: 50%;
             top: -180px;
-            margin-left: -85px;
-            color: @mozillared;
-            cursor: pointer;
-            border: 5px solid @mozillared;
             .border-radius(100%);
             .transition(background-color .15s ease);
-        }
-
-        &:hover:before,
-        &.hover:before {
-            background-color: #f2d6d6;
         }
 
         &.category-coding:before {
@@ -1158,6 +1176,11 @@ textarea:focus {
             content: '\f128'; /* ? */
         }
 
+        &:hover:before,
+        &.hover:before {
+            background-color: #f2d6d6;
+        }
+
         &.selected:before {
             border-color: @green;
             color: @green;
@@ -1169,7 +1192,6 @@ textarea:focus {
                 background-color: transparent;
             }
         }
-
     }
 
     .info {
@@ -1191,7 +1213,8 @@ textarea:focus {
             color: #fff;
             display: block;
             font-family: 'Font Awesome';
-            font-size: 14px;
+            font-size: @baseFontSize;
+            text-align: center;
             line-height: 22px;
             text-indent: 0;
             height: 20px;
@@ -1210,7 +1233,7 @@ textarea:focus {
         left: -20px;
         background: #eee;
         color: @textColorPrimary;
-        font-size: 12px;
+        font-size: @smallFontSize;
         font-weight: normal;
         text-shadow: none;
         border: 1px solid #dfdfdf;
@@ -1301,7 +1324,7 @@ textarea:focus {
 
 // @modal dialog
 #modal {
-    background-color: rgba(0,0,0,.75);
+    background-color: rgba(0, 0, 0, .75);
 }
 
 #modal .window .inner header {
@@ -1394,13 +1417,14 @@ textarea:focus {
     .section-tagline {
         font-size: 24px;
         font-style: italic;
-        margin: 0 0 30px !important;
+        margin: 0 0 30px;
     }
 
-    .cta-other a {
+    .cta-other button {
         .button-hollow;
         border: 0;
         padding: 20px 40px;
+        font-size: @baseFontSize;
 
         &:hover,
         &:focus,
@@ -1418,11 +1442,12 @@ textarea:focus {
     }
 
     #other {
+        float: right;
         margin: -10px -20px 20px;
         padding: 20px 20px 0;
         background: #fff;
         border-radius: 6px;
-        .box-shadow(0 2px 2px rgba(0, 0, 0, .1));
+        box-shadow: 0 2px 2px rgba(0, 0, 0, .1);
 
         h3 {
             font-size: 24px;
@@ -1431,7 +1456,7 @@ textarea:focus {
         }
 
         .other-actions li {
-            font-size: 12px;
+            font-size: @smallFontSize;
         }
     }
 
@@ -1486,7 +1511,7 @@ textarea:focus {
 
 .attribution {
     clear: both;
-    font-size: 12px;
+    font-size: @smallFontSize;
     margin: 20px 10px -20px;
     color: #666;
 }
@@ -1531,7 +1556,7 @@ textarea:focus {
     .form-submit {
         padding-top: 1.5em;
         button {
-            font-size: 14px;
+            font-size: @baseFontSize;
             width: 100%;
         }
     }
@@ -1551,7 +1576,7 @@ textarea:focus {
 
     thead th {
         text-transform: uppercase;
-        font-size: 12px;
+        font-size: @smallFontSize;
         background: #edebe4;
     }
 
@@ -1583,7 +1608,7 @@ textarea:focus {
 }
 
 .story-main .container {
-    font-size: 16px;
+    font-size: @largeFontSize;
     padding-top: 140px;
 }
 
@@ -1699,6 +1724,7 @@ textarea:focus {
 
 .story-title {
     font-size: 48px;
+    line-height: 1.2;
     text-align: center;
     margin: 0 0 40px;
 
@@ -1722,13 +1748,13 @@ textarea:focus {
         color: @linkBlue;
         cursor: pointer;
         font-family: inherit;
-        font-size: 14px;
+        font-size: @baseFontSize;
         font-weight: bold;
         text-transform: uppercase;
 
         &:after {
             display: inline-block;
-            margin-left: 5px;
+            margin: 0 5px;
             font-family: 'Font Awesome';
             content: '\f103'; /* double down arrow */
         }
@@ -1744,12 +1770,181 @@ textarea:focus {
     padding: 0 10px;
 }
 
-.js .story-more {
-    .hidden;
-}
-
 .stories-other {
     background: #fff;
+}
+
+
+
+/*-------------------------------------------------------------------------*/
+// @RTL - right to left
+[dir='rtl'] {
+
+    .select {
+        select {
+            padding-left: 20%;
+            padding-right: 6px;
+        }
+
+        &:after {
+            right: auto;
+            left: 0;
+        }
+    }
+
+    #tabzilla {
+        right: auto;
+        left: 0;
+    }
+
+    .country-form {
+        right: auto;
+        left: 30px;
+    }
+
+    .contribute-nav {
+        float: right;
+
+        li {
+            float: right;
+        }
+
+        .nav-cta {
+            float: right;
+            left: auto;
+            right: 10px;
+        }
+    }
+
+    .head-stats li {
+        float: right;
+    }
+
+    .landing-mission {
+        .mission-content,
+        .mission-video {
+            float: right;
+        }
+
+        .mission-video {
+            a:before {
+                text-indent: -8px;
+            }
+        }
+    }
+
+    .steps li {
+        float: right;
+
+        &:after {
+            content: '\f177'; // long left arrow
+            left: -35px;
+            right: auto;
+        }
+
+        &:last-child:after {
+            content: '';
+        }
+    }
+
+    .other-actions li {
+        float: right;
+
+        a:before {
+            margin: 0 -10px 0 10px;
+        }
+    }
+
+    .extra-event,
+    .extra-links,
+    .extra-newsletter {
+        text-align: right;
+        float: right;
+    }
+
+    .extra-event {
+        text-align: center;
+
+        .event-date {
+            right: 50%;
+            left: auto;
+            margin: 0 -90px 20px 0;
+        }
+    }
+
+    .story-intro,
+    .story-areas,
+    .story-links {
+        float: right;
+    }
+
+    .story-areas li {
+        margin-left: 0;
+        margin-right: 20px;
+    }
+
+    .story-links li {
+        float: right;
+
+        &:nth-child(4n+1) {
+            clear: right;
+        }
+    }
+
+    .inquiry-form {
+        .section-title,
+        .areas {
+            text-align: right;
+        }
+
+        .personal {
+            li {
+                float: right;
+                text-align: right;
+            }
+
+            .form-message,
+            .form-format,
+            .form-newsletter {
+                float: none;
+            }
+        }
+
+        .form-format {
+            .label {
+                margin-right: 0;
+                margin-left: 30px;
+            }
+
+            label {
+                margin-right: 0;
+                margin-left: 10px;
+            }
+        }
+
+        .submit button {
+            left: auto;
+            right: 50%;
+            margin-left: auto;
+            margin-right: -220px;
+        }
+    }
+
+    .option-list .option {
+        float: right;
+
+        &:nth-child(4n+1) {
+            clear: right;
+        }
+    }
+
+    .option-list .info {
+        right: auto;
+        left: -10px;
+        margin-right: 0;
+        margin-left: -20px;
+    }
+
 }
 
 
@@ -1885,7 +2080,8 @@ textarea:focus {
         height: 350px;
         margin-left: -380px;
         margin-top: -65px;
-        background-size: 350px 350px;
+        -webkit-background-size: 350px 350px;
+                background-size: 350px 350px;
 
         .profile-greeting {
             font-size: 18px;
@@ -1898,6 +2094,12 @@ textarea:focus {
             left: 70px;
             bottom: 175px;
         }
+    }
+
+    .extra-event,
+    .extra-links,
+    .extra-newsletter {
+        .span_narrow(4);
     }
 
 }
@@ -1943,7 +2145,7 @@ textarea:focus {
             display: block;
             width: 32px;
             height: 32px;
-            text-indent: 120%;
+            text-indent: 50px;
             overflow: hidden;
             cursor: pointer;
             margin: 0;
@@ -2038,7 +2240,7 @@ textarea:focus {
         .cta a {
             min-width: 0;
             padding: 10px 30px;
-            font-size: 16px;
+            font-size: @largeFontSize;
         }
     }
 
@@ -2161,12 +2363,12 @@ textarea:focus {
         }
 
         tbody .event-name {
-            font-size: 16px;
+            font-size: @largeFontSize;
             font-weight: bold;
         }
 
         tbody .event-date {
-            font-size: 12px;
+            font-size: @smallFontSize;
         }
     }
 
@@ -2235,10 +2437,6 @@ textarea:focus {
             padding: 10px 0 10px 80px;
             min-height: 30px;
             text-align: left;
-
-            .area {
-                background: pink;
-            }
         }
 
         label:before {
@@ -2281,6 +2479,53 @@ textarea:focus {
         display: none;
     }
 
+    [dir='rtl'] {
+        .contribute-nav {
+            left: auto;
+            right: -10px;
+
+            .toggle {
+                left: auto;
+                right: 0;
+            }
+
+            .nav-cta {
+                right: auto;
+            }
+        }
+
+        .option-list {
+            .option {
+                float: none;
+                padding: 10px 80px 10px 0;
+                text-align: right;
+
+                label:before {
+                    left: auto;
+                    right: -60px;
+                }
+            }
+
+            .tooltip {
+                left: auto;
+                right: -70px;
+            }
+        }
+
+        .inquiry-form .submit button {
+            margin-right: -130px;
+        }
+
+        .steps li{
+            float: none;
+
+            &:after {
+                content: '\f078'; // down chevron
+                right: 0;
+            }
+        }
+    }
+
 }
 
 
@@ -2292,6 +2537,10 @@ textarea:focus {
     #masthead,
     .container {
         width: @widthMobileLandscape - (@gridGutterWidth * 2);
+    }
+
+    .landing-mission .mission-video a:before {
+        top: 54px;
     }
 
 }

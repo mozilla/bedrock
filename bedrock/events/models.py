@@ -58,7 +58,7 @@ class Event(models.Model):
     description = models.TextField()
     location = models.CharField(max_length=255)
     sequence = models.SmallIntegerField()
-    start_time = models.DateTimeField()
+    start_time = models.DateTimeField(db_index=True)
     end_time = models.DateTimeField()
     url = models.URLField()
     latitude = models.FloatField()
