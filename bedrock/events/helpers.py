@@ -23,3 +23,8 @@ def next_event():
 @jingo.register.function
 def next_few_events(count):
     return Event.objects.future()[:count]
+
+
+@jingo.register.function
+def future_events():
+    return Event.objects.future()

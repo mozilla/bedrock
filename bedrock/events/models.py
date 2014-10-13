@@ -88,6 +88,16 @@ class Event(models.Model):
     def __unicode__(self):
         return self.title
 
+    @property
+    def day_of_month(self):
+        return self.start_time.strftime('%d')
+
+    @property
+    def month_abbr(self):
+        """Return the abbreviated month name with the abbr html tag."""
+        # for l10n, the abbreviated month strings include the tag
+        return u'<abbr>{0:%b}</abbr>'.format(self.start_time)
+
     def update_from_ical(self, ical_event):
         for field, ical_prop in self.field_to_ical.iteritems():
             setattr(self, field, ical_event.decoded(ical_prop))
