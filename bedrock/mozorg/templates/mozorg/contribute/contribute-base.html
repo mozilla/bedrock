@@ -8,10 +8,6 @@
 
 {% add_lang_files "mozorg/contribute" %}
 
-{% set num_events = events_count() %}
-{% set num_mozillians = 10554 %}
-{% set num_langs = 87 %}
-
 {% block body_class %}{{ super() }} contribute{% endblock %}
 
 {% block page_css %}
@@ -99,9 +95,9 @@
         {# L10n: This label accompanies a numeric count. The number appears first so phrase translations accordingly. #}
         <li class="stat-worldwide"><strong>{{ num_mozillians|l10n_format_number }}</strong> {{ _('active Mozillians worldwide') }}</li>
         {# L10n: This label accompanies a numeric count. The number appears first so phrase translations accordingly. #}
-        <li class="stat-events"><strong>{{ num_events|l10n_format_number }}</strong> {{ _('upcoming events around the globe') }}</li>
+        <li class="stat-events"><strong>{{ events_count()|l10n_format_number }}</strong> {{ _('upcoming events around the globe') }}</li>
         {# L10n: This label accompanies a numeric count. The number appears first so phrase translations accordingly. The phrase "and counting" means there are always more being added; not sure how that idiom might translate so do your best :) #}
-        <li class="stat-local"><strong>{{ num_langs|l10n_format_number }}</strong> {{ _('languages and counting, on every continent') }}</li>
+        <li class="stat-local"><strong>{{ num_languages|l10n_format_number }}</strong> {{ _('languages and counting, on every continent') }}</li>
       </ul>
       {% endblock contrib_stats %}
     </div>
