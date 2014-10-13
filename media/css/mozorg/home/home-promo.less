@@ -905,27 +905,24 @@
 }
 
 /****************************************************************************/
-// Firefox Android
-.promo-large-portrait.android {
+// Firefox Desktop
+.promo-large-portrait.firefox-desktop {
     background: #00af84;
 
     h2 {
-        padding: 100px @baseLine 0 @baseLine;
-        margin-top: @baseLine * 2;
-        background-image: url(/media/img/home/voices/promos/android/dude.png?30-09-2014);
-        background-position: top center;
-        background-repeat: no-repeat;
-        -webkit-background-size: 71px 82px;
-                background-size: 71px 82px;
+        padding: (@baseLine * 4) @baseLine 0 @baseLine;
     }
 }
 
 .lang-en-US,
 .lang-en-GB,
 .lang-en-ZA {
-    .promo-large-portrait.android {
+    .promo-large-portrait.firefox-desktop {
+        h2 {
+            padding: (@baseLine * 6) @baseLine 0 @baseLine;
+        }
         h3 {
-            padding: (@baseLine * 4) @baseLine 0 @baseLine;
+            padding: (@baseLine * 5) @baseLine 0 @baseLine;
         }
     }
 }
@@ -1599,15 +1596,6 @@
             background-image: url(/media/img/home/voices/promos/open-standard/tos-logo-high-res.png);
             -webkit-background-size: 67px 85px;
                     background-size: 67px 85px;
-        }
-    }
-
-    // Firefox Android
-    .promo-large-portrait.android {
-        h2 {
-            background-image: url(/media/img/home/voices/promos/android/dude-high-res.png);
-            -webkit-background-size: 71px 82px;
-                    background-size: 71px 82px;
         }
     }
 
