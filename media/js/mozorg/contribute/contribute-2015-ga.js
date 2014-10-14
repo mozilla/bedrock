@@ -8,7 +8,6 @@ $(function () {
     // Track clicks in main navigation
     $('#contribute-nav-menu li a').on('click', function(e) {
         var label = $(this).data('label');
-        var page = $('body').prop('id');
         var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
         var href = this.href;
         var callback = function() {
@@ -16,10 +15,10 @@ $(function () {
         };
 
         if (newTab) {
-            gaTrack(['_trackEvent', 'Contribute Nav Interactions ', 'nav click - ' + page, label]);
+            gaTrack(['_trackEvent', 'Contribute Nav Interactions ', 'nav click', label]);
         } else {
             e.preventDefault();
-            gaTrack(['_trackEvent', 'Contribute Nav Interactions ', 'nav click - ' + page, label], callback);
+            gaTrack(['_trackEvent', 'Contribute Nav Interactions ', 'nav click', label], callback);
         }
     });
 
@@ -194,7 +193,6 @@ $(function () {
 
     // Track event links in the footer
     $('.contrib-extra .event-link').on('click', function(e) {
-        var page = $('body').prop('id');
         var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
         var href = this.href;
         var callback = function() {
@@ -202,16 +200,15 @@ $(function () {
         };
 
         if (newTab) {
-            gaTrack(['_trackEvent', 'Contribute Interactions', 'Contribute Extra Links at Bottom - ' + page, href]);
+            gaTrack(['_trackEvent', 'Contribute Interactions', 'Contribute Extra Links at Bottom', href]);
         } else {
             e.preventDefault();
-            gaTrack(['_trackEvent', 'Contribute Interactions', 'Contribute Extra Links at Bottom - ' + page, href], callback);
+            gaTrack(['_trackEvent', 'Contribute Interactions', 'Contribute Extra Links at Bottom', href], callback);
         }
     });
 
     // Track 'all events' link in the footer
     $('.contrib-extra .events-all a').on('click', function(e) {
-        var page = $('body').prop('id');
         var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
         var href = this.href;
         var callback = function() {
@@ -219,10 +216,10 @@ $(function () {
         };
 
         if (newTab) {
-            gaTrack(['_trackEvent', 'Contribute Interactions', 'Contribute Extra Links at Bottom - ' + page, 'See All Events']);
+            gaTrack(['_trackEvent', 'Contribute Interactions', 'Contribute Extra Links at Bottom', 'See All Events']);
         } else {
             e.preventDefault();
-            gaTrack(['_trackEvent', 'Contribute Interactions', 'Contribute Extra Links at Bottom - ' + page, 'See All Events'], callback);
+            gaTrack(['_trackEvent', 'Contribute Interactions', 'Contribute Extra Links at Bottom', 'See All Events'], callback);
         }
     });
 
