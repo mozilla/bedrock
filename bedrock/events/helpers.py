@@ -4,27 +4,24 @@
 
 import jingo
 
-from bedrock.events.models import Event
+from . import utils
 
 
 @jingo.register.function
 def events_count():
-    return Event.objects.future().count()
+    return utils.future_event_count()
 
 
 @jingo.register.function
 def next_event():
-    try:
-        return Event.objects.future()[0]
-    except IndexError:
-        return None
+    return utils.next_event()
 
 
 @jingo.register.function
 def next_few_events(count):
-    return Event.objects.future()[:count]
+    return utils.next_few_events(count)
 
 
 @jingo.register.function
 def future_events():
-    return Event.objects.future()
+    return utils.future_events()
