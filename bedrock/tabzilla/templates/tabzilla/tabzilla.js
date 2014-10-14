@@ -374,7 +374,7 @@ var Tabzilla = (function (Tabzilla) {
     Infobar.prototype.onshow = {};
     Infobar.prototype.onaccept = {};
     Infobar.prototype.oncancel = {};
-    Tabzilla.setupTransbar = function (userLangs, pageLang) {
+    Infobar.translation = function (userLangs, pageLang) {
         var transbar = new Infobar('transbar', 'Translation Bar');
 
         // Note that navigator.language doesn't always work because it's just
@@ -484,6 +484,56 @@ var Tabzilla = (function (Tabzilla) {
 
         return offeredLang;
     };
+    Infobar.update = function (ua, latestVersion) {
+        ua = ua || navigator.userAgent;
+        latestVersion = parseInt(latestVersion || '{{ latest_firefox_version }}', 10);
+
+        var updatebar = new Infobar('updatebar', 'Update Bar');
+        var isFirefox = ((/\sFirefox\/\d+/).test(ua) &&
+                         !(/like\ Firefox|Iceweasel|SeaMonkey/i).test(ua)); // Exclude Camino and others
+        var isMobile = (/Mobile|Tablet|Fennec/i).test(ua);
+        var userVersion = (isFirefox) ? parseInt(ua.match(/Firefox\/(\d+)/)[1], 10) : 0;
+        var showInfobar = function () {
+            // If the user accepts, show the SUMO article
+            updatebar.onaccept.callback = function () {
+                location.href = 'https://support.mozilla.org/{{ LANG }}/kb/update-firefox-latest-version';
+            };
+
+            // Log the used Firefox version
+            updatebar.onshow.trackLabel = updatebar.onaccept.trackLabel
+                                        = updatebar.oncancel.trackLabel
+                                        = String(userVersion);
+
+            // The message and accept strings are the same as /firefox/new/
+            updatebar.show({
+                message: '{{ _("Looks like you’re using an older version of Firefox.")|js_escape }}',
+                accept: '{{ _("Update to stay fast and safe.")|js_escape }}',
+                cancel: '{{ _("Later")|js_escape }}'
+            });
+        };
+
+        if (updatebar.disabled || !isFirefox || isMobile ||
+                userVersion > latestVersion) {
+            return false;
+        }
+
+        // Show the Update Bar if the user's major version is older than 3 major
+        // versions. Once the Mozilla.UITour API starts providing the channel
+        // info (Bug 1065525, Firefox 35+), we can show the Bar only to Release
+        // channel users. Until then, because we cannot distinguish between ESR
+        // users and Release users, some ESR users may see a wrong message even
+        // when they are using one of the latest ESR builds, but it's a
+        // compromise; we rather care about many older Release users.
+        if (userVersion < latestVersion - 2) {
+            showInfobar();
+
+            return true;
+        }
+
+        return false;
+    };
+    // Expose the object for the tests
+    Tabzilla.infobar = Infobar;
     var setupGATracking = function () {
         // track tabzilla links in GA
         $('#tabzilla-contents').on('click', 'a', function (e) {
@@ -601,12 +651,8 @@ var Tabzilla = (function (Tabzilla) {
             }
         });
 
-        // Information Bars in order of priority
-        var infobars = {
-            translation: Tabzilla.setupTransbar
-        };
         $.each((tab.data('infobar') || '').split(' '), function (index, value) {
-            var setup = infobars[value];
+            var setup = Infobar[value];
             if (setup) {
                 setup.call();
             }

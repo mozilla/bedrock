@@ -1053,7 +1053,8 @@ FIREFOX_TWITTER_ACCOUNTS = {
 # Mapbox token for spaces and communities pages
 MAPBOX_TOKEN = 'examples.map-i86nkdio'
 
-TABZILLA_INFOBAR_OPTIONS = 'translation'
+# Tabzilla Information Bar default options
+TABZILLA_INFOBAR_OPTIONS = 'update translation'
 
 # Optimize.ly project code for base template JS snippet
 OPTIMIZELY_PROJECT_ID = None
