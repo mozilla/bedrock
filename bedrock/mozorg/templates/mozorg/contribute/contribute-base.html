@@ -1,0 +1,160 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/base-resp.html" %}
+
+{% from "newsletter/includes/macros.html" import email_form_thankyou with context %}
+
+{% add_lang_files "mozorg/contribute" %}
+
+{% block body_class %}{{ super() }} contribute{% endblock %}
+
+{% block page_css %}
+  {{ css('contribute-2015') }}
+{% endblock %}
+
+{% block js %}
+  {{ js('contribute-2015') }}
+{% endblock %}
+
+{% if l10n_has_tag('contribute-2015') or settings.DEV %}
+  {% block site_header_nav %}{% endblock %}
+  {% block site_header_logo %}{% endblock %}
+{% endif %}
+
+{% block content %}
+<main role="main">
+
+{% if l10n_has_tag('contribute_2015') or settings.DEV %}
+{% block contrib_head %}
+  <header class="page-head">
+    <div class="contribute-masthead">
+
+      <div class="container">
+        <nav class="contribute-nav">
+          <span class="toggle" role="button" aria-controls="contribute-nav-menu" tabindex="0">{{ _('Menu') }}</span>
+          <ul id="contribute-nav-menu">
+            <li class="nav-landing"><a href="{{ url('mozorg.contribute') }}" data-label="Why volunteer">
+              {# L10n: this br is for formatting, omit or reposition as needed #}
+              {{ _('Why<br> volunteer') }}
+            </a></li>
+            <li class="nav-events"><a href="{{ url('mozorg.contribute.events') }}" data-label="Find an event">
+              {# L10n: this br is for formatting, omit or reposition as needed #}
+              {{ _('Find<br> an event') }}
+            </a></li>
+            <li class="nav-stories"><a href="{{ url('mozorg.contribute.stories') }}" data-label="Meet Mozillians">
+              {# L10n: this br is for formatting, omit or reposition as needed #}
+              {{ _('Meet<br> Mozillians') }}
+            </a></li>
+            {% block contrib_nav_cta %}
+            <li class="nav-cta"><a href="{{ url('mozorg.contribute.signup') }}" data-label="Get involved" data-position="CTA button click - nav">{{ _('Get involved') }}</a></li>
+            {% endblock contrib_nav_cta %}
+          </ul>
+        </nav>
+
+        {% block contrib_country_form %}
+{# No country switching for now...
+        <form class="country-form" action="#">
+          <p>
+            <label for="country">{{ _('Your country') }}</label>
+            <span class="select">
+              <select id="country" name="country">
+                # L10n: This is a hint used as a placeholder in a country selection dropdown menu. It should be short. #
+                <option value="" disabled selected>{{ _('I live in&hellip;') }}</option>
+                <option value="al">Albania</option>
+                <option value="br">Brazil</option>
+                <option value="cz">Czech Republic</option>
+                <option value="dk">Denmark</option>
+                <option value="ec">Ecuador</option>
+                <option value="fi">Finland</option>
+                <option value="ga">Guatamala</option>
+                <option value="hu">Hungary</option>
+                <option value="id">Indonesia</option>
+                <option value="jp">Japan</option>
+                <option value="kl">Kuala Lumpur</option>
+                <option value="etc">and so on</option>
+              </select>
+            </span>
+            # L10n: This is a label for a form submit button. #
+            <button type="submit">{{ _('Go') }}</button>
+          </p>
+        </form>
+#}
+        {% endblock contrib_country_form %}
+      </div>
+    </div>
+
+    {% block contrib_title %}
+    <div class="container">
+      <h1 class="page-title">{% block contrib_page_title %}{% endblock %}</h1>
+
+      {% block contrib_stats %}
+      <ul class="head-stats">
+        {# L10n: This label accompanies a numeric count. The number appears first so phrase translations accordingly. #}
+        <li class="stat-worldwide"><strong>{{ num_mozillians|l10n_format_number }}</strong> {{ _('active Mozillians worldwide') }}</li>
+        {# L10n: This label accompanies a numeric count. The number appears first so phrase translations accordingly. #}
+        <li class="stat-events"><strong>{{ events_count()|l10n_format_number }}</strong> {{ _('upcoming events around the globe') }}</li>
+        {# L10n: This label accompanies a numeric count. The number appears first so phrase translations accordingly. The phrase "and counting" means there are always more being added; not sure how that idiom might translate so do your best :) #}
+        <li class="stat-local"><strong>{{ num_languages|l10n_format_number }}</strong> {{ _('languages and counting, on every continent') }}</li>
+      </ul>
+      {% endblock contrib_stats %}
+    </div>
+    {% endblock contrib_title %}
+  </header>
+  {% endblock contrib_head %}
+{% endif %}
+
+  {% block contrib_content %}{% endblock contrib_content %}
+
+{% if l10n_has_tag('contribute_2015') or settings.DEV %}
+  {% block contrib_footer %}
+  <section class="section contrib-extra">
+    <div class="container">
+
+      <div class="extra-event">
+        {% set upcoming_event = next_event() %}
+        {% if upcoming_event %}
+          <h3>{{ _('Upcoming event') }}</h3>
+          <a class="event-link" href="{{ upcoming_event.url }}" rel="external">
+            <time class="event-date" datetime="{{ upcoming_event.start_time.isoformat() }}">{{ _(upcoming_event.month_abbr) }} <span class="date-day">{{ upcoming_event.day_of_month }}</span></time>
+            <h4 class="event-title">{{ upcoming_event.title|safe }}</h4>
+            <p class="event-info"><span class="event-location">{{ upcoming_event.location|safe }}</span></p>
+          </a>
+        {% endif %}
+        <p class="events-all"><a href="{{ url('mozorg.contribute.events') }}">{{ _('See all events') }}</a></p>
+      </div>
+
+      <div class="extra-links">
+        <h3>{{ _('Communicate') }}</h3>
+        <ul>
+          <li><a href="{{ url('mozorg.contact.communities.communities-landing') }}">{{ _('Mozilla communities') }}</a></li>
+          <li><a href="{{ url('mozorg.about.forums.forums') }}">{{ _('Mailing lists') }}</a></li>
+          <li><a href="https://wiki.mozilla.org/IRC" rel="external">{{ _('IRC channels') }}</a></li>
+        </ul>
+
+        <h3>{{ _('More links') }}</h3>
+        <ul>
+          <li><a href="https://feedback.mozilla.org" rel="external">{{ _('Submit Firefox feedback') }}</a></li>
+          <li><a href="https://careers.mozilla.org" rel="external">{{ _('Explore Mozilla careers') }}</a></li>
+          <li><a href="https://support.mozilla.org" rel="external">{{ _('Get help with Firefox') }}</a></li>
+        </ul>
+      </div>
+
+    {% block contrib_extra_third %}
+      <div class="extra-newsletter">
+        <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
+        <h3>{{ _('Get community updates') }} {% if not LANG.startswith('en') %}{{ _('(English)') }}{% endif %}</h3>
+        {{ email_newsletter_form(newsletters='about-mozilla', include_title=False, include_language=False) }}
+      </div>
+    {% endblock %}
+
+    </div>
+  </section>
+  {% endblock contrib_footer %}
+{% endif %}
+
+</main>
+{% endblock content %}
+
+{% block email_form %}{% endblock %}

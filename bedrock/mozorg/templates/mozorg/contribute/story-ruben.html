@@ -1,0 +1,63 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/contribute/stories-base.html" %}
+
+{% block page_title %}{{_('Mozillian Stories')}} : Rubén {% endblock %}
+
+{% block story_content %}
+  <h2 class="story-title">
+    {# L10n: These <b>s are for formatting. #}
+    {{ _('Hi, I’m <b class="name">Rubén</b>, a Mozillian in <b class="country">Spain</b>') }}
+  </h2>
+
+  <div class="story-intro">
+    <img class="photo" src="{{ media('img/contribute/person-ruben.jpg') }}" alt="">
+    <p>
+    {% trans %}
+      I’ve been collaborating with the Mozilla community since 2004, helping
+      with website localization, QA, user support and community marketing. I’ve
+      also helped organize events in Spain and performed IT tasks within the
+      Mozilla Hispano community.
+    {% endtrans %}
+    </p>
+  </div>
+
+  <div class="story-areas">
+    <h3>{{ _('I’m currently helping with:') }}</h3>
+    <ul>
+      <li>{{ _('Mozilla.org localization') }}</li>
+      <li>{{ _('Firefox OS launch in Spain') }}</li>
+      <li>{{ _('Mozilla Hispano mentorship program') }}</li>
+      <li>{{ _('Community events') }}</li>
+    </ul>
+  </div>
+
+  <ul class="story-links">
+    <li><a href="https://twitter.com/nukeador" class="twitter" rel="external">@nukeador</a></li>
+    <li><a href="https://www.facebook.com/nukeador" class="facebook" rel="external">Facebook</a></li>
+    <li><a href="https://github.com/nukeador" class="github" rel="external">Github</a></li>
+    <li><a href="http://www.nukeador.com/" class="website" rel="external">nukeador.com</a></li>
+  </ul>
+{% endblock %}
+
+{% block stories_list %}
+  <ul class="stories">
+    <li class="person hcard">
+      <h3 class="fn given-name">Faye</h3>
+      <p class="meta">{{ _('Philippines &middot; Activism') }}</p>
+      <a href="{{ url('mozorg.contribute.story-faye') }}" class="url">{{ _('Read her story') }} <img src="{{ media('img/contribute/person-faye.jpg') }}" alt=""></a>
+    </li>
+    <li class="person hcard">
+      <h3 class="fn given-name">Shreyas</h3>
+      <p class="meta">{{ _('India &middot; Teaching') }}</p>
+      <a href="{{ url('mozorg.contribute.story-shreyas') }}" class="url">{{ _('Read his story') }} <img src="{{ media('img/contribute/person-shreyas.jpg') }}" alt=""></a>
+    </li>
+    <li class="person hcard">
+      <h3 class="fn given-name">Michael</h3>
+      <p class="meta">{{ _('Switzerland &middot; Coding') }}</p>
+      <a href="{{ url('mozorg.contribute.story-michael') }}" class="url">{{ _('Read his story') }} <img src="{{ media('img/contribute/person-michael.jpg') }}" alt=""></a>
+    </li>
+  </ul>
+{% endblock %}

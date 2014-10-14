@@ -1,0 +1,97 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/contribute/contribute-base.html" %}
+
+{% block page_title %}{{_('Thank you!')}}{% endblock %}
+
+{% block body_id %}thankyou{% endblock %}
+
+{% block contrib_country_form %}{% endblock %}
+
+{% block contrib_title %}
+  <div class="container">
+    <h1 class="page-title">{{ _('Thanks!') }}</h1>
+    <p class="section-tagline">
+      {% if category == 'coding' %}
+        <span class="category-coding">{{ _('We’re thrilled to see that you’re interested in coding and can’t wait to get you started.') }}</span>
+      {% elif category == 'testing' %}
+        <span class="category-testing">{{ _('We’re thrilled to see that you’re interested in testing and can’t wait to get you started.') }}</span>
+      {% elif category == 'writing' %}
+        <span class="category-writing">{{ _('We’re thrilled to see that you’re interested in writing and can’t wait to get you started.') }}</span>
+      {% elif category == 'teaching' %}
+        <span class="category-teaching">{{ _('We’re thrilled to see that you’re interested in teaching and can’t wait to get you started.') }}</span>
+      {% elif category == 'helping' %}
+        <span class="category-helping">{{ _('We’re thrilled to see that you’re interested in helping and can’t wait to get you started.') }}</span>
+      {% elif category == 'translating' %}
+        <span class="category-translating">{{ _('We’re thrilled to see that you’re interested in translating and can’t wait to get you started.') }}</span>
+      {% elif category == 'activism' %}
+        <span class="category-activism">{{ _('We’re thrilled to see that you’re interested in activism and can’t wait to get you started.') }}</span>
+      {% else %}{# dontknow or anything else #}
+        <span class="category-dontknow">{{ _('We’re thrilled to see that you’re interested in volunteering and can’t wait to get you started.') }}</span>
+      {% endif %}
+      {{ _('Keep an eye on your inbox for an important message from us.') }}
+    </p>
+  </div>
+{% endblock %}
+
+{% block contrib_content %}
+  <section class="section">
+    <div class="container">
+      <div class="confirm-body">
+
+        <div class="mozillians-profile">
+          <span class="profile-greeting">{{ _('Hello!') }}</span>
+          <span class="profile-name">{{ _('Your Name') }}</span>
+        </div>
+        <h2 class="section-title">{{ _('In the meantime&hellip;') }}</h2>
+        <p class="section-tagline">{{ _('You can create your Mozillians account now to connect with fellow Mozillians.' ) }}</p>
+        <p class="cta-mozillians">
+          {% if settings.DEV %}
+          <a href="https://mozillians-dev.allizom.org/?source=contribute&amp;utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=contribute-page">
+          {% else %}
+          <a href="https://mozillians.org/?source=contribute&amp;utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=contribute-page">
+          {% endif %}
+            {{ _('Yes, create my Mozillians account') }} *
+          </a>
+        </p>
+        <p class="note">* {{ _('You will be asked to sign in before proceeding') }}</p>
+
+        <div class="cta-other">
+          <p><button type="button">{{ _('No thanks, I’ll just wait for the email') }}</button></p>
+        </div>
+        <aside id="other">
+          <h3>{{ _('Here are a few other ways you can support Mozilla right now.') }}</h3>
+          <ul class="other-actions">
+            <li>
+              <a href="https://sendto.mozilla.org/page/contribute/Give-Now?source=mozillaorg&amp;ref=volunteer_getinvolvedpage201410&amp;utm_campaign=volunteer_getinvolvedpage201410&amp;utm_source=mozillaorg&amp;utm_medium=referral" class="other-donate" data-label="Donate to Mozilla">{{ _('Donate to Mozilla') }}</a>
+            </li>
+            <li>
+              <a href="{{ url('firefox') }}" class="other-download" data-label="Download Firefox">{{ _('Download Firefox') }}</a>
+            </li>
+            {# Hide this link for now
+            <li>
+              <a href="{{ url('mozorg.about.manifesto') }}" class="other-read" data-label="Read our Manifesto">{{ _('Read our Manifesto') }}</a>
+            </li>
+            #}
+            {# Hide this link for now
+            <li>
+              <a href="https://gear.mozilla.org" class="other-shop" data-label="Buy a Mozilla t-shirt">{{ _('Buy a Mozilla t-shirt') }}</a>
+            </li>
+            #}
+            <li>
+              <a href="https://www.facebook.com/mozilla" class="other-facebook" data-label="Like us on Facebook" rel="external">{{ _('Like us on Facebook') }}</a>
+            </li>
+            <li>
+              <a href="https://twitter.com/mozilla" class="other-twitter" data-label="Follow us on Twitter" rel="external">{{ _('Follow us on Twitter') }}</a>
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+{% endblock contrib_content %}
+
+{% block contrib_footer %}{% endblock %}

@@ -108,3 +108,11 @@ def get_accept_languages(request):
             languages.append(lang)
 
     return languages
+
+
+class LangFilesMixin(object):
+    """Generic views mixin that uses l10n_utils to render responses."""
+
+    def render_to_response(self, context, **response_kwargs):
+        return render(self.request, self.get_template_names(),
+                      context, **response_kwargs)

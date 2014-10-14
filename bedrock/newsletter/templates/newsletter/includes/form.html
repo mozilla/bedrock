@@ -34,7 +34,7 @@
     {{ form.newsletters|safe }}
     <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
 
-    {% if footer %}
+    {% if include_title %}
       <h3>{{ title|d(_('Get Firefox news'), true) }}</h3>
     {% endif %}
 

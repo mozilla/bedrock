@@ -152,12 +152,12 @@ MINIFY_BUNDLES = {
         'contact-spaces-ie7': (
             'css/mozorg/contact-spaces-ie7.less',
         ),
-        'contribute': (
-            'css/mozorg/contribute.less',
+        'contribute-old': (
+            'css/mozorg/contribute/contribute-old.less',
             'css/sandstone/video-resp.less',
         ),
         'contribute-page': (
-            'css/mozorg/contribute-page.less',
+            'css/mozorg/contribute/contribute-page.less',
         ),
         'contribute-studentambassadors-landing': (
             'css/base/social-widgets.less',
@@ -410,6 +410,10 @@ MINIFY_BUNDLES = {
         'tabzilla': (
             'css/tabzilla/tabzilla.less',
         ),
+        'contribute-2015': (
+            'css/base/mozilla-modal.less',
+            'css/mozorg/contribute/contribute-2015.less',
+        ),
         'video': (
             'css/sandstone/video.less',
         ),
@@ -481,18 +485,18 @@ MINIFY_BUNDLES = {
         'contact-spaces-ie7': (
             'js/mozorg/contact-spaces-ie7.js',
         ),
-        'contribute': (
-            'js/mozorg/contribute-faces.js',
+        'contribute-faces': (
+            'js/mozorg/contribute/contribute-faces.js',
         ),
         'contribute-form': (
-            'js/mozorg/contribute-form.js',
+            'js/mozorg/contribute/contribute-form.js',
             'js/base/mozilla-input-placeholder.js',
         ),
         'contribute-studentambassadors-landing': (
             'js/base/social-widgets.js',
         ),
         'contribute-studentambassadors-join': (
-            'js/mozorg/contribute-studentambassadors-join.js',
+            'js/mozorg/contribute/contribute-studentambassadors-join.js',
             'js/base/mozilla-input-placeholder.js',
         ),
         'existing': (
@@ -720,6 +724,15 @@ MINIFY_BUNDLES = {
         ),
         'video': (
             'js/base/mozilla-video-tools.js',
+        ),
+        'contribute-2015': (
+            'js/mozorg/contribute/contribute-2015-ga.js',
+            'js/mozorg/contribute/contribute-2015.js',
+        ),
+        'contribute-2015-landing': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.cycle2.min.js',
+            'js/base/mozilla-modal.js',
         ),
         'mosaic': (
             'js/libs/modernizr.custom.26887.js',

@@ -1,0 +1,223 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/contribute/contribute-base.html" %}
+
+{% block body_id %}inquiry{% endblock %}
+
+{% block page_title %}{{_('Get Involved: Volunteer Opportunities at Mozilla')}}{% endblock %}
+
+{% block contrib_nav_cta %}{% endblock %}
+{% block contrib_country_form %}{% endblock %}
+
+{% block contrib_title %}
+  <div class="container">
+    <h1 class="page-title">{{ _('To get started, tell us what interests you.') }}</h1>
+    <p class="section-tagline">{{ _('Choose one for now. You can always contribute to other areas later.') }}</p>
+  </div>
+{% endblock %}
+
+{% block contrib_content %}
+  <section class="section inquiry">
+    <div class="container">
+      <form class="inquiry-form" id="inquiry-form" method="post" action="{{ url('mozorg.contribute.signup') }}">
+        {% if form.errors %}
+          {{ form.non_field_errors()|safe }}
+          <ul class="errorlist">
+            {% if form.email.errors %}
+              <li>{{_('Please enter a valid email address.')}}</li>
+            {% endif %}
+
+            {% if form.privacy.errors %}
+              <li>{{_('You must agree to the privacy policy.')}}</li>
+            {% endif %}
+
+            {% if form.category.errors %}
+              <li>{{_('Please select an area of interest.')}}</li>
+            {% endif %}
+          </ul>
+        {% endif %}
+
+      <fieldset class="categories">
+        <ul class="option-list">
+          {% for category in form.category %}
+            <li class="option">
+              <label class="category-{{ category.choice_value }}">
+                {{ category.tag() }}
+                <span class="label-text">{{ category.choice_label }}</span>
+                <a class="info" href="#info-{{ category.choice_value }}">{{ category_info[category.choice_value] }}</a>
+              </label>
+            </li>
+          {% endfor %}
+        </ul>
+      </fieldset>
+
+      <fieldset class="areas">
+        <h2 class="section-title">{{ _('What particular area?') }}</h2>
+
+        <div class="area" id="area-coding">
+          <p>
+            <label for="select-area-coding">{{ _('What would you like to code?') }}</label>
+            <span class="select">
+              {{ form.area_coding }}
+            </span>
+          </p>
+          {{ form.area_coding.errors }}
+        </div>
+
+        <div class="area" id="area-testing">
+          <p>
+            <label for="select-area-testing">{{ _('What would you like to test?') }}</label>
+            <span class="select">
+              {{ form.area_testing }}
+            </span>
+          </p>
+          {{ form.area_testing.errors }}
+        </div>
+
+        <div class="area" id="area-translating">
+          <p>
+            <label for="select-area-translating">{{ _('What would you like to translate?') }}</label>
+            <span class="select">
+              {{ form.area_translating }}
+            </span>
+          </p>
+          {{ form.area_translating.errors }}
+        </div>
+
+        <div class="area" id="area-writing">
+          <p>
+            <label for="select-area-writing">{{ _('What would you like to write?') }}</label>
+            <span class="select">
+              {{ form.area_writing }}
+            </span>
+          </p>
+          {{ form.area_writing.errors }}
+        </div>
+
+        <div class="area" id="area-teaching">
+          <p>
+            <label for="select-area-teaching">{{ _('What would you like to teach?') }}</label>
+            <span class="select">
+              {{ form.area_teaching }}
+            </span>
+          </p>
+          {{ form.area_teaching.errors }}
+        </div>
+      </fieldset>
+
+      <fieldset class="personal">
+        <h2 class="section-title">{{ _('Now tell us a little about yourself:') }}</h2>
+        <ul>
+          <li>
+            <label for="person-name">{{ _('Name') }}</label>
+            {{ form.name }}
+            {{ form.name.errors }}
+          </li>
+          <li>
+            <label for="person-email">{{ _('Email address') }}</label>
+            {{ form.email }}
+            {{ form.email.errors }}
+          </li>
+          <li>
+            <label for="person-country">{{ _('Country') }}</label>
+            <span class="select">
+              {{ form.country }}
+            </span>
+            {{ form.country.errors }}
+          </li>
+          <li class="form-message">
+            <label for="person-message">{{ _('Why do you want to be a Mozilla volunteer?') }} <i>{{ _('(Optional)') }}</i></label>
+            <textarea id="person-message" cols="60" rows="4" name="message"></textarea>
+          </li>
+          <li class="form-format">
+            <span class="label">
+              {{ _('Format') }}
+            </span>
+            {% for radio in form.format %}
+              <label class="inline">{{ radio.tag() }} {{ radio.choice_label }}</label>
+            {% endfor %}
+          </li>
+          <li class="form-agree">
+            {{ form.privacy }}
+            {{ form.privacy.errors }}
+          </li>
+        </ul>
+      </fieldset>
+
+      <fieldset class="submit">
+        <p class="form-newsletter">
+          <label class="inline" for="id_newsletter">
+            {{ form.newsletter }}
+            {{ form.newsletter.errors }}
+            {{ _('Sign me up for community updates') }}
+            {% if not LANG.startswith('en') %}{{ _('(English)') }}{% endif %}
+          </label>
+        </p>
+
+        <button type="submit">{{ _('Start contributing') }}</button>
+      </fieldset>
+    </form>
+
+    <aside class="category-info">
+      <h2>{{ _('Where would you like to get started?') }}</h2>
+
+      <div class="info-content" id="info-coding">
+        <h3>{{ _('Coding') }}</h3>
+        <p>{{ _('Contribute code to a whole range of Mozilla products, including Firefox and Firefox OS.') }}</p>
+      </div>
+
+      <div class="info-content" id="info-testing">
+        <h3>{{ _('Testing') }}</h3>
+        <p>{{ _('Help make the Mozilla products you use — and love — even better.') }}</p>
+      </div>
+
+      <div class="info-content" id="info-writing">
+        <h3>{{ _('Writing') }}</h3>
+        <p>{{ _('Lend your voice to Mozilla — from blogging and social media to providing technical documents for users and developers.') }}</p>
+      </div>
+
+      <div class="info-content" id="info-teaching">
+        <h3>{{ _('Teaching') }}</h3>
+        <p>{{ _('Share your skills with a community that’s eager to learn. Take advantage of our free tools, teaching resources and events.') }}</p>
+      </div>
+
+      <div class="info-content" id="info-helping">
+        <h3>{{ _('Helping') }}</h3>
+        <p>{{ _('Provide support to users who need it and help everyone get the most out of their Mozilla products.') }}</p>
+      </div>
+
+      <div class="info-content" id="info-translating">
+        <h3>{{ _('Translating') }}</h3>
+        <p>{{ _('Help make Mozilla stuff available in other languages. Translate everything from newsletters and websites to copy for Firefox and Firefox OS.') }}</p>
+      </div>
+
+      <div class="info-content" id="info-activism">
+        <h3>{{ _('Activism') }}</h3>
+        <p>{{ _('Get involved with our opportunities to support freedom, security and privacy on the open Web.') }}</p>
+      </div>
+
+      <div class="info-content" id="info-dontknow">
+        <h3>{{ _('I don’t know') }}</h3>
+        <p>{{ _('Not sure how you want to help? No problem. We can find the appropriate contribution activity for you.') }}</p>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<section class="section next-steps">
+  <div class="container">
+    <ol class="steps">
+      <li class="step1">{{ _('Choose what interests you and tell us how you’d like to help') }}</li>
+      <li class="step2">{{ _('Stand by for an email that will connect you to the Mozilla community') }}</li>
+      <li class="step3">{{ _('Create your Mozillians account and share your contributions with the world') }}</li>
+    </ol>
+  </div>
+</section>
+
+{% endblock contrib_content %}
+
+{% block contrib_footer %}{% endblock %}
+

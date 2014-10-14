@@ -3,6 +3,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import json
+import re
 
 from django.conf import settings
 from django.core.context_processors import csrf
@@ -10,7 +11,7 @@ from django.db.utils import DatabaseError
 from django.http import HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.views.decorators.http import last_modified, require_safe
-from django.views.generic.base import TemplateView
+from django.views.generic import FormView, TemplateView
 from django.shortcuts import redirect, render as django_render
 
 import basket
@@ -25,7 +26,7 @@ from bedrock.mozorg.credits import CreditsFile
 from bedrock.mozorg.decorators import cache_control_expires
 from bedrock.mozorg.forms import (ContributeForm,
                                   ContributeStudentAmbassadorForm,
-                                  WebToLeadForm)
+                                  WebToLeadForm, ContributeSignupForm)
 from bedrock.mozorg.forums import ForumsFile
 from bedrock.mozorg.models import TwitterCache
 from bedrock.mozorg.util import hide_contrib_form
@@ -47,6 +48,84 @@ def csrf_failure(request, reason=''):
 def hacks_newsletter(request):
     return l10n_utils.render(request,
                              'mozorg/newsletter/hacks.mozilla.org.html')
+
+
+class ContributeSignup(l10n_utils.LangFilesMixin, FormView):
+    template_name = 'mozorg/contribute/signup.html'
+    form_class = ContributeSignupForm
+    category = None
+
+    def get_context_data(self, **kwargs):
+        cxt = super(ContributeSignup, self).get_context_data(**kwargs)
+        cxt['category_info'] = {
+            'coding': _('More about coding'),
+            'testing': _('More about testing'),
+            'writing': _('More about writing'),
+            'teaching': _('More about teaching'),
+            'helping': _('More about helping'),
+            'translating': _('More about translating'),
+            'activism': _('More about activism'),
+            'dontknow': _('More about how you can contribute'),
+        }
+        return cxt
+
+    def get_form_kwargs(self):
+        kwargs = super(ContributeSignup, self).get_form_kwargs()
+        kwargs['locale'] = l10n_utils.get_locale(self.request)
+        return kwargs
+
+    def get_success_url(self):
+        category = self.category or 'dontknow'
+        return reverse('mozorg.contribute.thankyou') + '?c=' + category
+
+    def get_basket_data(self, form):
+        data = form.cleaned_data
+        self.category = data['category']
+        basket_data = {
+            'email': data['email'],
+            'name': data['name'],
+            'country': data['country'],
+            'message': data['message'],
+            'subscribe': data['newsletter'],
+            'format': data['format'],
+            'lang': form.locale,
+        }
+        if 'area_' + self.category in data:
+            interest_id = data['area_' + self.category]
+        else:
+            interest_id = self.category
+        basket_data['interest_id'] = interest_id
+        basket_data['source_url'] = self.request.build_absolute_uri()
+        return basket_data
+
+    def form_valid(self, form):
+        try:
+            basket.request('post', 'get-involved', self.get_basket_data(form))
+        except basket.BasketException as e:
+            if e.code == basket.errors.BASKET_INVALID_EMAIL:
+                msg = _(u'Whoops! Be sure to enter a valid email address.')
+                field = 'email'
+            else:
+                msg = _(u'We apologize, but an error occurred in our system. '
+                        u'Please try again later.')
+                field = '__all__'
+            form.errors[field] = form.error_class([msg])
+            return self.form_invalid(form)
+
+        return super(ContributeSignup, self).form_valid(form)
+
+
+class ContributeSignupThankyou(l10n_utils.LangFilesMixin, TemplateView):
+    template_name = 'mozorg/contribute/thankyou.html'
+    category_re = re.compile('^\w{5,20}$')
+
+    def get_context_data(self, **kwargs):
+        cxt = super(ContributeSignupThankyou, self).get_context_data(**kwargs)
+        category = self.request.GET.get('c', '')
+        match = self.category_re.match(category)
+        if match:
+            cxt['category'] = category
+        return cxt
 
 
 @csrf_exempt
@@ -245,7 +324,7 @@ class Robots(TemplateView):
         return {'disallow_all': not SITE_URL.endswith('://www.mozilla.org')}
 
 
-class HomeTestView(TemplateView):
+class HomeTestView(l10n_utils.LangFilesMixin, TemplateView):
     """Home page view that will use a different template for a QS."""
     template_name = 'mozorg/home.html'
 
@@ -261,9 +340,3 @@ class HomeTestView(TemplateView):
         ctx['mobilizer_link'] = settings.MOBILIZER_LOCALE_LINK[locale]
 
         return ctx
-
-    def render_to_response(self, context, **response_kwargs):
-        return l10n_utils.render(self.request,
-                                 self.get_template_names(),
-                                 context,
-                                 **response_kwargs)
