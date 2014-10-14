@@ -683,7 +683,7 @@ var Tabzilla = (function (Tabzilla) {
     + '          <div>'
     + '            <ul>'
     + '              <li><a href="https://webmaker.org/?icn=tabz">Webmaker</a></li>'
-    + '              <li><a href="https://www.mozilla.org/research/?icn=tabz">Research</a></li>'
+    + '              <li><a href="https://www.mozilla.org/research/?icn=tabz">{{ _('Research')|js_escape }}</a></li>'
     + '            </ul>'
     + '          </div>'
     + '        </li>'
