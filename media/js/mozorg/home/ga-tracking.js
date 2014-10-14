@@ -45,14 +45,15 @@ $(function () {
         var name = $(this).data('name');
         var href = this.href;
         var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
-        var callback = function() {
-            window.location = href;
-        };
+        var callback;
 
         if (newTab) {
             trackGenericLink('nav click', name);
         } else {
             e.preventDefault();
+            callback = function() {
+                window.location = href;
+            };
             trackGenericLink('nav click', name, callback);
         }
     });

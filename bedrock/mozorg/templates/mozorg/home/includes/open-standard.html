@@ -32,10 +32,10 @@
           <ul class="os-headlines">
             {% for article in categorized_articles.get(category, []) %}
               <li role="presentation">
-                <a href="{{ article.link }}" data-aria-controls="os-{{category}}-article-{{ loop.index }}">
+                <a href="{{ article.link }}" rel="external" data-aria-controls="os-{{category}}-article-{{ loop.index }}">
                   <div class="headline-container">
                     <h3>{{ article.title }}</h3>
-                    <time>{{ article.published|datetime }}</time>
+                    <time datetime="{{ article.published.isoformat() }}">{{ article.published|datetime }}</time>
                   </div>
                 </a>
               </li>
@@ -46,7 +46,7 @@
               <article class="os-article" id="os-{{category}}-article-{{ loop.index }}">
                 <h3><a href="{{ article.link }}">{{ article.title }}</a></h3>
                 <p class="meta">
-                  <time>{{ article.published|datetime }}</time> <span class="tag">{{ article.category }}</span> Written by {{ article.author }}
+                  <time datetime="{{ article.published.isoformat() }}">{{ article.published|datetime }}</time> <span class="tag">{{ article.category }}</span> Written by {{ article.author }}
                 </p>
                 {% if article.image %}
                   <div class="article-img">

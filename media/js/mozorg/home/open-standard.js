@@ -212,8 +212,10 @@ $(function () {
             var $headline = $category.find('.os-headlines a:first');
             var $article = $category.find('.os-article-container article:first');
 
-            $category.attr('aria-role', 'region');
-            $category.attr('aria-expanded', 'false');
+            $category.attr({
+                'aria-role': 'region',
+                'aria-expanded': 'false'
+            });
             $category.first().attr('aria-expanded', 'true');
 
             $article.addClass('selected');

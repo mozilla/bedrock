@@ -45,8 +45,6 @@ h1, h2, h3, h4, h5, h6 {
         img {
             width: 313px;
             height: 82px;
-            -webkit-transition: -webkit-transform 1s ease-in-out;
-            transition: transform 1s ease-in-out;
         }
     }
 }
@@ -214,7 +212,7 @@ h1, h2, h3, h4, h5, h6 {
     #firefox-download-section {
         header {
             float: right;
-            padding: 0 0 0 20px;
+            padding: 0 0 0 @baseLine;
 
             h3 {
                 float: right;
@@ -222,13 +220,13 @@ h1, h2, h3, h4, h5, h6 {
 
             h4 {
                 float: right;
-                margin: 20px 40px 0 0;
+                margin: @baseLine (@baseLine * 2) 0 0;
             }
         }
 
         .download-button-simple {
             float: left;
-            margin: 30px 0 20px 0;
+            margin: 30px 0 @baseLine 0;
         }
     }
 }
@@ -334,7 +332,7 @@ h1, h2, h3, h4, h5, h6 {
 
         h2 {
             font-size: 54px;
-            color: #484848;
+            color: @textColorSecondary;
             text-align: center;
             margin-bottom: @baseLine * 4;
             letter-spacing: -1px;
@@ -504,7 +502,7 @@ h1, h2, h3, h4, h5, h6 {
 
                 .date-month {
                     display: block;
-                    font-size: 14px;
+                    font-size: @baseFontSize;
                 }
 
                 .date-day {
@@ -627,7 +625,7 @@ h1, h2, h3, h4, h5, h6 {
     h2 {
         position: relative;
         font-size: 24px;
-        color: #484848;
+        color: @textColorSecondary;
         padding-top: 100px;
 
         &:before {
@@ -668,8 +666,8 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     p {
-        color: #484848;
-        font-size: 16px;
+        color: @textColorSecondary;
+        font-size: @largeFontSize;
         margin-top: @baseLine;
     }
 }
@@ -692,7 +690,7 @@ h1, h2, h3, h4, h5, h6 {
         float: none;
         width: auto;
         padding: (@baseLine * 2) 0;
-        color: #484848;
+        color: @textColorSecondary;
         font-size: 46px;
         text-align: center;
         margin: 0;
@@ -774,7 +772,7 @@ h1, h2, h3, h4, h5, h6 {
 #colophon {
     margin: 0;
     background: #565a5c;
-    color: #bbbbbb;
+    color: @textColorLight;
 
     a:link,
     a:visited {
@@ -828,10 +826,8 @@ h1, h2, h3, h4, h5, h6 {
         width: @widthSquareGrid_8 - (@gridGutterWidth * 2);
     }
 
-    .main-header {
-        h1 {
-            margin: 50px auto;
-        }
+    .main-header h1 {
+        margin: 50px auto;
     }
 
     #firefox-download-section {
@@ -1134,11 +1130,9 @@ h1, h2, h3, h4, h5, h6 {
         width: @widthSquareGrid_3 - (@gridGutterWidth * 2);
     }
 
-    .main-header {
-        h1 img {
-            width: 260px;
-            height: auto;
-        }
+    .main-header h1 img {
+        width: 260px;
+        height: auto;
     }
 
     #firefox-download-section,
@@ -1212,11 +1206,9 @@ h1, h2, h3, h4, h5, h6 {
         width: @widthSquareGrid_2 - (@gridGutterWidth * 2);
     }
 
-    .main-header {
-        h1 img {
-            width: 260px;
-            height: 68px;
-        }
+    .main-header h1 img {
+        width: 260px;
+        height: 68px;
     }
 
     #firefox-download-section,

@@ -33,7 +33,7 @@
   <![endif]-->
   {{ js('home-2015') }}
 
-  {# Open Standard module is only shown to English languages #}
+  {# Open Standard module is only shown to en-US locale #}
   {% if LANG in ['en-US'] %}
     {{ js('home-2015-open-standard') }}
   {% endif %}
@@ -41,20 +41,6 @@
 
 {% block string_data %}
   data-read-more="{{_('Read more')}}"
-
-  {# Month strings for events module #}
-  data-jan-long="{{_('January')}}"
-  data-feb-long="{{_('February')}}"
-  data-mar-long="{{_('March')}}"
-  data-apr-long="{{_('April')}}"
-  data-may-long="{{_('May')}}"
-  data-jun-long="{{_('June')}}"
-  data-jul-long="{{_('July')}}"
-  data-aug-long="{{_('August')}}"
-  data-sep-long="{{_('September')}}"
-  data-oct-long="{{_('October')}}"
-  data-nov-long="{{_('November')}}"
-  data-dec-long="{{_('December')}}"
 {% endblock %}
 
 {# Note: Each color face links to the contribute landing page,
@@ -154,7 +140,7 @@
         </li>
         <li id="promo-6" class="item promo-large-landscape webmaker" tabindex="0" data-name="Teach the Web">
           <h2 class="primary go">{{ _('Teach the Web') }}</h2>
-          <a class="panel-link" href="https://webmaker.org/">
+          <a class="panel-link" rel="external" href="https://webmaker.org/">
             <div class="secondary">
               <h3>{{ _('Let’s build a Web that’s open <br>and made by everyone.') }}</h3>
               <p class="more">{{ _('Become a Webmaker') }}</p>
@@ -165,7 +151,7 @@
           {{ promo_face(3) }}
         </li>
         <li id="promo-8" class="item promo-small-landscape appmaker" data-name="Build an app in seconds">
-          <a class="panel-link" href="https://webmaker.org/appmaker">
+          <a class="panel-link" rel="external" href="https://webmaker.org/appmaker">
             <h2>{{ _('Build an app <br>in seconds') }}</h2>
           </a>
         </li>
@@ -176,7 +162,7 @@
         </li>
         <li id="promo-10" class="item promo-large-portrait firefox-desktop" tabindex="0" data-name="Try the best Firefox yet">
           <h2 class="primary go">{{ _('Try the best Firefox yet') }}</h2>
-          <a class="panel-link" href="{{ url('firefox.desktop.index') }}">
+          <a class="panel-link" href="{{ url('firefox.desktop.trust') }}">
             <div class="secondary">
               <h3>{{ _('Made with a mission to put you first.') }}</h3>
               <p class="more">{{ _('Learn more about Firefox') }}</p>
@@ -185,7 +171,7 @@
         </li>
         <li id="promo-11" class="item promo-large-landscape support" tabindex="0" data-name="Help Mozilla users">
           <h2 class="primary go">{{ _('Help Mozilla users') }}</h2>
-          <a class="panel-link" href="https://support.mozilla.org/get-involved">
+          <a class="panel-link" rel="external" href="https://support.mozilla.org/get-involved">
             <div class="secondary">
               <h3>{{ _('Help millions <br>get the most from their <br>favorite browser.') }}</h3>
               <p class="more">{{ _('Join our support team') }}</p>
@@ -277,19 +263,19 @@
     <div class="container">
       <ul>
         <li>
-          <a class="add-ons" href="https://addons.mozilla.org/">
+          <a class="add-ons" rel="external" href="https://addons.mozilla.org/">
             <h2>{{ _('Add-ons') }}</h2>
             <p>{{ _('Compare prices, check the weather, listen to music, send a tweet and more right from Firefox.') }}</p>
           </a>
         </li>
         <li>
-          <a class="careers" href="https://careers.mozilla.org/">
+          <a class="careers" rel="external" href="https://careers.mozilla.org/">
             <h2>{{ _('Careers') }}</h2>
             <p>{{ _('Learn about the benefits of working at Mozilla and view open positions around the world.') }}</p>
           </a>
         </li>
         <li>
-          <a class="help" href="https://support.mozilla.org/">
+          <a class="help" rel="external" href="https://support.mozilla.org/">
             <h2>{{ _('Need help?') }}</h2>
             <p>{{ _('Get answers to your questions about Firefox and all Mozilla products from our support team.') }}</p>
           </a>

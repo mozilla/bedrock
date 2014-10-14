@@ -45,7 +45,7 @@
             margin: 0 auto (@baseLine * 4) auto;
             font-size: 20px;
             .open-sans;
-            color: #484848;
+            color: @textColorSecondary;
         }
     }
 
@@ -63,7 +63,7 @@
         h3 {
             .open-sans;
             font-size: 14px;
-            color: #484848;
+            color: @textColorSecondary;
             margin-bottom: @baseLine / 2;
             text-align: left;
             &:after {
@@ -112,18 +112,18 @@
         }
     }
 
-    #os-live-btn {
-        color: #ce3c35;
+    .open-standard-button(@color: #ce3c35, @position: 0) {
+        color: @color;
 
         &:hover,
         &:focus {
-            border-color: #ce3c35;
+            border-color: @color;
         }
 
         &.selected,
         &:active {
             color: #fff;
-            background: #ce3c35;
+            background: @color;
             border-color: transparent;
             &:before {
                 background-position: 0 -110px;
@@ -131,100 +131,28 @@
         }
 
         &:before {
-            background-position: 0 -88px;
+            background-position: 0 @position;
         }
+    }
+
+    #os-live-btn {
+        .open-standard-button(#ce3c35, -88px);
     }
 
     #os-learn-btn  {
-        color: #f26c23;
-
-        &:hover,
-        &:focus {
-            border-color: #f26c23;
-        }
-
-        &.selected,
-        &:active {
-            color: #fff;
-            background: #f26c23;
-            border-color: transparent;
-            &:before {
-                background-position: 0 -110px;
-            }
-        }
-
-        &:before {
-            background-position: 0 -44px;
-        }
+        .open-standard-button(#f26c23, -44px);
     }
 
     #os-innovate-btn {
-        color: #005ca5;
-
-        &:hover,
-        &:focus {
-            border-color: #005ca5;
-        }
-
-        &.selected,
-        &:active {
-            color: #fff;
-            background: #005ca5;
-            border-color: transparent;
-            &:before {
-                background-position: 0 -110px;
-            }
-        }
-
-        &:before {
-            background-position: 0 0;
-        }
+        .open-standard-button(#005ca5, 0);
     }
 
     #os-engage-btn {
-        color: #94368c;
-
-        &:hover,
-        &:focus {
-            border-color: #94368c;
-        }
-
-        &.selected,
-        &:active {
-            color: #fff;
-            background: #94368c;
-            border-color: transparent;
-            &:before {
-                background-position: 0 -110px;
-            }
-        }
-
-        &:before {
-            background-position: 0 -66px;
-        }
+        .open-standard-button(#94368c, -66px);
     }
 
     #os-opinion-btn {
-        color: #6fbe48;
-
-        &:hover,
-        &:focus {
-            border-color: #6fbe48;
-        }
-
-        &.selected,
-        &:active {
-            color: #fff;
-            background: #6fbe48;
-            border-color: transparent;
-            &:before {
-                background-position: 0 -110px;
-            }
-        }
-
-        &:before {
-            background-position: 0 -22px;
-        }
+        .open-standard-button(#6fbe48, -22px);
     }
 
     .os-category-buttons {
@@ -264,7 +192,7 @@
         p {
             .open-sans;
             font-size: 13px;
-            color: #484848;
+            color: @textColorSecondary;
             opacity: 0.8;
         }
 
@@ -276,14 +204,14 @@
         li {
             padding: 0 0 @baseLine 0;
             margin: 0 0 @baseLine 0;
-            border-bottom: 1px dotted #484848;
+            border-bottom: 1px dotted @textColorSecondary;
             .clearfix();
 
             a {
                 display: block;
                 position:relative;
                 padding: 0;
-                color: #484848;
+                color: @textColorSecondary;
                 -webkit-transition: border .2s ease-in-out, padding .2s ease-in-out;
                 transition: border .2s ease-in-out, padding .2s ease-in-out;
 
@@ -425,6 +353,25 @@
     }
 }
 
+.js .html-rtl #open-standard {
+    .os-filter {
+        float: right;
+        h3 {
+            text-align: right;
+        }
+    }
+
+    .os-container,
+    .os-headlines,
+    .os-article-container {
+        float: right;
+    }
+}
+
+.html-rtl #open-standard .os-container {
+    text-align: right;
+}
+
 /****************************************************************************/
 // @Widescreen styles
 @media only screen and (min-width: (@widthSquareGrid_8)) {
@@ -470,9 +417,22 @@
                 &:focus {
                     cursor: default;
                     h3 {
-                        color: #484848;
+                        color: @textColorSecondary;
                     }
                 }
+            }
+        }
+    }
+
+    .js .html-rtl #open-standard {
+        .os-headlines {
+            margin: 0 0 0 (@baseLine * 2);
+
+            li a.selected {
+                border-left: none;
+                padding-left: 0;
+                border-right: 4px solid transparent;
+                padding-right: 16px;
             }
         }
     }
@@ -520,9 +480,22 @@
                 &:focus {
                     cursor: default;
                     h3 {
-                        color: #484848;
+                        color: @textColorSecondary;
                     }
                 }
+            }
+        }
+    }
+
+    .js .html-rtl #open-standard {
+        .os-headlines {
+            margin: 0 0 0 (@baseLine * 2);
+
+            li a.selected {
+                border-left: none;
+                padding-left: 0;
+                border-right: 4px solid transparent;
+                padding-right: 16px;
             }
         }
     }
@@ -602,6 +575,19 @@
         }
         .os-headlines {
             margin: 0;
+        }
+    }
+
+    .js .html-rtl #open-standard {
+        .os-filter {
+            float: none;
+            h3 {
+                text-align: center;
+            }
+        }
+        .os-container {
+            float: none;
+            text-align: right;
         }
     }
 }

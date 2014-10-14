@@ -17,22 +17,22 @@ $(function () {
 
     var $window = $(window);
     var $scrollPrompt = $('#scroll-prompt');
-    var $promoGrid = $('.promo-grid');
+    var $firefoxSection = $('#firefox-download-section');
     var promptTimeout;
 
     function destroyScrollPrompt() {
         clearTimeout(promptTimeout);
         $window.off('scroll.prompt', scroll);
-        $scrollPrompt.off('click', scrollToPromos);
+        $scrollPrompt.off('click', scrollPastPromos);
         $scrollPrompt.stop().fadeOut();
     }
 
-    function scrollToPromos() {
+    function scrollPastPromos() {
         destroyScrollPrompt();
 
         $('html, body').animate({
-            scrollTop: $promoGrid.offset().top + 302
-        }, 1000);
+            scrollTop: $firefoxSection.offset().top - 180
+        }, 1500);
     }
 
     function initScrollPrompt() {
@@ -45,7 +45,7 @@ $(function () {
             promptTimeout = setTimeout(function () {
                 if ($window.scrollTop() === 0) {
                     $scrollPrompt.fadeIn();
-                    $scrollPrompt.on('click', scrollToPromos);
+                    $scrollPrompt.on('click', scrollPastPromos);
                     $window.one('scroll.prompt', destroyScrollPrompt);
                     // track that the scroll prompt has been show in GA
                     gaTrack(['_trackEvent', 'Homepage Interactions', 'scroll prompt']);

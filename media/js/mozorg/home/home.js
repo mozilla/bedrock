@@ -49,9 +49,9 @@ $(function () {
         // when the inner link loses focus, hide the secondary content again
         // assumes a single link in the panel
         $('.promo-large-landscape > a, .promo-large-portrait > a').on('blur', function() {
-            var $this = $(this);
-            if ($this.parent().hasClass('show')) {
-                $this.parent().removeClass('show');
+            var $this = $(this).parent();
+            if ($this.hasClass('show')) {
+                $this.removeClass('show');
             }
         });
 
@@ -180,10 +180,6 @@ $(function () {
         } else {
             // add stagger class to increment transition delay
             $promos.addClass('stagger reveal');
-            // remove stagger class once set to reset transition delay
-            setTimeout(function () {
-                $promos.removeClass('stagger');
-            }, 50);
         }
     }
 

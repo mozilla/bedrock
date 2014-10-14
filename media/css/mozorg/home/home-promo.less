@@ -156,8 +156,8 @@
 .promo-large-landscape,
 .promo-large-portrait {
     z-index: 0;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
+    // promote large promo tiles to their own layer
+    .transform(translateZ(0));
 
     a.panel-link {
         display: block;
@@ -328,13 +328,11 @@
         z-index: 0;
 
         a.panel-link {
-            -webkit-transition: border .3s ease-in-out;
-                    transition: border .3s ease-in-out;
+            .transition(border .3s ease-in-out);
         }
 
         .primary {
-            -webkit-transition: opacity .3s ease-in-out;
-                    transition: opacity .3s ease-in-out;
+            .transition(opacity .3s ease-in-out);
 
             &.fadeout {
                 opacity: 0;
@@ -342,8 +340,7 @@
         }
 
         .secondary {
-            -webkit-transition: opacity .3s ease-in-out;
-                    transition: opacity .3s ease-in-out;
+            .transition(opacity .3s ease-in-out);
 
             &.fadein {
                 opacity: 1;
@@ -401,8 +398,7 @@
         color: #fff;
         border: 5px solid transparent;
         overflow: hidden;
-        -webkit-transition: border .3s ease-in-out;
-                transition: border .3s ease-in-out;
+        .transition(border .3s ease-in-out);
     }
 
     a.panel-link:hover,
@@ -431,8 +427,7 @@
         width: 130px;
         height: 130px;
         border: 5px solid transparent;
-        -webkit-transition: border .3s ease-in-out;
-                transition: border .3s ease-in-out;
+        .transition(border .3s ease-in-out);
         .image-replaced;
         cursor: pointer;
 
@@ -459,8 +454,6 @@
         background-image: none;
         background-position: top left;
         background-repeat: no-repeat;
-        -webkit-transition: -webkit-transform .2s linear;
-                transition: transform .2s linear;
 
         &.face-01 { background-position: 0 0; }
         &.face-02 { background-position: 0 -142px; }
@@ -578,9 +571,6 @@
             margin-top: 11px;
             font-size: 10px;
             text-align: center;
-        }
-
-        .download-other {
             color: #4c781c;
 
             a:link,
@@ -706,20 +696,15 @@
 
 .no-js {
     .promo-small-landscape.firefox-download {
-        h2 {
-            left: -300px;
-        }
-
-        img {
-            right: -200px;
+        .primary {
+            display: none;
         }
 
         .secondary {
             opacity: 1;
             visibility: visible;
             border: 5px solid transparent;
-            -webkit-transition: border .3s ease-in-out;
-                    transition: border .3s ease-in-out;
+            .transition(border .3s ease-in-out);
 
             &:hover,
             &:focus {
@@ -762,8 +747,7 @@
     background-image: url(/media/img/home/voices/promos/privacy/privacy.png);
     background-position: -30px bottom;
     background-repeat: no-repeat;
-    -webkit-background-size: 121px 120px;
-            background-size: 121px 120px;
+    .background-size(121px, 120px);
 
     h2 {
         padding: 10px 10px 10px 100px;
@@ -788,8 +772,7 @@
     background-image: url(/media/img/home/voices/promos/appmaker/appmaker-logo.png);
     background-position: 5px 15px;
     background-repeat: no-repeat;
-    -webkit-background-size: 78px 100px;
-            background-size: 78px 100px;
+    .background-size(78px, 100px);
 
     h2 {
         padding: 10px 10px 10px 95px;
@@ -814,8 +797,7 @@
     background-image: url(/media/img/home/voices/promos/volunteer/volunteer.png);
     background-position: 15px 25px;
     background-repeat: no-repeat;
-    -webkit-background-size: 100px 86px;
-            background-size: 100px 86px;
+    .background-size(100px, 86px);
 
     h2 {
         padding: 10px 10px 10px 125px;
@@ -843,8 +825,7 @@
         background-image: url(/media/img/home/voices/promos/open-standard/tos-logo.png);
         background-position: top center;
         background-repeat: no-repeat;
-        -webkit-background-size: 67px 85px;
-                background-size: 67px 85px;
+        .background-size(67px, 85px);
     }
 
     h3 {
@@ -873,8 +854,7 @@
         background-image: url(/media/img/home/voices/promos/webmaker/webmaker.png?30-09-2014);
         background-position: top center;
         background-repeat: no-repeat;
-        -webkit-background-size: 83px 86px;
-                background-size: 83px 86px;
+        .background-size(83px, 86px);
     }
 }
 
@@ -899,8 +879,7 @@
         background-image: url(/media/img/home/voices/promos/sumo/sumo.png);
         background-position: top center;
         background-repeat: no-repeat;
-        -webkit-background-size: 94px 94px;
-                background-size: 94px 94px;
+        .background-size(94px, 94px);
     }
 }
 
@@ -910,7 +889,12 @@
     background: #00af84;
 
     h2 {
-        padding: (@baseLine * 4) @baseLine 0 @baseLine;
+        padding: 110px @baseLine 0 @baseLine;
+        margin-top: @baseLine * 2;
+        background-image: url(/media/img/home/voices/promos/firefox/firefox-logo.png);
+        background-position: top center;
+        background-repeat: no-repeat;
+        .background-size(101px, 98px);
     }
 }
 
@@ -918,9 +902,6 @@
 .lang-en-GB,
 .lang-en-ZA {
     .promo-large-portrait.firefox-desktop {
-        h2 {
-            padding: (@baseLine * 6) @baseLine 0 @baseLine;
-        }
         h3 {
             padding: (@baseLine * 5) @baseLine 0 @baseLine;
         }
@@ -947,8 +928,7 @@
         height: 100px;
         padding: 15px;
         border: 5px solid transparent;
-        -webkit-transition: border .3s ease-in-out;
-                transition: border .3s ease-in-out;
+        .transition(border .3s ease-in-out);
     }
 
     .twt-text {
@@ -960,7 +940,7 @@
         padding: 0;
         .open-sans;
         color: #fff;
-        font-size: 14px;
+        font-size: @baseFontSize;
         line-height: 1.5;
         overflow: hidden;
         word-wrap: break-word;
@@ -1048,7 +1028,7 @@
             width: 40px;
             height: 20px;
             font-family: 'FA-Icons-Home';
-            font-size: 14px;
+            font-size: @baseFontSize;
             content: '\f112';
             color: #fff;
             opacity: 0.5;
@@ -1080,7 +1060,7 @@
             width: 40px;
             height: 20px;
             font-family: 'FA-Icons-Home';
-            font-size: 14px;
+            font-size: @baseFontSize;
             content: '\f079';
             color: #fff;
             opacity: 0.5;
@@ -1498,7 +1478,7 @@
  * For mid to large viewports, reveal promos with a staggered
  * transition delay when they fade in
  */
-@media only screen and (min-width: (@widthSquareGrid_4)) {
+@media only screen and (min-width: (@widthSquareGrid_6)) {
 
     .promo-grid.stagger .item {
 
@@ -1571,13 +1551,25 @@
 /****************************************************************************/
 // @Smallest screen styles
 // Promo faces background grid should not be loaded at smallest viewport size
-@media only screen and (min-width: (340px)) {
+@media only screen and (min-width: @widthSquareGrid_6) {
     .faces-grid-inner {
         background: #fff url(/media/img/home/voices/mosaic-background.jpg?03-10-2014) -10px 0 repeat;
     }
 }
 
-@media only screen and (max-width: (339px)) {
+@media only screen and (min-width: @widthSquareGrid_4) and (max-width: (@widthSquareGrid_6 - 1)) {
+    .faces-grid-inner {
+        background: #fff url(/media/img/home/voices/mosaic-background-medium.jpg) -10px 0 repeat;
+    }
+}
+
+@media only screen and (min-width: 340px) and (max-width: (@widthSquareGrid_4 - 1)) {
+    .faces-grid-inner {
+        background: #fff url(/media/img/home/voices/mosaic-background-small.jpg) -10px 0 repeat;
+    }
+}
+
+@media only screen and (max-width: 339px) {
 
     .faces-grid-inner {
         display: none;
@@ -1594,8 +1586,7 @@
     .promo-large-portrait.open-standard {
         h2 {
             background-image: url(/media/img/home/voices/promos/open-standard/tos-logo-high-res.png);
-            -webkit-background-size: 67px 85px;
-                    background-size: 67px 85px;
+            .background-size(67px, 85px);
         }
     }
 
@@ -1603,8 +1594,7 @@
     .promo-large-landscape.webmaker {
         h2 {
             background-image: url(/media/img/home/voices/promos/webmaker/webmaker-high-res.png);
-            -webkit-background-size: 83px 86px;
-                    background-size: 83px 86px;
+            .background-size(83px, 86px);
         }
     }
 
@@ -1612,30 +1602,34 @@
     .promo-large-landscape.support {
         h2 {
             background-image: url(/media/img/home/voices/promos/sumo/sumo-high-res.png);
-            -webkit-background-size: 94px 94px;
-                    background-size: 94px 94px;
+            .background-size(94px, 94px);
         }
     }
 
     // Appmaker
     .promo-small-landscape.appmaker {
         background-image: url(/media/img/home/voices/promos/appmaker/appmaker-logo-high-res.png);
-        -webkit-background-size: 78px 100px;
-                background-size: 78px 100px;
+        .background-size(78px, 100px);
     }
 
     // Privacy
     .promo-small-landscape.privacy {
         background-image: url(/media/img/home/voices/promos/privacy/privacy-high-res.png);
-        -webkit-background-size: 121px 120px;
-                background-size: 121px 120px;
+        .background-size(121px, 120px);
     }
 
     // Volunteer
     .promo-small-landscape.volunteer {
         background-image: url(/media/img/home/voices/promos/volunteer/volunteer-high-res.png);
-        -webkit-background-size: 100px 86px;
-                background-size: 100px 86px;
+        .background-size(100px, 86px);
+    }
+
+    // Firefox Desktop
+    .promo-large-portrait.firefox-desktop {
+        h2 {
+            background-image: url(/media/img/home/voices/promos/firefox/firefox-logo-high-res.png);
+            .background-size(101px, 98px);
+        }
     }
 
 }
