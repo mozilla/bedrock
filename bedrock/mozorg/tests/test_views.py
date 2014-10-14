@@ -15,7 +15,6 @@ from jinja2.exceptions import TemplateNotFound
 from requests.exceptions import Timeout
 from mock import ANY, Mock, patch
 from nose.tools import assert_false, eq_, ok_
-from pyquery import PyQuery as pq
 
 from bedrock.mozorg.tests import TestCase
 from bedrock.mozorg import views
@@ -270,20 +269,6 @@ class TestContribute(TestCase):
 
     def tearDown(self):
         mail.outbox = []
-
-    def test_newsletter_en_only(self):
-        """Test that the newsletter features are only available in en-US"""
-        response = self.client.get(self.url_en)
-        doc = pq(response.content)
-        ok_(doc('.field-newsletter'))
-        ok_(doc('#newsletter'))
-
-        with self.activate('fr'):
-            url = reverse('mozorg.contribute')
-        response = self.client.get(url)
-        doc = pq(response.content)
-        assert_false(doc('.field-NEWSLETTER'))
-        assert_false(doc('#newsletter'))
 
     @patch.object(ReCaptchaField, 'clean', Mock())
     def test_with_autoresponse(self):
