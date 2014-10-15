@@ -18,7 +18,8 @@ urlpatterns = patterns('',
 
     page('firefox', 'legal/firefox.html'),
 
-    page('terms/mozilla', 'legal/terms/mozilla.html'),
+    url(r'^terms/mozilla/$', LegalDocView.as_view(template_name='legal/terms/mozilla.html', legal_doc_name='Websites_ToU'),
+        name='legal.terms.mozilla'),
 
     url(r'^terms/firefox/$', LegalDocView.as_view(template_name='legal/terms/firefox.html', legal_doc_name='firefox_about_rights'),
         name='legal.terms.firefox'),
