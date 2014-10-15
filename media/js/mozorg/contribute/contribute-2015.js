@@ -58,13 +58,13 @@
         var person = $('.story-title .name').text();
         var $more = $('.story-more');
         var $more_toggle = $('<div class="more-toggle"><button type="button">' + window.trans('more') + '</button></div>');
-        var $toggle_button = $('.more-toggle button');
         $more_toggle.insertAfter($more);
+        var $toggle_button = $('.more-toggle button');
 
         $more.hide().attr('aria-hidden', 'true');
 
         // Show/hide the additional content and track the clicks
-        $('.more-toggle button').on('click', function() {
+        $toggle_button.on('click', function() {
             $more.slideToggle('fast', function() {
                 if ($more.is(':visible')) {
                     $toggle_button.addClass('open').text(window.trans('less'));
