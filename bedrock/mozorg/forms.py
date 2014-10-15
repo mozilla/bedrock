@@ -139,7 +139,6 @@ class ContributeSignupForm(forms.Form):
         ('testing-firefox', _lazy('Firefox and Firefox OS')),
         ('testing-addons', _lazy('Firefox add-ons')),
         ('testing-marketplace', _lazy('HTML5 apps')),
-        ('testing-websites', _lazy('Websites')),
         ('testing-webcompat', _lazy('Web compatibility')),
     )
     translating_choices = (
