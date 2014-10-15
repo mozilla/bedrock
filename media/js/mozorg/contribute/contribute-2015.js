@@ -116,12 +116,6 @@
         });
     });
 
-    // Open some external links in new window/tab
-    $('.story-links a, .other-actions a').on('click', function(e) {
-        e.preventDefault();
-        window.open(this.href);
-    });
-
     // Do stuff when a category is selected on the signup form
     var select_category = function(category) {
         // Style the selected option (reset all of them first to unstyle previous selection)

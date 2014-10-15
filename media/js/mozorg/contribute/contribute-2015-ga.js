@@ -110,52 +110,37 @@ $(function () {
     $('.story-links a').on('click', function(e) {
         var person = $('.story-title .name').text();
         var link = $(this).prop('class');
-        var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
         var href = this.href;
         var callback = function() {
-            window.location = href;
+            window.open(href);
         };
 
-        if (newTab) {
-            gaTrack(['_trackEvent', 'Mozillian Stories Interactions', 'social button click', person + ' - ' + link]);
-        } else {
-            e.preventDefault();
-            gaTrack(['_trackEvent', 'Mozillian Stories Interactions', 'social button click', person + ' - ' + link], callback);
-        }
+        e.preventDefault();
+        gaTrack(['_trackEvent', 'Mozillian Stories Interactions', 'social button click', person + ' - ' + link], callback);
     });
 
     // Track other actions on landing page
     $('.landing-notready .other-actions a').on('click', function(e) {
         var label = $(this).data('label');
-        var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
         var href = this.href;
         var callback = function() {
-            window.location = href;
+            window.open(href);
         };
 
-        if (newTab) {
-            gaTrack(['_trackEvent', 'Contribute Landing Interactions', 'Not Ready to Dive in Just Yet', label]);
-        } else {
-            e.preventDefault();
-            gaTrack(['_trackEvent', 'Contribute Landing Interactions', 'Not Ready to Dive in Just Yet', label], callback);
-        }
+        e.preventDefault();
+        gaTrack(['_trackEvent', 'Contribute Landing Interactions', 'Not Ready to Dive in Just Yet', label], callback);
     });
 
     // Track other actions on confirmation page
     $('#thankyou .other-actions a').on('click', function(e) {
         var label = $(this).data('label');
-        var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
         var href = this.href;
         var callback = function() {
-            window.location = href;
+            window.open(href);
         };
 
-        if (newTab) {
-            gaTrack(['_trackEvent', 'Contribute Confirmation Interactions', 'Other Ways to Support Mozilla', label]);
-        } else {
-            e.preventDefault();
-            gaTrack(['_trackEvent', 'Contribute Confirmation Interactions', 'Other Ways to Support Mozilla', label], callback);
-        }
+        e.preventDefault();
+        gaTrack(['_trackEvent', 'Contribute Confirmation Interactions', 'Other Ways to Support Mozilla', label], callback);
     });
 
     // Track Mozillians signup CTA on confirmation page
