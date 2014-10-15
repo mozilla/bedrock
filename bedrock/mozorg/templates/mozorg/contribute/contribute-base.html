@@ -18,7 +18,7 @@
   {{ js('contribute-2015') }}
 {% endblock %}
 
-{% if l10n_has_tag('contribute-2015') or settings.DEV %}
+{% if l10n_has_tag('contribute_2015', 'mozorg/contribute') or settings.DEV %}
   {% block site_header_nav %}{% endblock %}
   {% block site_header_logo %}{% endblock %}
 {% endif %}
@@ -26,7 +26,7 @@
 {% block content %}
 <main role="main">
 
-{% if l10n_has_tag('contribute_2015') or settings.DEV %}
+{% if l10n_has_tag('contribute_2015', 'mozorg/contribute') or settings.DEV %}
 {% block contrib_head %}
   <header class="page-head">
     <div class="contribute-masthead">
@@ -107,7 +107,7 @@
 
   {% block contrib_content %}{% endblock contrib_content %}
 
-{% if l10n_has_tag('contribute_2015') or settings.DEV %}
+{% if l10n_has_tag('contribute_2015', 'mozorg/contribute') or settings.DEV %}
   {% block contrib_footer %}
   <section class="section contrib-extra">
     <div class="container">
