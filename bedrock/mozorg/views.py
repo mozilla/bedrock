@@ -87,10 +87,12 @@ class ContributeSignup(l10n_utils.LangFilesMixin, FormView):
             'name': data['name'],
             'country': data['country'],
             'message': data['message'],
-            'subscribe': data['newsletter'],
             'format': data['format'],
             'lang': form.locale,
         }
+        if data.get('newsletter', False):
+            basket_data['subscribe'] = 'Y'
+
         if 'area_' + self.category in data:
             interest_id = data['area_' + self.category]
         else:
