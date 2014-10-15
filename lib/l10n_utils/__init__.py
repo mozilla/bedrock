@@ -12,8 +12,8 @@ from django.utils.translation.trans_real import parse_accept_lang_header
 
 from funfactory.urlresolvers import split_path
 
-from .dotlang import get_lang_path, get_translations
-from .gettext import template_is_active
+from .dotlang import get_lang_path
+from .gettext import template_is_active, translations_for_template
 
 
 def render(request, template, context=None, **kwargs):
@@ -40,7 +40,7 @@ def render(request, template, context=None, **kwargs):
     context['langfile'] = get_lang_path(template)
 
     # Get the available translation list of the current page
-    context['translations'] = get_translations(context['langfile'])
+    context['translations'] = translations_for_template(template)
 
     # Look for localized template if not default lang.
     if hasattr(request, 'locale') and request.locale != settings.LANGUAGE_CODE:
