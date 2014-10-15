@@ -2,7 +2,9 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% if l10n_has_tag('contribute_2015') or settings.DEV %}
+{% add_lang_files "mozorg/contribute" %}
+
+{% if l10n_has_tag('contribute_2015', 'mozorg/contribute') or settings.DEV %}
   {% include 'mozorg/contribute/contribute.html' %}
 {% else %}
   {% include 'mozorg/contribute/contribute-old.html' %}
