@@ -80,7 +80,7 @@ if (typeof Mozilla == 'undefined') {
         'zte_openc': {
             'type': 'smartphone',
             'display': 'ZTE Open C',
-            'countries': ['be', 'ch', 'de', 'fr', 'gb', 'lu', 'ru', 'us', 'uy']
+            'countries': ['au', 'be', 'ch', 'de', 'fr', 'gb', 'lu', 'ru', 'us', 'uy']
         },
         'zte_open2': {
             'type': 'smartphone',
