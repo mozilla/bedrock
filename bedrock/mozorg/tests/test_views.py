@@ -70,7 +70,6 @@ class TestContributeSignup(TestCase):
             'interest_id': 'dontknow',
             'lang': 'en-US',
             'country': 'us',
-            'subscribe': False,
             'message': '',
             'source_url': 'http://testserver/',
             'format': 'T',

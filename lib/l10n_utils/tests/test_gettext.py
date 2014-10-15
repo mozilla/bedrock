@@ -7,6 +7,7 @@
 import os
 
 from django.conf import settings
+from django.core.cache import get_cache
 from django.test.utils import override_settings
 
 from mock import ANY, MagicMock, Mock, patch
@@ -18,7 +19,7 @@ from lib.l10n_utils.gettext import (_append_to_lang_file, langfiles_for_path,
 from lib.l10n_utils.tests import TempFileMixin
 from bedrock.mozorg.tests import TestCase
 
-
+cache = get_cache('l10n')
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test_files')
 TEMPLATE_DIRS = (os.path.join(ROOT, 'templates'))
 DOTLANG_FILES = ['dude', 'walter', 'donny']
@@ -155,6 +156,9 @@ class TestPOFiles(TestCase):
 
 
 class TestParseTemplate(TempFileMixin, TestCase):
+    def setUp(self):
+        cache.clear()
+
     @patch('lib.l10n_utils.gettext.codecs')
     def test_single_lang_file_added(self, codecs_mock):
         tempf = self.tempfile("""
