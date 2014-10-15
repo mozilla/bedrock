@@ -1,3 +1,5 @@
+# coding=utf-8
+
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -15,7 +17,8 @@ from django.core.cache import get_cache
 from django.template.loader import get_template
 from jinja2 import Environment
 
-from dotlang import parse as parse_lang, get_lang_path, lang_file_is_active
+from dotlang import (parse as parse_lang, get_lang_path, get_translations_for_langfile,
+                     lang_file_is_active)
 
 
 REGEX_URL = re.compile(r'.* (\S+/\S+\.[^:]+).*')
@@ -134,6 +137,11 @@ def parse_template(path):
     """Look through a template for the lang_files tag and extract the
     given lang files"""
 
+    cache_key = 'template_lang_files:{0}'.format(path)
+    lang_files = cache.get(cache_key)
+    if lang_files:
+        return lang_files
+
     src = codecs.open(path, encoding='utf-8').read()
     tokens = Environment().lex(src)
     lang_files = []
@@ -160,6 +168,7 @@ def parse_template(path):
                 # remove empties
                 lang_files = [lf for lf in lang_files if lf]
                 if lang_files:
+                    cache.set(cache_key, lang_files, settings.DOTLANG_CACHE)
                     return lang_files
     return []
 
@@ -191,6 +200,23 @@ def template_is_active(path, lang):
         cache.set(cache_key, is_active, settings.DOTLANG_CACHE)
 
     return is_active
+
+
+def translations_for_template(template_name):
+    """
+    Return the list of available translations for the template.
+
+    :param template_name: name of the template passed to render.
+    :return: dict, like {'en-US': 'English (US)', 'fr': 'Français'}
+    """
+    lang_files = [get_lang_path(template_name)]
+    template = get_template(template_name)
+    lang_files.extend(parse_template(template.filename))
+    active_translations = {}
+    for lf in lang_files:
+        active_translations.update(get_translations_for_langfile(lf))
+
+    return active_translations
 
 
 def langfiles_for_path(path):

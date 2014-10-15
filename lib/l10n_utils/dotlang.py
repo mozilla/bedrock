@@ -264,9 +264,9 @@ def lang_file_has_tag(path, lang=None, tag='active'):
     return tag in tag_set
 
 
-def get_translations(langfile):
+def get_translations_for_langfile(langfile):
     """
-    Return the list of available translations for the current page.
+    Return the list of available translations for the langfile.
 
     :param langfile: the path to a lang file, retrieved with get_lang_path()
     :return: dict, like {'en-US': 'English (US)', 'fr': 'Français'}
