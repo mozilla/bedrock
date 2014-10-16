@@ -539,7 +539,7 @@ class ContributeStudentAmbassadorForm(forms.Form):
         result = basket.subscribe(data['email'], self.newsletters(),
                                   format=data['fmt'], country=data['country'],
                                   welcome_message='Student_Ambassadors_Welcome',
-                                  source_url=data['source_url'])
+                                  source_url=data['source_url'], sync='Y')
 
         data = {
             'FIRST_NAME': data['first_name'],
