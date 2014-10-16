@@ -80,3 +80,17 @@ Adding the Translation Bar extension to Tabzilla requires:
     <a href="https://www.mozilla.org/" id="tabzilla" data-infobar="translation">mozilla</a>
 
 .. note:: Though the Translation Bar is currently implemented as an extension of Tabzilla, it might be moved to a standalone language utility in the future.
+
+
+Update Bar
+---------------
+
+This is another information bar intended to improve user security. It checks if the user is using the latest Firefox version, and if not, prompts the user to update the browser.
+
+Adding the Update Bar extension to Tabzilla requires:
+
+1. Add the ``data-infobar`` attribute to the tab link, with the ``update`` option::
+
+    <a href="https://www.mozilla.org/" id="tabzilla" data-infobar="update translation">mozilla</a>
+
+The value of the ``data-infobar`` attribute is the order of priority. You can enable both the Update Bar and Translation Bar as the example above, but one information bar will be shown at a time.
