@@ -1,0 +1,68 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "firefox/base.html" %}
+
+{% set_lang_files "firefox/privacy_tour/privacy_tour" %}
+
+{% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
+
+{% block body_class %}sky{% endblock %}
+
+{% block site_css %}{% endblock %}
+{% block js %}{% endblock %}
+
+{% block string_data %}
+{# L10n: This is the title for a door-hanger menu that shows in the browser chrome #}
+data-title="{{ _('See what’s new') }}"
+{# L10n: This is the text for a door-hanger menu that shows in the browser chrome #}
+data-text="{{ _('You’re up to date with the latest features to help keep you in control.') }}"
+{# L10n: This is the label for a button that starts the tour #}
+data-start="{{ _('Let’s go') }}"
+{# L10n: This is the label for a button that delays starting the tour #}
+data-later="{{ _('Not now') }}"
+{# L10n: This is the label for a button that opens the tour modal dialog #}
+data-open="{{ _('Open tour') }}"
+{# L10n: This is the label for a button that closes the tour modal dialog #}
+data-close="{{ _('Close tour') }}"
+{# L10n: This is the text for a call to action that appears in the web page #}
+data-later-cta="{{ _('See the newest ways you can take control of your digital life') }}"
+{# L10n: This is the label that represents tour step one of three #}
+data-step1="{{ _('1/3') }}"
+{# L10n: This is the label that represents tour step two of three #}
+data-step2="{{ _('2/3') }}"
+{# L10n: This is the label that represents tour step three of three #}
+data-step3="{{ _('3/3') }}"
+{# This data attribute is just for testing purposes and should not be localized #}
+data-has-tour="True"
+{% endblock %}
+
+{% block site_header %}
+  <header id="masthead">
+    <a href="{{ url('mozorg.home') }}" id="tabzilla">Mozilla</a>
+    {% block site_header_nav %}{% endblock %}
+    {% block site_header_logo %}{% endblock %}
+    {% block breadcrumbs %}{% endblock %}
+  </header>
+{% endblock %}
+
+{% block content %}
+  <article id="tour-page" data-telemetry="privacy-tour-whatsnew">
+    <header role="banner">
+      <div class="logo"></div>
+      <div class="stage">
+        <h1>{{ _('Declare your independence') }}</h1>
+      </div>
+    </header>
+    {% block noscript %}{% endblock %}
+    <p><a href="#">{{ _('Watch the video to see our story') }}</a></p>
+    <p><a href="#">{{ _('Now share it with your world') }}</a></p>
+    <p>{{ _('Play') }}, {{ _('Share') }}, {{ _('Replay') }}, {{ _('Play the video') }}, {{ _('Replay the video') }}, {{ _('Share the video') }}</p>
+  </article>
+  {% block tour_content %}{% endblock %}
+  {% block tour_mask %}{% endblock %}
+{% endblock %}
+
+{% block site_footer %}{% endblock %}
+{% block email_form %}{% endblock %}

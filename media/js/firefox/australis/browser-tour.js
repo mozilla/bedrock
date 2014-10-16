@@ -36,6 +36,8 @@ if (typeof Mozilla == 'undefined') {
         // set timeout for highlights
         this.highlightTimer = null;
 
+        this.isLargeViewport = matchMedia('(min-width: 800px)');
+
         this.$body = $('body');
         this.$doc = $(document);
         this.$tour = $('#ui-tour').detach().show();
@@ -61,6 +63,10 @@ if (typeof Mozilla == 'undefined') {
 
         // bind UITour event listeners
         this.bindEvents();
+
+        // bind resize handler to hide highlights at smaller viewports
+        // as positioning can sometimes be incorrect (Bug 1091785)
+        this.bindResize();
     }
 
     /*
@@ -155,6 +161,12 @@ if (typeof Mozilla == 'undefined') {
             Mozilla.UITour.showMenu(this.dataset.target);
         });
 
+        // 33.1 privacy tour 'forget' button doorhanger
+        $('.tour-forget-widget').on('tour-step', this.highlightForgetButton.bind(this));
+
+        // 33.1 privacy tour search engine highlight
+        $('.tour-search-engine').on('tour-step', this.highlightSearchEngine);
+
         // handle page visibility changes to show the appropriate tour step
         this.$doc.on('visibilitychange', this.handleVisibilityChange.bind(this));
 
@@ -162,7 +174,7 @@ if (typeof Mozilla == 'undefined') {
         this.$tour.on('transitionend', '.ui-tour-list li.current', this.onTourStep.bind(this));
         this.$closeButton.on('click', this.closeTour.bind(this));
         this.$mask.on('click', this.closeTour.bind(this));
-        $('.cta button').on('click', this.closeTour.bind(this));
+        $('.cta button').on('click', this.startBrowsing.bind(this));
         $('button.step').on('click', this.onStepClick.bind(this));
 
         // show tooltips on prev/next buttons
@@ -187,6 +199,25 @@ if (typeof Mozilla == 'undefined') {
                 $('.floating-cta').fadeIn();
             }
         }, this));
+    };
+
+    /*
+     * Hide UITour highlights if browser is resized < 900px as
+     * a temp workaround for Bug 1091785
+     */
+    BrowserTour.prototype.bindResize = function () {
+        var that = this;
+        this.isLargeViewport.addListener(function (mq) {
+            if (!mq.matches && that.tourIsVisible) {
+                Mozilla.UITour.hideHighlight();
+                Mozilla.UITour.hideInfo();
+            } else if (mq.matches && that.tourIsVisible) {
+                clearInterval(that.highlightTimer);
+                that.highlightTimer = setTimeout(function () {
+                    that.showHighlight();
+                }, 900);
+            }
+        });
     };
 
     /*
@@ -318,20 +349,203 @@ if (typeof Mozilla == 'undefined') {
     };
 
     /*
+     * Show a doorhanger prompting to add 'forget' button to the toolbar
+     */
+    BrowserTour.prototype.highlightForgetButton = function () {
+        var that = this;
+        var targetIsAvailable = false;
+        var $sequence = $('.tour-forget-widget');
+        var $step;
+        var buttons = [];
+        var options;
+        var icon = '';
+
+        Mozilla.UITour.getConfiguration('availableTargets', function (config) {
+            if (config.targets) {
+
+                icon = Mozilla.ImageHelper.isHighDpi() ? $sequence.data('iconHighRes') : $sequence.data('icon');
+
+                // find if user already has 'forget' button available
+                $.each(config.targets, function(index, value) {
+                    if (value === 'forget') {
+                        targetIsAvailable = true;
+                        return false;
+                    }
+                });
+
+                // if not, show door-hanger prompting to add it
+                if (!targetIsAvailable) {
+                    $step = $sequence.find('.forget-hanger-1');
+
+                    buttons = [
+                        {
+                            label: $step.data('buttonLater'),
+                            style: 'link',
+                            callback: that.laterForgetButton.bind(that)
+                        },
+                        {
+                            label: $step.data('buttonAdd'),
+                            style: 'primary',
+                            callback: that.addForgetButton.bind(that)
+                        }
+                    ];
+
+                    options = {
+                        closeButtonCallback: that.closeForgetDoorhanger.bind(that),
+                        targetCallback: that.closeForgetDoorhanger.bind(that)
+                    };
+
+                    // temp fix for Bug 1049130
+                    Mozilla.UITour.showHighlight('appMenu', 'none');
+                    Mozilla.UITour.showHighlight('appMenu', 'none');
+
+                    Mozilla.UITour.showInfo(
+                        'appMenu',
+                        $step.data('title'),
+                        $step.data('text'),
+                        icon,
+                        buttons,
+                        options
+                    );
+                } else {
+                    // else highlight the forget button with info panel
+                    // $step = $sequence.find('.forget-hanger-2');
+
+                    // options = {
+                    //     closeButtonCallback: that.closeForgetDoorhanger.bind(that)
+                    // };
+
+                    // temp fix for Bug 1049130
+                    Mozilla.UITour.showHighlight('forget', 'wobble');
+                    Mozilla.UITour.showHighlight('forget', 'wobble');
+
+                    // Mozilla.UITour.showInfo(
+                    //     'forget',
+                    //     $step.data('title'),
+                    //     $step.data('text'),
+                    //     icon,
+                    //     buttons,
+                    //     options
+                    // );
+                }
+            }
+        });
+    };
+
+    /*
+     * Add the forget button to the user toolbar
+     */
+    BrowserTour.prototype.addForgetButton = function () {
+        Mozilla.UITour.hideHighlight();
+        Mozilla.UITour.addNavBarWidget('forget', this.highlightForgetButton.bind(this));
+        gaTrack(['_trackEvent', 'Tour Interaction', 'Add it now', 'The new Forget Button']);
+    };
+
+    /*
+     * Show doorhanger with instructions on how to add forget button at later date
+     */
+    BrowserTour.prototype.laterForgetButton = function () {
+        var $sequence = $('.tour-forget-widget');
+        var $step = $sequence.find('.forget-hanger-3');
+        var icon = Mozilla.ImageHelper.isHighDpi() ? $sequence.data('iconHighRes') : $sequence.data('icon');
+        var buttons = [];
+        var options = {
+            closeButtonCallback: this.closeForgetDoorhanger.bind(this),
+            targetCallback: this.closeForgetDoorhanger.bind(this)
+        };
+
+        Mozilla.UITour.hideHighlight();
+        Mozilla.UITour.showHighlight('appMenu', 'wobble');
+        Mozilla.UITour.showInfo(
+            'appMenu',
+            $step.data('title'),
+            $step.data('text'),
+            icon,
+            buttons,
+            options
+        );
+
+        gaTrack(['_trackEvent', 'Tour Interaction', 'Later', 'The new Forget Button']);
+    };
+
+    /*
+     * Close forget button doorhanger and remove highlight
+     */
+    BrowserTour.prototype.closeForgetDoorhanger = function () {
+        Mozilla.UITour.hideHighlight();
+        Mozilla.UITour.hideInfo();
+    };
+
+    /*
+     * Open search engines menu if available and highlight a specified target
+     */
+    BrowserTour.prototype.highlightSearchEngine = function () {
+        var target = this.dataset.target;
+        Mozilla.UITour.getConfiguration('availableTargets', function (config) {
+            var hasSearchBar;
+            if (config.targets) {
+                hasSearchBar = $.inArray('searchProvider', config.targets) !== -1;
+                // if the searchEngine is available in the list, highlight it
+                if (hasSearchBar && $.inArray(target, config.targets) !== -1) {
+                    Mozilla.UITour.showMenu('searchEngines', function () {
+                        Mozilla.UITour.showHighlight(target);
+                    });
+                // else just highlight the searchProvider drop-down
+                } else if (hasSearchBar) {
+                    Mozilla.UITour.showHighlight('searchProvider', 'wobble');
+                }
+            }
+        });
+    };
+
+    /*
      * Shows current tour step highlight item
      */
     BrowserTour.prototype.showHighlight = function () {
         var $current = this.$tourList.find('li.current');
         var $stepTarget = $current.find('.step-target');
+        var that = this;
+        var target;
 
-        if ($current.hasClass('app-menu')) {
-            Mozilla.UITour.showMenu('appMenu');
-        } else {
-            Mozilla.UITour.hideMenu('appMenu');
+        // if the tab is not visible when event fires or viewport is too small
+        // don't show the highlight step
+        if (document.hidden || !this.isLargeViewport.matches) {
+            return;
         }
-        setTimeout(function () {
-            $stepTarget.trigger('tour-step');
-        }, 200);
+
+        // if we're simply highlighting a target,
+        // check it's availability in the UI first
+        if ($stepTarget.hasClass('tour-highlight')) {
+
+            Mozilla.UITour.getConfiguration('availableTargets', function (config) {
+
+                target = $stepTarget.data('target');
+
+                if (target && config.targets && $.inArray(target, config.targets) !== -1) {
+
+                    // tour can force sticky menu between steps
+                    // using conditional 'app-menu' class
+                    if ($current.hasClass('app-menu')) {
+                        Mozilla.UITour.showMenu('appMenu');
+                    } else {
+                        Mozilla.UITour.hideMenu('appMenu');
+                    }
+
+                    clearInterval(that.highlightTimer);
+                    that.highlightTimer = setTimeout(function () {
+                        $stepTarget.trigger('tour-step');
+                    }, 200);
+                }
+            });
+        // other UITour actions handle target availability checking
+        // in their own 'tour-step' event handlers.
+        // So just trigger the event.
+        } else {
+            clearInterval(this.highlightTimer);
+            this.highlightTimer = setTimeout(function () {
+                $stepTarget.trigger('tour-step');
+            }, 200);
+        }
     };
 
     /*
@@ -345,8 +559,6 @@ if (typeof Mozilla == 'undefined') {
             var tipText;
 
             this.tourIsAnimating = false;
-            Mozilla.UITour.hideHighlight();
-
             this.showHighlight();
 
             this.$progressStep.html(window.trans('step' + step));
@@ -424,6 +636,17 @@ if (typeof Mozilla == 'undefined') {
 
         this.tourIsAnimating = true;
 
+        // hide any current highlights
+        // or info panels
+        clearInterval(this.highlightTimer);
+
+        if (!$current.hasClass('app-menu')) {
+            Mozilla.UITour.hideMenu('appMenu');
+        }
+
+        Mozilla.UITour.hideInfo();
+        Mozilla.UITour.hideHighlight();
+
         this.$tourTip.removeClass('show-tip');
 
         // disable tour control buttons while animating
@@ -471,6 +694,17 @@ if (typeof Mozilla == 'undefined') {
         this.updateControls();
     };
 
+    /*
+     * Closes the browser tour when user clicks green cta button
+     */
+    BrowserTour.prototype.startBrowsing = function () {
+        if (this.tourIsAnimating || !this.tourIsVisible) {
+            return;
+        }
+
+        this.doCloseTour();
+        gaTrack(['_trackEvent', 'Tour Interaction', 'button click', 'Start Browsing']);
+    };
 
     /*
      * Determines whether tour should be minimized or closed completely
@@ -494,15 +728,15 @@ if (typeof Mozilla == 'undefined') {
      * Triggered on last step or if user presses esc key
      */
     BrowserTour.prototype.doCloseTour = function () {
-        Mozilla.UITour.hideHighlight();
+        this.tourIsVisible = false;
+        this.tourHasStarted = false;
+        this.tourHasFinished = true;
+
+        this.hideAnnotations();
 
         if (this.tourHasStarted) {
             gaTrack(['_trackEvent', 'Tour Interaction', 'click', 'Close tour']);
         }
-
-        this.tourIsVisible = false;
-        this.tourHasStarted = false;
-        this.tourHasFinished = true;
 
         this.$cta.fadeOut('fast', $.proxy(function () {
             this.$tour.removeClass('in');
@@ -527,8 +761,9 @@ if (typeof Mozilla == 'undefined') {
     BrowserTour.prototype.doCompactTour = function () {
         this.tourIsVisible = false;
         this.tourIsAnimating = true;
-        Mozilla.UITour.hideHighlight();
-        Mozilla.UITour.hideMenu('appMenu');
+
+        this.hideAnnotations();
+
         this.$tour.removeClass('in').addClass('compact');
         this.$tour.attr('aria-expanded', false);
 
@@ -574,11 +809,9 @@ if (typeof Mozilla == 'undefined') {
             return;
         }
 
-        Mozilla.UITour.hideHighlight();
-        Mozilla.UITour.hideMenu('appMenu');
-
         this.tourIsVisible = true;
         this.tourIsAnimating = true;
+
         this.$tour.removeClass('compact').addClass('in').focus();
         this.$tour.attr('aria-expanded', true);
         this.$compactTitle.fadeOut('fast');
@@ -674,11 +907,12 @@ if (typeof Mozilla == 'undefined') {
         this.$tour.attr('aria-expanded', true);
         this.tourIsVisible = true;
         this.tourHasStarted = true;
+        this.tourIsAnimating = true;
 
         Mozilla.UITour.hideInfo();
 
         // toggle/close with escape key
-        this.$tour.on('keyup.ui-tour', this.onKeyUp.bind(this));
+        this.$body.on('keyup.ui-tour', this.onKeyUp.bind(this));
 
         // prevent focusing out of modal while open
         this.$doc.off('focus.ui-tour', 'body').on('focus.ui-tour', 'body', function(e) {
@@ -706,7 +940,8 @@ if (typeof Mozilla == 'undefined') {
         var $current = this.$tourList.find('li.current');
         var that = this;
         $current.find('h2').focus();
-        setTimeout(function () {
+        this.tourIsAnimating = false;
+        this.highlightTimer = setTimeout(function () {
             that.showHighlight();
         }, 100);
     };
@@ -722,6 +957,16 @@ if (typeof Mozilla == 'undefined') {
     };
 
     /*
+     * Helper method to hide currently visible highlight annotations
+     */
+    BrowserTour.prototype.hideAnnotations = function () {
+        clearInterval(this.highlightTimer);
+        Mozilla.UITour.hideMenu('appMenu');
+        Mozilla.UITour.hideHighlight();
+        Mozilla.UITour.hideInfo();
+    };
+
+    /*
      * Handles page visibility changes if user leaves/returns to current tab.
      * Tour step UI highlights should hide when user leaves the tab, and appear
      * again when the user returns to the tab.
@@ -733,10 +978,7 @@ if (typeof Mozilla == 'undefined') {
 
         // if tab is hidden then hide all the UITour things.
         if (document.hidden) {
-            clearInterval(this.highlightTimer);
-            Mozilla.UITour.hideHighlight();
-            Mozilla.UITour.hideInfo();
-            Mozilla.UITour.hideMenu('appMenu');
+            this.hideAnnotations();
 
             if (this.tourIsVisible) {
                 gaTrack(['_trackEvent', 'Tour Interaction', 'visibility', 'Leave tour']);

@@ -154,9 +154,14 @@ if (typeof Mozilla == 'undefined') {
         _sendEvent('removePinnedTab');
     };
 
-    Mozilla.UITour.showMenu = function(name) {
+    Mozilla.UITour.showMenu = function(name, callback) {
+        var showCallbackID;
+        if (callback) {
+            showCallbackID = _waitForCallback(callback);
+        }
         _sendEvent('showMenu', {
-            name: name
+            name: name,
+            showCallbackID: showCallbackID
         });
     };
 

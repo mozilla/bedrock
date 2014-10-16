@@ -290,6 +290,14 @@ MINIFY_BUNDLES = {
         'firefox_releases_index': (
             'css/firefox/releases-index.less',
         ),
+        'firefox_privacy_tour': (
+            'css/firefox/australis/australis-ui-tour.less',
+            'css/firefox/privacy_tour/common.less',
+            'css/firefox/privacy_tour/tour.less',
+        ),
+        'firefox_privacy_no_tour': (
+            'css/firefox/privacy_tour/common.less',
+        ),
         'firefox_tour': (
             'css/firefox/australis/australis-ui-tour.less',
             'css/firefox/australis/australis-page-common.less',
@@ -659,6 +667,16 @@ MINIFY_BUNDLES = {
         'firefox_sync_old': (
             'js/firefox/sync-animation.js',
             'js/firefox/sync-old.js',
+        ),
+        'firefox_privacy_tour': (
+            'js/firefox/australis/australis-uitour.js',
+            'js/firefox/australis/browser-tour.js',
+            'js/firefox/privacy_tour/common.js',
+            'js/firefox/privacy_tour/tour.js',
+        ),
+        'firefox_privacy_no_tour': (
+            'js/firefox/privacy_tour/common.js',
+            'js/firefox/privacy_tour/no-tour.js',
         ),
         'firefox_tour': (
             'js/libs/jquery.waypoints.min.js',
