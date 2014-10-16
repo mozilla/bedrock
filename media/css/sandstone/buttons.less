@@ -465,6 +465,12 @@
             min-height: 0;
             color: #fff;
             text-align: center;
+
+            // reduces right/left padding from 40px to 20px so 'Update your Firefox'
+            // string fits on one line (for en-US, at least)
+            &.wide {
+                padding: @baseLine;
+            }
         }
 
         .download-title, .download-lang {
