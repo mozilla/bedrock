@@ -203,7 +203,7 @@ class TestStudentAmbassadorsJoin(TestCase):
             self.client.post(reverse('mozorg.contribute.studentambassadors.join'), data)
         mock_subscribe.assert_called_with(
             data['email'], ['ambassadors', 'about-mozilla'], format=u'H',
-            country=u'gr', source_url=u'',
+            country=u'gr', source_url=u'', sync='Y',
             welcome_message='Student_Ambassadors_Welcome')
         mock_request.assert_called_with('post',
                                         'custom_update_student_ambassadors',
