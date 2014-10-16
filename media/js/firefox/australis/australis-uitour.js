@@ -58,9 +58,6 @@ if (typeof Mozilla == 'undefined') {
 
     Mozilla.UITour.DEFAULT_THEME_CYCLE_DELAY = 10 * 1000;
 
-    Mozilla.UITour.CONFIGNAME_SYNC = "sync";
-    Mozilla.UITour.CONFIGNAME_AVAILABLETARGETS = "availableTargets";
-
     Mozilla.UITour.registerPageID = function(pageID) {
         _sendEvent('registerPageID', {
             pageID: pageID
@@ -163,21 +160,10 @@ if (typeof Mozilla == 'undefined') {
         });
     };
 
-        Mozilla.UITour.hideMenu = function(name) {
-                _sendEvent('hideMenu', {
-                        name: name
-                });
-        };
-
-    Mozilla.UITour.startUrlbarCapture = function(text, url) {
-        _sendEvent('startUrlbarCapture', {
-            text: text,
-            url: url
+    Mozilla.UITour.hideMenu = function(name) {
+        _sendEvent('hideMenu', {
+            name: name
         });
-    };
-
-    Mozilla.UITour.endUrlbarCapture = function() {
-        _sendEvent('endUrlbarCapture');
     };
 
     Mozilla.UITour.getConfiguration = function(configName, callback) {
@@ -190,4 +176,16 @@ if (typeof Mozilla == 'undefined') {
     Mozilla.UITour.showFirefoxAccounts = function() {
         _sendEvent('showFirefoxAccounts');
     };
+
+    Mozilla.UITour.resetFirefox = function() {
+        _sendEvent('resetFirefox');
+    };
+
+    Mozilla.UITour.addNavBarWidget = function(name, callback) {
+        _sendEvent('addNavBarWidget', {
+            name: name,
+            callbackID: _waitForCallback(callback)
+        });
+    };
+
 })();
