@@ -12,6 +12,9 @@
 
 {% block contrib_page_title %}{{ _('Volunteer with Mozilla!') }}{% endblock %}
 
+{# Force header and footer to always show for localized stories. Bug 1083531 #}
+{% set override_header_footer = True %}
+
 {% block string_data %}
   {# L10n: Used as a toggle to display more content. #}
   data-more='{{_('More')}}'
