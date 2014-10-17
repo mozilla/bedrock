@@ -21,6 +21,7 @@
 
     var fxMasterVersion = window.getFirefoxMasterVersion();
     var state = 'Unknown';
+    var syncCapable = false;
     var body = $('body');
 
     var swapState = function(stateClass) {
@@ -42,6 +43,10 @@
 
             if (fxMasterVersion >= 31) {
 
+                // Set syncCapable so we know not to call gaTrack()
+                // again later
+                syncCapable = true;
+
                 // Query if the UITour API is working before we use the API
                 Mozilla.UITour.getConfiguration('sync', function (config) {
 
@@ -56,6 +61,10 @@
                         swapState('state-fx-31-signed-out');
                         state = 'Firefox 31 or Higher: Signed-Out';
                     }
+
+                    // Call GA tracking here to ensure it waits for the
+                    // getConfiguration async call
+                    gaTrack(['_trackEvent', '/sync/ Page Interactions', 'load', state]);
 
                 });
 
@@ -78,8 +87,11 @@
         state = 'Not Firefox';
     }
 
-    // Send page state to GA
-    gaTrack(['_trackEvent', '/sync/ Page Interactions', 'load', state]);
+    // Send page state to GA if it hasn't already been sent in the
+    // getConfiguration callback
+    if (syncCapable === false) {
+        gaTrack(['_trackEvent', '/sync/ Page Interactions', 'load', state]);
+    }
 
     var trackClick = function (gaArgs, element, event) {
         event.preventDefault();
