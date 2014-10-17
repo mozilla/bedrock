@@ -64,6 +64,17 @@ Next get the data files for certain pages (so far /credits/ and /about/forums/):
 
     $ ./manage.py update_externalfiles
 
+
+Next, update the database for the release notes, openstandard, etc:
+
+    $ ./manage.py migrate
+
+
+To import the release notes external sources:
+
+   $ ./manage.py rnasync
+
+
 Lastly, you need to install `node` and the `less` package. Soon you won't need this for local development but currently it compiles the LESS CSS code on the server-side::
 
     $ npm -g install less
