@@ -35,19 +35,13 @@
         {% endif %}
         <dt>Impact</dt>
         <dd><span class="level {{ advisory.impact_class }}">{{ advisory.impact }}</span></dd>
+        <dt>Products</dt>
+        <dd>{{ ', '.join(advisory.products) }}</dd>
         <dt>Fixed in</dt>
         <dd>
           <ul>
             {% for prodver in advisory.fixed_in.all() %}
               <li>{{ prodver.name }}</li>
-            {% endfor %}
-          </ul>
-        </dd>
-        <dt>Products</dt>
-        <dd>
-          <ul>
-            {% for prod in advisory.products %}
-              <li>{{ prod }}</li>
             {% endfor %}
           </ul>
         </dd>

@@ -26,8 +26,12 @@ class Product(models.Model):
         return self.name
 
     @property
+    def name_and_version(self):
+        return self.name.rsplit(None, 1)
+
+    @property
     def name_tuple(self):
-        product, vers = self.name.rsplit(None, 1)
+        product, vers = self.name_and_version
         if '.' not in vers:
             vers += '.0'
         return product, Version(vers)
@@ -45,13 +49,14 @@ class Product(models.Model):
         return self.name_tuple < other.name_tuple
 
     def get_absolute_url(self):
+        product, vers = self.name_and_version
         return reverse('security.product-version-advisories',
-                       kwargs={'slug': self.slug})
+                       kwargs={'product': product, 'version': vers})
 
     def save(self, force_insert=False, force_update=False,
              using=None, update_fields=None):
         # do not use self.name_tuple because don't want ".0" on versions.
-        product, vers = self.name.rsplit(None, 1)
+        product, vers = self.name_and_version
         self.product = product
         self.product_slug = slugify(product)
         self.slug = '{0}-{1}'.format(self.product_slug, vers)
