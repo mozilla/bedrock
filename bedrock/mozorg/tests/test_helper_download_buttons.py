@@ -273,6 +273,37 @@ class TestDownloadButtons(TestCase):
         list = doc('.download-other .arch')
         eq_(list.length, 0)
 
+    def test_check_old_firefox(self):
+        """
+        Make sure check_old_fx class is only applied if both check_old_fx=True
+        and simple=True.
+        """
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'en-US'
+
+        # missing required 'simple=True' param
+        doc = pq(render("{{ download_firefox(check_old_fx=True) }}",
+                        {'request': get_request}))
+
+        dlbuttons = doc('.download-button')
+        eq_(dlbuttons.length, 1)
+
+        # 'download-button-check-old-fx' class should not be present
+        dlbtn = pq(dlbuttons[0])
+        self.assertFalse(dlbtn('.download-button-check-old-fx'))
+
+        # contains required 'simple=True' param
+        doc = pq(render("{{ download_firefox(simple=True, check_old_fx=True) }}",
+                        {'request': get_request}))
+
+        dlbuttons = doc('.download-button')
+        eq_(dlbuttons.length, 1)
+
+        # 'download-button-check-old-fx' class should be present
+        dlbtn = pq(dlbuttons[0])
+        self.assertTrue(dlbtn('.download-button-check-old-fx'))
+
     @override_settings(STUB_INSTALLER_LOCALES={'win': ['en-us']})
     def test_force_funnelcake_en_us_win_only(self):
         """

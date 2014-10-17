@@ -33,6 +33,21 @@ function init_download_links() {
     $('.download-list').attr('role', 'presentation');
 }
 
+function update_download_text_for_old_fx() {
+    // if using an out of date firefox
+    if (isFirefox() && !isFirefoxUpToDate()) {
+        // look at each button to see if it's set to check for old firefox
+        $('.download-button').each(function() {
+            var $button = $(this);
+
+            if ($button.hasClass('download-button-check-old-fx')) {
+                // replace subtitle copy
+                $button.find('.download-subtitle').text(window.trans('global-update-firefox'));
+            }
+        });
+    }
+}
+
 // Replace Google Play links on Android devices to let them open
 // the native Play Store app
 function init_android_download_links() {
@@ -61,6 +76,7 @@ function init_lang_switcher() {
 $(document).ready(function() {
     init_download_links();
     init_android_download_links();
+    update_download_text_for_old_fx();
     init_lang_switcher();
     $(window).on('load', function () {
         $('html').addClass('loaded');
@@ -95,7 +111,6 @@ function isFirefox(userAgent) {
 }
 
 function isFirefoxUpToDate(latest, esr) {
-
     var $html = $(document.documentElement);
     var fx_version = getFirefoxMasterVersion();
     var esrFirefoxVersions = esr || $html.data('esr-versions');
