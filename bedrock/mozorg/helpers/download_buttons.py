@@ -131,7 +131,8 @@ def android_builds(build, builds=None):
     builds = builds or []
     android_link = settings.GOOGLE_PLAY_FIREFOX_LINK
 
-    if build == 'beta':
+    if build.lower() == 'beta':
+
         android_link = android_link.replace('org.mozilla.firefox',
                                             'org.mozilla.firefox_beta')
 
