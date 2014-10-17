@@ -1,0 +1,40 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/about-base.html" %}
+
+{% block page_title %}{{ _('Committers’ Agreement FAQ') }}{% endblock %}
+{% block body_id %}commit-access-faq{% endblock %}
+
+
+{% block article %}
+<h1 class="title-shadow-box">{{ self.page_title() }}</h1>
+
+<dl class="faq">
+
+<dt>{{ _('So what’s changed from the previous version of the agreement?') }}</dt>
+<dd>{% trans changelog='https://wiki.mozilla.org/Committers_Agreement:Changelog' %}
+  See the <a href="{{ changelog }}">summary of changes</a>.
+{% endtrans%}</dd>
+
+<dt>{{ _('I completed one of the old ones; do I need to complete a new one?') }}</dt>
+<dd>{% trans notification=url('mozorg.about.governance.policies.commit.notification'), pdf='https://static.mozilla.com/foundation/documents/commit-access/committers-agreement.pdf' %}
+Yes, please. We want to make sure everyone's signed up to the same thing, so there's no confusion or ambiguity. Please <a href="{{ pdf }}">get a copy of</a> the agreement and <a href="{{ notification }}">submit it to Shannon</a> using one of the approved methods.
+{% endtrans %}</dd>
+
+<dt>{{ _('Does this only cover code contributions?') }}</dt>
+<dd>{{ _('"Code" in the agreement is defined as "information" - you need to fill out an agreement to contribute source code, documentation, localizations, or anything similar thing to the project.') }}</dd>
+
+<dt>{{ _('Why do you need those personal details?') }}</dt>
+<dd>{{ _('Your email address will form the basis of your login name. (That’s what we mean when we say "your email address, or a derivative of it, may be made visible worldwide via the Internet" - login names appear in all sorts of public places.) Your address and phone number are so you are legally identified and we can contact you if necessary. They will not be made public.') }}</dd>
+
+<dt>{{ _('What’s all this stuff about crypto?') }}</dt>
+
+<dd>{% trans email='mailto:hecker@mozillafoundation.org', newsgroup='https://groups.google.com/group/mozilla.governance/msg/563e7cd59738c182' %}
+The crypto section is intended to apply primarily to NSS development, or if you are writing or importing your own code to do encryption. If you are concerned about whether the code you are writing falls under this clause, please email <a href="{{ email }}">Frank Hecker</a>. Frank has also made a <a href="{{ newsgroup }}">newsgroup post</a> on this subject.
+{% endtrans %}</dd>
+
+</dl>
+
+{%endblock%}

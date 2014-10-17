@@ -1,0 +1,84 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/about-base.html" %}
+
+{% block page_title %}{{ _('Notification Address') }}{% endblock %}
+{% block body_id %}commit-access-notification{% endblock %}
+
+
+{% block article %}
+<h1 class="title-shadow-box">{{ self.page_title() }}</h1>
+
+<p>{% trans committer=url('mozorg.about.governance.policies.commit') %}
+Once you have reached the appropriate stage in <a href="{{ committer }}">the application process</a>, please send us a signed Committer's Agreement. You can do this in any one of the following five ways (don't say we don't try and make it easy for you):
+{% endtrans %}</p>
+
+<ul>
+  <li>
+    {% trans pdf='https://static.mozilla.com/foundation/documents/commit-access/committers-agreement.pdf' %}
+      Print <a href="{{ pdf }}">the PDF</a>, fill it in (both sections 1 and 6), sign it and do one of the following:
+    {% endtrans %}
+    <ol>
+      <li>{{ _('<b>Post</b> it to:') }}
+      <blockquote>
+        <p>
+        {% trans %}
+        Marcia Knous<br>
+        (Committer’s Agreements)<br>
+        Mozilla<br>
+        331 E. Evelyn Avenue<br>
+        Mountain View, California 94041<br>
+        USA
+        {% endtrans %}
+        </p>
+      </blockquote>
+      </li>
+      <li>{{ _('<b>Fax</b> it to the attention of Marcia Knous at +1 (650) 903 0875. Sending the original by post also is appreciated but is not compulsory.') }}</li>
+      <li>{% trans email='&lt;mar<span></span>cia&#64;mozilla.com&gt;'|safe %}
+        <b>Scan</b> it legibly, in colour, and email the file to Marcia Knous {{ email }}. Sending the original by post also is appreciated but is not compulsory.
+      {% endtrans %}</li>
+      <li>{% trans email='&lt;mar<span></span>cia&#64;mozilla.com&gt;'|safe %}
+        <b>Photograph</b> it from directly above, in good ambient light, where the form fills the whole frame, using at least a 4 megapixel camera. Email the resulting photo to Marcia Knous {{ email }}. Sending the original by post also is appreciated but is not compulsory.
+      {% endtrans %}</li>
+    </ol>
+  </li>
+<li>{{ _('By S/MIME-signed email:') }}
+
+  <ul>
+    <li>
+    {% trans email='mailto:marcia@mozilla.com?subject=Acceptance%20of%20Mozilla%20Committer\'s%20Agreement%20&body=I%20agree%20to%20all%20the%20terms%20and%20conditions%20of%20the%20Mozilla%20Foundation%20Committer\'s%20Agreement%20v2.0%20(\'Mozilla%20Committer\'s%20Agreement\')%20below%20and%20agree%20to%20be%20bound%20by%20such%20terms.%20I%20represent%20that%20the%20terms%20below%20are%20the%20same%20as%20those%20provided%20by%20Mozilla%20to%20me%20as%20the%20Mozilla%20Committer\'s%20Agreement%20and%20that%20the%20terms%20below%20have%20not%20been%20changed%20or%20altered%20in%20any%20way.%20In%20addition%2C%20I%20authorize%20this%20transaction%20to%20be%20conducted%20by%20electronic%20means.%20If%20signed%20anonymously%20by%20using%20an%20email%20address%20only%2C%20I%20acknowledge%20my%20intent%20to%20be%20bound%20by%20these%20terms%20and%20the%20Mozilla%20Committer\'s%20Agreement.%0A%0AName%3A%20%0APhone%20Number%3A%20%0APostal%20Address%3A%20%0A%0A%0A%5Bpaste%20in%20text%20version%20of%20Committer\'s%20Agreement%20here%2C%20replacing%20this%5D',
+      email_text='https://static.mozilla.com/foundation/documents/commit-access/acceptance-email.txt' %}
+    Click <a href="{{ email }}">this link</a> to create the special email (<a href="{{ email_text }}">plaintext copy</a>);
+    {% endtrans %}</li>
+    <li>{{ _('Fill in the blank fields within it;') }}</li>
+    <li>{% trans agreement_text='https://static.mozilla.com/foundation/documents/commit-access/committers-agreement.txt' %}
+      Copy and paste the entire contents of <a href="{{ agreement_text }}">the Committer's Agreement in text form</a> at the bottom;
+    {% endtrans %}</li>
+    <li>{{ _('Sign it using S/MIME with a certificate for your email address which chains to a root trusted by Thunderbird;') }}</li>
+    <li>{{ _('Send it.') }}</li>
+  </ul>
+</li>
+</ul>
+
+<p>{{ _('If you are sending in a form for the first time, please update your access request bug with details of which method you used. Marcia Knous will respond by updating your bug to confirm (or not) receipt of the form.') }}</p>
+
+<h2>{{ _('Compromised Password Procedure') }}</h2>
+
+<p>{{ _('If you have reason to believe that anyone else has used your credentials to access a Mozilla project system, please do the following:') }}</p>
+
+<ul>
+  <li>
+  {% trans bug='https://bugzilla.mozilla.org/enter_bug.cgi?product=mozilla.org&amp;bug_severity=blocker&amp;component=Server%20Operations%3A%20Security&amp;short_desc=Password%20Compromised%3A%20' %}
+    <a href="{{ bug }}">File a bug</a> in the "mozilla.org" product, "Server Operations: Security" component, asking for your password to be changed immediately.
+  {% endtrans %}
+  </li>
+  <li>
+  {% trans irc='irc://irc.mozilla.org/#it' %}
+    Go onto IRC, <a href="{{ irc }}">irc.mozilla.org channel #it</a>, and make sure someone is paying attention to the bug.
+  {% endtrans%}
+  </li>
+</ul>
+
+{%endblock%}
