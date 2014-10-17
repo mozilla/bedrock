@@ -18,6 +18,9 @@
   {{ js('contribute-form') }}
 {% endblock %}
 
+{# Force header and footer to always show for localized event listings. Bug 1083531 #}
+{% set override_header_footer = True %}
+
 {% block contrib_page_title %}{{ _('Community Events') }}{% endblock %}
 
 {% block contrib_content %}
