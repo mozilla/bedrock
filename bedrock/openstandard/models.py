@@ -18,10 +18,11 @@ class Article(models.Model):
     author = models.CharField(max_length=2000)
     category = models.CharField(max_length=255)
     image = models.ForeignKey(ArticleImage, blank=True, null=True)
-    link = models.CharField(max_length=2000)
+    link = models.URLField(max_length=2000, db_index=True)
     title = models.CharField(max_length=2000)
     summary = models.CharField(max_length=2000)
     published = models.DateTimeField()
+    on_homepage = models.DateTimeField(null=True, db_index=True)
 
     def __unicode__(self):
         return self.title

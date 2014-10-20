@@ -1,4 +1,5 @@
-from itertools import groupby
+from datetime import datetime
+from itertools import chain
 
 from django.conf import settings
 from django.core.cache import cache
@@ -87,46 +88,79 @@ def get_validated_article_data(entry, category, use_tz=settings.USE_TZ):
             'published': published}
 
 
+def multi_categorize(article_data, category):
+    categories = article_data['category'].split(',')
+    if category not in categories:
+        categories.append(category)
+        categories.sort()
+        article_data['category'] = ','.join(categories)
+    return article_data
+
+
 def create_or_maybe_update_article(entry, category):
     article_data = get_validated_article_data(entry, category)
     if not article_data:
         return
     try:
         article = Article.objects.get(link=article_data['link'])
-    except:
+    except Article.DoesNotExist:
         return Article.objects.create(**article_data)
     else:
-        return maybe_update(article, article_data)
+        return maybe_update(article, multi_categorize(article_data, category))
 
 
-def update_from_category_feeds():
+def categorized_feed_entries():
     for category, feed_url in settings.OPENSTANDARD_CATEGORY_FEEDS:
         try:
             parsed_feed = parse(feed_url)
         except:
             continue
         for entry in parsed_feed.get('entries', []):
-            create_or_maybe_update_article(entry, category)
+            yield category, entry
+
+
+def update_from_category_feeds():
+    for category, entry in categorized_feed_entries():
+        create_or_maybe_update_article(entry, category)
+
+
+def update_on_homepage(when=None):
+    when = when or datetime.now()
+    return Article.objects.filter(on_homepage=None).update(on_homepage=when)
 
 
 def categorized_articles(
         cache_key='openstandard_articles', cache_timeout=None,
-        force_cache_refresh=False, per_category_limit=4):
+        force_cache_refresh=False, per_category_limit=5):
 
     if not force_cache_refresh:
         cached = cache.get(cache_key)
-        if cached:
+        if cached is not None:
             return cached
 
-    # This is faster than the equivalent SQL for a small table size,
-    # which we will ensure with a cron job running delete_old_articles
-    categorized = dict((category, list(articles)[:per_category_limit])
-                       for category, articles in
-                       groupby(Article.objects.select_related(),
-                               lambda a: a.category))
+    articles = Article.objects.exclude(on_homepage=None).select_related(
+        'image').order_by('-published')
+    categorized = dict(
+        (category, [article for article in articles
+                    if category in article.category][:per_category_limit])
+        for category, feed_url in settings.OPENSTANDARD_CATEGORY_FEEDS)
+
     cache.set(cache_key, categorized, cache_timeout)
     return categorized
 
 
+def published_in_feeds():
+    for category, entry in categorized_feed_entries():
+        published = parse_datetime(entry.get('published'))
+        if published:
+            yield published
+
+
 def delete_old_articles():
-    'TODO'
+    oldest_article_on_homepage = min(
+        chain(*categorized_articles().values()),
+        key=lambda a: a.published)
+
+    oldest_in_feeds = min(published_in_feeds())
+    oldest = min(oldest_article_on_homepage.published, oldest_in_feeds)
+    Article.objects.filter(published__lt=oldest).delete()
