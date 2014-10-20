@@ -6,8 +6,12 @@ import sys
 
 from .base import *  # noqa
 
-if os.getenv('JENKINS_HOME', False):
+if os.getenv('TRAVIS', False):
+    from .travis import *  # noqa
+
+elif os.getenv('JENKINS_HOME', False):
     from .jenkins import *  # noqa
+
 else:
     if os.getenv('C9_USER'):
         from .c9 import *  # noqa
