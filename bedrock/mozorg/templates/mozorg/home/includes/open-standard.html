@@ -32,7 +32,7 @@
           <ul class="os-headlines">
             {% for article in categorized_articles.get(category, []) %}
               <li role="presentation">
-                <a href="{{ article.link }}" rel="external" data-aria-controls="os-{{category}}-article-{{ loop.index }}">
+                <a href="{{ article.link }}?utm_source=mozilla.org&amp;utm_medium=referral " rel="external" data-aria-controls="os-{{category}}-article-{{ loop.index }}">
                   <div class="headline-container">
                     <h3>{{ article.title }}</h3>
                     <time datetime="{{ article.published.isoformat() }}">{{ article.published|datetime }}</time>
@@ -44,7 +44,7 @@
           <div class="os-article-container">
             {% for article in categorized_articles.get(category, []) %}
               <article class="os-article" id="os-{{category}}-article-{{ loop.index }}">
-                <h3><a href="{{ article.link }}">{{ article.title }}</a></h3>
+                <h3><a href="{{ article.link }}?utm_source=mozilla.org&amp;utm_medium=referral ">{{ article.title }}</a></h3>
                 <p class="meta">
                   <time datetime="{{ article.published.isoformat() }}">{{ article.published|datetime }}</time> <span class="tag">{{ article.category }}</span> Written by {{ article.author }}
                 </p>
@@ -53,7 +53,7 @@
                     <div class="img-placeholder" data-src="{{ article.image.get_absolute_url() }}" data-alt="{{ article.image.alt }}"></div>
                   </div>
                 {% endif %}
-                <p>{{ article.summary }} <a class="more" href="{{ article.link }}">Read more</a></p>
+                <p>{{ article.summary }} <a class="more" href="{{ article.link }}?utm_source=mozilla.org&amp;utm_medium=referral ">Read more</a></p>
               </article>
             {% endfor %}
           </div>
