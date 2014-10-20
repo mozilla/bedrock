@@ -16,14 +16,8 @@ class Migration(SchemaMigration):
 
         # Changing field 'Article.link'
         db.alter_column(u'openstandard_article', 'link', self.gf('django.db.models.fields.URLField')(max_length=2000))
-        # Adding index on 'Article', fields ['link']
-        db.create_index(u'openstandard_article', ['link'])
-
 
     def backwards(self, orm):
-        # Removing index on 'Article', fields ['link']
-        db.delete_index(u'openstandard_article', ['link'])
-
         # Deleting field 'Article.on_homepage'
         db.delete_column(u'openstandard_article', 'on_homepage')
 
@@ -38,7 +32,7 @@ class Migration(SchemaMigration):
             'category': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'image': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['openstandard.ArticleImage']", 'null': 'True', 'blank': 'True'}),
-            'link': ('django.db.models.fields.URLField', [], {'max_length': '2000', 'db_index': 'True'}),
+            'link': ('django.db.models.fields.URLField', [], {'max_length': '2000'}),
             'on_homepage': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'db_index': 'True'}),
             'published': ('django.db.models.fields.DateTimeField', [], {}),
             'summary': ('django.db.models.fields.CharField', [], {'max_length': '2000'}),

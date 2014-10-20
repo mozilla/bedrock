@@ -18,7 +18,7 @@ class Article(models.Model):
     author = models.CharField(max_length=2000)
     category = models.CharField(max_length=255)
     image = models.ForeignKey(ArticleImage, blank=True, null=True)
-    link = models.URLField(max_length=2000, db_index=True)
+    link = models.URLField(max_length=2000)
     title = models.CharField(max_length=2000)
     summary = models.CharField(max_length=2000)
     published = models.DateTimeField()
