@@ -30,18 +30,18 @@ USE_TZ = True
 LANGUAGE_CODE = 'en-US'
 
 # Accepted locales
-PROD_LANGUAGES = ('ach', 'af', 'ak', 'an', 'ar', 'as', 'ast', 'az', 'be', 'bg',
-                  'bn-BD', 'bn-IN', 'br', 'bs', 'ca', 'cs', 'csb', 'cy',
+PROD_LANGUAGES = ('ach', 'af', 'an', 'ar', 'as', 'ast', 'az', 'be', 'bg',
+                  'bn-BD', 'bn-IN', 'br', 'bs', 'ca', 'cs', 'cy',
                   'da', 'de', 'dsb', 'el', 'en-GB', 'en-US', 'en-ZA', 'eo', 'es-AR',
                   'es-CL', 'es-ES', 'es-MX', 'et', 'eu', 'fa', 'ff', 'fi', 'fr',
                   'fy-NL', 'ga-IE', 'gd', 'gl', 'gu-IN', 'he', 'hi-IN', 'hr',
                   'hsb', 'hu', 'hy-AM', 'id', 'is', 'it', 'ja', 'ja-JP-mac',
-                  'ka', 'kk', 'km', 'kn', 'ko', 'ku', 'lg', 'lij', 'lt', 'lv',
-                  'mai', 'mk', 'ml', 'mn', 'mr', 'ms', 'my', 'nb-NO', 'nl',
-                  'nn-NO', 'nso', 'oc', 'or', 'pa-IN', 'pl', 'pt-BR', 'pt-PT',
-                  'rm', 'ro', 'ru', 'sah', 'si', 'sk', 'sl', 'son', 'sq', 'sr',
-                  'sv-SE', 'sw', 'ta', 'ta-LK', 'te', 'th', 'tr', 'uk', 'ur',
-                  'uz', 'vi', 'wo', 'xh', 'zh-CN', 'zh-TW', 'zu')
+                  'ka', 'kk', 'km', 'kn', 'ko', 'ku', 'lij', 'lt', 'lv',
+                  'mai', 'mk', 'ml', 'mr', 'ms', 'my', 'nb-NO', 'nl',
+                  'nn-NO', 'oc', 'or', 'pa-IN', 'pl', 'pt-BR', 'pt-PT',
+                  'rm', 'ro', 'ru', 'si', 'sk', 'sl', 'son', 'sq', 'sr',
+                  'sv-SE', 'ta', 'te', 'th', 'tr', 'uk', 'ur',
+                  'uz', 'vi', 'xh', 'zh-CN', 'zh-TW', 'zu')
 DEV_LANGUAGES = list(DEV_LANGUAGES) + ['en-US']
 
 FEED_CACHE = 3900
