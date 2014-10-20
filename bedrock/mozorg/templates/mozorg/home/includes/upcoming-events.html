@@ -50,7 +50,12 @@
       {% endfor %}
       </ul>
     </div>
-    <a class="more-large" href="{{ url('mozorg.contribute.events') }}">{{ _('See all events') }}</a>
+    {# Only link to /contribute/events for en-US until Bug 1083531 is resolved #}
+    {% if LANG in ['en-US'] %}
+      <a class="more-large" href="{{ url('mozorg.contribute.events') }}">{{ _('See all events') }}</a>
+    {% else %}
+      <a class="more-large" rel="external" href="https://reps.mozilla.org/events">{{ _('See all events') }}</a>
+    {% endif %}
   </div>
 </section>
 {% endif %}
