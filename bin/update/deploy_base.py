@@ -124,7 +124,7 @@ def pre_update(ctx, ref=settings.UPDATE_REF):
 @task
 def cronjobs(ctx):
     management_cmd(ctx, 'cron update_tweets')
-    management_cmd(ctx, 'cron update_openstandard_on_homepage'
+    management_cmd(ctx, 'cron update_openstandard_on_homepage')
     management_cmd(ctx, 'cron update_openstandard_feeds')
     management_cmd(ctx, 'cron update_reps_ical')
 
