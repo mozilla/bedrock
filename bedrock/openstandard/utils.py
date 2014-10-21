@@ -68,14 +68,11 @@ def parse_datetime(text, use_tz=settings.USE_TZ, timezone=settings.TIME_ZONE):
         return parsed
 
 
-def get_validated_article_data(entry, category, use_tz=settings.USE_TZ):
+def get_validated_article_data(entry, category):
     for key in ('author', 'link', 'title', 'summary', 'published'):
         if not entry.get(key):
             return
-    try:
-        soup = BeautifulSoup(entry['summary'])
-    except:
-        return
+    soup = BeautifulSoup(entry['summary'])
     published = parse_datetime(entry['published'])
     if published:
         return {
@@ -85,7 +82,9 @@ def get_validated_article_data(entry, category, use_tz=settings.USE_TZ):
             'link': entry['link'],
             'title': entry['title'],
             'summary': soup.get_text(),
-            'published': published}
+            'published': published,
+            'sponsored': any(tag.get('term') == 'Sponsored'
+                             for tag in entry.get('tags', [{}]))}
 
 
 def multi_categorize(article_data, category):
@@ -109,8 +108,9 @@ def create_or_maybe_update_article(entry, category):
         return maybe_update(article, multi_categorize(article_data, category))
 
 
-def categorized_feed_entries():
-    for category, feed_url in settings.OPENSTANDARD_CATEGORY_FEEDS:
+def categorized_feed_entries(category_feeds=None):
+    category_feeds = category_feeds or settings.OPENSTANDARD_CATEGORY_FEEDS
+    for category, feed_url in category_feeds:
         try:
             parsed_feed = parse(feed_url)
         except:

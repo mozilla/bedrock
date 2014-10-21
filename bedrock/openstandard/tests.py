@@ -112,3 +112,37 @@ class UtilsTest(TestCase):
         eq_(model_instance_mock.changed_field, 'changed')
         model_instance_mock.save.assert_called_once_with(
             update_fields=['changed_field'])
+
+    @patch('bedrock.openstandard.utils.BeautifulSoup')
+    @patch('bedrock.openstandard.utils.parse_datetime')
+    @patch('bedrock.openstandard.utils.get_or_maybe_create_article_image')
+    def test_get_validated_article_data(self, get_or_maybe_create_article_image,
+                                        parse_datetime, beautifulsoup):
+        eq_(utils.get_validated_article_data({}, 'category'), None)
+        entry = {
+            'author': 'Joel and Ethan Coen',
+            'link': 'http://en.wikipedia.org/wiki/The_Big_Lebowski',
+            'title': 'The Big Lebowski',
+            'summary': 'The Dude abides.',
+            'published': 'January 18, 1998'}
+        validated_entry = {
+            'author': 'Joel and Ethan Coen',
+            'link': 'http://en.wikipedia.org/wiki/The_Big_Lebowski',
+            'title': 'The Big Lebowski',
+            'summary': beautifulsoup.return_value.get_text.return_value,
+            'published': parse_datetime.return_value,
+            'category': 'films',
+            'image': get_or_maybe_create_article_image.return_value,
+            'sponsored': False}
+        eq_(utils.get_validated_article_data(entry, 'films'), validated_entry)
+        parse_datetime.assert_called_with('January 18, 1998')
+        get_or_maybe_create_article_image.assert_called_with(
+            beautifulsoup.return_value)
+        beautifulsoup.assert_called_with(entry['summary'])
+
+        sponsored_entry = entry.copy()
+        sponsored_entry['tags'] = [{'term': 'Sponsored'}]
+        validated_sponsored = validated_entry.copy()
+        validated_sponsored['sponsored'] = True
+        eq_(utils.get_validated_article_data(sponsored_entry, 'films'),
+            validated_sponsored)

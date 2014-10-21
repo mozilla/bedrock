@@ -36,6 +36,9 @@
                   <div class="headline-container">
                     <h3>{{ article.title }}</h3>
                     <time datetime="{{ article.published.isoformat() }}">{{ article.published|datetime }}</time>
+		    {% if article.sponsored %}
+		    <span class="sponsored"> | Sponsored</span>
+		    {% endif %}
                   </div>
                 </a>
               </li>
@@ -47,6 +50,9 @@
                 <h3><a href="{{ article.link }}?utm_source=mozilla.org&amp;utm_medium=referral ">{{ article.title }}</a></h3>
                 <p class="meta">
                   <time datetime="{{ article.published.isoformat() }}">{{ article.published|datetime }}</time> <span class="tag">{{ article.category }}</span> Written by {{ article.author }}
+		  {% if article.sponsored %}
+		  <span class="sponsored"> | Sponsored</span>
+		  {% endif %}
                 </p>
                 {% if article.image %}
                   <div class="article-img">
