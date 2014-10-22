@@ -13,10 +13,32 @@ from mock import ANY, patch
 from nose.tools import ok_, eq_
 
 from bedrock.mozorg.tests import TestCase
-from bedrock.mozorg.util import hide_contrib_form, get_fb_like_locale, page
+from bedrock.mozorg.util import hide_contrib_form, get_fb_like_locale, get_tweets, page
 
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test_files')
+
+
+@patch('bedrock.mozorg.util.TwitterAPI')
+@override_settings(TWITTER_ACCOUNTS=('dude', 'walter'),
+                   TWITTER_ACCOUNT_OPTS={'dude': {'abide': True, 'include_rts': False}})
+class TestTwitterAPI(TestCase):
+    def test_default_call_options(self, twitter_api):
+        get_tweets('walter')
+        twitter_api.assert_called_with('walter')
+        twitter_api.return_value.user_timeline.assert_called_with(screen_name='walter',
+                                                                  include_rts=True,
+                                                                  exclude_replies=True,
+                                                                  count=100)
+
+    def test_override_default_call_options(self, twitter_api):
+        get_tweets('dude')
+        twitter_api.assert_called_with('dude')
+        twitter_api.return_value.user_timeline.assert_called_with(screen_name='dude',
+                                                                  abide=True,
+                                                                  include_rts=False,
+                                                                  exclude_replies=True,
+                                                                  count=100)
 
 
 class TestHideContribForm(TestCase):
