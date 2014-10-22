@@ -2,15 +2,7 @@
     "run": {
         "@path": "/.c9/runners",
         "configs": {
-            "json()": {
-                "Run Server": {
-                    "debug": true,
-                    "name": "Run Server",
-                    "command": "bin/runserver-c9",
-                    "runner": "Shell script",
-                    "default": true
-                }
-            },
+            "json()": {},
             "@inited": "true"
         }
     },
@@ -36,7 +28,7 @@
     },
     "build": {
         "@path": "/.c9/builders",
-        "@saveall": true,
+        "@saveall": "true",
         "@builder": "auto"
     }
 }
