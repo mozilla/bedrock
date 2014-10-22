@@ -2,7 +2,15 @@
     "run": {
         "@path": "/.c9/runners",
         "configs": {
-            "json()": {},
+            "json()": {
+                "Run Server": {
+                    "debug": true,
+                    "name": "Run Server",
+                    "command": "bin/runserver-c9",
+                    "runner": "Shell script",
+                    "default": true
+                }
+            },
             "@inited": "true"
         }
     },
