@@ -1,0 +1,19 @@
+MAILTO="webops-cron@mozilla.com,cron-bedrock@mozilla.com"
+
+# webdev requests that prod auto-updates the PHP side, for similar to old
+# setup... not currently auto-updating Django side
+# This will likely change to Freddo / Chief soon
+*/10 * * * * root /data/bedrock/src/update-www.mozilla.org.sh
+
+*/5    * * * * root cd /data/bedrock/src/www.mozilla.org-django/bedrock; python manage.py rnasync > /dev/null 2>&1
+*/15 * * * * root /data/bedrock/src/update-www.mozilla.org-cron-svn-locale.sh &> /dev/null
+# outputs when the run completed to http://www.mozilla.org/media/locale_finished.txt
+
+# disabled per bug 1042074
+#1-59/15 * * * * root /data/bedrock/src/update-www.mozilla.org-product-details.sh
+
+# bug 996144 & 1014586
+2 */6 * * * root cd /data/bedrock/src/www.mozilla.org-django/bedrock; python manage.py cron update_tweets > /dev/null 2>&1
+
+# bug 1072999
+11 * * * * root cd /data/bedrock/src/www.mozilla.org-django/bedrock; python manage.py update_security_advisories --quiet > /dev/null 2>&1
