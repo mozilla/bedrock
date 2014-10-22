@@ -25,7 +25,7 @@ def update_feeds():
 def update_tweets():
     for account in settings.TWITTER_ACCOUNTS:
         try:
-            tweets = TwitterAPI(account).user_timeline(screen_name=account)
+            tweets = TwitterAPI(account).user_timeline(screen_name=account, exclude_replies='true')
         except Exception:
             tweets = None
 
