@@ -71,12 +71,14 @@
       </ol>
 
       <p>
-      {% trans url1=url('foundation.trademarks.faq'), url2='http://www.spreadfirefox.com/' %}
+      {% trans url1=url('foundation.trademarks.faq'), url2='https://affiliates.mozilla.org/',
+        url3=url('styleguide.home') %}
         While the uses of our trademarks described above are not allowed,
         there are lots of ways our community members can use our
         trademarks without requesting permission. For more information,
-        please review our <a href="{{ url1 }}">Trademark FAQs</a>
-        or visit <a href="{{ url2 }}">Spreadfirefox.com</a>.
+        please review our <a href="{{ url1 }}">Trademark FAQs</a> or
+        visit <a href="{{ url2 }}">Firefox Affiliates</a>. Also review the
+        <a href="{{ url3 }}">Mozilla Style Guide</a>.
       {% endtrans %}
       </p>
 
