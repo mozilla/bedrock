@@ -1,4 +1,7 @@
 MAILTO="webops-cron@mozilla.com,cron-bedrock@mozilla.com"
+BEDROCK=/data/bedrock/src/www.mozilla.org-django/bedrock
+DEPLOY=/data/bedrock/deploy
+# TODO: update rest of cron jobs to use the above env variables
 
 # webdev requests that prod auto-updates the PHP side, for similar to old
 # setup... not currently auto-updating Django side
@@ -17,3 +20,8 @@ MAILTO="webops-cron@mozilla.com,cron-bedrock@mozilla.com"
 
 # bug 1072999
 11 * * * * root cd /data/bedrock/src/www.mozilla.org-django/bedrock; python manage.py update_security_advisories --quiet > /dev/null 2>&1
+
+# bug 1087533
+# TODO: redirect stdout and stderr to null after initial deployment and verification
+42 * * * * root cd $BEDROCK && python manage.py cron update_reps_ical
+43 * * * * root cd $BEDROCK && python manage.py cron update_openstandard_feeds && $BEDROCK_DEPLOY && python manage.py cron update_openstandard_on_homepage

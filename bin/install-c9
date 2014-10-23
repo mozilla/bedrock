@@ -17,4 +17,8 @@ cp bedrock/settings/local.py-dist bedrock/settings/local.py
 mysql-ctl start
 ./manage.py syncdb --migrate --noinput
 ./manage.py rnasync
+./manage.py cron update_reps_ical
+./manage.py cron update_openstandard_feeds
+./manage.py cron update_openstandard_on_homepage
+#./manage.py cron update_tweets requires twitter api credentials not distributed publicly
 svn checkout https://svn.mozilla.org/projects/mozilla.com/trunk/locales/ locale
