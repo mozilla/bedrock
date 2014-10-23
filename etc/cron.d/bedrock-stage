@@ -1,4 +1,7 @@
 MAILTO="webops-cron@mozilla.com,cron-bedrock@mozilla.com"
+BEDROCK=/data/bedrock-stage/src/www.allizom.org-django/bedrock
+BEDROCK_DEPLOY=/data/bedrock-stage/deploy
+# TODO: update rest of cron jobs to use the above env variables
 
 # webdev requests that prod auto-updates the PHP side, for similar to old
 0-59/10 * * * * root /data/bedrock-stage/src/update-www.allizom.org.sh
@@ -23,4 +26,9 @@ MAILTO="webops-cron@mozilla.com,cron-bedrock@mozilla.com"
 #0 * * * * * root cd /data/www.allizom.org-django/bedrock; python manage.py --settings=settings/memcache-scl3.py cron update_feeds 2>&1 1> /dev/null | grep -v 'old-style Playdoh layout'"
 
 # bug 1072999
-1 41 * * * root cd /data/bedrock-stage/src/www.allizom.org-django/bedrock; python manage.py update_security_advisories --quiet > /dev/null 2>&1
+41 * * * * root cd /data/bedrock-stage/src/www.allizom.org-django/bedrock; python manage.py update_security_advisories --quiet > /dev/null 2>&1
+
+# bug 1087533
+# TODO: redirect output to null after initial deployment and verification
+42 * * * * root cd $BEDROCK; python manage.py cron update_reps_ical
+43 * * * * root cd $BEDROCK; python manage.py cron update_openstandard_feeds && $BEDROCK_DEPLOY && python manage.py cron update_openstandard_on_homepage
