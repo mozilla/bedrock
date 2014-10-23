@@ -54,7 +54,11 @@
 
       <div class="show-not-fx warning">
         <p>
-          {{ _('Sync is just one of the great features you’ll only get with Firefox. Discover them all!') }}
+          {% if l10n_has_tag('firefox_sync_non_fx') or settings.DEV %}
+            {{ _('Sync is just one of the great features you’ll only get with Firefox.') }}
+          {% else %}
+            {{ _('Sync is just one of the great features you’ll only get with Firefox. Discover them all!') }}
+          {% endif %}
         </p>
       </div>
 
