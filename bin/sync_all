@@ -1,0 +1,8 @@
+#!/bin/bash
+cd $(readlink --canonicalize --no-newline ${0%/*})/..
+./manage.py rnasync
+./manage.py cron update_reps_ical
+./manage.py cron update_openstandard_feeds
+./manage.py cron update_openstandard_on_homepage
+#requires twitter api credentials not distributed publicly
+./manage.py cron update_tweets 
