@@ -1,0 +1,106 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import anniversary_video with context %}
+
+{% extends "/firefox/base-resp.html" %}
+
+{% add_lang_files "firefox/independent" %}
+
+{% block shared_meta %}
+<title>{% filter striptags|e %}{% block page_title_full %}{% block page_title_prefix %}{{_('Firefox Web Browser')}} — {% endblock %}{% block page_title %}{{ _('Choose Independent') }}{% endblock %}{% endblock page_title_full %}{% block page_title_suffix %} — Mozilla{% endblock %}{% endfilter %}</title>
+<meta name="description" content="{% filter striptags|e %}{% block page_desc %}{{ _('For 10 years, Firefox has stayed non-profit, non-corporate, non-compromised. Choosing Firefox isn’t just choosing a browser. It’s a vote for personal freedom.') }}{% endblock %}{% endfilter %}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ _('Mozilla') }}">
+<meta property="og:locale" content="{{ LANG|replace("-", "_") }}">
+<meta property="og:url" content="{% block canonical_url %}{{ settings.CANONICAL_URL + '/' + LANG + canonical_path }}{% endblock %}">
+<meta property="og:image" content="{% filter absolute_url %}{% block page_image %}{{ media('img/firefox/independent/page-image.jpg') }}{% endblock %}{% endfilter %}">
+<meta property="og:title" content="{{ self.page_title()|striptags }}">
+<meta property="og:description" content="{{ self.page_desc()|striptags }}">
+<meta property="fb:page_id" content="{% block facebook_id %}{{ super() }}{% endblock %}">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@{% block twitter_id %}firefox{% endblock %}">
+<meta name="twitter:domain" content="mozilla.org">
+<meta name="twitter:app:name:googleplay" content="{% block android_app_name %}{{ super() }}{% endblock %}">
+<meta name="twitter:app:id:googleplay" content="{% block android_app_id %}{{ super() }}{% endblock %}">
+<link rel="shortcut icon" href="{% block page_favicon %}{{ super() }}{% endblock %}">
+<link rel="apple-touch-icon" type="image/png" sizes="256x256" href="{{ media('img/firefox/firefox-256.jpg') }}">
+<link rel="icon" type="image/png" sizes="196x196" href="{{ media('img/firefox/favicon.ico?2013-08') }}">
+{% include 'includes/canonical-url.html' %}
+{% endblock shared_meta %}
+
+{% block body_id %}independent{% endblock %}
+
+{% block page_css %}
+  {{ css('firefox_independent') }}
+{% endblock %}
+
+{% block site_header_nav %}{% endblock %}
+{% block site_header_logo %}{% endblock %}
+
+{% block content %}
+<main role="main">
+
+  <article id="fx10-splash">
+    <div class="container">
+      <h1 class="main-title">{{ _('Choose Independent') }}</h1>
+      {{ anniversary_video('play', 'share', True) }}
+    </div>
+
+    <div class="logo"></div>
+    <div class="tail-middle"></div>
+    <div class="tail-end"></div>
+  </article>
+
+  <section id="fx10-download">
+    <div class="container">
+      <h2>{{ _('Choose Firefox and stay in control of your online life') }}</h2>
+      <p>
+        <a href="{{ url('firefox.new') }}" class="button">{{ _('Download Firefox') }}</a>
+      </p>
+    </div>
+  </section>
+
+  {% if LANG in ['en-US'] %}
+  <section id="fx10-accolades">
+    <div class="container">
+
+      <div class="accolade pcworld">
+        {{ high_res_img('img/firefox/independent/logo-pcworld.png', {'alt': 'PC World', 'width': '184', 'height': '54'}) }}
+        {# L10n: This will be used for image alt text. #}
+        <p class="stars stars-four">{{ _('Four stars') }}</p>
+        <p class="quote">{{ _('“Magnificent”') }}</p>
+      </div>
+
+      <div class="accolade trusted">
+        {% include 'firefox/desktop/_trust_badge.html' %}
+      </div>
+
+      <div class="accolade cnet">
+        {{ high_res_img('img/firefox/independent/logo-cnet.png', {'alt': 'C|Net', 'width': '147', 'height': '147'}) }}
+        {# L10n: This will be used for image alt text. #}
+        <p class="stars stars-five">{{ _('Five stars') }}</p>
+        <p class="quote">{{ _('“Spectacular”') }}</p>
+      </div>
+
+    </div>
+  </section>
+  {% endif %}
+
+  <aside id="fx10-community">
+    <p class="container">
+    {% trans link='http://www.firefox10.org' %}
+      Spread the word. Share our story. <a href="{{ link }}">Find out how</a>
+    {% endtrans %}
+    </p>
+  </aside>
+
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js('firefox_independent') }}
+{% endblock %}
+
+{% block email_form %}{% endblock %}

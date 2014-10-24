@@ -4,6 +4,17 @@
 
 @import "../sandstone/lib.less";
 
+@font-face {
+  font-family: 'Font Awesome';
+  src: url('/media/fonts/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
+       url('/media/fonts/fontawesome-webfont.woff') format('woff'),
+       url('/media/fonts/fontawesome-webfont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@overlayButtonBlue: #0c99d5;
+
 // The big splash header with logo and video
 #fx10-splash {
     min-height: 800px;
@@ -12,24 +23,23 @@
     position: relative;
     text-align: center;
 
-    .main-title {
+    .main-title,
+    .sub-title {
         color: #fff;
-        font-size: 72px;
-        margin: 0 auto 40px;
+        margin: 0 auto @baseLine;
         text-shadow: 0 1px 0 rgba(0, 40, 65, .25);
         width: (@gridColumnWidth * 6) + (@gridGutterWidth * 5);
         position: relative;
         z-index: 5;
     }
 
-    .video {
-        border-radius: 10px;
-        height: 435px;
-        margin: 20px auto;
-        width: 780px;
-        position: relative;
-        z-index: 3;
-        cursor: pointer;
+    .main-title {
+        font-size: 72px;
+        min-height: 2em;
+    }
+
+    .sub-title {
+        font-size: 28px;
     }
 
     .logo,
@@ -70,6 +80,12 @@
     }
 }
 
+[lang='de'] {
+    #fx10-splash .main-title {
+        font-size: 54px;
+    }
+}
+
 // Some special styling for the home page
 #home {
     #fx10-splash {
@@ -94,55 +110,50 @@
             position: relative;
         }
 
-        .main-title {
-            margin-bottom: 20px;
-        }
-
         .logo,
         .tail-middle {
             top: 0;
         }
 
         .close {
-            width: 100%;
+            .open-sans;
             background: #fff;
             background: rgba(255, 255, 255, .92);
-            padding: 10px 0;
+            border: 0;
+            color: @linkBlue;
+            cursor: pointer;
+            font-size: @largeFontSize;
+            font-weight: bold;
             text-align: center;
+            text-transform: uppercase;
+            padding: 10px 0;
             position: absolute;
+            left: 0;
             top: 0;
             z-index: 9;
+            width: 100%;
+            .transition(all .2s ease);
 
-            button {
-                .open-sans;
-                border: 0;
-                background: transparent;
-                padding: 0;
-                font-size: @largeFontSize;
-                font-weight: bold;
-                text-transform: uppercase;
-                color: @linkBlue;
-                cursor: pointer;
-
-                &:after {
-                    content: '\00BB'; /* raquo */
-                    white-space: nowrap;
-                    border: 1px solid;
-                    border-radius: 50%;
-                    width: 25px;
-                    height: 25px;
-                    display: inline-block;
-                    text-align: center;
-                    margin-left: 10px;
-                    font-size: 20px;
-                    line-height: 20px;
-                }
-
-                &:hover,
-                &:focus {
-                    color: darken(@linkBlue, 10%);
-                }
+            &:after {
+                content: '\00BB'; /* raquo */
+                white-space: nowrap;
+                border: 1px solid;
+                border-radius: 50%;
+                width: 25px;
+                height: 25px;
+                display: inline-block;
+                text-align: center;
+                margin-left: 10px;
+                font-size: 20px;
+                line-height: 20px;
             }
+
+            &:hover,
+            &:focus {
+                color: darken(@linkBlue, 10%);
+                background: #fff;
+            }
+
         }
     }
 
@@ -161,6 +172,420 @@
 }
 
 
+// Video
+#fx-anniversary-video-widget {
+    width: 780px;
+    height: 439px;
+    margin: 20px auto;
+    border-radius: 10px;
+    position: relative;
+    z-index: 3;
+
+    // holds the buttons/screenshot overlay and the video embed
+    #fx-anniversary-video-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 6px;
+    }
+
+    // common class for all overlay buttons (round and rect)
+    .overlay-button() {
+        display: block;
+        cursor: pointer;
+        border: 0;
+        color: #fff;
+        font-weight: bold;
+        font-size: 16px;
+        letter-spacing: -0.05em;
+        text-transform: uppercase;
+        text-decoration: none;
+        text-align: center;
+        text-shadow: none;
+        margin: 0 auto;
+    }
+
+    // play icon
+    .button-play:before {
+        font-family: 'Font Awesome';
+        content: '\f04b';
+    }
+
+    // replay icon
+    .button-replay:before {
+        font-family: 'Font Awesome';
+        content: '\f01e';
+    }
+
+    // common for rect overlay buttons
+    .overlay-button-rect {
+        .overlay-button();
+        display: block;
+        font-size: 18px;
+        width: 296px;
+        padding: 1em 20px;
+        background: @overlayButtonBlue;
+        border-radius: 8px;
+        border: 2px solid lighten(@overlayButtonBlue, 40%);
+        .transition(background .2s ease-in-out);
+
+        &:hover, &:focus {
+            background: lighten(#0c99d5, 2%);
+        }
+
+        &:before {
+            padding-right: 10px;
+        }
+
+        &.button-play {
+            margin-bottom: 24px;
+
+            &:before {
+                font-size: 16px;
+            }
+        }
+
+        &.button-replay {
+            margin-top: 24px;
+        }
+    }
+
+    // common for round overlay buttons
+    .overlay-button-round {
+        .overlay-button();
+        background: transparent;
+        margin-top: 150px;
+
+        // adds the blue circle containing the icon
+        &:before {
+            display: block;
+            text-shadow: none;
+            color: #fff;
+            line-height: 100px;
+            font-size: 42px;
+            text-align: center;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: @overlayButtonBlue;
+            border: 3px solid lighten(@overlayButtonBlue, 40%);
+            height: 94px;
+            width: 94px;
+            .transition(all .2s ease);
+        }
+
+        &:hover:before,
+        &:focus:before {
+            background: lighten(@overlayButtonBlue, 2%);
+        }
+
+        &.button-play {
+            display: inline-block;
+
+            &:before {
+                text-indent: 10px; // makes the play triangle look more centered
+            }
+        }
+
+        // hide replay button by default
+        &.button-replay {
+            display: none;
+
+            &:before {
+                font-size: 52px;
+                line-height: 95px; // makes the replay icon look more centered
+                content: '\f01e';
+            }
+        }
+    }
+
+    // share cta customizations
+    .mozilla-share-cta {
+        margin: 0 auto;
+    }
+
+    // holds all three rect buttons (play, share, replay)
+    // all are hidden by default
+    .button-group {
+        display: none;
+        margin-top: 140px;
+    }
+
+    #fx-anniversary-video-embed {
+        width: 100%;
+        height: 100%;
+    }
+
+    #fx-anniversary-video-embed-wrapper {
+        display: none;
+    }
+
+    #fx-anniversary-video-footer-button {
+        padding-top: 40px;
+
+        .download-link {
+            .overlay-button();
+            background: #689f2a;
+            display: block;
+            font-size: 18px;
+            letter-spacing: inherit;
+            width: 256px;
+            padding: 1em 20px;
+            border-radius: 8px;
+            .transition(background .2s ease-in-out);
+
+            &:hover,
+            &:focus {
+                background: #70ab2d;
+            }
+        }
+
+        .mozilla-share-cta {
+            display: none;
+        }
+
+        &.share {
+            .download-link {
+                display: none;
+            }
+
+            .mozilla-share-cta {
+                display: block;
+            }
+        }
+
+        &.download {
+            .mozilla-share-cta {
+                display: none;
+            }
+        }
+
+        &.none {
+            display: none;
+        }
+    }
+}
+
+[dir='rtl'] #fx-anniversary-video-widget .overlay-button-round.button-play:before {
+    text-indent: -10px;
+}
+
+// overlay sits directly on top of the video embed
+#fx-anniversary-video-overlay,
+#fx-anniversary-video-embed-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+#fx-anniversary-video-overlay {
+    z-index: 2;
+    background: url(/media/img/firefox/independent/video-still.jpg) center center no-repeat;
+    text-align: center;
+}
+
+.js {
+    // fade out/in for transitioning overlay & footer button states
+    .buttons {
+        .transition(opacity 0.2s ease);
+
+        &.changing {
+            opacity: 0;
+        }
+    }
+
+    // alternate button states only activated for JS users
+    // non-JS users only get round play link
+    #fx-anniversary-video-buttons {
+        // styles for round replay button
+        &.replay {
+            .overlay-button-round {
+                &.button-play {
+                    display: none;
+                }
+
+                &.button-replay {
+                    display: inline-block;
+                }
+            }
+        }
+
+        // common styles for rect buttons
+        &.play-share, &.share-replay {
+            .button-group {
+                display: block;
+            }
+
+            .overlay-button-round {
+                display: none;
+            }
+        }
+
+        // with 'play-share' class, replay button is hidden and
+        // share button is transparent
+        &.play-share {
+            .button-replay {
+                display: none;
+            }
+
+            .mozilla-share-cta {
+                background: transparent;
+                border-color: #fff;
+
+                &:hover {
+                    background: rgba(0, 0, 0, 0.2);
+                }
+            }
+        }
+
+        // with 'share-replay' class, play button is hidden and
+        // replay button is transparent
+        &.share-replay {
+            .button-play {
+                display: none;
+            }
+
+            .button-replay {
+                background: transparent;
+                border-color: #fff;
+
+                &:hover {
+                    background: rgba(0, 0, 0, 0.2);
+                }
+            }
+        }
+    }
+}
+
+
+
+// Share button
+.mozilla-share-cta {
+    position: relative;
+    width: 296px;
+    background: #0c99d5;
+    color: #fff;
+    border: 2px solid #9ed6ee;
+    border-radius: 8px;
+    overflow: hidden;
+    .transition(background .2s ease-in-out);
+
+    &:hover,
+    &:focus {
+        background: lighten(#0c99d5, 2%);
+    }
+
+    h3 {
+        display: block;
+        width: 256px;
+        padding: 1em 20px;
+        margin: 0;
+        color: #fff;
+        font-size: 18px;
+        text-transform: uppercase;
+        border: none;
+        background: none;
+        text-align: center;
+        visibility: visible;
+        text-shadow: none;
+        font-family: 'Open Sans', sans-serif;
+        opacity: 1;
+        .transition(opacity .2s ease-in-out);
+
+        &:before {
+            font-family: 'Font Awesome';
+            content: '\f1e0\00A0\00A0';
+            text-shadow: none;
+        }
+    }
+
+    ul {
+        display: table;
+        position: relative;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        visibility: hidden;
+
+        li {
+            display: table-cell;
+            width: 33.3%;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            vertical-align: middle;
+            opacity: 0;
+            .transition(opacity .2s ease-in-out);
+
+            a {
+                color: #fff;
+                display: block;
+                margin: 0 10px;
+                font-size: 0;
+
+                &:before {
+                    font-family: 'Font Awesome';
+                    font-size: 28px;
+                    line-height: 56px;
+                    opacity: 0.8;
+                    padding-top: 1px;
+                    text-shadow: none;
+                    -webkit-font-smoothing: antialiased;
+                    .transition(opacity .2s ease-in-out);
+                }
+
+                &.twitter:before {
+                    content: '\f099\00A0';
+                }
+
+                &.facebook:before {
+                    content: '\f09a\00A0';
+                }
+
+                &.g-plus:before {
+                    content: '\f0d5\00A0';
+                }
+
+                &:hover,
+                &:focus {
+                    text-decoration: none;
+                    color: #fff;
+
+                    &:before {
+                        text-shadow: none;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.js .mozilla-share-cta {
+    h3 {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        &.out {
+            opacity: 0;
+            .transition(opacity .2s ease-in-out);
+        }
+    }
+
+    ul.in li {
+        opacity: 1;
+    }
+}
+
+
+
 /*-------------------------------------------------------------------------*/
 // @Tablet Layout: 760px
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
@@ -168,27 +593,33 @@
     #fx10-splash {
         min-height: 670px;
 
+        .main-title,
+        .sub-title {
+            width: (@gridColumnWidthNarrow * 7) + (@gridGutterWidth * 5);
+        }
+
         .main-title {
             font-size: 60px;
         }
 
-        .video {
-            width: 640px;
-            height: 357px;
+        .sub-title {
+            font-size: 24px;
         }
 
         .logo {
-            width: 413px;
-            height: 315px;
-            background-size: 413px 315px;
+            width: 425px;
+            height: 360px;
+            background-size: 425px 360px;
             margin-right: -580px;
+            top: -30px;
         }
 
         .tail-middle {
             width: 311px;
-            height: 345px;
-            background-size: 311px 345px;
+            height: 394px;
+            background-size: 311px 394px;
             margin-left: -520px;
+            top: -30px;
         }
 
         .tail-end {
@@ -197,6 +628,35 @@
             background-size: 889px 578px;
             top: 170px;
             margin-left: -640px;
+        }
+    }
+
+    #fx-anniversary-video-widget {
+        width: 640px;
+        height: 360px;
+    }
+
+    #fx-anniversary-video-overlay {
+        background-size: 640px 360px;
+    }
+
+    // Some special styling for the home page
+    #home {
+        #fx10-splash {
+            .container {
+                width: @widthTablet - (@gridGutterWidth * 2);
+            }
+
+            .logo,
+            .tail-middle {
+                top: 0;
+            }
+        }
+    }
+
+    [lang='de'] {
+        #fx10-splash .main-title {
+            font-size: 46px;
         }
     }
 
@@ -216,27 +676,28 @@
             width: 100%;
         }
 
+        .main-title,
+        .sub-title {
+            width: @widthMobile;
+        }
+
         .main-title {
             font-size: 48px;
-            width: @widthMobile;
             margin-top: 60px;
         }
 
-        .video {
-            width: 100%;
-            height: auto;
-            margin: 20px 0 0;
-            border-radius: 0;
+        .sub-title {
+            font-size: 20px;
         }
 
         .logo {
             width: 320px;
-            height: 220px;
+            height: 271px;
             left: 50%;
-            top: -20px;
-            margin-left: -160px;
-            background-size: 283px 240px;
-            background-position: 40px bottom;
+            top: -70px;
+            margin-left: -145px;
+            background-size: 320px 271px;
+            background-position: left bottom;
         }
 
         .tail-middle,
@@ -250,9 +711,34 @@
         #fx10-splash {
             padding-top: 180px;
 
-            .logo {
-                top: 0;
+            .container {
+                width: 100%;
             }
+
+            .logo {
+                top: -40px;
+            }
+        }
+    }
+
+    #fx-anniversary-video-widget {
+        width: 320px;
+        height: 180px;
+        margin-bottom: 100px;
+        border-radius: 0;
+
+        .overlay-button-round {
+            margin-top: 20px;
+        }
+    }
+
+    #fx-anniversary-video-overlay {
+        background-size: 320px 180px;
+    }
+
+    [lang='de'] {
+        #fx10-splash .main-title {
+            font-size: 42px;
         }
     }
 
@@ -265,9 +751,23 @@
 @media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
 
     #fx10-splash {
-        .main-title {
+        .main-title,
+        .sub-title {
             width: @widthMobileLandscape;
         }
+    }
+
+    #fx-anniversary-video-widget {
+        width: 440px;
+        height: 248px;
+
+        .overlay-button-round {
+            margin-top: 60px;
+        }
+    }
+
+    #fx-anniversary-video-overlay {
+        background-size: 440px 248px;
     }
 
 }

@@ -21,6 +21,7 @@ Mozilla.FirefoxAnniversaryVideo = (function($) {
     var $html = $('html');
 
     var _isOldIE = (/MSIE\s[1-8]\./.test(navigator.userAgent));
+    var _isIElt10 = (/MSIE\s[1-9]\./.test(navigator.userAgent));
     var _isIOS = $html.hasClass('ios');
     var _isAndroid = $html.hasClass('android');
 
@@ -142,7 +143,9 @@ Mozilla.FirefoxAnniversaryVideo = (function($) {
             var newSrc = _$embedIframe.attr('data-src');
 
             // check if supports HTML5 video
-            if (!!document.createElement('video').canPlayType) {
+            // IE 9 supports HTML5 video, but throws errors with YouTube's
+            // HTML5 js
+            if (!_isIElt10 && !!document.createElement('video').canPlayType) {
                 newSrc += '&html5=1';
             }
 
@@ -198,6 +201,16 @@ Mozilla.FirefoxAnniversaryVideo = (function($) {
     };
 
     /*
+    Explicitly stops the embedded video. Useful for IE 9 when closing
+    a modal while video is playing.
+    */
+    var _stopEmbed = function() {
+        if (_youtubePlayer) {
+            _youtubePlayer.stopVideo();
+        }
+    };
+
+    /*
     When embedded video is complete, call the user-specified
     onComplete function.
     */
@@ -232,6 +245,9 @@ Mozilla.FirefoxAnniversaryVideo = (function($) {
         },
         hideEmbed: function() {
             _hideEmbed();
+        },
+        stopEmbed: function() {
+            _stopEmbed();
         },
         // Called only by YouTube when YouTube is ready.
         initYouTubePlayer: function() {

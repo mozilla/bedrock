@@ -24,7 +24,6 @@ from rna.models import Release
 
 from bedrock.firefox import version_re
 from bedrock.firefox.forms import SMSSendForm
-from bedrock.mozorg.context_processors import funnelcake_param
 from bedrock.mozorg.decorators import cache_control_expires
 from bedrock.mozorg.views import process_partnership_form
 from bedrock.mozorg.helpers.misc import releasenotes_url
@@ -462,8 +461,6 @@ class WhatsnewView(LatestFxView):
     def get_template_names(self):
         version = self.kwargs.get('fx_version') or ''
         locale = l10n_utils.get_locale(self.request)
-        fc_ctx = funnelcake_param(self.request)
-        f = fc_ctx.get('funnelcake_id', 0)
         oldversion = self.request.GET.get('oldversion', '')
         # old versions of Firefox sent a prefixed version
         if oldversion.startswith('rv:'):

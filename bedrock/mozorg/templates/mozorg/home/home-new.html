@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% from "macros.html" import anniversary_video with context %}
+
 {% extends "mozorg/base-resp.html" %}
 
 {% add_lang_files "mozorg/home/index" %}
@@ -95,28 +97,40 @@
   <section class="promo-grid-wrapper">
     <div class="promo-grid-inner">
       <ul class="promo-grid {% if tweets %}has-twitter-promo{% endif %}">
-        {# L10n: Begin home page promos. Line breaks are for visual formatting only. #}
+      {# L10n: Begin home page promos. Line breaks are for visual formatting only. #}
+      {% if l10n_has_tag('fx10_independent') or settings.DEV %}
+        <li id="promo-1" class="item promo-large-portrait firefox-independent" data-name="Firefox: The indepedent choice" tabindex="0">
+          <h2 class="primary go">{{ _('Firefox: The independent choice') }}</h2>
+          <a class="panel-link" href="{{ url('firefox.independent') }}#play">
+            <div class="secondary">
+              <h3>{{ _('Help us celebrate 10 years of choice and independence online.') }}</h3>
+              <p class="more">{{ _('Watch our video') }}</p>
+            </div>
+          </a>
+        </li>
+      {% else %}
         {% if LANG in ['en-US'] %}
-          <li id="promo-1" class="item promo-large-portrait open-standard" data-name="Introducing the Open Standard" tabindex="0">
-            <h2 class="primary go">{{ _('Introducing <em>The Open Standard</em>') }}</h2>
-            <a class="panel-link" href="https://openstandard.mozilla.org/">
-              <div class="secondary">
-                <h3>{{ _('Read our brand new online publication about all things open.') }}</h3>
-                <p class="more">{{ _('Visit the Open Standard') }}</p>
-              </div>
-            </a>
-          </li>
+        <li id="promo-1" class="item promo-large-portrait open-standard" data-name="Introducing the Open Standard" tabindex="0">
+          <h2 class="primary go">{{ _('Introducing <em>The Open Standard</em>') }}</h2>
+          <a class="panel-link" href="https://openstandard.mozilla.org/">
+            <div class="secondary">
+              <h3>{{ _('Read our brand new online publication about all things open.') }}</h3>
+              <p class="more">{{ _('Visit the Open Standard') }}</p>
+            </div>
+          </a>
+        </li>
         {% else %}
-          <li id="promo-1" class="item promo-large-portrait mission" data-name="Discover what drives our mission" tabindex="0">
-            <h2 class="primary go">{{ _('Discover <br>what drives our mission') }}</h2>
-            <a class="panel-link" href="{{ url('mozorg.about.manifesto') }}">
-              <div class="secondary">
-                <h3>{{ _('See the principles <br>that guide everything <br>we do.') }}</h3>
-                <p class="more">{{ _('Read the <br>Mozilla Manifesto') }}</p>
-              </div>
-            </a>
-          </li>
+        <li id="promo-1" class="item promo-large-portrait mission" data-name="Discover what drives our mission" tabindex="0">
+          <h2 class="primary go">{{ _('Discover <br>what drives our mission') }}</h2>
+          <a class="panel-link" href="{{ url('mozorg.about.manifesto') }}">
+            <div class="secondary">
+              <h3>{{ _('See the principles <br>that guide everything <br>we do.') }}</h3>
+              <p class="more">{{ _('Read the <br>Mozilla Manifesto') }}</p>
+            </div>
+          </a>
+        </li>
         {% endif %}
+      {% endif %}
         <li id="promo-2" class="item promo-small-landscape privacy" data-name="Understand your privacy online">
           <a class="panel-link" href="{{ url('privacy.privacy-day') }}">
             <h2>{{ _('Understand your privacy online') }}</h2>
@@ -138,6 +152,29 @@
             <a class="fxos-link" href="{{ url('firefox.desktop.index') }}">{{ _('Learn more') }}</a>
           </div>
         </li>
+      {% if l10n_has_tag('fx10_independent') or settings.DEV %}
+        {% if LANG in ['en-US'] %}
+        <li id="promo-6" class="item promo-large-landscape open-standard" data-name="Open is better" tabindex="0">
+          <h2 class="primary go">{{ _('Open is better') }}</h2>
+          <a class="panel-link" href="https://openstandard.mozilla.org/">
+            <div class="secondary">
+              <h3>{{ _('Read our online publication <br>about all things open.') }}</h3>
+              <p class="more">{{ _('Visit the Open Standard') }}</p>
+            </div>
+          </a>
+        </li>
+        {% else %}
+        <li id="promo-6" class="item promo-large-landscape mission" data-name="Discover what drives our mission" tabindex="0">
+          <h2 class="primary go">{{ _('Discover <br>what drives our mission') }}</h2>
+          <a class="panel-link" href="{{ url('mozorg.about.manifesto') }}">
+            <div class="secondary">
+              <h3>{{ _('See the principles <br>that guide everything <br>we do.') }}</h3>
+              <p class="more">{{ _('Read the <br>Mozilla Manifesto') }}</p>
+            </div>
+          </a>
+        </li>
+        {% endif %}
+      {% else %}
         <li id="promo-6" class="item promo-large-landscape webmaker" tabindex="0" data-name="Teach the Web">
           <h2 class="primary go">{{ _('Teach the Web') }}</h2>
           <a class="panel-link" rel="external" href="https://webmaker.org/">
@@ -147,19 +184,39 @@
             </div>
           </a>
         </li>
+      {% endif %}
         <li id="promo-7" class="item promo-face">
           {{ promo_face(3) }}
         </li>
+      {% if l10n_has_tag('fx10_independent') or settings.DEV %}
+        <li id="promo-8" class="item promo-small-landscape webmaker" data-name="Become a Webmaker">
+          <a class="panel-link" rel="external" href="https://webmaker.org">
+            <h2>{{ _('Become a Webmaker') }}</h2>
+          </a>
+        </li>
+      {% else %}
         <li id="promo-8" class="item promo-small-landscape appmaker" data-name="Build an app in seconds">
           <a class="panel-link" rel="external" href="https://webmaker.org/appmaker">
             <h2>{{ _('Build an app <br>in seconds') }}</h2>
           </a>
         </li>
+      {% endif %}
         <li id="promo-9" class="item promo-small-landscape volunteer" data-name="Volunteer with Mozilla">
           <a class="panel-link" href="{{ url('mozorg.contribute') }}">
             <h2>{{ _('Volunteer <br>with Mozilla') }}</h2>
           </a>
         </li>
+      {% if l10n_has_tag('fx10_independent') or settings.DEV %}
+        <li id="promo-10" class="item promo-large-portrait firefox-developer" tabindex="0" data-name="Introducing Firefox Developer Edition">
+          <h2 class="primary go">{{ _('Introducing Firefox Developer Edition') }}</h2>
+          <a class="panel-link" href="#TODO">
+            <div class="secondary">
+              <h3>{{ _('The only browser made only for developers.') }}</h3>
+              <p class="more">{{ _('Get Firefox Developer Edition') }}</p>
+            </div>
+          </a>
+        </li>
+      {% else %}
         <li id="promo-10" class="item promo-large-portrait firefox-android" tabindex="0" data-name="Put your Firefox on your Android">
           <h2 class="primary go">{{ _('Put your Firefox on your Android') }}</h2>
           <a class="panel-link" href="{{ url('firefox.android.index') }}">
@@ -169,6 +226,7 @@
             </div>
           </a>
         </li>
+      {% endif %}
         <li id="promo-11" class="item promo-large-landscape support" tabindex="0" data-name="Help Mozilla users">
           <h2 class="primary go">{{ _('Help Mozilla users') }}</h2>
           <a class="panel-link" rel="external" href="https://support.mozilla.org/get-involved">
@@ -296,6 +354,22 @@
 
   <button id="scroll-prompt">{{ _('Discover more') }}</button>
 </main>
+
+{% if l10n_has_tag('fx10_independent') or settings.DEV %}
+<article id="fx10-splash">
+  <div class="container">
+    <h2 class="main-title">{{ _('Choose Independent') }}</h2>
+    <h3 class="sub-title">{{ _('Help us celebrate 10 years of Firefox.') }}</h3>
+    {{ anniversary_video('play', 'share', True) }}
+  </div>
+  <button class="close" type="button">{{ _('Continue to mozilla.org') }}</button>
+
+  <div class="logo"></div>
+  <div class="tail-middle"></div>
+  <div class="tail-end"></div>
+</article>
+<div id="fx10-overlay"></div>
+{% endif %}
 
 {% endblock %}
 
