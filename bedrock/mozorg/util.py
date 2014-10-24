@@ -147,3 +147,25 @@ def TwitterAPI(account):
     auth.set_access_token(keys['ACCESS_TOKEN'], keys['ACCESS_TOKEN_SECRET'])
 
     return tweepy.API(auth)
+
+
+def get_tweets(account):
+    """Return a list of twitter status objects for an account.
+
+    :param account: twitter account to retrieve.
+    :returns: list of Status objects or None on error.
+    """
+    # API Docs https://dev.twitter.com/rest/reference/get/statuses/user_timeline
+    account_opts = {
+        'screen_name': account,
+        'include_rts': True,
+        'exclude_replies': True,
+        # set this high because replies are excluded
+        # after count is retrieved.
+        'count': 100,
+    }
+    account_opts.update(settings.TWITTER_ACCOUNT_OPTS.get(account, {}))
+    try:
+        return TwitterAPI(account).user_timeline(**account_opts)
+    except Exception:
+        return None

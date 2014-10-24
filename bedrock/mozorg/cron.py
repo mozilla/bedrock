@@ -9,7 +9,7 @@ import cronjobs
 import feedparser
 
 from bedrock.mozorg.models import TwitterCache
-from bedrock.mozorg.util import TwitterAPI
+from bedrock.mozorg.util import get_tweets
 
 
 @cronjobs.register
@@ -24,10 +24,7 @@ def update_feeds():
 @cronjobs.register
 def update_tweets():
     for account in settings.TWITTER_ACCOUNTS:
-        try:
-            tweets = TwitterAPI(account).user_timeline(screen_name=account)
-        except Exception:
-            tweets = None
+        tweets = get_tweets(account)
 
         if tweets:
             account_cache, created = TwitterCache.objects.get_or_create(

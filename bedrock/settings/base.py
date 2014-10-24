@@ -955,6 +955,9 @@ TWITTER_ACCOUNTS = (
     'firefoxbrasil',
     'mozstudents',
 )
+# Add optional parameters specific to accounts here
+# e.g. 'firefox': {'exclude_replies': False}
+TWITTER_ACCOUNT_OPTS = {}
 
 # Contribute numbers
 # TODO: automate these

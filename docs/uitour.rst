@@ -28,15 +28,19 @@ Local development
 To develop or test using Mozilla.UITour locally you need to create some custom
 preferences in ``about:config``.
 
-* ``browser.uitour.testingOrigins`` (string) (value: local address e.g. ``127.0.0.1:8000``)
+* ``browser.uitour.testingOrigins`` (string) (value: local address e.g. ``http://127.0.0.1:8000``)
 * ``browser.uitour.requireSecure`` (boolean) (value: ``false``)
 
-Then restart Firefox and the API should work.
+Note that ``browser.uitour.testingOrigins`` can be a comma separated list of domains, e.g.
+
+    'http://127.0.0.1:8000, https://www-demo2.allizom.org'
 
 .. Important::
 
-    Prior to Firefox 36, the testing preference was called
-    ``browser.uitour.whitelist.add.testing`` (Bug 1081772)
+    Prior to Firefox 36, the testing preference was called ``browser.uitour.whitelist.add.testing``
+    (Bug 1081772). This old preference does not accept a comma separated list of domains, and you
+    must also exclude the domain protocol e.g. ``https://``. A browser restart is also required
+    after adding a whitelisted domain.
 
 JavaScript API
 --------------
@@ -79,6 +83,7 @@ Target types:
 * ``'urlbar'``
 * ``'loop'``
 * ``'forget'``
+* ``'privateWindow'``
 
 Effect types:
 
@@ -127,8 +132,7 @@ Displays a customizable information panel pointing to a given target:
 
 Available targets:
 
-* ``'appMenu'``
-* ``'bookmarks'``
+Any target that can be highlighted can have an information panel attached.
 
 Additional parameters:
 
@@ -158,6 +162,36 @@ Hides the currently visible info panel:
 .. code-block:: javascript
 
     Mozilla.UITour.hideInfo();
+
+showMenu(target, callback)
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Opens a targeted menu in the browser chrome.
+
+.. code-block:: javascript
+
+    Mozilla.UITour.showMenu('appMenu', function() {
+        console.log('menu was opened');
+    });
+
+Available targets:
+
+* ``'appMenu'``
+* ``'bookmarks'``
+* ``'searchEngines'``
+
+Optional parameters:
+
+* ``callback`` function to be called when the menu was sucessfully opened.
+
+hideMenu(target)
+^^^^^^^^^^^^^^^^
+
+.. code-block:: javascript
+
+    Mozilla.UITour.hideMenu('appMenu');
+
+Closes a menu panel.
 
 previewTheme(theme)
 ^^^^^^^^^^^^^^^^^^^
