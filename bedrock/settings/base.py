@@ -249,6 +249,10 @@ MINIFY_BUNDLES = {
             'css/libs/mapbox-1.6.3.css',
             'css/firefox/geolocation.less'
         ),
+        'firefox_developer': (
+            'css/base/mozilla-modal.less',
+            'css/firefox/developer.less',
+        ),
         'firefox_new': (
             'css/libs/socialshare/socialshare.less',
             'css/firefox/new.less',
@@ -589,6 +593,10 @@ MINIFY_BUNDLES = {
         'firefox_desktop_trust': (
             'js/libs/jquery.waypoints.min.js',
             'js/firefox/desktop/common.js',
+        ),
+        'firefox_developer': (
+            'js/firefox/developer.js',
+            'js/base/mozilla-modal.js',
         ),
         'firefox_firstrun': (
             'js/base/mozilla-modal.js',
