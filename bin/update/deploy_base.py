@@ -28,6 +28,11 @@ def management_cmd(ctx, cmd):
 
 
 @task
+def reload_crond(ctx):
+    ctx.local("killall -SIGHUP crond")
+
+
+@task
 def update_code(ctx, tag):
     with ctx.lcd(settings.SRC_DIR):
         ctx.local("git fetch")
@@ -127,6 +132,7 @@ def update(ctx):
     commands['update_assets']()
     commands['update_locales']()
     commands['update_revision_file']()
+    commands['reload_crond']()
 
 
 @task
