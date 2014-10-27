@@ -26,7 +26,7 @@ BEDROCK_DEPLOY=/data/bedrock-stage/deploy
 #0 * * * * * root cd /data/www.allizom.org-django/bedrock; python manage.py --settings=settings/memcache-scl3.py cron update_feeds 2>&1 1> /dev/null | grep -v 'old-style Playdoh layout'"
 
 # bug 1072999
-41 * * * * root cd /data/bedrock-stage/src/www.allizom.org-django/bedrock; python manage.py update_security_advisories --quiet > /dev/null 2>&1
+41 * * * * root cd $BEDROCK; python manage.py update_security_advisories --quiet
 
 # bug 1087533
 # TODO: redirect output to null after initial deployment and verification
