@@ -12,6 +12,7 @@ mock==1.0.1
 pyquery==1.0
 factory_boy==2.2.1
 coverage==3.6
+chkcrontab==1.6
 
 # L10n
 translate-toolkit==1.8.0

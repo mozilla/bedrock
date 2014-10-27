@@ -2,17 +2,9 @@ MAILTO="webops-cron@mozilla.com,cron-bedrock@mozilla.com"
 0-59/10 * * * * root /data/bedrock-dev/src/update-www-dev.allizom.org.sh
 1-59/10 * * * * root /data/bedrock-dev/src/update-www-dev.allizom.org-django.sh
 0       * * * * root cd /data/bedrock-dev/src/www-dev.allizom.org-django/bedrock; python manage.py cron update_feeds > /dev/null 2>&1
-*/5    * * * * root cd /data/bedrock-dev/src/www-dev.allizom.org-django/bedrock; python manage.py rnasync > /dev/null 2>&1 
+*/5    * * * * root cd /data/bedrock-dev/src/www-dev.allizom.org-django/bedrock; python manage.py rnasync > /dev/null 2>&1
 
 */15 * * * * root /data/bedrock-dev/src/update-www-dev.allizom.org-svn-locale.sh
 
 # bug 1014586
 3 */2 * * * root cd /data/bedrock-dev/src/www-dev.allizom.org-django/bedrock; python manage.py cron update_tweets > /dev/null 2>&1
-
-# bug 1072999
-1 11 * * * root cd /data/bedrock-dev/src/www-dev.allizom.org-django/bedrock; python manage.py update_security_advisories --quiet > /dev/null 2>&1
-1 16 * * * root cd /data/bedrock-dev/src/www-demo1.allizom.org-django/bedrock; python manage.py update_security_advisories --quiet > /dev/null 2>&1
-1 21 * * * root cd /data/bedrock-dev/src/www-demo2.allizom.org-django/bedrock; python manage.py update_security_advisories --quiet > /dev/null 2>&1
-1 26 * * * root cd /data/bedrock-dev/src/www-demo3.allizom.org-django/bedrock; python manage.py update_security_advisories --quiet > /dev/null 2>&1
-1 31 * * * root cd /data/bedrock-dev/src/www-demo4.allizom.org-django/bedrock; python manage.py update_security_advisories --quiet > /dev/null 2>&1
-1 36 * * * root cd /data/bedrock-dev/src/www-demo5.allizom.org-django/bedrock; python manage.py update_security_advisories --quiet > /dev/null 2>&1
