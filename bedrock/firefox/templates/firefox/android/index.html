@@ -50,6 +50,14 @@
         <a class="dl-button" rel="external" href="https://play.google.com/store/apps/details?id=org.mozilla.firefox&amp;utm_source=mozilla&amp;utm_medium=Referral&amp;utm_campaign=mozilla-org">
           {{ _('Download on Google Play') }}
         </a>
+
+        {#
+          This sms-link will only be shown to en-US visitors for the foreseeable future,
+          so not wrapped for localization (yet).
+        #}
+        <p id="sms-link">
+          <a href="{{ url('firefox.sms') }}">Text a download link to my Android phone</a>
+        </p>
       </div>
     </div>{# /.content-primary #}
     <div class="content-secondary">

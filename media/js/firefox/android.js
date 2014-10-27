@@ -5,6 +5,8 @@
 ;(function($) {
     'use strict';
 
+    var $html = $('html');
+
     var isOldIE = (/MSIE\s[1-7]\./.test(navigator.userAgent));
 
     // slideshow/accordion variables
@@ -30,6 +32,19 @@
         $('.dl-button-wrapper').hide();
 
         $('#subscribe-wrapper').removeClass('floating');
+    }
+
+    // show SMS link for all desktop users (en-US only for now)
+    if ($html.attr('lang') === 'en-US' && !$html.hasClass('android') && !$html.hasClass('ios') && !$html.hasClass('fxos')) {
+        $.getScript('//geo.mozilla.org/country.js', function() {
+            try {
+                if (geoip_country_code().toLowerCase() === 'us') {
+                    $('#sms-link').fadeIn();
+                }
+            } catch(err) {
+                // no action taken - leave #sms-link hidden
+            }
+        });
     }
 
     // stops any running slideshow
