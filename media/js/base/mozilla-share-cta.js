@@ -5,55 +5,64 @@
 $(function() {
     'use strict';
 
-    var $share = $('#mozilla-share-cta');
-    var $heading = $share.find('h3');
-    var $links = $share.find('ul');
+    var $shares = $('.mozilla-share-cta');
+    var $allLinks = $('.mozilla-share-cta ul');
     var showTimeout;
 
-    $share.css('height', $heading.outerHeight());
+    $shares.each(function(share) {
+        var $this = $(share);
+        $this.css('height', $this.find('h3'));
+    });
 
-    function showLinks() {
+    function showLinks($share) {
+        var $heading = $share.find('h3');
+
         $share.addClass('reveal');
         $heading.addClass('out');
 
         clearTimeout(showTimeout);
         showTimeout = setTimeout(function () {
             $heading.css('visibility', 'hidden');
-            $links.css('visibility', 'visible').addClass('in');
+            $share.find('ul').css('visibility', 'visible').addClass('in');
         }, 200);
     }
 
-    function hideLinks() {
+    function hideLinks($share) {
+        var $links = $share.find('ul');
+
         $share.removeClass('reveal');
         $links.removeClass('in');
 
         clearTimeout(showTimeout);
         showTimeout = setTimeout(function () {
             $links.css('visibility', 'hidden');
-            $heading.css('visibility', 'visible').removeClass('out');
+            $share.find('h3').css('visibility', 'visible').removeClass('out');
         }, 200);
     }
 
-    $share.on('mouseenter focusin', function() {
-        if (!$share.hasClass('reveal')) {
-            showLinks();
+    $shares.on('mouseenter focusin', function() {
+        var $this = $(this);
+        if (!$this.hasClass('reveal')) {
+            showLinks($this);
         }
     });
 
-    $share.on('mouseleave', function() {
-        if ($share.hasClass('reveal')) {
-            hideLinks();
+    $shares.on('mouseleave', function() {
+        var $this = $(this);
+        if ($this.hasClass('reveal')) {
+            hideLinks($this);
         }
     });
 
-    $share.on('focusout', function(e) {
+    $shares.on('focusout', function(e) {
+        var $this = $(this);
         // only toggle state if target is last link in list
-        if ($share.hasClass('reveal') && $(e.target).parent().is('li:last-child')) {
-            hideLinks();
+        if ($this.hasClass('reveal') && $(e.target).parent().is('li:last-child')) {
+            hideLinks($this);
         }
     });
 
-    $links.find('a').on('click', function (e) {
+    $allLinks.find('a').on('click', function (e) {
         var $this = $(this);
         var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
         var href = this.href;
