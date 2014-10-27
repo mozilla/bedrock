@@ -3,6 +3,9 @@ python:
   - "2.6"
 before_script:
   - flake8 bedrock lib
+  - chkcrontab etc/cron.d/bedrock-prod
+  - chkcrontab etc/cron.d/bedrock-stage
+  - chkcrontab etc/cron.d/bedrock-dev
   - mysql -e 'create database bedrock_test;'
   - python manage.py syncdb --noinput --migrate
   - python manage.py update_product_details
@@ -11,6 +14,7 @@ script: coverage run manage.py test
 before_install:
   - git submodule update --init --recursive
 install:
+  - pip install unittest2
   - pip install -r requirements/dev.txt
 after_success:
   # Report coverage results to coveralls.io
