@@ -491,6 +491,12 @@
     }
 }
 
+// reduces right/left padding from 40px to 20px so 'Update your Firefox'
+// string fits on one line (for en-US, at least)
+.download-button.download-button-check-old-fx .download-link .download-content {
+    padding: @baseLine;
+}
+
 // OS detection
 
 .download-button .os_linux,

@@ -20,6 +20,7 @@
 {% set download_class = download_class ~ ' download-button-small' if small else download_class %}
 {% set download_class = download_class ~ ' download-button-noicon' if not icon else download_class %}
 {% set download_class = download_class ~ ' download-button-simple' if simple else download_class %}
+{% set download_class = download_class ~ ' download-button-check-old-fx' if check_old_fx else download_class %}
 
 <div id="{{ id }}" class="{{ download_class }}">
   {% if show_desktop %}

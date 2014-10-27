@@ -162,7 +162,7 @@ def android_builds(build, builds=None):
 def download_firefox(ctx, build='release', small=False, icon=True,
                      mobile=None, dom_id=None, locale=None, simple=False,
                      force_direct=False, force_full_installer=False,
-                     force_funnelcake=False):
+                     force_funnelcake=False, check_old_fx=False):
     """ Output a "download firefox" button.
 
     :param ctx: context from calling template.
@@ -182,6 +182,10 @@ def download_firefox(ctx, build='release', small=False, icon=True,
             the stub installer (for aurora).
     :param force_funnelcake: Force the download version for en-US Windows to be
             'latest', which bouncer will translate to the funnelcake build.
+    :param check_old_fx: Checks to see if the user is on an old version of
+            Firefox and, if true, changes the button text from 'Free Download'
+            to 'Update your Firefox'. Must be used in conjunction with
+            'simple' param being true.
     :return: The button html.
     """
     alt_build = '' if build == 'release' else build
@@ -269,6 +273,7 @@ def download_firefox(ctx, build='release', small=False, icon=True,
         'show_mobile': mobile is not False,
         'show_desktop': mobile is not True,
         'icon': icon,
+        'check_old_fx': check_old_fx and simple,
     }
 
     html = jingo.render_to_string(ctx['request'],
