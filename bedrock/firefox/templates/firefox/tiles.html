@@ -3,13 +3,18 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% extends "/firefox/dashboard-base.html" %}
+{% block site_css %}
+  {{ super() }}
+  {{ css('firefox-tiles') }}
+{% endblock %}
+
 
 {# The contents of the page_title block appears in the:
    1. HTML page title
    3. Breadcrumbs ("Home > Title")
    3. Page title (large headline) 
 #}
-{% block page_title %}{{ _('Lorem ipsum dolor sit amet') }}{% endblock %}
+{% block page_title %}{{ _('A Brand New Tiles Experience') }}{% endblock %}
 
 
 {# The contents of the dashboard_intro block appears at the top of the page
@@ -26,16 +31,47 @@
 #}
 {% block dashboard_intro %}
 
-<p>{% trans %}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur.
-{% endtrans %}</p>
+<p>{{ _('With Enhanced Tiles and Directory Tiles, Firefox provides users easy access to interesting, relevant content, whether it’s the sites they visit most or new sites for them to discover.') }}</p>
 
-<p>{% trans %}
-Pellentesque auctor nisi id magna consequat sagittis. Curabitur dapibus enim sit amet elit pharetra tincidunt feugiat nisl imperdiet. Ut convallis libero in urna ultrices accumsan. Donec sed odio eros. Donec viverra mi quis quam pulvinar at malesuada arcu rhoncus.
-{% endtrans %}</p>
+<h3>{{ _('A Brand New Tiles Experience') }}</h3>
+
+<p>{{ _('With Enhanced Tiles and Directory Tiles, Firefox provides users easy access to interesting, relevant content, whether it’s the sites they visit most or new sites for them to discover.') }}</p>
+
+<h3>{{ _('What are Tiles?') }}</h3>
+
+<p>
+{{ _('When you open a new tab in Firefox, you see several rectangles that link to different websites.') }}
+{{ _('Some people call them squares, windows or bookmarks; we call them Tiles.') }}
+</p>
+
+<h3>{{ _('What are Enhanced Tiles?') }}</h3>
+
+<p>
+{{ _('Existing Firefox users will be offered a set of Enhanced Tiles based on their browsing history.') }}
+{{ _('The Enhanced versions replace the default screenshot with a better image and are displayed only for sites that the user has visited.') }}
+{{ _('The improved image is supplied by the site or partner and can include a logo plus a rollover image.') }}
+{{ _('If you frequent Amazon.com, for example, you might see the Amazon logo or icon, instead of a screenshot.') }}
+</p>
+
+<h3>{{ _('What are Directory Tiles?') }}</h3>
+
+<p>
+{{ _('New Firefox users are initially given a set of Directory Tiles as suggestions for sites that may be of interest to them.') }}
+{{ _('Instead of displaying a blank set of Tiles, Firefox shows content from Mozilla and some Mozilla partners.') }}
+{{ _('All partner content is marked as “sponsored” and users have complete control to edit or remove any Tile.') }}
+</p>
+
+<h3>{{ _('Respects your privacy') }}</h3>
+
+<p>
+{{ _('As with all Mozilla products, Tiles provide users with extensive control over their personal data.') }}
+{{ _('Data collection is limited to the aggregate number of impressions, clicks and Tile placement.') }}
+{{ _('Nothing is ever personally identifiable. In other words, we don’t know who clicks on what.') }}
+{{ _('We just know the total number of views and clicks an individual Tile receives. This helps us deliver the most interesting and relevant content.') }}
+{{ _('You can deactivate click and impression tracking by clicking on the gear icon on the top right corner of the new tab page, and selecting Classic to show only unenhanced History Tiles or Blank mode.') }}
+</p>
 
 {% endblock %}
-
 
 {# The contents of the dashboard_faq block appears below the intro. For each question/answer
    use the following format:
@@ -55,33 +91,61 @@ Pellentesque auctor nisi id magna consequat sagittis. Curabitur dapibus enim sit
 
 {% block dashboard_faq %}
 <section id="faq" class="accordion accordion-auto-init zebra">
-<h2>{{ _('Lorem ipsum dolor sit amet') }}</h2>
+
+<h2>{{ _('Frequently Asked Questions') }}</h2>
 
 <section>
-  <h3 data-accordion-role="tab">{{ _('Suspendisse lectus leo?') }}</h3>
+  <h3 data-accordion-role="tab">{{ _('Are you tracking users now?') }}</h3>
   <div data-accordion-role="tabpanel">
     <p>
       {% trans %}
-        Suspendisse lectus leo, consectetur in tempor sit amet, placerat quis neque. Etiam luctus porttitor lorem, sed suscipit est rutrum non. Curabitur lobortis nisl a enim congue semper. Aenean commodo ultrices imperdiet. Vestibulum ut justo vel sapien venenatis tincidunt. Phasellus eget dolor sit amet ipsum dapibus condimentum vitae quis lectus. Aliquam ut massa in turpis dapibus convallis. Praesent elit lacus, vestibulum at malesuada et, ornare et est. Ut augue nunc, sodales ut euismod non, adipiscing vitae orci.
+        We only collect data from the New Tab page in aggregate form, meaning no data is personally identifiable.
       {% endtrans %}
     </p>
   </div>
 </section>
 
 <section>
-  <h3 data-accordion-role="tab">{{ _('Adipiscing vitae orci?') }}</h3>
+  <h3 data-accordion-role="tab">{{ _('What data is being collected?') }}</h3>
   <div data-accordion-role="tabpanel">
     <p>
       {% trans %}
-        Suspendisse lectus leo, consectetur in tempor sit amet, placerat quis neque. Etiam luctus porttitor lorem, sed suscipit est rutrum non. Curabitur lobortis nisl a enim congue semper. Aenean commodo ultrices imperdiet. Vestibulum ut justo vel sapien venenatis tincidunt. Phasellus eget dolor sit amet ipsum dapibus condimentum vitae quis lectus. Aliquam ut massa in turpis dapibus convallis. Praesent elit lacus, vestibulum at malesuada et, ornare et est. Ut augue nunc, sodales ut euismod non, adipiscing vitae orci.
+        Aggregate data from the New Tab page includes impressions, clicks and tile placement.
       {% endtrans %}
     </p>
+  </div>
+</section>
+
+<section>
+  <h3 data-accordion-role="tab">{{ _('What data is collected when I opt out?') }}</h3>
+  <div data-accordion-role="tabpanel">
+    <p>
+      {% trans %}
+        No data is collected when a user chooses to opt out of the enhanced Tiles experience.
+      {% endtrans %}
+    </p>
+  </div>
+</section>
+
+<section>
+  <h3 data-accordion-role="tab">{{ _('Where can I learn more?') }}</h3>
+  <div data-accordion-role="tabpanel">
+    <ul>
+      <li><a href="https://blog.mozilla.org/futurereleases/2014/09/04/new-tab-page-experiments-in-firefox-beta/">
+        {{ _('New Tab Experiments in Firefox Beta') }}
+      </a></li>
+      <li><a href="https://blog.mozilla.org/advancingcontent/2014/08/21/a-call-for-trust-transparency-and-user-control-in-advertising/">
+        {{ _('A Call for Trust, Transparency and User Control in Advertising') }}
+      </a></li>
+      <li><a href="https://blog.mozilla.org/netpolicy/2014/08/21/trust-should-be-the-currency/">
+        {{ _('Trust should be the currency') }}
+      </a></li>
+    </ul>
   </div>
 </section>
 
 </section><!-- end #faq -->
 {% endblock %}
-
 
 
 {# The contents of the dashboard_sidebar_contents block appears in a right-column in desktop browsers
@@ -90,10 +154,13 @@ Pellentesque auctor nisi id magna consequat sagittis. Curabitur dapibus enim sit
 
 {% block dashboard_sidebar_contents %}
 
-<h4>{{ _('Lorem ipsum dolor sit amet') }}</h4>
+<h4>{{ _('Tiles Preferences') }}</h4>
+
+<img src="{{ media('/img/firefox/tiles/new-tab-enhanced.png') }}" alt="{{ _('Screenshot') }}" }}" />
+
 <p>
-  {% trans %}
-  Suspendisse lectus leo, consectetur in tempor sit amet, placerat quis neque. Etiam luctus porttitor lorem, sed suscipit est rutrum non. Curabitur lobortis nisl a enim congue semper. Aenean commodo ultrices imperdiet. Vestibulum ut justo vel sapien venenatis tincidunt. Phasellus eget dolor sit amet ipsum dapibus condimentum vitae quis lectus. Aliquam ut massa in turpis dapibus convallis. Praesent elit lacus, vestibulum at malesuada et, ornare et est. Ut augue nunc, sodales ut euismod non, adipiscing vitae orci.
+  {% trans url='https://support.mozilla.org/kb/how-do-tiles-work-firefox' %}
+  For more help please see the <a href="{{ url }}">Tiles Support Page</a>
   {% endtrans %}
 </p>
 

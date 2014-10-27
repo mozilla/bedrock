@@ -227,6 +227,9 @@ MINIFY_BUNDLES = {
             'css/sandstone/video-resp.less',
             'css/firefox/mobile-sms.less',
         ),
+        'firefox-tiles': (
+            'css/firefox/tiles.less',
+        ),
         'firefox_faq': (
             'css/firefox/faq.less',
             'css/firefox/template-resp.less',
