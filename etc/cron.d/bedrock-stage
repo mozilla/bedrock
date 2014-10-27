@@ -13,7 +13,7 @@ BEDROCK_DEPLOY=/data/bedrock-stage/deploy
 # not completely sure how I want to solve this yet
 #
 # run the crons from the admin node, but on the web nodes... does extra work, but works
-0 * * * * *  root echo "cd /data/www/www.allizom.org-django/bedrock; python manage.py cron update_feeds | /usr/bin/issue-multi-command bedrock-stage
+#0 * * * * *  root echo "cd /data/www/www.allizom.org-django/bedrock; python manage.py cron update_feeds | /usr/bin/issue-multi-command bedrock-stage
 */5    * * * * root cd /data/bedrock-stage/src/www.allizom.org-django/bedrock; python manage.py rnasync > /dev/null 2>&1
 
 # bug 996144
