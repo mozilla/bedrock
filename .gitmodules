@@ -55,3 +55,6 @@
 [submodule "vendor-local/src/icalendar"]
 	path = vendor-local/src/icalendar
 	url = git://github.com/collective/icalendar.git
+[submodule "vendor-local/src/chkcrontab"]
+	path = vendor-local/src/chkcrontab
+	url = git://github.com/lyda/chkcrontab.git
