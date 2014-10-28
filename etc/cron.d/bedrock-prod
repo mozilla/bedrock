@@ -1,6 +1,6 @@
 MAILTO="webops-cron@mozilla.com,cron-bedrock@mozilla.com"
 BEDROCK=/data/bedrock/src/www.mozilla.org-django/bedrock
-DEPLOY=/data/bedrock/deploy
+BEDROCK_DEPLOY=/data/bedrock/deploy
 # TODO: update rest of cron jobs to use the above env variables
 
 # webdev requests that prod auto-updates the PHP side, for similar to old
