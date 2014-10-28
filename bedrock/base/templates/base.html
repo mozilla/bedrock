@@ -2,7 +2,7 @@
 <!doctype html>
 {# Note the "windows" class, without javascript platform-specific
      assets default to windows #}
-<html class="windows x86 no-js" lang="{{ LANG }}" dir="{{ DIR }}"{% block html_attrs %}{% endblock %}>
+<html class="windows x86 no-js" lang="{{ LANG }}" dir="{{ DIR }}" data-latest-firefox="{{ latest_firefox_version }}" data-esr-versions="{{ esr_firefox_versions }}">
   <head>
     <meta charset="utf-8">{# Note: Must be within first 512 bytes of page #}
 

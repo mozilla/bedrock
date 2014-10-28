@@ -4,8 +4,6 @@
 
 {% extends "base-resp.html" %}
 
-{% block html_attrs %}{{ super() }} data-latest-firefox="{{ latest_firefox_version }}" data-esr-versions="{{ esr_firefox_versions }}"{% endblock %}
-
 {% block body_class %}sky{% endblock %}
 
 {% block page_title_prefix %}Mozilla Firefox OS — {% endblock %}
