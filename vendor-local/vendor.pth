@@ -23,3 +23,4 @@ src/tweepy
 src/mdx_outline
 src/legal-docs
 src/icalendar/src
+src/chkcrontab
