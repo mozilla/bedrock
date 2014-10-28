@@ -1,0 +1,134 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@font-face {
+  font-family: 'Font Awesome';
+  src: url('/media/fonts/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
+       url('/media/fonts/fontawesome-webfont.woff') format('woff'),
+       url('/media/fonts/fontawesome-webfont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+#mozilla-share-cta {
+    position: relative;
+    width: 296px;
+    background: #0c99d5;
+    color: #fff;
+    border: 2px solid #9ed6ee;
+    border-radius: 8px;
+    overflow: hidden;
+    -webkit-transition: background .2s ease-in-out;
+            transition: background .2s ease-in-out;
+
+    &:hover,
+    &:focus {
+        background: lighten(#0c99d5, 2%);
+    }
+
+    h3 {
+        display: block;
+        width: 256px;
+        padding: 1em 20px;
+        margin: 0;
+        color: #fff;
+        font-size: 18px;
+        text-transform: uppercase;
+        border: none;
+        background: none;
+        text-align: center;
+        visibility: visible;
+        text-shadow: none;
+        font-family: 'Open Sans', sans-serif;
+        opacity: 1;
+        -webkit-transition: opacity .2s ease-in-out;
+                transition: opacity .2s ease-in-out;
+
+        &:before {
+            font-family: 'Font Awesome';
+            content: '\f1e0\00A0\00A0';
+            text-shadow: none;
+        }
+    }
+
+    ul {
+        display: table;
+        position: relative;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        visibility: hidden;
+
+        li {
+            display: table-cell;
+            width: 33.3%;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            vertical-align: middle;
+            opacity: 0;
+            -webkit-transition: opacity .2s ease-in-out;
+                    transition: opacity .2s ease-in-out;
+
+            a {
+                color: #fff;
+                font-size: 0;
+
+                &:before {
+                    font-family: 'Font Awesome';
+                    font-size: 28px;
+                    opacity: 0.9;
+                    padding-top: 1px;
+                    text-shadow: none;
+                    -webkit-font-smoothing: antialiased;
+                    -webkit-transition: opacity .2s ease-in-out;
+                            transition: opacity .2s ease-in-out;
+                }
+
+                &.twitter:before {
+                    content: '\f099\00A0';
+                }
+
+                &.facebook:before {
+                    content: '\f09a\00A0';
+                }
+
+                &.g-plus:before {
+                    content: '\f0d5\00A0';
+                }
+
+                &:hover,
+                &:focus {
+                    text-decoration: none;
+
+                    &:before {
+                        text-shadow: none;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.js #mozilla-share-cta {
+    h3 {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+
+.js #mozilla-share-cta {
+    h3.out {
+        opacity: 0;
+        -webkit-transition: opacity .2s ease-in-out;
+                transition: opacity .2s ease-in-out;
+    }
+    ul.in li {
+        opacity: 1;
+    }
+}
