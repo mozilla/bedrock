@@ -798,20 +798,21 @@ html[dir="rtl"] #phone-wrapper figure {
     #intro-android {
         width: 179px;
         height: 176px;
-        top: 180px;
-        right: 180px;
+        top: 220px;
+        right: 150px;
     }
 
     html[dir="rtl"] {
         #intro-android {
-            .transform(translateX(-40px) rotateY(180deg));
+            .transform(translateX(-60px) rotateY(180deg));
         }
 
         &.js #intro-android {
-            .transform(translateX(-150px) rotateY(180deg));
+            .transform(translateX(-60px) rotateY(180deg));
 
             &.hello {
-                .transform(translateX(-40px) rotateY(180deg));
+                .transform(translateX(-60px) rotateY(180deg));
+                .animation(none);
             }
         }
     }

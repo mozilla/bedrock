@@ -909,6 +909,31 @@
 }
 
 /****************************************************************************/
+// Firefox Android
+.promo-large-portrait.firefox-android {
+    background: #00af84;
+
+    h2 {
+        padding: 110px @baseLine 0 @baseLine;
+        margin-top: @baseLine * 2;
+        background-image: url(/media/img/home/voices/promos/android/dude.png);
+        background-position: top center;
+        background-repeat: no-repeat;
+        .background-size(71px, 82px);
+    }
+}
+
+.lang-en-US,
+.lang-en-GB,
+.lang-en-ZA {
+    .promo-large-portrait.firefox-android {
+        h3 {
+            padding: (@baseLine * 4) @baseLine 0 @baseLine;
+        }
+    }
+}
+
+/****************************************************************************/
 // Twitter
 .promo-small-landscape.twt {
     width: 300px;
@@ -1629,6 +1654,13 @@
         h2 {
             background-image: url(/media/img/home/voices/promos/firefox/firefox-logo-high-res.png);
             .background-size(101px, 98px);
+        }
+    }
+
+    // Firefox Android
+    .promo-large-portrait.firefox-android {
+        h2 {
+            background-image: url(/media/img/home/voices/promos/android/dude-high-res.png);
         }
     }
 
