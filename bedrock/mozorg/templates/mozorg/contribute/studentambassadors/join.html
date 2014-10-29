@@ -33,6 +33,7 @@
     {{ csrf() }}
     <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
       <div class="form-column">
+        {{ form.non_field_errors()|safe }}
         <section class="about-you">
           <h3>{{ _('Information about You') }}</h3>
           <div class="field required">
