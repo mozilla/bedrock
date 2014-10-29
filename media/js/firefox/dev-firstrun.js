@@ -5,4 +5,18 @@
 ;(function($, Mozilla) {
     'use strict';
 
+    $('a.video-play').attr('role', 'button').click(function(e) {
+        e.preventDefault();
+
+        var $this = $(this);
+
+        Mozilla.Modal.createModal(this, $this.nextAll('.video'), {
+            // grab the nearby h4 tag as the modal window title
+            title: $this.siblings('h4,h2').text(),
+            onCreate: function() {
+                $("#modal").fitVids();
+            }
+        });
+    });
+
 })(window.jQuery, window.Mozilla);

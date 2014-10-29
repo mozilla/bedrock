@@ -11,9 +11,10 @@
 {% endblock %}
 
 {% block page_title_prefix %}{% endblock %}
-{% block page_title %}{{_('Welcome to Firefox Developer Edition.')}}{% endblock %}
+{% block page_title %}{{_('Welcome to Firefox Developer Edition')}}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
 {% block body_id %}firefox-developer-firstrun{% endblock %}
+{% block body_class %}blueprint{% endblock %}
 
 {% block string_data %}
 data-devtools-title="{{ _('Developer Tools') }}"
@@ -30,65 +31,119 @@ data-doorhanger-nothanks="{{ _('No thanks') }}"
 {% endblock %}
 
 {% block site_header_nav %}{% endblock %}
-{% block site_header_logo %}{% endblock %}
+{% block site_header_logo %}
+  <h2>{{ high_res_img('img/firefox/firstrun/dev/title.png', {'alt': _('Firefox Developer Edition'), 'width': '220', 'height': '84'}) }}</h2>
+{% endblock %}
 
 {% block content %}
 
 <main role="main">
-  <section class="top-features">
+  <section class="intro container">
     <header>
-      <h1>{{_('Welcome to Firefox Developer Edition.')}}</h1>
+      <h1>{{_('Welcome to <span>Firefox Developer Edition</span>')}}</h1>
       <p>{{_('Get to know the features that make it the most complete browser for building the Web.')}}</p>
     </header>
-    <ul>
-      <li>
+    <ul class="features">
+      <li class="feature">
+        <a href="https://www.youtube.com/watch?v=Xm5i5kbIXzc" class="video-play">
+          <img src="{{ media('/img/firefox/firstrun/dev/feature-webide.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+        </a>
         <h2>{{_('WebIDE')}}</h2>
         <p>{{_('Develop, deploy and debug Firefox OS apps directly in your browser, or on a Firefox OS device, with this tool that replaces App Manager.')}}</p>
         <a href="#" class="more">{{_('Learn more about WebIDE')}}</a>
+        <div class="video">
+          <iframe width="560" height="315" src="//www.youtube.com/embed/Xm5i5kbIXzc" frameborder="0" allowfullscreen></iframe>
+        </div>
       </li>
-      <li>
+      <li class="feature">
+        <a href="https://www.youtube.com/watch?v=Xm5i5kbIXzc" class="video-play">
+          <img src="{{ media('/img/firefox/firstrun/dev/feature-webide.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+        </a>
         <h2>{{_('Valence')}}</h2>
         <p>{{_('Develop and debug your apps across multiple browsers and devices using this pre-installed extension.')}}</p>
         <a href="#" class="more">{{_('Learn more about Valence')}}</a>
+        <div class="video">
+          <iframe width="560" height="315" src="//www.youtube.com/embed/Xm5i5kbIXzc" frameborder="0" allowfullscreen></iframe>
+        </div>
       </li>
     </ul>
   </section>
 
   <section class="more-features">
-    <h2>{{_('More great features')}}</h2>
-    <p>{{_('Features and tools')}}</p>
-    <ul>
-      <li>
-        <h2>{{_('Page Inspector')}}</h2>
-        <p>{{_('Examine the HTML and CSS of any Web page and easily modify the structure and layout of a page.')}}</p>
-        <a href="#" class="more">{{_('Learn more about Page Inspector')}}</a>
-      </li>
-      <li>
-        <h2>{{_('Web Console')}}</h2>
-        <p>{{_('See logged information associated with a Web page and use Web Console and interact with a Web page using JavaScript.')}}</p>
-        <a href="#" class="more">{{_('Learn more about Web Console')}}</a>
-      </li>
-      <li>
-        <h2>{{_('JavaScript Debugger')}}</h2>
-        <p>{{_('Step through JavaScript code and examine or modify its state to help track down bugs.')}}</p>
-        <a href="#" class="more">{{_('Learn more about JavaScript Debugger')}}</a>
-      </li>
-      <li>
-        <h2>{{_('Network Monitor')}}</h2>
-        <p>{{_('See all the network requests your browser makes, how long each request takes and details of each request.')}}</p>
-        <a href="#" class="more">{{_('Learn more about Network Monitor')}}</a>
-      </li>
-      <li>
-        <h2>{{_('Web Audio Editor')}}</h2>
-        <p>{{_('Inspect and interact with Web Audio API in real time to ensure that all audio nodes are connected in the way you expect.')}}</p>
-        <a href="#" class="more">{{_('Learn more about Web Audio Editor')}}</a>
-      </li>
-      <li>
-        <h2>{{_('Style Editor')}}</h2>
-        <p>{{_('View and edit CSS styles associated with a Web page, create new ones and apply existing CSS stylesheets to any page.')}}</p>
-        <a href="#" class="more">{{_('Learn more about Style Editor')}}</a>
-      </li>
-    </ul>
+    <div class="container">
+      <header>
+        <h2>{{_('More great features')}}</h2>
+        <p>{{_('Features and tools')}}</p>
+      </header>
+      <ul class="features">
+        <li class="feature">
+          <a href="https://www.youtube.com/watch?v=Xm5i5kbIXzc" class="video-play">
+            <img src="{{ media('/img/firefox/firstrun/dev/feature-inspector.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+          </a>
+          <h2>{{_('Page Inspector')}}</h2>
+          <p>{{_('Examine the HTML and CSS of any Web page and easily modify the structure and layout of a page.')}}</p>
+          <a href="#" class="more">{{_('Learn more about Page Inspector')}}</a>
+          <div class="video">
+            <iframe width="560" height="315" src="//www.youtube.com/embed/Xm5i5kbIXzc" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </li>
+        <li class="feature">
+          <a href="https://www.youtube.com/watch?v=Xm5i5kbIXzc" class="video-play">
+            <img src="{{ media('/img/firefox/firstrun/dev/feature-console.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+          </a>
+          <h2>{{_('Web Console')}}</h2>
+          <p>{{_('See logged information associated with a Web page and use Web Console and interact with a Web page using JavaScript.')}}</p>
+          <a href="#" class="more">{{_('Learn more about Web Console')}}</a>
+          <div class="video">
+            <iframe width="560" height="315" src="//www.youtube.com/embed/Xm5i5kbIXzc" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </li>
+        <li class="feature">
+          <a href="https://www.youtube.com/watch?v=Xm5i5kbIXzc" class="video-play">
+            <img src="{{ media('/img/firefox/firstrun/dev/feature-debugger.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+          </a>
+          <h2>{{_('JavaScript Debugger')}}</h2>
+          <p>{{_('Step through JavaScript code and examine or modify its state to help track down bugs.')}}</p>
+          <a href="#" class="more">{{_('Learn more about JavaScript Debugger')}}</a>
+          <div class="video">
+            <iframe width="560" height="315" src="//www.youtube.com/embed/Xm5i5kbIXzc" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </li>
+        <li class="feature">
+          <a href="https://www.youtube.com/watch?v=Xm5i5kbIXzc" class="video-play">
+            <img src="{{ media('/img/firefox/firstrun/dev/feature-network.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+          </a>
+          <h2>{{_('Network Monitor')}}</h2>
+          <p>{{_('See all the network requests your browser makes, how long each request takes and details of each request.')}}</p>
+          <a href="#" class="more">{{_('Learn more about Network Monitor')}}</a>
+          <div class="video">
+            <iframe width="560" height="315" src="//www.youtube.com/embed/Xm5i5kbIXzc" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </li>
+        <li class="feature">
+          <a href="https://www.youtube.com/watch?v=Xm5i5kbIXzc" class="video-play">
+            <img src="{{ media('/img/firefox/firstrun/dev/feature-webaudio.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+          </a>
+          <h2>{{_('Web Audio Editor')}}</h2>
+          <p>{{_('Inspect and interact with Web Audio API in real time to ensure that all audio nodes are connected in the way you expect.')}}</p>
+          <a href="#" class="more">{{_('Learn more about Web Audio Editor')}}</a>
+          <div class="video">
+            <iframe width="560" height="315" src="//www.youtube.com/embed/Xm5i5kbIXzc" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </li>
+        <li class="feature">
+          <a href="https://www.youtube.com/watch?v=Xm5i5kbIXzc" class="video-play">
+            <img src="{{ media('/img/firefox/firstrun/dev/feature-style-editor.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+          </a>
+          <h2>{{_('Style Editor')}}</h2>
+          <p>{{_('View and edit CSS styles associated with a Web page, create new ones and apply existing CSS stylesheets to any page.')}}</p>
+          <a href="#" class="more">{{_('Learn more about Style Editor')}}</a>
+          <div class="video">
+            <iframe width="560" height="315" src="//www.youtube.com/embed/Xm5i5kbIXzc" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </li>
+      </ul>
+    </div>
   </section>
 </main>
 
