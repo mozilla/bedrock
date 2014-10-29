@@ -35,7 +35,7 @@ def reload_crond(ctx):
 @task
 def update_code(ctx, tag):
     with ctx.lcd(settings.SRC_DIR):
-        ctx.local("git fetch")
+        ctx.local("git fetch --all")
         ctx.local("git checkout -f %s" % tag)
         ctx.local("git submodule sync")
         ctx.local("git submodule update --init --recursive")
