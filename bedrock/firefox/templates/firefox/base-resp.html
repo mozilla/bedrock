@@ -20,62 +20,7 @@
 {% endblock %}
 
 {% block site_header_nav %}
-<nav id="nav-main" role="navigation">
-  <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{_('Menu')}}</span>
-  <ul id="nav-main-menu" class="has-submenus">
-    <li class="first" id="nav-main-features"><a href="{{ url('firefox.desktop.index') }}" tabindex="0" aria-owns="nav-main-features-submenu" aria-haspopup="true">{{_('Desktop')}}</a>
-      <ul aria-expanded="false" id="nav-main-features-submenu" class="submenu">
-        <li class="first"><a href="{{ url('firefox.desktop.index') }}" tabindex="-1">{{_('Features')}}</a></li>
-        <li><a href="{{ url('firefox.desktop.customize') }}" tabindex="-1">{{_('Customize')}}</a></li>
-        <li><a href="{{ url('firefox.desktop.fast') }}" tabindex="-1">{{_('Performance')}}</a></li>
-        <li><a href="https://developer.mozilla.org/docs/Tools" tabindex="-1">{{_('Technology')}}</a></li>
-        <li class="last"><a href="{{ url('firefox.desktop.trust') }}" tabindex="-1">{{_('Privacy &amp; Security')}}</a></li>
-      </ul>
-    </li>
-    <li id="nav-main-mobile"><a href="{{ url('firefox.android.index') }}" tabindex="0" aria-owns="nav-main-mobile-submenu" aria-haspopup="true">{{_('Mobile')}}</a>
-      <ul aria-expanded="false" id="nav-main-mobile-submenu" class="submenu">
-        <li class="first"><a href="{{ url('firefox.android.index') }}" tabindex="-1">{{_('Features')}}</a></li>
-        <li><a href="https://addons.mozilla.org/android/" tabindex="-1">{{_('Customize')}}</a></li>
-        <li class="last"><a href="{{ url('firefox.android.faq') }}" tabindex="-1">{{_('FAQ')}}</a></li>
-      </ul>
-    </li>
-    <li id="nav-main-releases" class=""><a href="{{ url('firefox.channel') }}" tabindex="0" aria-owns="nav-main-releases-submenu" aria-haspopup="true">{{_('Releases')}}</a>
-      <ul aria-expanded="false" id="nav-main-releases-submenu" class="submenu">
-        <li class="first"><a href="{{ url('firefox.channel') }}" tabindex="-1">{{_('Overview')}}</a></li>
-        <li><a href="{{ url('firefox.channel') }}#aurora" tabindex="-1">{{_('Firefox Aurora')}}</a></li>
-        <li><a href="{{ url('firefox.channel') }}#beta" tabindex="-1">{{_('Firefox Beta')}}</a></li>
-        <li><a href="{{ url('firefox') }}" tabindex="-1">{{_('Firefox')}}</a></li>
-        <li class="last"><a href="{{ url('firefox.organizations.organizations') }}" tabindex="-1">{{_('Firefox for Organizations')}}</a></li>
-      </ul>
-    </li>
-    <li id="nav-main-addons"><a href="https://addons.mozilla.org/" tabindex="0" aria-owns="nav-main-addons-submenu" aria-haspopup="true">{{_('Add-ons')}}</a>
-      <ul aria-expanded="false" id="nav-main-addons-submenu" class="submenu">
-        <li class="first"><a href="https://addons.mozilla.org/firefox/" tabindex="-1">{{_('Desktop Add-ons')}}</a></li>
-        <li><a href="https://addons.mozilla.org/android/" tabindex="-1">{{_('Mobile Add-ons')}}</a></li>
-        <li class="last"><a href="https://addons.mozilla.org/firefox/themes/" tabindex="-1">{{_('Themes')}}</a></li>
-      </ul>
-      </li>
-      <li id="nav-main-support"><a href="https://support.mozilla.org/" tabindex="0" aria-owns="nav-main-support-submenu" aria-haspopup="true">{{_('Support')}}</a>
-      <ul aria-expanded="false" id="nav-main-support-submenu" class="submenu">
-        <li class="first"><a href="https://support.mozilla.org/products/firefox" tabindex="-1">{{_('Desktop Support')}}</a></li>
-        <li class="last"><a href="https://support.mozilla.org/products/mobile" tabindex="-1">{{_('Mobile Support')}}</a></li>
-      </ul>
-    </li>
-    <li class="last" id="nav-main-about"><a href="/en-US/firefox/about/" tabindex="0" aria-owns="nav-main-about-submenu" aria-haspopup="true">{{_('About')}}</a>
-      <ul aria-expanded="false" id="nav-main-about-submenu" class="submenu">
-        <li class="first"><a href="https://blog.mozilla.org/" tabindex="-1">{{_('Blog')}}</a></li>
-        <li><a href="/en-US/firefox/about/" tabindex="-1">{{_('About Firefox')}}</a></li>
-        <li><a href="/join" tabindex="-1">{{_('Join Mozilla')}}</a></li>
-        <li><a href="/en-US/about/participate/" tabindex="-1">{{_('Participate')}}</a></li>
-        <li><a href="https://blog.mozilla.org/press/" tabindex="-1">{{_('Press Center')}}</a></li>
-        <li><a href="/en-US/firefox/brand/" tabindex="-1">{{_('Brand Toolkit')}}</a></li>
-        <li><a href="https://careers.mozilla.org" tabindex="-1">{{_('Careers')}}</a></li>
-        <li><a href="/en-US/about/partnerships.html" tabindex="-1">{{_('Partnerships')}}</a></li>
-        <li class="last"><a href="{{ url('mozorg.contact.spaces.spaces-landing') }}" tabindex="-1">{{_('Contact Us')}}</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
+  {% include 'firefox/includes/top-menu.html' %}
 {% endblock %}
 
 {% block site_header_logo %}

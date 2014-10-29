@@ -27,5 +27,5 @@ var Mozilla = window.Mozilla || {};
         $phone.one('webkitAnimationEnd MSAnimationEnd animationend', '.passwords', function () {
             $syncAnim.addClass('complete');
         });
-    }
+    };
 })(window.jQuery);

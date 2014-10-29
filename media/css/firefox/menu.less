@@ -27,10 +27,18 @@
             outline: 0;
         }
     }
+}
 
+#nav-main-toggle {
+    display: none;
 }
 
 /* Second-level Menu Items */
+
+// Get rid of uppercasing (specified in sandstone-resp.less)
+#masthead nav .sublink {
+    text-transform: none;
+}
 
 .js #nav-main li.hover ul {
     left: 0;
@@ -101,6 +109,11 @@ body.html-rtl #nav-main li ul {
         }
     }
 
+    hr {
+        height: 5px;
+        margin: 0 auto 5px;
+        width: 170px;
+    }
 }
 /* Currently active menu items */
 

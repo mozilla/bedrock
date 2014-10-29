@@ -4,56 +4,363 @@
 
 {% extends "firefox/base-resp.html" %}
 
-{% block page_title %}{{ _('Firefox for Android') }}{% endblock %}
-{% block page_desc %}{{ _('Get the mobile browser that′s got your back') }}{% endblock %}
-{% block body_id %}mobile-features{% endblock %}
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{ _('Firefox for Android — Mobile Web browser — More ways to customize and protect your privacy') }}{% endblock %}
+{% block page_desc %}{{ _('Only Firefox for Android offers so many ways to make your mobile browsing experience truly your own') }}{% endblock %}
+{% block body_id %}firefox-android{% endblock %}
 
 {% block site_css %}
-  {{ css('mobile_features') }}
+  {{ css('firefox_android') }}
+
+  <!--[if gt IE 9]><!-->
+    {{ css('firefox_sync_anim') }}
+  <!--<![endif]-->
 {% endblock %}
 
-{% block site_header_nav %}{% endblock %}
+{% block site_header %}
+  <header id="masthead">
+    <div class="container">
+      <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{{ settings.TABZILLA_INFOBAR_OPTIONS }}">Mozilla</a>
+
+      {% block site_header_logo %}{% endblock %}
+      {% block site_header_nav %}{% endblock %}
+    </div>
+  </header>
+{% endblock %}
 
 {% block content %}
 
-<div id="main-feature">
-  {{ download_firefox(mobile=True, small=True) }}
-  <hgroup>
-    <h1 class="large">{{_('Firefox for Android')}}</h1>
-    <h2>{{_('Get the mobile browser that′s got your back')}}</h2>
-  </hgroup>
-</div>
+<section id="intro">
+  <div class="container">
+    {{ high_res_img('/img/firefox/android/firefox-android-logo.png', { 'alt': _('Firefox for Android'), 'width': 219, 'height': 82 }) }}
 
-<div id="main-content">
-  <div class="col1">
-    <section id="fast">
-      <h2>{{_('Fast')}}</h2>
-      <p>{{_('Get to the Web quickly with speedy start up and page load times.')}}</p>
-      <p>{{_('Type less, browse more with the <a href="%s">Awesome Bar</a> and <a href="%s">Awesome Screen</a>.')|format('https://support.mozilla.org/kb/use-awesome-screen-search-firefox-android', 'https://support.mozilla.org/kb/use-awesome-screen-search-firefox-android')}}</p>
-      <p>{{_('Browse multiple sites at once, simply and easily, with easy-to-use <a href="%s">tabs.</a>')|format('https://support.mozilla.org/kb/use-awesome-screen-search-firefox-android')}}</p>
-    </section>
+    <div class="content-primary">
+      <h2 class="heading">
+        {{ _('We make it Firefox.') }}
+        {{ _('You make it your own.') }}
+      </h2>
 
-    <section id="safe">
-      <h2>{{_('Safe')}}</h2>
-      <p>{{_('Enjoy the latest security features to easily customize settings for passwords, private data, cookies and more. <a class="more" href="%s">Learn more</a>')|format('https://support.mozilla.org/kb/configure-mobile-privacy-and-security-settings') }}</p>
-      <p class="icon privacy"><span class="img"></span>{{_('Control what you share on the Web with features like <a href="%s">Do Not Track</a>.')|format(url('firefox.dnt')) }}</p>
-      <p>{{_('Browse without worry thanks to built-in <a href="%s">phishing and malware protection.</a>')|format(php_url('/firefox/phishing-protection/'))}}</p>
-    </section>
+      <p class="lead">
+        {{ _('The features you love.') }}
+        {{ _('The privacy you trust.') }}
+        {{ _('Our most customizable Firefox for Android yet.') }}
+      </p>
+
+      <div class="dl-button-wrapper">
+        <a class="dl-button" rel="external" href="https://play.google.com/store/apps/details?id=org.mozilla.firefox&amp;utm_source=mozilla&amp;utm_medium=Referral&amp;utm_campaign=mozilla-org">
+          {{ _('Download on Google Play') }}
+        </a>
+
+        {#
+          This sms-link will only be shown to en-US visitors for the foreseeable future,
+          so not wrapped for localization (yet).
+        #}
+        <p id="sms-link">
+          <a href="{{ url('firefox.sms') }}">Text a download link to my Android phone</a>
+        </p>
+      </div>
+    </div>{# /.content-primary #}
+    <div class="content-secondary">
+      {{ high_res_img('img/firefox/android/phone-intro.png', { 'id': 'intro-phone' }) }}
+      {{ high_res_img('img/firefox/android/the-android.png', { 'id': 'intro-android' }) }}
+    </div>{# /.content-secondary #}
+  </div>{# /.container #}
+</section>
+
+<section id="customize">
+  <button type="button" class="customize-pager" id="customize-prev"></button>
+  <button type="button" class="customize-pager" id="customize-next"></button>
+
+  <div class="container">
+    <h2 class="heading">{{ _('Uniquely yours') }}</h2>
+
+    <p class="lead">
+      {# L10n: Line break below is for visual formatting only. #}
+      {{ _('Only Firefox for Android offers this many ways to make<br> your mobile browsing experience truly your own.') }}
+    </p>
+
+    <div class="content-primary">
+      <div class="accordion zebra" id="customize-accordion">
+        <section class="customize-section" id="broadcast">
+          <h3 data-accordion-role="tab">{{ _('Smarter sharing for all') }}</h3>
+
+          <div data-accordion-role="tabpanel">
+            <p>
+            {% trans %}
+              The most adaptive way to share anything, Quick Share remembers your most recently
+              used apps to help you get the word out just the way you want.
+            {% endtrans %}
+            </p>
+
+            <a rel="external" href="https://www.youtube.com/watch?v=a5nNPf-Uosc&amp;index=12&amp;list=PLA8ABF6B7A66A0C5E">{{ _('See how it works') }}</a>
+
+            <figure>
+              <div class="media-desktop">
+                {{ high_res_img('firefox/android/customize/desktop-sharing.jpg', { 'l10n': True, 'alt': 'Share anything from the Web, using your favorite social sharing apps, directly from within Firefox for Android.'}) }}
+              </div>
+              <div class="media-mobile">
+                {{ high_res_img('firefox/android/customize/mobile-sharing.png', { 'l10n': True, 'alt': 'Share anything from the Web, using your favorite social sharing apps, directly from within Firefox for Android.' }) }}
+              </div>
+            </figure>
+
+            <div class="line"></div>
+          </div>
+        </section>
+        <section class="customize-section" id="addons">
+          <h3 data-accordion-role="tab">{{ _('All your faves, front and center') }}</h3>
+
+          <div data-accordion-role="tabpanel">
+            <p>
+            {% trans %}
+              Customize your Home panels with any Web content you want and access your favorite
+              feeds &mdash; like Instagram and Pocket Hits &mdash; instantly.
+            {% endtrans %}
+            </p>
+
+            <a rel="external" href="https://www.youtube.com/watch?v=alW2g7Gnh6U&amp;list=PLA8ABF6B7A66A0C5E&amp;index=18">{{ _('See how it works') }}</a>
+
+            <figure>
+              <div class="media-desktop">
+                {{ high_res_img('firefox/android/customize/desktop-faves1.jpg', { 'l10n': True, 'alt': 'Add your favorite feeds, like Instagram, to your Firefox for Android home panel for instant access.'}) }}
+                {{ high_res_img('firefox/android/customize/desktop-faves2.jpg', { 'l10n': True, 'alt': 'Add Pocket Hits to keep your saved articles and blog posts at your fingertips.'}) }}
+                {{ high_res_img('firefox/android/customize/desktop-faves3.jpg', { 'l10n': True, 'alt': 'You can even add 101 Cookbooks and other feeds &mdash; whatever it is that you use most.'}) }}
+              </div>
+              <div class="media-mobile">
+                {{ high_res_img('firefox/android/customize/mobile-faves.png', { 'l10n': True, 'alt': 'Add your favorite feeds, like Instagram, to your Firefox for Android home panel for instant access.' }) }}
+              </div>
+            </figure>
+
+            <div class="line"></div>
+          </div>
+        </section>
+        <section class="customize-section" id="homepanel">
+          <h3 data-accordion-role="tab">{{ _('A touch more personal') }}</h3>
+
+          <div data-accordion-role="tabpanel">
+            <p>
+            {% trans %}
+              Display your Home panels in any order you like or add, hide and delete them as you
+              see fit to keep your favorites one touch away.
+            {% endtrans %}
+            </p>
+
+            <a rel="external" href="https://www.youtube.com/watch?v=HKvyr0TIKF0&amp;index=14&amp;list=PLA8ABF6B7A66A0C5E">{{ _('Learn more') }}</a>
+
+            <figure>
+              <div class="media-desktop">
+                {{ high_res_img('firefox/android/customize/desktop-personal.jpg', { 'l10n': True, 'alt': 'After adding content to your home panel, you can customize things further by choosing how the content is displayed.'}) }}
+              </div>
+              <div class="media-mobile">
+                {{ high_res_img('firefox/android/customize/mobile-personal.png', { 'l10n': True, 'alt': 'After adding content to your home panel, you can customize things further by choosing how the content is displayed.' }) }}
+              </div>
+            </figure>
+
+            <div class="line"></div>
+          </div>
+        </section>
+        <section class="customize-section" id="search">
+          <h3 data-accordion-role="tab">{{ _('Any search you like') }}</h3>
+
+          <div data-accordion-role="tabpanel">
+            <p>
+              {{ _('Add any search engine and make it your default. ') }}
+              {{ _('Or change it any time to the one that best matches your search and privacy needs.') }}
+            </p>
+
+            <a rel="external" href="https://support.mozilla.org/kb/set-and-manage-default-search-engines-firefox-android">{{ _('See how it works') }}</a>
+
+            <figure>
+              <div class="media-desktop">
+                {{ high_res_img('firefox/android/customize/desktop-search1.jpg', { 'l10n': True, 'alt': 'Search for Web content through any provider you want, like DuckDuckGo, for example.'}) }}
+                {{ high_res_img('firefox/android/customize/desktop-search2.jpg', { 'l10n': True, 'alt': 'Easily add new search engines from your Customize settings.'}) }}
+                {{ high_res_img('firefox/android/customize/desktop-search3.jpg', { 'l10n': True, 'alt': 'New search engines can be added, removed or set as your default at any time.'}) }}
+              </div>
+              <div class="media-mobile">
+                {{ high_res_img('firefox/android/customize/mobile-search.png', { 'l10n': True, 'alt': 'Search for Web content through any provider you want, like DuckDuckGo, for example.' }) }}
+              </div>
+            </figure>
+
+            <div class="line"></div>
+          </div>
+        </section>
+        <section class="customize-section" id="language">
+          <h3 data-accordion-role="tab">{{ _('Change your language') }}</h3>
+
+          <div data-accordion-role="tabpanel">
+            <p>
+            {% trans %}
+              Change your browser language quickly and easily, without having to change the settings
+              for your entire device or even restart your browser.
+            {% endtrans %}
+            </p>
+
+            <a rel="external" href="https://support.mozilla.org/kb/change-default-language-firefox-android">{{ _('Learn more') }}</a>
+
+            <figure>
+              <div class="media-desktop">
+                {{ high_res_img('firefox/android/customize/desktop-language.jpg', { 'l10n': True, 'alt': 'Change the display language in Firefox for Android without changing your phone’s language settings.'}) }}
+              </div>
+              <div class="media-mobile">
+                {{ high_res_img('firefox/android/customize/mobile-language.png', { 'l10n': True, 'alt': 'Change the display language in Firefox for Android without changing your phone’s language settings.' }) }}
+              </div>
+            </figure>
+
+            <div class="line"></div>
+          </div>
+        </section>
+        <section class="customize-section" id="screencast">
+          <h3 data-accordion-role="tab" id="screencast-tab">{{ _('Take it to the big screen') }}</h3>
+
+          <div data-accordion-role="tabpanel">
+            <p>
+            {% trans %}
+              Send video and Web content from your smartphone or tablet to any TV equipped with
+              supported streaming capabilities.
+            {% endtrans %}
+            </p>
+
+            <a rel="external" href="https://support.mozilla.org/kb/send-webpages-your-tv-firefox-android-chromecast">{{ _('Learn more') }}</a>
+
+            <figure>
+              <div class="media-desktop">
+                {{ high_res_img('img/firefox/android/customize/desktop-stream1.jpg', { 'alt': 'Send video content from Firefox for Android to any TV with supported streaming capabilities.'}) }}
+                {{ high_res_img('img/firefox/android/customize/desktop-stream2.jpg', { 'alt': 'Tap the screencast icon in the lower left corner of a video to begin playing it on your TV.'}) }}
+                {{ high_res_img('img/firefox/android/customize/desktop-stream3.jpg', { 'alt': 'Watch the content from your phone on your big screen TV.'}) }}
+              </div>
+              <div class="media-mobile">
+                {{ high_res_img('img/firefox/android/customize/mobile-stream.jpg', { 'alt': 'Send video content from Firefox for Android to any TV with supported streaming capabilities.'}) }}
+              </div>
+            </figure>
+
+            <div class="line"></div>
+          </div>
+        </section>
+      </div>{# /.accordion #}
+    </div>
+
+    <div class="content-secondary">
+      <div id="phone-wrapper">
+        <figure id="phone-screens" class="slideshow"></figure>
+      </div>
+      <div id="screencast-wrapper">
+        <figure id="screencast-images" class="slideshow"></figure>
+      </div>
+    </div>
+  </div>{# /.container #}
+</section>
+
+<section id="privacy">
+  <div class="container">
+    <h2 class="heading">{{ _('Keep your private info private') }}</h2>
+
+    <p class="lead">
+      {{ _('We believe your personal information belongs to you.') }}
+      {{ _('Firefox for Android is filled with features to help keep it that way. ') }}
+    </p>
+
+    <ul>
+      <li id="dnt">
+        <h3>{{ _('Do not track') }}</h3>
+
+        <p>
+        {% trans %}
+          Enable this Firefox innovation to help you stay in control of how your browsing
+          information is collected and used online.
+        {% endtrans %}
+        </p>
+
+        <a href="{{ url('firefox.dnt') }}">{{ _('Learn more about Do Not Track') }}</a>
+      </li>
+      <li id="private-browsing">
+        <h3>{{ _('Private Browsing') }}</h3>
+
+        <p>
+        {% trans %}
+          When activated, Firefox for Android won’t accept cookies, remember passwords or
+          record any sites that you’ve visited.
+        {% endtrans %}
+        </p>
+
+        <a rel="external" href="https://www.youtube.com/watch?v=Ewk0YtFTBec&amp;list=PLA8ABF6B7A66A0C5E&amp;index=15">{{ _('See how Private Browsing works') }}</a>
+      </li>
+      <li id="clear-history">
+        <h3>{{ _('Clear history') }}</h3>
+
+        <p>
+          {{ _('Delete your browsing history, passwords and more in a single tap.') }}
+          {{ _('Choose the private data you want to remove whenever you need to do so.') }}
+        </p>
+
+        <a rel="external" href="https://support.mozilla.org/kb/clear-your-browsing-history-and-other-personal-dat">{{ _('Learn how to clear your history') }}</a>
+      </li>
+      <li id="guest-browsing">
+        <h3>{{ _('Guest browsing') }}</h3>
+
+        <p>
+        {% trans %}
+          Share your browser with friends and family without worrying that you’ll see
+          each other’s online activity.
+        {% endtrans %}
+        </p>
+
+        <a rel="external" href="https://www.youtube.com/watch?v=u6Ww0udnVA0&amp;index=16&amp;list=PLA8ABF6B7A66A0C5E">{{ _('See how Guest Browsing works') }}</a>
+      </li>
+    </ul>
+  </div>{# /.container #}
+</section>
+
+<section id="sync">
+  <div class="container">
+    <div class="content-primary">
+      <h2 class="heading">{{ _('Don’t leave home without being in Sync') }}</h2>
+
+      <p class="lead">
+        {{ _('Bring your passwords, bookmarks, open tabs and more everywhere you go.') }}
+        {{ _('Use Sync on your smartphone or tablet to access whatever you need from your desktop &mdash; and vice versa &mdash; without having to remember URLs.') }}
+      </p>
+
+      <a href="{{ url('firefox.sync') }}">{{ _('Learn more about Sync') }}</a>
+    </div>
+    <div class="content-secondary">
+      {% include 'firefox/includes/sync-animation.html' %}
+    </div>
+  </div>{# /.container #}
+</section>
+
+{% endblock %}
+
+{% block email_form %}
+  <div id="subscribe-download-wrapper" class="ga-section" data-ga-label="Get Firefox news">
+    <div class="container">
+      <div id="download-wrapper" class="dl-button-wrapper">
+        {{ high_res_img('img/firefox/android/firefox-logo-footer.png', { 'id': 'footer-logo' }) }}
+
+        <div id="download-content">
+          <h3>{{ _('Choose Firefox') }}</h3>
+          <a class="dl-button" rel="external" href="https://play.google.com/store/apps/details?id=org.mozilla.firefox&amp;utm_source=mozilla&amp;utm_medium=Referral&amp;utm_campaign=mozilla-org">
+            {{ _('Download on Google Play') }}
+          </a>
+
+          <ul>
+            <li>
+              <a rel="external" href="https://support.mozilla.org/kb/will-firefox-work-my-mobile-device">{{ _('Supported devices') }}</a>
+            </li>
+            <li>
+              <a href="{{ product_url('mobile', 'notes') }}">{{ _('Release notes') }}</a>
+            </li>
+          </ul>
+        </div>{#-- /#download-content --#}
+      </div>{#-- /#download-wrapper --#}
+      <div id="subscribe-wrapper" class="floating">
+        {{ email_newsletter_form(title=_('Get Firefox news')) }}
+      </div>
+    </div>
   </div>
+{% endblock %}
 
-  <div class="col2">
-    <section id="smart">
-      <h2>{{_('Smart')}}</h2>
-      <p class="icon html5"><span class="img"></span>{{_('Experience the unlimited possibilities of the mobile Web with full support for HTML5 and Web APIs. <a class="more" href="%s">Learn more</a>')|format('https://developer.mozilla.org/docs/HTML/HTML5')}}</p>
-      <p class="icon sync"><span class="img"></span>{{_('<a href="%s">Sync</a> your desktop history, bookmarks and passwords to all your devices for a painless browsing experience on mobile.')|format('https://support.mozilla.org/kb/how-do-i-set-up-firefox-sync')}}</p>
-      <p class="icon addons"><span class="img"></span>{{_('Personalize features and functionality with add-ons. <a class="more" href="%s">Get add-ons</a>')|format('https://addons.mozilla.org/android/')}}</p>
-    </section>
-
-    <section id="get">
-      <p>{{_('Get Firefox for Android free from <a href="%s">Google Play</a>')|format(settings.GOOGLE_PLAY_FIREFOX_LINK)}}</a></p>
-    </section>
-  </div>
-
-</div>
-
+{% block js %}
+<!--[if IE 9]>
+  {{ js('firefox_android_ie9') }}
+<![endif]-->
+  {{ js('firefox_android') }}
 {% endblock %}

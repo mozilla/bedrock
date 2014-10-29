@@ -1,0 +1,1295 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../sandstone/sandstone-resp.less';
+
+// Base template overrides
+
+.sky #outer-wrapper {
+    background: #fff;
+}
+
+#wrapper {
+    width: 100%;
+}
+
+#masthead {
+    z-index: 2;
+}
+
+// Common styles
+
+.heading {
+    font-size: 48px;
+    text-shadow: none;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.lead {
+    .open-sans-light();
+    font-size: 24px;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.container a:not(.dl-button) {
+    .trailing-arrow();
+}
+
+.sky .dl-button {
+    display: inline-block;
+    font-size: @largeFontSize;
+    text-transform: uppercase;
+    background: #14c329;
+    border-radius: 8px;
+    padding: 24px 40px;
+    color: #fff;
+
+    &:hover {
+        text-decoration: none;
+        color: #fff;
+    }
+}
+
+.container {
+    .clearfix();
+    position: relative;
+    width: 940px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+// Intro
+
+#intro {
+    margin-top: -44px; // push up under tabzilla
+    background: #cae1f4;
+    background: url(/media/img/sandstone/grain.png) repeat,
+                    url(/media/img/firefox/android/bg-cubes.png) repeat,
+                    -webkit-linear-gradient(top, #cae1f4, #d9e1e7)
+                    #cae1f4;
+    background: url(/media/img/sandstone/grain.png) repeat,
+                    url(/media/img/firefox/android/bg-cubes.png) repeat,
+                    linear-gradient(to bottom, #cae1f4, #d9e1e7),
+                    #cae1f4;
+
+    .container {
+        min-height: 566px;
+        padding-top: 44px; // compensate for pushing up under tabzilla
+    }
+
+    .content-primary {
+        margin-top: 48px;
+        position: relative;
+        width: 540px;
+        z-index: 2;
+    }
+
+    .content-secondary {
+        position: absolute;
+        width: 460px;
+        right: 10px;
+        top: 128px;
+        z-index: 1;
+    }
+
+    .heading {
+        font-size: 55px;
+    }
+
+    .lead {
+        font-size: 28px;
+        line-height: 1.2;
+        padding: 0 (@baseLine * 2);
+    }
+
+    .dl-button-wrapper {
+        margin: 32px 0;
+        text-align: center;
+    }
+}
+
+// only displayed after geolocation verifies user is in US
+#sms-link {
+    display: none;
+    text-align: center;
+    margin-top: @baseLine / 2;
+
+    a {
+        color: #0092db;
+    }
+}
+
+#intro-phone {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 356px;
+    height: 647px;
+    z-index: 2;
+}
+
+#intro-android {
+    position: absolute;
+    top: 250px;
+    right: 218px;
+    width: 228px;
+    height: 224px;
+    z-index: 1;
+}
+
+@-webkit-keyframes androidHello {
+    25% {
+        .transform(translate(0, 0));
+    }
+    50% {
+        .transform(translate(0, 0));
+    }
+    60% {
+        .transform(translate(0, -16px));
+    }
+    70% {
+        .transform(translate(0, 0));
+    }
+    100% {
+        .transform(translate(0, 0));
+    }
+}
+
+@keyframes androidHello {
+    25% {
+        .transform(translate(0, 0));
+    }
+    50% {
+        .transform(translate(0, 0));
+    }
+    60% {
+        .transform(translate(0, -16px));
+    }
+    70% {
+        .transform(translate(0, 0));
+    }
+    100% {
+        .transform(translate(0, 0));
+    }
+}
+
+.js #intro-android {
+    .transform(translateX(150px));
+
+    &.hello {
+        .animation(androidHello 1.3s ease-out 0.9s 1 normal forwards);
+    }
+}
+
+html[dir="rtl"] {
+    @-webkit-keyframes androidHelloRTL {
+        25% {
+            .transform(translate(16px, 0) rotateY(180deg));
+        }
+        50% {
+            .transform(translate(16px, 0) rotateY(180deg));
+        }
+        60% {
+            .transform(translate(16px, -20px) rotateY(180deg));
+        }
+        70% {
+            .transform(translate(16px, 0) rotateY(180deg));
+        }
+        100% {
+            .transform(translate(16px, 0) rotateY(180deg));
+        }
+    }
+
+    @keyframes androidHelloRTL {
+        25% {
+            .transform(translate(16px, 0) rotateY(180deg));
+        }
+        50% {
+            .transform(translate(16px, 0) rotateY(180deg));
+        }
+        60% {
+            .transform(translate(16px, -16px) rotateY(180deg));
+        }
+        70% {
+            .transform(translate(16px, 0) rotateY(180deg));
+        }
+        100% {
+            .transform(translate(16px, 0) rotateY(180deg));
+        }
+    }
+
+    #intro .content-secondary {
+        left: 10px;
+        right: auto;
+    }
+
+    #intro-phone {
+        left: -20px;
+        right: auto;
+    }
+
+    #intro-android {
+        right: auto;
+        left: 218px;
+        .transform(translateX(16px) rotateY(180deg));
+    }
+
+    &.js #intro-android {
+        .transform(translateX(-120px) rotateY(180deg));
+
+        &.hello {
+            .animation(androidHelloRTL 1.3s ease-out 0.9s 1 normal forwards);
+        }
+    }
+}
+
+// Customize
+
+#customize {
+    position: relative;
+
+    .container {
+        width: 820px;
+        padding: 60px 0;
+    }
+
+    .accordion {
+        [data-accordion-role="tab"] {
+            font-size: 18px;
+            background: #e9eef2;
+
+            &[aria-expanded="true"] {
+                font-weight: bold;
+            }
+        }
+
+        [data-accordion-role="tabpanel"] {
+            margin-bottom: @baseLine;
+        }
+    }
+
+    .content-primary {
+        float: right;
+        width: 400px;
+    }
+
+    .content-secondary {
+        position: relative;
+        float: left;
+        width: 400px;
+        height: 453px;
+    }
+}
+
+.customize-section a {
+    font-style: italic;
+}
+
+.customize-pager {
+    display: none;
+}
+
+// all customize images hidden at page load
+.media-desktop,
+.media-mobile {
+    .hidden();
+}
+
+// display area for all* customize phone screens
+#phone-wrapper {
+    position: absolute;
+    top: 0;
+    left: 60px;
+    background: url(/media/img/firefox/android/customize/bg-phone.jpg) top left no-repeat;
+    width: 224px;
+    height: 453px;
+    z-index: 1;
+
+    figure {
+        // fallback bg for non-js users - not localized, but mostly pictures and a small user base, so...
+        background: url(/media/img/l10n/en-US/firefox/android/customize/desktop-faves1.jpg) top left no-repeat;
+        width: 201px;
+        height: 317px;
+        position: relative;
+        margin: 52px 0 0 12px;
+    }
+}
+
+// *display area for screencast customize images
+#screencast-wrapper {
+    display: none;
+}
+
+.js {
+    .customize-section {
+        position: relative;
+
+        .line {
+            opacity: 0;
+            position: absolute;
+            z-index: 3;
+            width: 146px;
+            left: -150px;
+            top: 24px;
+            background-image: url(/media/img/firefox/android/customize/sprite-lines.png);
+            .transition(opacity 0.3s ease);
+        }
+    }
+
+    #customize .accordion.accordion-initialized {
+        [data-accordion-role="tab"] {
+            background: #fff;
+            padding: 16px 45px 17px 15px;
+
+            &:hover,
+            &:focus,
+            &[aria-selected="true"] {
+                color: #000;
+            }
+
+            // override default from mozilla-accordion.less
+            &:before {
+                content: none;
+            }
+
+            // move +/- sprites to right side of text
+            &:after {
+                float: right;
+                overflow: hidden;
+                margin-right: -30px;
+                width: 16px;
+                height: 1em;
+                background-image: url(data:image/ping;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAAQAgMAAADbiZG6AAAACVBMVEUAc6pISEj///+X8T7aAAAAA3RSTlP//wDXyg1BAAAAH0lEQVR4AWNYtTJrFRis0AJTdBIIhQIGKMAQGCCHAQBHA49nS35W6gAAAABJRU5ErkJggg==);
+                background-repeat: no-repeat;
+                content: '';
+            }
+
+            // re-create all effects for :after (instead of :before)
+            &[aria-expanded="false"]:after {
+                background-position: 0 center;
+            }
+
+            &[aria-expanded="false"]:hover:after,
+            &[aria-expanded="false"][aria-selected="true"]:after {
+                background-position: -32px center;
+            }
+
+            &[aria-expanded="true"]:after {
+                background-position: -16px center;
+            }
+
+            &[aria-expanded="true"]:hover:after,
+            &[aria-expanded="true"][aria-selected="true"]:after {
+                background-position: -48px center;
+            }
+        }
+
+        [data-accordion-role="tabpanel"] {
+            padding: @baseLine;
+            margin-bottom: 0;
+
+            &[aria-hidden="false"] .line {
+                opacity: 1;
+            }
+        }
+
+        &.zebra .customize-section:nth-child(odd) {
+            background: #fff;
+
+            [data-accordion-role="tab"] {
+                background: #e9eef2;
+            }
+        }
+    }
+
+    #broadcast .line {
+        background-position: left top;
+        height: 100px;
+    }
+
+    #addons .line {
+        background-position: 0 -100px;
+        height: 30px;
+    }
+
+    #homepanel .line {
+        background-position: 0 -130px;
+        height: 100px;
+    }
+
+    #search .line {
+        background-position: 0 -230px;
+        height: 58px;
+    }
+
+    #language .line {
+        background-position: 0 -288px;
+        height: 58px;
+        top: -31px;
+    }
+
+    #screencast .line {
+        background-position: 0 -346px;
+        height: 82px;
+        width: 249px;
+        top: -57px;
+        left: -253px;
+    }
+
+    .content-secondary {
+        z-index: 2;
+    }
+
+    #phone-wrapper {
+        display: none;
+
+        figure {
+            background: none;
+
+            img {
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+        }
+    }
+
+    .customize-pager {
+        display: block;
+        position: absolute;
+        z-index: 4;
+        background-image: url(/media/img/firefox/android/customize/sprite-arrows.png);
+        width: 28px;
+        height: 44px;
+        background-color: transparent;
+        border: 0;
+        cursor: pointer;
+        left: 50%;
+        margin-left: -450px;
+        top: 325px;
+        opacity: 0.6;
+        .transition(opacity 0.2s ease);
+
+        &:focus {
+            outline: none;
+        }
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    #customize-next {
+        background-position: -28px top;
+        margin-left: 440px;
+    }
+}
+
+html[dir="rtl"] #phone-wrapper figure {
+    margin: 52px 12px 0 0;
+}
+
+// Privacy
+
+#privacy {
+    background: #5d7489;
+    background: url(/media/img/firefox/android/bg-cubes-dark.png) repeat,
+                    -webkit-linear-gradient(top, #5d7489, #3d4c59)
+                    #5d7489;
+    background: url(/media/img/firefox/android/bg-cubes-dark.png) repeat,
+                    linear-gradient(to bottom, #5d7489, #3d4c59),
+                    #5d7489;
+    color: #fff;
+
+    .container {
+        width: 780px;
+        padding: 80px;
+    }
+
+    .heading {
+        color: #fff;
+    }
+
+    .lead {
+        margin-bottom: 80px;
+    }
+
+    a {
+        color: #ffcd02;
+    }
+
+    li {
+        float: left;
+        // each icon in sprite is at left edge of 300px wide area
+        background: url(/media/img/firefox/android/sprite-privacy.png) left top no-repeat;
+        list-style-type: none;
+        margin: 0 0 50px 0;
+        width: 380px - (@baseLine * 2);
+        padding: 170px @baseLine 0;
+        text-align: center;
+
+        &:nth-child(odd) {
+            margin-right: @baseLine;
+        }
+
+        h3 {
+            text-transform: uppercase;
+            font-weight: normal;
+            font-size: 18px;
+            text-shadow: none;
+            color: #fff;
+        }
+    }
+
+    #dnt {
+        background-position: 119px top;
+    }
+
+    #private-browsing {
+        background-position: -181px top;
+    }
+
+    #clear-history {
+        background-position: -481px top;
+    }
+
+    #guest-browsing {
+        background-position: -781px top;
+    }
+}
+
+// Sync
+
+#sync {
+    .container {
+        width: 860px;
+        padding: 40px 0 40px 80px;
+    }
+
+    .content-primary {
+        float: left;
+        width: (440px - @baseLine);
+        padding-right: @baseLine;
+    }
+
+    .content-secondary {
+        float: left;
+        width: (410px - @baseLine);
+        padding: 36px 0 0 @baseLine;
+    }
+
+    .heading {
+        font-size: 40px;
+        line-height: 1.2;
+        text-align: left;
+    }
+
+    .lead {
+        font-size: 18px;
+        text-align: left;
+    }
+
+    a {
+        font-size: 18px;
+    }
+}
+
+.sync-anim {
+    height: 190px;
+    width: 390px;
+    margin: 0 auto @baseLine * 2;
+    background-image: url('/media/img/firefox/sync/composite.png?04-2014');
+    z-index: 1;
+}
+
+// Newsletter / Download
+
+#subscribe-download-wrapper {
+    background: #0092db;
+    color: #fff;
+    padding-top: @baseLine * 2;
+
+    h3 {
+        font-size: 40px;
+        color: #fff;
+        text-shadow: none;
+        margin-bottom: @baseLine;
+    }
+
+    .billboard {
+        padding-top: 0;
+    }
+}
+
+.sky #subscribe-download-wrapper {
+    a {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+    .dl-button {
+        font-size: @baseFontSize;
+        padding: @baseLine (@baseLine * 2);
+        margin-bottom: @baseLine / 2;
+        text-decoration: none;
+    }
+}
+
+#download-wrapper {
+    float: left;
+    width: 480px;
+    margin-right: 80px;
+    .clearfix();
+
+    li {
+        list-style-type: none;
+        margin-left: 0;
+    }
+}
+
+#footer-logo {
+    width: 144px;
+    height: 150px;
+    float: left;
+    margin-right: @baseLine;
+}
+
+#download-content {
+    float: left;
+    width: 316px;
+}
+
+#subscribe-wrapper {
+    .billboard {
+        background: #0092db;
+        box-shadow: none;
+        border-bottom: 0;
+    }
+
+    // Firefox Android users will not see the download button, so the
+    // newsletter form will fall back to being full-width
+    &.floating {
+        float: left;
+        width: 380px;
+
+        .newsletter-form {
+            h3,
+            .form-contents,
+            .form-submit {
+                float: none;
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            input[type="email"] {
+                // inherits 15px left/right padding
+                width: 310px;
+            }
+
+            .form-submit {
+                width: 340px;
+                float: none;
+            }
+
+            .form-contents {
+                width: 340px;
+            }
+        }
+    }
+}
+
+.newsletter-form {
+    input[type="email"] {
+        border-width: 0;
+        box-shadow: none;
+        padding: 15px;
+    }
+}
+
+#footer_email_submit {
+    display: block;
+    width: 100%;
+    background: #0092db;
+    border: 2px solid #fff;
+    padding: 15px 0;
+    text-transform: uppercase;
+    border-radius: 3px;
+    box-shadow: none;
+}
+
+/****************************************************************************/
+// @High resolution images for @retina-type displays
+// Desktop
+@media (-webkit-min-device-pixel-ratio: 1.5),
+       (                min-resolution: 1.5dppx),
+       (                min-resolution: 144dpi) {
+
+    .js {
+        .customize-section .line {
+            background-image: url(/media/img/firefox/android/customize/sprite-lines-high-res.png);
+            .background-size(249px, 428px);
+        }
+
+        .customize-pager {
+            background-image: url(/media/img/firefox/android/customize/sprite-arrows-high-res.png);
+            .background-size(56px, 44px);
+        }
+    }
+
+    #phone-wrapper {
+        background-image: url(/media/img/firefox/android/customize/bg-phone-high-res.jpg);
+        .background-size(224px, 453px);
+    }
+
+    #privacy li {
+        background-image: url(/media/img/firefox/android/sprite-privacy-high-res.png);
+        .background-size(1200px, 142px);
+    }
+}
+
+/****************************************************************************/
+// @Tablet Layout: 760px
+@media (max-width: @breakDesktop) and (min-width: (@breakTablet + 1)) {
+    #masthead {
+        width: 100%;
+        padding: 0;
+    }
+
+    .container {
+        width: 720px;
+    }
+
+    .heading {
+        font-size: 40px;
+    }
+
+    .lead {
+        font-size: 22px;
+    }
+
+    // Intro
+
+    #intro {
+        .container {
+            min-height: 470px;
+        }
+
+        .content-primary {
+            width: 450px;
+        }
+
+        .heading {
+            font-size: 40px;
+        }
+
+        .lead {
+            font-size: 24px;
+        }
+    }
+
+    #intro-phone {
+        width: 280px;
+        height: 509px;
+    }
+
+    #intro-android {
+        width: 179px;
+        height: 176px;
+        top: 220px;
+        right: 150px;
+    }
+
+    html[dir="rtl"] {
+        #intro-android {
+            .transform(translateX(-60px) rotateY(180deg));
+        }
+
+        &.js #intro-android {
+            .transform(translateX(-60px) rotateY(180deg));
+
+            &.hello {
+                .transform(translateX(-60px) rotateY(180deg));
+                .animation(none);
+            }
+        }
+    }
+
+    // Customize
+
+    #customize {
+        .container {
+            width: (760px - (@baseLine * 2));
+            padding-right: @baseLine;
+            padding-left: @baseLine;
+        }
+
+        .content-primary {
+            width: 380px;
+        }
+
+        .content-secondary {
+            width: 320px;
+        }
+    }
+
+    .js {
+        .customize-section .line {
+            display: none;
+        }
+
+        .customize-pager {
+            display: none;
+        }
+    }
+
+    // Privacy
+
+    #privacy {
+        .container {
+            width: 720px;
+            padding: 60px @baseLine;
+        }
+
+        li {
+            width: 310px;
+        }
+
+        #dnt {
+            background-position: 109px top;
+        }
+
+        #private-browsing {
+            background-position: -191px top;
+        }
+
+        #clear-history {
+            background-position: -491px top;
+        }
+
+        #guest-browsing {
+            background-position: -791px top;
+        }
+    }
+
+    // Sync
+
+    #sync {
+        .container {
+            width: 720px;
+            padding: (@baseLine * 2) @baseLine;
+        }
+
+        .heading {
+            font-size: 32px;
+        }
+
+        .lead, a {
+            font-size: 16px;
+        }
+
+        .content-primary {
+            width: 310px;
+        }
+
+        .content-secondary {
+            padding-left: 0;
+        }
+    }
+
+    // Newsletter / Download
+
+    #subscribe-download-wrapper {
+        h3 {
+            font-size: 28px;
+        }
+    }
+
+    #download-wrapper {
+        width: 340px;
+        margin-right: @baseLine;
+    }
+
+    #footer-logo {
+        display: none;
+    }
+
+    #download-content {
+        float: none;
+        width: 340px;
+    }
+
+    #subscribe-wrapper.floating {
+        width: 340px;
+
+        .billboard {
+            width: 340px;
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+}
+
+/****************************************************************************/
+// @Wide mobile Layout: 480px
+@media (max-width: @breakTablet) {
+    #masthead {
+        padding: 0;
+    }
+
+    .container {
+        width: (480px - (@baseLine * 2));
+        padding-left: @baseLine;
+        padding-right: @baseLine;
+    }
+
+    .heading {
+        font-size: 30px;
+    }
+
+    .lead {
+        font-size: 20px;
+    }
+
+    // hide intro phone, customize phone, and sync animation
+    .content-secondary {
+        display: none;
+    }
+
+    // Intro
+
+    #intro {
+        margin-top: -64px;
+
+        .container {
+            min-height: 0;
+            padding-bottom: @baseLine * 2;
+        }
+
+        .heading {
+            font-size: 36px;
+        }
+
+        .lead {
+            font-size: 22px;
+        }
+
+        .content-primary {
+            width: auto;
+        }
+    }
+
+    // Customize
+
+    #customize {
+        background: #f2f2f2;
+
+        .container {
+            width: 440px;
+        }
+
+        .lead br {
+            display: none;
+        }
+
+        .content-primary {
+            float: none;
+            width: auto;
+        }
+
+        [data-accordion-role="tabpanel"] {
+            text-align: center;
+        }
+
+        .media-mobile {
+            display: block;
+            margin-top: @baseLine;
+
+            img {
+                width: 200px;
+                height: 200px;
+                margin: 0 auto;
+            }
+        }
+
+        #screencast .media-mobile img {
+            width: 276px;
+            height: 240px;
+        }
+    }
+
+    .js {
+        .customize-section .line {
+            display: none;
+        }
+
+        .customize-pager {
+            display: none;
+        }
+
+        #customize .accordion.accordion-initialized {
+            [data-accordion-role="tab"] {
+                background: transparent;
+            }
+
+            &.zebra .customize-section {
+                background: #f2f2f2;
+
+                &:nth-child(odd) {
+                    background: #e9eef2;
+                }
+            }
+        }
+    }
+
+    // Privacy
+
+    #privacy {
+        .container {
+            width: 440px;
+            padding: (@baseLine * 2) @baseLine;
+        }
+
+        .lead {
+            margin-bottom: @baseLine * 2;
+        }
+
+        li {
+            float: none;
+            display: block;
+            margin: 0 auto (@baseLine * 2) auto;
+            padding-left: 0;
+            padding-right: 0;
+
+            &:nth-child(odd) {
+                margin-right: auto;
+            }
+        }
+
+        #dnt {
+            background-position: 99px top;
+        }
+
+        #private-browsing {
+            background-position: -201px top;
+        }
+
+        #clear-history {
+            background-position: -501px top;
+        }
+
+        #guest-browsing {
+            background-position: -801px top;
+        }
+    }
+
+    // Sync
+
+    #sync {
+        .container {
+            width: @breakMobileLandscape - (@baseLine * 2);
+            padding: (@baseLine * 2) @baseLine;
+        }
+
+        .heading {
+            font-size: 30px;
+            text-align: center;
+        }
+
+        .lead {
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .content-primary {
+            float: none;
+            width: auto;
+            padding-right: 0;
+            text-align: center;
+        }
+    }
+
+    // Newsletter / Download
+
+    #subscribe-download-wrapper h3 {
+        font-size: 30px;
+    }
+
+    #download-wrapper {
+        float: none;
+        width: auto;
+        margin: 0 0 @baseLine 0;
+    }
+
+    #footer-logo {
+        width: 100px;
+        height: 103px;
+    }
+
+    #subscribe-wrapper {
+        .billboard {
+            padding-left: 0;
+        }
+
+        &.floating {
+            float: none;
+            width: auto;
+
+            .newsletter-form {
+                .form-contents {
+                    width: auto;
+                }
+
+                input[type="email"] {
+                    width: 400px;
+                }
+
+                .form-submit {
+                    width: 440px;
+                }
+
+                #footer_email_submit {
+                    width: 430px;
+                }
+            }
+        }
+    }
+
+    .newsletter-form {
+        h3, .form-contents, .form-submit {
+            margin-left: 0;
+        }
+
+        input[type="email"] {
+            width: 390px;
+        }
+    }
+}
+
+/****************************************************************************/
+// @Mobile Layout: 320px
+@media (max-width: @breakMobileLandscape) {
+    .container {
+        width: (320px - @baseLine);
+        padding-left: @baseLine / 2;
+        padding-right: @baseLine / 2;
+    }
+
+    .heading {
+        font-size: 26px;
+    }
+
+    .lead {
+        font-size: 18px;
+    }
+
+    .sky .dl-button {
+        padding: 16px @baseLine;
+    }
+
+    // Intro
+
+    #intro {
+        .container {
+            padding-bottom: @baseLine * 2;
+        }
+
+        .heading {
+            font-size: 30px;
+        }
+
+        .lead {
+            font-size: 20px;
+        }
+
+        .content-primary {
+            margin-top: @baseLine * 2;
+        }
+    }
+
+    // Customize
+
+    #customize .container {
+        width: 320px - @baseLine;
+        padding-left: (@baseLine / 2);
+        padding-right: (@baseLine / 2);
+    }
+
+    // Privacy
+
+    #privacy {
+        .container {
+            width: 320px - @baseLine;
+            padding: (@baseLine * 2) (@baseLine / 2);
+        }
+
+        li {
+            width: 300px;
+        }
+
+        #dnt {
+            background-position: 79px top;
+        }
+
+        #private-browsing {
+            background-position: -221px top;
+        }
+
+        #clear-history {
+            background-position: -521px top;
+        }
+
+        #guest-browsing {
+            background-position: -821px top;
+        }
+    }
+
+    // Sync
+
+    #sync {
+        .container {
+            padding: (@baseLine * 2) (@baseLine / 2);
+        }
+
+        .heading {
+            font-size: 26px;
+        }
+
+        .lead {
+            font-size: 18px;
+        }
+    }
+
+    // Newsletter / Download
+
+    #subscribe-download-wrapper h3 {
+        font-size: 26px;
+    }
+
+    #footer-logo {
+        display: none;
+    }
+
+    #download-content {
+        float: none;
+        width: auto;
+    }
+
+    #subscribe-wrapper.floating {
+        .newsletter-form {
+            input[type="email"] {
+                width: 260px;
+            }
+
+            #footer_email_submit {
+                width: 290px;
+            }
+        }
+    }
+
+    .newsletter-form input[type="email"] {
+        width: 250px;
+    }
+}
