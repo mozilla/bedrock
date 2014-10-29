@@ -356,3 +356,14 @@
     {% endif -%}
   </section>
 {%- endmacro %}
+
+{% macro share_cta(cta_text, url, share_text) %}
+<div id="mozilla-share-cta" tabindex="0">
+  <h3>{{ cta_text }}</h3>
+  <ul>
+    <li><a class="twitter" href="{{ 'https://www.twitter.com/intent/tweet?url=%s&amp;text=%s'|format(url|urlencode, share_text|urlencode)|e }}" title="Twitter">Twitter</a></li>
+    <li><a class="facebook" href="{{ 'https://www.facebook.com/sharer/sharer.php?u=%s'|format(url|urlencode)|e }}" title="Facebook">Facebook</a></li>
+    <li><a class="g-plus" href="{{ 'https://plus.google.com/share?url=%s&amp;hl=%s'|format(url|urlencode, LANG)|e }}" title="Google+">Google+</a></li>
+  </ul>
+</div>
+{%- endmacro %}
