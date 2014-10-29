@@ -507,10 +507,12 @@ class TourView(LatestFxView):
         return [template]
 
 
-def release_notes_template(channel, product):
+def release_notes_template(channel, product, version=None):
     if product == 'Firefox OS':
         return 'firefox/releases/os-notes.html'
     prefix = dict((c, c.lower()) for c in Release.CHANNELS)
+    if product == 'Firefox' and channel == 'Aurora' and version >= 35:
+        return 'firefox/releases/dev-browser-notes.html'
     return 'firefox/releases/%s-notes.html' % prefix.get(channel, 'release')
 
 
@@ -560,7 +562,8 @@ def release_notes(request, fx_version, product='Firefox'):
     new_features, known_issues = release.notes(public_only=not settings.DEV)
 
     return l10n_utils.render(
-        request, release_notes_template(release.channel, product), {
+        request, release_notes_template(release.channel, product,
+                                        int(release.major_version())), {
             'version': fx_version,
             'download_url': get_download_url(release),
             'support_url': SUPPORT_URLS.get(product, 'https://support.mozilla.org/'),
