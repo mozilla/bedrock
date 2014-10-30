@@ -23,6 +23,7 @@ class Article(models.Model):
     summary = models.CharField(max_length=2000)
     published = models.DateTimeField()
     on_homepage = models.DateTimeField(null=True, db_index=True)
+    sponsored = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.title
