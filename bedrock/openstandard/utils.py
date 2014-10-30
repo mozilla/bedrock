@@ -72,6 +72,8 @@ def get_validated_article_data(entry, category, use_tz=settings.USE_TZ):
     for key in ('author', 'link', 'title', 'summary', 'published'):
         if not entry.get(key):
             return
+    if any(tag.get('term') == 'Sponsored' for tag in entry.get('tags', [{}])):
+        return
     try:
         soup = BeautifulSoup(entry['summary'])
     except:
