@@ -15,10 +15,10 @@ $(document).ready(function() {
 
     pager.$container.bind('changePage', function(e, tab) {
         if (pager.currentPage.id == 'aurora') {
-            $('body').addClass('space');
+            $('body').addClass('blueprint');
             $logo.attr('src', $logo.attr('data-inverse-src'));
         } else {
-            $('body').removeClass('space');
+            $('body').removeClass('blueprint');
             $logo.attr('src', logoOriginalSrc);
         }
 
@@ -41,10 +41,10 @@ $(document).ready(function() {
     // init
     if (pager.currentPage.id == 'aurora') {
         $('body').removeClass('sky');
-        $('body').addClass('space');
+        $('body').addClass('blueprint');
         $logo.attr('src', $logo.attr('data-inverse-src'));
     } else {
-        $('body').removeClass('space');
+        $('body').removeClass('blueprint');
         $('body').addClass('sky');
         $logo.attr('src', logoOriginalSrc);
     }
