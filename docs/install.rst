@@ -54,26 +54,9 @@ Now configure the application to run locally by creating your local settings fil
 
 You shouldn't need to customize anything in there yet.
 
-Check out the latest product-details::
+Sync the database and all of the external data locally. This gets product-details, security-advisories, credits, release notes, etc::
 
-    $ ./manage.py update_product_details
-
-This pulls in version information for Mozilla products like Firefox.
-
-Next get the data files for certain pages (so far /credits/ and /about/forums/)::
-
-    $ ./manage.py update_externalfiles
-
-
-Next, update the database for the release notes, openstandard, etc:
-
-    $ ./manage.py migrate
-
-
-To import the release notes external sources:
-
-   $ ./manage.py rnasync
-
+    $ bin/sync_all
 
 Lastly, you need to install `node` and the `less` package. Soon you won't need this for local development but currently it compiles the LESS CSS code on the server-side::
 
