@@ -1,6 +1,6 @@
 #!/bin/bash
 cd $(readlink --canonicalize --no-newline ${0%/*})/..
-./manage.py syncdb --migrate
+./manage.py syncdb --migrate --noinput
 ./manage.py rnasync
 ./manage.py cron update_reps_ical
 ./manage.py cron update_openstandard_feeds
