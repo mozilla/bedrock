@@ -96,6 +96,8 @@ a.more {
     }
 }
 
+// Aurora visual style
+
 .space {
     color: #fff;
 
@@ -122,6 +124,49 @@ a.more {
         a:link,
         a:visited {
             color: @linkSpacePurple;
+        }
+        li {
+            a,
+            a:link,
+            a:visited {
+                color: @textColorSecondary;
+            }
+        }
+    }
+
+}
+
+// Firefox Developer Edition visual style
+.blueprint {
+    color: #fff;
+
+    #outer-wrapper {
+        background: #1e1e21;
+        #gradient > .radial(top, left, ellipse, farthest-side, #00549e 0%, rgba(0, 0, 0, 0) 100%);
+        background-size: 100% 500px;
+        background-repeat: no-repeat;
+        background-position: top center;
+    }
+
+    a {
+        color: @linkSpaceBlue;
+        &:hover,
+        &:focus,
+        &:active {
+            color: lighten(@linkSpaceBlue, 10%);
+        }
+    }
+
+    h1, h2, h3, h4, h5, h6, .huge, .large {
+        color: #fff;
+        text-shadow: none;
+    }
+
+    #masthead nav li {
+        a,
+        a:link,
+        a:visited {
+            color: #fff;
         }
         li {
             a,
