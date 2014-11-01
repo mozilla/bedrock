@@ -33,7 +33,7 @@
       <p>{% trans %}The default logos in CVS which are built into Firefox
         and Thunderbird by default (i.e. the globe without the fox, and
         the original blue bird) are explicitly
-        <span style="text-decoration: underline;">not</span> protected
+        <span class="underline">not</span> protected
         as Mozilla trademarks. The files themselves are available under
         the mozilla.org tri-license; you can do anything you like with
         them under those terms.
@@ -82,20 +82,20 @@
       {% endtrans %}</dd>
 
     <dt>{% trans %}Can I put Firefox banners on my website? Can I link to you?{% endtrans %}</dt>
-    <dd>{% trans styleguide=url('styleguide.home') %}
-    Thanks for your support :-) Of course you may. Our <a href="https://affiliates.mozilla.org/">Firefox Affiliates</a> program is a centralized hub for getting and sharing Firefox and Mozilla download buttons. Our <a href="{{ styleguide }}">style guide</a> has any additional assets you may need: {% endtrans %}<br />
+    <dd>{% trans styleguide=url('styleguide.home'), affiliates="https://affiliates.mozilla.org/" %}
+    Thanks for your support :-) Of course you may. Our <a href="{{ affiliates }}">Firefox Affiliates</a> program is a centralized hub for getting and sharing Firefox and Mozilla download buttons. Our <a href="{{ styleguide }}">style guide</a> has any additional assets you may need: {% endtrans %}<br />
       <ul>
-        <li>{% trans flogo=url('styleguide.identity.firefox-branding') %}
-          <a href="{{ flogo }}">Firefox logo{% endtrans %}</a>
+        <li>
+          <a href="{{ url('styleguide.identity.firefox-branding') }}">{{ _('Firefox logo') }}</a>
         </li>
-        <li>{% trans fwordmarks=url('styleguide.identity.firefox-wordmarks')%}
-          <a href="{{ fwordmarks }}">Firefox wordmarks{% endtrans %}</a>
+        <li>
+          <a href="{{ url('styleguide.identity.firefox-wordmarks') }}">{{ _('Firefox wordmarks') }}</a>
         </li>
-        <li>{% trans tlogo=url('styleguide.identity.thunderbird-logo')%}
-          <a href="{{ tlogo }}">Thunderbird logo{% endtrans %}</a>
+        <li>
+          <a href="{{ url('styleguide.identity.thunderbird-logo') }}">{{ _('Thunderbird logo') }}</a>
         </li>
-        <li>{% trans twordmarks=url('styleguide.identity.thunderbird-wordmarks')%}
-          <a href="{{ twordmarks }}">Thunderbird wordmarks{% endtrans %}</a>
+        <li>
+          <a href="{{ url('styleguide.identity.thunderbird-wordmarks') }}">{{ _('Thunderbird wordmarks') }}</a>
         </li>
       </ul>
     </dd>
