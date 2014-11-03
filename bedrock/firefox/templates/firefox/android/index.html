@@ -23,7 +23,9 @@
       <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{{ settings.TABZILLA_INFOBAR_OPTIONS }}">Mozilla</a>
 
       {% block site_header_logo %}{% endblock %}
-      {% block site_header_nav %}{% endblock %}
+      {% block site_header_nav %}
+        {% include 'firefox/includes/top-menu.html' %}
+      {% endblock %}
     </div>
   </header>
 {% endblock %}

@@ -3,6 +3,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 @import '../sandstone/sandstone-resp.less';
+@import 'menu-resp.less';
 
 // Base template overrides
 
@@ -15,7 +16,22 @@
 }
 
 #masthead {
-    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -470px;
+    z-index: 10;
+    padding-left: 0;
+    padding-right: 0;
+
+    .container {
+        overflow: visible;
+        padding: 0;
+
+        a:not(.dl-button):after {
+            content: none;
+        }
+    }
 }
 
 // Common styles
@@ -64,7 +80,6 @@
 // Intro
 
 #intro {
-    margin-top: -44px; // push up under tabzilla
     background: #cae1f4;
     background: url(/media/img/sandstone/grain.png) repeat,
                     url(/media/img/firefox/android/bg-cubes.png) repeat,
@@ -754,8 +769,8 @@ html[dir="rtl"] #phone-wrapper figure {
 // @Tablet Layout: 760px
 @media (max-width: @breakDesktop) and (min-width: (@breakTablet + 1)) {
     #masthead {
-        width: 100%;
         padding: 0;
+        margin-left: -360px;
     }
 
     .container {
@@ -936,7 +951,7 @@ html[dir="rtl"] #phone-wrapper figure {
 // @Wide mobile Layout: 480px
 @media (max-width: @breakTablet) {
     #masthead {
-        padding: 0;
+        margin-left: -220px;
     }
 
     .container {
@@ -961,10 +976,9 @@ html[dir="rtl"] #phone-wrapper figure {
     // Intro
 
     #intro {
-        margin-top: -64px;
-
         .container {
             min-height: 0;
+            padding-top: 64px;
             padding-bottom: @baseLine * 2;
         }
 
@@ -1171,6 +1185,10 @@ html[dir="rtl"] #phone-wrapper figure {
 /****************************************************************************/
 // @Mobile Layout: 320px
 @media (max-width: @breakMobileLandscape) {
+    #masthead {
+        margin-left: -150px;
+    }
+
     .container {
         width: (320px - @baseLine);
         padding-left: @baseLine / 2;
@@ -1250,6 +1268,7 @@ html[dir="rtl"] #phone-wrapper figure {
 
     #sync {
         .container {
+            width: 320px - @baseLine;
             padding: (@baseLine * 2) (@baseLine / 2);
         }
 
