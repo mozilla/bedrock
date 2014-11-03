@@ -4,17 +4,27 @@
 
 from datetime import datetime
 
+from django.conf import settings
 from django.db import models
 from django.db.models.query import QuerySet
 
 from icalendar import Calendar
+from pytz import timezone
 
 from bedrock.events.countries import country_to_continent
 
 
 class EventQuerySet(QuerySet):
     def future(self):
-        return self.filter(start_time__gt=datetime.utcnow()).order_by('start_time')
+        if settings.USE_TZ:
+            # We have to be sure to use a tz-aware datetime because otherwise
+            # it will be converted using django.utils.timezone.make_aware, which
+            # will throw an error during DST change, because Zen.
+            # https://code.djangoproject.com/ticket/22598
+            utcnow = timezone('UTC').localize(datetime.utcnow())
+        else:
+            utcnow = datetime.utcnow()
+        return self.filter(start_time__gt=utcnow).order_by('start_time')
 
 
 class EventManager(models.Manager):
