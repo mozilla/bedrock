@@ -589,6 +589,38 @@ class TestFirstRun(TestCase):
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/australis/firstrun-tour.html'])
 
+    @override_settings(DEV=True)
+    def test_fx_dev_browser_35(self, render_mock):
+        """Should use dev browser firstrun template for 35.0a2"""
+        req = self.rf.get('/en-US/firefox/firstrun/')
+        self.view(req, fx_version='35.0a2')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/dev-firstrun.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_dev_browser_35(self, render_mock):
+        """Should use dev browser firstrun template for 35.1a2"""
+        req = self.rf.get('/en-US/firefox/firstrun/')
+        self.view(req, fx_version='36.0a2')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/dev-firstrun.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_dev_browser_35(self, render_mock):
+        """Should use standard firstrun template for older aurora"""
+        req = self.rf.get('/en-US/firefox/firstrun/')
+        self.view(req, fx_version='34.0a2')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/australis/firstrun-tour.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_dev_browser_35(self, render_mock):
+        """Should use dev browser firstrun template for 36.0a2"""
+        req = self.rf.get('/en-US/firefox/firstrun/')
+        self.view(req, fx_version='36.0a2')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/dev-firstrun.html'])
+
     @override_settings(DEV=False)
     def test_fx_australis_secure_redirect(self, render_mock):
         """Should redirect to https:"""
@@ -804,53 +836,6 @@ class TestWhatsnewRedirect(FxVersionRedirectsMixin, TestCase):
         # if there's no oldversion parameter, show no tour
         response = self.client.get(self.url, HTTP_USER_AGENT=self.user_agent)
         self.assertNotIn(self.expected, response.content)
-
-
-class TestFirstrunRedirect(FxVersionRedirectsMixin, TestCase):
-    def setUp(self):
-        with self.activate('en-US'):
-            self.url = reverse('firefox.firstrun', args=['13.0'])
-
-    @override_settings(DEV=True)
-    @patch.dict(product_details.firefox_versions,
-                LATEST_FIREFOX_VERSION='16.0')
-    def test_firstrun_tour(self):
-        """
-        Hitting /firefox/29.0/firstrun/?f=30 with en-US locale should render
-        firefox/australis/firstrun-no-tour.html. Hitting en-US locale with
-        f=31 should render firefox/australis/firstrun-tour.html. Any other
-        f value or locale should render firstrun-tour.html.
-        """
-        user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:29.0) '
-                      'Gecko/20100101 Firefox/29.0')
-
-        expected = 'data-has-tour="True"'
-        self.url = reverse('firefox.firstrun', args=['29.0'])
-
-        # en-US with funnelcake id 30 should not give a tour
-        response = self.client.get(self.url + '?f=30', HTTP_USER_AGENT=user_agent)
-        self.assertNotIn(expected, response.content)
-
-        # en-US with funnelcake id 31 should give a tour
-        response = self.client.get(self.url + '?f=31', HTTP_USER_AGENT=user_agent)
-        self.assertIn(expected, response.content)
-
-        # en-US with improper funnelcake id should still give a tour
-        response = self.client.get(self.url + '?f=0', HTTP_USER_AGENT=user_agent)
-        self.assertIn(expected, response.content)
-
-        # en-US with no funnelcake id should still give a tour
-        response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
-        self.assertIn(expected, response.content)
-
-        with self.activate('de'):
-            self.url = reverse('firefox.firstrun', args=['29.0'])
-            # de with proper funnelcake id should still get a tour
-            response = self.client.get(self.url + '?f=30', HTTP_USER_AGENT=user_agent)
-            self.assertIn(expected, response.content)
-            # de with no funnelcake id should still get a tour
-            response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
-            self.assertIn(expected, response.content)
 
 
 @patch.object(fx_views, 'firefox_details', firefox_details)

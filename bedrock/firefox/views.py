@@ -317,6 +317,15 @@ def latest_sysreq(request, channel='release'):
     return HttpResponseRedirect('/' + '/'.join(path) + '/')
 
 
+def show_devbrowser_firstrun(version):
+    match = re.match(r'\d{1,2}', version)
+    if match:
+        num_version = int(match.group(0))
+        return num_version >= 35 and version.endswith('a2')
+
+    return False
+
+
 def show_whatsnew_tour(oldversion):
     match = re.match(r'\d{1,2}', oldversion)
     if match:
@@ -397,7 +406,7 @@ class FirstrunView(LatestFxView):
         locale = l10n_utils.get_locale(self.request)
         version = self.kwargs.get('fx_version') or ''
 
-        if version == '35.0a2':
+        if show_devbrowser_firstrun(version):
             template = 'firefox/dev-firstrun.html'
         else:
             template = 'firefox/australis/firstrun-tour.html'
