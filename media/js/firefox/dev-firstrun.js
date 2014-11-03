@@ -5,6 +5,19 @@
 ;(function($, Mozilla) {
     'use strict';
 
+    var $window = $(window);
+    var $document = $(document);
+    var TARGET_1 = 'home'; // TODO replace with `Dev Tools` target once available to UITour
+    var TARGET_2 = 'bookmarks'; // TODO replace with `WebIDE` target once available to UITour
+    var TARGET_3 = 'appMenu';
+    var TARGET_4 = 'accountStatus';
+    var current = TARGET_1;
+    var tourSkipped = false;
+    var highlightTimeout;
+    var queryIsLargeScreen = matchMedia('(min-width: 900px)');
+    var isHighRes = Mozilla.ImageHelper.isHighDpi();
+
+    // show video modal when user clicks a video play link
     $('a.video-play').attr('role', 'button').click(function(e) {
         e.preventDefault();
 
@@ -17,6 +30,12 @@
         $iframe.attr('src', $video.data('src'));
         $this.siblings('.video').html($iframe);
 
+        // if user clicks on a video link,
+        // close any UITour panels and skip the tour
+        clearTimeout(highlightTimeout);
+        Mozilla.UITour.hideInfo();
+        skipTour();
+
         Mozilla.Modal.createModal(this, $this.nextAll('.video'), {
             // grab the nearby h4 tag as the modal window title
             title: $this.siblings('h4,h2').text(),
@@ -26,22 +45,9 @@
         });
     });
 
-})(window.jQuery, window.Mozilla);
-
-;(function($, Mozilla) {
-    'use strict';
-
-    var availableTargets = [];
-    var TARGET_1 = 'home'; // TODO replace with `Dev Tools` target once available to UITour
-    var TARGET_2 = 'bookmarks'; // TODO replace with `WebIDE` target once available to UITour
-    var TARGET_3 = 'appMenu';
-    var TARGET_4 = 'accountStatus';
-    var current = TARGET_1;
-    var tourSkipped = false;
-    var highlightTimeout;
-
+    // shows the Dev Tools doorhanger step
     function showDevToolsDoorhanger() {
-        var icon = '';
+        var icon = isHighRes ? window.trans('devtoolsIconHighRes') : window.trans('devtoolsIcon');
         var buttons = [];
         var options = {};
         var nextTarget = TARGET_2;
@@ -88,8 +94,9 @@
         });
     }
 
+    // shows the WebIDE doorhanger step
     function showWebIDEDoorhanger() {
-        var icon = '';
+        var icon = isHighRes ? window.trans('webideIconHighRes') : window.trans('webideIcon');
         var buttons = [];
         var options = {};
 
@@ -132,8 +139,9 @@
         });
     }
 
+    // shows the Sync doorhanger step
     function showSyncDoorhanger() {
-        var icon = '';
+        var icon = isHighRes ? window.trans('syncIconHighRes') : window.trans('syncIcon');
         var buttons = [
             {
                 label: window.trans('doorhangerNothanks'),
@@ -165,8 +173,8 @@
         current = TARGET_3;
     }
 
+    // highlights sync sign in button in the app menu
     function showSyncInMenu() {
-
         showHighlight(TARGET_4);
 
         // hide app menu when user clicks anywhere on the page
@@ -177,33 +185,27 @@
         current = TARGET_4;
     }
 
+    // hides the current highlight annotation
     function hideAnnotation() {
         Mozilla.UITour.hideMenu('appMenu');
         Mozilla.UITour.hideHighlight();
     }
 
+    // skips the tour when user presses doorhanger close button
     function skipTour() {
         tourSkipped = true;
         hideAnnotation();
     }
 
+    // shows the a given highlight target
+    // note showHighlight is called twice due to Bug 1049130
     function showHighlight(target) {
         Mozilla.UITour.showHighlight(target, 'wobble');
         Mozilla.UITour.showHighlight(target, 'wobble');
     }
 
-    function getAllAvailableTargets(callback) {
-        Mozilla.UITour.getConfiguration('availableTargets', function(config) {
-            var targets = [];
-            if (config.targets) {
-                targets = config.targets;
-            }
-            if (typeof callback === 'function') {
-                callback(targets);
-            }
-        });
-    }
-
+    // Show the current tour step, based on the current target value
+    // and its corresponding highlight availability
     function showTourStep() {
         Mozilla.UITour.getConfiguration('availableTargets', function(config) {
             if (config.targets) {
@@ -234,6 +236,7 @@
         });
     }
 
+    // show/hide current highlight based on page visibility
     function handleVisibilityChange() {
         if (document.hidden) {
             Mozilla.UITour.hideInfo();
@@ -246,12 +249,48 @@
         }
     }
 
+    function hideAppMenu() {
+        Mozilla.UITour.hideMenu('appMenu');
+    }
+
+    // shows the current tour step and binds event listeners
+    function bindTour() {
+        clearTimeout(highlightTimeout);
+        highlightTimeout = setTimeout(function () {
+            showTourStep();
+        }, 900);
+        $document.on('visibilitychange', handleVisibilityChange);
+        $window.on('beforeunload', hideAppMenu);
+    }
+
+    // hides UITour highlights and undinds event listeners
+    function unbindTour() {
+        Mozilla.UITour.hideInfo();
+        hideAnnotation();
+        $document.off('visibilitychange', handleVisibilityChange);
+        $window.off('beforeunload', hideAppMenu);
+    }
+
     //Only run the tour if user is on Firefox 35 for desktop.
     if (window.isFirefox() && !window.isFirefoxMobile() && window.getFirefoxMasterVersion() >= 35) {
 
-        $(document).on('visibilitychange', handleVisibilityChange);
+        // if viewport is wider than 900px show the tour doorhanger
+        if(queryIsLargeScreen.matches) {
+            bindTour();
+        }
 
-        showTourStep();
+        queryIsLargeScreen.addListener(function(mq) {
+            clearTimeout(highlightTimeout);
+            if (mq.matches) {
+                if (!tourSkipped) {
+                    bindTour();
+                }
+            } else {
+                unbindTour();
+            }
+        });
+
+
     }
 
 })(window.jQuery, window.Mozilla);
