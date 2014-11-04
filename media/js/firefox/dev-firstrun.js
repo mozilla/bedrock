@@ -7,8 +7,8 @@
 
     var $window = $(window);
     var $document = $(document);
-    var TARGET_1 = 'home'; // TODO replace with `Dev Tools` target once available to UITour
-    var TARGET_2 = 'bookmarks'; // TODO replace with `WebIDE` target once available to UITour
+    var TARGET_1 = 'devtools';
+    var TARGET_2 = 'webide';
     var TARGET_3 = 'appMenu';
     var TARGET_4 = 'accountStatus';
     var current = TARGET_1;
