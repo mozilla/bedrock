@@ -403,7 +403,6 @@ class FirstrunView(LatestFxView):
         return super(FirstrunView, self).get(request, *args, **kwargs)
 
     def get_template_names(self):
-        locale = l10n_utils.get_locale(self.request)
         version = self.kwargs.get('fx_version') or ''
 
         if show_devbrowser_firstrun(version):
@@ -486,7 +485,6 @@ class WhatsnewView(LatestFxView):
 
 
 class TourView(LatestFxView):
-    template_name = 'firefox/australis/help-menu-tour.html'
 
     def get(self, request, *args, **kwargs):
         if not settings.DEV and not request.is_secure():
@@ -496,6 +494,17 @@ class TourView(LatestFxView):
             )
             return HttpResponsePermanentRedirect(uri)
         return super(TourView, self).get(request, *args, **kwargs)
+
+    def get_template_names(self):
+        version = self.kwargs.get('fx_version') or ''
+
+        if show_devbrowser_firstrun(version):
+            template = 'firefox/dev-firstrun.html'
+        else:
+            template = 'firefox/australis/help-menu-tour.html'
+
+        # return a list to conform with original intention
+        return [template]
 
 
 def release_notes_template(channel, product):
