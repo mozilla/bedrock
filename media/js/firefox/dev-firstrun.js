@@ -229,8 +229,6 @@
                     }
                 } else if (current === TARGET_3) {
                     showSyncDoorhanger();
-                } else if (current === TARGET_4) {
-                    showSyncInMenu();
                 }
             }
         });
