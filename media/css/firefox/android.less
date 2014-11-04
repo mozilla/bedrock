@@ -720,6 +720,12 @@ html[dir="rtl"] #phone-wrapper figure {
     box-shadow: none;
 }
 
+// Locale-specific rules
+
+html[lang="ja"] #privacy p {
+    text-align: left;
+}
+
 /****************************************************************************/
 // @High resolution images for @retina-type displays
 // Desktop
@@ -1165,6 +1171,11 @@ html[dir="rtl"] #phone-wrapper figure {
         input[type="email"] {
             width: 390px;
         }
+    }
+
+    // Locale-specific rules
+    html[lang="ja"] [data-accordion-role="tabpanel"] p {
+        text-align: left;
     }
 }
 
