@@ -1293,3 +1293,18 @@ html[dir="rtl"] #phone-wrapper figure {
         width: 250px;
     }
 }
+
+// bug 1089443
+html[lang="ja"]{
+  #privacy p{
+    text-align: left;
+  }
+}
+
+@media (max-width: @breakTablet) {
+  html[lang="ja"]{
+    [data-accordion-role="tabpanel"] p{
+      text-align: left;
+    }
+  }
+}
