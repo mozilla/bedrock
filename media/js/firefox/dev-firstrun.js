@@ -2,8 +2,19 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+// YouTube API hook has to be in global scope
+function onYouTubeIframeAPIReady() {
+    Mozilla.firstRunOnYouTubeIframeAPIReady();
+}
+
 ;(function($, Mozilla) {
     'use strict';
+
+    var tag = document.createElement('script');
+
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
     var $window = $(window);
     var $document = $(document);
@@ -17,33 +28,74 @@
     var queryIsLargeScreen = matchMedia('(min-width: 900px)');
     var isHighRes = Mozilla.ImageHelper.isHighDpi();
 
-    // show video modal when user clicks a video play link
-    $('a.video-play').attr('role', 'button').click(function(e) {
-        e.preventDefault();
-
-        var $this = $(this);
-        var $video = $this.siblings('.video');
-        var $iframe = $('<iframe width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>');
-
-        // defer loading of iframe content until the user clicks to activate the modal
-        // as loading the src triggers UITour panel content to close.
-        $iframe.attr('src', $video.data('src'));
-        $this.siblings('.video').html($iframe);
-
-        // if user clicks on a video link,
-        // close any UITour panels and skip the tour
-        clearTimeout(highlightTimeout);
-        Mozilla.UITour.hideInfo();
-        skipTour();
-
-        Mozilla.Modal.createModal(this, $this.nextAll('.video'), {
-            // grab the nearby h4 tag as the modal window title
-            title: $this.siblings('h4,h2').text(),
-            onCreate: function() {
-                $('#modal').fitVids();
-            }
+    var trackClick = function (gaArgs, href, event) {
+        event.preventDefault();
+        gaTrack(gaArgs, function() {
+            window.location = href;
         });
+    };
+
+    // Setup GA tracking for misc links
+    $('.feature .more').on('click', function(e) {
+        trackClick([
+            '_trackEvent',
+            'Developer /firstrun/ Interactions',
+            'learn more link clicks',
+            $(this).text()
+        ], $(this).attr('href'), e);
     });
+
+    function onYouTubeIframeAPIReady() {
+
+        // show video modal when user clicks a video play link
+        $('a.video-play').attr('role', 'button').click(function(e) {
+            e.preventDefault();
+
+            var $this = $(this);
+            var $video = $this.siblings('.video');
+
+            // grab the nearby h4 tag as the modal window title
+            var videoTitle = $this.siblings('h4,h2').text();
+
+            var player = new YT.Player($video.get(0), {
+                height: '390',
+                width: '640',
+                videoId: $video.data('video-id'),
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+
+            function onPlayerReady(event) {
+                event.target.playVideo();
+                gaTrack(['_trackEvent', 'Developer /firstrun/ Interactions', 'play', videoTitle + ' video']);
+            }
+
+            function onPlayerStateChange(event) {
+                if (event.data == YT.PlayerState.ENDED) {
+                gaTrack(['_trackEvent', 'Developer /firstrun/ Interactions', 'finish', videoTitle + ' video']);
+                }
+            }
+
+            // if user clicks on a video link,
+            // close any UITour panels and skip the tour
+            clearTimeout(highlightTimeout);
+            Mozilla.UITour.hideInfo();
+            skipTour();
+
+            Mozilla.Modal.createModal(this, $this.nextAll('.video'), {
+                title: videoTitle,
+                onCreate: function() {
+                    $('#modal').fitVids();
+                },
+                onDestroy: function() {
+                    player.destroy();
+                }
+            });
+        });
+
+    }
 
     // shows the Dev Tools doorhanger step
     function showDevToolsDoorhanger() {
@@ -291,6 +343,6 @@
 
     }
 
+    Mozilla.firstRunOnYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+
 })(window.jQuery, window.Mozilla);
-
-
