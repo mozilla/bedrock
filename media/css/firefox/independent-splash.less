@@ -1,0 +1,273 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+// The big splash header with logo and video
+#fx10-splash {
+    min-height: 800px;
+    overflow: hidden;
+    padding: 40px 0;
+    position: relative;
+    text-align: center;
+
+    .main-title {
+        color: #fff;
+        font-size: 72px;
+        margin: 0 auto 40px;
+        text-shadow: 0 1px 0 rgba(0, 40, 65, .25);
+        width: (@gridColumnWidth * 6) + (@gridGutterWidth * 5);
+        position: relative;
+        z-index: 5;
+    }
+
+    .video {
+        border-radius: 10px;
+        height: 435px;
+        margin: 20px auto;
+        width: 780px;
+        position: relative;
+        z-index: 3;
+        cursor: pointer;
+    }
+
+    .logo,
+    .tail-middle,
+    .tail-end {
+        position: absolute;
+        pointer-events: none;
+    }
+
+    .logo {
+        background: url(/media/img/firefox/independent/logo-tail.png) right top no-repeat;
+        height: 480px;
+        width: 566px;
+        right: 50%;
+        top: -60px;
+        z-index: 4;
+        margin-right: -760px;
+    }
+
+    .tail-middle {
+        background: url(/media/img/firefox/independent/tail-middle.png) left top no-repeat;
+        height: 525px;
+        width: 415px;
+        left: 50%;
+        top: -60px;
+        z-index: 3;
+        margin-left: -700px;
+    }
+
+    .tail-end {
+        background: url(/media/img/firefox/independent/tail-end.png) left top no-repeat;
+        height: 770px;
+        width: 1185px;
+        left: 50%;
+        top: 112px;
+        z-index: 2;
+        margin-left: -745px;
+    }
+}
+
+// Some special styling for the home page
+#home {
+    #fx10-splash {
+        display: none;
+        background: #003356 url(/media/img/firefox/independent/bg-gradient-large.jpg) center top no-repeat;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, .75);
+        color: #fff;
+        padding-top: 6em;
+        text-shadow: 0 1px 0 rgba(0, 40, 65, .25);
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 8;
+
+        .container {
+            width: @widthDesktop - (@gridGutterWidth * 2);
+            .clearfix();
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0;
+            position: relative;
+        }
+
+        .main-title {
+            margin-bottom: 20px;
+        }
+
+        .logo,
+        .tail-middle {
+            top: 0;
+        }
+
+        .close {
+            width: 100%;
+            background: #fff;
+            background: rgba(255, 255, 255, .92);
+            padding: 10px 0;
+            text-align: center;
+            position: absolute;
+            top: 0;
+            z-index: 9;
+
+            button {
+                .open-sans;
+                border: 0;
+                background: transparent;
+                padding: 0;
+                font-size: @largeFontSize;
+                font-weight: bold;
+                text-transform: uppercase;
+                color: @linkBlue;
+                cursor: pointer;
+
+                &:after {
+                    content: '\00BB'; /* raquo */
+                    white-space: nowrap;
+                    border: 1px solid;
+                    border-radius: 50%;
+                    width: 25px;
+                    height: 25px;
+                    display: inline-block;
+                    text-align: center;
+                    margin-left: 10px;
+                    font-size: 20px;
+                    line-height: 20px;
+                }
+
+                &:hover,
+                &:focus {
+                    color: darken(@linkBlue, 10%);
+                }
+            }
+        }
+    }
+
+    #fx10-overlay {
+        display: none;
+        background: rgba(0, 0, 0, .7);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+}
+
+
+/*-------------------------------------------------------------------------*/
+// @Tablet Layout: 760px
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+
+    #fx10-splash {
+        min-height: 670px;
+
+        .main-title {
+            font-size: 60px;
+        }
+
+        .video {
+            width: 640px;
+            height: 357px;
+        }
+
+        .logo {
+            width: 413px;
+            height: 315px;
+            background-size: 413px 315px;
+            margin-right: -580px;
+        }
+
+        .tail-middle {
+            width: 311px;
+            height: 345px;
+            background-size: 311px 345px;
+            margin-left: -520px;
+        }
+
+        .tail-end {
+            width: 889px;
+            height: 578px;
+            background-size: 889px 578px;
+            top: 170px;
+            margin-left: -640px;
+        }
+    }
+
+}
+
+
+
+/*-------------------------------------------------------------------------*/
+// @Mobile Layout: 320px
+@media only screen and (max-width: @breakTablet) {
+
+    #fx10-splash {
+        min-height: 0;
+        padding-top: 160px;
+
+        .container {
+            width: 100%;
+        }
+
+        .main-title {
+            font-size: 48px;
+            width: @widthMobile;
+            margin-top: 60px;
+        }
+
+        .video {
+            width: 100%;
+            height: auto;
+            margin: 20px 0 0;
+            border-radius: 0;
+        }
+
+        .logo {
+            width: 320px;
+            height: 220px;
+            left: 50%;
+            top: -20px;
+            margin-left: -160px;
+            background-size: 283px 240px;
+            background-position: 40px bottom;
+        }
+
+        .tail-middle,
+        .tail-end {
+            display: none;
+        }
+    }
+
+    // Some special styling for the home page
+    #home {
+        #fx10-splash {
+            padding-top: 180px;
+
+            .logo {
+                top: 0;
+            }
+        }
+    }
+
+}
+
+
+
+/*-------------------------------------------------------------------------*/
+// @Wide mobile Layout: 480px
+@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+
+    #fx10-splash {
+        .main-title {
+            width: @widthMobileLandscape;
+        }
+    }
+
+}
