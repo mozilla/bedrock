@@ -133,14 +133,16 @@ function onYouTubeIframeAPIReady() {
 
             showHighlight(TARGET_1);
 
-            Mozilla.UITour.showInfo(
-                TARGET_1,
-                window.trans('devtoolsTitle'),
-                window.trans('devtoolsText'),
-                icon,
-                buttons,
-                options
-            );
+            setTimeout(function() {
+                Mozilla.UITour.showInfo(
+                    TARGET_1,
+                    window.trans('devtoolsTitle'),
+                    window.trans('devtoolsText'),
+                    icon,
+                    buttons,
+                    options
+                );
+            }, 10);
 
             current = TARGET_1;
         });
@@ -178,14 +180,16 @@ function onYouTubeIframeAPIReady() {
             Mozilla.UITour.hideInfo();
             showHighlight(TARGET_2);
 
-            Mozilla.UITour.showInfo(
-                TARGET_2,
-                window.trans('webideTitle'),
-                window.trans('webideText'),
-                icon,
-                buttons,
-                options
-            );
+            setTimeout(function() {
+                Mozilla.UITour.showInfo(
+                    TARGET_2,
+                    window.trans('webideTitle'),
+                    window.trans('webideText'),
+                    icon,
+                    buttons,
+                    options
+                );
+            }, 10);
 
             current = TARGET_2;
         });
@@ -340,7 +344,8 @@ function onYouTubeIframeAPIReady() {
             }
         });
 
-
+        // register tour ID for telemetry
+        Mozilla.UITour.registerPageID('dev-firstrun-35.0a2');
     }
 
     Mozilla.firstRunOnYouTubeIframeAPIReady = onYouTubeIframeAPIReady;

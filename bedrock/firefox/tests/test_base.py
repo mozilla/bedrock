@@ -447,6 +447,14 @@ class TestWhatsNew(TestCase):
         eq_(template, ['firefox/whatsnew-fxos.html'])
 
     @override_settings(DEV=True)
+    def test_fx_dev_35(self, render_mock):
+        """Should use dev firstrun template for 35.0a2."""
+        req = self.rf.get('/en-US/firefox/whatsnew/')
+        self.view(req, fx_version='35.0a2')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/dev-firstrun.html'])
+
+    @override_settings(DEV=True)
     def test_fx_nightly_29(self, render_mock):
         """Should use special nightly template for 29.0a1."""
         req = self.rf.get('/en-US/firefox/whatsnew/')
