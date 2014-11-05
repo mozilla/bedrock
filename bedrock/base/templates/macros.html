@@ -357,8 +357,8 @@
   </section>
 {%- endmacro %}
 
-{% macro share_cta(cta_text, url, share_text) %}
-<div id="mozilla-share-cta" tabindex="0">
+{% macro share_cta(cta_text, url, share_text, id) %}
+<div class="mozilla-share-cta" tabindex="0"{% if id -%} id="{{ id }}"{% endif -%}>
   <h3>{{ cta_text }}</h3>
   <ul>
     <li><a class="twitter" href="{{ 'https://www.twitter.com/intent/tweet?url=%s&amp;text=%s'|format(url|urlencode, share_text|urlencode)|e }}" title="Twitter">Twitter</a></li>
@@ -366,4 +366,83 @@
     <li><a class="g-plus" href="{{ 'https://plus.google.com/share?url=%s&amp;hl=%s'|format(url|urlencode, LANG)|e }}" title="Google+">Google+</a></li>
   </ul>
 </div>
+{%- endmacro %}
+
+{% macro anniversary_video(buttons_overlay, button_footer, embed_video) %}
+
+{#
+Usage:
+
+Include the necessary .less files:
+    'css/base/mozilla-share-cta.less',
+    'css/base/firefox-anniversary-video.less',
+
+Include the necessary .js files:
+    'js/base/mozilla-share-cta.js',
+    'js/base/firefox-anniversary-video.js',
+
+Include this macro on the page:
+    {% from "macros.html" import anniversary_video with context %}
+
+Add the macro:
+    {{ anniversary_video('play', 'share', True) }}
+
+    First param: overlay buttons to show
+        'play', 'replay',  'play-share',  'share-replay'
+    Second param: footer button to show
+        'share', 'download', 'none'
+    Third param: include video embed
+        True, False
+
+See the .js file for API:
+    js/base/firefox-anniversary-video.js
+#}
+
+{# TODO: Replace with actual YouTube IDs. #}
+{% set video_locales = {
+    'en-US': 'Xm5i5kbIXzc',
+    'de': '_D4cMy0Kah4',
+    'fr': '8OyicXLPABI',
+    'pr': 'YX5Fma_6rLc'
+} %}
+
+<section id="fx-anniversary-video-widget">
+  <div id="fx-anniversary-video-wrapper">
+    <div id="fx-anniversary-video-overlay">
+      <div id="fx-anniversary-video-buttons" class="buttons {{ buttons_overlay }}">
+        {#
+          This play <a> will be the only 'button' shown to non-JS users. JS adds
+          role="button" and hijacks click.
+        #}
+        <a href="https://www.youtube.com/watch?v={{ video_locales.get(LANG, video_locales['en-US']) }}" rel="external" class="overlay-button-round button-play">{{ _('Play the video') }}</a>
+
+        <button type="button" class="overlay-button-round button-replay">{{ _('Replay the video') }}</button>
+
+        <div class="button-group">
+          <button type="button" class="overlay-button-rect button-play">{{ _('Play the video') }}</button>
+
+          {# TODO: Update share URL with...campaign landing page URL? I think? #}
+          {{ share_cta(_('Share the video'), 'https://www.mozilla.org/', _('Keep the passion for a free and open Internet burning bright! #ChooseIndependent. Choose Firefox:')) }}
+
+          <button type="button" class="overlay-button-rect button-replay">{{ _('Replay the video') }}</button>
+        </div>{#-- /.button-group #}
+      </div>{#-- /#fx-anniversary-video-buttons #}
+    </div>{#-- /#fx-anniversary-video-overlay #}
+
+    {% if embed_video %}
+    <div id="fx-anniversary-video-embed-wrapper">
+      <iframe id="fx-anniversary-video-embed" data-src="https://www.youtube.com/embed/{{ video_locales.get(LANG, video_locales['en-US']) }}?version=3&amp;enablejsapi=1&amp;wmode=transparent" frameborder="0" allowfullscreen></iframe>
+    </div>
+    {%- endif %}
+  </div>{#-- /#fx-anniversary-video-wrapper #}
+  <footer id="fx-anniversary-video-footer">
+    <div id="fx-anniversary-video-footer-button" class="buttons {{ button_footer }}">
+      {# TODO: Update share URL with...campaign landing page URL? I think? #}
+      {{ share_cta(_('Share the video'), 'https://www.mozilla.org/', _('Keep the passion for a free and open Internet burning bright! #ChooseIndependent. Choose Firefox:')) }}
+
+      {# TODO: Should be 'Download Firefox' or 'Free Download'? #}
+      <a href="{{ url('firefox.new') }}" class="download-link">{{ _('Download Firefox') }}</a>
+    </div>
+  </footer>
+</section>{#-- /#fx-anniversary-video-widget #}
 {%- endmacro %}
