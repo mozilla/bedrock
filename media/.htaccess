@@ -8,7 +8,7 @@ AddType application/font-woff .woff
 AddType application/vnd.ms-fontobject .eot
 AddType application/octet-stream .ttf
 
-AddCharset utf-8 .css .js
+AddCharset utf-8 .css .js .ics
 
 # Set far-future Expires headers for static media
 ExpiresActive on
