@@ -460,9 +460,7 @@ class WhatsnewView(LatestFxView):
             oldversion = oldversion[3:]
         versions = ('29.', '30.', '31.', '32.', '33.')
 
-        if version == '35.0a2':
-            template = 'firefox/dev-firstrun.html'
-        elif version == '29.0a1':
+        if version == '29.0a1':
             template = 'firefox/whatsnew-nightly-29.html'
         elif version.startswith(versions):
             if locale == 'en-US' and f == '31':
