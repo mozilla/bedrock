@@ -4,6 +4,8 @@
 
 // YouTube API hook has to be in global scope
 function onYouTubeIframeAPIReady() {
+    'use strict';
+
     Mozilla.firstRunOnYouTubeIframeAPIReady();
 }
 
@@ -11,8 +13,7 @@ function onYouTubeIframeAPIReady() {
     'use strict';
 
     var tag = document.createElement('script');
-
-    tag.src = "https://www.youtube.com/iframe_api";
+    tag.src = 'https://www.youtube.com/iframe_api';
     var firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
@@ -73,8 +74,8 @@ function onYouTubeIframeAPIReady() {
             }
 
             function onPlayerStateChange(event) {
-                if (event.data == YT.PlayerState.ENDED) {
-                gaTrack(['_trackEvent', 'Developer /firstrun/ Interactions', 'finish', videoTitle + ' video']);
+                if (event.data === YT.PlayerState.ENDED) {
+                    gaTrack(['_trackEvent', 'Developer /firstrun/ Interactions', 'finish', videoTitle + ' video']);
                 }
             }
 
@@ -112,13 +113,13 @@ function onYouTubeIframeAPIReady() {
 
             var nextAvailable = $.inArray(nextTarget, config.targets) !== -1;
             var nextLabel = nextAvailable ? 'nextWebide' : 'nextSync';
-            var nextStep = nextAvailable ? showWebIDEDoorhanger : showSyncDoorhanger;
+            var nextStep = nextAvailable ? nextWebIDEButton : nextSyncButton;
 
             buttons = [
                 {
                     label: window.trans('doorhangerClose'),
                     style: 'link',
-                    callback: skipTour
+                    callback: devToolsDoorhangerClose
                 },
                 {
                     label: window.trans(nextLabel),
@@ -128,7 +129,7 @@ function onYouTubeIframeAPIReady() {
             ];
 
             options = {
-                closeButtonCallback: skipTour
+                closeButtonCallback: devToolsDoorhangerClose
             };
 
             showHighlight(TARGET_1);
@@ -148,6 +149,18 @@ function onYouTubeIframeAPIReady() {
         });
     }
 
+    // close tour and track button click
+    function devToolsDoorhangerClose() {
+        skipTour();
+        gaTrack(['_trackEvent', 'Developer /firstrun/ Interactions', 'Developer Tools doorhanger - link click', 'Close Tour']);
+    }
+
+    // show webIDE doorhanger and track button click
+    function nextWebIDEButton() {
+        showWebIDEDoorhanger();
+        gaTrack(['_trackEvent', 'Developer /firstrun/ Interactions', 'Developer Tools doorhanger - button click', 'Next:WebIDE']);
+    }
+
     // shows the WebIDE doorhanger step
     function showWebIDEDoorhanger() {
         var icon = isHighRes ? window.trans('webideIconHighRes') : window.trans('webideIcon');
@@ -164,17 +177,17 @@ function onYouTubeIframeAPIReady() {
                 {
                     label: window.trans('doorhangerClose'),
                     style: 'link',
-                    callback: skipTour
+                    callback: webIDEDoorhangerClose
                 },
                 {
                     label: window.trans('nextSync'),
                     style: 'primary',
-                    callback: showSyncDoorhanger
+                    callback: nextSyncButton
                 }
             ];
 
             options = {
-                closeButtonCallback: skipTour
+                closeButtonCallback: webIDEDoorhangerClose
             };
 
             Mozilla.UITour.hideInfo();
@@ -195,6 +208,17 @@ function onYouTubeIframeAPIReady() {
         });
     }
 
+    function webIDEDoorhangerClose() {
+        skipTour();
+        gaTrack(['_trackEvent', 'Developer /firstrun/ Interactions', 'Try WebIDE doorhanger - link click', 'Close Tour']);
+    }
+
+    // show webIDE doorhanger and track button click
+    function nextSyncButton() {
+        showSyncDoorhanger();
+        gaTrack(['_trackEvent', 'Developer /firstrun/ Interactions', 'Try WebIDE doorhanger - button click', 'Next:Sync']);
+    }
+
     // shows the Sync doorhanger step
     function showSyncDoorhanger() {
         var icon = isHighRes ? window.trans('syncIconHighRes') : window.trans('syncIcon');
@@ -202,7 +226,7 @@ function onYouTubeIframeAPIReady() {
             {
                 label: window.trans('doorhangerNothanks'),
                 style: 'link',
-                callback: skipTour
+                callback: syncDoorhangerClose
             },
             {
                 label: window.trans('doorhangerSync'),
@@ -211,7 +235,7 @@ function onYouTubeIframeAPIReady() {
             }
         ];
         var options = {
-            closeButtonCallback: skipTour
+            closeButtonCallback: syncDoorhangerClose
         };
 
         Mozilla.UITour.hideInfo();
@@ -229,6 +253,11 @@ function onYouTubeIframeAPIReady() {
         current = TARGET_3;
     }
 
+    function syncDoorhangerClose() {
+        skipTour();
+        gaTrack(['_trackEvent', 'Developer /firstrun/ Interactions', 'Sync doorhanger - link click', 'No Thanks']);
+    }
+
     // highlights sync sign in button in the app menu
     function showSyncInMenu() {
         showHighlight(TARGET_4);
@@ -239,6 +268,8 @@ function onYouTubeIframeAPIReady() {
         });
 
         current = TARGET_4;
+
+        gaTrack(['_trackEvent', 'Developer /firstrun/ Interactions', 'Sync doorhanger - button click', 'Sync My Firefox']);
     }
 
     // hides the current highlight annotation
