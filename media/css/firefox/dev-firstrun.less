@@ -55,32 +55,6 @@
     .video-play:before {
         top: 60px;
     }
-    .notice {
-        clear: both;
-        opacity: .8;
-        padding: @baseLine @baseLine @baseLine 55px;
-        .at2x('/media/img/firefox/firstrun/dev/question.png', 20px, 20px);
-        background-position: @baseLine @baseLine;
-        background-repeat: no-repeat;
-        .border-radius();
-        border: 1px solid darken(@blueprintTextColorSecondary, 40%);
-        text-align: left;
-        h4 {
-            font-size: 18px;
-            letter-spacing: normal;
-            margin-bottom: 5px;
-        }
-        p {
-            margin-bottom: 0;
-        }
-        p,
-        h4 {
-            color: @blueprintTextColorSecondary;
-        }
-        .more {
-            white-space: nowrap;
-        }
-    }
 }
 
 .more-features {
@@ -98,6 +72,9 @@
             margin-bottom: @baseLine * 2;
             .open-sans-light();
         }
+    }
+    .container {
+        padding-bottom: @baseLine * 4;
     }
 }
 
@@ -133,6 +110,34 @@
         display: none;
     }
 }
+
+.notice {
+    clear: both;
+    opacity: .8;
+    padding: @baseLine @baseLine @baseLine 55px;
+    .at2x('/media/img/firefox/firstrun/dev/question.png', 20px, 20px);
+    background-position: @baseLine @baseLine;
+    background-repeat: no-repeat;
+    .border-radius();
+    border: 1px solid darken(@blueprintTextColorSecondary, 40%);
+    text-align: left;
+    h4 {
+        font-size: 18px;
+        letter-spacing: normal;
+        margin-bottom: 5px;
+    }
+    p {
+        margin-bottom: 0;
+    }
+    p,
+    h4 {
+        color: @blueprintTextColorSecondary;
+    }
+    .more {
+        white-space: nowrap;
+    }
+}
+
 
 .video-play {
     position: relative;
