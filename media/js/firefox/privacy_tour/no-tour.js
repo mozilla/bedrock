@@ -5,4 +5,11 @@
 ;(function($, Mozilla) {
     'use strict';
 
+    // enable video
+    Mozilla.FirefoxAnniversaryVideo.enableEmbed();
+
+    // wait until doc ready to start ripples animation
+    $(function() {
+        Mozilla.PrivacyTour.animateRipples(0);
+    });
 })(window.jQuery, window.Mozilla);

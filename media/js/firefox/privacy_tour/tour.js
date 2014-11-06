@@ -5,6 +5,28 @@
 ;(function($, Mozilla) {
     'use strict';
 
+    var animationsRun = false;
+
+    var onTourCloseCompact = function() {
+        if (!animationsRun) {
+            // enable video
+            Mozilla.FirefoxAnniversaryVideo.enableEmbed();
+
+            // small timeout here seems to help performance quite a bit
+            setTimeout(function() {
+                Mozilla.PrivacyTour.animateHeadline();
+
+                // lots of animating going on here, so delay ripples
+                // slightly for better performance
+                setTimeout(function() {
+                    Mozilla.PrivacyTour.animateRipples(0);
+                }, 250);
+            }, 150);
+
+            animationsRun = true;
+        }
+    };
+
     //Only run the tour if user is on Firefox 33 for desktop.
     if (window.isFirefox() && !window.isFirefoxMobile() && window.getFirefoxMasterVersion() >= 33) {
 
@@ -12,10 +34,15 @@
         Mozilla.UITour.getConfiguration('sync', function (config) {
 
             var tour = new Mozilla.BrowserTour({
-                id: $('#tour-page').data('telemetry')
+                id: $('#fx10-splash').data('telemetry'),
+                allowScroll: true,
+                onCloseTour: onTourCloseCompact,
+                onCompactTour: onTourCloseCompact
             });
 
             tour.init();
+
+            $('.main-title').addClass('tour');
         });
     }
 

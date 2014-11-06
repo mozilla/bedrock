@@ -44,7 +44,11 @@ if (typeof Mozilla == 'undefined') {
         this.$mask = $('#ui-tour-mask').detach().show();
         this.$maskInner = this.$mask.find('.mask-inner');
 
-        this.$body.append(this.$mask).append(this.$tour).addClass('noscroll');
+        this.$body.append(this.$mask).append(this.$tour);
+
+        if (!this.options.allowScroll) {
+            this.$body.addClass('noscroll');
+        }
 
         this.$mask.focus();
 
@@ -302,7 +306,10 @@ if (typeof Mozilla == 'undefined') {
             $(this).remove();
         });
         if (!this.tourHasStarted) {
-            this.$body.addClass('noscroll');
+            if (!this.options.allowScroll) {
+                this.$body.addClass('noscroll');
+            }
+
             this.$mask.show();
             setTimeout(function () {
                 that.$mask.removeClass('out');
@@ -310,6 +317,10 @@ if (typeof Mozilla == 'undefined') {
             }, 50);
         } else {
             this.expandTour();
+        }
+
+        if (typeof this.options.onRestartTour === 'function') {
+            this.options.onRestartTour();
         }
     };
 
@@ -752,6 +763,10 @@ if (typeof Mozilla == 'undefined') {
         // unbind ui-tour focus and keyboard event listeners
         this.$doc.off('.ui-tour').focus();
         this.$tour.off('.ui-tour');
+
+        if (typeof this.options.onCloseTour === 'function') {
+            this.options.onCloseTour();
+        }
     };
 
     /*
@@ -796,6 +811,10 @@ if (typeof Mozilla == 'undefined') {
         this.$progress.addClass('compact').fadeIn($.proxy(function () {
             this.tourIsAnimating = false;
         }, this));
+
+        if (typeof this.options.onCompactTour === 'function') {
+            this.options.onCompactTour();
+        }
     };
 
     /*
@@ -833,13 +852,20 @@ if (typeof Mozilla == 'undefined') {
     };
 
     BrowserTour.prototype.onTourExpand = function () {
-        this.$body.addClass('noscroll');
+        if (!this.options.allowScroll) {
+            this.$body.addClass('noscroll');
+        }
+
         this.showHighlight();
         this.$progress.removeClass('compact').fadeIn('slow');
         this.$tourList.find('li.current').find('h2').focus();
         this.$tourList.fadeIn('slow', $.proxy(function () {
             this.tourIsAnimating = false;
         }, this));
+
+        if (typeof this.options.onExpandTour === 'function') {
+            this.options.onExpandTour();
+        }
     };
 
     /*

@@ -414,7 +414,7 @@ See the .js file for API:
           This play <a> will be the only 'button' shown to non-JS users. JS adds
           role="button" and hijacks click.
         #}
-        <a href="https://www.youtube.com/watch?v={{ video_locales.get(LANG, video_locales['en-US']) }}" rel="external" class="overlay-button-round button-play">{{ _('Play the video') }}</a>
+        <a href="https://www.youtube.com/watch?v={{ video_locales.get(LANG, video_locales['en-US']) }}" rel="external" class="overlay-button-round button-play"><span>{{ _('Play the video') }}</span></a>
 
         <button type="button" class="overlay-button-round button-replay">{{ _('Replay the video') }}</button>
 
