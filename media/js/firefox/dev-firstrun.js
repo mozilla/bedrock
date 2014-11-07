@@ -63,10 +63,11 @@ function onYouTubeIframeAPIReady() {
             e.preventDefault();
 
             var $this = $(this);
-            var $video = $this.siblings('.video');
+            var $videoContainer = $this.nextAll('.responsive-video-container');
+            var $video = $this.nextAll('.responsive-video-container').children().first();
 
-            // grab the nearby h4 tag as the modal window title
-            var videoTitle = $this.siblings('h4,h2').text();
+            // grab the nearby h2 tag as the modal window title
+            var videoTitle = $this.siblings('h2').text();
 
             var player = new YT.Player($video.get(0), {
                 height: '390',
@@ -95,11 +96,8 @@ function onYouTubeIframeAPIReady() {
             Mozilla.UITour.hideInfo();
             skipTour();
 
-            Mozilla.Modal.createModal(this, $this.nextAll('.video'), {
+            Mozilla.Modal.createModal(this, $videoContainer, {
                 title: videoTitle,
-                onCreate: function() {
-                    $('#modal').fitVids();
-                },
                 onDestroy: function() {
                     player.destroy();
                 }
