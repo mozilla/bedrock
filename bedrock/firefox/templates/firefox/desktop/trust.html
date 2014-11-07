@@ -61,6 +61,18 @@
 
           <a class="more" rel="external" href="https://support.mozilla.org/kb/private-browsing-browse-web-without-saving-info">{{ _('Learn how to open a private window') }}</a>
         </li>
+        {% if l10n_has_tag('forget_button') or settings.DEV %}
+        <li id="privacy-forget" class="last">
+          <h3>{{ _('Forget Button') }}</h3>
+
+          <p>
+            {{ _('Remove browsing information from your computer after the fact.') }}
+            {{ _('Use it when you’ve visited a site that you don’t want in your history.') }}
+          </p>
+
+          <a class="more" rel="external" href="https://support.mozilla.org/kb/forget-button-quickly-delete-your-browsing-history">{{ _('Add the Forget Button to your toolbar') }}</a>
+        </li>
+        {% else %}
         <li id="privacy-lightbeam" class="last">
           <h3>{{ _('Lightbeam') }}</h3>
 
@@ -71,6 +83,7 @@
 
           <a class="more" href="{{ url('lightbeam.lightbeam') }}">{{ _('Shine a light on the Web with Lightbeam') }}</a>
         </li>
+        {% endif %}
       </ul>
     </div>
   </section>
