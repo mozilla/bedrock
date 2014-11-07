@@ -3,7 +3,6 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 @import "template-resp.less";
-@import '../sandstone/lib.less';
 
 #wrapper {
     width: 100%;
@@ -78,11 +77,9 @@
     }
 }
 
-.features {
-    .container {
-        padding-top: @baseLine * 4;
-        padding-bottom: @baseLine * 4;
-    }
+.features .container {
+    padding-top: @baseLine * 4;
+    padding-bottom: @baseLine * 4;
 }
 
 .feature {
@@ -170,7 +167,7 @@
 #modal .window .inner .responsive-video-container.overlay-contents {
     position: relative;
     padding-bottom: 56.25%;
-     padding-top: 30px;
+    padding-top: 30px;
     height: 0;
     background: #000;
     iframe {
