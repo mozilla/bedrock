@@ -384,6 +384,35 @@
     }
 }
 
+.download-button-aurora.download-button-small {
+    .download-link {
+        .download-title {
+            font-size: 13px;
+            font-style: italic;
+            span {
+                font-size: 18px;
+                font-style: normal;
+                margin-bottom: 0;
+                letter-spacing: normal;
+            }
+        }
+        .download-subtitle {
+            display: none;
+        }
+        .download-lang {
+            top: 50%;
+            margin-top: -1em;
+        }
+    }
+}
+
+.download-button-aurora.download-button-simple {
+    .download-link .download-subtitle {
+        // Don't hide the subtitle for Aurora if simple=True
+        display: block;
+    }
+}
+
 .download-button.download-button-beta.download-button-small .download-list .os_android,
 .download-button.download-button-aurora.download-button-small .download-list .os_android,
 .download-button.download-button-mobile.download-button-aurora.download-button-small,

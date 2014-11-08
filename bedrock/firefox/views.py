@@ -317,6 +317,15 @@ def latest_sysreq(request, channel='release'):
     return HttpResponseRedirect('/' + '/'.join(path) + '/')
 
 
+def show_devbrowser_firstrun(version):
+    match = re.match(r'\d{1,2}', version)
+    if match:
+        num_version = int(match.group(0))
+        return num_version >= 35 and version.endswith('a2')
+
+    return False
+
+
 def show_whatsnew_tour(oldversion):
     match = re.match(r'\d{1,2}', oldversion)
     if match:
@@ -394,12 +403,10 @@ class FirstrunView(LatestFxView):
         return super(FirstrunView, self).get(request, *args, **kwargs)
 
     def get_template_names(self):
-        locale = l10n_utils.get_locale(self.request)
-        fc_ctx = funnelcake_param(self.request)
-        f = fc_ctx.get('funnelcake_id', 0)
+        version = self.kwargs.get('fx_version') or ''
 
-        if f == '30' and locale == 'en-US':
-            template = 'firefox/australis/firstrun-no-tour.html'
+        if show_devbrowser_firstrun(version):
+            template = 'firefox/dev-firstrun.html'
         else:
             template = 'firefox/australis/firstrun-tour.html'
 
@@ -478,7 +485,6 @@ class WhatsnewView(LatestFxView):
 
 
 class TourView(LatestFxView):
-    template_name = 'firefox/australis/help-menu-tour.html'
 
     def get(self, request, *args, **kwargs):
         if not settings.DEV and not request.is_secure():
@@ -488,6 +494,17 @@ class TourView(LatestFxView):
             )
             return HttpResponsePermanentRedirect(uri)
         return super(TourView, self).get(request, *args, **kwargs)
+
+    def get_template_names(self):
+        version = self.kwargs.get('fx_version') or ''
+
+        if show_devbrowser_firstrun(version):
+            template = 'firefox/dev-firstrun.html'
+        else:
+            template = 'firefox/australis/help-menu-tour.html'
+
+        # return a list to conform with original intention
+        return [template]
 
 
 def release_notes_template(channel, product):

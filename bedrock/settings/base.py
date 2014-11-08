@@ -240,6 +240,10 @@ MINIFY_BUNDLES = {
             'css/base/mozilla-modal.less',
             'css/firefox/firstrun.less',
         ),
+        'firefox_developer_firstrun': (
+            'css/base/mozilla-modal.less',
+            'css/firefox/dev-firstrun.less',
+        ),
         'nightly_firstrun': (
             'css/firefox/nightly_firstrun.less',
         ),
@@ -248,6 +252,10 @@ MINIFY_BUNDLES = {
             'css/base/mozilla-modal.less',
             'css/libs/mapbox-1.6.3.css',
             'css/firefox/geolocation.less'
+        ),
+        'firefox_developer': (
+            'css/base/mozilla-modal.less',
+            'css/firefox/developer.less',
         ),
         'firefox_new': (
             'css/libs/socialshare/socialshare.less',
@@ -590,9 +598,18 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.waypoints.min.js',
             'js/firefox/desktop/common.js',
         ),
+        'firefox_developer': (
+            'js/firefox/developer.js',
+            'js/base/mozilla-modal.js',
+        ),
         'firefox_firstrun': (
             'js/base/mozilla-modal.js',
             'js/firefox/firstrun/firstrun.js',
+        ),
+        'firefox_developer_firstrun': (
+            'js/firefox/australis/australis-uitour.js',
+            'js/base/mozilla-modal.js',
+            'js/firefox/dev-firstrun.js',
         ),
         'firefox_new': (
             'js/libs/socialshare.min.js',
