@@ -23,9 +23,14 @@
 
   {% block notes_header %}
     <header class="notes-head">
-    <h1>{{ _('Firefox {channel} Notes')|f(channel=channel_name) }}</h1>
-    <h2>{{ _('Version {version}, first offered to {channel} channel users on {date}')|f(channel=release.channel, date=release.release_date|l10n_format_date, version=release.version) }}</h2>
+    {% block notes_heading_primary %}
+      <h1>{{ _('Firefox {channel} Notes')|f(channel=channel_name) }}</h1>
+    {% endblock %}
+    {% block notes_heading_secondary %}
+      <h2>{{ _('Version {version}, first offered to {channel} channel users on {date}')|f(channel=release.channel, date=release.release_date|l10n_format_date, version=release.version) }}</h2>
+    {% endblock %}
 
+    {% block platform_switch %}
     {% if equivalent_release_url %}
       <aside id="platform">
         <h4>{{ _('View notes for:') }}</h4>
@@ -40,6 +45,7 @@
         </ul>
       </aside>
     {% endif %}
+    {% endblock %}
 
       <p>
         {{ _('Check out "What’s New" and "Known Issues" for this version of Firefox below.') }}
@@ -105,6 +111,7 @@
 
   {% block notes_sidebar %}
     <aside id="sidebar" class="sidebar">
+      {% block notes_sidebar_download %}
       <section id="try">
         <h3>{{ _('Try Firefox %s')|format(channel_name) }}</h3>
         <ol>
@@ -119,6 +126,7 @@
           <li class="try4"><a href="https://addons.mozilla.org/firefox/">{{ _('Customize') }}</a></li>
         </ol>
       </section>
+      {% endblock %}
 
       <section id="get-involved">
         <h3>{{ _('Want to get involved?') }}</h3>

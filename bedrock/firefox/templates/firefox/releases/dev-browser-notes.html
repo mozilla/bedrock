@@ -1,0 +1,18 @@
+{% extends "firefox/releases/aurora-notes.html" %}
+
+{% block body_class %}fx-notes blueprint{% endblock %}
+
+{% block site_header_logo %}
+  <h2>{{ high_res_img('img/firefox/developer/title.png', {'alt': _('Firefox Developer Edition'), 'width': '220', 'height': '84'}) }}</h2>
+{% endblock %}
+
+{% block notes_heading_primary %}
+  <h1>{{ _('Firefox Developer Edition Notes')|f(channel=channel_name) }}</h1>
+{% endblock %}
+{% block notes_heading_secondary %}
+  <h2>{{ _('Version {version}, first offered to Firefox Developer Edition users on {date}')|f(date=release.release_date|l10n_format_date, version=release.version) }}</h2>
+{% endblock %}
+
+{% block platform_switch %}{% endblock %}
+
+{% block notes_sidebar_download %}{% endblock %}
