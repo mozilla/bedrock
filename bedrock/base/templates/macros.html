@@ -357,13 +357,13 @@
   </section>
 {%- endmacro %}
 
-{% macro share_cta(cta_text, url, share_text, id) %}
+{% macro share_cta(cta_text, share_urls, share_text, id) %}
 <div class="mozilla-share-cta" tabindex="0"{% if id -%} id="{{ id }}"{% endif -%}>
   <h3>{{ cta_text }}</h3>
   <ul>
-    <li><a class="twitter" href="{{ 'https://www.twitter.com/intent/tweet?url=%s&amp;text=%s'|format(url|urlencode, share_text|urlencode)|e }}" title="Twitter">Twitter</a></li>
-    <li><a class="facebook" href="{{ 'https://www.facebook.com/sharer/sharer.php?u=%s'|format(url|urlencode)|e }}" title="Facebook">Facebook</a></li>
-    <li><a class="g-plus" href="{{ 'https://plus.google.com/share?url=%s&amp;hl=%s'|format(url|urlencode, LANG)|e }}" title="Google+">Google+</a></li>
+    <li><a class="twitter" href="{{ 'https://www.twitter.com/intent/tweet?url=%s&amp;text=%s'|format(share_urls.get('twitter')|urlencode, share_text|urlencode)|e }}" title="Twitter">Twitter</a></li>
+    <li><a class="facebook" href="{{ 'https://www.facebook.com/sharer/sharer.php?u=%s'|format(share_urls.get('facebook')|urlencode)|e }}" title="Facebook">Facebook</a></li>
+    <li><a class="g-plus" href="{{ 'https://plus.google.com/share?url=%s&amp;hl=%s'|format(share_urls.get('googleplus')|urlencode, LANG)|e }}" title="Google+">Google+</a></li>
   </ul>
 </div>
 {%- endmacro %}
@@ -399,30 +399,39 @@ See the .js file for API:
 #}
 
 {# TODO: Replace with actual YouTube IDs. #}
-{% set video_locales = {
+{%
+set video_locales = {
     'en-US': 'LtOGa5M8AuU',
-    'de': '_D4cMy0Kah4',
-    'fr': '8OyicXLPABI',
-    'pt-BR': 'YX5Fma_6rLc'
-} %}
+    'de': 'q8r3HyMnZrQ',
+    'fr': '-NYOc_aTzHo',
+    'pt-BR': 'q7d7m_4X8tg'
+}
+%}
+
+{%
+set share_urls = {
+    'twitter': 'http://mzl.la/fx10',
+    'googleplus': 'http://mzl.la/1vV6ZHq',
+    'facebook': 'http://mzl.la/1EpcVPe'
+}
+%}
 
 <section id="fx-anniversary-video-widget">
   <div id="fx-anniversary-video-wrapper">
     <div id="fx-anniversary-video-overlay">
-      <div id="fx-anniversary-video-buttons" class="buttons {{ buttons_overlay }}">
+      <div id="fx-anniversary-video-buttons" class="buttons {{ buttons_overlay }}" tabindex="1">
         {#
           This play <a> will be the only 'button' shown to non-JS users. JS adds
           role="button" and hijacks click.
         #}
-        <a href="https://www.youtube.com/watch?v={{ video_locales.get(LANG, video_locales['en-US']) }}" rel="external" class="overlay-button-round button-play"><span>{{ _('Play the video') }}</span></a>
+        <a href="https://www.youtube.com/watch?v={{ video_locales.get(LANG, video_locales['en-US']) }}" rel="external" class="overlay-button-round button-play" ><span>{{ _('Watch the video') }}</span></a>
 
         <button type="button" class="overlay-button-round button-replay">{{ _('Replay the video') }}</button>
 
         <div class="button-group">
-          <button type="button" class="overlay-button-rect button-play">{{ _('Play the video') }}</button>
+          <button type="button" class="overlay-button-rect button-play">{{ _('Watch the video') }}</button>
 
-          {# TODO: Update share URL with...campaign landing page URL? I think? #}
-          {{ share_cta(_('Share the video'), 'https://www.mozilla.org/', _('Keep the passion for a free and open Internet burning bright! #ChooseIndependent. Choose Firefox:')) }}
+          {{ share_cta(_('Share the video'), share_urls, _('Keep the passion for a free and open Internet burning bright! #ChooseIndependent. Choose Firefox:')) }}
 
           <button type="button" class="overlay-button-rect button-replay">{{ _('Replay the video') }}</button>
         </div>{#-- /.button-group #}
@@ -431,14 +440,13 @@ See the .js file for API:
 
     {% if embed_video %}
     <div id="fx-anniversary-video-embed-wrapper">
-      <iframe id="fx-anniversary-video-embed" data-src="https://www.youtube.com/embed/{{ video_locales.get(LANG, video_locales['en-US']) }}?version=3&amp;enablejsapi=1&amp;wmode=transparent" frameborder="0" allowfullscreen></iframe>
+      <iframe id="fx-anniversary-video-embed" data-src="https://www.youtube.com/embed/{{ video_locales.get(LANG, video_locales['en-US']) }}?version=3&amp;enablejsapi=1&amp;wmode=transparent&amp;cc_load_policy=1" frameborder="0" allowfullscreen></iframe>
     </div>
     {%- endif %}
   </div>{#-- /#fx-anniversary-video-wrapper #}
   <footer id="fx-anniversary-video-footer">
     <div id="fx-anniversary-video-footer-button" class="buttons {{ button_footer }}">
-      {# TODO: Update share URL with...campaign landing page URL? I think? #}
-      {{ share_cta(_('Share the video'), 'https://www.mozilla.org/', _('Keep the passion for a free and open Internet burning bright! #ChooseIndependent. Choose Firefox:')) }}
+      {{ share_cta(_('Share the video'), share_urls, _('Keep the passion for a free and open Internet burning bright! #ChooseIndependent. Choose Firefox:')) }}
       <a href="{{ url('firefox.new') }}" class="download-link">{{ _('Download Firefox') }}</a>
     </div>
   </footer>
