@@ -216,7 +216,7 @@ Mozilla.FirefoxAnniversaryVideo = (function($) {
     */
     var _videoComplete = function(state) {
         // if ended
-        if (state.data === 0) {
+        if (typeof _opts.onComplete === 'function' && state.data === 0) {
             _opts.onComplete();
         }
     };
