@@ -1,0 +1,97 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "firefox/base.html" %}
+
+{% set_lang_files "firefox/privacy_tour/privacy_tour" %}
+
+{% from "macros.html" import share_cta with context %}
+{% from "macros.html" import anniversary_video with context %}
+
+{% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
+
+{% block body_class %}sky{% endblock %}
+
+{% block site_css %}{% endblock %}
+{% block js %}{% endblock %}
+
+{% block string_data %}
+{# L10n: This is the title for a door-hanger menu that shows in the browser chrome #}
+data-title="{{ _('See what’s new') }}"
+{# L10n: This is the text for a door-hanger menu that shows in the browser chrome #}
+data-text="{{ _('You’re up to date with the latest features to help keep you in control.') }}"
+{# L10n: This is the label for a button that starts the tour #}
+data-start="{{ _('Let’s go') }}"
+{# L10n: This is the label for a button that delays starting the tour #}
+data-later="{{ _('Not now') }}"
+{# L10n: This is the label for a button that opens the tour modal dialog #}
+data-open="{{ _('Open tour') }}"
+{# L10n: This is the label for a button that closes the tour modal dialog #}
+data-close="{{ _('Close tour') }}"
+{# L10n: This is the text for a call to action that appears in the web page #}
+data-later-cta="{{ _('See the newest ways you can take control of your digital life') }}"
+{# L10n: This is the label that represents tour step one of three #}
+data-step1="{{ _('1/3') }}"
+{# L10n: This is the label that represents tour step two of three #}
+data-step2="{{ _('2/3') }}"
+{# L10n: This is the label that represents tour step three of three #}
+data-step3="{{ _('3/3') }}"
+{# This data attribute is just for testing purposes and should not be localized #}
+data-has-tour="True"
+{% endblock %}
+
+{% block site_header %}
+  <header id="masthead">
+    <a href="{{ url('mozorg.home') }}" id="tabzilla">Mozilla</a>
+    {% block site_header_nav %}{% endblock %}
+    {% block site_header_logo %}{% endblock %}
+    {% block breadcrumbs %}{% endblock %}
+  </header>
+{% endblock %}
+
+{% block content %}
+  <article id="fx10-splash" data-telemetry="privacy-tour-whatsnew">
+    <div class="container">
+      <h1 class="main-title">{{ _('Declare your independence') }}</h1>
+
+      {{ anniversary_video('play', 'none', True) }}
+    </div>
+
+    <div class="logo"></div>
+    <div class="tail-middle"></div>
+    <div class="tail-end"></div>
+  </article>
+
+  <footer id="fx10-footer">
+    <ul class="primary">
+      <li>
+        <a href="{{ url('firefox.desktop.index') }}">{{ _('Firefox Features') }}</a>
+      </li>
+      <li>
+        <a href="https://support.mozilla.org/" rel="external">{{ _('Firefox Help') }}</a>
+      </li>
+    </ul>
+
+    <ul class="secondary">
+      <li>
+        <a href="{{ url('privacy') }}">{{ _('Privacy Policy') }}</a>
+      </li>
+      <li>
+        <a href="{{ url('legal.index') }}">{{ _('Legal Notices') }}</a>
+      </li>
+    </ul>
+  </footer>
+
+  <div id="video-modal-content">
+    {# TODO: Update share URL with...campaign landing page URL? I think? #}
+    {{ share_cta(_('Share the video'), 'https://www.mozilla.org/', _('Keep the passion for a free and open Internet burning bright! #ChooseIndependent. Choose Firefox:')) }}
+  </div>
+
+  {% block noscript %}{% endblock %}
+  {% block tour_content %}{% endblock %}
+  {% block tour_mask %}{% endblock %}
+{% endblock %}
+
+{% block site_footer %}{% endblock %}
+{% block email_form %}{% endblock %}

@@ -24,7 +24,6 @@ from rna.models import Release
 
 from bedrock.firefox import version_re
 from bedrock.firefox.forms import SMSSendForm
-from bedrock.mozorg.context_processors import funnelcake_param
 from bedrock.mozorg.decorators import cache_control_expires
 from bedrock.mozorg.views import process_partnership_form
 from bedrock.mozorg.helpers.misc import releasenotes_url
@@ -32,6 +31,7 @@ from bedrock.mozorg.helpers.download_buttons import android_builds
 from bedrock.firefox.utils import is_current_or_newer
 from bedrock.firefox.firefox_details import firefox_details, mobile_details
 from lib.l10n_utils.dotlang import _
+from product_details.version_compare import Version
 
 
 UA_REGEXP = re.compile(r"Firefox/(%s)" % version_re)
@@ -327,12 +327,21 @@ def show_devbrowser_firstrun(version):
 
 
 def show_whatsnew_tour(oldversion):
-    match = re.match(r'\d{1,2}', oldversion)
-    if match:
-        num_oldversion = int(match.group(0))
-        return num_oldversion < 29
+    try:
+        oldversion = Version(oldversion)
+    except ValueError:
+        return False
 
-    return False
+    return oldversion < Version('33.1')
+
+
+def show_10th_anniversary(version):
+    try:
+        version = Version(version)
+    except ValueError:
+        return False
+
+    return version >= Version('33.1')
 
 
 class LatestFxView(TemplateView):
@@ -452,29 +461,22 @@ class WhatsnewView(LatestFxView):
     def get_template_names(self):
         version = self.kwargs.get('fx_version') or ''
         locale = l10n_utils.get_locale(self.request)
-        fc_ctx = funnelcake_param(self.request)
-        f = fc_ctx.get('funnelcake_id', 0)
         oldversion = self.request.GET.get('oldversion', '')
         # old versions of Firefox sent a prefixed version
         if oldversion.startswith('rv:'):
             oldversion = oldversion[3:]
-        versions = ('29.', '30.', '31.', '32.', '33.')
+        versions = ('29.', '30.', '31.', '32.')
 
-        if version == '29.0a1':
-            template = 'firefox/whatsnew-nightly-29.html'
-        elif version.startswith(versions):
-            if locale == 'en-US' and f == '31':
-                # funnelcake build 31 should always get the tour
-                template = 'firefox/australis/whatsnew-tour.html'
-            elif locale == 'en-US' and f == '30':
-                # funnelcake build 30 should not get the tour
-                template = 'firefox/australis/whatsnew-no-tour.html'
-            elif show_whatsnew_tour(oldversion):
-                # updating from pre-29 version
-                template = 'firefox/australis/whatsnew-tour.html'
+        if version.startswith('33.'):
+            if show_10th_anniversary(version):
+                if show_whatsnew_tour(oldversion):
+                    template = 'firefox/privacy_tour/tour.html'
+                else:
+                    template = 'firefox/privacy_tour/no-tour.html'
             else:
-                # default is no tour
                 template = 'firefox/australis/whatsnew-no-tour.html'
+        elif version.startswith(versions):
+            template = 'firefox/australis/whatsnew-no-tour.html'
         elif locale in self.fxos_locales:
             template = 'firefox/whatsnew-fxos.html'
         else:

@@ -208,4 +208,68 @@ $(function () {
         // for non-touch devices we use hover
         initPromoHover();
     }
+
+    // Firefox 10th anniversary takeover
+    var $splash = $('#fx10-splash');
+    var splash_height = $splash.height();
+    var $splash_close = $splash.find('.close');
+    var $splash_overlay = $('#fx10-overlay');
+
+    if ($splash.length > 0) {
+        try {
+            if (sessionStorage.getItem('takeover') != 'closed') {
+                $splash.show();
+                $splash_overlay.show();
+            }
+        } catch (ex) {}
+
+        $splash_close.on('click', function() {
+            closeSplash();
+        });
+
+        $splash_overlay.on('click', function() {
+            closeSplash();
+        });
+
+        // close with escape key
+        $(document).bind('keyup.splash', function(e) {
+            if (e.which === 27 && $splash.is(':visible')) {
+                closeSplash();
+            }
+        });
+    }
+
+    function closeSplash() {
+        $splash.animate({
+            top: '-' + (splash_height + 600),
+        }, 750, function() {
+            $splash_overlay.fadeOut().remove();
+            $splash.remove();
+            $(document).unbind('keyup.splash');
+        });
+        try {
+            sessionStorage.setItem('takeover', 'closed');
+        } catch (ex) {}
+
+        Mozilla.FirefoxAnniversaryVideo.stopEmbed();
+
+        gaTrack(['_trackEvent', 'Homepage Interactions', 'link click', 'Continue to mozilla.org']);
+    }
+
+    // Initialize the video
+    // Defined in /js/base/firefox-anniversary-video.js
+    Mozilla.FirefoxAnniversaryVideo.init({
+        'deferEmbed': false,
+        'onPlay': function() {
+            Mozilla.FirefoxAnniversaryVideo.playEmbed();
+            Mozilla.FirefoxAnniversaryVideo.setFooterButton('share');
+            gaTrack(['_trackEvent', 'Homepage Interactions', 'click to play', '10th Anniversary Video']);
+        },
+        'onComplete': function() {
+            Mozilla.FirefoxAnniversaryVideo.setOverlayButtons('replay');
+            Mozilla.FirefoxAnniversaryVideo.hideEmbed();
+            gaTrack(['_trackEvent', 'Homepage Interactions', 'Finish', '10th Anniversary Video']);
+        }
+    });
+
 });

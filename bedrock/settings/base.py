@@ -290,6 +290,18 @@ MINIFY_BUNDLES = {
         'firefox_releases_index': (
             'css/firefox/releases-index.less',
         ),
+        'firefox_privacy_tour': (
+            'css/base/mozilla-modal.less',
+            'css/firefox/independent-splash.less',
+            'css/firefox/australis/australis-ui-tour.less',
+            'css/firefox/privacy_tour/common.less',
+            'css/firefox/privacy_tour/tour.less',
+        ),
+        'firefox_privacy_no_tour': (
+            'css/base/mozilla-modal.less',
+            'css/firefox/independent-splash.less',
+            'css/firefox/privacy_tour/common.less',
+        ),
         'firefox_tour': (
             'css/firefox/australis/australis-ui-tour.less',
             'css/firefox/australis/australis-page-common.less',
@@ -316,6 +328,10 @@ MINIFY_BUNDLES = {
         'firefox_sync_anim': (
             'css/firefox/sync-animation.less',
         ),
+        'firefox_independent': (
+            'css/firefox/independent-splash.less',
+            'css/firefox/independent.less',
+        ),
         'installer_help': (
             'css/base/mozilla-modal.less',
             'css/firefox/template-resp.less',
@@ -340,6 +356,7 @@ MINIFY_BUNDLES = {
         'home-2015': (
             'css/mozorg/home/home.less',
             'css/mozorg/home/home-promo.less',
+            'css/firefox/independent-splash.less',
         ),
         'home-2015-open-standard': (
             'css/mozorg/home/home-open-standard.less',
@@ -616,6 +633,11 @@ MINIFY_BUNDLES = {
             'js/libs/modernizr.custom.csstransitions.js',
             'js/firefox/new.js',
         ),
+        'firefox_independent': (
+            'js/base/mozilla-share-cta.js',
+            'js/base/firefox-anniversary-video.js',
+            'js/firefox/independent.js',
+        ),
         'firefox_os': (
             'js/base/mozilla-modal.js',
             'js/libs/jquery.waypoints.min.js',
@@ -660,6 +682,22 @@ MINIFY_BUNDLES = {
             'js/firefox/sync-animation.js',
             'js/firefox/sync-old.js',
         ),
+        'firefox_privacy_tour': (
+            'js/base/mozilla-modal.js',
+            'js/base/mozilla-share-cta.js',
+            'js/base/firefox-anniversary-video.js',
+            'js/firefox/australis/australis-uitour.js',
+            'js/firefox/australis/browser-tour.js',
+            'js/firefox/privacy_tour/common.js',
+            'js/firefox/privacy_tour/tour.js',
+        ),
+        'firefox_privacy_no_tour': (
+            'js/base/mozilla-modal.js',
+            'js/base/mozilla-share-cta.js',
+            'js/base/firefox-anniversary-video.js',
+            'js/firefox/privacy_tour/common.js',
+            'js/firefox/privacy_tour/no-tour.js',
+        ),
         'firefox_tour': (
             'js/libs/jquery.waypoints.min.js',
             'js/firefox/australis/australis-uitour.js',
@@ -694,6 +732,8 @@ MINIFY_BUNDLES = {
             'js/mozorg/home.js',
         ),
         'home-2015': (
+            'js/base/mozilla-share-cta.js',
+            'js/base/firefox-anniversary-video.js',
             'js/libs/jquery.waypoints.min.js',
             'js/mozorg/home/home.js',
             'js/mozorg/home/ga-tracking.js',

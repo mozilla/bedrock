@@ -51,6 +51,7 @@
     .clearfix();
 
     .item {
+        background: #bbb;
         position: absolute;
         margin: 0 @baseLine @baseLine 0;
         padding: 0;
@@ -816,8 +817,9 @@
 
 /****************************************************************************/
 // Open Standard
-.promo-large-portrait.open-standard {
-    background: #0c99d5;
+.promo-large-portrait.open-standard,
+.promo-large-landscape.open-standard {
+    background: #0c99d5; // bright blue
 
     h2 {
         padding: 100px @baseLine 0 @baseLine;
@@ -833,10 +835,15 @@
     }
 }
 
+.promo-large-landscape.open-standard h3 {
+    padding-top: @baseLine * 2;
+}
+
 /****************************************************************************/
 // Mission
-.promo-large-portrait.mission {
-    background: #0c99d5;
+.promo-large-portrait.mission,
+.promo-large-landscape.mission {
+    background: #0c99d5; // bright blue
 
     h3 {
         padding-top: @baseLine * 3;
@@ -846,15 +853,15 @@
 /****************************************************************************/
 // Webmaker
 .promo-large-landscape.webmaker {
-    background: #e14164;
+    background: #e14164; // pinkish red
 
     h2 {
         padding: 90px @baseLine 0 @baseLine;
         margin-top: @baseLine * 2;
-        background-image: url(/media/img/home/voices/promos/webmaker/webmaker.png?30-09-2014);
+        background-image: url(/media/img/home/voices/promos/webmaker/webmaker.png?11-10-2014);
         background-position: top center;
         background-repeat: no-repeat;
-        .background-size(83px, 86px);
+        .background-size(104px, 104px);
     }
 }
 
@@ -868,10 +875,19 @@
     }
 }
 
+.promo-small-landscape.webmaker {
+    background: #e14164; // pinkish red
+
+    h2 {
+        padding: 35px 0 35px 140px;
+        background: url(/media/img/home/voices/promos/webmaker/webmaker.png?11-10-2014) 20px 15px no-repeat;
+    }
+}
+
 /****************************************************************************/
 // Support
 .promo-large-landscape.support {
-    background: #e55525;
+    background: #00af84; // tealish green
 
     h2 {
         padding: 100px @baseLine 0 @baseLine;
@@ -907,6 +923,31 @@
         }
     }
 }
+
+
+/****************************************************************************/
+// Firefox Independent
+.promo-large-portrait.firefox-independent {
+    background: #e55525; // orange
+
+    h2 {
+        padding-top: 145px;
+        background: url(/media/img/home/voices/promos/independent/independent.png) center 25px no-repeat;
+    }
+}
+
+
+/****************************************************************************/
+// Firefox Developer Edition
+.promo-large-portrait.firefox-developer {
+    background: #005da5; // dark blue
+
+    h2 {
+        padding-top: 145px;
+        background: url(/media/img/home/voices/promos/firefoxdev/firefoxdev.png) center 25px no-repeat;
+    }
+}
+
 
 /****************************************************************************/
 // Firefox Android
@@ -1618,8 +1659,8 @@
     // Webmaker
     .promo-large-landscape.webmaker {
         h2 {
-            background-image: url(/media/img/home/voices/promos/webmaker/webmaker-high-res.png);
-            .background-size(83px, 86px);
+            background-image: url(/media/img/home/voices/promos/webmaker/webmaker-high-res.png?11-10-2014);
+            .background-size(104px, 104px);
         }
     }
 
@@ -1661,6 +1702,22 @@
     .promo-large-portrait.firefox-android {
         h2 {
             background-image: url(/media/img/home/voices/promos/android/dude-high-res.png);
+        }
+    }
+
+    // Firefox Developer Edition
+    .promo-large-portrait.firefox-developer {
+        h2 {
+            background-image: url(/media/img/home/voices/promos/firefoxdev/firefoxdev-high-res.png);
+            .background-size(105px, 105px);
+        }
+    }
+
+    // Firefox 10th Anniversary
+    .promo-large-portrait.firefox-independent {
+        h2 {
+            background-image: url(/media/img/home/voices/promos/independent/independent-high-res.png);
+            .background-size(105px, 105px);
         }
     }
 

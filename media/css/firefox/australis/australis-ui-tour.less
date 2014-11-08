@@ -44,7 +44,6 @@ body.noscroll {
     z-index: 100;
     opacity: 1;
     transition: opacity .5s linear;
-    transform: opacity;
     overflow: auto;
 
     .mask-inner {
@@ -52,7 +51,6 @@ body.noscroll {
         width: 1000px;
         margin: 0 auto;
         transition: opacity .3s linear;
-        transform: opacity;
         opacity: 1;
         &.out {
             opacity: 0;
@@ -344,18 +342,29 @@ body.noscroll {
             transition: width .3s ease-in-out;
         }
     }
-    .progress[aria-valuenow="1"] .indicator {
+    .progress[aria-valuemax="4"][aria-valuenow="1"] .indicator {
         width: 25%;
     }
-    .progress[aria-valuenow="2"] .indicator {
+    .progress[aria-valuemax="4"][aria-valuenow="2"] .indicator {
         width: 50%;
     }
-    .progress[aria-valuenow="3"] .indicator {
+    .progress[aria-valuemax="4"][aria-valuenow="3"] .indicator {
         width: 75%;
     }
-    .progress[aria-valuenow="4"] .indicator {
+    .progress[aria-valuemax="4"][aria-valuenow="4"] .indicator {
         width: 100%;
     }
+
+    .progress[aria-valuemax="3"][aria-valuenow="1"] .indicator {
+        width: 33%;
+    }
+    .progress[aria-valuemax="3"][aria-valuenow="2"] .indicator {
+        width: 66%;
+    }
+    .progress[aria-valuemax="3"][aria-valuenow="3"] .indicator {
+        width: 100%;
+    }
+
     .logo {
         width: 43px;
         height: 44px;
@@ -626,6 +635,7 @@ html[dir="rtl"] {
         #ui-tour {
             .ui-tour-list .tour-step {
                 img {
+                    clear: right;
                     float: none;
                     margin: 0;
                 }

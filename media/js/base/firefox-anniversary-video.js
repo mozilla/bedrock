@@ -18,8 +18,12 @@ function onYouTubePlayerAPIReady() {
 Mozilla.FirefoxAnniversaryVideo = (function($) {
     'use strict';
 
+    var $html = $('html');
+
     var _isOldIE = (/MSIE\s[1-8]\./.test(navigator.userAgent));
-    var _isIOS = $('html').hasClass('ios');
+    var _isIElt10 = (/MSIE\s[1-9]\./.test(navigator.userAgent));
+    var _isIOS = $html.hasClass('ios');
+    var _isAndroid = $html.hasClass('android');
 
     // holds configuration options
     var _opts = {};
@@ -80,7 +84,7 @@ Mozilla.FirefoxAnniversaryVideo = (function($) {
             if (typeof _opts.onPlay === 'function') {
                 _$overlayButtons.find('.button-play, .button-replay').on('click.fxanniversaryvideo', function(e) {
                     e.preventDefault();
-                    _opts.onPlay();
+                    _opts.onPlay(this);
                 });
             }
 
@@ -139,19 +143,29 @@ Mozilla.FirefoxAnniversaryVideo = (function($) {
             var newSrc = _$embedIframe.attr('data-src');
 
             // check if supports HTML5 video
-            if (!!document.createElement('video').canPlayType) {
+            // IE 9 supports HTML5 video, but throws errors with YouTube's
+            // HTML5 js
+            if (!_isIElt10 && !!document.createElement('video').canPlayType) {
                 newSrc += '&html5=1';
             }
 
             _$embedIframe.attr('src', newSrc);
 
             _embedReady = true;
-
-            // make sure YouTube API is initialized
-            if (!_youtubeAPIready) {
-                _initYouTubeAPI();
-            }
         }
+
+        // make sure YouTube API is initialized (if needed)
+        if (!_youtubeAPIready) {
+            _initYouTubeAPI();
+        }
+    };
+
+    /*
+    Disables the embed. Useful when tour is re-opened.
+    */
+    var _disableEmbed = function() {
+        _$embedIframe.attr('src', '');
+        _embedReady = false;
     };
 
     /*
@@ -159,7 +173,7 @@ Mozilla.FirefoxAnniversaryVideo = (function($) {
     */
     var _playEmbed = function() {
         if (_hasVideo) {
-            if (!_embedReady) {
+            if (!_embedReady || !_youtubeAPIready || !_youtubePlayer) {
                 _waitingToPlay = true;
                 _enableEmbed();
             } else {
@@ -167,7 +181,8 @@ Mozilla.FirefoxAnniversaryVideo = (function($) {
                 _$embedWrapper.show();
 
                 _$buttonOverlay.fadeOut('normal', function() {
-                    if (!_isIOS) {
+                    // iOS & Chrome on Android don't allow play to be triggered by API
+                    if (!_isIOS && !_isAndroid) {
                         _youtubePlayer.playVideo();
                     }
                 });
@@ -183,6 +198,16 @@ Mozilla.FirefoxAnniversaryVideo = (function($) {
             // make sure embed doesn't get keyboard focus
             _$embedWrapper.hide();
         });
+    };
+
+    /*
+    Explicitly stops the embedded video. Useful for IE 9 when closing
+    a modal while video is playing.
+    */
+    var _stopEmbed = function() {
+        if (_youtubePlayer) {
+            _youtubePlayer.stopVideo();
+        }
     };
 
     /*
@@ -212,11 +237,17 @@ Mozilla.FirefoxAnniversaryVideo = (function($) {
         enableEmbed: function() {
             _enableEmbed();
         },
+        disableEmbed: function() {
+            _disableEmbed();
+        },
         playEmbed: function() {
             _playEmbed();
         },
         hideEmbed: function() {
             _hideEmbed();
+        },
+        stopEmbed: function() {
+            _stopEmbed();
         },
         // Called only by YouTube when YouTube is ready.
         initYouTubePlayer: function() {

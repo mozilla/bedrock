@@ -1,0 +1,224 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../../sandstone/sandstone.less";
+
+html, body {
+    height: 100%;
+    min-height: 1000px;
+}
+
+#outer-wrapper {
+    height: 100%;
+}
+
+#wrapper {
+    height: 100%;
+    background: #003356 url(/media/img/firefox/independent/bg-gradient-large.jpg) center top no-repeat;
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0, 40, 65, .25);
+    padding-bottom: 40px;
+}
+
+#masthead,
+.container {
+    width: @widthDesktop - (@gridGutterWidth * 2);
+    .clearfix();
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+}
+
+#tabzilla {
+    position: absolute;
+    right: 0;
+    z-index: 99;
+}
+
+.main-title {
+    transition: transform 0.5s ease-out, opacity 0.4s ease-out;
+
+    &.tour {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+}
+
+#fx10-footer {
+    text-align: center;
+    margin-top: @baseLine * 2;
+
+    ul {
+        width: 780px;
+        margin: 0 auto @baseLine;
+        list-style-type: none;
+        .clearfix();
+
+        &.primary a {
+            font-size: @largeFontSize;
+        }
+
+        &.secondary a {
+            font-size: @smallFontSize;
+        }
+    }
+
+    li {
+        float: left;
+        width: 370px;
+        display: block;
+        margin: 0;
+        padding-left: 20px;
+        text-align: left;
+
+        &:first-child {
+            width: 369px;
+            border-right: 1px dotted #94adc0;
+            padding-left: 0;
+            padding-right: 20px;
+            text-align: right;
+        }
+    }
+
+    a {
+        .trailing-arrow();
+        color: #94adc0;
+    }
+}
+
+#video-modal-content {
+    display: none;
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+}
+
+// magical padding-bottom trick to make video scale nicely
+// http://alistapart.com/article/creating-intrinsic-ratios-for-video
+#fx-anniversary-video-embed-wrapper {
+    position: relative;
+    width: 100%;
+    height: 0;
+    background: transparent;
+    margin: 0 auto;
+    padding-top: 25px;
+    padding-bottom: 52%;
+
+    iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+// play button animation stuff
+@keyframes rippleOut {
+    20% {
+        opacity: 1;
+    }
+    100% {
+        transform: scale(6);
+        opacity: 0;
+    }
+}
+
+@keyframes playIn {
+    80% {
+        transform: scale(1.3);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.ripple {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -90px 0 0 -51px;
+    z-index: 100;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    border: 2px solid #fff;
+    pointer-events: none;
+    transform: scale(0.3);
+    opacity: 0;
+
+    &.animate {
+        animation: rippleOut 1.1s ease-out 0s 1 normal forwards;
+    }
+}
+
+a.button-play {
+    transform: scale(0);
+
+    span {
+        opacity: 0;
+        transition: opacity 0.6s ease;
+
+        &.visible {
+            opacity: 1;
+        }
+    }
+
+    &.animate {
+        animation: playIn 0.5s ease-out 0s 1 normal forwards;
+    }
+}
+
+// make modal full window and tweak UI a bit
+#modal {
+    background: rgba(66, 79, 90, 0.9);
+
+    #video-modal-content {
+        display: block;
+    }
+
+    .mozilla-share-cta {
+        display: block;
+        position: absolute;
+        top: @baseLine;
+        left: @baseLine;
+    }
+
+    .window {
+        padding: 0;
+        height: 100%;
+
+        .inner {
+            width: 100%;
+            margin: 0;
+            box-shadow: none;
+
+            #modal-close {
+                right: @baseLine;
+                top: 32px;
+            }
+
+            .overlay-contents {
+                background: transparent;
+                padding: 0 @baseLine @baseLine;
+            }
+
+            header {
+                height: 76px;
+                background: transparent;
+            }
+        }
+    }
+}
+
+html[dir='rtl'] #modal {
+    .window .inner #modal-close {
+        left: @baseLine;
+    }
+
+    .mozilla-share-cta {
+        left: auto;
+        right: @baseLine;
+    }
+}

@@ -74,11 +74,17 @@
     <div class="row">
       <img src="{{ media('img/firefox/new/firefox-logo.png?2013-06') }}" alt="Firefox" />
       <h1 class="large">
+      {% if l10n_has_tag('fx10_independent') or settings.DEV %}
+        {{ _('Choose Independent.') }}
+        <br>
+        {{ _('Choose Firefox.') }}
+      {% else %}
         {%- if LANG in ['en-GB', 'en-US', 'en-ZA'] -%}
           <span>Committed to you,</span> <span>your privacy</span> <span>and an open Web</span>
         {%- else -%}
           {{_('Committed to you, your privacy and an open Web')}}
         {%- endif -%}
+      {% endif %}
       </h1>
     </div>
   </div>

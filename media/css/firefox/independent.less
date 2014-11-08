@@ -1,0 +1,417 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+@font-face {
+    font-family: 'Font Awesome';
+    src: url('/media/fonts/fontawesome-webfont.eot?v4.01#iefix') format('embedded-opentype'),
+         url('/media/fonts/fontawesome-webfont.woff?v4.01') format('woff'),
+         url('/media/fonts/fontawesome-webfont.ttf?v4.01') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'League Gothic';
+    src: url('/media/fonts/League_Gothic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/media/fonts/League_Gothic-webfont.woff') format('woff'),
+         url('/media/fonts/League_Gothic-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.button-flat {
+    .open-sans;
+    background-color: @linkBlue;
+    background-image: none;
+    color: #fff;
+    display: inline-block;
+    border: 0;
+    border-radius: .5em;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    font-weight: normal;
+    cursor: pointer;
+    box-shadow: none;
+    text-shadow: none;
+    .transition(all .15s ease-in-out);
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: #fff;
+        background-color: lighten(@linkBlue, 5%);
+        text-decoration: none;
+    }
+}
+
+
+/*-------------------------------------------------------------------------*/
+// Override sandstone base layout so we can have full-width blocks.
+#wrapper,
+#main-content {
+    width: 100%;
+    padding: 0;
+}
+
+#masthead,
+.container {
+    width: @widthDesktop - (@gridGutterWidth * 2);
+    .clearfix();
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+}
+
+#tabzilla {
+    position: absolute;
+    right: 0;
+    z-index: 999;
+}
+
+#colophon {
+    background: #00243d;
+    color: #99a7b1;
+    margin-top: 0;
+
+    .logo {
+        opacity: .6;
+    }
+}
+
+#wrapper {
+    background: #003356 url(/media/img/firefox/independent/bg-gradient-large.jpg) center top no-repeat;
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0, 40, 65, .25);
+    padding-bottom: 40px;
+}
+
+
+// Firefox download/tour CTA
+.js #fx10-download {
+    display: none;
+}
+
+#fx10-download {
+    background: #fff;
+    color: @textColorSecondary;
+    text-shadow: none;
+    text-align: center;
+    padding: 40px 0;
+    margin: -40px 0 40px;
+
+    h2 {
+        .span(8);
+        font-size: 28px;
+        margin-top: 15px;
+    }
+
+    p {
+        .span(4);
+    }
+
+    .fx-tour {
+        display: none;
+
+        h2 {
+            margin-top: 20px;
+        }
+
+        .button {
+            padding: 12px 40px 12px 100px;
+            text-align: left;
+            background-image: url(/media/img/firefox/independent/icon-tour.png);
+            background-position: 35px 50%;
+            background-repeat: no-repeat;
+        }
+    }
+
+    .button {
+        .button-flat;
+        background-color: #6fbe4a;
+        font-size: 18px;
+        padding: 20px 40px;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: lighten(#6fbe4a, 5%);
+        }
+    }
+}
+
+
+// Accolades
+#fx10-accolades {
+    padding: 40px 0;
+    .clearfix;
+}
+
+.accolade {
+    .span(4);
+    text-align: center;
+    padding-top: 180px;
+    position: relative;
+
+    img {
+        position: absolute;
+        left: 50%;
+    }
+
+    .quote {
+        font-style: italic;
+        font-size: 20px;
+        color: #99adbb;
+    }
+
+    .stars {
+        overflow: hidden;
+        white-space: nowrap;
+        width: 150px;
+        height: 30px;
+        margin: 0 auto 10px;
+        text-indent: 200%;
+        overflow: hidden;
+        position: relative;
+
+        &:after {
+            font-family: 'Font Awesome';
+            font-size: 24px;
+            letter-spacing: 2px;
+            color: #af1f25;
+            width: 150px;
+            position: absolute;
+            left: 0;
+            text-indent: 0;
+        }
+    }
+
+    .stars-four:after {
+        content: '\f005\f005\f005\f005\f006';
+    }
+
+    .stars-five:after {
+        content: '\f005\f005\f005\f005\f005';
+    }
+}
+
+.pcworld img {
+    top: 60px;
+    margin-left: -92px;
+}
+
+.cnet img {
+    top: 20px;
+    margin-left: -73px;
+}
+
+.trusted {
+    padding-top: 0;
+}
+
+// Trust badge
+// non en-US gets rounded rectangle
+#trust-badge {
+    position: relative;
+    width: auto;
+    margin: 0 auto (@baseLine * 3);
+    padding: 10px;
+    border-radius: 40px;
+    background: #fff;
+    box-shadow: 0 0 10px 4px rgba(0, 0, 0, .08);
+}
+
+#trust-badge-content {
+    border-radius: 34px;
+    border: 1px solid #bfc6cd;
+    padding: 20px;
+    background: #fff;
+    box-shadow: inset 0 0 15px rgba(191, 198, 204, .75);
+
+    span {
+        text-transform: uppercase;
+        font-size: 18px;
+        line-height: 1;
+        color: #5d7489;
+    }
+
+    a {
+        .open-sans;
+        margin-top: 5px;
+        font-size: @baseFontSize;
+
+        &:before {
+            content: '';
+            display: block;
+            margin-top: 5px;
+        }
+    }
+}
+
+// en-US gets fancy circle badge
+html[lang^="en"] {
+    #trust-badge {
+        width: 220px;
+        height: 220px;
+        padding: 0;
+        border-radius: 50%;
+    }
+
+    #trust-badge-content {
+        position: absolute;
+        top: 7px;
+        left: 7px;
+        width: 204px;
+        height: 154px;
+        padding: 50px 0 0;
+        border-radius: 50%;
+
+        span {
+            display: block;
+            font-family: 'League Gothic', @baseFontFamily;
+            font-weight: normal;
+            text-transform: uppercase;
+            color: #5d7489;
+        }
+
+        a {
+            font-size: @baseFontSize;
+        }
+    }
+
+    #trust-line1 {
+        font-size: 38px;
+        line-height: 38px;
+    }
+
+    #trust-line2 {
+        font-size: 28px;
+        line-height: 28px;
+    }
+
+    #trust-line3 {
+        font-size: 43px;
+        line-height: 43px;
+    }
+}
+
+
+// Community
+#fx10-community .container {
+    text-align: center;
+    font-size: 18px;
+    border-top: 1px dotted #4d7189;
+    border-bottom: 1px dotted #4d7189;
+    padding: 30px 0;
+    margin: 40px auto;
+
+    a {
+        .trailing-arrow;
+        color: lighten(@linkBlue, 10%);
+    }
+}
+
+
+
+/*-------------------------------------------------------------------------*/
+// @Tablet Layout: 760px
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+
+    #masthead,
+    .container {
+        width: @widthTablet - (@gridGutterWidth * 2);
+    }
+
+    #fx10-download {
+        h2 {
+            .span_narrow(6);
+        }
+
+        p {
+            .span_narrow(6);
+        }
+    }
+
+    .accolade {
+        .span_narrow(4);
+    }
+
+}
+
+
+
+/*-------------------------------------------------------------------------*/
+// @Mobile Layout: 320px
+@media only screen and (max-width: @breakTablet) {
+
+    #masthead,
+    .container {
+        width: @widthMobile - (@gridGutterWidth * 2);
+    }
+
+    #fx10-download {
+        margin-top: 0;
+
+        h2,
+        p {
+            width: auto;
+            float: none;
+            margin: 0 0 @baseLine;
+        }
+    }
+
+    #fx10-accolades {
+        padding: 0;
+    }
+
+    .accolade {
+        width: @widthMobile - (@gridGutterWidth * 2);
+        margin: 0 auto @baseLine;
+        float: none;
+    }
+
+    .trusted {
+        margin: 40px auto -40px;
+    }
+
+    #fx10-community {
+        padding-bottom: 80px;
+
+        a {
+            display: block;
+        }
+
+        &:after {
+            content: '';
+            display: block;
+            width: 591px;
+            height: 183px;
+            background: url(/media/img/firefox/independent/tail-end-only.png) right bottom no-repeat;
+            background-size: 591px 183px;
+            position: absolute;
+            left: -190px;
+            bottom: -20px;
+            z-index: 10;
+        }
+    }
+
+
+}
+
+/*-------------------------------------------------------------------------*/
+// @Wide mobile Layout: 480px
+@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+
+    #masthead,
+    .container {
+        width: @widthMobileLandscape - (@gridGutterWidth * 2);
+    }
+
+    #fx10-community:after {
+        left: -90px;
+    }
+
+}
+

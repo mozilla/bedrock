@@ -400,10 +400,10 @@ See the .js file for API:
 
 {# TODO: Replace with actual YouTube IDs. #}
 {% set video_locales = {
-    'en-US': 'Xm5i5kbIXzc',
+    'en-US': 'LtOGa5M8AuU',
     'de': '_D4cMy0Kah4',
     'fr': '8OyicXLPABI',
-    'pr': 'YX5Fma_6rLc'
+    'pt-BR': 'YX5Fma_6rLc'
 } %}
 
 <section id="fx-anniversary-video-widget">
@@ -414,7 +414,7 @@ See the .js file for API:
           This play <a> will be the only 'button' shown to non-JS users. JS adds
           role="button" and hijacks click.
         #}
-        <a href="https://www.youtube.com/watch?v={{ video_locales.get(LANG, video_locales['en-US']) }}" rel="external" class="overlay-button-round button-play">{{ _('Play the video') }}</a>
+        <a href="https://www.youtube.com/watch?v={{ video_locales.get(LANG, video_locales['en-US']) }}" rel="external" class="overlay-button-round button-play"><span>{{ _('Play the video') }}</span></a>
 
         <button type="button" class="overlay-button-round button-replay">{{ _('Replay the video') }}</button>
 
@@ -439,8 +439,6 @@ See the .js file for API:
     <div id="fx-anniversary-video-footer-button" class="buttons {{ button_footer }}">
       {# TODO: Update share URL with...campaign landing page URL? I think? #}
       {{ share_cta(_('Share the video'), 'https://www.mozilla.org/', _('Keep the passion for a free and open Internet burning bright! #ChooseIndependent. Choose Firefox:')) }}
-
-      {# TODO: Should be 'Download Firefox' or 'Free Download'? #}
       <a href="{{ url('firefox.new') }}" class="download-link">{{ _('Download Firefox') }}</a>
     </div>
   </footer>
