@@ -53,12 +53,23 @@
                 title: '',
                 onCreate: function() {
                     Mozilla.FirefoxAnniversaryVideo.setOverlayButtons('share-replay');
-                    Mozilla.FirefoxAnniversaryVideo.playEmbed();
+
+                    // give the video a bit of time to re-initialize before trying to play
+                    setTimeout(function() {
+                        Mozilla.FirefoxAnniversaryVideo.playEmbed();
+                    }, 600);
                 },
                 onDestroy: function() {
                     Mozilla.FirefoxAnniversaryVideo.hideEmbed();
                 }
             });
+
+            gaTrack(['_trackEvent', '/firefox/independent/ Interactions', 'click to play', '10th Anniversary Video']);
+        },
+        'onComplete': function() {
+            // YouTube player loses this callback for some reason when re-initializing after being
+            // moved in the DOM. Leaving this here for future reference.
+            gaTrack(['_trackEvent', '/firefox/independent/ Interactions', 'Finish', '10th Anniversary Video']);
         }
     });
 })(window.jQuery, window.Mozilla);
