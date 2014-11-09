@@ -55,79 +55,18 @@
         <dl class="faq">
 
           <dt>{{_('What phones will Firefox OS be available on?')}}</dt>
-          {% if l10n_has_tag('firefox_os_faq_updates') or settings.DEV %}
             <dd>
               {% trans link=url('firefox.os.devices') %}
               To see a full list of available Firefox OS phones, please visit the <a href="{{ link }}">devices page</a>.
               {% endtrans %}
             </dd>
-          {% else %}
-            <dd>{{_('You can purchase Firefox OS on a ZTE Open, LG Fireweb or an Alcatel One Touch device.')}}</dd>
-          {% endif %}
           <dt>{{_('Where can I buy Firefox OS?')}}</dt>
           <dd>
-          {% if l10n_has_tag('firefox_os_faq_updates') or settings.DEV %}
             <p>
               {% trans link=url('firefox.os.devices') %}
               To purchase a Firefox OS phone, please visit the <a href="{{ link }}">devices page</a> and select your available country.
               {% endtrans %}
             </p>
-          {% else %}
-            <p>{{_('Firefox OS is available to buy across 14 countries across the globe. You can purchase a device in:')}}</p>
-            <ul class="unstyled">
-              <li>
-                {{_('Brazil with <a href="%s">Vivo</a>')|format('http://www.vivo.com.br/firefox')}}
-              </li>
-              <li>
-                {{_('Chile with <a href="%s">Movistar</a>')|format('http://www.movistar.cl/equipos/catalogo/producto/847/contrato/')}}
-              </li>
-              <li>
-                {{_('Colombia with <a href="%s">Movistar</a>')|format('http://www.movistar.co')}}
-              </li>
-              <li>
-                {{_('Germany with <a href="%s">Congstar</a>')|format('http://aktion.congstar.de/firefox-os')}}
-              </li>
-              <li>
-                {{_('Greece with <a href="%s">Cosmote</a>')|format('http://www.cosmote.gr/cosmoportal/cosmote.portal?_nfpb=true&amp;_pageLabel=HDV&amp;sku=20290038&amp;s=0')}}
-              </li>
-              <li>
-                {{_('Hungary with both <a href="%s">Telenor</a> and <a href="%s">T-Mobile</a>')|format('http://www.telenor.hu/mobiltelefon/alcatel/one-touch-fire', 'https://webshop.t-mobile.hu/webapp/wcs/stores/ProductDisplay?catalogId=2001&amp;storeId=2001&amp;langId=-11&amp;productId=644566')}}
-              </li>
-              <li>
-                {{_('Italy with <a href="%s">TIM</a>')|format('http://www.tim.it/prodotti/alcatel-one-touch-fire-mozilla-orange')}}
-              </li>
-              <li>
-                {{_('Mexico with <a href="%s">Movistar</a>')|format('http://www.movistar.com.mx/firefox')}}
-              </li>
-              <li>
-                {{_('Montenegro with <a href="%s">Telenor</a>')|format('http://www.telenor.me/sr/Privatni-korisnici/Uredjaji/Mobilni-telefoni/Alcatel/OT_Fire')}}
-              </li>
-              <li>
-                {{_('Peru with <a href="%s">Movistar</a>')|format('http://catalogo.movistar.com.pe/zte-open')}}
-              </li>
-              <li>
-                {{_('Poland with <a href="%s">T-Mobile</a>')|format('http://www.t-mobile.pl/pl/firefox')}}
-              </li>
-              <li>
-                {{_('Serbia with <a href="%s">Telenor</a>')|format('https://www.telenor.rs/sr/Privatni-korisnici/webshop/Mobilni-telefoni/Alcatel/One_Touch_Fire')}}
-              </li>
-              <li>
-                {{_('Spain with <a href="%s">Movistar</a>')|format('http://www.movistar.es/firefoxos?aff=aff-firefoxOS1')}}
-              </li>
-              <li>
-                {{_('Uruguay with <a href="%s">Movistar</a>')|format('http://www.firefoxos.movistar.com.uy/')}}
-              </li>
-              <li>
-                {{_('Venezuela with <a href="%s">Movistar</a>')|format('http://www.movistar.com.ve/movistar_firefox/index.html')}}
-              </li>
-            </ul>
-            <p>
-            {{_('To date, 17 Operators spanning the globe have committed to distributing Firefox OS devices:')}}
-            {{_('América Móvil, China Unicom, Deutsche Telekom, Etisalat, Hutchison Three Group, KDDI, Korea Telecom, MegaFon, Qtel, SingTel, Smart, Sprint, Telecom Italia Group, Telefónica, Telenor, TMN and VimpelCom.')}}</p>
-            <p>
-            {{_('As a result, more countries and mobile phone operators will be selling Firefox OS in the future.')}}
-            {{_('Our operator partners will distribute the phones through a variety of locally-specific channels.')}}</p>
-          {% endif %}
           </dd>
 
           <dt>{{_('What will be the price of the phone?')}}</dt>
