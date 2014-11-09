@@ -12,4 +12,8 @@
     <h2><a href="{{ url('firefox') }}"><img alt="Mozilla Firefox" height="70" width="185" src="{{media('img/firefox/template/header-logo-inverse.png?2013-06') }}"></a></h2>
 {% endblock %}
 
-{% block platform_switch %}{% endblock %}
+{% block platform_switch %}
+    {% if release.major_version()|int() < 35 %}
+	{{ super() }}
+    {% endif %}
+{% endblock %}
