@@ -209,7 +209,7 @@
       {% if l10n_has_tag('fx10_independent') or settings.DEV %}
         <li id="promo-10" class="item promo-large-portrait firefox-developer" tabindex="0" data-name="Introducing Firefox Developer Edition">
           <h2 class="primary go">{{ _('Introducing Firefox Developer Edition') }}</h2>
-          <a class="panel-link" href="#TODO">
+          <a class="panel-link" href="{{ url('firefox.developer') }}">
             <div class="secondary">
               <h3>{{ _('The only browser made only for developers.') }}</h3>
               <p class="more">{{ _('Get Firefox Developer Edition') }}</p>
@@ -362,7 +362,7 @@
     <h3 class="sub-title">{{ _('Help us celebrate 10 years of Firefox.') }}</h3>
     {{ anniversary_video('play', 'share', True) }}
   </div>
-  <button class="close" type="button">{{ _('Continue to mozilla.org') }}</button>
+  <button class="close" type="button" tabindex="2">{{ _('Continue to mozilla.org') }}</button>
 
   <div class="logo"></div>
   <div class="tail-middle"></div>

@@ -84,8 +84,14 @@ data-has-tour="True"
   </footer>
 
   <div id="video-modal-content">
-    {# TODO: Update share URL with...campaign landing page URL? I think? #}
-    {{ share_cta(_('Share the video'), 'https://www.mozilla.org/', _('Keep the passion for a free and open Internet burning bright! #ChooseIndependent. Choose Firefox:')) }}
+    {%
+    set share_urls = {
+      'twitter': 'http://mzl.la/fx10',
+      'googleplus': 'http://mzl.la/1vV6ZHq',
+      'facebook': 'http://mzl.la/1EpcVPe'
+    }
+    %}
+    {{ share_cta(_('Share the video'), share_urls, _('Keep the passion for a free and open Internet burning bright! #ChooseIndependent. Choose Firefox:')) }}
   </div>
 
   {% block noscript %}{% endblock %}

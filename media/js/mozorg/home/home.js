@@ -237,23 +237,34 @@ $(function () {
                 closeSplash();
             }
         });
+
+        // close when something outside the takeover gets focus
+        $('a, input, textarea, button, :focus').bind('focus.splash', function(e) {
+            var $focused = $(e.target);
+            if (!$focused.parents().is($splash)) {
+                closeSplash();
+            }
+        });
     }
 
     function closeSplash() {
-        $splash.animate({
-            top: '-' + (splash_height + 600),
-        }, 750, function() {
-            $splash_overlay.fadeOut().remove();
-            $splash.remove();
-            $(document).unbind('keyup.splash');
-        });
-        try {
-            sessionStorage.setItem('takeover', 'closed');
-        } catch (ex) {}
+        if ($splash.is(':visible')) {
+            $splash.animate({
+                top: '-' + (splash_height + 600)
+            }, 750, function() {
+                $splash_overlay.fadeOut().remove();
+                $splash.remove();
+                $(document).unbind('keyup.splash');
+                $('a, input, textarea, button, :focus').unbind('focus.splash');
+            });
+            try {
+                sessionStorage.setItem('takeover', 'closed');
+            } catch (ex) {}
 
-        Mozilla.FirefoxAnniversaryVideo.stopEmbed();
+            Mozilla.FirefoxAnniversaryVideo.stopEmbed();
 
-        gaTrack(['_trackEvent', 'Homepage Interactions', 'link click', 'Continue to mozilla.org']);
+            gaTrack(['_trackEvent', 'Homepage Interactions', 'link click', 'Continue to mozilla.org']);
+        }
     }
 
     // Initialize the video
