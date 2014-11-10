@@ -65,7 +65,7 @@ def make_aurora_link(product, version, platform, locale,
         if platform == 'os_windows':
             product = 'firefox-aurora-stub'
         else:
-            product = 'firefox-aurora-latest'
+            product = 'firefox-aurora-latest-ssl'
     else:
         product = 'firefox-aurora-latest-l10n'
 
