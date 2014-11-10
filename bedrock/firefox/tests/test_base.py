@@ -723,25 +723,6 @@ class FxVersionRedirectsMixin(object):
         user_agent = 'random'
         self.assert_ua_redirects_to(user_agent, 'firefox.new')
 
-    def test_bad_firefox(self):
-        """
-        Any user agents with malformed Firefox UA strings should be permanently
-        redirected to /firefox/new/.
-        """
-        user_agent = 'Mozilla/5.0 (SaferSurf) Firefox 1.5'
-        self.assert_ua_redirects_to(user_agent, 'firefox.new')
-
-    @patch.dict(product_details.firefox_versions,
-                LATEST_FIREFOX_VERSION='14.0')
-    def test_old_firefox(self):
-        """
-        Any older versions of Firefox should be permanently redirected to
-        /firefox/new/.
-        """
-        user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:13.0) '
-                      'Gecko/20100101 Firefox/13.0')
-        self.assert_ua_redirects_to(user_agent, 'firefox.new')
-
     @override_settings(DEV=True)
     @patch.dict(product_details.firefox_versions,
                 LATEST_FIREFOX_VERSION='13.0.5')
