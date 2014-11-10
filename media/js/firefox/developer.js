@@ -28,9 +28,26 @@ function onYouTubeIframeAPIReady() {
     $('.feature .more').on('click', function(e) {
         trackClick([
             '_trackEvent',
-            'Developer landing page Interactions',
+            '/firefox/developer/ Interactions',
             'learn more link clicks',
             $(this).text()
+        ], $(this).attr('href'), e);
+    });
+
+    // GA tracking for download buttons
+    $('.intro .download-link').on('click', function(e) {
+        trackClick([
+            '_trackEvent',
+            '/firefox/developer/ Interactions',
+            'primary CTA - download click',
+        ], $(this).attr('href'), e);
+    });
+
+    $('.dev-footer .download-link').on('click', function(e) {
+        trackClick([
+            '_trackEvent',
+            '/firefox/developer/ Interactions',
+            'secondary CTA - bottom download click',
         ], $(this).attr('href'), e);
     });
 
@@ -55,7 +72,7 @@ function onYouTubeIframeAPIReady() {
                 }
                 gaTrack(
                     ['_trackEvent',
-                     'Developer landing page Interactions',
+                     '/firefox/developer/ Interactions',
                      'play',
                      videoTitle + ' video']
                 );
@@ -65,7 +82,7 @@ function onYouTubeIframeAPIReady() {
                 if (event.data == YT.PlayerState.ENDED) {
                     gaTrack(
                         ['_trackEvent',
-                         'Developer landing page Interactions',
+                         '/firefox/developer/ Interactions',
                          'finish',
                          videoTitle + ' video']
                     );
