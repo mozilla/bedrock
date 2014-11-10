@@ -40,6 +40,7 @@ function onYouTubeIframeAPIReady() {
             '_trackEvent',
             '/firefox/developer/ Interactions',
             'primary CTA - download click',
+            'Firefox Developer Edition',
         ], $(this).attr('href'), e);
     });
 
@@ -48,6 +49,7 @@ function onYouTubeIframeAPIReady() {
             '_trackEvent',
             '/firefox/developer/ Interactions',
             'secondary CTA - bottom download click',
+            'Firefox Developer Edition',
         ], $(this).attr('href'), e);
     });
 
