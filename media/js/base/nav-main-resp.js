@@ -125,7 +125,7 @@ NavMain.init = function()
     $('#footer-menu').attr('role', 'presentation');
 };
 
-NavMain.handleFocusIn = function(e)
+NavMain.handleFocusIn = function()
 {
     var item = $(this);
 
@@ -145,7 +145,7 @@ NavMain.handleFocusIn = function(e)
         .attr('aria-expanded', 'true');
 };
 
-NavMain.handleFocusOut = function(e)
+NavMain.handleFocusOut = function()
 {
     NavMain.previousMenuItem = $(this);
     NavMain.previousMenuItem
@@ -173,7 +173,7 @@ NavMain.initSubmenu = function(menu_idx)
 {
     var menuItems = $(this).find('a');
 
-    menuItems.mouseover(function(e) {
+    menuItems.mouseover(function() {
         this.focus(); // Sometimes $(this).focus() doesn't work
     }).focus(function() {
         NavMain.currentSubmenuItem = $(this);
@@ -313,11 +313,11 @@ NavMain.leaveSmallMode = function()
  */
 NavMain.linkMenuHideOnClick = function() {
     if (NavMain.mainMenuItems.length === 0) {
-        $('#nav-main-menu > li > a').on('click.smallmode', function(e) {
+        $('#nav-main-menu > li > a').on('click.smallmode', function() {
             NavMain.closeSmallMenu();
         });
     } else {
-        $('.submenu > li > a').on('click.smallmode', function(e) {
+        $('.submenu > li > a').on('click.smallmode', function() {
             NavMain.closeSmallMenu();
         });
     }

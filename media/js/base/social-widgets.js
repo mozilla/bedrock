@@ -9,7 +9,7 @@ $(function() {
       event.preventDefault();
       gaTrack(cmd, function() { window.location.href = event.currentTarget.href; });
     }
-  };
+  }
 
   // Twitter Follow button
   $('.twitter-follow-button').on('click', function(event) {

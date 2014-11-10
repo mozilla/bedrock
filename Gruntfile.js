@@ -6,6 +6,9 @@ path = require('path');
 
 module.exports = function (grunt) {
 
+    // Load grunt tasks automatically
+    require('load-grunt-tasks')(grunt);
+
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -14,6 +17,14 @@ module.exports = function (grunt) {
                 jshintrc: true
             },
             development: ['media/js/**/*.js']
+        },
+        jsonlint: {
+            all : {
+                src : [
+                    '*.json',
+                    './**/*.json'
+                ]
+            }
         },
         less: {
             development: {
@@ -41,6 +52,10 @@ module.exports = function (grunt) {
             },
             html: {
                 files: ['bedrock/**/*.html']
+            },
+            json: {
+                files: ['*.json'],
+                tasks: ['jsonlint']
             }
         },
         karma: {
@@ -58,13 +73,9 @@ module.exports = function (grunt) {
         ]);
 
         grunt.config(['jshint', 'development'], [filepath]);
-    });
 
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-less');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-karma');
+        grunt.config(['jsonlint', 'all'], [filepath]);
+    });
 
     // Default task(s).
     grunt.registerTask('default', ['watch']);
