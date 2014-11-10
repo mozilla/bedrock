@@ -28,7 +28,6 @@ from bedrock.mozorg.decorators import cache_control_expires
 from bedrock.mozorg.views import process_partnership_form
 from bedrock.mozorg.helpers.misc import releasenotes_url
 from bedrock.mozorg.helpers.download_buttons import android_builds
-from bedrock.firefox.utils import is_current_or_newer
 from bedrock.firefox.firefox_details import firefox_details, mobile_details
 from lib.l10n_utils.dotlang import _
 from product_details.version_compare import Version
@@ -377,16 +376,6 @@ class LatestFxView(TemplateView):
         if 'Firefox' not in user_agent:
             return reverse('firefox.new') + query
             # TODO : Where to redirect bug 757206
-
-        user_version = '0'
-        match = UA_REGEXP.search(user_agent)
-        if match:
-            user_version = match.group(1)
-
-        if not is_current_or_newer(user_version):
-            return reverse('firefox.new') + query
-
-        return None
 
     def render_to_response(self, context, **response_kwargs):
         redirect_url = self.redirect_to()
