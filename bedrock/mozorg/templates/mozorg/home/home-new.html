@@ -206,6 +206,7 @@
             <h2>{{ _('Volunteer <br>with Mozilla') }}</h2>
           </a>
         </li>
+      {#
       {% if l10n_has_tag('fx10_independent') or settings.DEV %}
         <li id="promo-10" class="item promo-large-portrait firefox-developer" tabindex="0" data-name="Introducing Firefox Developer Edition">
           <h2 class="primary go">{{ _('Introducing Firefox Developer Edition') }}</h2>
@@ -217,6 +218,7 @@
           </a>
         </li>
       {% else %}
+      #}
         <li id="promo-10" class="item promo-large-portrait firefox-android" tabindex="0" data-name="Put your Firefox on your Android">
           <h2 class="primary go">{{ _('Put your Firefox on your Android') }}</h2>
           <a class="panel-link" href="{{ url('firefox.android.index') }}">
@@ -226,7 +228,7 @@
             </div>
           </a>
         </li>
-      {% endif %}
+      {# {% endif %} #}
         <li id="promo-11" class="item promo-large-landscape support" tabindex="0" data-name="Help Mozilla users">
           <h2 class="primary go">{{ _('Help Mozilla users') }}</h2>
           <a class="panel-link" rel="external" href="https://support.mozilla.org/get-involved">
