@@ -365,7 +365,7 @@ function onYouTubeIframeAPIReady() {
     }
 
     //Only run the tour if user is on Firefox 35 for desktop.
-    if (window.isFirefox() && !window.isFirefoxMobile() && window.getFirefoxMasterVersion() >= 35) {
+    if (window.isFirefox() && !window.isFirefoxMobile() && window.getFirefoxMasterVersion() >= 35 && !$('html').hasClass('osx')) {
 
         // if viewport is wider than 900px show the tour doorhanger
         if(queryIsLargeScreen.matches) {
