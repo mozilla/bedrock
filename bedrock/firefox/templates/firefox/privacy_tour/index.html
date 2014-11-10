@@ -41,6 +41,8 @@ data-step3="{{ _('3/3') }}"
 data-has-tour="True"
 {% endblock %}
 
+{% block page_title %}{{ _('Choose Independent') }}{% endblock %}
+
 {% block site_header %}
   <header id="masthead">
     <a href="{{ url('mozorg.home') }}" id="tabzilla">Mozilla</a>
@@ -86,9 +88,9 @@ data-has-tour="True"
   <div id="video-modal-content">
     {%
     set share_urls = {
-      'twitter': 'http://mzl.la/fx10',
-      'googleplus': 'http://mzl.la/1vV6ZHq',
-      'facebook': 'http://mzl.la/1EpcVPe'
+        'twitter': 'http://mzl.la/fx10',
+        'googleplus': 'https://www.mozilla.org/' + LANG + '/firefox/independent/?utm_source=Google&utm_medium=MozLandingPage&utm_campaign=FX10&utm_content=WebsiteShare',
+        'facebook': 'https://www.mozilla.org/' + LANG + '/firefox/independent/?utm_source=Facebook&utm_medium=MozLandingPage&utm_campaign=FX10&utm_content=WebsiteShare#play'
     }
     %}
     {{ share_cta(_('Share the video'), share_urls, _('Keep the passion for a free and open Internet burning bright! #ChooseIndependent. Choose Firefox:')) }}
