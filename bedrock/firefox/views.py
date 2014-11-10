@@ -415,7 +415,7 @@ class FirstrunView(LatestFxView):
         version = self.kwargs.get('fx_version') or ''
 
         if show_devbrowser_firstrun(version):
-            template = 'firefox/dev-firstrun.html'
+            template = 'firefox/australis/firstrun-tour.html'
         else:
             template = 'firefox/australis/firstrun-tour.html'
 
@@ -501,7 +501,7 @@ class TourView(LatestFxView):
         version = self.kwargs.get('fx_version') or ''
 
         if show_devbrowser_firstrun(version):
-            template = 'firefox/dev-firstrun.html'
+            template = 'firefox/australis/help-menu-tour.html'
         else:
             template = 'firefox/australis/help-menu-tour.html'
 
