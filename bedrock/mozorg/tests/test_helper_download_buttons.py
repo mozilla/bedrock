@@ -152,20 +152,6 @@ class TestDownloadButtons(TestCase):
         ok_(pq(links[4]).attr('data-direct-link') is None)
 
     @override_settings(AURORA_STUB_INSTALLER=True)
-    def test_stub_aurora_installer_enabled_en_us(self):
-        """Check that only the windows link goes to stub with en-US"""
-        rf = RequestFactory()
-        get_request = rf.get('/fake')
-        get_request.locale = 'en-US'
-        doc = pq(render("{{ download_firefox('aurora') }}",
-                        {'request': get_request}))
-
-        links = doc('.download-list a')[:4]
-        ok_('stub' in pq(links[0]).attr('href'))
-        for link in links[1:]:
-            ok_('stub' not in pq(link).attr('href'))
-
-    @override_settings(AURORA_STUB_INSTALLER=True)
     def test_stub_aurora_installer_enabled_locales(self):
         """Check that the stub is not served to locales"""
         rf = RequestFactory()
@@ -179,36 +165,11 @@ class TestDownloadButtons(TestCase):
             ok_('stub' not in pq(link).attr('href'))
 
     @override_settings(AURORA_STUB_INSTALLER=False)
-    def test_stub_aurora_installer_disabled_en_us(self):
-        rf = RequestFactory()
-        get_request = rf.get('/fake')
-        get_request.locale = 'en-US'
-        doc = pq(render("{{ download_firefox('aurora') }}",
-                        {'request': get_request}))
-
-        links = doc('li a')[:4]
-        for link in links:
-            ok_('stub' not in pq(link).attr('href'))
-
-    @override_settings(AURORA_STUB_INSTALLER=False)
     def test_stub_aurora_installer_disabled_locale(self):
         rf = RequestFactory()
         get_request = rf.get('/fake')
         get_request.locale = 'fr'
         doc = pq(render("{{ download_firefox('aurora') }}",
-                        {'request': get_request}))
-
-        links = doc('.download-list a')[:4]
-        for link in links:
-            ok_('stub' not in pq(link).attr('href'))
-
-    @override_settings(AURORA_STUB_INSTALLER=True)
-    def test_stub_aurora_installer_override_en_us(self):
-        rf = RequestFactory()
-        get_request = rf.get('/fake')
-        get_request.locale = 'en-US'
-        doc = pq(render("{{ download_firefox('aurora', "
-                        "force_full_installer=True) }}",
                         {'request': get_request}))
 
         links = doc('.download-list a')[:4]

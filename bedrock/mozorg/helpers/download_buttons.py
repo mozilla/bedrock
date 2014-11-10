@@ -61,21 +61,19 @@ def latest_version(locale, channel='release'):
 def make_aurora_link(product, version, platform, locale,
                      force_full_installer=False):
     # Download links are different for localized versions
-    src = 'aurora' if locale.lower() == 'en-us' else 'aurora-l10n'
+    if locale.lower() == 'en-us':
+        if platform == 'os_windows':
+            product = 'firefox-aurora-stub'
+        else:
+            product = 'firefox-aurora-latest'
+    else:
+        product = 'firefox-aurora-latest-l10n'
 
-    filenames = {
-        'os_windows': 'win32.installer.exe',
-        'os_linux': 'linux-i686.tar.bz2',
-        'os_linux64': 'linux-x86_64.tar.bz2',
-        'os_osx': 'mac.dmg'
-    }
-    if (not force_full_installer and settings.AURORA_STUB_INSTALLER
-            and locale.lower() == 'en-us'):
-        filenames['os_windows'] = 'win32.installer-stub.exe'
-    filename = filenames[platform]
-
-    return ('%s/%s-%s.%s.%s' %
-            (download_urls[src], product, version, locale, filename))
+    tmpl = '?'.join([download_urls['direct'],
+                    'product={prod}&os={plat}&lang={locale}'])
+    return tmpl.format(
+        prod=product, locale=locale,
+        plat=platform.replace('os_', '').replace('windows', 'win'))
 
 
 def make_download_link(product, build, version, platform, locale,
