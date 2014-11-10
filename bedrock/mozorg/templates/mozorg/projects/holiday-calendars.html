@@ -50,7 +50,13 @@
         <tr>
           {% trans calurl=CALDATA_URL + calendar.filename, datespan=calendar.datespan,
                    country=calendar.country, authors=calendar.authors %}
-            <td><a href="{{ calurl }}">{{ country }}</a> holidays thanks to {{ authors }}</td>
+
+            {% if calendar.title %}
+                <td><a href="{{ calurl }}">{{ country }}</a> {{ calendar.title }} thanks to {{ authors }}</td>
+            {% else %}
+                <td><a href="{{ calurl }}">{{ country }}</a> holidays thanks to {{ authors }}</td>
+            {% endif %}
+
             <td>{{ datespan }}</td>
           {% endtrans %}
         </tr>
