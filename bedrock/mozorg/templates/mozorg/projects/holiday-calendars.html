@@ -48,17 +48,12 @@
           <tr><th colspan="2" id="{{ first_letter }}">{{ first_letter }}</th></tr>
         {% endif %}
         <tr>
-          {% trans calurl=CALDATA_URL + calendar.filename, datespan=calendar.datespan,
-                   country=calendar.country, authors=calendar.authors %}
-
             {% if calendar.title %}
-                <td><a href="{{ calurl }}">{{ country }}</a> {{ calendar.title }} thanks to {{ authors }}</td>
+                <td><a href="{{ CALDATA_URL + calendar.filename }}">{{ calendar.country }}</a> {{ calendar.title }}, thanks to {{ calendar.authors }}</td>
             {% else %}
-                <td><a href="{{ calurl }}">{{ country }}</a> holidays thanks to {{ authors }}</td>
+                <td><a href="{{ CALDATA_URL + calendar.filename }}">{{ calendar.country }}</a> holidays thanks to {{ calendar.authors }}</td>
             {% endif %}
-
-            <td>{{ datespan }}</td>
-          {% endtrans %}
+          <td>{{ calendar.datespan }}</td>
         </tr>
       {% endfor %}
     </table>
