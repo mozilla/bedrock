@@ -440,7 +440,7 @@ set share_urls = {
 
     {% if embed_video %}
     <div id="fx-anniversary-video-embed-wrapper">
-      <iframe id="fx-anniversary-video-embed" data-src="https://www.youtube.com/embed/{{ video_locales.get(LANG, video_locales['en-US']) }}?version=3&amp;enablejsapi=1&amp;wmode=transparent&amp;cc_load_policy=1" frameborder="0" allowfullscreen></iframe>
+      <iframe id="fx-anniversary-video-embed" data-src="https://www.youtube.com/embed/{{ video_locales.get(LANG, video_locales['en-US']) }}?version=3&amp;enablejsapi=1&amp;wmode=transparent{% if not LANG in ['en-US', 'de', 'fr', 'pt-BR']%}&amp;cc_load_policy=1{% endif %}" frameborder="0" allowfullscreen></iframe>
     </div>
     {%- endif %}
   </div>{#-- /#fx-anniversary-video-wrapper #}
