@@ -98,7 +98,7 @@
     <div class="promo-grid-inner">
       <ul class="promo-grid {% if tweets %}has-twitter-promo{% endif %}">
       {# L10n: Begin home page promos. Line breaks are for visual formatting only. #}
-      {% if l10n_has_tag('fx10_independent') or settings.DEV %}
+      {% if l10n_has_tag('fx10_independent', 'mozorg/home/index') or settings.DEV %}
         <li id="promo-1" class="item promo-large-portrait firefox-independent" data-name="Firefox: The indepedent choice" tabindex="0">
           <h2 class="primary go">{{ _('Firefox: The independent choice') }}</h2>
           <a class="panel-link" href="{{ url('firefox.independent') }}#play">
@@ -152,7 +152,7 @@
             <a class="fxos-link" href="{{ url('firefox.desktop.index') }}">{{ _('Learn more') }}</a>
           </div>
         </li>
-      {% if l10n_has_tag('fx10_independent') or settings.DEV %}
+      {% if l10n_has_tag('fx10_independent', 'mozorg/home/index') or settings.DEV %}
         {% if LANG in ['en-US'] %}
         <li id="promo-6" class="item promo-large-landscape open-standard" data-name="Open is better" tabindex="0">
           <h2 class="primary go">{{ _('Open is better') }}</h2>
@@ -188,7 +188,7 @@
         <li id="promo-7" class="item promo-face">
           {{ promo_face(3) }}
         </li>
-      {% if l10n_has_tag('fx10_independent') or settings.DEV %}
+      {% if l10n_has_tag('fx10_independent', 'mozorg/home/index') or settings.DEV %}
         <li id="promo-8" class="item promo-small-landscape webmaker" data-name="Become a Webmaker">
           <a class="panel-link" rel="external" href="https://webmaker.org">
             <h2>{{ _('Become a Webmaker') }}</h2>
@@ -206,7 +206,7 @@
             <h2>{{ _('Volunteer <br>with Mozilla') }}</h2>
           </a>
         </li>
-      {% if l10n_has_tag('fx10_independent') or settings.DEV %}
+      {% if l10n_has_tag('fx10_independent', 'mozorg/home/index') or settings.DEV %}
         <li id="promo-10" class="item promo-large-portrait firefox-developer" tabindex="0" data-name="Introducing Firefox Developer Edition">
           <h2 class="primary go">{{ _('Introducing Firefox Developer Edition') }}</h2>
           <a class="panel-link" href="{{ url('firefox.developer') }}">
@@ -355,7 +355,7 @@
   <button id="scroll-prompt">{{ _('Discover more') }}</button>
 </main>
 
-{% if l10n_has_tag('fx10_independent') or settings.DEV %}
+{% if l10n_has_tag('fx10_independent', 'mozorg/home/index') or settings.DEV %}
 <article id="fx10-splash">
   <div class="container">
     <h2 class="main-title">{{ _('Choose Independent') }}</h2>
