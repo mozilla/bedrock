@@ -45,7 +45,7 @@
     });
 
     // Autoplay if URL includes the proper hash and client is not a known mobile OS
-    if (window.location.hash === '#play' && !$html.hasClass('android') && !$html.hasClass('ios') && !$html.hasClass('fxos')) {
+    if (window.location.href.indexOf('#play') > -1 && !$html.hasClass('android') && !$html.hasClass('ios') && !$html.hasClass('fxos')) {
         Mozilla.FirefoxAnniversaryVideo.playEmbed();
         gaTrack(['_trackEvent', '/firefox/independent/ Interactions', 'autoplay', '10th Anniversary Video']);
     }
