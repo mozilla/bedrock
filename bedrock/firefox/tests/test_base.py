@@ -553,38 +553,6 @@ class TestTourView(TestCase):
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/australis/help-menu-tour.html'])
 
-    @override_settings(DEV=True)
-    def test_fx_dev_browser_35_0_a2(self, render_mock):
-        """Should use dev browser firstrun template for 35.0a2"""
-        req = self.rf.get('/en-US/firefox/tour/')
-        self.view(req, fx_version='35.0a2')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/dev-firstrun.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_dev_browser_35_1_a2(self, render_mock):
-        """Should use dev browser firstrun template for 35.1a2"""
-        req = self.rf.get('/en-US/firefox/tour/')
-        self.view(req, fx_version='35.1a2')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/dev-firstrun.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_dev_browser_36_0_a2(self, render_mock):
-        """Should use dev browser firstrun template for 36.0a2"""
-        req = self.rf.get('/en-US/firefox/tour/')
-        self.view(req, fx_version='36.0a2')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/dev-firstrun.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_dev_browser_34_0_a2(self, render_mock):
-        """Should use standard firstrun template for older aurora"""
-        req = self.rf.get('/en-US/firefox/tour/')
-        self.view(req, fx_version='34.0a2')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/australis/help-menu-tour.html'])
-
     @override_settings(DEV=False)
     def test_fx_australis_secure_redirect(self, render_mock):
         """Should redirect to https"""
@@ -634,38 +602,6 @@ class TestFirstRun(TestCase):
         """Should use firstrun tour template"""
         req = self.rf.get('/en-US/firefox/firstrun/')
         self.view(req, fx_version='29.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/australis/firstrun-tour.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_dev_browser_35_0_a2(self, render_mock):
-        """Should use dev browser firstrun template for 35.0a2"""
-        req = self.rf.get('/en-US/firefox/firstrun/')
-        self.view(req, fx_version='35.0a2')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/dev-firstrun.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_dev_browser_35_1_a2(self, render_mock):
-        """Should use dev browser firstrun template for 35.1a2"""
-        req = self.rf.get('/en-US/firefox/firstrun/')
-        self.view(req, fx_version='35.1a2')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/dev-firstrun.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_dev_browser_36_0_a2(self, render_mock):
-        """Should use dev browser firstrun template for 36.0a2"""
-        req = self.rf.get('/en-US/firefox/firstrun/')
-        self.view(req, fx_version='36.0a2')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/dev-firstrun.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_dev_browser_34_0_a2(self, render_mock):
-        """Should use standard firstrun template for older aurora"""
-        req = self.rf.get('/en-US/firefox/firstrun/')
-        self.view(req, fx_version='34.0a2')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/australis/firstrun-tour.html'])
 
