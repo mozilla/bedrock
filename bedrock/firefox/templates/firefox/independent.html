@@ -56,9 +56,9 @@
   <section id="fx10-download">
     <div class="container">
       <h2>{{ _('Choose Firefox and stay in control of your online life') }}</h2>
-      <p>
-        <a href="{{ url('firefox.new') }}" class="button">{{ _('Download Firefox') }}</a>
-      </p>
+      <div class="download">
+        {{ download_firefox(simple=true) }}
+      </div>
     </div>
   </section>
 
