@@ -43,28 +43,36 @@
 
         animateHeadline: function() {
             $('.main-title').removeClass('tour');
-        }
+        },
+
+        modalEnabled: false
     };
 
     Mozilla.FirefoxAnniversaryVideo.init({
         'deferEmbed': true,
         'onPlay': function(button) {
-            Mozilla.Modal.createModal(button, $videoModalContent, {
-                title: '',
-                onCreate: function() {
-                    Mozilla.FirefoxAnniversaryVideo.setOverlayButtons('share-replay');
+            if (Mozilla.PrivacyTour.modalEnabled) {
+                Mozilla.Modal.createModal(button, $videoModalContent, {
+                    title: '',
+                    onCreate: function() {
+                        Mozilla.FirefoxAnniversaryVideo.setOverlayButtons('share-replay');
 
-                    // give the video a bit of time to re-initialize before trying to play
-                    setTimeout(function() {
-                        Mozilla.FirefoxAnniversaryVideo.playEmbed();
-                    }, 600);
-                },
-                onDestroy: function() {
-                    Mozilla.FirefoxAnniversaryVideo.hideEmbed();
-                }
-            });
+                        // give the video a bit of time to re-initialize before trying to play
+                        setTimeout(function() {
+                            Mozilla.FirefoxAnniversaryVideo.playEmbed();
+                        }, 600);
+                    },
+                    onDestroy: function() {
+                        Mozilla.FirefoxAnniversaryVideo.hideEmbed();
+                    }
+                });
 
-            gaTrack(['_trackEvent', '/firefox/independent/ Interactions', 'click to play', '10th Anniversary Video']);
+                gaTrack(['_trackEvent', '/firefox/independent/ Interactions', 'click to play', '10th Anniversary Video']);
+            } else {
+                // ensure video is still accessible if tour has not initialized
+                window.location.href = $('a.button-play').attr('href');
+            }
+
         },
         'onComplete': function() {
             // YouTube player loses this callback for some reason when re-initializing after being

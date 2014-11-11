@@ -8,6 +8,8 @@
     // enable video
     Mozilla.FirefoxAnniversaryVideo.enableEmbed();
 
+    Mozilla.PrivacyTour.modalEnabled = true;
+
     // wait until doc ready to start ripples animation
     $(function() {
         Mozilla.PrivacyTour.animateRipples(0);

@@ -42,6 +42,9 @@
 
             tour.init();
 
+            Mozilla.PrivacyTour.modalEnabled = true;
+
+            $('a.button-play').addClass('tour');
             $('.main-title').addClass('tour');
         });
     }
