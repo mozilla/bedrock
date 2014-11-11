@@ -109,31 +109,19 @@
         margin-top: 15px;
     }
 
-    p {
+    .download {
         .span(4);
     }
 
-    .fx-tour {
-        display: none;
-
-        h2 {
-            margin-top: 20px;
-        }
-
-        .button {
-            padding: 12px 40px 12px 100px;
-            text-align: left;
-            background-image: url(/media/img/firefox/independent/icon-tour.png);
-            background-position: 35px 50%;
-            background-repeat: no-repeat;
-        }
-    }
-
-    .button {
+    .download-link {
         .button-flat;
         background-color: #6fbe4a;
         font-size: 18px;
-        padding: 20px 40px;
+
+        .download-content {
+            padding: 10px;
+            background: transparent none;
+        }
 
         &:hover,
         &:focus,
@@ -326,11 +314,8 @@ html[lang^="en"] {
     }
 
     #fx10-download {
-        h2 {
-            .span_narrow(6);
-        }
-
-        p {
+        h2,
+        .download {
             .span_narrow(6);
         }
     }
@@ -356,7 +341,7 @@ html[lang^="en"] {
         margin-top: 0;
 
         h2,
-        p {
+        .download {
             width: auto;
             float: none;
             margin: 0 0 @baseLine;

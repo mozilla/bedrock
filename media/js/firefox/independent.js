@@ -13,7 +13,7 @@
         $('#fx10-download').show();
     }
 
-    $('#fx10-download .button').on('click', function(e) {
+    $('#fx10-download .download-link').on('click', function(e) {
         var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
         var href = this.href;
         var callback = function() {
