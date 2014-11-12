@@ -160,15 +160,15 @@
         <ol class="installation">
           <li class="install1">
             <span class="screen"></span>
-            <strong>{{_('1')}}.</strong>
             <span class="install-win">
               {{_('Start the process by clicking Run.')}}
             </span>
-            {{_('Your download should begin automatically. If not, <a id="%s" href="">click here</a>. It could take a few minutes, but it’s worth the wait.')|format('direct-download-link')}}
+            <span class="install-all">
+              {{_('Your download should begin automatically. If not, <a id="%s" href="">click here</a>. It could take a few minutes, but it’s worth the wait.')|format('direct-download-link')}}
+            </span>
           </li>
           <li class="install2">
             <span class="screen"></span>
-            <strong>{{_('2')}}.</strong>
             <span class="install-osx">
               {{_('When prompted, drag the Firefox icon into the image of your Applications folder.')}}
             </span>
@@ -178,7 +178,6 @@
           </li>
           <li class="install3">
             <span class="screen"></span>
-            <strong>{{_('3')}}.</strong>
             <span class="install-osx">
               {{_('Drag the Firefox icon from the Applications folder into the dock. Then, just click on Firefox whenever you want to use the web!')}}
             </span>
