@@ -31,6 +31,15 @@
   <h1>{{ _('Built for those who build the Web') }}</h1>
   <h2>{{ _('Introducing the only browser made for developers like you.') }}</h2>
   {{ download_firefox('aurora', icon=False, small=True, simple=True) }}
+  <p class="privacy"><a href="{{ url('privacy.notices.firefox') }}">{{ _('Privacy') }}</a></p>
+
+  {% if l10n_has_tag('new_doorhanger') %}
+  <p class="feedback-note">
+    {{ _('Firefox Developer Edition automatically sends feedback to Mozilla.') }}
+    <a href="{{ url('privacy.notices.firefox') }}#telemetry" class="more">{{ _('Learn more') }}</a>
+  </p>
+  {% endif %}
+
   <img src="{{ media('img/firefox/developer/screenshot.jpg') }}" alt="{{ _('Firefox Developer Edition') }}" class="screenshot" />
 
   <ul class="intro-features">
