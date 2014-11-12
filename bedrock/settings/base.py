@@ -301,6 +301,7 @@ MINIFY_BUNDLES = {
             'css/base/mozilla-modal.less',
             'css/firefox/independent-splash.less',
             'css/firefox/privacy_tour/common.less',
+            'css/firefox/privacy_tour/no-tour.less',
         ),
         'firefox_tour': (
             'css/firefox/australis/australis-ui-tour.less',

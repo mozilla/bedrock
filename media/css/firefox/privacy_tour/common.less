@@ -9,6 +9,10 @@ html, body {
     min-height: 1000px;
 }
 
+noscript {
+    text-align: center;
+}
+
 #outer-wrapper {
     height: 100%;
 }
@@ -154,15 +158,10 @@ html, body {
 }
 
 a.button-play {
-    transform: scale(0);
 
     span {
-        opacity: 0;
+        opacity: 1;
         transition: opacity 0.6s ease;
-
-        &.visible {
-            opacity: 1;
-        }
     }
 
     &.animate {
