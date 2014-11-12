@@ -494,6 +494,10 @@ var Tabzilla = (function (Tabzilla) {
         var isMobile = (/Mobile|Tablet|Fennec/i).test(ua);
         var userVersion = (isFirefox) ? parseInt(ua.match(/Firefox\/(\d+)/)[1], 10) : 0;
         var showInfobar = function () {
+            if ($('body').data('defaultSlug') === 'update-firefox-latest-version') {
+                // Don't show the info bar on the page that the info bar sends the user to.
+                return;
+            }
             // If the user accepts, show the SUMO article
             updatebar.onaccept.callback = function () {
                 location.href = 'https://support.mozilla.org/{{ LANG }}/kb/update-firefox-latest-version';
