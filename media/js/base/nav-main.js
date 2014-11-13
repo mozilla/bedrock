@@ -10,7 +10,7 @@ $(document).ready(function() {
   var main_menuitems = $('#nav-main [tabindex="0"]');
   var prev_li, new_li, focused_item;
 
-  $('#nav-main > .has-submenus > li').bind('mouseover focusin', function(event) {
+  $('#nav-main > .has-submenus > li').bind('mouseover focusin', function() {
     new_li = $(this);
     if (!prev_li || prev_li.attr('id') !== new_li.attr('id')) {
       // Open the menu
@@ -22,7 +22,7 @@ $(document).ready(function() {
     } else {
       prev_li.clearQueue();
     }
-  }).bind('mouseout focusout', function(event) {
+  }).bind('mouseout focusout', function() {
     prev_li = $(this);
     prev_li.delay(100).queue(function() {
       if (prev_li) {
@@ -38,7 +38,7 @@ $(document).ready(function() {
   }).each(function(menu_idx) {
     var menuitems = $(this).find('a');
 
-    menuitems.mouseover(function(event) {
+    menuitems.mouseover(function() {
       this.focus(); // Sometimes $(this).focus() doesn"t work
     }).focus(function() {
       focused_item = $(this);

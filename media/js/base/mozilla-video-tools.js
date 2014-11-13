@@ -107,17 +107,17 @@ Mozilla.VideoControl.prototype.drawControl = function()
   var that = this;
 
   // hide click-to-play button on these events
-  this.video.bind('play playing seeking waiting', function(event) {
+  this.video.bind('play playing seeking waiting', function() {
     that.hide();
   });
 
-  this.control.mouseover(function(event) {
+  this.control.mouseover(function() {
     if (!that.semaphore) {
       that.prelight();
     }
   });
 
-  this.control.mouseout(function(event) {
+  this.control.mouseout(function() {
     if (!that.semaphore) {
       that.unprelight();
     }
@@ -391,7 +391,7 @@ Mozilla.VideoPlayer.prototype.open = function()
   }
 
   var that = this;
-  this.resizeHandler = function(e) {
+  this.resizeHandler = function() {
       that.resizeOverlay();
   };
   $(window).resize(this.resizeHandler);
@@ -481,7 +481,6 @@ Mozilla.VideoPlayer.getFlashVersion = function()
   } else {
     if (navigator.userAgent && navigator.userAgent.indexOf('Windows CE') >= 0) {
       var axo = true;
-      var flash_version = 3;
       while (axo) {
         // look for greatest installed version starting at 4
         try {

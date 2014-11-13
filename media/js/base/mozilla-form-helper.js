@@ -34,14 +34,19 @@ Mozilla.FormHelper.displayErrors = function(errors, form) {
 
     // loop through the error object
     for (var obj in errors) {
-        // reference the corresponding field
-        var $field = $ctx.find('#' + obj);
+        if(errors.hasOwnProperty(obj)) {
 
-        // make sure we can find the field
-        if ($field.length > 0) {
-            // add error message and styling
-            $field.addClass('error').parent('.field').prepend('<div class="errorlist">' + errors[obj] + '</div>');
+            // reference the corresponding field
+            var $field = $ctx.find('#' + obj);
+
+            // make sure we can find the field
+            if ($field.length > 0) {
+                // add error message and styling
+                $field.addClass('error').parent('.field').prepend('<div class="errorlist">' + errors[obj] + '</div>');
+            }
+
         }
+
     }
 };
 
