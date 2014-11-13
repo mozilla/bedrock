@@ -271,6 +271,36 @@ html.fxos {
     }
 }
 
+/* Linux on ARM processors */
+.linux.arm {
+    .version-message-container,
+    #firefox-screenshot {
+        display: block;
+    }
+
+    #version-message-linux-arm {
+        display: inline;
+    }
+
+    #theater-firefox,
+    #stage-firefox,
+    #scene1 {
+        position: relative;
+        height: auto;
+    }
+
+    #version-message-desktop-latest,
+    #features-download {
+        display: none;
+    }
+
+    /* hide the newsletter box while keeping the height of the screenshot */
+    #newsletter-latest {
+        display: block;
+        visibility: hidden;
+    }
+}
+
 #main-feature {
     margin-top: 14px;
     padding-bottom: 20px;
