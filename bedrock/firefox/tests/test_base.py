@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -450,7 +449,7 @@ class TestWhatsNew(TestCase):
     def test_fx_australis_29(self, render_mock):
         """Should use australis template for 29.0."""
         req = self.rf.get('/en-US/firefox/whatsnew/')
-        self.view(req, fx_version='29.0')
+        self.view(req, version='29.0')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/australis/whatsnew-no-tour.html'])
 
@@ -458,7 +457,7 @@ class TestWhatsNew(TestCase):
     def test_fx_australis_29_0_1(self, render_mock):
         """Should use australis template for 29.0.1"""
         req = self.rf.get('/en-US/firefox/whatsnew/')
-        self.view(req, fx_version='29.0.1')
+        self.view(req, version='29.0.1')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/australis/whatsnew-no-tour.html'])
 
@@ -466,7 +465,7 @@ class TestWhatsNew(TestCase):
     def test_fx_30(self, render_mock):
         """Should use australis template for 30.0."""
         req = self.rf.get('/en-US/firefox/whatsnew/')
-        self.view(req, fx_version='30.0')
+        self.view(req, version='30.0')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/australis/whatsnew-no-tour.html'])
 
@@ -474,7 +473,7 @@ class TestWhatsNew(TestCase):
     def test_fx_31(self, render_mock):
         """Should use australis template for 31.0."""
         req = self.rf.get('/en-US/firefox/whatsnew/')
-        self.view(req, fx_version='31.0')
+        self.view(req, version='31.0')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/australis/whatsnew-no-tour.html'])
 
@@ -482,7 +481,7 @@ class TestWhatsNew(TestCase):
     def test_fx_33_0(self, render_mock):
         """Should use australis template for 33.0."""
         req = self.rf.get('/en-US/firefox/whatsnew/')
-        self.view(req, fx_version='33.0')
+        self.view(req, version='33.0')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/australis/whatsnew-no-tour.html'])
 
@@ -490,7 +489,7 @@ class TestWhatsNew(TestCase):
     def test_fx_33_0_1(self, render_mock):
         """Should use australis template for 33.0.1"""
         req = self.rf.get('/en-US/firefox/whatsnew/')
-        self.view(req, fx_version='33.0.1')
+        self.view(req, version='33.0.1')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/australis/whatsnew-no-tour.html'])
 
@@ -498,7 +497,7 @@ class TestWhatsNew(TestCase):
     def test_fx_33_1(self, render_mock):
         """Should use privacy tour template for 33.1"""
         req = self.rf.get('/en-US/firefox/whatsnew/')
-        self.view(req, fx_version='33.1')
+        self.view(req, version='33.1')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/privacy_tour/no-tour.html'])
 
@@ -506,7 +505,7 @@ class TestWhatsNew(TestCase):
     def test_rv_prefix(self, render_mock):
         """Prefixed oldversion shouldn't impact version sniffing."""
         req = self.rf.get('/en-US/firefox/whatsnew/?oldversion=rv:10.0')
-        self.view(req, fx_version='33.1')
+        self.view(req, version='33.1')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/privacy_tour/tour.html'])
 
@@ -516,7 +515,7 @@ class TestWhatsNew(TestCase):
         url = '/en-US/firefox/whatsnew/'
         req = self.rf.get(url)
         with patch.object(req, 'is_secure', return_value=False):
-            resp = self.view(req, fx_version='29.0')
+            resp = self.view(req, version='29.0')
         eq_(resp['location'], 'https://testserver' + url)
 
     @override_settings(DEV=True)
@@ -525,7 +524,7 @@ class TestWhatsNew(TestCase):
         url = '/en-US/firefox/whatsnew/'
         req = self.rf.get(url)
         with patch.object(req, 'is_secure', return_value=False):
-            resp = self.view(req, fx_version='29.0')
+            resp = self.view(req, version='29.0')
         eq_(resp.status_code, 200)
 
     @override_settings(DEV=True)
@@ -534,7 +533,7 @@ class TestWhatsNew(TestCase):
         url = '/en-US/firefox/whatsnew/'
         req = self.rf.get(url)
         with patch.object(req, 'is_secure', return_value=True):
-            resp = self.view(req, fx_version='29.0')
+            resp = self.view(req, version='29.0')
         eq_(resp.status_code, 200)
 
 
@@ -549,7 +548,7 @@ class TestTourView(TestCase):
     def test_fx_tour_template(self, render_mock):
         """Should use firstrun tour template"""
         req = self.rf.get('/en-US/firefox/tour/')
-        self.view(req, fx_version='29.0')
+        self.view(req, version='29.0')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/australis/help-menu-tour.html'])
 
@@ -557,7 +556,7 @@ class TestTourView(TestCase):
     def test_fx_dev_browser_35_0_a2(self, render_mock):
         """Should use dev browser firstrun template for 35.0a2"""
         req = self.rf.get('/en-US/firefox/tour/')
-        self.view(req, fx_version='35.0a2')
+        self.view(req, version='35.0a2')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/dev-firstrun.html'])
 
@@ -565,7 +564,7 @@ class TestTourView(TestCase):
     def test_fx_dev_browser_35_1_a2(self, render_mock):
         """Should use dev browser firstrun template for 35.1a2"""
         req = self.rf.get('/en-US/firefox/tour/')
-        self.view(req, fx_version='35.1a2')
+        self.view(req, version='35.1a2')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/dev-firstrun.html'])
 
@@ -573,7 +572,7 @@ class TestTourView(TestCase):
     def test_fx_dev_browser_36_0_a2(self, render_mock):
         """Should use dev browser firstrun template for 36.0a2"""
         req = self.rf.get('/en-US/firefox/tour/')
-        self.view(req, fx_version='36.0a2')
+        self.view(req, version='36.0a2')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/dev-firstrun.html'])
 
@@ -581,7 +580,7 @@ class TestTourView(TestCase):
     def test_fx_dev_browser_34_0_a2(self, render_mock):
         """Should use standard firstrun template for older aurora"""
         req = self.rf.get('/en-US/firefox/tour/')
-        self.view(req, fx_version='34.0a2')
+        self.view(req, version='34.0a2')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/australis/help-menu-tour.html'])
 
@@ -591,7 +590,7 @@ class TestTourView(TestCase):
         url = '/en-US/firefox/tour/'
         req = self.rf.get(url)
         with patch.object(req, 'is_secure', return_value=False):
-            resp = self.view(req, fx_version='29.0')
+            resp = self.view(req, version='29.0')
         eq_(resp['location'], 'https://testserver' + url)
 
     @override_settings(DEV=True)
@@ -600,7 +599,7 @@ class TestTourView(TestCase):
         url = '/en-US/firefox/tour/'
         req = self.rf.get(url)
         with patch.object(req, 'is_secure', return_value=False):
-            resp = self.view(req, fx_version='29.0')
+            resp = self.view(req, version='29.0')
         eq_(resp.status_code, 200)
 
     @override_settings(DEV=True)
@@ -609,7 +608,7 @@ class TestTourView(TestCase):
         url = '/en-US/firefox/tour/'
         req = self.rf.get(url)
         with patch.object(req, 'is_secure', return_value=True):
-            resp = self.view(req, fx_version='29.0')
+            resp = self.view(req, version='29.0')
         eq_(resp.status_code, 200)
 
 
@@ -633,7 +632,7 @@ class TestFirstRun(TestCase):
     def test_fx_australis_29(self, render_mock):
         """Should use firstrun tour template"""
         req = self.rf.get('/en-US/firefox/firstrun/')
-        self.view(req, fx_version='29.0')
+        self.view(req, version='29.0')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/australis/firstrun-tour.html'])
 
@@ -641,7 +640,7 @@ class TestFirstRun(TestCase):
     def test_fx_dev_browser_35_0_a2(self, render_mock):
         """Should use dev browser firstrun template for 35.0a2"""
         req = self.rf.get('/en-US/firefox/firstrun/')
-        self.view(req, fx_version='35.0a2')
+        self.view(req, version='35.0a2')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/dev-firstrun.html'])
 
@@ -649,7 +648,7 @@ class TestFirstRun(TestCase):
     def test_fx_dev_browser_35_1_a2(self, render_mock):
         """Should use dev browser firstrun template for 35.1a2"""
         req = self.rf.get('/en-US/firefox/firstrun/')
-        self.view(req, fx_version='35.1a2')
+        self.view(req, version='35.1a2')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/dev-firstrun.html'])
 
@@ -657,7 +656,7 @@ class TestFirstRun(TestCase):
     def test_fx_dev_browser_36_0_a2(self, render_mock):
         """Should use dev browser firstrun template for 36.0a2"""
         req = self.rf.get('/en-US/firefox/firstrun/')
-        self.view(req, fx_version='36.0a2')
+        self.view(req, version='36.0a2')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/dev-firstrun.html'])
 
@@ -665,7 +664,7 @@ class TestFirstRun(TestCase):
     def test_fx_dev_browser_34_0_a2(self, render_mock):
         """Should use standard firstrun template for older aurora"""
         req = self.rf.get('/en-US/firefox/firstrun/')
-        self.view(req, fx_version='34.0a2')
+        self.view(req, version='34.0a2')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/australis/firstrun-tour.html'])
 
@@ -675,7 +674,7 @@ class TestFirstRun(TestCase):
         url = '/en-US/firefox/firstrun/'
         req = self.rf.get(url)
         with patch.object(req, 'is_secure', return_value=False):
-            resp = self.view(req, fx_version='29.0')
+            resp = self.view(req, version='29.0')
         eq_(resp['location'], 'https://testserver' + url)
 
     @override_settings(DEV=True)
@@ -684,7 +683,7 @@ class TestFirstRun(TestCase):
         url = '/en-US/firefox/firstrun/'
         req = self.rf.get(url)
         with patch.object(req, 'is_secure', return_value=False):
-            resp = self.view(req, fx_version='29.0')
+            resp = self.view(req, version='29.0')
         eq_(resp.status_code, 200)
 
     @override_settings(DEV=True)
@@ -693,7 +692,7 @@ class TestFirstRun(TestCase):
         url = '/en-US/firefox/firstrun/'
         req = self.rf.get(url)
         with patch.object(req, 'is_secure', return_value=True):
-            resp = self.view(req, fx_version='29.0')
+            resp = self.view(req, version='29.0')
         eq_(resp.status_code, 200)
 
 
@@ -833,117 +832,3 @@ class TestWhatsnewRedirect(FxVersionRedirectsMixin, TestCase):
         # if there's no oldversion parameter, show no tour
         response = self.client.get(self.url, HTTP_USER_AGENT=self.user_agent)
         self.assertNotIn(self.expected, response.content)
-
-
-@patch.object(fx_views, 'firefox_details', firefox_details)
-class TestReleaseNotesIndex(TestCase):
-    def test_relnotes_index(self):
-        with self.activate('en-US'):
-            response = self.client.get(reverse('firefox.releases.index'))
-        doc = pq(response.content)
-        eq_(len(doc('a[href="0.1.html"]')), 1)
-        eq_(len(doc('a[href="0.10.html"]')), 1)
-        eq_(len(doc('a[href="1.0.html"]')), 1)
-        eq_(len(doc('a[href="1.0.8.html"]')), 1)
-        eq_(len(doc('a[href="1.5.html"]')), 1)
-        eq_(len(doc('a[href="1.5.0.12.html"]')), 1)
-        eq_(len(doc('a[href="../2.0/releasenotes/"]')), 1)
-        eq_(len(doc('a[href="../2.0.0.20/releasenotes/"]')), 1)
-        eq_(len(doc('a[href="../3.6/releasenotes/"]')), 1)
-        eq_(len(doc('a[href="../3.6.28/releasenotes/"]')), 1)
-        eq_(len(doc('a[href="../17.0/releasenotes/"]')), 1)
-        eq_(len(doc('a[href="../17.0.11/releasenotes/"]')), 1)
-        eq_(len(doc('a[href="../24.0/releasenotes/"]')), 1)
-        eq_(len(doc('a[href="../24.1.0/releasenotes/"]')), 1)
-        eq_(len(doc('a[href="../24.1.1/releasenotes/"]')), 1)
-        eq_(len(doc('a[href="../25.0/releasenotes/"]')), 1)
-        eq_(len(doc('a[href="../25.0.1/releasenotes/"]')), 1)
-
-
-@patch.object(fx_views, 'firefox_details', firefox_details)
-@patch.object(fx_views, 'mobile_details', mobile_details)
-class TestNotesRedirects(TestCase):
-    def _test(self, url_from, url_to):
-        with self.activate('en-US'):
-            url = '/en-US' + url_from
-        response = self.client.get(url)
-        eq_(response.status_code, 302)
-        eq_(response['Location'], 'http://testserver/en-US' + url_to)
-
-    @patch.dict(product_details.firefox_versions,
-                LATEST_FIREFOX_VERSION='22.0')
-    def test_desktop_release_version(self):
-        self._test('/firefox/notes/',
-                   '/firefox/22.0/releasenotes/')
-        self._test('/firefox/latest/releasenotes/',
-                   '/firefox/22.0/releasenotes/')
-
-    @patch.dict(product_details.firefox_versions,
-                LATEST_FIREFOX_DEVEL_VERSION='23.0b1')
-    def test_desktop_beta_version(self):
-        self._test('/firefox/beta/notes/',
-                   '/firefox/23.0beta/releasenotes/')
-
-    @patch.dict(product_details.firefox_versions,
-                FIREFOX_AURORA='24.0a2')
-    def test_desktop_aurora_version(self):
-        self._test('/firefox/aurora/notes/',
-                   '/firefox/24.0a2/auroranotes/')
-
-    @patch.dict(product_details.firefox_versions,
-                FIREFOX_ESR='24.2.0esr')
-    def test_desktop_esr_version(self):
-        self._test('/firefox/organizations/notes/',
-                   '/firefox/24.2.0/releasenotes/')
-
-    @patch.dict(product_details.mobile_details,
-                version='22.0')
-    def test_mobile_release_version(self):
-        self._test('/mobile/notes/',
-                   '/mobile/22.0/releasenotes/')
-
-    @patch.dict(product_details.mobile_details,
-                beta_version='23.0b1')
-    def test_mobile_beta_version(self):
-        self._test('/mobile/beta/notes/',
-                   '/mobile/23.0beta/releasenotes/')
-
-    @patch.dict(product_details.mobile_details,
-                alpha_version='24.0a2')
-    def test_mobile_aurora_version(self):
-        self._test('/mobile/aurora/notes/',
-                   '/mobile/24.0a2/auroranotes/')
-
-
-@patch.object(fx_views, 'firefox_details', firefox_details)
-class TestSysreqRedirect(TestCase):
-    def _test(self, url_from, url_to):
-        with self.activate('en-US'):
-            url = '/en-US' + url_from
-        response = self.client.get(url)
-        eq_(response.status_code, 302)
-        eq_(response['Location'], 'http://testserver/en-US' + url_to)
-
-    @patch.dict(product_details.firefox_versions,
-                LATEST_FIREFOX_VERSION='22.0')
-    def test_desktop_release_version(self):
-        self._test('/firefox/system-requirements/',
-                   '/firefox/22.0/system-requirements/')
-
-    @patch.dict(product_details.firefox_versions,
-                LATEST_FIREFOX_DEVEL_VERSION='23.0b1')
-    def test_desktop_beta_version(self):
-        self._test('/firefox/beta/system-requirements/',
-                   '/firefox/23.0beta/system-requirements/')
-
-    @patch.dict(product_details.firefox_versions,
-                FIREFOX_AURORA='24.0a2')
-    def test_desktop_aurora_version(self):
-        self._test('/firefox/aurora/system-requirements/',
-                   '/firefox/24.0a2/system-requirements/')
-
-    @patch.dict(product_details.firefox_versions,
-                FIREFOX_ESR='24.2.0esr')
-    def test_desktop_esr_version(self):
-        self._test('/firefox/organizations/system-requirements/',
-                   '/firefox/24.0/system-requirements/')

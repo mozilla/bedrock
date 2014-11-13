@@ -5,13 +5,15 @@ from django.conf.urls import patterns, url
 
 from commonware.response.decorators import xframe_allow
 
-from bedrock.firefox import version_re
 from bedrock.redirects.util import redirect
 from bedrock.mozorg.util import page
+
 import views
+import bedrock.releasenotes.views
+from bedrock.releasenotes import version_re
 
 
-latest_re = r'^firefox(?:/(?P<fx_version>%s))?/%s/$'
+latest_re = r'^firefox(?:/(?P<version>%s))?/%s/$'
 firstrun_re = latest_re % (version_re, 'firstrun')
 whatsnew_re = latest_re % (version_re, 'whatsnew')
 tour_re = latest_re % (version_re, 'tour')
@@ -36,11 +38,6 @@ urlpatterns = patterns('',
     page('firefox/developer', 'firefox/developer.html'),
     page('firefox/geolocation', 'firefox/geolocation.html'),
     page('firefox/interest-dashboard', 'firefox/interest-dashboard.html'),
-    url('^(?:%s)/(?:%s/)?notes/$' % (product_re, channel_re),
-        views.latest_notes, name='firefox.notes'),
-    url('^firefox/latest/releasenotes/$', views.latest_notes),
-    url('^firefox/(?:%s/)?system-requirements/$' % channel_re,
-        views.latest_sysreq, name='firefox.sysreq'),
     page('firefox/android', 'firefox/android/index.html'),
     page('firefox/android/faq', 'firefox/android/faq.html'),
     page('firefox/os/faq', 'firefox/os/faq.html'),
@@ -53,8 +50,6 @@ urlpatterns = patterns('',
     page('firefox/organizations/faq', 'firefox/organizations/faq.html'),
     page('firefox/organizations', 'firefox/organizations/organizations.html'),
     page('firefox/nightly/firstrun', 'firefox/nightly_firstrun.html'),
-    url('^firefox/releases/$', views.releases_index,
-        name='firefox.releases.index'),
     url(r'^firefox/installer-help/$', views.installer_help,
         name='firefox.installer-help'),
 
@@ -77,19 +72,30 @@ urlpatterns = patterns('',
     page('firefox/os', 'firefox/os/index.html'),
     page('firefox/os/releases', 'firefox/os/releases.html'),
 
-    # firefox/os/notes/ should redirect to the latest version; update this in /redirects/urls.py
-    url('^firefox/os/notes/(?P<fx_version>%s)/$' % version_re,
-        views.release_notes, {'product': 'Firefox OS'},
-        name='firefox.os.releasenotes'),
 
     page('mwc', 'firefox/os/mwc-2014-preview.html'),
     page('firefox/os/devices', 'firefox/os/devices.html'),
 
     page('firefox/independent', 'firefox/independent.html'),
 
-    url(releasenotes_re, views.release_notes, name='firefox.releasenotes'),
-    url(mobile_releasenotes_re, views.release_notes,
+
+    # Release notes
+    url('^(?:%s)/(?:%s/)?notes/$' % (product_re, channel_re),
+        bedrock.releasenotes.views.latest_notes, name='firefox.notes'),
+    url('firefox/latest/releasenotes/$', bedrock.releasenotes.views.latest_notes,
+        {'product': 'firefox'}),
+    url('^firefox/(?:%s/)?system-requirements/$' % channel_re,
+        bedrock.releasenotes.views.latest_sysreq,
+        {'product': 'firefox'}, name='firefox.sysreq'),
+    url(releasenotes_re, bedrock.releasenotes.views.release_notes, name='firefox.releasenotes'),
+    url(mobile_releasenotes_re, bedrock.releasenotes.views.release_notes,
         {'product': 'Firefox for Android'}, name='mobile.releasenotes'),
-    url(sysreq_re, views.system_requirements,
+    url(sysreq_re, bedrock.releasenotes.views.system_requirements,
         name='firefox.system_requirements'),
+    # firefox/os/notes/ should redirect to the latest version; update this in /redirects/urls.py
+    url('^firefox/os/notes/(?P<version>%s)/$' % version_re,
+        bedrock.releasenotes.views.release_notes, {'product': 'Firefox OS'},
+        name='firefox.os.releasenotes'),
+    url('^firefox/releases/$', bedrock.releasenotes.views.releases_index,
+        {'product': 'Firefox'}, name='firefox.releases.index'),
 )
