@@ -310,9 +310,11 @@ html[lang|="en"] #main-feature h1.large span:first-child {
         margin: 12px 10px 0;
         padding: 0;
         display: block;
-        list-style-type: none;
+        list-style-position: inside;
         .clearfix;
         li {
+            position: relative;
+            padding-top: 160px;
             .span(4);
             *display: inline;
             overflow: hidden;
@@ -320,12 +322,17 @@ html[lang|="en"] #main-feature h1.large span:first-child {
             font-size: 12px;
             color: @textColorTertiary;
             font-style: italic;
+            font-weight: bold;
+            span {
+                font-weight: normal;
+            }
             .screen {
+                position: absolute;
+                top: 0;
                 display: block;
                 width: 298px;
                 height: 150px;
                 border: 1px solid #ccc;
-                margin-bottom: 5px;
                 background-size: 100%;
                 background-color: transparent;
                 background-repeat: no-repeat;
