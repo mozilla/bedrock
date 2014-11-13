@@ -19,6 +19,7 @@ function onYouTubeIframeAPIReady() {
 
     var $window = $(window);
     var $document = $(document);
+    var $main = $('main');
     var TARGET_1 = 'devtools';
     var TARGET_2 = 'webide';
     var TARGET_3 = 'appMenu';
@@ -159,7 +160,7 @@ function onYouTubeIframeAPIReady() {
 
     // close tour and track button click
     function devToolsDoorhangerClose() {
-        skipTour();
+        showReminderDoorhanger();
         gaTrack(['_trackEvent', 'Developer /firstrun/ Interactions', 'Developer Tools doorhanger - link click', 'Close Tour']);
     }
 
@@ -217,7 +218,7 @@ function onYouTubeIframeAPIReady() {
     }
 
     function webIDEDoorhangerClose() {
-        skipTour();
+        showReminderDoorhanger();
         gaTrack(['_trackEvent', 'Developer /firstrun/ Interactions', 'Try WebIDE doorhanger - link click', 'Close Tour']);
     }
 
@@ -232,7 +233,7 @@ function onYouTubeIframeAPIReady() {
         var icon = isHighRes ? window.trans('syncIconHighRes') : window.trans('syncIcon');
         var buttons = [
             {
-                label: window.trans('doorhangerNothanks'),
+                label: window.trans('doorhangerClose'),
                 style: 'link',
                 callback: syncDoorhangerClose
             },
@@ -262,7 +263,7 @@ function onYouTubeIframeAPIReady() {
     }
 
     function syncDoorhangerClose() {
-        skipTour();
+        showReminderDoorhanger();
         gaTrack(['_trackEvent', 'Developer /firstrun/ Interactions', 'Sync doorhanger - link click', 'No Thanks']);
     }
 
@@ -278,6 +279,34 @@ function onYouTubeIframeAPIReady() {
         current = TARGET_4;
 
         gaTrack(['_trackEvent', 'Developer /firstrun/ Interactions', 'Sync doorhanger - button click', 'Sync My Firefox']);
+    }
+
+    function showReminderDoorhanger() {
+        var icon;
+        var options = {};
+
+        skipTour();
+
+        // l10n tag in template toggles showing the reminder
+        if ($main.hasClass('sync-reminder')) {
+
+            icon = isHighRes ? window.trans('syncIconHighRes') : window.trans('syncIcon');
+
+            options = {
+                closeButtonCallback: hideAnnotation
+            };
+
+            showHighlight(TARGET_3);
+
+            Mozilla.UITour.showInfo(
+                TARGET_3,
+                window.trans('syncReminderTitle'),
+                window.trans('syncReminderText'),
+                icon,
+                null,
+                options
+            );
+        }
     }
 
     // hides the current highlight annotation
