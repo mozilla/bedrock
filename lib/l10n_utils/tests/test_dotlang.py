@@ -32,6 +32,7 @@ LANG_FILES = 'test_file'
 TEMPLATE_DIRS = (os.path.join(ROOT, 'templates'),)
 
 
+@override_settings(DEV=False, LANGUAGE_CODE='en-US')
 @patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
 @patch.object(settings, 'ROOT_URLCONF', 'lib.l10n_utils.tests.test_files.urls')
 @patch.object(settings, 'ROOT', ROOT)
@@ -39,7 +40,6 @@ class TestLangFilesActivation(TestCase):
     def setUp(self):
         clear_url_caches()
 
-    @override_settings(DEV=False)
     def test_lang_file_is_active(self):
         """
         `lang_file_is_active` should return true if lang file has the
@@ -65,7 +65,6 @@ class TestLangFilesActivation(TestCase):
         ok_(not lang_file_has_tag('main', 'de', 'tag_after_non_tag_lines'))
         ok_(not lang_file_has_tag('main', 'de', 'no_such_tag'))
 
-    @override_settings(DEV=False)
     def test_active_locale_not_redirected(self):
         """ Active lang file should render correctly.
 
@@ -77,7 +76,6 @@ class TestLangFilesActivation(TestCase):
         doc = pq(response.content)
         eq_(doc('h1').text(), 'Die Lage von Mozilla')
 
-    @override_settings(DEV=False, LANGUAGE_CODE='en-US')
     def test_inactive_locale_redirected(self):
         """ Inactive locale should redirect to en-US. """
         response = self.client.get('/de/inactive-de-lang-file/')
@@ -98,7 +96,6 @@ class TestLangFilesActivation(TestCase):
         doc = pq(response.content)
         eq_(doc('h1').text(), 'Die Lage von Mozilla')
 
-    @override_settings(DEV=False)
     def test_active_alternate_lang_file(self):
         """Template with active alternate lang file should activate from it."""
         response = self.client.get('/de/state-of-mozilla/')

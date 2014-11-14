@@ -6,7 +6,7 @@
 
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}
-  {% if l10n_has_tag('home_title_update') or settings.DEV %}
+  {% if l10n_has_tag('home_title_update') %}
     {{ _("Firefox Web browser — Trusted, Flexible, Fast — Committed to you, your privacy and an open Web") }}
   {% else %}
     {{ _("Firefox Web browser — Trusted, Flexible, Fast — There's never been a better time") }}

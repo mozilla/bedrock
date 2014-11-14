@@ -15,7 +15,7 @@
 {% block telemetry_id %}australis-tour-firstrun-29-release{% endblock %}
 
 {% block doorhanger_title %}
-  {% if l10n_has_tag('new_doorhanger') or settings.DEV %}
+  {% if l10n_has_tag('new_doorhanger') %}
     {# L10n: This is the title for a door-hanger menu that shows in the browser chrome #}
     data-title="{{ _('Take a quick tour') }}"
   {% else %}

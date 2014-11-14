@@ -37,6 +37,7 @@ def render(request, template, context=None, **kwargs):
 
     # Every template gets its own .lang file, so figure out what it is
     # and pass it in the context
+    context['template'] = template
     context['langfile'] = get_lang_path(template)
 
     # Get the available translation list of the current page

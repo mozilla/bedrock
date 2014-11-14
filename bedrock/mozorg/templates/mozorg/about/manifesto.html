@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% if not settings.DEV and not l10n_has_tag('manifesto_landing') %}
+{% if not l10n_has_tag('manifesto_landing') %}
   {#- Show the old page if the landing page is not localized yet -#}
   {% include 'mozorg/about/manifesto-details.html' %}
 {% else %}
@@ -225,7 +225,7 @@
                   <ul class="resources">
                     <li><a href="https://groups.google.com/forum/#!forum/mozilla.governance">{{ _('Participate in our governance forum') }}</a></li>
 
-                    {% if l10n_has_tag('join-us') or settings.DEV %}
+                    {% if l10n_has_tag('join-us') %}
                       <li><a href="{{ url('mozorg.contribute') }}">{{ _('Join us as a volunteer') }}</a></li>
                       <li><a href="{{ url('mozorg.contribute.studentambassadors.landing') }}">{{ _('Join us as a student ambassador') }}</a></li>
                     {% else %}

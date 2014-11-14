@@ -66,7 +66,7 @@
                 {{ _('%s lets you <br>search anonymously')|format('DuckDuckGo') }}
               </h2>
               <ul>
-                {% if l10n_has_tag('tracking_update') or settings.DEV %}
+                {% if l10n_has_tag('tracking_update') %}
                   <li>{{ _('Get great results with no tracking') }}</li>
                 {% else %}
                   <li>{{ _('Get great results with less tracking') }}</li>

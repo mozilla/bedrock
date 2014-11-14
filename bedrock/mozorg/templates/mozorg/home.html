@@ -60,7 +60,7 @@
     <ul class="accordion">
 
 {# Position 1: "Shape Environments" #}
-    {% if l10n_has_tag('promo_lightbeam') or settings.DEV %}
+    {% if l10n_has_tag('promo_lightbeam') %}
       <li id="panel-lightbeam" class="panel" tabindex="0">
         {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
         <h2 class="panel-title">{{ _('<i>Watch</i> the watchers') }}</h2>
@@ -91,7 +91,7 @@
     {% endif %}
 
 {# Position 2: "Build Products" #}
-    {% if l10n_has_tag('promo_fxdesktop') or settings.DEV %}
+    {% if l10n_has_tag('promo_fxdesktop') %}
       <li id="panel-fxdesktop" class="panel" tabindex="0">
         {# L10n: This is the label seen when the panel is collapsed so it may need to be altered to fit a limited space. The active phrase should be wrapped in <i></i> tags. #}
         <h2 class="panel-title">{{ _('<i>Try the best</i> Firefox yet') }}</h2>
@@ -123,7 +123,7 @@
     {% endif %}
 
 {# Position 3: "Enable Community" #}
-    {% if l10n_has_tag('promo_sumo') or settings.DEV %}
+    {% if l10n_has_tag('promo_sumo') %}
       <li id="panel-sumo" class="panel" tabindex="0">
         {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
         <h2 class="panel-title">{{ _('<i>Help</i> Mozilla users') }}</h2>
@@ -173,7 +173,7 @@
     {#
     New Webmaker Party promo below. Will likely be used in the near future.
 
-    if l10n_has_tag('promo_makerparty') or settings.DEV
+    if l10n_has_tag('promo_makerparty')
       <li id="panel-makerparty" class="panel" tabindex="0">
         { L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. }
         { L10n: This <br> is strictly for visual formatting; translations can omit or reposition as needed. }
@@ -191,7 +191,7 @@
         </div>
       </li>
     #}
-    {% if l10n_has_tag('promo_webmaker') or settings.DEV %}
+    {% if l10n_has_tag('promo_webmaker') %}
       <li id="panel-webmaker" class="panel" tabindex="0">
         {# L10n: The active word should be wrapped in <i></i> tags, though it may appear at a different position in the translated title. #}
         <h2 class="panel-title">{{ _('<i>Learn</i> the Web') }}</h2>

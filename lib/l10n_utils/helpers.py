@@ -12,6 +12,7 @@ from django.conf import settings
 from django.utils.translation import get_language
 
 from dotlang import translate, lang_file_has_tag
+from gettext import template_has_tag
 
 
 def install_lang_files(ctx):
@@ -71,9 +72,11 @@ def js_escape(string):
 @jingo.register.function
 @jinja2.contextfunction
 def l10n_has_tag(ctx, tag, langfile=None):
-    """Return boolean whether the given lang file has the given tag."""
-    langfile = langfile or ctx.get('langfile')
-    return lang_file_has_tag(langfile, tag=tag)
+    """Return boolean whether the given template's lang files have the given tag."""
+    if langfile:
+        return lang_file_has_tag(langfile, tag=tag)
+    else:
+        return template_has_tag(ctx['template'], ctx['LANG'], tag)
 
 
 def get_locale(lang):

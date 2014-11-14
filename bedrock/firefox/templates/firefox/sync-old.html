@@ -28,7 +28,7 @@
     </header>
     <section>
       <ol>
-        {% if l10n_has_tag('sync_new_markup') or settings.DEV %}
+        {% if l10n_has_tag('sync_new_markup') %}
           <li>{% trans url='https://support.mozilla.org/kb/learn-more-about-the-design-of-new-firefox' %}
             Open the <a class="menu" href="{{ url }}#w_a-handy-new-menu">menu</a> in the top right of Firefox and select “<strong>Sign in to Sync.</strong>”
           {% endtrans %}</li>
@@ -61,7 +61,7 @@
     </header>
     <section>
       <p>
-      {% if l10n_has_tag('sync_new_markup') or settings.DEV %}
+      {% if l10n_has_tag('sync_new_markup') %}
         {% trans url=settings.GOOGLE_PLAY_FIREFOX_LINK %}
           <a href="{{ url }}">Download Firefox for Android</a> to sync between your desktop and mobile devices.
         {% endtrans %}
