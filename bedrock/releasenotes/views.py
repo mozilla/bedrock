@@ -93,7 +93,8 @@ def release_notes(request, version, product='Firefox'):
     new_features, known_issues = release.notes(public_only=not settings.DEV)
 
     return l10n_utils.render(
-        request, release_notes_template(release.channel, product), {
+        request, release_notes_template(release.channel, product,
+                                        int(release.major_version())), {
             'version': version,
             'download_url': get_download_url(release),
             'support_url': SUPPORT_URLS.get(product, 'https://support.mozilla.org/'),
